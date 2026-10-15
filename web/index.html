@@ -2022,7 +2022,7 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
   contentEl.querySelectorAll(".chip.dangling[data-jit-type], .project-card.dangling[data-jit-type]").forEach((el) => {
     el.addEventListener("click", (e) => {
       e.preventDefault();
-      jitMaterialize(el.dataset.jitType, el.dataset.jitName, el, el.dataset.jitMbid || "", node.id);
+      jitMaterialize(el.dataset.jitType, el.dataset.jitName, el, { mbid: el.dataset.jitMbid || "", sourceSlug: node.id });
     });
   });
   const precacheBtn = contentEl.querySelector("#precache-all");
@@ -2074,7 +2074,7 @@ async function precacheAllDangling(node, btn) {
         qid: ref.qid,
         slug: ref.slug,
         artist: isWorkType(ref.type) ? jitArtistFor(ref, node.type, node.name) : "",
-        source: { slug: node.id, field: kind },
+        source: jitSource(node.id, kind),
       });
       try {
         await fetch(`${API_BASE}/materialize`, {
@@ -2103,14 +2103,19 @@ function isWorkType(type) {
 }
 
 // Mirrors the server's `artist` rules (collapsed spaces, 1-200 chars, no control character, at
-// least one Latin letter or digit once accents are stripped); "" = send no artist. A name the
-// server would refuse (400 with scoped slugs on) is better omitted: the slug of the edge then
-// carries the scope.
+// least one Latin letter or digit left once normalizeSlugBody (src/slug.ts) is applied: NFKD, accents
+// and a trailing "(...)" / "[...]" stripped); "" = send no artist. A name the server would refuse (400
+// with scoped slugs on) is better omitted: the slug of the edge then carries the scope.
 function jitArtistName(v) {
   if (typeof v !== "string") return "";
   const name = v.replace(/\s+/g, " ").trim();
   if (!name || name.length > 200 || /[\u0000-\u001f\u007f-\u009f]/.test(name)) return "";
-  return /[a-z0-9]/i.test(name.normalize("NFD").replace(/\p{M}/gu, "")) ? name : "";
+  const body = name
+    .normalize("NFKD")
+    .replace(/\p{M}/gu, "")
+    .replace(/\s*\([^)]*\)\s*$/u, "")
+    .replace(/\s*\[[^\]]*\]\s*$/u, "");
+  return /[a-z0-9]/i.test(body) ? name : "";
 }
 
 // The ref's own credited artist wins; a ref without one on an artist's page belongs to that artist.
@@ -2126,6 +2131,16 @@ function jitContextAttrs(ref, parentCtx) {
   if (artist) out += ` data-jit-artist="${escapeHtml(artist)}"`;
   if (parentCtx && parentCtx.kind) out += ` data-jit-field="${escapeHtml(parentCtx.kind)}"`;
   return out;
+}
+
+// `source` is optional context but the server rejects an invalid one (400), which would block the
+// click: send it only for a canonical slug (CANONICAL_SLUG_PATTERN, src/slug.ts) -- a deployed cache
+// can still hold legacy slugs -- and a plain edge field name.
+const CANONICAL_SLUG = /^(artist|project|track|genre|label):[a-z0-9]+(-[a-z0-9]+)*(--[a-z0-9]+(-[a-z0-9]+)*)?$/;
+function jitSource(slug, field) {
+  return typeof slug === "string" && CANONICAL_SLUG.test(slug) && /^[a-z_]+$/.test(field || "")
+    ? { slug, field }
+    : undefined;
 }
 
 // The one place a POST /materialize body is built, so the chip, "précacher tout" and the search
@@ -2145,7 +2160,15 @@ function materializeBody({ type, name, mbid, qid, slug, artist, source }) {
 function repointEdge(sourceSlug, field, from, to) {
   const parent = sourceSlug && byId.get(sourceSlug);
   const v = parent && parent.edges && field ? parent.edges[field] : undefined;
-  for (const r of Array.isArray(v) ? v : v ? [v] : []) if (r && r.slug === from) r.slug = to;
+  if (Array.isArray(v)) {
+    // Same as the server: the list already naming `to` just drops the replaced entry.
+    const present = v.some((r) => r && r.slug === to);
+    for (let i = v.length - 1; i >= 0; i--) {
+      if (!v[i] || v[i].slug !== from) continue;
+      if (present) v.splice(i, 1);
+      else v[i].slug = to;
+    }
+  } else if (v && v.slug === from) v.slug = to;
 }
 
 // ─── Streaming links ─────────────────────────────────────────────────────
@@ -2353,7 +2376,7 @@ function chipHtml(ref, parentCtx) {
 // Expected wall time per node type, based on the pipeline benchmarks
 // (p50 around 5s, p90 around 7s). Used to drive the optimistic progress bar.
 const EXPECTED_MS_BY_TYPE = { genre: 6500, label: 5200, artist: 6500, project: 5200, track: 5000 };
-async function jitMaterialize(type, name, chipEl, mbid, sourceSlug) {
+async function jitMaterialize(type, name, chipEl, { mbid = "", sourceSlug = "" } = {}) {
   if (!JIT_ENABLED) return;
   chipEl.classList.remove("dangling");
   chipEl.classList.add("loading");
@@ -2380,7 +2403,7 @@ async function jitMaterialize(type, name, chipEl, mbid, sourceSlug) {
       qid: chipEl.dataset.jitQid,
       slug: chipEl.dataset.jitSlug,
       artist: chipEl.dataset.jitArtist,
-      source: sourceSlug && field ? { slug: sourceSlug, field } : undefined,
+      source: jitSource(sourceSlug, field),
     });
     const r = await fetch(`${API_BASE}/materialize`, {
       method: "POST",
@@ -2419,10 +2442,10 @@ async function jitMaterialize(type, name, chipEl, mbid, sourceSlug) {
     if (chipEl.dataset.jitSlug && chipEl.dataset.jitSlug !== vizNode.id) {
       slugAlias.set(chipEl.dataset.jitSlug, vizNode.id);
     }
-    // 2026-10-15 (TRA-481): `requested_slug` is present only when the server really rewrote
-    // the source edge (the node is filed under another slug than the one the edge named).
-    // Mirror that locally so the page needs no reload: the chip re-renders with the new slug
-    // (data-id) and a second click opens the right work. Absent: leave the edge untouched --
+    // 2026-10-15 (TRA-481): `requested_slug` means the node is filed under another slug than
+    // the one the edge named; when `source` was sent and accepted the server has also rewritten
+    // that edge. Mirror it locally so the page needs no reload: the chip re-renders with the new
+    // slug (data-id) and a second click opens the right work. Absent: leave the edge untouched --
     // the server did not rewrite it, a homonym's edge stays for the TRA-478 migration.
     if (body.requested_slug && body.requested_slug !== vizNode.id) {
       slugAlias.set(body.requested_slug, vizNode.id);

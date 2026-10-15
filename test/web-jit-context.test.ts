@@ -35,6 +35,12 @@ const ref = (type: string, slug: string, name: string, extra: Record<string, unk
 
 const FITNA_ROHFF = "track:fitna--rohff";
 
+const rohff = (d: ReturnType<typeof makeData>) => {
+	const n = d.nodes[0];
+	if (!n) throw new Error("no seed node");
+	return n;
+};
+
 function makeData() {
 	return {
 		total: 2,
@@ -70,9 +76,16 @@ interface Stub {
 	materialize: () => Call[];
 }
 
-function newWindow(opts: { materializeResponse?: unknown; hits?: unknown[] } = {}): Stub {
+function newWindow(
+	opts: {
+		materializeResponse?: unknown;
+		hits?: unknown[];
+		mutate?: (d: ReturnType<typeof makeData>) => void;
+	} = {},
+): Stub {
 	const calls: Call[] = [];
 	const data = makeData();
+	opts.mutate?.(data);
 	const json = (v: unknown) => new Response(JSON.stringify(v));
 	const dom = new JSDOM(indexHtml, {
 		url: "http://localhost/",
@@ -282,6 +295,71 @@ describe('"précacher tout" (TRA-481)', () => {
 		});
 		expect(bySlug("genre:rap")).not.toHaveProperty("artist");
 		for (const b of bodies) expect(b).not.toHaveProperty("disambiguator");
+	});
+});
+
+describe("edge cases (TRA-481)", () => {
+	it("sends no source from a page whose slug is not canonical (the server would answer 400)", async () => {
+		const { w, materialize } = newWindow({
+			mutate: (d) => {
+				rohff(d).id = "artist:Legacy_Rohff";
+			},
+		});
+		await ready(w);
+		w.show("artist:Legacy_Rohff");
+		chip(w, FITNA_ROHFF).click();
+
+		await vi.waitFor(() => expect(materialize()).toHaveLength(1));
+		const body = materialize()[0]?.body;
+		expect(body).toMatchObject({ artist: "Rohff", slug: FITNA_ROHFF });
+		expect(body).not.toHaveProperty("source");
+	});
+
+	it("omits an artist the server's slug normalization would empty (a bare bracket)", async () => {
+		const { w } = newWindow({
+			mutate: (d) => {
+				rohff(d).name = "[unknown]";
+			},
+		});
+		await ready(w);
+		w.show("artist:rohff");
+
+		expect(chip(w, FITNA_ROHFF).dataset.jitArtist).toBeUndefined();
+	});
+
+	it("drops the replaced entry when the edge list already names the served node", async () => {
+		const { w, materialize } = newWindow({
+			materializeResponse: {
+				node: {
+					slug: "track:fitna--akuma",
+					type: "track",
+					name: "Fitna",
+					editorial_teaser: "Served teaser",
+					citations: [],
+				},
+				source: "jit",
+				requested_slug: FITNA_ROHFF,
+				wallMs: 1,
+			},
+			mutate: (d) => {
+				// the page also lists the served node (already cached) in the same field
+				rohff(d).edges.notable_tracks?.push(ref("track", "track:fitna--akuma", "Fitna"));
+				d.nodes.push({ id: "track:fitna--akuma", type: "track", name: "Fitna", teaser: "x", edges: {} });
+			},
+		});
+		await ready(w);
+		w.show("artist:rohff");
+		chip(w, FITNA_ROHFF).click();
+		await vi.waitFor(() => expect(materialize()).toHaveLength(1));
+		await vi.waitFor(() =>
+			expect(w.document.getElementById("content")?.textContent).not.toContain("Anthologie"),
+		);
+
+		w.show("artist:rohff");
+		const fitnas = Array.from(w.document.querySelectorAll<HTMLElement>("a.chip[data-id]")).filter((a) =>
+			a.textContent?.includes("Fitna"),
+		);
+		expect(fitnas.map((a) => a.dataset.id)).toEqual(["track:fitna--akuma"]);
 	});
 });
 
