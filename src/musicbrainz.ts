@@ -274,7 +274,13 @@ function queueRetry(delayMs: number): Promise<void> {
 	return queued;
 }
 
-async function mbFetch<T>(path: string, params: Record<string, string>): Promise<T | null> {
+// `fetchImpl` is injectable so callers outside this module (the image resolver, TRA-465) can be
+// tested without stubbing the global; it defaults to the global fetch read at call time.
+async function mbFetch<T>(
+	path: string,
+	params: Record<string, string>,
+	fetchImpl: typeof fetch = fetch,
+): Promise<T | null> {
 	const key = `${path}?${Object.entries(params)
 		.sort()
 		.map(([k, v]) => `${k}=${v}`)
@@ -296,7 +302,7 @@ async function mbFetch<T>(path: string, params: Record<string, string>): Promise
 		const ctrl = new AbortController();
 		const timer = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT_MS);
 		try {
-			const r = await fetch(url, {
+			const r = await fetchImpl(url, {
 				headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
 				signal: ctrl.signal,
 			});
@@ -540,6 +546,45 @@ export async function fetchArtistStreamingLinksMb(artistMbid: string): Promise<M
 	const resources = (data?.relations ?? []).map((r) => r.url?.resource).filter((u): u is string => !!u);
 	const find = (host: string): string | null => resources.find((u) => u.includes(host)) ?? null;
 	return { spotify: find("open.spotify.com"), apple: find("music.apple.com") };
+}
+
+const WIKIDATA_QID_PATH = /^\/(?:wiki|entity)\/(Q[1-9]\d*)$/;
+
+/**
+ * Wikidata QID of an artist or label, read from its MusicBrainz url-rels (TRA-465).
+ *
+ * url-rels are user-editable third-party data: only an https `wikidata.org` link of relation type
+ * "wikidata" whose path is exactly `/wiki/Q…` or `/entity/Q…` yields a QID, anything else is null.
+ * Null as well when MusicBrainz is unreachable or the entity has no Wikidata link.
+ */
+export async function fetchWikidataUrlRelMb(
+	entity: "artist" | "label",
+	mbid: string,
+	fetchImpl?: typeof fetch,
+): Promise<string | null> {
+	const data = await mbFetch<{ relations?: MbUrlRelation[] }>(
+		`/${entity}/${mbid}`,
+		{ inc: "url-rels" },
+		fetchImpl,
+	);
+	if (!data || !Array.isArray(data.relations)) return null;
+	for (const rel of data.relations) {
+		if (rel?.type !== "wikidata") continue;
+		const resource = rel.url?.resource;
+		if (typeof resource !== "string") continue;
+		let u: URL;
+		try {
+			u = new URL(resource);
+		} catch {
+			continue;
+		}
+		if (u.protocol !== "https:" || (u.hostname !== "www.wikidata.org" && u.hostname !== "wikidata.org")) {
+			continue;
+		}
+		const qid = WIKIDATA_QID_PATH.exec(u.pathname)?.[1];
+		if (qid) return qid;
+	}
+	return null;
 }
 
 /** Extract candidate artist-name tokens (>=3 chars) from a disambiguator string. */
