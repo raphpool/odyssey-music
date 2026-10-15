@@ -601,3 +601,69 @@ describe("review-gate.yml: codex statuses count only from their expected author 
 		expect(code).toContain('git show "origin/$DEFAULT_BRANCH:.github/review-gate-authors.txt"');
 	});
 });
+
+// TRA-553: static checks on what the workflows pass to git and to the Claude action. Comment lines are dropped, so
+// the explanations next to a flag cannot make a test pass.
+describe("review workflows hardening (TRA-553)", () => {
+	const uncommented = (path: string): string =>
+		readFileSync(path, "utf8")
+			.replaceAll("\r\n", "\n")
+			.split("\n")
+			.filter((line) => !/^\s*#/.test(line))
+			.join("\n");
+	const aiReview = uncommented(AI_REVIEW);
+
+	/**
+	 * The lines of the `claude_args: |` block of the "Review Claude" step, read from the raw file: inside a block
+	 * scalar a `#` line is content, so it is an argument for the action and must not be hidden from the checks.
+	 */
+	const claudeArgs = (): string[] => {
+		const lines = readFileSync(AI_REVIEW, "utf8").replaceAll("\r\n", "\n").split("\n");
+		const start = lines.findIndex((line) => line.trim() === "claude_args: |");
+		if (start === -1) throw new Error("claude_args block not found in ai-review.yml");
+		const indent = (lines[start]?.length ?? 0) - (lines[start]?.trimStart().length ?? 0) + 2;
+		const body: string[] = [];
+		for (const line of lines.slice(start + 1)) {
+			if (line.trim() !== "" && line.length - line.trimStart().length < indent) break;
+			body.push(line.trim());
+		}
+		return body.filter((line) => line !== "");
+	};
+
+	it("restricts the Claude action to the user setting source, so the PR's own config loads nothing", () => {
+		// The action defaults to "user,project,local" and takes this value from claude_args (parse-sdk-options.ts).
+		expect(claudeArgs()).toContain("--setting-sources user");
+		expect(claudeArgs().filter((line) => line.startsWith("--setting-sources"))).toHaveLength(1);
+		// No other way to bring the project source back or to point the agent at settings of the PR.
+		expect(aiReview).not.toMatch(/--setting-sources[ =][^\n]*(project|local)/);
+		expect(aiReview).not.toMatch(/^\s*settings:/m);
+		expect(aiReview).not.toMatch(/--settings\b/);
+		// Every line of the block is a flag or the value of the previous one: no stray `#` line.
+		expect(claudeArgs().filter((line) => line.startsWith("#"))).toEqual([]);
+	});
+
+	it("uses only the MCP servers the action adds itself, so a PR's .mcp.json starts nothing", () => {
+		// The action keeps `enableAllProjectMcpServers: true` in the user settings it writes, which
+		// `--setting-sources user` does not remove: only --strict-mcp-config ignores the project's .mcp.json.
+		expect(claudeArgs()).toContain("--strict-mcp-config");
+	});
+
+	it("keeps the tool allowlist on the command line, where the project settings cannot widen it", () => {
+		expect(claudeArgs().some((line) => line.startsWith("--allowedTools "))).toBe(true);
+		expect(aiReview).not.toMatch(/Bash\((npx|gh pr|npm)\b/);
+	});
+
+	it.each([".github/workflows/review-gate.yml", ".github/workflows/ci.yml"])(
+		"lists the changed paths of %s with --no-renames and -z, on every name-only diff",
+		(path) => {
+			const calls = uncommented(path).match(/git diff [^\n|)]*--name-only[^\n|)]*/g) ?? [];
+			expect(calls.length).toBeGreaterThanOrEqual(1);
+			for (const call of calls) {
+				expect(call, call).toContain("--no-renames");
+				// NUL-separated, so that git does not quote a non-ASCII path (the quote defeats the `^` anchors).
+				expect(call, call).toMatch(/git diff -z /);
+			}
+			expect(uncommented(path)).toContain("tr '\\0' '\\n'");
+		},
+	);
+});

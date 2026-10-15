@@ -235,6 +235,7 @@ export function installPipelineMocks(options: InstallPipelineMocksOptions): void
 		candidates: 1,
 		path: "name",
 		unavailable: false,
+		matchedWords: [],
 	}));
 	vi.mocked(fetchArtistDiscographyMb).mockImplementation(async () => []);
 	vi.mocked(fetchEntityGenresMb).mockImplementation(async () => [...mbGenres]);
@@ -278,6 +279,9 @@ export function artistDraftFixture(overrides: Record<string, unknown> = {}): Rec
 		notable_tracks: [
 			{ type: "track", name: "Fixture Track", artist: "Fixture Artist" },
 		] satisfies EdgeRefFixture[],
+		// The LLM's picks (TRA-470): one entry of discography / notable_tracks each.
+		landmark_project: { type: "project", name: "Fixture Album", artist: "Fixture Artist" },
+		reference_track: { type: "track", name: "Fixture Track", artist: "Fixture Artist" },
 		...overrides,
 	};
 }

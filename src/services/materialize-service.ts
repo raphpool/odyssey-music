@@ -6,7 +6,7 @@ import { BadRequestError, isNotFoundError } from "../errors.js";
 import type { GenreRegistry } from "../genre-registry.js";
 import { logger } from "../logger.js";
 import { EDGE_FIELDS_BY_TYPE } from "../node-spec.js";
-import { runPipeline } from "../pipeline.js";
+import { type PipelineDeps, runPipeline } from "../pipeline.js";
 import {
 	isScopedSlug,
 	isValidSlug,
@@ -182,6 +182,8 @@ interface JitOptions {
 	fresh?: boolean;
 	slug?: Slug;
 	maxProviderAttempts?: 1;
+	// TRA-538: provenance of `body.mbid`; absent means a client's (the safe reading).
+	mbidSource?: "client" | "server";
 }
 
 /** What one pipeline run produced: the node, and the slug it was asked for when the node moved. */
@@ -199,6 +201,9 @@ export function createMaterializeService(deps: {
 	getCacheIndex?: () => Promise<CacheIndex>;
 	// Called after every node write so the index above never serves a stale slug.
 	invalidateCacheIndex?: () => void;
+	// TRA-479: picks the image of a node being materialized (see PipelineDeps.resolveImage). The
+	// composition root builds it from the images resolver and this same cache; unset = no image step.
+	resolveImage?: PipelineDeps["resolveImage"];
 }) {
 	const inflight = new Map<string, Promise<JitResult>>();
 
@@ -341,6 +346,10 @@ export function createMaterializeService(deps: {
 		const t0 = Date.now();
 		const fresh = opts.fresh === true;
 		let effectiveBody: MaterializeRequest = mbid === body.mbid ? body : { ...body, mbid: mbid as string };
+		// TRA-538: where `effectiveBody.mbid` comes from. The request's own is a hint MusicBrainz must confirm;
+		// the one `refreshIdentityFrom` copies off a cached node was established by the server and must
+		// survive a refresh even if MusicBrainz no longer singles the work out.
+		let mbidSource: "client" | "server" = "client";
 		// 2026-09-10 (TRA-43 security fix): the MINT slug is always name-derived, exactly as on main
 		// before this ticket -- `requestSlug` below is a LOOKUP key for an existing/canonical node,
 		// never a write target on its own (see refreshIdentityFrom above).
@@ -370,6 +379,7 @@ export function createMaterializeService(deps: {
 					throw new BadRequestError("Provided identifiers conflict with the existing node");
 				}
 				effectiveBody = refreshIdentityFrom(node, body.disambiguator, scopedWork);
+				mbidSource = "server";
 				slug = node.slug;
 				pinnedSlug = node.slug;
 				cached = node;
@@ -393,6 +403,7 @@ export function createMaterializeService(deps: {
 					(await creditsArtist(existing, artist));
 				if (attaches) {
 					effectiveBody = refreshIdentityFrom(existing, body.disambiguator, scopedWork);
+					mbidSource = "server";
 					slug = requestSlug;
 					pinnedSlug = requestSlug;
 					cached = existing;
@@ -445,6 +456,7 @@ export function createMaterializeService(deps: {
 					});
 					if (canonicalNode) {
 						effectiveBody = refreshIdentityFrom(canonicalNode, body.disambiguator);
+						mbidSource = "server";
 						slug = canonical.slug;
 						pinnedSlug = canonical.slug;
 						cached = canonicalNode;
@@ -487,13 +499,22 @@ export function createMaterializeService(deps: {
 			throw new BadRequestError("A project or track that is not cached needs an artist or a scoped slug");
 		}
 		if (!cached && opts.cacheOnly === true) throw new MaterializeCacheMissError();
+		// TRA-538: a refresh of a work that already carries an mbid keeps that server-established mbid,
+		// whatever the request sent: a different client mbid stays a hint and never replaces it, and
+		// MusicBrainz no longer singling the work out must not erase it.
+		if (cached && cachedMbid && isWorkType(body.type) && mbidSource === "client") {
+			effectiveBody = { ...effectiveBody, mbid: cachedMbid };
+			mbidSource = "server";
+		}
 		let effectiveFresh = fresh;
 		if (!fresh && cached) {
 			// 2026-10-14 (TRA-449): age no longer forces a refresh (it used to, past a 12 h TTL --
 			// symptom: prod diverging silently from the repo). Only an explicit `fresh`, or a
 			// client mbid that contradicts the cached one, re-runs the pipeline.
-			// A work's mbid from the client is a hint only (TRA-477, flag on): never a reason to rewrite it.
-			const mbidMismatch = !scopedWork && !!effectiveBody.mbid && cachedMbid !== effectiveBody.mbid;
+			// A work's mbid from the client is a hint only (TRA-477 flag on, TRA-538 whatever the flag): never
+			// a reason to rewrite it, since the refresh would no longer adopt the client's value anyway.
+			const mbidMismatch =
+				!isWorkType(body.type) && !!effectiveBody.mbid && cachedMbid !== effectiveBody.mbid;
 			if (!mbidMismatch) {
 				return { node: cached, source: "cache", wallMs: Date.now() - t0 };
 			}
@@ -518,6 +539,7 @@ export function createMaterializeService(deps: {
 			// TRA-477: the artist scopes a work, so two artists' same-titled works never share a run.
 			artist: scoped ? normalizeSlugBody(effectiveBody.artist ?? "") || null : null,
 			mbid: effectiveBody.mbid?.toLowerCase() ?? null,
+			mbidSource,
 			qid: effectiveBody.qid ?? null,
 			fresh: effectiveFresh,
 			providerAttempts: opts.maxProviderAttempts ?? 2,
@@ -551,7 +573,7 @@ export function createMaterializeService(deps: {
 				wallMs: Date.now() - t0,
 			};
 		}
-		const jitOpts: JitOptions = { fresh: effectiveFresh };
+		const jitOpts: JitOptions = { fresh: effectiveFresh, mbidSource };
 		if (pinnedSlug) jitOpts.slug = pinnedSlug;
 		if (opts.maxProviderAttempts !== undefined) jitOpts.maxProviderAttempts = opts.maxProviderAttempts;
 		const p = runJitDetailed(effectiveBody, jitOpts);
@@ -583,6 +605,7 @@ export function createMaterializeService(deps: {
 			name: string;
 			disambiguator?: string;
 			mbid?: string;
+			mbidIsClientHint?: boolean;
 			slug?: Slug;
 			qid?: string;
 			artist?: string;
@@ -591,7 +614,12 @@ export function createMaterializeService(deps: {
 			name: body.name,
 		};
 		if (body.disambiguator) pipelineInput.disambiguator = body.disambiguator;
-		if (body.mbid) pipelineInput.mbid = body.mbid;
+		if (body.mbid) {
+			pipelineInput.mbid = body.mbid;
+			// TRA-538: a client's mbid is a hint the pipeline must have MusicBrainz confirm; one read off
+			// the cached node (refresh) was established by the server and is kept.
+			if (opts.mbidSource !== "server") pipelineInput.mbidIsClientHint = true;
+		}
 		// TRA-477: the credit hint MusicBrainz and the search use to tell same-titled works apart.
 		if (body.artist && isWorkType(body.type) && scopedReleaseSlugsEnabled()) {
 			pipelineInput.artist = body.artist;
@@ -621,6 +649,7 @@ export function createMaterializeService(deps: {
 			tavilyApiKey: deps.env.TAVILY_API_KEY,
 			firecrawlApiKey: deps.env.FIRECRAWL_API_KEY,
 			genreRegistry: deps.genreRegistry,
+			...(deps.resolveImage ? { resolveImage: deps.resolveImage } : {}),
 			...(opts.maxProviderAttempts === undefined ? {} : { maxProviderAttempts: opts.maxProviderAttempts }),
 		});
 		const requestedSlug = r.requestedSlug;
@@ -631,7 +660,11 @@ export function createMaterializeService(deps: {
 			const existing = await readNode(r.slug);
 			if (existing) return { node: existing, ...(requestedSlug ? { requestedSlug } : {}) };
 		}
-		const enriched = body.mbid ? ({ ...r.node, mbid: body.mbid } as NodePayload) : r.node;
+		// TRA-538: a work's mbid is written by the pipeline from its own MusicBrainz resolution (title +
+		// credit), and only when that confirms the client's hint. Stamping `body.mbid` here made a
+		// client-chosen identity authoritative through `byMbid`. Artists and labels keep the old behavior.
+		const enriched =
+			body.mbid && !isWorkType(body.type) ? ({ ...r.node, mbid: body.mbid } as NodePayload) : r.node;
 		await deps.cache.write(enriched);
 		deps.invalidateCacheIndex?.();
 		return { node: enriched, ...(requestedSlug ? { requestedSlug } : {}) };
