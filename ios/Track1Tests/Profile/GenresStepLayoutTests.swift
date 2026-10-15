@@ -8,21 +8,19 @@ import XCTest
 /// 164 x 176 tiles; the iPhone SE (375 pt) gives 327 pt, and the height follows the 164:176 ratio.
 @MainActor
 final class GenresStepLayoutTests: XCTestCase {
-	private let hipHop = NodeIdentity(rawValue: "genre:hip-hop")!
-
-	/// Hip-Hop has a subgenre and no parent, so it is the only tile.
-	private func model() throws -> OnboardingFlowModel {
+	/// One editorial family with one published genre, so a single tile is there to toggle.
+	private func model() throws -> GenreOnboardingModel {
 		let json = """
 			{"version": "v1", "revision": "sha256:\(String(repeating: "0123456789abcdef", count: 4))",
-			"taxonomy": {"mode": "degraded", "available": true},
-			"nodes": [
-				{"identity": "genre:hip-hop", "type": "genre", "name": "Hip-hop", "teaser": null},
-				{"identity": "genre:trap", "type": "genre", "name": "Trap", "teaser": null}
-			],
-			"edges": [{"source": "genre:hip-hop", "target": "genre:trap", "type": "subgenres"}]}
+			"taxonomy": {"mode": "editorial", "version": 2,
+				"families": [{"key": "hip-hop", "label": "Hip-hop", "order": 1}],
+				"genres": [{"id": "Q11401", "name": "Trap", "family": "hip-hop", "slugs": ["genre:trap"]}],
+				"legacySelectionBySlug": {}},
+			"nodes": [{"identity": "genre:trap", "type": "genre", "name": "Trap", "teaser": null}],
+			"edges": []}
 			"""
 		let catalog = try JSONDecoder().decode(Catalog.self, from: Data(json.utf8))
-		return OnboardingFlowModel(taxonomy: GenreTaxonomy(catalog: catalog))
+		return GenreOnboardingModel(taxonomy: try XCTUnwrap(EditorialGenreTaxonomy(catalog: catalog)))
 	}
 
 	func testTileSizeOnA345PointColumn() {
@@ -57,12 +55,12 @@ final class GenresStepLayoutTests: XCTestCase {
 		XCTAssertTrue(bar.showsFade)
 	}
 
-	func testContinueIsDisabledUntilAParentIsChosen() throws {
+	func testContinueIsDisabledUntilAFamilyIsChosen() throws {
 		let model = try model()
 		XCTAssertFalse(GenresStepView.isContinueEnabled(model))
-		model.toggleParent(hipHop)
+		model.toggleFamily("hip-hop")
 		XCTAssertTrue(GenresStepView.isContinueEnabled(model))
-		model.toggleParent(hipHop)
+		model.toggleFamily("hip-hop")
 		XCTAssertFalse(GenresStepView.isContinueEnabled(model))
 	}
 }
