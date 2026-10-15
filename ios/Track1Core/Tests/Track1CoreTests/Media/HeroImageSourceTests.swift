@@ -115,7 +115,75 @@ final class HeroImageSourceTests: XCTestCase {
 			[.url(try XCTUnwrap(URL(string: cover))), .node(try Self.id("project:a"))])
 	}
 
+	// MARK: - Style (TRA-500)
+
+	func testAnArtistOwnImageIsADerivedCoverOnlyWhenTheServerSaysSo() throws {
+		let own = HeroCandidate.url(try XCTUnwrap(URL(string: cover)))
+
+		XCTAssertEqual(
+			HeroImageSource.style(of: own, type: .artist, imageSource: "derived-cover"), .derivedCover)
+		XCTAssertEqual(HeroImageSource.style(of: own, type: .artist, imageSource: "wikidata-p18"), .photo)
+		XCTAssertEqual(HeroImageSource.style(of: own, type: .artist, imageSource: nil), .photo)
+	}
+
+	func testAnImageBorrowedFromAnEdgeIsADerivedCoverForArtistLabelAndGenre() throws {
+		let edge = HeroCandidate.node(try Self.id("project:a"))
+
+		for type in [NodeType.artist, .label, .genre] {
+			XCTAssertEqual(HeroImageSource.style(of: edge, type: type, imageSource: nil), .derivedCover, "\(type)")
+			XCTAssertEqual(
+				HeroImageSource.style(of: edge, type: type, imageSource: "wikidata-p18"), .derivedCover, "\(type)")
+		}
+	}
+
+	func testGenreAndLabelOwnImagesFollowTheirImageSource() throws {
+		let own = HeroCandidate.url(try XCTUnwrap(URL(string: cover)))
+
+		for type in [NodeType.label, .genre] {
+			XCTAssertEqual(
+				HeroImageSource.style(of: own, type: type, imageSource: "derived-cover"), .derivedCover, "\(type)")
+			XCTAssertEqual(HeroImageSource.style(of: own, type: type, imageSource: "wikidata-p154"), .photo, "\(type)")
+		}
+	}
+
+	func testProjectAndTrackKeepTheFullFrameStyleWhateverTheSource() throws {
+		let own = HeroCandidate.url(try XCTUnwrap(URL(string: cover)))
+		let edge = HeroCandidate.node(try Self.id("project:album"))
+
+		for type in [NodeType.project, .track] {
+			for source in [nil, "caa", "itunes", "derived-cover"] {
+				XCTAssertEqual(HeroImageSource.style(of: own, type: type, imageSource: source), .photo, "\(type)")
+				XCTAssertEqual(HeroImageSource.style(of: edge, type: type, imageSource: source), .photo, "\(type)")
+			}
+		}
+	}
+
+	func testTheNodeDecodesItsImageSourceForTheStyle() throws {
+		let source = """
+			{"id":"artist:sample-node","type":"artist","name":"Sample","teaser":null,"article":"A","citations":[],"facts":{},"edges":{},"materialized_at":"2026-10-08T00:00:00Z","image_url":"\(cover)","image_source":"derived-cover"}
+			"""
+		let decoder = JSONDecoder()
+		decoder.dateDecodingStrategy = .iso8601
+		let node = try decoder.decode(NodeDetail.self, from: Data(source.utf8))
+		let candidate = try XCTUnwrap(HeroImageSource.candidates(for: node).first)
+
+		XCTAssertEqual(
+			HeroImageSource.style(of: candidate, type: node.type, imageSource: node.imageSource), .derivedCover)
+	}
+
 	// MARK: - Fallback chain
+
+	func testFirstMatchSaysWhichCandidateProducedTheImage() async throws {
+		let backend = Backend(images: ["project:b": "https://img.example.com/b.jpg"])
+		let store = backend.makeStore()
+		let winner = HeroCandidate.node(try Self.id("project:b"))
+		let candidates: [HeroCandidate] = [.node(try Self.id("project:a")), winner]
+
+		let match = await HeroImageSource.firstMatch(among: candidates, store: store)
+
+		XCTAssertEqual(match?.image, "https://img.example.com/b.jpg")
+		XCTAssertEqual(match?.candidate, winner)
+	}
 
 	func testFirstCandidateWithAnImageWinsAndLaterOnesAreNotRead() async throws {
 		let backend = Backend(images: ["project:a": "https://img.example.com/a.jpg"])
