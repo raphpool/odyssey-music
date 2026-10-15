@@ -44,6 +44,45 @@ final class APIClientTests: XCTestCase {
 		assertFailure(await mappedIPv4Client.node(identity), equals: .invalidResponse)
 	}
 
+	func testDecodesTheImageSourceOfANodeWithoutRequiringIt() async {
+		let image = "\"image_url\":\"https://img.example.com/cover.jpg\""
+		let withSource = makeClient { request in
+			let payload = nodeJSON.replacingOccurrences(
+				of: "\"image_url\":null", with: "\(image),\"image_source\":\"derived-cover\"")
+			return response(request, status: 200, body: payload)
+		}
+		guard case .success(let decoded, _) = await withSource.node(identity) else {
+			return XCTFail("Expected a node")
+		}
+		XCTAssertEqual(decoded.node.imageURL?.absoluteString, "https://img.example.com/cover.jpg")
+		XCTAssertEqual(decoded.node.imageSource, "derived-cover")
+
+		let withoutSource = makeClient { request in
+			response(request, status: 200, body: nodeJSON.replacingOccurrences(of: "\"image_url\":null", with: image))
+		}
+		guard case .success(let plain, _) = await withoutSource.node(identity) else {
+			return XCTFail("Expected a node")
+		}
+		XCTAssertNil(plain.node.imageSource)
+
+		let nullSource = makeClient { request in
+			let payload = nodeJSON.replacingOccurrences(
+				of: "\"image_url\":null", with: "\"image_url\":null,\"image_source\":null")
+			return response(request, status: 200, body: payload)
+		}
+		guard case .success(let none, _) = await nullSource.node(identity) else {
+			return XCTFail("Expected a node")
+		}
+		XCTAssertNil(none.node.imageSource)
+
+		let invalidSource = makeClient { request in
+			let payload = nodeJSON.replacingOccurrences(
+				of: "\"image_url\":null", with: "\"image_url\":null,\"image_source\":[]")
+			return response(request, status: 200, body: payload)
+		}
+		assertFailure(await invalidSource.node(identity), equals: .invalidResponse)
+	}
+
 	func testRejectsMissingRequiredNullableFields() async {
 		let missingCatalogTeaser = makeClient { request in
 			response(request, status: 200, body: catalogJSON.replacingOccurrences(of: ",\"teaser\":null", with: ""))
