@@ -20,6 +20,8 @@ jobs:
       issues: read
       id-token: write
       actions: read
+      # TRA-510: read the previous head's `review` check-run and its annotations (the reuse decision).
+      checks: read
     steps:
       - name: Isolate HOME from the runner host account
         # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
@@ -31,12 +33,83 @@ jobs:
       - uses: actions/checkout@v6
         with: { fetch-depth: 0 }
 
+      # TRA-510 (2026-10-15): the merge queue's `gh pr update-branch` pushes a merge commit (`synchronize`)
+      # and used to restart the whole review (~4-5 min, ~0.84 USD) although the PR's own diff was unchanged.
+      # When the diff is the same as the one the previous head's review passed, that verdict is reused:
+      # this job's `review` check-run (the one review-gate.yml reads) simply succeeds without calling the
+      # model. Every doubt or error leaves `decision` unset, which means a full review (fail closed).
+      # The patch-id travels as a notice annotation of the job's check-run, written only by this workflow.
+      - name: Compute the patch-id of the PR diff
+        id: patch
+        continue-on-error: true
+        shell: bash
+        env:
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          set -euo pipefail
+          base=$(git merge-base "origin/$BASE_REF" HEAD)
+          # --verbatim keeps whitespace significant (YAML, Makefiles), --binary and the mode/create/delete
+          # summary cover what `git patch-id` alone does not see; the id is useless as soon as any part changes.
+          patch=$(git diff --binary --no-ext-diff --no-textconv --no-renames "$base" HEAD | git patch-id --verbatim | cut -d' ' -f1)
+          shape=$(git diff --summary --no-renames "$base" HEAD | git hash-object --stdin)
+          [[ "$patch" =~ ^[0-9a-f]{40}$ && "$shape" =~ ^[0-9a-f]{40}$ ]]
+          echo "id=$patch-$shape" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/setup-node@v4
+        if: github.event.action == 'synchronize'
+        continue-on-error: true
+        with: { node-version: 22 }
+
+      - name: Decide whether the previous verdict can be reused
+        id: decide
+        if: github.event.action == 'synchronize'
+        continue-on-error: true
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          EVENT_ACTION: ${{ github.event.action }}
+          PREVIOUS_SHA: ${{ github.event.before }}
+          PATCH_ID: ${{ steps.patch.outputs.id }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          set -euo pipefail
+          # The decision code comes from the base branch, never from the PR checkout: a PR cannot make the
+          # script that gates its own review say "reuse". It imports nothing, so no `npm ci` is needed.
+          trusted="$RUNNER_TEMP/review-reuse"
+          rm -rf "$trusted"
+          mkdir -p "$trusted"
+          git show "origin/$BASE_REF:scripts/ci/review-reuse.ts" > "$trusted/review-reuse.ts"
+          echo '{"type":"module"}' > "$trusted/package.json"
+          result=$(node --experimental-strip-types --no-warnings "$trusted/review-reuse.ts")
+          echo "$result"
+          decision=$(jq -r '.decision' <<< "$result")
+          [[ "$decision" == "reuse" || "$decision" == "full" ]]
+          {
+            echo "decision=$decision"
+            echo "previous_sha=$(jq -r '.previousSha // ""' <<< "$result")"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Reuse the previous verdict
+        if: steps.decide.outputs.decision == 'reuse'
+        shell: bash
+        env:
+          PREVIOUS_SHA: ${{ steps.decide.outputs.previous_sha }}
+          PATCH_ID: ${{ steps.patch.outputs.id }}
+        run: |
+          message="verdict réutilisé de $PREVIOUS_SHA, patch-id $PATCH_ID"
+          echo "::notice::$message"
+          echo "::notice::review-patch-id v1 $PATCH_ID"
+          echo "$message" >> "$GITHUB_STEP_SUMMARY"
+
       - name: Clear any previous verdict
+        if: steps.decide.outputs.decision != 'reuse'
         # runner.temp is emptied by the runner between jobs, but claude-code-action itself notes
         # that this cleanup is not reliably honored on persistent self-hosted runners.
         run: rm -f "$RUNNER_TEMP/review.json"
 
       - name: Review Claude
+        if: steps.decide.outputs.decision != 'reuse'
         uses: anthropics/claude-code-action@v1
         with:
           # Token d'abonnement : la review est facturée sur le plan Max,
@@ -86,6 +159,7 @@ jobs:
 
       - name: Gate
         id: gate
+        if: steps.decide.outputs.decision != 'reuse'
         run: |
           REVIEW_JSON="$RUNNER_TEMP/review.json"
           if [ ! -f "$REVIEW_JSON" ]; then
@@ -96,3 +170,12 @@ jobs:
           VERDICT=$(jq -r '.verdict' "$REVIEW_JSON")
           jq -r '"\(.blocking) bloquant(s), \(.nits) nit(s) — \(.summary)"' "$REVIEW_JSON" >> "$GITHUB_STEP_SUMMARY"
           [ "$VERDICT" = "pass" ] || { echo "::error::Findings bloquants — voir les commentaires inline."; exit 1; }
+
+      # Only a full review that passed the Gate gets here (no status function: the implicit success()).
+      # A failed or blocked review records nothing, so the next head cannot inherit it.
+      - name: Record the reviewed patch-id
+        if: steps.decide.outputs.decision != 'reuse' && steps.patch.outputs.id != ''
+        shell: bash
+        env:
+          PATCH_ID: ${{ steps.patch.outputs.id }}
+        run: echo "::notice::review-patch-id v1 $PATCH_ID"
