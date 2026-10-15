@@ -61,6 +61,17 @@ export const musicBrainzConfig = {
 	minIntervalMs: envInt("MB_MIN_INTERVAL_MS", 1000),
 };
 
+// 2026-10-15 (TRA-468): ListenBrainz labs similar-artists, free and keyless. Its policy is 1 request/second
+// and a descriptive User-Agent (the MusicBrainz one is reused). 0 disables spacing.
+export const listenBrainzConfig = {
+	baseUrl: "https://labs.api.listenbrainz.org",
+	algorithm: envString(
+		"LISTENBRAINZ_ALGORITHM",
+		"session_based_days_7500_session_300_contribution_5_threshold_10_limit_100_filter_True_skip_30",
+	),
+	minIntervalMs: envInt("LISTENBRAINZ_MIN_INTERVAL_MS", 1000),
+};
+
 export const pipelineConfig = {
 	geminiApiKey: process.env.GEMINI_API_KEY ?? process.env.GOOGLE_API_KEY ?? "",
 	defaultModel: envString("GEMINI_MODEL", "gemini-2.5-flash-lite"),
