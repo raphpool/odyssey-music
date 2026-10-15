@@ -21,9 +21,12 @@
  *   edge by edge. A slug that cannot be re-derived from the name (free-text legacy disambiguator on a
  *   transliterated title) is left as is and listed.
  *
- * Writes go through atomicWriteJson after nodePayloadSchema validation, never NodeCache.write: write()
- * also emits reverse edges and merges pending ones, which is the job of the reverse-edge backfill
- * (2.2), not of a rename. (NodeCache.update, TRA-535, is not on main yet.)
+ * Writes go through atomicWriteJson after nodePayloadSchema validation, deliberately not through
+ * NodeCache.write or NodeCache.update (TRA-535): both go through the cache's write path, which emits
+ * reverse edges and merges pending ones, and a rename must not invent edges (that is the reverse-edge
+ * backfill, 2.2). The only pending entries applied here are those of a key this run moved onto an
+ * existing node. A migration also rewrites many nodes in one plan, validated as a whole before the
+ * first write, which a per-node read-modify-write does not give.
  *
  * Apply order (crash-safe, like TRA-22/41): new node files -> rewritten nodes -> pending-reverses.json
  * -> redirects -> `rm` of the old files last. The real run is TRA-483 (repo) and TRA-484 (prod, through
