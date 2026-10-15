@@ -28,6 +28,10 @@
  * existing node. A migration also rewrites many nodes in one plan, validated as a whole before the
  * first write, which a per-node read-modify-write does not give.
  *
+ * Order of execution (TRA-483): the artist identity backfill (TRA-463) is APPLIED first, then the work identity
+ * backfill (TRA-474), then this migration. The artist manifest names collisions by mbid; `--apply` is refused
+ * (exit 2) while a node of a collision does not carry the mbid the manifest gives it.
+ *
  * Apply order: new node files -> redirects -> nodes whose edges changed -> pending-reverses.json -> `rm` of the
  * old files last. What is guaranteed after a crash at ANY of those writes (tested at each one, with a renamed
  * node pointing at another renamed node): a plain re-run of this script exits 0 and leaves the cache a clean
@@ -366,15 +370,16 @@ const fold = (text: string): string =>
  * Null when the members may be merged, else why not. Sharing a slug is not sharing an identity ("Mo" and
  * "MØ" both give `artist:mo`): different mbids never merge, and as soon as one member has no mbid the
  * credit (a work's primary credit, an artist's own name; letters kept, only accents folded) has to agree.
- * `settled`: slugs of a collision of the artist manifest, which MusicBrainz already settled. They are
+ * `settled`: slug -> mbid of the collisions of the artist manifest inside the group, which MusicBrainz already
+ * settled. That mbid joins the comparison (a node with another mbid never merges into it). They are
  * exempt from the credit check among themselves ("Pole" and "Pole (Stefan Betke)"), but any other member of
  * the group (a node that merely transliterates onto the same slug) still has to agree with them.
  */
 export function identityDisagreement(
 	members: readonly CacheNodeFile[],
-	settled: ReadonlySet<string> = new Set(),
+	settled: ReadonlyMap<string, string> = new Map(),
 ): string | null {
-	const mbids = sortedUnique(members.flatMap((m) => str(m.node.mbid) ?? []));
+	const mbids = sortedUnique([...members.flatMap((m) => str(m.node.mbid) ?? []), ...settled.values()]);
 	if (mbids.length > 1) return `different mbids: ${mbids.join(", ")}`;
 	const credit = (m: CacheNodeFile): string =>
 		fold(
@@ -486,21 +491,23 @@ export function planMigration(input: PlanInput): Plan {
 	const unreadable = input.unreadable ?? new Set<string>();
 
 	// 2. Collisions of the artist manifest merge onto one slug (the one without "--", else rule 2).
-	const collisionGroups: CacheNodeFile[][] = [];
+	const collisionGroups: { mbid: string; members: CacheNodeFile[] }[] = [];
 	for (const c of identities.collisions) {
 		const present = c.slugs.flatMap((s) => bySlug.get(s) ?? []);
 		if (present.length < 2) continue;
-		collisionGroups.push(present);
+		collisionGroups.push({ mbid: c.mbid, members: present });
 		const { winner } = elect(present, true);
 		for (const m of present) finalOf.set(m.slug, finalOf.get(winner.slug) ?? winner.slug);
 	}
 	// A group holding a whole collision of the artist manifest: MusicBrainz settled it, and its bare slug wins.
 	const preferBare = (members: readonly CacheNodeFile[]): boolean =>
-		collisionGroups.some((g) => g.every((m) => members.includes(m)));
+		collisionGroups.some((g) => g.members.every((m) => members.includes(m)));
 	// The slugs of every manifest collision wholly inside the group: only those are settled by MusicBrainz.
-	const settledIn = (members: readonly CacheNodeFile[]): Set<string> =>
-		new Set(
-			collisionGroups.filter((g) => g.every((m) => members.includes(m))).flatMap((g) => g.map((m) => m.slug)),
+	const settledIn = (members: readonly CacheNodeFile[]): Map<string, string> =>
+		new Map(
+			collisionGroups
+				.filter((g) => g.members.every((m) => members.includes(m)))
+				.flatMap((g) => g.members.map((m): [string, string] => [m.slug, g.mbid])),
 		);
 
 	// 3. Merge groups and their guards, until stable (reverting one group can expose another).
@@ -1030,6 +1037,21 @@ export async function runMigration(options: MigrationOptions): Promise<Migration
 			`no artist manifest at ${artistManifestPath}: no collision to merge, no group membership known`,
 		);
 		identities = NO_IDENTITIES;
+	}
+	// The manifest settles collisions by mbid, so the nodes must carry it: TRA-463 must have been APPLIED
+	// (not only run as a dry-run) before this migration. Not waived by `scratch`.
+	const notBackfilled = identities.collisions.flatMap((c) =>
+		c.slugs.flatMap((slug) => {
+			const file = nodes.find((n) => n.slug === slug);
+			return file && str(file.node.mbid) !== c.mbid
+				? [`${slug} (node mbid ${str(file.node.mbid) ?? "none"}, manifest ${c.mbid})`]
+				: [];
+		}),
+	);
+	if (notBackfilled.length > 0) {
+		const message = `nodes of an artist-manifest collision do not carry the manifest's mbid: apply the artist identity backfill (TRA-463) first: ${notBackfilled.join("; ")}`;
+		if (apply) return { manifest: empty([message]), exitCode: 2 };
+		notes.push(message);
 	}
 	const redirectsPath = options.redirectsPath ?? join(defaultDataDir(), "slug-redirects.json");
 	let existingRedirects: Record<string, string> = {};

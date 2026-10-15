@@ -436,6 +436,53 @@ describe("scope-release-slugs migration", () => {
 		expect(await tree(root)).toEqual(before);
 	});
 
+	describe("the collision's own mbid", () => {
+		const collision = { collisions: [{ mbid: MBID_A, slugs: ["artist:mo", "artist:mo--stage-name"] }] };
+
+		it("does not merge an intruder carrying another mbid into a collision, even if the collision nodes carry none yet", async () => {
+			await seed([
+				node("artist:mo", "Mo"),
+				node("artist:mo--stage-name", "Mo"),
+				node("artist:m", "MØ", { mbid: MBID_B }),
+			]);
+			await seedIdentities(collision);
+			const before = await tree(cacheDir);
+			const { manifest, exitCode } = await run(false);
+			expect(exitCode).toBe(0);
+			expect(manifest.conflicts).toMatchObject([{ kind: "merge" }]);
+			expect(manifest.conflicts[0]?.reason).toContain(`different mbids: ${MBID_A}, ${MBID_B}`);
+			expect(manifest.merged).toEqual([]);
+			expect(await tree(cacheDir)).toEqual(before);
+		});
+
+		it("same conflict, no write, when the collision nodes do carry the manifest's mbid", async () => {
+			await seed([
+				node("artist:mo", "Mo", { mbid: MBID_A }),
+				node("artist:mo--stage-name", "Mo", { mbid: MBID_A }),
+				node("artist:m", "MØ", { mbid: MBID_B }),
+			]);
+			await seedIdentities(collision);
+			const before = await tree(cacheDir);
+			const { manifest, exitCode } = await run(true);
+			expect(exitCode).toBe(0);
+			expect(manifest.conflicts).toMatchObject([{ kind: "merge" }]);
+			expect(await tree(cacheDir)).toEqual(before);
+		});
+
+		it("refuses --apply (exit 2, nothing written) while a collision node lacks the manifest's mbid", async () => {
+			await seed([node("artist:mo", "Mo"), node("artist:mo--stage-name", "Mo", { mbid: MBID_A })]);
+			await seedIdentities(collision);
+			const before = await tree(root);
+			const applied = await run(true);
+			expect(applied.exitCode).toBe(2);
+			expect(applied.manifest.errors.join()).toContain("artist identity backfill (TRA-463)");
+			expect(await tree(root)).toEqual(before);
+			const dry = await run(false);
+			expect(dry.exitCode).toBe(0);
+			expect(dry.manifest.notes.join()).toContain("artist identity backfill (TRA-463)");
+		});
+	});
+
 	describe("transliteration (TRA-528)", () => {
 		it("renames the node, the dangling targets and the pending-reverses keys, and leaves a namesake alone", async () => {
 			await seed(
