@@ -28,7 +28,13 @@
  * existing node. A migration also rewrites many nodes in one plan, validated as a whole before the
  * first write, which a per-node read-modify-write does not give.
  *
- * Where a slug can land on a node that already exists, and the guard each path goes through (one function,
+ * THE GUARANTEE is an invariant on the finished plan, validatePlan, checked before any write: no edge ends up
+ * resolving to a node of another identity than its reference (mbid, credit, name), whichever path produced it.
+ * A violation refuses the run (exit 2 with --apply, 1 in a dry-run), listed in `invariantViolations`; nothing
+ * is resolved automatically. The per-path guards below are DIAGNOSTICS: they say early, and with a precise
+ * reason, why a rename was not made. A path they miss is still caught by the invariant.
+ *
+ * Where a slug can land on a node that already exists, and the diagnostic each path goes through (one function,
  * facetsDisagreement: different mbids never agree, otherwise the folded credit/name must; no agreement = a
  * reported conflict, no rewrite, no redirect):
  *   1. a renamed or merged node onto an existing node, or two nodes onto one slug: identityDisagreement
@@ -150,6 +156,14 @@ export interface Reported {
 	reason: string;
 }
 
+export interface InvariantViolation {
+	node: string;
+	field: string;
+	from: string;
+	to: string;
+	reason: string;
+}
+
 export interface Manifest {
 	migration: string;
 	generated_at: string;
@@ -165,6 +179,8 @@ export interface Manifest {
 	not_derivable: Reported[];
 	/** Unreadable node files and nodes kept as they are because they would not validate. */
 	malformed: Reported[];
+	/** Edges that would resolve to a node of another identity than their reference: the run is refused. */
+	invariantViolations: InvariantViolation[];
 	/** Edges folded because THIS run made them collide (never a duplicate that was already there). */
 	folded: FoldedEdge[];
 	conflicts: Conflict[];
@@ -444,6 +460,147 @@ export function identityDisagreement(
 	return facetsDisagreement(members.map(nodeFacet), settled);
 }
 
+// --- The invariant (the guarantee) ---
+
+/**
+ * THE guarantee, checked on the finished plan before anything is written: no edge ends up resolving to a node
+ * of another identity than the one it cited. For every edge of the cache whose resolved target changes (its
+ * slug is rewritten, detached, or still the same while a DIFFERENT node now sits at it because of a rename or a
+ * merge), the reference (mbid, credit, name; a detached edge counts as its source artist) is compared with the
+ * final node at that slug by facetsDisagreement; references citing a slug that is about to receive a node, or
+ * that other rewritten edges converge on, are compared with each other too. An unreadable file at the target
+ * is a disagreement; an empty credit is never an agreement. A violation refuses the run (exit 2 with
+ * --apply, 1 in a dry-run): nothing is resolved automatically.
+ */
+export function validatePlan(
+	plan: {
+		finals: ReadonlyMap<string, Obj>;
+		origin: ReadonlyMap<string, readonly CacheNodeFile[]>;
+		edgeMap: Readonly<Record<string, string>>;
+		detached: readonly DetachedEdge[];
+	},
+	before: readonly CacheNodeFile[],
+	unreadable: ReadonlySet<string> = new Set(),
+	// Slugs an earlier, interrupted run of this script already redirected to: the edges that cite them are its own
+	// output (guarded then), not new citations.
+	priorTargets: ReadonlySet<string> = new Set(),
+): InvariantViolation[] {
+	const bySlug = new Map(before.map((f) => [f.slug, f]));
+	const detachedTo = new Map(plan.detached.map((d) => [`${d.node}|${d.field}|${d.from}`, d.to]));
+	const isWork = (slug: string): boolean => slug.startsWith("project:") || slug.startsWith("track:");
+	const finalFacet = (slug: string, node: Obj): IdentityFacet => {
+		const credit = isWork(slug) ? str(edgeList(node.artists)[0]?.name) : str(node.name);
+		return { slug: `node:${slug}`, mbid: str(node.mbid), credit: fold(credit ?? "") };
+	};
+	interface Cite {
+		node: string;
+		field: string;
+		from: string;
+		needsCheck: boolean;
+		name: string;
+		facet: IdentityFacet;
+		creditCheck: IdentityFacet[] | null;
+	}
+	const byTarget = new Map<string, Cite[]>();
+	for (const [fin, node] of plan.finals) {
+		const members = plan.origin.get(fin) ?? [];
+		const kept = members.length === 1 && node === members[0]?.node;
+		const sourceName = str(node.name);
+		const sourceMbid = str(node.mbid);
+		for (const member of members) {
+			for (const { field, edge } of allEdges(member.node, member.type)) {
+				const from = str(edge.slug);
+				if (!from) continue;
+				const detachedSlug = kept ? undefined : detachedTo.get(`${fin}|${field}|${from}`);
+				const to = detachedSlug ?? (kept ? from : (plan.edgeMap[from] ?? from));
+				if (to === fin) continue; // a self-edge, dropped
+				const beforeNode = bySlug.get(from);
+				const after = plan.finals.get(to);
+				const sameNode =
+					after !== undefined && beforeNode !== undefined && (plan.origin.get(to) ?? []).includes(beforeNode);
+				const needsCheck =
+					!sameNode && !(to === from && priorTargets.has(from)) && (to !== from || after !== undefined);
+				const credit = detachedSlug ? sourceName : isWork(to) ? str(edge.artist) : str(edge.name);
+				const facet: IdentityFacet = {
+					slug: `ref:${fin}.${field}.${from}`,
+					mbid: detachedSlug ? undefined : str(edge.mbid),
+					credit: fold(credit ?? ""),
+				};
+				const creditedBy = after ? str(edgeList(after.artists)[0]?.mbid) : undefined;
+				const creditName = after ? str(edgeList(after.artists)[0]?.name) : undefined;
+				const cite: Cite = {
+					node: fin,
+					field,
+					from,
+					needsCheck,
+					name: str(edge.name) ?? "",
+					facet,
+					creditCheck:
+						detachedSlug && after
+							? [
+									{ slug: "source", mbid: sourceMbid, credit: fold(sourceName ?? "") },
+									{ slug: "credit", mbid: creditedBy, credit: fold(creditName ?? "") },
+								]
+							: null,
+				};
+				byTarget.set(to, [...(byTarget.get(to) ?? []), cite]);
+			}
+		}
+	}
+	const violations: InvariantViolation[] = [];
+	for (const [to, cites] of byTarget) {
+		// A citation identical (same node, field, name, mbid, credit) to one already accepted for this target
+		// cannot bring a new identity: it is that edge's earlier rewrite, left by an interrupted run.
+		const accepted = cites.filter((c) => !c.needsCheck);
+		for (const c of cites) {
+			if (!c.needsCheck) continue;
+			const twin = accepted.some(
+				(o) =>
+					o.node === c.node &&
+					o.field === c.field &&
+					o.name === c.name &&
+					o.facet.mbid === c.facet.mbid &&
+					o.facet.credit === c.facet.credit,
+			);
+			if (twin) c.needsCheck = false;
+		}
+		const changed = cites.filter((c) => c.needsCheck);
+		if (changed.length === 0) continue;
+		const refuse = (reason: string): void => {
+			for (const c of changed) violations.push({ node: c.node, field: c.field, from: c.from, to, reason });
+		};
+		if (unreadable.has(to)) {
+			refuse(`${to} is an unreadable file`);
+			continue;
+		}
+		const after = plan.finals.get(to);
+		const facets: IdentityFacet[] = [
+			...(after ? [finalFacet(to, after)] : []),
+			...changed.map((c) => c.facet),
+			// A slug that had no node before: the references that already cited it are part of the picture.
+			...(bySlug.has(to) ? [] : cites.filter((c) => !c.needsCheck && c.from === to).map((c) => c.facet)),
+		];
+		if (facets.length >= 2) {
+			const why = facetsDisagreement(facets);
+			if (why !== null) refuse(`${to}: ${why}`);
+		}
+		for (const c of changed) {
+			const why = c.creditCheck ? facetsDisagreement(c.creditCheck) : null;
+			if (why !== null)
+				violations.push({
+					node: c.node,
+					field: c.field,
+					from: c.from,
+					to,
+					reason: `${to} is credited to another artist (${why})`,
+				});
+		}
+	}
+	return violations.sort((a, b) =>
+		`${a.node}${a.field}${a.from}` < `${b.node}${b.field}${b.from}` ? -1 : 1,
+	);
+}
+
 // --- The plan (pure) ---
 
 export interface PlanInput {
@@ -675,7 +832,7 @@ export function planMigration(input: PlanInput): Plan {
 				addConflict({
 					kind: "dangling-target",
 					slugs: [slug, derived[0]],
-					reason: `${slug} is cited but ${derived[0]} is another identity (${why}): not rewritten, no redirect`,
+					reason: `${slug} is cited but ${derived[0]} is another identity (${why}): no new rewrite, no new redirect (an older redirect that already sends ${slug} there is caught by the invariant)`,
 				});
 			} else {
 				danglingRenames.set(slug, derived[0]);
@@ -917,6 +1074,13 @@ export function planMigration(input: PlanInput): Plan {
 		if (results.has(slug)) errors.push(`redirect key ${slug} is also a live node after the migration`);
 	}
 
+	const invariantViolations = validatePlan(
+		{ finals: results, origin, edgeMap, detached },
+		files,
+		unreadable,
+		new Set(Object.values(input.existingRedirects)),
+	);
+
 	const sortRecord = (r: Record<string, string>): Record<string, string> =>
 		Object.fromEntries(Object.entries(r).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)));
 	const bySlugKey = <T extends { slug: string }>(a: T, b: T): number =>
@@ -939,6 +1103,7 @@ export function planMigration(input: PlanInput): Plan {
 			skipped: skipped.sort(bySlugKey),
 			not_derivable: notDerivable.sort(bySlugKey),
 			malformed: malformed.sort(bySlugKey),
+			invariantViolations,
 			folded,
 			conflicts,
 			rewritten,
@@ -963,6 +1128,7 @@ export function planMigration(input: PlanInput): Plan {
 				conflicts: conflicts.length,
 				folded_edges: folded.length,
 				malformed: malformed.length,
+				invariant_violations: invariantViolations.length,
 				nodes_to_write: writes.size,
 			},
 		},
@@ -1059,6 +1225,7 @@ export async function runMigration(options: MigrationOptions): Promise<Migration
 		skipped: [],
 		not_derivable: [],
 		malformed: [],
+		invariantViolations: [],
 		folded: [],
 		conflicts: [],
 		rewritten: [],
@@ -1173,8 +1340,14 @@ export async function runMigration(options: MigrationOptions): Promise<Migration
 	plan.manifest.malformed.push(...invalid.map((i) => ({ slug: i.path, reason: `unreadable: ${i.error}` })));
 	plan.manifest.summary.malformed = plan.manifest.malformed.length;
 	const manifest: Manifest = { ...base, ...plan.manifest, notes, written: 0 };
+	const blocked = plan.manifest.invariantViolations.length > 0;
+	if (blocked) {
+		manifest.errors.push(
+			`${plan.manifest.invariantViolations.length} invariant violation(s): an edge would resolve to a node of another identity (see invariantViolations); refusing, nothing is resolved automatically`,
+		);
+	}
 
-	if (apply && plan.manifest.errors.length === 0) {
+	if (apply && !blocked && plan.manifest.errors.length === 0) {
 		// Crash-safe order: a crash at any point leaves no edge to a node that is gone, and a re-run
 		// finishes the job. New nodes, then the redirects, then the nodes that point at them, then
 		// pending-reverses, and only then the removal of the old files (a duplicate is harmless, a loss
@@ -1210,7 +1383,7 @@ export async function runMigration(options: MigrationOptions): Promise<Migration
 		await mkdir(dirname(options.manifestPath), { recursive: true });
 		await atomicWriteJson(options.manifestPath, manifest);
 	}
-	return { manifest, exitCode: manifest.errors.length > 0 ? 1 : 0 };
+	return { manifest, exitCode: blocked && apply ? 2 : manifest.errors.length > 0 ? 1 : 0 };
 }
 
 export function formatSummary(manifest: Manifest, manifestPath: string | undefined): string {

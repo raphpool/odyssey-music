@@ -729,46 +729,54 @@ describe("scope-release-slugs migration", () => {
 			expect(manifest.summary.nodes_to_write).toBe(1);
 		});
 
-		it("keeps both edges and reports a conflict when a rename makes two mbids collide", async () => {
-			await seed([
-				node("project:ep", "EP", { artists: credit("artist:a", "A") }),
-				node("artist:a", "A", {
-					discography: [
-						ref("project:ep", "EP", { mbid: MBID_A }),
-						ref("project:ep--a", "EP", { mbid: MBID_B }),
+		const jan = credit("artist:jan-jelinek", "Jan Jelinek");
+		const twins = (extra: Obj = {}): Obj[] => [
+			node("track:moire--by-jan-jelinek", "Moire", { artists: jan }),
+			node("track:moire--other-by-jan-jelinek", "Moire", {
+				artists: jan,
+				citations: [{ url: "https://example.com/a" }, { url: "https://example.com/b" }],
+			}),
+			node("artist:jan-jelinek", "Jan Jelinek", extra),
+		];
+
+		it("keeps both edges and reports a conflict when merged duplicates are cited with two mbids", async () => {
+			await seed(
+				twins({
+					notable_tracks: [
+						ref("track:moire--by-jan-jelinek", "Moire", { mbid: MBID_A }),
+						ref("track:moire--other-by-jan-jelinek", "Moire", { mbid: MBID_B }),
 					],
 				}),
-			]);
+			);
 			const { manifest, exitCode } = await run(true);
 			expect(exitCode).toBe(0);
 			expect(manifest.folded).toEqual([]);
 			expect(manifest.conflicts).toMatchObject([
-				{ kind: "edge-mbid", slugs: ["artist:a.discography", "project:ep--a"] },
+				{ kind: "edge-mbid", slugs: ["artist:jan-jelinek.notable_tracks", "track:moire--jan-jelinek"] },
 			]);
-			expect(((await read("artist:a")).discography as Obj[]).map((e) => e.mbid)).toEqual([MBID_A, MBID_B]);
+			expect(((await read("artist:jan-jelinek")).notable_tracks as Obj[]).map((e) => e.mbid)).toEqual([
+				MBID_A,
+				MBID_B,
+			]);
 		});
 
 		it("folds a collision the run created into the most informative edge, and records it", async () => {
-			await seed([
-				node("project:ep", "EP", { artists: credit("artist:a", "A") }),
-				node("artist:a", "A", {
-					discography: [
-						ref("project:ep", "EP", { mbid: MBID_A }),
-						ref("project:ep--a", "EP", { year: "2020", releaseType: "ep" }),
-						ref("project:other", "Other"),
+			await seed(
+				twins({
+					notable_tracks: [
+						ref("track:moire--by-jan-jelinek", "Moire", { mbid: MBID_A }),
+						ref("track:moire--other-by-jan-jelinek", "Moire", { year: "2020" }),
+						ref("track:other", "Other"),
 					],
 				}),
-			]);
-			const { manifest } = await run(true);
-			const folded = ((await read("artist:a")).discography as Obj[]).map((e) => e.slug);
-			expect(folded).toEqual(["project:ep--a", "project:other"]);
-			expect(((await read("artist:a")).discography as Obj[])[0]).toMatchObject({
-				mbid: MBID_A,
-				year: "2020",
-				releaseType: "ep",
-			});
+			);
+			const { manifest, exitCode } = await run(true);
+			expect(exitCode).toBe(0);
+			const edges = (await read("artist:jan-jelinek")).notable_tracks as Obj[];
+			expect(edges.map((e) => e.slug)).toEqual(["track:moire--jan-jelinek", "track:other"]);
+			expect(edges[0]).toMatchObject({ mbid: MBID_A, year: "2020" });
 			expect(manifest.folded).toHaveLength(1);
-			expect(manifest.folded[0]).toMatchObject({ node: "artist:a", field: "discography" });
+			expect(manifest.folded[0]).toMatchObject({ node: "artist:jan-jelinek", field: "notable_tracks" });
 			expect(manifest.folded[0]?.before).toHaveLength(2);
 		});
 	});
@@ -934,7 +942,10 @@ describe("scope-release-slugs migration", () => {
 					}),
 				).rejects.toThrow("simulated crash");
 				const retry = await run(true);
-				expect(retry.exitCode, `crash at write ${crashAt}`).toBe(0);
+				expect(
+					retry.exitCode,
+					`crash at write ${crashAt}: ${JSON.stringify(retry.manifest.invariantViolations)}`,
+				).toBe(0);
 				expect(await snapshot(), `crash at write ${crashAt}`).toEqual(expected);
 			}
 		});
