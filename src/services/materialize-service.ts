@@ -6,7 +6,7 @@ import { BadRequestError, isNotFoundError } from "../errors.js";
 import type { GenreRegistry } from "../genre-registry.js";
 import { logger } from "../logger.js";
 import { EDGE_FIELDS_BY_TYPE } from "../node-spec.js";
-import { runPipeline } from "../pipeline.js";
+import { type PipelineDeps, runPipeline } from "../pipeline.js";
 import {
 	isScopedSlug,
 	isValidSlug,
@@ -201,6 +201,9 @@ export function createMaterializeService(deps: {
 	getCacheIndex?: () => Promise<CacheIndex>;
 	// Called after every node write so the index above never serves a stale slug.
 	invalidateCacheIndex?: () => void;
+	// TRA-479: picks the image of a node being materialized (see PipelineDeps.resolveImage). The
+	// composition root builds it from the images resolver and this same cache; unset = no image step.
+	resolveImage?: PipelineDeps["resolveImage"];
 }) {
 	const inflight = new Map<string, Promise<JitResult>>();
 
@@ -646,6 +649,7 @@ export function createMaterializeService(deps: {
 			tavilyApiKey: deps.env.TAVILY_API_KEY,
 			firecrawlApiKey: deps.env.FIRECRAWL_API_KEY,
 			genreRegistry: deps.genreRegistry,
+			...(deps.resolveImage ? { resolveImage: deps.resolveImage } : {}),
 			...(opts.maxProviderAttempts === undefined ? {} : { maxProviderAttempts: opts.maxProviderAttempts }),
 		});
 		const requestedSlug = r.requestedSlug;
