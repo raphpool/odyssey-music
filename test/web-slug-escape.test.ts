@@ -130,4 +130,39 @@ describe("slugs interpolated into attributes (TRA-501)", () => {
 		expect(crumbIds).toContain(EVIL_ARTIST);
 		expect(eventHandlerAttrs(w.document.body)).toEqual([]);
 	});
+
+	it("the stat line escapes the seed id (first node of data.json)", async () => {
+		const evilSeed = "artist:x<img src=x onerror=alert(1)>";
+		const w = newWindow({
+			...DATA,
+			nodes: [{ id: evilSeed, type: "artist", name: "Evil Seed", teaser: "x", edges: {} }, ...DATA.nodes],
+		});
+		await ready(w);
+
+		const stat = w.document.getElementById("stat") as HTMLElement;
+		expect(stat.querySelector("img")).toBeNull();
+		expect(stat.textContent).toContain(evilSeed);
+		expect(eventHandlerAttrs(w.document.body)).toEqual([]);
+	});
+
+	it("escapes a forged edge type in the chip badge", async () => {
+		const forged = "genre<img src=x onerror=alert(1)>";
+		const w = newWindow({
+			...DATA,
+			nodes: [
+				{
+					id: "artist:safe",
+					type: "artist",
+					name: "Safe",
+					teaser: "x",
+					edges: { genres: [ref(forged, "genre:forged", "Forged")] },
+				},
+			],
+		});
+		await ready(w);
+		w.show("artist:safe");
+
+		expect(w.document.querySelector("img[src='x']")).toBeNull();
+		expect(eventHandlerAttrs(w.document.body)).toEqual([]);
+	});
 });

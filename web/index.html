@@ -377,7 +377,7 @@ async function pingApi() {
   // has a real taxonomy to check against -- never earlier, never derived at module load.
   loadActiveProfile(DATA.taxonomy);
   SEED_ID = DATA.nodes.find((n) => /tendency/.test(n.id))?.id || DATA.nodes[0].id;
-  statEl.innerHTML = `<b style="color:var(--fg);font-weight:500;">${DATA.total}</b> nodes · <b style="color:var(--fg);font-weight:500;">${DATA.edges.length}</b> edges · seed: <span style="color:var(--accent);">${SEED_ID}</span>`;
+  statEl.innerHTML = `<b style="color:var(--fg);font-weight:500;">${DATA.total}</b> nodes · <b style="color:var(--fg);font-weight:500;">${DATA.edges.length}</b> edges · seed: <span style="color:var(--accent);">${escapeHtml(SEED_ID)}</span>`;
 
   document.getElementById("focus-seed").addEventListener("click", () => { crumbs = []; show(SEED_ID); });
   document.getElementById("random").addEventListener("click", () => {
@@ -439,7 +439,7 @@ async function pingApi() {
         const badge = h.source === "catalog"
           ? '<span style="margin-left:auto;font-size:0.65rem;letter-spacing:0.06em;color:var(--muted);text-transform:uppercase;">+ generate</span>'
           : '<span style="margin-left:auto;font-size:0.65rem;letter-spacing:0.06em;color:var(--project);text-transform:uppercase;">odyssey</span>';
-        return `<div class="row" data-idx="${i}" style="display:flex;align-items:center;gap:0.6rem;"><span class="t ${h.type}">${h.type}</span><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(h.name)}${subtitle}</span>${badge}</div>`;
+        return `<div class="row" data-idx="${i}" style="display:flex;align-items:center;gap:0.6rem;"><span class="t ${escapeHtml(h.type)}">${escapeHtml(h.type)}</span><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(h.name)}${subtitle}</span>${badge}</div>`;
       })
       .join("");
     searchResults.style.display = "block";
@@ -2276,10 +2276,10 @@ function chipHtml(ref, parentCtx) {
     // surface this branch didn't have while the ref rendered as a dangling <span>, and
     // the raw ref.slug is only an alias key, not a slug byId (or the ?node= deep link
     // reader, TRA-23) can look up on its own.
-    return `<a class="chip t-${escapeHtml(ref.type)}" href="?node=${encodeURIComponent(resolveId(ref.slug))}" data-id="${escapeHtml(ref.slug)}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}</a>`;
+    return `<a class="chip t-${escapeHtml(ref.type)}" href="?node=${encodeURIComponent(resolveId(ref.slug))}" data-id="${escapeHtml(ref.slug)}"><span class="etype">${escapeHtml(ref.type)}</span>${escapeHtml(ref.name)}${extras}</a>`;
   }
   if (deadCache.has(ref.slug)) {
-    return `<span class="chip t-${escapeHtml(ref.type)} dead" title="agent could not materialize this entity"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}</span>`;
+    return `<span class="chip t-${escapeHtml(ref.type)} dead" title="agent could not materialize this entity"><span class="etype">${escapeHtml(ref.type)}</span>${escapeHtml(ref.name)}${extras}</span>`;
   }
   const action = JIT_ENABLED ? "JIT" : "";
   const title = JIT_ENABLED ? "click to materialize now" : "not yet materialized";
@@ -2292,7 +2292,7 @@ function chipHtml(ref, parentCtx) {
   // -- see jitMaterialize's reqBody below and docs/plans/qid-genre-identity.md, decision d'archi
   // 8/9. Genre edges only (EdgeRef.qid), same scope as mbidAttr above.
   const qidAttr = ref.qid ? ` data-jit-qid="${escapeHtml(ref.qid)}"` : "";
-  return `<span class="chip t-${escapeHtml(ref.type)} dangling" data-jit-type="${escapeHtml(ref.type)}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${escapeHtml(ref.slug)}"${mbidAttr}${qidAttr} title="${title}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}${action ? " " : ""}</span>`;
+  return `<span class="chip t-${escapeHtml(ref.type)} dangling" data-jit-type="${escapeHtml(ref.type)}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${escapeHtml(ref.slug)}"${mbidAttr}${qidAttr} title="${title}"><span class="etype">${escapeHtml(ref.type)}</span>${escapeHtml(ref.name)}${extras}${action ? " " : ""}</span>`;
 }
 
 // Expected wall time per node type, based on the pipeline benchmarks
