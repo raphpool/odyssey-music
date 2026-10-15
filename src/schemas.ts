@@ -1,58 +1,17 @@
 import { z } from "zod";
 import { isAllowedImageUrl } from "./images/hosts.js";
 import { EDGE_TARGET_TYPES_BY_TYPE } from "./node-spec.js";
-import { isValidSlug } from "./slug.js";
+import { isReadableSlug, isValidSlug } from "./slug.js";
 import { IMAGE_SOURCES, NODE_TYPES, type NodeType, QID_PATTERN } from "./types.js";
 
-const slugSchema = z.string().refine(isValidSlug, { message: "invalid slug" });
+// Two rules for the same schema (TRA-501). Writes -- pipeline output, cache.write, POST /materialize --
+// require a canonical slug, because a slug ends up in HTML attributes, URLs and in cache
+// file paths. Reads of a node already on disk keep the old "known type + non-empty body" rule, so a
+// legacy node in a deployed cache (not measurable from this repo) is served, not a 500 on /data.json.
+const canonicalSlugSchema = z.string().refine(isValidSlug, { message: "invalid slug" });
+const readableSlugSchema = z.string().refine(isReadableSlug, { message: "invalid slug" });
 
 const nodeTypeSchema = z.enum(NODE_TYPES);
-
-const edgeRefBase = z.object({
-	slug: slugSchema,
-	type: nodeTypeSchema,
-	name: z.string().min(1),
-	// Optional MBID stamped when the edge was emitted from a MusicBrainz lookup. If present,
-	// the JIT chip-click on this edge passes it back as ?mbid= so the downstream materialize
-	// uses the exact entity (avoids "click Drake's ICEMAN → land on Sub Society 1990 ICEMAN"
-	// — Raph 2026-05-19).
-	mbid: z.string().uuid().optional(),
-	// Wikidata entity id, genre edges only (TRA-17). Resolved server-side, never emitted by the LLM.
-	qid: z.string().regex(QID_PATTERN).optional(),
-	// Stamped on artist.discography edges (2026-05-24 Raph): year shows on chip; releaseType
-	// lets the frontend tag EPs/singles distinctly from full albums.
-	year: z.string().optional(),
-	releaseType: z.enum(["album", "ep", "single"]).optional(),
-	// Primary credited artist, set on project/track targets whose slug is scoped by it. Optional:
-	// genre/label/artist edges carry none and nodes written before this field must still load.
-	artist: z.string().min(1).optional(),
-});
-
-/** Build an edge schema whose `type` is constrained to one of `allowed` and whose `slug` prefix matches. */
-function typedEdge(allowed: readonly NodeType[]) {
-	const set = new Set(allowed);
-	return edgeRefBase.superRefine((val, ctx) => {
-		if (!set.has(val.type)) {
-			ctx.addIssue({
-				code: z.ZodIssueCode.custom,
-				message: `edge.type must be one of ${[...set].join("|")}, got ${val.type}`,
-			});
-		}
-		const prefix = `${val.type}:`;
-		if (!val.slug.startsWith(prefix)) {
-			ctx.addIssue({
-				code: z.ZodIssueCode.custom,
-				message: `edge.slug must start with "${prefix}" to match edge.type`,
-			});
-		}
-	});
-}
-
-function typedEdgeFor(type: NodeType, field: string) {
-	const allowed = EDGE_TARGET_TYPES_BY_TYPE[type][field];
-	if (!allowed) throw new Error(`No edge target spec for ${type}.${field}`);
-	return typedEdge(allowed);
-}
 
 const citationSchema = z.object({
 	url: z.string().url(),
@@ -77,127 +36,211 @@ const metricsSchema = z
 	})
 	.optional();
 
-// Tighter floors at the disk layer: even if a future caller skips pipeline validation,
-// the persisted file must have a real article and a real citation.
-const baseFields = {
-	slug: slugSchema,
-	name: z.string().min(1),
-	editorial_article: z.string().min(80),
-	citations: z.array(citationSchema).min(1),
-	materialized_at: z.string().datetime(),
-	_metrics: metricsSchema,
-	disambiguator: z.string().optional(),
-	mbid: z.string().uuid().optional(),
-	// Third-party image: https + allowlisted host only (TRA-455). Before this, Zod silently
-	// dropped image_source on every write (0 cache files carried it).
-	image_url: z.string().url().refine(isAllowedImageUrl, { message: "image_url host not allowed" }).optional(),
-	image_source: z.enum(IMAGE_SOURCES).optional(),
-};
+function buildSchemas(slugSchema: z.ZodType<string>) {
+	const edgeRefBase = z.object({
+		slug: slugSchema,
+		type: nodeTypeSchema,
+		name: z.string().min(1),
+		// Optional MBID stamped when the edge was emitted from a MusicBrainz lookup. If present,
+		// the JIT chip-click on this edge passes it back as ?mbid= so the downstream materialize
+		// uses the exact entity (avoids "click Drake's ICEMAN → land on Sub Society 1990 ICEMAN"
+		// — Raph 2026-05-19).
+		mbid: z.string().uuid().optional(),
+		// Wikidata entity id, genre edges only (TRA-17). Resolved server-side, never emitted by the LLM.
+		qid: z.string().regex(QID_PATTERN).optional(),
+		// Stamped on artist.discography edges (2026-05-24 Raph): year shows on chip; releaseType
+		// lets the frontend tag EPs/singles distinctly from full albums.
+		year: z.string().optional(),
+		releaseType: z.enum(["album", "ep", "single"]).optional(),
+		// Primary credited artist, set on project/track targets whose slug is scoped by it. Optional:
+		// genre/label/artist edges carry none and nodes written before this field must still load.
+		artist: z.string().min(1).optional(),
+	});
 
-const genreSchema = z.object({
-	...baseFields,
-	type: z.literal("genre"),
-	editorial_definition: z.string().min(1),
-	// Wikidata entity id for this genre itself (TRA-17). See EdgeRef.qid comment for context.
-	qid: z.string().regex(QID_PATTERN).optional(),
-	era: z.string().optional(),
-	origin: z.string().optional(),
-	sonic_markers: z.string().optional(),
-	parent_genres: z.array(typedEdgeFor("genre", "parent_genres")),
-	subgenres: z.array(typedEdgeFor("genre", "subgenres")),
-	related_genres: z.array(typedEdgeFor("genre", "related_genres")),
-	key_artists: z.array(typedEdgeFor("genre", "key_artists")),
-	key_labels: z.array(typedEdgeFor("genre", "key_labels")),
-	landmark_projects: z.array(typedEdgeFor("genre", "landmark_projects")),
-	landmark_tracks: z.array(typedEdgeFor("genre", "landmark_tracks")),
-});
+	/** Build an edge schema whose `type` is constrained to one of `allowed` and whose `slug` prefix matches. */
+	function typedEdge(allowed: readonly NodeType[]) {
+		const set = new Set(allowed);
+		return edgeRefBase.superRefine((val, ctx) => {
+			if (!set.has(val.type)) {
+				ctx.addIssue({
+					code: z.ZodIssueCode.custom,
+					message: `edge.type must be one of ${[...set].join("|")}, got ${val.type}`,
+				});
+			}
+			const prefix = `${val.type}:`;
+			if (!val.slug.startsWith(prefix)) {
+				ctx.addIssue({
+					code: z.ZodIssueCode.custom,
+					message: `edge.slug must start with "${prefix}" to match edge.type`,
+				});
+			}
+		});
+	}
 
-const labelSchema = z.object({
-	...baseFields,
-	type: z.literal("label"),
-	editorial_description: z.string().min(1),
-	founded: z.string().optional(),
-	location: z.string().optional(),
-	founders: z.string().optional(),
-	active_years: z.string().optional(),
-	genres: z.array(typedEdgeFor("label", "genres")),
-	roster: z.array(typedEdgeFor("label", "roster")),
-	notable_releases: z.array(typedEdgeFor("label", "notable_releases")),
-});
+	function typedEdgeFor(type: NodeType, field: string) {
+		const allowed = EDGE_TARGET_TYPES_BY_TYPE[type][field];
+		if (!allowed) throw new Error(`No edge target spec for ${type}.${field}`);
+		return typedEdge(allowed);
+	}
 
-const artistSchema = z.object({
-	...baseFields,
-	type: z.literal("artist"),
-	artist_kind: z.enum(["person", "group"]).optional(),
-	editorial_bio: z.string().min(1),
-	photo_url: z.string().url().optional(),
-	origin: z.string().optional(),
-	active_years: z.string().optional(),
-	genres: z.array(typedEdgeFor("artist", "genres")),
-	labels: z.array(typedEdgeFor("artist", "labels")),
-	discography: z.array(typedEdgeFor("artist", "discography")),
-	notable_tracks: z.array(typedEdgeFor("artist", "notable_tracks")),
-	influences: z.array(typedEdgeFor("artist", "influences")),
-	influenced: z.array(typedEdgeFor("artist", "influenced")),
-	collaborators: z.array(typedEdgeFor("artist", "collaborators")),
-	aliases: z.array(typedEdgeFor("artist", "aliases")),
-	members: z.array(typedEdgeFor("artist", "members")),
-	// Not part of the Gemini schema: the field is filled after drafting, and the default lets the
-	// artist files cached before it existed load.
-	similar_artists: z.array(typedEdgeFor("artist", "similar_artists")).default([]),
-});
+	// Tighter floors at the disk layer: even if a future caller skips pipeline validation,
+	// the persisted file must have a real article and a real citation.
+	const baseFields = {
+		slug: slugSchema,
+		name: z.string().min(1),
+		editorial_article: z.string().min(80),
+		citations: z.array(citationSchema).min(1),
+		materialized_at: z.string().datetime(),
+		_metrics: metricsSchema,
+		disambiguator: z.string().optional(),
+		mbid: z.string().uuid().optional(),
+		// Third-party image: https + allowlisted host only (TRA-455). Before this, Zod silently
+		// dropped image_source on every write (0 cache files carried it).
+		image_url: z
+			.string()
+			.url()
+			.refine(isAllowedImageUrl, { message: "image_url host not allowed" })
+			.optional(),
+		image_source: z.enum(IMAGE_SOURCES).optional(),
+	};
 
-const projectSchema = z.object({
-	...baseFields,
-	type: z.literal("project"),
-	editorial_pitch: z.string().min(1),
-	cover_url: z.string().url().optional(),
-	year: z.string().optional(),
-	// MusicBrainz release-group primary-type, narrowed to album/ep/single.
-	// See ProjectNode in types.ts for rationale on the narrow set.
-	release_type: z.enum(["album", "ep", "single"]).optional(),
-	bpm: z.string().optional(),
-	musical_key: z.string().optional(),
-	vocals: z.string().optional(),
-	samples_notes: z.string().optional(),
-	inspirations: z.string().optional(),
-	artists: z.array(typedEdgeFor("project", "artists")),
-	label: typedEdgeFor("project", "label").optional(),
-	genres: z.array(typedEdgeFor("project", "genres")),
-	tracklist: z.array(typedEdgeFor("project", "tracklist")),
-	producers: z.array(typedEdgeFor("project", "producers")),
-	personnel: z.array(typedEdgeFor("project", "personnel")).default([]),
-	related_projects: z.array(typedEdgeFor("project", "related_projects")),
-});
+	const genreSchema = z.object({
+		...baseFields,
+		type: z.literal("genre"),
+		editorial_definition: z.string().min(1),
+		// Wikidata entity id for this genre itself (TRA-17). See EdgeRef.qid comment for context.
+		qid: z.string().regex(QID_PATTERN).optional(),
+		era: z.string().optional(),
+		origin: z.string().optional(),
+		sonic_markers: z.string().optional(),
+		parent_genres: z.array(typedEdgeFor("genre", "parent_genres")),
+		subgenres: z.array(typedEdgeFor("genre", "subgenres")),
+		related_genres: z.array(typedEdgeFor("genre", "related_genres")),
+		key_artists: z.array(typedEdgeFor("genre", "key_artists")),
+		key_labels: z.array(typedEdgeFor("genre", "key_labels")),
+		landmark_projects: z.array(typedEdgeFor("genre", "landmark_projects")),
+		landmark_tracks: z.array(typedEdgeFor("genre", "landmark_tracks")),
+	});
 
-const trackSchema = z.object({
-	...baseFields,
-	type: z.literal("track"),
-	editorial_teaser: z.string().min(1),
-	cover_url: z.string().url().optional(),
-	year: z.string().optional(),
-	duration: z.string().optional(),
-	bpm: z.string().optional(),
-	musical_key: z.string().optional(),
-	vocals: z.string().optional(),
-	samples_notes: z.string().optional(),
-	inspirations: z.string().optional(),
-	artists: z.array(typedEdgeFor("track", "artists")),
-	project: typedEdgeFor("track", "project").optional(),
-	label: typedEdgeFor("track", "label").optional(),
-	genres: z.array(typedEdgeFor("track", "genres")),
-	producers: z.array(typedEdgeFor("track", "producers")),
-	personnel: z.array(typedEdgeFor("track", "personnel")).default([]),
-	samples: z.array(typedEdgeFor("track", "samples")),
-	sampled_by: z.array(typedEdgeFor("track", "sampled_by")),
-	remix_of: typedEdgeFor("track", "remix_of").optional(),
-	remixed_by: z.array(typedEdgeFor("track", "remixed_by")),
-});
+	const labelSchema = z.object({
+		...baseFields,
+		type: z.literal("label"),
+		editorial_description: z.string().min(1),
+		founded: z.string().optional(),
+		location: z.string().optional(),
+		founders: z.string().optional(),
+		active_years: z.string().optional(),
+		genres: z.array(typedEdgeFor("label", "genres")),
+		roster: z.array(typedEdgeFor("label", "roster")),
+		notable_releases: z.array(typedEdgeFor("label", "notable_releases")),
+	});
 
-export const nodePayloadSchema = z.discriminatedUnion("type", [
-	genreSchema,
-	labelSchema,
-	artistSchema,
-	projectSchema,
-	trackSchema,
-]);
+	const artistSchema = z.object({
+		...baseFields,
+		type: z.literal("artist"),
+		artist_kind: z.enum(["person", "group"]).optional(),
+		editorial_bio: z.string().min(1),
+		photo_url: z.string().url().optional(),
+		origin: z.string().optional(),
+		active_years: z.string().optional(),
+		genres: z.array(typedEdgeFor("artist", "genres")),
+		labels: z.array(typedEdgeFor("artist", "labels")),
+		discography: z.array(typedEdgeFor("artist", "discography")),
+		notable_tracks: z.array(typedEdgeFor("artist", "notable_tracks")),
+		landmark_project: typedEdgeFor("artist", "landmark_project").optional(),
+		reference_track: typedEdgeFor("artist", "reference_track").optional(),
+		influences: z.array(typedEdgeFor("artist", "influences")),
+		influenced: z.array(typedEdgeFor("artist", "influenced")),
+		collaborators: z.array(typedEdgeFor("artist", "collaborators")),
+		aliases: z.array(typedEdgeFor("artist", "aliases")),
+		members: z.array(typedEdgeFor("artist", "members")),
+		// Not part of the Gemini schema: the field is filled after drafting, and the default lets the
+		// artist files cached before it existed load.
+		similar_artists: z.array(typedEdgeFor("artist", "similar_artists")).default([]),
+	});
+
+	const projectSchema = z.object({
+		...baseFields,
+		type: z.literal("project"),
+		editorial_pitch: z.string().min(1),
+		cover_url: z.string().url().optional(),
+		year: z.string().optional(),
+		// MusicBrainz release-group primary-type, narrowed to album/ep/single.
+		// See ProjectNode in types.ts for rationale on the narrow set.
+		release_type: z.enum(["album", "ep", "single"]).optional(),
+		bpm: z.string().optional(),
+		musical_key: z.string().optional(),
+		vocals: z.string().optional(),
+		samples_notes: z.string().optional(),
+		inspirations: z.string().optional(),
+		artists: z.array(typedEdgeFor("project", "artists")),
+		label: typedEdgeFor("project", "label").optional(),
+		genres: z.array(typedEdgeFor("project", "genres")),
+		tracklist: z.array(typedEdgeFor("project", "tracklist")),
+		producers: z.array(typedEdgeFor("project", "producers")),
+		personnel: z.array(typedEdgeFor("project", "personnel")).default([]),
+		related_projects: z.array(typedEdgeFor("project", "related_projects")),
+	});
+
+	const trackSchema = z.object({
+		...baseFields,
+		type: z.literal("track"),
+		editorial_teaser: z.string().min(1),
+		cover_url: z.string().url().optional(),
+		year: z.string().optional(),
+		duration: z.string().optional(),
+		bpm: z.string().optional(),
+		musical_key: z.string().optional(),
+		vocals: z.string().optional(),
+		samples_notes: z.string().optional(),
+		inspirations: z.string().optional(),
+		artists: z.array(typedEdgeFor("track", "artists")),
+		project: typedEdgeFor("track", "project").optional(),
+		label: typedEdgeFor("track", "label").optional(),
+		genres: z.array(typedEdgeFor("track", "genres")),
+		producers: z.array(typedEdgeFor("track", "producers")),
+		personnel: z.array(typedEdgeFor("track", "personnel")).default([]),
+		samples: z.array(typedEdgeFor("track", "samples")),
+		sampled_by: z.array(typedEdgeFor("track", "sampled_by")),
+		remix_of: typedEdgeFor("track", "remix_of").optional(),
+		remixed_by: z.array(typedEdgeFor("track", "remixed_by")),
+	});
+
+	/** The edge schema a node of `type` applies to `field`, or undefined when that field carries no edges. */
+	function edgeSchemaFor(type: NodeType, field: string) {
+		const specs = EDGE_TARGET_TYPES_BY_TYPE[type];
+		// hasOwn: `field` comes from an untrusted file ("constructor" must not resolve on the prototype).
+		return Object.hasOwn(specs, field) ? typedEdge(specs[field] as readonly NodeType[]) : undefined;
+	}
+
+	return {
+		nodePayload: z.discriminatedUnion("type", [
+			genreSchema,
+			labelSchema,
+			artistSchema,
+			projectSchema,
+			trackSchema,
+		]),
+		edgeSchemaFor,
+	};
+}
+
+/** Write-side schema: canonical slugs only. The default everywhere a node is validated before saving. */
+export const nodePayloadSchema = buildSchemas(canonicalSlugSchema).nodePayload;
+
+const readSchemas = buildSchemas(readableSlugSchema);
+
+/**
+ * Read-side schema, for re-reading a node already on disk (NodeCache.get): same shape, legacy slug rule.
+ * Never use it to admit new input.
+ */
+export const readNodePayloadSchema = readSchemas.nodePayload;
+
+/**
+ * The edge schema a node of `type` applies to `field`, or undefined when that field carries no edges.
+ * Exported (TRA-499) so the migration channel can check a pending reverse's edge against the exact
+ * schema NodeCache.write will apply to the node once the reverse lands in it. That re-validation after
+ * the merge uses the read rule (see NodeCache.writeParsed), so this does too: the edge was already
+ * checked canonically where it entered, and a legacy slug in the queue must not block a sync.
+ */
+export const edgeSchemaFor = readSchemas.edgeSchemaFor;

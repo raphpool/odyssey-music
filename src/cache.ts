@@ -3,11 +3,21 @@ import { dirname, join } from "node:path";
 import { isNotFoundError, NotFoundError, ValidationError } from "./errors.js";
 import { logger } from "./logger.js";
 import { reverseFor, reversibleFields } from "./reverse-edges.js";
-import { nodePayloadSchema } from "./schemas.js";
-import { parseSlug } from "./slug.js";
+import { nodePayloadSchema, readNodePayloadSchema } from "./schemas.js";
+import { isValidSlug, parseSlug } from "./slug.js";
 import type { EdgeRef, NodePayload, Slug } from "./types.js";
 
 const log = logger.child({ module: "cache" });
+
+// Slugs already reported by get() as non-canonical (TRA-501). Module-level, not per NodeCache: the graph
+// builder creates a fresh NodeCache on every /data.json rebuild, and a per-instance set would repeat the
+// same line for every legacy node each time.
+const warnedNonCanonical = new Set<string>();
+
+/** Tests only: forget which non-canonical slugs were already logged. */
+export function resetNonCanonicalSlugWarnings(): void {
+	warnedNonCanonical.clear();
+}
 
 export interface PendingReverse {
 	field: string;
@@ -99,9 +109,27 @@ export class NodeCache {
 		}
 	}
 
+	/**
+	 * Node file for `slug`. Throws (invariant) when the body could leave `nodes/<type>/`.
+	 *
+	 * 2026-10-15 (TRA-502): `GET /node/artist:..%2F..%2Foutside` is decoded to `artist:../../outside`
+	 * by the server and used to resolve to a `.json` file outside the cache root (served when it
+	 * parsed as a node). Every route and every reverse-edge write funnels through here, so the
+	 * check lives here rather than in each handler. Legacy non-canonical bodies WITHOUT a path
+	 * separator (spaces, dots, upper case) stay valid: they exist on disk and must stay readable.
+	 */
 	private pathFor(slug: Slug): string {
 		const { type, body } = parseSlug(slug);
-		return join(this.root, "nodes", type, `${body}.json`);
+		if (!isPathSafeBody(body)) {
+			throw new Error("Unsafe slug body: path separators, '..' and NUL are not allowed");
+		}
+		const typeDir = join(this.root, "nodes", type);
+		const file = join(typeDir, `${body}.json`);
+		// Belt and braces: whatever the body contains, the file must be a direct child of typeDir.
+		if (dirname(file) !== typeDir) {
+			throw new Error("Unsafe slug body: resolved outside nodes/<type>/");
+		}
+		return file;
 	}
 
 	private pendingFile(): string {
@@ -137,6 +165,7 @@ export class NodeCache {
 	}
 
 	async has(slug: Slug): Promise<boolean> {
+		if (!isPathSafeSlug(slug)) return false;
 		try {
 			await readFile(this.pathFor(slug), "utf8");
 			return true;
@@ -147,18 +176,34 @@ export class NodeCache {
 	}
 
 	async get(slug: Slug): Promise<NodePayload> {
+		// Outside the try on purpose: an unsafe slug is a client error (400), not "invalid cached data",
+		// and it must be rejected before any filesystem access.
+		if (!isPathSafeSlug(slug)) throw new ValidationError("Invalid slug");
 		try {
 			const raw = await readFile(this.pathFor(slug), "utf8");
 			const obj = JSON.parse(raw) as unknown;
-			return nodePayloadSchema.parse(obj) as NodePayload;
+			const canonical = nodePayloadSchema.safeParse(obj);
+			if (canonical.success) return canonical.data as NodePayload;
+			// TRA-501: reading is tolerant of a slug that is merely non-canonical (a node written by a
+			// deployed server before the canonical rule): it is served and logged, never a 500 on
+			// /data.json or a node page. Only the slug rule differs between the two schemas, so
+			// anything the read schema rejects too is genuinely invalid and still throws below.
+			const legacy = readNodePayloadSchema.parse(obj) as NodePayload;
+			if (!warnedNonCanonical.has(slug)) {
+				warnedNonCanonical.add(slug);
+				// `fields` names where the offending slug sits (e.g. "slug", "aliases.0.slug"), which is
+				// what a production measurement needs to size a migration.
+				const fields = [...new Set(canonical.error.issues.map((i) => i.path.join(".")))].slice(0, 10);
+				log.warn("cached node has a non-canonical slug; served as-is", { slug, fields });
+			}
+			return legacy;
 		} catch (e) {
 			if (isNotFoundError(e)) throw new NotFoundError(`Node not found: ${slug}`, { cause: e });
-			throw new ValidationError(
-				`Invalid cached node ${slug}: ${e instanceof Error ? e.message : String(e)}`,
-				{
-					cause: e,
-				},
-			);
+			// 2026-10-15 (TRA-502): the message used to embed `e.message`, and for a non-JSON file
+			// JSON.parse quotes the start of the content ("SECRET=hun"... is not valid JSON), which the
+			// server then returned to the client. The detail stays in the log and in `cause`.
+			log.warn("invalid cached node", { slug, error: e instanceof Error ? e.message : String(e) });
+			throw new ValidationError(`Invalid cached node ${slug}`, { cause: e });
 		}
 	}
 
@@ -281,7 +326,10 @@ export class NodeCache {
 	}
 
 	private async buildGenreQidIndex(): Promise<Map<string, Slug>> {
-		const slugs = (await this.listSlugs()).filter((s) => s.startsWith("genre:"));
+		// Canonical slugs only (TRA-501): the index answers "which node should a NEW edge point at", and
+		// a new edge must carry a canonical slug (write validation). A legacy-named file would be picked
+		// as the target, then fail validateNode and turn /materialize into a 500.
+		const slugs = (await this.listSlugs()).filter((s) => s.startsWith("genre:") && isValidSlug(s));
 		// Collect every candidate per qid first so collisions (multiple genre nodes sharing a
 		// qid, a transient pre-merge state) can be resolved deterministically below.
 		const candidates = new Map<string, Slug[]>();
@@ -301,7 +349,7 @@ export class NodeCache {
 			}
 			// Narrow on the validated type discriminant (not a cast) so a node misfiled under
 			// nodes/genre/ with a different type can't leak a same-shaped field into the index.
-			if (node.type !== "genre" || !node.qid) continue;
+			if (node.type !== "genre" || !node.qid || !isValidSlug(node.slug)) continue;
 			const list = candidates.get(node.qid) ?? [];
 			list.push(slug);
 			candidates.set(node.qid, list);
@@ -353,7 +401,9 @@ export class NodeCache {
 			await this.runLocked(parsed.slug, async () => {
 				const pending = this.pendingReverses[parsed.slug] ?? [];
 				const merged = applyReverses(parsed, pending);
-				const validated = nodePayloadSchema.parse(merged) as NodePayload;
+				// Re-validation of `parsed` (strictly validated by the caller) plus reverse edges queued
+				// earlier: a legacy slug among them must not fail the write of a valid node (TRA-501).
+				const validated = readNodePayloadSchema.parse(merged) as NodePayload;
 				const file = this.pathFor(validated.slug);
 				await mkdir(dirname(file), { recursive: true });
 				await atomicWriteJson(file, validated);
@@ -467,7 +517,10 @@ export class NodeCache {
 			});
 			if (existing) {
 				const updated = applySingleReverse(existing, { field, cardinality, edge: sourceEdge });
-				const validated = nodePayloadSchema.parse(updated) as NodePayload;
+				// `existing` may be a legacy node read tolerantly, `sourceEdge` comes from a node that
+				// write()/replace() validated strictly: re-validate with the read rule so adding a
+				// reverse edge never fails because of what the target already had (TRA-501).
+				const validated = readNodePayloadSchema.parse(updated) as NodePayload;
 				const file = this.pathFor(validated.slug);
 				await mkdir(dirname(file), { recursive: true });
 				await atomicWriteJson(file, validated);
@@ -479,6 +532,17 @@ export class NodeCache {
 			}
 		});
 	}
+}
+
+function isPathSafeBody(body: string): boolean {
+	return !(body.includes("/") || body.includes("\\") || body.includes("..") || body.includes("\0"));
+}
+
+/** True when `slug` is well formed and its body cannot leave `nodes/<type>/`. */
+function isPathSafeSlug(slug: Slug): boolean {
+	const idx = slug.indexOf(":");
+	// Malformed slugs (no colon, bad type) are left to parseSlug's own error path.
+	return idx < 0 || isPathSafeBody(slug.slice(idx + 1));
 }
 
 function applyReverses(node: NodePayload, pendings: PendingReverse[]): NodePayload {

@@ -377,7 +377,7 @@ async function pingApi() {
   // has a real taxonomy to check against -- never earlier, never derived at module load.
   loadActiveProfile(DATA.taxonomy);
   SEED_ID = DATA.nodes.find((n) => /tendency/.test(n.id))?.id || DATA.nodes[0].id;
-  statEl.innerHTML = `<b style="color:var(--fg);font-weight:500;">${DATA.total}</b> nodes · <b style="color:var(--fg);font-weight:500;">${DATA.edges.length}</b> edges · seed: <span style="color:var(--accent);">${SEED_ID}</span>`;
+  statEl.innerHTML = `<b style="color:var(--fg);font-weight:500;">${DATA.total}</b> nodes · <b style="color:var(--fg);font-weight:500;">${DATA.edges.length}</b> edges · seed: <span style="color:var(--accent);">${escapeHtml(SEED_ID)}</span>`;
 
   document.getElementById("focus-seed").addEventListener("click", () => { crumbs = []; show(SEED_ID); });
   document.getElementById("random").addEventListener("click", () => {
@@ -439,7 +439,7 @@ async function pingApi() {
         const badge = h.source === "catalog"
           ? '<span style="margin-left:auto;font-size:0.65rem;letter-spacing:0.06em;color:var(--muted);text-transform:uppercase;">+ generate</span>'
           : '<span style="margin-left:auto;font-size:0.65rem;letter-spacing:0.06em;color:var(--project);text-transform:uppercase;">odyssey</span>';
-        return `<div class="row" data-idx="${i}" style="display:flex;align-items:center;gap:0.6rem;"><span class="t ${h.type}">${h.type}</span><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(h.name)}${subtitle}</span>${badge}</div>`;
+        return `<div class="row" data-idx="${i}" style="display:flex;align-items:center;gap:0.6rem;"><span class="t ${escapeHtml(h.type)}">${escapeHtml(h.type)}</span><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${escapeHtml(h.name)}${subtitle}</span>${badge}</div>`;
       })
       .join("");
     searchResults.style.display = "block";
@@ -608,7 +608,7 @@ async function pingApi() {
     const teaserVal = node[TEASER[node.type]] || "";
     const edges = {};
     const LIST_EDGES = { genre:["parent_genres","subgenres","related_genres","key_artists","key_labels","landmark_projects","landmark_tracks"], label:["genres","roster","notable_releases"], artist:["genres","labels","discography","notable_tracks","influences","influenced","collaborators","aliases","members","similar_artists"], project:["artists","genres","tracklist","producers","personnel","related_projects"], track:["artists","genres","producers","personnel","samples","sampled_by","remixed_by"] };
-    const SINGLE_EDGES = { genre:[], label:[], artist:[], project:["label"], track:["project","label","remix_of"] };
+    const SINGLE_EDGES = { genre:[], label:[], artist:["landmark_project","reference_track"], project:["label"], track:["project","label","remix_of"] };
     for (const f of LIST_EDGES[node.type]) if (Array.isArray(node[f]) && node[f].length) edges[f] = node[f];
     for (const f of SINGLE_EDGES[node.type]) if (node[f] && typeof node[f] === "object") edges[f] = node[f];
     const vizNode = { id: node.slug, type: node.type, name: node.name, teaser: teaserVal, article: node.editorial_article, citations: node.citations || [], edges };
@@ -1869,6 +1869,8 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
     discography: "discography",
     notable_tracks: "notable tracks",
     notable_releases: "notable releases",
+    landmark_project: "landmark album",
+    reference_track: "reference track",
     related_projects: "related albums",
     key_artists: "key artists",
     key_labels: "key labels",
@@ -2239,8 +2241,8 @@ function projectCarouselHtml(refs, kindLabel) {
     const dead = deadCache.has(ref.slug);
     const stateClass = inCache ? "" : (dead ? " dead" : " dangling");
     const navAttrs = inCache
-      ? `data-id="${ref.slug}"`
-      : `data-jit-type="${ref.type}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${ref.slug}"${ref.mbid ? ` data-jit-mbid="${ref.mbid}"` : ""}`;
+      ? `data-id="${escapeHtml(ref.slug)}"`
+      : `data-jit-type="${escapeHtml(ref.type)}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${escapeHtml(ref.slug)}"${ref.mbid ? ` data-jit-mbid="${escapeHtml(ref.mbid)}"` : ""}`;
     // href uses the resolved slug (TRA-38, same reasoning as chipHtml above): ref.slug
     // is only an alias key once this card is inCache via resolveId, not a slug byId or
     // the ?node= deep link reader can look up directly.
@@ -2276,23 +2278,23 @@ function chipHtml(ref, parentCtx) {
     // surface this branch didn't have while the ref rendered as a dangling <span>, and
     // the raw ref.slug is only an alias key, not a slug byId (or the ?node= deep link
     // reader, TRA-23) can look up on its own.
-    return `<a class="chip t-${ref.type}" href="?node=${encodeURIComponent(resolveId(ref.slug))}" data-id="${ref.slug}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}</a>`;
+    return `<a class="chip t-${escapeHtml(ref.type)}" href="?node=${encodeURIComponent(resolveId(ref.slug))}" data-id="${escapeHtml(ref.slug)}"><span class="etype">${escapeHtml(ref.type)}</span>${escapeHtml(ref.name)}${extras}</a>`;
   }
   if (deadCache.has(ref.slug)) {
-    return `<span class="chip t-${ref.type} dead" title="agent could not materialize this entity"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}</span>`;
+    return `<span class="chip t-${escapeHtml(ref.type)} dead" title="agent could not materialize this entity"><span class="etype">${escapeHtml(ref.type)}</span>${escapeHtml(ref.name)}${extras}</span>`;
   }
   const action = JIT_ENABLED ? "JIT" : "";
   const title = JIT_ENABLED ? "click to materialize now" : "not yet materialized";
   // No more data-jit-disambig: the parent context used to be passed to /materialize as
   // `disambiguator`, which made the slug `artist:foo--<parent-context>` and never
   // reconciled with the bare-slug edges. Slug-from-name only now.
-  const mbidAttr = ref.mbid ? ` data-jit-mbid="${ref.mbid}"` : "";
+  const mbidAttr = ref.mbid ? ` data-jit-mbid="${escapeHtml(ref.mbid)}"` : "";
   // 2026-09-10 (TRA-43): carry the edge's own qid, when it has one, so a click on this chip
   // materializes by IDENTITY (slug + qid) instead of a name the server would have to re-resolve
   // -- see jitMaterialize's reqBody below and docs/plans/qid-genre-identity.md, decision d'archi
   // 8/9. Genre edges only (EdgeRef.qid), same scope as mbidAttr above.
-  const qidAttr = ref.qid ? ` data-jit-qid="${ref.qid}"` : "";
-  return `<span class="chip t-${ref.type} dangling" data-jit-type="${ref.type}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${ref.slug}"${mbidAttr}${qidAttr} title="${title}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}${action ? " " : ""}</span>`;
+  const qidAttr = ref.qid ? ` data-jit-qid="${escapeHtml(ref.qid)}"` : "";
+  return `<span class="chip t-${escapeHtml(ref.type)} dangling" data-jit-type="${escapeHtml(ref.type)}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${escapeHtml(ref.slug)}"${mbidAttr}${qidAttr} title="${title}"><span class="etype">${escapeHtml(ref.type)}</span>${escapeHtml(ref.name)}${extras}${action ? " " : ""}</span>`;
 }
 
 // Expected wall time per node type, based on the pipeline benchmarks
@@ -2336,7 +2338,7 @@ async function jitMaterialize(type, name, chipEl, disambiguator, mbid) {
     const teaserVal = node[TEASER[node.type]] || "";
     const edges = {};
     const LIST_EDGES = { genre:["parent_genres","subgenres","related_genres","key_artists","key_labels","landmark_projects","landmark_tracks"], label:["genres","roster","notable_releases"], artist:["genres","labels","discography","notable_tracks","influences","influenced","collaborators","aliases","members","similar_artists"], project:["artists","genres","tracklist","producers","personnel","related_projects"], track:["artists","genres","producers","personnel","samples","sampled_by","remixed_by"] };
-    const SINGLE_EDGES = { genre:[], label:[], artist:[], project:["label"], track:["project","label","remix_of"] };
+    const SINGLE_EDGES = { genre:[], label:[], artist:["landmark_project","reference_track"], project:["label"], track:["project","label","remix_of"] };
     for (const f of LIST_EDGES[node.type]) if (Array.isArray(node[f]) && node[f].length) edges[f] = node[f];
     for (const f of SINGLE_EDGES[node.type]) if (node[f] && typeof node[f] === "object") edges[f] = node[f];
     const vizNode = { id: node.slug, type: node.type, name: node.name, teaser: teaserVal, article: node.editorial_article, citations: node.citations || [], edges };
@@ -2376,7 +2378,7 @@ function renderCrumbs() {
   const items = crumbs.slice(0, -1).map((id) => {
     const n = byId.get(id);
     if (!n) return "";
-    return `<a href="?node=${encodeURIComponent(id)}" data-id="${id}">${escapeHtml(n.name)}</a>`;
+    return `<a href="?node=${encodeURIComponent(id)}" data-id="${escapeHtml(id)}">${escapeHtml(n.name)}</a>`;
   });
   items.push(`<span style="color:var(--fg);">${escapeHtml(byId.get(crumbs[crumbs.length - 1]).name)}</span>`);
   crumbsEl.innerHTML = items.join(' <span class="sep">›</span> ');

@@ -16,6 +16,24 @@ function envInt(name: string, fallback: number): number {
 	return value;
 }
 
+/**
+ * Whether project/track references are emitted with a scoped slug (`<title>--<artist>`), and whether a
+ * work reference with no artist is dropped (graph-integrity plan, decisions 1 and 2).
+ *
+ * Off by default (2026-10-15, TRA-509): every merge on main reaches production, and with the cache not
+ * yet migrated (268/294 projects without "--") and /materialize still writing under the bare slug, a
+ * click on `project:la-fierte--rohff` would write `project:la-fierte`, then the crawler a second scoped
+ * node -- duplicates from the first materialization. TRA-509 flips it once, after TRA-477/481/482/483/484
+ * (cache migration, /materialize and click handling). Off = the slugs main emits.
+ *
+ * A function, not a constant: read from the environment at each call so tests can switch it without
+ * leaking state between files.
+ */
+export function scopedReleaseSlugsEnabled(): boolean {
+	const raw = process.env.ODYSSEY_SCOPED_RELEASE_SLUGS?.trim().toLowerCase();
+	return raw === "true" || raw === "1";
+}
+
 export const serverConfig = {
 	port: envInt("PORT", 18791),
 	cacheDir: envString("ODYSSEY_CACHE_DIR", join(process.cwd(), "cache")),
@@ -41,6 +59,17 @@ export const musicBrainzConfig = {
 	cacheMaxEntries: envInt("MB_CACHE_MAX", 500),
 	// 2026-10-14 (TRA-450): MusicBrainz allows 1 request/second per client. 0 disables spacing.
 	minIntervalMs: envInt("MB_MIN_INTERVAL_MS", 1000),
+};
+
+// 2026-10-15 (TRA-468): ListenBrainz labs similar-artists, free and keyless. Its policy is 1 request/second
+// and a descriptive User-Agent (the MusicBrainz one is reused). 0 disables spacing.
+export const listenBrainzConfig = {
+	baseUrl: "https://labs.api.listenbrainz.org",
+	algorithm: envString(
+		"LISTENBRAINZ_ALGORITHM",
+		"session_based_days_7500_session_300_contribution_5_threshold_10_limit_100_filter_True_skip_30",
+	),
+	minIntervalMs: envInt("LISTENBRAINZ_MIN_INTERVAL_MS", 1000),
 };
 
 export const pipelineConfig = {

@@ -643,17 +643,30 @@ describe("createMaterializeService slug/qid identity (TRA-43)", () => {
 		["an uppercase type", "Genre:foo"],
 		["an uppercase body", "genre:Foo"],
 		["too long (review round 1, nit: would otherwise 500, not 400)", `genre:${"a".repeat(5000)}`],
-	])("rejects a slug that is %s, without touching the cache", async (_label, badSlug) => {
-		const service = await buildService();
-		const hasSpy = vi.spyOn(cache, "has");
-		const getSpy = vi.spyOn(cache, "get");
+		// TRA-501: right type, non-empty body -- all that the old parseSlug-based rule asked for
+		["a quote that closes an HTML attribute", 'genre:foo" onmouseover="alert(1)'],
+		["whitespace in the body", "genre:foo bar"],
+		["a trailing dash", "genre:foo-"],
+		["a triple dash", "genre:foo---bar"],
+		["two scope separators", "genre:foo--bar--baz"],
+		["an empty body", "genre:"],
+	])(
+		"rejects a slug that is %s, without touching the cache or running the agent",
+		async (_label, badSlug) => {
+			const service = await buildService();
+			const tavilySearch = await loadTavilySearch();
+			vi.mocked(tavilySearch).mockClear();
+			const hasSpy = vi.spyOn(cache, "has");
+			const getSpy = vi.spyOn(cache, "get");
 
-		await expect(
-			service.handleMaterialize({ type: "genre", name: "Fixture Genre", slug: badSlug }),
-		).rejects.toThrow(BadRequestError);
-		expect(hasSpy).not.toHaveBeenCalled();
-		expect(getSpy).not.toHaveBeenCalled();
-	});
+			await expect(
+				service.handleMaterialize({ type: "genre", name: "Fixture Genre", slug: badSlug }),
+			).rejects.toThrow(BadRequestError);
+			expect(hasSpy).not.toHaveBeenCalled();
+			expect(getSpy).not.toHaveBeenCalled();
+			expect(vi.mocked(tavilySearch)).not.toHaveBeenCalled();
+		},
+	);
 
 	it("rejects a malformed qid, without touching the cache", async () => {
 		const service = await buildService();

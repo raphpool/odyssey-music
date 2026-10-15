@@ -1,6 +1,11 @@
+import { readdirSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
+import { toVizNode } from "../src/graph.js";
 import { isAllowedImageUrl } from "../src/images/hosts.js";
-import { nodePayloadSchema } from "../src/schemas.js";
+import { EDGE_FIELDS_BY_TYPE, SINGULAR_EDGES_BY_TYPE } from "../src/node-spec.js";
+import { nodePayloadSchema, readNodePayloadSchema } from "../src/schemas.js";
+import type { NodePayload } from "../src/types.js";
 
 const baseArtist = {
 	type: "artist" as const,
@@ -320,6 +325,68 @@ describe("nodePayloadSchema — identity fields (TRA-451)", () => {
 	});
 });
 
+// TRA-457 (plan graph-integrity, decision 7): two explicit singular edges on the artist.
+describe("nodePayloadSchema — landmark_project / reference_track (TRA-457)", () => {
+	const landmark = {
+		type: "project",
+		slug: "project:new-forms--roni-size-reprazent",
+		name: "New Forms",
+	};
+	const reference = { type: "track", slug: "track:brown-paper-bag--roni-size", name: "Brown Paper Bag" };
+
+	it("keeps landmark_project and reference_track on an artist without loss", () => {
+		const parsed = nodePayloadSchema.parse({
+			...baseArtist,
+			landmark_project: landmark,
+			reference_track: reference,
+		});
+		if (parsed.type !== "artist") throw new Error("expected an artist");
+		expect(parsed.landmark_project).toEqual(landmark);
+		expect(parsed.reference_track).toEqual(reference);
+	});
+
+	it("rejects a track as landmark_project", () => {
+		expect(() => nodePayloadSchema.parse({ ...baseArtist, landmark_project: reference })).toThrow();
+	});
+
+	it("rejects a project as reference_track", () => {
+		expect(() => nodePayloadSchema.parse({ ...baseArtist, reference_track: landmark })).toThrow();
+	});
+
+	it("loads an existing artist without the two fields, unchanged", () => {
+		const parsed = nodePayloadSchema.parse(baseArtist);
+		if (parsed.type !== "artist") throw new Error("expected an artist");
+		expect("landmark_project" in parsed).toBe(false);
+		expect("reference_track" in parsed).toBe(false);
+	});
+
+	it("declares both as single edges, right after notable_tracks", () => {
+		expect(EDGE_FIELDS_BY_TYPE.artist.landmark_project).toEqual({
+			cardinality: "single",
+			targets: ["project"],
+		});
+		expect(EDGE_FIELDS_BY_TYPE.artist.reference_track).toEqual({ cardinality: "single", targets: ["track"] });
+		const fields = Object.keys(EDGE_FIELDS_BY_TYPE.artist);
+		const at = fields.indexOf("notable_tracks");
+		expect(fields.slice(at + 1, at + 3)).toEqual(["landmark_project", "reference_track"]);
+		expect(SINGULAR_EDGES_BY_TYPE.artist).toEqual(["landmark_project", "reference_track"]);
+	});
+
+	// graph.ts needs no change: toVizNode walks SINGULAR_EDGES_BY_TYPE, as it does for track.project.
+	it("projects both as single edges in the viz node, and nothing when absent", () => {
+		// The zod output type of the union is not assignable to NodePayload under exactOptionalPropertyTypes.
+		const asPayload = (input: unknown) => nodePayloadSchema.parse(input) as NodePayload;
+		const viz = toVizNode(
+			asPayload({ ...baseArtist, landmark_project: landmark, reference_track: reference }),
+		);
+		expect(viz.edges.landmark_project).toEqual(landmark);
+		expect(viz.edges.reference_track).toEqual(reference);
+		const bare = toVizNode(asPayload(baseArtist));
+		expect("landmark_project" in bare.edges).toBe(false);
+		expect("reference_track" in bare.edges).toBe(false);
+	});
+});
+
 describe("nodePayloadSchema — artist.similar_artists (TRA-456)", () => {
 	it("loads an artist file without the field and yields an empty list", () => {
 		// baseArtist stands for a cached file written before the field existed.
@@ -347,5 +414,56 @@ describe("nodePayloadSchema — artist.similar_artists (TRA-456)", () => {
 			similar_artists: [{ type: "genre", slug: "genre:idm", name: "IDM" }],
 		};
 		expect(() => nodePayloadSchema.parse(artist)).toThrow();
+	});
+});
+
+describe("nodePayloadSchema — canonical slugs (TRA-501)", () => {
+	const evil = 'artist:x" onmouseover="alert(1)';
+
+	it("rejects a node whose own slug breaks out of an attribute", () => {
+		const result = nodePayloadSchema.safeParse({ ...baseArtist, slug: evil });
+		expect(result.success).toBe(false);
+	});
+
+	it("rejects an edge whose slug breaks out of an attribute", () => {
+		const result = nodePayloadSchema.safeParse({
+			...baseArtist,
+			aliases: [{ type: "artist", slug: evil, name: "Evil" }],
+		});
+		expect(result.success).toBe(false);
+	});
+
+	it("accepts a scoped work slug and a legacy-disambiguated artist slug", () => {
+		expect(nodePayloadSchema.safeParse({ ...baseTrack, slug: "track:fitna--rohff" }).success).toBe(true);
+		expect(nodePayloadSchema.safeParse({ ...baseArtist, slug: "artist:pole--stefan-betke" }).success).toBe(
+			true,
+		);
+	});
+
+	it("readNodePayloadSchema keeps the old rule: same shape, but a non-canonical slug is readable", () => {
+		const forged = { ...baseArtist, slug: evil, aliases: [{ type: "artist", slug: evil, name: "Evil" }] };
+		expect(readNodePayloadSchema.safeParse(forged).success).toBe(true);
+		// ... and it is not a free pass: the prefix and every other rule still apply.
+		expect(readNodePayloadSchema.safeParse({ ...baseArtist, slug: "nope:x" }).success).toBe(false);
+		expect(readNodePayloadSchema.safeParse({ ...baseArtist, editorial_article: "short" }).success).toBe(
+			false,
+		);
+	});
+
+	it("every node committed under cache/ still passes the canonical schema", () => {
+		const root = join(import.meta.dirname, "..", "cache", "nodes");
+		let count = 0;
+		const failures: string[] = [];
+		for (const type of readdirSync(root)) {
+			for (const file of readdirSync(join(root, type))) {
+				if (!file.endsWith(".json")) continue;
+				count++;
+				const raw = JSON.parse(readFileSync(join(root, type, file), "utf8")) as unknown;
+				const result = nodePayloadSchema.safeParse(raw);
+				if (!result.success) failures.push(`${type}/${file}: ${result.error.issues[0]?.message}`);
+			}
+		}
+		expect(count).toBeGreaterThan(1000);
+		expect(failures).toEqual([]);
 	});
 });
