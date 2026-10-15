@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:56:17.346Z",
+  "mbid": "2a25263b-54ad-42c5-acea-e50b3913369c",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A legendary British producer who cut his teeth with The Beatles before crafting the sound of iconic acts ranging from Roxy Music and the Sex Pistols to The Pretenders and INXS.",
   "photo_url": "https://www.the-paulmccartney-project.com/_images/wp-uploads/2019/12/15e6963ea585e93c6944b4042a985250.jpg",
   "origin": "Brentford, Middlesex, England",
@@ -87,5 +89,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

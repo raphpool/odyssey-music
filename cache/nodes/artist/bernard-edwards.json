@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "ba7ff664-5c64-4a62-a3e2-63445c1a25db",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Bernard Edwards (1952–1996) was a pioneering American musician, songwriter, and producer, best known as the co-founder and bassist of the legendary disco-funk group Chic.",
   "photo_url": "https://d4ln1n73rozgf.cloudfront.net/prod/transforms/general/_307x307_crop_center-center_none/Bernard-Edwards_SHOF_2016-Inductee.jpg",
   "origin": "Greenville, North Carolina, USA",
@@ -130,5 +132,6 @@
       "type": "artist",
       "name": "Chic"
     }
-  ]
+  ],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:57:04.752Z",
+  "mbid": "a7f7df4a-77d8-4f12-8acd-5c60c93f4de8",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Ryuichi Sakamoto was a legendary Japanese composer and producer who pioneered electronic pop with Yellow Magic Orchestra and became a celebrated film score master.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Ryuichi_Sakamoto_side.jpg/250px-Ryuichi_Sakamoto_side.jpg",
   "origin": "Tokyo, Japan",
@@ -147,5 +149,6 @@
       "type": "artist",
       "name": "Yellow Magic Orchestra"
     }
-  ]
+  ],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:35:08.807Z",
+  "mbid": "4d4f5d92-0589-42fa-bc0e-1bd73e17a2ce",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Mouse on Mars is a highly influential German electronic music duo recognized for their versatile, boundary-pushing approach that traverses experimental pop, avant-garde, and club music. Formed in 1993 by Jan St. Werner and Andi Toma, they have spent over two decades mapping an idiosyncratic trajectory that bridges the gap between DIY subculture and academic theory.",
   "photo_url": "https://images.squarespace-cdn.com/content/v1/57fe634737c581bd88718be3/1477393827398-FJWNZLWHGIMWLW2M4H3T/11157413_968994703125335_8660105955931706848_o.jpg?format=2500w",
   "origin": "Cologne, Germany",
@@ -115,5 +117,6 @@
       "name": "Von Südenfed"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

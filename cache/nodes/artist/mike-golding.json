@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:45:41.290Z",
+  "mbid": "410213ef-1ee6-4ed8-a812-618f43560015",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Mike Golding is a foundational figure in the UK IDM scene, known for his work in the duo B12 and his solo output.",
   "origin": "London, UK",
   "active_years": "1990-present",
@@ -87,5 +89,6 @@
       "type": "artist",
       "name": "B12"
     }
-  ]
+  ],
+  "similar_artists": []
 }

@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:38:41.477Z",
+  "mbid": "9340bee1-4024-453a-a9ee-60d11134738d",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Markus Popp is a German electronic musician, composer, and producer widely recognized as a foundational figure in the glitch music genre, best known for his project Oval.",
   "origin": "Germany",
   "active_years": "1991-present",
@@ -108,5 +110,6 @@
       "type": "artist",
       "name": "Oval"
     }
-  ]
+  ],
+  "similar_artists": []
 }

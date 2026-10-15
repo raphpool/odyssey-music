@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:39:29.751Z",
+  "mbid": "844fb875-9540-4600-b305-d00f17f60fa6",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Von Südenfed was a short-lived but highly distinctive Anglo-German musical collaboration bringing together Mouse on Mars with The Fall's Mark E. Smith. Their 2007 album 'Tromatic Reflexxions' remains a cult classic of experimental electronic post-punk.",
   "origin": "Manchester, England / Düsseldorf, Germany",
   "active_years": "2004-2007",
@@ -98,5 +100,6 @@
       "type": "artist",
       "name": "Jan St. Werner"
     }
-  ]
+  ],
+  "similar_artists": []
 }

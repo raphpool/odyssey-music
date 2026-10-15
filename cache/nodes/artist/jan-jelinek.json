@@ -24,7 +24,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "ac9b829e-9a7c-4331-8abe-ab1eb49d1771",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Jan Jelinek is a German electronic musician and producer, best known for his influential work in microhouse, glitch, and ambient, and for his unique use of micro-sampling.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Jan_Jelinek_%40_Entw%C3%BCrfnisse_Chemnitz_%C2%A9_Udo_Siegfriedt_2020.jpg/250px-Jan_Jelinek_%40_Entw%C3%BCrfnisse_Chemnitz_%C2%A9_Udo_Siegfriedt_2020.jpg",
   "origin": "Berlin, Germany",
@@ -116,5 +118,6 @@
       "name": "The Exposures"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

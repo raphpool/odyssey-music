@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:15:16.622Z",
+  "mbid": "01809552-4f87-45b0-afff-2c6f0730a3be",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A monumental figure in 20th-century music, Elvis Presley revolutionized rock 'n' roll and remains one of the best-selling recording artists of all time.",
   "origin": "United States",
   "active_years": "1954-1977",
@@ -78,5 +80,6 @@
   ],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

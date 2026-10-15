@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "8e678953-c97b-435b-af18-2425b6db71d0",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Aim, the professional alias of British producer Andy Turner, is a seminal figure in the trip-hop and downtempo scenes, best known for his atmospheric, sample-heavy production and ties to the influential Grand Central Records label.",
   "origin": "Barrow-in-Furness, England",
   "active_years": "1989-present",
@@ -65,5 +67,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

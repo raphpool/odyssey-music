@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:42:41.135Z",
+  "mbid": "a9bfea30-6c6b-418a-84d6-b92ce2d85b92",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pioneering Croydon-born producer, Coki is a foundational figure in dubstep, famously known for his technical, aggressive bass sound and his role in the Digital Mystikz duo and the DMZ collective.",
   "photo_url": "https://theartsdesk.com/sites/default/files/styles/840_wide/public/mastimages/Coki-Photo1.jpg?itok=LtDHBz0b",
   "origin": "Croydon, UK",
@@ -97,5 +99,6 @@
       "type": "artist",
       "name": "Digital Mystikz"
     }
-  ]
+  ],
+  "similar_artists": []
 }

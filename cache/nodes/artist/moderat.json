@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:00:04.027Z",
+  "mbid": "7754905b-8bf7-48e2-935a-03d566fec464",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Moderat is a highly influential German electronic music supergroup based in Berlin, formed by the collaboration between Apparat (Sascha Ring) and the duo Modeselektor (Gernot Bronsert and Sebastian Szary).",
   "genres": [
     {
@@ -96,5 +98,6 @@
       "type": "artist",
       "name": "Modeselektor"
     }
-  ]
+  ],
+  "similar_artists": []
 }

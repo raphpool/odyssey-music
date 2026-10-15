@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:59:24.261Z",
+  "mbid": "056e4f3e-d505-4dad-8ec1-d04f521cbb56",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "A legendary French electronic duo consisting of Thomas Bangalter and Guy-Manuel de Homem-Christo, known for pioneering French house and for their signature robotic visual identity.",
   "origin": "Paris, France",
   "active_years": "1993–2021",
@@ -566,5 +568,6 @@
       "type": "artist",
       "name": "Guy-Manuel de Homem-Christo"
     }
-  ]
+  ],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:54:22.521Z",
+  "mbid": "d4c75da5-45d7-49ef-abd6-babca3eb8d18",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Chicago pioneers of acid house, founded in 1985 by DJ Pierre, Spanky, and Herb J, who defined the genre's squelchy sound using the Roland TB-303.",
   "origin": "Chicago, Illinois, U.S.",
   "active_years": "1985-present",
@@ -221,5 +223,6 @@
       "type": "artist",
       "name": "Ron Maney"
     }
-  ]
+  ],
+  "similar_artists": []
 }

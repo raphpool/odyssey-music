@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:18:41.036Z",
+  "mbid": "9603810b-5d6d-41a6-aca8-330ef966d55c",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "A seminal hip-hop duo from Port Arthur, Texas, known for defining the Southern gangsta and screw sound through their collaborative and studio work.",
   "origin": "Port Arthur, Texas",
   "active_years": "1987-2007",
@@ -266,5 +268,6 @@
       "type": "artist",
       "name": "Bun B"
     }
-  ]
+  ],
+  "similar_artists": []
 }

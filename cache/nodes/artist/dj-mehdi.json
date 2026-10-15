@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:25:02.810Z",
+  "mbid": "66ad8456-1d33-4d7d-b8c3-a8f1a3b1e74f",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A legendary French-Tunisian producer and DJ who masterfully bridged the worlds of hip-hop and house music as a key figure of the Ed Banger Records roster.",
   "origin": "Asnières-sur-Seine, France",
   "active_years": "1996-2011",
@@ -114,5 +116,6 @@
       "type": "artist",
       "name": "113"
     }
-  ]
+  ],
+  "similar_artists": []
 }

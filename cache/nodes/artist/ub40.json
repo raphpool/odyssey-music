@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "7113aab7-628f-4050-ae49-dbecac110ca8",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "UB40 is an iconic English reggae and pop band formed in Birmingham in December 1978.",
   "genres": [
     {
@@ -79,5 +81,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

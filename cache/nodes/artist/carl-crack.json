@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:58:44.512Z",
+  "mbid": "6b2e7187-9114-4050-a7af-eba918aebde8",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Carl Crack was a Berlin-based MC and a founding member of the influential digital hardcore group Atari Teenage Riot, known for his abrasive style and anti-fascist political stance.",
   "origin": "Berlin, Germany",
   "genres": [
@@ -82,5 +84,6 @@
       "type": "artist",
       "name": "Atari Teenage Riot"
     }
-  ]
+  ],
+  "similar_artists": []
 }

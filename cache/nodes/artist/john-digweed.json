@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:13:01.080Z",
+  "mbid": "68cac857-3147-43d0-879e-c63dc9c82014",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "John Digweed (born January 1, 1967) is a seminal British DJ, producer, and label owner, widely recognized as a foundational figure in the development of progressive house. Hailing from Hastings, England, Digweed’s ascent began in the early 1990s through a legendary demo tape that connected him with the Renaissance club in Mansfield. This meeting sparked a prolific partnership with DJ Sasha, with whom he defined the sound of late-90s dance music through iconic mix compilations such as *Renaissance: The Mix Collection* and the *Northern Exposure* series. These releases transformed the concept of the DJ mix from an amateur souvenir into a meticulously crafted commercial art form. Beyond his collaborative work, Digweed is the founder of Bedrock Records, a label that has served as a primary outlet for his distinct production style and his collaborations with Nick Muir. As a solo artist and part of the Bedrock production duo, he has scored film soundtracks and maintained a near-constant international touring schedule, including his influential residency at the New York club Twilo. With his long-running 'Transitions' radio show, Digweed has spent decades curating and pushing the boundaries of house, techno, and electronic music. In 2001, he was voted the world's No. 1 DJ by DJ Mag, cementing his legacy as a titan of global electronic dance music culture. His commitment to high-fidelity sound, deep, immersive track selection, and relentless innovation in the DJ booth continues to influence generations of electronic music producers and selectors globally. Throughout his career, Digweed has maintained a reputation for meticulous programming and an ability to weave disparate threads of house, techno, and atmospheric soundscapes into a cohesive, driving narrative that remains synonymous with the 'progressive' label. His enduring relevance, both as a curator via Bedrock and as a performing artist, underscores his status as an essential pillar of international dance music.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Digweed.jpg/250px-Digweed.jpg",
   "origin": "Hastings, England",
@@ -84,5 +86,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

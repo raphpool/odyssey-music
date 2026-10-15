@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:48:49.854Z",
+  "mbid": "18da95e1-52a8-44e6-bcba-2ff5d35b01d2",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Sean Booth is an influential English electronic musician and producer, best known as one-half of the pioneering IDM duo Autechre. His work is defined by complex polyrhythms, algorithmic sound design, and an unwavering commitment to sonic experimentation.",
   "origin": "Rochdale, Greater Manchester, England",
   "genres": [
@@ -113,5 +115,6 @@
       "name": "Lego Feet"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:56:30.431Z",
+  "mbid": "026c4d7c-8dfe-46e8-ab14-cf9304d6863d",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pioneering Dutch producer and DJ central to the evolution of hardcore, gabber, and happy hardcore since 1987.",
   "origin": "The Hague, Netherlands",
   "active_years": "1987-present",
@@ -739,5 +741,6 @@
       "type": "artist",
       "name": "Rotterdam Terror Corps"
     }
-  ]
+  ],
+  "similar_artists": []
 }

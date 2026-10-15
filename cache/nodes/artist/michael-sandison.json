@@ -24,7 +24,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "d35d0684-42bd-4344-b8a4-f18eb806801a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Michael Peter Sandison (born July 14, 1971) is a Scottish electronic musician and composer, best known as one half of the influential electronic duo Boards of Canada, alongside his brother Marcus Eoin.",
   "genres": [
     {
@@ -82,5 +84,6 @@
       "name": "Mike Sandison"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

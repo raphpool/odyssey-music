@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "9a709693-b4f8-4da9-8cc1-038c911a61be",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Bonobo, the moniker of British producer, composer, and DJ Simon Green, represents one of the most influential forces in downtempo and organic electronic music.",
   "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000095176/400/muUWBEwj93qB_OBpb-da_VWnbEN5fCjifro6xhIBuB4=.jpg",
   "origin": "Brighton, Sussex, England",
@@ -113,5 +115,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

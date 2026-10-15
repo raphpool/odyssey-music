@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:58:59.952Z",
+  "mbid": "26860648-1c93-4849-bc52-a8541ec88219",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Mclusky was a seminal Welsh noise rock and post-hardcore band formed in 1996, celebrated for their abrasive, sarcastic, and highly energetic music. Led by vocalist and guitarist Andrew Falkous, the band became a vital force in the UK underground, known for their sharp-witted lyrics and chaotic, riff-heavy sound.",
   "origin": "Cardiff, Wales",
   "genres": [
@@ -81,5 +83,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

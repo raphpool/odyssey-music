@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:12:18.490Z",
+  "mbid": "1e7a51db-e1a9-4a01-a879-957572988253",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An alias for Detroit techno producer Jeff Mills, used for more experimental and eclectic compositions.",
   "origin": "Detroit, Michigan, USA",
   "active_years": "1993-present",
@@ -76,5 +78,6 @@
       "name": "Jeff Mills"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

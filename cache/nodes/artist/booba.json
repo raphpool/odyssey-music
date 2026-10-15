@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:29:03.697Z",
+  "mbid": "785c0e9c-89f6-4bf4-8296-443a46632d62",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Booba is a seminal French rapper and label founder known for his massive commercial success and long-standing dominance in the French hip-hop scene.",
   "origin": "Boulogne-Billancourt, France",
   "active_years": "1994-present",
@@ -91,5 +93,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

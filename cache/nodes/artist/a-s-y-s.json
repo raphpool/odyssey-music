@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:54:48.751Z",
+  "mbid": "2e40998c-e1c3-4063-9b03-03279ff64d4b",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "A German production project founded by Frank Ellrich and Kai Franz, blending techno, acid, and hardtechno influences.",
   "origin": "Germany",
   "active_years": "2000-present",
@@ -533,5 +535,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

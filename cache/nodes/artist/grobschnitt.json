@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:51:18.623Z",
+  "mbid": "666fd16d-d9f9-4eff-80ed-a064d5bbca7c",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Grobschnitt, a quintessential German progressive rock band formed in Hagen in 1970, stands as one of the most significant and popular acts to emerge from the 1970s German music scene.",
   "active_years": "1970–1989, 2007–present",
   "genres": [
@@ -83,5 +85,6 @@
       "type": "artist",
       "name": "Wolfgang \"Popo\" Jäger"
     }
-  ]
+  ],
+  "similar_artists": []
 }

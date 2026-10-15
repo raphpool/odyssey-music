@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:35:33.465Z",
+  "mbid": "cce15a87-fa96-459d-9e10-e4fd03acc703",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A legendary Detroit producer, DJ, and educator known for his deep house and techno sound, his role in the Record Time store, and his dedication to teaching youth.",
   "photo_url": "https://waldorfmusic.com/wp-content/uploads/2025/03/mike-a.jpg",
   "origin": "Detroit, USA",
@@ -54,5 +56,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

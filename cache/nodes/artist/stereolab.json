@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:58:46.598Z",
+  "mbid": "f1df0431-9250-4ec8-95d8-f19ce7cf7fb6",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Stereolab is a critically acclaimed British-French avant-pop band renowned for bridging the gap between underground krautrock sensibilities and infectious, polyglot pop melodies. Formed by Tim Gane and Lætitia Sadier, their music serves as a unique synthesis of vintage electronic textures, motorik rhythms, and deep socio-political engagement.",
   "photo_url": "https://en.wikipedia.org/wiki/File:StereolabRoundhs141121_(8_of_59)_(51681815198).jpg",
   "origin": "London, England",
@@ -148,5 +150,6 @@
       "type": "artist",
       "name": "Mary Hansen"
     }
-  ]
+  ],
+  "similar_artists": []
 }

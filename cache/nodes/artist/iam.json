@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:31:33.116Z",
+  "mbid": "7aa4a16e-9d5a-41d3-968e-fae1a2c84d05",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "IAM is a seminal French hip hop group from Marseille, recognized as one of the pioneers of the genre in France.",
   "origin": "Marseille, France",
   "active_years": "1989-present",
@@ -62,5 +64,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -24,7 +24,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "87f12745-5b9b-4224-8b16-236cf28ce46f",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Bryan James \"Chas\" Chandler (1938–1996) was a seminal figure in British rock history, moving from the stage as a foundational bassist for The Animals to the control room as a visionary producer and manager.",
   "origin": "Heaton, Tyne and Wear, England",
   "genres": [
@@ -54,5 +56,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

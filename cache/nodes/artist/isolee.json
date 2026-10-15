@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:40:22.254Z",
+  "mbid": "4c99c0b4-5d46-44d2-8c49-ba47a522b016",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Isolée, the recording alias of Frankfurt-born producer Rajko Müller, is a seminal figure in the development of the microhouse genre. Emerging in the late 1990s, his sound defined a distinct aesthetic within electronic music, characterized by a playful, minimalist approach that bridges the gap between deep house, techno, and the melodic sensibilities of indie electronic pop.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Isolee1.jpg/250px-Isolee1.jpg",
   "origin": "Frankfurt, Germany",
@@ -61,5 +63,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:09:34.944Z",
+  "mbid": "d1a772d1-dee6-4c7d-a089-ce66ab456bcd",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A legendary Javanese gamelan master and composer whose work reached space via the Voyager Golden Record.",
   "origin": "Yogyakarta, Indonesia",
   "active_years": "1914-2007",
@@ -104,5 +106,6 @@
       "name": "Wasitodipuro"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

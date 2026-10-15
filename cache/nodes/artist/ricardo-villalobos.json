@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:40:04.594Z",
+  "mbid": "bbd79854-df54-4c1b-b7d6-cf7eea2d0afb",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Chilean-born German producer and DJ, internationally recognized for his pioneering influence on minimal techno and microhouse.",
   "origin": "Santiago, Chile / Germany",
   "active_years": "1993–present",
@@ -72,5 +74,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

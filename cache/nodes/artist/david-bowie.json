@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:45:16.578Z",
+  "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Regarded as one of the most influential musicians of the 20th century, David Bowie was a master of artistic reinvention who continuously redefined pop, rock, and electronic music over his five-decade career. Famous for his chameleonic persona shifts—most notably Ziggy Stardust—he fundamentally changed the landscape of music, performance, and fashion.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/David-Bowie_Chicago_2002-08-08_photoby_Adam-Bielawski-cropped.jpg/250px-David-Bowie_Chicago_2002-08-08_photoby_Adam-Bielawski-cropped.jpg",
   "origin": "London, England",
@@ -82,5 +84,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

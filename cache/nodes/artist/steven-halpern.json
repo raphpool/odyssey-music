@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:36:35.462Z",
+  "mbid": "37986d18-e8af-4502-8e08-2a87d7e5853f",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Steven Halpern is a pioneering New Age composer, author, and researcher known for creating restorative, \"anti-frantic\" instrumental music designed for healing and meditation. Often credited with kick-starting the New Age movement with his 1976 album Spectrum Suite, he has released over 100 recordings exploring the therapeutic potential of sound.",
   "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000042234/400/upQEUEysNX1alMrFWDXziN_M69_UI9rrJSVvWL2-yAg=.jpg",
   "origin": "New York, NY",
@@ -86,5 +88,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

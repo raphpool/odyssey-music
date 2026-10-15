@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:03:35.507Z",
+  "mbid": "bb54817c-6829-4ccc-bc58-030abb85c583",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "French-born Argentine singer and actor who became the quintessential global icon of tango music in the early 20th century.",
   "origin": "Buenos Aires, Argentina",
   "active_years": "1917–1935",
@@ -236,5 +238,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

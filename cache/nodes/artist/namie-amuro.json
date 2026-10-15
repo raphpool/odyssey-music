@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:10:44.377Z",
+  "mbid": "888994e5-6f53-4f53-bced-b20482aea42a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Japanese pop icon and record-breaking solo artist who rose to prominence as a teen idol before establishing herself as a leading figure in J-pop.",
   "origin": "Japan",
   "active_years": "1992-2018",
@@ -135,5 +137,6 @@
       "type": "artist",
       "name": "Namie Amuro"
     }
-  ]
+  ],
+  "similar_artists": []
 }

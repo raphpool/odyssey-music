@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:42:00.520Z",
+  "mbid": "6732e9f3-5f24-4ba4-aef1-a2a49442b96b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pivotal architect of the Detroit techno sound, Carl Craig has spent over three decades redefining the boundaries of electronic music through his prolific solo work, myriad aliases, and his foundational label, Planet E Communications.",
   "origin": "Detroit, Michigan, U.S.",
   "active_years": "1989-present",
@@ -129,5 +131,6 @@
       "type": "artist",
       "name": "Paperclip People"
     }
-  ]
+  ],
+  "similar_artists": []
 }

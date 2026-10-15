@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T20:58:29.182Z",
+  "mbid": "d7641934-7dfb-49ea-b948-da0b12816b12",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Jamaican dancehall artist who emerged from Vybz Kartel's Gaza Music Empire to achieve global recognition through collaborations with artists like Drake and Gorillaz.",
   "origin": "Portmore, Jamaica",
   "active_years": "2007-present",
@@ -428,5 +430,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

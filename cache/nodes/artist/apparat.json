@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:59:57.618Z",
+  "mbid": "dc3dbfc1-f1f1-49c6-9d7c-425fabf3ae12",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Apparat is the moniker of German electronic producer Sascha Ring, known for his evolution from abrasive glitch techno to introspective, orchestrally layered electronic pop. As an associate of the label Shitkatapult and a core member of the supergroup Moderat, he has been a central figure in the Berlin electronic scene since the late 1990s.",
   "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000927009/400/632Ykb2gTacro0vjZpXjJZhUoDg0hsvx4F4sL4oO-nA=.jpg",
   "origin": "Quedlinburg, Germany",
@@ -119,5 +121,6 @@
       "type": "artist",
       "name": "Moderat"
     }
-  ]
+  ],
+  "similar_artists": []
 }

@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:35:22.444Z",
+  "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "μ-Ziq (pronounced \"music\") is the primary recording alias of the English electronic musician Mike Paradinas, a pivotal figure in the evolution of IDM and electronic music. Beyond his own genre-defying work, he founded the influential label Planet Mu.",
   "origin": "Raynes Park, London, United Kingdom",
   "active_years": "1991–present",
@@ -83,5 +85,6 @@
       "name": "Mike Paradinas"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:07:30.774Z",
+  "mbid": "aa68e70a-f15a-4583-89c5-61784bb782f3",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pioneering Congolese singer, bandleader, and the King of Soukous who brought the genre to global dance floors from his base in Paris.",
   "origin": "Republic of the Congo",
   "active_years": "1974-2019",
@@ -141,5 +143,6 @@
       "name": "Benoit Aurélien Miatsonama"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:36:51.951Z",
+  "mbid": "72c090b6-a68e-4cb9-b330-85278681a714",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "John Cale is a Welsh-born musician, composer, and producer whose sprawling career has bridged the gap between academic avant-garde minimalism and the raw intensity of underground rock.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/John_Cale_%2849386834383%29.jpg/500px-John_Cale_%2849386834383%29.jpg",
   "origin": "Garnant, Wales",
@@ -116,5 +118,6 @@
       "type": "artist",
       "name": "The Velvet Underground"
     }
-  ]
+  ],
+  "similar_artists": []
 }

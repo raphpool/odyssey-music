@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:11:10.190Z",
+  "mbid": "a15988bf-2d7d-4576-9405-2352873bc5a4",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Jam & Spoon was a pioneering German electronic music duo based in Frankfurt, active between 1991 and 2006.",
   "active_years": "1991-2006",
   "genres": [
@@ -84,5 +86,6 @@
       "type": "artist",
       "name": "Mark Spoon"
     }
-  ]
+  ],
+  "similar_artists": []
 }

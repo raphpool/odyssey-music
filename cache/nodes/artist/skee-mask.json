@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:36:13.637Z",
+  "mbid": "2b3e25ba-983e-44ac-9def-907e03910cd2",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Bryan Müller, born in 1993, is a highly influential Munich-based electronic music producer and DJ operating under the alias Skee Mask.",
   "origin": "Munich, Germany",
   "active_years": "2014–present",
@@ -91,5 +93,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

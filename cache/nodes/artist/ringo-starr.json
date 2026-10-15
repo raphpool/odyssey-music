@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:15:01.194Z",
+  "mbid": "300c4c73-33ac-4255-9d57-4e32627f5e13",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Ringo Starr is a legendary English musician and drummer who achieved international fame as a member of The Beatles before embarking on a successful solo career.",
   "origin": "Liverpool, England",
   "active_years": "1957-present",
@@ -90,5 +92,6 @@
       "type": "artist",
       "name": "The Beatles"
     }
-  ]
+  ],
+  "similar_artists": []
 }

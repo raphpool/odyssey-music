@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "494e8d09-f85b-4543-892f-a5096aed1cd4",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Mariah Carey is an American pop and R&B superstar, songwriter, and producer widely acclaimed for her five-octave vocal range and her immense influence on modern vocal music. With 19 Billboard Hot 100 number-one hits and over 200 million albums sold, she remains one of the most successful artists in music history.",
   "photo_url": "https://cdn.britannica.com/57/244057-050-D13DD2C5/Singer-Mariah-Carey-2008-New-York-City.jpg",
   "origin": "Huntington, New York, U.S.",
@@ -128,5 +130,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

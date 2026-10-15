@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:06:18.492Z",
+  "mbid": "a77f26ec-ec08-40dc-bc22-aeec8ce7c610",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A legendary Nigerian highlife musician, sculptor, and inventor who revolutionized the sound of the 1960s with hits like 'Joromi.'",
   "origin": "Benin City, Nigeria",
   "active_years": "1960-2021",
@@ -104,5 +106,6 @@
       "type": "artist",
       "name": "Victor Uwaifo"
     }
-  ]
+  ],
+  "similar_artists": []
 }

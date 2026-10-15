@@ -32,7 +32,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "092ca127-2e07-4cbd-9cba-e412b4ddddd9",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Paul van Dyk (born Matthias Paul in 1971) is a seminal German DJ, record producer, and musician, widely recognized as one of the architects of the global trance movement.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Paul_van_Dyk_2022_%283x4_cropped%29.jpg/500px-Paul_van_Dyk_2022_%283x4_cropped%29.jpg",
   "origin": "Eisenhüttenstadt, East Germany",
@@ -145,5 +147,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

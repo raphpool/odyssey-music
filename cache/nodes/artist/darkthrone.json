@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:15:25.308Z",
+  "mbid": "af8fd97c-db72-4e30-b2aa-30ebd0c4f1a0",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "An influential Norwegian metal duo from Kolbotn known for their pivotal role in black metal and their later shifts into crust punk and traditional heavy metal.",
   "origin": "Kolbotn, Norway",
   "active_years": "1986-present",
@@ -363,5 +365,6 @@
       "type": "artist",
       "name": "Nocturno Culto"
     }
-  ]
+  ],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:10:47.656Z",
+  "mbid": "38dd6337-19ae-4793-ab4b-313eff523457",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Giorgio Moroder is a pioneer of disco and electronic music, known for his groundbreaking work in Munich during the 1970s and his iconic film scores. He is celebrated for his collaborative work with Donna Summer, which pioneered the use of synthesizers in dance music.",
   "photo_url": "http://www.giorgiomoroder.com/wp-content/uploads/2014/11/giorgio-moroder-bio.jpg",
   "origin": "Ortisei, Italy",
@@ -83,5 +85,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

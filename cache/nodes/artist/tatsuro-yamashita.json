@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:08:46.797Z",
+  "mbid": "ad62391d-ab7e-4ac9-9ce8-3704bc6746bb",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A seminal figure of Japanese city pop, Tatsurō Yamashita is a multi-instrumentalist and producer known for his meticulous studio craftsmanship and long-charting hits.",
   "origin": "Ikebukuro, Toshima, Tokyo, Japan",
   "active_years": "1975-present",
@@ -149,5 +151,6 @@
       "type": "artist",
       "name": "Tatsurō Yamashita"
     }
-  ]
+  ],
+  "similar_artists": []
 }

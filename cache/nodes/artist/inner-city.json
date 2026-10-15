@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "65a8e571-8a08-433f-a5bf-ead38c269ea6",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Inner City is a seminal Detroit electronic group formed in 1987 by techno innovator Kevin Saunderson and vocalist Paris Grey.",
   "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000091122/400/GfhiCnUsjX0w2idJ4B1PDj6KsMttLlyBmmVTZ6_CLs0=.jpg",
   "origin": "Detroit, MI",
@@ -113,5 +115,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:50:47.685Z",
+  "mbid": "adec1fc3-83c1-48f7-9e49-8347ac6d40b0",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "NEU! was a profoundly influential German experimental duo formed in Düsseldorf in 1971 by guitarist Michael Rother and drummer Klaus Dinger. Known for pioneering the \"motorik\" beat, they were a seminal force in the Krautrock scene.",
   "photo_url": "https://jazzrocksoul.com/wp-content/uploads/2018/01/Neu.jpg",
   "origin": "Düsseldorf, Germany",
@@ -110,5 +112,6 @@
       "type": "artist",
       "name": "Klaus Dinger"
     }
-  ]
+  ],
+  "similar_artists": []
 }

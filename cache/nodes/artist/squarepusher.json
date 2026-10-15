@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "4d86ad4e-28d8-4e9f-8cf4-735c57060fdc",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Squarepusher is the alias of electronic virtuoso Tom Jenkinson, celebrated for his complex fusion of high-speed drill and bass with intricate jazz-inflected bass guitar performance. A key fixture of the Warp Records roster, he remains a central figure in the evolution of IDM and breakbeat-focused electronic music.",
   "origin": "Chelmsford, England",
   "genres": [
@@ -85,5 +87,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

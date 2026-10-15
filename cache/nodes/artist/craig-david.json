@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:15:44.357Z",
+  "mbid": "89e39f67-65cc-4f90-b145-b1b56c209f8a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Craig David is a seminal British singer, songwriter, rapper, and record producer born in Southampton in 1981, widely credited as one of the most significant figures in the popularization of UK garage.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Craig_David_%28at_The_Queen%27s_Birthday_Party%29_%28cropped%29_%281%29.jpg/500px-Craig_David_%28at_The_Queen%27s_Birthday_Party%29_%28cropped%29_%281%29.jpg",
   "origin": "Southampton, England",
@@ -75,5 +77,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

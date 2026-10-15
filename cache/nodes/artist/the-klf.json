@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:53:54.839Z",
+  "mbid": "8092b8b7-235e-4844-9f72-95a9d5a73dbf",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The KLF were an influential British electronic duo active in the late 1980s and early 1990s, comprised of Bill Drummond and Jimmy Cauty.",
   "photo_url": "https://i.discogs.com/dL79Q8npltiQrN-x9UXxebu42eki1mVMlmkcNf6SoZg/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5NDU4/OC0xNjE1MTQxMjM0/LTYzODAuanBlZw.jpeg",
   "origin": "London, England",
@@ -89,5 +91,6 @@
       "type": "artist",
       "name": "Jimmy Cauty"
     }
-  ]
+  ],
+  "similar_artists": []
 }

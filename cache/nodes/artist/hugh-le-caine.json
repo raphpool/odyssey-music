@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:38:02.440Z",
+  "mbid": "e7ae24a5-41c9-4952-8613-804d6082114b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Canadian physicist and composer whose pioneering inventions, including the Electronic Sackbut, helped define the architecture of modular electronic music.",
   "photo_url": "https://www.hughlecaine.com/images/lc74.jpg",
   "origin": "Port Arthur (Thunder Bay), Canada",
@@ -51,5 +53,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

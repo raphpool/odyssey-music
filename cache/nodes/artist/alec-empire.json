@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:38:56.374Z",
+  "mbid": "d71ba53b-23b0-4870-a429-cce6f345763b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Alec Empire is a pioneer of digital hardcore and a foundational member of Atari Teenage Riot, recognized for his aggressive fusion of punk ideology and experimental electronic music. His career, spanning from the early 1990s to the present, is defined by his commitment to political activism, his founding of the Digital Hardcore Recordings label, and a vast body of work that spans techno, noise, and breakbeat culture.",
   "origin": "West Berlin, Germany",
   "active_years": "1990-present",
@@ -155,5 +157,6 @@
       "type": "artist",
       "name": "Atari Teenage Riot"
     }
-  ]
+  ],
+  "similar_artists": []
 }

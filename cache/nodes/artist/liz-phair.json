@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "149326c2-b8a3-48e3-b3d2-9b5b9593127f",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Liz Phair is an American singer-songwriter and guitarist who emerged as a defining voice of the 1990s alternative rock movement.",
   "origin": "Chicago, Illinois, U.S.",
   "genres": [
@@ -96,5 +98,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

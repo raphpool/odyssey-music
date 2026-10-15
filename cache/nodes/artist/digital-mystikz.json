@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:42:35.358Z",
+  "mbid": "2c1583ab-3bfa-41b9-b849-4d4b5d891339",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Digital Mystikz is a pioneering South London dubstep production duo comprised of Mark Lawrence (Mala) and Dean Harris (Coki).",
   "origin": "South London, UK",
   "genres": [
@@ -75,5 +77,6 @@
       "type": "artist",
       "name": "Coki"
     }
-  ]
+  ],
+  "similar_artists": []
 }

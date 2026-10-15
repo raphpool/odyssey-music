@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:03:04.206Z",
+  "mbid": "7ac94b2b-1f0e-439c-b6af-2b710e44d6d3",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A seminal Brazilian singer-songwriter who revolutionized samba in the early 1930s with his urban wit and poignant social commentary.",
   "origin": "Rio de Janeiro, Brazil",
   "active_years": "1929-1937",
@@ -116,5 +118,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

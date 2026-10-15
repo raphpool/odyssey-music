@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:55:31.703Z",
+  "mbid": "870aaacf-ef15-4633-856b-212a1054377e",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "London-based electronic duo Lee Rous and Andy Gardner, recognized for pioneering the late-90s breakbeat scene and a long-standing residency at Fabric.",
   "origin": "London, England",
   "active_years": "1998-present",
@@ -375,5 +377,6 @@
       "type": "artist",
       "name": "Andy Gardner"
     }
-  ]
+  ],
+  "similar_artists": []
 }

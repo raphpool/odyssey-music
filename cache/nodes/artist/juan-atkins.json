@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:41:53.073Z",
+  "mbid": "57dd6359-f4ef-422a-9566-b8f54a0904fe",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Juan Atkins is a pioneering Detroit-based producer known as the godfather of techno, whose work in Cybotron and as Model 500 defined the genre's mechanical, futuristic sound.",
   "origin": "Detroit, Michigan",
   "active_years": "1981-Present",
@@ -76,5 +78,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

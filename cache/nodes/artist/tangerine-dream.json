@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:34:55.136Z",
+  "mbid": "23d8426c-18c7-46e6-a51d-7395bd43c641",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Tangerine Dream is a pioneering German electronic music group founded in 1967 by Edgar Froese in Berlin.",
   "photo_url": "https://data.tangerinedreammusic.com/Data/BildArchiv/zuordnung/01081.jpg",
   "origin": "Berlin, Germany",
@@ -77,5 +79,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

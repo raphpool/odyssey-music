@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:45:02.918Z",
+  "mbid": "148ddea2-6839-4354-8e2c-5dfadf136b7f",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Tenacious D is an American comedy rock duo formed in Los Angeles, California, in 1994, consisting of actors and musicians Jack Black and Kyle Gass. Known for their theatrical performances, virtuosic acoustic guitar playing, and tongue-in-cheek lyrical style that satirizes the clichés of heavy metal and rock 'n' roll, the duo built a cult following before achieving mainstream success. Their sound is characterized by a blend of folk, acoustic rock, and hard rock elements, often featuring elaborate song structures that mock the tropes of \"rock opera.\" Throughout their career, they have balanced their musical output with multimedia projects, including a television series, a major motion picture, *The Pick of Destiny* (2006), and various web-based endeavors. Their debut self-titled album, released in 2001, is considered a landmark in comedy rock, blending humor with genuine musical craftsmanship. The group’s persistent dedication to their self-mythologized persona as \"the greatest band in the world\" has cemented their status as a unique intersection of comedy and musical performance in 21st-century rock. The interplay between Black's explosive vocal delivery and Gass's precise, intricate guitar work allows them to perform genuinely complex arrangements that ironically underscore the absurdity of their lyrics. Over the decades, they have maintained a consistent presence in both the comedy world and the rock scene, collaborating with numerous high-profile musicians and maintaining a dedicated, multi-generational fan base that spans beyond the borders of pure comedy music. Their influence can be seen in the way they have legitimized comedy rock by ensuring that the musicality of their output remains on par with their performative narrative.",
   "photo_url": "https://i.discogs.com/6_QmsgA2zEIMw5ZLl-q44uMgISodq_zSuHAkkFaZ_bU/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQwMTc0/NS0xNTkxMDAyNDY0/LTI2ODYuanBlZw.jpeg",
   "origin": "Los Angeles, California, USA",
@@ -99,5 +101,6 @@
       "type": "artist",
       "name": "Kyle Gass"
     }
-  ]
+  ],
+  "similar_artists": []
 }

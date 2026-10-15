@@ -14,7 +14,9 @@
   ],
   "materialized_at": "2026-05-13T15:06:52.366Z",
   "disambiguator": "Stefan Betke",
+  "mbid": "ad957b43-9dc0-42e1-940c-19b21ec77f3a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Pole is the alias of German electronic musician Stefan Betke, a pioneer of the glitch and dubtronic genres known for his influential trilogy of albums.",
   "origin": "Düsseldorf, Germany",
   "active_years": "1996-present",
@@ -87,5 +89,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

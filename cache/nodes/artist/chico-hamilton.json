@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:48:35.087Z",
+  "mbid": "699067a0-ae8c-45fc-82c1-6227d91f9bb4",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Chico Hamilton was a seminal jazz drummer and innovative bandleader known for his influential West Coast quintets and his pioneering use of the cello in jazz.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Chico_Hamilton.jpg/500px-Chico_Hamilton.jpg",
   "origin": "Los Angeles, California, U.S.",
@@ -119,5 +121,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

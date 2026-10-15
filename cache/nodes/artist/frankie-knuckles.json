@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:42:08.896Z",
+  "mbid": "b7a98e65-7ce4-4fab-8cf3-6b3ccda6115a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A legendary American DJ and producer, Frankie Knuckles is widely regarded as the 'godfather of house music' for his pioneering work in Chicago. His innovative blending of disco and drum machine rhythms at The Warehouse defined a new era of dance music.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Frankie_Knuckles_at_The_Mighty_%28SF%29%2C_2012_-1.jpg/250px-Frankie_Knuckles_at_The_Mighty_%28SF%29%2C_2012_-1.jpg",
   "origin": "New York City, U.S.",
@@ -130,5 +132,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

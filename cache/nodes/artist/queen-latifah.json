@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:23:14.905Z",
+  "mbid": "7a305f29-539a-456e-93b7-61b0e2ba3ef2",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An influential rapper, jazz singer, and actress who helped define the sound of golden age hip-hop and later pivoted to acclaimed jazz vocal work.",
   "origin": "Newark, New Jersey",
   "active_years": "1988-present",
@@ -320,5 +322,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

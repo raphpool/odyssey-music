@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "b38225b8-8e5f-42aa-bcdc-7bae5b5bdab3",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "King Crimson is a seminal English progressive rock band founded in London in 1968, renowned for their radical reinventions, intricate compositions, and profound influence on rock, jazz, and avant-garde music.",
   "origin": "London, England",
   "active_years": "1968-1974, 1981-1984, 1994-2003, 2007-2009, 2013-2021",
@@ -96,5 +98,6 @@
       "type": "artist",
       "name": "Bill Bruford"
     }
-  ]
+  ],
+  "similar_artists": []
 }

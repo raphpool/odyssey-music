@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:17:58.205Z",
+  "mbid": "f65f0ceb-60b3-4e5a-ba1a-63343c263bbe",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Gökhan Kırdar is a pioneering Turkish composer, producer, and multi-instrumentalist born in 1970 in Aydın, who played a central role in the evolution of electronic and experimental music in Turkey during the 1990s and 2000s.",
   "origin": "Aydın, Turkey",
   "active_years": "1988–present",
@@ -87,5 +89,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

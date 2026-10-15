@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:48:22.231Z",
+  "mbid": "5c864a6f-146e-4225-986d-3295ce90f784",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Harold Montgomery Budd (1936–2020) was an influential American composer, poet, and pianist who became a cornerstone of the ambient and minimalist traditions.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Harold_Budd_%28cropped%29.jpg/500px-Harold_Budd_%28cropped%29.jpg",
   "origin": "Los Angeles, California, U.S.",
@@ -108,5 +110,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

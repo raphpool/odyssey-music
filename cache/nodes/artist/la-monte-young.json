@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:36:52.836Z",
+  "mbid": "40fa96a1-d9c0-4092-a0f9-ca1de5aa125a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "La Monte Young is an influential American composer and pioneer of minimalism, renowned for his use of just intonation, extended performance durations, and immersive 'Dream House' sound environments. His groundbreaking work has shaped fields ranging from avant-garde classical music to ambient and experimental electronic soundscapes.",
   "origin": "United States",
   "active_years": "1957-present",
@@ -99,5 +101,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

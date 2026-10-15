@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "9d1ebcfe-4c15-4d18-95d3-d919898638a1",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "American musician, songwriter, and poet who founded The Velvet Underground and pioneered the narrative and sonic conventions of alternative rock and proto-punk.",
   "origin": "New York City, U.S.",
   "active_years": "1958–2013",
@@ -104,5 +106,6 @@
       "type": "artist",
       "name": "The Velvet Underground"
     }
-  ]
+  ],
+  "similar_artists": []
 }

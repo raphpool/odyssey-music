@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:13:07.875Z",
+  "mbid": "bbecd9f9-130c-4e56-a7b9-bde8f4376d52",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Beppe Loda is an iconic Italian DJ and producer who defined the Cosmic disco sound during his tenure at the legendary Typhoon club.",
   "origin": "Brescia, Italy",
   "active_years": "1970s-present",
@@ -89,5 +91,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

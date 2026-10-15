@@ -32,7 +32,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "4a4ee089-93b1-4470-af9a-6ff575d32704",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Prodigy are legendary pioneers of the 1990s rave and big beat scenes, celebrated for their explosive fusion of electronic production and punk intensity. From their breakout rave hits in 1991 to their status as global arena-filling legends, they remain one of the most influential electronic groups in history.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/The_Prodigy_IMG_2972_%285353883317%29_%28cropped%29.jpg/330px-The_Prodigy_IMG_2972_%285353883317%29_%28cropped%29.jpg",
   "origin": "Braintree, England",
@@ -91,5 +93,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -32,7 +32,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "7db6aae5-6644-4513-9bfc-ca2e79d4469c",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Peter Tosh (born Winston Hubert McIntosh; 1944–1987) was a Jamaican musician and reggae singer, best known as a foundational member of The Wailers and for his uncompromising solo career as a political activist and revolutionary artist.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/BushDoctor1978_%28cropped2%29.jpg",
   "origin": "Grange Hill, Jamaica",
@@ -150,5 +152,6 @@
       "type": "artist",
       "name": "Bob Marley & The Wailers"
     }
-  ]
+  ],
+  "similar_artists": []
 }

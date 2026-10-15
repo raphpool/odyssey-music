@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:34:50.568Z",
+  "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A foundational architect of ambient music and a legendary producer, Brian Eno redefined the possibilities of sound by prioritizing atmosphere, texture, and conceptual innovation over traditional musicianship.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Brian_Eno_2015.png/250px-Brian_Eno_2015.png",
   "origin": "Melton, Suffolk, England",
@@ -115,5 +117,6 @@
       "type": "artist",
       "name": "Roxy Music"
     }
-  ]
+  ],
+  "similar_artists": []
 }

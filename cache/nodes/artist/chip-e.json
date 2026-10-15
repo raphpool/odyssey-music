@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:14:11.661Z",
+  "mbid": "31b07129-85d8-4ed2-abd3-0794deedd686",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Irwin Larry Eberhart II, widely known as Chip E., is a cornerstone figure in the development of Chicago house music.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Chip_E._circa_2018.jpg/250px-Chip_E._circa_2018.jpg",
   "origin": "Chicago, Illinois, U.S.",
@@ -82,5 +84,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

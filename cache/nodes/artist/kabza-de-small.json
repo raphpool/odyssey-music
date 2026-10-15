@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:13:54.173Z",
+  "mbid": "36f9accc-d9f6-4dd2-8c23-91da477ce35c",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "South African DJ and producer instrumental in establishing amapiano as a dominant force in modern electronic and house music.",
   "origin": "Pretoria, South Africa",
   "active_years": "2011-present",
@@ -238,5 +240,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

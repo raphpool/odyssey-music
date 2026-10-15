@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:54:37.231Z",
+  "mbid": "a3cb23fc-acd3-4ce0-8f36-1e5aa6a18432",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "U2 are an iconic Irish rock band formed in Dublin in 1976 that became one of the most commercially successful and influential musical acts in history.",
   "genres": [
     {
@@ -80,5 +82,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:36:02.626Z",
+  "mbid": "cc48f77c-32c5-46e1-9f35-119d61671e1b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Pierre Schaeffer (1910–1995) was a seminal French composer, engineer, and musicologist who fundamentally altered the course of 20th-century music by inventing \"musique concrète.\" Born in Nancy, France, Schaeffer’s background as an engineer, combined with his work at the French na",
   "photo_url": "https://upload.wikimedia.org/wikipedia/en/a/a4/Pierre_Schaeffer%2C_1973.jpeg",
   "origin": "Nancy, France",
@@ -81,5 +83,6 @@
   ],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

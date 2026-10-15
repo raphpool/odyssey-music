@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:58:13.427Z",
+  "mbid": "f84c6074-dd3e-4d60-b67b-bd72e93b36a5",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "British DJ and producer Ian Hicks is a pioneer of the happy hardcore sound, best known for his influential role in the Bonkers and Clubland X-Treme Hardcore series.",
   "origin": "Portsmouth, United Kingdom",
   "active_years": "1990-present",
@@ -350,5 +352,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

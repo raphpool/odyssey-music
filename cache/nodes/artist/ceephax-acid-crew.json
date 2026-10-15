@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:07:08.682Z",
+  "mbid": "f226bcd7-114e-418f-8fa5-e24a47a89cf5",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Ceephax Acid Crew (Andy Jenkinson) is a prolific British electronic musician celebrated for his acid house, drill and bass, and IDM-infused hardware live performances. A long-term collaborator with the influential Rephlex Records, he is renowned for his mastery of the Roland TB-303 and his playful, energetic take on retro-futuristic rave aesthetics.",
   "origin": "Chelmsford, United Kingdom",
   "genres": [
@@ -71,5 +73,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

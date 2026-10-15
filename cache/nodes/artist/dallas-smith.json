@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:48:10.862Z",
+  "mbid": "933de17e-4f37-45a4-bad6-56ad20c21b87",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Dallas Hendry Smith (born December 4, 1977) is a Canadian singer-songwriter who successfully transitioned from a career as the frontman of the hard rock/post-grunge band Default to becoming one of Canada's most prominent solo country artists.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/Dallas_Smith.jpg/500px-Dallas_Smith.jpg",
   "origin": "Langley, British Columbia, Canada",
@@ -99,5 +101,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:57:51.150Z",
+  "mbid": "45fc5c0a-3614-4018-95e9-9101ac827e2b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A seminal figure in Detroit's Ghettotech scene, DJ Godfather has shaped the city's electronic landscape for decades as a prolific producer and DJ.",
   "origin": "Detroit, Michigan",
   "active_years": "1990s-present",
@@ -333,5 +335,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

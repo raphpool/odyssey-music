@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "79491354-3d83-40e3-9d8e-7592d58d790a",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Deep Purple is a seminal English rock band formed in London in 1968, widely recognized as a foundational force in the development of heavy metal and modern hard rock. Often cited alongside Led Zeppelin and Black Sabbath as part of the \"unholy trinity\" of British hard rock.",
   "origin": "London, England",
   "active_years": "1968–1976, 1984–present",
@@ -86,5 +88,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

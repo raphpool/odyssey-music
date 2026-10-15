@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:58:45.813Z",
+  "mbid": "6c4335db-e676-418f-98e2-f8037ac88576",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Bas Oskam is a Dutch DJ and producer who helped define the technical and euphoric sound of modern hardstyle.",
   "origin": "Veenendaal, Netherlands",
   "active_years": "2005-present",
@@ -764,5 +766,6 @@
       "type": "artist",
       "name": "Arjan Terpstra"
     }
-  ]
+  ],
+  "similar_artists": []
 }

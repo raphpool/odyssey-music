@@ -32,7 +32,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "a6f8d42d-d3ff-4268-8d39-ee01341733bb",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An Austrian visionary who redefined electronic music by blending processed guitar textures with delicate, melodic ambient structures.",
   "photo_url": "https://www.fennesz.com/media/presspictures/Fennesz%20%E2%80%93%20photo%20by%20Carsten%20Nicolai%201.jpg",
   "origin": "Vienna, Austria",
@@ -149,5 +151,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

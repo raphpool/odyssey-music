@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:10:17.404Z",
+  "mbid": "2b615bcf-baa0-4657-b9a5-1a5f34c386c4",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An influential Japanese singer-songwriter and cultural icon known for her massive commercial success, self-penned lyrics, and chameleonic approach to music and fashion.",
   "origin": "Fukuoka, Japan",
   "active_years": "1993-present",
@@ -143,5 +145,6 @@
       "name": "Crea"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

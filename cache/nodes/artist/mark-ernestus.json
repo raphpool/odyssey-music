@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:46:19.187Z",
+  "mbid": "6fb800e6-65db-4368-8472-b125e185f823",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Mark Ernestus is a pioneering Berlin-based producer, label founder, and record shop owner who helped define the minimalist aesthetic of dub-techno. Through his legendary Hard Wax store and his collaborative projects Basic Channel and Rhythm & Sound, he fundamentally shaped the electronic landscape by marrying Detroit techno with Jamaican dub production. In recent decades, he has pivoted toward intricate collaborations with Senegalese musicians through his ensemble, Ndagga Rhythm Force.",
   "origin": "Berlin, Germany",
   "genres": [
@@ -118,5 +120,6 @@
       "type": "artist",
       "name": "Rhythm & Sound"
     }
-  ]
+  ],
+  "similar_artists": []
 }

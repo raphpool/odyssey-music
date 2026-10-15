@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:35:47.521Z",
+  "mbid": "fd09d776-ddfd-4558-afe7-814420d704ed",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pioneering German composer and central figure of the 20th-century avant-garde, renowned for his revolutionary contributions to electronic music, serialism, and spatialized sound.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Stockhausen_1994_WDR.jpg/960px-Stockhausen_1994_WDR.jpg",
   "origin": "Mödrath, Germany",
@@ -130,5 +132,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:54:21.649Z",
+  "mbid": "4b585938-f271-45e2-b19a-91c634b5e396",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Kate Bush is a British singer, songwriter, and producer whose imaginative and inventive art rock has made her one of the most influential and successful musicians of the late 20th century.",
   "origin": "Bexleyheath, Kent, England",
   "active_years": "1978-present",
@@ -117,5 +119,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:54:25.678Z",
+  "mbid": "94b0fb9d-a066-4823-b2ec-af1d324bcfcf",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Velvet Underground stands as one of the most transformative forces in the history of rock music, acting as the bridge between the idealism of the 1960s and the raw, confrontational aesthetics that would define punk and alternative rock.",
   "origin": "New York City, USA",
   "active_years": "1964–1973, 1990, 1993",
@@ -138,5 +140,6 @@
       "type": "artist",
       "name": "Angus MacLise"
     }
-  ]
+  ],
+  "similar_artists": []
 }

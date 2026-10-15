@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "4853b4f9-bcd6-4663-86bd-36d1270c6a3b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Mijk van Dijk (born Michael van den Nieuwendijk, 1963) is a prominent German DJ and electronic music producer based in Berlin, who has played a vital role in the evolution of the European techno and trance scenes since the early 1990s.",
   "origin": "Berlin, Germany",
   "genres": [
@@ -101,5 +103,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

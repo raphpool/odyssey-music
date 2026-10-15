@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:16:09.679Z",
+  "mbid": "ae002c5d-aac6-490b-a39a-30aa9e2edf2b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Sonny John Moore, better known by his stage name Skrillex, is an American DJ, producer, and one of the most popular figures in modern EDM. Known for his aggressive, genre-bending bass music, he has also become a premier pop producer with multiple Grammy Awards to his name.",
   "photo_url": "https://fastly-s3.allmusic.com/artist/mn0002365087/400/JbF10ZyHLqSEpeSR-Gr33FWnbEN5fCjifro6xhIBuB4=.jpg",
   "origin": "Los Angeles, California",
@@ -86,5 +88,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

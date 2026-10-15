@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:55:05.563Z",
+  "mbid": "3a238c56-3790-4a6a-89af-4aa0c71fa732",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Spanish DJ and ambient producer renowned for shaping the chill-out sound through his long-standing residency at Ibiza's Café del Mar.",
   "origin": "Barcelona, Spain",
   "active_years": "1978-2020",
@@ -158,5 +160,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

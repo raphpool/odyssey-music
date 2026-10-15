@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:40:42.362Z",
+  "mbid": "91e7ec65-c3a0-4a76-aadb-a2b5bd69ff27",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Jake Slazenger is an electronic alias of Mike Paradinas, active in the 1990s and known for quirky, sample-heavy IDM and breakcore explorations.",
   "origin": "United Kingdom",
   "genres": [
@@ -107,5 +109,6 @@
       "name": "Mike Paradinas"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

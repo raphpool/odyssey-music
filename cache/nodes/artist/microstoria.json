@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:39:27.273Z",
+  "mbid": "5f3b5920-6aa8-4cc0-b466-77372c71aa4e",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Microstoria is a pioneering experimental electronic duo formed in 1994 in Düsseldorf, Germany, consisting of Markus Popp of the influential project Oval and Jan St.",
   "genres": [
     {
@@ -75,5 +77,6 @@
       "name": "Mouse on Mars"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:25:37.546Z",
+  "mbid": "e8565ebf-bbed-4b5a-9014-20fe7e55b110",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Mafia K'1 Fry is an influential French hip-hop collective from Orly, established in 1995, known for their gritty and socially charged contributions to the French rap scene.",
   "origin": "Orly, France",
   "active_years": "1995-present",
@@ -76,5 +78,6 @@
       "type": "artist",
       "name": "Rim'K"
     }
-  ]
+  ],
+  "similar_artists": []
 }

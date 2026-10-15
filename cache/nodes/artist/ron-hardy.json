@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "e4b49610-5a84-4fc9-9cfe-726da0514969",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Ron Hardy (born May 8, 1958; died 1991) was an essential, albeit enigmatic, architect of Chicago house music, best known for his residency at the legendary Music Box club and his pioneering approach to the harder, jacking side of the genre. His raw production techniques and intense DJ style bridged the gap between disco and early house, profoundly influencing the trajectory of dance music.",
   "origin": "Chicago, USA",
   "active_years": "1970s-1991",
@@ -65,5 +67,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:14:48.297Z",
+  "mbid": "593c7d05-825c-40f0-b5ff-153b3b6c605b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "MitiS is the professional stage name of Joseph Torre, an American electronic music producer, DJ, and classically trained pianist originating from Media, Pennsylvania.",
   "origin": "Media, Pennsylvania, U.S.",
   "active_years": "2010–present",
@@ -124,5 +126,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:54:34.861Z",
+  "mbid": "b343730d-a34e-44d5-9191-a83f00231716",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A Manchester-based innovator who transitioned from acid house pioneer to a foundational architect of the UK jungle and drum and bass sound.",
   "origin": "Manchester, England",
   "active_years": "1988-present",
@@ -590,5 +592,6 @@
       "type": "artist",
       "name": "Gerald Simpson"
     }
-  ]
+  ],
+  "similar_artists": []
 }
