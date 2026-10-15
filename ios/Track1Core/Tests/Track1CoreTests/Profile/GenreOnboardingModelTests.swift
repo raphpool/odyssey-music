@@ -349,16 +349,6 @@ final class GenreOnboardingModelTests: XCTestCase {
 		XCTAssertNil(model.makeDraft().selection)
 	}
 
-	func testAProfileWithoutSelectionLoadsEmptyUntilTheV1PathExists() throws {
-		let model = try model(editing: profile(nil, genreIDs: [try slug("genre:bebop")]))
-
-		XCTAssertTrue(model.isEditing)
-		XCTAssertFalse(model.canContinueFromGenres)
-		XCTAssertEqual(model.selectedFamilies, [])
-		XCTAssertEqual(model.makeDraft().genreIDs, [])
-		XCTAssertEqual(model.droppedGenreIDs, [])
-	}
-
 	func testAResumedDraftKeepsItsFlowIDItsStartedFlagAndItsSelection() throws {
 		let flowID = UUID()
 		let resumed = ProfileDraft(
