@@ -86,14 +86,16 @@ vi.mock("@google/genai", () => ({
 }));
 
 describe("normalizeEdge — qid propagation (TRA-17)", () => {
+	const ctx = { sourceSlug: "artist:source" as Slug, sourceType: "artist" as const, sourceName: "Source" };
+
 	it("keeps a valid qid", () => {
-		const out = normalizeEdge({ type: "genre", name: "Techno", qid: "Q170611" });
+		const out = normalizeEdge({ type: "genre", name: "Techno", qid: "Q170611" }, ["genre"], ctx);
 		expect(out).not.toBeNull();
 		expect(out?.qid).toBe("Q170611");
 	});
 
 	it("discards a malformed qid without dropping the edge", () => {
-		const out = normalizeEdge({ type: "genre", name: "Techno", qid: "170611" });
+		const out = normalizeEdge({ type: "genre", name: "Techno", qid: "170611" }, ["genre"], ctx);
 		expect(out).not.toBeNull();
 		expect(out?.name).toBe("Techno");
 		expect(out?.qid).toBeUndefined();

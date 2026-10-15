@@ -218,11 +218,11 @@ describe("resolveImage: artist", () => {
 	it("falls back to the landmark project's cover as a derived cover, never a photo source", async () => {
 		await seed(
 			projectNode("new-forms", "New Forms", { image_url: COVER(21), image_source: "caa" }),
-			projectNode("in-the-møde", "In the Møde", { image_url: COVER(22), image_source: "caa" }),
+			projectNode("in-the-m-de", "In the Møde", { image_url: COVER(22), image_source: "caa" }),
 		);
 		const f = routedFetch([mbRels([wikidataRel("Q964002")]), claims("Q964002", {})]);
 		const node = roni({
-			discography: [edge("project", "in-the-møde", "In the Møde")],
+			discography: [edge("project", "in-the-m-de", "In the Møde")],
 			landmark_project: edge("project", "new-forms", "New Forms"),
 		} as Record<string, unknown>);
 		await expect(resolveImage(node, { cache, fetch: f })).resolves.toEqual({

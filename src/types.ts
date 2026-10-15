@@ -106,6 +106,10 @@ export interface ArtistNode extends BaseNode {
 	labels: EdgeRef[];
 	discography: EdgeRef[];
 	notable_tracks: EdgeRef[];
+	/** Flagship album (target type `project`). Meant to belong to `discography`; enforced by the pipeline (TRA-470). */
+	landmark_project?: EdgeRef;
+	/** Reference track (target type `track`). Meant to belong to `notable_tracks`; enforced by the pipeline (TRA-470). */
+	reference_track?: EdgeRef;
 	influences: EdgeRef[];
 	influenced: EdgeRef[];
 	collaborators: EdgeRef[];

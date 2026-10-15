@@ -246,6 +246,8 @@ function resetToUnexpected<TArgs extends unknown[], TReturn>(
 export interface EdgeRefFixture {
 	type: NodeType;
 	name: string;
+	/** Required on project/track references (TRA-462). */
+	artist?: string;
 }
 
 /** A minimal artist draft valid against canonicalizeDraft + nodePayloadSchema (artistSchema). */
@@ -262,10 +264,12 @@ export function artistDraftFixture(overrides: Record<string, unknown> = {}): Rec
 		genres: [{ type: "genre", name: "Techno" }] satisfies EdgeRefFixture[],
 		labels: [{ type: "label", name: "Fixture Label" }] satisfies EdgeRefFixture[],
 		discography: [
-			{ type: "project", name: "Fixture Album" },
-			{ type: "project", name: "Fixture EP" },
+			{ type: "project", name: "Fixture Album", artist: "Fixture Artist" },
+			{ type: "project", name: "Fixture EP", artist: "Fixture Artist" },
 		] satisfies EdgeRefFixture[],
-		notable_tracks: [{ type: "track", name: "Fixture Track" }] satisfies EdgeRefFixture[],
+		notable_tracks: [
+			{ type: "track", name: "Fixture Track", artist: "Fixture Artist" },
+		] satisfies EdgeRefFixture[],
 		...overrides,
 	};
 }
@@ -290,7 +294,9 @@ export function genreDraftFixture(overrides: Record<string, unknown> = {}): Reco
 		] satisfies EdgeRefFixture[],
 		key_artists: [{ type: "artist", name: "Fixture Artist" }] satisfies EdgeRefFixture[],
 		key_labels: [{ type: "label", name: "Fixture Label" }] satisfies EdgeRefFixture[],
-		landmark_tracks: [{ type: "track", name: "Fixture Track" }] satisfies EdgeRefFixture[],
+		landmark_tracks: [
+			{ type: "track", name: "Fixture Track", artist: "Fixture Artist" },
+		] satisfies EdgeRefFixture[],
 		...overrides,
 	};
 }
