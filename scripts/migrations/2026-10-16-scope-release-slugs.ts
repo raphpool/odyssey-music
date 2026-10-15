@@ -28,6 +28,19 @@
  * existing node. A migration also rewrites many nodes in one plan, validated as a whole before the
  * first write, which a per-node read-modify-write does not give.
  *
+ * Where a slug can land on a node that already exists, and the guard each path goes through (one function,
+ * facetsDisagreement: different mbids never agree, otherwise the folded credit/name must; no agreement = a
+ * reported conflict, no rewrite, no redirect):
+ *   1. a renamed or merged node onto an existing node, or two nodes onto one slug: identityDisagreement
+ *      (members of a manifest collision are settled by the manifest's mbid, others must agree with them);
+ *   2. a dangling edge target whose transliterated slug is a node: the node against every reference to it
+ *      ("dangling-target"); the benign Lætitia / Laetitia stays (æ -> ae is one spelling), MØ / Mo does not;
+ *   3. a pending-reverses key: it only moves along a redirect of path 1 or 2, so it inherits their guard;
+ *   4. a detached edge whose source-scoped slug is a node: that node must be credited to the same artist
+ *      ("detach-target", refused as an error since the old slug is being retired);
+ *   5. an edge rewritten through a redirect: the redirects come from paths 1 and 2, or from an earlier run's
+ *      table, which went through the same guards.
+ *
  * Order of execution (TRA-483): the artist identity backfill (TRA-463) is APPLIED first, then the work identity
  * backfill (TRA-474), then this migration. The artist manifest names collisions by mbid; `--apply` is refused
  * (exit 2) while a node of a collision does not carry the mbid the manifest gives it.
@@ -121,7 +134,14 @@ export interface FoldedEdge {
 	after: Obj;
 }
 export interface Conflict {
-	kind: "merge" | "chain" | "transliteration" | "edge-mbid" | "unreadable-target";
+	kind:
+		| "merge"
+		| "chain"
+		| "transliteration"
+		| "edge-mbid"
+		| "unreadable-target"
+		| "dangling-target"
+		| "detach-target";
 	slugs: string[];
 	reason: string;
 }
@@ -359,40 +379,69 @@ export function mergeNodes(
 	return out;
 }
 
+// Letters whose standard ASCII spelling is several letters (æ -> ae, Lætitia / Laetitia): the same name.
+// Single-letter substitutions of the slug table (ø -> o, ł -> l...) are NOT folded here: "MØ" and "Mo" share a
+// slug and are not known to be one artist.
+const EXPANSIONS: Record<string, string> = { æ: "ae", œ: "oe", ß: "ss", þ: "th" };
 const fold = (text: string): string =>
 	text
 		.normalize("NFKD")
 		.replace(/[\u0300-\u036f]/g, "")
 		.trim()
-		.toLowerCase();
+		.toLowerCase()
+		.replace(/[æœßþ]/g, (c) => EXPANSIONS[c] ?? c);
+
+/** What the identity guard looks at: the mbid when known and the credit (a work's primary credit, an artist's name). */
+export interface IdentityFacet {
+	slug: string;
+	mbid: string | undefined;
+	credit: string;
+}
+
+export function nodeFacet(m: CacheNodeFile): IdentityFacet {
+	const credit =
+		m.type === "project" || m.type === "track" ? str(edgeList(m.node.artists)[0]?.name) : str(m.node.name);
+	return { slug: m.slug, mbid: str(m.node.mbid), credit: fold(credit ?? "") };
+}
+
+/** A citation of a node by an edge: the edge's mbid, and its name (an artist, label...) or its `artist` (a work). */
+export function referenceFacet(
+	slug: string,
+	ref: { name: string; artist: string | undefined; mbid: string | undefined },
+	work: boolean,
+): IdentityFacet {
+	return { slug: `ref:${slug}`, mbid: ref.mbid, credit: fold((work ? ref.artist : ref.name) ?? "") };
+}
 
 /**
- * Null when the members may be merged, else why not. Sharing a slug is not sharing an identity ("Mo" and
- * "MØ" both give `artist:mo`): different mbids never merge, and as soon as one member has no mbid the
- * credit (a work's primary credit, an artist's own name; letters kept, only accents folded) has to agree.
- * `settled`: slug -> mbid of the collisions of the artist manifest inside the group, which MusicBrainz already
- * settled. That mbid joins the comparison (a node with another mbid never merges into it). They are
- * exempt from the credit check among themselves ("Pole" and "Pole (Stefan Betke)"), but any other member of
- * the group (a node that merely transliterates onto the same slug) still has to agree with them.
+ * THE identity guard, used by every path where a slug lands on a node (see the header for the list). Null when
+ * the facets may share one slug, else why not. Sharing a slug is not sharing an identity ("Mo" and "MØ" both
+ * give `artist:mo`): different mbids never agree, and as soon as one facet has no mbid the credits have to
+ * agree. `settled`: slug -> mbid of the collisions of the artist manifest inside the group, which MusicBrainz
+ * already settled. That mbid joins the comparison. They are exempt from the credit check among themselves
+ * ("Pole" and "Pole (Stefan Betke)"), but any other facet still has to agree with them.
  */
+export function facetsDisagreement(
+	facets: readonly IdentityFacet[],
+	settled: ReadonlyMap<string, string> = new Map(),
+): string | null {
+	const mbids = sortedUnique([...facets.flatMap((f) => f.mbid ?? []), ...settled.values()]);
+	if (mbids.length > 1) return `different mbids: ${mbids.join(", ")}`;
+	const outsiders = facets.filter((f) => !settled.has(f.slug));
+	if (outsiders.every((f) => f.mbid !== undefined)) return null;
+	const credits = sortedUnique(outsiders.map((f) => f.credit));
+	const inside = new Set(facets.filter((f) => settled.has(f.slug)).map((f) => f.credit));
+	const agree =
+		credits.length === 1 && credits[0] !== "" && (inside.size === 0 || inside.has(credits[0] as string));
+	return agree ? null : `different credits: ${sortedUnique([...credits, ...inside]).join(", ")}`;
+}
+
+/** Path 1 (node onto node): the members of one merge group. */
 export function identityDisagreement(
 	members: readonly CacheNodeFile[],
 	settled: ReadonlyMap<string, string> = new Map(),
 ): string | null {
-	const mbids = sortedUnique([...members.flatMap((m) => str(m.node.mbid) ?? []), ...settled.values()]);
-	if (mbids.length > 1) return `different mbids: ${mbids.join(", ")}`;
-	const credit = (m: CacheNodeFile): string =>
-		fold(
-			(m.type === "project" || m.type === "track"
-				? str(edgeList(m.node.artists)[0]?.name)
-				: str(m.node.name)) ?? "",
-		);
-	const outsiders = members.filter((m) => !settled.has(m.slug));
-	if (outsiders.every((m) => str(m.node.mbid) !== undefined)) return null;
-	const credits = sortedUnique(outsiders.map(credit));
-	const inside = new Set(members.filter((m) => settled.has(m.slug)).map(credit));
-	const agree = credits.length === 1 && (inside.size === 0 || inside.has(credits[0] as string));
-	return agree ? null : `different credits: ${sortedUnique([...credits, ...inside]).join(", ")}`;
+	return facetsDisagreement(members.map(nodeFacet), settled);
 }
 
 // --- The plan (pure) ---
@@ -570,14 +619,20 @@ export function planMigration(input: PlanInput): Plan {
 	// Every reference to a dangling slug is read, and the slug is only touched when one of them holds a
 	// transliterated letter: "M" and "MØ" both name `artist:m`, and rewriting edge by edge would send the
 	// "M" edge to MØ.
-	const refsBySlug = new Map<string, { name: string; artist: string | undefined }[]>();
+	const refsBySlug = new Map<
+		string,
+		{ name: string; artist: string | undefined; mbid: string | undefined }[]
+	>();
 	for (const f of files) {
 		for (const { edge } of allEdges(f.node, f.type)) {
 			const slug = str(edge.slug);
 			const name = str(edge.name);
 			if (!slug || !name || bySlug.has(slug) || !isReadableSlug(slug) || parseSlug(slug).type === "genre")
 				continue;
-			refsBySlug.set(slug, [...(refsBySlug.get(slug) ?? []), { name, artist: str(edge.artist) }]);
+			refsBySlug.set(slug, [
+				...(refsBySlug.get(slug) ?? []),
+				{ name, artist: str(edge.artist), mbid: str(edge.mbid) },
+			]);
 		}
 	}
 	const proposals = new Map<string, Set<string>>();
@@ -606,7 +661,25 @@ export function planMigration(input: PlanInput): Plan {
 				reason: `references name ${slug} in different ways: not rewritten`,
 			});
 		} else if (derived[0] !== undefined && derived[0] !== slug) {
-			danglingRenames.set(slug, derived[0]);
+			// Path 2: the derived slug is a node that exists. The references have to be that node.
+			const target = bySlug.get(derived[0]);
+			const why = target
+				? facetsDisagreement([
+						nodeFacet(target),
+						...(refsBySlug.get(slug) ?? []).map((r) =>
+							referenceFacet(slug, r, target.type === "project" || target.type === "track"),
+						),
+					])
+				: null;
+			if (why !== null) {
+				addConflict({
+					kind: "dangling-target",
+					slugs: [slug, derived[0]],
+					reason: `${slug} is cited but ${derived[0]} is another identity (${why}): not rewritten, no redirect`,
+				});
+			} else {
+				danglingRenames.set(slug, derived[0]);
+			}
 		}
 	}
 
@@ -740,6 +813,15 @@ export function planMigration(input: PlanInput): Plan {
 					const scoped = name && sourceName ? makeScopedSlug(targetType, name, sourceName) : null;
 					if (!scoped?.ok || !sourceName) {
 						errors.push(`cannot detach ${fin}.${field} -> ${oldSlug}: no scoped slug for ${name ?? "?"}`);
+						return edge;
+					}
+					// Path 4: the scoped slug may already be a node; it must be this artist's.
+					const clash = bySlug.get(scoped.slug);
+					const clashCredit = clash ? str(edgeList(clash.node.artists)[0]?.name) : undefined;
+					if (clashCredit !== undefined && fold(clashCredit) !== fold(sourceName)) {
+						const message = `${scoped.slug} exists with credit ${clashCredit}, not ${sourceName}`;
+						conflicts.push({ kind: "detach-target", slugs: [fin, scoped.slug], reason: message });
+						errors.push(`cannot detach ${fin}.${field} -> ${oldSlug}: ${message}`);
 						return edge;
 					}
 					detached.push({ node: fin, field, from: oldSlug, to: scoped.slug, name: name ?? "" });

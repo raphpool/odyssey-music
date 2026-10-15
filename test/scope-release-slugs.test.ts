@@ -483,6 +483,88 @@ describe("scope-release-slugs migration", () => {
 		});
 	});
 
+	describe("one identity guard on every path onto an existing node", () => {
+		it("path 2: a dangling target is not sent to an existing node of another identity (MØ -> Mo)", async () => {
+			await seed([
+				node("artist:mo", "Mo"),
+				node("artist:a", "A", { collaborators: [ref("artist:m", "MØ")] }),
+			]);
+			const before = await tree(cacheDir);
+			const { manifest, exitCode } = await run(true);
+			expect(exitCode).toBe(0);
+			expect(manifest.conflicts).toMatchObject([
+				{ kind: "dangling-target", slugs: ["artist:m", "artist:mo"] },
+			]);
+			expect(manifest.redirects).toEqual({});
+			expect(await tree(cacheDir)).toEqual(before);
+			expect(await readFile(redirectsPath, "utf8").catch(() => null)).toBeNull();
+		});
+
+		it("path 2: the same dangling target is followed when the references carry the node's mbid", async () => {
+			await seed([
+				node("artist:mo", "Mo", { mbid: MBID_A }),
+				node("artist:a", "A", { collaborators: [ref("artist:m", "MØ", { mbid: MBID_A })] }),
+			]);
+			const { manifest } = await run(true);
+			expect(manifest.conflicts).toEqual([]);
+			expect(manifest.redirects).toEqual({ "artist:m": "artist:mo" });
+		});
+
+		it("path 3: a pending-reverses key follows no rename that the guard refused", async () => {
+			const pending = {
+				"artist:m": [{ field: "collaborators", cardinality: "list", edge: ref("artist:a", "A") }],
+			};
+			await seed(
+				[node("artist:mo", "Mo"), node("artist:a", "A", { collaborators: [ref("artist:m", "MØ")] })],
+				pending,
+			);
+			const { manifest } = await run(true);
+			expect(manifest.pending_reverses).toEqual([]);
+			expect(JSON.parse(await readFile(join(cacheDir, "pending-reverses.json"), "utf8"))).toEqual(
+				JSON.parse(JSON.stringify(pending)),
+			);
+			expect(edgeSlugs(await read("artist:mo"), "collaborators")).toEqual([]);
+		});
+
+		it("path 1 and 5: no edge is rewritten to a node a refused merge left alone", async () => {
+			await seed([
+				node("artist:m", "MØ"),
+				node("artist:mo", "Mo"),
+				node("artist:c", "C", { collaborators: [ref("artist:m", "MØ")] }),
+			]);
+			const before = await tree(cacheDir);
+			const { manifest } = await run(true);
+			expect(manifest.conflicts).toMatchObject([{ kind: "merge", slugs: ["artist:m", "artist:mo"] }]);
+			expect(manifest.redirects).toEqual({});
+			expect(await tree(cacheDir)).toEqual(before);
+		});
+
+		it("path 4: an edge is not detached onto a scoped slug that belongs to another artist", async () => {
+			await seed([
+				node("project:x", "X", { artists: credit("artist:other", "Other") }),
+				node("project:x--mo", "X", { artists: credit("artist:other-mo", "Mø") }),
+				node("artist:mo", "Mo", { discography: [ref("project:x", "X")] }),
+			]);
+			const before = await tree(cacheDir);
+			const { manifest, exitCode } = await run(true);
+			expect(exitCode).toBe(1);
+			expect(manifest.conflicts).toMatchObject([
+				{ kind: "detach-target", slugs: ["artist:mo", "project:x--mo"] },
+			]);
+			expect(await tree(cacheDir)).toEqual(before);
+		});
+
+		it("keeps the benign Lætitia / Laetitia collision (æ is the same spelling as ae)", async () => {
+			await seed([
+				node("artist:laetitia-sadier", "Laetitia Sadier"),
+				node("artist:stereolab", "Stereolab", { members: [ref("artist:l-titia-sadier", "Lætitia Sadier")] }),
+			]);
+			const { manifest } = await run(true);
+			expect(manifest.conflicts).toEqual([]);
+			expect(manifest.redirects).toEqual({ "artist:l-titia-sadier": "artist:laetitia-sadier" });
+		});
+	});
+
 	describe("transliteration (TRA-528)", () => {
 		it("renames the node, the dangling targets and the pending-reverses keys, and leaves a namesake alone", async () => {
 			await seed(
