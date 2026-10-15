@@ -26,7 +26,14 @@ export function normalizeSlugBody(name: string): string {
 // Letters NFKD leaves whole (they carry no combining mark), mapped to their ASCII spelling (TRA-528,
 // 2026-10-15). Without it they were dropped as non-[a-z0-9]: "MØ" -> artist:m (collides with "M"),
 // "Łona" -> artist:ona, "Straße" -> artist:stra-e. Keys are lowercase: the table runs after toLowerCase,
-// which also folds Ø Æ Œ Ł Đ Þ and ẞ (U+1E9E -> ß).
+// which also folds Ø Æ Œ Ł Đ Ð Þ and ẞ (U+1E9E -> ß).
+//
+// ð and ı were added by TRA-531 (2026-10-15), before the identity migration so it needs one pass, not two.
+// Symptom: "Hildur Guðnadóttir" -> artist:hildur-gu-nadottir, "Gökhan Kırdar" -> artist:gokhan-k-rdar,
+// "Yalnızlık" -> yaln-zl-k. The set is exactly the unfoldable Latin letters found in the cache that year
+// (a scan of every string under cache/: ı ø æ ł ð ß œ, nothing else); ħ, ŋ and the like are NOT here, no
+// real name needs them yet. ı is the dotless i; a plain "I" lowercases to "i" and "İ" (dotted capital I)
+// is decomposed by NFKD to I + U+0307, so neither needs an entry.
 //
 // BEHIND scopedReleaseSlugsEnabled() (ODYSSEY_SCOPED_RELEASE_SLUGS), not always on: the cache already
 // holds edges to these names under their current slugs (artist:lindstr-m, artist:molv-r, artist:ona,
@@ -40,6 +47,8 @@ const TRANSLITERATION: Readonly<Record<string, string>> = {
 	"\u0142": "l", // ł
 	"\u00df": "ss", // ß
 	"\u0111": "d", // đ
+	"\u00f0": "d", // ð
+	"\u0131": "i", // ı (dotless i; Turkish)
 	"\u00fe": "th", // þ
 };
 // Both regexes are built from the table, so a letter added to it cannot be forgotten in one of them.
