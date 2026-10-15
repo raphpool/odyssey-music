@@ -657,7 +657,10 @@ familles de l'instantané ; sur un catalogue sans nœud genre, `nil`. Tier/2, 2 
 - **R4 — Un profil v2 lu par un build antérieur.** Il ne voit que `profile.v1.json` (laissé en
   place), donc un profil figé mais valide. Si le v1 n'existe pas (profil créé en v2), il voit
   `.missing` et propose l'onboarding v1, qui écrirait un `profile.v1.json` que le build v2 ignorera.
-  Accepté : cas de retour en arrière manuel sur l'appareil de Raphael.
+  Un effacement fait dans un build antérieur réinstallé après une écriture v2 ne supprime que
+  les fichiers v1 : le build suivant relit le `profile.v2.json` resté en place. Accepté : cas de retour
+  en arrière manuel sur l'appareil de Raphael (un seul appareil). Côté build v2, `clear()` supprime le
+  v2 en dernier (TRA-544) : un échec n'expose jamais un v1 périmé (le v2 reste et gagne, ou tout le profil est effacé).
 - **R5 — Le catalogue grossit d'environ 30 Ko** (203 genres, 230 entrées de table). ETag et 304
   inchangés (`http.ts:36-43`) ; le client ne le relit qu'au changement de `revision`.
 - **R6 — `genres_count` et le compte des réglages gonflent** : une famille seule donne jusqu'à

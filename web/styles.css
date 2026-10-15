@@ -569,6 +569,33 @@ body {
   .project-card { flex-basis: 140px; }
 }
 
+/* ── Artist highlights (TRA-472) ─────────────────────────────────────
+   Landmark album (cover card) + reference track (chip) side by side above the
+   discography on ONE row: the card keeps its width, the chip shrinks (min-width:0)
+   and wraps its text, so nothing overflows at 320 px. */
+.highlights {
+  display: flex; align-items: flex-start; gap: 1rem;
+  margin: 1.3rem 0 0.6rem;
+}
+.highlight { min-width: 0; }
+.highlight .kind {
+  font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+  color: var(--muted); margin-bottom: 0.45rem;
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.highlight-landmark_project .project-card { width: 160px; }
+.highlight-landmark_project { flex: none; }
+.highlight-reference_track { flex: 0 1 auto; }
+.highlight-reference_track .chip {
+  display: flex; max-width: 100%; box-sizing: border-box;
+  white-space: normal; overflow-wrap: anywhere;
+}
+.highlight-reference_track .chip .etype { flex: none; }
+@media (max-width: 600px) {
+  .highlights { gap: 0.7rem; }
+  .highlight-landmark_project .project-card { width: 120px; }
+}
+
 /* Track play button (in-app preview). Tracks only — every other node type
    sends the listener to Spotify / Apple Music instead. */
 .play-btn {
