@@ -182,6 +182,8 @@ interface JitOptions {
 	fresh?: boolean;
 	slug?: Slug;
 	maxProviderAttempts?: 1;
+	// TRA-538: provenance of `body.mbid`; absent means a client's (the safe reading).
+	mbidSource?: "client" | "server";
 }
 
 /** What one pipeline run produced: the node, and the slug it was asked for when the node moved. */
@@ -341,6 +343,10 @@ export function createMaterializeService(deps: {
 		const t0 = Date.now();
 		const fresh = opts.fresh === true;
 		let effectiveBody: MaterializeRequest = mbid === body.mbid ? body : { ...body, mbid: mbid as string };
+		// TRA-538: where `effectiveBody.mbid` comes from. The request's own is a hint MusicBrainz must confirm;
+		// the one `refreshIdentityFrom` copies off a cached node was established by the server and must
+		// survive a refresh even if MusicBrainz no longer singles the work out.
+		let mbidSource: "client" | "server" = "client";
 		// 2026-09-10 (TRA-43 security fix): the MINT slug is always name-derived, exactly as on main
 		// before this ticket -- `requestSlug` below is a LOOKUP key for an existing/canonical node,
 		// never a write target on its own (see refreshIdentityFrom above).
@@ -370,6 +376,7 @@ export function createMaterializeService(deps: {
 					throw new BadRequestError("Provided identifiers conflict with the existing node");
 				}
 				effectiveBody = refreshIdentityFrom(node, body.disambiguator, scopedWork);
+				mbidSource = "server";
 				slug = node.slug;
 				pinnedSlug = node.slug;
 				cached = node;
@@ -393,6 +400,7 @@ export function createMaterializeService(deps: {
 					(await creditsArtist(existing, artist));
 				if (attaches) {
 					effectiveBody = refreshIdentityFrom(existing, body.disambiguator, scopedWork);
+					mbidSource = "server";
 					slug = requestSlug;
 					pinnedSlug = requestSlug;
 					cached = existing;
@@ -445,6 +453,7 @@ export function createMaterializeService(deps: {
 					});
 					if (canonicalNode) {
 						effectiveBody = refreshIdentityFrom(canonicalNode, body.disambiguator);
+						mbidSource = "server";
 						slug = canonical.slug;
 						pinnedSlug = canonical.slug;
 						cached = canonicalNode;
@@ -487,6 +496,13 @@ export function createMaterializeService(deps: {
 			throw new BadRequestError("A project or track that is not cached needs an artist or a scoped slug");
 		}
 		if (!cached && opts.cacheOnly === true) throw new MaterializeCacheMissError();
+		// TRA-538: a refresh of a work that already carries an mbid keeps that server-established mbid,
+		// whatever the request sent: a different client mbid stays a hint and never replaces it, and
+		// MusicBrainz no longer singling the work out must not erase it.
+		if (cached && cachedMbid && isWorkType(body.type) && mbidSource === "client") {
+			effectiveBody = { ...effectiveBody, mbid: cachedMbid };
+			mbidSource = "server";
+		}
 		let effectiveFresh = fresh;
 		if (!fresh && cached) {
 			// 2026-10-14 (TRA-449): age no longer forces a refresh (it used to, past a 12 h TTL --
@@ -520,6 +536,7 @@ export function createMaterializeService(deps: {
 			// TRA-477: the artist scopes a work, so two artists' same-titled works never share a run.
 			artist: scoped ? normalizeSlugBody(effectiveBody.artist ?? "") || null : null,
 			mbid: effectiveBody.mbid?.toLowerCase() ?? null,
+			mbidSource,
 			qid: effectiveBody.qid ?? null,
 			fresh: effectiveFresh,
 			providerAttempts: opts.maxProviderAttempts ?? 2,
@@ -553,7 +570,7 @@ export function createMaterializeService(deps: {
 				wallMs: Date.now() - t0,
 			};
 		}
-		const jitOpts: JitOptions = { fresh: effectiveFresh };
+		const jitOpts: JitOptions = { fresh: effectiveFresh, mbidSource };
 		if (pinnedSlug) jitOpts.slug = pinnedSlug;
 		if (opts.maxProviderAttempts !== undefined) jitOpts.maxProviderAttempts = opts.maxProviderAttempts;
 		const p = runJitDetailed(effectiveBody, jitOpts);
@@ -596,8 +613,9 @@ export function createMaterializeService(deps: {
 		if (body.disambiguator) pipelineInput.disambiguator = body.disambiguator;
 		if (body.mbid) {
 			pipelineInput.mbid = body.mbid;
-			// TRA-538: from the client, so a hint the pipeline must have MusicBrainz confirm.
-			pipelineInput.mbidIsClientHint = true;
+			// TRA-538: a client's mbid is a hint the pipeline must have MusicBrainz confirm; one read off
+			// the cached node (refresh) was established by the server and is kept.
+			if (opts.mbidSource !== "server") pipelineInput.mbidIsClientHint = true;
 		}
 		// TRA-477: the credit hint MusicBrainz and the search use to tell same-titled works apart.
 		if (body.artist && isWorkType(body.type) && scopedReleaseSlugsEnabled()) {

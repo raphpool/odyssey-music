@@ -1422,6 +1422,62 @@ describe("createMaterializeService artist context (TRA-477)", () => {
 			TIMEOUT_MS,
 		);
 
+		// CI review of #460: the mbid a cached node carries was established by the server. A refresh must
+		// not read it back as a client hint and drop it when MusicBrainz no longer singles the work out.
+		describe("refreshing a node that already carries a server mbid", () => {
+			const cachedBitume = () =>
+				({
+					...trackNode("track:le-bitume--rohff", "Le Bitume", [ref("Rohff", "artist:rohff")]),
+					mbid: BITUME,
+				}) as TrackNode;
+
+			it(
+				"keeps the mbid on fresh=1 without any client mbid, when MusicBrainz is ambiguous",
+				async () => {
+					await cache.write(cachedBitume());
+					geminiReturning(trackDraftFixture("Le Bitume", "Rohff"));
+					await armMb(async () => null);
+					const service = await buildService(true);
+
+					const result = await service.handleMaterialize(
+						{ type: "track", name: "Le Bitume", slug: "track:le-bitume--rohff" },
+						{ fresh: true },
+					);
+
+					expect(result.source).toBe("jit");
+					expect((result.node as TrackNode).mbid).toBe(BITUME);
+					expect(((await cache.get("track:le-bitume--rohff")) as TrackNode).mbid).toBe(BITUME);
+					expect((await buildCacheIndex(dir)).byMbid(BITUME)).toBe("track:le-bitume--rohff");
+				},
+				TIMEOUT_MS,
+			);
+
+			it(
+				"keeps the server mbid when the client sends another one: the client's stays a hint",
+				async () => {
+					await cache.write(cachedBitume());
+					geminiReturning(trackDraftFixture("Le Bitume", "Rohff"));
+					await armMb(async () => null);
+					const service = await buildService(true);
+
+					const result = await service.handleMaterialize(
+						{
+							type: "track",
+							name: "Le Bitume",
+							artist: "Rohff",
+							slug: "track:le-bitume--rohff",
+							mbid: GARBAGE,
+						},
+						{ fresh: true },
+					);
+
+					expect((result.node as TrackNode).mbid).toBe(BITUME);
+					expect((await buildCacheIndex(dir)).byMbid(GARBAGE)).toBeNull();
+				},
+				TIMEOUT_MS,
+			);
+		});
+
 		it(
 			"writes no mbid when MusicBrainz resolves the work to another mbid than the client's",
 			async () => {
