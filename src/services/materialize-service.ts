@@ -1,11 +1,23 @@
 import type { NodeCache } from "../cache.js";
+import type { CacheIndex } from "../cache-index.js";
+import { scopedReleaseSlugsEnabled } from "../config.js";
 import type { ApiEnv } from "../env.js";
 import { BadRequestError, isNotFoundError } from "../errors.js";
 import type { GenreRegistry } from "../genre-registry.js";
 import { logger } from "../logger.js";
+import { EDGE_FIELDS_BY_TYPE } from "../node-spec.js";
 import { runPipeline } from "../pipeline.js";
-import { isValidSlug, makeSlug, normalizeSlugBody, parseSlug } from "../slug.js";
-import type { NodePayload, NodeType, Slug } from "../types.js";
+import {
+	isScopedSlug,
+	isValidSlug,
+	makeScopedSlug,
+	makeSlug,
+	normalizeSlugBody,
+	parseSlug,
+	scopeMatchesArtist,
+	scopeOf,
+} from "../slug.js";
+import type { EdgeRef, NodePayload, NodeType, Slug } from "../types.js";
 import { NODE_TYPES, QID_PATTERN } from "../types.js";
 
 const log = logger.child({ module: "materialize-service" });
@@ -21,12 +33,20 @@ export class MaterializeCacheMissError extends Error {
 export interface MaterializeRequest {
 	type?: string;
 	name?: string;
+	// TRA-477: primary artist of the work (project/track) the edge points at -- the artist page the
+	// click came from. UNTRUSTED client input: shape-checked (validateArtist), never used as a path,
+	// and it only ever scopes a slug (`<title>--<artist>`) or gates a cache hit on the node's credit.
+	// Ignored for other types, and ignored altogether while ODYSSEY_SCOPED_RELEASE_SLUGS is off.
+	artist?: string;
 	disambiguator?: string;
 	mbid?: string;
 	// 2026-09-10 (TRA-43): identity carried by the EDGE that produced this request (front chip,
 	// crawler frontier), not re-derived from `name` -- validated in handleMaterialize below.
 	slug?: string;
 	qid?: string;
+	// TRA-477: the node and edge field the clicked reference lives in. When the pipeline learns the work's
+	// canonical slug, that one edge is repointed (see repointSourceEdge). UNTRUSTED: validateSource.
+	source?: { slug: string; field: string };
 }
 
 // 2026-09-10 (review round 1, nit): unbounded, this would surface as a raw ENOENT/ENAMETOOLONG
@@ -50,6 +70,58 @@ function validateRequestSlug(rawSlug: string, type: string): Slug {
 	return rawSlug;
 }
 
+const MAX_ARTIST_LENGTH = 200;
+const MBID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+// Credited artists whose own node is read to look for a group membership. A work credits a handful of
+// artists; the cap only keeps a hostile or corrupt node from fanning the lookup out.
+const MAX_GROUP_LOOKUPS = 8;
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+	return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+/**
+ * The artist a client names for a work (TRA-477). Untrusted: bounded, no control characters, and it
+ * must normalize to a non-empty slug body -- a name with no Latin letter or digit ("坂本龍一") cannot
+ * scope a slug, and a context we cannot use is refused rather than silently dropped (a dropped context
+ * is how a work gets attached to the wrong artist). Whitespace is collapsed; the display spelling is kept.
+ */
+function validateArtist(raw: unknown): string {
+	if (typeof raw !== "string") throw new BadRequestError("Invalid artist");
+	const artist = raw.replace(/\s+/gu, " ").trim();
+	if (!artist || artist.length > MAX_ARTIST_LENGTH || /\p{Cc}/u.test(artist)) {
+		throw new BadRequestError("Invalid artist");
+	}
+	if (!normalizeSlugBody(artist)) {
+		throw new BadRequestError("Invalid artist: needs at least one Latin letter or digit");
+	}
+	return artist;
+}
+
+/**
+ * The edge a click came from (TRA-477): a canonical slug and an edge field that really exists on that
+ * node type (EDGE_FIELDS_BY_TYPE). The field name indexes a record, so an unknown or inherited key
+ * ("__proto__", "constructor") is refused here, not later.
+ */
+function validateSource(raw: unknown): { slug: Slug; field: string } {
+	if (!isRecord(raw) || typeof raw.slug !== "string" || typeof raw.field !== "string") {
+		throw new BadRequestError("Invalid source");
+	}
+	const { slug, field } = raw;
+	if (slug.length > MAX_SLUG_LENGTH || !isValidSlug(slug)) {
+		throw new BadRequestError(`Invalid source slug: ${slug.slice(0, 80)}`);
+	}
+	const fields: Record<string, unknown> = EDGE_FIELDS_BY_TYPE[parseSlug(slug).type];
+	if (!Object.hasOwn(fields, field)) {
+		throw new BadRequestError(`Invalid source field: ${field.slice(0, 40)}`);
+	}
+	return { slug, field };
+}
+
+function isWorkType(type: string): type is "project" | "track" {
+	return type === "project" || type === "track";
+}
+
 /**
  * SECURITY (TRA-43 review round 1, 2026-09-10): a refresh must use the existing/canonical node's
  * OWN identity, never the client's. Repro: a stale `genre:techno` + `{name: "Attacker Controlled
@@ -64,10 +136,22 @@ function validateRequestSlug(rawSlug: string, type: string): Slug {
  * carries -- never apply a client value the slug doesn't corroborate, which would reopen the
  * spoofing this refresh path exists to close.
  */
-function refreshIdentityFrom(node: NodePayload, clientDisambiguator?: string): MaterializeRequest {
+function refreshIdentityFrom(
+	node: NodePayload,
+	clientDisambiguator?: string,
+	scoped = false,
+): MaterializeRequest {
 	const out: MaterializeRequest = { type: node.type, name: node.name };
 	const mbid = (node as unknown as { mbid?: string }).mbid;
 	if (mbid) out.mbid = mbid;
+	// TRA-477: a scoped work's suffix is its artist, not a free-text disambiguator -- hand it back as the
+	// artist hint (the credited name when the node has one, else the scope body read as words).
+	if (scoped && (node.type === "project" || node.type === "track")) {
+		const scope = scopeOf(node.slug);
+		const artist = node.artists[0]?.name ?? (scope ? scope.replace(/-/gu, " ") : undefined);
+		if (artist) out.artist = artist;
+		return out;
+	}
 	const { body } = parseSlug(node.slug);
 	const suffixIdx = body.indexOf("--");
 	if (suffixIdx >= 0) {
@@ -85,16 +169,118 @@ export interface MaterializeResponse {
 	// caller's {type, name} would hash to.
 	node: NodePayload;
 	source: "cache" | "jit";
+	// TRA-477: set when the slug the request was filed under is not the one the node ended up with
+	// (MusicBrainz named a different primary artist). A client holding an edge to this slug repoints it
+	// to `node.slug`; the server already did so for `source`, when the request carried one.
+	requested_slug?: Slug;
 	wallMs: number;
 	metricsCostUsd?: number;
+}
+
+interface JitOptions {
+	fresh?: boolean;
+	slug?: Slug;
+	maxProviderAttempts?: 1;
+	// TRA-477: refuse a result whose slug is not scoped (a work asked for by mbid alone).
+	requireScopedSlug?: boolean;
+}
+
+/** What one pipeline run produced: the node, and the slug it was asked for when the node moved. */
+interface JitResult {
+	node: NodePayload;
+	requestedSlug?: Slug;
 }
 
 export function createMaterializeService(deps: {
 	cache: NodeCache;
 	env: ApiEnv;
 	genreRegistry: GenreRegistry;
+	// TRA-477: MBID -> cached node, to answer a request that names its MusicBrainz id from the cache.
+	// Optional: without it an mbid is only a hint, as before.
+	getCacheIndex?: () => Promise<CacheIndex>;
+	// Called after every node write so the index above never serves a stale slug.
+	invalidateCacheIndex?: () => void;
 }) {
-	const inflight = new Map<string, Promise<NodePayload>>();
+	const inflight = new Map<string, Promise<JitResult>>();
+
+	async function readNode(slug: Slug): Promise<NodePayload | null> {
+		return await deps.cache.get(slug).catch((e: unknown) => {
+			if (isNotFoundError(e)) return null;
+			throw e;
+		});
+	}
+
+	/**
+	 * True when `node` (a project/track) credits `artist`: the name is in `artists` or `producers`, or
+	 * in the `members` of a credited artist's own node (a person credited through their group: Roni Size
+	 * -> Roni Size / Reprazent, plan decision 3). Names are compared normalized, never as slugs.
+	 */
+	async function creditsArtist(node: NodePayload, artist: string): Promise<boolean> {
+		if (node.type !== "project" && node.type !== "track") return false;
+		const wanted = normalizeSlugBody(artist);
+		if (!wanted) return false;
+		const credited: EdgeRef[] = [...node.artists, ...node.producers];
+		if (credited.some((edge) => normalizeSlugBody(edge.name) === wanted)) return true;
+		let lookups = 0;
+		for (const edge of credited) {
+			if (edge.type !== "artist" || !isValidSlug(edge.slug)) continue;
+			if (lookups++ >= MAX_GROUP_LOOKUPS) break;
+			const group = await readNode(edge.slug);
+			if (group?.type === "artist" && group.members.some((m) => normalizeSlugBody(m.name) === wanted)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Repoints the edge `source.field` of `source.slug` that holds `requested` onto the node written
+	 * instead (TRA-477). It only REPLACES an edge that already equals `requested`: the source is client
+	 * input, so it can fix a dangling edge but never add one. A self-edge, or a field that does not take
+	 * the node's type, is refused (with or without the scoped-slug flag). Failures are logged, not thrown:
+	 * the node is written and the client must get it.
+	 */
+	async function repointSourceEdge(
+		source: { slug: Slug; field: string },
+		requested: Slug,
+		node: NodePayload,
+	): Promise<void> {
+		try {
+			const spec = (
+				EDGE_FIELDS_BY_TYPE[parseSlug(source.slug).type] as Record<string, { targets: readonly NodeType[] }>
+			)[source.field];
+			if (source.slug === node.slug || !spec?.targets.includes(node.type)) {
+				log.warn("materialize: refused to repoint an edge", { ...source, target: node.slug });
+				return;
+			}
+			const sourceNode = await readNode(source.slug);
+			if (!sourceNode) return;
+			const fields = sourceNode as unknown as Record<string, unknown>;
+			const current = fields[source.field];
+			const repoint = (ref: unknown) =>
+				isRecord(ref) && ref.slug === requested ? { ...ref, slug: node.slug } : ref;
+			if (Array.isArray(current)) {
+				if (!current.some((ref) => isRecord(ref) && ref.slug === requested)) return;
+				fields[source.field] = current
+					.map(repoint)
+					.filter(
+						(ref, i, all) => all.findIndex((o) => isRecord(o) && isRecord(ref) && o.slug === ref.slug) === i,
+					);
+			} else if (isRecord(current) && current.slug === requested) {
+				fields[source.field] = repoint(current);
+			} else {
+				return;
+			}
+			await deps.cache.replace(sourceNode);
+			deps.invalidateCacheIndex?.();
+		} catch (e) {
+			log.warn("materialize: could not repoint the requesting edge", {
+				...source,
+				requested,
+				error: e instanceof Error ? e.message : String(e),
+			});
+		}
+	}
 
 	async function handleMaterialize(
 		body: MaterializeRequest,
@@ -121,34 +307,99 @@ export function createMaterializeService(deps: {
 		if (body.qid !== undefined && (typeof body.qid !== "string" || !QID_PATTERN.test(body.qid))) {
 			throw new BadRequestError(`Invalid qid: ${String(body.qid)}`);
 		}
+		// TRA-477: the artist context and the source edge are client input, so they are shape-checked
+		// here, before any I/O, whatever the flag says. They only change behavior while it is on.
+		const artist = body.artist === undefined ? undefined : validateArtist(body.artist);
+		const source = body.source === undefined ? undefined : validateSource(body.source);
+		const scoped = scopedReleaseSlugsEnabled();
+		const scopedWork = scoped && isWorkType(body.type);
+		// Flag on: an mbid is an identity, so it must be one (a UUID, lowercased like the index keys).
+		// Flag off it stays the free-form hint it always was.
+		let mbid = body.mbid;
+		if (scoped && mbid !== undefined) {
+			if (typeof mbid !== "string" || !MBID_PATTERN.test(mbid.toLowerCase())) {
+				throw new BadRequestError("Invalid mbid");
+			}
+			mbid = mbid.toLowerCase();
+		}
+		// What scopes a work's slug: the client's artist, else the scope of a scoped slug it named (the
+		// edge it clicked was emitted under that scope). Without either, an mbid is the only identity.
+		const requestScopeText =
+			artist ??
+			(requestSlug && isScopedSlug(requestSlug) ? scopeOf(requestSlug)?.replace(/-/gu, " ") : undefined);
+		if (scopedWork && !requestScopeText && !mbid) {
+			throw new BadRequestError("A project or track needs an artist, an mbid or a scoped slug");
+		}
+		let mintedScope: Slug | undefined;
+		if (scopedWork && requestScopeText) {
+			const minted = makeScopedSlug(body.type as "project" | "track", body.name, requestScopeText);
+			if (!minted.ok) throw new BadRequestError(`Cannot build a scoped slug (${minted.reason})`);
+			mintedScope = minted.slug;
+		}
 		const t0 = Date.now();
 		const fresh = opts.fresh === true;
-		let effectiveBody = body;
+		let effectiveBody: MaterializeRequest = mbid === body.mbid ? body : { ...body, mbid: mbid as string };
 		// 2026-09-10 (TRA-43 security fix): the MINT slug is always name-derived, exactly as on main
 		// before this ticket -- `requestSlug` below is a LOOKUP key for an existing/canonical node,
 		// never a write target on its own (see refreshIdentityFrom above).
-		let slug = makeSlug(body.type as NodePayload["type"], body.name, body.disambiguator);
+		// TRA-477 (flag on): a work's mint slug is `<title>--<artist>`; with only an mbid there is no
+		// name-derived slug to look up (the bare `track:fitna` would be somebody else's Fitna), so the
+		// lookup is skipped and MusicBrainz names the scope.
+		let slug: Slug | undefined = scopedWork
+			? mintedScope
+			: makeSlug(body.type as NodePayload["type"], body.name, body.disambiguator);
 		// Set once `slug` names the exact target this call will serve/refresh (a caller-supplied
 		// slug that hit a real node, a canonical rewrite, or the cache lookup below) -- never on a
 		// fresh, name-derived mint with no identity of its own. Passed to runPipeline as
 		// PipelineInput.slug so canonicalizeDraft keeps it instead of re-deriving one from the LLM
 		// draft's own name (review round 2 / TRA-30: 62 real nodes already have makeSlug(name) !== slug).
-		let pinnedSlug: Slug | undefined;
+		// A scoped work is the exception: its freshly minted slug is pinned too (TRA-477), because the
+		// pipeline would otherwise file it under the bare title.
+		let pinnedSlug: Slug | undefined = mintedScope;
 		let cached: NodePayload | null = null;
+
+		// Phase 0 (TRA-477, flag on): an MBID names exactly one entity, so a node the cache already holds
+		// for it answers the request before any name or artist is looked at.
+		if (scoped && mbid && deps.getCacheIndex) {
+			const hit = (await deps.getCacheIndex()).byMbid(mbid);
+			const node = hit ? await readNode(hit) : null;
+			if (node) {
+				if (node.type !== body.type) {
+					throw new BadRequestError("Provided identifiers conflict with the existing node");
+				}
+				effectiveBody = refreshIdentityFrom(node, body.disambiguator, scopedWork);
+				slug = node.slug;
+				pinnedSlug = node.slug;
+				cached = node;
+			}
+		}
 
 		// Phase 1 (TRA-43): does the caller's OWN slug already name a real node? If so, that node's
 		// identity drives everything below, never the client's (GenreRegistry rule 2's analog,
 		// applied up front for every node type).
-		if (requestSlug) {
-			const existing = await deps.cache.get(requestSlug).catch((e: unknown) => {
-				if (isNotFoundError(e)) return null;
-				throw e;
-			});
+		// TRA-477 (flag on): for a work the client's slug only wins when it is scoped, and -- given an
+		// artist -- when that node credits the artist. A slug that does not is the exact shape of the
+		// homonym bug (`track:fitna--akuma` insisted on from Rohff's page), so it is ignored and the
+		// work is minted under the artist's own scoped slug.
+		if (requestSlug && !cached && (!scopedWork || isScopedSlug(requestSlug))) {
+			const existing = await readNode(requestSlug);
 			if (existing) {
-				effectiveBody = refreshIdentityFrom(existing, body.disambiguator);
-				slug = requestSlug;
-				pinnedSlug = requestSlug;
-				cached = existing;
+				const attaches =
+					!scopedWork ||
+					!artist ||
+					scopeMatchesArtist(requestSlug, artist) ||
+					(await creditsArtist(existing, artist));
+				if (attaches) {
+					effectiveBody = refreshIdentityFrom(existing, body.disambiguator, scopedWork);
+					slug = requestSlug;
+					pinnedSlug = requestSlug;
+					cached = existing;
+				} else {
+					log.info("materialize: client slug does not credit the requested artist, ignoring it", {
+						slug: requestSlug,
+						artist,
+					});
+				}
 			}
 		}
 
@@ -169,7 +420,7 @@ export function createMaterializeService(deps: {
 		// `requestSlug` (redirect/qid lookups) when given, else the name-derived `slug` -- unchanged
 		// from before this ticket. Its non-existence was already checked in phase 1, so only the
 		// no-`requestSlug` case needs has() here.
-		if (!cached && body.type === "genre" && !body.disambiguator) {
+		if (!cached && slug && body.type === "genre" && !body.disambiguator) {
 			const guardSlug = requestSlug ?? slug;
 			const guardApplies = requestSlug !== undefined || !(await deps.cache.has(guardSlug));
 			if (guardApplies) {
@@ -208,12 +459,7 @@ export function createMaterializeService(deps: {
 		// above, but the canonical name wasn't, once fresh:true was in play. A node found here is
 		// always the one this call is about to refresh, fresh or not. Skipped when phase 1/2 above
 		// already resolved `cached` -- no need to re-read the same file.
-		if (!cached) {
-			cached = await deps.cache.get(slug).catch((e: unknown) => {
-				if (isNotFoundError(e)) return null;
-				throw e;
-			});
-		}
+		if (!cached && slug) cached = await readNode(slug);
 		if (cached) pinnedSlug = slug;
 		const cachedMbid = (cached as unknown as { mbid?: string } | null)?.mbid;
 		const cachedQid = (cached as unknown as { qid?: string } | null)?.qid;
@@ -249,30 +495,44 @@ export function createMaterializeService(deps: {
 		// whichever request arrives first silently choose the other surface's retry policy.
 		const normalizedDisambiguator = normalizeSlugBody(effectiveBody.disambiguator ?? "");
 		const key = JSON.stringify({
-			slug,
+			slug: slug ?? null,
 			type: effectiveBody.type,
 			// `slug` is name-normalized, but this key used the raw display spelling.
 			// That let case-only mobile retries start duplicate paid materializations.
 			name: normalizeSlugBody(effectiveBody.name ?? ""),
 			disambiguator: normalizedDisambiguator || null,
+			// TRA-477: the artist scopes a work, so two artists' same-titled works never share a run.
+			artist: scoped ? normalizeSlugBody(effectiveBody.artist ?? "") || null : null,
 			mbid: effectiveBody.mbid?.toLowerCase() ?? null,
 			qid: effectiveBody.qid ?? null,
 			fresh: effectiveFresh,
 			providerAttempts: opts.maxProviderAttempts ?? 2,
 		});
+		// The in-flight run is shared, but each caller repoints ITS OWN source edge afterwards.
 		const existing = inflight.get(key);
 		if (existing) {
-			const node = await existing;
-			return { node, source: "jit", wallMs: Date.now() - t0 };
+			const { node, requestedSlug } = await existing;
+			if (requestedSlug && source) await repointSourceEdge(source, requestedSlug, node);
+			return {
+				node,
+				source: "jit",
+				...(requestedSlug ? { requested_slug: requestedSlug } : {}),
+				wallMs: Date.now() - t0,
+			};
 		}
-		const jitOpts: { fresh?: boolean; slug?: Slug; maxProviderAttempts?: 1 } = { fresh: effectiveFresh };
+		const jitOpts: JitOptions = { fresh: effectiveFresh };
 		if (pinnedSlug) jitOpts.slug = pinnedSlug;
+		// An mbid-only work request has nothing to scope its slug by until MusicBrainz answers; if it
+		// cannot, the node must not be written under the bare title (see runJitDetailed).
+		if (scopedWork && !pinnedSlug) jitOpts.requireScopedSlug = true;
 		if (opts.maxProviderAttempts !== undefined) jitOpts.maxProviderAttempts = opts.maxProviderAttempts;
-		const p = runJit(effectiveBody, jitOpts);
+		const p = runJitDetailed(effectiveBody, jitOpts);
 		inflight.set(key, p);
 		try {
-			const node = await p;
+			const { node, requestedSlug } = await p;
+			if (requestedSlug && source) await repointSourceEdge(source, requestedSlug, node);
 			const out: MaterializeResponse = { node, source: "jit", wallMs: Date.now() - t0 };
+			if (requestedSlug) out.requested_slug = requestedSlug;
 			const m = (node as unknown as { _metrics?: { cost_usd: number } })._metrics;
 			if (m) out.metricsCostUsd = m.cost_usd;
 			return out;
@@ -281,10 +541,11 @@ export function createMaterializeService(deps: {
 		}
 	}
 
-	async function runJit(
-		body: MaterializeRequest,
-		opts: { fresh?: boolean; slug?: Slug; maxProviderAttempts?: 1 } = {},
-	): Promise<NodePayload> {
+	async function runJit(body: MaterializeRequest, opts: JitOptions = {}): Promise<NodePayload> {
+		return (await runJitDetailed(body, opts)).node;
+	}
+
+	async function runJitDetailed(body: MaterializeRequest, opts: JitOptions = {}): Promise<JitResult> {
 		if (!body.type || !body.name) {
 			throw new BadRequestError("Pipeline JIT requires both 'type' and 'name'.");
 		}
@@ -295,12 +556,17 @@ export function createMaterializeService(deps: {
 			mbid?: string;
 			slug?: Slug;
 			qid?: string;
+			artist?: string;
 		} = {
 			type: body.type as NodeType,
 			name: body.name,
 		};
 		if (body.disambiguator) pipelineInput.disambiguator = body.disambiguator;
 		if (body.mbid) pipelineInput.mbid = body.mbid;
+		// TRA-477: the credit hint MusicBrainz and the search use to tell same-titled works apart.
+		if (body.artist && isWorkType(body.type) && scopedReleaseSlugsEnabled()) {
+			pipelineInput.artist = body.artist;
+		}
 		// TRA-30 (node-service, PR #31) will pass its own opts.slug after this ticket merges --
 		// keep this shape stable (see the pinnedSlug comment in handleMaterialize above).
 		if (opts.slug) pipelineInput.slug = opts.slug;
@@ -328,16 +594,21 @@ export function createMaterializeService(deps: {
 			genreRegistry: deps.genreRegistry,
 			...(opts.maxProviderAttempts === undefined ? {} : { maxProviderAttempts: opts.maxProviderAttempts }),
 		});
+		// TRA-477: asked for only an mbid, MusicBrainz was the one place a work could get its scope. If it
+		// gave none, the pipeline fell back to the bare title -- which may already be another artist's
+		// work. Nothing is written, nothing is returned: safety before resolution rate.
+		if (opts.requireScopedSlug && !isScopedSlug(r.slug)) {
+			throw new BadRequestError("Could not resolve the artist of this work; provide `artist`");
+		}
+		const requestedSlug = r.requestedSlug;
 		if (!opts.fresh) {
-			const existing = await deps.cache.get(r.slug).catch((e: unknown) => {
-				if (isNotFoundError(e)) return null;
-				throw e;
-			});
-			if (existing) return existing;
+			const existing = await readNode(r.slug);
+			if (existing) return { node: existing, ...(requestedSlug ? { requestedSlug } : {}) };
 		}
 		const enriched = body.mbid ? ({ ...r.node, mbid: body.mbid } as NodePayload) : r.node;
 		await deps.cache.write(enriched);
-		return enriched;
+		deps.invalidateCacheIndex?.();
+		return { node: enriched, ...(requestedSlug ? { requestedSlug } : {}) };
 	}
 
 	return { handleMaterialize, runJit };

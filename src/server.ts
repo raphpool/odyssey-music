@@ -98,7 +98,13 @@ function invalidateCacheIndex(): void {
 }
 
 const handleSearch = createSearchService({ getCacheIndex, catalogIndex });
-const materializeService = createMaterializeService({ cache, env, genreRegistry });
+const materializeService = createMaterializeService({
+	cache,
+	env,
+	genreRegistry,
+	getCacheIndex,
+	invalidateCacheIndex,
+});
 const getNode = createNodeService({ cache, runJit: materializeService.runJit, redirects: genreRedirects });
 const imageService = createImageService({ cache, redirects: genreRedirects });
 const graphService = createGraphService(CACHE_DIR);
