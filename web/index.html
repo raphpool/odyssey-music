@@ -592,7 +592,7 @@ async function pingApi() {
     const teaserVal = node[TEASER[node.type]] || "";
     const edges = {};
     const LIST_EDGES = { genre:["parent_genres","subgenres","related_genres","key_artists","key_labels","landmark_projects","landmark_tracks"], label:["genres","roster","notable_releases"], artist:["genres","labels","discography","notable_tracks","influences","influenced","collaborators","aliases","members"], project:["artists","genres","tracklist","producers","personnel","related_projects"], track:["artists","genres","producers","personnel","samples","sampled_by","remixed_by"] };
-    const SINGLE_EDGES = { genre:[], label:[], artist:[], project:["label"], track:["project","label","remix_of"] };
+    const SINGLE_EDGES = { genre:[], label:[], artist:["landmark_project","reference_track"], project:["label"], track:["project","label","remix_of"] };
     for (const f of LIST_EDGES[node.type]) if (Array.isArray(node[f]) && node[f].length) edges[f] = node[f];
     for (const f of SINGLE_EDGES[node.type]) if (node[f] && typeof node[f] === "object") edges[f] = node[f];
     const vizNode = { id: node.slug, type: node.type, name: node.name, teaser: teaserVal, article: node.editorial_article, citations: node.citations || [], edges };
@@ -1843,6 +1843,8 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
     discography: "discography",
     notable_tracks: "notable tracks",
     notable_releases: "notable releases",
+    landmark_project: "landmark album",
+    reference_track: "reference track",
     related_projects: "related albums",
     key_artists: "key artists",
     key_labels: "key labels",
@@ -2309,7 +2311,7 @@ async function jitMaterialize(type, name, chipEl, disambiguator, mbid) {
     const teaserVal = node[TEASER[node.type]] || "";
     const edges = {};
     const LIST_EDGES = { genre:["parent_genres","subgenres","related_genres","key_artists","key_labels","landmark_projects","landmark_tracks"], label:["genres","roster","notable_releases"], artist:["genres","labels","discography","notable_tracks","influences","influenced","collaborators","aliases","members"], project:["artists","genres","tracklist","producers","personnel","related_projects"], track:["artists","genres","producers","personnel","samples","sampled_by","remixed_by"] };
-    const SINGLE_EDGES = { genre:[], label:[], artist:[], project:["label"], track:["project","label","remix_of"] };
+    const SINGLE_EDGES = { genre:[], label:[], artist:["landmark_project","reference_track"], project:["label"], track:["project","label","remix_of"] };
     for (const f of LIST_EDGES[node.type]) if (Array.isArray(node[f]) && node[f].length) edges[f] = node[f];
     for (const f of SINGLE_EDGES[node.type]) if (node[f] && typeof node[f] === "object") edges[f] = node[f];
     const vizNode = { id: node.slug, type: node.type, name: node.name, teaser: teaserVal, article: node.editorial_article, citations: node.citations || [], edges };

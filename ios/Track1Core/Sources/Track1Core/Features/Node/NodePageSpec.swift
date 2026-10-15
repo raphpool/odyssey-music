@@ -15,8 +15,8 @@ public enum NodePageSpec {
 		],
 		.label: ["genres", "roster", "notable_releases"],
 		.artist: [
-			"genres", "labels", "discography", "notable_tracks", "influences", "influenced", "collaborators",
-			"aliases", "members",
+			"genres", "labels", "discography", "notable_tracks", "landmark_project", "reference_track",
+			"influences", "influenced", "collaborators", "aliases", "members",
 		],
 		.project: [
 			"artists", "label", "genres", "tracklist", "producers", "personnel", "related_projects",
@@ -31,7 +31,7 @@ public enum NodePageSpec {
 	public static let singleFields: [NodeType: [String]] = [
 		.genre: [],
 		.label: [],
-		.artist: [],
+		.artist: ["landmark_project", "reference_track"],
 		.project: ["label"],
 		.track: ["project", "label", "remix_of"],
 	]
@@ -71,6 +71,8 @@ public enum NodePageSpec {
 		"discography": "discography",
 		"notable_tracks": "notable tracks",
 		"notable_releases": "notable releases",
+		"landmark_project": "landmark album",
+		"reference_track": "reference track",
 		"related_projects": "related albums",
 		"key_artists": "key artists",
 		"key_labels": "key labels",

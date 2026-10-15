@@ -137,6 +137,8 @@ const artistSchema = z.object({
 	labels: z.array(typedEdgeFor("artist", "labels")),
 	discography: z.array(typedEdgeFor("artist", "discography")),
 	notable_tracks: z.array(typedEdgeFor("artist", "notable_tracks")),
+	landmark_project: typedEdgeFor("artist", "landmark_project").optional(),
+	reference_track: typedEdgeFor("artist", "reference_track").optional(),
 	influences: z.array(typedEdgeFor("artist", "influences")),
 	influenced: z.array(typedEdgeFor("artist", "influenced")),
 	collaborators: z.array(typedEdgeFor("artist", "collaborators")),

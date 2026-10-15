@@ -588,6 +588,19 @@ describe("NodePageSpec parity with src/node-spec.ts", async () => {
 		});
 	});
 
+	// TRA-457: the web front repeats the singular edges of node-spec in two places (static load and live
+	// materialization). One table that forgets `artist.landmark_project` would drop the edge from the page.
+	it("lists the singular edges of node-spec in both SINGLE_EDGES tables of the web front", () => {
+		const tables = [...webSource.matchAll(/const SINGLE_EDGES = \{([^}]*)\};/g)];
+		expect(tables).toHaveLength(2);
+		for (const [, body = ""] of tables) {
+			const parsed = Object.fromEntries(
+				[...body.matchAll(/(\w+):\s*\[([^\]]*)\]/g)].map((m) => [m[1], quoted(m[2] ?? "")]),
+			);
+			expect(parsed).toEqual(SINGULAR_EDGES_BY_TYPE);
+		}
+	});
+
 	// The section labels of NodePageSpec are the web ones (see "Section labels" above).
 	describe("section labels", () => {
 		const labelsOf = (ios: string, web: string) => labelProblems(ios, web).join("\n");

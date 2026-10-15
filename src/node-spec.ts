@@ -33,6 +33,10 @@ export const EDGE_FIELDS_BY_TYPE = {
 		labels: { cardinality: "list", targets: ["label"] },
 		discography: { cardinality: "list", targets: ["project"] },
 		notable_tracks: { cardinality: "list", targets: ["track"] },
+		// TRA-457: the flagship album and the reference track, chosen among discography / notable_tracks.
+		// No reverse pair: the pointed-at project / track does not get a back edge.
+		landmark_project: { cardinality: "single", targets: ["project"] },
+		reference_track: { cardinality: "single", targets: ["track"] },
 		influences: { cardinality: "list", targets: ["artist"] },
 		influenced: { cardinality: "list", targets: ["artist"] },
 		collaborators: { cardinality: "list", targets: ["artist"] },
