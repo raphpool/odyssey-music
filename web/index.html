@@ -1906,7 +1906,7 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
     return `<div class="edge-group"><div class="kind">${label}</div><div class="chips">${chips}</div></div>`;
   }).join("");
 
-  const cits = (node.citations || []).map((c, i) => `<a href="${c.url}" target="_blank" rel="noopener"><span class="num">[${i+1}]</span>${escapeHtml(c.title || c.url)}</a>`).join("");
+  const cits = (node.citations || []).map((c, i) => citationHtml(c, i)).join("");
 
   const danglingCount = countDangling(node);
   const showPrecache = JIT_ENABLED && danglingCount > 0;
@@ -2389,6 +2389,31 @@ function renderCrumbs() {
       show(a.dataset.id);
     });
   });
+}
+
+// Citation URLs come from web search and LLM output: untrusted data. `citationSchema` only
+// requires z.string().url(), which accepts `javascript:alert(1)` and a `"` that closes the href
+// attribute (TRA-503, stored XSS, 2026-10-15). Returns the canonical href of an http(s) URL, or
+// null (render the title as plain text). http: stays allowed: ~1% of cached citations use it and
+// it cannot execute script; the href is still escaped for the attribute by citationHtml().
+function safeCitationUrl(u) {
+  if (typeof u !== "string" || !u) return null;
+  try {
+    const parsed = new URL(u);
+    return parsed.protocol === "https:" || parsed.protocol === "http:" ? parsed.href : null;
+  } catch {
+    return null;
+  }
+}
+
+function citationHtml(c, i) {
+  const label = escapeHtml((c && (c.title || c.url)) || "");
+  const href = safeCitationUrl(c && c.url);
+  const num = `<span class="num">[${i + 1}]</span>`;
+  if (!href) {
+    return `<span class="cit-text" style="color:var(--muted);font-size:0.85rem;word-break:break-word;padding:0.2rem 0;">${num}${label}</span>`;
+  }
+  return `<a href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">${num}${label}</a>`;
 }
 
 function escapeHtml(s) {
