@@ -354,7 +354,8 @@ final class ProfileStoreTests: XCTestCase {
 		let localStore = LocalStore(
 			directoryURL: directoryURL, fileManager: FailingRemovalFileManager(failingOn: ["profile.v1.json"]))
 		for name in names { _ = await localStore.write(Data("{}".utf8), named: name) }
-		_ = await ProfileStore(localStore: localStore).clear()
+		let cleared = await ProfileStore(localStore: localStore).clear()
+		XCTAssertEqual(cleared, .unavailable)
 		XCTAssertEqual(names.filter(fileExists), ["profile.v1.json", "profile-draft.v2.json", "profile.v2.json"])
 	}
 
