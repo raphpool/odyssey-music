@@ -120,6 +120,84 @@ final class NodePageViewTests: XCTestCase {
 		XCTAssertNil(NodePageView.listeningNotice(for: model.listeningFailure), "A success clears the notice.")
 	}
 
+	// MARK: - Artist highlights (TRA-471)
+
+	/// The page draws a `.highlights` block as `highlightsView`: one header per entry, the lowercase label of
+	/// `SectionHeader`, then the card `landmark-album` or the row `reference-track`. This pins what the view
+	/// is given; the pixels are checked on the simulator.
+	func testTheArtistPageHighlightsCarryTheContractIdentifiersAndLabels() throws {
+		let node = try Self.artist(edges: [
+			"landmark_project": Self.edgeJSON("project:album", name: "Album"),
+			"reference_track": Self.edgeJSON("track:song", name: "Song"),
+			"discography": "[" + Self.edgeJSON("project:album", name: "Album") + "]",
+		])
+
+		let entries = try XCTUnwrap(Self.highlightEntries(of: node))
+
+		XCTAssertEqual(entries.map(\.identifier), ["landmark-album", "reference-track"])
+		XCTAssertEqual(entries.map { SectionHeader.displayTitle($0.label) }, ["landmark album", "reference track"])
+		XCTAssertEqual(
+			entries.map { SectionHeader.identifier(field: $0.field) },
+			["section-landmark_project", "section-reference_track"])
+	}
+
+	func testTheArtistPageDrawsNoHighlightsBlockWithoutPicks() throws {
+		let node = try Self.artist(edges: [
+			"discography": "[" + Self.edgeJSON("project:album", name: "Album") + "]"
+		])
+
+		XCTAssertNil(Self.highlightEntries(of: node))
+		XCTAssertEqual(NodePageModel.blocks(for: node).count, 1, "The discography keeps its own section.")
+	}
+
+	func testTheHighlightsOpenTheirTargetThroughTheChipWiring() async throws {
+		let source = try XCTUnwrap(NodeIdentity(rawValue: "artist:source"))
+		var events = [AnalyticsEvent]()
+		let response = try Self.response(for: source)
+		let model = NodeViewModel(
+			identity: source,
+			context: .independent(source: .home),
+			readNode: { _ in .success(response, etag: nil) },
+			recordEvent: { events.append($0) }
+		)
+		await model.load()
+		events.removeAll()
+		let router = AppRouter()
+		let node = try Self.artist(edges: ["landmark_project": Self.edgeJSON("project:album", name: "Album")])
+		let entry = try XCTUnwrap(Self.highlightEntries(of: node)?.first)
+
+		model.openRelation(entry.edge, kind: entry.field) { _, context in
+			router.openNode(entry.edge.slug, context: context, title: entry.edge.name, in: .today)
+		}
+
+		XCTAssertEqual(
+			router.path(for: .today),
+			[.node(identity: entry.edge.slug, context: NavigationContext(source: .relation))])
+		XCTAssertEqual(events.first?.properties["relation_kind"], .string("landmark_project"))
+	}
+
+	private static func highlightEntries(of node: NodeDetail) -> [ArtistHighlights.Entry]? {
+		for block in NodePageModel.blocks(for: node) {
+			if case .highlights(let highlights) = block { return highlights.entries }
+		}
+		return nil
+	}
+
+	private static func edgeJSON(_ slug: String, name: String) -> String {
+		let type = slug.prefix { $0 != ":" }
+		return #"{"slug":"\#(slug)","type":"\#(type)","name":"\#(name)"}"#
+	}
+
+	private static func artist(edges: [String: String]) throws -> NodeDetail {
+		let body = edges.map { #""\#($0.key)":\#($0.value)"# }.joined(separator: ",")
+		let source = """
+			{"id":"artist:sample","type":"artist","name":"Sample","teaser":null,"article":"","citations":[],"facts":{},"edges":{\(body)},"materialized_at":"2026-10-08T00:00:00Z","image_url":null}
+			"""
+		let decoder = JSONDecoder()
+		decoder.dateDecodingStrategy = .iso8601
+		return try decoder.decode(NodeDetail.self, from: Data(source.utf8))
+	}
+
 	private static func links(slug: String) throws -> LinksResponse {
 		let json = """
 			{"slug":"\(slug)","spotify":"https://open.spotify.com/artist/abc123",
