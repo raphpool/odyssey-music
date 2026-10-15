@@ -143,6 +143,31 @@ describe("isValidSlug (canonical rule, TRA-501)", () => {
 		if (!scoped.ok) throw new Error("expected a slug");
 		expect(isValidSlug(scoped.slug)).toBe(true);
 	});
+	// CI 2026-10-15 (#426): a fixture wrote "project:in-the-møde". The pipeline cannot produce that slug:
+	// normalization drops every character outside [a-z0-9] (NFKD leaves ø, æ, ł, ß whole, and they are
+	// dropped rather than transliterated), so whatever name goes in, the body is canonical.
+	test("makeSlug and makeScopedSlug never emit a non-ASCII body, whatever the name", () => {
+		const expected: Record<string, string> = {
+			"In the Møde": "in-the-m-de",
+			MØ: "m",
+			Æther: "ther",
+			Łona: "ona",
+			"Mötley Crüe": "motley-crue",
+			Straße: "stra-e",
+		};
+		for (const [name, body] of Object.entries(expected)) {
+			const slug = makeSlug("artist", name);
+			expect(slug, name).toBe(`artist:${body}`);
+			expect(isValidSlug(slug), name).toBe(true);
+		}
+		const scoped = makeScopedSlug("project", "In the Møde", "MØ");
+		expect(scoped).toEqual({ ok: true, slug: "project:in-the-m-de--m" });
+		if (scoped.ok) expect(isValidSlug(scoped.slug)).toBe(true);
+		// no Latin letter or digit at all: an expected failure, not a non-canonical slug
+		expect(() => makeSlug("artist", "坂本龍一")).toThrow(/empty name/);
+		expect(makeScopedSlug("track", "Song", "坂本龍一")).toEqual({ ok: false, reason: "empty-artist" });
+	});
+
 	test("the exported pattern covers every node type, and only those", () => {
 		for (const type of NODE_TYPES) expect(CANONICAL_SLUG_PATTERN.test(`${type}:x`), type).toBe(true);
 		expect(CANONICAL_SLUG_PATTERN.test("playlist:x")).toBe(false);
