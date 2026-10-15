@@ -39,22 +39,34 @@ const EDITION_NOISE =
 	/^(?:(?:\d{4}\s+)?remaster(?:ed)?|deluxe(?:\s+edition)?|(?:expanded|anniversary|special|collector['’]?s|bonus\s+track)\s+edition|bonus\s+tracks?|explicit|clean|original\s+mix|(?:feat|ft)\.?\s+.+|featuring\s+.+)$/iu;
 
 /**
+ * Remove the edition-noise groups from a title, leaving everything else (casing, diacritics,
+ * other groups) untouched and whitespace collapsed. Shared by normalizeTitleBody (identity) and the
+ * MusicBrainz search phrase, so both agree on what counts as noise.
+ */
+export function stripEditionNoise(title: string): string {
+	return title
+		.replace(/\(([^()]*)\)|\[([^[\]]*)\]/gu, (group, round?: string, square?: string) =>
+			EDITION_NOISE.test((round ?? square ?? "").trim()) ? " " : group,
+		)
+		.replace(/\s+/gu, " ")
+		.trim();
+}
+
+/**
  * Normalization of a work TITLE (project/track) for identity comparison.
  *
  * Same flattening as normalizeSlugBody (NFKD, lowercase, "&" -> "and", non-alphanumeric run ->
  * "-") with two differences, because a title's parentheses are often part of what it names:
  * - a trailing "(...)" / "[...]" is KEPT: "Booty La La (Loefah remix)", "Fitna (Live)" and
  *   "aisatsana [102]" are not the same work as the bare title;
- * - groups that are pure edition noise are dropped first, anywhere in the title: remaster(ed),
- *   "<year> remaster", deluxe (edition), expanded/anniversary/special/collector's/bonus track
- *   edition, bonus track(s), explicit, clean, original mix, feat./ft./featuring ...
- *   "Kid A (Deluxe Edition)" and "Kid A" are the same work.
+ * - groups that are pure edition noise are dropped first, anywhere in the title (see
+ *   stripEditionNoise): remaster(ed), "<year> remaster", deluxe (edition), expanded/anniversary/
+ *   special/collector's/bonus track edition, bonus track(s), explicit, clean, original mix,
+ *   feat./ft./featuring ... "Kid A (Deluxe Edition)" and "Kid A" are the same work.
  */
 export function normalizeTitleBody(title: string): string {
-	let s = title.normalize("NFKD").replace(/[̀-ͯ]/g, "");
-	s = s.replace(/\(([^()]*)\)|\[([^[\]]*)\]/gu, (group, round?: string, square?: string) =>
-		EDITION_NOISE.test((round ?? square ?? "").trim()) ? " " : group,
-	);
+	// NFKD first (it also turns fullwidth brackets into ASCII ones), then noise removal.
+	let s = stripEditionNoise(title.normalize("NFKD").replace(/[̀-ͯ]/g, ""));
 	s = s.toLowerCase().replace(/&/g, " and ");
 	s = s.replace(/[^a-z0-9]+/g, "-");
 	return s.replace(/^-+|-+$/g, "");
@@ -72,36 +84,81 @@ export function makeSlug(type: NodeType, name: string, disambiguator?: string): 
 	return `${type}:${body}` as Slug;
 }
 
+export type ScopedSlugResult =
+	| { ok: true; slug: Slug }
+	| { ok: false; reason: "empty-title" | "empty-artist" };
+
 /**
  * Identity of a work (project/track) is `<title>--<primary artist>` (graph-integrity plan, decision 1):
  * two works sharing a title stay distinct, and the artist is part of the slug rather than a
- * best-effort disambiguator. Unlike makeSlug, an empty scope is an error, not a silent fallback to an
+ * best-effort disambiguator. Unlike makeSlug, an empty part is a failure, not a silent fallback to an
  * unscoped slug -- that fallback is exactly how colliding titles got merged.
+ *
+ * The title goes through normalizeTitleBody, not normalizeSlugBody: the latter drops a trailing
+ * "(...)" / "[...]", which made "Booty La La", "Booty La La (Loefah remix)" and "... (Draw the Line
+ * remix)" (three MusicBrainz release groups) one slug (TRA-451 deep review, 2026-10-14).
+ *
+ * A typed result rather than a throw: a non-Latin artist name ("坂本龍一") normalizes to "" and is an
+ * expected input at this boundary. Callers resolve it with pickScopeArtistName candidates.
  */
-export function makeScopedSlug(type: "project" | "track", title: string, artistName: string): Slug {
-	const titleBody = normalizeSlugBody(title);
+export function makeScopedSlug(
+	type: "project" | "track",
+	title: string,
+	artistName: string,
+): ScopedSlugResult {
+	const titleBody = normalizeTitleBody(title);
+	if (!titleBody) return { ok: false, reason: "empty-title" };
 	const artistBody = normalizeSlugBody(artistName);
-	if (!titleBody || !artistBody) {
-		throw new Error(
-			`Cannot build a scoped slug for ${type} from title "${title}" and artist "${artistName}"`,
-		);
-	}
-	return `${type}:${titleBody}--${artistBody}` as Slug;
+	if (!artistBody) return { ok: false, reason: "empty-artist" };
+	return { ok: true, slug: `${type}:${titleBody}--${artistBody}` as Slug };
 }
 
-// normalizeSlugBody collapses every non-alphanumeric run to a single dash, so "--" can only come from
-// a scope separator, never from the name itself.
-const SCOPE_SEPARATOR = "--";
+/**
+ * The first candidate whose normalized body is not empty, as given (not normalized), or null.
+ * Meant for the artist name a scope is built from (credited name, MB name, "en" alias, sort-name...),
+ * in the caller's order of preference. No transliteration: a name with no Latin letter or digit is
+ * skipped, not converted.
+ */
+export function pickScopeArtistName(candidates: ReadonlyArray<string | undefined>): string | null {
+	for (const candidate of candidates) {
+		if (candidate !== undefined && normalizeSlugBody(candidate)) return candidate;
+	}
+	return null;
+}
 
-export function isScopedSlug(slug: Slug): boolean {
+// Scope separator inside a project/track body. A title body never contains "--" (every
+// non-alphanumeric run collapses to one dash), but makeSlug's older free-text disambiguators share the
+// separator: 74 existing work slugs ("track:the-model--song-by-kraftwerk") and
+// "artist:pole--stefan-betke". So "--" alone does NOT prove an artist scope.
+const SCOPE_SEPARATOR = "--";
+const SCOPED_TYPES: readonly string[] = ["project", "track"];
+
+/**
+ * True when the slug is a project/track with a non-empty `<title>--<scope>` body. It says nothing
+ * about WHAT the scope is (a legacy disambiguator qualifies too); use scopeMatchesArtist for that.
+ */
+export function isScopedSlug(slug: string): boolean {
 	return scopeOf(slug) !== null;
 }
 
-/** The normalized primary-artist part of a scoped slug, or null when the slug is unscoped. */
-export function scopeOf(slug: Slug): string | null {
-	const body = slug.slice(slug.indexOf(":") + 1);
+/**
+ * The text after the separator of a project/track slug, or null (other types, no separator, empty
+ * half, malformed input). It is a NORMALIZED body ("roni-size-reprazent"), never a displayable
+ * artist name, and for legacy slugs it may be a free-text disambiguator rather than an artist.
+ */
+export function scopeOf(slug: string): string | null {
+	const colon = slug.indexOf(":");
+	if (colon < 0 || !SCOPED_TYPES.includes(slug.slice(0, colon))) return null;
+	const body = slug.slice(colon + 1);
 	const idx = body.indexOf(SCOPE_SEPARATOR);
-	return idx < 0 ? null : body.slice(idx + SCOPE_SEPARATOR.length);
+	if (idx <= 0) return null;
+	return body.slice(idx + SCOPE_SEPARATOR.length) || null;
+}
+
+/** True when the slug's scope is exactly the normalized form of `artistName`. */
+export function scopeMatchesArtist(slug: string, artistName: string): boolean {
+	const scope = scopeOf(slug);
+	return scope !== null && scope === normalizeSlugBody(artistName);
 }
 
 export function parseSlug(slug: string): { type: NodeType; body: string } {
