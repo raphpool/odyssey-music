@@ -39,7 +39,10 @@ export function createImageService(deps: { cache: NodeCache; redirects: GenreRed
 			const itunes = await lookupAlbumArt(node.name, artistRef?.name);
 			if (itunes) {
 				try {
-					const updated = { ...node, cover_url: itunes, image_source: "itunes-jit" } as NodePayload;
+					// TRA-455: "itunes-jit" left ImageSource and the schema now rejects it. Zod used to strip
+					// the field on write, so dropping it keeps the persisted node identical. The whole
+					// write goes away in TRA-475 (3.3).
+					const updated = { ...node, cover_url: itunes } as NodePayload;
 					await deps.cache.write(updated);
 				} catch (e) {
 					log.warn("image persist failed", { slug, error: e instanceof Error ? e.message : String(e) });

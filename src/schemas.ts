@@ -1,7 +1,8 @@
 import { z } from "zod";
+import { isAllowedImageUrl } from "./images/hosts.js";
 import { EDGE_TARGET_TYPES_BY_TYPE } from "./node-spec.js";
 import { isValidSlug } from "./slug.js";
-import { NODE_TYPES, type NodeType, QID_PATTERN } from "./types.js";
+import { IMAGE_SOURCES, NODE_TYPES, type NodeType, QID_PATTERN } from "./types.js";
 
 const slugSchema = z.string().refine(isValidSlug, { message: "invalid slug" });
 
@@ -22,6 +23,9 @@ const edgeRefBase = z.object({
 	// lets the frontend tag EPs/singles distinctly from full albums.
 	year: z.string().optional(),
 	releaseType: z.enum(["album", "ep", "single"]).optional(),
+	// Primary credited artist, set on project/track targets whose slug is scoped by it. Optional:
+	// genre/label/artist edges carry none and nodes written before this field must still load.
+	artist: z.string().min(1).optional(),
 });
 
 /** Build an edge schema whose `type` is constrained to one of `allowed` and whose `slug` prefix matches. */
@@ -84,6 +88,10 @@ const baseFields = {
 	_metrics: metricsSchema,
 	disambiguator: z.string().optional(),
 	mbid: z.string().uuid().optional(),
+	// Third-party image: https + allowlisted host only (TRA-455). Before this, Zod silently
+	// dropped image_source on every write (0 cache files carried it).
+	image_url: z.string().url().refine(isAllowedImageUrl, { message: "image_url host not allowed" }).optional(),
+	image_source: z.enum(IMAGE_SOURCES).optional(),
 };
 
 const genreSchema = z.object({
@@ -120,6 +128,7 @@ const labelSchema = z.object({
 const artistSchema = z.object({
 	...baseFields,
 	type: z.literal("artist"),
+	artist_kind: z.enum(["person", "group"]).optional(),
 	editorial_bio: z.string().min(1),
 	photo_url: z.string().url().optional(),
 	origin: z.string().optional(),
