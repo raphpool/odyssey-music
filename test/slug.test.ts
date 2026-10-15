@@ -7,7 +7,10 @@ import {
 	normalizeSlugBody,
 	normalizeTitleBody,
 	parseSlug,
+	pickScopeArtistName,
+	scopeMatchesArtist,
 	scopeOf,
+	stripEditionNoise,
 } from "../src/slug.js";
 
 describe("normalizeSlugBody", () => {
@@ -161,46 +164,97 @@ describe("normalizeTitleBody", () => {
 	});
 });
 
+describe("stripEditionNoise", () => {
+	test("drops noise groups but keeps casing, diacritics and single spacing", () => {
+		expect(stripEditionNoise("Kid A (Deluxe Edition)")).toBe("Kid A");
+		expect(stripEditionNoise("Sigur Rós (2019 Remaster)")).toBe("Sigur Rós");
+		expect(stripEditionNoise("Title (Explicit) [Remastered] Part Two")).toBe("Title Part Two");
+	});
+
+	test("keeps every other group", () => {
+		expect(stripEditionNoise("Booty La La (Loefah remix)")).toBe("Booty La La (Loefah remix)");
+		expect(stripEditionNoise("aisatsana [102]")).toBe("aisatsana [102]");
+	});
+
+	test("is empty for a title made only of noise", () => {
+		expect(stripEditionNoise("(Remastered)")).toBe("");
+	});
+});
+
 describe("makeScopedSlug", () => {
+	const slugOf = (type: "project" | "track", title: string, artist: string): string => {
+		const r = makeScopedSlug(type, title, artist);
+		if (!r.ok) throw new Error(`expected ok, got ${r.reason}`);
+		return r.slug;
+	};
+
 	test("builds <type>:<title>--<artist>", () => {
-		expect(makeScopedSlug("track", "Fitna", "Rohff")).toBe("track:fitna--rohff");
-		expect(makeScopedSlug("project", "New Forms", "Roni Size / Reprazent")).toBe(
+		expect(makeScopedSlug("track", "Fitna", "Rohff")).toEqual({ ok: true, slug: "track:fitna--rohff" });
+		expect(slugOf("project", "New Forms", "Roni Size / Reprazent")).toBe(
 			"project:new-forms--roni-size-reprazent",
 		);
 	});
 
 	test("strips diacritics from both title and artist", () => {
-		expect(makeScopedSlug("track", "Corazón Loco", "Lisa Carbon")).toBe("track:corazon-loco--lisa-carbon");
-		expect(makeScopedSlug("project", "Dépêche", "Mylène Farmer")).toBe("project:depeche--mylene-farmer");
+		expect(slugOf("track", "Corazón Loco", "Lisa Carbon")).toBe("track:corazon-loco--lisa-carbon");
+		expect(slugOf("project", "Dépêche", "Mylène Farmer")).toBe("project:depeche--mylene-farmer");
 	});
 
 	test("turns & into and in both parts", () => {
-		expect(makeScopedSlug("project", "Rock & Roll", "Simon & Garfunkel")).toBe(
+		expect(slugOf("project", "Rock & Roll", "Simon & Garfunkel")).toBe(
 			"project:rock-and-roll--simon-and-garfunkel",
 		);
 	});
 
-	test("agrees with makeSlug's disambiguator form", () => {
-		expect(makeScopedSlug("track", "Tendency", "Jan Jelinek")).toBe(
-			makeSlug("track", "Tendency", "Jan Jelinek"),
+	test("agrees with makeSlug's disambiguator form when the title has no parenthetical", () => {
+		expect(slugOf("track", "Tendency", "Jan Jelinek")).toBe(makeSlug("track", "Tendency", "Jan Jelinek"));
+	});
+
+	test("keeps a title's parenthetical or bracket, so remixes stay distinct works", () => {
+		const bare = slugOf("project", "Booty La La", "Bugz in the Attic");
+		const loefah = slugOf("project", "Booty La La (Loefah remix)", "Bugz in the Attic");
+		const drawTheLine = slugOf("project", "Booty La La (Draw the Line remix)", "Bugz in the Attic");
+		expect(bare).toBe("project:booty-la-la--bugz-in-the-attic");
+		expect(loefah).toBe("project:booty-la-la-loefah-remix--bugz-in-the-attic");
+		expect(new Set([bare, loefah, drawTheLine]).size).toBe(3);
+		expect(slugOf("track", "aisatsana [102]", "Aphex Twin")).toBe("track:aisatsana-102--aphex-twin");
+		expect(slugOf("track", "Phragmal Synthesis (Pt. 3)", "Aphex Twin")).toBe(
+			"track:phragmal-synthesis-pt-3--aphex-twin",
 		);
 	});
 
-	test("throws when the artist body is empty", () => {
-		expect(() => makeScopedSlug("track", "Fitna", "")).toThrow();
-		expect(() => makeScopedSlug("track", "Fitna", "  ?! ")).toThrow();
+	test("ignores edition noise in the title", () => {
+		expect(slugOf("project", "Kid A (Deluxe Edition)", "Radiohead")).toBe("project:kid-a--radiohead");
+		expect(slugOf("track", "Get Lucky (feat. Pharrell Williams)", "Daft Punk")).toBe(
+			"track:get-lucky--daft-punk",
+		);
+		expect(slugOf("project", "Abbey Road (2019 Remaster)", "The Beatles")).toBe(
+			"project:abbey-road--the-beatles",
+		);
 	});
 
-	test("throws when the title body is empty", () => {
-		expect(() => makeScopedSlug("project", "", "Rohff")).toThrow();
-		expect(() => makeScopedSlug("project", "...", "Rohff")).toThrow();
+	test("returns empty-artist instead of throwing when the artist has no latin body", () => {
+		expect(makeScopedSlug("project", "async", "坂本龍一")).toEqual({ ok: false, reason: "empty-artist" });
+		expect(makeScopedSlug("track", "Fitna", "")).toEqual({ ok: false, reason: "empty-artist" });
+		expect(makeScopedSlug("track", "Fitna", "  ?! ")).toEqual({ ok: false, reason: "empty-artist" });
+	});
+
+	test("returns empty-title instead of throwing, including a title made only of noise", () => {
+		expect(makeScopedSlug("project", "", "Rohff")).toEqual({ ok: false, reason: "empty-title" });
+		expect(makeScopedSlug("project", "...", "Rohff")).toEqual({ ok: false, reason: "empty-title" });
+		expect(makeScopedSlug("project", "(Remastered)", "Rohff")).toEqual({ ok: false, reason: "empty-title" });
+	});
+
+	test("reports empty-title first when both parts are empty", () => {
+		expect(makeScopedSlug("track", "", "")).toEqual({ ok: false, reason: "empty-title" });
 	});
 });
 
 describe("isScopedSlug / scopeOf", () => {
-	test("recognizes a scoped slug and returns its scope", () => {
+	test("recognizes a scoped work slug and returns its scope", () => {
 		expect(isScopedSlug("track:fitna--rohff")).toBe(true);
 		expect(scopeOf("track:fitna--rohff")).toBe("rohff");
+		expect(scopeOf("project:new-forms--roni-size-reprazent")).toBe("roni-size-reprazent");
 	});
 
 	test("an unscoped slug has no scope", () => {
@@ -214,8 +268,57 @@ describe("isScopedSlug / scopeOf", () => {
 		expect(scopeOf("artist:jay-z")).toBeNull();
 	});
 
+	test("only project and track slugs carry a scope, whatever their separator", () => {
+		expect(scopeOf("artist:pole--stefan-betke")).toBeNull();
+		expect(isScopedSlug("artist:pole--stefan-betke")).toBe(false);
+		expect(scopeOf("label:warp--sheffield")).toBeNull();
+		expect(scopeOf("genre:house--chicago")).toBeNull();
+	});
+
+	test("is null for malformed input and empty halves instead of throwing", () => {
+		expect(scopeOf("no-colon--x")).toBeNull();
+		expect(scopeOf("track:fitna--")).toBeNull();
+		expect(scopeOf("track:--rohff")).toBeNull();
+		expect(scopeOf("")).toBeNull();
+	});
+
 	test("round-trips with makeScopedSlug", () => {
-		const slug = makeScopedSlug("project", "New Forms", "Roni Size / Reprazent");
-		expect(scopeOf(slug)).toBe("roni-size-reprazent");
+		const r = makeScopedSlug("project", "New Forms", "Roni Size / Reprazent");
+		expect(r.ok && scopeOf(r.slug)).toBe("roni-size-reprazent");
+	});
+});
+
+describe("scopeMatchesArtist", () => {
+	test("is true when the scope is the normalized artist name", () => {
+		expect(scopeMatchesArtist("track:fitna--rohff", "Rohff")).toBe(true);
+		expect(scopeMatchesArtist("project:new-forms--roni-size-reprazent", "Roni Size / Reprazent")).toBe(true);
+		expect(scopeMatchesArtist("track:corazon-loco--lisa-carbon", "Lisa Carbón")).toBe(true);
+	});
+
+	test("rejects a legacy free-text disambiguator that merely shares the separator", () => {
+		expect(scopeMatchesArtist("track:the-model--song-by-kraftwerk", "Kraftwerk")).toBe(false);
+	});
+
+	test("is false for another artist, an unscoped slug, a non-work slug and an unnormalizable name", () => {
+		expect(scopeMatchesArtist("track:fitna--rohff", "Booba")).toBe(false);
+		expect(scopeMatchesArtist("track:fitna", "Rohff")).toBe(false);
+		expect(scopeMatchesArtist("artist:pole--stefan-betke", "Stefan Betke")).toBe(false);
+		expect(scopeMatchesArtist("track:fitna--rohff", "坂本龍一")).toBe(false);
+	});
+});
+
+describe("pickScopeArtistName", () => {
+	test("returns the first candidate whose normalized body is not empty", () => {
+		expect(pickScopeArtistName(["坂本龍一", undefined, "Ryuichi Sakamoto"])).toBe("Ryuichi Sakamoto");
+		expect(pickScopeArtistName(["Aphex Twin", "AFX"])).toBe("Aphex Twin");
+	});
+
+	test("skips empty and punctuation-only candidates", () => {
+		expect(pickScopeArtistName(["", "  ?! ", "Rohff"])).toBe("Rohff");
+	});
+
+	test("is null when no candidate has a latin body", () => {
+		expect(pickScopeArtistName(["坂本龍一", undefined, ""])).toBeNull();
+		expect(pickScopeArtistName([])).toBeNull();
 	});
 });
