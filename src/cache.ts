@@ -3,7 +3,7 @@ import { dirname, join } from "node:path";
 import { isNotFoundError, NotFoundError, ValidationError } from "./errors.js";
 import { logger } from "./logger.js";
 import { reverseFor, reversibleFields } from "./reverse-edges.js";
-import { nodePayloadSchema } from "./schemas.js";
+import { nodePayloadSchema, readNodePayloadSchema } from "./schemas.js";
 import { parseSlug } from "./slug.js";
 import type { EdgeRef, NodePayload, Slug } from "./types.js";
 
@@ -150,7 +150,15 @@ export class NodeCache {
 		try {
 			const raw = await readFile(this.pathFor(slug), "utf8");
 			const obj = JSON.parse(raw) as unknown;
-			return nodePayloadSchema.parse(obj) as NodePayload;
+			const canonical = nodePayloadSchema.safeParse(obj);
+			if (canonical.success) return canonical.data as NodePayload;
+			// TRA-501: reading is tolerant of a slug that is merely non-canonical (a node written by a
+			// deployed server before the canonical rule): it is served and logged, never a 500 on
+			// /data.json or a node page. Only the slug rule differs between the two schemas, so
+			// anything the read schema rejects too is genuinely invalid and still throws below.
+			const legacy = readNodePayloadSchema.parse(obj) as NodePayload;
+			log.warn("cached node has a non-canonical slug; served as-is", { slug });
+			return legacy;
 		} catch (e) {
 			if (isNotFoundError(e)) throw new NotFoundError(`Node not found: ${slug}`, { cause: e });
 			throw new ValidationError(
@@ -353,7 +361,9 @@ export class NodeCache {
 			await this.runLocked(parsed.slug, async () => {
 				const pending = this.pendingReverses[parsed.slug] ?? [];
 				const merged = applyReverses(parsed, pending);
-				const validated = nodePayloadSchema.parse(merged) as NodePayload;
+				// Re-validation of `parsed` (strictly validated by the caller) plus reverse edges queued
+				// earlier: a legacy slug among them must not fail the write of a valid node (TRA-501).
+				const validated = readNodePayloadSchema.parse(merged) as NodePayload;
 				const file = this.pathFor(validated.slug);
 				await mkdir(dirname(file), { recursive: true });
 				await atomicWriteJson(file, validated);
@@ -467,7 +477,10 @@ export class NodeCache {
 			});
 			if (existing) {
 				const updated = applySingleReverse(existing, { field, cardinality, edge: sourceEdge });
-				const validated = nodePayloadSchema.parse(updated) as NodePayload;
+				// `existing` may be a legacy node read tolerantly, `sourceEdge` comes from a node that
+				// write()/replace() validated strictly: re-validate with the read rule so adding a
+				// reverse edge never fails because of what the target already had (TRA-501).
+				const validated = readNodePayloadSchema.parse(updated) as NodePayload;
 				const file = this.pathFor(validated.slug);
 				await mkdir(dirname(file), { recursive: true });
 				await atomicWriteJson(file, validated);

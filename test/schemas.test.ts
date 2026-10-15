@@ -1,6 +1,8 @@
+import { readdirSync, readFileSync } from "node:fs";
+import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { isAllowedImageUrl } from "../src/images/hosts.js";
-import { nodePayloadSchema } from "../src/schemas.js";
+import { nodePayloadSchema, readNodePayloadSchema } from "../src/schemas.js";
 
 const baseArtist = {
 	type: "artist" as const,
@@ -347,5 +349,56 @@ describe("nodePayloadSchema — artist.similar_artists (TRA-456)", () => {
 			similar_artists: [{ type: "genre", slug: "genre:idm", name: "IDM" }],
 		};
 		expect(() => nodePayloadSchema.parse(artist)).toThrow();
+	});
+});
+
+describe("nodePayloadSchema — canonical slugs (TRA-501)", () => {
+	const evil = 'artist:x" onmouseover="alert(1)';
+
+	it("rejects a node whose own slug breaks out of an attribute", () => {
+		const result = nodePayloadSchema.safeParse({ ...baseArtist, slug: evil });
+		expect(result.success).toBe(false);
+	});
+
+	it("rejects an edge whose slug breaks out of an attribute", () => {
+		const result = nodePayloadSchema.safeParse({
+			...baseArtist,
+			aliases: [{ type: "artist", slug: evil, name: "Evil" }],
+		});
+		expect(result.success).toBe(false);
+	});
+
+	it("accepts a scoped work slug and a legacy-disambiguated artist slug", () => {
+		expect(nodePayloadSchema.safeParse({ ...baseTrack, slug: "track:fitna--rohff" }).success).toBe(true);
+		expect(nodePayloadSchema.safeParse({ ...baseArtist, slug: "artist:pole--stefan-betke" }).success).toBe(
+			true,
+		);
+	});
+
+	it("readNodePayloadSchema keeps the old rule: same shape, but a non-canonical slug is readable", () => {
+		const forged = { ...baseArtist, slug: evil, aliases: [{ type: "artist", slug: evil, name: "Evil" }] };
+		expect(readNodePayloadSchema.safeParse(forged).success).toBe(true);
+		// ... and it is not a free pass: the prefix and every other rule still apply.
+		expect(readNodePayloadSchema.safeParse({ ...baseArtist, slug: "nope:x" }).success).toBe(false);
+		expect(readNodePayloadSchema.safeParse({ ...baseArtist, editorial_article: "short" }).success).toBe(
+			false,
+		);
+	});
+
+	it("every node committed under cache/ still passes the canonical schema", () => {
+		const root = join(import.meta.dirname, "..", "cache", "nodes");
+		let count = 0;
+		const failures: string[] = [];
+		for (const type of readdirSync(root)) {
+			for (const file of readdirSync(join(root, type))) {
+				if (!file.endsWith(".json")) continue;
+				count++;
+				const raw = JSON.parse(readFileSync(join(root, type, file), "utf8")) as unknown;
+				const result = nodePayloadSchema.safeParse(raw);
+				if (!result.success) failures.push(`${type}/${file}: ${result.error.issues[0]?.message}`);
+			}
+		}
+		expect(count).toBeGreaterThan(1000);
+		expect(failures).toEqual([]);
 	});
 });
