@@ -724,6 +724,52 @@ describe("MB identity at enrichment (TRA-473)", () => {
 			TIMEOUT_MS,
 		);
 
+		// TRA-538: an mbid from a client is a hint that MB's own resolution has to confirm.
+		it(
+			"gives a client's mbid to the node only when MB resolves the work to that very mbid",
+			async () => {
+				installPipelineMocks({ draft: projectDraftFixture("New Forms", "Roni Size") });
+				const m = await resolvedWork("releaseGroup", "New Forms", [{ mbid: RONI_MBID, name: "Roni Size" }]);
+				const runPipeline = await loadRunPipeline();
+				const input = {
+					type: "project" as const,
+					name: "New Forms",
+					artist: "Roni Size",
+					mbidIsClientHint: true,
+				};
+
+				const confirmed = await runPipeline({ ...input, mbid: RG_MBID.toUpperCase() }, DEPS);
+				expect((confirmed.node as ProjectNode).mbid).toBe(RG_MBID);
+
+				installPipelineMocks({ draft: projectDraftFixture("New Forms", "Roni Size") });
+				await resolvedWork("releaseGroup", "New Forms", [{ mbid: RONI_MBID, name: "Roni Size" }]);
+				const other = await runPipeline({ ...input, mbid: "bbbbbbbb-1111-4111-8111-0000000000ff" }, DEPS);
+				expect((other.node as ProjectNode).mbid).toBeUndefined();
+				// Neither MB's other answer nor the hint's own metadata reaches the node.
+				expect(vi.mocked(m.fetchProjectMetaMb)).toHaveBeenCalledTimes(1);
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"keeps using the mbid of a trusted caller (seed folder) without asking MB to confirm it",
+			async () => {
+				installPipelineMocks({ draft: projectDraftFixture("New Forms", "Roni Size") });
+				const m = await resolvedWork("releaseGroup", "New Forms", []);
+				vi.mocked(m.resolveReleaseGroup).mockClear();
+				const runPipeline = await loadRunPipeline();
+
+				const result = await runPipeline(
+					{ type: "project", name: "New Forms", mbid: RG_MBID, slug: "project:new-forms--roni-size" },
+					DEPS,
+				);
+
+				expect((result.node as ProjectNode).mbid).toBe(RG_MBID);
+				expect(vi.mocked(m.resolveReleaseGroup)).not.toHaveBeenCalled();
+			},
+			TIMEOUT_MS,
+		);
+
 		it(
 			"survives MusicBrainz being down: requested slug, LLM edges, no mbid",
 			async () => {

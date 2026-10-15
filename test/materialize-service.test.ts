@@ -1356,6 +1356,230 @@ describe("createMaterializeService artist context (TRA-477)", () => {
 		TIMEOUT_MS,
 	);
 
+	// TRA-538: a client mbid is a search hint, never an identity to stamp. Probe of the #452 review:
+	// `track:garbage--rohff` created with the mbid of "Le Bitume" used to answer "Garbage" to every honest
+	// click on "Le Bitume", because the cache index serves a node by its mbid.
+	describe("a client mbid is only a hint (TRA-538)", () => {
+		const BITUME = "cccccccc-1111-4111-8111-0000000000b1";
+		const GARBAGE = "cccccccc-1111-4111-8111-0000000000b2";
+		const ROHFF = "cccccccc-1111-4111-8111-0000000000a1";
+		const trackMeta = {
+			project: null,
+			label: null,
+			artists: [{ mbid: ROHFF, name: "Rohff" }],
+			year: null,
+			duration: null,
+			producers: [],
+			personnel: [],
+		};
+
+		async function armMb(resolve: () => Promise<ReturnType<typeof identityOf> | null>) {
+			const mb = await importMb();
+			vi.mocked(mb.resolveRecording).mockImplementation(resolve);
+			vi.mocked(mb.fetchEntityGenresMb).mockImplementation(async () => []);
+			vi.mocked(mb.fetchTrackMetaMb).mockImplementation(async () => trackMeta);
+			return mb;
+		}
+		function importMb() {
+			return import("../src/musicbrainz.js");
+		}
+		const identityOf = (mbid: string, title: string) => ({
+			mbid,
+			title,
+			credit: [{ mbid: ROHFF, name: "Rohff" }],
+			primaryType: null,
+			firstReleaseDate: null,
+		});
+
+		it(
+			"does not serve Garbage to an honest click on Le Bitume (reviewer probe)",
+			async () => {
+				// MusicBrainz knows no "Garbage" by Rohff: the client's mbid has nothing to be confirmed by.
+				geminiReturning(trackDraftFixture("Garbage", "Rohff"));
+				await armMb(async () => null);
+				const service = await buildService(true);
+
+				const planted = await service.handleMaterialize({
+					type: "track",
+					name: "Garbage",
+					artist: "Rohff",
+					mbid: BITUME,
+				});
+				expect(planted.node.slug).toBe("track:garbage--rohff");
+				expect((planted.node as TrackNode).mbid).toBeUndefined();
+				expect(((await cache.get("track:garbage--rohff")) as TrackNode).mbid).toBeUndefined();
+				expect((await buildCacheIndex(dir)).byMbid(BITUME)).toBeNull();
+
+				// The honest click on "Le Bitume": MB confirms its own mbid, a new node is minted.
+				geminiReturning(trackDraftFixture("Le Bitume", "Rohff"));
+				await armMb(async () => identityOf(BITUME, "Le Bitume"));
+				const honest = await service.handleMaterialize({
+					type: "track",
+					name: "Le Bitume",
+					artist: "Rohff",
+					mbid: BITUME,
+				});
+				expect(honest.node).toMatchObject({
+					slug: "track:le-bitume--rohff",
+					name: "Le Bitume",
+					mbid: BITUME,
+				});
+				expect(honest.source).not.toBe("cache");
+			},
+			TIMEOUT_MS,
+		);
+
+		// CI review of #460: the mbid a cached node carries was established by the server. A refresh must
+		// not read it back as a client hint and drop it when MusicBrainz no longer singles the work out.
+		describe("refreshing a node that already carries a server mbid", () => {
+			const cachedBitume = () =>
+				({
+					...trackNode("track:le-bitume--rohff", "Le Bitume", [ref("Rohff", "artist:rohff")]),
+					mbid: BITUME,
+				}) as TrackNode;
+
+			it(
+				"keeps the mbid on fresh=1 without any client mbid, when MusicBrainz is ambiguous",
+				async () => {
+					await cache.write(cachedBitume());
+					geminiReturning(trackDraftFixture("Le Bitume", "Rohff"));
+					await armMb(async () => null);
+					const service = await buildService(true);
+
+					const result = await service.handleMaterialize(
+						{ type: "track", name: "Le Bitume", slug: "track:le-bitume--rohff" },
+						{ fresh: true },
+					);
+
+					expect(result.source).toBe("jit");
+					expect((result.node as TrackNode).mbid).toBe(BITUME);
+					expect(((await cache.get("track:le-bitume--rohff")) as TrackNode).mbid).toBe(BITUME);
+					expect((await buildCacheIndex(dir)).byMbid(BITUME)).toBe("track:le-bitume--rohff");
+				},
+				TIMEOUT_MS,
+			);
+
+			it(
+				"keeps the server mbid when the client sends another one: the client's stays a hint",
+				async () => {
+					await cache.write(cachedBitume());
+					geminiReturning(trackDraftFixture("Le Bitume", "Rohff"));
+					await armMb(async () => null);
+					const service = await buildService(true);
+
+					const result = await service.handleMaterialize(
+						{
+							type: "track",
+							name: "Le Bitume",
+							artist: "Rohff",
+							slug: "track:le-bitume--rohff",
+							mbid: GARBAGE,
+						},
+						{ fresh: true },
+					);
+
+					expect((result.node as TrackNode).mbid).toBe(BITUME);
+					expect((await buildCacheIndex(dir)).byMbid(GARBAGE)).toBeNull();
+				},
+				TIMEOUT_MS,
+			);
+		});
+
+		it(
+			"writes no mbid when MusicBrainz resolves the work to another mbid than the client's",
+			async () => {
+				geminiReturning(trackDraftFixture("Garbage", "Rohff"));
+				await armMb(async () => identityOf(GARBAGE, "Garbage"));
+				const service = await buildService(true);
+
+				const result = await service.handleMaterialize({
+					type: "track",
+					name: "Garbage",
+					artist: "Rohff",
+					mbid: BITUME,
+				});
+
+				// Neither the client's mbid nor, in its place, MusicBrainz's other answer.
+				expect((result.node as TrackNode).mbid).toBeUndefined();
+				expect((await buildCacheIndex(dir)).byMbid(BITUME)).toBeNull();
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"stamps the mbid when MusicBrainz's own resolution lands on the client's hint",
+			async () => {
+				geminiReturning(trackDraftFixture("Le Bitume", "Rohff"));
+				await armMb(async () => identityOf(BITUME, "Le Bitume"));
+				const service = await buildService(true);
+
+				const result = await service.handleMaterialize({
+					type: "track",
+					name: "Le Bitume",
+					artist: "Rohff",
+					mbid: BITUME.toUpperCase(),
+				});
+
+				expect((result.node as TrackNode).mbid).toBe(BITUME);
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"does the same for a project: a release-group mbid MusicBrainz does not confirm is dropped",
+			async () => {
+				geminiReturning(projectDraftFixture("New Forms", "Roni Size"));
+				const mb = await importMb();
+				vi.mocked(mb.resolveReleaseGroup).mockImplementation(async () => null);
+				const service = await buildService(true);
+
+				const result = await service.handleMaterialize({
+					type: "project",
+					name: "New Forms",
+					artist: "Roni Size",
+					mbid: RG_MBID,
+				});
+
+				expect((result.node as ProjectNode).mbid).toBeUndefined();
+				expect((await buildCacheIndex(dir)).byMbid(RG_MBID)).toBeNull();
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"does not rewrite a cached work because the client sent another mbid (flag off, legacy refresh)",
+			async () => {
+				vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "false");
+				await cache.write({
+					...trackNode("track:garbage", "Garbage", [ref("Garbage", "artist:garbage")]),
+					mbid: GARBAGE,
+				} as TrackNode);
+				await noPipeline();
+				const service = await buildService();
+
+				const result = await service.handleMaterialize({ type: "track", name: "Garbage", mbid: BITUME });
+
+				expect(result).toMatchObject({ source: "cache", node: { slug: "track:garbage", mbid: GARBAGE } });
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"flag off: an unconfirmed client mbid is not stamped either (the /search chip path)",
+			async () => {
+				vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "false");
+				geminiReturning(trackDraftFixture("Garbage", "Rohff"));
+				await armMb(async () => null);
+				const service = await buildService();
+
+				const result = await service.handleMaterialize({ type: "track", name: "Garbage", mbid: BITUME });
+
+				expect((result.node as TrackNode).mbid).toBeUndefined();
+			},
+			TIMEOUT_MS,
+		);
+	});
+
 	// Review of #452 (B2): the web front sends a scoped slug and no artist; the scope is the hint.
 	it(
 		"gives MusicBrainz the artist of a scoped slug sent without `artist`",

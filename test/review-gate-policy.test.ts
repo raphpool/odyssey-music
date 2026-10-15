@@ -35,8 +35,23 @@ describe("review gate policy", () => {
 		},
 	);
 
+	// TRA-522 / TRA-521 / TRA-553: the review prompt's calibration file and the script that decides verdict reuse.
+	// `review.md` is `REVIEW.md` on the case-insensitive APFS of the self-hosted runners.
+	it.each([
+		"REVIEW.md",
+		"review.md",
+		"Review.MD",
+		"scripts/ci/review-reuse.ts",
+		"Scripts/CI/Review-Reuse.ts",
+	])("classifies a PR that only touches %s as tier/3, whatever its label", (path) => {
+		expect(classifyRisk([path], [])).toBe(3);
+		expect(classifyRisk([path], ["tier/1"])).toBe(3);
+		expect(classifyRisk([path], ["tier/2"])).toBe(3);
+	});
+
 	it("does not escalate on lookalike paths", () => {
 		expect(classifyRisk(["data/genre-catalog.json", "scripts/audit-cache-notes.md"], [])).toBe(1);
+		expect(classifyRisk(["docs/REVIEW.md", "REVIEW.md.bak"], [])).toBe(1);
 	});
 
 	it("does not allow deep success to mask an ordinary blocking finding", () => {

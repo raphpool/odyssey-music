@@ -94,6 +94,8 @@ async function loadGenreCatalogByQid(): Promise<Map<string, WikidataGenreEntry>>
 	return byQid;
 }
 
+import { isAllowedImageUrl } from "./images/hosts.js";
+import type { ResolvedImage } from "./images/resolve-image.js";
 import { firecrawlSearch } from "./tools/firecrawl-search.js";
 import { rankResults, rankUrl, type TavilyResult, tavilySearch } from "./tools/tavily.js";
 import type { Citation, EdgeRef, NodePayload, NodeType, Slug } from "./types.js";
@@ -125,6 +127,11 @@ export interface PipelineDeps {
 	// -> artist:ryuichi-sakamoto). Left unset, credits get makeSlug("artist", name), and a work whose
 	// credit has no Latin name cannot be scoped (the slug asked for is kept).
 	artistByMbid?: ArtistByMbid;
+	// OPTIONAL (TRA-479): picks the node's image once, after MusicBrainz enrichment (CAA and Wikidata
+	// need the MBID). Unset = no image step, as before. It runs on the node as this pipeline enriched
+	// it, so the mbid it reads is the one the pipeline settled on. A miss, a throw or a timeout leaves
+	// the node without an image: the pipeline never fails because of it.
+	resolveImage?: (node: NodePayload) => Promise<ResolvedImage | null>;
 }
 
 /** The artist node a cache holds for an MB artist id: its slug and the name it is filed under. */
@@ -135,6 +142,10 @@ export interface PipelineInput {
 	name: string;
 	disambiguator?: string;
 	mbid?: string;
+	// TRA-538: true when `mbid` comes from an HTTP client. It is then only a search hint: a work (track,
+	// project) carries it only if MB's own resolution by title + credit lands on it. Unset for trusted
+	// callers (seed folders, dangling top-up), whose MBID is used directly.
+	mbidIsClientHint?: boolean;
 	// 2026-09-10 (TRA-28 review, B1/B2): when set, the produced node is written under this
 	// EXACT slug instead of one freshly derived from name/type/disambiguator (canonicalizeDraft).
 	// `name`/`disambiguator` still drive research and content generation as usual. For a caller
@@ -728,6 +739,8 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	// genre edges here once covers every producer, present and future (decision d'archi 7,
 	// docs/plans/qid-genre-identity.md).
 	await deps.genreRegistry?.canonicalizeNodeEdges(node);
+	// After the genre edges are canonical (a derived cover follows edges by slug), before validation.
+	await attachResolvedImage(node as Record<string, unknown>, deps.resolveImage, log);
 	const validated = validateNode(node);
 
 	return {
@@ -736,6 +749,58 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 		...(requestedSlug ? { requestedSlug } : {}),
 		metrics: buildMetrics(t0, research, draft),
 	};
+}
+
+// Upper bound on the image step: the resolver makes several third-party requests, and none of them
+// may hold a materialization (a Gemini call already paid for) hostage.
+const IMAGE_RESOLVE_TIMEOUT_MS = 20_000;
+
+/**
+ * TRA-479: set `image_url` / `image_source` on the draft when the resolver finds a picture.
+ * The URL is third-party data, so it goes through `isAllowedImageUrl` here as well: the node schema
+ * refuses a disallowed host and validateNode would throw -- an image must never cost the node.
+ */
+async function attachResolvedImage(
+	node: Record<string, unknown>,
+	resolveImage: PipelineDeps["resolveImage"],
+	log: PipelineLog,
+): Promise<void> {
+	if (!resolveImage) return;
+	const label = `${String(node.type)}:${String(node.slug)}`;
+	let timer: ReturnType<typeof setTimeout> | undefined;
+	try {
+		const timeout = new Promise<never>((_, reject) => {
+			timer = setTimeout(() => reject(new Error("timed out")), IMAGE_RESOLVE_TIMEOUT_MS);
+		});
+		const found = await Promise.race([resolveImage(node as unknown as NodePayload), timeout]);
+		if (!found) {
+			log(`[pipeline] no image resolved for ${label}`);
+			return;
+		}
+		if (typeof found.url !== "string" || !isAllowedImageUrl(found.url)) {
+			log(`[pipeline] image refused for ${label}: host not allowed`);
+			return;
+		}
+		node.image_url = found.url;
+		if (found.source) node.image_source = found.source;
+		else delete node.image_source;
+		log(`[pipeline] image resolved for ${label} source=${found.source ?? "-"}`);
+	} catch (e) {
+		const msg = e instanceof Error ? e.message : String(e);
+		log(`[pipeline] image resolution skipped for ${label}: ${msg.slice(0, 100)}`);
+	} finally {
+		clearTimeout(timer);
+	}
+}
+
+/**
+ * TRA-538: a client-supplied MBID is only a search hint. The server's own resolution (title + credit)
+ * decides which MBID a work node carries; when a hint exists the resolution must land on it, or the
+ * node gets none. 2026-10-15 symptom (TRA-477 review probe): `track:garbage--rohff` created with the
+ * MBID of "Le Bitume" then answered "Garbage" to every honest click on "Le Bitume", through `byMbid`.
+ */
+function confirmsHint(resolved: string, hint: string | undefined): boolean {
+	return hint === undefined || hint.toLowerCase() === resolved.toLowerCase();
 }
 
 async function researchTarget(
@@ -1186,15 +1251,23 @@ async function enrichNode(
 	}
 	if (input.type === "track") {
 		try {
-			let mbid = input.mbid;
-			// The credit of the recording MB resolved by title + artist hint. Absent when the caller supplied
-			// the MBID: the metadata fetch below then provides it.
+			// TRA-538: an MBID that comes from a client (`mbidIsClientHint`) is never stamped as is: MB's own
+			// resolution (title + credit) has to land on it. A trusted caller's MBID (seed folders, dangling
+			// top-up) is used directly, as before.
+			const clientHint = input.mbidIsClientHint === true ? input.mbid : undefined;
+			let mbid: string | undefined = clientHint ? undefined : input.mbid;
+			// The credit of the recording MB resolved by title + artist hint. Absent when a trusted caller
+			// supplied the MBID: the metadata fetch below then provides it.
 			let resolvedCredit: MbCredit[] = [];
 			if (!mbid) {
 				const identity = await resolveRecording(input.name, input.artist);
-				if (identity) {
+				if (identity && confirmsHint(identity.mbid, clientHint)) {
 					mbid = identity.mbid;
 					resolvedCredit = identity.credit;
+				} else if (identity) {
+					log(
+						`[pipeline] track "${input.name}" left without MBID (MB resolved ${identity.mbid}, not the client hint ${clientHint})`,
+					);
 				} else {
 					log(`[pipeline] track "${input.name}" left without MBID (no single exact MB recording)`);
 				}
@@ -1250,14 +1323,20 @@ async function enrichNode(
 	}
 	if (input.type === "project") {
 		try {
-			let mbid = input.mbid;
-			// Same as the track branch: the credit of the release group resolved by title + artist hint.
+			// Same as the track branch (TRA-538): a client's MBID must be confirmed by MB's resolution.
+			const clientHint = input.mbidIsClientHint === true ? input.mbid : undefined;
+			let mbid: string | undefined = clientHint ? undefined : input.mbid;
+			// The credit of the release group resolved by title + artist hint.
 			let resolvedCredit: MbCredit[] = [];
 			if (!mbid) {
 				const identity = await resolveReleaseGroup(input.name, input.artist);
-				if (identity) {
+				if (identity && confirmsHint(identity.mbid, clientHint)) {
 					mbid = identity.mbid;
 					resolvedCredit = identity.credit;
+				} else if (identity) {
+					log(
+						`[pipeline] project "${input.name}" left without MBID (MB resolved ${identity.mbid}, not the client hint ${clientHint})`,
+					);
 				} else {
 					log(`[pipeline] project "${input.name}" left without MBID (no single exact MB release group)`);
 				}

@@ -35,7 +35,13 @@ final class EditorialGenreTaxonomyTests: XCTestCase {
 	}
 
 	func testDegradedCatalogYieldsNoTaxonomy() throws {
-		XCTAssertNil(EditorialGenreTaxonomy(catalog: try OnboardingFixture.catalog()))
+		let json = """
+			{"version": "v1", "revision": "sha256:\(String(repeating: "0123456789abcdef", count: 4))",
+			"taxonomy": {"mode": "degraded", "available": true},
+			"nodes": [{"identity": "genre:jazz", "type": "genre", "name": "Jazz", "teaser": null}], "edges": []}
+			"""
+		let catalog = try JSONDecoder().decode(Catalog.self, from: Data(json.utf8))
+		XCTAssertNil(EditorialGenreTaxonomy(catalog: catalog))
 	}
 
 	func testEditorialCatalogWithoutAnyPresentSlugYieldsNoTaxonomy() throws {

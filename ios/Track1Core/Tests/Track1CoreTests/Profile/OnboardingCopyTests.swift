@@ -19,4 +19,26 @@ final class OnboardingCopyTests: XCTestCase {
 	func testANegativeCountReadsAsZero() {
 		XCTAssertEqual(OnboardingCopy.counter(-3), "Total : 0 genre")
 	}
+
+	func testTheSummaryCountsFamiliesAndGenres() {
+		XCTAssertEqual(OnboardingCopy.selectionSummary(families: 2, genres: 5), "2 familles · 5 sous-genres")
+	}
+
+	func testTheSummaryIsSingularForOne() {
+		XCTAssertEqual(OnboardingCopy.selectionSummary(families: 1, genres: 1), "1 famille · 1 sous-genre")
+	}
+
+	func testTheSummaryLeavesOutTheGenresWhenNoneIsTicked() {
+		// A family left whole counts for all of its genres: there is no ticked count to show.
+		XCTAssertEqual(OnboardingCopy.selectionSummary(families: 1, genres: 0), "1 famille")
+		XCTAssertEqual(OnboardingCopy.selectionSummary(families: 3, genres: 0), "3 familles")
+	}
+
+	func testANegativeSummaryCountReadsAsZero() {
+		XCTAssertEqual(OnboardingCopy.selectionSummary(families: -1, genres: -4), "0 famille")
+	}
+
+	func testTheHelpLineTellsThatAnEmptyListIsTheWholeFamily() {
+		XCTAssertEqual(OnboardingCopy.wholeFamilyHint, "Sans sous-genre coché, toute la famille compte.")
+	}
 }
