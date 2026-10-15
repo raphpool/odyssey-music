@@ -12,12 +12,28 @@ enum UITestFlows {
 	private static let project = "project:project-a"
 	private static let track = "track:track-a"
 	private static let label = "label:label-a"
-	/// Two parents, each with one subgenre: the onboarding taxonomy is read off the `subgenres` edges (D13).
+	/// Two families, each with one published genre: the editorial taxonomy the catalog serves (plan D4). The
+	/// slug of a published genre is a genre node of the catalog, so the first family derives `genre:genre-0a`.
 	private static let parents = ["genre:genre-0", "genre:genre-1"]
 	private static let subgenres = ["genre:genre-0a", "genre:genre-1a"]
 	private static let genres = parents + subgenres
+	/// Computed: a stored `[String: Any]` is not `Sendable`, which a static property must be.
+	private static var editorialTaxonomy: [String: Any] {
+		[
+			"mode": "editorial", "version": 2,
+			"families": [
+				["key": "family-0", "label": "Family 0", "order": 1],
+				["key": "family-1", "label": "Family 1", "order": 2],
+			],
+			"genres": [
+				["id": "local:genre-0a", "name": "Genre 0a", "family": "family-0", "slugs": [subgenres[0]]],
+				["id": "local:genre-1a", "name": "Genre 1a", "family": "family-1", "slugs": [subgenres[1]]],
+			],
+			"legacySelectionBySlug": [String: [String]](),
+		]
+	}
 
-	/// The two parents and their subgenres, one work of each recommendable type linked to the first parent by
+	/// The two families and their genres, one work of each recommendable type linked to the first genre by
 	/// `genres` edges, and a label, so that the pages of the five node types exist.
 	static let catalogJSON = catalog(
 		slugs: genres + [artist, project, track, label], linked: [artist, project, track])
@@ -77,17 +93,18 @@ enum UITestFlows {
 		app.buttons["analytics-consent-decline"].tap()
 	}
 
-	/// The first launch up to the end of the flow: Welcome, the first parent, its subgenre step. A parent alone
-	/// is already a profile (D13). Every step waits for the next one: the push animations are not instant.
+	/// The first launch up to the end of the flow: Welcome, the first family, its genre step. A family alone
+	/// is already a profile (it stands for all of its genres). Every step waits for the next one: the push
+	/// animations are not instant.
 	@MainActor
 	static func completeOnboarding(_ app: XCUIApplication) {
 		tapWhenReady(app.buttons["onboarding-start"])
-		tapWhenReady(app.buttons["genre-tile-\(genre0)"])
+		tapWhenReady(app.buttons["genre-tile-family-0"])
 		tapWhenReady(app.buttons["onboarding-genres-continue"])
 		tapWhenReady(app.buttons["onboarding-subgenres-continue"])
 	}
 
-	/// Waits for `element` to be there and enabled (the CTA of a step is disabled until a parent is chosen).
+	/// Waits for `element` to be there and enabled (the CTA of a step is disabled until a family is chosen).
 	@MainActor
 	static func tapWhenReady(_ element: XCUIElement, timeout: TimeInterval = 10) {
 		XCTAssertTrue(element.waitForExistence(timeout: timeout), "\(element) did not appear")
@@ -118,18 +135,17 @@ enum UITestFlows {
 		String(slug.prefix { $0 != ":" })
 	}
 
-	/// `linked` works get a `genres` edge to the first genre.
+	/// `linked` works get a `genres` edge to the first published genre, the one the first family derives.
 	private static func catalog(slugs: [String], linked: [String]) -> String {
 		json([
 			"version": "v1",
 			"revision": "sha256:" + String(repeating: "a", count: 64),
-			"taxonomy": ["mode": "degraded", "available": true],
+			"taxonomy": editorialTaxonomy,
 			"nodes": slugs.map {
 				["identity": $0, "type": type(ofSlug: $0), "name": name(of: $0), "teaser": NSNull()]
 			},
-			// A parent lists its subgenre; the works linked to the first parent carry the `genres` edge the pick follows.
-			"edges": zip(parents, subgenres).map { ["source": $0, "target": $1, "type": "subgenres"] }
-				+ linked.map { ["source": $0, "target": genre0, "type": "genres"] },
+			// The works linked to the first genre carry the `genres` edge the pick follows.
+			"edges": linked.map { ["source": $0, "target": subgenres[0], "type": "genres"] },
 		])
 	}
 

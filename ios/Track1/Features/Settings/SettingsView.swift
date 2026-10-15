@@ -104,6 +104,10 @@ struct SettingsView: View {
 
 	private var profileDescription: String {
 		guard let profile else { return "Aucun profil" }
+		// A v1 profile has no selection until it is edited: its slugs are all there is to count.
+		if let selection = profile.selection {
+			return OnboardingCopy.selectionSummary(families: selection.families.count, genres: selection.genres.count)
+		}
 		return profile.genreIDs.count == 1 ? "1 genre sélectionné" : "\(profile.genreIDs.count) genres sélectionnés"
 	}
 
