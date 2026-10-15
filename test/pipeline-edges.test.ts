@@ -278,7 +278,7 @@ describe("normalizeEdge -- flag off emits what main emits (TRA-509)", () => {
 		expect(project?.slug).toBe("project:new-forms");
 	});
 
-	it("drops nothing: no artist, non-Latin artist, self link and off-spec type all stay", () => {
+	it("does not drop a work for a missing or non-Latin artist", () => {
 		const onDrop = vi.fn();
 		expect(normalizeEdge({ type: "project", name: "New Forms" }, ["project"], GENRE_CTX, onDrop)?.slug).toBe(
 			"project:new-forms",
@@ -291,18 +291,20 @@ describe("normalizeEdge -- flag off emits what main emits (TRA-509)", () => {
 				onDrop,
 			)?.slug,
 		).toBe("track:merry-christmas");
+		expect(onDrop).not.toHaveBeenCalled();
+	});
+
+	it("still rejects a self link and a target type the field does not allow", () => {
+		const onDrop = vi.fn();
 		const cartola: EdgeContext = {
 			sourceSlug: "artist:cartola" as Slug,
 			sourceType: "artist",
 			sourceName: "Cartola",
 		};
-		expect(normalizeEdge({ type: "artist", name: "Cartola" }, ["artist"], cartola, onDrop)?.slug).toBe(
-			"artist:cartola",
-		);
-		expect(normalizeEdge({ type: "label", name: "Moving Shadow" }, ["genre"], ARTIST_CTX, onDrop)?.slug).toBe(
-			"label:moving-shadow",
-		);
-		expect(onDrop).not.toHaveBeenCalled();
+		expect(normalizeEdge({ type: "artist", name: "Cartola" }, ["artist"], cartola, onDrop)).toBeNull();
+		expect(onDrop).toHaveBeenCalledWith("self reference", 'artist "Cartola"');
+		expect(normalizeEdge({ type: "label", name: "Moving Shadow" }, ["genre"], ARTIST_CTX, onDrop)).toBeNull();
+		expect(onDrop).toHaveBeenCalledWith("type not allowed here", 'label "Moving Shadow"');
 	});
 
 	it("defaults to off when the variable is unset", () => {

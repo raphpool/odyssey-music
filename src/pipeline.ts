@@ -1651,9 +1651,11 @@ export function normalizeEdge(
 	if (!(NODE_TYPES as readonly string[]).includes(r.type)) return null;
 	const t = r.type as NodeType;
 	const name = r.name.trim();
-	// Flag off = the slugs and the drops main has (TRA-509): only `artist` is stamped when known.
+	// Only the scoped slug and the drop of an artist-less work depend on the flag (TRA-509). Off, a work
+	// keeps main's bare slug and `artist` is stamped when known. Self links and off-spec target types are
+	// rejected either way: integrity fixes with no duplicate risk (13 `members` self-edges in the cache).
 	const scopedSlugs = scopedReleaseSlugsEnabled();
-	if (scopedSlugs && !allowed.includes(t)) {
+	if (!allowed.includes(t)) {
 		onDrop?.("type not allowed here", `${t} "${name}"`);
 		return null;
 	}
@@ -1679,7 +1681,7 @@ export function normalizeEdge(
 		} else {
 			out = { slug: makeSlug(t, name), type: t, name };
 		}
-		if (scopedSlugs && out.slug === ctx.sourceSlug) {
+		if (out.slug === ctx.sourceSlug) {
 			onDrop?.("self reference", `${t} "${name}"`);
 			return null;
 		}

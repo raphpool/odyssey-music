@@ -434,6 +434,21 @@ describe("scoped work edges, flag off (TRA-509)", () => {
 	);
 
 	it(
+		"still empties members when an artist lists themselves",
+		async () => {
+			installPipelineMocks({
+				draft: artistDraftFixture({ name: "Cartola", members: [{ type: "artist", name: "Cartola" }] }),
+			});
+			const runPipeline = await loadRunPipeline();
+
+			const result = await runPipeline({ type: "artist", name: "Cartola" }, DEPS);
+
+			expect((result.node as ArtistNode).members).toEqual([]);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
 		"keeps bare slugs on an MB tracklist and on label releases, credited or not",
 		async () => {
 			installPipelineMocks({
