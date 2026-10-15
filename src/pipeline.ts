@@ -398,6 +398,19 @@ export function makeNodeSchema(type: NodeType): SchemaShape {
 							minItems: "1",
 							maxItems: "8",
 						},
+						// Optional on purpose (TRA-470): the same single call picks the landmark, and
+						// enforceArtistChoices repairs a missing or off-list pick. The instruction lives in the
+						// property description, not the system prompt (Gemini Flash Lite honors those better).
+						landmark_project: {
+							...edgeRefSchemaFor("artist", "landmark_project"),
+							description:
+								"The single most important album of this artist; must repeat one entry of discography exactly.",
+						},
+						reference_track: {
+							...edgeRefSchemaFor("artist", "reference_track"),
+							description:
+								"The single track that best represents this artist; must repeat one entry of notable_tracks exactly.",
+						},
 						influences: {
 							type: GType.ARRAY,
 							items: edgeRefSchemaFor("artist", "influences"),
@@ -681,6 +694,9 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	const draft = await generateNodeDraft(input, deps, research, log);
 	const node = canonicalizeDraft(draft.raw, input, research.corpus, research.allowedUrls, log);
 	await enrichFromMusicBrainz(node, input, log, deps.genreRegistry);
+	// MusicBrainz just rewrote discography: the picks made in canonicalizeDraft are checked again against the
+	// lists that will actually be written (TRA-470).
+	if (input.type === "artist") enforceArtistChoices(node as Record<string, unknown>, log);
 	// 2026-09-09: mbGenreEdges, the parent_genres catalog backfill, and canonicalizeDraft each
 	// derive a genre edge's slug from its display name alone, which produced 20 groups of
 	// duplicate genre nodes sharing a QID (e.g. "electronic" / "electronic-music"). All three
@@ -1530,7 +1546,54 @@ function canonicalizeDraft(
 			else delete next[k];
 		}
 	}
+	// Last, once the lists are normalized: the picks are compared with what will be written (TRA-470).
+	if (input.type === "artist") enforceArtistChoices(next, log);
 	return next;
+}
+
+// Singular artist picks and the list each must come from (plan graph-integrity, decision 7).
+const ARTIST_CHOICES: readonly { field: "landmark_project" | "reference_track"; list: string }[] = [
+	{ field: "landmark_project", list: "discography" },
+	{ field: "reference_track", list: "notable_tracks" },
+];
+
+function slugOf(edge: unknown): string | undefined {
+	if (!edge || typeof edge !== "object") return undefined;
+	const slug = (edge as { slug?: unknown }).slug;
+	return typeof slug === "string" && slug ? slug : undefined;
+}
+
+/**
+ * Makes `landmark_project` / `reference_track` of an artist draft members of `discography` /
+ * `notable_tracks`, compared by slug (so it holds with bare and scoped slugs alike): a member is kept
+ * as the list's own entry, anything else becomes the list's first entry, and an empty list leaves the
+ * field absent. Mutates `node`; idempotent, so it runs once the draft is normalized and again after the
+ * MusicBrainz enrichment rewrites the discography. Gemini is constrained by the schema, but a provider
+ * that is not can emit a pick that is in no list, and the normalization loop would write it as is.
+ */
+export function enforceArtistChoices(
+	node: Record<string, unknown>,
+	log: PipelineLog = () => undefined,
+): void {
+	const where = typeof node.slug === "string" ? node.slug : "artist";
+	for (const { field, list } of ARTIST_CHOICES) {
+		const entries = Array.isArray(node[list]) ? (node[list] as unknown[]).filter((e) => slugOf(e)) : [];
+		const first = entries[0];
+		if (first === undefined) {
+			if (node[field] !== undefined) log(`[pipeline] ${field} dropped: ${list} is empty (${where})`);
+			delete node[field];
+			continue;
+		}
+		const pick = slugOf(node[field]);
+		const member = pick === undefined ? undefined : entries.find((e) => slugOf(e) === pick);
+		if (member !== undefined) {
+			node[field] = { ...(member as object) };
+			continue;
+		}
+		if (node[field] === undefined) log(`[pipeline] ${field} missing, using ${list}[0] (${where})`);
+		else log(`[pipeline] ${field} not in ${list}, using ${list}[0] (${where}: ${pick ?? "unreadable pick"})`);
+		node[field] = { ...(first as object) };
+	}
 }
 
 function validateNode(node: unknown): NodePayload {
@@ -1566,6 +1629,9 @@ export interface EdgeContext {
 const INHERITS_SOURCE_ARTIST: ReadonlySet<string> = new Set([
 	"artist.discography",
 	"artist.notable_tracks",
+	// The artist's own picks among the two lists above (TRA-470): one that omits `artist` must still match.
+	"artist.landmark_project",
+	"artist.reference_track",
 	"project.tracklist",
 	"track.project",
 ]);

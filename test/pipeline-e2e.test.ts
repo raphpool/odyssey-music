@@ -865,3 +865,192 @@ describe("research corpus has at least two source pages (TRA-459)", () => {
 		TIMEOUT_MS,
 	);
 });
+
+// TRA-470: the LLM picks the landmark album and the reference track in the same call; whatever a provider
+// emits, the written node holds a member of discography / notable_tracks (compared by slug), or nothing.
+// Both slug modes: the comparison must not depend on ODYSSEY_SCOPED_RELEASE_SLUGS.
+describe.each([
+	{ flag: "true", label: "scoped slugs", slug: (t: string, n: string) => `${t}:${n}--fixture-artist` },
+	{ flag: "false", label: "bare slugs", slug: (t: string, n: string) => `${t}:${n}` },
+])("landmark_project / reference_track membership, $label (TRA-470)", ({ flag, slug }) => {
+	beforeEach(() => {
+		vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", flag);
+	});
+	afterEach(() => {
+		vi.unstubAllEnvs();
+	});
+
+	const run = async (draft: Record<string, unknown>, lines: string[] = []) => {
+		installPipelineMocks({ draft });
+		const runPipeline = await loadRunPipeline();
+		const result = await runPipeline(
+			{ type: "artist", name: "Fixture Artist" },
+			{ ...DEPS, logger: (line) => lines.push(line) },
+		);
+		return result.node as ArtistNode;
+	};
+
+	it(
+		"keeps a landmark_project that is the second entry of discography",
+		async () => {
+			const lines: string[] = [];
+			const artist = await run(
+				artistDraftFixture({
+					landmark_project: { type: "project", name: "Fixture EP", artist: "Fixture Artist" },
+				}),
+				lines,
+			);
+
+			expect(artist.landmark_project?.slug).toBe(slug("project", "fixture-ep"));
+			expect(artist.landmark_project?.slug).toBe(artist.discography[1]?.slug);
+			expect(artist.reference_track?.slug).toBe(slug("track", "fixture-track"));
+			expect(lines.some((l) => l.includes("not in discography"))).toBe(false);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"replaces a landmark_project absent from discography with discography[0] and logs it",
+		async () => {
+			const lines: string[] = [];
+			const artist = await run(
+				artistDraftFixture({
+					landmark_project: { type: "project", name: "Hallucinated Album", artist: "Fixture Artist" },
+				}),
+				lines,
+			);
+
+			expect(artist.landmark_project?.slug).toBe(artist.discography[0]?.slug);
+			expect(artist.landmark_project?.name).toBe("Fixture Album");
+			expect(lines.some((l) => l.includes("landmark_project not in discography"))).toBe(true);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"fills in the first entries when the draft names neither pick",
+		async () => {
+			const lines: string[] = [];
+			const artist = await run(
+				artistDraftFixture({ landmark_project: undefined, reference_track: undefined }),
+				lines,
+			);
+
+			expect(artist.landmark_project?.slug).toBe(artist.discography[0]?.slug);
+			expect(artist.reference_track?.slug).toBe(artist.notable_tracks[0]?.slug);
+			expect(lines.some((l) => l.includes("landmark_project missing"))).toBe(true);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"writes no landmark_project when the draft has no discography, even if the LLM named one",
+		async () => {
+			const artist = await run(artistDraftFixture({ discography: [] }));
+
+			expect(artist.discography).toEqual([]);
+			expect("landmark_project" in artist).toBe(false);
+			expect(artist.reference_track?.slug).toBe(slug("track", "fixture-track"));
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"writes no reference_track when it is off the list and notable_tracks is empty",
+		async () => {
+			const artist = await run(
+				artistDraftFixture({
+					notable_tracks: [],
+					reference_track: { type: "track", name: "Hallucinated Track", artist: "Fixture Artist" },
+				}),
+			);
+
+			expect(artist.notable_tracks).toEqual([]);
+			expect("reference_track" in artist).toBe(false);
+			expect(artist.landmark_project?.slug).toBe(slug("project", "fixture-album"));
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"replaces an off-list reference_track with notable_tracks[0]",
+		async () => {
+			const lines: string[] = [];
+			const artist = await run(
+				artistDraftFixture({
+					reference_track: { type: "track", name: "Hallucinated Track", artist: "Fixture Artist" },
+				}),
+				lines,
+			);
+
+			expect(artist.reference_track?.slug).toBe(artist.notable_tracks[0]?.slug);
+			expect(lines.some((l) => l.includes("reference_track not in notable_tracks"))).toBe(true);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"still matches a pick that omits artist, as an unconstrained provider may emit it",
+		async () => {
+			const artist = await run(
+				artistDraftFixture({
+					landmark_project: { type: "project", name: "Fixture EP" },
+					reference_track: { type: "track", name: "Fixture Track" },
+				}),
+			);
+
+			expect(artist.landmark_project?.slug).toBe(slug("project", "fixture-ep"));
+			expect(artist.reference_track?.slug).toBe(slug("track", "fixture-track"));
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"checks the pick against the MusicBrainz discography that replaces the draft's",
+		async () => {
+			const mbRelease = (title: string, date: string, mbid: string) => ({
+				mbid,
+				title,
+				firstReleaseDate: date,
+				primaryType: "Album" as const,
+				secondaryTypes: [],
+			});
+			const releases = [
+				mbRelease("Old Record", "2001-01-01", "11111111-2222-3333-4444-555555555501"),
+				mbRelease("Newest Record", "2024-01-01", "11111111-2222-3333-4444-555555555502"),
+			];
+			const { fetchArtistDiscographyMb } = await import("../src/musicbrainz.js");
+			const runPipeline = await loadRunPipeline();
+
+			// The pick is in the draft but not in the MB list that overwrites it: back to MB's first entry.
+			const lines: string[] = [];
+			installPipelineMocks({ draft: artistDraftFixture() });
+			vi.mocked(fetchArtistDiscographyMb).mockImplementation(async () => releases);
+			const off = (
+				await runPipeline(
+					{ type: "artist", name: "Fixture Artist" },
+					{ ...DEPS, logger: (line) => lines.push(line) },
+				)
+			).node as ArtistNode;
+			expect(off.discography.map((e) => e.name)).toEqual(["Newest Record", "Old Record"]);
+			expect(off.landmark_project?.slug).toBe(slug("project", "newest-record"));
+			expect(lines.some((l) => l.includes("landmark_project not in discography"))).toBe(true);
+
+			// The pick is in the draft and is also an MB release: kept, and it carries the MB data of that entry.
+			installPipelineMocks({
+				draft: artistDraftFixture({
+					discography: [
+						{ type: "project", name: "Fixture Album", artist: "Fixture Artist" },
+						{ type: "project", name: "Old Record", artist: "Fixture Artist" },
+					],
+					landmark_project: { type: "project", name: "Old Record", artist: "Fixture Artist" },
+				}),
+			});
+			vi.mocked(fetchArtistDiscographyMb).mockImplementation(async () => releases);
+			const on = (await runPipeline({ type: "artist", name: "Fixture Artist" }, DEPS)).node as ArtistNode;
+			expect(on.landmark_project?.slug).toBe(slug("project", "old-record"));
+			expect(on.landmark_project?.mbid).toBe("11111111-2222-3333-4444-555555555501");
+		},
+		TIMEOUT_MS,
+	);
+});
