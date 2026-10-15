@@ -85,7 +85,12 @@ export interface ResolvedWork {
 	notes?: string[];
 }
 
-export type UnresolvedReason = "no-hint" | "no-match" | "credit-mismatch" | "unmappable-credit";
+export type UnresolvedReason =
+	| "no-hint"
+	| "no-match"
+	| "credit-mismatch"
+	| "year-mismatch"
+	| "unmappable-credit";
 
 export interface UnresolvedWork {
 	slug: string;
@@ -173,7 +178,13 @@ async function readManifest(path: string): Promise<ReleaseManifest | null> {
 	for (const [slug, entry] of Object.entries(parsed.resolved)) {
 		if (isResolvedWork(entry)) resolved[slug] = entry;
 	}
-	const reasons: readonly unknown[] = ["no-hint", "no-match", "credit-mismatch", "unmappable-credit"];
+	const reasons: readonly unknown[] = [
+		"no-hint",
+		"no-match",
+		"credit-mismatch",
+		"year-mismatch",
+		"unmappable-credit",
+	];
 	const ambiguousReasons: readonly unknown[] = [
 		"several-artists-point-here",
 		"several-artist-nodes-share-the-credit-mbid",
@@ -510,6 +521,17 @@ function yearOf(date: string | null): string | null {
 	return date !== null && /^\d{4}/.test(date) ? date.slice(0, 4) : null;
 }
 
+/**
+ * A node that states a year must not contradict MusicBrainz's first release by more than one year.
+ * Same title and same artist is not always the same work: the cache's "Fading" (DFRNT, 2012), listed
+ * by mistake in Pole's discography, matched Pole's 2020 album of the same name. A node with no year,
+ * or a year that is not four digits, has nothing to contradict.
+ */
+export function yearsAgree(nodeYear: string | undefined, mbYear: string | null): boolean {
+	if (nodeYear === undefined || mbYear === null || !/^\d{4}$/.test(nodeYear.trim())) return true;
+	return Math.abs(Number(nodeYear.trim()) - Number(mbYear)) <= 1;
+}
+
 function releaseTypeOf(primary: string | null): ReleaseType | null {
 	const lower = primary?.toLowerCase() ?? "";
 	return (RELEASE_TYPES as readonly string[]).includes(lower) ? (lower as ReleaseType) : null;
@@ -519,6 +541,11 @@ function labelEdge(label: { mbid: string; name: string }, ctx: Context, notes: s
 	const mbid = validMbid(label.mbid);
 	const name = text(label.name);
 	if (!mbid || !name) return null;
+	// MB's special-purpose labels ("[no label]", "[unknown]"...) are placeholders, not labels.
+	if (/^\[.*\]$/.test(name.trim())) {
+		notes.push(`label: ${name} is a MusicBrainz placeholder`);
+		return null;
+	}
 	const owners = ctx.labelSlugsByMbid.get(mbid) ?? [];
 	if (owners.length > 1) {
 		notes.push(`label: several cache labels share the MBID ${mbid}`);
@@ -625,6 +652,28 @@ export function planWrite(
 	return { next, notes };
 }
 
+// --- Step 2: the MusicBrainz search ---
+
+/**
+ * The resolver's answer for `name` under `hint`. MB's `artist:` search field only indexes the credited
+ * names, so a work credited in its original script ("坂本龍一") is invisible to a search under the
+ * Latin name the cache uses: when that search finds nothing and the hint's MBID is known, search the
+ * title alone. The credit is checked against the hint afterwards (by MBID, which a name cannot fake),
+ * so this widens what is looked at, not what is accepted.
+ */
+async function lookUp(
+	type: "project" | "track",
+	name: string,
+	hint: { name: string; mbid?: string },
+): Promise<{ found: MbReleaseIdentity | null; unavailable: boolean }> {
+	const resolve = type === "project" ? resolveReleaseGroup : resolveRecording;
+	const first = await observingMbOutage(() => resolve(name, hint.name));
+	if (first.unavailable) return { found: null, unavailable: true };
+	if (first.value !== null || hint.mbid === undefined) return { found: first.value, unavailable: false };
+	const second = await observingMbOutage(() => resolve(name));
+	return { found: second.value, unavailable: second.unavailable };
+}
+
 // --- Run ---
 
 export async function runBackfill(options: BackfillOptions): Promise<BackfillResult> {
@@ -709,14 +758,12 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				continue;
 			}
 			attempted++;
-			const lookedUp = await observingMbOutage(() =>
-				type === "project" ? resolveReleaseGroup(name, hint.name) : resolveRecording(name, hint.name),
-			);
+			const lookedUp = await lookUp(type, name, hint);
 			if (lookedUp.unavailable) {
 				failed.push({ slug, reason: "MusicBrainz search unavailable" });
 				continue;
 			}
-			const found: MbReleaseIdentity | null = lookedUp.value;
+			const found = lookedUp.found;
 			if (!found) {
 				unresolved.push({ slug, name, hint: hint.name, reason: "no-match" });
 				continue;
@@ -725,12 +772,17 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				unresolved.push({ slug, name, hint: hint.name, reason: "credit-mismatch" });
 				continue;
 			}
+			const year = yearOf(found.firstReleaseDate);
+			if (!yearsAgree(text(node.year), year)) {
+				unresolved.push({ slug, name, hint: hint.name, reason: "year-mismatch" });
+				continue;
+			}
 			work = {
 				mbid: found.mbid,
 				credit: found.credit,
 				title: found.title,
 				hint: hint.name,
-				year: yearOf(found.firstReleaseDate),
+				year,
 				release_type: releaseTypeOf(found.primaryType),
 			};
 		}

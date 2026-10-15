@@ -10,6 +10,7 @@ import {
 	parseCliArgs,
 	type ReleaseManifest,
 	runBackfill,
+	yearsAgree,
 } from "../scripts/migrations/2026-10-15-backfill-release-identity.js";
 import { resolveRecording, resolveReleaseGroup } from "../src/musicbrainz.js";
 import { nodePayloadSchema } from "../src/schemas.js";
@@ -74,9 +75,13 @@ interface Stub {
 /**
  * Answers MB's release-group / recording search (by title only: like MB, it returns look-alikes the
  * migration must sift), and the lookups behind fetchProjectMetaMb / fetchTrackMetaMb. `fail` makes
- * the matching requests fail without a usable answer.
+ * the matching requests fail without a usable answer. `filterByArtist` makes the `artist:` clause
+ * work as MB's does: it only matches the credited names, never an artist's other-script name.
  */
-function stubMb(works: FakeWork[], options: { fail?: (url: URL) => boolean } = {}): Stub {
+function stubMb(
+	works: FakeWork[],
+	options: { fail?: (url: URL) => boolean; filterByArtist?: boolean } = {},
+): Stub {
 	const urls: URL[] = [];
 	const creditOf = (w: FakeWork) =>
 		w.credit.map((c) => ({ name: c.creditedAs ?? c.name, artist: { id: c.id, name: c.name } }));
@@ -87,10 +92,16 @@ function stubMb(works: FakeWork[], options: { fail?: (url: URL) => boolean } = {
 			if (options.fail?.(input)) return refused();
 			const [, , , kind, id] = input.pathname.split("/");
 			if (!id && (kind === "release-group" || kind === "recording")) {
-				const [, phrase = ""] =
-					/^\w+:"(.*?)"(?: AND artist:".*")?$/.exec(input.searchParams.get("query") ?? "") ?? [];
+				const [, phrase = "", artist] =
+					/^\w+:"(.*?)"(?: AND artist:"(.*)")?$/.exec(input.searchParams.get("query") ?? "") ?? [];
+				const credited = (w: FakeWork) =>
+					artist === undefined ||
+					!options.filterByArtist ||
+					w.credit.some((c) => (c.creditedAs ?? c.name).toLowerCase().includes(artist.toLowerCase()));
 				const hits = works
-					.filter((w) => w.kind === kind && w.title.toLowerCase().includes(phrase.toLowerCase()))
+					.filter(
+						(w) => w.kind === kind && w.title.toLowerCase().includes(phrase.toLowerCase()) && credited(w),
+					)
 					.map((w) => ({
 						id: w.id,
 						title: w.title,
@@ -239,7 +250,7 @@ const nodePath = (slug: string) => {
 	return join(cacheDir(), "nodes", slug.slice(0, i), `${slug.slice(i + 1)}.json`);
 };
 
-async function seed(...nodes: { slug: string }[]): Promise<void> {
+async function seed(...nodes: { slug: string; [key: string]: unknown }[]): Promise<void> {
 	for (const node of nodes) {
 		await mkdir(join(nodePath(node.slug), ".."), { recursive: true });
 		await writeFile(nodePath(node.slug), `${JSON.stringify(node, null, 2)}\n`, "utf8");
@@ -383,6 +394,61 @@ describe("project:new-forms", () => {
 		expect((await readNode("project:new-forms")).artists).toEqual([
 			{ slug: "artist:roni-size-reprazent", type: "artist", name: "Roni Size & Reprazent", mbid: reprazent },
 		]);
+	});
+});
+
+describe("labels", () => {
+	it("never makes a label of MusicBrainz's '[no label]' placeholder, and says so", async () => {
+		const rg = mbid();
+		stubMb([
+			{
+				kind: "release-group",
+				id: rg,
+				title: "Unsigned",
+				credit: [{ id: mbid(), name: "Free Agent" }],
+				date: "2004",
+				primaryType: "Single",
+				label: { id: mbid(), name: "[no label]" },
+			},
+		]);
+		await seed(
+			projectNode("project:unsigned", "Unsigned", { artists: [edge("artist:free-agent", "Free Agent")] }),
+		);
+
+		const result = await run({ apply: true });
+
+		const after = await readNode("project:unsigned");
+		expect(after.mbid).toBe(rg);
+		expect(after.label).toBeUndefined();
+		expect(result.manifest.resolved["project:unsigned"]?.notes).toEqual([
+			"label: [no label] is a MusicBrainz placeholder",
+		]);
+	});
+
+	it("reuses the cache label that carries the MBID, with its own slug and name", async () => {
+		const label = mbid();
+		stubMb([
+			{
+				kind: "release-group",
+				id: mbid(),
+				title: "Signed",
+				credit: [{ id: mbid(), name: "Free Agent" }],
+				label: { id: label, name: "Big Records Ltd" },
+			},
+		]);
+		await seed(
+			projectNode("project:signed", "Signed", { artists: [edge("artist:free-agent", "Free Agent")] }),
+			{ type: "label", slug: "label:big-records", name: "Big Records", mbid: label },
+		);
+
+		await run({ apply: true });
+
+		expect((await readNode("project:signed")).label).toEqual({
+			slug: "label:big-records",
+			type: "label",
+			name: "Big Records",
+			mbid: label,
+		});
 	});
 });
 
@@ -613,6 +679,34 @@ describe("works MusicBrainz cannot single out", () => {
 		expect((await readNode("project:mirage")).mbid).toBeUndefined();
 	});
 
+	it("refuses a work whose stated year contradicts MusicBrainz's first release (a stray discography entry)", async () => {
+		stubMb([
+			{
+				kind: "release-group",
+				id: mbid(),
+				title: "Fading Light",
+				credit: [{ id: mbid(), name: "Pole" }],
+				date: "2020-11-06",
+				primaryType: "Album",
+			},
+		]);
+		await seed(
+			artistNode("artist:pole", {
+				name: "Pole",
+				discography: [edge("project:fading-light", "Fading Light")],
+			}),
+			projectNode("project:fading-light", "Fading Light", { year: "2012" }),
+		);
+		const before = await readFile(nodePath("project:fading-light"), "utf8");
+
+		const result = await run({ apply: true });
+
+		expect(result.manifest.unresolved).toEqual([
+			{ slug: "project:fading-light", name: "Fading Light", hint: "Pole", reason: "year-mismatch" },
+		]);
+		expect(await readFile(nodePath("project:fading-light"), "utf8")).toBe(before);
+	});
+
 	it("does not search a title for a work nobody credits or points to", async () => {
 		const mb = stubMb([]);
 		await seed(projectNode("project:orphan-title", "Orphan Title"));
@@ -638,7 +732,7 @@ describe("credit mapped onto the cache's artists", () => {
 	});
 
 	it("writes the Latin cache artist's own edge for a credit in the original script", async () => {
-		stubMb([work("Merry Christmas Mr. Lawrence")]);
+		const mb = stubMb([work("Merry Christmas Mr. Lawrence")], { filterByArtist: true });
 		await seed(
 			artistNode("artist:ryuichi-sakamoto", {
 				name: "Ryuichi Sakamoto",
@@ -651,13 +745,18 @@ describe("credit mapped onto the cache's artists", () => {
 		const result = await run({ apply: true });
 
 		expect(result.exitCode).toBe(0);
+		// MB's artist field does not see 坂本龍一 under "Ryuichi Sakamoto": the title alone is searched next.
+		expect(mb.searches()).toEqual([
+			'releasegroup:"Merry Christmas Mr. Lawrence" AND artist:"Ryuichi Sakamoto"',
+			'releasegroup:"Merry Christmas Mr. Lawrence"',
+		]);
 		expect((await readNode("project:merry-christmas-mr-lawrence")).artists).toEqual([
 			{ slug: "artist:ryuichi-sakamoto", type: "artist", name: "Ryuichi Sakamoto", mbid: sakamoto },
 		]);
 	});
 
 	it("leaves a work unresolved when the original-script credit matches no cache artist", async () => {
-		stubMb([work("Thousand Knives")]);
+		const mb = stubMb([work("Thousand Knives")], { filterByArtist: true });
 		await seed(
 			artistNode("artist:some-other-sakamoto", {
 				name: "Some Other Sakamoto",
@@ -668,9 +767,42 @@ describe("credit mapped onto the cache's artists", () => {
 
 		const result = await run({ apply: true });
 
-		// Neither the name nor an MBID ties the credit to the artist it was looked up under.
-		expect(result.manifest.unresolved.map((u) => u.reason)).toEqual(["credit-mismatch"]);
+		// Neither the name nor an MBID ties the credit to the artist it was looked up under, and without
+		// that artist's MBID the title is not searched alone.
+		expect(mb.searches()).toHaveLength(1);
+		expect(result.manifest.unresolved.map((u) => u.reason)).toEqual(["no-match"]);
 		expect((await readNode("project:thousand-knives")).mbid).toBeUndefined();
+	});
+
+	it("accepts a title-alone match only when its credit carries the MBID of the artist looked up", async () => {
+		const known = mbid();
+		stubMb(
+			[
+				{
+					kind: "release-group",
+					id: mbid(),
+					title: "Quiet Room",
+					credit: [{ id: mbid(), name: "坂本龍一" }],
+				},
+			],
+			{
+				filterByArtist: true,
+			},
+		);
+		await seed(
+			artistNode("artist:ryuichi-sakamoto", {
+				name: "Ryuichi Sakamoto",
+				mbid: known,
+				discography: [edge("project:quiet-room", "Quiet Room")],
+			}),
+			projectNode("project:quiet-room", "Quiet Room"),
+		);
+
+		const result = await run({ apply: true });
+
+		// The only "Quiet Room" is credited to another 坂本龍一 entry: same script, not the same artist.
+		expect(result.manifest.unresolved.map((u) => u.reason)).toEqual(["credit-mismatch"]);
+		expect((await readNode("project:quiet-room")).mbid).toBeUndefined();
 	});
 
 	it("does not choose between two cache artists carrying the credit's MBID", async () => {
@@ -936,6 +1068,17 @@ describe("creditConfirmsHint", () => {
 		expect(creditConfirmsHint(earth, { name: "Earth" })).toBe(true);
 		// A band that merely contains the artist's name is another entity, not a homonym.
 		expect(creditConfirmsHint(credit, { name: "Roni Size", mbid: other })).toBe(true);
+	});
+});
+
+describe("yearsAgree", () => {
+	it("tolerates a year of difference, and a node with no usable year", () => {
+		expect(yearsAgree("1997", "1997")).toBe(true);
+		expect(yearsAgree("1998", "1997")).toBe(true);
+		expect(yearsAgree("2012", "2020")).toBe(false);
+		expect(yearsAgree(undefined, "2020")).toBe(true);
+		expect(yearsAgree("circa 1990", "2020")).toBe(true);
+		expect(yearsAgree("2012", null)).toBe(true);
 	});
 });
 
