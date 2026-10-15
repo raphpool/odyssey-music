@@ -14,6 +14,13 @@ on:
           union preview -- no server write, safe to run anytime to check what a real sync would do.
         type: boolean
         default: false
+      migration:
+        description: >-
+          Optional (TRA-464): comma-separated migration names (scripts/migrations/<name>.ts, e.g.
+          2026-10-15-unescape-newlines) to run on the validated union before the preview/apply.
+          Each name is whitelisted by the script itself; empty (default) is the plain sync.
+        type: string
+        default: ""
 
 concurrency:
   group: deploy-prod
@@ -72,9 +79,20 @@ jobs:
         # Always runs, whether or not --apply is requested below -- this is the union
         # build+validation the script performs even without --apply. No SERVER_* variable is set
         # here: the script's own defaults are used, so no workflow input can redirect the transfer.
+        env:
+          MIGRATION_INPUT: ${{ inputs.migration }}
         run: |
           set -euo pipefail
-          bash deploy/sync-genre-cache.sh 2>&1 | tee "$RUNNER_TEMP/genre-cache-sync-preview.log"
+          # TRA-464: names go through an env var (never interpolated into this script) and become
+          # --migration arguments; deploy/sync-genre-cache.sh validates every name itself.
+          MIGRATION_ARGS=()
+          if [ -n "${MIGRATION_INPUT:-}" ]; then
+            IFS=',' read -r -a MIGRATION_NAMES <<< "$MIGRATION_INPUT"
+            for NAME in "${MIGRATION_NAMES[@]}"; do
+              MIGRATION_ARGS+=(--migration "${NAME//[[:space:]]/}")
+            done
+          fi
+          bash deploy/sync-genre-cache.sh ${MIGRATION_ARGS[@]+"${MIGRATION_ARGS[@]}"} 2>&1 | tee "$RUNNER_TEMP/genre-cache-sync-preview.log"
 
       - name: Upload preview artifact
         if: always()
@@ -90,9 +108,18 @@ jobs:
         # runner, never interpolated into this or any run: shell string) -- the only way to reach
         # --apply is an explicit "apply: true" at dispatch time.
         if: ${{ inputs.apply }}
+        env:
+          MIGRATION_INPUT: ${{ inputs.migration }}
         run: |
           set -euo pipefail
-          bash deploy/sync-genre-cache.sh --apply 2>&1 | tee "$RUNNER_TEMP/genre-cache-sync-apply.log"
+          MIGRATION_ARGS=()
+          if [ -n "${MIGRATION_INPUT:-}" ]; then
+            IFS=',' read -r -a MIGRATION_NAMES <<< "$MIGRATION_INPUT"
+            for NAME in "${MIGRATION_NAMES[@]}"; do
+              MIGRATION_ARGS+=(--migration "${NAME//[[:space:]]/}")
+            done
+          fi
+          bash deploy/sync-genre-cache.sh --apply ${MIGRATION_ARGS[@]+"${MIGRATION_ARGS[@]}"} 2>&1 | tee "$RUNNER_TEMP/genre-cache-sync-apply.log"
 
       - name: Upload apply artifact
         # Durable copy of the rollback archive path, not just the ephemeral job log: if --apply

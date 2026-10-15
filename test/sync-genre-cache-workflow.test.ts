@@ -1,3 +1,4 @@
+import { spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
@@ -101,8 +102,12 @@ describe("sync-genre-cache workflow", () => {
 		// steps need an input-derived env value at all (only `secrets.DEPLOY_SSH_KEY` is consumed),
 		// so the safe, closed invariant is: no `<key>: ${{ ... inputs. ... }}` mapping anywhere,
 		// except a step's own `if:` (the one place an input is legitimately read, evaluated by the
-		// runner rather than substituted into a shell string).
-		const keyValueFromInputs = /^(?! *if:)[ \t]*[A-Za-z_][A-Za-z0-9_]*:[ \t]*\$\{\{[^}]*\binputs\./m;
+		// runner rather than substituted into a shell string) and, since TRA-464, the single
+		// MIGRATION_INPUT env key: the free-text `migration` input cannot go through `if:`, and an
+		// env var is the sanctioned way to hand a string to a shell without interpolating it.
+		// The script whitelists every name; the dedicated test below pins that key's shape.
+		const keyValueFromInputs =
+			/^(?! *if:)(?![ \t]*MIGRATION_INPUT:)[ \t]*[A-Za-z_][A-Za-z0-9_]*:[ \t]*\$\{\{[^}]*\binputs\./m;
 		expect(workflow).not.toMatch(keyValueFromInputs);
 	});
 
@@ -131,6 +136,58 @@ describe("sync-genre-cache workflow", () => {
 		expect(stepsWithRunBody).toBeGreaterThanOrEqual(7);
 	});
 
+	// TRA-464: the migration channel. The input is free text typed by a dispatcher, so it reaches the
+	// shell only through one env var and comes out as `--migration <name>` arguments; the script's own
+	// whitelist (test/genre-cache-sync.test.ts) is what rejects a hostile name.
+	it("accepts a string `migration` input, empty by default, and passes it to both script runs as --migration", () => {
+		const onBlock = workflow.slice(workflow.indexOf("\non:"), workflow.indexOf("\nconcurrency:"));
+		const inputBlock = onBlock.slice(onBlock.indexOf("      migration:"));
+		expect(inputBlock).toMatch(/type:\s*string/);
+		expect(inputBlock).toMatch(/default:\s*""/);
+
+		for (const stepName of ["Preview genre-cache sync", "Apply genre-cache sync"]) {
+			const step = findStep(steps, stepName);
+			// The only input-derived env mapping, and the only way the value is read in the body.
+			expect(step).toMatch(/\n {10}MIGRATION_INPUT: \$\{\{ inputs\.migration \}\}\n/);
+			expect(step).toMatch(/read -r -a MIGRATION_NAMES <<< "\$MIGRATION_INPUT"/);
+			expect(step).toMatch(/MIGRATION_ARGS\+=\(--migration "\$\{NAME\/\/\[\[:space:\]\]\/\}"\)/);
+			// With no migration given the script is called exactly as before.
+			expect(step).toMatch(/\$\{MIGRATION_ARGS\[@\]\+"\$\{MIGRATION_ARGS\[@\]\}"\}/);
+		}
+		// Nothing but the Preview and Apply steps takes the input.
+		expect(workflow.match(/inputs\.migration/g)?.length).toBe(2);
+	});
+
+	// Runs the step's own argument-building lines (extracted from the YAML, so this cannot drift from
+	// what the runner executes) under the runner's bash, and prints one argument per line.
+	it.each(["Preview genre-cache sync", "Apply genre-cache sync"])(
+		"%s turns the migration input into literal --migration arguments, never into shell",
+		(stepName) => {
+			const step = findStep(steps, stepName);
+			const start = step.indexOf("MIGRATION_ARGS=()");
+			const snippet = step.slice(start, step.indexOf("\n          bash deploy/sync-genre-cache.sh"));
+			expect(start).toBeGreaterThan(-1);
+			const argsFor = (input: string): string[] => {
+				const printArgs = "printf '%s\\n' ${MIGRATION_ARGS[@]+\"${MIGRATION_ARGS[@]}\"}";
+				const out = spawnSync("bash", ["-c", `set -euo pipefail\n${snippet}\n${printArgs}`], {
+					encoding: "utf8",
+					env: { ...process.env, MIGRATION_INPUT: input },
+				});
+				expect(out.status).toBe(0);
+				return out.stdout.split("\n").filter((l) => l !== "");
+			};
+			expect(argsFor("")).toEqual([]);
+			expect(argsFor("2026-10-15-a, 2026-10-16-b")).toEqual([
+				"--migration",
+				"2026-10-15-a",
+				"--migration",
+				"2026-10-16-b",
+			]);
+			// A hostile name stays ONE literal argument; the script's whitelist is what rejects it.
+			expect(argsFor("2026-10-15-a;$(id)&`id`")).toEqual(["--migration", "2026-10-15-a;$(id)&`id`"]);
+		},
+	);
+
 	it("always builds and publishes the preview before any apply step can run", () => {
 		const previewIndex = workflow.indexOf("- name: Preview genre-cache sync");
 		const uploadIndex = workflow.indexOf("- name: Upload preview artifact");
@@ -142,7 +199,9 @@ describe("sync-genre-cache workflow", () => {
 		const preview = findStep(steps, "Preview genre-cache sync");
 		// No `if:` on the preview step: it is unconditional, unlike the apply/smoke steps below.
 		expect(preview).not.toMatch(/\n {8}if:/);
-		expect(preview).toMatch(/bash deploy\/sync-genre-cache\.sh 2>&1 \| tee/);
+		expect(preview).toMatch(
+			/bash deploy\/sync-genre-cache\.sh \$\{MIGRATION_ARGS\[@\]\+"\$\{MIGRATION_ARGS\[@\]\}"\} 2>&1 \| tee/,
+		);
 		// `set -euo pipefail` (not just `-eu`) is required here: without `pipefail`, a failing
 		// script piped into `tee` would still exit 0 and the step would report success.
 		expect(preview).toMatch(/set -euo pipefail/);
@@ -164,7 +223,9 @@ describe("sync-genre-cache workflow", () => {
 		// discards it -- it lands in the job log, and is also teed to a file for the artifact
 		// upload below ("imprimée", plus a durable copy of the rollback pointer on failure).
 		expect(apply).not.toMatch(/>\s*\/dev\/null/);
-		expect(apply).toMatch(/bash deploy\/sync-genre-cache\.sh --apply 2>&1 \| tee/);
+		expect(apply).toMatch(
+			/bash deploy\/sync-genre-cache\.sh --apply \$\{MIGRATION_ARGS\[@\]\+"\$\{MIGRATION_ARGS\[@\]\}"\} 2>&1 \| tee/,
+		);
 		expect(apply).toMatch(/genre-cache-sync-apply\.log/);
 		// Same invariant as Preview, and it was the only one of the two left unpinned (second
 		// review round): without `pipefail`, a failing --apply piped into `tee` returns tee's 0 and
