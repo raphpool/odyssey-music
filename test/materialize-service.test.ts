@@ -3,12 +3,20 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { NodeCache } from "../src/cache.js";
+import { buildCacheIndex } from "../src/cache-index.js";
 import type { ApiEnv } from "../src/env.js";
 import { BadRequestError } from "../src/errors.js";
 import { createGenreResolver, loadGenreResolver } from "../src/genre-identity.js";
 import { createGenreRegistry } from "../src/genre-registry.js";
-import type { ArtistNode, GenreNode, Slug } from "../src/types.js";
-import { artistDraftFixture, genreDraftFixture, installPipelineMocks } from "./helpers/pipeline-mocks.js";
+import type { ArtistNode, EdgeRef, GenreNode, ProjectNode, Slug, TrackNode } from "../src/types.js";
+import {
+	artistDraftFixture,
+	EMPTY_PROJECT_META,
+	genreDraftFixture,
+	installPipelineMocks,
+	projectDraftFixture,
+	trackDraftFixture,
+} from "./helpers/pipeline-mocks.js";
 
 // TRA-28 review: missing wiring test (ii) -- createMaterializeService (src/services/
 // materialize-service.ts) must actually use the genreRegistry it's given, and that registry must
@@ -988,4 +996,502 @@ describe("createMaterializeService identity refinements (TRA-45)", () => {
 		},
 		TIMEOUT_MS,
 	);
+});
+
+// TRA-477: a click on a work carries the artist of the page it came from. Behind
+// ODYSSEY_SCOPED_RELEASE_SLUGS (TRA-509 flips it) the work is filed and matched by `<title>--<artist>`, and
+// a node that does not credit the artist is never served for it. Boundaries (MusicBrainz, Gemini, search)
+// are mocked; slugs, the cache, credit matching and edge repointing run for real.
+describe("createMaterializeService artist context (TRA-477)", () => {
+	const RG_MBID = "bbbbbbbb-1111-4111-8111-000000000022";
+	const PROSE = "A fictional work invented for the artist-context tests (TRA-477). ".repeat(2);
+	const NEW_FORMS = "project:new-forms--roni-size-reprazent" as Slug;
+	let dir: string;
+	let cache: NodeCache;
+
+	beforeEach(async () => {
+		vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "true");
+		dir = await mkdtemp(join(tmpdir(), "odyssey-materialize-tra477-"));
+		cache = new NodeCache(dir);
+	});
+
+	afterEach(async () => {
+		vi.unstubAllEnvs();
+		await rm(dir, { recursive: true, force: true });
+	});
+
+	const ref = (
+		name: string,
+		slug: Slug,
+		type: EdgeRef["type"] = "artist",
+		extra: Partial<EdgeRef> = {},
+	): EdgeRef => ({
+		slug,
+		type,
+		name,
+		...extra,
+	});
+	const base = (slug: Slug, name: string) => ({
+		slug,
+		name,
+		editorial_article: PROSE,
+		citations: [{ url: "https://example.com/x" }],
+		materialized_at: new Date().toISOString(),
+	});
+	const list = { genres: [], producers: [], personnel: [] };
+
+	function trackNode(slug: Slug, name: string, artists: EdgeRef[]): TrackNode {
+		return {
+			...base(slug, name),
+			type: "track",
+			editorial_teaser: "A fictional track.",
+			artists,
+			...list,
+			samples: [],
+			sampled_by: [],
+			remixed_by: [],
+		};
+	}
+
+	function projectNode(slug: Slug, name: string, artists: EdgeRef[]): ProjectNode {
+		return {
+			...base(slug, name),
+			type: "project",
+			editorial_pitch: "A fictional album.",
+			artists,
+			...list,
+			tracklist: [],
+			related_projects: [],
+		};
+	}
+
+	function artistNode(slug: Slug, name: string, overrides: Partial<ArtistNode> = {}): ArtistNode {
+		return {
+			...base(slug, name),
+			type: "artist",
+			editorial_bio: "A fictional artist.",
+			genres: [],
+			labels: [],
+			discography: [],
+			notable_tracks: [],
+			influences: [],
+			influenced: [],
+			collaborators: [],
+			aliases: [],
+			members: [],
+			similar_artists: [],
+			...overrides,
+		} as ArtistNode;
+	}
+
+	async function buildService(withIndex = false) {
+		const genreRegistry = createGenreRegistry({
+			cache,
+			resolver: await loadGenreResolver(),
+			redirects: new Map(),
+		});
+		const create = await loadCreateMaterializeService();
+		return create({
+			cache,
+			env: ENV,
+			genreRegistry,
+			...(withIndex ? { getCacheIndex: () => buildCacheIndex(dir) } : {}),
+		});
+	}
+
+	/** Gemini returns this draft; the spy shows what the pipeline actually asked it. */
+	function geminiReturning(draft: Record<string, unknown>) {
+		const generateContent = vi.fn(async () => ({
+			text: JSON.stringify(draft),
+			usageMetadata: { promptTokenCount: 42, candidatesTokenCount: 42 },
+		}));
+		installPipelineMocks({ draft, generateContent });
+		return generateContent;
+	}
+
+	async function noPipeline() {
+		const tavilySearch = vi.mocked(await loadTavilySearch());
+		tavilySearch.mockReset().mockImplementation(async () => {
+			throw new Error("unexpected pipeline run");
+		});
+		return tavilySearch;
+	}
+
+	/** MusicBrainz resolves the release group "New Forms" (or, given an mbid, skips that) with this credit. */
+	async function mbProject(credit: Array<{ mbid: string; name: string }>) {
+		const mb = await import("../src/musicbrainz.js");
+		vi.mocked(mb.resolveReleaseGroup).mockImplementation(async () => ({
+			mbid: RG_MBID,
+			title: "New Forms",
+			credit,
+			primaryType: null,
+			firstReleaseDate: null,
+		}));
+		vi.mocked(mb.fetchEntityGenresMb).mockImplementation(async () => []);
+		vi.mocked(mb.fetchProjectMetaMb).mockImplementation(async () => ({
+			...EMPTY_PROJECT_META,
+			tracks: [],
+			artists: [],
+			producers: [],
+			personnel: [],
+		}));
+	}
+
+	it(
+		"files the work under the requested artist's scoped slug, never serving another artist's homonym",
+		async () => {
+			await cache.write(trackNode("track:fitna--akuma", "Fitna", [ref("Akuma", "artist:akuma")]));
+			const generateContent = geminiReturning(trackDraftFixture("Fitna", "Rohff"));
+			const service = await buildService();
+
+			const result = await service.handleMaterialize({ type: "track", name: "Fitna", artist: "Rohff" });
+
+			expect(result.source).toBe("jit");
+			expect(result.node.slug).toBe("track:fitna--rohff");
+			expect(await cache.has("track:fitna--akuma")).toBe(true);
+			// The artist is also the credit hint of the search/prompt, not just of the slug.
+			expect(JSON.stringify(generateContent.mock.calls[0])).toContain('artist=\\"Rohff\\"');
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"ignores a client slug that names another artist's work",
+		async () => {
+			await cache.write(trackNode("track:fitna--akuma", "Fitna", [ref("Akuma", "artist:akuma")]));
+			geminiReturning(trackDraftFixture("Fitna", "Rohff"));
+			const service = await buildService();
+
+			const result = await service.handleMaterialize({
+				type: "track",
+				name: "Fitna",
+				artist: "Rohff",
+				slug: "track:fitna--akuma",
+			});
+
+			expect(result).toMatchObject({ source: "jit", node: { slug: "track:fitna--rohff" } });
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"serves a cached work to the artist it credits, or to a member of the group it credits, and to nobody else",
+		async () => {
+			await cache.write(artistNode("artist:roni-size", "Roni Size"));
+			await cache.write(
+				artistNode("artist:roni-size-reprazent", "Roni Size / Reprazent", {
+					members: [ref("Roni Size", "artist:roni-size")],
+				}),
+			);
+			await cache.write(
+				projectNode(NEW_FORMS, "New Forms", [ref("Roni Size / Reprazent", "artist:roni-size-reprazent")]),
+			);
+			const tavilySearch = await noPipeline();
+			const service = await buildService();
+
+			for (const artist of ["Roni Size / Reprazent", "Roni Size"]) {
+				const hit = await service.handleMaterialize({
+					type: "project",
+					name: "New Forms",
+					artist,
+					slug: NEW_FORMS,
+				});
+				expect(hit).toMatchObject({ source: "cache", node: { slug: NEW_FORMS } });
+			}
+			// No artist at all: the scoped slug is trusted as before.
+			const bare = await service.handleMaterialize({ type: "project", name: "New Forms", slug: NEW_FORMS });
+			expect(bare.source).toBe("cache");
+			expect(tavilySearch).not.toHaveBeenCalled();
+
+			geminiReturning(projectDraftFixture("New Forms", "Goldie"));
+			const stranger = await service.handleMaterialize({
+				type: "project",
+				name: "New Forms",
+				artist: "Goldie",
+				slug: NEW_FORMS,
+			});
+			expect(stranger.node.slug).toBe("project:new-forms--goldie");
+		},
+		TIMEOUT_MS,
+	);
+
+	const RONI_ID = "2eeba1d4-0000-4000-8000-000000000001";
+	/** Roni Size is a member of the group MusicBrainz credits New Forms to (plan decision 3). */
+	async function writeReprazent() {
+		await cache.write(
+			artistNode("artist:roni-size-reprazent", "Roni Size / Reprazent", {
+				members: [ref("Roni Size", "artist:roni-size")],
+			}),
+		);
+	}
+
+	it(
+		"repoints the requesting edge when MusicBrainz credits the work to another name, and says so",
+		async () => {
+			const requested = "project:new-forms--roni-size" as Slug;
+			await cache.write(
+				artistNode("artist:roni-size", "Roni Size", {
+					discography: [
+						ref("New Forms", requested, "project"),
+						// Same-slug entries that differ (committed lists have 84 of them) are left alone.
+						ref("Poison", "project:poison--roni-size", "project", { mbid: RG_MBID }),
+						ref("Poison (single)", "project:poison--roni-size", "project", { mbid: RONI_ID }),
+					],
+				}),
+			);
+			await writeReprazent();
+			geminiReturning(projectDraftFixture("New Forms", "Roni Size"));
+			await mbProject([{ mbid: RONI_ID, name: "Roni Size / Reprazent" }]);
+			const service = await buildService();
+
+			const result = await service.handleMaterialize({
+				type: "project",
+				name: "New Forms",
+				artist: "Roni Size",
+				source: { slug: "artist:roni-size", field: "discography" },
+			});
+
+			expect(result.node.slug).toBe(NEW_FORMS);
+			expect(result.requested_slug).toBe(requested);
+			const roni = (await cache.get("artist:roni-size")) as ArtistNode;
+			expect(roni.discography.map((e) => [e.slug, e.name, e.mbid])).toEqual([
+				[NEW_FORMS, "New Forms", undefined],
+				["project:poison--roni-size", "Poison", RG_MBID],
+				["project:poison--roni-size", "Poison (single)", RONI_ID],
+			]);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"never adds an edge, repoints a node into itself, or repoints into a field that does not take its type, and reports no requested_slug then",
+		async () => {
+			await cache.write(
+				artistNode("artist:roni-size", "Roni Size", {
+					discography: [ref("Other", "project:other--roni-size", "project")],
+				}),
+			);
+			await writeReprazent();
+			const service = await buildService();
+			const getSpy = vi.spyOn(cache, "get");
+			const replaceSpy = vi.spyOn(cache, "replace");
+			const body = { type: "project", name: "New Forms", artist: "Roni Size" };
+			const sources = [
+				{ slug: "artist:roni-size", field: "discography" }, // holds no edge to the requested slug
+				{ slug: "artist:roni-size", field: "notable_tracks" }, // takes tracks, not projects
+				{ slug: NEW_FORMS, field: "related_projects" }, // the node itself
+			];
+			for (const source of sources) {
+				geminiReturning(projectDraftFixture("New Forms", "Roni Size"));
+				await mbProject([{ mbid: RONI_ID, name: "Roni Size / Reprazent" }]);
+				const result = await service.handleMaterialize({ ...body, source }, { fresh: true });
+				expect(result.requested_slug).toBeUndefined();
+			}
+
+			expect(replaceSpy).not.toHaveBeenCalled();
+			// The type and self-edge checks come before the source node is even read.
+			expect(getSpy.mock.calls.filter(([slug]) => slug === "artist:roni-size")).toHaveLength(1);
+			expect(((await cache.get(NEW_FORMS)) as ProjectNode).related_projects).toEqual([]);
+		},
+		TIMEOUT_MS,
+	);
+
+	// Review of #452 (B1): the client's mbid names Akuma's recording while the click comes from Rohff.
+	// MusicBrainz then credits Akuma, so the edge must not follow -- the reverse edges would put Rohff
+	// among the artists of Akuma's track and every later honest click would be served Akuma's Fitna.
+	it(
+		"does not repoint an artist's edge onto a work that does not credit them, whatever mbid the client sends",
+		async () => {
+			const AKUMA_REC = "aaaaaaaa-0000-4000-8000-00000000aaaa";
+			const akuma = trackNode("track:fitna--akuma", "Fitna", [ref("Akuma", "artist:akuma")]);
+			await cache.write(akuma);
+			await cache.write(
+				artistNode("artist:rohff", "Rohff", {
+					notable_tracks: [ref("Fitna", "track:fitna--rohff", "track")],
+				}),
+			);
+			const mb = await import("../src/musicbrainz.js");
+			const arm = () => {
+				geminiReturning(trackDraftFixture("Fitna", "Rohff"));
+				vi.mocked(mb.fetchEntityGenresMb).mockImplementation(async () => []);
+				vi.mocked(mb.fetchTrackMetaMb).mockImplementation(async () => ({
+					project: null,
+					label: null,
+					artists: [{ mbid: "aaaaaaaa-0000-4000-8000-0000000000a1", name: "Akuma" }],
+					year: null,
+					duration: null,
+					producers: [],
+					personnel: [],
+				}));
+			};
+			arm();
+			const service = await buildService();
+			const body = {
+				type: "track",
+				name: "Fitna",
+				artist: "Rohff",
+				slug: "track:fitna--rohff",
+				mbid: AKUMA_REC,
+				source: { slug: "artist:rohff", field: "notable_tracks" },
+			};
+
+			// 1. Not cached under Rohff's slug: the pipeline moves the node onto Akuma's slug.
+			const first = await service.handleMaterialize(body);
+			expect(first.requested_slug).toBeUndefined();
+			// 2. Even forced fresh, Akuma's node (found at the moved slug) is served, never overwritten.
+			arm();
+			await service.handleMaterialize(body, { fresh: true });
+
+			const rohff = (await cache.get("artist:rohff")) as ArtistNode;
+			expect(rohff.notable_tracks.map((e) => e.slug)).toEqual(["track:fitna--rohff"]);
+			expect(await cache.get("track:fitna--akuma")).toEqual(akuma);
+		},
+		TIMEOUT_MS,
+	);
+
+	// Review of #452 (B2): the web front sends a scoped slug and no artist; the scope is the hint.
+	it(
+		"gives MusicBrainz the artist of a scoped slug sent without `artist`",
+		async () => {
+			await cache.write(trackNode("track:fitna--akuma", "Fitna", [ref("Akuma", "artist:akuma")]));
+			geminiReturning(trackDraftFixture("Fitna", "Rohff"));
+			const mb = await import("../src/musicbrainz.js");
+			vi.mocked(mb.resolveRecording).mockImplementation(async (_title, hint) => {
+				// Without a hint the only exact "Fitna" MusicBrainz knows is Akuma's.
+				const credit = hint ? [] : [{ mbid: "aaaaaaaa-0000-4000-8000-0000000000a1", name: "Akuma" }];
+				return hint
+					? null
+					: { mbid: RG_MBID, title: "Fitna", credit, primaryType: null, firstReleaseDate: null };
+			});
+			const service = await buildService();
+
+			const result = await service.handleMaterialize({
+				type: "track",
+				name: "Fitna",
+				slug: "track:fitna--rohff",
+			});
+
+			expect(vi.mocked(mb.resolveRecording).mock.calls[0]?.[1]).toBe("rohff");
+			expect(result.node.slug).toBe("track:fitna--rohff");
+		},
+		TIMEOUT_MS,
+	);
+
+	const TRACK = { type: "track", name: "Fitna" };
+	it.each([
+		["a track without artist, mbid or slug", TRACK],
+		["a track whose slug is not scoped", { ...TRACK, slug: "track:fitna" }],
+		["a non-string artist", { ...TRACK, artist: 7 }],
+		["a blank artist", { ...TRACK, artist: "  " }],
+		["an artist with a control character", { ...TRACK, artist: "Roh\u0007ff" }],
+		["an artist with no Latin letter", { ...TRACK, artist: "坂本龍一" }],
+		["an artist over the length cap", { ...TRACK, artist: "a".repeat(201) }],
+		[
+			"a source with a non-canonical slug",
+			{ ...TRACK, artist: "Rohff", source: { slug: "artist:../x", field: "notable_tracks" } },
+		],
+		[
+			"a source field the type does not have",
+			{ ...TRACK, artist: "Rohff", source: { slug: "artist:rohff", field: "tracklist" } },
+		],
+		[
+			"an inherited source field",
+			{ ...TRACK, artist: "Rohff", source: { slug: "artist:rohff", field: "constructor" } },
+		],
+		["an mbid that is not a UUID", { ...TRACK, artist: "Rohff", mbid: "not-a-uuid" }],
+	])("answers 400 for %s, before any I/O", async (_label, body) => {
+		const service = await buildService();
+		const getSpy = vi.spyOn(cache, "get");
+
+		await expect(service.handleMaterialize(body as never)).rejects.toThrow(BadRequestError);
+		expect(getSpy).not.toHaveBeenCalled();
+	});
+
+	it(
+		"answers from the cache for an mbid the cache index knows, but not for another node type",
+		async () => {
+			await cache.write({
+				...projectNode(NEW_FORMS, "New Forms", [ref("Roni Size / Reprazent", "artist:roni-size-reprazent")]),
+				mbid: RG_MBID,
+			});
+			const tavilySearch = await noPipeline();
+			const service = await buildService(true);
+
+			const known = await service.handleMaterialize({ type: "project", name: "X", mbid: RG_MBID });
+			expect(known).toMatchObject({ source: "cache", node: { slug: NEW_FORMS } });
+			expect(tavilySearch).not.toHaveBeenCalled();
+			await expect(service.handleMaterialize({ type: "track", name: "X", mbid: RG_MBID })).rejects.toThrow(
+				BadRequestError,
+			);
+		},
+		TIMEOUT_MS,
+	);
+
+	it.each([
+		["", {}],
+		["with a disambiguator", { disambiguator: "Akuma" }],
+	])(
+		"refuses an uncached work asked for by mbid alone %s, before any paid call or write",
+		async (_label, extra) => {
+			const tavilySearch = await noPipeline();
+			const service = await buildService();
+
+			await expect(
+				service.handleMaterialize({ type: "project", name: "Untold", mbid: RG_MBID, ...extra }),
+			).rejects.toThrow(BadRequestError);
+			expect(tavilySearch).not.toHaveBeenCalled();
+			expect(await cache.has("project:untold--akuma")).toBe(false);
+		},
+	);
+
+	it(
+		"runs one pipeline per artist for concurrent same-title requests, and shares it for the same artist",
+		async () => {
+			const generateContent = geminiReturning(trackDraftFixture("Fitna", "Rohff"));
+			const service = await buildService();
+
+			const results = await Promise.all(
+				["Rohff", "ROHFF", "Akuma"].map((artist) =>
+					service.handleMaterialize({ type: "track", name: "Fitna", artist }),
+				),
+			);
+
+			expect(results.map((r) => r.node.slug)).toEqual([
+				"track:fitna--rohff",
+				"track:fitna--rohff",
+				"track:fitna--akuma",
+			]);
+			expect(generateContent).toHaveBeenCalledTimes(2);
+		},
+		TIMEOUT_MS,
+	);
+
+	describe("flag off (the default until TRA-509)", () => {
+		beforeEach(() => {
+			vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "false");
+		});
+
+		it(
+			"keeps the contract of a client that sends no context, and ignores one that does",
+			async () => {
+				geminiReturning(trackDraftFixture("Fitna", "Akuma"));
+				const service = await buildService();
+
+				const minted = await service.handleMaterialize({ type: "track", name: "Fitna" });
+				expect(minted.node.slug).toBe("track:fitna");
+				const again = await service.handleMaterialize({
+					type: "track",
+					name: "Fitna",
+					artist: "Rohff",
+					source: { slug: "artist:rohff", field: "notable_tracks" },
+				});
+				expect(again).toMatchObject({ source: "cache", node: { slug: "track:fitna" } });
+				// A non-Latin artist cannot scope a slug, but with the flag off it scopes nothing: not a 400.
+				await expect(
+					service.handleMaterialize({ type: "track", name: "Fitna", artist: "坂本龍一" }),
+				).resolves.toMatchObject({ node: { slug: "track:fitna" } });
+			},
+			TIMEOUT_MS,
+		);
+	});
 });

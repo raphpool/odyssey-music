@@ -1,0 +1,5 @@
+# TRA-527: accounts whose `codex-review` / `codex-deep-review` commit statuses count for the review-gate.
+# One GitHub login per line. review-gate.yml reads this file from the default branch only, never from a PR
+# checkout, so a PR cannot widen the list for itself. A status published by anyone else is treated as absent.
+# The statuses are created by .codex/scripts/publish-review-status.sh, run with this account's gh login.
+raphpool
