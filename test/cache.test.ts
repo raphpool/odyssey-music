@@ -1,4 +1,4 @@
-import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
@@ -769,5 +769,224 @@ describe("NodeCache — cross-type reverse edges (TRA-454)", () => {
 
 		const warp = (await crossCache.get("label:warp")) as LabelNode;
 		expect(slugsOf(warp.roster)).toEqual(["artist:aphex-twin"]);
+	});
+});
+
+describe("NodeCache.update — locked read-modify-write (TRA-535)", () => {
+	let updDir: string;
+	let updCache: NodeCache;
+
+	beforeEach(async () => {
+		updDir = await mkdtemp(join(tmpdir(), "odyssey-cache-update-"));
+		updCache = new NodeCache(updDir);
+	});
+	afterEach(async () => {
+		await rm(updDir, { recursive: true, force: true });
+	});
+
+	const ref = (slug: Slug, name: string): EdgeRef => ({
+		type: slug.split(":")[0] as EdgeRef["type"],
+		slug,
+		name,
+	});
+	const article = (name: string) => `A real long article about ${name} for update coverage. `.repeat(4);
+	const APHEX = "artist:aphex-twin" as Slug;
+	const WARP = "label:warp" as Slug;
+	const warpRef = ref(WARP, "Warp");
+
+	function artist(overrides: Partial<ArtistNode> = {}): ArtistNode {
+		return {
+			type: "artist",
+			slug: APHEX,
+			name: "Aphex Twin",
+			editorial_bio: "Fixture bio for Aphex Twin.",
+			editorial_article: article("Aphex Twin"),
+			citations: [{ url: "https://example.com/aphex-twin" }],
+			materialized_at: new Date().toISOString(),
+			genres: [],
+			labels: [],
+			discography: [],
+			notable_tracks: [],
+			influences: [],
+			influenced: [],
+			collaborators: [],
+			aliases: [],
+			members: [],
+			similar_artists: [],
+			...overrides,
+		};
+	}
+
+	function warp(overrides: Partial<LabelNode> = {}): LabelNode {
+		return {
+			type: "label",
+			slug: WARP,
+			name: "Warp",
+			editorial_description: "Fixture description for Warp.",
+			editorial_article: article("Warp"),
+			citations: [{ url: "https://example.com/warp" }],
+			materialized_at: new Date().toISOString(),
+			genres: [],
+			roster: [],
+			notable_releases: [],
+			...overrides,
+		};
+	}
+
+	/** A promise whose resolution the test controls (no timers: ordering is driven by the test). */
+	function deferred() {
+		let release: () => void = () => undefined;
+		const promise = new Promise<void>((resolve) => {
+			release = resolve;
+		});
+		return { promise, release };
+	}
+
+	const withCollaborator = (node: NodePayload, edge: EdgeRef): NodePayload => {
+		const a = node as ArtistNode;
+		return { ...a, collaborators: [...a.collaborators, edge] };
+	};
+	const slugsOf = (edges: EdgeRef[]) => edges.map((e) => e.slug);
+
+	it("keeps both modifications of two concurrent updates of the same node", async () => {
+		await updCache.write(artist());
+		const entered = deferred();
+		const gate = deferred();
+
+		// The first update holds the node, blocked in `fn`, before it has written anything.
+		const first = updCache.update(APHEX, async (node) => {
+			entered.release();
+			await gate.promise;
+			return withCollaborator(node, ref("artist:richard-d-james", "Richard D. James"));
+		});
+		await entered.promise;
+		const second = updCache.update(APHEX, (node) =>
+			withCollaborator(node, ref("artist:squarepusher", "Squarepusher")),
+		);
+		gate.release();
+		await Promise.all([first, second]);
+
+		const aphex = (await updCache.get(APHEX)) as ArtistNode;
+		expect(slugsOf(aphex.collaborators).sort()).toEqual(["artist:richard-d-james", "artist:squarepusher"]);
+	});
+
+	it("keeps 4 concurrent rewrites of different edges of the same node", async () => {
+		const olds = [1, 2, 3, 4].map((n) => ref(`artist:old-${n}` as Slug, `Old ${n}`));
+		await updCache.write(artist({ collaborators: olds }));
+		let active = 0;
+		let maxActive = 0;
+
+		await Promise.all(
+			olds.map((old, i) =>
+				updCache.update(APHEX, async (node) => {
+					active++;
+					maxActive = Math.max(maxActive, active);
+					// Yield to the event loop so an unlocked implementation would interleave here.
+					await new Promise<void>((resolve) => setImmediate(resolve));
+					active--;
+					const a = node as ArtistNode;
+					return {
+						...a,
+						collaborators: a.collaborators.map((c) =>
+							c.slug === old.slug ? ref(`artist:new-${i + 1}` as Slug, `New ${i + 1}`) : c,
+						),
+					};
+				}),
+			),
+		);
+
+		const aphex = (await updCache.get(APHEX)) as ArtistNode;
+		expect(slugsOf(aphex.collaborators)).toEqual([
+			"artist:new-1",
+			"artist:new-2",
+			"artist:new-3",
+			"artist:new-4",
+		]);
+		expect(maxActive).toBe(1);
+	});
+
+	it("keeps both an update and a reverse edge applied to the node meanwhile", async () => {
+		await updCache.write(artist());
+		const reachedReverse = deferred();
+		const labelFile = join(updDir, "nodes", "label", "warp.json");
+
+		const update = updCache.update(APHEX, async (node) => {
+			reachedReverse.release();
+			// Hold the lock until the label is on disk: its reverse edge (label.roster -> artist.labels)
+			// is then queued on this node's lock, and must apply after this update, not be overwritten.
+			await vi.waitFor(async () => readFile(labelFile, "utf8"), { interval: 1, timeout: 5000 });
+			await new Promise<void>((resolve) => setImmediate(resolve));
+			return withCollaborator(node, ref("artist:squarepusher", "Squarepusher"));
+		});
+		await reachedReverse.promise;
+		const labelWrite = updCache.write(warp({ roster: [ref(APHEX, "Aphex Twin")] }));
+		await Promise.all([update, labelWrite]);
+
+		const aphex = (await updCache.get(APHEX)) as ArtistNode;
+		expect(slugsOf(aphex.collaborators)).toEqual(["artist:squarepusher"]);
+		expect(slugsOf(aphex.labels)).toEqual([WARP]);
+	});
+
+	it("applies the reverse edges pending for the node and clears them", async () => {
+		await updCache.write(artist());
+		await writeFile(
+			join(updDir, "pending-reverses.json"),
+			JSON.stringify({ [APHEX]: [{ field: "labels", cardinality: "list", edge: warpRef }] }),
+			"utf8",
+		);
+		const fresh = new NodeCache(updDir);
+
+		const written = await fresh.update(APHEX, (node) =>
+			withCollaborator(node, ref("artist:squarepusher", "Squarepusher")),
+		);
+
+		expect(written).toBe(true);
+		const aphex = (await fresh.get(APHEX)) as ArtistNode;
+		expect(slugsOf(aphex.collaborators)).toEqual(["artist:squarepusher"]);
+		expect(slugsOf(aphex.labels)).toEqual([WARP]);
+		const pending = JSON.parse(await readFile(join(updDir, "pending-reverses.json"), "utf8")) as Record<
+			string,
+			unknown
+		>;
+		expect(pending[APHEX]).toBeUndefined();
+	});
+
+	it("writes nothing when fn reports no change", async () => {
+		await updCache.write(artist());
+		const file = join(updDir, "nodes", "artist", "aphex-twin.json");
+		const before = await readFile(file, "utf8");
+		const writtenBefore = updCache.stats.written;
+
+		expect(await updCache.update(APHEX, () => null)).toBe(false);
+
+		expect(await readFile(file, "utf8")).toBe(before);
+		expect(updCache.stats.written).toBe(writtenBefore);
+	});
+
+	it("leaves the file intact, and releases the lock, when fn throws or validation fails", async () => {
+		await updCache.write(artist());
+		const file = join(updDir, "nodes", "artist", "aphex-twin.json");
+		const before = await readFile(file, "utf8");
+
+		await expect(
+			updCache.update(APHEX, () => {
+				throw new Error("boom");
+			}),
+		).rejects.toThrow("boom");
+		await expect(
+			updCache.update(APHEX, (node) => ({ ...node, citations: [] }) as unknown as NodePayload),
+		).rejects.toThrow();
+		await expect(
+			updCache.update(APHEX, (node) => ({ ...node, slug: "artist:other" }) as NodePayload),
+		).rejects.toThrow(/must not change the slug/);
+
+		expect(await readFile(file, "utf8")).toBe(before);
+		expect(await readdir(join(updDir, "nodes", "artist"))).toEqual(["aphex-twin.json"]);
+		// The failures did not wedge the node: a later update still goes through.
+		expect(await updCache.update(APHEX, (node) => withCollaborator(node, ref("artist:x", "X")))).toBe(true);
+	});
+
+	it("throws NotFoundError for a node that is not cached", async () => {
+		await expect(updCache.update(APHEX, (node) => node)).rejects.toMatchObject({ name: "NotFoundError" });
 	});
 });
