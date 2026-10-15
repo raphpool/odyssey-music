@@ -81,6 +81,7 @@ function artistA(): ArtistNode {
 		collaborators: [],
 		aliases: [],
 		members: [],
+		similar_artists: [],
 	};
 }
 
@@ -140,6 +141,7 @@ describe("NodeCache", () => {
 			collaborators: [],
 			aliases: [],
 			members: [],
+			similar_artists: [],
 		};
 		await cache.write(aphex);
 		const aphexBack = (await cache.get("artist:aphex-twin")) as ArtistNode | null;
@@ -557,6 +559,7 @@ describe("NodeCache — cross-type reverse edges (TRA-454)", () => {
 			collaborators: [],
 			aliases: [],
 			members: [],
+			similar_artists: [],
 			...overrides,
 		};
 	}

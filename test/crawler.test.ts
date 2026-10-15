@@ -26,6 +26,7 @@ function artistNode(overrides: Partial<ArtistNode> = {}): ArtistNode {
 		collaborators: [],
 		aliases: [],
 		members: [],
+		similar_artists: [],
 		...overrides,
 	};
 }

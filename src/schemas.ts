@@ -151,6 +151,9 @@ const artistSchema = z.object({
 	collaborators: z.array(typedEdgeFor("artist", "collaborators")),
 	aliases: z.array(typedEdgeFor("artist", "aliases")),
 	members: z.array(typedEdgeFor("artist", "members")),
+	// Not part of the Gemini schema: the field is filled after drafting, and the default lets the
+	// artist files cached before it existed load.
+	similar_artists: z.array(typedEdgeFor("artist", "similar_artists")).default([]),
 });
 
 const projectSchema = z.object({

@@ -45,6 +45,7 @@ function artistNode(): ArtistNode {
 		collaborators: [],
 		aliases: [],
 		members: [],
+		similar_artists: [],
 	};
 }
 
