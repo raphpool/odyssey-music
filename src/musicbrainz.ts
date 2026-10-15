@@ -1354,17 +1354,29 @@ const COUNTRY_CODES: Record<string, string> = {
 	AU: "australia",
 };
 
-/** Lowercase, accent-free, country-folded words (>= 3 chars) of free text, minus filler. */
-function contextWords(text: string): string[] {
-	let s = text
+/** Lowercase, accent-free text, with the dots of abbreviations ("U.S.", "St.") removed. */
+function foldText(text: string): string {
+	return text
 		.normalize("NFKD")
 		.replace(/\p{M}/gu, "")
 		.toLowerCase()
 		.replace(/(?<=\p{L})\.(?=\p{L})/gu, "")
 		.replace(/(?<=\p{L})\./gu, "");
+}
+
+/** Every word of free text, folded by {@link foldText}, each country folded to one token, nothing dropped. */
+function foldedWords(text: string): string[] {
+	let s = foldText(text);
 	for (const [pattern, token] of COUNTRY_PHRASES) s = s.replace(pattern, ` ${token} `);
-	const words = s.split(/[^\p{L}\p{N}]+/u).map((w) => COUNTRY_WORDS[w] ?? w);
-	return [...new Set(words.filter((w) => w.length >= 3 && !HINT_STOPWORDS.has(w)))];
+	return s
+		.split(/[^\p{L}\p{N}]+/u)
+		.filter((w) => w !== "")
+		.map((w) => COUNTRY_WORDS[w] ?? w);
+}
+
+/** Lowercase, accent-free, country-folded words (>= 3 chars) of free text, minus filler. */
+function contextWords(text: string): string[] {
+	return [...new Set(foldedWords(text).filter((w) => w.length >= 3 && !HINT_STOPWORDS.has(w)))];
 }
 
 /**
@@ -1522,29 +1534,31 @@ function hintWords(hints: readonly (string | undefined)[]): string[] {
  * "York", "Altamonte Springs" is not "Colorado Springs").
  */
 function placeSegment(text: string): string {
-	return text
-		.normalize("NFKD")
-		.replace(/\p{M}/gu, "")
-		.toLowerCase()
-		.replace(/(?<=\p{L})\.(?=\p{L})/gu, "")
-		.replace(/(?<=\p{L})\./gu, "")
+	return foldText(text)
 		.split(/[^\p{L}\p{N}]+/u)
 		.filter((w) => w !== "")
 		.join(" ");
 }
 
-/** Words that may stand around a country's name without making it a place ("Republic of the Congo"). */
-const COUNTRY_FILLER: ReadonlySet<string> = new Set(["the", "of", "republic"]);
+/**
+ * Words that may stand around a country's name without making it a place: "Republic of the Congo",
+ * "South Africa", "New Zealand", "North Korea". (As before TRA-533, "New Mexico" is a country segment
+ * too: a US state named after a country is lost on purpose.)
+ */
+const COUNTRY_FILLER: ReadonlySet<string> = new Set([
+	"the",
+	"of",
+	"republic",
+	"new",
+	"north",
+	"south",
+	"east",
+	"west",
+]);
 
-/** True when a {@link placeSegment} says nothing but a country: "england", "u.s." or "republic of ireland". */
-function isCountrySegment(place: string): boolean {
-	let s = place;
-	for (const [pattern, token] of COUNTRY_PHRASES) s = s.replace(pattern, ` ${token} `);
-	return s
-		.split(" ")
-		.filter((w) => w !== "")
-		.map((w) => COUNTRY_WORDS[w] ?? w)
-		.every((w) => COUNTRY_TOKENS.has(w) || COUNTRY_FILLER.has(w));
+/** True when a text says nothing but a country: "England", "U.S.", "Republic of Ireland", "South Africa". */
+function isCountrySegment(text: string): boolean {
+	return foldedWords(text).every((w) => COUNTRY_TOKENS.has(w) || COUNTRY_FILLER.has(w));
 }
 
 /**
@@ -1567,7 +1581,7 @@ function originPlaceSegments(origin: string | undefined): string[] {
 	const [first] = segments;
 	if (!first || segments.length < 2) return [];
 	const place = placeSegment(first);
-	return contextWords(first).length > 0 && !isCountrySegment(place) ? [place] : [];
+	return contextWords(first).length > 0 && !isCountrySegment(first) ? [place] : [];
 }
 
 /**

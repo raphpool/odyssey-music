@@ -847,6 +847,13 @@ describe("resolveArtist", () => {
 				expect((await resolveArtist("Loireish", { origin: "Saint Etienne, France" }))?.mbid).toBe(stEtienne);
 			});
 
+			it("keeps giving no place to a country written with a directional word (South Africa, New Zealand)", async () => {
+				pair("eaeaeaea", "Capeish", "South Africa", "Subdivision");
+				expect(await resolveArtist("Capeish", { origin: "South Africa, Johannesburg" })).toBeNull();
+				pair("ebebebeb", "Kiwiish", "New Zealand", "Subdivision");
+				expect(await resolveArtist("Kiwiish", { origin: "New Zealand, Oceania" })).toBeNull();
+			});
+
 			it("still reads a city that bears a country's name as a city (Mexico City, Mexico)", async () => {
 				const mexico = pair("e9e9e9e9", "Aztecish", "Mexico City");
 				expect((await resolveArtist("Aztecish", { origin: "Mexico City, Mexico" }))?.mbid).toBe(mexico);
