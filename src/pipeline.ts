@@ -1475,6 +1475,7 @@ function canonicalizeDraft(
 	for (const k of Object.keys(next)) {
 		const v = next[k];
 		const allowed = EDGE_TARGET_TYPES_BY_TYPE[input.type][k] ?? NODE_TYPES;
+		const fieldCtx: EdgeContext = { ...ctx, sourceField: k };
 		const onDrop = (reason: string, target: string): void =>
 			log(`[pipeline] edge dropped: ${reason} (${slug}.${k} -> ${target})`);
 		if (
@@ -1485,9 +1486,9 @@ function canonicalizeDraft(
 			"type" in (v[0] as object) &&
 			"name" in (v[0] as object)
 		) {
-			next[k] = (v as unknown[]).flatMap((e) => normalizeEdge(e as RawEdge, allowed, ctx, onDrop) ?? []);
+			next[k] = (v as unknown[]).flatMap((e) => normalizeEdge(e as RawEdge, allowed, fieldCtx, onDrop) ?? []);
 		} else if (v && typeof v === "object" && !Array.isArray(v) && "type" in v && "name" in v) {
-			const single = normalizeEdge(v as RawEdge, allowed, ctx, onDrop);
+			const single = normalizeEdge(v as RawEdge, allowed, fieldCtx, onDrop);
 			if (single) next[k] = single;
 			else delete next[k];
 		}
@@ -1515,6 +1516,28 @@ export interface EdgeContext {
 	sourceName: string;
 	/** `artists[0].name` of a project/track draft; undefined for other source types. */
 	sourceArtist?: string;
+	/** The field being normalized; without it (or off the whitelist) a work needs its own `artist`. */
+	sourceField?: string;
+}
+
+// Fields where the source node's own artist IS the credit of the targets, so a reference may omit
+// `artist` and inherit it. Everywhere else (samples, sampled_by, remix_of, remixed_by, a genre's or
+// label's works, related_projects) the target belongs to someone else, and inheriting the source's artist
+// would attribute another artist's work to it -- "Fitna" by Akuma filed under Rohff -- which is the bug
+// class the scoped slugs exist to end. Those references are dropped when they carry no artist.
+// Explicit whitelist added 2026-10-15 (TRA-462 review); the first version fell back on every field.
+const INHERITS_SOURCE_ARTIST: ReadonlySet<string> = new Set([
+	"artist.discography",
+	"artist.notable_tracks",
+	"project.tracklist",
+	"track.project",
+]);
+
+/** The artist a reference without `artist` may inherit from its source, or undefined. */
+function sourceCreditFor(ctx: EdgeContext): string | undefined {
+	if (!ctx.sourceField || !INHERITS_SOURCE_ARTIST.has(`${ctx.sourceType}.${ctx.sourceField}`))
+		return undefined;
+	return ctx.sourceType === "artist" ? ctx.sourceName : ctx.sourceArtist;
 }
 
 /** `artists[0].name` of a draft, trimmed, or undefined. */
@@ -1531,9 +1554,9 @@ function firstArtistName(draft: Record<string, unknown>): string | undefined {
  * Turn one raw reference into a typed EdgeRef, or null when it must not become an edge. `onDrop` gets the
  * reason for the drops that lose real data (no artist, unscopable name, self link, off-spec type).
  *
- * Works (project/track) are scoped by their primary artist: the reference's `artist` wins, else the
- * source's (an artist node's own name, or a work's first artist -- so tracklist entries need not repeat
- * it). With neither, the reference is dropped rather than minted as an unscoped slug: that fallback is how
+ * Works (project/track) are scoped by their primary artist: the reference's `artist` wins, else, on the
+ * INHERITS_SOURCE_ARTIST fields only, the source's (an artist node's own name, or a work's first artist).
+ * With neither, the reference is dropped rather than minted as an unscoped slug: that fallback is how
  * "Fitna" by Rohff and "Fitna" by Akuma became one node (2026-10-14, plan graph-integrity decision 1).
  * Dropping an ungrounded edge is already allowed by docs/adr/2026-05-19-groundedness.md. A failed
  * makeScopedSlug (empty title, or an artist name with no Latin letter or digit) drops the edge, never the
@@ -1560,7 +1583,7 @@ export function normalizeEdge(
 		let out: EdgeRef;
 		if (t === "project" || t === "track") {
 			const credited = typeof r.artist === "string" && r.artist.trim() ? r.artist.trim() : undefined;
-			const artistName = credited ?? (ctx.sourceType === "artist" ? ctx.sourceName : ctx.sourceArtist);
+			const artistName = credited ?? sourceCreditFor(ctx);
 			if (!artistName) {
 				onDrop?.("no artist", `${t} "${name}"`);
 				return null;

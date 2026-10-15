@@ -26,7 +26,10 @@ const GENRE_CTX: EdgeContext = {
 
 describe("normalizeEdge -- scoped work references (TRA-462)", () => {
 	it("scopes a track emitted by an artist node with that artist's name", () => {
-		const out = normalizeEdge({ type: "track", name: "Fitna" }, ["track"], ARTIST_CTX);
+		const out = normalizeEdge({ type: "track", name: "Fitna" }, ["track"], {
+			...ARTIST_CTX,
+			sourceField: "notable_tracks",
+		});
 		expect(out).toEqual({ slug: "track:fitna--rohff", type: "track", name: "Fitna", artist: "Rohff" });
 	});
 
@@ -60,7 +63,10 @@ describe("normalizeEdge -- scoped work references (TRA-462)", () => {
 	});
 
 	it("falls back to the source work's first artist (tracklist of a project)", () => {
-		const out = normalizeEdge({ type: "track", name: "Gantz Graf" }, ["track"], PROJECT_CTX);
+		const out = normalizeEdge({ type: "track", name: "Gantz Graf" }, ["track"], {
+			...PROJECT_CTX,
+			sourceField: "tracklist",
+		});
 		expect(out?.slug).toBe("track:gantz-graf--autechre");
 		expect(out?.artist).toBe("Autechre");
 	});
@@ -84,8 +90,79 @@ describe("normalizeEdge -- scoped work references (TRA-462)", () => {
 
 	it("keeps a valid mbid on a scoped reference", () => {
 		const mbid = "11111111-2222-3333-4444-555555555555";
-		const out = normalizeEdge({ type: "track", name: "Fitna", mbid }, ["track"], ARTIST_CTX);
+		const out = normalizeEdge({ type: "track", name: "Fitna", artist: "Rohff", mbid }, ["track"], ARTIST_CTX);
 		expect(out?.mbid).toBe(mbid);
+	});
+});
+
+describe("normalizeEdge -- inheriting the source's artist is whitelisted (TRA-462 review)", () => {
+	const ROHFF_TRACK_CTX: EdgeContext = {
+		sourceSlug: "track:fitna--rohff" as Slug,
+		sourceType: "track",
+		sourceName: "Fitna",
+		sourceArtist: "Rohff",
+	};
+	const NEW_FORMS_CTX: EdgeContext = {
+		sourceSlug: "project:new-forms--roni-size-reprazent" as Slug,
+		sourceType: "project",
+		sourceName: "New Forms",
+		sourceArtist: "Roni Size / Reprazent",
+	};
+
+	it("drops a sample with no artist rather than crediting it to the sampling track's artist", () => {
+		const onDrop = vi.fn();
+		const ctx = { ...ROHFF_TRACK_CTX, sourceField: "samples" };
+		expect(normalizeEdge({ type: "track", name: "Fitna" }, ["track"], ctx, onDrop)).toBeNull();
+		expect(onDrop).toHaveBeenCalledWith("no artist", 'track "Fitna"');
+		const kept = normalizeEdge({ type: "track", name: "Fitna", artist: "Akuma" }, ["track"], ctx);
+		expect(kept?.slug).toBe("track:fitna--akuma");
+	});
+
+	it.each(["sampled_by", "remix_of", "remixed_by"])("does not inherit on track.%s", (field) => {
+		const ctx = { ...ROHFF_TRACK_CTX, sourceField: field };
+		expect(normalizeEdge({ type: "track", name: "Other" }, ["track"], ctx)).toBeNull();
+	});
+
+	it("does not inherit on related_projects, nor from a genre or label source", () => {
+		const related = { ...NEW_FORMS_CTX, sourceField: "related_projects" };
+		expect(normalizeEdge({ type: "project", name: "Other" }, ["project"], related)).toBeNull();
+		for (const [sourceType, sourceField, type] of [
+			["genre", "landmark_projects", "project"],
+			["genre", "landmark_tracks", "track"],
+			["label", "notable_releases", "project"],
+		] as const) {
+			const ctx: EdgeContext = {
+				sourceSlug: `${sourceType}:x` as Slug,
+				sourceType,
+				sourceName: "X",
+				sourceField,
+			};
+			expect(normalizeEdge({ type, name: "Other" }, [type], ctx), `${sourceType}.${sourceField}`).toBeNull();
+		}
+	});
+
+	it("does not inherit when the field is unknown", () => {
+		expect(normalizeEdge({ type: "track", name: "Fitna" }, ["track"], ARTIST_CTX)).toBeNull();
+	});
+
+	it("credits an artist's discography entry without artist to that artist", () => {
+		const ctx = { ...ARTIST_CTX, sourceField: "discography" };
+		const out = normalizeEdge({ type: "project", name: "Il Faut Du Temps" }, ["project"], ctx);
+		expect(out?.slug).toBe("project:il-faut-du-temps--rohff");
+		expect(out?.artist).toBe("Rohff");
+	});
+
+	it("credits a tracklist entry without artist to the project's first artist", () => {
+		const ctx = { ...NEW_FORMS_CTX, sourceField: "tracklist" };
+		const out = normalizeEdge({ type: "track", name: "Brown Paper Bag" }, ["track"], ctx);
+		expect(out?.slug).toBe("track:brown-paper-bag--roni-size-reprazent");
+		expect(out?.artist).toBe("Roni Size / Reprazent");
+	});
+
+	it("credits track.project to the track's first artist", () => {
+		const ctx = { ...ROHFF_TRACK_CTX, sourceField: "project" };
+		const out = normalizeEdge({ type: "project", name: "La Fierte" }, ["project"], ctx);
+		expect(out?.slug).toBe("project:la-fierte--rohff");
 	});
 });
 
