@@ -184,6 +184,74 @@ final class NodePageModelTests: XCTestCase {
 		XCTAssertEqual(NodePageSpec.label(field: "project", type: .track), "album / ep")
 	}
 
+	// MARK: - Artist highlights (TRA-471)
+
+	func testAnArtistWithBothPicksHasHighlightsWithTheLabelsAndIdentifiersOfTheContract() throws {
+		let node = try Self.node(
+			type: .artist,
+			edges: [
+				"landmark_project": Self.object(.project, 1), "reference_track": Self.object(.track, 1),
+				"discography": Self.json(.project, count: 3),
+			]
+		)
+
+		let highlights = try XCTUnwrap(NodePageModel.highlights(for: node))
+
+		XCTAssertEqual(highlights.landmarkProject?.slug.rawValue, "project:project-1")
+		XCTAssertEqual(highlights.referenceTrack?.slug.rawValue, "track:track-1")
+		XCTAssertEqual(highlights.entries.map(\.identifier), ["landmark-album", "reference-track"])
+		XCTAssertEqual(highlights.entries.map(\.label), ["landmark album", "reference track"])
+		XCTAssertEqual(highlights.entries.map(\.field), ["landmark_project", "reference_track"])
+		XCTAssertEqual(highlights.entries.map(\.kind), [.landmarkAlbum, .referenceTrack])
+	}
+
+	func testAnArtistWithoutThePicksHasNoHighlights() throws {
+		let bare = try Self.node(type: .artist, edges: [:])
+		let emptyList = try Self.node(
+			type: .artist, edges: ["landmark_project": "[]", "reference_track": "[]"])
+		let other = try Self.node(type: .artist, edges: ["discography": Self.json(.project, count: 2)])
+
+		XCTAssertNil(NodePageModel.highlights(for: bare))
+		XCTAssertNil(NodePageModel.highlights(for: emptyList))
+		XCTAssertNil(NodePageModel.highlights(for: other))
+	}
+
+	func testOnePickAloneIsEnoughAndTheOtherStaysNil() throws {
+		let album = try XCTUnwrap(
+			NodePageModel.highlights(
+				for: try Self.node(type: .artist, edges: ["landmark_project": Self.object(.project, 1)])))
+		let track = try XCTUnwrap(
+			NodePageModel.highlights(
+				for: try Self.node(type: .artist, edges: ["reference_track": Self.object(.track, 1)])))
+
+		XCTAssertNotNil(album.landmarkProject)
+		XCTAssertNil(album.referenceTrack)
+		XCTAssertEqual(album.entries.map(\.identifier), ["landmark-album"])
+		XCTAssertNil(track.landmarkProject)
+		XCTAssertNotNil(track.referenceTrack)
+		XCTAssertEqual(track.entries.map(\.identifier), ["reference-track"])
+	}
+
+	func testOnlyAnArtistHasHighlightsWhateverTheEdgesDictionaryCarries() throws {
+		// The edges dictionary comes from the network: a genre carrying the artist fields still has none.
+		for type in [NodeType.genre, .label, .project, .track] {
+			let node = try Self.node(
+				type: type,
+				edges: ["landmark_project": Self.object(.project, 1), "reference_track": Self.object(.track, 1)])
+
+			XCTAssertNil(NodePageModel.highlights(for: node), type.rawValue)
+		}
+	}
+
+	func testAHighlightKeepsTheFirstEdgeIfTheServerSendsAList() throws {
+		let node = try Self.node(
+			type: .artist, edges: ["landmark_project": Self.json(.project, count: 3)])
+
+		let highlights = try XCTUnwrap(NodePageModel.highlights(for: node))
+
+		XCTAssertEqual(highlights.landmarkProject?.name, "Project 1")
+	}
+
 	// MARK: - Fixtures
 
 	/// A full set of edges for `type`: `count` targets under every list field, one object under single fields.
