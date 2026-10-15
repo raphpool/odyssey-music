@@ -35,6 +35,7 @@ import { loadEnv } from "./env.js";
 import { AppError, isNotFoundError } from "./errors.js";
 import { loadGenreResolver } from "./genre-identity.js";
 import { createGenreRegistry, loadRedirects, resolveReadSlug } from "./genre-registry.js";
+import { resolveImage } from "./images/resolve-image.js";
 import { logger } from "./logger.js";
 import { createApnsPushSender } from "./mobile/apns-sender.js";
 import { createMobileCatalog } from "./mobile/catalog.js";
@@ -104,6 +105,8 @@ const materializeService = createMaterializeService({
 	genreRegistry,
 	getCacheIndex,
 	invalidateCacheIndex,
+	// TRA-479: a node gets its image when it is materialized (GET /image only reads it back).
+	resolveImage: (node) => resolveImage(node, { cache }),
 });
 const getNode = createNodeService({ cache, runJit: materializeService.runJit, redirects: genreRedirects });
 const imageService = createImageService({ cache, redirects: genreRedirects });
