@@ -386,7 +386,7 @@ describe("edge cases (TRA-481)", () => {
 	});
 });
 
-describe("search rail (TRA-481)", () => {
+describe("search rail (TRA-481, TRA-547)", () => {
 	async function clickHit(hit: Record<string, unknown>) {
 		const stub = newWindow({ hits: [hit] });
 		const { w } = stub;
@@ -402,20 +402,45 @@ describe("search rail (TRA-481)", () => {
 		return stub.materialize()[0]?.body;
 	}
 
-	it("a catalog track hit sends the joined credit (subtitle) as artist, with its mbid", async () => {
+	it("a catalog track hit sends its first credited artist as artist, with its mbid (TRA-547)", async () => {
 		const body = await clickHit({
 			source: "catalog",
 			type: "track",
 			name: "Fitna",
 			subtitle: "Rohff & Akuma",
+			artist: "Rohff",
+			artist_slug: "artist:rohff",
 			mbid: "11111111-2222-3333-4444-555555555555",
 		});
 		expect(body).toEqual({
 			type: "track",
 			name: "Fitna",
-			artist: "Rohff & Akuma",
+			artist: "Rohff",
 			mbid: "11111111-2222-3333-4444-555555555555",
 		});
+	});
+
+	it("keeps a comma-bearing artist whole: 'Earth, Wind & Fire' (TRA-547)", async () => {
+		const body = await clickHit({
+			source: "catalog",
+			type: "project",
+			name: "That's the Way of the World",
+			subtitle: "Earth, Wind & Fire",
+			artist: "Earth, Wind & Fire",
+			mbid: "11111111-2222-3333-4444-555555555555",
+		});
+		expect(body).toMatchObject({ artist: "Earth, Wind & Fire" });
+	});
+
+	it("a hit without artist sends none, never the joined subtitle (TRA-547)", async () => {
+		const body = await clickHit({
+			source: "catalog",
+			type: "track",
+			name: "Fitna",
+			subtitle: "Sasha, John Digweed",
+			mbid: "11111111-2222-3333-4444-555555555555",
+		});
+		expect(body).not.toHaveProperty("artist");
 	});
 
 	it("a catalog artist hit never sends its sort-name subtitle as artist", async () => {
