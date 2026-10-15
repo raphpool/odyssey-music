@@ -462,6 +462,28 @@ describe("loadGenreRedirects", () => {
 	});
 });
 
+describe("redirect keys may be legacy slugs (TRA-501)", () => {
+	// A key is the retired slug: renaming a non-canonical node away leaves exactly such a key behind.
+	it("parseGenreRedirects accepts a non-canonical key but not a non-canonical value", () => {
+		expect(
+			parseGenreRedirects({ redirects: { "genre:Trap_EDM": "genre:edm-trap" } }).get("genre:Trap_EDM"),
+		).toBe("genre:edm-trap");
+		expect(() => parseGenreRedirects({ redirects: { "genre:a": "genre:Trap_EDM" } })).toThrow(
+			/not a genre slug/,
+		);
+		expect(() => parseGenreRedirects({ redirects: { "artist:Trap_EDM": "genre:edm-trap" } })).toThrow(
+			/not a genre slug/,
+		);
+	});
+
+	it("parseSlugRedirects accepts a non-canonical key but not a non-canonical value", () => {
+		expect(parseSlugRedirects({ redirects: { "track:Old_Name": "track:old-name--x" } }).size).toBe(1);
+		expect(() => parseSlugRedirects({ redirects: { "track:a": 'track:b" onclick="x' } })).toThrow(
+			/not a slug/,
+		);
+	});
+});
+
 describe("parseSlugRedirects (TRA-453)", () => {
 	it("parses a table mixing node types, ignoring provenance fields", () => {
 		const result = parseSlugRedirects({

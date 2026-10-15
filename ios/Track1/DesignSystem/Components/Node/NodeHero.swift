@@ -19,14 +19,21 @@ struct NodeHero: View {
 
 	private let kind: Kind
 	private let image: Track1Artwork.State
+	private let imageStyle: HeroImageStyle
 	private let discTint: Color?
 	private let accessibilityLabel: String?
 
 	/// `discTint` only matters to `release`. `accessibilityLabel` is the node name: without one the hero is
-	/// still addressable by its identifier, but it is not announced as an image.
-	init(kind: Kind, image: Track1Artwork.State, discTint: Color? = nil, accessibilityLabel: String? = nil) {
+	/// still addressable by its identifier, but it is not announced as an image. `imageStyle` is
+	/// `derivedCover` for a release cover standing in for an artist, label or genre: shown whole over the
+	/// gradient, in a square, never as a portrait (plan Part 3, decision 5). `release` ignores it.
+	init(
+		kind: Kind, image: Track1Artwork.State, imageStyle: HeroImageStyle = .photo, discTint: Color? = nil,
+		accessibilityLabel: String? = nil
+	) {
 		self.kind = kind
 		self.image = image
+		self.imageStyle = imageStyle
 		self.discTint = discTint
 		self.accessibilityLabel = accessibilityLabel
 	}
@@ -51,11 +58,13 @@ struct NodeHero: View {
 		switch kind {
 		case .release:
 			ReleaseHero(image: Self.decodedImage(for: image), tint: discTint ?? NodeHeroStyle.defaultDiscTint)
-		case .artist:
-			HeroPhoto(image: Self.decodedImage(for: image), kind: kind, shape: Circle())
-		case .cover:
+		case .artist where imageStyle == .photo:
+			HeroPhoto(image: Self.decodedImage(for: image), kind: kind, style: imageStyle, shape: Circle())
+		case .artist, .cover:
+			// A derived cover on an artist page leaves the circle: a round frame would read as a portrait
+			// and cut the corners of the sleeve.
 			HeroPhoto(
-				image: Self.decodedImage(for: image), kind: kind,
+				image: Self.decodedImage(for: image), kind: kind, style: imageStyle,
 				shape: RoundedRectangle(cornerRadius: NodeHeroMetrics.coverCornerRadius, style: .continuous))
 		}
 	}
@@ -139,14 +148,22 @@ struct HeroCoverFill: View {
 	let image: UIImage?
 	let kind: NodeHeroKind
 	let size: CGSize
+	/// `derivedCover` keeps the whole cover visible (aspect fit) over the gradient instead of filling the frame.
+	var style: HeroImageStyle = .photo
 
 	var body: some View {
 		Rectangle()
 			.fill(NodeHeroStyle.placeholder(for: kind))
 			.overlay {
 				if let image {
-					Image(uiImage: image).resizable().scaledToFill().frame(width: size.width, height: size.height)
-						.clipped()
+					switch style {
+					case .photo:
+						Image(uiImage: image).resizable().scaledToFill()
+							.frame(width: size.width, height: size.height).clipped()
+					case .derivedCover:
+						Image(uiImage: image).resizable().scaledToFit()
+							.frame(width: size.width, height: size.height)
+					}
 				}
 			}
 			.frame(width: size.width, height: size.height)
@@ -178,10 +195,11 @@ private struct HeroAccessibility: ViewModifier {
 private struct HeroPhoto<ClipShape: InsettableShape>: View {
 	let image: UIImage?
 	let kind: NodeHeroKind
+	let style: HeroImageStyle
 	let shape: ClipShape
 
 	var body: some View {
-		HeroCoverFill(image: image, kind: kind, size: kind.size)
+		HeroCoverFill(image: image, kind: kind, size: kind.size, style: style)
 			.clipShape(shape)
 			.overlay { shape.strokeBorder(Track1Tokens.colorGlassBorder, lineWidth: NodeHeroMetrics.photoBorderWidth) }
 	}

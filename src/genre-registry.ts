@@ -34,7 +34,7 @@ import { isNotFoundError } from "./errors.js";
 import type { GenreResolver } from "./genre-identity.js";
 import { logger } from "./logger.js";
 import { EDGE_TARGET_TYPES_BY_TYPE, LIST_EDGES_BY_TYPE, NODE_TYPES } from "./node-spec.js";
-import { isValidSlug, parseSlug } from "./slug.js";
+import { isReadableSlug, isValidSlug, parseSlug } from "./slug.js";
 import type { EdgeRef, NodePayload, NodeType, Slug } from "./types.js";
 
 const log = logger.child({ module: "genre-registry" });
@@ -52,6 +52,14 @@ function isGenreSlug(value: string): value is Slug {
 	return isValidSlug(value) && value.startsWith("genre:");
 }
 
+// A redirect KEY is the retired slug: only ever a lookup key, never turned into a path or markup. It may
+// be a legacy, non-canonical slug -- renaming such a node away (the TRA-501 remediation channel,
+// scripts/migrations/2026-09-10-rename-genre-node.ts) writes exactly that key -- so keys only need to be
+// readable. VALUES are where a read lands and stay canonical.
+function isRedirectKey(value: string): value is Slug {
+	return isReadableSlug(value);
+}
+
 /**
  * Parses the shape TRA-22's merge script writes to data/genre-redirects.json. Pure: no I/O.
  *
@@ -65,7 +73,7 @@ export function parseGenreRedirects(raw: unknown): GenreRedirects {
 	const parsed = genreRedirectsFileSchema.parse(raw);
 	const redirects = new Map<Slug, Slug>();
 	for (const [from, to] of Object.entries(parsed.redirects)) {
-		if (!isGenreSlug(from)) {
+		if (!isRedirectKey(from) || !from.startsWith("genre:")) {
 			throw new Error(`Invalid genre-redirects.json entry: key "${from}" is not a genre slug`);
 		}
 		if (!isGenreSlug(to)) {
@@ -92,7 +100,7 @@ export function parseSlugRedirects(raw: unknown): GenreRedirects {
 	const parsed = genreRedirectsFileSchema.parse(raw);
 	const redirects = new Map<Slug, Slug>();
 	for (const [from, to] of Object.entries(parsed.redirects)) {
-		if (!isValidSlug(from)) {
+		if (!isRedirectKey(from)) {
 			throw new Error(`Invalid slug-redirects.json entry: key "${from}" is not a slug`);
 		}
 		if (!isValidSlug(to)) {

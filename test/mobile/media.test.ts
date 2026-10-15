@@ -158,7 +158,10 @@ describe("mobile media reader", () => {
 			resolvedAt: "2026-01-01T00:00:00.000Z",
 		}));
 
-		await expect(reader.image("artist:hostile")).resolves.toMatchObject({ image_url: null, source: "self" });
+		await expect(reader.image("artist:hostile")).resolves.toMatchObject({
+			image_url: null,
+			source: "legacy",
+		});
 		await expect(reader.image("genre:a")).resolves.toMatchObject({ image_url: null, source: "no-match" });
 	});
 

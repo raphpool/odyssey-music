@@ -35,6 +35,23 @@
 		"edges": [
 			{ "source": "artist:massive-attack", "target": "project:blue-lines", "type": "discography" }
 		],
-		"taxonomy": { "mode": "degraded", "reason": "fixture" }
+		"taxonomy": {
+			"version": 2,
+			"families": [
+				{ "key": "rock", "label": "Rock", "order": 1, "qid": "Q11399", "slug": "genre:rock" },
+				{ "key": "electronic", "label": "Electronic", "order": 2 }
+			],
+			"genres": [
+				{ "id": "Q11366", "name": "Alternative rock", "family": "rock", "slugs": ["genre:alternative-rock"] },
+				{ "id": "Q205049", "name": "Trip hop", "family": "electronic", "slugs": ["genre:trip-hop", "genre:bristol-sound"] },
+				{ "id": "local:dub", "name": "Dub", "family": "electronic", "slugs": ["genre:dub"] }
+			],
+			"legacySelectionBySlug": {
+				"genre:alternative-rock": ["Q11366"],
+				"genre:rock": ["Q11366"],
+				"genre:bristol-sound": ["Q205049"],
+				"genre:trip-hop-music": ["Q205049"]
+			}
+		}
 	}
 }

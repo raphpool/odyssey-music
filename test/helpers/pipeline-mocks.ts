@@ -35,10 +35,10 @@ import {
 	fetchLabelMetaMb,
 	fetchProjectMetaMb,
 	fetchTrackMetaMb,
-	findArtistMbidByName,
 	findLabelMbidByName,
-	findRecordingMbidByName,
-	findReleaseGroupMbidByName,
+	resolveArtistDetailed,
+	resolveRecording,
+	resolveReleaseGroup,
 } from "../../src/musicbrainz.js";
 import { firecrawlSearch } from "../../src/tools/firecrawl-search.js";
 import { localFetch } from "../../src/tools/local-fetcher.js";
@@ -106,16 +106,16 @@ vi.mock("@google/genai", () => ({
 }));
 
 vi.mock("../../src/musicbrainz.js", () => ({
-	findArtistMbidByName: vi.fn(unexpectedCall("findArtistMbidByName")),
+	resolveArtistDetailed: vi.fn(unexpectedCall("resolveArtistDetailed")),
 	fetchArtistDiscographyMb: vi.fn(unexpectedCall("fetchArtistDiscographyMb")),
 	fetchArtistEntityMb: vi.fn(unexpectedCall("fetchArtistEntityMb")),
 	fetchEntityGenresMb: vi.fn(unexpectedCall("fetchEntityGenresMb")),
 	findLabelMbidByName: vi.fn(unexpectedCall("findLabelMbidByName")),
 	fetchLabelMetaMb: vi.fn(unexpectedCall("fetchLabelMetaMb")),
 	fetchLabelEntityMb: vi.fn(unexpectedCall("fetchLabelEntityMb")),
-	findRecordingMbidByName: vi.fn(unexpectedCall("findRecordingMbidByName")),
+	resolveRecording: vi.fn(unexpectedCall("resolveRecording")),
 	fetchTrackMetaMb: vi.fn(unexpectedCall("fetchTrackMetaMb")),
-	findReleaseGroupMbidByName: vi.fn(unexpectedCall("findReleaseGroupMbidByName")),
+	resolveReleaseGroup: vi.fn(unexpectedCall("resolveReleaseGroup")),
 	fetchProjectMetaMb: vi.fn(unexpectedCall("fetchProjectMetaMb")),
 }));
 
@@ -144,6 +144,9 @@ const FIXTURE_PAGE_MARKDOWN =
 // that happens to collide with the map by coincidence.
 const DEFAULT_MB_GENRE_MBID = "41fe3260-fcc1-450b-bd5a-803886c56912";
 
+/** The MBID the nominal artist scenario resolves every artist name to. */
+export const DEFAULT_ARTIST_MBID = "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee";
+
 export interface MockMbGenre {
 	name: string;
 	mbid?: string;
@@ -164,7 +167,7 @@ export interface InstallPipelineMocksOptions {
 /**
  * (Re)installs all boundary mocks for one `runPipeline` call. Resets every
  * MusicBrainz export back to its "unexpected call" default first, then arms only the
- * calls the nominal artist scenario makes (findArtistMbidByName, fetchArtistDiscographyMb,
+ * calls the nominal artist scenario makes (resolveArtistDetailed, fetchArtistDiscographyMb,
  * fetchEntityGenresMb) — every other MB export stays throwing, on purpose, until a future
  * ticket's test needs it.
  *
@@ -213,21 +216,26 @@ export function installPipelineMocks(options: InstallPipelineMocksOptions): void
 				}) as unknown as GoogleGenAI,
 		);
 
-	resetToUnexpected(findArtistMbidByName, "findArtistMbidByName");
+	resetToUnexpected(resolveArtistDetailed, "resolveArtistDetailed");
 	resetToUnexpected(fetchArtistDiscographyMb, "fetchArtistDiscographyMb");
 	resetToUnexpected(fetchArtistEntityMb, "fetchArtistEntityMb");
 	resetToUnexpected(fetchEntityGenresMb, "fetchEntityGenresMb");
 	resetToUnexpected(findLabelMbidByName, "findLabelMbidByName");
 	resetToUnexpected(fetchLabelMetaMb, "fetchLabelMetaMb");
 	resetToUnexpected(fetchLabelEntityMb, "fetchLabelEntityMb");
-	resetToUnexpected(findRecordingMbidByName, "findRecordingMbidByName");
+	resetToUnexpected(resolveRecording, "resolveRecording");
 	resetToUnexpected(fetchTrackMetaMb, "fetchTrackMetaMb");
-	resetToUnexpected(findReleaseGroupMbidByName, "findReleaseGroupMbidByName");
+	resetToUnexpected(resolveReleaseGroup, "resolveReleaseGroup");
 	resetToUnexpected(fetchProjectMetaMb, "fetchProjectMetaMb");
 
 	// Only the artist path (src/pipeline.ts enrichFromMusicBrainz) calls these three for
 	// the nominal artist/genre fixtures — every other MB export stays throwing above.
-	vi.mocked(findArtistMbidByName).mockImplementation(async () => "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee");
+	vi.mocked(resolveArtistDetailed).mockImplementation(async (name) => ({
+		artist: { mbid: DEFAULT_ARTIST_MBID, name, kind: "person", disambiguation: null, area: null },
+		candidates: 1,
+		path: "name",
+		unavailable: false,
+	}));
 	vi.mocked(fetchArtistDiscographyMb).mockImplementation(async () => []);
 	vi.mocked(fetchEntityGenresMb).mockImplementation(async () => [...mbGenres]);
 }
@@ -303,3 +311,58 @@ export function genreDraftFixture(overrides: Record<string, unknown> = {}): Reco
 		...overrides,
 	};
 }
+
+const WORK_PROSE =
+	"A fictional work invented for the runPipeline end-to-end harness (TRA-473). No real-world facts are claimed here.";
+
+/** A minimal project draft credited to `artist` (the LLM's view; MusicBrainz may override it). */
+export function projectDraftFixture(
+	name: string,
+	artist: string,
+	overrides: Record<string, unknown> = {},
+): Record<string, unknown> {
+	return {
+		name,
+		editorial_article: WORK_PROSE,
+		citations: [{ url: FIXTURE_WIKI_URL, title: "Fixture Artist" }],
+		editorial_pitch: "A fictional album used to test MB credit handling.",
+		artists: [{ type: "artist", name: artist }],
+		genres: [],
+		tracklist: [],
+		producers: [],
+		related_projects: [],
+		...overrides,
+	};
+}
+
+/** A minimal track draft credited to `artist`. */
+export function trackDraftFixture(
+	name: string,
+	artist: string,
+	overrides: Record<string, unknown> = {},
+): Record<string, unknown> {
+	return {
+		name,
+		editorial_article: WORK_PROSE,
+		citations: [{ url: FIXTURE_WIKI_URL, title: "Fixture Artist" }],
+		editorial_teaser: "A fictional track used to test MB credit handling.",
+		artists: [{ type: "artist", name: artist }],
+		genres: [],
+		producers: [],
+		samples: [],
+		sampled_by: [],
+		remixed_by: [],
+		...overrides,
+	};
+}
+
+/** The empty MB metadata of a release group / recording that has nothing beyond what the test sets. */
+export const EMPTY_PROJECT_META = {
+	tracks: [],
+	label: null,
+	artists: [],
+	year: null,
+	producers: [],
+	personnel: [],
+	primaryType: "Album",
+} as const;

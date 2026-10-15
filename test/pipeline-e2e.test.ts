@@ -5,13 +5,16 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { NodeCache } from "../src/cache.js";
 import { loadGenreResolver } from "../src/genre-identity.js";
 import { createGenreRegistry, parseGenreRedirects } from "../src/genre-registry.js";
-import type { PipelineDeps } from "../src/pipeline.js";
-import type { ArtistNode, GenreNode, LabelNode, ProjectNode, Slug } from "../src/types.js";
+import type { MbCredit } from "../src/musicbrainz.js";
+import type { PipelineDeps, PipelineInput } from "../src/pipeline.js";
+import type { ArtistNode, GenreNode, LabelNode, ProjectNode, Slug, TrackNode } from "../src/types.js";
 import {
 	artistDraftFixture,
 	FIXTURE_WIKI_URL,
 	genreDraftFixture,
 	installPipelineMocks,
+	projectDraftFixture,
+	trackDraftFixture,
 } from "./helpers/pipeline-mocks.js";
 
 // TRA-25: end-to-end runPipeline harness, all four external boundaries mocked
@@ -509,6 +512,518 @@ describe("scoped work edges, flag off (TRA-509)", () => {
 		},
 		TIMEOUT_MS,
 	);
+});
+
+// TRA-473: the MusicBrainz identity of a work or an artist is stored on the node, the credit becomes
+// `artists`, and the slug MB teaches wins over the one asked for. Boundaries are mocked; slugs, scopes
+// and the order of enrichment steps are ours and run for real.
+describe("MB identity at enrichment (TRA-473)", () => {
+	const RECORDING_MBID = "aaaaaaaa-1111-4111-8111-000000000011";
+	const RG_MBID = "bbbbbbbb-1111-4111-8111-000000000022";
+	const ROHFF_MBID = "cccccccc-1111-4111-8111-000000000033";
+	const RONI_MBID = "2eeba1d4-0000-4000-8000-000000000001";
+	const SAKAMOTO_MBID = "dddddddd-1111-4111-8111-000000000044";
+
+	const trackMeta = {
+		project: null,
+		label: null,
+		artists: [],
+		year: null,
+		duration: null,
+		producers: [],
+		personnel: [],
+	};
+	const projectMeta = {
+		tracks: [{ mbid: RECORDING_MBID, title: "Brown Paper Bag" }],
+		label: null,
+		artists: [],
+		year: null,
+		producers: [],
+		personnel: [],
+		primaryType: "Album",
+	};
+
+	async function mb() {
+		return await import("../src/musicbrainz.js");
+	}
+	/** MusicBrainz answers: the recording / release group is found, with this credit. */
+	async function resolvedWork(kind: "recording" | "releaseGroup", title: string, credit: MbCredit[]) {
+		const m = await mb();
+		const identity = {
+			mbid: kind === "recording" ? RECORDING_MBID : RG_MBID,
+			title,
+			credit,
+			primaryType: null,
+			firstReleaseDate: null,
+		};
+		if (kind === "recording") vi.mocked(m.resolveRecording).mockImplementation(async () => identity);
+		else vi.mocked(m.resolveReleaseGroup).mockImplementation(async () => identity);
+		vi.mocked(m.fetchEntityGenresMb).mockImplementation(async () => []);
+		vi.mocked(m.fetchTrackMetaMb).mockImplementation(async () => trackMeta);
+		vi.mocked(m.fetchProjectMetaMb).mockImplementation(async () => projectMeta);
+		return m;
+	}
+
+	describe("flag on", () => {
+		beforeEach(() => {
+			vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "true");
+		});
+		afterEach(() => {
+			vi.unstubAllEnvs();
+		});
+
+		it(
+			"stores the recording's mbid and credit and keeps a slug that is already canonical",
+			async () => {
+				installPipelineMocks({ draft: trackDraftFixture("Fitna", "Rohff") });
+				const m = await resolvedWork("recording", "Fitna", [{ mbid: ROHFF_MBID, name: "Rohff" }]);
+				const { tavilySearch } = await import("../src/tools/tavily.js");
+				const runPipeline = await loadRunPipeline();
+
+				const result = await runPipeline(
+					{ type: "track", name: "Fitna", artist: "Rohff", slug: "track:fitna--rohff" },
+					DEPS,
+				);
+
+				expect(result.slug).toBe("track:fitna--rohff");
+				expect("requestedSlug" in result).toBe(false);
+				const track = result.node as TrackNode;
+				expect(track.mbid).toBe(RECORDING_MBID);
+				expect(track.artists).toEqual([
+					{ slug: "artist:rohff", type: "artist", name: "Rohff", mbid: ROHFF_MBID },
+				]);
+				// The credit hint reaches MusicBrainz and the web search.
+				expect(vi.mocked(m.resolveRecording)).toHaveBeenCalledWith("Fitna", "Rohff");
+				expect(vi.mocked(tavilySearch).mock.calls[0]?.[1]).toContain("Fitna Rohff");
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"files a project under its MB credit, reports the slug it was asked for, and scopes the tracklist by it",
+			async () => {
+				installPipelineMocks({ draft: projectDraftFixture("New Forms", "Roni Size") });
+				await resolvedWork("releaseGroup", "New Forms", [{ mbid: RONI_MBID, name: "Roni Size / Reprazent" }]);
+				const runPipeline = await loadRunPipeline();
+
+				const result = await runPipeline(
+					{
+						type: "project",
+						name: "New Forms",
+						artist: "Roni Size",
+						slug: "project:new-forms--roni-size",
+					},
+					DEPS,
+				);
+
+				expect(result.slug).toBe("project:new-forms--roni-size-reprazent");
+				expect(result.requestedSlug).toBe("project:new-forms--roni-size");
+				const project = result.node as ProjectNode;
+				expect(project.slug).toBe("project:new-forms--roni-size-reprazent");
+				expect(project.mbid).toBe(RG_MBID);
+				expect(project.artists[0]).toMatchObject({ name: "Roni Size / Reprazent", mbid: RONI_MBID });
+				expect(project.tracklist.map((e) => e.slug)).toEqual(["track:brown-paper-bag--roni-size-reprazent"]);
+				expect(project.tracklist.every((e) => e.artist === "Roni Size / Reprazent")).toBe(true);
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"does not report a requested slug when none was asked for",
+			async () => {
+				installPipelineMocks({ draft: projectDraftFixture("New Forms", "Roni Size") });
+				await resolvedWork("releaseGroup", "New Forms", [{ mbid: RONI_MBID, name: "Roni Size" }]);
+				const runPipeline = await loadRunPipeline();
+
+				const result = await runPipeline({ type: "project", name: "New Forms" }, DEPS);
+
+				expect(result.slug).toBe("project:new-forms--roni-size");
+				expect("requestedSlug" in result).toBe(false);
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"reuses the cache's artist slug for a credit and scopes a non-Latin credit by the cached name",
+			async () => {
+				installPipelineMocks({ draft: projectDraftFixture("async", "Ryuichi Sakamoto") });
+				await resolvedWork("releaseGroup", "async", [{ mbid: SAKAMOTO_MBID, name: "坂本龍一" }]);
+				const runPipeline = await loadRunPipeline();
+				const artistByMbid = vi.fn((mbid: string) =>
+					mbid === SAKAMOTO_MBID
+						? { slug: "artist:ryuichi-sakamoto" as Slug, name: "Ryuichi Sakamoto" }
+						: null,
+				);
+
+				const result = await runPipeline(
+					{ type: "project", name: "async", slug: "project:async--ryuichi-sakamoto" },
+					{ ...DEPS, artistByMbid },
+				);
+
+				expect(result.slug).toBe("project:async--ryuichi-sakamoto");
+				expect("requestedSlug" in result).toBe(false);
+				const project = result.node as ProjectNode;
+				expect(project.artists).toEqual([
+					{ slug: "artist:ryuichi-sakamoto", type: "artist", name: "坂本龍一", mbid: SAKAMOTO_MBID },
+				]);
+				expect(project.tracklist.map((e) => e.slug)).toEqual(["track:brown-paper-bag--ryuichi-sakamoto"]);
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"keeps the slug and the draft's artists, and does not fail, for a non-Latin credit the cache does not know",
+			async () => {
+				installPipelineMocks({ draft: projectDraftFixture("async", "Ryuichi Sakamoto") });
+				await resolvedWork("releaseGroup", "async", [{ mbid: SAKAMOTO_MBID, name: "坂本龍一" }]);
+				const runPipeline = await loadRunPipeline();
+				const lines: string[] = [];
+
+				const result = await runPipeline(
+					{ type: "project", name: "async", slug: "project:async--ryuichi-sakamoto" },
+					{ ...DEPS, logger: (line) => lines.push(line) },
+				);
+
+				expect(result.slug).toBe("project:async--ryuichi-sakamoto");
+				expect("requestedSlug" in result).toBe(false);
+				const project = result.node as ProjectNode;
+				// The identity is certain, so the mbid stays; only the scope cannot be built.
+				expect(project.mbid).toBe(RG_MBID);
+				expect(project.artists.map((a) => a.name)).toEqual(["Ryuichi Sakamoto"]);
+				// The MB track is dropped with its reason, never scoped by a name that cannot be slugged.
+				expect(project.tracklist).toEqual([]);
+				expect(lines.some((l) => l.includes("edge dropped: empty-artist"))).toBe(true);
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"keeps the slug that was asked for and sets no mbid when MB cannot single the work out",
+			async () => {
+				installPipelineMocks({
+					draft: projectDraftFixture("New Forms", "Roni Size", {
+						tracklist: [{ type: "track", name: "Brown Paper Bag" }],
+					}),
+				});
+				const m = await mb();
+				vi.mocked(m.resolveReleaseGroup).mockImplementation(async () => null);
+				const runPipeline = await loadRunPipeline();
+
+				const result = await runPipeline(
+					{ type: "project", name: "New Forms", slug: "project:new-forms--roni-size" },
+					DEPS,
+				);
+
+				expect(result.slug).toBe("project:new-forms--roni-size");
+				expect("requestedSlug" in result).toBe(false);
+				const project = result.node as ProjectNode;
+				expect(project.mbid).toBeUndefined();
+				// The LLM's own list stays, scoped by TRA-462's normalizeEdge from the draft's first artist.
+				expect(project.tracklist.map((e) => e.slug)).toEqual(["track:brown-paper-bag--roni-size"]);
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"survives MusicBrainz being down: requested slug, LLM edges, no mbid",
+			async () => {
+				installPipelineMocks({ draft: trackDraftFixture("Fitna", "Rohff") });
+				const m = await mb();
+				vi.mocked(m.resolveRecording).mockImplementation(async () => {
+					throw new Error("MB 503");
+				});
+				const runPipeline = await loadRunPipeline();
+				const lines: string[] = [];
+
+				const result = await runPipeline(
+					{ type: "track", name: "Fitna", artist: "Rohff", slug: "track:fitna--rohff" },
+					{ ...DEPS, logger: (line) => lines.push(line) },
+				);
+
+				expect(result.slug).toBe("track:fitna--rohff");
+				expect((result.node as TrackNode).mbid).toBeUndefined();
+				expect((result.node as TrackNode).artists.map((a) => a.name)).toEqual(["Rohff"]);
+				expect(lines.some((l) => l.includes("MB track enrich skipped"))).toBe(true);
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"stores the artist's mbid and kind and attributes the discography to the artist",
+			async () => {
+				installPipelineMocks({ draft: artistDraftFixture({ name: "Roni Size", discography: [] }) });
+				const m = await mb();
+				vi.mocked(m.resolveArtistDetailed).mockImplementation(async () => ({
+					artist: { mbid: RONI_MBID, name: "Roni Size", kind: "person", disambiguation: null, area: null },
+					candidates: 1,
+					path: "name",
+					unavailable: false,
+				}));
+				vi.mocked(m.fetchArtistDiscographyMb).mockImplementation(async () => [
+					{
+						mbid: RG_MBID,
+						title: "New Forms",
+						firstReleaseDate: "1997-06-01",
+						primaryType: "Album",
+						secondaryTypes: [],
+					},
+				]);
+				const runPipeline = await loadRunPipeline();
+
+				const result = await runPipeline({ type: "artist", name: "Roni Size" }, DEPS);
+
+				const artist = result.node as ArtistNode;
+				expect(artist.mbid).toBe(RONI_MBID);
+				expect(artist.artist_kind).toBe("person");
+				expect(artist.discography.map((e) => [e.slug, e.artist])).toEqual([
+					["project:new-forms--roni-size", "Roni Size"],
+				]);
+				expect(result.slug).toBe("artist:roni-size");
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"leaves an artist MB cannot single out without mbid, kind or MB discography",
+			async () => {
+				installPipelineMocks({ draft: artistDraftFixture({ name: "Homonym" }) });
+				const m = await mb();
+				vi.mocked(m.resolveArtistDetailed).mockImplementation(async () => ({
+					artist: null,
+					candidates: 3,
+					path: "name",
+					unavailable: false,
+				}));
+				const runPipeline = await loadRunPipeline();
+				const lines: string[] = [];
+
+				const result = await runPipeline(
+					{ type: "artist", name: "Homonym" },
+					{ ...DEPS, logger: (line) => lines.push(line) },
+				);
+
+				const artist = result.node as ArtistNode;
+				expect(artist.mbid).toBeUndefined();
+				expect(artist.artist_kind).toBeUndefined();
+				expect(vi.mocked(m.fetchArtistDiscographyMb)).not.toHaveBeenCalled();
+				expect(lines.some((l) => l.includes("left without MBID (candidates=3)"))).toBe(true);
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"asks MB for the kind of an artist whose mbid the caller supplied",
+			async () => {
+				installPipelineMocks({ draft: artistDraftFixture({ name: "Reprazent" }) });
+				const m = await mb();
+				vi.mocked(m.fetchArtistEntityMb).mockImplementation(async () => ({
+					mbid: RONI_MBID,
+					name: "Reprazent",
+					country: "GB",
+					area: null,
+					disambiguation: null,
+					kind: "group",
+				}));
+				const runPipeline = await loadRunPipeline();
+
+				const result = await runPipeline({ type: "artist", name: "Reprazent", mbid: RONI_MBID }, DEPS);
+
+				expect(vi.mocked(m.resolveArtistDetailed)).not.toHaveBeenCalled();
+				expect((result.node as ArtistNode).mbid).toBe(RONI_MBID);
+				expect((result.node as ArtistNode).artist_kind).toBe("group");
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"scopes a label's release by the primary credit's cached name and slugs its roster from the cache",
+			async () => {
+				installPipelineMocks({
+					draft: {
+						name: "Milan Records",
+						editorial_article:
+							"A fictional label invented for the runPipeline end-to-end harness (TRA-473). No real-world facts are claimed here.",
+						citations: [{ url: FIXTURE_WIKI_URL, title: "Fixture Artist" }],
+						editorial_description: "A fictional label.",
+						genres: [],
+						roster: [],
+						notable_releases: [],
+					},
+				});
+				const m = await mb();
+				vi.mocked(m.fetchLabelMetaMb).mockImplementation(async () => ({
+					roster: [{ mbid: SAKAMOTO_MBID, name: "坂本龍一" }],
+					notableReleases: [
+						{
+							mbid: RG_MBID,
+							title: "async",
+							firstReleaseDate: "2017",
+							credit: [{ mbid: SAKAMOTO_MBID, name: "坂本龍一" }],
+						},
+					],
+				}));
+				const runPipeline = await loadRunPipeline();
+
+				const result = await runPipeline(
+					{ type: "label", name: "Milan Records", mbid: RONI_MBID },
+					{
+						...DEPS,
+						artistByMbid: () => ({ slug: "artist:ryuichi-sakamoto" as Slug, name: "Ryuichi Sakamoto" }),
+					},
+				);
+
+				const label = result.node as LabelNode;
+				expect(label.notable_releases.map((e) => e.slug)).toEqual(["project:async--ryuichi-sakamoto"]);
+				expect(label.roster.map((e) => e.slug)).toEqual(["artist:ryuichi-sakamoto"]);
+			},
+			TIMEOUT_MS,
+		);
+	});
+
+	// Off (the default until TRA-509) the identity is still stored, but no slug moves: a merge on main must not
+	// split a work between a bare and a scoped slug before the cache and /materialize are migrated.
+	describe("flag off", () => {
+		beforeEach(() => {
+			vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "false");
+		});
+		afterEach(() => {
+			vi.unstubAllEnvs();
+		});
+
+		it(
+			"stores the mbid and credit but keeps the slug asked for and bare tracklist slugs",
+			async () => {
+				installPipelineMocks({ draft: projectDraftFixture("New Forms", "Roni Size") });
+				await resolvedWork("releaseGroup", "New Forms", [{ mbid: RONI_MBID, name: "Roni Size / Reprazent" }]);
+				const runPipeline = await loadRunPipeline();
+
+				const result = await runPipeline(
+					{ type: "project", name: "New Forms", artist: "Roni Size", slug: "project:new-forms" },
+					DEPS,
+				);
+
+				expect(result.slug).toBe("project:new-forms");
+				expect("requestedSlug" in result).toBe(false);
+				const project = result.node as ProjectNode;
+				expect(project.mbid).toBe(RG_MBID);
+				expect(project.artists[0]?.name).toBe("Roni Size / Reprazent");
+				expect(project.tracklist.map((e) => e.slug)).toEqual(["track:brown-paper-bag"]);
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"keeps a work whose non-Latin credit cannot be slugged instead of aborting the enrichment",
+			async () => {
+				installPipelineMocks({
+					draft: trackDraftFixture("Merry Christmas Mr. Lawrence", "Ryuichi Sakamoto"),
+				});
+				await resolvedWork("recording", "Merry Christmas Mr. Lawrence", [
+					{ mbid: SAKAMOTO_MBID, name: "坂本龍一" },
+				]);
+				const runPipeline = await loadRunPipeline();
+
+				const result = await runPipeline(
+					{ type: "track", name: "Merry Christmas Mr. Lawrence", slug: "track:merry-christmas-mr-lawrence" },
+					DEPS,
+				);
+
+				expect(result.slug).toBe("track:merry-christmas-mr-lawrence");
+				expect((result.node as TrackNode).mbid).toBe(RECORDING_MBID);
+			},
+			TIMEOUT_MS,
+		);
+	});
+});
+
+describe("recomputeCanonicalSlug (TRA-473)", () => {
+	beforeEach(() => {
+		vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "true");
+	});
+	afterEach(() => {
+		vi.unstubAllEnvs();
+	});
+
+	const MBID = "11111111-2222-3333-4444-555555555555";
+	async function recompute(
+		node: Record<string, unknown>,
+		input: PipelineInput,
+		scope: string | undefined,
+	): Promise<{ requested: Slug | undefined; slug: unknown; lines: string[] }> {
+		const { recomputeCanonicalSlug } = await import("../src/pipeline.js");
+		const lines: string[] = [];
+		const requested = recomputeCanonicalSlug(node, input, scope, (l) => lines.push(l));
+		return { requested, slug: node.slug, lines };
+	}
+
+	it("leaves a slug that already equals the canonical one", async () => {
+		const r = await recompute(
+			{ slug: "track:fitna--rohff", name: "Fitna", mbid: MBID },
+			{ type: "track", name: "Fitna", slug: "track:fitna--rohff" },
+			"Rohff",
+		);
+		expect(r).toMatchObject({ requested: undefined, slug: "track:fitna--rohff" });
+	});
+
+	it("writes under the canonical slug and returns the requested one when they differ", async () => {
+		const r = await recompute(
+			{ slug: "project:new-forms--roni-size", name: "New Forms", mbid: MBID },
+			{ type: "project", name: "New Forms", slug: "project:new-forms--roni-size" },
+			"Roni Size / Reprazent",
+		);
+		expect(r).toMatchObject({
+			requested: "project:new-forms--roni-size",
+			slug: "project:new-forms--roni-size-reprazent",
+		});
+	});
+
+	it("moves a bare slug to the canonical one without reporting one nobody asked for", async () => {
+		const r = await recompute(
+			{ slug: "project:new-forms", name: "New Forms", mbid: MBID },
+			{ type: "project", name: "New Forms" },
+			"Roni Size",
+		);
+		expect(r).toMatchObject({ requested: undefined, slug: "project:new-forms--roni-size" });
+	});
+
+	it("never touches genres, artists or labels, whatever scope is offered", async () => {
+		for (const type of ["genre", "artist", "label"] as const) {
+			const r = await recompute(
+				{ slug: `${type}:x`, name: "X", mbid: MBID },
+				{ type, name: "X", slug: `${type}:x` as Slug },
+				"Someone",
+			);
+			expect(r).toMatchObject({ requested: undefined, slug: `${type}:x` });
+		}
+	});
+
+	it("keeps the slug of a work MB did not resolve (no mbid) or gave no scope", async () => {
+		const input: PipelineInput = { type: "track", name: "Fitna", slug: "track:fitna--rohff" };
+		expect((await recompute({ slug: input.slug, name: "Fitna" }, input, "Akuma")).slug).toBe(
+			"track:fitna--rohff",
+		);
+		expect((await recompute({ slug: input.slug, name: "Fitna", mbid: MBID }, input, undefined)).slug).toBe(
+			"track:fitna--rohff",
+		);
+	});
+
+	it("keeps the slug and logs when the scope cannot be slugged", async () => {
+		const input: PipelineInput = { type: "project", name: "async", slug: "project:async--ryuichi-sakamoto" };
+		const r = await recompute({ slug: input.slug, name: "async", mbid: MBID }, input, "坂本龍一");
+		expect(r.slug).toBe("project:async--ryuichi-sakamoto");
+		expect(r.requested).toBeUndefined();
+		expect(r.lines.join("\n")).toContain("empty-artist");
+	});
+
+	it("changes nothing with the flag off", async () => {
+		vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "false");
+		const r = await recompute(
+			{ slug: "project:new-forms", name: "New Forms", mbid: MBID },
+			{ type: "project", name: "New Forms", slug: "project:new-forms" },
+			"Roni Size",
+		);
+		expect(r).toMatchObject({ requested: undefined, slug: "project:new-forms" });
+	});
 });
 
 // TRA-28: wires src/genre-registry.ts (TRA-27) into runPipeline, between enrichFromMusicBrainz

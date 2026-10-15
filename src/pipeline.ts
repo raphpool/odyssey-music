@@ -33,11 +33,12 @@ import {
 	fetchLabelMetaMb,
 	fetchProjectMetaMb,
 	fetchTrackMetaMb,
-	findArtistMbidByName,
 	findLabelMbidByName,
-	findRecordingMbidByName,
-	findReleaseGroupMbidByName,
+	type MbCredit,
 	type MbGenreTag,
+	resolveArtistDetailed,
+	resolveRecording,
+	resolveReleaseGroup,
 } from "./musicbrainz.js";
 import {
 	EDGE_TARGET_TYPES_BY_TYPE,
@@ -118,7 +119,16 @@ export interface PipelineDeps {
 	// built on that same NodeCache. Callers with no cache (smoke test, bench, live tests)
 	// are the only legitimate reason to leave it unset.
 	genreRegistry?: GenreRegistry;
+	// OPTIONAL (TRA-473): finds the artist node the cache already holds for an MB artist id. It gives a
+	// credited artist its existing `artist:` slug (instead of a name-derived one that could fork it) and
+	// the name that node is filed under, which scopes a work when the MB credit is not Latin ("坂本龍一"
+	// -> artist:ryuichi-sakamoto). Left unset, credits get makeSlug("artist", name), and a work whose
+	// credit has no Latin name cannot be scoped (the slug asked for is kept).
+	artistByMbid?: ArtistByMbid;
 }
+
+/** The artist node a cache holds for an MB artist id: its slug and the name it is filed under. */
+export type ArtistByMbid = (mbid: string) => { slug: Slug; name: string } | null;
 
 export interface PipelineInput {
 	type: NodeType;
@@ -137,11 +147,17 @@ export interface PipelineInput {
 	// chip / crawler frontier) -- wins over a fresh by-name resolve in enrichFromMusicBrainz
 	// (decision d'archi 8/9, docs/plans/qid-genre-identity.md).
 	qid?: string;
+	// TRA-473: primary artist credited for a project/track. It tells MusicBrainz which of several works
+	// sharing a title is meant; derived from the requested slug's scope, or given by the caller.
+	artist?: string;
 }
 
 export interface PipelineResult {
 	node: NodePayload;
 	slug: Slug;
+	// TRA-473: set when `input.slug` was given and the enrichment taught a different canonical slug. The
+	// node is written under `slug`; the caller must repoint the edge that asked for `requestedSlug`.
+	requestedSlug?: Slug;
 	metrics: {
 		searchMs: number;
 		fetchMs: number;
@@ -693,10 +709,18 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	const research = await researchTarget(input, deps, log);
 	const draft = await generateNodeDraft(input, deps, research, log);
 	const node = canonicalizeDraft(draft.raw, input, research.corpus, research.allowedUrls, log);
-	await enrichFromMusicBrainz(node, input, log, deps.genreRegistry);
+	const enrichment = await enrichNode(node, input, log, deps.genreRegistry, deps.artistByMbid);
 	// MusicBrainz just rewrote discography: the picks made in canonicalizeDraft are checked again against the
 	// lists that will actually be written (TRA-470).
 	if (input.type === "artist") enforceArtistChoices(node as Record<string, unknown>, log);
+	// The slug a project/track earns once MusicBrainz has named its artist (TRA-473). Before the genre
+	// canonicalization below, which only touches genre edges and must stay where it is.
+	const requestedSlug = recomputeCanonicalSlug(
+		node as Record<string, unknown>,
+		input,
+		enrichment.scopeArtist,
+		log,
+	);
 	// 2026-09-09: mbGenreEdges, the parent_genres catalog backfill, and canonicalizeDraft each
 	// derive a genre edge's slug from its display name alone, which produced 20 groups of
 	// duplicate genre nodes sharing a QID (e.g. "electronic" / "electronic-music"). All three
@@ -709,6 +733,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	return {
 		node: validated,
 		slug: validated.slug,
+		...(requestedSlug ? { requestedSlug } : {}),
 		metrics: buildMetrics(t0, research, draft),
 	};
 }
@@ -941,14 +966,81 @@ function mbGenreEdges(genres: readonly MbGenreTag[], resolver: GenreResolver | n
 	});
 }
 
-// Exported for test/pipeline-genre-qid.test.ts (TRA-18), which mocks musicbrainz.js.
-export { enrichFromMusicBrainz };
-async function enrichFromMusicBrainz(
+/** What enrichFromMusicBrainz learned beyond the node it mutates. */
+export interface MbEnrichment {
+	/**
+	 * Name the project/track's slug is scoped by: its MB primary credit, or the name the cache files that
+	 * artist under (see {@link scopeNameFor}). Set only when MusicBrainz named the work's artist; absent
+	 * otherwise, and the slug asked for stays.
+	 */
+	scopeArtist?: string;
+}
+
+/** An artist reference for an MB credit, or null when no slug can be made for it (non-Latin, not cached). */
+function creditRef(credit: MbCredit, artistByMbid?: ArtistByMbid): EdgeRef | null {
+	const cached = artistByMbid?.(credit.mbid);
+	if (cached) return { type: "artist", name: credit.name, slug: cached.slug, mbid: credit.mbid };
+	try {
+		return { type: "artist", name: credit.name, slug: makeSlug("artist", credit.name), mbid: credit.mbid };
+	} catch {
+		// makeSlug throws on a name with no Latin letter or digit. That is expected data from MB, and one
+		// such credit must not abort the whole enrichment.
+		return null;
+	}
+}
+
+/** `credits` as artist references, skipping those that cannot get a slug; undefined when none can. */
+function creditRefs(
+	credits: readonly MbCredit[],
+	max: number,
+	artistByMbid?: ArtistByMbid,
+): EdgeRef[] | undefined {
+	const refs = credits.slice(0, max).flatMap((c) => creditRef(c, artistByMbid) ?? []);
+	return refs.length > 0 ? refs : undefined;
+}
+
+/**
+ * A work's `artists` from its MB credit: the same references as {@link creditRefs}, but only when the
+ * PRIMARY credit got one. Otherwise `artists[0]` would be a secondary artist while the slug is scoped by
+ * the primary one, so the draft's own list is kept.
+ */
+function workCreditRefs(credit: readonly MbCredit[], artistByMbid?: ArtistByMbid): EdgeRef[] | undefined {
+	const refs = creditRefs(credit, 10, artistByMbid);
+	return refs?.[0]?.mbid === credit[0]?.mbid ? refs : undefined;
+}
+
+/**
+ * The name a work credited to `credit` is scoped by. `scopeOf(slug)` is a normalized body, never a name,
+ * so it is not read back from anywhere: the name comes from the artist node the cache holds for the
+ * credit's MBID when there is one, else the credited name. pickScopeArtistName skips a candidate with no
+ * Latin letter, so "坂本龍一" is scoped by the cached "Ryuichi Sakamoto". When nothing is Latin the credited
+ * name is returned anyway, and makeScopedSlug reports why the scope is unusable (TRA-473; TRA-494).
+ */
+function scopeNameFor(credit: MbCredit | undefined, artistByMbid?: ArtistByMbid): string | undefined {
+	if (!credit) return undefined;
+	return pickScopeArtistName([artistByMbid?.(credit.mbid)?.name, credit.name]) ?? credit.name;
+}
+
+// Exported for test/pipeline-genre-qid.test.ts (TRA-18), which mocks musicbrainz.js and expects it to
+// resolve to nothing; runPipeline calls enrichNode directly for the scope it reports.
+export async function enrichFromMusicBrainz(
 	node: unknown,
 	input: PipelineInput,
 	log: PipelineLog,
 	genreRegistry?: GenreRegistry,
+	artistByMbid?: ArtistByMbid,
 ): Promise<void> {
+	await enrichNode(node, input, log, genreRegistry, artistByMbid);
+}
+
+async function enrichNode(
+	node: unknown,
+	input: PipelineInput,
+	log: PipelineLog,
+	genreRegistry?: GenreRegistry,
+	artistByMbid?: ArtistByMbid,
+): Promise<MbEnrichment> {
+	const enrichment: MbEnrichment = {};
 	// MB enrichment owns structured release data (ADR 2026-05-19 pipeline-retrieval-and-enrichment).
 	// Genre resolver load is best-effort (TRA-18): a failure just means no qid on genre edges below.
 	let genreResolver: GenreResolver | null = null;
@@ -963,8 +1055,36 @@ async function enrichFromMusicBrainz(
 	if (input.type === "artist") {
 		try {
 			let mbid = input.mbid;
-			if (!mbid) mbid = (await findArtistMbidByName(input.name, input.disambiguator)) ?? undefined;
+			let kind: "person" | "group" | null | undefined;
+			if (!mbid) {
+				// Safety before rate (TRA-463): an unresolved artist keeps its slug and gets no MBID; a wrong
+				// one would graft another artist's identity (and discography) onto the node. The draft's
+				// `origin` only helps choose among homonyms or refuse, it never forces a match.
+				const draftOrigin = (node as { origin?: unknown }).origin;
+				const resolution = await resolveArtistDetailed(input.name, {
+					...(input.disambiguator ? { disambiguator: input.disambiguator } : {}),
+					...(typeof draftOrigin === "string" ? { origin: draftOrigin } : {}),
+				});
+				if (resolution.artist) {
+					mbid = resolution.artist.mbid;
+					kind = resolution.artist.kind;
+				} else {
+					log(
+						`[pipeline] artist "${input.name}" left without MBID (candidates=${resolution.candidates}${resolution.unavailable ? ", MB unavailable" : ""})`,
+					);
+				}
+			} else {
+				// A caller-supplied MBID names the artist for certain; only its kind is still unknown.
+				try {
+					kind = (await fetchArtistEntityMb(mbid))?.kind;
+				} catch (e) {
+					const msg = e instanceof Error ? e.message : String(e);
+					log(`[pipeline] artist kind lookup skipped: ${msg.slice(0, 100)}`);
+				}
+			}
 			if (mbid) {
+				(node as Record<string, unknown>).mbid = mbid;
+				if (kind) (node as Record<string, unknown>).artist_kind = kind;
 				// MB tags are more granular than editorial infobox genres.
 				const genres = await fetchEntityGenresMb("artist", mbid, { minCount: 2, max: 8 });
 				if (genres.length > 0) {
@@ -994,9 +1114,12 @@ async function enrichFromMusicBrainz(
 						(b.firstReleaseDate || "").localeCompare(a.firstReleaseDate || ""),
 					);
 					const obj = node as Record<string, unknown>;
-					// Scoped by the artist node's own name (every release here is this artist's);
-					// TRA-473 swaps in the MB credit. Unscoped slugs would split a work in two.
-					const artistName = typeof obj.name === "string" ? obj.name : input.name;
+					// Scoped by the artist node's own name (every release here is this artist's, and the cache
+					// files the artist under it). Unscoped slugs would split a work in two. A name with no
+					// Latin letter yields to the requested one.
+					const artistName =
+						pickScopeArtistName([typeof obj.name === "string" ? obj.name : undefined, input.name]) ??
+						input.name;
 					// When nothing can be scoped the draft's own (already scoped) list is kept.
 					const discography = merged.flatMap((r) => {
 						const edge = scopedWorkEdge(
@@ -1034,22 +1157,16 @@ async function enrichFromMusicBrainz(
 			if (mbid) {
 				const meta = await fetchLabelMetaMb(mbid);
 				const obj = node as Record<string, unknown>;
-				if (meta.roster.length > 0) {
-					obj.roster = meta.roster.slice(0, 30).map((a) => ({
-						type: "artist",
-						name: a.name,
-						slug: makeSlug("artist", a.name),
-						mbid: a.mbid,
-					}));
-				}
+				const roster = creditRefs(meta.roster, 30, artistByMbid);
+				if (roster) obj.roster = roster;
 				if (meta.notableReleases.length > 0) {
-					// A release's scope is its MB credit; without one it is dropped (plan
+					// A release's scope is its MB primary credit; without one it is dropped (plan
 					// graph-integrity decision 2), never filed under the label.
 					const notableReleases = meta.notableReleases.slice(0, 30).flatMap((r) => {
 						const edge = scopedWorkEdge(
 							"project",
 							r.title,
-							pickScopeArtistName(r.credit.map((c) => c.name)) ?? undefined,
+							scopeNameFor(r.credit[0], artistByMbid),
 							{ mbid: r.mbid },
 							`${String(obj.slug)}.notable_releases`,
 							log,
@@ -1070,21 +1187,33 @@ async function enrichFromMusicBrainz(
 	if (input.type === "track") {
 		try {
 			let mbid = input.mbid;
-			if (!mbid) mbid = (await findRecordingMbidByName(input.name, input.disambiguator)) ?? undefined;
-			if (mbid) {
-				const genres = await fetchEntityGenresMb("recording", mbid, { minCount: 2, max: 8 });
-				if (genres.length > 0) {
-					const obj = node as Record<string, unknown>;
-					obj.genres = mbGenreEdges(genres, genreResolver);
+			// The credit of the recording MB resolved by title + artist hint. Absent when the caller supplied
+			// the MBID: the metadata fetch below then provides it.
+			let resolvedCredit: MbCredit[] = [];
+			if (!mbid) {
+				const identity = await resolveRecording(input.name, input.artist);
+				if (identity) {
+					mbid = identity.mbid;
+					resolvedCredit = identity.credit;
+				} else {
+					log(`[pipeline] track "${input.name}" left without MBID (no single exact MB recording)`);
 				}
-				const meta = await fetchTrackMetaMb(mbid);
+			}
+			if (mbid) {
 				const obj = node as Record<string, unknown>;
+				obj.mbid = mbid;
+				const genres = await fetchEntityGenresMb("recording", mbid, { minCount: 2, max: 8 });
+				if (genres.length > 0) obj.genres = mbGenreEdges(genres, genreResolver);
+				const meta = await fetchTrackMetaMb(mbid);
+				const credit = resolvedCredit.length > 0 ? resolvedCredit : meta.artists;
+				// The project is scoped by the track's own primary artist, the value `artists[0]` and the
+				// canonical slug are built from below.
+				const scopeArtist = scopeNameFor(credit[0], artistByMbid);
 				if (meta.project) {
-					// Same scope as the track's own first artist (MB's, which replaces `artists` below).
 					const edge = scopedWorkEdge(
 						"project",
 						meta.project.name,
-						meta.artists[0]?.name ?? firstArtistName(obj),
+						scopeArtist ?? firstArtistName(obj),
 						{ mbid: meta.project.mbid },
 						`${String(obj.slug)}.project`,
 						log,
@@ -1099,34 +1228,19 @@ async function enrichFromMusicBrainz(
 						mbid: meta.label.mbid,
 					};
 				}
-				if (meta.artists.length > 0) {
-					obj.artists = meta.artists.slice(0, 10).map((a) => ({
-						type: "artist",
-						name: a.name,
-						slug: makeSlug("artist", a.name),
-						mbid: a.mbid,
-					}));
-				}
+				const artists = workCreditRefs(credit, artistByMbid);
+				if (artists) obj.artists = artists;
 				if (meta.year) obj.year = meta.year;
 				if (meta.duration) obj.duration = meta.duration;
-				if (meta.producers.length > 0) {
-					obj.producers = meta.producers.slice(0, 6).map((a) => ({
-						type: "artist",
-						name: a.name,
-						slug: makeSlug("artist", a.name),
-						mbid: a.mbid,
-					}));
-				}
-				if (meta.personnel.length > 0) {
-					obj.personnel = meta.personnel.slice(0, 20).map((a) => ({
-						type: "artist",
-						name: a.name,
-						slug: makeSlug("artist", a.name),
-						mbid: a.mbid,
-					}));
-				}
+				const producers = creditRefs(meta.producers, 6, artistByMbid);
+				if (producers) obj.producers = producers;
+				const personnel = creditRefs(meta.personnel, 20, artistByMbid);
+				if (personnel) obj.personnel = personnel;
+				// Reported last, and only when `artists[0]` really is the credit the scope comes from: if
+				// anything above threw, the node keeps the slug it was asked for.
+				if (scopeArtist && artists) enrichment.scopeArtist = scopeArtist;
 				log(
-					`[pipeline] track meta overridden: project=${meta.project?.name ?? "-"} label=${meta.label?.name ?? "-"} artists=${meta.artists.length} producers=${meta.producers.length} personnel=${meta.personnel.length} year=${meta.year ?? "-"} duration=${meta.duration ?? "-"}`,
+					`[pipeline] track meta overridden: project=${meta.project?.name ?? "-"} label=${meta.label?.name ?? "-"} artists=${credit.length} producers=${meta.producers.length} personnel=${meta.personnel.length} year=${meta.year ?? "-"} duration=${meta.duration ?? "-"}`,
 				);
 			}
 		} catch (e) {
@@ -1137,19 +1251,29 @@ async function enrichFromMusicBrainz(
 	if (input.type === "project") {
 		try {
 			let mbid = input.mbid;
-			if (!mbid) mbid = (await findReleaseGroupMbidByName(input.name, input.disambiguator)) ?? undefined;
-			if (mbid) {
-				const genres = await fetchEntityGenresMb("release-group", mbid, { minCount: 2, max: 8 });
-				if (genres.length > 0) {
-					const obj = node as Record<string, unknown>;
-					obj.genres = mbGenreEdges(genres, genreResolver);
+			// Same as the track branch: the credit of the release group resolved by title + artist hint.
+			let resolvedCredit: MbCredit[] = [];
+			if (!mbid) {
+				const identity = await resolveReleaseGroup(input.name, input.artist);
+				if (identity) {
+					mbid = identity.mbid;
+					resolvedCredit = identity.credit;
+				} else {
+					log(`[pipeline] project "${input.name}" left without MBID (no single exact MB release group)`);
 				}
-				const meta = await fetchProjectMetaMb(mbid);
+			}
+			if (mbid) {
 				const obj = node as Record<string, unknown>;
+				obj.mbid = mbid;
+				const genres = await fetchEntityGenresMb("release-group", mbid, { minCount: 2, max: 8 });
+				if (genres.length > 0) obj.genres = mbGenreEdges(genres, genreResolver);
+				const meta = await fetchProjectMetaMb(mbid);
+				const credit = resolvedCredit.length > 0 ? resolvedCredit : meta.artists;
+				const scopeArtist = scopeNameFor(credit[0], artistByMbid);
 				if (meta.tracks.length > 0) {
-					// Scoped by the project's first artist: MB's when it gives one (it replaces
-					// `artists` just below), else the draft's -- the value the node ends up with.
-					const projectArtist = meta.artists[0]?.name ?? firstArtistName(obj);
+					// Scoped by the project's primary artist: MB's when it gives one (it replaces `artists`
+					// just below), else the draft's -- the value the node ends up with.
+					const projectArtist = scopeArtist ?? firstArtistName(obj);
 					const tracklist = meta.tracks.slice(0, 30).flatMap((t) => {
 						const edge = scopedWorkEdge(
 							"track",
@@ -1171,14 +1295,8 @@ async function enrichFromMusicBrainz(
 						mbid: meta.label.mbid,
 					};
 				}
-				if (meta.artists.length > 0) {
-					obj.artists = meta.artists.slice(0, 10).map((a) => ({
-						type: "artist",
-						name: a.name,
-						slug: makeSlug("artist", a.name),
-						mbid: a.mbid,
-					}));
-				}
+				const artists = workCreditRefs(credit, artistByMbid);
+				if (artists) obj.artists = artists;
 				if (meta.year) obj.year = meta.year;
 				// MB release-group primary-type → narrow to the schema enum so chips
 				// (EdgeRef.releaseType) and node payloads (ProjectNode.release_type) agree.
@@ -1190,24 +1308,14 @@ async function enrichFromMusicBrainz(
 						obj.release_type = normalized;
 					}
 				}
-				if (meta.producers.length > 0) {
-					obj.producers = meta.producers.slice(0, 6).map((a) => ({
-						type: "artist",
-						name: a.name,
-						slug: makeSlug("artist", a.name),
-						mbid: a.mbid,
-					}));
-				}
-				if (meta.personnel.length > 0) {
-					obj.personnel = meta.personnel.slice(0, 20).map((a) => ({
-						type: "artist",
-						name: a.name,
-						slug: makeSlug("artist", a.name),
-						mbid: a.mbid,
-					}));
-				}
+				const producers = creditRefs(meta.producers, 6, artistByMbid);
+				if (producers) obj.producers = producers;
+				const personnel = creditRefs(meta.personnel, 20, artistByMbid);
+				if (personnel) obj.personnel = personnel;
+				// Reported last, as in the track branch.
+				if (scopeArtist && artists) enrichment.scopeArtist = scopeArtist;
 				log(
-					`[pipeline] project meta overridden: tracks=${meta.tracks.length} label=${meta.label?.name ?? "-"} artists=${meta.artists.length} producers=${meta.producers.length} personnel=${meta.personnel.length} year=${meta.year ?? "-"} release_type=${(node as Record<string, unknown>).release_type ?? "-"}`,
+					`[pipeline] project meta overridden: tracks=${meta.tracks.length} label=${meta.label?.name ?? "-"} artists=${credit.length} producers=${meta.producers.length} personnel=${meta.personnel.length} year=${meta.year ?? "-"} release_type=${(node as Record<string, unknown>).release_type ?? "-"}`,
 				);
 			}
 		} catch (e) {
@@ -1337,6 +1445,40 @@ async function enrichFromMusicBrainz(
 			obj.personnel = pers.filter((p) => !prodKeys.has(key(p)));
 		}
 	}
+	return enrichment;
+}
+
+/**
+ * The slug a resolved project/track is filed under: `<title>--<scope artist>` (graph-integrity plan,
+ * decision 3 -- the identity learned from MusicBrainz wins over the one asked for). Mutates `node.slug` and
+ * returns the slug that was asked for when `input.slug` was given and differs, so the caller can repoint
+ * the edge that requested it; undefined otherwise.
+ *
+ * Nothing changes when the node is not a project/track, was not resolved (no `mbid`: the slug asked for
+ * stays, "safety before rate"), MusicBrainz named no usable scope artist, or the flag is off (TRA-509: main
+ * keeps its bare slugs until the cache is migrated). A scope makeScopedSlug refuses (a credit with no
+ * Latin letter and no cached Latin name) keeps the slug and logs it; it never fails the node.
+ */
+export function recomputeCanonicalSlug(
+	node: Record<string, unknown>,
+	input: PipelineInput,
+	scopeArtist: string | undefined,
+	log: PipelineLog = () => undefined,
+): Slug | undefined {
+	if (!scopedReleaseSlugsEnabled()) return undefined;
+	if (input.type !== "project" && input.type !== "track") return undefined;
+	if (typeof node.mbid !== "string" || typeof node.name !== "string") return undefined;
+	if (!scopeArtist) return undefined;
+	const scoped = makeScopedSlug(input.type, node.name, scopeArtist);
+	if (!scoped.ok) {
+		log(`[pipeline] canonical slug kept (${scoped.reason}): ${String(node.slug)} by "${scopeArtist}"`);
+		return undefined;
+	}
+	const previous = node.slug;
+	if (scoped.slug === previous) return undefined;
+	node.slug = scoped.slug;
+	log(`[pipeline] canonical slug learned from MusicBrainz: ${String(previous)} -> ${scoped.slug}`);
+	return input.slug && input.slug !== scoped.slug ? input.slug : undefined;
 }
 
 function buildMetrics(t0: number, research: ResearchResult, draft: DraftResult): PipelineResult["metrics"] {
@@ -1365,7 +1507,9 @@ function buildMetrics(t0: number, research: ResearchResult, draft: DraftResult):
 function buildSearchQuery(input: PipelineInput): string {
 	const kind = input.type === "project" ? "album" : input.type;
 	const dis = input.disambiguator ? ` ${input.disambiguator}` : "";
-	return `${input.name}${dis} ${kind} music wiki discogs`;
+	// The credited artist keeps a common title ("Fitna", "Async") on the right work (TRA-473).
+	const by = (input.type === "project" || input.type === "track") && input.artist ? ` ${input.artist}` : "";
+	return `${input.name}${dis}${by} ${kind} music wiki discogs`;
 }
 
 function buildUserPrompt(
@@ -1375,6 +1519,8 @@ function buildUserPrompt(
 ): string {
 	let prompt = `TARGET: type="${input.type}" name="${input.name}"`;
 	if (input.disambiguator) prompt += ` disambiguator="${input.disambiguator}"`;
+	if ((input.type === "project" || input.type === "track") && input.artist)
+		prompt += ` artist="${input.artist}"`;
 	prompt += "\n\n";
 	prompt += `<search_results query="${input.name}">\n`;
 	for (const r of searchResults) {
