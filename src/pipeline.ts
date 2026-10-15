@@ -47,7 +47,7 @@ import {
 	TEASER_FIELD_BY_TYPE,
 } from "./node-spec.js";
 import { nodePayloadSchema } from "./schemas.js";
-import { makeScopedSlug, makeSlug } from "./slug.js";
+import { makeScopedSlug, makeSlug, pickScopeArtistName } from "./slug.js";
 import { localFetch } from "./tools/local-fetcher.js";
 
 /** Title-case a lowercased genre name for display. Handles "r&b" -> "R&B" and "hip-hop" -> "Hip-Hop". */
@@ -978,14 +978,26 @@ async function enrichFromMusicBrainz(
 						(b.firstReleaseDate || "").localeCompare(a.firstReleaseDate || ""),
 					);
 					const obj = node as Record<string, unknown>;
-					obj.discography = merged.map((r) => ({
-						type: "project",
-						name: r.title,
-						slug: makeSlug("project", r.title),
-						mbid: r.mbid,
-						year: (r.firstReleaseDate || "").slice(0, 4) || undefined,
-						releaseType: r.primaryType.toLowerCase() as "album" | "ep" | "single",
-					}));
+					// Scoped by the artist node's own name (every release here is this artist's);
+					// TRA-473 swaps in the MB credit. Unscoped slugs would split a work in two.
+					const artistName = typeof obj.name === "string" ? obj.name : input.name;
+					// When nothing can be scoped the draft's own (already scoped) list is kept.
+					const discography = merged.flatMap((r) => {
+						const edge = scopedWorkEdge(
+							"project",
+							r.title,
+							artistName,
+							{
+								mbid: r.mbid,
+								year: (r.firstReleaseDate || "").slice(0, 4) || undefined,
+								releaseType: r.primaryType.toLowerCase() as "album" | "ep" | "single",
+							},
+							`${String(obj.slug)}.discography`,
+							log,
+						);
+						return edge ? [edge] : [];
+					});
+					if (discography.length > 0) obj.discography = discography;
 					log(
 						`[pipeline] artist discography overridden with ${merged.length} MB releases (${albums.length} album, ${epSingleBudget.length} ep+single, out of ${clean.length} clean)`,
 					);
@@ -1015,12 +1027,20 @@ async function enrichFromMusicBrainz(
 					}));
 				}
 				if (meta.notableReleases.length > 0) {
-					obj.notable_releases = meta.notableReleases.slice(0, 30).map((r) => ({
-						type: "project",
-						name: r.title,
-						slug: makeSlug("project", r.title),
-						mbid: r.mbid,
-					}));
+					// A release's scope is its MB credit; without one it is dropped (plan
+					// graph-integrity decision 2), never filed under the label.
+					const notableReleases = meta.notableReleases.slice(0, 30).flatMap((r) => {
+						const edge = scopedWorkEdge(
+							"project",
+							r.title,
+							pickScopeArtistName(r.credit.map((c) => c.name)) ?? undefined,
+							{ mbid: r.mbid },
+							`${String(obj.slug)}.notable_releases`,
+							log,
+						);
+						return edge ? [edge] : [];
+					});
+					if (notableReleases.length > 0) obj.notable_releases = notableReleases;
 				}
 				log(
 					`[pipeline] label meta overridden: roster=${meta.roster.length} releases=${meta.notableReleases.length}`,
@@ -1044,12 +1064,16 @@ async function enrichFromMusicBrainz(
 				const meta = await fetchTrackMetaMb(mbid);
 				const obj = node as Record<string, unknown>;
 				if (meta.project) {
-					obj.project = {
-						type: "project",
-						name: meta.project.name,
-						slug: makeSlug("project", meta.project.name),
-						mbid: meta.project.mbid,
-					};
+					// Same scope as the track's own first artist (MB's, which replaces `artists` below).
+					const edge = scopedWorkEdge(
+						"project",
+						meta.project.name,
+						meta.artists[0]?.name ?? firstArtistName(obj),
+						{ mbid: meta.project.mbid },
+						`${String(obj.slug)}.project`,
+						log,
+					);
+					if (edge) obj.project = edge;
 				}
 				if (meta.label) {
 					obj.label = {
@@ -1107,12 +1131,21 @@ async function enrichFromMusicBrainz(
 				const meta = await fetchProjectMetaMb(mbid);
 				const obj = node as Record<string, unknown>;
 				if (meta.tracks.length > 0) {
-					obj.tracklist = meta.tracks.slice(0, 30).map((t) => ({
-						type: "track",
-						name: t.title,
-						slug: makeSlug("track", t.title),
-						mbid: t.mbid,
-					}));
+					// Scoped by the project's first artist: MB's when it gives one (it replaces
+					// `artists` just below), else the draft's -- the value the node ends up with.
+					const projectArtist = meta.artists[0]?.name ?? firstArtistName(obj);
+					const tracklist = meta.tracks.slice(0, 30).flatMap((t) => {
+						const edge = scopedWorkEdge(
+							"track",
+							t.title,
+							projectArtist,
+							{ mbid: t.mbid },
+							`${String(obj.slug)}.tracklist`,
+							log,
+						);
+						return edge ? [edge] : [];
+					});
+					if (tracklist.length > 0) obj.tracklist = tracklist;
 				}
 				if (meta.label) {
 					obj.label = {
@@ -1552,6 +1585,36 @@ function firstArtistName(draft: Record<string, unknown>): string | undefined {
 	if (!first || typeof first !== "object") return undefined;
 	const name = (first as { name?: unknown }).name;
 	return typeof name === "string" && name.trim() ? name.trim() : undefined;
+}
+
+/**
+ * A scoped project/track edge for the MusicBrainz overrides, which bypass normalizeEdge. Keeps the
+ * invariant "every emitted work reference is scoped" (TRA-462): the same makeScopedSlug, and a failure
+ * (no artist, empty title, non-Latin artist name) drops that edge with the usual log, never the node.
+ */
+function scopedWorkEdge(
+	type: "project" | "track",
+	title: string,
+	artistName: string | undefined,
+	extra: { mbid?: string; year?: string | undefined; releaseType?: "album" | "ep" | "single" },
+	where: string,
+	log: PipelineLog,
+): EdgeRef | null {
+	const name = title.trim();
+	if (!artistName?.trim()) {
+		log(`[pipeline] edge dropped: no artist (${where} -> ${type} "${name}")`);
+		return null;
+	}
+	const scoped = makeScopedSlug(type, name, artistName.trim());
+	if (!scoped.ok) {
+		log(`[pipeline] edge dropped: ${scoped.reason} (${where} -> ${type} "${name}" by "${artistName}")`);
+		return null;
+	}
+	const edge: EdgeRef = { slug: scoped.slug, type, name, artist: artistName.trim() };
+	if (extra.mbid) edge.mbid = extra.mbid;
+	if (extra.year) edge.year = extra.year;
+	if (extra.releaseType) edge.releaseType = extra.releaseType;
+	return edge;
 }
 
 /**

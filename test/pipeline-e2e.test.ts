@@ -6,7 +6,7 @@ import { NodeCache } from "../src/cache.js";
 import { loadGenreResolver } from "../src/genre-identity.js";
 import { createGenreRegistry, parseGenreRedirects } from "../src/genre-registry.js";
 import type { PipelineDeps } from "../src/pipeline.js";
-import type { ArtistNode, GenreNode, ProjectNode, Slug } from "../src/types.js";
+import type { ArtistNode, GenreNode, LabelNode, ProjectNode, Slug } from "../src/types.js";
 import {
 	artistDraftFixture,
 	FIXTURE_WIKI_URL,
@@ -224,6 +224,136 @@ describe("scoped work edges (TRA-462)", () => {
 			const project = result.node as ProjectNode;
 			expect(project.tracklist.map((e) => e.slug)).toEqual(["track:gantz-graf--autechre"]);
 			expect(project.tracklist[0]?.artist).toBe("Autechre");
+		},
+		TIMEOUT_MS,
+	);
+
+	// The MusicBrainz overrides replace these lists right after canonicalization; they must emit the same
+	// scoped slugs, or one work ends up under two slugs (PR #421 review).
+	const MB_ID = "11111111-2222-3333-4444-555555555555";
+	const PROSE =
+		"A fictional entity invented for the runPipeline end-to-end harness (TRA-462). No real-world facts are claimed here.";
+
+	it(
+		"keeps the discography scoped by the artist when MB resolves an mbid",
+		async () => {
+			installPipelineMocks({ draft: artistDraftFixture({ name: "Rohff" }) });
+			const runPipeline = await loadRunPipeline();
+			const { fetchArtistDiscographyMb } = await import("../src/musicbrainz.js");
+			vi.mocked(fetchArtistDiscographyMb).mockImplementation(async () => [
+				{
+					mbid: MB_ID,
+					title: "La Fierté",
+					firstReleaseDate: "2010-01-01",
+					primaryType: "Album",
+					secondaryTypes: [],
+				},
+			]);
+
+			const result = await runPipeline({ type: "artist", name: "Rohff" }, DEPS);
+
+			expect((result.node as ArtistNode).discography).toEqual([
+				{
+					slug: "project:la-fierte--rohff",
+					type: "project",
+					name: "La Fierté",
+					artist: "Rohff",
+					mbid: MB_ID,
+					year: "2010",
+					releaseType: "album",
+				},
+			]);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"scopes an MB tracklist by the project's credited artist",
+		async () => {
+			installPipelineMocks({
+				draft: {
+					name: "New Forms",
+					editorial_article: PROSE,
+					citations: [{ url: FIXTURE_WIKI_URL, title: "Fixture Artist" }],
+					editorial_pitch: "A fictional album used to test MB tracklist scoping.",
+					artists: [{ type: "artist", name: "Roni Size / Reprazent" }],
+					genres: [],
+					tracklist: [],
+					producers: [],
+					related_projects: [],
+				},
+			});
+			const runPipeline = await loadRunPipeline();
+			const { fetchProjectMetaMb } = await import("../src/musicbrainz.js");
+			vi.mocked(fetchProjectMetaMb).mockImplementation(async () => ({
+				tracks: [{ mbid: MB_ID, title: "Brown Paper Bag" }],
+				label: null,
+				artists: [],
+				year: null,
+				producers: [],
+				personnel: [],
+				primaryType: "Album",
+			}));
+
+			const result = await runPipeline({ type: "project", name: "New Forms", mbid: MB_ID }, DEPS);
+
+			const project = result.node as ProjectNode;
+			expect(project.tracklist).toEqual([
+				{
+					slug: "track:brown-paper-bag--roni-size-reprazent",
+					type: "track",
+					name: "Brown Paper Bag",
+					artist: "Roni Size / Reprazent",
+					mbid: MB_ID,
+				},
+			]);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"scopes a label's MB release by its credit and drops one without a credit",
+		async () => {
+			installPipelineMocks({
+				draft: {
+					name: "Full Cycle",
+					editorial_article: PROSE,
+					citations: [{ url: FIXTURE_WIKI_URL, title: "Fixture Artist" }],
+					editorial_description: "A fictional label used to test MB release scoping.",
+					genres: [],
+					roster: [],
+					notable_releases: [],
+				},
+			});
+			const runPipeline = await loadRunPipeline();
+			const { fetchLabelMetaMb } = await import("../src/musicbrainz.js");
+			vi.mocked(fetchLabelMetaMb).mockImplementation(async () => ({
+				roster: [],
+				notableReleases: [
+					{
+						mbid: MB_ID,
+						title: "New Forms",
+						firstReleaseDate: "1997",
+						credit: [{ mbid: "22222222-2222-3333-4444-555555555555", name: "Roni Size / Reprazent" }],
+					},
+					{
+						mbid: "33333333-2222-3333-4444-555555555555",
+						title: "Orphan",
+						firstReleaseDate: "1998",
+						credit: [],
+					},
+				],
+			}));
+			const lines: string[] = [];
+
+			const result = await runPipeline(
+				{ type: "label", name: "Full Cycle", mbid: MB_ID },
+				{ ...DEPS, logger: (line) => lines.push(line) },
+			);
+
+			const label = result.node as LabelNode;
+			expect(label.notable_releases.map((e) => e.slug)).toEqual(["project:new-forms--roni-size-reprazent"]);
+			expect(lines.some((l) => l.includes("edge dropped: no artist") && l.includes("Orphan"))).toBe(true);
 		},
 		TIMEOUT_MS,
 	);
