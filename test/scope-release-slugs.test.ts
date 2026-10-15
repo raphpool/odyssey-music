@@ -418,6 +418,24 @@ describe("scope-release-slugs migration", () => {
 		});
 	});
 
+	it("does not let a manifest collision settle a third node that only transliterates onto its slug", async () => {
+		await seed([
+			node("artist:mo", "Mo", { mbid: MBID_A }),
+			node("artist:mo--stage-name", "Mo", { mbid: MBID_A }),
+			node("artist:m", "MØ"),
+		]);
+		await seedIdentities({ collisions: [{ mbid: MBID_A, slugs: ["artist:mo", "artist:mo--stage-name"] }] });
+		const before = await tree(root);
+		const { manifest, exitCode } = await run(true);
+		expect(exitCode).toBe(0);
+		expect(manifest.conflicts).toMatchObject([
+			{ kind: "merge", slugs: ["artist:m", "artist:mo", "artist:mo--stage-name"] },
+		]);
+		expect(manifest.merged).toEqual([]);
+		expect(manifest.redirects).toEqual({});
+		expect(await tree(root)).toEqual(before);
+	});
+
 	describe("transliteration (TRA-528)", () => {
 		it("renames the node, the dangling targets and the pending-reverses keys, and leaves a namesake alone", async () => {
 			await seed(

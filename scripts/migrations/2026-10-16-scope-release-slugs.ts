@@ -366,22 +366,28 @@ const fold = (text: string): string =>
  * Null when the members may be merged, else why not. Sharing a slug is not sharing an identity ("Mo" and
  * "MØ" both give `artist:mo`): different mbids never merge, and as soon as one member has no mbid the
  * credit (a work's primary credit, an artist's own name; letters kept, only accents folded) has to agree.
- * `mbidOnly`: the members are one collision of the artist manifest, which MusicBrainz already settled.
+ * `settled`: slugs of a collision of the artist manifest, which MusicBrainz already settled. They are
+ * exempt from the credit check among themselves ("Pole" and "Pole (Stefan Betke)"), but any other member of
+ * the group (a node that merely transliterates onto the same slug) still has to agree with them.
  */
-export function identityDisagreement(members: readonly CacheNodeFile[], mbidOnly = false): string | null {
+export function identityDisagreement(
+	members: readonly CacheNodeFile[],
+	settled: ReadonlySet<string> = new Set(),
+): string | null {
 	const mbids = sortedUnique(members.flatMap((m) => str(m.node.mbid) ?? []));
 	if (mbids.length > 1) return `different mbids: ${mbids.join(", ")}`;
-	if (mbidOnly || members.every((m) => str(m.node.mbid) !== undefined)) return null;
-	const credits = sortedUnique(
-		members.map((m) =>
-			fold(
-				(m.type === "project" || m.type === "track"
-					? str(edgeList(m.node.artists)[0]?.name)
-					: str(m.node.name)) ?? "",
-			),
-		),
-	);
-	return credits.length > 1 ? `different credits: ${credits.join(", ")}` : null;
+	const credit = (m: CacheNodeFile): string =>
+		fold(
+			(m.type === "project" || m.type === "track"
+				? str(edgeList(m.node.artists)[0]?.name)
+				: str(m.node.name)) ?? "",
+		);
+	const outsiders = members.filter((m) => !settled.has(m.slug));
+	if (outsiders.every((m) => str(m.node.mbid) !== undefined)) return null;
+	const credits = sortedUnique(outsiders.map(credit));
+	const inside = new Set(members.filter((m) => settled.has(m.slug)).map(credit));
+	const agree = credits.length === 1 && (inside.size === 0 || inside.has(credits[0] as string));
+	return agree ? null : `different credits: ${sortedUnique([...credits, ...inside]).join(", ")}`;
 }
 
 // --- The plan (pure) ---
@@ -491,6 +497,11 @@ export function planMigration(input: PlanInput): Plan {
 	// A group holding a whole collision of the artist manifest: MusicBrainz settled it, and its bare slug wins.
 	const preferBare = (members: readonly CacheNodeFile[]): boolean =>
 		collisionGroups.some((g) => g.every((m) => members.includes(m)));
+	// The slugs of every manifest collision wholly inside the group: only those are settled by MusicBrainz.
+	const settledIn = (members: readonly CacheNodeFile[]): Set<string> =>
+		new Set(
+			collisionGroups.filter((g) => g.every((m) => members.includes(m))).flatMap((g) => g.map((m) => m.slug)),
+		);
 
 	// 3. Merge groups and their guards, until stable (reverting one group can expose another).
 	const revert = (slugs: readonly string[]): void => {
@@ -533,7 +544,7 @@ export function planMigration(input: PlanInput): Plan {
 			groups.set(finalOf.get(f.slug) ?? f.slug, [...(groups.get(finalOf.get(f.slug) ?? f.slug) ?? []), f]);
 		for (const [fin, members] of groups) {
 			if (members.length < 2) continue;
-			const why = identityDisagreement(members, preferBare(members));
+			const why = identityDisagreement(members, settledIn(members));
 			if (why === null) continue;
 			addConflict({ kind: "merge", slugs: members.map((m) => m.slug).sort(), reason: `${fin}: ${why}` });
 			revert(members.map((m) => m.slug));
