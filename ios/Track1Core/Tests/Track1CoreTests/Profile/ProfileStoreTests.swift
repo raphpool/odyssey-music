@@ -329,6 +329,77 @@ final class ProfileStoreTests: XCTestCase {
 		let cleared = await ProfileStore(localStore: localStore).clear()
 		XCTAssertEqual(cleared, .cleared)
 		XCTAssertEqual(names.filter(fileExists), [])
+		let read = await ProfileStore(localStore: localStore).read()
+		XCTAssertEqual(read, .missing)
+	}
+
+	func testAFailedClearKeepsTheVersion2ProfileSoNothingStaleReappears() async throws {
+		let choices = genres(3)
+		_ = try await seedV1Profile(genres: choices)
+		let v2 = Profile(
+			version: Profile.version, localID: UUID(), genreIDs: [choices[0]], revision: 7,
+			onboardingCompleted: true, flowID: UUID())
+		try await seed(v2, named: "profile.v2.json")
+		let fileManager = FailingRemovalFileManager(failingOn: ["profile.v1.json"])
+		let store = ProfileStore(localStore: LocalStore(directoryURL: directoryURL, fileManager: fileManager))
+		let cleared = await store.clear()
+		XCTAssertEqual(cleared, .unavailable)
+		let read = await store.read()
+		XCTAssertEqual(read, .profile(v2))
+		XCTAssertTrue(fileExists("profile.v2.json"))
+	}
+
+	func testAFailedClearStopsAtTheFirstError() async throws {
+		let names = ["profile-draft.v1.json", "profile.v1.json", "profile-draft.v2.json", "profile.v2.json"]
+		let localStore = LocalStore(
+			directoryURL: directoryURL, fileManager: FailingRemovalFileManager(failingOn: ["profile.v1.json"]))
+		for name in names { _ = await localStore.write(Data("{}".utf8), named: name) }
+		_ = await ProfileStore(localStore: localStore).clear()
+		XCTAssertEqual(names.filter(fileExists), ["profile.v1.json", "profile-draft.v2.json", "profile.v2.json"])
+	}
+
+	func testAFailedClearOfTheVersion2ProfileStillRemovesEverythingBeforeIt() async throws {
+		let names = ["profile-draft.v1.json", "profile.v1.json", "profile-draft.v2.json", "profile.v2.json"]
+		let localStore = LocalStore(
+			directoryURL: directoryURL, fileManager: FailingRemovalFileManager(failingOn: ["profile.v2.json"]))
+		for name in names { _ = await localStore.write(Data("{}".utf8), named: name) }
+		let cleared = await ProfileStore(localStore: localStore).clear()
+		XCTAssertEqual(cleared, .unavailable)
+		XCTAssertEqual(names.filter(fileExists), ["profile.v2.json"])
+	}
+
+	func testAnUnreadableOrUnversionedV1ProfileIsRejectedWhenNoV2Exists() async throws {
+		try Data("not json".utf8).write(to: directoryURL.appending(path: "profile.v1.json"))
+		let corrupt = await makeStore().read()
+		XCTAssertEqual(corrupt, .corrupt)
+
+		let version0 = Profile(
+			version: 0, localID: UUID(), genreIDs: genres(2), revision: 3, onboardingCompleted: true, flowID: UUID())
+		try await seed(version0, named: "profile.v1.json")
+		let unsupported = await makeStore().read()
+		XCTAssertEqual(unsupported, .unsupportedVersion)
+	}
+
+	func testCommittingAnUnchangedSelectionAfterAV1ReadKeepsTheRevisionAndIdentity() async throws {
+		let choices = genres(3)
+		let v1 = try await seedV1Profile(genres: choices).profile
+		let store = makeStore()
+		_ = await store.read()
+		let committed = await store.commit(draft(genres: choices), availableGenreIDs: choices)
+		guard case .saved(let saved) = committed else { return XCTFail("Expected the commit to save.") }
+		XCTAssertEqual(saved.revision, v1.revision)
+		XCTAssertEqual(saved.localID, v1.localID)
+		XCTAssertEqual(saved.flowID, v1.flowID)
+		XCTAssertNil(saved.selection)
+	}
+
+	func testReadingAV1ProfileCreatesNoFile() async throws {
+		_ = try await seedV1Profile(genres: genres(3))
+		let store = makeStore()
+		_ = await store.read()
+		_ = await store.readDraft()
+		let contents = try FileManager.default.contentsOfDirectory(atPath: directoryURL.path)
+		XCTAssertEqual(contents.sorted(), ["profile.v1.json"])
 	}
 
 	func testAVersion1DraftIsIgnored() async throws {
@@ -400,6 +471,24 @@ final class ProfileStoreTests: XCTestCase {
 
 	private func genres(_ count: Int) -> [NodeIdentity] {
 		(0..<count).compactMap { NodeIdentity(rawValue: "genre:genre-\($0)") }
+	}
+}
+
+/// System boundary for `LocalStore`: removing a file whose name is listed fails, as a locked or read-only
+/// file would. Everything else goes to the real file system.
+private final class FailingRemovalFileManager: FileManager, @unchecked Sendable {
+	private let failingNames: Set<String>
+
+	init(failingOn names: Set<String>) {
+		failingNames = names
+		super.init()
+	}
+
+	override func removeItem(at url: URL) throws {
+		if failingNames.contains(url.lastPathComponent) {
+			throw CocoaError(.fileWriteNoPermission)
+		}
+		try super.removeItem(at: url)
 	}
 }
 
