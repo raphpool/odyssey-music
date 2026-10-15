@@ -150,6 +150,14 @@ describe("runPipeline e2e (mocked boundaries)", () => {
 // TRA-462: work references are scoped by their primary artist, and a work nobody is credited for is
 // dropped from the written node (the node itself is kept).
 describe("scoped work edges (TRA-462)", () => {
+	// Behind ODYSSEY_SCOPED_RELEASE_SLUGS, off by default until TRA-509 flips it.
+	beforeEach(() => {
+		vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "true");
+	});
+	afterEach(() => {
+		vi.unstubAllEnvs();
+	});
+
 	it(
 		"scopes an artist's track by the artist, filling a missing artist from the node",
 		async () => {
@@ -369,6 +377,120 @@ describe("scoped work edges (TRA-462)", () => {
 			const result = await runPipeline({ type: "artist", name: "Cartola" }, DEPS);
 
 			expect((result.node as ArtistNode).members).toEqual([]);
+		},
+		TIMEOUT_MS,
+	);
+});
+
+// ODYSSEY_SCOPED_RELEASE_SLUGS off (the default until TRA-509): same slugs as main, nothing dropped, so a
+// merge on main changes no behaviour before the cache and /materialize are ready.
+describe("scoped work edges, flag off (TRA-509)", () => {
+	const MB_ID = "11111111-2222-3333-4444-555555555555";
+	const PROSE =
+		"A fictional entity invented for the runPipeline end-to-end harness (TRA-462). No real-world facts are claimed here.";
+
+	beforeEach(() => {
+		vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "false");
+	});
+	afterEach(() => {
+		vi.unstubAllEnvs();
+	});
+
+	it(
+		"keeps bare slugs on the MB discography and keeps a genre work that has no artist",
+		async () => {
+			installPipelineMocks({ draft: artistDraftFixture({ name: "Rohff" }) });
+			const runPipeline = await loadRunPipeline();
+			const { fetchArtistDiscographyMb } = await import("../src/musicbrainz.js");
+			vi.mocked(fetchArtistDiscographyMb).mockImplementation(async () => [
+				{
+					mbid: MB_ID,
+					title: "La Fierté",
+					firstReleaseDate: "2010-01-01",
+					primaryType: "Album",
+					secondaryTypes: [],
+				},
+			]);
+
+			const result = await runPipeline({ type: "artist", name: "Rohff" }, DEPS);
+
+			expect((result.node as ArtistNode).discography.map((e) => e.slug)).toEqual(["project:la-fierte"]);
+			expect((result.node as ArtistNode).notable_tracks.map((e) => e.slug)).toEqual(["track:fixture-track"]);
+
+			installPipelineMocks({
+				draft: genreDraftFixture({
+					landmark_projects: [{ type: "project", name: "New Forms" }],
+				}),
+			});
+			const lines: string[] = [];
+			const genre = await runPipeline(
+				{ type: "genre", name: "Fixture Genre" },
+				{ ...DEPS, logger: (line) => lines.push(line) },
+			);
+			expect((genre.node as GenreNode).landmark_projects.map((e) => e.slug)).toEqual(["project:new-forms"]);
+			expect(lines.some((l) => l.includes("edge dropped"))).toBe(false);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"keeps bare slugs on an MB tracklist and on label releases, credited or not",
+		async () => {
+			installPipelineMocks({
+				draft: {
+					name: "New Forms",
+					editorial_article: PROSE,
+					citations: [{ url: FIXTURE_WIKI_URL, title: "Fixture Artist" }],
+					editorial_pitch: "A fictional album used to test MB tracklist slugs.",
+					artists: [{ type: "artist", name: "Roni Size / Reprazent" }],
+					genres: [],
+					tracklist: [],
+					producers: [],
+					related_projects: [],
+				},
+			});
+			const runPipeline = await loadRunPipeline();
+			const { fetchProjectMetaMb, fetchLabelMetaMb } = await import("../src/musicbrainz.js");
+			vi.mocked(fetchProjectMetaMb).mockImplementation(async () => ({
+				tracks: [{ mbid: MB_ID, title: "Brown Paper Bag" }],
+				label: null,
+				artists: [],
+				year: null,
+				producers: [],
+				personnel: [],
+				primaryType: "Album",
+			}));
+			const project = await runPipeline({ type: "project", name: "New Forms", mbid: MB_ID }, DEPS);
+			expect((project.node as ProjectNode).tracklist.map((e) => e.slug)).toEqual(["track:brown-paper-bag"]);
+
+			installPipelineMocks({
+				draft: {
+					name: "Full Cycle",
+					editorial_article: PROSE,
+					citations: [{ url: FIXTURE_WIKI_URL, title: "Fixture Artist" }],
+					editorial_description: "A fictional label used to test MB release slugs.",
+					genres: [],
+					roster: [],
+					notable_releases: [],
+				},
+			});
+			vi.mocked(fetchLabelMetaMb).mockImplementation(async () => ({
+				roster: [],
+				notableReleases: [
+					{ mbid: MB_ID, title: "Orphan", firstReleaseDate: "1998", credit: [] },
+					{
+						mbid: "22222222-2222-3333-4444-555555555555",
+						title: "New Forms",
+						firstReleaseDate: "1997",
+						credit: [{ mbid: "33333333-2222-3333-4444-555555555555", name: "Roni Size / Reprazent" }],
+					},
+				],
+			}));
+			const label = await runPipeline({ type: "label", name: "Full Cycle", mbid: MB_ID }, DEPS);
+			expect((label.node as LabelNode).notable_releases.map((e) => e.slug)).toEqual([
+				"project:orphan",
+				"project:new-forms",
+			]);
 		},
 		TIMEOUT_MS,
 	);

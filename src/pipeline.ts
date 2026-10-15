@@ -21,7 +21,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { GoogleGenAI, Type as GType, type Schema } from "@google/genai";
 import { z } from "zod";
-import { pipelineConfig, pricingConfig } from "./config.js";
+import { pipelineConfig, pricingConfig, scopedReleaseSlugsEnabled } from "./config.js";
 import { normalizeEditorialText } from "./editorial-text.js";
 import { type GenreResolver, loadGenreResolver } from "./genre-identity.js";
 import type { GenreRegistry } from "./genre-registry.js";
@@ -1600,17 +1600,26 @@ function scopedWorkEdge(
 	where: string,
 	log: PipelineLog,
 ): EdgeRef | null {
+	const artist = artistName?.trim() || undefined;
+	if (!scopedReleaseSlugsEnabled()) {
+		// Flag off (TRA-509): the bare slug main emits, `artist` stamped when known, nothing dropped.
+		const legacy: EdgeRef = { slug: makeSlug(type, title), type, name: title, ...(artist ? { artist } : {}) };
+		if (extra.mbid) legacy.mbid = extra.mbid;
+		if (extra.year) legacy.year = extra.year;
+		if (extra.releaseType) legacy.releaseType = extra.releaseType;
+		return legacy;
+	}
 	const name = title.trim();
-	if (!artistName?.trim()) {
+	if (!artist) {
 		log(`[pipeline] edge dropped: no artist (${where} -> ${type} "${name}")`);
 		return null;
 	}
-	const scoped = makeScopedSlug(type, name, artistName.trim());
+	const scoped = makeScopedSlug(type, name, artist);
 	if (!scoped.ok) {
 		log(`[pipeline] edge dropped: ${scoped.reason} (${where} -> ${type} "${name}" by "${artistName}")`);
 		return null;
 	}
-	const edge: EdgeRef = { slug: scoped.slug, type, name, artist: artistName.trim() };
+	const edge: EdgeRef = { slug: scoped.slug, type, name, artist };
 	if (extra.mbid) edge.mbid = extra.mbid;
 	if (extra.year) edge.year = extra.year;
 	if (extra.releaseType) edge.releaseType = extra.releaseType;
@@ -1642,7 +1651,9 @@ export function normalizeEdge(
 	if (!(NODE_TYPES as readonly string[]).includes(r.type)) return null;
 	const t = r.type as NodeType;
 	const name = r.name.trim();
-	if (!allowed.includes(t)) {
+	// Flag off = the slugs and the drops main has (TRA-509): only `artist` is stamped when known.
+	const scopedSlugs = scopedReleaseSlugsEnabled();
+	if (scopedSlugs && !allowed.includes(t)) {
 		onDrop?.("type not allowed here", `${t} "${name}"`);
 		return null;
 	}
@@ -1651,20 +1662,24 @@ export function normalizeEdge(
 		if (t === "project" || t === "track") {
 			const credited = typeof r.artist === "string" && r.artist.trim() ? r.artist.trim() : undefined;
 			const artistName = credited ?? sourceCreditFor(ctx);
-			if (!artistName) {
-				onDrop?.("no artist", `${t} "${name}"`);
-				return null;
+			if (!scopedSlugs) {
+				out = { slug: makeSlug(t, name), type: t, name, ...(artistName ? { artist: artistName } : {}) };
+			} else {
+				if (!artistName) {
+					onDrop?.("no artist", `${t} "${name}"`);
+					return null;
+				}
+				const scoped = makeScopedSlug(t, name, artistName);
+				if (!scoped.ok) {
+					onDrop?.(scoped.reason, `${t} "${name}" by "${artistName}"`);
+					return null;
+				}
+				out = { slug: scoped.slug, type: t, name, artist: artistName };
 			}
-			const scoped = makeScopedSlug(t, name, artistName);
-			if (!scoped.ok) {
-				onDrop?.(scoped.reason, `${t} "${name}" by "${artistName}"`);
-				return null;
-			}
-			out = { slug: scoped.slug, type: t, name, artist: artistName };
 		} else {
 			out = { slug: makeSlug(t, name), type: t, name };
 		}
-		if (out.slug === ctx.sourceSlug) {
+		if (scopedSlugs && out.slug === ctx.sourceSlug) {
 			onDrop?.("self reference", `${t} "${name}"`);
 			return null;
 		}

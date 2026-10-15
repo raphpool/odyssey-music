@@ -1,11 +1,20 @@
 import type { Schema } from "@google/genai";
-import { describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { EDGE_TARGET_TYPES_BY_TYPE, NODE_TYPES } from "../src/node-spec.js";
 import { type EdgeContext, makeNodeSchema, normalizeEdge } from "../src/pipeline.js";
 import type { NodeType, Slug } from "../src/types.js";
 
 // TRA-462: work references (project/track) carry their primary artist; normalizeEdge scopes the slug
 // with it, drops a work nobody is credited for, and refuses links from a node to itself.
+// All of that sits behind ODYSSEY_SCOPED_RELEASE_SLUGS (TRA-509 flips it): the suite runs with the flag on,
+// and the last describe proves that off, the output is what main emits.
+
+beforeEach(() => {
+	vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "true");
+});
+afterEach(() => {
+	vi.unstubAllEnvs();
+});
 
 const ARTIST_CTX: EdgeContext = {
 	sourceSlug: "artist:rohff" as Slug,
@@ -247,5 +256,60 @@ describe("makeNodeSchema -- artist required on work references (TRA-462)", () =>
 				expect(edge.properties?.artist, `${type}.${field}`).toBeUndefined();
 			}
 		}
+	});
+});
+
+describe("normalizeEdge -- flag off emits what main emits (TRA-509)", () => {
+	beforeEach(() => {
+		vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "false");
+	});
+
+	it("keeps the bare slug for a work, stamping artist when known", () => {
+		const track = normalizeEdge({ type: "track", name: "Fitna" }, ["track"], {
+			...ARTIST_CTX,
+			sourceField: "notable_tracks",
+		});
+		expect(track).toEqual({ slug: "track:fitna", type: "track", name: "Fitna", artist: "Rohff" });
+		const project = normalizeEdge(
+			{ type: "project", name: "New Forms", artist: "Roni Size / Reprazent" },
+			["project"],
+			GENRE_CTX,
+		);
+		expect(project?.slug).toBe("project:new-forms");
+	});
+
+	it("drops nothing: no artist, non-Latin artist, self link and off-spec type all stay", () => {
+		const onDrop = vi.fn();
+		expect(normalizeEdge({ type: "project", name: "New Forms" }, ["project"], GENRE_CTX, onDrop)?.slug).toBe(
+			"project:new-forms",
+		);
+		expect(
+			normalizeEdge(
+				{ type: "track", name: "Merry Christmas", artist: "坂本龍一" },
+				["track"],
+				GENRE_CTX,
+				onDrop,
+			)?.slug,
+		).toBe("track:merry-christmas");
+		const cartola: EdgeContext = {
+			sourceSlug: "artist:cartola" as Slug,
+			sourceType: "artist",
+			sourceName: "Cartola",
+		};
+		expect(normalizeEdge({ type: "artist", name: "Cartola" }, ["artist"], cartola, onDrop)?.slug).toBe(
+			"artist:cartola",
+		);
+		expect(normalizeEdge({ type: "label", name: "Moving Shadow" }, ["genre"], ARTIST_CTX, onDrop)?.slug).toBe(
+			"label:moving-shadow",
+		);
+		expect(onDrop).not.toHaveBeenCalled();
+	});
+
+	it("defaults to off when the variable is unset", () => {
+		vi.unstubAllEnvs();
+		vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "");
+		expect(
+			normalizeEdge({ type: "track", name: "Fitna", artist: "Rohff" }, ["track"], ARTIST_CTX)?.slug,
+		).toBe("track:fitna");
 	});
 });
