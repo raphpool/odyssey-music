@@ -5,9 +5,9 @@ import Track1Core
 /// a short definition. The whole row is the tap target. Names and definitions come from the catalog, so they
 /// are shown verbatim.
 struct SubgenreRow: View {
-	/// `subgenre-row-<identity>`: the row does not know its identity, the screen sets this on it.
-	static func identifier(for identity: NodeIdentity) -> String {
-		"subgenre-row-\(identity.rawValue)"
+	/// `subgenre-row-<id>`, the taxonomy genre id: the row does not know its id, the screen sets this on it.
+	static func identifier(for id: String) -> String {
+		"subgenre-row-\(id)"
 	}
 
 	/// The Figma description wraps on two lines in a 345 pt row; a longer one is cut rather than growing the

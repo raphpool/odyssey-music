@@ -333,10 +333,12 @@ describe("project:new-forms", () => {
 		},
 	];
 
-	async function seedNewForms() {
+	// TRA-537: the credit must EQUAL the hint, so the artist pointing at the work is the group MB credits
+	// ("Roni Size" no longer resolves "Roni Size / Reprazent": see the last test of this block).
+	async function seedNewForms(artistName = "Roni Size / Reprazent") {
 		await seed(
-			artistNode("artist:roni-size", {
-				name: "Roni Size",
+			artistNode("artist:roni-size-reprazent", {
+				name: artistName,
 				discography: [edge("project:new-forms", "New Forms")],
 			}),
 			projectNode("project:new-forms", "New Forms"),
@@ -351,7 +353,7 @@ describe("project:new-forms", () => {
 		const result = await run({ apply: true });
 
 		expect(result.exitCode).toBe(0);
-		expect(mb.searches()).toEqual(['releasegroup:"New Forms" AND artist:"Roni Size"']);
+		expect(mb.searches()).toEqual(['releasegroup:"New Forms" AND artist:"Roni Size / Reprazent"']);
 		const after = await readNode("project:new-forms");
 		expect(after).toMatchObject({
 			mbid: rg,
@@ -391,15 +393,15 @@ describe("project:new-forms", () => {
 		expect(nodePayloadSchema.safeParse(after).success).toBe(true);
 		expect(result.manifest.resolved["project:new-forms"]).toMatchObject({
 			mbid: rg,
-			hint: "Roni Size",
+			hint: "Roni Size / Reprazent",
 			credit: [{ mbid: reprazent, name: "Roni Size / Reprazent" }],
 		});
 	});
 
 	it("reads the artist's identity from the artist manifest when the cache has none yet", async () => {
 		stubMb(works);
-		await seedNewForms();
-		await seed(artistNode("artist:roni-size-reprazent", { name: "Roni Size & Reprazent" }));
+		// The trailing parenthesis is dropped by name normalization: same artist as the credit, other spelling.
+		await seedNewForms("Roni Size / Reprazent (group)");
 		await mkdir(join(root, "out"), { recursive: true });
 		const artistManifestPath = join(root, "out", "artist-identity.json");
 		await writeFile(
@@ -411,8 +413,34 @@ describe("project:new-forms", () => {
 
 		// The credit lands on the cache's own artist, whose name is the cache's.
 		expect((await readNode("project:new-forms")).artists).toEqual([
-			{ slug: "artist:roni-size-reprazent", type: "artist", name: "Roni Size & Reprazent", mbid: reprazent },
+			{
+				slug: "artist:roni-size-reprazent",
+				type: "artist",
+				name: "Roni Size / Reprazent (group)",
+				mbid: reprazent,
+			},
 		]);
+	});
+
+	// TRA-537 (2026-10-15): before, a member's name resolved the group's work ("Roni Size" for "Roni Size
+	// / Reprazent", then confirmed by the group's MBID). The resolver now demands that the credit equals
+	// the artist asked for, so the member stays unresolved: safety before resolution rate.
+	it("leaves a member unresolved when MusicBrainz credits the group only", async () => {
+		stubMb(works);
+		await seed(
+			artistNode("artist:roni-size", {
+				name: "Roni Size",
+				discography: [edge("project:new-forms", "New Forms")],
+			}),
+			projectNode("project:new-forms", "New Forms"),
+		);
+
+		const result = await run({ apply: true });
+
+		expect(result.manifest.unresolved).toEqual([
+			{ slug: "project:new-forms", name: "New Forms", hint: "Roni Size", reason: "no-match" },
+		]);
+		expect((await readNode("project:new-forms")).mbid).toBeUndefined();
 	});
 });
 
@@ -704,6 +732,8 @@ describe("works MusicBrainz cannot single out", () => {
 		expect((await readNode("track:booty-la-la")).mbid).toBe(original);
 	});
 
+	// TRA-537: the resolver itself now refuses it (no credit equals the hint), so the reason is
+	// "no-match"; "credit-mismatch" stays for a credit that equals the hint by name but not by MBID.
 	it("refuses a sole exact-title candidate credited to another artist", async () => {
 		stubMb([
 			{
@@ -720,7 +750,7 @@ describe("works MusicBrainz cannot single out", () => {
 		const result = await run({ apply: true });
 
 		expect(result.manifest.unresolved).toEqual([
-			{ slug: "project:mirage", name: "Mirage", hint: "Someone Real", reason: "credit-mismatch" },
+			{ slug: "project:mirage", name: "Mirage", hint: "Someone Real", reason: "no-match" },
 		]);
 		expect((await readNode("project:mirage")).mbid).toBeUndefined();
 	});

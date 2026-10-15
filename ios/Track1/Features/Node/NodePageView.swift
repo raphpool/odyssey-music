@@ -116,8 +116,11 @@ struct NodePageView: View {
 				FactsBlock(rows: facts)
 					.padding(.horizontal, Track1Tokens.spacing24)
 			}
-			ForEach(NodePageModel.sections(for: node), id: \.field) { section in
-				sectionView(section)
+			ForEach(Array(NodePageModel.blocks(for: node).enumerated()), id: \.offset) { _, block in
+				switch block {
+				case .section(let section): sectionView(section)
+				case .highlights(let highlights): highlightsView(highlights)
+				}
 			}
 			// Last, as fixed by H.1. A source opens through the OS only; `NodeArticleView` has already
 			// dropped any citation whose URL is not a public HTTPS one.
@@ -164,6 +167,32 @@ struct NodePageView: View {
 					.padding(.horizontal, Track1Tokens.spacing24)
 			}
 		}
+	}
+
+	/// The landmark album and the reference track, above the discography (TRA-471). Built from drawn parts
+	/// only: `SectionHeader`, `NodeReleaseCard` (the carousel's card) and `Track1ListItem`. Tapping opens the
+	/// target like a chip does, with the edge field as the relation kind.
+	private func highlightsView(_ highlights: ArtistHighlights) -> some View {
+		VStack(alignment: .leading, spacing: Track1Tokens.spacing24) {
+			ForEach(highlights.entries, id: \.identifier) { entry in
+				VStack(alignment: .leading, spacing: 0) {
+					SectionHeader(title: entry.label, count: nil)
+						.accessibilityIdentifier(SectionHeader.identifier(field: entry.field))
+					switch entry.kind {
+					case .landmarkAlbum:
+						NodeReleaseCard(edge: entry.edge, imageStore: imageStore, identifier: entry.identifier) {
+							onOpenEdge(entry.edge, entry.field)
+						}
+					case .referenceTrack:
+						Track1ListItem(title: entry.edge.name, accessory: .chevron) {
+							onOpenEdge(entry.edge, entry.field)
+						}
+						.accessibilityIdentifier(entry.identifier)
+					}
+				}
+			}
+		}
+		.padding(.horizontal, Track1Tokens.spacing24)
 	}
 
 	private func chips(_ section: NodePageSection) -> some View {
@@ -236,19 +265,36 @@ struct ListeningFailureNotice: View {
 private struct NodeReleaseCard: View {
 	let edge: NodeEdge
 	let imageStore: NodeImageStore<UIImage>
+	/// Names the card for UI tests in place of `release-card-<slug>`: the artist highlights have a fixed one.
+	var identifier: String?
 	let action: () -> Void
 	@State private var cover = Track1Artwork.State.loading
 
 	var body: some View {
 		ReleaseCard(
 			title: edge.name, meta: ReleaseCard.meta(year: edge.year, releaseType: edge.releaseType), cover: cover,
-			identity: edge.slug, action: action
+			identity: identifier == nil ? edge.slug : nil, action: action
 		)
+		.modifier(CardIdentifier(identifier: identifier))
 		.task(id: edge.slug) {
 			guard case .loading = cover else { return }
 			let image = await imageStore.image(for: edge.slug)
 			guard !Task.isCancelled else { return }
 			cover = image.map { .image($0) } ?? .unavailable
+		}
+	}
+}
+
+/// Sets the identifier only when there is one: an empty identifier would hide the one the card sets itself.
+private struct CardIdentifier: ViewModifier {
+	let identifier: String?
+
+	@ViewBuilder
+	func body(content: Content) -> some View {
+		if let identifier {
+			content.accessibilityIdentifier(identifier)
+		} else {
+			content
 		}
 	}
 }
