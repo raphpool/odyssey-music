@@ -425,4 +425,24 @@ final class GenreOnboardingModelTests: XCTestCase {
 		XCTAssertEqual(twice.makeDraft().selection, once.makeDraft().selection)
 		XCTAssertEqual(twice.makeDraft().genreIDs, once.makeDraft().genreIDs)
 	}
+
+	// MARK: - Counted genres
+
+	func testAFamilyAloneCountsAllOfItsVisibleGenres() throws {
+		let model = try model()
+		model.toggleFamily(hipHop)
+
+		// Trap, Boom bap and Drill: Ghost has no slug in the catalog, so it is not shown and not counted.
+		XCTAssertEqual(model.countedGenreCount, 3)
+		XCTAssertEqual(model.selectedSubgenreCount, 0)
+	}
+
+	func testAFamilyWithTickedGenresCountsOnlyThose() throws {
+		let model = try model()
+		model.toggleFamily(hipHop)
+		model.toggleSubgenre(trap, of: hipHop)
+		model.toggleSubgenre(drill, of: hipHop)
+
+		XCTAssertEqual(model.countedGenreCount, 2)
+	}
 }

@@ -28,7 +28,7 @@ private struct SwipeBackEnabler: UIViewControllerRepresentable {
 	}
 }
 
-/// The onboarding flow of Flow 1: Welcome, the parent genres, then one subgenre step per selected parent.
+/// The onboarding flow of Flow 1: Welcome, the editorial families, then one genre step per selected family.
 /// A model built from a profile (`isEditing`) is the edit flow of the Genres tab (K.1): it opens on the genre
 /// step with no Welcome and ends on "Enregistrer". `FirstLaunchOnboardingView` hosts the first launch.
 ///
@@ -37,15 +37,15 @@ private struct SwipeBackEnabler: UIViewControllerRepresentable {
 struct OnboardingFlowView: View {
 	enum Step: Hashable {
 		case genres
-		/// One step per selected parent, identified by the parent so that a step keeps its place in the path.
-		case subgenres(NodeIdentity)
+		/// One step per selected family, identified by its key so that a step keeps its place in the path.
+		case subgenres(String)
 	}
 
-	let model: OnboardingFlowModel
+	let model: GenreOnboardingModel
 	let onFinish: (ProfileDraft) -> Void
 	@State private var path = [Step]()
 
-	init(model: OnboardingFlowModel, onFinish: @escaping (ProfileDraft) -> Void) {
+	init(model: GenreOnboardingModel, onFinish: @escaping (ProfileDraft) -> Void) {
 		self.model = model
 		self.onFinish = onFinish
 	}
@@ -87,7 +87,7 @@ struct OnboardingFlowView: View {
 
 	private var genresStep: some View {
 		GenresStepView(model: model) {
-			// Parents are chosen: the first subgenre step follows, in selection order. Only the genre step
+			// Families are chosen: the first genre step follows, in selection order. Only the genre step
 			// may advance, so a second tap before the push animation ends is ignored.
 			if isOnGenresStep, let first = model.subgenreSteps.first {
 				path.append(.subgenres(first))
@@ -100,20 +100,20 @@ struct OnboardingFlowView: View {
 		switch step {
 		case .genres:
 			genresStep
-		case .subgenres(let parentID):
-			// A parent that is no longer selected has no step; the path cannot hold one, since the parents
+		case .subgenres(let familyKey):
+			// A family that is no longer selected has no step; the path cannot hold one, since the families
 			// only change on the genre step, below it.
-			if let parent = model.parentChoices.first(where: { $0.identity == parentID }) {
-				SubgenresStepView(parent: parent, model: model) { advance(from: parentID) }
+			if let family = model.selectedFamilyChoices.first(where: { $0.id == familyKey }) {
+				SubgenresStepView(parent: family, model: model) { advance(from: familyKey) }
 			}
 		}
 	}
 
-	/// The next selected parent, or the end of the flow after the last one. The host must ignore a second
+	/// The next selected family, or the end of the flow after the last one. The host must ignore a second
 	/// `onFinish`: a double tap on the last CTA sends two.
-	private func advance(from parentID: NodeIdentity) {
-		guard path.last == .subgenres(parentID) else { return }
-		if let next = model.subgenreStep(after: parentID) {
+	private func advance(from familyKey: String) {
+		guard path.last == .subgenres(familyKey) else { return }
+		if let next = model.subgenreStep(after: familyKey) {
 			path.append(.subgenres(next))
 		} else {
 			onFinish(model.makeDraft())
@@ -121,7 +121,7 @@ struct OnboardingFlowView: View {
 	}
 }
 
-/// The first launch (Flow 1, J.4): reads the genre tree from the catalog, opens the flow on the saved draft
+/// The first launch (Flow 1, J.4): reads the editorial taxonomy from the catalog, opens the flow on the saved draft
 /// and writes the profile when it ends. The host (`RootView`) shows it instead of the tabs while there is no
 /// profile.
 ///
@@ -129,7 +129,7 @@ struct OnboardingFlowView: View {
 /// rebuilt on every render and drop the selection with it.
 struct FirstLaunchOnboardingView: View {
 	private struct Loaded {
-		let model: OnboardingFlowModel
+		let model: GenreOnboardingModel
 		/// Every genre of the catalog: the profile keeps the ones that are still there.
 		let genreIDs: [NodeIdentity]
 	}
@@ -137,7 +137,8 @@ struct FirstLaunchOnboardingView: View {
 	private enum Phase {
 		case loading
 		case ready(Loaded)
-		/// The catalog, the draft or the tree is not there: an empty grid with a disabled CTA would say nothing.
+		/// The catalog, the draft or the taxonomy is not there (a degraded catalog included): an empty grid with
+		/// a disabled CTA would say nothing.
 		case unavailable
 	}
 
@@ -185,14 +186,13 @@ struct FirstLaunchOnboardingView: View {
 			phase = .unavailable
 			return
 		}
-		let taxonomy = GenreTaxonomy(catalog: catalog)
-		guard !taxonomy.parents.isEmpty else {
+		guard let taxonomy = EditorialGenreTaxonomy(catalog: catalog) else {
 			phase = .unavailable
 			return
 		}
 		phase = .ready(
 			Loaded(
-				model: OnboardingFlowModel(taxonomy: taxonomy, draft: draft),
+				model: GenreOnboardingModel(taxonomy: taxonomy, draft: draft),
 				genreIDs: catalog.nodes.filter { $0.type == .genre }.map(\.identity)))
 		await recordStartIfNeeded(draft)
 	}
