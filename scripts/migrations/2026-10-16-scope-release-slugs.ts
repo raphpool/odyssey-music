@@ -28,14 +28,18 @@
  * existing node. A migration also rewrites many nodes in one plan, validated as a whole before the
  * first write, which a per-node read-modify-write does not give.
  *
- * Apply order (crash-safe): new node files -> redirects -> nodes whose edges changed -> pending-reverses.json
- * -> `rm` of the old files last. A crash at any point leaves no edge to a node that is gone (the old
- * nodes are still there, or the edges were never moved), and a plain re-run converges to the same cache
- * (tested at every write): a surviving old node merges into its new slug. Edges are never de-duplicated
- * wholesale: only a collision this run creates is folded (same mbid, or none) or reported (different
- * mbids, all kept); duplicates already in a list are left alone (another ticket). The real run is TRA-483
- * (repo) and TRA-484 (prod, through the migration channel of deploy/sync-genre-cache.sh, which reads the
- * manifest written here).
+ * Apply order: new node files -> redirects -> nodes whose edges changed -> pending-reverses.json -> `rm` of the
+ * old files last. What is guaranteed after a crash at ANY of those writes (tested at each one, with a renamed
+ * node pointing at another renamed node): a plain re-run of this script exits 0 and leaves the cache a clean
+ * run would have left. Edges also follow the redirects an interrupted run already wrote, and an old node that
+ * survived merges into its new slug. What is NOT guaranteed is the state in between: until the re-run the cache
+ * can hold both the old and the new node, and, once removals have started, an old file can still point at a
+ * node that is gone. So after a crash: re-run (or restore), and do not serve or ship that cache first.
+ * Edges are never de-duplicated wholesale: only a collision this run creates is folded (same mbid, or none) or
+ * reported (different mbids, all kept); duplicates already in a list are left alone (TRA-557). A rename never
+ * overwrites a file it cannot read (reported as a conflict), and pending-reverses entries that cannot be applied
+ * to a node kept as is stay under their key. The real run is TRA-483 (repo) and TRA-484 (prod, through the
+ * migration channel of deploy/sync-genre-cache.sh, which reads the manifest written here).
  *
  * Usage: ODYSSEY_SCOPED_RELEASE_SLUGS=1 tsx scripts/migrations/2026-10-16-scope-release-slugs.ts <cache-dir>
  *        [--apply] [--manifest out/scope-release-slugs.json] [--artist-manifest out/artist-identity.json]
@@ -113,7 +117,7 @@ export interface FoldedEdge {
 	after: Obj;
 }
 export interface Conflict {
-	kind: "merge" | "chain" | "transliteration" | "edge-mbid";
+	kind: "merge" | "chain" | "transliteration" | "edge-mbid" | "unreadable-target";
 	slugs: string[];
 	reason: string;
 }
@@ -387,6 +391,8 @@ export interface PlanInput {
 	identities: ArtistIdentities;
 	pending: Readonly<Record<string, PendingReverse[]>>;
 	existingRedirects: Readonly<Record<string, string>>;
+	/** Slugs whose file exists but cannot be read: a rename never overwrites one. */
+	unreadable?: ReadonlySet<string>;
 }
 
 export interface Plan {
@@ -470,6 +476,8 @@ export function planMigration(input: PlanInput): Plan {
 		if (t.kind === "not-derivable") notDerivable.push({ slug: f.slug, reason: t.reason });
 	}
 	const ownRenames = new Map([...finalOf].filter(([s, fin]) => s !== fin));
+	// A file we cannot read may hold a node: a rename onto its slug would overwrite it blindly.
+	const unreadable = input.unreadable ?? new Set<string>();
 
 	// 2. Collisions of the artist manifest merge onto one slug (the one without "--", else rule 2).
 	const collisionGroups: CacheNodeFile[][] = [];
@@ -497,6 +505,17 @@ export function planMigration(input: PlanInput): Plan {
 	};
 	for (let pass = 0; pass < 20; pass++) {
 		let changed = false;
+		for (const [slug, fin] of [...finalOf]) {
+			if (slug !== fin && unreadable.has(fin)) {
+				addConflict({
+					kind: "unreadable-target",
+					slugs: [slug, fin],
+					reason: `${fin} exists but cannot be read: ${slug} is not renamed onto it`,
+				});
+				revert([slug]);
+				changed = true;
+			}
+		}
 		for (const [slug, fin] of [...finalOf]) {
 			// A rename onto a node that itself leaves: the chain is not guessed, the sources stay.
 			if (slug !== fin && bySlug.has(fin) && finalOf.get(fin) !== fin) {
@@ -578,15 +597,25 @@ export function planMigration(input: PlanInput): Plan {
 	for (const [slug, fin] of finalOf) if (slug !== fin) additions[slug] = fin;
 	for (const [slug, fin] of danglingRenames) additions[slug] = finalOf.get(fin) ?? fin;
 	let rewriteMap: Record<string, string> = {};
+	let edgeMap: Record<string, string> = {};
 	let mergedRedirects: Record<string, string> = {};
 	try {
 		rewriteMap = mergeRedirects({}, additions);
 		mergedRedirects = mergeRedirects(input.existingRedirects, rewriteMap);
+		// Edges follow the redirects of an earlier, interrupted run too (keys with no node left): after a
+		// crash in the removal phase an old file can still hold an edge to a node that is already gone.
+		edgeMap = mergeRedirects(
+			{},
+			{
+				...Object.fromEntries(Object.entries(input.existingRedirects).filter(([k]) => !bySlug.has(k))),
+				...rewriteMap,
+			},
+		);
 		parseSlugRedirects({ redirects: mergedRedirects });
 	} catch (e) {
 		errors.push(`redirect table would be invalid: ${e instanceof Error ? e.message : String(e)}`);
 	}
-	const resolve = (slug: string): string => rewriteMap[slug] ?? slug;
+	const resolve = (slug: string): string => edgeMap[slug] ?? slug;
 
 	// 6. Merged / renamed nodes, before any edge is rewritten.
 	const finals = new Map<string, Obj>();
@@ -682,7 +711,7 @@ export function planMigration(input: PlanInput): Plan {
 				const value = node[field];
 				const fix = (edge: Obj): Obj => {
 					const oldSlug = str(edge.slug);
-					const newSlug = oldSlug ? rewriteMap[oldSlug] : undefined;
+					const newSlug = oldSlug ? edgeMap[oldSlug] : undefined;
 					const targetType = oldSlug && isReadableSlug(oldSlug) ? parseSlug(oldSlug).type : undefined;
 					if (!oldSlug || !newSlug || (targetType !== "project" && targetType !== "track")) return edge;
 					const targetNode = finals.get(newSlug);
@@ -704,11 +733,11 @@ export function planMigration(input: PlanInput): Plan {
 			}
 			node = next;
 		}
-		const out = rewriteEdges(node, type, rewriteMap, fin);
+		const out = rewriteEdges(node, type, edgeMap, fin);
 		folded.push(...out.folded);
 		conflicts.push(...out.conflicts);
 		for (const [from, count] of [...out.hits].sort(([a], [b]) => (a < b ? -1 : 1))) {
-			rewritten.push({ node: fin, from, to: rewriteMap[from] ?? from, count });
+			rewritten.push({ node: fin, from, to: edgeMap[from] ?? from, count });
 		}
 		results.set(fin, out.node);
 	}
@@ -719,15 +748,13 @@ export function planMigration(input: PlanInput): Plan {
 	// forward edge the rename just attached to a real node would have no reverse (audit reciprocity).
 	// A key already redirected by an earlier (interrupted) run is moved too: after a crash the edges no
 	// longer name the old slug, so the rename could not be deduced again from them.
-	const pendingMap: Record<string, string> = {
-		...Object.fromEntries(Object.entries(input.existingRedirects).filter(([k]) => !bySlug.has(k))),
-		...rewriteMap,
-	};
+	const pendingMap = edgeMap;
 	const pending = rewritePendingReverses(input.pending, new Map(Object.entries(pendingMap)));
 	const pendingRenames = Object.keys(input.pending)
 		.filter((k) => pendingMap[k] !== undefined)
 		.sort()
 		.map((from) => ({ from, to: pendingMap[from] as string }));
+	const appliedPending = new Map<string, PendingReverse[]>();
 	for (const { to } of pendingRenames) {
 		const target = results.get(to);
 		const entries = pending.result[to];
@@ -743,6 +770,7 @@ export function planMigration(input: PlanInput): Plan {
 			}
 		}
 		results.set(to, next);
+		appliedPending.set(to, entries);
 		delete pending.result[to];
 	}
 
@@ -765,7 +793,12 @@ export function planMigration(input: PlanInput): Plan {
 			// An existing node we cannot rewrite safely stays as it is, and is reported. If it still points at
 			// a retired slug the invariant below refuses the run.
 			results.set(fin, members[0].node);
-			malformed.push({ slug: fin, reason: `kept as is: ${problem}` });
+			const back = appliedPending.get(fin);
+			if (back) pending.result[fin] = [...(pending.result[fin] ?? []), ...back];
+			malformed.push({
+				slug: fin,
+				reason: `kept as is: ${problem}${back ? ` (${back.length} pending reverse edge(s) kept under their key)` : ""}`,
+			});
 		} else {
 			errors.push(`refusing to write ${fin}: ${problem}`);
 		}
@@ -775,7 +808,7 @@ export function planMigration(input: PlanInput): Plan {
 	for (const [fin, node] of results) {
 		for (const { field, edge } of allEdges(node, parseSlug(fin).type)) {
 			const slug = str(edge.slug);
-			if (slug && slug !== fin && rewriteMap[slug] !== undefined && !results.has(slug)) {
+			if (slug && slug !== fin && edgeMap[slug] !== undefined && !results.has(slug)) {
 				errors.push(`stale edge: ${fin}.${field} still points to ${slug}`);
 			}
 		}
@@ -1012,7 +1045,15 @@ export async function runMigration(options: MigrationOptions): Promise<Migration
 		};
 	}
 
-	const plan = planMigration({ files: nodes, identities, pending: pendingOld, existingRedirects });
+	const nodesDir = join(cacheDir, "nodes");
+	const unreadable = new Set(invalid.map((i) => relative(nodesDir, i.path)));
+	const plan = planMigration({
+		files: nodes,
+		identities,
+		pending: pendingOld,
+		existingRedirects,
+		unreadable,
+	});
 	// A node file we cannot read (malformed slug, bad JSON) is left alone and listed, not a reason to stop.
 	plan.manifest.malformed.push(...invalid.map((i) => ({ slug: i.path, reason: `unreadable: ${i.error}` })));
 	plan.manifest.summary.malformed = plan.manifest.malformed.length;

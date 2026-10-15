@@ -668,13 +668,63 @@ describe("scope-release-slugs migration", () => {
 		});
 	});
 
+	describe("rename targets and pending entries that cannot be written", () => {
+		it("never overwrites an unreadable file at the target slug of a rename, and carries on", async () => {
+			await seed([
+				node("track:fitna", "Fitna", { artists: credit("artist:akuma", "Akuma") }),
+				node("track:echo", "Echo", { artists: credit("artist:a", "A") }),
+			]);
+			await mkdir(join(cacheDir, "nodes", "track"), { recursive: true });
+			await writeFile(join(cacheDir, "nodes", "track", "fitna--akuma.json"), "{ not json");
+			const { manifest, exitCode } = await run(true);
+			expect(exitCode).toBe(0);
+			expect(manifest.conflicts).toMatchObject([
+				{ kind: "unreadable-target", slugs: ["track:fitna", "track:fitna--akuma"] },
+			]);
+			expect(await readFile(join(cacheDir, "nodes", "track", "fitna--akuma.json"), "utf8")).toBe(
+				"{ not json",
+			);
+			expect(await exists("track:fitna")).toBe(true);
+			expect(manifest.renamed).toEqual({ "track:echo": "track:echo--a" });
+		});
+
+		it("keeps pending reverse edges under their key when the node meant to receive them is kept as is", async () => {
+			await seed(
+				[
+					node("artist:laetitia-sadier", "Laetitia Sadier", { undeclared_field: "kept" }),
+					node("artist:stereolab", "Stereolab", {
+						members: [ref("artist:l-titia-sadier", "Lætitia Sadier")],
+					}),
+				],
+				{
+					"artist:l-titia-sadier": [
+						{ field: "members", cardinality: "list", edge: ref("artist:stereolab", "Stereolab") },
+					],
+				},
+			);
+			const before = await readFile(nodePath("artist:laetitia-sadier"), "utf8");
+			const { manifest, exitCode } = await run(true);
+			expect(exitCode).toBe(0);
+			expect(await readFile(nodePath("artist:laetitia-sadier"), "utf8")).toBe(before);
+			expect(manifest.malformed[0]?.reason).toContain("pending reverse edge(s) kept under their key");
+			const pending = JSON.parse(await readFile(join(cacheDir, "pending-reverses.json"), "utf8")) as Obj;
+			expect(Object.keys(pending)).toEqual(["artist:laetitia-sadier"]);
+			expect((pending["artist:laetitia-sadier"] as Obj[]).map((e) => (e.edge as Obj).slug)).toEqual([
+				"artist:stereolab",
+			]);
+		});
+	});
+
 	describe("crash safety", () => {
 		const seedCrashFixture = async (): Promise<void> => {
 			const jan = credit("artist:jan-jelinek", "Jan Jelinek");
 			await seed(
 				[
 					node("track:fitna", "Fitna", { artists: credit("artist:akuma", "Akuma") }),
-					node("artist:akuma", "Akuma", { notable_tracks: [ref("track:fitna", "Fitna")] }),
+					node("artist:akuma", "Akuma", {
+						notable_tracks: [ref("track:fitna", "Fitna"), ref("track:song", "Song")],
+						discography: [ref("project:ep", "EP")],
+					}),
 					node("artist:rohff", "Rohff", { notable_tracks: [ref("track:fitna", "Fitna")] }),
 					node("track:moire--by-jan-jelinek", "Moire", { artists: jan }),
 					node("track:moire--other-by-jan-jelinek", "Moire", {
@@ -686,6 +736,15 @@ describe("scope-release-slugs migration", () => {
 							ref("track:moire--by-jan-jelinek", "Moire"),
 							ref("track:moire--other-by-jan-jelinek", "Moire"),
 						],
+					}),
+					// A renamed work pointing at another renamed work, both from the same artist.
+					node("project:ep", "EP", {
+						artists: credit("artist:akuma", "Akuma"),
+						tracklist: [ref("track:song", "Song")],
+					}),
+					node("track:song", "Song", {
+						artists: credit("artist:akuma", "Akuma"),
+						project: ref("project:ep", "EP"),
 					}),
 					node("artist:laetitia-sadier", "Laetitia Sadier"),
 					node("artist:stereolab", "Stereolab", {
