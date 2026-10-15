@@ -142,6 +142,16 @@ jobs:
               --arg context codex-review "$select_status")
             deep=$(jq -nr --slurpfile statuses "$api/statuses.json" --slurpfile allowed "$authors" \
               --arg context codex-deep-review "$select_status")
+            # A codex status from an account outside the list is dropped silently by the selection above: say so, or
+            # a publisher logged in under another account would look like a review that never came.
+            ignored=$(jq -nr --slurpfile statuses "$api/statuses.json" --slurpfile allowed "$authors" \
+              '[($allowed[0] // [])[] | ascii_downcase] as $logins
+              | [$statuses[] | select(.context == "codex-review" or .context == "codex-deep-review")
+                | select(((.creator.login // "") | ascii_downcase) as $login | any($logins[]; . == $login) | not)
+                | "\(.context) by \(.creator.login // "unknown")"] | unique | join(", ")')
+            if [ -n "$ignored" ]; then
+              echo "::warning::Statuts codex ignorés (auteur hors de .github/review-gate-authors.txt) : $ignored"
+            fi
             input=$(jq -nc --argjson paths "$paths" --argjson labels "$labels" --arg claude "$claude" --arg codex "$codex" --arg deep "$deep" --argjson claudeBlocking "$claude_blocking" '{paths:$paths,labels:$labels,ordinary:{claude:$claude,codex:$codex,claudeBlocking:$claudeBlocking},deep:$deep,risk:1}')
             result=$(node --experimental-strip-types --no-warnings "$RUNNER_TEMP/review-gate-policy/review-gate-policy.ts" "$input")
             decision=$(jq -r .verdict <<< "$result")

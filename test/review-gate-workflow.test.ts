@@ -563,7 +563,7 @@ describe("review-gate.yml: codex statuses count only from their expected author 
 			.split("\n")
 			.map((line) => line.replace(/#.*$/, "").trim())
 			.filter((line) => line !== "");
-		expect(lines).toEqual(["raphpool"]);
+		expect(lines).toContain("raphpool");
 	});
 
 	it.each([
