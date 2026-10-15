@@ -135,6 +135,10 @@ export interface PipelineInput {
 	name: string;
 	disambiguator?: string;
 	mbid?: string;
+	// TRA-538: true when `mbid` comes from an HTTP client. It is then only a search hint: a work (track,
+	// project) carries it only if MB's own resolution by title + credit lands on it. Unset for trusted
+	// callers (seed folders, dangling top-up), whose MBID is used directly.
+	mbidIsClientHint?: boolean;
 	// 2026-09-10 (TRA-28 review, B1/B2): when set, the produced node is written under this
 	// EXACT slug instead of one freshly derived from name/type/disambiguator (canonicalizeDraft).
 	// `name`/`disambiguator` still drive research and content generation as usual. For a caller
@@ -738,6 +742,16 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	};
 }
 
+/**
+ * TRA-538: a client-supplied MBID is only a search hint. The server's own resolution (title + credit)
+ * decides which MBID a work node carries; when a hint exists the resolution must land on it, or the
+ * node gets none. 2026-10-15 symptom (TRA-477 review probe): `track:garbage--rohff` created with the
+ * MBID of "Le Bitume" then answered "Garbage" to every honest click on "Le Bitume", through `byMbid`.
+ */
+function confirmsHint(resolved: string, hint: string | undefined): boolean {
+	return hint === undefined || hint.toLowerCase() === resolved.toLowerCase();
+}
+
 async function researchTarget(
 	input: PipelineInput,
 	deps: PipelineDeps,
@@ -1186,15 +1200,23 @@ async function enrichNode(
 	}
 	if (input.type === "track") {
 		try {
-			let mbid = input.mbid;
-			// The credit of the recording MB resolved by title + artist hint. Absent when the caller supplied
-			// the MBID: the metadata fetch below then provides it.
+			// TRA-538: an MBID that comes from a client (`mbidIsClientHint`) is never stamped as is: MB's own
+			// resolution (title + credit) has to land on it. A trusted caller's MBID (seed folders, dangling
+			// top-up) is used directly, as before.
+			const clientHint = input.mbidIsClientHint === true ? input.mbid : undefined;
+			let mbid: string | undefined = clientHint ? undefined : input.mbid;
+			// The credit of the recording MB resolved by title + artist hint. Absent when a trusted caller
+			// supplied the MBID: the metadata fetch below then provides it.
 			let resolvedCredit: MbCredit[] = [];
 			if (!mbid) {
 				const identity = await resolveRecording(input.name, input.artist);
-				if (identity) {
+				if (identity && confirmsHint(identity.mbid, clientHint)) {
 					mbid = identity.mbid;
 					resolvedCredit = identity.credit;
+				} else if (identity) {
+					log(
+						`[pipeline] track "${input.name}" left without MBID (MB resolved ${identity.mbid}, not the client hint ${clientHint})`,
+					);
 				} else {
 					log(`[pipeline] track "${input.name}" left without MBID (no single exact MB recording)`);
 				}
@@ -1250,14 +1272,20 @@ async function enrichNode(
 	}
 	if (input.type === "project") {
 		try {
-			let mbid = input.mbid;
-			// Same as the track branch: the credit of the release group resolved by title + artist hint.
+			// Same as the track branch (TRA-538): a client's MBID must be confirmed by MB's resolution.
+			const clientHint = input.mbidIsClientHint === true ? input.mbid : undefined;
+			let mbid: string | undefined = clientHint ? undefined : input.mbid;
+			// The credit of the release group resolved by title + artist hint.
 			let resolvedCredit: MbCredit[] = [];
 			if (!mbid) {
 				const identity = await resolveReleaseGroup(input.name, input.artist);
-				if (identity) {
+				if (identity && confirmsHint(identity.mbid, clientHint)) {
 					mbid = identity.mbid;
 					resolvedCredit = identity.credit;
+				} else if (identity) {
+					log(
+						`[pipeline] project "${input.name}" left without MBID (MB resolved ${identity.mbid}, not the client hint ${clientHint})`,
+					);
 				} else {
 					log(`[pipeline] project "${input.name}" left without MBID (no single exact MB release group)`);
 				}
