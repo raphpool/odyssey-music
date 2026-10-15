@@ -85,6 +85,21 @@ describe("runPipeline e2e (mocked boundaries)", () => {
 		TIMEOUT_MS,
 	);
 
+	it(
+		"drops a similar_artists emitted by the LLM draft (TRA-456)",
+		async () => {
+			installPipelineMocks({
+				draft: artistDraftFixture({ similar_artists: [{ type: "artist", name: "Hallucinated Artist" }] }),
+			});
+			const runPipeline = await loadRunPipeline();
+
+			const result = await runPipeline({ type: "artist", name: "Fixture Artist" }, DEPS);
+
+			expect((result.node as ArtistNode).similar_artists).toEqual([]);
+		},
+		TIMEOUT_MS,
+	);
+
 	// TRA-458: Gemini double-escapes newlines in its JSON, so generated prose reaches
 	// canonicalizeDraft with a literal backslash + "n". It must leave the pipeline as real breaks.
 	it(
