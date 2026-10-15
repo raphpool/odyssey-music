@@ -1,9 +1,11 @@
-import { mkdir, writeFile } from "node:fs/promises";
-import { createServer, type IncomingMessage, request, type ServerResponse } from "node:http";
+import { mkdir, rename, writeFile } from "node:fs/promises";
+import { createServer, type IncomingMessage, request, Server, type ServerResponse } from "node:http";
 import { NodeCache } from "../../src/cache.js";
 import type { ArtistNode, GenreNode } from "../../src/types.js";
 
+const PARENT_POLL_MILLISECONDS = 500;
 const readyFile = argument("--ready-file");
+exitWithParent();
 const nativeFetch = globalThis.fetch;
 let providerFetchAttempts = 0;
 let catalogRequests = 0;
@@ -23,8 +25,13 @@ globalThis.fetch = async (input, init) => {
 
 const cacheDir = requiredEnvironment("ODYSSEY_CACHE_DIR");
 const stateDir = requiredEnvironment("MOBILE_STATE_DIR");
-const upstreamPort = await availablePort();
-process.env.PORT = String(upstreamPort);
+// 2026-10-15 (TRA-530): the port of the owned server used to be probed here (bind 127.0.0.1:0, close, pass the
+// number as PORT). src/server.ts then listens on every interface, and on macOS a bind on 127.0.0.1:N succeeds
+// while another process holds *:N, so the probe could hand out a port that the real listen found taken
+// (`EADDRINUSE :::56773`) when the three runners of the Mac ran this harness at the same time. The owned
+// server now binds port 0 on loopback and the real port is read back once it listens.
+process.env.PORT = "0";
+const upstreamListening = captureUpstreamServer();
 const cache = new NodeCache(cacheDir);
 await cache.write(artistNode());
 await cache.write(genreNode());
@@ -32,6 +39,7 @@ await mkdir(stateDir, { recursive: true });
 await writeFile(`${stateDir}/generation-store.v1.json`, "{corrupt");
 
 await import("../../src/server.js");
+const upstreamPort = await upstreamListening();
 await waitForHealth(upstreamPort);
 
 const proxy = createServer((clientRequest, clientResponse) => {
@@ -58,7 +66,9 @@ const address = proxy.address();
 if (address === null || typeof address === "string")
 	throw new Error("The contract proxy did not bind a TCP port.");
 const baseURL = `http://127.0.0.1:${address.port}/mobile/v1/`;
-await writeFile(readyFile, `${baseURL}\n`, { encoding: "utf8", mode: 0o600 });
+// Renamed into place so that a reader never sees a half-written URL.
+await writeFile(`${readyFile}.partial`, `${baseURL}\n`, { encoding: "utf8", mode: 0o600 });
+await rename(`${readyFile}.partial`, readyFile);
 
 function proxyRequest(clientRequest: IncomingMessage, clientResponse: ServerResponse): void {
 	const upstreamRequest = request(
@@ -173,17 +183,49 @@ function listen(server: ReturnType<typeof createServer>): Promise<void> {
 	});
 }
 
-function availablePort(): Promise<number> {
-	const reservation = createServer();
-	return new Promise((resolve, reject) => {
-		reservation.once("error", reject);
-		reservation.listen(0, "127.0.0.1", () => {
-			const address = reservation.address();
-			if (address === null || typeof address === "string")
-				return reject(new Error("Could not allocate a loopback port."));
-			reservation.close((error) => (error ? reject(error) : resolve(address.port)));
+// Makes the next `listen` of an http server (the one of src/server.ts, started by the import below) bind a
+// system-chosen port on loopback only, whatever it asked for. Returns a function that resolves with the real port.
+function captureUpstreamServer(): () => Promise<number> {
+	const originalListen = Server.prototype.listen;
+	let captured: Server | undefined;
+	Server.prototype.listen = function (this: Server, ...args: unknown[]): Server {
+		Server.prototype.listen = originalListen;
+		// PORT=0 was set above, so the only call shape accepted is listen(0, callback?): anything else (a host,
+		// an options object) would be silently dropped by the rewrite below.
+		if (args[0] !== 0 || (args.length > 1 && typeof args[1] !== "function"))
+			throw new Error("src/server.ts listens with arguments the contract harness does not expect.");
+		captured = this;
+		const callback = args.find((argument) => typeof argument === "function");
+		const bindArguments = callback === undefined ? [0, "127.0.0.1"] : [0, "127.0.0.1", callback];
+		return (originalListen as (...listenArguments: unknown[]) => Server).apply(this, bindArguments);
+	} as typeof Server.prototype.listen;
+	return () =>
+		new Promise((resolve, reject) => {
+			const server = captured;
+			if (server === undefined) return reject(new Error("src/server.ts did not start an http server."));
+			const publish = () => {
+				const address = server.address();
+				if (address === null || typeof address === "string")
+					return reject(new Error("The owned server did not bind a TCP port."));
+				resolve(address.port);
+			};
+			if (server.listening) return publish();
+			server.once("listening", publish);
+			server.once("error", reject);
 		});
-	});
+}
+
+// 2026-10-15 (TRA-530): a job cancelled with SIGKILL never runs the trap of check.sh, so harnesses outlived their
+// job for up to two days (parent 1), holding two ports and some memory each. The harness polls its parent and
+// leaves when it changes: the kernel reparents an orphan to pid 1, and `process.ppid` reads the live value.
+function exitWithParent(): void {
+	const parent = process.ppid;
+	if (parent <= 1) return;
+	setInterval(() => {
+		if (process.ppid === parent) return;
+		console.error(`The parent process ${parent} is gone; the contract harness exits.`);
+		process.exit(0);
+	}, PARENT_POLL_MILLISECONDS).unref();
 }
 
 function respond(response: ServerResponse, status: number, body?: unknown): void {

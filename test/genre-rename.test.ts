@@ -3,10 +3,12 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
+	isRenamableGenreSlug,
 	parseCliArgs,
 	runRename,
 	stillResolves,
 } from "../scripts/migrations/2026-09-10-rename-genre-node.js";
+import { parseGenreRedirects } from "../src/genre-registry.js";
 import type { GenreTaxonomy, GenreTaxonomyEntry } from "../src/genre-taxonomy.js";
 import { parseSlug } from "../src/slug.js";
 import type { Slug } from "../src/types.js";
@@ -165,6 +167,39 @@ describe("runRename (disk integration)", () => {
 		expect(redirects.redirects).toEqual({ [FROM]: TO });
 	});
 
+	// TRA-501: this migration is the channel that gets a legacy slug out of the cache, so `from` must be
+	// allowed to be non-canonical -- and the redirect it leaves behind must stay loadable.
+	it("renames a node whose slug is not canonical, leaving a redirect keyed by the legacy slug", async () => {
+		const legacy = "genre:Trap_EDM" as Slug;
+		const legacyPath = await writeNodeFile(
+			node({ slug: legacy, type: "genre", name: "Trap (EDM)", qid: "Q47781397", related_genres: [] }),
+		);
+		const referrerPath = await writeNodeFile(
+			node({
+				slug: "artist:skrillex",
+				type: "artist",
+				genres: [{ slug: legacy, type: "genre", name: "Trap (EDM)" }],
+			}),
+		);
+
+		const result = await runRename(dir, legacy, TO, true, {
+			redirectsPath,
+			onboardingSlugs: [],
+			taxonomyPath,
+		});
+
+		expect(result.exitCode).toBe(0);
+		await expect(readFile(legacyPath, "utf8")).rejects.toThrow();
+		const moved = JSON.parse(await readFile(join(dir, "nodes", "genre", "edm-trap.json"), "utf8")) as RawNode;
+		expect(moved.slug).toBe(TO);
+		const referrer = JSON.parse(await readFile(referrerPath, "utf8")) as RawNode;
+		expect(referrer.genres).toEqual([{ slug: TO, type: "genre", name: "Trap (EDM)" }]);
+		const table = JSON.parse(await readFile(redirectsPath, "utf8")) as { redirects: Record<string, string> };
+		expect(table.redirects).toEqual({ [legacy]: TO });
+		// ... and the file the migration just wrote is accepted by the loader that reads it back
+		expect(parseGenreRedirects(table).get(legacy)).toBe(TO);
+	});
+
 	it("flattens a chain when `from` is already the target of an existing redirect", async () => {
 		await seedTrapGroup();
 		await writeFile(redirectsPath, JSON.stringify({ redirects: { "genre:trap-edm-alt": FROM } }), "utf8");
@@ -253,6 +288,20 @@ describe("runRename (disk integration)", () => {
 // ONBOARDING_GENRES (v1) check exercised above. Converged (2026-09-17 review) on the same rules
 // as 2026-09-04-merge-genre-duplicates.ts's own TRA-138/D6a protection -- see runRename's header
 // comment for the policy; tests below mirror D6a's own test suite for the same scenarios.
+describe("isRenamableGenreSlug (TRA-501)", () => {
+	it("accepts a canonical or legacy genre slug", () => {
+		expect(isRenamableGenreSlug("genre:trap")).toBe(true);
+		expect(isRenamableGenreSlug("genre:Trap_EDM")).toBe(true);
+		expect(isRenamableGenreSlug('genre:a"b')).toBe(true);
+	});
+
+	it("refuses another type, a missing body, and anything that could leave nodes/genre/", () => {
+		for (const bad of ["artist:trap", "genre:", "trap", "genre:../x", "genre:a/b", "genre:a\\b"]) {
+			expect(isRenamableGenreSlug(bad), bad).toBe(false);
+		}
+	});
+});
+
 describe("stillResolves", () => {
 	it("a slug that is not a redirect key resolves to itself", () => {
 		expect(stillResolves("genre:x", {}, new Set(["genre:x"]))).toBe(true);

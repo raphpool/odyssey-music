@@ -19,12 +19,19 @@ final class NodeHeroModel {
 	}
 
 	private(set) var state: State = .loading
+	/// How to draw the loaded image; set before `state` leaves `loading`, so a view never pairs the new image
+	/// with the previous style.
+	private(set) var style: HeroImageStyle = .photo
 
 	@ObservationIgnored private let candidates: [HeroCandidate]
+	@ObservationIgnored private let type: NodeType
+	@ObservationIgnored private let imageSource: String?
 	@ObservationIgnored private let store: NodeImageStore<UIImage>
 
 	init(node: NodeDetail, store: NodeImageStore<UIImage>) {
 		candidates = HeroImageSource.candidates(for: node)
+		type = node.type
+		imageSource = node.imageSource
 		self.store = store
 	}
 
@@ -33,10 +40,11 @@ final class NodeHeroModel {
 	/// later `load` starts again instead of showing a stale answer.
 	func load() async {
 		guard case .loading = state else { return }
-		let image = await HeroImageSource.firstImage(among: candidates, store: store)
+		let match = await HeroImageSource.firstMatch(among: candidates, store: store)
 		guard !Task.isCancelled else { return }
-		if let image {
-			state = .loaded(image, tint: DominantColor.of(image))
+		if let match {
+			style = HeroImageSource.style(of: match.candidate, type: type, imageSource: imageSource)
+			state = .loaded(match.image, tint: DominantColor.of(match.image))
 		} else {
 			state = .placeholder
 		}

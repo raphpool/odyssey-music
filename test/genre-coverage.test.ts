@@ -174,7 +174,8 @@ const deliveryOnlyTargets = coverageTargets({
 });
 
 function coverageSource(id: string): GenreNode["slug"] {
-	return `genre:${id}`;
+	// Canonical body (TRA-501): NodeCache.write refuses "genre:Q42" / "genre:local:first".
+	return `genre:${id.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 }
 
 function coverageChoice(seed: CoverageChoiceSeed, published: boolean): GenreTaxonomy["genres"][number] {

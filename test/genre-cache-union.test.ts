@@ -437,6 +437,47 @@ describe("buildCacheUnion", () => {
 		);
 	});
 
+	// TRA-501: a node that exists on both sides under a slug predating the canonical rule is valid under
+	// the read rule. Refusing it (invalidMergedNodes) would block the whole sync; it is written and listed.
+	it("keeps a both-sides node whose only defect is a non-canonical slug, and lists it as a warning", async () => {
+		await seed(
+			repoDir,
+			node({ slug: "genre:Legacy_Name", qid: "Q7", materialized_at: "2026-02-01T00:00:00.000Z" }),
+		);
+		await seed(serverDir, node({ slug: "genre:Legacy_Name", qid: "Q7" }));
+
+		const { outputDir, manifest } = await union();
+
+		expect(manifest.entries).toEqual(
+			expect.arrayContaining([{ decision: "kept", from: "repo", slug: "genre:Legacy_Name", tie: false }]),
+		);
+		expect(manifest.invalidMergedNodes).toEqual([]);
+		expect(manifest.nonCanonicalMergedNodes).toEqual([{ slug: "genre:Legacy_Name", fields: ["slug"] }]);
+		expect(countUnionProblems(manifest)).toBe(0);
+		const written = JSON.parse(await readFile(join(outputDir, "nodes", "genre", "Legacy_Name.json"), "utf8"));
+		expect(written.slug).toBe("genre:Legacy_Name");
+	});
+
+	it("still refuses a both-sides node that is invalid for another reason, even with a legacy slug", async () => {
+		await seed(repoDir, node({ slug: "genre:Legacy_Bad", editorial_article: "too short" }));
+		await seed(serverDir, node({ slug: "genre:Legacy_Bad", editorial_article: "too short" }));
+
+		const { manifest } = await union();
+
+		expect(manifest.invalidMergedNodes.map((n) => n.slug)).toEqual(["genre:Legacy_Bad"]);
+		expect(manifest.nonCanonicalMergedNodes).toBeUndefined();
+		expect(countUnionProblems(manifest)).toBeGreaterThan(0);
+	});
+
+	it("omits nonCanonicalMergedNodes when every kept node is canonical", async () => {
+		await seed(repoDir, node({ slug: "genre:fine" }));
+		await seed(serverDir, node({ slug: "genre:fine" }));
+
+		const { manifest } = await union();
+
+		expect("nonCanonicalMergedNodes" in manifest).toBe(false);
+	});
+
 	it("refuses a qid conflict: nothing written to the union, both variants archived", async () => {
 		await seed(repoDir, node({ slug: "genre:conflict", qid: "Q1" }));
 		await seed(serverDir, node({ slug: "genre:conflict", qid: "Q2" }));

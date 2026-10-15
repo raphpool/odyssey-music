@@ -4,7 +4,7 @@ import { BadRequestError, isNotFoundError } from "../errors.js";
 import type { GenreRegistry } from "../genre-registry.js";
 import { logger } from "../logger.js";
 import { runPipeline } from "../pipeline.js";
-import { makeSlug, normalizeSlugBody, parseSlug } from "../slug.js";
+import { isValidSlug, makeSlug, normalizeSlugBody, parseSlug } from "../slug.js";
 import type { NodePayload, NodeType, Slug } from "../types.js";
 import { NODE_TYPES, QID_PATTERN } from "../types.js";
 
@@ -29,34 +29,25 @@ export interface MaterializeRequest {
 	qid?: string;
 }
 
-// Matches exactly what makeSlug (src/slug.ts normalizeSlugBody) can produce -- parseSlug alone
-// doesn't enforce this (just a colon + a known type), so "genre:../x" would parse "successfully"
-// with body "../x". This is what keeps a client-supplied slug from ever reaching a cache path.
-const SLUG_BODY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$/;
-
 // 2026-09-10 (review round 1, nit): unbounded, this would surface as a raw ENOENT/ENAMETOOLONG
 // 500 instead of a 400. 200 is generous (real committed slug bodies are well under 100).
 const MAX_SLUG_LENGTH = 200;
 
 /**
- * Validates a client-supplied slug before any I/O (TRA-43): bounded length, must parse
- * (parseSlug), name the same type as the rest of the request, and match SLUG_BODY_PATTERN.
- * Throws BadRequestError (never a bare Error) -- src/server.ts maps that to a 400.
+ * Validates a client-supplied slug before any I/O (TRA-43, TRA-501): bounded length, canonical
+ * (CANONICAL_SLUG_PATTERN, the same rule the node schema applies on write -- parseSlug alone only
+ * checks a colon and a known type, so "genre:../x" and `artist:x" onmouseover="y` would pass it), and
+ * naming the same type as the rest of the request. Throws BadRequestError (never a bare Error) --
+ * src/server.ts maps that to a 400.
  */
 function validateRequestSlug(rawSlug: string, type: string): Slug {
 	if (rawSlug.length > MAX_SLUG_LENGTH) {
 		throw new BadRequestError(`Invalid slug: too long (max ${MAX_SLUG_LENGTH} chars)`);
 	}
-	let parsed: { type: NodeType; body: string };
-	try {
-		parsed = parseSlug(rawSlug);
-	} catch {
+	if (!isValidSlug(rawSlug) || parseSlug(rawSlug).type !== type) {
 		throw new BadRequestError(`Invalid slug: ${rawSlug}`);
 	}
-	if (parsed.type !== type || !SLUG_BODY_PATTERN.test(parsed.body)) {
-		throw new BadRequestError(`Invalid slug: ${rawSlug}`);
-	}
-	return rawSlug as Slug;
+	return rawSlug;
 }
 
 /**

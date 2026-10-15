@@ -5,8 +5,14 @@ import {
 	fetchArtistMembershipsMb,
 	fetchEntityGenresMb,
 	fetchLabelMetaMb,
+	fetchProjectMetaDetailedMb,
+	fetchProjectMetaMb,
+	fetchTrackMetaDetailedMb,
+	fetchTrackMetaMb,
 	resolveRecording,
+	resolveRecordingDetailed,
 	resolveReleaseGroup,
+	resolveReleaseGroupDetailed,
 } from "../src/musicbrainz.js";
 
 function jsonResponse(body: unknown): Response {
@@ -312,7 +318,7 @@ describe("resolveReleaseGroup", () => {
 		expect(urls).toHaveLength(1);
 		expect(urls[0]?.pathname).toBe("/ws/2/release-group");
 		expect(urls[0]?.searchParams.get("query")).toBe('releasegroup:"New Forms" AND artist:"Roni Size"');
-		expect(urls[0]?.searchParams.get("limit")).toBe("8");
+		expect(urls[0]?.searchParams.get("limit")).toBe("100");
 	});
 
 	it("never falls back to the first result when no title matches exactly", async () => {
@@ -579,7 +585,7 @@ describe("resolveRecording", () => {
 		});
 		expect(urls[0]?.pathname).toBe("/ws/2/recording");
 		expect(urls[0]?.searchParams.get("query")).toBe('recording:"Fitna" AND artist:"Rohff"');
-		expect(urls[0]?.searchParams.get("limit")).toBe("8");
+		expect(urls[0]?.searchParams.get("limit")).toBe("100");
 	});
 
 	it("returns null without a hint when two recordings share the exact title", async () => {
@@ -937,5 +943,487 @@ describe("mbFetch request spacing", () => {
 		);
 
 		expect(fetchMock).toHaveBeenCalledTimes(3);
+	});
+});
+
+// TRA-474 review (2026-10-15): look-alike candidates and undated editions.
+
+describe("resolveRecordingDetailed / resolveReleaseGroupDetailed", () => {
+	const KRAFTWERK = "cccccccc-3333-4333-8333-000000000001";
+	const credit: [string, string][] = [[KRAFTWERK, "Kraftwerk"]];
+
+	it("sets aside recordings with a disambiguation (live, DJ-mix) and takes the one that remains", async () => {
+		stubMb({
+			recordings: [
+				hit("dddddddd-4444-4444-8444-000000000001", "Trans Europe Express", credit, {
+					disambiguation: "live, Detroit 1998",
+				}),
+				hit("dddddddd-4444-4444-8444-000000000002", "Trans Europe Express", credit, {
+					disambiguation: "DJ-mix",
+				}),
+				hit("dddddddd-4444-4444-8444-000000000003", "Trans Europe Express", credit, { disambiguation: "" }),
+			],
+		});
+		const out = await resolveRecording("Trans Europe Express", "Kraftwerk");
+		expect(out?.mbid).toBe("dddddddd-4444-4444-8444-000000000003");
+	});
+
+	it("refuses to choose between two studio recordings of one title and one credit, and says why", async () => {
+		stubMb({
+			recordings: [
+				hit("dddddddd-4444-4444-8444-000000000011", "Radioactivity", credit),
+				hit("dddddddd-4444-4444-8444-000000000012", "Radioactivity", credit),
+			],
+		});
+		expect(await resolveRecordingDetailed("Radioactivity", "Kraftwerk")).toEqual({
+			identity: null,
+			ambiguous: true,
+			unavailable: false,
+		});
+	});
+
+	// TRA-504 (2026-10-15): MB does not order tied hits stably, and `track:booty-la-la` resolved to a
+	// different recording (and parent project) from one run to the next. Whatever the order, a tie
+	// between look-alikes must give the same answer: none, flagged ambiguous, never the first of them.
+	it("answers the same whichever way MB orders two identical recordings (Booty La La, TRA-504)", async () => {
+		const bugz = "cccccccc-3333-4333-8333-0000000000b1";
+		const a = hit("dddddddd-4444-4444-8444-0000000000a1", "Booty La La", [[bugz, "Bugz in the Attic"]], {
+			"first-release-date": "2004",
+		});
+		const b = hit("dddddddd-4444-4444-8444-0000000000a2", "Booty La La", [[bugz, "Bugz in the Attic"]], {
+			"first-release-date": "2004",
+		});
+		// mbFetch caches by URL for 5 minutes: each order needs its own query (the hint's case changes
+		// the URL, not the matching) or the second pass would replay the first response.
+		for (const [hint, recordings] of [
+			["Bugz in the Attic", [a, b]],
+			["bugz in the attic", [b, a]],
+		] as const) {
+			stubMb({ count: 2, recordings });
+			expect(await resolveRecordingDetailed("Booty La La", hint)).toEqual({
+				identity: null,
+				ambiguous: true,
+				unavailable: false,
+			});
+			expect(await resolveRecording("Booty La La", hint)).toBeNull();
+		}
+	});
+
+	it("answers the same whichever way MB orders two release groups tied on title, credit and date", async () => {
+		const bugz = "cccccccc-3333-4333-8333-0000000000b1";
+		const a = hit("dddddddd-4444-4444-8444-0000000000b1", "Got the Bug", [[bugz, "Bugz in the Attic"]], {
+			"first-release-date": "2004-06-07",
+		});
+		const b = hit("dddddddd-4444-4444-8444-0000000000b2", "Got the Bug", [[bugz, "Bugz in the Attic"]], {
+			"first-release-date": "2004-06-07",
+		});
+		// Distinct hint case per order: see the mbFetch cache note above.
+		for (const [hint, releaseGroups] of [
+			["Bugz in the Attic", [a, b]],
+			["bugz in the attic", [b, a]],
+		] as const) {
+			stubMb({ count: 2, "release-groups": releaseGroups });
+			expect(await resolveReleaseGroupDetailed("Got the Bug", hint)).toEqual({
+				identity: null,
+				ambiguous: true,
+				unavailable: false,
+			});
+		}
+	});
+
+	it("finds nothing, not an ambiguity, when the only exact recording is a live one", async () => {
+		stubMb({
+			recordings: [
+				hit("dddddddd-4444-4444-8444-000000000021", "Autobahn", credit, { disambiguation: "live" }),
+			],
+		});
+		expect(await resolveRecordingDetailed("Autobahn", "Kraftwerk")).toEqual({
+			identity: null,
+			ambiguous: false,
+			unavailable: false,
+		});
+	});
+
+	it("takes the release group with the strictly earliest first release over a later one", async () => {
+		const single = "dddddddd-4444-4444-8444-000000000031";
+		stubMb({
+			"release-groups": [
+				hit(
+					"dddddddd-4444-4444-8444-000000000032",
+					"Windowlicker",
+					[["cccccccc-3333-4333-8333-000000000002", "Aphex Twin"]],
+					{
+						"first-release-date": "2026-01-09",
+					},
+				),
+				hit(single, "Windowlicker", [["cccccccc-3333-4333-8333-000000000003", "Aphex Twin"]], {
+					"first-release-date": "1999-03-22",
+				}),
+			],
+		});
+		expect((await resolveReleaseGroup("Windowlicker", "Aphex Twin"))?.mbid).toBe(single);
+	});
+
+	it("is ambiguous when two release groups share the earliest date, or none is dated", async () => {
+		stubMb({
+			"release-groups": [
+				hit("dddddddd-4444-4444-8444-000000000041", "Tie Break", credit, {
+					"first-release-date": "2001-05-01",
+				}),
+				hit("dddddddd-4444-4444-8444-000000000042", "Tie Break", credit, { "first-release-date": "2001" }),
+			],
+		});
+		expect(await resolveReleaseGroupDetailed("Tie Break", "Kraftwerk")).toEqual({
+			identity: null,
+			ambiguous: true,
+			unavailable: false,
+		});
+		stubMb({
+			"release-groups": [
+				hit("dddddddd-4444-4444-8444-000000000043", "No Dates", credit),
+				hit("dddddddd-4444-4444-8444-000000000044", "No Dates", credit),
+			],
+		});
+		expect((await resolveReleaseGroupDetailed("No Dates", "Kraftwerk")).ambiguous).toBe(true);
+	});
+});
+
+describe("an undated edition sorts last, not first", () => {
+	const ORIGINAL = "eeeeeeee-5555-4555-8555-000000000001";
+	const REISSUE = "eeeeeeee-5555-4555-8555-000000000002";
+	const label = { id: "eeeeeeee-5555-4555-8555-0000000000a1", name: "Talkin' Loud" };
+
+	/** Answers by path: the undated reissue (`"date": ""`) is listed first, as MB does. */
+	function stubEditions(): void {
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async (input: URL) => {
+				const [, , , kind, id] = input.pathname.split("/");
+				if (kind === "release-group") {
+					return jsonResponse({
+						"primary-type": "Album",
+						releases: [
+							{ id: REISSUE, date: "" },
+							{ id: ORIGINAL, date: "1997-06-23" },
+						],
+					});
+				}
+				if (kind === "recording") {
+					const group = (title: string) => ({ id: `${title}-rg`, title, "primary-type": "Album" });
+					return jsonResponse({
+						releases: [
+							{ id: REISSUE, date: "", "release-group": group("New Forms (reissue)") },
+							{ id: ORIGINAL, date: "1997-06-23", "release-group": group("New Forms") },
+						],
+					});
+				}
+				return jsonResponse(
+					id === ORIGINAL
+						? {
+								date: "1997-06-23",
+								"label-info": [{ label }],
+								media: [{ tracks: [{ id: "t1", recording: { id: "t1", title: "Brown Paper Bag" } }] }],
+							}
+						: {
+								date: "",
+								"label-info": [],
+								media: [{ tracks: [{ id: "t9", recording: { id: "t9", title: "Reissue Bonus" } }] }],
+							},
+				);
+			}),
+		);
+	}
+
+	it("gives a project the tracklist and label of its dated first edition", async () => {
+		stubEditions();
+		const meta = await fetchProjectMetaMb("eeeeeeee-5555-4555-8555-00000000000a");
+		expect(meta.tracks.map((t) => t.title)).toEqual(["Brown Paper Bag"]);
+		expect(meta.label).toEqual({ mbid: label.id, name: label.name });
+	});
+
+	it("gives a track the release group and label of its dated first edition", async () => {
+		stubEditions();
+		const meta = await fetchTrackMetaMb("eeeeeeee-5555-4555-8555-00000000000b");
+		expect(meta.project?.name).toBe("New Forms");
+		expect(meta.label).toEqual({ mbid: label.id, name: label.name });
+	});
+});
+
+describe("a truncated search page decides nothing", () => {
+	const MCLUSKY = "ffffffff-6666-4666-8666-000000000001";
+	const credit: [string, string][] = [[MCLUSKY, "mclusky"]];
+
+	it("is ambiguous when MB announces more matches than it sent, even if one candidate looks unique", async () => {
+		stubMb({
+			count: 13,
+			recordings: [
+				hit("ffffffff-6666-4666-8666-000000000011", "To Hell with Good Intentions", credit),
+				...Array.from({ length: 7 }, (_, i) =>
+					hit(`ffffffff-6666-4666-8666-0000000001${i}2`, "To Hell with Good Intentions", credit, {
+						disambiguation: "live",
+					}),
+				),
+			],
+		});
+		expect(await resolveRecordingDetailed("To Hell with Good Intentions", "mclusky")).toEqual({
+			identity: null,
+			ambiguous: true,
+			unavailable: false,
+		});
+	});
+
+	it("is ambiguous for the whole mclusky case: an album recording and a compilation recording", async () => {
+		stubMb({
+			count: 2,
+			recordings: [
+				hit("ffffffff-6666-4666-8666-000000000021", "Icct Hedral", credit),
+				hit("ffffffff-6666-4666-8666-000000000022", "Icct Hedral", credit),
+			],
+		});
+		expect(await resolveRecordingDetailed("Icct Hedral", "mclusky")).toEqual({
+			identity: null,
+			ambiguous: true,
+			unavailable: false,
+		});
+	});
+
+	it("is ambiguous for release groups too, and asks for the whole result set", async () => {
+		const urls = stubMb({
+			count: 11,
+			"release-groups": [
+				hit("ffffffff-6666-4666-8666-000000000031", "Truncated Title", credit, {
+					"first-release-date": "2002",
+				}),
+			],
+		});
+		expect(await resolveReleaseGroupDetailed("Truncated Title", "mclusky")).toEqual({
+			identity: null,
+			ambiguous: true,
+			unavailable: false,
+		});
+		expect(urls[0]?.searchParams.get("limit")).toBe("100");
+	});
+
+	it("resolves normally when every match was received", async () => {
+		stubMb({
+			count: 1,
+			recordings: [hit("ffffffff-6666-4666-8666-000000000041", "Complete Page", credit)],
+		});
+		expect((await resolveRecordingDetailed("Complete Page", "mclusky")).identity?.mbid).toBe(
+			"ffffffff-6666-4666-8666-000000000041",
+		);
+	});
+});
+
+// TRA-505 (2026-10-15): the migration could not tell "MusicBrainz knows no such work" from "MusicBrainz
+// did not answer", and mistook an outage for a verdict.
+
+describe("an unanswered search is flagged unavailable, a verdict is not", () => {
+	const CASES = [
+		{ label: "release group", resolve: resolveReleaseGroupDetailed, key: "release-groups" },
+		{ label: "recording", resolve: resolveRecordingDetailed, key: "recordings" },
+	] as const;
+	const down = { identity: null, ambiguous: false, unavailable: true };
+	const KRAFTWERK = "cccccccc-3333-4333-8333-0000000000a1";
+
+	for (const { label, resolve, key } of CASES) {
+		describe(label, () => {
+			it("is unavailable on an HTTP error", async () => {
+				vi.stubGlobal(
+					"fetch",
+					vi.fn(async () => failedResponse(404)),
+				);
+				expect(await resolve(`Http Error ${label}`, "Anyone")).toEqual(down);
+			});
+
+			it("is unavailable on a network error", async () => {
+				stubMbNetworkError();
+				expect(await resolve(`Network Error ${label}`, "Anyone")).toEqual(down);
+			});
+
+			it("is unavailable on a 200 whose body is not JSON", async () => {
+				vi.stubGlobal(
+					"fetch",
+					vi.fn(
+						async () =>
+							({
+								ok: true,
+								status: 200,
+								json: async () => {
+									throw new SyntaxError("Unexpected token < in JSON at position 0");
+								},
+							}) as unknown as Response,
+					),
+				);
+				expect(await resolve(`Html Page ${label}`, "Anyone")).toEqual(down);
+			});
+
+			it("is unavailable on a 200 whose JSON is off schema", async () => {
+				stubMb({ [key]: [{ id: "not-an-mbid", title: `Bad Id ${label}` }] });
+				expect(await resolve(`Bad Id ${label}`, "Anyone")).toEqual(down);
+				stubMb({ unexpected: true });
+				expect(await resolve(`No List ${label}`, "Anyone")).toEqual(down);
+				stubMb([]);
+				expect(await resolve(`Array Body ${label}`, "Anyone")).toEqual(down);
+				stubMb(null);
+				expect(await resolve(`Null Body ${label}`, "Anyone")).toEqual(down);
+			});
+
+			it("is not unavailable when MB answers with no candidate", async () => {
+				stubMb({ [key]: [] });
+				expect(await resolve(`Unknown To MB ${label}`, "Anyone")).toEqual({
+					identity: null,
+					ambiguous: false,
+					unavailable: false,
+				});
+			});
+
+			it("is not unavailable when MB answers with look-alikes only", async () => {
+				const credit: [string, string][] = [[KRAFTWERK, "Kraftwerk"]];
+				stubMb({
+					[key]: [
+						hit("cccccccc-3333-4333-8333-0000000000b1", `Twins ${label}`, credit),
+						hit("cccccccc-3333-4333-8333-0000000000b2", `Twins ${label}`, credit),
+					],
+				});
+				expect(await resolve(`Twins ${label}`, "Kraftwerk")).toEqual({
+					identity: null,
+					ambiguous: true,
+					unavailable: false,
+				});
+			});
+
+			it("is not unavailable when MB answers but nothing credited matches", async () => {
+				stubMb({
+					[key]: [hit("cccccccc-3333-4333-8333-0000000000c1", `Other ${label}`, [[KRAFTWERK, "Kraftwerk"]])],
+				});
+				expect((await resolve(`Wanted ${label}`, "Kraftwerk")).unavailable).toBe(false);
+			});
+		});
+	}
+
+	it("keeps the null-returning wrappers null when MB is down", async () => {
+		stubMbNetworkError();
+		expect(await resolveReleaseGroup("Wrapped Down", "Anyone")).toBeNull();
+		expect(await resolveRecording("Wrapped Down", "Anyone")).toBeNull();
+	});
+});
+
+describe("a metadata lookup without an answer is flagged unavailable", () => {
+	const RG = "dddddddd-5555-4555-8555-0000000000a1";
+	const REC = "dddddddd-5555-4555-8555-0000000000a2";
+	const label = { id: "dddddddd-5555-4555-8555-0000000000a4", name: "Warp" };
+	// mbFetch memoizes successful answers by URL for the whole file: every case reads releases of its own.
+	let nextRelease = 0;
+	const freshRelease = () => `dddddddd-5555-4555-8555-${String(++nextRelease).padStart(12, "0")}`;
+
+	/** Answers by entity kind; a kind mapped to a function fails (or answers) as that function says. */
+	function stubKinds(answers: Record<string, () => Response>): void {
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async (input: URL) => {
+				const answer = answers[input.pathname.split("/")[3] ?? ""];
+				return answer ? answer() : failedResponse(404);
+			}),
+		);
+	}
+
+	const releaseGroupAnswer = (release: string) => () =>
+		jsonResponse({ "primary-type": "Album", releases: [{ id: release, date: "2001-01-01" }] });
+	const recordingAnswer = (release: string) => () =>
+		jsonResponse({
+			releases: [
+				{
+					id: release,
+					date: "2001-01-01",
+					"release-group": { id: RG, title: "Album", "primary-type": "Album" },
+				},
+			],
+		});
+	const releaseAnswer = () =>
+		jsonResponse({
+			date: "2001-01-01",
+			"label-info": [{ label }],
+			media: [{ tracks: [{ id: "t1", recording: { id: REC, title: "Opener" } }] }],
+		});
+	const unreadable = () =>
+		({
+			ok: true,
+			status: 200,
+			json: async () => {
+				throw new SyntaxError("Unexpected end of JSON input");
+			},
+		}) as unknown as Response;
+
+	it("answers a complete project lookup as available, with the data", async () => {
+		stubKinds({ "release-group": releaseGroupAnswer(freshRelease()), release: releaseAnswer });
+		const out = await fetchProjectMetaDetailedMb(`${RG}-ok`);
+		expect(out.unavailable).toBe(false);
+		expect(out.meta.tracks.map((t) => t.title)).toEqual(["Opener"]);
+		expect(out.meta.label).toEqual({ mbid: label.id, name: label.name });
+	});
+
+	it("flags a project whose release group or release did not answer, whatever the failure", async () => {
+		for (const failing of [
+			() => failedResponse(404),
+			unreadable,
+			() => jsonResponse(null),
+			() => jsonResponse([]),
+			() => jsonResponse({}),
+		]) {
+			vi.unstubAllGlobals();
+			stubKinds({ "release-group": failing, release: releaseAnswer });
+			expect((await fetchProjectMetaDetailedMb(freshRelease())).unavailable).toBe(true);
+			vi.unstubAllGlobals();
+			stubKinds({ "release-group": releaseGroupAnswer(freshRelease()), release: failing });
+			expect((await fetchProjectMetaDetailedMb(freshRelease())).unavailable).toBe(true);
+		}
+	});
+
+	it("does not flag a release group MB knows to have no release: that is an answer", async () => {
+		stubKinds({ "release-group": () => jsonResponse({ "primary-type": "Album", releases: [] }) });
+		const out = await fetchProjectMetaDetailedMb(freshRelease());
+		expect(out.unavailable).toBe(false);
+		expect(out.meta.tracks).toEqual([]);
+	});
+
+	it("answers a complete track lookup as available, with the data", async () => {
+		stubKinds({ recording: recordingAnswer(freshRelease()), release: releaseAnswer });
+		const out = await fetchTrackMetaDetailedMb(`${REC}-ok`);
+		expect(out.unavailable).toBe(false);
+		expect(out.meta.project).toEqual({ mbid: RG, name: "Album" });
+		expect(out.meta.label).toEqual({ mbid: label.id, name: label.name });
+	});
+
+	it("flags a track whose recording or label lookup did not answer, whatever the failure", async () => {
+		for (const failing of [
+			() => failedResponse(404),
+			unreadable,
+			() => jsonResponse(null),
+			() => jsonResponse({}),
+		]) {
+			vi.unstubAllGlobals();
+			stubKinds({ recording: failing, release: releaseAnswer });
+			expect((await fetchTrackMetaDetailedMb(freshRelease())).unavailable).toBe(true);
+			vi.unstubAllGlobals();
+			stubKinds({ recording: recordingAnswer(freshRelease()), release: failing });
+			const labelDown = await fetchTrackMetaDetailedMb(freshRelease());
+			expect(labelDown.unavailable).toBe(true);
+			// What was found is still handed over: the caller decides whether a part is enough.
+			expect(labelDown.meta.project).toEqual({ mbid: RG, name: "Album" });
+		}
+	});
+
+	it("does not flag a recording on no release: that is an answer", async () => {
+		stubKinds({ recording: () => jsonResponse({ releases: [] }) });
+		const out = await fetchTrackMetaDetailedMb(freshRelease());
+		expect(out.unavailable).toBe(false);
+		expect(out.meta.project).toBeNull();
+	});
+
+	it("leaves fetchProjectMetaMb and fetchTrackMetaMb returning the bare metadata", async () => {
+		stubKinds({ "release-group": () => failedResponse(404) });
+		expect((await fetchProjectMetaMb(freshRelease())).tracks).toEqual([]);
+		expect((await fetchTrackMetaMb(freshRelease())).project).toBeNull();
 	});
 });
