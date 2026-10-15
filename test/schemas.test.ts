@@ -101,7 +101,8 @@ describe("nodePayloadSchema", () => {
 			genres: [{ type: "genre", slug: "genre:idm", name: "IDM", qid: "Q170611" }],
 		};
 		const parsed = nodePayloadSchema.parse(artist);
-		expect((parsed as typeof artist).genres[0]?.qid).toBe("Q170611");
+		if (parsed.type !== "artist") throw new Error("expected an artist");
+		expect(parsed.genres[0]?.qid).toBe("Q170611");
 	});
 
 	it.each(["Q0", "170611", "", 170611])("rejects a malformed edge qid (%p)", (badQid) => {
@@ -381,5 +382,35 @@ describe("nodePayloadSchema — landmark_project / reference_track (TRA-457)", (
 		const bare = toVizNode(asPayload(baseArtist));
 		expect("landmark_project" in bare.edges).toBe(false);
 		expect("reference_track" in bare.edges).toBe(false);
+	});
+});
+
+describe("nodePayloadSchema — artist.similar_artists (TRA-456)", () => {
+	it("loads an artist file without the field and yields an empty list", () => {
+		// baseArtist stands for a cached file written before the field existed.
+		expect("similar_artists" in baseArtist).toBe(false);
+		const parsed = nodePayloadSchema.parse(baseArtist);
+		if (parsed.type !== "artist") throw new Error("expected an artist");
+		expect(parsed.similar_artists).toEqual([]);
+	});
+
+	it("keeps similar artists with their mbid", () => {
+		const mbid = "11111111-2222-3333-4444-555555555555";
+		const parsed = nodePayloadSchema.parse({
+			...baseArtist,
+			similar_artists: [{ type: "artist", slug: "artist:autechre", name: "Autechre", mbid }],
+		});
+		if (parsed.type !== "artist") throw new Error("expected an artist");
+		expect(parsed.similar_artists).toEqual([
+			{ type: "artist", slug: "artist:autechre", name: "Autechre", mbid },
+		]);
+	});
+
+	it("rejects a similar artist that is not an artist", () => {
+		const artist = {
+			...baseArtist,
+			similar_artists: [{ type: "genre", slug: "genre:idm", name: "IDM" }],
+		};
+		expect(() => nodePayloadSchema.parse(artist)).toThrow();
 	});
 });

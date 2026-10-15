@@ -42,6 +42,7 @@ export const EDGE_FIELDS_BY_TYPE = {
 		collaborators: { cardinality: "list", targets: ["artist"] },
 		aliases: { cardinality: "list", targets: ["artist"] },
 		members: { cardinality: "list", targets: ["artist"] },
+		similar_artists: { cardinality: "list", targets: ["artist"] },
 	},
 	project: {
 		artists: { cardinality: "list", targets: ["artist"] },

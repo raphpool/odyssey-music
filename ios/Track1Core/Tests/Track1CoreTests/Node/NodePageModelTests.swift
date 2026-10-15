@@ -16,7 +16,7 @@ final class NodePageModelTests: XCTestCase {
 			("genres", .genre), ("labels", .label), ("discography", .project), ("notable_tracks", .track),
 				("landmark_project", .project), ("reference_track", .track),
 			("influences", .artist), ("influenced", .artist), ("collaborators", .artist), ("aliases", .artist),
-			("members", .artist),
+			("members", .artist), ("similar_artists", .artist),
 		],
 		.project: [
 			("artists", .artist), ("label", .label), ("genres", .genre), ("tracklist", .track),
@@ -160,9 +160,8 @@ final class NodePageModelTests: XCTestCase {
 			],
 			.label: ["genres", "roster", "notable releases"],
 			.artist: [
-				"genres", "labels", "discography", "notable tracks", "landmark album",
-					"reference track", "influences", "influenced", "collaborators",
-				"aliases", "members",
+					"genres", "labels", "discography", "notable tracks", "landmark album", "reference track",
+					"influences", "influenced", "collaborators", "aliases", "members", "similar artists",
 			],
 			.project: [
 				"artist(s)", "label", "genres", "tracks", "producers", "performers", "related albums",
