@@ -1,4 +1,4 @@
-import { spawnSync } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import {
 	access,
@@ -1137,6 +1137,11 @@ describe.sequential("Track1 reusable simulator", () => {
 		expect(run.simctlCalls).toContain("simctl bootstatus simulator-id -b");
 	});
 
+	// 2026-10-15 (TRA-530): this test failed once in CI with `EADDRINUSE`, and the message made it look like it
+	// shared the simulator with the other runners. It does not: `xcrun` here is the double written by
+	// runCheckScript (first in PATH, with its own device list in TRACK1_TEST_SIMCTL_DEVICES_JSON and its own lock
+	// folder in TRACK1_SIMULATOR_LOCK_DIR), so no real simctl call is made and no real `track1-ci-pool` is read or
+	// deleted. What it shared was the port of the contract harness, which check.sh starts for real.
 	it("keeps only one device named track1-ci-pool", async () => {
 		const spare = "BBBBBBBB-BBBB-BBBB-BBBB-BBBBBBBBBBBB";
 		const run = await runCheckScript(undefined, {
@@ -1518,5 +1523,195 @@ describe.sequential("Track1 Swift format coverage", () => {
 		expect(result.stderr).toContain(expectedError);
 		expect(calls).toBe("");
 		expect(await pathExists(fixtureRoot)).toBe(false);
+	});
+});
+
+// 2026-10-15 (TRA-530): the job `test` of #426 failed with `listen EADDRINUSE :::56773`, and the runner of the
+// Mac hosted four contract harnesses whose job was long gone (parent 1, 4 h to 2 days old, each one listening on
+// two ports). Two causes:
+// - the harness picked the port of its upstream server with a probe (bind 127.0.0.1:0, close, hand the number
+//   to src/server.ts, which listens on every interface). On macOS a bind on 127.0.0.1:N succeeds while another
+//   process holds *:N, so the probe could return a port that the real listen then found taken;
+// - a job killed with SIGKILL (a cancelled run) never reaches the trap of check.sh, so nothing stopped the harness.
+// These tests start the real harness (the doubles of the other tests only replace Xcode and simctl).
+describe.sequential("Track1 contract harness lifecycle", () => {
+	const harness = resolve("test/helpers/mobile-contract-server.ts");
+	const lsof = "/usr/sbin/lsof";
+	// The same environment as start_contract_harness in check.sh.
+	function harnessEnvironment(directory: string) {
+		return {
+			PATH: process.env.PATH ?? "",
+			ODYSSEY_CACHE_DIR: join(directory, "cache"),
+			MOBILE_STATE_DIR: join(directory, "mobile-state"),
+			STREAM_CACHE_DIR: join(directory, "stream-cache"),
+			MB_BASE_URL: "http://127.0.0.1:1",
+			MOBILE_PUSH_ENABLED: "false",
+			MOBILE_APNS_PUSH_ENABLED: "false",
+			GEMINI_API_KEY: "contract-test-only",
+			TAVILY_API_KEY: "contract-test-only",
+			FIRECRAWL_API_KEY: "contract-test-only",
+		};
+	}
+
+	async function waitFor(condition: () => Promise<boolean> | boolean, what: string, seconds = 60) {
+		for (let attempt = 0; attempt < seconds * 20; attempt++) {
+			if (await condition()) return;
+			await new Promise((done) => setTimeout(done, 50));
+		}
+		throw new Error(`Timed out waiting for ${what}.`);
+	}
+
+	async function readyBaseURL(readyFile: string) {
+		await waitFor(async () => (await readFile(readyFile, "utf8").catch(() => "")).endsWith("\n"), readyFile);
+		return (await readFile(readyFile, "utf8")).trim();
+	}
+
+	// Never 0 or 1: kill(0) signals the whole process group, the vitest worker included.
+	function killQuietly(pid: number | undefined) {
+		if (pid === undefined || pid <= 1) return;
+		try {
+			process.kill(pid, "SIGKILL");
+		} catch {}
+	}
+
+	// The addresses a process listens on, as `lsof -Fn` prints them (`n127.0.0.1:62796`, `n*:62794`).
+	function listeningAddresses(pid: number) {
+		const listing = spawnSync(lsof, ["-a", "-p", String(pid), "-iTCP", "-sTCP:LISTEN", "-nP", "-Fn"], {
+			encoding: "utf8",
+		});
+		expect(listing.error, `${lsof} is required by this test`).toBeUndefined();
+		return listing.stdout
+			.split("\n")
+			.filter((line) => line.startsWith("n"))
+			.map((line) => line.slice(1));
+	}
+
+	it("listens on loopback only, with ports chosen by the system and published through the ready file", async () => {
+		const directory = await mkdtemp(join(tmpdir(), "track1-harness-"));
+		const readyFiles = [join(directory, "ready-1"), join(directory, "ready-2"), join(directory, "ready-3")];
+		const children = readyFiles.map((readyFile, index) =>
+			spawn(process.execPath, ["--import", "tsx", harness, "--ready-file", readyFile], {
+				cwd: resolve("."),
+				env: harnessEnvironment(join(directory, `run-${index}`)),
+				stdio: "ignore",
+			}),
+		);
+		try {
+			const baseURLs = await Promise.all(readyFiles.map(readyBaseURL));
+			const published = baseURLs.map((url) =>
+				Number(url.match(/^http:\/\/127\.0\.0\.1:(\d+)\/mobile\/v1\/$/)?.[1]),
+			);
+			expect(published.every((port) => port > 0)).toBe(true);
+			expect(new Set(published).size).toBe(3);
+			const addresses = children.flatMap((child) => listeningAddresses(child.pid as number));
+			// The upstream server and the proxy of each harness, none of them reachable from the network.
+			expect(addresses).toHaveLength(6);
+			for (const address of addresses) {
+				expect(address).toMatch(/^127\.0\.0\.1:\d+$/);
+			}
+			expect(new Set(addresses).size).toBe(6);
+		} finally {
+			for (const child of children) killQuietly(child.pid);
+			await rm(directory, { recursive: true, force: true });
+		}
+	});
+
+	it("dies with its parent when the parent is killed without a chance to clean up", async () => {
+		const directory = await mkdtemp(join(tmpdir(), "track1-harness-"));
+		const readyFile = join(directory, "ready");
+		const pidFile = join(directory, "harness-pid");
+		// A stand-in for check.sh: it starts the harness in the background, then waits.
+		const parent = spawn(
+			"bash",
+			[
+				"-c",
+				'node --import tsx "$1" --ready-file "$2" >/dev/null 2>&1 & echo $! >"$3"; wait',
+				"bash",
+				harness,
+				readyFile,
+				pidFile,
+			],
+			{ cwd: resolve("."), env: { ...harnessEnvironment(directory) }, stdio: "ignore" },
+		);
+		let harnessPid: number | undefined;
+		try {
+			await readyBaseURL(readyFile);
+			harnessPid = Number((await readFile(pidFile, "utf8")).trim());
+			expect(harnessPid).toBeGreaterThan(1);
+			expect(isAlive(harnessPid)).toBe(true);
+			// SIGKILL: the same as a cancelled job, no trap runs.
+			parent.kill("SIGKILL");
+			await waitFor(
+				() => !isAlive(harnessPid as number),
+				"the harness to exit after its parent was killed",
+				15,
+			);
+		} finally {
+			killQuietly(parent.pid);
+			killQuietly(harnessPid);
+			await rm(directory, { recursive: true, force: true });
+		}
+	});
+
+	describe("orphan cleanup at the start of check.sh", () => {
+		const pids: number[] = [];
+		// A process whose command line looks like a harness of `path`. Orphan: its parent is gone (pid 1).
+		function decoy(path: string, orphan: boolean) {
+			const code = "setTimeout(() => {}, 600000)";
+			if (!orphan) {
+				const child = spawn(process.execPath, ["-e", code, path, "--ready-file", "decoy"], {
+					stdio: "ignore",
+				});
+				pids.push(child.pid ?? 0);
+				return child.pid ?? 0;
+			}
+			const launched = spawnSync(
+				"bash",
+				[
+					"-c",
+					'"$1" -e "$2" "$3" --ready-file decoy >/dev/null 2>&1 & echo $!',
+					"bash",
+					process.execPath,
+					code,
+					path,
+				],
+				{ encoding: "utf8" },
+			);
+			const pid = Number(launched.stdout.trim());
+			expect(pid).toBeGreaterThan(1);
+			pids.push(pid);
+			return pid;
+		}
+		async function waitUntilOrphan(pid: number) {
+			await waitFor(
+				() => spawnSync("ps", ["-o", "ppid=", "-p", String(pid)], { encoding: "utf8" }).stdout.trim() === "1",
+				`process ${pid} to be reparented`,
+				10,
+			);
+		}
+
+		it("stops the orphaned harnesses of its own checkout and leaves every other process alone", async () => {
+			const ownOrphan = decoy(harness, true);
+			const ownLive = decoy(harness, false);
+			const otherCheckout = "/nonexistent/actions-runner-other/_work/odyssey-music/odyssey-music";
+			const otherOrphan = decoy(`${otherCheckout}/test/helpers/mobile-contract-server.ts`, true);
+			// The folder of this checkout is a prefix of this one, but it is another checkout.
+			const siblingOrphan = decoy(`${harness.replace("/test/helpers/", "-2/test/helpers/")}`, true);
+			try {
+				await Promise.all([ownOrphan, otherOrphan, siblingOrphan].map(waitUntilOrphan));
+				const run = await runCheckScript(undefined, {
+					env: { GITHUB_RUN_ID: "112", GITHUB_RUN_ATTEMPT: "1" },
+				});
+
+				expect(run.result.status, `${run.result.stdout}\n${run.result.stderr}`).toBe(0);
+				expect(run.result.stdout).toContain(`Removing orphan contract harness ${ownOrphan}`);
+				await waitFor(() => !isAlive(ownOrphan), "the orphan to be stopped", 10);
+				expect(isAlive(ownLive), "a harness whose job is alive").toBe(true);
+				expect(isAlive(otherOrphan), "the orphan of another checkout").toBe(true);
+				expect(isAlive(siblingOrphan), "the orphan of a sibling folder").toBe(true);
+			} finally {
+				for (const pid of pids.splice(0)) killQuietly(pid);
+			}
+		});
 	});
 });

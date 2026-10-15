@@ -203,7 +203,7 @@ describe("resolveArtist", () => {
 				id: "a4a4a4a4-0000-4000-8000-000000000001",
 				name: "Prismic",
 				disambiguation: "noise producer",
-				area: "Japan",
+				area: "Tokyo",
 			},
 			{
 				id: "a4a4a4a4-0000-4000-8000-000000000002",
@@ -218,6 +218,62 @@ describe("resolveArtist", () => {
 		expect((await resolveArtist("Prismic", { disambiguator: "Canadian rock band" }))?.mbid).toBe(
 			"a4a4a4a4-0000-4000-8000-000000000002",
 		);
+	});
+
+	// TRA-506, reproduced on 2026-10-15 against the real MB: the real Aphex Twin (area London, begin-area
+	// Limerick, no disambiguation) has no country word in its context, the impostor "UK experimental
+	// electronic artist" has one, so "Cornwall, England" made the impostor win on "gbr" alone.
+	describe("a country token never separates homonyms (TRA-506)", () => {
+		const real = "f22942a1-0000-4000-8000-000000000001";
+		const impostor = "65016d2c-0000-4000-8000-000000000001";
+		const aphex: FakeArtist[] = [
+			{ id: real, name: "Aphex Twin", type: "Person", area: "London", beginArea: "Limerick" },
+			{
+				id: impostor,
+				name: "Aphex Twin",
+				type: "Person",
+				disambiguation: "UK experimental electronic artist",
+			},
+		];
+
+		it("leaves Aphex Twin unresolved when only the country distinguishes the candidates", async () => {
+			stubMb(aphex);
+			expect(await resolveArtistDetailed("Aphex Twin", { origin: "Cornwall, England" })).toEqual({
+				artist: null,
+				candidates: 2,
+				path: "name",
+				unavailable: false,
+			});
+		});
+
+		it("does not let a demonym or a country name decide either", async () => {
+			stubMb(aphex);
+			expect(await resolveArtist("Aphex Twin", { origin: "Cornwall, United Kingdom" })).toBeNull();
+			expect(await resolveArtist("Aphex Twin", { disambiguator: "British" })).toBeNull();
+		});
+
+		it("resolves on the candidate sharing the city of the hint (Leeds)", async () => {
+			const leeds = "b1b1b1b1-0000-4000-8000-000000000001";
+			stubMb([
+				{ id: leeds, name: "Leedsish", area: "Leeds", disambiguation: "post-punk band" },
+				{ id: "b1b1b1b1-0000-4000-8000-000000000002", name: "Leedsish", area: "United Kingdom" },
+			]);
+			expect((await resolveArtist("Leedsish", { origin: "Leeds, England" }))?.mbid).toBe(leeds);
+		});
+
+		it("lets the city win even when the other candidate also shares the country", async () => {
+			const leeds = "b2b2b2b2-0000-4000-8000-000000000001";
+			stubMb([
+				{ id: leeds, name: "Leedsish Two", area: "Leeds", disambiguation: "band" },
+				{ id: "b2b2b2b2-0000-4000-8000-000000000002", name: "Leedsish Two", disambiguation: "UK band" },
+			]);
+			expect((await resolveArtist("Leedsish Two", { origin: "Leeds, England" }))?.mbid).toBe(leeds);
+		});
+
+		it("still uses a country to refuse a lone candidate it contradicts", async () => {
+			stubMb([{ id: "b3b3b3b3-0000-4000-8000-000000000001", name: "Lone Test", area: "France" }]);
+			expect(await resolveArtist("Lone Test", { origin: "Leeds, England" })).toBeNull();
+		});
 	});
 
 	it("is null when the hints fit both homonyms equally", async () => {
@@ -609,7 +665,7 @@ describe("runBackfill", () => {
 				name: "Audited Twin",
 				type: "Person",
 				disambiguation: "Japanese noise producer",
-				area: "Japan",
+				area: "Tokyo",
 			},
 			{
 				id: "bfbf0001-0000-4000-8000-000000000002",
@@ -641,7 +697,7 @@ describe("runBackfill", () => {
 		expect(resolved["artist:audited-twin"]).toMatchObject({
 			mb_name: "Audited Twin",
 			disambiguation: "Japanese noise producer",
-			area: "Japan",
+			area: "Tokyo",
 			path: "name",
 			homonyms_discarded: 1,
 		});
