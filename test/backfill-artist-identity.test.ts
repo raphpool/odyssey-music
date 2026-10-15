@@ -515,6 +515,22 @@ describe("resolveArtist", () => {
 			expect((await resolveArtist("Peach State Test", { origin: "Atlanta, Georgia" }))?.mbid).toBe(state);
 		});
 
+		// Measured on the real MB (2026-10-15): England, Scotland and Wales are not typed Country, but they
+		// fold to the same token as "United Kingdom": that token is a country, never a place.
+		it("does not count England or Scotland as a place although MB does not type them Country", async () => {
+			stubMb([
+				{
+					id: "c8c8c8c8-0000-4000-8000-000000000f01",
+					name: "Englandish Test",
+					area: "England",
+					areaType: "Subdivision",
+				},
+				{ id: "c8c8c8c8-0000-4000-8000-000000000f02", name: "Englandish Test" },
+			]);
+			expect(await resolveArtist("Englandish Test", { origin: "Cornwall, England" })).toBeNull();
+			expect(await resolveArtist("Englandish Test", { origin: "Glasgow, UK" })).toBeNull();
+		});
+
 		it("does not use an area whose type MB does not give", async () => {
 			vi.stubGlobal(
 				"fetch",

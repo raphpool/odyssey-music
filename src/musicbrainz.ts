@@ -1300,6 +1300,9 @@ function textOf(value: unknown): string | null {
 	return isText(value) ? value : null;
 }
 
+/** What {@link contextWords} folds a country's spellings to ("England", "UK", "U.S.", "Türkiye"). */
+const FOLDED_COUNTRY_TOKENS: ReadonlySet<string> = new Set(["gbr", "usa", "tur"]);
+
 /** MB area keys of an artist search hit: where it lives, where it began, where it ended. */
 const ARTIST_AREA_KEYS = ["area", "begin-area", "end-area"] as const;
 
@@ -1348,11 +1351,14 @@ function parseArtistSearchHits(body: unknown): ArtistSearchPage | null {
 					text === null ? [] : contextWords(text),
 				),
 			),
-			// An area of unknown type is not a place: it might be a country MB left untyped.
+			// An area of unknown type is not a place: it might be a country MB left untyped. MB types
+			// England, Scotland or Wales below "Country" (the country is the United Kingdom): contextWords
+			// folds them to the country token, which is never a place (TRA-506).
 			places: new Set(
-				areas.flatMap((a) =>
-					a.type !== null && a.type.trim().toLowerCase() !== "country" ? contextWords(a.name) : [],
-				),
+				areas
+					.filter((a) => a.type !== null && a.type.trim().toLowerCase() !== "country")
+					.flatMap((a) => contextWords(a.name))
+					.filter((w) => !FOLDED_COUNTRY_TOKENS.has(w)),
 			),
 		});
 	}
