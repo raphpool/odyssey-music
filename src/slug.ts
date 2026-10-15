@@ -181,7 +181,31 @@ function isNodeType(s: string): s is NodeType {
 	return (NODE_TYPES as readonly string[]).includes(s);
 }
 
+// Single source of truth for "what a slug can look like" (TRA-501): `<type>:<body>` where the body is
+// what normalizeSlugBody / normalizeTitleBody / makeScopedSlug can produce -- lowercase alphanumeric
+// runs joined by "-", with at most one "--" separating a work title from its scope. Anything else
+// (quotes, "/", "..", spaces, uppercase, a third "--") is not a slug this codebase ever mints, and
+// slugs end up in HTML attributes, URLs and cache file paths.
+export const CANONICAL_SLUG_PATTERN = new RegExp(
+	`^(${NODE_TYPES.join("|")}):[a-z0-9]+(-[a-z0-9]+)*(--[a-z0-9]+(-[a-z0-9]+)*)?$`,
+);
+
+/**
+ * True for a canonical slug (CANONICAL_SLUG_PATTERN). This is the WRITE-side rule: node schema
+ * validation (src/schemas.ts), POST /materialize, redirect tables. Reads of already-cached nodes use
+ * isReadableSlug instead, so a legacy slug in a deployed cache cannot take /data.json down.
+ */
 export function isValidSlug(s: string): s is Slug {
+	return CANONICAL_SLUG_PATTERN.test(s);
+}
+
+/**
+ * The pre-TRA-501 rule: a known type prefix and a non-empty body, nothing else. It is deliberately
+ * NOT a safety check -- it admits `artist:x" onmouseover="y`. It exists only for the READ side, where
+ * the cache of a deployed server holds nodes this repository has never seen (deploy excludes cache/),
+ * and where rejecting one would 500 the whole graph. Every consumer of such a slug must still escape it.
+ */
+export function isReadableSlug(s: string): s is Slug {
 	try {
 		parseSlug(s);
 		return true;

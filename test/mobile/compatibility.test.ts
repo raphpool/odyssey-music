@@ -133,7 +133,7 @@ describe("mobile facade compatibility", () => {
 		expect(json(legacyImage)).toMatchObject({
 			slug: "artist:fixture-artist",
 			image_url: "https://images.example.com/fixture-artist.jpg",
-			source: "self",
+			source: "legacy",
 		});
 
 		const legacyLinks = await http(server.port, "GET", "/links/genre%3Aambient");

@@ -101,7 +101,8 @@ struct NodePageView: View {
 		let facts = header.facts.map { (label: $0.label, value: $0.value) }
 		return VStack(alignment: .leading, spacing: Track1Tokens.spacing24) {
 			NodeHero(
-				kind: NodeHeroKind(node.type), image: Self.heroImage(for: hero.state), discTint: tint,
+				kind: NodeHeroKind(node.type), image: Self.heroImage(for: hero.state), imageStyle: hero.style,
+				discTint: tint,
 				accessibilityLabel: header.title
 			)
 			.id(node.id)
