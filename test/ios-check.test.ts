@@ -1641,7 +1641,11 @@ describe.sequential("Track1 contract harness lifecycle", () => {
 			expect(isAlive(harnessPid)).toBe(true);
 			// SIGKILL: the same as a cancelled job, no trap runs.
 			parent.kill("SIGKILL");
-			await waitFor(() => !isAlive(harnessPid as number), "the harness to exit after its parent was killed", 15);
+			await waitFor(
+				() => !isAlive(harnessPid as number),
+				"the harness to exit after its parent was killed",
+				15,
+			);
 		} finally {
 			killQuietly(parent.pid);
 			killQuietly(harnessPid);
