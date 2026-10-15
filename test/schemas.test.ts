@@ -130,3 +130,70 @@ describe("nodePayloadSchema", () => {
 		expect((parsed as typeof genre).qid).toBe("Q170611");
 	});
 });
+
+describe("nodePayloadSchema — identity fields (TRA-451)", () => {
+	it("keeps EdgeRef.artist on a track's project edge without loss", () => {
+		const track = {
+			...baseTrack,
+			slug: "track:fitna--rohff",
+			project: {
+				type: "project",
+				slug: "project:la-vie-avant-la-mort--rohff",
+				name: "La vie avant la mort",
+				artist: "Rohff",
+			},
+		};
+		const parsed = nodePayloadSchema.parse(track);
+		if (parsed.type !== "track") throw new Error("expected a track");
+		expect(parsed.project?.artist).toBe("Rohff");
+	});
+
+	it("keeps EdgeRef.artist on artist.discography edges", () => {
+		const artist = {
+			...baseArtist,
+			discography: [
+				{
+					type: "project",
+					slug: "project:new-forms--roni-size-reprazent",
+					name: "New Forms",
+					artist: "Roni Size / Reprazent",
+				},
+			],
+		};
+		const parsed = nodePayloadSchema.parse(artist);
+		if (parsed.type !== "artist") throw new Error("expected an artist");
+		expect(parsed.discography[0]?.artist).toBe("Roni Size / Reprazent");
+	});
+
+	it("rejects an empty EdgeRef.artist", () => {
+		const artist = {
+			...baseArtist,
+			discography: [{ type: "project", slug: "project:new-forms--x", name: "New Forms", artist: "" }],
+		};
+		expect(() => nodePayloadSchema.parse(artist)).toThrow();
+	});
+
+	it("still loads edges that carry no artist", () => {
+		const parsed = nodePayloadSchema.parse(baseArtist);
+		if (parsed.type !== "artist") throw new Error("expected an artist");
+		expect(parsed.genres[0] && "artist" in parsed.genres[0]).toBe(false);
+	});
+
+	it("keeps artist_kind person and group", () => {
+		for (const kind of ["person", "group"] as const) {
+			const parsed = nodePayloadSchema.parse({ ...baseArtist, artist_kind: kind });
+			if (parsed.type !== "artist") throw new Error("expected an artist");
+			expect(parsed.artist_kind).toBe(kind);
+		}
+	});
+
+	it("loads an artist without artist_kind", () => {
+		const parsed = nodePayloadSchema.parse(baseArtist);
+		if (parsed.type !== "artist") throw new Error("expected an artist");
+		expect(parsed.artist_kind).toBeUndefined();
+	});
+
+	it("rejects an unknown artist_kind", () => {
+		expect(() => nodePayloadSchema.parse({ ...baseArtist, artist_kind: "band" })).toThrow();
+	});
+});
