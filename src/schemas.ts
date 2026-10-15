@@ -22,6 +22,9 @@ const edgeRefBase = z.object({
 	// lets the frontend tag EPs/singles distinctly from full albums.
 	year: z.string().optional(),
 	releaseType: z.enum(["album", "ep", "single"]).optional(),
+	// Primary credited artist, set on project/track targets whose slug is scoped by it. Optional:
+	// genre/label/artist edges carry none and nodes written before this field must still load.
+	artist: z.string().min(1).optional(),
 });
 
 /** Build an edge schema whose `type` is constrained to one of `allowed` and whose `slug` prefix matches. */
@@ -120,6 +123,7 @@ const labelSchema = z.object({
 const artistSchema = z.object({
 	...baseFields,
 	type: z.literal("artist"),
+	artist_kind: z.enum(["person", "group"]).optional(),
 	editorial_bio: z.string().min(1),
 	photo_url: z.string().url().optional(),
 	origin: z.string().optional(),

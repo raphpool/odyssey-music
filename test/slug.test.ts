@@ -1,5 +1,14 @@
 import { describe, expect, test } from "vitest";
-import { isValidSlug, makeSlug, normalizeSlugBody, normalizeTitleBody, parseSlug } from "../src/slug.js";
+import {
+	isScopedSlug,
+	isValidSlug,
+	makeScopedSlug,
+	makeSlug,
+	normalizeSlugBody,
+	normalizeTitleBody,
+	parseSlug,
+	scopeOf,
+} from "../src/slug.js";
 
 describe("normalizeSlugBody", () => {
 	test("lowercases and dashes", () => {
@@ -149,5 +158,64 @@ describe("normalizeTitleBody", () => {
 		expect(normalizeTitleBody("(Remastered)")).toBe("");
 		expect(normalizeTitleBody("[Deluxe Edition] (Explicit)")).toBe("");
 		expect(normalizeTitleBody("!!!")).toBe("");
+	});
+});
+
+describe("makeScopedSlug", () => {
+	test("builds <type>:<title>--<artist>", () => {
+		expect(makeScopedSlug("track", "Fitna", "Rohff")).toBe("track:fitna--rohff");
+		expect(makeScopedSlug("project", "New Forms", "Roni Size / Reprazent")).toBe(
+			"project:new-forms--roni-size-reprazent",
+		);
+	});
+
+	test("strips diacritics from both title and artist", () => {
+		expect(makeScopedSlug("track", "Corazón Loco", "Lisa Carbon")).toBe("track:corazon-loco--lisa-carbon");
+		expect(makeScopedSlug("project", "Dépêche", "Mylène Farmer")).toBe("project:depeche--mylene-farmer");
+	});
+
+	test("turns & into and in both parts", () => {
+		expect(makeScopedSlug("project", "Rock & Roll", "Simon & Garfunkel")).toBe(
+			"project:rock-and-roll--simon-and-garfunkel",
+		);
+	});
+
+	test("agrees with makeSlug's disambiguator form", () => {
+		expect(makeScopedSlug("track", "Tendency", "Jan Jelinek")).toBe(
+			makeSlug("track", "Tendency", "Jan Jelinek"),
+		);
+	});
+
+	test("throws when the artist body is empty", () => {
+		expect(() => makeScopedSlug("track", "Fitna", "")).toThrow();
+		expect(() => makeScopedSlug("track", "Fitna", "  ?! ")).toThrow();
+	});
+
+	test("throws when the title body is empty", () => {
+		expect(() => makeScopedSlug("project", "", "Rohff")).toThrow();
+		expect(() => makeScopedSlug("project", "...", "Rohff")).toThrow();
+	});
+});
+
+describe("isScopedSlug / scopeOf", () => {
+	test("recognizes a scoped slug and returns its scope", () => {
+		expect(isScopedSlug("track:fitna--rohff")).toBe(true);
+		expect(scopeOf("track:fitna--rohff")).toBe("rohff");
+	});
+
+	test("an unscoped slug has no scope", () => {
+		expect(isScopedSlug("track:fitna")).toBe(false);
+		expect(scopeOf("track:fitna")).toBeNull();
+		expect(isScopedSlug("artist:aphex-twin")).toBe(false);
+	});
+
+	test("a hyphenated body is not scoped (single dash is not the separator)", () => {
+		expect(isScopedSlug("artist:jay-z")).toBe(false);
+		expect(scopeOf("artist:jay-z")).toBeNull();
+	});
+
+	test("round-trips with makeScopedSlug", () => {
+		const slug = makeScopedSlug("project", "New Forms", "Roni Size / Reprazent");
+		expect(scopeOf(slug)).toBe("roni-size-reprazent");
 	});
 });
