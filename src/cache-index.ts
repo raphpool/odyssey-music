@@ -1,7 +1,8 @@
 /**
  * In-memory search index over the JIT cache.
  *
- * Built at server boot by scanning <cache>/nodes/*.json. Provides two lookups:
+ * Built by scanning <cache>/nodes/*.json; the server builds it lazily through
+ * createCacheIndexHolder (single-flight, invalidated after each node write). Provides two lookups:
  *   - byMbid(mbid)  → Slug | null    (used to short-circuit search results that already
  *                                      have a materialized node, so the autocomplete can
  *                                      render a "✓ Odyssey" badge + direct link)
@@ -109,6 +110,49 @@ export async function buildCacheIndex(cacheRoot: string): Promise<CacheIndex> {
 				}
 			}
 			return matches;
+		},
+	};
+}
+
+export interface CacheIndexHolder {
+	get(): Promise<CacheIndex>;
+	invalidate(): void;
+}
+
+/**
+ * Lazily builds one index and shares it (TRA-536, 2026-10-15). Before this, two concurrent callers each
+ * ran a full scan, and an invalidate() landing mid-scan was lost: the scan finished and published an index
+ * taken before the write, so byMbid() missed a node that had just been written and the pipeline minted a
+ * duplicate. A generation number lets invalidate() mark the running build as stale: its result is still
+ * handed to the callers already waiting on it, but is never published, and the next get() rebuilds.
+ * A failed build is never cached, so the next get() retries.
+ */
+export function createCacheIndexHolder(build: () => Promise<CacheIndex>): CacheIndexHolder {
+	let published: CacheIndex | null = null;
+	let inflight: Promise<CacheIndex> | null = null;
+	let generation = 0;
+
+	return {
+		async get() {
+			if (published) return published;
+			if (inflight) return inflight;
+			const startedAt = generation;
+			const run: Promise<CacheIndex> = build()
+				.then((index) => {
+					if (generation === startedAt) published = index;
+					return index;
+				})
+				.finally(() => {
+					// invalidate() may already have replaced this build with a newer one.
+					if (inflight === run) inflight = null;
+				});
+			inflight = run;
+			return run;
+		},
+		invalidate() {
+			generation++;
+			published = null;
+			inflight = null;
 		},
 	};
 }
