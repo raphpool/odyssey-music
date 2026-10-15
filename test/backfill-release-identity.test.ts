@@ -6,7 +6,6 @@ import {
 	creditConfirmsHint,
 	findCollisions,
 	mergeArtists,
-	observingMbOutage,
 	parseCliArgs,
 	type ReleaseManifest,
 	runBackfill,
@@ -69,6 +68,17 @@ function jsonResponse(body: unknown): Response {
 const refused = () =>
 	({ ok: false, status: 400, headers: new Headers(), json: async () => ({}) }) as Response;
 
+/** A 200 whose body is not JSON (an HTML error page behind a proxy): HTTP says ok, the payload says no. */
+const unreadable = () =>
+	({
+		ok: true,
+		status: 200,
+		headers: new Headers(),
+		json: async () => {
+			throw new SyntaxError("Unexpected token < in JSON at position 0");
+		},
+	}) as unknown as Response;
+
 interface Stub {
 	urls: URL[];
 	/** Search queries only. */
@@ -78,12 +88,16 @@ interface Stub {
 /**
  * Answers MB's release-group / recording search (by title only: like MB, it returns look-alikes the
  * migration must sift), and the lookups behind fetchProjectMetaMb / fetchTrackMetaMb. `fail` makes
- * the matching requests fail without a usable answer. `filterByArtist` makes the `artist:` clause
+ * the matching requests fail without a usable answer (`unreadable`: with a 200 that is not JSON). `filterByArtist` makes the `artist:` clause
  * work as MB's does: it only matches the credited names, never an artist's other-script name.
  */
 function stubMb(
 	works: FakeWork[],
-	options: { fail?: (url: URL) => boolean; filterByArtist?: boolean } = {},
+	options: {
+		fail?: (url: URL) => boolean;
+		unreadable?: (url: URL) => boolean;
+		filterByArtist?: boolean;
+	} = {},
 ): Stub {
 	const urls: URL[] = [];
 	const creditOf = (w: FakeWork) =>
@@ -93,6 +107,7 @@ function stubMb(
 		vi.fn(async (input: URL) => {
 			urls.push(input);
 			if (options.fail?.(input)) return refused();
+			if (options.unreadable?.(input)) return unreadable();
 			const [, , , kind, id] = input.pathname.split("/");
 			if (!id && (kind === "release-group" || kind === "recording")) {
 				const [, phrase = "", artist] =
@@ -1155,6 +1170,64 @@ describe("runBackfill", () => {
 		expect((await readManifestFile()).resolved["project:half-ep"]?.mbid).toMatch(/^0{8}-/);
 	});
 
+	it("reports a search answered with unreadable JSON as a failure, not as an unknown work", async () => {
+		let garbled = true;
+		stubMb([fixture("Garbled EP")], { unreadable: (u) => garbled && /\/release-group$/.test(u.pathname) });
+		await seed(
+			projectNode("project:garbled-ep", "Garbled EP", { artists: [edge("artist:idem-band", "Idem Band")] }),
+		);
+		const before = await readFile(nodePath("project:garbled-ep"), "utf8");
+
+		const result = await run({ apply: true });
+
+		expect(result.failed).toEqual([{ slug: "project:garbled-ep", reason: "MusicBrainz search unavailable" }]);
+		expect(result.manifest.unresolved).toEqual([]);
+		expect(result.exitCode).toBe(1);
+		expect(await readFile(nodePath("project:garbled-ep"), "utf8")).toBe(before);
+
+		garbled = false;
+		expect((await run({ apply: true, resume: true })).exitCode).toBe(0);
+		expect((await readNode("project:garbled-ep")).mbid).toBe(rg);
+	});
+
+	it("reports a track search that fails on its title-only retry as a failure", async () => {
+		// The first search (title + artist) finds nothing; the retry under the title alone is the one that
+		// goes down. Its outage must not be filed as "no-match".
+		const retry = (u: URL) =>
+			/\/recording$/.test(u.pathname) && !u.searchParams.get("query")?.includes(" AND ");
+		stubMb([], { fail: retry });
+		await seed(
+			trackNode("track:retry-down", "Retry Down", {
+				artists: [edge("artist:idem-band", "Idem Band", { mbid: reprazent })],
+			}),
+		);
+
+		const result = await run({ apply: true });
+
+		expect(searchCalls()).toBe(2);
+		expect(result.failed).toEqual([{ slug: "track:retry-down", reason: "MusicBrainz search unavailable" }]);
+		expect(result.manifest.unresolved).toEqual([]);
+		expect(result.exitCode).toBe(1);
+	});
+
+	it("writes nothing for a work whose tracklist answer is unreadable JSON", async () => {
+		stubMb([{ ...fixture("Garbled Half EP"), id: mbid() }], {
+			unreadable: (u) => u.pathname.includes("/release/"),
+		});
+		await seed(
+			projectNode("project:garbled-half-ep", "Garbled Half EP", {
+				artists: [edge("artist:idem-band", "Idem Band")],
+			}),
+		);
+		const before = await readFile(nodePath("project:garbled-half-ep"), "utf8");
+
+		const result = await run({ apply: true });
+
+		expect(result.failed.map((f) => f.slug)).toEqual(["project:garbled-half-ep"]);
+		expect(result.exitCode).toBe(1);
+		expect(await readFile(nodePath("project:garbled-half-ep"), "utf8")).toBe(before);
+	});
+
 	it("refuses to write a node the schema would alter beyond empty defaults", async () => {
 		stubMb([fixture("Odd EP")]);
 		await seed(
@@ -1308,39 +1381,6 @@ describe("findCollisions", () => {
 		expect(
 			findCollisions({ "track:b": entry("m1"), "track:c": entry("m2") }, new Map([["track:a", "m1"]])),
 		).toEqual([{ mbid: "m1", slugs: ["track:a", "track:b"] }]);
-	});
-});
-
-describe("observingMbOutage", () => {
-	it("restores fetch, and calls a request retried to success an answer", async () => {
-		const original = vi.fn(async () => jsonResponse({}));
-		vi.stubGlobal("fetch", original);
-		const url = new URL("https://musicbrainz.example/ws/2/x");
-		const seen: boolean[] = [];
-
-		const answered = await observingMbOutage(async () => {
-			seen.push((await fetch(url)).ok);
-			return 1;
-		});
-		const attempts = [refused(), jsonResponse({})];
-		original.mockImplementation(async () => attempts.shift() as Response);
-		const retried = await observingMbOutage(async () => {
-			await fetch(url);
-			await fetch(url);
-			return 2;
-		});
-		const refusedOnce = await observingMbOutage(async () => {
-			original.mockImplementation(async () => refused());
-			await fetch(url);
-			return 3;
-		});
-
-		expect([answered.unavailable, retried.unavailable, refusedOnce.unavailable]).toEqual([
-			false,
-			false,
-			true,
-		]);
-		expect(globalThis.fetch).toBe(original);
 	});
 });
 
