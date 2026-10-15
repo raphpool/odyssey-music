@@ -48,7 +48,8 @@ import {
 	TEASER_FIELD_BY_TYPE,
 } from "./node-spec.js";
 import { nodePayloadSchema } from "./schemas.js";
-import { makeScopedSlug, makeSlug, pickScopeArtistName } from "./slug.js";
+import { MAX_SIMILAR_ARTISTS } from "./similar-artists.js";
+import { isValidSlug, makeScopedSlug, makeSlug, pickScopeArtistName } from "./slug.js";
 import { localFetch } from "./tools/local-fetcher.js";
 
 /** Title-case a lowercased genre name for display. Handles "r&b" -> "R&B" and "hip-hop" -> "Hip-Hop". */
@@ -98,7 +99,7 @@ import { isAllowedImageUrl } from "./images/hosts.js";
 import type { ResolvedImage } from "./images/resolve-image.js";
 import { firecrawlSearch } from "./tools/firecrawl-search.js";
 import { rankResults, rankUrl, type TavilyResult, tavilySearch } from "./tools/tavily.js";
-import type { Citation, EdgeRef, NodePayload, NodeType, Slug } from "./types.js";
+import type { ArtistNode, Citation, EdgeRef, NodePayload, NodeType, Slug } from "./types.js";
 import { QID_PATTERN } from "./types.js";
 
 export interface PipelineDeps {
@@ -132,6 +133,12 @@ export interface PipelineDeps {
 	// it, so the mbid it reads is the one the pipeline settled on. A miss, a throw or a timeout leaves
 	// the node without an image: the pipeline never fails because of it.
 	resolveImage?: (node: NodePayload) => Promise<ResolvedImage | null>;
+	// OPTIONAL (TRA-480): similar artists of an artist being materialized, run after MusicBrainz enrichment.
+	// The artist it receives carries `mbid` only when the server confirmed it (MusicBrainz's own resolution,
+	// or a trusted caller's): a client's unconfirmed hint is stripped, so it never reaches ListenBrainz.
+	// Unset = `similar_artists: []`, as before. A throw or a timeout leaves the node with `[]`: the pipeline
+	// never fails because of it.
+	similarArtists?: (artist: ArtistNode) => Promise<EdgeRef[]>;
 }
 
 /** The artist node a cache holds for an MB artist id: its slug and the name it is filed under. */
@@ -741,6 +748,13 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	await deps.genreRegistry?.canonicalizeNodeEdges(node);
 	// After the genre edges are canonical (a derived cover follows edges by slug), before validation.
 	await attachResolvedImage(node as Record<string, unknown>, deps.resolveImage, log);
+	// Last, once genres, labels and collaborators are final: the graph fallback compares them.
+	await attachSimilarArtists(
+		node as Record<string, unknown>,
+		deps.similarArtists,
+		enrichment.confirmedArtistMbid,
+		log,
+	);
 	const validated = validateNode(node);
 
 	return {
@@ -749,6 +763,62 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 		...(requestedSlug ? { requestedSlug } : {}),
 		metrics: buildMetrics(t0, research, draft),
 	};
+}
+
+// Upper bound on the similar-artists step: one ListenBrainz request (5 s) plus its rate-limit slot.
+const SIMILAR_ARTISTS_TIMEOUT_MS = 15_000;
+
+/**
+ * TRA-480: set `similar_artists` on an artist draft. ListenBrainz data is third-party, so every edge is
+ * checked again here: an artist target, a canonical slug (a legacy slug read back from the cache would
+ * make validateNode throw -- the node must not pay for a recommendation), not the artist itself.
+ * `confirmedMbid` is the server-confirmed MBID, or undefined (graph fallback only, no network call).
+ */
+async function attachSimilarArtists(
+	node: Record<string, unknown>,
+	similarArtists: PipelineDeps["similarArtists"],
+	confirmedMbid: string | undefined,
+	log: PipelineLog,
+): Promise<void> {
+	if (!similarArtists || node.type !== "artist") return;
+	const label = String(node.slug);
+	let timer: ReturnType<typeof setTimeout> | undefined;
+	try {
+		const artist: Record<string, unknown> = { ...node };
+		delete artist.mbid;
+		if (confirmedMbid) artist.mbid = confirmedMbid;
+		const timeout = new Promise<never>((_, reject) => {
+			timer = setTimeout(() => reject(new Error("timed out")), SIMILAR_ARTISTS_TIMEOUT_MS);
+		});
+		const found = await Promise.race([similarArtists(artist as unknown as ArtistNode), timeout]);
+		const seen = new Set<string>([label]);
+		const edges: EdgeRef[] = [];
+		let dropped = 0;
+		for (const edge of Array.isArray(found) ? found : []) {
+			if (edges.length >= MAX_SIMILAR_ARTISTS) break;
+			const ok =
+				edge?.type === "artist" &&
+				typeof edge.slug === "string" &&
+				isValidSlug(edge.slug) &&
+				typeof edge.name === "string" &&
+				edge.name.trim() !== "" &&
+				!seen.has(edge.slug);
+			if (!ok) {
+				dropped++;
+				continue;
+			}
+			seen.add(edge.slug);
+			edges.push(edge);
+		}
+		node.similar_artists = edges;
+		log(`[pipeline] similar artists for ${label}: ${edges.length} kept, ${dropped} dropped`);
+	} catch (e) {
+		const msg = e instanceof Error ? e.message : String(e);
+		node.similar_artists = [];
+		log(`[pipeline] similar artists skipped for ${label}: ${msg.slice(0, 100)}`);
+	} finally {
+		clearTimeout(timer);
+	}
 }
 
 // Upper bound on the image step: the resolver makes several third-party requests, and none of them
@@ -1039,6 +1109,12 @@ export interface MbEnrichment {
 	 * otherwise, and the slug asked for stays.
 	 */
 	scopeArtist?: string;
+	/**
+	 * The artist's MBID when the server stands behind it: MusicBrainz's own resolution, or a caller that is
+	 * not an HTTP client (`mbidIsClientHint` unset). Absent for an artist left without MBID or carrying a
+	 * client's unconfirmed one (TRA-538, TRA-480).
+	 */
+	confirmedArtistMbid?: string;
 }
 
 /** An artist reference for an MB credit, or null when no slug can be made for it (non-Latin, not cached). */
@@ -1133,6 +1209,7 @@ async function enrichNode(
 				if (resolution.artist) {
 					mbid = resolution.artist.mbid;
 					kind = resolution.artist.kind;
+					enrichment.confirmedArtistMbid = mbid;
 				} else {
 					log(
 						`[pipeline] artist "${input.name}" left without MBID (candidates=${resolution.candidates}${resolution.unavailable ? ", MB unavailable" : ""})`,
@@ -1140,6 +1217,9 @@ async function enrichNode(
 				}
 			} else {
 				// A caller-supplied MBID names the artist for certain; only its kind is still unknown.
+				// An HTTP client's is still unconfirmed (TRA-538): kept on the node as before, but never used
+				// to look up recommendations.
+				if (input.mbidIsClientHint !== true) enrichment.confirmedArtistMbid = mbid;
 				try {
 					kind = (await fetchArtistEntityMb(mbid))?.kind;
 				} catch (e) {

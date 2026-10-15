@@ -204,6 +204,9 @@ export function createMaterializeService(deps: {
 	// TRA-479: picks the image of a node being materialized (see PipelineDeps.resolveImage). The
 	// composition root builds it from the images resolver and this same cache; unset = no image step.
 	resolveImage?: PipelineDeps["resolveImage"];
+	// TRA-480: attaches `similar_artists` to an artist being materialized (see PipelineDeps.similarArtists).
+	// Built by the composition root from the resolver and this same cache; unset = `[]`, as before.
+	similarArtists?: PipelineDeps["similarArtists"];
 }) {
 	const inflight = new Map<string, Promise<JitResult>>();
 
@@ -650,6 +653,7 @@ export function createMaterializeService(deps: {
 			firecrawlApiKey: deps.env.FIRECRAWL_API_KEY,
 			genreRegistry: deps.genreRegistry,
 			...(deps.resolveImage ? { resolveImage: deps.resolveImage } : {}),
+			...(deps.similarArtists ? { similarArtists: deps.similarArtists } : {}),
 			...(opts.maxProviderAttempts === undefined ? {} : { maxProviderAttempts: opts.maxProviderAttempts }),
 		});
 		const requestedSlug = r.requestedSlug;

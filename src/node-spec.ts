@@ -76,6 +76,21 @@ export const LIST_EDGES_BY_TYPE: Record<NodeType, readonly string[]> = Object.fr
 	]),
 ) as unknown as Record<NodeType, readonly string[]>;
 
+/**
+ * List edges a crawl does not follow. `similar_artists` are recommendations (TRA-480), not structure:
+ * following them would put up to 10 mostly-uncached artists on the frontier per materialized artist, and
+ * skew the dangling top-up ranking. Read by the crawler's frontier and by `top-up-dangling`.
+ */
+export const NON_CRAWLED_EDGES: Partial<Record<NodeType, readonly string[]>> = {
+	artist: ["similar_artists"],
+};
+
+/** `LIST_EDGES_BY_TYPE[type]` minus the edges listed in {@link NON_CRAWLED_EDGES}. */
+export function crawledListEdges(type: NodeType): readonly string[] {
+	const skipped = NON_CRAWLED_EDGES[type] ?? [];
+	return LIST_EDGES_BY_TYPE[type].filter((field) => !skipped.includes(field));
+}
+
 export const SINGULAR_EDGES_BY_TYPE: Record<NodeType, readonly string[]> = Object.fromEntries(
 	NODE_TYPES.map((type) => [
 		type,
