@@ -102,9 +102,11 @@ jobs:
         with: { node-version: 20, cache: npm }
       - run: npm ci
       - name: Mesurer le diff
+        # TRA-498: the base branch name reaches the shell through env, never interpolated into the script.
+        env: { BASE_REF: "${{ github.event.pull_request.base.ref }}" }
         run: |
-          BASE="origin/${{ github.event.pull_request.base.ref }}"
-          git fetch origin "${{ github.event.pull_request.base.ref }}" --depth=50
+          BASE="origin/$BASE_REF"
+          git fetch origin "$BASE_REF" --depth=50
           set -o pipefail
           npx --no-install tsx scripts/ci/pr-policy.ts "$BASE" HEAD | tee "$RUNNER_TEMP/pr-policy.md"
           cat "$RUNNER_TEMP/pr-policy.md" >> "$GITHUB_STEP_SUMMARY"
@@ -126,12 +128,15 @@ jobs:
       - uses: actions/checkout@v6
         with: { fetch-depth: 0 }
       - name: Détecter les chemins sensibles
-        env: { GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
+        # TRA-498: the base branch name reaches the shell through env, never interpolated into the script.
+        env: { GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}", BASE_REF: "${{ github.event.pull_request.base.ref }}" }
         run: |
-          BASE="origin/${{ github.event.pull_request.base.ref }}"
-          git fetch origin "${{ github.event.pull_request.base.ref }}" --depth=50
+          BASE="origin/$BASE_REF"
+          git fetch origin "$BASE_REF" --depth=50
           CHANGED=$(git diff --name-only "$BASE"...HEAD)
-          if echo "$CHANGED" | grep -Eq '(^|/)(auth|payment[s]?|migrations|infra|deploy)/|^\.github/|^scripts/deploy-|\.sql$|secrets'; then
+          # TRA-498: this pattern is `sensitivePath` of scripts/ci/review-gate-policy.ts with `\/` written `/`;
+          # test/ci-integrity-job.test.ts fails when the two drift apart.
+          if echo "$CHANGED" | grep -Eq '(^|/)(auth|payment[s]?|migrations|infra|deploy)/|^\.github/|^scripts/(deploy-|ci/review-gate-policy|ci/threshold-ratchet\.ts$|audit-cache\.ts$)|^data/integrity-thresholds\.json$|^\.codex/scripts/publish-review-status\.sh$|\.sql$|secrets'; then
             echo "Chemin sensible touché → tier/3"
             gh pr edit "${{ github.event.pull_request.number }}" --add-label "tier/3"
             gh pr edit "${{ github.event.pull_request.number }}" --remove-label "tier/1" || true
@@ -143,7 +148,8 @@ jobs:
   integrity:
     # TRA-461: the cache audit (scripts/audit-cache.ts) fails when a measure exceeds its ceiling in
     # data/integrity-thresholds.json; on pull requests the ratchet also fails when a ceiling went up or
-    # vanished against the base. Not a required check: adding it to the branch protection is up to the owner.
+    # vanished against the base (coverage ceilings may rise by the number of nodes the PR added, TRA-498).
+    # Not a required check: adding it to the branch protection is up to the owner.
     # No timeout-minutes, like the other jobs: the audit takes under 15 s.
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
     runs-on: [self-hosted, macOS, ARM64]
@@ -155,17 +161,45 @@ jobs:
         run: |
           mkdir -p "$RUNNER_TEMP/home"
           echo "HOME=$RUNNER_TEMP/home" >> "$GITHUB_ENV"
+      # fetch-depth 2: on a pull_request HEAD is the merge ref, and its first parent is the base the PR was
+      # really tested on (TRA-498). Nothing else is fetched, so the base cannot move under the job.
       - uses: actions/checkout@v6
+        with: { fetch-depth: 2 }
       - uses: actions/setup-node@v4
         with: { node-version: 20, cache: npm }
       - run: npm ci
       - name: Auditer le cache
-        run: npm run audit:cache -- cache
-      - name: Cliquet des seuils
-        if: github.event_name == 'pull_request'
+        # TRA-498: the audit output, violations (stderr) included, goes to the job summary even when it fails.
+        # Calls the script directly, not `npm run audit:cache`: package.json is not a sensitive path, so a
+        # tier/1 PR could otherwise redefine what that script runs.
         run: |
-          BASE="origin/${{ github.event.pull_request.base.ref }}"
-          git fetch origin "${{ github.event.pull_request.base.ref }}" --depth=50
+          set -o pipefail
+          status=0
+          npx --no-install tsx scripts/audit-cache.ts cache 2>"$RUNNER_TEMP/audit.err" | tee "$RUNNER_TEMP/audit.out" || status=$?
+          cat "$RUNNER_TEMP/audit.err" >&2
+          {
+            echo "## Cache audit"
+            echo
+            echo '```'
+            cat "$RUNNER_TEMP/audit.out"
+            echo '```'
+            if [ -s "$RUNNER_TEMP/audit.err" ]; then
+              echo
+              echo "### Violations"
+              echo
+              echo '```'
+              cat "$RUNNER_TEMP/audit.err"
+              echo '```'
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
+          exit "$status"
+      - name: Cliquet des seuils
+        # TRA-498: runs even when the audit failed, so one run reports both.
+        if: ${{ !cancelled() && github.event_name == 'pull_request' }}
+        run: |
+          # A pull_request checkout is the merge ref (2 parents): refuse anything else instead of guessing a base.
+          git rev-parse --verify --quiet 'HEAD^2' > /dev/null || { echo "::error::HEAD is not a merge ref"; exit 1; }
+          BASE=HEAD^1
           set -o pipefail
           status=0
           npx --no-install tsx scripts/ci/threshold-ratchet.ts "$BASE" | tee "$RUNNER_TEMP/threshold-ratchet.md" || status=$?

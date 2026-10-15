@@ -26,6 +26,19 @@ describe("review gate policy", () => {
 		).toBe("pass");
 	});
 
+	// TRA-498: these files decide whether the integrity job can ever go red; a tier/1 PR must not change them.
+	it.each(["data/integrity-thresholds.json", "scripts/ci/threshold-ratchet.ts", "scripts/audit-cache.ts"])(
+		"classifies a PR that only touches %s as tier/3, whatever its label",
+		(path) => {
+			expect(classifyRisk([path], [])).toBe(3);
+			expect(classifyRisk([path], ["tier/1"])).toBe(3);
+		},
+	);
+
+	it("does not escalate on lookalike paths", () => {
+		expect(classifyRisk(["data/genre-catalog.json", "scripts/audit-cache-notes.md"], [])).toBe(1);
+	});
+
 	it("does not allow deep success to mask an ordinary blocking finding", () => {
 		expect(
 			evaluateReviewGate({

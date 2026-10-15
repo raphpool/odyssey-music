@@ -48,6 +48,29 @@ export const INFORMATIVE_METRICS: ReadonlySet<string> = new Set([
 	"pending-reverse-targets-existing",
 ]);
 
+/**
+ * Coverage metrics count nodes that are still missing an enrichment (image, similar artists, a second
+ * citation...). Unlike correctness metrics they rise legitimately when a batch ADDS nodes that are not
+ * enriched yet, so the ratchet (scripts/ci/threshold-ratchet.ts, TRA-498) lets their ceiling grow by at
+ * most the growth of the node count of the type they measure. Value: that node type, or `null` when the
+ * metric is keyed by node type. Every other metric stays strict.
+ */
+const COVERAGE_METRICS: ReadonlyMap<string, NodeType | null> = new Map([
+	["missing-image", null],
+	["single-citation", null],
+	["missing-similar-artists", "artist"],
+	["missing-landmark-project", "artist"],
+	["missing-reference-track", "artist"],
+]);
+
+/** The node type whose growth may absorb a rise of this metric (or metric key), `null` for strict metrics. */
+export function coverageNodeType(metric: string, key?: string): NodeType | null {
+	const type = COVERAGE_METRICS.get(metric);
+	if (type === undefined) return null;
+	if (type !== null) return key === undefined ? type : null;
+	return NODE_TYPES.find((t) => t === key) ?? null;
+}
+
 const SAMPLE_LIMIT = 10;
 const IMAGE_FIELDS = ["image_url", "photo_url", "cover_url"] as const;
 const RELEASE_LINK_FIELDS = ["discography", "notable_tracks"] as const;
