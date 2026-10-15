@@ -43,26 +43,44 @@ final class HeroImageSourceTests: XCTestCase {
 			try Self.candidates(.track, imageURL: nil, edges: edges), [.node(try Self.id("project:first"))])
 	}
 
-	func testGenreUsesLandmarkProjectThenLandmarkTrackAndNeverItsOwnImage() throws {
+	func testGenreUsesItsImageThenLandmarkProjectThenLandmarkTrack() throws {
 		let both = [
 			"landmark_projects": Self.list(.project, "p1", "p2"), "landmark_tracks": Self.list(.track, "t1"),
 		]
+		let own = HeroCandidate.url(try XCTUnwrap(URL(string: cover)))
 		let project = HeroCandidate.node(try Self.id("project:p1"))
 		let track = HeroCandidate.node(try Self.id("track:t1"))
 
-		XCTAssertEqual(try Self.candidates(.genre, imageURL: cover, edges: both), [project, track])
+		XCTAssertEqual(try Self.candidates(.genre, imageURL: cover, edges: both), [own, project, track])
+		XCTAssertEqual(try Self.candidates(.genre, imageURL: nil, edges: both), [project, track])
 		XCTAssertEqual(
 			try Self.candidates(.genre, imageURL: nil, edges: ["landmark_tracks": Self.list(.track, "t1")]),
 			[track])
-		XCTAssertEqual(try Self.candidates(.genre, imageURL: cover, edges: [:]), [])
+		XCTAssertEqual(try Self.candidates(.genre, imageURL: cover, edges: [:]), [own])
+		XCTAssertEqual(try Self.candidates(.genre, imageURL: nil, edges: [:]), [])
 	}
 
-	func testLabelUsesItsFirstNotableRelease() throws {
+	func testLabelUsesItsImageThenItsFirstNotableRelease() throws {
 		let edges = ["notable_releases": Self.list(.project, "r1", "r2"), "roster": Self.list(.artist, "x")]
+		let own = HeroCandidate.url(try XCTUnwrap(URL(string: cover)))
+		let release = HeroCandidate.node(try Self.id("project:r1"))
 
-		XCTAssertEqual(
-			try Self.candidates(.label, imageURL: cover, edges: edges), [.node(try Self.id("project:r1"))])
+		XCTAssertEqual(try Self.candidates(.label, imageURL: cover, edges: edges), [own, release])
+		XCTAssertEqual(try Self.candidates(.label, imageURL: nil, edges: edges), [release])
+		XCTAssertEqual(try Self.candidates(.label, imageURL: cover, edges: [:]), [own])
 		XCTAssertEqual(try Self.candidates(.label, imageURL: nil, edges: [:]), [])
+	}
+
+	func testEveryNodeTypePutsItsOwnImageFirst() throws {
+		let own = HeroCandidate.url(try XCTUnwrap(URL(string: cover)))
+		let edges = [
+			"discography": Self.list(.project, "a"), "project": Self.object(.project, "album"),
+			"landmark_projects": Self.list(.project, "p"), "landmark_tracks": Self.list(.track, "t"),
+			"notable_releases": Self.list(.project, "r"),
+		]
+		for type in [NodeType.artist, .project, .track, .genre, .label] {
+			XCTAssertEqual(try Self.candidates(type, imageURL: cover, edges: edges).first, own, "\(type)")
+		}
 	}
 
 	func testAnEmptyEdgeListGivesNoCandidate() throws {
@@ -79,6 +97,8 @@ final class HeroImageSourceTests: XCTestCase {
 		for value in unsafe {
 			XCTAssertEqual(try Self.candidates(.artist, imageURL: value, edges: edges), [release], value)
 			XCTAssertEqual(try Self.candidates(.project, imageURL: value, edges: [:]), [], value)
+			XCTAssertEqual(try Self.candidates(.genre, imageURL: value, edges: [:]), [], value)
+			XCTAssertEqual(try Self.candidates(.label, imageURL: value, edges: [:]), [], value)
 		}
 	}
 

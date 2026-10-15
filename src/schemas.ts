@@ -54,6 +54,15 @@ function typedEdgeFor(type: NodeType, field: string) {
 	return typedEdge(allowed);
 }
 
+/** The edge schema a node of `type` applies to `field`, or undefined when that field carries no edges.
+ * Exported (TRA-499) so the migration channel can check a pending reverse's edge against the exact
+ * schema NodeCache.write will apply to the node once the reverse lands in it. */
+export function edgeSchemaFor(type: NodeType, field: string) {
+	const specs = EDGE_TARGET_TYPES_BY_TYPE[type];
+	// hasOwn: `field` comes from an untrusted file ("constructor" must not resolve on the prototype).
+	return Object.hasOwn(specs, field) ? typedEdge(specs[field] as readonly NodeType[]) : undefined;
+}
+
 const citationSchema = z.object({
 	url: z.string().url(),
 	title: z.string().optional(),
@@ -137,6 +146,8 @@ const artistSchema = z.object({
 	labels: z.array(typedEdgeFor("artist", "labels")),
 	discography: z.array(typedEdgeFor("artist", "discography")),
 	notable_tracks: z.array(typedEdgeFor("artist", "notable_tracks")),
+	landmark_project: typedEdgeFor("artist", "landmark_project").optional(),
+	reference_track: typedEdgeFor("artist", "reference_track").optional(),
 	influences: z.array(typedEdgeFor("artist", "influences")),
 	influenced: z.array(typedEdgeFor("artist", "influenced")),
 	collaborators: z.array(typedEdgeFor("artist", "collaborators")),
