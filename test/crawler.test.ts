@@ -1,8 +1,9 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it } from "vitest";
 import { attachFolderGenre, buildGenreSeedPlan, enqueueEdges, FrontierQueue } from "../src/crawler.js";
 import type { GenreRegistry } from "../src/genre-registry.js";
 import type { GenreSeed } from "../src/genre-seeds.js";
 import type { PipelineInput } from "../src/pipeline.js";
+import { makeSlug } from "../src/slug.js";
 import type { ArtistNode } from "../src/types.js";
 
 /** Minimal valid ArtistNode, only the fields enqueueEdges actually reads matter here. */
@@ -255,6 +256,245 @@ describe("buildGenreSeedPlan (TRA-61)", () => {
 			name: "Fixture Artist",
 			slug: "artist:fixture-artist",
 			disambiguator: "British rock band, not the American rapper",
+		});
+	});
+});
+
+// TRA-476 (graph-integrity 1.5). 2026-10-14: 111 work links resolved to a homonym. The crawler keyed the
+// frontier by the edge's slug and dropped its `artist` and `mbid`, so Rohff's "Fitna" was never
+// materialized -- `track:fitna` (Akuma) was already cached -- and Rohff's link pointed at Akuma's node.
+describe("enqueueEdges artist context (TRA-476)", () => {
+	const rohff = (notable_tracks: ArtistNode["notable_tracks"]): ArtistNode =>
+		artistNode({ slug: "artist:rohff", name: "Rohff", notable_tracks });
+	const originalFlag = process.env.ODYSSEY_SCOPED_RELEASE_SLUGS;
+	afterEach(() => {
+		if (originalFlag === undefined) delete process.env.ODYSSEY_SCOPED_RELEASE_SLUGS;
+		else process.env.ODYSSEY_SCOPED_RELEASE_SLUGS = originalFlag;
+	});
+
+	it("enqueues Rohff's scoped Fitna with its artist, never the Akuma slug", () => {
+		const frontier = new FrontierQueue();
+		const node = rohff([{ type: "track", slug: "track:fitna--rohff", name: "Fitna", artist: "Rohff" }]);
+
+		enqueueEdges(node, 1, frontier, () => {});
+
+		expect(frontier.size()).toBe(1);
+		const popped = frontier.pop();
+		expect(popped?.slug).toBe("track:fitna--rohff");
+		expect(popped?.slug).not.toBe("track:fitna--akuma");
+		expect(popped?.entry.input).toMatchObject({
+			type: "track",
+			name: "Fitna",
+			slug: "track:fitna--rohff",
+			artist: "Rohff",
+		});
+		expect(popped?.entry.requesters).toEqual([{ slug: "artist:rohff", field: "notable_tracks" }]);
+	});
+
+	// The case that failed before TRA-462: a bare slug. The crawl worker skips any frontier slug that is
+	// already cached (`skip cached`, see crawler-e2e.test.ts), so with `track:fitna` held by Akuma the edge
+	// was never materialized. Pinned here so nobody reads the bare slug as a valid input again.
+	it("documents the pre-TRA-462 failure: a bare slug collides with the homonym's cached node", () => {
+		const frontier = new FrontierQueue();
+		const bare = makeSlug("track", "Fitna");
+		const node = rohff([{ type: "track", slug: bare, name: "Fitna", artist: "Rohff" }]);
+
+		enqueueEdges(node, 1, frontier, () => {});
+
+		// The frontier key is the Akuma node's key too: the worker's cache.has() check hits and the
+		// edge is dropped. A scoped slug (`track:fitna--rohff`) has no such collision.
+		expect(bare).toBe("track:fitna");
+		expect(frontier.pop()?.slug).toBe("track:fitna");
+	});
+
+	it("forwards the edge's mbid onto the pipeline input, and leaves it unset otherwise", () => {
+		const frontier = new FrontierQueue();
+		const mbid = "11111111-2222-3333-4444-555555555555";
+		const node = rohff([
+			{ type: "track", slug: "track:fitna--rohff", name: "Fitna", artist: "Rohff", mbid },
+			{ type: "track", slug: "track:autre--rohff", name: "Autre", artist: "Rohff" },
+		]);
+
+		enqueueEdges(node, 1, frontier, () => {});
+
+		expect(frontier.pop()?.entry.input.mbid).toBe(mbid);
+		expect(frontier.pop()?.entry.input).not.toHaveProperty("mbid");
+	});
+
+	it("records every parent that cites a target, once per field, and counts the re-push", () => {
+		const frontier = new FrontierQueue();
+		const edge = { type: "track", slug: "track:fitna--rohff", name: "Fitna", artist: "Rohff" } as const;
+		const other = artistNode({ slug: "artist:rohff-live", name: "Rohff Live", notable_tracks: [edge] });
+
+		enqueueEdges(rohff([edge]), 1, frontier, () => {});
+		enqueueEdges(rohff([edge]), 1, frontier, () => {}); // same parent, same field: no duplicate
+		enqueueEdges(other, 1, frontier, () => {});
+
+		expect(frontier.size()).toBe(1);
+		const popped = frontier.pop();
+		expect(popped?.entry.refCount).toBe(3);
+		expect(popped?.entry.requesters).toEqual([
+			{ slug: "artist:rohff", field: "notable_tracks" },
+			{ slug: "artist:rohff-live", field: "notable_tracks" },
+		]);
+	});
+
+	it("keeps recording a requester that arrives after the target was popped (in flight)", () => {
+		const frontier = new FrontierQueue();
+		const edge = { type: "track", slug: "track:fitna--rohff", name: "Fitna", artist: "Rohff" } as const;
+		enqueueEdges(rohff([edge]), 1, frontier, () => {});
+		const popped = frontier.pop();
+
+		const other = artistNode({ slug: "artist:rohff-live", name: "Rohff Live", notable_tracks: [edge] });
+		enqueueEdges(other, 1, frontier, () => {});
+
+		expect(frontier.size()).toBe(0);
+		expect(popped?.entry.requesters.map((r) => r.slug)).toEqual(["artist:rohff", "artist:rohff-live"]);
+	});
+
+	it("flag on: two works sharing a bare slug but credited to different artists are not merged", () => {
+		process.env.ODYSSEY_SCOPED_RELEASE_SLUGS = "true";
+		const frontier = new FrontierQueue();
+		const logs: string[] = [];
+		const akuma = artistNode({
+			slug: "artist:akuma",
+			name: "Akuma",
+			notable_tracks: [{ type: "track", slug: "track:fitna", name: "Fitna", artist: "Akuma" }],
+		});
+		const rohffBare = rohff([{ type: "track", slug: "track:fitna", name: "Fitna", artist: "Rohff" }]);
+
+		enqueueEdges(akuma, 1, frontier, (s) => logs.push(s));
+		enqueueEdges(rohffBare, 1, frontier, (s) => logs.push(s));
+
+		const popped = frontier.pop();
+		expect(frontier.size()).toBe(0);
+		expect(popped?.entry.input.artist).toBe("Akuma");
+		expect(popped?.entry.refCount).toBe(1);
+		expect(popped?.entry.requesters).toEqual([{ slug: "artist:akuma", field: "notable_tracks" }]);
+		expect(logs.some((l) => l.includes("not merged"))).toBe(true);
+	});
+
+	it("flag on: the conflict is still detected once the earlier target was popped, and for non-Latin names", () => {
+		process.env.ODYSSEY_SCOPED_RELEASE_SLUGS = "true";
+		const frontier = new FrontierQueue();
+		const bare = (artist: string) => ({ type: "track", slug: "track:song", name: "Song", artist }) as const;
+		const first = artistNode({ slug: "artist:a", name: "A", notable_tracks: [bare("坂本龍一")] });
+
+		enqueueEdges(first, 1, frontier, () => {});
+		frontier.pop(); // in flight: no longer in the queue, still owned by its artist
+
+		expect(frontier.hasArtistConflict("track:song", "宇多田ヒカル")).toBe(true);
+		expect(frontier.hasArtistConflict("track:song", "坂本龍一")).toBe(false);
+		expect(frontier.hasArtistConflict("track:song", undefined)).toBe(false);
+	});
+
+	it("flag off: the same bare-slug collision still merges by slug, as before", () => {
+		delete process.env.ODYSSEY_SCOPED_RELEASE_SLUGS;
+		const frontier = new FrontierQueue();
+		const edge = (artist: string) => ({ type: "track", slug: "track:fitna", name: "Fitna", artist }) as const;
+		const akuma = artistNode({ slug: "artist:akuma", name: "Akuma", notable_tracks: [edge("Akuma")] });
+
+		enqueueEdges(akuma, 1, frontier, () => {});
+		enqueueEdges(rohff([edge("Rohff")]), 1, frontier, () => {});
+
+		expect(frontier.size()).toBe(1);
+		expect(frontier.pop()?.entry.refCount).toBe(2);
+	});
+});
+
+// A parent that cites a requested slug AFTER the child was filed under its canonical slug missed the
+// requester pass: it is repointed before it is written instead.
+describe("FrontierQueue.repointResolved (TRA-476)", () => {
+	const requested = "project:new-forms--roni-size" as const;
+	const canonical = "project:new-forms--roni-size-reprazent" as const;
+	const target = {
+		slug: canonical,
+		artist: "Roni Size / Reprazent",
+		mbid: "66666666-7777-8888-9999-000000000000",
+	};
+
+	it("repoints a late parent's edge to the canonical slug, artist and mbid, without touching other edges", () => {
+		const frontier = new FrontierQueue();
+		frontier.markResolved(requested, "Roni Size", target);
+		const node = artistNode({
+			slug: "artist:krust",
+			name: "Krust",
+			discography: [
+				{ type: "project", slug: requested, name: "New Forms", artist: "Roni Size", year: "1997" },
+				{ type: "project", slug: "project:other--krust", name: "Other", artist: "Krust" },
+			],
+		});
+
+		const repointed = frontier.repointResolved(node) as ArtistNode;
+
+		expect(repointed.discography).toEqual([
+			{
+				type: "project",
+				slug: canonical,
+				name: "New Forms",
+				artist: target.artist,
+				mbid: target.mbid,
+				year: "1997",
+			},
+			{ type: "project", slug: "project:other--krust", name: "Other", artist: "Krust" },
+		]);
+		expect(node.discography[0]?.slug).toBe(requested); // the input is not mutated
+	});
+
+	it("keeps one edge when the list already cited the canonical slug", () => {
+		const frontier = new FrontierQueue();
+		frontier.markResolved(requested, "Roni Size", target);
+		const node = artistNode({
+			discography: [
+				{ type: "project", slug: requested, name: "New Forms", artist: "Roni Size" },
+				{ type: "project", slug: canonical, name: "New Forms", artist: target.artist },
+				{ type: "project", slug: requested, name: "New Forms (dup)", artist: "Roni Size" },
+			],
+		});
+
+		const repointed = frontier.repointResolved(node) as ArtistNode;
+
+		expect(repointed.discography.map((e) => e.slug)).toEqual([canonical]);
+	});
+
+	// A bare `track:fitna` is shared by Rohff's and Akuma's tracks (pre-migration cache). Resolving one
+	// must never move the other's edge, whichever is resolved or materialized first.
+	describe("homonyms sharing a bare slug", () => {
+		const bare = "track:fitna" as const;
+		const edge = (artist?: string) =>
+			({ type: "track", slug: bare, name: "Fitna", ...(artist ? { artist } : {}) }) as const;
+		const citing = (slug: `artist:${string}`, ...edges: ReturnType<typeof edge>[]) =>
+			artistNode({ slug, name: slug, notable_tracks: edges });
+		const rohffTarget = { slug: "track:fitna--rohff", artist: "Rohff" } as const;
+		const akumaTarget = { slug: "track:fitna--akuma", artist: "Akuma" } as const;
+
+		it("Rohff resolved first: Akuma's later node keeps its edge, its credit and its slug", () => {
+			const frontier = new FrontierQueue();
+			frontier.markResolved(bare, "Rohff", rohffTarget);
+			const akuma = citing("artist:akuma", edge("Akuma"));
+
+			expect(frontier.repointResolved(akuma)).toBe(akuma);
+			const rohff = frontier.repointResolved(citing("artist:rohff", edge("Rohff"))) as ArtistNode;
+			expect(rohff.notable_tracks).toEqual([{ ...edge("Rohff"), slug: "track:fitna--rohff" }]);
+		});
+
+		it("Akuma resolved first: Rohff's later node keeps its edge, then follows its own resolution", () => {
+			const frontier = new FrontierQueue();
+			frontier.markResolved(bare, "Akuma", akumaTarget);
+			const rohff = citing("artist:rohff", edge("Rohff"));
+
+			expect(frontier.repointResolved(rohff)).toBe(rohff);
+			frontier.markResolved(bare, "Rohff", rohffTarget);
+			const both = frontier.repointResolved(citing("artist:x", edge("Rohff"), edge("Akuma"))) as ArtistNode;
+			expect(both.notable_tracks.map((e) => e.slug)).toEqual(["track:fitna--rohff", "track:fitna--akuma"]);
+		});
+
+		it("never repoints an edge without an artist", () => {
+			const frontier = new FrontierQueue();
+			frontier.markResolved(bare, "Rohff", rohffTarget);
+			const anonymous = citing("artist:anon", edge());
+
+			expect(frontier.repointResolved(anonymous)).toBe(anonymous);
 		});
 	});
 });
