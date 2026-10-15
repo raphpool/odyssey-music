@@ -186,8 +186,13 @@ jobs:
           # job-scoped HOME (first step), with the action's own ~/.claude/settings.json. The tools come from
           # --allowedTools below and the prompt reads REVIEW.md itself; nothing in the review needs CLAUDE.md, so it
           # is deliberately not loaded, and not read from the base ref either (REVIEW.md does not refer to it).
+          # `--strict-mcp-config` closes the other in-repo channel: the action writes `enableAllProjectMcpServers:
+          # true` into the user settings it keeps, so a PR editing the root `.mcp.json` would otherwise start its
+          # own MCP server (a `command`) on the runner. Only the `--mcp-config` the action itself adds (the inline
+          # comment tool) is used with it.
           claude_args: |
             --setting-sources user
+            --strict-mcp-config
             --model claude-opus-5
             --effort xhigh
             --max-turns 60

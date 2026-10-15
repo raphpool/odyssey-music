@@ -212,6 +212,7 @@ describe("tier-guard sensitive paths (TRA-498)", () => {
 		it("takes the git diff of the job with --name-only --no-renames", () => {
 			expect(diffCommand).toContain("--name-only");
 			expect(diffCommand).toContain("--no-renames");
+			expect(diffCommand).toMatch(/git diff -z /);
 		});
 
 		it.each([
@@ -229,6 +230,25 @@ describe("tier-guard sensitive paths (TRA-498)", () => {
 				expect(listed.status).toBe(0);
 				expect(listed.stdout.trim().split("\n").sort()).toEqual([from, to].sort());
 				expect(spawnSync("grep", ["-Eqi", grep], { input: listed.stdout }).status).toBe(0);
+			} finally {
+				rmSync(dir, { recursive: true, force: true });
+			}
+		});
+
+		it("lists a path with a non-ASCII byte raw, not quoted, so the `^` anchors still match", () => {
+			const { dir, base } = withRename("src/a.ts", ".github/workflows/é.yml");
+			try {
+				const listed = spawnSync("bash", ["-c", diffCommand], {
+					cwd: dir,
+					encoding: "utf8",
+					env: { ...process.env, BASE: base },
+				});
+				expect(listed.stdout.trim().split("\n").sort()).toEqual([".github/workflows/é.yml", "src/a.ts"]);
+				expect(spawnSync("grep", ["-Eqi", grep], { input: listed.stdout }).status).toBe(0);
+				// The default output, which the job used to read: quoted and escaped, hence invisible to the grep.
+				const quoted = git(dir, "diff", "--name-only", "--no-renames", `${base}...HEAD`);
+				expect(quoted).toContain('"');
+				expect(spawnSync("grep", ["-Eqi", grep], { input: quoted.replace("src/a.ts", "") }).status).toBe(1);
 			} finally {
 				rmSync(dir, { recursive: true, force: true });
 			}

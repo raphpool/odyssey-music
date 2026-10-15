@@ -134,8 +134,11 @@ jobs:
           BASE="origin/$BASE_REF"
           git fetch origin "$BASE_REF" --depth=50
           # TRA-553 (2026-10-15): --no-renames, otherwise `git mv REVIEW.md docs/REVIEW.md` lists only the
-          # destination and the sensitive source path escapes the grep; with it both sides are listed.
-          CHANGED=$(git diff --name-only --no-renames "$BASE"...HEAD)
+          # destination and the sensitive source path escapes the grep; with it both sides are listed. -z: without
+          # it git quotes a path with a non-ASCII byte (`".github/workflows/\303\251.yml"`), and the leading quote
+          # defeats every `^` anchor of the pattern; NUL-separated, paths come out raw (a newline inside a path
+          # can only split it into more lines, which over-escalates and never hides one).
+          CHANGED=$(git diff -z --name-only --no-renames "$BASE"...HEAD | tr '\0' '\n')
           # TRA-498: this pattern is `sensitivePath` of scripts/ci/review-gate-policy.ts with `\/` written `/`;
           # test/ci-integrity-job.test.ts fails when the two drift apart. TRA-553: `-i` is its flag `i` (APFS
           # ignores case on the runner, so `review.md` is `REVIEW.md` there).
