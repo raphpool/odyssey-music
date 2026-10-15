@@ -109,9 +109,27 @@ export class NodeCache {
 		}
 	}
 
+	/**
+	 * Node file for `slug`. Throws (invariant) when the body could leave `nodes/<type>/`.
+	 *
+	 * 2026-10-15 (TRA-502): `GET /node/artist:..%2F..%2Foutside` is decoded to `artist:../../outside`
+	 * by the server and used to resolve to a `.json` file outside the cache root (served when it
+	 * parsed as a node). Every route and every reverse-edge write funnels through here, so the
+	 * check lives here rather than in each handler. Legacy non-canonical bodies WITHOUT a path
+	 * separator (spaces, dots, upper case) stay valid: they exist on disk and must stay readable.
+	 */
 	private pathFor(slug: Slug): string {
 		const { type, body } = parseSlug(slug);
-		return join(this.root, "nodes", type, `${body}.json`);
+		if (!isPathSafeBody(body)) {
+			throw new Error("Unsafe slug body: path separators, '..' and NUL are not allowed");
+		}
+		const typeDir = join(this.root, "nodes", type);
+		const file = join(typeDir, `${body}.json`);
+		// Belt and braces: whatever the body contains, the file must be a direct child of typeDir.
+		if (dirname(file) !== typeDir) {
+			throw new Error("Unsafe slug body: resolved outside nodes/<type>/");
+		}
+		return file;
 	}
 
 	private pendingFile(): string {
@@ -147,6 +165,7 @@ export class NodeCache {
 	}
 
 	async has(slug: Slug): Promise<boolean> {
+		if (!isPathSafeSlug(slug)) return false;
 		try {
 			await readFile(this.pathFor(slug), "utf8");
 			return true;
@@ -157,6 +176,9 @@ export class NodeCache {
 	}
 
 	async get(slug: Slug): Promise<NodePayload> {
+		// Outside the try on purpose: an unsafe slug is a client error (400), not "invalid cached data",
+		// and it must be rejected before any filesystem access.
+		if (!isPathSafeSlug(slug)) throw new ValidationError("Invalid slug");
 		try {
 			const raw = await readFile(this.pathFor(slug), "utf8");
 			const obj = JSON.parse(raw) as unknown;
@@ -177,12 +199,11 @@ export class NodeCache {
 			return legacy;
 		} catch (e) {
 			if (isNotFoundError(e)) throw new NotFoundError(`Node not found: ${slug}`, { cause: e });
-			throw new ValidationError(
-				`Invalid cached node ${slug}: ${e instanceof Error ? e.message : String(e)}`,
-				{
-					cause: e,
-				},
-			);
+			// 2026-10-15 (TRA-502): the message used to embed `e.message`, and for a non-JSON file
+			// JSON.parse quotes the start of the content ("SECRET=hun"... is not valid JSON), which the
+			// server then returned to the client. The detail stays in the log and in `cause`.
+			log.warn("invalid cached node", { slug, error: e instanceof Error ? e.message : String(e) });
+			throw new ValidationError(`Invalid cached node ${slug}`, { cause: e });
 		}
 	}
 
@@ -511,6 +532,17 @@ export class NodeCache {
 			}
 		});
 	}
+}
+
+function isPathSafeBody(body: string): boolean {
+	return !(body.includes("/") || body.includes("\\") || body.includes("..") || body.includes("\0"));
+}
+
+/** True when `slug` is well formed and its body cannot leave `nodes/<type>/`. */
+function isPathSafeSlug(slug: Slug): boolean {
+	const idx = slug.indexOf(":");
+	// Malformed slugs (no colon, bad type) are left to parseSlug's own error path.
+	return idx < 0 || isPathSafeBody(slug.slice(idx + 1));
 }
 
 function applyReverses(node: NodePayload, pendings: PendingReverse[]): NodePayload {

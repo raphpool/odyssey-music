@@ -1,19 +1,62 @@
 import type { NodeCache } from "../cache.js";
 import { isNotFoundError } from "../errors.js";
 import { type GenreRedirects, resolveReadSlug } from "../genre-registry.js";
-import { lookupAlbumArt } from "../itunes.js";
+import { isAllowedImageUrl } from "../images/hosts.js";
 import { logger } from "../logger.js";
-import type { EdgeRef, NodePayload, Slug } from "../types.js";
+import type { EdgeRef, Slug } from "../types.js";
 
 const log = logger.child({ module: "image-service" });
 
-export function createImageService(deps: { cache: NodeCache; redirects: GenreRedirects }) {
-	async function resolveDisplayImage(
-		slug: Slug,
-		visited: Set<string> = new Set(),
-	): Promise<{ slug: Slug; image_url: string | null; source: string }> {
+// Same horizon as the Cache-Control on GET /image. Anything that writes a node clears the whole
+// map (see clearNegativeCache), so a freshly resolved image never waits for the TTL.
+const NEGATIVE_TTL_MS = 24 * 60 * 60 * 1000;
+
+interface DisplayImage {
+	slug: Slug;
+	image_url: string | null;
+	source: string;
+}
+
+/**
+ * Read-only image lookup behind GET /image/:slug (TRA-475, plan decision 5). Order: the node's
+ * stored `image_url`, then its legacy `photo_url` / `cover_url`, then an image borrowed from a
+ * related node, then "no-match". No network call and no cache write.
+ *
+ * 2026-10-14: this path used to ask iTunes at read time, take the first search result and persist
+ * it into the node, which gave Grandmaster Flash the cover of an Earth, Wind & Fire compilation.
+ * Finding the right image is the resolver's job (src/images/resolve-image.ts), at materialization
+ * or backfill time.
+ */
+export function createImageService(deps: {
+	cache: NodeCache;
+	redirects: GenreRedirects;
+	// Injectable clock for tests: a negative entry expires 24h after the miss.
+	now?: () => number;
+}) {
+	const now = deps.now ?? Date.now;
+	// slug -> expiry. Only a root lookup that ended in "no-match" lands here, and such a slug is a
+	// live node or a redirect to one, so the map is bounded by the graph, not by what clients ask.
+	// A sub-lookup's miss is relative to the `visited` set of the walk that found it (the cycle
+	// guard), so it is not recorded.
+	const negative = new Map<Slug, number>();
+
+	function isKnownMiss(slug: Slug): boolean {
+		const expiry = negative.get(slug);
+		if (expiry === undefined) return false;
+		if (expiry > now()) return true;
+		negative.delete(slug);
+		return false;
+	}
+
+	/** Forget every remembered miss. server.ts calls it from invalidateCacheIndex, i.e. whenever a node was written. */
+	function clearNegativeCache(): void {
+		negative.clear();
+	}
+
+	async function walk(slug: Slug, visited: Set<string>): Promise<DisplayImage> {
 		if (visited.has(slug)) return { slug, image_url: null, source: "cycle" };
 		visited.add(slug);
+		if (isKnownMiss(slug)) return { slug, image_url: null, source: "no-match" };
 
 		// 2026-09-10 (TRA-39): without resolving the redirect first, GET /image/genre:electronic-music
 		// served { image_url: null, source: "not-cached" } forever (and cached that null for 24h,
@@ -27,67 +70,53 @@ export function createImageService(deps: { cache: NodeCache; redirects: GenreRed
 		});
 		if (!node) return { slug, image_url: null, source: "not-cached" };
 
-		const raw = node as unknown as Record<string, unknown>;
-		const directField = node.type === "artist" ? "photo_url" : "cover_url";
-		const direct = raw[directField];
-		if (typeof direct === "string" && direct) {
-			return { slug, image_url: direct, source: "self" };
+		if (node.image_url) {
+			if (isAllowedImageUrl(node.image_url)) {
+				return { slug, image_url: node.image_url, source: node.image_source ?? "legacy" };
+			}
+			// The schema already refuses such a value on write and on read; this guards a node that
+			// reached us another way, since the URL ends up in an <img src>.
+			log.warn("stored image_url ignored: host not allowed", { slug: lookupSlug });
 		}
 
-		if (node.type === "project" || node.type === "track") {
-			const artistRef = (raw.artists as EdgeRef[] | undefined)?.[0];
-			const itunes = await lookupAlbumArt(node.name, artistRef?.name);
-			if (itunes) {
-				try {
-					// TRA-455: "itunes-jit" left ImageSource and the schema now rejects it. Zod used to strip
-					// the field on write, so dropping it keeps the persisted node identical. The whole
-					// write goes away in TRA-475 (3.3).
-					const updated = { ...node, cover_url: itunes } as NodePayload;
-					await deps.cache.write(updated);
-				} catch (e) {
-					log.warn("image persist failed", { slug, error: e instanceof Error ? e.message : String(e) });
-				}
-				return { slug, image_url: itunes, source: "itunes" };
-			}
-		}
-
-		const tryEdges = async (
-			refs: EdgeRef | EdgeRef[] | undefined,
-		): Promise<{ url: string; via: Slug } | null> => {
-			if (!refs) return null;
-			const list = Array.isArray(refs) ? refs : [refs];
-			for (const r of list) {
-				const recurse = await resolveDisplayImage(r.slug, visited);
-				if (recurse.image_url) return { url: recurse.image_url, via: r.slug };
-			}
-			return null;
-		};
+		// photo_url / cover_url predate the allowlist and are served as is: the mobile layer filters
+		// them with safePublicHttpsUrl and the web front escapes them.
+		const legacy = node.type === "artist" ? node.photo_url : "cover_url" in node ? node.cover_url : undefined;
+		if (legacy) return { slug, image_url: legacy, source: "legacy" };
 
 		const edges: Array<EdgeRef | EdgeRef[] | undefined> = (() => {
 			switch (node.type) {
 				case "track":
-					return [raw.project as EdgeRef | undefined];
+					return [node.project];
 				case "artist":
-					return [raw.discography as EdgeRef[] | undefined, raw.notable_tracks as EdgeRef[] | undefined];
+					return [node.discography, node.notable_tracks];
 				case "genre":
-					return [
-						raw.landmark_projects as EdgeRef[] | undefined,
-						raw.landmark_tracks as EdgeRef[] | undefined,
-					];
+					return [node.landmark_projects, node.landmark_tracks];
 				case "label":
-					return [raw.notable_releases as EdgeRef[] | undefined];
+					return [node.notable_releases];
 				default:
 					return [];
 			}
 		})();
 
-		for (const edge of edges) {
-			const hit = await tryEdges(edge);
-			if (hit) return { slug, image_url: hit.url, source: `related:${hit.via}` };
+		for (const refs of edges) {
+			if (!refs) continue;
+			for (const ref of Array.isArray(refs) ? refs : [refs]) {
+				const hit = await walk(ref.slug, visited);
+				if (hit.image_url) return { slug, image_url: hit.image_url, source: `related:${ref.slug}` };
+			}
 		}
 
 		return { slug, image_url: null, source: "no-match" };
 	}
 
-	return { resolveDisplayImage };
+	async function resolveDisplayImage(slug: Slug): Promise<DisplayImage> {
+		// Answered from memory: do not go through walk(), whose miss would restart the 24h clock.
+		if (isKnownMiss(slug)) return { slug, image_url: null, source: "no-match" };
+		const result = await walk(slug, new Set());
+		if (result.source === "no-match") negative.set(slug, now() + NEGATIVE_TTL_MS);
+		return result;
+	}
+
+	return { resolveDisplayImage, clearNegativeCache };
 }

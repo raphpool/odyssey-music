@@ -89,8 +89,12 @@ async function getCacheIndex(): Promise<CacheIndex> {
 	return cacheIndex;
 }
 
+// Called after every node write (materialize, mobile search). It also empties the image service's
+// 24h negative cache (TRA-475): a node that just gained an image_url must not keep answering
+// "no-match" for the slugs that borrow from it. `imageService` is declared below; this only runs later.
 function invalidateCacheIndex(): void {
 	cacheIndex = null;
+	imageService.clearNegativeCache();
 }
 
 const handleSearch = createSearchService({ getCacheIndex, catalogIndex });
@@ -247,9 +251,9 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 		return;
 	}
 	if (req.method === "GET" && path.startsWith("/node/")) {
-		const raw = decodeURIComponent(path.slice("/node/".length));
+		const raw = decodeSlugParam(path.slice("/node/".length));
 		if (!raw) {
-			json(res, 400, { error: "missing slug" });
+			json(res, 400, { error: "missing or malformed slug" });
 			return;
 		}
 		const result = await getNode(raw as Slug);
@@ -261,9 +265,9 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 		return;
 	}
 	if (req.method === "GET" && path.startsWith("/image/")) {
-		const raw = decodeURIComponent(path.slice("/image/".length));
+		const raw = decodeSlugParam(path.slice("/image/".length));
 		if (!raw) {
-			json(res, 400, { error: "missing slug" });
+			json(res, 400, { error: "missing or malformed slug" });
 			return;
 		}
 		try {
@@ -273,7 +277,11 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 			res.setHeader("Cache-Control", "public, max-age=86400, stale-while-revalidate=3600");
 			json(res, 200, result);
 		} catch (e) {
-			json(res, 500, { error: e instanceof Error ? e.message : String(e) });
+			// TRA-502: a client error (unsafe slug) answers 400, and the body never carries a
+			// file extract; the full error goes to the log.
+			const status = e instanceof AppError && e.status ? e.status : 500;
+			log.error("image request failed", { slug: raw, error: e instanceof Error ? e.message : String(e) });
+			json(res, status, { error: status < 500 ? "invalid slug or node" : "image resolution failed" });
 		}
 		return;
 	}
@@ -323,7 +331,11 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 	// GET /resolve/:trackSlug → returns {videoId, url, title, resolvedAt}, cached
 	// in a sidecar file. Slug is the bare slug ("track:foo") or just the name part.
 	if (req.method === "GET" && path.startsWith("/resolve/")) {
-		const raw = decodeURIComponent(path.slice("/resolve/".length));
+		const raw = decodeSlugParam(path.slice("/resolve/".length));
+		if (!raw) {
+			json(res, 400, { error: "missing or malformed slug" });
+			return;
+		}
 		const force = url.searchParams.get("force") === "1";
 		await handleResolve(res, raw, force);
 		return;
@@ -335,6 +347,15 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 		return;
 	}
 	json(res, 404, { error: "not found", path });
+}
+
+/** Percent-decodes a slug path segment; null when empty or malformed (a client error, not a 500). */
+function decodeSlugParam(segment: string): string | null {
+	try {
+		return decodeURIComponent(segment) || null;
+	} catch {
+		return null;
+	}
 }
 
 function clampLimit(raw: string | null): number {
