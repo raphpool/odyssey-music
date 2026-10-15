@@ -123,23 +123,25 @@ const FACT_LABEL = {
 };
 
 // ─── Hero image resolution ──────────────────────────────────────────────
-// Each node type sources its hero image differently:
-//   project           — own cover_url
-//   track             — own cover_url, else parent project's
-//   artist            — own photo_url, else any of their projects' covers
-//   genre             — landmark project's cover, else landmark track's project
+// Every projected node carries its own `image_url` (TRA-455, all five types): it wins. Only a node
+// without one (or whose URL safeCssUrl refuses) walks the related-node chain, per type:
+//   track             — parent project's cover
+//   artist            — a project's cover, else a notable track's
+//   genre             — landmark project's cover, else landmark track's
 //   label             — notable release's cover
-// Returns null when nothing is resolvable; the template renders the
-// `.hero.no-image` gradient placeholder in that case.
+//   project           — nothing (no related node to borrow from)
+// Returns null when nothing is resolvable; the template renders the `.hero.no-image` gradient
+// placeholder and, when the JIT is on, asks `/image/:slug`. A refused URL is skipped here rather
+// than returned: returning it would end the search with a blank hero and no JIT fallback (TRA-466).
 function resolveHeroImage(node) {
-  if (node.image_url) return node.image_url;
+  if (safeCssUrl(node.image_url)) return node.image_url;
   const edges = node.edges || {};
   const pick = (refs) => {
     if (!refs) return null;
     const list = Array.isArray(refs) ? refs : [refs];
     for (const r of list) {
       const target = byId.get(r.slug);
-      if (target && target.image_url) return target.image_url;
+      if (target && safeCssUrl(target.image_url)) return target.image_url;
     }
     return null;
   };
@@ -150,6 +152,13 @@ function resolveHeroImage(node) {
     case "label":   return pick(edges.notable_releases);
     default:        return null;
   }
+}
+
+// True when the hero shows the node's OWN image and that image is an album cover standing in for a
+// portrait (TRA-466; `image_source: "derived-cover"`, e.g. an artist page with a record sleeve).
+// The stylesheet keeps the type gradient behind such a cover so it never reads as a photo.
+function isDerivedCoverHero(node, heroUrl) {
+  return node.image_source === "derived-cover" && !!heroUrl && heroUrl === node.image_url;
 }
 
 // Short meta line shown under the hero title (e.g. "Radiohead · Kid A · 2000").
@@ -228,11 +237,16 @@ function setBgImage(el, u) {
 const imageJitPromises = new Map();
 
 /**
- * Fire `GET /image/:slug` (idempotent per slug), persist the resolved URL into
+ * Return the node's stored image_url if it has a usable one; otherwise fire
+ * `GET /image/:slug` (idempotent per slug), persist the resolved URL into
  * the in-memory byId graph for instant reuse, and return the URL or null.
  * Used by both jitResolveHero (focused hero) and the project-card carousel.
  */
 async function jitResolveImage(slug) {
+  // A stored image_url (TRA-455/466) is the answer: the JIT is only the fallback for nodes
+  // that have none (or whose URL safeCssUrl refuses).
+  const known = byId.get(resolveId(slug));
+  if (known && safeCssUrl(known.image_url)) return known.image_url;
   if (!JIT_ENABLED) return null;
   if (!imageJitPromises.has(slug)) {
     imageJitPromises.set(slug, fetch(`${API_BASE}/image/${encodeURIComponent(slug)}`).then((r) => r.ok ? r.json() : null).catch(() => null));
@@ -275,13 +289,15 @@ async function paintCardWhenReady(cardEl) {
   cardEl.dataset.needsImage = "0";
 }
 
-function paintHero(url) {
+// `derived`: the image is an album cover standing in for a portrait (see isDerivedCoverHero).
+function paintHero(url, { derived = false } = {}) {
   const node = contentEl.querySelector(".node");
   if (!node) return;
   const hero = node.querySelector(".hero");
   if (!hero) return;
   if (!setBgImage(hero, url)) return;
   hero.classList.remove("no-image");
+  hero.classList.toggle("hero-derived", derived);
   // Insert (or update) the tint backdrop. Inserted at the very start of .node so
   // it sits beneath everything via z-index: -2 / -1 in the stylesheet.
   let tint = node.querySelector(":scope > .node-tint");
@@ -596,6 +612,16 @@ async function pingApi() {
     for (const f of LIST_EDGES[node.type]) if (Array.isArray(node[f]) && node[f].length) edges[f] = node[f];
     for (const f of SINGLE_EDGES[node.type]) if (node[f] && typeof node[f] === "object") edges[f] = node[f];
     const vizNode = { id: node.slug, type: node.type, name: node.name, teaser: teaserVal, article: node.editorial_article, citations: node.citations || [], edges };
+    // Same projection as src/graph.ts (TRA-455): image_url, else the legacy per-type URL;
+    // image_source only describes image_url. Dropping them here left a freshly materialized
+    // node imageless until the next full reload (TRA-466).
+    if (node.image_url) {
+      vizNode.image_url = node.image_url;
+      if (node.image_source) vizNode.image_source = node.image_source;
+    } else {
+      const legacy = [node.photo_url, node.cover_url].find((u) => typeof u === "string" && u !== "");
+      if (legacy) vizNode.image_url = legacy;
+    }
     byId.set(vizNode.id, vizNode);
     DATA.nodes.push(vizNode);
     DATA.total = DATA.nodes.length;
@@ -1897,7 +1923,7 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
   const heroUrl = resolveHeroImage(node);
   const heroMeta = buildHeroMeta(node);
   const heroBg = bgStyleAttr(heroUrl);
-  const heroClass = heroBg ? "" : " no-image";
+  const heroClass = heroBg ? (isDerivedCoverHero(node, heroUrl) ? " hero-derived" : "") : " no-image";
   const tintHtml = heroBg
     ? `<div class="node-tint" ${heroBg}></div><div class="node-tint-fade"></div>`
     : "";
