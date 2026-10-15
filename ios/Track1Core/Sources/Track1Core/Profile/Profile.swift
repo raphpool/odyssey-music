@@ -36,6 +36,9 @@ public struct Profile: Codable, Equatable, Sendable {
 	public let revision: Int
 	public let onboardingCompleted: Bool
 	public let flowID: UUID
+	/// The editorial families and genres behind `genreIDs`. Nil for a profile written before the editorial
+	/// taxonomy, which keeps the key absent from the file.
+	public let selection: GenreSelection?
 
 	enum CodingKeys: String, CodingKey {
 		case version
@@ -44,12 +47,28 @@ public struct Profile: Codable, Equatable, Sendable {
 		case revision
 		case onboardingCompleted = "onboarding_completed"
 		case flowID = "flow_id"
+		case selection
+	}
+
+	// Explicit because a `let` optional gets no default value in the memberwise initializer.
+	init(
+		version: Int, localID: UUID, genreIDs: [NodeIdentity], revision: Int, onboardingCompleted: Bool,
+		flowID: UUID, selection: GenreSelection? = nil
+	) {
+		self.version = version
+		self.localID = localID
+		self.genreIDs = genreIDs
+		self.revision = revision
+		self.onboardingCompleted = onboardingCompleted
+		self.flowID = flowID
+		self.selection = selection
 	}
 
 	func isValid() -> Bool {
 		version == Self.version && revision > 0 && onboardingCompleted
 			&& genreIDs.allSatisfy { $0.type == .genre }
 			&& Set(genreIDs).count == genreIDs.count
+			&& (selection?.isValid() ?? true)
 	}
 }
 
@@ -58,23 +77,29 @@ public struct ProfileDraft: Codable, Equatable, Sendable {
 	public let flowID: UUID
 	public let genreIDs: [NodeIdentity]
 	public let onboardingStartedRecorded: Bool
+	public let selection: GenreSelection?
 
 	enum CodingKeys: String, CodingKey {
 		case version
 		case flowID = "flow_id"
 		case genreIDs = "genre_ids"
 		case onboardingStartedRecorded = "onboarding_started_recorded"
+		case selection
 	}
 
-	public init(version: Int, flowID: UUID, genreIDs: [NodeIdentity], onboardingStartedRecorded: Bool) {
+	public init(
+		version: Int, flowID: UUID, genreIDs: [NodeIdentity], onboardingStartedRecorded: Bool,
+		selection: GenreSelection? = nil
+	) {
 		self.version = version
 		self.flowID = flowID
 		self.genreIDs = genreIDs
 		self.onboardingStartedRecorded = onboardingStartedRecorded
+		self.selection = selection
 	}
 
 	func isValid() -> Bool {
 		version == Profile.version && genreIDs.allSatisfy { $0.type == .genre }
-			&& Set(genreIDs).count == genreIDs.count
+			&& Set(genreIDs).count == genreIDs.count && (selection?.isValid() ?? true)
 	}
 }
