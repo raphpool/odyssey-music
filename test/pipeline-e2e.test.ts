@@ -758,6 +758,7 @@ describe("MB identity at enrichment (TRA-473)", () => {
 					candidates: 1,
 					path: "name",
 					unavailable: false,
+					matchedWords: [],
 				}));
 				vi.mocked(m.fetchArtistDiscographyMb).mockImplementation(async () => [
 					{
@@ -793,6 +794,7 @@ describe("MB identity at enrichment (TRA-473)", () => {
 					candidates: 3,
 					path: "name",
 					unavailable: false,
+					matchedWords: [],
 				}));
 				const runPipeline = await loadRunPipeline();
 				const lines: string[] = [];

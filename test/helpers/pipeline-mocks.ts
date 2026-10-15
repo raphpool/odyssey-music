@@ -235,6 +235,7 @@ export function installPipelineMocks(options: InstallPipelineMocksOptions): void
 		candidates: 1,
 		path: "name",
 		unavailable: false,
+		matchedWords: [],
 	}));
 	vi.mocked(fetchArtistDiscographyMb).mockImplementation(async () => []);
 	vi.mocked(fetchEntityGenresMb).mockImplementation(async () => [...mbGenres]);
