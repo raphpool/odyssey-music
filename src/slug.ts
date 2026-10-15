@@ -33,6 +33,33 @@ export function normalizeSlugBody(name: string): string {
 	return s;
 }
 
+// Whole-group contents (after trimming) that are edition noise rather than part of the work's
+// identity. Anything not matching in full (remix, live, "pt. 3", "version", a number) is kept.
+const EDITION_NOISE =
+	/^(?:(?:\d{4}\s+)?remaster(?:ed)?|deluxe(?:\s+edition)?|(?:expanded|anniversary|special|collector['’]?s|bonus\s+track)\s+edition|bonus\s+tracks?|explicit|clean|original\s+mix|(?:feat|ft)\.?\s+.+|featuring\s+.+)$/iu;
+
+/**
+ * Normalization of a work TITLE (project/track) for identity comparison.
+ *
+ * Same flattening as normalizeSlugBody (NFKD, lowercase, "&" -> "and", non-alphanumeric run ->
+ * "-") with two differences, because a title's parentheses are often part of what it names:
+ * - a trailing "(...)" / "[...]" is KEPT: "Booty La La (Loefah remix)", "Fitna (Live)" and
+ *   "aisatsana [102]" are not the same work as the bare title;
+ * - groups that are pure edition noise are dropped first, anywhere in the title: remaster(ed),
+ *   "<year> remaster", deluxe (edition), expanded/anniversary/special/collector's/bonus track
+ *   edition, bonus track(s), explicit, clean, original mix, feat./ft./featuring ...
+ *   "Kid A (Deluxe Edition)" and "Kid A" are the same work.
+ */
+export function normalizeTitleBody(title: string): string {
+	let s = title.normalize("NFKD").replace(/[̀-ͯ]/g, "");
+	s = s.replace(/\(([^()]*)\)|\[([^[\]]*)\]/gu, (group, round?: string, square?: string) =>
+		EDITION_NOISE.test((round ?? square ?? "").trim()) ? " " : group,
+	);
+	s = s.toLowerCase().replace(/&/g, " and ");
+	s = s.replace(/[^a-z0-9]+/g, "-");
+	return s.replace(/^-+|-+$/g, "");
+}
+
 export function makeSlug(type: NodeType, name: string, disambiguator?: string): Slug {
 	const body = normalizeSlugBody(name);
 	if (!body) {

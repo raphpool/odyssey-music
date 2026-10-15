@@ -12,7 +12,7 @@
  */
 import { musicBrainzConfig } from "./config.js";
 import { logger } from "./logger.js";
-import { normalizeSlugBody } from "./slug.js";
+import { normalizeSlugBody, normalizeTitleBody } from "./slug.js";
 import type { NodeType } from "./types.js";
 
 export interface CatalogResult {
@@ -885,16 +885,21 @@ function containsWords(haystack: string, needle: string): boolean {
 /**
  * Choose the candidate MB actually means, or null. Never defaults to the first result: MB ranks
  * "New Forms²" and "New Forms" both at 100, so rank carries no identity.
- * 1. keep only candidates whose normalized title equals the requested one;
+ * 1. keep only candidates whose normalized title equals the requested one. Titles go through
+ *    normalizeTitleBody, NOT normalizeSlugBody: the latter drops a trailing "(...)", which made
+ *    "Fitna (Live)" == "Fitna" and "Get Lucky (Daft Punk Remix)" == "Get Lucky" (TRA-452 review,
+ *    2026-10-15) so the credit step could return the live or remixed version. Edition noise
+ *    ("Kid A (Deluxe Edition)", "(2019 Remaster)", "(feat. X)") is ignored on purpose: it names
+ *    the same work, and MB catalogues the bare title as one release group;
  * 2. among them, the first whose credit (credited-as or canonical name) equals or contains the hint;
  * 3. otherwise the single remaining exact-title candidate; otherwise null.
  */
 function pickByTitleAndCredit<
 	T extends { id: string; title: string; "artist-credit"?: MbArtistCreditEntry[] | undefined },
 >(candidates: T[], title: string, artistHint: string | undefined): T | null {
-	const wanted = normalizeSlugBody(title);
+	const wanted = normalizeTitleBody(title);
 	if (!wanted) return null;
-	const exact = candidates.filter((c) => normalizeSlugBody(c.title) === wanted);
+	const exact = candidates.filter((c) => normalizeTitleBody(c.title) === wanted);
 	const hint = artistHint ? normalizeSlugBody(artistHint) : "";
 	if (hint) {
 		const byCredit = exact.find((c) =>
@@ -916,7 +921,7 @@ function luceneQuery(
 ): string | null {
 	// A title with nothing left after normalization ("!!!") can never be verified against a result.
 	const phrase = lucenePhrase(title);
-	if (!phrase || !normalizeSlugBody(title)) return null;
+	if (!phrase || !normalizeTitleBody(title)) return null;
 	// Same for the hint: a punctuation-only hint would only narrow the search to nothing.
 	const hint = artistHint && normalizeSlugBody(artistHint) ? lucenePhrase(artistHint) : "";
 	return hint ? `${field}:"${phrase}" AND artist:"${hint}"` : `${field}:"${phrase}"`;

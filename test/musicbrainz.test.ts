@@ -460,6 +460,43 @@ describe("resolveReleaseGroup", () => {
 		expect(urls).toHaveLength(0);
 	});
 
+	it("resolves each release group of a title and its remixes to its own MBID", async () => {
+		const bugz = "99999999-0000-4000-8000-0000000000b1";
+		const bare = hit("99999999-aaaa-4aaa-8aaa-000000000001", "Booty La La", [[bugz, "Bugz in the Attic"]]);
+		const loefah = hit("99999999-aaaa-4aaa-8aaa-000000000002", "Booty La La (Loefah remix)", [
+			[bugz, "Bugz in the Attic"],
+		]);
+		stubMb({ "release-groups": [loefah, bare] });
+		expect((await resolveReleaseGroup("Booty La La", "Bugz in the Attic"))?.mbid).toBe(bare.id);
+		stubMb({ "release-groups": [bare, loefah] });
+		expect((await resolveReleaseGroup("Booty La La (Loefah remix)", "Bugz in the Attic"))?.mbid).toBe(
+			loefah.id,
+		);
+	});
+
+	// Edition noise is deliberately NOT part of a release group's identity: MB files "Kid A" once,
+	// whatever edition a source names, so a "(Deluxe Edition)" title must still find it.
+	it("treats edition noise in the requested title as the same work", async () => {
+		stubMb({
+			"release-groups": [
+				hit("99999999-aaaa-4aaa-8aaa-000000000003", "Kid A", [
+					["99999999-0000-4000-8000-0000000000b2", "Radiohead"],
+				]),
+				hit("99999999-aaaa-4aaa-8aaa-000000000004", "Kid A Mnesia", [
+					["99999999-0000-4000-8000-0000000000b2", "Radiohead"],
+				]),
+			],
+		});
+		const out = await resolveReleaseGroup("Kid A (Deluxe Edition)", "Radiohead");
+		expect(out?.mbid).toBe("99999999-aaaa-4aaa-8aaa-000000000003");
+	});
+
+	it("returns null for a title made only of edition noise, without calling MB", async () => {
+		const urls = stubMb({ "release-groups": [] });
+		expect(await resolveReleaseGroup("(Remastered)", "Someone")).toBeNull();
+		expect(urls).toHaveLength(0);
+	});
+
 	it("returns null on a network error, an HTTP error and a malformed response", async () => {
 		stubMbNetworkError();
 		expect(await resolveReleaseGroup("Network Down", "Anyone")).toBeNull();
@@ -521,6 +558,48 @@ describe("resolveRecording", () => {
 			],
 		});
 		expect(await resolveRecording("Get Lucky Original", "Daft Punk")).toBeNull();
+	});
+
+	// Regression, TRA-452 review 2026-10-15: normalizeSlugBody dropped a trailing "(...)", so the
+	// live version, listed first, was an "exact" match for the studio title and won on credit.
+	it("keeps a parenthesised version distinct from the bare title, in both directions", async () => {
+		const live = hit("aaaaaaaa-1111-4111-8111-000000000010", "Fitna (Live)", [
+			["bbbbbbbb-2222-4222-8222-000000000010", "Rohff"],
+		]);
+		const studio = hit("aaaaaaaa-1111-4111-8111-000000000011", "Fitna", [
+			["bbbbbbbb-2222-4222-8222-000000000010", "Rohff"],
+		]);
+		stubMb({ recordings: [live, studio] });
+		// Hint spelled "ROHFF" only so the request differs from the memoized one of the "Fitna" test above.
+		expect((await resolveRecording("Fitna", "ROHFF"))?.mbid).toBe("aaaaaaaa-1111-4111-8111-000000000011");
+		// The live title is a different query, so it is a different (uncached) request.
+		stubMb({ recordings: [live, studio] });
+		expect((await resolveRecording("Fitna (Live)", "ROHFF"))?.mbid).toBe(
+			"aaaaaaaa-1111-4111-8111-000000000010",
+		);
+	});
+
+	it("does not treat a remix as the original title", async () => {
+		stubMb({
+			recordings: [
+				hit("aaaaaaaa-1111-4111-8111-000000000012", "Get Lucky (Daft Punk Remix)", [
+					["bbbbbbbb-2222-4222-8222-000000000012", "Daft Punk"],
+				]),
+			],
+		});
+		expect(await resolveRecording("Get Lucky", "Daft Punk")).toBeNull();
+	});
+
+	it("ignores edition noise: a featuring credit in the title is the same recording", async () => {
+		stubMb({
+			recordings: [
+				hit("aaaaaaaa-1111-4111-8111-000000000013", "Get Lucky", [
+					["bbbbbbbb-2222-4222-8222-000000000013", "Daft Punk"],
+				]),
+			],
+		});
+		const out = await resolveRecording("Get Lucky (feat. Pharrell Williams)", "Daft Punk");
+		expect(out?.mbid).toBe("aaaaaaaa-1111-4111-8111-000000000013");
 	});
 
 	it("returns null when MB is unreachable", async () => {
