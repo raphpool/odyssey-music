@@ -123,16 +123,16 @@ final class ProfileStoreTests: XCTestCase {
 
 	func testCorruptionAndWriteFailureDoNotCompleteOnboarding() async throws {
 		let localStore = LocalStore(directoryURL: directoryURL)
-		if case .failure = await localStore.write(Data("not json".utf8), named: "profile.v1.json") {
+		if case .failure = await localStore.write(Data("not json".utf8), named: "profile.v2.json") {
 			XCTFail("Expected the corrupt fixture to be written.")
 		}
 		let store = ProfileStore(localStore: localStore)
 		let corruptRead = await store.read()
 		XCTAssertEqual(corruptRead, .corrupt)
 		let futureVersionJSON = """
-			{"version":2,"local_id":"00000000-0000-0000-0000-000000000000","genre_ids":[],"revision":1,"onboarding_completed":true,"flow_id":"00000000-0000-0000-0000-000000000000"}
+			{"version":3,"local_id":"00000000-0000-0000-0000-000000000000","genre_ids":[],"revision":1,"onboarding_completed":true,"flow_id":"00000000-0000-0000-0000-000000000000"}
 			"""
-		if case .failure = await localStore.write(Data(futureVersionJSON.utf8), named: "profile.v1.json") {
+		if case .failure = await localStore.write(Data(futureVersionJSON.utf8), named: "profile.v2.json") {
 			XCTFail("Expected the version fixture to be written.")
 		}
 		let unsupportedVersion = await store.read()
@@ -161,7 +161,7 @@ final class ProfileStoreTests: XCTestCase {
 
 	func testFailedProfileWriteLeavesTheDraftRetryable() async throws {
 		let store = ProfileStore(
-			localStore: LocalStore(directoryURL: directoryURL, failNextWriteNamed: "profile.v1.json")
+			localStore: LocalStore(directoryURL: directoryURL, failNextWriteNamed: "profile.v2.json")
 		)
 		let draft = try await initialDraft(from: store)
 		let choices = genres(3)
@@ -193,7 +193,7 @@ final class ProfileStoreTests: XCTestCase {
 		// "commit in flight, then clear" is forced rather than hoped for. Both generation guards that
 		// matter are covered: the one after the profile read and the one after the profile write.
 		for held in [LocalStoreOperation.read, .write] {
-			let gate = ResponseGate(holding: held, named: "profile.v1.json")
+			let gate = ResponseGate(holding: held, named: "profile.v2.json")
 			defer { gate.release() }
 			let directory = directoryURL.appending(path: "held-\(held)", directoryHint: .isDirectory)
 			let store = ProfileStore(
@@ -257,6 +257,128 @@ final class ProfileStoreTests: XCTestCase {
 		let draftState = await store.readDraft()
 		XCTAssertEqual(persisted, .profile(second))
 		XCTAssertEqual(draftState, .missing)
+	}
+
+	// MARK: Version 2 (TRA-516)
+
+	func testAV1ProfileIsReadAsVersion2WithoutBeingWritten() async throws {
+		let choices = genres(3)
+		let v1 = try await seedV1Profile(genres: choices).profile
+		let read = await makeStore().read()
+		XCTAssertEqual(
+			read,
+			.profile(
+				Profile(
+					version: Profile.version, localID: v1.localID, genreIDs: choices, revision: v1.revision,
+					onboardingCompleted: true, flowID: v1.flowID)))
+		XCTAssertFalse(fileExists("profile.v2.json"))
+	}
+
+	func testTheFirstCommitAfterAV1ReadWritesV2AndLeavesV1Untouched() async throws {
+		let choices = genres(3)
+		let (v1, v1Bytes) = try await seedV1Profile(genres: choices)
+		let store = makeStore()
+		_ = await store.read()
+		let selection = GenreSelection(families: ["rock"], genres: [])
+		let committed = await store.commit(draft(genres: choices, selection: selection), availableGenreIDs: choices)
+		guard case .saved(let saved) = committed else { return XCTFail("Expected the commit to save.") }
+		XCTAssertEqual(saved.localID, v1.localID)
+		XCTAssertEqual(saved.revision, v1.revision + 1)
+		XCTAssertEqual(saved.selection, selection)
+		let persisted = await makeStore().read()
+		XCTAssertEqual(persisted, .profile(saved))
+		XCTAssertEqual(try Data(contentsOf: directoryURL.appending(path: "profile.v1.json")), v1Bytes)
+	}
+
+	func testRevisionFollowsTheGenreIDsAndTheSelection() async throws {
+		let choices = genres(3)
+		let store = makeStore()
+		var revisions: [Int] = []
+		for family in ["rock", "jazz", "jazz"] {
+			let selection = GenreSelection(families: [family], genres: [])
+			let committed = await store.commit(
+				draft(genres: choices, selection: selection), availableGenreIDs: choices)
+			guard case .saved(let saved) = committed else { return XCTFail("Expected the commit to save.") }
+			revisions.append(saved.revision)
+		}
+		XCTAssertEqual(revisions, [1, 2, 2])
+	}
+
+	func testV2WinsOverV1AndAFutureVersionIsUnsupported() async throws {
+		let choices = genres(3)
+		_ = try await seedV1Profile(genres: choices)
+		let v2 = Profile(
+			version: Profile.version, localID: UUID(), genreIDs: [choices[0]], revision: 7,
+			onboardingCompleted: true, flowID: UUID())
+		try await seed(v2, named: "profile.v2.json")
+		let read = await makeStore().read()
+		XCTAssertEqual(read, .profile(v2))
+
+		let future = Profile(
+			version: 3, localID: v2.localID, genreIDs: v2.genreIDs, revision: 7, onboardingCompleted: true,
+			flowID: v2.flowID)
+		try await seed(future, named: "profile.v2.json")
+		let futureRead = await makeStore().read()
+		XCTAssertEqual(futureRead, .unsupportedVersion)
+	}
+
+	func testClearRemovesTheVersion1AndVersion2Files() async throws {
+		let names = ["profile.v1.json", "profile-draft.v1.json", "profile.v2.json", "profile-draft.v2.json"]
+		let localStore = LocalStore(directoryURL: directoryURL)
+		for name in names { _ = await localStore.write(Data("{}".utf8), named: name) }
+		let cleared = await ProfileStore(localStore: localStore).clear()
+		XCTAssertEqual(cleared, .cleared)
+		XCTAssertEqual(names.filter(fileExists), [])
+	}
+
+	func testAVersion1DraftIsIgnored() async throws {
+		let v1Draft = ProfileDraft(version: 1, flowID: UUID(), genreIDs: genres(2), onboardingStartedRecorded: true)
+		try await seed(v1Draft, named: "profile-draft.v1.json")
+		let store = makeStore()
+		let read = await store.readDraft()
+		XCTAssertEqual(read, .missing)
+		let fresh = try await initialDraft(from: store)
+		XCTAssertNotEqual(fresh.flowID, v1Draft.flowID)
+		XCTAssertTrue(fileExists("profile-draft.v2.json"))
+	}
+
+	func testMarkingOnboardingStartedKeepsTheSelection() async throws {
+		let selection = GenreSelection(families: ["rock"], genres: ["Q11399"])
+		let started = await makeStore().markOnboardingStarted(draft(genres: [], selection: selection))
+		XCTAssertEqual(started, .success(draft(genres: [], selection: selection, started: true)))
+	}
+
+	func testCommitKeepsTheSelectionAsAuthorityWhileReconcilingTheGenreIDs() async throws {
+		let choices = genres(3)
+		let selection = GenreSelection(families: ["rock"], genres: ["Q-retired-from-the-catalog"])
+		let committed = await makeStore().commit(
+			draft(genres: choices, selection: selection), availableGenreIDs: [choices[0]])
+		guard case .saved(let saved) = committed else { return XCTFail("Expected the commit to save.") }
+		XCTAssertEqual(saved.genreIDs, [choices[0]])
+		XCTAssertEqual(saved.selection, selection)
+	}
+
+	private func seedV1Profile(genres: [NodeIdentity]) async throws -> (profile: Profile, bytes: Data) {
+		let profile = Profile(
+			version: 1, localID: UUID(), genreIDs: genres, revision: 3, onboardingCompleted: true, flowID: UUID())
+		try await seed(profile, named: "profile.v1.json")
+		return (profile, try Data(contentsOf: directoryURL.appending(path: "profile.v1.json")))
+	}
+
+	private func seed(_ value: some Encodable, named name: String) async throws {
+		_ = await LocalStore(directoryURL: directoryURL).write(try JSONEncoder().encode(value), named: name)
+	}
+
+	private func fileExists(_ name: String) -> Bool {
+		FileManager.default.fileExists(atPath: directoryURL.appending(path: name).path)
+	}
+
+	private func draft(
+		genres: [NodeIdentity], selection: GenreSelection? = nil, started: Bool = false
+	) -> ProfileDraft {
+		ProfileDraft(
+			version: Profile.version, flowID: UUID(uuidString: "11111111-1111-1111-1111-111111111111")!,
+			genreIDs: genres, onboardingStartedRecorded: started, selection: selection)
 	}
 
 	private static let gateTimeout = Duration.seconds(10)
