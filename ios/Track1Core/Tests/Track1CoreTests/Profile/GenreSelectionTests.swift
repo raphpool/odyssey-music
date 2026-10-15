@@ -162,7 +162,7 @@ final class GenreSelectionTests: XCTestCase {
 
 	func testAProfileWrittenBeforeSelectionExistedStillDecodes() throws {
 		let legacy = """
-			{"version":1,"local_id":"\(localID.uuidString)","genre_ids":["genre:house"],"revision":2,\
+			{"version":2,"local_id":"\(localID.uuidString)","genre_ids":["genre:house"],"revision":2,\
 			"onboarding_completed":true,"flow_id":"\(flowID.uuidString)"}
 			"""
 		let decoded = try JSONDecoder().decode(Profile.self, from: Data(legacy.utf8))
@@ -173,7 +173,7 @@ final class GenreSelectionTests: XCTestCase {
 
 	func testADraftWrittenBeforeSelectionExistedStillDecodes() throws {
 		let legacy = """
-			{"version":1,"flow_id":"\(flowID.uuidString)","genre_ids":["genre:house"],\
+			{"version":2,"flow_id":"\(flowID.uuidString)","genre_ids":["genre:house"],\
 			"onboarding_started_recorded":true}
 			"""
 		let decoded = try JSONDecoder().decode(ProfileDraft.self, from: Data(legacy.utf8))
