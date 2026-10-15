@@ -153,10 +153,11 @@ final class NodePageViewTests: XCTestCase {
 	func testTheHighlightsOpenTheirTargetThroughTheChipWiring() async throws {
 		let source = try XCTUnwrap(NodeIdentity(rawValue: "artist:source"))
 		var events = [AnalyticsEvent]()
+		let response = try Self.response(for: source)
 		let model = NodeViewModel(
 			identity: source,
 			context: .independent(source: .home),
-			readNode: { _ in .success(try Self.response(for: source), etag: nil) },
+			readNode: { _ in .success(response, etag: nil) },
 			recordEvent: { events.append($0) }
 		)
 		await model.load()
