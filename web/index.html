@@ -1895,8 +1895,13 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
     }
   }
 
+  // TRA-472: an artist's landmark album + reference track are singular edges shown above the
+  // discography (not as generic chips). The block only exists when at least one is present.
+  const highlightsHtml = highlightsBlockHtml(node, KIND_LABEL);
+
   const edgeHtml = Object.entries(node.edges || {}).map(([kind, val]) => {
     if (kind === carouselEdgeKey) return ""; // rendered as carousel above
+    if (HIGHLIGHT_EDGES.includes(kind)) return ""; // rendered in the .highlights block
     const refs = Array.isArray(val) ? val : [val];
     if (!refs.length) return "";
     const label = KIND_LABEL[kind] || kind.replace(/_/g, " ");
@@ -1956,6 +1961,7 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
         ${playBtnHtml}
         ${streamHtml}
         ${banner}
+        ${highlightsHtml}
         ${carouselHtml}
         <div class="article">${escapeHtml(node.article || "")}</div>
         ${edgeHtml ? `<div class="section">Connections</div>${edgeHtml}` : ""}
@@ -2211,6 +2217,71 @@ const PROJECT_CAROUSEL_EDGE = {
   project: "related_projects",
 };
 
+// Singular artist edges rendered together above the discography (TRA-472).
+const HIGHLIGHT_EDGES = ["landmark_project", "reference_track"];
+
+// A single-edge value is only rendered when it is a well-formed ref: slug and name are strings
+// (the rest of the ref is escaped field by field in the card/chip helpers).
+function isRenderableRef(ref) {
+  return !!ref && typeof ref === "object" && typeof ref.slug === "string" && typeof ref.name === "string";
+}
+
+/**
+ * `.highlights` block of an artist page: the landmark album as a cover card (same card as the
+ * discography) and the reference track as a chip, both navigating exactly like their siblings
+ * (data-id for a cached node, jit-* attrs for a dangling one). Empty string when neither exists,
+ * so a node without the fields (everything until the TRA-491 backfill) renders unchanged.
+ */
+function highlightsBlockHtml(node, kindLabel) {
+  if (node.type !== "artist" || !node.edges) return "";
+  const items = HIGHLIGHT_EDGES.map((key) => {
+    const ref = node.edges[key];
+    if (!isRenderableRef(ref)) return "";
+    const parentCtx = { type: node.type, name: node.name, year: node.year, kind: key };
+    const body = key === "landmark_project" ? projectCardHtml(ref) : chipHtml(ref, parentCtx);
+    return `<div class="highlight highlight-${key}"><div class="kind">${escapeHtml(kindLabel[key] || key.replace(/_/g, " "))}</div>${body}</div>`;
+  }).join("");
+  return items ? `<div class="highlights">${items}</div>` : "";
+}
+
+/**
+ * One project card (cover + name + year/release type), shared by the discography carousel
+ * and the artist `.highlights` block (TRA-472). Every ref field goes through escapeHtml; the
+ * cover goes through bgStyleAttr (safeCssUrl).
+ */
+function projectCardHtml(ref) {
+  // 2026-09-10 (TRA-38): a materialize/redirect response can serve this ref's node
+  // under a different slug than the one recorded on the edge.
+  const cached = byId.get(resolveId(ref.slug));
+  const facts = (cached && cached.facts) || {};
+  const imageUrl = (cached && cached.image_url) || "";
+  const year = facts.year || ref.year || "";
+  const releaseType = facts.release_type || ref.releaseType || "";
+  const bg = bgStyleAttr(imageUrl);
+  const noImage = bg ? "" : " no-image";
+  const yearHtml = year ? `<span class="year">${escapeHtml(year)}</span>` : "<span></span>";
+  const rtHtml = releaseType ? `<span class="release-type">${escapeHtml(releaseType)}</span>` : "";
+  // Cached projects navigate via show() (same as chips). Dangling ones carry
+  // jit-* attrs so the click triggers materialize → navigate, like dangling
+  // chips do. Without this branch, clicking a dangling card called show(slug)
+  // which silently returns and feels broken (Raph 2026-05-30 report).
+  const inCache = !!cached;
+  const dead = deadCache.has(ref.slug);
+  const stateClass = inCache ? "" : (dead ? " dead" : " dangling");
+  const navAttrs = inCache
+    ? `data-id="${escapeHtml(ref.slug)}"`
+    : `data-jit-type="${escapeHtml(ref.type)}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${escapeHtml(ref.slug)}"${ref.mbid ? ` data-jit-mbid="${escapeHtml(ref.mbid)}"` : ""}`;
+  // href uses the resolved slug (TRA-38, same reasoning as chipHtml above): ref.slug
+  // is only an alias key once this card is inCache via resolveId, not a slug byId or
+  // the ?node= deep link reader can look up directly.
+  const hrefSlug = inCache ? resolveId(ref.slug) : ref.slug;
+  return `<a class="project-card${noImage}${stateClass}" href="?node=${encodeURIComponent(hrefSlug)}" ${navAttrs} data-needs-image="${bg ? "0" : "1"}">
+    <div class="cover" ${bg}></div>
+    <div class="name">${escapeHtml(ref.name)}</div>
+    <div class="meta">${yearHtml}${rtHtml}</div>
+  </a>`;
+}
+
 /**
  * Render an array of project edge refs as a horizontal swipable carousel.
  * Each card shows cover + year + EP/Single/Album badge. Missing covers fall back
@@ -2221,38 +2292,7 @@ const PROJECT_CAROUSEL_EDGE = {
  */
 function projectCarouselHtml(refs, kindLabel) {
   if (!Array.isArray(refs) || !refs.length) return "";
-  const cards = refs.map((ref) => {
-    // 2026-09-10 (TRA-38): a materialize/redirect response can serve this ref's node
-    // under a different slug than the one recorded on the edge.
-    const cached = byId.get(resolveId(ref.slug));
-    const facts = (cached && cached.facts) || {};
-    const imageUrl = (cached && cached.image_url) || "";
-    const year = facts.year || ref.year || "";
-    const releaseType = facts.release_type || ref.releaseType || "";
-    const bg = bgStyleAttr(imageUrl);
-    const noImage = bg ? "" : " no-image";
-    const yearHtml = year ? `<span class="year">${escapeHtml(year)}</span>` : "<span></span>";
-    const rtHtml = releaseType ? `<span class="release-type">${escapeHtml(releaseType)}</span>` : "";
-    // Cached projects navigate via show() (same as chips). Dangling ones carry
-    // jit-* attrs so the click triggers materialize → navigate, like dangling
-    // chips do. Without this branch, clicking a dangling card called show(slug)
-    // which silently returns and feels broken (Raph 2026-05-30 report).
-    const inCache = !!cached;
-    const dead = deadCache.has(ref.slug);
-    const stateClass = inCache ? "" : (dead ? " dead" : " dangling");
-    const navAttrs = inCache
-      ? `data-id="${escapeHtml(ref.slug)}"`
-      : `data-jit-type="${escapeHtml(ref.type)}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${escapeHtml(ref.slug)}"${ref.mbid ? ` data-jit-mbid="${escapeHtml(ref.mbid)}"` : ""}`;
-    // href uses the resolved slug (TRA-38, same reasoning as chipHtml above): ref.slug
-    // is only an alias key once this card is inCache via resolveId, not a slug byId or
-    // the ?node= deep link reader can look up directly.
-    const hrefSlug = inCache ? resolveId(ref.slug) : ref.slug;
-    return `<a class="project-card${noImage}${stateClass}" href="?node=${encodeURIComponent(hrefSlug)}" ${navAttrs} data-needs-image="${bg ? "0" : "1"}">
-      <div class="cover" ${bg}></div>
-      <div class="name">${escapeHtml(ref.name)}</div>
-      <div class="meta">${yearHtml}${rtHtml}</div>
-    </a>`;
-  }).join("");
+  const cards = refs.map(projectCardHtml).join("");
   return `<div class="project-carousel-section">
     <div class="kind">${escapeHtml(kindLabel)}</div>
     <div class="project-carousel">${cards}</div>
@@ -2265,7 +2305,7 @@ function chipHtml(ref, parentCtx) {
   // without clicking through.
   const yearSuffix = ref.year ? ` <span class="meta">· ${escapeHtml(ref.year)}</span>` : "";
   const rt = ref.releaseType;
-  const rtBadge = rt && rt !== "album" ? ` <span class="rt-badge rt-${rt}">${rt}</span>` : "";
+  const rtBadge = rt && rt !== "album" ? ` <span class="rt-badge rt-${escapeHtml(rt)}">${escapeHtml(rt)}</span>` : "";
   const extras = `${rtBadge}${yearSuffix}`;
   // 2026-09-10 (TRA-38): a materialize response can serve this ref's node under a
   // different slug (genre canonical rewrite) -- without this the chip stays
