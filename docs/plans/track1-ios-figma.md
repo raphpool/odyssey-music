@@ -246,6 +246,7 @@ contrat réduit V1 complété par les tâches rattachées ci-dessous.
 
 ### D13 — Onboarding : taxonomie dérivée du catalogue, profil = parents et sous-genres, minimum 1
 
+- Remplacée le 2026-10-15 par `docs/plans/ios-onboarding-taxonomy.md`.
 - **Taxonomie.** Les tuiles 1.2 sont les genres du catalogue `/catalog` qui ont au moins une arête
   `subgenres` vers un genre du catalogue, et aucune arête `parent_genres` vers un genre du
   catalogue. Il y en a 31 sur le cache actuel. Les lignes 1.3 sont leurs `subgenres`, avec le
@@ -1734,6 +1735,7 @@ Incrément visible (J.4) : le premier lancement suit les écrans 1.1 → 1.2 →
   - Des teasers sont coupés, et les faits rarement présents (souvent pas de bloc Faits).
   - Affichage tel quel ; correction dans le pipeline, hors plan.
 - **R8 — Taxonomie dégradée.**
+  - Remplacée le 2026-10-15 par `docs/plans/ios-onboarding-taxonomy.md`.
   - Les 31 « parents » sont calculés sur le cache, avec quelques racines inattendues (Comedy Music,
     Chicago house). C'est accepté pour la V1.
   - La taxonomie serveur (`genre-taxonomy.json`) n'est pas exposée par l'API mobile ; ce serait un
