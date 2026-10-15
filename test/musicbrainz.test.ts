@@ -1545,3 +1545,65 @@ describe("pickByTitleAndCredit: credit equals the hint", () => {
 		expect(await resolveReleaseGroup("Group Only", "Roni Size")).toBeNull();
 	});
 });
+
+// TRA-537, code-review findings: the equality gate must not open for hints it cannot compare.
+describe("pickByTitleAndCredit: hints that cannot be compared", () => {
+	const OTHER = "cccccccc-0000-4000-8000-000000000001";
+
+	it("never reads a punctuation-only hint as 'no hint': a lone foreign credit is refused", async () => {
+		stubMb({
+			"release-groups": [hit("cccccccc-1111-4111-8111-000000000001", "Bang Title", [[OTHER, "Somebody"]])],
+		});
+		expect(await resolveReleaseGroup("Bang Title", "!!!")).toBeNull();
+	});
+
+	it("compares a name with letters slug normalization would erase literally ('Mø' is not 'M')", async () => {
+		stubMb({
+			"release-groups": [hit("cccccccc-1111-4111-8111-000000000002", "Letter Title", [[OTHER, "M"]])],
+		});
+		expect(await resolveReleaseGroup("Letter Title", "Mø")).toBeNull();
+		const id = "cccccccc-1111-4111-8111-000000000003";
+		stubMb({ "release-groups": [hit(id, "Letter Title Two", [[OTHER, "Mø"]])] });
+		expect((await resolveReleaseGroup("Letter Title Two", "MØ"))?.mbid).toBe(id);
+		const sakamoto = "cccccccc-1111-4111-8111-000000000004";
+		stubMb({ "release-groups": [hit(sakamoto, "Letter Title Three", [[OTHER, "坂本龍一"]])] });
+		expect((await resolveReleaseGroup("Letter Title Three", "坂本龍一"))?.mbid).toBe(sakamoto);
+		stubMb({
+			"release-groups": [hit("cccccccc-1111-4111-8111-000000000005", "Letter Title Four", [[OTHER, "X"]])],
+		});
+		expect(await resolveReleaseGroup("Letter Title Four", "Группа X")).toBeNull();
+	});
+
+	it("says 'no match', not 'ambiguous', when several look-alikes are all credited to others", async () => {
+		stubMb({
+			"release-groups": [
+				hit("cccccccc-1111-4111-8111-000000000006", "Crowd Title", [[OTHER, "Act One"]]),
+				hit("cccccccc-1111-4111-8111-000000000007", "Crowd Title", [[OTHER, "Act Two"]]),
+			],
+		});
+		expect(await resolveReleaseGroupDetailed("Crowd Title", "Act Three")).toEqual({
+			identity: null,
+			ambiguous: false,
+			unavailable: false,
+		});
+	});
+
+	it("counts a featured artist as credited ('Jay-Z' on 'Beyoncé feat. Jay-Z'), the credit says who", async () => {
+		const id = "cccccccc-1111-4111-8111-000000000008";
+		stubMb({
+			recordings: [
+				{
+					id,
+					title: "Feat Title",
+					"artist-credit": [
+						{ name: "Beyoncé", joinphrase: " feat. ", artist: { id: OTHER, name: "Beyoncé" } },
+						{ name: "Jay-Z", artist: { id: "cccccccc-0000-4000-8000-000000000002", name: "Jay-Z" } },
+					],
+				},
+			],
+		});
+		const out = await resolveRecording("Feat Title", "Jay-Z");
+		expect(out?.mbid).toBe(id);
+		expect(out?.credit.map((c) => c.name)).toEqual(["Beyoncé", "Jay-Z"]);
+	});
+});

@@ -932,9 +932,12 @@ function lucenePhrase(text: string): string {
 /**
  * An artist name reduced to what makes two spellings the same artist: normalizeSlugBody (case,
  * diacritics, "&" == "and", trailing disambiguation) plus a leading "The" ("The Beatles" == "Beatles").
- * Used for EQUALITY only, never for containment.
+ * A name with a letter normalizeSlugBody would erase ("Mø" -> "m", "Группа X" -> "x", "坂本龍一" -> "")
+ * is compared literally (NFKC, case-folded), like sameArtistName does for artists: else unrelated artists
+ * get one key. Used for EQUALITY only, never for containment; an empty key matches nothing.
  */
 function creditKey(name: string): string {
+	if (hasUnfoldableLetter(name)) return name.normalize("NFKC").trim().toLowerCase();
 	const body = normalizeSlugBody(name);
 	return body.startsWith("the-") ? body.slice(4) : body;
 }
@@ -948,22 +951,23 @@ function creditKey(name: string): string {
  * credited on the work, so "Prince" matches. A joint name MB files as ONE artist ("Prince and the
  * Revolution" has its own MBID) is another artist than "Prince" and is refused; asking for the joint name
  * itself matches that entry, or the joined credit ("Prince & The Revolution" over two entries).
+ * Every credited artist counts, whatever the join phrase: a featured artist ("Beyoncé feat. Jay-Z") is
+ * credited on the work, so asking for Jay-Z matches. Callers read the credit the resolver returns.
  * MB aliases are not in a search hit, so they are not consulted: a hint spelled as an alias is unmatched.
  */
 function creditEqualsHint(entries: MbArtistCreditEntry[], hintKey: string): boolean {
 	if (!hintKey) return false;
-	const names = entries.flatMap((entry) => [entry.name, entry.artist?.name]);
-	if (names.some((n) => n !== undefined && creditKey(n) === hintKey)) return true;
-	if (entries.length < 2) return false;
-	const pickers = [(e: MbArtistCreditEntry) => e.name, (e: MbArtistCreditEntry) => e.artist?.name];
-	return pickers.some((pickName) => {
-		let joined = "";
-		for (const e of entries) {
-			const n = pickName(e);
-			if (n === undefined) return false;
-			joined += n + (typeof e.joinphrase === "string" ? e.joinphrase : "");
-		}
-		return creditKey(joined) === hintKey;
+	// Credited-as name, then canonical name: the hint may be either spelling.
+	const projections = [(e: MbArtistCreditEntry) => e.name, (e: MbArtistCreditEntry) => e.artist?.name];
+	return projections.some((nameOf) => {
+		if (entries.some((e) => creditKey(nameOf(e) ?? "") === hintKey)) return true;
+		if (entries.length < 2) return false;
+		const names = entries.map(nameOf);
+		if (names.some((n) => n === undefined)) return false;
+		const joined = entries.map(
+			(e, i) => `${names[i]}${typeof e.joinphrase === "string" ? e.joinphrase : ""}`,
+		);
+		return creditKey(joined.join("")) === hintKey;
 	});
 }
 
@@ -1014,11 +1018,15 @@ function pickByTitleAndCredit<
 	const wanted = normalizeTitleBody(title);
 	if (!wanted) return { kind: "none" };
 	const exact = candidates.filter((c) => normalizeTitleBody(c.title) === wanted);
-	const hint = artistHint ? creditKey(artistHint) : "";
+	const hasHint = artistHint !== undefined && artistHint.trim() !== "";
+	const hint = hasHint ? creditKey(artistHint) : "";
+	// A hint that reduces to nothing ("!!!") can match no credit: never read it as "no hint" (code review,
+	// TRA-537), which would take the lone exact-title candidate whatever its credit.
+	if (hasHint && hint === "") return { kind: "none" };
 	// With a hint, only a candidate credited to that artist can be the work; without one the title alone decides.
-	const pool = hint ? exact.filter((c) => creditEqualsHint(c["artist-credit"] ?? [], hint)) : exact;
+	const pool = hasHint ? exact.filter((c) => creditEqualsHint(c["artist-credit"] ?? [], hint)) : exact;
 	if (pool.length === 0) return { kind: "none" };
-	if (!hint && pool.length > 1) return { kind: "ambiguous" };
+	if (!hasHint && pool.length > 1) return { kind: "ambiguous" };
 
 	if (kind === "recording") {
 		const plain = pool.filter((c) => (c.disambiguation ?? "").trim() === "");
