@@ -18,13 +18,39 @@ export interface MobileCatalogEdge {
 	type: string;
 }
 
+export interface MobileTaxonomyFamily {
+	key: string;
+	label: string;
+	order: number;
+	slug?: string;
+}
+
+export interface MobileTaxonomyGenre {
+	id: string;
+	name: string;
+	family: string;
+	slugs: string[];
+}
+
+export interface MobileEditorialTaxonomy {
+	mode: "editorial";
+	version: 2;
+	families: MobileTaxonomyFamily[];
+	genres: MobileTaxonomyGenre[];
+	legacySelectionBySlug: Record<string, string[]>;
+}
+
+export interface MobileDegradedTaxonomy {
+	mode: "degraded";
+	available: boolean;
+}
+
+export type MobileCatalogTaxonomy = MobileDegradedTaxonomy | MobileEditorialTaxonomy;
+
 export interface MobileCatalogResponse {
 	version: "v1";
 	revision: string;
-	taxonomy: {
-		mode: "degraded";
-		available: boolean;
-	};
+	taxonomy: MobileCatalogTaxonomy;
 	nodes: MobileCatalogNode[];
 	edges: MobileCatalogEdge[];
 }

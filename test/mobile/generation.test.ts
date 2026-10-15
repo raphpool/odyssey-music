@@ -525,6 +525,119 @@ describe("mobile generations", () => {
 		}
 	});
 
+	// TRA-477: a work clicked from an artist page carries that artist and the edge it came from; they
+	// reach /materialize untouched, in the preflight and in the queued run alike.
+	it("forwards the artist context and source edge to materialization and validates them", async () => {
+		const seen: Array<{ cacheOnly: boolean; request: Record<string, unknown> }> = [];
+		const service = createMobileGenerationService({
+			store: await createGenerationStore({ stateDir: await storeDir("artist-context") }),
+			materialize: {
+				handleMaterialize: async (requestBody, options) => {
+					seen.push({ cacheOnly: options.cacheOnly === true, request: { ...requestBody } });
+					if (options.cacheOnly) throw new MaterializeCacheMissError();
+					return { node: { slug: "track:fitna--rohff" } };
+				},
+			},
+		});
+		const router = createMobileRouter({
+			catalog: {
+				getCatalog: async () => ({
+					version: "v1" as const,
+					revision: `sha256:${"0".repeat(64)}`,
+					taxonomy: { mode: "degraded" as const, available: true },
+					nodes: [],
+					edges: [],
+				}),
+			},
+			generation: service,
+		});
+		const server = createServer(async (req, res) => {
+			const handled = await router.handle({ req, res, url: new URL(req.url ?? "/", "http://localhost") });
+			if (!handled) res.end();
+		});
+		await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve));
+		const address = server.address();
+		if (!address || typeof address === "string") throw new Error("test server unavailable");
+		const body = {
+			request_id: REQUEST_A,
+			type: "track",
+			name: "Fitna",
+			artist: "Rohff",
+			slug: "track:fitna--rohff",
+			source: { slug: "artist:rohff", field: "notable_tracks" },
+		};
+		try {
+			const created = await http(address.port, "POST", "/mobile/v1/generations", body);
+			expect(created.status).toBe(202);
+			await eventually(
+				async () => seen.length,
+				(count) => count >= 2,
+			);
+			const expected = {
+				type: "track",
+				name: "Fitna",
+				artist: "Rohff",
+				slug: "track:fitna--rohff",
+				source: { slug: "artist:rohff", field: "notable_tracks" },
+			};
+			expect(seen.map((call) => call.cacheOnly)).toEqual([true, false]);
+			for (const call of seen) expect(call.request).toMatchObject(expected);
+
+			// The same request id with another artist is a different request, not a replay.
+			const conflicting = await http(address.port, "POST", "/mobile/v1/generations", {
+				...body,
+				artist: "Akuma",
+			});
+			expect(conflicting.body).toMatchObject({ error: { code: "idempotency_conflict" } });
+
+			const invalid: Array<[string, Record<string, unknown>]> = [
+				["a non-string artist", { artist: 7 }],
+				["an empty artist", { artist: "   " }],
+				["a source that is not an object", { source: "artist:rohff" }],
+				["a source with an extra key", { source: { slug: "artist:rohff", field: "notable_tracks", x: 1 } }],
+				[
+					"a source slug that is not canonical",
+					{ source: { slug: 'artist:x" onmouseover="y', field: "notable_tracks" } },
+				],
+				["a source field that is not an edge name", { source: { slug: "artist:rohff", field: "../x" } }],
+			];
+			for (const [label, patch] of invalid) {
+				const response = await http(address.port, "POST", "/mobile/v1/generations", {
+					...body,
+					request_id: REQUEST_B,
+					...patch,
+				});
+				expect(response.body, label).toMatchObject({ error: { code: "invalid_request" } });
+			}
+		} finally {
+			await new Promise<void>((resolve, reject) =>
+				server.close((error) => (error ? reject(error) : resolve())),
+			);
+		}
+	});
+
+	it("does not share one paid run between works of the same title by different artists", async () => {
+		const finish = deferred<{ node: { slug: string } }>();
+		let paidCalls = 0;
+		const service = createMobileGenerationService({
+			store: await createGenerationStore({ stateDir: await storeDir("artist-identity") }),
+			materialize: {
+				handleMaterialize: async (_request, options) => {
+					if (options.cacheOnly) throw new MaterializeCacheMissError();
+					paidCalls += 1;
+					return finish.promise;
+				},
+			},
+		});
+		await service.submit({ requestId: REQUEST_A, type: "track", name: "Fitna", artist: "Rohff" });
+		await service.submit({ requestId: REQUEST_B, type: "track", name: "Fitna", artist: "Akuma" });
+		await eventually(
+			async () => paidCalls,
+			(count) => count === 2,
+		);
+		finish.resolve({ node: { slug: "track:fitna--rohff" } });
+	});
+
 	it("keeps mobile reads bootable while generation initialization is unavailable", async () => {
 		const router = createMobileRouter({
 			catalog: {

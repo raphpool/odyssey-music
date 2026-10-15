@@ -305,7 +305,7 @@ describe("resolveReleaseGroup", () => {
 			],
 		});
 
-		const out = await resolveReleaseGroup("New Forms", "Roni Size");
+		const out = await resolveReleaseGroup("New Forms", "Roni Size / Reprazent");
 
 		expect(out).toEqual({
 			mbid: NEW_FORMS_RG,
@@ -317,7 +317,9 @@ describe("resolveReleaseGroup", () => {
 		expect(out?.credit[0]?.name).toBe("Roni Size / Reprazent");
 		expect(urls).toHaveLength(1);
 		expect(urls[0]?.pathname).toBe("/ws/2/release-group");
-		expect(urls[0]?.searchParams.get("query")).toBe('releasegroup:"New Forms" AND artist:"Roni Size"');
+		expect(urls[0]?.searchParams.get("query")).toBe(
+			'releasegroup:"New Forms" AND artist:"Roni Size / Reprazent"',
+		);
 		expect(urls[0]?.searchParams.get("limit")).toBe("100");
 	});
 
@@ -395,7 +397,11 @@ describe("resolveReleaseGroup", () => {
 		);
 	});
 
-	it("takes the only exact-title result when the hint matches none of the credits", async () => {
+	// TRA-537 (2026-10-15): this test used to expect the lone exact-title result to be taken whatever its
+	// credit. That fallback is what resolved "Prince" to a work credited to "Prince Buster", and the
+	// pipeline has no second gate behind the resolver. Safety before resolution rate: no credit equals
+	// the hint, so MB knows no such work credited to that artist.
+	it("returns null when the only exact-title result is credited to someone else than the hint", async () => {
 		stubMb({
 			"release-groups": [
 				hit("44444444-aaaa-4aaa-8aaa-000000000001", "Lone Title", [
@@ -406,8 +412,7 @@ describe("resolveReleaseGroup", () => {
 				]),
 			],
 		});
-		const out = await resolveReleaseGroup("Lone Title", "Totally Unrelated Hint");
-		expect(out?.mbid).toBe("44444444-aaaa-4aaa-8aaa-000000000001");
+		expect(await resolveReleaseGroup("Lone Title", "Totally Unrelated Hint")).toBeNull();
 	});
 
 	it("returns null when several exact titles remain and the hint settles none of them", async () => {
@@ -1425,5 +1430,283 @@ describe("a metadata lookup without an answer is flagged unavailable", () => {
 		stubKinds({ "release-group": () => failedResponse(404) });
 		expect((await fetchProjectMetaMb(freshRelease())).tracks).toEqual([]);
 		expect((await fetchTrackMetaMb(freshRelease())).project).toBeNull();
+	});
+});
+
+// TRA-537: the credit must EQUAL the requested artist, not contain it. Titles, hints and MBIDs are unique
+// to this block (mbFetch memoizes by URL).
+describe("pickByTitleAndCredit: credit equals the hint", () => {
+	const PRINCE = "bbbbbbbb-0000-4000-8000-000000000001";
+	const BUSTER = "bbbbbbbb-0000-4000-8000-000000000002";
+	const REVOLUTION = "bbbbbbbb-0000-4000-8000-000000000003";
+	const PRINCE_AND_REVOLUTION = "bbbbbbbb-0000-4000-8000-000000000004";
+
+	it("does not resolve a work credited to 'Prince Buster' for 'Prince' (sole candidate)", async () => {
+		stubMb({
+			"release-groups": [
+				hit("bbbbbbbb-1111-4111-8111-000000000001", "Judge Dread", [[BUSTER, "Prince Buster"]]),
+			],
+		});
+		const out = await resolveReleaseGroupDetailed("Judge Dread", "Prince");
+		expect(out).toEqual({ identity: null, ambiguous: false, unavailable: false });
+	});
+
+	it("does not resolve a recording credited to 'Prince Buster' for 'Prince'", async () => {
+		stubMb({
+			recordings: [hit("bbbbbbbb-1111-4111-8111-000000000002", "Al Capone", [[BUSTER, "Prince Buster"]])],
+		});
+		expect(await resolveRecording("Al Capone", "Prince")).toBeNull();
+	});
+
+	it("picks the work credited to 'Prince' even when a 'Prince Buster' one is older", async () => {
+		stubMb({
+			"release-groups": [
+				hit("bbbbbbbb-1111-4111-8111-000000000003", "Wasted Days", [[BUSTER, "Prince Buster"]], {
+					"first-release-date": "1963",
+				}),
+				hit("bbbbbbbb-1111-4111-8111-000000000004", "Wasted Days", [[PRINCE, "Prince"]], {
+					"first-release-date": "1987",
+				}),
+			],
+		});
+		expect((await resolveReleaseGroup("Wasted Days", "Prince"))?.mbid).toBe(
+			"bbbbbbbb-1111-4111-8111-000000000004",
+		);
+	});
+
+	it("keeps the tolerance: case, diacritics, '&' / 'and', 'The', credited-as or canonical name", async () => {
+		const cases: [title: string, hint: string, name: string, canonical: string][] = [
+			["Tolerance Case", "BEYONCE", "Beyoncé", "Beyoncé"],
+			["Tolerance And", "Simon and Garfunkel", "Simon & Garfunkel", "Simon & Garfunkel"],
+			["Tolerance The One", "Beatles", "The Beatles", "The Beatles"],
+			["Tolerance The Two", "The Beatles", "Beatles", "Beatles"],
+			["Tolerance Credited As", "The Artist", "The Artist", "Prince"],
+			["Tolerance Canonical", "Prince", "The Artist", "Prince"],
+		];
+		for (const [i, [title, hint, name, canonical]] of cases.entries()) {
+			const id = `bbbbbbbb-2222-4222-8222-00000000000${i}`;
+			stubMb({
+				"release-groups": [
+					{ id, title, "artist-credit": [{ name, artist: { id: PRINCE, name: canonical } }] },
+				],
+			});
+			expect((await resolveReleaseGroup(title, hint))?.mbid, `${title} / ${hint}`).toBe(id);
+		}
+	});
+
+	// Decision (TRA-537): a joint credit is one credited artist per entry, so 'Prince' is credited on a
+	// work MB credits to [Prince][The Revolution]. A joint name MB files as ONE artist is another artist
+	// ('Prince and the Revolution' has its own MBID): it is not 'Prince', and is refused.
+	const jointCredit = [
+		{ name: "Prince", joinphrase: " & ", artist: { id: PRINCE, name: "Prince" } },
+		{ name: "The Revolution", artist: { id: REVOLUTION, name: "The Revolution" } },
+	];
+
+	it("accepts 'Prince' on a joint credit of two entries (Prince + The Revolution)", async () => {
+		const id = "bbbbbbbb-3333-4333-8333-000000000001";
+		stubMb({ "release-groups": [{ id, title: "Purple Joint", "artist-credit": jointCredit }] });
+		const out = await resolveReleaseGroup("Purple Joint", "Prince");
+		expect(out?.mbid).toBe(id);
+		expect(out?.credit.map((c) => c.mbid)).toEqual([PRINCE, REVOLUTION]);
+	});
+
+	it("refuses 'Prince' on a single artist named 'Prince & The Revolution', and accepts that name itself", async () => {
+		const id = "bbbbbbbb-3333-4333-8333-000000000002";
+		const body = {
+			"release-groups": [hit(id, "Purple Single", [[PRINCE_AND_REVOLUTION, "Prince & The Revolution"]])],
+		};
+		stubMb(body);
+		expect(await resolveReleaseGroup("Purple Single", "Prince")).toBeNull();
+		stubMb(body);
+		expect((await resolveReleaseGroup("Purple Single", "Prince and the Revolution"))?.mbid).toBe(id);
+	});
+
+	it("accepts the joint name asked as a whole over two credit entries", async () => {
+		const id = "bbbbbbbb-3333-4333-8333-000000000003";
+		stubMb({ "release-groups": [{ id, title: "Purple Whole", "artist-credit": jointCredit }] });
+		expect((await resolveReleaseGroup("Purple Whole", "Prince & The Revolution"))?.mbid).toBe(id);
+	});
+
+	it("refuses a hint that is only a word of a credit ('Fire' on 'Earth, Wind & Fire')", async () => {
+		stubMb({
+			"release-groups": [
+				hit("bbbbbbbb-3333-4333-8333-000000000004", "September Mix", [[BUSTER, "Earth, Wind & Fire"]]),
+			],
+		});
+		expect(await resolveReleaseGroup("September Mix", "Fire")).toBeNull();
+	});
+
+	it("no longer resolves a member to its group credit ('Roni Size' on 'Roni Size / Reprazent')", async () => {
+		stubMb({
+			"release-groups": [
+				hit("bbbbbbbb-3333-4333-8333-000000000005", "Group Only", [[REPRAZENT, "Roni Size / Reprazent"]]),
+			],
+		});
+		expect(await resolveReleaseGroup("Group Only", "Roni Size")).toBeNull();
+	});
+});
+
+// TRA-537, code-review findings: the equality gate must not open for hints it cannot compare.
+describe("pickByTitleAndCredit: hints that cannot be compared", () => {
+	const OTHER = "cccccccc-0000-4000-8000-000000000001";
+
+	it("never reads a punctuation-only hint as 'no hint': a lone foreign credit is refused", async () => {
+		stubMb({
+			"release-groups": [hit("cccccccc-1111-4111-8111-000000000001", "Bang Title", [[OTHER, "Somebody"]])],
+		});
+		expect(await resolveReleaseGroup("Bang Title", "!!!")).toBeNull();
+	});
+
+	it("compares a name with letters slug normalization would erase literally ('Mø' is not 'M')", async () => {
+		stubMb({
+			"release-groups": [hit("cccccccc-1111-4111-8111-000000000002", "Letter Title", [[OTHER, "M"]])],
+		});
+		expect(await resolveReleaseGroup("Letter Title", "Mø")).toBeNull();
+		const id = "cccccccc-1111-4111-8111-000000000003";
+		stubMb({ "release-groups": [hit(id, "Letter Title Two", [[OTHER, "Mø"]])] });
+		expect((await resolveReleaseGroup("Letter Title Two", "MØ"))?.mbid).toBe(id);
+		const sakamoto = "cccccccc-1111-4111-8111-000000000004";
+		stubMb({ "release-groups": [hit(sakamoto, "Letter Title Three", [[OTHER, "坂本龍一"]])] });
+		expect((await resolveReleaseGroup("Letter Title Three", "坂本龍一"))?.mbid).toBe(sakamoto);
+		stubMb({
+			"release-groups": [hit("cccccccc-1111-4111-8111-000000000005", "Letter Title Four", [[OTHER, "X"]])],
+		});
+		expect(await resolveReleaseGroup("Letter Title Four", "Группа X")).toBeNull();
+	});
+
+	it("says 'no match', not 'ambiguous', when several look-alikes are all credited to others", async () => {
+		stubMb({
+			"release-groups": [
+				hit("cccccccc-1111-4111-8111-000000000006", "Crowd Title", [[OTHER, "Act One"]]),
+				hit("cccccccc-1111-4111-8111-000000000007", "Crowd Title", [[OTHER, "Act Two"]]),
+			],
+		});
+		expect(await resolveReleaseGroupDetailed("Crowd Title", "Act Three")).toEqual({
+			identity: null,
+			ambiguous: false,
+			unavailable: false,
+		});
+	});
+
+	it("counts a featured artist as credited ('Jay-Z' on 'Beyoncé feat. Jay-Z'), the credit says who", async () => {
+		const id = "cccccccc-1111-4111-8111-000000000008";
+		stubMb({
+			recordings: [
+				{
+					id,
+					title: "Feat Title",
+					"artist-credit": [
+						{ name: "Beyoncé", joinphrase: " feat. ", artist: { id: OTHER, name: "Beyoncé" } },
+						{ name: "Jay-Z", artist: { id: "cccccccc-0000-4000-8000-000000000002", name: "Jay-Z" } },
+					],
+				},
+			],
+		});
+		const out = await resolveRecording("Feat Title", "Jay-Z");
+		expect(out?.mbid).toBe(id);
+		expect(out?.credit.map((c) => c.name)).toEqual(["Beyoncé", "Jay-Z"]);
+	});
+});
+
+describe("pickByTitleAndCredit: aliases of the credited artist", () => {
+	const ARTIST = "dddddddd-0000-4000-8000-000000000001";
+	const credit = (aliases: unknown) => [
+		{ name: "Sasha & John Digweed", artist: { id: ARTIST, name: "Sasha & John Digweed", aliases } },
+	];
+
+	it("accepts a hint spelled as an alias of the credited artist", async () => {
+		const id = "dddddddd-1111-4111-8111-000000000001";
+		stubMb({
+			"release-groups": [
+				{ id, title: "Alias Title", "artist-credit": credit([{ name: "Sasha + John Digweed" }]) },
+			],
+		});
+		expect((await resolveReleaseGroup("Alias Title", "Sasha + John Digweed"))?.mbid).toBe(id);
+	});
+
+	it("ignores malformed aliases and never takes an alias word for a match", async () => {
+		stubMb({
+			"release-groups": [
+				{
+					id: "dddddddd-1111-4111-8111-000000000002",
+					title: "Alias Title Two",
+					"artist-credit": credit([{ name: 42 }, "junk", null, { name: "Sasha + John Digweed" }]),
+				},
+			],
+		});
+		expect(await resolveReleaseGroup("Alias Title Two", "John Digweed")).toBeNull();
+	});
+});
+
+// TRA-537 deep review (B1, N1): a set-aside candidate that names the artist in a joint credit is doubt, not noise.
+describe("pickByTitleAndCredit: set-aside joint credits and truncated aliases", () => {
+	const ALVA = "eeeeeeee-0000-4000-8000-000000000001";
+	const SAKAMOTO = "eeeeeeee-0000-4000-8000-000000000002";
+	const DUO = "eeeeeeee-0000-4000-8000-000000000003";
+	const RS = "eeeeeeee-0000-4000-8000-000000000004";
+	const REPRAZ = "eeeeeeee-0000-4000-8000-000000000005";
+	const GROUP = "eeeeeeee-0000-4000-8000-000000000006";
+
+	it("is ambiguous, not the duplicate, when the canonical recording is credited to a duo naming the artist (Uoon II)", async () => {
+		stubMb({
+			recordings: [
+				hit("eeeeeeee-1111-4111-8111-000000000001", "Uoon II Test", [[DUO, "Alva Noto + Ryuichi Sakamoto"]], {
+					"first-release-date": "2002",
+				}),
+				hit(
+					"eeeeeeee-1111-4111-8111-000000000002",
+					"Uoon II Test",
+					[
+						[SAKAMOTO, "坂本龍一"],
+						[ALVA, "Alva Noto"],
+					],
+					{ "first-release-date": "2022" },
+				),
+			],
+		});
+		expect(await resolveRecordingDetailed("Uoon II Test", "Alva Noto")).toEqual({
+			identity: null,
+			ambiguous: true,
+			unavailable: false,
+		});
+	});
+
+	it("is ambiguous, not the reissue, when the original is credited to a group naming the artist", async () => {
+		stubMb({
+			"release-groups": [
+				hit("eeeeeeee-1111-4111-8111-000000000003", "Reissue Test", [[GROUP, "Roni Size / Reprazent"]], {
+					"first-release-date": "1997",
+				}),
+				hit(
+					"eeeeeeee-1111-4111-8111-000000000004",
+					"Reissue Test",
+					[
+						[RS, "Roni Size"],
+						[REPRAZ, "Reprazent"],
+					],
+					{ "first-release-date": "2008" },
+				),
+			],
+		});
+		expect(await resolveReleaseGroupDetailed("Reissue Test", "Roni Size")).toEqual({
+			identity: null,
+			ambiguous: true,
+			unavailable: false,
+		});
+	});
+
+	it("ignores an alias that is a truncation of the printed name ('Cam' for 'DJ Cam')", async () => {
+		const withAlias = (name: string) => [
+			{ name: "DJ Cam", artist: { id: DUO, name: "DJ Cam", aliases: [{ name }] } },
+		];
+		stubMb({
+			"release-groups": [
+				{ id: "eeeeeeee-1111-4111-8111-000000000005", title: "Cam Test", "artist-credit": withAlias("Cam") },
+			],
+		});
+		expect(await resolveReleaseGroup("Cam Test", "Cam")).toBeNull();
+		const id = "eeeeeeee-1111-4111-8111-000000000006";
+		stubMb({ "release-groups": [{ id, title: "Cam Test Two", "artist-credit": withAlias("Camille D") }] });
+		expect((await resolveReleaseGroup("Cam Test Two", "Camille D"))?.mbid).toBe(id);
 	});
 });
