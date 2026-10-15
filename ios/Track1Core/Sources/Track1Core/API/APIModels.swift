@@ -78,7 +78,8 @@ public enum CatalogTaxonomy: Decodable, Equatable, Sendable {
 			self = .degraded(available: try values.decode(Bool.self, forKey: .available))
 		case "editorial":
 			// Any violation of the editorial contract (shape, version, slug type, dangling family) degrades.
-			self = (try? EditorialTaxonomy(validating: values)).map(CatalogTaxonomy.editorial)
+			self =
+				(try? EditorialTaxonomy(validating: values)).map(CatalogTaxonomy.editorial)
 				?? .degraded(available: false)
 		default:
 			self = .degraded(available: false)

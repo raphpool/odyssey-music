@@ -78,7 +78,8 @@ final class CatalogTaxonomyTests: XCTestCase {
 	}
 
 	func testEditorialWithUnsupportedVersionDegrades() throws {
-		XCTAssertEqual(try editorial(replacing: #""version":2"#, with: #""version":3"#), .degraded(available: false))
+		XCTAssertEqual(
+			try editorial(replacing: #""version":2"#, with: #""version":3"#), .degraded(available: false))
 	}
 
 	func testEditorialWithNonGenreSlugDegrades() throws {
@@ -101,14 +102,17 @@ final class CatalogTaxonomyTests: XCTestCase {
 	func testEditorialWithDuplicateKeysOrIdsDegrades() throws {
 		// Every genre also moves to the surviving family, so only the duplicate-key rule can fire.
 		XCTAssertEqual(
-			try editorial(mutations: [(#""key":"rock""#, #""key":"electronic""#), (#""family":"rock""#, #""family":"electronic""#)]),
+			try editorial(mutations: [
+				(#""key":"rock""#, #""key":"electronic""#), (#""family":"rock""#, #""family":"electronic""#),
+			]),
 			.degraded(available: false))
 		XCTAssertEqual(
 			try editorial(replacing: #""id":"punk""#, with: #""id":"house""#), .degraded(available: false))
 	}
 
 	func testEditorialWithMalformedFieldsDegrades() throws {
-		XCTAssertEqual(try editorial(replacing: #""label":"Rock""#, with: #""label":"""#), .degraded(available: false))
+		XCTAssertEqual(
+			try editorial(replacing: #""label":"Rock""#, with: #""label":"""#), .degraded(available: false))
 		XCTAssertEqual(try editorial(replacing: #""order":2"#, with: #""order":2.5"#), .degraded(available: false))
 		XCTAssertEqual(
 			try editorial(replacing: #""families":["#, with: #""families":{"a":1},"unused":["#),
