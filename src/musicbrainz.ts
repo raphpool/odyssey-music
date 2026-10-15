@@ -1324,11 +1324,12 @@ function parseArtistSearchHits(body: unknown): ArtistSearchPage | null {
 	for (const raw of body.artists) {
 		if (!isRecord(raw) || !isMbid(raw.id) || !isText(raw.name) || SPECIAL_PURPOSE_MBIDS.has(raw.id)) continue;
 		const disambiguation = textOf(raw.disambiguation);
-		const areas = ARTIST_AREA_KEYS.flatMap((key) => {
+		const areaOf = (key: (typeof ARTIST_AREA_KEYS)[number]) => {
 			const area = raw[key];
 			const name = isRecord(area) ? textOf(area.name) : null;
-			return isRecord(area) && name !== null ? [{ name, type: textOf(area.type) }] : [];
-		});
+			return isRecord(area) && name !== null ? { name, type: textOf(area.type) } : null;
+		};
+		const areas = ARTIST_AREA_KEYS.flatMap((key) => areaOf(key) ?? []);
 		const code = typeof raw.country === "string" ? COUNTRY_CODES[raw.country] : undefined;
 		const aliases = Array.isArray(raw.aliases)
 			? raw.aliases.flatMap((alias) => (isRecord(alias) && isText(alias.name) ? [alias.name] : []))
@@ -1339,7 +1340,7 @@ function parseArtistSearchHits(body: unknown): ArtistSearchPage | null {
 				name: raw.name,
 				kind: artistKind(raw.type),
 				disambiguation,
-				area: isRecord(raw.area) ? textOf(raw.area.name) : null,
+				area: areaOf("area")?.name ?? null,
 			},
 			aliases,
 			context: new Set(
@@ -1496,7 +1497,8 @@ export async function resolveArtistDetailed(
 		const aliasFound = await searchArtistPool("alias", phrase);
 		if (!aliasFound) return { ...none, unavailable: true };
 		path = "alias";
-		complete = aliasFound.complete;
+		// A name search that left results unread may hide exact-name artists the alias pool must not outrank.
+		complete = complete && aliasFound.complete;
 		pool = aliasFound.hits.filter((h) => h.aliases.some((alias) => sameArtistName(alias, name)));
 	}
 	if (pool.length === 0) return none;

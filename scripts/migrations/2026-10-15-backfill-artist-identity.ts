@@ -19,8 +19,8 @@
  *
  * Pace: MusicBrainz allows one request per second (mbFetch enforces it), and an artist costs about
  * three requests (search, alias search when no canonical name matched, profile with bands), more when a
- * search has hundreds of results (a search is read in pages of 100, 5 at most): 581 artists take about
- * a quarter of an hour.
+ * search has hundreds of results (a search is read in pages of 100, 5 at most): about 720 requests, a
+ * dozen minutes, for the 581 artists of the cache (2026-10-15).
  *
  * Usage: tsx scripts/migrations/2026-10-15-backfill-artist-identity.ts <cache-dir> [--apply]
  *        [--manifest out/artist-identity.json] [--limit N] [--resume]
@@ -144,7 +144,12 @@ async function readManifest(path: string): Promise<IdentityManifest | null> {
 		throw new Error(`${path} is not an artist-identity manifest`);
 	}
 	const resolved: Record<string, ResolvedArtist> = {};
-	for (const [slug, entry] of Object.entries(parsed.resolved)) {
+	for (const [slug, raw] of Object.entries(parsed.resolved)) {
+		// A stored-mbid entry never searched anything, so it has no words to audit: it stays reusable.
+		const entry =
+			isRecord(raw) && raw.path === "stored-mbid" && raw.matched_words === undefined
+				? { ...raw, matched_words: [] }
+				: raw;
 		if (isResolvedArtist(entry)) resolved[slug] = entry;
 	}
 	return {
@@ -255,8 +260,8 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 	);
 	log(
 		`${artists.length} artists, ${artists.length - pending.length} reused from the manifest, ${toQuery} to ` +
-			`query: about ${toQuery * CALLS_PER_ARTIST} MusicBrainz requests (a name with many same-name entries costs up to ` +
-			`5 pages per search), about ${Math.ceil(seconds / 60)} min ` +
+			`query: up to ${toQuery * CALLS_PER_ARTIST} MusicBrainz requests (more for a name with hundreds of search ` +
+			`results: up to 5 pages per search), about ${Math.ceil(seconds / 60)} min ` +
 			`at one request per ${musicBrainzConfig.minIntervalMs} ms${apply ? "" : " (dry-run)"}`,
 	);
 

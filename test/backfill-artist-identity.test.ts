@@ -112,7 +112,7 @@ function stubMb(
 			if (options.failOffsets?.includes(offset))
 				return { ok: false, status: 500, headers: new Headers(), json: async () => ({}) } as Response;
 			return jsonResponse({
-				count: Math.max(options.count ?? 0, matching.length),
+				count: field === "artist" ? Math.max(options.count ?? 0, matching.length) : matching.length,
 				offset,
 				artists: matching.slice(offset, offset + limit).map((a) => ({
 					id: a.id,
@@ -408,6 +408,33 @@ describe("resolveArtist", () => {
 			const out = await resolveArtistDetailed("Guyfour", { origin: "Dallas, USA" });
 			expect(out.artist?.mbid).toBe(lone.id);
 			expect(out.matchedWords).toEqual(["usa"]);
+		});
+
+		it("does not let a complete alias pool hide that the name search left results unread", async () => {
+			const alias = (id: string, extra: Partial<FakeArtist>): FakeArtist => ({
+				id,
+				name: "Someone Real",
+				aliases: ["Aliasfoo"],
+				...extra,
+			});
+			stubMb([...crowd("ae", "Aliasfoo", 500), alias("afafafaf-0000-4000-8000-000000000f01", {})], {
+				count: 600,
+			});
+			expect(await resolveArtistDetailed("Aliasfoo", { origin: "Dallas, USA" })).toMatchObject({
+				artist: null,
+				path: "alias",
+				candidates: 1,
+			});
+			stubMb(
+				[
+					...crowd("b0", "Aliasbar", 500),
+					alias("b1b1b1b1-0000-4000-8000-000000000f01", { aliases: ["Aliasbar"], beginArea: "Dallas" }),
+				],
+				{ count: 600 },
+			);
+			expect((await resolveArtistDetailed("Aliasbar", { origin: "Dallas, USA" })).matchedWords).toEqual([
+				"dallas",
+			]);
 		});
 
 		it("stops paging at the count: 250 results are 3 requests", async () => {
@@ -1125,6 +1152,46 @@ describe("runBackfill", () => {
 
 		expect(result.manifest.resolved["artist:stale-entry"]?.mbid).toBe(stored);
 		expect(result.manifest.resolved["artist:stale-entry"]?.kind).toBe("group");
+	});
+
+	// TRA-508: a manifest written before matched_words existed holds identities chosen by looser rules.
+	it("--resume re-queries a legacy manifest entry that searched, and reuses one that did not", async () => {
+		const stored = "b8b8b8b8-0000-4000-8000-0000000000a1";
+		stubMb([{ id: "b8b8b8b8-0000-4000-8000-0000000000a2", name: "Legacy Searched", type: "Person" }]);
+		await seed(artistNode("artist:legacy-stored", { name: "Legacy Stored", mbid: stored }));
+		await seed(artistNode("artist:legacy-searched", { name: "Legacy Searched" }));
+		const legacy = (mbid: string, path: string) => ({
+			mbid,
+			kind: "person",
+			groups: [],
+			mb_name: "Legacy",
+			disambiguation: null,
+			area: null,
+			path,
+			homonyms_discarded: 0,
+		});
+		await mkdir(join(root, "out"), { recursive: true });
+		await writeFile(
+			manifestPath,
+			JSON.stringify({
+				generated_at: "2026-10-14T00:00:00.000Z",
+				resolved: {
+					"artist:legacy-stored": legacy(stored, "stored-mbid"),
+					"artist:legacy-searched": legacy("b8b8b8b8-0000-4000-8000-0000000000ff", "name"),
+				},
+				unresolved: [],
+				collisions: [],
+			}),
+			"utf8",
+		);
+
+		const result = await run({ resume: true });
+
+		expect(calls()).toEqual({ searches: 1, profiles: 1 });
+		expect(result.manifest.resolved["artist:legacy-stored"]).toMatchObject({ matched_words: [] });
+		expect(result.manifest.resolved["artist:legacy-searched"]?.mbid).toBe(
+			"b8b8b8b8-0000-4000-8000-0000000000a2",
+		);
 	});
 
 	it("does not search for an artist that already has an mbid, and completes its missing kind", async () => {
