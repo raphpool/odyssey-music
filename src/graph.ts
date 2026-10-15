@@ -14,7 +14,7 @@ import {
 	SINGULAR_EDGES_BY_TYPE,
 	TEASER_FIELD_BY_TYPE,
 } from "./node-spec.js";
-import type { Citation, EdgeRef, NodePayload, NodeType } from "./types.js";
+import type { Citation, EdgeRef, ImageSource, NodePayload, NodeType } from "./types.js";
 
 const log = logger.child({ module: "graph" });
 
@@ -49,6 +49,7 @@ export interface VizNode {
 	facts: Record<string, string>;
 	materialized_at: string;
 	image_url?: string;
+	image_source?: ImageSource;
 	// Wikidata entity id, genre nodes only — mirrors GenreNode.qid (TRA-17/TRA-19). Kept out of
 	// facts/UI: toVizNode below is the sole gate that lets it onto a VizNode.
 	qid?: string;
@@ -79,7 +80,6 @@ export interface GraphProjection {
 }
 
 export interface BuildGraphOptions {
-	includeImageUrls?: boolean;
 	quarantineOrphanGenres?: boolean;
 	scrubQuarantinedRefs?: boolean;
 	// Override for data/genre-redirects.json's default location, mirroring loadGenreRedirects's
@@ -123,7 +123,7 @@ export async function buildGraphFromCache(
 		seen.add(node.slug);
 	}
 
-	const nodes = payloads.map((node) => toVizNode(node, options));
+	const nodes = payloads.map((node) => toVizNode(node));
 	backfillGenreReverses(nodes);
 	let edges = collectEdges(nodes, new Set(nodes.map((node) => node.id)));
 	let quarantine: { id: string; name: string; reason: string }[] | undefined;
@@ -196,7 +196,7 @@ function reportTaxonomyFailure(mode: "strict" | "degrade", path: string, error: 
 	});
 }
 
-export function toVizNode(node: NodePayload, options: BuildGraphOptions): VizNode {
+export function toVizNode(node: NodePayload): VizNode {
 	const raw = node as unknown as Record<string, unknown>;
 	const teaserVal = raw[TEASER_FIELD_BY_TYPE[node.type]];
 	const facts: Record<string, string> = {};
@@ -226,16 +226,18 @@ export function toVizNode(node: NodePayload, options: BuildGraphOptions): VizNod
 	};
 	// Node-level qid whitelist: genre only, mirroring the edge-level one already applied above (TRA-19).
 	if (node.type === "genre" && node.qid) viz.qid = node.qid;
-	if (options.includeImageUrls) {
-		const imageField =
-			node.type === "artist"
-				? "photo_url"
-				: node.type === "project" || node.type === "track"
-					? "cover_url"
-					: null;
-		const imageUrl =
-			imageField && typeof raw[imageField] === "string" ? (raw[imageField] as string) : undefined;
-		if (imageUrl) viz.image_url = imageUrl;
+	// Same projection for static, live and mobile graphs (TRA-455): image_url first, then the
+	// per-type legacy fields. photo_url / cover_url are not host-checked, so consumers must keep
+	// treating the value as untrusted. image_source describes image_url only: never project it
+	// next to a photo_url / cover_url fallback.
+	if (node.image_url) {
+		viz.image_url = node.image_url;
+		if (node.image_source) viz.image_source = node.image_source;
+	} else {
+		const fallback = [raw.photo_url, raw.cover_url].find(
+			(candidate): candidate is string => typeof candidate === "string" && candidate !== "",
+		);
+		if (fallback) viz.image_url = fallback;
 	}
 	return viz;
 }

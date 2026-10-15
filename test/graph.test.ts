@@ -69,13 +69,13 @@ async function writeRawNode(root: string, node: NodePayload): Promise<void> {
 describe("toVizNode — node-level qid whitelist (TRA-19)", () => {
 	it("keeps qid on a genre VizNode when the cached node has one", () => {
 		const genre = genreNode({ slug: "genre:acid", name: "Acid", qid: "Q170611" });
-		const viz = toVizNode(genre, {});
+		const viz = toVizNode(genre);
 		expect(viz.qid).toBe("Q170611");
 	});
 
 	it("omits qid on a genre VizNode when the cached node has none", () => {
 		const genre = genreNode({ slug: "genre:dub", name: "Dub" });
-		const viz = toVizNode(genre, {});
+		const viz = toVizNode(genre);
 		expect("qid" in viz).toBe(false);
 	});
 
@@ -102,8 +102,67 @@ describe("toVizNode — node-level qid whitelist (TRA-19)", () => {
 		// (TRA-17/TRA-18). This asserts the node-level whitelist in toVizNode is its own guarantee,
 		// not merely incidental coverage inherited from the schema layer.
 		const corrupted = { ...artist, qid: "Q999999" } as unknown as ArtistNode;
-		const viz = toVizNode(corrupted, {});
+		const viz = toVizNode(corrupted);
 		expect("qid" in viz).toBe(false);
+	});
+});
+
+describe("toVizNode — image_url projection (TRA-455)", () => {
+	const caa = "https://coverartarchive.org/release-group/6a9b9f3e/front-500";
+
+	it("falls back to photo_url for an artist without image_url", () => {
+		const artist = artistNode({ slug: "artist:a", name: "A", photo_url: "https://example.com/a.jpg" });
+		expect(toVizNode(artist).image_url).toBe("https://example.com/a.jpg");
+	});
+
+	it("falls back to cover_url for a project without image_url", () => {
+		const project = {
+			type: "project",
+			slug: "project:p",
+			name: "P",
+			cover_url: "https://example.com/p.jpg",
+		} as unknown as NodePayload;
+		expect(toVizNode(project).image_url).toBe("https://example.com/p.jpg");
+	});
+
+	it("lets image_url win over photo_url and projects image_source", () => {
+		const artist = artistNode({
+			slug: "artist:a",
+			name: "A",
+			photo_url: "https://example.com/a.jpg",
+			image_url: caa,
+			image_source: "caa",
+		});
+		const viz = toVizNode(artist);
+		expect(viz.image_url).toBe(caa);
+		expect(viz.image_source).toBe("caa");
+	});
+
+	it("does not project image_source next to a photo_url / cover_url fallback", () => {
+		// image_source describes image_url only; a stray value must not label the fallback.
+		const artist = artistNode({ slug: "artist:a", name: "A", photo_url: "https://example.com/a.jpg" });
+		const viz = toVizNode({ ...artist, image_source: "caa" });
+		expect(viz.image_url).toBe("https://example.com/a.jpg");
+		expect("image_source" in viz).toBe(false);
+	});
+
+	it("projects image_url for genres, which have no photo_url / cover_url", () => {
+		const viz = toVizNode(
+			genreNode({ slug: "genre:dub", name: "Dub", image_url: caa, image_source: "derived-cover" }),
+		);
+		expect(viz).toMatchObject({ image_url: caa, image_source: "derived-cover" });
+	});
+
+	it("omits both keys when the node has no image field", () => {
+		const viz = toVizNode(genreNode({ slug: "genre:dub", name: "Dub" }));
+		expect("image_url" in viz).toBe(false);
+		expect("image_source" in viz).toBe(false);
+	});
+
+	it("projects image_url through buildGraphFromCache with default options", async () => {
+		await writeRawNode(dir, genreNode({ slug: "genre:dub", name: "Dub", image_url: caa }));
+		const graph = await buildGraphFromCache(dir);
+		expect(graph.nodes.find((n) => n.id === "genre:dub")?.image_url).toBe(caa);
 	});
 });
 
@@ -123,7 +182,7 @@ describe("toVizNode — EdgeRef.artist survives projection (TRA-451)", () => {
 			artist_kind: "group",
 			discography,
 		});
-		const viz = toVizNode(group, {});
+		const viz = toVizNode(group);
 		const projected = viz.edges.discography as EdgeRef[];
 		expect(projected[0]?.artist).toBe("Roni Size / Reprazent");
 		expect("artist_kind" in viz).toBe(false);

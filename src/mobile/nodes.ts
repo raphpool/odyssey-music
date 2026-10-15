@@ -42,9 +42,9 @@ export function createMobileNodeReader(dependencies: MobileNodeDependencies): Mo
 				throw error;
 			});
 			if (!node) return null;
-			const vizNode = toVizNode(node, {});
+			const vizNode = toVizNode(node);
 			return {
-				node: { ...vizNode, citations: sanitizeCitations(vizNode.citations) },
+				node: sanitizeNodeImage({ ...vizNode, citations: sanitizeCitations(vizNode.citations) }),
 				source: "cache",
 				...(lookupSlug === slug ? {} : { redirected_from: slug }),
 			};
@@ -59,6 +59,17 @@ function sanitizeCitations(citations: Citation[]): Citation[] {
 		const url = safePublicHttpsUrl(citation.url);
 		return url ? [{ ...citation, url }] : [];
 	});
+}
+
+// image_url falls back to photo_url / cover_url, which accept http:// and ports; iOS decodes
+// image_url as a validated public URL and fails the WHOLE node response on a refusal (review of
+// TRA-455: artist:giorgio-moroder). A refused image is dropped with its image_source, not the node.
+function sanitizeNodeImage(node: VizNode): VizNode {
+	if (node.image_url === undefined) return node;
+	const safe = safePublicHttpsUrl(node.image_url);
+	if (safe) return { ...node, image_url: safe };
+	const { image_url: _url, image_source: _source, ...rest } = node;
+	return rest;
 }
 
 export function safePublicHttpsUrl(raw: string | null, expectedHost?: string): string | null {
