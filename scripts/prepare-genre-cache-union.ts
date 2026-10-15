@@ -18,10 +18,14 @@
  * node exists there, or its (pre-migration) redirect target does -- same rule as
  * `resolveReadSlug`. Only a reference that resolved in at least one source and no longer
  * resolves in the (migrated) union is a real regression; the cache's normal baseline of
- * never-materialized edges is not. This does NOT union `pending-reverses.json` between the two
- * sources -- see the PR for whether that matters for a given run.
+ * never-materialized edges is not. By default this does NOT union `pending-reverses.json` between
+ * the two sources (the plain genre sync is unchanged). With `--merge-pending-reverses` (TRA-499, the
+ * migration channel of deploy/sync-genre-cache.sh) both files are unioned
+ * (scripts/pending-reverses-union.ts) into the union's own root BEFORE the merge migration runs, so
+ * that migration -- and every later one -- rewrites one coherent file.
  *
  * Usage: tsx scripts/prepare-genre-cache-union.ts <repo-cache-dir> <server-cache-dir> [--apply-merge]
+ *        [--server-redirects-path <path>] [--merge-pending-reverses]
  */
 import { copyFile, cp, mkdir, mkdtemp, readFile, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
@@ -43,6 +47,13 @@ import {
 	runMigration,
 	warnSkippedNodeFiles,
 } from "./migrations/2026-09-04-merge-genre-duplicates.js";
+import {
+	type PendingReversesMap,
+	type PendingReversesSummary,
+	readPendingReversesFile,
+	summarizePendingReverses,
+	unionPendingReverses,
+} from "./pending-reverses-union.js";
 
 type NodeFile = Awaited<ReturnType<typeof readCacheNodes>>["nodes"][number];
 
@@ -199,6 +210,9 @@ export interface UnionManifest {
 	// Only present when options.serverRedirectsPath was given (B6b/sync-genre-cache.sh always
 	// passes it). A non-empty array is a hard refusal -- see diffGenreRedirects's own doc comment.
 	redirectsConflicts?: RedirectsConflict[];
+	// Only present with options.mergePendingReverses (TRA-499): what was unioned into
+	// <union>/pending-reverses.json, before the merge migration got to rewrite it.
+	pendingReverses?: PendingReversesSummary;
 }
 
 /** Pure: which side wins when the SAME raw slug exists on both sides. */
@@ -502,6 +516,9 @@ export async function buildCacheUnion(
 		taxonomyPath?: string;
 		taxonomy?: GenreTaxonomy;
 		applyMerge?: boolean;
+		// TRA-499: write the union of both sides' pending-reverses.json into the union's root, ahead of
+		// the merge migration. Off by default: a plain genre sync neither reads nor ships that file.
+		mergePendingReverses?: boolean;
 	} = {},
 ): Promise<{ outputDir: string; manifest: UnionManifest }> {
 	const { nodes: repoNodes, invalid: repoInvalid } = await readCacheNodes(repoCacheDir);
@@ -511,6 +528,19 @@ export async function buildCacheUnion(
 		...serverInvalid.map((e) => skippedEntry("server", serverCacheDir, e)),
 	];
 	warnSkippedNodeFiles(skipped);
+
+	// TRA-499: same discipline for pending-reverses.json -- a malformed file on either side refuses the
+	// union before anything is written, so no half-built output dir is left behind.
+	let repoPending: PendingReversesMap | undefined;
+	let serverPending: PendingReversesMap | undefined;
+	if (options.mergePendingReverses) {
+		const repoRead = await readPendingReversesFile(join(repoCacheDir, "pending-reverses.json"));
+		if (!repoRead.ok) throw new Error(`repo pending-reverses: ${repoRead.error}`);
+		const serverRead = await readPendingReversesFile(join(serverCacheDir, "pending-reverses.json"));
+		if (!serverRead.ok) throw new Error(`server pending-reverses: ${serverRead.error}`);
+		repoPending = repoRead.value;
+		serverPending = serverRead.value;
+	}
 
 	// Redirects loaded and validated BEFORE anything is written to nodes/ or archive/ (finding 4)
 	// -- a typo'd/missing/broken --server-redirects-path must fail loudly right here.
@@ -657,6 +687,19 @@ export async function buildCacheUnion(
 
 	const redirectsPath = join(outputDir, "genre-redirects.json");
 	await writeFile(redirectsPath, `${JSON.stringify({ redirects: combinedRedirects }, null, 2)}\n`, "utf8");
+	// TRA-499: before runMigration, so the genre merge below rewrites the unioned file (keys and edge
+	// slugs) exactly as it would the repo's own.
+	let pendingReverses: UnionManifest["pendingReverses"];
+	if (repoPending && serverPending) {
+		const unioned = unionPendingReverses(repoPending, serverPending);
+		await atomicWriteJson(join(outputDir, "pending-reverses.json"), unioned);
+		pendingReverses = summarizePendingReverses(
+			repoPending,
+			serverPending,
+			unioned,
+			new Set(entries.filter((e) => e.decision !== "conflict").map((e) => e.slug)),
+		);
+	}
 	// Only ONE runMigration call ever happens: preview and apply both recompute the full plan from
 	// scratch. With --apply-merge, nodes/ must be archived BEFORE this call, since apply may
 	// delete losers -- unless redirectsRefused, in which case nothing gets deleted.
@@ -801,6 +844,7 @@ export async function buildCacheUnion(
 		...(migrationApply ? { migrationApply } : {}),
 		...(referenceRegressions ? { referenceRegressions } : {}),
 		...(redirectsConflicts ? { redirectsConflicts } : {}),
+		...(pendingReverses ? { pendingReverses } : {}),
 	};
 	await writeFile(join(outputDir, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
 	return { outputDir, manifest };
@@ -811,9 +855,12 @@ export interface UnionCliArgs {
 	serverCacheDir: string;
 	applyMerge: boolean;
 	serverRedirectsPath?: string;
+	// Only set (to true) when the flag is given, so a plain invocation parses exactly as before.
+	mergePendingReverses?: true;
 }
 
-/** Parses `<repo-cache-dir> <server-cache-dir> [--apply-merge] [--server-redirects-path <path>]`.
+/** Parses `<repo-cache-dir> <server-cache-dir> [--apply-merge] [--merge-pending-reverses]
+ * [--server-redirects-path <path>]`.
  * Throws (never a silent guess) when --server-redirects-path is repeated, has no value, or is
  * followed by another flag (finding 4); an unrecognized flag is present; or anything but exactly
  * two positional arguments remain. */
@@ -840,16 +887,18 @@ export function parseUnionCliArgs(argv: readonly string[]): UnionCliArgs {
 			: [...argv.slice(0, serverRedirectsFlagIndex), ...argv.slice(serverRedirectsFlagIndex + 2)];
 	// An unrecognized flag must never fall through to a silent preview-mode guess -- see the
 	// sibling migration script's own parseCliArgs for the same discipline.
-	const unknownFlag = remainingArgs.find((a) => a.startsWith("--") && a !== "--apply-merge");
+	const BOOLEAN_FLAGS = ["--apply-merge", "--merge-pending-reverses"];
+	const unknownFlag = remainingArgs.find((a) => a.startsWith("--") && !BOOLEAN_FLAGS.includes(a));
 	if (unknownFlag) throw new Error(`unknown argument: ${unknownFlag}`);
 	const applyMerge = remainingArgs.includes("--apply-merge");
+	const mergePendingReverses = remainingArgs.includes("--merge-pending-reverses");
 	// Exactly two positional arguments -- an unflagged typo (no dashes, or a single dash) must
 	// never silently become a third, ignored token.
-	const positional = remainingArgs.filter((a) => a !== "--apply-merge");
+	const positional = remainingArgs.filter((a) => !BOOLEAN_FLAGS.includes(a));
 	const [repoCacheDir, serverCacheDir] = positional;
 	if (positional.length !== 2 || !repoCacheDir || !serverCacheDir) {
 		throw new Error(
-			"usage: <repo-cache-dir> <server-cache-dir> [--apply-merge] [--server-redirects-path <path>]",
+			"usage: <repo-cache-dir> <server-cache-dir> [--apply-merge] [--merge-pending-reverses] [--server-redirects-path <path>]",
 		);
 	}
 	return {
@@ -857,13 +906,13 @@ export function parseUnionCliArgs(argv: readonly string[]): UnionCliArgs {
 		serverCacheDir,
 		applyMerge,
 		...(serverRedirectsPath ? { serverRedirectsPath } : {}),
+		...(mergePendingReverses ? { mergePendingReverses: true as const } : {}),
 	};
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
-	const { repoCacheDir, serverCacheDir, applyMerge, serverRedirectsPath } = parseUnionCliArgs(
-		process.argv.slice(2),
-	);
+	const { repoCacheDir, serverCacheDir, applyMerge, serverRedirectsPath, mergePendingReverses } =
+		parseUnionCliArgs(process.argv.slice(2));
 	for (const dir of [repoCacheDir, serverCacheDir]) {
 		// A typo'd/nonexistent source silently unions "the other side alone" and exits 0 --
 		// same guard the migration script's own CLI uses on itself.
@@ -873,6 +922,7 @@ if (import.meta.url === pathToFileURL(process.argv[1] ?? "").href) {
 	const { outputDir, manifest } = await buildCacheUnion(repoCacheDir, serverCacheDir, {
 		applyMerge,
 		...(serverRedirectsPath ? { serverRedirectsPath } : {}),
+		...(mergePendingReverses ? { mergePendingReverses } : {}),
 	});
 	console.log(`Union written to ${outputDir} (${manifest.entries.length} entries)`);
 	if (countUnionProblems(manifest) > 0) process.exitCode = 1;

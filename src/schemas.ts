@@ -36,7 +36,7 @@ const metricsSchema = z
 	})
 	.optional();
 
-function buildNodePayloadSchema(slugSchema: z.ZodType<string>) {
+function buildSchemas(slugSchema: z.ZodType<string>) {
 	const edgeRefBase = z.object({
 		slug: slugSchema,
 		type: nodeTypeSchema,
@@ -147,6 +147,8 @@ function buildNodePayloadSchema(slugSchema: z.ZodType<string>) {
 		labels: z.array(typedEdgeFor("artist", "labels")),
 		discography: z.array(typedEdgeFor("artist", "discography")),
 		notable_tracks: z.array(typedEdgeFor("artist", "notable_tracks")),
+		landmark_project: typedEdgeFor("artist", "landmark_project").optional(),
+		reference_track: typedEdgeFor("artist", "reference_track").optional(),
 		influences: z.array(typedEdgeFor("artist", "influences")),
 		influenced: z.array(typedEdgeFor("artist", "influenced")),
 		collaborators: z.array(typedEdgeFor("artist", "collaborators")),
@@ -204,14 +206,41 @@ function buildNodePayloadSchema(slugSchema: z.ZodType<string>) {
 		remixed_by: z.array(typedEdgeFor("track", "remixed_by")),
 	});
 
-	return z.discriminatedUnion("type", [genreSchema, labelSchema, artistSchema, projectSchema, trackSchema]);
+	/** The edge schema a node of `type` applies to `field`, or undefined when that field carries no edges. */
+	function edgeSchemaFor(type: NodeType, field: string) {
+		const specs = EDGE_TARGET_TYPES_BY_TYPE[type];
+		// hasOwn: `field` comes from an untrusted file ("constructor" must not resolve on the prototype).
+		return Object.hasOwn(specs, field) ? typedEdge(specs[field] as readonly NodeType[]) : undefined;
+	}
+
+	return {
+		nodePayload: z.discriminatedUnion("type", [
+			genreSchema,
+			labelSchema,
+			artistSchema,
+			projectSchema,
+			trackSchema,
+		]),
+		edgeSchemaFor,
+	};
 }
 
 /** Write-side schema: canonical slugs only. The default everywhere a node is validated before saving. */
-export const nodePayloadSchema = buildNodePayloadSchema(canonicalSlugSchema);
+export const nodePayloadSchema = buildSchemas(canonicalSlugSchema).nodePayload;
+
+const readSchemas = buildSchemas(readableSlugSchema);
 
 /**
  * Read-side schema, for re-reading a node already on disk (NodeCache.get): same shape, legacy slug rule.
  * Never use it to admit new input.
  */
-export const readNodePayloadSchema = buildNodePayloadSchema(readableSlugSchema);
+export const readNodePayloadSchema = readSchemas.nodePayload;
+
+/**
+ * The edge schema a node of `type` applies to `field`, or undefined when that field carries no edges.
+ * Exported (TRA-499) so the migration channel can check a pending reverse's edge against the exact
+ * schema NodeCache.write will apply to the node once the reverse lands in it. That re-validation after
+ * the merge uses the read rule (see NodeCache.writeParsed), so this does too: the edge was already
+ * checked canonically where it entered, and a legacy slug in the queue must not block a sync.
+ */
+export const edgeSchemaFor = readSchemas.edgeSchemaFor;
