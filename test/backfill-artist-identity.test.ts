@@ -7,15 +7,11 @@ import {
 	findCollisions,
 	type IdentityManifest,
 	parseCliArgs,
+	type ResolvedArtist,
 	runBackfill,
 	withIdentity,
 } from "../scripts/migrations/2026-10-15-backfill-artist-identity.js";
-import {
-	fetchArtistEntityMb,
-	fetchArtistMembershipsMb,
-	resolveArtist,
-	resolveArtistDetailed,
-} from "../src/musicbrainz.js";
+import { fetchArtistProfileMb, resolveArtist, resolveArtistDetailed } from "../src/musicbrainz.js";
 import { nodePayloadSchema } from "../src/schemas.js";
 import type { ArtistNode } from "../src/types.js";
 
@@ -27,8 +23,7 @@ vi.mock("../src/musicbrainz.js", async (importOriginal) => {
 	return {
 		...actual,
 		resolveArtistDetailed: vi.fn(actual.resolveArtistDetailed),
-		fetchArtistEntityMb: vi.fn(actual.fetchArtistEntityMb),
-		fetchArtistMembershipsMb: vi.fn(actual.fetchArtistMembershipsMb),
+		fetchArtistProfileMb: vi.fn(actual.fetchArtistProfileMb),
 	};
 });
 
@@ -41,7 +36,10 @@ interface FakeArtist {
 	score?: number;
 	disambiguation?: string;
 	area?: string;
+	beginArea?: string;
 	aliases?: string[];
+	/** Asking for this (merged-away) MBID answers with the artist under its live `id`. */
+	mergedFrom?: string;
 	/** [direction, type, mbid, name] */
 	relations?: [string, string, string, string][];
 }
@@ -51,11 +49,11 @@ function jsonResponse(body: unknown): Response {
 }
 
 /**
- * Answers MB's artist search (names and aliases containing the phrase), the entity lookup and the
- * artist-rels lookup from `artists`; collects every requested URL. `down` makes every request fail.
+ * Answers MB's artist search (names and aliases containing the phrase) and the `?inc=artist-rels`
+ * lookup from `artists`; collects every requested URL. `down` makes every request fail.
  * Note mbFetch memoizes by URL for the whole file: each test uses names and MBIDs of its own.
  */
-function stubMb(artists: FakeArtist[], options: { down?: string[] } = {}): URL[] {
+function stubMb(artists: FakeArtist[], options: { down?: string[]; badGateway?: string[] } = {}): URL[] {
 	const urls: URL[] = [];
 	vi.stubGlobal(
 		"fetch",
@@ -65,25 +63,24 @@ function stubMb(artists: FakeArtist[], options: { down?: string[] } = {}): URL[]
 			if (kind !== "artist")
 				return { ok: false, status: 404, headers: new Headers(), json: async () => ({}) };
 			if (id) {
-				const artist = artists.find((a) => a.id === id);
+				const artist = artists.find((a) => a.id === id || a.mergedFrom === id);
 				if (!artist || options.down?.includes(id)) {
 					return { ok: false, status: 404, headers: new Headers(), json: async () => ({}) } as Response;
 				}
-				if (input.searchParams.get("inc") === "artist-rels") {
-					return jsonResponse({
-						id,
-						relations: (artist.relations ?? []).map(([direction, type, mbid, name]) => ({
-							direction,
-							type,
-							artist: { id: mbid, name },
-						})),
-					});
+				if (options.badGateway?.includes(id)) {
+					return { ok: false, status: 502, headers: new Headers(), json: async () => ({}) } as Response;
 				}
 				return jsonResponse({
-					id,
+					id: artist.id,
 					name: artist.name,
 					...(artist.type ? { type: artist.type } : {}),
 					...(artist.disambiguation ? { disambiguation: artist.disambiguation } : {}),
+					...(artist.area ? { area: { name: artist.area } } : {}),
+					relations: (artist.relations ?? []).map(([direction, type, mbid, name]) => ({
+						direction,
+						type,
+						artist: { id: mbid, name },
+					})),
 				});
 			}
 			// Like MB: `artist:` matches canonical names, `alias:` matches aliases.
@@ -100,6 +97,7 @@ function stubMb(artists: FakeArtist[], options: { down?: string[] } = {}): URL[]
 						...(a.type ? { type: a.type } : {}),
 						...(a.disambiguation ? { disambiguation: a.disambiguation } : {}),
 						...(a.area ? { area: { name: a.area } } : {}),
+						...(a.beginArea ? { "begin-area": { name: a.beginArea } } : {}),
 						...(a.aliases ? { aliases: a.aliases.map((name) => ({ name })) } : {}),
 					})),
 			});
@@ -108,11 +106,10 @@ function stubMb(artists: FakeArtist[], options: { down?: string[] } = {}): URL[]
 	return urls;
 }
 
-/** How many artists the migration sent to MusicBrainz: searches, entity lookups, membership lookups. */
+/** How many artists the migration sent to MusicBrainz: searches and profile lookups. */
 const calls = () => ({
 	searches: vi.mocked(resolveArtistDetailed).mock.calls.length,
-	entities: vi.mocked(fetchArtistEntityMb).mock.calls.length,
-	memberships: vi.mocked(fetchArtistMembershipsMb).mock.calls.length,
+	profiles: vi.mocked(fetchArtistProfileMb).mock.calls.length,
 });
 
 afterEach(() => {
@@ -130,6 +127,7 @@ describe("resolveArtist", () => {
 				name: "Ibex",
 				type: "Person",
 				disambiguation: "German producer",
+				area: "Germany",
 			},
 		]);
 		expect(await resolveArtist("Ibex")).toEqual({
@@ -137,16 +135,47 @@ describe("resolveArtist", () => {
 			name: "Ibex",
 			kind: "person",
 			disambiguation: "German producer",
+			area: "Germany",
 		});
 	});
 
-	it("ignores candidates under the score bar and null-resolves when none is left", async () => {
-		stubMb([{ id: "a2a2a2a2-0000-4000-8000-000000000001", name: "Weakscore", score: 89 }]);
-		expect(await resolveArtistDetailed("Weakscore")).toEqual({
-			artist: null,
-			candidates: 0,
-			unavailable: false,
-		});
+	it("takes an exact name whatever its search score: the right 'Earth' scores 89", async () => {
+		stubMb([
+			{
+				id: "a2a2a2a2-0000-4000-8000-000000000001",
+				name: "Earthen",
+				score: 100,
+				disambiguation: "US experimental metal/rock group",
+			},
+			{
+				id: "a2a2a2a2-0000-4000-8000-000000000002",
+				name: "Earthen",
+				score: 89,
+				type: "Group",
+				disambiguation: "US experimental metal/rock group",
+				area: "Seattle",
+				beginArea: "Olympia",
+			},
+		]);
+		// Two exact homonyms (100 and 89): the begin-area Olympia makes the 89 one the better fit.
+		expect((await resolveArtist("Earthen", { origin: "Olympia, Washington, U.S." }))?.mbid).toBe(
+			"a2a2a2a2-0000-4000-8000-000000000002",
+		);
+
+		stubMb([
+			{
+				id: "a2a2a2a2-0000-4000-8000-000000000003",
+				name: "Earth Alone",
+				score: 89,
+				type: "Group",
+				disambiguation: "US experimental metal/rock group",
+				area: "Seattle",
+				beginArea: "Olympia",
+			},
+			{ id: "a2a2a2a2-0000-4000-8000-000000000004", name: "Earth Alone Band", score: 100 },
+		]);
+		const out = await resolveArtist("Earth Alone", { origin: "Olympia, Washington, U.S." });
+		expect(out?.mbid).toBe("a2a2a2a2-0000-4000-8000-000000000003");
 	});
 
 	it("is null with the candidate count when two exact homonyms cannot be told apart", async () => {
@@ -157,6 +186,7 @@ describe("resolveArtist", () => {
 		expect(await resolveArtistDetailed("Homonym")).toEqual({
 			artist: null,
 			candidates: 2,
+			path: "name",
 			unavailable: false,
 		});
 		// A hint that matches neither is no hint.
@@ -194,25 +224,99 @@ describe("resolveArtist", () => {
 		expect(await resolveArtist("Twinned", { origin: "Japan" })).toBeNull();
 	});
 
-	it("matches a Latin name to an original-script artist through its alias, only as a fallback", async () => {
+	// Both reproduced against the real cache on 2026-10-15 (TRA-463 review): a sole exact-name hit was
+	// accepted though MB's context contradicted the node.
+	it("refuses a sole candidate whose MB context shares nothing with the node's hints (113)", async () => {
+		stubMb([
+			{
+				id: "a9a9a9a9-0000-4000-8000-000000000001",
+				name: "113 Leeds",
+				type: "Group",
+				disambiguation: "French hip hop group",
+				area: "France",
+			},
+		]);
+		expect(await resolveArtistDetailed("113 Leeds", { origin: "Leeds, England" })).toMatchObject({
+			artist: null,
+			candidates: 1,
+		});
+		// Same candidate, a node that says nothing: nothing contradicts it.
+		expect((await resolveArtist("113 Leeds"))?.mbid).toBe("a9a9a9a9-0000-4000-8000-000000000001");
+	});
+
+	it("leaves an artist with many exact homonyms unresolved when the hints fit several (Jaguar)", async () => {
+		const jaguar = (n: number, extra: Partial<FakeArtist>): FakeArtist => ({
+			id: `aaaaaaa${n}-0000-4000-8000-000000000001`,
+			name: "Jaguar Bingham Test",
+			...extra,
+		});
+		stubMb([
+			jaguar(1, {
+				type: "Group",
+				score: 100,
+				disambiguation: "80s UK heavy metal band",
+				area: "United Kingdom",
+			}),
+			jaguar(2, { type: "Person", score: 90, disambiguation: "German techno producer", area: "Germany" }),
+			jaguar(3, {
+				type: "Person",
+				score: 88,
+				disambiguation: "UK breakbeat producer",
+				area: "United Kingdom",
+			}),
+			jaguar(4, { type: "Person", score: 87, disambiguation: "UK DJ", area: "London" }),
+		]);
+		const out = await resolveArtistDetailed("Jaguar Bingham Test", { origin: "United Kingdom" });
+		expect(out).toMatchObject({ artist: null, candidates: 4 });
+	});
+
+	it("folds country spellings so an obvious match is not lost", async () => {
+		const only = (n: number, area: string, disambiguation: string): FakeArtist => ({
+			id: `bbbbbbb${n}-0000-4000-8000-000000000001`,
+			name: `Folded ${n}`,
+			area,
+			disambiguation,
+		});
+		stubMb([
+			only(1, "Türkiye", "Turkish producer"),
+			only(2, "United Kingdom", "producer"),
+			only(3, "United States", "producer"),
+			only(4, "Germany", "German IDM producer"),
+			only(5, "United States", "producer"),
+		]);
+		expect(await resolveArtist("Folded 1", { origin: "Istanbul, Turkey" })).not.toBeNull();
+		expect(await resolveArtist("Folded 2", { origin: "Leeds, England" })).not.toBeNull();
+		expect(await resolveArtist("Folded 3", { origin: "Detroit, Michigan, U.S." })).not.toBeNull();
+		expect(await resolveArtist("Folded 4", { origin: "Düsseldorf, Germany" })).not.toBeNull();
+		// "United Kingdom" and "United States" share the word "united" and nothing else.
+		expect(await resolveArtist("Folded 5", { origin: "London, United Kingdom" })).toBeNull();
+	});
+
+	it("matches a Latin name to an original-script artist through its alias (a Japanese one)", async () => {
 		stubMb([
 			{
 				id: "a6a6a6a6-0000-4000-8000-000000000001",
 				name: "坂本龍一",
 				type: "Person",
+				disambiguation: "Japanese composer, pianist",
+				area: "Japan",
 				aliases: ["Ryuichi Sakamotoh"],
 			},
 		]);
-		const out = await resolveArtist("Ryuichi Sakamotoh");
-		expect(out?.name).toBe("坂本龍一");
-		expect(out?.kind).toBe("person");
+		const out = await resolveArtistDetailed("Ryuichi Sakamotoh", { origin: "Tokyo, Japan" });
+		expect(out.artist?.name).toBe("坂本龍一");
+		expect(out.artist?.kind).toBe("person");
+		expect(out.path).toBe("alias");
+	});
 
-		// Another artist merely carrying the name as an alias loses to the canonical name.
+	it("uses aliases only when no canonical name matches, whatever the canonical match scores", async () => {
 		stubMb([
 			{ id: "a6a6a6a6-0000-4000-8000-000000000002", name: "Someone Else", aliases: ["Aliasonly"] },
-			{ id: "a6a6a6a6-0000-4000-8000-000000000003", name: "Aliasonly" },
+			{ id: "a6a6a6a6-0000-4000-8000-000000000003", name: "Aliasonly", score: 50 },
 		]);
-		expect((await resolveArtist("Aliasonly"))?.mbid).toBe("a6a6a6a6-0000-4000-8000-000000000003");
+		const out = await resolveArtistDetailed("Aliasonly");
+		expect(out.artist?.mbid).toBe("a6a6a6a6-0000-4000-8000-000000000003");
+		expect(out.path).toBe("name");
 	});
 
 	it("never equates names that normalize to the same Latin remainder across scripts", async () => {
@@ -234,6 +338,7 @@ describe("resolveArtist", () => {
 		expect(await resolveArtistDetailed("Unreachable Act")).toEqual({
 			artist: null,
 			candidates: 0,
+			path: null,
 			unavailable: true,
 		});
 		const urls = stubMb([]);
@@ -256,6 +361,46 @@ describe("resolveArtist", () => {
 		);
 		expect((await resolveArtist("Brokenid"))?.mbid).toBe("a8a8a8a8-0000-4000-8000-000000000001");
 		expect(await resolveArtist("Various Artists")).toBeNull();
+	});
+});
+
+describe("fetchArtistProfileMb", () => {
+	it("returns identity and bands from one request, and the live MBID after a merge", async () => {
+		const urls = stubMb([
+			{
+				id: "ababab01-0000-4000-8000-000000000001",
+				mergedFrom: "ababab01-0000-4000-8000-000000000009",
+				name: "Merged Away",
+				type: "Group",
+				disambiguation: "d",
+				area: "Japan",
+				relations: [["forward", "member of band", "ababab01-0000-4000-8000-000000000002", "A Group"]],
+			},
+		]);
+		const out = await fetchArtistProfileMb("ababab01-0000-4000-8000-000000000009");
+		expect(out).toEqual({
+			mbid: "ababab01-0000-4000-8000-000000000001",
+			name: "Merged Away",
+			kind: "group",
+			disambiguation: "d",
+			area: "Japan",
+			groups: [{ mbid: "ababab01-0000-4000-8000-000000000002", name: "A Group" }],
+		});
+		expect(urls).toHaveLength(1);
+	});
+
+	it("is null, not an empty profile, on a failed or unusable answer and on a non-MBID", async () => {
+		const urls = stubMb([{ id: "ababab02-0000-4000-8000-000000000001", name: "Down" }], {
+			badGateway: ["ababab02-0000-4000-8000-000000000001"],
+		});
+		expect(await fetchArtistProfileMb("ababab02-0000-4000-8000-000000000001")).toBeNull();
+		expect(await fetchArtistProfileMb("../label/x")).toBeNull();
+		expect(urls.every((u) => u.pathname.endsWith("ababab02-0000-4000-8000-000000000001"))).toBe(true);
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async () => jsonResponse({ id: "ababab02-0000-4000-8000-000000000002", name: "No Relations" })),
+		);
+		expect(await fetchArtistProfileMb("ababab02-0000-4000-8000-000000000002")).toBeNull();
 	});
 });
 
@@ -289,8 +434,7 @@ let manifestPath: string;
 
 beforeEach(async () => {
 	vi.mocked(resolveArtistDetailed).mockClear();
-	vi.mocked(fetchArtistEntityMb).mockClear();
-	vi.mocked(fetchArtistMembershipsMb).mockClear();
+	vi.mocked(fetchArtistProfileMb).mockClear();
 	root = await mkdtemp(join(tmpdir(), "artist-identity-"));
 	manifestPath = join(root, "out", "artist-identity.json");
 	await mkdir(join(root, "cache", "nodes", "artist"), { recursive: true });
@@ -325,7 +469,16 @@ describe("runBackfill", () => {
 	const REPRAZENT = "b2b2b2b2-0000-4000-8000-000000000002";
 
 	it("reports two slugs resolved on one MBID as a collision and changes only mbid / artist_kind", async () => {
-		stubMb([{ id: POLE, name: "Pole", type: "Person", disambiguation: "German electronic musician" }]);
+		stubMb([
+			{
+				id: POLE,
+				name: "Pole",
+				type: "Person",
+				disambiguation: "German IDM/electronic producer/mastering Stefan Betke",
+				area: "Germany",
+				beginArea: "Düsseldorf",
+			},
+		]);
 		const a = artistNode("artist:pole", { name: "Pole", origin: "Düsseldorf, Germany" });
 		const b = artistNode("artist:pole--stefan-betke", { name: "Pole", disambiguator: "Stefan Betke" });
 		await seed(a);
@@ -368,6 +521,11 @@ describe("runBackfill", () => {
 			mbid: RONI,
 			kind: "person",
 			groups: [{ mbid: REPRAZENT, name: "Roni Size / Reprazent" }],
+			mb_name: "Roni Size",
+			disambiguation: null,
+			area: null,
+			path: "name",
+			homonyms_discarded: 0,
 		});
 		expect((await readNode(roni.slug)).artist_kind).toBe("person");
 		expect(result.manifest.unresolved).toEqual([{ slug: "artist:dupe", name: "Dupe", candidates: 2 }]);
@@ -439,6 +597,106 @@ describe("runBackfill", () => {
 		expect(result.exitCode).toBe(1);
 	});
 
+	it("keeps the audit trail of every identity in the manifest", async () => {
+		stubMb([
+			{
+				id: "bfbf0001-0000-4000-8000-000000000001",
+				name: "Audited Twin",
+				type: "Person",
+				disambiguation: "Japanese noise producer",
+				area: "Japan",
+			},
+			{
+				id: "bfbf0001-0000-4000-8000-000000000002",
+				name: "Audited Twin",
+				disambiguation: "rock band",
+				area: "Canada",
+			},
+			{
+				id: "bfbf0001-0000-4000-8000-000000000003",
+				name: "音名",
+				type: "Group",
+				disambiguation: "Japanese band",
+				area: "Japan",
+				aliases: ["Audited Alias"],
+			},
+			{ id: "bfbf0001-0000-4000-8000-000000000004", name: "Audited Stored", type: "Person" },
+		]);
+		await seed(artistNode("artist:audited-twin", { name: "Audited Twin", origin: "Tokyo, Japan" }));
+		await seed(artistNode("artist:audited-alias", { name: "Audited Alias", origin: "Osaka, Japan" }));
+		await seed(
+			artistNode("artist:audited-stored", {
+				name: "Audited Stored",
+				mbid: "bfbf0001-0000-4000-8000-000000000004",
+			}),
+		);
+
+		const { resolved } = (await run()).manifest;
+
+		expect(resolved["artist:audited-twin"]).toMatchObject({
+			mb_name: "Audited Twin",
+			disambiguation: "Japanese noise producer",
+			area: "Japan",
+			path: "name",
+			homonyms_discarded: 1,
+		});
+		expect(resolved["artist:audited-alias"]).toMatchObject({
+			mb_name: "音名",
+			path: "alias",
+			homonyms_discarded: 0,
+		});
+		expect(resolved["artist:audited-stored"]).toMatchObject({ path: "stored-mbid", homonyms_discarded: 0 });
+	});
+
+	// 2026-10-15 (TRA-463 review): a 502 on ?inc=artist-rels used to be read as "no bands", stored as
+	// groups: [] with exit 0, and --resume would never have fetched them again.
+	it("treats a 502 on the artist-rels lookup as a failure, retried by --resume, never as no bands", async () => {
+		const id = "bfbf0002-0000-4000-8000-000000000001";
+		const world: FakeArtist[] = [
+			{
+				id,
+				name: "Gateway Trouble",
+				type: "Person",
+				relations: [["forward", "member of band", "bfbf0002-0000-4000-8000-000000000002", "Gateway Band"]],
+			},
+		];
+		stubMb(world, { badGateway: [id] });
+		await seed(artistNode("artist:gateway-trouble", { name: "Gateway Trouble" }));
+		const before = await readFile(nodePath("artist:gateway-trouble"), "utf8");
+
+		const failedRun = await run({ apply: true });
+
+		expect(failedRun.exitCode).toBe(1);
+		expect(failedRun.failed.map((f) => f.slug)).toEqual(["artist:gateway-trouble"]);
+		expect(failedRun.manifest.resolved).toEqual({});
+		expect(failedRun.manifest.unresolved).toEqual([]);
+		expect(await readFile(nodePath("artist:gateway-trouble"), "utf8")).toBe(before);
+
+		stubMb(world);
+		const retry = await run({ apply: true, resume: true });
+
+		expect(retry.exitCode).toBe(0);
+		expect(retry.manifest.resolved["artist:gateway-trouble"]?.groups).toEqual([
+			{ mbid: "bfbf0002-0000-4000-8000-000000000002", name: "Gateway Band" },
+		]);
+	});
+
+	it("writes the live MBID when the stored one was merged away, and flags the collision on it", async () => {
+		const live = "bfbf0003-0000-4000-8000-000000000001";
+		const old = "bfbf0003-0000-4000-8000-000000000009";
+		stubMb([{ id: live, mergedFrom: old, name: "Merged Name", type: "Person" }]);
+		await seed(artistNode("artist:merged-name", { name: "Merged Name", mbid: old }));
+		await seed(artistNode("artist:merged-name--twin", { name: "Merged Name", mbid: live }));
+
+		const result = await run({ apply: true });
+
+		expect((await readNode("artist:merged-name")).mbid).toBe(live);
+		expect(result.manifest.resolved["artist:merged-name"]).toMatchObject({ mbid: live, path: "stored-mbid" });
+		expect(result.manifest.collisions).toEqual([
+			{ mbid: live, slugs: ["artist:merged-name", "artist:merged-name--twin"] },
+		]);
+	});
+
 	it("refuses a write the schema would turn into more than the two new fields", async () => {
 		stubMb([{ id: "b5b5b5b5-0000-4000-8000-000000000003", name: "Edge Extra", type: "Person" }]);
 		const edge = { slug: "genre:techno", type: "genre", name: "Techno", undeclared_field: "kept on disk" };
@@ -460,11 +718,11 @@ describe("runBackfill", () => {
 		await seed(artistNode("artist:resumable-one", { name: "Resumable One" }));
 		await seed(artistNode("artist:resumable-two", { name: "Resumable Two" }));
 		await run();
-		expect(calls()).toEqual({ searches: 2, entities: 2, memberships: 2 });
+		expect(calls()).toEqual({ searches: 2, profiles: 2 });
 
 		const result = await run({ apply: true, resume: true });
 
-		expect(calls()).toEqual({ searches: 2, entities: 2, memberships: 2 });
+		expect(calls()).toEqual({ searches: 2, profiles: 2 });
 		expect(result.written).toHaveLength(2);
 		expect((await readNode("artist:resumable-two")).artist_kind).toBe("group");
 		expect(Object.keys(result.manifest.resolved)).toEqual(["artist:resumable-one", "artist:resumable-two"]);
@@ -515,7 +773,7 @@ describe("runBackfill", () => {
 
 		const result = await run({ apply: true });
 
-		expect(calls()).toEqual({ searches: 0, entities: 1, memberships: 1 });
+		expect(calls()).toEqual({ searches: 0, profiles: 1 });
 		expect(await readNode("artist:already-known")).toMatchObject({ mbid, artist_kind: "person" });
 		expect(result.written).toHaveLength(1);
 	});
@@ -595,8 +853,19 @@ describe("runBackfill", () => {
 	});
 });
 
+const manifestEntry = (mbid: string, kind: ResolvedArtist["kind"] = null): ResolvedArtist => ({
+	mbid,
+	kind,
+	groups: [],
+	mb_name: "Whoever",
+	disambiguation: null,
+	area: null,
+	path: "name",
+	homonyms_discarded: 0,
+});
+
 describe("withIdentity", () => {
-	const entry = { mbid: "c1c1c1c1-0000-4000-8000-000000000001", kind: null, groups: [] };
+	const entry = manifestEntry("c1c1c1c1-0000-4000-8000-000000000001");
 
 	it("never erases a kind already stored when MB gives none", () => {
 		const node = { slug: "artist:x", artist_kind: "group" };
@@ -611,8 +880,8 @@ describe("withIdentity", () => {
 
 describe("findCollisions", () => {
 	it("lists only MBIDs shared by two slugs or more, sorted", () => {
-		const one = { mbid: "c2c2c2c2-0000-4000-8000-000000000001", kind: null, groups: [] };
-		const two = { mbid: "c2c2c2c2-0000-4000-8000-000000000002", kind: null, groups: [] };
+		const one = manifestEntry("c2c2c2c2-0000-4000-8000-000000000001");
+		const two = manifestEntry("c2c2c2c2-0000-4000-8000-000000000002");
 		expect(findCollisions({ "artist:z": one, "artist:a": one, "artist:m": two })).toEqual([
 			{ mbid: one.mbid, slugs: ["artist:a", "artist:z"] },
 		]);

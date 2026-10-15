@@ -1,8 +1,9 @@
 /**
  * Artist identity backfill (TRA-463, plan docs/plans/graph-integrity.md, part 1): give every artist
- * node the MusicBrainz identity it lacks. For each artist, resolve it to one MB artist (exact name,
- * search score >= 90, homonyms separated by the node's own `disambiguator` / `origin` hints, anything
- * else left unresolved), then write `mbid` and `artist_kind` on the node and record the bands the
+ * node the MusicBrainz identity it lacks. For each artist, resolve it to one MB artist (exact
+ * canonical name, homonyms separated by the node's own `disambiguator` / `origin` hints, a candidate
+ * whose MB context contradicts those hints refused, anything else left unresolved: safety over
+ * resolution rate, an unresolved artist keeps its slug and gets no MBID), then write `mbid` and `artist_kind` on the node and record the bands the
  * artist belongs to in a manifest. Nothing is renamed, merged or re-slugged here (that is 1.12), no
  * LLM is involved, and a node's slug never derives from an MB name (MB names can be in their
  * original script).
@@ -16,7 +17,8 @@
  * would also emit pending reverse edges this migration has no business creating.
  *
  * Pace: MusicBrainz allows one request per second (mbFetch enforces it), and an artist costs up to
- * three requests (search, entity, memberships): 581 artists take about half an hour.
+ * three requests (search, alias search when no canonical name matched, profile with bands): 581
+ * artists take about half an hour.
  *
  * Usage: tsx scripts/migrations/2026-10-15-backfill-artist-identity.ts <cache-dir> [--apply]
  *        [--manifest out/artist-identity.json] [--limit N] [--resume]
@@ -28,8 +30,7 @@ import { isDeepStrictEqual } from "node:util";
 import { atomicWriteJson } from "../../src/cache.js";
 import { musicBrainzConfig } from "../../src/config.js";
 import {
-	fetchArtistEntityMb,
-	fetchArtistMembershipsMb,
+	fetchArtistProfileMb,
 	type MbArtistKind,
 	type MbCredit,
 	resolveArtistDetailed,
@@ -44,16 +45,32 @@ import {
 
 export const DEFAULT_MANIFEST_PATH = "out/artist-identity.json";
 
-/** Requests per artist: search, entity, memberships. */
+/** Upper bound of requests per artist: search, alias search, profile. */
 const CALLS_PER_ARTIST = 3;
 /** The manifest is rewritten this often during a run, so a crash loses little. */
 const CHECKPOINT_EVERY = 25;
 const MBID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
+/**
+ * How an artist was matched: `name` (canonical name), `alias` (no canonical name matched), or
+ * `stored-mbid` (the node already carried an MBID, so nothing was searched).
+ */
+export type ResolutionPath = "name" | "alias" | "stored-mbid";
+
 export interface ResolvedArtist {
 	mbid: string;
 	kind: MbArtistKind | null;
 	groups: MbCredit[];
+	/**
+	 * What MB calls the artist, and the context it was matched on, so that TRA-483 can audit the
+	 * identities without repeating 581 lookups.
+	 */
+	mb_name: string;
+	disambiguation: string | null;
+	area: string | null;
+	path: ResolutionPath;
+	/** Other artists with exactly this name that were passed over (0 for a sole candidate). */
+	homonyms_discarded: number;
 }
 
 export interface IdentityManifest {
@@ -89,7 +106,12 @@ function isResolvedArtist(value: unknown): value is ResolvedArtist {
 		typeof value.mbid === "string" &&
 		MBID_RE.test(value.mbid) &&
 		(value.kind === null || value.kind === "person" || value.kind === "group") &&
-		Array.isArray(value.groups)
+		Array.isArray(value.groups) &&
+		typeof value.mb_name === "string" &&
+		(value.disambiguation === null || typeof value.disambiguation === "string") &&
+		(value.area === null || typeof value.area === "string") &&
+		(value.path === "name" || value.path === "alias" || value.path === "stored-mbid") &&
+		typeof value.homonyms_discarded === "number"
 	);
 }
 
@@ -223,37 +245,52 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 			}
 			attempted++;
 			const name = optionalText(node.name) ?? slug;
-			let mbid: string;
+			let requested: string;
+			let path: ResolutionPath = "stored-mbid";
+			let homonymsDiscarded = 0;
 			if (stored !== undefined) {
 				if (typeof stored !== "string" || !MBID_RE.test(stored)) {
 					failed.push({ slug, reason: `stored mbid is not a UUID: ${String(stored)}` });
 					continue;
 				}
-				mbid = stored;
+				requested = stored;
 			} else {
 				const hints: { disambiguator?: string; origin?: string } = {};
 				const disambiguator = optionalText(node.disambiguator);
 				const origin = optionalText(node.origin);
 				if (disambiguator) hints.disambiguator = disambiguator;
 				if (origin) hints.origin = origin;
-				const { artist, candidates, unavailable } = await resolveArtistDetailed(name, hints);
-				if (unavailable) {
+				const found = await resolveArtistDetailed(name, hints);
+				if (found.unavailable) {
 					failed.push({ slug, reason: "MusicBrainz search unavailable" });
 					continue;
 				}
-				if (!artist) {
-					unresolved.push({ slug, name, candidates });
+				if (!found.artist || found.path === null) {
+					unresolved.push({ slug, name, candidates: found.candidates });
 					continue;
 				}
-				mbid = artist.mbid;
+				requested = found.artist.mbid;
+				path = found.path;
+				homonymsDiscarded = found.candidates - 1;
 			}
-			const entity = await fetchArtistEntityMb(mbid);
-			if (!entity) {
-				failed.push({ slug, reason: `MusicBrainz entity lookup failed for ${mbid}` });
+			// One request for kind and bands: a failed answer is a failure, never "no bands" (a 502 on the
+			// relations once stored groups: [] for good, because --resume trusts what the manifest says).
+			const profile = await fetchArtistProfileMb(requested);
+			if (!profile) {
+				failed.push({ slug, reason: `MusicBrainz artist lookup failed for ${requested}` });
 				continue;
 			}
-			const { groups } = await fetchArtistMembershipsMb(mbid);
-			entry = { mbid, kind: entity.kind ?? null, groups };
+			// profile.mbid is the live MBID: it differs from `requested` when MB merged that MBID away.
+			entry = {
+				mbid: profile.mbid,
+				kind: profile.kind,
+				groups: profile.groups,
+				mb_name: profile.name,
+				disambiguation: profile.disambiguation,
+				area: profile.area,
+				path,
+				homonyms_discarded: homonymsDiscarded,
+			};
 			resolved[slug] = entry;
 		}
 

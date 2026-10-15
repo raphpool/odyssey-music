@@ -165,6 +165,35 @@ describe("fetchEntityGenresMb", () => {
 		]);
 	});
 
+	it.each([500, 502, 504])("retries a transient %i like a 503, one second apart", async (status) => {
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date("2026-10-15T00:00:00.000Z"));
+		const requestTimes: number[] = [];
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async () => {
+				requestTimes.push(Date.now());
+				return requestTimes.length === 1 ? failedResponse(status) : jsonResponse({ genres: [] });
+			}),
+		);
+
+		const pending = fetchEntityGenresMb("artist", `1000000${status}-7777-7777-7777-777777777777`);
+		await vi.advanceTimersByTimeAsync(1_000);
+
+		expect(await pending).toEqual([]);
+		expect(requestTimes).toEqual([
+			new Date("2026-10-15T00:00:00.000Z").getTime(),
+			new Date("2026-10-15T00:00:01.000Z").getTime(),
+		]);
+	});
+
+	it("does not retry a 404", async () => {
+		const fetchMock = vi.fn(async () => failedResponse(404));
+		vi.stubGlobal("fetch", fetchMock);
+		expect(await fetchEntityGenresMb("artist", "10000404-7777-7777-7777-777777777777")).toEqual([]);
+		expect(fetchMock).toHaveBeenCalledTimes(1);
+	});
+
 	it("honors a valid Retry-After delay before retrying a 503", async () => {
 		vi.useFakeTimers();
 		vi.setSystemTime(new Date("2026-09-14T00:00:00.000Z"));
