@@ -61,6 +61,8 @@ function makeData() {
 						ref("track", "track:kanji--x", "Kanji", { artist: "坂本龍一" }),
 					],
 					discography: [ref("project", "project:anthologie--rohff", "Anthologie", { year: "2004" })],
+					// highlights block: the landmark album is a project card (projectCardHtml), like the carousel's
+					landmark_project: ref("project", "project:landmark--rohff", "Landmark"),
 					genres: [ref("genre", "genre:rap", "Rap")],
 					collaborators: [ref("artist", "artist:akuma", "Akuma")],
 				},
@@ -209,6 +211,23 @@ describe("the click body sent to POST /materialize (TRA-481)", () => {
 		});
 	});
 
+	it("the highlights landmark card (projectCardHtml) sends artist and the landmark_project source", async () => {
+		const { w, materialize } = newWindow();
+		await ready(w);
+		w.show("artist:rohff");
+		const card = chip(w, "project:landmark--rohff");
+		expect(card.closest(".highlights")).not.toBeNull();
+		card.click();
+
+		await vi.waitFor(() => expect(materialize()).toHaveLength(1));
+		expect(materialize()[0]?.body).toMatchObject({
+			type: "project",
+			artist: "Rohff",
+			slug: "project:landmark--rohff",
+			source: { slug: "artist:rohff", field: "landmark_project" },
+		});
+	});
+
 	it("a genre chip sends source but no artist", async () => {
 		const { w, materialize } = newWindow();
 		await ready(w);
@@ -282,7 +301,7 @@ describe('"précacher tout" (TRA-481)', () => {
 
 		const bodies = materialize().map((c) => c.body ?? {});
 		const bySlug = (slug: string) => bodies.find((b) => b.slug === slug);
-		expect(bodies).toHaveLength(6);
+		expect(bodies).toHaveLength(7);
 		expect(bySlug(FITNA_ROHFF)).toMatchObject({
 			artist: "Rohff",
 			source: { slug: "artist:rohff", field: "notable_tracks" },
@@ -292,6 +311,10 @@ describe('"précacher tout" (TRA-481)', () => {
 		expect(bySlug("project:anthologie--rohff")).toMatchObject({
 			artist: "Rohff",
 			source: { slug: "artist:rohff", field: "discography" },
+		});
+		expect(bySlug("project:landmark--rohff")).toMatchObject({
+			artist: "Rohff",
+			source: { slug: "artist:rohff", field: "landmark_project" },
 		});
 		expect(bySlug("genre:rap")).not.toHaveProperty("artist");
 		for (const b of bodies) expect(b).not.toHaveProperty("disambiguator");
