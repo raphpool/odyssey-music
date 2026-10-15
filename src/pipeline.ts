@@ -752,6 +752,12 @@ function confirmsHint(resolved: string, hint: string | undefined): boolean {
 	return hint === undefined || hint.toLowerCase() === resolved.toLowerCase();
 }
 
+/** TRA-546: does MusicBrainz's own record for this label carry the requested name (same slug body)? */
+async function labelIsNamed(mbid: string, name: string): Promise<boolean> {
+	const entity = await fetchLabelEntityMb(mbid);
+	return entity !== null && makeSlug("label", entity.name) === makeSlug("label", name);
+}
+
 async function researchTarget(
 	input: PipelineInput,
 	deps: PipelineDeps,
@@ -1087,7 +1093,7 @@ async function enrichNode(
 					kind = resolution.artist.kind;
 				} else if (resolution.artist) {
 					log(
-						`[pipeline] artist "${input.name}" left without MBID (MB resolved ${resolution.artist.mbid}, not the client hint ${clientHint})`,
+						`[pipeline] artist "${input.name}" left without MBID (MB resolved ${resolution.artist.mbid}, hint not confirmed)`,
 					);
 				} else {
 					log(
@@ -1175,16 +1181,20 @@ async function enrichNode(
 		try {
 			// TRA-546: a client's mbid is a hint the name search has to land on, and only then is it stamped
 			// (the materialize service used to stamp it unconditionally). A trusted caller's one is used as is.
+			// The search takes the first of 5 fuzzy hits, so a hint is also checked against the label's own
+			// name: "Warp Records Fake Imprint" must not get Warp's identity because Warp ranks first.
 			const clientHint = input.mbidIsClientHint === true ? input.mbid : undefined;
 			let mbid: string | undefined = clientHint ? undefined : input.mbid;
 			if (!mbid) {
 				const found = (await findLabelMbidByName(input.name, input.disambiguator)) ?? undefined;
-				if (found && confirmsHint(found, clientHint)) {
+				if (found && !clientHint) {
 					mbid = found;
-					if (clientHint) (node as Record<string, unknown>).mbid = found;
+				} else if (found && confirmsHint(found, clientHint) && (await labelIsNamed(found, input.name))) {
+					mbid = found;
+					(node as Record<string, unknown>).mbid = found;
 				} else if (found) {
 					log(
-						`[pipeline] label "${input.name}" left without MBID (MB resolved ${found}, not the client hint ${clientHint})`,
+						`[pipeline] label "${input.name}" left without MBID (MB resolved ${found}, hint not confirmed)`,
 					);
 				}
 			}

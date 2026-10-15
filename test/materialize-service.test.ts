@@ -1605,7 +1605,11 @@ describe("createMaterializeService artist context (TRA-477)", () => {
 		async function armLabel(found: string | null) {
 			const mb = await import("../src/musicbrainz.js");
 			vi.mocked(mb.findLabelMbidByName).mockImplementation(async () => found);
-			vi.mocked(mb.fetchLabelEntityMb).mockImplementation(async () => null);
+			vi.mocked(mb.fetchLabelEntityMb).mockImplementation(async () =>
+				found
+					? { mbid: found, name: "Nobody Records", country: null, founded: null, disambiguation: null }
+					: null,
+			);
 			vi.mocked(mb.fetchLabelMetaMb).mockImplementation(async () => ({ roster: [], notableReleases: [] }));
 			return mb;
 		}
@@ -1703,6 +1707,22 @@ describe("createMaterializeService artist context (TRA-477)", () => {
 				TIMEOUT_MS,
 			);
 		});
+
+		it(
+			"serves a cached artist or label without an mbid as is: an unconfirmed hint never re-runs the pipeline",
+			async () => {
+				await cache.write(artistNode("artist:nobody" as Slug, "Nobody"));
+				const tavily = await noPipeline();
+				const service = await buildService(true);
+
+				const result = await service.handleMaterialize({ type: "artist", name: "Nobody", mbid: RONI });
+
+				expect(result).toMatchObject({ source: "cache", node: { slug: "artist:nobody" } });
+				expect((result.node as ArtistNode).mbid).toBeUndefined();
+				expect(tavily).not.toHaveBeenCalled();
+			},
+			TIMEOUT_MS,
+		);
 
 		it(
 			"does the same for a label: the mbid is written only when MB's name search lands on it",

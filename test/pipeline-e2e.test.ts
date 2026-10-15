@@ -787,10 +787,15 @@ describe("MB identity at enrichment (TRA-473)", () => {
 				vi.mocked(m.fetchArtistEntityMb).mockImplementation(async () => null);
 				return m;
 			};
-			const labelResolving = async (found: string | null) => {
+			/** MB's name search ranks `found` first; its own record for it is named `entityName`. */
+			const labelResolving = async (found: string | null, entityName = "Nobody Records") => {
 				const m = await mb();
 				vi.mocked(m.findLabelMbidByName).mockImplementation(async () => found);
-				vi.mocked(m.fetchLabelEntityMb).mockImplementation(async () => null);
+				vi.mocked(m.fetchLabelEntityMb).mockImplementation(async () =>
+					found
+						? { mbid: found, name: entityName, country: null, founded: null, disambiguation: null }
+						: null,
+				);
 				vi.mocked(m.fetchLabelMetaMb).mockImplementation(async () => ({
 					roster: [],
 					notableReleases: [],
@@ -865,6 +870,24 @@ describe("MB identity at enrichment (TRA-473)", () => {
 					await labelResolving(null);
 					const none = await runPipeline({ ...input, mbid: OTHER }, DEPS);
 					expect((none.node as LabelNode).mbid).toBeUndefined();
+				},
+				TIMEOUT_MS,
+			);
+
+			it(
+				"does not give a label the identity of a differently named label that merely ranks first",
+				async () => {
+					installPipelineMocks({ draft: labelDraft() });
+					const m = await labelResolving(RONI_MBID, "Warp Records");
+					const runPipeline = await loadRunPipeline();
+
+					const result = await runPipeline(
+						{ type: "label", name: "Nobody Records", mbid: RONI_MBID, mbidIsClientHint: true },
+						DEPS,
+					);
+
+					expect((result.node as LabelNode).mbid).toBeUndefined();
+					expect(vi.mocked(m.fetchLabelMetaMb)).not.toHaveBeenCalled();
 				},
 				TIMEOUT_MS,
 			);

@@ -519,10 +519,14 @@ export function createMaterializeService(deps: {
 			// symptom: prod diverging silently from the repo). Only an explicit `fresh`, or a
 			// client mbid that contradicts the cached one, re-runs the pipeline.
 			// A work's, artist's or label's mbid from the client is a hint only (TRA-477 flag on, TRA-538/546
-			// whatever the flag): never a reason to rewrite it, since the refresh would no longer adopt the
-			// client's value anyway. A cached one without an mbid still refreshes, so the hint can be confirmed.
+			// whatever the flag): never a reason to rewrite the node. For an artist or label cached without an
+			// mbid this also bounds the paid pipeline: an unconfirmed hint is never written, so it would
+			// otherwise re-run the pipeline on every request.
 			const mbidMismatch =
-				!isWorkType(body.type) && !!effectiveBody.mbid && cachedMbid !== effectiveBody.mbid;
+				!isWorkType(body.type) &&
+				!isConfirmedIdentityType(body.type) &&
+				!!effectiveBody.mbid &&
+				cachedMbid !== effectiveBody.mbid;
 			if (!mbidMismatch) {
 				return { node: cached, source: "cache", wallMs: Date.now() - t0 };
 			}
