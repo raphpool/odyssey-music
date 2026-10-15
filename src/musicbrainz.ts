@@ -1306,25 +1306,56 @@ interface MbArtistSearchHit {
 	 * words that tell homonyms apart. Empty when MB gives no area or no type.
 	 */
 	places: Set<string>;
+	/** The words of `places` that come from an area typed `City`: what a partial pool is trusted on. */
+	cities: Set<string>;
 }
 
 function textOf(value: unknown): string | null {
 	return isText(value) ? value : null;
 }
 
-/** What {@link contextWords} folds a country's spellings to ("England", "UK", "U.S.", "Türkiye"). */
-const FOLDED_COUNTRY_TOKENS: ReadonlySet<string> = new Set(["gbr", "usa", "tur"]);
+/**
+ * Tokens that name a country, once folded by {@link contextWords}: "gbr" / "usa" / "tur" (England,
+ * Scotland, "UK", "U.S.", "Türkiye"...), the country each demonym folds to, the codes MB gives, plus
+ * countries that have no spelling variant to fold. They filter the words of a node's `origin` only: MB
+ * names areas below `Country` after countries too (Western Australia, "Ciudad de México", the city of
+ * Luxembourg), so a country word of the origin would otherwise match them (TRA-508 review: Keith
+ * Richards, Nico). A defense in depth: the origin's place words are already its first segment only.
+ */
+const COUNTRY_TOKENS: ReadonlySet<string> = new Set([
+	"gbr",
+	"usa",
+	"tur",
+	...Object.values(COUNTRY_WORDS),
+	...Object.values(COUNTRY_CODES),
+	...["mexico", "argentina", "chile", "colombia", "peru", "cuba", "india", "china", "korea", "taiwan"],
+	...["indonesia", "thailand", "vietnam", "philippines", "israel", "egypt", "nigeria", "ghana", "kenya"],
+	...["morocco", "algeria", "tunisia", "senegal", "mali", "ethiopia", "iceland", "switzerland", "austria"],
+	...["greece", "hungary", "romania", "bulgaria", "serbia", "croatia", "slovenia", "slovakia", "czechia"],
+	...["ukraine", "lithuania", "latvia", "estonia", "luxembourg", "zealand", "africa", "jamaica", "iran"],
+	...["kazakhstan", "congo", "australia", "venezuela", "ecuador", "bolivia", "uruguay", "paraguay"],
+]);
+
+/** An MB area type that can name a place; `Country` and an unknown type cannot. */
+function isPlaceType(type: string | null): boolean {
+	return type !== null && type.trim().toLowerCase() !== "country";
+}
 
 /** MB area keys of an artist search hit: where it lives, where it began, where it ended. */
 const ARTIST_AREA_KEYS = ["area", "begin-area", "end-area"] as const;
 
-/** One page of an artist search: well-formed hits, the `count` MB reports, how many entries came. */
+/** One page of an artist search: well-formed hits, the `count` MB reports, which entries came. */
 interface ArtistSearchPage {
 	hits: MbArtistSearchHit[];
 	/** Every result MB holds for the query, of which a page returns at most `limit`. */
 	count: number;
 	/** Entries in the page, malformed or special-purpose ones included. */
 	received: number;
+	/**
+	 * The ids of the entries in the page, null for an entry without a text id. MB's offset paging is not
+	 * stable among results of equal score: an entry can come on two pages while another never comes.
+	 */
+	ids: (string | null)[];
 }
 
 /**
@@ -1363,18 +1394,19 @@ function parseArtistSearchHits(body: unknown): ArtistSearchPage | null {
 					text === null ? [] : contextWords(text),
 				),
 			),
-			// An area of unknown type is not a place: it might be a country MB left untyped. MB types
-			// England, Scotland or Wales below "Country" (the country is the United Kingdom): contextWords
-			// folds them to the country token, which is never a place (TRA-506).
-			places: new Set(
-				areas
-					.filter((a) => a.type !== null && a.type.trim().toLowerCase() !== "country")
-					.flatMap((a) => contextWords(a.name))
-					.filter((w) => !FOLDED_COUNTRY_TOKENS.has(w)),
+			// An area of unknown type is not a place: it might be a country MB left untyped.
+			places: new Set(areas.filter((a) => isPlaceType(a.type)).flatMap((a) => contextWords(a.name))),
+			cities: new Set(
+				areas.filter((a) => a.type?.trim().toLowerCase() === "city").flatMap((a) => contextWords(a.name)),
 			),
 		});
 	}
-	return { hits, count: body.count, received: body.artists.length };
+	return {
+		hits,
+		count: body.count,
+		received: body.artists.length,
+		ids: body.artists.map((raw) => (isRecord(raw) ? textOf(raw.id) : null)),
+	};
 }
 
 /** Words (>= 3 chars) of the hints, country-folded, minus filler, deduplicated. */
@@ -1383,8 +1415,19 @@ function hintWords(hints: readonly (string | undefined)[]): string[] {
 }
 
 /**
+ * The words of a node's `origin` that can name a place: its first segment ("Sydney" of "Sydney,
+ * Australia", "Guadalajara" of "Guadalajara, Jalisco, Mexico"), minus country tokens. Later segments are
+ * regions and countries, and MB areas below `Country` bear their names ("Western Australia"); an origin
+ * that is only a country ("Mexico") names no place.
+ */
+function originPlaceWords(origin: string | undefined): string[] {
+	const first = origin?.split(",")[0];
+	return first ? contextWords(first).filter((w) => !COUNTRY_TOKENS.has(w)) : [];
+}
+
+/**
  * What the pool's candidates are chosen with. `words` are all the node's hint words (disambiguator and
- * origin): they can only refuse a lone candidate. `origin` are the origin's words alone: the only ones
+ * origin): they can only refuse a lone candidate. `origin` are {@link originPlaceWords}: the only words
  * that can separate homonyms, and only against {@link MbArtistSearchHit.places}.
  */
 interface ArtistHints {
@@ -1400,14 +1443,17 @@ interface ArtistHints {
  * disambiguation, nor the node's free-text disambiguator separates homonyms: the real "Aphex Twin" has
  * no country in its MB context while the impostor "UK experimental electronic artist" has one and the
  * word "electronic" (2026-10-15, TRA-506 and TRA-508 reviews: "Cornwall, England", then
- * "electronic musician", made the impostor win). A country is whatever MB types `Country`, so no list of
- * countries has to be kept (Kazakhstan, Georgia and Puerto Rico used to slip through one).
+ * "electronic musician", made the impostor win). MB's side drops `Country` areas by type (no list of
+ * countries to keep: Kazakhstan, Georgia and Puerto Rico used to slip through one); the node's side
+ * keeps the first segment of its origin only, without country tokens, because MB names areas below
+ * `Country` after countries ("Western Australia" took Keith Richards, "Ciudad de México" took Nico).
  *
  * A single candidate is accepted unless the node has hints and MB has a context for it and the two share
  * no word: a different artist of the same name (post-punk "113" from Leeds vs the French rap group). No
  * hint, or no MB context, means nothing can contradict it. When the pool is incomplete (MB holds more
- * results than were read), a lone candidate proves nothing about the unread ones: it must also win the
- * strict tiebreak, i.e. share a place with the node's origin.
+ * results than were read), a candidate proves little about the unread ones: it must be the only one of
+ * the pool read to share a place with the node's origin, and share it through an area typed `City`.
+ * (Not required of a complete pool: MB types Tokyo, Coventry or Kingston as subdivisions.)
  */
 function pickByHints(
 	pool: MbArtistSearchHit[],
@@ -1415,19 +1461,21 @@ function pickByHints(
 	complete: boolean,
 ): { hit: MbArtistSearchHit; matched: string[] } | null {
 	const sharedPlaces = (hit: MbArtistSearchHit) => hints.origin.filter((w) => hit.places.has(w));
+	const sharesCity = (hit: MbArtistSearchHit) => hints.origin.some((w) => hit.cities.has(w));
 	const [only] = pool;
 	if (pool.length === 1 && only) {
 		const common = hints.words.filter((w) => only.context.has(w));
 		if (hints.words.length > 0 && only.context.size > 0 && common.length === 0) return null;
 		if (complete) return { hit: only, matched: common };
 		const places = sharedPlaces(only);
-		return places.length > 0 ? { hit: only, matched: places } : null;
+		return places.length > 0 && sharesCity(only) ? { hit: only, matched: places } : null;
 	}
 	const scored = pool
 		.map((hit) => ({ hit, shared: sharedPlaces(hit) }))
 		.sort((a, b) => b.shared.length - a.shared.length);
 	const [best, runnerUp] = scored;
 	if (!best || best.shared.length === 0 || runnerUp?.shared.length === best.shared.length) return null;
+	if (!complete && ((runnerUp?.shared.length ?? 0) > 0 || !sharesCity(best.hit))) return null;
 	return { hit: best.hit, matched: best.shared };
 }
 
@@ -1453,15 +1501,19 @@ const MB_SEARCH_MAX_OFFSET = 500;
 
 /**
  * The hits of an artist search, paged until MB's `count` is read or its offset cap (500 results) is
- * reached: at most 5 requests. `complete` is false when MB holds more results than were read. Null when
- * any page got no usable answer: a pool missing a page would pass for a smaller one.
+ * reached: at most 5 requests. Hits are deduplicated by MBID: MB's offset paging repeats an entry among
+ * results of equal score and then never serves another (2026-10-15, TRA-508 review: "Sylvester", 154
+ * entries for 149 distinct ones). `complete` is true only when the distinct entries reach MB's `count`,
+ * so any such loss leaves the pool incomplete. Null when any page got no usable answer: a pool missing
+ * a page would pass for a smaller one.
  */
 async function searchArtistPool(
 	field: "artist" | "alias",
 	phrase: string,
 ): Promise<{ hits: MbArtistSearchHit[]; complete: boolean } | null> {
 	const hits: MbArtistSearchHit[] = [];
-	let received = 0;
+	const seen = new Set<string>();
+	let anonymous = 0;
 	let count = 0;
 	for (let offset = 0; offset < MB_SEARCH_MAX_OFFSET; offset += MB_SEARCH_PAGE) {
 		const page = parseArtistSearchHits(
@@ -1473,11 +1525,16 @@ async function searchArtistPool(
 		);
 		if (!page) return null;
 		if (offset === 0) count = page.count;
-		hits.push(...page.hits);
-		received += page.received;
-		if (received >= count || page.received < MB_SEARCH_PAGE) break;
+		for (const id of page.ids) {
+			if (id === null) anonymous++;
+			else seen.add(id);
+		}
+		for (const hit of page.hits) {
+			if (!hits.some((h) => h.identity.mbid === hit.identity.mbid)) hits.push(hit);
+		}
+		if (seen.size + anonymous >= count || page.received < MB_SEARCH_PAGE) break;
 	}
-	return { hits, complete: received >= count };
+	return { hits, complete: seen.size + anonymous >= count };
 }
 
 /**
@@ -1522,7 +1579,7 @@ export async function resolveArtistDetailed(
 	if (pool.length === 0) return none;
 	const picked = pickByHints(
 		pool,
-		{ words: hintWords([hints.disambiguator, hints.origin]), origin: hintWords([hints.origin]) },
+		{ words: hintWords([hints.disambiguator, hints.origin]), origin: originPlaceWords(hints.origin) },
 		complete,
 	);
 	return {

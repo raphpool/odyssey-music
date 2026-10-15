@@ -449,6 +449,109 @@ describe("resolveArtist", () => {
 			expect(await resolveArtistDetailed("Guysix")).toMatchObject({ artist: null, unavailable: true });
 		});
 
+		// TRA-508 review B2: MB's offset paging repeats an entry among results of equal score and never
+		// serves another (Sylvester: 154 entries, 149 distinct). Counting entries called that pool complete.
+		it("counts distinct MBIDs: a repeated entry leaves the pool incomplete", async () => {
+			// 101 results: page 1 holds the lone exact "Guy" and 99 look-alikes.
+			const scenario = (name: string, prefix: string, repeated: boolean) => {
+				const lone: FakeArtist = {
+					id: `${prefix}b9b9b9-0000-4000-8000-000000000f01`,
+					name,
+					area: "United States",
+					areaType: "Country",
+				};
+				const fillers = crowd(`${prefix}c`, name, 99);
+				const body = (list: FakeArtist[], offset: number) => ({
+					count: 101,
+					offset,
+					artists: list.map((a) => ({
+						id: a.id,
+						name: a.name,
+						...(a.area ? { area: { name: a.area, type: a.areaType } } : {}),
+					})),
+				});
+				vi.stubGlobal(
+					"fetch",
+					vi.fn(async (input: URL) =>
+						jsonResponse(
+							Number(input.searchParams.get("offset")) === 0
+								? body([lone, ...fillers], 0)
+								: // Page 2 repeats a filler (100 distinct) or serves the 101st entry (101 distinct).
+									body(repeated ? [fillers[0] as FakeArtist] : crowd(`${prefix}d`, name, 1), 100),
+						),
+					),
+				);
+				return lone;
+			};
+			scenario("Guyseven", "b0", true);
+			expect(await resolveArtistDetailed("Guyseven", { origin: "Dallas, USA" })).toMatchObject({
+				artist: null,
+				candidates: 1,
+			});
+			// Complete pool: the lone candidate is not contradicted ("usa" is shared).
+			const lone = scenario("Guynine", "b1", false);
+			expect((await resolveArtistDetailed("Guynine", { origin: "Dallas, USA" })).artist?.mbid).toBe(lone.id);
+		});
+
+		it("does not list a repeated entry twice among the homonyms", async () => {
+			const home: FakeArtist = {
+				id: "bcbcbcbc-0000-4000-8000-000000000f01",
+				name: "Guyeight",
+				beginArea: "Dallas",
+			};
+			const other: FakeArtist = { id: "bcbcbcbc-0000-4000-8000-000000000f02", name: "Guyeight" };
+			vi.stubGlobal(
+				"fetch",
+				vi.fn(async (input: URL) => {
+					const page =
+						Number(input.searchParams.get("offset")) === 0
+							? [home, ...crowd("bd", "Guyeight", 99)]
+							: [home, other];
+					const artists = page.map((a) => ({
+						id: a.id,
+						name: a.name,
+						...(a.beginArea ? { "begin-area": { name: a.beginArea, type: "City" } } : {}),
+					}));
+					return jsonResponse({ count: 101, offset: 0, artists });
+				}),
+			);
+			const out = await resolveArtistDetailed("Guyeight", { origin: "Dallas, USA" });
+			expect(out.candidates).toBe(2);
+			expect(out.artist?.mbid).toBe(home.id);
+		});
+
+		// TRA-508 review nit: a partial pool trusts a place only when it is a City, and only when nobody else
+		// of the pool read shares any place.
+		it("on a partial pool, wants the only sharer of a place, through a City", async () => {
+			const world = (
+				name: string,
+				extra: Partial<FakeArtist>,
+				other: Partial<FakeArtist> = {},
+			): FakeArtist[] => [
+				{ id: "bebebebe-0000-4000-8000-000000000f01", name, ...extra },
+				{ id: "bebebebe-0000-4000-8000-000000000f02", name, ...other },
+			];
+			// Tokyo typed Subdivision (as MB does): enough for a complete pool, not for a partial one.
+			stubMb(world("Partialone", { beginArea: "Tokyo", beginAreaType: "Subdivision" }));
+			expect((await resolveArtist("Partialone", { origin: "Tokyo, Japan" }))?.mbid).toBe(
+				"bebebebe-0000-4000-8000-000000000f01",
+			);
+			stubMb(world("Partialtwo", { beginArea: "Tokyo", beginAreaType: "Subdivision" }), { count: 600 });
+			expect(await resolveArtist("Partialtwo", { origin: "Tokyo, Japan" })).toBeNull();
+			stubMb(world("Partialthree", { beginArea: "Tokyo" }), { count: 600 });
+			expect((await resolveArtist("Partialthree", { origin: "Tokyo, Japan" }))?.mbid).toBe(
+				"bebebebe-0000-4000-8000-000000000f01",
+			);
+			// A second sharer, with fewer words: the first wins a complete pool, not a partial one.
+			const second: Partial<FakeArtist> = { beginArea: "Worth", beginAreaType: "Subdivision" };
+			stubMb(world("Partialfour", { beginArea: "Fort Worth" }, second));
+			expect((await resolveArtist("Partialfour", { origin: "Fort Worth, Texas" }))?.mbid).toBe(
+				"bebebebe-0000-4000-8000-000000000f01",
+			);
+			stubMb(world("Partialfive", { beginArea: "Fort Worth" }, second), { count: 600 });
+			expect(await resolveArtist("Partialfive", { origin: "Fort Worth, Texas" })).toBeNull();
+		});
+
 		it("treats a search answer without a count as unusable", async () => {
 			vi.stubGlobal(
 				"fetch",
@@ -506,13 +609,17 @@ describe("resolveArtist", () => {
 			expect(out.matchedWords).toEqual(["atlanta"]);
 		});
 
-		it("does count a Georgia that is not a country (a US state)", async () => {
-			const state = "c5c5c5c5-0000-4000-8000-000000000f01";
+		it("keeps the first segment of the origin only: a Georgia the state does not decide", async () => {
 			stubMb([
-				{ id: state, name: "Peach State Test", area: "Georgia", areaType: "Subdivision" },
+				{
+					id: "c5c5c5c5-0000-4000-8000-000000000f01",
+					name: "Peach State Test",
+					area: "Georgia",
+					areaType: "Subdivision",
+				},
 				{ id: "c5c5c5c5-0000-4000-8000-000000000f02", name: "Peach State Test", area: "Tbilisi" },
 			]);
-			expect((await resolveArtist("Peach State Test", { origin: "Atlanta, Georgia" }))?.mbid).toBe(state);
+			expect(await resolveArtist("Peach State Test", { origin: "Atlanta, Georgia" })).toBeNull();
 		});
 
 		// Measured on the real MB (2026-10-15): England, Scotland and Wales are not typed Country, but they
@@ -529,6 +636,92 @@ describe("resolveArtist", () => {
 			]);
 			expect(await resolveArtist("Englandish Test", { origin: "Cornwall, England" })).toBeNull();
 			expect(await resolveArtist("Englandish Test", { origin: "Glasgow, UK" })).toBeNull();
+		});
+
+		// TRA-508 review B1: MB names areas below Country after countries, so a country word of the origin
+		// matched them ("Western Australia", "Ciudad de México", the city of Luxembourg).
+		it("does not decide on a country word of the origin that an MB area below Country bears", async () => {
+			stubMb([
+				{
+					id: "cacacaca-0000-4000-8000-000000000f01",
+					name: "Keithish",
+					area: "Australia",
+					areaType: "Country",
+				},
+				{
+					id: "cacacaca-0000-4000-8000-000000000f02",
+					name: "Keithish",
+					area: "Western Australia",
+					areaType: "Subdivision",
+				},
+			]);
+			expect(await resolveArtist("Keithish", { origin: "Sydney, Australia" })).toBeNull();
+			expect(await resolveArtist("Keithish", { origin: "Melbourne, Victoria, Australia" })).toBeNull();
+			stubMb([
+				{ id: "cbcbcbcb-0000-4000-8000-000000000f01", name: "Nicoish", area: "Germany", areaType: "Country" },
+				{
+					id: "cbcbcbcb-0000-4000-8000-000000000f02",
+					name: "Nicoish",
+					area: "Ciudad de México",
+					areaType: "City",
+				},
+			]);
+			expect(await resolveArtist("Nicoish", { origin: "Guadalajara, Jalisco, Mexico" })).toBeNull();
+			// Same answer from a partial pool (count 880), where it was a wrong identity.
+			stubMb(
+				[
+					{
+						id: "cbcbcbcb-0000-4000-8000-000000000f03",
+						name: "Nicotwo",
+						area: "Ciudad de México",
+						areaType: "City",
+					},
+					{ id: "cbcbcbcb-0000-4000-8000-000000000f04", name: "Nicotwo" },
+				],
+				{ count: 880 },
+			);
+			expect(await resolveArtist("Nicotwo", { origin: "Guadalajara, Jalisco, Mexico" })).toBeNull();
+			stubMb([
+				{
+					id: "cccccccc-0000-4000-8000-000000000f01",
+					name: "Almatyish",
+					area: "West Kazakhstan Region",
+					areaType: "Subdivision",
+				},
+				{ id: "cccccccc-0000-4000-8000-000000000f02", name: "Almatyish" },
+			]);
+			expect(await resolveArtist("Almatyish", { origin: "Almaty, Kazakhstan" })).toBeNull();
+		});
+
+		it("gives an origin that is only a country no place word", async () => {
+			stubMb([
+				{
+					id: "cdcdcdcd-0000-4000-8000-000000000f01",
+					name: "Mexicoish",
+					area: "Mexico City",
+					areaType: "City",
+				},
+				{ id: "cdcdcdcd-0000-4000-8000-000000000f02", name: "Mexicoish" },
+			]);
+			expect(await resolveArtist("Mexicoish", { origin: "Mexico" })).toBeNull();
+			// The first segment still decides: a city is not a country.
+			stubMb([
+				{
+					id: "cecececc-0000-4000-8000-000000000f01",
+					name: "Sydneyish",
+					beginArea: "Sydney",
+					beginAreaType: "City",
+				},
+				{
+					id: "cecececc-0000-4000-8000-000000000f02",
+					name: "Sydneyish",
+					area: "Western Australia",
+					areaType: "Subdivision",
+				},
+			]);
+			expect((await resolveArtist("Sydneyish", { origin: "Sydney, Australia" }))?.mbid).toBe(
+				"cecececc-0000-4000-8000-000000000f01",
+			);
 		});
 
 		it("does not use an area whose type MB does not give", async () => {
