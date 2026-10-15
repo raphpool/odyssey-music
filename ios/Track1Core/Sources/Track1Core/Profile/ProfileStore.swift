@@ -48,8 +48,15 @@ public enum ProfileClear: Equatable, Sendable {
 }
 
 public actor ProfileStore {
-	private static let profileFile = "profile.v1.json"
-	private static let draftFile = "profile-draft.v1.json"
+	/// Also read by the simulator-only `-track1-fail-next-profile-write` hook in `AppContainer`.
+	public static let profileFileName = "profile.v2.json"
+	private static let draftFile = "profile-draft.v2.json"
+	// 2026-10-15 (TRA-516): the v1 files are read, never written. A build installed before the editorial
+	// selection still reads its own `profile.v1.json`, and bumping its version would make that build
+	// answer `.unsupportedVersion` and offer to delete the profile. `clear()` removes them all.
+	private static let legacyProfileFile = "profile.v1.json"
+	private static let legacyDraftFile = "profile-draft.v1.json"
+	private static let allFiles = [profileFileName, draftFile, legacyProfileFile, legacyDraftFile]
 
 	private let localStore: LocalStore
 	private var operationGeneration = 0
@@ -68,9 +75,9 @@ public actor ProfileStore {
 
 	public func read() async -> ProfileRead {
 		await resetIfNeeded()
-		switch await localStore.read(named: Self.profileFile) {
+		switch await localStore.read(named: Self.profileFileName) {
 		case .failure: return .unavailable
-		case .success(nil): return .missing
+		case .success(nil): return await readLegacyProfile()
 		case .success(let data?):
 			guard let profile = try? JSONDecoder().decode(Profile.self, from: data) else {
 				return .corrupt
@@ -78,6 +85,22 @@ public actor ProfileStore {
 			guard profile.version == Profile.version else { return .unsupportedVersion }
 			guard profile.isValid() else { return .corrupt }
 			return .profile(profile)
+		}
+	}
+
+	/// Lifts a `profile.v1.json` into a version 2 profile in memory. Nothing is written: the selection is
+	/// rebuilt at the first edit (TRA-518), and the next commit is what creates `profile.v2.json`.
+	private func readLegacyProfile() async -> ProfileRead {
+		switch await localStore.read(named: Self.legacyProfileFile) {
+		case .failure: return .unavailable
+		case .success(nil): return .missing
+		case .success(let data?):
+			guard let legacy = try? JSONDecoder().decode(Profile.self, from: data) else { return .corrupt }
+			guard legacy.version == 1 else { return .unsupportedVersion }
+			let profile = Profile(
+				version: Profile.version, localID: legacy.localID, genreIDs: legacy.genreIDs,
+				revision: legacy.revision, onboardingCompleted: legacy.onboardingCompleted, flowID: legacy.flowID)
+			return profile.isValid() ? .profile(profile) : .corrupt
 		}
 	}
 
@@ -120,7 +143,8 @@ public actor ProfileStore {
 				version: draft.version,
 				flowID: draft.flowID,
 				genreIDs: draft.genreIDs,
-				onboardingStartedRecorded: true
+				onboardingStartedRecorded: true,
+				selection: draft.selection
 			)
 		)
 	}
@@ -140,17 +164,20 @@ public actor ProfileStore {
 			return .unavailable
 		}
 		let orderedGenreIDs = reconciledGenreIDs.sorted { $0.rawValue < $1.rawValue }
+		// `selection` is the person's intent and is kept as is; only `genreIDs`, its projection that the
+		// daily recommendation reads, is reconciled with the catalog.
 		let profile: Profile
 		switch current {
 		case .profile(let existing):
-			let revision = existing.genreIDs == orderedGenreIDs ? existing.revision : existing.revision + 1
+			let unchanged = existing.genreIDs == orderedGenreIDs && existing.selection == draft.selection
 			profile = Profile(
 				version: Profile.version,
 				localID: existing.localID,
 				genreIDs: orderedGenreIDs,
-				revision: revision,
+				revision: unchanged ? existing.revision : existing.revision + 1,
 				onboardingCompleted: true,
-				flowID: existing.flowID
+				flowID: existing.flowID,
+				selection: draft.selection
 			)
 		case .missing:
 			profile = Profile(
@@ -159,13 +186,14 @@ public actor ProfileStore {
 				genreIDs: orderedGenreIDs,
 				revision: 1,
 				onboardingCompleted: true,
-				flowID: draft.flowID
+				flowID: draft.flowID,
+				selection: draft.selection
 			)
 		case .corrupt, .unsupportedVersion, .unavailable:
 			return .unavailable
 		}
 		guard expectedGeneration == operationGeneration else { return .invalidated }
-		guard case .success = await write(profile, named: Self.profileFile) else { return .unavailable }
+		guard case .success = await write(profile, named: Self.profileFileName) else { return .unavailable }
 		guard expectedGeneration == operationGeneration else { return .invalidated }
 		guard case .success = await localStore.remove(named: Self.draftFile) else {
 			return .unavailable
@@ -176,10 +204,15 @@ public actor ProfileStore {
 	public func clear() async -> ProfileClear {
 		await resetIfNeeded()
 		operationGeneration += 1
-		let profileResult = await localStore.remove(named: Self.profileFile)
-		let draftResult = await localStore.remove(named: Self.draftFile)
-		guard case .success = profileResult, case .success = draftResult else { return .unavailable }
-		return .cleared
+		return await removeAllFiles() ? .cleared : .unavailable
+	}
+
+	private func removeAllFiles() async -> Bool {
+		var removedAll = true
+		for name in Self.allFiles {
+			if case .failure = await localStore.remove(named: name) { removedAll = false }
+		}
+		return removedAll
 	}
 
 	private func persist(_ draft: ProfileDraft) async -> Result<ProfileDraft, LocalStoreError> {
@@ -204,12 +237,11 @@ public actor ProfileStore {
 		if shouldSeedCorruptProfileBeforeUse {
 			shouldSeedCorruptProfileBeforeUse = false
 			operationGeneration += 1
-			_ = await localStore.write(Data("not json".utf8), named: Self.profileFile)
+			_ = await localStore.write(Data("not json".utf8), named: Self.profileFileName)
 		}
 		guard shouldResetBeforeUse else { return }
 		shouldResetBeforeUse = false
 		operationGeneration += 1
-		_ = await localStore.remove(named: Self.profileFile)
-		_ = await localStore.remove(named: Self.draftFile)
+		_ = await removeAllFiles()
 	}
 }
