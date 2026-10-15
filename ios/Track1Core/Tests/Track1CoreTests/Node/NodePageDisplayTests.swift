@@ -97,6 +97,96 @@ final class NodePageDisplayTests: XCTestCase {
 		XCTAssertEqual(NodePageListening.failureMessage(for: .appleMusic), "Impossible d’ouvrir Apple Music.")
 	}
 
+	// MARK: - Highlights block (TRA-471)
+
+	func testTheChipSectionsOfAnArtistCarryNeitherThePicksNorTheirBlock() throws {
+		let node = try Self.artist(picks: true, discography: 3)
+
+		let fields = NodePageModel.blocks(for: node).compactMap { block -> String? in
+			if case .section(let section) = block { section.field } else { nil }
+		}
+
+		XCTAssertFalse(fields.contains("landmark_project"))
+		XCTAssertFalse(fields.contains("reference_track"))
+		XCTAssertEqual(fields, ["genres", "discography", "notable_tracks", "influences"])
+	}
+
+	func testTheHighlightsBlockComesJustAboveTheDiscographyCarousel() throws {
+		let node = try Self.artist(picks: true, discography: 3)
+
+		let kinds = NodePageModel.blocks(for: node).map(Self.describe)
+
+		XCTAssertEqual(kinds, ["genres", "highlights", "discography", "notable_tracks", "influences"])
+	}
+
+	func testWithoutADiscographyTheBlockStandsWhereItWouldAndStillComesBeforeWhatFollows() throws {
+		let node = try Self.artist(picks: true, discography: 0)
+
+		XCTAssertEqual(
+			NodePageModel.blocks(for: node).map(Self.describe),
+			["genres", "highlights", "notable_tracks", "influences"])
+	}
+
+	func testAnArtistWithoutPicksHasNoBlockAndKeepsEverySection() throws {
+		let node = try Self.artist(picks: false, discography: 3)
+
+		XCTAssertEqual(
+			NodePageModel.blocks(for: node).map(Self.describe),
+			["genres", "discography", "notable_tracks", "influences"])
+	}
+
+	func testAnArtistWhoseOnlySectionsComeBeforeTheCarouselGetsTheBlockLast() throws {
+		let node = try Self.node(
+			type: .artist,
+			edges: ["genres": Self.list("genre", 2), "landmark_project": Self.object("project", 1)])
+
+		XCTAssertEqual(NodePageModel.blocks(for: node).map(Self.describe), ["genres", "highlights"])
+	}
+
+	func testOtherTypesKeepTheirSectionsAsTheyAre() throws {
+		let node = try Self.node(
+			type: .genre, edges: ["subgenres": Self.list("genre", 2), "landmark_projects": Self.list("project", 2)])
+
+		XCTAssertEqual(NodePageModel.blocks(for: node).map(Self.describe), ["subgenres", "landmark_projects"])
+	}
+
+	private static func describe(_ block: NodePageBlock) -> String {
+		switch block {
+		case .section(let section): section.field
+		case .highlights: "highlights"
+		}
+	}
+
+	private static func artist(picks: Bool, discography: Int) throws -> NodeDetail {
+		var edges = [
+			"genres": list("genre", 2), "notable_tracks": list("track", 2), "influences": list("artist", 2),
+		]
+		if discography > 0 { edges["discography"] = list("project", discography) }
+		if picks {
+			edges["landmark_project"] = object("project", 1)
+			edges["reference_track"] = object("track", 1)
+		}
+		return try node(type: .artist, edges: edges)
+	}
+
+	private static func object(_ kind: String, _ index: Int) -> String {
+		#"{"slug":"\#(kind):\#(kind)-\#(index)","type":"\#(kind)","name":"\#(kind.capitalized) \#(index)"}"#
+	}
+
+	private static func list(_ kind: String, _ count: Int) -> String {
+		"[" + (1...count).map { object(kind, $0) }.joined(separator: ",") + "]"
+	}
+
+	private static func node(type: NodeType, edges: [String: String]) throws -> NodeDetail {
+		let body = edges.map { #""\#($0.key)":\#($0.value)"# }.joined(separator: ",")
+		let source = """
+			{"id":"\(type.rawValue):sample-node","type":"\(type.rawValue)","name":"Sample","teaser":null,"article":"","citations":[],"facts":{},"edges":{\(body)},"materialized_at":"2026-10-08T00:00:00Z","image_url":null}
+			"""
+		let decoder = JSONDecoder()
+		decoder.dateDecodingStrategy = .iso8601
+		return try decoder.decode(NodeDetail.self, from: Data(source.utf8))
+	}
+
 	private static func edges(prefix: String, count: Int) -> String {
 		let edges = (1...count).map {
 			#"{"slug":"artist:\#(prefix)-\#($0)","type":"artist","name":"\#(prefix.capitalized) \#($0)"}"#
@@ -106,13 +196,7 @@ final class NodePageDisplayTests: XCTestCase {
 
 	/// An artist node whose `edges` are the given raw JSON values, keyed by field.
 	private static func artist(edges: [String: String]) throws -> NodeDetail {
-		let body = edges.map { #""\#($0.key)":\#($0.value)"# }.joined(separator: ",")
-		let source = """
-			{"id":"artist:sample-node","type":"artist","name":"Sample","teaser":null,"article":"","citations":[],"facts":{},"edges":{\(body)},"materialized_at":"2026-10-08T00:00:00Z","image_url":null}
-			"""
-		let decoder = JSONDecoder()
-		decoder.dateDecodingStrategy = .iso8601
-		return try decoder.decode(NodeDetail.self, from: Data(source.utf8))
+		try node(type: .artist, edges: edges)
 	}
 
 	private static func section(field: String, type: NodeType, count: Int) throws -> NodePageSection {
