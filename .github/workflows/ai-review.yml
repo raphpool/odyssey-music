@@ -178,7 +178,16 @@ jobs:
                review.json (résumé et liste) sans commentaire inline :
                REVIEW.md plafonne déjà leur affichage à 5 avec un compte
                agrégé au-delà.
+          # TRA-553 (2026-10-15): `--setting-sources user` keeps the project and local setting sources out. The
+          # action defaults to "user,project,local" (base-action/src/parse-sdk-options.ts, whose comment names this
+          # very flag "to avoid in-repo configs"), and the project source is the PR's own checkout: its
+          # `.claude/settings.json` (permissions such as `Bash(npx *)`, hooks) and its CLAUDE.md would configure the
+          # agent that reviews that PR, as would its `.claude/skills` and `.claude/agents`. What remains is the
+          # job-scoped HOME (first step), with the action's own ~/.claude/settings.json. The tools come from
+          # --allowedTools below and the prompt reads REVIEW.md itself; nothing in the review needs CLAUDE.md, so it
+          # is deliberately not loaded, and not read from the base ref either (REVIEW.md does not refer to it).
           claude_args: |
+            --setting-sources user
             --model claude-opus-5
             --effort xhigh
             --max-turns 60
