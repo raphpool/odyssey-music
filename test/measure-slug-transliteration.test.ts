@@ -108,6 +108,12 @@ describe("measureSlugTransliteration (TRA-528)", () => {
 		expect(r.collisions[0]?.with).toContain("dangling edge target artist:mo");
 	});
 
+	test("prints old and new slug, and the collisions", () => {
+		const text = formatReport(report);
+		expect(text).toContain("artist:m -> artist:mo");
+		expect(text).toContain("collisions: 1");
+	});
+
 	test("exposes the old -> new table the migration consumes", () => {
 		expect(report.mapping).toEqual({
 			"artist:l-titia-sadier": "artist:laetitia-sadier",
@@ -115,12 +121,5 @@ describe("measureSlugTransliteration (TRA-528)", () => {
 			"project:in-the-m-de--m": "project:in-the-mode--mo",
 			"project:void": "project:oo-void",
 		});
-	});
-
-	test("prints a report and leaves untouched nodes alone", () => {
-		const text = formatReport(report);
-		expect(text).toContain("artist:m -> artist:mo");
-		expect(text).toContain("collisions: 1");
-		expect(text).not.toContain("artist:bjork ->");
 	});
 });

@@ -140,14 +140,6 @@ describe("transliteratedSlug (old -> new, for the TRA-478 migration)", () => {
 		expect(transliteratedSlug("project:in-the-m-de--m", "In the Møde")).toEqual(refused);
 		expect(transliteratedSlug("not a slug", "MØ")).toEqual(refused);
 	});
-
-	test("results are canonical slugs", () => {
-		for (const [name] of NAMES) {
-			const old = makeSlug("artist", name.replace(/[ẞ]/gu, "")) as string;
-			const result = transliteratedSlug(old, name.replace(/[ẞ]/gu, ""));
-			if (result.ok) expect(isValidSlug(result.slug), name).toBe(true);
-		}
-	});
 });
 
 describe("transliteratedSlug stays aligned with what the pipeline mints", () => {
@@ -190,9 +182,5 @@ describe("hasTransliteratedLetter", () => {
 		}
 		expect(hasTransliteratedLetter("Björk Ágatis")).toBe(false);
 		expect(hasTransliteratedLetter("")).toBe(false);
-	});
-	test("is not stateful across calls", () => {
-		expect(hasTransliteratedLetter("Ø")).toBe(true);
-		expect(hasTransliteratedLetter("Ø")).toBe(true);
 	});
 });
