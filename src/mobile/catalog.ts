@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { type Logger, logger } from "../logger.js";
 import {
 	isMobileNodeType,
 	MOBILE_CATALOG_MAX_IDENTITIES,
@@ -13,6 +14,8 @@ import {
 
 interface MobileCatalogDependencies {
 	getGraph(): Promise<unknown>;
+	// Injectable so a test can observe warnings without mocking; defaults to the repo logger.
+	logger?: Logger;
 }
 
 export interface MobileCatalog {
@@ -27,10 +30,13 @@ type UnknownRecord = Record<string, unknown>;
 const IDENTITY_PATTERN =
 	/^(artist|project|track|genre|label):[a-z0-9]+(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$/;
 
+const defaultLog = logger.child({ module: "mobile-catalog" });
+
 export function createMobileCatalog(dependencies: MobileCatalogDependencies): MobileCatalog {
+	const log = dependencies.logger ?? defaultLog;
 	return {
 		async getCatalog(identities) {
-			const projection = toCatalogProjection(await dependencies.getGraph());
+			const projection = toCatalogProjection(await dependencies.getGraph(), log);
 			const requested = identities ? new Set(identities) : null;
 			const nodes = requested
 				? projection.nodes.filter((node) => requested.has(node.identity))
@@ -80,7 +86,10 @@ export class MobileCatalogInputError extends Error {
 	}
 }
 
-function toCatalogProjection(value: unknown): Omit<MobileCatalogResponse, "revision" | "version"> {
+function toCatalogProjection(
+	value: unknown,
+	log: Logger,
+): Omit<MobileCatalogResponse, "revision" | "version"> {
 	const graph = record(value);
 	const nodes = array(graph.nodes)
 		.map(toMobileNode)
@@ -98,21 +107,39 @@ function toCatalogProjection(value: unknown): Omit<MobileCatalogResponse, "revis
 		);
 
 	return {
-		taxonomy: toMobileTaxonomy(graph.taxonomy),
+		taxonomy: toMobileTaxonomy(graph.taxonomy, log),
 		nodes,
 		edges,
 	};
 }
 
+// Why a present taxonomy was not emitted. Fixed vocabulary on purpose: the warning must never carry raw
+// third-party data (graph content is untrusted).
+type TaxonomyRejection =
+	| "not_an_object"
+	| "unsupported_version"
+	| "invalid_families"
+	| "invalid_genres"
+	| "invalid_legacy_selection";
+
 // Independent of the internal GenreTaxonomyProjection type (plan D1): copied field by field from `unknown`,
 // so `qid` and extra fields never reach a client. `order` must be an integer (the iOS decoder reads an Int).
-function toMobileTaxonomy(value: unknown): MobileCatalogTaxonomy {
+// An absent taxonomy degrades silently (older graph); a present but rejected one is traced with its reason.
+function toMobileTaxonomy(value: unknown, log: Logger): MobileCatalogTaxonomy {
 	const degraded = { mode: "degraded", available: false } as const;
-	if (!isRecord(value) || value.version !== 2) return degraded;
+	if (value === undefined) return degraded;
+	const rejected = (reason: TaxonomyRejection): MobileCatalogTaxonomy => {
+		log.warn("mobile taxonomy rejected, serving degraded mode", { reason });
+		return degraded;
+	};
+	if (!isRecord(value)) return rejected("not_an_object");
+	if (value.version !== 2) return rejected("unsupported_version");
 	const families = mapAll(value.families, toTaxonomyFamily);
+	if (!families) return rejected("invalid_families");
 	const genres = mapAll(value.genres, toTaxonomyGenre);
+	if (!genres) return rejected("invalid_genres");
 	const legacySelectionBySlug = toSelectionTable(value.legacySelectionBySlug);
-	if (!families || !genres || !legacySelectionBySlug) return degraded;
+	if (!legacySelectionBySlug) return rejected("invalid_legacy_selection");
 	return { mode: "editorial", version: 2, families, genres, legacySelectionBySlug };
 }
 
@@ -133,12 +160,15 @@ function toTaxonomyGenre(value: unknown): MobileTaxonomyGenre | null {
 	return { id, name, family, slugs: [...slugs] };
 }
 
+// Keys are a remediation channel for legacy slugs (src/genre-registry.ts parseGenreRedirects): readable but
+// not always canonical (for example `genre:r&b`). Such a key cannot be a mobile identity, so it is dropped
+// instead of degrading the whole taxonomy (2026-10-15, review of TRA-512). Values stay strict.
 function toSelectionTable(value: unknown): Record<string, string[]> | null {
 	if (!isRecord(value)) return null;
 	const table: Record<string, string[]> = {};
 	for (const [slug, ids] of Object.entries(value)) {
-		if (!isGenreSlug(slug) || !Array.isArray(ids) || !ids.every((id) => typeof id === "string")) return null;
-		table[slug] = [...ids];
+		if (!Array.isArray(ids) || !ids.every((id) => typeof id === "string")) return null;
+		if (isGenreSlug(slug)) table[slug] = [...ids];
 	}
 	return table;
 }
