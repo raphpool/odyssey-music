@@ -128,6 +128,7 @@ describe("tier-guard sensitive paths (TRA-498)", () => {
 		".github/pull_request_template.md",
 		"scripts/deploy-web.sh",
 		"scripts/ci/review-gate-policy.ts",
+		"scripts/ci/review-reuse.ts",
 		"scripts/ci/threshold-ratchet.ts",
 		"scripts/audit-cache.ts",
 		"data/integrity-thresholds.json",
