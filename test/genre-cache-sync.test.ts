@@ -1100,16 +1100,27 @@ describe("sync-genre-cache.sh -- migration channel (TRA-464)", () => {
 	const NAME = "2026-10-15-fake-rename";
 	// The fixture's server cache holds genre:only-server: the fake renames it, so the old file must
 	// leave the server (explicit rm) and the new one arrive (rsync of the union).
+	// A node that passes the real nodePayloadSchema: the channel re-validates what a migration wrote.
+	const genreNode = (body: string, slug = `genre:${body}`) =>
+		JSON.stringify({
+			type: "genre",
+			slug,
+			name: body,
+			editorial_article: "x".repeat(80),
+			citations: [{ url: "https://example.com/x" }],
+			editorial_definition: "x",
+			parent_genres: [],
+			subgenres: [],
+			related_genres: [],
+			key_artists: [],
+			key_labels: [],
+			landmark_projects: [],
+			landmark_tracks: [],
+			materialized_at: "2026-01-01T00:00:00.000Z",
+		});
 	const RENAME = {
 		remove: ["nodes/genre/only-server.json"],
-		write: {
-			"nodes/genre/renamed-server.json": JSON.stringify({
-				type: "genre",
-				slug: "genre:renamed-server",
-				name: "renamed-server",
-				materialized_at: "2026-01-01T00:00:00.000Z",
-			}),
-		},
+		write: { "nodes/genre/renamed-server.json": genreNode("renamed-server") },
 		manifest: {
 			renamed: { "genre:only-server": "genre:renamed-server" },
 			redirects: { "genre:only-server": "genre:renamed-server" },
@@ -1134,6 +1145,9 @@ describe("sync-genre-cache.sh -- migration channel (TRA-464)", () => {
 		expect(argv[0]).toBe(unionDir);
 		expect(argv.slice(1, 3)).toEqual(["--apply", "--manifest"]);
 		expect(argv[3]).toMatch(new RegExp(`${NAME}\\.manifest\\.json$`));
+		// B1: redirect tables are handed over as a scratch --data-dir, not left to default to the repo's.
+		expect(argv[4]).toBe("--data-dir");
+		expect(argv[5]).not.toContain(process.cwd());
 		// No server write at all: not the stop, not the archive, not the node or the tables.
 		expect(calls).not.toContain("systemctl stop");
 		expect(calls).not.toMatch(/rm -f --/);
@@ -1261,7 +1275,7 @@ describe("sync-genre-cache.sh -- migration channel (TRA-464)", () => {
 			migrations: { [NAME]: fakeMigration(NAME, { manifest: { removed: ["nodes/genre/only-repo.json"] } }) },
 		});
 		expect(result.status).not.toBe(0);
-		expect(result.stderr).toMatch(/still in the union/);
+		expect(result.stderr).toMatch(/in the final union/);
 		expect(calls).not.toContain("systemctl stop");
 	});
 
@@ -1308,6 +1322,177 @@ describe("sync-genre-cache.sh -- migration channel (TRA-464)", () => {
 		expect(result.status).not.toBe(0);
 		expect(result.stderr).toMatch(/--migration|invalid migration name/);
 		expect(calls).toBe("");
+	});
+
+	// ---- Deep review of PR #413 (BLOCK): scenarios reproduced by the reviewer, now regressions ----
+
+	const NEW_NODE = genreNode("renamed-server");
+
+	/** A rename migration written like the existing models: it renames the node in the union AND
+	 * writes its redirect to `tablePathExpr` (a JS expression), the way the models default to the
+	 * repo's own data/. `afterWrite` is extra code run once the table is written. */
+	function tableWritingMigration(name: string, tablePathExpr: string, afterWrite = ""): string {
+		return `import { readFileSync, rmSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+const argv = process.argv.slice(2);
+const cacheDir = argv[0] as string;
+rmSync(join(cacheDir, "nodes/genre/only-server.json"), { force: true });
+writeFileSync(join(cacheDir, "nodes/genre/renamed-server.json"), ${JSON.stringify(NEW_NODE)});
+const tablePath = ${tablePathExpr};
+const table = JSON.parse(readFileSync(tablePath, "utf8"));
+table.redirects["genre:only-server"] = "genre:renamed-server";
+writeFileSync(tablePath, JSON.stringify(table));
+${afterWrite}
+writeFileSync(argv[argv.indexOf("--manifest") + 1] as string, JSON.stringify({ migration: "${name}", generated_at: "x", renamed: ${JSON.stringify(PAIR)}, removed: [], redirects: ${JSON.stringify(PAIR)}, written: 1 }));
+`;
+	}
+
+	it("B1: a migration writing its redirect into the repo's committed table is refused, not read back as committed", () => {
+		for (const apply of [true, false]) {
+			const { result, calls, serverBackupDir, serverCacheRemote, serverSlugRedirectsRemote } = run({
+				apply,
+				// The committed table LACKS the pair; the migration adds it to the live repo file.
+				slugRedirects: JSON.stringify({ redirects: {} }),
+				migrations: { [NAME]: tableWritingMigration(NAME, "process.env.REPO_SLUG_REDIRECTS_PATH as string") },
+			});
+			expect(result.status).not.toBe(0);
+			expect(result.stderr).toMatch(/modified the repo's committed redirects table/);
+			expect(calls).not.toContain("systemctl stop");
+			expect(existsSync(serverBackupDir)).toBe(false);
+			expect(existsSync(join(serverCacheRemote, "nodes", "genre", "only-server.json"))).toBe(true);
+			expect(readFileSync(serverSlugRedirectsRemote, "utf8")).toContain("server-old");
+		}
+	});
+
+	it("B1: a migration that follows the contract (writes its table to --data-dir) still cannot ship an uncommitted redirect", () => {
+		const { result, calls } = run({
+			apply: true,
+			slugRedirects: JSON.stringify({ redirects: {} }),
+			migrations: {
+				[NAME]: tableWritingMigration(
+					NAME,
+					'join(argv[argv.indexOf("--data-dir") + 1] as string, "slug-redirects.json")',
+				),
+			},
+		});
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/not yet committed/);
+		expect(calls).not.toContain("systemctl stop");
+	});
+
+	it("B1: a migration that changes anything under the repo's cache/ is refused (git state compared before/after)", () => {
+		// The script runs against this checkout, so the probe is a real untracked file, always removed.
+		const probe = join(process.cwd(), "cache", "tra464-guard-probe.json");
+		try {
+			const { result, calls } = run({
+				slugRedirects: COMMITTED_IN_SLUG_TABLE,
+				migrations: {
+					[NAME]: fakeMigration(NAME, { manifest: {} }).replace(
+						"process.exit(",
+						`writeFileSync(${JSON.stringify(probe)}, "{}");\nprocess.exit(`,
+					),
+				},
+			});
+			expect(result.status).not.toBe(0);
+			expect(result.stderr).toMatch(/changed the repo's cache\/ or data\//);
+			expect(calls).not.toContain("systemctl stop");
+		} finally {
+			rmSync(probe, { force: true });
+		}
+	});
+
+	it("N2: a later migration recreating a path an earlier one removed is refused (shipped, then rm'd otherwise)", () => {
+		const first = "2026-10-15-a-rename";
+		const second = "2026-10-16-b-recreate";
+		const { result, calls, serverCacheRemote } = run({
+			apply: true,
+			slugRedirects: COMMITTED_IN_SLUG_TABLE,
+			migrations: {
+				[first]: fakeMigration(first, { ...RENAME, manifest: { ...RENAME.manifest } }),
+				[second]: fakeMigration(second, {
+					write: { "nodes/genre/only-server.json": genreNode("only-server") },
+					manifest: { written: 1 },
+				}),
+			},
+		});
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/in the final union/);
+		expect(calls).not.toContain("systemctl stop");
+		expect(existsSync(join(serverCacheRemote, "nodes", "genre", "only-server.json"))).toBe(true);
+	});
+
+	it("N2: a renamed target that no migration wrote is refused as dangling, before the old node is deleted", () => {
+		const { result, calls, serverCacheRemote } = run({
+			apply: true,
+			slugRedirects: COMMITTED_IN_SLUG_TABLE,
+			migrations: {
+				[NAME]: fakeMigration(NAME, { remove: RENAME.remove, manifest: RENAME.manifest }),
+			},
+		});
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/genre:renamed-server.*dangling/);
+		expect(calls).not.toContain("systemctl stop");
+		expect(existsSync(join(serverCacheRemote, "nodes", "genre", "only-server.json"))).toBe(true);
+	});
+
+	it("N2: a node a migration wrote that fails the node schema, or sits under the wrong path, is refused", () => {
+		for (const [file, body] of [
+			["only-repo", JSON.stringify({ type: "genre", slug: "genre:only-repo", name: 42 })],
+			["misplaced", genreNode("misplaced", "genre:elsewhere")],
+		] as const) {
+			const { result, calls, serverCacheRemote } = run({
+				apply: true,
+				slugRedirects: COMMITTED_IN_SLUG_TABLE,
+				migrations: {
+					[NAME]: fakeMigration(NAME, {
+						write: { [`nodes/genre/${file}.json`]: body },
+						manifest: { written: 1 },
+					}),
+				},
+			});
+			expect(result.status).not.toBe(0);
+			expect(result.stderr).toContain(`nodes/genre/${file}.json`);
+			expect(calls).not.toContain("systemctl stop");
+			expect(existsSync(join(serverCacheRemote, "nodes", "genre", `${file}.json`))).toBe(false);
+		}
+	});
+
+	it("N3: a renamed pair needs its committed redirect even when the manifest lists no redirects", () => {
+		const { result, calls } = run({
+			apply: true,
+			slugRedirects: JSON.stringify({ redirects: {} }),
+			migrations: {
+				[NAME]: fakeMigration(NAME, { ...RENAME, manifest: { renamed: PAIR, redirects: {}, written: 1 } }),
+			},
+		});
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/not yet committed/);
+		expect(result.stderr).toContain("genre:only-server -> genre:renamed-server");
+		expect(calls).not.toContain("systemctl stop");
+	});
+
+	it("N4: a migration run's rollback instructions say to empty cache/ first, on success and on a post-transfer failure", () => {
+		const ok = run({
+			apply: true,
+			slugRedirects: COMMITTED_IN_SLUG_TABLE,
+			migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+		});
+		expect(ok.result.status).toBe(0);
+		expect(ok.result.stdout).toMatch(
+			/Rollback archive: .*remove the server's whole cache\/ tree, then extract the archive/,
+		);
+
+		const failed = run({
+			apply: true,
+			slugRedirects: COMMITTED_IN_SLUG_TABLE,
+			migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+			env: { TEST_RSYNC_FAIL_ON_CALL: "2" },
+		});
+		expect(failed.result.status).not.toBe(0);
+		expect(failed.result.stderr).toMatch(/Restore from the archive.*remove the server's whole cache\/ tree/);
+		// A plain sync keeps the original wording.
+		const plain = run({ apply: true });
+		expect(plain.result.stdout).not.toContain("migration run");
 	});
 
 	it("rejects an unknown migration script and a duplicated name before touching the server", () => {

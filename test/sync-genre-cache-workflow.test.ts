@@ -150,7 +150,7 @@ describe("sync-genre-cache workflow", () => {
 			// The only input-derived env mapping, and the only way the value is read in the body.
 			expect(step).toMatch(/\n {10}MIGRATION_INPUT: \$\{\{ inputs\.migration \}\}\n/);
 			expect(step).toMatch(/read -r -a MIGRATION_NAMES <<< "\$MIGRATION_INPUT"/);
-			expect(step).toMatch(/MIGRATION_ARGS\+=\(--migration "\$\{NAME\/\/\[\[:space:\]\]\/\}"\)/);
+			expect(step).toMatch(/MIGRATION_ARGS\+=\(--migration "\$NAME"\)/);
 			// With no migration given the script is called exactly as before.
 			expect(step).toMatch(/\$\{MIGRATION_ARGS\[@\]\+"\$\{MIGRATION_ARGS\[@\]\}"\}/);
 		}
@@ -167,15 +167,26 @@ describe("sync-genre-cache workflow", () => {
 			const start = step.indexOf("MIGRATION_ARGS=()");
 			const snippet = step.slice(start, step.indexOf("\n          bash deploy/sync-genre-cache.sh"));
 			expect(start).toBeGreaterThan(-1);
-			const argsFor = (input: string): string[] => {
+			// /bin/bash is 3.2 on the macOS runner: that is the bash this must hold under.
+			const runSnippet = (input: string) => {
 				const printArgs = "printf '%s\\n' ${MIGRATION_ARGS[@]+\"${MIGRATION_ARGS[@]}\"}";
-				const out = spawnSync("bash", ["-c", `set -euo pipefail\n${snippet}\n${printArgs}`], {
+				return spawnSync("bash", ["-c", `set -euo pipefail\n${snippet}\n${printArgs}`], {
 					encoding: "utf8",
 					env: { ...process.env, MIGRATION_INPUT: input },
 				});
+			};
+			const argsFor = (input: string): string[] => {
+				const out = runSnippet(input);
 				expect(out.status).toBe(0);
 				return out.stdout.split("\n").filter((l) => l !== "");
 			};
+			// Review N5: refused outright (non-zero, no argument printed), never normalized.
+			for (const bad of ["2026-10-15-a b", "2026-10-15-a\n2026-10-16-b", "2026-10-15-a\r", "a,\tb c"]) {
+				const out = runSnippet(bad);
+				expect(out.status, JSON.stringify(bad)).not.toBe(0);
+				expect(out.stdout).toBe("");
+				expect(out.stderr).toMatch(/single line|whitespace/);
+			}
 			expect(argsFor("")).toEqual([]);
 			expect(argsFor("2026-10-15-a, 2026-10-16-b")).toEqual([
 				"--migration",

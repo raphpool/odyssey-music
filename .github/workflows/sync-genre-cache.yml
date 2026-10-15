@@ -84,12 +84,21 @@ jobs:
         run: |
           set -euo pipefail
           # TRA-464: names go through an env var (never interpolated into this script) and become
-          # --migration arguments; deploy/sync-genre-cache.sh validates every name itself.
+          # --migration arguments; deploy/sync-genre-cache.sh validates every name itself. A newline
+          # or whitespace inside a name is refused, never normalized into another name (review N5).
           MIGRATION_ARGS=()
           if [ -n "${MIGRATION_INPUT:-}" ]; then
+            case "$MIGRATION_INPUT" in
+              *$'\n'* | *$'\r'*) echo "ERROR: the migration input must be a single line." >&2; exit 1 ;;
+            esac
             IFS=',' read -r -a MIGRATION_NAMES <<< "$MIGRATION_INPUT"
             for NAME in "${MIGRATION_NAMES[@]}"; do
-              MIGRATION_ARGS+=(--migration "${NAME//[[:space:]]/}")
+              NAME="${NAME#"${NAME%%[![:space:]]*}"}"
+              NAME="${NAME%"${NAME##*[![:space:]]}"}"
+              case "$NAME" in
+                *[[:space:]]*) echo "ERROR: a migration name must not contain whitespace." >&2; exit 1 ;;
+              esac
+              MIGRATION_ARGS+=(--migration "$NAME")
             done
           fi
           bash deploy/sync-genre-cache.sh ${MIGRATION_ARGS[@]+"${MIGRATION_ARGS[@]}"} 2>&1 | tee "$RUNNER_TEMP/genre-cache-sync-preview.log"
@@ -114,9 +123,17 @@ jobs:
           set -euo pipefail
           MIGRATION_ARGS=()
           if [ -n "${MIGRATION_INPUT:-}" ]; then
+            case "$MIGRATION_INPUT" in
+              *$'\n'* | *$'\r'*) echo "ERROR: the migration input must be a single line." >&2; exit 1 ;;
+            esac
             IFS=',' read -r -a MIGRATION_NAMES <<< "$MIGRATION_INPUT"
             for NAME in "${MIGRATION_NAMES[@]}"; do
-              MIGRATION_ARGS+=(--migration "${NAME//[[:space:]]/}")
+              NAME="${NAME#"${NAME%%[![:space:]]*}"}"
+              NAME="${NAME%"${NAME##*[![:space:]]}"}"
+              case "$NAME" in
+                *[[:space:]]*) echo "ERROR: a migration name must not contain whitespace." >&2; exit 1 ;;
+              esac
+              MIGRATION_ARGS+=(--migration "$NAME")
             done
           fi
           bash deploy/sync-genre-cache.sh --apply ${MIGRATION_ARGS[@]+"${MIGRATION_ARGS[@]}"} 2>&1 | tee "$RUNNER_TEMP/genre-cache-sync-apply.log"

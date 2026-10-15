@@ -42,8 +42,12 @@ set -euo pipefail
 #   { "migration": "<name>", "generated_at": "...", "renamed": { "<old slug>": "<new slug>" },
 #     "removed": ["nodes/track/x.json"], "redirects": { "<old slug>": "<new slug>" }, "written": 123 }
 # `removed` and the old side of `renamed` are the only server-side deletions (same explicit
-# `rm -f --` as merge losers), and every redirect must already be committed in
+# `rm -f --` as merge losers), and every `redirects` AND `renamed` pair must already be committed in
 # data/genre-redirects.json or data/slug-redirects.json (the "not yet committed" guard below).
+# A migration also gets `--data-dir <dir>`: a SCRATCH copy of those two tables, the only place it
+# may read/write redirect tables. It must never write the repo's data/ (a redirect written there
+# would be read back as "committed" and shipped): the script refuses if the repo changed. The tables
+# shipped and checked are the copies taken before the run. Its tables are discarded.
 #
 # Usage:
 #   bash deploy/sync-genre-cache.sh            # preview only: builds + prints the union manifest
@@ -130,7 +134,10 @@ while [[ $# -gt 0 ]]; do
 	esac
 	shift
 done
+ROLLBACK_NOTE=""
 if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
+	# N4: rsync ADDS files a migration created, and the archive cannot contain what did not exist yet.
+	ROLLBACK_NOTE=" -- this was a migration run: the archive does not cover the files it CREATED, so a rollback must first remove the server's whole cache/ tree, then extract the archive (tar xzf <archive> -C $(dirname "$SERVER_CACHE_REMOTE")), instead of extracting over it"
 	for name in "${MIGRATIONS[@]}"; do
 		if [[ ! -f "$MIGRATIONS_DIR/$name.ts" ]]; then
 			echo "ERROR: migration script not found: $MIGRATIONS_DIR/$name.ts" >&2
@@ -219,7 +226,7 @@ on_exit() {
 	# it. We are already past the success branch, so the writer having been stopped is the whole
 	# condition: it means the transfer step was reached.
 	if [[ $WRITER_WAS_STOPPED -eq 1 ]]; then
-		echo "ERROR: sync failed -- the writer was restarted if it could be, but any node files already transferred were overwritten in place (rsync never deletes, it overwrites). Restore from the archive if the run got past the transfer step: $SERVER:$ARCHIVE_PATH" >&2
+		echo "ERROR: sync failed -- the writer was restarted if it could be, but any node files already transferred were overwritten in place (rsync never deletes, it overwrites). Restore from the archive if the run got past the transfer step: $SERVER:$ARCHIVE_PATH$ROLLBACK_NOTE" >&2
 	fi
 	# 2026-09-18 (independent review of this PR, reproduced on bash 3.2): on a fatal shell-level
 	# error -- an unbound variable under `set -u`, a bad `$(( ))` -- bash resets $? to 0 before this
@@ -335,14 +342,39 @@ fi
 # migration's output is checked by what it declares: the manifest (shape, paths confined to
 # nodes/, redirects already committed) and that no declared deletion is still in the union (rsync
 # would ship the file, then `rm -f --` would delete it -- a node lost for good).
+#
+# 2026-10-15 (TRA-464, deep review B1): a migration runs with cwd=$REPO_ROOT, and the existing
+# models write their redirects table to the repo's own data/. Read back afterwards as "committed",
+# that table would defeat the guard below and ship an uncommitted redirect (the next app deploy then
+# erases it while the old node stays deleted). So: (1) the committed tables are copied BEFORE any
+# migration runs and only those copies are checked and shipped; (2) the migration is handed a
+# scratch --data-dir instead; (3) afterwards the repo's cache/ and data/ and the live tables must be
+# unchanged, or the run is refused (in preview too).
+repo_state() {
+	git -C "$REPO_ROOT" status --porcelain -- cache data 2>/dev/null || true
+	{ git -C "$REPO_ROOT" diff HEAD -- cache data 2>/dev/null || true; } | cksum
+}
 MIGRATION_REMOVE_PATHS=()
 MIGRATION_MISSING_REDIRECTS=""
+COMMITTED_DIR="$WORKDIR/committed-tables"
+MIGRATION_DATA_DIR="$WORKDIR/migration-data"
+COMMITTED_GENRE_TABLE="$COMMITTED_DIR/genre-redirects.json"
+COMMITTED_SLUG_TABLE="$COMMITTED_DIR/slug-redirects.json"
+MIGRATION_TARGETS="$WORKDIR/migration-targets.txt"
 if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
+	mkdir -p "$COMMITTED_DIR" "$MIGRATION_DATA_DIR"
+	cp "$REPO_REDIRECTS_PATH" "$COMMITTED_GENRE_TABLE"
+	cp "$REPO_SLUG_REDIRECTS_PATH" "$COMMITTED_SLUG_TABLE"
+	cp "$REPO_REDIRECTS_PATH" "$MIGRATION_DATA_DIR/genre-redirects.json"
+	cp "$REPO_SLUG_REDIRECTS_PATH" "$MIGRATION_DATA_DIR/slug-redirects.json"
+	: >"$MIGRATION_TARGETS"
+	REPO_STATE_BEFORE="$(repo_state)"
+	(cd "$REPO_ROOT" && npx tsx scripts/validate-migrated-union.ts snapshot "$UNION_DIR" "$WORKDIR/union-before.json")
 	for name in "${MIGRATIONS[@]}"; do
 		MIGRATION_MANIFEST="$WORKDIR/$name.manifest.json"
 		echo "==> Running migration $name on the union (never on the repo or the server)"
 		set +e
-		(cd "$REPO_ROOT" && npx tsx "$MIGRATIONS_DIR/$name.ts" "$UNION_DIR" --apply --manifest "$MIGRATION_MANIFEST")
+		(cd "$REPO_ROOT" && npx tsx "$MIGRATIONS_DIR/$name.ts" "$UNION_DIR" --apply --manifest "$MIGRATION_MANIFEST" --data-dir "$MIGRATION_DATA_DIR")
 		MIGRATION_EXIT=$?
 		set -e
 		if [[ $MIGRATION_EXIT -ne 0 ]]; then
@@ -386,6 +418,8 @@ const parseSlug = (s) => {
 	return TYPES.includes(type) && BODY.test(body) ? { type, body } : null;
 };
 const paths = new Set();
+const pairs = [];
+const targets = new Set();
 for (const rel of m.removed) {
 	const mt = typeof rel === "string" ? /^nodes\/([a-z]+)\/(.+)\.json$/.exec(rel) : null;
 	if (!mt || !TYPES.includes(mt[1]) || !BODY.test(mt[2])) fail("removed path is not nodes/<type>/<slug>.json: " + esc(rel));
@@ -395,32 +429,68 @@ for (const [oldSlug, newSlug] of Object.entries(m.renamed)) {
 	const o = parseSlug(oldSlug), n = parseSlug(newSlug);
 	if (!o || !n || oldSlug === newSlug) fail("renamed entry is not a pair of distinct valid slugs: " + esc(oldSlug) + " -> " + esc(newSlug));
 	paths.add("nodes/" + o.type + "/" + o.body + ".json");
+	// A rename deletes the old node for good: it needs its committed redirect like any other pair.
+	pairs.push([oldSlug, newSlug]);
+	targets.add(newSlug);
+}
+for (const [from, to] of Object.entries(m.redirects)) {
+	if (!parseSlug(to)) fail("redirect target is not a valid slug: " + esc(from) + " -> " + esc(to));
+	pairs.push([from, to]);
+	targets.add(to);
 }
 const genre = readTable(genrePath, false);
 const slug = readTable(slugPath, true);
 const lines = [...paths].map((p) => "RM\t" + p);
-for (const [from, to] of Object.entries(m.redirects)) {
-	if (typeof to !== "string") fail("redirect target is not a string: " + esc(from));
+for (const t of targets) lines.push("TARGET\t" + t);
+const seen = new Set();
+for (const [from, to] of pairs) {
+	const key = from + "\n" + to;
+	if (seen.has(key)) continue;
+	seen.add(key);
 	if ((!has(genre, from) || genre[from] !== to) && (!has(slug, from) || slug[from] !== to)) lines.push("MISSING\t" + esc(from) + " -> " + esc(to));
 }
 process.stdout.write(lines.join("\n"));
-' "$MIGRATION_MANIFEST" "$name" "$REPO_REDIRECTS_PATH" "$REPO_SLUG_REDIRECTS_PATH" 2>&1)"; then
+' "$MIGRATION_MANIFEST" "$name" "$COMMITTED_GENRE_TABLE" "$COMMITTED_SLUG_TABLE" 2>&1)"; then
 			echo "ERROR: migration $name produced an invalid manifest: $MANIFEST_RESULT -- refusing before any write." >&2
 			exit 1
 		fi
 		while IFS=$'\t' read -r kind value; do
 			case "$kind" in
-				RM)
-					if [[ -e "$UNION_DIR/$value" ]]; then
-						echo "ERROR: migration $name declares $value removed, but it is still in the union -- shipping it and then deleting it would lose the node. Refusing before any write." >&2
-						exit 1
-					fi
-					MIGRATION_REMOVE_PATHS+=("$value")
-					;;
+				RM) MIGRATION_REMOVE_PATHS+=("$value") ;;
+				TARGET) printf '%s\n' "$value" >>"$MIGRATION_TARGETS" ;;
 				MISSING) MIGRATION_MISSING_REDIRECTS="$MIGRATION_MISSING_REDIRECTS$value ($name)"$'\n' ;;
 			esac
 		done <<<"$MANIFEST_RESULT"
 	done
+
+	# B1: nothing a migration did may have reached the repo or the committed tables.
+	if [[ "$(repo_state)" != "$REPO_STATE_BEFORE" ]]; then
+		echo "ERROR: a migration changed the repo's cache/ or data/ (git status/diff differ from before the run) -- migrations must write only to the union and --data-dir. Refusing before any write." >&2
+		git -C "$REPO_ROOT" status --porcelain -- cache data >&2 || true
+		exit 1
+	fi
+	if ! cmp -s "$REPO_REDIRECTS_PATH" "$COMMITTED_GENRE_TABLE" || ! cmp -s "$REPO_SLUG_REDIRECTS_PATH" "$COMMITTED_SLUG_TABLE"; then
+		echo "ERROR: a migration modified the repo's committed redirects table(s) -- it must write to --data-dir only. Refusing before any write." >&2
+		exit 1
+	fi
+	# N2: the FINAL union. Per-migration checks above cannot see a later migration undoing an earlier
+	# one, nor a node a migration wrote itself (the union's validation ran before any migration).
+	if [[ -f "$UNION_DIR/pending-reverses.json" ]]; then
+		echo "WARNING: a migration wrote $UNION_DIR/pending-reverses.json, but the union does not carry pending-reverses between repo and server, so that file is NOT shipped (follow-up needed)." >&2
+	fi
+	if ! UNION_CHECK="$(cd "$REPO_ROOT" && npx tsx scripts/validate-migrated-union.ts check "$UNION_DIR" "$WORKDIR/union-before.json" "$MIGRATION_TARGETS" 2>&1)"; then
+		echo "ERROR: the migrated union is invalid -- refusing before any write:" >&2
+		echo "$UNION_CHECK" >&2
+		exit 1
+	fi
+	if [[ ${#MIGRATION_REMOVE_PATHS[@]} -gt 0 ]]; then
+		for rel in "${MIGRATION_REMOVE_PATHS[@]}"; do
+			if [[ -e "$UNION_DIR/$rel" ]]; then
+				echo "ERROR: a migration declares $rel removed, but it is in the final union -- shipping it and then deleting it would lose the node. Refusing before any write." >&2
+				exit 1
+			fi
+		done
+	fi
 	if [[ -n "$MIGRATION_MISSING_REDIRECTS" ]]; then
 		echo "WARNING: the migration(s) produced redirect(s) not yet committed in data/genre-redirects.json or data/slug-redirects.json:" >&2
 		printf '%s' "$MIGRATION_MISSING_REDIRECTS" >&2
@@ -524,6 +594,17 @@ if [[ ${#MIGRATION_REMOVE_PATHS[@]} -gt 0 ]]; then
 		REMOVE_PATHS+=("$rel")
 	done
 fi
+# Every deletion (merge losers and migrations alike) must be absent from the union about to be
+# shipped: a file rsync ships and `rm -f --` then deletes is a node lost for good (a later migration
+# recreating an earlier one's removal, or a loser recreated by a migration).
+if [[ ${#REMOVE_PATHS[@]} -gt 0 ]]; then
+	for rel in "${REMOVE_PATHS[@]}"; do
+		if [[ -e "$UNION_DIR/$rel" ]]; then
+			echo "ERROR: $rel is slated for deletion on the server but is present in the final union -- refusing before any write." >&2
+			exit 1
+		fi
+	done
+fi
 
 echo "==> Checking for an active crawl lock on the server"
 set +e
@@ -571,7 +652,7 @@ fi
 ssh "$SERVER" "mkdir -p '$SERVER_BACKUP_DIR' && tar cf '$ARCHIVE_TAR' -C '$(dirname "$SERVER_CACHE_REMOTE")' '$(basename "$SERVER_CACHE_REMOTE")' && { tar --append --file='$ARCHIVE_TAR' -C '$(dirname "$REDIRECTS_PARENT")' '$(basename "$REDIRECTS_PARENT")/$(basename "$SERVER_REDIRECTS_REMOTE")' || { rm -f -- '$ARCHIVE_TAR'; exit 1; }; }$SLUG_ARCHIVE_APPEND && gzip -f '$ARCHIVE_TAR'"
 echo "==> Verifying archive integrity"
 ssh "$SERVER" "gzip -t '$ARCHIVE_PATH'"
-echo "==> Rollback archive: $SERVER:$ARCHIVE_PATH"
+echo "==> Rollback archive: $SERVER:$ARCHIVE_PATH$ROLLBACK_NOTE"
 
 echo "==> Pruning old backup archives (keeping the $BACKUP_RETENTION_COUNT most recent)"
 # Belt-and-suspenders (independent review of this PR): BACKUP_RETENTION_COUNT is validated >= 1
@@ -624,7 +705,7 @@ rsync -az "$UNION_DIR/genre-redirects.json" "$SERVER:$SERVER_REDIRECTS_REMOTE"
 # that run is unchanged, and deploy-server.sh already ships data/ on each app deploy.
 if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
 	echo "==> Shipping data/slug-redirects.json to the server"
-	rsync -az "$REPO_SLUG_REDIRECTS_PATH" "$SERVER:$SERVER_SLUG_REDIRECTS_REMOTE"
+	rsync -az "$COMMITTED_SLUG_TABLE" "$SERVER:$SERVER_SLUG_REDIRECTS_REMOTE"
 fi
 
 if [[ ${#REMOVE_PATHS[@]} -gt 0 ]]; then
@@ -674,4 +755,4 @@ if [[ "${TEST_FORCE_FATAL_ERROR:-0}" == "after-transfer" ]]; then
 fi
 
 SYNC_SUCCEEDED=1
-echo "==> Sync complete. Rollback archive if needed: $SERVER:$ARCHIVE_PATH"
+echo "==> Sync complete. Rollback archive if needed: $SERVER:$ARCHIVE_PATH$ROLLBACK_NOTE"
