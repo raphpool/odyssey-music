@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { NodeCache } from "../../src/cache.js";
 import type { GenreRedirects } from "../../src/genre-registry.js";
-import { createMobileNodeReader, MobileNodeInputError } from "../../src/mobile/nodes.js";
+import { createMobileNodeReader, MobileNodeInputError, safePublicHttpsUrl } from "../../src/mobile/nodes.js";
 import type { ArtistNode, GenreNode, Slug } from "../../src/types.js";
 
 function genreNode(overrides: Partial<GenreNode> & { slug: Slug; name: string }): GenreNode {
@@ -48,6 +48,51 @@ function artistNode(overrides: Partial<ArtistNode> & { slug: Slug; name: string 
 		...overrides,
 	};
 }
+
+// Same case table as ios/Track1Core/Tests/Track1CoreTests/API/URLValidationTests.swift (TRA-496).
+describe("safePublicHttpsUrl", () => {
+	it.each([
+		["plain http", "http://example.com/"],
+		["loopback IPv4", "https://127.0.0.1/"],
+		["IPv4-mapped loopback (hex words)", "https://[::ffff:7f00:1]/"],
+		["IPv4-mapped loopback (dotted)", "https://[::ffff:127.0.0.1]/"],
+		["decimal integer IPv4", "https://2130706433/"],
+		["hexadecimal IPv4", "https://0x7f000001/"],
+		["shortened IPv4", "https://127.1/"],
+		["octal IPv4", "https://0177.0.0.1/"],
+		["unique-local IPv6 literal", "https://[fd00::1]/x"],
+		["link-local IPv6 literal", "https://[fe80::1]/x"],
+		["hex 10.0.0.1", "https://0xa000001/"],
+		["decimal 192.168.1.1", "https://3232235777/"],
+		["decimal 169.254.169.254", "https://2852039166/"],
+		["uppercase hexadecimal IPv4", "https://0X7F000001/"],
+		["trailing-dot loopback", "https://127.0.0.1./"],
+		["full-width digits loopback", "https://１２７.０.０.１/"],
+		["invalid octal numeric host", "https://08.8.8.8/"],
+		["private IPv4", "https://10.0.0.1/x"],
+		["localhost", "https://localhost/x"],
+		["trailing-dot localhost", "https://localhost./x"],
+		["explicit port", "https://example.com:8443/"],
+	])("refuses %s", (_label, url) => {
+		expect(safePublicHttpsUrl(url)).toBeNull();
+	});
+
+	// 2026-10-14 (TRA-496): the IPv6 prefix checks ran on every host, so fdroid.org was refused.
+	it.each([
+		"https://fdroid.org/x",
+		"https://fcbayern.com/",
+		"https://feb.example/",
+		"https://fe80.example/",
+		"https://8.8.8.8/",
+	])("accepts %s", (url) => {
+		expect(safePublicHttpsUrl(url)).toBe(new URL(url).toString());
+	});
+
+	it("still pins the provider host", () => {
+		expect(safePublicHttpsUrl("https://open.spotify.com/track/1", "open.spotify.com")).not.toBeNull();
+		expect(safePublicHttpsUrl("https://evil.example/track/1", "open.spotify.com")).toBeNull();
+	});
+});
 
 describe("mobile node reader", () => {
 	let directory: string;

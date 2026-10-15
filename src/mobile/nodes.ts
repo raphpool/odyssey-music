@@ -93,20 +93,34 @@ export function safePublicHttpsUrl(raw: string | null, expectedHost?: string): s
 }
 
 function isPrivateHost(hostname: string): boolean {
-	const host = hostname.toLowerCase().replace(/^\[|\]$/g, "");
-	if (host === "localhost" || host.endsWith(".localhost") || host === "::1" || host === "::") return true;
-	if (
+	const host = hostname
+		.toLowerCase()
+		.replace(/^\[|\]$/g, "")
+		.replace(/\.+$/, "");
+	if (host === "localhost" || host.endsWith(".localhost")) return true;
+	// 2026-10-14: the IPv6 prefix checks used to run on every host, so public domains such as fdroid.org
+	// or fcbayern.com were refused and their citations/images dropped. They only apply to IPv6 literals
+	// (which contain ":"); same fix as iOS URLValidation (2026-10-13), TRA-496.
+	if (host.includes(":")) return isPrivateIpv6Literal(host);
+	const ipv4 = parseIpv4(host);
+	return ipv4 !== null && isPrivateIpv4(ipv4);
+}
+
+function isPrivateIpv6Literal(host: string): boolean {
+	if (host === "::1" || host === "::") return true;
+	const mapped = parseMappedIpv4(host);
+	if (mapped) return isPrivateIpv4(mapped);
+	return (
 		host.startsWith("fc") ||
 		host.startsWith("fd") ||
 		host.startsWith("fe8") ||
 		host.startsWith("fe9") ||
 		host.startsWith("fea") ||
 		host.startsWith("feb")
-	) {
-		return true;
-	}
-	const ipv4 = parseIpv4(host) ?? parseMappedIpv4(host);
-	if (!ipv4) return false;
+	);
+}
+
+function isPrivateIpv4(ipv4: [number, number, number, number]): boolean {
 	return (
 		ipv4[0] === 0 ||
 		ipv4[0] === 10 ||
