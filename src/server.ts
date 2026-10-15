@@ -89,8 +89,12 @@ async function getCacheIndex(): Promise<CacheIndex> {
 	return cacheIndex;
 }
 
+// Called after every node write (materialize, mobile search). It also empties the image service's
+// 24h negative cache (TRA-475): a node that just gained an image_url must not keep answering
+// "no-match" for the slugs that borrow from it. `imageService` is declared below; this only runs later.
 function invalidateCacheIndex(): void {
 	cacheIndex = null;
+	imageService.clearNegativeCache();
 }
 
 const handleSearch = createSearchService({ getCacheIndex, catalogIndex });
