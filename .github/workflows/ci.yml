@@ -136,7 +136,7 @@ jobs:
           CHANGED=$(git diff --name-only "$BASE"...HEAD)
           # TRA-498: this pattern is `sensitivePath` of scripts/ci/review-gate-policy.ts with `\/` written `/`;
           # test/ci-integrity-job.test.ts fails when the two drift apart.
-          if echo "$CHANGED" | grep -Eq '(^|/)(auth|payment[s]?|migrations|infra|deploy)/|^\.github/|^scripts/(deploy-|ci/review-gate-policy|ci/review-reuse|ci/threshold-ratchet\.ts$|audit-cache\.ts$)|^data/integrity-thresholds\.json$|^\.codex/scripts/publish-review-status\.sh$|\.sql$|secrets'; then
+          if echo "$CHANGED" | grep -Eq '(^|/)(auth|payment[s]?|migrations|infra|deploy)/|^\.github/|^scripts/(deploy-|ci/review-gate-policy|ci/review-reuse|ci/threshold-ratchet\.ts$|audit-cache\.ts$)|^data/integrity-thresholds\.json$|^\.codex/scripts/publish-review-status\.sh$|^REVIEW\.md$|\.sql$|secrets'; then
             echo "Chemin sensible touché → tier/3"
             gh pr edit "${{ github.event.pull_request.number }}" --add-label "tier/3"
             gh pr edit "${{ github.event.pull_request.number }}" --remove-label "tier/1" || true

@@ -133,6 +133,7 @@ describe("tier-guard sensitive paths (TRA-498)", () => {
 		"scripts/audit-cache.ts",
 		"data/integrity-thresholds.json",
 		".codex/scripts/publish-review-status.sh",
+		"REVIEW.md",
 		"db/schema.sql",
 		"config/secrets.json",
 	];
@@ -153,6 +154,8 @@ describe("tier-guard sensitive paths (TRA-498)", () => {
 		".codex/scripts/other.sh",
 		".codex/scripts/publish-review-status.sh.bak",
 		"db/schema.sqlx",
+		"docs/REVIEW.md",
+		"REVIEW.md.bak",
 		"src/graph.ts",
 	];
 
