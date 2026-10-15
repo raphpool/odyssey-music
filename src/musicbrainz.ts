@@ -73,6 +73,8 @@ interface MbRecording {
 	id: string;
 	title: string;
 	length?: number;
+	/** MB's note telling same-titled recordings apart ("live, Detroit 1998", "DJ-mix", "video"...). */
+	disambiguation?: string;
 	"first-release-date"?: string;
 	"artist-credit"?: MbArtistCreditEntry[];
 }
@@ -930,36 +932,81 @@ function containsWords(haystack: string, needle: string): boolean {
 	return `-${haystack}-`.includes(`-${needle}-`);
 }
 
+type Pick<T> = { kind: "one"; candidate: T } | { kind: "none" } | { kind: "ambiguous" };
+
+/** True when `a` is a strictly earlier date than `b`: "1999" is not earlier than "1999-05-03" (same year). */
+function strictlyEarlier(a: string, b: string): boolean {
+	return a < b && !b.startsWith(a);
+}
+
 /**
- * Choose the candidate MB actually means, or null. Never defaults to the first result: MB ranks
- * "New Forms²" and "New Forms" both at 100, so rank carries no identity.
+ * Choose the candidate MB actually means. Never defaults to the first result: MB ranks "New Forms²"
+ * and "New Forms" both at 100, and returns up to 8 look-alikes of one title and one credit in an order
+ * that changes from one request to the next (2026-10-15, TRA-474 review: Kraftwerk's "Autobahn" came
+ * back as a Detroit live recording, Zero 7's "Destiny" alternated between the album track and a
+ * DJ-mix, "Windowlicker" met a 2026 EP credited to a fake "Aphex Twin"). So:
  * 1. keep only candidates whose normalized title equals the requested one. Titles go through
  *    normalizeTitleBody, NOT normalizeSlugBody: the latter drops a trailing "(...)", which made
  *    "Fitna (Live)" == "Fitna" and "Get Lucky (Daft Punk Remix)" == "Get Lucky" (TRA-452 review,
  *    2026-10-15) so the credit step could return the live or remixed version. Edition noise
  *    ("Kid A (Deluxe Edition)", "(2019 Remaster)", "(feat. X)") is ignored on purpose: it names
  *    the same work, and MB catalogues the bare title as one release group;
- * 2. among them, the first whose credit (credited-as or canonical name) equals or contains the hint;
- * 3. otherwise the single remaining exact-title candidate; otherwise null.
+ * 2. among them, ALL whose credit (credited-as or canonical name) equals or contains the hint; with
+ *    none, the single exact-title candidate (more than one = ambiguous);
+ * 3. recordings carrying a non-empty `disambiguation` (live, DJ-mix, video...) are set aside; exactly
+ *    one must remain. Release groups have no such note: the one with the strictly earliest
+ *    first-release-date among the dated ones wins (a later EP or compilation of the same title does
+ *    not), a tie or no date at all is ambiguous.
+ * Ambiguous is not "none": the caller keeps the two apart.
  */
 function pickByTitleAndCredit<
-	T extends { id: string; title: string; "artist-credit"?: MbArtistCreditEntry[] | undefined },
->(candidates: T[], title: string, artistHint: string | undefined): T | null {
+	T extends {
+		id: string;
+		title: string;
+		disambiguation?: string | undefined;
+		"first-release-date"?: string | undefined;
+		"artist-credit"?: MbArtistCreditEntry[] | undefined;
+	},
+>(
+	candidates: T[],
+	title: string,
+	artistHint: string | undefined,
+	kind: "release-group" | "recording",
+): Pick<T> {
 	const wanted = normalizeTitleBody(title);
-	if (!wanted) return null;
+	if (!wanted) return { kind: "none" };
 	const exact = candidates.filter((c) => normalizeTitleBody(c.title) === wanted);
 	const hint = artistHint ? normalizeSlugBody(artistHint) : "";
-	if (hint) {
-		const byCredit = exact.find((c) =>
-			(c["artist-credit"] ?? []).some((entry) =>
-				[entry.name, entry.artist?.name].some(
-					(n) => n !== undefined && containsWords(normalizeSlugBody(n), hint),
+	const credited = hint
+		? exact.filter((c) =>
+				(c["artist-credit"] ?? []).some((entry) =>
+					[entry.name, entry.artist?.name].some(
+						(n) => n !== undefined && containsWords(normalizeSlugBody(n), hint),
+					),
 				),
-			),
-		);
-		if (byCredit) return byCredit;
+			)
+		: [];
+	const pool = credited.length > 0 ? credited : exact;
+	if (pool.length === 0) return { kind: "none" };
+	if (credited.length === 0 && pool.length > 1) return { kind: "ambiguous" };
+
+	if (kind === "recording") {
+		const plain = pool.filter((c) => (c.disambiguation ?? "").trim() === "");
+		const only = plain[0];
+		if (plain.length > 1) return { kind: "ambiguous" };
+		return only ? { kind: "one", candidate: only } : { kind: "none" };
 	}
-	return exact.length === 1 ? (exact[0] ?? null) : null;
+	const only = pool[0];
+	if (pool.length === 1 && only) return { kind: "one", candidate: only };
+	const dated = pool.filter((c) => (c["first-release-date"] ?? "") !== "");
+	const earliest = [...dated].sort((a, b) =>
+		(a["first-release-date"] ?? "").localeCompare(b["first-release-date"] ?? ""),
+	)[0];
+	const earliestDate = earliest?.["first-release-date"] ?? "";
+	const strict =
+		earliest !== undefined &&
+		dated.every((c) => c === earliest || strictlyEarlier(earliestDate, c["first-release-date"] ?? ""));
+	return strict && earliest ? { kind: "one", candidate: earliest } : { kind: "ambiguous" };
 }
 
 function luceneQuery(
@@ -977,48 +1024,96 @@ function luceneQuery(
 	return hint ? `${field}:"${phrase}" AND artist:"${hint}"` : `${field}:"${phrase}"`;
 }
 
+/** MB's maximum page: the whole result set of a title search, so that no look-alike hides past the page. */
+const WORK_SEARCH_LIMIT = "100";
+
+/**
+ * True when MB announces more matches (`count`) than the page holds. Picking among a truncated page
+ * is picking blind: the candidate left out may be the studio recording, or the earlier release
+ * (2026-10-15, TRA-474 re-review: "To Hell with Good Intentions", count 13 of 8 received, resolved to
+ * the compilation's recording in one run out of twelve).
+ */
+function isTruncated(body: unknown, received: number): boolean {
+	return isRecord(body) && typeof body.count === "number" && body.count > received;
+}
+
+/** What a resolver found: the work, or nothing; `ambiguous` tells "several look-alikes" from "none". */
+export interface MbWorkResolution {
+	identity: MbReleaseIdentity | null;
+	ambiguous: boolean;
+}
+
 /**
  * Resolve a project title (plus an optional credited-artist hint) to the one MB release group it
- * names, with its artist credit. Null when MB is unreachable, answers garbage, or nothing can be
- * singled out — callers must treat null as "unresolved", never as "pick the first hit".
+ * names, with its artist credit. Null identity when MB is unreachable, answers garbage, or nothing
+ * can be singled out; `ambiguous` is true when several candidates fit equally.
  */
+export async function resolveReleaseGroupDetailed(
+	title: string,
+	artistHint?: string,
+): Promise<MbWorkResolution> {
+	const none: MbWorkResolution = { identity: null, ambiguous: false };
+	const query = luceneQuery("releasegroup", title, artistHint);
+	if (!query) return none;
+	const body = await mbFetch<unknown>("/release-group", { query, limit: WORK_SEARCH_LIMIT });
+	const releaseGroups = parseReleaseGroups(body);
+	if (!releaseGroups) return none;
+	if (isTruncated(body, releaseGroups.length)) return { identity: null, ambiguous: true };
+	const picked = pickByTitleAndCredit(releaseGroups, title, artistHint, "release-group");
+	if (picked.kind !== "one") return { identity: null, ambiguous: picked.kind === "ambiguous" };
+	const rg = picked.candidate;
+	return {
+		ambiguous: false,
+		identity: {
+			mbid: rg.id,
+			title: rg.title,
+			credit: toCredits(rg["artist-credit"]),
+			primaryType: rg["primary-type"] ?? null,
+			firstReleaseDate: rg["first-release-date"] || null,
+		},
+	};
+}
+
+/** Recording counterpart of {@link resolveReleaseGroupDetailed}; `primaryType` is always null. */
+export async function resolveRecordingDetailed(
+	title: string,
+	artistHint?: string,
+): Promise<MbWorkResolution> {
+	const none: MbWorkResolution = { identity: null, ambiguous: false };
+	const query = luceneQuery("recording", title, artistHint);
+	if (!query) return none;
+	const body = await mbFetch<unknown>("/recording", { query, limit: WORK_SEARCH_LIMIT });
+	const recordings = parseRecordings(body);
+	if (!recordings) return none;
+	if (isTruncated(body, recordings.length)) return { identity: null, ambiguous: true };
+	const picked = pickByTitleAndCredit(recordings, title, artistHint, "recording");
+	if (picked.kind !== "one") return { identity: null, ambiguous: picked.kind === "ambiguous" };
+	const rec = picked.candidate;
+	return {
+		ambiguous: false,
+		identity: {
+			mbid: rec.id,
+			title: rec.title,
+			credit: toCredits(rec["artist-credit"]),
+			primaryType: null,
+			firstReleaseDate: rec["first-release-date"] || null,
+		},
+	};
+}
+
+/** {@link resolveReleaseGroupDetailed} without the ambiguity flag: null means "do not use". */
 export async function resolveReleaseGroup(
 	title: string,
 	artistHint?: string,
 ): Promise<MbReleaseIdentity | null> {
-	const query = luceneQuery("releasegroup", title, artistHint);
-	if (!query) return null;
-	const releaseGroups = parseReleaseGroups(await mbFetch<unknown>("/release-group", { query, limit: "8" }));
-	if (!releaseGroups) return null;
-	const rg = pickByTitleAndCredit(releaseGroups, title, artistHint);
-	if (!rg) return null;
-	return {
-		mbid: rg.id,
-		title: rg.title,
-		credit: toCredits(rg["artist-credit"]),
-		primaryType: rg["primary-type"] ?? null,
-		firstReleaseDate: rg["first-release-date"] || null,
-	};
+	return (await resolveReleaseGroupDetailed(title, artistHint)).identity;
 }
 
-/** Recording counterpart of {@link resolveReleaseGroup}; `primaryType` is always null. */
 export async function resolveRecording(
 	title: string,
 	artistHint?: string,
 ): Promise<MbReleaseIdentity | null> {
-	const query = luceneQuery("recording", title, artistHint);
-	if (!query) return null;
-	const recordings = parseRecordings(await mbFetch<unknown>("/recording", { query, limit: "8" }));
-	if (!recordings) return null;
-	const rec = pickByTitleAndCredit(recordings, title, artistHint);
-	if (!rec) return null;
-	return {
-		mbid: rec.id,
-		title: rec.title,
-		credit: toCredits(rec["artist-credit"]),
-		primaryType: null,
-		firstReleaseDate: rec["first-release-date"] || null,
-	};
+	return (await resolveRecordingDetailed(title, artistHint)).identity;
 }
 
 /** Valid "member of band" relations out of an untrusted `relations` array, deduplicated by MBID. */
@@ -1461,8 +1556,9 @@ export async function fetchTrackMetaMb(recordingMbid: string): Promise<MbTrackMe
 		const scoreA = rgScore(rgA);
 		const scoreB = rgScore(rgB);
 		if (scoreA !== scoreB) return scoreA - scoreB; // lower is better
-		const ad = a.date ?? a["release-events"]?.[0]?.date ?? "9999";
-		const bd = b.date ?? b["release-events"]?.[0]?.date ?? "9999";
+		// `||`, not `??`: MB sends "date": "" for an undated edition, which must sort last, not first.
+		const ad = a.date || a["release-events"]?.[0]?.date || "9999";
+		const bd = b.date || b["release-events"]?.[0]?.date || "9999";
 		return ad.localeCompare(bd);
 	});
 	const earliest = releases[0];
@@ -1525,8 +1621,9 @@ export async function fetchProjectMetaMb(rgMbid: string): Promise<MbProjectMeta>
 	});
 	if (!rg || !Array.isArray(rg.releases) || rg.releases.length === 0) return empty;
 	const releases = [...rg.releases].sort((a, b) => {
-		const ad = a.date ?? a["release-events"]?.[0]?.date ?? "9999";
-		const bd = b.date ?? b["release-events"]?.[0]?.date ?? "9999";
+		// `||`, not `??`: MB sends "date": "" for an undated edition, which must sort last, not first.
+		const ad = a.date || a["release-events"]?.[0]?.date || "9999";
+		const bd = b.date || b["release-events"]?.[0]?.date || "9999";
 		return ad.localeCompare(bd);
 	});
 	const releaseId = releases[0]?.id;
