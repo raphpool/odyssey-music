@@ -6,7 +6,7 @@ import { NodeCache } from "../src/cache.js";
 import { loadGenreResolver } from "../src/genre-identity.js";
 import { createGenreRegistry, parseGenreRedirects } from "../src/genre-registry.js";
 import type { PipelineDeps } from "../src/pipeline.js";
-import type { ArtistNode, GenreNode, Slug } from "../src/types.js";
+import type { ArtistNode, GenreNode, ProjectNode, Slug } from "../src/types.js";
 import {
 	artistDraftFixture,
 	FIXTURE_WIKI_URL,
@@ -108,6 +108,103 @@ describe("runPipeline e2e (mocked boundaries)", () => {
 			const genre = result.node as GenreNode;
 			expect(genre.related_genres.length).toBeGreaterThan(0);
 			expect(genre.subgenres.length).toBeGreaterThan(0);
+		},
+		TIMEOUT_MS,
+	);
+});
+
+// TRA-462: work references are scoped by their primary artist, and a work nobody is credited for is
+// dropped from the written node (the node itself is kept).
+describe("scoped work edges (TRA-462)", () => {
+	it(
+		"scopes an artist's track by the artist, filling a missing artist from the node",
+		async () => {
+			installPipelineMocks({
+				draft: artistDraftFixture({
+					name: "Rohff",
+					notable_tracks: [{ type: "track", name: "Fitna" }],
+					discography: [],
+				}),
+			});
+			const runPipeline = await loadRunPipeline();
+
+			const result = await runPipeline({ type: "artist", name: "Rohff" }, DEPS);
+
+			const artist = result.node as ArtistNode;
+			expect(artist.notable_tracks).toEqual([
+				{ slug: "track:fitna--rohff", type: "track", name: "Fitna", artist: "Rohff" },
+			]);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"scopes a genre's landmark project by its artist and drops the same reference without one, with a log",
+		async () => {
+			installPipelineMocks({
+				draft: genreDraftFixture({
+					landmark_projects: [
+						{ type: "project", name: "New Forms", artist: "Roni Size / Reprazent" },
+						{ type: "project", name: "New Forms" },
+					],
+				}),
+			});
+			const runPipeline = await loadRunPipeline();
+			const lines: string[] = [];
+
+			const result = await runPipeline(
+				{ type: "genre", name: "Fixture Genre" },
+				{ ...DEPS, logger: (line) => lines.push(line) },
+			);
+
+			const genre = result.node as GenreNode;
+			expect(genre.landmark_projects.map((e) => e.slug)).toEqual(["project:new-forms--roni-size-reprazent"]);
+			expect(genre.landmark_projects[0]?.artist).toBe("Roni Size / Reprazent");
+			expect(lines.some((l) => l.includes("edge dropped: no artist"))).toBe(true);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"scopes a project's tracklist by the project's first artist",
+		async () => {
+			installPipelineMocks({
+				draft: {
+					name: "Draft Project",
+					editorial_article:
+						"Draft Project is a fictional album invented for the runPipeline end-to-end harness (TRA-462). " +
+						"No real-world facts are claimed here.",
+					citations: [{ url: FIXTURE_WIKI_URL, title: "Fixture Artist" }],
+					editorial_pitch: "A fictional album used to test tracklist scoping.",
+					artists: [{ type: "artist", name: "Autechre" }],
+					genres: [],
+					tracklist: [{ type: "track", name: "Gantz Graf" }],
+					producers: [],
+					related_projects: [],
+				},
+			});
+			const runPipeline = await loadRunPipeline();
+
+			const result = await runPipeline({ type: "project", name: "Draft Project" }, DEPS);
+
+			const project = result.node as ProjectNode;
+			expect(project.tracklist.map((e) => e.slug)).toEqual(["track:gantz-graf--autechre"]);
+			expect(project.tracklist[0]?.artist).toBe("Autechre");
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"empties members when an artist lists themselves",
+		async () => {
+			installPipelineMocks({
+				draft: artistDraftFixture({ name: "Cartola", members: [{ type: "artist", name: "Cartola" }] }),
+			});
+			const runPipeline = await loadRunPipeline();
+
+			const result = await runPipeline({ type: "artist", name: "Cartola" }, DEPS);
+
+			expect((result.node as ArtistNode).members).toEqual([]);
 		},
 		TIMEOUT_MS,
 	);
