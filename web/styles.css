@@ -303,6 +303,26 @@ body {
 .node.stripe-artist .hero.no-image { --hero-accent: var(--artist); }
 .node.stripe-project .hero.no-image { --hero-accent: var(--project); }
 .node.stripe-track .hero.no-image { --hero-accent: var(--track); }
+/* TRA-466: an album cover standing in for a portrait (image_source "derived-cover", e.g. an artist
+   page showing a record sleeve) must not read as a photo. The cover is shown whole (contain, not
+   cropped by cover) over the same type-colored gradient as the placeholder. The gradient sits at
+   z-index -1: below the hero's own background-image, which only a hero that is not its own
+   stacking context allows (hence isolation: auto; the hero's children keep their z-index). */
+.hero.hero-derived {
+  isolation: auto;
+  background-color: transparent;
+  background-size: contain;
+}
+.hero.hero-derived::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(135deg, var(--hero-accent, var(--accent)) 0%, var(--card-bg) 95%);
+  opacity: 0.5;
+}
+.node.stripe-genre .hero.hero-derived { --hero-accent: var(--genre); }
+.node.stripe-label .hero.hero-derived { --hero-accent: var(--label); }
+.node.stripe-artist .hero.hero-derived { --hero-accent: var(--artist); }
+.node.stripe-project .hero.hero-derived { --hero-accent: var(--project); }
+.node.stripe-track .hero.hero-derived { --hero-accent: var(--track); }
 
 .hero-title-wrap {
   position: absolute; left: 1.1rem; right: 1.1rem; bottom: 0.95rem;
