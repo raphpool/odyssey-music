@@ -8,6 +8,7 @@ import {
 	BLOCKING_ANNOTATION,
 	type DecisionInput,
 	decideReuse,
+	type Facts,
 	latestReview,
 	PAGE_SIZE,
 	RECORD_PREFIX,
@@ -32,10 +33,22 @@ const run = (overrides: Partial<ReviewCheckRun> = {}): ReviewCheckRun => ({
 	...overrides,
 });
 
-const input = (overrides: Partial<DecisionInput> = {}): DecisionInput => ({
+// What the workflow establishes before asking: a first-attempt synchronize on a PR against the default branch,
+// whose head is the update-branch merge of a previous head that left .github/ alone.
+const facts = (overrides: Partial<Facts> = {}): Facts => ({
 	action: "synchronize",
+	runAttempt: 1,
 	patchId: PATCH,
 	previousSha: PREVIOUS,
+	baseRef: "main",
+	defaultBranch: "main",
+	previousLeavesWorkflowsAlone: true,
+	headIsUpdateMerge: true,
+	...overrides,
+});
+
+const input = (overrides: Partial<DecisionInput> = {}): DecisionInput => ({
+	...facts(),
 	checkRuns: [run()],
 	checkRunsTruncated: false,
 	annotations: [recordMessage(PATCH)],
@@ -69,6 +82,14 @@ describe("decideReuse (TRA-510)", () => {
 		["ready_for_review", { action: "ready_for_review" }],
 		["reopened", { action: "reopened" }],
 		["opened", { action: "opened" }],
+		["re-run of the workflow", { runAttempt: 2 }],
+		["unknown run attempt", { runAttempt: null }],
+		["PR stacked on another branch", { baseRef: "feature/parent" }],
+		["unknown default branch", { defaultBranch: "" }],
+		["previous head modifies .github/", { previousLeavesWorkflowsAlone: false }],
+		["previous head's .github/ not checkable", { previousLeavesWorkflowsAlone: null }],
+		["head is not a merge (plain commit)", { headIsUpdateMerge: false }],
+		["head's merge not checkable", { headIsUpdateMerge: null }],
 		["listing failed", { checkRuns: null }],
 		["listing truncated", { checkRunsTruncated: true }],
 		["annotations unreadable", { annotations: null }],
@@ -122,10 +143,11 @@ const fakeApi = (answers: Record<string, unknown>) => {
 	return { get, paths };
 };
 
-const ctx = (get: (path: string) => Promise<unknown>, overrides = {}) => ({
-	action: "synchronize",
-	patchId: PATCH,
-	previousSha: PREVIOUS,
+const ctx = (
+	get: (path: string) => Promise<unknown>,
+	overrides: Partial<Facts & { repository: string }> = {},
+) => ({
+	...facts(),
 	repository: "raphpool/odyssey-music",
 	get,
 	...overrides,
@@ -175,6 +197,10 @@ describe("resolveDecision (API lookups)", () => {
 		{ action: "reopened" },
 		{ patchId: null },
 		{ previousSha: null },
+		{ runAttempt: 2 },
+		{ baseRef: "feature/parent" },
+		{ previousLeavesWorkflowsAlone: false },
+		{ headIsUpdateMerge: false },
 		{ repository: "not a repository" },
 	])("never calls the API when the answer is already full (%j)", async (overrides) => {
 		const api = fakeApi({});
@@ -187,7 +213,11 @@ describe("review-reuse.ts as the workflow runs it", () => {
 	const exec = promisify(execFile);
 
 	/** Runs the script against a local API stub, with the environment the workflow gives it. */
-	const runScript = async (status: number, body: (url: string) => unknown, action = "synchronize") => {
+	const runScript = async (
+		status: number,
+		body: (url: string) => unknown,
+		extraEnv: Record<string, string> = {},
+	) => {
 		const seen: (string | undefined)[] = [];
 		const server = createServer((req, res) => {
 			seen.push(req.headers.authorization);
@@ -199,9 +229,15 @@ describe("review-reuse.ts as the workflow runs it", () => {
 			GITHUB_API_URL: `http://127.0.0.1:${(server.address() as AddressInfo).port}`,
 			GH_TOKEN: "test-token",
 			REPOSITORY: "raphpool/odyssey-music",
-			EVENT_ACTION: action,
+			EVENT_ACTION: "synchronize",
+			RUN_ATTEMPT: "1",
 			PREVIOUS_SHA: PREVIOUS,
 			PATCH_ID: PATCH,
+			BASE_REF: "main",
+			DEFAULT_BRANCH: "main",
+			PREVIOUS_LEAVES_WORKFLOWS_ALONE: "true",
+			HEAD_IS_UPDATE_MERGE: "true",
+			...extraEnv,
 		};
 		try {
 			const { stdout } = await exec("npx", ["--no-install", "tsx", "scripts/ci/review-reuse.ts"], { env });
@@ -223,6 +259,12 @@ describe("review-reuse.ts as the workflow runs it", () => {
 		const { result } = await runScript(500, () => ({}));
 		expect(result.decision).toBe("full");
 		expect(result.reason).toMatch(/500/);
+	}, 30_000);
+
+	it("prints full without calling the API when the head is not a verified update-branch merge", async () => {
+		const { result, seen } = await runScript(200, () => ({}), { HEAD_IS_UPDATE_MERGE: "" });
+		expect(result.decision).toBe("full");
+		expect(seen).toHaveLength(0);
 	}, 30_000);
 
 	it("stays loadable by `node --experimental-strip-types` on the runner: no import, no runtime-only TS syntax", () => {
@@ -276,10 +318,13 @@ describe("ai-review.yml reuse wiring (TRA-510)", () => {
 		}
 	});
 
-	it("never reuses on anything but a synchronize", () => {
+	it("never reuses on anything but the first attempt of a synchronize", () => {
 		const decide = stepBlock("- name: Decide whether");
-		expect(decide).toContain("if: github.event.action == 'synchronize'");
+		const condition = "if: github.event.action == 'synchronize' && github.run_attempt == 1";
+		expect(decide).toContain(condition);
+		expect(stepBlock("uses: actions/setup-node@v4")).toContain(condition);
 		expect(decide).toContain(`EVENT_ACTION: ${expr("github.event.action")}`);
+		expect(decide).toContain(`RUN_ATTEMPT: ${expr("github.run_attempt")}`);
 		expect(stepBlock("- name: Reuse the previous verdict")).toContain(
 			"if: steps.decide.outputs.decision == 'reuse'",
 		);
@@ -332,12 +377,31 @@ describe("ai-review.yml reuse wiring (TRA-510)", () => {
 		}
 	});
 
-	it("runs the decision code of the base branch, not the checkout's, and installs nothing", () => {
+	it("runs the decision code of the default branch, not the checkout's nor the PR base's, and installs nothing", () => {
 		const decide = stepBlock("- name: Decide whether");
-		expect(decide).toContain('git show "origin/$BASE_REF:scripts/ci/review-reuse.ts"');
+		expect(decide).toContain('git show "origin/$DEFAULT_BRANCH:scripts/ci/review-reuse.ts"');
+		expect(decide).not.toContain("origin/$BASE_REF");
+		expect(decide).toContain(`DEFAULT_BRANCH: ${expr("github.event.repository.default_branch")}`);
+		expect(decide).toContain(`BASE_REF: ${expr("github.event.pull_request.base.ref")}`);
 		expect(decide).toContain('node --experimental-strip-types --no-warnings "$trusted/review-reuse.ts"');
 		expect(decide).not.toMatch(/npm |npx |tsx|secrets\./);
 		expect(decide).toContain(`GH_TOKEN: ${expr("github.token")}`);
+	});
+
+	it("establishes the git facts the script relies on, failing to an empty (full) answer", () => {
+		const decide = stepBlock("- name: Decide whether");
+		// The previous head must leave .github/ alone, measured from its merge-base with the default branch.
+		expect(decide).toContain('git merge-base "origin/$DEFAULT_BRANCH" "$PREVIOUS_SHA"');
+		expect(decide).toContain('git diff --quiet "$mb" "$PREVIOUS_SHA" -- .github/');
+		expect(decide).toContain('leaves_workflows_alone=""');
+		// The head must be the update-branch merge: ^1 is the previous head, ^2 is already in the default branch.
+		expect(decide).toContain('git rev-list --parents -n 1 "$HEAD_SHA"');
+		expect(decide).toContain('[ "$2" = "$PREVIOUS_SHA" ]');
+		expect(decide).toContain('git merge-base --is-ancestor "$3" "origin/$DEFAULT_BRANCH"');
+		expect(decide).toContain("head_is_update_merge=false");
+		expect(decide).toContain(`HEAD_SHA: ${expr("github.event.pull_request.head.sha")}`);
+		expect(decide).toContain("PREVIOUS_LEAVES_WORKFLOWS_ALONE=");
+		expect(decide).toContain("HEAD_IS_UPDATE_MERGE=");
 	});
 
 	it("computes the patch-id on the git tree, after the merge-base, keeping whitespace and binaries significant", () => {

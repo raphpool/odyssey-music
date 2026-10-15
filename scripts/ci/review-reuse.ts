@@ -31,7 +31,8 @@ export interface ReviewCheckRun {
 export const BLOCKING_ANNOTATION = "Findings bloquants — voir les commentaires inline.";
 export const RECORD_VERSION = "v1";
 export const RECORD_PREFIX = `review-patch-id ${RECORD_VERSION} `;
-// Check-runs of Actions jobs belong to this app; a `review` check-run published by anything else is not trusted.
+// Hygiene only, NOT a security boundary: any workflow step of the PR also runs as this app and can write a
+// `review` check-run or annotation. What protects the record is the `.github/` check in `precheck`.
 export const REVIEW_APP_SLUG = "github-actions";
 // Page size of the annotations and check-runs queries: a full page may hide a blocking annotation.
 export const PAGE_SIZE = 100;
@@ -78,13 +79,26 @@ export const latestReview = (checkRuns: readonly ReviewCheckRun[]): ReviewCheckR
 	return last;
 };
 
-export interface DecisionInput {
+/** What the workflow establishes with git and its context before asking; null/false means "could not tell". */
+export interface Facts {
 	/** `github.event.action` of the pull_request event. */
 	action: string;
+	/** `github.run_attempt`: a re-run never reuses. */
+	runAttempt: number | null;
 	/** Patch-id of the current head, or null when the workflow could not compute it. */
 	patchId: string | null;
 	/** `github.event.before`: the head the synchronize replaced. */
 	previousSha: string | null;
+	/** The PR's base branch and the repository's default branch (reuse only on the latter). */
+	baseRef: string;
+	defaultBranch: string;
+	/** True when the previous head changed nothing under `.github/` compared with the default branch. */
+	previousLeavesWorkflowsAlone: boolean | null;
+	/** True when the head is a merge commit of `previousSha` (^1) and of a commit of the default branch (^2). */
+	headIsUpdateMerge: boolean | null;
+}
+
+export interface DecisionInput extends Facts {
 	/** `review` check-runs of the previous head; null when the API call failed. */
 	checkRuns: readonly ReviewCheckRun[] | null;
 	/** True when the check-runs listing may be truncated. */
@@ -94,22 +108,30 @@ export interface DecisionInput {
 }
 
 /** Conditions that rule reuse out before the previous review is even looked up; null when none applies. */
-export const precheck = (
-	action: string,
-	patchId: string | null,
-	previousSha: string | null,
-): ReuseResult | null => {
-	if (action !== "synchronize")
-		return full(`event ${action} always gets a full review`, previousSha, patchId);
+export const precheck = (facts: Facts): ReuseResult | null => {
+	const { patchId, previousSha } = facts;
+	const no = (reason: string): ReuseResult => full(reason, previousSha, patchId);
+	if (facts.action !== "synchronize") return no(`event ${facts.action} always gets a full review`);
+	if (facts.runAttempt !== 1) return no("a re-run never reuses a verdict");
 	if (!isPatchId(patchId)) return full("patch-id of the current head unavailable", previousSha, null);
 	if (!isSha(previousSha)) return full("previous head unknown", null, patchId);
+	// A stacked PR's base is unreviewed code: its updates are not "merge main", whatever their patch-id says.
+	if (facts.defaultBranch === "" || facts.baseRef !== facts.defaultBranch)
+		return no("base is not the default branch");
+	// The record lives in an annotation any workflow step of the PR could have written (TRA-510 deep review):
+	// a head that touched .github/ may have forged it, so its verdict is never inherited.
+	if (facts.previousLeavesWorkflowsAlone !== true)
+		return no("previous head touches .github/ or could not be checked");
+	// "Only merges main" is verified, not assumed: a plain commit can move a hunk and keep the patch-id.
+	if (facts.headIsUpdateMerge !== true)
+		return no("head is not a merge of the default branch into the previous head");
 	return null;
 };
 
 /** Pure decision, once the previous head's data has been fetched. */
 export const decideReuse = (input: DecisionInput): ReuseResult => {
 	const { patchId, previousSha } = input;
-	const early = precheck(input.action, patchId, previousSha);
+	const early = precheck(input);
 	if (early !== null) return early;
 	const no = (reason: string): ReuseResult => full(reason, previousSha, patchId);
 	if (patchId === null || previousSha === null) return no("prechecked values missing");
@@ -128,10 +150,7 @@ export const decideReuse = (input: DecisionInput): ReuseResult => {
 	return { decision: "reuse", reason: reuseMessage(previousSha, patchId), previousSha, patchId };
 };
 
-export interface DecisionContext {
-	action: string;
-	patchId: string | null;
-	previousSha: string | null;
+export interface DecisionContext extends Facts {
 	repository: string;
 	/** GET a GitHub REST path and return the parsed JSON body; rejects on any non-2xx answer. */
 	get: (path: string) => Promise<unknown>;
@@ -174,30 +193,24 @@ const parseAnnotations = (body: unknown): string[] => {
 
 /** Fetches the previous head's review from the GitHub API and decides. Any error is a full review. */
 export const resolveDecision = async (ctx: DecisionContext): Promise<ReuseResult> => {
-	const { action, patchId, previousSha, repository } = ctx;
+	const { repository, get, ...facts } = ctx;
+	const { patchId, previousSha } = facts;
 	// Cheap checks first, so a `ready_for_review` or a missing patch-id never touches the API.
-	const early = precheck(action, patchId, previousSha);
+	const early = precheck(facts);
 	if (early !== null) return early;
 	try {
 		if (!REPOSITORY.test(repository)) throw new Error("invalid repository");
 		const base = `repos/${repository}`;
-		const listing = await ctx.get(
+		const listing = await get(
 			`${base}/commits/${previousSha}/check-runs?check_name=review&filter=all&per_page=${PAGE_SIZE}`,
 		);
 		const { runs, truncated } = parseCheckRuns(listing);
 		const review = latestReview(runs);
 		const annotations =
 			review !== null && review.status === "completed" && review.conclusion === "success"
-				? parseAnnotations(await ctx.get(`${base}/check-runs/${review.id}/annotations?per_page=${PAGE_SIZE}`))
+				? parseAnnotations(await get(`${base}/check-runs/${review.id}/annotations?per_page=${PAGE_SIZE}`))
 				: null;
-		return decideReuse({
-			action,
-			patchId,
-			previousSha,
-			checkRuns: runs,
-			checkRunsTruncated: truncated,
-			annotations,
-		});
+		return decideReuse({ ...facts, checkRuns: runs, checkRunsTruncated: truncated, annotations });
 	} catch (error) {
 		return full(
 			`lookup failed: ${error instanceof Error ? error.message : String(error)}`,
@@ -222,10 +235,21 @@ const main = async (): Promise<void> => {
 		if (!response.ok) throw new Error(`GitHub API answered ${response.status} for ${path.split("?")[0]}`);
 		return response.json();
 	};
+	const text = (name: string): string | null =>
+		env[name] === undefined || env[name] === "" ? null : (env[name] as string);
+	// Facts that git could not establish arrive empty and stay null: only the exact words "true"/"false" count.
+	const flag = (name: string): boolean | null =>
+		env[name] === "true" ? true : env[name] === "false" ? false : null;
+	const attempt = Number(env.RUN_ATTEMPT);
 	const result = await resolveDecision({
 		action: env.EVENT_ACTION ?? "",
-		patchId: env.PATCH_ID === undefined || env.PATCH_ID === "" ? null : env.PATCH_ID,
-		previousSha: env.PREVIOUS_SHA === undefined || env.PREVIOUS_SHA === "" ? null : env.PREVIOUS_SHA,
+		runAttempt: Number.isInteger(attempt) ? attempt : null,
+		patchId: text("PATCH_ID"),
+		previousSha: text("PREVIOUS_SHA"),
+		baseRef: env.BASE_REF ?? "",
+		defaultBranch: env.DEFAULT_BRANCH ?? "",
+		previousLeavesWorkflowsAlone: flag("PREVIOUS_LEAVES_WORKFLOWS_ALONE"),
+		headIsUpdateMerge: flag("HEAD_IS_UPDATE_MERGE"),
 		repository: env.REPOSITORY ?? "",
 		get,
 	});
