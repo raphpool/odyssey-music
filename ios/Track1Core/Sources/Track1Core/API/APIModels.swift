@@ -120,8 +120,8 @@ public struct NodeDetail: Decodable, Sendable {
 	public let edges: [String: NodeEdgeValue]
 	public let materializedAt: Date
 	public let imageURL: URL?
-	/// How the server obtained `imageURL` (for example a cover derived from a release). Decoded only: the
-	/// node page never shows it (rule 9).
+	/// How the server obtained `imageURL` (for example a cover derived from a release). Never shown as text
+	/// (rule 9); the hero reads it to pick its `HeroImageStyle`.
 	public let imageSource: String?
 	enum CodingKeys: String, CodingKey {
 		case id, type, name, teaser, article, citations, facts, edges
