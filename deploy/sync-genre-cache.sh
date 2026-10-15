@@ -35,9 +35,20 @@ set -euo pipefail
 # re-syncs data/ from on every app deploy, so an uncommitted redirect would be lost right after a
 # node this script already permanently deleted.
 #
+# MIGRATION CHANNEL (2026-10-15, TRA-464): also the ONLY path by which a repo migration
+# (scripts/migrations/<name>.ts) reaches the prod cache, never a direct rsync. `--migration <name>`
+# (repeatable) runs each one with --apply on the UNION (temp copy of repo + server snapshot), which
+# writes a manifest (`--manifest <path>`):
+#   { "migration": "<name>", "generated_at": "...", "renamed": { "<old slug>": "<new slug>" },
+#     "removed": ["nodes/track/x.json"], "redirects": { "<old slug>": "<new slug>" }, "written": 123 }
+# `removed` and the old side of `renamed` are the only server-side deletions (same explicit
+# `rm -f --` as merge losers), and every redirect must already be committed in
+# data/genre-redirects.json or data/slug-redirects.json (the "not yet committed" guard below).
+#
 # Usage:
 #   bash deploy/sync-genre-cache.sh            # preview only: builds + prints the union manifest
 #   bash deploy/sync-genre-cache.sh --apply    # also syncs the server cache (see above)
+#   bash deploy/sync-genre-cache.sh --migration 2026-10-15-unescape-newlines [--apply]
 #
 # Real workflow_dispatch wiring (when this runs, and from what trigger) is out of scope here --
 # that's B6c, a separate ticket.
@@ -50,8 +61,13 @@ REPO_CACHE_DIR="${REPO_CACHE_DIR:-$REPO_ROOT/cache}"
 # (see the guard below) ships to prod. Overridable so the test harness can point it at a fixture
 # without faking the real committed file.
 REPO_REDIRECTS_PATH="${REPO_REDIRECTS_PATH:-$REPO_ROOT/data/genre-redirects.json}"
+# 2026-10-15 (TRA-464): the migration channel's inputs. Overridable for the same reason as
+# REPO_REDIRECTS_PATH (test fixtures); the workflow sets none of them.
+REPO_SLUG_REDIRECTS_PATH="${REPO_SLUG_REDIRECTS_PATH:-$REPO_ROOT/data/slug-redirects.json}"
+MIGRATIONS_DIR="${MIGRATIONS_DIR:-$REPO_ROOT/scripts/migrations}"
 SERVER_CACHE_REMOTE="${SERVER_CACHE_REMOTE:-/opt/odyssey-music/cache}"
 SERVER_REDIRECTS_REMOTE="${SERVER_REDIRECTS_REMOTE:-/opt/odyssey-music/data/genre-redirects.json}"
+SERVER_SLUG_REDIRECTS_REMOTE="${SERVER_SLUG_REDIRECTS_REMOTE:-/opt/odyssey-music/data/slug-redirects.json}"
 SERVER_BACKUP_DIR="${SERVER_BACKUP_DIR:-/opt/odyssey-music-backups}"
 # Not a real convention anywhere else in the repo yet -- a future crawl-on-the-server automation
 # (out of scope here) is expected to create/remove this marker around its own run.
@@ -79,15 +95,55 @@ SMOKE_RETRY_COUNT="${SMOKE_RETRY_COUNT:-10}"
 SMOKE_RETRY_DELAY="${SMOKE_RETRY_DELAY:-3}"
 
 APPLY=0
-for arg in "$@"; do
-	case "$arg" in
+MIGRATIONS=()
+MIGRATION_NAME_PATTERN='^[0-9]{4}-[0-9]{2}-[0-9]{2}-[a-z0-9]+(-[a-z0-9]+)*$'
+while [[ $# -gt 0 ]]; do
+	case "$1" in
 		--apply) APPLY=1 ;;
+		--migration)
+			if [[ $# -lt 2 ]]; then
+				echo "ERROR: --migration needs a migration name." >&2
+				exit 1
+			fi
+			shift
+			# The name becomes a file path and is typed by a workflow dispatcher: whitelist it
+			# (dated, lowercase, dashes -- the scripts/migrations/ naming) so it can never carry a
+			# path separator, `..`, or a shell metacharacter.
+			if ! [[ "$1" =~ $MIGRATION_NAME_PATTERN ]]; then
+				echo "ERROR: invalid migration name '$1' (expected YYYY-MM-DD-some-name)." >&2
+				exit 1
+			fi
+			if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
+				for existing in "${MIGRATIONS[@]}"; do
+					if [[ "$existing" == "$1" ]]; then
+						echo "ERROR: migration '$1' given twice." >&2
+						exit 1
+					fi
+				done
+			fi
+			MIGRATIONS+=("$1")
+			;;
 		*)
-			echo "ERROR: unknown argument '$arg'." >&2
+			echo "ERROR: unknown argument '$1'." >&2
 			exit 1
 			;;
 	esac
+	shift
 done
+if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
+	for name in "${MIGRATIONS[@]}"; do
+		if [[ ! -f "$MIGRATIONS_DIR/$name.ts" ]]; then
+			echo "ERROR: migration script not found: $MIGRATIONS_DIR/$name.ts" >&2
+			exit 1
+		fi
+	done
+	# Shipped next to genre-redirects.json after the transfer: a missing file must refuse now, not
+	# after the writer is stopped.
+	if [[ ! -f "$REPO_SLUG_REDIRECTS_PATH" ]]; then
+		echo "ERROR: $REPO_SLUG_REDIRECTS_PATH is missing -- a migration run ships it to the server." >&2
+		exit 1
+	fi
+fi
 
 # 2026-09-18 (TRA-271, deferred as a nit on TRA-67 to keep that diff under the CI gate): same
 # branch/clean-tree discipline as deploy/deploy-server.sh:34-43, reused verbatim in spirit. Kept
@@ -275,6 +331,107 @@ if [[ -n "$NEW_REDIRECT_PAIRS" ]]; then
 	fi
 fi
 
+# 2026-10-15 (TRA-464): the migration channel. The union's own validation ran BEFORE this, so a
+# migration's output is checked by what it declares: the manifest (shape, paths confined to
+# nodes/, redirects already committed) and that no declared deletion is still in the union (rsync
+# would ship the file, then `rm -f --` would delete it -- a node lost for good).
+MIGRATION_REMOVE_PATHS=()
+MIGRATION_MISSING_REDIRECTS=""
+if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
+	for name in "${MIGRATIONS[@]}"; do
+		MIGRATION_MANIFEST="$WORKDIR/$name.manifest.json"
+		echo "==> Running migration $name on the union (never on the repo or the server)"
+		set +e
+		(cd "$REPO_ROOT" && npx tsx "$MIGRATIONS_DIR/$name.ts" "$UNION_DIR" --apply --manifest "$MIGRATION_MANIFEST")
+		MIGRATION_EXIT=$?
+		set -e
+		if [[ $MIGRATION_EXIT -ne 0 ]]; then
+			echo "ERROR: migration $name failed (exit $MIGRATION_EXIT) -- refusing." >&2
+			exit 1
+		fi
+		if [[ ! -f "$MIGRATION_MANIFEST" ]]; then
+			echo "ERROR: migration $name wrote no manifest at $MIGRATION_MANIFEST (--manifest is part of the contract) -- refusing." >&2
+			exit 1
+		fi
+		echo "==> Migration manifest: $name"
+		cat "$MIGRATION_MANIFEST"
+		echo
+		# Output: one "RM<TAB>nodes/<type>/<slug>.json" line per deletion, one "MISSING<TAB>from -> to"
+		# line per redirect not already committed with the same target. Any malformed manifest exits 1.
+		if ! MANIFEST_RESULT="$(node -e '
+const fs = require("fs");
+const [manifestPath, name, genrePath, slugPath] = process.argv.slice(1);
+const fail = (msg) => { process.stdout.write(msg); process.exit(1); };
+const isRecord = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
+const has = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
+const esc = (s) => JSON.stringify(String(s)).slice(1, -1);
+const readTable = (p, optional) => {
+	let raw;
+	try { raw = fs.readFileSync(p, "utf8"); } catch (e) { if (optional && e.code === "ENOENT") return {}; throw e; }
+	const parsed = JSON.parse(raw);
+	return isRecord(parsed) && isRecord(parsed.redirects) ? parsed.redirects : {};
+};
+let m;
+try { m = JSON.parse(fs.readFileSync(manifestPath, "utf8")); } catch (e) { fail("manifest is not readable JSON: " + e.message); }
+if (!isRecord(m)) fail("manifest is not a JSON object");
+if (m.migration !== name) fail("manifest.migration is " + JSON.stringify(m.migration) + ", expected " + JSON.stringify(name));
+if (!Array.isArray(m.removed) || !isRecord(m.renamed) || !isRecord(m.redirects)) fail("manifest needs removed[], renamed{} and redirects{}");
+const TYPES = ["genre", "label", "artist", "project", "track"];
+// Same charset normalizeSlugBody produces (src/slug.ts), as for removedByMigration above.
+const BODY = /^[a-z0-9]([a-z0-9-]*[a-z0-9])?$/;
+const parseSlug = (s) => {
+	const i = typeof s === "string" ? s.indexOf(":") : -1;
+	if (i < 0) return null;
+	const type = s.slice(0, i), body = s.slice(i + 1);
+	return TYPES.includes(type) && BODY.test(body) ? { type, body } : null;
+};
+const paths = new Set();
+for (const rel of m.removed) {
+	const mt = typeof rel === "string" ? /^nodes\/([a-z]+)\/(.+)\.json$/.exec(rel) : null;
+	if (!mt || !TYPES.includes(mt[1]) || !BODY.test(mt[2])) fail("removed path is not nodes/<type>/<slug>.json: " + esc(rel));
+	paths.add(rel);
+}
+for (const [oldSlug, newSlug] of Object.entries(m.renamed)) {
+	const o = parseSlug(oldSlug), n = parseSlug(newSlug);
+	if (!o || !n || oldSlug === newSlug) fail("renamed entry is not a pair of distinct valid slugs: " + esc(oldSlug) + " -> " + esc(newSlug));
+	paths.add("nodes/" + o.type + "/" + o.body + ".json");
+}
+const genre = readTable(genrePath, false);
+const slug = readTable(slugPath, true);
+const lines = [...paths].map((p) => "RM\t" + p);
+for (const [from, to] of Object.entries(m.redirects)) {
+	if (typeof to !== "string") fail("redirect target is not a string: " + esc(from));
+	if ((!has(genre, from) || genre[from] !== to) && (!has(slug, from) || slug[from] !== to)) lines.push("MISSING\t" + esc(from) + " -> " + esc(to));
+}
+process.stdout.write(lines.join("\n"));
+' "$MIGRATION_MANIFEST" "$name" "$REPO_REDIRECTS_PATH" "$REPO_SLUG_REDIRECTS_PATH" 2>&1)"; then
+			echo "ERROR: migration $name produced an invalid manifest: $MANIFEST_RESULT -- refusing before any write." >&2
+			exit 1
+		fi
+		while IFS=$'\t' read -r kind value; do
+			case "$kind" in
+				RM)
+					if [[ -e "$UNION_DIR/$value" ]]; then
+						echo "ERROR: migration $name declares $value removed, but it is still in the union -- shipping it and then deleting it would lose the node. Refusing before any write." >&2
+						exit 1
+					fi
+					MIGRATION_REMOVE_PATHS+=("$value")
+					;;
+				MISSING) MIGRATION_MISSING_REDIRECTS="$MIGRATION_MISSING_REDIRECTS$value ($name)"$'\n' ;;
+			esac
+		done <<<"$MANIFEST_RESULT"
+	done
+	if [[ -n "$MIGRATION_MISSING_REDIRECTS" ]]; then
+		echo "WARNING: the migration(s) produced redirect(s) not yet committed in data/genre-redirects.json or data/slug-redirects.json:" >&2
+		printf '%s' "$MIGRATION_MISSING_REDIRECTS" >&2
+		echo "deploy-server.sh rsyncs the repo's data/ onto the server on every app deploy, so the next app deploy would erase these entries while the migrated-away nodes stay deleted. Commit them first (the migration's repo-side PR), deploy, then re-run this sync." >&2
+		if [[ $APPLY -eq 1 ]]; then
+			echo "ERROR: refusing --apply until the redirects above are committed -- before any server write." >&2
+			exit 1
+		fi
+	fi
+fi
+
 if [[ $APPLY -eq 0 ]]; then
 	echo "==> Preview only (pass --apply to sync the server). No server write performed."
 	SYNC_SUCCEEDED=1
@@ -360,6 +517,13 @@ if [[ "$MIGRATION_DELETED_COUNT" != "$REMOVED_COUNT" ]]; then
 	echo "ERROR: the union's manifest disagrees with itself about what was merged away (migrationApply.deletedCount=$MIGRATION_DELETED_COUNT vs removedByMigration entries=$REMOVED_COUNT) -- refusing before any write." >&2
 	exit 1
 fi
+# The migrations' paths were validated when their manifests were read (before the preview exit above),
+# and are deliberately outside the count check: that tripwire only describes the genre merge.
+if [[ ${#MIGRATION_REMOVE_PATHS[@]} -gt 0 ]]; then
+	for rel in "${MIGRATION_REMOVE_PATHS[@]}"; do
+		REMOVE_PATHS+=("$rel")
+	done
+fi
 
 echo "==> Checking for an active crawl lock on the server"
 set +e
@@ -397,7 +561,14 @@ ARCHIVE_TAR="$SERVER_BACKUP_DIR/genre-cache-$TIMESTAMP.tar"
 # in place. And a failed append removes the intermediate .tar: gzip never runs on it, so it would
 # escape the retention glob (*.tar.gz) below and pile up in the backup dir for good.
 REDIRECTS_PARENT="$(dirname "$SERVER_REDIRECTS_REMOTE")"
-ssh "$SERVER" "mkdir -p '$SERVER_BACKUP_DIR' && tar cf '$ARCHIVE_TAR' -C '$(dirname "$SERVER_CACHE_REMOTE")' '$(basename "$SERVER_CACHE_REMOTE")' && { tar --append --file='$ARCHIVE_TAR' -C '$(dirname "$REDIRECTS_PARENT")' '$(basename "$REDIRECTS_PARENT")/$(basename "$SERVER_REDIRECTS_REMOTE")' || { rm -f -- '$ARCHIVE_TAR'; exit 1; }; } && gzip -f '$ARCHIVE_TAR'"
+# 2026-10-15 (TRA-464): a migration run also overwrites the server's data/slug-redirects.json, so its
+# pre-write content joins the archive when it exists (a server that never had one is not an error).
+SLUG_ARCHIVE_APPEND=""
+if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
+	SLUG_PARENT="$(dirname "$SERVER_SLUG_REDIRECTS_REMOTE")"
+	SLUG_ARCHIVE_APPEND=" && { test ! -f '$SERVER_SLUG_REDIRECTS_REMOTE' || tar --append --file='$ARCHIVE_TAR' -C '$(dirname "$SLUG_PARENT")' '$(basename "$SLUG_PARENT")/$(basename "$SERVER_SLUG_REDIRECTS_REMOTE")' || { rm -f -- '$ARCHIVE_TAR'; exit 1; }; }"
+fi
+ssh "$SERVER" "mkdir -p '$SERVER_BACKUP_DIR' && tar cf '$ARCHIVE_TAR' -C '$(dirname "$SERVER_CACHE_REMOTE")' '$(basename "$SERVER_CACHE_REMOTE")' && { tar --append --file='$ARCHIVE_TAR' -C '$(dirname "$REDIRECTS_PARENT")' '$(basename "$REDIRECTS_PARENT")/$(basename "$SERVER_REDIRECTS_REMOTE")' || { rm -f -- '$ARCHIVE_TAR'; exit 1; }; }$SLUG_ARCHIVE_APPEND && gzip -f '$ARCHIVE_TAR'"
 echo "==> Verifying archive integrity"
 ssh "$SERVER" "gzip -t '$ARCHIVE_PATH'"
 echo "==> Rollback archive: $SERVER:$ARCHIVE_PATH"
@@ -448,9 +619,16 @@ rsync -az "$UNION_DIR/nodes/" "$SERVER:$SERVER_CACHE_REMOTE/nodes/"
 # post-transfer failure under `set -e`: on_exit still restarts the writer and points at the archive.
 echo "==> Shipping the union's redirects table to the server"
 rsync -az "$UNION_DIR/genre-redirects.json" "$SERVER:$SERVER_REDIRECTS_REMOTE"
+# 2026-10-15 (TRA-464): the committed slug table travels with every migration run (the guard above
+# guarantees it already holds every redirect the migrations produced). Not on a plain genre sync:
+# that run is unchanged, and deploy-server.sh already ships data/ on each app deploy.
+if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
+	echo "==> Shipping data/slug-redirects.json to the server"
+	rsync -az "$REPO_SLUG_REDIRECTS_PATH" "$SERVER:$SERVER_SLUG_REDIRECTS_REMOTE"
+fi
 
 if [[ ${#REMOVE_PATHS[@]} -gt 0 ]]; then
-	echo "==> Removing ${#REMOVE_PATHS[@]} node file(s) merged away by the union (explicit paths, never --delete)"
+	echo "==> Removing ${#REMOVE_PATHS[@]} node file(s) merged away by the union or removed by migrations (explicit paths, never --delete)"
 	for rel in "${REMOVE_PATHS[@]}"; do
 		# 2026-09-19 (TRA-276/B6c-2 review): `rm -f` alone reports success even when it silently
 		# removed nothing (wrong permissions, a stale mount, a path that never matched what this

@@ -190,6 +190,56 @@ interface RunOptions {
 	serviceActive?: boolean;
 	/** Seed this many pre-existing backup archives (older mtimes), for the retention test. */
 	preexistingBackups?: number;
+	/** TRA-464: migrations to pass as `--migration <name>` (in key order), each backed by a fake
+	 * script written to a temp MIGRATIONS_DIR -- see fakeMigration. */
+	migrations?: Record<string, string>;
+	/** Raw extra argv, for invalid-name scenarios that have no script behind them. */
+	extraArgs?: string[];
+	/** Content of the repo's committed data/slug-redirects.json (REPO_SLUG_REDIRECTS_PATH). */
+	slugRedirects?: string;
+}
+
+interface FakeMigrationSpec {
+	/** Paths (relative to the union dir) the fake deletes. */
+	remove?: string[];
+	/** Paths (relative to the union dir) -> content the fake writes. */
+	write?: Record<string, string>;
+	/** Manifest body; `migration` defaults to the script's own name. `null` writes no manifest. */
+	manifest?: Record<string, unknown> | null;
+	exit?: number;
+}
+
+/** A stand-in for scripts/migrations/<name>.ts: plain node builtins only, so `npx tsx` can run it
+ * from a temp dir. Records its argv (to TEST_CALLS.migration) so the tests can check the contract
+ * `<union dir> --apply --manifest <path>`, applies `remove`/`write` to the union dir it is given,
+ * then writes the manifest the channel is meant to read. */
+function fakeMigration(name: string, spec: FakeMigrationSpec = {}): string {
+	const manifest =
+		spec.manifest === null
+			? null
+			: {
+					migration: name,
+					generated_at: "2026-10-15T00:00:00.000Z",
+					renamed: {},
+					removed: [],
+					redirects: {},
+					written: 0,
+					...spec.manifest,
+				};
+	return `import { appendFileSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+const argv = process.argv.slice(2);
+appendFileSync(process.env.TEST_CALLS + ".migration", JSON.stringify(argv) + "\\n");
+const cacheDir = argv[0] as string;
+for (const rel of ${JSON.stringify(spec.remove ?? [])} as string[]) rmSync(join(cacheDir, rel), { force: true });
+for (const [rel, body] of Object.entries(${JSON.stringify(spec.write ?? {})} as Record<string, string>)) {
+	mkdirSync(dirname(join(cacheDir, rel)), { recursive: true });
+	writeFileSync(join(cacheDir, rel), body);
+}
+const manifest = ${JSON.stringify(manifest)};
+if (manifest) writeFileSync(argv[argv.indexOf("--manifest") + 1] as string, JSON.stringify(manifest, null, 2));
+process.exit(${spec.exit ?? 0});
+`;
 }
 
 /** Pre-existing backup archives with staggered mtimes, oldest first, so `ls -1t` ordering (what
@@ -238,6 +288,22 @@ function run(options: RunOptions = {}) {
 	if (options.crawlLock) writeFileSync(serverCrawlLock, "");
 	if (options.serviceActive !== false) writeFileSync(serviceMarker, "");
 	if (options.preexistingBackups) seedOldBackups(serverBackupDir, options.preexistingBackups);
+
+	const migrationsDir = tmp("sync-migrations-");
+	for (const [name, source] of Object.entries(options.migrations ?? {})) {
+		writeFileSync(join(migrationsDir, `${name}.ts`), source);
+	}
+	const migrationFlags = Object.keys(options.migrations ?? {}).flatMap((name) => ["--migration", name]);
+	const argv = [...(options.apply ? ["--apply"] : []), ...migrationFlags, ...(options.extraArgs ?? [])];
+	// The server's pre-existing slug table: a marker so the archive/ship tests can tell old from new.
+	const serverSlugRedirectsRemote = join(serverRoot, "data", "slug-redirects.json");
+	mkdirSync(join(serverRoot, "data"), { recursive: true });
+	writeFileSync(serverSlugRedirectsRemote, JSON.stringify({ redirects: {}, marker: "server-old" }));
+	let slugRedirectsPath: string | undefined;
+	if (options.slugRedirects !== undefined) {
+		slugRedirectsPath = join(tmp("sync-repo-slug-redirects-"), "slug-redirects.json");
+		writeFileSync(slugRedirectsPath, options.slugRedirects);
+	}
 
 	let repoRedirectsPath: string | undefined;
 	if (options.repoRedirects !== undefined) {
@@ -381,7 +447,7 @@ echo "ok"
 `,
 	);
 
-	const result = spawnSync("bash", [script, ...(options.apply ? ["--apply"] : [])], {
+	const result = spawnSync("bash", [script, ...argv], {
 		encoding: "utf8",
 		env: {
 			...process.env,
@@ -403,12 +469,27 @@ echo "ok"
 			// against an isolated git fixture.
 			SYNC_ALLOW_NON_MAIN: "1",
 			SYNC_ALLOW_DIRTY: "1",
+			MIGRATIONS_DIR: migrationsDir,
+			SERVER_SLUG_REDIRECTS_REMOTE: serverSlugRedirectsRemote,
+			...(slugRedirectsPath ? { REPO_SLUG_REDIRECTS_PATH: slugRedirectsPath } : {}),
 			...(repoRedirectsPath ? { REPO_REDIRECTS_PATH: repoRedirectsPath } : {}),
 			...options.env,
 		},
 	});
 	const calls = existsSync(callsLog) ? readFileSync(callsLog, "utf8") : "";
-	return { result, calls, serverRoot, serverCacheRemote, serverBackupDir, repoCacheDir };
+	const migrationLog = existsSync(`${callsLog}.migration`)
+		? readFileSync(`${callsLog}.migration`, "utf8")
+		: "";
+	return {
+		result,
+		calls,
+		serverRoot,
+		serverCacheRemote,
+		serverBackupDir,
+		repoCacheDir,
+		serverSlugRedirectsRemote,
+		migrationLog,
+	};
 }
 
 describe("sync-genre-cache.sh", () => {
@@ -1010,6 +1091,238 @@ describe("sync-genre-cache.sh", () => {
 		expect(nonNumeric.result.status).not.toBe(0);
 		expect(nonNumeric.result.stderr).toMatch(/BACKUP_RETENTION_COUNT/);
 		expect(nonNumeric.calls).not.toContain("tar cf");
+	});
+});
+
+// TRA-464: the migration channel. The migrations here are fakes (fakeMigration above) -- the real
+// ones are other tickets; what is under test is the contract this script enforces around them.
+describe("sync-genre-cache.sh -- migration channel (TRA-464)", () => {
+	const NAME = "2026-10-15-fake-rename";
+	// The fixture's server cache holds genre:only-server: the fake renames it, so the old file must
+	// leave the server (explicit rm) and the new one arrive (rsync of the union).
+	const RENAME = {
+		remove: ["nodes/genre/only-server.json"],
+		write: {
+			"nodes/genre/renamed-server.json": JSON.stringify({
+				type: "genre",
+				slug: "genre:renamed-server",
+				name: "renamed-server",
+				materialized_at: "2026-01-01T00:00:00.000Z",
+			}),
+		},
+		manifest: {
+			renamed: { "genre:only-server": "genre:renamed-server" },
+			redirects: { "genre:only-server": "genre:renamed-server" },
+			written: 1,
+		},
+	};
+	const PAIR = { "genre:only-server": "genre:renamed-server" };
+	const COMMITTED_IN_SLUG_TABLE = JSON.stringify({ redirects: PAIR });
+
+	it("previews: builds the union, runs the migration on it, prints its manifest, touches nothing", () => {
+		const { result, calls, serverBackupDir, serverCacheRemote, migrationLog, serverSlugRedirectsRemote } =
+			run({
+				migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+			});
+		expect(result.status).toBe(0);
+		expect(result.stdout).toContain(`Running migration ${NAME} on the union`);
+		expect(result.stdout).toContain(`"migration": "${NAME}"`);
+		expect(result.stdout).toContain("Preview only");
+		// Contract: <union dir> --apply --manifest <path>, where the dir is the union, not the repo.
+		const argv = JSON.parse(migrationLog.trim()) as string[];
+		const unionDir = /Union written to (\S+) /.exec(result.stdout)?.[1];
+		expect(argv[0]).toBe(unionDir);
+		expect(argv.slice(1, 3)).toEqual(["--apply", "--manifest"]);
+		expect(argv[3]).toMatch(new RegExp(`${NAME}\\.manifest\\.json$`));
+		// No server write at all: not the stop, not the archive, not the node or the tables.
+		expect(calls).not.toContain("systemctl stop");
+		expect(calls).not.toMatch(/rm -f --/);
+		expect(existsSync(serverBackupDir)).toBe(false);
+		expect(existsSync(join(serverCacheRemote, "nodes", "genre", "only-server.json"))).toBe(true);
+		expect(existsSync(join(serverCacheRemote, "nodes", "genre", "renamed-server.json"))).toBe(false);
+		expect(readFileSync(serverSlugRedirectsRemote, "utf8")).toContain("server-old");
+	});
+
+	it("applies: removes the migrated-away file explicitly, ships the new one and the committed slug table, archives the old table", () => {
+		const { result, calls, serverCacheRemote, serverBackupDir, serverSlugRedirectsRemote } = run({
+			apply: true,
+			slugRedirects: COMMITTED_IN_SLUG_TABLE,
+			migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+		});
+		expect(result.status).toBe(0);
+		expect(existsSync(join(serverCacheRemote, "nodes", "genre", "only-server.json"))).toBe(false);
+		expect(existsSync(join(serverCacheRemote, "nodes", "genre", "renamed-server.json"))).toBe(true);
+		// One explicit rm -f -- for the old path, never a --delete.
+		expect(calls).toContain(`rm -f -- '${serverCacheRemote}/nodes/genre/only-server.json'`);
+		expect(calls).not.toContain("--delete");
+		expect(readFileSync(serverSlugRedirectsRemote, "utf8")).toBe(COMMITTED_IN_SLUG_TABLE);
+		// Rollback = the archive: it holds the server's slug table as it was before this run.
+		const archive = join(serverBackupDir, readdirSync(serverBackupDir).find((f) => f.endsWith(".tar.gz"))!);
+		const listing = execFileSync("tar", ["-tzf", archive], { encoding: "utf8" });
+		expect(listing).toContain("data/slug-redirects.json");
+		const oldTable = execFileSync("tar", ["-xzOf", archive, "data/slug-redirects.json"], {
+			encoding: "utf8",
+		});
+		expect(oldTable).toContain("server-old");
+	});
+
+	it("does not ship the slug table, nor touch the archive for it, on a plain sync without --migration", () => {
+		const { result, calls, serverSlugRedirectsRemote } = run({ apply: true });
+		expect(result.status).toBe(0);
+		expect(calls).not.toContain("slug-redirects");
+		expect(readFileSync(serverSlugRedirectsRemote, "utf8")).toContain("server-old");
+	});
+
+	it("accepts a redirect already committed in data/genre-redirects.json instead", () => {
+		const { result } = run({
+			apply: true,
+			slugRedirects: JSON.stringify({ redirects: {} }),
+			repoRedirects: JSON.stringify({ redirects: { ...REAL_COMMITTED_REDIRECTS.redirects, ...PAIR } }),
+			migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+		});
+		expect(result.status).toBe(0);
+	});
+
+	it("refuses --apply when a manifest redirect is in neither committed table, before the archive and the stop", () => {
+		const { result, calls, serverBackupDir, serverCacheRemote } = run({
+			apply: true,
+			slugRedirects: JSON.stringify({ redirects: {} }),
+			migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+		});
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/not yet committed/);
+		expect(result.stderr).toContain("genre:only-server -> genre:renamed-server");
+		expect(result.stderr).toContain(NAME);
+		expect(calls).not.toContain("systemctl stop");
+		expect(calls).not.toContain("tar cf");
+		expect(existsSync(serverBackupDir)).toBe(false);
+		expect(existsSync(join(serverCacheRemote, "nodes", "genre", "only-server.json"))).toBe(true);
+	});
+
+	it("refuses --apply when the committed table maps the same key to a different target", () => {
+		const { result, calls } = run({
+			apply: true,
+			slugRedirects: JSON.stringify({ redirects: { "genre:only-server": "genre:somewhere-else" } }),
+			migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+		});
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/not yet committed/);
+		expect(calls).not.toContain("systemctl stop");
+	});
+
+	it("only warns about an uncommitted redirect in preview", () => {
+		const { result } = run({
+			slugRedirects: JSON.stringify({ redirects: {} }),
+			migrations: { [NAME]: fakeMigration(NAME, RENAME) },
+		});
+		expect(result.status).toBe(0);
+		expect(result.stderr).toMatch(/not yet committed/);
+	});
+
+	it.each([
+		["a path outside nodes/", "data/slug-redirects.json"],
+		["a path escaping nodes/", "nodes/../../etc/passwd.json"],
+		["a nested path", "nodes/genre/a/b.json"],
+		["an unknown node type", "nodes/secret/x.json"],
+		["a body outside the slug charset", "nodes/genre/x'; reboot; echo '.json"],
+		["a non-json file", "nodes/genre/x.txt"],
+	])(
+		"refuses a removed[] entry that is %s, in preview as well as --apply, before any write",
+		(_label, bad) => {
+			for (const apply of [false, true]) {
+				const { result, calls } = run({
+					apply,
+					slugRedirects: COMMITTED_IN_SLUG_TABLE,
+					migrations: { [NAME]: fakeMigration(NAME, { manifest: { removed: [bad] } }) },
+				});
+				expect(result.status).not.toBe(0);
+				expect(result.stderr).toMatch(/invalid manifest/);
+				expect(calls).not.toContain("systemctl stop");
+				expect(calls).not.toMatch(/rm -f --/);
+			}
+		},
+	);
+
+	it("refuses a renamed{} entry that is not a pair of distinct valid slugs", () => {
+		for (const renamed of [
+			{ "genre:a": "genre:a" },
+			{ "not-a-slug": "genre:b" },
+			{ "genre:../x": "genre:b" },
+		]) {
+			const { result } = run({ migrations: { [NAME]: fakeMigration(NAME, { manifest: { renamed } }) } });
+			expect(result.status).not.toBe(0);
+			expect(result.stderr).toMatch(/invalid manifest/);
+		}
+	});
+
+	it("refuses a node declared removed that is still in the union (rsync would ship it, then rm it)", () => {
+		const { result, calls } = run({
+			apply: true,
+			migrations: { [NAME]: fakeMigration(NAME, { manifest: { removed: ["nodes/genre/only-repo.json"] } }) },
+		});
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/still in the union/);
+		expect(calls).not.toContain("systemctl stop");
+	});
+
+	it("refuses a failing migration, a missing manifest, and a manifest naming another migration", () => {
+		const failing = run({ migrations: { [NAME]: fakeMigration(NAME, { exit: 3 }) } });
+		expect(failing.result.status).not.toBe(0);
+		expect(failing.result.stderr).toMatch(/failed \(exit 3\)/);
+
+		const noManifest = run({ migrations: { [NAME]: fakeMigration(NAME, { manifest: null }) } });
+		expect(noManifest.result.status).not.toBe(0);
+		expect(noManifest.result.stderr).toMatch(/wrote no manifest/);
+
+		const wrongName = run({
+			migrations: { [NAME]: fakeMigration(NAME, { manifest: { migration: "other" } }) },
+		});
+		expect(wrongName.result.status).not.toBe(0);
+		expect(wrongName.result.stderr).toMatch(/invalid manifest/);
+	});
+
+	it("runs several migrations in the order given, on the same union", () => {
+		const first = "2026-10-15-first";
+		const second = "2026-10-16-second";
+		const { result, migrationLog } = run({
+			migrations: { [first]: fakeMigration(first), [second]: fakeMigration(second) },
+		});
+		expect(result.status).toBe(0);
+		const [a, b] = migrationLog
+			.trim()
+			.split("\n")
+			.map((l) => JSON.parse(l) as string[]);
+		expect(a?.[0]).toBe(b?.[0]);
+		expect(a?.[3]).toContain(first);
+		expect(b?.[3]).toContain(second);
+	});
+
+	it.each([
+		["a path separator", ["--migration", "../2026-10-15-x"]],
+		["shell metacharacters", ["--migration", "2026-10-15-x;reboot"]],
+		["no date prefix", ["--migration", "unescape"]],
+		["an empty name", ["--migration", ""]],
+		["no value at all", ["--migration"]],
+	])("rejects a migration name with %s before touching the server", (_label, extraArgs) => {
+		const { result, calls } = run({ extraArgs });
+		expect(result.status).not.toBe(0);
+		expect(result.stderr).toMatch(/--migration|invalid migration name/);
+		expect(calls).toBe("");
+	});
+
+	it("rejects an unknown migration script and a duplicated name before touching the server", () => {
+		const unknown = run({ extraArgs: ["--migration", "2026-10-15-does-not-exist"] });
+		expect(unknown.result.status).not.toBe(0);
+		expect(unknown.result.stderr).toMatch(/migration script not found/);
+		expect(unknown.calls).toBe("");
+
+		const dup = run({
+			migrations: { [NAME]: fakeMigration(NAME) },
+			extraArgs: ["--migration", NAME],
+		});
+		expect(dup.result.status).not.toBe(0);
+		expect(dup.result.stderr).toMatch(/given twice/);
+		expect(dup.calls).toBe("");
 	});
 });
 
