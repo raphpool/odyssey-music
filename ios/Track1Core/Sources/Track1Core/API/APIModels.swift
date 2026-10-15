@@ -120,10 +120,14 @@ public struct NodeDetail: Decodable, Sendable {
 	public let edges: [String: NodeEdgeValue]
 	public let materializedAt: Date
 	public let imageURL: URL?
+	/// How the server obtained `imageURL` (for example a cover derived from a release). Decoded only: the
+	/// node page never shows it (rule 9).
+	public let imageSource: String?
 	enum CodingKeys: String, CodingKey {
 		case id, type, name, teaser, article, citations, facts, edges
 		case materializedAt = "materialized_at"
 		case imageURL = "image_url"
+		case imageSource = "image_source"
 	}
 	public init(from decoder: Decoder) throws {
 		let v = try decoder.container(keyedBy: CodingKeys.self)
@@ -137,6 +141,7 @@ public struct NodeDetail: Decodable, Sendable {
 		edges = try v.decode([String: NodeEdgeValue].self, forKey: .edges)
 		materializedAt = try v.decode(Date.self, forKey: .materializedAt)
 		imageURL = try v.decodeIfPresent(ValidatedPublicURL.self, forKey: .imageURL)?.value
+		imageSource = try v.decodeIfPresent(String.self, forKey: .imageSource)
 		guard id.type == type, !name.isEmpty else { throw APIModelError.invalidValue }
 	}
 }

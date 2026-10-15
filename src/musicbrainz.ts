@@ -234,6 +234,9 @@ const MB_CACHE_TTL_MS = musicBrainzConfig.cacheTtlMs;
 const MB_CACHE_MAX = musicBrainzConfig.cacheMaxEntries;
 const MB_MAX_ATTEMPTS = 3;
 const MB_RETRY_DELAY_MS = 1_000;
+// Throttling (429/503) and the gateway errors MusicBrainz sits behind (500/502/504, seen on
+// 2026-10-15 during the TRA-463 review) are transient: same backoff for all of them.
+const RETRYABLE_STATUSES = new Set([429, 500, 502, 503, 504]);
 const MAX_TIMER_DELAY_MS = 2_147_483_647;
 let retryQueue = Promise.resolve();
 // 2026-10-14 (TRA-450): MusicBrainz policy is 1 request/second per client, and the ~4 000-call
@@ -274,7 +277,13 @@ function queueRetry(delayMs: number): Promise<void> {
 	return queued;
 }
 
-async function mbFetch<T>(path: string, params: Record<string, string>): Promise<T | null> {
+// `fetchImpl` is injectable so callers outside this module (the image resolver, TRA-465) can be
+// tested without stubbing the global; it defaults to the global fetch read at call time.
+async function mbFetch<T>(
+	path: string,
+	params: Record<string, string>,
+	fetchImpl: typeof fetch = fetch,
+): Promise<T | null> {
 	const key = `${path}?${Object.entries(params)
 		.sort()
 		.map(([k, v]) => `${k}=${v}`)
@@ -296,11 +305,11 @@ async function mbFetch<T>(path: string, params: Record<string, string>): Promise
 		const ctrl = new AbortController();
 		const timer = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT_MS);
 		try {
-			const r = await fetch(url, {
+			const r = await fetchImpl(url, {
 				headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
 				signal: ctrl.signal,
 			});
-			if ((r.status === 503 || r.status === 429) && attempt < MB_MAX_ATTEMPTS - 1) {
+			if (RETRYABLE_STATUSES.has(r.status) && attempt < MB_MAX_ATTEMPTS - 1) {
 				const retryAfter = retryAfterDelayMs(r.headers.get("Retry-After"), Date.now());
 				const wait = Math.max(MB_RETRY_DELAY_MS, retryAfter ?? 0);
 				await queueRetry(wait);
@@ -540,6 +549,45 @@ export async function fetchArtistStreamingLinksMb(artistMbid: string): Promise<M
 	const resources = (data?.relations ?? []).map((r) => r.url?.resource).filter((u): u is string => !!u);
 	const find = (host: string): string | null => resources.find((u) => u.includes(host)) ?? null;
 	return { spotify: find("open.spotify.com"), apple: find("music.apple.com") };
+}
+
+const WIKIDATA_QID_PATH = /^\/(?:wiki|entity)\/(Q[1-9]\d*)$/;
+
+/**
+ * Wikidata QID of an artist or label, read from its MusicBrainz url-rels (TRA-465).
+ *
+ * url-rels are user-editable third-party data: only an https `wikidata.org` link of relation type
+ * "wikidata" whose path is exactly `/wiki/Q…` or `/entity/Q…` yields a QID, anything else is null.
+ * Null as well when MusicBrainz is unreachable or the entity has no Wikidata link.
+ */
+export async function fetchWikidataUrlRelMb(
+	entity: "artist" | "label",
+	mbid: string,
+	fetchImpl?: typeof fetch,
+): Promise<string | null> {
+	const data = await mbFetch<{ relations?: MbUrlRelation[] }>(
+		`/${entity}/${mbid}`,
+		{ inc: "url-rels" },
+		fetchImpl,
+	);
+	if (!data || !Array.isArray(data.relations)) return null;
+	for (const rel of data.relations) {
+		if (rel?.type !== "wikidata") continue;
+		const resource = rel.url?.resource;
+		if (typeof resource !== "string") continue;
+		let u: URL;
+		try {
+			u = new URL(resource);
+		} catch {
+			continue;
+		}
+		if (u.protocol !== "https:" || (u.hostname !== "www.wikidata.org" && u.hostname !== "wikidata.org")) {
+			continue;
+		}
+		const qid = WIKIDATA_QID_PATH.exec(u.pathname)?.[1];
+		if (qid) return qid;
+	}
+	return null;
 }
 
 /** Extract candidate artist-name tokens (>=3 chars) from a disambiguator string. */
@@ -973,21 +1021,11 @@ export async function resolveRecording(
 	};
 }
 
-/**
- * Band membership of an artist, from MB "member of band" relations. `groups` are the bands this
- * artist belongs to (relation direction "forward"); `members` are the people in this artist, when
- * it is a band ("backward"). Malformed relations are skipped; any failure yields empty lists.
- */
-export async function fetchArtistMembershipsMb(
-	artistMbid: string,
-): Promise<{ groups: MbCredit[]; members: MbCredit[] }> {
+/** Valid "member of band" relations out of an untrusted `relations` array, deduplicated by MBID. */
+function parseMemberships(relations: unknown[]): { groups: MbCredit[]; members: MbCredit[] } {
 	const out: { groups: MbCredit[]; members: MbCredit[] } = { groups: [], members: [] };
-	// The MBID is interpolated into the request path, so refuse anything that is not a bare UUID.
-	if (!isMbid(artistMbid)) return out;
-	const body = await mbFetch<unknown>(`/artist/${artistMbid}`, { inc: "artist-rels" });
-	if (!isRecord(body) || !Array.isArray(body.relations)) return out;
 	const seen = { groups: new Set<string>(), members: new Set<string>() };
-	for (const relation of body.relations) {
+	for (const relation of relations) {
 		if (!isRecord(relation) || relation.type !== "member of band") continue;
 		const side =
 			relation.direction === "forward" ? "groups" : relation.direction === "backward" ? "members" : null;
@@ -997,6 +1035,273 @@ export async function fetchArtistMembershipsMb(
 		out[side].push(credit);
 	}
 	return out;
+}
+
+/**
+ * Band membership of an artist, from MB "member of band" relations. `groups` are the bands this
+ * artist belongs to (relation direction "forward"); `members` are the people in this artist, when
+ * it is a band ("backward"). Malformed relations are skipped; any failure yields empty lists.
+ */
+export async function fetchArtistMembershipsMb(
+	artistMbid: string,
+): Promise<{ groups: MbCredit[]; members: MbCredit[] }> {
+	// The MBID is interpolated into the request path, so refuse anything that is not a bare UUID.
+	if (!isMbid(artistMbid)) return { groups: [], members: [] };
+	const body = await mbFetch<unknown>(`/artist/${artistMbid}`, { inc: "artist-rels" });
+	if (!isRecord(body) || !Array.isArray(body.relations)) return { groups: [], members: [] };
+	return parseMemberships(body.relations);
+}
+
+export interface MbArtistProfile {
+	/** The MBID MB answered with: differs from the one asked for when that MBID was merged into another. */
+	mbid: string;
+	name: string;
+	kind: MbArtistKind | null;
+	disambiguation: string | null;
+	area: string | null;
+	groups: MbCredit[];
+}
+
+/**
+ * Identity and bands of one artist in a single request (`?inc=artist-rels`). Unlike
+ * {@link fetchArtistMembershipsMb}, a failure is null, never an empty list: a caller that stores the
+ * answer must not mistake "MB did not answer" (502, timeout, malformed body) for "no bands". The
+ * `relations` array is always present in a good answer, even when empty.
+ */
+export async function fetchArtistProfileMb(artistMbid: string): Promise<MbArtistProfile | null> {
+	if (!isMbid(artistMbid)) return null;
+	const body = await mbFetch<unknown>(`/artist/${artistMbid}`, { inc: "artist-rels" });
+	if (!isRecord(body) || !isMbid(body.id) || !isText(body.name) || !Array.isArray(body.relations))
+		return null;
+	return {
+		mbid: body.id,
+		name: body.name,
+		kind: artistKind(body.type),
+		disambiguation: textOf(body.disambiguation),
+		area: isRecord(body.area) ? textOf(body.area.name) : null,
+		groups: parseMemberships(body.relations).groups,
+	};
+}
+
+export interface MbArtistIdentity {
+	mbid: string;
+	/** MB's canonical name, possibly in the original script ("坂本龍一"): never a source for a slug. */
+	name: string;
+	kind: MbArtistKind | null;
+	disambiguation: string | null;
+	area: string | null;
+}
+
+/** Hint words that say what the hint is, not who the artist is ("song by Bob Dylan"), plus filler. */
+const HINT_STOPWORDS = new Set([
+	...["song", "track", "album", "band", "the", "and", "from", "with", "music", "city", "state", "states"],
+	...["united", "kingdom", "republic", "north", "south", "east", "west", "new", "group", "duo"],
+]);
+
+// Countries come in many spellings between a node's `origin` ("Leeds, England", "Olympia, Washington,
+// U.S.") and MB's area / disambiguation ("United Kingdom", "UK", "Türkiye"): both sides are folded
+// to one token per country, otherwise "United Kingdom" and "United States" would share "united".
+const COUNTRY_PHRASES: [RegExp, string][] = [
+	[/\b(?:united kingdom|great britain|northern ireland)\b/g, "gbr"],
+	[/\bunited states(?: of america)?\b/g, "usa"],
+];
+const COUNTRY_WORDS: Record<string, string> = {
+	...Object.fromEntries(
+		["uk", "england", "scotland", "wales", "britain", "british", "english", "scottish", "welsh"].map((w) => [
+			w,
+			"gbr",
+		]),
+	),
+	...Object.fromEntries(["us", "usa", "america", "american"].map((w) => [w, "usa"])),
+	...Object.fromEntries(["turkey", "turkiye", "turkish"].map((w) => [w, "tur"])),
+	french: "france",
+	german: "germany",
+	japanese: "japan",
+	swedish: "sweden",
+	canadian: "canada",
+	italian: "italy",
+	spanish: "spain",
+	dutch: "netherlands",
+	russian: "russia",
+	polish: "poland",
+	brazilian: "brazil",
+	australian: "australia",
+	irish: "ireland",
+	belgian: "belgium",
+	norwegian: "norway",
+	danish: "denmark",
+	finnish: "finland",
+	portuguese: "portugal",
+	jamaican: "jamaica",
+};
+/** MB `country` codes worth reading as context when MB gives no area name. */
+const COUNTRY_CODES: Record<string, string> = {
+	GB: "gbr",
+	US: "usa",
+	TR: "tur",
+	FR: "france",
+	DE: "germany",
+	JP: "japan",
+	SE: "sweden",
+	CA: "canada",
+	IT: "italy",
+	ES: "spain",
+	NL: "netherlands",
+	AU: "australia",
+};
+
+/** Lowercase, accent-free, country-folded words (>= 3 chars) of free text, minus filler. */
+function contextWords(text: string): string[] {
+	let s = text
+		.normalize("NFKD")
+		.replace(/\p{M}/gu, "")
+		.toLowerCase()
+		.replace(/(?<=\p{L})\.(?=\p{L})/gu, "")
+		.replace(/(?<=\p{L})\./gu, "");
+	for (const [pattern, token] of COUNTRY_PHRASES) s = s.replace(pattern, ` ${token} `);
+	const words = s.split(/[^\p{L}\p{N}]+/u).map((w) => COUNTRY_WORDS[w] ?? w);
+	return [...new Set(words.filter((w) => w.length >= 3 && !HINT_STOPWORDS.has(w)))];
+}
+
+/**
+ * True when a name keeps a letter that is not a-z once accents are stripped ("坂本龍一", "Группа", but
+ * also "ø", "ł", "ß", which NFKD does not decompose): slug normalization would erase it.
+ */
+function hasUnfoldableLetter(name: string): boolean {
+	return /\p{L}/u.test(name.normalize("NFKD").replace(/\p{M}/gu, "").replace(/[a-z]/gi, ""));
+}
+
+/**
+ * Name identity between a requested artist name and an MB name or alias. Latin names compare through
+ * normalizeSlugBody (case, accents, punctuation, "&"). A name with letters it would erase compares
+ * literally (NFKC, case-folded) instead: normalizeSlugBody reduces "坂本龍一" to "", "Группа X" to "x"
+ * and "Mø" to "m", which would make unrelated artists equal.
+ */
+function sameArtistName(a: string, b: string): boolean {
+	if (hasUnfoldableLetter(a) || hasUnfoldableLetter(b)) {
+		const fold = (s: string) => s.normalize("NFKC").trim().toLowerCase();
+		return fold(a) !== "" && fold(a) === fold(b);
+	}
+	const na = normalizeSlugBody(a);
+	return na !== "" && na === normalizeSlugBody(b);
+}
+
+interface MbArtistSearchHit {
+	identity: MbArtistIdentity;
+	aliases: string[];
+	/** Words of MB's disambiguation, area, begin-area and country: what a node's hints are compared to. */
+	context: Set<string>;
+}
+
+function textOf(value: unknown): string | null {
+	return isText(value) ? value : null;
+}
+
+/** Well-formed search hits; malformed entries are dropped one by one. The score is deliberately unused. */
+function parseArtistSearchHits(body: unknown): MbArtistSearchHit[] | null {
+	if (!isRecord(body) || !Array.isArray(body.artists)) return null;
+	const hits: MbArtistSearchHit[] = [];
+	for (const raw of body.artists) {
+		if (!isRecord(raw) || !isMbid(raw.id) || !isText(raw.name) || SPECIAL_PURPOSE_MBIDS.has(raw.id)) continue;
+		const disambiguation = textOf(raw.disambiguation);
+		const areaName = (key: string) => (isRecord(raw[key]) ? textOf(raw[key].name) : null);
+		const code = typeof raw.country === "string" ? COUNTRY_CODES[raw.country] : undefined;
+		const aliases = Array.isArray(raw.aliases)
+			? raw.aliases.flatMap((alias) => (isRecord(alias) && isText(alias.name) ? [alias.name] : []))
+			: [];
+		hits.push({
+			identity: {
+				mbid: raw.id,
+				name: raw.name,
+				kind: artistKind(raw.type),
+				disambiguation,
+				area: areaName("area"),
+			},
+			aliases,
+			context: new Set(
+				[disambiguation, areaName("area"), areaName("begin-area"), code ?? null].flatMap((text) =>
+					text === null ? [] : contextWords(text),
+				),
+			),
+		});
+	}
+	return hits;
+}
+
+/** Words (>= 3 chars) of the hints, country-folded, minus filler, deduplicated. */
+function hintWords(hints: readonly (string | undefined)[]): string[] {
+	return [...new Set(hints.flatMap((hint) => (hint ? contextWords(hint) : [])))];
+}
+
+/**
+ * The one candidate MB means, or null. Several exact homonyms: the one sharing strictly more hint
+ * words with its MB context than every other, and at least one. A single candidate is accepted unless
+ * the node has hints and MB has a context for it and the two share no word: a different artist of the
+ * same name (post-punk "113" from Leeds vs the French rap group). No hint, or no MB context, means
+ * nothing can contradict it.
+ */
+function pickByHints(pool: MbArtistSearchHit[], words: string[]): MbArtistSearchHit | null {
+	const common = (hit: MbArtistSearchHit) => words.filter((w) => hit.context.has(w)).length;
+	const [only] = pool;
+	if (pool.length === 1 && only)
+		return words.length > 0 && only.context.size > 0 && common(only) === 0 ? null : only;
+	const scored = pool.map((hit) => ({ hit, common: common(hit) })).sort((a, b) => b.common - a.common);
+	const [best, runnerUp] = scored;
+	if (!best || best.common === 0 || runnerUp?.common === best.common) return null;
+	return best.hit;
+}
+
+export interface MbArtistResolution {
+	artist: MbArtistIdentity | null;
+	/** Exact-name candidates found (any search score): 0 unknown to MB, 1 sole, > 1 homonyms. */
+	candidates: number;
+	/** Where the candidates came from: canonical names, or (only when none matched) aliases. */
+	path: "name" | "alias" | null;
+	/** True when a search got no usable answer, which says nothing about the artist. */
+	unavailable: boolean;
+}
+
+/**
+ * Resolve an artist name to the one MB artist it names, or to nothing: an unresolved artist keeps
+ * its slug and gets no MBID, whereas a wrong MBID would graft another artist's identity onto the
+ * node (2026-10-15, TRA-463 review: Leeds post-punk "113" became the French rap group, DJ "Jaguar"
+ * became a heavy metal band). So:
+ * 1. the pool is every returned artist whose canonical name equals the requested one, whatever its
+ *    search score (MB scores "Earth", the right one, at 89) and however it ranks;
+ * 2. only when no canonical name matches, a second `alias:` search is made (the `artist:` field does
+ *    not index aliases: "Ryuichi Sakamoto" never finds 坂本龍一) and artists carrying the name as an
+ *    alias form the pool;
+ * 3. {@link pickByHints} chooses within the pool, or refuses.
+ */
+export async function resolveArtistDetailed(
+	name: string,
+	hints: { disambiguator?: string; origin?: string } = {},
+): Promise<MbArtistResolution> {
+	const none: MbArtistResolution = { artist: null, candidates: 0, path: null, unavailable: false };
+	const phrase = lucenePhrase(name);
+	if (!phrase) return none;
+	const search = async (field: "artist" | "alias") =>
+		parseArtistSearchHits(await mbFetch<unknown>("/artist", { query: `${field}:"${phrase}"`, limit: "25" }));
+	const hits = await search("artist");
+	if (!hits) return { ...none, unavailable: true };
+	let path: "name" | "alias" = "name";
+	let pool = hits.filter((h) => sameArtistName(h.identity.name, name));
+	if (pool.length === 0) {
+		const aliasHits = await search("alias");
+		if (!aliasHits) return { ...none, unavailable: true };
+		path = "alias";
+		pool = aliasHits.filter((h) => h.aliases.some((alias) => sameArtistName(alias, name)));
+	}
+	if (pool.length === 0) return none;
+	const winner = pickByHints(pool, hintWords([hints.disambiguator, hints.origin]));
+	return { artist: winner?.identity ?? null, candidates: pool.length, path, unavailable: false };
+}
+
+export async function resolveArtist(
+	name: string,
+	hints: { disambiguator?: string; origin?: string } = {},
+): Promise<MbArtistIdentity | null> {
+	return (await resolveArtistDetailed(name, hints)).artist;
 }
 
 /**
