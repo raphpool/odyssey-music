@@ -1174,8 +1174,11 @@ function hasUnfoldableLetter(name: string): boolean {
 /**
  * Name identity between a requested artist name and an MB name or alias. Latin names compare through
  * normalizeSlugBody (case, accents, punctuation, "&"). A name with letters it would erase compares
- * literally (NFKC, case-folded) instead: normalizeSlugBody reduces "坂本龍一" to "", "Группа X" to "x"
- * and "Mø" to "m", which would make unrelated artists equal.
+ * literally (NFKC, case-folded) instead: normalizeSlugBody reduces "坂本龍一" to "" and "Группа X" to "x",
+ * and, with the slug transliteration off (default), "Mø" to "m", which would make unrelated artists equal.
+ * With ODYSSEY_SCOPED_RELEASE_SLUGS on (TRA-528) "Mø" becomes "mo", but the guard stays: it does not read
+ * the flag, so a name with "ø" is compared literally either way ("Mø" vs "Mo" is false, "Mø" vs "MØ"
+ * true). Stricter than the slug, never looser.
  */
 function sameArtistName(a: string, b: string): boolean {
 	if (hasUnfoldableLetter(a) || hasUnfoldableLetter(b)) {

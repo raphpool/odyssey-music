@@ -1,8 +1,13 @@
+import { mkdir, mkdtemp, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, expect, test } from "vitest";
 import {
 	formatReport,
 	measureSlugTransliteration,
 	type RawNode,
+	readNodes,
+	readPendingReverses,
 } from "../scripts/measure-slug-transliteration.js";
 
 const ref = (slug: string, type: string, name: string, artist?: string): RawNode => ({
@@ -121,5 +126,50 @@ describe("measureSlugTransliteration (TRA-528)", () => {
 			"project:in-the-m-de--m": "project:in-the-mode--mo",
 			"project:void": "project:oo-void",
 		});
+	});
+
+	test("two references that name one old slug differently are a conflict, not a mapping", () => {
+		const r = measureSlugTransliteration([
+			{ slug: "artist:m", name: "MØ" },
+			{ slug: "artist:x", name: "X", collaborators: [ref("artist:m", "artist", "M")] },
+		]);
+		expect(r.mapping).toEqual({});
+		expect(r.conflicts).toEqual([
+			{
+				slug: "artist:m",
+				candidates: [
+					{ to: "artist:mo", name: "MØ" },
+					{ to: "artist:m", name: "M" },
+				],
+			},
+		]);
+	});
+
+	test("reports the keys of pending-reverses.json that the migration must rename", () => {
+		const pending = {
+			"artist:l-titia-sadier": [{ field: "members", edge: ref("artist:oval", "artist", "Oval") }],
+			"artist:oval": [{ field: "members", edge: ref("artist:l-titia-sadier", "artist", "Lætitia Sadier") }],
+		};
+		const r = measureSlugTransliteration([], pending);
+		expect(r.pendingReverses).toEqual([
+			{ from: "artist:l-titia-sadier", to: "artist:laetitia-sadier", entries: 1 },
+		]);
+	});
+});
+
+describe("reading the cache", () => {
+	test("a missing or empty cache directory is an error, not an empty report", async () => {
+		await expect(readNodes(join(tmpdir(), "does-not-exist-tra-528"))).rejects.toThrow(/not a readable/);
+		const empty = await mkdtemp(join(tmpdir(), "tra528-"));
+		await mkdir(join(empty, "nodes"));
+		await expect(readNodes(empty)).rejects.toThrow(/no node found/);
+	});
+
+	test("an invalid node file is named in the error; an absent pending-reverses.json is fine", async () => {
+		const dir = await mkdtemp(join(tmpdir(), "tra528-"));
+		await mkdir(join(dir, "nodes", "artist"), { recursive: true });
+		await writeFile(join(dir, "nodes", "artist", "bad.json"), "{nope");
+		await expect(readNodes(dir)).rejects.toThrow(/bad\.json/);
+		await expect(readPendingReverses(dir)).resolves.toEqual({});
 	});
 });

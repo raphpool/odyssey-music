@@ -3,16 +3,20 @@
  *
  * Lists (1) the nodes whose slug would change, (2) the edges whose target slug would change, with old
  * and new slug, and flags every COLLISION: a new slug equal to the slug of another node, or two
- * different old slugs mapping to the same new one. The old -> new table (`mapping`) comes from
+ * different old slugs mapping to the same new one. An old slug that two references name differently
+ * ("MØ" and "M" both on artist:m) is a CONFLICT: reported, never mapped. The old -> new table (`mapping`) comes from
  * transliteratedSlug(), the same pure function the identity migration (TRA-478) calls, so what this
  * prints is what the migration will apply once ODYSSEY_SCOPED_RELEASE_SLUGS is flipped (TRA-509).
+ *
+ * cache/pending-reverses.json is read too: its keys are target slugs the migration must rename as well.
  *
  * Nodes are read as raw JSON, like audit-cache.ts. Nothing is ever written under <cache-dir>.
  *
  * Usage: measure-slug-transliteration.ts <cache-dir> [--json <file>]
- * Exit:  0 report printed (a collision is a finding, not a failure), 2 usage or read error.
+ * Exit:  0 report printed (a collision is a finding, not a failure), 2 usage, or an unreadable cache (missing
+ *        nodes/ directory, no node, invalid JSON: the message names the file).
  */
-import { readdir, readFile, writeFile } from "node:fs/promises";
+import { access, readdir, readFile, writeFile } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { EDGE_FIELDS_BY_TYPE, NODE_TYPES } from "../src/node-spec.js";
@@ -42,6 +46,17 @@ export interface Unresolved {
 	name: string;
 	where: "node" | "edge";
 }
+export interface Conflict {
+	slug: string;
+	/** Each distinct new slug the references to `slug` ask for, with the first name that asks for it. */
+	candidates: Array<{ to: string; name: string }>;
+}
+export interface PendingKey {
+	from: string;
+	to: string;
+	/** Number of pending reverse edges stored under `from`. */
+	entries: number;
+}
 export interface TransliterationReport {
 	nodeCount: number;
 	nodeChanges: SlugChange[];
@@ -49,6 +64,10 @@ export interface TransliterationReport {
 	collisions: Collision[];
 	/** Slugs whose name has a transliterated letter but that cannot be re-derived from it. */
 	unresolved: Unresolved[];
+	/** Slugs the references disagree on: not in `mapping`, to settle by hand. */
+	conflicts: Conflict[];
+	/** Keys of cache/pending-reverses.json that the migration must rename. */
+	pendingReverses: PendingKey[];
 	/** Old -> new, node slugs and edge targets together. */
 	mapping: Record<string, string>;
 }
@@ -89,35 +108,32 @@ function* edgeRefs(node: RawNode): Generator<Target> {
 	}
 }
 
-export function measureSlugTransliteration(nodes: readonly RawNode[]): TransliterationReport {
+export function measureSlugTransliteration(
+	nodes: readonly RawNode[],
+	pendingReverses: Record<string, unknown> = {},
+): TransliterationReport {
 	const existing = new Set<string>();
 	for (const n of nodes) {
 		const slug = str(n.slug);
 		if (slug) existing.add(slug);
 	}
 
-	const mapping = new Map<string, string>();
-	const names = new Map<string, string>();
-	const unresolved = new Map<string, Unresolved>();
-
-	// A slug is settled by the first reference that re-derives it; a reference that cannot (an edge with
-	// no `artist`, a stale name) must not hide a later one that can, whatever the iteration order.
-	const settled = new Set<string>();
+	// Every reference to a slug votes for the new slug it implies (the first artist credit that matches the
+	// scope wins within a reference). References that cannot re-derive the slug (an edge with no `artist`,
+	// a stale name) do not vote, and cannot hide a later one that can, whatever the iteration order.
+	const votes = new Map<string, Map<string, string>>();
+	const failed = new Map<string, Unresolved>();
 	const resolveTarget = (t: Target, where: "node" | "edge"): void => {
-		if (settled.has(t.slug)) return;
 		for (const artist of t.artists.length > 0 ? t.artists : [undefined]) {
 			const result = transliteratedSlug(t.slug, t.name, artist);
 			if (!result.ok) continue;
-			settled.add(t.slug);
-			unresolved.delete(t.slug);
-			if (result.slug !== t.slug) {
-				mapping.set(t.slug, result.slug);
-				names.set(t.slug, t.name);
-			}
+			const forSlug = votes.get(t.slug) ?? new Map<string, string>();
+			if (!forSlug.has(result.slug)) forSlug.set(result.slug, t.name);
+			votes.set(t.slug, forSlug);
 			return;
 		}
 		if (hasTransliteratedLetter(t.name) || t.artists.some(hasTransliteratedLetter)) {
-			if (!unresolved.has(t.slug)) unresolved.set(t.slug, { slug: t.slug, name: t.name, where });
+			if (!failed.has(t.slug)) failed.set(t.slug, { slug: t.slug, name: t.name, where });
 		}
 	};
 
@@ -133,6 +149,32 @@ export function measureSlugTransliteration(nodes: readonly RawNode[]): Translite
 			resolveTarget(t, "edge");
 		}
 	}
+	// The edge a pending reverse will add carries a name too; its key is a node not yet written.
+	for (const entries of Object.values(pendingReverses)) {
+		for (const entry of Array.isArray(entries) ? entries : []) {
+			const edge = entry && typeof entry === "object" ? (entry as RawNode).edge : undefined;
+			if (!edge || typeof edge !== "object") continue;
+			const r = edge as RawNode;
+			const slug = str(r.slug);
+			const artist = str(r.artist);
+			if (slug) resolveTarget({ slug, name: str(r.name) ?? "", artists: artist ? [artist] : [] }, "edge");
+		}
+	}
+
+	const mapping = new Map<string, string>();
+	const names = new Map<string, string>();
+	const conflicts: Conflict[] = [];
+	for (const [slug, forSlug] of votes) {
+		failed.delete(slug);
+		const candidates = [...forSlug].map(([to, name]) => ({ to, name }));
+		const only = candidates[0];
+		if (candidates.length > 1) conflicts.push({ slug, candidates });
+		else if (only && only.to !== slug) {
+			mapping.set(slug, only.to);
+			names.set(slug, only.name);
+		}
+	}
+	const unresolved = failed;
 
 	const nodeChanges: SlugChange[] = [];
 	const edgeChanges: EdgeTargetChange[] = [];
@@ -162,6 +204,12 @@ export function measureSlugTransliteration(nodes: readonly RawNode[]): Translite
 		else claimedBy.set(to, from);
 	}
 
+	const pendingKeys: PendingKey[] = [];
+	for (const [from, entries] of Object.entries(pendingReverses)) {
+		const to = mapping.get(from);
+		if (to) pendingKeys.push({ from, to, entries: Array.isArray(entries) ? entries.length : 0 });
+	}
+
 	const byFrom = (a: { from: string }, b: { from: string }): number => a.from.localeCompare(b.from);
 	return {
 		nodeCount: existing.size,
@@ -169,25 +217,55 @@ export function measureSlugTransliteration(nodes: readonly RawNode[]): Translite
 		edgeChanges: edgeChanges.sort(byFrom),
 		collisions: collisions.sort(byFrom),
 		unresolved: [...unresolved.values()].sort((a, b) => a.slug.localeCompare(b.slug)),
+		conflicts: conflicts.sort((a, b) => a.slug.localeCompare(b.slug)),
+		pendingReverses: pendingKeys.sort(byFrom),
 		mapping: Object.fromEntries([...mapping].sort(([a], [b]) => a.localeCompare(b))),
 	};
 }
 
+async function readJson(file: string): Promise<unknown> {
+	try {
+		return JSON.parse(await readFile(file, "utf8")) as unknown;
+	} catch (err) {
+		throw new Error(`cannot read ${file}: ${err instanceof Error ? err.message : String(err)}`);
+	}
+}
+
+/** Throws (exit 2) when `<cacheDir>/nodes` is missing or empty: an empty report must mean "nothing to do". */
 export async function readNodes(cacheDir: string): Promise<RawNode[]> {
+	const root = join(cacheDir, "nodes");
 	const nodes: RawNode[] = [];
+	try {
+		await readdir(root);
+	} catch {
+		throw new Error(`${root} is not a readable directory`);
+	}
 	for (const type of NODE_TYPES) {
-		const dir = join(cacheDir, "nodes", type);
-		let files: string[];
-		try {
-			files = await readdir(dir);
-		} catch {
-			continue;
-		}
+		const dir = join(root, type);
+		const files = await readdir(dir).catch(() => [] as string[]);
 		for (const file of files.filter((f) => f.endsWith(".json")).sort()) {
-			nodes.push(JSON.parse(await readFile(join(dir, file), "utf8")) as RawNode);
+			const node = await readJson(join(dir, file));
+			if (!node || typeof node !== "object") throw new Error(`${join(dir, file)} is not a JSON object`);
+			nodes.push(node as RawNode);
 		}
 	}
+	if (nodes.length === 0) throw new Error(`no node found under ${root}`);
 	return nodes;
+}
+
+/** Absent file = no pending reverse; anything else unreadable throws. */
+export async function readPendingReverses(cacheDir: string): Promise<Record<string, unknown>> {
+	const file = join(cacheDir, "pending-reverses.json");
+	try {
+		await access(file);
+	} catch {
+		return {};
+	}
+	const parsed = await readJson(file);
+	if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+		throw new Error(`${file} is not a JSON object`);
+	}
+	return parsed as Record<string, unknown>;
 }
 
 export function formatReport(r: TransliterationReport): string {
@@ -201,6 +279,13 @@ export function formatReport(r: TransliterationReport): string {
 	}
 	out.push(`\ncollisions: ${r.collisions.length}`);
 	for (const c of r.collisions) out.push(`  ${c.from} -> ${c.to}   ${c.with}`);
+	out.push(`\nconflicting references (left out of the table, settle by hand): ${r.conflicts.length}`);
+	for (const c of r.conflicts) {
+		out.push(`  ${c.slug}: ${c.candidates.map((x) => `${x.to} (${x.name})`).join(" | ")}`);
+	}
+	out.push(`\npending-reverses.json keys to rename: ${r.pendingReverses.length}`);
+	for (const k of r.pendingReverses)
+		out.push(`  ${k.from} -> ${k.to}   (${k.entries} entr${k.entries === 1 ? "y" : "ies"})`);
 	out.push(`\nnot re-derivable from the name (kept as is, review by hand): ${r.unresolved.length}`);
 	for (const u of r.unresolved) out.push(`  ${u.slug}   (${u.name}; ${u.where})`);
 	return out.join("\n");
@@ -215,7 +300,8 @@ async function main(): Promise<void> {
 		process.stderr.write("usage: measure-slug-transliteration.ts <cache-dir> [--json <file>]\n");
 		process.exit(2);
 	}
-	const report = measureSlugTransliteration(await readNodes(resolve(cacheDir)));
+	const root = resolve(cacheDir);
+	const report = measureSlugTransliteration(await readNodes(root), await readPendingReverses(root));
 	console.log(formatReport(report));
 	if (jsonFile) await writeFile(jsonFile, `${JSON.stringify(report, null, "\t")}\n`);
 }

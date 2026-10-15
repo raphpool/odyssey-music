@@ -140,6 +140,20 @@ describe("transliteratedSlug (old -> new, for the TRA-478 migration)", () => {
 		expect(transliteratedSlug("project:in-the-m-de--m", "In the Møde")).toEqual(refused);
 		expect(transliteratedSlug("not a slug", "MØ")).toEqual(refused);
 	});
+
+	// Deep review nit 1: an unscoped work slug may come from normalizeTitleBody (keeps "(ø)") or from
+	// normalizeSlugBody (drops it); once transliterated they differ, so the answer must not be a guess.
+	test("an unscoped work whose trailing group holds a table letter is refused", () => {
+		const refused = { ok: false, reason: "not-derived-from-name" };
+		expect(transliteratedSlug("track:foo", "Foo (ø)")).toEqual(refused);
+		expect(transliteratedSlug("track:m", "Mø (Æ)")).toEqual(refused);
+		// artists have a single flattener: the trailing group is dropped, as makeSlug does
+		vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "true");
+		expect(transliteratedSlug("artist:foo", "Foo (ø)")).toEqual({
+			ok: true,
+			slug: makeSlug("artist", "Foo (ø)"),
+		});
+	});
 });
 
 describe("transliteratedSlug stays aligned with what the pipeline mints", () => {

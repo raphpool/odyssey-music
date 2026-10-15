@@ -1,4 +1,4 @@
-import { scopedReleaseSlugsEnabled } from "./config.js";
+import { scopedReleaseSlugsEnabled } from "./flags.js";
 import { NODE_TYPES } from "./node-spec.js";
 import type { NodeType, Slug } from "./types.js";
 
@@ -248,9 +248,14 @@ export function transliteratedSlug(
 		: [flattenSlugBody];
 	// Either spelling is accepted, so a slug already in its new form comes back unchanged (idempotent:
 	// a re-run of the migration, or a node minted with the flag on).
-	const flatten = flatteners.find((f) => f(name, false) === oldTitle || f(name, true) === oldTitle);
-	if (!flatten) return notDerived;
-	const newTitle = flatten(name, true);
+	const matching = flatteners.filter((f) => f(name, false) === oldTitle || f(name, true) === oldTitle);
+	const first = matching[0];
+	if (!first) return notDerived;
+	// An unscoped work slug can come from either flattener, and they only differ on a trailing "(...)":
+	// "Foo (ø)" is foo / foo-o by title, foo / foo by slug body. When the two disagree on the new slug,
+	// which one minted the old slug is unknowable: refuse rather than pick one.
+	const newTitle = first(name, true);
+	if (matching.some((f) => f(name, true) !== newTitle)) return notDerived;
 
 	let newScope: string | null = null;
 	if (oldScope !== null) {
