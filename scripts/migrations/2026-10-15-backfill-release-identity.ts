@@ -20,9 +20,11 @@
  * searches. Idempotent: a work that carries an `mbid` is never selected again, and the manifest
  * keeps the entries of works already written, since 1.12 reads the credit from it.
  *
- * MusicBrainz outage: the resolvers return null both for "no such release" and for "MB did not
- * answer". A request that fails (HTTP error, network error) during a node's lookups makes it
- * `failed` (exit 1, node untouched, retried by --resume), never `unresolved`.
+ * MusicBrainz outage: the resolvers and the metadata lookups say it themselves, with `unavailable`
+ * (TRA-505), true when MB gave no usable answer: HTTP error, network error, a 200 whose body is not
+ * JSON, or a 200 whose JSON is off schema. Any of the four during a node's lookups makes it
+ * `failed` (exit 1, node untouched, retried by --resume), never `unresolved`. "No candidate" and
+ * "ambiguous" are answers, not outages.
  *
  * Writes go through atomicWriteJson after nodePayloadSchema validation, never NodeCache.write, which
  * would also emit pending reverse edges this migration has no business creating.
@@ -40,8 +42,8 @@ import { pathToFileURL } from "node:url";
 import { atomicWriteJson } from "../../src/cache.js";
 import { musicBrainzConfig } from "../../src/config.js";
 import {
-	fetchProjectMetaMb,
-	fetchTrackMetaMb,
+	fetchProjectMetaDetailedMb,
+	fetchTrackMetaDetailedMb,
 	type MbCredit,
 	type MbProjectMeta,
 	type MbReleaseIdentity,
@@ -296,39 +298,6 @@ function buildManifest(
 async function writeManifest(path: string, manifest: ReleaseManifest): Promise<void> {
 	await mkdir(dirname(path), { recursive: true });
 	await atomicWriteJson(path, manifest);
-}
-
-// --- MusicBrainz outage detection ---
-
-/**
- * Runs `fn` and reports whether any MusicBrainz request it made ended without a usable HTTP answer
- * (final status not ok, or the request threw). The resolvers return null for "nothing found" and for
- * "MB did not answer" alike; mbFetch is not exported and src/musicbrainz.ts is outside this ticket's
- * scope, so the outage is observed one level down, on the global fetch mbFetch reads at call time.
- * A request retried to success (503 then 200) counts as an answer: the last outcome per URL wins.
- */
-export async function observingMbOutage<T>(
-	fn: () => Promise<T>,
-): Promise<{ value: T; unavailable: boolean }> {
-	const original = globalThis.fetch;
-	const outcomes = new Map<string, boolean>();
-	globalThis.fetch = (async (input: Parameters<typeof fetch>[0], init?: Parameters<typeof fetch>[1]) => {
-		const key = String(input instanceof Request ? input.url : input);
-		try {
-			const response = await original(input, init);
-			outcomes.set(key, response.ok);
-			return response;
-		} catch (e) {
-			outcomes.set(key, false);
-			throw e;
-		}
-	}) as typeof fetch;
-	try {
-		const value = await fn();
-		return { value, unavailable: [...outcomes.values()].some((ok) => !ok) };
-	} finally {
-		globalThis.fetch = original;
-	}
 }
 
 // --- Cache context ---
@@ -694,15 +663,17 @@ async function lookUp(
 	hint: { name: string; mbid?: string },
 ): Promise<{ found: MbReleaseIdentity | null; ambiguous: boolean; unavailable: boolean }> {
 	const resolve = type === "project" ? resolveReleaseGroupDetailed : resolveRecordingDetailed;
-	const first = await observingMbOutage(() => resolve(name, hint.name));
+	// An outage is not a verdict: the resolvers say so themselves (`unavailable`), whether MB refused,
+	// was unreachable or answered with something unreadable.
+	const first = await resolve(name, hint.name);
 	if (first.unavailable) return { found: null, ambiguous: false, unavailable: true };
-	const { identity, ambiguous } = first.value;
 	// Look-alikes are a verdict, not a reason to look elsewhere.
-	if (identity !== null || ambiguous || hint.mbid === undefined) {
-		return { found: identity, ambiguous, unavailable: false };
+	if (first.identity !== null || first.ambiguous || hint.mbid === undefined) {
+		return { found: first.identity, ambiguous: first.ambiguous, unavailable: false };
 	}
-	const second = await observingMbOutage(() => resolve(name));
-	return { found: second.value.identity, ambiguous: second.value.ambiguous, unavailable: second.unavailable };
+	const second = await resolve(name);
+	if (second.unavailable) return { found: null, ambiguous: false, unavailable: true };
+	return { found: second.identity, ambiguous: second.ambiguous, unavailable: false };
 }
 
 // --- Run ---
@@ -842,16 +813,17 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 		if (apply) {
 			let meta: MbProjectMeta | MbTrackMeta | null = null;
 			if (needsMeta(type, node)) {
-				const fetched = await observingMbOutage<MbProjectMeta | MbTrackMeta>(() =>
-					type === "project" ? fetchProjectMetaMb(work.mbid) : fetchTrackMetaMb(work.mbid),
-				);
+				const fetched =
+					type === "project"
+						? await fetchProjectMetaDetailedMb(work.mbid)
+						: await fetchTrackMetaDetailedMb(work.mbid);
 				if (fetched.unavailable) {
 					// Writing the mbid without the tracklist / project would hide the hole: the work would no
 					// longer be selected. All or nothing; --resume repeats only this lookup.
 					failed.push({ slug, reason: `MusicBrainz lookup failed for ${work.mbid}` });
 					continue;
 				}
-				meta = fetched.value;
+				meta = fetched.meta;
 			}
 			const plan = planWrite(type, node, work, mapped.edges, ctx, meta);
 			const parsed = nodePayloadSchema.safeParse(plan.next);
