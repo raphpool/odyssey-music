@@ -4,6 +4,7 @@ private enum APIKeys: String, CodingKey {
 	case version, revision, taxonomy, nodes, edges, identity, type, name, teaser
 	case source, target, available, mode, url, title, slug, mbid, qid, year, releaseType
 	case cache, catalog, subtitle, extra, code, message, retryable
+	case families, genres, key, label, order, id, family, slugs, legacySelectionBySlug
 }
 
 public enum NodeType: String, CaseIterable, Codable, Sendable {
@@ -62,17 +63,98 @@ public struct Catalog: Decodable, Sendable {
 	}
 }
 
-public struct CatalogTaxonomy: Decodable, Sendable {
-	public let mode: String
-	public let available: Bool
+/// The taxonomy block of the catalog. Decoding is tolerant on purpose (plan D1): the server may serve a
+/// mode or a payload this client build does not understand, and rejecting the whole catalog for that would
+/// brick the app. Anything unrecognised therefore collapses to `.degraded(available: false)`; only a
+/// missing `mode` is a contract error.
+public enum CatalogTaxonomy: Decodable, Equatable, Sendable {
+	case degraded(available: Bool)
+	case editorial(EditorialTaxonomy)
 
 	public init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: APIKeys.self)
-		mode = try values.decode(String.self, forKey: .mode)
-		available = try values.decode(Bool.self, forKey: .available)
-		guard mode == "degraded" else { throw APIModelError.invalidValue }
+		switch try values.decode(String.self, forKey: .mode) {
+		case "degraded":
+			self = .degraded(available: try values.decode(Bool.self, forKey: .available))
+		case "editorial":
+			// Any violation of the editorial contract (shape, version, slug type, dangling family) degrades.
+			self =
+				(try? EditorialTaxonomy(validating: values)).map(CatalogTaxonomy.editorial)
+				?? .degraded(available: false)
+		default:
+			self = .degraded(available: false)
+		}
 	}
 }
+
+public struct EditorialTaxonomy: Equatable, Sendable {
+	/// Served order.
+	public let families: [EditorialTaxonomyFamily]
+	/// Served order.
+	public let genres: [EditorialTaxonomyGenre]
+	public let legacySelectionBySlug: [NodeIdentity: [String]]
+
+	fileprivate init(validating values: KeyedDecodingContainer<APIKeys>) throws {
+		guard try values.decode(Int.self, forKey: .version) == 2 else { throw APIModelError.invalidValue }
+		families = try values.decode([EditorialTaxonomyFamily].self, forKey: .families)
+		genres = try values.decode([EditorialTaxonomyGenre].self, forKey: .genres)
+		// A `[NodeIdentity: [String]]` does not decode as a keyed object (non-String keys decode as a flat
+		// alternating array), so the keys are decoded as strings and converted.
+		var legacy: [NodeIdentity: [String]] = [:]
+		for (rawSlug, selection) in try values.decode([String: [String]].self, forKey: .legacySelectionBySlug) {
+			legacy[try EditorialTaxonomy.genreIdentity(rawSlug)] = selection
+		}
+		legacySelectionBySlug = legacy
+		let familyKeys = Set(families.map(\.key))
+		guard familyKeys.count == families.count, Set(genres.map(\.id)).count == genres.count,
+			genres.allSatisfy({ familyKeys.contains($0.family) })
+		else { throw APIModelError.invalidValue }
+	}
+
+	fileprivate static func genreIdentity(_ rawValue: String) throws -> NodeIdentity {
+		guard let identity = NodeIdentity(rawValue: rawValue), identity.type == .genre else {
+			throw APIModelError.invalidValue
+		}
+		return identity
+	}
+}
+
+public struct EditorialTaxonomyFamily: Decodable, Equatable, Sendable {
+	public let key: String
+	public let label: String
+	public let order: Int
+	public let slug: NodeIdentity?
+
+	public init(from decoder: Decoder) throws {
+		let v = try decoder.container(keyedBy: APIKeys.self)
+		key = try v.decode(String.self, forKey: .key)
+		label = try v.decode(String.self, forKey: .label)
+		order = try v.decode(Int.self, forKey: .order)
+		slug = try v.decodeIfPresent(NodeIdentity.self, forKey: .slug)
+		guard !key.isEmpty, !label.isEmpty, slug.map({ $0.type == .genre }) ?? true else {
+			throw APIModelError.invalidValue
+		}
+	}
+}
+
+public struct EditorialTaxonomyGenre: Decodable, Equatable, Sendable {
+	public let id: String
+	public let name: String
+	public let family: String
+	public let slugs: [NodeIdentity]
+
+	public init(from decoder: Decoder) throws {
+		let v = try decoder.container(keyedBy: APIKeys.self)
+		id = try v.decode(String.self, forKey: .id)
+		name = try v.decode(String.self, forKey: .name)
+		family = try v.decode(String.self, forKey: .family)
+		slugs = try v.decode([NodeIdentity].self, forKey: .slugs)
+		guard !id.isEmpty, !name.isEmpty, !family.isEmpty, slugs.allSatisfy({ $0.type == .genre }) else {
+			throw APIModelError.invalidValue
+		}
+	}
+}
+
 public struct CatalogNode: Decodable, Sendable {
 	public let identity: NodeIdentity
 	public let type: NodeType
@@ -120,8 +202,8 @@ public struct NodeDetail: Decodable, Sendable {
 	public let edges: [String: NodeEdgeValue]
 	public let materializedAt: Date
 	public let imageURL: URL?
-	/// How the server obtained `imageURL` (for example a cover derived from a release). Decoded only: the
-	/// node page never shows it (rule 9).
+	/// How the server obtained `imageURL` (for example a cover derived from a release). Never shown as text
+	/// (rule 9); the hero reads it to pick its `HeroImageStyle`.
 	public let imageSource: String?
 	enum CodingKeys: String, CodingKey {
 		case id, type, name, teaser, article, citations, facts, edges
