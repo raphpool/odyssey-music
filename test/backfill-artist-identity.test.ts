@@ -847,6 +847,56 @@ describe("resolveArtist", () => {
 				expect((await resolveArtist("Loireish", { origin: "Saint Etienne, France" }))?.mbid).toBe(stEtienne);
 			});
 
+			// TRA-533 deep review: MB puts commas in area names, and the origin is cut at them.
+			it("cuts MB's area names like the origin: a homonym of a sub-place does not win", async () => {
+				stubMb([
+					{
+						id: "ecececec-0000-4000-8000-000000000a01",
+						name: "Capitolish",
+						area: "Washington, D.C.",
+						areaType: "Subdivision",
+					},
+					{
+						id: "ecececec-0000-4000-8000-000000000a02",
+						name: "Capitolish",
+						area: "Washington",
+						areaType: "Subdivision",
+					},
+				]);
+				expect(await resolveArtist("Capitolish", { origin: "Washington, D.C., U.S." })).toBeNull();
+				stubMb([
+					{
+						id: "edededed-0000-4000-8000-000000000a01",
+						name: "Wattsish",
+						beginArea: "Watts, Los Angeles",
+						beginAreaType: "City",
+					},
+					{
+						id: "edededed-0000-4000-8000-000000000a02",
+						name: "Wattsish",
+						beginArea: "Los Angeles",
+						beginAreaType: "City",
+					},
+				]);
+				expect(await resolveArtist("Wattsish", { origin: "Los Angeles, CA" })).toBeNull();
+				// Alone, the sub-place is shared: Sylvester ("Watts, Los Angeles") is a Los Angeles artist.
+				const watts = pair("eeeeeeee", "Wattsone", "Watts, Los Angeles");
+				expect(await resolveArtistDetailed("Wattsone", { origin: "Los Angeles, CA" })).toMatchObject({
+					artist: { mbid: watts },
+					matchedWords: ["los angeles"],
+				});
+			});
+
+			it("reads New York City as New York against a City area only", async () => {
+				const chic = pair("efefefef", "Chicish", "New York");
+				expect((await resolveArtist("Chicish", { origin: "New York City, NY" }))?.mbid).toBe(chic);
+				pair("f0f0f0f0", "Chictwo", "New York", "Subdivision");
+				expect(await resolveArtist("Chictwo", { origin: "New York City, NY" })).toBeNull();
+				// Not "City" removed in general: Kansas City is not Kansas.
+				pair("f1f1f1f1", "Kansasish", "Kansas", "City");
+				expect(await resolveArtist("Kansasish", { origin: "Kansas City, Missouri" })).toBeNull();
+			});
+
 			it("keeps giving no place to a country written with a directional word (South Africa, New Zealand)", async () => {
 				pair("eaeaeaea", "Capeish", "South Africa", "Subdivision");
 				expect(await resolveArtist("Capeish", { origin: "South Africa, Johannesburg" })).toBeNull();

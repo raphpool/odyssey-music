@@ -1508,9 +1508,9 @@ function parseArtistSearchHits(body: unknown): ArtistSearchPage | null {
 				),
 			),
 			// An area of unknown type is not a place: it might be a country MB left untyped.
-			places: new Set(areas.filter((a) => isPlaceType(a.type)).map((a) => placeSegment(a.name))),
+			places: new Set(areas.filter((a) => isPlaceType(a.type)).flatMap((a) => areaPlaces(a.name))),
 			cities: new Set(
-				areas.filter((a) => a.type?.trim().toLowerCase() === "city").map((a) => placeSegment(a.name)),
+				areas.filter((a) => a.type?.trim().toLowerCase() === "city").flatMap((a) => areaPlaces(a.name)),
 			),
 		});
 	}
@@ -1539,6 +1539,28 @@ function placeSegment(text: string): string {
 		.filter((w) => w !== "")
 		.join(" ");
 }
+
+/**
+ * The places an MB area name stands for: the whole name, then each of its `,` `;` `/` segments that keeps
+ * a word, cut as a node's `origin` is. MB puts commas in area names ("Washington, D.C.", "Watts, Los
+ * Angeles"): compared whole only, the origin "Washington, D.C., U.S." (segment "washington") would equal
+ * the State of Washington and not D.C. itself, so a homonym from the State would win (2026-10-15, TRA-533
+ * deep review). The type of an area (City) applies to each of its places.
+ */
+function areaPlaces(name: string): string[] {
+	const parts = name
+		.split(/[,;/]/)
+		.filter((part) => contextWords(part).length > 0)
+		.map(placeSegment);
+	return [...new Set([placeSegment(name), ...parts])].filter((place) => place !== "");
+}
+
+/**
+ * Names of a city that MB gives shorter, to the name MB gives. Compared against areas typed `City` only
+ * (the State of New York is not New York City). Never "City" removed in general: Kansas City is not
+ * Kansas, Mexico City is not Mexico, Quebec City is not Quebec (TRA-533 deep review: Chic).
+ */
+const CITY_ALIASES: Readonly<Record<string, string>> = { "new york city": "new york" };
 
 /**
  * Words that may stand around a country's name without making it a place: "Republic of the Congo",
@@ -1592,6 +1614,8 @@ function originPlaceSegments(origin: string | undefined): string[] {
 interface ArtistHints {
 	words: string[];
 	origin: string[];
+	/** {@link CITY_ALIASES} of `origin`: places that only an area typed `City` can share. */
+	cityAliases: string[];
 }
 
 /**
@@ -1620,8 +1644,12 @@ function pickByHints(
 	hints: ArtistHints,
 	complete: boolean,
 ): { hit: MbArtistSearchHit; matched: string[] } | null {
-	const sharedPlaces = (hit: MbArtistSearchHit) => hints.origin.filter((w) => hit.places.has(w));
-	const sharesCity = (hit: MbArtistSearchHit) => hints.origin.some((w) => hit.cities.has(w));
+	const sharedPlaces = (hit: MbArtistSearchHit) => [
+		...hints.origin.filter((w) => hit.places.has(w)),
+		...hints.cityAliases.filter((w) => hit.cities.has(w)),
+	];
+	const sharesCity = (hit: MbArtistSearchHit) =>
+		[...hints.origin, ...hints.cityAliases].some((w) => hit.cities.has(w));
 	const [only] = pool;
 	if (pool.length === 1 && only) {
 		const common = hints.words.filter((w) => only.context.has(w));
@@ -1739,9 +1767,14 @@ export async function resolveArtistDetailed(
 		pool = aliasFound.hits.filter((h) => h.aliases.some((alias) => sameArtistName(alias, name)));
 	}
 	if (pool.length === 0) return none;
+	const origin = originPlaceSegments(hints.origin);
 	const picked = pickByHints(
 		pool,
-		{ words: hintWords([hints.disambiguator, hints.origin]), origin: originPlaceSegments(hints.origin) },
+		{
+			words: hintWords([hints.disambiguator, hints.origin]),
+			origin,
+			cityAliases: origin.flatMap((place) => CITY_ALIASES[place] ?? []),
+		},
 		complete,
 	);
 	return {
