@@ -49,6 +49,22 @@ set -euo pipefail
 # would be read back as "committed" and shipped): the script refuses if the repo changed. The tables
 # shipped and checked are the copies taken before the run. Its tables are discarded.
 #
+# 2026-10-15 (TRA-499): what the migration channel ships, and where each file comes from:
+#   - nodes/                  the union after the migrations (validated: validate-migrated-union.ts);
+#   - pending-reverses.json   the repo's and the server's files UNIONED before the first migration
+#                             (prepare-genre-cache-union.ts --merge-pending-reverses; it sits at the
+#                             union root because that is where every migration reads and rewrites
+#                             it), then rewritten by the migrations and re-validated: shipping the
+#                             pre-run file would leave prod's keys on slugs the migration renamed.
+#                             The server's pre-write copy is in the rollback archive: it lives in the
+#                             cache tree that archive tars whole;
+#   - genre-redirects.json    the COMMITTED copy taken before the run (like slug-redirects.json), not
+#                             the union's: it is what deploy-server.sh re-ships on every app deploy.
+# Everything else at the union root is a copy taken before the run, and the script REFUSES (before
+# the archive and the stop) if anything there other than nodes/ and pending-reverses.json changed
+# while the migrations ran. A plain genre sync (no --migration) is unchanged: it neither unions nor
+# ships pending-reverses.json and ships the union's genre-redirects.json as before.
+#
 # Usage:
 #   bash deploy/sync-genre-cache.sh            # preview only: builds + prints the union manifest
 #   bash deploy/sync-genre-cache.sh --apply    # also syncs the server cache (see above)
@@ -283,9 +299,14 @@ fi
 ssh "$SERVER" "cat '$SERVER_REDIRECTS_REMOTE'" >"$SNAPSHOT_REDIRECTS"
 
 echo "==> Building the validated cache union (repo + server snapshot)"
+# TRA-499: only a migration run unions pending-reverses.json; a plain genre sync does not read it.
+MERGE_PENDING_FLAG=""
+if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
+	MERGE_PENDING_FLAG="--merge-pending-reverses"
+fi
 set +e
 UNION_OUTPUT="$(cd "$REPO_ROOT" && npx tsx scripts/prepare-genre-cache-union.ts \
-	"$REPO_CACHE_DIR" "$SNAPSHOT_DIR" --apply-merge \
+	"$REPO_CACHE_DIR" "$SNAPSHOT_DIR" --apply-merge ${MERGE_PENDING_FLAG:+"$MERGE_PENDING_FLAG"} \
 	--server-redirects-path "$SNAPSHOT_REDIRECTS")"
 UNION_EXIT=$?
 set -e
@@ -354,6 +375,18 @@ repo_state() {
 	git -C "$REPO_ROOT" status --porcelain -- cache data 2>/dev/null || true
 	{ git -C "$REPO_ROOT" diff HEAD -- cache data 2>/dev/null || true; } | cksum
 }
+# 2026-10-15 (TRA-499, deep review of #413 scenario F): every entry of the union's root except the
+# two outputs a migration is allowed (nodes/, pending-reverses.json -- the latter re-validated by
+# validate-migrated-union.ts): names, then content checksums. The root holds manifest.json,
+# genre-redirects.json and archive/, none of which a migration may touch -- genre-redirects.json used
+# to be shipped from here AFTER the loop, so one written by a migration reached prod unchecked.
+union_root_state() {
+	(
+		cd "$UNION_DIR"
+		find . -mindepth 1 \( -path ./nodes -o -path ./pending-reverses.json \) -prune -o -print | LC_ALL=C sort
+		find . -mindepth 1 \( -path ./nodes -o -path ./pending-reverses.json \) -prune -o -type f -exec cksum {} + | LC_ALL=C sort
+	)
+}
 MIGRATION_REMOVE_PATHS=()
 MIGRATION_MISSING_REDIRECTS=""
 COMMITTED_DIR="$WORKDIR/committed-tables"
@@ -369,6 +402,7 @@ if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
 	cp "$REPO_SLUG_REDIRECTS_PATH" "$MIGRATION_DATA_DIR/slug-redirects.json"
 	: >"$MIGRATION_TARGETS"
 	REPO_STATE_BEFORE="$(repo_state)"
+	UNION_ROOT_BEFORE="$(union_root_state)"
 	(cd "$REPO_ROOT" && npx tsx scripts/validate-migrated-union.ts snapshot "$UNION_DIR" "$WORKDIR/union-before.json")
 	for name in "${MIGRATIONS[@]}"; do
 		MIGRATION_MANIFEST="$WORKDIR/$name.manifest.json"
@@ -473,11 +507,14 @@ process.stdout.write(lines.join("\n"));
 		echo "ERROR: a migration modified the repo's committed redirects table(s) -- it must write to --data-dir only. Refusing before any write." >&2
 		exit 1
 	fi
-	# N2: the FINAL union. Per-migration checks above cannot see a later migration undoing an earlier
-	# one, nor a node a migration wrote itself (the union's validation ran before any migration).
-	if [[ -f "$UNION_DIR/pending-reverses.json" ]]; then
-		echo "WARNING: a migration wrote $UNION_DIR/pending-reverses.json, but the union does not carry pending-reverses between repo and server, so that file is NOT shipped (follow-up needed)." >&2
+	# TRA-499: the union's root (outside nodes/ and pending-reverses.json) is as it was before the loop.
+	if [[ "$(union_root_state)" != "$UNION_ROOT_BEFORE" ]]; then
+		echo "ERROR: a migration changed the union's root (genre-redirects.json, manifest.json, archive/ or any other entry besides nodes/ and pending-reverses.json) -- migrations write only nodes/, pending-reverses.json and --data-dir. Refusing before any write." >&2
+		exit 1
 	fi
+	# N2: the FINAL union. Per-migration checks above cannot see a later migration undoing an earlier
+	# one, nor a node a migration wrote itself (the union's validation ran before any migration). It
+	# also re-validates the pending-reverses.json that is about to be shipped (TRA-499).
 	if ! UNION_CHECK="$(cd "$REPO_ROOT" && npx tsx scripts/validate-migrated-union.ts check "$UNION_DIR" "$WORKDIR/union-before.json" "$MIGRATION_TARGETS" 2>&1)"; then
 		echo "ERROR: the migrated union is invalid -- refusing before any write:" >&2
 		echo "$UNION_CHECK" >&2
@@ -698,14 +735,27 @@ rsync -az "$UNION_DIR/nodes/" "$SERVER:$SERVER_CACHE_REMOTE/nodes/"
 # from its own artifact. Explicit `rm -f --` per file, never rsync --delete, which could also remove
 # anything a concurrent write added to the server. A failure here (ssh/rsync) is just another
 # post-transfer failure under `set -e`: on_exit still restarts the writer and points at the archive.
-echo "==> Shipping the union's redirects table to the server"
-rsync -az "$UNION_DIR/genre-redirects.json" "$SERVER:$SERVER_REDIRECTS_REMOTE"
+if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
+	# 2026-10-15 (TRA-499): a migration run ships the COMMITTED table copied before the loop, never the
+	# union root's file (a migration could have written it; union_root_state refuses that, and this
+	# makes the source of the shipped bytes unambiguous). It is what the next app deploy ships anyway.
+	echo "==> Shipping the committed data/genre-redirects.json to the server"
+	rsync -az "$COMMITTED_GENRE_TABLE" "$SERVER:$SERVER_REDIRECTS_REMOTE"
+else
+	echo "==> Shipping the union's redirects table to the server"
+	rsync -az "$UNION_DIR/genre-redirects.json" "$SERVER:$SERVER_REDIRECTS_REMOTE"
+fi
 # 2026-10-15 (TRA-464): the committed slug table travels with every migration run (the guard above
 # guarantees it already holds every redirect the migrations produced). Not on a plain genre sync:
 # that run is unchanged, and deploy-server.sh already ships data/ on each app deploy.
 if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
 	echo "==> Shipping data/slug-redirects.json to the server"
 	rsync -az "$COMMITTED_SLUG_TABLE" "$SERVER:$SERVER_SLUG_REDIRECTS_REMOTE"
+	# 2026-10-15 (TRA-499): the unioned, migration-rewritten file (validated above: a regular file that
+	# parses). Overwrites the server's own, which is in the rollback archive (cache tree) and was
+	# folded into the union, so nothing only the server had is lost.
+	echo "==> Shipping the migrated pending-reverses.json to the server"
+	rsync -az "$UNION_DIR/pending-reverses.json" "$SERVER:$SERVER_CACHE_REMOTE/pending-reverses.json"
 fi
 
 if [[ ${#REMOVE_PATHS[@]} -gt 0 ]]; then

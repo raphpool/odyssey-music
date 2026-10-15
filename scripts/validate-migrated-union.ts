@@ -11,14 +11,18 @@
  *     - every node file that is new or different from the snapshot passes nodePayloadSchema and
  *       carries the slug its path implies (untouched nodes are not re-judged: the union copies them
  *       raw, and blocking a migration run on a pre-existing problem would be a different change);
+ *     - <union>/pending-reverses.json (TRA-499: shipped as-is after the migrations rewrote it) is
+ *       present, a regular file (rsync would ship a symlink as a symlink) and parses as a
+ *       pending-reverses map;
  *     - every slug in targets.txt (one per line: rename and redirect targets) has a node file in
  *       the union -- the same "dangling target" rule as prepare-genre-cache-union.ts.
  *     Exit 1 with one problem per line on stderr, 0 and nothing otherwise.
  */
 import { createHash } from "node:crypto";
-import { readdir, readFile, writeFile } from "node:fs/promises";
+import { lstat, readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { nodePayloadSchema } from "../src/schemas.js";
+import { parsePendingReverses } from "./pending-reverses-union.js";
 
 type Snapshot = Record<string, string>;
 
@@ -45,9 +49,22 @@ async function snapshot(unionDir: string, outPath: string): Promise<void> {
 	await writeFile(outPath, JSON.stringify(hashes));
 }
 
+async function checkPendingReverses(unionDir: string): Promise<string[]> {
+	const rel = "pending-reverses.json";
+	let isRegularFile: boolean;
+	try {
+		isRegularFile = (await lstat(join(unionDir, rel))).isFile();
+	} catch {
+		return [`${rel}: missing from the migrated union (the channel always writes it; a migration removed it)`];
+	}
+	if (!isRegularFile) return [`${rel}: not a regular file (a symlink or directory would be shipped as such)`];
+	const parsed = parsePendingReverses(await readFile(join(unionDir, rel), "utf8"));
+	return parsed.ok ? [] : [`${rel}: ${parsed.error}`];
+}
+
 async function check(unionDir: string, snapshotPath: string, targetsPath: string): Promise<string[]> {
 	const before = JSON.parse(await readFile(snapshotPath, "utf8")) as Snapshot;
-	const problems: string[] = [];
+	const problems: string[] = await checkPendingReverses(unionDir);
 	const present = new Set<string>();
 	for (const rel of await listNodeFiles(unionDir)) {
 		present.add(rel);
