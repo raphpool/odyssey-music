@@ -6,6 +6,7 @@ import {
 	DEFAULT_MANIFEST_PATH,
 	findCollisions,
 	type IdentityManifest,
+	onlyAddsSchemaDefaults,
 	parseCliArgs,
 	type ResolvedArtist,
 	runBackfill,
@@ -14,6 +15,9 @@ import {
 import { fetchArtistProfileMb, resolveArtist, resolveArtistDetailed } from "../src/musicbrainz.js";
 import { nodePayloadSchema } from "../src/schemas.js";
 import type { ArtistNode } from "../src/types.js";
+
+/** An artist as stored on disk: no node has `similar_artists` (TRA-456) until it is rewritten. */
+type StoredArtist = Omit<ArtistNode, "similar_artists">;
 
 // The three MusicBrainz entry points the migration uses stay real (they run against the fake below);
 // they are spied on only so tests can count what the migration asks for. mbFetch memoizes by URL for
@@ -406,7 +410,7 @@ describe("fetchArtistProfileMb", () => {
 
 // --- The migration ---
 
-function artistNode(slug: string, overrides: Record<string, unknown> = {}): ArtistNode {
+function artistNode(slug: string, overrides: Record<string, unknown> = {}): StoredArtist {
 	const body = slug.replace(/^artist:/, "");
 	return {
 		type: "artist",
@@ -426,7 +430,7 @@ function artistNode(slug: string, overrides: Record<string, unknown> = {}): Arti
 		aliases: [],
 		members: [],
 		...overrides,
-	} as ArtistNode;
+	} as StoredArtist;
 }
 
 let root: string;
@@ -448,7 +452,7 @@ const cacheDir = () => join(root, "cache");
 const nodePath = (slug: string) =>
 	join(cacheDir(), "nodes", "artist", `${slug.replace(/^artist:/, "")}.json`);
 
-async function seed(node: ArtistNode): Promise<void> {
+async function seed(node: StoredArtist): Promise<void> {
 	await writeFile(nodePath(node.slug), `${JSON.stringify(node, null, 2)}\n`, "utf8");
 }
 
@@ -490,8 +494,9 @@ describe("runBackfill", () => {
 		expect(result.manifest.collisions).toEqual([
 			{ mbid: POLE, slugs: ["artist:pole", "artist:pole--stefan-betke"] },
 		]);
-		expect(await readNode(a.slug)).toEqual({ ...a, mbid: POLE, artist_kind: "person" });
-		expect(await readNode(b.slug)).toEqual({ ...b, mbid: POLE, artist_kind: "person" });
+		// Validation adds the schema's default `similar_artists: []`, nothing else.
+		expect(await readNode(a.slug)).toEqual({ ...a, mbid: POLE, artist_kind: "person", similar_artists: [] });
+		expect(await readNode(b.slug)).toEqual({ ...b, mbid: POLE, artist_kind: "person", similar_artists: [] });
 		expect(await readManifestFile()).toEqual({ ...result.manifest });
 	});
 
@@ -697,6 +702,24 @@ describe("runBackfill", () => {
 		]);
 	});
 
+	it("writes a node that has no similar_artists with mbid, artist_kind and similar_artists: [] only", async () => {
+		stubMb([{ id: "bfbf0004-0000-4000-8000-000000000001", name: "Legacy Shape", type: "Group" }]);
+		const legacy = artistNode("artist:legacy-shape", { name: "Legacy Shape" });
+		expect("similar_artists" in legacy).toBe(false);
+		await seed(legacy);
+
+		const result = await run({ apply: true });
+
+		expect(result.failed).toEqual([]);
+		expect(await readNode(legacy.slug)).toEqual({
+			...legacy,
+			mbid: "bfbf0004-0000-4000-8000-000000000001",
+			artist_kind: "group",
+			similar_artists: [],
+		});
+		expect((await run({ apply: true })).written).toEqual([]);
+	});
+
 	it("refuses a write the schema would turn into more than the two new fields", async () => {
 		stubMb([{ id: "b5b5b5b5-0000-4000-8000-000000000003", name: "Edge Extra", type: "Person" }]);
 		const edge = { slug: "genre:techno", type: "genre", name: "Techno", undeclared_field: "kept on disk" };
@@ -875,6 +898,29 @@ describe("withIdentity", () => {
 	it("returns null when the node already carries both fields", () => {
 		const node = { slug: "artist:x", mbid: entry.mbid, artist_kind: "person" };
 		expect(withIdentity(node, { ...entry, kind: "person" })).toBeNull();
+	});
+});
+
+describe("onlyAddsSchemaDefaults", () => {
+	const written = { slug: "artist:x", name: "X", genres: [{ slug: "genre:a", type: "genre", name: "A" }] };
+
+	it("accepts a missing list filled in at its empty default", () => {
+		expect(onlyAddsSchemaDefaults(written, { ...written, similar_artists: [] })).toBe(true);
+	});
+
+	it("refuses a missing field filled in with anything but an empty list", () => {
+		expect(onlyAddsSchemaDefaults(written, { ...written, similar_artists: [{ slug: "artist:y" }] })).toBe(
+			false,
+		);
+		expect(onlyAddsSchemaDefaults(written, { ...written, era: "" })).toBe(false);
+	});
+
+	it("refuses a field removed, rewritten or stripped inside an edge", () => {
+		expect(onlyAddsSchemaDefaults(written, { slug: "artist:x", genres: written.genres })).toBe(false);
+		expect(onlyAddsSchemaDefaults(written, { ...written, name: "Y" })).toBe(false);
+		const withExtra = { ...written, genres: [{ ...written.genres[0], extra: 1 }] };
+		expect(onlyAddsSchemaDefaults(withExtra, written)).toBe(false);
+		expect(onlyAddsSchemaDefaults(written, null)).toBe(false);
 	});
 });
 

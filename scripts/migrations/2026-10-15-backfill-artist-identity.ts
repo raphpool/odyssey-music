@@ -177,6 +177,22 @@ async function writeManifest(path: string, manifest: IdentityManifest): Promise<
 	await atomicWriteJson(path, manifest);
 }
 
+/**
+ * True when `parsed` (the node after schema validation) equals `written` except for fields `written`
+ * lacks that the schema filled in with an empty list. Since TRA-456 `similar_artists` is required
+ * with a default of [], and no stored artist has it: validating adds it to every node, which is the
+ * schema's own default, not an alteration. Any other difference (a stripped or rewritten field, an
+ * edge losing a key, a non-empty default) still refuses the write.
+ */
+export function onlyAddsSchemaDefaults(written: Record<string, unknown>, parsed: unknown): boolean {
+	if (!isRecord(parsed)) return false;
+	const expected: Record<string, unknown> = { ...written };
+	for (const [key, value] of Object.entries(parsed)) {
+		if (!(key in written) && Array.isArray(value) && value.length === 0) expected[key] = value;
+	}
+	return isDeepStrictEqual(parsed, expected);
+}
+
 /** The node with `mbid` / `artist_kind` set from `entry`, or null when it already carries them. */
 export function withIdentity(
 	node: Record<string, unknown>,
@@ -300,9 +316,9 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				const parsed = nodePayloadSchema.safeParse(next);
 				if (!parsed.success) {
 					failed.push({ slug, reason: `refusing to write an invalid node: ${parsed.error.message}` });
-				} else if (!isDeepStrictEqual(parsed.data, next)) {
-					// The schema strips undeclared fields, edges' included; this migration must change two
-					// fields and no other.
+				} else if (!onlyAddsSchemaDefaults(next, parsed.data)) {
+					// The schema strips undeclared fields, edges' included; beyond mbid / artist_kind, only the
+					// addition of a missing list at its default (empty) is tolerated.
 					failed.push({ slug, reason: "refusing to write: validation would alter fields the node carries" });
 				} else {
 					await atomicWriteJson(path, parsed.data);
