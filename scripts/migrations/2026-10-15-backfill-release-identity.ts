@@ -433,6 +433,11 @@ function findHint(slug: string, node: Record<string, unknown>, ctx: Context): Hi
  * - hint without MBID: a credit has the same name as the artist (sameCreditName, the resolver's own
  *   rule: "Prince" is not "Prince Buster", "The" is ignored). A credit in another script is recognised
  *   by MBID only, so without one the work stays unresolved.
+ * This is a narrower check than the resolver's, on purpose (TRA-552, for the TRA-483 audit): it reads the
+ * returned `MbCredit`s, which hold the CANONICAL artist name only. The resolver also accepts the name the
+ * credit is PRINTED under, the artist's aliases, and the joined credit ("Prince & The Revolution" over
+ * two entries); none of these reach this function. A work the resolver accepted through one of them, for
+ * a hint without MBID, can therefore end as `credit-mismatch`: refused here, never wrongly accepted.
  */
 export function creditConfirmsHint(
 	credit: readonly MbCredit[],
@@ -662,7 +667,11 @@ async function lookUp(
 	const resolve = type === "project" ? resolveReleaseGroupDetailed : resolveRecordingDetailed;
 	// An outage is not a verdict: the resolvers say so themselves (`unavailable`), whether MB refused,
 	// was unreachable or answered with something unreadable.
-	const first = await resolve(name, hint.name, { acceptCreditMbids: groups });
+	// The artist's own MBID lets the resolver count a work printed under another name as direct (TRA-552).
+	const first = await resolve(name, hint.name, {
+		acceptCreditMbids: groups,
+		...(hint.mbid === undefined ? {} : { requestedArtistMbid: hint.mbid }),
+	});
 	if (first.unavailable) return { found: null, ambiguous: false, unavailable: true };
 	// Look-alikes are a verdict, not a reason to look elsewhere.
 	if (first.identity !== null || first.ambiguous || hint.mbid === undefined) {
