@@ -982,6 +982,53 @@ describe("resolveRecordingDetailed / resolveReleaseGroupDetailed", () => {
 		});
 	});
 
+	// TRA-504 (2026-10-15): MB does not order tied hits stably, and `track:booty-la-la` resolved to a
+	// different recording (and parent project) from one run to the next. Whatever the order, a tie
+	// between look-alikes must give the same answer: none, flagged ambiguous, never the first of them.
+	it("answers the same whichever way MB orders two identical recordings (Booty La La, TRA-504)", async () => {
+		const bugz = "cccccccc-3333-4333-8333-0000000000b1";
+		const a = hit("dddddddd-4444-4444-8444-0000000000a1", "Booty La La", [[bugz, "Bugz in the Attic"]], {
+			"first-release-date": "2004",
+		});
+		const b = hit("dddddddd-4444-4444-8444-0000000000a2", "Booty La La", [[bugz, "Bugz in the Attic"]], {
+			"first-release-date": "2004",
+		});
+		// mbFetch caches by URL for 5 minutes: each order needs its own query (the hint's case changes
+		// the URL, not the matching) or the second pass would replay the first response.
+		for (const [hint, recordings] of [
+			["Bugz in the Attic", [a, b]],
+			["bugz in the attic", [b, a]],
+		] as const) {
+			stubMb({ count: 2, recordings });
+			expect(await resolveRecordingDetailed("Booty La La", hint)).toEqual({
+				identity: null,
+				ambiguous: true,
+			});
+			expect(await resolveRecording("Booty La La", hint)).toBeNull();
+		}
+	});
+
+	it("answers the same whichever way MB orders two release groups tied on title, credit and date", async () => {
+		const bugz = "cccccccc-3333-4333-8333-0000000000b1";
+		const a = hit("dddddddd-4444-4444-8444-0000000000b1", "Got the Bug", [[bugz, "Bugz in the Attic"]], {
+			"first-release-date": "2004-06-07",
+		});
+		const b = hit("dddddddd-4444-4444-8444-0000000000b2", "Got the Bug", [[bugz, "Bugz in the Attic"]], {
+			"first-release-date": "2004-06-07",
+		});
+		// Distinct hint case per order: see the mbFetch cache note above.
+		for (const [hint, releaseGroups] of [
+			["Bugz in the Attic", [a, b]],
+			["bugz in the attic", [b, a]],
+		] as const) {
+			stubMb({ count: 2, "release-groups": releaseGroups });
+			expect(await resolveReleaseGroupDetailed("Got the Bug", hint)).toEqual({
+				identity: null,
+				ambiguous: true,
+			});
+		}
+	});
+
 	it("finds nothing, not an ambiguity, when the only exact recording is a live one", async () => {
 		stubMb({
 			recordings: [
