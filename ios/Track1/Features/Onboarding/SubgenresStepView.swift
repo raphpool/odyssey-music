@@ -3,16 +3,16 @@ import SwiftUI
 import Track1Core
 
 /// Figma `1.3 Subgenres · Hip-hop` (`176:166`, spec `176:209`) and `1.4 Subgenres · Jazz` (`176:223`, spec
-/// `176:257`): the subgenres of one selected parent. The same screen serves both, the last step only differs
+/// `176:257`): the genres of one selected family. The same screen serves both, the last step only differs
 /// by its CTA label, which the model decides. The title, the chip and the rows scroll together; the action
-/// bar stays pinned. Selection logic lives in `OnboardingFlowModel`, this view only reads and toggles it.
+/// bar stays pinned. Selection logic lives in `GenreOnboardingModel`, this view only reads and toggles it.
 struct SubgenresStepView: View {
 	/// Set on the bar's button (`BottomActionBar.identifier`).
 	static let continueIdentifier = "onboarding-subgenres-continue"
 
 	/// The bar as the screen builds it, so a test reads the parameters the screen really passes.
 	/// "Continuer stays available while other parents remain" (spec `176:216`): a step with no row checked is
-	/// valid, the parent alone is already a genre of the profile (D13).
+	/// valid, the family alone then stands for all of its genres (plan Q1).
 	@MainActor
 	static func actionBar(title: String, counter: String?, onContinue: @escaping () -> Void)
 		-> BottomActionBar
@@ -34,24 +34,24 @@ struct SubgenresStepView: View {
 		static let content = "subgenres-content"
 	}
 
-	let parent: GenreChoice
-	let model: OnboardingFlowModel
+	let parent: FamilyChoice
+	let model: GenreOnboardingModel
 	private let onContinue: () -> Void
 
 	/// Written on every scroll frame, so kept out of `@State` values: a reference does not invalidate the view.
 	@State private var scroll = ScrollTracker()
 	@State private var tickCount = 0
 
-	init(parent: GenreChoice, model: OnboardingFlowModel, onContinue: @escaping () -> Void) {
+	init(parent: FamilyChoice, model: GenreOnboardingModel, onContinue: @escaping () -> Void) {
 		self.parent = parent
 		self.model = model
 		self.onContinue = onContinue
 	}
 
-	/// The last parent ends the flow with "Terminer" (or "Enregistrer" when editing): the model knows the
-	/// position of the step. A parent outside the steps cannot be shown, so it reads as the first one.
+	/// The last family ends the flow with "Terminer" (or "Enregistrer" when editing): the model knows the
+	/// position of the step. A family outside the steps cannot be shown, so it reads as the first one.
 	private var ctaTitle: String {
-		model.ctaTitle(forStep: model.subgenreSteps.firstIndex(of: parent.identity) ?? 0)
+		model.ctaTitle(forStep: model.subgenreSteps.firstIndex(of: parent.id) ?? 0)
 	}
 
 	var body: some View {
@@ -62,20 +62,24 @@ struct SubgenresStepView: View {
 					.accessibilityAddTraits(.isHeader)
 				Track1Text("Sélectionne les sous-genres qui t'intéressent", role: .bodyMedium)
 					.foregroundStyle(Track1Tokens.colorTextSecondary)
+				// With no row ticked the family stands for all of its genres, so "Tous" and an empty list give the
+				// same profile: said once, always shown, so that ticking a first row never shifts the list.
+				Track1Text(OnboardingCopy.wholeFamilyHint, role: .bodySmall, verbatim: true)
+					.foregroundStyle(Track1Tokens.colorTextSecondary)
 				// Figma puts an 8 pt spacer between two 12 pt gaps: 32 pt between the subtitle and the chip.
-				SelectAllChip(isSelected: model.isAllSelected(of: parent.identity)) {
-					model.toggleAll(of: parent.identity)
+				SelectAllChip(isSelected: model.isAllSelected(of: parent.id)) {
+					model.toggleAll(of: parent.id)
 				}
 				.padding(.top, Track1Tokens.spacing20)
-				ForEach(model.subgenreChoices(of: parent.identity), id: \.identity) { choice in
+				ForEach(model.subgenreChoices(of: parent.id)) { choice in
 					SubgenreRow(
 						name: choice.name, description: choice.definition,
-						isSelected: model.isSubgenreSelected(choice.identity)
+						isSelected: model.isSubgenreSelected(choice.id)
 					) {
-						model.toggleSubgenre(choice.identity, of: parent.identity)
+						model.toggleSubgenre(choice.id, of: parent.id)
 					}
-					.accessibilityIdentifier(SubgenreRow.identifier(for: choice.identity))
-					.background { RowEdgeReader(identity: choice.identity, space: Space.content) }
+					.accessibilityIdentifier(SubgenreRow.identifier(for: choice.id))
+					.background { RowEdgeReader(id: choice.id, space: Space.content) }
 				}
 			}
 			.coordinateSpace(name: Space.content)
@@ -117,14 +121,14 @@ struct SubgenresStepView: View {
 /// The scroll measurements and the offset they were last compared at.
 @MainActor
 private final class ScrollTracker {
-	private var rowMaxYs = [NodeIdentity: CGFloat]()
+	private var rowMaxYs = [String: CGFloat]()
 	/// Top of the bar in the viewport space; nil until the first layout pass.
 	private var barTop: CGFloat?
 	private var lastOffset: CGFloat?
 
 	/// A new layout is not a scroll: the offset that follows only sets the reference again, so a row that
 	/// moved because the content was re-laid out (Dynamic Type, rotation, the safe area settling) never ticks.
-	func layoutChanged(rowMaxYs: [NodeIdentity: CGFloat]) {
+	func layoutChanged(rowMaxYs: [String: CGFloat]) {
 		self.rowMaxYs = rowMaxYs
 		lastOffset = nil
 	}
@@ -145,9 +149,9 @@ private final class ScrollTracker {
 }
 
 private struct RowEdgeKey: PreferenceKey {
-	static let defaultValue = [NodeIdentity: CGFloat]()
+	static let defaultValue = [String: CGFloat]()
 
-	static func reduce(value: inout [NodeIdentity: CGFloat], nextValue: () -> [NodeIdentity: CGFloat]) {
+	static func reduce(value: inout [String: CGFloat], nextValue: () -> [String: CGFloat]) {
 		value.merge(nextValue()) { _, new in new }
 	}
 }
@@ -170,13 +174,13 @@ private struct ContentMinYKey: PreferenceKey {
 
 /// Reports the bottom edge of the row it sits behind, in the content space.
 private struct RowEdgeReader: View {
-	let identity: NodeIdentity
+	let id: String
 	let space: String
 
 	var body: some View {
 		GeometryReader { proxy in
 			Color.clear.preference(
-				key: RowEdgeKey.self, value: [identity: proxy.frame(in: .named(space)).maxY])
+				key: RowEdgeKey.self, value: [id: proxy.frame(in: .named(space)).maxY])
 		}
 	}
 }
