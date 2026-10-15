@@ -142,7 +142,11 @@ describe("resolveArtist", () => {
 
 	it("ignores candidates under the score bar and null-resolves when none is left", async () => {
 		stubMb([{ id: "a2a2a2a2-0000-4000-8000-000000000001", name: "Weakscore", score: 89 }]);
-		expect(await resolveArtistDetailed("Weakscore")).toEqual({ artist: null, candidates: 0 });
+		expect(await resolveArtistDetailed("Weakscore")).toEqual({
+			artist: null,
+			candidates: 0,
+			unavailable: false,
+		});
 	});
 
 	it("is null with the candidate count when two exact homonyms cannot be told apart", async () => {
@@ -150,7 +154,11 @@ describe("resolveArtist", () => {
 			{ id: "a3a3a3a3-0000-4000-8000-000000000001", name: "Homonym", disambiguation: "UK band" },
 			{ id: "a3a3a3a3-0000-4000-8000-000000000002", name: "Homonym", disambiguation: "US singer" },
 		]);
-		expect(await resolveArtistDetailed("Homonym")).toEqual({ artist: null, candidates: 2 });
+		expect(await resolveArtistDetailed("Homonym")).toEqual({
+			artist: null,
+			candidates: 2,
+			unavailable: false,
+		});
 		// A hint that matches neither is no hint.
 		expect(await resolveArtist("Homonym", { origin: "Reykjavik, Iceland" })).toBeNull();
 	});
@@ -211,6 +219,9 @@ describe("resolveArtist", () => {
 		stubMb([{ id: "a7a7a7a7-0000-4000-8000-000000000001", name: "Группа Zyx" }]);
 		expect(await resolveArtist("Rock Zyx")).toBeNull();
 		expect(await resolveArtist("Группа Zyx")).not.toBeNull();
+		// "ø" has no accent decomposition: slug normalization would turn "Mø" into "m".
+		stubMb([{ id: "a7a7a7a7-0000-4000-8000-000000000002", name: "Mq" }]);
+		expect(await resolveArtist("Mø")).toBeNull();
 	});
 
 	it("is null on a network failure and on a name with nothing to search", async () => {
@@ -220,7 +231,11 @@ describe("resolveArtist", () => {
 				throw new TypeError("fetch failed");
 			}),
 		);
-		expect(await resolveArtistDetailed("Unreachable Act")).toEqual({ artist: null, candidates: 0 });
+		expect(await resolveArtistDetailed("Unreachable Act")).toEqual({
+			artist: null,
+			candidates: 0,
+			unavailable: true,
+		});
 		const urls = stubMb([]);
 		expect(await resolveArtist('"\\')).toBeNull();
 		expect(urls).toHaveLength(0);
@@ -406,6 +421,35 @@ describe("runBackfill", () => {
 			mbid: "b5b5b5b5-0000-4000-8000-000000000001",
 			artist_kind: "person",
 		});
+	});
+
+	it("reports a failed search as a failure, not as an unknown artist", async () => {
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async () => ({ ok: false, status: 500, headers: new Headers(), json: async () => ({}) })),
+		);
+		await seed(artistNode("artist:search-outage", { name: "Search Outage" }));
+
+		const result = await run({ apply: true });
+
+		expect(result.failed).toEqual([
+			{ slug: "artist:search-outage", reason: "MusicBrainz search unavailable" },
+		]);
+		expect(result.manifest.unresolved).toEqual([]);
+		expect(result.exitCode).toBe(1);
+	});
+
+	it("refuses a write the schema would turn into more than the two new fields", async () => {
+		stubMb([{ id: "b5b5b5b5-0000-4000-8000-000000000003", name: "Edge Extra", type: "Person" }]);
+		const edge = { slug: "genre:techno", type: "genre", name: "Techno", undeclared_field: "kept on disk" };
+		await seed(artistNode("artist:edge-extra", { name: "Edge Extra", genres: [edge] }));
+		const before = await readFile(nodePath("artist:edge-extra"), "utf8");
+
+		const result = await run({ apply: true });
+
+		expect(result.written).toEqual([]);
+		expect(result.failed).toHaveLength(1);
+		expect(await readFile(nodePath("artist:edge-extra"), "utf8")).toBe(before);
 	});
 
 	it("--resume reuses the manifest: a dry-run followed by --apply --resume asks MusicBrainz nothing", async () => {

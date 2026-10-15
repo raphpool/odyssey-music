@@ -1011,17 +1011,22 @@ const ARTIST_MIN_SCORE = 90;
 /** Hint words that say what the hint is, not who the artist is ("song by Bob Dylan"). */
 const HINT_STOPWORDS = new Set(["song", "track", "album", "band", "the", "and", "from", "with", "music"]);
 
-/** A name that has letters outside Latin/Common scripts: slug normalization would erase them. */
-const NON_LATIN_LETTERS = /[^\p{Script=Latin}\p{Script=Common}\p{Script=Inherited}]/u;
+/**
+ * True when a name keeps a letter that is not a-z once accents are stripped ("坂本龍一", "Группа", but
+ * also "ø", "ł", "ß", which NFKD does not decompose): slug normalization would erase it.
+ */
+function hasUnfoldableLetter(name: string): boolean {
+	return /\p{L}/u.test(name.normalize("NFKD").replace(/\p{M}/gu, "").replace(/[a-z]/gi, ""));
+}
 
 /**
  * Name identity between a requested artist name and an MB name or alias. Latin names compare through
- * normalizeSlugBody (case, accents, punctuation, "&"). A name with other scripts compares literally
- * (NFKC, case-folded) instead: normalizeSlugBody would reduce "坂本龍一" to "" and "Группа X" to "x",
- * which would make unrelated artists equal.
+ * normalizeSlugBody (case, accents, punctuation, "&"). A name with letters it would erase compares
+ * literally (NFKC, case-folded) instead: normalizeSlugBody reduces "坂本龍一" to "", "Группа X" to "x"
+ * and "Mø" to "m", which would make unrelated artists equal.
  */
 function sameArtistName(a: string, b: string): boolean {
-	if (NON_LATIN_LETTERS.test(a) || NON_LATIN_LETTERS.test(b)) {
+	if (hasUnfoldableLetter(a) || hasUnfoldableLetter(b)) {
 		const fold = (s: string) => s.normalize("NFKC").trim().toLowerCase();
 		return fold(a) !== "" && fold(a) === fold(b);
 	}
@@ -1090,30 +1095,30 @@ function pickByHints(candidates: MbArtistSearchHit[], words: string[]): MbArtist
  * alias match counts (never mixed with name matches: aliases include other people's stage names). A
  * single candidate wins; several exact homonyms are separated by the words of `disambiguator` /
  * `origin` found in MB's `disambiguation` and `area`, and a tie or no hint hit is null. `candidates` is
- * how many exact candidates there were (0: nothing matched, or MB unreachable), so a caller can tell
- * "unknown to MB" from "ambiguous".
+ * how many exact candidates there were, so a caller can tell "unknown to MB" (0) from "ambiguous";
+ * `unavailable` is true when a search got no usable answer, which says nothing about the artist.
  */
 export async function resolveArtistDetailed(
 	name: string,
 	hints: { disambiguator?: string; origin?: string } = {},
-): Promise<{ artist: MbArtistIdentity | null; candidates: number }> {
-	const none = { artist: null, candidates: 0 };
+): Promise<{ artist: MbArtistIdentity | null; candidates: number; unavailable: boolean }> {
+	const none = { artist: null, candidates: 0, unavailable: false };
 	const phrase = lucenePhrase(name);
 	if (!phrase) return none;
 	const search = async (field: "artist" | "alias") =>
 		parseArtistSearchHits(await mbFetch<unknown>("/artist", { query: `${field}:"${phrase}"`, limit: "25" }));
 	const hits = await search("artist");
-	if (!hits) return none;
+	if (!hits) return { ...none, unavailable: true };
 	let pool = hits.filter((h) => sameArtistName(h.identity.name, name));
 	if (pool.length === 0) {
 		const aliasHits = await search("alias");
-		if (!aliasHits) return none;
+		if (!aliasHits) return { ...none, unavailable: true };
 		pool = aliasHits.filter((h) => h.aliases.some((alias) => sameArtistName(alias, name)));
 	}
 	if (pool.length === 0) return none;
 	const winner =
 		pool.length === 1 ? pool[0] : pickByHints(pool, hintWords([hints.disambiguator, hints.origin]));
-	return { artist: winner?.identity ?? null, candidates: pool.length };
+	return { artist: winner?.identity ?? null, candidates: pool.length, unavailable: false };
 }
 
 export async function resolveArtist(

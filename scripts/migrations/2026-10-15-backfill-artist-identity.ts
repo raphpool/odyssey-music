@@ -24,6 +24,7 @@
 import { mkdir, readFile } from "node:fs/promises";
 import { dirname } from "node:path";
 import { pathToFileURL } from "node:url";
+import { isDeepStrictEqual } from "node:util";
 import { atomicWriteJson } from "../../src/cache.js";
 import { musicBrainzConfig } from "../../src/config.js";
 import {
@@ -112,8 +113,13 @@ async function readManifest(path: string): Promise<IdentityManifest | null> {
 	return {
 		generated_at: typeof parsed.generated_at === "string" ? parsed.generated_at : "",
 		resolved,
-		unresolved: (parsed.unresolved as IdentityManifest["unresolved"]).filter(
-			(u) => isRecord(u) && typeof u.slug === "string",
+		unresolved: parsed.unresolved.flatMap((u: unknown) =>
+			isRecord(u) &&
+			typeof u.slug === "string" &&
+			typeof u.name === "string" &&
+			typeof u.candidates === "number"
+				? [{ slug: u.slug, name: u.name, candidates: u.candidates }]
+				: [],
 		),
 		collisions: [],
 	};
@@ -201,6 +207,7 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 	);
 
 	let attempted = 0;
+	let checkpointed = 0;
 	for (const { slug, path, node } of artists) {
 		const stored = node.mbid;
 		let entry: ResolvedArtist | undefined;
@@ -229,7 +236,11 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				const origin = optionalText(node.origin);
 				if (disambiguator) hints.disambiguator = disambiguator;
 				if (origin) hints.origin = origin;
-				const { artist, candidates } = await resolveArtistDetailed(name, hints);
+				const { artist, candidates, unavailable } = await resolveArtistDetailed(name, hints);
+				if (unavailable) {
+					failed.push({ slug, reason: "MusicBrainz search unavailable" });
+					continue;
+				}
 				if (!artist) {
 					unresolved.push({ slug, name, candidates });
 					continue;
@@ -252,16 +263,18 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				const parsed = nodePayloadSchema.safeParse(next);
 				if (!parsed.success) {
 					failed.push({ slug, reason: `refusing to write an invalid node: ${parsed.error.message}` });
-				} else if (!Object.keys(next).every((key) => key in parsed.data)) {
-					// The schema strips undeclared fields; this migration must change two fields and no other.
-					failed.push({ slug, reason: "refusing to write: validation would drop fields the node carries" });
+				} else if (!isDeepStrictEqual(parsed.data, next)) {
+					// The schema strips undeclared fields, edges' included; this migration must change two
+					// fields and no other.
+					failed.push({ slug, reason: "refusing to write: validation would alter fields the node carries" });
 				} else {
 					await atomicWriteJson(path, parsed.data);
 					written.push(path);
 				}
 			}
 		}
-		if (attempted > 0 && attempted % CHECKPOINT_EVERY === 0) {
+		if (attempted - checkpointed >= CHECKPOINT_EVERY) {
+			checkpointed = attempted;
 			await writeManifest(manifestPath, buildManifest(resolved, unresolved));
 		}
 	}
