@@ -60,6 +60,8 @@ interface MbArtist {
 // paths only read names, so an odd id must not blank them. toCredits() validates it where it matters.
 interface MbArtistCreditEntry {
 	name?: string;
+	/** Text MB puts between this entry and the next (" & ", " feat. ", ""). Unvalidated: read with a typeof guard. */
+	joinphrase?: string;
 	artist?: { id?: string; name?: string };
 }
 interface MbReleaseGroup {
@@ -927,9 +929,42 @@ function lucenePhrase(text: string): string {
 	return text.replace(/["\\]/g, "").trim();
 }
 
-/** True when `needle` is a run of whole words of `haystack` (both already passed through normalizeSlugBody). */
-function containsWords(haystack: string, needle: string): boolean {
-	return `-${haystack}-`.includes(`-${needle}-`);
+/**
+ * An artist name reduced to what makes two spellings the same artist: normalizeSlugBody (case,
+ * diacritics, "&" == "and", trailing disambiguation) plus a leading "The" ("The Beatles" == "Beatles").
+ * Used for EQUALITY only, never for containment.
+ */
+function creditKey(name: string): string {
+	const body = normalizeSlugBody(name);
+	return body.startsWith("the-") ? body.slice(4) : body;
+}
+
+/**
+ * True when the requested artist IS one of the credited artists: the key of the hint equals the key of a
+ * credit entry (credited-as name or canonical name), or of the whole credit read as one string.
+ * Containment is refused on purpose (2026-10-15, TRA-537, found in the TRA-477 deep review): "Prince"
+ * was contained in "Prince Buster", and an identity established that way rewrites the source node's edge.
+ * Joint credits: MB lists "Prince" and "The Revolution" as two credited artists, and each is an artist
+ * credited on the work, so "Prince" matches. A joint name MB files as ONE artist ("Prince and the
+ * Revolution" has its own MBID) is another artist than "Prince" and is refused; asking for the joint name
+ * itself matches that entry, or the joined credit ("Prince & The Revolution" over two entries).
+ * MB aliases are not in a search hit, so they are not consulted: a hint spelled as an alias is unmatched.
+ */
+function creditEqualsHint(entries: MbArtistCreditEntry[], hintKey: string): boolean {
+	if (!hintKey) return false;
+	const names = entries.flatMap((entry) => [entry.name, entry.artist?.name]);
+	if (names.some((n) => n !== undefined && creditKey(n) === hintKey)) return true;
+	if (entries.length < 2) return false;
+	const pickers = [(e: MbArtistCreditEntry) => e.name, (e: MbArtistCreditEntry) => e.artist?.name];
+	return pickers.some((pickName) => {
+		let joined = "";
+		for (const e of entries) {
+			const n = pickName(e);
+			if (n === undefined) return false;
+			joined += n + (typeof e.joinphrase === "string" ? e.joinphrase : "");
+		}
+		return creditKey(joined) === hintKey;
+	});
 }
 
 type Pick<T> = { kind: "one"; candidate: T } | { kind: "none" } | { kind: "ambiguous" };
@@ -951,8 +986,11 @@ function strictlyEarlier(a: string, b: string): boolean {
  *    2026-10-15) so the credit step could return the live or remixed version. Edition noise
  *    ("Kid A (Deluxe Edition)", "(2019 Remaster)", "(feat. X)") is ignored on purpose: it names
  *    the same work, and MB catalogues the bare title as one release group;
- * 2. among them, ALL whose credit (credited-as or canonical name) equals or contains the hint; with
- *    none, the single exact-title candidate (more than one = ambiguous);
+ * 2. among them, ALL whose credit equals the hint (see creditEqualsHint: equality of normalized names
+ *    on each credited artist, never containment). A hint that no credit equals gives "none": the work
+ *    is credited to someone else ("Prince" asked, "Prince Buster" credited). TRA-537 removed the old
+ *    fallback to the single exact-title candidate, which resolved exactly that case. Without a hint,
+ *    the single exact-title candidate wins (more than one = ambiguous);
  * 3. recordings carrying a non-empty `disambiguation` (live, DJ-mix, video...) are set aside; exactly
  *    one must remain. Release groups have no such note: the one with the strictly earliest
  *    first-release-date among the dated ones wins (a later EP or compilation of the same title does
@@ -976,19 +1014,11 @@ function pickByTitleAndCredit<
 	const wanted = normalizeTitleBody(title);
 	if (!wanted) return { kind: "none" };
 	const exact = candidates.filter((c) => normalizeTitleBody(c.title) === wanted);
-	const hint = artistHint ? normalizeSlugBody(artistHint) : "";
-	const credited = hint
-		? exact.filter((c) =>
-				(c["artist-credit"] ?? []).some((entry) =>
-					[entry.name, entry.artist?.name].some(
-						(n) => n !== undefined && containsWords(normalizeSlugBody(n), hint),
-					),
-				),
-			)
-		: [];
-	const pool = credited.length > 0 ? credited : exact;
+	const hint = artistHint ? creditKey(artistHint) : "";
+	// With a hint, only a candidate credited to that artist can be the work; without one the title alone decides.
+	const pool = hint ? exact.filter((c) => creditEqualsHint(c["artist-credit"] ?? [], hint)) : exact;
 	if (pool.length === 0) return { kind: "none" };
-	if (credited.length === 0 && pool.length > 1) return { kind: "ambiguous" };
+	if (!hint && pool.length > 1) return { kind: "ambiguous" };
 
 	if (kind === "recording") {
 		const plain = pool.filter((c) => (c.disambiguation ?? "").trim() === "");
