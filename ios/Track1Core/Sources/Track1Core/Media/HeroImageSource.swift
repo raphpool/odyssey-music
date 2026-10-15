@@ -10,9 +10,10 @@ public enum HeroCandidate: Equatable, Sendable {
 
 /// Which images a node page hero may use, and the fallback chain over them.
 ///
-/// Genres and labels have no image field and the edges carry no cover (D10, Q5), so their hero borrows the
-/// cover of a landmark release. For a genre the second step is `landmark_tracks[0]`: its `/image` answers with
-/// the cover of the track or of its project, which spares a `/node` read followed by a second `/image`.
+/// Every node kind carries its own `image_url` (TRA-455), so it always comes first. The edges carry no cover
+/// (D10, Q5): the fallback after it borrows the cover of a landmark release. For a genre the last step is
+/// `landmark_tracks[0]`: its `/image` answers with the cover of the track or of its project, which spares a
+/// `/node` read followed by a second `/image`.
 public enum HeroImageSource {
 	public static func candidates(for node: NodeDetail) -> [HeroCandidate] {
 		candidates(type: node.type, imageURL: node.imageURL, edges: node.edges)
@@ -33,8 +34,9 @@ public enum HeroImageSource {
 		case .artist: steps = [own, first(of: edges["discography"])]
 		case .project: steps = [own]
 		case .track: steps = [own, first(of: edges["project"])]
-		case .genre: steps = [first(of: edges["landmark_projects"]), first(of: edges["landmark_tracks"])]
-		case .label: steps = [first(of: edges["notable_releases"])]
+		case .genre:
+			steps = [own, first(of: edges["landmark_projects"]), first(of: edges["landmark_tracks"])]
+		case .label: steps = [own, first(of: edges["notable_releases"])]
 		}
 		return steps.compactMap { $0 }
 	}
