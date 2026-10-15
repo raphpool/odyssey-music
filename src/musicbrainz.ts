@@ -1284,22 +1284,51 @@ function sameArtistName(a: string, b: string): boolean {
 interface MbArtistSearchHit {
 	identity: MbArtistIdentity;
 	aliases: string[];
-	/** Words of MB's disambiguation, area, begin-area and country: what a node's hints are compared to. */
+	/**
+	 * Words of MB's disambiguation, area, begin-area, end-area and country: what a node's hints are
+	 * compared to when a lone candidate is accepted or refused. It can refuse; it never separates.
+	 */
 	context: Set<string>;
+	/**
+	 * Words of the areas MB types as anything but `Country` (a city, a subdivision, an island): the only
+	 * words that tell homonyms apart. Empty when MB gives no area or no type.
+	 */
+	places: Set<string>;
 }
 
 function textOf(value: unknown): string | null {
 	return isText(value) ? value : null;
 }
 
-/** Well-formed search hits; malformed entries are dropped one by one. The score is deliberately unused. */
-function parseArtistSearchHits(body: unknown): MbArtistSearchHit[] | null {
+/** MB area keys of an artist search hit: where it lives, where it began, where it ended. */
+const ARTIST_AREA_KEYS = ["area", "begin-area", "end-area"] as const;
+
+/** One page of an artist search: well-formed hits, the `count` MB reports, how many entries came. */
+interface ArtistSearchPage {
+	hits: MbArtistSearchHit[];
+	/** Every result MB holds for the query, of which a page returns at most `limit`. */
+	count: number;
+	/** Entries in the page, malformed or special-purpose ones included. */
+	received: number;
+}
+
+/**
+ * Well-formed search hits; malformed entries are dropped one by one. The score is deliberately unused.
+ * Null when the body is not a search answer at all, `count` included: without it a page cannot be known
+ * to be the whole pool.
+ */
+function parseArtistSearchHits(body: unknown): ArtistSearchPage | null {
 	if (!isRecord(body) || !Array.isArray(body.artists)) return null;
+	if (typeof body.count !== "number" || !Number.isInteger(body.count) || body.count < 0) return null;
 	const hits: MbArtistSearchHit[] = [];
 	for (const raw of body.artists) {
 		if (!isRecord(raw) || !isMbid(raw.id) || !isText(raw.name) || SPECIAL_PURPOSE_MBIDS.has(raw.id)) continue;
 		const disambiguation = textOf(raw.disambiguation);
-		const areaName = (key: string) => (isRecord(raw[key]) ? textOf(raw[key].name) : null);
+		const areas = ARTIST_AREA_KEYS.flatMap((key) => {
+			const area = raw[key];
+			const name = isRecord(area) ? textOf(area.name) : null;
+			return isRecord(area) && name !== null ? [{ name, type: textOf(area.type) }] : [];
+		});
 		const code = typeof raw.country === "string" ? COUNTRY_CODES[raw.country] : undefined;
 		const aliases = Array.isArray(raw.aliases)
 			? raw.aliases.flatMap((alias) => (isRecord(alias) && isText(alias.name) ? [alias.name] : []))
@@ -1310,17 +1339,23 @@ function parseArtistSearchHits(body: unknown): MbArtistSearchHit[] | null {
 				name: raw.name,
 				kind: artistKind(raw.type),
 				disambiguation,
-				area: areaName("area"),
+				area: isRecord(raw.area) ? textOf(raw.area.name) : null,
 			},
 			aliases,
 			context: new Set(
-				[disambiguation, areaName("area"), areaName("begin-area"), code ?? null].flatMap((text) =>
+				[disambiguation, ...areas.map((a) => a.name), code ?? null].flatMap((text) =>
 					text === null ? [] : contextWords(text),
+				),
+			),
+			// An area of unknown type is not a place: it might be a country MB left untyped.
+			places: new Set(
+				areas.flatMap((a) =>
+					a.type !== null && a.type.trim().toLowerCase() !== "country" ? contextWords(a.name) : [],
 				),
 			),
 		});
 	}
-	return hits;
+	return { hits, count: body.count, received: body.artists.length };
 }
 
 /** Words (>= 3 chars) of the hints, country-folded, minus filler, deduplicated. */
@@ -1329,44 +1364,52 @@ function hintWords(hints: readonly (string | undefined)[]): string[] {
 }
 
 /**
- * Tokens that name a country, once folded by {@link contextWords}: "gbr" / "usa" / "tur" and the
- * country each demonym folds to, plus the codes MB gives, plus countries MB areas and hints name but
- * that have no spelling variant to fold. Such a token says where an artist is from, never who.
+ * What the pool's candidates are chosen with. `words` are all the node's hint words (disambiguator and
+ * origin): they can only refuse a lone candidate. `origin` are the origin's words alone: the only ones
+ * that can separate homonyms, and only against {@link MbArtistSearchHit.places}.
  */
-const COUNTRY_TOKENS = new Set([
-	"gbr",
-	"usa",
-	"tur",
-	...Object.values(COUNTRY_WORDS),
-	...Object.values(COUNTRY_CODES),
-	...["mexico", "argentina", "chile", "colombia", "peru", "cuba", "india", "china", "korea", "taiwan"],
-	...["indonesia", "thailand", "vietnam", "philippines", "israel", "egypt", "nigeria", "ghana", "kenya"],
-	...["morocco", "algeria", "tunisia", "senegal", "mali", "ethiopia", "iceland", "switzerland", "austria"],
-	...["greece", "hungary", "romania", "bulgaria", "serbia", "croatia", "slovenia", "slovakia", "czechia"],
-	...["ukraine", "lithuania", "latvia", "estonia", "luxembourg", "zealand", "africa", "jamaica", "iran"],
-]);
+interface ArtistHints {
+	words: string[];
+	origin: string[];
+}
 
 /**
- * The one candidate MB means, or null. Several exact homonyms: the one sharing strictly more
- * non-country hint words (city, region, disambiguation words) with its MB context than every other,
- * and at least one. A country token alone never separates homonyms (2026-10-15, TRA-506: the real
- * "Aphex Twin" has no country in its MB context, the impostor "UK experimental electronic artist"
- * does, so "Cornwall, England" made the impostor win on "gbr" alone); it only counts for a sole
- * candidate, below. A single candidate is accepted unless the node has hints and MB has a context for
- * it and the two share no word: a different artist of the same name (post-punk "113" from Leeds vs
- * the French rap group). No hint, or no MB context, means nothing can contradict it.
+ * The one candidate MB means, with the hint words that decided it, or null.
+ *
+ * Several exact homonyms: the one whose places (areas MB does not type `Country`) share strictly more
+ * words with the node's origin than every other, and at least one. Neither a country, nor MB's
+ * disambiguation, nor the node's free-text disambiguator separates homonyms: the real "Aphex Twin" has
+ * no country in its MB context while the impostor "UK experimental electronic artist" has one and the
+ * word "electronic" (2026-10-15, TRA-506 and TRA-508 reviews: "Cornwall, England", then
+ * "electronic musician", made the impostor win). A country is whatever MB types `Country`, so no list of
+ * countries has to be kept (Kazakhstan, Georgia and Puerto Rico used to slip through one).
+ *
+ * A single candidate is accepted unless the node has hints and MB has a context for it and the two share
+ * no word: a different artist of the same name (post-punk "113" from Leeds vs the French rap group). No
+ * hint, or no MB context, means nothing can contradict it. When the pool is incomplete (MB holds more
+ * results than were read), a lone candidate proves nothing about the unread ones: it must also win the
+ * strict tiebreak, i.e. share a place with the node's origin.
  */
-function pickByHints(pool: MbArtistSearchHit[], words: string[]): MbArtistSearchHit | null {
-	const common = (hit: MbArtistSearchHit) => words.filter((w) => hit.context.has(w)).length;
+function pickByHints(
+	pool: MbArtistSearchHit[],
+	hints: ArtistHints,
+	complete: boolean,
+): { hit: MbArtistSearchHit; matched: string[] } | null {
+	const sharedPlaces = (hit: MbArtistSearchHit) => hints.origin.filter((w) => hit.places.has(w));
 	const [only] = pool;
-	if (pool.length === 1 && only)
-		return words.length > 0 && only.context.size > 0 && common(only) === 0 ? null : only;
-	const nonCountry = words.filter((w) => !COUNTRY_TOKENS.has(w));
-	const distinct = (hit: MbArtistSearchHit) => nonCountry.filter((w) => hit.context.has(w)).length;
-	const scored = pool.map((hit) => ({ hit, common: distinct(hit) })).sort((a, b) => b.common - a.common);
+	if (pool.length === 1 && only) {
+		const common = hints.words.filter((w) => only.context.has(w));
+		if (hints.words.length > 0 && only.context.size > 0 && common.length === 0) return null;
+		if (complete) return { hit: only, matched: common };
+		const places = sharedPlaces(only);
+		return places.length > 0 ? { hit: only, matched: places } : null;
+	}
+	const scored = pool
+		.map((hit) => ({ hit, shared: sharedPlaces(hit) }))
+		.sort((a, b) => b.shared.length - a.shared.length);
 	const [best, runnerUp] = scored;
-	if (!best || best.common === 0 || runnerUp?.common === best.common) return null;
-	return best.hit;
+	if (!best || best.shared.length === 0 || runnerUp?.shared.length === best.shared.length) return null;
+	return { hit: best.hit, matched: best.shared };
 }
 
 export interface MbArtistResolution {
@@ -1377,6 +1420,45 @@ export interface MbArtistResolution {
 	path: "name" | "alias" | null;
 	/** True when a search got no usable answer, which says nothing about the artist. */
 	unavailable: boolean;
+	/**
+	 * The hint words that chose the artist, for audit: the places shared with the node's origin when
+	 * homonyms were told apart, else the hint words shared with MB's context. Empty when nothing was
+	 * chosen, or when the node gave no hint.
+	 */
+	matchedWords: string[];
+}
+
+/** MB's page size for a search, and the offset past which it answers HTTP 400. */
+const MB_SEARCH_PAGE = 100;
+const MB_SEARCH_MAX_OFFSET = 500;
+
+/**
+ * The hits of an artist search, paged until MB's `count` is read or its offset cap (500 results) is
+ * reached: at most 5 requests. `complete` is false when MB holds more results than were read. Null when
+ * any page got no usable answer: a pool missing a page would pass for a smaller one.
+ */
+async function searchArtistPool(
+	field: "artist" | "alias",
+	phrase: string,
+): Promise<{ hits: MbArtistSearchHit[]; complete: boolean } | null> {
+	const hits: MbArtistSearchHit[] = [];
+	let received = 0;
+	let count = 0;
+	for (let offset = 0; offset < MB_SEARCH_MAX_OFFSET; offset += MB_SEARCH_PAGE) {
+		const page = parseArtistSearchHits(
+			await mbFetch<unknown>("/artist", {
+				query: `${field}:"${phrase}"`,
+				limit: String(MB_SEARCH_PAGE),
+				offset: String(offset),
+			}),
+		);
+		if (!page) return null;
+		if (offset === 0) count = page.count;
+		hits.push(...page.hits);
+		received += page.received;
+		if (received >= count || page.received < MB_SEARCH_PAGE) break;
+	}
+	return { hits, complete: received >= count };
 }
 
 /**
@@ -1385,7 +1467,8 @@ export interface MbArtistResolution {
  * node (2026-10-15, TRA-463 review: Leeds post-punk "113" became the French rap group, DJ "Jaguar"
  * became a heavy metal band). So:
  * 1. the pool is every returned artist whose canonical name equals the requested one, whatever its
- *    search score (MB scores "Earth", the right one, at 89) and however it ranks;
+ *    search score (MB scores "Earth", the right one, at 89) and however it ranks. The search is paged
+ *    ({@link searchArtistPool}): 25 results hid every homonym of "Guy" but one (2026-10-15, TRA-508);
  * 2. only when no canonical name matches, a second `alias:` search is made (the `artist:` field does
  *    not index aliases: "Ryuichi Sakamoto" never finds 坂本龍一) and artists carrying the name as an
  *    alias form the pool;
@@ -1395,24 +1478,40 @@ export async function resolveArtistDetailed(
 	name: string,
 	hints: { disambiguator?: string; origin?: string } = {},
 ): Promise<MbArtistResolution> {
-	const none: MbArtistResolution = { artist: null, candidates: 0, path: null, unavailable: false };
+	const none: MbArtistResolution = {
+		artist: null,
+		candidates: 0,
+		path: null,
+		unavailable: false,
+		matchedWords: [],
+	};
 	const phrase = lucenePhrase(name);
 	if (!phrase) return none;
-	const search = async (field: "artist" | "alias") =>
-		parseArtistSearchHits(await mbFetch<unknown>("/artist", { query: `${field}:"${phrase}"`, limit: "25" }));
-	const hits = await search("artist");
-	if (!hits) return { ...none, unavailable: true };
+	const found = await searchArtistPool("artist", phrase);
+	if (!found) return { ...none, unavailable: true };
 	let path: "name" | "alias" = "name";
-	let pool = hits.filter((h) => sameArtistName(h.identity.name, name));
+	let complete = found.complete;
+	let pool = found.hits.filter((h) => sameArtistName(h.identity.name, name));
 	if (pool.length === 0) {
-		const aliasHits = await search("alias");
-		if (!aliasHits) return { ...none, unavailable: true };
+		const aliasFound = await searchArtistPool("alias", phrase);
+		if (!aliasFound) return { ...none, unavailable: true };
 		path = "alias";
-		pool = aliasHits.filter((h) => h.aliases.some((alias) => sameArtistName(alias, name)));
+		complete = aliasFound.complete;
+		pool = aliasFound.hits.filter((h) => h.aliases.some((alias) => sameArtistName(alias, name)));
 	}
 	if (pool.length === 0) return none;
-	const winner = pickByHints(pool, hintWords([hints.disambiguator, hints.origin]));
-	return { artist: winner?.identity ?? null, candidates: pool.length, path, unavailable: false };
+	const picked = pickByHints(
+		pool,
+		{ words: hintWords([hints.disambiguator, hints.origin]), origin: hintWords([hints.origin]) },
+		complete,
+	);
+	return {
+		artist: picked?.hit.identity ?? null,
+		candidates: pool.length,
+		path,
+		unavailable: false,
+		matchedWords: picked?.matched ?? [],
+	};
 }
 
 export async function resolveArtist(

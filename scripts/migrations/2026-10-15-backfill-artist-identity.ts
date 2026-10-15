@@ -1,9 +1,10 @@
 /**
  * Artist identity backfill (TRA-463, plan docs/plans/graph-integrity.md, part 1): give every artist
  * node the MusicBrainz identity it lacks. For each artist, resolve it to one MB artist (exact
- * canonical name, homonyms separated by the node's own `disambiguator` / `origin` hints, a candidate
- * whose MB context contradicts those hints refused, anything else left unresolved: safety over
- * resolution rate, an unresolved artist keeps its slug and gets no MBID), then write `mbid` and `artist_kind` on the node and record the bands the
+ * canonical name read over the whole pool MB holds, homonyms separated only by a place shared with
+ * the node's `origin`, a lone candidate whose MB context contradicts the node's hints refused, anything
+ * else left unresolved: safety over resolution rate, an unresolved artist keeps its slug and gets no
+ * MBID), then write `mbid` and `artist_kind` on the node and record the bands the
  * artist belongs to in a manifest. Nothing is renamed, merged or re-slugged here (that is 1.12), no
  * LLM is involved, and a node's slug never derives from an MB name (MB names can be in their
  * original script).
@@ -16,9 +17,10 @@
  * Writes go through atomicWriteJson after nodePayloadSchema validation, never NodeCache.write, which
  * would also emit pending reverse edges this migration has no business creating.
  *
- * Pace: MusicBrainz allows one request per second (mbFetch enforces it), and an artist costs up to
- * three requests (search, alias search when no canonical name matched, profile with bands): 581
- * artists take about half an hour.
+ * Pace: MusicBrainz allows one request per second (mbFetch enforces it), and an artist costs about
+ * three requests (search, alias search when no canonical name matched, profile with bands), more when a
+ * search has hundreds of results (a search is read in pages of 100, 5 at most): 581 artists take about
+ * a quarter of an hour.
  *
  * Usage: tsx scripts/migrations/2026-10-15-backfill-artist-identity.ts <cache-dir> [--apply]
  *        [--manifest out/artist-identity.json] [--limit N] [--resume]
@@ -69,8 +71,17 @@ export interface ResolvedArtist {
 	disambiguation: string | null;
 	area: string | null;
 	path: ResolutionPath;
-	/** Other artists with exactly this name that were passed over (0 for a sole candidate). */
+	/**
+	 * Other artists with exactly this name that were passed over (0 for a sole candidate), counted over
+	 * the whole pool MB holds (up to its 500-result cap), not over a first page.
+	 */
 	homonyms_discarded: number;
+	/**
+	 * The hint words that decided: the places shared with the node's `origin` when homonyms were told
+	 * apart, else the hint words shared with MB's context for a sole candidate. Empty without a hint
+	 * (and for `stored-mbid`), so TRA-483 can audit why each homonym was chosen.
+	 */
+	matched_words: string[];
 }
 
 export interface IdentityManifest {
@@ -111,7 +122,11 @@ function isResolvedArtist(value: unknown): value is ResolvedArtist {
 		(value.disambiguation === null || typeof value.disambiguation === "string") &&
 		(value.area === null || typeof value.area === "string") &&
 		(value.path === "name" || value.path === "alias" || value.path === "stored-mbid") &&
-		typeof value.homonyms_discarded === "number"
+		typeof value.homonyms_discarded === "number" &&
+		// A manifest from before TRA-508 has no matched_words: its identities were chosen by looser rules
+		// and cannot be audited, so --resume does not reuse them.
+		Array.isArray(value.matched_words) &&
+		value.matched_words.every((w: unknown) => typeof w === "string")
 	);
 }
 
@@ -240,7 +255,8 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 	);
 	log(
 		`${artists.length} artists, ${artists.length - pending.length} reused from the manifest, ${toQuery} to ` +
-			`query: up to ${toQuery * CALLS_PER_ARTIST} MusicBrainz requests, about ${Math.ceil(seconds / 60)} min ` +
+			`query: about ${toQuery * CALLS_PER_ARTIST} MusicBrainz requests (a name with many same-name entries costs up to ` +
+			`5 pages per search), about ${Math.ceil(seconds / 60)} min ` +
 			`at one request per ${musicBrainzConfig.minIntervalMs} ms${apply ? "" : " (dry-run)"}`,
 	);
 
@@ -264,6 +280,7 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 			let requested: string;
 			let path: ResolutionPath = "stored-mbid";
 			let homonymsDiscarded = 0;
+			let matchedWords: string[] = [];
 			if (stored !== undefined) {
 				if (typeof stored !== "string" || !MBID_RE.test(stored)) {
 					failed.push({ slug, reason: `stored mbid is not a UUID: ${String(stored)}` });
@@ -288,6 +305,7 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				requested = found.artist.mbid;
 				path = found.path;
 				homonymsDiscarded = found.candidates - 1;
+				matchedWords = found.matchedWords;
 			}
 			// One request for kind and bands: a failed answer is a failure, never "no bands" (a 502 on the
 			// relations once stored groups: [] for good, because --resume trusts what the manifest says).
@@ -306,6 +324,7 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				area: profile.area,
 				path,
 				homonyms_discarded: homonymsDiscarded,
+				matched_words: matchedWords,
 			};
 			resolved[slug] = entry;
 		}
