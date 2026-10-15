@@ -92,7 +92,7 @@ struct SubgenresStepView: View {
 		}
 		.safeAreaInset(edge: .bottom, spacing: 0) {
 			Self.actionBar(
-				title: ctaTitle, counter: OnboardingCopy.counter(model.selectedSubgenreCount),
+				title: ctaTitle, counter: OnboardingCopy.counter(model.countedGenreCount),
 				onContinue: onContinue
 			)
 			.background { BarTopReader(space: Space.viewport) }

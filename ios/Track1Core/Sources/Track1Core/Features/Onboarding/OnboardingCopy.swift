@@ -17,12 +17,14 @@ public enum OnboardingCopy {
 	public static let wholeFamilyHint = "Sans sous-genre coché, toute la famille compte."
 
 	/// "2 familles · 5 sous-genres", the count the settings show for a saved selection. Same French rule as
-	/// `counter`: 0 and 1 are singular. The genre part counts the ticked genres, so a family left whole adds
-	/// none ("1 famille · 0 sous-genre"). A negative count reads as 0.
+	/// `counter`: 0 and 1 are singular. The genre part counts the ticked genres and is left out when there is
+	/// none, since a family left whole counts for all of its genres: "1 famille", "2 familles". A negative
+	/// count reads as 0.
 	public static func selectionSummary(families: Int, genres: Int) -> String {
 		let familyCount = max(families, 0)
 		let genreCount = max(genres, 0)
-		return "\(familyCount) \(familyCount <= 1 ? "famille" : "familles")"
-			+ " · \(genreCount) \(genreCount <= 1 ? "sous-genre" : "sous-genres")"
+		let familyPart = "\(familyCount) \(familyCount <= 1 ? "famille" : "familles")"
+		guard genreCount > 0 else { return familyPart }
+		return "\(familyPart) · \(genreCount) \(genreCount <= 1 ? "sous-genre" : "sous-genres")"
 	}
 }

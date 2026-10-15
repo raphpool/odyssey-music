@@ -77,6 +77,17 @@ public final class GenreOnboardingModel {
 
 	public var selectedSubgenreCount: Int { selectedGenres.count }
 
+	/// The genres that weigh in the profile, which is what the "Total" counter shows: per selected family,
+	/// the genres ticked in it, or all its visible genres when none is (a family alone is the whole family,
+	/// plan Q1).
+	public var countedGenreCount: Int {
+		selectedFamilies.reduce(0) { total, family in
+			let all = taxonomy.genres(of: family)
+			let ticked = all.filter { selectedGenres.contains($0.id) }.count
+			return total + (ticked == 0 ? all.count : ticked)
+		}
+	}
+
 	/// Unticking a family also removes the genres ticked in it. A key the taxonomy does not show is ignored.
 	public func toggleFamily(_ key: String) {
 		if let index = selectedFamilies.firstIndex(of: key) {

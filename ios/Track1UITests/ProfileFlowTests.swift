@@ -94,7 +94,8 @@ final class ProfileFlowTests: XCTestCase {
 		XCTAssertTrue(app.descendants(matching: .any)["subgenre-row-local:genre-0a"].waitForExistence(timeout: 10))
 		XCTAssertTrue(app.buttons["Tous"].isSelected)
 		let counter = app.descendants(matching: .any)["bottom-counter"]
-		XCTAssertEqual(counter.label, "Total : 1 genre")
+		// Family 0 has one genre, ticked by "Tous"; family 1 has none ticked, so its only genre counts whole.
+		XCTAssertEqual(counter.label, "Total : 2 genres")
 	}
 
 	@MainActor
@@ -155,8 +156,8 @@ final class ProfileFlowTests: XCTestCase {
 		XCTAssertTrue(app.tabBars.buttons["Genres"].waitForExistence(timeout: 10))
 		app.tabBars.buttons["Genres"].tap()
 		_ = openSettings(in: app)
-		// A family left whole has no ticked genre: the count says so.
-		XCTAssertEqual(app.buttons["profile-settings-edit"].value as? String, "1 famille · 0 sous-genre")
+		// A family left whole has no ticked genre: only the family is counted.
+		XCTAssertEqual(app.buttons["profile-settings-edit"].value as? String, "1 famille")
 	}
 
 	@MainActor
