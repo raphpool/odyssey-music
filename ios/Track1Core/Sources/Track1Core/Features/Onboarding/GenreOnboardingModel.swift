@@ -2,9 +2,8 @@ import Foundation
 import Observation
 
 /// Selection state of the editorial onboarding flow: families first (tiles), then one genre step per chosen
-/// family (rows). It sits next to `OnboardingFlowModel` and has the same API shape, but it reasons on the
-/// editorial taxonomy: families are keyed by `String`, genres by taxonomy id, never by `NodeIdentity` (plan
-/// D3). Nothing is persisted until the caller saves the `ProfileDraft`; going back never loses a choice.
+/// family (rows). It reasons on the editorial taxonomy: families are keyed by `String`, genres by taxonomy
+/// id, never by `NodeIdentity` (plan D3). Nothing is persisted until the caller saves the `ProfileDraft`; going back never loses a choice.
 @MainActor
 @Observable
 public final class GenreOnboardingModel {
