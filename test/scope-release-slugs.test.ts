@@ -115,7 +115,7 @@ async function tree(dir: string): Promise<Record<string, string>> {
 	return out;
 }
 
-const run = (apply: boolean, extra: { manifestPath?: string } = {}) =>
+const run = (apply: boolean, extra: { manifestPath?: string; beforeWrite?: (index: number) => void } = {}) =>
 	runMigration({ cacheDir, apply, redirectsPath, artistManifestPath, scratch: true, ...extra });
 
 const edgeSlugs = (n: Obj, field: string): unknown[] => ((n[field] as Obj[]) ?? []).map((e) => e.slug);
@@ -559,6 +559,178 @@ describe("scope-release-slugs migration", () => {
 			expect(exitCode).toBe(1);
 			expect(manifest.errors.join()).toContain("alter fields");
 			expect(await tree(cacheDir)).toEqual(before);
+		});
+	});
+
+	describe("edge folding (only collisions this run creates)", () => {
+		const bugz = [
+			ref("project:booty-la-la", "Booty La La (Loefah remix)", { mbid: MBID_A, year: "2010" }),
+			ref("project:booty-la-la", "Booty La La", { mbid: MBID_B, year: "2005" }),
+			ref("project:booty-la-la", "Booty La La (Draw the Line remix)", { mbid: MBID_RONI, year: "2005" }),
+		];
+
+		it("leaves a node that holds duplicates of its own byte for byte, whatever else is migrated", async () => {
+			await seed([
+				node("artist:bugz-in-the-attic", "Bugz in the Attic", { discography: bugz }),
+				node("track:fitna", "Fitna", { artists: credit("artist:akuma", "Akuma") }),
+			]);
+			const before = await readFile(nodePath("artist:bugz-in-the-attic"), "utf8");
+			const { manifest, exitCode } = await run(true);
+			expect(exitCode).toBe(0);
+			expect(await readFile(nodePath("artist:bugz-in-the-attic"), "utf8")).toBe(before);
+			expect(manifest.folded).toEqual([]);
+			expect(manifest.summary.nodes_to_write).toBe(1);
+		});
+
+		it("keeps both edges and reports a conflict when a rename makes two mbids collide", async () => {
+			await seed([
+				node("project:ep", "EP", { artists: credit("artist:a", "A") }),
+				node("artist:a", "A", {
+					discography: [
+						ref("project:ep", "EP", { mbid: MBID_A }),
+						ref("project:ep--a", "EP", { mbid: MBID_B }),
+					],
+				}),
+			]);
+			const { manifest, exitCode } = await run(true);
+			expect(exitCode).toBe(0);
+			expect(manifest.folded).toEqual([]);
+			expect(manifest.conflicts).toMatchObject([
+				{ kind: "edge-mbid", slugs: ["artist:a.discography", "project:ep--a"] },
+			]);
+			expect(((await read("artist:a")).discography as Obj[]).map((e) => e.mbid)).toEqual([MBID_A, MBID_B]);
+		});
+
+		it("folds a collision the run created into the most informative edge, and records it", async () => {
+			await seed([
+				node("project:ep", "EP", { artists: credit("artist:a", "A") }),
+				node("artist:a", "A", {
+					discography: [
+						ref("project:ep", "EP", { mbid: MBID_A }),
+						ref("project:ep--a", "EP", { year: "2020", releaseType: "ep" }),
+						ref("project:other", "Other"),
+					],
+				}),
+			]);
+			const { manifest } = await run(true);
+			const folded = ((await read("artist:a")).discography as Obj[]).map((e) => e.slug);
+			expect(folded).toEqual(["project:ep--a", "project:other"]);
+			expect(((await read("artist:a")).discography as Obj[])[0]).toMatchObject({
+				mbid: MBID_A,
+				year: "2020",
+				releaseType: "ep",
+			});
+			expect(manifest.folded).toHaveLength(1);
+			expect(manifest.folded[0]).toMatchObject({ node: "artist:a", field: "discography" });
+			expect(manifest.folded[0]?.before).toHaveLength(2);
+		});
+	});
+
+	describe("inputs and malformed files", () => {
+		it("lists an unreadable node file and carries on", async () => {
+			await seed([node("track:fitna", "Fitna", { artists: credit("artist:akuma", "Akuma") })]);
+			await mkdir(join(cacheDir, "nodes", "artist"), { recursive: true });
+			await writeFile(join(cacheDir, "nodes", "artist", "broken.json"), "{ not json");
+			const { manifest, exitCode } = await run(true);
+			expect(exitCode).toBe(0);
+			expect(manifest.malformed).toHaveLength(1);
+			expect(manifest.malformed[0]?.reason).toContain("unreadable");
+			expect(await exists("track:fitna--akuma")).toBe(true);
+		});
+
+		it("keeps a node with a non-canonical edge slug as it is when nothing in it needs rewriting", async () => {
+			await seed([
+				node("artist:odd", "Odd", { discography: [{ slug: "album:??", type: "project", name: "Bad" }] }),
+				node("track:fitna", "Fitna", { artists: credit("artist:akuma", "Akuma") }),
+			]);
+			const before = await readFile(nodePath("artist:odd"), "utf8");
+			const { exitCode } = await run(true);
+			expect(exitCode).toBe(0);
+			expect(await readFile(nodePath("artist:odd"), "utf8")).toBe(before);
+		});
+
+		it("exits 2 before any write on an invalid pending-reverses.json or artist manifest", async () => {
+			await seed([node("track:fitna", "Fitna", { artists: credit("artist:akuma", "Akuma") })], {
+				"artist:x": "oops",
+			});
+			const before = await tree(root);
+			const badPending = await run(true);
+			expect(badPending.exitCode).toBe(2);
+			expect(badPending.manifest.errors.join()).toContain("pending-reverses.json");
+			await writeFile(join(cacheDir, "pending-reverses.json"), "{}");
+			await seedIdentities({ resolved: { "artist:x": { mbid: MBID_A, groups: ["not-an-object"] } } });
+			const afterManifest = await tree(root);
+			const badManifest = await run(true);
+			expect(badManifest.exitCode).toBe(2);
+			expect(badManifest.manifest.errors.join()).toContain("invalid artist manifest");
+			expect(await tree(root)).toEqual(afterManifest);
+			expect(Object.keys(before).length).toBeGreaterThan(0);
+		});
+	});
+
+	describe("crash safety", () => {
+		const seedCrashFixture = async (): Promise<void> => {
+			const jan = credit("artist:jan-jelinek", "Jan Jelinek");
+			await seed(
+				[
+					node("track:fitna", "Fitna", { artists: credit("artist:akuma", "Akuma") }),
+					node("artist:akuma", "Akuma", { notable_tracks: [ref("track:fitna", "Fitna")] }),
+					node("artist:rohff", "Rohff", { notable_tracks: [ref("track:fitna", "Fitna")] }),
+					node("track:moire--by-jan-jelinek", "Moire", { artists: jan }),
+					node("track:moire--other-by-jan-jelinek", "Moire", {
+						artists: jan,
+						citations: [{ url: "https://example.com/a" }, { url: "https://example.com/b" }],
+					}),
+					node("artist:jan-jelinek", "Jan Jelinek", {
+						notable_tracks: [
+							ref("track:moire--by-jan-jelinek", "Moire"),
+							ref("track:moire--other-by-jan-jelinek", "Moire"),
+						],
+					}),
+					node("artist:laetitia-sadier", "Laetitia Sadier"),
+					node("artist:stereolab", "Stereolab", {
+						members: [ref("artist:l-titia-sadier", "Lætitia Sadier")],
+					}),
+				],
+				{
+					"artist:l-titia-sadier": [
+						{ field: "members", cardinality: "list", edge: ref("artist:stereolab", "Stereolab") },
+					],
+				},
+			);
+		};
+
+		const snapshot = async (): Promise<Record<string, string>> => ({
+			...(await tree(cacheDir)),
+			redirects: JSON.stringify(
+				JSON.parse(await readFile(redirectsPath, "utf8").catch(() => '{"redirects":{}}')).redirects,
+			),
+		});
+
+		it("converges to the same cache when a crash after any write is followed by a new run", async () => {
+			await seedCrashFixture();
+			let total = 0;
+			const clean = await run(true, { beforeWrite: () => total++ });
+			expect(clean.exitCode).toBe(0);
+			expect(total).toBeGreaterThan(5);
+			const expected = await snapshot();
+
+			for (let crashAt = 0; crashAt < total; crashAt++) {
+				await rm(cacheDir, { recursive: true, force: true });
+				await rm(redirectsPath, { force: true });
+				await mkdir(join(cacheDir, "nodes"), { recursive: true });
+				await seedCrashFixture();
+				await expect(
+					run(true, {
+						beforeWrite: (i) => {
+							if (i === crashAt) throw new Error("simulated crash");
+						},
+					}),
+				).rejects.toThrow("simulated crash");
+				const retry = await run(true);
+				expect(retry.exitCode, `crash at write ${crashAt}`).toBe(0);
+				expect(await snapshot(), `crash at write ${crashAt}`).toEqual(expected);
+			}
 		});
 	});
 

@@ -28,9 +28,14 @@
  * existing node. A migration also rewrites many nodes in one plan, validated as a whole before the
  * first write, which a per-node read-modify-write does not give.
  *
- * Apply order (crash-safe, like TRA-22/41): new node files -> rewritten nodes -> pending-reverses.json
- * -> redirects -> `rm` of the old files last. The real run is TRA-483 (repo) and TRA-484 (prod, through
- * the migration channel of deploy/sync-genre-cache.sh, which reads the manifest written here).
+ * Apply order (crash-safe): new node files -> redirects -> nodes whose edges changed -> pending-reverses.json
+ * -> `rm` of the old files last. A crash at any point leaves no edge to a node that is gone (the old
+ * nodes are still there, or the edges were never moved), and a plain re-run converges to the same cache
+ * (tested at every write): a surviving old node merges into its new slug. Edges are never de-duplicated
+ * wholesale: only a collision this run creates is folded (same mbid, or none) or reported (different
+ * mbids, all kept); duplicates already in a list are left alone (another ticket). The real run is TRA-483
+ * (repo) and TRA-484 (prod, through the migration channel of deploy/sync-genre-cache.sh, which reads the
+ * manifest written here).
  *
  * Usage: ODYSSEY_SCOPED_RELEASE_SLUGS=1 tsx scripts/migrations/2026-10-16-scope-release-slugs.ts <cache-dir>
  *        [--apply] [--manifest out/scope-release-slugs.json] [--artist-manifest out/artist-identity.json]
@@ -39,6 +44,7 @@
 import { mkdir, readFile, rm } from "node:fs/promises";
 import { dirname, join, relative } from "node:path";
 import { pathToFileURL } from "node:url";
+import { z } from "zod";
 import { atomicWriteJson, type PendingReverse } from "../../src/cache.js";
 import { scopedReleaseSlugsEnabled } from "../../src/flags.js";
 import { parseSlugRedirects } from "../../src/genre-registry.js";
@@ -62,9 +68,7 @@ import {
 	mergeRedirects,
 	readCacheNodes,
 	readTextOrDefault,
-	rewriteNodeEdges,
 	rewritePendingReverses,
-	unionListField,
 	unionSingularField,
 	warnSkippedNodeFiles,
 } from "./2026-09-04-merge-genre-duplicates.js";
@@ -102,8 +106,14 @@ export interface MergeEntry {
 	losers: string[];
 	criterion: string;
 }
+export interface FoldedEdge {
+	node: string;
+	field: string;
+	before: Obj[];
+	after: Obj;
+}
 export interface Conflict {
-	kind: "merge" | "chain" | "transliteration";
+	kind: "merge" | "chain" | "transliteration" | "edge-mbid";
 	slugs: string[];
 	reason: string;
 }
@@ -125,6 +135,10 @@ export interface Manifest {
 	merged: MergeEntry[];
 	skipped: Reported[];
 	not_derivable: Reported[];
+	/** Unreadable node files and nodes kept as they are because they would not validate. */
+	malformed: Reported[];
+	/** Edges folded because THIS run made them collide (never a duplicate that was already there). */
+	folded: FoldedEdge[];
 	conflicts: Conflict[];
 	rewritten: RewrittenEdge[];
 	self_edges_removed: { node: string; field: string }[];
@@ -201,16 +215,129 @@ export function elect(
 	return { winner: first.file, criterion: second ? compare(first, second)[1] : "single" };
 }
 
-/** Winner content under `slug`; edge lists unioned by slug, singulars from the winner, mbid from whoever has it. */
-export function mergeNodes(winner: CacheNodeFile, losers: readonly CacheNodeFile[], slug: string): Obj {
+/** Informative = more filled keys, an mbid counting most (it is what the JIT click sends back). */
+function informativeness(edge: Obj): number {
+	return Object.values(edge).filter((v) => v !== undefined && v !== "").length + (str(edge.mbid) ? 10 : 0);
+}
+
+/** One edge out of colliding ones: the most informative, completed with keys only others have. Null if their mbids differ. */
+export function foldEdges(edges: readonly Obj[]): Obj | null {
+	if (sortedUnique(edges.flatMap((e) => str(e.mbid) ?? [])).length > 1) return null;
+	const [best, ...others] = [...edges].sort((a, b) => informativeness(b) - informativeness(a));
+	const out: Obj = { ...best };
+	for (const other of others)
+		for (const [k, v] of Object.entries(other)) if (out[k] === undefined) out[k] = v;
+	return out;
+}
+
+/**
+ * Rewrites the edges of `node` through `map` (old slug -> new slug) and drops self-edges. Unlike
+ * rewriteNodeEdges it never de-duplicates by slug on its own: three edges with one slug and three
+ * mbids ("Booty La La" and its remixes) are three works, and a duplicate that was already there is not
+ * this migration's to remove. Only a collision CREATED by a rewrite is folded (foldEdges), and two
+ * mbids that disagree are kept side by side and reported.
+ */
+export function rewriteEdges(
+	node: Obj,
+	type: NodeType,
+	map: Readonly<Record<string, string>>,
+	ownSlug: string,
+): { node: Obj; hits: Map<string, number>; folded: FoldedEdge[]; conflicts: Conflict[] } {
+	const hits = new Map<string, number>();
+	const folded: FoldedEdge[] = [];
+	const conflicts: Conflict[] = [];
+	const next: Obj = { ...node };
+	const move = (
+		edge: unknown,
+	): { orig: unknown; edge: unknown; slug: string | undefined; moved: boolean } => {
+		const slug = isRecord(edge) ? str(edge.slug) : undefined;
+		const to = slug ? map[slug] : undefined;
+		if (slug && to) hits.set(slug, (hits.get(slug) ?? 0) + 1);
+		return {
+			orig: edge,
+			edge: to && isRecord(edge) ? { ...edge, slug: to } : edge,
+			slug: to ?? slug,
+			moved: to !== undefined,
+		};
+	};
+	for (const field of LIST_EDGES_BY_TYPE[type]) {
+		const list = node[field];
+		if (!Array.isArray(list)) continue;
+		const kept = list.map(move).filter((e) => e.slug !== ownSlug);
+		const groups = new Map<string, typeof kept>();
+		for (const e of kept) if (e.slug) groups.set(e.slug, [...(groups.get(e.slug) ?? []), e]);
+		const out: unknown[] = [];
+		const done = new Set<string>();
+		for (const e of kept) {
+			const group = e.slug ? groups.get(e.slug) : undefined;
+			if (!e.slug || !group || group.length < 2 || !group.some((g) => g.moved)) {
+				out.push(e.edge);
+				continue;
+			}
+			const one = foldEdges(group.map((g) => g.edge as Obj));
+			if (one === null) {
+				out.push(e.edge);
+				if (!done.has(e.slug)) {
+					const mbids = sortedUnique(group.flatMap((g) => str((g.edge as Obj).mbid) ?? []));
+					conflicts.push({
+						kind: "edge-mbid",
+						slugs: [`${ownSlug}.${field}`, e.slug],
+						reason: `edges collide on ${e.slug} with different mbids (${mbids.join(", ")}): all kept`,
+					});
+				}
+			} else if (!done.has(e.slug)) {
+				out.push(one);
+				folded.push({ node: ownSlug, field, before: group.map((g) => g.orig as Obj), after: one });
+			}
+			done.add(e.slug);
+		}
+		next[field] = out;
+	}
+	for (const field of SINGULAR_EDGES_BY_TYPE[type]) {
+		if (!isRecord(node[field])) continue;
+		const e = move(node[field]);
+		next[field] = e.slug === ownSlug ? undefined : e.edge;
+	}
+	return { node: next, hits, folded, conflicts };
+}
+
+/**
+ * Winner content under `slug`. The winner's lists stay as they are; a loser's edge is added when its slug
+ * is not there yet, or when it carries another mbid than the one there (two works, both kept and reported
+ * through `onConflict`). Singulars from the winner, mbid from whoever has it.
+ */
+export function mergeNodes(
+	winner: CacheNodeFile,
+	losers: readonly CacheNodeFile[],
+	slug: string,
+	onConflict: (field: string, edgeSlug: string) => void = () => {},
+): Obj {
 	const out: Obj = { ...winner.node, slug };
 	for (const field of LIST_EDGES_BY_TYPE[winner.type]) {
-		const lists = [winner, ...losers].map((f) => f.node[field]);
-		if (lists.every((l) => l === undefined)) continue;
-		out[field] = unionListField(
-			edgeList(winner.node[field]),
-			losers.map((l) => edgeList(l.node[field])),
-		);
+		if ([winner, ...losers].every((f) => f.node[field] === undefined)) continue;
+		const list = edgeList(winner.node[field]);
+		const have = new Set(list.map((e) => str(e.slug)));
+		for (const loser of losers) {
+			const added = new Set<string>();
+			for (const edge of edgeList(loser.node[field])) {
+				const edgeSlug = str(edge.slug);
+				if (edgeSlug === undefined || !have.has(edgeSlug)) {
+					list.push(edge);
+					if (edgeSlug !== undefined) added.add(edgeSlug);
+					continue;
+				}
+				const mbid = str(edge.mbid);
+				const clash =
+					mbid !== undefined &&
+					!list.some((e) => e.slug === edgeSlug && (str(e.mbid) === mbid || !str(e.mbid)));
+				if (clash) {
+					list.push(edge);
+					onConflict(field, edgeSlug);
+				}
+			}
+			for (const a of added) have.add(a);
+		}
+		out[field] = list;
 	}
 	for (const field of SINGULAR_EDGES_BY_TYPE[winner.type]) {
 		const value = unionSingularField(
@@ -460,7 +587,6 @@ export function planMigration(input: PlanInput): Plan {
 		errors.push(`redirect table would be invalid: ${e instanceof Error ? e.message : String(e)}`);
 	}
 	const resolve = (slug: string): string => rewriteMap[slug] ?? slug;
-	const rewriteEntries = new Map(Object.entries(rewriteMap));
 
 	// 6. Merged / renamed nodes, before any edge is rewritten.
 	const finals = new Map<string, Obj>();
@@ -484,7 +610,16 @@ export function planMigration(input: PlanInput): Plan {
 		}
 		const { winner, criterion } = elect(members, preferBare(members));
 		const losers = members.filter((m) => m !== winner);
-		finals.set(fin, mergeNodes(winner, losers, fin));
+		finals.set(
+			fin,
+			mergeNodes(winner, losers, fin, (field, edgeSlug) =>
+				conflicts.push({
+					kind: "edge-mbid",
+					slugs: [`${fin}.${field}`, edgeSlug],
+					reason: `merged nodes hold ${edgeSlug} with different mbids: both kept`,
+				}),
+			),
+		);
 		fresh.add(fin);
 		merged.push({
 			slug: fin,
@@ -503,6 +638,8 @@ export function planMigration(input: PlanInput): Plan {
 	// 7. Edge rewriting, with the credit condition on the artist -> work edges.
 	const detached: DetachedEdge[] = [];
 	const rewritten: RewrittenEdge[] = [];
+	const folded: FoldedEdge[] = [];
+	const malformed: Reported[] = [];
 	const selfEdges: { node: string; field: string }[] = [];
 	const credited = (
 		source: { slug: string; mbids: Set<string>; groups: Set<string>; names: Set<string> },
@@ -567,7 +704,9 @@ export function planMigration(input: PlanInput): Plan {
 			}
 			node = next;
 		}
-		const out = rewriteNodeEdges(node, type, rewriteEntries);
+		const out = rewriteEdges(node, type, rewriteMap, fin);
+		folded.push(...out.folded);
+		conflicts.push(...out.conflicts);
 		for (const [from, count] of [...out.hits].sort(([a], [b]) => (a < b ? -1 : 1))) {
 			rewritten.push({ node: fin, from, to: rewriteMap[from] ?? from, count });
 		}
@@ -578,11 +717,17 @@ export function planMigration(input: PlanInput): Plan {
 	// exists (the benign collision `artist:l-titia-sadier` -> `artist:laetitia-sadier`) is applied to it
 	// now and dropped: the pending edge would otherwise wait for a write that never comes, and the
 	// forward edge the rename just attached to a real node would have no reverse (audit reciprocity).
-	const pending = rewritePendingReverses(input.pending, rewriteEntries);
+	// A key already redirected by an earlier (interrupted) run is moved too: after a crash the edges no
+	// longer name the old slug, so the rename could not be deduced again from them.
+	const pendingMap: Record<string, string> = {
+		...Object.fromEntries(Object.entries(input.existingRedirects).filter(([k]) => !bySlug.has(k))),
+		...rewriteMap,
+	};
+	const pending = rewritePendingReverses(input.pending, new Map(Object.entries(pendingMap)));
 	const pendingRenames = Object.keys(input.pending)
-		.filter((k) => rewriteMap[k] !== undefined)
+		.filter((k) => pendingMap[k] !== undefined)
 		.sort()
-		.map((from) => ({ from, to: rewriteMap[from] as string }));
+		.map((from) => ({ from, to: pendingMap[from] as string }));
 	for (const { to } of pendingRenames) {
 		const target = results.get(to);
 		const entries = pending.result[to];
@@ -609,12 +754,20 @@ export function planMigration(input: PlanInput): Plan {
 			members.length === 1 && !fresh.has(fin) && JSON.stringify(node) === JSON.stringify(members[0]?.node);
 		if (unchanged) continue;
 		const parsed = nodePayloadSchema.safeParse(node);
-		if (!parsed.success) {
-			errors.push(`refusing to write an invalid node ${fin}: ${parsed.error.message}`);
-		} else if (!onlyAddsSchemaDefaults(node, parsed.data)) {
-			errors.push(`refusing to write ${fin}: validation would alter fields the node carries`);
-		} else {
+		const problem = !parsed.success
+			? `invalid node: ${parsed.error.message}`
+			: onlyAddsSchemaDefaults(node, parsed.data)
+				? null
+				: "validation would alter fields the node carries";
+		if (problem === null && parsed.success) {
 			writes.set(fin, parsed.data as Obj);
+		} else if (members.length === 1 && !fresh.has(fin) && members[0]) {
+			// An existing node we cannot rewrite safely stays as it is, and is reported. If it still points at
+			// a retired slug the invariant below refuses the run.
+			results.set(fin, members[0].node);
+			malformed.push({ slug: fin, reason: `kept as is: ${problem}` });
+		} else {
+			errors.push(`refusing to write ${fin}: ${problem}`);
 		}
 	}
 
@@ -652,6 +805,8 @@ export function planMigration(input: PlanInput): Plan {
 			merged: merged.sort(bySlugKey),
 			skipped: skipped.sort(bySlugKey),
 			not_derivable: notDerivable.sort(bySlugKey),
+			malformed: malformed.sort(bySlugKey),
+			folded,
 			conflicts,
 			rewritten,
 			self_edges_removed: selfEdges,
@@ -673,6 +828,8 @@ export function planMigration(input: PlanInput): Plan {
 				skipped: skipped.length,
 				not_derivable: notDerivable.length,
 				conflicts: conflicts.length,
+				folded_edges: folded.length,
+				malformed: malformed.length,
 				nodes_to_write: writes.size,
 			},
 		},
@@ -692,6 +849,8 @@ export interface MigrationOptions {
 	 * artist-identity manifest and while the transliteration table lacks ð / ı (TRA-531).
 	 */
 	scratch?: boolean;
+	/** Library-only (crash tests): called before each disk write of the apply phase, with its index. */
+	beforeWrite?: (index: number) => void;
 }
 
 export interface MigrationResult {
@@ -700,6 +859,35 @@ export interface MigrationResult {
 	exitCode: 0 | 1 | 2;
 }
 
+// The two files read besides the cache are validated, not cast: a manifest whose `groups` held strings
+// would silently read as "no group" and detach every member's edge.
+const identityManifestSchema = z
+	.object({
+		resolved: z.record(
+			z.string(),
+			z
+				.object({
+					mbid: z.string(),
+					groups: z.array(z.object({ mbid: z.string() }).passthrough()).default([]),
+				})
+				.passthrough(),
+		),
+		collisions: z.array(z.object({ mbid: z.string(), slugs: z.array(z.string()) }).passthrough()).default([]),
+	})
+	.passthrough();
+
+const pendingFileSchema = z.record(
+	z.string(),
+	z.array(
+		z.object({
+			field: z.string(),
+			cardinality: z.enum(["list", "single"]),
+			edge: z.object({ slug: z.string(), type: z.string(), name: z.string() }).passthrough(),
+		}),
+	),
+);
+
+/** Null when the file is absent; throws (the run exits 2 before any write) when it is not a valid manifest. */
 async function readIdentities(path: string): Promise<ArtistIdentities | null> {
 	let text: string;
 	try {
@@ -708,23 +896,11 @@ async function readIdentities(path: string): Promise<ArtistIdentities | null> {
 		if ((e as NodeJS.ErrnoException).code === "ENOENT") return null;
 		throw e;
 	}
-	const raw = JSON.parse(text) as unknown;
-	if (!isRecord(raw) || !isRecord(raw.resolved))
-		throw new Error(`${path} is not an artist-identity manifest`);
-	const groups = new Map<string, string[]>();
-	for (const [slug, entry] of Object.entries(raw.resolved)) {
-		if (!isRecord(entry)) continue;
-		groups.set(
-			slug,
-			edgeList(entry.groups).flatMap((g) => str(g.mbid) ?? []),
-		);
-	}
-	const collisions = (Array.isArray(raw.collisions) ? raw.collisions : []).flatMap((c: unknown) =>
-		isRecord(c) && str(c.mbid) && Array.isArray(c.slugs)
-			? [{ mbid: c.mbid as string, slugs: c.slugs.filter((s): s is string => typeof s === "string") }]
-			: [],
-	);
-	return { groups, collisions };
+	const parsed = identityManifestSchema.parse(JSON.parse(text));
+	return {
+		groups: new Map(Object.entries(parsed.resolved).map(([slug, e]) => [slug, e.groups.map((g) => g.mbid)])),
+		collisions: parsed.collisions.map((c) => ({ mbid: c.mbid, slugs: c.slugs })),
+	};
 }
 
 function pathOf(cacheDir: string, slug: string): string {
@@ -749,6 +925,8 @@ export async function runMigration(options: MigrationOptions): Promise<Migration
 		merged: [],
 		skipped: [],
 		not_derivable: [],
+		malformed: [],
+		folded: [],
 		conflicts: [],
 		rewritten: [],
 		self_edges_removed: [],
@@ -767,7 +945,17 @@ export async function runMigration(options: MigrationOptions): Promise<Migration
 	}
 
 	const artistManifestPath = options.artistManifestPath ?? DEFAULT_ARTIST_MANIFEST_PATH;
-	let identities = await readIdentities(artistManifestPath);
+	let identities: ArtistIdentities | null;
+	try {
+		identities = await readIdentities(artistManifestPath);
+	} catch (e) {
+		return {
+			manifest: empty([
+				`invalid artist manifest ${artistManifestPath}: ${e instanceof Error ? e.message : String(e)}`,
+			]),
+			exitCode: 2,
+		};
+	}
 	// Without the manifest there is no collision to merge and no group membership: a member's edge to a
 	// band's work would be detached for good. Reading is fine (the dry-run says so), writing is refused.
 	if (identities === null && apply && !options.scratch) {
@@ -811,40 +999,56 @@ export async function runMigration(options: MigrationOptions): Promise<Migration
 		};
 	}
 	const pendingPath = join(cacheDir, "pending-reverses.json");
-	const pendingOld = JSON.parse(await readTextOrDefault(pendingPath, "{}")) as Record<
-		string,
-		PendingReverse[]
-	>;
+	let pendingOld: Record<string, PendingReverse[]>;
+	try {
+		pendingOld = pendingFileSchema.parse(JSON.parse(await readTextOrDefault(pendingPath, "{}"))) as Record<
+			string,
+			PendingReverse[]
+		>;
+	} catch (e) {
+		return {
+			manifest: empty([`invalid ${pendingPath}: ${e instanceof Error ? e.message : String(e)}`]),
+			exitCode: 2,
+		};
+	}
 
 	const plan = planMigration({ files: nodes, identities, pending: pendingOld, existingRedirects });
-	const failed = plan.manifest.errors.length > 0 || invalid.length > 0;
-	if (invalid.length > 0)
-		plan.manifest.errors.push(
-			`${invalid.length} unreadable node file(s): refusing to migrate a cache we cannot fully read`,
-		);
+	// A node file we cannot read (malformed slug, bad JSON) is left alone and listed, not a reason to stop.
+	plan.manifest.malformed.push(...invalid.map((i) => ({ slug: i.path, reason: `unreadable: ${i.error}` })));
+	plan.manifest.summary.malformed = plan.manifest.malformed.length;
 	const manifest: Manifest = { ...base, ...plan.manifest, notes, written: 0 };
 
-	if (apply && !failed && plan.manifest.errors.length === 0) {
-		// New files first, then edited ones; the old files go last (a duplicate is harmless, a loss is not).
-		const ordered = [...plan.writes].sort(
-			([a], [b]) => Number(plan.fresh.has(b)) - Number(plan.fresh.has(a)) || (a < b ? -1 : 1),
-		);
-		for (const [slug, node] of ordered) {
-			const path = pathOf(cacheDir, slug);
+	if (apply && plan.manifest.errors.length === 0) {
+		// Crash-safe order: a crash at any point leaves no edge to a node that is gone, and a re-run
+		// finishes the job. New nodes, then the redirects, then the nodes that point at them, then
+		// pending-reverses, and only then the removal of the old files (a duplicate is harmless, a loss
+		// is not: an old node that survives a crash merges into its new slug on the next run).
+		let step = 0;
+		const write = async (path: string, data: unknown): Promise<void> => {
+			options.beforeWrite?.(step++);
 			await mkdir(dirname(path), { recursive: true });
-			await atomicWriteJson(path, node);
-		}
-		manifest.written = plan.writes.size;
-		if (plan.pending.changed) await atomicWriteJson(pendingPath, plan.pending.result);
+			await atomicWriteJson(path, data);
+		};
+		const bySlugOrder = (([a], [b]: [string, Obj]) => (a < b ? -1 : 1)) as (
+			a: [string, Obj],
+			b: [string, Obj],
+		) => number;
+		const writes = [...plan.writes].sort(bySlugOrder);
+		for (const [slug, node] of writes) if (plan.fresh.has(slug)) await write(pathOf(cacheDir, slug), node);
 		if (JSON.stringify(plan.mergedRedirects) !== JSON.stringify(existingRedirects)) {
-			await mkdir(dirname(redirectsPath), { recursive: true });
-			await atomicWriteJson(redirectsPath, {
+			await write(redirectsPath, {
 				source: "release slug scoping",
 				generated_at: base.generated_at,
 				redirects: plan.mergedRedirects,
 			});
 		}
-		for (const file of plan.deletions.values()) await rm(file.path);
+		for (const [slug, node] of writes) if (!plan.fresh.has(slug)) await write(pathOf(cacheDir, slug), node);
+		manifest.written = plan.writes.size;
+		if (plan.pending.changed) await write(pendingPath, plan.pending.result);
+		for (const file of [...plan.deletions.values()].sort((x, y) => (x.slug < y.slug ? -1 : 1))) {
+			options.beforeWrite?.(step++);
+			await rm(file.path);
+		}
 	}
 	if (options.manifestPath) {
 		await mkdir(dirname(options.manifestPath), { recursive: true });
