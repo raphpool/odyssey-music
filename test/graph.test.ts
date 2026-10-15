@@ -51,6 +51,7 @@ function artistNode(overrides: Partial<ArtistNode> & Pick<ArtistNode, "slug" | "
 		collaborators: [],
 		aliases: [],
 		members: [],
+		similar_artists: [],
 		...overrides,
 	};
 }
@@ -97,6 +98,7 @@ describe("toVizNode — node-level qid whitelist (TRA-19)", () => {
 			collaborators: [],
 			aliases: [],
 			members: [],
+			similar_artists: [],
 		};
 		// ArtistNode doesn't declare qid; schemas.ts would already strip a stray one on write/read
 		// (TRA-17/TRA-18). This asserts the node-level whitelist in toVizNode is its own guarantee,

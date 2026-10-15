@@ -219,7 +219,7 @@ interface SchemaShape {
 	zodValidator: z.ZodType<unknown>;
 }
 
-function makeNodeSchema(type: NodeType): SchemaShape {
+export function makeNodeSchema(type: NodeType): SchemaShape {
 	const baseProps: Record<string, Schema> = {
 		name: stringSchema("Clean canonical name (e.g. 'Tendency', not 'Tendency (track)').", 1),
 		editorial_article: stringSchema(

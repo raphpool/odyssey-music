@@ -66,6 +66,25 @@ describe("runPipeline e2e (mocked boundaries)", () => {
 		TIMEOUT_MS,
 	);
 
+	// TRA-456: similar_artists is filled after drafting (ListenBrainz / graph fallback), never by
+	// the LLM — Gemini is not asked for it, and a draft without it must still validate.
+	it(
+		"leaves similar_artists out of the Gemini artist schema and defaults it to [] (TRA-456)",
+		async () => {
+			installPipelineMocks({ draft: artistDraftFixture() });
+			const runPipeline = await loadRunPipeline();
+			const { makeNodeSchema } = await import("../src/pipeline.js");
+
+			const { schema } = makeNodeSchema("artist");
+			expect(Object.keys(schema.properties ?? {})).not.toContain("similar_artists");
+			expect(schema.required ?? []).not.toContain("similar_artists");
+
+			const result = await runPipeline({ type: "artist", name: "Fixture Artist" }, DEPS);
+			expect((result.node as ArtistNode).similar_artists).toEqual([]);
+		},
+		TIMEOUT_MS,
+	);
+
 	// TRA-458: Gemini double-escapes newlines in its JSON, so generated prose reaches
 	// canonicalizeDraft with a literal backslash + "n". It must leave the pipeline as real breaks.
 	it(
