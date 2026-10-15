@@ -34,6 +34,10 @@ cache/links/
 .deployed-sha
 web/.deployed-sha
 
+# web/data.json is generated (npm run build:graph, scripts/deploy-web.sh) and was stale in git:
+# 1392 nodes vs 1618 in cache/, no taxonomy (2026-10-14, TRA-460). Never committed.
+web/data.json
+
 # Permissions locales de Claude Code — personnelles, jamais versionnées
 .claude/settings.local.json
 

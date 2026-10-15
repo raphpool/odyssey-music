@@ -34,7 +34,7 @@ import { readApnsPushConfiguration, serverConfig, streamConfig } from "./config.
 import { loadEnv } from "./env.js";
 import { AppError, isNotFoundError } from "./errors.js";
 import { loadGenreResolver } from "./genre-identity.js";
-import { createGenreRegistry, loadGenreRedirects, resolveReadSlug } from "./genre-registry.js";
+import { createGenreRegistry, loadRedirects, resolveReadSlug } from "./genre-registry.js";
 import { logger } from "./logger.js";
 import { createApnsPushSender } from "./mobile/apns-sender.js";
 import { createMobileCatalog } from "./mobile/catalog.js";
@@ -75,7 +75,7 @@ const cache = new NodeCache(CACHE_DIR);
 // stops minting duplicate genre nodes for name variants of one already-cached genre.
 // loadGenreResolver() is memoized (genre-identity.ts), so this doesn't double the load
 // enrichFromMusicBrainz already does per pipeline run.
-const [genreRedirects, genreResolver] = await Promise.all([loadGenreRedirects(), loadGenreResolver()]);
+const [genreRedirects, genreResolver] = await Promise.all([loadRedirects(), loadGenreResolver()]);
 const genreRegistry = createGenreRegistry({ cache, resolver: genreResolver, redirects: genreRedirects });
 const catalogIndex: CatalogIndex = createMusicBrainzCatalog();
 // The existing web search degrades to cache-only on catalog outages. Mobile has a typed
