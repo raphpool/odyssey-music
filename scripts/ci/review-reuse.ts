@@ -25,17 +25,45 @@ export interface ReviewCheckRun {
 	conclusion: string | null;
 	startedAt: string;
 	appSlug: string | null;
+	headSha: string;
+	checkSuiteId: number;
+}
+
+/** A workflow run of the previous head, as `actions/runs` lists it. */
+export interface WorkflowRun {
+	id: number;
+	path: string;
+	event: string;
+	headSha: string;
+	checkSuiteId: number;
+}
+
+/** A job of a workflow run, as `actions/runs/<id>/jobs` lists it. */
+export interface WorkflowJob {
+	id: number;
+	name: string;
+	runId: number;
 }
 
 // Must stay equal to the annotation the `Gate` step of ai-review.yml emits and review-gate.yml matches.
 export const BLOCKING_ANNOTATION = "Findings bloquants — voir les commentaires inline.";
 export const RECORD_VERSION = "v1";
 export const RECORD_PREFIX = `review-patch-id ${RECORD_VERSION} `;
-// Hygiene only, NOT a security boundary: any workflow step of the PR also runs as this app and can write a
-// `review` check-run or annotation. What protects the record is the `.github/` check in `precheck`.
+// Part of the selection rule of review-gate.yml, NOT a security boundary on its own: any workflow step also runs as
+// this app and can write a `review` check-run or annotation. What binds a check-run to the AI review is
+// `latestReview` (the job of a run of ai-review.yml); what protects the record from the PR itself is the `.github/`
+// check in `precheck`.
 export const REVIEW_APP_SLUG = "github-actions";
-// Page size of the annotations and check-runs queries: a full page may hide a blocking annotation.
+// The `path` of a `pull_request` run of ai-review.yml (no `@ref` suffix, which other events carry) and the name of
+// its job: the same constants as the `select_review` program of review-gate.yml.
+export const AI_REVIEW_PATH = ".github/workflows/ai-review.yml";
+export const REVIEW_JOB_NAME = "review";
+// Page size of the listings, and how many pages are read before giving up: an unfinished listing may hide the
+// genuine review (or a blocking annotation), so running out of pages means a full review.
 export const PAGE_SIZE = 100;
+export const MAX_PAGES = 10;
+// Runs of ai-review.yml whose jobs are listed: a handful exist per head (ready_for_review, reopened, re-runs).
+const MAX_RUNS_LISTED = 10;
 
 // "<git patch-id --verbatim>-<hash of the mode/create/delete summary>", computed by the workflow on the git tree.
 const PATCH_ID = /^[0-9a-f]{40}-[0-9a-f]{40}$/;
@@ -71,12 +99,48 @@ export const recordedPatchId = (messages: readonly string[]): string | null => {
 	return [...ids][0] ?? null;
 };
 
-/** The review the gate reads for a head: the last `review` check-run by start time (review-gate.yml). */
-export const latestReview = (checkRuns: readonly ReviewCheckRun[]): ReviewCheckRun | null => {
-	const reviews = checkRuns.filter((run) => run.name === "review");
+/** A `pull_request` run of ai-review.yml on exactly `sha` (`path` has no `@ref` suffix for that event). */
+const isAiReviewRun = (run: WorkflowRun, sha: string): boolean =>
+	run.path === AI_REVIEW_PATH && run.event === "pull_request" && run.headSha === sha;
+
+export interface ReviewEvidence {
+	checkRuns: readonly ReviewCheckRun[];
+	workflowRuns: readonly WorkflowRun[];
+	jobs: readonly WorkflowJob[];
+}
+
+/**
+ * The review the gate reads for `sha`: the last by start time among the `review` check-runs that are the job of a
+ * `pull_request` run of ai-review.yml on that exact sha (review-gate.yml, TRA-520). A check-run counts only when the
+ * Actions app reported it, it belongs to the check suite of that run, and its id is the id of one of that run's jobs
+ * named `review`. An API-created check-run has no job, whatever its name, app or start time. TRA-525 (2026-10-15):
+ * the selection used to be the name and the app alone, so a `review` check-run written through the API on the
+ * previous head by a workflow of any branch, with a valid record, was inherited by the next head.
+ * Null when none qualifies, or when the latest two started together: which one the gate reads is then unknown
+ * (the gate takes the last of the list there; reuse prefers a full review to a guess).
+ */
+export const latestReview = (sha: string, evidence: ReviewEvidence): ReviewCheckRun | null => {
+	const trusted = evidence.workflowRuns.filter((run) => isAiReviewRun(run, sha));
+	const isJobOfTrustedRun = (check: ReviewCheckRun): boolean =>
+		trusted.some(
+			(run) =>
+				run.checkSuiteId === check.checkSuiteId &&
+				evidence.jobs.some(
+					(job) => job.runId === run.id && job.id === check.id && job.name === REVIEW_JOB_NAME,
+				),
+		);
 	let last: ReviewCheckRun | null = null;
-	for (const run of reviews) if (last === null || run.startedAt >= last.startedAt) last = run;
-	return last;
+	let tied = false;
+	for (const check of evidence.checkRuns) {
+		if (check.name !== REVIEW_JOB_NAME || check.headSha !== sha || check.appSlug !== REVIEW_APP_SLUG)
+			continue;
+		if (!isJobOfTrustedRun(check)) continue;
+		if (last === null || check.startedAt > last.startedAt) {
+			last = check;
+			tied = false;
+		} else if (check.startedAt === last.startedAt && check.id !== last.id) tied = true;
+	}
+	return tied ? null : last;
 };
 
 /** What the workflow establishes with git and its context before asking; null/false means "could not tell". */
@@ -99,10 +163,11 @@ export interface Facts {
 }
 
 export interface DecisionInput extends Facts {
-	/** `review` check-runs of the previous head; null when the API call failed. */
+	/** `review` check-runs of the previous head; null when the API call failed or the listing is incomplete. */
 	checkRuns: readonly ReviewCheckRun[] | null;
-	/** True when the check-runs listing may be truncated. */
-	checkRunsTruncated: boolean;
+	/** `pull_request` runs of the previous head, and the jobs of those of ai-review.yml; null on the same terms. */
+	workflowRuns: readonly WorkflowRun[] | null;
+	jobs: readonly WorkflowJob[] | null;
 	/** Annotation messages of the previous review's check-run; null when they could not be read. */
 	annotations: readonly string[] | null;
 }
@@ -135,10 +200,11 @@ export const decideReuse = (input: DecisionInput): ReuseResult => {
 	if (early !== null) return early;
 	const no = (reason: string): ReuseResult => full(reason, previousSha, patchId);
 	if (patchId === null || previousSha === null) return no("prechecked values missing");
-	if (input.checkRuns === null || input.checkRunsTruncated) return no("previous review could not be listed");
-	const review = latestReview(input.checkRuns);
-	if (review === null) return no("no previous review");
-	if (review.appSlug !== REVIEW_APP_SLUG) return no("previous review not published by Actions");
+	const { checkRuns, workflowRuns, jobs } = input;
+	if (checkRuns === null || workflowRuns === null || jobs === null)
+		return no("previous review could not be listed");
+	const review = latestReview(previousSha, { checkRuns, workflowRuns, jobs });
+	if (review === null) return no("no unambiguous previous review produced by ai-review.yml");
 	if (review.status !== "completed") return no("previous review not finished");
 	if (review.conclusion !== "success")
 		return no(`previous review concluded ${review.conclusion ?? "nothing"}`);
@@ -159,26 +225,68 @@ export interface DecisionContext extends Facts {
 const isRecord = (value: unknown): value is Record<string, unknown> =>
 	typeof value === "object" && value !== null;
 
-const parseCheckRuns = (body: unknown): { runs: ReviewCheckRun[]; truncated: boolean } => {
-	if (!isRecord(body) || !Array.isArray(body.check_runs)) throw new Error("unexpected check-runs payload");
-	const runs = body.check_runs.map((raw: unknown): ReviewCheckRun => {
-		if (!isRecord(raw)) throw new Error("unexpected check-run entry");
-		const { id, name, status, conclusion, started_at: startedAt, app } = raw;
-		if (typeof id !== "number" || typeof name !== "string" || typeof status !== "string") {
-			throw new Error("unexpected check-run fields");
+const parseCheckRun = (raw: unknown): ReviewCheckRun => {
+	if (!isRecord(raw)) throw new Error("unexpected check-run entry");
+	const { id, name, status, conclusion, started_at: startedAt, app, head_sha: headSha } = raw;
+	const suiteId = isRecord(raw.check_suite) ? raw.check_suite.id : undefined;
+	if (typeof id !== "number" || typeof name !== "string" || typeof status !== "string") {
+		throw new Error("unexpected check-run fields");
+	}
+	if (typeof startedAt !== "string") throw new Error("check-run without start time");
+	if (!isSha(headSha) || typeof suiteId !== "number") throw new Error("check-run without sha or check suite");
+	return {
+		id,
+		name,
+		status,
+		conclusion: typeof conclusion === "string" ? conclusion : null,
+		startedAt,
+		appSlug: isRecord(app) && typeof app.slug === "string" ? app.slug : null,
+		headSha,
+		checkSuiteId: suiteId,
+	};
+};
+
+const parseWorkflowRun = (raw: unknown): WorkflowRun => {
+	if (!isRecord(raw)) throw new Error("unexpected workflow run entry");
+	const { id, path, event, head_sha: headSha, check_suite_id: checkSuiteId } = raw;
+	if (typeof id !== "number" || typeof path !== "string" || typeof event !== "string") {
+		throw new Error("unexpected workflow run fields");
+	}
+	if (!isSha(headSha) || typeof checkSuiteId !== "number") {
+		throw new Error("workflow run without sha or check suite");
+	}
+	return { id, path, event, headSha, checkSuiteId };
+};
+
+const parseJob = (raw: unknown): WorkflowJob => {
+	if (!isRecord(raw)) throw new Error("unexpected job entry");
+	const { id, name, run_id: runId } = raw;
+	if (typeof id !== "number" || typeof name !== "string" || typeof runId !== "number") {
+		throw new Error("unexpected job fields");
+	}
+	return { id, name, runId };
+};
+
+/** Every item of a paginated GitHub listing; throws when it cannot be read to the end (never a partial list). */
+const listAll = async <T>(
+	get: (path: string) => Promise<unknown>,
+	path: string,
+	key: string,
+	parse: (raw: unknown) => T,
+): Promise<T[]> => {
+	const items: T[] = [];
+	for (let page = 1; page <= MAX_PAGES; page++) {
+		const separator = path.includes("?") ? "&" : "?";
+		const body = await get(`${path}${separator}per_page=${PAGE_SIZE}&page=${page}`);
+		const entries = isRecord(body) ? body[key] : undefined;
+		if (!isRecord(body) || !Array.isArray(entries) || typeof body.total_count !== "number") {
+			throw new Error(`unexpected ${key} payload`);
 		}
-		if (typeof startedAt !== "string") throw new Error("check-run without start time");
-		return {
-			id,
-			name,
-			status,
-			conclusion: typeof conclusion === "string" ? conclusion : null,
-			startedAt,
-			appSlug: isRecord(app) && typeof app.slug === "string" ? app.slug : null,
-		};
-	});
-	const total = typeof body.total_count === "number" ? body.total_count : Number.POSITIVE_INFINITY;
-	return { runs, truncated: runs.length >= PAGE_SIZE || total > runs.length };
+		items.push(...entries.map(parse));
+		if (items.length >= body.total_count) return items;
+		if (entries.length === 0) throw new Error(`${key} listing ended before its total`);
+	}
+	throw new Error(`${key} listing exceeds ${MAX_PAGES} pages`);
 };
 
 const parseAnnotations = (body: unknown): string[] => {
@@ -200,17 +308,37 @@ export const resolveDecision = async (ctx: DecisionContext): Promise<ReuseResult
 	if (early !== null) return early;
 	try {
 		if (!REPOSITORY.test(repository)) throw new Error("invalid repository");
+		if (!isSha(previousSha)) throw new Error("previous head unknown");
 		const base = `repos/${repository}`;
-		const listing = await get(
-			`${base}/commits/${previousSha}/check-runs?check_name=review&filter=all&per_page=${PAGE_SIZE}`,
+		const checkRuns = await listAll(
+			get,
+			`${base}/commits/${previousSha}/check-runs?check_name=review&filter=all`,
+			"check_runs",
+			parseCheckRun,
 		);
-		const { runs, truncated } = parseCheckRuns(listing);
-		const review = latestReview(runs);
+		const workflowRuns = await listAll(
+			get,
+			`${base}/actions/runs?head_sha=${previousSha}&event=pull_request`,
+			"workflow_runs",
+			parseWorkflowRun,
+		);
+		// Jobs are only listed for the runs that can matter: ai-review.yml, owning a check suite seen above.
+		const suites = new Set(checkRuns.map((check) => check.checkSuiteId));
+		const candidates = workflowRuns.filter(
+			(run) => isAiReviewRun(run, previousSha) && suites.has(run.checkSuiteId),
+		);
+		if (candidates.length > MAX_RUNS_LISTED) throw new Error("too many runs of ai-review.yml on the head");
+		const jobs: WorkflowJob[] = [];
+		for (const run of candidates) {
+			// `filter=all` as the gate does: the check-run of a re-run attempt is the job of an earlier attempt.
+			jobs.push(...(await listAll(get, `${base}/actions/runs/${run.id}/jobs?filter=all`, "jobs", parseJob)));
+		}
+		const review = latestReview(previousSha, { checkRuns, workflowRuns, jobs });
 		const annotations =
 			review !== null && review.status === "completed" && review.conclusion === "success"
 				? parseAnnotations(await get(`${base}/check-runs/${review.id}/annotations?per_page=${PAGE_SIZE}`))
 				: null;
-		return decideReuse({ ...facts, checkRuns: runs, checkRunsTruncated: truncated, annotations });
+		return decideReuse({ ...facts, checkRuns, workflowRuns, jobs, annotations });
 	} catch (error) {
 		return full(
 			`lookup failed: ${error instanceof Error ? error.message : String(error)}`,
