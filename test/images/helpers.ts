@@ -71,6 +71,7 @@ export function artistNode(slug: string, name: string, extra: Partial<ArtistNode
 		collaborators: [],
 		aliases: [],
 		members: [],
+		similar_artists: [],
 		...extra,
 	};
 }
