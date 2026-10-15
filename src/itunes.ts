@@ -15,6 +15,10 @@
  *   - Out-of-catalog releases (small labels, white labels, dub plates) won't match.
  */
 
+import { z } from "zod";
+import { isAllowedImageUrl } from "./images/hosts.js";
+import { nameMatchScore } from "./text-match.js";
+
 const SEARCH_URL = "https://itunes.apple.com/search";
 const REQUEST_TIMEOUT_MS = 5000;
 
@@ -130,6 +134,12 @@ function toCandidate(entity: AppleEntity, res: ITunesResult): AppleCandidate | n
  * Returns null when iTunes can't find a confident match or the network fails —
  * the caller decides what to do (e.g. fall back to a related node's cover).
  */
+/**
+ * @deprecated Takes `results[0]` without checking the artist or the title: it gave the Earth,
+ * Wind & Fire compilation to Grandmaster Flash. Use {@link lookupVerifiedAlbumArt}. Kept only
+ * because `src/services/image-service.ts` still calls it; TRA-475 (3.3) rewrites that caller and
+ * removes this function.
+ */
 export async function lookupAlbumArt(name: string, artistName?: string): Promise<string | null> {
 	const term = [name, artistName].filter(Boolean).join(" ");
 	if (!term.trim()) return null;
@@ -148,4 +158,76 @@ export async function lookupAlbumArt(name: string, artistName?: string): Promise
 	} catch {
 		return null;
 	}
+}
+
+const albumSearchResultSchema = z.object({
+	artworkUrl100: z.string().optional(),
+	collectionName: z.string().optional(),
+	artistName: z.string().optional(),
+});
+const albumSearchResponseSchema = z.object({ results: z.array(z.unknown()) });
+
+const MZSTATIC_SUFFIX = ".mzstatic.com";
+const THUMBNAIL_SIZE = /100x100bb/;
+
+/**
+ * Cover art for an album, but only from a result whose collection name AND artist name both match
+ * what we asked for (TRA-465). iTunes returns plausible-looking strangers for a text query, so
+ * unlike {@link lookupAlbumArt} this reads `limit=5` results and takes the best verified one, never
+ * `results[0]`. Both names are required: without a known artist nothing can be verified, so null.
+ *
+ * "Matches" is the threshold `src/streaming-links.ts` uses: `nameMatchScore` not null (every
+ * significant token of the expected name has enough overlap, at least one token of the artist).
+ * The response is third-party data: schema-checked, and the artwork URL must be https on
+ * `*.mzstatic.com` in the canonical form `isAllowedImageUrl` accepts.
+ *
+ * Returns a 600×600 URL, or null on no verified match, a malformed response or a network failure.
+ */
+export async function lookupVerifiedAlbumArt(
+	title: string,
+	artistName: string,
+	fetchImpl: typeof fetch = fetch,
+): Promise<string | null> {
+	if (!title.trim() || !artistName.trim()) return null;
+	const term = `${title} ${artistName}`;
+	const url = `${SEARCH_URL}?term=${encodeURIComponent(term)}&entity=album&limit=5`;
+	const controller = new AbortController();
+	const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+	try {
+		const r = await fetchImpl(url, { signal: controller.signal });
+		if (!r.ok) return null;
+		const body = albumSearchResponseSchema.safeParse(await r.json());
+		if (!body.success) return null;
+		let best: { art: string; score: number } | null = null;
+		for (const raw of body.data.results) {
+			const parsed = albumSearchResultSchema.safeParse(raw);
+			if (!parsed.success) continue;
+			const { artworkUrl100, collectionName, artistName: resultArtist } = parsed.data;
+			if (!artworkUrl100 || !collectionName || !resultArtist) continue;
+			const titleScore = nameMatchScore(collectionName, title, undefined);
+			const artistScore = nameMatchScore(resultArtist, artistName, undefined);
+			if (titleScore === null || artistScore === null) continue;
+			const art = toHighResArtwork(artworkUrl100);
+			if (!art) continue;
+			if (!best || titleScore + artistScore > best.score) best = { art, score: titleScore + artistScore };
+		}
+		return best?.art ?? null;
+	} catch {
+		return null;
+	} finally {
+		clearTimeout(timer);
+	}
+}
+
+function toHighResArtwork(artworkUrl100: string): string | null {
+	if (!THUMBNAIL_SIZE.test(artworkUrl100)) return null;
+	let canonical: string;
+	try {
+		canonical = new URL(artworkUrl100.replace(THUMBNAIL_SIZE, "600x600bb")).href;
+	} catch {
+		return null;
+	}
+	if (!isAllowedImageUrl(canonical)) return null;
+	const host = new URL(canonical).hostname;
+	return host.endsWith(MZSTATIC_SUFFIX) && host.length > MZSTATIC_SUFFIX.length ? canonical : null;
 }
