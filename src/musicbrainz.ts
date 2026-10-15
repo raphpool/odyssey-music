@@ -60,7 +60,10 @@ interface MbArtist {
 // paths only read names, so an odd id must not blank them. toCredits() validates it where it matters.
 interface MbArtistCreditEntry {
 	name?: string;
-	artist?: { id?: string; name?: string };
+	/** Text MB puts between this entry and the next (" & ", " feat. ", ""). Unvalidated: read with a typeof guard. */
+	joinphrase?: string;
+	/** `aliases` is present in search hits and unvalidated: read with aliasNames(). */
+	artist?: { id?: string; name?: string; aliases?: unknown };
 }
 interface MbReleaseGroup {
 	id: string;
@@ -73,6 +76,8 @@ interface MbRecording {
 	id: string;
 	title: string;
 	length?: number;
+	/** MB's note telling same-titled recordings apart ("live, Detroit 1998", "DJ-mix", "video"...). */
+	disambiguation?: string;
 	"first-release-date"?: string;
 	"artist-credit"?: MbArtistCreditEntry[];
 }
@@ -925,41 +930,180 @@ function lucenePhrase(text: string): string {
 	return text.replace(/["\\]/g, "").trim();
 }
 
-/** True when `needle` is a run of whole words of `haystack` (both already passed through normalizeSlugBody). */
-function containsWords(haystack: string, needle: string): boolean {
-	return `-${haystack}-`.includes(`-${needle}-`);
+/**
+ * An artist name reduced to what makes two spellings the same artist: normalizeSlugBody (case,
+ * diacritics, "&" == "and", trailing disambiguation) plus a leading "The" ("The Beatles" == "Beatles").
+ * A name with a letter normalizeSlugBody would erase ("Mø" -> "m", "Группа X" -> "x", "坂本龍一" -> "")
+ * is compared literally (NFKC, case-folded), like sameArtistName does for artists: else unrelated artists
+ * get one key. Used for EQUALITY only, never for containment; an empty key matches nothing.
+ * Dropping a leading "The" is deliberately symmetric, hint and credit alike: "The Prodigy" now equals
+ * "Prodigy" (main refused it), though a distinct "Prodigy" exists (Mobb Deep). Accepted (TRA-537 review):
+ * the Lucene `artist:` filter already keeps such a candidate out of the hits, and the tolerance for
+ * "The" is one the project asked to keep.
+ */
+function creditKey(name: string): string {
+	if (hasUnfoldableLetter(name)) return name.normalize("NFKC").trim().toLowerCase();
+	const body = normalizeSlugBody(name);
+	return body.startsWith("the-") ? body.slice(4) : body;
+}
+
+/** Names of the credited artist's aliases, from an untrusted search hit: anything that is not a name is dropped. */
+function aliasNames(entry: MbArtistCreditEntry): string[] {
+	const aliases = entry.artist?.aliases;
+	if (!Array.isArray(aliases)) return [];
+	return aliases.flatMap((a) => (isRecord(a) && typeof a.name === "string" ? [a.name] : []));
+}
+
+const JOINT_NAME_SEPARATOR = /\s*(?:&|\+|\/|,|\band\b|\bfeat\.?|\bfeaturing\b|\bwith\b)\s*/iu;
+
+/**
+ * True when the hint is a whole segment of a joint name in the credit ("Alva Noto" in "Alva Noto +
+ * Ryuichi Sakamoto", "Roni Size" in "Roni Size / Reprazent"), cut on & + / , and feat. with. Never an
+ * acceptance: it only keeps a set-aside candidate from disappearing. "Prince" is no segment of
+ * "Prince Buster", "Fire" is one of "Earth, Wind & Fire" (a doubt, so ambiguous, never a match).
+ */
+function creditNamesHintAsSegment(entries: MbArtistCreditEntry[], hintKey: string): boolean {
+	return entries.some((e) =>
+		[e.name, e.artist?.name].some((n) =>
+			(n?.split(JOINT_NAME_SEPARATOR) ?? []).some((part) => creditKey(part) === hintKey),
+		),
+	);
 }
 
 /**
- * Choose the candidate MB actually means, or null. Never defaults to the first result: MB ranks
- * "New Forms²" and "New Forms" both at 100, so rank carries no identity.
+ * True when the requested artist IS one of the credited artists: the key of the hint equals the key of a
+ * credit entry (credited-as name or canonical name), or of the whole credit read as one string.
+ * Containment is refused on purpose (2026-10-15, TRA-537, found in the TRA-477 deep review): "Prince"
+ * was contained in "Prince Buster", and an identity established that way rewrites the source node's edge.
+ * Joint credits: MB lists "Prince" and "The Revolution" as two credited artists, and each is an artist
+ * credited on the work, so "Prince" matches. A joint name MB files as ONE artist ("Prince and the
+ * Revolution" has its own MBID) is another artist than "Prince" and is refused; asking for the joint name
+ * itself matches that entry, or the joined credit ("Prince & The Revolution" over two entries).
+ * Every credited artist counts, whatever the join phrase: a featured artist ("Beyoncé feat. Jay-Z") is
+ * credited on the work, so asking for Jay-Z matches. Callers read the credit the resolver returns.
+ * An alias of a credited artist (when the hit carries them) is a name of that same artist, so it counts.
+ */
+function creditEqualsHint(entries: MbArtistCreditEntry[], hintKey: string): boolean {
+	if (!hintKey) return false;
+	// MB's `artist:` search field does not index aliases, so an alias only turns a printed credit that
+	// already contains the hint into an equality. Some aliases are the truncated form of the name itself
+	// ("Cam" for "DJ Cam", "Noto" for "Alva Noto"; 12 distinct artists are named "Cam"): an alias that is a
+	// run of whole words strictly inside the printed or canonical name of the same entry is ignored,
+	// or containment would be back (TRA-537 review). "Sasha + John Digweed" for "Sasha & John Digweed" stays.
+	const isTruncation = (alias: string, e: MbArtistCreditEntry) =>
+		[e.name, e.artist?.name].some((n) => {
+			if (n === undefined) return false;
+			const outer = creditKey(n);
+			return outer !== alias && ` ${outer.replace(/-/g, " ")} `.includes(` ${alias.replace(/-/g, " ")} `);
+		});
+	if (
+		entries.some((e) =>
+			aliasNames(e).some((alias) => {
+				const key = creditKey(alias);
+				return key === hintKey && !isTruncation(key, e);
+			}),
+		)
+	)
+		return true;
+	// Credited-as name, then canonical name: the hint may be either spelling.
+	const projections = [(e: MbArtistCreditEntry) => e.name, (e: MbArtistCreditEntry) => e.artist?.name];
+	return projections.some((nameOf) => {
+		if (entries.some((e) => creditKey(nameOf(e) ?? "") === hintKey)) return true;
+		if (entries.length < 2) return false;
+		const names = entries.map(nameOf);
+		if (names.some((n) => n === undefined)) return false;
+		const joined = entries.map(
+			(e, i) => `${names[i]}${typeof e.joinphrase === "string" ? e.joinphrase : ""}`,
+		);
+		return creditKey(joined.join("")) === hintKey;
+	});
+}
+
+type Pick<T> = { kind: "one"; candidate: T } | { kind: "none" } | { kind: "ambiguous" };
+
+/** True when `a` is a strictly earlier date than `b`: "1999" is not earlier than "1999-05-03" (same year). */
+function strictlyEarlier(a: string, b: string): boolean {
+	return a < b && !b.startsWith(a);
+}
+
+/**
+ * Choose the candidate MB actually means. Never defaults to the first result: MB ranks "New Forms²"
+ * and "New Forms" both at 100, and returns up to 8 look-alikes of one title and one credit in an order
+ * that changes from one request to the next (2026-10-15, TRA-474 review: Kraftwerk's "Autobahn" came
+ * back as a Detroit live recording, Zero 7's "Destiny" alternated between the album track and a
+ * DJ-mix, "Windowlicker" met a 2026 EP credited to a fake "Aphex Twin"). So:
  * 1. keep only candidates whose normalized title equals the requested one. Titles go through
  *    normalizeTitleBody, NOT normalizeSlugBody: the latter drops a trailing "(...)", which made
  *    "Fitna (Live)" == "Fitna" and "Get Lucky (Daft Punk Remix)" == "Get Lucky" (TRA-452 review,
  *    2026-10-15) so the credit step could return the live or remixed version. Edition noise
  *    ("Kid A (Deluxe Edition)", "(2019 Remaster)", "(feat. X)") is ignored on purpose: it names
  *    the same work, and MB catalogues the bare title as one release group;
- * 2. among them, the first whose credit (credited-as or canonical name) equals or contains the hint;
- * 3. otherwise the single remaining exact-title candidate; otherwise null.
+ * 2. among them, ALL whose credit equals the hint (see creditEqualsHint: equality of normalized names
+ *    on each credited artist, never containment). A hint that no credit equals gives "none": the work
+ *    is credited to someone else ("Prince" asked, "Prince Buster" credited). TRA-537 removed the old
+ *    fallback to the single exact-title candidate, which resolved exactly that case. Without a hint,
+ *    the single exact-title candidate wins (more than one = ambiguous);
+ * 3. recordings carrying a non-empty `disambiguation` (live, DJ-mix, video...) are set aside; exactly
+ *    one must remain. Release groups have no such note: the one with the strictly earliest
+ *    first-release-date among the dated ones wins (a later EP or compilation of the same title does
+ *    not), a tie or no date at all is ambiguous.
+ * Ambiguous is not "none": the caller keeps the two apart.
  */
 function pickByTitleAndCredit<
-	T extends { id: string; title: string; "artist-credit"?: MbArtistCreditEntry[] | undefined },
->(candidates: T[], title: string, artistHint: string | undefined): T | null {
+	T extends {
+		id: string;
+		title: string;
+		disambiguation?: string | undefined;
+		"first-release-date"?: string | undefined;
+		"artist-credit"?: MbArtistCreditEntry[] | undefined;
+	},
+>(
+	candidates: T[],
+	title: string,
+	artistHint: string | undefined,
+	kind: "release-group" | "recording",
+): Pick<T> {
 	const wanted = normalizeTitleBody(title);
-	if (!wanted) return null;
+	if (!wanted) return { kind: "none" };
 	const exact = candidates.filter((c) => normalizeTitleBody(c.title) === wanted);
-	const hint = artistHint ? normalizeSlugBody(artistHint) : "";
-	if (hint) {
-		const byCredit = exact.find((c) =>
-			(c["artist-credit"] ?? []).some((entry) =>
-				[entry.name, entry.artist?.name].some(
-					(n) => n !== undefined && containsWords(normalizeSlugBody(n), hint),
-				),
-			),
-		);
-		if (byCredit) return byCredit;
+	const hasHint = artistHint !== undefined && artistHint.trim() !== "";
+	const hint = hasHint ? creditKey(artistHint) : "";
+	// A hint that reduces to nothing ("!!!") can match no credit: never read it as "no hint" (code review,
+	// TRA-537), which would take the lone exact-title candidate whatever its credit.
+	if (hasHint && hint === "") return { kind: "none" };
+	// With a hint, only a candidate credited to that artist can be the work; without one the title alone decides.
+	const pool = hasHint ? exact.filter((c) => creditEqualsHint(c["artist-credit"] ?? [], hint)) : exact;
+	if (pool.length === 0) return { kind: "none" };
+	if (!hasHint && pool.length > 1) return { kind: "ambiguous" };
+	// An exact-title candidate set aside because its credit is a group or duo that NAMES the artist
+	// ("Alva Noto + Ryuichi Sakamoto") must not vanish silently: it may be the canonical work, and the
+	// candidate that stays alone a non-canonical duplicate (2026-10-15, TRA-537 review: "Uoon II" resolved
+	// to the 2022 duplicate credited [Sakamoto][Alva Noto]; a reissue beat the original the same way).
+	// Doubt is "ambiguous", as before TRA-537. Segments are used to refuse only, never to accept.
+	if (
+		hasHint &&
+		exact.some((c) => !pool.includes(c) && creditNamesHintAsSegment(c["artist-credit"] ?? [], hint))
+	) {
+		return { kind: "ambiguous" };
 	}
-	return exact.length === 1 ? (exact[0] ?? null) : null;
+
+	if (kind === "recording") {
+		const plain = pool.filter((c) => (c.disambiguation ?? "").trim() === "");
+		const only = plain[0];
+		if (plain.length > 1) return { kind: "ambiguous" };
+		return only ? { kind: "one", candidate: only } : { kind: "none" };
+	}
+	const only = pool[0];
+	if (pool.length === 1 && only) return { kind: "one", candidate: only };
+	const dated = pool.filter((c) => (c["first-release-date"] ?? "") !== "");
+	const earliest = [...dated].sort((a, b) =>
+		(a["first-release-date"] ?? "").localeCompare(b["first-release-date"] ?? ""),
+	)[0];
+	const earliestDate = earliest?.["first-release-date"] ?? "";
+	const strict =
+		earliest !== undefined &&
+		dated.every((c) => c === earliest || strictlyEarlier(earliestDate, c["first-release-date"] ?? ""));
+	return strict && earliest ? { kind: "one", candidate: earliest } : { kind: "ambiguous" };
 }
 
 function luceneQuery(
@@ -977,48 +1121,108 @@ function luceneQuery(
 	return hint ? `${field}:"${phrase}" AND artist:"${hint}"` : `${field}:"${phrase}"`;
 }
 
+/** MB's maximum page: the whole result set of a title search, so that no look-alike hides past the page. */
+const WORK_SEARCH_LIMIT = "100";
+
+/**
+ * True when MB announces more matches (`count`) than the page holds. Picking among a truncated page
+ * is picking blind: the candidate left out may be the studio recording, or the earlier release
+ * (2026-10-15, TRA-474 re-review: "To Hell with Good Intentions", count 13 of 8 received, resolved to
+ * the compilation's recording in one run out of twelve).
+ */
+function isTruncated(body: unknown, received: number): boolean {
+	return isRecord(body) && typeof body.count === "number" && body.count > received;
+}
+
+/**
+ * What a resolver found: the work, or nothing. 2026-10-15 (TRA-505): the backfill filed "MusicBrainz did
+ * not answer" under "no match" (null for both), so an outage became a verdict that --resume never
+ * revisited. A null identity is now told apart three ways: `ambiguous`
+ * ("several look-alikes"), `unavailable` (MB did not give a usable answer: HTTP error, network error,
+ * unreadable or off-schema JSON; says nothing about the work, so a caller must retry rather than
+ * conclude) and neither (MB answered and knows no such work).
+ */
+export interface MbWorkResolution {
+	identity: MbReleaseIdentity | null;
+	ambiguous: boolean;
+	unavailable: boolean;
+}
+
 /**
  * Resolve a project title (plus an optional credited-artist hint) to the one MB release group it
- * names, with its artist credit. Null when MB is unreachable, answers garbage, or nothing can be
- * singled out — callers must treat null as "unresolved", never as "pick the first hit".
+ * names, with its artist credit. Null identity when MB is unreachable (`unavailable`), answers garbage
+ * (`unavailable`), or nothing can be singled out; `ambiguous` is true when several candidates fit equally.
  */
+export async function resolveReleaseGroupDetailed(
+	title: string,
+	artistHint?: string,
+): Promise<MbWorkResolution> {
+	const none: MbWorkResolution = { identity: null, ambiguous: false, unavailable: false };
+	const query = luceneQuery("releasegroup", title, artistHint);
+	if (!query) return none;
+	const body = await mbFetch<unknown>("/release-group", { query, limit: WORK_SEARCH_LIMIT });
+	const releaseGroups = parseReleaseGroups(body);
+	// mbFetch gives null for an HTTP error, a network error and a body that is not JSON; the parser
+	// gives null for JSON off schema. All four are an outage, not a verdict.
+	if (!releaseGroups) return { ...none, unavailable: true };
+	if (isTruncated(body, releaseGroups.length)) return { ...none, ambiguous: true };
+	const picked = pickByTitleAndCredit(releaseGroups, title, artistHint, "release-group");
+	if (picked.kind !== "one") return { ...none, ambiguous: picked.kind === "ambiguous" };
+	const rg = picked.candidate;
+	return {
+		ambiguous: false,
+		unavailable: false,
+		identity: {
+			mbid: rg.id,
+			title: rg.title,
+			credit: toCredits(rg["artist-credit"]),
+			primaryType: rg["primary-type"] ?? null,
+			firstReleaseDate: rg["first-release-date"] || null,
+		},
+	};
+}
+
+/** Recording counterpart of {@link resolveReleaseGroupDetailed}; `primaryType` is always null. */
+export async function resolveRecordingDetailed(
+	title: string,
+	artistHint?: string,
+): Promise<MbWorkResolution> {
+	const none: MbWorkResolution = { identity: null, ambiguous: false, unavailable: false };
+	const query = luceneQuery("recording", title, artistHint);
+	if (!query) return none;
+	const body = await mbFetch<unknown>("/recording", { query, limit: WORK_SEARCH_LIMIT });
+	const recordings = parseRecordings(body);
+	if (!recordings) return { ...none, unavailable: true };
+	if (isTruncated(body, recordings.length)) return { ...none, ambiguous: true };
+	const picked = pickByTitleAndCredit(recordings, title, artistHint, "recording");
+	if (picked.kind !== "one") return { ...none, ambiguous: picked.kind === "ambiguous" };
+	const rec = picked.candidate;
+	return {
+		ambiguous: false,
+		unavailable: false,
+		identity: {
+			mbid: rec.id,
+			title: rec.title,
+			credit: toCredits(rec["artist-credit"]),
+			primaryType: null,
+			firstReleaseDate: rec["first-release-date"] || null,
+		},
+	};
+}
+
+/** {@link resolveReleaseGroupDetailed} without the flags: null means "do not use". */
 export async function resolveReleaseGroup(
 	title: string,
 	artistHint?: string,
 ): Promise<MbReleaseIdentity | null> {
-	const query = luceneQuery("releasegroup", title, artistHint);
-	if (!query) return null;
-	const releaseGroups = parseReleaseGroups(await mbFetch<unknown>("/release-group", { query, limit: "8" }));
-	if (!releaseGroups) return null;
-	const rg = pickByTitleAndCredit(releaseGroups, title, artistHint);
-	if (!rg) return null;
-	return {
-		mbid: rg.id,
-		title: rg.title,
-		credit: toCredits(rg["artist-credit"]),
-		primaryType: rg["primary-type"] ?? null,
-		firstReleaseDate: rg["first-release-date"] || null,
-	};
+	return (await resolveReleaseGroupDetailed(title, artistHint)).identity;
 }
 
-/** Recording counterpart of {@link resolveReleaseGroup}; `primaryType` is always null. */
 export async function resolveRecording(
 	title: string,
 	artistHint?: string,
 ): Promise<MbReleaseIdentity | null> {
-	const query = luceneQuery("recording", title, artistHint);
-	if (!query) return null;
-	const recordings = parseRecordings(await mbFetch<unknown>("/recording", { query, limit: "8" }));
-	if (!recordings) return null;
-	const rec = pickByTitleAndCredit(recordings, title, artistHint);
-	if (!rec) return null;
-	return {
-		mbid: rec.id,
-		title: rec.title,
-		credit: toCredits(rec["artist-credit"]),
-		primaryType: null,
-		firstReleaseDate: rec["first-release-date"] || null,
-	};
+	return (await resolveRecordingDetailed(title, artistHint)).identity;
 }
 
 /** Valid "member of band" relations out of an untrusted `relations` array, deduplicated by MBID. */
@@ -1174,8 +1378,11 @@ function hasUnfoldableLetter(name: string): boolean {
 /**
  * Name identity between a requested artist name and an MB name or alias. Latin names compare through
  * normalizeSlugBody (case, accents, punctuation, "&"). A name with letters it would erase compares
- * literally (NFKC, case-folded) instead: normalizeSlugBody reduces "坂本龍一" to "", "Группа X" to "x"
- * and "Mø" to "m", which would make unrelated artists equal.
+ * literally (NFKC, case-folded) instead: normalizeSlugBody reduces "坂本龍一" to "" and "Группа X" to "x",
+ * and, with the slug transliteration off (default), "Mø" to "m", which would make unrelated artists equal.
+ * With ODYSSEY_SCOPED_RELEASE_SLUGS on (TRA-528) "Mø" becomes "mo", but the guard stays: it does not read
+ * the flag, so a name with "ø" is compared literally either way ("Mø" vs "Mo" is false, "Mø" vs "MØ"
+ * true). Stricter than the slug, never looser.
  */
 function sameArtistName(a: string, b: string): boolean {
 	if (hasUnfoldableLetter(a) || hasUnfoldableLetter(b)) {
@@ -1189,22 +1396,86 @@ function sameArtistName(a: string, b: string): boolean {
 interface MbArtistSearchHit {
 	identity: MbArtistIdentity;
 	aliases: string[];
-	/** Words of MB's disambiguation, area, begin-area and country: what a node's hints are compared to. */
+	/**
+	 * Words of MB's disambiguation, area, begin-area, end-area and country: what a node's hints are
+	 * compared to when a lone candidate is accepted or refused. It can refuse; it never separates.
+	 */
 	context: Set<string>;
+	/**
+	 * Words of the areas MB types as anything but `Country` (a city, a subdivision, an island): the only
+	 * words that tell homonyms apart. Empty when MB gives no area or no type.
+	 */
+	places: Set<string>;
+	/** The words of `places` that come from an area typed `City`: what a partial pool is trusted on. */
+	cities: Set<string>;
 }
 
 function textOf(value: unknown): string | null {
 	return isText(value) ? value : null;
 }
 
-/** Well-formed search hits; malformed entries are dropped one by one. The score is deliberately unused. */
-function parseArtistSearchHits(body: unknown): MbArtistSearchHit[] | null {
+/**
+ * Tokens that name a country, once folded by {@link contextWords}: "gbr" / "usa" / "tur" (England,
+ * Scotland, "UK", "U.S.", "Türkiye"...), the country each demonym folds to, the codes MB gives, plus
+ * countries that have no spelling variant to fold. They filter the words of a node's `origin` only: MB
+ * names areas below `Country` after countries too (Western Australia, "Ciudad de México", the city of
+ * Luxembourg), so a country word of the origin would otherwise match them (TRA-508 review: Keith
+ * Richards, Nico). A defense in depth: the origin's place words are already its first segment only.
+ */
+const COUNTRY_TOKENS: ReadonlySet<string> = new Set([
+	"gbr",
+	"usa",
+	"tur",
+	...Object.values(COUNTRY_WORDS),
+	...Object.values(COUNTRY_CODES),
+	...["mexico", "argentina", "chile", "colombia", "peru", "cuba", "india", "china", "korea", "taiwan"],
+	...["indonesia", "thailand", "vietnam", "philippines", "israel", "egypt", "nigeria", "ghana", "kenya"],
+	...["morocco", "algeria", "tunisia", "senegal", "mali", "ethiopia", "iceland", "switzerland", "austria"],
+	...["greece", "hungary", "romania", "bulgaria", "serbia", "croatia", "slovenia", "slovakia", "czechia"],
+	...["ukraine", "lithuania", "latvia", "estonia", "luxembourg", "zealand", "africa", "jamaica", "iran"],
+	...["kazakhstan", "congo", "australia", "venezuela", "ecuador", "bolivia", "uruguay", "paraguay"],
+]);
+
+/** An MB area type that can name a place; `Country` and an unknown type cannot. */
+function isPlaceType(type: string | null): boolean {
+	return type !== null && type.trim().toLowerCase() !== "country";
+}
+
+/** MB area keys of an artist search hit: where it lives, where it began, where it ended. */
+const ARTIST_AREA_KEYS = ["area", "begin-area", "end-area"] as const;
+
+/** One page of an artist search: well-formed hits, the `count` MB reports, which entries came. */
+interface ArtistSearchPage {
+	hits: MbArtistSearchHit[];
+	/** Every result MB holds for the query, of which a page returns at most `limit`. */
+	count: number;
+	/** Entries in the page, malformed or special-purpose ones included. */
+	received: number;
+	/**
+	 * The ids of the entries in the page, null for an entry without a text id. MB's offset paging is not
+	 * stable among results of equal score: an entry can come on two pages while another never comes.
+	 */
+	ids: (string | null)[];
+}
+
+/**
+ * Well-formed search hits; malformed entries are dropped one by one. The score is deliberately unused.
+ * Null when the body is not a search answer at all, `count` included: without it a page cannot be known
+ * to be the whole pool.
+ */
+function parseArtistSearchHits(body: unknown): ArtistSearchPage | null {
 	if (!isRecord(body) || !Array.isArray(body.artists)) return null;
+	if (typeof body.count !== "number" || !Number.isInteger(body.count) || body.count < 0) return null;
 	const hits: MbArtistSearchHit[] = [];
 	for (const raw of body.artists) {
 		if (!isRecord(raw) || !isMbid(raw.id) || !isText(raw.name) || SPECIAL_PURPOSE_MBIDS.has(raw.id)) continue;
 		const disambiguation = textOf(raw.disambiguation);
-		const areaName = (key: string) => (isRecord(raw[key]) ? textOf(raw[key].name) : null);
+		const areaOf = (key: (typeof ARTIST_AREA_KEYS)[number]) => {
+			const area = raw[key];
+			const name = isRecord(area) ? textOf(area.name) : null;
+			return isRecord(area) && name !== null ? { name, type: textOf(area.type) } : null;
+		};
+		const areas = ARTIST_AREA_KEYS.flatMap((key) => areaOf(key) ?? []);
 		const code = typeof raw.country === "string" ? COUNTRY_CODES[raw.country] : undefined;
 		const aliases = Array.isArray(raw.aliases)
 			? raw.aliases.flatMap((alias) => (isRecord(alias) && isText(alias.name) ? [alias.name] : []))
@@ -1215,17 +1486,27 @@ function parseArtistSearchHits(body: unknown): MbArtistSearchHit[] | null {
 				name: raw.name,
 				kind: artistKind(raw.type),
 				disambiguation,
-				area: areaName("area"),
+				area: areaOf("area")?.name ?? null,
 			},
 			aliases,
 			context: new Set(
-				[disambiguation, areaName("area"), areaName("begin-area"), code ?? null].flatMap((text) =>
+				[disambiguation, ...areas.map((a) => a.name), code ?? null].flatMap((text) =>
 					text === null ? [] : contextWords(text),
 				),
 			),
+			// An area of unknown type is not a place: it might be a country MB left untyped.
+			places: new Set(areas.filter((a) => isPlaceType(a.type)).flatMap((a) => contextWords(a.name))),
+			cities: new Set(
+				areas.filter((a) => a.type?.trim().toLowerCase() === "city").flatMap((a) => contextWords(a.name)),
+			),
 		});
 	}
-	return hits;
+	return {
+		hits,
+		count: body.count,
+		received: body.artists.length,
+		ids: body.artists.map((raw) => (isRecord(raw) ? textOf(raw.id) : null)),
+	};
 }
 
 /** Words (>= 3 chars) of the hints, country-folded, minus filler, deduplicated. */
@@ -1234,21 +1515,71 @@ function hintWords(hints: readonly (string | undefined)[]): string[] {
 }
 
 /**
- * The one candidate MB means, or null. Several exact homonyms: the one sharing strictly more hint
- * words with its MB context than every other, and at least one. A single candidate is accepted unless
- * the node has hints and MB has a context for it and the two share no word: a different artist of the
- * same name (post-punk "113" from Leeds vs the French rap group). No hint, or no MB context, means
- * nothing can contradict it.
+ * The words of a node's `origin` that can name a place: its first segment ("Sydney" of "Sydney,
+ * Australia", "Guadalajara" of "Guadalajara, Jalisco, Mexico"), minus country tokens. Segments are cut at
+ * `,` `;` and `/`. Later segments are regions and countries, and MB areas below `Country` bear their
+ * names ("Western Australia"). An origin of a single segment gives no word at all: it is most often a
+ * country, and the countries no list names ("Georgia", "Lebanon", "Panama") would match an MB area
+ * (a US state, a city) the same way (2026-10-15, TRA-508 re-review). A bare city is lost on purpose.
  */
-function pickByHints(pool: MbArtistSearchHit[], words: string[]): MbArtistSearchHit | null {
-	const common = (hit: MbArtistSearchHit) => words.filter((w) => hit.context.has(w)).length;
+function originPlaceWords(origin: string | undefined): string[] {
+	const segments = (origin ?? "").split(/[,;/]/).filter((segment) => segment.trim() !== "");
+	const [first] = segments;
+	return first && segments.length > 1 ? contextWords(first).filter((w) => !COUNTRY_TOKENS.has(w)) : [];
+}
+
+/**
+ * What the pool's candidates are chosen with. `words` are all the node's hint words (disambiguator and
+ * origin): they can only refuse a lone candidate. `origin` are {@link originPlaceWords}: the only words
+ * that can separate homonyms, and only against {@link MbArtistSearchHit.places}.
+ */
+interface ArtistHints {
+	words: string[];
+	origin: string[];
+}
+
+/**
+ * The one candidate MB means, with the hint words that decided it, or null.
+ *
+ * Several exact homonyms: the one whose places (areas MB does not type `Country`) share strictly more
+ * words with the node's origin than every other, and at least one. Neither a country, nor MB's
+ * disambiguation, nor the node's free-text disambiguator separates homonyms: the real "Aphex Twin" has
+ * no country in its MB context while the impostor "UK experimental electronic artist" has one and the
+ * word "electronic" (2026-10-15, TRA-506 and TRA-508 reviews: "Cornwall, England", then
+ * "electronic musician", made the impostor win). MB's side drops `Country` areas by type (no list of
+ * countries to keep: Kazakhstan, Georgia and Puerto Rico used to slip through one); the node's side
+ * keeps the first segment of its origin only, without country tokens, because MB names areas below
+ * `Country` after countries ("Western Australia" took Keith Richards, "Ciudad de México" took Nico).
+ *
+ * A single candidate is accepted unless the node has hints and MB has a context for it and the two share
+ * no word: a different artist of the same name (post-punk "113" from Leeds vs the French rap group). No
+ * hint, or no MB context, means nothing can contradict it. When the pool is incomplete (MB holds more
+ * results than were read), a candidate proves little about the unread ones: it must be the only one of
+ * the pool read to share a place with the node's origin, and share it through an area typed `City`.
+ * (Not required of a complete pool: MB types Tokyo, Coventry or Kingston as subdivisions.)
+ */
+function pickByHints(
+	pool: MbArtistSearchHit[],
+	hints: ArtistHints,
+	complete: boolean,
+): { hit: MbArtistSearchHit; matched: string[] } | null {
+	const sharedPlaces = (hit: MbArtistSearchHit) => hints.origin.filter((w) => hit.places.has(w));
+	const sharesCity = (hit: MbArtistSearchHit) => hints.origin.some((w) => hit.cities.has(w));
 	const [only] = pool;
-	if (pool.length === 1 && only)
-		return words.length > 0 && only.context.size > 0 && common(only) === 0 ? null : only;
-	const scored = pool.map((hit) => ({ hit, common: common(hit) })).sort((a, b) => b.common - a.common);
+	if (pool.length === 1 && only) {
+		const common = hints.words.filter((w) => only.context.has(w));
+		if (hints.words.length > 0 && only.context.size > 0 && common.length === 0) return null;
+		if (complete) return { hit: only, matched: common };
+		const places = sharedPlaces(only);
+		return places.length > 0 && sharesCity(only) ? { hit: only, matched: places } : null;
+	}
+	const scored = pool
+		.map((hit) => ({ hit, shared: sharedPlaces(hit) }))
+		.sort((a, b) => b.shared.length - a.shared.length);
 	const [best, runnerUp] = scored;
-	if (!best || best.common === 0 || runnerUp?.common === best.common) return null;
-	return best.hit;
+	if (!best || best.shared.length === 0 || runnerUp?.shared.length === best.shared.length) return null;
+	if (!complete && ((runnerUp?.shared.length ?? 0) > 0 || !sharesCity(best.hit))) return null;
+	return { hit: best.hit, matched: best.shared };
 }
 
 export interface MbArtistResolution {
@@ -1259,6 +1590,54 @@ export interface MbArtistResolution {
 	path: "name" | "alias" | null;
 	/** True when a search got no usable answer, which says nothing about the artist. */
 	unavailable: boolean;
+	/**
+	 * The hint words that chose the artist, for audit: the places shared with the node's origin when
+	 * homonyms were told apart, else the hint words shared with MB's context. Empty when nothing was
+	 * chosen, or when the node gave no hint.
+	 */
+	matchedWords: string[];
+}
+
+/** MB's page size for a search, and the offset past which it answers HTTP 400. */
+const MB_SEARCH_PAGE = 100;
+const MB_SEARCH_MAX_OFFSET = 500;
+
+/**
+ * The hits of an artist search, paged until MB's `count` is read or its offset cap (500 results) is
+ * reached: at most 5 requests. Hits are deduplicated by MBID: MB's offset paging repeats an entry among
+ * results of equal score and then never serves another (2026-10-15, TRA-508 review: "Sylvester", 154
+ * entries for 149 distinct ones). `complete` is true only when the distinct entries reach MB's `count`,
+ * so any such loss leaves the pool incomplete. Null when any page got no usable answer: a pool missing
+ * a page would pass for a smaller one.
+ */
+async function searchArtistPool(
+	field: "artist" | "alias",
+	phrase: string,
+): Promise<{ hits: MbArtistSearchHit[]; complete: boolean } | null> {
+	const hits: MbArtistSearchHit[] = [];
+	const seen = new Set<string>();
+	let anonymous = 0;
+	let count = 0;
+	for (let offset = 0; offset < MB_SEARCH_MAX_OFFSET; offset += MB_SEARCH_PAGE) {
+		const page = parseArtistSearchHits(
+			await mbFetch<unknown>("/artist", {
+				query: `${field}:"${phrase}"`,
+				limit: String(MB_SEARCH_PAGE),
+				offset: String(offset),
+			}),
+		);
+		if (!page) return null;
+		if (offset === 0) count = page.count;
+		for (const id of page.ids) {
+			if (id === null) anonymous++;
+			else seen.add(id);
+		}
+		for (const hit of page.hits) {
+			if (!hits.some((h) => h.identity.mbid === hit.identity.mbid)) hits.push(hit);
+		}
+		if (seen.size + anonymous >= count || page.received < MB_SEARCH_PAGE) break;
+	}
+	return { hits, complete: seen.size + anonymous >= count };
 }
 
 /**
@@ -1267,7 +1646,8 @@ export interface MbArtistResolution {
  * node (2026-10-15, TRA-463 review: Leeds post-punk "113" became the French rap group, DJ "Jaguar"
  * became a heavy metal band). So:
  * 1. the pool is every returned artist whose canonical name equals the requested one, whatever its
- *    search score (MB scores "Earth", the right one, at 89) and however it ranks;
+ *    search score (MB scores "Earth", the right one, at 89) and however it ranks. The search is paged
+ *    ({@link searchArtistPool}): 25 results hid every homonym of "Guy" but one (2026-10-15, TRA-508);
  * 2. only when no canonical name matches, a second `alias:` search is made (the `artist:` field does
  *    not index aliases: "Ryuichi Sakamoto" never finds 坂本龍一) and artists carrying the name as an
  *    alias form the pool;
@@ -1277,24 +1657,41 @@ export async function resolveArtistDetailed(
 	name: string,
 	hints: { disambiguator?: string; origin?: string } = {},
 ): Promise<MbArtistResolution> {
-	const none: MbArtistResolution = { artist: null, candidates: 0, path: null, unavailable: false };
+	const none: MbArtistResolution = {
+		artist: null,
+		candidates: 0,
+		path: null,
+		unavailable: false,
+		matchedWords: [],
+	};
 	const phrase = lucenePhrase(name);
 	if (!phrase) return none;
-	const search = async (field: "artist" | "alias") =>
-		parseArtistSearchHits(await mbFetch<unknown>("/artist", { query: `${field}:"${phrase}"`, limit: "25" }));
-	const hits = await search("artist");
-	if (!hits) return { ...none, unavailable: true };
+	const found = await searchArtistPool("artist", phrase);
+	if (!found) return { ...none, unavailable: true };
 	let path: "name" | "alias" = "name";
-	let pool = hits.filter((h) => sameArtistName(h.identity.name, name));
+	let complete = found.complete;
+	let pool = found.hits.filter((h) => sameArtistName(h.identity.name, name));
 	if (pool.length === 0) {
-		const aliasHits = await search("alias");
-		if (!aliasHits) return { ...none, unavailable: true };
+		const aliasFound = await searchArtistPool("alias", phrase);
+		if (!aliasFound) return { ...none, unavailable: true };
 		path = "alias";
-		pool = aliasHits.filter((h) => h.aliases.some((alias) => sameArtistName(alias, name)));
+		// A name search that left results unread may hide exact-name artists the alias pool must not outrank.
+		complete = complete && aliasFound.complete;
+		pool = aliasFound.hits.filter((h) => h.aliases.some((alias) => sameArtistName(alias, name)));
 	}
 	if (pool.length === 0) return none;
-	const winner = pickByHints(pool, hintWords([hints.disambiguator, hints.origin]));
-	return { artist: winner?.identity ?? null, candidates: pool.length, path, unavailable: false };
+	const picked = pickByHints(
+		pool,
+		{ words: hintWords([hints.disambiguator, hints.origin]), origin: originPlaceWords(hints.origin) },
+		complete,
+	);
+	return {
+		artist: picked?.hit.identity ?? null,
+		candidates: pool.length,
+		path,
+		unavailable: false,
+		matchedWords: picked?.matched ?? [],
+	};
 }
 
 export async function resolveArtist(
@@ -1397,6 +1794,24 @@ function rgScore(rg: { "primary-type"?: string; "secondary-types"?: string[] } |
  * group it appears on (canonical "original" album), pull that release's label + artists.
  */
 export async function fetchTrackMetaMb(recordingMbid: string): Promise<MbTrackMeta> {
+	return (await fetchTrackMetaDetailedMb(recordingMbid)).meta;
+}
+
+/**
+ * What a metadata lookup found, and whether MB failed to answer part of it (2026-10-15, TRA-505: the
+ * backfill wrote an mbid beside a hollow tracklist after an outage, and the work left the pending list
+ * for good). `unavailable` is true when
+ * any request got no usable answer (HTTP error, network error, unreadable or non-object JSON): the
+ * `meta` then lacks what that request would have given, which a caller writing it to disk must not
+ * mistake for a work that has no such data. A work MB knows to have none (no release) is not unavailable.
+ */
+export interface MbMetaLookup<T> {
+	meta: T;
+	unavailable: boolean;
+}
+
+/** {@link fetchTrackMetaMb} that also says whether MB failed to answer. */
+export async function fetchTrackMetaDetailedMb(recordingMbid: string): Promise<MbMetaLookup<MbTrackMeta>> {
 	const empty: MbTrackMeta = {
 		project: null,
 		label: null,
@@ -1426,7 +1841,10 @@ export async function fetchTrackMetaMb(recordingMbid: string): Promise<MbTrackMe
 	const rec = await mbFetch<RecordingResp>(`/recording/${recordingMbid}`, {
 		inc: "releases+release-groups+artist-credits+artist-rels",
 	});
-	if (!rec) return empty;
+	// The recording lookup always carries a `releases` array (empty when MB knows none): a body without
+	// one is not MB's answer (a proxy's error page, a truncated cache entry).
+	if (!rec || Array.isArray(rec) || !Array.isArray(rec.releases)) return { meta: empty, unavailable: true };
+	let unavailable = false;
 	const out: MbTrackMeta = {
 		project: null,
 		label: null,
@@ -1461,8 +1879,9 @@ export async function fetchTrackMetaMb(recordingMbid: string): Promise<MbTrackMe
 		const scoreA = rgScore(rgA);
 		const scoreB = rgScore(rgB);
 		if (scoreA !== scoreB) return scoreA - scoreB; // lower is better
-		const ad = a.date ?? a["release-events"]?.[0]?.date ?? "9999";
-		const bd = b.date ?? b["release-events"]?.[0]?.date ?? "9999";
+		// `||`, not `??`: MB sends "date": "" for an undated edition, which must sort last, not first.
+		const ad = a.date || a["release-events"]?.[0]?.date || "9999";
+		const bd = b.date || b["release-events"]?.[0]?.date || "9999";
 		return ad.localeCompare(bd);
 	});
 	const earliest = releases[0];
@@ -1477,13 +1896,17 @@ export async function fetchTrackMetaMb(recordingMbid: string): Promise<MbTrackMe
 			"label-info"?: { label?: { id: string; name: string } | null }[];
 		}
 		const rel = await mbFetch<ReleaseLabelResp>(`/release/${earliest.id}`, { inc: "labels" });
-		const firstLabel = (rel?.["label-info"] ?? []).find((li) => li.label && li.label.name)?.label;
+		// `label-info` is always there under `inc=labels` (empty for a release without label).
+		if (!rel || Array.isArray(rel) || !Array.isArray(rel["label-info"])) unavailable = true;
+		const firstLabel = (Array.isArray(rel?.["label-info"]) ? rel["label-info"] : []).find(
+			(li) => li.label && li.label.name,
+		)?.label;
 		if (firstLabel) out.label = { mbid: firstLabel.id, name: firstLabel.name };
 	}
 	out.producers = [...producersMap.values()];
 	const prodIdsT = new Set(out.producers.map((p) => p.mbid));
 	out.personnel = [...personnelMap.values()].filter((p) => !prodIdsT.has(p.mbid));
-	return out;
+	return { meta: out, unavailable };
 }
 
 export interface MbProjectMeta {
@@ -1505,6 +1928,11 @@ export interface MbProjectMeta {
  * fans recognize as "the album" rather than a deluxe reissue.
  */
 export async function fetchProjectMetaMb(rgMbid: string): Promise<MbProjectMeta> {
+	return (await fetchProjectMetaDetailedMb(rgMbid)).meta;
+}
+
+/** {@link fetchProjectMetaMb} that also says whether MB failed to answer. */
+export async function fetchProjectMetaDetailedMb(rgMbid: string): Promise<MbMetaLookup<MbProjectMeta>> {
 	const empty: MbProjectMeta = {
 		tracks: [],
 		label: null,
@@ -1523,14 +1951,18 @@ export async function fetchProjectMetaMb(rgMbid: string): Promise<MbProjectMeta>
 	const rg = await mbFetch<ReleaseGroupResp>(`/release-group/${rgMbid}`, {
 		inc: "releases+artist-rels",
 	});
-	if (!rg || !Array.isArray(rg.releases) || rg.releases.length === 0) return empty;
+	if (!rg || Array.isArray(rg) || !Array.isArray(rg.releases)) return { meta: empty, unavailable: true };
+	// An empty release list is an answer: MB knows the group and it has no release to read. A release
+	// entry without an id is not (off schema).
+	if (rg.releases.length === 0) return { meta: empty, unavailable: false };
 	const releases = [...rg.releases].sort((a, b) => {
-		const ad = a.date ?? a["release-events"]?.[0]?.date ?? "9999";
-		const bd = b.date ?? b["release-events"]?.[0]?.date ?? "9999";
+		// `||`, not `??`: MB sends "date": "" for an undated edition, which must sort last, not first.
+		const ad = a.date || a["release-events"]?.[0]?.date || "9999";
+		const bd = b.date || b["release-events"]?.[0]?.date || "9999";
 		return ad.localeCompare(bd);
 	});
 	const releaseId = releases[0]?.id;
-	if (!releaseId) return empty;
+	if (!releaseId) return { meta: empty, unavailable: true };
 	interface ReleaseResp {
 		date?: string;
 		"label-info"?: { label?: { id: string; name: string } | null }[];
@@ -1551,7 +1983,8 @@ export async function fetchProjectMetaMb(rgMbid: string): Promise<MbProjectMeta>
 	const rel = await mbFetch<ReleaseResp>(`/release/${releaseId}`, {
 		inc: "recordings+labels+artist-credits+artist-rels+recording-level-rels",
 	});
-	if (!rel) return empty;
+	// `media` is always there under `inc=recordings` (empty for a release without track).
+	if (!rel || Array.isArray(rel) || !Array.isArray(rel.media)) return { meta: empty, unavailable: true };
 	const out: MbProjectMeta = {
 		tracks: [],
 		label: null,
@@ -1596,7 +2029,7 @@ export async function fetchProjectMetaMb(rgMbid: string): Promise<MbProjectMeta>
 	const dateStr = rel.date ?? rg["first-release-date"];
 	if (typeof dateStr === "string" && /^\d{4}/.test(dateStr)) out.year = dateStr.slice(0, 4);
 	if (typeof rg["primary-type"] === "string") out.primaryType = rg["primary-type"];
-	return out;
+	return { meta: out, unavailable: false };
 }
 
 function unavailableOrEmpty(failOnUnavailable: boolean): CatalogResult[] {

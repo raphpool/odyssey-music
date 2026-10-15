@@ -32,6 +32,28 @@ final class NodeRelationOpeningTests: XCTestCase {
 		XCTAssertEqual(opened.map(\.1), [context.followingRelation()])
 	}
 
+	func testTouchingTheLandmarkAlbumOpensItsProjectPageThroughTheSameGateAsAChip() async throws {
+		let events = EventLog()
+		let model = try await Self.loadedModel(context: .independent(source: .home), log: events)
+		let album = try Self.edge("project:landmark", name: "Landmark")
+		let track = try Self.edge("track:reference", name: "Reference")
+		events.values.removeAll()
+		var opened = [NodeIdentity]()
+
+		// The highlights open with their edge field as the relation kind, as `NodePageView` wires them.
+		for entry in ArtistHighlights(landmarkProject: album, referenceTrack: track).entries {
+			XCTAssertTrue(model.openRelation(entry.edge, kind: entry.field) { identity, _ in opened.append(identity) })
+		}
+
+		XCTAssertEqual(opened.map(\.rawValue), ["project:landmark", "track:reference"])
+		XCTAssertEqual(events.values.map(\.name), [.relationOpened, .relationOpened])
+		XCTAssertEqual(
+			events.values.first?.properties["relation_kind"], .string("landmark_project"))
+		XCTAssertEqual(events.values.first?.properties["node_type"], .string("project"))
+		XCTAssertEqual(events.values.last?.properties["relation_kind"], .string("reference_track"))
+		XCTAssertTrue(events.values.allSatisfy(AnalyticsValidation.accepts))
+	}
+
 	func testASimilarArtistChipOpensTheNodeLikeACollaboratorChip() async throws {
 		let recommendationID = try XCTUnwrap(UUID(uuidString: "22222222-2222-4222-8222-222222222222"))
 		let context = NavigationContext(source: .home, recommendationID: recommendationID)

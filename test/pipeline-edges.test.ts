@@ -1,7 +1,7 @@
 import type { Schema } from "@google/genai";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { EDGE_TARGET_TYPES_BY_TYPE, NODE_TYPES } from "../src/node-spec.js";
-import { type EdgeContext, makeNodeSchema, normalizeEdge } from "../src/pipeline.js";
+import { type EdgeContext, enforceArtistChoices, makeNodeSchema, normalizeEdge } from "../src/pipeline.js";
 import type { NodeType, Slug } from "../src/types.js";
 
 // TRA-462: work references (project/track) carry their primary artist; normalizeEdge scopes the slug
@@ -213,6 +213,8 @@ describe("makeNodeSchema -- artist required on work references (TRA-462)", () =>
 	const WORK_FIELDS = new Set([
 		"discography",
 		"notable_tracks",
+		"landmark_project",
+		"reference_track",
 		"landmark_projects",
 		"landmark_tracks",
 		"notable_releases",
@@ -256,6 +258,104 @@ describe("makeNodeSchema -- artist required on work references (TRA-462)", () =>
 				expect(edge.properties?.artist, `${type}.${field}`).toBeUndefined();
 			}
 		}
+	});
+});
+
+describe("makeNodeSchema -- artist picks (TRA-470)", () => {
+	const { schema } = makeNodeSchema("artist");
+
+	it("declares landmark_project and reference_track as optional single references with artist required", () => {
+		for (const [field, type, list] of [
+			["landmark_project", "project", "discography"],
+			["reference_track", "track", "notable_tracks"],
+		] as const) {
+			const prop = schema.properties?.[field];
+			expect(prop?.type, field).toBe("OBJECT");
+			expect(prop?.properties?.type?.enum, field).toEqual([type]);
+			expect(prop?.required, field).toEqual(["type", "name", "artist"]);
+			expect(prop?.description, field).toContain(`repeat one entry of ${list} exactly`);
+			expect(schema.required ?? [], field).not.toContain(field);
+		}
+	});
+});
+
+describe("enforceArtistChoices -- membership and fallback (TRA-470)", () => {
+	const album = (name: string) => ({ slug: `project:${name}--a`, type: "project", name, artist: "A" });
+	const track = (name: string) => ({ slug: `track:${name}--a`, type: "track", name, artist: "A" });
+	const node = (extra: Record<string, unknown>): Record<string, unknown> => ({
+		slug: "artist:a",
+		discography: [album("one"), album("two")],
+		notable_tracks: [track("x"), track("y")],
+		...extra,
+	});
+
+	it("keeps a pick that is a list member, wherever it sits", () => {
+		const n = node({ landmark_project: album("two"), reference_track: track("y") });
+		const lines: string[] = [];
+		enforceArtistChoices(n, (l) => lines.push(l));
+		expect(n.landmark_project).toEqual(album("two"));
+		expect(n.reference_track).toEqual(track("y"));
+		expect(lines).toEqual([]);
+	});
+
+	it("compares by slug, not by name or object identity, and keeps the list's own entry", () => {
+		const n = node({ landmark_project: { slug: "project:two--a", type: "project", name: "Two (remaster)" } });
+		enforceArtistChoices(n);
+		expect(n.landmark_project).toEqual(album("two"));
+	});
+
+	it("replaces an off-list pick with the first entry and logs it", () => {
+		const n = node({ landmark_project: album("ghost"), reference_track: track("ghost") });
+		const lines: string[] = [];
+		enforceArtistChoices(n, (l) => lines.push(l));
+		expect(n.landmark_project).toEqual(album("one"));
+		expect(n.reference_track).toEqual(track("x"));
+		expect(lines).toHaveLength(2);
+		expect(lines[0]).toContain("landmark_project not in discography");
+		expect(lines[1]).toContain("reference_track not in notable_tracks");
+	});
+
+	it("does not take a bare slug for the scoped entry of the same title", () => {
+		const n = node({ landmark_project: { slug: "project:two", type: "project", name: "two" } });
+		enforceArtistChoices(n);
+		expect(n.landmark_project).toEqual(album("one"));
+	});
+
+	it("fills a missing pick and survives an unreadable one", () => {
+		const n = node({ landmark_project: "two", reference_track: undefined });
+		enforceArtistChoices(n);
+		expect(n.landmark_project).toEqual(album("one"));
+		expect(n.reference_track).toEqual(track("x"));
+	});
+
+	it("removes the pick when its list is empty or missing", () => {
+		const n = node({
+			discography: [],
+			notable_tracks: undefined,
+			landmark_project: album("one"),
+			reference_track: track("x"),
+		});
+		const lines: string[] = [];
+		enforceArtistChoices(n, (l) => lines.push(l));
+		expect("landmark_project" in n).toBe(false);
+		expect("reference_track" in n).toBe(false);
+		expect(lines).toHaveLength(2);
+	});
+
+	it("leaves a node without picks and without lists untouched", () => {
+		const n: Record<string, unknown> = { slug: "artist:a" };
+		enforceArtistChoices(n);
+		expect(n).toEqual({ slug: "artist:a" });
+	});
+
+	it("is idempotent", () => {
+		const n = node({ landmark_project: album("ghost") });
+		enforceArtistChoices(n);
+		const once = structuredClone(n);
+		const lines: string[] = [];
+		enforceArtistChoices(n, (l) => lines.push(l));
+		expect(n).toEqual(once);
+		expect(lines).toEqual([]);
 	});
 });
 

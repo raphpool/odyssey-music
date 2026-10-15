@@ -8,6 +8,15 @@ public enum HeroCandidate: Equatable, Sendable {
 	case node(NodeIdentity)
 }
 
+/// How the hero draws the image it got (plan Part 3, decision 5: an album cover on an artist, label or genre
+/// page is never presented as a photo).
+public enum HeroImageStyle: Equatable, Sendable {
+	/// The image fills the frame: a portrait, a logo, or the node's own release cover.
+	case photo
+	/// A release cover standing in for the node: shown whole (aspect fit) over the type gradient.
+	case derivedCover
+}
+
 /// Which images a node page hero may use, and the fallback chain over them.
 ///
 /// Every node kind carries its own `image_url` (TRA-455), so it always comes first. The edges carry no cover
@@ -41,12 +50,39 @@ public enum HeroImageSource {
 		return steps.compactMap { $0 }
 	}
 
+	/// How the hero draws the image that came from `candidate`. Only artist, label and genre pages can show a
+	/// cover standing in for themselves; a project or a track draws its own cover (or its project's) as is.
+	///
+	/// - The node's own image (`.url`) is a derived cover when the API says so (`image_source`).
+	/// - An image borrowed from an edge (`.node`) is always a release cover, never the node's own picture.
+	public static func style(of candidate: HeroCandidate, type: NodeType, imageSource: String?) -> HeroImageStyle
+	{
+		switch type {
+		case .project, .track: return .photo
+		case .artist, .label, .genre:
+			switch candidate {
+			case .node: return .derivedCover
+			case .url: return imageSource == derivedCoverSource ? .derivedCover : .photo
+			}
+		}
+	}
+
+	/// The `image_source` the server gives to a cover derived from a release.
+	private static let derivedCoverSource = "derived-cover"
+
 	/// The first candidate that yields an image, or `nil` when none does or the caller was cancelled.
 	/// Candidates are tried one after the other, never in parallel: the first one usually wins and a
 	/// speculative `/image` read for the rest would only cost requests.
 	public static func firstImage<Image: Sendable>(
 		among candidates: [HeroCandidate], store: NodeImageStore<Image>
 	) async -> Image? {
+		await firstMatch(among: candidates, store: store)?.image
+	}
+
+	/// Like `firstImage`, and also says which candidate produced the image, so the caller can pick its style.
+	public static func firstMatch<Image: Sendable>(
+		among candidates: [HeroCandidate], store: NodeImageStore<Image>
+	) async -> (image: Image, candidate: HeroCandidate)? {
 		for candidate in candidates {
 			if Task.isCancelled { return nil }
 			let image: Image?
@@ -55,7 +91,7 @@ public enum HeroImageSource {
 			case .node(let identity): image = await store.image(for: identity)
 			}
 			if Task.isCancelled { return nil }
-			if let image { return image }
+			if let image { return (image, candidate) }
 		}
 		return nil
 	}

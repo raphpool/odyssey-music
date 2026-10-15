@@ -1,5 +1,8 @@
 import { describe, expect, test } from "vitest";
+import { NODE_TYPES } from "../src/node-spec.js";
 import {
+	CANONICAL_SLUG_PATTERN,
+	isReadableSlug,
 	isScopedSlug,
 	isValidSlug,
 	makeScopedSlug,
@@ -84,14 +87,106 @@ describe("parseSlug", () => {
 	});
 });
 
-describe("isValidSlug", () => {
-	test("accepts valid", () => {
-		expect(isValidSlug("artist:aphex-twin")).toBe(true);
-		expect(isValidSlug("track:tendency")).toBe(true);
+describe("isValidSlug (canonical rule, TRA-501)", () => {
+	test("accepts the slugs the codebase mints", () => {
+		for (const slug of [
+			"artist:aphex-twin",
+			"track:tendency",
+			"track:fitna--rohff",
+			"artist:pole--stefan-betke",
+			"genre:r-and-b",
+			"project:kid-a--radiohead",
+			"label:warp-records",
+			"genre:2-step",
+		]) {
+			expect(isValidSlug(slug), slug).toBe(true);
+		}
 	});
-	test("rejects invalid", () => {
+	test("rejects an unknown type or an empty input", () => {
 		expect(isValidSlug("foo:bar")).toBe(false);
 		expect(isValidSlug("")).toBe(false);
+		expect(isValidSlug("artist:")).toBe(false);
+		expect(isValidSlug("aphex-twin")).toBe(false);
+	});
+	test("rejects a body that could break out of an HTML attribute", () => {
+		expect(isValidSlug('artist:x" onmouseover="y')).toBe(false);
+		expect(isValidSlug("artist:x'><img src=x onerror=alert(1)>")).toBe(false);
+		expect(isValidSlug("artist:x&amp;y")).toBe(false);
+	});
+	test("rejects a body that is not what normalizeSlugBody produces", () => {
+		for (const slug of [
+			"artist:Aphex-Twin",
+			"Artist:aphex-twin",
+			"artist:aphex twin",
+			"artist:aphex_twin",
+			"artist:-aphex",
+			"artist:aphex-",
+			"artist:aphex---twin",
+			"artist:a--b--c",
+			"artist:--b",
+			"artist:a--",
+			"artist:../x",
+			"artist:a/b",
+			"artist:a%22b",
+			"artist:caf\u00e9",
+			"artist:a\nb",
+			"artist:aphex-twin\n",
+		]) {
+			expect(isValidSlug(slug), JSON.stringify(slug)).toBe(false);
+		}
+	});
+	test("accepts whatever makeSlug and makeScopedSlug produce", () => {
+		expect(isValidSlug(makeSlug("artist", "Aphex Twin (musician)"))).toBe(true);
+		expect(isValidSlug(makeSlug("track", "Tendency", "Jan Jelinek"))).toBe(true);
+		expect(isValidSlug(makeSlug("genre", "R&B"))).toBe(true);
+		const scoped = makeScopedSlug("track", "Fitna (Live) [2004]", "Rohff");
+		if (!scoped.ok) throw new Error("expected a slug");
+		expect(isValidSlug(scoped.slug)).toBe(true);
+	});
+	// CI 2026-10-15 (#426): a fixture wrote "project:in-the-møde". The pipeline cannot produce that slug:
+	// normalization drops every character outside [a-z0-9] (NFKD leaves ø, æ, ł, ß whole, and they are
+	// dropped rather than transliterated), so whatever name goes in, the body is canonical.
+	test("makeSlug and makeScopedSlug never emit a non-ASCII body, whatever the name", () => {
+		const expected: Record<string, string> = {
+			"In the Møde": "in-the-m-de",
+			MØ: "m",
+			Æther: "ther",
+			Łona: "ona",
+			"Mötley Crüe": "motley-crue",
+			Straße: "stra-e",
+		};
+		for (const [name, body] of Object.entries(expected)) {
+			const slug = makeSlug("artist", name);
+			expect(slug, name).toBe(`artist:${body}`);
+			expect(isValidSlug(slug), name).toBe(true);
+		}
+		const scoped = makeScopedSlug("project", "In the Møde", "MØ");
+		expect(scoped).toEqual({ ok: true, slug: "project:in-the-m-de--m" });
+		if (scoped.ok) expect(isValidSlug(scoped.slug)).toBe(true);
+		// no Latin letter or digit at all: an expected failure, not a non-canonical slug
+		expect(() => makeSlug("artist", "坂本龍一")).toThrow(/empty name/);
+		expect(makeScopedSlug("track", "Song", "坂本龍一")).toEqual({ ok: false, reason: "empty-artist" });
+	});
+
+	test("the exported pattern covers every node type, and only those", () => {
+		for (const type of NODE_TYPES) expect(CANONICAL_SLUG_PATTERN.test(`${type}:x`), type).toBe(true);
+		expect(CANONICAL_SLUG_PATTERN.test("playlist:x")).toBe(false);
+		expect(CANONICAL_SLUG_PATTERN.source).toBe(
+			"^(genre|label|artist|project|track):[a-z0-9]+(-[a-z0-9]+)*(--[a-z0-9]+(-[a-z0-9]+)*)?$",
+		);
+	});
+});
+
+describe("isReadableSlug (legacy rule kept for reads, TRA-501)", () => {
+	test("accepts what parseSlug accepts, canonical or not", () => {
+		expect(isReadableSlug("artist:aphex-twin")).toBe(true);
+		expect(isReadableSlug('artist:x" onmouseover="y')).toBe(true);
+	});
+	test("still rejects an unknown type, a missing colon and an empty body", () => {
+		expect(isReadableSlug("foo:bar")).toBe(false);
+		expect(isReadableSlug("artist")).toBe(false);
+		expect(isReadableSlug("artist:")).toBe(false);
+		expect(isReadableSlug("")).toBe(false);
 	});
 });
 

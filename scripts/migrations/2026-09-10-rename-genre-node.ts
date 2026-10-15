@@ -36,7 +36,7 @@ import { atomicWriteJson, type PendingReverse } from "../../src/cache.js";
 import { loadGenreRedirects, parseGenreRedirects } from "../../src/genre-registry.js";
 import { type GenreTaxonomy, loadGenreTaxonomy } from "../../src/genre-taxonomy.js";
 import { LIST_EDGES_BY_TYPE, type NodeType, SINGULAR_EDGES_BY_TYPE } from "../../src/node-spec.js";
-import { isValidSlug, parseSlug } from "../../src/slug.js";
+import { isReadableSlug, isValidSlug, parseSlug } from "../../src/slug.js";
 import type { Slug } from "../../src/types.js";
 import {
 	type CacheNodeFile,
@@ -56,6 +56,16 @@ import {
 
 function isGenreSlug(value: string): value is Slug {
 	return isValidSlug(value) && value.startsWith("genre:");
+}
+
+/**
+ * The `<from>` side (TRA-501): the node to rename may carry a slug that predates the canonical rule --
+ * that is exactly what this migration exists to fix -- so it only has to be readable, without a path
+ * separator or ".." (it names a file). `<to>` stays canonical (isGenreSlug): this is how a legacy
+ * slug leaves the cache.
+ */
+export function isRenamableGenreSlug(value: string): value is Slug {
+	return isReadableSlug(value) && value.startsWith("genre:") && !/[\\/]|\.\./.test(value);
 }
 
 function formatRenameReport(args: {
@@ -434,8 +444,10 @@ async function main(): Promise<void> {
 		process.stderr.write(`error: ${args.cacheDir} is not a cache directory (no nodes/ subdirectory)\n`);
 		process.exit(2);
 	}
-	if (!isGenreSlug(args.from) || !isGenreSlug(args.to)) {
-		process.stderr.write("error: <from> and <to> must both be genre slugs (genre:...)\n");
+	if (!isRenamableGenreSlug(args.from) || !isGenreSlug(args.to)) {
+		process.stderr.write(
+			"error: <from> must be a genre slug (genre:...) and <to> a canonical one (genre:[a-z0-9-]+)\n",
+		);
 		process.exit(2);
 	}
 	const result = await runRename(
