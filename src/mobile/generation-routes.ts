@@ -7,6 +7,7 @@ const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/
 const QID_RE = /^Q[1-9]\d*$/;
 const SLUG_RE =
 	/^(artist|project|track|genre|label):[a-z0-9]+(?:-[a-z0-9]+)*(?:--[a-z0-9]+(?:-[a-z0-9]+)*)?$/;
+const FIELD_RE = /^[a-z]+(?:_[a-z]+)*$/;
 const TYPES = new Set(["artist", "project", "track", "genre", "label"]);
 
 export interface MobileGenerationRouteRequest {
@@ -59,7 +60,17 @@ export function createMobileGenerationRoutes(service: MobileGenerationService | 
 
 export function parseGenerationInput(value: unknown): MobileGenerationInput {
 	if (!isRecord(value)) throw new MobileGenerationError("invalid_request", false);
-	const allowed = new Set(["request_id", "type", "name", "slug", "mbid", "qid", "disambiguator"]);
+	const allowed = new Set([
+		"request_id",
+		"type",
+		"name",
+		"artist",
+		"slug",
+		"source",
+		"mbid",
+		"qid",
+		"disambiguator",
+	]);
 	if (Object.keys(value).some((key) => !allowed.has(key)))
 		throw new MobileGenerationError("invalid_request", false);
 	const requestId = text(value.request_id, 36, 36);
@@ -70,6 +81,8 @@ export function parseGenerationInput(value: unknown): MobileGenerationInput {
 	const mbid = optionalText(value.mbid, 36);
 	const qid = optionalText(value.qid, 32);
 	const disambiguator = optionalText(value.disambiguator, 200);
+	const artist = optionalText(value.artist, 200);
+	const source = parseSource(value.source);
 	if (
 		(slug && (!SLUG_RE.test(slug) || !slug.startsWith(`${type}:`))) ||
 		(mbid && !UUID_RE.test(mbid)) ||
@@ -79,10 +92,25 @@ export function parseGenerationInput(value: unknown): MobileGenerationInput {
 	}
 	const out: MobileGenerationInput = { requestId, type, name };
 	if (slug) out.slug = slug;
+	if (artist) out.artist = artist;
+	if (source) out.source = source;
 	if (mbid) out.mbid = mbid;
 	if (qid) out.qid = qid;
 	if (disambiguator) out.disambiguator = disambiguator;
 	return out;
+}
+
+// TRA-477: the edge a click came from. Same canonical slug rule as `slug`; the field is a snake_case
+// edge name (the exact per-type check lives in /materialize, which owns the edge table).
+function parseSource(value: unknown): { slug: string; field: string } | undefined {
+	if (value === undefined) return undefined;
+	if (!isRecord(value) || Object.keys(value).some((key) => key !== "slug" && key !== "field")) {
+		throw new MobileGenerationError("invalid_request", false);
+	}
+	const slug = text(value.slug, 3, 200);
+	const field = text(value.field, 1, 40);
+	if (!SLUG_RE.test(slug) || !FIELD_RE.test(field)) throw new MobileGenerationError("invalid_request", false);
+	return { slug, field };
 }
 
 async function readJson(req: IncomingMessage): Promise<unknown> {
