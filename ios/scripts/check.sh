@@ -406,6 +406,36 @@ remove_stale_simulators() {
 	done <<<"$listing"
 }
 
+# 2026-10-15 (TRA-530): the runner of the Mac hosted four contract harnesses (parent 1, 4 h to 2 days old, two
+# listening ports each) left by jobs that were killed without a chance to run cleanup(). The harness now leaves
+# when its parent does, but a harness started by an older check.sh does not know that, and this stays the net.
+# Only a harness of THIS checkout is touched (the Mac hosts three runners, each with its own _work folder, so the
+# path of the harness is the owner), and only once its parent is gone: the harness of a check.sh that is still
+# running has that check.sh as parent. Failures are logged and ignored, like remove_stale_simulators.
+remove_orphan_harnesses() {
+	local harness_path="$repository_root/test/helpers/mobile-contract-server.ts"
+	local listing line pid parent_pid command
+	if ! listing="$(ps -axww -o pid= -o ppid= -o command= 2>&1)"; then
+		echo "Could not list processes; skipping orphan contract harness cleanup: $listing" >&2
+		return 0
+	fi
+	while IFS= read -r line; do
+		[[ "$line" =~ ^[[:space:]]*([0-9]+)[[:space:]]+([0-9]+)[[:space:]]+(.*)$ ]] || continue
+		pid="${BASH_REMATCH[1]}"
+		parent_pid="${BASH_REMATCH[2]}"
+		command="${BASH_REMATCH[3]}"
+		((parent_pid == 1)) || continue
+		[[ "$command" == *" $harness_path --ready-file "* ]] || continue
+		echo "Removing orphan contract harness $pid: its job is gone."
+		kill -TERM "$pid" 2>/dev/null || continue
+		for _ in {1..20}; do
+			kill -0 "$pid" 2>/dev/null || break
+			sleep 0.1
+		done
+		kill -0 "$pid" 2>/dev/null && kill -KILL "$pid" 2>/dev/null || true
+	done <<<"$listing"
+}
+
 start_contract_harness() {
 	contract_dir="$(mktemp -d "${TMPDIR:-/tmp}/track1-contract.XXXXXX")"
 	local ready_file="$contract_dir/base-url"
@@ -641,6 +671,8 @@ provision_simulator() {
 
 trap cleanup EXIT
 trap 'exit 130' INT TERM
+# A closed terminal or a runner that hangs up: the same cleanup as for a cancellation.
+trap 'exit 129' HUP
 
 if [[ "$actual_xcode" != "$expected_xcode" ]]; then
 	echo "Expected $expected_xcode but xcodebuild selected $actual_xcode." >&2
@@ -654,6 +686,7 @@ fi
 echo "Using $actual_xcode"
 mkdir -p "$output_dir"
 remove_stale_simulators
+remove_orphan_harnesses
 
 if grep -q "XCRemoteSwiftPackageReference" "$project_file"; then
 	if [[ ! -f "$package_resolved_path" ]]; then
