@@ -116,7 +116,7 @@ async function tree(dir: string): Promise<Record<string, string>> {
 }
 
 const run = (apply: boolean, extra: { manifestPath?: string } = {}) =>
-	runMigration({ cacheDir, apply, redirectsPath, artistManifestPath, allowIncompleteTable: true, ...extra });
+	runMigration({ cacheDir, apply, redirectsPath, artistManifestPath, scratch: true, ...extra });
 
 const edgeSlugs = (n: Obj, field: string): unknown[] => ((n[field] as Obj[]) ?? []).map((e) => e.slug);
 
@@ -353,8 +353,14 @@ describe("scope-release-slugs migration", () => {
 		]);
 	});
 
-	it("refuses --apply while the transliteration table lacks ð / ı, and says so in a dry-run", async () => {
+	it("refuses --apply without the artist-identity manifest, and while the table lacks ð / ı", async () => {
 		await seed([node("track:fitna", "Fitna", { artists: credit("artist:akuma", "Akuma") })]);
+		const noManifest = await runMigration({ cacheDir, apply: true, redirectsPath, artistManifestPath });
+		expect(noManifest.exitCode).toBe(2);
+		expect(noManifest.manifest.errors.join()).toContain("artist-identity manifest");
+		expect(await exists("track:fitna")).toBe(true);
+
+		await seedIdentities({});
 		const complete = normalizeSlugBody("ðı") === "di";
 		const dry = await runMigration({ cacheDir, apply: false, redirectsPath, artistManifestPath });
 		expect(dry.exitCode).toBe(0);
@@ -362,6 +368,25 @@ describe("scope-release-slugs migration", () => {
 		const applied = await runMigration({ cacheDir, apply: true, redirectsPath, artistManifestPath });
 		expect(applied.exitCode).toBe(complete ? 0 : 2);
 		expect(await exists("track:fitna")).toBe(!complete);
+	});
+
+	it("reports a malformed edge slug instead of aborting the plan", async () => {
+		await seed([
+			node("project:lp", "LP", { artists: credit("artist:rohff-x", "Rohff") }),
+			node("artist:rohff", "Rohff", {
+				discography: [ref("project:lp", "LP"), { slug: "album:??", type: "project", name: "Bad" }],
+			}),
+		]);
+		const { manifest } = await run(false);
+		expect(manifest.detached).toHaveLength(1);
+	});
+
+	it("does not merge a namesake without mbid whose credit differs (Mo / MØ)", async () => {
+		await seed([node("artist:m", "MØ"), node("artist:mo", "Mo")]);
+		const { manifest } = await run(true);
+		expect(manifest.conflicts).toMatchObject([{ kind: "merge", slugs: ["artist:m", "artist:mo"] }]);
+		expect(await exists("artist:m")).toBe(true);
+		expect(await exists("artist:mo")).toBe(true);
 	});
 
 	describe("conflicts", () => {
@@ -544,31 +569,24 @@ describe("scope-release-slugs migration", () => {
 				apply: false,
 				manifestPath: DEFAULT_MANIFEST_PATH,
 				artistManifestPath: "out/artist-identity.json",
-				allowIncompleteTable: false,
 			});
 		});
 
 		it("reads every flag and rejects anything ambiguous", () => {
 			expect(
-				parseCliArgs([
-					"c",
-					"--apply",
-					"--allow-incomplete-table",
-					"--manifest",
-					"m",
-					"--artist-manifest",
-					"a",
-					"--redirects",
-					"r",
-				]),
+				parseCliArgs(["c", "--apply", "--manifest", "m", "--artist-manifest", "a", "--redirects", "r"]),
 			).toEqual({
 				cacheDir: "c",
 				apply: true,
-				allowIncompleteTable: true,
 				manifestPath: "m",
 				artistManifestPath: "a",
 				redirectsPath: "r",
 			});
+			expect(parseCliArgs(["c", "--data-dir", "/d"])).toMatchObject({
+				redirectsPath: "/d/slug-redirects.json",
+			});
+			expect(parseCliArgs(["c", "--data-dir", "/d", "--redirects", "r"])).toBeNull();
+			expect(parseCliArgs(["c", "--allow-incomplete-table"])).toBeNull();
 			expect(parseCliArgs([])).toBeNull();
 			expect(parseCliArgs(["--apply"])).toBeNull();
 			expect(parseCliArgs(["c", "--apply", "--apply"])).toBeNull();

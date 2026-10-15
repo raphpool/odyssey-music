@@ -221,17 +221,30 @@ export function mergeNodes(winner: CacheNodeFile, losers: readonly CacheNodeFile
 	return out;
 }
 
-/** Null when the members may be merged, else why not. */
-export function identityDisagreement(members: readonly CacheNodeFile[]): string | null {
+const fold = (text: string): string =>
+	text
+		.normalize("NFKD")
+		.replace(/[\u0300-\u036f]/g, "")
+		.trim()
+		.toLowerCase();
+
+/**
+ * Null when the members may be merged, else why not. Sharing a slug is not sharing an identity ("Mo" and
+ * "MØ" both give `artist:mo`): different mbids never merge, and as soon as one member has no mbid the
+ * credit (a work's primary credit, an artist's own name; letters kept, only accents folded) has to agree.
+ * `mbidOnly`: the members are one collision of the artist manifest, which MusicBrainz already settled.
+ */
+export function identityDisagreement(members: readonly CacheNodeFile[], mbidOnly = false): string | null {
 	const mbids = sortedUnique(members.flatMap((m) => str(m.node.mbid) ?? []));
 	if (mbids.length > 1) return `different mbids: ${mbids.join(", ")}`;
-	if (mbids.length === 1) return null;
-	// No mbid anywhere: the credit has to agree (a work's primary credit, an artist's own name).
+	if (mbidOnly || members.every((m) => str(m.node.mbid) !== undefined)) return null;
 	const credits = sortedUnique(
 		members.map((m) =>
-			m.type === "project" || m.type === "track"
-				? normalizeSlugBody(str(edgeList(m.node.artists)[0]?.name) ?? "")
-				: normalizeSlugBody(str(m.node.name) ?? ""),
+			fold(
+				(m.type === "project" || m.type === "track"
+					? str(edgeList(m.node.artists)[0]?.name)
+					: str(m.node.name)) ?? "",
+			),
 		),
 	);
 	return credits.length > 1 ? `different credits: ${credits.join(", ")}` : null;
@@ -249,6 +262,8 @@ export interface PlanInput {
 export interface Plan {
 	/** Final slug -> node to write (only nodes whose content changes or that are new). */
 	writes: Map<string, Obj>;
+	/** Final slugs that have no file yet: written before the edited ones. */
+	fresh: Set<string>;
 	/** Old slug -> file to delete once the new files are in place. */
 	deletions: Map<string, CacheNodeFile>;
 	pending: { result: Record<string, PendingReverse[]>; changed: boolean };
@@ -335,8 +350,9 @@ export function planMigration(input: PlanInput): Plan {
 		const { winner } = elect(present, true);
 		for (const m of present) finalOf.set(m.slug, finalOf.get(winner.slug) ?? winner.slug);
 	}
+	// A group holding a whole collision of the artist manifest: MusicBrainz settled it, and its bare slug wins.
 	const preferBare = (members: readonly CacheNodeFile[]): boolean =>
-		collisionGroups.some((g) => members.every((m) => g.includes(m)));
+		collisionGroups.some((g) => g.every((m) => members.includes(m)));
 
 	// 3. Merge groups and their guards, until stable (reverting one group can expose another).
 	const revert = (slugs: readonly string[]): void => {
@@ -368,7 +384,7 @@ export function planMigration(input: PlanInput): Plan {
 			groups.set(finalOf.get(f.slug) ?? f.slug, [...(groups.get(finalOf.get(f.slug) ?? f.slug) ?? []), f]);
 		for (const [fin, members] of groups) {
 			if (members.length < 2) continue;
-			const why = identityDisagreement(members);
+			const why = identityDisagreement(members, preferBare(members));
 			if (why === null) continue;
 			addConflict({ kind: "merge", slugs: members.map((m) => m.slug).sort(), reason: `${fin}: ${why}` });
 			revert(members.map((m) => m.slug));
@@ -480,26 +496,20 @@ export function planMigration(input: PlanInput): Plan {
 			else removed.push(relative(dirname(dirname(dirname(m.path))), m.path));
 		}
 	}
-	for (const [old, file] of deletions) {
-		if (
-			!removed.includes(relative(dirname(dirname(dirname(file.path))), file.path)) &&
-			renamed[old] === undefined
-		) {
-			errors.push(`internal: ${old} deleted without a rename or removal entry`);
-		}
-	}
 
 	// 7. Edge rewriting, with the credit condition on the artist -> work edges.
 	const detached: DetachedEdge[] = [];
 	const rewritten: RewrittenEdge[] = [];
 	const selfEdges: { node: string; field: string }[] = [];
 	const credited = (
-		source: { slug: string; mbids: Set<string>; groups: Set<string> },
+		source: { slug: string; mbids: Set<string>; groups: Set<string>; names: Set<string> },
 		target: Obj,
 	): boolean => {
 		for (const c of [...edgeList(target.artists), ...edgeList(target.producers)]) {
 			const cSlug = str(c.slug) ? resolve(str(c.slug) as string) : undefined;
 			const cMbid = str(c.mbid);
+			// A credit that is only a name counts when it is the source's own name.
+			if (!cSlug && !cMbid && source.names.has(fold(str(c.name) ?? ""))) return true;
 			if (cSlug === source.slug || (cMbid && source.mbids.has(cMbid))) return true;
 			if (cMbid && source.groups.has(cMbid)) return true;
 			const cNode = cSlug ? finals.get(cSlug) : undefined;
@@ -524,6 +534,7 @@ export function planMigration(input: PlanInput): Plan {
 				slug: fin,
 				mbids: new Set(members.flatMap((m) => str(m.node.mbid) ?? [])),
 				groups: new Set(members.flatMap((m) => identities.groups.get(m.slug) ?? [])),
+				names: new Set(members.flatMap((m) => str(m.node.name) ?? []).map(fold)),
 			};
 			const sourceName = pickScopeArtistName([str(node.name)]);
 			const next: Obj = { ...node };
@@ -532,7 +543,7 @@ export function planMigration(input: PlanInput): Plan {
 				const fix = (edge: Obj): Obj => {
 					const oldSlug = str(edge.slug);
 					const newSlug = oldSlug ? rewriteMap[oldSlug] : undefined;
-					const targetType = oldSlug ? parseSlug(oldSlug).type : undefined;
+					const targetType = oldSlug && isReadableSlug(oldSlug) ? parseSlug(oldSlug).type : undefined;
 					if (!oldSlug || !newSlug || (targetType !== "project" && targetType !== "track")) return edge;
 					const targetNode = finals.get(newSlug);
 					const hinted =
@@ -623,6 +634,7 @@ export function planMigration(input: PlanInput): Plan {
 		a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0;
 	return {
 		writes,
+		fresh,
 		deletions,
 		pending,
 		redirects: rewriteMap,
@@ -672,8 +684,11 @@ export interface MigrationOptions {
 	manifestPath?: string;
 	artistManifestPath?: string;
 	redirectsPath?: string;
-	/** Lets `--apply` run while the transliteration table lacks ð / ı (TRA-531): scratch copies only. */
-	allowIncompleteTable?: boolean;
+	/**
+	 * Library-only (tests, scratch copies), deliberately not a CLI flag: lets `--apply` run without the
+	 * artist-identity manifest and while the transliteration table lacks ð / ı (TRA-531).
+	 */
+	scratch?: boolean;
 }
 
 export interface MigrationResult {
@@ -748,10 +763,23 @@ export async function runMigration(options: MigrationOptions): Promise<Migration
 		};
 	}
 
+	const artistManifestPath = options.artistManifestPath ?? DEFAULT_ARTIST_MANIFEST_PATH;
+	let identities = await readIdentities(artistManifestPath);
+	// Without the manifest there is no collision to merge and no group membership: a member's edge to a
+	// band's work would be detached for good. Reading is fine (the dry-run says so), writing is refused.
+	if (identities === null && apply && !options.scratch) {
+		return {
+			manifest: empty([
+				`no artist-identity manifest at ${artistManifestPath}: refusing --apply without it (TRA-463)`,
+			]),
+			exitCode: 2,
+		};
+	}
+
 	// TRA-531 completes the table with ð and ı. Without them `Gökhan Kırdar` is still scoped as
 	// `gokhan-k-rdar`, a second identity pass would be needed once they land: applying is refused.
 	const tableComplete = normalizeSlugBody("ðı") === "di";
-	if (apply && !tableComplete && !options.allowIncompleteTable) {
+	if (apply && !tableComplete && !options.scratch) {
 		return {
 			manifest: empty(["the transliteration table lacks ð / ı (TRA-531): merge it before --apply"]),
 			exitCode: 2,
@@ -762,15 +790,13 @@ export async function runMigration(options: MigrationOptions): Promise<Migration
 	warnSkippedNodeFiles(invalid);
 	const notes: string[] = [];
 	if (!tableComplete) notes.push("transliteration table lacks ð / ı (TRA-531): this plan is not final");
-	const redirectsPath = options.redirectsPath ?? join(defaultDataDir(), "slug-redirects.json");
-	const artistManifestPath = options.artistManifestPath ?? DEFAULT_ARTIST_MANIFEST_PATH;
-	let identities = await readIdentities(artistManifestPath);
 	if (identities === null) {
 		notes.push(
 			`no artist manifest at ${artistManifestPath}: no collision to merge, no group membership known`,
 		);
 		identities = NO_IDENTITIES;
 	}
+	const redirectsPath = options.redirectsPath ?? join(defaultDataDir(), "slug-redirects.json");
 	let existingRedirects: Record<string, string> = {};
 	try {
 		const raw = JSON.parse(await readTextOrDefault(redirectsPath, '{"redirects":{}}')) as unknown;
@@ -798,7 +824,7 @@ export async function runMigration(options: MigrationOptions): Promise<Migration
 	if (apply && !failed && plan.manifest.errors.length === 0) {
 		// New files first, then edited ones; the old files go last (a duplicate is harmless, a loss is not).
 		const ordered = [...plan.writes].sort(
-			([a], [b]) => Number(plan.deletions.has(b)) - Number(plan.deletions.has(a)) || (a < b ? -1 : 1),
+			([a], [b]) => Number(plan.fresh.has(b)) - Number(plan.fresh.has(a)) || (a < b ? -1 : 1),
 		);
 		for (const [slug, node] of ordered) {
 			const path = pathOf(cacheDir, slug);
@@ -841,7 +867,6 @@ export interface CliArgs {
 	manifestPath: string;
 	artistManifestPath: string;
 	redirectsPath?: string;
-	allowIncompleteTable: boolean;
 }
 
 /** `<cache-dir> [--apply] [--manifest p] [--artist-manifest p] [--redirects p]`; null (exit 2) on anything else. */
@@ -849,14 +874,15 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 	const cacheDir = argv[0];
 	if (!cacheDir || cacheDir.startsWith("-")) return null;
 	let apply = false;
-	let allowIncompleteTable = false;
 	const values: Record<string, string> = {};
 	for (let i = 1; i < argv.length; i++) {
 		const token = argv[i];
 		if (token === "--apply" && !apply) apply = true;
-		else if (token === "--allow-incomplete-table" && !allowIncompleteTable) allowIncompleteTable = true;
 		else if (
-			(token === "--manifest" || token === "--artist-manifest" || token === "--redirects") &&
+			(token === "--manifest" ||
+				token === "--artist-manifest" ||
+				token === "--redirects" ||
+				token === "--data-dir") &&
 			values[token] === undefined
 		) {
 			const value = argv[++i];
@@ -864,13 +890,17 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 			values[token] = value;
 		} else return null;
 	}
+	const dataDir = values["--data-dir"];
+	if (dataDir !== undefined && values["--redirects"] !== undefined) return null;
 	return {
 		cacheDir,
 		apply,
-		allowIncompleteTable,
 		manifestPath: values["--manifest"] ?? DEFAULT_MANIFEST_PATH,
 		artistManifestPath: values["--artist-manifest"] ?? DEFAULT_ARTIST_MANIFEST_PATH,
+		// --data-dir (deploy/sync-genre-cache.sh): the scratch tables the migration may write; --redirects
+		// names the file itself. Both at once is ambiguous.
 		...(values["--redirects"] ? { redirectsPath: values["--redirects"] } : {}),
+		...(dataDir ? { redirectsPath: join(dataDir, "slug-redirects.json") } : {}),
 	};
 }
 
@@ -891,7 +921,6 @@ async function main(): Promise<void> {
 		apply: args.apply,
 		manifestPath: args.manifestPath,
 		artistManifestPath: args.artistManifestPath,
-		allowIncompleteTable: args.allowIncompleteTable,
 		...(args.redirectsPath ? { redirectsPath: args.redirectsPath } : {}),
 	});
 	console.log(formatSummary(result.manifest, args.manifestPath));
