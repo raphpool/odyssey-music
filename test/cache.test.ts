@@ -1,9 +1,18 @@
-import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
 import { NodeCache } from "../src/cache.js";
-import type { ArtistNode, GenreNode, NodePayload, Slug, TrackNode } from "../src/types.js";
+import type {
+	ArtistNode,
+	EdgeRef,
+	GenreNode,
+	LabelNode,
+	NodePayload,
+	ProjectNode,
+	Slug,
+	TrackNode,
+} from "../src/types.js";
 
 let dir: string;
 let cache: NodeCache;
@@ -508,5 +517,254 @@ describe("NodeCache — genre qid propagation on reverse edges (TRA-18)", () => 
 		const reverse = acid.subgenres.find((e) => e.slug === "genre:dub-techno");
 		expect(reverse).toBeDefined();
 		expect(reverse && "qid" in reverse).toBe(false);
+	});
+});
+
+describe("NodeCache — cross-type reverse edges (TRA-454)", () => {
+	let crossDir: string;
+	let crossCache: NodeCache;
+
+	beforeEach(async () => {
+		crossDir = await mkdtemp(join(tmpdir(), "odyssey-cache-cross-"));
+		crossCache = new NodeCache(crossDir);
+	});
+	afterEach(async () => {
+		await rm(crossDir, { recursive: true, force: true });
+	});
+
+	const ref = (slug: Slug, name: string): EdgeRef => ({
+		type: slug.split(":")[0] as EdgeRef["type"],
+		slug,
+		name,
+	});
+	const bodyOf = (slug: string) => slug.split(":")[1] ?? "x";
+	const article = (name: string) =>
+		`A real long article about ${name} for cross-type reverse coverage. `.repeat(4);
+
+	function artist(overrides: Partial<ArtistNode> & Pick<ArtistNode, "slug" | "name">): ArtistNode {
+		return {
+			type: "artist",
+			editorial_bio: `Fixture bio for ${overrides.name}.`,
+			editorial_article: article(overrides.name),
+			citations: [{ url: `https://example.com/${bodyOf(overrides.slug)}` }],
+			materialized_at: new Date().toISOString(),
+			genres: [],
+			labels: [],
+			discography: [],
+			notable_tracks: [],
+			influences: [],
+			influenced: [],
+			collaborators: [],
+			aliases: [],
+			members: [],
+			...overrides,
+		};
+	}
+
+	function label(overrides: Partial<LabelNode> & Pick<LabelNode, "slug" | "name">): LabelNode {
+		return {
+			type: "label",
+			editorial_description: `Fixture description for ${overrides.name}.`,
+			editorial_article: article(overrides.name),
+			citations: [{ url: `https://example.com/${bodyOf(overrides.slug)}` }],
+			materialized_at: new Date().toISOString(),
+			genres: [],
+			roster: [],
+			notable_releases: [],
+			...overrides,
+		};
+	}
+
+	function project(overrides: Partial<ProjectNode> & Pick<ProjectNode, "slug" | "name">): ProjectNode {
+		return {
+			type: "project",
+			editorial_pitch: `Fixture pitch for ${overrides.name}.`,
+			editorial_article: article(overrides.name),
+			citations: [{ url: `https://example.com/${bodyOf(overrides.slug)}` }],
+			materialized_at: new Date().toISOString(),
+			artists: [],
+			genres: [],
+			tracklist: [],
+			producers: [],
+			personnel: [],
+			related_projects: [],
+			...overrides,
+		};
+	}
+
+	function track(overrides: Partial<TrackNode> & Pick<TrackNode, "slug" | "name">): TrackNode {
+		return {
+			type: "track",
+			editorial_teaser: `Fixture teaser for ${overrides.name}.`,
+			editorial_article: article(overrides.name),
+			citations: [{ url: `https://example.com/${bodyOf(overrides.slug)}` }],
+			materialized_at: new Date().toISOString(),
+			artists: [],
+			genres: [],
+			producers: [],
+			personnel: [],
+			samples: [],
+			sampled_by: [],
+			remixed_by: [],
+			...overrides,
+		};
+	}
+
+	async function readPending(): Promise<Record<string, unknown[]>> {
+		const raw = await readFile(join(crossDir, "pending-reverses.json"), "utf8");
+		return JSON.parse(raw) as Record<string, unknown[]>;
+	}
+
+	const slugsOf = (edges: EdgeRef[]) => edges.map((e) => e.slug);
+	const warpRef = ref("label:warp", "Warp");
+	const aphexRef = ref("artist:aphex-twin", "Aphex Twin");
+
+	it("adds the artist to label.roster when the label is cached", async () => {
+		await crossCache.write(label({ slug: "label:warp", name: "Warp" }));
+		await crossCache.write(artist({ slug: "artist:aphex-twin", name: "Aphex Twin", labels: [warpRef] }));
+
+		const warp = (await crossCache.get("label:warp")) as LabelNode;
+		expect(slugsOf(warp.roster)).toEqual(["artist:aphex-twin"]);
+	});
+
+	it("queues the reverse in pending-reverses.json when the label is absent, then applies it on write", async () => {
+		await crossCache.write(artist({ slug: "artist:aphex-twin", name: "Aphex Twin", labels: [warpRef] }));
+
+		const pending = await readPending();
+		expect(pending["label:warp"]).toEqual([{ field: "roster", cardinality: "list", edge: aphexRef }]);
+
+		await crossCache.write(label({ slug: "label:warp", name: "Warp" }));
+		const warp = (await crossCache.get("label:warp")) as LabelNode;
+		expect(slugsOf(warp.roster)).toEqual(["artist:aphex-twin"]);
+	});
+
+	it("reflects label.roster into artist.labels", async () => {
+		await crossCache.write(artist({ slug: "artist:aphex-twin", name: "Aphex Twin" }));
+		await crossCache.write(label({ slug: "label:warp", name: "Warp", roster: [aphexRef] }));
+
+		const aphex = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
+		expect(slugsOf(aphex.labels)).toEqual(["label:warp"]);
+	});
+
+	it("sets track.project from project.tracklist when the track has none", async () => {
+		await crossCache.write(track({ slug: "track:x", name: "X" }));
+		await crossCache.write(
+			project({ slug: "project:album", name: "Album", tracklist: [ref("track:x", "X")] }),
+		);
+
+		const x = (await crossCache.get("track:x")) as TrackNode;
+		expect(x.project?.slug).toBe("project:album");
+	});
+
+	it("keeps track.project untouched when it is already set", async () => {
+		await crossCache.write(track({ slug: "track:x", name: "X", project: ref("project:first", "First") }));
+		await crossCache.write(
+			project({ slug: "project:album", name: "Album", tracklist: [ref("track:x", "X")] }),
+		);
+
+		const x = (await crossCache.get("track:x")) as TrackNode;
+		expect(x.project?.slug).toBe("project:first");
+	});
+
+	it("appends the track to project.tracklist from track.project", async () => {
+		await crossCache.write(project({ slug: "project:album", name: "Album" }));
+		await crossCache.write(track({ slug: "track:x", name: "X", project: ref("project:album", "Album") }));
+
+		const album = (await crossCache.get("project:album")) as ProjectNode;
+		expect(slugsOf(album.tracklist)).toEqual(["track:x"]);
+	});
+
+	it("covers the remaining pairs between artist, label, project and track", async () => {
+		await crossCache.write(artist({ slug: "artist:aphex-twin", name: "Aphex Twin" }));
+		await crossCache.write(project({ slug: "project:album", name: "Album" }));
+		await crossCache.write(track({ slug: "track:x", name: "X" }));
+		await crossCache.write(label({ slug: "label:warp", name: "Warp" }));
+
+		// artist.discography -> project.artists, artist.notable_tracks -> track.artists
+		await crossCache.write(
+			artist({
+				slug: "artist:aphex-twin",
+				name: "Aphex Twin",
+				discography: [ref("project:album", "Album")],
+				notable_tracks: [ref("track:x", "X")],
+			}),
+		);
+		// label.notable_releases -> project.label (single)
+		await crossCache.write(
+			label({ slug: "label:warp", name: "Warp", notable_releases: [ref("project:album", "Album")] }),
+		);
+
+		const album = (await crossCache.get("project:album")) as ProjectNode;
+		expect(slugsOf(album.artists)).toEqual(["artist:aphex-twin"]);
+		expect(album.label?.slug).toBe("label:warp");
+		expect(slugsOf(((await crossCache.get("track:x")) as TrackNode).artists)).toEqual(["artist:aphex-twin"]);
+
+		// project.artists -> artist.discography, project.label -> label.notable_releases (list)
+		await crossCache.write(
+			project({ slug: "project:other", name: "Other", artists: [aphexRef], label: warpRef }),
+		);
+		const aphex = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
+		expect(slugsOf(aphex.discography)).toEqual(["project:album", "project:other"]);
+		const warp = (await crossCache.get("label:warp")) as LabelNode;
+		expect(slugsOf(warp.notable_releases)).toEqual(["project:album", "project:other"]);
+
+		// track.artists -> artist.notable_tracks
+		await crossCache.write(track({ slug: "track:y", name: "Y", artists: [aphexRef] }));
+		const aphexAfter = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
+		expect(slugsOf(aphexAfter.notable_tracks)).toEqual(["track:x", "track:y"]);
+	});
+
+	it("stamps the genre qid onto artist.genres when genre.key_artists points at a cached artist", async () => {
+		await crossCache.write(artist({ slug: "artist:a", name: "A" }));
+		await crossCache.write(
+			genreNode({ slug: "genre:techno", name: "Techno", qid: "Q170", key_artists: [ref("artist:a", "A")] }),
+		);
+
+		const a = (await crossCache.get("artist:a")) as ArtistNode;
+		expect(a.genres).toEqual([{ type: "genre", slug: "genre:techno", name: "Techno", qid: "Q170" }]);
+	});
+
+	it("mirrors genre.key_labels, landmark_projects and landmark_tracks into their genres field", async () => {
+		await crossCache.write(label({ slug: "label:warp", name: "Warp" }));
+		await crossCache.write(project({ slug: "project:album", name: "Album" }));
+		await crossCache.write(track({ slug: "track:x", name: "X" }));
+		await crossCache.write(
+			genreNode({
+				slug: "genre:idm",
+				name: "IDM",
+				key_labels: [warpRef],
+				landmark_projects: [ref("project:album", "Album")],
+				landmark_tracks: [ref("track:x", "X")],
+			}),
+		);
+
+		expect(slugsOf(((await crossCache.get("label:warp")) as LabelNode).genres)).toEqual(["genre:idm"]);
+		expect(slugsOf(((await crossCache.get("project:album")) as ProjectNode).genres)).toEqual(["genre:idm"]);
+		expect(slugsOf(((await crossCache.get("track:x")) as TrackNode).genres)).toEqual(["genre:idm"]);
+	});
+
+	it("does not add anything to genre.key_artists when an artist lists the genre", async () => {
+		await crossCache.write(genreNode({ slug: "genre:techno", name: "Techno" }));
+		await crossCache.write(
+			artist({
+				slug: "artist:a",
+				name: "A",
+				genres: [{ type: "genre", slug: "genre:techno", name: "Techno" }],
+			}),
+		);
+
+		const techno = (await crossCache.get("genre:techno")) as GenreNode;
+		expect(techno.key_artists).toEqual([]);
+		await expect(readPending()).rejects.toMatchObject({ code: "ENOENT" });
+	});
+
+	it("emits cross-type reverses on replace() as well", async () => {
+		await crossCache.write(label({ slug: "label:warp", name: "Warp" }));
+		await crossCache.write(artist({ slug: "artist:aphex-twin", name: "Aphex Twin" }));
+
+		await crossCache.replace(artist({ slug: "artist:aphex-twin", name: "Aphex Twin", labels: [warpRef] }));
+
+		const warp = (await crossCache.get("label:warp")) as LabelNode;
+		expect(slugsOf(warp.roster)).toEqual(["artist:aphex-twin"]);
 	});
 });

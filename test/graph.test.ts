@@ -146,6 +146,42 @@ describe("buildGraphFromCache — genre redirects reach the exported graph (TRA-
 	});
 });
 
+describe("buildGraphFromCache — slug redirects reach the exported graph (TRA-453)", () => {
+	it("merges a track entry from slug-redirects.json with the genre table", async () => {
+		const redirectsPath = join(dir, "redirects.json");
+		const slugRedirectsPath = join(dir, "slug-redirects.json");
+		await writeFile(
+			redirectsPath,
+			JSON.stringify({ redirects: { "genre:electronic-music": "genre:electronic" } }),
+			"utf8",
+		);
+		await writeFile(
+			slugRedirectsPath,
+			JSON.stringify({ redirects: { "track:fitna": "track:fitna--rohff" } }),
+			"utf8",
+		);
+		const graph = await buildGraphFromCache(dir, { redirectsPath, slugRedirectsPath });
+		expect(graph.redirects).toEqual({
+			"genre:electronic-music": "genre:electronic",
+			"track:fitna": "track:fitna--rohff",
+		});
+	});
+
+	it("emits the track entry when only slug-redirects.json has content", async () => {
+		const slugRedirectsPath = join(dir, "slug-redirects.json");
+		await writeFile(
+			slugRedirectsPath,
+			JSON.stringify({ redirects: { "track:fitna": "track:fitna--rohff" } }),
+			"utf8",
+		);
+		const graph = await buildGraphFromCache(dir, {
+			redirectsPath: join(dir, "missing.json"),
+			slugRedirectsPath,
+		});
+		expect(graph.redirects).toEqual({ "track:fitna": "track:fitna--rohff" });
+	});
+});
+
 describe("backfillGenreReverses — stamping self.qid on synthesized reverse edges (TRA-19)", () => {
 	it("stamps the source genre's qid onto the reverse edge it synthesizes", async () => {
 		await writeRawNode(dir, genreNode({ slug: "genre:acid", name: "Acid" }));
@@ -307,6 +343,55 @@ describe("buildGraphFromCache — unified genre quarantine policy (TRA-54)", () 
 		expect(artist?.edges.genres).toEqual([{ type: "genre", slug: "genre:techno", name: "Techno" }]);
 		expect(graph.edges).toContainEqual({ source: "artist:anchor", target: "genre:techno", kind: "genres" });
 		expect(graph.redirects).toEqual({ "genre:old": "genre:electronic" });
+	});
+});
+
+describe("genre-only graph helpers ignore cross-type reverse pairs (TRA-454)", () => {
+	const artistRef = { type: "artist", slug: "artist:anchor", name: "Anchor" } as const;
+
+	it("still quarantines a genre whose only edges are genre.key_artists", async () => {
+		await writeRawNode(dir, genreNode({ slug: "genre:electronic", name: "Electronic" }));
+		await writeRawNode(
+			dir,
+			genreNode({
+				slug: "genre:techno",
+				name: "Techno",
+				parent_genres: [{ type: "genre", slug: "genre:electronic", name: "Electronic" }],
+			}),
+		);
+		await writeRawNode(
+			dir,
+			genreNode({ slug: "genre:artist-only", name: "Artist Only", key_artists: [artistRef] }),
+		);
+		await writeRawNode(dir, artistNode({ slug: "artist:anchor", name: "Anchor" }));
+
+		const graph = await buildGraphFromCache(dir, { quarantineOrphanGenres: true });
+
+		expect(graph.quarantine).toEqual([
+			{ id: "genre:artist-only", name: "Artist Only", reason: "no genre-genre edges" },
+		]);
+	});
+
+	it("backfills genre -> genre reverses only and never writes cross-type reverses at export", async () => {
+		await writeRawNode(dir, genreNode({ slug: "genre:electronic", name: "Electronic" }));
+		await writeRawNode(
+			dir,
+			genreNode({
+				slug: "genre:techno",
+				name: "Techno",
+				parent_genres: [{ type: "genre", slug: "genre:electronic", name: "Electronic" }],
+				key_artists: [artistRef],
+			}),
+		);
+		await writeRawNode(dir, artistNode({ slug: "artist:anchor", name: "Anchor" }));
+
+		const graph = await buildGraphFromCache(dir);
+		const electronic = graph.nodes.find((node) => node.id === "genre:electronic");
+		const anchor = graph.nodes.find((node) => node.id === "artist:anchor");
+
+		expect(electronic?.edges.subgenres).toEqual([{ type: "genre", slug: "genre:techno", name: "Techno" }]);
+		// artist.genres is the write-path reverse of genre.key_artists; export-time backfill must not invent it.
+		expect(anchor?.edges.genres).toBeUndefined();
 	});
 });
 

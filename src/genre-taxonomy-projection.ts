@@ -120,7 +120,9 @@ export async function projectGenreTaxonomy(
 	// Walking a multi-hop chain here would be defensive code against an input the loader already
 	// makes structurally impossible.
 	for (const [loser, target] of redirects) {
-		if (await cache.has(loser)) continue;
+		// The table covers every node type since TRA-453 (project/track renames); only genre
+		// keys can matter here, and skipping the rest avoids a disk read per non-genre key.
+		if (!loser.startsWith("genre:") || (await cache.has(loser))) continue;
 		const targetIds = idsBySlug.get(target);
 		if (!targetIds) continue;
 		for (const id of targetIds) indexId(idsBySlug, loser, id);
