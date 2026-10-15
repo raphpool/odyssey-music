@@ -1387,6 +1387,10 @@ function canonicalizeDraft(
 	for (const f of LIST_EDGES_BY_TYPE[input.type]) {
 		if (!Array.isArray(next[f])) next[f] = [];
 	}
+	// 2026-10-15 (TRA-456): similar_artists is never LLM-sourced (plan decision 6). Gemini is not asked
+	// for it, but another provider could still emit one, so drop it here; TRA-480 fills it after the
+	// MusicBrainz enrichment.
+	if (input.type === "artist") next.similar_artists = [];
 	// Gemini double-escapes newlines in its JSON (literal backslash + "n"); fix generated prose
 	// here so new writes never carry the escape (TRA-458). Existing nodes are the 6.2 migration.
 	for (const f of [
