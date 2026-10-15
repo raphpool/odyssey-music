@@ -12,7 +12,7 @@ import {
 import { parseSlugRedirects } from "../src/genre-registry.js";
 import { LIST_EDGES_BY_TYPE, type NodeType } from "../src/node-spec.js";
 import { nodePayloadSchema } from "../src/schemas.js";
-import { parseSlug } from "../src/slug.js";
+import { normalizeSlugBody, parseSlug } from "../src/slug.js";
 
 type Obj = Record<string, unknown>;
 
@@ -116,7 +116,7 @@ async function tree(dir: string): Promise<Record<string, string>> {
 }
 
 const run = (apply: boolean, extra: { manifestPath?: string } = {}) =>
-	runMigration({ cacheDir, apply, redirectsPath, artistManifestPath, ...extra });
+	runMigration({ cacheDir, apply, redirectsPath, artistManifestPath, allowIncompleteTable: true, ...extra });
 
 const edgeSlugs = (n: Obj, field: string): unknown[] => ((n[field] as Obj[]) ?? []).map((e) => e.slug);
 
@@ -353,6 +353,17 @@ describe("scope-release-slugs migration", () => {
 		]);
 	});
 
+	it("refuses --apply while the transliteration table lacks ð / ı, and says so in a dry-run", async () => {
+		await seed([node("track:fitna", "Fitna", { artists: credit("artist:akuma", "Akuma") })]);
+		const complete = normalizeSlugBody("ðı") === "di";
+		const dry = await runMigration({ cacheDir, apply: false, redirectsPath, artistManifestPath });
+		expect(dry.exitCode).toBe(0);
+		expect(dry.manifest.notes.some((n) => n.includes("TRA-531"))).toBe(!complete);
+		const applied = await runMigration({ cacheDir, apply: true, redirectsPath, artistManifestPath });
+		expect(applied.exitCode).toBe(complete ? 0 : 2);
+		expect(await exists("track:fitna")).toBe(!complete);
+	});
+
 	describe("conflicts", () => {
 		it("two works with different MBIDs on one scoped slug are listed, not merged, and nothing is written", async () => {
 			await seed([
@@ -394,10 +405,16 @@ describe("scope-release-slugs migration", () => {
 					node("artist:mary-hansen", "Mary Hansen", {
 						collaborators: [ref("artist:l-titia-sadier", "Lætitia Sadier")],
 					}),
+					node("artist:quartet", "Quartet", {
+						members: [ref("artist:s-awomir-kurkiewicz", "Sławomir Kurkiewicz")],
+					}),
 				],
 				{
 					"artist:l-titia-sadier": [
 						{ field: "members", cardinality: "list", edge: ref("artist:stereolab", "Stereolab") },
+					],
+					"artist:s-awomir-kurkiewicz": [
+						{ field: "members", cardinality: "list", edge: ref("artist:quartet", "Quartet") },
 					],
 				},
 			);
@@ -407,6 +424,7 @@ describe("scope-release-slugs migration", () => {
 			expect(manifest.redirects).toEqual({
 				"artist:l-titia-sadier": "artist:laetitia-sadier",
 				"artist:m": "artist:mo",
+				"artist:s-awomir-kurkiewicz": "artist:slawomir-kurkiewicz",
 			});
 			expect(edgeSlugs(await read("artist:stereolab"), "members")).toEqual([
 				"artist:laetitia-sadier",
@@ -417,9 +435,12 @@ describe("scope-release-slugs migration", () => {
 			]);
 			expect(manifest.pending_reverses).toEqual([
 				{ from: "artist:l-titia-sadier", to: "artist:laetitia-sadier" },
+				{ from: "artist:s-awomir-kurkiewicz", to: "artist:slawomir-kurkiewicz" },
 			]);
+			// Onto a node that exists: applied to it and dropped. Onto a dangling target: only the key moves.
+			expect(edgeSlugs(await read("artist:laetitia-sadier"), "members")).toEqual(["artist:stereolab"]);
 			const pending = JSON.parse(await readFile(join(cacheDir, "pending-reverses.json"), "utf8")) as Obj;
-			expect(Object.keys(pending)).toEqual(["artist:laetitia-sadier"]);
+			expect(Object.keys(pending)).toEqual(["artist:slawomir-kurkiewicz"]);
 		});
 
 		it("never applies the table edge by edge when two references name one old slug differently", async () => {
@@ -523,15 +544,27 @@ describe("scope-release-slugs migration", () => {
 				apply: false,
 				manifestPath: DEFAULT_MANIFEST_PATH,
 				artistManifestPath: "out/artist-identity.json",
+				allowIncompleteTable: false,
 			});
 		});
 
 		it("reads every flag and rejects anything ambiguous", () => {
 			expect(
-				parseCliArgs(["c", "--apply", "--manifest", "m", "--artist-manifest", "a", "--redirects", "r"]),
+				parseCliArgs([
+					"c",
+					"--apply",
+					"--allow-incomplete-table",
+					"--manifest",
+					"m",
+					"--artist-manifest",
+					"a",
+					"--redirects",
+					"r",
+				]),
 			).toEqual({
 				cacheDir: "c",
 				apply: true,
+				allowIncompleteTable: true,
 				manifestPath: "m",
 				artistManifestPath: "a",
 				redirectsPath: "r",

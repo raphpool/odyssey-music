@@ -560,6 +560,33 @@ export function planMigration(input: PlanInput): Plan {
 		results.set(fin, out.node);
 	}
 
+	// pending-reverses.json: keys and edge slugs follow the renames. A key that lands on a node that
+	// exists (the benign collision `artist:l-titia-sadier` -> `artist:laetitia-sadier`) is applied to it
+	// now and dropped: the pending edge would otherwise wait for a write that never comes, and the
+	// forward edge the rename just attached to a real node would have no reverse (audit reciprocity).
+	const pending = rewritePendingReverses(input.pending, rewriteEntries);
+	const pendingRenames = Object.keys(input.pending)
+		.filter((k) => rewriteMap[k] !== undefined)
+		.sort()
+		.map((from) => ({ from, to: rewriteMap[from] as string }));
+	for (const { to } of pendingRenames) {
+		const target = results.get(to);
+		const entries = pending.result[to];
+		if (!target || !entries) continue;
+		const next: Obj = { ...target };
+		for (const { field, cardinality, edge } of entries) {
+			if (edge.slug === to) continue;
+			if (cardinality === "list") {
+				const list = edgeList(next[field]);
+				if (!list.some((e) => e.slug === edge.slug)) next[field] = [...list, edge];
+			} else if (next[field] == null) {
+				next[field] = edge;
+			}
+		}
+		results.set(to, next);
+		delete pending.result[to];
+	}
+
 	// 8. Writes: what is new, merged, or edited.
 	const writes = new Map<string, Obj>();
 	for (const [fin, node] of results) {
@@ -589,13 +616,6 @@ export function planMigration(input: PlanInput): Plan {
 	for (const slug of Object.keys(rewriteMap)) {
 		if (results.has(slug)) errors.push(`redirect key ${slug} is also a live node after the migration`);
 	}
-
-	// 10. pending-reverses.json: keys and edge slugs.
-	const pending = rewritePendingReverses(input.pending, rewriteEntries);
-	const pendingRenames = Object.keys(input.pending)
-		.filter((k) => rewriteMap[k] !== undefined)
-		.sort()
-		.map((from) => ({ from, to: rewriteMap[from] as string }));
 
 	const sortRecord = (r: Record<string, string>): Record<string, string> =>
 		Object.fromEntries(Object.entries(r).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)));
@@ -652,6 +672,8 @@ export interface MigrationOptions {
 	manifestPath?: string;
 	artistManifestPath?: string;
 	redirectsPath?: string;
+	/** Lets `--apply` run while the transliteration table lacks ð / ı (TRA-531): scratch copies only. */
+	allowIncompleteTable?: boolean;
 }
 
 export interface MigrationResult {
@@ -726,9 +748,20 @@ export async function runMigration(options: MigrationOptions): Promise<Migration
 		};
 	}
 
+	// TRA-531 completes the table with ð and ı. Without them `Gökhan Kırdar` is still scoped as
+	// `gokhan-k-rdar`, a second identity pass would be needed once they land: applying is refused.
+	const tableComplete = normalizeSlugBody("ðı") === "di";
+	if (apply && !tableComplete && !options.allowIncompleteTable) {
+		return {
+			manifest: empty(["the transliteration table lacks ð / ı (TRA-531): merge it before --apply"]),
+			exitCode: 2,
+		};
+	}
+
 	const { nodes, invalid } = await readCacheNodes(cacheDir);
 	warnSkippedNodeFiles(invalid);
 	const notes: string[] = [];
+	if (!tableComplete) notes.push("transliteration table lacks ð / ı (TRA-531): this plan is not final");
 	const redirectsPath = options.redirectsPath ?? join(defaultDataDir(), "slug-redirects.json");
 	const artistManifestPath = options.artistManifestPath ?? DEFAULT_ARTIST_MANIFEST_PATH;
 	let identities = await readIdentities(artistManifestPath);
@@ -808,6 +841,7 @@ export interface CliArgs {
 	manifestPath: string;
 	artistManifestPath: string;
 	redirectsPath?: string;
+	allowIncompleteTable: boolean;
 }
 
 /** `<cache-dir> [--apply] [--manifest p] [--artist-manifest p] [--redirects p]`; null (exit 2) on anything else. */
@@ -815,10 +849,12 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 	const cacheDir = argv[0];
 	if (!cacheDir || cacheDir.startsWith("-")) return null;
 	let apply = false;
+	let allowIncompleteTable = false;
 	const values: Record<string, string> = {};
 	for (let i = 1; i < argv.length; i++) {
 		const token = argv[i];
 		if (token === "--apply" && !apply) apply = true;
+		else if (token === "--allow-incomplete-table" && !allowIncompleteTable) allowIncompleteTable = true;
 		else if (
 			(token === "--manifest" || token === "--artist-manifest" || token === "--redirects") &&
 			values[token] === undefined
@@ -831,6 +867,7 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 	return {
 		cacheDir,
 		apply,
+		allowIncompleteTable,
 		manifestPath: values["--manifest"] ?? DEFAULT_MANIFEST_PATH,
 		artistManifestPath: values["--artist-manifest"] ?? DEFAULT_ARTIST_MANIFEST_PATH,
 		...(values["--redirects"] ? { redirectsPath: values["--redirects"] } : {}),
@@ -854,6 +891,7 @@ async function main(): Promise<void> {
 		apply: args.apply,
 		manifestPath: args.manifestPath,
 		artistManifestPath: args.artistManifestPath,
+		allowIncompleteTable: args.allowIncompleteTable,
 		...(args.redirectsPath ? { redirectsPath: args.redirectsPath } : {}),
 	});
 	console.log(formatSummary(result.manifest, args.manifestPath));
