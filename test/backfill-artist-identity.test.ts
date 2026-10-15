@@ -40,7 +40,10 @@ interface FakeArtist {
 	score?: number;
 	disambiguation?: string;
 	area?: string;
+	/** MB's area type; "Country" areas never separate homonyms (TRA-508). Defaults to "City". */
+	areaType?: string;
 	beginArea?: string;
+	beginAreaType?: string;
 	aliases?: string[];
 	/** Asking for this (merged-away) MBID answers with the artist under its live `id`. */
 	mergedFrom?: string;
@@ -57,7 +60,17 @@ function jsonResponse(body: unknown): Response {
  * lookup from `artists`; collects every requested URL. `down` makes every request fail.
  * Note mbFetch memoizes by URL for the whole file: each test uses names and MBIDs of its own.
  */
-function stubMb(artists: FakeArtist[], options: { down?: string[]; badGateway?: string[] } = {}): URL[] {
+function stubMb(
+	artists: FakeArtist[],
+	options: {
+		down?: string[];
+		badGateway?: string[];
+		/** The `count` MB reports for a search, when larger than the artists the fake holds. */
+		count?: number;
+		/** Search offsets (as MB gets them) that answer with a failure. */
+		failOffsets?: number[];
+	} = {},
+): URL[] {
 	const urls: URL[] = [];
 	vi.stubGlobal(
 		"fetch",
@@ -91,19 +104,26 @@ function stubMb(artists: FakeArtist[], options: { down?: string[]; badGateway?: 
 			const [, field = "artist", phrase = ""] =
 				/^(artist|alias):"(.*)"$/.exec(input.searchParams.get("query") ?? "") ?? [];
 			const indexed = (a: FakeArtist) => (field === "alias" ? (a.aliases ?? []) : [a.name]);
+			const matching = artists.filter((a) =>
+				indexed(a).some((n) => n.toLowerCase().includes(phrase.toLowerCase())),
+			);
+			const limit = Number(input.searchParams.get("limit") ?? "25");
+			const offset = Number(input.searchParams.get("offset") ?? "0");
+			if (options.failOffsets?.includes(offset))
+				return { ok: false, status: 500, headers: new Headers(), json: async () => ({}) } as Response;
 			return jsonResponse({
-				artists: artists
-					.filter((a) => indexed(a).some((n) => n.toLowerCase().includes(phrase.toLowerCase())))
-					.map((a) => ({
-						id: a.id,
-						name: a.name,
-						score: a.score ?? 100,
-						...(a.type ? { type: a.type } : {}),
-						...(a.disambiguation ? { disambiguation: a.disambiguation } : {}),
-						...(a.area ? { area: { name: a.area } } : {}),
-						...(a.beginArea ? { "begin-area": { name: a.beginArea } } : {}),
-						...(a.aliases ? { aliases: a.aliases.map((name) => ({ name })) } : {}),
-					})),
+				count: field === "artist" ? Math.max(options.count ?? 0, matching.length) : matching.length,
+				offset,
+				artists: matching.slice(offset, offset + limit).map((a) => ({
+					id: a.id,
+					name: a.name,
+					score: a.score ?? 100,
+					...(a.type ? { type: a.type } : {}),
+					...(a.disambiguation ? { disambiguation: a.disambiguation } : {}),
+					...(a.area ? { area: { name: a.area, type: a.areaType ?? "City" } } : {}),
+					...(a.beginArea ? { "begin-area": { name: a.beginArea, type: a.beginAreaType ?? "City" } } : {}),
+					...(a.aliases ? { aliases: a.aliases.map((name) => ({ name })) } : {}),
+				})),
 			});
 		}),
 	);
@@ -192,18 +212,19 @@ describe("resolveArtist", () => {
 			candidates: 2,
 			path: "name",
 			unavailable: false,
+			matchedWords: [],
 		});
 		// A hint that matches neither is no hint.
 		expect(await resolveArtist("Homonym", { origin: "Reykjavik, Iceland" })).toBeNull();
 	});
 
-	it("separates homonyms by the hint words found in MB's disambiguation and area", async () => {
+	it("separates homonyms by the city in MB's area, not by MB's disambiguation (TRA-508)", async () => {
 		stubMb([
 			{
 				id: "a4a4a4a4-0000-4000-8000-000000000001",
 				name: "Prismic",
 				disambiguation: "noise producer",
-				area: "Japan",
+				area: "Tokyo",
 			},
 			{
 				id: "a4a4a4a4-0000-4000-8000-000000000002",
@@ -215,8 +236,570 @@ describe("resolveArtist", () => {
 		expect((await resolveArtist("Prismic", { origin: "Tokyo, Japan" }))?.mbid).toBe(
 			"a4a4a4a4-0000-4000-8000-000000000001",
 		);
-		expect((await resolveArtist("Prismic", { disambiguator: "Canadian rock band" }))?.mbid).toBe(
-			"a4a4a4a4-0000-4000-8000-000000000002",
+		// "rock band" is in the disambiguation of the second one only, which no longer separates them.
+		expect(await resolveArtist("Prismic", { disambiguator: "Canadian rock band" })).toBeNull();
+		expect(await resolveArtist("Prismic", { disambiguator: "noise producer from Tokyo" })).toBeNull();
+	});
+
+	// TRA-506, reproduced on 2026-10-15 against the real MB: the real Aphex Twin (area London, begin-area
+	// Limerick, no disambiguation) has no country word in its context, the impostor "UK experimental
+	// electronic artist" has one, so "Cornwall, England" made the impostor win on "gbr" alone.
+	describe("a country token never separates homonyms (TRA-506)", () => {
+		const real = "f22942a1-0000-4000-8000-000000000001";
+		const impostor = "65016d2c-0000-4000-8000-000000000001";
+		const aphex: FakeArtist[] = [
+			{ id: real, name: "Aphex Twin", type: "Person", area: "London", beginArea: "Limerick" },
+			{
+				id: impostor,
+				name: "Aphex Twin",
+				type: "Person",
+				disambiguation: "UK experimental electronic artist",
+			},
+		];
+
+		it("leaves Aphex Twin unresolved when only the country distinguishes the candidates", async () => {
+			stubMb(aphex);
+			expect(await resolveArtistDetailed("Aphex Twin", { origin: "Cornwall, England" })).toEqual({
+				artist: null,
+				candidates: 2,
+				path: "name",
+				unavailable: false,
+				matchedWords: [],
+			});
+		});
+
+		it("does not let a demonym or a country name decide either", async () => {
+			stubMb(aphex);
+			expect(await resolveArtist("Aphex Twin", { origin: "Cornwall, United Kingdom" })).toBeNull();
+			expect(await resolveArtist("Aphex Twin", { disambiguator: "British" })).toBeNull();
+		});
+
+		// TRA-508 F3: "electronic" is in the impostor's disambiguation, not in any place: a generic word of
+		// a free-text `disambiguator` (JIT nodes persist one) says nothing about which artist is meant.
+		it("does not let a generic word of the node's disambiguator decide (electronic musician)", async () => {
+			stubMb(aphex);
+			expect(await resolveArtistDetailed("Aphex Twin", { disambiguator: "electronic musician" })).toEqual({
+				artist: null,
+				candidates: 2,
+				path: "name",
+				unavailable: false,
+				matchedWords: [],
+			});
+			expect(
+				await resolveArtist("Aphex Twin", {
+					disambiguator: "electronic musician",
+					origin: "Cornwall, England",
+				}),
+			).toBeNull();
+		});
+
+		it("resolves on the candidate sharing the city of the hint (Leeds)", async () => {
+			const leeds = "b1b1b1b1-0000-4000-8000-000000000001";
+			stubMb([
+				{ id: leeds, name: "Leedsish", area: "Leeds", disambiguation: "post-punk band" },
+				{
+					id: "b1b1b1b1-0000-4000-8000-000000000002",
+					name: "Leedsish",
+					area: "United Kingdom",
+					areaType: "Country",
+				},
+			]);
+			expect((await resolveArtist("Leedsish", { origin: "Leeds, England" }))?.mbid).toBe(leeds);
+			expect(await resolveArtistDetailed("Leedsish", { origin: "Leeds, England" })).toMatchObject({
+				matchedWords: ["leeds"],
+			});
+		});
+
+		it("lets the city win even when the other candidate also shares the country", async () => {
+			const leeds = "b2b2b2b2-0000-4000-8000-000000000001";
+			stubMb([
+				{ id: leeds, name: "Leedsish Two", area: "Leeds", disambiguation: "band" },
+				{ id: "b2b2b2b2-0000-4000-8000-000000000002", name: "Leedsish Two", disambiguation: "UK band" },
+			]);
+			expect((await resolveArtist("Leedsish Two", { origin: "Leeds, England" }))?.mbid).toBe(leeds);
+		});
+
+		it("still uses a country to refuse a lone candidate it contradicts", async () => {
+			stubMb([
+				{
+					id: "b3b3b3b3-0000-4000-8000-000000000001",
+					name: "Lone Test",
+					area: "France",
+					areaType: "Country",
+				},
+			]);
+			expect(await resolveArtist("Lone Test", { origin: "Leeds, England" })).toBeNull();
+		});
+	});
+
+	// TRA-508 F1: the search used to read 25 results and never look at `count`, so a sole exact homonym
+	// in the first page was taken for the only one. Real case: "Guy", count 1602, one exact "Guy" in the
+	// first 25, accepted on "usa" alone; seven exact ones in the first 500.
+	describe("a pool read in full, or a strict tiebreak (TRA-508 F1)", () => {
+		const mbid = (prefix: string, n: number) =>
+			`${prefix}${n.toString(16).padStart(7, "0")}-0000-4000-8000-000000000f00`;
+		/** `n` artists whose name contains `name` without being it: they fill the pages, they are not homonyms. */
+		const crowd = (prefix: string, name: string, n: number): FakeArtist[] =>
+			Array.from({ length: n }, (_, i) => ({ id: mbid(prefix, i), name: `${name} Filler ${i}` }));
+		/** Offsets of the `artist:` search pages requested (the `alias:` search is a separate one). */
+		const offsets = (urls: URL[]) =>
+			urls
+				.filter((u) => u.pathname.endsWith("/artist") && u.searchParams.get("query")?.startsWith("artist:"))
+				.map((u) => u.searchParams.get("offset"));
+
+		it("leaves the artist unresolved when an exact homonym sits on page 2 (Guy)", async () => {
+			const guy = (id: string, area: string, areaType: string): FakeArtist => ({
+				id,
+				name: "Guyone",
+				area,
+				areaType,
+			});
+			const urls = stubMb([
+				...crowd("a0", "Guyone", 40),
+				guy("a1a1a1a1-0000-4000-8000-000000000f01", "United States", "Country"),
+				...crowd("a2", "Guyone", 59),
+				// The 101st result: page 2.
+				guy("a1a1a1a1-0000-4000-8000-000000000f02", "Texas", "Subdivision"),
+			]);
+			const out = await resolveArtistDetailed("Guyone", { origin: "Dallas, USA" });
+			expect(out).toMatchObject({ artist: null, candidates: 2, unavailable: false });
+			expect(offsets(urls)).toEqual(["0", "100"]);
+			expect(urls[0]?.searchParams.get("limit")).toBe("100");
+		});
+
+		it("does not accept a lone exact homonym on a country when MB holds more results than it returned", async () => {
+			const lone: FakeArtist = {
+				id: "a3a3a3a3-0000-4000-8000-000000000f01",
+				name: "Guytwo",
+				area: "United States",
+				areaType: "Country",
+			};
+			const urls = stubMb([...crowd("a4", "Guytwo", 250), lone, ...crowd("a5", "Guytwo", 249)], {
+				count: 1602,
+			});
+			const out = await resolveArtistDetailed("Guytwo", { origin: "Dallas, USA" });
+			expect(out).toMatchObject({ artist: null, candidates: 1 });
+			// MB caps the offset: 5 pages of 100, never offset=500 (HTTP 400).
+			expect(offsets(urls)).toEqual(["0", "100", "200", "300", "400"]);
+		});
+
+		it("accepts that lone homonym when its city is the node's city, even from a partial pool", async () => {
+			const lone: FakeArtist = {
+				id: "a6a6a6a6-0000-4000-8000-000000000f01",
+				name: "Guythree",
+				area: "United States",
+				areaType: "Country",
+				beginArea: "Dallas",
+			};
+			stubMb([...crowd("a7", "Guythree", 250), lone, ...crowd("a8", "Guythree", 249)], { count: 1602 });
+			const out = await resolveArtistDetailed("Guythree", { origin: "Dallas, USA" });
+			expect(out.artist?.mbid).toBe(lone.id);
+			expect(out.matchedWords).toEqual(["dallas"]);
+		});
+
+		it("keeps accepting a lone homonym when the pool is complete and nothing contradicts it", async () => {
+			const lone: FakeArtist = {
+				id: "a9a9a9a9-0000-4000-8000-000000000f01",
+				name: "Guyfour",
+				area: "United States",
+				areaType: "Country",
+			};
+			stubMb([lone]);
+			const out = await resolveArtistDetailed("Guyfour", { origin: "Dallas, USA" });
+			expect(out.artist?.mbid).toBe(lone.id);
+			expect(out.matchedWords).toEqual(["usa"]);
+		});
+
+		it("does not let a complete alias pool hide that the name search left results unread", async () => {
+			const alias = (id: string, extra: Partial<FakeArtist>): FakeArtist => ({
+				id,
+				name: "Someone Real",
+				aliases: ["Aliasfoo"],
+				...extra,
+			});
+			stubMb([...crowd("ae", "Aliasfoo", 500), alias("afafafaf-0000-4000-8000-000000000f01", {})], {
+				count: 600,
+			});
+			expect(await resolveArtistDetailed("Aliasfoo", { origin: "Dallas, USA" })).toMatchObject({
+				artist: null,
+				path: "alias",
+				candidates: 1,
+			});
+			stubMb(
+				[
+					...crowd("b0", "Aliasbar", 500),
+					alias("b1b1b1b1-0000-4000-8000-000000000f01", { aliases: ["Aliasbar"], beginArea: "Dallas" }),
+				],
+				{ count: 600 },
+			);
+			expect((await resolveArtistDetailed("Aliasbar", { origin: "Dallas, USA" })).matchedWords).toEqual([
+				"dallas",
+			]);
+		});
+
+		it("stops paging at the count: 250 results are 3 requests", async () => {
+			const urls = stubMb(crowd("aa", "Guyfive", 250));
+			expect(await resolveArtistDetailed("Guyfive")).toMatchObject({ artist: null, candidates: 0 });
+			expect(offsets(urls)).toEqual(["0", "100", "200"]);
+		});
+
+		it("reads a failed later page as MB being unavailable, not as a smaller pool", async () => {
+			const lone: FakeArtist = { id: "abababab-0000-4000-8000-000000000f01", name: "Guysix", area: "Dallas" };
+			stubMb([lone, ...crowd("ac", "Guysix", 149)], { failOffsets: [100] });
+			expect(await resolveArtistDetailed("Guysix")).toMatchObject({ artist: null, unavailable: true });
+		});
+
+		// TRA-508 review B2: MB's offset paging repeats an entry among results of equal score and never
+		// serves another (Sylvester: 154 entries, 149 distinct). Counting entries called that pool complete.
+		it("counts distinct MBIDs: a repeated entry leaves the pool incomplete", async () => {
+			// 101 results: page 1 holds the lone exact "Guy" and 99 look-alikes.
+			const scenario = (name: string, prefix: string, repeated: boolean) => {
+				const lone: FakeArtist = {
+					id: `${prefix}b9b9b9-0000-4000-8000-000000000f01`,
+					name,
+					area: "United States",
+					areaType: "Country",
+				};
+				const fillers = crowd(`${prefix}c`, name, 99);
+				const body = (list: FakeArtist[], offset: number) => ({
+					count: 101,
+					offset,
+					artists: list.map((a) => ({
+						id: a.id,
+						name: a.name,
+						...(a.area ? { area: { name: a.area, type: a.areaType } } : {}),
+					})),
+				});
+				vi.stubGlobal(
+					"fetch",
+					vi.fn(async (input: URL) =>
+						jsonResponse(
+							Number(input.searchParams.get("offset")) === 0
+								? body([lone, ...fillers], 0)
+								: // Page 2 repeats a filler (100 distinct) or serves the 101st entry (101 distinct).
+									body(repeated ? [fillers[0] as FakeArtist] : crowd(`${prefix}d`, name, 1), 100),
+						),
+					),
+				);
+				return lone;
+			};
+			scenario("Guyseven", "b0", true);
+			expect(await resolveArtistDetailed("Guyseven", { origin: "Dallas, USA" })).toMatchObject({
+				artist: null,
+				candidates: 1,
+			});
+			// Complete pool: the lone candidate is not contradicted ("usa" is shared).
+			const lone = scenario("Guynine", "b1", false);
+			expect((await resolveArtistDetailed("Guynine", { origin: "Dallas, USA" })).artist?.mbid).toBe(lone.id);
+		});
+
+		it("does not list a repeated entry twice among the homonyms", async () => {
+			const home: FakeArtist = {
+				id: "bcbcbcbc-0000-4000-8000-000000000f01",
+				name: "Guyeight",
+				beginArea: "Dallas",
+			};
+			const other: FakeArtist = { id: "bcbcbcbc-0000-4000-8000-000000000f02", name: "Guyeight" };
+			vi.stubGlobal(
+				"fetch",
+				vi.fn(async (input: URL) => {
+					const page =
+						Number(input.searchParams.get("offset")) === 0
+							? [home, ...crowd("bd", "Guyeight", 99)]
+							: [home, other];
+					const artists = page.map((a) => ({
+						id: a.id,
+						name: a.name,
+						...(a.beginArea ? { "begin-area": { name: a.beginArea, type: "City" } } : {}),
+					}));
+					return jsonResponse({ count: 101, offset: 0, artists });
+				}),
+			);
+			const out = await resolveArtistDetailed("Guyeight", { origin: "Dallas, USA" });
+			expect(out.candidates).toBe(2);
+			expect(out.artist?.mbid).toBe(home.id);
+		});
+
+		// TRA-508 review nit: a partial pool trusts a place only when it is a City, and only when nobody else
+		// of the pool read shares any place.
+		it("on a partial pool, wants the only sharer of a place, through a City", async () => {
+			const world = (
+				name: string,
+				extra: Partial<FakeArtist>,
+				other: Partial<FakeArtist> = {},
+			): FakeArtist[] => [
+				{ id: "bebebebe-0000-4000-8000-000000000f01", name, ...extra },
+				{ id: "bebebebe-0000-4000-8000-000000000f02", name, ...other },
+			];
+			// Tokyo typed Subdivision (as MB does): enough for a complete pool, not for a partial one.
+			stubMb(world("Partialone", { beginArea: "Tokyo", beginAreaType: "Subdivision" }));
+			expect((await resolveArtist("Partialone", { origin: "Tokyo, Japan" }))?.mbid).toBe(
+				"bebebebe-0000-4000-8000-000000000f01",
+			);
+			stubMb(world("Partialtwo", { beginArea: "Tokyo", beginAreaType: "Subdivision" }), { count: 600 });
+			expect(await resolveArtist("Partialtwo", { origin: "Tokyo, Japan" })).toBeNull();
+			stubMb(world("Partialthree", { beginArea: "Tokyo" }), { count: 600 });
+			expect((await resolveArtist("Partialthree", { origin: "Tokyo, Japan" }))?.mbid).toBe(
+				"bebebebe-0000-4000-8000-000000000f01",
+			);
+			// A second sharer, with fewer words: the first wins a complete pool, not a partial one.
+			const second: Partial<FakeArtist> = { beginArea: "Worth", beginAreaType: "Subdivision" };
+			stubMb(world("Partialfour", { beginArea: "Fort Worth" }, second));
+			expect((await resolveArtist("Partialfour", { origin: "Fort Worth, Texas" }))?.mbid).toBe(
+				"bebebebe-0000-4000-8000-000000000f01",
+			);
+			stubMb(world("Partialfive", { beginArea: "Fort Worth" }, second), { count: 600 });
+			expect(await resolveArtist("Partialfive", { origin: "Fort Worth, Texas" })).toBeNull();
+		});
+
+		it("treats a search answer without a count as unusable", async () => {
+			vi.stubGlobal(
+				"fetch",
+				vi.fn(async () =>
+					jsonResponse({ artists: [{ id: "adadadad-0000-4000-8000-000000000f01", name: "Nocount" }] }),
+				),
+			);
+			expect(await resolveArtistDetailed("Nocount")).toMatchObject({ artist: null, unavailable: true });
+		});
+	});
+
+	// TRA-508 F2: only MB's `Country` areas are ignored, whatever the country (no list to keep up to date).
+	describe("an MB area of type Country never separates homonyms (TRA-508 F2)", () => {
+		it.each([
+			["Kazakhstan", "Kazbek", "Almaty, Kazakhstan"],
+			["Georgia", "Tbilisian", "Atlanta, Georgia"],
+			["Czech Republic", "Moravian", "Brno, Czech Republic"],
+			["Congo", "Kongoan", "Kinshasa, Congo"],
+			["Puerto Rico", "Boricua", "San Juan, Puerto Rico"],
+		])("%s: the impostor sharing only the country is not chosen", async (country, name, origin) => {
+			const id = (n: number) =>
+				`c${n}c${n}c${n}c${n}-0000-4000-8000-${name.length.toString(16).padStart(12, "0")}`;
+			stubMb([
+				{ id: id(1), name, type: "Group" },
+				{
+					id: id(3),
+					name,
+					type: "Group",
+					area: country,
+					areaType: "Country",
+				},
+			]);
+			expect(await resolveArtistDetailed(name, { origin })).toMatchObject({ artist: null, candidates: 2 });
+		});
+
+		it("still lets the city decide when the impostor's area is the country", async () => {
+			const real = "c4c4c4c4-0000-4000-8000-000000000f01";
+			stubMb([
+				{
+					id: real,
+					name: "Peachtree Test",
+					beginArea: "Atlanta",
+					area: "United States",
+					areaType: "Country",
+				},
+				{
+					id: "c4c4c4c4-0000-4000-8000-000000000f02",
+					name: "Peachtree Test",
+					area: "Georgia",
+					areaType: "Country",
+				},
+			]);
+			const out = await resolveArtistDetailed("Peachtree Test", { origin: "Atlanta, Georgia" });
+			expect(out.artist?.mbid).toBe(real);
+			expect(out.matchedWords).toEqual(["atlanta"]);
+		});
+
+		it("keeps the first segment of the origin only: a Georgia the state does not decide", async () => {
+			stubMb([
+				{
+					id: "c5c5c5c5-0000-4000-8000-000000000f01",
+					name: "Peach State Test",
+					area: "Georgia",
+					areaType: "Subdivision",
+				},
+				{ id: "c5c5c5c5-0000-4000-8000-000000000f02", name: "Peach State Test", area: "Tbilisi" },
+			]);
+			expect(await resolveArtist("Peach State Test", { origin: "Atlanta, Georgia" })).toBeNull();
+		});
+
+		// Measured on the real MB (2026-10-15): England, Scotland and Wales are not typed Country, but they
+		// fold to the same token as "United Kingdom": that token is a country, never a place.
+		it("does not count England or Scotland as a place although MB does not type them Country", async () => {
+			stubMb([
+				{
+					id: "c8c8c8c8-0000-4000-8000-000000000f01",
+					name: "Englandish Test",
+					area: "England",
+					areaType: "Subdivision",
+				},
+				{ id: "c8c8c8c8-0000-4000-8000-000000000f02", name: "Englandish Test" },
+			]);
+			expect(await resolveArtist("Englandish Test", { origin: "Cornwall, England" })).toBeNull();
+			expect(await resolveArtist("Englandish Test", { origin: "Glasgow, UK" })).toBeNull();
+		});
+
+		// TRA-508 review B1: MB names areas below Country after countries, so a country word of the origin
+		// matched them ("Western Australia", "Ciudad de México", the city of Luxembourg).
+		it("does not decide on a country word of the origin that an MB area below Country bears", async () => {
+			stubMb([
+				{
+					id: "cacacaca-0000-4000-8000-000000000f01",
+					name: "Keithish",
+					area: "Australia",
+					areaType: "Country",
+				},
+				{
+					id: "cacacaca-0000-4000-8000-000000000f02",
+					name: "Keithish",
+					area: "Western Australia",
+					areaType: "Subdivision",
+				},
+			]);
+			expect(await resolveArtist("Keithish", { origin: "Sydney, Australia" })).toBeNull();
+			expect(await resolveArtist("Keithish", { origin: "Melbourne, Victoria, Australia" })).toBeNull();
+			stubMb([
+				{ id: "cbcbcbcb-0000-4000-8000-000000000f01", name: "Nicoish", area: "Germany", areaType: "Country" },
+				{
+					id: "cbcbcbcb-0000-4000-8000-000000000f02",
+					name: "Nicoish",
+					area: "Ciudad de México",
+					areaType: "City",
+				},
+			]);
+			expect(await resolveArtist("Nicoish", { origin: "Guadalajara, Jalisco, Mexico" })).toBeNull();
+			// Same answer from a partial pool (count 880), where it was a wrong identity.
+			stubMb(
+				[
+					{
+						id: "cbcbcbcb-0000-4000-8000-000000000f03",
+						name: "Nicotwo",
+						area: "Ciudad de México",
+						areaType: "City",
+					},
+					{ id: "cbcbcbcb-0000-4000-8000-000000000f04", name: "Nicotwo" },
+				],
+				{ count: 880 },
+			);
+			expect(await resolveArtist("Nicotwo", { origin: "Guadalajara, Jalisco, Mexico" })).toBeNull();
+			stubMb([
+				{
+					id: "cccccccc-0000-4000-8000-000000000f01",
+					name: "Almatyish",
+					area: "West Kazakhstan Region",
+					areaType: "Subdivision",
+				},
+				{ id: "cccccccc-0000-4000-8000-000000000f02", name: "Almatyish" },
+			]);
+			expect(await resolveArtist("Almatyish", { origin: "Almaty, Kazakhstan" })).toBeNull();
+		});
+
+		// TRA-508 re-review: a one-segment origin that names a country no list knows decided anyway.
+		it("gives a one-segment origin no place word, whatever it says (Georgia, Lebanon, Detroit)", async () => {
+			const real = "d1d1d1d1-0000-4000-8000-000000000f01";
+			const impostor = "d1d1d1d1-0000-4000-8000-000000000f02";
+			stubMb([
+				{ id: real, name: "Peachtest", area: "Georgia", areaType: "Country" },
+				{ id: impostor, name: "Peachtest", area: "Georgia", areaType: "Subdivision" },
+			]);
+			expect(await resolveArtist("Peachtest", { origin: "Georgia" })).toBeNull();
+			expect(await resolveArtist("Peachtest", { origin: "Atlanta, Georgia" })).toBeNull();
+			stubMb([
+				{
+					id: "d2d2d2d2-0000-4000-8000-000000000f01",
+					name: "Lebanontest",
+					beginArea: "Lebanon",
+					beginAreaType: "City",
+				},
+				{
+					id: "d2d2d2d2-0000-4000-8000-000000000f02",
+					name: "Lebanontest",
+					area: "Lebanon",
+					areaType: "Country",
+				},
+			]);
+			expect(await resolveArtist("Lebanontest", { origin: "Lebanon" })).toBeNull();
+			// A bare city is lost on purpose: one segment cannot be told from a country.
+			stubMb([
+				{
+					id: "d3d3d3d3-0000-4000-8000-000000000f01",
+					name: "Detroittest",
+					beginArea: "Detroit",
+					beginAreaType: "City",
+				},
+				{ id: "d3d3d3d3-0000-4000-8000-000000000f02", name: "Detroittest" },
+			]);
+			expect(await resolveArtist("Detroittest", { origin: "Detroit" })).toBeNull();
+			expect((await resolveArtist("Detroittest", { origin: "Detroit, Michigan" }))?.mbid).toBe(
+				"d3d3d3d3-0000-4000-8000-000000000f01",
+			);
+			// Segments are cut at ";" and "/" as well as ",".
+			expect((await resolveArtist("Detroittest", { origin: "Detroit / Berlin" }))?.mbid).toBe(
+				"d3d3d3d3-0000-4000-8000-000000000f01",
+			);
+			expect((await resolveArtist("Detroittest", { origin: "Detroit; Berlin" }))?.mbid).toBe(
+				"d3d3d3d3-0000-4000-8000-000000000f01",
+			);
+		});
+
+		it("gives an origin that is only a country no place word", async () => {
+			stubMb([
+				{
+					id: "cdcdcdcd-0000-4000-8000-000000000f01",
+					name: "Mexicoish",
+					area: "Mexico City",
+					areaType: "City",
+				},
+				{ id: "cdcdcdcd-0000-4000-8000-000000000f02", name: "Mexicoish" },
+			]);
+			expect(await resolveArtist("Mexicoish", { origin: "Mexico" })).toBeNull();
+			// The first segment still decides: a city is not a country.
+			stubMb([
+				{
+					id: "cecececc-0000-4000-8000-000000000f01",
+					name: "Sydneyish",
+					beginArea: "Sydney",
+					beginAreaType: "City",
+				},
+				{
+					id: "cecececc-0000-4000-8000-000000000f02",
+					name: "Sydneyish",
+					area: "Western Australia",
+					areaType: "Subdivision",
+				},
+			]);
+			expect((await resolveArtist("Sydneyish", { origin: "Sydney, Australia" }))?.mbid).toBe(
+				"cecececc-0000-4000-8000-000000000f01",
+			);
+		});
+
+		it("does not use an area whose type MB does not give", async () => {
+			vi.stubGlobal(
+				"fetch",
+				vi.fn(async () =>
+					jsonResponse({
+						count: 2,
+						artists: [
+							{ id: "c6c6c6c6-0000-4000-8000-000000000f01", name: "Untyped Test", area: { name: "Leeds" } },
+							{ id: "c6c6c6c6-0000-4000-8000-000000000f02", name: "Untyped Test" },
+						],
+					}),
+				),
+			);
+			expect(await resolveArtist("Untyped Test", { origin: "Leeds, England" })).toBeNull();
+		});
+	});
+
+	it("still lets a node's own disambiguator refuse a lone candidate it contradicts", async () => {
+		stubMb([
+			{
+				id: "c7c7c7c7-0000-4000-8000-000000000f01",
+				name: "Lone Disamb",
+				disambiguation: "French rapper",
+			},
+		]);
+		expect(await resolveArtist("Lone Disamb", { disambiguator: "British drummer" })).toBeNull();
+		expect((await resolveArtist("Lone Disamb", { disambiguator: "rapper from Paris" }))?.mbid).toBe(
+			"c7c7c7c7-0000-4000-8000-000000000f01",
 		);
 	});
 
@@ -344,6 +927,7 @@ describe("resolveArtist", () => {
 			candidates: 0,
 			path: null,
 			unavailable: true,
+			matchedWords: [],
 		});
 		const urls = stubMb([]);
 		expect(await resolveArtist('"\\')).toBeNull();
@@ -355,6 +939,7 @@ describe("resolveArtist", () => {
 			"fetch",
 			vi.fn(async () =>
 				jsonResponse({
+					count: 3,
 					artists: [
 						{ id: "89ad4ac3-39f7-470e-963a-56509c546377", name: "Various Artists", score: 100 },
 						{ id: "not-an-mbid", name: "Brokenid", score: 100 },
@@ -531,6 +1116,7 @@ describe("runBackfill", () => {
 			area: null,
 			path: "name",
 			homonyms_discarded: 0,
+			matched_words: [],
 		});
 		expect((await readNode(roni.slug)).artist_kind).toBe("person");
 		expect(result.manifest.unresolved).toEqual([{ slug: "artist:dupe", name: "Dupe", candidates: 2 }]);
@@ -602,6 +1188,36 @@ describe("runBackfill", () => {
 		expect(result.exitCode).toBe(1);
 	});
 
+	// TRA-508 F5: with 25 results Death showed 2 homonyms (1 discarded); MB has homonyms at ranks 121-141.
+	it("counts the homonyms of the whole pool and records the words that decided (Death)", async () => {
+		const orlando = "bfbf0003-0000-4000-8000-000000000001";
+		const death = (n: number, extra: Partial<FakeArtist> = {}): FakeArtist => ({
+			id: `bfbf0003-0000-4000-8000-0000000001${n.toString().padStart(2, "0")}`,
+			name: "Deathmetalish",
+			...extra,
+		});
+		stubMb([
+			// 120 near-names push the homonyms past the first page, as in MB.
+			...Array.from({ length: 120 }, (_, i) => ({
+				id: `bfbf0004-0000-4000-8000-${i.toString().padStart(12, "0")}`,
+				name: `Deathmetalish Filler ${i}`,
+			})),
+			{ ...death(0), id: orlando, type: "Group", beginArea: "Orlando", disambiguation: "US death metal" },
+			...Array.from({ length: 11 }, (_, i) => death(i + 1, { area: `Place ${i}` })),
+		]);
+		await seed(
+			artistNode("artist:deathmetalish", { name: "Deathmetalish", origin: "Orlando, Florida, U.S." }),
+		);
+
+		const { manifest } = await run();
+
+		expect(manifest.resolved["artist:deathmetalish"]).toMatchObject({
+			mbid: orlando,
+			homonyms_discarded: 11,
+			matched_words: ["orlando"],
+		});
+	});
+
 	it("keeps the audit trail of every identity in the manifest", async () => {
 		stubMb([
 			{
@@ -609,7 +1225,7 @@ describe("runBackfill", () => {
 				name: "Audited Twin",
 				type: "Person",
 				disambiguation: "Japanese noise producer",
-				area: "Japan",
+				area: "Tokyo",
 			},
 			{
 				id: "bfbf0001-0000-4000-8000-000000000002",
@@ -641,16 +1257,22 @@ describe("runBackfill", () => {
 		expect(resolved["artist:audited-twin"]).toMatchObject({
 			mb_name: "Audited Twin",
 			disambiguation: "Japanese noise producer",
-			area: "Japan",
+			area: "Tokyo",
 			path: "name",
 			homonyms_discarded: 1,
+			matched_words: ["tokyo"],
 		});
 		expect(resolved["artist:audited-alias"]).toMatchObject({
 			mb_name: "音名",
 			path: "alias",
 			homonyms_discarded: 0,
+			matched_words: ["japan"],
 		});
-		expect(resolved["artist:audited-stored"]).toMatchObject({ path: "stored-mbid", homonyms_discarded: 0 });
+		expect(resolved["artist:audited-stored"]).toMatchObject({
+			path: "stored-mbid",
+			homonyms_discarded: 0,
+			matched_words: [],
+		});
 	});
 
 	// 2026-10-15 (TRA-463 review): a 502 on ?inc=artist-rels used to be read as "no bands", stored as
@@ -764,7 +1386,7 @@ describe("runBackfill", () => {
 		vi.mocked(resolveArtistDetailed).mockClear();
 
 		// The node now carries a hint, as if it had been enriched in between.
-		await seed(artistNode("artist:retry-pending", { name: "Retry Pending", origin: "Retryland" }));
+		await seed(artistNode("artist:retry-pending", { name: "Retry Pending", origin: "Retryland, Elsewhere" }));
 		const result = await run({ resume: true });
 
 		expect(vi.mocked(resolveArtistDetailed).mock.calls.map((c) => c[0])).toEqual(["Retry Pending"]);
@@ -787,6 +1409,46 @@ describe("runBackfill", () => {
 
 		expect(result.manifest.resolved["artist:stale-entry"]?.mbid).toBe(stored);
 		expect(result.manifest.resolved["artist:stale-entry"]?.kind).toBe("group");
+	});
+
+	// TRA-508: a manifest written before matched_words existed holds identities chosen by looser rules.
+	it("--resume re-queries a legacy manifest entry that searched, and reuses one that did not", async () => {
+		const stored = "b8b8b8b8-0000-4000-8000-0000000000a1";
+		stubMb([{ id: "b8b8b8b8-0000-4000-8000-0000000000a2", name: "Legacy Searched", type: "Person" }]);
+		await seed(artistNode("artist:legacy-stored", { name: "Legacy Stored", mbid: stored }));
+		await seed(artistNode("artist:legacy-searched", { name: "Legacy Searched" }));
+		const legacy = (mbid: string, path: string) => ({
+			mbid,
+			kind: "person",
+			groups: [],
+			mb_name: "Legacy",
+			disambiguation: null,
+			area: null,
+			path,
+			homonyms_discarded: 0,
+		});
+		await mkdir(join(root, "out"), { recursive: true });
+		await writeFile(
+			manifestPath,
+			JSON.stringify({
+				generated_at: "2026-10-14T00:00:00.000Z",
+				resolved: {
+					"artist:legacy-stored": legacy(stored, "stored-mbid"),
+					"artist:legacy-searched": legacy("b8b8b8b8-0000-4000-8000-0000000000ff", "name"),
+				},
+				unresolved: [],
+				collisions: [],
+			}),
+			"utf8",
+		);
+
+		const result = await run({ resume: true });
+
+		expect(calls()).toEqual({ searches: 1, profiles: 1 });
+		expect(result.manifest.resolved["artist:legacy-stored"]).toMatchObject({ matched_words: [] });
+		expect(result.manifest.resolved["artist:legacy-searched"]?.mbid).toBe(
+			"b8b8b8b8-0000-4000-8000-0000000000a2",
+		);
 	});
 
 	it("does not search for an artist that already has an mbid, and completes its missing kind", async () => {
@@ -885,6 +1547,7 @@ const manifestEntry = (mbid: string, kind: ResolvedArtist["kind"] = null): Resol
 	area: null,
 	path: "name",
 	homonyms_discarded: 0,
+	matched_words: [],
 });
 
 describe("withIdentity", () => {

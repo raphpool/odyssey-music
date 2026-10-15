@@ -26,7 +26,25 @@ dépendance majeure, tout ce qui touche `infra/`.
 - Une PR tier/3 ne dépasse pas 200 lignes de diff. Sinon on découpe.
 
 ## Escalade automatique
-Une PR passe en tier/3 quoi qu'ait dit le ticket si elle touche :
-`**/auth/**`, `**/payment*/**`, `**/migrations/**`, `.github/**`,
-`**/*.sql`, `**/secrets*`, `infra/**`, `package.json` (deps majeures).
-Le workflow CI applique cette règle : ne la duplique pas à la main.
+Une PR passe en tier/3 quoi qu'ait dit le ticket si un chemin de son diff
+correspond à `sensitivePath`.
+
+**Source de vérité : `sensitivePath` dans `scripts/ci/review-gate-policy.ts`.**
+Le job `tier-guard` de `.github/workflows/ci.yml` en applique le même motif
+(écrit en `grep -E`) ; `test/ci-integrity-job.test.ts` échoue si les deux
+divergent. Ce fichier ne recopie pas la liste : lis le motif, c'est lui qui
+fait foi, et tu n'as rien à mettre à jour ici quand il change.
+
+À titre indicatif seulement, `sensitivePath` couvre aujourd'hui :
+- les dossiers `auth/`, `payment/`, `payments/`, `migrations/`, `infra/`
+  et `deploy/`, à n'importe quelle profondeur ;
+- `.github/`, plus les scripts qui exécutent ou protègent la CI et la
+  livraison (`scripts/deploy-*`, `scripts/ci/review-gate-policy*`,
+  `scripts/ci/threshold-ratchet.ts`, `scripts/audit-cache.ts`,
+  `.codex/scripts/publish-review-status.sh`) ;
+- `data/integrity-thresholds.json` ;
+- les fichiers `*.sql` et tout chemin contenant `secrets`.
+
+Ce qui n'escalade **pas** : `package.json` et le lockfile. Une dépendance
+majeure reste un tier/3 *décidé au planning* (voir ci-dessus), pas détecté par
+la CI : si le ticket en ajoute une, c'est au planner de poser `tier/3`.

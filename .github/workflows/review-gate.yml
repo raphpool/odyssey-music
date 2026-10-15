@@ -12,16 +12,21 @@ jobs:
   review-gate:
     if: github.event.pull_request.draft == false
     runs-on: [self-hosted, macOS, ARM64]
-    timeout-minutes: 8
+    # TRA-520 (2026-10-15): the 24 polling attempts took 7 min 59 s with the previous version of this job and the
+    # API calls added here cost about 8 s more; 8 minutes would have turned a legitimate wait into a timeout.
+    timeout-minutes: 9
     permissions:
       contents: read
       checks: read
       statuses: read
       pull-requests: read
+      # TRA-520: list the workflow runs of the head to tell the `review` check-run of ai-review.yml from a forged one.
+      actions: read
     env:
       GH_TOKEN: ${{ github.token }}
       REPOSITORY: ${{ github.repository }}
       SHA: ${{ github.event.pull_request.head.sha }}
+      DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
     steps:
       - name: Isolate HOME from the runner host account
         # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
@@ -32,30 +37,123 @@ jobs:
           echo "HOME=$RUNNER_TEMP/home" >> "$GITHUB_ENV"
       - uses: actions/checkout@v6
         with: { fetch-depth: 0 }
+      # TRA-520 (2026-10-15): no `npm ci` and no `tsx` here. The policy below is executed from the default branch's
+      # copy, and node 22 strips its types natively; installing the PR's dependencies would let the PR swap the
+      # interpreter that runs the code it is not allowed to change.
       - uses: actions/setup-node@v4
-        with: { node-version: 20, cache: npm }
-      - run: npm ci
+        # Pinned like mobile-ci.yml: the flag below is experimental and its behavior moved between 22.x releases.
+        with: { node-version: 22.13.0 }
+      - name: Load the review policy from the default branch
+        # TRA-520: this job used to run scripts/ci/review-gate-policy.ts from the PR checkout, so a PR editing that
+        # file decided by itself what the gate requires of it (tier, deep review). The copy of the default branch is
+        # the only one executed, never the PR base's (a stacked PR's base is unreviewed). Fail closed: if the copy
+        # cannot be read, `set -e` stops the job and nothing below runs, so the gate does not pass.
+        shell: bash
+        run: |
+          set -euo pipefail
+          trusted="$RUNNER_TEMP/review-gate-policy"
+          rm -rf "$trusted"
+          mkdir -p "$trusted"
+          # Written aside and moved only once complete: a failed `git show` must not leave an empty policy behind.
+          git show "origin/$DEFAULT_BRANCH:scripts/ci/review-gate-policy.ts" > "$trusted/policy.tmp"
+          test -s "$trusted/policy.tmp"
+          mv "$trusted/policy.tmp" "$trusted/review-gate-policy.ts"
+          echo '{"type":"module"}' > "$trusted/package.json"
+          # TRA-527 (2026-10-15): the accounts allowed to publish `codex-review` / `codex-deep-review` come from the
+          # same place and with the same rules. A PR that appends its own login to the list in its checkout changes
+          # nothing here: only the default branch's copy is read. Fail closed on a missing file, an unreadable one,
+          # an empty list or a malformed login: with no allowed author no codex status counts, so a tier/3 waits.
+          git show "origin/$DEFAULT_BRANCH:.github/review-gate-authors.txt" > "$trusted/authors.tmp"
+          jq -Rn '[inputs | sub("#.*$"; "") | gsub("^\\s+|\\s+$"; "") | select(. != "")]' "$trusted/authors.tmp" > "$trusted/authors.json.tmp"
+          jq -e 'length > 0 and all(.[]; test("^[A-Za-z0-9]([A-Za-z0-9-]*[A-Za-z0-9])?$"))' "$trusted/authors.json.tmp" > /dev/null
+          mv "$trusted/authors.json.tmp" "$trusted/authors.json"
       - name: Evaluate combined review policy
         shell: bash
         run: |
           set -euo pipefail
+          ai_review_path=".github/workflows/ai-review.yml"
+          api="$RUNNER_TEMP/review-gate-api"
+          authors="$RUNNER_TEMP/review-gate-policy/authors.json"
+          mkdir -p "$api"
+          # jq program of the `review` check-run selection (tested as is by test/review-gate-workflow.test.ts).
+          # TRA-520: a check-run is the AI review only if it is the `review` job of a `pull_request` run of
+          # ai-review.yml on this exact sha: same check suite as that run, and its id is the id of one of that
+          # run's jobs (an API-created check-run has no job), reported by the Actions app. The name alone is
+          # forgeable: any workflow step of a PR can create a check-run called `review`, with any start time.
+          select_review=$(cat <<'JQ'
+          [$runs[]
+            | select(.path == $path and .event == "pull_request" and .head_sha == $sha)] as $trusted
+          | [$checks[]
+            | select(.name == "review")
+            | select(.head_sha == $sha and .app.slug == "github-actions")
+            | . as $check
+            | select(any($trusted[]; . as $run
+                | $run.check_suite_id == $check.check_suite.id
+                and any($jobs[]; .run_id == $run.id and .id == $check.id and .name == "review")))]
+          | sort_by(.started_at) | last // {}
+          | [(.id // 0), (.conclusion // "missing")] | @tsv
+          JQ
+          )
+          # jq program of the `codex-*` status selection (tested as is by test/review-gate-workflow.test.ts).
+          # TRA-527: a commit status is not bound to its author, so any token with `statuses: write` could post
+          # `codex-deep-review: success` on any sha. Only a status created by one of the allowed accounts counts; a
+          # status from anyone else is as if it did not exist (it neither satisfies the gate nor masks the real one),
+          # and among the allowed ones the latest wins. Logins compare case-insensitively, like GitHub does.
+          select_status=$(cat <<'JQ'
+          [($allowed[0] // [])[] | ascii_downcase] as $logins
+          | [$statuses[]
+            | select(.context == $context)
+            | select(((.creator.login // "") | ascii_downcase) as $login | any($logins[]; . == $login))]
+          | sort_by([.created_at, .id]) | last | .state // "missing"
+          JQ
+          )
           for attempt in $(seq 1 24); do
             git fetch origin "${{ github.event.pull_request.base.sha }}" --depth=50
             paths=$(git diff --name-only "${{ github.event.pull_request.base.sha }}"..."$SHA" | jq -R . | jq -s .)
             labels=$(gh api --paginate "repos/$REPOSITORY/issues/${{ github.event.pull_request.number }}/labels" --jq '.[].name' | jq -R . | jq -s .)
-            claude_info=$(gh api "repos/$REPOSITORY/commits/$SHA/check-runs?check_name=review&filter=all&per_page=100" \
-              --jq '[.check_runs[] | select(.name == "review")] | sort_by(.started_at) | last // {} | [(.id // 0), (.conclusion // "missing")] | @tsv')
+            # TRA-520: among the check-runs that pass `select_review` the latest by start time wins (a re-run adds
+            # one); none at all is `missing`, which never passes. Everything is paginated and goes through files, not
+            # arguments: a PR must not push the real check-run off the first page, or break the command line, by
+            # flooding the head with `review` check-runs. A failing call stops the job (set -e): fail closed.
+            gh api --paginate "repos/$REPOSITORY/commits/$SHA/check-runs?check_name=review&filter=all&per_page=100" \
+              --jq '.check_runs[] | {id, name, head_sha, conclusion, started_at, app: {slug: .app.slug}, check_suite: {id: .check_suite.id}}' \
+              > "$api/checks.json"
+            gh api --paginate "repos/$REPOSITORY/actions/runs?head_sha=$SHA&event=pull_request&per_page=100" \
+              --jq '.workflow_runs[] | {id, path, event, head_sha, check_suite_id}' > "$api/runs.json"
+            run_ids=$(jq -r --arg path "$ai_review_path" 'select(.path == $path) | .id' "$api/runs.json")
+            : > "$api/jobs.json"
+            for run_id in $run_ids; do
+              gh api --paginate "repos/$REPOSITORY/actions/runs/$run_id/jobs?filter=all&per_page=100" \
+                --jq '.jobs[] | {id, name, run_id}' >> "$api/jobs.json"
+            done
+            claude_info=$(jq -nr --slurpfile checks "$api/checks.json" --slurpfile runs "$api/runs.json" \
+              --slurpfile jobs "$api/jobs.json" --arg sha "$SHA" --arg path "$ai_review_path" "$select_review")
             IFS=$'\t' read -r claude_id claude <<< "$claude_info"
             claude_blocking=false
             if [ "$claude" = "failure" ] && [ "$claude_id" != "0" ]; then
               claude_blocking=$(gh api "repos/$REPOSITORY/check-runs/$claude_id/annotations?per_page=100" \
                 --jq 'any(.[]; .message == "Findings bloquants — voir les commentaires inline.")')
             fi
-            statuses=$(gh api "repos/$REPOSITORY/commits/$SHA/status")
-            codex=$(jq -r '[.statuses[] | select(.context == "codex-review")] | first | .state // "missing"' <<< "$statuses")
-            deep=$(jq -r '[.statuses[] | select(.context == "codex-deep-review")] | first | .state // "missing"' <<< "$statuses")
+            # TRA-527: the statuses of the head, all pages (the combined `/status` endpoint hides the author of the
+            # status it keeps and caps at 100), through a file like the other lists. A failing call stops the job.
+            gh api --paginate "repos/$REPOSITORY/commits/$SHA/statuses?per_page=100" \
+              --jq '.[] | {id, context, state, created_at, creator: {login: .creator.login}}' > "$api/statuses.json"
+            codex=$(jq -nr --slurpfile statuses "$api/statuses.json" --slurpfile allowed "$authors" \
+              --arg context codex-review "$select_status")
+            deep=$(jq -nr --slurpfile statuses "$api/statuses.json" --slurpfile allowed "$authors" \
+              --arg context codex-deep-review "$select_status")
+            # A codex status from an account outside the list is dropped silently by the selection above: say so, or
+            # a publisher logged in under another account would look like a review that never came.
+            ignored=$(jq -nr --slurpfile statuses "$api/statuses.json" --slurpfile allowed "$authors" \
+              '[($allowed[0] // [])[] | ascii_downcase] as $logins
+              | [$statuses[] | select(.context == "codex-review" or .context == "codex-deep-review")
+                | select(((.creator.login // "") | ascii_downcase) as $login | any($logins[]; . == $login) | not)
+                | "\(.context) by \(.creator.login // "unknown")"] | unique | join(", ")')
+            if [ -n "$ignored" ]; then
+              echo "::warning::Statuts codex ignorés (auteur hors de .github/review-gate-authors.txt) : $ignored"
+            fi
             input=$(jq -nc --argjson paths "$paths" --argjson labels "$labels" --arg claude "$claude" --arg codex "$codex" --arg deep "$deep" --argjson claudeBlocking "$claude_blocking" '{paths:$paths,labels:$labels,ordinary:{claude:$claude,codex:$codex,claudeBlocking:$claudeBlocking},deep:$deep,risk:1}')
-            result=$(npx --no-install tsx scripts/ci/review-gate-policy.ts "$input")
+            result=$(node --experimental-strip-types --no-warnings "$RUNNER_TEMP/review-gate-policy/review-gate-policy.ts" "$input")
             decision=$(jq -r .verdict <<< "$result")
             echo "attempt=$attempt $result"
             case "$decision" in
