@@ -997,6 +997,132 @@ export async function fetchArtistMembershipsMb(
 	return out;
 }
 
+export interface MbArtistIdentity {
+	mbid: string;
+	/** MB's canonical name, possibly in the original script ("坂本龍一"): never a source for a slug. */
+	name: string;
+	kind: MbArtistKind | null;
+	disambiguation: string | null;
+}
+
+/** Minimum MB search score for an artist to count as a candidate (same bar as the work resolvers). */
+const ARTIST_MIN_SCORE = 90;
+
+/** Hint words that say what the hint is, not who the artist is ("song by Bob Dylan"). */
+const HINT_STOPWORDS = new Set(["song", "track", "album", "band", "the", "and", "from", "with", "music"]);
+
+/** A name that has letters outside Latin/Common scripts: slug normalization would erase them. */
+const NON_LATIN_LETTERS = /[^\p{Script=Latin}\p{Script=Common}\p{Script=Inherited}]/u;
+
+/**
+ * Name identity between a requested artist name and an MB name or alias. Latin names compare through
+ * normalizeSlugBody (case, accents, punctuation, "&"). A name with other scripts compares literally
+ * (NFKC, case-folded) instead: normalizeSlugBody would reduce "坂本龍一" to "" and "Группа X" to "x",
+ * which would make unrelated artists equal.
+ */
+function sameArtistName(a: string, b: string): boolean {
+	if (NON_LATIN_LETTERS.test(a) || NON_LATIN_LETTERS.test(b)) {
+		const fold = (s: string) => s.normalize("NFKC").trim().toLowerCase();
+		return fold(a) !== "" && fold(a) === fold(b);
+	}
+	const na = normalizeSlugBody(a);
+	return na !== "" && na === normalizeSlugBody(b);
+}
+
+interface MbArtistSearchHit {
+	identity: MbArtistIdentity;
+	aliases: string[];
+	context: string[];
+}
+
+function textOf(value: unknown): string | null {
+	return isText(value) ? value : null;
+}
+
+/** Search hits that are well-formed and score high enough; malformed entries are dropped one by one. */
+function parseArtistSearchHits(body: unknown): MbArtistSearchHit[] | null {
+	if (!isRecord(body) || !Array.isArray(body.artists)) return null;
+	const hits: MbArtistSearchHit[] = [];
+	for (const raw of body.artists) {
+		if (!isRecord(raw) || !isMbid(raw.id) || !isText(raw.name)) continue;
+		if (typeof raw.score !== "number" || raw.score < ARTIST_MIN_SCORE) continue;
+		if (SPECIAL_PURPOSE_MBIDS.has(raw.id)) continue;
+		const disambiguation = textOf(raw.disambiguation);
+		const areaName = (key: string) => (isRecord(raw[key]) ? textOf(raw[key].name) : null);
+		const aliases = Array.isArray(raw.aliases)
+			? raw.aliases.flatMap((alias) => (isRecord(alias) && isText(alias.name) ? [alias.name] : []))
+			: [];
+		hits.push({
+			identity: { mbid: raw.id, name: raw.name, kind: artistKind(raw.type), disambiguation },
+			aliases,
+			context: [disambiguation, areaName("area"), areaName("begin-area")].filter(
+				(s): s is string => s !== null,
+			),
+		});
+	}
+	return hits;
+}
+
+/** Whole words (>= 3 chars) of the hints, minus HINT_STOPWORDS, deduplicated. */
+function hintWords(hints: readonly (string | undefined)[]): string[] {
+	const words = hints.flatMap((hint) => (hint ? normalizeSlugBody(hint).split("-") : []));
+	return [...new Set(words.filter((w) => w.length >= 3 && !HINT_STOPWORDS.has(w)))];
+}
+
+/** Candidate with strictly more hint words in its disambiguation / area than every other, or null. */
+function pickByHints(candidates: MbArtistSearchHit[], words: string[]): MbArtistSearchHit | null {
+	if (words.length === 0) return null;
+	const scored = candidates.map((candidate) => {
+		const haystack = new Set(candidate.context.flatMap((c) => normalizeSlugBody(c).split("-")));
+		return { candidate, hits: words.filter((w) => haystack.has(w)).length };
+	});
+	scored.sort((a, b) => b.hits - a.hits);
+	const [best, runnerUp] = scored;
+	if (!best || best.hits === 0 || (runnerUp && runnerUp.hits === best.hits)) return null;
+	return best.candidate;
+}
+
+/**
+ * Resolve an artist name to the one MB artist it names. Like {@link resolveReleaseGroup}, rank carries no
+ * identity: only candidates scoring >= 90 whose canonical name equals the requested one are considered.
+ * The `artist:` field indexes canonical names only, so "Ryuichi Sakamoto" never finds 坂本龍一 (checked
+ * against MB on 2026-10-15); when no canonical name matches, a second `alias:` search is made and an
+ * alias match counts (never mixed with name matches: aliases include other people's stage names). A
+ * single candidate wins; several exact homonyms are separated by the words of `disambiguator` /
+ * `origin` found in MB's `disambiguation` and `area`, and a tie or no hint hit is null. `candidates` is
+ * how many exact candidates there were (0: nothing matched, or MB unreachable), so a caller can tell
+ * "unknown to MB" from "ambiguous".
+ */
+export async function resolveArtistDetailed(
+	name: string,
+	hints: { disambiguator?: string; origin?: string } = {},
+): Promise<{ artist: MbArtistIdentity | null; candidates: number }> {
+	const none = { artist: null, candidates: 0 };
+	const phrase = lucenePhrase(name);
+	if (!phrase) return none;
+	const search = async (field: "artist" | "alias") =>
+		parseArtistSearchHits(await mbFetch<unknown>("/artist", { query: `${field}:"${phrase}"`, limit: "25" }));
+	const hits = await search("artist");
+	if (!hits) return none;
+	let pool = hits.filter((h) => sameArtistName(h.identity.name, name));
+	if (pool.length === 0) {
+		const aliasHits = await search("alias");
+		if (!aliasHits) return none;
+		pool = aliasHits.filter((h) => h.aliases.some((alias) => sameArtistName(alias, name)));
+	}
+	if (pool.length === 0) return none;
+	const winner =
+		pool.length === 1 ? pool[0] : pickByHints(pool, hintWords([hints.disambiguator, hints.origin]));
+	return { artist: winner?.identity ?? null, candidates: pool.length };
+}
+
+export async function resolveArtist(
+	name: string,
+	hints: { disambiguator?: string; origin?: string } = {},
+): Promise<MbArtistIdentity | null> {
+	return (await resolveArtistDetailed(name, hints)).artist;
+}
+
 /**
  * Fetch the canonical tracklist for a release-group. Picks the first release in the
  * release-group, walks its media[].tracks[] and returns just the recording titles
