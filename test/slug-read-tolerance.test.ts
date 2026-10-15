@@ -6,10 +6,10 @@ import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { NodeCache } from "../src/cache.js";
+import { NodeCache, resetNonCanonicalSlugWarnings } from "../src/cache.js";
 import { buildGraphFromCache } from "../src/graph.js";
 import { createGraphService } from "../src/services/graph-service.js";
-import type { ArtistNode, EdgeRef, ProjectNode, Slug } from "../src/types.js";
+import type { ArtistNode, EdgeRef, GenreNode, ProjectNode, Slug } from "../src/types.js";
 
 const EVIL_SLUG = 'artist:x" onmouseover="alert(1)' as Slug;
 const EVIL_EDGE: EdgeRef = { type: "artist", slug: EVIL_SLUG, name: "Evil" };
@@ -18,6 +18,7 @@ let dir: string;
 let errorSpy: ReturnType<typeof vi.spyOn>;
 
 beforeEach(async () => {
+	resetNonCanonicalSlugWarnings();
 	dir = await mkdtemp(join(tmpdir(), "odyssey-slug-read-"));
 	// The logger writes warn/error to console.error.
 	errorSpy = vi.spyOn(console, "error").mockImplementation(() => undefined);
@@ -48,6 +49,24 @@ function artist(overrides: Partial<ArtistNode> & Pick<ArtistNode, "slug" | "name
 	};
 }
 
+function genre(overrides: Partial<GenreNode> & Pick<GenreNode, "slug" | "name">): GenreNode {
+	return {
+		type: "genre",
+		editorial_definition: `Fixture definition for ${overrides.name}.`,
+		editorial_article: `A real long article about ${overrides.name} for slug tolerance coverage. `.repeat(4),
+		citations: [{ url: "https://example.com/fixture" }],
+		materialized_at: new Date().toISOString(),
+		parent_genres: [],
+		subgenres: [],
+		related_genres: [],
+		key_artists: [],
+		key_labels: [],
+		landmark_projects: [],
+		landmark_tracks: [],
+		...overrides,
+	};
+}
+
 function project(overrides: Partial<ProjectNode> & Pick<ProjectNode, "slug" | "name">): ProjectNode {
 	return {
 		type: "project",
@@ -66,18 +85,19 @@ function project(overrides: Partial<ProjectNode> & Pick<ProjectNode, "slug" | "n
 }
 
 // Straight to disk, as a deployed server's earlier version would have written it.
-async function writeRaw(node: ArtistNode | ProjectNode): Promise<void> {
+async function writeRaw(node: ArtistNode | ProjectNode | GenreNode): Promise<void> {
 	const [type, ...rest] = node.slug.split(":");
 	const file = join(dir, "nodes", String(type), `${rest.join(":")}.json`);
 	await mkdir(dirname(file), { recursive: true });
 	await writeFile(file, JSON.stringify(node), "utf8");
 }
 
-const loggedSlugs = () =>
+const loggedLines = () =>
 	errorSpy.mock.calls
 		.map(([line]) => String(line))
 		.filter((line) => line.includes("non-canonical slug"))
-		.map((line) => (JSON.parse(line) as { slug: string }).slug);
+		.map((line) => JSON.parse(line) as { slug: string; fields: string[] });
+const loggedSlugs = () => loggedLines().map((l) => l.slug);
 
 describe("reading a cached node with a non-canonical slug (TRA-501)", () => {
 	it("NodeCache.get serves a node whose own slug is non-canonical, and logs it", async () => {
@@ -96,6 +116,21 @@ describe("reading a cached node with a non-canonical slug (TRA-501)", () => {
 
 		expect(node.type === "artist" && node.aliases[0]?.slug).toBe(EVIL_SLUG);
 		expect(loggedSlugs()).toEqual(["artist:fine"]);
+	});
+
+	it("logs once per slug and process, naming the offending field", async () => {
+		await writeRaw(artist({ slug: "artist:fine", name: "Fine", aliases: [EVIL_EDGE] }));
+		await writeRaw(artist({ slug: EVIL_SLUG, name: "Evil" }));
+
+		// a graph rebuild creates a fresh NodeCache each time: the set must outlive the instance
+		await new NodeCache(dir).get("artist:fine");
+		await new NodeCache(dir).get("artist:fine");
+		await new NodeCache(dir).get(EVIL_SLUG);
+
+		expect(loggedLines()).toEqual([
+			expect.objectContaining({ slug: "artist:fine", fields: ["aliases.0.slug"] }),
+			expect.objectContaining({ slug: EVIL_SLUG, fields: ["slug"] }),
+		]);
 	});
 
 	it("does not log for a canonical node", async () => {
@@ -121,6 +156,22 @@ describe("reading a cached node with a non-canonical slug (TRA-501)", () => {
 
 		expect(graph.nodes.map((n) => n.id).sort()).toEqual(["artist:fine", EVIL_SLUG].sort());
 		expect(served.total).toBe(2);
+	});
+});
+
+describe("genre qid index (TRA-501)", () => {
+	it("never points a new edge at a legacy-named genre file, even a shorter one", async () => {
+		// the index picks the shortest slug among nodes sharing a qid; a legacy file must not win
+		await writeRaw(genre({ slug: 'genre:a"b' as Slug, name: "Legacy", qid: "Q42" }));
+		await writeRaw(genre({ slug: "genre:canonical-name", name: "Canonical", qid: "Q42" }));
+
+		expect(await new NodeCache(dir).findGenreSlugByQid("Q42")).toBe("genre:canonical-name");
+	});
+
+	it("finds nothing when the only node holding the qid is legacy-named", async () => {
+		await writeRaw(genre({ slug: 'genre:a"b' as Slug, name: "Legacy", qid: "Q43" }));
+
+		expect(await new NodeCache(dir).findGenreSlugByQid("Q43")).toBeUndefined();
 	});
 });
 

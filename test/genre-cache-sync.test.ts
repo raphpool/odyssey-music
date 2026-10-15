@@ -645,7 +645,9 @@ describe("sync-genre-cache.sh", () => {
 		expect(existsSync(serverBackupDir)).toBe(false);
 	});
 
-	// isValidSlug/parseSlug (src/slug.ts) enforce neither '/' nor '..' in a slug body -- real
+	// The shell whitelist in deploy/sync-genre-cache.sh is independent of src/slug.ts: isValidSlug now
+	// rejects '/' and '..' too (TRA-501), but parseSlug/isReadableSlug (the read rule, used for legacy
+	// cache files) do not, and this body is interpolated into a remote ssh command. Real
 	// defense-in-depth, exercised via a test-only override since makeSlug never produces such a slug.
 	it("refuses when a removed slug's body contains a path separator, before any write", () => {
 		const { result, calls, serverBackupDir, serverCacheRemote } = run({

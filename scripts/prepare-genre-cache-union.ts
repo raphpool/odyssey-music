@@ -32,7 +32,7 @@ import type { GenreRedirects } from "../src/genre-registry.js";
 import { loadGenreRedirects, parseGenreRedirects } from "../src/genre-registry.js";
 import type { GenreTaxonomy } from "../src/genre-taxonomy.js";
 import { LIST_EDGES_BY_TYPE, type NodeType, SINGULAR_EDGES_BY_TYPE } from "../src/node-spec.js";
-import { nodePayloadSchema } from "../src/schemas.js";
+import { nodePayloadSchema, readNodePayloadSchema } from "../src/schemas.js";
 import { parseSlug } from "../src/slug.js";
 import type { NodePayload, Slug } from "../src/types.js";
 import {
@@ -155,6 +155,12 @@ export interface UnionManifest {
 	// independent of --apply-merge; counted in countUnionProblems (unlike droppedEdges) since an
 	// invalid node is a real invariant violation, not a tolerated baseline.
 	invalidMergedNodes: InvalidMergedNode[];
+	// "Kept" nodes written although a slug in them is not canonical (TRA-501): they came from a cache
+	// that predates the canonical rule, were valid under the read rule, and refusing the whole sync
+	// over them would leave no way to ship the rest. A warning, NOT counted by countUnionProblems;
+	// fixing them is a rename migration (see scripts/migrations/2026-09-10-rename-genre-node.ts).
+	// Omitted when empty, like `referenceRegressions`.
+	nonCanonicalMergedNodes?: { slug: Slug; fields: string[] }[];
 	// Only present WITHOUT --apply-merge (a dry run). With --apply-merge, migrationApply below is
 	// the sole migration-related field -- it already carries groupsFound/exitCode/report, and is
 	// the one that actually describes the artifact's final state.
@@ -367,12 +373,19 @@ async function writeValidatedNode(
 	nodesDir: string,
 	expectedSlug: Slug,
 	node: Record<string, unknown>,
-): Promise<{ ok: true } | { ok: false; reason: string }> {
+): Promise<{ ok: true; nonCanonicalFields?: string[] } | { ok: false; reason: string }> {
 	let validated: NodePayload;
-	try {
-		validated = nodePayloadSchema.parse(node) as NodePayload;
-	} catch (e) {
-		return { ok: false, reason: e instanceof Error ? e.message : String(e) };
+	let nonCanonicalFields: string[] | undefined;
+	const strict = nodePayloadSchema.safeParse(node);
+	if (strict.success) {
+		validated = strict.data as NodePayload;
+	} else {
+		// TRA-501: a node whose ONLY problem is a non-canonical slug passes under the read rule and is
+		// reported, instead of failing the whole sync. Anything else the read schema rejects is real.
+		const lenient = readNodePayloadSchema.safeParse(node);
+		if (!lenient.success) return { ok: false, reason: strict.error.message };
+		validated = lenient.data as NodePayload;
+		nonCanonicalFields = [...new Set(strict.error.issues.map((i) => i.path.join(".")))].slice(0, 10);
 	}
 	if (validated.slug !== expectedSlug) {
 		return {
@@ -384,7 +397,7 @@ async function writeValidatedNode(
 	const dest = join(nodesDir, type, `${body}.json`);
 	await mkdir(dirname(dest), { recursive: true });
 	await atomicWriteJson(dest, validated);
-	return { ok: true };
+	return nonCanonicalFields ? { ok: true, nonCanonicalFields } : { ok: true };
 }
 
 /** readCacheNodes's own `invalid` entries build `path` as `join(root, "nodes", slug)` -- not a
@@ -577,6 +590,7 @@ export async function buildCacheUnion(
 	const entries: UnionEntry[] = [];
 	const droppedEdges: DroppedEdge[] = [];
 	const invalidMergedNodes: InvalidMergedNode[] = [];
+	const nonCanonicalMergedNodes: { slug: Slug; fields: string[] }[] = [];
 
 	for (const slug of allSlugs) {
 		const repoFile = repoBySlug.get(slug);
@@ -608,6 +622,9 @@ export async function buildCacheUnion(
 				// full pass to close.
 				invalidMergedNodes.push({ slug: slug as Slug, reason: written.reason });
 				continue;
+			}
+			if (written.nonCanonicalFields) {
+				nonCanonicalMergedNodes.push({ slug: slug as Slug, fields: written.nonCanonicalFields });
 			}
 			for (const d of dropped) {
 				// A target that STILL resolves in the union was refused for another reason (a self-loop),
@@ -768,6 +785,7 @@ export async function buildCacheUnion(
 		skipped,
 		droppedEdges,
 		invalidMergedNodes,
+		...(nonCanonicalMergedNodes.length > 0 ? { nonCanonicalMergedNodes } : {}),
 		// Only set without --apply-merge: with it, migrationApply above is the sole (and the
 		// FINAL-state) migration field -- see its type doc.
 		...(migrationApply
