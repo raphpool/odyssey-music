@@ -21,6 +21,41 @@ final class NodePageDisplayTests: XCTestCase {
 		XCTAssertEqual(eight.hiddenCount(expanded: false), 0)
 	}
 
+	func testTwelveSimilarArtistsRenderLastAfterMembersAsEightChipsAndAFourMoreOverflow() throws {
+		let node = try Self.artist(edges: [
+			"members": Self.edges(prefix: "member", count: 2),
+			"similar_artists": Self.edges(prefix: "similar", count: 12),
+		])
+
+		let sections = NodePageModel.sections(for: node)
+		let section = try XCTUnwrap(sections.last)
+
+		XCTAssertEqual(sections.map(\.field), ["members", "similar_artists"])
+		XCTAssertEqual(section.field, "similar_artists")
+		XCTAssertEqual(section.label, "similar artists")
+		XCTAssertEqual(section.presentation, .chips)
+		XCTAssertTrue(section.showsCount)
+		XCTAssertEqual(section.totalCount, 12)
+		XCTAssertEqual(section.displayedEdges(expanded: false).map(\.name), (1...8).map { "Similar \($0)" })
+		XCTAssertEqual(section.hiddenCount(expanded: false), 4)
+		XCTAssertEqual(section.displayedEdges(expanded: true).count, 12)
+		XCTAssertEqual(section.hiddenCount(expanded: true), 0)
+	}
+
+	func testAnArtistWithoutSimilarArtistsHasNoSimilarArtistsSection() throws {
+		let absent = try Self.artist(edges: ["members": Self.edges(prefix: "member", count: 2)])
+		let empty = try Self.artist(edges: ["similar_artists": "[]"])
+
+		XCTAssertFalse(NodePageModel.sections(for: absent).map(\.field).contains("similar_artists"))
+		XCTAssertTrue(NodePageModel.sections(for: empty).isEmpty)
+	}
+
+	func testSimilarArtistsOnlyExistOnAnArtistPage() throws {
+		for type in NodeType.allCases where type != .artist {
+			XCTAssertFalse(NodePageSpec.sectionOrder[type, default: []].contains("similar_artists"), type.rawValue)
+		}
+	}
+
 	func testCarouselAndTrackListAreNeverTruncated() throws {
 		let carousel = try Self.section(field: "discography", type: .artist, count: 12)
 		let tracks = try Self.section(field: "tracklist", type: .project, count: 20)
@@ -150,6 +185,18 @@ final class NodePageDisplayTests: XCTestCase {
 		let decoder = JSONDecoder()
 		decoder.dateDecodingStrategy = .iso8601
 		return try decoder.decode(NodeDetail.self, from: Data(source.utf8))
+	}
+
+	private static func edges(prefix: String, count: Int) -> String {
+		let edges = (1...count).map {
+			#"{"slug":"artist:\#(prefix)-\#($0)","type":"artist","name":"\#(prefix.capitalized) \#($0)"}"#
+		}
+		return "[" + edges.joined(separator: ",") + "]"
+	}
+
+	/// An artist node whose `edges` are the given raw JSON values, keyed by field.
+	private static func artist(edges: [String: String]) throws -> NodeDetail {
+		try node(type: .artist, edges: edges)
 	}
 
 	private static func section(field: String, type: NodeType, count: Int) throws -> NodePageSection {

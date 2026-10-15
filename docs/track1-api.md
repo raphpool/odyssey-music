@@ -41,7 +41,27 @@ pas dépasser 8 KiB. Une identité invalide, répétée ou hors limite produit
 {
 	"version": "v1",
 	"revision": "sha256:…",
-	"taxonomy": { "mode": "degraded", "available": true },
+	"taxonomy": {
+		"mode": "editorial",
+		"version": 2,
+		"families": [
+			{ "key": "electronic", "label": "Electronic", "order": 4 },
+			{ "key": "rock", "label": "Rock", "order": 9, "slug": "genre:rock" }
+		],
+		"genres": [
+			{
+				"id": "Q1001",
+				"name": "Drill and Bass",
+				"family": "electronic",
+				"slugs": ["genre:drill-and-bass", "genre:drill-n-bass"]
+			},
+			{ "id": "Q1002", "name": "Prog Rock", "family": "rock", "slugs": ["genre:progressive-rock"] }
+		],
+		"legacySelectionBySlug": {
+			"genre:drill-and-bass": ["Q1001"],
+			"genre:rock": ["Q1002"]
+		}
+	},
 	"nodes": [
 		{
 			"identity": "artist:massive-attack",
@@ -60,15 +80,48 @@ pas dépasser 8 KiB. Une identité invalide, répétée ou hors limite produit
 }
 ```
 
-Le catalogue ne contient ni `article`, ni citations, ni URL tierce. La taxonomie est
-toujours produite selon la stratégie dégradée : `available: false` indique que les
-données de taxonomie ne sont pas disponibles, sans empêcher l'exploration des nœuds.
+Le catalogue ne contient ni `article`, ni citations, ni URL tierce.
 `revision` est le SHA-256 du contenu canonique, trié et sans horodatage volatil.
 
 La réponse 200 porte `ETag: "sha256-…"` et `Cache-Control: public, max-age=60,
 stale-while-revalidate=30`. Le client envoie cette valeur dans `If-None-Match`; à
 contenu inchangé, le serveur répond `304` sans corps. Les routes mobile ne changent pas
 le comportement des anciennes routes du serveur.
+
+### Taxonomie
+
+`taxonomy` est une union discriminée sur `mode`. L'exemple ci-dessus montre le mode
+`editorial` ; les identifiants de genre (`Q1001`, `Q1002`) y sont illustratifs.
+
+```
+taxonomy:
+  | { "mode": "degraded", "available": false }
+  | { "mode": "editorial", "version": 2,
+      "families": [{ "key", "label", "order", "slug"? }],
+      "genres": [{ "id", "name", "family", "slugs": [...] }],
+      "legacySelectionBySlug": { "<slug>": ["<id de genre>", …] } }
+```
+
+- **`degraded`** : les données de taxonomie ne sont pas disponibles, sans empêcher
+  l'exploration des nœuds. `degraded` implique désormais `available: false`. Le serveur
+  répond aussi `degraded` quand il n'a pas de taxonomie pour le graphe servi, et quand la
+  taxonomie qu'il porte est invalide (version autre que 2, slug qui n'est pas une identité
+  `genre:*`, champ manquant ou mal typé) : la taxonomie est alors dégradée en entier, jamais
+  tronquée.
+- **`editorial`** : la taxonomie éditoriale publiée. `families` porte les familles
+  (`key`, `label`, `order` fini, `slug` facultatif : toutes les familles ne sont pas un
+  nœud du graphe). `genres` porte les genres publiés (`id`, `name` éditorial, `family` =
+  `key` d'une famille, `slugs` = identités `genre:*`, plusieurs possibles).
+  `legacySelectionBySlug` associe une identité `genre:*` à des identifiants de genre, pour
+  migrer une sélection de slugs. Le `qid` Wikidata n'est jamais transmis, ni aucun champ
+  non listé ici.
+- L'ordre de `families` et de `genres` est celui de la projection serveur.
+- La taxonomie n'est pas filtrée par `identities` (ce paramètre ne concerne que `nodes` et
+  `edges`) et elle est couverte par `revision` : l'`ETag` change quand elle change.
+- Un client doit traiter tout `mode` inconnu comme `degraded`. Le client iOS décode
+  ainsi : un `mode` inconnu ou un payload `editorial` malformé donne `degraded`
+  (`available: false`) sans faire échouer le catalogue ; un `mode` absent reste une
+  erreur de contrat.
 
 ## Registre persistant des générations
 

@@ -60,6 +60,37 @@ final class NodePageViewTests: XCTestCase {
 			[TopBarCrumb(index: -1, title: "Aujourd’hui"), TopBarCrumb(index: 0, title: "Target")])
 	}
 
+	// MARK: - Similar artists section
+
+	func testTheSimilarArtistsSectionHasItsOwnHeaderAndOverflowIdentifiers() {
+		XCTAssertEqual(SectionHeader.identifier(field: "similar_artists"), "section-similar_artists")
+		XCTAssertEqual(
+			EdgeChipOverflow.accessibilityIdentifier(field: "similar_artists"), "edge-overflow-similar_artists")
+		XCTAssertEqual(EdgeChipOverflow.label(hiddenCount: 4), "+4 more")
+	}
+
+	func testTheSimilarArtistsSectionPresentationMatchesWhatTheViewDraws() throws {
+		let json = (1...12).map {
+			#"{"slug":"artist:similar-\#($0)","type":"artist","name":"Similar \#($0)"}"#
+		}.joined(separator: ",")
+		let source = """
+			{"id":"artist:source","type":"artist","name":"Source","teaser":null,"article":"","citations":[],"facts":{},"edges":{"similar_artists":[\(json)]},"materialized_at":"2026-10-08T00:00:00Z","image_url":null}
+			"""
+		let decoder = JSONDecoder()
+		decoder.dateDecodingStrategy = .iso8601
+		let node = try decoder.decode(NodeDetail.self, from: Data(source.utf8))
+		let section = try XCTUnwrap(NodePageModel.sections(for: node).first)
+
+		// The view feeds these straight into `SectionHeader`, `EdgeChip` and `EdgeChipOverflow`.
+		XCTAssertEqual(section.label, "similar artists")
+		XCTAssertEqual(section.totalCount, 12)
+		XCTAssertEqual(
+			EdgeChip.accessibilityIdentifier(
+				identity: try XCTUnwrap(section.displayedEdges(expanded: false).first?.slug)),
+			"edge-chip-artist:similar-1")
+		XCTAssertEqual(EdgeChipOverflow.label(hiddenCount: section.hiddenCount(expanded: false)), "+4 more")
+	}
+
 	// MARK: - Listening failure
 
 	func testAFailedOpeningProducesTheListenErrorNoticeInFrench() async throws {
