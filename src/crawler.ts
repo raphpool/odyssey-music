@@ -131,8 +131,8 @@ export class FrontierQueue {
 	private readonly requestersBySlug = new Map<Slug, FrontierRequester[]>();
 	/** Primary artist each slug was first requested for; kept after the pop, while the child runs. */
 	private readonly artistBySlug = new Map<Slug, string>();
-	/** Requested slug -> the canonical node the pipeline filed it under (see markResolved). */
-	private readonly resolved = new Map<Slug, CanonicalTarget>();
+	/** Requested slug -> where the pipeline filed it, per credit: a bare slug can be shared by homonyms. */
+	private readonly resolved = new Map<Slug, { credit: string; target: CanonicalTarget }[]>();
 	private seq = 0;
 	private popped = 0;
 	constructor(
@@ -167,9 +167,13 @@ export class FrontierQueue {
 		return true;
 	}
 
-	/** A requested slug was filed under `target`: later nodes citing it are repointed before their write. */
-	markResolved(requested: Slug, target: CanonicalTarget): void {
-		this.resolved.set(requested, target);
+	/**
+	 * A requested slug was requested for `credit` and filed under `target`: later nodes citing it are
+	 * repointed before their write, but only the edges credited to `credit` (see repointField).
+	 */
+	markResolved(requested: Slug, credit: string, target: CanonicalTarget): void {
+		const kept = (this.resolved.get(requested) ?? []).filter((r) => !sameCredit(r.credit, credit));
+		this.resolved.set(requested, [...kept, { credit, target }]);
 	}
 
 	/** `node` with every edge to an already-resolved requested slug repointed; the same object if none. */
@@ -179,8 +183,10 @@ export class FrontierQueue {
 		let next: Record<string, unknown> | undefined;
 		for (const field of [...LIST_EDGES_BY_TYPE[node.type], ...SINGULAR_EDGES_BY_TYPE[node.type]]) {
 			let value = obj[field];
-			for (const [requested, target] of this.resolved) {
-				value = repointField(value, requested, target) ?? value;
+			for (const [requested, resolutions] of this.resolved) {
+				for (const { credit, target } of resolutions) {
+					value = repointField(value, requested, credit, target) ?? value;
+				}
 			}
 			if (value !== obj[field]) next = { ...(next ?? obj), [field]: value };
 		}
@@ -369,8 +375,11 @@ export async function crawl(opts: CrawlOptions): Promise<FrontierCrawlResult> {
 					// Read from disk: when the slug was already cached, `node` is a discarded draft.
 					const target = canonicalTargetOf(alreadyCached ? await cache.get(result.slug) : node);
 					const outcome = await serialized(async () => {
-						frontier.markResolved(requested, target);
-						return reconcileRequesters(requested, target, next.entry.requesters, cache, log);
+						// No credit asked for: nothing proves whose edge this is, so no edge is repointed.
+						const credit = next.entry.input.artist;
+						if (!credit) return { rewritten: 0, failed: 0 };
+						frontier.markResolved(requested, credit, target);
+						return reconcileRequesters(requested, credit, target, next.entry.requesters, cache, log);
 					});
 					reconciled += outcome.rewritten;
 					reconcileFailed += outcome.failed;
@@ -435,9 +444,12 @@ function sameCredit(a: string, b: string): boolean {
 
 /**
  * An edge field (list or single edge) with its edges to `requested` repointed to `target`, or undefined
- * when it cites none. Edges collapsing onto `target.slug` are kept once.
+ * when none was. Only an edge credited to `credit` moves: a bare slug can be shared by homonyms, and an
+ * edge with no `artist` or another one stays as it is (the identity migration handles it, TRA-478).
+ * Edges collapsing onto `target.slug` are kept once.
  */
-function repointField(value: unknown, requested: Slug, target: CanonicalTarget): unknown {
+function repointField(value: unknown, requested: Slug, credit: string, target: CanonicalTarget): unknown {
+	const mine = (e: EdgeRef): boolean => e.slug === requested && !!e.artist && sameCredit(e.artist, credit);
 	const repoint = (edge: EdgeRef): EdgeRef => {
 		const next: EdgeRef = { ...edge, slug: target.slug };
 		if (target.artist) next.artist = target.artist;
@@ -446,18 +458,16 @@ function repointField(value: unknown, requested: Slug, target: CanonicalTarget):
 	};
 	if (Array.isArray(value)) {
 		const list = value as EdgeRef[];
-		if (!list.some((e) => e.slug === requested)) return undefined;
+		if (!list.some(mine)) return undefined;
 		const out: EdgeRef[] = [];
 		for (const edge of list) {
-			const next = edge.slug === requested ? repoint(edge) : edge;
+			const next = mine(edge) ? repoint(edge) : edge;
 			if (next.slug === target.slug && out.some((e) => e.slug === target.slug)) continue;
 			out.push(next);
 		}
 		return out;
 	}
-	if (value && typeof value === "object" && (value as EdgeRef).slug === requested) {
-		return repoint(value as EdgeRef);
-	}
+	if (value && typeof value === "object" && mine(value as EdgeRef)) return repoint(value as EdgeRef);
 	return undefined;
 }
 
@@ -472,6 +482,7 @@ function repointField(value: unknown, requested: Slug, target: CanonicalTarget):
  */
 async function reconcileRequesters(
 	requested: Slug,
+	credit: string,
 	target: CanonicalTarget,
 	requesters: readonly FrontierRequester[],
 	cache: NodeCache,
@@ -484,9 +495,9 @@ async function reconcileRequesters(
 		try {
 			const parent = await cache.get(requester.slug);
 			const obj = parent as unknown as Record<string, unknown>;
-			const updated = repointField(obj[requester.field], requested, target);
+			const updated = repointField(obj[requester.field], requested, credit, target);
 			if (updated === undefined) {
-				log(`  ~ reconcile skipped: ${where} no longer cites ${requested}`);
+				log(`  ~ reconcile skipped: ${where} has no edge to ${requested} credited to "${credit}"`);
 				continue;
 			}
 			await cache.replace({ ...obj, [requester.field]: updated } as unknown as NodePayload);

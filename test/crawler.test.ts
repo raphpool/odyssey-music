@@ -415,7 +415,7 @@ describe("FrontierQueue.repointResolved (TRA-476)", () => {
 
 	it("repoints a late parent's edge to the canonical slug, artist and mbid, without touching other edges", () => {
 		const frontier = new FrontierQueue();
-		frontier.markResolved(requested, target);
+		frontier.markResolved(requested, "Roni Size", target);
 		const node = artistNode({
 			slug: "artist:krust",
 			name: "Krust",
@@ -443,7 +443,7 @@ describe("FrontierQueue.repointResolved (TRA-476)", () => {
 
 	it("keeps one edge when the list already cited the canonical slug", () => {
 		const frontier = new FrontierQueue();
-		frontier.markResolved(requested, target);
+		frontier.markResolved(requested, "Roni Size", target);
 		const node = artistNode({
 			discography: [
 				{ type: "project", slug: requested, name: "New Forms", artist: "Roni Size" },
@@ -455,5 +455,46 @@ describe("FrontierQueue.repointResolved (TRA-476)", () => {
 		const repointed = frontier.repointResolved(node) as ArtistNode;
 
 		expect(repointed.discography.map((e) => e.slug)).toEqual([canonical]);
+	});
+
+	// A bare `track:fitna` is shared by Rohff's and Akuma's tracks (pre-migration cache). Resolving one
+	// must never move the other's edge, whichever is resolved or materialized first.
+	describe("homonyms sharing a bare slug", () => {
+		const bare = "track:fitna" as const;
+		const edge = (artist?: string) =>
+			({ type: "track", slug: bare, name: "Fitna", ...(artist ? { artist } : {}) }) as const;
+		const citing = (slug: `artist:${string}`, ...edges: ReturnType<typeof edge>[]) =>
+			artistNode({ slug, name: slug, notable_tracks: edges });
+		const rohffTarget = { slug: "track:fitna--rohff", artist: "Rohff" } as const;
+		const akumaTarget = { slug: "track:fitna--akuma", artist: "Akuma" } as const;
+
+		it("Rohff resolved first: Akuma's later node keeps its edge, its credit and its slug", () => {
+			const frontier = new FrontierQueue();
+			frontier.markResolved(bare, "Rohff", rohffTarget);
+			const akuma = citing("artist:akuma", edge("Akuma"));
+
+			expect(frontier.repointResolved(akuma)).toBe(akuma);
+			const rohff = frontier.repointResolved(citing("artist:rohff", edge("Rohff"))) as ArtistNode;
+			expect(rohff.notable_tracks).toEqual([{ ...edge("Rohff"), slug: "track:fitna--rohff" }]);
+		});
+
+		it("Akuma resolved first: Rohff's later node keeps its edge, then follows its own resolution", () => {
+			const frontier = new FrontierQueue();
+			frontier.markResolved(bare, "Akuma", akumaTarget);
+			const rohff = citing("artist:rohff", edge("Rohff"));
+
+			expect(frontier.repointResolved(rohff)).toBe(rohff);
+			frontier.markResolved(bare, "Rohff", rohffTarget);
+			const both = frontier.repointResolved(citing("artist:x", edge("Rohff"), edge("Akuma"))) as ArtistNode;
+			expect(both.notable_tracks.map((e) => e.slug)).toEqual(["track:fitna--rohff", "track:fitna--akuma"]);
+		});
+
+		it("never repoints an edge without an artist", () => {
+			const frontier = new FrontierQueue();
+			frontier.markResolved(bare, "Rohff", rohffTarget);
+			const anonymous = citing("artist:anon", edge());
+
+			expect(frontier.repointResolved(anonymous)).toBe(anonymous);
+		});
 	});
 });

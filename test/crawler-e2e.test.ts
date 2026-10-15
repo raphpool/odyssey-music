@@ -1073,11 +1073,11 @@ describe("crawl() artist context and edge reconciliation (TRA-476)", () => {
 		};
 	}
 
-	async function runCrawl(seed: string, logs: string[] = []) {
+	async function runCrawl(seed: string, logs: string[] = [], maxDepth = 1) {
 		const { crawl } = await loadCrawl();
 		return crawl({
 			seed,
-			maxDepth: 1,
+			maxDepth,
 			maxNodes: 20,
 			concurrency: 1,
 			out: dir,
@@ -1197,6 +1197,47 @@ describe("crawl() artist context and edge reconciliation (TRA-476)", () => {
 			expect(logs.some((l) => l.includes(`reconciled artist:roni-size.discography: ${requested}`))).toBe(
 				true,
 			);
+		},
+		TIMEOUT_MS,
+	);
+
+	// Flag off merges two parents' bare `track:fitna` into one frontier entry; only the edge credited to the
+	// artist the child was requested for may move. Akuma's edge keeps pointing where it did.
+	it(
+		"repoints only the requester credited to the resolved artist when homonyms share a bare slug",
+		async () => {
+			const bare = "track:fitna" as Slug;
+			const fitna = (artist: string) => ({ type: "track", slug: bare, name: "Fitna", artist }) as const;
+			pipelineStub.impl = async (input) => {
+				if (input.type === "track") {
+					const track = trackNode({
+						slug: "track:fitna--rohff",
+						name: "Fitna",
+						artists: [{ type: "artist", slug: "artist:rohff", name: "Rohff" }],
+					});
+					return stubResult(track, bare);
+				}
+				return stubResult(
+					input.name === "Akuma"
+						? artistNode({ slug: "artist:akuma", name: "Akuma", notable_tracks: [fitna("Akuma")] })
+						: artistNode({
+								slug: "artist:rohff",
+								name: "Rohff",
+								notable_tracks: [fitna("Rohff")],
+								collaborators: [{ type: "artist", slug: "artist:akuma", name: "Akuma" }],
+							}),
+				);
+			};
+
+			const result = await runCrawl("artist:Rohff", [], 2);
+
+			const cache = new NodeCache(dir);
+			const rohff = await cache.get("artist:rohff");
+			const akuma = await cache.get("artist:akuma");
+			if (rohff.type !== "artist" || akuma.type !== "artist") throw new Error("expected artist nodes");
+			expect(rohff.notable_tracks.map((e) => e.slug)).toEqual(["track:fitna--rohff"]);
+			expect(akuma.notable_tracks).toEqual([fitna("Akuma")]);
+			expect(result.reconciled).toBe(1);
 		},
 		TIMEOUT_MS,
 	);
