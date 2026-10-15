@@ -111,6 +111,8 @@ export interface ArtistNode extends BaseNode {
 	collaborators: EdgeRef[];
 	aliases: EdgeRef[];
 	members: EdgeRef[];
+	// 0-10 artist edges, fed by ListenBrainz (by MBID) then a graph-computed fallback, never by the LLM.
+	similar_artists: EdgeRef[];
 }
 
 export interface ProjectNode extends BaseNode {

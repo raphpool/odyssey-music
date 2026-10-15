@@ -1,0 +1,207 @@
+/**
+ * Deterministic image resolver (TRA-465, plan graph-integrity decision 5).
+ *
+ * One ladder per node type, first success wins, and the rung that succeeded is reported as
+ * `ImageSource` so a batch can later be invalidated or re-run by provenance:
+ *
+ *   project → Cover Art Archive (release-group MBID) → verified iTunes (title AND artist)
+ *   track   → its project's image → CAA by the project's MBID → verified iTunes
+ *   artist  → Wikidata P18 via MusicBrainz → cover of the landmark project / a discography release
+ *   label   → Wikidata P154 then P18 (QID via MusicBrainz or a verified search) → a notable release
+ *   genre   → cover of the first landmark project, then landmark track, that has an image
+ *
+ * Nothing is written: this only computes a candidate. Every returned URL passes
+ * `isAllowedImageUrl` (the same gate the node schema applies on write), and a failing rung (network
+ * error, malformed third-party response) falls through to the next one instead of throwing.
+ *
+ * A cover borrowed from a release for an artist, label or genre is `derived-cover`: it is an album
+ * cover, never to be presented as a photo of the entity.
+ */
+import type { NodeCache } from "../cache.js";
+import { lookupVerifiedAlbumArt } from "../itunes.js";
+import { logger } from "../logger.js";
+import type { EdgeRef, ImageSource, NodePayload } from "../types.js";
+import { coverArtUrl } from "./coverart.js";
+import { isAllowedImageUrl } from "./hosts.js";
+import { commonsFileUrl, fetchWikidataImages, fetchWikidataQid, searchWikidataLabel } from "./wikidata.js";
+
+const log = logger.child({ module: "resolve-image" });
+
+export interface ResolvedImage {
+	url: string;
+	source: ImageSource;
+}
+
+export interface ImageDeps {
+	cache: NodeCache;
+	fetch?: typeof fetch;
+}
+
+/** Run one rung; a thrown error is a miss for that rung, not a failure of the ladder. */
+async function attempt(
+	rung: string,
+	run: () => Promise<ResolvedImage | null>,
+): Promise<ResolvedImage | null> {
+	try {
+		const found = await run();
+		return found && isAllowedImageUrl(found.url) ? found : null;
+	} catch (e) {
+		log.warn("image rung failed", { rung, error: e instanceof Error ? e.message : String(e) });
+		return null;
+	}
+}
+
+async function firstOf(
+	rungs: Array<[string, () => Promise<ResolvedImage | null>]>,
+): Promise<ResolvedImage | null> {
+	for (const [rung, run] of rungs) {
+		const found = await attempt(rung, run);
+		if (found) return found;
+	}
+	return null;
+}
+
+async function readNode(cache: NodeCache, ref: EdgeRef): Promise<NodePayload | null> {
+	try {
+		return await cache.get(ref.slug);
+	} catch {
+		// Not in the cache (or unreadable): an edge to a node we have not materialized has no image.
+		return null;
+	}
+}
+
+/** The first cached node among `refs` that has an allowed `image_url`. */
+async function firstCachedImage(
+	cache: NodeCache,
+	refs: ReadonlyArray<EdgeRef | undefined>,
+): Promise<{ url: string; source: ImageSource | undefined } | null> {
+	for (const ref of refs) {
+		if (!ref) continue;
+		const node = await readNode(cache, ref);
+		if (node?.image_url && isAllowedImageUrl(node.image_url)) {
+			return { url: node.image_url, source: node.image_source };
+		}
+	}
+	return null;
+}
+
+async function derivedCover(
+	cache: NodeCache,
+	refs: ReadonlyArray<EdgeRef | undefined>,
+): Promise<ResolvedImage | null> {
+	const found = await firstCachedImage(cache, refs);
+	return found ? { url: found.url, source: "derived-cover" } : null;
+}
+
+/** A singular edge that older node shapes may not declare yet (`landmark_project`, TRA-457). */
+function optionalEdge(node: NodePayload, key: string): EdgeRef | undefined {
+	const value = (node as unknown as Record<string, unknown>)[key];
+	if (typeof value !== "object" || value === null) return undefined;
+	const slug = (value as { slug?: unknown }).slug;
+	return typeof slug === "string" ? (value as EdgeRef) : undefined;
+}
+
+async function caa(mbid: string | undefined, deps: ImageDeps): Promise<ResolvedImage | null> {
+	if (!mbid) return null;
+	const url = await coverArtUrl(mbid, deps.fetch);
+	return url ? { url, source: "caa" } : null;
+}
+
+async function itunes(
+	title: string,
+	artistName: string | undefined,
+	deps: ImageDeps,
+): Promise<ResolvedImage | null> {
+	if (!artistName) return null;
+	const url = await lookupVerifiedAlbumArt(title, artistName, deps.fetch);
+	return url ? { url, source: "itunes-verified" } : null;
+}
+
+async function wikidataImage(
+	qid: string | null,
+	order: Array<"p18" | "p154">,
+	deps: ImageDeps,
+): Promise<ResolvedImage | null> {
+	if (!qid) return null;
+	const images = await fetchWikidataImages(qid, deps.fetch);
+	for (const key of order) {
+		const filename = images[key];
+		if (filename) {
+			return { url: commonsFileUrl(filename), source: key === "p18" ? "wikidata-p18" : "wikidata-p154" };
+		}
+	}
+	return null;
+}
+
+export async function resolveImage(node: NodePayload, deps: ImageDeps): Promise<ResolvedImage | null> {
+	const { cache } = deps;
+	switch (node.type) {
+		case "project":
+			return firstOf([
+				["caa", () => caa(node.mbid, deps)],
+				["itunes", () => itunes(node.name, node.artists[0]?.name, deps)],
+			]);
+
+		case "track": {
+			const projectRef = node.project;
+			const project = projectRef ? await readNode(cache, projectRef) : null;
+			return firstOf([
+				[
+					"project-image",
+					async () => {
+						if (!project?.image_url) return null;
+						// Same picture as the project, so same provenance (a batch re-run by source covers both).
+						return { url: project.image_url, source: project.image_source ?? "derived-cover" };
+					},
+				],
+				["caa", () => caa(project?.mbid ?? projectRef?.mbid, deps)],
+				[
+					"itunes",
+					() =>
+						itunes(
+							projectRef?.name ?? node.name,
+							node.artists[0]?.name ?? (project?.type === "project" ? project.artists[0]?.name : undefined),
+							deps,
+						),
+				],
+			]);
+		}
+
+		case "artist":
+			return firstOf([
+				[
+					"wikidata",
+					async () =>
+						wikidataImage(
+							node.mbid ? await fetchWikidataQid("artist", node.mbid, deps.fetch) : null,
+							["p18"],
+							deps,
+						),
+				],
+				[
+					"derived-cover",
+					() => derivedCover(cache, [optionalEdge(node, "landmark_project"), ...node.discography]),
+				],
+			]);
+
+		case "label":
+			return firstOf([
+				[
+					"wikidata",
+					async () => {
+						const qid =
+							(node.mbid ? await fetchWikidataQid("label", node.mbid, deps.fetch) : null) ??
+							(await searchWikidataLabel(node.name, node.mbid, deps.fetch));
+						return wikidataImage(qid, ["p154", "p18"], deps);
+					},
+				],
+				["derived-cover", () => derivedCover(cache, node.notable_releases)],
+			]);
+
+		case "genre":
+			return firstOf([
+				["landmark-projects", () => derivedCover(cache, node.landmark_projects)],
+				["landmark-tracks", () => derivedCover(cache, node.landmark_tracks)],
+			]);
+	}
+}
