@@ -73,6 +73,41 @@ describe("measureSlugTransliteration (TRA-528)", () => {
 		expect(r.unresolved.map((u) => u.slug)).toEqual(["artist:o-na"]);
 	});
 
+	test("a reference that cannot re-derive a slug does not hide a later one that can", () => {
+		const bare = ref("project:in-the-m-de--m", "project", "In the Møde"); // no artist
+		const full = ref("project:in-the-m-de--m", "project", "In the Møde", "MØ");
+		for (const order of [
+			[bare, full],
+			[full, bare],
+		]) {
+			const r = measureSlugTransliteration([{ slug: "artist:x", name: "X", discography: order }]);
+			expect(r.mapping, JSON.stringify(order)).toEqual({
+				"project:in-the-m-de--m": "project:in-the-mode--mo",
+			});
+			expect(r.unresolved).toEqual([]);
+		}
+	});
+
+	test("tries every credited artist of a node for its scope", () => {
+		const r = measureSlugTransliteration([
+			{
+				slug: "track:song--m",
+				name: "Song",
+				artists: [ref("artist:other", "artist", "Other"), ref("artist:m", "artist", "MØ")],
+			},
+		]);
+		expect(r.mapping["track:song--m"]).toBe("track:song--mo");
+	});
+
+	test("flags a new slug that edges already point at, without a node of its own", () => {
+		const r = measureSlugTransliteration([
+			{ slug: "artist:m", name: "MØ" },
+			{ slug: "artist:x", name: "X", collaborators: [ref("artist:mo", "artist", "Mo")] },
+		]);
+		expect(r.collisions).toHaveLength(1);
+		expect(r.collisions[0]?.with).toContain("dangling edge target artist:mo");
+	});
+
 	test("exposes the old -> new table the migration consumes", () => {
 		expect(report.mapping).toEqual({
 			"artist:l-titia-sadier": "artist:laetitia-sadier",

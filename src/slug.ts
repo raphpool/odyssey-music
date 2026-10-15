@@ -42,9 +42,11 @@ const TRANSLITERATION: Readonly<Record<string, string>> = {
 	"\u0111": "d", // đ
 	"\u00fe": "th", // þ
 };
-const TRANSLITERATED_LETTERS = /[\u00f8\u00e6\u0153\u0142\u00df\u0111\u00fe]/gu;
-// Same set without the g flag: a global regex keeps lastIndex between test() calls.
-const HAS_TRANSLITERATED_LETTER = /[\u00f8\u00e6\u0153\u0142\u00df\u0111\u00fe]/u;
+// Both regexes are built from the table, so a letter added to it cannot be forgotten in one of them.
+// The detector has no g flag: a global regex keeps lastIndex between test() calls.
+const TRANSLITERATED_CLASS = `[${Object.keys(TRANSLITERATION).join("")}]`;
+const TRANSLITERATED_LETTERS = new RegExp(TRANSLITERATED_CLASS, "gu");
+const HAS_TRANSLITERATED_LETTER = new RegExp(TRANSLITERATED_CLASS, "u");
 
 /** True when the text holds a letter the transliteration table rewrites (any case). */
 export function hasTransliteratedLetter(text: string): boolean {
@@ -227,7 +229,7 @@ const WORK_TYPES: readonly string[] = ["project", "track"];
  * normalizeTitleBody or the older normalizeSlugBody). If it cannot be reproduced -- a free-text
  * legacy disambiguator ("artist:pole--stefan-betke"), a renamed node -- the answer is
  * "not-derived-from-name": the caller keeps the slug and reviews it by hand, nothing is guessed.
- * An unaffected slug comes back unchanged (`ok: true`, same slug).
+ * An unaffected slug, or one already in its new form, comes back unchanged (`ok: true`, same slug).
  */
 export function transliteratedSlug(
 	slug: string,
@@ -244,13 +246,18 @@ export function transliteratedSlug(
 	const flatteners: Array<(text: string, transliterate: boolean) => string> = WORK_TYPES.includes(type)
 		? [flattenTitleBody, flattenSlugBody]
 		: [flattenSlugBody];
-	const flatten = flatteners.find((f) => f(name, false) === oldTitle);
+	// Either spelling is accepted, so a slug already in its new form comes back unchanged (idempotent:
+	// a re-run of the migration, or a node minted with the flag on).
+	const flatten = flatteners.find((f) => f(name, false) === oldTitle || f(name, true) === oldTitle);
 	if (!flatten) return notDerived;
 	const newTitle = flatten(name, true);
 
 	let newScope: string | null = null;
 	if (oldScope !== null) {
-		if (artistName === undefined || flattenSlugBody(artistName, false) !== oldScope) return notDerived;
+		if (artistName === undefined) return notDerived;
+		if (flattenSlugBody(artistName, false) !== oldScope && flattenSlugBody(artistName, true) !== oldScope) {
+			return notDerived;
+		}
 		newScope = flattenSlugBody(artistName, true);
 	}
 	const next = `${type}:${newTitle}${newScope === null ? "" : `${SCOPE_SEPARATOR}${newScope}`}`;

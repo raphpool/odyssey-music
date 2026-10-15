@@ -150,6 +150,39 @@ describe("transliteratedSlug (old -> new, for the TRA-478 migration)", () => {
 	});
 });
 
+describe("transliteratedSlug stays aligned with what the pipeline mints", () => {
+	test("idempotent: a slug already in its new form comes back unchanged", () => {
+		expect(transliteratedSlug("artist:mo", "MØ")).toEqual({ ok: true, slug: "artist:mo" });
+		expect(transliteratedSlug("project:in-the-mode--mo", "In the Møde", "MØ")).toEqual({
+			ok: true,
+			slug: "project:in-the-mode--mo",
+		});
+	});
+
+	// Drift guard: the migration table must give the slugs makeSlug / makeScopedSlug mint with the flag on.
+	test("equals makeSlug / makeScopedSlug with the flag on, then off", () => {
+		const cases: Array<[string, string]> = NAMES.filter(([n]) => !n.includes("ẞ"));
+		const old: Array<{ slug: string; name: string; artist: string }> = [];
+		for (const [name] of cases) {
+			vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "false");
+			const scoped = makeScopedSlug("project", name, "Łona");
+			if (!scoped.ok) throw new Error(name);
+			old.push({ slug: scoped.slug, name, artist: "Łona" });
+			old.push({ slug: makeSlug("artist", name), name, artist: "" });
+		}
+		vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "true");
+		for (const { slug, name, artist } of old) {
+			const result = slug.startsWith("project:")
+				? transliteratedSlug(slug, name, artist)
+				: transliteratedSlug(slug, name);
+			const expected = slug.startsWith("project:")
+				? makeScopedSlug("project", name, artist)
+				: { ok: true as const, slug: makeSlug("artist", name) };
+			expect(result, slug).toEqual(expected);
+		}
+	});
+});
+
 describe("hasTransliteratedLetter", () => {
 	test("detects each letter in both cases, and ignores the rest", () => {
 		for (const c of ["ø", "Ø", "æ", "Æ", "œ", "Œ", "ł", "Ł", "ß", "ẞ", "đ", "Đ", "þ", "Þ"]) {

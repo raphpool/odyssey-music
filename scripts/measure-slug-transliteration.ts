@@ -56,18 +56,20 @@ export interface TransliterationReport {
 interface Target {
 	slug: string;
 	name: string;
-	artist: string | undefined;
+	/** Candidate scope artists, in order: the first one the slug's scope matches wins. */
+	artists: string[];
 }
 
 function str(v: unknown): string | undefined {
 	return typeof v === "string" && v ? v : undefined;
 }
 
-function primaryArtist(node: RawNode): string | undefined {
+function creditedArtists(node: RawNode): string[] {
 	const artists = node.artists;
-	if (!Array.isArray(artists)) return undefined;
-	const first: unknown = artists[0];
-	return first && typeof first === "object" ? str((first as RawNode).name) : undefined;
+	if (!Array.isArray(artists)) return [];
+	return artists.flatMap((a: unknown) =>
+		a && typeof a === "object" ? (str((a as RawNode).name) ?? []) : [],
+	);
 }
 
 function* edgeRefs(node: RawNode): Generator<Target> {
@@ -81,7 +83,8 @@ function* edgeRefs(node: RawNode): Generator<Target> {
 			if (!ref || typeof ref !== "object") continue;
 			const r = ref as RawNode;
 			const slug = str(r.slug);
-			if (slug) yield { slug, name: str(r.name) ?? "", artist: str(r.artist) };
+			const artist = str(r.artist);
+			if (slug) yield { slug, name: str(r.name) ?? "", artists: artist ? [artist] : [] };
 		}
 	}
 }
@@ -97,23 +100,31 @@ export function measureSlugTransliteration(nodes: readonly RawNode[]): Translite
 	const names = new Map<string, string>();
 	const unresolved = new Map<string, Unresolved>();
 
+	// A slug is settled by the first reference that re-derives it; a reference that cannot (an edge with
+	// no `artist`, a stale name) must not hide a later one that can, whatever the iteration order.
+	const settled = new Set<string>();
 	const resolveTarget = (t: Target, where: "node" | "edge"): void => {
-		if (mapping.has(t.slug) || unresolved.has(t.slug)) return;
-		const result = transliteratedSlug(t.slug, t.name, t.artist);
-		if (result.ok) {
+		if (settled.has(t.slug)) return;
+		for (const artist of t.artists.length > 0 ? t.artists : [undefined]) {
+			const result = transliteratedSlug(t.slug, t.name, artist);
+			if (!result.ok) continue;
+			settled.add(t.slug);
+			unresolved.delete(t.slug);
 			if (result.slug !== t.slug) {
 				mapping.set(t.slug, result.slug);
 				names.set(t.slug, t.name);
 			}
-		} else if (hasTransliteratedLetter(t.name) || hasTransliteratedLetter(t.artist ?? "")) {
-			unresolved.set(t.slug, { slug: t.slug, name: t.name, where });
+			return;
+		}
+		if (hasTransliteratedLetter(t.name) || t.artists.some(hasTransliteratedLetter)) {
+			if (!unresolved.has(t.slug)) unresolved.set(t.slug, { slug: t.slug, name: t.name, where });
 		}
 	};
 
 	// Nodes first: a node's own name is more reliable than the name an edge happens to carry.
 	for (const n of nodes) {
 		const slug = str(n.slug);
-		if (slug) resolveTarget({ slug, name: str(n.name) ?? "", artist: primaryArtist(n) }, "node");
+		if (slug) resolveTarget({ slug, name: str(n.name) ?? "", artists: creditedArtists(n) }, "node");
 	}
 	const edgeCounts = new Map<string, number>();
 	for (const n of nodes) {
@@ -135,11 +146,16 @@ export function measureSlugTransliteration(nodes: readonly RawNode[]): Translite
 	const collisions: Collision[] = [];
 	const claimedBy = new Map<string, string>();
 	for (const [from, to] of mapping) {
-		if (existing.has(to)) {
-			const note = existing.has(from)
-				? "two nodes would merge"
-				: "`from` has no node: its edges re-attach to it";
-			collisions.push({ from, to, with: `existing node ${to} (${note})` });
+		// `to` is already in use: a node of its own, or a slug that edges point at (dangling).
+		if (existing.has(to) || edgeCounts.has(to)) {
+			const kind = existing.has(to) ? "existing node" : "dangling edge target";
+			const note = [
+				mapping.has(to) ? `${to} is itself renamed to ${mapping.get(to)}` : null,
+				existing.has(from) ? "two nodes would merge" : "`from` has no node: its edges re-attach to it",
+			]
+				.filter(Boolean)
+				.join("; ");
+			collisions.push({ from, to, with: `${kind} ${to} (${note})` });
 		}
 		const other = claimedBy.get(to);
 		if (other !== undefined) collisions.push({ from, to, with: `also the target of ${other}` });
