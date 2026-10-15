@@ -255,6 +255,102 @@ final class APIClientTests: XCTestCase {
 			result, equals: .http(status: 503, code: "provider_unavailable", retryable: true, retryAfterSeconds: nil))
 		XCTAssertEqual(requestCount, 1)
 	}
+
+	// TRA-482: the contract of TRA-477 for a work tapped from an artist page.
+	func testGenerationPostCarriesTheArtistAndTheSourceEdgeAsSnakeCaseKeys() async throws {
+		let box = BodyBox()
+		let client = makeClient { request in
+			box.set(Self.body(of: request))
+			return response(request, status: 200, body: Self.succeededGenerationJSON)
+		}
+		let requestID = try XCTUnwrap(UUID(uuidString: "f9cdb447-c46d-4a97-b4bc-0f7ad73466bd"))
+		let result = await client.createGeneration(
+			GenerationRequest(
+				requestID: requestID, type: .track, name: "Fitna", slug: NodeIdentity(rawValue: "track:fitna--rohff"),
+				mbid: nil, qid: nil, disambiguator: nil, artist: "Rohff",
+				source: GenerationSource(
+					slug: try XCTUnwrap(NodeIdentity(rawValue: "artist:rohff")), field: "notable_tracks")
+			))
+		guard case .success = result else { return XCTFail("Expected a generation.") }
+		let sent = try Self.canonical(try XCTUnwrap(box.value))
+		// The server reads the UUID case-insensitively; Foundation writes it in capitals.
+		XCTAssertEqual((sent["request_id"] as? String)?.lowercased(), "f9cdb447-c46d-4a97-b4bc-0f7ad73466bd")
+		let mutable = NSMutableDictionary(dictionary: sent)
+		mutable.removeObject(forKey: "request_id")
+		XCTAssertEqual(
+			mutable,
+			try Self.canonical(
+				Data(
+					#"{"type":"track","name":"Fitna","slug":"track:fitna--rohff","artist":"Rohff","source":{"slug":"artist:rohff","field":"notable_tracks"}}"#
+						.utf8)))
+	}
+
+	func testGenerationRequestOmitsArtistAndSourceWhenNil() throws {
+		let request = GenerationRequest(
+			requestID: UUID(), type: .genre, name: "Trip hop", slug: nil, mbid: nil, qid: nil, disambiguator: nil)
+		let object = try XCTUnwrap(
+			JSONSerialization.jsonObject(with: JSONEncoder().encode(request)) as? [String: Any])
+		XCTAssertEqual(Set(object.keys), ["request_id", "type", "name"])
+	}
+
+	func testGenerationRequestKeepsMbidAndQidAlongsideTheContext() throws {
+		let mbid = try XCTUnwrap(UUID(uuidString: "11111111-1111-4111-8111-111111111111"))
+		let request = GenerationRequest(
+			requestID: UUID(), type: .project, name: "Mezzanine", slug: nil, mbid: mbid, qid: "Q1",
+			disambiguator: nil, artist: "Massive Attack", source: nil)
+		let object = try XCTUnwrap(
+			JSONSerialization.jsonObject(with: JSONEncoder().encode(request)) as? [String: Any])
+		XCTAssertEqual(object["mbid"] as? String, "11111111-1111-4111-8111-111111111111")
+		XCTAssertEqual(object["qid"] as? String, "Q1")
+		XCTAssertEqual(object["artist"] as? String, "Massive Attack")
+		XCTAssertNil(object["source"])
+	}
+
+	func testGenerationWithAMalformedSourceFieldIsRefusedBeforeAnyRequest() async throws {
+		let box = BodyBox()
+		let client = makeClient { request in
+			box.set(Data())
+			return response(request, status: 200, body: Self.succeededGenerationJSON)
+		}
+		for field in ["", "Notable_tracks", "notable-tracks", "__proto__", String(repeating: "a", count: 41)] {
+			let result = await client.createGeneration(
+				GenerationRequest(
+					requestID: UUID(), type: .track, name: "Fitna", slug: nil, mbid: nil, qid: nil, disambiguator: nil,
+					artist: "Rohff", source: GenerationSource(slug: identity, field: field)))
+			assertFailure(result, equals: .invalidRequest)
+		}
+		XCTAssertNil(box.value)
+	}
+
+	private static let succeededGenerationJSON =
+		#"{"request_id":"f9cdb447-c46d-4a97-b4bc-0f7ad73466bd","status":"succeeded","created_at":"2026-10-15T00:00:00.000Z","updated_at":"2026-10-15T00:00:00.000Z","node_id":"track:fitna--rohff"}"#
+
+	private static func body(of request: URLRequest) -> Data {
+		if let body = request.httpBody { return body }
+		guard let stream = request.httpBodyStream else { return Data() }
+		stream.open()
+		defer { stream.close() }
+		var data = Data()
+		var buffer = [UInt8](repeating: 0, count: 1024)
+		while stream.hasBytesAvailable {
+			let count = stream.read(&buffer, maxLength: buffer.count)
+			if count <= 0 { break }
+			data.append(buffer, count: count)
+		}
+		return data
+	}
+
+	/// Key order and spacing are not part of the contract: compare the parsed JSON, not the bytes.
+	private static func canonical(_ data: Data) throws -> NSDictionary {
+		try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? NSDictionary)
+	}
+}
+
+private final class BodyBox: @unchecked Sendable {
+	private let lock = NSLock()
+	private var stored: Data?
+	var value: Data? { lock.withLock { stored } }
+	func set(_ data: Data) { lock.withLock { stored = data } }
 }
 
 private func assertFailure<Value: Sendable>(

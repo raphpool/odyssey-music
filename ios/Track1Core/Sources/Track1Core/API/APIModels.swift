@@ -5,6 +5,8 @@ private enum APIKeys: String, CodingKey {
 	case source, target, available, mode, url, title, slug, mbid, qid, year, releaseType
 	case cache, catalog, subtitle, extra, code, message, retryable
 	case families, genres, key, label, order, id, family, slugs, legacySelectionBySlug
+	case artist
+	case artistSlug = "artist_slug"
 }
 
 public enum NodeType: String, CaseIterable, Codable, Sendable {
@@ -256,6 +258,9 @@ public struct NodeEdge: Decodable, Sendable {
 	public let qid: String?
 	public let year: String?
 	public let releaseType: String?
+	/// Primary credited artist, set by the server on project and track targets (TRA-477). Absent on other
+	/// edges and on nodes written before the field existed; `GenerationRequestBuilder` is its only reader.
+	public let artist: String?
 	public init(from decoder: Decoder) throws {
 		let v = try decoder.container(keyedBy: APIKeys.self)
 		slug = try v.decode(NodeIdentity.self, forKey: .slug)
@@ -265,6 +270,7 @@ public struct NodeEdge: Decodable, Sendable {
 		qid = try v.decodeIfPresent(String.self, forKey: .qid)
 		year = try v.decodeIfPresent(String.self, forKey: .year)
 		releaseType = try v.decodeIfPresent(String.self, forKey: .releaseType)
+		artist = try v.decodeIfPresent(String.self, forKey: .artist)
 		guard slug.type == type, !name.isEmpty,
 			qid.map({ $0.range(of: "^Q[1-9][0-9]*$", options: .regularExpression) != nil }) ?? true,
 			releaseType.map({ ["album", "ep", "single"].contains($0) }) ?? true
@@ -343,6 +349,11 @@ public struct SearchHit: Decodable, Sendable {
 	public let mbid: UUID?
 	public let subtitle: String?
 	public let extra: String?
+	/// First credited artist of a project or track hit (TRA-547): the artist context of a generation. Never
+	/// derived from `subtitle`, which is a joined display credit.
+	public let artist: String?
+	/// The card of `artist` when the cache already has it: opens that artist, never builds a work slug.
+	public let artistSlug: NodeIdentity?
 	public init(from decoder: Decoder) throws {
 		let v = try decoder.container(keyedBy: APIKeys.self)
 		source = try v.decode(String.self, forKey: .source)
@@ -352,6 +363,10 @@ public struct SearchHit: Decodable, Sendable {
 		mbid = try v.decodeIfPresent(UUID.self, forKey: .mbid)
 		subtitle = try v.decodeIfPresent(String.self, forKey: .subtitle)
 		extra = try v.decodeIfPresent(String.self, forKey: .extra)
+		// Additive, optional fields: a malformed value is read as absent instead of failing the whole search.
+		artist = (try? v.decodeIfPresent(String.self, forKey: .artist)) ?? nil
+		let rawArtistSlug = (try? v.decodeIfPresent(NodeIdentity.self, forKey: .artistSlug)) ?? nil
+		artistSlug = rawArtistSlug.flatMap { $0.type == .artist ? $0 : nil }
 		guard ["cache", "catalog"].contains(source), !name.isEmpty, source != "cache" || slug != nil else {
 			throw APIModelError.invalidValue
 		}
@@ -400,7 +415,18 @@ public struct GenerationError: Decodable, Sendable {
 		guard !code.isEmpty else { throw APIModelError.invalidValue }
 	}
 }
-public struct GenerationRequest: Encodable, Sendable {
+/// The edge a generation was asked from (TRA-477): the server repoints it when the node it creates lives
+/// under another slug. `field` is the snake_case edge field of the source node's type.
+public struct GenerationSource: Encodable, Equatable, Sendable {
+	public let slug: NodeIdentity
+	public let field: String
+
+	public init(slug: NodeIdentity, field: String) {
+		self.slug = slug
+		self.field = field
+	}
+}
+public struct GenerationRequest: Encodable, Equatable, Sendable {
 	public let requestID: UUID
 	public let type: NodeType
 	public let name: String
@@ -408,15 +434,21 @@ public struct GenerationRequest: Encodable, Sendable {
 	public let mbid: UUID?
 	public let qid: String?
 	public let disambiguator: String?
+	/// Artist of the screen the tap came from. Always sent for a project or a track: an `mbid` alone only finds
+	/// a work that is already cached.
+	public let artist: String?
+	public let source: GenerationSource?
 	enum CodingKeys: String, CodingKey {
 		case requestID = "request_id"
-		case type, name, slug, mbid, qid, disambiguator
+		case type, name, slug, mbid, qid, disambiguator, artist, source
 	}
 
 	public init(
 		requestID: UUID, type: NodeType, name: String, slug: NodeIdentity?, mbid: UUID?, qid: String?,
-		disambiguator: String?
+		disambiguator: String?, artist: String? = nil, source: GenerationSource? = nil
 	) {
+		self.artist = artist
+		self.source = source
 		self.requestID = requestID
 		self.type = type
 		self.name = name

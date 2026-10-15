@@ -50,7 +50,11 @@ public struct APIClient: Sendable {
 	public func createGeneration(_ input: GenerationRequest) async -> APIResult<Generation> {
 		guard !input.name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
 			input.slug.map({ $0.type == input.type }) ?? true,
-			input.qid.map({ $0.range(of: "^Q[1-9][0-9]*$", options: .regularExpression) != nil }) ?? true
+			input.qid.map({ $0.range(of: "^Q[1-9][0-9]*$", options: .regularExpression) != nil }) ?? true,
+			// The server's own rule for the edge field of `source` (TRA-477); the check by node type is its job.
+			input.source.map({
+				$0.field.count <= 40 && $0.field.range(of: "^[a-z]+(?:_[a-z]+)*$", options: .regularExpression) != nil
+			}) ?? true
 		else { return .failure(.invalidRequest) }
 		return await request(method: "POST", path: ["generations"], headers: [:], body: input)
 	}

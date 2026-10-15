@@ -158,15 +158,18 @@ final class NodeRelationOpeningTests: XCTestCase {
 		var values = [AnalyticsEvent]()
 	}
 
-	private static func loadedModel(context: NavigationContext, log: EventLog) async throws -> NodeViewModel {
+	private static func loadedModel(
+		context: NavigationContext, log: EventLog, id: String = "artist:source", name: String = "Source"
+	) async throws -> NodeViewModel {
+		let type = id.prefix { $0 != ":" }
 		let source = """
-			{"node":{"id":"artist:source","type":"artist","name":"Source","teaser":null,"article":"","citations":[],"facts":{},"edges":{},"materialized_at":"2026-10-08T00:00:00Z","image_url":null},"source":"cache"}
+			{"node":{"id":"\(id)","type":"\(type)","name":"\(name)","teaser":null,"article":"","citations":[],"facts":{},"edges":{},"materialized_at":"2026-10-08T00:00:00Z","image_url":null},"source":"cache"}
 			"""
 		let decoder = JSONDecoder()
 		decoder.dateDecodingStrategy = .iso8601
 		let response = try decoder.decode(NodeResponse.self, from: Data(source.utf8))
 		let model = NodeViewModel(
-			identity: try XCTUnwrap(NodeIdentity(rawValue: "artist:source")),
+			identity: try XCTUnwrap(NodeIdentity(rawValue: id)),
 			context: context,
 			readNode: { _ in .success(response, etag: nil) },
 			recordEvent: { log.values.append($0) }
@@ -175,10 +178,109 @@ final class NodeRelationOpeningTests: XCTestCase {
 		return model
 	}
 
-	private static func edge(_ slug: String, name: String) throws -> NodeEdge {
+	private static func edge(
+		_ slug: String, name: String, artist: String? = nil, mbid: String? = nil
+	) throws -> NodeEdge {
 		let type = slug.prefix { $0 != ":" }
+		let artistField = artist.map { #","artist":"\#($0)""# } ?? ""
+		let mbidField = mbid.map { #","mbid":"\#($0)""# } ?? ""
 		let source =
-			#"{"slug":"\#(slug)","type":"\#(type)","name":"\#(name)","mbid":null,"qid":null,"year":null,"releaseType":null}"#
+			#"{"slug":"\#(slug)","type":"\#(type)","name":"\#(name)","qid":null,"year":null,"releaseType":null\#(artistField)\#(mbidField)}"#
 		return try JSONDecoder().decode(NodeEdge.self, from: Data(source.utf8))
+	}
+
+	// MARK: generation context (TRA-482)
+
+	func testAWorkChipOfAnArtistPageAsksForAGenerationCarryingTheArtistAndTheSection() async throws {
+		let model = try await Self.loadedModel(
+			context: .independent(source: .home), log: EventLog(), id: "artist:rohff", name: "Rohff")
+		let chip = try Self.edge(
+			"track:fitna--rohff", name: "Fitna", artist: "Rohff", mbid: "11111111-1111-4111-8111-111111111111")
+		let requestID = UUID()
+
+		let request = try XCTUnwrap(
+			model.generationRequest(for: chip, kind: "notable_tracks", requestID: requestID))
+
+		XCTAssertEqual(
+			request,
+			GenerationRequest(
+				requestID: requestID, type: .track, name: "Fitna", slug: chip.slug, mbid: chip.mbid, qid: nil,
+				disambiguator: nil, artist: "Rohff",
+				source: GenerationSource(
+					slug: try XCTUnwrap(NodeIdentity(rawValue: "artist:rohff")), field: "notable_tracks")))
+	}
+
+	func testTheEdgeArtistWinsOverTheNameOfTheArtistPageItSitsOn() async throws {
+		// A featured credit: the project sits on Rohff's page but is credited to someone else.
+		let model = try await Self.loadedModel(
+			context: .independent(source: .home), log: EventLog(), id: "artist:rohff", name: "Rohff")
+		let chip = try Self.edge("project:a-collab--other-artist", name: "A Collab", artist: "Other Artist")
+
+		let request = try XCTUnwrap(model.generationRequest(for: chip, kind: "discography"))
+
+		XCTAssertEqual(request.artist, "Other Artist")
+		XCTAssertEqual(request.source?.field, "discography")
+	}
+
+	func testAWorkChipWithoutEdgeArtistFallsBackToTheNameOfTheArtistPage() async throws {
+		let model = try await Self.loadedModel(
+			context: .independent(source: .home), log: EventLog(), id: "artist:rohff", name: "Rohff")
+		let missing = try Self.edge("project:old-node", name: "Old Node")
+		let blank = try Self.edge("project:blank", name: "Blank", artist: "  ")
+
+		XCTAssertEqual(model.generationRequest(for: missing, kind: "discography")?.artist, "Rohff")
+		XCTAssertEqual(model.generationRequest(for: blank, kind: "discography")?.artist, "Rohff")
+	}
+
+	func testAWorkChipOfAProjectPageWithoutEdgeArtistSendsNoArtistRatherThanTheProjectName() async throws {
+		let model = try await Self.loadedModel(
+			context: .independent(source: .home), log: EventLog(), id: "project:mezzanine--massive-attack",
+			name: "Mezzanine")
+		let chip = try Self.edge("track:teardrop", name: "Teardrop")
+
+		let request = try XCTUnwrap(model.generationRequest(for: chip, kind: "tracklist"))
+
+		XCTAssertNil(request.artist)
+		XCTAssertEqual(request.source?.slug.rawValue, "project:mezzanine--massive-attack")
+		XCTAssertEqual(request.source?.field, "tracklist")
+	}
+
+	func testGenreLabelAndArtistChipsCarryTheSourceButNoArtist() async throws {
+		let model = try await Self.loadedModel(
+			context: .independent(source: .home), log: EventLog(), id: "artist:rohff", name: "Rohff")
+
+		for (slug, kind) in [
+			("genre:rap", "genres"), ("label:def-jam", "labels"), ("artist:similar-one", "similar_artists"),
+		] {
+			let request = try XCTUnwrap(
+				model.generationRequest(for: try Self.edge(slug, name: "Name", artist: "Ignored"), kind: kind))
+			XCTAssertNil(request.artist, slug)
+			XCTAssertEqual(
+				request.source, GenerationSource(slug: try XCTUnwrap(NodeIdentity(rawValue: "artist:rohff")), field: kind)
+			)
+		}
+	}
+
+	func testASectionThatIsNotAnEdgeFieldOfTheNodeTypeIsNotSentAsSource() async throws {
+		let model = try await Self.loadedModel(
+			context: .independent(source: .home), log: EventLog(), id: "artist:rohff", name: "Rohff")
+		let chip = try Self.edge("project:x--rohff", name: "X", artist: "Rohff")
+
+		// The server refuses an unknown field with invalid_request; the artist alone is enough to scope the work.
+		let request = try XCTUnwrap(model.generationRequest(for: chip, kind: "highlights"))
+
+		XCTAssertNil(request.source)
+		XCTAssertEqual(request.artist, "Rohff")
+		// The landmark album and the reference track are real edge fields of an artist.
+		XCTAssertEqual(
+			model.generationRequest(for: chip, kind: "landmark_project")?.source?.field, "landmark_project")
+	}
+
+	func testNoGenerationIsBuiltBeforeTheNodeIsLoaded() throws {
+		let model = NodeViewModel(
+			identity: try XCTUnwrap(NodeIdentity(rawValue: "artist:rohff")), context: .independent(source: .home),
+			readNode: { _ in .failure(.invalidResponse) })
+		XCTAssertNil(
+			model.generationRequest(for: try Self.edge("track:x--rohff", name: "X"), kind: "notable_tracks"))
 	}
 }
