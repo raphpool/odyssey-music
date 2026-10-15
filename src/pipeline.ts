@@ -47,7 +47,7 @@ import {
 	TEASER_FIELD_BY_TYPE,
 } from "./node-spec.js";
 import { nodePayloadSchema } from "./schemas.js";
-import { makeSlug } from "./slug.js";
+import { makeScopedSlug, makeSlug } from "./slug.js";
 import { localFetch } from "./tools/local-fetcher.js";
 
 /** Title-case a lowercased genre name for display. Handles "r&b" -> "R&B" and "hip-hop" -> "Hip-Hop". */
@@ -95,7 +95,7 @@ async function loadGenreCatalogByQid(): Promise<Map<string, WikidataGenreEntry>>
 
 import { firecrawlSearch } from "./tools/firecrawl-search.js";
 import { rankResults, rankUrl, type TavilyResult, tavilySearch } from "./tools/tavily.js";
-import type { Citation, NodePayload, NodeType, Slug } from "./types.js";
+import type { Citation, EdgeRef, NodePayload, NodeType, Slug } from "./types.js";
 import { QID_PATTERN } from "./types.js";
 
 export interface PipelineDeps {
@@ -188,15 +188,24 @@ const stringSchema = (description: string, minLength?: number): Schema => {
 	return s;
 };
 
-const edgeRefSchema = (allowedTypes: readonly NodeType[]): Schema => ({
-	type: GType.OBJECT,
-	properties: {
-		type: { type: GType.STRING, enum: [...allowedTypes], description: "Target node type." },
-		name: stringSchema("Canonical entity name. Real proper noun, never 'Various' or 'Unknown'.", 1),
-	},
-	required: ["type", "name"],
-	propertyOrdering: ["type", "name"],
-});
+// A project/track reference is only identifiable together with its primary artist (TRA-462, plan
+// graph-integrity decision 1): "Fitna" by Rohff and "Fitna" by Akuma are two works. So Gemini must name the
+// artist on every such reference; normalizeEdge drops the ones that still arrive without it.
+const edgeRefSchema = (allowedTypes: readonly NodeType[]): Schema => {
+	const needsArtist = allowedTypes.some((t) => t === "project" || t === "track");
+	return {
+		type: GType.OBJECT,
+		properties: {
+			type: { type: GType.STRING, enum: [...allowedTypes], description: "Target node type." },
+			name: stringSchema("Canonical entity name. Real proper noun, never 'Various' or 'Unknown'.", 1),
+			...(needsArtist
+				? { artist: stringSchema("Primary credited artist, exactly as credited on the release.", 1) }
+				: {}),
+		},
+		required: needsArtist ? ["type", "name", "artist"] : ["type", "name"],
+		propertyOrdering: needsArtist ? ["type", "name", "artist"] : ["type", "name"],
+	};
+};
 
 const edgeRefSchemaFor = (type: NodeType, field: string): Schema => {
 	const allowed = EDGE_TARGET_TYPES_BY_TYPE[type][field];
@@ -219,7 +228,7 @@ interface SchemaShape {
 	zodValidator: z.ZodType<unknown>;
 }
 
-function makeNodeSchema(type: NodeType): SchemaShape {
+export function makeNodeSchema(type: NodeType): SchemaShape {
 	const baseProps: Record<string, Schema> = {
 		name: stringSchema("Clean canonical name (e.g. 'Tendency', not 'Tendency (track)').", 1),
 		editorial_article: stringSchema(
@@ -670,7 +679,7 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	const t0 = Date.now();
 	const research = await researchTarget(input, deps, log);
 	const draft = await generateNodeDraft(input, deps, research, log);
-	const node = canonicalizeDraft(draft.raw, input, research.corpus, research.allowedUrls);
+	const node = canonicalizeDraft(draft.raw, input, research.corpus, research.allowedUrls, log);
 	await enrichFromMusicBrainz(node, input, log, deps.genreRegistry);
 	// 2026-09-09: mbGenreEdges, the parent_genres catalog backfill, and canonicalizeDraft each
 	// derive a genre edge's slug from its display name alone, which produced 20 groups of
@@ -1366,6 +1375,7 @@ function canonicalizeDraft(
 	input: PipelineInput,
 	corpus: { url: string; markdown?: string }[],
 	allowedUrls: Set<string>,
+	log: (line: string) => void = () => undefined,
 ): unknown {
 	const nameStr = typeof raw.name === "string" && raw.name.trim() ? raw.name.trim() : input.name;
 	const slug = input.slug ?? makeSlug(input.type, nameStr, input.disambiguator);
@@ -1453,9 +1463,20 @@ function canonicalizeDraft(
 	next.citations = cits;
 	next.materialized_at = new Date().toISOString();
 
-	// Recompute edge slugs.
+	// Recompute edge slugs. A reference normalizeEdge refuses (work without artist, unscopable name, link
+	// back to the node itself) is dropped from a list and cleared from a singular field -- the node stays.
+	const sourceArtist = input.type === "project" || input.type === "track" ? firstArtistName(next) : undefined;
+	const ctx: EdgeContext = {
+		sourceSlug: slug,
+		sourceType: input.type,
+		sourceName: nameStr,
+		...(sourceArtist ? { sourceArtist } : {}),
+	};
 	for (const k of Object.keys(next)) {
 		const v = next[k];
+		const allowed = EDGE_TARGET_TYPES_BY_TYPE[input.type][k] ?? NODE_TYPES;
+		const onDrop = (reason: string, target: string): void =>
+			log(`[pipeline] edge dropped: ${reason} (${slug}.${k} -> ${target})`);
 		if (
 			Array.isArray(v) &&
 			v.length &&
@@ -1464,9 +1485,9 @@ function canonicalizeDraft(
 			"type" in (v[0] as object) &&
 			"name" in (v[0] as object)
 		) {
-			next[k] = (v as unknown[]).flatMap((e) => normalizeEdge(e) ?? []);
+			next[k] = (v as unknown[]).flatMap((e) => normalizeEdge(e as RawEdge, allowed, ctx, onDrop) ?? []);
 		} else if (v && typeof v === "object" && !Array.isArray(v) && "type" in v && "name" in v) {
-			const single = normalizeEdge(v);
+			const single = normalizeEdge(v as RawEdge, allowed, ctx, onDrop);
 			if (single) next[k] = single;
 			else delete next[k];
 		}
@@ -1478,21 +1499,85 @@ function validateNode(node: unknown): NodePayload {
 	return nodePayloadSchema.parse(node) as NodePayload;
 }
 
+/** An edge reference as Gemini emits it: untrusted, every field unchecked. */
+export interface RawEdge {
+	type?: unknown;
+	name?: unknown;
+	artist?: unknown;
+	mbid?: unknown;
+	qid?: unknown;
+}
+
+/** The node an edge is read from: what normalizeEdge needs to scope works and to refuse self links. */
+export interface EdgeContext {
+	sourceSlug: Slug;
+	sourceType: NodeType;
+	sourceName: string;
+	/** `artists[0].name` of a project/track draft; undefined for other source types. */
+	sourceArtist?: string;
+}
+
+/** `artists[0].name` of a draft, trimmed, or undefined. */
+function firstArtistName(draft: Record<string, unknown>): string | undefined {
+	const artists = draft.artists;
+	if (!Array.isArray(artists)) return undefined;
+	const first: unknown = artists[0];
+	if (!first || typeof first !== "object") return undefined;
+	const name = (first as { name?: unknown }).name;
+	return typeof name === "string" && name.trim() ? name.trim() : undefined;
+}
+
+/**
+ * Turn one raw reference into a typed EdgeRef, or null when it must not become an edge. `onDrop` gets the
+ * reason for the drops that lose real data (no artist, unscopable name, self link, off-spec type).
+ *
+ * Works (project/track) are scoped by their primary artist: the reference's `artist` wins, else the
+ * source's (an artist node's own name, or a work's first artist -- so tracklist entries need not repeat
+ * it). With neither, the reference is dropped rather than minted as an unscoped slug: that fallback is how
+ * "Fitna" by Rohff and "Fitna" by Akuma became one node (2026-10-14, plan graph-integrity decision 1).
+ * Dropping an ungrounded edge is already allowed by docs/adr/2026-05-19-groundedness.md. A failed
+ * makeScopedSlug (empty title, or an artist name with no Latin letter or digit) drops the edge, never the
+ * node.
+ */
 export function normalizeEdge(
-	e: unknown,
-): { slug: string; type: NodeType; name: string; mbid?: string; qid?: string } | null {
+	e: RawEdge,
+	allowed: readonly NodeType[],
+	ctx: EdgeContext,
+	onDrop?: (reason: string, target: string) => void,
+): EdgeRef | null {
 	if (!e || typeof e !== "object") return null;
-	const r = e as { type?: unknown; name?: unknown; mbid?: unknown; qid?: unknown };
+	const r = e;
 	if (typeof r.type !== "string") return null;
 	if (typeof r.name !== "string" || !r.name.trim()) return null;
 	if (!(NODE_TYPES as readonly string[]).includes(r.type)) return null;
+	const t = r.type as NodeType;
+	const name = r.name.trim();
+	if (!allowed.includes(t)) {
+		onDrop?.("type not allowed here", `${t} "${name}"`);
+		return null;
+	}
 	try {
-		const t = r.type as NodeType;
-		const out: { slug: string; type: NodeType; name: string; mbid?: string; qid?: string } = {
-			slug: makeSlug(t, r.name),
-			type: t,
-			name: r.name.trim(),
-		};
+		let out: EdgeRef;
+		if (t === "project" || t === "track") {
+			const credited = typeof r.artist === "string" && r.artist.trim() ? r.artist.trim() : undefined;
+			const artistName = credited ?? (ctx.sourceType === "artist" ? ctx.sourceName : ctx.sourceArtist);
+			if (!artistName) {
+				onDrop?.("no artist", `${t} "${name}"`);
+				return null;
+			}
+			const scoped = makeScopedSlug(t, name, artistName);
+			if (!scoped.ok) {
+				onDrop?.(scoped.reason, `${t} "${name}" by "${artistName}"`);
+				return null;
+			}
+			out = { slug: scoped.slug, type: t, name, artist: artistName };
+		} else {
+			out = { slug: makeSlug(t, name), type: t, name };
+		}
+		if (out.slug === ctx.sourceSlug) {
+			onDrop?.("self reference", `${t} "${name}"`);
+			return null;
+		}
 		if (
 			typeof r.mbid === "string" &&
 			/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(r.mbid)
