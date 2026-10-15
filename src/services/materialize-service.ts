@@ -119,6 +119,11 @@ function validateSource(raw: unknown): { slug: Slug; field: string } {
 	return { slug, field };
 }
 
+/** TRA-546: nodes whose mbid, when a client sent it, only the pipeline's own MusicBrainz resolution may write. */
+function isConfirmedIdentityType(type: string): type is "artist" | "label" {
+	return type === "artist" || type === "label";
+}
+
 function isWorkType(type: string): type is "project" | "track" {
 	return type === "project" || type === "track";
 }
@@ -496,10 +501,15 @@ export function createMaterializeService(deps: {
 			throw new BadRequestError("A project or track that is not cached needs an artist or a scoped slug");
 		}
 		if (!cached && opts.cacheOnly === true) throw new MaterializeCacheMissError();
-		// TRA-538: a refresh of a work that already carries an mbid keeps that server-established mbid,
-		// whatever the request sent: a different client mbid stays a hint and never replaces it, and
-		// MusicBrainz no longer singling the work out must not erase it.
-		if (cached && cachedMbid && isWorkType(body.type) && mbidSource === "client") {
+		// TRA-538/546: a refresh of a work, an artist or a label that already carries an mbid keeps that
+		// server-established mbid, whatever the request sent: a different client mbid stays a hint and never
+		// replaces it, and MusicBrainz no longer singling the node out must not erase it.
+		if (
+			cached &&
+			cachedMbid &&
+			(isWorkType(body.type) || isConfirmedIdentityType(body.type)) &&
+			mbidSource === "client"
+		) {
 			effectiveBody = { ...effectiveBody, mbid: cachedMbid };
 			mbidSource = "server";
 		}
@@ -508,8 +518,9 @@ export function createMaterializeService(deps: {
 			// 2026-10-14 (TRA-449): age no longer forces a refresh (it used to, past a 12 h TTL --
 			// symptom: prod diverging silently from the repo). Only an explicit `fresh`, or a
 			// client mbid that contradicts the cached one, re-runs the pipeline.
-			// A work's mbid from the client is a hint only (TRA-477 flag on, TRA-538 whatever the flag): never
-			// a reason to rewrite it, since the refresh would no longer adopt the client's value anyway.
+			// A work's, artist's or label's mbid from the client is a hint only (TRA-477 flag on, TRA-538/546
+			// whatever the flag): never a reason to rewrite it, since the refresh would no longer adopt the
+			// client's value anyway. A cached one without an mbid still refreshes, so the hint can be confirmed.
 			const mbidMismatch =
 				!isWorkType(body.type) && !!effectiveBody.mbid && cachedMbid !== effectiveBody.mbid;
 			if (!mbidMismatch) {
@@ -658,9 +669,11 @@ export function createMaterializeService(deps: {
 		}
 		// TRA-538: a work's mbid is written by the pipeline from its own MusicBrainz resolution (title +
 		// credit), and only when that confirms the client's hint. Stamping `body.mbid` here made a
-		// client-chosen identity authoritative through `byMbid`. Artists and labels keep the old behavior.
-		const enriched =
-			body.mbid && !isWorkType(body.type) ? ({ ...r.node, mbid: body.mbid } as NodePayload) : r.node;
+		// client-chosen identity authoritative through `byMbid`. TRA-546: same for an artist or a label whose
+		// mbid comes from the client; one carried over from the cached node (`mbidSource: "server"`) is kept.
+		const stampsBodyMbid =
+			!isWorkType(body.type) && (!isConfirmedIdentityType(body.type) || opts.mbidSource === "server");
+		const enriched = body.mbid && stampsBodyMbid ? ({ ...r.node, mbid: body.mbid } as NodePayload) : r.node;
 		await deps.cache.write(enriched);
 		deps.invalidateCacheIndex?.();
 		return { node: enriched, ...(requestedSlug ? { requestedSlug } : {}) };

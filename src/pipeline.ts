@@ -135,9 +135,9 @@ export interface PipelineInput {
 	name: string;
 	disambiguator?: string;
 	mbid?: string;
-	// TRA-538: true when `mbid` comes from an HTTP client. It is then only a search hint: a work (track,
-	// project) carries it only if MB's own resolution by title + credit lands on it. Unset for trusted
-	// callers (seed folders, dangling top-up), whose MBID is used directly.
+	// TRA-538/546: true when `mbid` comes from an HTTP client. It is then only a search hint: a work (track,
+	// project), an artist or a label carries it only if MB's own resolution by title + credit (or by name)
+	// lands on it. Unset for trusted callers (seed folders, dangling top-up), whose MBID is used directly.
 	mbidIsClientHint?: boolean;
 	// 2026-09-10 (TRA-28 review, B1/B2): when set, the produced node is written under this
 	// EXACT slug instead of one freshly derived from name/type/disambiguator (canonicalizeDraft).
@@ -1068,7 +1068,10 @@ async function enrichNode(
 	}
 	if (input.type === "artist") {
 		try {
-			let mbid = input.mbid;
+			// TRA-546: same rule as works. A client's mbid (`mbidIsClientHint`) is a hint the name resolution
+			// below must land on; a trusted caller's one names the artist for certain.
+			const clientHint = input.mbidIsClientHint === true ? input.mbid : undefined;
+			let mbid: string | undefined = clientHint ? undefined : input.mbid;
 			let kind: "person" | "group" | null | undefined;
 			if (!mbid) {
 				// Safety before rate (TRA-463): an unresolved artist keeps its slug and gets no MBID; a wrong
@@ -1079,9 +1082,13 @@ async function enrichNode(
 					...(input.disambiguator ? { disambiguator: input.disambiguator } : {}),
 					...(typeof draftOrigin === "string" ? { origin: draftOrigin } : {}),
 				});
-				if (resolution.artist) {
+				if (resolution.artist && confirmsHint(resolution.artist.mbid, clientHint)) {
 					mbid = resolution.artist.mbid;
 					kind = resolution.artist.kind;
+				} else if (resolution.artist) {
+					log(
+						`[pipeline] artist "${input.name}" left without MBID (MB resolved ${resolution.artist.mbid}, not the client hint ${clientHint})`,
+					);
 				} else {
 					log(
 						`[pipeline] artist "${input.name}" left without MBID (candidates=${resolution.candidates}${resolution.unavailable ? ", MB unavailable" : ""})`,
@@ -1166,8 +1173,21 @@ async function enrichNode(
 	// earliest release in the group, and replace `tracklist` with the actual recordings.
 	if (input.type === "label") {
 		try {
-			let mbid = input.mbid;
-			if (!mbid) mbid = (await findLabelMbidByName(input.name, input.disambiguator)) ?? undefined;
+			// TRA-546: a client's mbid is a hint the name search has to land on, and only then is it stamped
+			// (the materialize service used to stamp it unconditionally). A trusted caller's one is used as is.
+			const clientHint = input.mbidIsClientHint === true ? input.mbid : undefined;
+			let mbid: string | undefined = clientHint ? undefined : input.mbid;
+			if (!mbid) {
+				const found = (await findLabelMbidByName(input.name, input.disambiguator)) ?? undefined;
+				if (found && confirmsHint(found, clientHint)) {
+					mbid = found;
+					if (clientHint) (node as Record<string, unknown>).mbid = found;
+				} else if (found) {
+					log(
+						`[pipeline] label "${input.name}" left without MBID (MB resolved ${found}, not the client hint ${clientHint})`,
+					);
+				}
+			}
 			if (mbid) {
 				const meta = await fetchLabelMetaMb(mbid);
 				const obj = node as Record<string, unknown>;

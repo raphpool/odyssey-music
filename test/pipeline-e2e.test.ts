@@ -770,6 +770,121 @@ describe("MB identity at enrichment (TRA-473)", () => {
 			TIMEOUT_MS,
 		);
 
+		// TRA-546: same rule for artists and labels as for works above.
+		describe("a client's artist or label mbid (TRA-546)", () => {
+			const OTHER = "eeeeeeee-1111-4111-8111-0000000000f1";
+			const LABEL_PROSE = "A fictional label invented for the mbid hint tests (TRA-546). ".repeat(2);
+			const artistResolving = async (found: string | null) => {
+				const m = await mb();
+				vi.mocked(m.resolveArtistDetailed).mockImplementation(async (name) => ({
+					artist: found ? { mbid: found, name, kind: "person", disambiguation: null, area: null } : null,
+					candidates: found ? 1 : 3,
+					path: "name",
+					unavailable: false,
+					matchedWords: [],
+				}));
+				vi.mocked(m.fetchArtistDiscographyMb).mockImplementation(async () => []);
+				vi.mocked(m.fetchArtistEntityMb).mockImplementation(async () => null);
+				return m;
+			};
+			const labelResolving = async (found: string | null) => {
+				const m = await mb();
+				vi.mocked(m.findLabelMbidByName).mockImplementation(async () => found);
+				vi.mocked(m.fetchLabelEntityMb).mockImplementation(async () => null);
+				vi.mocked(m.fetchLabelMetaMb).mockImplementation(async () => ({
+					roster: [],
+					notableReleases: [],
+				}));
+				return m;
+			};
+			const labelDraft = () => ({
+				name: "Nobody Records",
+				editorial_article: LABEL_PROSE,
+				citations: [{ url: FIXTURE_WIKI_URL, title: "Fixture Artist" }],
+				editorial_description: "A fictional label.",
+				genres: [],
+				roster: [],
+				notable_releases: [],
+			});
+
+			it(
+				"writes the artist's mbid only when MB resolves the name to that very mbid",
+				async () => {
+					installPipelineMocks({ draft: artistDraftFixture({ name: "Nobody" }) });
+					await artistResolving(RONI_MBID);
+					const runPipeline = await loadRunPipeline();
+					const input = { type: "artist" as const, name: "Nobody", mbidIsClientHint: true };
+
+					const confirmed = await runPipeline({ ...input, mbid: RONI_MBID.toUpperCase() }, DEPS);
+					expect((confirmed.node as ArtistNode).mbid).toBe(RONI_MBID);
+
+					// The probe: Nobody sent with the mbid of somebody else.
+					const probe = await runPipeline({ ...input, mbid: OTHER }, DEPS);
+					expect((probe.node as ArtistNode).mbid).toBeUndefined();
+
+					// MB cannot single the name out: the hint has nothing to be confirmed by.
+					await artistResolving(null);
+					const ambiguous = await runPipeline({ ...input, mbid: OTHER }, DEPS);
+					expect((ambiguous.node as ArtistNode).mbid).toBeUndefined();
+				},
+				TIMEOUT_MS,
+			);
+
+			it(
+				"keeps the mbid of a trusted caller (crawler, seeds) without asking MB to confirm it",
+				async () => {
+					installPipelineMocks({ draft: artistDraftFixture({ name: "Nobody" }) });
+					const m = await artistResolving(null);
+					const runPipeline = await loadRunPipeline();
+
+					const result = await runPipeline({ type: "artist", name: "Nobody", mbid: OTHER }, DEPS);
+
+					expect((result.node as ArtistNode).mbid).toBe(OTHER);
+					expect(vi.mocked(m.resolveArtistDetailed)).not.toHaveBeenCalled();
+				},
+				TIMEOUT_MS,
+			);
+
+			it(
+				"writes the label's mbid only when MB's name search lands on that very mbid",
+				async () => {
+					installPipelineMocks({ draft: labelDraft() });
+					const m = await labelResolving(RONI_MBID);
+					const runPipeline = await loadRunPipeline();
+					const input = { type: "label" as const, name: "Nobody Records", mbidIsClientHint: true };
+
+					const confirmed = await runPipeline({ ...input, mbid: RONI_MBID.toUpperCase() }, DEPS);
+					expect((confirmed.node as LabelNode).mbid).toBe(RONI_MBID);
+
+					vi.mocked(m.fetchLabelMetaMb).mockClear();
+					const probe = await runPipeline({ ...input, mbid: OTHER }, DEPS);
+					expect((probe.node as LabelNode).mbid).toBeUndefined();
+					// Neither the hint's nor MB's other answer's metadata reaches the node.
+					expect(vi.mocked(m.fetchLabelMetaMb)).not.toHaveBeenCalled();
+
+					await labelResolving(null);
+					const none = await runPipeline({ ...input, mbid: OTHER }, DEPS);
+					expect((none.node as LabelNode).mbid).toBeUndefined();
+				},
+				TIMEOUT_MS,
+			);
+
+			it(
+				"uses the mbid of a trusted label caller as is, without a name search",
+				async () => {
+					installPipelineMocks({ draft: labelDraft() });
+					const m = await labelResolving(null);
+					const runPipeline = await loadRunPipeline();
+
+					await runPipeline({ type: "label", name: "Nobody Records", mbid: OTHER }, DEPS);
+
+					expect(vi.mocked(m.findLabelMbidByName)).not.toHaveBeenCalled();
+					expect(vi.mocked(m.fetchLabelMetaMb)).toHaveBeenCalledWith(OTHER);
+				},
+				TIMEOUT_MS,
+			);
+		});
+
 		it(
 			"survives MusicBrainz being down: requested slug, LLM edges, no mbid",
 			async () => {
