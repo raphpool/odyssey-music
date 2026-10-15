@@ -16,9 +16,9 @@ struct GenreTile: View {
 	static let nameLineLimit = 3
 	static let nameMinimumScale: CGFloat = 0.7
 
-	/// `genre-tile-<identity>`: the tile does not know its identity, the screen sets this on it.
-	static func identifier(for identity: NodeIdentity) -> String {
-		"genre-tile-\(identity.rawValue)"
+	/// `genre-tile-<key>`, the family key: the tile does not know its key, the screen sets this on it.
+	static func identifier(for key: String) -> String {
+		"genre-tile-\(key)"
 	}
 
 	private let name: String

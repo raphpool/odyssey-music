@@ -29,7 +29,7 @@ import { readFile } from "node:fs/promises";
 import { createServer, type IncomingMessage, type ServerResponse } from "node:http";
 import { join } from "node:path";
 import { NodeCache } from "./cache.js";
-import { buildCacheIndex, type CacheIndex } from "./cache-index.js";
+import { buildCacheIndex, type CacheIndex, createCacheIndexHolder } from "./cache-index.js";
 import { readApnsPushConfiguration, serverConfig, streamConfig } from "./config.js";
 import { loadEnv } from "./env.js";
 import { AppError, isNotFoundError } from "./errors.js";
@@ -83,18 +83,16 @@ const catalogIndex: CatalogIndex = createMusicBrainzCatalog();
 // provider error contract, so it receives an adapter that preserves that distinction.
 const mobileCatalogIndex: CatalogIndex = createMusicBrainzCatalog({ failOnUnavailable: true });
 const log = logger.child({ module: "server" });
-let cacheIndex: CacheIndex | null = null;
 // Built lazily on first /search hit so the server can boot even before the cache is warm.
-async function getCacheIndex(): Promise<CacheIndex> {
-	if (!cacheIndex) cacheIndex = await buildCacheIndex(CACHE_DIR);
-	return cacheIndex;
-}
+// Single-flight, and an invalidation during a build is not lost (TRA-536).
+const cacheIndexHolder = createCacheIndexHolder(() => buildCacheIndex(CACHE_DIR));
+const getCacheIndex = (): Promise<CacheIndex> => cacheIndexHolder.get();
 
 // Called after every node write (materialize, mobile search). It also empties the image service's
 // 24h negative cache (TRA-475): a node that just gained an image_url must not keep answering
 // "no-match" for the slugs that borrow from it. `imageService` is declared below; this only runs later.
 function invalidateCacheIndex(): void {
-	cacheIndex = null;
+	cacheIndexHolder.invalidate();
 	imageService.clearNegativeCache();
 }
 

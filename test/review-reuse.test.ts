@@ -1,21 +1,27 @@
 import { execFile } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { createServer } from "node:http";
 import type { AddressInfo } from "node:net";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { promisify } from "node:util";
 import { describe, expect, it } from "vitest";
 import {
+	AI_REVIEW_PATH,
 	BLOCKING_ANNOTATION,
 	type DecisionInput,
 	decideReuse,
 	type Facts,
 	latestReview,
+	MAX_PAGES,
 	PAGE_SIZE,
 	RECORD_PREFIX,
 	type ReviewCheckRun,
 	recordMessage,
 	resolveDecision,
 	reuseMessage,
+	type WorkflowJob,
+	type WorkflowRun,
 } from "../scripts/ci/review-reuse.js";
 
 const PREVIOUS = "a".repeat(40);
@@ -23,6 +29,11 @@ const PATCH = `${"1".repeat(40)}-${"2".repeat(40)}`;
 const OTHER_PATCH = `${"3".repeat(40)}-${"2".repeat(40)}`;
 const LATER = "2026-10-15T11:00:00Z";
 
+const SUITE = 100;
+const RUN_ID = 5100;
+
+// TRA-525: a `review` check-run only counts when it is the job of a `pull_request` run of ai-review.yml on the
+// previous head. `run`, `workflowRun` and `job` below are the three records that, together, make one genuine review.
 const run = (overrides: Partial<ReviewCheckRun> = {}): ReviewCheckRun => ({
 	id: 7,
 	name: "review",
@@ -30,7 +41,31 @@ const run = (overrides: Partial<ReviewCheckRun> = {}): ReviewCheckRun => ({
 	conclusion: "success",
 	startedAt: "2026-10-15T10:00:00Z",
 	appSlug: "github-actions",
+	headSha: PREVIOUS,
+	checkSuiteId: SUITE,
 	...overrides,
+});
+
+const workflowRun = (overrides: Partial<WorkflowRun> = {}): WorkflowRun => ({
+	id: RUN_ID,
+	path: AI_REVIEW_PATH,
+	event: "pull_request",
+	headSha: PREVIOUS,
+	checkSuiteId: SUITE,
+	...overrides,
+});
+
+const job = (overrides: Partial<WorkflowJob> = {}): WorkflowJob => ({
+	id: 7,
+	name: "review",
+	runId: RUN_ID,
+	...overrides,
+});
+
+/** Several genuine reviews of the previous head: each check-run comes with the job of the same id. */
+const genuine = (...runs: ReviewCheckRun[]): Partial<DecisionInput> => ({
+	checkRuns: runs,
+	jobs: runs.map((r) => job({ id: r.id })),
 });
 
 // What the workflow establishes before asking: a first-attempt synchronize on a PR against the default branch,
@@ -50,12 +85,19 @@ const facts = (overrides: Partial<Facts> = {}): Facts => ({
 const input = (overrides: Partial<DecisionInput> = {}): DecisionInput => ({
 	...facts(),
 	checkRuns: [run()],
-	checkRunsTruncated: false,
+	workflowRuns: [workflowRun()],
+	jobs: [job()],
 	annotations: [recordMessage(PATCH)],
 	...overrides,
 });
 
-describe("decideReuse (TRA-510)", () => {
+const evidenceOf = (value: DecisionInput) => ({
+	checkRuns: value.checkRuns ?? [],
+	workflowRuns: value.workflowRuns ?? [],
+	jobs: value.jobs ?? [],
+});
+
+describe("decideReuse (TRA-510, TRA-525)", () => {
 	it("reuses the verdict: synchronize, same patch-id, previous review succeeded without blocking findings", () => {
 		expect(decideReuse(input())).toEqual({
 			decision: "reuse",
@@ -91,7 +133,8 @@ describe("decideReuse (TRA-510)", () => {
 		["head is not a merge (plain commit)", { headIsUpdateMerge: false }],
 		["head's merge not checkable", { headIsUpdateMerge: null }],
 		["listing failed", { checkRuns: null }],
-		["listing truncated", { checkRunsTruncated: true }],
+		["workflow runs listing failed", { workflowRuns: null }],
+		["jobs listing failed", { jobs: null }],
 		["annotations unreadable", { annotations: null }],
 		["no patch-id computed", { patchId: null }],
 		["malformed patch-id", { patchId: "not-a-patch-id" }],
@@ -103,17 +146,32 @@ describe("decideReuse (TRA-510)", () => {
 		["two different records", { annotations: [recordMessage(PATCH), recordMessage(OTHER_PATCH)] }],
 		["review not published by Actions", { checkRuns: [run({ appSlug: "some-other-app" })] }],
 		["review without app", { checkRuns: [run({ appSlug: null })] }],
+		// TRA-525: the rule of review-gate.yml (TRA-520). The name and the app are forgeable by any workflow step.
+		["review that is no job at all (created through the API)", { jobs: [] }],
+		["review with the id of no job of the run", { jobs: [job({ id: 8 })] }],
+		["no run of ai-review.yml", { workflowRuns: [] }],
+		["run of another workflow", { workflowRuns: [workflowRun({ path: ".github/workflows/other.yml" })] }],
+		[
+			"run of ai-review.yml from another ref (path with a suffix)",
+			{ workflowRuns: [workflowRun({ path: `${AI_REVIEW_PATH}@refs/heads/main` })] },
+		],
+		["run that is not a pull_request one", { workflowRuns: [workflowRun({ event: "push" })] }],
+		["run on another sha", { workflowRuns: [workflowRun({ headSha: "d".repeat(40) })] }],
+		[
+			"two genuine reviews that started together (the gate cannot tell which it reads)",
+			genuine(run({ id: 1 }), run({ id: 2, conclusion: "failure" })),
+		],
 	];
 	it.each(full)("runs a full review: %s", (_label, overrides) => {
 		expect(decideReuse(input(overrides)).decision).toBe("full");
 	});
 
-	it("judges the last review by start time, like review-gate.yml does", () => {
-		const failedLater = [run({ id: 1 }), run({ id: 2, conclusion: "failure", startedAt: LATER })];
-		expect(decideReuse(input({ checkRuns: failedLater })).decision).toBe("full");
-		const succeededLater = [run({ id: 1, conclusion: "failure" }), run({ id: 2, startedAt: LATER })];
-		expect(decideReuse(input({ checkRuns: succeededLater })).decision).toBe("reuse");
-		expect(latestReview(succeededLater)?.id).toBe(2);
+	it("judges the last genuine review by start time, like review-gate.yml does", () => {
+		const failedLater = genuine(run({ id: 1 }), run({ id: 2, conclusion: "failure", startedAt: LATER }));
+		expect(decideReuse(input(failedLater)).decision).toBe("full");
+		const succeededLater = genuine(run({ id: 1, conclusion: "failure" }), run({ id: 2, startedAt: LATER }));
+		expect(decideReuse(input(succeededLater)).decision).toBe("reuse");
+		expect(latestReview(PREVIOUS, evidenceOf(input(succeededLater)))?.id).toBe(2);
 	});
 
 	it("accepts the same record twice (a reused review records it again)", () => {
@@ -125,18 +183,46 @@ describe("decideReuse (TRA-510)", () => {
 
 const checkRunsBody = (runs: ReviewCheckRun[], total = runs.length) => ({
 	total_count: total,
-	check_runs: runs.map((r) => ({ ...r, started_at: r.startedAt, app: r.appSlug && { slug: r.appSlug } })),
+	check_runs: runs.map((r) => ({
+		id: r.id,
+		name: r.name,
+		status: r.status,
+		conclusion: r.conclusion,
+		started_at: r.startedAt,
+		head_sha: r.headSha,
+		app: r.appSlug && { slug: r.appSlug },
+		check_suite: { id: r.checkSuiteId },
+	})),
+});
+
+const runsBody = (runs: WorkflowRun[], total = runs.length) => ({
+	total_count: total,
+	workflow_runs: runs.map((r) => ({
+		id: r.id,
+		path: r.path,
+		event: r.event,
+		head_sha: r.headSha,
+		check_suite_id: r.checkSuiteId,
+	})),
+});
+
+const jobsBody = (jobs: WorkflowJob[], total = jobs.length) => ({
+	total_count: total,
+	jobs: jobs.map((j) => ({ id: j.id, name: j.name, run_id: j.runId })),
 });
 
 const annotationsBody = (messages: string[]) => messages.map((message) => ({ message }));
 
+type Answer = unknown | ((path: string) => unknown);
+
 /** A GitHub API stub: the answer of the first key contained in the requested path; Errors are thrown. */
-const fakeApi = (answers: Record<string, unknown>) => {
+const fakeApi = (answers: Record<string, Answer>) => {
 	const paths: string[] = [];
 	const get = async (path: string): Promise<unknown> => {
 		paths.push(path);
 		const key = Object.keys(answers).find((candidate) => path.includes(candidate));
-		const answer = key === undefined ? new Error("GitHub API answered 404") : answers[key];
+		const found = key === undefined ? new Error("GitHub API answered 404") : answers[key];
+		const answer = typeof found === "function" ? found(path) : found;
 		if (answer instanceof Error) throw answer;
 		return answer;
 	};
@@ -155,41 +241,133 @@ const ctx = (
 
 describe("resolveDecision (API lookups)", () => {
 	const listing = `commits/${PREVIOUS}/check-runs`;
-
-	it("reads the previous head's review and its annotations from the API", async () => {
-		const api = fakeApi({
-			[listing]: checkRunsBody([run()]),
-			"check-runs/7/annotations": annotationsBody([recordMessage(PATCH)]),
-		});
-		expect((await resolveDecision(ctx(api.get))).decision).toBe("reuse");
-		expect(api.paths[0]).toContain(`repos/raphpool/odyssey-music/${listing}?check_name=review&filter=all`);
-		expect(api.paths[1]).toContain("repos/raphpool/odyssey-music/check-runs/7/annotations");
+	const runsListing = `actions/runs?head_sha=${PREVIOUS}&event=pull_request`;
+	const jobsListing = `actions/runs/${RUN_ID}/jobs`;
+	const happy = (): Record<string, Answer> => ({
+		[listing]: checkRunsBody([run()]),
+		[runsListing]: runsBody([workflowRun()]),
+		[jobsListing]: jobsBody([job()]),
+		"check-runs/7/annotations": annotationsBody([recordMessage(PATCH)]),
 	});
 
+	it("reads the previous head's review, the run and the job that produced it, and its annotations", async () => {
+		const api = fakeApi(happy());
+		expect((await resolveDecision(ctx(api.get))).decision).toBe("reuse");
+		const repo = "repos/raphpool/odyssey-music";
+		expect(api.paths[0]).toContain(`${repo}/${listing}?check_name=review&filter=all`);
+		expect(api.paths[1]).toContain(`${repo}/${runsListing}`);
+		expect(api.paths[2]).toContain(`${repo}/${jobsListing}?filter=all`);
+		expect(api.paths[3]).toContain(`${repo}/check-runs/7/annotations`);
+		expect(api.paths).toHaveLength(4);
+	});
+
+	it("only asks for the jobs of runs of ai-review.yml that own a listed check-run", async () => {
+		const api = fakeApi({
+			...happy(),
+			[runsListing]: runsBody([
+				workflowRun({ id: 1, path: ".github/workflows/other.yml" }),
+				workflowRun({ id: 2, checkSuiteId: 555 }),
+				workflowRun(),
+			]),
+		});
+		expect((await resolveDecision(ctx(api.get))).decision).toBe("reuse");
+		expect(api.paths.filter((path) => path.includes("/jobs"))).toHaveLength(1);
+	});
+
+	const firstCheck = checkRunsBody([run()]).check_runs[0];
+	const firstRun = runsBody([workflowRun()]).workflow_runs[0];
 	it.each([
 		["the listing call fails", { [listing]: new Error("GitHub API answered 503") }],
-		["the annotations call fails", { [listing]: checkRunsBody([run()]) }],
-		["the listing has the wrong shape", { [listing]: { check_runs: "nope" } }],
+		["the runs call fails", { [runsListing]: new Error("GitHub API answered 403") }],
+		["the jobs call fails", { [jobsListing]: new Error("GitHub API answered 502") }],
+		["the annotations call fails", { "check-runs/7/annotations": new Error("GitHub API answered 500") }],
+		["the listing has the wrong shape", { [listing]: { total_count: 1, check_runs: "nope" } }],
+		["the listing has no total", { [listing]: { check_runs: [] } }],
 		[
 			"a check-run has no start time",
 			{ [listing]: { total_count: 1, check_runs: [{ id: 1, name: "review", status: "x" }] } },
 		],
-		["the listing is truncated", { [listing]: checkRunsBody([run()], 250) }],
+		[
+			"a check-run has no check suite",
+			{ [listing]: { total_count: 1, check_runs: [{ ...firstCheck, check_suite: null }] } },
+		],
+		[
+			"a run has no check suite",
+			{ [runsListing]: { total_count: 1, workflow_runs: [{ ...firstRun, check_suite_id: undefined }] } },
+		],
+		["a job has no run", { [jobsListing]: { total_count: 1, jobs: [{ id: 7, name: "review" }] } }],
 		[
 			"the annotations page is full (a blocking one could be on the next page)",
 			{
-				[listing]: checkRunsBody([run()]),
-				"/annotations": annotationsBody([recordMessage(PATCH), ...Array(PAGE_SIZE - 1).fill("notice")]),
+				"check-runs/7/annotations": annotationsBody([
+					recordMessage(PATCH),
+					...Array(PAGE_SIZE - 1).fill("notice"),
+				]),
 			},
 		],
 	])("runs a full review when %s", async (_label, answers) => {
-		expect((await resolveDecision(ctx(fakeApi(answers).get))).decision).toBe("full");
+		expect((await resolveDecision(ctx(fakeApi({ ...happy(), ...answers }).get))).decision).toBe("full");
 	});
 
 	it("does not fetch annotations of a review that did not succeed", async () => {
-		const api = fakeApi({ [listing]: checkRunsBody([run({ conclusion: "failure" })]) });
+		const api = fakeApi({ ...happy(), [listing]: checkRunsBody([run({ conclusion: "failure" })]) });
 		expect((await resolveDecision(ctx(api.get))).decision).toBe("full");
-		expect(api.paths).toHaveLength(1);
+		expect(api.paths.some((path) => path.includes("/annotations"))).toBe(false);
+	});
+
+	// Criterion of TRA-525: a `review` check-run created through the API (or by another workflow, on another
+	// branch) on the previous head, with a valid record, must not make the next head inherit a verdict.
+	it("runs a full review for a forged check-run with a valid record, without reading its annotations", async () => {
+		const forged = run({ id: 99, startedAt: LATER });
+		const noGenuineRun: WorkflowRun[][] = [
+			[],
+			[workflowRun({ event: "push" })],
+			[workflowRun({ path: ".github/workflows/x.yml" })],
+		];
+		for (const runs of noGenuineRun) {
+			const api = fakeApi({
+				...happy(),
+				[listing]: checkRunsBody([forged]),
+				[runsListing]: runsBody(runs),
+				"check-runs/99/annotations": annotationsBody([recordMessage(PATCH)]),
+			});
+			expect((await resolveDecision(ctx(api.get))).decision).toBe("full");
+			expect(api.paths.some((path) => path.includes("/annotations"))).toBe(false);
+		}
+	});
+
+	it("follows the pagination of every listing to the end", async () => {
+		const flood = Array.from({ length: PAGE_SIZE }, (_, i) => run({ id: 1000 + i, startedAt: LATER }));
+		const pages = (key: string, first: unknown[], second: unknown[], total: number) => (path: string) => ({
+			total_count: total,
+			[key]: /[?&]page=1$/.test(path) ? first : second,
+		});
+		const api = fakeApi({
+			...happy(),
+			[listing]: pages(
+				"check_runs",
+				checkRunsBody(flood).check_runs,
+				checkRunsBody([run()]).check_runs,
+				PAGE_SIZE + 1,
+			),
+			[runsListing]: pages(
+				"workflow_runs",
+				runsBody([workflowRun({ id: 1, event: "push" })]).workflow_runs,
+				runsBody([workflowRun()]).workflow_runs,
+				2,
+			),
+		});
+		expect((await resolveDecision(ctx(api.get))).decision).toBe("reuse");
+		expect(api.paths.filter((path) => path.includes(listing))).toHaveLength(2);
+	});
+
+	it.each([
+		["a page is missing (total_count never reached)", () => ({ total_count: 3, check_runs: [] })],
+		[`there are more than ${MAX_PAGES} pages`, () => checkRunsBody([run()], PAGE_SIZE * (MAX_PAGES + 5))],
+	])("runs a full review when %s", async (_label, answer) => {
+		const api = fakeApi({ ...happy(), [listing]: answer });
+		expect((await resolveDecision(ctx(api.get))).decision).toBe("full");
+		expect(api.paths.length).toBeLessThanOrEqual(MAX_PAGES);
 	});
 
 	it.each([
@@ -206,6 +384,167 @@ describe("resolveDecision (API lookups)", () => {
 		const api = fakeApi({});
 		expect((await resolveDecision(ctx(api.get, overrides))).decision).toBe("full");
 		expect(api.paths).toHaveLength(0);
+	});
+});
+
+// TRA-525: the selection must be the one review-gate.yml makes. Scenarios are written as the GitHub API returns
+// them, run through the jq program the gate executes (once TRA-520 has put it on the default branch) and through
+// resolveDecision; both must agree on whether the genuine review is the one that counts.
+describe("the selection is the one of review-gate.yml", () => {
+	const exec = promisify(execFile);
+	const gateWorkflow = readFileSync(".github/workflows/review-gate.yml", "utf8").replaceAll("\r\n", "\n");
+
+	const gateProgram = (): string | null => {
+		const lines = gateWorkflow.split("\n");
+		const start = lines.findIndex((line) => line.includes("select_review=$(cat <<'JQ'"));
+		if (start === -1) return null;
+		const end = lines.findIndex((line, index) => index > start && line.trim() === "JQ");
+		if (end === -1) throw new Error("unterminated select_review heredoc in review-gate.yml");
+		return lines.slice(start + 1, end).join("\n");
+	};
+
+	type Item = Record<string, unknown>;
+	interface Api {
+		checks: Item[];
+		runs: Item[];
+		jobs: Item[];
+	}
+
+	const apiCheck = (id: number, suite: number, overrides: Item = {}): Item => ({
+		id,
+		name: "review",
+		status: "completed",
+		conclusion: "success",
+		started_at: "2026-10-15T09:00:00Z",
+		head_sha: PREVIOUS,
+		app: { slug: "github-actions" },
+		check_suite: { id: suite },
+		...overrides,
+	});
+	const apiRun = (id: number, suite: number, overrides: Item = {}): Item => ({
+		id,
+		path: AI_REVIEW_PATH,
+		event: "pull_request",
+		head_sha: PREVIOUS,
+		check_suite_id: suite,
+		...overrides,
+	});
+	const apiJob = (id: number, runId: number, overrides: Item = {}): Item => ({
+		id,
+		name: "review",
+		run_id: runId,
+		...overrides,
+	});
+	/** The genuine `review` of a run of ai-review.yml: its check-run, its run, its job. */
+	const reviewOf = (id: number, suite: number, overrides: Item = {}): Api => ({
+		checks: [apiCheck(id, suite, overrides)],
+		runs: [apiRun(5000 + suite, suite)],
+		jobs: [apiJob(id, 5000 + suite)],
+	});
+	const together = (...apis: Api[]): Api => ({
+		checks: apis.flatMap((api) => api.checks),
+		runs: apis.flatMap((api) => api.runs),
+		jobs: apis.flatMap((api) => api.jobs),
+	});
+	/** A check-run with a job-less run next to it, as an API-created one looks like. */
+	const apiOnly = (check: Item): Api => ({ checks: [check], runs: [apiRun(5100, 100)], jobs: [] });
+	/** One check-run and one job of run 5100 / suite 100, each with its own deviation. */
+	const oneOff = (deviation: { check?: Item; run?: Item; job?: Item }): Api => ({
+		checks: [apiCheck(11, 100, deviation.check)],
+		runs: [apiRun(5100, 100, deviation.run)],
+		jobs: [apiJob(11, 5100, deviation.job)],
+	});
+	const FORGED = { started_at: "2099-01-01T00:00:00Z" };
+	const OTHER_SHA = "d".repeat(40);
+
+	// [label, API state, does the genuine success count (reuse)?]
+	const scenarios: [string, Api, boolean][] = [
+		["a genuine success", reviewOf(11, 100), true],
+		["a genuine failure", reviewOf(11, 100, { conclusion: "failure" }), false],
+		["an API-created check-run in the suite of the run (no job)", apiOnly(apiCheck(99, 100, FORGED)), false],
+		["an API-created check-run in another suite", apiOnly(apiCheck(99, 200, FORGED)), false],
+		[
+			"a forged success starting after a genuine failure",
+			together(reviewOf(11, 100, { conclusion: "failure" }), apiOnly(apiCheck(99, 200, FORGED))),
+			false,
+		],
+		[
+			"a forged failure starting after a genuine success",
+			together(reviewOf(11, 100), apiOnly(apiCheck(99, 200, { ...FORGED, conclusion: "failure" }))),
+			true,
+		],
+		["a check-run of a run of another workflow", oneOff({ run: { path: ".github/workflows/x.yml" } }), false],
+		["a check-run of a push run", oneOff({ run: { event: "push" } }), false],
+		["a check-run of a run on another sha", oneOff({ run: { head_sha: OTHER_SHA } }), false],
+		[
+			"a check-run outside the check suite of the run",
+			oneOff({ check: { check_suite: { id: 101 } } }),
+			false,
+		],
+		["a job of another id", oneOff({ job: { id: 12 } }), false],
+		["a job named otherwise", oneOff({ job: { name: "typecheck" } }), false],
+		["a job of another run", oneOff({ job: { run_id: 5999 } }), false],
+		["a check-run of another app", oneOff({ check: { app: { slug: "some-other-app" } } }), false],
+		["a check-run of another sha", oneOff({ check: { head_sha: OTHER_SHA } }), false],
+		[
+			"a genuine success then a genuine failure (re-run)",
+			together(
+				reviewOf(11, 100),
+				reviewOf(12, 101, { conclusion: "failure", started_at: "2026-10-15T10:00:00Z" }),
+			),
+			false,
+		],
+		[
+			"a genuine failure then a genuine success (re-run)",
+			together(
+				reviewOf(11, 100, { conclusion: "failure" }),
+				reviewOf(12, 101, { started_at: "2026-10-15T10:00:00Z" }),
+			),
+			true,
+		],
+	];
+
+	const decisionOf = async (api: Api): Promise<string> => {
+		const stub = fakeApi({
+			[`commits/${PREVIOUS}/check-runs`]: { total_count: api.checks.length, check_runs: api.checks },
+			[`actions/runs?head_sha=${PREVIOUS}`]: { total_count: api.runs.length, workflow_runs: api.runs },
+			"/jobs": (path: string) => {
+				const runId = Number(/actions\/runs\/(\d+)\/jobs/.exec(path)?.[1]);
+				const jobs = api.jobs.filter((j) => j.run_id === runId);
+				return { total_count: jobs.length, jobs };
+			},
+			"/annotations": annotationsBody([recordMessage(PATCH)]),
+		});
+		return (await resolveDecision(ctx(stub.get))).decision;
+	};
+
+	it.each(scenarios)("reuse decision for %s", async (_label, api, counts) => {
+		expect(await decisionOf(api)).toBe(counts ? "reuse" : "full");
+	});
+
+	const program = gateProgram();
+	// Until TRA-520 is merged the gate still selects by name alone and has no program to compare with.
+	it.runIf(program !== null)("agrees with the jq program of the gate on every scenario", async () => {
+		const scratch = mkdtempSync(join(tmpdir(), "review-reuse-parity-"));
+		try {
+			for (const [label, api, counts] of scenarios) {
+				const [checks, runs, jobs] = (["checks", "runs", "jobs"] as const).map((kind) => {
+					const path = join(scratch, `${kind}.json`);
+					writeFileSync(path, api[kind].map((item) => JSON.stringify(item)).join("\n"));
+					return path;
+				}) as [string, string, string];
+				const args = ["-nr", "--arg", "sha", PREVIOUS, "--arg", "path", AI_REVIEW_PATH];
+				const { stdout } = await exec("jq", [
+					...args,
+					...["--slurpfile", "checks", checks, "--slurpfile", "runs", runs, "--slurpfile", "jobs", jobs],
+					program as string,
+				]);
+				const [, conclusion] = stdout.trimEnd().split("\t");
+				expect(conclusion === "success", label).toBe(counts);
+			}
+		} finally {
+			rmSync(scratch, { recursive: true, force: true });
+		}
 	});
 });
 
@@ -248,11 +587,15 @@ describe("review-reuse.ts as the workflow runs it", () => {
 	};
 
 	it("prints reuse for an unchanged diff and authenticates with GH_TOKEN", async () => {
-		const answer = (url: string) =>
-			url.includes("/annotations") ? annotationsBody([recordMessage(PATCH)]) : checkRunsBody([run()]);
+		const answer = (url: string) => {
+			if (url.includes("/annotations")) return annotationsBody([recordMessage(PATCH)]);
+			if (url.includes("/jobs")) return jobsBody([job()]);
+			if (url.includes("/actions/runs")) return runsBody([workflowRun()]);
+			return checkRunsBody([run()]);
+		};
 		const { result, seen } = await runScript(200, answer);
 		expect(result.decision).toBe("reuse");
-		expect(seen).toEqual(["Bearer test-token", "Bearer test-token"]);
+		expect(seen).toEqual(Array(4).fill("Bearer test-token"));
 	}, 30_000);
 
 	it("prints full, and still exits 0, when the API is down", async () => {

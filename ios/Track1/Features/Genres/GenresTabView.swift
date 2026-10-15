@@ -2,13 +2,13 @@ import SwiftUI
 import Track1Core
 
 /// The Genres tab (Figma `3.3`, spec `178:776`, "not designed yet"), composed from the drawn components by the
-/// default validated at the 2026-10-11 gate (Q3, D14): the parent genres of the profile as read-only selected
+/// default validated at the 2026-10-11 gate (Q3, D14): the families of the profile as read-only selected
 /// tiles, a Primary button that opens the edit flow in a sheet, and an icon button that opens the settings in
 /// another. Touching a tile does nothing in V1, and the order of selection has no effect on the recommendation.
 struct GenresTabView: View {
-	/// What the catalog gave: the tree the tiles come from, and every genre a saved profile may keep.
+	/// What the catalog gave: the taxonomy the tiles come from, and every genre a saved profile may keep.
 	private struct LoadedCatalog {
-		let taxonomy: GenreTaxonomy
+		let taxonomy: EditorialGenreTaxonomy
 		let genreIDs: [NodeIdentity]
 	}
 
@@ -35,10 +35,10 @@ struct GenresTabView: View {
 	/// two sheets cannot be presented at once.
 	@State private var editAfterSettings = false
 	@State private var isSaving = false
-	/// "Goûts musicaux" was tapped before the tree was there: the flow opens as soon as it is.
+	/// "Goûts musicaux" was tapped before the taxonomy was there: the flow opens as soon as it is.
 	@State private var openEditorWhenReady = false
 
-	/// The tree is only read for a saved profile, and read again when one appears (a first selection).
+	/// The taxonomy is only read for a saved profile, and read again when one appears (a first selection).
 	private struct LoadKey: Equatable {
 		let attempt: Int
 		let hasProfile: Bool
@@ -110,29 +110,30 @@ struct GenresTabView: View {
 	}
 
 	@ViewBuilder
-	private func grid(of profile: Profile, in taxonomy: GenreTaxonomy) -> some View {
+	private func grid(of profile: Profile, in taxonomy: EditorialGenreTaxonomy) -> some View {
 		// The model already normalizes a stored profile for the edit flow: the tab shows what the flow will.
-		let parents = OnboardingFlowModel(taxonomy: taxonomy, editing: profile).selectedParentChoices
-		if parents.isEmpty {
-			// Every stored genre left the taxonomy (TRA-442): the flow lets the person choose again.
+		let families = GenreOnboardingModel(taxonomy: taxonomy, editing: profile).selectedFamilyChoices
+		if families.isEmpty {
+			// Every stored family left the taxonomy (TRA-442), or the profile predates it and has no selection:
+			// the flow lets the person choose again.
 			note("Aucun de tes genres n'est dans la liste actuelle. Modifie-les pour en choisir.")
 		} else {
-			parentGrid(parents)
+			familyGrid(families)
 		}
 	}
 
-	private func parentGrid(_ parents: [GenreChoice]) -> some View {
+	private func familyGrid(_ families: [FamilyChoice]) -> some View {
 		let columns = Array(
 			repeating: GridItem(.flexible(), spacing: GenresStepLayout.gutter),
 			count: GenresStepLayout.columnCount)
 		return LazyVGrid(columns: columns, spacing: GenresStepLayout.gutter) {
-			ForEach(parents, id: \.identity) { choice in
+			ForEach(families) { choice in
 				// No genre image exists yet (Q5): every tile shows the placeholder gradient.
 				GenreTile(name: choice.name, isSelected: true, artwork: nil) {}
 					// Read-only in V1: the tile neither reacts to a touch nor reads as a button.
 					.allowsHitTesting(false)
 					.accessibilityRemoveTraits(.isButton)
-					.accessibilityIdentifier(GenreTile.identifier(for: choice.identity))
+					.accessibilityIdentifier(GenreTile.identifier(for: choice.id))
 			}
 		}
 	}
@@ -161,7 +162,7 @@ struct GenresTabView: View {
 			.padding(.vertical, Track1Tokens.spacing12)
 	}
 
-	/// The edit flow needs the tree; a corrupt profile can only be deleted from the settings.
+	/// The edit flow needs the taxonomy; a corrupt profile can only be deleted from the settings.
 	private var canAct: Bool {
 		switch profileState {
 		case .profile:
@@ -207,7 +208,7 @@ struct GenresTabView: View {
 		switch (profileState.profile, catalog) {
 		case (.some, .ready): showingEditor = true
 		case (.some, _):
-			// The tree is missing: load it again, and open the flow once it is there.
+			// The taxonomy is missing: load it again, and open the flow once it is there.
 			openEditorWhenReady = true
 			catalog = .loading
 			attempt += 1
@@ -225,11 +226,15 @@ struct GenresTabView: View {
 		}
 		switch await loadCatalog() {
 		case .success(let loaded, _):
-			catalog = .ready(
-				LoadedCatalog(
-					taxonomy: GenreTaxonomy(catalog: loaded),
-					genreIDs: loaded.nodes.filter { $0.type == .genre }.map(\.identity)))
-			if openEditorWhenReady { showingEditor = true }
+			// A degraded catalog has no editorial taxonomy: the tab reads as unavailable, like a failed request.
+			if let taxonomy = EditorialGenreTaxonomy(catalog: loaded) {
+				catalog = .ready(
+					LoadedCatalog(
+						taxonomy: taxonomy, genreIDs: loaded.nodes.filter { $0.type == .genre }.map(\.identity)))
+				if openEditorWhenReady { showingEditor = true }
+			} else {
+				catalog = .failed
+			}
 		case .failure, .notModified:
 			catalog = .failed
 		}
@@ -266,12 +271,12 @@ struct GenresTabView: View {
 /// The host of the edit flow. The model is a `@State` here, not a value of the tab's `body`: a model built in a
 /// parent's `body` would be rebuilt on every render and drop the selection with it.
 private struct ProfileEditorSheet: View {
-	@State private var model: OnboardingFlowModel
+	@State private var model: GenreOnboardingModel
 	@State private var saveFailed = false
 	private let save: (ProfileDraft) async -> Bool
 
-	init(profile: Profile, taxonomy: GenreTaxonomy, save: @escaping (ProfileDraft) async -> Bool) {
-		_model = State(initialValue: OnboardingFlowModel(taxonomy: taxonomy, editing: profile))
+	init(profile: Profile, taxonomy: EditorialGenreTaxonomy, save: @escaping (ProfileDraft) async -> Bool) {
+		_model = State(initialValue: GenreOnboardingModel(taxonomy: taxonomy, editing: profile))
 		self.save = save
 	}
 

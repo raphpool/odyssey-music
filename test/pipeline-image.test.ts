@@ -149,3 +149,83 @@ describe("image at materialization (TRA-479)", () => {
 		TIMEOUT_MS,
 	);
 });
+
+// TRA-538 x TRA-479: a work's mbid is the server's, never the client's alone. The real resolver runs
+// here, on a stubbed `fetch` (no provider is reached), to prove the CAA cover of an unconfirmed client
+// mbid is never asked for, let alone written.
+describe("image of a work asked with a client mbid (TRA-479, TRA-538)", () => {
+	const CLIENT_MBID = "cccccccc-1111-4111-8111-000000000033";
+
+	/** A `fetch` where Cover Art Archive has a cover for every release group and nothing else answers. */
+	function stubbedFetch() {
+		const asked: string[] = [];
+		const impl = vi.fn(async (input: string | URL | Request) => {
+			const url = String(input);
+			asked.push(url);
+			if (url.startsWith("https://coverartarchive.org/release-group/")) {
+				return new Response(null, {
+					status: 307,
+					headers: { location: "https://archive.org/download/mbid-cover/front.jpg" },
+				});
+			}
+			return new Response("{}", { status: 404 });
+		});
+		return { asked, fetch: impl as unknown as typeof fetch };
+	}
+
+	async function resolverOn(fetchImpl: typeof fetch) {
+		const { mkdtemp } = await import("node:fs/promises");
+		const { tmpdir } = await import("node:os");
+		const { join } = await import("node:path");
+		const { NodeCache } = await import("../src/cache.js");
+		const { resolveImage } = await import("../src/images/resolve-image.js");
+		const cache = new NodeCache(await mkdtemp(join(tmpdir(), "odyssey-pipeline-image-")));
+		return (node: Parameters<typeof resolveImage>[0]) => resolveImage(node, { cache, fetch: fetchImpl });
+	}
+
+	const CLIENT_INPUT: PipelineInput = {
+		type: "project",
+		name: "New Forms",
+		artist: "Roni Size",
+		mbid: CLIENT_MBID,
+		mbidIsClientHint: true,
+	};
+
+	it(
+		"does not ask for, nor write, the cover of a client mbid the server's resolution did not confirm",
+		async () => {
+			await resolvedProject(); // MusicBrainz resolves "New Forms" to RG_MBID, not CLIENT_MBID
+			const stub = stubbedFetch();
+			const runPipeline = await loadRunPipeline();
+
+			const result = await runPipeline(CLIENT_INPUT, { ...DEPS, resolveImage: await resolverOn(stub.fetch) });
+
+			const project = result.node as ProjectNode;
+			expect(project.mbid).toBeUndefined();
+			expect(project.image_url).toBeUndefined();
+			expect(stub.asked.some((u) => u.includes(CLIENT_MBID))).toBe(false);
+			expect(stub.asked.some((u) => u.includes("coverartarchive.org"))).toBe(false);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"takes the cover of the client mbid once the server's resolution lands on it",
+		async () => {
+			await resolvedProject();
+			const stub = stubbedFetch();
+			const runPipeline = await loadRunPipeline();
+
+			const result = await runPipeline(
+				{ ...CLIENT_INPUT, mbid: RG_MBID },
+				{ ...DEPS, resolveImage: await resolverOn(stub.fetch) },
+			);
+
+			const project = result.node as ProjectNode;
+			expect(project.mbid).toBe(RG_MBID);
+			expect(project.image_url).toBe(CAA_URL);
+			expect(project.image_source).toBe("caa");
+		},
+		TIMEOUT_MS,
+	);
+});
