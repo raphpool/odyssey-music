@@ -14,6 +14,31 @@ extension NodePageSection {
 	}
 }
 
+/// One block of the node page body, in drawing order.
+public enum NodePageBlock: Sendable {
+	case section(NodePageSection)
+	case highlights(ArtistHighlights)
+}
+
+extension NodePageModel {
+	/// The body of the page: the sections of `sections(for:)`, minus the fields `ArtistHighlights` carries (they
+	/// are no chips), with the highlights block above the discography carousel. An artist without a discography
+	/// gets the block where that carousel would stand, before the first section ranked after it. No highlight,
+	/// no block.
+	public static func blocks(for node: NodeDetail) -> [NodePageBlock] {
+		let highlights = highlights(for: node)
+		let carried = highlights == nil ? [] : ArtistHighlights.fields
+		let sections = sections(for: node).filter { !carried.contains($0.field) }
+		var blocks = sections.map(NodePageBlock.section)
+		guard let highlights else { return blocks }
+		let order = NodePageSpec.sectionOrder[node.type] ?? []
+		let anchor = NodePageSpec.carouselField[node.type].flatMap { order.firstIndex(of: $0) } ?? order.count
+		let index = sections.firstIndex { (order.firstIndex(of: $0.field) ?? order.count) >= anchor }
+		blocks.insert(.highlights(highlights), at: index ?? blocks.count)
+		return blocks
+	}
+}
+
 public enum NodePageListening {
 	/// The streaming bar's actions: none for a genre or a label (D12), and none until the state is `ready`.
 	public static func actions(for type: NodeType, state: ListeningState) -> [ListeningAction] {

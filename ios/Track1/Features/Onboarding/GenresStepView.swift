@@ -18,31 +18,31 @@ enum GenresStepLayout {
 	}
 }
 
-/// Figma `1.2a Genres · empty` (`176:80`) and `1.2b Genres · selected` (`176:122`): the parent genre
-/// tiles of the taxonomy. The title, the subtitle and the grid scroll together; the action bar stays
-/// pinned. Selection logic lives in `OnboardingFlowModel`, this view only reads and toggles it.
+/// Figma `1.2a Genres · empty` (`176:80`) and `1.2b Genres · selected` (`176:122`): the family tiles of
+/// the editorial taxonomy. The title, the subtitle and the grid scroll together; the action bar stays
+/// pinned. Selection logic lives in `GenreOnboardingModel`, this view only reads and toggles it.
 struct GenresStepView: View {
 	/// Set on the bar's button (`BottomActionBar.identifier`).
 	static let continueIdentifier = "onboarding-genres-continue"
 
 	/// The CTA follows the model (spec: "Nothing selected -> Continuer is Disabled"), not a copy of it.
 	@MainActor
-	static func isContinueEnabled(_ model: OnboardingFlowModel) -> Bool {
+	static func isContinueEnabled(_ model: GenreOnboardingModel) -> Bool {
 		model.canContinueFromGenres
 	}
 
 	/// The bar as the screen builds it, so a test reads the parameters the screen really passes.
 	@MainActor
-	static func actionBar(model: OnboardingFlowModel, onContinue: @escaping () -> Void) -> BottomActionBar {
+	static func actionBar(model: GenreOnboardingModel, onContinue: @escaping () -> Void) -> BottomActionBar {
 		BottomActionBar(
 			title: "Continuer", isEnabled: isContinueEnabled(model), counter: nil,
 			identifier: continueIdentifier, action: onContinue)
 	}
 
-	let model: OnboardingFlowModel
+	let model: GenreOnboardingModel
 	private let onContinue: () -> Void
 
-	init(model: OnboardingFlowModel, onContinue: @escaping () -> Void) {
+	init(model: GenreOnboardingModel, onContinue: @escaping () -> Void) {
 		self.model = model
 		self.onContinue = onContinue
 	}
@@ -86,16 +86,16 @@ struct GenresStepView: View {
 			repeating: GridItem(.fixed(tile.width), spacing: GenresStepLayout.gutter),
 			count: GenresStepLayout.columnCount)
 		return LazyVGrid(columns: columns, spacing: GenresStepLayout.gutter) {
-			ForEach(model.parentChoices, id: \.identity) { choice in
+			ForEach(model.familyChoices) { choice in
 				// No genre image exists yet (Q5): every tile shows the placeholder gradient.
 				GenreTile(
-					name: choice.name, isSelected: model.selectedParents.contains(choice.identity),
+					name: choice.name, isSelected: model.selectedFamilies.contains(choice.id),
 					artwork: nil
 				) {
-					model.toggleParent(choice.identity)
+					model.toggleFamily(choice.id)
 				}
 				.frame(width: tile.width, height: tile.height)
-				.accessibilityIdentifier(GenreTile.identifier(for: choice.identity))
+				.accessibilityIdentifier(GenreTile.identifier(for: choice.id))
 			}
 		}
 	}

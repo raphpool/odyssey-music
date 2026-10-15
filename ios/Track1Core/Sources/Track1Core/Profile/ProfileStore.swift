@@ -56,7 +56,11 @@ public actor ProfileStore {
 	// answer `.unsupportedVersion` and offer to delete the profile. `clear()` removes them all.
 	private static let legacyProfileFile = "profile.v1.json"
 	private static let legacyDraftFile = "profile-draft.v1.json"
-	private static let allFiles = [profileFileName, draftFile, legacyProfileFile, legacyDraftFile]
+	// 2026-10-15 (TRA-544): the v2 profile is removed last. Both profile files can coexist and `read()`
+	// prefers the v2, so a failed removal stops at the first error without ever exposing a stale v1: the v2
+	// is still there and wins, or the whole profile is gone. The reverse order let a failed v1 removal
+	// resurrect the stale v1 genres once the v2 was gone.
+	private static let removalOrder = [legacyDraftFile, legacyProfileFile, draftFile, profileFileName]
 
 	private let localStore: LocalStore
 	private var operationGeneration = 0
@@ -208,11 +212,10 @@ public actor ProfileStore {
 	}
 
 	private func removeAllFiles() async -> Bool {
-		var removedAll = true
-		for name in Self.allFiles {
-			if case .failure = await localStore.remove(named: name) { removedAll = false }
+		for name in Self.removalOrder {
+			if case .failure = await localStore.remove(named: name) { return false }
 		}
-		return removedAll
+		return true
 	}
 
 	private func persist(_ draft: ProfileDraft) async -> Result<ProfileDraft, LocalStoreError> {

@@ -47,4 +47,11 @@ describe("buildCrawlDeps", () => {
 
 		expect(deps.searchProvider).toBe("tavily");
 	});
+
+	// TRA-479: a crawl that writes into a cache directory gives its nodes an image; without one
+	// (backfill and the like) the pipeline has no image step, as before.
+	it("wires an image resolver only when the crawl has a cache directory", () => {
+		expect(buildCrawlDeps("tavily", env, "/tmp/odyssey-cache").resolveImage).toBeTypeOf("function");
+		expect(buildCrawlDeps("tavily", env).resolveImage).toBeUndefined();
+	});
 });
