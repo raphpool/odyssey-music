@@ -2213,8 +2213,8 @@ function projectCarouselHtml(refs, kindLabel) {
     const dead = deadCache.has(ref.slug);
     const stateClass = inCache ? "" : (dead ? " dead" : " dangling");
     const navAttrs = inCache
-      ? `data-id="${ref.slug}"`
-      : `data-jit-type="${ref.type}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${ref.slug}"${ref.mbid ? ` data-jit-mbid="${ref.mbid}"` : ""}`;
+      ? `data-id="${escapeHtml(ref.slug)}"`
+      : `data-jit-type="${escapeHtml(ref.type)}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${escapeHtml(ref.slug)}"${ref.mbid ? ` data-jit-mbid="${escapeHtml(ref.mbid)}"` : ""}`;
     // href uses the resolved slug (TRA-38, same reasoning as chipHtml above): ref.slug
     // is only an alias key once this card is inCache via resolveId, not a slug byId or
     // the ?node= deep link reader can look up directly.
@@ -2250,23 +2250,23 @@ function chipHtml(ref, parentCtx) {
     // surface this branch didn't have while the ref rendered as a dangling <span>, and
     // the raw ref.slug is only an alias key, not a slug byId (or the ?node= deep link
     // reader, TRA-23) can look up on its own.
-    return `<a class="chip t-${ref.type}" href="?node=${encodeURIComponent(resolveId(ref.slug))}" data-id="${ref.slug}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}</a>`;
+    return `<a class="chip t-${escapeHtml(ref.type)}" href="?node=${encodeURIComponent(resolveId(ref.slug))}" data-id="${escapeHtml(ref.slug)}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}</a>`;
   }
   if (deadCache.has(ref.slug)) {
-    return `<span class="chip t-${ref.type} dead" title="agent could not materialize this entity"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}</span>`;
+    return `<span class="chip t-${escapeHtml(ref.type)} dead" title="agent could not materialize this entity"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}</span>`;
   }
   const action = JIT_ENABLED ? "JIT" : "";
   const title = JIT_ENABLED ? "click to materialize now" : "not yet materialized";
   // No more data-jit-disambig: the parent context used to be passed to /materialize as
   // `disambiguator`, which made the slug `artist:foo--<parent-context>` and never
   // reconciled with the bare-slug edges. Slug-from-name only now.
-  const mbidAttr = ref.mbid ? ` data-jit-mbid="${ref.mbid}"` : "";
+  const mbidAttr = ref.mbid ? ` data-jit-mbid="${escapeHtml(ref.mbid)}"` : "";
   // 2026-09-10 (TRA-43): carry the edge's own qid, when it has one, so a click on this chip
   // materializes by IDENTITY (slug + qid) instead of a name the server would have to re-resolve
   // -- see jitMaterialize's reqBody below and docs/plans/qid-genre-identity.md, decision d'archi
   // 8/9. Genre edges only (EdgeRef.qid), same scope as mbidAttr above.
-  const qidAttr = ref.qid ? ` data-jit-qid="${ref.qid}"` : "";
-  return `<span class="chip t-${ref.type} dangling" data-jit-type="${ref.type}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${ref.slug}"${mbidAttr}${qidAttr} title="${title}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}${action ? " " : ""}</span>`;
+  const qidAttr = ref.qid ? ` data-jit-qid="${escapeHtml(ref.qid)}"` : "";
+  return `<span class="chip t-${escapeHtml(ref.type)} dangling" data-jit-type="${escapeHtml(ref.type)}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${escapeHtml(ref.slug)}"${mbidAttr}${qidAttr} title="${title}"><span class="etype">${ref.type}</span>${escapeHtml(ref.name)}${extras}${action ? " " : ""}</span>`;
 }
 
 // Expected wall time per node type, based on the pipeline benchmarks
@@ -2350,7 +2350,7 @@ function renderCrumbs() {
   const items = crumbs.slice(0, -1).map((id) => {
     const n = byId.get(id);
     if (!n) return "";
-    return `<a href="?node=${encodeURIComponent(id)}" data-id="${id}">${escapeHtml(n.name)}</a>`;
+    return `<a href="?node=${encodeURIComponent(id)}" data-id="${escapeHtml(id)}">${escapeHtml(n.name)}</a>`;
   });
   items.push(`<span style="color:var(--fg);">${escapeHtml(byId.get(crumbs[crumbs.length - 1]).name)}</span>`);
   crumbsEl.innerHTML = items.join(' <span class="sep">›</span> ');
