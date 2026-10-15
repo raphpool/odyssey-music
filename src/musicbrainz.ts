@@ -1272,7 +1272,8 @@ function contextWords(text: string): string[] {
 
 /**
  * True when a name keeps a letter that is not a-z once accents are stripped ("坂本龍一", "Группа", but
- * also "ø", "ł", "ß", which NFKD does not decompose): slug normalization would erase it.
+ * also "ø", "ł", "ß", "ð", "ı", which NFKD does not decompose): slug normalization (flag off) would
+ * erase it. It reads the NFKD fold, not the slug flag or the transliteration table.
  */
 function hasUnfoldableLetter(name: string): boolean {
 	return /\p{L}/u.test(name.normalize("NFKD").replace(/\p{M}/gu, "").replace(/[a-z]/gi, ""));
@@ -1281,11 +1282,14 @@ function hasUnfoldableLetter(name: string): boolean {
 /**
  * Name identity between a requested artist name and an MB name or alias. Latin names compare through
  * normalizeSlugBody (case, accents, punctuation, "&"). A name with letters it would erase compares
- * literally (NFKC, case-folded) instead: normalizeSlugBody reduces "坂本龍一" to "" and "Группа X" to "x",
- * and, with the slug transliteration off (default), "Mø" to "m", which would make unrelated artists equal.
- * With ODYSSEY_SCOPED_RELEASE_SLUGS on (TRA-528) "Mø" becomes "mo", but the guard stays: it does not read
- * the flag, so a name with "ø" is compared literally either way ("Mø" vs "Mo" is false, "Mø" vs "MØ"
- * true). Stricter than the slug, never looser.
+ * literally (NFKC, case-folded) instead: normalizeSlugBody reduces "坂本龍一" to "" and "Группа X" to "x".
+ * The same goes for the letters NFKD leaves whole (ø æ œ ł ß đ ð ı þ), and the guard does NOT read
+ * ODYSSEY_SCOPED_RELEASE_SLUGS, so it behaves the same with the flag off and on:
+ * - flag off (default, TRA-528/TRA-531): normalizeSlugBody drops them ("Mø" -> "m", "Kırdar" -> "k-rdar"),
+ *   so slug comparison would make unrelated artists equal ("Mø" = "M");
+ * - flag on: they are transliterated ("Mø" -> "mo", "Kırdar" -> "kirdar"), which would be safe, but the
+ *   literal comparison is kept: "Mø" vs "Mo" and "Kırdar" vs "Kirdar" are false, "Mø" vs "MØ" true.
+ * Stricter than the slug, never looser.
  */
 function sameArtistName(a: string, b: string): boolean {
 	if (hasUnfoldableLetter(a) || hasUnfoldableLetter(b)) {

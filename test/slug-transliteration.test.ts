@@ -9,7 +9,7 @@ import {
 	transliteratedSlug,
 } from "../src/slug.js";
 
-// TRA-528: ø æ œ ł ß đ þ are transliterated instead of dropped, but only behind
+// TRA-528: ø æ œ ł ß đ þ (and, from TRA-531, ð ı) are transliterated instead of dropped, but only behind
 // ODYSSEY_SCOPED_RELEASE_SLUGS (the flag TRA-509 flips with the rest of the slug-identity changes).
 
 afterEach(() => {
@@ -25,6 +25,12 @@ const NAMES: ReadonlyArray<[string, string]> = [
 	["Đorđe", "dorde"],
 	["Þór", "thor"],
 	["STRASSE ẞ", "strasse-ss"],
+	["Ðorđe", "dorde"],
+	["Guðnadóttir", "gudnadottir"],
+	["Kırdar", "kirdar"],
+	["KIRDAR", "kirdar"],
+	["İstanbul", "istanbul"],
+	["Yalnızlık", "yalnizlik"],
 	["In the Møde", "in-the-mode"],
 	["ØØ Void", "oo-void"],
 ];
@@ -37,6 +43,31 @@ describe("flag on: transliteration", () => {
 		expect(makeSlug("artist", "Łona")).toBe("artist:lona");
 		expect(makeSlug("artist", "Straße")).toBe("artist:strasse");
 		expect(makeSlug("project", "ØØ Void")).toBe("project:oo-void");
+	});
+
+	// TRA-531: the two names that sent the cache through "gu-nadottir" / "k-rdar".
+	test("ð and ı (TRA-531)", () => {
+		vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "true");
+		expect(makeSlug("artist", "Hildur Guðnadóttir")).toBe("artist:hildur-gudnadottir");
+		expect(makeSlug("artist", "Gökhan Kırdar")).toBe("artist:gokhan-kirdar");
+		expect(makeSlug("project", "Yalnızlık")).toBe("project:yalnizlik");
+		expect(normalizeTitleBody("Yalnızlık")).toBe("yalnizlik");
+		expect(makeScopedSlug("project", "Yalnızlık", "Gökhan Kırdar")).toEqual({
+			ok: true,
+			slug: "project:yalnizlik--gokhan-kirdar",
+		});
+	});
+
+	// Dotted capital I is decomposed by NFKD (I + U+0307), a plain I lowercases to i: neither needs an
+	// entry in the table, and they must land on the same body as the dotless spelling.
+	test("I, İ and ı all give i", () => {
+		vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "true");
+		const bodies = ["Istanbul", "İstanbul", "ıstanbul", "ISTANBUL", "İSTANBUL"].map(normalizeSlugBody);
+		expect(new Set(bodies)).toEqual(new Set(["istanbul"]));
+		expect("İ".normalize("NFKD")).toBe("I\u0307");
+		vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "false");
+		expect(normalizeSlugBody("İstanbul")).toBe("istanbul");
+		expect(normalizeSlugBody("Istanbul")).toBe("istanbul");
 	});
 
 	test("normalizeSlugBody and normalizeTitleBody agree, upper and lower case", () => {
@@ -84,6 +115,10 @@ describe("flag off (default): pre-TRA-528 output, unchanged", () => {
 		expect(makeSlug("artist", "Straße")).toBe("artist:stra-e");
 		expect(makeSlug("project", "In the Møde")).toBe("project:in-the-m-de");
 		expect(makeSlug("project", "ØØ Void")).toBe("project:void");
+		// TRA-531: still dropped with the flag off (identity does not move before TRA-509)
+		expect(makeSlug("artist", "Hildur Guðnadóttir")).toBe("artist:hildur-gu-nadottir");
+		expect(makeSlug("artist", "Gökhan Kırdar")).toBe("artist:gokhan-k-rdar");
+		expect(normalizeTitleBody("Yalnızlık")).toBe("yaln-zl-k");
 		expect(normalizeTitleBody("Łona & Webber")).toBe("ona-and-webber");
 		expect(makeScopedSlug("project", "In the Møde", "MØ")).toEqual({
 			ok: true,
@@ -107,6 +142,26 @@ describe("transliteratedSlug (old -> new, for the TRA-478 migration)", () => {
 		expect(transliteratedSlug("artist:m", "MØ")).toEqual({ ok: true, slug: "artist:mo" });
 		expect(transliteratedSlug("artist:ona", "Łona")).toEqual({ ok: true, slug: "artist:lona" });
 		expect(transliteratedSlug("artist:stra-e", "Straße")).toEqual({ ok: true, slug: "artist:strasse" });
+		// TRA-531
+		expect(transliteratedSlug("artist:hildur-gu-nadottir", "Hildur Guðnadóttir")).toEqual({
+			ok: true,
+			slug: "artist:hildur-gudnadottir",
+		});
+		expect(transliteratedSlug("artist:gokhan-k-rdar", "Gökhan Kırdar")).toEqual({
+			ok: true,
+			slug: "artist:gokhan-kirdar",
+		});
+	});
+
+	test("a work by an ı / ð artist: title and scope are both rewritten (TRA-531)", () => {
+		expect(transliteratedSlug("project:yaln-zl-k--gokhan-k-rdar", "Yalnızlık", "Gökhan Kırdar")).toEqual({
+			ok: true,
+			slug: "project:yalnizlik--gokhan-kirdar",
+		});
+		expect(transliteratedSlug("project:yaln-zl-k", "Yalnızlık")).toEqual({
+			ok: true,
+			slug: "project:yalnizlik",
+		});
 	});
 
 	test("a work: title and scope are both rewritten", () => {
@@ -147,6 +202,10 @@ describe("transliteratedSlug (old -> new, for the TRA-478 migration)", () => {
 		const refused = { ok: false, reason: "not-derived-from-name" };
 		expect(transliteratedSlug("track:foo", "Foo (ø)")).toEqual(refused);
 		expect(transliteratedSlug("track:m", "Mø (Æ)")).toEqual(refused);
+		expect(transliteratedSlug("track:foo", "Foo (ð)")).toEqual(refused);
+		expect(transliteratedSlug("track:foo", "Foo (ı)")).toEqual(refused);
+		// a slug that is neither the old nor the new form of the name
+		expect(transliteratedSlug("artist:hildur-gu", "Hildur Guðnadóttir")).toEqual(refused);
 		// artists have a single flattener: the trailing group is dropped, as makeSlug does
 		vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "true");
 		expect(transliteratedSlug("artist:foo", "Foo (ø)")).toEqual({
@@ -159,6 +218,14 @@ describe("transliteratedSlug (old -> new, for the TRA-478 migration)", () => {
 describe("transliteratedSlug stays aligned with what the pipeline mints", () => {
 	test("idempotent: a slug already in its new form comes back unchanged", () => {
 		expect(transliteratedSlug("artist:mo", "MØ")).toEqual({ ok: true, slug: "artist:mo" });
+		expect(transliteratedSlug("artist:hildur-gudnadottir", "Hildur Guðnadóttir")).toEqual({
+			ok: true,
+			slug: "artist:hildur-gudnadottir",
+		});
+		expect(transliteratedSlug("artist:gokhan-kirdar", "Gökhan Kırdar")).toEqual({
+			ok: true,
+			slug: "artist:gokhan-kirdar",
+		});
 		expect(transliteratedSlug("project:in-the-mode--mo", "In the Møde", "MØ")).toEqual({
 			ok: true,
 			slug: "project:in-the-mode--mo",
@@ -191,10 +258,12 @@ describe("transliteratedSlug stays aligned with what the pipeline mints", () => 
 
 describe("hasTransliteratedLetter", () => {
 	test("detects each letter in both cases, and ignores the rest", () => {
-		for (const c of ["ø", "Ø", "æ", "Æ", "œ", "Œ", "ł", "Ł", "ß", "ẞ", "đ", "Đ", "þ", "Þ"]) {
+		for (const c of ["ø", "Ø", "æ", "Æ", "œ", "Œ", "ł", "Ł", "ß", "ẞ", "đ", "Đ", "ð", "Ð", "ı", "þ", "Þ"]) {
 			expect(hasTransliteratedLetter(`a${c}b`), c).toBe(true);
 		}
 		expect(hasTransliteratedLetter("Björk Ágatis")).toBe(false);
+		// I and İ are plain i after NFKD: not table letters
+		expect(hasTransliteratedLetter("Istanbul İstanbul")).toBe(false);
 		expect(hasTransliteratedLetter("")).toBe(false);
 	});
 });
