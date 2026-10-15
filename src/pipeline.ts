@@ -135,6 +135,10 @@ export interface PipelineInput {
 	name: string;
 	disambiguator?: string;
 	mbid?: string;
+	// TRA-538: true when `mbid` comes from an HTTP client. It is then only a search hint: a work (track,
+	// project) carries it only if MB's own resolution by title + credit lands on it. Unset for trusted
+	// callers (seed folders, dangling top-up), whose MBID is used directly.
+	mbidIsClientHint?: boolean;
 	// 2026-09-10 (TRA-28 review, B1/B2): when set, the produced node is written under this
 	// EXACT slug instead of one freshly derived from name/type/disambiguator (canonicalizeDraft).
 	// `name`/`disambiguator` still drive research and content generation as usual. For a caller
@@ -1180,21 +1184,26 @@ async function enrichNode(
 	}
 	if (input.type === "track") {
 		try {
-			// TRA-538: the MBID written on the node comes only from the server's own resolution (title +
-			// credit); a caller-supplied `input.mbid` is a hint that resolution must confirm.
-			let mbid: string | undefined;
-			// The credit of the recording MB resolved by title + artist hint.
+			// TRA-538: an MBID that comes from a client (`mbidIsClientHint`) is never stamped as is: MB's own
+			// resolution (title + credit) has to land on it. A trusted caller's MBID (seed folders, dangling
+			// top-up) is used directly, as before.
+			const clientHint = input.mbidIsClientHint === true ? input.mbid : undefined;
+			let mbid: string | undefined = clientHint ? undefined : input.mbid;
+			// The credit of the recording MB resolved by title + artist hint. Absent when a trusted caller
+			// supplied the MBID: the metadata fetch below then provides it.
 			let resolvedCredit: MbCredit[] = [];
-			const identity = await resolveRecording(input.name, input.artist);
-			if (identity && confirmsHint(identity.mbid, input.mbid)) {
-				mbid = identity.mbid;
-				resolvedCredit = identity.credit;
-			} else if (identity) {
-				log(
-					`[pipeline] track "${input.name}" left without MBID (MB resolved ${identity.mbid}, not the client hint ${input.mbid})`,
-				);
-			} else {
-				log(`[pipeline] track "${input.name}" left without MBID (no single exact MB recording)`);
+			if (!mbid) {
+				const identity = await resolveRecording(input.name, input.artist);
+				if (identity && confirmsHint(identity.mbid, clientHint)) {
+					mbid = identity.mbid;
+					resolvedCredit = identity.credit;
+				} else if (identity) {
+					log(
+						`[pipeline] track "${input.name}" left without MBID (MB resolved ${identity.mbid}, not the client hint ${clientHint})`,
+					);
+				} else {
+					log(`[pipeline] track "${input.name}" left without MBID (no single exact MB recording)`);
+				}
 			}
 			if (mbid) {
 				const obj = node as Record<string, unknown>;
@@ -1247,20 +1256,23 @@ async function enrichNode(
 	}
 	if (input.type === "project") {
 		try {
-			// Same as the track branch (TRA-538): only the server's resolution gives the node its MBID.
-			let mbid: string | undefined;
+			// Same as the track branch (TRA-538): a client's MBID must be confirmed by MB's resolution.
+			const clientHint = input.mbidIsClientHint === true ? input.mbid : undefined;
+			let mbid: string | undefined = clientHint ? undefined : input.mbid;
 			// The credit of the release group resolved by title + artist hint.
 			let resolvedCredit: MbCredit[] = [];
-			const identity = await resolveReleaseGroup(input.name, input.artist);
-			if (identity && confirmsHint(identity.mbid, input.mbid)) {
-				mbid = identity.mbid;
-				resolvedCredit = identity.credit;
-			} else if (identity) {
-				log(
-					`[pipeline] project "${input.name}" left without MBID (MB resolved ${identity.mbid}, not the client hint ${input.mbid})`,
-				);
-			} else {
-				log(`[pipeline] project "${input.name}" left without MBID (no single exact MB release group)`);
+			if (!mbid) {
+				const identity = await resolveReleaseGroup(input.name, input.artist);
+				if (identity && confirmsHint(identity.mbid, clientHint)) {
+					mbid = identity.mbid;
+					resolvedCredit = identity.credit;
+				} else if (identity) {
+					log(
+						`[pipeline] project "${input.name}" left without MBID (MB resolved ${identity.mbid}, not the client hint ${clientHint})`,
+					);
+				} else {
+					log(`[pipeline] project "${input.name}" left without MBID (no single exact MB release group)`);
+				}
 			}
 			if (mbid) {
 				const obj = node as Record<string, unknown>;

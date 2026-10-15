@@ -585,6 +585,7 @@ export function createMaterializeService(deps: {
 			name: string;
 			disambiguator?: string;
 			mbid?: string;
+			mbidIsClientHint?: boolean;
 			slug?: Slug;
 			qid?: string;
 			artist?: string;
@@ -593,7 +594,11 @@ export function createMaterializeService(deps: {
 			name: body.name,
 		};
 		if (body.disambiguator) pipelineInput.disambiguator = body.disambiguator;
-		if (body.mbid) pipelineInput.mbid = body.mbid;
+		if (body.mbid) {
+			pipelineInput.mbid = body.mbid;
+			// TRA-538: from the client, so a hint the pipeline must have MusicBrainz confirm.
+			pipelineInput.mbidIsClientHint = true;
+		}
 		// TRA-477: the credit hint MusicBrainz and the search use to tell same-titled works apart.
 		if (body.artist && isWorkType(body.type) && scopedReleaseSlugsEnabled()) {
 			pipelineInput.artist = body.artist;
