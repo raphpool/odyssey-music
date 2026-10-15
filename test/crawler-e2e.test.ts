@@ -1,12 +1,31 @@
 import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { NodeCache } from "../src/cache.js";
 import type { CrawlOptions } from "../src/crawler.js";
 import type { GenreSeeds } from "../src/genre-seeds.js";
-import type { ArtistNode, GenreNode, ProjectNode, Slug } from "../src/types.js";
+import type { PipelineInput, PipelineResult } from "../src/pipeline.js";
+import type { ArtistNode, GenreNode, NodePayload, ProjectNode, Slug, TrackNode } from "../src/types.js";
 import { artistDraftFixture, genreDraftFixture, installPipelineMocks } from "./helpers/pipeline-mocks.js";
+
+// TRA-476: runPipeline stays the real one unless a test sets `pipelineStub.impl`. Only the crawl() tests
+// of the TRA-476 block do; every other test in this file runs the whole pipeline over mocked boundaries.
+const pipelineStub = vi.hoisted(() => ({
+	impl: undefined as undefined | ((input: PipelineInput) => Promise<PipelineResult>),
+	calls: [] as PipelineInput[],
+}));
+vi.mock("../src/pipeline.js", async (importOriginal) => {
+	const actual = await importOriginal<typeof import("../src/pipeline.js")>();
+	return {
+		...actual,
+		runPipeline: (...args: Parameters<typeof actual.runPipeline>) => {
+			if (!pipelineStub.impl) return actual.runPipeline(...args);
+			pipelineStub.calls.push(args[0]);
+			return pipelineStub.impl(args[0]);
+		},
+	};
+});
 
 // TRA-28 review: missing wiring test (i) -- crawl() (src/crawler.ts) builds its own GenreRegistry
 // on its own NodeCache and must actually use it, both when materializing a node and when
@@ -1008,4 +1027,177 @@ describe("CLI genre-seeds mode validates the taxonomy canonically (TRA-231)", ()
 		expect(Object.keys(selected)).toEqual(["Q1"]);
 		expect(selected.Q1?.genre.qid).toBe("Q1");
 	});
+});
+
+// TRA-476: a depth-1 crawl with the pipeline stubbed (Gemini and the MusicBrainz identity are not what is
+// under test; the crawler's frontier and its repointing of the requesting edge are).
+describe("crawl() artist context and edge reconciliation (TRA-476)", () => {
+	let dir: string;
+
+	beforeEach(async () => {
+		dir = await mkdtemp(join(tmpdir(), "odyssey-crawler-tra476-"));
+		pipelineStub.impl = undefined;
+		pipelineStub.calls.length = 0;
+	});
+
+	afterEach(async () => {
+		pipelineStub.impl = undefined;
+		await rm(dir, { recursive: true, force: true });
+	});
+
+	function trackNode(overrides: Partial<TrackNode> & { slug: Slug; name: string }): TrackNode {
+		return {
+			type: "track",
+			editorial_article:
+				"A real long article about this track, well past the eighty character floor. ".repeat(2),
+			editorial_teaser: "A short teaser.",
+			citations: [{ url: "https://example.com/track" }],
+			materialized_at: new Date().toISOString(),
+			artists: [],
+			genres: [],
+			producers: [],
+			personnel: [],
+			samples: [],
+			sampled_by: [],
+			remixed_by: [],
+			...overrides,
+		};
+	}
+
+	function stubResult(node: NodePayload, requestedSlug?: Slug): PipelineResult {
+		return {
+			node,
+			slug: node.slug,
+			...(requestedSlug ? { requestedSlug } : {}),
+			metrics: {} as PipelineResult["metrics"], // the crawler never reads it
+		};
+	}
+
+	async function runCrawl(seed: string, logs: string[] = []) {
+		const { crawl } = await loadCrawl();
+		return crawl({
+			seed,
+			maxDepth: 1,
+			maxNodes: 20,
+			concurrency: 1,
+			out: dir,
+			deps: { tavilyApiKey: "test", firecrawlApiKey: "test" },
+			logger: (s) => logs.push(s),
+		});
+	}
+
+	const FITNA_MBID = "11111111-2222-3333-4444-555555555555";
+
+	it(
+		"materializes Rohff's own Fitna next to Akuma's cached one, with the artist and mbid of the edge",
+		async () => {
+			const cache = new NodeCache(dir);
+			const akumaFitna = trackNode({
+				slug: "track:fitna--akuma",
+				name: "Fitna",
+				artists: [{ type: "artist", slug: "artist:akuma", name: "Akuma" }],
+			});
+			await cache.write(akumaFitna);
+			const rohffFitna = trackNode({
+				slug: "track:fitna--rohff",
+				name: "Fitna",
+				artists: [{ type: "artist", slug: "artist:rohff", name: "Rohff" }],
+			});
+			pipelineStub.impl = async (input) =>
+				stubResult(
+					input.type === "artist"
+						? artistNode({
+								slug: "artist:rohff",
+								name: "Rohff",
+								notable_tracks: [
+									{
+										type: "track",
+										slug: "track:fitna--rohff",
+										name: "Fitna",
+										artist: "Rohff",
+										mbid: FITNA_MBID,
+									},
+								],
+							})
+						: rohffFitna,
+				);
+
+			const result = await runCrawl("artist:Rohff");
+
+			const trackCall = pipelineStub.calls.find((c) => c.type === "track");
+			expect(trackCall).toMatchObject({
+				slug: "track:fitna--rohff",
+				name: "Fitna",
+				artist: "Rohff",
+				mbid: FITNA_MBID,
+			});
+			expect(await cache.has("track:fitna--rohff")).toBe(true);
+			expect(await cache.get("track:fitna--akuma")).toEqual(akumaFitna);
+			const rohff = await cache.get("artist:rohff");
+			if (rohff.type !== "artist") throw new Error("expected artist node");
+			expect(rohff.notable_tracks.map((e) => e.slug)).toEqual(["track:fitna--rohff"]);
+			expect(result.reconciled).toBe(0);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"repoints the requesting edge to the canonical slug and credit the pipeline learned (Roni Size / Reprazent)",
+		async () => {
+			const NEW_FORMS_MBID = "66666666-7777-8888-9999-000000000000";
+			const requested = "project:new-forms--roni-size" as Slug;
+			const canonical = "project:new-forms--roni-size-reprazent" as Slug;
+			pipelineStub.impl = async (input) =>
+				input.type === "artist"
+					? stubResult(
+							artistNode({
+								slug: "artist:roni-size",
+								name: "Roni Size",
+								discography: [
+									{ type: "project", slug: requested, name: "New Forms", artist: "Roni Size", year: "1997" },
+								],
+							}),
+						)
+					: stubResult(
+							projectNode({
+								slug: canonical,
+								name: "New Forms",
+								mbid: NEW_FORMS_MBID,
+								artists: [
+									{ type: "artist", slug: "artist:roni-size-reprazent", name: "Roni Size / Reprazent" },
+								],
+							}),
+							requested,
+						);
+			const logs: string[] = [];
+
+			const result = await runCrawl("artist:Roni Size", logs);
+
+			const cache = new NodeCache(dir);
+			expect(result.reconciled).toBe(1);
+			expect(result.reconcileFailed).toBe(0);
+			// Rewriting the parent is not a materialization: it must not eat the maxNodes budget.
+			expect(result.nodesWritten).toBe(2);
+			expect(await cache.has(canonical)).toBe(true);
+			expect(await cache.has(requested)).toBe(false);
+			const parent = await cache.get("artist:roni-size");
+			if (parent.type !== "artist") throw new Error("expected artist node");
+			expect(parent.discography).toEqual([
+				{
+					type: "project",
+					slug: canonical,
+					name: "New Forms",
+					artist: "Roni Size / Reprazent",
+					mbid: NEW_FORMS_MBID,
+					year: "1997",
+				},
+			]);
+			// The invariant: no edge of the parent cites a slug without a file.
+			for (const edge of parent.discography) expect(await cache.has(edge.slug)).toBe(true);
+			expect(logs.some((l) => l.includes(`reconciled artist:roni-size.discography: ${requested}`))).toBe(
+				true,
+			);
+		},
+		TIMEOUT_MS,
+	);
 });

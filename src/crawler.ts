@@ -1,10 +1,12 @@
 import { NodeCache } from "./cache.js";
+import { scopedReleaseSlugsEnabled } from "./config.js";
 import { isSameEntityName } from "./entity-name.js";
 import { isNotFoundError } from "./errors.js";
 import { loadGenreResolver } from "./genre-identity.js";
 import { createGenreRegistry, type GenreRegistry, loadRedirects } from "./genre-registry.js";
 import type { GenreSeed, GenreSeeds } from "./genre-seeds.js";
 import { type PipelineDeps, type PipelineInput, runPipeline } from "./pipeline.js";
+import { normalizeSlugBody } from "./slug.js";
 import {
 	type EdgeRef,
 	LIST_EDGES_BY_TYPE,
@@ -51,6 +53,14 @@ export interface CrawlResult {
 	failed: number;
 }
 
+/** Result of a frontier crawl; `crawl()` only (seed batches never repoint a requester). */
+export interface FrontierCrawlResult extends CrawlResult {
+	/** Parent edges repointed because the pipeline filed the node under another slug than requested. */
+	reconciled: number;
+	/** Parent edges that could not be repointed and still cite a slug with no file. */
+	reconcileFailed: number;
+}
+
 export type GenreSeedStage = "anchor" | "genre" | "target";
 
 export interface GenreSeedPlanEntry {
@@ -82,9 +92,18 @@ export interface BackfillSeedGenresResult {
 	missing: number;
 }
 
+/** A materialized node whose `field` edge asked for a frontier target (TRA-476). */
+export interface FrontierRequester {
+	slug: Slug;
+	field: string;
+}
+
 interface FrontierEntry {
+	/** Complete pipeline request: carries the edge's own `artist`, `mbid` and `qid` (TRA-476). */
 	input: PipelineInput;
 	depth: number;
+	/** Edges that asked for this target, repointed if it is filed elsewhere. Shared with the queue's map. */
+	requesters: FrontierRequester[];
 	/** How many already-materialized nodes have referenced this target. */
 	refCount: number;
 	/** Insertion order, used as a tiebreaker after refCount. */
@@ -109,6 +128,11 @@ export type FrontierStrategy = "bfs" | "popularity" | "hybrid";
 export class FrontierQueue {
 	private readonly items = new Map<Slug, FrontierEntry>();
 	private readonly seen = new Set<Slug>();
+	private readonly requestersBySlug = new Map<Slug, FrontierRequester[]>();
+	/** Primary artist each slug was first requested for; kept after the pop, while the child runs. */
+	private readonly artistBySlug = new Map<Slug, string>();
+	/** Requested slug -> the canonical node the pipeline filed it under (see markResolved). */
+	private readonly resolved = new Map<Slug, CanonicalTarget>();
 	private seq = 0;
 	private popped = 0;
 	constructor(
@@ -116,7 +140,18 @@ export class FrontierQueue {
 		private readonly bfsHead = 40,
 	) {}
 
-	push(slug: Slug, base: Omit<FrontierEntry, "refCount" | "seq">): boolean {
+	push(
+		slug: Slug,
+		base: Omit<FrontierEntry, "refCount" | "seq" | "requesters">,
+		requester?: FrontierRequester,
+	): boolean {
+		// Recorded before the dedup returns below: a parent that cites a target another parent already
+		// queued (or that is being materialized right now) must still be repointed with the others.
+		const requesters = this.requestersBySlug.get(slug) ?? [];
+		this.requestersBySlug.set(slug, requesters);
+		if (requester && !requesters.some((r) => r.slug === requester.slug && r.field === requester.field)) {
+			requesters.push(requester);
+		}
 		const existing = this.items.get(slug);
 		if (existing) {
 			existing.refCount++;
@@ -127,8 +162,35 @@ export class FrontierQueue {
 			return false;
 		}
 		this.seen.add(slug);
-		this.items.set(slug, { ...base, refCount: 1, seq: this.seq++ });
+		if (base.input.artist) this.artistBySlug.set(slug, base.input.artist);
+		this.items.set(slug, { ...base, requesters, refCount: 1, seq: this.seq++ });
 		return true;
+	}
+
+	/** A requested slug was filed under `target`: later nodes citing it are repointed before their write. */
+	markResolved(requested: Slug, target: CanonicalTarget): void {
+		this.resolved.set(requested, target);
+	}
+
+	/** `node` with every edge to an already-resolved requested slug repointed; the same object if none. */
+	repointResolved(node: NodePayload): NodePayload {
+		if (this.resolved.size === 0) return node;
+		const obj = node as unknown as Record<string, unknown>;
+		let next: Record<string, unknown> | undefined;
+		for (const field of [...LIST_EDGES_BY_TYPE[node.type], ...SINGULAR_EDGES_BY_TYPE[node.type]]) {
+			let value = obj[field];
+			for (const [requested, target] of this.resolved) {
+				value = repointField(value, requested, target) ?? value;
+			}
+			if (value !== obj[field]) next = { ...(next ?? obj), [field]: value };
+		}
+		return (next ?? obj) as unknown as NodePayload;
+	}
+
+	/** True when `slug` was requested for another primary artist: a bare slug shared by two homonyms. */
+	hasArtistConflict(slug: Slug, artist: string | undefined): boolean {
+		const queued = this.artistBySlug.get(slug);
+		return queued !== undefined && artist !== undefined && !sameCredit(queued, artist);
 	}
 
 	pop(): { slug: Slug; entry: FrontierEntry } | undefined {
@@ -168,7 +230,7 @@ export class FrontierQueue {
 	}
 }
 
-export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
+export async function crawl(opts: CrawlOptions): Promise<FrontierCrawlResult> {
 	const log = opts.logger ?? (() => undefined);
 	const cache = new NodeCache(opts.out);
 	// TRA-28: built on this crawl's own cache, not a new one, so genre canonicalization sees
@@ -191,6 +253,19 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 	let inFlight = 0;
 	let claimed = 0; // atomic budget reservation: incremented before each agent run
 	let failed = 0;
+	let reconciled = 0;
+	let reconcileFailed = 0;
+	// `cache.replace` counts each rewritten parent in `cache.stats.written`: not a new node, no budget.
+	const writtenNodes = (): number => cache.stats.written - reconciled;
+	// "Write a node and queue its edges" and "mark a slug resolved and repoint its requesters" never overlap:
+	// a parent is either queued as a requester before the pass reads them, or repointed before its write.
+	// It also stops two passes rewriting one parent from stale copies (NodeCache has no locked update).
+	let serialChain: Promise<unknown> = Promise.resolve();
+	const serialized = <T>(section: () => Promise<T>): Promise<T> => {
+		const run = serialChain.then(section, section);
+		serialChain = run.catch(() => undefined);
+		return run;
+	};
 	let stopped = false;
 	let lastCompleted: string | undefined;
 	const startedAt = Date.now();
@@ -200,11 +275,11 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 	const snapshot = (): CrawlProgress => {
 		const elapsedMs = Date.now() - startedAt;
 		const elapsedMin = elapsedMs / 60_000;
-		const nodesPerMin = elapsedMin > 0 ? cache.stats.written / elapsedMin : 0;
-		const remaining = Math.max(0, opts.maxNodes - cache.stats.written);
+		const nodesPerMin = elapsedMin > 0 ? writtenNodes() / elapsedMin : 0;
+		const remaining = Math.max(0, opts.maxNodes - writtenNodes());
 		const etaSec = nodesPerMin > 0 ? Math.round((remaining / nodesPerMin) * 60) : 0;
 		const snap: CrawlProgress = {
-			nodesWritten: cache.stats.written,
+			nodesWritten: writtenNodes(),
 			maxNodes: opts.maxNodes,
 			failed,
 			frontierSize: frontier.size(),
@@ -236,8 +311,8 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 			// Atomic budget gate. Reserve a slot before the agent runs so concurrent workers
 			// never collectively exceed maxNodes by more than `concurrency - 1` writes
 			// (each worker holds at most one outstanding reservation).
-			if (cache.stats.written + claimed >= opts.maxNodes) {
-				if (cache.stats.written >= opts.maxNodes) {
+			if (writtenNodes() + claimed >= opts.maxNodes) {
+				if (writtenNodes() >= opts.maxNodes) {
 					stopped = true;
 					return;
 				}
@@ -272,18 +347,33 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 					genreRegistry: opts.deps.genreRegistry ?? genreRegistry,
 				});
 				const alreadyCached = await cache.has(result.slug);
-				if (alreadyCached) {
-					log(`[w${workerId}] dedup ${result.slug} (already cached) — still expanding edges`);
-				} else {
-					await cache.write(result.node);
-					lastCompleted = result.slug;
-					const ms = Date.now() - t0;
-					log(
-						`[w${workerId}] OK ${result.slug} pipeline=${result.metrics.totalMs}ms ${ms}ms (total=${cache.stats.written}/${opts.maxNodes})`,
-					);
-				}
-				if (next.entry.depth + 1 <= opts.maxDepth) {
-					enqueueEdges(result.node, next.entry.depth + 1, frontier, log);
+				const node = await serialized(async () => {
+					const repointed = frontier.repointResolved(result.node);
+					if (alreadyCached) {
+						log(`[w${workerId}] dedup ${result.slug} (already cached) — still expanding edges`);
+					} else {
+						await cache.write(repointed);
+						lastCompleted = result.slug;
+						const ms = Date.now() - t0;
+						log(
+							`[w${workerId}] OK ${result.slug} pipeline=${result.metrics.totalMs}ms ${ms}ms (total=${writtenNodes()}/${opts.maxNodes})`,
+						);
+					}
+					if (next.entry.depth + 1 <= opts.maxDepth) {
+						enqueueEdges(repointed, next.entry.depth + 1, frontier, log);
+					}
+					return repointed;
+				});
+				const requested = result.requestedSlug;
+				if (requested && requested !== result.slug) {
+					// Read from disk: when the slug was already cached, `node` is a discarded draft.
+					const target = canonicalTargetOf(alreadyCached ? await cache.get(result.slug) : node);
+					const outcome = await serialized(async () => {
+						frontier.markResolved(requested, target);
+						return reconcileRequesters(requested, target, next.entry.requesters, cache, log);
+					});
+					reconciled += outcome.rewritten;
+					reconcileFailed += outcome.failed;
 				}
 			} catch (e) {
 				const msg = e instanceof Error ? e.message : String(e);
@@ -308,11 +398,110 @@ export async function crawl(opts: CrawlOptions): Promise<CrawlResult> {
 	}
 
 	return {
-		nodesWritten: cache.stats.written,
+		nodesWritten: writtenNodes(),
 		revUpdates: cache.stats.revUpdates,
 		durationMs: Date.now() - startedAt,
 		failed,
+		reconciled,
+		reconcileFailed,
 	};
+}
+
+/** The node an edge requested under one slug was finally filed as (TRA-476). */
+interface CanonicalTarget {
+	slug: Slug;
+	artist?: string;
+	mbid?: string;
+}
+
+/** What an edge to `node` must carry: the primary credit (`artists[0]`, the scope of its slug) and the mbid. */
+function canonicalTargetOf(node: NodePayload): CanonicalTarget {
+	const target: CanonicalTarget = { slug: node.slug };
+	if (node.type === "project" || node.type === "track") {
+		const first = node.artists[0];
+		if (first?.name) target.artist = first.name;
+	}
+	if (node.mbid) target.mbid = node.mbid;
+	return target;
+}
+
+/** Same credit on the form scoped slugs use; raw text when a name has no Latin letter. */
+function sameCredit(a: string, b: string): boolean {
+	const na = normalizeSlugBody(a);
+	const nb = normalizeSlugBody(b);
+	if (na && nb) return na === nb;
+	return a.trim().toLowerCase() === b.trim().toLowerCase();
+}
+
+/**
+ * An edge field (list or single edge) with its edges to `requested` repointed to `target`, or undefined
+ * when it cites none. Edges collapsing onto `target.slug` are kept once.
+ */
+function repointField(value: unknown, requested: Slug, target: CanonicalTarget): unknown {
+	const repoint = (edge: EdgeRef): EdgeRef => {
+		const next: EdgeRef = { ...edge, slug: target.slug };
+		if (target.artist) next.artist = target.artist;
+		if (target.mbid) next.mbid = target.mbid;
+		return next;
+	};
+	if (Array.isArray(value)) {
+		const list = value as EdgeRef[];
+		if (!list.some((e) => e.slug === requested)) return undefined;
+		const out: EdgeRef[] = [];
+		for (const edge of list) {
+			const next = edge.slug === requested ? repoint(edge) : edge;
+			if (next.slug === target.slug && out.some((e) => e.slug === target.slug)) continue;
+			out.push(next);
+		}
+		return out;
+	}
+	if (value && typeof value === "object" && (value as EdgeRef).slug === requested) {
+		return repoint(value as EdgeRef);
+	}
+	return undefined;
+}
+
+/**
+ * Invariant (TRA-476): once a frontier child has run, no parent edge points at a `requestedSlug` with no
+ * file. The pipeline files a project/track under the slug its MusicBrainz credit earns
+ * ("project:new-forms--roni-size" -> "...--roni-size-reprazent"); the parent kept the old link, to a node
+ * never written or, before scoped slugs, to a homonym's (111 work links measured on 2026-10-14).
+ *
+ * A parent that vanished or no longer cites the edge is skipped. One that cannot be rewritten (`replace`
+ * refuses a legacy non-canonical slug) is counted in `failed`: its edge stays dangling and is reported.
+ */
+async function reconcileRequesters(
+	requested: Slug,
+	target: CanonicalTarget,
+	requesters: readonly FrontierRequester[],
+	cache: NodeCache,
+	log: (s: string) => void,
+): Promise<{ rewritten: number; failed: number }> {
+	let rewritten = 0;
+	let failed = 0;
+	for (const requester of requesters) {
+		const where = `${requester.slug}.${requester.field}`;
+		try {
+			const parent = await cache.get(requester.slug);
+			const obj = parent as unknown as Record<string, unknown>;
+			const updated = repointField(obj[requester.field], requested, target);
+			if (updated === undefined) {
+				log(`  ~ reconcile skipped: ${where} no longer cites ${requested}`);
+				continue;
+			}
+			await cache.replace({ ...obj, [requester.field]: updated } as unknown as NodePayload);
+			rewritten++;
+			log(`  ~ reconciled ${where}: ${requested} -> ${target.slug}`);
+		} catch (e) {
+			if (isNotFoundError(e)) {
+				log(`  ~ reconcile skipped: ${requester.slug} is not cached`);
+				continue;
+			}
+			failed++;
+			log(`  ~ reconcile FAILED ${where}: ${e instanceof Error ? e.message : String(e)}`);
+		}
+	}
+	return { rewritten, failed };
 }
 
 /**
@@ -698,7 +887,16 @@ export function enqueueEdges(
 		// the same identity, not a fresh by-name resolve. Conditional (exactOptionalPropertyTypes).
 		const input: FrontierEntry["input"] = { type: e.type, name: e.name, slug: e.slug, disambiguator };
 		if (e.qid) input.qid = e.qid;
-		const added = frontier.push(e.slug, { input, depth });
+		// TRA-476 (2026-10-14, 111 work links to a homonym): artist and mbid were dropped here.
+		if (e.artist) input.artist = e.artist;
+		if (e.mbid) input.mbid = e.mbid;
+		// Scoped slugs differ per artist; a pre-migration bare slug already requested for ANOTHER artist
+		// must not absorb this edge. Flag off keeps today's merge by slug (TRA-509).
+		if (scopedReleaseSlugsEnabled() && frontier.hasArtistConflict(e.slug, e.artist)) {
+			log(`  - frontier ${e.slug} not merged: queued for another artist than "${e.artist}"`);
+			return;
+		}
+		const added = frontier.push(e.slug, { input, depth }, { slug: node.slug, field: kind });
 		if (added) log(`  + frontier ${e.slug} (depth=${depth}) disambig=${disambiguator}`);
 	};
 	const obj = node as unknown as Record<string, unknown>;
