@@ -320,6 +320,40 @@ describe("backfill-reverse-edges", () => {
 		expect(second.added).toEqual({});
 	});
 
+	it("reads group membership both ways, so the members pair added by the run cannot flip the credit test", async () => {
+		await writeCache([
+			artist("artist:g", "G", { members: [ref("artist:m", "M")], discography: [ref("project:w--m", "W")] }),
+			artist("artist:m", "M"),
+			project("project:w--m", "W", { artists: [ref("artist:m", "M")] }),
+		]);
+
+		await run(true);
+		const second = await run(true);
+
+		expect((await readNode<ProjectNode>("project:w--m")).artists.map((e) => e.slug)).toEqual([
+			"artist:m",
+			"artist:g",
+		]);
+		expect(second.written).toBe(0);
+	});
+
+	it("reports a ref of the wrong type and a malformed target value instead of queueing or replacing", async () => {
+		await writeCache([
+			{ ...aphex, labels: [ref("artist:other", "Other")] },
+			artist("artist:b", "B", { labels: [ref("label:warp", "Warp")] }),
+			{ ...warp, roster: "oops" as unknown as EdgeRef[] },
+		]);
+
+		const result = await runMigration({ cacheDir: dir, apply: false });
+
+		expect(result.manifest.pendingAdded).toBe(0);
+		expect(result.manifest.conflicts.map((c) => [c.source, c.kind])).toEqual([
+			["artist:aphex-twin", "target-field"],
+			["artist:b", "target-field"],
+		]);
+		expect(result.manifest.errors.length).toBeGreaterThan(0);
+	});
+
 	it("carries the qid of a genre source onto the artist's genres", async () => {
 		await writeCache([
 			genre("genre:idm", "IDM", { qid: "Q215412", key_artists: [ref("artist:aphex-twin", "Aphex Twin")] }),
@@ -463,7 +497,7 @@ describe("backfill-reverse-edges", () => {
 
 		expect(result.exitCode).toBe(2);
 		expect(result.manifest.errors.length).toBeGreaterThan(0);
-		expect(result.manifest.mode).toBe("dry-run");
+		expect(result.manifest.blocked).toBe(true);
 		expect(await snapshot()).toEqual(before);
 	});
 

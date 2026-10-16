@@ -37,7 +37,7 @@ import { applySingleReverse, atomicWriteJson, type PendingReverse } from "../../
 import { EDGE_FIELDS_BY_TYPE, type NodeType } from "../../src/node-spec.js";
 import { reverseFor, reversibleFields } from "../../src/reverse-edges.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
-import { isReadableSlug } from "../../src/slug.js";
+import { isReadableSlug, parseSlug } from "../../src/slug.js";
 import type { EdgeRef, NodePayload } from "../../src/types.js";
 import {
 	type CacheNodeFile,
@@ -70,6 +70,8 @@ export interface ReverseConflict {
 export interface Manifest {
 	migration: string;
 	mode: "dry-run" | "apply";
+	/** Errors refused the run: nothing was written, whatever the mode. */
+	blocked: boolean;
 	/** Node files written (planned, in a dry-run). */
 	written: number;
 	/** Reverse edges added per pair, keyed "source.field→target.field". */
@@ -136,10 +138,14 @@ function foreignCredit(
 ): boolean {
 	if (refsOf(original.artists).length + refsOf(original.producers).length === 0) return false;
 	const credited = [...refsOf(current.artists), ...refsOf(current.producers)].map((e) => e.slug);
+	// Membership is read both ways: the members <-> members pair is symmetric and this very run can add the
+	// missing side, which would flip the answer on the next run.
+	const own = refsOf(bySlug.get(artistSlug)?.node.members).map((m) => m.slug);
 	return !credited.some(
 		(slug) =>
 			slug === artistSlug ||
-			(typeof slug === "string" && refsOf(bySlug.get(slug)?.node.members).some((m) => m.slug === artistSlug)),
+			(typeof slug === "string" &&
+				(own.includes(slug) || refsOf(bySlug.get(slug)?.node.members).some((m) => m.slug === artistSlug))),
 	);
 }
 
@@ -176,6 +182,15 @@ export function planBackfill(nodes: readonly CacheNodeFile[], currentPending: Pe
 				if (!reverse) continue;
 				for (const ref of refsOf(source.node[field])) {
 					if (typeof ref.slug !== "string" || !isReadableSlug(ref.slug)) continue;
+					const base = { source: source.slug, field, target: ref.slug, targetField: reverse.field };
+					const forward = (
+						EDGE_FIELDS_BY_TYPE[source.type] as Record<string, { targets: readonly NodeType[] }>
+					)[field];
+					if (!forward?.targets.includes(parseSlug(ref.slug).type)) {
+						// A ref of the wrong type (`artist.labels` naming an artist) is queued nowhere and written nowhere.
+						conflicts.push({ ...base, kind: "target-field" });
+						continue;
+					}
 					const target = bySlug.get(ref.slug);
 					if (!target) {
 						if (!first) continue;
@@ -192,7 +207,6 @@ export function planBackfill(nodes: readonly CacheNodeFile[], currentPending: Pe
 					const accepts = (
 						EDGE_FIELDS_BY_TYPE[target.type] as Record<string, { targets: readonly NodeType[] }>
 					)[reverse.field];
-					const base = { source: source.slug, field, target: target.slug, targetField: reverse.field };
 					if (!accepts?.targets.includes(source.type)) {
 						conflicts.push({ ...base, kind: "target-field" });
 						continue;
@@ -206,11 +220,16 @@ export function planBackfill(nodes: readonly CacheNodeFile[], currentPending: Pe
 						conflicts.push({
 							...base,
 							kind: "foreign-credit",
-							existing: String(refsOf(current.artists)[0]?.slug),
+							existing: String([...refsOf(current.artists), ...refsOf(current.producers)][0]?.slug),
 						});
 						continue;
 					}
 					const held = current[reverse.field];
+					if (held != null && (reverse.cardinality === "list" ? !Array.isArray(held) : !isRecord(held))) {
+						// Malformed value in the target: applySingleReverse would replace it, which is not an addition.
+						conflicts.push({ ...base, kind: "target-field" });
+						continue;
+					}
 					if (reverse.cardinality === "list") {
 						if (refsOf(held).some((e) => e.slug === sourceEdge.slug)) {
 							if (first) unchanged++;
@@ -259,6 +278,7 @@ export function planBackfill(nodes: readonly CacheNodeFile[], currentPending: Pe
 		manifest: {
 			migration: MIGRATION_NAME,
 			mode: "dry-run",
+			blocked: false,
 			written: writes.size,
 			added: Object.fromEntries(Object.entries(added).sort(([a], [b]) => (a < b ? -1 : 1))),
 			pendingAdded,
@@ -296,8 +316,9 @@ export async function runMigration(options: RunOptions): Promise<{ manifest: Man
 	for (const entry of invalid) manifest.errors.push(`unreadable node file ${entry.path}: ${entry.error}`);
 	const blocked = manifest.errors.length > 0;
 
+	if (apply) manifest.mode = "apply";
+	manifest.blocked = blocked;
 	if (apply && !blocked) {
-		manifest.mode = "apply";
 		for (const [path, node] of plan.writes) await atomicWriteJson(path, node);
 		if (plan.pending) await atomicWriteJson(pendingPath, plan.pending);
 	}
@@ -324,7 +345,9 @@ export function formatSummary(manifest: Manifest, manifestPath: string | undefin
 	if (manifest.conflicts.length > 20) lines.push(`... ${manifest.conflicts.length - 20} more conflicts`);
 	for (const error of manifest.errors) lines.push(`error: ${error}`);
 	if (manifestPath) lines.push(`manifest: ${manifestPath}`);
-	if (manifest.mode === "dry-run") lines.push("dry-run: nothing written to the cache (re-run with --apply)");
+	if (manifest.blocked) lines.push("blocked: nothing written to the cache");
+	else if (manifest.mode === "dry-run")
+		lines.push("dry-run: nothing written to the cache (re-run with --apply)");
 	return lines.join("\n");
 }
 
