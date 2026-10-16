@@ -4,15 +4,19 @@ import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
 	DEFAULT_MANIFEST_PATH,
+	EXCLUSIONS_FILE,
 	findCollisions,
 	type IdentityManifest,
+	loadExclusions,
 	MIGRATION_NAME,
 	onlyAddsSchemaDefaults,
 	parseCliArgs,
 	type ResolvedArtist,
 	runBackfill,
 	withIdentity,
+	withoutIdentity,
 } from "../scripts/migrations/2026-10-15-backfill-artist-identity.js";
+import { runMigration } from "../scripts/migrations/2026-10-16-scope-release-slugs.js";
 import { fetchArtistProfileMb, resolveArtist, resolveArtistDetailed } from "../src/musicbrainz.js";
 import { nodePayloadSchema } from "../src/schemas.js";
 import type { ArtistNode } from "../src/types.js";
@@ -1160,13 +1164,16 @@ function artistNode(slug: string, overrides: Record<string, unknown> = {}): Stor
 
 let root: string;
 let manifestPath: string;
+let dataDir: string;
 
 beforeEach(async () => {
 	vi.mocked(resolveArtistDetailed).mockClear();
 	vi.mocked(fetchArtistProfileMb).mockClear();
 	root = await mkdtemp(join(tmpdir(), "artist-identity-"));
 	manifestPath = join(root, "out", "artist-identity.json");
+	dataDir = join(root, "data");
 	await mkdir(join(root, "cache", "nodes", "artist"), { recursive: true });
+	await writeExclusions({});
 });
 
 afterEach(async () => {
@@ -1189,8 +1196,14 @@ async function readManifestFile(): Promise<IdentityManifest> {
 	return JSON.parse(await readFile(manifestPath, "utf8")) as IdentityManifest;
 }
 
+/** The committed list (TRA-574), as the channel hands it over in `--data-dir`. */
+async function writeExclusions(artists: Record<string, string>): Promise<void> {
+	await mkdir(dataDir, { recursive: true });
+	await writeFile(join(dataDir, EXCLUSIONS_FILE), JSON.stringify({ artists }), "utf8");
+}
+
 const run = (options: Partial<Parameters<typeof runBackfill>[0]> = {}) =>
-	runBackfill({ cacheDir: cacheDir(), apply: false, manifestPath, ...options });
+	runBackfill({ cacheDir: cacheDir(), apply: false, manifestPath, dataDir, ...options });
 
 describe("runBackfill", () => {
 	const POLE = "b1b1b1b1-0000-4000-8000-000000000001";
@@ -1751,26 +1764,43 @@ describe("parseCliArgs", () => {
 			apply: false,
 			resume: false,
 			manifestPath: DEFAULT_MANIFEST_PATH,
+			// Without --data-dir, the repo's committed data/.
+			dataDir: expect.stringMatching(/[\\/]data$/),
 		});
 	});
 
 	it("reads every flag", () => {
-		expect(parseCliArgs(["cache", "--apply", "--resume", "--limit", "5", "--manifest", "m.json"])).toEqual({
+		expect(
+			parseCliArgs([
+				"cache",
+				"--apply",
+				"--resume",
+				"--limit",
+				"5",
+				"--manifest",
+				"m.json",
+				"--data-dir",
+				"d",
+			]),
+		).toEqual({
 			cacheDir: "cache",
 			apply: true,
 			resume: true,
 			limit: 5,
 			manifestPath: "m.json",
+			dataDir: "d",
 		});
 	});
 
-	it("accepts the channel's --data-dir and ignores it (TRA-568)", () => {
+	it("reads the exclusion list from the channel's --data-dir, else from the repo's data/ (TRA-574)", () => {
 		expect(parseCliArgs(["cache", "--apply", "--manifest", "m.json", "--data-dir", "d"])).toEqual({
 			cacheDir: "cache",
 			apply: true,
 			resume: false,
 			manifestPath: "m.json",
+			dataDir: "d",
 		});
+		expect(parseCliArgs(["cache"])?.dataDir).toMatch(/[\\/]data$/);
 		expect(parseCliArgs(["cache", "--data-dir", "d", "--data-dir", "e"])).toBeNull();
 		expect(parseCliArgs(["cache", "--data-dir"])).toBeNull();
 	});
@@ -1788,5 +1818,267 @@ describe("parseCliArgs", () => {
 		[["cache", "--apply", "--apply"]],
 	])("refuses %j", (argv) => {
 		expect(parseCliArgs(argv)).toBeNull();
+	});
+});
+
+describe("identity exclusions (TRA-574)", () => {
+	const WRONG = "c1c1c1c1-0000-4000-8000-000000000001";
+	const REASON = "Stored mbid is another artist.";
+	const exclusionsFile = () => join(dataDir, EXCLUSIONS_FILE);
+
+	it("never resolves an excluded artist and records it in the manifest with its reason", async () => {
+		// MB knows an artist of that very name: without the list the migration would resolve it by name.
+		stubMb([{ id: WRONG, name: "Voices Of Life", type: "Group" }]);
+		await writeExclusions({ "artist:voices-of-life": REASON });
+		await seed(artistNode("artist:voices-of-life", { name: "Voices Of Life" }));
+
+		const result = await run({ apply: true });
+
+		expect(calls()).toEqual({ searches: 0, profiles: 0 });
+		expect(result.exitCode).toBe(0);
+		expect(result.manifest.excluded).toEqual([
+			{ slug: "artist:voices-of-life", status: "excluded", reason: REASON },
+		]);
+		expect(result.manifest.resolved).toEqual({});
+		expect(result.manifest.unresolved).toEqual([]);
+		expect(result.manifest.collisions).toEqual([]);
+		expect((await readManifestFile()).excluded).toEqual(result.manifest.excluded);
+		// TRA-568: the channel's fields are untouched.
+		expect(result.manifest).toMatchObject({
+			migration: MIGRATION_NAME,
+			removed: [],
+			renamed: {},
+			redirects: {},
+		});
+		expect(await readNode("artist:voices-of-life")).not.toHaveProperty("mbid");
+	});
+
+	it("never looks an excluded artist up on --resume either, even if a previous manifest resolved it", async () => {
+		stubMb([{ id: WRONG, name: "Resumed Excluded", type: "Group" }]);
+		await seed(artistNode("artist:resumed-excluded", { name: "Resumed Excluded" }));
+		await run({ apply: false });
+		expect(Object.keys((await readManifestFile()).resolved)).toEqual(["artist:resumed-excluded"]);
+		vi.mocked(resolveArtistDetailed).mockClear();
+		vi.mocked(fetchArtistProfileMb).mockClear();
+
+		await writeExclusions({ "artist:resumed-excluded": REASON });
+		const result = await run({ apply: true, resume: true });
+
+		expect(calls()).toEqual({ searches: 0, profiles: 0 });
+		expect(result.manifest.resolved).toEqual({});
+		expect(result.manifest.excluded.map((x) => x.slug)).toEqual(["artist:resumed-excluded"]);
+	});
+
+	it("removes the stored mbid and the fields derived from it from an excluded node, and nothing else", async () => {
+		stubMb([{ id: WRONG, name: "Tyla", type: "Group" }]);
+		await writeExclusions({ "artist:tyla": REASON });
+		const edge = { slug: "artist:someone", type: "artist", name: "Someone" };
+		const node = artistNode("artist:tyla", {
+			name: "Tyla",
+			mbid: WRONG,
+			artist_kind: "group",
+			members: [edge],
+			collaborators: [edge],
+		});
+		await seed(node);
+		const { mbid: _mbid, artist_kind: _kind, ...kept } = node as Record<string, unknown>;
+
+		const dry = await run({ apply: false });
+		expect(dry.written).toEqual([]);
+		expect(await readNode("artist:tyla")).toMatchObject({ mbid: WRONG, artist_kind: "group" });
+
+		const result = await run({ apply: true });
+
+		expect(calls()).toEqual({ searches: 0, profiles: 0 });
+		expect(result.written).toEqual([nodePath("artist:tyla")]);
+		// Validation adds the schema's default `similar_artists: []`; every edge and editorial field stays.
+		expect(await readNode("artist:tyla")).toEqual({ ...kept, similar_artists: [] });
+		expect(result.manifest.excluded).toHaveLength(1);
+
+		// Idempotent: the second run has nothing left to remove.
+		const again = await run({ apply: true });
+		expect(again.written).toEqual([]);
+		expect(again.exitCode).toBe(0);
+	});
+
+	it("removes a stored mbid that is not even a UUID instead of failing on it", async () => {
+		await writeExclusions({ "artist:garbage-mbid": REASON });
+		await seed(artistNode("artist:garbage-mbid", { mbid: "not-a-uuid" }));
+
+		const result = await run({ apply: true });
+
+		expect(result.failed).toEqual([]);
+		expect(await readNode("artist:garbage-mbid")).not.toHaveProperty("mbid");
+	});
+
+	it("keeps resolving the artists that are not on the list", async () => {
+		stubMb([
+			{ id: WRONG, name: "Excluded One", type: "Person" },
+			{ id: "c2c2c2c2-0000-4000-8000-000000000001", name: "Included One", type: "Person" },
+		]);
+		await writeExclusions({ "artist:excluded-one": REASON });
+		await seed(artistNode("artist:excluded-one", { name: "Excluded One" }));
+		await seed(artistNode("artist:included-one", { name: "Included One" }));
+
+		const result = await run({ apply: true });
+
+		expect(calls()).toEqual({ searches: 1, profiles: 1 });
+		expect(Object.keys(result.manifest.resolved)).toEqual(["artist:included-one"]);
+		expect((await readNode("artist:included-one")).mbid).toBe("c2c2c2c2-0000-4000-8000-000000000001");
+	});
+
+	it("does not count an excluded artist against --limit", async () => {
+		stubMb([{ id: "c3c3c3c3-0000-4000-8000-000000000001", name: "Limited", type: "Person" }]);
+		await writeExclusions({ "artist:a-excluded": REASON });
+		await seed(artistNode("artist:a-excluded"));
+		await seed(artistNode("artist:limited", { name: "Limited" }));
+
+		const result = await run({ apply: true, limit: 1 });
+
+		expect(Object.keys(result.manifest.resolved)).toEqual(["artist:limited"]);
+	});
+
+	describe("a missing or invalid list refuses the run (fail-closed)", () => {
+		const expectRefused = async () => {
+			stubMb([{ id: WRONG, name: "Bystander", type: "Person" }]);
+			const node = artistNode("artist:bystander", { name: "Bystander" });
+			await seed(node);
+			const before = await readFile(nodePath(node.slug), "utf8");
+			for (const apply of [false, true]) {
+				const result = await run({ apply });
+				expect(result.exitCode).toBe(2);
+				expect(result.refused).toContain(EXCLUSIONS_FILE);
+				expect(result.written).toEqual([]);
+			}
+			// Nothing was asked of MusicBrainz, nothing written, no manifest left behind.
+			expect(calls()).toEqual({ searches: 0, profiles: 0 });
+			expect(await readFile(nodePath(node.slug), "utf8")).toBe(before);
+			await expect(stat(manifestPath)).rejects.toMatchObject({ code: "ENOENT" });
+		};
+
+		it("when the file is absent", async () => {
+			await rm(exclusionsFile());
+			await expectRefused();
+		});
+
+		it.each([
+			["is not JSON", "{ nope"],
+			["is not an object", "[]"],
+			["has no artists", "{}"],
+			["has an unknown top-level key", JSON.stringify({ artists: {}, genres: {} })],
+			["has a reason that is not a string", JSON.stringify({ artists: { "artist:x": 3 } })],
+			["has an empty reason", JSON.stringify({ artists: { "artist:x": "  " } })],
+			["has a key that is not an artist", JSON.stringify({ artists: { "genre:bossa-nova": "r" } })],
+			["has a bare slug without its type", JSON.stringify({ artists: { tyla: "r" } })],
+			["has a non-canonical slug", JSON.stringify({ artists: { "artist:Voices of Life": "r" } })],
+			["has a path in place of a slug", JSON.stringify({ artists: { "artist:../x": "r" } })],
+		])("when the file %s", async (_name, content) => {
+			await writeFile(exclusionsFile(), content, "utf8");
+			await expectRefused();
+		});
+	});
+
+	it("accepts a list naming artists the cache does not hold (a prod-only node)", async () => {
+		await writeExclusions({ "artist:prod-only": REASON });
+		await seed(artistNode("artist:somebody"));
+		stubMb([]);
+
+		const result = await run();
+
+		expect(result.exitCode).toBe(0);
+		expect(result.manifest.excluded).toEqual([]);
+	});
+
+	describe("loadExclusions", () => {
+		it("returns the reasons by slug", async () => {
+			await writeExclusions({ "artist:a": "one", "artist:b--c": "two" });
+			const loaded = await loadExclusions(dataDir);
+			expect(loaded.ok && Object.fromEntries(loaded.artists)).toEqual({
+				"artist:a": "one",
+				"artist:b--c": "two",
+			});
+		});
+
+		it("is a typed error, not a throw, on a directory with no list", async () => {
+			const loaded = await loadExclusions(join(root, "nowhere"));
+			expect(loaded).toMatchObject({ ok: false, error: expect.stringContaining("is missing") });
+		});
+	});
+
+	describe("the committed list", () => {
+		it("is valid and holds the six artists of the review of 2026-10-16", async () => {
+			const loaded = await loadExclusions(join(import.meta.dirname, "..", "data"));
+			expect(loaded.ok && [...loaded.artists.keys()].sort()).toEqual([
+				"artist:alfred-d-orsay",
+				"artist:andy-turner",
+				"artist:bossa-nova",
+				"artist:johnny-reid",
+				"artist:tyla",
+				"artist:voices-of-life",
+			]);
+		});
+	});
+
+	describe("withoutIdentity", () => {
+		it("returns null for a node that carries neither field, and drops exactly these two otherwise", () => {
+			expect(withoutIdentity({ name: "x" })).toBeNull();
+			expect(withoutIdentity({ name: "x", mbid: WRONG, artist_kind: "group" })).toEqual({ name: "x" });
+			expect(withoutIdentity({ name: "x", artist_kind: "person" })).toEqual({ name: "x" });
+		});
+	});
+
+	describe("with the scope step (2026-10-16-scope-release-slugs)", () => {
+		const savedFlag = process.env.ODYSSEY_SCOPED_RELEASE_SLUGS;
+		beforeEach(() => {
+			process.env.ODYSSEY_SCOPED_RELEASE_SLUGS = "1";
+		});
+		afterEach(() => {
+			if (savedFlag === undefined) delete process.env.ODYSSEY_SCOPED_RELEASE_SLUGS;
+			else process.env.ODYSSEY_SCOPED_RELEASE_SLUGS = savedFlag;
+		});
+
+		const scope = () =>
+			runMigration({
+				cacheDir: cacheDir(),
+				apply: false,
+				redirectsPath: join(root, "slug-redirects.json"),
+				artistManifestPath: manifestPath,
+				scratch: true,
+			});
+
+		async function seedNamesakes(): Promise<void> {
+			// The wrong stored mbid is the real artist's: both nodes carry it, so they would collide.
+			stubMb([{ id: WRONG, name: "Tyla Dogs", type: "Group" }]);
+			await seed(artistNode("artist:tyla", { name: "Tyla", mbid: WRONG }));
+			await seed(
+				artistNode("artist:tyla--dogs-d-amour", { name: "Tyla", disambiguator: "Dogs D'Amour", mbid: WRONG }),
+			);
+		}
+
+		it("control: without the list, the two nodes collide and the scope step merges them", async () => {
+			await seedNamesakes();
+			const backfill = await run({ apply: true });
+			expect(backfill.manifest.collisions).toHaveLength(1);
+
+			const planned = await scope();
+
+			expect(planned.manifest.merged).not.toEqual([]);
+		});
+
+		it("an excluded artist enters no collision, and the scope step reads the manifest without error", async () => {
+			await seedNamesakes();
+			await writeExclusions({ "artist:tyla": REASON });
+			const backfill = await run({ apply: true });
+			expect(backfill.manifest.collisions).toEqual([]);
+			expect(backfill.manifest.excluded.map((x) => x.slug)).toEqual(["artist:tyla"]);
+
+			const planned = await scope();
+
+			expect(planned.manifest.errors).toEqual([]);
+			expect(planned.exitCode).toBe(0);
+			expect(planned.manifest.merged).toEqual([]);
+			// The manifest the scope step read is the one on disk, with its `excluded` section.
+			expect((await readManifestFile()).excluded).toHaveLength(1);
+		});
 	});
 });

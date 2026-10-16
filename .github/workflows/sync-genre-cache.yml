@@ -38,6 +38,12 @@ jobs:
     # replays the preview's manifests (MIGRATION_REPLAY_DIR below) but the budget must cover a replay
     # that has to query again. A cancellation in the middle of the rsync leaves a mixed state.
     timeout-minutes: 120
+    # 2026-10-16 (TRA-573): isolated 503s from MusicBrainz failed the TRA-484 previews (runs 38846707669
+    # and 38848516320: one 503 after 3 attempts, `failed 1`, exit 1, channel refused). Six attempts back
+    # off 1, 2, 4, 8, 16 s. Job-level, never in the server: the live /search path keeps the default of 3,
+    # so a user request does not stay open ~90 s during a MusicBrainz outage.
+    env:
+      MB_MAX_ATTEMPTS: "6"
     steps:
       - name: Isolate HOME from the runner host account
         # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
