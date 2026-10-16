@@ -723,8 +723,9 @@ describe("scope-release-slugs migration", () => {
 			expect(manifest.redirects).toEqual({
 				"artist:l-titia-sadier": "artist:laetitia-sadier",
 				"artist:m": "artist:mo",
-				"artist:s-awomir-kurkiewicz": "artist:slawomir-kurkiewicz",
 			});
+			// TRA-576: Sławomir has no node, nor has his transliterated slug: no redirect, the edge is rewritten.
+			expect(edgeSlugs(await read("artist:quartet"), "members")).toEqual(["artist:slawomir-kurkiewicz"]);
 			expect(edgeSlugs(await read("artist:stereolab"), "members")).toEqual([
 				"artist:laetitia-sadier",
 				"artist:mo",
@@ -1082,6 +1083,66 @@ describe("scope-release-slugs migration", () => {
 			expect(isSafePendingEntry("label:a", e("roster", "artist:x"))).toBe(true);
 			expect(isSafePendingEntry("artist:a", e("collaborators", "artist:x"))).toBe(true);
 			expect(isSafePendingEntry("track:a", e("sampled_by", "track:x"))).toBe(true);
+		});
+	});
+
+	describe("redirects only lead to a node (TRA-576)", () => {
+		const pendingSlugs = ["artist:fr-bbblarnir", "artist:x", "project:ad-vitam-ternam"];
+		const seedPendingSlugs = (): Promise<void> =>
+			seed([
+				// A prod-only node whose edges cite slugs that lost a character before TRA-528: no node anywhere.
+				node("artist:booba", "Booba", {
+					discography: [ref("project:ad-vitam-ternam", "Ad Vitam Æternam")],
+					collaborators: [ref("artist:x", "Øxø")],
+				}),
+				node("artist:other", "Other", { collaborators: [ref("artist:fr-bbblarnir", "Fræbbblarnir")] }),
+				// ...and a node that is renamed, and two that are merged, all with a node on both sides.
+				node("artist:m", "MØ"),
+				node("artist:pole", "Pole", { mbid: MBID_POLE }),
+				node("artist:pole--stefan-betke", "Pole", { mbid: MBID_POLE }),
+			]);
+
+		it("rewrites an edge to a dangling slug that has no transliterated node, without any redirect", async () => {
+			await seedPendingSlugs();
+			await seedIdentities({
+				collisions: [{ mbid: MBID_POLE, slugs: ["artist:pole", "artist:pole--stefan-betke"] }],
+			});
+			const { manifest, exitCode } = await run(true);
+			expect(exitCode).toBe(0);
+			expect(edgeSlugs(await read("artist:other"), "collaborators")).toEqual(["artist:fraebbblarnir"]);
+			expect(edgeSlugs(await read("artist:booba"), "collaborators")).toEqual(["artist:oxo"]);
+			expect(edgeSlugs(await read("artist:booba"), "discography")).toEqual([
+				"project:ad-vitam-aeternam--booba",
+			]);
+			for (const slug of pendingSlugs) expect(manifest.redirects).not.toHaveProperty(slug);
+			expect(manifest.rewritten.map((r) => r.from).sort()).toEqual(["artist:fr-bbblarnir", "artist:x"]);
+		});
+
+		it("keeps the redirect of a renamed node and of a merged one", async () => {
+			await seedPendingSlugs();
+			await seedIdentities({
+				collisions: [{ mbid: MBID_POLE, slugs: ["artist:pole", "artist:pole--stefan-betke"] }],
+			});
+			const { manifest } = await run(true);
+			expect(manifest.renamed).toEqual({ "artist:m": "artist:mo" });
+			expect(manifest.redirects).toEqual({
+				"artist:m": "artist:mo",
+				"artist:pole--stefan-betke": "artist:pole",
+			});
+		});
+
+		it("produces no redirect whose target lacks a node in the migrated cache (the channel's rule)", async () => {
+			await seedPendingSlugs();
+			await seedIdentities({
+				collisions: [{ mbid: MBID_POLE, slugs: ["artist:pole", "artist:pole--stefan-betke"] }],
+			});
+			const { manifest } = await run(true);
+			const written = parseSlugRedirects(JSON.parse(await readFile(redirectsPath, "utf8")));
+			expect(written.size).toBe(Object.keys(manifest.redirects).length);
+			for (const [from, to] of written) {
+				expect(await exists(to), `${from} -> ${to}`).toBe(true);
+				expect(await exists(from), `${from} is still a node`).toBe(false);
+			}
 		});
 	});
 
