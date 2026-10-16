@@ -348,6 +348,9 @@ describe("scope-release-slugs migration", () => {
 				node("artist:aphex-twin", "Aphex Twin", {
 					discography: [ref("project:artificial-intelligence", "Artificial Intelligence")],
 				}),
+				node("artist:autechre", "Autechre", {
+					discography: [ref("project:artificial-intelligence", "Artificial Intelligence")],
+				}),
 				node("project:artificial-intelligence", "Artificial Intelligence", {
 					artists: credits(
 						ref("artist:aphex-twin", "Aphex Twin"),
@@ -371,6 +374,10 @@ describe("scope-release-slugs migration", () => {
 			expect(await exists("project:artificial-intelligence--aphex-twin")).toBe(false);
 			// The edges to a skipped work stay bare, as for `no-credit`: nothing rewritten, nothing detached.
 			expect(edgeSlugs(await read("artist:aphex-twin"), "discography")).toEqual([
+				"project:artificial-intelligence",
+			]);
+			// ...for the second credit too (Autechre), not only for the first one the slug would have been built on.
+			expect(edgeSlugs(await read("artist:autechre"), "discography")).toEqual([
 				"project:artificial-intelligence",
 			]);
 			expect((await read("track:mix")).project).toMatchObject({ slug: "project:artificial-intelligence" });
@@ -436,6 +443,24 @@ describe("scope-release-slugs migration", () => {
 				["track:hit", "multi-credit-unresolved"],
 			]);
 			expect(manifest.renamed).toEqual({});
+		});
+
+		it.each([
+			["the mbid in upper case", { slug: "artist:va", name: "Compilation", mbid: VARIOUS.toUpperCase() }],
+			["the name Various", { slug: "artist:v", name: "Various" }],
+			["the name Various Artists, case and spaces folded", { slug: "artist:v", name: " vARIOUS   artists" }],
+			["the slug artist:various", { slug: "artist:various", name: "Rap Compilation" }],
+			["the slug artist:various-artists", { slug: "artist:various-artists", name: "Compilation" }],
+		])("does not scope a work credited to Various Artists by %s", async (_label, who) => {
+			await seed([
+				node("project:rap-com", "Rap Com", { artists: [{ ...who, type: "artist" }] }),
+				node("artist:various", "Various", { discography: [ref("project:rap-com", "Rap Com")] }),
+			]);
+			const { manifest } = await run(true);
+			expect(manifest.skipped).toEqual([{ slug: "project:rap-com", reason: "multi-credit-unresolved" }]);
+			expect(manifest.renamed).toEqual({});
+			expect(await exists("project:rap-com--various")).toBe(false);
+			expect(edgeSlugs(await read("artist:various"), "discography")).toEqual(["project:rap-com"]);
 		});
 	});
 

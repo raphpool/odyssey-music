@@ -1243,11 +1243,19 @@ export const UNRESOLVED_COMPILATION_CREDITS = 3;
 
 const VARIOUS_ARTISTS_MBID = "89ad4ac3-39f7-470e-963a-56509c546377";
 
-/** MusicBrainz's "Various Artists" special purpose artist, by mbid or by normalized name. */
+/**
+ * MusicBrainz's "Various Artists" special purpose artist, however the cache spells it: its mbid (any case), the
+ * normalized name "various artists" or the shorter "various" (project:rap-com is credited to `artist:various`),
+ * or one of the two slugs those names make.
+ */
 function isVariousArtists(credit: Obj): boolean {
+	const name = str(credit.name)?.normalize("NFKC").trim().replace(/\s+/g, " ").toLowerCase();
 	return (
-		str(credit.mbid) === VARIOUS_ARTISTS_MBID ||
-		str(credit.name)?.normalize("NFKC").trim().replace(/\s+/g, " ").toLowerCase() === "various artists"
+		str(credit.mbid)?.toLowerCase() === VARIOUS_ARTISTS_MBID ||
+		name === "various artists" ||
+		name === "various" ||
+		str(credit.slug) === "artist:various" ||
+		str(credit.slug) === "artist:various-artists"
 	);
 }
 
