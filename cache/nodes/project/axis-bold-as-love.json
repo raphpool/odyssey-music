@@ -13,17 +13,14 @@
     }
   ],
   "materialized_at": "2026-05-13T12:59:32.124Z",
-  "mbid": "d0b1e21e-cef6-4575-8d92-1afea1894ca3",
   "type": "project",
   "editorial_pitch": "A cornerstone of psychedelic rock, Axis: Bold as Love captures the Jimi Hendrix Experience in peak creative form, blending virtuosic guitar experimentation with melodic songwriting depth.",
   "year": "1967",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:the-jimi-hendrix-experience",
       "type": "artist",
-      "name": "The Jimi Hendrix Experience",
-      "mbid": "33b3c323-77c2-417c-a5b4-af7e6a111cc9"
+      "name": "The Jimi Hendrix Experience"
     }
   ],
   "label": {
@@ -125,6 +122,5 @@
       "name": "Chas Chandler"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

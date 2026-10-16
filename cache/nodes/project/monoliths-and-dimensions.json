@@ -13,57 +13,11 @@
     }
   ],
   "materialized_at": "2026-05-13T12:50:17.863Z",
-  "mbid": "2c33e8a0-b2be-3224-8748-92e1d8ea948e",
   "type": "project",
   "editorial_pitch": "A monumental fusion of drone metal and avant-garde orchestration, Sunn O)))'s 2009 masterwork expands their feedback-drenched soundscapes with intricate strings, choirs, and spiritual jazz influences.",
-  "year": "2009",
-  "release_type": "album",
-  "artists": [
-    {
-      "slug": "artist:sunn-o",
-      "type": "artist",
-      "name": "Sunn O)))",
-      "mbid": "1d3da898-4fb4-4445-b704-cd7315e01789"
-    }
-  ],
-  "label": {
-    "slug": "label:southern-lord",
-    "type": "label",
-    "name": "Southern Lord",
-    "mbid": "3b78c7e5-6292-4f6b-b921-bdcbe681ea27"
-  },
+  "artists": [],
   "genres": [],
-  "tracklist": [
-    {
-      "slug": "track:aghartha--sunn-o",
-      "type": "track",
-      "name": "Aghartha",
-      "mbid": "dbe9012a-a485-4ddc-a977-047f1bf9aba5",
-      "artist": "Sunn O)))"
-    },
-    {
-      "slug": "track:big-church-megszentsegtelenithetetlensegeskedeseitekert--sunn-o",
-      "type": "track",
-      "name": "Big Church [megszentségteleníthetetlenségeskedéseitekért]",
-      "mbid": "12ff927b-739f-4a49-bc5f-55a8bfd99953",
-      "artist": "Sunn O)))"
-    },
-    {
-      "slug": "track:hunting-and-gathering-cydonia--sunn-o",
-      "type": "track",
-      "name": "Hunting & Gathering (Cydonia)",
-      "mbid": "2afdae7a-97ab-45bc-a776-033a8905b2b0",
-      "artist": "Sunn O)))"
-    },
-    {
-      "slug": "track:alice--sunn-o",
-      "type": "track",
-      "name": "Alice",
-      "mbid": "eddb8ed7-e537-40c0-936b-f3f5976d52ee",
-      "artist": "Sunn O)))"
-    }
-  ],
+  "tracklist": [],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

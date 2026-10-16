@@ -9,17 +9,14 @@
     }
   ],
   "materialized_at": "2026-05-13T13:12:11.691Z",
-  "mbid": "424e3082-cd25-35cd-aceb-ee5270e114f6",
   "type": "project",
   "editorial_pitch": "Enter is the formidable debut studio album by Chicago instrumental post-metal trio Russian Circles, released in 2006. It established the band's signature blend of crushing, rhythmic weight and cinematic, guitar-driven melody.",
   "year": "2006",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:russian-circles",
       "type": "artist",
-      "name": "Russian Circles",
-      "mbid": "cca40a67-e959-46f8-a3f3-8a3f77d2da9e"
+      "name": "Russian Circles"
     }
   ],
   "label": {
@@ -86,6 +83,5 @@
       "name": "Greg Norman"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

@@ -17,17 +17,14 @@
     }
   ],
   "materialized_at": "2026-05-13T12:37:36.020Z",
-  "mbid": "8aa4a5d9-808e-3aa9-9088-890efa7214b4",
   "type": "project",
   "editorial_pitch": "A foundational masterwork of ambient music, Brian Eno's 1975 album 'Discreet Music' pioneered the concept of 'furniture music' through generative composition, tape loops, and minimalist synthesis.",
   "year": "1975",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:brian-eno",
       "type": "artist",
-      "name": "Brian Eno",
-      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+      "name": "Brian Eno"
     }
   ],
   "label": {
@@ -60,36 +57,7 @@
       "qid": "Q2332751"
     }
   ],
-  "tracklist": [
-    {
-      "slug": "track:discreet-music--brian-eno",
-      "type": "track",
-      "name": "Discreet Music",
-      "mbid": "96650262-8a7a-41fd-bc08-82deef87a490",
-      "artist": "Brian Eno"
-    },
-    {
-      "slug": "track:fullness-of-wind-variation-on-the-canon-in-d-major-by-johann-pachelbel--brian-eno",
-      "type": "track",
-      "name": "Fullness of Wind (variation on the “Canon in D major” by Johann Pachelbel)",
-      "mbid": "b3954949-9228-4caf-be97-7893bb01039b",
-      "artist": "Brian Eno"
-    },
-    {
-      "slug": "track:french-catalogues-variation-on-the-canon-in-d-major-by-johann-pachelbel--brian-eno",
-      "type": "track",
-      "name": "French Catalogues (variation on the “Canon in D major” by Johann Pachelbel)",
-      "mbid": "ea195639-c93b-46f2-bdb6-797c78e70d89",
-      "artist": "Brian Eno"
-    },
-    {
-      "slug": "track:brutal-ardour-variation-on-the-canon-in-d-major-by-johann-pachelbel--brian-eno",
-      "type": "track",
-      "name": "Brutal Ardour (variation on the “Canon in D major” by Johann Pachelbel)",
-      "mbid": "87c40abd-10af-4fe6-b323-e7ce82c45a8d",
-      "artist": "Brian Eno"
-    }
-  ],
+  "tracklist": [],
   "producers": [
     {
       "slug": "artist:brian-eno",
@@ -97,6 +65,5 @@
       "name": "Brian Eno"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

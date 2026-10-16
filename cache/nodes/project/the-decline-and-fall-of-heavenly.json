@@ -13,17 +13,14 @@
     }
   ],
   "materialized_at": "2026-05-13T13:11:45.302Z",
-  "mbid": "ab3123a2-57ac-3884-9bf3-e90253d1dd5d",
   "type": "project",
   "editorial_pitch": "Formed in the wake of the dissolution of the seminal C86-era act Talulah Gosh, Heavenly emerged in the early 1990s as one of the most vital and influential forces in the British indiepop scene.",
   "year": "1994",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:heavenly",
       "type": "artist",
-      "name": "Heavenly",
-      "mbid": "d1a0301e-1167-42e8-bf89-c7835e0d3485"
+      "name": "Heavenly"
     }
   ],
   "label": {
@@ -63,6 +60,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

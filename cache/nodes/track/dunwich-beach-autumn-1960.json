@@ -13,7 +13,6 @@
     }
   ],
   "materialized_at": "2026-05-13T12:53:52.131Z",
-  "mbid": "b970fc37-141e-4d70-a3f5-09bf40242bcc",
   "type": "track",
   "editorial_teaser": "A haunting, atmospheric masterpiece of dark ambient soundscapes, this track captures the mournful, eroding history of the submerged coastal town of Dunwich.",
   "year": "1982",
@@ -22,8 +21,7 @@
     {
       "slug": "artist:brian-eno",
       "type": "artist",
-      "name": "Brian Eno",
-      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+      "name": "Brian Eno"
     },
     {
       "slug": "artist:jon-hassell",
@@ -35,12 +33,6 @@
     "slug": "project:ambient-4-on-land",
     "type": "project",
     "name": "Ambient 4: On Land"
-  },
-  "label": {
-    "slug": "label:editions-eg",
-    "type": "label",
-    "name": "Editions EG",
-    "mbid": "05674da4-44db-4db3-8724-2a19870d5189"
   },
   "genres": [
     {
@@ -63,7 +55,6 @@
       "name": "Brian Eno"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

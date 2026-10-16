@@ -28,25 +28,16 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
-  "mbid": "d742fded-00e7-3746-a63d-aa2def3fdbcc",
   "type": "project",
   "editorial_pitch": "Bryter Layter is the sophisticated, jazz-inflected second album from English singer-songwriter Nick Drake, featuring intricate arrangements by Robert Kirby and guest contributions from John Cale. It captures a more expansive, colorful sound compared to the sparse intimacy of his debut, establishing itself as a pinnacle of the late 1960s British folk-rock movement.",
   "year": "1970",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:nick-drake",
       "type": "artist",
-      "name": "Nick Drake",
-      "mbid": "99ea432a-e3d8-42cb-9d5e-db316a6a8458"
+      "name": "Nick Drake"
     }
   ],
-  "label": {
-    "slug": "label:island",
-    "type": "label",
-    "name": "Island",
-    "mbid": "dfd92cd3-4888-46d2-b968-328b1feb2642"
-  },
   "genres": [
     {
       "slug": "genre:folk-rock",
@@ -126,7 +117,6 @@
       "name": "Joe Boyd"
     }
   ],
-  "personnel": [],
   "related_projects": [
     {
       "slug": "project:five-leaves-left",

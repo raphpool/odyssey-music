@@ -13,17 +13,14 @@
     }
   ],
   "materialized_at": "2026-05-13T12:37:15.094Z",
-  "mbid": "5347b60f-d4a7-3e2f-831a-d5b86d06f8da",
   "type": "project",
   "editorial_pitch": "A monumental, abstract double album that defined the 'space music' genre and is frequently cited as a precursor to dark ambient, featuring an expansive four-movement composition.",
   "year": "1972",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:tangerine-dream",
       "type": "artist",
-      "name": "Tangerine Dream",
-      "mbid": "23d8426c-18c7-46e6-a51d-7395bd43c641"
+      "name": "Tangerine Dream"
     }
   ],
   "label": {
@@ -57,36 +54,7 @@
       "qid": "Q756956"
     }
   ],
-  "tracklist": [
-    {
-      "slug": "track:birth-of-liquid-plejades--tangerine-dream",
-      "type": "track",
-      "name": "Birth of Liquid Plejades",
-      "mbid": "c210fdbf-5717-424b-bc52-a17c7ec155d3",
-      "artist": "Tangerine Dream"
-    },
-    {
-      "slug": "track:nebulous-dawn--tangerine-dream",
-      "type": "track",
-      "name": "Nebulous Dawn",
-      "mbid": "48d4181e-4f59-4b4a-a4b5-017247447e82",
-      "artist": "Tangerine Dream"
-    },
-    {
-      "slug": "track:origin-of-supernatural-probabilities--tangerine-dream",
-      "type": "track",
-      "name": "Origin of Supernatural Probabilities",
-      "mbid": "1fc174d2-83f0-4047-aef7-37ed3bf3d069",
-      "artist": "Tangerine Dream"
-    },
-    {
-      "slug": "track:zeit--tangerine-dream",
-      "type": "track",
-      "name": "Zeit",
-      "mbid": "4bf212f3-19b0-4aa7-854c-aef2d0ae1c41",
-      "artist": "Tangerine Dream"
-    }
-  ],
+  "tracklist": [],
   "producers": [
     {
       "slug": "artist:tangerine-dream",
@@ -94,7 +62,6 @@
       "name": "Tangerine Dream"
     }
   ],
-  "personnel": [],
   "related_projects": [
     {
       "slug": "project:alpha-centauri",

@@ -17,18 +17,15 @@
     }
   ],
   "materialized_at": "2026-05-13T13:03:29.627Z",
-  "mbid": "ddae2c76-1433-4a9a-be05-3447bda75eee",
   "type": "project",
   "editorial_pitch": "A visionary masterwork of electronic music, Flying Lotus's 2010 album Cosmogramma synthesizes jazz, IDM, and hip-hop into an intimate, high-concept, and emotionally resonant journey through the cosmos.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/thumb/b/bc/WARPCD195Packshot_480.jpg/250px-WARPCD195Packshot_480.jpg",
   "year": "2010",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:flying-lotus",
       "type": "artist",
-      "name": "Flying Lotus",
-      "mbid": "fc7376fe-1a6f-4414-b4a7-83f50ed59c92"
+      "name": "Flying Lotus"
     }
   ],
   "label": {
@@ -146,7 +143,6 @@
       "name": "Flying Lotus"
     }
   ],
-  "personnel": [],
   "related_projects": [
     {
       "slug": "project:los-angeles",

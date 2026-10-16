@@ -13,7 +13,6 @@
     }
   ],
   "materialized_at": "2026-05-13T12:42:55.656Z",
-  "mbid": "14e2b753-c2d1-4c33-bbdd-13fd30c2857b",
   "type": "track",
   "editorial_teaser": "\"Kar Ekspres\" is an evocative track by the Istanbul-based band 123, featured as the seventh installment on their 2009 debut album, *Aksel*.",
   "year": "2009",
@@ -22,20 +21,13 @@
     {
       "slug": "artist:123",
       "type": "artist",
-      "name": "123",
-      "mbid": "aa86172e-0f2c-4d42-ae7f-164998d43a48"
+      "name": "123"
     }
   ],
   "project": {
     "slug": "project:aksel",
     "type": "project",
     "name": "Aksel"
-  },
-  "label": {
-    "slug": "label:aisha-records",
-    "type": "label",
-    "name": "aisha records",
-    "mbid": "3033bfae-9d82-4a87-98f5-23afec38a5ad"
   },
   "genres": [
     {
@@ -63,7 +55,6 @@
       "name": "123"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

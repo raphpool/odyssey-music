@@ -13,34 +13,11 @@
     }
   ],
   "materialized_at": "2026-05-13T12:47:46.872Z",
-  "mbid": "7fd96907-7df8-4703-af08-8bdeb6dbffcf",
   "type": "track",
   "editorial_teaser": "\"Dial 274\" is a standout track by German electronic producer Skee Mask, featured on his widely acclaimed 2018 album *Compro*, released on the Munich-based imprint Ilian Tape.",
-  "year": "2018",
-  "artists": [
-    {
-      "slug": "artist:skee-mask",
-      "type": "artist",
-      "name": "Skee Mask",
-      "mbid": "2b3e25ba-983e-44ac-9def-907e03910cd2"
-    }
-  ],
-  "project": {
-    "slug": "project:compro--skee-mask",
-    "type": "project",
-    "name": "Compro",
-    "mbid": "557fddc8-dc5e-4d06-a284-1b3bdab41374",
-    "artist": "Skee Mask"
-  },
-  "label": {
-    "slug": "label:ilian-tape",
-    "type": "label",
-    "name": "Ilian Tape",
-    "mbid": "cb0e0976-5f14-46ea-b5b7-796f32985439"
-  },
+  "artists": [],
   "genres": [],
   "producers": [],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

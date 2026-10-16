@@ -13,18 +13,15 @@
     }
   ],
   "materialized_at": "2026-05-13T12:54:07.347Z",
-  "mbid": "a50636b5-5233-3329-a7f3-dba3d0e00ef7",
   "type": "project",
   "editorial_pitch": "A landmark of progressive rock, King Crimson's debut album blended jazz, classical, and hard rock into a haunting, symphonic masterpiece that remains one of the most influential records of the late 1960s.",
   "cover_url": "https://i.discogs.com/kHBUxoIdI-naKXWCubfnP4hiZoobtC5RLqqHjk3GF84/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyODc2/NjktMTYwMDU5MDg4/MC00MDU3LmpwZWc.jpeg",
   "year": "1969",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:king-crimson",
       "type": "artist",
-      "name": "King Crimson",
-      "mbid": "b38225b8-8e5f-42aa-bcdc-7bae5b5bdab3"
+      "name": "King Crimson"
     }
   ],
   "label": {
@@ -74,6 +71,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

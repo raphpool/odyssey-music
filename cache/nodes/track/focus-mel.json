@@ -13,7 +13,6 @@
     }
   ],
   "materialized_at": "2026-05-13T13:04:45.356Z",
-  "mbid": "019c86f9-3202-487d-9f5a-40ce17da4a47",
   "type": "track",
   "editorial_teaser": "\"Focus Mel\" is a seminal IDM track from 1993, originally appearing on the landmark Warp Records compilation 'Bytes' and representing the introspective, atmospheric evolution of early 90s electronic music.",
   "year": "1993",
@@ -21,20 +20,13 @@
     {
       "slug": "artist:atypic",
       "type": "artist",
-      "name": "Atypic",
-      "mbid": "6b9f52c7-d582-4171-8ea1-2e5691371b59"
+      "name": "Atypic"
     }
   ],
   "project": {
     "slug": "project:bytes",
     "type": "project",
     "name": "Bytes"
-  },
-  "label": {
-    "slug": "label:tvt-records",
-    "type": "label",
-    "name": "TVT Records",
-    "mbid": "c9117237-b78b-4e47-b452-c9d94fb34916"
   },
   "genres": [
     {
@@ -57,7 +49,6 @@
       "name": "Black Dog Productions"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

@@ -9,18 +9,15 @@
     }
   ],
   "materialized_at": "2026-05-13T13:14:56.651Z",
-  "mbid": "e2c51226-996b-4f7c-9bdf-d52d63c46a26",
   "type": "project",
   "editorial_pitch": "A groundbreaking debut that redefined the landscape of post-dubstep, James Blake's 2011 self-titled album melds haunting, minimalist piano balladry with avant-garde electronic manipulation and soul-baring vocals.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/b/b5/James_Blake_Cover.jpg",
   "year": "2011",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:james-blake",
       "type": "artist",
-      "name": "James Blake",
-      "mbid": "8dc08b1f-e393-4f85-a5dd-300f7693a8b8"
+      "name": "James Blake"
     }
   ],
   "label": {
@@ -87,6 +84,5 @@
       "name": "James Blake"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

@@ -9,7 +9,6 @@
     }
   ],
   "materialized_at": "2026-05-13T15:08:33.256Z",
-  "mbid": "9159425d-bcf7-43f7-a5f9-bf18e032c5c8",
   "type": "track",
   "editorial_teaser": "A key track from Jan Jelinek's 2005 album Kosmischer Pitch, blending 1970s German rock influences with experimental electronic textures.",
   "year": "2005",
@@ -17,20 +16,13 @@
     {
       "slug": "artist:jan-jelinek",
       "type": "artist",
-      "name": "Jan Jelinek",
-      "mbid": "ac9b829e-9a7c-4331-8abe-ab1eb49d1771"
+      "name": "Jan Jelinek"
     }
   ],
   "project": {
     "slug": "project:kosmischer-pitch",
     "type": "project",
     "name": "Kosmischer Pitch"
-  },
-  "label": {
-    "slug": "label:scape",
-    "type": "label",
-    "name": "~scape",
-    "mbid": "1cf954a8-b0d0-4c7e-8833-8e0e1f5c9a5b"
   },
   "genres": [
     {
@@ -47,7 +39,6 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

@@ -13,7 +13,6 @@
     }
   ],
   "materialized_at": "2026-05-13T12:57:53.857Z",
-  "mbid": "a4759978-3ecd-43ec-b70b-085b8a744603",
   "type": "track",
   "editorial_teaser": "\"data.vertex\" is a pivotal composition by Japanese electronic artist Ryoji Ikeda, featured on his highly influential 2005 album, *Dataplex*.",
   "year": "2005",
@@ -21,23 +20,9 @@
     {
       "slug": "artist:ryoji-ikeda",
       "type": "artist",
-      "name": "Ryoji Ikeda",
-      "mbid": "bba24968-a575-4b38-8c38-06f7ab6de8c8"
+      "name": "Ryoji Ikeda"
     }
   ],
-  "project": {
-    "slug": "project:dataplex--ryoji-ikeda",
-    "type": "project",
-    "name": "Dataplex",
-    "mbid": "843e1b8e-4a6a-3f48-8a60-7be4b328ebde",
-    "artist": "Ryoji Ikeda"
-  },
-  "label": {
-    "slug": "label:raster-noton",
-    "type": "label",
-    "name": "Raster‐Noton",
-    "mbid": "6f4640eb-0881-40b4-a9ac-2a68ad3af0ca"
-  },
   "genres": [
     {
       "slug": "genre:glitch",
@@ -65,7 +50,6 @@
       "name": "Ryoji Ikeda"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

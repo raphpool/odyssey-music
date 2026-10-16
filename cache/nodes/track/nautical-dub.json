@@ -13,7 +13,6 @@
     }
   ],
   "materialized_at": "2026-05-13T13:09:51.402Z",
-  "mbid": "23b1efff-4f5c-4002-84a9-15ffa04a0e03",
   "type": "track",
   "editorial_teaser": "A haunting, aquatic masterpiece of mid-90s dub techno, \"Nautical Dub\" is the defining centerpiece of Porter Ricks' landmark album Biokinetics.",
   "year": "1996",
@@ -22,20 +21,13 @@
     {
       "slug": "artist:porter-ricks",
       "type": "artist",
-      "name": "Porter Ricks",
-      "mbid": "f2c0d29a-9bef-469f-af6e-a9b5deb21308"
+      "name": "Porter Ricks"
     }
   ],
   "project": {
     "slug": "project:biokinetics",
     "type": "project",
     "name": "Biokinetics"
-  },
-  "label": {
-    "slug": "label:chain-reaction",
-    "type": "label",
-    "name": "Chain Reaction",
-    "mbid": "04ac00ca-847b-4d1c-8ea6-85cd7719e946"
   },
   "genres": [
     {
@@ -63,7 +55,6 @@
       "name": "Andy Mellwig"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

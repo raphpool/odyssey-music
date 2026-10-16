@@ -9,17 +9,14 @@
     }
   ],
   "materialized_at": "2026-05-13T12:39:22.231Z",
-  "mbid": "284374fb-ac15-4ec0-b556-7cec96b31229",
   "type": "project",
   "editorial_pitch": "Released in 2012, Parastrophics is a masterclass in controlled chaos from Mouse on Mars, perfectly distilling their signature glitch-pop aesthetic into a restless and rhythmically inventive collection of tracks.",
   "year": "2012",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:mouse-on-mars",
       "type": "artist",
-      "name": "Mouse on Mars",
-      "mbid": "4d4f5d92-0589-42fa-bc0e-1bd73e17a2ce"
+      "name": "Mouse on Mars"
     }
   ],
   "label": {
@@ -126,6 +123,5 @@
       "name": "Jan St. Werner"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

@@ -9,18 +9,15 @@
     }
   ],
   "materialized_at": "2026-05-13T12:37:19.885Z",
-  "mbid": "59691950-e09d-358d-baca-625c284ff1c1",
   "type": "project",
   "editorial_pitch": "A cornerstone of the 1970s Berlin School, Moondawn is Klaus Schulze's seminal 1976 album that famously combined expansive analog synthesizer textures with the rhythmic drive of drummer Harald Grosskopf.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/a/a6/Moondawn_%28Klaus_Schulze_album_-_cover_art%29.jpg",
   "year": "1976",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:klaus-schulze",
       "type": "artist",
-      "name": "Klaus Schulze",
-      "mbid": "2e710b0c-6ff3-4c21-87d5-16ebbbca212c"
+      "name": "Klaus Schulze"
     }
   ],
   "label": {
@@ -72,6 +69,5 @@
       "name": "Klaus Schulze"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

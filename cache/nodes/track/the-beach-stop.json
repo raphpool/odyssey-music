@@ -13,28 +13,13 @@
     }
   ],
   "materialized_at": "2026-05-13T13:00:25.171Z",
-  "mbid": "16403f91-5f22-4231-84a0-2fd0ed79fceb",
   "type": "track",
   "editorial_teaser": "\"The Beach Stop\" is the opening track of the 2012 album \"Parastrophics,\" a pivotal release in the discography of the German electronic duo Mouse on Mars.",
-  "year": "2012",
-  "artists": [
-    {
-      "slug": "artist:mouse-on-mars",
-      "type": "artist",
-      "name": "Mouse on Mars",
-      "mbid": "4d4f5d92-0589-42fa-bc0e-1bd73e17a2ce"
-    }
-  ],
+  "artists": [],
   "project": {
     "slug": "project:parastrophics",
     "type": "project",
     "name": "Parastrophics"
-  },
-  "label": {
-    "slug": "label:monkeytown-records",
-    "type": "label",
-    "name": "Monkeytown Records",
-    "mbid": "dd5e9af0-a9bb-4e11-9c57-5921c8838945"
   },
   "genres": [
     {
@@ -68,7 +53,6 @@
       "name": "Jan St. Werner"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

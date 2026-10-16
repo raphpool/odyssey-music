@@ -13,17 +13,14 @@
     }
   ],
   "materialized_at": "2026-05-13T13:08:48.404Z",
-  "mbid": "c6f3011c-14ac-3045-9514-8e2c434f673b",
   "type": "project",
   "editorial_pitch": "A definitive work of early 2000s dub-techno, Monolake's 'Polygon Cities' expertly balances intricate, digital sound design with deep, warm grooves and an expansive, cinematic atmosphere. It remains a hallmark of Robert Henke's precise, minimalist production style.",
   "year": "2005",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:monolake",
       "type": "artist",
-      "name": "Monolake",
-      "mbid": "cedf92fe-eba1-45e2-ba16-b1b6af5169b8"
+      "name": "Monolake"
     }
   ],
   "label": {
@@ -51,71 +48,7 @@
       "qid": "Q1430587"
     }
   ],
-  "tracklist": [
-    {
-      "slug": "track:pipeline--monolake",
-      "type": "track",
-      "name": "Pipeline",
-      "mbid": "5e4db753-a073-47d1-920b-f1448b52c096",
-      "artist": "Monolake"
-    },
-    {
-      "slug": "track:cctv--monolake",
-      "type": "track",
-      "name": "CCTV",
-      "mbid": "aac7b638-f0c8-44a7-97e4-21629487bf12",
-      "artist": "Monolake"
-    },
-    {
-      "slug": "track:north--monolake",
-      "type": "track",
-      "name": "North",
-      "mbid": "f9ade7c1-107a-4da0-9018-c2c23219109a",
-      "artist": "Monolake"
-    },
-    {
-      "slug": "track:axis--monolake",
-      "type": "track",
-      "name": "Axis",
-      "mbid": "61959878-0213-4b16-a7e8-d1b64a1cb892",
-      "artist": "Monolake"
-    },
-    {
-      "slug": "track:digitalis--monolake",
-      "type": "track",
-      "name": "Digitalis",
-      "mbid": "7c91d6e2-b504-4dba-a88f-068e69b90d77",
-      "artist": "Monolake"
-    },
-    {
-      "slug": "track:invisible--monolake",
-      "type": "track",
-      "name": "Invisible",
-      "mbid": "09abe856-70ba-4fda-bbba-cbee39986653",
-      "artist": "Monolake"
-    },
-    {
-      "slug": "track:carbon--monolake",
-      "type": "track",
-      "name": "Carbon",
-      "mbid": "776225bd-8e28-4415-b166-15513b10b448",
-      "artist": "Monolake"
-    },
-    {
-      "slug": "track:wasteland--monolake",
-      "type": "track",
-      "name": "Wasteland",
-      "mbid": "4c49e5a9-d5fd-4faf-ad85-90343ac02e8e",
-      "artist": "Monolake"
-    },
-    {
-      "slug": "track:plumbicon--monolake",
-      "type": "track",
-      "name": "Plumbicon",
-      "mbid": "bf6f2ad2-e9fb-4fe6-a4e4-79714e6dd656",
-      "artist": "Monolake"
-    }
-  ],
+  "tracklist": [],
   "producers": [
     {
       "slug": "artist:robert-henke",
@@ -128,6 +61,5 @@
       "name": "T++"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

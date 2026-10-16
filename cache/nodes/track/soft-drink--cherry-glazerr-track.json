@@ -9,28 +9,19 @@
     }
   ],
   "materialized_at": "2026-05-13T13:09:14.494Z",
-  "mbid": "3df05b6f-d3cc-4a6c-9510-a16dfc8fe7ed",
   "type": "track",
   "editorial_teaser": "A propulsive, anxiety-laced indie-pop gem from Cherry Glazerr, \"Soft Drink\" uses the image of a shaken beverage to capture the dizzying, unsettled feeling of new romantic interest.",
-  "year": "2021",
   "artists": [
     {
       "slug": "artist:cherry-glazerr",
       "type": "artist",
-      "name": "Cherry Glazerr",
-      "mbid": "64a0c404-58af-4083-8fc6-a6725ef02ecb"
+      "name": "Cherry Glazerr"
     }
   ],
   "project": {
     "slug": "project:soft-drink",
     "type": "project",
     "name": "Soft Drink (Single)"
-  },
-  "label": {
-    "slug": "label:secretly-canadian",
-    "type": "label",
-    "name": "Secretly Canadian",
-    "mbid": "dd6afc9a-6352-4c96-aeb6-9a73e2bf1519"
   },
   "genres": [
     {
@@ -47,7 +38,6 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

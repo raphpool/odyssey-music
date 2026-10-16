@@ -13,7 +13,6 @@
     }
   ],
   "materialized_at": "2026-05-13T12:48:43.204Z",
-  "mbid": "acc8f927-65e9-4662-8665-8127efe76e6a",
   "type": "track",
   "editorial_teaser": "\"Foil\" is the opening track of Autechre's highly influential 1994 album, *Amber*.",
   "year": "1994",
@@ -21,20 +20,13 @@
     {
       "slug": "artist:autechre",
       "type": "artist",
-      "name": "Autechre",
-      "mbid": "410c9baf-5469-44f6-9852-826524b80c61"
+      "name": "Autechre"
     }
   ],
   "project": {
     "slug": "project:amber",
     "type": "project",
     "name": "Amber"
-  },
-  "label": {
-    "slug": "label:wax-trax-records",
-    "type": "label",
-    "name": "Wax Trax! Records",
-    "mbid": "6dcd6d65-e0f2-47a3-84ac-00c2d29267af"
   },
   "genres": [
     {
@@ -57,7 +49,6 @@
       "name": "Autechre"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

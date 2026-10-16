@@ -9,17 +9,14 @@
     }
   ],
   "materialized_at": "2026-05-13T12:52:12.738Z",
-  "mbid": "e959a4b3-6306-3c45-9df6-e7241dae9ea3",
   "type": "project",
   "editorial_pitch": "The definitive statement of 1977 punk, 'Never Mind the Bollocks' is a masterclass in aggressive production and nihilistic provocation that fundamentally altered the trajectory of rock music.",
   "year": "1977",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:sex-pistols",
       "type": "artist",
-      "name": "Sex Pistols",
-      "mbid": "e5db18cb-4b1f-496d-a308-548b611090d3"
+      "name": "Sex Pistols"
     }
   ],
   "label": {
@@ -35,92 +32,7 @@
       "qid": "Q3071"
     }
   ],
-  "tracklist": [
-    {
-      "slug": "track:holidays-in-the-sun--sex-pistols",
-      "type": "track",
-      "name": "Holidays in the Sun",
-      "mbid": "eba6fb32-8fe7-4fa8-9c6d-b05ecae5fe27",
-      "artist": "Sex Pistols"
-    },
-    {
-      "slug": "track:bodies--sex-pistols",
-      "type": "track",
-      "name": "Bodies",
-      "mbid": "2f7440f5-5b72-407c-bfb4-49da961fefd6",
-      "artist": "Sex Pistols"
-    },
-    {
-      "slug": "track:no-feelings--sex-pistols",
-      "type": "track",
-      "name": "No Feelings",
-      "mbid": "22f4eec5-f4ef-4266-bdc9-0ab86aadc63d",
-      "artist": "Sex Pistols"
-    },
-    {
-      "slug": "track:liar--sex-pistols",
-      "type": "track",
-      "name": "Liar",
-      "mbid": "fbdda08c-b334-4a24-ac61-889573d2dd5f",
-      "artist": "Sex Pistols"
-    },
-    {
-      "slug": "track:god-save-the-queen--sex-pistols",
-      "type": "track",
-      "name": "God Save the Queen",
-      "mbid": "72512497-2218-484e-b5b4-c0d6b50c539f",
-      "artist": "Sex Pistols"
-    },
-    {
-      "slug": "track:problems--sex-pistols",
-      "type": "track",
-      "name": "Problems",
-      "mbid": "3210a0d5-dd11-46e8-bd87-6edf389a54f6",
-      "artist": "Sex Pistols"
-    },
-    {
-      "slug": "track:seventeen--sex-pistols",
-      "type": "track",
-      "name": "Seventeen",
-      "mbid": "d00e4714-d4f2-4d1c-a195-a1533c63ef42",
-      "artist": "Sex Pistols"
-    },
-    {
-      "slug": "track:anarchy-in-the-u-k--sex-pistols",
-      "type": "track",
-      "name": "Anarchy in the U.K.",
-      "mbid": "1f5d0031-53e0-4050-92dd-4b7657c01d27",
-      "artist": "Sex Pistols"
-    },
-    {
-      "slug": "track:submission--sex-pistols",
-      "type": "track",
-      "name": "Submission",
-      "mbid": "27e4405d-e8c2-4cf8-a7b7-049031bc675b",
-      "artist": "Sex Pistols"
-    },
-    {
-      "slug": "track:pretty-vacant--sex-pistols",
-      "type": "track",
-      "name": "Pretty Vacant",
-      "mbid": "07e3952e-11c5-4eb2-94b6-77ae6264f5b1",
-      "artist": "Sex Pistols"
-    },
-    {
-      "slug": "track:new-york--sex-pistols",
-      "type": "track",
-      "name": "New York",
-      "mbid": "2db3e4a5-513e-4e12-8d04-171520a06f61",
-      "artist": "Sex Pistols"
-    },
-    {
-      "slug": "track:emi--sex-pistols",
-      "type": "track",
-      "name": "EMI",
-      "mbid": "8ece86fc-8017-4796-afeb-25d6437af562",
-      "artist": "Sex Pistols"
-    }
-  ],
+  "tracklist": [],
   "producers": [
     {
       "slug": "artist:chris-thomas",
@@ -133,6 +45,5 @@
       "name": "Bill Price"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

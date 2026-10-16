@@ -29,7 +29,6 @@
     "search_provider": "tavily"
   },
   "disambiguator": "37-minute minimal techno track by Ricardo Villalobos (2006)",
-  "mbid": "0a8347ed-ba50-4872-ae9c-4da4890ee0dc",
   "type": "track",
   "editorial_teaser": "Released in 2006, \"Fizheuer Zieheuer\" stands as a towering monolith in the discography of minimal techno producer Ricardo Villalobos.",
   "year": "2006",
@@ -38,20 +37,13 @@
     {
       "slug": "artist:ricardo-villalobos",
       "type": "artist",
-      "name": "Ricardo Villalobos",
-      "mbid": "bbd79854-df54-4c1b-b7d6-cf7eea2d0afb"
+      "name": "Ricardo Villalobos"
     }
   ],
   "project": {
     "slug": "project:fizheuer-zieheuer",
     "type": "project",
     "name": "Fizheuer Zieheuer"
-  },
-  "label": {
-    "slug": "label:playhouse",
-    "type": "label",
-    "name": "Playhouse",
-    "mbid": "468d9d30-1137-4468-b0db-610cba2c575f"
   },
   "genres": [
     {
@@ -68,7 +60,6 @@
       "name": "Ricardo Villalobos"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

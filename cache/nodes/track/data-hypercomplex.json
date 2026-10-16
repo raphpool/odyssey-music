@@ -13,7 +13,6 @@
     }
   ],
   "materialized_at": "2026-05-13T12:57:28.237Z",
-  "mbid": "067e3fb1-b306-410a-b2b2-85b0f4a898ae",
   "type": "track",
   "editorial_teaser": "\"data.hypercomplex\" is a precision-engineered sonic artifact from Ryoji Ikeda’s seminal 2005 album, *Dataplex*.",
   "year": "2005",
@@ -22,20 +21,13 @@
     {
       "slug": "artist:ryoji-ikeda",
       "type": "artist",
-      "name": "Ryoji Ikeda",
-      "mbid": "bba24968-a575-4b38-8c38-06f7ab6de8c8"
+      "name": "Ryoji Ikeda"
     }
   ],
   "project": {
     "slug": "project:dataplex",
     "type": "project",
     "name": "Dataplex"
-  },
-  "label": {
-    "slug": "label:raster-noton",
-    "type": "label",
-    "name": "Raster‐Noton",
-    "mbid": "6f4640eb-0881-40b4-a9ac-2a68ad3af0ca"
   },
   "genres": [
     {
@@ -58,7 +50,6 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

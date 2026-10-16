@@ -13,17 +13,14 @@
     }
   ],
   "materialized_at": "2026-05-13T12:59:01.808Z",
-  "mbid": "3e710532-61e8-3925-b3b9-24b21eb2fbf9",
   "type": "project",
   "editorial_pitch": "A landmark of 2000s post-hardcore, Mclusky's second album is a blistering, sardonic, and expertly produced noise-rock classic that captures the Welsh trio at the absolute peak of their kinetic, abrasive power.",
   "year": "2002",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:mclusky",
       "type": "artist",
-      "name": "Mclusky",
-      "mbid": "26860648-1c93-4849-bc52-a8541ec88219"
+      "name": "Mclusky"
     }
   ],
   "label": {
@@ -69,6 +66,5 @@
       "name": "Steve Albini"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

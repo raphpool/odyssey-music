@@ -17,18 +17,15 @@
     }
   ],
   "materialized_at": "2026-05-13T12:48:55.606Z",
-  "mbid": "b9892af3-9fe3-37a6-8bc8-adc8d06d5ecb",
   "type": "project",
   "editorial_pitch": "The seminal 1994 compilation that introduced the iconic Hearts of Space ambient-Celtic series, blending traditional melodies with ethereal, contemplative soundscapes.",
   "cover_url": "https://f4.bcbits.com/img/a3268939059_2.jpg",
   "year": "1994",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:various-artists",
       "type": "artist",
-      "name": "Various Artists",
-      "mbid": "89ad4ac3-39f7-470e-963a-56509c546377"
+      "name": "Various Artists"
     }
   ],
   "label": {
@@ -129,6 +126,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

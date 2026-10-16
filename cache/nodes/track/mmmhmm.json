@@ -13,34 +13,13 @@
     }
   ],
   "materialized_at": "2026-05-13T13:03:40.374Z",
-  "mbid": "3192df10-3b42-4653-ba35-ed7981410c14",
   "type": "track",
   "editorial_teaser": "\"MmmHmm\" is a landmark track by American producer Flying Lotus, featuring the virtuosic bass playing of frequent collaborator Thundercat.",
-  "year": "2009",
-  "artists": [
-    {
-      "slug": "artist:flying-lotus",
-      "type": "artist",
-      "name": "Flying Lotus",
-      "mbid": "fc7376fe-1a6f-4414-b4a7-83f50ed59c92"
-    },
-    {
-      "slug": "artist:thundercat",
-      "type": "artist",
-      "name": "Thundercat",
-      "mbid": "044fd265-79dd-43eb-afc4-8b20becf7e17"
-    }
-  ],
+  "artists": [],
   "project": {
     "slug": "project:cosmogramma",
     "type": "project",
     "name": "Cosmogramma"
-  },
-  "label": {
-    "slug": "label:beat-records",
-    "type": "label",
-    "name": "Beat Records",
-    "mbid": "ea424c04-1edd-4ce4-8b3b-8181571ccaa3"
   },
   "genres": [],
   "producers": [
@@ -50,7 +29,6 @@
       "name": "Flying Lotus"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

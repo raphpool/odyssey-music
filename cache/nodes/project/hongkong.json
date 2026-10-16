@@ -9,18 +9,15 @@
     }
   ],
   "materialized_at": "2026-05-13T12:46:22.061Z",
-  "mbid": "31e04335-1726-3593-b4af-0ac858df5506",
   "type": "project",
   "editorial_pitch": "A foundational masterwork of 90s Berlin techno, Monolake's 'Hongkong' is an immersive, texture-heavy album that remains a definitive example of deep, experimental dub techno.",
   "cover_url": "https://f4.bcbits.com/img/a1007333474_10.jpg",
   "year": "1997",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:monolake",
       "type": "artist",
-      "name": "Monolake",
-      "mbid": "cedf92fe-eba1-45e2-ba16-b1b6af5169b8"
+      "name": "Monolake"
     }
   ],
   "label": {
@@ -65,6 +62,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

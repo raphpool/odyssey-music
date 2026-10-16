@@ -17,17 +17,14 @@
     }
   ],
   "materialized_at": "2026-05-13T12:48:55.394Z",
-  "mbid": "9c7ea5d2-2a14-3ba3-bb03-389bf1f0a926",
   "type": "project",
   "editorial_pitch": "A cornerstone of harsh noise and Japanoise, Pulse Demon is a high-intensity masterwork of raw, unadulterated sound that pushed the limits of sonic extremity upon its 1996 release.",
   "year": "1996",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:merzbow",
       "type": "artist",
-      "name": "Merzbow",
-      "mbid": "2841d983-f8c3-432a-af02-7407a84580a8"
+      "name": "Merzbow"
     }
   ],
   "label": {
@@ -92,6 +89,5 @@
       "name": "Masami Akita"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

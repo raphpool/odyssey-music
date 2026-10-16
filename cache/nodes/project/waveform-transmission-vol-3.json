@@ -9,17 +9,14 @@
     }
   ],
   "materialized_at": "2026-05-13T13:12:10.298Z",
-  "mbid": "809ee3b5-07f5-3f2b-bdfc-f9c5b0a881c5",
   "type": "project",
   "editorial_pitch": "A definitive statement of early-90s Detroit techno, Jeff Mills' Waveform Transmission Vol. 3 is a brutal, stripped-down masterpiece that pushed the boundaries of machine-funk minimalism and intensity.",
   "year": "1994",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:jeff-mills",
       "type": "artist",
-      "name": "Jeff Mills",
-      "mbid": "470a4ced-1323-4c91-8fd5-0bb3fb4c932a"
+      "name": "Jeff Mills"
     }
   ],
   "label": {
@@ -78,6 +75,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

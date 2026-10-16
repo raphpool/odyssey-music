@@ -9,17 +9,14 @@
     }
   ],
   "materialized_at": "2026-05-13T12:39:52.253Z",
-  "mbid": "79c6d3be-251c-3644-b07e-09d738e15a84",
   "type": "project",
   "editorial_pitch": "A defining, abrasive, and melodic masterpiece from Aphex Twin that helped bridge the divide between ambient techno and the jagged, complex rhythms of 90s IDM.",
   "year": "1995",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:aphex-twin",
       "type": "artist",
-      "name": "Aphex Twin",
-      "mbid": "f22942a1-6f70-4f48-866e-238cb2308fbd"
+      "name": "Aphex Twin"
     }
   ],
   "label": {
@@ -65,6 +62,5 @@
       "name": "Aphex Twin"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

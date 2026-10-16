@@ -13,25 +13,10 @@
     }
   ],
   "materialized_at": "2026-05-13T12:50:21.123Z",
-  "mbid": "acd8cbf0-b441-37e5-9f25-649ecf3ee0f9",
   "type": "project",
   "editorial_pitch": "A seminal work of American drone metal, this 2000 debut established Sunn O)))'s signature landscape of slow-moving, feedback-drenched sonic weight.",
   "year": "2000",
-  "release_type": "album",
-  "artists": [
-    {
-      "slug": "artist:sunn-o",
-      "type": "artist",
-      "name": "Sunn O)))",
-      "mbid": "1d3da898-4fb4-4445-b704-cd7315e01789"
-    }
-  ],
-  "label": {
-    "slug": "label:hydra-head-records",
-    "type": "label",
-    "name": "Hydra Head Records",
-    "mbid": "4d204722-f022-4b6e-8b76-0e06a45ffcdc"
-  },
+  "artists": [],
   "genres": [],
   "tracklist": [
     {
@@ -62,6 +47,5 @@
       "name": "Scott Reeder"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

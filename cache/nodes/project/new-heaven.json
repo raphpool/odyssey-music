@@ -17,18 +17,15 @@
     }
   ],
   "materialized_at": "2026-05-13T13:17:34.467Z",
-  "mbid": "2da5680f-ba26-4b07-8803-60234089b6dd",
   "type": "project",
   "editorial_pitch": "Released in 2024 via Relapse Records, *New Heaven* is a ferocious, eclectic masterclass of extreme metal that showcases Inter Arma's peerless ability to merge sludge, doom, black, and progressive metal into a uniquely idiosyncratic, genre-defying sound.",
   "cover_url": "https://f4.bcbits.com/img/a3822274295_10.jpg",
   "year": "2024",
-  "release_type": "single",
   "artists": [
     {
       "slug": "artist:inter-arma",
       "type": "artist",
-      "name": "Inter Arma",
-      "mbid": "25b42db3-2be3-47c3-93f5-eeac9695e010"
+      "name": "Inter Arma"
     }
   ],
   "label": {
@@ -62,16 +59,7 @@
       "qid": "Q484344"
     }
   ],
-  "tracklist": [
-    {
-      "slug": "track:new-heaven--inter-arma",
-      "type": "track",
-      "name": "New Heaven",
-      "mbid": "690b3608-8051-43e0-a322-5beeac239e29",
-      "artist": "Inter Arma"
-    }
-  ],
+  "tracklist": [],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

@@ -17,17 +17,14 @@
     }
   ],
   "materialized_at": "2026-05-13T12:54:51.926Z",
-  "mbid": "3a6b89d1-ae82-3710-8e71-765405aa8a78",
   "type": "project",
   "editorial_pitch": "The seminal 1969 masterpiece that defined British folk rock, blending ancient traditional ballads with modern electric instrumentation and virtuoso fiddle arrangements.",
   "year": "1969",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:fairport-convention",
       "type": "artist",
-      "name": "Fairport Convention",
-      "mbid": "cc60d937-e80b-4c66-8aa2-e89cb57c8b08"
+      "name": "Fairport Convention"
     }
   ],
   "label": {
@@ -98,6 +95,5 @@
       "name": "Joe Boyd"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

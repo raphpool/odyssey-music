@@ -32,7 +32,6 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
-  "mbid": "e3dc60a7-a89e-4fb4-9b94-5a569097424e",
   "type": "track",
   "editorial_teaser": "\"Lightsabre Cocksucking Blues\" is the frenetic, abrasive opening track from the 2002 album \"Mclusky Do Dallas\" by Welsh noise-rock trio Mclusky.",
   "year": "2002",
@@ -41,8 +40,7 @@
     {
       "slug": "artist:mclusky",
       "type": "artist",
-      "name": "Mclusky",
-      "mbid": "26860648-1c93-4849-bc52-a8541ec88219"
+      "name": "Mclusky"
     }
   ],
   "project": {
@@ -71,7 +69,6 @@
       "name": "Steve Albini"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

@@ -17,17 +17,14 @@
     }
   ],
   "materialized_at": "2026-05-13T13:09:05.159Z",
-  "mbid": "ecc43e69-b3cc-3c80-baf6-6d14824a624c",
   "type": "project",
   "editorial_pitch": "Originally released in 2006, West Coast is a seminal debut album from the Swedish duo Studio that masterfully blends Balearic, dub, disco, and Krautrock influences into a sun-drenched, hypnotic soundscape. It remains a cult classic for its unique ability to evoke a faraway romanticism through minimalist, groove-oriented production.",
   "year": "2006",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:studio",
       "type": "artist",
-      "name": "Studio",
-      "mbid": "63070885-2d88-4ce5-afad-21d08c7189ea"
+      "name": "Studio"
     }
   ],
   "label": {
@@ -78,6 +75,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

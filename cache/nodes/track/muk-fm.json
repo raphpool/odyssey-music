@@ -13,7 +13,6 @@
     }
   ],
   "materialized_at": "2026-05-13T12:47:33.507Z",
-  "mbid": "90ebba6e-988a-4bd6-9037-31d59b8f7863",
   "type": "track",
   "editorial_teaser": "A masterful blend of intricate, syncopated breakbeats and atmospheric soundscapes, \"Muk FM\" is a definitive highlight from Skee Mask’s seminal 2018 album 'Compro'.",
   "year": "2018",
@@ -22,20 +21,13 @@
     {
       "slug": "artist:skee-mask",
       "type": "artist",
-      "name": "Skee Mask",
-      "mbid": "2b3e25ba-983e-44ac-9def-907e03910cd2"
+      "name": "Skee Mask"
     }
   ],
   "project": {
     "slug": "project:compro",
     "type": "project",
     "name": "Compro"
-  },
-  "label": {
-    "slug": "label:ilian-tape",
-    "type": "label",
-    "name": "Ilian Tape",
-    "mbid": "cb0e0976-5f14-46ea-b5b7-796f32985439"
   },
   "genres": [
     {
@@ -58,7 +50,6 @@
       "name": "Bryan Müller"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

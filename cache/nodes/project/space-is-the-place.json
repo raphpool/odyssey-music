@@ -24,17 +24,14 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
-  "mbid": "d12aff28-a9e3-3be8-a36a-71e2f11bf575",
   "type": "project",
   "editorial_pitch": "A seminal Afrofuturist masterwork of avant-garde jazz, functioning as both a film soundtrack and a manifesto of Sun Ra's cosmic philosophy.",
   "year": "1972",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:sun-ra",
       "type": "artist",
-      "name": "Sun Ra",
-      "mbid": "c27cac8e-4c4a-48c0-a4ba-41399b9c176d"
+      "name": "Sun Ra"
     },
     {
       "slug": "artist:the-sun-ra-arkestra",
@@ -85,6 +82,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

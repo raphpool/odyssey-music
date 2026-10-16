@@ -13,19 +13,10 @@
     }
   ],
   "materialized_at": "2026-05-13T13:12:42.657Z",
-  "mbid": "1f8b74ce-9f1e-3e3c-8651-609bfe3b6676",
   "type": "project",
   "editorial_pitch": "\"Acid Tracks\" is widely considered the foundational anthem of acid house, a seminal 1987 release by the Chicago-based trio Phuture, comprised of DJ Pierre, Earl \"Spanky\" Smith Jr., and Herbert Jackson.",
   "year": "1987",
-  "release_type": "ep",
-  "artists": [
-    {
-      "slug": "artist:phuture",
-      "type": "artist",
-      "name": "Phuture",
-      "mbid": "d4c75da5-45d7-49ef-abd6-babca3eb8d18"
-    }
-  ],
+  "artists": [],
   "label": {
     "slug": "label:trax-records",
     "type": "label",
@@ -63,6 +54,5 @@
       "name": "Marshall Jefferson"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

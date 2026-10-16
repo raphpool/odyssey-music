@@ -13,19 +13,10 @@
     }
   ],
   "materialized_at": "2026-05-13T12:36:36.590Z",
-  "mbid": "596a221f-9d22-3bfc-9afb-293f834c72b0",
   "type": "project",
   "editorial_pitch": "A foundational 1975 New Age milestone, Spectrum Suite by Steven Halpern introduced ambient, meditative soundscapes designed to facilitate healing and relaxation through color-coded, chakra-aligned compositions.",
   "year": "1975",
-  "release_type": "album",
-  "artists": [
-    {
-      "slug": "artist:steven-halpern",
-      "type": "artist",
-      "name": "Steven Halpern",
-      "mbid": "37986d18-e8af-4502-8e08-2a87d7e5853f"
-    }
-  ],
+  "artists": [],
   "label": {
     "slug": "label:sound-rx",
     "type": "label",
@@ -53,6 +44,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

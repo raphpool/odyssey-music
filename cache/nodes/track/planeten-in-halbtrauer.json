@@ -9,7 +9,6 @@
     }
   ],
   "materialized_at": "2026-05-13T15:08:33.236Z",
-  "mbid": "470d6dfd-3e3d-4bba-9ce5-05456a0b7384",
   "type": "track",
   "editorial_teaser": "A standout track from Jan Jelinek's 2005 album Kosmischer Pitch, blending intricate glitch textures with warm, atmospheric soundscapes.",
   "year": "2005",
@@ -17,20 +16,13 @@
     {
       "slug": "artist:jan-jelinek",
       "type": "artist",
-      "name": "Jan Jelinek",
-      "mbid": "ac9b829e-9a7c-4331-8abe-ab1eb49d1771"
+      "name": "Jan Jelinek"
     }
   ],
   "project": {
     "slug": "project:kosmischer-pitch",
     "type": "project",
     "name": "Kosmischer Pitch"
-  },
-  "label": {
-    "slug": "label:scape",
-    "type": "label",
-    "name": "~scape",
-    "mbid": "1cf954a8-b0d0-4c7e-8833-8e0e1f5c9a5b"
   },
   "genres": [
     {
@@ -59,7 +51,6 @@
       "name": "Jan Jelinek"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

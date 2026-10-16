@@ -9,18 +9,15 @@
     }
   ],
   "materialized_at": "2026-05-13T12:46:45.524Z",
-  "mbid": "9bd29f3d-2fa5-307d-8e95-9f3877a760ce",
   "type": "project",
   "editorial_pitch": "Released in 1994, Patashnik stands as a foundational entry in the development of 1990s ambient techno, blending futuristic soundscapes with rhythmic precision and evocative, sparse vocal sampling. It remains a hallmark of Geir Jenssen's ability to synthesize cold, arctic atmospheres with the warm, pulsating machinery of the early electronic underground.",
   "cover_url": "https://cdn.sonemic.net/i/600/w/1740dc139f3d2a54efc07771e07e94f4/2149169/biosphere-patashnik-Cover-Art.jpg",
   "year": "1994",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:biosphere",
       "type": "artist",
-      "name": "Biosphere",
-      "mbid": "a5ee1ebe-a645-45d2-8319-d101fe62e581"
+      "name": "Biosphere"
     }
   ],
   "label": {
@@ -117,6 +114,5 @@
       "name": "Geir Jenssen"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

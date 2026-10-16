@@ -13,17 +13,14 @@
     }
   ],
   "materialized_at": "2026-05-13T12:50:33.643Z",
-  "mbid": "34c02612-3c34-45e1-9936-12fd51e9c4a0",
   "type": "project",
   "editorial_pitch": "A tectonic, vocal-oriented masterpiece from dark ambient pioneer Lustmord, blending harrowing electronic drones with evocative performances from guest vocalists including Maynard James Keenan and Jarboe.",
   "year": "2013",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:lustmord",
       "type": "artist",
-      "name": "Lustmord",
-      "mbid": "15f2bb82-bce4-44c9-863a-995ae9bde0b4"
+      "name": "Lustmord"
     }
   ],
   "label": {
@@ -83,6 +80,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

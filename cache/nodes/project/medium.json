@@ -9,25 +9,16 @@
     }
   ],
   "materialized_at": "2026-05-13T12:44:15.663Z",
-  "mbid": "045e2840-37f1-4a52-8ca6-aa927ee5a2a5",
   "type": "project",
   "editorial_pitch": "*Medium* is an ambitious 2019 progressive metal concept album by the French band Mantra, masterfully exploring the duality of body and mind through intricate, technical soundscapes and layered compositions.",
   "year": "2019",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:mantra",
       "type": "artist",
-      "name": "Mantra",
-      "mbid": "cacba26e-d7d6-4acd-9294-e72f26d84f25"
+      "name": "Mantra"
     }
   ],
-  "label": {
-    "slug": "label:finisterian-dead-end",
-    "type": "label",
-    "name": "Finisterian Dead End",
-    "mbid": "40647fc0-a209-46ce-9e49-fe59bad7ffaa"
-  },
   "genres": [
     {
       "slug": "genre:progressive-metal",
@@ -44,6 +35,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

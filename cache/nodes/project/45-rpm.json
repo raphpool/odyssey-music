@@ -9,17 +9,14 @@
     }
   ],
   "materialized_at": "2026-05-13T13:11:24.629Z",
-  "mbid": "a3d25fd9-86ae-3727-aca6-955d0cdc3342",
   "type": "project",
   "editorial_pitch": "The debut studio album from trance pioneer Paul van Dyk, 45 RPM stands as a landmark 1994 electronic record that helped define the melodic, high-energy sound of Berlin's emerging trance scene.",
   "year": "1994",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:paul-van-dyk",
       "type": "artist",
-      "name": "Paul van Dyk",
-      "mbid": "092ca127-2e07-4cbd-9cba-e412b4ddddd9"
+      "name": "Paul van Dyk"
     }
   ],
   "label": {
@@ -47,64 +44,7 @@
       "qid": "Q851213"
     }
   ],
-  "tracklist": [
-    {
-      "slug": "track:i-m-comin-to-take-you-away-too--paul-van-dyk",
-      "type": "track",
-      "name": "I'm comin' (to take you away too)",
-      "mbid": "5fb11060-e485-465e-9b30-5c8e4934ddce",
-      "artist": "Paul van Dyk"
-    },
-    {
-      "slug": "track:a-magical-moment--paul-van-dyk",
-      "type": "track",
-      "name": "A magical moment",
-      "mbid": "59d7a8e1-9003-47c4-a354-4e62d8fb134e",
-      "artist": "Paul van Dyk"
-    },
-    {
-      "slug": "track:rushin-revolutionaries-per-minute--paul-van-dyk",
-      "type": "track",
-      "name": "Rushin' (Revolutionaries Per Minute)",
-      "mbid": "71f161a2-8953-49a1-a5c9-f35cb8ac7152",
-      "artist": "Paul van Dyk"
-    },
-    {
-      "slug": "track:45-rpm--paul-van-dyk",
-      "type": "track",
-      "name": "45 RPM",
-      "mbid": "479c6c6d-8c5b-423a-81b0-856e67c55e0e",
-      "artist": "Paul van Dyk"
-    },
-    {
-      "slug": "track:for-an-angel--paul-van-dyk",
-      "type": "track",
-      "name": "For an angel",
-      "mbid": "f3467928-c81b-4cae-a4b7-d9e61941c864",
-      "artist": "Paul van Dyk"
-    },
-    {
-      "slug": "track:spannung-mad-housemix--paul-van-dyk",
-      "type": "track",
-      "name": "Spannung (Mad housemix)",
-      "mbid": "9651f4fe-a53d-457d-a0b9-2fa5bb5aaf22",
-      "artist": "Paul van Dyk"
-    },
-    {
-      "slug": "track:ooh-la-la-krankenhouse-mix--paul-van-dyk",
-      "type": "track",
-      "name": "Ooh! La La! (Krankenhouse mix)",
-      "mbid": "a267bd6d-e660-4272-aace-3f84f2fa1f03",
-      "artist": "Paul van Dyk"
-    },
-    {
-      "slug": "track:pump-this-on-45--paul-van-dyk",
-      "type": "track",
-      "name": "Pump this on 45",
-      "mbid": "edc9394c-8959-4044-8808-9a772b98181a",
-      "artist": "Paul van Dyk"
-    }
-  ],
+  "tracklist": [],
   "producers": [
     {
       "slug": "artist:paul-van-dyk",
@@ -122,7 +62,6 @@
       "name": "Voov"
     }
   ],
-  "personnel": [],
   "related_projects": [
     {
       "slug": "project:seven-ways",

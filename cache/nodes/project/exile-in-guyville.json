@@ -9,17 +9,14 @@
     }
   ],
   "materialized_at": "2026-05-13T13:18:38.681Z",
-  "mbid": "c186db82-9988-367e-8486-2e38e9b6c8db",
   "type": "project",
   "editorial_pitch": "Liz Phair’s 1993 debut is a landmark of 90s indie rock, renowned for its raw emotional honesty, biting lyrical wit, and its conceptual framing as a track-by-track response to the Rolling Stones' 'Exile on Main St.' Featuring production by Brad Wood, the album remains a quintessential, influential masterclass in lo-fi songwriting.",
   "year": "1993",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:liz-phair",
       "type": "artist",
-      "name": "Liz Phair",
-      "mbid": "149326c2-b8a3-48e3-b3d2-9b5b9593127f"
+      "name": "Liz Phair"
     }
   ],
   "label": {
@@ -151,6 +148,5 @@
       "name": "Brad Wood"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

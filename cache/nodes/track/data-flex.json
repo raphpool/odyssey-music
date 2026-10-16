@@ -9,7 +9,6 @@
     }
   ],
   "materialized_at": "2026-05-13T12:57:39.692Z",
-  "mbid": "77d8fa03-470e-41a6-b217-c0a30587185c",
   "type": "track",
   "editorial_teaser": "\"data.flex\" is a precise, minimalist track by Japanese sound artist Ryoji Ikeda, featured as the 14th entry on his 2005 album, *Dataplex*.",
   "year": "2005",
@@ -18,20 +17,13 @@
     {
       "slug": "artist:ryoji-ikeda",
       "type": "artist",
-      "name": "Ryoji Ikeda",
-      "mbid": "bba24968-a575-4b38-8c38-06f7ab6de8c8"
+      "name": "Ryoji Ikeda"
     }
   ],
   "project": {
     "slug": "project:dataplex",
     "type": "project",
     "name": "Dataplex"
-  },
-  "label": {
-    "slug": "label:raster-noton",
-    "type": "label",
-    "name": "Raster‐Noton",
-    "mbid": "6f4640eb-0881-40b4-a9ac-2a68ad3af0ca"
   },
   "genres": [
     {
@@ -60,7 +52,6 @@
       "name": "Ryoji Ikeda"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

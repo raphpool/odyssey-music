@@ -13,7 +13,6 @@
     }
   ],
   "materialized_at": "2026-05-13T13:08:27.981Z",
-  "mbid": "453b41fc-e941-4b06-b322-8f5d87440a93",
   "type": "track",
   "editorial_teaser": "The atmospheric, crate-digging intro to DJ Cam’s 2004 album 'Liquid Hip Hop', capturing the essence of the artist's signature urban, jazz-infused downtempo production style.",
   "year": "2004",
@@ -21,20 +20,13 @@
     {
       "slug": "artist:dj-cam",
       "type": "artist",
-      "name": "DJ Cam",
-      "mbid": "d2e123d0-c53e-4444-a52a-efeff44953c7"
+      "name": "DJ Cam"
     }
   ],
   "project": {
     "slug": "project:liquid-hip-hop",
     "type": "project",
     "name": "Liquid Hip Hop"
-  },
-  "label": {
-    "slug": "label:recall",
-    "type": "label",
-    "name": "Recall",
-    "mbid": "ecc26cb8-99cb-4ad5-acd5-799ffd73cfa7"
   },
   "genres": [
     {
@@ -63,7 +55,6 @@
       "name": "DJ Cam"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

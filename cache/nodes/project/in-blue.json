@@ -13,18 +13,15 @@
     }
   ],
   "materialized_at": "2026-05-13T12:37:26.766Z",
-  "mbid": "4e381965-bdc8-370d-a79f-e9bce2c8fed6",
   "type": "project",
   "editorial_pitch": "In Blue is the third studio album by Irish pop-rock family band The Corrs, released in 2000, which catapulted the group to widespread international success, particularly in the United States. Produced in collaboration with heavyweights like Robert John \"Mutt\" Lange, the album seamlessly blends the band's signature Celtic-infused pop sensibilities with contemporary production polish, yielding hit singles such as the UK number-one \"Breathless.\"",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/d/d0/In_Blue_%28The_Corrs_album_-_cover_art%29.jpg",
   "year": "2000",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:the-corrs",
       "type": "artist",
-      "name": "The Corrs",
-      "mbid": "acf6c776-d0f6-4239-b5a2-a45a613ffa52"
+      "name": "The Corrs"
     }
   ],
   "label": {
@@ -135,6 +132,5 @@
       "name": "Mitchell Froom"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

@@ -13,7 +13,6 @@
     }
   ],
   "materialized_at": "2026-05-13T13:02:18.322Z",
-  "mbid": "9c8b0a8d-ffbc-4e82-ad4e-15f276043b9a",
   "type": "track",
   "editorial_teaser": "A haunting, minute-long interlude from Boards of Canada's debut masterpiece that perfectly captures their signature blend of analog warmth and nostalgic mystery.",
   "cover_url": "https://f4.bcbits.com/img/a3351001335_10.jpg",
@@ -23,20 +22,13 @@
     {
       "slug": "artist:boards-of-canada",
       "type": "artist",
-      "name": "Boards of Canada",
-      "mbid": "69158f97-4c07-4c4e-baf8-4e4ab1ed666e"
+      "name": "Boards of Canada"
     }
   ],
   "project": {
     "slug": "project:music-has-the-right-to-children",
     "type": "project",
     "name": "Music Has The Right To Children"
-  },
-  "label": {
-    "slug": "label:skam",
-    "type": "label",
-    "name": "Skam",
-    "mbid": "5c5bc5b7-13a7-49c7-935c-4ec9686d9cae"
   },
   "genres": [
     {
@@ -65,7 +57,6 @@
       "name": "Boards of Canada"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

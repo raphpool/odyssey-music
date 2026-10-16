@@ -25,17 +25,14 @@
     "search_provider": "tavily"
   },
   "disambiguator": "1995 album by the band Shelter",
-  "mbid": "a832ceda-e5ca-3f3c-8ccc-96a5b221297d",
   "type": "project",
   "editorial_pitch": "A pivotal 1995 hardcore punk album that blended melodic aggression with the spiritual philosophy of the Hare Krishna movement, establishing a definitive sound for the Krishnacore subgenre.",
   "year": "1995",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:shelter",
       "type": "artist",
-      "name": "Shelter",
-      "mbid": "d5157104-76b1-4b8b-90c2-9ff994f940db"
+      "name": "Shelter"
     }
   ],
   "label": {
@@ -132,6 +129,5 @@
       "name": "John Porcelly"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

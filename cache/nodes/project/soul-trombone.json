@@ -13,17 +13,14 @@
     }
   ],
   "materialized_at": "2026-05-13T13:10:11.561Z",
-  "mbid": "3be6b79d-e961-3148-9956-01e14078fb3a",
   "type": "project",
   "editorial_pitch": "An essential hard bop showcase, Soul Trombone features jazz trombonist Curtis Fuller leading a stellar ensemble—including Freddie Hubbard and Jimmy Heath—through a set of sharp, soulful originals and inventive standard arrangements.",
   "year": "1961",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:curtis-fuller",
       "type": "artist",
-      "name": "Curtis Fuller",
-      "mbid": "006307bc-af41-4da1-aa11-b35a9c6f0316"
+      "name": "Curtis Fuller"
     }
   ],
   "label": {
@@ -84,6 +81,5 @@
       "name": "Bob Thiele"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

@@ -17,18 +17,15 @@
     }
   ],
   "materialized_at": "2026-05-13T13:03:25.697Z",
-  "mbid": "a1d4a471-bae9-4d0c-82d5-751ce37a5793",
   "type": "project",
   "editorial_pitch": "An intense, high-concept odyssey into the afterlife, blending frenetic jazz fusion, experimental electronic textures, and hip-hop in one of Flying Lotus's most ambitious works.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/d/df/You%27re_Dead%21.jpg",
   "year": "2014",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:flying-lotus",
       "type": "artist",
-      "name": "Flying Lotus",
-      "mbid": "fc7376fe-1a6f-4414-b4a7-83f50ed59c92"
+      "name": "Flying Lotus"
     }
   ],
   "label": {
@@ -80,6 +77,5 @@
       "name": "Flying Lotus"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

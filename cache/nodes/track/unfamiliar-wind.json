@@ -17,7 +17,6 @@
     }
   ],
   "materialized_at": "2026-05-13T12:53:39.543Z",
-  "mbid": "c88d96e0-4b55-4337-a28a-e285d66268c9",
   "type": "track",
   "editorial_teaser": "A haunting and atmospheric masterwork from Brian Eno's 1982 landmark album 'Ambient 4: On Land', where layered soundscapes evoke the essence of a physical, dreamlike landscape.",
   "year": "1982",
@@ -25,20 +24,13 @@
     {
       "slug": "artist:brian-eno",
       "type": "artist",
-      "name": "Brian Eno",
-      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+      "name": "Brian Eno"
     }
   ],
   "project": {
     "slug": "project:ambient-4-on-land",
     "type": "project",
     "name": "Ambient 4: On Land"
-  },
-  "label": {
-    "slug": "label:editions-eg",
-    "type": "label",
-    "name": "Editions EG",
-    "mbid": "05674da4-44db-4db3-8724-2a19870d5189"
   },
   "genres": [
     {
@@ -55,7 +47,6 @@
       "name": "Brian Eno"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

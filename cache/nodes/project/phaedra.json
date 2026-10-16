@@ -9,57 +9,12 @@
     }
   ],
   "materialized_at": "2026-05-13T12:38:21.248Z",
-  "mbid": "866c88fa-a18b-3739-9814-2ad215e5e11a",
   "type": "project",
   "editorial_pitch": "The 1974 breakthrough by German electronic pioneers Tangerine Dream, *Phaedra* defined the Berlin School sound with its revolutionary use of modular Moog sequencers and atmospheric Mellotron textures.",
   "year": "1974",
-  "release_type": "album",
-  "artists": [
-    {
-      "slug": "artist:tangerine-dream",
-      "type": "artist",
-      "name": "Tangerine Dream",
-      "mbid": "23d8426c-18c7-46e6-a51d-7395bd43c641"
-    }
-  ],
-  "label": {
-    "slug": "label:virgin",
-    "type": "label",
-    "name": "Virgin",
-    "mbid": "49b58bdb-3d74-40c6-956a-4c4b46115c9c"
-  },
+  "artists": [],
   "genres": [],
-  "tracklist": [
-    {
-      "slug": "track:phaedra--tangerine-dream",
-      "type": "track",
-      "name": "Phaedra",
-      "mbid": "8f9ecd4d-9010-4acb-8132-b89453fc82d2",
-      "artist": "Tangerine Dream"
-    },
-    {
-      "slug": "track:mysterious-semblance-at-the-strand-of-nightmares--tangerine-dream",
-      "type": "track",
-      "name": "Mysterious Semblance at the Strand of Nightmares",
-      "mbid": "3df2f342-aafc-4a7c-9b4c-6afa4abd7744",
-      "artist": "Tangerine Dream"
-    },
-    {
-      "slug": "track:movements-of-a-visionary--tangerine-dream",
-      "type": "track",
-      "name": "Movements of a Visionary",
-      "mbid": "8f8cc91f-0bca-4351-90d4-ef334ac0a0cf",
-      "artist": "Tangerine Dream"
-    },
-    {
-      "slug": "track:sequent-c--tangerine-dream",
-      "type": "track",
-      "name": "Sequent C’",
-      "mbid": "2475d69a-347f-42d9-bff2-55f0e4e84d16",
-      "artist": "Tangerine Dream"
-    }
-  ],
+  "tracklist": [],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

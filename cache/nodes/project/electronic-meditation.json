@@ -9,18 +9,15 @@
     }
   ],
   "materialized_at": "2026-05-13T12:51:51.143Z",
-  "mbid": "a7305321-d4e8-3a81-be61-665dc3bb1dbf",
   "type": "project",
   "editorial_pitch": "Electronic Meditation is the wild, unrefined, and seminal debut album by German pioneers Tangerine Dream, capturing a fleeting moment of pure avant-garde experimentation before the group pivoted toward their iconic cosmic synthesizer soundscapes. Recorded in a Berlin factory in 1969, the album remains a singular, gritty document of free jazz, psychedelia, and proto-electronic rock that features the only studio collaboration between Edgar Froese, Klaus Schulze, and Conrad Schnitzler.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/0/08/Electronic_Meditation.png",
   "year": "1970",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:tangerine-dream",
       "type": "artist",
-      "name": "Tangerine Dream",
-      "mbid": "23d8426c-18c7-46e6-a51d-7395bd43c641"
+      "name": "Tangerine Dream"
     }
   ],
   "label": {
@@ -81,6 +78,5 @@
       "name": "Tangerine Dream"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

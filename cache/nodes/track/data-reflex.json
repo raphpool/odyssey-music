@@ -13,28 +13,19 @@
     }
   ],
   "materialized_at": "2026-05-13T12:57:50.141Z",
-  "mbid": "272f25e7-3975-48a9-a689-fa4b1b00c988",
   "type": "track",
   "editorial_teaser": "A precise and immersive piece of granular microsound, \"data.reflex\" is a standout track from Ryoji Ikeda's 2005 album *dataplex*, demonstrating his mastery of transforming binary data into complex, rhythmic auditory textures.",
-  "year": "2005",
   "artists": [
     {
       "slug": "artist:ryoji-ikeda",
       "type": "artist",
-      "name": "Ryoji Ikeda",
-      "mbid": "bba24968-a575-4b38-8c38-06f7ab6de8c8"
+      "name": "Ryoji Ikeda"
     }
   ],
   "project": {
     "slug": "project:dataplex",
     "type": "project",
     "name": "dataplex"
-  },
-  "label": {
-    "slug": "label:raster-noton",
-    "type": "label",
-    "name": "Raster‐Noton",
-    "mbid": "6f4640eb-0881-40b4-a9ac-2a68ad3af0ca"
   },
   "genres": [
     {
@@ -63,7 +54,6 @@
       "name": "Ryoji Ikeda"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

@@ -13,17 +13,14 @@
     }
   ],
   "materialized_at": "2026-05-13T12:50:06.267Z",
-  "mbid": "20dcf1c6-73ed-42ab-8f78-ec8408db1012",
   "type": "project",
   "editorial_pitch": "A smooth, pop-reggae cover released in 1990 by UB40, featuring their characteristic polished production and distinctive, soul-infused vocal style.",
   "year": "1990",
-  "release_type": "single",
   "artists": [
     {
       "slug": "artist:ub40",
       "type": "artist",
-      "name": "UB40",
-      "mbid": "7113aab7-628f-4050-ae49-dbecac110ca8"
+      "name": "UB40"
     }
   ],
   "label": {
@@ -63,6 +60,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

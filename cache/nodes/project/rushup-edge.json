@@ -13,19 +13,10 @@
     }
   ],
   "materialized_at": "2026-05-13T13:04:03.503Z",
-  "mbid": "8af1251f-ce01-3baf-b960-93c00e7baf45",
   "type": "project",
   "editorial_pitch": "A high-energy masterclass in acid techno and drill and bass, Rushup Edge stands as one of Richard D. James' most focused and exhilarating studio projects released under his enigmatic The Tuss alias.",
   "year": "2007",
-  "release_type": "album",
-  "artists": [
-    {
-      "slug": "artist:the-tuss",
-      "type": "artist",
-      "name": "The Tuss",
-      "mbid": "09292e4d-b7ad-476b-86d9-7806303ef8c3"
-    }
-  ],
+  "artists": [],
   "label": {
     "slug": "label:rephlex-records",
     "type": "label",
@@ -90,7 +81,6 @@
       "name": "Aphex Twin"
     }
   ],
-  "personnel": [],
   "related_projects": [
     {
       "slug": "project:confederation-trough",

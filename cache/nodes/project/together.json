@@ -24,17 +24,14 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
-  "mbid": "109fc4f0-65fc-4502-a9e6-2af591814b6e",
   "type": "project",
   "editorial_pitch": "Released in 1980, this country-pop milestone by The Oak Ridge Boys captures the quartet's polished harmonic signature at the height of their crossover success.",
   "year": "1980",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:the-oak-ridge-boys",
       "type": "artist",
-      "name": "The Oak Ridge Boys",
-      "mbid": "1089f50b-10c3-47ef-8b21-b0b899c827d8"
+      "name": "The Oak Ridge Boys"
     }
   ],
   "label": {
@@ -74,6 +71,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

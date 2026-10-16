@@ -17,34 +17,19 @@
     }
   ],
   "materialized_at": "2026-05-13T13:16:36.810Z",
-  "mbid": "080a0729-2081-403d-9e21-efb4b95f86f4",
   "type": "track",
   "editorial_teaser": "\"Anti War Dub\" is a seminal track in the development of early dubstep, released in 2006 by the British production duo Digital Mystikz (consisting of Mala and Coki) on their influential imprint, DMZ.",
-  "year": "2006",
   "artists": [
     {
       "slug": "artist:digital-mystikz",
       "type": "artist",
-      "name": "Digital Mystikz",
-      "mbid": "2c1583ab-3bfa-41b9-b849-4d4b5d891339"
-    },
-    {
-      "slug": "artist:spen-g",
-      "type": "artist",
-      "name": "Spen G",
-      "mbid": "cbd1d11c-2e07-484e-a1dd-a1f39801f40e"
+      "name": "Digital Mystikz"
     }
   ],
   "project": {
     "slug": "project:haunted-anti-war-dub",
     "type": "project",
     "name": "Haunted / Anti War Dub"
-  },
-  "label": {
-    "slug": "label:dmz",
-    "type": "label",
-    "name": "DMZ",
-    "mbid": "7c47667f-4e5c-46aa-ad9f-78d1ee83067e"
   },
   "genres": [
     {
@@ -66,7 +51,6 @@
       "name": "Coki"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

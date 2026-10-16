@@ -29,18 +29,15 @@
     "search_provider": "tavily"
   },
   "disambiguator": "electronic album by Monolake",
-  "mbid": "d08d33a0-a2e4-3863-aa99-a68cecc904b8",
   "type": "project",
   "editorial_pitch": "A seminal work of late-90s experimental electronic music that redefined the possibilities of micro-rhythms and digital sound design.",
   "cover_url": "https://f4.bcbits.com/img/a3803758404_2.jpg",
   "year": "1999",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:monolake",
       "type": "artist",
-      "name": "Monolake",
-      "mbid": "cedf92fe-eba1-45e2-ba16-b1b6af5169b8"
+      "name": "Monolake"
     }
   ],
   "label": {
@@ -62,71 +59,7 @@
       "qid": "Q105763581"
     }
   ],
-  "tracklist": [
-    {
-      "slug": "track:untitled--monolake",
-      "type": "track",
-      "name": "[untitled]",
-      "mbid": "164b6bfc-c716-4fdd-a2dd-d40d49ff48df",
-      "artist": "Monolake"
-    },
-    {
-      "slug": "track:abundance--monolake",
-      "type": "track",
-      "name": "Abundance",
-      "mbid": "8d0c178d-9742-438d-87b4-e5b4392a2f2a",
-      "artist": "Monolake"
-    },
-    {
-      "slug": "track:gecko--monolake",
-      "type": "track",
-      "name": "Gecko",
-      "mbid": "79a4d9d2-31b2-48a7-b962-da12a32e1d4d",
-      "artist": "Monolake"
-    },
-    {
-      "slug": "track:tangent-i--monolake",
-      "type": "track",
-      "name": "Tangent I",
-      "mbid": "3ec6639e-baaf-466a-84f8-8176e1fc0956",
-      "artist": "Monolake"
-    },
-    {
-      "slug": "track:tangent-ii--monolake",
-      "type": "track",
-      "name": "Tangent II",
-      "mbid": "e7d41c1b-450e-4513-96ed-1510e1629cec",
-      "artist": "Monolake"
-    },
-    {
-      "slug": "track:perpetuum--monolake",
-      "type": "track",
-      "name": "Perpetuum",
-      "mbid": "45a39d8b-8c9a-4fcb-9e0e-9e9a5491c927",
-      "artist": "Monolake"
-    },
-    {
-      "slug": "track:amazon--monolake",
-      "type": "track",
-      "name": "Amazon",
-      "mbid": "9520285f-2719-4d1d-9e7b-2499252e46c9",
-      "artist": "Monolake"
-    },
-    {
-      "slug": "track:ginza--monolake",
-      "type": "track",
-      "name": "Ginza",
-      "mbid": "1b6d5bea-edcb-41e2-85fc-904e5e23d830",
-      "artist": "Monolake"
-    },
-    {
-      "slug": "track:terminal--monolake",
-      "type": "track",
-      "name": "Terminal",
-      "mbid": "8dfbf599-de2f-4b2c-870a-a25c723bbd45",
-      "artist": "Monolake"
-    }
-  ],
+  "tracklist": [],
   "producers": [
     {
       "slug": "artist:robert-henke",
@@ -139,6 +72,5 @@
       "name": "Gerhard Behles"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

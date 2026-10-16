@@ -13,7 +13,6 @@
     }
   ],
   "materialized_at": "2026-05-13T12:43:30.742Z",
-  "mbid": "080b1d95-ab39-4c88-b080-22bfaa37d6a9",
   "type": "track",
   "editorial_teaser": "\"Raum\" is a hypnotic, high-energy electronic track from German duo Digitalism, appearing on their 2018 EP 'Zdar C1u6'. The song blends expansive synth textures with a propulsive, club-ready rhythm that remains true to the pair's signature dance-floor aesthetic.",
   "year": "2018",
@@ -21,20 +20,13 @@
     {
       "slug": "artist:digitalism",
       "type": "artist",
-      "name": "Digitalism",
-      "mbid": "7b52603c-a84c-4a76-8dc8-899bb4dd9fa7"
+      "name": "Digitalism"
     }
   ],
   "project": {
     "slug": "project:zdar-c1u6",
     "type": "project",
     "name": "Zdar C1u6"
-  },
-  "label": {
-    "slug": "label:magnetism-recording-co",
-    "type": "label",
-    "name": "Magnetism Recording Co.",
-    "mbid": "fd4f772b-af81-4b8c-8421-6876eed98ffa"
   },
   "genres": [
     {
@@ -51,7 +43,6 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

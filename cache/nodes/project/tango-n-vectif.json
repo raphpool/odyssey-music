@@ -13,17 +13,14 @@
     }
   ],
   "materialized_at": "2026-05-13T12:40:54.335Z",
-  "mbid": "7b0f7a83-8d31-3bc8-81cb-66ea119a5090",
   "type": "project",
   "editorial_pitch": "Released in 1993 on the legendary Rephlex Records, Tango N' Vectif is the seminal debut from Mike Paradinas (as µ-Ziq), masterfully blending industrial percussion with lush, melodic IDM.",
   "year": "1993",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:ziq",
       "type": "artist",
-      "name": "µ-Ziq",
-      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
+      "name": "µ-Ziq"
     }
   ],
   "label": {
@@ -141,6 +138,5 @@
       "name": "Michael Paradinas"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

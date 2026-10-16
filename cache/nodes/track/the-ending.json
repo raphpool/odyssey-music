@@ -9,7 +9,6 @@
     }
   ],
   "materialized_at": "2026-05-13T12:43:09.565Z",
-  "mbid": "1c1e2895-59bd-43c4-a791-299b6a9a1bae",
   "type": "track",
   "editorial_teaser": "\"The Ending\" is a reflective, atmospheric pop track from Ellie Goulding's 2012 album, Halcyon, capturing the artist's signature blend of emotional vulnerability and intricate electronic production.",
   "year": "2012",
@@ -17,23 +16,9 @@
     {
       "slug": "artist:ellie-goulding",
       "type": "artist",
-      "name": "Ellie Goulding",
-      "mbid": "33ca19f4-18c8-4411-98df-ac23890ce9f5"
+      "name": "Ellie Goulding"
     }
   ],
-  "project": {
-    "slug": "project:halcyon--ellie-goulding",
-    "type": "project",
-    "name": "Halcyon",
-    "mbid": "d1306db5-8c22-410e-b810-66f9b5e20d2a",
-    "artist": "Ellie Goulding"
-  },
-  "label": {
-    "slug": "label:polydor",
-    "type": "label",
-    "name": "Polydor",
-    "mbid": "ce24ab18-1bd6-4293-a486-546d13d6a5e2"
-  },
   "genres": [
     {
       "slug": "genre:pop",
@@ -49,7 +34,6 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

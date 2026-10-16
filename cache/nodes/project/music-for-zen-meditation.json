@@ -9,17 +9,14 @@
     }
   ],
   "materialized_at": "2026-05-13T12:36:50.947Z",
-  "mbid": "26b6de2d-d30c-3e7d-8618-1cb669e8b911",
   "type": "project",
   "editorial_pitch": "A visionary cross-cultural synthesis, 'Music for Zen Meditation' (1964) stands as a foundational bridge between avant-garde jazz and the meditative aesthetics that would eventually coalesce into the New Age genre. Clarinetist Tony Scott, alongside traditional Japanese virtuosos Shinichi Yuize and Hōzan Yamamoto, crafts a sparse, improvised soundscape that prioritizes stillness and atmosphere over traditional jazz swing. Recorded in a period when East-West musical exchange was still burgeoning, the album remains a singular, influential document of boundary-pushing improvisation that transcends the limitations of its era's conventional genre labels. Its influence ripples forward, from ambient pioneers to contemporary electronic artists like Four Tet, who notably sampled the album's ethereal textures. It is both a historical artifact of cultural fusion and an enduringly tranquil listening experience.",
   "year": "1964",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:tony-scott",
       "type": "artist",
-      "name": "Tony Scott",
-      "mbid": "a36c67b0-8712-4e60-8a52-f8c89fac20c7"
+      "name": "Tony Scott"
     },
     {
       "slug": "artist:shinichi-yuize",
@@ -51,71 +48,7 @@
       "qid": "Q213121"
     }
   ],
-  "tracklist": [
-    {
-      "slug": "track:is-not-all-one--tony-scott",
-      "type": "track",
-      "name": "Is Not All One?",
-      "mbid": "fd50999f-0391-4b2c-a705-94321dc0d30d",
-      "artist": "Tony Scott"
-    },
-    {
-      "slug": "track:the-murmuring-sound-of-the-mountain-stream--tony-scott",
-      "type": "track",
-      "name": "The Murmuring Sound of the Mountain Stream",
-      "mbid": "2fd3f029-f5cb-4e01-92e3-59e8e820da7a",
-      "artist": "Tony Scott"
-    },
-    {
-      "slug": "track:a-quivering-leaf-ask-the-winds--tony-scott",
-      "type": "track",
-      "name": "A Quivering Leaf, Ask the Winds",
-      "mbid": "7a80a0e6-982c-43c9-9e4c-b560e4da14d2",
-      "artist": "Tony Scott"
-    },
-    {
-      "slug": "track:after-the-snow-the-fragrance--tony-scott",
-      "type": "track",
-      "name": "After the Snow, the Fragrance",
-      "mbid": "0f063666-bbf9-4957-a2d9-69d392e14ff2",
-      "artist": "Tony Scott"
-    },
-    {
-      "slug": "track:to-drift-like-clouds--tony-scott",
-      "type": "track",
-      "name": "To Drift Like Clouds",
-      "mbid": "2a6cf976-d934-4b81-acdb-5453705fbaf5",
-      "artist": "Tony Scott"
-    },
-    {
-      "slug": "track:za-zen-meditation--tony-scott",
-      "type": "track",
-      "name": "Za‐Zen (Meditation)",
-      "mbid": "6d2f4860-f9d8-4bfe-8137-c17e3198b4a4",
-      "artist": "Tony Scott"
-    },
-    {
-      "slug": "track:prajna-paramita-hridaya-sutra-sutra-chant--tony-scott",
-      "type": "track",
-      "name": "Prajna‐Paramita‐Hridaya Sutra (Sutra Chant)",
-      "mbid": "44326e7a-74b4-4e73-8ead-ce62708637cc",
-      "artist": "Tony Scott"
-    },
-    {
-      "slug": "track:sanzen-moment-of-truth--tony-scott",
-      "type": "track",
-      "name": "Sanzen (Moment of Truth)",
-      "mbid": "d40f89e4-eb8d-47cf-a52f-4feea07894f3",
-      "artist": "Tony Scott"
-    },
-    {
-      "slug": "track:satori-enlightenment--tony-scott",
-      "type": "track",
-      "name": "Satori (Enlightenment)",
-      "mbid": "edb9a26a-dd37-40e3-8a43-676c2765d56a",
-      "artist": "Tony Scott"
-    }
-  ],
+  "tracklist": [],
   "producers": [
     {
       "slug": "artist:richard-seidel",
@@ -123,6 +56,5 @@
       "name": "Richard Seidel"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

@@ -13,18 +13,15 @@
     }
   ],
   "materialized_at": "2026-05-13T12:55:17.484Z",
-  "mbid": "00490137-fa0b-3252-90f7-42b8eea8ae14",
   "type": "project",
   "editorial_pitch": "Released at the height of their global superstardom in 1983, 'Colour by Numbers' stands as the definitive Culture Club statement—a masterclass in blue-eyed soul, infectious pop-hook craftsmanship, and New Wave flair. Featuring the era-defining anthem 'Karma Chameleon', the album cemented the band's cross-Atlantic dominance and remains a quintessential artifact of 80s pop culture.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/9/9f/CultureClubColourByNumbersAlbumcover.jpg",
   "year": "1983",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:culture-club",
       "type": "artist",
-      "name": "Culture Club",
-      "mbid": "81435053-e1a2-48a4-adfd-e89f310c7b38"
+      "name": "Culture Club"
     }
   ],
   "label": {
@@ -111,6 +108,5 @@
       "name": "Steve Levine"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

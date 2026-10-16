@@ -13,28 +13,19 @@
     }
   ],
   "materialized_at": "2026-05-13T12:57:39.239Z",
-  "mbid": "5ea55354-ba3c-4f09-a74c-59a615f2cbc8",
   "type": "track",
   "editorial_teaser": "\"data.complex\" is a track by the Japanese sound artist and composer Ryoji Ikeda, featured on his seminal 2005 album \"dataplex.\" As a pivotal figure in the world of minimal electronic and glitch music, Ikeda designed \"dataplex\" to be more than just a collection of songs; it serves",
-  "year": "2005",
   "artists": [
     {
       "slug": "artist:ryoji-ikeda",
       "type": "artist",
-      "name": "Ryoji Ikeda",
-      "mbid": "bba24968-a575-4b38-8c38-06f7ab6de8c8"
+      "name": "Ryoji Ikeda"
     }
   ],
   "project": {
     "slug": "project:dataplex",
     "type": "project",
     "name": "dataplex"
-  },
-  "label": {
-    "slug": "label:raster-noton",
-    "type": "label",
-    "name": "Raster‐Noton",
-    "mbid": "6f4640eb-0881-40b4-a9ac-2a68ad3af0ca"
   },
   "genres": [
     {
@@ -63,7 +54,6 @@
       "name": "Ryoji Ikeda"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

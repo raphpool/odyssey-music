@@ -9,17 +9,14 @@
     }
   ],
   "materialized_at": "2026-05-13T12:45:24.708Z",
-  "mbid": "3c4072b9-a844-3d49-ac5f-72b06bf79dea",
   "type": "project",
   "editorial_pitch": "A genre-defying masterpiece of late-90s electronica, 'Windowlicker' solidified Aphex Twin's influence with its blend of glitchy R&B, surreal vocal manipulation, and hidden visual easter eggs.",
   "year": "1999",
-  "release_type": "single",
   "artists": [
     {
       "slug": "artist:aphex-twin",
       "type": "artist",
-      "name": "Aphex Twin",
-      "mbid": "f22942a1-6f70-4f48-866e-238cb2308fbd"
+      "name": "Aphex Twin"
     }
   ],
   "label": {
@@ -54,6 +51,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

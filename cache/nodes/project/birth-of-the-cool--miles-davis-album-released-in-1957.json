@@ -29,18 +29,15 @@
     "search_provider": "tavily"
   },
   "disambiguator": "Miles Davis album released in 1957",
-  "mbid": "903d5fe8-ab43-33b2-9411-6738af50de19",
   "type": "project",
   "editorial_pitch": "A landmark 1957 compilation capturing the Miles Davis Nonet’s revolutionary 1949-1950 sessions, which defined the aesthetic of Cool Jazz through lush, carefully arranged orchestrations.",
   "cover_url": "https://www.udiscovermusic.com/wp-content/uploads/2019/04/Miles-Davis-Birth-Of-The-Cool-Album-Cover-web-optimised-820-820x820.jpg",
   "year": "1957",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:miles-davis",
       "type": "artist",
-      "name": "Miles Davis",
-      "mbid": "561d854a-6a28-4aa7-8c99-323e6ce46c2a"
+      "name": "Miles Davis"
     }
   ],
   "label": {
@@ -131,7 +128,6 @@
       "name": "Pete Rugolo"
     }
   ],
-  "personnel": [],
   "related_projects": [
     {
       "slug": "project:the-complete-birth-of-the-cool",

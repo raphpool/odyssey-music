@@ -9,34 +9,24 @@
     }
   ],
   "materialized_at": "2026-05-13T12:43:07.650Z",
-  "mbid": "eb1ca96e-6245-4e01-90c0-c3e4c8b3605d",
   "type": "track",
   "editorial_teaser": "A contemplative, atmospheric collaboration between cellist Peter Gregson and pianist Lambert, blending modern classical depth with minimalist piano textures.",
-  "year": "2020",
   "artists": [
     {
       "slug": "artist:peter-gregson",
       "type": "artist",
-      "name": "Peter Gregson",
-      "mbid": "9f46a6ed-36ab-413a-bc3b-b3cdb1ce002c"
+      "name": "Peter Gregson"
     },
     {
       "slug": "artist:lambert",
       "type": "artist",
-      "name": "Lambert",
-      "mbid": "ad6568eb-4f17-43dd-a799-46c7eb7e2fee"
+      "name": "Lambert"
     }
   ],
   "project": {
     "slug": "project:the-dive",
     "type": "project",
     "name": "The Dive"
-  },
-  "label": {
-    "slug": "label:von-der-haardt",
-    "type": "label",
-    "name": "von der haardt",
-    "mbid": "d5725ba5-b10d-4d0c-a832-b546431a2820"
   },
   "genres": [
     {
@@ -53,7 +43,6 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

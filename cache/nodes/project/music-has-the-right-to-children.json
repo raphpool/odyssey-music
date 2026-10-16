@@ -13,18 +13,15 @@
     }
   ],
   "materialized_at": "2026-05-13T12:39:37.390Z",
-  "mbid": "17d74d52-c92b-3b8d-9f87-218ab2d1c4a0",
   "type": "project",
   "editorial_pitch": "A definitive masterpiece of 1990s electronic music, 'Music Has the Right to Children' blends warm, nostalgic analog synthesis with crisp, mid-tempo hip-hop beats, creating a uniquely haunted and comforting atmosphere.",
   "cover_url": "https://fastly-s3.allmusic.com/release/mr0001082136/front/400/XAYqssGoiuDccQsyVW3ueQ4Q1ghY8VaPylnm7PwcKNY=.jpg",
   "year": "1998",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:boards-of-canada",
       "type": "artist",
-      "name": "Boards of Canada",
-      "mbid": "69158f97-4c07-4c4e-baf8-4e4ab1ed666e"
+      "name": "Boards of Canada"
     }
   ],
   "label": {
@@ -101,6 +98,5 @@
       "name": "Boards of Canada"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

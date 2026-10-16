@@ -13,18 +13,15 @@
     }
   ],
   "materialized_at": "2026-05-13T13:16:21.116Z",
-  "mbid": "3528b7a1-6215-4ee7-a8ab-a8bfdf7f7c1b",
   "type": "project",
   "editorial_pitch": "An essential document of the 2010 dubstep underground, 'Return II Space' captures the deep, skeletal, and meditative sound pioneered by Digital Mystikz. Featuring tracks released across the legendary DMZ label, it remains a definitive exploration of the genre's space-conscious, bass-heavy aesthetic.",
   "cover_url": "https://cdn.sonemic.net/i/600/w/06fd827968506e5ee9cfe2e86f3079bd/12786546/digital-mystikz-return-ii-space-Cover-Art.jpg",
   "year": "2010",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:digital-mystikz",
       "type": "artist",
-      "name": "Digital Mystikz",
-      "mbid": "2c1583ab-3bfa-41b9-b849-4d4b5d891339"
+      "name": "Digital Mystikz"
     }
   ],
   "label": {
@@ -85,6 +82,5 @@
       "name": "Mala"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

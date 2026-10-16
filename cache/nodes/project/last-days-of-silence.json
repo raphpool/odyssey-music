@@ -17,17 +17,14 @@
     }
   ],
   "materialized_at": "2026-05-13T12:45:38.131Z",
-  "mbid": "af9cd3db-1854-371a-a9d6-b01cab0759c5",
   "type": "project",
   "editorial_pitch": "A definitive late-era B12 masterpiece that bridges the gap between classic 90s intelligent techno and sophisticated, modern electronic sound design.",
   "year": "2008",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:b12",
       "type": "artist",
-      "name": "B12",
-      "mbid": "fa187203-5d60-4e3d-9042-cac7de849649"
+      "name": "B12"
     }
   ],
   "label": {
@@ -49,135 +46,7 @@
       "qid": "Q9149801"
     }
   ],
-  "tracklist": [
-    {
-      "slug": "track:hall-of-mirrors-digitonal-s-string-in-space-remix--b12",
-      "type": "track",
-      "name": "Hall of Mirrors (Digitonal’s String in Space remix)",
-      "mbid": "06726e7d-a483-4aef-a722-301ff3409b25",
-      "artist": "B12"
-    },
-    {
-      "slug": "track:magnetic-fields--b12",
-      "type": "track",
-      "name": "Magnetic Fields",
-      "mbid": "11d9d49d-b5be-4c92-9d3d-167131f90c5d",
-      "artist": "B12"
-    },
-    {
-      "slug": "track:32-lineup--b12",
-      "type": "track",
-      "name": "32 Lineup",
-      "mbid": "a8553073-b067-4882-a053-f5fe39aa9435",
-      "artist": "B12"
-    },
-    {
-      "slug": "track:one--b12",
-      "type": "track",
-      "name": "One",
-      "mbid": "d5df4e21-5614-425f-a06e-115a7db5cac1",
-      "artist": "B12"
-    },
-    {
-      "slug": "track:don-t-be-afraid--b12",
-      "type": "track",
-      "name": "Don’t Be Afraid",
-      "mbid": "8c6d4448-5587-4430-a558-4bb55d1868bd",
-      "artist": "B12"
-    },
-    {
-      "slug": "track:static-glitch--b12",
-      "type": "track",
-      "name": "Static Glitch",
-      "mbid": "cb022694-7a29-493c-88b0-2fba4b4a2458",
-      "artist": "B12"
-    },
-    {
-      "slug": "track:in-control--b12",
-      "type": "track",
-      "name": "In Control",
-      "mbid": "1e48014b-867e-4b7f-8668-980c7de21a4e",
-      "artist": "B12"
-    },
-    {
-      "slug": "track:beyond-reason--b12",
-      "type": "track",
-      "name": "Beyond Reason",
-      "mbid": "5b2d66e3-fa1c-4aac-942c-298cbf85e856",
-      "artist": "B12"
-    },
-    {
-      "slug": "track:slope--b12",
-      "type": "track",
-      "name": "Slope",
-      "mbid": "33a78e28-6897-4bbb-ab53-70731687e388",
-      "artist": "B12"
-    },
-    {
-      "slug": "track:omni-therapy--b12",
-      "type": "track",
-      "name": "Omni Therapy",
-      "mbid": "c02b93de-419e-448d-a998-e22d299f50d8",
-      "artist": "B12"
-    },
-    {
-      "slug": "track:ashamed-of-me--b12",
-      "type": "track",
-      "name": "Ashamed of Me",
-      "mbid": "1c076f9e-a483-4888-b0b1-f5a8c72745e3",
-      "artist": "B12"
-    },
-    {
-      "slug": "track:more-than-one-redcell-remix--b12",
-      "type": "track",
-      "name": "More Than One (Redcell remix)",
-      "mbid": "d5e4d936-803a-433a-9649-47c3b4382e46",
-      "artist": "B12"
-    },
-    {
-      "slug": "track:isolation-on-demuba--b12",
-      "type": "track",
-      "name": "Isolation on Demuba",
-      "mbid": "f9a0b069-9d27-4cef-b68c-15044331d099",
-      "artist": "B12"
-    },
-    {
-      "slug": "track:attempt-too-live--b12",
-      "type": "track",
-      "name": "Attempt Too (live)",
-      "mbid": "135049d4-43d8-43e4-8476-1598a7bf08ef",
-      "artist": "B12"
-    },
-    {
-      "slug": "track:pursuit-live--b12",
-      "type": "track",
-      "name": "Pursuit (live)",
-      "mbid": "27e509e0-47f3-4ddd-b7c4-17927fa06eb7",
-      "artist": "B12"
-    },
-    {
-      "slug": "track:zoo-zoo-live--b12",
-      "type": "track",
-      "name": "Zoo Zoo (live)",
-      "mbid": "fcdd5042-7033-42a9-9234-5f428b6896ff",
-      "artist": "B12"
-    },
-    {
-      "slug": "track:particle-3-live--b12",
-      "type": "track",
-      "name": "Particle 3 (live)",
-      "mbid": "81efef55-e0d0-40b8-9fc9-fbc66d25a264",
-      "artist": "B12"
-    },
-    {
-      "slug": "track:twisted-muva-live--b12",
-      "type": "track",
-      "name": "Twisted Muva (live)",
-      "mbid": "5df276dc-f357-4494-b6c8-e184ce370ada",
-      "artist": "B12"
-    }
-  ],
+  "tracklist": [],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

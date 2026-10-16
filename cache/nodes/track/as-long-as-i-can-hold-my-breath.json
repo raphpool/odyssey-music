@@ -24,7 +24,6 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
-  "mbid": "459e388f-833a-47fa-863f-1dd4216db9da",
   "type": "track",
   "editorial_teaser": "\"As Long as I Can Hold My Breath\" is a quintessential piece by the American ambient composer Harold Budd, originally appearing on his 2005 album \"Avalon Sutra.\" Budd, a pivotal figure in the development of minimalism and ambient music, is renowned for his \"soft pedal\" piano techn",
   "year": "2005",
@@ -33,20 +32,13 @@
     {
       "slug": "artist:harold-budd",
       "type": "artist",
-      "name": "Harold Budd",
-      "mbid": "5c864a6f-146e-4225-986d-3295ce90f784"
+      "name": "Harold Budd"
     }
   ],
   "project": {
     "slug": "project:avalon-sutra",
     "type": "project",
     "name": "Avalon Sutra"
-  },
-  "label": {
-    "slug": "label:samadhisound",
-    "type": "label",
-    "name": "Samadhisound",
-    "mbid": "bf462cab-4a06-4e64-ac71-d68b02f0f0e9"
   },
   "genres": [
     {
@@ -69,7 +61,6 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

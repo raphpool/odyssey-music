@@ -9,17 +9,14 @@
     }
   ],
   "materialized_at": "2026-05-13T12:54:28.299Z",
-  "mbid": "a415fc9b-1516-303e-b354-fc3a5b269f1b",
   "type": "project",
   "editorial_pitch": "A seminal ambient house concept album, 'Chill Out' is a continuous, immersive soundscape that chronicles a mythical nocturnal journey across the American Gulf Coast. Featuring a masterful blend of synthesized textures, field recordings, and eclectic samples, the project remains a landmark in the evolution of electronic music for its minimalist yet highly atmospheric approach.",
   "year": "1990",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:the-klf",
       "type": "artist",
-      "name": "The KLF",
-      "mbid": "8092b8b7-235e-4844-9f72-95a9d5a73dbf"
+      "name": "The KLF"
     }
   ],
   "label": {
@@ -47,15 +44,7 @@
       "qid": "Q1744304"
     }
   ],
-  "tracklist": [
-    {
-      "slug": "track:chill-out--the-klf",
-      "type": "track",
-      "name": "Chill Out",
-      "mbid": "b2cbbfba-b9c6-401c-a33a-f36d1a54981c",
-      "artist": "The KLF"
-    }
-  ],
+  "tracklist": [],
   "producers": [
     {
       "slug": "artist:the-klf",
@@ -63,6 +52,5 @@
       "name": "The KLF"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

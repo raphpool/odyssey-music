@@ -9,17 +9,14 @@
     }
   ],
   "materialized_at": "2026-05-13T13:02:48.227Z",
-  "mbid": "f4168d4e-c0e8-388f-8baa-4de058d852e5",
   "type": "project",
   "editorial_pitch": "A landmark of the IDM era, this album showcases Squarepusher's unique blend of drill 'n' bass percussion and jazz-influenced bass melodies.",
   "year": "1997",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:squarepusher",
       "type": "artist",
-      "name": "Squarepusher",
-      "mbid": "4d86ad4e-28d8-4e9f-8cf4-735c57060fdc"
+      "name": "Squarepusher"
     }
   ],
   "label": {
@@ -48,6 +45,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

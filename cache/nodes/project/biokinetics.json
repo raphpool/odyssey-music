@@ -17,18 +17,15 @@
     }
   ],
   "materialized_at": "2026-05-13T12:41:20.890Z",
-  "mbid": "f1b74973-9fbe-38e7-a10a-5c2f80fd43f4",
   "type": "project",
   "editorial_pitch": "Released on the legendary Chain Reaction imprint in 1996, 'Biokinetics' is a foundational work of minimal, dub-inflected techno that creates a monochromatic, immersive soundscape which significantly influenced the development of ambient techno and experimental electronic music.",
   "cover_url": "https://i.discogs.com/uGCgNtnq27YUoTIp7EV6nD-nzzfAOnvj2Wuqx4HneWI/rs:fit/g:sm/q:40/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY1My0x/MjMyODMxODE4Lmpw/ZWc.jpeg",
   "year": "1996",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:porter-ricks",
       "type": "artist",
-      "name": "Porter Ricks",
-      "mbid": "f2c0d29a-9bef-469f-af6e-a9b5deb21308"
+      "name": "Porter Ricks"
     }
   ],
   "label": {
@@ -99,6 +96,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

@@ -13,17 +13,14 @@
     }
   ],
   "materialized_at": "2026-05-13T12:38:00.689Z",
-  "mbid": "7d5a684e-73a3-325c-a59c-34c9a941d8d6",
   "type": "project",
   "editorial_pitch": "Brian Eno's 1975 masterpiece stands as a definitive bridge between art-pop and ambient, utilizing unconventional studio techniques to create a soundscape that remains as modern today as it was at its inception.",
   "year": "1975",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:brian-eno",
       "type": "artist",
-      "name": "Brian Eno",
-      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+      "name": "Brian Eno"
     }
   ],
   "label": {
@@ -51,106 +48,7 @@
       "qid": "Q25094591"
     }
   ],
-  "tracklist": [
-    {
-      "slug": "track:sky-saw--brian-eno",
-      "type": "track",
-      "name": "Sky Saw",
-      "mbid": "68b5e55a-2af1-41c4-b6d3-afb51487c6bf",
-      "artist": "Brian Eno"
-    },
-    {
-      "slug": "track:over-fire-island--brian-eno",
-      "type": "track",
-      "name": "Over Fire Island",
-      "mbid": "a838fb27-2a57-4829-bd94-adefcdb97a96",
-      "artist": "Brian Eno"
-    },
-    {
-      "slug": "track:st-elmo-s-fire--brian-eno",
-      "type": "track",
-      "name": "St. Elmo’s Fire",
-      "mbid": "1db26d16-7c8e-450c-981c-75d6b7e3ad9f",
-      "artist": "Brian Eno"
-    },
-    {
-      "slug": "track:in-dark-trees--brian-eno",
-      "type": "track",
-      "name": "In Dark Trees",
-      "mbid": "cf6ab6bb-ebcb-42d7-b311-a11a904d7e9b",
-      "artist": "Brian Eno"
-    },
-    {
-      "slug": "track:the-big-ship--brian-eno",
-      "type": "track",
-      "name": "The Big Ship",
-      "mbid": "8086b7f8-7c46-4374-a36f-4d4d8e588a69",
-      "artist": "Brian Eno"
-    },
-    {
-      "slug": "track:i-ll-come-running--brian-eno",
-      "type": "track",
-      "name": "I’ll Come Running",
-      "mbid": "9d022130-b6ef-44f4-936b-e1b1990d76d8",
-      "artist": "Brian Eno"
-    },
-    {
-      "slug": "track:another-green-world--brian-eno",
-      "type": "track",
-      "name": "Another Green World",
-      "mbid": "ecf9b6eb-b148-47c4-8c8f-382cb78e0528",
-      "artist": "Brian Eno"
-    },
-    {
-      "slug": "track:sombre-reptiles--brian-eno",
-      "type": "track",
-      "name": "Sombre Reptiles",
-      "mbid": "37875255-f3c1-40a1-8d3e-cd559823c433",
-      "artist": "Brian Eno"
-    },
-    {
-      "slug": "track:little-fishes--brian-eno",
-      "type": "track",
-      "name": "Little Fishes",
-      "mbid": "c8288e3b-0008-4fe7-9e5c-0489fe058e2f",
-      "artist": "Brian Eno"
-    },
-    {
-      "slug": "track:golden-hours--brian-eno",
-      "type": "track",
-      "name": "Golden Hours",
-      "mbid": "6d833236-c47f-414f-8121-bdc648cdc0be",
-      "artist": "Brian Eno"
-    },
-    {
-      "slug": "track:becalmed--brian-eno",
-      "type": "track",
-      "name": "Becalmed",
-      "mbid": "c94edc4e-9205-4960-b9c5-67fa19d5dd58",
-      "artist": "Brian Eno"
-    },
-    {
-      "slug": "track:zawinul-lava--brian-eno",
-      "type": "track",
-      "name": "Zawinul/Lava",
-      "mbid": "87eeaec3-60c1-45b0-83ea-987f4a4adbab",
-      "artist": "Brian Eno"
-    },
-    {
-      "slug": "track:everything-merges-with-the-night--brian-eno",
-      "type": "track",
-      "name": "Everything Merges With the Night",
-      "mbid": "bac4b5fb-3793-4835-a56a-0cafde3a2b4f",
-      "artist": "Brian Eno"
-    },
-    {
-      "slug": "track:spirits-drifting--brian-eno",
-      "type": "track",
-      "name": "Spirits Drifting",
-      "mbid": "998abbfa-c581-40ed-8e2c-c6db1de04865",
-      "artist": "Brian Eno"
-    }
-  ],
+  "tracklist": [],
   "producers": [
     {
       "slug": "artist:brian-eno",
@@ -163,7 +61,6 @@
       "name": "Rhett Davies"
     }
   ],
-  "personnel": [],
   "related_projects": [
     {
       "slug": "project:ambient-1-music-for-airports",

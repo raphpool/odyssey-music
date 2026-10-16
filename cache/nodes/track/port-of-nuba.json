@@ -17,7 +17,6 @@
     }
   ],
   "materialized_at": "2026-05-13T13:10:13.256Z",
-  "mbid": "f350d5d0-3d03-4f46-941a-297776b31a38",
   "type": "track",
   "editorial_teaser": "A seminal piece of 1996 dub techno, \"Port Of Nuba\" is a masterclass in atmospheric sound design that defined the influential, minimalist aesthetic of Berlin's Chain Reaction label.",
   "cover_url": "https://i.discogs.com/lxpLMt8Ni3Px6hmJhj2sia7ypulOusU07p6-XbtuXII/rs:fit/g:sm/q:40/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTczOTkt/MTU4MTUzMDk1Ni00/NDA1LmpwZWc.jpeg",
@@ -27,20 +26,13 @@
     {
       "slug": "artist:porter-ricks",
       "type": "artist",
-      "name": "Porter Ricks",
-      "mbid": "f2c0d29a-9bef-469f-af6e-a9b5deb21308"
+      "name": "Porter Ricks"
     }
   ],
   "project": {
     "slug": "project:port-of-nuba-nautical-nuba",
     "type": "project",
     "name": "Port Of Nuba / Nautical Nuba"
-  },
-  "label": {
-    "slug": "label:chain-reaction",
-    "type": "label",
-    "name": "Chain Reaction",
-    "mbid": "04ac00ca-847b-4d1c-8ea6-85cd7719e946"
   },
   "genres": [
     {
@@ -68,7 +60,6 @@
       "name": "Andy Mellwig"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

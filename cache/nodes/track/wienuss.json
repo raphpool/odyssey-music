@@ -9,7 +9,6 @@
     }
   ],
   "materialized_at": "2026-05-13T13:00:45.936Z",
-  "mbid": "c66bfc38-fb6d-4ef6-b43e-63d143a02f72",
   "type": "track",
   "editorial_teaser": "\"Wienuss\" is an electronic track by the German duo Mouse on Mars, released in 2012 as the fourth track on their album *Parastrophics*.",
   "year": "2012",
@@ -17,20 +16,13 @@
     {
       "slug": "artist:mouse-on-mars",
       "type": "artist",
-      "name": "Mouse on Mars",
-      "mbid": "4d4f5d92-0589-42fa-bc0e-1bd73e17a2ce"
+      "name": "Mouse on Mars"
     }
   ],
   "project": {
     "slug": "project:parastrophics",
     "type": "project",
     "name": "Parastrophics"
-  },
-  "label": {
-    "slug": "label:monkeytown-records",
-    "type": "label",
-    "name": "Monkeytown Records",
-    "mbid": "dd5e9af0-a9bb-4e11-9c57-5921c8838945"
   },
   "genres": [
     {
@@ -58,7 +50,6 @@
       "name": "Jan St. Werner"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

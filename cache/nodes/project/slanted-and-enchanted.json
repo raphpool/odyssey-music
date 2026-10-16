@@ -13,19 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:18:42.953Z",
-  "mbid": "869f9eac-2a40-3a41-80a3-6bf2297a7cbc",
   "type": "project",
   "editorial_pitch": "The definitive 1992 debut that redefined indie rock, blending lo-fi charm, cryptic lyrics, and inventive noise-pop hooks into an enduring masterpiece of the underground.",
-  "year": "1992",
-  "release_type": "album",
-  "artists": [
-    {
-      "slug": "artist:pavement",
-      "type": "artist",
-      "name": "Pavement",
-      "mbid": "36bfa85f-737b-41db-a8fc-b8825850ffc3"
-    }
-  ],
+  "artists": [],
   "label": {
     "slug": "label:matador-records",
     "type": "label",
@@ -75,6 +65,5 @@
       "name": "Pavement"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

@@ -13,26 +13,17 @@
     }
   ],
   "materialized_at": "2026-05-13T13:03:39.826Z",
-  "mbid": "1f085f72-628d-4fd4-b32b-fd5a26a4c5b1",
   "type": "project",
   "editorial_pitch": "\"My Brutal Life\" is an evocative and immersive project by British electronic pioneers The Black Dog, exploring themes of urban melancholy and modern existence through a blend of ambient and experimental electronics.",
   "cover_url": "https://f4.bcbits.com/img/a4043578111_10.jpg",
   "year": "2023",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:the-black-dog",
       "type": "artist",
-      "name": "The Black Dog",
-      "mbid": "a78d2a35-c083-4179-a5d8-49f84e5ec863"
+      "name": "The Black Dog"
     }
   ],
-  "label": {
-    "slug": "label:dust-science-recordings",
-    "type": "label",
-    "name": "Dust Science Recordings",
-    "mbid": "5a3745df-dce5-4297-94c9-6a30b01a6f9d"
-  },
   "genres": [
     {
       "slug": "genre:ambient",
@@ -75,6 +66,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

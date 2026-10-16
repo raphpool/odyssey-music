@@ -13,7 +13,6 @@
     }
   ],
   "materialized_at": "2026-05-13T13:07:22.737Z",
-  "mbid": "05e6a92d-373f-4fbb-ae62-a1f8beda8f70",
   "type": "track",
   "editorial_teaser": "\"Tango N' Vectif\" is the title track of the debut studio album by the electronic musician µ-Ziq, released in 1993 on the legendary Rephlex Records.",
   "year": "1993",
@@ -21,20 +20,13 @@
     {
       "slug": "artist:ziq",
       "type": "artist",
-      "name": "µ-Ziq",
-      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
+      "name": "µ-Ziq"
     }
   ],
   "project": {
     "slug": "project:tango-n-vectif",
     "type": "project",
     "name": "Tango N' Vectif"
-  },
-  "label": {
-    "slug": "label:rephlex",
-    "type": "label",
-    "name": "Rephlex",
-    "mbid": "820fa04e-9927-40bb-a6c5-1bf883b159c7"
   },
   "genres": [
     {
@@ -68,7 +60,6 @@
       "name": "Francis Naughton"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

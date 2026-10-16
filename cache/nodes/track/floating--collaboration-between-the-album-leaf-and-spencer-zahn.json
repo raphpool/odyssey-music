@@ -9,7 +9,6 @@
     }
   ],
   "materialized_at": "2026-05-13T12:51:50.352Z",
-  "mbid": "a8321496-c664-4208-b35c-cab7a231c26a",
   "type": "track",
   "editorial_teaser": "\"Floating\" is a serene, textural collaboration between Jimmy LaValle’s The Album Leaf and multi-instrumentalist Spencer Zahn, blending delicate electronic pulses with organic, atmospheric arrangements.",
   "year": "2026",
@@ -18,29 +17,14 @@
     {
       "slug": "artist:the-album-leaf",
       "type": "artist",
-      "name": "The Album Leaf",
-      "mbid": "ffb18e19-64a4-4a65-b4ce-979e00c3c69d"
+      "name": "The Album Leaf"
     },
     {
       "slug": "artist:spencer-zahn",
       "type": "artist",
-      "name": "Spencer Zahn",
-      "mbid": "2bd4b13a-afcb-428d-9ee4-61ee8092c28c"
+      "name": "Spencer Zahn"
     }
   ],
-  "project": {
-    "slug": "project:a-body-of-voices--the-album-leaf",
-    "type": "project",
-    "name": "A Body of Voices",
-    "mbid": "25d5f7c1-5352-4305-942a-1aeeb647f02a",
-    "artist": "The Album Leaf"
-  },
-  "label": {
-    "slug": "label:nettwerk",
-    "type": "label",
-    "name": "Nettwerk",
-    "mbid": "8aa0e885-1cbb-474d-9b74-ae8446989417"
-  },
   "genres": [
     {
       "slug": "genre:ambient",
@@ -73,7 +57,6 @@
       "name": "Spencer Zahn"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

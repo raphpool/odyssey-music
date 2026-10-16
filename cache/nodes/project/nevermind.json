@@ -24,19 +24,10 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
-  "mbid": "1b022e01-4da6-387b-8658-8678046e4cef",
   "type": "project",
   "editorial_pitch": "A tectonic shift in rock history, *Nevermind* synthesized punk energy, pop sensibility, and raw, generation-defining angst to become the defining sound of the 90s.",
   "year": "1991",
-  "release_type": "album",
-  "artists": [
-    {
-      "slug": "artist:nirvana",
-      "type": "artist",
-      "name": "Nirvana",
-      "mbid": "5b11f4ce-a62d-471e-81fc-a69a8278c7da"
-    }
-  ],
+  "artists": [],
   "label": {
     "slug": "label:dgc-records",
     "type": "label",
@@ -66,6 +57,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

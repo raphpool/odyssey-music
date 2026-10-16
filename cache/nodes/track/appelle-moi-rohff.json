@@ -9,7 +9,6 @@
     }
   ],
   "materialized_at": "2026-05-14T09:37:37.894Z",
-  "mbid": "c1c9b15c-ec4f-4a7d-8f22-26feb61141ac",
   "type": "track",
   "editorial_teaser": "The debut maxi single from French rapper Rohff, produced by DJ Mehdi and released in 1998 as a precursor to his first studio album.",
   "year": "1998",
@@ -17,20 +16,13 @@
     {
       "slug": "artist:rohff",
       "type": "artist",
-      "name": "Rohff",
-      "mbid": "f4a92aac-995b-47ab-80a5-33218a3e7823"
+      "name": "Rohff"
     }
   ],
   "project": {
     "slug": "project:le-code-de-l-honneur",
     "type": "project",
     "name": "Le Code de l'honneur"
-  },
-  "label": {
-    "slug": "label:parlophone-france",
-    "type": "label",
-    "name": "Parlophone France",
-    "mbid": "0b81e41d-3029-47dd-847e-12e0195ad4ba"
   },
   "genres": [
     {
@@ -40,7 +32,6 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

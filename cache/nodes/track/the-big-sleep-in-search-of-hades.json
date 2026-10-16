@@ -17,28 +17,19 @@
     }
   ],
   "materialized_at": "2026-05-13T12:56:42.378Z",
-  "mbid": "130cf35e-0912-45dc-9af6-78def87e5fce",
   "type": "track",
   "editorial_teaser": "\"The Big Sleep in Search of Hades\" is the second track on Tangerine Dream's landmark 1976 album, Stratosfear.",
-  "year": "1976",
   "artists": [
     {
       "slug": "artist:tangerine-dream",
       "type": "artist",
-      "name": "Tangerine Dream",
-      "mbid": "23d8426c-18c7-46e6-a51d-7395bd43c641"
+      "name": "Tangerine Dream"
     }
   ],
   "project": {
     "slug": "project:stratosfear",
     "type": "project",
     "name": "Stratosfear"
-  },
-  "label": {
-    "slug": "label:virgin",
-    "type": "label",
-    "name": "Virgin",
-    "mbid": "49b58bdb-3d74-40c6-956a-4c4b46115c9c"
   },
   "genres": [
     {
@@ -66,7 +57,6 @@
       "name": "Tangerine Dream"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

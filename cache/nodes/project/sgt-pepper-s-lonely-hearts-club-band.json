@@ -32,18 +32,15 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
-  "mbid": "9f7a4c28-8fa2-3113-929c-c47a9f7982c3",
   "type": "project",
   "editorial_pitch": "A revolutionary masterpiece that defined the 1967 Summer of Love, transforming the rock album into a high-art, immersive studio experiment.",
   "cover_url": "https://www.beatlesbible.com/albums/sgt-peppers-lonely-hearts-club-band/",
   "year": "1967",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:the-beatles",
       "type": "artist",
-      "name": "The Beatles",
-      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+      "name": "The Beatles"
     }
   ],
   "label": {
@@ -134,6 +131,5 @@
       "name": "George Martin"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

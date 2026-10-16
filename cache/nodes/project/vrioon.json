@@ -13,11 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:38:41.908Z",
-  "mbid": "91f00d04-f36b-3962-9d5f-d7e79a5a000d",
   "type": "project",
   "editorial_pitch": "A landmark of early 2000s electronic minimalism, Vrioon is the inaugural collaboration between Ryuichi Sakamoto and Alva Noto, blending elegant piano melodies with clinical, glitch-inflected digital textures.",
   "year": "2002",
-  "release_type": "album",
   "artists": [
     {
       "slug": "artist:ryuichi-sakamoto",
@@ -28,12 +26,6 @@
       "slug": "artist:alva-noto",
       "type": "artist",
       "name": "Alva Noto"
-    },
-    {
-      "slug": "artist:alva-noto-ryuichi-sakamoto",
-      "type": "artist",
-      "name": "Alva Noto + Ryuichi Sakamoto",
-      "mbid": "6edc70bb-c340-4ae6-bdd4-d5fb0c7411de"
     }
   ],
   "label": {
@@ -88,6 +80,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }
