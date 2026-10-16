@@ -226,18 +226,14 @@ export function toVizNode(node: NodePayload): VizNode {
 	};
 	// Node-level qid whitelist: genre only, mirroring the edge-level one already applied above (TRA-19).
 	if (node.type === "genre" && node.qid) viz.qid = node.qid;
-	// Same projection for static, live and mobile graphs (TRA-455): image_url first, then the
-	// per-type legacy fields. photo_url / cover_url are not host-checked, so consumers must keep
-	// treating the value as untrusted. image_source describes image_url only: never project it
-	// next to a photo_url / cover_url fallback.
+	// Same projection for static, live and mobile graphs (TRA-455): only the node's own, verified
+	// image_url (set by the resolver or the backfill) reaches clients. 2026-10-16 (TRA-594): this used to
+	// fall back to photo_url / cover_url, which are never host-checked; clients render image_url without
+	// calling /image, so Grandmaster Flash showed an Earth, Wind & Fire sleeve and Gat Decor a Wikipedia
+	// icon. Do not reintroduce a legacy fallback here; image_source describes image_url only.
 	if (node.image_url) {
 		viz.image_url = node.image_url;
 		if (node.image_source) viz.image_source = node.image_source;
-	} else {
-		const fallback = [raw.photo_url, raw.cover_url].find(
-			(candidate): candidate is string => typeof candidate === "string" && candidate !== "",
-		);
-		if (fallback) viz.image_url = fallback;
 	}
 	return viz;
 }
