@@ -26,6 +26,8 @@ interface RunningServer {
 	logs: { stdout: string; stderr: string };
 }
 
+const FIXTURE_IMAGE = "https://coverartarchive.org/release/fixture/front-500.jpg";
+
 function artistNode(): ArtistNode {
 	return {
 		slug: "artist:fixture-artist",
@@ -35,7 +37,11 @@ function artistNode(): ArtistNode {
 		editorial_bio: "A fixture artist bio.",
 		citations: [{ url: "https://example.com/fixture-artist" }],
 		materialized_at: new Date().toISOString(),
+		// Unverified legacy field, kept to prove GET /image no longer serves it (TRA-592); the stored, verified
+		// image is image_url.
 		photo_url: "https://images.example.com/fixture-artist.jpg",
+		image_url: FIXTURE_IMAGE,
+		image_source: "caa",
 		genres: [],
 		labels: [],
 		discography: [],
@@ -130,10 +136,11 @@ describe("mobile facade compatibility", () => {
 		});
 
 		const legacyImage = await http(server.port, "GET", "/image/artist%3Afixture-artist");
+		// 2026-10-16 (TRA-592): the stored image_url is served, not the fixture's unverified photo_url.
 		expect(json(legacyImage)).toMatchObject({
 			slug: "artist:fixture-artist",
-			image_url: "https://images.example.com/fixture-artist.jpg",
-			source: "legacy",
+			image_url: FIXTURE_IMAGE,
+			source: "caa",
 		});
 
 		const legacyLinks = await http(server.port, "GET", "/links/genre%3Aambient");
@@ -173,8 +180,8 @@ describe("mobile facade compatibility", () => {
 		expect(mobileImage.status).toBe(200);
 		expect(json(mobileImage)).toMatchObject({
 			slug: "artist:fixture-artist",
-			image_url: "https://images.example.com/fixture-artist.jpg",
-			source: "legacy",
+			image_url: FIXTURE_IMAGE,
+			source: "caa",
 			state: "found",
 		});
 
