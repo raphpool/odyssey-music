@@ -322,8 +322,8 @@ odyssey-server.service` (l'`EnvironmentFile=` l'emporte sur l'unité) ; à retir
 `bootstrap-env.sh` ultérieur réécrit ce fichier en entier.
 
 **Hors périmètre de ce ticket (suivi).** Les processus qui ne sont pas le serveur ne reçoivent pas le
-drapeau : `npm run crawl` en local, et le workflow `top-up-genres` (`.github/`, tier/3, interdit sans
-ticket dédié). Tant qu'ils ne l'ont pas, ils continuent d'écrire des slugs non scopés / non
+drapeau : `npm run crawl` en local, et le workflow `top-up-genres` (`.github/`, tier/3, suivi dans
+TRA-572). Tant qu'ils ne l'ont pas, ils continuent d'écrire des slugs non scopés / non
 translittérés, ce que l'audit signale. Voir `src/flags.ts` : « every process that mints slugs must
 have it ».
 
