@@ -496,7 +496,7 @@ describe("backfill-reverse-edges", () => {
 		const result = await runMigration({ cacheDir: dir, apply: true });
 
 		expect(result.exitCode).toBe(2);
-		expect(result.manifest.written).toBe(0);
+		expect(result.manifest.errors.length).toBeGreaterThan(0);
 		expect(result.manifest.blocked).toBe(true);
 		expect(await snapshot()).toEqual(before);
 	});
