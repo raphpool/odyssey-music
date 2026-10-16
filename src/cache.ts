@@ -655,7 +655,9 @@ function applyReverses(node: NodePayload, pendings: PendingReverse[]): NodePaylo
 	return cur;
 }
 
-function applySingleReverse(node: NodePayload, p: PendingReverse): NodePayload {
+// Exported for the reverse-edge backfill (TRA-486), which applies the same rule to raw nodes without going
+// through NodeCache.write (that would re-emit reverses of the reverses).
+export function applySingleReverse(node: NodePayload, p: PendingReverse): NodePayload {
 	// Clone shallowly; nested edge arrays we deep-copy to avoid mutating callers.
 	const next = { ...node } as unknown as Record<string, unknown>;
 	if (p.cardinality === "list") {
