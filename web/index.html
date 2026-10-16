@@ -240,7 +240,9 @@ const imageJitPromises = new Map();
 
 // 2026-10-16 (TRA-585, plan 3b-D6): GET /image answers 202 "pending" while the server resolves the
 // cover in the background. Same budget as iOS: 6 attempts (the first included), spaced by the
-// server's retry_after_seconds clamped to 2..30 s (5 s when absent), about 60 s per work.
+// server's retry_after_seconds clamped to 2..30 s (5 s when absent). That is 5 waits: 25 s per work with
+// the server's own 5 s, 150 s at the very most. A 429 / 5xx is "not yet" too: retried within the same
+// budget (Retry-After header), never remembered.
 const IMAGE_MAX_ATTEMPTS = 6;
 const IMAGE_RETRY_DEFAULT_S = 5;
 const IMAGE_RETRY_MIN_S = 2;
@@ -260,27 +262,41 @@ async function lookupImage(slug) {
   // The server needs the page the work was listed on to identify a work that has no node (3b-D1).
   // It is always a slug (never a title), and the server rereads its own edges from it. The page's
   // own hero (slug === page) has a node of its own and needs no context, so it goes without.
-  const page = crumbs[crumbs.length - 1];
+  // `shownId` is what show() actually rendered, history navigation included; crumbs is not (a back
+  // button does not push it, so crumbs' last entry would be the page just left).
+  const page = shownId;
   const query = page && page !== slug ? `?from=${encodeURIComponent(page)}` : "";
   for (let attempt = 1; attempt <= IMAGE_MAX_ATTEMPTS; attempt++) {
     let r;
     let body = null;
+    let waitSeconds;
+    let transient = false;
     try {
       r = await fetch(`${API_BASE}/image/${encodeURIComponent(slug)}${query}`);
-      body = r.ok ? await r.json() : null;
+      if (r.status === 429 || r.status >= 500) {
+        // Overload or server error: not an answer about this work, so not remembered either.
+        transient = true;
+        const retryAfter = r.headers.get("Retry-After");
+        waitSeconds = retryAfter ? Number(retryAfter) : undefined;
+      } else {
+        body = r.ok ? await r.json() : null;
+      }
     } catch {
       // A failure on the first try keeps the historical behaviour (null, remembered); mid-retry it
       // is only "not yet": the next visit of the page gets a fresh budget.
       return { url: null, final: attempt === 1 };
     }
-    if (!body) return { url: null, final: true };
-    if (body.state === "found" || (body.state === undefined && body.image_url)) {
-      return { url: body.image_url || null, final: true };
+    if (!transient) {
+      if (!body) return { url: null, final: true };
+      if (body.state === "found" || (body.state === undefined && body.image_url)) {
+        return { url: body.image_url || null, final: true };
+      }
+      if (!(r.status === 202 || body.state === "pending")) return { url: null, final: true };
+      waitSeconds = body.retry_after_seconds;
     }
-    if (!(r.status === 202 || body.state === "pending")) return { url: null, final: true };
     if (attempt === IMAGE_MAX_ATTEMPTS) break;
-    await new Promise((resolve) => setTimeout(resolve, imageRetryDelayMs(body.retry_after_seconds)));
-    if (crumbs[crumbs.length - 1] !== page) break; // the page was left: stop asking for it
+    await new Promise((resolve) => setTimeout(resolve, imageRetryDelayMs(waitSeconds)));
+    if (shownId !== page) break; // the page was left: stop asking for it
   }
   return { url: null, final: false };
 }
@@ -380,6 +396,9 @@ let DATA = null;
 let byId = new Map();
 let SEED_ID = null;
 let crumbs = []; // node ids forming the back-trail
+// The page actually on screen (null on home), set by show() / showHome() on every render, history
+// navigation included. Not derivable from crumbs: a back button pops history without touching them (TRA-585).
+let shownId = null;
 
 // TRA-137/D2b-1: kill switch for the whole v2 path. B1 (a save can drop genres from a
 // partial family) and B4 (some slugs, e.g. genre:pop, have no legacySelectionBySlug entry)
@@ -1752,6 +1771,7 @@ function recoReasons(node) {
 // ─── Home view ────────────────────────────────────────────────────────────
 function showHome({ fromHistory = false, replaceHistory = false } = {}) {
   crumbs = [];
+  shownId = null;
   renderCrumbs();
   if (!fromHistory) {
     if (replaceHistory) history.replaceState({ view: "home" }, "", "?view=home");
@@ -1908,6 +1928,7 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
   id = resolveId(id);
   const node = byId.get(id);
   if (!node) return;
+  shownId = id;
 
   if (!fromHistory) {
     const newUrl = `?node=${encodeURIComponent(id)}`;

@@ -41,7 +41,7 @@ const NODES = [
 	{ id: OTHER_PROJECT, type: "project", name: "Hard Normal Daddy", teaser: "p" },
 ];
 
-type Reply = { status?: number; body: unknown } | "network-error";
+type Reply = { status?: number; body: unknown; headers?: Record<string, string> } | "network-error";
 const found = (url = COVER): Reply => ({ body: { state: "found", image_url: url, source: "caa" } });
 const pending = (retryAfter?: number): Reply => ({
 	status: 202,
@@ -53,6 +53,11 @@ const pending = (retryAfter?: number): Reply => ({
 	},
 });
 const none: Reply = { body: { state: "none", image_url: null, source: "no-match" } };
+const failing = (status: number, retryAfter?: number): Reply => ({
+	status,
+	body: { error: "boom" },
+	headers: retryAfter === undefined ? undefined : { "Retry-After": String(retryAfter) },
+});
 
 let win: PendingWindow | null = null;
 let imageUrls: string[] = [];
@@ -76,7 +81,10 @@ function route(url: string): Response {
 		const queue = script.get(decodeURIComponent(m[1] ?? ""));
 		const reply = queue && queue.length > 1 ? queue.shift() : queue?.[0];
 		if (!reply || reply === "network-error") throw new TypeError("network down");
-		return new Response(JSON.stringify(reply.body), { status: reply.status ?? 200 });
+		return new Response(JSON.stringify(reply.body), {
+			status: reply.status ?? 200,
+			headers: reply.headers,
+		});
 	}
 	return new Response("{}", { status: 404 });
 }
@@ -145,7 +153,7 @@ describe("?from= carries the displayed page", () => {
 	it("no page displayed: no from parameter", async () => {
 		script.set(PROJECT, [none]);
 		const w = await boot();
-		w.eval("crumbs = []");
+		w.eval("shownId = null");
 		expect(await w.jitResolveImage(PROJECT)).toBeNull();
 		expect(requestsFor(PROJECT)).toEqual([`/api/image/${encodeURIComponent(PROJECT)}`]);
 	});
@@ -252,6 +260,63 @@ describe("leaving the page", () => {
 		script.set(PROJECT, [found()]);
 		expect(await w.jitResolveImage(PROJECT)).toBe(COVER);
 		expect(requestsFor(PROJECT)).toHaveLength(3);
+	});
+});
+
+describe("browser back button", () => {
+	it("a card asked after a back navigation sends from=<the page shown>, not the page just left", async () => {
+		script.set(PROJECT, [pending(2), none]);
+		script.set(OTHER_PROJECT, [none]);
+		const w = await boot();
+		w.show("artist:squarepusher");
+		await settle();
+		expect(requestsFor(PROJECT)).toHaveLength(1);
+		// leave before the retry: nothing is remembered, and no request follows
+		w.show("artist:autechre");
+		await advance(2);
+		expect(requestsFor(PROJECT)).toHaveLength(1);
+
+		w.history.back(); // popstate -> show(id, { fromHistory: true }): crumbs is not touched
+		await advance(0.1); // jsdom runs the traversal on a (faked) timer
+		await settle();
+		expect(w.document.querySelector(".node .hero h1")?.textContent).toBe("Squarepusher");
+		expect(requestsFor(PROJECT)).toEqual([
+			`/api/image/${encodeURIComponent(PROJECT)}?from=artist%3Asquarepusher`,
+			`/api/image/${encodeURIComponent(PROJECT)}?from=artist%3Asquarepusher`,
+		]);
+	});
+});
+
+describe("overload and server errors are never an answer", () => {
+	it("503 then found: retried within the budget, card painted", async () => {
+		script.set(PROJECT, [failing(503), found()]);
+		const w = await boot();
+		const p = w.jitResolveImage(PROJECT);
+		await advance(5);
+		expect(await p).toBe(COVER);
+		expect(requestsFor(PROJECT)).toHaveLength(2);
+	});
+
+	it("Retry-After header is followed (clamped like the body field)", async () => {
+		script.set(PROJECT, [failing(429, 10), found()]);
+		const w = await boot();
+		void w.jitResolveImage(PROJECT);
+		await advance(9.5);
+		expect(requestsFor(PROJECT)).toHaveLength(1);
+		await advance(1);
+		expect(requestsFor(PROJECT)).toHaveLength(2);
+	});
+
+	it("6 x 500: null, 6 requests, nothing remembered", async () => {
+		script.set(PROJECT, [failing(500)]);
+		const w = await boot();
+		const p = w.jitResolveImage(PROJECT);
+		for (let i = 0; i < 6; i++) await advance(5);
+		expect(await p).toBeNull();
+		expect(requestsFor(PROJECT)).toHaveLength(6);
+		script.set(PROJECT, [found()]);
+		expect(await w.jitResolveImage(PROJECT)).toBe(COVER);
+		expect(requestsFor(PROJECT)).toHaveLength(7);
 	});
 });
 
