@@ -287,6 +287,16 @@ describe("GET /image/:slug, on-demand contract (TRA-583)", () => {
 	});
 });
 
+describe("mobile routes keep the read-only image answers until 3b.7 (TRA-583)", () => {
+	it("never says pending on /mobile/v1/nodes/:slug/image, which caches every 200 for a day", async () => {
+		const reply = await on.get(`/mobile/v1/nodes/${encodeURIComponent(WARM_BAND.slug)}/image`);
+		expect(reply.status).toBe(200);
+		expect(reply.json).toMatchObject({ slug: WARM_BAND.slug, image_url: null, source: "no-match" });
+		expect(reply.json.state).toBe("none");
+		expect(reply.json).not.toHaveProperty("retry_after_seconds");
+	});
+});
+
 describe("ODYSSEY_ON_DEMAND_IMAGES=0 (TRA-583)", () => {
 	it("restores the read-only answers: 200 not-cached with the old public Cache-Control, no warm-up, health says off", async () => {
 		const slug = workSlug(OFF_BAND);
