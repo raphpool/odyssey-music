@@ -28,6 +28,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://coverartarchive.org/release-group/7a0c813e-d27e-3783-a9a4-e933102a236f/front-500",
+  "image_source": "derived-cover",
   "type": "artist",
   "editorial_bio": "Robert Rich is a seminal figure in American ambient and experimental music, renowned for his mastery of microtonal soundscapes, textural synthesis, and deep, immersive listening experiences.",
   "origin": "United States",

@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "9b490b96-ad82-4d7b-9055-f0a196ad64cc",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Arnold%20sch%C3%B6nberg%20man%20ray.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "Arnold Schoenberg was an Austrian-American composer who revolutionized music in the 20th century through his development of atonality and the twelve-tone serialism technique. His work shifted from late-Romantic influences to some of the most radical structural innovations in the history of Western classical music.",

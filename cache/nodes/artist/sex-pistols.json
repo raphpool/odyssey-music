@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "e5db18cb-4b1f-496d-a308-548b611090d3",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sex%20Pistols%20in%20Paradiso.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "group",
   "editorial_bio": "Formed in London in 1975, the Sex Pistols were the catalysts of the UK punk explosion, known for their short, explosive career and lasting influence on music and counterculture. Their only studio album, 'Never Mind the Bollocks, Here's the Sex Pistols', remains a defining pillar of the genre.",

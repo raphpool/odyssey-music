@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "5488ad16-f1df-48af-9835-36fde3fc7c53",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Stereolab%20mary%20hansen.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "Mary Therese Hansen (1966–2002) was an influential Australian-born musician, best known as the charismatic guitarist and vocalist for the seminal art-pop band Stereolab.",

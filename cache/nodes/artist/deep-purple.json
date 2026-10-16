@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "79491354-3d83-40e3-9d8e-7592d58d790a",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Deep%20Purple%2C%20Notodden%202024.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "group",
   "editorial_bio": "Deep Purple is a seminal English rock band formed in London in 1968, widely recognized as a foundational force in the development of heavy metal and modern hard rock. Often cited alongside Led Zeppelin and Black Sabbath as part of the \"unholy trinity\" of British hard rock.",
