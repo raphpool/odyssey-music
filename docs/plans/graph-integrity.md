@@ -394,7 +394,8 @@ les enchaîner (pas trois PR ouvertes en même temps sur le schéma).
 ## Partie 3b — Pochettes à la demande
 
 Statut : **validé par Raphael le 2026-10-16 (« ok plan »)**, les quatre questions ouvertes tranchées
-(voir « Décisions validées par Raphael » en fin de partie) ; tickets créés le 2026-10-16.
+(voir « Décisions validées par Raphael » en fin de partie) ; tickets créés le 2026-10-16 dans le
+milestone « Partie 3b — Pochettes à la demande » de P-TRA-5 : TRA-578 à TRA-586 (3b.1 → 3b.9).
 Brief : option A (le serveur trouve la pochette d'une œuvre même sans fiche, avec la vérification
 MusicBrainz du reste du projet) + « à chaque fiche, même les existantes, lorsqu'elles s'ouvrent, on
 va chercher la pochette de tous les albums présents ». Cartographie faite sur `origin/main` à
@@ -534,24 +535,24 @@ compris) et un seul type de changement. Dépendances externes déjà livrées : 
 TRA-465 (images), TRA-450/573 (file MB), TRA-475/479 (lecture seule, image à la matérialisation).
 Aucun ticket ne touche le schéma, `deploy/`, `.github/` ni `scripts/migrations/`.
 
-- [ ] 3b.1 `[P]` Résoudre la pochette d'une œuvre sans nœud depuis un indice
+- [ ] TRA-578 3b.1 `[P]` Résoudre la pochette d'une œuvre sans nœud depuis un indice
       (`src/images/resolve-work-hint.ts`) — tier/2, 3 pts
-- [ ] 3b.2 `[P]` Priorité `background` dans la file MusicBrainz (`src/musicbrainz.ts`) — tier/2, 2 pts
-- [ ] 3b.3 `[P]` Sidecar `cache/images/` : lecture validée, écriture atomique, cache négatif à TTL
+- [ ] TRA-579 3b.2 `[P]` Priorité `background` dans la file MusicBrainz (`src/musicbrainz.ts`) — tier/2, 2 pts
+- [ ] TRA-580 3b.3 `[P]` Sidecar `cache/images/` : lecture validée, écriture atomique, cache négatif à TTL
       (`src/images/image-sidecar.ts`, `.gitignore`) — tier/2, 2 pts
-- [ ] 3b.4 File de résolution en arrière-plan : worker séquentiel, alias slug nu → clé scopée,
+- [ ] TRA-581 3b.4 File de résolution en arrière-plan : worker séquentiel, alias slug nu → clé scopée,
       conflits, coupe-circuit (`src/images/image-queue.ts`) — tier/2, 3 pts (dépend de 3b.1, 3b.2, 3b.3)
-- [ ] 3b.5 `image-service` : états `found`/`pending`/`none`, `warm(node)`, contexte `from`, drapeau
+- [ ] TRA-582 3b.5 `image-service` : états `found`/`pending`/`none`, `warm(node)`, contexte `from`, drapeau
       `ODYSSEY_ON_DEMAND_IMAGES` (`src/services/image-service.ts`, `src/flags.ts`) — tier/2, 3 pts
       (dépend de 3b.4)
-- [ ] 3b.6 `[P]` Routes web : 202 + `Retry-After` + `no-store` sur `GET /image/:slug[?from=]`, chauffe
+- [ ] TRA-583 3b.6 `[P]` Routes web : 202 + `Retry-After` + `no-store` sur `GET /image/:slug[?from=]`, chauffe
       sur `GET /node/:slug`, compteurs dans `/health` (`src/server.ts`) — tier/2, 2 pts (dépend de 3b.5)
-- [ ] 3b.7 `[P]` Routes mobile : même contrat sur `/mobile/v1/nodes/:slug/image`, chauffe sur
+- [ ] TRA-584 3b.7 `[P]` Routes mobile : même contrat sur `/mobile/v1/nodes/:slug/image`, chauffe sur
       `/mobile/v1/nodes/:slug` (`src/mobile/media.ts`, `src/mobile/router.ts`) — tier/2, 2 pts (dépend
       de 3b.5)
-- [ ] 3b.8 `[P]` Web : `?from=`, relance bornée sur `pending`, attente jamais mémorisée
+- [ ] TRA-585 3b.8 `[P]` Web : `?from=`, relance bornée sur `pending`, attente jamais mémorisée
       (`web/index.html`) — tier/2, 2 pts (dépend de 3b.6)
-- [ ] 3b.9 `[P]` iOS : `ImageResponse.retryAfterSeconds`, relance bornée et annulable dans
+- [ ] TRA-586 3b.9 `[P]` iOS : `ImageResponse.retryAfterSeconds`, relance bornée et annulable dans
       `NodeImageStore` (`ios/Track1Core`) — tier/2, 3 pts (dépend de 3b.7)
 
 **Vagues** : A = {3b.1, 3b.2, 3b.3} (3 lanes) → B = 3b.4 → C = 3b.5 → D = {3b.6, 3b.7} →
@@ -563,7 +564,7 @@ lane pendant la vague C du plan principal.
 
 #### Contenu attendu par tâche
 
-**3b.1 — Résolveur par indice.** Nouveau `src/images/resolve-work-hint.ts` + `test/images/resolve-work-hint.test.ts`.
+**3b.1 (TRA-578) — Résolveur par indice.** Nouveau `src/images/resolve-work-hint.ts` + `test/images/resolve-work-hint.test.ts`.
 Signature : `resolveWorkImageByHint(hint: WorkImageHint, deps?: { fetch?: typeof fetch; priority?: MbPriority }): Promise<WorkImageResolution>`
 avec `WorkImageHint = { slug: Slug; type: "project" | "track"; title: string; artist: string; mbid?: string; releaseType?: string }`
 et `WorkImageResolution = { kind: "found"; url: string; source: ImageSource; mbid?: string } | { kind: "missing"; reason: "ambiguous" | "no-match" } | { kind: "unavailable" }`
@@ -574,7 +575,7 @@ iTunes ; MB indisponible → `unavailable` ; CAA 404 → repli iTunes vérifié 
 track → recording puis release-group de la réponse de recherche, sinon `no-match` ; compteur d'appels
 MB ≤ 2 dans chaque test.
 
-**3b.2 — Priorité MB.** `src/musicbrainz.ts` : `export type MbPriority = "interactive" | "background"` ;
+**3b.2 (TRA-579) — Priorité MB.** `src/musicbrainz.ts` : `export type MbPriority = "interactive" | "background"` ;
 `priority?: MbPriority` sur `WorkResolveOptions` et sur `fetchWikidataUrlRelMb` ; `mbFetch` la reçoit
 (valeur par défaut `interactive`, aucun appelant existant ne change). Règle : une réservation
 `background` n'est faite que lorsqu'aucune réservation interactive n'est en attente ; les retries
@@ -583,7 +584,7 @@ request spacing ») : à départ simultané, deux interactives puis une backgrou
 0 s, 1 s, 2 s ; une background émise pendant une rafale de 5 interactives part en dernier ; sans
 interactive, les background sont espacées de 1 s ; les 130 tests existants restent verts.
 
-**3b.3 — Sidecar.** Nouveau `src/images/image-sidecar.ts` + test, et `cache/images/` ajouté à
+**3b.3 (TRA-580) — Sidecar.** Nouveau `src/images/image-sidecar.ts` + test, et `cache/images/` ajouté à
 `.gitignore` à côté de `cache/youtube/` et `cache/links/` (l.25-26). API : `imageSidecarPath(cacheDir, key)`,
 `readImageSidecar(cacheDir, key, now?): Promise<ImageSidecarEntry | null>` (entrée périmée → `null`),
 `writeImageSidecar(cacheDir, entry): Promise<void>`. TTL : `found` sans expiration, `missing` et
@@ -591,7 +592,7 @@ interactive, les background sont espacées de 1 s ; les 130 tests existants rest
 fichier corrompu → supprimé et `null` ; expiration par horloge injectée ; la clé ne produit jamais un
 chemin hors du dossier (`..`, `/`) ; `git status` reste propre après une écriture.
 
-**3b.4 — File et worker.** Nouveau `src/images/image-queue.ts` + test. API :
+**3b.4 (TRA-581) — File et worker.** Nouveau `src/images/image-queue.ts` + test. API :
 `createImageQueue(deps: { cacheDir; cache: NodeCache; resolveNode: typeof resolveImage; resolveHint: typeof resolveWorkImageByHint; now?; log })`
 → `{ enqueueNode(node): void; enqueueHint(hint): void; stateOf(key): "pending" | "idle"; aliasOf(bareSlug): Slug | "conflict" | null; stats(); stop(): Promise<void> }`.
 Comportement : boucle séquentielle démarrée au premier job ; relit le sidecar avant de résoudre (frais →
@@ -601,7 +602,7 @@ coupe-circuit 60 s après 3 `unavailable` consécutifs ; file bornée 5 000 (au-
 conflit sur un nu vu depuis deux artistes ; coupe-circuit puis reprise ; pas de résolution si le sidecar
 est frais ; `stop()` termine le job en cours et n'en démarre pas d'autre.
 
-**3b.5 — Service.** `src/services/image-service.ts`, `src/flags.ts` (`onDemandImagesEnabled()`),
+**3b.5 (TRA-582) — Service.** `src/services/image-service.ts`, `src/flags.ts` (`onDemandImagesEnabled()`),
 `test/image-service.test.ts`. `DisplayImage` gagne `state: "found" | "pending" | "none"` et
 `retry_after_seconds?`. `resolveDisplayImage(slug, opts?: { from?: Slug })` : `image_url` du nœud →
 sidecar (clé = slug du nœud, ou slug scopé demandé, ou `aliasOf(slug)`) → marche `related:` existante
@@ -612,7 +613,7 @@ fiches chauffées (10 min) pour ne pas relire le nœud à chaque carte. Drapeau 
 portant l'artiste source ; arête sans artiste sur une fiche genre → ignorée ; `from` inconnu → ignoré ;
 slug nu sans contexte → `none/no-context` ; drapeau à `0` → aucune lecture de `cache/images/`.
 
-**3b.6 — Routes web.** `src/server.ts` : handler `/image` → statut et en-têtes selon `state` (D5),
+**3b.6 (TRA-583) — Routes web.** `src/server.ts` : handler `/image` → statut et en-têtes selon `state` (D5),
 `?from=` décodé par `decodeSlugParam` (`server.ts:363`) et refusé à 400 s'il est malformé ; `/node/:slug`
 appelle `imageService.warm(result.node)` avant `json(res, 200, …)` ; `/health` (`server.ts:239`) expose
 `images: queue.stats()` ; le worker est créé au démarrage et arrêté là où le serveur ferme ses
@@ -621,7 +622,7 @@ ressources. Critères : `test/server-slug-traversal.test.ts` (4) verts ; nouveau
 `public, max-age=86400` ; `none` est `no-store` ; `from` malformé → 400 ; `GET /node` déclenche `warm`
 (espion) ; drapeau à `0` → réponses identiques à `7ef31bf7`.
 
-**3b.7 — Routes mobile.** `src/mobile/media.ts` : `image(slug)` ne rend plus `null` quand le nœud
+**3b.7 (TRA-584) — Routes mobile.** `src/mobile/media.ts` : `image(slug)` ne rend plus `null` quand le nœud
 manque mais le résultat du service (toujours filtré par `safePublicHttpsUrl`), expose `state` et
 `retry_after_seconds` ; `warm(node)` ajouté à `MobileMedia`. `src/mobile/router.ts` : la lecture de la
 fiche (`resource` indéfini) appelle `media.warm` avant la réponse ; `image` répond 202 + `Retry-After`
@@ -630,7 +631,7 @@ Critères : `test/mobile/media.test.ts` (5) et `test/mobile/compatibility.test.t
 202 ; slug sans nœud → 200 `none` et non 404 ; `nodes.test.ts` vert ; le contrat iOS
 (`test/ios-node-page-spec.test.ts`) inchangé.
 
-**3b.8 — Web.** `web/index.html` : `jitResolveImage(slug)` ajoute `?from=<crumbs[crumbs.length-1]>`,
+**3b.8 (TRA-585) — Web.** `web/index.html` : `jitResolveImage(slug)` ajoute `?from=<crumbs[crumbs.length-1]>`,
 traite 202 / `source: "pending"` par relance (`retry_after_seconds` borné 2…30 s, 6 tentatives, arrêt si
 la carte n'est plus connectée ou si la fiche a changé), ne stocke dans `imageJitPromises` qu'un
 résultat final ; `paintCardWhenReady` et `jitResolveHero` gardent leur interface. Critères (jsdom,
@@ -638,7 +639,7 @@ modèle `test/web-hero-image.test.ts`) dans un nouveau `test/web-image-pending.t
 carte peinte ; 6 × 202 → dégradé conservé et aucune promesse `null` mémorisée ; `from` présent dans
 l'URL appelée ; navigation vers une autre fiche → plus de relance ; Biome vert.
 
-**3b.9 — iOS.** `ios/Track1Core/Sources/Track1Core/API/APIModels.swift` : `ImageResponse` gagne
+**3b.9 (TRA-586) — iOS.** `ios/Track1Core/Sources/Track1Core/API/APIModels.swift` : `ImageResponse` gagne
 `retryAfterSeconds: Int?` (clé `retry_after_seconds`). `NodeImageStore.swift` : une réponse
 `source == "pending"` n'est pas mémorisée ; relance après `retryAfterSeconds` (borné 2…30 s, 5 s par
 défaut), 6 tentatives, `Task.isCancelled` vérifié entre deux, puis `nil` sans mémorisation ; les appels
