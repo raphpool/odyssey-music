@@ -88,11 +88,6 @@
       "slug": "artist:nicolette",
       "type": "artist",
       "name": "Nicolette"
-    },
-    {
-      "slug": "artist:4hero",
-      "type": "artist",
-      "name": "4hero"
     }
   ],
   "notable_releases": [
@@ -110,12 +105,6 @@
       "slug": "project:4",
       "type": "project",
       "name": ":4"
-    },
-    {
-      "slug": "project:new-forms--roni-size-reprazent",
-      "type": "project",
-      "name": "New Forms",
-      "artist": "Roni Size / Reprazent"
     }
   ]
 }

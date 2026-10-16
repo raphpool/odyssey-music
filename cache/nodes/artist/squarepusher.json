@@ -80,22 +80,9 @@
       "slug": "project:ufabulum",
       "type": "project",
       "name": "Ufabulum"
-    },
-    {
-      "slug": "project:hard-normal-daddy--squarepusher",
-      "type": "project",
-      "name": "Hard Normal Daddy",
-      "artist": "Squarepusher"
     }
   ],
-  "notable_tracks": [
-    {
-      "slug": "track:beep-street--squarepusher",
-      "type": "track",
-      "name": "Beep Street",
-      "artist": "Squarepusher"
-    }
-  ],
+  "notable_tracks": [],
   "influences": [],
   "influenced": [],
   "collaborators": [],

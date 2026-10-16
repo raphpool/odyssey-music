@@ -93,21 +93,6 @@
       "slug": "artist:gojira",
       "type": "artist",
       "name": "Gojira"
-    },
-    {
-      "slug": "artist:death",
-      "type": "artist",
-      "name": "Death"
-    },
-    {
-      "slug": "artist:obituary",
-      "type": "artist",
-      "name": "Obituary"
-    },
-    {
-      "slug": "artist:the-dresden-dolls",
-      "type": "artist",
-      "name": "The Dresden Dolls"
     }
   ],
   "notable_releases": [
@@ -125,12 +110,6 @@
       "slug": "project:bloody-kisses",
       "type": "project",
       "name": "Bloody Kisses"
-    },
-    {
-      "slug": "project:mantra--shelter",
-      "type": "project",
-      "name": "Mantra",
-      "artist": "Shelter"
     }
   ]
 }

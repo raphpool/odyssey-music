@@ -72,21 +72,6 @@
       "slug": "artist:tony-sheridan",
       "type": "artist",
       "name": "Tony Sheridan"
-    },
-    {
-      "slug": "artist:james-blake",
-      "type": "artist",
-      "name": "James Blake"
-    },
-    {
-      "slug": "artist:joe-hisaishi",
-      "type": "artist",
-      "name": "Joe Hisaishi"
-    },
-    {
-      "slug": "artist:orange-juice",
-      "type": "artist",
-      "name": "Orange Juice"
     }
   ],
   "notable_releases": []

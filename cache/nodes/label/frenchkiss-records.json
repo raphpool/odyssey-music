@@ -60,11 +60,6 @@
       "slug": "artist:the-drums",
       "type": "artist",
       "name": "The Drums"
-    },
-    {
-      "slug": "artist:1-2-3",
-      "type": "artist",
-      "name": "1,2,3"
     }
   ],
   "notable_releases": [

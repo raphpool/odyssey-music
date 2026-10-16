@@ -113,12 +113,6 @@
       "slug": "project:blue-train",
       "type": "project",
       "name": "Blue Train"
-    },
-    {
-      "slug": "project:kind-of-blue--miles-davis",
-      "type": "project",
-      "name": "Kind of Blue",
-      "artist": "Miles Davis"
     }
   ],
   "notable_tracks": [

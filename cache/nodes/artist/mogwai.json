@@ -86,12 +86,6 @@
       "slug": "project:as-the-love-continues",
       "type": "project",
       "name": "As the Love Continues"
-    },
-    {
-      "slug": "project:a-wrenched-virile-lore--mogwai",
-      "type": "project",
-      "name": "A Wrenched Virile Lore",
-      "artist": "Mogwai"
     }
   ],
   "notable_tracks": [
@@ -115,6 +109,5 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": [],
-  "similar_artists": []
+  "members": []
 }

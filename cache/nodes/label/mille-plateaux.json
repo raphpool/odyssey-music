@@ -68,26 +68,6 @@
       "slug": "artist:wolfgang-voigt",
       "type": "artist",
       "name": "Wolfgang Voigt"
-    },
-    {
-      "slug": "artist:andy-mellwig",
-      "type": "artist",
-      "name": "Andy Mellwig"
-    },
-    {
-      "slug": "artist:markus-popp",
-      "type": "artist",
-      "name": "Markus Popp"
-    },
-    {
-      "slug": "artist:microstoria",
-      "type": "artist",
-      "name": "Microstoria"
-    },
-    {
-      "slug": "artist:oval",
-      "type": "artist",
-      "name": "Oval"
     }
   ],
   "notable_releases": [
@@ -100,39 +80,6 @@
       "slug": "project:electric-ladyland--the-jimi-hendrix-experience",
       "type": "project",
       "name": "Electric Ladyland"
-    },
-    {
-      "slug": "project:94diskont",
-      "type": "project",
-      "name": "94diskont."
-    },
-    {
-      "slug": "project:entain--vladislav-delay",
-      "type": "project",
-      "name": "Entain",
-      "artist": "Vladislav Delay"
-    },
-    {
-      "slug": "project:generation-star-wars--alec-empire",
-      "type": "project",
-      "name": "Generation Star Wars",
-      "artist": "Alec Empire"
-    },
-    {
-      "slug": "project:konigsforst",
-      "type": "project",
-      "name": "Königsforst"
-    },
-    {
-      "slug": "project:snd--microstoria",
-      "type": "project",
-      "name": "Snd",
-      "artist": "Microstoria"
-    },
-    {
-      "slug": "project:zauberberg",
-      "type": "project",
-      "name": "Zauberberg"
     }
   ]
 }

@@ -89,17 +89,6 @@
       "slug": "project:west-side-story",
       "type": "project",
       "name": "West Side Story (Original Motion Picture Soundtrack)"
-    },
-    {
-      "slug": "project:in-c--terry-riley",
-      "type": "project",
-      "name": "In C",
-      "artist": "Terry Riley"
-    },
-    {
-      "slug": "project:the-world-of-harry-partch",
-      "type": "project",
-      "name": "The World of Harry Partch"
     }
   ]
 }

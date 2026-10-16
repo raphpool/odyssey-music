@@ -75,12 +75,6 @@
       "slug": "project:fitna--rohff",
       "type": "project",
       "name": "Fitna"
-    },
-    {
-      "slug": "project:la-cerise-sur-le-ghetto--mafia-k-1-fry",
-      "type": "project",
-      "name": "La Cerise sur le ghetto",
-      "artist": "Mafia K'1 Fry"
     }
   ],
   "notable_tracks": [
@@ -88,12 +82,6 @@
       "slug": "track:fitna--rohff",
       "type": "track",
       "name": "Fitna",
-      "artist": "Rohff"
-    },
-    {
-      "slug": "track:appelle-moi-rohff--rohff",
-      "type": "track",
-      "name": "Appelle-moi Rohff",
       "artist": "Rohff"
     }
   ],

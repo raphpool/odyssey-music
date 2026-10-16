@@ -73,26 +73,7 @@
       "name": "Avalon"
     }
   ],
-  "notable_tracks": [
-    {
-      "slug": "track:do-the-strand--roxy-music",
-      "type": "track",
-      "name": "Do the Strand",
-      "artist": "Roxy Music"
-    },
-    {
-      "slug": "track:for-your-pleasure--roxy-music",
-      "type": "track",
-      "name": "For Your Pleasure",
-      "artist": "Roxy Music"
-    },
-    {
-      "slug": "track:in-every-dream-home-a-heartache--roxy-music",
-      "type": "track",
-      "name": "In Every Dream Home a Heartache",
-      "artist": "Roxy Music"
-    }
-  ],
+  "notable_tracks": [],
   "influences": [],
   "influenced": [],
   "collaborators": [],

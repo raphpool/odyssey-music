@@ -67,31 +67,6 @@
       "slug": "artist:louis-jordan",
       "type": "artist",
       "name": "Louis Jordan"
-    },
-    {
-      "slug": "artist:chuck-berry",
-      "type": "artist",
-      "name": "Chuck Berry"
-    },
-    {
-      "slug": "artist:donna-summer",
-      "type": "artist",
-      "name": "Donna Summer"
-    },
-    {
-      "slug": "artist:john-anthony",
-      "type": "artist",
-      "name": "John Anthony"
-    },
-    {
-      "slug": "artist:jose-padilla",
-      "type": "artist",
-      "name": "José Padilla"
-    },
-    {
-      "slug": "artist:kool-and-the-gang",
-      "type": "artist",
-      "name": "Kool and the Gang"
     }
   ],
   "notable_releases": []

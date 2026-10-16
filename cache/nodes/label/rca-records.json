@@ -52,45 +52,6 @@
       "qid": "Q45981"
     }
   ],
-  "roster": [
-    {
-      "slug": "artist:a-ap-rocky",
-      "type": "artist",
-      "name": "A$AP Rocky"
-    },
-    {
-      "slug": "artist:david-bowie",
-      "type": "artist",
-      "name": "David Bowie"
-    },
-    {
-      "slug": "artist:davido",
-      "type": "artist",
-      "name": "Davido"
-    },
-    {
-      "slug": "artist:lou-reed",
-      "type": "artist",
-      "name": "Lou Reed"
-    },
-    {
-      "slug": "artist:wizkid",
-      "type": "artist",
-      "name": "Wizkid"
-    }
-  ],
-  "notable_releases": [
-    {
-      "slug": "project:mandatory-fun--weird-al-yankovic",
-      "type": "project",
-      "name": "Mandatory Fun",
-      "artist": "\"Weird Al\" Yankovic"
-    },
-    {
-      "slug": "project:the-rise-and-fall-of-ziggy-stardust-and-the-spiders-from-mars--david-bowie",
-      "type": "project",
-      "name": "The Rise and Fall of Ziggy Stardust and the Spiders from Mars",
-      "artist": "David Bowie"
-    }
-  ]
+  "roster": [],
+  "notable_releases": []
 }

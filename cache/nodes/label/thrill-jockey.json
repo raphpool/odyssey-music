@@ -87,21 +87,6 @@
       "slug": "artist:freakwater",
       "type": "artist",
       "name": "Freakwater"
-    },
-    {
-      "slug": "artist:lithops",
-      "type": "artist",
-      "name": "Lithops"
-    },
-    {
-      "slug": "artist:markus-popp",
-      "type": "artist",
-      "name": "Markus Popp"
-    },
-    {
-      "slug": "artist:microstoria",
-      "type": "artist",
-      "name": "Microstoria"
     }
   ],
   "notable_releases": [
@@ -124,17 +109,6 @@
       "slug": "project:autoditacker",
       "type": "project",
       "name": "Autoditacker"
-    },
-    {
-      "slug": "project:init-ding--microstoria",
-      "type": "project",
-      "name": "Init Ding",
-      "artist": "Microstoria"
-    },
-    {
-      "slug": "project:niun-niggung",
-      "type": "project",
-      "name": "Niun Niggung"
     }
   ]
 }

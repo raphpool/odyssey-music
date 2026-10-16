@@ -68,21 +68,6 @@
       "slug": "artist:seefeel",
       "type": "artist",
       "name": "Seefeel"
-    },
-    {
-      "slug": "artist:andi-toma",
-      "type": "artist",
-      "name": "Andi Toma"
-    },
-    {
-      "slug": "artist:laetitia-sadier",
-      "type": "artist",
-      "name": "Laetitia Sadier"
-    },
-    {
-      "slug": "artist:mouse-on-mars",
-      "type": "artist",
-      "name": "Mouse on Mars"
     }
   ],
   "notable_releases": [
@@ -100,16 +85,6 @@
       "slug": "project:mclusky-do-dallas--mclusky",
       "type": "project",
       "name": "Mclusky Do Dallas"
-    },
-    {
-      "slug": "project:autoditacker",
-      "type": "project",
-      "name": "Autoditacker"
-    },
-    {
-      "slug": "project:vulvaland",
-      "type": "project",
-      "name": "Vulvaland"
     }
   ]
 }

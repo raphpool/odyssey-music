@@ -73,16 +73,6 @@
       "slug": "artist:sl2",
       "type": "artist",
       "name": "SL2"
-    },
-    {
-      "slug": "artist:paris-grey",
-      "type": "artist",
-      "name": "Paris Grey"
-    },
-    {
-      "slug": "artist:the-reese-project",
-      "type": "artist",
-      "name": "The Reese Project"
     }
   ],
   "notable_releases": [

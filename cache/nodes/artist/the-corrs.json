@@ -49,14 +49,7 @@
       "name": "143 Records"
     }
   ],
-  "discography": [
-    {
-      "slug": "project:in-blue--the-corrs",
-      "type": "project",
-      "name": "In Blue",
-      "artist": "The Corrs"
-    }
-  ],
+  "discography": [],
   "notable_tracks": [
     {
       "slug": "track:breathless",
@@ -67,18 +60,6 @@
       "slug": "track:runaway",
       "type": "track",
       "name": "Runaway"
-    },
-    {
-      "slug": "track:give-it-all-up--the-corrs",
-      "type": "track",
-      "name": "Give It All Up",
-      "artist": "The Corrs"
-    },
-    {
-      "slug": "track:no-more-cry--the-corrs",
-      "type": "track",
-      "name": "No More Cry",
-      "artist": "The Corrs"
     }
   ],
   "influences": [],
