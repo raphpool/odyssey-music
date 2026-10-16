@@ -575,13 +575,21 @@ async function pingApi() {
     showJitOverlay(hit);
     jitAbortCtrl = new AbortController();
     try {
-      // Don't pass mbid as `disambiguator` — that becomes part of the slug body
+      // Never pass mbid as `disambiguator` — that becomes part of the slug body
       // (artist:drake--9fff2f8a-...) and the resulting node never reconciles with
-      // parent edges pointing at the bare slug `artist:drake`. We pass an `mbid`
-      // hint instead which the server stamps onto the materialized node payload;
-      // /search uses cache-index.byMbid for dedup, no slug fragmentation needed.
-      const reqBody = { type: hit.type, name: hit.name };
-      if (hit.mbid) reqBody.mbid = hit.mbid;
+      // parent edges pointing at the bare slug `artist:drake`. `mbid` is only a hint (it
+      // finds a work already in cache; it never creates one).
+      // 2026-10-15 (TRA-481, TRA-547): a catalog hit for a project/track carries the first credited
+      // artist as `artist` (structured, from MB's artist-credit); send it, else a work not yet cached
+      // answers 400 once scoped work slugs are on (TRA-477/TRA-509). Never fall back on `subtitle`: it is
+      // the joined credit ("Sasha, John Digweed"), which would build a slug scoped to no artist, and
+      // cutting it on "," would break "Earth, Wind & Fire". A hit without `artist` sends none.
+      const reqBody = materializeBody({
+        type: hit.type,
+        name: hit.name,
+        mbid: hit.mbid,
+        artist: isWorkType(hit.type) ? jitArtistName(hit.artist) : "",
+      });
       const r = await fetch(`${API_BASE}/materialize`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -1891,18 +1899,27 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
     const refs = node.edges && node.edges[carouselEdgeKey];
     if (Array.isArray(refs) && refs.length) {
       const carouselLabel = KIND_LABEL[carouselEdgeKey] || carouselEdgeKey.replace(/_/g, " ");
-      carouselHtml = projectCarouselHtml(refs, carouselLabel);
+      carouselHtml = projectCarouselHtml(refs, carouselLabel, {
+        type: node.type,
+        name: node.name,
+        kind: carouselEdgeKey,
+      });
     }
   }
 
+  // TRA-472: an artist's landmark album + reference track are singular edges shown above the
+  // discography (not as generic chips). The block only exists when at least one is present.
+  const highlightsHtml = highlightsBlockHtml(node, KIND_LABEL);
+
   const edgeHtml = Object.entries(node.edges || {}).map(([kind, val]) => {
     if (kind === carouselEdgeKey) return ""; // rendered as carousel above
+    if (HIGHLIGHT_EDGES.includes(kind)) return ""; // rendered in the .highlights block
     const refs = Array.isArray(val) ? val : [val];
     if (!refs.length) return "";
     const label = KIND_LABEL[kind] || kind.replace(/_/g, " ");
-    // Pass parent context so JIT materialization can disambiguate ambiguous names
-    // (e.g. track "Tendency" → which artist? The chip carries the parent node it
-    // was referenced from + the edge kind, used as the disambiguator string).
+    // Pass parent context so a JIT click can say which artist's work it means (TRA-481):
+    // chipHtml turns it into data-jit-artist / data-jit-field, jitMaterialize into the
+    // `artist` / `source` of the POST /materialize body.
     const parentCtx = { type: node.type, name: node.name, year: node.year, kind };
     const chips = refs.map((r) => chipHtml(r, parentCtx)).join("");
     return `<div class="edge-group"><div class="kind">${label}</div><div class="chips">${chips}</div></div>`;
@@ -1956,6 +1973,7 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
         ${playBtnHtml}
         ${streamHtml}
         ${banner}
+        ${highlightsHtml}
         ${carouselHtml}
         <div class="article">${escapeHtml(node.article || "")}</div>
         ${edgeHtml ? `<div class="section">Connections</div>${edgeHtml}` : ""}
@@ -2011,7 +2029,7 @@ function show(id, { fromHistory = false, replaceHistory = false } = {}) {
   contentEl.querySelectorAll(".chip.dangling[data-jit-type], .project-card.dangling[data-jit-type]").forEach((el) => {
     el.addEventListener("click", (e) => {
       e.preventDefault();
-      jitMaterialize(el.dataset.jitType, el.dataset.jitName, el, el.dataset.jitDisambig || "", el.dataset.jitMbid || "");
+      jitMaterialize(el.dataset.jitType, el.dataset.jitName, el, { mbid: el.dataset.jitMbid || "", sourceSlug: node.id });
     });
   });
   const precacheBtn = contentEl.querySelector("#precache-all");
@@ -2035,9 +2053,8 @@ async function precacheAllDangling(node, btn) {
   btn.disabled = true;
   btn.textContent = "loading…";
   const targets = [];
-  // Carry parent context (kind, parent node) alongside each target so the
-  // bulk materialize call disambiguates ambiguous names the same way the
-  // single-chip JIT path does.
+  // Carry parent context (kind, parent node) alongside each target so the bulk
+  // materialize call sends the same artist/source context as the single-chip JIT path.
   for (const [kind, v] of Object.entries(node.edges || {})) {
     const refs = Array.isArray(v) ? v : [v];
     for (const r of refs) {
@@ -2052,22 +2069,20 @@ async function precacheAllDangling(node, btn) {
       const t = targets.shift();
       if (!t) return;
       const { ref, kind } = t;
-      // Don't pass parent context as disambiguator — it gets folded into the slug body
-      // (artist:pupajim--roster-of-label-stand-high-records) and the resulting node never
-      // reconciles with parent edges pointing at the bare slug. The agent has enough
-      // surface area to identify the right entity from the name alone; if it ever
-      // mis-routes, we can re-introduce context as a separate "context" field that's NOT
-      // used in slug computation. For now: bare slug, always.
-      const disambiguator = "";
-      const reqBody = { type: ref.type, name: ref.name };
-      if (disambiguator) reqBody.disambiguator = disambiguator;
-      if (ref.mbid) reqBody.mbid = ref.mbid;
-      // 2026-09-10 (TRA-45): send the edge's own identity (slug always present, qid when the
-      // edge carries one), same convention as jitMaterialize (TRA-43) -- without this,
-      // "précacher tout" stayed on the old by-name path and could remint the duplicate TRA-31
-      // scenario 6 already fixed for the single-chip JIT path.
-      reqBody.slug = ref.slug;
-      if (ref.qid) reqBody.qid = ref.qid;
+      // 2026-10-15 (TRA-481): same payload as a single-chip click (artist + source), and never
+      // a `disambiguator`: it folded into the slug and never reconciled with the edges.
+      // 2026-09-10 (TRA-45): the edge's own identity (slug always present, qid when the edge
+      // carries one) -- without it "précacher tout" stayed on the old by-name path and could
+      // remint the duplicate TRA-31 scenario 6 already fixed for the single-chip JIT path.
+      const reqBody = materializeBody({
+        type: ref.type,
+        name: ref.name,
+        mbid: ref.mbid,
+        qid: ref.qid,
+        slug: ref.slug,
+        artist: isWorkType(ref.type) ? jitArtistFor(ref, node.type, node.name) : "",
+        source: jitSource(node.id, kind),
+      });
       try {
         await fetch(`${API_BASE}/materialize`, {
           method: "POST", headers: { "Content-Type": "application/json" },
@@ -2087,16 +2102,80 @@ async function precacheAllDangling(node, btn) {
   show(node.id);
 }
 
-// Build a disambiguator string from the parent node + edge kind. The
-// scraping agent receives this verbatim and uses it to lock onto the right
-// entity when the bare name is ambiguous (multiple "Tendency" tracks, several
-// artists called "Bird", etc.).
-function buildDisambiguator(parentCtx) {
-  if (!parentCtx || !parentCtx.name) return "";
-  const kindLabel = (parentCtx.kind || "").replace(/_/g, " ");
-  const yearPart = parentCtx.year ? `, ${parentCtx.year}` : "";
-  // e.g. "appears as discography of artist Burial" / "subgenre of genre Techno"
-  return `${kindLabel} of ${parentCtx.type} "${parentCtx.name}"${yearPart}`.trim();
+// 2026-10-15 (TRA-481): the artist/source context a click on a dangling work sends to
+// POST /materialize (contract: TRA-477, #452). Values come from graph data the server already
+// validated, but are re-checked here and escaped on output like any attribute.
+function isWorkType(type) {
+  return type === "project" || type === "track";
+}
+
+// Mirrors the server's `artist` rules (collapsed spaces, 1-200 chars, no control character, at
+// least one Latin letter or digit left once normalizeSlugBody (src/slug.ts) is applied: NFKD, accents
+// and a trailing "(...)" / "[...]" stripped); "" = send no artist. A name the server would refuse (400
+// with scoped slugs on) is better omitted: the slug of the edge then carries the scope.
+function jitArtistName(v) {
+  if (typeof v !== "string") return "";
+  const name = v.replace(/\s+/g, " ").trim();
+  if (!name || name.length > 200 || /[\u0000-\u001f\u007f-\u009f]/.test(name)) return "";
+  const body = name
+    .normalize("NFKD")
+    .replace(/\p{M}/gu, "")
+    .replace(/\s*\([^)]*\)\s*$/u, "")
+    .replace(/\s*\[[^\]]*\]\s*$/u, "");
+  return /[a-z0-9]/i.test(body) ? name : "";
+}
+
+// The ref's own credited artist wins; a ref without one on an artist's page belongs to that artist.
+function jitArtistFor(ref, parentType, parentName) {
+  if (typeof ref.artist === "string" && ref.artist.trim()) return jitArtistName(ref.artist);
+  return parentType === "artist" ? jitArtistName(parentName) : "";
+}
+
+// data-jit-artist (works only) + data-jit-field, for a dangling chip or card.
+function jitContextAttrs(ref, parentCtx) {
+  let out = "";
+  const artist = isWorkType(ref.type) ? jitArtistFor(ref, parentCtx && parentCtx.type, parentCtx && parentCtx.name) : "";
+  if (artist) out += ` data-jit-artist="${escapeHtml(artist)}"`;
+  if (parentCtx && parentCtx.kind) out += ` data-jit-field="${escapeHtml(parentCtx.kind)}"`;
+  return out;
+}
+
+// `source` is optional context but the server rejects an invalid one (400), which would block the
+// click: send it only for a canonical slug (CANONICAL_SLUG_PATTERN, src/slug.ts) -- a deployed cache
+// can still hold legacy slugs -- and a plain edge field name.
+const CANONICAL_SLUG = /^(artist|project|track|genre|label):[a-z0-9]+(-[a-z0-9]+)*(--[a-z0-9]+(-[a-z0-9]+)*)?$/;
+function jitSource(slug, field) {
+  return typeof slug === "string" && CANONICAL_SLUG.test(slug) && /^[a-z_]+$/.test(field || "")
+    ? { slug, field }
+    : undefined;
+}
+
+// The one place a POST /materialize body is built, so the chip, "précacher tout" and the search
+// rail cannot drift apart. Never a `disambiguator`.
+function materializeBody({ type, name, mbid, qid, slug, artist, source }) {
+  const body = { type, name };
+  if (artist) body.artist = artist;
+  if (mbid) body.mbid = mbid;
+  if (qid) body.qid = qid;
+  if (slug) body.slug = slug;
+  if (source) body.source = source;
+  return body;
+}
+
+// Local mirror of the server-side edge rewrite: the edge of `sourceSlug.field` that named `from`
+// now names `to`. byId and DATA.nodes share the node objects, so both views see it.
+function repointEdge(sourceSlug, field, from, to) {
+  const parent = sourceSlug && byId.get(sourceSlug);
+  const v = parent && parent.edges && field ? parent.edges[field] : undefined;
+  if (Array.isArray(v)) {
+    // Same as the server: the list already naming `to` just drops the replaced entry.
+    const present = v.some((r) => r && r.slug === to);
+    for (let i = v.length - 1; i >= 0; i--) {
+      if (!v[i] || v[i].slug !== from) continue;
+      if (present) v.splice(i, 1);
+      else v[i].slug = to;
+    }
+  } else if (v && v.slug === from) v.slug = to;
 }
 
 // ─── Streaming links ─────────────────────────────────────────────────────
@@ -2211,6 +2290,72 @@ const PROJECT_CAROUSEL_EDGE = {
   project: "related_projects",
 };
 
+// Singular artist edges rendered together above the discography (TRA-472).
+const HIGHLIGHT_EDGES = ["landmark_project", "reference_track"];
+
+// A single-edge value is only rendered when it is a well-formed ref: slug and name are strings
+// (the rest of the ref is escaped field by field in the card/chip helpers).
+function isRenderableRef(ref) {
+  return !!ref && typeof ref === "object" && typeof ref.slug === "string" && typeof ref.name === "string";
+}
+
+/**
+ * `.highlights` block of an artist page: the landmark album as a cover card (same card as the
+ * discography) and the reference track as a chip, both navigating exactly like their siblings
+ * (data-id for a cached node, jit-* attrs for a dangling one). Empty string when neither exists,
+ * so a node without the fields (everything until the TRA-491 backfill) renders unchanged.
+ */
+function highlightsBlockHtml(node, kindLabel) {
+  if (node.type !== "artist" || !node.edges) return "";
+  const items = HIGHLIGHT_EDGES.map((key) => {
+    const ref = node.edges[key];
+    if (!isRenderableRef(ref)) return "";
+    const parentCtx = { type: node.type, name: node.name, year: node.year, kind: key };
+    const body = key === "landmark_project" ? projectCardHtml(ref, parentCtx) : chipHtml(ref, parentCtx);
+    return `<div class="highlight highlight-${key}"><div class="kind">${escapeHtml(kindLabel[key] || key.replace(/_/g, " "))}</div>${body}</div>`;
+  }).join("");
+  return items ? `<div class="highlights">${items}</div>` : "";
+}
+
+/**
+ * One project card (cover + name + year/release type), shared by the discography carousel
+ * and the artist `.highlights` block (TRA-472). Every ref field goes through escapeHtml; the
+ * cover goes through bgStyleAttr (safeCssUrl). `parentCtx` ({ type, name, kind }) feeds the
+ * data-jit-artist / data-jit-field of a dangling card (TRA-481).
+ */
+function projectCardHtml(ref, parentCtx) {
+  // 2026-09-10 (TRA-38): a materialize/redirect response can serve this ref's node
+  // under a different slug than the one recorded on the edge.
+  const cached = byId.get(resolveId(ref.slug));
+  const facts = (cached && cached.facts) || {};
+  const imageUrl = (cached && cached.image_url) || "";
+  const year = facts.year || ref.year || "";
+  const releaseType = facts.release_type || ref.releaseType || "";
+  const bg = bgStyleAttr(imageUrl);
+  const noImage = bg ? "" : " no-image";
+  const yearHtml = year ? `<span class="year">${escapeHtml(year)}</span>` : "<span></span>";
+  const rtHtml = releaseType ? `<span class="release-type">${escapeHtml(releaseType)}</span>` : "";
+  // Cached projects navigate via show() (same as chips). Dangling ones carry
+  // jit-* attrs so the click triggers materialize → navigate, like dangling
+  // chips do. Without this branch, clicking a dangling card called show(slug)
+  // which silently returns and feels broken (Raph 2026-05-30 report).
+  const inCache = !!cached;
+  const dead = deadCache.has(ref.slug);
+  const stateClass = inCache ? "" : (dead ? " dead" : " dangling");
+  const navAttrs = inCache
+    ? `data-id="${escapeHtml(ref.slug)}"`
+    : `data-jit-type="${escapeHtml(ref.type)}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${escapeHtml(ref.slug)}"${ref.mbid ? ` data-jit-mbid="${escapeHtml(ref.mbid)}"` : ""}${jitContextAttrs(ref, parentCtx)}`;
+  // href uses the resolved slug (TRA-38, same reasoning as chipHtml above): ref.slug
+  // is only an alias key once this card is inCache via resolveId, not a slug byId or
+  // the ?node= deep link reader can look up directly.
+  const hrefSlug = inCache ? resolveId(ref.slug) : ref.slug;
+  return `<a class="project-card${noImage}${stateClass}" href="?node=${encodeURIComponent(hrefSlug)}" ${navAttrs} data-needs-image="${bg ? "0" : "1"}">
+    <div class="cover" ${bg}></div>
+    <div class="name">${escapeHtml(ref.name)}</div>
+    <div class="meta">${yearHtml}${rtHtml}</div>
+  </a>`;
+}
+
 /**
  * Render an array of project edge refs as a horizontal swipable carousel.
  * Each card shows cover + year + EP/Single/Album badge. Missing covers fall back
@@ -2219,40 +2364,9 @@ const PROJECT_CAROUSEL_EDGE = {
  * lookup returns. Cards link to the project via data-id (handled by the same
  * delegated click listener as chips).
  */
-function projectCarouselHtml(refs, kindLabel) {
+function projectCarouselHtml(refs, kindLabel, parentCtx) {
   if (!Array.isArray(refs) || !refs.length) return "";
-  const cards = refs.map((ref) => {
-    // 2026-09-10 (TRA-38): a materialize/redirect response can serve this ref's node
-    // under a different slug than the one recorded on the edge.
-    const cached = byId.get(resolveId(ref.slug));
-    const facts = (cached && cached.facts) || {};
-    const imageUrl = (cached && cached.image_url) || "";
-    const year = facts.year || ref.year || "";
-    const releaseType = facts.release_type || ref.releaseType || "";
-    const bg = bgStyleAttr(imageUrl);
-    const noImage = bg ? "" : " no-image";
-    const yearHtml = year ? `<span class="year">${escapeHtml(year)}</span>` : "<span></span>";
-    const rtHtml = releaseType ? `<span class="release-type">${escapeHtml(releaseType)}</span>` : "";
-    // Cached projects navigate via show() (same as chips). Dangling ones carry
-    // jit-* attrs so the click triggers materialize → navigate, like dangling
-    // chips do. Without this branch, clicking a dangling card called show(slug)
-    // which silently returns and feels broken (Raph 2026-05-30 report).
-    const inCache = !!cached;
-    const dead = deadCache.has(ref.slug);
-    const stateClass = inCache ? "" : (dead ? " dead" : " dangling");
-    const navAttrs = inCache
-      ? `data-id="${escapeHtml(ref.slug)}"`
-      : `data-jit-type="${escapeHtml(ref.type)}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${escapeHtml(ref.slug)}"${ref.mbid ? ` data-jit-mbid="${escapeHtml(ref.mbid)}"` : ""}`;
-    // href uses the resolved slug (TRA-38, same reasoning as chipHtml above): ref.slug
-    // is only an alias key once this card is inCache via resolveId, not a slug byId or
-    // the ?node= deep link reader can look up directly.
-    const hrefSlug = inCache ? resolveId(ref.slug) : ref.slug;
-    return `<a class="project-card${noImage}${stateClass}" href="?node=${encodeURIComponent(hrefSlug)}" ${navAttrs} data-needs-image="${bg ? "0" : "1"}">
-      <div class="cover" ${bg}></div>
-      <div class="name">${escapeHtml(ref.name)}</div>
-      <div class="meta">${yearHtml}${rtHtml}</div>
-    </a>`;
-  }).join("");
+  const cards = refs.map((ref) => projectCardHtml(ref, parentCtx)).join("");
   return `<div class="project-carousel-section">
     <div class="kind">${escapeHtml(kindLabel)}</div>
     <div class="project-carousel">${cards}</div>
@@ -2265,7 +2379,7 @@ function chipHtml(ref, parentCtx) {
   // without clicking through.
   const yearSuffix = ref.year ? ` <span class="meta">· ${escapeHtml(ref.year)}</span>` : "";
   const rt = ref.releaseType;
-  const rtBadge = rt && rt !== "album" ? ` <span class="rt-badge rt-${rt}">${rt}</span>` : "";
+  const rtBadge = rt && rt !== "album" ? ` <span class="rt-badge rt-${escapeHtml(rt)}">${escapeHtml(rt)}</span>` : "";
   const extras = `${rtBadge}${yearSuffix}`;
   // 2026-09-10 (TRA-38): a materialize response can serve this ref's node under a
   // different slug (genre canonical rewrite) -- without this the chip stays
@@ -2285,22 +2399,26 @@ function chipHtml(ref, parentCtx) {
   }
   const action = JIT_ENABLED ? "JIT" : "";
   const title = JIT_ENABLED ? "click to materialize now" : "not yet materialized";
-  // No more data-jit-disambig: the parent context used to be passed to /materialize as
-  // `disambiguator`, which made the slug `artist:foo--<parent-context>` and never
-  // reconciled with the bare-slug edges. Slug-from-name only now.
+  // 2026-10-15 (TRA-481): no data-jit-disambig. The parent context used to travel as
+  // `disambiguator`, which folded into the slug (`artist:foo--<parent-context>`) and never
+  // reconciled with the edges. It now travels as two separate fields that never enter a
+  // slug: `artist` (data-jit-artist, the credited artist of a project/track) and `source`
+  // (the page's node + data-jit-field, the edge the click came from). The server reads
+  // them to open the right homonym and to rewrite the clicked edge (TRA-477, #452).
+  const ctxAttrs = jitContextAttrs(ref, parentCtx);
   const mbidAttr = ref.mbid ? ` data-jit-mbid="${escapeHtml(ref.mbid)}"` : "";
   // 2026-09-10 (TRA-43): carry the edge's own qid, when it has one, so a click on this chip
   // materializes by IDENTITY (slug + qid) instead of a name the server would have to re-resolve
   // -- see jitMaterialize's reqBody below and docs/plans/qid-genre-identity.md, decision d'archi
   // 8/9. Genre edges only (EdgeRef.qid), same scope as mbidAttr above.
   const qidAttr = ref.qid ? ` data-jit-qid="${escapeHtml(ref.qid)}"` : "";
-  return `<span class="chip t-${escapeHtml(ref.type)} dangling" data-jit-type="${escapeHtml(ref.type)}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${escapeHtml(ref.slug)}"${mbidAttr}${qidAttr} title="${title}"><span class="etype">${escapeHtml(ref.type)}</span>${escapeHtml(ref.name)}${extras}${action ? " " : ""}</span>`;
+  return `<span class="chip t-${escapeHtml(ref.type)} dangling" data-jit-type="${escapeHtml(ref.type)}" data-jit-name="${escapeHtml(ref.name)}" data-jit-slug="${escapeHtml(ref.slug)}"${mbidAttr}${qidAttr}${ctxAttrs} title="${title}"><span class="etype">${escapeHtml(ref.type)}</span>${escapeHtml(ref.name)}${extras}${action ? " " : ""}</span>`;
 }
 
 // Expected wall time per node type, based on the pipeline benchmarks
 // (p50 around 5s, p90 around 7s). Used to drive the optimistic progress bar.
 const EXPECTED_MS_BY_TYPE = { genre: 6500, label: 5200, artist: 6500, project: 5200, track: 5000 };
-async function jitMaterialize(type, name, chipEl, disambiguator, mbid) {
+async function jitMaterialize(type, name, chipEl, { mbid = "", sourceSlug = "" } = {}) {
   if (!JIT_ENABLED) return;
   chipEl.classList.remove("dangling");
   chipEl.classList.add("loading");
@@ -2312,17 +2430,23 @@ async function jitMaterialize(type, name, chipEl, disambiguator, mbid) {
   requestAnimationFrame(() => chipEl.style.setProperty("--progress", "95%"));
   const t0 = performance.now();
   try {
-    const reqBody = { type, name };
-    if (disambiguator) reqBody.disambiguator = disambiguator;
     // MBID pinned at emit time (artist.discography, project.tracklist, etc.) — passing it
     // here avoids "click Drake's ICEMAN → land on Sub Society 1990 ICEMAN" (Raph 2026-05-19).
-    if (mbid) reqBody.mbid = mbid;
     // 2026-09-10 (TRA-43): send the edge's own identity (slug always present on a dangling
     // chip, qid when the edge carries one) instead of letting the server re-derive it from
     // `name` alone -- this is what makes handleMaterialize's qid-autoritaire guard actually
     // reachable from a chip click (server-side fix landed in TRA-43, this is the front half).
-    reqBody.slug = chipEl.dataset.jitSlug;
-    if (chipEl.dataset.jitQid) reqBody.qid = chipEl.dataset.jitQid;
+    // 2026-10-15 (TRA-481): plus the artist context and the originating edge (see chipHtml).
+    const field = chipEl.dataset.jitField;
+    const reqBody = materializeBody({
+      type,
+      name,
+      mbid,
+      qid: chipEl.dataset.jitQid,
+      slug: chipEl.dataset.jitSlug,
+      artist: chipEl.dataset.jitArtist,
+      source: jitSource(sourceSlug, field),
+    });
     const r = await fetch(`${API_BASE}/materialize`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -2359,6 +2483,15 @@ async function jitMaterialize(type, name, chipEl, disambiguator, mbid) {
     // (chipEl.dataset.jitSlug) lost the rewrite kept looking dangling on every re-render.
     if (chipEl.dataset.jitSlug && chipEl.dataset.jitSlug !== vizNode.id) {
       slugAlias.set(chipEl.dataset.jitSlug, vizNode.id);
+    }
+    // 2026-10-15 (TRA-481): `requested_slug` means the node is filed under another slug than
+    // the one the edge named; when `source` was sent and accepted the server has also rewritten
+    // that edge. Mirror it locally so the page needs no reload: the chip re-renders with the new
+    // slug (data-id) and a second click opens the right work. Absent: leave the edge untouched --
+    // the server did not rewrite it, a homonym's edge stays for the TRA-478 migration.
+    if (body.requested_slug && body.requested_slug !== vizNode.id) {
+      slugAlias.set(body.requested_slug, vizNode.id);
+      repointEdge(sourceSlug, field, body.requested_slug, vizNode.id);
     }
     // Snap the progress bar to 100% then jump straight to the new node.
     chipEl.classList.add("done");

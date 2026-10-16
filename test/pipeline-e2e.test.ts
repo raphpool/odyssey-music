@@ -724,6 +724,190 @@ describe("MB identity at enrichment (TRA-473)", () => {
 			TIMEOUT_MS,
 		);
 
+		// TRA-538: an mbid from a client is a hint that MB's own resolution has to confirm.
+		it(
+			"gives a client's mbid to the node only when MB resolves the work to that very mbid",
+			async () => {
+				installPipelineMocks({ draft: projectDraftFixture("New Forms", "Roni Size") });
+				const m = await resolvedWork("releaseGroup", "New Forms", [{ mbid: RONI_MBID, name: "Roni Size" }]);
+				const runPipeline = await loadRunPipeline();
+				const input = {
+					type: "project" as const,
+					name: "New Forms",
+					artist: "Roni Size",
+					mbidIsClientHint: true,
+				};
+
+				const confirmed = await runPipeline({ ...input, mbid: RG_MBID.toUpperCase() }, DEPS);
+				expect((confirmed.node as ProjectNode).mbid).toBe(RG_MBID);
+
+				installPipelineMocks({ draft: projectDraftFixture("New Forms", "Roni Size") });
+				await resolvedWork("releaseGroup", "New Forms", [{ mbid: RONI_MBID, name: "Roni Size" }]);
+				const other = await runPipeline({ ...input, mbid: "bbbbbbbb-1111-4111-8111-0000000000ff" }, DEPS);
+				expect((other.node as ProjectNode).mbid).toBeUndefined();
+				// Neither MB's other answer nor the hint's own metadata reaches the node.
+				expect(vi.mocked(m.fetchProjectMetaMb)).toHaveBeenCalledTimes(1);
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"keeps using the mbid of a trusted caller (seed folder) without asking MB to confirm it",
+			async () => {
+				installPipelineMocks({ draft: projectDraftFixture("New Forms", "Roni Size") });
+				const m = await resolvedWork("releaseGroup", "New Forms", []);
+				vi.mocked(m.resolveReleaseGroup).mockClear();
+				const runPipeline = await loadRunPipeline();
+
+				const result = await runPipeline(
+					{ type: "project", name: "New Forms", mbid: RG_MBID, slug: "project:new-forms--roni-size" },
+					DEPS,
+				);
+
+				expect((result.node as ProjectNode).mbid).toBe(RG_MBID);
+				expect(vi.mocked(m.resolveReleaseGroup)).not.toHaveBeenCalled();
+			},
+			TIMEOUT_MS,
+		);
+
+		// TRA-546: same rule for artists and labels as for works above.
+		describe("a client's artist or label mbid (TRA-546)", () => {
+			const OTHER = "eeeeeeee-1111-4111-8111-0000000000f1";
+			const LABEL_PROSE = "A fictional label invented for the mbid hint tests (TRA-546). ".repeat(2);
+			const artistResolving = async (found: string | null) => {
+				const m = await mb();
+				vi.mocked(m.resolveArtistDetailed).mockImplementation(async (name) => ({
+					artist: found ? { mbid: found, name, kind: "person", disambiguation: null, area: null } : null,
+					candidates: found ? 1 : 3,
+					path: "name",
+					unavailable: false,
+					matchedWords: [],
+				}));
+				vi.mocked(m.fetchArtistDiscographyMb).mockImplementation(async () => []);
+				vi.mocked(m.fetchArtistEntityMb).mockImplementation(async () => null);
+				return m;
+			};
+			/** MB's name search ranks `found` first; its own record for it is named `entityName`. */
+			const labelResolving = async (found: string | null, entityName = "Nobody Records") => {
+				const m = await mb();
+				vi.mocked(m.findLabelMbidByName).mockImplementation(async () => found);
+				vi.mocked(m.fetchLabelEntityMb).mockImplementation(async () =>
+					found
+						? { mbid: found, name: entityName, country: null, founded: null, disambiguation: null }
+						: null,
+				);
+				vi.mocked(m.fetchLabelMetaMb).mockImplementation(async () => ({
+					roster: [],
+					notableReleases: [],
+				}));
+				return m;
+			};
+			const labelDraft = () => ({
+				name: "Nobody Records",
+				editorial_article: LABEL_PROSE,
+				citations: [{ url: FIXTURE_WIKI_URL, title: "Fixture Artist" }],
+				editorial_description: "A fictional label.",
+				genres: [],
+				roster: [],
+				notable_releases: [],
+			});
+
+			it(
+				"writes the artist's mbid only when MB resolves the name to that very mbid",
+				async () => {
+					installPipelineMocks({ draft: artistDraftFixture({ name: "Nobody" }) });
+					await artistResolving(RONI_MBID);
+					const runPipeline = await loadRunPipeline();
+					const input = { type: "artist" as const, name: "Nobody", mbidIsClientHint: true };
+
+					const confirmed = await runPipeline({ ...input, mbid: RONI_MBID.toUpperCase() }, DEPS);
+					expect((confirmed.node as ArtistNode).mbid).toBe(RONI_MBID);
+
+					// The probe: Nobody sent with the mbid of somebody else.
+					const probe = await runPipeline({ ...input, mbid: OTHER }, DEPS);
+					expect((probe.node as ArtistNode).mbid).toBeUndefined();
+
+					// MB cannot single the name out: the hint has nothing to be confirmed by.
+					await artistResolving(null);
+					const ambiguous = await runPipeline({ ...input, mbid: OTHER }, DEPS);
+					expect((ambiguous.node as ArtistNode).mbid).toBeUndefined();
+				},
+				TIMEOUT_MS,
+			);
+
+			it(
+				"keeps the mbid of a trusted caller (crawler, seeds) without asking MB to confirm it",
+				async () => {
+					installPipelineMocks({ draft: artistDraftFixture({ name: "Nobody" }) });
+					const m = await artistResolving(null);
+					const runPipeline = await loadRunPipeline();
+
+					const result = await runPipeline({ type: "artist", name: "Nobody", mbid: OTHER }, DEPS);
+
+					expect((result.node as ArtistNode).mbid).toBe(OTHER);
+					expect(vi.mocked(m.resolveArtistDetailed)).not.toHaveBeenCalled();
+				},
+				TIMEOUT_MS,
+			);
+
+			it(
+				"writes the label's mbid only when MB's name search lands on that very mbid",
+				async () => {
+					installPipelineMocks({ draft: labelDraft() });
+					const m = await labelResolving(RONI_MBID);
+					const runPipeline = await loadRunPipeline();
+					const input = { type: "label" as const, name: "Nobody Records", mbidIsClientHint: true };
+
+					const confirmed = await runPipeline({ ...input, mbid: RONI_MBID.toUpperCase() }, DEPS);
+					expect((confirmed.node as LabelNode).mbid).toBe(RONI_MBID);
+
+					vi.mocked(m.fetchLabelMetaMb).mockClear();
+					const probe = await runPipeline({ ...input, mbid: OTHER }, DEPS);
+					expect((probe.node as LabelNode).mbid).toBeUndefined();
+					// Neither the hint's nor MB's other answer's metadata reaches the node.
+					expect(vi.mocked(m.fetchLabelMetaMb)).not.toHaveBeenCalled();
+
+					await labelResolving(null);
+					const none = await runPipeline({ ...input, mbid: OTHER }, DEPS);
+					expect((none.node as LabelNode).mbid).toBeUndefined();
+				},
+				TIMEOUT_MS,
+			);
+
+			it(
+				"does not give a label the identity of a differently named label that merely ranks first",
+				async () => {
+					installPipelineMocks({ draft: labelDraft() });
+					const m = await labelResolving(RONI_MBID, "Warp Records");
+					const runPipeline = await loadRunPipeline();
+
+					const result = await runPipeline(
+						{ type: "label", name: "Nobody Records", mbid: RONI_MBID, mbidIsClientHint: true },
+						DEPS,
+					);
+
+					expect((result.node as LabelNode).mbid).toBeUndefined();
+					expect(vi.mocked(m.fetchLabelMetaMb)).not.toHaveBeenCalled();
+				},
+				TIMEOUT_MS,
+			);
+
+			it(
+				"uses the mbid of a trusted label caller as is, without a name search",
+				async () => {
+					installPipelineMocks({ draft: labelDraft() });
+					const m = await labelResolving(null);
+					const runPipeline = await loadRunPipeline();
+
+					await runPipeline({ type: "label", name: "Nobody Records", mbid: OTHER }, DEPS);
+
+					expect(vi.mocked(m.findLabelMbidByName)).not.toHaveBeenCalled();
+					expect(vi.mocked(m.fetchLabelMetaMb)).toHaveBeenCalledWith(OTHER);
+				},
+				TIMEOUT_MS,
+			);
+		});
+
 		it(
 			"survives MusicBrainz being down: requested slug, LLM edges, no mbid",
 			async () => {
@@ -758,6 +942,7 @@ describe("MB identity at enrichment (TRA-473)", () => {
 					candidates: 1,
 					path: "name",
 					unavailable: false,
+					matchedWords: [],
 				}));
 				vi.mocked(m.fetchArtistDiscographyMb).mockImplementation(async () => [
 					{
@@ -793,6 +978,7 @@ describe("MB identity at enrichment (TRA-473)", () => {
 					candidates: 3,
 					path: "name",
 					unavailable: false,
+					matchedWords: [],
 				}));
 				const runPipeline = await loadRunPipeline();
 				const lines: string[] = [];
@@ -1376,6 +1562,195 @@ describe("research corpus has at least two source pages (TRA-459)", () => {
 			const result = await runPipeline({ type: "artist", name: "Fixture Artist" }, DEPS);
 
 			expect(result.node.citations.map((c) => c.url)).toEqual([WIKI_URL]);
+		},
+		TIMEOUT_MS,
+	);
+});
+
+// TRA-470: the LLM picks the landmark album and the reference track in the same call; whatever a provider
+// emits, the written node holds a member of discography / notable_tracks (compared by slug), or nothing.
+// Both slug modes: the comparison must not depend on ODYSSEY_SCOPED_RELEASE_SLUGS.
+describe.each([
+	{ flag: "true", label: "scoped slugs", slug: (t: string, n: string) => `${t}:${n}--fixture-artist` },
+	{ flag: "false", label: "bare slugs", slug: (t: string, n: string) => `${t}:${n}` },
+])("landmark_project / reference_track membership, $label (TRA-470)", ({ flag, slug }) => {
+	beforeEach(() => {
+		vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", flag);
+	});
+	afterEach(() => {
+		vi.unstubAllEnvs();
+	});
+
+	const run = async (draft: Record<string, unknown>, lines: string[] = []) => {
+		installPipelineMocks({ draft });
+		const runPipeline = await loadRunPipeline();
+		const result = await runPipeline(
+			{ type: "artist", name: "Fixture Artist" },
+			{ ...DEPS, logger: (line) => lines.push(line) },
+		);
+		return result.node as ArtistNode;
+	};
+
+	it(
+		"keeps a landmark_project that is the second entry of discography",
+		async () => {
+			const lines: string[] = [];
+			const artist = await run(
+				artistDraftFixture({
+					landmark_project: { type: "project", name: "Fixture EP", artist: "Fixture Artist" },
+				}),
+				lines,
+			);
+
+			expect(artist.landmark_project?.slug).toBe(slug("project", "fixture-ep"));
+			expect(artist.landmark_project?.slug).toBe(artist.discography[1]?.slug);
+			expect(artist.reference_track?.slug).toBe(slug("track", "fixture-track"));
+			expect(lines.some((l) => l.includes("not in discography"))).toBe(false);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"replaces a landmark_project absent from discography with discography[0] and logs it",
+		async () => {
+			const lines: string[] = [];
+			const artist = await run(
+				artistDraftFixture({
+					landmark_project: { type: "project", name: "Hallucinated Album", artist: "Fixture Artist" },
+				}),
+				lines,
+			);
+
+			expect(artist.landmark_project?.slug).toBe(artist.discography[0]?.slug);
+			expect(artist.landmark_project?.name).toBe("Fixture Album");
+			expect(lines.some((l) => l.includes("landmark_project not in discography"))).toBe(true);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"fills in the first entries when the draft names neither pick",
+		async () => {
+			const lines: string[] = [];
+			const artist = await run(
+				artistDraftFixture({ landmark_project: undefined, reference_track: undefined }),
+				lines,
+			);
+
+			expect(artist.landmark_project?.slug).toBe(artist.discography[0]?.slug);
+			expect(artist.reference_track?.slug).toBe(artist.notable_tracks[0]?.slug);
+			expect(lines.some((l) => l.includes("landmark_project missing"))).toBe(true);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"writes no landmark_project when the draft has no discography, even if the LLM named one",
+		async () => {
+			const artist = await run(artistDraftFixture({ discography: [] }));
+
+			expect(artist.discography).toEqual([]);
+			expect("landmark_project" in artist).toBe(false);
+			expect(artist.reference_track?.slug).toBe(slug("track", "fixture-track"));
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"writes no reference_track when it is off the list and notable_tracks is empty",
+		async () => {
+			const artist = await run(
+				artistDraftFixture({
+					notable_tracks: [],
+					reference_track: { type: "track", name: "Hallucinated Track", artist: "Fixture Artist" },
+				}),
+			);
+
+			expect(artist.notable_tracks).toEqual([]);
+			expect("reference_track" in artist).toBe(false);
+			expect(artist.landmark_project?.slug).toBe(slug("project", "fixture-album"));
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"replaces an off-list reference_track with notable_tracks[0]",
+		async () => {
+			const lines: string[] = [];
+			const artist = await run(
+				artistDraftFixture({
+					reference_track: { type: "track", name: "Hallucinated Track", artist: "Fixture Artist" },
+				}),
+				lines,
+			);
+
+			expect(artist.reference_track?.slug).toBe(artist.notable_tracks[0]?.slug);
+			expect(lines.some((l) => l.includes("reference_track not in notable_tracks"))).toBe(true);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"still matches a pick that omits artist, as an unconstrained provider may emit it",
+		async () => {
+			const artist = await run(
+				artistDraftFixture({
+					landmark_project: { type: "project", name: "Fixture EP" },
+					reference_track: { type: "track", name: "Fixture Track" },
+				}),
+			);
+
+			expect(artist.landmark_project?.slug).toBe(slug("project", "fixture-ep"));
+			expect(artist.reference_track?.slug).toBe(slug("track", "fixture-track"));
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"checks the pick against the MusicBrainz discography that replaces the draft's",
+		async () => {
+			const mbRelease = (title: string, date: string, mbid: string) => ({
+				mbid,
+				title,
+				firstReleaseDate: date,
+				primaryType: "Album" as const,
+				secondaryTypes: [],
+			});
+			const releases = [
+				mbRelease("Old Record", "2001-01-01", "11111111-2222-3333-4444-555555555501"),
+				mbRelease("Newest Record", "2024-01-01", "11111111-2222-3333-4444-555555555502"),
+			];
+			const { fetchArtistDiscographyMb } = await import("../src/musicbrainz.js");
+			const runPipeline = await loadRunPipeline();
+
+			// The pick is in the draft but not in the MB list that overwrites it: back to MB's first entry.
+			const lines: string[] = [];
+			installPipelineMocks({ draft: artistDraftFixture() });
+			vi.mocked(fetchArtistDiscographyMb).mockImplementation(async () => releases);
+			const off = (
+				await runPipeline(
+					{ type: "artist", name: "Fixture Artist" },
+					{ ...DEPS, logger: (line) => lines.push(line) },
+				)
+			).node as ArtistNode;
+			expect(off.discography.map((e) => e.name)).toEqual(["Newest Record", "Old Record"]);
+			expect(off.landmark_project?.slug).toBe(slug("project", "newest-record"));
+			expect(lines.some((l) => l.includes("landmark_project not in discography"))).toBe(true);
+
+			// The pick is in the draft and is also an MB release: kept, and it carries the MB data of that entry.
+			installPipelineMocks({
+				draft: artistDraftFixture({
+					discography: [
+						{ type: "project", name: "Fixture Album", artist: "Fixture Artist" },
+						{ type: "project", name: "Old Record", artist: "Fixture Artist" },
+					],
+					landmark_project: { type: "project", name: "Old Record", artist: "Fixture Artist" },
+				}),
+			});
+			vi.mocked(fetchArtistDiscographyMb).mockImplementation(async () => releases);
+			const on = (await runPipeline({ type: "artist", name: "Fixture Artist" }, DEPS)).node as ArtistNode;
+			expect(on.landmark_project?.slug).toBe(slug("project", "old-record"));
+			expect(on.landmark_project?.mbid).toBe("11111111-2222-3333-4444-555555555501");
 		},
 		TIMEOUT_MS,
 	);

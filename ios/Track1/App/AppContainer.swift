@@ -24,7 +24,7 @@ final class AppContainer {
 			let processInfo = ProcessInfo.processInfo
 			let localStore = LocalStore(
 				failNextWriteNamed: processInfo.arguments.contains("-track1-fail-next-profile-write")
-					? "profile.v1.json" : nil
+					? ProfileStore.profileFileName : nil
 			)
 			let resetProfile = processInfo.arguments.contains("-track1-reset-profile")
 			let seedCorruptProfile = processInfo.arguments.contains("-track1-seed-corrupt-profile")

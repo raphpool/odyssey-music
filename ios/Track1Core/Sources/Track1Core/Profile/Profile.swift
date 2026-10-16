@@ -28,7 +28,7 @@ public enum ProfileSelection {
 }
 
 public struct Profile: Codable, Equatable, Sendable {
-	public static let version = 1
+	public static let version = 2
 
 	public let version: Int
 	public let localID: UUID

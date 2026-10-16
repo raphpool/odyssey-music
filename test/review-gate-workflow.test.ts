@@ -253,12 +253,17 @@ main();
 		await exec("git", ["clone", origin, work]);
 		mkdirSync(join(work, "scripts", "ci"), { recursive: true });
 		copyFileSync("scripts/ci/review-gate-policy.ts", join(work, "scripts", "ci", "review-gate-policy.ts"));
+		// TRA-527: the allowed authors live next to the workflow, on the default branch too.
+		mkdirSync(join(work, ".github"));
+		copyFileSync(".github/review-gate-authors.txt", join(work, ".github", "review-gate-authors.txt"));
 		await git(work, "add", ".");
 		await git(work, "commit", "-m", "policy");
 		await git(work, "push", "origin", "HEAD:main");
 		await git(work, "fetch", "origin");
 		await git(work, "checkout", "-b", "weaken-policy");
 		writeFileSync(join(work, "scripts", "ci", "review-gate-policy.ts"), WEAKENED);
+		// The same PR also appends a forger to the list it is judged by.
+		writeFileSync(join(work, ".github", "review-gate-authors.txt"), "raphpool\nforger\n");
 		await git(work, "commit", "-am", "weaken the policy");
 		return { work, runnerTemp };
 	}
@@ -386,4 +391,279 @@ describe("review-gate.yml: permissions (TRA-520)", () => {
 	it("pins the node release that runs the policy", () => {
 		expect(code).toMatch(/node-version: 22\.\d+\.\d+/);
 	});
+});
+
+// TRA-527 (2026-10-15): `codex-review` / `codex-deep-review` are plain commit statuses, and a status is not bound to
+// its author. These tests run the jq program the "Evaluate" step keeps in `select_status`, and the loader step that
+// reads the allowed authors, on simulated API answers.
+describe("review-gate.yml: codex statuses count only from their expected author (TRA-527)", () => {
+	const selectStatusProgram = (): string => {
+		const match = /select_status=\$\(cat <<'JQ'\n([\s\S]*?)\nJQ\n\)/.exec(
+			stepScript("Evaluate combined review policy"),
+		);
+		if (match?.[1] === undefined) throw new Error("select_status heredoc not found in review-gate.yml");
+		return match[1];
+	};
+
+	let statusId = 0;
+	const status = (context: string, state: string, login: string | null, createdAt: string) => {
+		statusId += 1;
+		// Same projection as the workflow's `--jq`: id, context, state, created_at, creator.login.
+		return { id: statusId, context, state, created_at: createdAt, creator: { login } };
+	};
+
+	/** What the "Evaluate" step computes for one context: a state, or `missing`. */
+	async function selectStatus(statuses: unknown[], context: string, allowed: unknown[] = ["raphpool"]) {
+		fixture += 1;
+		const list = join(scratch, `statuses-${fixture}.json`);
+		const authors = join(scratch, `authors-${fixture}.json`);
+		stream(list, statuses);
+		writeFileSync(authors, JSON.stringify(allowed));
+		const { stdout } = await exec("jq", [
+			"-nr",
+			"--slurpfile",
+			"statuses",
+			list,
+			"--slurpfile",
+			"allowed",
+			authors,
+			"--arg",
+			"context",
+			context,
+			selectStatusProgram(),
+		]);
+		return stdout.trimEnd();
+	}
+
+	const T1 = "2026-10-15T09:00:00Z";
+	const T2 = "2026-10-15T09:10:00Z";
+	const T3 = "2026-10-15T09:20:00Z";
+
+	it("keeps a status published by an allowed author, for each of the two contexts", async () => {
+		const statuses = [
+			status("codex-review", "success", "raphpool", T1),
+			status("codex-deep-review", "failure", "raphpool", T1),
+		];
+		expect(await selectStatus(statuses, "codex-review")).toBe("success");
+		expect(await selectStatus(statuses, "codex-deep-review")).toBe("failure");
+		expect(await selectStatus(statuses, "ci/other")).toBe("missing");
+	});
+
+	it("treats a status from another author as absent, whatever its state or date", async () => {
+		for (const state of ["success", "failure", "pending", "error"]) {
+			const forged = [status("codex-deep-review", state, "someone-else", "2099-01-01T00:00:00Z")];
+			expect(await selectStatus(forged, "codex-deep-review")).toBe("missing");
+		}
+		// A workflow token posts as the Actions bot, and a status can have no creator at all.
+		const bot = [status("codex-deep-review", "success", "github-actions[bot]", T1)];
+		expect(await selectStatus(bot, "codex-deep-review")).toBe("missing");
+		const anonymous = [status("codex-deep-review", "success", null, T1)];
+		expect(await selectStatus(anonymous, "codex-deep-review")).toBe("missing");
+		const noCreator = [{ context: "codex-deep-review", state: "success" }];
+		expect(await selectStatus(noCreator, "codex-deep-review")).toBe("missing");
+	});
+
+	it("neither masks nor replaces the real status: the latest one among the allowed authors wins", async () => {
+		const real = status("codex-deep-review", "success", "raphpool", T1);
+		const forgedFailure = status("codex-deep-review", "failure", "someone-else", T3);
+		const forgedSuccess = status("codex-deep-review", "success", "someone-else", T3);
+		expect(await selectStatus([forgedFailure, real], "codex-deep-review")).toBe("success");
+		expect(await selectStatus([real, forgedSuccess], "codex-deep-review")).toBe("success");
+		// The author re-posts: the newest of its own statuses counts, in whatever order the API lists them.
+		const repost = status("codex-deep-review", "failure", "raphpool", T2);
+		expect(await selectStatus([real, forgedSuccess, repost], "codex-deep-review")).toBe("failure");
+		expect(await selectStatus([repost, forgedSuccess, real], "codex-deep-review")).toBe("failure");
+		// Same second: the later id wins.
+		const first = status("codex-review", "pending", "raphpool", T1);
+		const second = status("codex-review", "success", "raphpool", T1);
+		expect(await selectStatus([second, first], "codex-review")).toBe("success");
+		expect(await selectStatus([first, second], "codex-review")).toBe("success");
+	});
+
+	it("compares logins case-insensitively and honors the whole list", async () => {
+		const statuses = [status("codex-review", "success", "RaphPool", T1)];
+		expect(await selectStatus(statuses, "codex-review")).toBe("success");
+		expect(await selectStatus(statuses, "codex-review", ["other", "RAPHPOOL"])).toBe("success");
+		expect(await selectStatus(statuses, "codex-review", ["other"])).toBe("missing");
+		// An empty list allows nobody.
+		expect(await selectStatus(statuses, "codex-review", [])).toBe("missing");
+	});
+
+	const policy = async (deep: string): Promise<string> => {
+		const input = JSON.stringify({
+			paths: [".github/workflows/review-gate.yml"],
+			labels: [],
+			ordinary: { claude: "success", codex: "missing", claudeBlocking: false },
+			deep,
+			risk: 1,
+		});
+		const { stdout } = await exec("npx", ["--no-install", "tsx", "scripts/ci/review-gate-policy.ts", input]);
+		return (JSON.parse(stdout) as { verdict: string }).verdict;
+	};
+
+	it("a forged `codex-deep-review: success` does not satisfy a tier/3, the genuine one does", async () => {
+		const forged = [status("codex-deep-review", "success", "someone-else", T1)];
+		const genuineStatus = [status("codex-deep-review", "success", "raphpool", T1)];
+		expect(await policy(await selectStatus(forged, "codex-deep-review"))).toBe("wait");
+		expect(await policy(await selectStatus(genuineStatus, "codex-deep-review"))).toBe("pass");
+		// Control: the old behavior, which took the status whoever posted it, would have passed.
+		expect(await policy("success")).toBe("pass");
+		// A forged failure cannot hold a legitimate head either.
+		const both = [...genuineStatus, status("codex-deep-review", "failure", "someone-else", T3)];
+		expect(await policy(await selectStatus(both, "codex-deep-review"))).toBe("pass");
+	}, 60_000);
+
+	const loader = () => stepScript("Load the review policy from the default branch");
+	const loaderEnv = (runnerTemp: string, defaultBranch = "main") => ({
+		PATH: process.env.PATH ?? "",
+		RUNNER_TEMP: runnerTemp,
+		DEFAULT_BRANCH: defaultBranch,
+	});
+	const git = (cwd: string, ...args: string[]) =>
+		exec("git", ["-c", "user.name=test", "-c", "user.email=test@example.com", ...args], { cwd });
+
+	/** A repository whose default branch holds `authors` and whose checked-out branch holds `prAuthors`. */
+	async function checkout(name: string, authors: string | null, prAuthors: string) {
+		const origin = join(scratch, `${name}-origin.git`);
+		const work = join(scratch, `${name}-work`);
+		const runnerTemp = join(scratch, `${name}-runner-temp`);
+		mkdirSync(runnerTemp);
+		await exec("git", ["init", "--bare", "--initial-branch=main", origin]);
+		await exec("git", ["clone", origin, work]);
+		mkdirSync(join(work, "scripts", "ci"), { recursive: true });
+		mkdirSync(join(work, ".github"));
+		copyFileSync("scripts/ci/review-gate-policy.ts", join(work, "scripts", "ci", "review-gate-policy.ts"));
+		if (authors !== null) writeFileSync(join(work, ".github", "review-gate-authors.txt"), authors);
+		await git(work, "add", ".");
+		await git(work, "commit", "-m", "main");
+		await git(work, "push", "origin", "HEAD:main");
+		await git(work, "fetch", "origin");
+		await git(work, "checkout", "-b", "pr");
+		writeFileSync(join(work, ".github", "review-gate-authors.txt"), prAuthors);
+		await git(work, "add", ".");
+		await git(work, "commit", "-m", "pr");
+		return { work, runnerTemp };
+	}
+
+	const loadedAuthors = (runnerTemp: string): unknown =>
+		JSON.parse(readFileSync(join(runnerTemp, "review-gate-policy", "authors.json"), "utf8"));
+
+	it("reads the allowed authors from the default branch, so a PR cannot add its own login", async () => {
+		const { work, runnerTemp } = await checkout(
+			"authors-ok",
+			"# comment\nraphpool # trailing\n\n",
+			"raphpool\nforger\n",
+		);
+		await exec("bash", ["-c", loader()], { cwd: work, env: loaderEnv(runnerTemp) });
+		expect(loadedAuthors(runnerTemp)).toEqual(["raphpool"]);
+	}, 60_000);
+
+	it("ships a list that names the account publishing the real statuses", () => {
+		const lines = readFileSync(".github/review-gate-authors.txt", "utf8")
+			.split("\n")
+			.map((line) => line.replace(/#.*$/, "").trim())
+			.filter((line) => line !== "");
+		expect(lines).toContain("raphpool");
+	});
+
+	it.each([
+		["no list on the default branch", null],
+		["an empty list", "# nobody\n"],
+		["a malformed login", "raphpool\nnot a login\n"],
+		["a login with a separator", "raphpool,forger\n"],
+	])(
+		"fails closed, and leaves no list behind, with %s",
+		async (label, authors) => {
+			const { work, runnerTemp } = await checkout(
+				`authors-bad-${label.replaceAll(" ", "-")}`,
+				authors,
+				"raphpool\n",
+			);
+			// A stale list from a previous job of the same runner must not survive a failed load.
+			mkdirSync(join(runnerTemp, "review-gate-policy"));
+			writeFileSync(join(runnerTemp, "review-gate-policy", "authors.json"), '["raphpool"]');
+			await expect(
+				exec("bash", ["-c", loader()], { cwd: work, env: loaderEnv(runnerTemp) }),
+			).rejects.toMatchObject({
+				code: expect.any(Number),
+			});
+			expect(existsSync(join(runnerTemp, "review-gate-policy", "authors.json"))).toBe(false);
+		},
+		60_000,
+	);
+
+	it("reads every page of the head's statuses through files, and no longer the combined status", () => {
+		expect(code).toContain('gh api --paginate "repos/$REPOSITORY/commits/$SHA/statuses?per_page=100"');
+		expect(code).toContain('--slurpfile statuses "$api/statuses.json"');
+		expect(code).toContain('--slurpfile allowed "$authors"');
+		expect(code).not.toMatch(/commits\/\$SHA\/status["?]/);
+		expect(code).not.toMatch(/--argjson (statuses|allowed)\b/);
+		expect(code).toContain('git show "origin/$DEFAULT_BRANCH:.github/review-gate-authors.txt"');
+	});
+});
+
+// TRA-553: static checks on what the workflows pass to git and to the Claude action. Comment lines are dropped, so
+// the explanations next to a flag cannot make a test pass.
+describe("review workflows hardening (TRA-553)", () => {
+	const uncommented = (path: string): string =>
+		readFileSync(path, "utf8")
+			.replaceAll("\r\n", "\n")
+			.split("\n")
+			.filter((line) => !/^\s*#/.test(line))
+			.join("\n");
+	const aiReview = uncommented(AI_REVIEW);
+
+	/**
+	 * The lines of the `claude_args: |` block of the "Review Claude" step, read from the raw file: inside a block
+	 * scalar a `#` line is content, so it is an argument for the action and must not be hidden from the checks.
+	 */
+	const claudeArgs = (): string[] => {
+		const lines = readFileSync(AI_REVIEW, "utf8").replaceAll("\r\n", "\n").split("\n");
+		const start = lines.findIndex((line) => line.trim() === "claude_args: |");
+		if (start === -1) throw new Error("claude_args block not found in ai-review.yml");
+		const indent = (lines[start]?.length ?? 0) - (lines[start]?.trimStart().length ?? 0) + 2;
+		const body: string[] = [];
+		for (const line of lines.slice(start + 1)) {
+			if (line.trim() !== "" && line.length - line.trimStart().length < indent) break;
+			body.push(line.trim());
+		}
+		return body.filter((line) => line !== "");
+	};
+
+	it("restricts the Claude action to the user setting source, so the PR's own config loads nothing", () => {
+		// The action defaults to "user,project,local" and takes this value from claude_args (parse-sdk-options.ts).
+		expect(claudeArgs()).toContain("--setting-sources user");
+		expect(claudeArgs().filter((line) => line.startsWith("--setting-sources"))).toHaveLength(1);
+		// No other way to bring the project source back or to point the agent at settings of the PR.
+		expect(aiReview).not.toMatch(/--setting-sources[ =][^\n]*(project|local)/);
+		expect(aiReview).not.toMatch(/^\s*settings:/m);
+		expect(aiReview).not.toMatch(/--settings\b/);
+		// Every line of the block is a flag or the value of the previous one: no stray `#` line.
+		expect(claudeArgs().filter((line) => line.startsWith("#"))).toEqual([]);
+	});
+
+	it("uses only the MCP servers the action adds itself, so a PR's .mcp.json starts nothing", () => {
+		// The action keeps `enableAllProjectMcpServers: true` in the user settings it writes, which
+		// `--setting-sources user` does not remove: only --strict-mcp-config ignores the project's .mcp.json.
+		expect(claudeArgs()).toContain("--strict-mcp-config");
+	});
+
+	it("keeps the tool allowlist on the command line, where the project settings cannot widen it", () => {
+		expect(claudeArgs().some((line) => line.startsWith("--allowedTools "))).toBe(true);
+		expect(aiReview).not.toMatch(/Bash\((npx|gh pr|npm)\b/);
+	});
+
+	it.each([".github/workflows/review-gate.yml", ".github/workflows/ci.yml"])(
+		"lists the changed paths of %s with --no-renames and -z, on every name-only diff",
+		(path) => {
+			const calls = uncommented(path).match(/git diff [^\n|)]*--name-only[^\n|)]*/g) ?? [];
+			expect(calls.length).toBeGreaterThanOrEqual(1);
+			for (const call of calls) {
+				expect(call, call).toContain("--no-renames");
+				// NUL-separated, so that git does not quote a non-ASCII path (the quote defeats the `^` anchors).
+				expect(call, call).toMatch(/git diff -z /);
+			}
+			expect(uncommented(path)).toContain("tr '\\0' '\\n'");
+		},
+	);
 });

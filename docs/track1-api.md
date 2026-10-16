@@ -105,9 +105,25 @@ taxonomy:
 - **`degraded`** : les données de taxonomie ne sont pas disponibles, sans empêcher
   l'exploration des nœuds. `degraded` implique désormais `available: false`. Le serveur
   répond aussi `degraded` quand il n'a pas de taxonomie pour le graphe servi, et quand la
-  taxonomie qu'il porte est invalide (version autre que 2, slug qui n'est pas une identité
-  `genre:*`, champ manquant ou mal typé) : la taxonomie est alors dégradée en entier, jamais
-  tronquée.
+  taxonomie qu'il porte est invalide : la taxonomie est alors dégradée en entier, jamais
+  tronquée. Les cas d'invalidité sont : version autre que 2, champ manquant ou mal typé,
+  `order` non entier, entrée de `genres[].slugs` ou `families[].slug` (quand il est présent)
+  qui n'est pas une identité `genre:*` valide, valeur de `legacySelectionBySlug` qui n'est
+  pas un tableau de chaînes. Une famille ou un genre invalide n'est jamais retiré seul de
+  sa liste : il dégrade toute la taxonomie.
+- **Exception, clés de `legacySelectionBySlug`** : la règle de dégradation totale ne vaut
+  pas pour les clés de cette table. Ces clés sont un canal de remédiation pour d'anciens
+  slugs (lisibles mais pas toujours canoniques, par exemple `genre:r&b`). Une clé qui n'est
+  pas une identité `genre:*` valide ne peut pas être une identité mobile : elle est omise
+  de la table émise, sans dégrader la taxonomie ni les autres clés. Seules les clés sont
+  écartées ; la valeur d'une clé retenue reste stricte (tableau de chaînes, sinon
+  dégradation en entier).
+- **Trace d'un rejet** : une taxonomie absente dégrade silencieusement (graphe ancien).
+  Une taxonomie présente mais rejetée émet un log `warn` « mobile taxonomy rejected,
+  serving degraded mode » avec un seul champ `reason`, au vocabulaire fixe :
+  `not_an_object`, `unsupported_version`, `invalid_families`, `invalid_genres`,
+  `invalid_legacy_selection`. La raison ne porte jamais de donnée du graphe, qui est non
+  fiable. L'omission d'une clé de table non canonique ne produit pas de trace.
 - **`editorial`** : la taxonomie éditoriale publiée. `families` porte les familles
   (`key`, `label`, `order` fini, `slug` facultatif : toutes les familles ne sont pas un
   nœud du graphe). `genres` porte les genres publiés (`id`, `name` éditorial, `family` =
@@ -122,6 +138,21 @@ taxonomy:
   ainsi : un `mode` inconnu ou un payload `editorial` malformé donne `degraded`
   (`available: false`) sans faire échouer le catalogue ; un `mode` absent reste une
   erreur de contrat.
+
+## Recherche : hits de projet et de morceau (TRA-547)
+
+`GET /mobile/v1/search` renvoie `{q,hits,sources}`. Un hit `project` ou `track` porte, en plus de
+`subtitle`, l'**artiste principal** du crédit :
+
+| Champ | Type | Sens |
+| --- | --- | --- |
+| `subtitle` | string, optionnel | Crédit joint, séparateur « , » (« Sasha, John Digweed »). Affichage seul : ne jamais le découper. |
+| `artist` | string, optionnel | Premier artiste crédité, lu dans le crédit structuré de MusicBrainz (« Earth, Wind & Fire » reste un seul artiste). Absent si la source ne donne aucun crédit exploitable, et toujours absent des hits `artist`, `genre` et `label`. |
+| `artist_slug` | slug `artist:…` canonique, optionnel | Fiche de cet artiste quand elle est déjà dans le cache. Absent sinon : ne jamais l'inventer. |
+
+Le client qui lance une génération pour un `project` ou un `track` envoie `artist` (jamais `subtitle`) comme
+contexte artiste (TRA-477) ; sans `artist`, il n'en envoie pas. `artist_slug` sert à ouvrir la fiche de
+l'artiste, pas à construire un slug d'œuvre.
 
 ## Registre persistant des générations
 

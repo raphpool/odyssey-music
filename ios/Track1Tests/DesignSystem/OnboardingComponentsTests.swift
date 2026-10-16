@@ -10,8 +10,6 @@ import XCTest
 /// `175:2` / `175:4`, `175:21` / `175:24`, `175:39` / `175:43` and `173:123`: a token changed in the
 /// components alone fails here. The counter label is tested in the package (`OnboardingCopyTests`).
 final class OnboardingComponentsTests: XCTestCase {
-	private let house = NodeIdentity(rawValue: "genre:house")!
-
 	private func components(_ color: Color) -> [Double] {
 		var red: CGFloat = 0
 		var green: CGFloat = 0
@@ -97,8 +95,8 @@ final class OnboardingComponentsTests: XCTestCase {
 		XCTAssertEqual(toBottom.end.y, 1, accuracy: 0.0001)
 	}
 
-	func testGenreTileIdentifierCarriesTheIdentity() {
-		XCTAssertEqual(GenreTile.identifier(for: house), "genre-tile-genre:house")
+	func testGenreTileIdentifierCarriesTheFamilyKey() {
+		XCTAssertEqual(GenreTile.identifier(for: "electronic"), "genre-tile-electronic")
 	}
 
 	// MARK: Subgenre row and Select-all chip
@@ -146,8 +144,8 @@ final class OnboardingComponentsTests: XCTestCase {
 		XCTAssertEqual(SubgenreRow.accessibilityLabel(name: "Deep House", description: " "), "Deep House")
 	}
 
-	func testSubgenreIdentifierCarriesTheIdentity() {
-		XCTAssertEqual(SubgenreRow.identifier(for: house), "subgenre-row-genre:house")
+	func testSubgenreIdentifierCarriesTheTaxonomyID() {
+		XCTAssertEqual(SubgenreRow.identifier(for: "Q10413"), "subgenre-row-Q10413")
 	}
 
 	func testSelectAllShowsAChevronUntilEverySubgenreIsIn() {

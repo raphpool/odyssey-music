@@ -1,3 +1,4 @@
+import { scopedReleaseSlugsEnabled } from "./flags.js";
 import { NODE_TYPES } from "./node-spec.js";
 import type { NodeType, Slug } from "./types.js";
 
@@ -19,12 +20,63 @@ import type { NodeType, Slug } from "./types.js";
  * track:tendency--jan-jelinek.
  */
 export function normalizeSlugBody(name: string): string {
-	let s = name.normalize("NFKD").replace(/[̀-ͯ]/g, "");
+	return flattenSlugBody(name, scopedReleaseSlugsEnabled());
+}
+
+// Letters NFKD leaves whole (they carry no combining mark), mapped to their ASCII spelling (TRA-528,
+// 2026-10-15). Without it they were dropped as non-[a-z0-9]: "MØ" -> artist:m (collides with "M"),
+// "Łona" -> artist:ona, "Straße" -> artist:stra-e. Keys are lowercase: the table runs after toLowerCase,
+// which also folds Ø Æ Œ Ł Đ Ð Þ and ẞ (U+1E9E -> ß).
+//
+// ð and ı were added by TRA-531 (2026-10-15), before the identity migration so it needs one pass, not two.
+// Symptom: "Hildur Guðnadóttir" -> artist:hildur-gu-nadottir, "Gökhan Kırdar" -> artist:gokhan-k-rdar,
+// "Yalnızlık" -> yaln-zl-k. The set is exactly the unfoldable Latin letters found in the cache that year
+// (a scan of every string under cache/: ı ø æ ł ð ß œ, nothing else); ħ, ŋ and the like are NOT here, no
+// real name needs them yet. ı is the dotless i; a plain "I" lowercases to "i" and "İ" (dotted capital I)
+// is decomposed by NFKD to I + U+0307, so neither needs an entry.
+//
+// BEHIND scopedReleaseSlugsEnabled() (ODYSSEY_SCOPED_RELEASE_SLUGS), not always on: the cache already
+// holds edges to these names under their current slugs (artist:lindstr-m, artist:molv-r, artist:ona,
+// project:void for "ØØ Void"...), so changing the normalization before the identity migration
+// (TRA-478/483/484) would orphan them. TRA-509 flips the flag once for every slug-identity change.
+// Flag off = the pre-TRA-528 output, bit for bit.
+const TRANSLITERATION: Readonly<Record<string, string>> = {
+	"\u00f8": "o", // ø
+	"\u00e6": "ae", // æ
+	"\u0153": "oe", // œ
+	"\u0142": "l", // ł
+	"\u00df": "ss", // ß
+	"\u0111": "d", // đ
+	"\u00f0": "d", // ð
+	"\u0131": "i", // ı (dotless i; Turkish)
+	"\u00fe": "th", // þ
+};
+// Both regexes are built from the table, so a letter added to it cannot be forgotten in one of them.
+// The detector has no g flag: a global regex keeps lastIndex between test() calls.
+const TRANSLITERATED_CLASS = `[${Object.keys(TRANSLITERATION).join("")}]`;
+const TRANSLITERATED_LETTERS = new RegExp(TRANSLITERATED_CLASS, "gu");
+const HAS_TRANSLITERATED_LETTER = new RegExp(TRANSLITERATED_CLASS, "u");
+
+/** True when the text holds a letter the transliteration table rewrites (any case). */
+export function hasTransliteratedLetter(text: string): boolean {
+	return HAS_TRANSLITERATED_LETTER.test(foldForSlug(text));
+}
+
+function foldForSlug(text: string): string {
+	return text
+		.normalize("NFKD")
+		.replace(/[\u0300-\u036f]/g, "")
+		.toLowerCase();
+}
+
+function flattenSlugBody(name: string, transliterate: boolean): string {
+	let s = name.normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
 	// Strip trailing disambiguating parentheticals: "Aphex Twin (musician)" -> "Aphex Twin"
 	s = s.replace(/\s*\([^)]*\)\s*$/u, "");
 	// Strip trailing bracket disambiguators too
 	s = s.replace(/\s*\[[^\]]*\]\s*$/u, "");
 	s = s.toLowerCase();
+	if (transliterate) s = s.replace(TRANSLITERATED_LETTERS, (c) => TRANSLITERATION[c] ?? c);
 	// Replace ampersand with " and " for stability
 	s = s.replace(/&/g, " and ");
 	// Replace any non-alphanumeric run with single dash
@@ -65,9 +117,15 @@ export function stripEditionNoise(title: string): string {
  *   feat./ft./featuring ... "Kid A (Deluxe Edition)" and "Kid A" are the same work.
  */
 export function normalizeTitleBody(title: string): string {
+	return flattenTitleBody(title, scopedReleaseSlugsEnabled());
+}
+
+function flattenTitleBody(title: string, transliterate: boolean): string {
 	// NFKD first (it also turns fullwidth brackets into ASCII ones), then noise removal.
-	let s = stripEditionNoise(title.normalize("NFKD").replace(/[̀-ͯ]/g, ""));
-	s = s.toLowerCase().replace(/&/g, " and ");
+	let s = stripEditionNoise(title.normalize("NFKD").replace(/[\u0300-\u036f]/g, ""));
+	s = s.toLowerCase();
+	if (transliterate) s = s.replace(TRANSLITERATED_LETTERS, (c) => TRANSLITERATION[c] ?? c);
+	s = s.replace(/&/g, " and ");
 	s = s.replace(/[^a-z0-9]+/g, "-");
 	return s.replace(/^-+|-+$/g, "");
 }
@@ -159,6 +217,65 @@ export function scopeOf(slug: string): string | null {
 export function scopeMatchesArtist(slug: string, artistName: string): boolean {
 	const scope = scopeOf(slug);
 	return scope !== null && scope === normalizeSlugBody(artistName);
+}
+
+export type TransliteratedSlugResult =
+	| { ok: true; slug: Slug }
+	| { ok: false; reason: "not-derived-from-name" };
+
+const WORK_TYPES: readonly string[] = ["project", "track"];
+
+/**
+ * The slug a node or edge target would get once the TRA-528 transliteration is on, whatever the flag
+ * (scopedReleaseSlugsEnabled() is NOT read here: this is the old -> new table the identity migration
+ * TRA-478 consumes, computed before the flag flips). Pure.
+ *
+ * It needs the display name, not just the old slug: the old body is lossy ("artist:m" cannot tell "MØ"
+ * from "M"). `artistName` is the primary artist of a project/track (EdgeRef.artist, or artists[0].name
+ * on a node), the source of a `--<scope>` suffix.
+ *
+ * The old slug is re-derived from the name first (pre-TRA-528 rules; a work title through either
+ * normalizeTitleBody or the older normalizeSlugBody). If it cannot be reproduced -- a free-text
+ * legacy disambiguator ("artist:pole--stefan-betke"), a renamed node -- the answer is
+ * "not-derived-from-name": the caller keeps the slug and reviews it by hand, nothing is guessed.
+ * An unaffected slug, or one already in its new form, comes back unchanged (`ok: true`, same slug).
+ */
+export function transliteratedSlug(
+	slug: string,
+	name: string,
+	artistName?: string,
+): TransliteratedSlugResult {
+	const notDerived: TransliteratedSlugResult = { ok: false, reason: "not-derived-from-name" };
+	if (!isReadableSlug(slug)) return notDerived;
+	const { type, body } = parseSlug(slug);
+	const sep = body.indexOf(SCOPE_SEPARATOR);
+	const oldTitle = sep < 0 ? body : body.slice(0, sep);
+	const oldScope = sep < 0 ? null : body.slice(sep + SCOPE_SEPARATOR.length);
+
+	const flatteners: Array<(text: string, transliterate: boolean) => string> = WORK_TYPES.includes(type)
+		? [flattenTitleBody, flattenSlugBody]
+		: [flattenSlugBody];
+	// Either spelling is accepted, so a slug already in its new form comes back unchanged (idempotent:
+	// a re-run of the migration, or a node minted with the flag on).
+	const matching = flatteners.filter((f) => f(name, false) === oldTitle || f(name, true) === oldTitle);
+	const first = matching[0];
+	if (!first) return notDerived;
+	// An unscoped work slug can come from either flattener, and they only differ on a trailing "(...)":
+	// "Foo (ø)" is foo / foo-o by title, foo / foo by slug body. When the two disagree on the new slug,
+	// which one minted the old slug is unknowable: refuse rather than pick one.
+	const newTitle = first(name, true);
+	if (matching.some((f) => f(name, true) !== newTitle)) return notDerived;
+
+	let newScope: string | null = null;
+	if (oldScope !== null) {
+		if (artistName === undefined) return notDerived;
+		if (flattenSlugBody(artistName, false) !== oldScope && flattenSlugBody(artistName, true) !== oldScope) {
+			return notDerived;
+		}
+		newScope = flattenSlugBody(artistName, true);
+	}
+	const next = `${type}:${newTitle}${newScope === null ? "" : `${SCOPE_SEPARATOR}${newScope}`}`;
+	return isValidSlug(next) ? { ok: true, slug: next } : notDerived;
 }
 
 export function parseSlug(slug: string): { type: NodeType; body: string } {
