@@ -344,7 +344,7 @@ describe("migration channel: the three identity migrations (TRA-568)", () => {
 		// dropped; the credit on the work stays pending, applied to nothing.
 		expect(preview.stdout).toContain("pending-reverses.json after the migrations: 1 key(s), 1 entries");
 		expect(preview.stdout).toContain(
-			"1 pending reverse edge(s) not applied (credit, parent or genre on a work)",
+			"1 pending reverse edge(s) not applied (direction not emitted by the runtime, TRA-563)",
 		);
 	});
 
@@ -396,6 +396,23 @@ describe("migration channel: the scope needs the artist manifest of the same run
 		expect(out.status).toBe(1);
 		expect(out.stderr).toContain(`${SCOPE_STEP} needs the artist manifest of this run`);
 		expect(out.npx).toEqual([]);
+		expect(existsSync(join(fx.serverRoot, "backups"))).toBe(false);
+	});
+});
+
+describe("migration channel: a replay dir left by another run is refused (TRA-568)", () => {
+	it.each([
+		["another revision or migration list", { context: "0000000 some-other-migration\n" }],
+		["manifests without a context file", {}],
+	])("refuses a replay dir with %s, before any write", async (_label, files) => {
+		const fx = makeFixture();
+		mkdirSync(fx.replayDir, { recursive: true });
+		writeFileSync(join(fx.replayDir, `${ARTIST_STEP}.manifest.json`), "{}");
+		for (const [name, body] of Object.entries(files)) writeFileSync(join(fx.replayDir, name), body);
+		const out = await runChannel(fx, ["--apply", ...migrationArgs(ALL_STEPS)]);
+		expect(out.status).not.toBe(0);
+		expect(out.stderr).toContain("was recorded by another run");
+		expect(out.npx.filter((argv) => argv.some((a) => a.endsWith(`${ARTIST_STEP}.ts`)))).toEqual([]);
 		expect(existsSync(join(fx.serverRoot, "backups"))).toBe(false);
 	});
 });

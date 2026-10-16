@@ -446,7 +446,8 @@ if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
 		# by another run is refused, never replayed (a stale manifest would pass the comparison below for
 		# everything it already resolved).
 		REPLAY_CONTEXT="$(git -C "$REPO_ROOT" rev-parse HEAD 2>/dev/null || echo unknown) ${MIGRATIONS[*]}"
-		if [[ -f "$REPLAY_DIR/context" && "$(cat "$REPLAY_DIR/context")" != "$REPLAY_CONTEXT" ]]; then
+		# Manifests without a context file are as foreign as a different context.
+		if [[ -f "$REPLAY_DIR/context" && "$(cat "$REPLAY_DIR/context")" != "$REPLAY_CONTEXT" ]] || { [[ ! -f "$REPLAY_DIR/context" ]] && compgen -G "$REPLAY_DIR/*.manifest.json" >/dev/null; }; then
 			echo "ERROR: $REPLAY_DIR was recorded by another run (other commit or other migrations) -- empty it, or unset MIGRATION_REPLAY_DIR. Refusing before any write." >&2
 			exit 1
 		fi
