@@ -28,6 +28,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://coverartarchive.org/release-group/0afb7bd6-33a9-3a01-8765-f1de0a1f0972/front-500",
+  "image_source": "caa",
   "type": "track",
   "editorial_teaser": "\"UT1-Dot\" is a seminal IDM track from Richard D. James's Polygon Window project, famously featured on the 1993 Warp Records release *Surfing on Sine Waves*.",
   "year": "1993",

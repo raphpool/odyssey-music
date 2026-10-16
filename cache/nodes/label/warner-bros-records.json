@@ -32,6 +32,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Warner%20Bros.%20Records%20Logo%202002.svg?width=600",
+  "image_source": "wikidata-p154",
   "type": "label",
   "editorial_description": "A storied American record label founded in 1958, evolving from a film studio's music division into a primary pillar of the global Warner Music Group, home to generations of legendary artists.",
   "founded": "1958",

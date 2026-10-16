@@ -28,6 +28,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Trax%20Records%20Logo.jpg?width=600",
+  "image_source": "wikidata-p154",
   "type": "label",
   "editorial_description": "A seminal Chicago house music label founded in 1984, responsible for releasing many of the genre's foundational tracks while remaining a lightning rod for controversies regarding artist royalties and copyright ownership.",
   "founded": "1984",

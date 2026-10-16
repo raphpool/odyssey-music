@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "a36c67b0-8712-4e60-8a52-f8c89fac20c7",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Tony%20Scott%2C%20jazz%20clarinetist.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "A pioneering jazz clarinetist, composer, and early architect of New Age music, Tony Scott evolved from a leading figure in the 1950s New York cool jazz scene into a globe-trotting explorer of Eastern spiritual and folk traditions.",

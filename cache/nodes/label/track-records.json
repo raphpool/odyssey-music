@@ -28,6 +28,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://coverartarchive.org/release-group/da40e720-2097-3730-8a7f-0c2ddbff4a96/front-500",
+  "image_source": "derived-cover",
   "type": "label",
   "editorial_description": "A pivotal UK independent label established by The Who's managers, Kit Lambert and Chris Stamp, defining the sound of British rock in the late 1960s and early 1970s.",
   "founded": "1966",
