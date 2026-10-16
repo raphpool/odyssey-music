@@ -194,46 +194,58 @@ describe("order and derived covers (AC 1)", () => {
 	});
 });
 
-describe("legacy photo_url / cover_url (AC 2)", () => {
-	it("copies an allowed photo_url of an artist without Wikidata, and keeps photo_url", async () => {
+// TRA-489, review of the repo run (PR #501): the stored photo_url / cover_url come from the LLM or from the
+// old unchecked iTunes lookup, nothing verifies them, so they are never copied into image_url.
+describe("no legacy fallback (photo_url / cover_url are never copied)", () => {
+	it("an artist with a photo_url on upload.wikimedia.org and no Wikidata is none, photo_url intact", async () => {
 		await seed(dir, artistNode("flash", "Flash", { photo_url: WIKIMEDIA_PHOTO }));
 		const result = await run({ fetch: routedFetch([]) });
 
 		expect(result.exitCode).toBe(0);
-		expect(await read(dir, "artist:flash")).toMatchObject({
-			image_url: WIKIMEDIA_PHOTO,
-			image_source: "legacy",
-			photo_url: WIKIMEDIA_PHOTO,
-		});
-		expect(result.manifest.bySource.legacy).toBe(1);
-		expect(result.manifest.none).toEqual([]);
+		const stored = await read(dir, "artist:flash");
+		expect(stored).not.toHaveProperty("image_url");
+		expect(stored).not.toHaveProperty("image_source");
+		expect(stored).toMatchObject({ photo_url: WIKIMEDIA_PHOTO });
+		expect(result.manifest.none).toEqual([{ slug: "artist:flash", reason: "no-mbid" }]);
+		expect(result.manifest.bySource.legacy).toBe(0);
 	});
 
-	it("uses cover_url for a project the resolver finds nothing for", async () => {
-		await seed(dir, projectNode("old", "Old", { cover_url: WIKIMEDIA_PHOTO }));
-		await run({ fetch: routedFetch([]) });
-		expect(await read(dir, "project:old")).toMatchObject({
-			image_url: WIKIMEDIA_PHOTO,
-			image_source: "legacy",
-		});
+	it("the Wikipedia maintenance icon stored as the photo of an artist with an MBID and no P18 is none (artist:gat-decor)", async () => {
+		const icon =
+			"https://upload.wikimedia.org/wikipedia/en/thumb/9/99/Question_book-new.svg/60px-Question_book-new.svg.png";
+		await seed(dir, artistNode("gat-decor", "Gat Decor", { mbid: mb(90), photo_url: icon }));
+		const result = await run({ fetch: routedFetch([mbNoRelations]) });
+
+		expect(result.exitCode).toBe(0);
+		expect(await read(dir, "artist:gat-decor")).not.toHaveProperty("image_url");
+		expect(await read(dir, "artist:gat-decor")).toMatchObject({ photo_url: icon });
+		expect(result.manifest.none).toEqual([{ slug: "artist:gat-decor", reason: "no-wikidata" }]);
 	});
 
-	it("never copies a legacy URL off the allowed hosts (or in a non-canonical form): the node goes to none", async () => {
+	it("a photo of a radio hall stored as a project's cover_url is none, and so is the label that would derive from it (momente)", async () => {
+		const hall =
+			"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Bundesarchiv_B_145_Bild-F001346-0001%2C_K%C3%B6ln%2C_WDR_Rundfunkstudio.jpg/600px-Bundesarchiv_B_145_Bild-F001346-0001%2C_K%C3%B6ln%2C_WDR_Rundfunkstudio.jpg";
 		await seed(
 			dir,
-			artistNode("elsewhere", "Elsewhere", { photo_url: "https://example.com/photo.jpg" }),
-			artistNode("plain", "Plain", { photo_url: "http://upload.wikimedia.org/photo.jpg" }),
+			projectNode("momente--karlheinz-stockhausen", "Momente", { cover_url: hall }),
+			labelNode("stockhausen-verlag", "Stockhausen-Verlag", {
+				notable_releases: [edge("project", "momente--karlheinz-stockhausen", "Momente")],
+			}),
 		);
 		const result = await run({ fetch: routedFetch([]) });
 
 		expect(result.exitCode).toBe(0);
-		for (const slug of ["artist:elsewhere", "artist:plain"])
-			expect(await read(dir, slug)).not.toHaveProperty("image_url");
-		expect(result.manifest.none.map((n) => n.slug)).toEqual(["artist:elsewhere", "artist:plain"]);
-		expect(await read(dir, "artist:elsewhere")).toMatchObject({ photo_url: "https://example.com/photo.jpg" });
+		for (const slug of ["project:momente--karlheinz-stockhausen", "label:stockhausen-verlag"]) {
+			expect(await read(dir, slug), slug).not.toHaveProperty("image_url");
+		}
+		expect(await read(dir, "project:momente--karlheinz-stockhausen")).toMatchObject({ cover_url: hall });
+		expect(result.manifest.none.map((n) => n.slug)).toEqual([
+			"label:stockhausen-verlag",
+			"project:momente--karlheinz-stockhausen",
+		]);
 	});
 
-	it("the resolver wins over a legacy field, and a node that already has an image is never touched", async () => {
+	it("the resolver still images the node whose legacy field is also set, and a node that already has an image is never touched", async () => {
 		await seed(
 			dir,
 			projectNode("both", "Both", { mbid: mb(5), cover_url: WIKIMEDIA_PHOTO }),
@@ -467,6 +479,7 @@ describe("manifest and resume", () => {
 			projectNode("bare", "Bare"),
 			genreNode("indie", "Indie", { landmark_projects: [edge("project", "ok", "OK Computer")] }),
 			artistNode("flash", "Flash", { photo_url: WIKIMEDIA_PHOTO }),
+			artistNode("fan", "Fan", { discography: [edge("project", "ok", "OK Computer")] }),
 		];
 		const other = join(scratch, "cache-2");
 		await seed(dir, ...nodes);
@@ -494,11 +507,14 @@ describe("manifest and resume", () => {
 			"wikidata-p154": 0,
 			caa: 1,
 			"itunes-verified": 0,
-			"derived-cover": 1,
-			legacy: 1,
+			"derived-cover": 2,
+			legacy: 0,
 			unknown: 0,
 		});
-		expect(manifest.none).toEqual([{ slug: "project:bare", reason: "no-mbid" }]);
+		expect(manifest.none).toEqual([
+			{ slug: "artist:flash", reason: "no-mbid" },
+			{ slug: "project:bare", reason: "no-mbid" },
+		]);
 		expect(MIGRATION_NAME).toBe("2026-10-18-backfill-images");
 	});
 
@@ -506,18 +522,18 @@ describe("manifest and resume", () => {
 		await seed(
 			dir,
 			projectNode("ok", "OK Computer", { mbid: mb(31) }),
-			artistNode("flash", "Flash", { photo_url: WIKIMEDIA_PHOTO }),
+			artistNode("fan", "Fan", { discography: [edge("project", "ok", "OK Computer")] }),
 		);
 		await run({ types: ["project"], fetch: routedFetch([caaFound(31)]) });
 
 		const resumed = await run({ resume: true, fetch: routedFetch([]) });
 		expect(resumed.manifest.coverage.project).toEqual({ before: 0, after: 1, total: 1 });
 		expect(resumed.manifest.coverage.artist).toEqual({ before: 0, after: 1, total: 1 });
-		expect(resumed.manifest.bySource).toMatchObject({ caa: 1, legacy: 1 });
+		expect(resumed.manifest.bySource).toMatchObject({ caa: 1, "derived-cover": 1 });
 
 		const fresh = await run({ fetch: routedFetch([]) });
 		expect(fresh.manifest.coverage.project).toEqual({ before: 1, after: 1, total: 1 });
-		expect(fresh.manifest.bySource).toMatchObject({ caa: 1, legacy: 1 });
+		expect(fresh.manifest.bySource).toMatchObject({ caa: 1, "derived-cover": 1 });
 	});
 
 	it("a dry-run resumed from a dry-run does not count the same images twice", async () => {
@@ -614,7 +630,7 @@ describe("parseCliArgs (the flags the migration channel passes)", () => {
 	});
 });
 
-describe("legacy iTunes covers are not copied (review of #495, B1)", () => {
+describe("an unverified iTunes cover_url is not copied either (review of #495, B1)", () => {
 	const ITUNES_COVER =
 		"https://is1-ssl.mzstatic.com/image/thumb/Music/v4/aa/bb/cc/192641477133_Cover.jpg/1500x1500bb.jpg";
 
@@ -637,12 +653,6 @@ describe("legacy iTunes covers are not copied (review of #495, B1)", () => {
 		]);
 		expect(result.manifest.bySource.legacy).toBe(0);
 		expect(await read(dir, "project:sheet-one")).toMatchObject({ cover_url: ITUNES_COVER });
-	});
-
-	it("keeps copying a legacy URL from upload.wikimedia.org", async () => {
-		await seed(dir, projectNode("wiki", "Wiki", { cover_url: WIKIMEDIA_PHOTO }));
-		await run({ fetch: routedFetch([]) });
-		expect(await read(dir, "project:wiki")).toMatchObject({ image_source: "legacy" });
 	});
 });
 

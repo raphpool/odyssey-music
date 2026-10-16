@@ -220,7 +220,7 @@ describe("migration channel: the image backfill (TRA-489)", () => {
 		expect(argv?.[argv.indexOf("--data-dir") + 1]).toMatch(/migration-data$/);
 	});
 
-	it("imaged the legacy artist in the union and left the rest in none", () => {
+	it("does not copy the artist's photo_url (no legacy fallback): every node of the union is in none", () => {
 		const manifest = JSON.parse(manifestOf(preview)) as Obj;
 		expect(manifest).toMatchObject({
 			migration: MIGRATION_NAME,
@@ -228,14 +228,15 @@ describe("migration channel: the image backfill (TRA-489)", () => {
 			renamed: {},
 			redirects: {},
 			none: [
+				{ slug: "artist:flash", reason: "no-mbid" },
 				{ slug: "genre:only-repo", reason: "no-related-image" },
 				{ slug: "genre:only-server", reason: "no-related-image" },
 				{ slug: "project:bare", reason: "no-mbid" },
 			],
 			failed: [],
 		});
-		expect((manifest.coverage as Obj).artist).toEqual({ before: 0, after: 1, total: 1 });
-		expect((manifest.bySource as Obj).legacy).toBe(1);
+		expect((manifest.coverage as Obj).artist).toEqual({ before: 0, after: 0, total: 1 });
+		expect((manifest.bySource as Obj).legacy).toBe(0);
 	});
 
 	it("gives a byte-identical manifest on a second run of the channel (nothing time-dependent in it)", () => {
