@@ -92,6 +92,16 @@
       "slug": "artist:gui-boratto",
       "type": "artist",
       "name": "Gui Boratto"
+    },
+    {
+      "slug": "artist:torsten-profrock",
+      "type": "artist",
+      "name": "Torsten Pröfrock"
+    },
+    {
+      "slug": "artist:wolfgang-voigt",
+      "type": "artist",
+      "name": "Wolfgang Voigt"
     }
   ],
   "notable_releases": [
@@ -109,6 +119,12 @@
       "slug": "project:1977",
       "type": "project",
       "name": "1977"
+    },
+    {
+      "slug": "project:earquake-wolfgang-voigt-1991-1999--wolfgang-voigt",
+      "type": "project",
+      "name": "EARQUAKE – Wolfgang Voigt 1991 – 1999",
+      "artist": "Wolfgang Voigt"
     }
   ]
 }

@@ -1,0 +1,51 @@
+{
+  "slug": "track:yellow-calx--aphex-twin",
+  "name": "Yellow Calx",
+  "editorial_article": "\"Yellow Calx\" is a standout track from the 1996 masterpiece *Richard D. James Album* by the enigmatic British electronic producer Aphex Twin (Richard D. James). Released on the iconic Warp Records label, the track is celebrated for its signature blend of intricate, hyper-active drum programming—a hallmark of James's drill 'n' bass explorations—layered over haunting, melancholic melodies that provide a sharp contrast to the aggressive rhythmic stutter. \\n\\nThe track demonstrates James's mastery of sonic tension, utilizing metallic, abrasive textures that oscillate with sudden, precise edits. Listeners often remark on the track's distinctive structure and its abrupt, looping outro, which leaves the listener in a state of suspended animation. Within the broader context of the *Richard D. James Album*, \"Yellow Calx\" serves as a bridge between the artist's earlier, more abrasive acid-techno leanings and the deeply emotional, melodic sensibility that would come to define his more introspective works. It remains a fan favorite and a quintessential example of the \"IDM\" (Intelligent Dance Music) era that shaped the electronic music landscape of the 1990s. The track’s ability to remain both rhythmically challenging and melodically accessible highlights James's unique ability to weave chaos and beauty into a cohesive, timeless composition.",
+  "citations": [
+    {
+      "url": "https://www.1001tracklists.com/track/1lpvb3ff/aphex-twin-yellow-calx/index.html",
+      "title": "Aphex Twin - Yellow Calx [WARP] - 1001Tracklists"
+    },
+    {
+      "url": "https://aphextwin.bandcamp.com/track/yellow-calx",
+      "title": "Yellow Calx | Aphex Twin"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:02:56.921Z",
+  "mbid": "f91d4bfe-de37-4864-95b1-c636fd8d4565",
+  "type": "track",
+  "editorial_teaser": "\"Yellow Calx\" is a standout track from the 1996 masterpiece *Richard D.",
+  "year": "1996",
+  "artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin",
+      "mbid": "f22942a1-6f70-4f48-866e-238cb2308fbd"
+    }
+  ],
+  "project": {
+    "slug": "project:richard-d-james-album--aphex-twin",
+    "type": "project",
+    "name": "Richard D. James Album"
+  },
+  "label": {
+    "slug": "label:sire-records",
+    "type": "label",
+    "name": "Sire Records",
+    "mbid": "be0fec81-5c18-4494-8bbf-0d81dec006bf"
+  },
+  "genres": [],
+  "producers": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

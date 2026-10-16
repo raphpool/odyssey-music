@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:15:36.706Z",
+  "mbid": "128e0f34-8eb9-4ead-b569-c3dbd89566bc",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Horsepower Productions is an influential English electronic music collective and duo recognized as pivotal pioneers in the development of the dubstep genre.",
   "origin": "London, England",
   "active_years": "2000–present",
@@ -66,5 +68,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

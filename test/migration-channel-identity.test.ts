@@ -1,0 +1,418 @@
+import { execFileSync, spawn } from "node:child_process";
+import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { createServer, type Server } from "node:http";
+import type { AddressInfo } from "node:net";
+import { tmpdir } from "node:os";
+import { dirname, join, resolve } from "node:path";
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
+import { LIST_EDGES_BY_TYPE, type NodeType } from "../src/node-spec.js";
+import { parseSlug } from "../src/slug.js";
+
+// TRA-568: the three REAL identity migrations (artists -> works -> scope) through the real
+// deploy/sync-genre-cache.sh, in preview, on a small fixture. Offline: ssh and rsync are local fakes (as in
+// genre-cache-sync.test.ts) and MusicBrainz is a fake HTTP server on 127.0.0.1, reached through the
+// MB_BASE_URL the code under test already reads -- the external boundary is replaced, nothing else is.
+
+const script = resolve("deploy/sync-genre-cache.sh");
+const realRsync = execFileSync("bash", ["-c", "command -v rsync"], { encoding: "utf8" }).trim();
+const realNpx = execFileSync("bash", ["-c", "command -v npx"], { encoding: "utf8" }).trim();
+
+const ARTIST_STEP = "2026-10-15-backfill-artist-identity";
+const RELEASE_STEP = "2026-10-15-backfill-release-identity";
+const SCOPE_STEP = "2026-10-16-scope-release-slugs";
+const ALL_STEPS = [ARTIST_STEP, RELEASE_STEP, SCOPE_STEP];
+
+const MBID_POLE = "45e00f0f-0000-4000-8000-000000000003";
+
+const dirs: string[] = [];
+function tmp(prefix: string): string {
+	const d = mkdtempSync(join(tmpdir(), prefix));
+	dirs.push(d);
+	return d;
+}
+
+type Obj = Record<string, unknown>;
+
+const ref = (slug: string, name: string): Obj => ({ slug, type: parseSlug(slug).type, name });
+
+function node(slug: string, name: string, fields: Obj = {}): Obj {
+	const type = parseSlug(slug).type;
+	const prose: Record<NodeType, Obj> = {
+		artist: { editorial_bio: "bio" },
+		project: { editorial_pitch: "pitch" },
+		track: { editorial_teaser: "teaser" },
+		label: { editorial_description: "description" },
+		genre: { editorial_definition: "definition", editorial_description: "description" },
+	};
+	return {
+		slug,
+		name,
+		type,
+		editorial_article: "x".repeat(100),
+		citations: [{ url: "https://example.com/a", title: "a" }],
+		materialized_at: "2026-10-16T00:00:00.000Z",
+		...prose[type],
+		...Object.fromEntries(LIST_EDGES_BY_TYPE[type].map((f) => [f, []])),
+		...fields,
+	};
+}
+
+function writeNode(cacheDir: string, n: Obj): void {
+	const { type, body } = parseSlug(n.slug as string);
+	const path = join(cacheDir, "nodes", type, `${body}.json`);
+	mkdirSync(dirname(path), { recursive: true });
+	writeFileSync(path, JSON.stringify(n));
+}
+
+const pendingEntry = (field: string, edge: Obj): Obj => ({ field, cardinality: "list", edge });
+
+// --- A fake MusicBrainz (the artist search and the artist lookup are all these fixtures ask for) ---
+
+let mb: Server;
+let mbBase = "";
+const mbKinds: string[] = [];
+
+function mbResponse(url: URL): unknown {
+	const artist = {
+		id: MBID_POLE,
+		name: "Pole",
+		type: "Person",
+		disambiguation: "German IDM/electronic producer/mastering Stefan Betke",
+		area: { name: "Germany", type: "Country" },
+		"begin-area": { name: "Düsseldorf", type: "City" },
+	};
+	const [, , , kind, id] = url.pathname.split("/");
+	// The works are searched too (a work without mbid): MB answers "nothing like that".
+	if (kind === "release-group" || kind === "recording") {
+		return { count: 0, offset: 0, "release-groups": [], recordings: [] };
+	}
+	if (kind !== "artist") return null;
+	if (id) return id === MBID_POLE ? { ...artist, relations: [] } : null;
+	const phrase = /^(?:artist|alias):"(.*)"$/.exec(url.searchParams.get("query") ?? "")?.[1] ?? "";
+	const isAlias = (url.searchParams.get("query") ?? "").startsWith("alias:");
+	const hit = !isAlias && phrase.toLowerCase() === "pole";
+	return { count: hit ? 1 : 0, offset: 0, artists: hit ? [{ ...artist, score: 100 }] : [] };
+}
+
+beforeAll(async () => {
+	mb = createServer((req, res) => {
+		const url = new URL(req.url ?? "/", "http://127.0.0.1");
+		mbKinds.push(url.pathname.split("/")[3] ?? "");
+		const body = mbResponse(url);
+		res.writeHead(body ? 200 : 404, { "content-type": "application/json" });
+		res.end(JSON.stringify(body ?? {}));
+	});
+	await new Promise<void>((done) => mb.listen(0, "127.0.0.1", done));
+	mbBase = `http://127.0.0.1:${(mb.address() as AddressInfo).port}/ws/2`;
+});
+
+afterAll(async () => {
+	await new Promise<void>((done) => mb.close(() => done()));
+	for (const d of dirs.splice(0)) rmSync(d, { recursive: true, force: true });
+});
+
+// --- The fixture: a repo cache, and a server cache holding the prod-only artist ---
+
+interface Fixture {
+	repoCacheDir: string;
+	serverRoot: string;
+	binDir: string;
+	callsLog: string;
+	replayDir: string;
+}
+
+function writeFakeBin(dir: string, name: string, body: string): void {
+	const path = join(dir, name);
+	writeFileSync(path, `#!/usr/bin/env bash\n${body}\n`);
+	chmodSync(path, 0o755);
+}
+
+function makeFixture(): Fixture {
+	const root = tmp("identity-channel-");
+	const repoCacheDir = join(root, "repo", "cache");
+	const serverRoot = join(root, "server");
+	const binDir = join(root, "bin");
+	const callsLog = join(root, "npx-calls.log");
+	mkdirSync(binDir, { recursive: true });
+	writeFileSync(callsLog, "");
+
+	// Repo: the stored-mbid Pole with a work credited to it, plus the genre the union's taxonomy guard wants.
+	writeNode(repoCacheDir, {
+		type: "genre",
+		slug: "genre:only-repo",
+		name: "only-repo",
+		materialized_at: "2026-01-01T00:00:00.000Z",
+	});
+	writeNode(
+		repoCacheDir,
+		node("artist:pole--stefan-betke", "Pole", {
+			mbid: MBID_POLE,
+			disambiguator: "Stefan Betke",
+			artist_kind: "person",
+			discography: [ref("project:steel", "Steel")],
+		}),
+	);
+	writeNode(
+		repoCacheDir,
+		node("project:steel", "Steel", { artists: [ref("artist:pole--stefan-betke", "Pole")] }),
+	);
+	mkdirSync(join(dirname(repoCacheDir), "data"), { recursive: true });
+	writeFileSync(
+		join(dirname(repoCacheDir), "data", "genre-taxonomy.json"),
+		JSON.stringify({
+			version: 2,
+			families: [{ key: "electronic", label: "Electronic", order: 0 }],
+			genres: [
+				{
+					id: "local:sync-fixture-genre",
+					name: "Sync Fixture Genre",
+					family: "electronic",
+					published: true,
+					sourceSlugs: ["genre:only-repo"],
+				},
+			],
+		}),
+	);
+	// The same reverse edge recorded under both spellings of Pole (the key the scope merges), and an entry that
+	// would put a credit on the work `project:steel` once the scope renames it.
+	const discography = pendingEntry("discography", ref("project:steel", "Steel"));
+	writeFileSync(
+		join(repoCacheDir, "pending-reverses.json"),
+		JSON.stringify({
+			"artist:pole--stefan-betke": [discography],
+			"project:steel": [pendingEntry("artists", ref("artist:a-homonym", "Pole"))],
+		}),
+	);
+
+	// Server: Pole as prod knows it, no mbid -- the collision the artist manifest has to carry to the scope.
+	const serverCache = join(serverRoot, "cache");
+	writeNode(serverCache, {
+		type: "genre",
+		slug: "genre:only-server",
+		name: "only-server",
+		materialized_at: "2026-01-01T00:00:00.000Z",
+	});
+	writeNode(serverCache, node("artist:pole", "Pole", { origin: "Düsseldorf, Germany" }));
+	writeFileSync(join(serverCache, "pending-reverses.json"), JSON.stringify({ "artist:pole": [discography] }));
+	mkdirSync(join(serverRoot, "data"), { recursive: true });
+	writeFileSync(join(serverRoot, "data", "genre-redirects.json"), JSON.stringify({ redirects: {} }));
+	writeFileSync(join(serverRoot, "data", "slug-redirects.json"), JSON.stringify({ redirects: {} }));
+	writeFileSync(join(serverRoot, ".service-active"), "");
+
+	writeFakeBin(binDir, "ssh", 'printf "ssh %s\\n" "$*" >> "$TEST_CALLS.ssh"\nhost="$1"; shift\nbash -c "$*"');
+	writeFakeBin(
+		binDir,
+		"rsync",
+		`if [[ "$1" == "--server" ]]; then exec "$REAL_RSYNC" "$@"; fi
+args=()
+for a in "$@"; do
+  if [[ "$a" == *:* && "$a" != -* ]]; then args+=("\${a#*:}"); else args+=("$a"); fi
+done
+exec "$REAL_RSYNC" "\${args[@]}"`,
+	);
+	// Records every `npx tsx <script> <args>` (one JSON line each) before running the real one.
+	writeFakeBin(
+		binDir,
+		"npx",
+		`node -e 'require("fs").appendFileSync(process.env.TEST_CALLS, JSON.stringify([...process.argv.slice(1), "FLAG=" + process.env.ODYSSEY_SCOPED_RELEASE_SLUGS]) + "\\n")' -- "$@"
+exec "$REAL_NPX" "$@"`,
+	);
+	return { repoCacheDir, serverRoot, binDir, callsLog, replayDir: join(root, "replay") };
+}
+
+interface Outcome {
+	status: number | null;
+	stdout: string;
+	stderr: string;
+	/** Argv of every `npx` call, in order. */
+	npx: string[][];
+	/** The kind (artist, release-group, ...) of every MusicBrainz request made during the run. */
+	mbKinds: string[];
+}
+
+function runChannel(fx: Fixture, args: string[], env: Record<string, string> = {}): Promise<Outcome> {
+	const before = mbKinds.length;
+	writeFileSync(fx.callsLog, "");
+	const childEnv: Record<string, string | undefined> = {
+		...process.env,
+		PATH: `${fx.binDir}:${process.env.PATH ?? ""}`,
+		SERVER: "test@fake-server",
+		REPO_CACHE_DIR: fx.repoCacheDir,
+		SERVER_CACHE_REMOTE: join(fx.serverRoot, "cache"),
+		SERVER_REDIRECTS_REMOTE: join(fx.serverRoot, "data", "genre-redirects.json"),
+		SERVER_SLUG_REDIRECTS_REMOTE: join(fx.serverRoot, "data", "slug-redirects.json"),
+		SERVER_BACKUP_DIR: join(fx.serverRoot, "backups"),
+		SERVER_CRAWL_LOCK: join(fx.serverRoot, ".crawl-lock"),
+		REPO_SLUG_REDIRECTS_PATH: join(fx.serverRoot, "data", "slug-redirects.json"),
+		TEST_CALLS: fx.callsLog,
+		REAL_RSYNC: realRsync,
+		REAL_NPX: realNpx,
+		SYNC_ALLOW_NON_MAIN: "1",
+		SYNC_ALLOW_DIRTY: "1",
+		MB_BASE_URL: mbBase,
+		MB_MIN_INTERVAL_MS: "0",
+		MIGRATION_REPLAY_DIR: fx.replayDir,
+		...env,
+	};
+	// The channel must set the scoped-slug flag itself, for the migration process only.
+	delete childEnv.ODYSSEY_SCOPED_RELEASE_SLUGS;
+	return new Promise((done, fail) => {
+		const child = spawn("bash", [script, ...args], { env: childEnv });
+		let stdout = "";
+		let stderr = "";
+		child.stdout.on("data", (d: Buffer) => {
+			stdout += d.toString();
+		});
+		child.stderr.on("data", (d: Buffer) => {
+			stderr += d.toString();
+		});
+		child.on("error", fail);
+		child.on("close", (status) => {
+			const log = existsSync(fx.callsLog) ? readFileSync(fx.callsLog, "utf8") : "";
+			done({
+				status,
+				stdout,
+				stderr,
+				npx: log
+					.split("\n")
+					.filter(Boolean)
+					.map((l) => JSON.parse(l) as string[]),
+				mbKinds: mbKinds.slice(before),
+			});
+		});
+	});
+}
+
+const migrationArgs = (names: string[]): string[] => names.flatMap((n) => ["--migration", n]);
+const callOf = (out: Outcome, step: string): string[] | undefined =>
+	out.npx.find((argv) => argv.some((a) => a.endsWith(`${step}.ts`)));
+const flagValue = (argv: string[] | undefined, flag: string): string | undefined =>
+	argv?.[argv.indexOf(flag) + 1];
+
+describe("migration channel: the three identity migrations (TRA-568)", () => {
+	let fx: Fixture;
+	let preview: Outcome;
+	let apply: Outcome;
+
+	beforeAll(async () => {
+		fx = makeFixture();
+		preview = await runChannel(fx, migrationArgs(ALL_STEPS));
+		apply = await runChannel(fx, ["--apply", ...migrationArgs(ALL_STEPS)]);
+	}, 240_000);
+
+	it("passes the three migrations in preview: no refusal, every manifest validated", () => {
+		expect(preview.stderr).not.toMatch(/ERROR/);
+		expect(preview.status).toBe(0);
+		for (const step of ALL_STEPS) {
+			expect(preview.stdout).toContain(`==> Migration manifest: ${step}`);
+			expect(preview.stdout).toContain(`"migration": "${step}"`);
+		}
+		expect(preview.stdout).toContain("Preview only");
+	});
+
+	it("hands --data-dir and a manifest path to each migration, the scoped-slug flag only to the process", () => {
+		for (const step of ALL_STEPS) {
+			const argv = callOf(preview, step);
+			expect(argv, step).toBeDefined();
+			expect(argv).toContain("--apply");
+			expect(flagValue(argv, "--data-dir")).toMatch(/migration-data$/);
+			expect(flagValue(argv, "--manifest")).toMatch(new RegExp(`${step}\\.manifest\\.json$`));
+		}
+		// The scope exits 2 without ODYSSEY_SCOPED_RELEASE_SLUGS, and the test's own env has none.
+		expect(preview.stdout).toContain(`${SCOPE_STEP} (apply)`);
+		expect(preview.stdout).not.toContain("is off");
+		expect(process.env.ODYSSEY_SCOPED_RELEASE_SLUGS).toBeUndefined();
+		// ...and only the scope gets it: the artist and work backfills run on a cache that still holds unscoped slugs.
+		expect(callOf(preview, SCOPE_STEP)).toContain("FLAG=1");
+		expect(callOf(preview, ARTIST_STEP)).toContain("FLAG=0");
+		expect(callOf(preview, RELEASE_STEP)).toContain("FLAG=0");
+	});
+
+	it("calls the scope with the artist manifest written by this run's artist step", () => {
+		const artistManifest = flagValue(callOf(preview, ARTIST_STEP), "--manifest");
+		expect(artistManifest).toBeDefined();
+		expect(flagValue(callOf(preview, SCOPE_STEP), "--artist-manifest")).toBe(artistManifest);
+		expect(flagValue(callOf(preview, RELEASE_STEP), "--artist-manifest")).toBe(artistManifest);
+		// The scope did see the collision (prod-only Pole, no mbid, vs the scoped slug) and merged it.
+		expect(preview.stdout).toContain('"artist:pole--stefan-betke": "artist:pole"');
+		expect(preview.stdout).toContain('"project:steel": "project:steel--pole"');
+	});
+
+	it("keeps the credit entry aimed at the renamed work in pending-reverses.json, merges the duplicate key", () => {
+		expect(preview.stdout).toContain("pending-reverses.json before the migrations: 3 key(s), 3 entries");
+		// artist:pole + artist:pole--stefan-betke carried the same edge: one entry, applied to the node and
+		// dropped; the credit on the work stays pending, applied to nothing.
+		expect(preview.stdout).toContain("pending-reverses.json after the migrations: 1 key(s), 1 entries");
+		expect(preview.stdout).toContain(
+			"1 pending reverse edge(s) not applied (direction not emitted by the runtime, TRA-563)",
+		);
+	});
+
+	it("replays the preview's identities in the apply of the same job, without asking MusicBrainz", () => {
+		expect(preview.mbKinds).toContain("artist");
+		for (const step of [ARTIST_STEP, RELEASE_STEP]) {
+			expect(apply.stdout).toContain(`Replaying the manifest recorded by the preview for ${step}`);
+			expect(apply.stdout).toContain(`${step}: same identities as the preview`);
+			expect(flagValue(callOf(apply, step), "--manifest")).toBeDefined();
+			expect(callOf(apply, step)).toContain("--resume");
+		}
+		expect(callOf(apply, SCOPE_STEP)).not.toContain("--resume");
+		// Nothing the preview resolved is asked again: no artist request. Only what stayed unresolved (the
+		// work MB knows nothing about) is searched again, and ends the same, or the run is refused.
+		expect(apply.mbKinds).not.toContain("artist");
+		expect(apply.mbKinds.length).toBeLessThan(preview.mbKinds.length);
+		// The apply stops later, at the guard that wants the scope's redirects committed first -- not on identities.
+		expect(apply.stderr).not.toContain("other identities than the preview");
+	});
+
+	it("refuses an apply whose identities differ from the preview's, before any write", async () => {
+		// The preview recorded Pole as unresolved; MusicBrainz now resolves it.
+		const recorded = join(fx.replayDir, `${ARTIST_STEP}.manifest.json`);
+		const manifest = JSON.parse(readFileSync(recorded, "utf8")) as {
+			resolved: Record<string, unknown>;
+			unresolved: unknown[];
+		};
+		delete manifest.resolved["artist:pole"];
+		manifest.unresolved.push({ slug: "artist:pole", name: "Pole", candidates: 0 });
+		writeFileSync(recorded, JSON.stringify(manifest));
+		const out = await runChannel(fx, ["--apply", ...migrationArgs(ALL_STEPS)]);
+		expect(out.status).not.toBe(0);
+		expect(out.stderr).toContain(
+			`migration ${ARTIST_STEP} ended with other identities than the preview recorded`,
+		);
+		expect(callOf(out, RELEASE_STEP)).toBeUndefined();
+		expect(existsSync(join(fx.serverRoot, "backups"))).toBe(false);
+	}, 120_000);
+});
+
+describe("migration channel: the scope needs the artist manifest of the same run (TRA-568)", () => {
+	it.each([
+		["the artist step is absent", [SCOPE_STEP]],
+		["the artist step comes after the scope", [SCOPE_STEP, ARTIST_STEP]],
+		["only the work step precedes it", [RELEASE_STEP, SCOPE_STEP]],
+	])("refuses the scope when %s, before touching the server", async (_label, names) => {
+		const fx = makeFixture();
+		const out = await runChannel(fx, migrationArgs(names));
+		expect(out.status).toBe(1);
+		expect(out.stderr).toContain(`${SCOPE_STEP} needs the artist manifest of this run`);
+		expect(out.npx).toEqual([]);
+		expect(existsSync(join(fx.serverRoot, "backups"))).toBe(false);
+	});
+});
+
+describe("migration channel: a replay dir left by another run is refused (TRA-568)", () => {
+	it.each([
+		["another revision or migration list", { context: "0000000 some-other-migration\n" }],
+		["manifests without a context file", {}],
+	])("refuses a replay dir with %s, before any write", async (_label, files) => {
+		const fx = makeFixture();
+		mkdirSync(fx.replayDir, { recursive: true });
+		writeFileSync(join(fx.replayDir, `${ARTIST_STEP}.manifest.json`), "{}");
+		for (const [name, body] of Object.entries(files)) writeFileSync(join(fx.replayDir, name), body);
+		const out = await runChannel(fx, ["--apply", ...migrationArgs(ALL_STEPS)]);
+		expect(out.status).not.toBe(0);
+		expect(out.stderr).toContain("was recorded by another run");
+		expect(out.npx.filter((argv) => argv.some((a) => a.endsWith(`${ARTIST_STEP}.ts`)))).toEqual([]);
+		expect(existsSync(join(fx.serverRoot, "backups"))).toBe(false);
+	});
+});

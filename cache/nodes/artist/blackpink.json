@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:11:46.886Z",
+  "mbid": "48646387-1664-4c9a-9139-9bfd091b823c",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "A global K-pop powerhouse, BLACKPINK is known for high-charting studio albums and major cross-genre collaborations with artists like Lady Gaga and Selena Gomez.",
   "origin": "Seoul, South Korea",
   "active_years": "2016-present",
@@ -122,5 +124,6 @@
       "type": "artist",
       "name": "Lisa"
     }
-  ]
+  ],
+  "similar_artists": []
 }

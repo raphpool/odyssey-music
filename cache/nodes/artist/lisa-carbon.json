@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:09:06.594Z",
+  "mbid": "350449a8-d42f-4bce-b2f7-5da44eb9a50c",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Lisa Carbon is a German electronic musician and producer, widely recognized for her contributions to the late 90s and early 2000s experimental electronic scene.",
   "origin": "Germany",
   "genres": [
@@ -58,6 +60,12 @@
       "slug": "project:trio-de-janeiro",
       "type": "project",
       "name": "Trio De Janeiro"
+    },
+    {
+      "slug": "project:polyester--lisa-carbon",
+      "type": "project",
+      "name": "Polyester",
+      "artist": "Lisa Carbon"
     }
   ],
   "notable_tracks": [
@@ -87,5 +95,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -139,6 +139,21 @@ taxonomy:
   (`available: false`) sans faire échouer le catalogue ; un `mode` absent reste une
   erreur de contrat.
 
+## Recherche : hits de projet et de morceau (TRA-547)
+
+`GET /mobile/v1/search` renvoie `{q,hits,sources}`. Un hit `project` ou `track` porte, en plus de
+`subtitle`, l'**artiste principal** du crédit :
+
+| Champ | Type | Sens |
+| --- | --- | --- |
+| `subtitle` | string, optionnel | Crédit joint, séparateur « , » (« Sasha, John Digweed »). Affichage seul : ne jamais le découper. |
+| `artist` | string, optionnel | Premier artiste crédité, lu dans le crédit structuré de MusicBrainz (« Earth, Wind & Fire » reste un seul artiste). Absent si la source ne donne aucun crédit exploitable, et toujours absent des hits `artist`, `genre` et `label`. |
+| `artist_slug` | slug `artist:…` canonique, optionnel | Fiche de cet artiste quand elle est déjà dans le cache. Absent sinon : ne jamais l'inventer. |
+
+Le client qui lance une génération pour un `project` ou un `track` envoie `artist` (jamais `subtitle`) comme
+contexte artiste (TRA-477) ; sans `artist`, il n'en envoie pas. `artist_slug` sert à ouvrir la fiche de
+l'artiste, pas à construire un slug d'œuvre.
+
 ## Registre persistant des générations
 
 Le serveur prépare le registre v1 des demandes de génération dans `MOBILE_STATE_DIR`.

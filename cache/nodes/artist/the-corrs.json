@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:52:18.819Z",
+  "mbid": "acf6c776-d0f6-4239-b5a2-a45a613ffa52",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Corrs are a globally recognized Irish band formed in Dundalk, Ireland, in 1990, consisting of four siblings: Andrea (lead vocals, tin whistle), Sharon (violin, vocals), Caroline (drums, vocals), and Jim Corr (guitar, keyboards, vocals).",
   "genres": [
     {
@@ -47,7 +49,14 @@
       "name": "143 Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:in-blue--the-corrs",
+      "type": "project",
+      "name": "In Blue",
+      "artist": "The Corrs"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:breathless",
@@ -58,11 +67,24 @@
       "slug": "track:runaway",
       "type": "track",
       "name": "Runaway"
+    },
+    {
+      "slug": "track:give-it-all-up--the-corrs",
+      "type": "track",
+      "name": "Give It All Up",
+      "artist": "The Corrs"
+    },
+    {
+      "slug": "track:no-more-cry--the-corrs",
+      "type": "track",
+      "name": "No More Cry",
+      "artist": "The Corrs"
     }
   ],
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

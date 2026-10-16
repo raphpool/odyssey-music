@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:23:22.243Z",
+  "mbid": "26bcd35d-56a3-4e4d-8ad7-7bc5787c3af1",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "A pioneering American hip-hop trio formed in New York City in 1985, recognized for being the first female rap act to earn platinum certification.",
   "origin": "New York City, U.S.",
   "active_years": "1985-2002, 2005-present",
@@ -392,5 +394,6 @@
       "type": "artist",
       "name": "Latoya Hanson"
     }
-  ]
+  ],
+  "similar_artists": []
 }

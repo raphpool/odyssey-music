@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:17:39.717Z",
+  "mbid": "f7ba7fbe-c6bd-4ac0-bee9-c25c558d7d62",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An Atlanta-born rapper, actor, and Grand Hustle founder credited with pioneering the Southern trap music subgenre.",
   "origin": "Atlanta, Georgia",
   "active_years": "1999-present",
@@ -812,14 +814,10 @@
   ],
   "members": [
     {
-      "slug": "artist:t-i",
-      "type": "artist",
-      "name": "T.I."
-    },
-    {
       "slug": "artist:young-thug",
       "type": "artist",
       "name": "Young Thug"
     }
-  ]
+  ],
+  "similar_artists": []
 }

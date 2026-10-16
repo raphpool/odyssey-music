@@ -34,7 +34,11 @@
  *
  * Usage: tsx scripts/migrations/2026-10-15-backfill-release-identity.ts <cache-dir> [--apply]
  *        [--manifest out/release-identity.json] [--artist-manifest out/artist-identity.json]
- *        [--resume] [--limit N]
+ *        [--resume] [--limit N] [--data-dir <dir>]
+ *
+ * Migration channel (deploy/sync-genre-cache.sh, TRA-568): `--data-dir` is accepted and unused (nothing
+ * is renamed here), and the manifest carries the channel's constant fields: `migration`, `removed: []`,
+ * `renamed: {}`, `redirects: {}`.
  */
 import { mkdir, readFile } from "node:fs/promises";
 import { dirname } from "node:path";
@@ -50,6 +54,7 @@ import {
 	type MbTrackMeta,
 	resolveRecordingDetailed,
 	resolveReleaseGroupDetailed,
+	sameCreditName,
 } from "../../src/musicbrainz.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
 import { makeScopedSlug, makeSlug, normalizeSlugBody, pickScopeArtistName } from "../../src/slug.js";
@@ -61,6 +66,7 @@ import {
 } from "./2026-09-04-merge-genre-duplicates.js";
 import { onlyAddsSchemaDefaults } from "./2026-10-15-backfill-artist-identity.js";
 
+export const MIGRATION_NAME = "2026-10-15-backfill-release-identity";
 export const DEFAULT_MANIFEST_PATH = "out/release-identity.json";
 export const DEFAULT_ARTIST_MANIFEST_PATH = "out/artist-identity.json";
 
@@ -111,6 +117,11 @@ export interface AmbiguousWork {
 }
 
 export interface ReleaseManifest {
+	/** The channel's manifest contract (TRA-568): this migration deletes and renames nothing. */
+	migration: string;
+	removed: string[];
+	renamed: Record<string, string>;
+	redirects: Record<string, string>;
 	generated_at: string;
 	resolved: Record<string, ResolvedWork>;
 	unresolved: UnresolvedWork[];
@@ -196,6 +207,7 @@ async function readManifest(path: string): Promise<ReleaseManifest | null> {
 		"several-artist-nodes-share-the-credit-mbid",
 	];
 	return {
+		...CHANNEL_FIELDS(),
 		generated_at: typeof parsed.generated_at === "string" ? parsed.generated_at : "",
 		resolved,
 		unresolved: parsed.unresolved.flatMap((u: unknown) =>
@@ -278,6 +290,8 @@ export function findCollisions(
 		.sort((a, b) => (a.mbid < b.mbid ? -1 : a.mbid > b.mbid ? 1 : 0));
 }
 
+const CHANNEL_FIELDS = () => ({ migration: MIGRATION_NAME, removed: [], renamed: {}, redirects: {} });
+
 function buildManifest(
 	resolved: Record<string, ResolvedWork>,
 	unresolved: UnresolvedWork[],
@@ -287,6 +301,7 @@ function buildManifest(
 	const sorted: Record<string, ResolvedWork> = {};
 	for (const slug of Object.keys(resolved).sort()) sorted[slug] = resolved[slug] as ResolvedWork;
 	return {
+		...CHANNEL_FIELDS(),
 		generated_at: new Date().toISOString(),
 		resolved: sorted,
 		unresolved: [...unresolved].sort(bySlug),
@@ -423,19 +438,20 @@ function findHint(slug: string, node: Record<string, unknown>, ctx: Context): Hi
 	return only.mbid ? { kind: "hint", name: only.name, mbid: only.mbid } : { kind: "hint", name: only.name };
 }
 
-/** True when `needle` is a run of whole words of `haystack` (both normalized slug bodies). */
-function containsWords(haystack: string, needle: string): boolean {
-	return `-${haystack}-`.includes(`-${needle}-`);
-}
-
 /**
  * The resolver may settle for an exact-title candidate whatever its credit; here the credit must also
  * be the artist we looked under.
  * - hint with a known MBID: the credit must carry that MBID, or the MBID of a band the artist belongs
  *   to (`groups`, from the artist manifest: Roni Size is credited as "Roni Size / Reprazent"). A name
  *   is not accepted then: "Mala" must not pass on "Mala Rodríguez", nor "Earth" on another Earth;
- * - hint without MBID: the credit names the artist in whole words. A credit in another script is
- *   recognised by MBID only, so without one the work stays unresolved.
+ * - hint without MBID: a credit has the same name as the artist (sameCreditName, the resolver's own
+ *   rule: "Prince" is not "Prince Buster", "The" is ignored). A credit in another script is recognised
+ *   by MBID only, so without one the work stays unresolved.
+ * This is a narrower check than the resolver's, on purpose (TRA-552, for the TRA-483 audit): it reads the
+ * returned `MbCredit`s, which hold the CANONICAL artist name only. The resolver also accepts the name the
+ * credit is PRINTED under, the artist's aliases, and the joined credit ("Prince & The Revolution" over
+ * two entries); none of these reach this function. A work the resolver accepted through one of them, for
+ * a hint without MBID, can therefore end as `credit-mismatch`: refused here, never wrongly accepted.
  */
 export function creditConfirmsHint(
 	credit: readonly MbCredit[],
@@ -445,8 +461,7 @@ export function creditConfirmsHint(
 	if (hint.mbid !== undefined) {
 		return credit.some((c) => c.mbid === hint.mbid || groups.includes(c.mbid));
 	}
-	const wanted = normalizeSlugBody(hint.name);
-	return wanted !== "" && credit.some((c) => containsWords(normalizeSlugBody(c.name), wanted));
+	return credit.some((c) => sameCreditName(c.name, hint.name));
 }
 
 // --- Step 3: what is written ---
@@ -661,17 +676,26 @@ async function lookUp(
 	type: "project" | "track",
 	name: string,
 	hint: { name: string; mbid?: string },
+	groups: readonly string[] = [],
+	releaseType?: string,
 ): Promise<{ found: MbReleaseIdentity | null; ambiguous: boolean; unavailable: boolean }> {
 	const resolve = type === "project" ? resolveReleaseGroupDetailed : resolveRecordingDetailed;
 	// An outage is not a verdict: the resolvers say so themselves (`unavailable`), whether MB refused,
 	// was unreachable or answered with something unreadable.
-	const first = await resolve(name, hint.name);
+	// The artist's own MBID lets the resolver count a work printed under another name as direct (TRA-552).
+	// The node's own release type tells a single from the album of the same name (TRA-560); a track has none.
+	const typed = type === "project" && releaseType !== undefined ? { releaseType } : {};
+	const first = await resolve(name, hint.name, {
+		acceptCreditMbids: groups,
+		...(hint.mbid === undefined ? {} : { requestedArtistMbid: hint.mbid }),
+		...typed,
+	});
 	if (first.unavailable) return { found: null, ambiguous: false, unavailable: true };
 	// Look-alikes are a verdict, not a reason to look elsewhere.
 	if (first.identity !== null || first.ambiguous || hint.mbid === undefined) {
 		return { found: first.identity, ambiguous: first.ambiguous, unavailable: false };
 	}
-	const second = await resolve(name);
+	const second = await resolve(name, undefined, typed);
 	if (second.unavailable) return { found: null, ambiguous: false, unavailable: true };
 	return { found: second.identity, ambiguous: second.ambiguous, unavailable: false };
 }
@@ -760,7 +784,8 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				continue;
 			}
 			attempted++;
-			const lookedUp = await lookUp(type, name, hint);
+			const groups = hint.mbid === undefined ? [] : (ctx.groupsByMbid.get(hint.mbid) ?? []);
+			const lookedUp = await lookUp(type, name, hint, groups, text(node.release_type));
 			if (lookedUp.unavailable) {
 				failed.push({ slug, reason: "MusicBrainz search unavailable" });
 				continue;
@@ -775,7 +800,6 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				});
 				continue;
 			}
-			const groups = hint.mbid === undefined ? [] : (ctx.groupsByMbid.get(hint.mbid) ?? []);
 			if (!creditConfirmsHint(found.credit, hint, groups)) {
 				unresolved.push({ slug, name, hint: hint.name, reason: "credit-mismatch" });
 				continue;
@@ -877,7 +901,8 @@ export interface CliArgs {
 }
 
 /**
- * Parses `<cache-dir> [--apply] [--manifest <path>] [--artist-manifest <path>] [--limit N] [--resume]`.
+ * Parses `<cache-dir> [--apply] [--manifest <path>] [--artist-manifest <path>] [--limit N] [--resume]
+ * [--data-dir <dir>]`.
  * Null (CLI exits 2) on a missing cache-dir, a repeated flag, a flag without its value (or with
  * another flag as value), a `--limit` that is not a positive integer, or any token no flag consumes:
  * an ambiguous argument never falls through to a guess.
@@ -890,6 +915,7 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 	let manifestPath: string | undefined;
 	let artistManifestPath: string | undefined;
 	let limit: number | undefined;
+	let dataDirSeen = false;
 	for (let i = 1; i < argv.length; i++) {
 		const token = argv[i];
 		if (token === "--apply" && !apply) apply = true;
@@ -897,12 +923,14 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 		else if (
 			(token === "--manifest" && manifestPath === undefined) ||
 			(token === "--artist-manifest" && artistManifestPath === undefined) ||
-			(token === "--limit" && limit === undefined)
+			(token === "--limit" && limit === undefined) ||
+			(token === "--data-dir" && !dataDirSeen)
 		) {
 			const value = argv[++i];
 			if (value === undefined || value.startsWith("-")) return null;
 			if (token === "--manifest") manifestPath = value;
 			else if (token === "--artist-manifest") artistManifestPath = value;
+			else if (token === "--data-dir") dataDirSeen = true;
 			else if (/^[1-9]\d*$/.test(value)) limit = Number(value);
 			else return null;
 		} else return null;
@@ -923,7 +951,7 @@ async function main(): Promise<void> {
 	if (!args) {
 		process.stderr.write(
 			"usage: 2026-10-15-backfill-release-identity.ts <cache-dir> [--apply] [--manifest <path>] " +
-				"[--artist-manifest <path>] [--limit N] [--resume]\n",
+				"[--artist-manifest <path>] [--limit N] [--resume] [--data-dir <dir>]\n",
 		);
 		process.exit(2);
 	}

@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:35:22.444Z",
+  "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "μ-Ziq (pronounced \"music\") is the primary recording alias of the English electronic musician Mike Paradinas, a pivotal figure in the evolution of IDM and electronic music. Beyond his own genre-defying work, he founded the influential label Planet Mu.",
   "origin": "Raynes Park, London, United Kingdom",
   "active_years": "1991–present",
@@ -39,12 +41,61 @@
       "name": "Rephlex Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:expert-knob-twiddlers--aphex-twin",
+      "type": "project",
+      "name": "Expert Knob Twiddlers",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "project:tango-n-vectif--ziq",
+      "type": "project",
+      "name": "Tango N' Vectif",
+      "artist": "µ-Ziq"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:the-fear",
       "type": "track",
       "name": "The Fear"
+    },
+    {
+      "slug": "track:amenida--ziq",
+      "type": "track",
+      "name": "Amenida",
+      "artist": "µ-Ziq"
+    },
+    {
+      "slug": "track:burnt-sienna--ziq",
+      "type": "track",
+      "name": "Burnt Sienna",
+      "artist": "µ-Ziq"
+    },
+    {
+      "slug": "track:phragmal-synthesis-pt-3--ziq",
+      "type": "track",
+      "name": "Phragmal Synthesis (Pt. 3)",
+      "artist": "µ-Ziq"
+    },
+    {
+      "slug": "track:tango-n-vectif--ziq",
+      "type": "track",
+      "name": "Tango N' Vectif",
+      "artist": "µ-Ziq"
+    },
+    {
+      "slug": "track:whale-soup--ziq",
+      "type": "track",
+      "name": "Whale Soup",
+      "artist": "µ-Ziq"
+    },
+    {
+      "slug": "track:ziq-theme--ziq",
+      "type": "track",
+      "name": "µ-Ziq Theme",
+      "artist": "µ-Ziq"
     }
   ],
   "influences": [],
@@ -83,5 +134,6 @@
       "name": "Mike Paradinas"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

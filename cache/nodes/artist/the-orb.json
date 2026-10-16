@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:53:55.612Z",
+  "mbid": "42c14c80-bd17-47e4-9bb2-a35897638c4d",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Orb, a pioneering force in British electronic music, emerged from London's late-1980s acid house scene as a distinct entity that redefined the possibilities of chill-out culture.",
   "origin": "London, England",
   "active_years": "1988–present",
@@ -56,7 +58,7 @@
   ],
   "discography": [
     {
-      "slug": "project:the-orb-s-adventures-beyond-the-ultraworld",
+      "slug": "project:the-orb-s-adventures-beyond-the-ultraworld--the-orb",
       "type": "project",
       "name": "The Orb's Adventures Beyond the Ultraworld"
     },
@@ -92,5 +94,6 @@
       "type": "artist",
       "name": "Jimmy Cauty"
     }
-  ]
+  ],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:20:20.706Z",
+  "mbid": "8a75ce0d-1df3-47cc-b076-ce2f4e8250f0",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A legendary figure who bridged gangsta rap and heavy metal, Ice-T is an influential rapper, producer, and long-running television actor.",
   "origin": "Newark, New Jersey; Los Angeles, California",
   "active_years": "1982-present",
@@ -445,5 +447,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

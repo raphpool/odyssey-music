@@ -63,7 +63,44 @@
       "slug": "artist:miles-davis",
       "type": "artist",
       "name": "Miles Davis"
+    },
+    {
+      "slug": "artist:central-cee",
+      "type": "artist",
+      "name": "Central Cee"
+    },
+    {
+      "slug": "artist:d-train",
+      "type": "artist",
+      "name": "D-Train"
+    },
+    {
+      "slug": "artist:duke-ellington",
+      "type": "artist",
+      "name": "Duke Ellington"
+    },
+    {
+      "slug": "artist:ll-cool-j",
+      "type": "artist",
+      "name": "LL Cool J"
+    },
+    {
+      "slug": "artist:ryuichi-sakamoto",
+      "type": "artist",
+      "name": "Ryuichi Sakamoto"
+    },
+    {
+      "slug": "artist:tenacious-d",
+      "type": "artist",
+      "name": "Tenacious D"
     }
   ],
-  "notable_releases": []
+  "notable_releases": [
+    {
+      "slug": "project:the-piper-at-the-gates-of-dawn--pink-floyd",
+      "type": "project",
+      "name": "The Piper at the Gates of Dawn",
+      "artist": "Pink Floyd"
+    }
+  ]
 }

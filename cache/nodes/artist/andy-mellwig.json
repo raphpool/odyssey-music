@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "4c787fb7-b052-4d6c-9980-c5b1641458a5",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Andy Mellwig is a Berlin-based electronic musician and producer, primarily recognized for his foundational role in the development of 1990s dub techno.",
   "genres": [
     {
@@ -74,5 +76,6 @@
       "type": "artist",
       "name": "Porter Ricks"
     }
-  ]
+  ],
+  "similar_artists": []
 }

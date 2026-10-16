@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:23:48.491Z",
+  "mbid": "43906e48-a7c0-4b80-a5dd-37d1fe6ccdb9",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Founding member of Three 6 Mafia and Academy Award-winning producer from Memphis who pioneered dark, bass-heavy Southern hip-hop production.",
   "origin": "Memphis, Tennessee",
   "active_years": "1988-present",
@@ -499,14 +501,10 @@
   ],
   "members": [
     {
-      "slug": "artist:dj-paul",
-      "type": "artist",
-      "name": "DJ Paul"
-    },
-    {
       "slug": "artist:three-6-mafia",
       "type": "artist",
       "name": "Three 6 Mafia"
     }
-  ]
+  ],
+  "similar_artists": []
 }

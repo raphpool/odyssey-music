@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:48:41.480Z",
+  "mbid": "3c050ada-9db8-4e87-86fb-11c5294f9711",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "R. Carlos Nakai is a renowned Native American flutist of Navajo-Ute heritage, celebrated for bringing the traditional cedar flute to global prominence through jazz, classical, and New Age collaborations. With over four million albums sold and multiple Grammy nominations, his work as a soloist and ensemble leader continues to bridge indigenous traditions with contemporary music.",
   "photo_url": "http://rcarlosnakai.com/wp-content/uploads/2015/12/nakai-portrait.jpg",
   "origin": "United States",
@@ -106,5 +108,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

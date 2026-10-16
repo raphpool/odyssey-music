@@ -19,6 +19,7 @@
   "materialized_at": "2026-05-13T12:52:04.656Z",
   "type": "genre",
   "editorial_definition": "Post-punk is an experimental, art-leaning evolution of punk rock that emerged in the late 1970s, characterized by darker, atmospheric textures, rhythmic complexity, and the incorporation of genres like funk, dub, and electronic music.",
+  "qid": "Q598929",
   "era": "Late 1970s – Mid 1980s",
   "origin": "United Kingdom and United States",
   "parent_genres": [],
@@ -95,7 +96,7 @@
       "name": "Unknown Pleasures"
     },
     {
-      "slug": "project:entertainment",
+      "slug": "project:entertainment--gang-of-four",
       "type": "project",
       "name": "Entertainment!"
     },
@@ -116,6 +117,5 @@
       "type": "track",
       "name": "Damaged Goods"
     }
-  ],
-  "qid": "Q598929"
+  ]
 }

@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:41:15.655Z",
+  "mbid": "76da816f-ea05-4172-ad9e-ffb69c32199f",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pioneering techno artist and producer known for his minimal aesthetic, label management (Plus 8, M_nus), and innovative integration of technology into live performance.",
   "origin": "Windsor, Ontario, Canada",
   "genres": [
@@ -59,6 +61,12 @@
       "slug": "project:ex",
       "type": "project",
       "name": "EX"
+    },
+    {
+      "slug": "project:artificial-intelligence",
+      "type": "project",
+      "name": "Artificial Intelligence",
+      "artist": "Aphex Twin"
     }
   ],
   "notable_tracks": [
@@ -114,5 +122,6 @@
       "name": "F.U.S.E."
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

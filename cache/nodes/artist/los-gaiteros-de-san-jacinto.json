@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:02:03.933Z",
+  "mbid": "2e574282-8fd1-4625-a6ce-eecad43232d8",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "An iconic Colombian folkloric ensemble preserving traditional gaita and cumbia rhythms since 1940.",
   "origin": "San Jacinto, Bolívar, Colombia",
   "active_years": "1940-present",
@@ -178,5 +180,6 @@
       "type": "artist",
       "name": "Dionisio Yepes"
     }
-  ]
+  ],
+  "similar_artists": []
 }

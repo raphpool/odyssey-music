@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:58:41.877Z",
+  "mbid": "e8b9f2dd-b197-47a6-81d5-7f5850e18b37",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Hanin Elias is a pioneering Syrian-German artist, widely recognized for her critical role in the 1990s Berlin underground as a core member of the influential digital hardcore band Atari Teenage Riot.",
   "origin": "Berlin, Germany",
   "genres": [
@@ -82,5 +84,6 @@
       "type": "artist",
       "name": "Atari Teenage Riot"
     }
-  ]
+  ],
+  "similar_artists": []
 }

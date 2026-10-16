@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:39:41.976Z",
+  "mbid": "fc7376fe-1a6f-4414-b4a7-83f50ed59c92",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Steven Ellison, known professionally as Flying Lotus, is a Los Angeles-based producer, composer, and multi-disciplinary artist whose work has fundamentally reshaped the landscape of electronic music and modern jazz.",
   "photo_url": "https://d1rgjmn2wmqeif.cloudfront.net/a/2000/3746-3.jpg",
   "origin": "Los Angeles, California",
@@ -51,17 +53,17 @@
   ],
   "discography": [
     {
-      "slug": "project:cosmogramma",
+      "slug": "project:cosmogramma--flying-lotus",
       "type": "project",
       "name": "Cosmogramma"
     },
     {
-      "slug": "project:you-re-dead",
+      "slug": "project:you-re-dead--flying-lotus",
       "type": "project",
       "name": "You're Dead!"
     },
     {
-      "slug": "project:flamagra",
+      "slug": "project:flamagra--flying-lotus",
       "type": "project",
       "name": "Flamagra"
     }
@@ -73,7 +75,7 @@
       "name": "Never Catch Me"
     },
     {
-      "slug": "track:mmmhmm",
+      "slug": "track:mmmhmm--flying-lotus",
       "type": "track",
       "name": "Mmmhmm"
     }
@@ -82,5 +84,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

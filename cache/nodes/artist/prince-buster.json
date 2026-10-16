@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:13:33.425Z",
+  "mbid": "a1d32e75-2391-4d94-904e-13536304dcf6",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Jamaican singer, songwriter, and producer who helped define the sound of ska and rocksteady, leaving an enduring legacy on global music.",
   "origin": "Kingston, Jamaica",
   "active_years": "1961-2016",
@@ -338,11 +340,6 @@
     }
   ],
   "aliases": [],
-  "members": [
-    {
-      "slug": "artist:prince-buster",
-      "type": "artist",
-      "name": "Prince Buster"
-    }
-  ]
+  "members": [],
+  "similar_artists": []
 }

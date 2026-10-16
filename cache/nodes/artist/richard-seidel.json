@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:49:23.348Z",
+  "mbid": "916defe0-51c1-45f9-ac92-6d6512ae372d",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Richard Seidel is a highly influential American music producer and A&R executive, recognized primarily for his monumental contributions to the preservation and promotion of jazz.",
   "genres": [
     {
@@ -46,5 +48,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

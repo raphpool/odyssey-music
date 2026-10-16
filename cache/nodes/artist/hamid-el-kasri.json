@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:05:36.178Z",
+  "mbid": "0326ff65-a31b-4a54-9c79-4777c2bb3a1e",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A celebrated Moroccan Gnawa master musician and guembri player known for his deep, intense vocal style and cross-cultural collaborations.",
   "origin": "Ksar El Kebir, Morocco",
   "active_years": "1968-present",
@@ -100,5 +102,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

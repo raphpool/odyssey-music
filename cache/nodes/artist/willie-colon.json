@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:02:32.049Z",
+  "mbid": "f1edfbed-9315-4550-859c-599cc3fdee57",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A legendary Nuyorican trombonist and salsa pioneer who transformed the genre through his production and decades-long career with Fania Records.",
   "origin": "New York City, U.S.",
   "active_years": "1967-2026",
@@ -429,11 +431,6 @@
     }
   ],
   "aliases": [],
-  "members": [
-    {
-      "slug": "artist:willie-colon",
-      "type": "artist",
-      "name": "Willie Colón"
-    }
-  ]
+  "members": [],
+  "similar_artists": []
 }

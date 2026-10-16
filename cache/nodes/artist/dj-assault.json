@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:57:43.455Z",
+  "mbid": "acb4865d-0c4c-4dd5-b958-c399b5d75b8e",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Detroit electronic music pioneer and architect of the ghettotech sound, known for his high-energy, explicit boot-bass productions.",
   "origin": "Detroit, Michigan",
   "active_years": "1989-present",
@@ -397,5 +399,6 @@
       "name": "Craig Diamonds"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

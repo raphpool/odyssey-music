@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:40:38.671Z",
+  "mbid": "734fa82c-864e-468b-bee4-944cb4b1952b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Jochem George Paap (born 1969), professionally known as Speedy J, is a cornerstone of the Dutch electronic music scene and a pivotal figure in the evolution of techno.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Speedy_J_%28Seattle_2006%29.jpg/250px-Speedy_J_%28Seattle_2006%29.jpg",
   "origin": "Rotterdam, Netherlands",
@@ -61,7 +63,14 @@
       "name": "Planet Mu"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:artificial-intelligence",
+      "type": "project",
+      "name": "Artificial Intelligence",
+      "artist": "Aphex Twin"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],
@@ -98,5 +107,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

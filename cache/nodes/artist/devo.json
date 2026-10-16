@@ -32,7 +32,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "d2db1078-c170-4e22-b261-14f3ad60a690",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Pioneers of the new wave movement, Devo combined their satirical theory of 'devolution' with a radical, synth-driven sound and iconic visual style to become one of the most subversive bands of the MTV era.",
   "photo_url": "https://clubdevo.com/wp-content/uploads/2024/08/press-22-jpg.webp",
   "origin": "Akron, Ohio",
@@ -102,5 +104,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

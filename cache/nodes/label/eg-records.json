@@ -64,11 +64,16 @@
       "slug": "artist:robert-fripp",
       "type": "artist",
       "name": "Robert Fripp"
+    },
+    {
+      "slug": "artist:harold-budd",
+      "type": "artist",
+      "name": "Harold Budd"
     }
   ],
   "notable_releases": [
     {
-      "slug": "project:ambient-1-music-for-airports",
+      "slug": "project:ambient-1-music-for-airports--brian-eno",
       "type": "project",
       "name": "Ambient 1: Music for Airports"
     },
@@ -78,7 +83,7 @@
       "name": "Red"
     },
     {
-      "slug": "project:for-your-pleasure",
+      "slug": "project:for-your-pleasure--roxy-music",
       "type": "project",
       "name": "For Your Pleasure"
     }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:35:08.807Z",
+  "mbid": "4d4f5d92-0589-42fa-bc0e-1bd73e17a2ce",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Mouse on Mars is a highly influential German electronic music duo recognized for their versatile, boundary-pushing approach that traverses experimental pop, avant-garde, and club music. Formed in 1993 by Jan St. Werner and Andi Toma, they have spent over two decades mapping an idiosyncratic trajectory that bridges the gap between DIY subculture and academic theory.",
   "photo_url": "https://images.squarespace-cdn.com/content/v1/57fe634737c581bd88718be3/1477393827398-FJWNZLWHGIMWLW2M4H3T/11157413_968994703125335_8660105955931706848_o.jpg?format=2500w",
   "origin": "Cologne, Germany",
@@ -62,7 +64,7 @@
       "name": "Vulvaland"
     },
     {
-      "slug": "project:parastrophics",
+      "slug": "project:parastrophics--mouse-on-mars",
       "type": "project",
       "name": "Parastrophics"
     },
@@ -74,14 +76,50 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:wipe-that-sound",
+      "slug": "track:wipe-that-sound--mouse-on-mars",
       "type": "track",
       "name": "Wipe That Sound"
     },
     {
-      "slug": "track:pinwheel-herman",
+      "slug": "track:pinwheel-herman--mouse-on-mars",
       "type": "track",
       "name": "Pinwheel Herman"
+    },
+    {
+      "slug": "track:chordblocker-cinnamon-toasted--mouse-on-mars",
+      "type": "track",
+      "name": "Chordblocker, Cinnamon Toasted",
+      "artist": "Mouse on Mars"
+    },
+    {
+      "slug": "track:gearknot-cherry--mouse-on-mars",
+      "type": "track",
+      "name": "Gearknot Cherry",
+      "artist": "Mouse on Mars"
+    },
+    {
+      "slug": "track:imatch--mouse-on-mars",
+      "type": "track",
+      "name": "Imatch",
+      "artist": "Mouse on Mars"
+    },
+    {
+      "slug": "track:seaqz--mouse-on-mars",
+      "type": "track",
+      "name": "Seaqz",
+      "artist": "Mouse on Mars"
+    },
+    {
+      "slug": "track:the-beach-stop--mouse-on-mars",
+      "type": "track",
+      "name": "The Beach Stop",
+      "artist": "Mouse on Mars"
+    },
+    {
+      "slug": "track:wienuss--mouse-on-mars",
+      "type": "track",
+      "name": "Wienuss",
+      "artist": "Mouse on Mars"
     }
   ],
   "influences": [],
@@ -115,5 +153,6 @@
       "name": "Von Südenfed"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

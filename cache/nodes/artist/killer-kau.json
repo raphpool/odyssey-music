@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:14:10.369Z",
+  "mbid": "f6b3332c-2835-48f1-94fb-a09649e0a4ef",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pioneering Soweto-born Amapiano artist known for his viral breakthrough 'Tholukuthi Hey' and his formative years in church choirs.",
   "origin": "Soweto, South Africa",
   "active_years": "2016-2021",
@@ -79,5 +81,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

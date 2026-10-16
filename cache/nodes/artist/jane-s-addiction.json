@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "e3434cc7-d348-491a-9dc8-325af3d9086d",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Jane's Addiction was an iconic American alternative rock band formed in Los Angeles in 1985, known for its fusion of gothic, funk, and psychedelic sounds and for launching the Lollapalooza festival.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Jane%27s_Addiction_Classic_and_Final_Lineup_Collage.jpg/250px-Jane%27s_Addiction_Classic_and_Final_Lineup_Collage.jpg",
   "origin": "Los Angeles, California, U.S.",
@@ -113,5 +115,6 @@
       "type": "artist",
       "name": "Eric Avery"
     }
-  ]
+  ],
+  "similar_artists": []
 }

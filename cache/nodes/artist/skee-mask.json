@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:36:13.637Z",
+  "mbid": "2b3e25ba-983e-44ac-9def-907e03910cd2",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Bryan Müller, born in 1993, is a highly influential Munich-based electronic music producer and DJ operating under the alias Skee Mask.",
   "origin": "Munich, Germany",
   "active_years": "2014–present",
@@ -55,7 +57,7 @@
       "name": "Shred"
     },
     {
-      "slug": "project:compro",
+      "slug": "project:compro--skee-mask",
       "type": "project",
       "name": "Compro"
     },
@@ -68,28 +70,65 @@
       "slug": "project:resort",
       "type": "project",
       "name": "Resort"
+    },
+    {
+      "slug": "project:shred--skee-mask",
+      "type": "project",
+      "name": "Shred",
+      "artist": "Skee Mask"
     }
   ],
   "notable_tracks": [
     {
-      "slug": "track:50-euro-to-break-boost",
+      "slug": "track:50-euro-to-break-boost--skee-mask",
       "type": "track",
       "name": "50 Euro to Break Boost"
     },
     {
-      "slug": "track:flyby-vfr",
+      "slug": "track:flyby-vfr--skee-mask",
       "type": "track",
       "name": "Flyby VFR"
     },
     {
-      "slug": "track:rev8617",
+      "slug": "track:rev8617--skee-mask",
       "type": "track",
       "name": "Rev8617"
+    },
+    {
+      "slug": "track:dial-274--skee-mask",
+      "type": "track",
+      "name": "Dial 274",
+      "artist": "Skee Mask"
+    },
+    {
+      "slug": "track:kozmic-flush--skee-mask",
+      "type": "track",
+      "name": "Kozmic Flush",
+      "artist": "Skee Mask"
+    },
+    {
+      "slug": "track:muk-fm--skee-mask",
+      "type": "track",
+      "name": "Muk FM",
+      "artist": "Skee Mask"
+    },
+    {
+      "slug": "track:via-sub-mids--skee-mask",
+      "type": "track",
+      "name": "Via Sub Mids",
+      "artist": "Skee Mask"
+    },
+    {
+      "slug": "track:vli--skee-mask",
+      "type": "track",
+      "name": "Vli",
+      "artist": "Skee Mask"
     }
   ],
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

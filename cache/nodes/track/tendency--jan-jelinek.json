@@ -1,0 +1,60 @@
+{
+  "slug": "track:tendency--jan-jelinek",
+  "name": "Tendency",
+  "editorial_article": "\"Tendency\" is a seminal piece of electronic music by the German composer and producer Jan Jelinek. Originally released at the turn of the millennium, the track stands as a cornerstone of the glitch and minimal techno movements, characterized by Jelinek's signature \"loop-finding\" technique. By isolating and repeating small, warm fragments of jazz recordings—horns, guitars, and piano stabs—and layering them with subtle, textural digital processing, Jelinek created a sound that feels both incredibly organic and distinctively synthetic. The track is famously featured on his highly acclaimed 2001 album *Loop-Finding-Jazz-Records*, which remains a definitive release for the ~scape label and a touchstone for experimental ambient music. Through his careful manipulation of rhythm and timbre, Jelinek manages to strip jazz down to its most hypnotic elements, building a dense, atmospheric soundscape that feels like a fading memory of a late-night club performance. Its importance lies not just in the technique of micro-sampling, but in the emotional resonance of the compositions, which manage to bridge the gap between abstract sound design and deeply satisfying, warm, and soulful musicality. For listeners exploring the intersection of modern jazz, ambient, and electronic production, \"Tendency\" serves as a masterclass in subtlety and restraint.",
+  "citations": [
+    {
+      "url": "https://janjelinek.bandcamp.com/track/tendency",
+      "title": "Tendency | Jan Jelinek"
+    },
+    {
+      "url": "https://allnightflightrecords.com/products/jan-jelinek-tendency-ep-1",
+      "title": "Jan Jelinek ‎– Tendency EP - Night Flight Records"
+    },
+    {
+      "url": "https://www.discogs.com/release/7861-Jan-Jelinek-Tendency-EP?srsltid=AfmBOoo0ZSAGX72-cuM0NDQSB3UiTmqV8gA8-QEqM23j1Wkp-wsG4bjr",
+      "title": "Jan Jelinek – Tendency EP - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:34:09.753Z",
+  "type": "track",
+  "editorial_teaser": "A landmark piece of minimal glitch music, \"Tendency\" uses micro-samples of jazz to create a warm, hypnotic, and uniquely textured soundscape.",
+  "cover_url": "https://is1-ssl.mzstatic.com/image/thumb/Music/10/ee/9a/mzi.zlcwfgyb.jpg/1500x1500bb.jpg",
+  "artists": [
+    {
+      "slug": "artist:jan-jelinek",
+      "type": "artist",
+      "name": "Jan Jelinek"
+    }
+  ],
+  "project": {
+    "slug": "project:loop-finding-jazz-records--jan-jelinek",
+    "type": "project",
+    "name": "Loop-Finding-Jazz-Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch",
+      "qid": "Q1100989"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

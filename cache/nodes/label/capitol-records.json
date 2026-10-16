@@ -55,11 +55,16 @@
       "slug": "artist:the-beach-boys",
       "type": "artist",
       "name": "The Beach Boys"
+    },
+    {
+      "slug": "artist:jane-s-addiction",
+      "type": "artist",
+      "name": "Jane's Addiction"
     }
   ],
   "notable_releases": [
     {
-      "slug": "project:sgt-pepper-s-lonely-hearts-club-band",
+      "slug": "project:sgt-pepper-s-lonely-hearts-club-band--the-beatles",
       "type": "project",
       "name": "Sgt. Pepper's Lonely Hearts Club Band"
     },
@@ -67,6 +72,12 @@
       "slug": "project:pet-sounds",
       "type": "project",
       "name": "Pet Sounds"
+    },
+    {
+      "slug": "project:birth-of-the-cool--miles-davis",
+      "type": "project",
+      "name": "Birth of the Cool",
+      "artist": "Miles Davis"
     }
   ]
 }

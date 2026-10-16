@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:49:56.852Z",
+  "mbid": "32981181-5e3f-4160-a872-625980035593",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Éliane Radigue (1932–2026) was a pioneering French composer whose work fundamentally reshaped the landscape of electronic music through her masterful command of slow-moving, immersive sound.",
   "origin": "Paris, France",
   "active_years": "1950s–2026",
@@ -86,5 +88,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

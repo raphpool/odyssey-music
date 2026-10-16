@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:12:42.148Z",
+  "mbid": "5b11f4ce-a62d-471e-81fc-a69a8278c7da",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Nirvana was an influential American rock band that defined the 1990s grunge movement and brought alternative music to the global mainstream.",
   "origin": "Aberdeen, Washington, USA",
   "active_years": "1987-1994",
@@ -51,7 +53,7 @@
       "name": "Bleach"
     },
     {
-      "slug": "project:nevermind",
+      "slug": "project:nevermind--nirvana",
       "type": "project",
       "name": "Nevermind"
     },
@@ -93,5 +95,6 @@
       "type": "artist",
       "name": "Pat Smear"
     }
-  ]
+  ],
+  "similar_artists": []
 }

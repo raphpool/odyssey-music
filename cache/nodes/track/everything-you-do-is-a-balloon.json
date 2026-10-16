@@ -13,7 +13,7 @@
   "editorial_teaser": "An iconic, slow-building masterpiece of early IDM that layers warm analog textures and melancholic melodies into a hypnotic soundscape.",
   "artists": [],
   "project": {
-    "slug": "project:hi-scores",
+    "slug": "project:hi-scores--boards-of-canada",
     "type": "project",
     "name": "Hi Scores"
   },
@@ -25,6 +25,7 @@
       "name": "Boards of Canada"
     }
   ],
+  "personnel": [],
   "samples": [
     {
       "slug": "track:timeless",

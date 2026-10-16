@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:21:42.416Z",
+  "mbid": "1e8b3e4f-83c3-4b30-afa0-220363a7df5a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A founding member of the Screwed Up Click and a pivotal figure in Houston's hip-hop scene, known for his work with DJ Screw.",
   "origin": "Houston, Texas",
   "active_years": "1992-2006",
@@ -186,5 +188,6 @@
       "type": "artist",
       "name": "Screwed Up Click"
     }
-  ]
+  ],
+  "similar_artists": []
 }

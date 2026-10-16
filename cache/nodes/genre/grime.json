@@ -54,7 +54,7 @@
   "key_labels": [],
   "landmark_projects": [
     {
-      "slug": "project:boy-in-da-corner",
+      "slug": "project:boy-in-da-corner--dizzee-rascal",
       "type": "project",
       "name": "Boy in da Corner"
     }
@@ -66,7 +66,7 @@
       "name": "Eskimo"
     },
     {
-      "slug": "track:pulse-x",
+      "slug": "track:pulse-x--youngstar",
       "type": "track",
       "name": "Pulse X"
     }

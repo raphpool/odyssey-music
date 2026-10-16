@@ -32,7 +32,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "366c1381-9716-4866-b1c1-dfd4498351eb",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Brighton-based producer and experimentalist known for the Meemo Comma project and the duo Heterotic, exploring themes of trans identity, mysticism, and digital nostalgia.",
   "origin": "Brighton, UK",
   "genres": [
@@ -87,11 +89,6 @@
       "slug": "artist:mike-paradinas",
       "type": "artist",
       "name": "Mike Paradinas"
-    },
-    {
-      "slug": "artist:michael-paradinas",
-      "type": "artist",
-      "name": "Michael Paradinas"
     }
   ],
   "aliases": [
@@ -101,5 +98,6 @@
       "name": "Meemo Comma"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

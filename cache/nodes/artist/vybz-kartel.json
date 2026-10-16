@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T20:58:15.917Z",
+  "mbid": "7cc385f3-333c-48de-b341-3d728de74973",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Jamaican dancehall artist and entrepreneur known for hits like 'Fever' and his influential role in the Kingston music scene.",
   "origin": "Kingston, Jamaica",
   "active_years": "1993-present",
@@ -772,5 +774,6 @@
       "name": "Addi Innocent"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

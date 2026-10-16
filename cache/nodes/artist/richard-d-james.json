@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "79a09151-f6cc-48f9-9907-3fdd0b68373f",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Richard D. James is a pioneering electronic producer who reshaped the landscape of ambient techno and IDM through his work as Aphex Twin, AFX, and Caustic Window. Known for his technical mastery, he is a central figure in the Warp Records catalog and a founding force behind the experimental Rephlex label.",
   "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000355416/400/mHVS9w0l7oK3zPFDyQsaqd_M69_UI9rrJSVvWL2-yAg=.jpg",
   "origin": "Cornwall, England",
@@ -72,9 +74,10 @@
       "name": "Selected Ambient Works 85-92"
     },
     {
-      "slug": "project:richard-d-james-album",
+      "slug": "project:richard-d-james-album--richard-d-james",
       "type": "project",
-      "name": "Richard D. James Album"
+      "name": "Richard D. James Album",
+      "artist": "Richard D. James"
     },
     {
       "slug": "project:drukqs",
@@ -82,21 +85,24 @@
       "name": "Drukqs"
     },
     {
-      "slug": "project:syro",
+      "slug": "project:syro--richard-d-james",
       "type": "project",
-      "name": "Syro"
+      "name": "Syro",
+      "artist": "Richard D. James"
     }
   ],
   "notable_tracks": [
     {
-      "slug": "track:xtal",
+      "slug": "track:xtal--richard-d-james",
       "type": "track",
-      "name": "Xtal"
+      "name": "Xtal",
+      "artist": "Richard D. James"
     },
     {
-      "slug": "track:windowlicker",
+      "slug": "track:windowlicker--richard-d-james",
       "type": "track",
-      "name": "Windowlicker"
+      "name": "Windowlicker",
+      "artist": "Richard D. James"
     },
     {
       "slug": "track:alberto-balsalm",
@@ -141,5 +147,6 @@
       "type": "artist",
       "name": "Mike & Rich"
     }
-  ]
+  ],
+  "similar_artists": []
 }

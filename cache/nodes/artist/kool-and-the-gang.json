@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "2469950a-f0ca-425a-bfbc-baf55ea3afde",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Kool & the Gang is an enduring American musical institution, originating in Jersey City, New Jersey, in 1964.",
   "origin": "Jersey City, New Jersey, U.S.",
   "active_years": "1964–present",
@@ -95,6 +97,12 @@
       "slug": "project:emergency",
       "type": "project",
       "name": "Emergency (1984)"
+    },
+    {
+      "slug": "project:saturday-night-fever-the-original-movie-soundtrack",
+      "type": "project",
+      "name": "Saturday Night Fever: The Original Movie Soundtrack",
+      "artist": "Bee Gees"
     }
   ],
   "notable_tracks": [
@@ -123,5 +131,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

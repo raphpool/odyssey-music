@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:54:05.781Z",
+  "mbid": "0211756e-139e-4b4c-a721-9ee9db363f12",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A legendary drummer renowned for his work with Yes, King Crimson, and his innovative jazz ensemble Earthworks, Bill Bruford redefined the percussionist's role in rock with his sophisticated, polyrhythmic style.",
   "origin": "Sevenoaks, Kent, England",
   "genres": [
@@ -81,5 +83,6 @@
       "type": "artist",
       "name": "Bill Bruford's Earthworks"
     }
-  ]
+  ],
+  "similar_artists": []
 }

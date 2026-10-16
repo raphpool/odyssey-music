@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "3648db01-b29d-4ab9-835c-83f6a5068fe4",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Godspeed You!",
   "genres": [
     {
@@ -84,5 +86,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

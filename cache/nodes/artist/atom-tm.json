@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:47:06.424Z",
+  "mbid": "a874e630-134c-4450-97c4-54e596404290",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "German electronic composer and producer known for his vast discography, multi-alias output, and foundational work in IDM, ambient, and the invention of 'electrolatino.'",
   "photo_url": "https://atom-tm.com/img/logomenu.jpg",
   "origin": "Frankfurt, Germany",
@@ -111,5 +113,6 @@
       "name": "Lassigue Bendthaus"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

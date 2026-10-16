@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:59:46.612Z",
+  "mbid": "fefc8328-4ec3-4616-9303-862e8d4de4c4",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A seminal figure in Spanish electronic music, Oscar Mulero is a Madrid-based DJ and producer known for his extensive output in techno and ambient music, as well as his roles as founder of the Omen Club and labels PoleGroup and Warm Up.",
   "origin": "Madrid, Spain",
   "active_years": "1980s-present",
@@ -699,5 +701,6 @@
       "name": "Infamous Monster"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

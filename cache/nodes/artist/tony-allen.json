@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:04:33.267Z",
+  "mbid": "ea524cc6-191a-4c05-ab88-3bb5c0880ca5",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A legendary Nigerian drummer and composer recognized as a co-creator of Afrobeat and a pivotal force in global percussion.",
   "origin": "Lagos, Nigeria",
   "active_years": "1968-2020",
@@ -485,5 +487,6 @@
       "type": "artist",
       "name": "Fela Kuti"
     }
-  ]
+  ],
+  "similar_artists": []
 }

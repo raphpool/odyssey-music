@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:14:54.740Z",
+  "mbid": "3125c041-82c3-4861-9bbb-7a738df46829",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "DJ Luck & MC Neat are a foundational British duo who played a critical role in bringing UK garage into the mainstream consciousness at the turn of the millennium. Composed of DJ Luck (Joel Samuels) and MC Neat (Michael Rose), the London-based pair emerged in 1999, quickly establishing themselves as staples of the burgeoning garage scene. Their sound was a quintessential bridge between the raw, underground energy of pirate radio culture and the polished aesthetics of pop-chart success. They are perhaps best remembered for their 1999 breakthrough single \"A Little Bit of Luck,\" a record that evolved from a promotional dubplate into a nationwide anthem, peaking in the top ten and setting a blueprint for the energetic, vocal-heavy garage that would dominate British clubs for the next several years.",
   "origin": "London, England",
   "active_years": "1999–present",
@@ -67,5 +69,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

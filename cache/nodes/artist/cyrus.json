@@ -53,9 +53,10 @@
       "name": "Claret"
     },
     {
-      "slug": "track:haunted",
+      "slug": "track:haunted--cyrus",
       "type": "track",
-      "name": "Haunted"
+      "name": "Haunted",
+      "artist": "Cyrus"
     },
     {
       "slug": "track:golden-gate",
@@ -73,5 +74,6 @@
       "name": "Basic Channel"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

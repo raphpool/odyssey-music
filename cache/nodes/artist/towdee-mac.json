@@ -21,7 +21,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:26:06.422Z",
+  "mbid": "77196abd-5c7e-494f-aaca-1014989aca7d",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Lerothodi Moagi, known as Towdee Mac, is a South African music producer, songwriter, and composer rooted in the Motswako hip-hop scene.",
   "origin": "South Africa",
   "active_years": "2000s-present",
@@ -69,5 +71,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

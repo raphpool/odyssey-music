@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:59:10.711Z",
+  "mbid": "0c751690-c784-4a4f-b1e4-c1de27d47581",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Animal Collective is an American experimental pop group that emerged from the Baltimore, Maryland music scene at the turn of the millennium.",
   "origin": "Baltimore, Maryland, USA",
   "genres": [
@@ -126,5 +128,6 @@
       "type": "artist",
       "name": "Geologist"
     }
-  ]
+  ],
+  "similar_artists": []
 }

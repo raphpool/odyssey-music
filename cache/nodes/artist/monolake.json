@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:41:01.769Z",
+  "mbid": "cedf92fe-eba1-45e2-ba16-b1b6af5169b8",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Pioneering German electronic project renowned for its influence on dub techno and its deep ties to music software innovation.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Monolake_2014.jpg/500px-Monolake_2014.jpg",
   "origin": "Berlin, Germany",
@@ -51,7 +53,7 @@
   ],
   "discography": [
     {
-      "slug": "project:hongkong",
+      "slug": "project:hongkong--monolake",
       "type": "project",
       "name": "Hongkong"
     },
@@ -76,7 +78,7 @@
       "name": "Momentum"
     },
     {
-      "slug": "project:polygon-cities",
+      "slug": "project:polygon-cities--monolake",
       "type": "project",
       "name": "Polygon Cities"
     },
@@ -91,12 +93,12 @@
       "name": "Ghosts"
     },
     {
-      "slug": "project:vlsi",
+      "slug": "project:vlsi--monolake",
       "type": "project",
       "name": "VLSI"
     },
     {
-      "slug": "project:archaeopteryx",
+      "slug": "project:archaeopteryx--monolake",
       "type": "project",
       "name": "Archaeopteryx"
     },
@@ -104,6 +106,12 @@
       "slug": "project:studio",
       "type": "project",
       "name": "Studio"
+    },
+    {
+      "slug": "project:interstate--monolake",
+      "type": "project",
+      "name": "Interstate",
+      "artist": "Monolake"
     }
   ],
   "notable_tracks": [],
@@ -127,5 +135,6 @@
       "type": "artist",
       "name": "Torsten Pröfrock"
     }
-  ]
+  ],
+  "similar_artists": []
 }

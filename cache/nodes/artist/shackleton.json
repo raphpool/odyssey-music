@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T14:52:38.525Z",
+  "mbid": "6b9b48d9-e409-41a2-b007-e58521e17fc5",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An English electronic producer and label founder known for his complex, bass-driven, and atmospheric soundscapes.",
   "origin": "Lancashire, England",
   "active_years": "2005-present",
@@ -95,5 +97,6 @@
       "type": "artist",
       "name": "Sam Shackleton"
     }
-  ]
+  ],
+  "similar_artists": []
 }

@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:02:21.971Z",
+  "mbid": "56abaa47-0101-463b-b37e-e961136fec39",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Venetian Snares is the primary alias of prolific Canadian electronic producer Aaron Funk, an architect of the breakcore genre known for his hyper-complex rhythms, unconventional time signatures, and deep exploration of experimental electronic textures. Based in Winnipeg, he has released a vast discography of critically acclaimed work, most notably his 2005 fusion of breakbeats and classical music, 'Rossz Csillag Alatt Született'.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Venetian_Snares_-_Ilosaarirock_2008.jpg/500px-Venetian_Snares_-_Ilosaarirock_2008.jpg",
   "origin": "Winnipeg, Manitoba, Canada",
@@ -53,7 +55,7 @@
   ],
   "discography": [
     {
-      "slug": "project:songs-about-my-cats",
+      "slug": "project:songs-about-my-cats--venetian-snares",
       "type": "project",
       "name": "Songs About My Cats"
     },
@@ -115,5 +117,6 @@
       "name": "Snares Man!"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

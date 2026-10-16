@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:11:30.466Z",
+  "mbid": "477b8c0c-c5fc-4ad2-b5b2-191f0bf2a9df",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Armin Jozef Jacobus Daniël van Buuren (born 25 December 1976) is a Dutch DJ, record producer, and musician who has become one of the most recognizable figures in the global electronic dance music scene.",
   "origin": "Leiden, Netherlands",
   "active_years": "1996–present",
@@ -134,5 +136,6 @@
       "name": "Perpetuous Dreamer"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

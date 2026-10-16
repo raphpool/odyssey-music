@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:46:23.078Z",
+  "mbid": "5041c9e5-9cac-4b8e-8559-cdda296ddb0a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Vainqueur is the seminal dub-techno project of German producer René Löwe, a pivotal figure in the development of the 1990s Berlin electronic underground. Emerging in the early 1990s, Vainqueur became synonymous with the aesthetic of the Chain Reaction label, an offshoot of the legendary Basic Channel imprint. Löwe’s work as Vainqueur is defined by its deep, cavernous soundscapes, pulsating rhythms, and dense, atmospheric textures.",
   "origin": "Germany",
   "genres": [
@@ -96,5 +98,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

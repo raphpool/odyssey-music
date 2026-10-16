@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:20:32.430Z",
+  "mbid": "c3009d7a-51ac-4c9c-888a-04f5c3c4be0c",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pioneering figure in gangsta rap, Eazy-E gained prominence as a member of N.W.A before achieving significant solo success in the late 1980s and early 1990s.",
   "origin": "Compton, California",
   "active_years": "1986-1995",
@@ -251,5 +253,6 @@
       "type": "artist",
       "name": "N.W.A"
     }
-  ]
+  ],
+  "similar_artists": []
 }

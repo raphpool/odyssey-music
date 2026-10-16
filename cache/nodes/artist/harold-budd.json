@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:48:22.231Z",
+  "mbid": "5c864a6f-146e-4225-986d-3295ce90f784",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Harold Montgomery Budd (1936–2020) was an influential American composer, poet, and pianist who became a cornerstone of the ambient and minimalist traditions.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Harold_Budd_%28cropped%29.jpg/500px-Harold_Budd_%28cropped%29.jpg",
   "origin": "Los Angeles, California, U.S.",
@@ -74,6 +76,12 @@
       "slug": "project:the-white-arcades",
       "type": "project",
       "name": "The White Arcades"
+    },
+    {
+      "slug": "project:avalon-sutra-as-long-as-i-can-hold-my-breath--harold-budd",
+      "type": "project",
+      "name": "Avalon Sutra / As Long As I Can Hold My Breath",
+      "artist": "Harold Budd"
     }
   ],
   "notable_tracks": [
@@ -83,9 +91,27 @@
       "name": "Bismillahi 'Rrahmani 'Rrahim"
     },
     {
-      "slug": "track:the-white-arcades",
+      "slug": "track:the-white-arcades--harold-budd",
       "type": "track",
       "name": "The White Arcades"
+    },
+    {
+      "slug": "track:as-long-as-i-can-hold-my-breath--harold-budd",
+      "type": "track",
+      "name": "As Long as I Can Hold My Breath",
+      "artist": "Harold Budd"
+    },
+    {
+      "slug": "track:not-yet-remembered--brian-eno",
+      "type": "track",
+      "name": "Not Yet Remembered",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:the-plateaux-of-mirror--brian-eno",
+      "type": "track",
+      "name": "The Plateaux of Mirror",
+      "artist": "Brian Eno"
     }
   ],
   "influences": [
@@ -108,5 +134,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

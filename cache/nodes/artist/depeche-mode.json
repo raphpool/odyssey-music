@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:44:06.527Z",
+  "mbid": "8538e728-ca0b-4321-b7e5-cff6565dd4c0",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Depeche Mode is a pioneering English electronic music band formed in 1980 in Basildon, Essex, that evolved from their early synth-pop origins into international stadium-sized alternative rock icons.",
   "origin": "Basildon, Essex, England",
   "active_years": "1980-present",
@@ -102,5 +104,6 @@
       "type": "artist",
       "name": "Vince Clarke"
     }
-  ]
+  ],
+  "similar_artists": []
 }

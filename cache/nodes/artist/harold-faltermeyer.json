@@ -17,15 +17,25 @@
     }
   ],
   "materialized_at": "2026-05-13T13:17:42.699Z",
+  "mbid": "3bd08e76-bf53-4b16-82ee-63f95ca5cdae",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Hans Hugo Harold Faltermeyer (born 1952 in Munich, Germany) is a highly influential German composer, musician, and record producer whose work defined the sound of 1980s synth-pop and cinematic scoring.",
   "genres": [],
   "labels": [],
   "discography": [],
-  "notable_tracks": [],
+  "notable_tracks": [
+    {
+      "slug": "track:axel-f--harold-faltermeyer",
+      "type": "track",
+      "name": "Axel F",
+      "artist": "Harold Faltermeyer"
+    }
+  ],
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:46:13.442Z",
+  "mbid": "48c4ea31-fe9d-4bbf-8a1c-a2996abcfb9f",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Moritz von Oswald is a German electronic musician and producer, best known as a co-founder of Basic Channel and a pioneer of dub techno.",
   "genres": [
     {
@@ -80,5 +82,6 @@
       "type": "artist",
       "name": "Rhythm & Sound"
     }
-  ]
+  ],
+  "similar_artists": []
 }

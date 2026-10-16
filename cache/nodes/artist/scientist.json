@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:08:53.584Z",
+  "mbid": "90d63976-5e70-4c73-a500-eb67997d6ed2",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Scientist is a legendary Jamaican dub producer and engineer known for his innovative mixing style, heavy use of echo and reverb, and iconic science-fiction-themed album covers. Born Hopeton Brown, he was a key protege of King Tubby who helped define the sound of 1980s reggae and dub.",
   "origin": "Kingston, Jamaica",
   "active_years": "1970s–Present",
@@ -60,5 +62,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

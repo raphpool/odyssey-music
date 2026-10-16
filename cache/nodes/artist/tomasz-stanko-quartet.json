@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:18:04.336Z",
+  "mbid": "b526f421-0f6b-4e7d-a7fa-e1b3564f941b",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Tomasz Stańko Quartet was a seminal Polish jazz ensemble led by trumpeter Tomasz Stańko, featuring the rhythm section that would later become the Marcin Wasilewski Trio. Renowned for their atmospheric, lyrical, and improvisational style, they released several acclaimed albums on the ECM label, becoming a defining voice in contemporary European jazz.",
   "origin": "Poland",
   "active_years": "2000s–2010s",
@@ -46,7 +48,7 @@
   ],
   "discography": [
     {
-      "slug": "project:soul-of-things",
+      "slug": "project:soul-of-things--tomasz-stanko-quartet",
       "type": "project",
       "name": "Soul of Things"
     },
@@ -81,6 +83,12 @@
       "slug": "track:kaetano",
       "type": "track",
       "name": "Kaetano"
+    },
+    {
+      "slug": "track:soul-of-things-i--tomasz-stanko-quartet",
+      "type": "track",
+      "name": "Soul of Things I",
+      "artist": "Tomasz Stańko Quartet"
     }
   ],
   "influences": [],
@@ -99,14 +107,15 @@
       "name": "Marcin Wasilewski"
     },
     {
-      "slug": "artist:s-awomir-kurkiewicz",
+      "slug": "artist:slawomir-kurkiewicz",
       "type": "artist",
       "name": "Sławomir Kurkiewicz"
     },
     {
-      "slug": "artist:micha-miskiewicz",
+      "slug": "artist:michal-miskiewicz",
       "type": "artist",
       "name": "Michał Miśkiewicz"
     }
-  ]
+  ],
+  "similar_artists": []
 }

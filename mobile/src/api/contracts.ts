@@ -191,6 +191,9 @@ export const searchResponseSchema = z.object({
 				slug: identitySchema.optional(),
 				mbid: z.string().uuid().optional(),
 				subtitle: z.string().optional(),
+				// TRA-547: first credited artist of a project/track hit (never cut out of `subtitle`).
+				artist: z.string().min(1).optional(),
+				artist_slug: identitySchema.refine((slug) => slug.startsWith("artist:")).optional(),
 				extra: z.string().min(1).optional(),
 			})
 			.superRefine((hit, context) => {

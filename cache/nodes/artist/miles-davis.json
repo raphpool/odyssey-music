@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:17:54.902Z",
+  "mbid": "561d854a-6a28-4aa7-8c99-323e6ce46c2a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Miles Dewey Davis III (1926–1991) was an American trumpeter, bandleader, and composer who stands as one of the most transformative figures in the history of 20th-century music.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Miles_Davis_by_Palumbo_cropped.jpg/250px-Miles_Davis_by_Palumbo_cropped.jpg",
   "origin": "Alton, Illinois, U.S.",
@@ -61,7 +63,7 @@
   ],
   "discography": [
     {
-      "slug": "project:kind-of-blue",
+      "slug": "project:kind-of-blue--miles-davis",
       "type": "project",
       "name": "Kind of Blue"
     },
@@ -74,6 +76,12 @@
       "slug": "project:birth-of-the-cool",
       "type": "project",
       "name": "Birth of the Cool"
+    },
+    {
+      "slug": "project:birth-of-the-cool--miles-davis",
+      "type": "project",
+      "name": "Birth of the Cool",
+      "artist": "Miles Davis"
     }
   ],
   "notable_tracks": [
@@ -113,5 +121,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

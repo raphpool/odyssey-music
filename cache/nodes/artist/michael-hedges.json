@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:47:56.571Z",
+  "mbid": "fbaba2b0-3a6f-41b1-9ecd-f89c1a666e99",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Michael Alden Hedges (1953–1997) was an American composer, guitarist, and multi-instrumentalist whose innovative, percussive approach to the steel-string acoustic guitar fundamentally reshaped the instrument's possibilities in the late 20th century.",
   "origin": "Sacramento, California, U.S.",
   "active_years": "1974–1997",
@@ -77,5 +79,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

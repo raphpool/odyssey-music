@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:25:33.870Z",
+  "mbid": "b0337af1-8d93-4671-b6c9-ba306bf942bf",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A leading figure in UK rap from Shepherd's Bush, Central Cee evolved from trapwave beginnings to achieve massive international success with chart-topping drill-inspired hits.",
   "origin": "Shepherd's Bush, London, England",
   "active_years": "2014–present",
@@ -528,5 +530,6 @@
       "name": "Cench"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

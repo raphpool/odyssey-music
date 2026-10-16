@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:41:51.886Z",
+  "mbid": "bf259ecd-fe89-4738-82fc-ecdd67de1fcc",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Kevin Maurice Saunderson (born September 5, 1964) is an American electronic dance music legend and a cornerstone of the original Detroit techno scene. Moving to Belleville, Michigan, as a youth, he formed the influential \"Belleville Three\" alongside Juan Atkins and Derrick May—a triumvirate responsible for crystallizing the futuristic, machine-driven sound of Detroit techno in the 1980s. While his peers often leaned into more abstract or industrial compositions, Saunderson masterfully bridged the gap between underground experimentation and commercial accessibility.\\n\\nHis most notable commercial success arrived through the collaborative project Inner City, formed with vocalist Paris Grey. The group’s global hits like \"Big Fun\" and \"Good Life\" brought the aesthetic of Detroit’s underground to the international charts, showcasing his ability to fuse electronic production with soulful, house-influenced sensibilities. Beyond his mainstream work, Saunderson remained deeply committed to the underground through his seminal label, KMS Records, and various aliases such as E-Dancer, The Reese Project, and Tronik House. Through E-Dancer, in particular, he produced some of the most enduring, complex, and high-energy techno tracks of the 1990s, cementing his status as both an innovator and a preservationist of the Detroit sound. Over a career spanning decades, Saunderson has served not just as a producer, but as a vital cultural ambassador for the movement that reshaped electronic music worldwide. His work continues to influence contemporary techno, and his contributions as a label head, DJ, and mentor remain central to the ongoing legacy of Detroit dance music.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Kevin_Saunderson_%28cropped%29.jpg/250px-Kevin_Saunderson_%28cropped%29.jpg",
   "origin": "\"New York City, U.S. (raised in Belleville, MI)\"",
@@ -64,6 +66,12 @@
       "slug": "project:paradise",
       "type": "project",
       "name": "Paradise"
+    },
+    {
+      "slug": "project:techno-the-new-dance-sound-of-detroit",
+      "type": "project",
+      "name": "Techno! The New Dance Sound of Detroit",
+      "artist": "Derrick May"
     }
   ],
   "notable_tracks": [
@@ -125,5 +133,6 @@
       "type": "artist",
       "name": "The Reese Project"
     }
-  ]
+  ],
+  "similar_artists": []
 }
