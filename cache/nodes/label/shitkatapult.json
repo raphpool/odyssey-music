@@ -32,6 +32,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Shitkatapultlogo.jpg?width=600",
+  "image_source": "wikidata-p154",
   "type": "label",
   "editorial_description": "An uncompromising Berlin electronic label known for its eclectic output and defiant 'we do what we like' ethos.",
   "founded": "1997",

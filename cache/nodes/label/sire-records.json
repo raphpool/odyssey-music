@@ -32,6 +32,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://coverartarchive.org/release-group/97d100a8-e42c-38ff-8ae5-eb31331fd82b/front-500",
+  "image_source": "derived-cover",
   "type": "label",
   "editorial_description": "Sire Records is a seminal American record label founded in 1966 by Seymour Stein and Richard Gottehrer, famously known for its pivotal role in the rise of punk, new wave, and global pop stars like Madonna.",
   "founded": "1966",

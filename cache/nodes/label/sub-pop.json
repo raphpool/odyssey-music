@@ -32,6 +32,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sub%20Pop.svg?width=600",
+  "image_source": "wikidata-p154",
   "type": "label",
   "editorial_description": "A legendary Seattle-based independent label, synonymous with the birth and popularization of grunge in the late 1980s and 1990s, which has since evolved into a diverse powerhouse of modern indie music.",
   "founded": "1986",

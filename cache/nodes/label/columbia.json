@@ -24,6 +24,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://coverartarchive.org/release-group/6792b6d1-4e65-3c3c-9d20-d08aa1dcfc60/front-500",
+  "image_source": "derived-cover",
   "type": "label",
   "editorial_description": "The oldest surviving record label in the world, Columbia Records has defined the trajectory of the music industry for over a century, from the birth of the phonograph to the digital age. It remains a flagship division of Sony Music Entertainment, housing a vast and culturally vital catalog of essential recordings across every major musical genre.",
   "founded": "1889",

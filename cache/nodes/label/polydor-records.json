@@ -32,6 +32,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Polydor%20Logo%201963%20001.svg?width=600",
+  "image_source": "wikidata-p154",
   "type": "label",
   "editorial_description": "A legendary international record label founded in Germany in 1913, Polydor has been a cornerstone of the music industry for over a century, known for hosting iconic acts like The Who, The Bee Gees, and numerous modern chart-toppers.",
   "founded": "1913",

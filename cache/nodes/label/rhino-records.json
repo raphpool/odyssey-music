@@ -28,6 +28,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/24/d4/1d/24d41ddb-f65d-4f16-93f2-81f005957d92/190374608732.jpg/600x600bb.jpg",
+  "image_source": "derived-cover",
   "type": "label",
   "editorial_description": "Rhino Records is an American record label and production company, founded in 1978, that became the industry gold standard for archival reissues and catalog management before becoming the official catalog division of Warner Music Group.",
   "founded": "1978",
