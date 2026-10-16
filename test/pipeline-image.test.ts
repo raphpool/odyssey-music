@@ -229,3 +229,107 @@ describe("image of a work asked with a client mbid (TRA-479, TRA-538)", () => {
 		TIMEOUT_MS,
 	);
 });
+
+describe("refresh keeps the existing image (TRA-549)", () => {
+	const OLD_URL = "https://coverartarchive.org/release-group/aaaaaaaa-1111-4111-8111-000000000011/front-500";
+	const EXISTING = { url: OLD_URL, source: "caa" as const };
+	const SLUG = "project:new-forms";
+	const REFRESH: PipelineInput = { ...INPUT, slug: SLUG, existingImage: EXISTING };
+
+	async function refresh(resolveImage: PipelineDeps["resolveImage"], lines: string[] = []) {
+		await resolvedProject();
+		const runPipeline = await loadRunPipeline();
+		const deps: PipelineDeps = { ...DEPS, logger: (line) => lines.push(line) };
+		if (resolveImage) deps.resolveImage = resolveImage;
+		return (await runPipeline(REFRESH, deps)).node as ProjectNode;
+	}
+
+	it(
+		"keeps the image when the resolver finds nothing",
+		async () => {
+			const lines: string[] = [];
+			const node = await refresh(async () => null, lines);
+			expect(node.image_url).toBe(OLD_URL);
+			expect(node.image_source).toBe("caa");
+			expect(lines.some((l) => l.includes("existing image kept"))).toBe(true);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"keeps the image when the resolver throws",
+		async () => {
+			const node = await refresh(async () => {
+				throw new Error("coverartarchive.org is down");
+			});
+			expect(node.image_url).toBe(OLD_URL);
+			expect(node.image_source).toBe("caa");
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"keeps the image when the resolver proposes a host the allow-list refuses",
+		async () => {
+			const node = await refresh(async () => ({ url: "https://evil.example.com/c.jpg", source: "caa" }));
+			expect(node.image_url).toBe(OLD_URL);
+			expect(node.image_source).toBe("caa");
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"keeps the image when no resolver is wired at all",
+		async () => {
+			const node = await refresh(undefined);
+			expect(node.image_url).toBe(OLD_URL);
+			expect(node.image_source).toBe("caa");
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"replaces the image, and its source, when the resolver finds a new valid one",
+		async () => {
+			const node = await refresh(async () => ({ url: CAA_URL, source: "itunes-verified" as const }));
+			expect(node.image_url).toBe(CAA_URL);
+			expect(node.image_source).toBe("itunes-verified");
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"does not keep an existing image whose host is no longer allowed",
+		async () => {
+			await resolvedProject();
+			const lines: string[] = [];
+			const runPipeline = await loadRunPipeline();
+			const result = await runPipeline(
+				{
+					...INPUT,
+					slug: SLUG,
+					existingImage: { url: "https://evil.example.com/old.jpg", source: "legacy" },
+				},
+				{ ...DEPS, resolveImage: async () => null, logger: (line) => lines.push(line) },
+			);
+			const node = result.node as ProjectNode;
+			expect(node.image_url).toBeUndefined();
+			expect(node.image_source).toBeUndefined();
+			expect(lines.some((l) => l.includes("existing image dropped"))).toBe(true);
+		},
+		TIMEOUT_MS,
+	);
+	it(
+		"does not carry an image onto a node when no slug was pinned for the refresh",
+		async () => {
+			await resolvedProject();
+			const runPipeline = await loadRunPipeline();
+			const result = await runPipeline(
+				{ ...INPUT, existingImage: EXISTING },
+				{ ...DEPS, resolveImage: async () => null },
+			);
+			expect((result.node as ProjectNode).image_url).toBeUndefined();
+		},
+		TIMEOUT_MS,
+	);
+});
