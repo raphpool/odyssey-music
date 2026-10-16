@@ -1099,6 +1099,14 @@ export interface WorkResolveOptions {
 	 * band-credited candidate it falls under the same rule as any direct one: `ambiguous`.
 	 */
 	requestedArtistMbid?: string | undefined;
+	/**
+	 * Release groups only: the release type the requested work is known to have ("album", "ep",
+	 * "single"; compared with MB's primary type, without regard to case). When candidates of one title and
+	 * one credit have DIFFERENT primary types, this alone picks among them (TRA-560: a single released
+	 * before the album of the same name used to win on its date and gave the album the single's MBID). It
+	 * never overrides the other steps and never makes a lone candidate of another type a match.
+	 */
+	releaseType?: string | undefined;
 }
 
 function acceptedMbidSet(options: WorkResolveOptions): Set<string> {
@@ -1130,9 +1138,16 @@ function strictlyEarlier(a: string, b: string): boolean {
  *    fallback to the single exact-title candidate, which resolved exactly that case. Without a hint,
  *    the single exact-title candidate wins (more than one = ambiguous);
  * 3. recordings carrying a non-empty `disambiguation` (live, DJ-mix, video...) are set aside; exactly
- *    one must remain. Release groups have no such note: the one with the strictly earliest
- *    first-release-date among the dated ones wins (a later EP or compilation of the same title does
- *    not), a tie or no date at all is ambiguous.
+ *    one must remain. Release groups have no such note: when they all share one primary type, the one
+ *    with the strictly earliest first-release-date among the dated ones wins (a later reissue of the
+ *    same title does not), a tie or no date at all is ambiguous;
+ * 4. release groups of DIFFERENT primary types (a single and the album of the same name) are never
+ *    told apart by date (2026-10-16, TRA-560, found in the TRA-483 deep review: the 2024 single "New
+ *    Heaven" and the 1967 single "I Never Loved a Man the Way I Love You" came out before their album,
+ *    won on age, and gave the album the single's MBID, release_type and tracklist). The release type
+ *    the caller knows (`releaseType`) picks the type that agrees, else it is `ambiguous`. A tracklist of
+ *    several titles is not taken as proof of an album: the caller's tracklist is not verified, and a
+ *    maxi-single has several tracks. A missing primary type counts as a type of its own.
  * Ambiguous is not "none": the caller keeps the two apart.
  */
 function pickByTitleAndCredit<
@@ -1141,6 +1156,7 @@ function pickByTitleAndCredit<
 		title: string;
 		disambiguation?: string | undefined;
 		"first-release-date"?: string | undefined;
+		"primary-type"?: string | undefined;
 		"artist-credit"?: MbArtistCreditEntry[] | undefined;
 	},
 >(
@@ -1150,6 +1166,7 @@ function pickByTitleAndCredit<
 	kind: "release-group" | "recording",
 	acceptedMbids: ReadonlySet<string> = new Set(),
 	requestedArtistMbid?: string,
+	releaseType?: string,
 ): Pick<T> {
 	const wanted = normalizeTitleBody(title);
 	if (!wanted) return { kind: "none" };
@@ -1203,7 +1220,16 @@ function pickByTitleAndCredit<
 	}
 	const only = pool[0];
 	if (pool.length === 1 && only) return { kind: "one", candidate: only };
-	const dated = pool.filter((c) => (c["first-release-date"] ?? "") !== "");
+	// Different primary types are different works (a single is not its album): never settled by date.
+	const typeOf = (c: T) => (c["primary-type"] ?? "").trim().toLowerCase();
+	const known = releaseType?.trim().toLowerCase() ?? "";
+	const sameType = pool.every((c) => typeOf(c) === typeOf(pool[0] ?? c));
+	const ofType = sameType ? pool : known === "" ? [] : pool.filter((c) => typeOf(c) === known);
+	if (ofType.length === 0) return { kind: "ambiguous" };
+	// The one candidate of the type the caller knows, dated or not.
+	const lone = ofType[0];
+	if (ofType.length === 1 && lone) return { kind: "one", candidate: lone };
+	const dated = ofType.filter((c) => (c["first-release-date"] ?? "") !== "");
 	const earliest = [...dated].sort((a, b) =>
 		(a["first-release-date"] ?? "").localeCompare(b["first-release-date"] ?? ""),
 	)[0];
@@ -1282,6 +1308,7 @@ export async function resolveReleaseGroupDetailed(
 		"release-group",
 		acceptedMbidSet(options),
 		options.requestedArtistMbid,
+		options.releaseType,
 	);
 	if (picked.kind !== "one") return { ...none, ambiguous: picked.kind === "ambiguous" };
 	const rg = picked.candidate;
