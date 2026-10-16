@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T12:35:42.608Z",
   "type": "genre",
   "editorial_definition": "A genre of Western art music that utilizes electronic technology, signal processing, and recorded sounds to manipulate timbres and construct musical compositions, often independent of traditional performance conventions.",
+  "qid": "Q1326777",
   "era": "Mid-20th century to present",
   "origin": "Paris, France; Cologne, Germany",
   "parent_genres": [],
@@ -96,16 +97,15 @@
   ],
   "landmark_projects": [
     {
-      "slug": "project:gesang-der-junglinge",
+      "slug": "project:gesang-der-junglinge--karlheinz-stockhausen",
       "type": "project",
       "name": "Gesang der Jünglinge"
     },
     {
-      "slug": "project:i-am-sitting-in-a-room",
+      "slug": "project:i-am-sitting-in-a-room--alvin-lucier",
       "type": "project",
       "name": "I Am Sitting in a Room"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q1326777"
+  "landmark_tracks": []
 }

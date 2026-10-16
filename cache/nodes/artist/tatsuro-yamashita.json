@@ -57,9 +57,10 @@
       "name": "Circus Town"
     },
     {
-      "slug": "project:ride-on-time",
+      "slug": "project:ride-on-time--tatsuro-yamashita",
       "type": "project",
-      "name": "Ride on Time"
+      "name": "Ride on Time",
+      "artist": "Tatsurō Yamashita"
     },
     {
       "slug": "project:for-you",
@@ -145,12 +146,6 @@
       "name": "Tats Yamashita"
     }
   ],
-  "members": [
-    {
-      "slug": "artist:tatsuro-yamashita",
-      "type": "artist",
-      "name": "Tatsurō Yamashita"
-    }
-  ],
+  "members": [],
   "similar_artists": []
 }

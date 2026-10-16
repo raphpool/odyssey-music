@@ -712,9 +712,10 @@
       "name": "Dragonborn"
     },
     {
-      "slug": "track:destiny",
+      "slug": "track:destiny--headhunterz",
       "type": "track",
-      "name": "Destiny"
+      "name": "Destiny",
+      "artist": "Headhunterz"
     },
     {
       "slug": "track:live-forever",

@@ -42,17 +42,17 @@
   "labels": [],
   "discography": [
     {
-      "slug": "project:are-you-experienced",
+      "slug": "project:are-you-experienced--the-jimi-hendrix-experience",
       "type": "project",
       "name": "Are You Experienced"
     },
     {
-      "slug": "project:axis-bold-as-love",
+      "slug": "project:axis-bold-as-love--the-jimi-hendrix-experience",
       "type": "project",
       "name": "Axis: Bold as Love"
     },
     {
-      "slug": "project:electric-ladyland",
+      "slug": "project:electric-ladyland--the-jimi-hendrix-experience",
       "type": "project",
       "name": "Electric Ladyland"
     },
@@ -64,7 +64,7 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:purple-haze",
+      "slug": "track:purple-haze--the-jimi-hendrix-experience",
       "type": "track",
       "name": "Purple Haze"
     },
@@ -74,9 +74,10 @@
       "name": "The Wind Cries Mary"
     },
     {
-      "slug": "track:hey-joe",
+      "slug": "track:hey-joe--jimi-hendrix",
       "type": "track",
-      "name": "Hey Joe"
+      "name": "Hey Joe",
+      "artist": "Jimi Hendrix"
     }
   ],
   "influences": [],

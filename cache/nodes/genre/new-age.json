@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:34:42.557Z",
   "type": "genre",
   "editorial_definition": "A genre defined by its therapeutic, atmospheric, and meditative intent rather than a singular instrumental style, often blending acoustic and electronic elements to foster relaxation and optimism.",
+  "qid": "Q213121",
   "era": "1960s–present",
   "origin": "United States and Europe",
   "parent_genres": [
@@ -92,21 +93,20 @@
   ],
   "landmark_projects": [
     {
-      "slug": "project:spectrum-suite",
+      "slug": "project:spectrum-suite--steven-halpern",
       "type": "project",
       "name": "Spectrum Suite"
     },
     {
-      "slug": "project:inside",
+      "slug": "project:inside--bo-burnham",
       "type": "project",
       "name": "Inside"
     },
     {
-      "slug": "project:music-for-zen-meditation",
+      "slug": "project:music-for-zen-meditation--tony-scott",
       "type": "project",
       "name": "Music for Zen Meditation"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q213121"
+  "landmark_tracks": []
 }

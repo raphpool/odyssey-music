@@ -1,0 +1,382 @@
+{
+  "slug": "project:drift-series-1--underworld",
+  "name": "Drift Series 1",
+  "editorial_article": "\"DRIFT Series 1\" is an expansive, multi-disciplinary project by the pioneering British electronic duo Underworld, documenting a highly ambitious year-long creative challenge. Initiated in November 2018, the \"Drift\" project saw Rick Smith and Karl Hyde committing to the creation and release of new music, video, and visual content on a weekly basis for 52 consecutive weeks. This process was intentionally designed to disrupt the traditional album-and-tour cycle, allowing the duo to experiment with spontaneity, improvisation, and a wide array of sonic textures that might not have fit into a tightly curated studio album.\\n\\nThe resulting collection, \"DRIFT Series 1,\" serves as the definitive compilation of this creative marathon. Spanning nearly six hours of audio across multiple discs, the project is a sprawling mosaic of Underworld’s multifaceted identity. It traverses ambient soundscapes, pulsing techno, experimental drone, and their signature spoken-word storytelling. By stripping away the constraints of standard release schedules, Underworld explored an unfiltered, raw form of expression, inviting listeners into a transparent view of their artistic process. The release eventually culminated in a \"Complete\" edition, solidifying a pivotal era in their career defined by a relentless drive to evolve. It remains a landmark entry in the duo’s discography for its scale, its defiance of industry norms, and its intimate look at how a long-standing group continues to reinvent their own boundaries.",
+  "citations": [
+    {
+      "url": "https://underworld.bandcamp.com/album/drift-series-1-complete",
+      "title": "DRIFT Series 1 - Complete | Underworld"
+    },
+    {
+      "url": "https://www.treblezine.com/underworld-drift-series-1-review/",
+      "title": "Underworld : Drift Series 1 - Treble"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:38:02.498Z",
+  "mbid": "619e3533-dea5-45dc-a5d5-0b6b6e20f4f7",
+  "type": "project",
+  "editorial_pitch": "A sprawling, ambitious 52-week creative marathon from Underworld, released as a massive multi-disc compilation that documents their experimentation with ambient, techno, and experimental textures.",
+  "year": "2019",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:underworld",
+      "type": "artist",
+      "name": "Underworld",
+      "mbid": "ba2f4f3b-0293-4bc8-bb94-2f73b5207343"
+    }
+  ],
+  "label": {
+    "slug": "label:caroline-international",
+    "type": "label",
+    "name": "Caroline International",
+    "mbid": "c091ab76-140a-40fb-b6d1-e6c381cbc099"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:another-silent-way--underworld",
+      "type": "track",
+      "name": "Another Silent Way",
+      "mbid": "e0ac69b8-f282-4fe0-bbec-0b7ccfd0b868",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:dexters-chalk--underworld",
+      "type": "track",
+      "name": "Dexters Chalk",
+      "mbid": "ac3a7e0e-6340-407b-a653-2563a09f8bea",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:low-between-zebras--underworld",
+      "type": "track",
+      "name": "Low Between Zebras",
+      "mbid": "a8688078-5b69-40d5-be8a-d2987a734141",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:universe-of-can-when-back--underworld",
+      "type": "track",
+      "name": "Universe of Can When Back",
+      "mbid": "c7984dbc-23ed-4218-8f84-6b69d4b7128a",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:brilliant-yes-that-would-be--underworld",
+      "type": "track",
+      "name": "Brilliant Yes That Would Be",
+      "mbid": "11d5b5a7-6ff8-420d-9932-8bbc9fdbebab",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:another-silent-way-drift-poem-better-than-diamonds--underworld",
+      "type": "track",
+      "name": "Another Silent Way / Drift Poem / Better Than Diamonds",
+      "mbid": "35bda1d1-b13b-4867-8b74-c1e0d4d9c596",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:one-true-piano-need-hand--underworld",
+      "type": "track",
+      "name": "One True Piano Need Hand",
+      "mbid": "0331f6ac-7a66-4e45-9a97-f5c0e6c02d5c",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:appleshine-film-edit--underworld",
+      "type": "track",
+      "name": "Appleshine (Film edit)",
+      "mbid": "b61380b0-4a6b-4ab9-971f-458ac90ae94a",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:molehill--underworld",
+      "type": "track",
+      "name": "Molehill",
+      "mbid": "31883352-3275-4533-9e0b-8dfaee98d34f",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:threat-of-rain--underworld",
+      "type": "track",
+      "name": "Threat of Rain",
+      "mbid": "74acb5fa-4538-4a51-b519-32e7cc3f697d",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:brussels--underworld",
+      "type": "track",
+      "name": "Brussels",
+      "mbid": "a15a21d8-f744-4448-bdce-28327b4d704a",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:soniamode-aditya-game-version--underworld",
+      "type": "track",
+      "name": "Soniamode (Aditya Game version)",
+      "mbid": "c5deacb6-7e86-4d31-87ce-ff96e605fa57",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:appleshine-all-of-the-lights--underworld",
+      "type": "track",
+      "name": "Appleshine (All of the Lights)",
+      "mbid": "d6631078-570b-4982-8af9-f34fa1fa9792",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:roof-off--underworld",
+      "type": "track",
+      "name": "Roof Off",
+      "mbid": "ea6167ce-2176-499b-97f7-5fe28c9c7b38",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:dune--underworld",
+      "type": "track",
+      "name": "Dune",
+      "mbid": "dc59cd76-7a69-40c2-b504-c022db529f4c",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:custard-speedtalk--underworld",
+      "type": "track",
+      "name": "Custard Speedtalk",
+      "mbid": "51784c3d-8510-48fa-9444-7ffc3de6b57c",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:this-must-be-drum-street--underworld",
+      "type": "track",
+      "name": "This Must Be Drum Street",
+      "mbid": "2ece0f5c-d94b-4156-a23c-31cad52a184a",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:pinetum--underworld",
+      "type": "track",
+      "name": "Pinetum",
+      "mbid": "1cef5956-3f07-4a22-a35d-42f4cdef06a8",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:poet-cat--underworld",
+      "type": "track",
+      "name": "Poet Cat",
+      "mbid": "b29126af-ee88-45ed-a31f-4b4c9fb88dab",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:do-breakers-trip--underworld",
+      "type": "track",
+      "name": "Do Breakers Trip",
+      "mbid": "eca68662-8909-466a-afdf-db2a5a69a948",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:seven-drone-music--underworld",
+      "type": "track",
+      "name": "Seven Drone Music",
+      "mbid": "326c68c8-4196-4911-ad03-a88890a66196",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:listen-to-their-no--underworld",
+      "type": "track",
+      "name": "Listen to Their No",
+      "mbid": "7644be5e-796a-48ae-ae0b-696c6a01b7d6",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:schiphol-test--underworld",
+      "type": "track",
+      "name": "Schiphol Test",
+      "mbid": "ed9c117a-6e6a-4c14-9a89-f1afc6355e31",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:hundred-weight-hammer--underworld",
+      "type": "track",
+      "name": "Hundred Weight Hammer",
+      "mbid": "d64e835e-811c-4f71-b049-d5cfae246b36",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:doris--underworld",
+      "type": "track",
+      "name": "Doris",
+      "mbid": "23e0ae77-afd4-4265-8ac2-c9ea4b442414",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:altitude-dub--underworld",
+      "type": "track",
+      "name": "Altitude Dub",
+      "mbid": "f151892c-47b8-43ef-acf4-b579b23ced43",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:border-country--underworld",
+      "type": "track",
+      "name": "Border Country",
+      "mbid": "b7baa29e-b66f-446f-8ff8-3ae25db25752",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:big-bear--underworld",
+      "type": "track",
+      "name": "Big Bear",
+      "mbid": "5c5024f7-a8cb-4bec-9b93-8c4e64bcc942",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:toluca-stars-film-edit--underworld",
+      "type": "track",
+      "name": "Toluca Stars (Film edit)",
+      "mbid": "9fa2bdfb-3d56-4159-b271-9dca454c2514",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:mile-bush-pride--underworld",
+      "type": "track",
+      "name": "Mile Bush Pride",
+      "mbid": "b537f031-3198-45d2-9bb4-84333fd5f6cc",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:imagine-a-box--underworld",
+      "type": "track",
+      "name": "Imagine a Box",
+      "mbid": "a9162d70-b299-4c30-95d4-073929af94ca",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:tree-and-two-chairs-film-edit--underworld",
+      "type": "track",
+      "name": "Tree and Two Chairs (Film edit)",
+      "mbid": "9fd38a4b-143b-40fd-85b3-4e0f90bdbd7e",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:give-me-the-room--underworld",
+      "type": "track",
+      "name": "Give Me the Room",
+      "mbid": "d9754566-1a5f-4453-b72d-054b2b809a9a",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:s-t-a-r--underworld",
+      "type": "track",
+      "name": "S T A R",
+      "mbid": "62309c05-128b-440c-ab98-2d7dbb3642e0",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:doscentitos--underworld",
+      "type": "track",
+      "name": "Doscentitos",
+      "mbid": "601dbf8e-2974-44c6-a594-c8dc306831a0",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:two-arrows--underworld",
+      "type": "track",
+      "name": "Two Arrows",
+      "mbid": "10931f63-69f8-476a-92ad-f13c63a561ba",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:a-moth-at-the-door--underworld",
+      "type": "track",
+      "name": "A Moth at the Door",
+      "mbid": "b1b71402-c955-4376-9e1b-1df7a8b41280",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:altitude-dub-continuum--underworld",
+      "type": "track",
+      "name": "Altitude Dub Continuum",
+      "mbid": "f572086c-5eb0-4884-b81c-bf408e834e30",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:a-very-silent-way--underworld",
+      "type": "track",
+      "name": "A Very Silent Way",
+      "mbid": "d24736cb-475c-4708-842f-fa920b5d3613",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:appleshine-continuum--underworld",
+      "type": "track",
+      "name": "Appleshine Continuum",
+      "mbid": "8f1b995f-6f78-4189-9d72-3a8b4328b7ff",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:appleshine--underworld",
+      "type": "track",
+      "name": "Appleshine",
+      "mbid": "7e74a303-b1ed-4380-b20b-f9eb2d4434de",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:s-t-a-r-rebel-tech--underworld",
+      "type": "track",
+      "name": "S T A R (Rebel Tech)",
+      "mbid": "0898fb6b-5ee3-4d23-810e-fd0668874506",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:drift-trailer--underworld",
+      "type": "track",
+      "name": "Drift Trailer",
+      "mbid": "e034e794-74b2-4f20-b5f3-9d4af7965964",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:soniamode-aditya-game--underworld",
+      "type": "track",
+      "name": "Soniamode (Aditya Game)",
+      "mbid": "3ccb34ed-daab-48c9-87a0-cddab77084c1",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:toluca-stars--underworld",
+      "type": "track",
+      "name": "Toluca Stars",
+      "mbid": "e2398492-901a-442d-a57b-8efff34cc84f",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "track:tree-and-two-chairs--underworld",
+      "type": "track",
+      "name": "Tree and Two Chairs",
+      "mbid": "fc502124-19cd-4084-9660-cb9e0502b253",
+      "artist": "Underworld"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

@@ -1,0 +1,60 @@
+{
+  "slug": "project:move-d-namlook--move-d",
+  "name": "Move D / Namlook",
+  "editorial_article": "The collaborative partnership between David Moufang (Move D) and Pete Namlook stands as one of the most prolific and significant unions in the history of electronic music. Spanning roughly two decades and resulting in a body of work totaling 26 albums, their collaboration was primarily centered on Namlook's influential Frankfurt-based label, Fax +49-69/450464. Their sonic output bridged the gap between deep house, techno, ambient, and jazz-inflected experimentalism. \n\nTheir working method was famously improvisational and deeply atmospheric. By combining Moufang's mastery of hardware-driven house and techno rhythms with Namlook's penchant for sweeping, psychedelic synth textures and avant-garde soundscapes, they created a unique, hypnotic sound palette. Pieces like \"Silk Route\" or the tracks from their 'Wired' and 'Let the Circle Not Be Broken' albums showcase their ability to merge technical proficiency with organic, tactile warmth. The partnership was not just about the volume of their output, but the consistency of their vision: a continuous pursuit of 'psycho-active' electronica that felt both futuristic and timelessly rooted in the history of German electronic exploration. Even years after Namlook's passing, their catalog remains a foundational touchstone for producers working in ambient-techno and deep house, proving that spontaneity and deep collaboration can result in lasting, highly influential art. The recent \"Reissued\" series by AWAY Music serves as a testament to their enduring legacy, bringing these CD-only gems to vinyl and ensuring new generations can access their vast, intricate catalog.",
+  "citations": [
+    {
+      "url": "https://www.forcedexposure.com/Artists/MOVE.D.AND.PETE.NAMLOOK.html",
+      "title": "MOVE D & PETE NAMLOOK - Forced Exposure"
+    },
+    {
+      "url": "https://awaymusic.bandcamp.com/album/reissued-3",
+      "title": "Reissued 3 | Move D & Pete Namlook | AWAY - Bandcamp"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:47:08.520Z",
+  "type": "project",
+  "editorial_pitch": "The collaborative partnership between David Moufang (Move D) and Pete Namlook stands as one of the most prolific and significant unions in the history of electronic music.",
+  "year": "1993-2012",
+  "artists": [
+    {
+      "slug": "artist:move-d",
+      "type": "artist",
+      "name": "Move D"
+    },
+    {
+      "slug": "artist:pete-namlook",
+      "type": "artist",
+      "name": "Pete Namlook"
+    }
+  ],
+  "label": {
+    "slug": "label:fax-49-69-450464",
+    "type": "label",
+    "name": "Fax +49-69/450464"
+  },
+  "genres": [
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno",
+      "qid": "Q9149801"
+    },
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep House",
+      "qid": "Q874038"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    }
+  ],
+  "tracklist": [],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

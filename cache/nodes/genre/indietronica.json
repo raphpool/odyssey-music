@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T13:17:04.783Z",
   "type": "genre",
   "editorial_definition": "A hybrid genre merging indie rock's songwriting, DIY ethos, and eclectic instrumentation with electronic music's production techniques, often prioritizing pop-sensibilities while avoiding mainstream club structures.",
+  "qid": "Q325397",
   "era": "1990s - Present",
   "origin": "United Kingdom, United States, Germany, Japan",
   "sonic_markers": "DIY production approach, blend of live instruments and digital synthesis, melodic indie-pop structures, electronic textures, emphasis on arrangement over club-driven beat design.",
@@ -68,17 +69,17 @@
   ],
   "landmark_projects": [
     {
-      "slug": "project:vespertine",
+      "slug": "project:vespertine--bjork",
       "type": "project",
       "name": "Vespertine"
     },
     {
-      "slug": "project:dots-and-loops",
+      "slug": "project:dots-and-loops--stereolab",
       "type": "project",
       "name": "Dots and Loops"
     },
     {
-      "slug": "project:sound-of-silver",
+      "slug": "project:sound-of-silver--lcd-soundsystem",
       "type": "project",
       "name": "Sound of Silver"
     },
@@ -88,6 +89,5 @@
       "name": "Give Up"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q325397"
+  "landmark_tracks": []
 }

@@ -48,12 +48,13 @@
   ],
   "discography": [
     {
-      "slug": "project:the-beatles",
+      "slug": "project:the-beatles-white-album--chris-thomas",
       "type": "project",
-      "name": "The Beatles (White Album)"
+      "name": "The Beatles (White Album)",
+      "artist": "Chris Thomas"
     },
     {
-      "slug": "project:never-mind-the-bollocks-here-s-the-sex-pistols",
+      "slug": "project:never-mind-the-bollocks-here-s-the-sex-pistols--sex-pistols",
       "type": "project",
       "name": "Never Mind the Bollocks, Here's the Sex Pistols"
     },

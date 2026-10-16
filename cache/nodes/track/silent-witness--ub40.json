@@ -1,0 +1,51 @@
+{
+  "slug": "track:silent-witness--ub40",
+  "name": "Silent Witness",
+  "editorial_article": "\"Silent Witness\" is a poignant reggae track by the iconic British band UB40, appearing on their 1981 album *Present Arms*. Set against the backdrop of the socio-political unrest of early 1980s Britain, the song serves as a melancholic observation of urban decay, poverty, and systemic neglect. With its signature dub-infused production and the band's trademark brass arrangements, \"Silent Witness\" captures the \"concrete jungle\" of the era, reflecting the daily struggles of the marginalized populations in cities like Birmingham. The lyrical narrative focuses on the disconnection between the bustling city lights and the cold reality of those left behind—the \"tired and homeless\" who roam the streets unnoticed. UB40's delivery is deeply atmospheric, using the metaphor of a \"silent witness\" to highlight how the inanimate structures of the city—the \"window dummies\" and angry graffiti—observe human suffering without intervention. The song is a prime example of the group's early commitment to socially conscious songwriting, blending roots reggae rhythms with a stark, British working-class perspective. It remains a hallmark of their early discography, grounding the band's sound in the harsh realities of their environment rather than solely relying on the escapist themes often found in the genre at the time. Its inclusion on *Present Arms*—an album widely regarded as a pinnacle of their early, more political output—marks it as a significant moment in the intersection of UK reggae and social commentary.",
+  "citations": [
+    {
+      "url": "https://open.spotify.com/track/7wP4EbLZvpJDXtKN9CCa5I",
+      "title": "Silent Witness - song and lyrics by UB40 | Spotify"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=joXwuN_qaj4",
+      "title": "Silent Witness - YouTube"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:19:07.827Z",
+  "type": "track",
+  "editorial_teaser": "A melancholic and socially conscious reggae track from UB40's 1981 album Present Arms, capturing the urban alienation of early 1980s Britain.",
+  "year": "1981",
+  "duration": "4:15",
+  "artists": [
+    {
+      "slug": "artist:ub40",
+      "type": "artist",
+      "name": "UB40"
+    }
+  ],
+  "project": {
+    "slug": "project:present-arms",
+    "type": "project",
+    "name": "Present Arms"
+  },
+  "genres": [
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae",
+      "qid": "Q9794"
+    },
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub",
+      "qid": "Q212688"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

@@ -38,9 +38,10 @@
   "discography": [],
   "notable_tracks": [
     {
-      "slug": "track:passion",
+      "slug": "track:passion--gat-decor",
       "type": "track",
-      "name": "Passion"
+      "name": "Passion",
+      "artist": "Gat Decor"
     }
   ],
   "influences": [],

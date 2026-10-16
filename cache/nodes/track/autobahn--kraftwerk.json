@@ -1,0 +1,50 @@
+{
+  "slug": "track:autobahn--kraftwerk",
+  "name": "Autobahn",
+  "editorial_article": "\"Autobahn,\" the monumental title track from Kraftwerk's 1974 breakthrough album, stands as a cornerstone of electronic music, bridging the gap between the experimental Krautrock of the late 1960s and the synthetic pop dominance of the coming decades. Clocking in at over 22 minutes on the original LP, the composition serves as a sonic journey, meticulously simulating the experience of driving along the West German highway system. It represented a pivotal shift for the Düsseldorf-based group, moving away from the more abstract, organic textures of their early work toward a rigid, minimalist, and motoric sound that embraced the machine-like precision of synthesizers and vocoders. \\n\\nProduced by founding members Ralf Hütter and Florian Schneider alongside the legendary Conny Plank, \"Autobahn\" effectively codified the group's \"robot-pop\" aesthetic. By blending accessible, hummable melodies with the repetitive, rhythmic pulse that would soon be known as the \"motorik\" beat, the track achieved a hypnotic quality that felt both futuristic and deeply rooted in modern industrial reality. Its cultural impact cannot be overstated; it fundamentally changed how electronic instruments were perceived in popular music, proving that synthesizers could be used not just for atmospheric soundscapes or avant-garde experiments, but for narrative, rhythmic storytelling. The song's success provided the blueprint for countless subgenres, from synth-pop and industrial to techno and electro, marking the definitive moment when pop music began its transition into the digital age.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/2994-Kraftwerk-Autobahn",
+      "title": "Kraftwerk – Autobahn | Releases | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:51.386Z",
+  "type": "track",
+  "editorial_teaser": "\"Autobahn,\" the monumental title track from Kraftwerk's 1974 breakthrough album, stands as a cornerstone of electronic music, bridging the gap between the experimental Krautrock of the late 1960s and the synthetic pop dominance of the coming decades.",
+  "year": "1974",
+  "duration": "22:30",
+  "artists": [
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk"
+    }
+  ],
+  "project": {
+    "slug": "project:autobahn--kraftwerk",
+    "type": "project",
+    "name": "Autobahn"
+  },
+  "genres": [],
+  "producers": [
+    {
+      "slug": "artist:ralf-hutter",
+      "type": "artist",
+      "name": "Ralf Hütter"
+    },
+    {
+      "slug": "artist:florian-schneider",
+      "type": "artist",
+      "name": "Florian Schneider"
+    },
+    {
+      "slug": "artist:conny-plank",
+      "type": "artist",
+      "name": "Conny Plank"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

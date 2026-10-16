@@ -1,0 +1,83 @@
+{
+  "slug": "project:techno-the-new-dance-sound-of-detroit--derrick-may",
+  "name": "Techno! The New Dance Sound of Detroit",
+  "editorial_article": "\"Techno! The New Dance Sound of Detroit\" is a seminal 1988 compilation album that serves as the definitive baptismal record for the Detroit techno genre. Released on Virgin Records’ UK imprint 10 Records, the project was curated by British music scout Neil Rushton and Detroit pioneer Derrick May. At the time of its release, the electronic music emerging from Detroit was often erroneously categorized by international audiences as a regional variation of Chicago house. Rushton, recognizing the unique, futurist soundscapes being produced by the Belleville Three (Juan Atkins, Derrick May, and Kevin Saunderson), sought to distinguish the city’s output. Following the inclusion of Juan Atkins’ track \"Techno Music\"—which was heavily influenced by the futurist writings of Alvin Toffler—the team settled on the term \"techno\" to frame the project. Although the compilation did not achieve massive immediate commercial success, it was a pivotal cultural milestone that introduced European listeners to the sound of Detroit. It catalyzed the international recognition of figures like May, Atkins, and Saunderson, and set the stage for the global expansion of techno as a distinct, influential genre of electronic dance music. The album features a balanced cross-section of early pioneers and essential tracks, including Inner City's \"Big Fun,\" which later became a major crossover hit, and works by Blake Baxter and Eddie \"Flashin'\" Fowlkes. Today, it remains a vital historical document that captures a fleeting, transformative moment when the industrial, experimental spirit of Detroit was first solidified under a name that would define a generation of club music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Techno!_The_New_Dance_Sound_of_Detroit",
+      "title": "Techno! The New Dance Sound of Detroit - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/master/45436-Various-Techno-The-New-Dance-Sound-Of-Detroit?srsltid=AfmBOooZST4UybFKhEgN90TLRshfQ-S7MxpJH_5-aI_7xuyQBnIcKu_R",
+      "title": "Techno! (The New Dance Sound Of Detroit) - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:10:27.178Z",
+  "type": "project",
+  "editorial_pitch": "A historic 1988 compilation curated by Derrick May and Neil Rushton that defined Detroit techno as a genre independent of Chicago house.",
+  "artists": [
+    {
+      "slug": "artist:derrick-may",
+      "type": "artist",
+      "name": "Derrick May"
+    },
+    {
+      "slug": "artist:juan-atkins",
+      "type": "artist",
+      "name": "Juan Atkins"
+    },
+    {
+      "slug": "artist:kevin-saunderson",
+      "type": "artist",
+      "name": "Kevin Saunderson"
+    },
+    {
+      "slug": "artist:blake-baxter",
+      "type": "artist",
+      "name": "Blake Baxter"
+    },
+    {
+      "slug": "artist:eddie-fowlkes",
+      "type": "artist",
+      "name": "Eddie Fowlkes"
+    },
+    {
+      "slug": "artist:inner-city",
+      "type": "artist",
+      "name": "Inner City"
+    },
+    {
+      "slug": "artist:anthony-shakir",
+      "type": "artist",
+      "name": "Anthony Shakir"
+    }
+  ],
+  "label": {
+    "slug": "label:10-records",
+    "type": "label",
+    "name": "10 Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit techno",
+      "qid": "Q526463"
+    }
+  ],
+  "tracklist": [],
+  "producers": [
+    {
+      "slug": "artist:derrick-may",
+      "type": "artist",
+      "name": "Derrick May"
+    },
+    {
+      "slug": "artist:neil-rushton",
+      "type": "artist",
+      "name": "Neil Rushton"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

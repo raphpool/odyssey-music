@@ -1,0 +1,121 @@
+{
+  "slug": "project:compro--skee-mask",
+  "name": "Compro",
+  "editorial_article": "Released in 2018 on the Munich-based label Ilian Tape, 'Compro' is the acclaimed debut studio album by German electronic producer Skee Mask. Moving away from the stricter techno constraints of his earlier output, 'Compro' established Skee Mask as a master of atmospheric, rhythmically complex electronic music. The album is a sprawling exploration of deep, introspective IDM, breakbeat, and ambient-tinged electronica. Its sonic architecture is defined by lush, ethereal textures layered over precise, shuffling drum patterns that feel both nostalgic and forward-thinking. Tracks like 'Cerroverb' and 'Rev8617' demonstrate a unique ability to weave dense, emotive soundscapes into a coherent, high-fidelity narrative. The record was met with widespread critical acclaim for its meticulous production quality and its departure from typical club tropes, positioning Skee Mask as a pivotal figure in the evolution of modern independent electronic music. 'Compro' remains a landmark of the Ilian Tape catalog, encapsulating a specific, melancholic, yet danceable aesthetic that resonates with both home listeners and club-goers alike. It serves as a definitive statement of the producer's versatility and his commitment to crafting immersive, world-building sonic environments.",
+  "citations": [
+    {
+      "url": "https://music.apple.com/us/album/compro/1386727307",
+      "title": "Compro - Album by Skee Mask - Apple Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:30.152Z",
+  "mbid": "557fddc8-dc5e-4d06-a284-1b3bdab41374",
+  "type": "project",
+  "editorial_pitch": "An evocative, textured exploration of breakbeat and ambient techno, 'Compro' cemented Skee Mask as a leading voice in modern, mood-driven electronica.",
+  "year": "2018",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:skee-mask",
+      "type": "artist",
+      "name": "Skee Mask",
+      "mbid": "2b3e25ba-983e-44ac-9def-907e03910cd2"
+    }
+  ],
+  "label": {
+    "slug": "label:ilian-tape",
+    "type": "label",
+    "name": "Ilian Tape"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat",
+      "qid": "Q663519"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:cerroverb",
+      "type": "track",
+      "name": "Cerroverb"
+    },
+    {
+      "slug": "track:session-add",
+      "type": "track",
+      "name": "Session Add"
+    },
+    {
+      "slug": "track:rev8617--skee-mask",
+      "type": "track",
+      "name": "Rev8617"
+    },
+    {
+      "slug": "track:50-euro-to-break-boost--skee-mask",
+      "type": "track",
+      "name": "50 Euro to Break Boost"
+    },
+    {
+      "slug": "track:via-sub-mids--skee-mask",
+      "type": "track",
+      "name": "Via Sub Mids"
+    },
+    {
+      "slug": "track:soundboy-ext",
+      "type": "track",
+      "name": "Soundboy Ext."
+    },
+    {
+      "slug": "track:dial-274--skee-mask",
+      "type": "track",
+      "name": "Dial 274"
+    },
+    {
+      "slug": "track:vli",
+      "type": "track",
+      "name": "Vli"
+    },
+    {
+      "slug": "track:flyby-vfr--skee-mask",
+      "type": "track",
+      "name": "Flyby Vfr"
+    },
+    {
+      "slug": "track:muk-fm--skee-mask",
+      "type": "track",
+      "name": "Muk FM"
+    },
+    {
+      "slug": "track:kozmic-flush--skee-mask",
+      "type": "track",
+      "name": "Kozmic Flush"
+    },
+    {
+      "slug": "track:calimance",
+      "type": "track",
+      "name": "Calimance (Delay Mix)"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:skee-mask",
+      "type": "artist",
+      "name": "Skee Mask"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

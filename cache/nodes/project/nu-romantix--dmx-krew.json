@@ -1,0 +1,113 @@
+{
+  "slug": "project:nu-romantix--dmx-krew",
+  "name": "Nu Romantix",
+  "editorial_article": "\"Nu Romantix\" is a landmark electronic album by the prolific British producer DMX Krew, originally released in 1998. Emerging during a time when retro-futuristic synth music was finding a renewed voice, the project stands as a definitive exploration of electro, vocoder-heavy synth-pop, and upbeat, fun-focused dance rhythms. DMX Krew, the primary project of Ed Upton, masterfully blends the stark, machine-driven aesthetic of classic electro with a human, melodic sensibility that feels simultaneously nostalgic and forward-looking. \\n\\nThroughout the record, Upton utilizes analog synthesizers and vocoded vocals to create a sound that is both technically precise and emotionally resonant. Tracks like \"Come to Me\" and \"Place Called Love\" showcase the artist's ability to fuse robotic textures with catchy, pop-structured hooks. The album has aged remarkably well, gaining a reputation among electronic music enthusiasts as one of DMX Krew's finest bodies of work, praised for its clarity, charm, and technical execution. Reissued in later years to a new generation of listeners, \"Nu Romantix\" remains a cornerstone of the late-90s underground electro scene, capturing the spirit of a producer who helped bridge the gap between dancefloor functionality and idiosyncratic musical composition. It is a quintessential artifact of its era, embodying a specific kind of '80s-inspired, high-fidelity synthesizer romanticism that defined the DMX Krew project.",
+  "citations": [
+    {
+      "url": "https://music.apple.com/ua/album/nu-romantix/1675664504",
+      "title": "Nu Romantix - Album by DMX Krew - Apple Music"
+    },
+    {
+      "url": "https://www.allmusic.com/album/nu-romantix-mw0000601667",
+      "title": "Nu Romantix - DMX Krew | Album - AllMusic"
+    },
+    {
+      "url": "https://dmxkrew.bandcamp.com/album/nu-romantix",
+      "title": "Nu Romantix | DMX Krew"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:08:18.213Z",
+  "mbid": "e716e3c6-c77b-3cc2-ad3c-ada8ec07a3cd",
+  "type": "project",
+  "editorial_pitch": "A classic of the late-90s underground, \"Nu Romantix\" is a definitive DMX Krew album that blends vintage electro machines, emotive vocoder vocals, and irresistibly catchy synth-pop melodies.",
+  "year": "1998",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:dmx-krew",
+      "type": "artist",
+      "name": "DMX Krew",
+      "mbid": "a3494b6a-32b5-416c-8dea-dce62c8e9244"
+    }
+  ],
+  "label": {
+    "slug": "label:rephlex-records",
+    "type": "label",
+    "name": "Rephlex Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop",
+      "qid": "Q1298934"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:come-to-me--dmx-krew",
+      "type": "track",
+      "name": "Come to Me",
+      "mbid": "b02c23a6-6f68-4ba5-a4a4-be2f0d819e30",
+      "artist": "DMX Krew"
+    },
+    {
+      "slug": "track:can-u-feel-the-power--dmx-krew",
+      "type": "track",
+      "name": "Can U Feel the Power",
+      "mbid": "21937dc9-997f-429a-ae12-4e08fabc3c64",
+      "artist": "DMX Krew"
+    },
+    {
+      "slug": "track:mouse--dmx-krew",
+      "type": "track",
+      "name": "Mouse",
+      "mbid": "f4822634-9c17-4fc6-b331-905fd506b88e",
+      "artist": "DMX Krew"
+    },
+    {
+      "slug": "track:you-re-not-there--dmx-krew",
+      "type": "track",
+      "name": "You're Not There",
+      "mbid": "9251570c-353b-4711-b79f-a4fff9621022",
+      "artist": "DMX Krew"
+    },
+    {
+      "slug": "track:end-of-the-night--dmx-krew",
+      "type": "track",
+      "name": "End of the Night",
+      "mbid": "3303121d-64e6-4606-81a0-aa8a55f98d62",
+      "artist": "DMX Krew"
+    },
+    {
+      "slug": "track:you-can-do-it--dmx-krew",
+      "type": "track",
+      "name": "You Can Do It!",
+      "mbid": "7c055868-3f19-4f97-8799-ed4f0b2799fa",
+      "artist": "DMX Krew"
+    },
+    {
+      "slug": "track:place-called-love--dmx-krew",
+      "type": "track",
+      "name": "Place Called Love",
+      "mbid": "a883b497-d1e6-402d-82a9-5ad84bd99fb6",
+      "artist": "DMX Krew"
+    },
+    {
+      "slug": "track:i-m-all-alone-cylob-s-mix--dmx-krew",
+      "type": "track",
+      "name": "I'm All Alone (Cylob's mix)",
+      "mbid": "6b1c62ee-bb61-4d88-b06c-388b9526f9d8",
+      "artist": "DMX Krew"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

@@ -48,12 +48,12 @@
   ],
   "discography": [
     {
-      "slug": "project:alcachofa",
+      "slug": "project:alcachofa--ricardo-villalobos",
       "type": "project",
       "name": "Alcachofa"
     },
     {
-      "slug": "project:fizheuer-zieheuer",
+      "slug": "project:fizheuer-zieheuer--ricardo-villalobos",
       "type": "project",
       "name": "Fizheuer Zieheuer"
     }
@@ -65,7 +65,7 @@
       "name": "Fizheuer Zieheuer"
     },
     {
-      "slug": "track:easy-lee",
+      "slug": "track:easy-lee--ricardo-villalobos",
       "type": "track",
       "name": "Easy Lee"
     }

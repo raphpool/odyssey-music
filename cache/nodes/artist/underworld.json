@@ -52,24 +52,24 @@
   ],
   "discography": [
     {
-      "slug": "project:dubnobasswithmyheadman",
+      "slug": "project:dubnobasswithmyheadman--underworld",
       "type": "project",
       "name": "Dubnobasswithmyheadman"
     },
     {
-      "slug": "project:second-toughest-in-the-infants",
+      "slug": "project:second-toughest-in-the-infants--underworld",
       "type": "project",
       "name": "Second Toughest in the Infants"
     },
     {
-      "slug": "project:beaucoup-fish",
+      "slug": "project:beaucoup-fish--underworld",
       "type": "project",
       "name": "Beaucoup Fish"
     }
   ],
   "notable_tracks": [
     {
-      "slug": "track:born-slippy-nuxx",
+      "slug": "track:born-slippy-nuxx--underworld",
       "type": "track",
       "name": "Born Slippy .NUXX"
     },
@@ -115,5 +115,6 @@
       "type": "artist",
       "name": "Darren Emerson"
     }
-  ]
+  ],
+  "similar_artists": []
 }

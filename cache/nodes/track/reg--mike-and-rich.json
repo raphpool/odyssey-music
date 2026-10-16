@@ -1,0 +1,61 @@
+{
+  "slug": "track:reg--mike-and-rich",
+  "name": "Reg",
+  "editorial_article": "\"Reg\" is a track by the collaborative electronic project Mike & Rich, featured on their cult 1996 album \"Expert Knob Twiddlers.\" Released on the influential Rephlex Records label, the project brought together two masters of experimental electronic music: Mike Paradinas (μ-Ziq) and Richard D. James (Aphex Twin). \"Expert Knob Twiddlers\" is widely regarded as a playful, slightly irreverent entry in the IDM (Intelligent Dance Music) canon, marked by erratic drum programming, squelchy analog synthesis, and a whimsical approach that deviated from the more serious, cerebral soundscapes often associated with the genre at the time.\n\n\"Reg\" itself sits within the album’s quirky, downtempo-leaning sonic landscape. While the collaborative nature of the album has often led fans and critics to debate which producer took the lead on specific passages, \"Reg\" embodies the characteristic \"knob twiddling\" spirit that defined the Rephlex aesthetic of the mid-90s—blending technical prowess with a sense of off-kilter, bedroom-studio fun. The track, like much of the album, oscillates between hypnotic rhythms and unpredictable, playful synth lines that reflect the creative chemistry between Paradinas and James. Despite its somewhat polarized reputation among die-hard fans of the two artists, the album and the track \"Reg\" remain significant pieces of the IDM puzzle, capturing a moment when the pioneers of the genre were consciously experimenting with absurdity and informal composition. The original release of \"Expert Knob Twiddlers\" was a limited affair, eventually garnering a legacy cult status that culminated in its 2016 remaster and expansion, further cementing its place in the history of underground electronic music.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/release/9206-Mike-Rich-Expert-Knob-Twiddlers?srsltid=AfmBOooZShVg0XDl8lt5k9nUeKrxwk6fDRgDq10zcqKG4ISu25WwcXap",
+      "title": "Mike & Rich – Expert Knob Twiddlers – 2 x Vinyl (LP, Album), 1996 [r9206] | Discogs"
+    },
+    {
+      "url": "https://www.discogs.com/release/892016-Mike-Rich-Mike-Rich?srsltid=AfmBOoo6_pF3KVgO-UHdDUB11XLz5gBuq08k-7nTT6mqBO2pS2zzPFKS",
+      "title": "Mike & Rich – CD (Album), 1998 [r892016] - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:07:23.166Z",
+  "type": "track",
+  "editorial_teaser": "\"Reg\" is a track by the collaborative electronic project Mike & Rich, featured on their cult 1996 album \"Expert Knob Twiddlers.\" Released on the influential Rephlex Records label, the project brought together two masters of experimental electronic music: Mike Paradinas (μ-Ziq) an",
+  "year": "1996",
+  "artists": [
+    {
+      "slug": "artist:mike-and-rich",
+      "type": "artist",
+      "name": "Mike & Rich"
+    }
+  ],
+  "project": {
+    "slug": "project:expert-knob-twiddlers--aphex-twin",
+    "type": "project",
+    "name": "Expert Knob Twiddlers"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo",
+      "qid": "Q251192"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas"
+    },
+    {
+      "slug": "artist:richard-d-james",
+      "type": "artist",
+      "name": "Richard D. James"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

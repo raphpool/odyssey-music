@@ -62,12 +62,12 @@
       "name": "Analord 10"
     },
     {
-      "slug": "project:hangable-auto-bulb",
+      "slug": "project:hangable-auto-bulb--afx",
       "type": "project",
       "name": "Hangable Auto Bulb"
     },
     {
-      "slug": "project:orphaned-deejay-selek-2006-2008",
+      "slug": "project:orphaned-deejay-selek-2006-2008--afx",
       "type": "project",
       "name": "Orphaned Deejay Selek 2006-2008"
     }
@@ -79,9 +79,10 @@
       "name": "Analogue Bubblebath"
     },
     {
-      "slug": "track:crying-in-your-face",
+      "slug": "track:crying-in-your-face--afx",
       "type": "track",
-      "name": "Crying in Your Face"
+      "name": "Crying in Your Face",
+      "artist": "AFX"
     }
   ],
   "influences": [],
@@ -99,5 +100,6 @@
       "name": "Richard D. James"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

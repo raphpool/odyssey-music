@@ -260,7 +260,7 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:nation-of-hip-house",
+      "slug": "project:nation-of-hip-house--tyree-cooper",
       "type": "project",
       "name": "Nation of Hip House",
       "mbid": "8f89a5f6-0fed-43b7-a082-f78c3ef714fb",
@@ -357,13 +357,7 @@
       "name": "Sebastian Krieg"
     }
   ],
-  "aliases": [
-    {
-      "slug": "artist:tyree",
-      "type": "artist",
-      "name": "Tyree"
-    }
-  ],
+  "aliases": [],
   "members": [],
   "similar_artists": []
 }

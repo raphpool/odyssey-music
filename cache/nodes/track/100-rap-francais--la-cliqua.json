@@ -1,0 +1,65 @@
+{
+  "slug": "track:100-rap-francais--la-cliqua",
+  "name": "100% Rap Français",
+  "editorial_article": "100% Rap Français is a recurring title used for various mixtapes and compilations showcasing the French hip-hop scene. Throughout the early 2000s, this branding became a staple for DJs and labels looking to curate collections of underground and mainstream rap tracks, serving as a snapshot of the evolving sound of the era. These projects often featured a mix of established collectives and emerging artists, reflecting the diverse regional styles that defined the French rap landscape during this period.\n\nFrom the gritty street-oriented mixtapes to more commercial compilations, the series highlighted the lyrical and production talents of artists such as La Cliqua, KDD, and Alibi Montana. By aggregating tracks from various independent and major label sources, these releases played a significant role in promoting the visibility of French hip-hop, providing listeners with a comprehensive overview of the genre's growth and cultural impact during the turn of the millennium.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/release/19891780-DJ-First-Mike-100-Rap-Fran%C3%A7ais?srsltid=AfmBOopbt_Ai9vzgMCHpmnRvRPwP2RGmPmlARnr2NsvbCPs3mZCHLN6X"
+    },
+    {
+      "url": "https://www.discogs.com/release/10863284-Various-Street-CD-100-Rap-Fran%C3%A7ais?srsltid=AfmBOoqaFRBEna8mNS0jWhUSIk6IBwxGTTGpweplv-TE4OEKpSOjCK7R"
+    },
+    {
+      "url": "https://www.discogs.com/release/18740962-Dj-Mak-Origine-100-Rap-Fran%C3%A7ais?srsltid=AfmBOorz2WZPYCUgiJUPVORx7P0axgG_CtJUq6S3Wnkb3EJiep70z3cK"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:26:52.413Z",
+  "type": "track",
+  "editorial_teaser": "100% Rap Français represents a series of influential mixtapes and compilations that documented the vibrant evolution of the French hip-hop scene during the early 2000s.",
+  "year": "2000",
+  "artists": [
+    {
+      "slug": "artist:la-cliqua",
+      "type": "artist",
+      "name": "La Cliqua"
+    },
+    {
+      "slug": "artist:kdd",
+      "type": "artist",
+      "name": "KDD"
+    },
+    {
+      "slug": "artist:alibi-montana",
+      "type": "artist",
+      "name": "Alibi Montana"
+    },
+    {
+      "slug": "artist:la-clinique",
+      "type": "artist",
+      "name": "La Clinique"
+    },
+    {
+      "slug": "artist:mafia-trece",
+      "type": "artist",
+      "name": "Mafia Trece"
+    }
+  ],
+  "project": {
+    "slug": "project:100-rap-francais--jarod",
+    "type": "project",
+    "name": "100% Rap Français"
+  },
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

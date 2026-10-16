@@ -1,0 +1,72 @@
+{
+  "slug": "track:death-fuck--the-tuss",
+  "name": "Death Fuck",
+  "editorial_article": "\"Death Fuck\" is a standout track from the 2007 album *Rushup Edge*, released by The Tuss on the iconic electronic label Rephlex Records. The Tuss is widely understood by music enthusiasts and critics to be an alias of Richard D. James (Aphex Twin), though the project maintained a layer of mystery upon its release. The track itself is a masterclass in aggressive, intricate, and high-energy electronic music, characteristic of the sound palette James explored during the mid-2000s—a period heavily influenced by his work on the *Analord* series and a renewed focus on hardware synthesizers and drum machines. \n\nMusically, \"Death Fuck\" is defined by its relentless, distorted percussion and complex, shifting rhythmic patterns that push the boundaries of drill 'n' bass and IDM. Its visceral production, marked by heavy-hitting kicks and swirling melodic textures, captures a sense of sonic chaos that feels both meticulously constructed and spontaneously raw. For listeners, the track remains a focal point in the discourse surrounding the Aphex Twin mythos, often cited for its \"brutal\" and uncompromising energy. It sits at the intersection of technical production prowess and the experimental ethos that defined the Rephlex era, solidifying its place as a significant cut within the broader legacy of 2000s electronic music. The track's enduring reputation stems from its ability to balance intense industrial-tinged aggression with the intricate, multi-layered melodic sensibility that has become synonymous with James's more high-octane aliases.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/21785-The-Tuss-Rushup-Edge?srsltid=AfmBOoqspxerG_kByHIPmZXUd9I27LitJSlTdM8KwHq7jlL7EJ23hubq",
+      "title": "The Tuss – Rushup Edge | Releases - Discogs"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=AfYw04YfjCo",
+      "title": "The Tuss - Death Fuck (HQ) - YouTube"
+    },
+    {
+      "url": "https://www.reddit.com/r/aphextwin/comments/ukhc65/death_fuck/",
+      "title": "Death Fuck : r/aphextwin - Reddit"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:04:14.158Z",
+  "mbid": "7bb58d78-7951-4474-94b0-40b9c35d00ff",
+  "type": "track",
+  "editorial_teaser": "\"Death Fuck\" is a standout track from the 2007 album *Rushup Edge*, released by The Tuss on the iconic electronic label Rephlex Records.",
+  "year": "2007",
+  "artists": [
+    {
+      "slug": "artist:the-tuss",
+      "type": "artist",
+      "name": "The Tuss",
+      "mbid": "09292e4d-b7ad-476b-86d9-7806303ef8c3"
+    }
+  ],
+  "project": {
+    "slug": "project:rushup-edge--the-tuss",
+    "type": "project",
+    "name": "Rushup Edge"
+  },
+  "label": {
+    "slug": "label:rephlex",
+    "type": "label",
+    "name": "Rephlex",
+    "mbid": "820fa04e-9927-40bb-a6c5-1bf883b159c7"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:drill-n-bass",
+      "type": "genre",
+      "name": "Drill 'n' bass"
+    },
+    {
+      "slug": "genre:braindance",
+      "type": "genre",
+      "name": "Braindance"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:the-tuss",
+      "type": "artist",
+      "name": "The Tuss"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

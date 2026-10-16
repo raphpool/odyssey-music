@@ -62,14 +62,15 @@
   ],
   "discography": [
     {
-      "slug": "project:cylobian-sunset",
+      "slug": "project:cylobian-sunset--cylob",
       "type": "project",
       "name": "Cylobian Sunset"
     },
     {
-      "slug": "project:a-wrenched-virile-lore",
+      "slug": "project:a-wrenched-virile-lore--cylob",
       "type": "project",
-      "name": "A Wrenched Virile Lore"
+      "name": "A Wrenched Virile Lore",
+      "artist": "Cylob"
     }
   ],
   "notable_tracks": [

@@ -1,0 +1,76 @@
+{
+  "slug": "track:ashes-to-ashes--david-bowie",
+  "name": "Ashes to Ashes",
+  "editorial_article": "\"Ashes to Ashes,\" released in August 1980 as the lead single from David Bowie's album *Scary Monsters (And Super Creeps)*, stands as a pivotal moment in the artist's career, effectively closing the book on the 1970s and his earlier glam and Berlin-era experimentations. Produced by Bowie alongside long-time collaborator Tony Visconti, the track is perhaps most famous for its subversion of the folk-hero narrative established in Bowie’s 1969 breakthrough hit, \"Space Oddity.\" By revisiting the character of Major Tom eleven years later, Bowie transforms the once-optimistic pioneer into a disillusioned, drug-addicted figure decaying in the void of space. \\n\\nMusically, \"Ashes to Ashes\" is characterized by a haunting, nursery-rhyme-inspired melody—Bowie acknowledged the influence of the 1950s song \"The Inch Worm\"—layered over an innovative three-bar loop and shimmering synthesizer textures. This sonic aesthetic, coupled with its unflinchingly dark lyrics, solidified the track's status as a masterpiece of late-era new wave and art-pop. The lyrics, most notably the bridge \"I never done good things / I never done bad things / I never did nothing out of the blue,\" provide a chilling, soul-baring moment that suggests both profound regret and existential detachment. The track remains a cultural touchstone for its groundbreaking music video and its willingness to confront the disillusionment of the modern era, marking a definitive shift toward the experimental sounds that would define Bowie’s artistic transition into the new decade.",
+  "citations": [
+    {
+      "url": "https://www.bowiebible.com/songs/ashes-to-ashes/",
+      "title": "Ashes To Ashes | The Bowie Bible"
+    },
+    {
+      "url": "https://www.npr.org/sections/therecord/2017/10/06/555850186/how-ashes-to-ashes-put-the-first-act-of-david-bowies-career-to-rest",
+      "title": "How 'Ashes To Ashes' Put The First Act Of David Bowie's Career To Rest"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:22.468Z",
+  "_metrics": {
+    "input_tokens": 16332,
+    "output_tokens": 1195,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005876,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 12910,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "track",
+  "editorial_teaser": "A haunting, art-pop reimagining of the Major Tom saga, \"Ashes to Ashes\" serves as both a melancholic nursery rhyme for the 1980s and a powerful, disillusioned farewell to Bowie's own past.",
+  "year": "1980",
+  "artists": [
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie"
+    }
+  ],
+  "project": {
+    "slug": "project:scary-monsters",
+    "type": "project",
+    "name": "Scary Monsters (And Super Creeps)"
+  },
+  "genres": [
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art Pop",
+      "qid": "Q25094849"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New Wave",
+      "qid": "Q187760"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie"
+    },
+    {
+      "slug": "artist:tony-visconti",
+      "type": "artist",
+      "name": "Tony Visconti"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

@@ -1,0 +1,54 @@
+{
+  "slug": "track:fight-the-hits--discordian-popes",
+  "name": "Fight The Hits",
+  "editorial_article": "\"Fight The Hits\" is a seminal electronic track by the project Discordian Popes, appearing on the landmark 1993 compilation album \"Bytes.\" Released on the iconic Warp Records label, the track serves as a vital artifact of the early 1990s intelligent dance music (IDM) scene in the United Kingdom. \"Bytes\" is historically significant for showcasing various aliases and projects curated by Black Dog Productions, a collective that was instrumental in expanding the sonic boundaries of electronic dance music beyond the rave floors of the era, pushing into more cerebral, atmospheric, and technically complex territories. \"Fight The Hits\" exemplifies this transition, blending intricate drum programming with ethereal textures, characteristic of the era's forward-thinking output. Its inclusion on \"Bytes\" places it alongside other foundational works that defined Warp's early trajectory, influencing generations of producers who sought to synthesize rhythm-heavy structures with experimental sound design. The track stands as a testament to the creative synergy within the London-based electronic community during the early 90s, where traditional genre boundaries were blurred to forge a new, introspective landscape for electronic music. Listeners often revisit the track to appreciate its precise production and its role in the evolution of the ambient techno and IDM movements. The track's atmosphere—a hallmark of the early Warp aesthetic—remains deeply influential in contemporary electronic music production, signaling the dawn of a movement that prioritized sonic depth and narrative structure over purely functional dancefloor appeal. By helping codify the \"intelligent\" side of techno, \"Fight The Hits\" remains a vital entry in the discography of 90s experimentalism.",
+  "citations": [
+    {
+      "url": "https://warprecords.bandcamp.com/track/fight-the-hits",
+      "title": "Fight The Hits | Discordian Popes - Warp Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:04:56.737Z",
+  "mbid": "4fa243ff-2f99-4352-b5bb-9de3deebab17",
+  "type": "track",
+  "editorial_teaser": "\"Fight The Hits\" is a seminal electronic track by the project Discordian Popes, appearing on the landmark 1993 compilation album \"Bytes.\" Released on the iconic Warp Records label, the track serves as a vital artifact of the early 1990s intelligent dance music (IDM) scene in the ",
+  "year": "1993",
+  "artists": [
+    {
+      "slug": "artist:discordian-popes",
+      "type": "artist",
+      "name": "Discordian Popes",
+      "mbid": "66df35c9-e1dc-4a08-bfc2-2dc14c772f6c"
+    }
+  ],
+  "project": {
+    "slug": "project:bytes--the-black-dog",
+    "type": "project",
+    "name": "Bytes"
+  },
+  "label": {
+    "slug": "label:tvt-records",
+    "type": "label",
+    "name": "TVT Records",
+    "mbid": "c9117237-b78b-4e47-b452-c9d94fb34916"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno",
+      "qid": "Q9149801"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

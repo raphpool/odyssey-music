@@ -70,12 +70,12 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:biokinetics",
+      "slug": "project:biokinetics--porter-ricks",
       "type": "project",
       "name": "Biokinetics"
     },
     {
-      "slug": "project:hongkong",
+      "slug": "project:hongkong--monolake",
       "type": "project",
       "name": "Hongkong"
     },

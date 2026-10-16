@@ -1,0 +1,71 @@
+{
+  "slug": "project:hosianna-mantra--popol-vuh",
+  "name": "Hosianna Mantra",
+  "editorial_article": "Hosianna Mantra, released in 1972 by the German collective Popol Vuh, represents a profound departure from the electronic, synthesizer-driven experiments of their earlier work. After establishing themselves as pioneers of kosmische music with albums like Affenstunde and In den Gärten Pharaos, band leader Florian Fricke made the daring choice to abandon his Moog synthesizer in favor of acoustic instruments, seeking a sound that felt more aligned with the \"natural flow of the heartbeat.\" \\n\\nThe result is a delicate, meditative masterpiece often cited as a cornerstone of both ambient and spiritual music. Drawing from diverse influences including Judaism, Christianity, and Buddhism, the album functions as a series of complicated hymns that eschew conventional rock structures, drums, and bass for a luminous tapestry of piano, tambura, oboe, violin, and harpsichord. This ethereal soundscape is elevated by the presence of South Korean soprano Djong Yun, whose vocal contributions bring a haunting, otherworldly humanism to the record. Guitarist Conny Veit, a central collaborator on the project, weaves intricate, melodic lines that complement Fricke's astral piano playing. \\n\\nRecorded during a time of intense countercultural exploration in West Germany, Hosianna Mantra stands out for its lack of cynicism and its earnest, wide-eyed engagement with cosmic love and spiritual inquiry. By blending Western classical sensibilities with Eastern modal influences, Popol Vuh created a work that is simultaneously a product of its era and entirely timeless. It remains one of the most emotionally multivalent albums of the 1970s, poised at the threshold of faith and fear, offering a serene, immersive listening experience that continues to influence ambient and modern classical artists today.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/12220-Popol-Vuh-Hosianna-Mantra?srsltid=AfmBOorwcS_S2adWcrbfe-uEwlXHgaCtaBLXBJgnbwq7OoUxMHGBBNCq",
+      "title": "Popol Vuh – Hosianna Mantra | Releases - Discogs"
+    },
+    {
+      "url": "https://pitchfork.com/reviews/albums/popol-vuh-hosianna-mantra/",
+      "title": "Popol Vuh: Hosianna Mantra Album Review | Pitchfork"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:25.041Z",
+  "mbid": "260933a0-3f74-38b8-8697-6f1c9265aa38",
+  "type": "project",
+  "editorial_pitch": "A pivotal, meditative masterpiece from 1972 that saw German pioneers Popol Vuh move away from synthesizers toward an ethereal, acoustic-driven sound of spiritual beauty.",
+  "cover_url": "https://www.discogs.com/master/12220-Popol-Vuh-Hosianna-Mantra",
+  "year": "1972",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:popol-vuh",
+      "type": "artist",
+      "name": "Popol Vuh",
+      "mbid": "2f4bf325-2bbb-4d5f-8681-b0fef130bff0"
+    }
+  ],
+  "label": {
+    "slug": "label:pilz",
+    "type": "label",
+    "name": "Pilz"
+  },
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock",
+      "qid": "Q320592"
+    },
+    {
+      "slug": "genre:spiritual-jazz",
+      "type": "genre",
+      "name": "Spiritual Jazz",
+      "qid": "Q98528204"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:ah",
+      "type": "track",
+      "name": "Ah!"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:gerhard-augustin",
+      "type": "artist",
+      "name": "Gerhard Augustin"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

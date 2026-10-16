@@ -42,7 +42,7 @@
       "name": "Panthéon"
     },
     {
-      "slug": "project:ouest-side",
+      "slug": "project:ouest-side--booba",
       "type": "project",
       "name": "Ouest Side"
     },
@@ -77,9 +77,10 @@
       "name": "Trône"
     },
     {
-      "slug": "project:ultra",
+      "slug": "project:ultra--booba",
       "type": "project",
-      "name": "Ultra"
+      "name": "Ultra",
+      "artist": "Booba"
     }
   ],
   "notable_tracks": [

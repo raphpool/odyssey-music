@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T13:18:11.977Z",
   "type": "genre",
   "editorial_definition": "A broad umbrella genre encompassing Western art music from the early 20th century to the present, characterized by a departure from traditional tonal and structural norms in favor of innovative techniques and aesthetic experimentation.",
+  "qid": "Q65937946",
   "era": "20th Century - 21st Century",
   "origin": "Western Europe and North America",
   "parent_genres": [
@@ -102,7 +103,7 @@
   "key_labels": [],
   "landmark_projects": [
     {
-      "slug": "project:music-for-18-musicians",
+      "slug": "project:music-for-18-musicians--steve-reich",
       "type": "project",
       "name": "Music for 18 Musicians"
     },
@@ -122,6 +123,5 @@
       "name": "Glassworks"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q65937946"
+  "landmark_tracks": []
 }

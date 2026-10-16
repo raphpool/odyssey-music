@@ -1,0 +1,74 @@
+{
+  "slug": "track:foxy-lady--the-jimi-hendrix-experience",
+  "name": "Foxy Lady",
+  "editorial_article": "\"Foxy Lady\" (often spelled \"Foxey Lady\") is a foundational track by the Jimi Hendrix Experience, released on their landmark 1967 debut album, Are You Experienced. Recorded on December 13, 1966, at CBS Studios in London, the song serves as a quintessential example of Hendrix's revolutionary approach to the electric guitar and rock songwriting. It is characterized by its heavy use of controlled feedback, aggressive, swaggering riffs, and the pioneering use of what has become known as the \"Hendrix chord\"—a dominant seventh sharp ninth chord that blends jazz and R&B sensibilities with raw psychedelic intensity.\\n\\nBeyond its technical innovations, \"Foxy Lady\" captures the provocative, hyper-masculine persona that Hendrix projected during his rise to international stardom. The song's lyrics, which may have been inspired by various figures in the mid-1960s London scene, operate as a direct, almost confrontationally seductive address. Musically, it showcases the trio's tightly coiled energy, with Noel Redding’s bassline anchoring the performance and the lack of a pre-determined ending leading to a wild, improvisational coda that became a staple of the group's live performances. \\n\\nOver the decades, \"Foxy Lady\" has cemented its status as one of the most significant rock songs of the 1960s. It transcends its original era as a relic of the \"Summer of Love\" by virtue of its influence on the development of hard rock and heavy metal. The track’s inclusion on almost every definitive Jimi Hendrix anthology and its enduring presence in film, television, and radio reflect its cultural weight. It remains a masterclass in how Hendrix leveraged feedback as an instrument, treating noise not as a defect, but as a textured component of the composition itself. Its legacy is not just in the notes played, but in the attitude and sonic liberation it offered to a generation of guitarists who followed.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Foxy_Lady",
+      "title": "Foxy Lady - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:27.557Z",
+  "_metrics": {
+    "input_tokens": 46814,
+    "output_tokens": 2570,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.015559,
+    "llm_calls": 7,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 7,
+    "emit_attempts": 4,
+    "agent_ms": 24991,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "track",
+  "editorial_teaser": "A defining psychedelic hard rock anthem that introduced the world to Jimi Hendrix's mastery of feedback and the iconic \"Hendrix chord.\"",
+  "year": "1967",
+  "duration": "3:10",
+  "artists": [
+    {
+      "slug": "artist:the-jimi-hendrix-experience",
+      "type": "artist",
+      "name": "The Jimi Hendrix Experience"
+    }
+  ],
+  "project": {
+    "slug": "project:are-you-experienced--the-jimi-hendrix-experience",
+    "type": "project",
+    "name": "Are You Experienced"
+  },
+  "genres": [
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic rock",
+      "qid": "Q206159"
+    },
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard rock",
+      "qid": "Q83270"
+    },
+    {
+      "slug": "genre:blues-rock",
+      "type": "genre",
+      "name": "Blues rock",
+      "qid": "Q193355"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:chas-chandler",
+      "type": "artist",
+      "name": "Chas Chandler"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}
