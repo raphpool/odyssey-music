@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "092b603f-eb4c-4958-b10e-02420de5885b",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Cars%201984%20(Elektra%20Press%20Kit%20Photo).jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "group",
   "editorial_bio": "Formed in Boston in 1976, The Cars were a defining force in American new wave, successfully bridging the gap between 1960s power pop, 1970s glam, and the nascent art-pop potential of the synthesizer.",

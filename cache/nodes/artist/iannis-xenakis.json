@@ -17,6 +17,8 @@
     }
   ],
   "materialized_at": "2026-05-13T12:54:59.849Z",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/XenakisMDaniel_crop.jpg/500px-XenakisMDaniel_crop.jpg",
+  "image_source": "legacy",
   "type": "artist",
   "editorial_bio": "Iannis Xenakis was a pioneering Greek-French composer and architect who revolutionized 20th-century music through the application of mathematical and stochastic models. His work remains a foundational influence on contemporary classical, electronic, and avant-garde music.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/XenakisMDaniel_crop.jpg/500px-XenakisMDaniel_crop.jpg",
@@ -65,5 +67,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

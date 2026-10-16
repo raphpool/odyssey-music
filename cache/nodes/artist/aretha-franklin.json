@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "2f9ecbed-27be-40e6-abca-6de49d50299e",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aretha%20Franklin%201968.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "Aretha Louise Franklin (1942–2018), universally revered as the \"Queen of Soul,\" was an American singer, songwriter, and pianist whose profound influence spanned gospel, R&B, soul, and pop.",

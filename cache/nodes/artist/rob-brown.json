@@ -17,6 +17,8 @@
     }
   ],
   "materialized_at": "2026-05-13T12:48:47.724Z",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Autechre_%28cropped%29.jpg/960px-Autechre_%28cropped%29.jpg",
+  "image_source": "legacy",
   "type": "artist",
   "editorial_bio": "Rob Brown is an English electronic musician, best known as one-half of the influential experimental electronic duo Autechre.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Autechre_%28cropped%29.jpg/960px-Autechre_%28cropped%29.jpg",
@@ -93,5 +95,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

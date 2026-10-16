@@ -25,6 +25,8 @@
     "search_provider": "tavily"
   },
   "mbid": "eeb1195b-f213-4ce1-b28c-8565211f8e43",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/GNR%20London%20Stadium%202017%203%20(cropped).jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "group",
   "editorial_bio": "Guns N' Roses is an iconic American hard rock band that emerged from the Los Angeles club scene in the mid-1980s.",

@@ -33,6 +33,8 @@
     "search_provider": "tavily"
   },
   "mbid": "c7356af9-9ea6-4a78-a55b-c73775716312",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Portrait%20of%20Charlie%20Parker%20in%201947.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "An American jazz saxophonist and composer, Charlie Parker was a leading pioneer of bebop, renowned for his virtuosic technique and revolutionary approach to melody and harmony. His innovations in the 1940s defined the modern jazz era and cemented his status as one of the most influential figures in musical history.",

@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "2469950a-f0ca-425a-bfbc-baf55ea3afde",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kool%20%26%20the%20Gang%20-%20Leverkusener%20Jazztage%202017-1963%20(cropped).jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "group",
   "editorial_bio": "Kool & the Gang is an enduring American musical institution, originating in Jersey City, New Jersey, in 1964.",

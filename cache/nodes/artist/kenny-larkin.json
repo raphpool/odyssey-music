@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "ed8e364a-6087-4425-bd58-6b146893c4b4",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Kenny%20Larkin%20-%20Movement%2007.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "Kenny Larkin is a seminal figure in the Detroit techno scene, recognized for his sophisticated, melodic, and deeply influential contributions to electronic music.",

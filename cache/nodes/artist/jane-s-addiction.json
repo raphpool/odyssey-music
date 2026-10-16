@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "e3434cc7-d348-491a-9dc8-325af3d9086d",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Janes%20Addiction%20%40%20Steel%20Blue%20Oval%20(1%203%202010)%20(4416154323).jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "group",
   "editorial_bio": "Jane's Addiction was an iconic American alternative rock band formed in Los Angeles in 1985, known for its fusion of gothic, funk, and psychedelic sounds and for launching the Lollapalooza festival.",

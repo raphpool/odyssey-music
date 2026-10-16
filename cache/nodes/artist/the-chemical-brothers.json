@@ -33,6 +33,8 @@
     "search_provider": "tavily"
   },
   "mbid": "1946a82a-f927-40c2-8235-38d64f50d043",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/The%20Chemical%20Brothers%20performing%20in%20Barcelona%2C%20Spain%20(2007).jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "group",
   "editorial_bio": "The Chemical Brothers are an influential English electronic music duo who pioneered the big beat genre, bridging the gap between underground rave culture and global pop success through their signature fusion of breakbeats, acid house, and neo-psychedelia.",

@@ -25,6 +25,8 @@
     "search_provider": "tavily"
   },
   "mbid": "576134a6-9f1f-4bfa-af04-4848195849ca",
+  "image_url": "https://upload.wikimedia.org/wikipedia/en/7/77/King_Tubby.jpg",
+  "image_source": "legacy",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "King Tubby, born Osbourne Ruddock in Kingston, Jamaica, was a pioneering sound engineer and producer whose technical innovations in the 1960s and 1970s fundamentally altered the landscape of popular music.",

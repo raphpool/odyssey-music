@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "078be324-de92-4c72-9371-65bdcf324154",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/YMOHosono2008(cropped).jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "Haruomi Hosono is a legendary Japanese musician, producer, and polymath, celebrated as a founding member of Happy End and Yellow Magic Orchestra, and for his pioneering role in electronic, ambient, and pop music. His diverse career has shaped the trajectory of Japanese popular music for over fifty years, bridging the gap between traditional sensibilities and futuristic sonic landscapes.",

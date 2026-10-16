@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "46957dac-b5ff-40a9-a427-ab53bc414f6e",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Florian%20Schneider%201975.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "Florian Schneider (1947–2020) was a pioneering German musician, composer, and a founding member of the seminal electronic music group Kraftwerk.",

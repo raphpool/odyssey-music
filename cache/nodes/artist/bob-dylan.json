@@ -25,6 +25,8 @@
     "search_provider": "tavily"
   },
   "mbid": "72c536dc-7137-4477-a521-567eeb840fa8",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/DylanYoungKilkenny140719v2%20(50%20of%2052)%20(52246124397)%20(cropped).jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "Bob Dylan (born Robert Allen Zimmerman, 1941) is an American singer-songwriter, poet, and visual artist whose body of work has fundamentally altered the landscape of popular music over a career spanning more than six decades.",

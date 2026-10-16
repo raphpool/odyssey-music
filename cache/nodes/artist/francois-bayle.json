@@ -28,6 +28,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/47/Fran%C3%A7ois_Bayle.jpg",
+  "image_source": "legacy",
   "type": "artist",
   "editorial_bio": "François Bayle is a central figure in the evolution of 20th-century electroacoustic music, an influential composer, and a visionary administrator who fundamentally shaped the trajectory of French acousmatic art.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/47/Fran%C3%A7ois_Bayle.jpg",
@@ -98,5 +100,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

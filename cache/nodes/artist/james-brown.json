@@ -28,6 +28,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/James_Brown_1996_%28HQ%29.jpg/500px-James_Brown_1996_%28HQ%29.jpg",
+  "image_source": "legacy",
   "type": "artist",
   "editorial_bio": "The undisputed Godfather of Soul, James Brown was a prolific vocalist and visionary bandleader who pioneered the syncopated, rhythmic foundations of funk music. His career spanned over five decades, forever altering the trajectory of popular music through his groundbreaking innovations in rhythm and his legendary, high-energy live performances.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/James_Brown_1996_%28HQ%29.jpg/500px-James_Brown_1996_%28HQ%29.jpg",
@@ -118,5 +120,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }
