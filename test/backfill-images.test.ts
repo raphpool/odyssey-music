@@ -4,11 +4,15 @@ import { dirname, join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
 	type BackfillOptions,
+	type Clock,
+	HOST_MIN_INTERVAL_MS,
 	IMAGE_TYPE_ORDER,
 	type ImagesManifest,
+	MAX_ATTEMPTS,
 	MAX_CONSECUTIVE_UNAVAILABLE,
 	MIGRATION_NAME,
 	parseCliArgs,
+	politeFetch,
 	runBackfill,
 	trackAvailability,
 } from "../scripts/migrations/2026-10-18-backfill-images.js";
@@ -87,8 +91,28 @@ const manifestFile = (): string => join(scratch, "out", "images.json");
 const readManifest = async (path = manifestFile()): Promise<ImagesManifest> =>
 	JSON.parse(await readFile(path, "utf8")) as ImagesManifest;
 
+/** Simulated time: sleeping moves the clock and is recorded, nothing really waits. */
+function fakeClock(start = 1_000_000): Clock & { sleeps: number[] } {
+	let t = start;
+	const sleeps: number[] = [];
+	return {
+		now: () => t,
+		sleep: async (ms) => {
+			sleeps.push(ms);
+			t += ms;
+		},
+		sleeps,
+	};
+}
+
 function run(overrides: Partial<BackfillOptions> & Pick<BackfillOptions, "fetch">) {
-	return runBackfill({ cacheDir: dir, apply: true, manifestPath: manifestFile(), ...overrides });
+	return runBackfill({
+		cacheDir: dir,
+		apply: true,
+		manifestPath: manifestFile(),
+		clock: fakeClock(),
+		...overrides,
+	});
 }
 
 describe("order and derived covers (AC 1)", () => {
@@ -349,7 +373,7 @@ describe("fail-closed on an unavailable source", () => {
 		const result = await run({ fetch: f });
 		expect(result.aborted).toBe(true);
 		expect(result.exitCode).toBe(1);
-		expect(f.calls).toHaveLength(MAX_CONSECUTIVE_UNAVAILABLE);
+		expect(f.calls).toHaveLength(MAX_CONSECUTIVE_UNAVAILABLE * MAX_ATTEMPTS);
 		expect(result.manifest.failed).toHaveLength(MAX_CONSECUTIVE_UNAVAILABLE);
 		expect(result.manifest.none).toEqual([]);
 	});
@@ -472,6 +496,7 @@ describe("manifest and resume", () => {
 			"itunes-verified": 0,
 			"derived-cover": 1,
 			legacy: 1,
+			unknown: 0,
 		});
 		expect(manifest.none).toEqual([{ slug: "project:bare", reason: "no-mbid" }]);
 		expect(MIGRATION_NAME).toBe("2026-10-18-backfill-images");
@@ -586,5 +611,166 @@ describe("parseCliArgs (the flags the migration channel passes)", () => {
 		[["/c", "extra"]],
 	])("refuses %j", (argv) => {
 		expect(parseCliArgs(argv as string[])).toBeNull();
+	});
+});
+
+describe("legacy iTunes covers are not copied (review of #495, B1)", () => {
+	const ITUNES_COVER =
+		"https://is1-ssl.mzstatic.com/image/thumb/Music/v4/aa/bb/cc/192641477133_Cover.jpg/1500x1500bb.jpg";
+
+	it("a credit-less project with an unverified iTunes cover_url, and the label that derives from it, stay none", async () => {
+		await seed(
+			dir,
+			projectNode("sheet-one", "Sheet One", { cover_url: ITUNES_COVER }),
+			labelNode("plus-8-records", "Plus 8 Records", {
+				notable_releases: [edge("project", "sheet-one", "Sheet One")],
+			}),
+		);
+		const result = await run({ fetch: routedFetch([]) });
+
+		expect(result.exitCode).toBe(0);
+		expect(await read(dir, "project:sheet-one")).not.toHaveProperty("image_url");
+		expect(await read(dir, "label:plus-8-records")).not.toHaveProperty("image_url");
+		expect(result.manifest.none).toEqual([
+			{ slug: "label:plus-8-records", reason: "no-wikidata" },
+			{ slug: "project:sheet-one", reason: "no-mbid" },
+		]);
+		expect(result.manifest.bySource.legacy).toBe(0);
+		expect(await read(dir, "project:sheet-one")).toMatchObject({ cover_url: ITUNES_COVER });
+	});
+
+	it("keeps copying a legacy URL from upload.wikimedia.org", async () => {
+		await seed(dir, projectNode("wiki", "Wiki", { cover_url: WIKIMEDIA_PHOTO }));
+		await run({ fetch: routedFetch([]) });
+		expect(await read(dir, "project:wiki")).toMatchObject({ image_source: "legacy" });
+	});
+});
+
+describe("manifest paths and unknown provenance (review of #495, nits 3 and 5)", () => {
+	it("an unreadable node file is named relative to nodes/ and the message holds no absolute path", async () => {
+		await seed(dir, projectNode("fine", "Fine"));
+		await writeFile(join(dir, "nodes", "project", "garbage.json"), "{ not json");
+		const result = await run({ fetch: routedFetch([]) });
+
+		expect(result.exitCode).toBe(1);
+		expect(result.manifest.failed.map((x) => x.slug)).toEqual(["project:garbage"]);
+		expect(await readFile(manifestFile(), "utf8")).not.toContain(scratch);
+	});
+
+	it("counts an image_url without image_source under unknown", async () => {
+		await seed(dir, projectNode("old", "Old", { image_url: caaUrl(80) }));
+		const result = await run({ fetch: routedFetch([]) });
+		expect(result.manifest.bySource.unknown).toBe(1);
+		expect(result.manifest.coverage.project).toEqual({ before: 1, after: 1, total: 1 });
+	});
+});
+
+describe("spacing and retries of the fetch handed to the resolver (review of #495, nit 1)", () => {
+	const answers = (...statuses: Array<number | Response>) => {
+		const queue = [...statuses];
+		const calls: string[] = [];
+		const base = (async (input: string | URL | Request) => {
+			calls.push(String(input));
+			const next = queue.shift() ?? 200;
+			return next instanceof Response ? next : new Response("", { status: next });
+		}) as unknown as typeof fetch;
+		return { base, calls };
+	};
+	const CAA = "https://coverartarchive.org/release-group/x/front-500";
+	const ITUNES = "https://itunes.apple.com/search?term=x";
+
+	it("retries a transient failure with a 1, 2, 4 s backoff and returns the answer that follows", async () => {
+		const { base, calls } = answers(503, 429, 500, 307);
+		const clock = fakeClock();
+		const response = await politeFetch(() => base, clock)(CAA);
+		expect(response.status).toBe(307);
+		expect(calls).toHaveLength(4);
+		expect(clock.sleeps).toEqual([1_000, 2_000, 4_000]);
+	});
+
+	it("gives up after MAX_ATTEMPTS with the backoff doubling, and hands the last failure to the caller", async () => {
+		const { base, calls } = answers(503, 503, 503, 503, 503, 503, 200);
+		const clock = fakeClock();
+		const response = await politeFetch(() => base, clock)(CAA);
+		expect(response.status).toBe(503);
+		expect(calls).toHaveLength(MAX_ATTEMPTS);
+		expect(clock.sleeps).toEqual([1_000, 2_000, 4_000, 8_000, 16_000]);
+	});
+
+	it("retries a network error, then throws the last one", async () => {
+		let n = 0;
+		const base = (async () => {
+			n++;
+			throw new TypeError(`fetch failed ${n}`);
+		}) as unknown as typeof fetch;
+		await expect(politeFetch(() => base, fakeClock())(CAA)).rejects.toThrow(`fetch failed ${MAX_ATTEMPTS}`);
+		expect(n).toBe(MAX_ATTEMPTS);
+	});
+
+	it("honours Retry-After, never beyond 30 s", async () => {
+		const retry = (value: string) => new Response("", { status: 429, headers: { "retry-after": value } });
+		const { base } = answers(retry("5"), retry("120"), 200);
+		const clock = fakeClock();
+		await politeFetch(() => base, clock)(CAA);
+		expect(clock.sleeps).toEqual([5_000, 30_000]);
+	});
+
+	it("retries a 403 from iTunes (its rate limit) but not from another host, nor a 404", async () => {
+		const itunes = answers(403, 200);
+		await politeFetch(() => itunes.base, fakeClock())(ITUNES);
+		expect(itunes.calls).toHaveLength(2);
+
+		const caa = answers(403, 200);
+		expect((await politeFetch(() => caa.base, fakeClock())(CAA)).status).toBe(403);
+		expect(caa.calls).toHaveLength(1);
+
+		const missing = answers(404, 200);
+		expect((await politeFetch(() => missing.base, fakeClock())(CAA)).status).toBe(404);
+		expect(missing.calls).toHaveLength(1);
+	});
+
+	it("leaves MusicBrainz to mbFetch: no retry, no spacing of its own", async () => {
+		const { base, calls } = answers(503, 200);
+		const clock = fakeClock();
+		const response = await politeFetch(() => base, clock)("https://musicbrainz.org/ws/2/artist/x");
+		expect(response.status).toBe(503);
+		expect(calls).toHaveLength(1);
+		expect(clock.sleeps).toEqual([]);
+	});
+
+	it("spaces two requests to iTunes by 3 s and to Cover Art Archive by 1 s, and spaces nothing else", async () => {
+		expect(HOST_MIN_INTERVAL_MS).toEqual({ "itunes.apple.com": 3_000, "coverartarchive.org": 1_000 });
+		const clock = fakeClock();
+		const f = politeFetch(() => answers().base, clock);
+		await f(ITUNES);
+		await f(ITUNES);
+		expect(clock.sleeps).toEqual([3_000]);
+		await f(CAA);
+		await f(CAA);
+		expect(clock.sleeps).toEqual([3_000, 1_000]);
+		await f("https://www.wikidata.org/w/api.php");
+		await f("https://www.wikidata.org/w/api.php");
+		expect(clock.sleeps).toEqual([3_000, 1_000]);
+	});
+
+	it("a rate-limited iTunes that recovers does not fail the node", async () => {
+		const art = "https://is1-ssl.mzstatic.com/image/thumb/Music/x/source/100x100bb.jpg";
+		await seed(
+			dir,
+			projectNode("ok", "OK Computer", { artists: [edge("artist", "radiohead", "Radiohead")] }),
+		);
+		let itunesCalls = 0;
+		const itunes: [string, Responder] = [
+			"itunes.apple.com",
+			() =>
+				++itunesCalls < 3
+					? new Response("", { status: 403 })
+					: jsonResponse({
+							results: [{ artworkUrl100: art, collectionName: "OK Computer", artistName: "Radiohead" }],
+						}),
+		];
+		const result = await run({ fetch: routedFetch([itunes]) });
+		expect(result.exitCode).toBe(0);
+		expect(await read(dir, "project:ok")).toMatchObject({ image_source: "itunes-verified" });
 	});
 });

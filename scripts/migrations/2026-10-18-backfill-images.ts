@@ -45,8 +45,18 @@
  *
  * Pace: strictly sequential, one node at a time. MusicBrainz is held to one request per second by
  * mbFetch (MB_MIN_INTERVAL_MS) and Wikidata to wikidataConfig.minIntervalMs by their own modules; this
- * script adds no concurrency to either. Cover Art Archive and iTunes have no limiter of their own and are
- * reached sequentially at most a few hundred times (one call per project, iTunes only on a CAA miss).
+ * script adds no concurrency to either. Cover Art Archive and iTunes have no limiter of their own: the
+ * fetch handed to the resolver spaces them (HOST_MIN_INTERVAL_MS: iTunes 3 s, CAA 1 s) and retries a
+ * transient failure (no answer, 408 / 425 / 429 / 5xx, and a 403 from iTunes, its rate limit) up to
+ * MAX_ATTEMPTS times with a 1, 2, 4, 8, 16 s backoff (30 s at most, `Retry-After` honoured and capped)
+ * before the node is declared unavailable. The migration channel has no --resume for this migration (it
+ * rebuilds the union at every run and refuses the whole run on exit 1), so a blip must not cost the run.
+ * MusicBrainz is left to mbFetch, which does both already.
+ *
+ * What the resolver finds when a higher rung did not answer is not "probably right": a lower rung written
+ * while the higher one answered 200 with an unusable body is final, a node with an image is never revisited.
+ * Legacy `cover_url` on `*.mzstatic.com` is NOT copied (see isTrustedLegacyUrl): the old `GET /image` stored
+ * the first iTunes result unchecked there, which is how a stranger's cover reached a node.
  *
  * Writes go through atomicWriteJson after nodePayloadSchema validation, never NodeCache.write (which would
  * emit reverse edges this migration has no business creating). A write that validation would alter (it
@@ -71,7 +81,7 @@
  *        [--data-dir <dir>]
  */
 import { mkdir, readFile } from "node:fs/promises";
-import { dirname } from "node:path";
+import { dirname, join, relative } from "node:path";
 import { pathToFileURL } from "node:url";
 import { atomicWriteJson, NodeCache } from "../../src/cache.js";
 import { musicBrainzConfig } from "../../src/config.js";
@@ -115,7 +125,8 @@ export interface ImagesManifest {
 	renamed: Record<string, string>;
 	redirects: Record<string, string>;
 	coverage: Record<ImageType, Coverage>;
-	bySource: Record<ImageSource, number>;
+	/** `unknown`: an `image_url` with no (or an unknown) `image_source`. */
+	bySource: Record<ImageSource | "unknown", number>;
 	none: { slug: string; reason: NoneReason }[];
 	/** Nodes left untouched and not in `none`: a source was unavailable, or a write was refused. */
 	failed: { slug: string; reason: string }[];
@@ -130,6 +141,8 @@ export interface BackfillOptions {
 	resume?: boolean;
 	/** The network boundary, injected by the tests. Default: the global fetch, read at call time. */
 	fetch?: typeof fetch;
+	/** Time, injected by the tests: the spacing and the backoff of the fetch sleep on it. Default: real time. */
+	clock?: Clock;
 	log?: (line: string) => void;
 }
 
@@ -217,10 +230,116 @@ export function trackAvailability(base: () => typeof fetch): AvailabilityTracker
 	};
 }
 
+// --- Being polite to the sources: spacing and retries (TRA-489 review) ---
+
+export interface Clock {
+	now(): number;
+	sleep(ms: number): Promise<void>;
+}
+
+export const realClock: Clock = {
+	now: () => Date.now(),
+	sleep: (ms) => new Promise<void>((resolve) => setTimeout(resolve, ms)),
+};
+
+/**
+ * Minimum spacing between two requests to the same host, for the hosts nothing else paces. MusicBrainz
+ * (mbFetch, MB_MIN_INTERVAL_MS) and Wikidata (wikidataConfig) pace themselves. iTunes Search is documented
+ * at about 20 requests a minute per IP: 3 s. Cover Art Archive publishes no limit, 1 s is a courtesy.
+ */
+export const HOST_MIN_INTERVAL_MS: Readonly<Record<string, number>> = {
+	"itunes.apple.com": 3_000,
+	"coverartarchive.org": 1_000,
+};
+/** Attempts per request (the first one included) before the source is declared unavailable. */
+export const MAX_ATTEMPTS = 6;
+/** Backoff before attempt n+1: 1, 2, 4, 8, 16 s, never more than this, `Retry-After` included. */
+export const MAX_BACKOFF_MS = 30_000;
+const BASE_BACKOFF_MS = 1_000;
+/** Per attempt. The caller's own timer is not used: it would also run during our spacing and backoff. */
+const ATTEMPT_TIMEOUT_MS = 10_000;
+
+/** `Retry-After` as a delay: delta-seconds or an HTTP date; null when absent or unusable. */
+function retryAfterMs(header: string | null, now: number): number | null {
+	if (!header) return null;
+	const seconds = Number(header.trim());
+	if (Number.isFinite(seconds) && seconds >= 0) return Math.ceil(seconds * 1_000);
+	const at = Date.parse(header);
+	return Number.isNaN(at) ? null : Math.max(0, at - now);
+}
+
+/** Worth asking again: no answer, a server error, a rate limit; a 403 only from iTunes (its rate limit). */
+function isTransient(status: number, host: string): boolean {
+	return (
+		status === 408 ||
+		status === 425 ||
+		status === 429 ||
+		status >= 500 ||
+		(status === 403 && host === "itunes.apple.com")
+	);
+}
+
+/**
+ * `base` with a minimum spacing per host (HOST_MIN_INTERVAL_MS) and a retry with exponential backoff of the
+ * transient failures, up to MAX_ATTEMPTS. MusicBrainz is left to mbFetch, which already does both: retrying
+ * here as well would multiply its attempts. The failed responses are dropped; what the caller (and the
+ * availability tracker) sees is the last one. Strictly sequential use is assumed, as in this script.
+ */
+export function politeFetch(base: () => typeof fetch, clock: Clock): typeof fetch {
+	const nextSlot = new Map<string, number>();
+	let musicBrainzHost = "";
+	try {
+		musicBrainzHost = new URL(musicBrainzConfig.baseUrl).host;
+	} catch {
+		// An unparsable base URL: no host is exempted.
+	}
+	return (async (input: string | URL | Request, init?: RequestInit): Promise<Response> => {
+		const host = hostOf(input);
+		if (host === musicBrainzHost) return base()(input, init);
+		const interval = HOST_MIN_INTERVAL_MS[host] ?? 0;
+		for (let attempt = 0; ; attempt++) {
+			if (interval > 0) {
+				const wait = Math.max(0, (nextSlot.get(host) ?? 0) - clock.now());
+				if (wait > 0) await clock.sleep(wait);
+				nextSlot.set(host, clock.now() + interval);
+			}
+			let response: Response | null = null;
+			let failure: unknown;
+			try {
+				response = await base()(input, { ...init, signal: AbortSignal.timeout(ATTEMPT_TIMEOUT_MS) });
+			} catch (e) {
+				failure = e;
+			}
+			const last = attempt === MAX_ATTEMPTS - 1;
+			if (response && !isTransient(response.status, host)) return response;
+			if (last) {
+				if (response) return response;
+				throw failure;
+			}
+			const after = response ? retryAfterMs(response.headers.get("retry-after"), clock.now()) : null;
+			void response?.body?.cancel().catch(() => undefined);
+			await clock.sleep(Math.min(MAX_BACKOFF_MS, Math.max(BASE_BACKOFF_MS * 2 ** attempt, after ?? 0)));
+		}
+	}) as typeof fetch;
+}
+
 // --- Per-node decisions ---
 
 function hasImage(raw: Record<string, unknown>): boolean {
 	return typeof raw.image_url === "string" && raw.image_url !== "";
+}
+
+/**
+ * A legacy URL worth copying into `image_url`: on an allowed host, and not an iTunes artwork. Before TRA-475
+ * `GET /image` stored the FIRST iTunes result for the node's name, without checking title or artist (it
+ * gave Grandmaster Flash the Earth, Wind & Fire compilation, and a project with no credit a stranger's
+ * cover). Copied into `image_url` such a cover would be final and would feed the derived covers of artists,
+ * labels and genres. A legitimate iTunes cover is found by the resolver's `itunes-verified` rung.
+ */
+export function isTrustedLegacyUrl(url: string): boolean {
+	if (!isAllowedImageUrl(url)) return false;
+	const host = new URL(url).hostname.toLowerCase();
+	return !host.endsWith(".mzstatic.com");
 }
 
 /** The pre-TRA-455 field of the node that holds a picture of it, when its type has one. */
@@ -323,9 +442,11 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 
 	const { nodes, invalid } = await readCacheNodes(cacheDir);
 	warnSkippedNodeFiles(invalid);
+	// Relative to nodes/, and without the cache dir in the message: the channel's preview and apply use
+	// different scratch directories, and the manifest must not depend on where the cache sits.
 	const failed: ImagesManifest["failed"] = invalid.map((entry) => ({
-		slug: entry.path,
-		reason: `unreadable node file: ${entry.error}`,
+		slug: relative(join(cacheDir, "nodes"), entry.path),
+		reason: `unreadable node file: ${entry.error.split(cacheDir).join("<cache>")}`,
 	}));
 	const prior = resume ? await readPriorManifest(manifestPath) : null;
 
@@ -343,9 +464,9 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 	for (const type of IMAGE_TYPE_ORDER) gained[type] = 0;
 	// The provenance of every image of the cache, as it stands: read from the nodes at the start, updated as
 	// this run decides. A snapshot, so an interrupted run, a dry-run and a resumed run all report the truth.
-	const sourceOf = new Map<string, ImageSource>();
+	const sourceOf = new Map<string, ImageSource | "unknown">();
 	for (const { slug, node } of nodes) {
-		if (hasImage(node) && isImageSource(node.image_source)) sourceOf.set(slug, node.image_source);
+		if (hasImage(node)) sourceOf.set(slug, isImageSource(node.image_source) ? node.image_source : "unknown");
 	}
 	const none: ImagesManifest["none"] = [];
 	const written: string[] = [];
@@ -366,8 +487,11 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 			]),
 		) as Record<ImageType, Coverage>,
 		bySource: Object.fromEntries(
-			IMAGE_SOURCES.map((source) => [source, [...sourceOf.values()].filter((s) => s === source).length]),
-		) as Record<ImageSource, number>,
+			[...IMAGE_SOURCES, "unknown" as const].map((source) => [
+				source,
+				[...sourceOf.values()].filter((s) => s === source).length,
+			]),
+		) as Record<ImageSource | "unknown", number>,
 		none: [...none].sort(bySlug),
 		failed: [...failed].sort(bySlug),
 	});
@@ -400,7 +524,9 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 			cache.set(parsed.data as NodePayload);
 		}
 	}
-	const tracker = trackAvailability(() => options.fetch ?? fetch);
+	// The tracker sits on top of the polite fetch: it sees the outcome after the retries, not each attempt.
+	const polite = politeFetch(() => options.fetch ?? fetch, options.clock ?? realClock);
+	const tracker = trackAvailability(() => polite);
 
 	let processed = 0;
 	let consecutiveUnavailable = 0;
@@ -454,7 +580,7 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 			let image: { url: string; source: ImageSource } | null = found;
 			if (!image) {
 				const legacy = legacyUrl(type, raw);
-				if (legacy !== undefined && isAllowedImageUrl(legacy)) image = { url: legacy, source: "legacy" };
+				if (legacy !== undefined && isTrustedLegacyUrl(legacy)) image = { url: legacy, source: "legacy" };
 			}
 			if (!image) {
 				none.push({ slug, reason: await noneReason(payload, cache) });
@@ -493,7 +619,9 @@ export function formatSummary(result: BackfillResult, apply: boolean, manifestPa
 		return `${t.padEnd(8)} ${c.before} -> ${c.after} / ${c.total}`;
 	});
 	lines.push(
-		`by source: ${IMAGE_SOURCES.map((s) => `${s} ${manifest.bySource[s]}`).join(", ")}`,
+		`by source: ${Object.entries(manifest.bySource)
+			.map(([s, n]) => `${s} ${n}`)
+			.join(", ")}`,
 		`${manifest.none.length} node(s) left without image, ${manifest.failed.length} failed`,
 		apply ? `${written.length} node file(s) written` : "dry-run: no node file written",
 		`manifest: ${manifestPath}`,
