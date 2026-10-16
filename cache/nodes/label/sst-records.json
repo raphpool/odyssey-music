@@ -24,6 +24,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/SST%20Records%20logo.svg?width=600",
+  "image_source": "wikidata-p154",
   "type": "label",
   "editorial_description": "SST Records, founded in 1978 by Black Flag guitarist Greg Ginn, stands as one of the most influential independent record labels in American music history. Originally established in Long Beach, California, to distribute his own band's releases, the label quickly expanded to become the primary engine for the 1980s American underground. By fostering a DIY ethos that prioritized artistic integrity over commercial appeal, SST provided a crucial platform for a diverse array of bands that bridged the gap between hardcore punk, experimental rock, and the emerging alternative scene.\n\nThe label's aesthetic was famously uncompromising and eclectic. During its peak in the mid-1980s, SST's catalog became a blueprint for independent rock, featuring essential albums from acts like Minutemen, Hüsker Dü, Meat Puppets, and Saint Vitus. Their release strategy, which often ignored traditional industry boundaries, helped nurture seminal works such as Minutemen's 'Double Nickels on the Dime' and Hüsker Dü's 'Zen Arcade'. SST's role in the development of American indie rock cannot be overstated; by supporting bands that pushed beyond the conventions of punk, the label fundamentally reshaped the trajectory of rock music, influencing generations of artists and establishing the viability of the independent circuit. Despite various challenges and controversies that surfaced in its later years, the label remains a foundational institution in the history of underground music.",
   "founded": "1978",

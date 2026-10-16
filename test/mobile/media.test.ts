@@ -2,14 +2,14 @@ import { mkdtemp, rm } from "node:fs/promises";
 import { createServer, request } from "node:http";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { NodeCache } from "../../src/cache.js";
 import type { GenreRedirects } from "../../src/genre-registry.js";
 import { createMobileCatalog } from "../../src/mobile/catalog.js";
 import { createMobileMedia, MobileProviderUnavailableError } from "../../src/mobile/media.js";
 import { createMobileNodeReader, safePublicHttpsUrl } from "../../src/mobile/nodes.js";
 import { createMobileRouter } from "../../src/mobile/router.js";
-import { createImageService } from "../../src/services/image-service.js";
+import { createImageService, type DisplayImage } from "../../src/services/image-service.js";
 import type { ResolveLinksInput, StreamingLinks } from "../../src/streaming-links.js";
 import type { ArtistNode, GenreNode, LabelNode, Slug } from "../../src/types.js";
 
@@ -158,11 +158,20 @@ describe("mobile media reader", () => {
 			resolvedAt: "2026-01-01T00:00:00.000Z",
 		}));
 
-		await expect(reader.image("artist:hostile")).resolves.toMatchObject({
+		// 2026-10-16 (TRA-592): a hostile photo_url is no longer served at all by the image service, so the
+		// answer is "none"/"no-match". The mobile layer's own refusal of an unsafe URL (source "unsafe-url")
+		// is covered by the route contract tests below, which stub the service.
+		await expect(reader.image("artist:hostile")).resolves.toEqual({
+			slug: "artist:hostile",
 			image_url: null,
-			source: "legacy",
+			source: "no-match",
+			state: "none",
 		});
-		await expect(reader.image("genre:a")).resolves.toMatchObject({ image_url: null, source: "no-match" });
+		await expect(reader.image("genre:a")).resolves.toMatchObject({
+			image_url: null,
+			source: "no-match",
+			state: "none",
+		});
 	});
 
 	it("returns only public exact streaming hosts and avoids resolving genre and label links", async () => {
@@ -221,7 +230,9 @@ describe("mobile media reader", () => {
 			artistNode({
 				slug: "artist:cached",
 				name: "Cached",
-				photo_url: "https://images.example.com/cached.jpg",
+				// A stored, verified image (TRA-592: GET /image no longer serves photo_url).
+				image_url: "https://coverartarchive.org/release/cached/front-500.jpg",
+				image_source: "caa",
 			}),
 		);
 		const { nodes, media: reader } = media(async () => ({
@@ -251,7 +262,194 @@ describe("mobile media reader", () => {
 		for (const response of [node, image, links])
 			expect(response.headers["cache-control"]).toBe("private, max-age=86400");
 		expect(JSON.parse(node.body)).toMatchObject({ source: "cache", node: { id: "artist:cached" } });
-		expect(JSON.parse(image.body)).toMatchObject({ image_url: "https://images.example.com/cached.jpg" });
+		expect(JSON.parse(image.body)).toMatchObject({
+			image_url: "https://coverartarchive.org/release/cached/front-500.jpg",
+			state: "found",
+		});
 		expect(JSON.parse(links.body)).toMatchObject({ spotify: "https://open.spotify.com/artist/cached" });
+	});
+});
+
+describe("mobile image route contract (TRA-584)", () => {
+	let directory: string;
+	let cache: NodeCache;
+
+	beforeEach(async () => {
+		directory = await mkdtemp(join(tmpdir(), "odyssey-mobile-image-route-"));
+		cache = new NodeCache(directory);
+		await cache.write(artistNode({ slug: "artist:present", name: "Present" }));
+	});
+
+	afterEach(async () => {
+		await rm(directory, { recursive: true, force: true });
+	});
+
+	async function start(imageService: {
+		resolveDisplayImage: (slug: Slug) => Promise<DisplayImage>;
+		warmSlug: (slug: Slug) => Promise<void>;
+	}): Promise<number> {
+		const nodes = createMobileNodeReader({ cache, redirects: new Map() });
+		const router = createMobileRouter({
+			catalog: createMobileCatalog({ getGraph: async () => ({ nodes: [], edges: [] }) }),
+			nodes,
+			media: createMobileMedia({
+				nodes,
+				imageService,
+				resolveLinks: async () => ({ spotify: null, apple: null, sources: {}, resolvedAt: "2026-01-01" }),
+				cacheDir: directory,
+			}),
+		});
+		const server = createServer(async (req, res) => {
+			const url = new URL(req.url ?? "/", `http://${req.headers.host ?? "localhost"}`);
+			if (!(await router.handle({ req, res, url }))) res.end();
+		});
+		servers.push(server);
+		await new Promise<void>((resolve) => server.listen(0, "127.0.0.1", resolve));
+		const address = server.address();
+		if (!address || typeof address === "string") throw new Error("test server did not bind a TCP port");
+		return address.port;
+	}
+
+	function answering(image: Partial<DisplayImage> & Pick<DisplayImage, "state">) {
+		return {
+			resolveDisplayImage: vi.fn(
+				async (slug: Slug): Promise<DisplayImage> => ({
+					slug,
+					image_url: null,
+					source: "no-context",
+					...image,
+				}),
+			),
+			warmSlug: vi.fn(async () => {}),
+		};
+	}
+
+	it("answers a slug without a node with a non-cacheable none instead of a 404", async () => {
+		const service = answering({ state: "none" });
+		const port = await start(service);
+
+		const response = await get(port, "/mobile/v1/nodes/project%3Anowhere/image");
+
+		expect(response.status).toBe(200);
+		expect(response.headers["cache-control"]).toBe("no-store");
+		expect(JSON.parse(response.body)).toEqual({
+			slug: "project:nowhere",
+			image_url: null,
+			source: "no-context",
+			state: "none",
+		});
+		expect(service.resolveDisplayImage).toHaveBeenCalledWith("project:nowhere");
+	});
+
+	it("answers 202 with Retry-After while the image is pending, and never caches it", async () => {
+		const port = await start(answering({ state: "pending", source: "pending", retry_after_seconds: 5 }));
+
+		const response = await get(port, "/mobile/v1/nodes/artist%3Apresent/image");
+
+		expect(response.status).toBe(202);
+		expect(response.headers["retry-after"]).toBe("5");
+		expect(response.headers["cache-control"]).toBe("no-store");
+		expect(JSON.parse(response.body)).toMatchObject({
+			image_url: null,
+			state: "pending",
+			retry_after_seconds: 5,
+		});
+	});
+
+	it("serves a found image with the 24-hour private cache, as a validated public https URL", async () => {
+		const service = answering({
+			state: "found",
+			image_url: "https://images.example.com/present.jpg",
+			source: "itunes",
+		});
+		const port = await start(service);
+
+		const response = await get(port, "/mobile/v1/nodes/artist%3Apresent/image");
+
+		expect(response.status).toBe(200);
+		expect(response.headers["cache-control"]).toBe("private, max-age=86400");
+		expect(JSON.parse(response.body)).toEqual({
+			slug: "artist:present",
+			image_url: "https://images.example.com/present.jpg",
+			source: "itunes",
+			state: "found",
+		});
+		// A node that exists is asked by its canonical id.
+		expect(service.resolveDisplayImage).toHaveBeenCalledWith("artist:present");
+	});
+
+	it.each([
+		["a plain http URL", "http://images.example.com/present.jpg"],
+		["a private host", "https://127.0.0.1/present.jpg"],
+	])("turns %s into none/unsafe-url, never into a found without URL", async (_label, imageUrl) => {
+		const port = await start(answering({ state: "found", image_url: imageUrl, source: "itunes" }));
+
+		const response = await get(port, "/mobile/v1/nodes/artist%3Apresent/image");
+
+		expect(response.status).toBe(200);
+		expect(response.headers["cache-control"]).toBe("no-store");
+		expect(JSON.parse(response.body)).toEqual({
+			slug: "artist:present",
+			image_url: null,
+			source: "unsafe-url",
+			state: "none",
+		});
+	});
+
+	it("keeps 400 for query parameters and malformed slugs, and 503 when the service fails", async () => {
+		const failing = {
+			resolveDisplayImage: vi.fn(async (): Promise<DisplayImage> => {
+				throw new Error("sidecar unreadable");
+			}),
+			warmSlug: vi.fn(async () => {}),
+		};
+		const port = await start(failing);
+
+		expect((await get(port, "/mobile/v1/nodes/artist%3Apresent/image?x=1")).status).toBe(400);
+		expect((await get(port, "/mobile/v1/nodes/not%20a%20slug/image")).status).toBe(400);
+		const unavailable = await get(port, "/mobile/v1/nodes/artist%3Apresent/image");
+		expect(unavailable.status).toBe(503);
+		expect(JSON.parse(unavailable.body)).toMatchObject({ error: { code: "provider_unavailable" } });
+	});
+
+	it("warms the page once, before the page response is written", async () => {
+		let warmed = false;
+		const service = answering({ state: "none" });
+		service.warmSlug.mockImplementation(async () => {
+			await new Promise((resolve) => setTimeout(resolve, 30));
+			warmed = true;
+		});
+		const port = await start(service);
+
+		const response = await get(port, "/mobile/v1/nodes/artist%3Apresent");
+
+		expect(response.status).toBe(200);
+		expect(warmed).toBe(true);
+		expect(service.warmSlug).toHaveBeenCalledTimes(1);
+		expect(service.warmSlug).toHaveBeenCalledWith("artist:present");
+		expect(response.headers["cache-control"]).toBe("private, max-age=86400");
+		expect(JSON.parse(response.body)).toMatchObject({ node: { id: "artist:present" } });
+	});
+
+	it("serves the page even when warming rejects", async () => {
+		const service = answering({ state: "none" });
+		service.warmSlug.mockRejectedValue(new Error("disk on fire"));
+		const port = await start(service);
+
+		const response = await get(port, "/mobile/v1/nodes/artist%3Apresent");
+
+		expect(response.status).toBe(200);
+		expect(JSON.parse(response.body)).toMatchObject({ node: { id: "artist:present" } });
+		expect(service.warmSlug).toHaveBeenCalledTimes(1);
+	});
+
+	it("keeps 404 for the page and the links of a slug without a node, and does not warm them", async () => {
+		const service = answering({ state: "none" });
+		const port = await start(service);
+
+		expect((await get(port, "/mobile/v1/nodes/project%3Anowhere")).status).toBe(404);
+		expect((await get(port, "/mobile/v1/nodes/project%3Anowhere/links")).status).toBe(404);
+		expect((await get(port, "/mobile/v1/nodes/artist%3Apresent/links")).status).toBe(200);
+		expect(service.warmSlug).not.toHaveBeenCalled();
 	});
 });

@@ -28,6 +28,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Motown%20logo%20with%20wordmark.svg?width=600",
+  "image_source": "wikidata-p154",
   "type": "label",
   "editorial_description": "A legendary American record label founded by Berry Gordy in Detroit, responsible for defining the 'Motown Sound' and bringing African American soul music to a global mainstream audience.",
   "founded": "1959",

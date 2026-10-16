@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "67930b3e-e00b-469f-8c74-fd69f20522ec",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Sade%20Adu%20Band.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "group",
   "editorial_bio": "Sade is a British band formed in London in 1982, renowned for their smooth fusion of jazz, R&B, and pop, defined by vocalist Sade Adu's soulful delivery. Their elegant, atmospheric sound has made them icons of the sophisti-pop and quiet storm genres.",

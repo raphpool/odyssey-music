@@ -33,6 +33,8 @@
     "search_provider": "tavily"
   },
   "mbid": "3e3fbd8f-20b8-4f00-a1b2-8c14c9dd14f9",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Parme%20IMG%200382.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "A pioneer of electroacoustic and musique concrète, Bernard Parmegiani was a French composer whose career at the GRM spanned over fifty years, defined by his innovative, sculptural approach to sound manipulation and his expansive catalog of both concert works and iconic applied sound design.",

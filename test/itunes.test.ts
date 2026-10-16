@@ -47,12 +47,12 @@ describe("lookupVerifiedAlbumArt", () => {
 				artworkUrl100: art("right"),
 			},
 		]);
-		await expect(lookupVerifiedAlbumArt("The Message", "Grandmaster Flash", f)).resolves.toBe(
-			art600("right"),
-		);
+		await expect(
+			lookupVerifiedAlbumArt("The Message", "Grandmaster Flash & The Furious Five", f),
+		).resolves.toBe(art600("right"));
 	});
 
-	it("prefers the better-scoring verified result", async () => {
+	it("takes the result whose credit is exactly the asked artist, not the one that contains it", async () => {
 		const f = itunes([
 			{ collectionName: "New Forms", artistName: "Roni Size", artworkUrl100: art("a") },
 			{ collectionName: "New Forms", artistName: "Roni Size Reprazent", artworkUrl100: art("b") },
@@ -162,6 +162,119 @@ describe("lookupVerifiedAlbumArt", () => {
 			await expect(lookupVerifiedAlbumArt("New Forms", asked, f)).resolves.toBeNull();
 		}
 		expect(f.calls).toEqual([]);
+	});
+
+	// TRA-595: another recording of the same work, credited to someone who merely includes the artist.
+	describe("exact artist credit", () => {
+		it("refuses a multiple credit that contains the artist (In C, Daniel Brandell, 2020)", async () => {
+			const f = itunes([
+				{
+					collectionName: "In C",
+					artistName: "Daniel Brandell, Horn Ensemble D3 & Terry Riley",
+					releaseDate: "2020-05-01T07:00:00Z",
+					artworkUrl100: art("d3"),
+				},
+			]);
+			await expect(lookupVerifiedAlbumArt("In C", "Terry Riley", f)).resolves.toBeNull();
+			await expect(lookupVerifiedAlbumArt("In C", "Terry Riley", f, { year: "1968" })).resolves.toBeNull();
+		});
+
+		it.each(["Roni Size Reprazent", "Roni Size & Friends", "Roni Size, DJ Krust", "Not Roni Size"])(
+			"refuses the credit %s for Roni Size",
+			async (credit) => {
+				const f = itunes([{ collectionName: "New Forms", artistName: credit, artworkUrl100: art("c") }]);
+				await expect(lookupVerifiedAlbumArt("New Forms", "Roni Size", f)).resolves.toBeNull();
+			},
+		);
+
+		it("accepts the same credit across case, accents and punctuation", async () => {
+			const f = itunes([{ collectionName: "Debut", artistName: "BJÖRK", artworkUrl100: art("b") }]);
+			await expect(lookupVerifiedAlbumArt("Debut", "Bjork", f)).resolves.toBe(art600("b"));
+			const g = itunes([
+				{ collectionName: "Bookends", artistName: "Simon and Garfunkel", artworkUrl100: art("s") },
+			]);
+			await expect(lookupVerifiedAlbumArt("Bookends", "Simon & Garfunkel", g)).resolves.toBe(art600("s"));
+		});
+	});
+
+	describe("release year", () => {
+		const reich = (artistName: string, releaseDate: string | undefined, id: string) => ({
+			collectionName: "Music for 18 Musicians",
+			artistName,
+			artworkUrl100: art(id),
+			...(releaseDate ? { releaseDate } : {}),
+		});
+		const ask = (f: ReturnType<typeof itunes>, year?: string) =>
+			lookupVerifiedAlbumArt("Music for 18 Musicians", "Steve Reich", f, year === undefined ? {} : { year });
+
+		it("takes the ECM 1978 release and refuses the Nonesuch 1998 re-recording (node year 1978)", async () => {
+			const both = itunes([
+				reich("Steve Reich", "1998-01-01T08:00:00Z", "nonesuch"),
+				reich("Steve Reich", "1978-01-01T08:00:00Z", "ecm"),
+			]);
+			await expect(ask(both, "1978")).resolves.toBe(art600("ecm"));
+			const nonesuchOnly = itunes([reich("Steve Reich", "1998-01-01T08:00:00Z", "nonesuch")]);
+			await expect(ask(nonesuchOnly, "1978")).resolves.toBeNull();
+		});
+
+		it("accepts a year within one year and refuses two", async () => {
+			const at = (releaseDate: string) => itunes([reich("Steve Reich", releaseDate, "r")]);
+			await expect(ask(at("1976-06-01T00:00:00Z"), "1976")).resolves.toBe(art600("r"));
+			await expect(ask(at("1977-01-01T08:00:00Z"), "1976")).resolves.toBe(art600("r"));
+			await expect(ask(at("1975-12-31T08:00:00Z"), "1976")).resolves.toBe(art600("r"));
+			await expect(ask(at("1978-01-01T08:00:00Z"), "1976")).resolves.toBeNull();
+			await expect(ask(at("1974-01-01T08:00:00Z"), "1976")).resolves.toBeNull();
+		});
+
+		it("refuses a result without a readable release date when the node has a year", async () => {
+			const f = itunes([reich("Steve Reich", undefined, "a"), reich("Steve Reich", "soon", "b")]);
+			await expect(ask(f, "1976")).resolves.toBeNull();
+		});
+
+		it("accepts an exact credit when the node has no (usable) year, with or without a release date", async () => {
+			const f = itunes([reich("Steve Reich", undefined, "a")]);
+			await expect(ask(f)).resolves.toBe(art600("a"));
+			await expect(ask(f, "unknown")).resolves.toBe(art600("a"));
+			await expect(
+				lookupVerifiedAlbumArt("Music for 18 Musicians", "Steve Reich", f, { year: undefined }),
+			).resolves.toBe(art600("a"));
+			const dated = itunes([reich("Steve Reich", "1998-01-01T08:00:00Z", "d")]);
+			await expect(ask(dated)).resolves.toBe(art600("d"));
+		});
+
+		it("reads the year out of a dated or annotated node year", async () => {
+			const f = itunes([reich("Steve Reich", "1978-01-01T08:00:00Z", "a")]);
+			for (const year of ["1978", "c. 1978", "1978-03-01"]) {
+				await expect(ask(f, year)).resolves.toBe(art600("a"));
+			}
+		});
+
+		it("lets the closest year win among valid results", async () => {
+			const f = itunes([
+				reich("Steve Reich", "1977-01-01T08:00:00Z", "off-by-one"),
+				reich("Steve Reich", "1976-11-01T08:00:00Z", "exact"),
+				reich("Steve Reich", "1975-01-01T08:00:00Z", "other-side"),
+			]);
+			await expect(ask(f, "1976")).resolves.toBe(art600("exact"));
+		});
+
+		it("refuses an undecidable tie between different pictures, but not the same picture twice", async () => {
+			const tie = itunes([
+				reich("Steve Reich", "1975-01-01T08:00:00Z", "before"),
+				reich("Steve Reich", "1977-01-01T08:00:00Z", "after"),
+			]);
+			await expect(ask(tie, "1976")).resolves.toBeNull();
+			const sameArt = itunes([
+				reich("Steve Reich", "1975-01-01T08:00:00Z", "same"),
+				reich("Steve Reich", "1977-01-01T08:00:00Z", "same"),
+			]);
+			await expect(ask(sameArt, "1976")).resolves.toBe(art600("same"));
+			const noYearTie = itunes([
+				reich("Steve Reich", "1978-01-01T08:00:00Z", "ecm"),
+				reich("Steve Reich", "1998-01-01T08:00:00Z", "nonesuch"),
+			]);
+			await expect(ask(noYearTie)).resolves.toBeNull();
+		});
 	});
 
 	it("refuses an artwork URL off *.mzstatic.com", async () => {

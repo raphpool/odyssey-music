@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "cc60d937-e80b-4c66-8aa2-e89cb57c8b08",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fairport%2040th.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "group",
   "editorial_bio": "Fairport Convention is an iconic English folk-rock band formed in London in 1967, celebrated for pioneering the fusion of traditional British folk music with contemporary rock instrumentation. Widely recognized for their classic 1969 masterpiece 'Liege & Lief', the group has seen numerous personnel changes over several decades but remains a cornerstone of the UK music scene, anchored by their enduring legacy and the annual Cropredy Festival.",

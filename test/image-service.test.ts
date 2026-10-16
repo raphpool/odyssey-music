@@ -18,6 +18,7 @@ import type {
 	NodePayload,
 	ProjectNode,
 	Slug,
+	TrackNode,
 } from "../src/types.js";
 
 // TRA-39: image-service.resolveDisplayImage must apply the same "live node wins, else follow the
@@ -59,6 +60,26 @@ function projectNode(overrides: Partial<ProjectNode> & { slug: Slug; name: strin
 		producers: [],
 		personnel: [],
 		related_projects: [],
+		...overrides,
+	};
+}
+
+function trackNode(overrides: Partial<TrackNode> & { slug: Slug; name: string }): TrackNode {
+	return {
+		type: "track",
+		editorial_article: "A real long article about this track, well past the eighty character floor. ".repeat(
+			2,
+		),
+		editorial_teaser: "A short teaser.",
+		citations: [{ url: "https://example.com/track" }],
+		materialized_at: new Date().toISOString(),
+		artists: [],
+		genres: [],
+		producers: [],
+		personnel: [],
+		samples: [],
+		sampled_by: [],
+		remixed_by: [],
 		...overrides,
 	};
 }
@@ -150,37 +171,58 @@ describe("resolveDisplayImage (TRA-475)", () => {
 		expect(getSpy).toHaveBeenCalledTimes(1);
 	});
 
-	it("serves a legacy cover_url as source legacy when there is no image_url", async () => {
+	// 2026-10-16 (TRA-592): GET /image still served the unverified photo_url / cover_url, which is where
+	// Grandmaster Flash got an Earth, Wind & Fire cover and Gat Decor a Wikipedia icon.
+	it("does not serve a legacy mzstatic cover_url: Grandmaster Flash has no image (TRA-592)", async () => {
 		await cache.write(
-			projectNode({ slug: "project:old", name: "Old", cover_url: "https://img.example.com/old.jpg" }),
+			artistNode({
+				slug: "artist:grandmaster-flash",
+				name: "Grandmaster Flash",
+				photo_url: "https://is1-ssl.mzstatic.com/image/thumb/Music/ewf/600x600bb.jpg",
+			}),
+		);
+		await cache.write(
+			projectNode({
+				slug: "project:ewf-compilation",
+				name: "Earth, Wind & Fire compilation",
+				cover_url: "https://is1-ssl.mzstatic.com/image/thumb/Music/ewf/600x600bb.jpg",
+			}),
 		);
 
-		const result = await service().resolveDisplayImage("project:old" as Slug);
+		const artist = await service().resolveDisplayImage("artist:grandmaster-flash" as Slug);
+		const project = await service().resolveDisplayImage("project:ewf-compilation" as Slug);
 
-		expect(result).toEqual({
-			slug: "project:old",
-			image_url: "https://img.example.com/old.jpg",
-			source: "legacy",
-			state: "found",
+		expect(artist).toEqual({
+			slug: "artist:grandmaster-flash",
+			image_url: null,
+			source: "no-match",
+			state: "none",
 		});
+		expect(project).toEqual({
+			slug: "project:ewf-compilation",
+			image_url: null,
+			source: "no-match",
+			state: "none",
+		});
+		expect(fetchSpy).not.toHaveBeenCalled();
 	});
 
-	it("serves an artist's legacy photo_url as source legacy", async () => {
+	it("does not serve a Wikipedia icon held in photo_url: Gat Decor has no image (TRA-592)", async () => {
 		await cache.write(
-			artistNode({ slug: "artist:someone", name: "Someone", photo_url: "https://img.example.com/p.jpg" }),
+			artistNode({
+				slug: "artist:gat-decor",
+				name: "Gat Decor",
+				photo_url:
+					"https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Wikipedia-logo-v2.svg/200px.png",
+			}),
 		);
 
-		const result = await service().resolveDisplayImage("artist:someone" as Slug);
+		const result = await service().resolveDisplayImage("artist:gat-decor" as Slug);
 
-		expect(result).toEqual({
-			slug: "artist:someone",
-			image_url: "https://img.example.com/p.jpg",
-			source: "legacy",
-			state: "found",
-		});
+		expect(result).toEqual({ slug: "artist:gat-decor", image_url: null, source: "no-match", state: "none" });
 	});
 
-	it("ignores a stored image_url off the host allowlist and falls back to the legacy field", async () => {
+	it("ignores a stored image_url off the host allowlist and does not fall back to the legacy field", async () => {
 		const cacheWithHostile = {
 			get: async () => ({
 				...projectNode({
@@ -196,19 +238,37 @@ describe("resolveDisplayImage (TRA-475)", () => {
 
 		const result = await imageService.resolveDisplayImage("project:hostile" as Slug);
 
-		expect(result).toEqual({
-			slug: "project:hostile",
-			image_url: "https://img.example.com/ok.jpg",
-			source: "legacy",
-			state: "found",
-		});
+		expect(result).toEqual({ slug: "project:hostile", image_url: null, source: "no-match", state: "none" });
+	});
+
+	it("prefers the stored image_url over a legacy cover_url on the same node", async () => {
+		await cache.write(
+			projectNode({
+				slug: "project:both",
+				name: "Both",
+				cover_url: "https://img.example.com/legacy.jpg",
+				image_url: CAA_URL,
+				image_source: "caa",
+			}),
+		);
+
+		const result = await service().resolveDisplayImage("project:both" as Slug);
+
+		expect(result).toEqual({ slug: "project:both", image_url: CAA_URL, source: "caa", state: "found" });
 	});
 
 	it("borrows the first notable release's image for a label, as related:<slug>, without writing", async () => {
+		const imprint: EdgeRef = { type: "label", slug: "label:imprint", name: "Imprint" };
 		await cache.write(
-			projectNode({ slug: "project:release-b", name: "Release B", image_url: CAA_URL, image_source: "caa" }),
+			projectNode({
+				slug: "project:release-b",
+				name: "Release B",
+				image_url: CAA_URL,
+				image_source: "caa",
+				label: imprint,
+			}),
 		);
-		await cache.write(projectNode({ slug: "project:release-a", name: "Release A" }));
+		await cache.write(projectNode({ slug: "project:release-a", name: "Release A", label: imprint }));
 		await cache.write(
 			labelNode({
 				slug: "label:imprint",
@@ -231,6 +291,166 @@ describe("resolveDisplayImage (TRA-475)", () => {
 		});
 		expect(writeSpy).not.toHaveBeenCalled();
 		expect(fetchSpy).not.toHaveBeenCalled();
+	});
+
+	describe("borrowing only from a work that points back (TRA-592)", () => {
+		const mp: EdgeRef = { type: "label", slug: "label:mille-plateaux", name: "Mille Plateaux" };
+
+		it("label:mille-plateaux does not get Electric Ladyland, a Reprise release", async () => {
+			await cache.write(
+				projectNode({
+					slug: "project:electric-ladyland",
+					name: "Electric Ladyland",
+					image_url: CAA_URL,
+					image_source: "caa",
+					label: { type: "label", slug: "label:reprise", name: "Reprise" },
+				}),
+			);
+			await cache.write(
+				labelNode({
+					slug: "label:mille-plateaux",
+					name: "Mille Plateaux",
+					notable_releases: [
+						{ type: "project", slug: "project:electric-ladyland", name: "Electric Ladyland" },
+					],
+				}),
+			);
+
+			const result = await service().resolveDisplayImage("label:mille-plateaux" as Slug);
+
+			expect(result).toEqual({
+				slug: "label:mille-plateaux",
+				image_url: null,
+				source: "no-match",
+				state: "none",
+			});
+		});
+
+		it("skips a work that does not point back and borrows the next one that does", async () => {
+			await cache.write(
+				projectNode({ slug: "project:electric-ladyland", name: "Electric Ladyland", image_url: CAA_URL }),
+			);
+			await cache.write(
+				projectNode({
+					slug: "project:oval",
+					name: "Systemisch",
+					image_url: "https://coverartarchive.org/release/def/front-500.jpg",
+					image_source: "caa",
+					label: mp,
+				}),
+			);
+			await cache.write(
+				labelNode({
+					slug: "label:mille-plateaux",
+					name: "Mille Plateaux",
+					notable_releases: [
+						{ type: "project", slug: "project:electric-ladyland", name: "Electric Ladyland" },
+						{ type: "project", slug: "project:oval", name: "Systemisch" },
+					],
+				}),
+			);
+
+			const result = await service().resolveDisplayImage("label:mille-plateaux" as Slug);
+
+			expect(result).toMatchObject({
+				image_url: "https://coverartarchive.org/release/def/front-500.jpg",
+				source: "related:project:oval",
+				state: "found",
+			});
+		});
+
+		it("an artist borrows only a work that credits it (a band member does not borrow the band's cover)", async () => {
+			await cache.write(
+				projectNode({
+					slug: "project:band-album",
+					name: "Band Album",
+					image_url: CAA_URL,
+					image_source: "caa",
+					artists: [{ type: "artist", slug: "artist:the-band", name: "The Band" }],
+				}),
+			);
+			await cache.write(
+				artistNode({
+					slug: "artist:member",
+					name: "Member",
+					discography: [{ type: "project", slug: "project:band-album", name: "Band Album" }],
+				}),
+			);
+			await cache.write(
+				artistNode({
+					slug: "artist:the-band",
+					name: "The Band",
+					discography: [{ type: "project", slug: "project:band-album", name: "Band Album" }],
+				}),
+			);
+
+			expect((await service().resolveDisplayImage("artist:member" as Slug)).state).toBe("none");
+			expect(await service().resolveDisplayImage("artist:the-band" as Slug)).toMatchObject({
+				image_url: CAA_URL,
+				source: "related:project:band-album",
+				state: "found",
+			});
+		});
+
+		it("a genre borrows only a landmark that carries the genre", async () => {
+			await cache.write(
+				projectNode({
+					slug: "project:other-genre",
+					name: "Other",
+					image_url: CAA_URL,
+					genres: [{ type: "genre", slug: "genre:jazz", name: "Jazz" }],
+				}),
+			);
+			await cache.write(
+				genreNode({
+					slug: "genre:techno",
+					name: "Techno",
+					landmark_projects: [{ type: "project", slug: "project:other-genre", name: "Other" }],
+				}),
+			);
+
+			expect((await service().resolveDisplayImage("genre:techno" as Slug)).state).toBe("none");
+		});
+
+		it("a track still borrows its own project's image, as the resolver does", async () => {
+			await cache.write(
+				projectNode({ slug: "project:lp", name: "LP", image_url: CAA_URL, image_source: "caa" }),
+			);
+			await cache.write(
+				trackNode({
+					slug: "track:song",
+					name: "Song",
+					project: { type: "project", slug: "project:lp", name: "LP" },
+				}),
+			);
+
+			expect(await service().resolveDisplayImage("track:song" as Slug)).toMatchObject({
+				image_url: CAA_URL,
+				source: "related:project:lp",
+				state: "found",
+			});
+		});
+
+		it("lends only the image a work stores, not one it would itself borrow", async () => {
+			await cache.write(projectNode({ slug: "project:lp", name: "LP", image_url: CAA_URL }));
+			await cache.write(
+				trackNode({
+					slug: "track:song",
+					name: "Song",
+					project: { type: "project", slug: "project:lp", name: "LP" },
+					genres: [{ type: "genre", slug: "genre:techno", name: "Techno" }],
+				}),
+			);
+			await cache.write(
+				genreNode({
+					slug: "genre:techno",
+					name: "Techno",
+					landmark_tracks: [{ type: "track", slug: "track:song", name: "Song" }],
+				}),
+			);
+
+			expect((await service().resolveDisplayImage("genre:techno" as Slug)).state).toBe("none");
+		});
 	});
 
 	it("does not borrow an iTunes cover for a project without image: no-match, no fetch, no write", async () => {
@@ -326,7 +546,9 @@ describe("resolveDisplayImage (TRA-475)", () => {
 				projectNode({
 					slug: "project:landmark",
 					name: "Landmark",
-					cover_url: "https://img.example.com/a.jpg",
+					image_url: CAA_URL,
+					image_source: "caa",
+					genres: [{ type: "genre", slug: "genre:electronic", name: "Electronic" }],
 				}),
 			);
 			await cache.write(
@@ -343,7 +565,7 @@ describe("resolveDisplayImage (TRA-475)", () => {
 
 			expect(result).toEqual({
 				slug: "genre:electronic-music",
-				image_url: "https://img.example.com/a.jpg",
+				image_url: CAA_URL,
 				source: "related:project:landmark",
 				state: "found",
 			});
@@ -531,7 +753,13 @@ describe("on-demand images (TRA-582)", () => {
 
 		it("borrows an edge's image AND enqueues its own job", async () => {
 			await cache.write(
-				projectNode({ slug: "project:release-b", name: "B", image_url: CAA_URL, image_source: "caa" }),
+				projectNode({
+					slug: "project:release-b",
+					name: "B",
+					image_url: CAA_URL,
+					image_source: "caa",
+					label: edge("label", "label:imprint", "Imprint"),
+				}),
 			);
 			await cache.write(
 				labelNode({

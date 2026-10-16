@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/R.E.M.%20at%20Stadio%20Euganeo%2C%20Padova%2C%20Italy%2C%202003-07-22%2004.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "group",
   "editorial_bio": "R.E.M.",

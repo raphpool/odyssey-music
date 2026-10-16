@@ -3,7 +3,12 @@ import type { MobileCatalog } from "./catalog.js";
 import { createMobileGenerationRoutes } from "./generation-routes.js";
 import type { MobileGenerationService } from "./generation-service.js";
 import { createMobileHttpHandler } from "./http.js";
-import { type MobileMedia, MobileProviderUnavailableError } from "./media.js";
+import {
+	MOBILE_RETRY_AFTER_SECONDS,
+	type MobileImageResponse,
+	type MobileMedia,
+	MobileProviderUnavailableError,
+} from "./media.js";
 import { MobileNodeInputError, type MobileNodeReader } from "./nodes.js";
 import type { MobilePushRoutes } from "./push-routes.js";
 import {
@@ -110,16 +115,18 @@ async function handleNodeRoute(
 	}
 	try {
 		const resource = match[2];
-		const body =
-			resource === "image"
-				? await media.image(slug)
-				: resource === "links"
-					? await media.links(slug)
-					: await nodes.read(slug);
+		if (resource === "image") {
+			writeImage(res, await media.image(slug));
+			return true;
+		}
+		const body = resource === "links" ? await media.links(slug) : await nodes.read(slug);
 		if (!body) {
 			writeError(res, 404, "not_found", "mobile node not found");
 			return true;
 		}
+		// The page precedes its cards in the app, and the router takes no query parameters (so no `?from=`):
+		// reading the page is what tells the image queue which works to resolve (TRA-584).
+		if (!resource) await media.warm(slug);
 		res.setHeader("Cache-Control", "private, max-age=86400");
 		writeJson(res, 200, body);
 	} catch (error) {
@@ -132,6 +139,22 @@ async function handleNodeRoute(
 		}
 	}
 	return true;
+}
+
+function writeImage(res: ServerResponse, image: MobileImageResponse): void {
+	if (image.state === "found") {
+		res.setHeader("Cache-Control", "private, max-age=86400");
+		writeJson(res, 200, image);
+		return;
+	}
+	// Neither a pending answer nor a "none" may be cached: both change as soon as the queue works.
+	res.setHeader("Cache-Control", "no-store");
+	if (image.state === "pending") {
+		res.setHeader("Retry-After", String(image.retry_after_seconds ?? MOBILE_RETRY_AFTER_SECONDS));
+		writeJson(res, 202, image);
+		return;
+	}
+	writeJson(res, 200, image);
 }
 
 function writeError(res: ServerResponse, status: number, code: string, message: string): void {

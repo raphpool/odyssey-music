@@ -24,6 +24,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://coverartarchive.org/release-group/9cb80efb-6b1a-3d7b-aff8-86f051737d91/front-500",
+  "image_source": "derived-cover",
   "type": "label",
   "editorial_description": "A highly influential London-based independent label founded in 1991 by Stereolab, renowned for its meticulous vinyl curation and deep catalog of experimental pop, post-rock, and electronic music.",
   "founded": "1991",

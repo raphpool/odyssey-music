@@ -28,6 +28,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/36/51/2c/36512c3e-b23c-eed6-2179-731768d05107/00602547380067.rgb.jpg/600x600bb.jpg",
+  "image_source": "itunes-verified",
   "type": "project",
   "editorial_pitch": "A technical and creative masterpiece of 1970s progressive rock, Mike Oldfield's debut album is a sprawling instrumental achievement that launched Virgin Records and became a global cultural phenomenon.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/0/0d/Mike_oldfield_tubular_bells_album_cover.jpg",

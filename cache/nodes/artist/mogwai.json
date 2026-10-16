@@ -28,6 +28,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://coverartarchive.org/release-group/5349a640-32a9-4032-be60-ed68d971b10c/front-500",
+  "image_source": "derived-cover",
   "type": "artist",
   "editorial_bio": "Mogwai is a seminal Scottish post-rock band formed in Glasgow in 1995, renowned for their influential role in defining the genre's \"quiet-loud-loudest\" dynamic.",
   "genres": [

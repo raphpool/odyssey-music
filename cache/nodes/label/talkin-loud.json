@@ -28,6 +28,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://coverartarchive.org/release-group/70fe8c14-6a76-33d5-a4f4-e2cb5556611f/front-500",
+  "image_source": "derived-cover",
   "type": "label",
   "editorial_description": "A seminal UK record label founded in 1990 by Gilles Peterson, central to the evolution and expansion of the acid jazz, funk, and soul scenes.",
   "founded": "1990",
