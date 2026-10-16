@@ -237,6 +237,73 @@ describe("backfill-reverse-edges", () => {
 		]);
 	});
 
+	it("does not graft an artist onto a work credited to someone else, but takes a group's member and an uncredited work", async () => {
+		const rohff = artist("artist:rohff", "Rohff", {
+			discography: [ref("project:fitna--akuma", "Fitna"), ref("project:new-forms--reprazent", "New Forms")],
+			notable_tracks: [ref("track:orphan--rohff", "Orphan")],
+		});
+		await writeCache([
+			rohff,
+			artist("artist:akuma", "Akuma"),
+			artist("artist:reprazent", "Reprazent", { members: [ref("artist:rohff", "Rohff")] }),
+			project("project:fitna--akuma", "Fitna", { artists: [ref("artist:akuma", "Akuma")] }),
+			project("project:new-forms--reprazent", "New Forms", {
+				artists: [ref("artist:reprazent", "Reprazent")],
+			}),
+			track("track:orphan--rohff", "Orphan"),
+		]);
+
+		const manifest = await run(true);
+
+		expect((await readNode<ProjectNode>("project:fitna--akuma")).artists.map((e) => e.slug)).toEqual([
+			"artist:akuma",
+		]);
+		expect((await readNode<ProjectNode>("project:new-forms--reprazent")).artists.map((e) => e.slug)).toEqual([
+			"artist:reprazent",
+			"artist:rohff",
+		]);
+		expect((await readNode<TrackNode>("track:orphan--rohff")).artists.map((e) => e.slug)).toEqual([
+			"artist:rohff",
+		]);
+		expect(manifest.conflicts).toEqual([
+			{
+				source: "artist:rohff",
+				field: "discography",
+				target: "project:fitna--akuma",
+				targetField: "artists",
+				kind: "foreign-credit",
+				existing: "artist:akuma",
+			},
+		]);
+	});
+
+	it("reaches a fixed point: a member seen before the group that credits it is settled in the same run", async () => {
+		// artist:a-pete sorts before artist:b-group. Pass one: a-pete is foreign (the credit is c-john, whose
+		// members are not a-pete) and b-group is accepted (c-john lists it as a member). Only then does the credit
+		// include b-group, which lists a-pete: without a second pass a rerun would add a-pete.
+		await writeCache([
+			artist("artist:a-pete", "Pete", { discography: [ref("project:album--john", "Album")] }),
+			artist("artist:b-group", "Group", {
+				members: [ref("artist:a-pete", "Pete")],
+				discography: [ref("project:album--john", "Album")],
+			}),
+			artist("artist:c-john", "John", { members: [ref("artist:b-group", "Group")] }),
+			project("project:album--john", "Album", { artists: [ref("artist:c-john", "John")] }),
+		]);
+
+		const first = await run(true);
+		const second = await run(true);
+
+		expect((await readNode<ProjectNode>("project:album--john")).artists.map((e) => e.slug)).toEqual([
+			"artist:c-john",
+			"artist:b-group",
+			"artist:a-pete",
+		]);
+		expect(first.added["artist.discography→project.artists"]).toBe(2);
+		expect(second.written).toBe(0);
+		expect(second.added).toEqual({});
+	});
+
 	it("carries the qid of a genre source onto the artist's genres", async () => {
 		await writeCache([
 			genre("genre:idm", "IDM", { qid: "Q215412", key_artists: [ref("artist:aphex-twin", "Aphex Twin")] }),

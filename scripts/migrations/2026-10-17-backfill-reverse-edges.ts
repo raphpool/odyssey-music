@@ -12,6 +12,11 @@
  * - A singular reverse field already set to ANOTHER target is never overwritten (`conflicts`): the cache
  *   says two different things, which a script must not arbitrate. When two sources claim the same empty
  *   singular, the first one in slug order wins and the other is reported the same way.
+ * - An artist's release link is NOT reversed onto a work credited to someone else (`foreign-credit`): a
+ *   homonym's album in a discography (Rohff -> Akuma's Fitna) would otherwise get the wrong artist grafted
+ *   onto its credit, which would also make scripts/audit-cache.ts stop flagging it (homonym-release-links).
+ *   Same test as the audit: the work's artists + producers must name the artist, or a group that lists the
+ *   artist as a member. A work with no credit at all takes the artist (that is the point of the backfill).
  * - Nodes are read as raw JSON and the reverse is applied to copies of the TARGETS, from the unmodified
  *   SOURCES. Deliberately not through NodeCache.write / update: they emit the reverses of the reverses and
  *   merge pendings, which is not a backfill.
@@ -57,8 +62,8 @@ export interface ReverseConflict {
 	/** The node that should receive the reverse edge, and its field. */
 	target: string;
 	targetField: string;
-	kind: "single-occupied" | "target-field";
-	/** single-occupied: the slug the singular field already points to. */
+	kind: "single-occupied" | "target-field" | "foreign-credit";
+	/** single-occupied: the slug the singular field already points to. foreign-credit: the first credited slug. */
 	existing?: string;
 }
 
@@ -118,6 +123,17 @@ function pairKey(sourceType: NodeType, field: string, targetType: NodeType, targ
 	return `${sourceType}.${field}→${targetType}.${targetField}`;
 }
 
+/** True when the work is credited (artists + producers) and neither names `artistSlug` nor a group listing it. */
+function foreignCredit(artistSlug: string, work: Obj, bySlug: ReadonlyMap<string, CacheNodeFile>): boolean {
+	const credited = [...refsOf(work.artists), ...refsOf(work.producers)].map((e) => e.slug);
+	if (credited.length === 0) return false;
+	return !credited.some(
+		(slug) =>
+			slug === artistSlug ||
+			(typeof slug === "string" && refsOf(bySlug.get(slug)?.node.members).some((m) => m.slug === artistSlug)),
+	);
+}
+
 /** Pure plan: what to write and what to report. Does not touch the disk. */
 export function planBackfill(nodes: readonly CacheNodeFile[], currentPending: PendingFile): Plan {
 	const bySlug = new Map(nodes.map((n) => [n.slug, n]));
@@ -130,63 +146,87 @@ export function planBackfill(nodes: readonly CacheNodeFile[], currentPending: Pe
 	let pendingAdded = 0;
 	const nextPending: PendingFile = structuredClone(currentPending);
 
-	for (const source of nodes) {
-		const sourceEdge = sourceEdgeOf(source);
-		if (!sourceEdge) {
-			if (reversibleFields(source.type).some((f) => refsOf(source.node[f]).length > 0)) {
-				errors.push(`${source.slug}: no name, cannot build a reverse edge from it`);
+	// The credit guard (foreignCredit) reads the credit as it stands, which this pass itself grows: a member
+	// can be seen before the group that credits it. One pass would then leave edges a second run adds, so the
+	// pass is repeated until it adds nothing (credits only grow, so it ends); `unchanged` and the pending
+	// counts are those of the first pass (what was already there), `conflicts` those of the last.
+	for (let pass = 0; ; pass++) {
+		const first = pass === 0;
+		const addedBefore = Object.values(added).reduce((sum, n) => sum + n, 0);
+		conflicts.length = 0;
+		for (const source of nodes) {
+			const sourceEdge = sourceEdgeOf(source);
+			if (!sourceEdge) {
+				if (first && reversibleFields(source.type).some((f) => refsOf(source.node[f]).length > 0)) {
+					errors.push(`${source.slug}: no name, cannot build a reverse edge from it`);
+				}
+				continue;
 			}
-			continue;
-		}
-		for (const field of reversibleFields(source.type)) {
-			const reverse = reverseFor(source.type, field);
-			if (!reverse) continue;
-			for (const ref of refsOf(source.node[field])) {
-				if (typeof ref.slug !== "string" || !isReadableSlug(ref.slug)) continue;
-				const target = bySlug.get(ref.slug);
-				if (!target) {
-					const queue = nextPending[ref.slug] ?? [];
-					if (queue.some((p) => p.field === reverse.field && p.edge.slug === sourceEdge.slug)) {
-						unchanged++;
-					} else {
-						queue.push({ field: reverse.field, cardinality: reverse.cardinality, edge: sourceEdge });
-						nextPending[ref.slug] = queue;
-						pendingAdded++;
-					}
-					continue;
-				}
-				const accepts = (
-					EDGE_FIELDS_BY_TYPE[target.type] as Record<string, { targets: readonly NodeType[] }>
-				)[reverse.field];
-				const base = { source: source.slug, field, target: target.slug, targetField: reverse.field };
-				if (!accepts?.targets.includes(source.type)) {
-					conflicts.push({ ...base, kind: "target-field" });
-					continue;
-				}
-				const current = working.get(target.slug) ?? target.node;
-				const held = current[reverse.field];
-				if (reverse.cardinality === "list") {
-					if (refsOf(held).some((e) => e.slug === sourceEdge.slug)) {
-						unchanged++;
+			for (const field of reversibleFields(source.type)) {
+				const reverse = reverseFor(source.type, field);
+				if (!reverse) continue;
+				for (const ref of refsOf(source.node[field])) {
+					if (typeof ref.slug !== "string" || !isReadableSlug(ref.slug)) continue;
+					const target = bySlug.get(ref.slug);
+					if (!target) {
+						if (!first) continue;
+						const queue = nextPending[ref.slug] ?? [];
+						if (queue.some((p) => p.field === reverse.field && p.edge.slug === sourceEdge.slug)) {
+							unchanged++;
+						} else {
+							queue.push({ field: reverse.field, cardinality: reverse.cardinality, edge: sourceEdge });
+							nextPending[ref.slug] = queue;
+							pendingAdded++;
+						}
 						continue;
 					}
-				} else if (isRecord(held)) {
-					if (held.slug === sourceEdge.slug) unchanged++;
-					else conflicts.push({ ...base, kind: "single-occupied", existing: String(held.slug) });
-					continue;
+					const accepts = (
+						EDGE_FIELDS_BY_TYPE[target.type] as Record<string, { targets: readonly NodeType[] }>
+					)[reverse.field];
+					const base = { source: source.slug, field, target: target.slug, targetField: reverse.field };
+					if (!accepts?.targets.includes(source.type)) {
+						conflicts.push({ ...base, kind: "target-field" });
+						continue;
+					}
+					const current = working.get(target.slug) ?? target.node;
+					if (
+						source.type === "artist" &&
+						reverse.field === "artists" &&
+						foreignCredit(source.slug, current, bySlug)
+					) {
+						conflicts.push({
+							...base,
+							kind: "foreign-credit",
+							existing: String(refsOf(current.artists)[0]?.slug),
+						});
+						continue;
+					}
+					const held = current[reverse.field];
+					if (reverse.cardinality === "list") {
+						if (refsOf(held).some((e) => e.slug === sourceEdge.slug)) {
+							if (first) unchanged++;
+							continue;
+						}
+					} else if (isRecord(held)) {
+						if (held.slug === sourceEdge.slug) {
+							if (first) unchanged++;
+						} else conflicts.push({ ...base, kind: "single-occupied", existing: String(held.slug) });
+						continue;
+					}
+					working.set(
+						target.slug,
+						applySingleReverse(current as unknown as NodePayload, {
+							field: reverse.field,
+							cardinality: reverse.cardinality,
+							edge: sourceEdge,
+						}) as unknown as Obj,
+					);
+					const key = pairKey(source.type, field, target.type, reverse.field);
+					added[key] = (added[key] ?? 0) + 1;
 				}
-				working.set(
-					target.slug,
-					applySingleReverse(current as unknown as NodePayload, {
-						field: reverse.field,
-						cardinality: reverse.cardinality,
-						edge: sourceEdge,
-					}) as unknown as Obj,
-				);
-				const key = pairKey(source.type, field, target.type, reverse.field);
-				added[key] = (added[key] ?? 0) + 1;
 			}
 		}
+		if (Object.values(added).reduce((sum, n) => sum + n, 0) === addedBefore) break;
 	}
 
 	// Validate every node to write before the caller writes any.
