@@ -5,7 +5,7 @@ import { type GenreRedirects, resolveReadSlug } from "../genre-registry.js";
 import { isAllowedImageUrl } from "../images/hosts.js";
 import type { EnqueueOutcome, ImageQueue } from "../images/image-queue.js";
 import { type ImageSidecarEntry, readImageSidecar } from "../images/image-sidecar.js";
-import { reciprocates } from "../images/resolve-image.js";
+import { reciprocates } from "../images/reciprocity.js";
 import type { WorkImageHint } from "../images/resolve-work-hint.js";
 import { logger } from "../logger.js";
 import { hasTransliteratedLetter, isScopedSlug } from "../slug.js";
