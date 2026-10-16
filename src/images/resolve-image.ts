@@ -20,13 +20,14 @@
  * cover, never to be presented as a photo of the entity.
  */
 import type { NodeCache } from "../cache.js";
-import { type GenreRedirects, loadRedirects, resolveReadSlug } from "../genre-registry.js";
+import { type GenreRedirects, loadRedirects } from "../genre-registry.js";
 import { lookupVerifiedAlbumArt } from "../itunes.js";
 import { logger } from "../logger.js";
 import { fetchWikidataUrlRelMb, type MbPriority } from "../musicbrainz.js";
 import type { EdgeRef, ImageSource, NodePayload } from "../types.js";
 import { coverArtUrl } from "./coverart.js";
 import { isAllowedImageUrl } from "./hosts.js";
+import { isWork, reciprocates, type Subject } from "./reciprocity.js";
 import { commonsFileUrl, fetchWikidataImages, searchWikidataLabel } from "./wikidata.js";
 
 const log = logger.child({ module: "resolve-image" });
@@ -100,10 +101,6 @@ async function readNode(cache: NodeCache, ref: EdgeRef): Promise<NodePayload | n
 	}
 }
 
-/** The works a node may borrow a cover from (`project` / `track`) and the edges they declare. */
-type Work = Extract<NodePayload, { type: "project" | "track" }>;
-type Subject = Extract<NodePayload, { type: "artist" | "label" | "genre" }>;
-
 let defaultRedirects: GenreRedirects | undefined;
 
 async function redirectsOf(deps: Pick<ImageDeps, "redirects">): Promise<GenreRedirects> {
@@ -119,45 +116,6 @@ async function redirectsOf(deps: Pick<ImageDeps, "redirects">): Promise<GenreRed
 			error: e instanceof Error ? e.message : String(e),
 		});
 		return new Map();
-	}
-}
-
-const isWork = (node: NodePayload): node is Work => node.type === "project" || node.type === "track";
-
-/**
- * Does `work` point back at `subject`? A cover is borrowed only from a work that declares the node
- * itself: a notable_releases / discography / landmark list polluted by a homonym or a hallucination must
- * not lend its covers (2026-10-16, label:mille-plateaux got the cover of Electric Ladyland, a Reprise
- * release). Equality is strict everywhere:
- * - label: the work's label slug is the label's slug;
- * - artist: the work credits the artist's slug, or an artist edge carrying the same non-empty mbid;
- * - genre: a genre edge with the same slug once both sides went through the redirect table.
- * A band member therefore no longer borrows the band's cover: it credits the band, not the member.
- */
-async function reciprocates(
-	subject: Subject,
-	work: Work,
-	cache: NodeCache,
-	redirects: GenreRedirects,
-): Promise<boolean> {
-	switch (subject.type) {
-		case "label":
-			return work.label?.slug === subject.slug;
-		case "artist":
-			return work.artists.some(
-				(a) =>
-					a.type === "artist" &&
-					(a.slug === subject.slug || (!!subject.mbid && !!a.mbid && a.mbid === subject.mbid)),
-			);
-		case "genre": {
-			const wanted = await resolveReadSlug(subject.slug, redirects, cache);
-			for (const g of work.genres) {
-				if (g.type !== "genre") continue;
-				if (g.slug === subject.slug || (await resolveReadSlug(g.slug, redirects, cache)) === wanted)
-					return true;
-			}
-			return false;
-		}
 	}
 }
 
