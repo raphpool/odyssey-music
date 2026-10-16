@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:51:03.708Z",
+  "mbid": "00e3ab6b-4c4f-4ed6-991f-461a0ffa01b3",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Manuel Göttsching was a visionary German musician, guitarist, and producer who founded the iconic group Ash Ra Tempel and later explored ambient, experimental electronic music under his own name and as Ashra. Best known for his monumental 1981 album E2-E4, he was a pivotal force in the German electronic scene and a major influence on the development of modern techno and ambient music.",
   "photo_url": "https://www.manuelgoettsching.com/icon/l_ashra2.jpg",
   "origin": "Berlin, Germany",
@@ -112,5 +114,6 @@
       "name": "Ash Ra Tempel"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

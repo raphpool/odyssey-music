@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "8a82e15f-66cc-459d-9004-54b1207aa358",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Kid Spatula is an alias of the prolific British electronic musician Mike Paradinas, widely recognized as one of the key figures in the 1990s and 2000s IDM and experimental techno scenes.",
   "origin": "United Kingdom",
   "active_years": "1995-2000s",
@@ -92,5 +94,6 @@
       "name": "μ-Ziq"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

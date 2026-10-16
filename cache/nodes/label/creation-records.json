@@ -73,6 +73,11 @@
       "slug": "artist:slowdive",
       "type": "artist",
       "name": "Slowdive"
+    },
+    {
+      "slug": "artist:television-personalities",
+      "type": "artist",
+      "name": "Television Personalities"
     }
   ],
   "notable_releases": [

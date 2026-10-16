@@ -34,7 +34,7 @@
       "name": "Ryoji Ikeda"
     },
     {
-      "slug": "artist:hildur-gu-nadottir",
+      "slug": "artist:hildur-gudnadottir",
       "type": "artist",
       "name": "Hildur Guðnadóttir"
     },
@@ -42,6 +42,11 @@
       "slug": "artist:philip-jeck",
       "type": "artist",
       "name": "Philip Jeck"
+    },
+    {
+      "slug": "artist:thomas-koner",
+      "type": "artist",
+      "name": "Thomas Köner"
     }
   ],
   "notable_releases": [
@@ -51,7 +56,7 @@
       "name": "Endless Summer"
     },
     {
-      "slug": "project:dataplex",
+      "slug": "project:dataplex--ryoji-ikeda",
       "type": "project",
       "name": "Dataplex"
     }

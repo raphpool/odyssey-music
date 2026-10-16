@@ -1,0 +1,75 @@
+{
+  "slug": "track:fizheuer-zieheuer--ricardo-villalobos",
+  "name": "Fizheuer Zieheuer",
+  "editorial_article": "Released in 2006, \"Fizheuer Zieheuer\" stands as a towering monolith in the discography of minimal techno producer Ricardo Villalobos. Clocking in at over 37 minutes, the track is a masterclass in hypnotic, progressive dance music. It is built primarily around a recurring, ostinato-like brass sample lifted from the traditional Serbian folk song \"Pobjednički Čoček\" by Blehorkestar Bakija Bakić. This brass hook, which anchors the piece in a major key, is layered over an ever-evolving lattice of nuanced percussion, filter sweeps, and subtle delays, creating a sense of relentless, shifting movement that feels both ancient and futuristic. \\n\\n\"Fizheuer Zieheuer\" was widely regarded as a watershed moment in electronic music during the mid-2000s, a period frequently described by critics as an era of consolidation for the genre. Music journalist Simon Reynolds highlighted the track in his book 'Energy Flash' as a rare example of an artist pushing dance music into uncharted territory when much of the scene had become stagnant. The track's structure, which favors long-form evolution over immediate gratification, has drawn frequent, apt comparisons to the pioneering work of Manuel Göttsching, particularly his 1984 landmark \"E2-E4\". For Villalobos, the track became a staple of his own legendary, sprawling DJ sets, where its hypnotic core allowed him to weave disparate sonic textures together for hours on end. It remains a definitive statement on the power of repetition and the alchemy of minimal techno production.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Fizheuer_Zieheuer",
+      "title": "Fizheuer Zieheuer - Wikipedia"
+    },
+    {
+      "url": "https://insheepsclothinghifi.com/ricardo-villalobos-fizheuer-zieheuer/",
+      "title": "Listening prompt: Ricardo Villalobos' 37-minute track 'Fizheuer ..."
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:42.315Z",
+  "_metrics": {
+    "input_tokens": 11493,
+    "output_tokens": 681,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.003895,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 8682,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "disambiguator": "37-minute minimal techno track by Ricardo Villalobos (2006)",
+  "mbid": "0a8347ed-ba50-4872-ae9c-4da4890ee0dc",
+  "type": "track",
+  "editorial_teaser": "Released in 2006, \"Fizheuer Zieheuer\" stands as a towering monolith in the discography of minimal techno producer Ricardo Villalobos.",
+  "year": "2006",
+  "duration": "37:09",
+  "artists": [
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos",
+      "mbid": "bbd79854-df54-4c1b-b7d6-cf7eea2d0afb"
+    }
+  ],
+  "project": {
+    "slug": "project:fizheuer-zieheuer--ricardo-villalobos",
+    "type": "project",
+    "name": "Fizheuer Zieheuer"
+  },
+  "label": {
+    "slug": "label:playhouse",
+    "type": "label",
+    "name": "Playhouse",
+    "mbid": "468d9d30-1137-4468-b0db-610cba2c575f"
+  },
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal techno",
+      "qid": "Q1430587"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

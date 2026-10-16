@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:51:13.324Z",
   "type": "genre",
   "editorial_definition": "A loud, aggressive subgenre of rock music that centers on distorted guitar riffs, anthemic choruses, and high-energy performance, serving as the bridge between 1960s blues-rock and heavier metal.",
+  "qid": "Q83270",
   "era": "1960s-present",
   "origin": "United States and United Kingdom",
   "parent_genres": [
@@ -88,7 +89,7 @@
   "key_labels": [],
   "landmark_projects": [
     {
-      "slug": "project:led-zeppelin-iv",
+      "slug": "project:led-zeppelin-iv--led-zeppelin",
       "type": "project",
       "name": "Led Zeppelin IV"
     },
@@ -103,11 +104,10 @@
       "name": "Van Halen"
     },
     {
-      "slug": "project:appetite-for-destruction",
+      "slug": "project:appetite-for-destruction--guns-n-roses",
       "type": "project",
       "name": "Appetite for Destruction"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q83270"
+  "landmark_tracks": []
 }

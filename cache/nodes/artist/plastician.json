@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:42:37.459Z",
+  "mbid": "93fffcaa-8b52-4b49-9859-5e95d9261d92",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Plastician (born Chris Reed) is a foundational figure in the development of South London’s electronic music scene, widely recognized for his pivotal roles in both the grime and dubstep genres.",
   "origin": "Croydon, London, England",
   "active_years": "1999–present",
@@ -50,9 +52,10 @@
   ],
   "discography": [
     {
-      "slug": "project:beg-to-differ",
+      "slug": "project:beg-to-differ--plastician",
       "type": "project",
-      "name": "Beg to Differ"
+      "name": "Beg to Differ",
+      "artist": "Plastician"
     }
   ],
   "notable_tracks": [
@@ -62,7 +65,7 @@
       "name": "Japan"
     },
     {
-      "slug": "track:intensive-snare",
+      "slug": "track:intensive-snare--plastician",
       "type": "track",
       "name": "Intensive Snare"
     }
@@ -71,5 +74,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

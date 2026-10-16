@@ -66,6 +66,41 @@
       "slug": "artist:joao-gilberto",
       "type": "artist",
       "name": "João Gilberto"
+    },
+    {
+      "slug": "artist:charlie-parker",
+      "type": "artist",
+      "name": "Charlie Parker"
+    },
+    {
+      "slug": "artist:frank-zappa",
+      "type": "artist",
+      "name": "Frank Zappa"
+    },
+    {
+      "slug": "artist:nico",
+      "type": "artist",
+      "name": "Nico"
+    },
+    {
+      "slug": "artist:queen-latifah",
+      "type": "artist",
+      "name": "Queen Latifah"
+    },
+    {
+      "slug": "artist:richard-seidel",
+      "type": "artist",
+      "name": "Richard Seidel"
+    },
+    {
+      "slug": "artist:the-velvet-underground",
+      "type": "artist",
+      "name": "The Velvet Underground"
+    },
+    {
+      "slug": "artist:tony-scott",
+      "type": "artist",
+      "name": "Tony Scott"
     }
   ],
   "notable_releases": [
@@ -83,6 +118,18 @@
       "slug": "project:the-poll-winners",
       "type": "project",
       "name": "The Poll Winners"
+    },
+    {
+      "slug": "project:music-for-zen-meditation--tony-scott",
+      "type": "project",
+      "name": "Music for Zen Meditation",
+      "artist": "Tony Scott"
+    },
+    {
+      "slug": "project:the-velvet-underground-and-nico--the-velvet-underground",
+      "type": "project",
+      "name": "The Velvet Underground & Nico",
+      "artist": "The Velvet Underground"
     }
   ]
 }

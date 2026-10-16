@@ -87,6 +87,11 @@
       "slug": "artist:chick-corea",
       "type": "artist",
       "name": "Chick Corea"
+    },
+    {
+      "slug": "artist:tomasz-stanko-quartet",
+      "type": "artist",
+      "name": "Tomasz Stańko Quartet"
     }
   ],
   "notable_releases": [
@@ -104,6 +109,18 @@
       "slug": "project:afric-pepperbird",
       "type": "project",
       "name": "Afric Pepperbird"
+    },
+    {
+      "slug": "project:music-for-18-musicians--steve-reich",
+      "type": "project",
+      "name": "Music for 18 Musicians",
+      "artist": "Steve Reich"
+    },
+    {
+      "slug": "project:soul-of-things--tomasz-stanko-quartet",
+      "type": "project",
+      "name": "Soul of Things",
+      "artist": "Tomasz Stańko Quartet"
     }
   ]
 }

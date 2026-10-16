@@ -1,0 +1,61 @@
+{
+  "slug": "track:drift--underworld",
+  "name": "Drift",
+  "editorial_article": "\"Drift\" is a landmark 2018–2019 experimental project by the British electronic pioneers Underworld, encompassing a massive, year-long series of audio, visual, and literary releases. Rather than adhering to the traditional album-tour cycle, Karl Hyde and Rick Smith committed to a \"foolhardy\" schedule of releasing new music and accompanying videos on a weekly basis, aiming to capture an instinctive and immediate creative energy. The project effectively disrupted the band's standard production workflow, replacing the safety of three-year cycles with a relentless weekly deadline that forced the duo into a state of continuous, unfiltered output.\\n\\nThe resulting work is a sprawling, multifaceted archive of electronic music that shifts effortlessly between ambient textures, experimental jazz-fusion, and driving techno. Collaborations were central to this process, featuring an eclectic array of artists such as the Australian avant-garde group The Necks, producer Ø [Phase], and members of the post-punk band Black Country, New Road. The title itself serves as both a nod to drift racing culture—reflecting the spontaneous, high-velocity nature of the production—and a literal description of the project’s fluid evolution, as tracks were released, remixed, and re-contextualized across five massive \"Episodes\" and the eventual \"Drift Series 1\" box set. By documenting their process in real-time, Underworld transformed the act of creation into a public performance, prioritizing honesty and artistic challenge over polished, predictable studio perfection. The project stands as a testament to the band’s enduring curiosity and their ability to reinvent their own sonic landscape after decades at the forefront of global electronic culture.",
+  "citations": [
+    {
+      "url": "https://echoesanddust.com/2019/11/underworld-drift-series-1/",
+      "title": "Underworld – DRIFT Series 1 | Echoes And Dust"
+    },
+    {
+      "url": "https://underworld.bandcamp.com/album/drift-series-1-complete",
+      "title": "DRIFT Series 1 - Complete | Underworld"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:34:52.379Z",
+  "type": "track",
+  "editorial_teaser": "\"Drift\" is a landmark 2018–2019 experimental project by the British electronic pioneers Underworld, encompassing a massive, year-long series of audio, visual, and literary releases.",
+  "artists": [
+    {
+      "slug": "artist:underworld",
+      "type": "artist",
+      "name": "Underworld"
+    }
+  ],
+  "project": {
+    "slug": "project:drift-series-1--underworld",
+    "type": "project",
+    "name": "Drift Series 1"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental",
+      "qid": "Q1640319"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:rick-smith",
+      "type": "artist",
+      "name": "Rick Smith"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

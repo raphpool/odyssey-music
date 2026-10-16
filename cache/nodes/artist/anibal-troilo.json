@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:04:09.151Z",
+  "mbid": "9a7f8969-387f-4161-b643-4b0e733f8d64",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An Argentine tango master, bandleader, and the 'Supreme Bandoneón of Buenos Aires' who defined the golden age of the genre.",
   "origin": "Buenos Aires, Argentina",
   "active_years": "1925-1975",
@@ -122,11 +124,6 @@
       "name": "Pichuco"
     }
   ],
-  "members": [
-    {
-      "slug": "artist:anibal-troilo",
-      "type": "artist",
-      "name": "Aníbal Troilo"
-    }
-  ]
+  "members": [],
+  "similar_artists": []
 }

@@ -1170,8 +1170,19 @@ describe("crawl() artist context and edge reconciliation (TRA-476)", () => {
 							requested,
 						);
 			const logs: string[] = [];
+			// TRA-535: the parent is rewritten through the locked read-modify-write, never get + replace.
+			const updateSpy = vi.spyOn(NodeCache.prototype, "update");
+			const replaceSpy = vi.spyOn(NodeCache.prototype, "replace");
 
-			const result = await runCrawl("artist:Roni Size", logs);
+			let result: Awaited<ReturnType<typeof runCrawl>>;
+			try {
+				result = await runCrawl("artist:Roni Size", logs);
+				expect(updateSpy.mock.calls.map(([slug]) => slug)).toEqual(["artist:roni-size"]);
+				expect(replaceSpy).not.toHaveBeenCalled();
+			} finally {
+				updateSpy.mockRestore();
+				replaceSpy.mockRestore();
+			}
 
 			const cache = new NodeCache(dir);
 			expect(result.reconciled).toBe(1);

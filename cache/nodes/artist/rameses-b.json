@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:14:58.123Z",
+  "mbid": "bbd9a0a9-3605-4c3f-b9d0-48eb928a5275",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Rameses B is a prolific British electronic music producer from Leeds, known for his signature blend of melodic chill-out, drum and bass, and dubstep.",
   "origin": "Leeds, UK",
   "active_years": "2010-present",
@@ -76,5 +78,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:54:07.472Z",
+  "mbid": "4dfadf48-e15b-4fc2-a800-2b68702a72d5",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Penguin Cafe Orchestra was an influential avant-pop ensemble founded by Simon Jeffes in 1972 that blended chamber music, folk, and minimalism. Known for their cyclical, hypnotic melodies and whimsical aesthetic, they remained a singular force in the British avant-pop scene until 1997.",
   "origin": "England",
   "active_years": "1972–1997",
@@ -108,5 +110,6 @@
       "type": "artist",
       "name": "Geoffrey Richardson"
     }
-  ]
+  ],
+  "similar_artists": []
 }

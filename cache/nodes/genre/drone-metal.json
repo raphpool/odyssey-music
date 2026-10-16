@@ -26,6 +26,7 @@
   },
   "type": "genre",
   "editorial_definition": "A style of heavy metal that blends the slow, crushing tempos and extreme heaviness of doom metal with the long-duration, sustained tones of minimalist drone music.",
+  "qid": "Q1433387",
   "era": "1990s–Present",
   "origin": "Olympia, Washington, U.S.",
   "parent_genres": [],
@@ -106,7 +107,7 @@
       "name": "Earth 2: Special Low Frequency Version"
     },
     {
-      "slug": "project:monoliths-and-dimensions",
+      "slug": "project:monoliths-and-dimensions--sunn-o",
       "type": "project",
       "name": "Monoliths & Dimensions"
     },
@@ -116,6 +117,5 @@
       "name": "Feedbacker"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q1433387"
+  "landmark_tracks": []
 }

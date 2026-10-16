@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:25:17.036Z",
+  "mbid": "bbbd2644-b4cb-4bb5-a442-315310f68a0b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "MC Solaar is a pioneering French hip hop artist celebrated for his poetic, conscious lyrics and his role in establishing rap as a respected literary force in France.",
   "origin": "France",
   "active_years": "1990-present",
@@ -76,5 +78,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

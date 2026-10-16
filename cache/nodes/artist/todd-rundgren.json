@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:45:08.078Z",
+  "mbid": "1a9a8ca0-ea8e-4e9e-96aa-288155bb2c5d",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A legendary American musician, producer, and technological innovator known for his diverse solo career and groundbreaking work with Nazz and Utopia.",
   "origin": "Upper Darby, Pennsylvania, U.S.",
   "active_years": "1966–present",
@@ -60,6 +62,12 @@
       "slug": "project:hermit-of-mink-hollow",
       "type": "project",
       "name": "Hermit of Mink Hollow"
+    },
+    {
+      "slug": "project:no-world-order--todd-rundgren",
+      "type": "project",
+      "name": "No World Order",
+      "artist": "Todd Rundgren"
     }
   ],
   "notable_tracks": [
@@ -83,5 +91,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

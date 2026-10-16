@@ -62,6 +62,11 @@
       "slug": "artist:karl-blau",
       "type": "artist",
       "name": "Karl Blau"
+    },
+    {
+      "slug": "artist:the-vaselines",
+      "type": "artist",
+      "name": "The Vaselines"
     }
   ],
   "notable_releases": [

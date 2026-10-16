@@ -24,7 +24,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "c64bbb9f-1acb-40fa-abb3-2ca0246bdee1",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Peter Kremeier, better known by his alias Losoul, is a pivotal figure in the German electronic music scene, primarily associated with the influential Frankfurt label Playhouse.",
   "genres": [
     {
@@ -75,5 +77,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

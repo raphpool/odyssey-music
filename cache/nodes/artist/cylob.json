@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:40:58.104Z",
+  "mbid": "2256228e-8253-45ad-974e-39ae914c5586",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Cylob is an electronic music producer from the UK. Active since 1993, he has released 17 singles and 15 albums since then, on the labels Rephlex, Breakin' Records, Power Vacuum and his own Cylob Industries imprint.",
   "origin": "UK",
   "active_years": "1993-present",
@@ -60,14 +62,15 @@
   ],
   "discography": [
     {
-      "slug": "project:cylobian-sunset",
+      "slug": "project:cylobian-sunset--cylob",
       "type": "project",
       "name": "Cylobian Sunset"
     },
     {
-      "slug": "project:a-wrenched-virile-lore",
+      "slug": "project:a-wrenched-virile-lore--cylob",
       "type": "project",
-      "name": "A Wrenched Virile Lore"
+      "name": "A Wrenched Virile Lore",
+      "artist": "Cylob"
     }
   ],
   "notable_tracks": [
@@ -98,5 +101,6 @@
   ],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

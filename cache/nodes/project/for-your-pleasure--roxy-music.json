@@ -1,0 +1,85 @@
+{
+  "slug": "project:for-your-pleasure--roxy-music",
+  "name": "For Your Pleasure",
+  "editorial_article": "For Your Pleasure, the second studio album by the English art-rock pioneers Roxy Music, stands as a defining masterwork of the early 1970s glam rock era. Released on March 23, 1973, by Island Records, the project marked a pivotal moment in the band's history, serving as the final collaboration between frontman Bryan Ferry and the visionary electronic experimentalist Brian Eno. Recorded at London’s AIR Studios, the album refined the frenetic, avant-garde energy of their self-titled 1972 debut into a more concentrated, sophisticated, and menacing sonic landscape. With production assistance from Chris Thomas, the band created a dense, atmospheric sound that bridged the gap between retro-pop sensibilities and futuristic electronic manipulation.\\n\\nThematically, For Your Pleasure explores the intersection of art-school intellectualism, modern artifice, and dystopian longing. Tracks such as \"In Every Dream Home a Heartache\"—an eerie, slow-burning ballad about alienation centered on a blow-up doll—perfectly exemplify the tension between Ferry's romantic crooning and the band's innovative approach to studio artifice. The album’s production utilizes tape loops, phasing, and processed instrumentation to build a sound world that feels both glamorous and claustrophobic. Commercially and critically successful, the album peaked at number four on the UK charts and remains widely regarded as one of the most influential records in the development of art rock, foreshadowing the path for countless post-punk and electronic artists to come. The iconic cover art, featuring model Amanda Lear with a black panther, remains one of the most celebrated images in music history, encapsulating the album's allure of danger and high-fashion decadence.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/For_Your_Pleasure",
+      "title": "For Your Pleasure - Wikipedia"
+    },
+    {
+      "url": "https://www.roxymusic.co.uk/releases/for-your-pleasure/",
+      "title": "For Your Pleasure - Roxy Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:38:27.599Z",
+  "mbid": "72fd9993-17b8-3402-9f8d-c39cb3d2c27e",
+  "type": "project",
+  "editorial_pitch": "A landmark of art rock and glam, Roxy Music's second album remains a masterclass in mood, texture, and studio experimentation, marking the high-water mark of the original Bryan Ferry-Brian Eno lineup.",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/2/27/Roxy_Music_-_For_Your_Pleasure.png",
+  "year": "1973",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:roxy-music",
+      "type": "artist",
+      "name": "Roxy Music",
+      "mbid": "331ce348-1b08-40b9-8ed7-0763b92bd003"
+    }
+  ],
+  "label": {
+    "slug": "label:island-records",
+    "type": "label",
+    "name": "Island Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art Rock",
+      "qid": "Q217467"
+    },
+    {
+      "slug": "genre:glam-rock",
+      "type": "genre",
+      "name": "Glam Rock",
+      "qid": "Q76092"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:do-the-strand--roxy-music",
+      "type": "track",
+      "name": "Do the Strand"
+    },
+    {
+      "slug": "track:in-every-dream-home-a-heartache--roxy-music",
+      "type": "track",
+      "name": "In Every Dream Home a Heartache"
+    },
+    {
+      "slug": "track:for-your-pleasure--roxy-music",
+      "type": "track",
+      "name": "For Your Pleasure"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:chris-thomas",
+      "type": "artist",
+      "name": "Chris Thomas"
+    },
+    {
+      "slug": "artist:john-anthony",
+      "type": "artist",
+      "name": "John Anthony"
+    },
+    {
+      "slug": "artist:roxy-music",
+      "type": "artist",
+      "name": "Roxy Music"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

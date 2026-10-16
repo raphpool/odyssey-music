@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:35:39.581Z",
+  "mbid": "ad957b43-9dc0-42e1-940c-19b21ec77f3a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Pole is the influential creative alias of German electronic producer, musician, and mastering engineer Stefan Betke.",
   "origin": "Düsseldorf, Germany",
   "genres": [
@@ -34,6 +36,17 @@
       "type": "genre",
       "name": "Minimal techno",
       "qid": "Q1430587"
+    },
+    {
+      "slug": "genre:dubtronic",
+      "type": "genre",
+      "name": "Dubtronic"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "labels": [
@@ -51,6 +64,11 @@
       "slug": "label:matador-records",
       "type": "label",
       "name": "Matador Records"
+    },
+    {
+      "slug": "label:pole",
+      "type": "label",
+      "name": "Pole"
     }
   ],
   "discography": [
@@ -75,21 +93,39 @@
       "name": "Fading"
     },
     {
-      "slug": "project:tempus",
+      "slug": "project:tempus--pole",
       "type": "project",
-      "name": "Tempus"
+      "name": "Tempus",
+      "artist": "Pole"
     }
   ],
   "notable_tracks": [
     {
-      "slug": "track:raum",
+      "slug": "track:raum--pole",
       "type": "track",
-      "name": "Raum"
+      "name": "Raum",
+      "artist": "Pole"
     },
     {
       "slug": "track:stechmuck",
       "type": "track",
       "name": "Stechmück"
+    },
+    {
+      "slug": "track:1",
+      "type": "track",
+      "name": "1"
+    },
+    {
+      "slug": "track:2",
+      "type": "track",
+      "name": "2"
+    },
+    {
+      "slug": "track:3--pole",
+      "type": "track",
+      "name": "3",
+      "artist": "Pole"
     }
   ],
   "influences": [],
@@ -102,5 +138,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

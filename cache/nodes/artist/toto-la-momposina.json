@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:01:59.127Z",
+  "mbid": "6904c849-97ab-4bf2-af51-467e8dd98ec9",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A legendary Colombian singer who brought the traditional rhythms of the Caribbean coastline to the international stage through her preservation of Afro-Colombian folk music.",
   "origin": "Talaigua Nuevo, Colombia",
   "active_years": "1964-2022",
@@ -207,5 +209,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

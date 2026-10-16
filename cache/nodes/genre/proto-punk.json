@@ -26,6 +26,7 @@
   },
   "type": "genre",
   "editorial_definition": "A retrospective term for the raw, unconventional rock music of the 1960s and early 1970s that prefigured the themes, aesthetics, and sound of the punk rock movement.",
+  "qid": "Q27190",
   "era": "1960s-1970s",
   "origin": "United States / United Kingdom",
   "parent_genres": [
@@ -105,11 +106,10 @@
       "name": "Fun House"
     },
     {
-      "slug": "project:the-velvet-underground-and-nico",
+      "slug": "project:the-velvet-underground-and-nico--the-velvet-underground",
       "type": "project",
       "name": "The Velvet Underground & Nico"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q27190"
+  "landmark_tracks": []
 }

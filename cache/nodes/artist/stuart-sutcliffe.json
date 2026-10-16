@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:15:01.236Z",
+  "mbid": "49a51491-650e-44b3-8085-2f07ac2986dd",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Stuart Sutcliffe was a Scottish painter and the original bass guitarist for The Beatles during their early years.",
   "origin": "Scotland",
   "active_years": "1960-1961",
@@ -65,5 +67,6 @@
       "type": "artist",
       "name": "The Beatles"
     }
-  ]
+  ],
+  "similar_artists": []
 }

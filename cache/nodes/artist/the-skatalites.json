@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:13:27.223Z",
+  "mbid": "87ac7e25-f278-47a0-b109-5eb131dc96b6",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Pioneering Jamaican ska band formed in 1964, known for backing foundational reggae and rocksteady acts before achieving international acclaim through decades of touring.",
   "origin": "Kingston, Jamaica",
   "active_years": "1964–1965, 1983–present",
@@ -465,5 +467,6 @@
       "type": "artist",
       "name": "Jackie Mittoo"
     }
-  ]
+  ],
+  "similar_artists": []
 }

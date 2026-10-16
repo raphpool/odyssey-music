@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:55:55.160Z",
+  "mbid": "e12903cf-78ff-4d15-8dfa-54985733827f",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "A pioneering West London collective instrumental in the development and popularization of the broken beat genre through the 1990s and 2000s.",
   "origin": "West London",
   "active_years": "1996-present",
@@ -232,5 +234,6 @@
       "type": "artist",
       "name": "Matt Lord"
     }
-  ]
+  ],
+  "similar_artists": []
 }

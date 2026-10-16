@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:25:03.132Z",
+  "mbid": "37186f53-8d72-44e6-81e6-7dfd18223747",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "English electronic producer Simon Posford is a key figure in psychedelic trance, known for his influential work under the Hallucinogen alias and his label, Twisted Records.",
   "origin": "Chobham, Surrey, England",
   "active_years": "1993-present",
@@ -218,5 +220,6 @@
       "type": "artist",
       "name": "Simon Posford"
     }
-  ]
+  ],
+  "similar_artists": []
 }

@@ -1,0 +1,57 @@
+{
+  "slug": "track:not-yet-remembered--brian-eno",
+  "name": "Not Yet Remembered",
+  "editorial_article": "\"Not Yet Remembered\" is a seminal piece of ambient music, released in 1980 as part of the landmark collaborative album *Ambient 2: The Plateaux of Mirror* by English electronic visionary Brian Eno and American minimalist composer Harold Budd. The track stands as a profound testament to the aesthetic of early ambient music, characterized by sparse, delicate piano melodies that seem to hang suspended in a vast, echoing space. Through the careful application of production techniques, Eno envelopes Budd’s piano performance in a resonant soundstage, blurring the lines between traditional composition and atmospheric sound design.\\n\\nHistorically, the collaboration emerged from Eno’s desire to explore \"the plateaux of mirror\"—a sonic environment that was tranquil, contemplative, and physically evocative. The resulting work, including \"Not Yet Remembered,\" proved to be highly influential in shaping the ambient genre, demonstrating how limited instrumental textures could create profound emotional landscapes. The track does not rely on traditional song structure; instead, it functions as a sonic environment, allowing the listener to drift through its sparse arrangement. It remains a hallmark of the 1980s ambient canon, capturing a moment where experimental electronic processing met the grounded, introspective nature of modern piano minimalism. Its enduring legacy lies in its simplicity, proving that minimal movement can evoke deep, lingering resonances.",
+  "citations": [
+    {
+      "url": "https://readdork.com/track/brian-eno-not-yet-remembered",
+      "title": "Brian Eno – Not Yet Remembered (1980) | Track profile"
+    },
+    {
+      "url": "https://www.reddit.com/r/listentothis/comments/9lpe6/harold_budd_and_brian_eno_not_yet_remembered/",
+      "title": "Harold Budd and Brian Eno - Not Yet Remembered : r/listentothis"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:53:27.552Z",
+  "type": "track",
+  "editorial_teaser": "A hauntingly sparse and ethereal piano-led composition from the classic 1980 ambient collaboration between Brian Eno and Harold Budd.",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/2/29/Ambient2-PlateauxOfMirror.jpg",
+  "year": "1980",
+  "duration": "2:22",
+  "artists": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    },
+    {
+      "slug": "artist:harold-budd",
+      "type": "artist",
+      "name": "Harold Budd"
+    }
+  ],
+  "project": {
+    "slug": "project:ambient-2-the-plateaux-of-mirror",
+    "type": "project",
+    "name": "Ambient 2: The Plateaux Of Mirror"
+  },
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:25:54.303Z",
+  "mbid": "9335fbe8-fab3-4e3e-94b6-f3c306869f8a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Khuli Chana is a pioneering Motswako rapper from Mahikeng, South Africa, known for blending English and Setswana across his influential discography.",
   "origin": "Mmabatho, South Africa",
   "active_years": "1992-present",
@@ -142,5 +144,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:11:49.299Z",
+  "mbid": "4d11ce09-4ee7-4e95-9f54-4e9ca7e25707",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Paris Grey (born Shanna Jackson, November 5, 1965) is a highly influential American singer and songwriter, best recognized as the definitive vocal voice of the pioneering Detroit techno and house act, Inner City. Emerging from a background in gospel music, she brought a soulful, emotive depth to the burgeoning electronic scene of the late 1980s. Her collaboration with producer Kevin Saunderson turned Inner City into a global phenomenon, producing seminal tracks that bridged the gap between underground techno and pop radio success.",
   "origin": "Glencoe, Illinois, USA",
   "genres": [
@@ -59,5 +61,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

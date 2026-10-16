@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:14:39.184Z",
+  "mbid": "3bcff06f-675a-451f-9075-99e8657047e8",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Kieran Hebden, known professionally as Four Tet, is a highly influential British electronic musician whose career has bridged the gap between post-rock experimentation, folktronica, and modern dance music.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Four_Tet_2004-04-04_%28cropped%29.jpg/250px-Four_Tet_2004-04-04_%28cropped%29.jpg",
   "origin": "Putney, London, England",
@@ -98,5 +100,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

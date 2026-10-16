@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:13:39.908Z",
+  "mbid": "07eb40a2-2914-439c-a01d-15a685b84ddf",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Specials were a seminal English band that defined the 2 tone ska revival movement through a combination of social activism, political lyricism, and rhythmic dance music.",
   "origin": "Coventry, England",
   "active_years": "1977–2022",
@@ -462,5 +464,6 @@
       "type": "artist",
       "name": "Roddy Radiation"
     }
-  ]
+  ],
+  "similar_artists": []
 }

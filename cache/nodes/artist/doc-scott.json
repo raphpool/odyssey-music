@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:43:41.652Z",
+  "mbid": "0c9a96fb-12e7-4ba1-bdc6-c2068c15abeb",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Foundational British drum and bass DJ and producer, best known for his work in the 1990s and his 'King of the Rollers' production style.",
   "origin": "Coventry, England",
   "active_years": "1989-present",
@@ -82,5 +84,6 @@
       "name": "Nasty Habits"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

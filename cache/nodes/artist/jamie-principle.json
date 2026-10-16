@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:14:09.995Z",
+  "mbid": "500df185-4a22-40a5-baf6-bdcabab5ed22",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A Chicago house originator and songwriter who fused electronic pop sensibilities with the raw, synthetic energy of the city's early dance floors.",
   "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000808155/400/Sl4whlz86YpaNH1pCaNMe1WnbEN5fCjifro6xhIBuB4=.jpg",
   "origin": "Chicago, Illinois",
@@ -60,7 +62,7 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:your-love",
+      "slug": "track:your-love--frankie-knuckles",
       "type": "track",
       "name": "Your Love"
     },
@@ -68,6 +70,12 @@
       "slug": "track:baby-wants-to-ride",
       "type": "track",
       "name": "Baby Wants to Ride"
+    },
+    {
+      "slug": "track:baby-wants-to-ride--frankie-knuckles",
+      "type": "track",
+      "name": "Baby Wants to Ride",
+      "artist": "Frankie Knuckles"
     }
   ],
   "influences": [],
@@ -96,5 +104,6 @@
       "name": "Byron Walton"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:12:16.226Z",
+  "mbid": "3193bfb8-d19f-415d-8791-d00ea71a311c",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Wizard is a prolific independent artist based in San Antonio, Texas, known for an expansive and eclectic discography that defies easy categorization.",
   "photo_url": "https://f4.bcbits.com/img/0034592010_10.jpg",
   "origin": "San Antonio, Texas",
@@ -78,5 +80,6 @@
       "name": "Jeff Mills"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

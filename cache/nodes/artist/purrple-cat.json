@@ -21,7 +21,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:24:33.272Z",
+  "mbid": "553d1b5f-7cb6-4df7-8a69-e78b4bc4f7a5",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Purrple Cat is the musical project of Los Angeles-based producer and animator Emma Wilson, known for her prolific output of lo-fi hip hop.",
   "origin": "Los Angeles, USA",
   "active_years": "2018-present",
@@ -525,5 +527,6 @@
       "type": "artist",
       "name": "Emma Wilson"
     }
-  ]
+  ],
+  "similar_artists": []
 }

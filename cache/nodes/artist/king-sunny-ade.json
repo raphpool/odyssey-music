@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:54:43.882Z",
+  "mbid": "3e110caa-e9e8-4c33-98dc-ebbf0c6d2494",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Chief Sunday Adeniyi Adegeye, professionally known as King Sunny Adé, is a towering figure in Nigerian music, widely credited as the king of jùjú.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/King_Sunny_Ade.jpg/250px-King_Sunny_Ade.jpg",
   "origin": "Ondo, Nigeria",
@@ -83,5 +85,6 @@
   ],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

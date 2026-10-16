@@ -1,0 +1,56 @@
+{
+  "slug": "track:pulse-x--youngstar",
+  "name": "Pulse X",
+  "editorial_article": "\"Pulse X\" by the producer Youngstar (of the crew Musical Mob) is widely considered the foundational \"year zero\" document of the grime genre. First released on 12-inch vinyl in early 2002, the track served as a radical departure from the UK garage and 2-step sounds that dominated London’s underground at the time. With its aggressive, stripped-back minimalism—built on a recurring 16-bar loop that alternates between 2-step patterns and a dry, brutalist kick-and-snare rhythm—the track created essential empty space that allowed MCs to command the spotlight. Unlike the dense, vocal-heavy garage productions that preceded it, \"Pulse X\" provided a clean, skeletal canvas that would soon define the MC-led culture of grime raves and pirate radio. Its impact on the evolution of London electronic music cannot be overstated, influencing a decade of producers and remaining a seminal anthem in the scene. Often cited by peers like Bok Bok as a masterpiece of \"simplistic, brutalist genius,\" the track successfully shifted the sonic center of gravity for UK underground dance music, leaving a lasting legacy that continues to resonate through bass music and grime’s new waves.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Pulse_X",
+      "title": "Pulse X - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/master/429754-Musical-Mob-Pulse-X?srsltid=AfmBOooTLidb-aPJf6HeGux4LyaBegEoK_VYpdXSvUlhKFUjmJObJLJ2",
+      "title": "Musical Mob – Pulse X | Releases"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:15:09.915Z",
+  "type": "track",
+  "editorial_teaser": "\"Pulse X\" by the producer Youngstar (of the crew Musical Mob) is widely considered the foundational \"year zero\" document of the grime genre.",
+  "year": "2002",
+  "artists": [
+    {
+      "slug": "artist:youngstar",
+      "type": "artist",
+      "name": "Youngstar"
+    }
+  ],
+  "project": {
+    "slug": "project:pulse-x-ep",
+    "type": "project",
+    "name": "Pulse X EP"
+  },
+  "genres": [
+    {
+      "slug": "genre:grime",
+      "type": "genre",
+      "name": "Grime",
+      "qid": "Q1166726"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK garage",
+      "qid": "Q1165777"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:youngstar",
+      "type": "artist",
+      "name": "Youngstar"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

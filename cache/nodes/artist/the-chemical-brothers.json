@@ -32,7 +32,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "1946a82a-f927-40c2-8235-38d64f50d043",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Chemical Brothers are an influential English electronic music duo who pioneered the big beat genre, bridging the gap between underground rave culture and global pop success through their signature fusion of breakbeats, acid house, and neo-psychedelia.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/The_Chemical_Brothers_performing_in_Barcelona%2C_Spain_%282007%29.jpg/960px-The_Chemical_Brothers_performing_in_Barcelona%2C_Spain_%282007%29.jpg",
   "origin": "Manchester, England",
@@ -151,5 +153,6 @@
       "type": "artist",
       "name": "Tom Rowlands"
     }
-  ]
+  ],
+  "similar_artists": []
 }

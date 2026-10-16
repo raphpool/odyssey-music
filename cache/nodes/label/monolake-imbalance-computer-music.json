@@ -47,11 +47,16 @@
       "slug": "artist:robert-henke",
       "type": "artist",
       "name": "Robert Henke"
+    },
+    {
+      "slug": "artist:torsten-profrock",
+      "type": "artist",
+      "name": "Torsten Pröfrock"
     }
   ],
   "notable_releases": [
     {
-      "slug": "project:hongkong",
+      "slug": "project:hongkong--monolake",
       "type": "project",
       "name": "Hongkong"
     },

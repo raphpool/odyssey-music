@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-19T08:39:59.602Z",
+  "mbid": "bba7d3bb-3dee-4753-b435-862d052868e0",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pioneering figure in the Spanish electronic scene, Chimo Bayo rose to prominence in the 1990s as a producer and DJ central to the Ruta Destroy movement.",
   "origin": "Valencia, Spain",
   "active_years": "1987-present",
@@ -135,5 +137,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

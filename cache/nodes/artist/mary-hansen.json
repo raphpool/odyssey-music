@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "5488ad16-f1df-48af-9835-36fde3fc7c53",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Mary Therese Hansen (1966–2002) was an influential Australian-born musician, best known as the charismatic guitarist and vocalist for the seminal art-pop band Stereolab.",
   "origin": "Maryborough, Australia",
   "genres": [
@@ -70,7 +72,7 @@
   "influenced": [],
   "collaborators": [
     {
-      "slug": "artist:l-titia-sadier",
+      "slug": "artist:laetitia-sadier",
       "type": "artist",
       "name": "Lætitia Sadier"
     },
@@ -102,5 +104,6 @@
       "type": "artist",
       "name": "Stereolab"
     }
-  ]
+  ],
+  "similar_artists": []
 }

@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "028e1863-cab4-4a3d-9dd9-91c682c91005",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Lonely Island is an American comedy music trio founded in Berkeley, California, known for their parody songs and SNL digital shorts.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/The_Lonely_Island.jpg/500px-The_Lonely_Island.jpg",
   "origin": "Berkeley, California, U.S.",
@@ -117,5 +119,6 @@
       "type": "artist",
       "name": "Jorma Taccone"
     }
-  ]
+  ],
+  "similar_artists": []
 }

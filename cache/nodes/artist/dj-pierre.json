@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:12:42.964Z",
+  "mbid": "bc5d318a-096a-4bc3-8a2e-742905c0036b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Nathaniel Pierre Jones, known globally as DJ Pierre, is a pivotal architect of modern electronic dance music. Born in Chicago, he rose to prominence in the mid-1980s as a founding member of the seminal group Phuture. Alongside collaborators Earl \"Spanky\" Smith and Herb Jackson, Pierre engaged in groundbreaking experiments with the Roland TB-303 bass synthesizer, inadvertently birthing the 'acid house' genre. Their 1987 anthem, \"Acid Tracks,\" originally titled \"In Your Mind\" and championed by the legendary DJ Ron Hardy at his Muzic Box club, stands as the foundation of the acid sound—characterized by the machine's squelching, resonant, and hypnotic filter sweeps. Beyond his instrumental role in acid house, Pierre's career expanded into the 1990s as a key producer and A&R force at Strictly Rhythm Records in New York. He became a polymath of the dance floor, blending house, techno, and soul through projects like Photon Inc., Pierre's Pfantasy Club, and his Afro Acid series. His influence remains foundational, recognized by peers and industry institutions like the BBC's Essential Mix Hall of Fame. His commitment to the 'Jack' and the 'Acid' ethos has sustained his relevance across decades, cementing his status as a legendary Chicago house pioneer whose contributions continue to echo through contemporary club culture. He has remained an active touring DJ and prolific producer throughout his career, often collaborating with both legends and modern electronic acts. His enduring dedication to the craft has secured his legacy as a vital figure in the evolution of global dance music.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/1/19/Dj-pierre-cropped.jpg",
   "origin": "Chicago, Illinois, USA",
@@ -103,5 +105,6 @@
       "type": "artist",
       "name": "Phuture"
     }
-  ]
+  ],
+  "similar_artists": []
 }

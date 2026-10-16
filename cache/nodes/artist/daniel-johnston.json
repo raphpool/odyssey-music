@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:50:03.854Z",
+  "mbid": "8a7ca8b0-d23c-4eff-8fe9-6220ba5c9c76",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Daniel Johnston was an influential American singer-songwriter and visual artist, widely regarded as a pioneer of the lo-fi and outsider music scenes. Known for his raw, intimate cassette recordings and deeply personal songwriting, his legacy reached global cult status in the 1990s, notably championed by artists like Kurt Cobain.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Daniel_Johnston_and_British_Sea_Power_%286935765808%29_%28cropped%29.jpg/500px-Daniel_Johnston_and_British_Sea_Power_%286935765808%29_%28cropped%29.jpg",
   "origin": "New Cumberland, West Virginia, U.S.",
@@ -109,5 +111,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

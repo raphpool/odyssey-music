@@ -1,0 +1,59 @@
+{
+  "slug": "track:crying-in-your-face--aphex-twin",
+  "name": "Crying in Your Face",
+  "editorial_article": "\"Crying in Your Face\" is a seminal electronic track by Richard D. James, operating under his AFX moniker, originally released as the opening cut of the fourth installment in his acclaimed *Analord* series in 2005. The track later saw wider distribution on the 2006 compilation album *Chosen Lords*. As part of the *Analord* project, which was notable for its dedication to analog synthesis and vintage Roland equipment, \"Crying in Your Face\" serves as a masterclass in textures and repetitive, hypnotic motifs. \\n\\nMusically, the track is defined by its stuttering, syncopated acid-techno pulse and a distinct vocal sample—\"My boyfriend was crying in New York\"—that repeats with a mechanical, obsessive quality. This repetition strips the vocal of its initial narrative weight, transforming it into just another rhythmic layer within the dense, hardware-driven arrangement. The production showcases James's signature ability to balance aggressive, squelching low-end frequencies with delicate, almost fragile melodic glimmers. Its inclusion in the *Analord* series solidified its place in the canon of 2000s IDM and acid-techno, representing a pivotal moment where analog hardware purism collided with avant-garde composition. The track remains a cult favorite for its technical precision and its eerie, lingering emotional resonance.",
+  "citations": [
+    {
+      "url": "https://genius.com/Aphex-twin-crying-in-your-face-lyrics",
+      "title": "Aphex Twin – Crying In Your Face Lyrics | Genius Lyrics"
+    },
+    {
+      "url": "https://soundcloud.com/user21041984001/crying-in-your-face-1",
+      "title": "Crying In Your Face - Analord 04 / A1 | SoundCloud"
+    },
+    {
+      "url": "https://www.reddit.com/r/aphextwin/comments/wnbqk9/daily_song_discussion_230_crying_in_your_face/",
+      "title": "Daily Song Discussion #230 Crying In Your Face : r/aphextwin - Reddit"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:04:17.994Z",
+  "type": "track",
+  "editorial_teaser": "\"Crying in Your Face\" is a seminal electronic track by Richard D.",
+  "artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "project": {
+    "slug": "project:analord-04",
+    "type": "project",
+    "name": "Analord 04"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:acid-techno",
+      "type": "genre",
+      "name": "Acid Techno",
+      "qid": "Q341395"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

@@ -67,16 +67,31 @@
       "slug": "artist:tangerine-dream",
       "type": "artist",
       "name": "Tangerine Dream"
+    },
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze"
+    },
+    {
+      "slug": "artist:manuel-gottsching",
+      "type": "artist",
+      "name": "Manuel Göttsching"
+    },
+    {
+      "slug": "artist:paris-grey",
+      "type": "artist",
+      "name": "Paris Grey"
     }
   ],
   "notable_releases": [
     {
-      "slug": "project:tubular-bells",
+      "slug": "project:tubular-bells--mike-oldfield",
       "type": "project",
       "name": "Tubular Bells"
     },
     {
-      "slug": "project:never-mind-the-bollocks-here-s-the-sex-pistols",
+      "slug": "project:never-mind-the-bollocks-here-s-the-sex-pistols--sex-pistols",
       "type": "project",
       "name": "Never Mind the Bollocks, Here's the Sex Pistols"
     },
@@ -84,6 +99,12 @@
       "slug": "project:dare",
       "type": "project",
       "name": "Dare"
+    },
+    {
+      "slug": "project:phaedra--tangerine-dream",
+      "type": "project",
+      "name": "Phaedra",
+      "artist": "Tangerine Dream"
     }
   ]
 }

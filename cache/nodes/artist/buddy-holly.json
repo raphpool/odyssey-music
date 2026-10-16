@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:15:08.801Z",
+  "mbid": "d352f5dd-3023-4565-a7bb-52396bf8821d",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Buddy Holly was a pivotal rock and roll pioneer whose brief but prolific career in the late 1950s left an indelible mark on popular music.",
   "origin": "United States",
   "active_years": "1954-1959",
@@ -99,5 +101,6 @@
       "type": "artist",
       "name": "The Crickets"
     }
-  ]
+  ],
+  "similar_artists": []
 }

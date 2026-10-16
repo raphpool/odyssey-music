@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:25:18.236Z",
+  "mbid": "9118f524-be76-4eaf-875c-ccf15e2a2ad6",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Chicago-born rapper and producer credited with spearheading the drill music movement in the early 2010s.",
   "origin": "Chicago, Illinois, U.S.",
   "active_years": "2008-present",
@@ -730,5 +732,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

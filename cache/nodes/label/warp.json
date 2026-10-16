@@ -84,6 +84,11 @@
       "slug": "artist:lfo",
       "type": "artist",
       "name": "LFO"
+    },
+    {
+      "slug": "artist:karl-hyde",
+      "type": "artist",
+      "name": "Karl Hyde"
     }
   ],
   "notable_releases": [
@@ -98,9 +103,33 @@
       "name": "Selected Ambient Works 85-92"
     },
     {
-      "slug": "project:music-has-the-right-to-children",
+      "slug": "project:music-has-the-right-to-children--boards-of-canada",
       "type": "project",
       "name": "Music Has the Right to Children"
+    },
+    {
+      "slug": "project:amber--autechre",
+      "type": "project",
+      "name": "Amber",
+      "artist": "Autechre"
+    },
+    {
+      "slug": "project:bytes--the-black-dog",
+      "type": "project",
+      "name": "Bytes",
+      "artist": "The Black Dog"
+    },
+    {
+      "slug": "project:hard-normal-daddy--squarepusher",
+      "type": "project",
+      "name": "Hard Normal Daddy",
+      "artist": "Squarepusher"
+    },
+    {
+      "slug": "project:surfing-on-sine-waves--polygon-window",
+      "type": "project",
+      "name": "Surfing on Sine Waves",
+      "artist": "Polygon Window"
     }
   ]
 }

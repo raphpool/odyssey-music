@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:03:55.527Z",
+  "mbid": "e280268a-a5ab-4bb0-be4d-ec470ca59131",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An Argentine virtuoso who transformed tango into a sophisticated, jazz-inflected global art form known as nuevo tango.",
   "origin": "Mar del Plata, Argentina",
   "active_years": "1933–1990",
@@ -131,5 +133,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

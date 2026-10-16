@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:17:55.019Z",
+  "mbid": "33696d30-adfd-4bd9-b130-0177b5e494e3",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Cem Adrian is a multi-talented Turkish singer-songwriter, musician, and record producer known for his expansive vocal range and genre-defying approach that blends alternative rock, electronic, and jazz elements.",
   "origin": "Edirne, Turkey",
   "genres": [
@@ -51,19 +53,27 @@
   "discography": [],
   "notable_tracks": [
     {
-      "slug": "track:yaln-zl-k",
+      "slug": "track:yalnizlik--cem-adrian",
       "type": "track",
-      "name": "Yalnızlık"
+      "name": "Yalnızlık",
+      "artist": "Cem Adrian"
     },
     {
       "slug": "track:sessizce",
       "type": "track",
       "name": "Sessizce"
+    },
+    {
+      "slug": "track:simdi--track-by-gokhan-k-rdar-and-cem-adrian",
+      "type": "track",
+      "name": "Şimdi",
+      "artist": "Gökhan Kırdar"
     }
   ],
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

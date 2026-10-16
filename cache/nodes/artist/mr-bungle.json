@@ -32,7 +32,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "277e21a9-2d64-452d-96c4-2d23a7af5891",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Mr.",
   "genres": [],
   "labels": [],
@@ -42,5 +44,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:58:36.524Z",
+  "mbid": "fe404dd9-09b2-4ac8-a0e5-8da1c4027061",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "A seminal Berlin-based band that pioneered digital hardcore, blending punk ethos with abrasive industrial-techno beats to fuel radical political activism.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Atari_Teenage_Riot_2010_02.jpg/500px-Atari_Teenage_Riot_2010_02.jpg",
   "origin": "Berlin, Germany",
@@ -50,7 +52,14 @@
       "name": "Grand Royal"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:60-second-wipe-out--atari-teenage-riot",
+      "type": "project",
+      "name": "60 Second Wipe Out",
+      "artist": "Atari Teenage Riot"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:revolution-action",
@@ -99,5 +108,6 @@
       "type": "artist",
       "name": "Carl Crack"
     }
-  ]
+  ],
+  "similar_artists": []
 }

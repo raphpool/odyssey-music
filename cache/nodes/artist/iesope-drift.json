@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:07:39.010Z",
+  "mbid": "c2384629-3aaf-49bd-896c-f2ef331cef0f",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "\"Iesope\" (often associated with the project Iesope Drift) stands as a testament to the distinct, claustrophobic, and mechanical aesthetic of late 90s industrial techno emerging from the German underground.",
   "origin": "Germany",
   "genres": [
@@ -73,5 +75,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

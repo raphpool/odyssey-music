@@ -66,16 +66,46 @@
       "slug": "artist:fluxion",
       "type": "artist",
       "name": "Fluxion"
+    },
+    {
+      "slug": "artist:andy-mellwig",
+      "type": "artist",
+      "name": "Andy Mellwig"
+    },
+    {
+      "slug": "artist:basic-channel",
+      "type": "artist",
+      "name": "Basic Channel"
+    },
+    {
+      "slug": "artist:mark-ernestus",
+      "type": "artist",
+      "name": "Mark Ernestus"
+    },
+    {
+      "slug": "artist:moritz-von-oswald",
+      "type": "artist",
+      "name": "Moritz von Oswald"
+    },
+    {
+      "slug": "artist:torsten-profrock",
+      "type": "artist",
+      "name": "Torsten Pröfrock"
+    },
+    {
+      "slug": "artist:vladislav-delay",
+      "type": "artist",
+      "name": "Vladislav Delay"
     }
   ],
   "notable_releases": [
     {
-      "slug": "project:biokinetics",
+      "slug": "project:biokinetics--porter-ricks",
       "type": "project",
       "name": "Biokinetics"
     },
     {
-      "slug": "project:hongkong",
+      "slug": "project:hongkong--monolake",
       "type": "project",
       "name": "Hongkong"
     },
@@ -83,6 +113,12 @@
       "slug": "project:decay-product",
       "type": "project",
       "name": "Decay Product"
+    },
+    {
+      "slug": "project:multila--vladislav-delay",
+      "type": "project",
+      "name": "Multila",
+      "artist": "Vladislav Delay"
     }
   ]
 }

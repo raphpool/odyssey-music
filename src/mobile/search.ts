@@ -58,11 +58,10 @@ export function parseMobileSearchRequest(params: URLSearchParams): MobileSearchR
 }
 
 export function createMobileSearch(dependencies: MobileSearchDependencies): MobileSearch {
-	let index: Promise<CacheIndex> | null = null;
-	const getCacheIndex = (): Promise<CacheIndex> => {
-		if (!index) index = dependencies.buildIndex();
-		return index;
-	};
+	// No local memo (TRA-548, 2026-10-15): the caller's buildIndex is the shared holder's get() (server.ts),
+	// which already shares one build, drops it on invalidate() and never caches a failed build. A second
+	// memo here served the pre-write index until restart and froze a rejected build forever.
+	const getCacheIndex = (): Promise<CacheIndex> => dependencies.buildIndex();
 	const catalogIndex: CatalogIndex = {
 		async search(query, limit) {
 			return callCatalog(() => dependencies.catalogIndex.search(query, limit));
@@ -87,7 +86,6 @@ export function createMobileSearch(dependencies: MobileSearchDependencies): Mobi
 			return deduplicate(await searchService(q, type, request.limit));
 		},
 		invalidateIndex(): void {
-			index = null;
 			dependencies.invalidateCacheIndex?.();
 		},
 	};

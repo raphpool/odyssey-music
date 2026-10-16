@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:12:59.305Z",
+  "mbid": "f1090a95-baf7-4870-966a-398c1ee9dc4f",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An influential Italian DJ and producer, Daniele Baldelli is celebrated as a founding father of the Cosmic Disco genre.",
   "origin": "Italy",
   "active_years": "1969-present",
@@ -221,6 +223,12 @@
       "mbid": "ce1a142e-b4af-466a-9f9a-30619f001609",
       "year": "2005",
       "releaseType": "album"
+    },
+    {
+      "slug": "project:cosmic-the-original--daniele-baldelli",
+      "type": "project",
+      "name": "Cosmic - The Original",
+      "artist": "Daniele Baldelli"
     }
   ],
   "notable_tracks": [
@@ -244,5 +252,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

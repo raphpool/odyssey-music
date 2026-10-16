@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:15:35.713Z",
+  "mbid": "41525655-c37e-47a0-afc4-2388fb7548d7",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Sorrow is a Bristol-based, Birmingham-born electronic producer who creates evocative, ambient-infused garage and dubstep. His melancholic, bass-heavy sound has made him a staple in the UK bass scene since his debut in 2011.",
   "origin": "Bristol, UK",
   "genres": [
@@ -63,5 +65,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

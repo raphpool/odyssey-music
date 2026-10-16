@@ -334,7 +334,16 @@ export function rewritePendingReverses(
 				nextQid !== undefined && typeof edgeRecord.qid === "string" && edgeRecord.qid !== nextQid;
 			return { ...pr, edge: { ...pr.edge, slug: nextSlug, ...(qidChanged ? { qid: nextQid } : {}) } };
 		});
-		result[canonicalKey] = [...(result[canonicalKey] ?? []), ...rewrittenList];
+		// 2026-10-16 (TRA-568): two keys that merge used to concatenate their lists, so an entry both held
+		// (the same reverse edge, recorded once per spelling of the slug) ended up twice under the survivor
+		// and the count of pending entries rose with every merge. Entries the survivor already holds, by
+		// (field, edge.slug), are dropped; a list is never de-duplicated against itself.
+		const held = result[canonicalKey] ?? [];
+		const seen = new Set(held.map((pr) => `${pr.field}\n${pr.edge.slug}`));
+		result[canonicalKey] = [
+			...held,
+			...rewrittenList.filter((pr) => !seen.has(`${pr.field}\n${pr.edge.slug}`)),
+		];
 	}
 	return { result, changed };
 }

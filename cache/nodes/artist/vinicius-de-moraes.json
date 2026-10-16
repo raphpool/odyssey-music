@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:01:40.783Z",
+  "mbid": "1c01cf84-07c7-408a-b5a8-7dae0b1312fc",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A foundational poet and diplomat whose lyrical contributions provided the heartbeat for the bossa nova movement.",
   "origin": "Rio de Janeiro, Brazil",
   "active_years": "1933-1980",
@@ -406,5 +408,6 @@
       "name": "O Poetinha"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

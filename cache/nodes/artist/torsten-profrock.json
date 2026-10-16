@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:09:12.405Z",
+  "mbid": "b6c39371-cca8-4822-8c7d-64372c7e3072",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "German electronic musician and producer, instrumental in the development of Berlin's dub techno sound through labels like Chain Reaction and his work with Monolake. Known for a prolific array of aliases including T++ and Traktor, he is a master of intricate, texture-driven electronic compositions.",
   "origin": "Berlin, Germany",
   "genres": [
@@ -81,5 +83,6 @@
       "type": "artist",
       "name": "Monolake"
     }
-  ]
+  ],
+  "similar_artists": []
 }

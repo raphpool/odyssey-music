@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:19:21.987Z",
+  "mbid": "757ed661-fbad-4e45-b1cd-a6b09f06f54a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A Swedish cloud rap pioneer, Jonatan Håstad has shaped underground hip-hop through his distinctively melancholic sound, Sad Boys collective, and genre-defying solo work.",
   "origin": "Stockholm, Sweden",
   "active_years": "2012-present",
@@ -753,11 +755,6 @@
   ],
   "members": [
     {
-      "slug": "artist:yung-lean",
-      "type": "artist",
-      "name": "Yung Lean"
-    },
-    {
       "slug": "artist:yung-sherman",
       "type": "artist",
       "name": "Yung Sherman"
@@ -767,5 +764,6 @@
       "type": "artist",
       "name": "Yung Gud"
     }
-  ]
+  ],
+  "similar_artists": []
 }

@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:15:32.809Z",
+  "mbid": "d9951785-7906-4daf-9a60-21753bf64aa9",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "A pioneering Norwegian black metal band known for symphonic complexity and progressive elements in their influential 1990s output.",
   "origin": "Notodden, Norway",
   "active_years": "1991-2001, 2005-2007, 2013-2014, 2016-present",
@@ -144,5 +146,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

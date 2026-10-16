@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "c2e32e77-ca58-4211-97b5-7e9eadac2f1d",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Konrad \"Conny\" Plank was the visionary producer and sound engineer whose work redefined the sonic landscape of German experimental music during the 1970s and 80s. Working from his own rural studio near Cologne, he helped synthesize the raw energy of Krautrock into the disciplined textures of electronic and new wave music. As a collaborator, he was instrumental in the success of pioneering artists like Neu!, Kraftwerk, and Cluster, and his studio became a global beacon for forward-thinking artists ranging from Devo and Ultravox to Eurythmics. His approach treated the studio as an instrument, prioritizing experimentation and spatial depth over traditional pop production, cementing his status as a legendary figure in modern music history.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Conny_Plank.jpg",
   "origin": "Hütschenhausen, Germany",
@@ -104,5 +106,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

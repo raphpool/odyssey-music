@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:02:23.998Z",
+  "mbid": "2cf18512-c129-482b-aff1-7430a1a7850b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Héctor Lavoe was a transformative Puerto Rican salsa singer celebrated as 'El Cantante de los Cantantes' for his charismatic vocal style and profound influence on Latin music.",
   "origin": "Ponce, Puerto Rico",
   "active_years": "1965-1992",
@@ -224,5 +226,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

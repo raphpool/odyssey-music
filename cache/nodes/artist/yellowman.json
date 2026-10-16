@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T20:58:00.924Z",
+  "mbid": "870ec051-e50e-4bf9-b704-6098fe0e0297",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pioneering Jamaican dancehall deejay who rose to international prominence in the 1980s with a distinctively direct, rhythmic style.",
   "origin": "Kingston, Jamaica",
   "active_years": "1974-present",
@@ -536,5 +538,6 @@
       "name": "King Yellowman"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

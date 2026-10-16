@@ -16,6 +16,11 @@ afterEach(async () => {
 	await rm(dir, { recursive: true, force: true });
 });
 
+// A path that never exists in the per-test tmp dir. Without it buildGraphFromCache falls back to the
+// repo's real data/slug-redirects.json, so a test asserting on `graph.redirects` fails as soon as a
+// migration fills that table (2026-10-16, TRA-559: 3 tests failed with TRA-483's 463 redirections).
+const absentSlugRedirects = () => join(dir, "absent-slug-redirects.json");
+
 // Shared minimal-genre-node fixture (mirrors the one in test/cache.test.ts, TRA-18).
 function genreNode(overrides: Partial<GenreNode> & Pick<GenreNode, "slug" | "name">): GenreNode {
 	return {
@@ -208,12 +213,15 @@ describe("buildGraphFromCache — genre redirects reach the exported graph (TRA-
 			JSON.stringify({ redirects: { "genre:electronic-music": "genre:electronic" } }),
 			"utf8",
 		);
-		const graph = await buildGraphFromCache(dir, { redirectsPath });
+		const graph = await buildGraphFromCache(dir, { redirectsPath, slugRedirectsPath: absentSlugRedirects() });
 		expect(graph.redirects).toEqual({ "genre:electronic-music": "genre:electronic" });
 	});
 
 	it("leaves redirects undefined when the redirects file is absent", async () => {
-		const graph = await buildGraphFromCache(dir, { redirectsPath: join(dir, "missing.json") });
+		const graph = await buildGraphFromCache(dir, {
+			redirectsPath: join(dir, "missing.json"),
+			slugRedirectsPath: absentSlugRedirects(),
+		});
 		expect(graph.redirects).toBeUndefined();
 	});
 
@@ -421,6 +429,7 @@ describe("buildGraphFromCache — unified genre quarantine policy (TRA-54)", () 
 			quarantineOrphanGenres: true,
 			scrubQuarantinedRefs: true,
 			redirectsPath,
+			slugRedirectsPath: absentSlugRedirects(),
 		});
 		const artist = graph.nodes.find((node) => node.id === "artist:anchor");
 

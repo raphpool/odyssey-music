@@ -52,7 +52,7 @@
   ],
   "discography": [
     {
-      "slug": "project:electro-soma",
+      "slug": "project:electro-soma--b12",
       "type": "project",
       "name": "Electro-Soma"
     },
@@ -62,21 +62,34 @@
       "name": "Time Tourist"
     },
     {
-      "slug": "project:last-days-of-silence",
+      "slug": "project:last-days-of-silence--b12",
       "type": "project",
       "name": "Last Days of Silence"
+    },
+    {
+      "slug": "project:artificial-intelligence",
+      "type": "project",
+      "name": "Artificial Intelligence",
+      "artist": "Aphex Twin"
     }
   ],
   "notable_tracks": [
     {
-      "slug": "track:scriptures",
+      "slug": "track:scriptures--b12",
       "type": "track",
-      "name": "Scriptures"
+      "name": "Scriptures",
+      "artist": "B12"
     },
     {
       "slug": "track:soundtrack-of-space",
       "type": "track",
       "name": "Soundtrack of Space"
+    },
+    {
+      "slug": "track:telefone-529--b12",
+      "type": "track",
+      "name": "Telefone 529",
+      "artist": "B12"
     }
   ],
   "influences": [],
@@ -94,5 +107,6 @@
       "type": "artist",
       "name": "Steve Rutter"
     }
-  ]
+  ],
+  "similar_artists": []
 }

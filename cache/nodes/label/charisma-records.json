@@ -52,11 +52,16 @@
       "slug": "artist:monty-python",
       "type": "artist",
       "name": "Monty Python"
+    },
+    {
+      "slug": "artist:john-anthony",
+      "type": "artist",
+      "name": "John Anthony"
     }
   ],
   "notable_releases": [
     {
-      "slug": "project:pawn-hearts",
+      "slug": "project:pawn-hearts--van-der-graaf-generator",
       "type": "project",
       "name": "Pawn Hearts"
     },
@@ -66,7 +71,7 @@
       "name": "Foxtrot"
     },
     {
-      "slug": "project:nursery-cryme",
+      "slug": "project:nursery-cryme--genesis",
       "type": "project",
       "name": "Nursery Cryme"
     }

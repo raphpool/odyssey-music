@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:36:27.302Z",
   "type": "genre",
   "editorial_definition": "A form of art music employing limited or minimal materials, characterized by repetitive patterns, steady pulses, consonant harmonies, and a non-narrative approach to structure.",
+  "qid": "Q572901",
   "era": "1960s–present",
   "origin": "United States (primarily California and New York City)",
   "parent_genres": [],
@@ -46,12 +47,12 @@
   "key_labels": [],
   "landmark_projects": [
     {
-      "slug": "project:music-for-18-musicians",
+      "slug": "project:music-for-18-musicians--steve-reich",
       "type": "project",
       "name": "Music for 18 Musicians"
     },
     {
-      "slug": "project:in-c",
+      "slug": "project:in-c--terry-riley",
       "type": "project",
       "name": "In C"
     },
@@ -61,6 +62,5 @@
       "name": "Einstein on the Beach"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q572901"
+  "landmark_tracks": []
 }

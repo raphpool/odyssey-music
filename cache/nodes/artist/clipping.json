@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:22:35.913Z",
+  "mbid": "84ca8fa4-7cca-4948-a90a-cb44db29853d",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "An experimental Los Angeles hip-hop trio known for abrasive, noise-influenced production and strict third-person lyricism.",
   "origin": "Los Angeles, California",
   "active_years": "2009-present",
@@ -334,5 +336,6 @@
       "type": "artist",
       "name": "Jonathan Snipes"
     }
-  ]
+  ],
+  "similar_artists": []
 }

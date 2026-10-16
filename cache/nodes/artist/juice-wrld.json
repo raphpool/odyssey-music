@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:21:03.327Z",
+  "mbid": "4e4ebde4-0c56-4dec-844b-6c73adcdd92d",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An influential Chicago rapper and singer who defined the emo rap sound of the late 2010s before his untimely death in 2019.",
   "origin": "Chicago, Illinois, U.S.",
   "active_years": "2015-2019",
@@ -766,5 +768,6 @@
       "name": "JuicetheKidd"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

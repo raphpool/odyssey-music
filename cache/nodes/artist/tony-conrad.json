@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:36:51.957Z",
+  "mbid": "39b56aa8-5d36-49ab-ae5e-c3aa836b6620",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Tony Conrad was a seminal figure in American minimalism and drone music, best known for his pioneering use of long-form, just-intonation violin compositions and his influential collaborations with figures like La Monte Young and the group Faust. His work profoundly reshaped concepts of duration and deep listening in contemporary experimental music.",
   "origin": "United States",
   "active_years": "1960–2016",
@@ -40,10 +42,17 @@
       "name": "Table of the Elements"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:four-violins--tony-conrad",
+      "type": "project",
+      "name": "Four Violins",
+      "artist": "Tony Conrad"
+    }
+  ],
   "notable_tracks": [
     {
-      "slug": "track:four-violins",
+      "slug": "track:four-violins--tony-conrad",
       "type": "track",
       "name": "Four Violins"
     }
@@ -58,5 +67,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

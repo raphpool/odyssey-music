@@ -43,11 +43,21 @@
       "slug": "artist:blink-182",
       "type": "artist",
       "name": "Blink-182"
+    },
+    {
+      "slug": "artist:jesse-saunders",
+      "type": "artist",
+      "name": "Jesse Saunders"
+    },
+    {
+      "slug": "artist:mos-def",
+      "type": "artist",
+      "name": "Mos Def"
     }
   ],
   "notable_releases": [
     {
-      "slug": "project:appetite-for-destruction",
+      "slug": "project:appetite-for-destruction--guns-n-roses",
       "type": "project",
       "name": "Appetite for Destruction"
     },

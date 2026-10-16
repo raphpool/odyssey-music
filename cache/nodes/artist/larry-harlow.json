@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:02:38.523Z",
+  "mbid": "da41db71-1e34-46c8-a74c-797811943c4c",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An influential salsa pioneer, pianist, and producer who helped build the Fania label and led the legendary Fania All-Stars.",
   "origin": "New York City, U.S.",
   "active_years": "1960-2020",
@@ -150,5 +152,6 @@
       "name": "Lawrence Ira Kahn"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

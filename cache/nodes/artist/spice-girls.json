@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:55:13.015Z",
+  "mbid": "bf0caafc-2b20-4e07-ab85-87e14ff430ce",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Spice Girls were a seminal British girl group formed in 1994, known for pioneering the 'Girl Power' phenomenon and becoming the best-selling girl group of all time. Defining the 1990s teen pop resurgence, the group achieved massive international success with hits like 'Wannabe' before embarking on successful solo careers and periodic high-profile reunions.",
   "origin": "London, England",
   "genres": [
@@ -80,5 +82,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

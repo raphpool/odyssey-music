@@ -1,5 +1,6 @@
 import type { CacheIndex } from "../cache-index.js";
 import type { CatalogIndex, CatalogResult } from "../musicbrainz.js";
+import { isValidSlug } from "../slug.js";
 import type { NodeType, Slug } from "../types.js";
 
 export interface SearchHit {
@@ -7,6 +8,10 @@ export interface SearchHit {
 	type: NodeType;
 	name: string;
 	subtitle?: string;
+	/** project/track only: first credited artist (structured, not cut from `subtitle`). TRA-547. */
+	artist?: string;
+	/** project/track only: cache slug of that artist, when it is already a canonical `artist:` node. */
+	artist_slug?: Slug;
 	extra?: string;
 	mbid?: string;
 	slug?: Slug;
@@ -16,6 +21,15 @@ export interface SearchResult {
 	q: string;
 	hits: SearchHit[];
 	sources: { cache: number; catalog: number };
+}
+
+/** `artist` / `artist_slug` of a project or track catalog result; nothing for other types. */
+function primaryArtistFields(c: CatalogResult, idx: CacheIndex): Pick<SearchHit, "artist" | "artist_slug"> {
+	if ((c.type !== "project" && c.type !== "track") || !c.artist) return {};
+	const out: Pick<SearchHit, "artist" | "artist_slug"> = { artist: c.artist };
+	const slug = c.artist_mbid ? idx.byMbid(c.artist_mbid) : null;
+	if (slug && slug.startsWith("artist:") && isValidSlug(slug)) out.artist_slug = slug;
+	return out;
 }
 
 export function createSearchService(deps: {
@@ -49,7 +63,15 @@ export function createSearchService(deps: {
 				if (mbidsSeen.has(c.mbid)) continue;
 				const slug = idx.byMbid(c.mbid);
 				if (slug) {
-					out.push({ source: "cache", type: c.type, name: c.name, subtitle: c.subtitle, slug, mbid: c.mbid });
+					out.push({
+						source: "cache",
+						type: c.type,
+						name: c.name,
+						subtitle: c.subtitle,
+						...primaryArtistFields(c, idx),
+						slug,
+						mbid: c.mbid,
+					});
 					mbidsSeen.add(c.mbid);
 					continue;
 				}
@@ -60,6 +82,7 @@ export function createSearchService(deps: {
 					mbid: c.mbid,
 				};
 				if (c.subtitle) hit.subtitle = c.subtitle;
+				Object.assign(hit, primaryArtistFields(c, idx));
 				if (c.extra) hit.extra = c.extra;
 				out.push(hit);
 			}

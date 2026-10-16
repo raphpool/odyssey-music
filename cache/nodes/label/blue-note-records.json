@@ -59,6 +59,16 @@
       "slug": "artist:ike-quebec",
       "type": "artist",
       "name": "Ike Quebec"
+    },
+    {
+      "slug": "artist:sonny-rollins",
+      "type": "artist",
+      "name": "Sonny Rollins"
+    },
+    {
+      "slug": "artist:tony-allen",
+      "type": "artist",
+      "name": "Tony Allen"
     }
   ],
   "notable_releases": [

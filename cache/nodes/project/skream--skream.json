@@ -1,0 +1,77 @@
+{
+  "slug": "project:skream--skream",
+  "name": "Skream!",
+  "editorial_article": "*Skream!*, released in 2006 on the seminal Tempa label, stands as a foundational monument in the evolution of dubstep. Crafted by the Croydon-born producer Oliver Jones—widely known as Skream—the album captured the raw, sub-bass-heavy energy of the South London scene during its most fertile period. While dubstep had its roots in the dark, skeletal garage and grime experiments of the early 2000s, *Skream!* brought a melodic, emotive, and dance-floor-focused sensibility to the genre, cementing the aesthetic that would soon conquer electronic music worldwide.\\n\\nFeaturing iconic tracks such as \"Midnight Request Line,\" the project is defined by its deep, wobbling basslines, sparse percussion, and a signature tension between claustrophobic darkness and melodic accessibility. *Skream!* is often cited by critics and fans alike as one of the definitive documents of the era, showcasing an artist at the height of his creative focus. The album helped transition dubstep from a localized club phenomenon into a global sound, influencing countless producers who followed in the wake of the Croydon collective. Beyond its historical significance, the record remains a compelling, cohesive listening experience that captures a pivotal shift in the landscape of 21st-century electronic production. It is not merely a collection of singles; it is a sonic landscape that perfectly encapsulates the mood of its time.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Skream_discography",
+      "title": "Skream discography - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/artist/189821-Skream?srsltid=AfmBOooJQxL5NrPA68m8dMRP-iOFg9kquBHv4u6ql7wiMATlb-gGnf_V",
+      "title": "Skream Discography: Vinyl, CDs, & More | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:11.134Z",
+  "_metrics": {
+    "input_tokens": 30843,
+    "output_tokens": 1680,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.010231,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 26551,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "mbid": "7422032f-acf9-3d28-b56b-7a273ddd836a",
+  "type": "project",
+  "editorial_pitch": "Released in 2006, Skream!'s debut studio album is a seminal dubstep landmark that helped propel the dark, bass-heavy South London sound into the global consciousness.",
+  "year": "2006",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:skream",
+      "type": "artist",
+      "name": "Skream",
+      "mbid": "fb5ee67e-e31a-40cf-8b06-5f1a0f53529a"
+    }
+  ],
+  "label": {
+    "slug": "label:tempa",
+    "type": "label",
+    "name": "Tempa"
+  },
+  "genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep",
+      "qid": "Q20474"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:dutch-flowerz",
+      "type": "track",
+      "name": "Dutch Flowerz"
+    },
+    {
+      "slug": "track:midnight-request-line",
+      "type": "track",
+      "name": "Midnight Request Line"
+    },
+    {
+      "slug": "track:tapped",
+      "type": "track",
+      "name": "Tapped"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

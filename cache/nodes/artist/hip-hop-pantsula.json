@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:25:59.328Z",
+  "mbid": "36b47aca-c378-4f7f-b4a8-9cb2ccb81dc1",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A seminal South African Motswako rapper known for multilingual lyrics and his instrumental role in bringing the genre to the global mainstream.",
   "origin": "Mafikeng, North West, South Africa",
   "active_years": "1997-2018",
@@ -109,5 +111,6 @@
       "name": "Jabba"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

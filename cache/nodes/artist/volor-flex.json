@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:15:37.018Z",
+  "mbid": "01e65a84-4598-4f2e-8693-28a8b89cddd0",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Volor Flex is the recording alias of Alexander Frolov, an influential Russian electronic music producer hailing from Syktyvkar, Republic of Komi.",
   "genres": [],
   "labels": [],
@@ -23,5 +25,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

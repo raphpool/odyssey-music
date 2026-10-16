@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:39:59.755Z",
+  "mbid": "09292e4d-b7ad-476b-86d9-7806303ef8c3",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "The Tuss is a brief but highly influential electronic music project conceived and produced by the legendary British producer Richard D.",
   "origin": "United Kingdom",
   "genres": [
@@ -45,7 +47,7 @@
   ],
   "discography": [
     {
-      "slug": "project:rushup-edge",
+      "slug": "project:rushup-edge--the-tuss",
       "type": "project",
       "name": "Rushup Edge"
     },
@@ -62,12 +64,12 @@
       "name": "Synthacon 9"
     },
     {
-      "slug": "track:rushup-i-bank-12",
+      "slug": "track:rushup-i-bank-12--the-tuss",
       "type": "track",
       "name": "Rushup I Bank 12"
     },
     {
-      "slug": "track:death-fuck",
+      "slug": "track:death-fuck--the-tuss",
       "type": "track",
       "name": "Death Fuck"
     }
@@ -82,5 +84,6 @@
       "name": "Aphex Twin"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

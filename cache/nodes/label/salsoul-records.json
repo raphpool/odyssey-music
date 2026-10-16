@@ -52,6 +52,11 @@
       "slug": "artist:double-exposure",
       "type": "artist",
       "name": "Double Exposure"
+    },
+    {
+      "slug": "artist:inner-life",
+      "type": "artist",
+      "name": "Inner Life"
     }
   ],
   "notable_releases": [

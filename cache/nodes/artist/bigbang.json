@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:11:35.076Z",
+  "mbid": "ec2bcb77-b9a1-49e2-bfe7-419586bbef48",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "An influential South Korean boy band renowned for their self-produced experimental pop, hip-hop, and R&B sounds.",
   "origin": "Seoul, South Korea",
   "active_years": "2006–2018, 2022–present",
@@ -106,5 +108,6 @@
       "type": "artist",
       "name": "Daesung"
     }
-  ]
+  ],
+  "similar_artists": []
 }

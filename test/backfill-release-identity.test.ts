@@ -291,8 +291,17 @@ function changedKeys(before: Record<string, unknown>, after: Record<string, unkn
 		.sort();
 }
 
+// artistManifestPath defaults to a file inside the tmp root, not the cwd-relative out/artist-identity.json:
+// otherwise a manifest left in out/ by a real migration run changes what these tests resolve (2026-10-16,
+// TRA-559: a "no group is known" test resolved the member through the leftover manifest).
 const run = (options: Partial<Parameters<typeof runBackfill>[0]> = {}) =>
-	runBackfill({ cacheDir: cacheDir(), apply: false, manifestPath, ...options });
+	runBackfill({
+		cacheDir: cacheDir(),
+		apply: false,
+		manifestPath,
+		artistManifestPath: join(root, "out", "artist-identity.json"),
+		...options,
+	});
 
 // --- The four fixtures of the ticket, and the original-script credit ---
 
@@ -515,6 +524,43 @@ describe("project:new-forms", () => {
 		expect(result.manifest.resolved).toEqual({});
 		expect(result.manifest.unresolved.map((u) => u.reason)).toEqual(["ambiguous-candidates"]);
 		expect((await readNode("project:twin-forms")).mbid).toBeUndefined();
+	});
+
+	// TRA-552: the artist's MBID, from the artist manifest, makes his own work direct under any printed
+	// name; the group's work of the same title then makes the title a doubt, not the group's work.
+	it("keeps a title ambiguous when the member's own work is printed under another name", async () => {
+		stubMb([
+			{
+				kind: "release-group",
+				id: RONI_SIZE_2022_RG,
+				title: "Presented Forms",
+				credit: [{ id: RONI_SIZE, name: "Roni Size Presents" }],
+				date: "2022",
+				primaryType: "Album",
+			},
+			{
+				kind: "release-group",
+				id: rg,
+				title: "Presented Forms",
+				credit: [{ id: reprazent, name: "Roni Size / Reprazent" }],
+				date: "1997",
+				primaryType: "Album",
+			},
+		]);
+		await seed(
+			artistNode("artist:roni-size", {
+				name: "Roni Size",
+				discography: [edge("project:presented-forms", "Presented Forms")],
+			}),
+			projectNode("project:presented-forms", "Presented Forms"),
+		);
+		const artistManifestPath = await writeMemberManifest(reprazent);
+
+		const result = await run({ apply: true, artistManifestPath });
+
+		expect(result.manifest.resolved).toEqual({});
+		expect(result.manifest.unresolved.map((u) => u.reason)).toEqual(["ambiguous-candidates"]);
+		expect((await readNode("project:presented-forms")).mbid).toBeUndefined();
 	});
 
 	// TRA-537 (2026-10-15): a member's name alone does not resolve the group's work ("Roni Size" for
@@ -916,7 +962,9 @@ describe("works MusicBrainz cannot single out", () => {
 		expect((await readNode("track:the-model")).mbid).toBe(works[3]?.id);
 	});
 
-	it("takes the earliest release group of a title, not a later EP under a look-alike credit (Windowlicker)", async () => {
+	// TRA-560: release groups of different types are never settled by date. The node's own release_type
+	// picks the type; without it the work is left alone.
+	async function seedWindowlicker(overrides: Record<string, unknown>) {
 		const aphex = mbid();
 		const single = { kind: "release-group" as const, id: mbid(), title: "Windowlicker", date: "1999-03-22" };
 		stubMb([
@@ -933,8 +981,14 @@ describe("works MusicBrainz cannot single out", () => {
 			projectNode("project:windowlicker", "Windowlicker", {
 				year: "1999",
 				artists: [edge("artist:aphex-twin", "Aphex Twin")],
+				...overrides,
 			}),
 		);
+		return { aphex, single };
+	}
+
+	it("takes the release group of the node's own type, not a later EP under a look-alike credit (Windowlicker)", async () => {
+		const { aphex, single } = await seedWindowlicker({ release_type: "single" });
 
 		const result = await run({ apply: true });
 
@@ -942,6 +996,37 @@ describe("works MusicBrainz cannot single out", () => {
 		expect(result.manifest.resolved["project:windowlicker"]?.credit).toEqual([
 			{ mbid: aphex, name: "Aphex Twin" },
 		]);
+	});
+
+	it("leaves a work whose candidates have different types unresolved when the node has no release type", async () => {
+		await seedWindowlicker({});
+
+		const result = await run({ apply: true });
+
+		expect(result.manifest.unresolved.map((u) => u.reason)).toEqual(["ambiguous-candidates"]);
+		expect((await readNode("project:windowlicker")).mbid).toBeUndefined();
+	});
+
+	it("gives an album its own release group, not its older single's (New Heaven)", async () => {
+		const rg = {
+			kind: "release-group" as const,
+			title: "New Heaven",
+			credit: [{ id: mbid(), name: "Inter Arma" }],
+		};
+		const single = { ...rg, id: mbid(), primaryType: "Single", date: "2024-02-27" };
+		const album = { ...rg, id: mbid(), primaryType: "Album", date: "2024-04-26" };
+		stubMb([single, album]);
+		await seed(
+			projectNode("project:new-heaven", "New Heaven", {
+				release_type: "album",
+				artists: [edge("artist:inter-arma", "Inter Arma")],
+			}),
+		);
+
+		const result = await run({ apply: true });
+
+		expect(result.manifest.resolved["project:new-heaven"]?.mbid).toBe(album.id);
+		expect(result.manifest.resolved["project:new-heaven"]?.release_type).toBe("album");
 	});
 
 	it("leaves release groups of one title unresolved when none is strictly the earliest", async () => {
@@ -1551,6 +1636,15 @@ describe("parseCliArgs", () => {
 			artistManifestPath: "a.json",
 			artistManifestRequired: true,
 		});
+	});
+
+	it("accepts the channel's --data-dir and ignores it (TRA-568)", () => {
+		expect(parseCliArgs(["cache", "--apply", "--data-dir", "d"])).toMatchObject({
+			cacheDir: "cache",
+			apply: true,
+		});
+		expect(parseCliArgs(["cache", "--data-dir", "d", "--data-dir", "e"])).toBeNull();
+		expect(parseCliArgs(["cache", "--data-dir"])).toBeNull();
 	});
 
 	it("refuses anything ambiguous", () => {

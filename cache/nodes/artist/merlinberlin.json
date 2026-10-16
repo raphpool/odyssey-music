@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:49:19.710Z",
+  "mbid": "7193287a-75d8-43e9-9a26-74295f2ad147",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "MerlinBerlin is an electronic music producer and DJ based in Washington, D.C., known for her distinct synthesis of glittery, playful melodies and gritty, hypnotic techno rhythms.",
   "photo_url": "https://images.squarespace-cdn.com/content/v1/64c919144b560140f431c080/4fbb917c-61e0-48c6-91dc-a3df0cb0a53f/MB-04.jpg",
   "origin": "Washington, D.C.",
@@ -82,5 +84,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

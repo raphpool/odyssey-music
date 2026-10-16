@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:38:54.760Z",
+  "mbid": "039cafb3-4f3d-44a9-b956-7705323f025b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Vladislav Delay is the primary moniker of Finnish electronic musician and producer Sasu Ripatti (born 1976). A central figure in the experimental electronic scene since the late 1990s, Ripatti is renowned for his mastery of glitch, ambient dub, and deeply textured micro-rhythms. His work under the Vladislav Delay name often explores abrasive, immersive soundscapes, blending organic percussion with digital artifacts to evoke raw, brutal environments. \\n\\nThroughout his prolific career, Ripatti has operated across a wide spectrum of electronic sub-genres, employing various aliases such as Luomo, Sistol, and Uusitalo to distinguish his different musical approaches—moving from the house-inflected sensibilities of Luomo to the more austere, experimental explorations of the Vladislav Delay project. He has been a frequent collaborator with avant-garde electronic institutions and has released seminal works on influential labels such as Chain Reaction, Raster-Noton, and his own imprint. His music remains highly regarded for its physical intensity and technical sophistication, often challenging conventional listening experiences through granular manipulation and complex sonic layering. His influence extends deeply into the fabric of contemporary experimental production, defining an aesthetic that reconciles the warmth of jazz-influenced instrumentation with the cold, precise architecture of digital signal processing.",
   "origin": "Finland",
   "active_years": "1990s - present",
@@ -55,7 +57,7 @@
   ],
   "discography": [
     {
-      "slug": "project:multila",
+      "slug": "project:multila--vladislav-delay",
       "type": "project",
       "name": "Multila"
     },
@@ -68,6 +70,12 @@
       "slug": "project:visa",
       "type": "project",
       "name": "Visa"
+    },
+    {
+      "slug": "project:entain--vladislav-delay",
+      "type": "project",
+      "name": "Entain",
+      "artist": "Vladislav Delay"
     }
   ],
   "notable_tracks": [
@@ -86,5 +94,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

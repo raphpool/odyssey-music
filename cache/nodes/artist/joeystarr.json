@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:30:29.508Z",
+  "mbid": "20c6e313-e93d-4972-a164-403447bbe001",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "JoeyStarr is a legendary French rapper and actor, best known as a co-founder of the iconic hip-hop group Suprême NTM.",
   "origin": "Saint-Denis, France",
   "active_years": "1988-present",
@@ -82,5 +84,6 @@
       "type": "artist",
       "name": "Suprême NTM"
     }
-  ]
+  ],
+  "similar_artists": []
 }

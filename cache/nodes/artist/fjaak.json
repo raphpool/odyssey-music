@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:00:09.071Z",
+  "mbid": "56acaa47-eb2f-43d7-a1f1-19466c550e31",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Berlin electronic duo FJAAK, formerly a trio, are masters of raw, analog-fueled warehouse techno and breakbeat, defined by a distinct DIY ethos and a legendary live performance energy.",
   "photo_url": "https://fastly-s3.allmusic.com/artist/mn0003273124/400/HHPbo6S9fk4SCOv7_63l1ByhM-OFI8zG4l-qVpXXB1I=.jpg",
   "origin": "Berlin, Germany",
@@ -100,5 +102,6 @@
       "type": "artist",
       "name": "Kevin Kozicki"
     }
-  ]
+  ],
+  "similar_artists": []
 }

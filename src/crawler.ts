@@ -262,7 +262,7 @@ export async function crawl(opts: CrawlOptions): Promise<FrontierCrawlResult> {
 	let failed = 0;
 	let reconciled = 0;
 	let reconcileFailed = 0;
-	// `cache.replace` counts each rewritten parent in `cache.stats.written`: not a new node, no budget.
+	// `cache.update` counts each rewritten parent in `cache.stats.written`: not a new node, no budget.
 	const writtenNodes = (): number => cache.stats.written - reconciled;
 	// "Write a node and queue its edges" and "mark a slug resolved and repoint its requesters" never overlap:
 	// a parent is either queued as a requester before the pass reads them, or repointed before its write.
@@ -478,7 +478,7 @@ function repointField(value: unknown, requested: Slug, credit: string, target: C
  * ("project:new-forms--roni-size" -> "...--roni-size-reprazent"); the parent kept the old link, to a node
  * never written or, before scoped slugs, to a homonym's (111 work links measured on 2026-10-14).
  *
- * A parent that vanished or no longer cites the edge is skipped. One that cannot be rewritten (`replace`
+ * A parent that vanished or no longer cites the edge is skipped. One that cannot be rewritten (`update`
  * refuses a legacy non-canonical slug) is counted in `failed`: its edge stays dangling and is reported.
  */
 async function reconcileRequesters(
@@ -494,14 +494,18 @@ async function reconcileRequesters(
 	for (const requester of requesters) {
 		const where = `${requester.slug}.${requester.field}`;
 		try {
-			const parent = await cache.get(requester.slug);
-			const obj = parent as unknown as Record<string, unknown>;
-			const updated = repointField(obj[requester.field], requested, credit, target);
-			if (updated === undefined) {
+			// TRA-535: read, guard and rewrite under the cache's per-node lock, so a concurrent writer of the
+			// parent (reverse edges, JIT materialization) is not overwritten by a stale copy.
+			const written = await cache.update(requester.slug, (parent) => {
+				const obj = parent as unknown as Record<string, unknown>;
+				const updated = repointField(obj[requester.field], requested, credit, target);
+				if (updated === undefined) return null;
+				return { ...obj, [requester.field]: updated } as unknown as NodePayload;
+			});
+			if (!written) {
 				log(`  ~ reconcile skipped: ${where} has no edge to ${requested} credited to "${credit}"`);
 				continue;
 			}
-			await cache.replace({ ...obj, [requester.field]: updated } as unknown as NodePayload);
 			rewritten++;
 			log(`  ~ reconciled ${where}: ${requested} -> ${target.slug}`);
 		} catch (e) {

@@ -32,7 +32,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "76325a9d-6c25-4649-96b1-84e9b99d6b4b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "John Cage (1912–1992) stands as perhaps the most transformative and polarizing figure in 20th-century American avant-garde music.",
   "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000183867/400/y98xtyuYHY9jkNURCr3eK9_M69_UI9rrJSVvWL2-yAg=.jpg",
   "origin": "Los Angeles, CA",
@@ -108,5 +110,6 @@
   ],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

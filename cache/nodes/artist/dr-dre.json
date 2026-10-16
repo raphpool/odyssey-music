@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:18:06.105Z",
+  "mbid": "5f6ab597-f57a-40da-be9e-adad48708203",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An influential producer and rapper who defined West Coast hip-hop through N.W.A and his seminal solo works under Death Row and Aftermath.",
   "origin": "Compton, California, United States",
   "active_years": "1985-present",
@@ -551,5 +553,6 @@
       "type": "artist",
       "name": "N.W.A"
     }
-  ]
+  ],
+  "similar_artists": []
 }

@@ -63,7 +63,7 @@
   ],
   "discography": [
     {
-      "slug": "project:skream",
+      "slug": "project:skream--skream",
       "type": "project",
       "name": "Skream!"
     },
@@ -131,5 +131,6 @@
       "name": "Ollie Jones"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }
