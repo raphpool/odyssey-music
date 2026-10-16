@@ -13,7 +13,7 @@
   "editorial_teaser": "\"The Clan\" is a standout track by jazz trombonist Curtis Fuller, originally released on his 1961 album *Soul Trombone* via the Verve/Impulse!",
   "artists": [],
   "project": {
-    "slug": "project:soul-trombone",
+    "slug": "project:soul-trombone--curtis-fuller",
     "type": "project",
     "name": "Soul Trombone"
   },
@@ -38,6 +38,7 @@
       "name": "George Douglas"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

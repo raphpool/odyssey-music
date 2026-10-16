@@ -32,7 +32,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "7e3b3173-2c1f-42c0-8544-0e6d19bb181f",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A visionary composer and performer, Wendy Carlos is widely regarded as the most influential figure in popularizing the Moog synthesizer through her ground-breaking Baroque electronic adaptations and iconic film scores. She remains a pioneering force in electronic sound design, alternate tunings, and the evolution of the synthesizer as a legitimate, expressive musical instrument.",
   "photo_url": "https://www.wendycarlos.com/photos/indexphoto.jpg",
   "origin": "Rhode Island, USA",
@@ -79,5 +81,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

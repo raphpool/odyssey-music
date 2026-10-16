@@ -21,7 +21,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:21:23.032Z",
+  "mbid": "d0dd58c4-ab66-41c4-9883-4f493ef6653f",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "DJ Screw was a pioneering Houston artist who created the chopped and screwed production technique and founded the Screwed Up Click.",
   "origin": "Houston, Texas",
   "active_years": "1990-2000",
@@ -326,5 +328,6 @@
       "type": "artist",
       "name": "Lil' Keke"
     }
-  ]
+  ],
+  "similar_artists": []
 }

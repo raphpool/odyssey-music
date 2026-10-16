@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:14:12.325Z",
+  "mbid": "97b07d48-eada-45ce-950d-f7140ea2b4f9",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Satoshi Tomiie is a Tokyo-born DJ and producer who became a pivotal figure in the evolution of house music during the late 1980s and 1990s. Initially drawn to keyboards and electronics as a teenager in Japan, Tomiie’s trajectory shifted significantly after he met house pioneer Frankie Knuckles at a Tokyo event. This encounter led him to join the legendary New York-based Def Mix Productions, where he worked alongside Knuckles and David Morales. Tomiie’s early contribution to the scene was monumental, most notably through his collaboration with Knuckles on the 1989 classic \"Tears.\" As a key member of the Def Mix family, he became known for his sophisticated, soulful production style, which helped bridge the gap between traditional house rhythms and more melodic, pop-oriented sensibilities. Beyond his original productions, he became one of the most sought-after remixers of the era, working with high-profile artists ranging from Mariah Carey and Michael Jackson to U2. Throughout the 1990s and beyond, Tomiie maintained a prolific career as both a solo artist and a world-touring DJ, eventually releasing his debut solo album, 'Full Lick,' in 1999. His work has spanned diverse subgenres, from deep house to progressive house, securing his status as a veteran of global club culture. His ability to blend technical precision with emotional depth has kept him an active and respected figure in electronic music for over three decades.",
   "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000836958/400/DI4uC4zmy0Z-WKssawC4VByhM-OFI8zG4l-qVpXXB1I=.jpg",
   "origin": "Tokyo, Japan",
@@ -73,5 +75,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

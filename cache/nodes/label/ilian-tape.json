@@ -82,7 +82,7 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:compro",
+      "slug": "project:compro--skee-mask",
       "type": "project",
       "name": "Compro"
     },
@@ -105,6 +105,12 @@
       "slug": "project:upsurge",
       "type": "project",
       "name": "Upsurge"
+    },
+    {
+      "slug": "project:shred--skee-mask",
+      "type": "project",
+      "name": "Shred",
+      "artist": "Skee Mask"
     }
   ]
 }

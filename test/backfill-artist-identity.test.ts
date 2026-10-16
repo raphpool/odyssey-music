@@ -6,6 +6,7 @@ import {
 	DEFAULT_MANIFEST_PATH,
 	findCollisions,
 	type IdentityManifest,
+	MIGRATION_NAME,
 	onlyAddsSchemaDefaults,
 	parseCliArgs,
 	type ResolvedArtist,
@@ -542,14 +543,22 @@ describe("resolveArtist", () => {
 			expect((await resolveArtist("Partialthree", { origin: "Tokyo, Japan" }))?.mbid).toBe(
 				"bebebebe-0000-4000-8000-000000000f01",
 			);
-			// A second sharer, with fewer words: the first wins a complete pool, not a partial one.
-			const second: Partial<FakeArtist> = { beginArea: "Worth", beginAreaType: "Subdivision" };
-			stubMb(world("Partialfour", { beginArea: "Fort Worth" }, second));
+			// "Worth" is not "Fort Worth" (TRA-533: it used to share the word): the lone sharer wins either pool.
+			const worth: Partial<FakeArtist> = { beginArea: "Worth", beginAreaType: "Subdivision" };
+			stubMb(world("Partialfour", { beginArea: "Fort Worth" }, worth));
 			expect((await resolveArtist("Partialfour", { origin: "Fort Worth, Texas" }))?.mbid).toBe(
 				"bebebebe-0000-4000-8000-000000000f01",
 			);
-			stubMb(world("Partialfive", { beginArea: "Fort Worth" }, second), { count: 600 });
-			expect(await resolveArtist("Partialfive", { origin: "Fort Worth, Texas" })).toBeNull();
+			stubMb(world("Partialfive", { beginArea: "Fort Worth" }, worth), { count: 600 });
+			expect((await resolveArtist("Partialfive", { origin: "Fort Worth, Texas" }))?.mbid).toBe(
+				"bebebebe-0000-4000-8000-000000000f01",
+			);
+			// A second sharer of the same place: a tie on a complete pool, and a refusal on a partial one.
+			const fortWorth: Partial<FakeArtist> = { beginArea: "Fort Worth", beginAreaType: "Subdivision" };
+			stubMb(world("Partialsix", { beginArea: "Fort Worth" }, fortWorth));
+			expect(await resolveArtist("Partialsix", { origin: "Fort Worth, Texas" })).toBeNull();
+			stubMb(world("Partialseven", { beginArea: "Fort Worth" }, fortWorth), { count: 600 });
+			expect(await resolveArtist("Partialseven", { origin: "Fort Worth, Texas" })).toBeNull();
 		});
 
 		it("treats a search answer without a count as unusable", async () => {
@@ -770,6 +779,137 @@ describe("resolveArtist", () => {
 			expect((await resolveArtist("Sydneyish", { origin: "Sydney, Australia" }))?.mbid).toBe(
 				"cecececc-0000-4000-8000-000000000f01",
 			);
+		});
+
+		// TRA-533: places were compared word by word, "new", "north", "south" and "west" removed, so New York
+		// shared "york" with York, the Carolinas shared "carolina" and the Springs shared "springs".
+		describe("compares places by whole segment (TRA-533)", () => {
+			const pair = (prefix: string, name: string, area: string, areaType = "City") => {
+				stubMb([
+					{ id: `${prefix}-0000-4000-8000-000000000a01`, name, area, areaType },
+					{ id: `${prefix}-0000-4000-8000-000000000a02`, name },
+				]);
+				return `${prefix}-0000-4000-8000-000000000a01`;
+			};
+
+			it("does not tie New York to York", async () => {
+				const york = pair("e1e1e1e1", "Yorkish", "York");
+				expect(await resolveArtist("Yorkish", { origin: "New York, USA" })).toBeNull();
+				expect(await resolveArtist("Yorkish", { origin: "New York, New York" })).toBeNull();
+				expect((await resolveArtist("Yorkish", { origin: "York, England" }))?.mbid).toBe(york);
+			});
+
+			it("ties New York to New York, and says so whole in matchedWords", async () => {
+				const ny = pair("e2e2e2e2", "Gothamish", "New York");
+				expect(await resolveArtistDetailed("Gothamish", { origin: "New York, USA" })).toMatchObject({
+					artist: { mbid: ny },
+					matchedWords: ["new york"],
+				});
+			});
+
+			it("does not tie North Carolina to South Carolina", async () => {
+				const north = pair("e3e3e3e3", "Carolinish", "South Carolina", "Subdivision");
+				expect(await resolveArtist("Carolinish", { origin: "Charlotte, North Carolina" })).toBeNull();
+				expect(await resolveArtist("Carolinish", { origin: "North Carolina, USA" })).toBeNull();
+				expect((await resolveArtist("Carolinish", { origin: "South Carolina, USA" }))?.mbid).toBe(north);
+			});
+
+			it("does not tie Altamonte Springs to Colorado Springs, from a complete or a partial pool", async () => {
+				const colorado = pair("e4e4e4e4", "Springish", "Colorado Springs");
+				expect(await resolveArtist("Springish", { origin: "Altamonte Springs, Florida" })).toBeNull();
+				expect((await resolveArtist("Springish", { origin: "Colorado Springs, Colorado" }))?.mbid).toBe(
+					colorado,
+				);
+				stubMb(
+					[
+						{
+							id: "e5e5e5e5-0000-4000-8000-000000000a01",
+							name: "Springtwo",
+							area: "Colorado Springs",
+							areaType: "City",
+						},
+						{ id: "e5e5e5e5-0000-4000-8000-000000000a02", name: "Springtwo" },
+					],
+					{ count: 880 },
+				);
+				expect(await resolveArtist("Springtwo", { origin: "Altamonte Springs, Florida" })).toBeNull();
+			});
+
+			it("keeps directional words inside the segment, and folds accents and punctuation", async () => {
+				const bromwich = pair("e6e6e6e6", "Bromwichish", "West Bromwich");
+				expect((await resolveArtist("Bromwichish", { origin: "West Bromwich, England" }))?.mbid).toBe(
+					bromwich,
+				);
+				// "Bromwich" alone is not "West Bromwich".
+				expect(await resolveArtist("Bromwichish", { origin: "Bromwich, England" })).toBeNull();
+				const dusseldorf = pair("e7e7e7e7", "Rhineish", "Düsseldorf");
+				expect((await resolveArtist("Rhineish", { origin: "Dusseldorf, Germany" }))?.mbid).toBe(dusseldorf);
+				const stEtienne = pair("e8e8e8e8", "Loireish", "Saint-Étienne");
+				expect((await resolveArtist("Loireish", { origin: "Saint Etienne, France" }))?.mbid).toBe(stEtienne);
+			});
+
+			// TRA-533 deep review: MB puts commas in area names, and the origin is cut at them.
+			it("cuts MB's area names like the origin: a homonym of a sub-place does not win", async () => {
+				stubMb([
+					{
+						id: "ecececec-0000-4000-8000-000000000a01",
+						name: "Capitolish",
+						area: "Washington, D.C.",
+						areaType: "Subdivision",
+					},
+					{
+						id: "ecececec-0000-4000-8000-000000000a02",
+						name: "Capitolish",
+						area: "Washington",
+						areaType: "Subdivision",
+					},
+				]);
+				expect(await resolveArtist("Capitolish", { origin: "Washington, D.C., U.S." })).toBeNull();
+				stubMb([
+					{
+						id: "edededed-0000-4000-8000-000000000a01",
+						name: "Wattsish",
+						beginArea: "Watts, Los Angeles",
+						beginAreaType: "City",
+					},
+					{
+						id: "edededed-0000-4000-8000-000000000a02",
+						name: "Wattsish",
+						beginArea: "Los Angeles",
+						beginAreaType: "City",
+					},
+				]);
+				expect(await resolveArtist("Wattsish", { origin: "Los Angeles, CA" })).toBeNull();
+				// Alone, the sub-place is shared: Sylvester ("Watts, Los Angeles") is a Los Angeles artist.
+				const watts = pair("eeeeeeee", "Wattsone", "Watts, Los Angeles");
+				expect(await resolveArtistDetailed("Wattsone", { origin: "Los Angeles, CA" })).toMatchObject({
+					artist: { mbid: watts },
+					matchedWords: ["los angeles"],
+				});
+			});
+
+			it("reads New York City as New York against a City area only", async () => {
+				const chic = pair("efefefef", "Chicish", "New York");
+				expect((await resolveArtist("Chicish", { origin: "New York City, NY" }))?.mbid).toBe(chic);
+				pair("f0f0f0f0", "Chictwo", "New York", "Subdivision");
+				expect(await resolveArtist("Chictwo", { origin: "New York City, NY" })).toBeNull();
+				// Not "City" removed in general: Kansas City is not Kansas.
+				pair("f1f1f1f1", "Kansasish", "Kansas", "City");
+				expect(await resolveArtist("Kansasish", { origin: "Kansas City, Missouri" })).toBeNull();
+			});
+
+			it("keeps giving no place to a country written with a directional word (South Africa, New Zealand)", async () => {
+				pair("eaeaeaea", "Capeish", "South Africa", "Subdivision");
+				expect(await resolveArtist("Capeish", { origin: "South Africa, Johannesburg" })).toBeNull();
+				pair("ebebebeb", "Kiwiish", "New Zealand", "Subdivision");
+				expect(await resolveArtist("Kiwiish", { origin: "New Zealand, Oceania" })).toBeNull();
+			});
+
+			it("still reads a city that bears a country's name as a city (Mexico City, Mexico)", async () => {
+				const mexico = pair("e9e9e9e9", "Aztecish", "Mexico City");
+				expect((await resolveArtist("Aztecish", { origin: "Mexico City, Mexico" }))?.mbid).toBe(mexico);
+				expect(await resolveArtist("Aztecish", { origin: "Mexico, Mexico City" })).toBeNull();
+			});
 		});
 
 		it("does not use an area whose type MB does not give", async () => {
@@ -1083,6 +1223,13 @@ describe("runBackfill", () => {
 		expect(await readNode(a.slug)).toEqual({ ...a, mbid: POLE, artist_kind: "person", similar_artists: [] });
 		expect(await readNode(b.slug)).toEqual({ ...b, mbid: POLE, artist_kind: "person", similar_artists: [] });
 		expect(await readManifestFile()).toEqual({ ...result.manifest });
+		// TRA-568: the fields the migration channel validates; this migration renames and deletes nothing.
+		expect(result.manifest).toMatchObject({
+			migration: MIGRATION_NAME,
+			removed: [],
+			renamed: {},
+			redirects: {},
+		});
 	});
 
 	it("records the person kind and the bands of Roni Size, and leaves an ambiguous artist intact", async () => {
@@ -1615,6 +1762,17 @@ describe("parseCliArgs", () => {
 			limit: 5,
 			manifestPath: "m.json",
 		});
+	});
+
+	it("accepts the channel's --data-dir and ignores it (TRA-568)", () => {
+		expect(parseCliArgs(["cache", "--apply", "--manifest", "m.json", "--data-dir", "d"])).toEqual({
+			cacheDir: "cache",
+			apply: true,
+			resume: false,
+			manifestPath: "m.json",
+		});
+		expect(parseCliArgs(["cache", "--data-dir", "d", "--data-dir", "e"])).toBeNull();
+		expect(parseCliArgs(["cache", "--data-dir"])).toBeNull();
 	});
 
 	it.each([

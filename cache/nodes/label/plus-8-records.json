@@ -57,6 +57,16 @@
       "slug": "artist:kenny-larkin",
       "type": "artist",
       "name": "Kenny Larkin"
+    },
+    {
+      "slug": "artist:bfc",
+      "type": "artist",
+      "name": "BFC"
+    },
+    {
+      "slug": "artist:plastikman",
+      "type": "artist",
+      "name": "Plastikman"
     }
   ],
   "notable_releases": [

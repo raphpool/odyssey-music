@@ -1,0 +1,73 @@
+{
+  "slug": "track:the-big-sleep-in-search-of-hades--tangerine-dream",
+  "name": "The Big Sleep in Search of Hades",
+  "editorial_article": "\"The Big Sleep in Search of Hades\" is the second track on Tangerine Dream's landmark 1976 album, Stratosfear. A standout piece of early electronic atmosphere, the track captures the quintet's transitional period, where they began to blend their signature long-form, avant-garde electronic soundscapes with more structured, sequencer-driven melodic patterns and rock-inflected instrumentation. Composed by Edgar Froese and Christopher Franke, the track serves as a pivotal bridge within the album's dynamic structure. Sonically, the piece is characterized by its haunting, melancholic mellotron textures and a delicate, ethereal quality that shifts away from the harsher, more abstract experimentation of their earlier Virgin Years output. It represents a move toward a more cinematic, progressive aesthetic that would define their sound throughout the late 1970s. The track’s atmosphere—often described as ominous yet serene—utilizes sweeping synthesizer swells and precise percussive elements to create a sense of vast, otherworldly space, firmly grounding it in the Berlin School style. Its inclusion on Stratosfear helped cement the album's status as a masterpiece of the era, marking an evolution in the group's ability to balance technical complexity with emotive power. The composition highlights the group's move toward a more polished production standard, influenced by their developing studio mastery in the mid-1970s, which would become a hallmark of their influential legacy in ambient and electronic music. Its status as an iconic track within their discography is solidified by its unique blend of progressive electronics and evocative, almost cinematic, arrangement, making it essential listening for those exploring the evolution of the Berlin School electronic genre.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/13421-Tangerine-Dream-Stratosfear?srsltid=AfmBOopyYII7QV4ZcW-I3hrbwqN_wJ4laH-4rACZ9Z4PnkcTLybtKPqZ",
+      "title": "Tangerine Dream – Stratosfear | Releases | Discogs"
+    },
+    {
+      "url": "https://open.spotify.com/track/36B43GAHzDdJkRv8qlKblc",
+      "title": "Tangerine Dream - The Big Sleep In Search Of Hades - Spotify"
+    },
+    {
+      "url": "https://music.apple.com/us/song/the-big-sleep-in-search-of-hades/714678599",
+      "title": "The Big Sleep In Search of Hades - Song by Tangerine Dream"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:56:42.378Z",
+  "mbid": "130cf35e-0912-45dc-9af6-78def87e5fce",
+  "type": "track",
+  "editorial_teaser": "\"The Big Sleep in Search of Hades\" is the second track on Tangerine Dream's landmark 1976 album, Stratosfear.",
+  "year": "1976",
+  "artists": [
+    {
+      "slug": "artist:tangerine-dream",
+      "type": "artist",
+      "name": "Tangerine Dream",
+      "mbid": "23d8426c-18c7-46e6-a51d-7395bd43c641"
+    }
+  ],
+  "project": {
+    "slug": "project:stratosfear--tangerine-dream",
+    "type": "project",
+    "name": "Stratosfear"
+  },
+  "label": {
+    "slug": "label:virgin",
+    "type": "label",
+    "name": "Virgin",
+    "mbid": "49b58bdb-3d74-40c6-956a-4c4b46115c9c"
+  },
+  "genres": [
+    {
+      "slug": "genre:berlin-school",
+      "type": "genre",
+      "name": "Berlin School"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:progressive-electronic",
+      "type": "genre",
+      "name": "Progressive Electronic",
+      "qid": "Q79784514"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:tangerine-dream",
+      "type": "artist",
+      "name": "Tangerine Dream"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

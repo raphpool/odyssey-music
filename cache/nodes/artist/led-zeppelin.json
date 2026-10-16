@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "678d88b2-87b0-403b-b63d-5da7465aecc3",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Formed in London in 1968, Led Zeppelin became one of the most influential and successful rock bands of the 1970s. Founded by guitarist Jimmy Page following the dissolution of the Yardbirds, the quartet featured the powerhouse rhythm section of bassist/keyboardist John Paul Jones and drummer John Bonham, with Robert Plant providing iconic, soaring vocals. The band’s sound was a colossal synthesis, grounding electric blues and early rock and roll in a heavy, bottom-ended sonic signature that would eventually become a template for heavy metal. \\n\\nLed Zeppelin’s studio output—notably their run of untitled or numerically named albums in the early 1970s—demonstrated a unique ability to traverse genres, seamlessly integrating acoustic folk, Celtic music, and explorations of Indian and North African rhythms alongside their signature hard rock intensity. Page’s production techniques, which prioritized spaciousness and a massive drum sound, ensured their recordings maintained an enduring, modern vitality. Following the death of drummer John Bonham in 1980, the band disbanded, cementing their legacy as progenitors of hard rock who redefined the boundaries of album-oriented, experimental rock music. Their impact continues to resonate across generations, cited by acts as diverse as Black Sabbath and Nirvana as a foundational influence. Led Zeppelin were not merely a band of their time, but a cultural phenomenon that transformed the role of the rock musician, emphasizing long-form improvisation, studio experimentation, and a deeply mystical aesthetic that defined the decade. Their records, from the blues-inflected debut to the sprawling complexity of Physical Graffiti, remain cornerstones of rock history, demonstrating a restless creativity that allowed them to evolve from blues-rock cover artists into profound innovators of the heavy rock sound. Their influence is immeasurable, leaving a mark on everything from the development of progressive metal to the resurgence of folk-infused rock in later decades. The band's live performances, characterized by raw energy and unpredictable improvisations, turned each show into a singular, mythic event, further cementing their status as giants of the 20th-century music landscape.",
   "photo_url": "https://cdn.britannica.com/46/23046-050-D9606915/Led-Zeppelin.jpg",
   "origin": "London, England",
@@ -71,7 +73,7 @@
       "name": "Led Zeppelin III"
     },
     {
-      "slug": "project:led-zeppelin-iv",
+      "slug": "project:led-zeppelin-iv--led-zeppelin",
       "type": "project",
       "name": "Led Zeppelin IV"
     },
@@ -116,6 +118,12 @@
       "slug": "track:dazed-and-confused",
       "type": "track",
       "name": "Dazed and Confused"
+    },
+    {
+      "slug": "track:the-rain-song--led-zeppelin",
+      "type": "track",
+      "name": "The Rain Song",
+      "artist": "Led Zeppelin"
     }
   ],
   "influences": [],
@@ -143,5 +151,6 @@
       "type": "artist",
       "name": "John Bonham"
     }
-  ]
+  ],
+  "similar_artists": []
 }

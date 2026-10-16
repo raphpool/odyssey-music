@@ -33,7 +33,11 @@ jobs:
     # (once for the preview artifact below, once again inside --apply itself), on a real remote
     # host and a cache/ tree that only grows -- a timeout mid-apply, after the writer is already
     # stopped, is the one moment a cancellation is worst to hit (code-review finding, this PR).
-    timeout-minutes: 30
+    # 2026-10-16 (TRA-568): 120, not 30. The identity migrations (artists, works, scope) take about
+    # 50 minutes of rate-limited MusicBrainz requests, and the preview pays them in full; the apply
+    # replays the preview's manifests (MIGRATION_REPLAY_DIR below) but the budget must cover a replay
+    # that has to query again. A cancellation in the middle of the rsync leaves a mixed state.
+    timeout-minutes: 120
     steps:
       - name: Isolate HOME from the runner host account
         # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
@@ -42,6 +46,8 @@ jobs:
         run: |
           mkdir -p "$RUNNER_TEMP/home"
           echo "HOME=$RUNNER_TEMP/home" >> "$GITHUB_ENV"
+          # TRA-568: where the preview leaves the identity manifests the apply replays (job-scoped).
+          echo "MIGRATION_REPLAY_DIR=$RUNNER_TEMP/migration-replay" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
 
       - uses: actions/setup-node@v4

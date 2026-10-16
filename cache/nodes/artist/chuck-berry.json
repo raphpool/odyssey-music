@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:15:13.142Z",
+  "mbid": "592a3b6d-c42b-4567-99c9-ecf63bd66499",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Chuck Berry was an iconic American musician who defined the foundations of rock and roll through his prolific songwriting and guitar performance.",
   "origin": "United States",
   "active_years": "1955-2017",
@@ -97,5 +99,6 @@
   ],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

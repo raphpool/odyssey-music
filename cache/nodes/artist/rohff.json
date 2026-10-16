@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:32:24.978Z",
+  "mbid": "f4a92aac-995b-47ab-80a5-33218a3e7823",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A seminal French rapper from Vitry-sur-Seine known for his influential contributions to the rap français scene since the late 1990s.",
   "origin": "Vitry-sur-Seine, France",
   "active_years": "1999-present",
@@ -44,7 +46,7 @@
   ],
   "discography": [
     {
-      "slug": "project:le-code-de-l-honneur",
+      "slug": "project:le-code-de-l-honneur--rohff",
       "type": "project",
       "name": "Le Code de l'honneur"
     },
@@ -64,21 +66,35 @@
       "name": "Au-delà de mes limites"
     },
     {
-      "slug": "project:grand-monsieur",
+      "slug": "project:grand-monsieur--rohff",
       "type": "project",
-      "name": "Grand Monsieur"
+      "name": "Grand Monsieur",
+      "artist": "Rohff"
     },
     {
-      "slug": "project:fitna",
+      "slug": "project:fitna--rohff",
       "type": "project",
       "name": "Fitna"
+    },
+    {
+      "slug": "project:la-cerise-sur-le-ghetto--mafia-k-1-fry",
+      "type": "project",
+      "name": "La Cerise sur le ghetto",
+      "artist": "Mafia K'1 Fry"
     }
   ],
   "notable_tracks": [
     {
-      "slug": "track:fitna",
+      "slug": "track:fitna--rohff",
       "type": "track",
-      "name": "Fitna"
+      "name": "Fitna",
+      "artist": "Rohff"
+    },
+    {
+      "slug": "track:appelle-moi-rohff--rohff",
+      "type": "track",
+      "name": "Appelle-moi Rohff",
+      "artist": "Rohff"
     }
   ],
   "influences": [],
@@ -91,5 +107,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

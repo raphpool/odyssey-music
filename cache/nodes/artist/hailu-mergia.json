@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:05:00.268Z",
+  "mbid": "0b40d946-2362-4445-90f6-a3a5f333bd30",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An influential Ethiopian keyboardist and arranger known for his foundational role in the Walias Band and his successful return to global stages.",
   "origin": "Debre Birhan, Ethiopia",
   "active_years": "1960s-present",
@@ -93,5 +95,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

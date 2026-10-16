@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:22:23.882Z",
+  "mbid": "fc4568b6-cbe3-4a3d-8409-28510c19e3e2",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pioneering Bronx MC and conscious rap icon who rose to fame with Boogie Down Productions before embarking on an influential, decades-spanning solo career.",
   "origin": "The Bronx, New York City",
   "active_years": "1986-present",
@@ -628,11 +630,6 @@
       "name": "The Blastmaster"
     }
   ],
-  "members": [
-    {
-      "slug": "artist:krs-one",
-      "type": "artist",
-      "name": "KRS-One"
-    }
-  ]
+  "members": [],
+  "similar_artists": []
 }

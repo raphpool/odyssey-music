@@ -32,7 +32,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "82b1f5fd-cd31-41a9-b5d4-7e33f0eb9751",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A seminal figure in 1960s soul music, Otis Redding was a Georgia-born powerhouse singer and songwriter known for his emotive, gospel-influenced delivery and defining role in the Stax Records sound. His career, though tragically cut short at age 26, yielded enduring classics like \"Respect\" and \"Try a Little Tenderness,\" culminating in the posthumous chart-topping success of \"(Sittin' On) The Dock of the Bay.\"",
   "origin": "Dawson, Georgia, U.S.",
   "active_years": "1958–1967",
@@ -116,5 +118,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

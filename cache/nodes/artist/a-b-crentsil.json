@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:06:37.454Z",
+  "mbid": "c783dbc7-c1a7-4548-8fb9-195efc79bd85",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A legendary Ghanaian Highlife musician and lead vocalist renowned for his work with the Super Sweet Talks and his extensive solo discography.",
   "origin": "Ghana",
   "active_years": "1960s-2022",
@@ -55,5 +57,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

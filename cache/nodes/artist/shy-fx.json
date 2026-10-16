@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:19:55.195Z",
+  "mbid": "ee459bd7-9768-4cc2-9452-a09700c4aeaa",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Shy FX is the professional pseudonym of London-born DJ and producer Andre Williams, a seminal figure in the development of jungle and drum and bass.",
   "genres": [
     {
@@ -74,5 +76,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

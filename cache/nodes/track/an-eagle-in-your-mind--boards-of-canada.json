@@ -1,0 +1,66 @@
+{
+  "slug": "track:an-eagle-in-your-mind--boards-of-canada",
+  "name": "An Eagle in Your Mind",
+  "editorial_article": "\"An Eagle in Your Mind\" is a seminal track from the 1998 masterpiece *Music Has the Right to Children* by the Scottish electronic duo Boards of Canada. The track acts as a pivotal moment on the album, exemplifying the duo's signature blend of nostalgic, grain-laden analog synthesis, field recordings, and off-kilter, hypnotizing percussion. Often cited by listeners and critics as one of the most evocative pieces in their discography, it captures the ephemeral, dream-like quality that defines their sound. \\n\\nThe track is marked by a slow, deliberate build, utilizing the warm saturation of vintage synthesizers to create a sonic environment that feels both deeply intimate and unsettlingly vast. Boards of Canada, comprising brothers Michael Sandison and Marcus Eoin, utilize this track to set the tone for the album’s broader exploration of memory, childhood innocence, and the intersection of nature and technology. The rhythmic pulse, which is subtle but insistent, anchors the drifting, amorphous soundscapes that define the group's aesthetic. Released via Warp Records during a period when the IDM (Intelligent Dance Music) scene was peaking, \"An Eagle in Your Mind\" demonstrated that electronic music could possess a profound emotional depth, moving far beyond the dance-floor-oriented mechanics of its contemporaries. Its enduring popularity among fans—often described as a 'favorite'—speaks to its resonance and the lasting cultural impact of the *Music Has the Right to Children* album.",
+  "citations": [
+    {
+      "url": "https://readdork.com/track/boards-of-canada-an-eagle-in-your-mind-2",
+      "title": "Boards of Canada – An Eagle In Your Mind - Dork"
+    },
+    {
+      "url": "https://boardsofcanada.bandcamp.com/track/an-eagle-in-your-mind",
+      "title": "An Eagle In Your Mind | Boards of Canada"
+    },
+    {
+      "url": "https://open.spotify.com/track/7sAzXuEwz0sOhnB57xoccs",
+      "title": "An Eagle In Your Mind - song and lyrics by Boards of Canada - Spotify"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:02:12.691Z",
+  "type": "track",
+  "editorial_teaser": "\"An Eagle in Your Mind\" is a seminal track from the 1998 masterpiece *Music Has the Right to Children* by the Scottish electronic duo Boards of Canada.",
+  "year": "1998",
+  "artists": [
+    {
+      "slug": "artist:boards-of-canada",
+      "type": "artist",
+      "name": "Boards of Canada"
+    }
+  ],
+  "project": {
+    "slug": "project:music-has-the-right-to-children--boards-of-canada",
+    "type": "project",
+    "name": "Music Has the Right to Children"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno",
+      "qid": "Q9149801"
+    },
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo",
+      "qid": "Q251192"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:boards-of-canada",
+      "type": "artist",
+      "name": "Boards of Canada"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

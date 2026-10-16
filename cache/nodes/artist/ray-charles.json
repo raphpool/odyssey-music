@@ -24,7 +24,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "2ce02909-598b-44ef-a456-151ba0a3bd70",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Ray Charles, born Ray Charles Robinson in 1930, stands as one of the most transformative figures in 20th-century American music.",
   "origin": "Albany, GA",
   "active_years": "1940s - 2000s",
@@ -93,5 +95,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

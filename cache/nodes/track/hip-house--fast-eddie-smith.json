@@ -1,0 +1,62 @@
+{
+  "slug": "track:hip-house--fast-eddie-smith",
+  "name": "Hip House",
+  "editorial_article": "Released in 1988 by Chicago producer Fast Eddie, the track \"Hip House\" became the definitive anthem for the genre of the same name. As a former DJ on Chicago radio stations WGCI-FM and WBMX, Eddie utilized his experience in the early house movement to synthesize electronic dance floor energy with hip hop vocal delivery. The song established Eddie's reputation as a producer and helped define the hybrid movement that would influence several of his subsequent hits, including the Billboard-charting \"Git On Up.\" The release is synonymous with the era of late-80s Chicago club music that broke away from traditional house structures to incorporate rap-style rhythmic vocals.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Fast_Eddie_(producer)",
+      "title": "Fast Eddie (producer) - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:59:08.797Z",
+  "type": "track",
+  "editorial_teaser": "A landmark 1988 track by Chicago producer Fast Eddie that defined the hip house genre by blending electronic house rhythms with hip hop vocal phrasing.",
+  "year": "1988",
+  "duration": "4:29",
+  "artists": [
+    {
+      "slug": "artist:fast-eddie-smith",
+      "type": "artist",
+      "name": "“Fast” Eddie Smith",
+      "mbid": "c0b3d632-282e-4323-a242-104f60bb8645"
+    }
+  ],
+  "project": {
+    "slug": "project:jack-to-the-sound",
+    "type": "project",
+    "name": "Jack to the Sound",
+    "mbid": "7200aa7f-7307-388d-8138-446932de6d9b"
+  },
+  "label": {
+    "slug": "label:bcm-records",
+    "type": "label",
+    "name": "BCM Records",
+    "mbid": "b023c94d-4433-4ed0-aa3d-793d2862605c"
+  },
+  "genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:hip-house",
+      "type": "genre",
+      "name": "Hip house",
+      "qid": "Q601235"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:rocky-jones",
+      "type": "artist",
+      "name": "Rocky Jones",
+      "mbid": "70597e86-2a2f-4d2e-ab1b-a2e4cdf4f1b9"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

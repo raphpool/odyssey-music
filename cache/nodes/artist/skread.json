@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:28:29.597Z",
+  "mbid": "64a650d2-9b30-4d9b-bc09-e6a2612f60c7",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Matthieu Le Carpentier, known as Skread, is a highly influential French hip-hop producer and co-founder of the record label 7th Magnitude.",
   "origin": "Hérouville-Saint-Clair, France",
   "active_years": "2000-present",
@@ -80,5 +82,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

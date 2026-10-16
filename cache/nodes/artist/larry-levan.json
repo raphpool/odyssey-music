@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:13:22.815Z",
+  "mbid": "3522a104-c3ce-4ee8-865a-fcf3fc08095d",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A visionary DJ and producer, Larry Levan’s decade-long residency at New York’s Paradise Garage turned the nightclub into a sacred space, essentially inventing the blueprint for modern house music.",
   "origin": "New York City, USA",
   "active_years": "1970s-1992",
@@ -73,5 +75,6 @@
       "type": "artist",
       "name": "The Peech Boys"
     }
-  ]
+  ],
+  "similar_artists": []
 }

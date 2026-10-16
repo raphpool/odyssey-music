@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:55:17.596Z",
+  "mbid": "77124f1c-1231-49fa-905e-564d0e0aa60b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Pioneering English DJ and club owner credited as a foundational architect of the UK's acid house and rave scene.",
   "origin": "Streatham, London, England",
   "active_years": "1980s-present",
@@ -98,5 +100,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

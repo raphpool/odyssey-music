@@ -72,6 +72,26 @@
       "slug": "artist:joe-cocker",
       "type": "artist",
       "name": "Joe Cocker"
+    },
+    {
+      "slug": "artist:cat-stevens",
+      "type": "artist",
+      "name": "Cat Stevens"
+    },
+    {
+      "slug": "artist:john-anthony",
+      "type": "artist",
+      "name": "John Anthony"
+    },
+    {
+      "slug": "artist:sex-pistols",
+      "type": "artist",
+      "name": "Sex Pistols"
+    },
+    {
+      "slug": "artist:yellow-magic-orchestra",
+      "type": "artist",
+      "name": "Yellow Magic Orchestra"
     }
   ],
   "notable_releases": [

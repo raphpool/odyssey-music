@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:04:39.321Z",
+  "mbid": "702d2b90-eef0-4354-b2c4-6366eba92b7f",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A Nigerian musician and activist who emerged from his father Fela Kuti's legacy to define a modern Afrobeat sound through his band, Positive Force.",
   "origin": "Lagos, Nigeria",
   "active_years": "1978-present",
@@ -259,5 +261,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

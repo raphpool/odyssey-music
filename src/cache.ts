@@ -2,7 +2,7 @@ import { copyFile, mkdir, readFile, rename, unlink, writeFile } from "node:fs/pr
 import { dirname, join } from "node:path";
 import { isNotFoundError, NotFoundError, ValidationError } from "./errors.js";
 import { logger } from "./logger.js";
-import { reverseFor, reversibleFields } from "./reverse-edges.js";
+import { isEmittedPendingReverse, reverseFor, reversibleFields } from "./reverse-edges.js";
 import { nodePayloadSchema, readNodePayloadSchema } from "./schemas.js";
 import { isValidSlug, parseSlug } from "./slug.js";
 import type { EdgeRef, NodePayload, Slug } from "./types.js";
@@ -398,22 +398,7 @@ export class NodeCache {
 		}
 		try {
 			await this.loadPending();
-			await this.runLocked(parsed.slug, async () => {
-				const pending = this.pendingReverses[parsed.slug] ?? [];
-				const merged = applyReverses(parsed, pending);
-				// Re-validation of `parsed` (strictly validated by the caller) plus reverse edges queued
-				// earlier: a legacy slug among them must not fail the write of a valid node (TRA-501).
-				const validated = readNodePayloadSchema.parse(merged) as NodePayload;
-				const file = this.pathFor(validated.slug);
-				await mkdir(dirname(file), { recursive: true });
-				await atomicWriteJson(file, validated);
-				this.stats.written++;
-				delta.written++;
-				if (pending.length) {
-					delete this.pendingReverses[parsed.slug];
-					this.pendingDirty = true;
-				}
-			});
+			await this.runLocked(parsed.slug, () => this.commitLocked(parsed, delta));
 			// Now emit reverse edges to target nodes (outside the source slug's lock to avoid deadlocks).
 			await this.emitReverses(parsed, delta);
 			await this.flushPending();
@@ -435,6 +420,123 @@ export class NodeCache {
 				this.genreQidIndexVersion++;
 			}
 		}
+	}
+
+	/**
+	 * Writes `parsed` merged with the reverse edges pending for its slug. MUST run inside
+	 * `runLocked(parsed.slug)` with the pending map loaded: write() and update() share this body so both
+	 * apply the same pendings under the same lock.
+	 */
+	private async commitLocked(parsed: NodePayload, delta: CacheWriteDelta): Promise<void> {
+		const pending = this.pendingReverses[parsed.slug] ?? [];
+		// TRA-563: a pending entry written before the runtime stopped emitting unsafe directions (a credit on a
+		// work from a namesake's list) is not applied. It stays on disk until the purge migration.
+		const applicable: PendingReverse[] = [];
+		const skipped: PendingReverse[] = [];
+		for (const p of pending) {
+			(isEmittedPendingReverse(parsed.type, p) ? applicable : skipped).push(p);
+		}
+		if (skipped.length) {
+			log.warn("ignored unsafe pending reverse edges", { slug: parsed.slug, skipped: skipped.length });
+		}
+		const merged = applyReverses(parsed, applicable);
+		// Re-validation of `parsed` (strictly validated by the caller) plus reverse edges queued
+		// earlier: a legacy slug among them must not fail the write of a valid node (TRA-501).
+		const validated = readNodePayloadSchema.parse(merged) as NodePayload;
+		const file = this.pathFor(validated.slug);
+		await mkdir(dirname(file), { recursive: true });
+		await atomicWriteJson(file, validated);
+		this.stats.written++;
+		delta.written++;
+		if (applicable.length) {
+			if (skipped.length) this.pendingReverses[parsed.slug] = skipped;
+			else delete this.pendingReverses[parsed.slug];
+			this.pendingDirty = true;
+		}
+	}
+
+	/**
+	 * Locked read-modify-write of an existing node (TRA-535). `fn` receives the node as it is on disk NOW and
+	 * returns the node to store, or `null` for "no change" (nothing is written, the pendings stay queued).
+	 * Read, `fn`, strict validation and write all happen under the same per-slug lock as write() and as the
+	 * reverse-edge application of other nodes, so a concurrent writer is never overwritten: the previous
+	 * `get` + `replace` pair let a write slip in between and silently dropped its edges. The reverse edges
+	 * pending for the node are merged like write() does.
+	 *
+	 * Errors from `fn` or from validation leave the file untouched; a failure after the write (reverse-edge
+	 * emission, pending flush) restores the previous file like replace(). Returns whether a write happened;
+	 * a missing node throws NotFoundError. `fn` runs while the lock is held: it must not call back into
+	 * this cache for the same slug (it would wait on itself).
+	 */
+	async update(
+		slug: Slug,
+		fn: (current: NodePayload) => NodePayload | null | Promise<NodePayload | null>,
+	): Promise<boolean> {
+		// Same client-error guard as get(): an unsafe slug is rejected before any filesystem access.
+		if (!isPathSafeSlug(slug)) throw new ValidationError("Invalid slug");
+		const isGenre = parseSlug(slug).type === "genre";
+		return await this.runOperationLocked(slug, async () => {
+			const delta: CacheWriteDelta = { written: 0, revUpdates: 0 };
+			const file = this.pathFor(slug);
+			const backup = `${file}.backup-${process.pid}-${Math.random().toString(36).slice(2)}`;
+			await this.loadPending();
+			const committed = await this.runLocked(slug, async (): Promise<NodePayload | null> => {
+				const current = await this.get(slug);
+				const next = await fn(current);
+				if (next === null) return null;
+				const parsed = nodePayloadSchema.parse(next) as NodePayload;
+				if (parsed.slug !== slug) {
+					throw new Error(`update(${slug}) must not change the slug (got ${parsed.slug})`);
+				}
+				await copyFile(file, backup);
+				if (isGenre) {
+					this.genreQidIndex = null;
+					this.genreQidIndexVersion++;
+				}
+				try {
+					await this.commitLocked(parsed, delta);
+				} catch (error) {
+					// Nothing landed (validation or write failed): the file is intact, only the backup is left.
+					await unlink(backup).catch(() => undefined);
+					throw error;
+				}
+				return parsed;
+			});
+			if (committed === null) return false;
+			try {
+				try {
+					await this.emitReverses(committed, delta);
+					await this.flushPending();
+				} catch (error) {
+					this.stats.written -= delta.written;
+					this.stats.revUpdates -= delta.revUpdates;
+					try {
+						await rename(backup, file);
+					} catch (rollbackError) {
+						throw new AggregateError(
+							[error, rollbackError],
+							`Failed to update ${slug} and restore its previous source file`,
+						);
+					}
+					throw error;
+				}
+				await unlink(backup).catch((error: unknown) => {
+					if ((error as NodeJS.ErrnoException).code !== "ENOENT") {
+						log.warn("update backup cleanup failed", {
+							slug,
+							error: error instanceof Error ? error.message : String(error),
+						});
+					}
+				});
+			} finally {
+				if (isGenre) {
+					// Same second invalidation as writeParsed: the node has landed (or been restored).
+					this.genreQidIndex = null;
+					this.genreQidIndexVersion++;
+				}
+			}
+			return true;
+		});
 	}
 
 	/**
@@ -553,7 +655,9 @@ function applyReverses(node: NodePayload, pendings: PendingReverse[]): NodePaylo
 	return cur;
 }
 
-function applySingleReverse(node: NodePayload, p: PendingReverse): NodePayload {
+// Exported for the reverse-edge backfill (TRA-486), which applies the same rule to raw nodes without going
+// through NodeCache.write (that would re-emit reverses of the reverses).
+export function applySingleReverse(node: NodePayload, p: PendingReverse): NodePayload {
 	// Clone shallowly; nested edge arrays we deep-copy to avoid mutating callers.
 	const next = { ...node } as unknown as Record<string, unknown>;
 	if (p.cardinality === "list") {

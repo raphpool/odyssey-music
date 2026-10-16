@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:48:58.381Z",
+  "mbid": "e135d690-9c53-4333-8f11-98aec8c9f434",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Throbbing Gristle was a pioneering industrial music group formed in England in 1975, known for their confrontational sound, transgressive imagery, and experimental electronics. They founded the Industrial Records label and heavily influenced the development of noise, post-punk, and ambient industrial music.",
   "origin": "Kingston upon Hull, England",
   "genres": [
@@ -86,5 +88,6 @@
       "type": "artist",
       "name": "Peter Christopherson"
     }
-  ]
+  ],
+  "similar_artists": []
 }

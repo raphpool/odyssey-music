@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:18:14.881Z",
+  "mbid": "85d7666c-d3ce-4e2c-8b1b-f20db7cdae4f",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A foundational G-funk producer and rapper from Long Beach, Warren G achieved global fame in 1994 with his multi-platinum smash 'Regulate'.",
   "origin": "Long Beach, California",
   "active_years": "1990-present",
@@ -302,5 +304,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

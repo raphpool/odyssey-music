@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:54:47.035Z",
+  "mbid": "99ea432a-e3d8-42cb-9d5e-db316a6a8458",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An English folk musician known for intricate guitar work and haunting, introspective songwriting during the late 1960s and early 1970s.",
   "origin": "Tanworth-in-Arden, England",
   "active_years": "1968-1974",
@@ -40,17 +42,17 @@
   ],
   "discography": [
     {
-      "slug": "project:five-leaves-left",
+      "slug": "project:five-leaves-left--nick-drake",
       "type": "project",
       "name": "Five Leaves Left"
     },
     {
-      "slug": "project:bryter-layter",
+      "slug": "project:bryter-layter--nick-drake",
       "type": "project",
       "name": "Bryter Layter"
     },
     {
-      "slug": "project:pink-moon",
+      "slug": "project:pink-moon--nick-drake",
       "type": "project",
       "name": "Pink Moon"
     }
@@ -76,5 +78,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

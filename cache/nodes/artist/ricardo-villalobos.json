@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:40:04.594Z",
+  "mbid": "bbd79854-df54-4c1b-b7d6-cf7eea2d0afb",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Chilean-born German producer and DJ, internationally recognized for his pioneering influence on minimal techno and microhouse.",
   "origin": "Santiago, Chile / Germany",
   "active_years": "1993–present",
@@ -46,12 +48,12 @@
   ],
   "discography": [
     {
-      "slug": "project:alcachofa",
+      "slug": "project:alcachofa--ricardo-villalobos",
       "type": "project",
       "name": "Alcachofa"
     },
     {
-      "slug": "project:fizheuer-zieheuer",
+      "slug": "project:fizheuer-zieheuer--ricardo-villalobos",
       "type": "project",
       "name": "Fizheuer Zieheuer"
     }
@@ -63,14 +65,33 @@
       "name": "Fizheuer Zieheuer"
     },
     {
-      "slug": "track:easy-lee",
+      "slug": "track:easy-lee--ricardo-villalobos",
       "type": "track",
       "name": "Easy Lee"
+    },
+    {
+      "slug": "track:dexter--ricardo-villalobos",
+      "type": "track",
+      "name": "Dexter",
+      "artist": "Ricardo Villalobos"
+    },
+    {
+      "slug": "track:fizheuer-zieheuer--ricardo-villalobos",
+      "type": "track",
+      "name": "Fizheuer Zieheuer",
+      "artist": "Ricardo Villalobos"
+    },
+    {
+      "slug": "track:theogenese--ricardo-villalobos",
+      "type": "track",
+      "name": "Theogenese",
+      "artist": "Ricardo Villalobos"
     }
   ],
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:57:00.078Z",
+  "mbid": "87c5dedd-371d-4a53-9f7f-80522fb7f3cb",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An Icelandic visionary blending electronic, experimental, and avant-pop, Björk is an icon of sonic innovation and artistic fearlessness. Her career spans decades of groundbreaking work, from the post-punk energy of The Sugarcubes to her globally acclaimed, boundary-pushing solo discography.",
   "origin": "Reykjavík, Iceland",
   "active_years": "1977–present",
@@ -65,7 +67,7 @@
       "name": "Homogenic"
     },
     {
-      "slug": "project:vespertine",
+      "slug": "project:vespertine--bjork",
       "type": "project",
       "name": "Vespertine"
     },
@@ -113,5 +115,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:43:37.898Z",
+  "mbid": "c5393047-0c44-48eb-b5a8-070759f04371",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Goldie is a pioneering UK producer, DJ, and visual artist who played a crucial role in the evolution of jungle and drum and bass throughout the 1990s. He is best known for his landmark album 'Timeless' and his influential record label, Metalheadz.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/f/f4/Goldie_2003_crop.jpg",
   "origin": "Walsall, England",
@@ -90,5 +92,6 @@
       "name": "Metalheads"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

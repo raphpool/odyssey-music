@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:55:58.170Z",
+  "mbid": "4ef7a9e2-2cf5-483a-8616-ef7791a98026",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Bryan Ferry is a celebrated English singer, songwriter, and musician whose career has spanned over five decades.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/RoxyMusicO2141022_%2840_of_68%29_%28cropped%29.jpg/500px-RoxyMusicO2141022_%2840_of_68%29_%28cropped%29.jpg",
   "origin": "Washington, Tyne and Wear, England, UK",
@@ -115,5 +117,6 @@
       "type": "artist",
       "name": "Roxy Music"
     }
-  ]
+  ],
+  "similar_artists": []
 }

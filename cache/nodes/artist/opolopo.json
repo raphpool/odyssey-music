@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:56:04.730Z",
+  "mbid": "50e1d32b-8873-4f30-aec0-f22c46346872",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Peter Major, the producer known as Opolopo, creates funk, soul, and house music characterized by deep grooves and disco-boogie influences.",
   "origin": "Stockholm, Sweden",
   "active_years": "2000-present",
@@ -167,5 +169,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

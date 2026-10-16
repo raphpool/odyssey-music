@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:14:56.136Z",
+  "mbid": "1a99cc88-aea3-4fe3-96b9-20791667f65f",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Dizzee Rascal, born Dylan Kwabena Mills in 1984 in London, is a seminal figure in British music, widely credited as a pioneer of the grime genre and a transformative force in UK hip hop.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/13-06-09_RaR_Dizzee_Rascal_10_%28cropped%29.jpg/500px-13-06-09_RaR_Dizzee_Rascal_10_%28cropped%29.jpg",
   "origin": "London, England",
@@ -59,7 +61,7 @@
   ],
   "discography": [
     {
-      "slug": "project:boy-in-da-corner",
+      "slug": "project:boy-in-da-corner--dizzee-rascal",
       "type": "project",
       "name": "Boy in da Corner"
     },
@@ -125,5 +127,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

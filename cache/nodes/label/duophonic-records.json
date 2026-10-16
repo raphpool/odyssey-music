@@ -78,6 +78,16 @@
       "slug": "artist:labradford",
       "type": "artist",
       "name": "Labradford"
+    },
+    {
+      "slug": "artist:laetitia-sadier",
+      "type": "artist",
+      "name": "Laetitia Sadier"
+    },
+    {
+      "slug": "artist:mary-hansen",
+      "type": "artist",
+      "name": "Mary Hansen"
     }
   ],
   "notable_releases": [
@@ -95,6 +105,12 @@
       "slug": "project:switched-on",
       "type": "project",
       "name": "Switched On"
+    },
+    {
+      "slug": "project:transient-random-noise-bursts-with-announcements--stereolab",
+      "type": "project",
+      "name": "Transient Random-Noise Bursts with Announcements",
+      "artist": "Stereolab"
     }
   ]
 }

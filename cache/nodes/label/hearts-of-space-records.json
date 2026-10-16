@@ -57,7 +57,7 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:novus-magnificat",
+      "slug": "project:novus-magnificat--constance-demby",
       "type": "project",
       "name": "Novus Magnificat"
     },
@@ -65,6 +65,12 @@
       "slug": "project:celtic-twilight",
       "type": "project",
       "name": "Celtic Twilight"
+    },
+    {
+      "slug": "project:stalker--robert-rich",
+      "type": "project",
+      "name": "Stalker",
+      "artist": "Robert Rich"
     }
   ]
 }

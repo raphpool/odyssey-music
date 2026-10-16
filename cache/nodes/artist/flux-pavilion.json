@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:16:25.971Z",
+  "mbid": "3ce513c5-bdd4-492c-a875-07e0f3e1993b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Flux Pavilion, the creative alias of British electronic musician Joshua Steele, is a towering figure in the development of dubstep and the broader EDM explosion of the late 2000s and early 2010s.",
   "genres": [
     {
@@ -82,5 +84,6 @@
       "name": "Joshua Steele"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

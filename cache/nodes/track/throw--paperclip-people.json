@@ -1,0 +1,68 @@
+{
+  "slug": "track:throw--paperclip-people",
+  "name": "Throw",
+  "editorial_article": "\"Throw\" is a seminal techno anthem released in 1994 under the alias Paperclip People, a project of Detroit visionary Carl Craig. Released initially on the UK label Open and later becoming a staple of Detroit's own Planet E Communications, the track serves as a masterclass in the intersection of minimalism and funk-driven dance music. At nearly fifteen minutes in its original form, \"Throw\" is built around a hypnotic, looping vocal sample and a driving, infectious bassline that refuses to tire, showcasing Craig’s mastery of tension and release. \\n\\nThe track is widely considered one of the definitive moments of the 1990s techno canon. Its influence extends far beyond the warehouse raves where it first gained notoriety, having been remixed and reissued multiple times over the decades by artists such as Slam. For many electronic music enthusiasts, the relentless energy and surgical production of \"Throw\" epitomize the futuristic soul of the Detroit sound, proving that repetitive electronic structures could possess profound rhythmic nuance and deep, human-centered emotional weight. It remains a hallmark of the \"techno-soul\" aesthetic that Carl Craig pioneered, bridging the gap between rigorous machine beats and the expressive heat of the dancefloor.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/4043-Carl-Craig-Presents-Paperclip-People-Throw-Remake-Uno?srsltid=AfmBOoqqYFqFJFQzIcGgobJRMz05oVinmb3mKMlMXT1RNkyR5dLgnVco",
+      "title": "Carl Craig Presents Paperclip People – Throw / Remake (Uno) | Releases | Discogs"
+    },
+    {
+      "url": "https://k7records.bandcamp.com/track/throw-1",
+      "title": "Throw | Paperclip People | !K7 Records"
+    },
+    {
+      "url": "https://planetecommunications.bandcamp.com/track/throw",
+      "title": "Throw | Paperclip People - Planet E Communications - Bandcamp"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:10.256Z",
+  "_metrics": {
+    "input_tokens": 35473,
+    "output_tokens": 1922,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.011751,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 16940,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "track",
+  "editorial_teaser": "\"Throw\" is a seminal techno anthem released in 1994 under the alias Paperclip People, a project of Detroit visionary Carl Craig.",
+  "artists": [
+    {
+      "slug": "artist:paperclip-people",
+      "type": "artist",
+      "name": "Paperclip People"
+    }
+  ],
+  "project": {
+    "slug": "project:throw-remake",
+    "type": "project",
+    "name": "Throw / Remake (Uno)"
+  },
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:carl-craig",
+      "type": "artist",
+      "name": "Carl Craig"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

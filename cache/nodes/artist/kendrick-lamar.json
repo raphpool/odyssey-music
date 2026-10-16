@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:21:53.467Z",
+  "mbid": "381086ea-f511-4aba-bdf9-71c753dc5077",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A Pulitzer Prize-winning Compton rapper known for dense, introspective lyricism and the integration of jazz and funk into modern hip-hop.",
   "origin": "Compton, California",
   "active_years": "2003-present",
@@ -822,5 +824,6 @@
       "type": "artist",
       "name": "Black Hippy"
     }
-  ]
+  ],
+  "similar_artists": []
 }

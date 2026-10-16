@@ -63,12 +63,12 @@
   "key_labels": [],
   "landmark_projects": [
     {
-      "slug": "project:music-for-18-musicians",
+      "slug": "project:music-for-18-musicians--steve-reich",
       "type": "project",
       "name": "Music for 18 Musicians"
     },
     {
-      "slug": "project:in-c",
+      "slug": "project:in-c--terry-riley",
       "type": "project",
       "name": "In C"
     }

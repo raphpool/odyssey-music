@@ -1,0 +1,87 @@
+{
+  "slug": "project:landcruising--carl-craig",
+  "name": "Landcruising",
+  "editorial_article": "Released in 1995, Carl Craig's debut album, *Landcruising*, stands as a landmark of Detroit techno, bridging the gap between cold, mechanical precision and an emotive, cinematic scope. Often discussed as a sonic response to Kraftwerk’s *Trans Europe Express*, the album serves as an imagined soundtrack to the act of driving through Detroit, capturing the city’s evolving urban topography through a lens of both serenity and tension. Craig’s production on *Landcruising* is characterized by its forward-looking aesthetic; even decades later, the tracks retain an uncanny ability to sound both futuristic and grounded. \\n\\nMusically, the album is a masterpiece of texture and movement. Songs such as \\\"Mind Of A Machine\\\" pair distinctive, sharp snare patterns with expansive, drifting synth pads, while pieces like \\\"Science Fiction\\\" incorporate elements of free-form jazz and subtle nods to electronic pioneers like Jean-Michel Jarre. The album is not just a collection of club tracks but a cohesive journey; it challenges the contemporary notion that techno could not convey deep, human emotion. Tracks like \\\"Technology\\\" offer a more imposing, almost ominous atmosphere, while \\\"Einbahn\\\" showcases a masterful control of minimal, rhythmic space. *Landcruising* is widely regarded as one of the essential documents of the Detroit sound, proving that the point of the music is not merely the destination, but the immersive experience of the journey itself. Over time, the album has maintained its status as a vital piece of electronic music history, with recent expanded editions bringing its intricate, carefully shaded compositions to a new generation of listeners.",
+  "citations": [
+    {
+      "url": "https://arcana.fm/2025/08/07/carl-craig-landcruising/",
+      "title": "Switched On – Carl Craig: Landcruising (Expanded Edition) (Cherry Red) | Arcana.fm"
+    },
+    {
+      "url": "https://www.amazon.com/Landcruising-Expanded-CD-Detroit-Experiment/dp/B0F8JGQZRR",
+      "title": "Landcruising - Expanded CD Edition: CDs & Vinyl - Amazon.com"
+    },
+    {
+      "url": "https://carlcraig.bandcamp.com/track/landcruising",
+      "title": "Carl Craig - The Carl Craig Story - Bandcamp"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:13:24.903Z",
+  "mbid": "83b13f16-3c7c-3c74-a8cb-9816045298c1",
+  "type": "project",
+  "editorial_pitch": "A seminal 1995 debut from Detroit techno visionary Carl Craig, 'Landcruising' acts as a cinematic, futuristic driving soundtrack that redefined the emotional potential of electronic music.",
+  "year": "1995",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:carl-craig",
+      "type": "artist",
+      "name": "Carl Craig",
+      "mbid": "6732e9f3-5f24-4ba4-aef1-a2a49442b96b"
+    }
+  ],
+  "label": {
+    "slug": "label:blanco-y-negro",
+    "type": "label",
+    "name": "Blanco Y Negro"
+  },
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    },
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit Techno",
+      "qid": "Q526463"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:mind-of-a-machine",
+      "type": "track",
+      "name": "Mind Of A Machine"
+    },
+    {
+      "slug": "track:science-fiction",
+      "type": "track",
+      "name": "Science Fiction"
+    },
+    {
+      "slug": "track:technology",
+      "type": "track",
+      "name": "Technology"
+    },
+    {
+      "slug": "track:landcruising",
+      "type": "track",
+      "name": "Landcruising"
+    },
+    {
+      "slug": "track:einbahn",
+      "type": "track",
+      "name": "Einbahn"
+    },
+    {
+      "slug": "track:they-were",
+      "type": "track",
+      "name": "They Were"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

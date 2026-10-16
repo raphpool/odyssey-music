@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:41:00.680Z",
+  "mbid": "a3494b6a-32b5-416c-8dea-dce62c8e9244",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "DMX Krew is the influential stage name of British electronic musician Edward Upton, a prolific producer, performer, and label head known for his vital role in shaping the modern electro and IDM landscapes.",
   "origin": "London, UK",
   "genres": [
@@ -45,12 +47,12 @@
   ],
   "discography": [
     {
-      "slug": "project:sound-of-the-street",
+      "slug": "project:sound-of-the-street--dmx-krew",
       "type": "project",
       "name": "Sound of the Street"
     },
     {
-      "slug": "project:nu-romantix",
+      "slug": "project:nu-romantix--dmx-krew",
       "type": "project",
       "name": "Nu Romantix"
     },
@@ -71,5 +73,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

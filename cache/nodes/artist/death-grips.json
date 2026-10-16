@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:01:09.477Z",
+  "mbid": "f9133036-ab3d-4e97-bd11-7a2c98ad148a",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "An experimental, industrial hip-hop trio from Sacramento known for their abrasive sound, cryptic release strategies, and anti-establishment approach to the music industry.",
   "origin": "Sacramento, California",
   "active_years": "2010-2014, 2015-present",
@@ -220,5 +222,6 @@
       "type": "artist",
       "name": "Andy Morin"
     }
-  ]
+  ],
+  "similar_artists": []
 }

@@ -42,9 +42,10 @@
   ],
   "discography": [
     {
-      "slug": "project:cold-water-music",
+      "slug": "project:cold-water-music--andy-turner",
       "type": "project",
-      "name": "Cold Water Music"
+      "name": "Cold Water Music",
+      "artist": "Andy Turner"
     },
     {
       "slug": "project:hinterland",
@@ -59,9 +60,10 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:cold-water-music",
+      "slug": "track:cold-water-music--andy-turner",
       "type": "track",
-      "name": "Cold Water Music"
+      "name": "Cold Water Music",
+      "artist": "Andy Turner"
     },
     {
       "slug": "track:ain-t-got-time-to-waste",
@@ -84,5 +86,6 @@
       "type": "artist",
       "name": "Plaid"
     }
-  ]
+  ],
+  "similar_artists": []
 }

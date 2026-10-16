@@ -1,0 +1,76 @@
+{
+  "slug": "track:telefone-529--b12",
+  "name": "Telefone 529",
+  "editorial_article": "\"Telefone 529\" is a seminal piece of early intelligent dance music (IDM) by the London-based duo B12, originally released on their influential 1993 debut album, *Electro-Soma*. As a cornerstone of the burgeoning British electronic scene in the early 1990s, B12—comprised of Mike Golding and Steve Rutter—helped define a sound that moved away from the harder, repetitive textures of rave and hardcore towards something more melodic, atmospheric, and technically intricate. \n\nThe track itself embodies the characteristic \"B12 sound\": a blend of warm, cascading synth pads, precise drum programming, and a detached, almost melancholic science-fiction aesthetic that became synonymous with the Warp Records \"Artificial Intelligence\" era. Its complex rhythmic layers and sweeping chord progressions demonstrated that electronic dance music could function as a cerebral listening experience rather than just a functional club tool. By prioritizing emotional depth and intricate sound design, \"Telefone 529\" and the *Electro-Soma* album helped cement the reputation of Warp Records as a vanguard label for experimental electronic music, influencing countless producers who would later push the boundaries of techno and IDM into new, uncharted territories. The track remains a nostalgic touchstone for the early '90s ambient-techno movement, capturing a specific moment when home-listening electronic music truly found its voice.",
+  "citations": [
+    {
+      "url": "https://readdork.com/track/b12-telefone-529",
+      "title": "B12 – Telefone 529 (1991) - Dork"
+    },
+    {
+      "url": "https://warprecords.bandcamp.com/track/telefone-529-1",
+      "title": "Telefone 529 | B12 | Warp Records"
+    },
+    {
+      "url": "https://www.beatport.com/track/telefone-529/169552?srsltid=AfmBOoqp-3kaopDDg1a76xviMGuxwMzB5WZpWS-yh5cz-b3Xc0MlQ5co",
+      "title": "Telefone 529 (Original Mix) [Warp Records] - Musicology - Beatport"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:41:24.082Z",
+  "mbid": "9aa14a42-1441-4b99-82f5-98bfef706172",
+  "type": "track",
+  "editorial_teaser": "A hallmark of early 90s intelligent dance music (IDM), \"Telefone 529\" by B12 is a masterclass in atmospheric, melodic, and cerebral electronic sound design.",
+  "cover_url": "https://f4.bcbits.com/img/a2359898876_2.jpg",
+  "year": "1993",
+  "duration": "4:10",
+  "artists": [
+    {
+      "slug": "artist:b12",
+      "type": "artist",
+      "name": "B12",
+      "mbid": "fa187203-5d60-4e3d-9042-cac7de849649"
+    }
+  ],
+  "project": {
+    "slug": "project:electro-soma--b12",
+    "type": "project",
+    "name": "Electro-Soma"
+  },
+  "label": {
+    "slug": "label:tvt-records",
+    "type": "label",
+    "name": "TVT Records",
+    "mbid": "c9117237-b78b-4e47-b452-c9d94fb34916"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno",
+      "qid": "Q9149801"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:b12",
+      "type": "artist",
+      "name": "B12"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

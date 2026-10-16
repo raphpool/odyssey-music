@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:43:35.917Z",
+  "mbid": "28c1b7b7-355a-48b1-b2c4-75b8eb8080ef",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "LTJ Bukem, the professional alias of British producer and DJ Danny Williamson, is a pioneering figure in electronic music, best known for defining the atmospheric, jazz-inflected side of jungle and drum and bass in the 1990s.",
   "genres": [
     {
@@ -60,5 +62,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

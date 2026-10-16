@@ -1,0 +1,49 @@
+{
+  "slug": "project:gesang-der-junglinge--karlheinz-stockhausen",
+  "name": "Gesang der Jünglinge",
+  "editorial_article": "\"Gesang der Jünglinge\" (Song of the Youths), realized between 1955 and 1956 at the Westdeutscher Rundfunk (WDR) studio in Cologne, stands as the towering first masterpiece of electronic music. Composed by the visionary German composer Karlheinz Stockhausen, the work was a revolutionary attempt to synthesize the two dominant, often antagonistic traditions of mid-century avant-garde music: the German school of *elektronische Musik*, which strictly utilized generated electronic signals like sine tones, and the French school of *musique concrète*, which focused on the manipulation of recorded acoustical phenomena.\\n\\nAt its core, \"Gesang der Jünglinge\" utilizes three primary electronic materials—sine tones, impulses, and filtered white noise—integrated with the recorded voice of a 12-year-old boy soprano, Josef Protschka. Stockhausen’s innovation lay in his effort to bridge the mechanical and the organic, creating sounds of phonemes electronically and matching the human voice’s resonant characteristics to synthetic pitches. The text, derived from the Biblical story of Shadrach, Meshach, and Abednego in the Book of Daniel, is structured around a complex scale of comprehensibility, reflecting Stockhausen’s rigorous intellectual approach to serialism and sound design. Originally conceived for five-channel spatial audio, the piece remains a touchstone for its early exploration of spatial sound, as well as its profound influence on popular culture. Most notably, the techniques employed in the work, including the use of tape loops and sound collage, directly informed the avant-garde experiments of The Beatles, particularly on tracks like \"Tomorrow Never Knows\" and \"Revolution 9,\" helping to bridge the gap between rigorous academic composition and the evolving sonic possibilities of late 1960s rock and experimental music. Its enduring legacy lies in how it proved that electronic synthesis could be as expressive, emotional, and structurally sophisticated as traditional orchestral music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Gesang_der_J%C3%BCnglinge",
+      "title": "Gesang der Jünglinge - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/composition/gesang-der-j%C3%BCnglinge-for-electronics-taped-boys-voice-mc0002394195",
+      "title": "Gesang der Jünglinge, for electronics & taped boy's voice - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:52.123Z",
+  "type": "project",
+  "editorial_pitch": "The seminal electronic composition by Karlheinz Stockhausen that pioneered the synthesis of human vocal elements with electronic textures, setting the stage for decades of sound design.",
+  "year": "1956",
+  "artists": [
+    {
+      "slug": "artist:karlheinz-stockhausen",
+      "type": "artist",
+      "name": "Karlheinz Stockhausen"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:elektronische-musik",
+      "type": "genre",
+      "name": "Elektronische Musik"
+    },
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique Concrète",
+      "qid": "Q823560"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-garde",
+      "qid": "Q2332751"
+    }
+  ],
+  "tracklist": [],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

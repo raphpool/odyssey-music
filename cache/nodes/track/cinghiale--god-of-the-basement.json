@@ -1,0 +1,46 @@
+{
+  "slug": "track:cinghiale--god-of-the-basement",
+  "name": "CINGHIALE",
+  "editorial_article": "\"CINGHIALE\" is a propulsive track by the Italian \"heavy pop\" band God of the Basement, released in 2016. Hailing from Florence, Italy, the band crafts a distinct sonic identity they describe as \"retro-futuristic,\" blending tight, infectious grooves with old-school sampling techniques and heavy, distorted instrumentation. The track exemplifies their approach of balancing modern pop sensibilities with an aesthetic that feels both urban and evocative. \\n\\nMusically, the song leans into the band's penchant for layering high-energy rhythms with gritty, alternative rock textures. As with much of their output, \"CINGHIALE\" (which translates to \"wild boar\" in Italian) feels like an exploration of contrast—juxtaposing catchy melodies against heavier, stoner-influenced sounds. Recorded and mixed at Nardo Relaxo Studio, the track represents the band's early artistic exploration into creating soundscapes that feel cinematic and slightly chaotic, reflecting their broader philosophy of an \"explosion of sound and vision.\" Through their work, God of the Basement established themselves within a niche that bridges electronic experimentation, desert rock, and urban alternative pop, maintaining a DIY spirit evidenced by their independent release on STOCK-A Arts&Records. The track remains a quintessential example of their mid-2010s sound.",
+  "citations": [
+    {
+      "url": "https://godofthebasement.bandcamp.com/track/cinghiale",
+      "title": "Cinghiale | God of the Basement"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:06:19.077Z",
+  "type": "track",
+  "editorial_teaser": "A propulsive 2016 heavy pop track from Florence-based band God of the Basement, blending old-school sampling with distorted, desert-rock-inflected energy.",
+  "year": "2016",
+  "artists": [
+    {
+      "slug": "artist:god-of-the-basement",
+      "type": "artist",
+      "name": "God of the Basement"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative Rock",
+      "qid": "Q11366"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:desert-rock",
+      "type": "genre",
+      "name": "Desert Rock"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

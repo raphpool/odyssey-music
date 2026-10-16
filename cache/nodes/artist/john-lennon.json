@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:14:48.879Z",
+  "mbid": "4d5447d7-c61c-4120-ba1b-d7f471d385b9",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "John Lennon was a legendary English musician and songwriter who rose to fame as a co-founder of The Beatles before establishing a profound solo career.",
   "origin": "England",
   "active_years": "1968-1980",
@@ -58,6 +60,12 @@
       "slug": "project:double-fantasy",
       "type": "project",
       "name": "Double Fantasy"
+    },
+    {
+      "slug": "project:the-beatles",
+      "type": "project",
+      "name": "The Beatles",
+      "artist": "John Lennon"
     }
   ],
   "notable_tracks": [
@@ -75,6 +83,12 @@
       "slug": "track:instant-karma",
       "type": "track",
       "name": "Instant Karma!"
+    },
+    {
+      "slug": "track:the-beatles",
+      "type": "track",
+      "name": "The Beatles",
+      "artist": "John Lennon"
     }
   ],
   "influences": [],
@@ -87,5 +101,6 @@
       "type": "artist",
       "name": "The Beatles"
     }
-  ]
+  ],
+  "similar_artists": []
 }

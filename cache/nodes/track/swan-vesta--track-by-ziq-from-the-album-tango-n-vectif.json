@@ -13,7 +13,7 @@
   "editorial_teaser": "An essential early IDM track from µ-Ziq's debut album, known for its intricate percussion and the experimental, lo-fi aesthetic that helped define the Rephlex Records sound.",
   "artists": [],
   "project": {
-    "slug": "project:tango-n-vectif",
+    "slug": "project:tango-n-vectif--ziq",
     "type": "project",
     "name": "Tango N' Vectif"
   },
@@ -38,6 +38,7 @@
       "name": "Mike Paradinas"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

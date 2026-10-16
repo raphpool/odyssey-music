@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:15:13.152Z",
+  "mbid": "95c2339b-8277-49a6-9aaf-08d8eeeaa0be",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An American singer-songwriter and pianist widely considered the architect of rock and roll for his pioneering fusion of rhythm and blues and gospel.",
   "origin": "United States",
   "active_years": "1951-2020",
@@ -124,5 +126,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:52:09.249Z",
+  "mbid": "a1684a49-feaa-4150-b758-d9412fc59f12",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Michael Gordon Oldfield (born 15 May 1953) is a retired English musician, composer, and producer whose profound impact on progressive rock and multi-instrumental composition defined a significant era in British music.",
   "origin": "Reading, Berkshire, England",
   "genres": [
@@ -50,7 +52,7 @@
   ],
   "discography": [
     {
-      "slug": "project:tubular-bells",
+      "slug": "project:tubular-bells--mike-oldfield",
       "type": "project",
       "name": "Tubular Bells"
     },
@@ -81,5 +83,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

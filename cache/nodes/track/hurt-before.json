@@ -13,7 +13,7 @@
   "editorial_teaser": "\"Hurt Before\" is a track by the Irish Celtic pop band The Corrs, featured on their commercially successful 2000 studio album, \"In Blue.\" Written by the four members of the band—Andrea, Caroline, Jim, and Sharon Corr—the song showcases the group's signature blend of traditional Ir",
   "artists": [],
   "project": {
-    "slug": "project:in-blue",
+    "slug": "project:in-blue--the-corrs",
     "type": "project",
     "name": "In Blue"
   },
@@ -58,6 +58,7 @@
       "name": "Mitchell Froom"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

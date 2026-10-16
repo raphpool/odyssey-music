@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:01:32.558Z",
+  "mbid": "74edfdf2-4e76-4031-ae9b-16f1c7b4ba06",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Marcus Eoin is a Scottish electronic musician best known as one-half of the influential duo Boards of Canada, alongside his brother, Michael Sandison.",
   "origin": "Scotland",
   "active_years": "1980s–present",
@@ -51,12 +53,12 @@
   ],
   "discography": [
     {
-      "slug": "project:music-has-the-right-to-children",
+      "slug": "project:music-has-the-right-to-children--boards-of-canada",
       "type": "project",
       "name": "Music Has the Right to Children"
     },
     {
-      "slug": "project:geogaddi",
+      "slug": "project:geogaddi--boards-of-canada",
       "type": "project",
       "name": "Geogaddi"
     },
@@ -68,7 +70,7 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:roygbiv",
+      "slug": "track:roygbiv--boards-of-canada",
       "type": "track",
       "name": "Roygbiv"
     },
@@ -82,7 +84,7 @@
   "influenced": [],
   "collaborators": [
     {
-      "slug": "artist:michael-sandison",
+      "slug": "artist:mike-sandison",
       "type": "artist",
       "name": "Michael Sandison"
     }
@@ -99,5 +101,6 @@
       "type": "artist",
       "name": "Mike Sandison"
     }
-  ]
+  ],
+  "similar_artists": []
 }

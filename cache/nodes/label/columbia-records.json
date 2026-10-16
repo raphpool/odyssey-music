@@ -43,11 +43,101 @@
       "slug": "artist:harry-styles",
       "type": "artist",
       "name": "Harry Styles"
+    },
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald"
+    },
+    {
+      "slug": "artist:aretha-franklin",
+      "type": "artist",
+      "name": "Aretha Franklin"
+    },
+    {
+      "slug": "artist:calvin-harris",
+      "type": "artist",
+      "name": "Calvin Harris"
+    },
+    {
+      "slug": "artist:chico-hamilton",
+      "type": "artist",
+      "name": "Chico Hamilton"
+    },
+    {
+      "slug": "artist:daft-punk",
+      "type": "artist",
+      "name": "Daft Punk"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie"
+    },
+    {
+      "slug": "artist:earl-sweatshirt",
+      "type": "artist",
+      "name": "Earl Sweatshirt"
+    },
+    {
+      "slug": "artist:frank-sinatra",
+      "type": "artist",
+      "name": "Frank Sinatra"
+    },
+    {
+      "slug": "artist:john-cale",
+      "type": "artist",
+      "name": "John Cale"
+    },
+    {
+      "slug": "artist:lcd-soundsystem",
+      "type": "artist",
+      "name": "LCD Soundsystem"
+    },
+    {
+      "slug": "artist:lil-peep",
+      "type": "artist",
+      "name": "Lil Peep"
+    },
+    {
+      "slug": "artist:mariah-carey",
+      "type": "artist",
+      "name": "Mariah Carey"
+    },
+    {
+      "slug": "artist:nas",
+      "type": "artist",
+      "name": "Nas"
+    },
+    {
+      "slug": "artist:peter-tosh",
+      "type": "artist",
+      "name": "Peter Tosh"
+    },
+    {
+      "slug": "artist:stan-getz",
+      "type": "artist",
+      "name": "Stan Getz"
+    },
+    {
+      "slug": "artist:t-i",
+      "type": "artist",
+      "name": "T.I."
+    },
+    {
+      "slug": "artist:three-6-mafia",
+      "type": "artist",
+      "name": "Three 6 Mafia"
+    },
+    {
+      "slug": "artist:yellowman",
+      "type": "artist",
+      "name": "Yellowman"
     }
   ],
   "notable_releases": [
     {
-      "slug": "project:kind-of-blue",
+      "slug": "project:kind-of-blue--miles-davis",
       "type": "project",
       "name": "Kind of Blue"
     },
@@ -57,9 +147,15 @@
       "name": "Highway 61 Revisited"
     },
     {
-      "slug": "project:born-to-run",
+      "slug": "project:born-to-run--bruce-springsteen",
       "type": "project",
       "name": "Born to Run"
+    },
+    {
+      "slug": "project:delusion-of-the-fury--harry-partch",
+      "type": "project",
+      "name": "Delusion of the Fury",
+      "artist": "Harry Partch"
     }
   ]
 }

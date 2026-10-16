@@ -24,7 +24,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "60dd41cf-8f9d-46d8-bc19-dc7e5acb24c8",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Earth is a foundational drone metal band led by Dylan Carlson, known for pioneering minimalist, feedback-heavy compositions that evolved into an expansive, meditative sound incorporating folk and psychedelic influences.",
   "photo_url": "https://www.metal-archives.com/images/1/0/2/7/10278_photo.jpg?1947",
   "origin": "Olympia, Washington, U.S.",
@@ -94,5 +96,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

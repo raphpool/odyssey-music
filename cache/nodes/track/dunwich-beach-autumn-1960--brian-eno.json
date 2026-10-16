@@ -1,0 +1,70 @@
+{
+  "slug": "track:dunwich-beach-autumn-1960--brian-eno",
+  "name": "Dunwich Beach, Autumn 1960",
+  "editorial_article": "\"Dunwich Beach, Autumn 1960\" is a seminal work of dark ambient soundscape, appearing as the final track on Brian Eno’s 1982 album *Ambient 4: On Land*. The piece stands as a masterclass in atmospheric composition, evoking a profound, mournful sense of history and loss. Its title refers to the real-world historical seaport of Dunwich in Suffolk, England—a town that was once a prosperous trading hub but was gradually lost to the sea through centuries of coastal erosion. Through the track, Eno invites the listener into a \"disturbed landscape\" where the pastoral surface is haunted by an undercurrent of existential dread.\\n\\nSonically, the track reflects Eno’s evolving approach to the studio during this period. Moving away from pure synthesizer reliance, he employed a process of \"composting\"—layering, subtracting, and re-mixing sounds—to create an environment that feels less like a traditional song and more like a captured, decaying moment in time. This creates what Eno described as a \"figurative environment,\" bridging the gap between music and landscape painting. The recording is notable for the contribution of trumpeter Jon Hassell, whose fragile, processed textures pierce through the murky, shifting depths of the soundscape, adding an indelible layer of melancholy. As a key piece on one of the most influential ambient records ever made, \"Dunwich Beach, Autumn 1960\" remains a definitive example of how electronic production can be used to sculpt memory, geography, and the slow, inevitable reclamation of human history by the natural world. In addition to Eno's meticulous production, the track serves as a landmark for the dark ambient subgenre, blending organic field recordings with processed textures to define a new auditory space. Its enduring influence is clear in the works of countless artists who explore the intersection of place, sound, and memory, solidifying its place in the canon of avant-garde and experimental music. Its inclusion in the Ambient series marked a pivotal shift for Brian Eno, moving from the pastoral warmth of his earlier works toward a more desolate and introspective sound that would define his artistic output for years to come. The track stands as a testament to the power of sonic environment, and remains as potent today as it was upon its release. The composition's use of space, silence, and dissonance creates a deeply immersive experience that challenges traditional notions of song structure, pushing the listener into a reflective state of mind. It is a defining artifact of 1980s ambient music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ambient_4:_On_Land",
+      "title": "Ambient 4: On Land - Wikipedia"
+    },
+    {
+      "url": "https://readdork.com/track/brian-eno-dunwich-beach-autumn-1960",
+      "title": "Brian Eno – Dunwich Beach, Autumn, 1960 (1982)"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:53:52.131Z",
+  "mbid": "b970fc37-141e-4d70-a3f5-09bf40242bcc",
+  "type": "track",
+  "editorial_teaser": "A haunting, atmospheric masterpiece of dark ambient soundscapes, this track captures the mournful, eroding history of the submerged coastal town of Dunwich.",
+  "year": "1982",
+  "duration": "7:13",
+  "artists": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:jon-hassell",
+      "type": "artist",
+      "name": "Jon Hassell"
+    }
+  ],
+  "project": {
+    "slug": "project:ambient-4-on-land--brian-eno",
+    "type": "project",
+    "name": "Ambient 4: On Land"
+  },
+  "label": {
+    "slug": "label:editions-eg",
+    "type": "label",
+    "name": "Editions EG",
+    "mbid": "05674da4-44db-4db3-8724-2a19870d5189"
+  },
+  "genres": [
+    {
+      "slug": "genre:dark-ambient",
+      "type": "genre",
+      "name": "Dark Ambient",
+      "qid": "Q756956"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

@@ -1,4 +1,4 @@
-import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readdir, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
@@ -641,124 +641,171 @@ describe("NodeCache — cross-type reverse edges (TRA-454)", () => {
 		expect(slugsOf(warp.roster)).toEqual(["artist:aphex-twin"]);
 	});
 
-	it("reflects label.roster into artist.labels", async () => {
+	// TRA-563 (2026-10-16): only the four directions "credit or membership -> list on an artist or a label"
+	// are emitted. The others copy a credit, a parent or a genre onto a work from the list of another node,
+	// which links to namesakes (artist:rohff lists Akuma's "Fitna"; a pending entry gave Moderat's "II" two
+	// Unlimited credits).
+	const fitnaRef = ref("project:fitna", "Fitna");
+	const akumaRef = ref("artist:akuma", "Akuma");
+
+	it("emits the four safe directions: project.artists, track.artists, project.label, artist.labels", async () => {
 		await crossCache.write(artist({ slug: "artist:aphex-twin", name: "Aphex Twin" }));
-		await crossCache.write(label({ slug: "label:warp", name: "Warp", roster: [aphexRef] }));
-
-		const aphex = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
-		expect(slugsOf(aphex.labels)).toEqual(["label:warp"]);
-	});
-
-	it("sets track.project from project.tracklist when the track has none", async () => {
-		await crossCache.write(track({ slug: "track:x", name: "X" }));
-		await crossCache.write(
-			project({ slug: "project:album", name: "Album", tracklist: [ref("track:x", "X")] }),
-		);
-
-		const x = (await crossCache.get("track:x")) as TrackNode;
-		expect(x.project?.slug).toBe("project:album");
-	});
-
-	it("keeps track.project untouched when it is already set", async () => {
-		await crossCache.write(track({ slug: "track:x", name: "X", project: ref("project:first", "First") }));
-		await crossCache.write(
-			project({ slug: "project:album", name: "Album", tracklist: [ref("track:x", "X")] }),
-		);
-
-		const x = (await crossCache.get("track:x")) as TrackNode;
-		expect(x.project?.slug).toBe("project:first");
-	});
-
-	it("appends the track to project.tracklist from track.project", async () => {
-		await crossCache.write(project({ slug: "project:album", name: "Album" }));
-		await crossCache.write(track({ slug: "track:x", name: "X", project: ref("project:album", "Album") }));
-
-		const album = (await crossCache.get("project:album")) as ProjectNode;
-		expect(slugsOf(album.tracklist)).toEqual(["track:x"]);
-	});
-
-	it("covers the remaining pairs between artist, label, project and track", async () => {
-		await crossCache.write(artist({ slug: "artist:aphex-twin", name: "Aphex Twin" }));
-		await crossCache.write(project({ slug: "project:album", name: "Album" }));
-		await crossCache.write(track({ slug: "track:x", name: "X" }));
 		await crossCache.write(label({ slug: "label:warp", name: "Warp" }));
 
-		// artist.discography -> project.artists, artist.notable_tracks -> track.artists
+		await crossCache.write(
+			project({ slug: "project:album", name: "Album", artists: [aphexRef], label: warpRef }),
+		);
+		await crossCache.write(track({ slug: "track:x", name: "X", artists: [aphexRef] }));
+		await crossCache.write(artist({ slug: "artist:squarepusher", name: "Squarepusher", labels: [warpRef] }));
+
+		const aphex = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
+		expect(slugsOf(aphex.discography)).toEqual(["project:album"]);
+		expect(slugsOf(aphex.notable_tracks)).toEqual(["track:x"]);
+		const warp = (await crossCache.get("label:warp")) as LabelNode;
+		expect(slugsOf(warp.notable_releases)).toEqual(["project:album"]);
+		expect(slugsOf(warp.roster)).toEqual(["artist:squarepusher"]);
+	});
+
+	it("queues the safe directions when the target is absent", async () => {
+		await crossCache.write(
+			project({ slug: "project:album", name: "Album", artists: [aphexRef], label: warpRef }),
+		);
+		await crossCache.write(track({ slug: "track:x", name: "X", artists: [aphexRef] }));
+
+		const pending = await readPending();
+		expect(pending["label:warp"]).toEqual([
+			{ field: "notable_releases", cardinality: "list", edge: ref("project:album", "Album") },
+		]);
+		expect(pending["artist:aphex-twin"]).toEqual([
+			{ field: "discography", cardinality: "list", edge: ref("project:album", "Album") },
+			{ field: "notable_tracks", cardinality: "list", edge: ref("track:x", "X") },
+		]);
+	});
+
+	it("does not add an artist to the credits of a namesake's work from its discography or notable tracks", async () => {
+		await crossCache.write(project({ slug: "project:fitna", name: "Fitna", artists: [akumaRef] }));
+		await crossCache.write(track({ slug: "track:fitna-song", name: "Fitna", artists: [akumaRef] }));
+
 		await crossCache.write(
 			artist({
-				slug: "artist:aphex-twin",
-				name: "Aphex Twin",
-				discography: [ref("project:album", "Album")],
-				notable_tracks: [ref("track:x", "X")],
+				slug: "artist:rohff",
+				name: "Rohff",
+				discography: [fitnaRef],
+				notable_tracks: [ref("track:fitna-song", "Fitna")],
 			}),
 		);
-		// label.notable_releases -> project.label (single)
-		await crossCache.write(
-			label({ slug: "label:warp", name: "Warp", notable_releases: [ref("project:album", "Album")] }),
-		);
 
-		const album = (await crossCache.get("project:album")) as ProjectNode;
-		expect(slugsOf(album.artists)).toEqual(["artist:aphex-twin"]);
-		expect(album.label?.slug).toBe("label:warp");
-		expect(slugsOf(((await crossCache.get("track:x")) as TrackNode).artists)).toEqual(["artist:aphex-twin"]);
-
-		// project.artists -> artist.discography, project.label -> label.notable_releases (list)
-		await crossCache.write(
-			project({ slug: "project:other", name: "Other", artists: [aphexRef], label: warpRef }),
-		);
-		const aphex = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
-		expect(slugsOf(aphex.discography)).toEqual(["project:album", "project:other"]);
-		const warp = (await crossCache.get("label:warp")) as LabelNode;
-		expect(slugsOf(warp.notable_releases)).toEqual(["project:album", "project:other"]);
-
-		// track.artists -> artist.notable_tracks
-		await crossCache.write(track({ slug: "track:y", name: "Y", artists: [aphexRef] }));
-		const aphexAfter = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
-		expect(slugsOf(aphexAfter.notable_tracks)).toEqual(["track:x", "track:y"]);
+		const fitna = (await crossCache.get("project:fitna")) as ProjectNode;
+		expect(slugsOf(fitna.artists)).toEqual(["artist:akuma"]);
+		const song = (await crossCache.get("track:fitna-song")) as TrackNode;
+		expect(slugsOf(song.artists)).toEqual(["artist:akuma"]);
 	});
 
-	it("stamps the genre qid onto artist.genres when genre.key_artists points at a cached artist", async () => {
-		await crossCache.write(artist({ slug: "artist:a", name: "A" }));
+	it("does not queue an unsafe reverse for an absent target", async () => {
 		await crossCache.write(
-			genreNode({ slug: "genre:techno", name: "Techno", qid: "Q170", key_artists: [ref("artist:a", "A")] }),
+			artist({ slug: "artist:rohff", name: "Rohff", discography: [fitnaRef], genres: [] }),
+		);
+		await crossCache.write(
+			genreNode({ slug: "genre:rap", name: "Rap", key_artists: [aphexRef], landmark_projects: [fitnaRef] }),
 		);
 
-		const a = (await crossCache.get("artist:a")) as ArtistNode;
-		expect(a.genres).toEqual([{ type: "genre", slug: "genre:techno", name: "Techno", qid: "Q170" }]);
+		await expect(readPending()).rejects.toMatchObject({ code: "ENOENT" });
 	});
 
-	it("mirrors genre.key_labels, landmark_projects and landmark_tracks into their genres field", async () => {
-		await crossCache.write(label({ slug: "label:warp", name: "Warp" }));
-		await crossCache.write(project({ slug: "project:album", name: "Album" }));
+	it("does not copy a parent, a tracklist, a label or a genre onto a work from another node's list", async () => {
 		await crossCache.write(track({ slug: "track:x", name: "X" }));
+		await crossCache.write(project({ slug: "project:album", name: "Album" }));
+		await crossCache.write(project({ slug: "project:other", name: "Other" }));
+		await crossCache.write(label({ slug: "label:warp", name: "Warp" }));
+		await crossCache.write(artist({ slug: "artist:aphex-twin", name: "Aphex Twin" }));
+
+		// project.tracklist -> track.project, track.project -> project.tracklist
+		await crossCache.write(
+			project({ slug: "project:album", name: "Album", tracklist: [ref("track:x", "X")] }),
+		);
+		await crossCache.write(track({ slug: "track:y", name: "Y", project: ref("project:other", "Other") }));
+		// label.notable_releases -> project.label, label.roster -> artist.labels
+		await crossCache.write(
+			label({
+				slug: "label:warp",
+				name: "Warp",
+				notable_releases: [ref("project:album", "Album")],
+				roster: [aphexRef],
+			}),
+		);
+		// genre.key_* / landmark_* -> X.genres
 		await crossCache.write(
 			genreNode({
 				slug: "genre:idm",
 				name: "IDM",
+				qid: "Q1",
+				key_artists: [aphexRef],
 				key_labels: [warpRef],
 				landmark_projects: [ref("project:album", "Album")],
 				landmark_tracks: [ref("track:x", "X")],
 			}),
 		);
 
-		expect(slugsOf(((await crossCache.get("label:warp")) as LabelNode).genres)).toEqual(["genre:idm"]);
-		expect(slugsOf(((await crossCache.get("project:album")) as ProjectNode).genres)).toEqual(["genre:idm"]);
-		expect(slugsOf(((await crossCache.get("track:x")) as TrackNode).genres)).toEqual(["genre:idm"]);
+		expect(((await crossCache.get("track:x")) as TrackNode).project).toBeUndefined();
+		expect(((await crossCache.get("track:x")) as TrackNode).genres).toEqual([]);
+		expect(((await crossCache.get("project:other")) as ProjectNode).tracklist).toEqual([]);
+		const album = (await crossCache.get("project:album")) as ProjectNode;
+		expect(album.label).toBeUndefined();
+		expect(album.genres).toEqual([]);
+		expect(((await crossCache.get("artist:aphex-twin")) as ArtistNode).labels).toEqual([]);
+		expect(((await crossCache.get("artist:aphex-twin")) as ArtistNode).genres).toEqual([]);
+		expect(((await crossCache.get("label:warp")) as LabelNode).genres).toEqual([]);
 	});
 
-	it("does not add anything to genre.key_artists when an artist lists the genre", async () => {
-		await crossCache.write(genreNode({ slug: "genre:techno", name: "Techno" }));
-		await crossCache.write(
-			artist({
-				slug: "artist:a",
-				name: "A",
-				genres: [{ type: "genre", slug: "genre:techno", name: "Techno" }],
-			}),
+	it("never applies a pending entry that adds a credit to a work, and leaves it on disk", async () => {
+		const unlimited = ref("artist:unlimited", "Unlimited");
+		const unsafe = { field: "artists", cardinality: "list", edge: unlimited };
+		await writeFile(join(crossDir, "pending-reverses.json"), JSON.stringify({ "project:ii": [unsafe] }));
+		const fresh = new NodeCache(crossDir);
+
+		await fresh.write(
+			project({ slug: "project:ii", name: "II", artists: [ref("artist:moderat", "Moderat")] }),
 		);
 
-		const techno = (await crossCache.get("genre:techno")) as GenreNode;
-		expect(techno.key_artists).toEqual([]);
-		await expect(readPending()).rejects.toMatchObject({ code: "ENOENT" });
+		const ii = (await fresh.get("project:ii")) as ProjectNode;
+		expect(slugsOf(ii.artists)).toEqual(["artist:moderat"]);
+		const onDisk = JSON.parse(await readFile(join(crossDir, "pending-reverses.json"), "utf8")) as Record<
+			string,
+			unknown
+		>;
+		expect(onDisk["project:ii"]).toEqual([unsafe]);
+	});
+
+	it("applies the safe pending entries of a node and keeps the unsafe ones", async () => {
+		const album = ref("project:album", "Album");
+		const safe = { field: "discography", cardinality: "list", edge: album };
+		const unsafe = { field: "labels", cardinality: "list", edge: warpRef };
+		await writeFile(
+			join(crossDir, "pending-reverses.json"),
+			JSON.stringify({ "artist:aphex-twin": [unsafe, safe] }),
+		);
+		const fresh = new NodeCache(crossDir);
+
+		await fresh.write(artist({ slug: "artist:aphex-twin", name: "Aphex Twin" }));
+
+		const aphex = (await fresh.get("artist:aphex-twin")) as ArtistNode;
+		expect(slugsOf(aphex.discography)).toEqual(["project:album"]);
+		expect(aphex.labels).toEqual([]);
+		const onDisk = JSON.parse(await readFile(join(crossDir, "pending-reverses.json"), "utf8")) as Record<
+			string,
+			unknown
+		>;
+		expect(onDisk["artist:aphex-twin"]).toEqual([unsafe]);
+	});
+
+	it("keeps applying a pending entry between two nodes of the same kind", async () => {
+		const member = { field: "members", cardinality: "list", edge: ref("artist:b", "B") };
+		await writeFile(join(crossDir, "pending-reverses.json"), JSON.stringify({ "artist:a": [member] }));
+		const fresh = new NodeCache(crossDir);
+
+		await fresh.write(artist({ slug: "artist:a", name: "A" }));
+
+		expect(slugsOf(((await fresh.get("artist:a")) as ArtistNode).members)).toEqual(["artist:b"]);
 	});
 
 	it("emits cross-type reverses on replace() as well", async () => {
@@ -769,5 +816,230 @@ describe("NodeCache — cross-type reverse edges (TRA-454)", () => {
 
 		const warp = (await crossCache.get("label:warp")) as LabelNode;
 		expect(slugsOf(warp.roster)).toEqual(["artist:aphex-twin"]);
+	});
+});
+
+describe("NodeCache.update — locked read-modify-write (TRA-535)", () => {
+	let updDir: string;
+	let updCache: NodeCache;
+
+	beforeEach(async () => {
+		updDir = await mkdtemp(join(tmpdir(), "odyssey-cache-update-"));
+		updCache = new NodeCache(updDir);
+	});
+	afterEach(async () => {
+		await rm(updDir, { recursive: true, force: true });
+	});
+
+	const ref = (slug: Slug, name: string): EdgeRef => ({
+		type: slug.split(":")[0] as EdgeRef["type"],
+		slug,
+		name,
+	});
+	const article = (name: string) => `A real long article about ${name} for update coverage. `.repeat(4);
+	const APHEX = "artist:aphex-twin" as Slug;
+
+	function artist(overrides: Partial<ArtistNode> = {}): ArtistNode {
+		return {
+			type: "artist",
+			slug: APHEX,
+			name: "Aphex Twin",
+			editorial_bio: "Fixture bio for Aphex Twin.",
+			editorial_article: article("Aphex Twin"),
+			citations: [{ url: "https://example.com/aphex-twin" }],
+			materialized_at: new Date().toISOString(),
+			genres: [],
+			labels: [],
+			discography: [],
+			notable_tracks: [],
+			influences: [],
+			influenced: [],
+			collaborators: [],
+			aliases: [],
+			members: [],
+			similar_artists: [],
+			...overrides,
+		};
+	}
+
+	function album(overrides: Partial<ProjectNode> = {}): ProjectNode {
+		return {
+			type: "project",
+			slug: "project:album" as Slug,
+			name: "Album",
+			editorial_pitch: "Fixture pitch for Album.",
+			editorial_article: article("Album"),
+			citations: [{ url: "https://example.com/album" }],
+			materialized_at: new Date().toISOString(),
+			artists: [],
+			genres: [],
+			tracklist: [],
+			producers: [],
+			personnel: [],
+			related_projects: [],
+			...overrides,
+		};
+	}
+
+	/** A promise whose resolution the test controls (no timers: ordering is driven by the test). */
+	function deferred() {
+		let release: () => void = () => undefined;
+		const promise = new Promise<void>((resolve) => {
+			release = resolve;
+		});
+		return { promise, release };
+	}
+
+	const withCollaborator = (node: NodePayload, edge: EdgeRef): NodePayload => {
+		const a = node as ArtistNode;
+		return { ...a, collaborators: [...a.collaborators, edge] };
+	};
+	const slugsOf = (edges: EdgeRef[]) => edges.map((e) => e.slug);
+
+	it("keeps both modifications of two concurrent updates of the same node", async () => {
+		await updCache.write(artist());
+		const entered = deferred();
+		const gate = deferred();
+
+		// The first update holds the node, blocked in `fn`, before it has written anything.
+		const first = updCache.update(APHEX, async (node) => {
+			entered.release();
+			await gate.promise;
+			return withCollaborator(node, ref("artist:richard-d-james", "Richard D. James"));
+		});
+		await entered.promise;
+		const second = updCache.update(APHEX, (node) =>
+			withCollaborator(node, ref("artist:squarepusher", "Squarepusher")),
+		);
+		gate.release();
+		await Promise.all([first, second]);
+
+		const aphex = (await updCache.get(APHEX)) as ArtistNode;
+		expect(slugsOf(aphex.collaborators).sort()).toEqual(["artist:richard-d-james", "artist:squarepusher"]);
+	});
+
+	it("keeps 4 concurrent rewrites of different edges of the same node", async () => {
+		const olds = [1, 2, 3, 4].map((n) => ref(`artist:old-${n}` as Slug, `Old ${n}`));
+		await updCache.write(artist({ collaborators: olds }));
+		let active = 0;
+		let maxActive = 0;
+
+		await Promise.all(
+			olds.map((old, i) =>
+				updCache.update(APHEX, async (node) => {
+					active++;
+					maxActive = Math.max(maxActive, active);
+					// Yield to the event loop so an unlocked implementation would interleave here.
+					await new Promise<void>((resolve) => setImmediate(resolve));
+					active--;
+					const a = node as ArtistNode;
+					return {
+						...a,
+						collaborators: a.collaborators.map((c) =>
+							c.slug === old.slug ? ref(`artist:new-${i + 1}` as Slug, `New ${i + 1}`) : c,
+						),
+					};
+				}),
+			),
+		);
+
+		const aphex = (await updCache.get(APHEX)) as ArtistNode;
+		expect(slugsOf(aphex.collaborators)).toEqual([
+			"artist:new-1",
+			"artist:new-2",
+			"artist:new-3",
+			"artist:new-4",
+		]);
+		expect(maxActive).toBe(1);
+	});
+
+	it("keeps both an update and a reverse edge applied to the node meanwhile", async () => {
+		await updCache.write(artist());
+		const reachedReverse = deferred();
+		const albumFile = join(updDir, "nodes", "project", "album.json");
+
+		const update = updCache.update(APHEX, async (node) => {
+			reachedReverse.release();
+			// Hold the lock until the project is on disk: its reverse edge (project.artists -> artist.discography)
+			// is then queued on this node's lock, and must apply after this update, not be overwritten.
+			await vi.waitFor(async () => readFile(albumFile, "utf8"), { interval: 1, timeout: 5000 });
+			await new Promise<void>((resolve) => setImmediate(resolve));
+			return withCollaborator(node, ref("artist:squarepusher", "Squarepusher"));
+		});
+		await reachedReverse.promise;
+		const albumWrite = updCache.write(album({ artists: [ref(APHEX, "Aphex Twin")] }));
+		await Promise.all([update, albumWrite]);
+
+		const aphex = (await updCache.get(APHEX)) as ArtistNode;
+		expect(slugsOf(aphex.collaborators)).toEqual(["artist:squarepusher"]);
+		expect(slugsOf(aphex.discography)).toEqual(["project:album"]);
+	});
+
+	it("applies the reverse edges pending for the node and clears them", async () => {
+		await updCache.write(artist());
+		await writeFile(
+			join(updDir, "pending-reverses.json"),
+			JSON.stringify({
+				[APHEX]: [{ field: "discography", cardinality: "list", edge: ref("project:album", "Album") }],
+			}),
+			"utf8",
+		);
+		const fresh = new NodeCache(updDir);
+
+		const written = await fresh.update(APHEX, (node) =>
+			withCollaborator(node, ref("artist:squarepusher", "Squarepusher")),
+		);
+
+		expect(written).toBe(true);
+		const aphex = (await fresh.get(APHEX)) as ArtistNode;
+		expect(slugsOf(aphex.collaborators)).toEqual(["artist:squarepusher"]);
+		expect(slugsOf(aphex.discography)).toEqual(["project:album"]);
+		const pending = JSON.parse(await readFile(join(updDir, "pending-reverses.json"), "utf8")) as Record<
+			string,
+			unknown
+		>;
+		expect(pending[APHEX]).toBeUndefined();
+	});
+
+	it("writes nothing when fn reports no change", async () => {
+		await updCache.write(artist());
+		const file = join(updDir, "nodes", "artist", "aphex-twin.json");
+		const before = await readFile(file, "utf8");
+		const writtenBefore = updCache.stats.written;
+
+		expect(await updCache.update(APHEX, () => null)).toBe(false);
+
+		expect(await readFile(file, "utf8")).toBe(before);
+		expect(updCache.stats.written).toBe(writtenBefore);
+	});
+
+	it("leaves the file intact, and releases the lock, when fn throws or validation fails", async () => {
+		await updCache.write(artist());
+		const file = join(updDir, "nodes", "artist", "aphex-twin.json");
+		const before = await readFile(file, "utf8");
+
+		await expect(
+			updCache.update(APHEX, () => {
+				throw new Error("boom");
+			}),
+		).rejects.toThrow("boom");
+		await expect(
+			updCache.update(APHEX, (node) => ({ ...node, citations: [] }) as unknown as NodePayload),
+		).rejects.toThrow();
+		await expect(
+			updCache.update(APHEX, (node) => ({ ...node, slug: "artist:other" }) as NodePayload),
+		).rejects.toThrow(/must not change the slug/);
+
+		expect(await readFile(file, "utf8")).toBe(before);
+		expect(await readdir(join(updDir, "nodes", "artist"))).toEqual(["aphex-twin.json"]);
+		// The failures did not wedge the node: a later update still goes through.
+		expect(await updCache.update(APHEX, (node) => withCollaborator(node, ref("artist:x", "X")))).toBe(true);
+	});
+
+	it("throws NotFoundError for a node that is not cached", async () => {
+		await expect(updCache.update(APHEX, (node) => node)).rejects.toMatchObject({ name: "NotFoundError" });
+		await expect(updCache.update("artist:../../outside" as Slug, (node) => node)).rejects.toMatchObject({
+			name: "ValidationError",
+		});
 	});
 });

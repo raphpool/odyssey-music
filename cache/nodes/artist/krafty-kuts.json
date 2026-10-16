@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:55:38.225Z",
+  "mbid": "d14416ef-2283-49ef-9118-d690613d0bc9",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Martin Reeves, known as Krafty Kuts, is a veteran English producer and DJ celebrated for his influential work in the breakbeat and electronic dance music circuits.",
   "origin": "Bognor Regis, England",
   "active_years": "1997-present",
@@ -484,5 +486,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

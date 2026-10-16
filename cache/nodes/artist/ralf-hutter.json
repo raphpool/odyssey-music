@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "da3f4766-628e-4da3-a871-014728993157",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Ralf Hütter is a German musician, composer, and the foundational visionary behind the electronic music pioneers, Kraftwerk.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Ralf_H%C3%BCtter.jpg/960px-Ralf_H%C3%BCtter.jpg",
   "origin": "Düsseldorf, Germany",
@@ -72,17 +74,17 @@
   ],
   "discography": [
     {
-      "slug": "project:autobahn",
+      "slug": "project:autobahn--kraftwerk",
       "type": "project",
       "name": "Autobahn"
     },
     {
-      "slug": "project:the-man-machine",
+      "slug": "project:the-man-machine--kraftwerk",
       "type": "project",
       "name": "The Man-Machine"
     },
     {
-      "slug": "project:computer-world",
+      "slug": "project:computer-world--kraftwerk",
       "type": "project",
       "name": "Computer World"
     },
@@ -94,7 +96,7 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:autobahn",
+      "slug": "track:autobahn--kraftwerk",
       "type": "track",
       "name": "Autobahn"
     },
@@ -104,7 +106,7 @@
       "name": "The Robots"
     },
     {
-      "slug": "track:the-model",
+      "slug": "track:the-model--kraftwerk",
       "type": "track",
       "name": "The Model"
     },
@@ -134,5 +136,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

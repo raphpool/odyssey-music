@@ -1,0 +1,86 @@
+{
+  "slug": "track:passion--rod-stewart",
+  "name": "Passion",
+  "editorial_article": "\"Passion\" is a quintessential pop-rock track by British singer-songwriter Rod Stewart, released in 1980 as the lead single from his tenth studio album, *Foolish Behaviour*. Characterized by its driving beat, slick production, and a persistent, rhythmic vocal delivery, the song captures a polished, late-disco/new-wave intersection that characterized Stewart's output during the dawn of the 1980s. Lyrically, the song explores themes of urban malaise, loneliness, and the universal, restless search for connection—or \"passion\"—across global cities from New York to Moscow and Tokyo. \\n\\nThe track reflects a significant collaborative effort, credited to the collective creative force of The Rod Stewart Group, including Phil Chen, Kevin Savigar, Jim Cregan, and Gary Grainger, along with production input from Andy Johns. Its success was marked by a top-20 chart performance globally, reaching number five on the US Billboard charts, cementing its status as a staple of Stewart's early-80s repertoire. The track's sonic landscape is defined by Savigar’s prominent keyboard work and a crisp, tight arrangement that bridged the gap between Stewart's rock roots and the contemporary danceable sounds of the era. Beyond its radio ubiquity, the song has maintained a cultural presence, later becoming associated with the aesthetic of 1980s adult-oriented cinema. Through its persistent refrain, \"Passion\" serves as both a literal and metaphorical anthem for the restless energy of the decade, showcasing Stewart’s chameleon-like ability to adapt to changing musical landscapes without sacrificing his distinctive raspy vocal identity.",
+  "citations": [
+    {
+      "url": "https://readdork.com/track/rod-stewart-passion-1980",
+      "title": "Rod Stewart – Passion (1980) | Track profile - Dork"
+    },
+    {
+      "url": "https://genius.com/Rod-stewart-passion-lyrics",
+      "title": "Rod Stewart – Passion Lyrics | Genius Lyrics"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=RDcaYbeXeUI",
+      "title": "Rod Stewart - Passion (Official HD Remastered Video) - YouTube"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:30.721Z",
+  "_metrics": {
+    "input_tokens": 12719,
+    "output_tokens": 718,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004257,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 10381,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "track",
+  "editorial_teaser": "A driving 1980 pop-rock anthem from Rod Stewart, \"Passion\" explores global urban restlessness through the lens of a hit-making sound that defined the early 80s.",
+  "year": "1980",
+  "duration": "5:30",
+  "artists": [
+    {
+      "slug": "artist:rod-stewart",
+      "type": "artist",
+      "name": "Rod Stewart"
+    }
+  ],
+  "project": {
+    "slug": "project:foolish-behaviour",
+    "type": "project",
+    "name": "Foolish Behaviour"
+  },
+  "genres": [
+    {
+      "slug": "genre:pop-rock",
+      "type": "genre",
+      "name": "Pop rock",
+      "qid": "Q484641"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New Wave",
+      "qid": "Q187760"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:andy-johns",
+      "type": "artist",
+      "name": "Andy Johns"
+    },
+    {
+      "slug": "artist:the-rod-stewart-group",
+      "type": "artist",
+      "name": "The Rod Stewart Group"
+    },
+    {
+      "slug": "artist:harry-the-hook",
+      "type": "artist",
+      "name": "Harry The Hook"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

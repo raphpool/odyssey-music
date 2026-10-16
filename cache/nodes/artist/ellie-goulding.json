@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:18:22.779Z",
+  "mbid": "33ca19f4-18c8-4411-98df-ac23890ce9f5",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Ellie Goulding is a British singer-songwriter and vocalist who emerged as a defining figure in 2010s electropop.",
   "photo_url": "https://fastly-s3.allmusic.com/artist/mn0001596642/400/iN21ysbiwxk4w55fP02Joj6KsMttLlyBmmVTZ6_CLs0=.jpg",
   "origin": "Hereford, England",
@@ -92,6 +94,12 @@
       "slug": "track:love-me-like-you-do",
       "type": "track",
       "name": "Love Me Like You Do"
+    },
+    {
+      "slug": "track:the-ending--ellie-goulding",
+      "type": "track",
+      "name": "The Ending",
+      "artist": "Ellie Goulding"
     }
   ],
   "influences": [],
@@ -114,5 +122,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

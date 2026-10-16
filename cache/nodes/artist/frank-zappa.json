@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:45:11.910Z",
+  "mbid": "e20747e7-55a4-452e-8766-7b985585082d",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Frank Vincent Zappa (1940–1993) was an American composer, guitarist, satirist, and filmmaker whose work defied conventional genre boundaries for over three decades. Known for his staggering productivity and \"Project/Object\" conceptual continuity, Zappa integrated elements of rock, jazz, doo-wop, musique concrète, and 20th-century classical modernism.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Zappa_16011977_01_300.jpg",
   "origin": "Los Angeles, California, U.S.",
@@ -104,5 +106,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

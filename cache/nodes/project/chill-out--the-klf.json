@@ -1,0 +1,68 @@
+{
+  "slug": "project:chill-out--the-klf",
+  "name": "Chill Out",
+  "editorial_article": "Released on 5 February 1990, 'Chill Out' stands as the third studio album by the British electronic group The KLF and a defining work in the nascent genre of ambient house. Conceived by Bill Drummond and Jimmy Cauty, the album was recorded in a continuous, two-day live session at their 'Trancentral' studio in South London. Rather than relying on complex sequencing or bank after bank of synthesizers, the duo utilized the 'bare necessities' of electronic production to create a cohesive, 44-minute soundscape. The album is structured as a sonic travelogue, following a mythical nighttime journey across the American Gulf Coast—from Texas through Louisiana. While the musicians themselves had never visited these locations, the album uses a rich palette of sounds to evoke the setting, incorporating field recordings of train noises, radio broadcasts, and environmental atmospheres alongside synthesizers and pedal steel contributions from Graham Lee. A primary characteristic of 'Chill Out' is its profound use of sound collage. The duo masterfully wove together samples ranging from Elvis Presley, Fleetwood Mac, and Van Halen to the hypnotic chants of Tuvan throat singers and obscure film dialogue. This eclectic sourcing, combined with ethereal synthesizer loops and atmospheric segues, pushed the boundaries of what dance-music producers were creating at the time, positioning The KLF as innovators who could pivot effortlessly from chart-topping rave anthems to deeply introspective ambient textures. Culturally, the album helped popularize the 'chill-out room' concept in club culture, providing a sanctuary for dancers to decompress. It remains a hallmark of atmospheric electronic music, celebrated for its ability to merge high-concept narrative with a minimalist, avant-garde production aesthetic. The project is linked heavily to the careers of Bill Drummond and Jimmy Cauty, the primary architects behind the KLF, as well as being a foundational release for KLF Communications, their record label. Its influence spans decades, impacting various electronic, ambient, and experimental artists. The album also features contributions from musician Graham Lee, whose pedal steel guitar adds a distinct, melancholic Americana flavor to the project, grounding the electronic textures in a sense of place. This project is a crucial link between the experimental spirit of the Justified Ancients of Mu Mu and the more pop-oriented productions that would later define the KLF's commercial success, illustrating the duo's remarkable range.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/13456-The-KLF-Chill-Out?srsltid=AfmBOoon-LN3sHoTbuPkoxSVqsIKBUCUqSMGo7BoUH-DloJK4-c0y8vG",
+      "title": "The KLF – Chill Out | Releases - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:54:28.299Z",
+  "mbid": "a415fc9b-1516-303e-b354-fc3a5b269f1b",
+  "type": "project",
+  "editorial_pitch": "A seminal ambient house concept album, 'Chill Out' is a continuous, immersive soundscape that chronicles a mythical nocturnal journey across the American Gulf Coast. Featuring a masterful blend of synthesized textures, field recordings, and eclectic samples, the project remains a landmark in the evolution of electronic music for its minimalist yet highly atmospheric approach.",
+  "year": "1990",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:the-klf",
+      "type": "artist",
+      "name": "The KLF",
+      "mbid": "8092b8b7-235e-4844-9f72-95a9d5a73dbf"
+    }
+  ],
+  "label": {
+    "slug": "label:klf-communications",
+    "type": "label",
+    "name": "KLF Communications"
+  },
+  "genres": [
+    {
+      "slug": "genre:ambient-house",
+      "type": "genre",
+      "name": "Ambient house",
+      "qid": "Q2465085"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    },
+    {
+      "slug": "genre:sound-collage",
+      "type": "genre",
+      "name": "Sound collage",
+      "qid": "Q1744304"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:chill-out--the-klf",
+      "type": "track",
+      "name": "Chill Out",
+      "mbid": "b2cbbfba-b9c6-401c-a33a-f36d1a54981c",
+      "artist": "The KLF"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:the-klf",
+      "type": "artist",
+      "name": "The KLF"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

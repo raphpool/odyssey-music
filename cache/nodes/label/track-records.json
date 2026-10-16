@@ -65,7 +65,7 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:are-you-experienced",
+      "slug": "project:are-you-experienced--the-jimi-hendrix-experience",
       "type": "project",
       "name": "Are You Experienced"
     },
@@ -78,6 +78,12 @@
       "slug": "project:who-s-next",
       "type": "project",
       "name": "Who's Next"
+    },
+    {
+      "slug": "project:axis-bold-as-love--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Axis: Bold as Love",
+      "artist": "The Jimi Hendrix Experience"
     }
   ]
 }

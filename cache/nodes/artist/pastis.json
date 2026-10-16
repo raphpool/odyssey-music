@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:00:09.072Z",
+  "mbid": "17a729c0-0df1-40a4-b444-0c3d4ca3f8e5",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Spanish DJ and producer David Álvarez Tudela was a foundational architect of the 1990s Barcelona mákina and hard trance scene.",
   "origin": "Girona, Spain",
   "active_years": "1992-present",
@@ -93,5 +95,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

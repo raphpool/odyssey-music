@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:49:47.128Z",
+  "mbid": "f72dd357-1c27-4f39-bb72-0d3c9004d3f1",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Pandit Pran Nath (1918–1996) was a seminal Hindustani classical vocalist and a master of the Kirana gharana, a school of North Indian music renowned for its focus on minute tonal gradations and meditative exploration.",
   "active_years": "1937-1996",
   "genres": [
@@ -53,5 +55,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

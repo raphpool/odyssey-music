@@ -97,6 +97,21 @@
       "slug": "artist:father-john-misty",
       "type": "artist",
       "name": "Father John Misty"
+    },
+    {
+      "slug": "artist:beat-happening",
+      "type": "artist",
+      "name": "Beat Happening"
+    },
+    {
+      "slug": "artist:clipping",
+      "type": "artist",
+      "name": "clipping."
+    },
+    {
+      "slug": "artist:the-vaselines",
+      "type": "artist",
+      "name": "The Vaselines"
     }
   ],
   "notable_releases": [
@@ -124,6 +139,12 @@
       "slug": "project:bloom",
       "type": "project",
       "name": "Bloom"
+    },
+    {
+      "slug": "project:a-wrenched-virile-lore--mogwai",
+      "type": "project",
+      "name": "A Wrenched Virile Lore",
+      "artist": "Mogwai"
     }
   ]
 }

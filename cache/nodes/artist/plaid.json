@@ -32,7 +32,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "7e54d133-2525-4bc0-ae94-65584145a386",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Plaid is a foundational British electronic music duo composed of Ed Handley and Andy Turner, who have been central figures in the development of IDM (Intelligent Dance Music) since the early 1990s. Initially emerging from the influential electronic collective The Black Dog, Handley and Turner struck out as Plaid, eventually finding a long-term home on the iconic Warp Records label. Over the course of three decades, the pair has refined a signature sound characterized by intricate, melodic programming, complex rhythmic structures, and a persistent sense of warmth and playfulness that often contrasts with the clinical or aggressive edges found elsewhere in the genre. Their work bridges the gap between dancefloor-oriented experimentation and ambient introspection, allowing them to traverse diverse soundscapes ranging from hyper-detailed synthesis to ethereal sound design. Beyond their own prolific discography, Plaid are highly regarded for their collaborations—most notably with Icelandic artist Björk—and their contributions to film scores, demonstrating a versatility that has solidified their status as architects of the modern electronic canon. As cornerstones of the Warp roster, they have consistently pushed the boundaries of digital composition while maintaining a distinct humanistic sensibility that has inspired generations of electronic producers.",
   "photo_url": "https://d1rgjmn2wmqeif.cloudfront.net/a/2000/27-2.jpg",
   "origin": "London, UK",
@@ -123,5 +125,6 @@
       "type": "artist",
       "name": "Andy Turner"
     }
-  ]
+  ],
+  "similar_artists": []
 }

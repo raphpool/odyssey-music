@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:18:29.331Z",
+  "mbid": "05755bf1-380c-487f-983f-d1a02401fa28",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Cat Power is the long-running, deeply emotive project of American singer-songwriter Chan Marshall.",
   "origin": "Atlanta, Georgia, USA",
   "active_years": "1992–present",
@@ -134,5 +136,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

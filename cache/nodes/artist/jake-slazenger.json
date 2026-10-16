@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:40:42.362Z",
+  "mbid": "91e7ec65-c3a0-4a76-aadb-a2b5bd69ff27",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Jake Slazenger is an electronic alias of Mike Paradinas, active in the 1990s and known for quirky, sample-heavy IDM and breakcore explorations.",
   "origin": "United Kingdom",
   "genres": [
@@ -60,12 +62,12 @@
       "name": "Makesaracket"
     },
     {
-      "slug": "project:das-ist-ein-groovybeat-ja",
+      "slug": "project:das-ist-ein-groovybeat-ja--jake-slazenger",
       "type": "project",
       "name": "Das Ist Ein Groovybeat, Ja"
     },
     {
-      "slug": "project:drops-a-deuce",
+      "slug": "project:drops-a-deuce--jake-slazenger",
       "type": "project",
       "name": "Drops A Deuce"
     },
@@ -87,7 +89,7 @@
       "name": "Nautilus"
     },
     {
-      "slug": "track:pewter-dragon",
+      "slug": "track:pewter-dragon--jake-slazenger",
       "type": "track",
       "name": "Pewter Dragon"
     }
@@ -107,5 +109,6 @@
       "name": "Mike Paradinas"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

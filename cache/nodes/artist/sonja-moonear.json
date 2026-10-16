@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:40:08.357Z",
+  "mbid": "d6c86545-6fae-41b0-be0c-7a614190360b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Sonja Moonear is a prominent Swiss DJ, producer, and label manager who has become a defining figure in the global underground electronic music scene.",
   "photo_url": "https://ra.co/dj/sonjamoonear",
   "genres": [
@@ -53,5 +55,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -1813,6 +1813,128 @@ describe("work resolvers: credits accepted by MBID (TRA-539)", () => {
 		).toEqual(ambiguous);
 	});
 
+	describe("requestedArtistMbid and two bands (TRA-552)", () => {
+		const PRESENTS = "ffffffff-1111-4111-8111-0000000000a1";
+		const BAND_WORK = "ffffffff-1111-4111-8111-0000000000a2";
+		const OLDER = "ffffffff-1111-4111-8111-0000000000a3";
+		const NEWER = "ffffffff-1111-4111-8111-0000000000a4";
+
+		// "Roni Size Presents" is not the hint and no segment of it either: by name alone the artist's own
+		// work vanished and the band's work of the same title won.
+		const fixture = () =>
+			stubMb({
+				recordings: [
+					hit(PRESENTS, "X Test", [[RONI, "Roni Size Presents"]], { "first-release-date": "2000" }),
+					hit(BAND_WORK, "X Test", [[REPRAZENT_BAND, "Roni Size / Reprazent"]], {
+						"first-release-date": "1999",
+					}),
+				],
+			});
+
+		it("documents the gap: without the artist's MBID the band's work wins", async () => {
+			fixture();
+			const out = await resolveRecordingDetailed("X Test", "Roni Size", {
+				acceptCreditMbids: [REPRAZENT_BAND],
+			});
+			expect(out.identity?.mbid).toBe(BAND_WORK);
+		});
+
+		it("is ambiguous, not the band's work, when the artist's own work is printed under another name", async () => {
+			fixture();
+			expect(
+				await resolveRecordingDetailed("X Test", "Roni Size", {
+					acceptCreditMbids: [REPRAZENT_BAND],
+					requestedArtistMbid: RONI,
+				}),
+			).toEqual(ambiguous);
+		});
+
+		it("compares the requested MBID without regard to case, on release groups too", async () => {
+			stubMb({
+				"release-groups": [
+					hit(PRESENTS, "X Test", [[RONI, "Roni Size Presents"]]),
+					hit(BAND_WORK, "X Test", [[REPRAZENT_BAND, "Roni Size / Reprazent"]]),
+				],
+			});
+			expect(
+				await resolveReleaseGroupDetailed("X Test", "Roni Size", {
+					acceptCreditMbids: [REPRAZENT_BAND],
+					requestedArtistMbid: RONI.toUpperCase(),
+				}),
+			).toEqual(ambiguous);
+		});
+
+		it("resolves the artist's own work printed under another name when no band competes", async () => {
+			stubMb({ recordings: [hit(PRESENTS, "Y Test", [[RONI, "Roni Size Presents"]])] });
+			expect(
+				(await resolveRecordingDetailed("Y Test", "Roni Size", { requestedArtistMbid: RONI })).identity?.mbid,
+			).toBe(PRESENTS);
+			expect(await resolveRecordingDetailed("Y Test", "Roni Size")).toEqual(none);
+		});
+
+		it("never reads another artist's MBID as the requested one", async () => {
+			stubMb({ recordings: [hit(PRESENTS, "Z Test", [[RONI, "Roni Size Presents"]])] });
+			expect(
+				await resolveRecordingDetailed("Z Test", "Roni Size", { requestedArtistMbid: OTHER_BAND }),
+			).toEqual(none);
+		});
+
+		it("is ambiguous when two different accepted bands each have a work of the title (recording)", async () => {
+			stubMb({
+				recordings: [
+					hit(OLDER, "Twin Test", [[REPRAZENT_BAND, "Roni Size / Reprazent"]], {
+						"first-release-date": "1997",
+					}),
+					hit(NEWER, "Twin Test", [[OTHER_BAND, "Another Band"]], { "first-release-date": "2005" }),
+				],
+			});
+			expect(
+				await resolveRecordingDetailed("Twin Test", "Roni Size", {
+					acceptCreditMbids: [REPRAZENT_BAND, OTHER_BAND],
+				}),
+			).toEqual(ambiguous);
+		});
+
+		it("is ambiguous, not the oldest, when two different accepted bands each have a release group of the title", async () => {
+			stubMb({
+				"release-groups": [
+					hit(OLDER, "Twin Test", [[REPRAZENT_BAND, "Roni Size / Reprazent"]], {
+						"first-release-date": "1997",
+					}),
+					hit(NEWER, "Twin Test", [[OTHER_BAND, "Another Band"]], { "first-release-date": "2005" }),
+				],
+			});
+			expect(
+				await resolveReleaseGroupDetailed("Twin Test", "Roni Size", {
+					acceptCreditMbids: [REPRAZENT_BAND, OTHER_BAND],
+				}),
+			).toEqual(ambiguous);
+		});
+
+		it("still takes the earliest release group when both candidates belong to the same accepted band", async () => {
+			stubMb({
+				"release-groups": [
+					hit(OLDER, "Twin Same Band", [[REPRAZENT_BAND, "Roni Size / Reprazent"]], {
+						"first-release-date": "1997",
+					}),
+					hit(NEWER, "Twin Same Band", [[REPRAZENT_BAND, "Reprazent"]], { "first-release-date": "2005" }),
+				],
+			});
+			const out = await resolveReleaseGroupDetailed("Twin Same Band", "Roni Size", {
+				acceptCreditMbids: [REPRAZENT_BAND, OTHER_BAND],
+			});
+			expect(out.identity?.mbid).toBe(OLDER);
+		});
+
+		it("resolves when only one of the listed bands has a work of the title", async () => {
+			stubMb({ "release-groups": [hit(OLDER, "Twin Lone", [[REPRAZENT_BAND, "Roni Size / Reprazent"]])] });
+			const out = await resolveReleaseGroupDetailed("Twin Lone", "Roni Size", {
+				acceptCreditMbids: [REPRAZENT_BAND, OTHER_BAND],
+			});
+			expect(out.identity?.mbid).toBe(OLDER);
+		});
+	});
+
 	it("still picks the one direct candidate when no band-credited candidate exists", async () => {
 		const id = "ffffffff-1111-4111-8111-000000000006";
 		stubMb({
@@ -1825,5 +1947,312 @@ describe("work resolvers: credits accepted by MBID (TRA-539)", () => {
 			acceptCreditMbids: [REPRAZENT_BAND],
 		});
 		expect(out.identity?.mbid).toBe(id);
+	});
+});
+
+// TRA-560: a single released before the album of the same name must not give the album its MBID.
+// The MBIDs keep the prefix of the two real cases found in the TRA-483 deep review; the rest is made up.
+describe("pickByTitleAndCredit: release groups of different primary types", () => {
+	const INTER_ARMA = "abababab-0560-4560-8560-000000000001";
+	const ARETHA = "abababab-0560-4560-8560-000000000002";
+	const NEW_HEAVEN_SINGLE = "2da5680f-0560-4560-8560-000000000001";
+	const NEW_HEAVEN_ALBUM = "763aa505-0560-4560-8560-000000000001";
+	const NEVER_LOVED_SINGLE = "c1efa6b7-0560-4560-8560-000000000001";
+	const NEVER_LOVED_ALBUM = "7d8f07a7-0560-4560-8560-000000000001";
+	const NEVER_LOVED = "I Never Loved a Man the Way I Love You";
+	const none = { identity: null, ambiguous: false, unavailable: false };
+	const ambiguous = { identity: null, ambiguous: true, unavailable: false };
+
+	const newHeaven = () =>
+		stubMb({
+			"release-groups": [
+				hit(NEW_HEAVEN_SINGLE, "New Heaven", [[INTER_ARMA, "Inter Arma"]], {
+					"primary-type": "Single",
+					"first-release-date": "2024-02-27",
+				}),
+				hit(NEW_HEAVEN_ALBUM, "New Heaven", [[INTER_ARMA, "Inter Arma"]], {
+					"primary-type": "Album",
+					"first-release-date": "2024-04-26",
+				}),
+			],
+		});
+	const neverLoved = () =>
+		stubMb({
+			"release-groups": [
+				hit(NEVER_LOVED_ALBUM, NEVER_LOVED, [[ARETHA, "Aretha Franklin"]], {
+					"primary-type": "Album",
+					"first-release-date": "1967-03-10",
+				}),
+				hit(NEVER_LOVED_SINGLE, NEVER_LOVED, [[ARETHA, "Aretha Franklin"]], {
+					"primary-type": "Single",
+					"first-release-date": "1967-02-10",
+				}),
+			],
+		});
+
+	it("gives the album its own MBID, not its older single's, when the node says it is an album", async () => {
+		newHeaven();
+		const first = await resolveReleaseGroupDetailed("New Heaven", "Inter Arma", { releaseType: "album" });
+		expect(first.identity?.mbid).toBe(NEW_HEAVEN_ALBUM);
+		expect(first.identity?.primaryType).toBe("Album");
+		neverLoved();
+		const second = await resolveReleaseGroupDetailed(NEVER_LOVED, "Aretha Franklin", {
+			releaseType: "album",
+		});
+		expect(second.identity?.mbid).toBe(NEVER_LOVED_ALBUM);
+	});
+
+	it("keeps the single's MBID for a work requested as a single", async () => {
+		newHeaven();
+		expect(
+			(await resolveReleaseGroupDetailed("New Heaven", "Inter Arma", { releaseType: "single" })).identity
+				?.mbid,
+		).toBe(NEW_HEAVEN_SINGLE);
+		neverLoved();
+		expect(
+			(await resolveReleaseGroupDetailed(NEVER_LOVED, "Aretha Franklin", { releaseType: "Single" })).identity
+				?.mbid,
+		).toBe(NEVER_LOVED_SINGLE);
+	});
+
+	it("is ambiguous, never the older one, when the release type is not known", async () => {
+		newHeaven();
+		expect(await resolveReleaseGroupDetailed("New Heaven", "Inter Arma")).toEqual(ambiguous);
+		neverLoved();
+		expect(await resolveReleaseGroupDetailed(NEVER_LOVED, "Aretha Franklin")).toEqual(ambiguous);
+		// A blank type is not a type.
+		newHeaven();
+		expect(await resolveReleaseGroupDetailed("New Heaven", "Inter Arma", { releaseType: " " })).toEqual(
+			ambiguous,
+		);
+	});
+
+	it("is ambiguous when the type the node knows is none of the candidates' types", async () => {
+		newHeaven();
+		expect(await resolveReleaseGroupDetailed("New Heaven", "Inter Arma", { releaseType: "ep" })).toEqual(
+			ambiguous,
+		);
+	});
+
+	it("takes the node's type even when another type is older or the node's own is undated", async () => {
+		stubMb({
+			"release-groups": [
+				hit(NEW_HEAVEN_SINGLE, "Typed Pick", [[INTER_ARMA, "Inter Arma"]], { "primary-type": "Single" }),
+				hit("763aa505-0560-4560-8560-000000000002", "Typed Pick", [[INTER_ARMA, "Inter Arma"]], {
+					"primary-type": "EP",
+					"first-release-date": "2001-01-01",
+				}),
+				hit(NEW_HEAVEN_ALBUM, "Typed Pick", [[INTER_ARMA, "Inter Arma"]], { "primary-type": "Album" }),
+			],
+		});
+		expect(
+			(await resolveReleaseGroupDetailed("Typed Pick", "Inter Arma", { releaseType: "album" })).identity
+				?.mbid,
+		).toBe(NEW_HEAVEN_ALBUM);
+	});
+
+	it("still tells an original from its reissue by date when both have the node's type", async () => {
+		const reissue = "763aa505-0560-4560-8560-000000000003";
+		stubMb({
+			"release-groups": [
+				hit(reissue, "New Heaven", [[INTER_ARMA, "Inter Arma"]], {
+					"primary-type": "Album",
+					"first-release-date": "2019-01-01",
+				}),
+				hit(NEW_HEAVEN_SINGLE, "New Heaven", [[INTER_ARMA, "Inter Arma"]], {
+					"primary-type": "Single",
+					"first-release-date": "2018-01-01",
+				}),
+				hit(NEW_HEAVEN_ALBUM, "New Heaven", [[INTER_ARMA, "Inter Arma"]], {
+					"primary-type": "Album",
+					"first-release-date": "2018-06-01",
+				}),
+			],
+		});
+		// With the type: the oldest ALBUM, not the older single.
+		expect(
+			(await resolveReleaseGroupDetailed("New Heaven", "Inter Arma", { releaseType: "album" })).identity
+				?.mbid,
+		).toBe(NEW_HEAVEN_ALBUM);
+		// Without it the types differ: no date decides.
+		expect((await resolveReleaseGroupDetailed("New Heaven", "Inter Arma")).ambiguous).toBe(true);
+	});
+
+	it("keeps the oldest-wins rule among candidates of one type, whatever the node says", async () => {
+		const original = "763aa505-0560-4560-8560-000000000004";
+		const reissue = "763aa505-0560-4560-8560-000000000005";
+		const stub = () =>
+			stubMb({
+				"release-groups": [
+					hit(reissue, "Same Type", [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"first-release-date": "2012-05-05",
+					}),
+					hit(original, "Same Type", [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"first-release-date": "1999-05-05",
+					}),
+				],
+			});
+		stub();
+		expect((await resolveReleaseGroupDetailed("Same Type", "Inter Arma")).identity?.mbid).toBe(original);
+		stub();
+		expect(
+			(await resolveReleaseGroupDetailed("Same Type", "Inter Arma", { releaseType: "album" })).identity?.mbid,
+		).toBe(original);
+		// A node known as a single never takes an album, even when the albums agree among themselves.
+		stub();
+		expect(await resolveReleaseGroupDetailed("Same Type", "Inter Arma", { releaseType: "single" })).toEqual(
+			ambiguous,
+		);
+	});
+
+	it("never gives a node of a known type the MBID of another type, a lone candidate included", async () => {
+		const lone = (title: string, type: string) =>
+			stubMb({
+				"release-groups": [
+					hit("763aa505-0560-4560-8560-000000000010", title, [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": type,
+						"first-release-date": "2024-02-27",
+					}),
+				],
+			});
+		// An album node whose only candidate is a single.
+		lone("Lone Single", "Single");
+		expect(await resolveReleaseGroupDetailed("Lone Single", "Inter Arma", { releaseType: "album" })).toEqual(
+			ambiguous,
+		);
+		// The same candidate for a node that agrees, or that knows nothing, is still taken.
+		lone("Lone Single", "Single");
+		expect(
+			(await resolveReleaseGroupDetailed("Lone Single", "Inter Arma", { releaseType: "Single" })).identity
+				?.mbid,
+		).toBe("763aa505-0560-4560-8560-000000000010");
+		lone("Lone Single Two", "Single");
+		expect((await resolveReleaseGroupDetailed("Lone Single Two", "Inter Arma")).identity?.mbid).toBe(
+			"763aa505-0560-4560-8560-000000000010",
+		);
+		// A candidate with no primary type has no type to agree with the node's.
+		stubMb({
+			"release-groups": [
+				hit("763aa505-0560-4560-8560-000000000011", "Untyped Lone", [[INTER_ARMA, "Inter Arma"]]),
+			],
+		});
+		expect(await resolveReleaseGroupDetailed("Untyped Lone", "Inter Arma", { releaseType: "album" })).toEqual(
+			ambiguous,
+		);
+	});
+
+	// MB files a compilation (or a live album, a soundtrack...) as primary "Album" plus a secondary type;
+	// there is no "Compilation" primary type.
+	describe("secondary types", () => {
+		const compilation = "763aa505-0560-4560-8560-000000000020";
+		const album = "763aa505-0560-4560-8560-000000000021";
+		const stubCompilation = (title: string) =>
+			stubMb({
+				"release-groups": [
+					hit(compilation, title, [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"secondary-types": ["Compilation"],
+						"first-release-date": "2001-01-01",
+					}),
+					hit(album, title, [[INTER_ARMA, "Inter Arma"]], { "primary-type": "Album" }),
+				],
+			});
+
+		it("does not let a dated compilation beat an undated album of the same primary type", async () => {
+			stubCompilation("Best Of Nothing");
+			expect(await resolveReleaseGroupDetailed("Best Of Nothing", "Inter Arma")).toEqual(ambiguous);
+		});
+
+		it("stays ambiguous when the node names a primary type only", async () => {
+			stubCompilation("Best Of Nothing Two");
+			expect(
+				await resolveReleaseGroupDetailed("Best Of Nothing Two", "Inter Arma", { releaseType: "album" }),
+			).toEqual(ambiguous);
+		});
+
+		it("is ambiguous between a live album and a studio album, whatever their dates", async () => {
+			stubMb({
+				"release-groups": [
+					hit(album, "Live Or Not", [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"secondary-types": [],
+						"first-release-date": "1999-01-01",
+					}),
+					hit(compilation, "Live Or Not", [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"secondary-types": ["Live"],
+						"first-release-date": "1998-01-01",
+					}),
+				],
+			});
+			expect(await resolveReleaseGroupDetailed("Live Or Not", "Inter Arma")).toEqual(ambiguous);
+		});
+
+		it("still tells an original from its reissue when the secondary types agree", async () => {
+			stubMb({
+				"release-groups": [
+					hit(album, "Same Secondary", [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"secondary-types": ["Live"],
+						"first-release-date": "2005-01-01",
+					}),
+					hit(compilation, "Same Secondary", [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"secondary-types": ["live"],
+						"first-release-date": "1999-01-01",
+					}),
+				],
+			});
+			expect((await resolveReleaseGroupDetailed("Same Secondary", "Inter Arma")).identity?.mbid).toBe(
+				compilation,
+			);
+		});
+
+		it("reads an off-shape secondary-types as none, never as a crash", async () => {
+			stubMb({
+				"release-groups": [
+					hit(album, "Odd Shape", [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"secondary-types": "Live",
+						"first-release-date": "2005-01-01",
+					}),
+					hit(compilation, "Odd Shape", [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"secondary-types": [null, 3],
+						"first-release-date": "1999-01-01",
+					}),
+				],
+			});
+			expect((await resolveReleaseGroupDetailed("Odd Shape", "Inter Arma")).identity?.mbid).toBe(compilation);
+		});
+	});
+
+	it("does not take a candidate with no primary type for the same type as a typed one", async () => {
+		stubMb({
+			"release-groups": [
+				hit(NEW_HEAVEN_SINGLE, "New Heaven", [[INTER_ARMA, "Inter Arma"]], {
+					"first-release-date": "2024-02-27",
+				}),
+				hit(NEW_HEAVEN_ALBUM, "New Heaven", [[INTER_ARMA, "Inter Arma"]], {
+					"primary-type": "Album",
+					"first-release-date": "2024-04-26",
+				}),
+			],
+		});
+		expect(await resolveReleaseGroupDetailed("New Heaven", "Inter Arma")).toEqual(ambiguous);
+	});
+
+	it("leaves recordings alone: the release type is a release-group notion", async () => {
+		stubMb({
+			recordings: [hit("dddddddd-0560-4560-8560-000000000001", "New Heaven", [[INTER_ARMA, "Inter Arma"]])],
+		});
+		const out = await resolveRecordingDetailed("New Heaven", "Inter Arma", { releaseType: "album" });
+		expect(out.identity?.mbid).toBe("dddddddd-0560-4560-8560-000000000001");
+		stubMb({ "release-groups": [] });
+		expect(await resolveReleaseGroupDetailed("Nothing Here", "Inter Arma", { releaseType: "album" })).toEqual(
+			none,
+		);
 	});
 });
