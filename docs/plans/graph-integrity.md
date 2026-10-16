@@ -6,8 +6,8 @@ tickets créés le 2026-10-14 dans le projet Linear **P-TRA-5 « Intégrité du 
 46 issues TRA-448 à TRA-493. Mesures faites sur le cache committé à
 `e04bebc` (581 artistes, 294 projets, 243 tracks, 184 labels, 316 genres, 1 618 nœuds,
 21 896 arêtes). Script d'audit de référence : `scripts/audit-cache.ts` (Partie 0).
-Addendum du 2026-10-16 : « Partie 3b — Pochettes à la demande » en fin de document, **en attente de
-validation**, aucun ticket créé.
+Addendum du 2026-10-16 : « Partie 3b — Pochettes à la demande » en fin de document, validée par
+Raphael le 2026-10-16 (« ok plan »).
 
 ## Problème
 
@@ -257,7 +257,7 @@ schéma se durcit (1.16).
 - [ ] TRA-467 3.7 `[P]` Afficher l'image de chaque nœud dans l'app iOS — tier/2, 2 pts (dépend
       de 3.1)
 - Suite proposée le 2026-10-16 : **Partie 3b — Pochettes à la demande** (section dédiée en fin de
-  document, 9 tâches 3b.1 → 3b.9, non validée).
+  document, 9 tâches 3b.1 → 3b.9, validée le 2026-10-16).
 
 ### Partie 4 — Artistes similaires
 
@@ -393,7 +393,8 @@ les enchaîner (pas trois PR ouvertes en même temps sur le schéma).
 
 ## Partie 3b — Pochettes à la demande
 
-Statut : **proposé le 2026-10-16, en attente de validation par Raphael ; aucun ticket créé.**
+Statut : **validé par Raphael le 2026-10-16 (« ok plan »)**, les quatre questions ouvertes tranchées
+(voir « Décisions validées par Raphael » en fin de partie) ; tickets créés le 2026-10-16.
 Brief : option A (le serveur trouve la pochette d'une œuvre même sans fiche, avec la vérification
 MusicBrainz du reste du projet) + « à chaque fiche, même les existantes, lorsqu'elles s'ouvrent, on
 va chercher la pochette de tous les albums présents ». Cartographie faite sur `origin/main` à
@@ -683,11 +684,16 @@ le nouveau champ ; `ios-check` vert.
 - `ODYSSEY_ON_DEMAND_IMAGES=0` : réponses et écritures identiques à `7ef31bf7`.
 - Après une session de navigation : `git status` propre, aucun nœud écrit, `cache/images/` peuplé.
 
-### Questions ouvertes pour Raphael
+### Décisions validées par Raphael, 2026-10-16
 
-1. **D3** : sidecar seul, le serveur n'écrit jamais un nœud existant. Conséquence : une pochette
-   trouvée à la demande pour un nœud existant n'entre pas dans le dépôt ; TRA-489 reste le chemin.
-   À confirmer.
-2. **Périmètre** : œuvres seulement ; un artiste, label ou genre sans nœud garde son dégradé. À confirmer.
-3. **D7** : interrupteur actif par défaut dès le merge de 3b.6/3b.7 (pas de ticket `deploy/`). À confirmer.
-4. **D6** : budget de relance ≈ 60 s par œuvre, dégradé sans indicateur d'attente. Préférence contraire ?
+Réponses aux quatre questions ouvertes du plan, dans le sens des recommandations :
+
+1. **Sidecar seul (D3).** Une pochette trouvée à la demande pour un nœud existant n'entre pas dans le
+   dépôt ; le serveur n'écrit jamais un nœud à la lecture. TRA-489 (backfill) couvre la pose de
+   `image_url` sur les nœuds existants.
+2. **Œuvres seulement.** Les artistes, labels et genres sans nœud gardent le dégradé ; aucune
+   résolution d'identité d'artiste à la demande.
+3. **Drapeau actif par défaut (D7)** dès le merge de 3b.6 et 3b.7, sans ticket `deploy/` ; le kill
+   switch est `ODYSSEY_ON_DEMAND_IMAGES=0`.
+4. **Budget de relance (D6)** d'environ 60 s par œuvre (6 tentatives, 2…30 s), dégradé de type sans
+   indicateur d'attente.
