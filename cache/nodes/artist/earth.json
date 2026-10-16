@@ -25,6 +25,8 @@
     "search_provider": "tavily"
   },
   "mbid": "60dd41cf-8f9d-46d8-bc19-dc7e5acb24c8",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Earth%20DylanCarlson%20AdrienneDavies%202014.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "group",
   "editorial_bio": "Earth is a foundational drone metal band led by Dylan Carlson, known for pioneering minimalist, feedback-heavy compositions that evolved into an expansive, meditative sound incorporating folk and psychedelic influences.",

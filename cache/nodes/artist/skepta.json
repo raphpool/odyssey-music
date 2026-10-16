@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "38474d18-9204-4f60-a137-1fcc6750b869",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Skepta%202%20F.I.B.%202016.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "Skepta is a Nigerian-British grime MC, rapper, producer, and co-founder of Boy Better Know, widely credited with bringing the grime genre to international prominence in the mid-2010s.",

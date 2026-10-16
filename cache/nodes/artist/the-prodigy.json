@@ -33,6 +33,8 @@
     "search_provider": "tavily"
   },
   "mbid": "4a4ee089-93b1-4470-af9a-6ff575d32704",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Prodigy-rock-am-ring-2009.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "group",
   "editorial_bio": "The Prodigy are legendary pioneers of the 1990s rave and big beat scenes, celebrated for their explosive fusion of electronic production and punk intensity. From their breakout rave hits in 1991 to their status as global arena-filling legends, they remain one of the most influential electronic groups in history.",

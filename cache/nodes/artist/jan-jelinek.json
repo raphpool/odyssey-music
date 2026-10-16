@@ -25,6 +25,8 @@
     "search_provider": "tavily"
   },
   "mbid": "ac9b829e-9a7c-4331-8abe-ab1eb49d1771",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jan%20jelinek%20serie4%204.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "Jan Jelinek is a German electronic musician and producer, best known for his influential work in microhouse, glitch, and ambient, and for his unique use of micro-sampling.",

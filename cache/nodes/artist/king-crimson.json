@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "b38225b8-8e5f-42aa-bcdc-7bae5b5bdab3",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/King%20Crimson%20-%20Dour%20Festival%202003%20(01).jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "group",
   "editorial_bio": "King Crimson is a seminal English progressive rock band founded in London in 1968, renowned for their radical reinventions, intricate compositions, and profound influence on rock, jazz, and avant-garde music.",

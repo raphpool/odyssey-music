@@ -33,6 +33,8 @@
     "search_provider": "tavily"
   },
   "mbid": "a6f8d42d-d3ff-4268-8d39-ee01341733bb",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Fennesz%20in%20Bethesda%2C%20Maryland%2C%20on%20September%2021%2C%202010%20(5027816082).jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "An Austrian visionary who redefined electronic music by blending processed guitar textures with delicate, melodic ambient structures.",
