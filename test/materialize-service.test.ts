@@ -1243,6 +1243,9 @@ describe("createMaterializeService artist context (TRA-477)", () => {
 			geminiReturning(projectDraftFixture("New Forms", "Roni Size"));
 			await mbProject([{ mbid: RONI_ID, name: "Roni Size / Reprazent" }]);
 			const service = await buildService();
+			// TRA-535: the source edge is rewritten through the locked read-modify-write, never get + replace.
+			const updateSpy = vi.spyOn(cache, "update");
+			const replaceSpy = vi.spyOn(cache, "replace");
 
 			const result = await service.handleMaterialize({
 				type: "project",
@@ -1251,6 +1254,8 @@ describe("createMaterializeService artist context (TRA-477)", () => {
 				source: { slug: "artist:roni-size", field: "discography" },
 			});
 
+			expect(updateSpy.mock.calls.map(([slug]) => slug)).toEqual(["artist:roni-size"]);
+			expect(replaceSpy).not.toHaveBeenCalled();
 			expect(result.node.slug).toBe(NEW_FORMS);
 			expect(result.requested_slug).toBe(requested);
 			const roni = (await cache.get("artist:roni-size")) as ArtistNode;
@@ -1274,7 +1279,7 @@ describe("createMaterializeService artist context (TRA-477)", () => {
 			await writeReprazent();
 			const service = await buildService();
 			const getSpy = vi.spyOn(cache, "get");
-			const replaceSpy = vi.spyOn(cache, "replace");
+			const updateSpy = vi.spyOn(cache, "update");
 			const body = { type: "project", name: "New Forms", artist: "Roni Size" };
 			const sources = [
 				{ slug: "artist:roni-size", field: "discography" }, // holds no edge to the requested slug
@@ -1288,7 +1293,9 @@ describe("createMaterializeService artist context (TRA-477)", () => {
 				expect(result.requested_slug).toBeUndefined();
 			}
 
-			expect(replaceSpy).not.toHaveBeenCalled();
+			// Only the first source reaches the cache, and `update` reports that it wrote nothing.
+			expect(updateSpy).toHaveBeenCalledTimes(1);
+			expect(await updateSpy.mock.results[0]?.value).toBe(false);
 			// The type and self-edge checks come before the source node is even read.
 			expect(getSpy.mock.calls.filter(([slug]) => slug === "artist:roni-size")).toHaveLength(1);
 			expect(((await cache.get(NEW_FORMS)) as ProjectNode).related_projects).toEqual([]);
