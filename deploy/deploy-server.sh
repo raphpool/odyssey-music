@@ -152,6 +152,13 @@ Environment=MOBILE_STATE_DIR=/var/lib/track1-mobile
 # MOBILE_PUSH_ENABLED is absent/false by default. Production activation and EXPO_ACCESS_TOKEN
 # stay in /etc/odyssey-music.env; never embed either value in this generated unit.
 # MOBILE_APNS_PUSH_ENABLED is independent. Its APNS_* settings remain only in the server env file.
+# TRA-509 (2026-10-16): scoped work slugs (`project:<title>--<artist>`) and transliterated slugs, see
+# src/flags.ts. The unit is rewritten and the service restarted on EVERY deploy, whereas
+# /etc/odyssey-music.env is bootstrapped once: a value here reaches the running service at the next
+# deploy, a value only in bootstrap-env.sh would never reach it. Rollback = set this to 0 and deploy
+# (docs/plans/graph-integrity.md, "Bascule du drapeau (TRA-509)"). systemd gives EnvironmentFile=
+# precedence over Environment=, so a line written in /etc/odyssey-music.env wins over this one.
+Environment=ODYSSEY_SCOPED_RELEASE_SLUGS=1
 ExecStart=/opt/odyssey-music/node_modules/.bin/tsx /opt/odyssey-music/src/server.ts
 Restart=on-failure
 RestartSec=3
@@ -167,6 +174,31 @@ systemctl enable odyssey-server.service
 systemctl restart odyssey-server.service
 sleep 3
 systemctl is-active odyssey-server.service || (journalctl -u odyssey-server --no-pager -n 50; exit 1)
+
+# >>> TRA-509 flag report
+# Put the flag the running process really received in the deploy log. EnvironmentFile= beats
+# Environment=, so a leftover line in /etc/odyssey-music.env would silently win over the unit above.
+# PROC_ROOT / UNIT_FILE default to the real paths; test/scoped-slugs-deploy-flag.test.ts overrides them.
+FLAG_NAME=ODYSSEY_SCOPED_RELEASE_SLUGS
+PROC_ROOT="${PROC_ROOT:-/proc}"
+UNIT_FILE="${UNIT_FILE:-/etc/systemd/system/odyssey-server.service}"
+SERVICE_PID="$(systemctl show -p MainPID --value odyssey-server.service)"
+EFFECTIVE_FLAG="<unreadable>"
+if [[ "$SERVICE_PID" =~ ^[1-9][0-9]*$ && -r "$PROC_ROOT/$SERVICE_PID/environ" ]]; then
+  EFFECTIVE_FLAG="$(tr '\0' '\n' < "$PROC_ROOT/$SERVICE_PID/environ" | sed -n "s/^${FLAG_NAME}=//p" | tail -n 1)"
+  EFFECTIVE_FLAG="${EFFECTIVE_FLAG:-<unset>}"
+fi
+UNIT_FLAG="$(sed -n "s/^Environment=${FLAG_NAME}=//p" "$UNIT_FILE" | tail -n 1)"
+UNIT_FLAG="${UNIT_FLAG:-<unset>}"
+echo "  -> ${FLAG_NAME}=${EFFECTIVE_FLAG} in the running service (unit: ${UNIT_FLAG})"
+if [[ "$EFFECTIVE_FLAG" != "$UNIT_FLAG" ]]; then
+  echo "WARN: the running service has ${FLAG_NAME}=${EFFECTIVE_FLAG}, not the unit's ${UNIT_FLAG}:" >&2
+  echo "      /etc/odyssey-music.env overrides the unit, or the service is not up." >&2
+  # GitHub Actions annotation: ssh relays the remote stdout into the job log, where this line is
+  # promoted to a visible warning on the run summary (a plain stderr line would stay buried in the log).
+  echo "::warning title=${FLAG_NAME} mismatch::the running service has ${EFFECTIVE_FLAG}, the unit declares ${UNIT_FLAG} (/etc/odyssey-music.env override, or the service is not up)"
+fi
+# <<< TRA-509 flag report
 
 # Nginx routing for /api/odyssey/ is owned by the dropcliffs deploy template
 # (projects/dropcliffs/deploy/nginx.conf). Do NOT patch nginx in place here —
