@@ -53,7 +53,7 @@
   ],
   "discography": [
     {
-      "slug": "project:hongkong",
+      "slug": "project:hongkong--monolake",
       "type": "project",
       "name": "Hongkong"
     },
@@ -78,7 +78,7 @@
       "name": "Momentum"
     },
     {
-      "slug": "project:polygon-cities",
+      "slug": "project:polygon-cities--monolake",
       "type": "project",
       "name": "Polygon Cities"
     },
@@ -93,12 +93,12 @@
       "name": "Ghosts"
     },
     {
-      "slug": "project:vlsi",
+      "slug": "project:vlsi--monolake",
       "type": "project",
       "name": "VLSI"
     },
     {
-      "slug": "project:archaeopteryx",
+      "slug": "project:archaeopteryx--monolake",
       "type": "project",
       "name": "Archaeopteryx"
     },

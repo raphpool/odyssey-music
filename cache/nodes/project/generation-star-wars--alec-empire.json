@@ -1,0 +1,132 @@
+{
+  "slug": "project:generation-star-wars--alec-empire",
+  "name": "Generation Star Wars",
+  "editorial_article": "\"Generation Star Wars\" is a seminal work by the German electronic innovator Alec Empire, originally released in the mid-1990s as a quintessential document of the \"Digital Hardcore\" movement. Throughout the record, Empire explores the sonic intersections of industrial noise, breakcore, and hardcore techno, creating a chaotic yet meticulously crafted soundscape that defines a specific era of European experimental music. The album was released through the influential German label Mille Plateaux, which at the time served as a critical platform for artists pushing the boundaries of electronic music toward more abrasive, politically charged, and technologically fractured territories.\n\nThroughout the project, Empire channels the cultural and digital anxieties of the late 20th century. His production style on the record is marked by severe, distorted textures, relentless rhythmic programming, and a sense of aggressive, anarchic energy that clearly links his roots in the Berlin punk scene to the burgeoning world of digital production. By blending these influences, \"Generation Star Wars\" stands as a vital piece of 1990s electronic history. It remains a foundational text for those exploring the evolution of extreme dance music, representing a bridge between the raw, high-tempo aggression of 90s hardcore and the complex, experimental sound design that would come to define the IDM and glitch scenes. Its legacy continues to influence producers who seek to merge structural complexity with the visceral intensity of heavy industrial and punk, maintaining its status as a cult classic within the Mille Plateaux catalog and Alec Empire’s expansive discography.",
+  "citations": [
+    {
+      "url": "https://alecempire.bandcamp.com/album/generation-star-wars-original-mille-plateaux-masters",
+      "title": "Generation Star Wars (Original Mille Plateaux Masters) | Alec Empire"
+    },
+    {
+      "url": "https://music.apple.com/au/album/generation-starwars/666020416",
+      "title": "Generation Starwars - Album by Alec Empire - Apple Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:58:19.193Z",
+  "mbid": "64d0cab5-4176-3af1-aa2a-9238f544f52e",
+  "type": "project",
+  "editorial_pitch": "A seminal work of 1990s digital noise and hardcore, capturing the frantic energy of a generation raised on saturated media, released by the legendary Mille Plateaux label.",
+  "year": "1994",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire",
+      "mbid": "d71ba53b-23b0-4870-a429-cce6f345763b"
+    }
+  ],
+  "label": {
+    "slug": "label:mille-plateaux",
+    "type": "label",
+    "name": "Mille Plateaux",
+    "mbid": "559345c8-ba39-405b-8466-76d64ac1b226"
+  },
+  "genres": [],
+  "tracklist": [
+    {
+      "slug": "track:lash-the-90ties--alec-empire",
+      "type": "track",
+      "name": "Lash the 90ties",
+      "mbid": "994e2824-be82-4499-9003-af638a97efeb",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:stahl-and-blausaure--alec-empire",
+      "type": "track",
+      "name": "Stahl & Blausäure",
+      "mbid": "18f32508-69d9-4838-9b4b-d3edf451a978",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:13465--alec-empire",
+      "type": "track",
+      "name": "13465",
+      "mbid": "f5fb5504-2c37-41b8-a5b1-e7c6cd3a7413",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:maschinenvolk--alec-empire",
+      "type": "track",
+      "name": "Maschinenvolk",
+      "mbid": "ef69c307-4f02-418b-bac9-bef83a8f5dc2",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:sonyprotitutes--alec-empire",
+      "type": "track",
+      "name": "Sonyprotitutes",
+      "mbid": "332bfaf1-0cea-4e6e-ba9a-1b81fe440dde",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:blutrote-nacht-uber-berlin--alec-empire",
+      "type": "track",
+      "name": "Blutrote Nacht über Berlin",
+      "mbid": "1739da17-af55-4296-9327-31c1e61b9e1f",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:pussy-heroin--alec-empire",
+      "type": "track",
+      "name": "Pussy Heroin",
+      "mbid": "5ab5c4bb-12fe-44a9-93ae-95ae954fbde8",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:new-acid--alec-empire",
+      "type": "track",
+      "name": "New Acid",
+      "mbid": "f15941f0-eef1-4a78-88a8-59cd647e7753",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:smack--alec-empire",
+      "type": "track",
+      "name": "Smack",
+      "mbid": "246ee621-ca35-4a42-97cf-91882e3c87ac",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:ny-summer-i--alec-empire",
+      "type": "track",
+      "name": "NY Summer I",
+      "mbid": "bad4ed50-ff02-4bdc-8e0c-3b690a51e5b4",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:konsumfreiheit--alec-empire",
+      "type": "track",
+      "name": "Konsumfreiheit",
+      "mbid": "eb477f0b-4070-49fa-b674-3984a9b44d89",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:microchipkinder--alec-empire",
+      "type": "track",
+      "name": "Microchipkinder",
+      "mbid": "ac674c67-cde8-44ed-8b1d-5a53eb88e096",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:sieg-uber-die-mayday-hj--alec-empire",
+      "type": "track",
+      "name": "Sieg über die Mayday-HJ",
+      "mbid": "28c393c1-f64a-4246-93b8-c395c9be6a31",
+      "artist": "Alec Empire"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

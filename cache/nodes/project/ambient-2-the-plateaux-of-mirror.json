@@ -69,7 +69,7 @@
       "name": "Not Yet Remembered"
     },
     {
-      "slug": "track:the-white-arcades",
+      "slug": "track:the-white-arcades--harold-budd",
       "type": "track",
       "name": "The White Arcades"
     },
@@ -96,9 +96,10 @@
       "name": "Brian Eno"
     }
   ],
+  "personnel": [],
   "related_projects": [
     {
-      "slug": "project:ambient-1-music-for-airports",
+      "slug": "project:ambient-1-music-for-airports--brian-eno",
       "type": "project",
       "name": "Ambient 1: Music for Airports"
     },

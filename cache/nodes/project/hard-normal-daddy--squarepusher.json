@@ -1,0 +1,53 @@
+{
+  "slug": "project:hard-normal-daddy--squarepusher",
+  "name": "Hard Normal Daddy",
+  "editorial_article": "Hard Normal Daddy is the second studio album by the English electronic musician Tom Jenkinson, operating under his most prominent alias, Squarepusher. Released on April 28, 1997, it was his first full-length effort for the influential British label Warp Records, marking a pivotal moment in his career and in the development of the electronic music landscape of the mid-1990s. The album serves as a definitive document of the 'drill 'n' bass' subgenre, an experimental offshoot of drum 'n' bass characterized by its high-velocity, glitchy percussion and hyper-active programming, which Jenkinson balanced with surprising lyrical warmth and melodic complexity.\n\nUnlike many of his contemporaries who relied heavily on the shock value of extreme rhythmic density, Jenkinson brought a distinct musical sensibility to Hard Normal Daddy, integrating sophisticated, jazz-inflected fretless bass playing and intricate keyboard arrangements. Jenkinson himself has cited 1970s funk soundtracks and detective television themes as core influences, moving away from the \"jazz fusion\" label often applied to his work by critics at the time. The album's sonic landscape is both alien and strangely human, oscillating between chaotic, fractured breaks and smooth, melodic textures that invite repeated listens. The cover art and packaging, designed by Jenkinson and Johnny Clayton, offer a stark, grounded connection to the artist's hometown of Chelmsford, featuring imagery of local landscapes and defunct industrial structures that contrast with the futuristic, digital nature of the music.\n\nRetrospectively regarded as one of the definitive masterpieces of the IDM era, Hard Normal Daddy secured Squarepusher’s place at the forefront of experimental electronic music. Its influence is still felt in how artists navigate the interplay between technical virtuosity and raw emotional expression. By successfully marrying the high-octane energy of the UK rave scene with an artisanal, almost classical approach to composition, the album remains a vital entry point into the sprawling and influential discography of Tom Jenkinson, acting as a bridge between the basement rave and the avant-garde listening room.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hard_Normal_Daddy",
+      "title": "Hard Normal Daddy - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:02:48.227Z",
+  "mbid": "f4168d4e-c0e8-388f-8baa-4de058d852e5",
+  "type": "project",
+  "editorial_pitch": "A landmark of the IDM era, this album showcases Squarepusher's unique blend of drill 'n' bass percussion and jazz-influenced bass melodies.",
+  "year": "1997",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:squarepusher",
+      "type": "artist",
+      "name": "Squarepusher",
+      "mbid": "4d86ad4e-28d8-4e9f-8cf4-735c57060fdc"
+    }
+  ],
+  "label": {
+    "slug": "label:warp",
+    "type": "label",
+    "name": "Warp"
+  },
+  "genres": [
+    {
+      "slug": "genre:drill-n-bass",
+      "type": "genre",
+      "name": "Drill 'n' bass"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:vic-acid",
+      "type": "track",
+      "name": "Vic Acid"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

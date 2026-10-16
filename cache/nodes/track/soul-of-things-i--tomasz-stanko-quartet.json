@@ -1,0 +1,68 @@
+{
+  "slug": "track:soul-of-things-i--tomasz-stanko-quartet",
+  "name": "Soul of Things I",
+  "editorial_article": "\"Soul of Things I\" is the opening movement of the landmark 2002 album *Soul of Things* by the Tomasz Stańko Quartet. Recorded at Oslo’s legendary Rainbow Studio under the direction of engineer Jan Erik Kongshaug and producer Manfred Eicher, the piece introduces a \"balladesque suite\" that defined the quartet’s collaboration. The track features Tomasz Stańko on trumpet, accompanied by the rhythm section that would later gain international acclaim as the Marcin Wasilewski Trio: pianist Marcin Wasilewski, bassist Sławomir Kurkiewicz, and drummer Michał Miśkiewicz.\\n\\nMusically, the piece serves as the entry point into the album’s distinct, cinematic atmosphere. Critics have noted its \"film noir\" quality, characterized by Stańko’s delicate, evocative phrasing that emerges from a foggy, atmospheric landscape. The interaction between Stańko and the trio is marked by an extraordinary degree of sensitivity; Wasilewski’s pianism provides a fertile, sparse foundation that allows the trumpet’s melodies to unfold with an elastic sense of time. Rather than traditional jazz improvisation, the piece emphasizes mood, space, and a shared internal language, reflecting the quartet’s deep, years-long musical rapport. \"Soul of Things I\" captures a moment where the \"soul\" of the music is established through patience and silence, setting a precedent for the introspection that dominates the remainder of the suite. It remains a definitive example of the European jazz aesthetic championed by the ECM label in the early 21st century.",
+  "citations": [
+    {
+      "url": "https://ecmreviews.com/2013/02/23/soul-of-things/",
+      "title": "Tomasz Stanko Quartet: Soul of Things (ECM 1788) – Between Sound and Space: ECM Records and Beyond"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Soul_of_Things",
+      "title": "Soul of Things - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/album/soul-of-things-mw0000216442",
+      "title": "Soul of Things - Tomasz Stańko, Tomasz Stańk... - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:58.684Z",
+  "mbid": "97df2fc8-553f-4cfa-8814-6b003099774b",
+  "type": "track",
+  "editorial_teaser": "\"Soul of Things I\" is the opening movement of the landmark 2002 album *Soul of Things* by the Tomasz Stańko Quartet.",
+  "year": "2002",
+  "artists": [
+    {
+      "slug": "artist:tomasz-stanko-quartet",
+      "type": "artist",
+      "name": "Tomasz Stańko Quartet",
+      "mbid": "b526f421-0f6b-4e7d-a7fa-e1b3564f941b"
+    }
+  ],
+  "project": {
+    "slug": "project:soul-of-things--tomasz-stanko-quartet",
+    "type": "project",
+    "name": "Soul of Things"
+  },
+  "label": {
+    "slug": "label:ecm-records",
+    "type": "label",
+    "name": "ECM Records",
+    "mbid": "1edf842b-d727-4d27-8db6-f31882443f89"
+  },
+  "genres": [
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz",
+      "qid": "Q8341"
+    },
+    {
+      "slug": "genre:european-jazz",
+      "type": "genre",
+      "name": "European Jazz",
+      "qid": "Q2579417"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:manfred-eicher",
+      "type": "artist",
+      "name": "Manfred Eicher"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

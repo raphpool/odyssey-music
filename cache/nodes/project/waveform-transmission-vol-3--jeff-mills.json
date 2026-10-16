@@ -1,0 +1,83 @@
+{
+  "slug": "project:waveform-transmission-vol-3--jeff-mills",
+  "name": "Waveform Transmission, Vol. 3",
+  "editorial_article": "Released in 1994 on the legendary Berlin-based label Tresor, Waveform Transmission Vol. 3 stands as one of the most significant albums in the history of techno. Produced by Detroit pioneer Jeff Mills, the album is a relentless, uncompromising exploration of rhythm and tension. Stripping away the melodic flourishes found in much of the electronic music of the time, Mills focused on the raw, percussive power of the machines, creating a sonic blueprint that would define the 'Tresor sound' and influence generations of producers in the minimalist and industrial techno scenes. The album's tracklist—which includes hard-hitting cuts like 'The Extremist' and 'Wrath Of The Punisher'—serves as a testament to Mills's ability to extract deep, hypnotic grooves from the simplest of elements. As Mills noted in the original liner notes, the album was a manifestation of a need to understand the human condition in a rapidly changing world, using technology as a vehicle for theory and substance. Its influence extends far beyond Detroit, acting as a bridge between the American industrial heartland and the burgeoning European club culture that found a home in the vaults of Tresor. More than just a collection of dancefloor tracks, the record is an immersive experience of mechanical precision, cold industrial atmosphere, and the relentless, driving energy that only Mills could synthesize at the peak of his creative powers. Even decades later, the sheer intensity and clarity of the production remain unmatched, cementing its status as a foundational pillar of modern techno.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/release/26359-Jeff-Mills-Waveform-Transmission-Vol-3",
+      "title": "Jeff Mills – Waveform Transmission Vol. 3 – CD (Album, Reissue), [r26359] | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:12:10.298Z",
+  "mbid": "809ee3b5-07f5-3f2b-bdfc-f9c5b0a881c5",
+  "type": "project",
+  "editorial_pitch": "A definitive statement of early-90s Detroit techno, Jeff Mills' Waveform Transmission Vol. 3 is a brutal, stripped-down masterpiece that pushed the boundaries of machine-funk minimalism and intensity.",
+  "year": "1994",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:jeff-mills",
+      "type": "artist",
+      "name": "Jeff Mills",
+      "mbid": "470a4ced-1323-4c91-8fd5-0bb3fb4c932a"
+    }
+  ],
+  "label": {
+    "slug": "label:tresor",
+    "type": "label",
+    "name": "Tresor"
+  },
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:the-extremist",
+      "type": "track",
+      "name": "The Extremist"
+    },
+    {
+      "slug": "track:solid-sleep",
+      "type": "track",
+      "name": "Solid Sleep"
+    },
+    {
+      "slug": "track:life-cycle",
+      "type": "track",
+      "name": "Life Cycle"
+    },
+    {
+      "slug": "track:workers",
+      "type": "track",
+      "name": "Workers"
+    },
+    {
+      "slug": "track:wrath-of-the-punisher",
+      "type": "track",
+      "name": "Wrath Of The Punisher"
+    },
+    {
+      "slug": "track:dna",
+      "type": "track",
+      "name": "DNA"
+    },
+    {
+      "slug": "track:condor-to-mallorca",
+      "type": "track",
+      "name": "Condor To Mallorca"
+    },
+    {
+      "slug": "track:basic-human-design",
+      "type": "track",
+      "name": "Basic Human Design"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

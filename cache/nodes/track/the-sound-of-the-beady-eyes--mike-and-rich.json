@@ -1,0 +1,65 @@
+{
+  "slug": "track:the-sound-of-the-beady-eyes--mike-and-rich",
+  "name": "The Sound of the Beady Eyes",
+  "editorial_article": "\"The Sound of the Beady Eyes\" is a quintessential track from the 1996 IDM collaborative album \"Expert Knob Twiddlers,\" created by two of the most influential figures in electronic music, Aphex Twin (Richard D. James) and µ-Ziq (Mike Paradinas). Operating under the alias Mike & Rich, the duo recorded the majority of the album in 1994, during the World Cup, within the confines of James’s shared flat in Stoke Newington, London. The sessions were characterized by an informal, playful energy—sometimes even incorporating elements of \"actually drunk\" studio improvisation—that stood in deliberate, garish contrast to the often serious and po-faced electronic output of the era.\n\nThe track itself embodies the album’s ethos: a mixture of lighthearted, Moog-inflected pop, wonky, unpredictable beats, and a clear affection for the quirky aesthetic of 1970s British television themes. Unlike the more clinical, colder strains of techno or ambient that dominated the IDM landscape at the time, \"The Sound of the Beady Eyes\" captures a specific, slightly surreal, and lo-fi warmth. The recording process relied on a mix of classic hardware like the Roland MKS-80, a Memorymoog, and a Roland R8, which, when combined with Paradinas and James’s unconventional sequencing styles, produced a sound that feels both primitive and surprisingly forward-thinking. Following its initial 1996 release on James’s own Rephlex Records label, the track gained cult status, eventually seeing a remastered reissue on Planet Mu in 2016, which helped solidify its place as a landmark moment of collaborative experimental electronic music. Its enduring appeal lies in the chemistry between two masters of synthesis who, for a brief period, cast aside their more guarded artistic personas to simply mess around with gear in a room, resulting in a sound that remains distinctly unpretentious and undeniably creative.",
+  "citations": [
+    {
+      "url": "https://readdork.com/track/mike-and-rich-the-sound-of-the-beady-eyes",
+      "title": "Mike & Rich – The Sound Of The Beady Eyes (1996) | Track profile | Dork"
+    },
+    {
+      "url": "https://planet.mu/releases/expert-knob-twiddlers/",
+      "title": "Planet Mu  • Expert Knob Twiddlers"
+    },
+    {
+      "url": "https://www.discogs.com/master/11961-Mike-Rich-Expert-Knob-Twiddlers",
+      "title": "Mike & Rich – Expert Knob Twiddlers | Releases | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:07:42.269Z",
+  "type": "track",
+  "editorial_teaser": "\"The Sound of the Beady Eyes\" is a quintessential track from the 1996 IDM collaborative album \"Expert Knob Twiddlers,\" created by two of the most influential figures in electronic music, Aphex Twin (Richard D.",
+  "year": "1996",
+  "artists": [
+    {
+      "slug": "artist:mike-and-rich",
+      "type": "artist",
+      "name": "Mike & Rich"
+    }
+  ],
+  "project": {
+    "slug": "project:expert-knob-twiddlers",
+    "type": "project",
+    "name": "Expert Knob Twiddlers"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:richard-d-james",
+      "type": "artist",
+      "name": "Richard D. James"
+    },
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

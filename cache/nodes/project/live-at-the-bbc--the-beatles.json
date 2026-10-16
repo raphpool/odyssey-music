@@ -1,0 +1,71 @@
+{
+  "slug": "project:live-at-the-bbc--the-beatles",
+  "name": "Live at the BBC",
+  "editorial_article": "Live at the BBC is a 1994 compilation album featuring performances by the Beatles that were originally broadcast on various BBC Light Programme radio shows between 1963 and 1965. The album serves as a vital historical document of the band's development, capturing \"live in studio\" performances that reflect the stage set they honed during the height of Beatlemania. Consisting of 56 songs and 13 tracks of dialogue, the release was significant for including 30 songs that had never been previously issued by the group. It marked the first official release of unreleased performances since 1977 and provided fans with a high-quality alternative to the comprehensive bootleg collections that had circulated for years. The material, recorded across 52 different BBC radio appearances, showcases the band's early repertoire, which relied heavily on cover versions of rhythm and blues and rock and roll tracks from the late 1950s and early 1960s. The album was later remastered and reissued in 2013 to coincide with the release of a second volume of BBC broadcasts, further cementing its place in the Beatles' discography as a definitive look at their formative years on the airwaves.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Live_at_the_BBC_(Beatles_album)",
+      "title": "Live at the BBC (Beatles album) - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:14:48.869Z",
+  "mbid": "867e16bf-0405-38ce-a9ec-fa44d0d3fa33",
+  "type": "project",
+  "editorial_pitch": "A definitive collection of the Beatles' early radio performances, capturing the raw energy of the band's live studio sessions between 1963 and 1965.",
+  "year": "1994",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    }
+  ],
+  "label": {
+    "slug": "label:apple-records",
+    "type": "label",
+    "name": "Apple Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:rhythm-and-blues",
+      "type": "genre",
+      "name": "Rhythm and blues",
+      "qid": "Q45981"
+    },
+    {
+      "slug": "genre:rock-and-roll",
+      "type": "genre",
+      "name": "Rock and roll",
+      "qid": "Q7749"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:baby-it-s-you",
+      "type": "track",
+      "name": "Baby It's You"
+    },
+    {
+      "slug": "track:beatles-shout",
+      "type": "track",
+      "name": "Beatles Shout"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:george-martin",
+      "type": "artist",
+      "name": "George Martin"
+    }
+  ],
+  "personnel": [],
+  "related_projects": [
+    {
+      "slug": "project:on-air-live-at-the-bbc-volume-2",
+      "type": "project",
+      "name": "On Air – Live at the BBC Volume 2"
+    }
+  ]
+}

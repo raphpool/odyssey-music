@@ -340,12 +340,6 @@
     }
   ],
   "aliases": [],
-  "members": [
-    {
-      "slug": "artist:prince-buster",
-      "type": "artist",
-      "name": "Prince Buster"
-    }
-  ],
+  "members": [],
   "similar_artists": []
 }

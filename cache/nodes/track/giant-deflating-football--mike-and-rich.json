@@ -1,0 +1,61 @@
+{
+  "slug": "track:giant-deflating-football--mike-and-rich",
+  "name": "Giant Deflating Football",
+  "editorial_article": "\"Giant Deflating Football\" is a standout track from the 1996 collaborative album *Expert Knob Twiddlers*, the singular full-length project by Mike & Rich—a duo comprised of electronic music titans Mike Paradinas (μ-Ziq) and Richard D. James (Aphex Twin). Released on Rephlex Records, the collaboration serves as a playful, chaotic, and virtuosic intersection between the two artists' distinct approaches to IDM, breakcore, and ambient techno. \\n\\nThe track is characteristic of the album’s quirky aesthetic, balancing intricate, erratic percussion with unexpected melodic samples and a sense of irreverent humor. Utilizing a sample from Dennis Farnon's 1963 track \"Goodbye to the Blues,\" the song showcases the pair's ability to warp vintage pop-orchestral elements into the jittery, high-frequency soundscapes that defined the mid-90s UK electronic underground. \"Giant Deflating Football\" encapsulates the spirit of the *Expert Knob Twiddlers* sessions: a collaborative playground where technical prowess met a refusal to take the experimental nature of the music too seriously. It remains a cult favorite for fans of the late 90s Rephlex era, highlighting the chemistry between two of the most influential figures in electronic production.",
+  "citations": [
+    {
+      "url": "https://www.whosampled.com/Mike-%26-Rich/Giant-Deflating-Football/",
+      "title": "Giant Deflating Football by Mike & Rich - Samples, Covers and Remixes | WhoSampled"
+    },
+    {
+      "url": "https://www.last.fm/music/Mike+&+Rich/_/Giant+Deflating+Football",
+      "title": "Giant Deflating Football — Mike & Rich | Last.fm"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:07:24.745Z",
+  "type": "track",
+  "editorial_teaser": "\"Giant Deflating Football\" is a standout track from the 1996 collaborative album *Expert Knob Twiddlers*, the singular full-length project by Mike & Rich—a duo comprised of electronic music titans Mike Paradinas (μ-Ziq) and Richard D.",
+  "year": "1996",
+  "artists": [
+    {
+      "slug": "artist:mike-and-rich",
+      "type": "artist",
+      "name": "Mike & Rich"
+    }
+  ],
+  "project": {
+    "slug": "project:expert-knob-twiddlers",
+    "type": "project",
+    "name": "Expert Knob Twiddlers"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas"
+    },
+    {
+      "slug": "artist:richard-d-james",
+      "type": "artist",
+      "name": "Richard D. James"
+    }
+  ],
+  "personnel": [],
+  "samples": [
+    {
+      "slug": "track:goodbye-to-the-blues",
+      "type": "track",
+      "name": "Goodbye to the Blues"
+    }
+  ],
+  "sampled_by": [],
+  "remixed_by": []
+}

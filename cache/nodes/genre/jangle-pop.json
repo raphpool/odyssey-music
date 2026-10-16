@@ -19,6 +19,7 @@
   "materialized_at": "2026-05-13T13:17:13.721Z",
   "type": "genre",
   "editorial_definition": "A subgenre of rock music characterized by its focus on chiming, clean electric guitar tones, melodic 1960s-inspired songwriting, and a DIY independent sensibility.",
+  "qid": "Q1190565",
   "era": "Late 1970s to present",
   "origin": "United States and United Kingdom",
   "parent_genres": [],
@@ -85,7 +86,7 @@
   ],
   "landmark_projects": [
     {
-      "slug": "project:murmur",
+      "slug": "project:murmur--r-e-m",
       "type": "project",
       "name": "Murmur"
     },
@@ -95,6 +96,5 @@
       "name": "Chronic Town"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q1190565"
+  "landmark_tracks": []
 }

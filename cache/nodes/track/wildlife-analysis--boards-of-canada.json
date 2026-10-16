@@ -1,0 +1,60 @@
+{
+  "slug": "track:wildlife-analysis--boards-of-canada",
+  "name": "Wildlife Analysis",
+  "editorial_article": "\"Wildlife Analysis\" is the enigmatic, brief opening track of Boards of Canada's seminal 1998 album, *Music Has the Right to Children*. Clocking in at just over a minute, the track serves as a delicate, pastoral introduction to the duo's signature sound, blending warped analog synthesis, nostalgic tape-hiss-drenched textures, and a haunting, otherworldly atmosphere. As the first piece listeners encountered on the group's debut studio album, it acts as a sonic portal, immediately grounding the listener in the Scottish duo's aesthetic of decaying childhood memory and uncanny nature. The production, handled entirely by Michael Sandison and Marcus Eoin, utilizes minimal, fluttering melodic motifs that feel like a half-remembered transmission from a late-night educational documentary. By establishing this intimate, fragile tone right out of the gate, \"Wildlife Analysis\" creates a profound sense of anticipation, preparing the audience for the immersive, textured explorations that define the rest of the album. Its short duration does not diminish its impact; rather, it underscores the duo’s ability to conjure dense emotional worlds within fragments, cementing its status as an essential, if fleeting, landmark in the history of IDM and ambient electronic music. The track effectively captures the duality of the Boards of Canada sound—simultaneously comforting in its warmth and deeply unsettling in its alien, nostalgic distortion.",
+  "citations": [
+    {
+      "url": "https://music.apple.com/us/song/wildlife-analysis/281116027",
+      "title": "Wildlife Analysis - Song by Boards of Canada - Apple Music"
+    },
+    {
+      "url": "https://readdork.com/track/boards-of-canada-wildlife-analysis-2",
+      "title": "Boards of Canada – Wildlife Analysis | Track profile - Dork"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:02:04.807Z",
+  "type": "track",
+  "editorial_teaser": "\"Wildlife Analysis\" is the enigmatic, brief opening track of Boards of Canada's seminal 1998 album, *Music Has the Right to Children*.",
+  "artists": [
+    {
+      "slug": "artist:boards-of-canada",
+      "type": "artist",
+      "name": "Boards of Canada"
+    }
+  ],
+  "project": {
+    "slug": "project:music-has-the-right-to-children--boards-of-canada",
+    "type": "project",
+    "name": "Music Has the Right to Children"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno",
+      "qid": "Q9149801"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:mike-sandison",
+      "type": "artist",
+      "name": "Michael Sandison"
+    },
+    {
+      "slug": "artist:marcus-eoin",
+      "type": "artist",
+      "name": "Marcus Eoin"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

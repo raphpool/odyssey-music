@@ -34,7 +34,7 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:computer-world",
+      "slug": "project:computer-world--kraftwerk",
       "type": "project",
       "name": "Computer World"
     },
@@ -44,7 +44,7 @@
       "name": "Trans-Europe Express"
     },
     {
-      "slug": "project:the-man-machine",
+      "slug": "project:the-man-machine--kraftwerk",
       "type": "project",
       "name": "The Man-Machine"
     }

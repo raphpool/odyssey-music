@@ -1,0 +1,72 @@
+{
+  "slug": "track:kontakte--karlheinz-stockhausen",
+  "name": "Kontakte",
+  "editorial_article": "\"Kontakte\" (1958–1960) stands as a monumental achievement in the history of 20th-century avant-garde music, composed by the visionary German composer Karlheinz Stockhausen. Originally realized at the WDR Electronic Music Studio in Cologne, the work represents a pivotal moment in the development of electronic music, bridging the gap between purely synthetic tape compositions and live performance. While Stockhausen had previously explored electronic textures in works like \"Gesang der Jünglinge,\" \"Kontakte\" pushed these innovations further by introducing live instrumentalists into the electronic environment. The title itself, meaning \"Contacts,\" refers to the complex interplay between three distinct domains: the interaction between synthetic and acoustic sound families (metal, wood, and skin), the sophisticated spatialization of sound around the listener, and the structural \"moments\" that form the piece’s non-linear progression.\n\nStructurally, \"Kontakte\" is renowned for its application of \"moment form,\" a compositional strategy where the piece is divided into self-contained, independent sections that do not rely on traditional thematic development for cohesion. This non-linear approach allowed Stockhausen to treat sound as a plastic, malleable material. By integrating precise serial techniques with aleatoric elements—specifically in the interplay between the electronic tape and the live piano and percussion—Stockhausen created a deeply immersive soundscape that challenged the boundaries of traditional musical form. The piece remains a seminal reference point for electronic music, demonstrating the immense potential of electronic synthesis when combined with human performance to create a truly three-dimensional, spatialized listening experience. Its influence persists, informing the work of generations of composers who explore the intersection of acoustic and electronic sound, spatial audio, and non-linear narrative structures.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/album/karlheinz-stockhausen-kontakte-mw0000050066",
+      "title": "Karlheinz Stockhausen: Kontakte - AllMusic"
+    },
+    {
+      "url": "https://stockhausenspace.blogspot.com/2015/11/kontakte-planning-design.html",
+      "title": "Stockhausen: Sounds in Space: KONTAKTE - Planning & Design"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:18.894Z",
+  "type": "track",
+  "editorial_teaser": "\"Kontakte\" (1958–1960) stands as a monumental achievement in the history of 20th-century avant-garde music, composed by the visionary German composer Karlheinz Stockhausen.",
+  "year": "1960",
+  "artists": [
+    {
+      "slug": "artist:karlheinz-stockhausen",
+      "type": "artist",
+      "name": "Karlheinz Stockhausen"
+    }
+  ],
+  "project": {
+    "slug": "project:kontakte--karlheinz-stockhausen",
+    "type": "project",
+    "name": "Kontakte (1958-1960)"
+  },
+  "genres": [
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-Garde",
+      "qid": "Q2332751"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic Music",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique Concrète",
+      "qid": "Q823560"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:karlheinz-stockhausen",
+      "type": "artist",
+      "name": "Karlheinz Stockhausen"
+    },
+    {
+      "slug": "artist:gottfried-michael-koenig",
+      "type": "artist",
+      "name": "Gottfried-Michael Koenig"
+    },
+    {
+      "slug": "artist:jaap-spek",
+      "type": "artist",
+      "name": "Jaap Spek"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

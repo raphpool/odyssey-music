@@ -78,7 +78,7 @@
       "name": "Mr. Frosty"
     },
     {
-      "slug": "track:eggy-toast",
+      "slug": "track:eggy-toast--mike-and-rich",
       "type": "track",
       "name": "Eggy Toast"
     }
@@ -98,5 +98,6 @@
       "type": "artist",
       "name": "Richard D. James"
     }
-  ]
+  ],
+  "similar_artists": []
 }

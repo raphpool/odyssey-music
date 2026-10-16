@@ -65,12 +65,12 @@
       "name": "Jelly Fish"
     },
     {
-      "slug": "track:eggy-toast",
+      "slug": "track:eggy-toast--mike-and-rich",
       "type": "track",
       "name": "Eggy Toast"
     },
     {
-      "slug": "track:reg",
+      "slug": "track:reg--mike-and-rich",
       "type": "track",
       "name": "Reg"
     },
@@ -90,12 +90,12 @@
       "name": "Giant Deflating Football"
     },
     {
-      "slug": "track:upright-kangaroo",
+      "slug": "track:upright-kangaroo--mike-and-rich",
       "type": "track",
       "name": "Upright Kangaroo"
     },
     {
-      "slug": "track:the-sound-of-the-beady-eyes",
+      "slug": "track:the-sound-of-the-beady-eyes--mike-and-rich",
       "type": "track",
       "name": "The Sound of the Beady Eyes"
     },
@@ -106,5 +106,6 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

@@ -52,9 +52,10 @@
   ],
   "discography": [
     {
-      "slug": "project:beg-to-differ",
+      "slug": "project:beg-to-differ--plastician",
       "type": "project",
-      "name": "Beg to Differ"
+      "name": "Beg to Differ",
+      "artist": "Plastician"
     }
   ],
   "notable_tracks": [

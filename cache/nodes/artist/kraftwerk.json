@@ -48,7 +48,7 @@
   ],
   "discography": [
     {
-      "slug": "project:autobahn",
+      "slug": "project:autobahn--kraftwerk",
       "type": "project",
       "name": "Autobahn"
     },
@@ -58,24 +58,24 @@
       "name": "Trans-Europe Express"
     },
     {
-      "slug": "project:the-man-machine",
+      "slug": "project:the-man-machine--kraftwerk",
       "type": "project",
       "name": "The Man-Machine"
     },
     {
-      "slug": "project:computer-world",
+      "slug": "project:computer-world--kraftwerk",
       "type": "project",
       "name": "Computer World"
     }
   ],
   "notable_tracks": [
     {
-      "slug": "track:autobahn",
+      "slug": "track:autobahn--kraftwerk",
       "type": "track",
       "name": "Autobahn"
     },
     {
-      "slug": "track:the-model",
+      "slug": "track:the-model--kraftwerk",
       "type": "track",
       "name": "The Model"
     },

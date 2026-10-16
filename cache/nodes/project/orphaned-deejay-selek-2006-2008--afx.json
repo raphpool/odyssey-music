@@ -1,0 +1,89 @@
+{
+  "slug": "project:orphaned-deejay-selek-2006-2008--afx",
+  "name": "Orphaned Deejay Selek 2006-2008",
+  "editorial_article": "Released on August 21, 2015, via Warp Records, *Orphaned Deejay Selek 2006-2008* is a significant EP by electronic music innovator Richard D. James, issued under his long-standing alias, AFX. Coming shortly after the release of his acclaimed album *Syro*, this project offers a contrast to its predecessor's expansive, melodic structures, instead favoring a raw, energetic, and highly rhythmic approach that highlights James's mastery of hardware-based synthesis and sequencing. The EP serves as an archival excavation, bringing together material crafted in his studio between 2006 and 2008—a period where his sound became increasingly focused on intricate, machine-driven textures and percussive manipulation.\\n\\nThe project is noted for its technical ingenuity, featuring custom-built equipment and heavy processing. For instance, the track \"midi pipe1c sds3time cube/klonedrm\" utilizes a custom-made MIDI pipe organ, a Urei Time Cube delay, and synthesized percussion sequenced on a Yamaha RS2000. Another highlight, \"r8m neotek beat,\" relies on a Roland R8m sound source mixed through a Neotek desk with a lush Allen Organ spring reverb. This dedication to specific analog signal paths and hardware chains underscores the EP's sonic signature: it is visceral, uncompromising, and deeply layered. By reviving the AFX moniker, James signaled a return to the more abrasive and dance-floor-oriented facets of his output, providing a gritty, \"orphaned\" counterpoint to the more polished production work of his later career. It remains a vital document of James's process, revealing the intense mechanical detail present in his most focused electronic experiments.",
+  "citations": [
+    {
+      "url": "https://aphextwin.warp.net/release/86209-afx-orphaned-deejay-selek-2006-2008?srsltid=AfmBOorURhvfADYLHnHHaAvT6YOsYF4fjWyH7jpDu-m_G6E5xtfl_wVe",
+      "title": "AFX - orphaned deejay selek 2006-2008. Aphex Twin."
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Orphaned_Deejay_Selek_2006%E2%80%9308",
+      "title": "Orphaned Deejay Selek 2006–08 - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:04:13.900Z",
+  "type": "project",
+  "editorial_pitch": "A raw, hardware-heavy EP that revives Richard D. James's AFX moniker, featuring intricate percussive sequences and custom analog setups unearthed from his 2006–2008 archives.",
+  "year": "2015",
+  "artists": [
+    {
+      "slug": "artist:afx",
+      "type": "artist",
+      "name": "AFX"
+    }
+  ],
+  "label": {
+    "slug": "label:warp-records",
+    "type": "label",
+    "name": "Warp Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:braindance",
+      "type": "genre",
+      "name": "Braindance"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:serge-fenix-rendered-2",
+      "type": "track",
+      "name": "serge fenix Rendered 2"
+    },
+    {
+      "slug": "track:dmx-acid-test",
+      "type": "track",
+      "name": "dmx acid test"
+    },
+    {
+      "slug": "track:oberheim-blacet1b",
+      "type": "track",
+      "name": "oberheim blacet1b"
+    },
+    {
+      "slug": "track:bonus-emt-beats",
+      "type": "track",
+      "name": "bonus EMT beats"
+    },
+    {
+      "slug": "track:simple-slamming-b-2",
+      "type": "track",
+      "name": "simple slamming b 2"
+    },
+    {
+      "slug": "track:midi-pipe1c-sds3time-cube-klonedrm",
+      "type": "track",
+      "name": "midi pipe1c sds3time cube/klonedrm"
+    },
+    {
+      "slug": "track:neotekt72",
+      "type": "track",
+      "name": "NEOTEKT72"
+    },
+    {
+      "slug": "track:r8m-neotek-beat",
+      "type": "track",
+      "name": "r8m neotek beat"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

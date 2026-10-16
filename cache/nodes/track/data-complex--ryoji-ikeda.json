@@ -1,0 +1,70 @@
+{
+  "slug": "track:data-complex--ryoji-ikeda",
+  "name": "data.complex",
+  "editorial_article": "\"data.complex\" is a track by the Japanese sound artist and composer Ryoji Ikeda, featured on his seminal 2005 album \"dataplex.\" As a pivotal figure in the world of minimal electronic and glitch music, Ikeda designed \"dataplex\" to be more than just a collection of songs; it serves as a conceptual exploration of data, frequency, and the digital medium itself. The entire project is characterized by its clinical, precise, and often aggressive aesthetic, utilizing extreme high-frequency oscillations, digital noise, and stark, stuttering percussion that challenges the physical limits of audio playback equipment.\n\nWithin the context of the album, \"data.complex\" functions as a brief but intense fragment of this wider \"Datamatics\" project. Clocking in at less than a minute, it exemplifies Ikeda’s micromontage approach, where meticulously crafted sound bits are layered and arranged with mathematical rigor. Unlike more traditional electronic tracks that rely on melodic progression or conventional rhythmic structures, \"data.complex\" focuses on the texture of digital artifacts, creating a sonic environment where silence, glitch, and frequency shifts carry as much weight as any musical note. It remains a hallmark of Ikeda's mid-2000s output, cementing his reputation as an artist who bridges the gap between high-concept sound art and the experimental electronic dance floor, often pushing the listeners' hardware and their endurance to the threshold of physical discomfort. The album’s reputation for potentially damaging audio equipment adds a layer of mythos to the track, framing it as an uncompromising, almost dangerous entity in the landscape of 21st-century electronic sound design. Label Raster-Noton, central to the development of this clinical aesthetic, provided the perfect home for Ikeda’s explorations. His work here continues to influence contemporary sound art, sound design, and experimental computer music, acting as a bridge between high-concept aesthetics and the physical experience of sound at the limits of fidelity. This release was also re-released on labels like Codex Edition, reflecting its enduring status in the genre. His collaborators often include electronic innovators working within the Raster-Noton orbit, though \"dataplex\" itself stands as a singular, solo technical achievement in his discography.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/release/562650-Ryoji-Ikeda-dataplex?srsltid=AfmBOoo9gxXeRUgImsshGRA1DKBbdRUE0QniXBqjxfUpUvIlNHH2UO8_",
+      "title": "Ryoji Ikeda – dataplex – CD (Album, Partially Mixed), 2005 [r562650] | Discogs"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Dataplex",
+      "title": "Dataplex - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:57:39.239Z",
+  "mbid": "5ea55354-ba3c-4f09-a74c-59a615f2cbc8",
+  "type": "track",
+  "editorial_teaser": "\"data.complex\" is a track by the Japanese sound artist and composer Ryoji Ikeda, featured on his seminal 2005 album \"dataplex.\" As a pivotal figure in the world of minimal electronic and glitch music, Ikeda designed \"dataplex\" to be more than just a collection of songs; it serves",
+  "year": "2005",
+  "artists": [
+    {
+      "slug": "artist:ryoji-ikeda",
+      "type": "artist",
+      "name": "Ryoji Ikeda",
+      "mbid": "bba24968-a575-4b38-8c38-06f7ab6de8c8"
+    }
+  ],
+  "project": {
+    "slug": "project:dataplex--ryoji-ikeda",
+    "type": "project",
+    "name": "dataplex"
+  },
+  "label": {
+    "slug": "label:raster-noton",
+    "type": "label",
+    "name": "Raster‐Noton",
+    "mbid": "6f4640eb-0881-40b4-a9ac-2a68ad3af0ca"
+  },
+  "genres": [
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch",
+      "qid": "Q1100989"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic Music",
+      "qid": "Q9778"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:ryoji-ikeda",
+      "type": "artist",
+      "name": "Ryoji Ikeda"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

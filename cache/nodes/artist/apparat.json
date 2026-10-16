@@ -83,9 +83,10 @@
       "name": "Krieg und Frieden (Music for Theatre)"
     },
     {
-      "slug": "project:lp5",
+      "slug": "project:lp5--apparat",
       "type": "project",
-      "name": "LP5"
+      "name": "LP5",
+      "artist": "Apparat"
     },
     {
       "slug": "project:a-hum-of-maybe",

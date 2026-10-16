@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T12:36:36.808Z",
   "type": "genre",
   "editorial_definition": "A subgenre of new-age music heavily influenced by early, Baroque, and Classical music, typically characterized by acoustic instrumentation (like piano and harp), slow tempos, and a meditative, pastoral atmosphere.",
+  "qid": "Q613874",
   "parent_genres": [
     {
       "slug": "genre:new-age",
@@ -55,7 +56,7 @@
   "key_labels": [],
   "landmark_projects": [
     {
-      "slug": "project:hosianna-mantra",
+      "slug": "project:hosianna-mantra--popol-vuh",
       "type": "project",
       "name": "Hosianna Mantra"
     },
@@ -70,6 +71,5 @@
       "name": "Kagayaki"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q613874"
+  "landmark_tracks": []
 }

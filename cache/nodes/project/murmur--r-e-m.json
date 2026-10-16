@@ -1,0 +1,140 @@
+{
+  "slug": "project:murmur--r-e-m",
+  "name": "Murmur",
+  "editorial_article": "Murmur, released in 1983 on I.R.S. Records, stands as the landmark debut studio album by the American alternative rock band R.E.M. Recorded in North Carolina under the guidance of producers Don Dixon and Mitch Easter, the album emerged as a pivotal moment in the development of American independent music during the early 1980s. Its production, which famously eschewed the synthesizers and polished rock clichés common at the time, favored an atmospheric, \"timeless\" sound built on Peter Buck's signature ringing, jangly guitar arpeggios, Mike Mills’ melodic basslines, and Michael Stipe's famously enigmatic, sometimes mumbled vocal delivery. \\n\\nThe creation of the album was a reaction against the overly technical, clinical approach of earlier producers, with the band actively seeking a more organic and authentic sonic capture of their live energy. Songs like \"Radio Free Europe\" and \"Talk About the Passion\" showcased a songwriting sensibility that bridged the gap between post-punk intensity and classic folk-rock traditions. Culturally, Murmur is widely credited with establishing the blueprint for the 1980s college rock movement and the subsequent explosion of alternative rock in the following decade. Its influence is cemented by its consistent appearance on critical lists of the greatest albums of all time, serving as a masterclass in how to build a cohesive, mood-driven artistic statement with minimal studio artifice. The album remains a foundational text for students of indie rock, demonstrating how a band can subvert pop conventions while crafting deeply emotive and enduring melodies. Throughout the record, the interplay between the rhythm section and Buck’s guitar creates a dense, layered texture that feels both intimate and expansive, setting the standard for what independent rock would become in the decades that followed. Its critical longevity and historical significance in the Athens, Georgia scene mark it as one of the most important debut records in American music history.",
+  "citations": [
+    {
+      "url": "https://www.sputnikmusic.com/review/13311/R.E.M.-Murmur/",
+      "title": "R.E.M. - Murmur (album review 5)"
+    },
+    {
+      "url": "https://www.albumoftheyear.org/album/6101-rem-murmur.php",
+      "title": "R.E.M. - Murmur - Reviews"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:36.302Z",
+  "_metrics": {
+    "input_tokens": 61706,
+    "output_tokens": 4327,
+    "cache_read_tokens": 8101,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.02212,
+    "llm_calls": 9,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 9,
+    "emit_attempts": 5,
+    "agent_ms": 27813,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "mbid": "de790d3d-a35c-364c-a8fb-adfb73084a45",
+  "type": "project",
+  "editorial_pitch": "The definitive 1983 debut that defined the American college rock movement, featuring Peter Buck's signature jangle, Mike Mills' melodic bass, and Michael Stipe's iconic, cryptic lyrical style.",
+  "year": "1983",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:r-e-m",
+      "type": "artist",
+      "name": "R.E.M.",
+      "mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58"
+    }
+  ],
+  "label": {
+    "slug": "label:i-r-s-records",
+    "type": "label",
+    "name": "I.R.S. Records",
+    "mbid": "5aa5ddcd-b5d9-4bdf-b528-5083dfd98f03"
+  },
+  "genres": [],
+  "tracklist": [
+    {
+      "slug": "track:radio-free-europe--r-e-m",
+      "type": "track",
+      "name": "Radio Free Europe",
+      "mbid": "cbcbde64-fc76-4d74-b8d4-4887f5a7c436",
+      "artist": "R.E.M."
+    },
+    {
+      "slug": "track:pilgrimage--r-e-m",
+      "type": "track",
+      "name": "Pilgrimage",
+      "mbid": "0b9e9c49-9004-420e-a5b6-378bbccebd07",
+      "artist": "R.E.M."
+    },
+    {
+      "slug": "track:laughing--r-e-m",
+      "type": "track",
+      "name": "Laughing",
+      "mbid": "7e902625-aa98-462f-adf5-3e6efdb0f814",
+      "artist": "R.E.M."
+    },
+    {
+      "slug": "track:talk-about-the-passion--r-e-m",
+      "type": "track",
+      "name": "Talk About the Passion",
+      "mbid": "93704e52-8677-4a0a-89c7-3be298cc1f74",
+      "artist": "R.E.M."
+    },
+    {
+      "slug": "track:moral-kiosk--r-e-m",
+      "type": "track",
+      "name": "Moral Kiosk",
+      "mbid": "322bcc1a-3a49-4c8f-b50d-f2a2f757f593",
+      "artist": "R.E.M."
+    },
+    {
+      "slug": "track:perfect-circle--r-e-m",
+      "type": "track",
+      "name": "Perfect Circle",
+      "mbid": "ed9272bf-afb2-4937-b37c-6e483ef28a61",
+      "artist": "R.E.M."
+    },
+    {
+      "slug": "track:catapult--r-e-m",
+      "type": "track",
+      "name": "Catapult",
+      "mbid": "768a19f7-e8c8-4784-8d2b-f2ccf93e4164",
+      "artist": "R.E.M."
+    },
+    {
+      "slug": "track:sitting-still--r-e-m",
+      "type": "track",
+      "name": "Sitting Still",
+      "mbid": "b9374a55-9e40-4456-a7ac-c0cb91fbcc8a",
+      "artist": "R.E.M."
+    },
+    {
+      "slug": "track:9-9--r-e-m",
+      "type": "track",
+      "name": "9–9",
+      "mbid": "5e0a83a5-fa46-415c-8d6b-850f27978ce7",
+      "artist": "R.E.M."
+    },
+    {
+      "slug": "track:shaking-through--r-e-m",
+      "type": "track",
+      "name": "Shaking Through",
+      "mbid": "0df2df5c-d107-4d1d-a041-e91df7d566e9",
+      "artist": "R.E.M."
+    },
+    {
+      "slug": "track:we-walk--r-e-m",
+      "type": "track",
+      "name": "We Walk",
+      "mbid": "c74f6bfb-1e9f-4a69-89d9-76c4fe352113",
+      "artist": "R.E.M."
+    },
+    {
+      "slug": "track:west-of-the-fields--r-e-m",
+      "type": "track",
+      "name": "West of the Fields",
+      "mbid": "42e79cbc-9d38-4696-a9fe-2a8a07ee9cba",
+      "artist": "R.E.M."
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

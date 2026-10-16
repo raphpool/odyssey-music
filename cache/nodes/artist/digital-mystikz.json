@@ -40,7 +40,7 @@
   ],
   "discography": [
     {
-      "slug": "project:return-ii-space",
+      "slug": "project:return-ii-space--digital-mystikz",
       "type": "project",
       "name": "Return II Space"
     },
@@ -52,14 +52,15 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:anti-war-dub",
+      "slug": "track:anti-war-dub--digital-mystikz",
       "type": "track",
       "name": "Anti War Dub"
     },
     {
-      "slug": "track:haunted",
+      "slug": "track:haunted--digital-mystikz",
       "type": "track",
-      "name": "Haunted"
+      "name": "Haunted",
+      "artist": "Digital Mystikz"
     }
   ],
   "influences": [],

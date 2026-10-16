@@ -1,0 +1,79 @@
+{
+  "slug": "project:together--the-oak-ridge-boys",
+  "name": "Together",
+  "editorial_article": "\"Together\" is a studio album by the influential American country vocal group The Oak Ridge Boys, released in 1980 on MCA Records. This project marked a pivotal moment in the quartet's trajectory, cementing their crossover appeal during the late 1970s and early 1980s. Following the massive success of their 1978 breakthrough, *Together* showcased the group's signature blend of tight vocal harmonies, polished country-pop production, and sentimental lyricism that resonated with both country radio and wider pop audiences. The album features ten tracks, including notable singles such as \"Trying to Love Two Women,\" which hit number one on the Billboard Hot Country Singles chart. The record captures the group at the height of their mainstream relevance, balancing traditional country storytelling with the glossy, radio-friendly production standards of the era. By distilling complex vocal arrangements into accessible, anthemic arrangements, The Oak Ridge Boys helped bridge the gap between classic gospel-inflected country and the evolving pop-country soundscape that would dominate Nashville for the decade to come. The album remains a touchstone for country vocal harmony groups, reflecting a professional standard of performance that sustained the group’s lengthy career.",
+  "citations": [
+    {
+      "url": "https://open.spotify.com/album/1W5Xv3Dz1K7NSmqF0knQVS",
+      "title": "Together - Album by The Oak Ridge Boys | Spotify"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:22.187Z",
+  "_metrics": {
+    "input_tokens": 42965,
+    "output_tokens": 1938,
+    "cache_read_tokens": 8112,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.013851,
+    "llm_calls": 7,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 7,
+    "emit_attempts": 4,
+    "agent_ms": 22358,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "mbid": "109fc4f0-65fc-4502-a9e6-2af591814b6e",
+  "type": "project",
+  "editorial_pitch": "Released in 1980, this country-pop milestone by The Oak Ridge Boys captures the quartet's polished harmonic signature at the height of their crossover success.",
+  "year": "1980",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:the-oak-ridge-boys",
+      "type": "artist",
+      "name": "The Oak Ridge Boys",
+      "mbid": "1089f50b-10c3-47ef-8b21-b0b899c827d8"
+    }
+  ],
+  "label": {
+    "slug": "label:mca-records",
+    "type": "label",
+    "name": "MCA Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:country",
+      "type": "genre",
+      "name": "Country",
+      "qid": "Q83440"
+    },
+    {
+      "slug": "genre:country-pop",
+      "type": "genre",
+      "name": "Country Pop",
+      "qid": "Q2280497"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:whiskey-lady",
+      "type": "track",
+      "name": "Whiskey Lady"
+    },
+    {
+      "slug": "track:ready-to-take-my-chances",
+      "type": "track",
+      "name": "Ready To Take My Chances"
+    },
+    {
+      "slug": "track:trying-to-love-two-women",
+      "type": "track",
+      "name": "Trying To Love Two Women"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

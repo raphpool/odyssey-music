@@ -814,11 +814,6 @@
   ],
   "members": [
     {
-      "slug": "artist:t-i",
-      "type": "artist",
-      "name": "T.I."
-    },
-    {
       "slug": "artist:young-thug",
       "type": "artist",
       "name": "Young Thug"
