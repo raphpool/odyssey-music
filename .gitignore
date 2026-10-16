@@ -24,6 +24,7 @@ out/
 # restarts, but versioning them would churn the repo with data we can regenerate.
 cache/youtube/
 cache/links/
+cache/images/
 
 # Codex review artifacts (kept under .reviews/ but only the latest verdict is committed)
 .reviews/raw/
