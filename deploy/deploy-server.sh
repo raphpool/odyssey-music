@@ -175,14 +175,27 @@ systemctl restart odyssey-server.service
 sleep 3
 systemctl is-active odyssey-server.service || (journalctl -u odyssey-server --no-pager -n 50; exit 1)
 
-# TRA-509: put the flag the running process really received in the deploy log. EnvironmentFile= beats
-# Environment=, so a leftover line in the env file would silently win over the unit written above.
+# >>> TRA-509 flag report
+# Put the flag the running process really received in the deploy log. EnvironmentFile= beats
+# Environment=, so a leftover line in /etc/odyssey-music.env would silently win over the unit above.
+# PROC_ROOT / UNIT_FILE default to the real paths; test/scoped-slugs-deploy-flag.test.ts overrides them.
+FLAG_NAME=ODYSSEY_SCOPED_RELEASE_SLUGS
+PROC_ROOT="${PROC_ROOT:-/proc}"
+UNIT_FILE="${UNIT_FILE:-/etc/systemd/system/odyssey-server.service}"
 SERVICE_PID="$(systemctl show -p MainPID --value odyssey-server.service)"
-EFFECTIVE_FLAG="$( (tr '\0' '\n' < "/proc/$SERVICE_PID/environ" || true) | sed -n 's/^ODYSSEY_SCOPED_RELEASE_SLUGS=//p' | tail -n 1)"
-echo "  -> ODYSSEY_SCOPED_RELEASE_SLUGS=${EFFECTIVE_FLAG:-<unset>} in the running service"
-if grep -q '^ODYSSEY_SCOPED_RELEASE_SLUGS=' /etc/odyssey-music.env; then
-  echo "WARN: /etc/odyssey-music.env sets ODYSSEY_SCOPED_RELEASE_SLUGS and overrides the unit." >&2
+EFFECTIVE_FLAG="<unreadable>"
+if [[ "$SERVICE_PID" =~ ^[1-9][0-9]*$ && -r "$PROC_ROOT/$SERVICE_PID/environ" ]]; then
+  EFFECTIVE_FLAG="$(tr '\0' '\n' < "$PROC_ROOT/$SERVICE_PID/environ" | sed -n "s/^${FLAG_NAME}=//p" | tail -n 1)"
+  EFFECTIVE_FLAG="${EFFECTIVE_FLAG:-<unset>}"
 fi
+UNIT_FLAG="$(sed -n "s/^Environment=${FLAG_NAME}=//p" "$UNIT_FILE" | tail -n 1)"
+UNIT_FLAG="${UNIT_FLAG:-<unset>}"
+echo "  -> ${FLAG_NAME}=${EFFECTIVE_FLAG} in the running service (unit: ${UNIT_FLAG})"
+if [[ "$EFFECTIVE_FLAG" != "$UNIT_FLAG" ]]; then
+  echo "WARN: the running service has ${FLAG_NAME}=${EFFECTIVE_FLAG}, not the unit's ${UNIT_FLAG}:" >&2
+  echo "      /etc/odyssey-music.env overrides the unit, or the service is not up." >&2
+fi
+# <<< TRA-509 flag report
 
 # Nginx routing for /api/odyssey/ is owned by the dropcliffs deploy template
 # (projects/dropcliffs/deploy/nginx.conf). Do NOT patch nginx in place here —

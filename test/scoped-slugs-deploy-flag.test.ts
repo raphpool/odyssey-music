@@ -1,4 +1,6 @@
-import { readFileSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { chmodSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import { scopedReleaseSlugsEnabled } from "../src/flags.js";
@@ -60,16 +62,89 @@ describe("deploy-server.sh: scoped release slugs flag (TRA-509)", () => {
 		expect(deployScript.slice(restartLineStart, restart)).toBe("");
 	});
 
-	it("explains why the flag is not in the env file: a deploy never writes it", () => {
+	it("never writes /etc/odyssey-music.env: the flag lives in the unit, not in the env file", () => {
 		// The premise of the mechanism. If a deploy ever rewrote the env file, this guard (and the
-		// choice of the unit) would have to be revisited.
-		expect(deployScript).not.toMatch(/>\s*\/etc\/odyssey-music\.env/);
+		// choice of the unit) would have to be revisited. Any write form counts: redirect, tee, sed -i,
+		// cp, mv, install. Comments and `>&2` (stderr) are not writes.
+		const writes = deployScript
+			.split("\n")
+			.filter((line) => !/^\s*#/.test(line) && line.includes("/etc/odyssey-music.env"))
+			.filter((line) => /(>(?!&)|\btee\b|\bsed\b.*\s-i|\bcp\b|\bmv\b|\binstall\b)/.test(line));
+		expect(writes).toEqual([]);
 		expect(bootstrapScript).not.toContain(FLAG);
 	});
+});
 
-	it("reports the value the running service received", () => {
-		expect(deployScript).toMatch(/\/proc\/\$SERVICE_PID\/environ/);
-		expect(deployScript).toMatch(/in the running service/);
+/** The report block that follows the restart, run for real against stubbed systemctl and /proc. */
+function flagReportBlock(): string {
+	const start = deployScript.indexOf("# >>> TRA-509 flag report");
+	const end = deployScript.indexOf("# <<< TRA-509 flag report");
+	if (start === -1 || end === -1) throw new Error("flag report block not found in deploy-server.sh");
+	return deployScript.slice(start, end);
+}
+
+function runFlagReport(opts: { pid: string; environ?: string; unit: string }) {
+	const dir = mkdtempSync(join(tmpdir(), "flag-report-"));
+	try {
+		const bin = join(dir, "bin");
+		mkdirSync(bin);
+		writeFileSync(join(bin, "systemctl"), `#!/bin/sh\necho ${opts.pid}\n`);
+		chmodSync(join(bin, "systemctl"), 0o755);
+		const procRoot = join(dir, "proc");
+		if (opts.environ !== undefined) {
+			mkdirSync(join(procRoot, opts.pid), { recursive: true });
+			writeFileSync(join(procRoot, opts.pid, "environ"), opts.environ);
+		}
+		const unitFile = join(dir, "odyssey-server.service");
+		writeFileSync(unitFile, opts.unit);
+		const result = spawnSync("bash", ["-euo", "pipefail", "-c", flagReportBlock()], {
+			encoding: "utf8",
+			env: { PATH: `${bin}:${process.env.PATH ?? ""}`, PROC_ROOT: procRoot, UNIT_FILE: unitFile },
+		});
+		return { status: result.status, stdout: result.stdout, stderr: result.stderr };
+	} finally {
+		rmSync(dir, { recursive: true, force: true });
+	}
+}
+
+const UNIT_ON = `[Service]\nEnvironment=${FLAG}=1\n[Install]\n`;
+
+describe("deploy-server.sh: report of the flag the running service received (TRA-509)", () => {
+	it("prints the value and stays quiet when the process has what the unit declares", () => {
+		const r = runFlagReport({ pid: "4242", environ: `PORT=18792\0${FLAG}=1\0HOME=/root\0`, unit: UNIT_ON });
+		expect(r.status).toBe(0);
+		expect(r.stdout).toContain(`${FLAG}=1 in the running service (unit: 1)`);
+		expect(r.stderr).toBe("");
+	});
+
+	it("warns when the env file overrides the unit (the process has 0, the unit says 1)", () => {
+		const r = runFlagReport({ pid: "4242", environ: `${FLAG}=0\0`, unit: UNIT_ON });
+		expect(r.status).toBe(0);
+		expect(r.stdout).toContain(`${FLAG}=0 in the running service (unit: 1)`);
+		expect(r.stderr).toContain("WARN");
+		expect(r.stderr).toContain("overrides the unit");
+	});
+
+	it("does not warn on a deliberate rollback written in the unit (0 and 0)", () => {
+		const r = runFlagReport({
+			pid: "4242",
+			environ: `${FLAG}=0\0`,
+			unit: UNIT_ON.replace(`${FLAG}=1`, `${FLAG}=0`),
+		});
+		expect(r.stderr).toBe("");
+	});
+
+	it("says <unset> when the process has no such variable", () => {
+		const r = runFlagReport({ pid: "4242", environ: "PORT=18792\0", unit: UNIT_ON });
+		expect(r.stdout).toContain(`${FLAG}=<unset> in the running service`);
+		expect(r.stderr).toContain("WARN");
+	});
+
+	it("says <unreadable>, not <unset>, when the service has no main process (MainPID=0)", () => {
+		const r = runFlagReport({ pid: "0", unit: UNIT_ON });
+		expect(r.status).toBe(0);
+		expect(r.stdout).toContain(`${FLAG}=<unreadable> in the running service`);
+		expect(r.stderr).toContain("service is not up");
 	});
 });
 
