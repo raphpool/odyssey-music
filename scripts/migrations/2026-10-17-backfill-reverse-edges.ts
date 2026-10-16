@@ -1,22 +1,35 @@
 /**
- * Backfill the missing reverse edges (TRA-486, plan docs/plans/graph-integrity.md, part 2). TRA-454 declared
- * the cross-type pairs of REVERSE_EDGE_PAIRS for future writes; the cache written before it keeps its holes
- * (a label roster without the artists that name the label, a project without the artists of its credit, ...).
- * This pass applies every pair to every node of an existing cache. Offline and deterministic: no network,
- * no LLM. To run after the identity migrations (TRA-483), so the slugs it reads are the stable ones.
+ * Backfill the missing reverse edges (TRA-486, plan docs/plans/graph-integrity.md, part 2) for the four
+ * SAFE directions only. TRA-454 declared the cross-type pairs of REVERSE_EDGE_PAIRS for future writes; the
+ * cache written before it keeps its holes (a label roster without the artists that name the label, ...).
+ * Offline and deterministic: no network, no LLM. To run after the identity migrations (TRA-483).
+ *
+ * SAFE_BACKFILL_PAIRS: the source is a declared CREDIT or MEMBERSHIP and the target is a LIST on an artist or
+ * a label (what an artist released, what a label released or signed). Nothing here ever writes a credit, a
+ * parent, a genre, a project or a label ON A WORK or on another artist from the list of a different node.
+ * Every other pair of REVERSE_EDGE_PAIRS is skipped and listed in the manifest (`skippedPairs`) with its
+ * reason, because the deep review of the first version (PR #484, 2026-10-16) measured what they do on the
+ * real cache: a work lists a homonym's artist as its credit (Moderat's "II" would get 2 Unlimited, Deep
+ * Space a credit for two artists who list other "Deep Space"), a producer is promoted to artist (Chris
+ * Thomas on Never Mind the Bollocks), a homonym's tracklist or genre is copied. They come back with an
+ * identity guard in a follow-up ticket.
+ * - Skipped, reverse writes a credit on a work (`project.artists`, `track.artists`): the artist's list of
+ *   works is not a credit; it holds namesakes' works.
+ * - Skipped, reverse writes a work's `project`, `tracklist`, `label` or `genres`: a work-to-work or
+ *   genre-to-work link copied from the other side carries the same homonym errors.
+ * - Skipped, reverse writes `artist.genres`, `label.genres`, `label.roster`-from-label, `artist.labels`:
+ *   a genre or label list on an artist is copied from a node that is not the artist's own claim.
+ * - Skipped, reverse writes a relation between two nodes of the same kind (genre parents and subgenres,
+ *   artist collaborators / members / aliases / influences, sample and remix links): symmetric by
+ *   construction, not a hole of the cross-type kind this backfill targets.
  *
  * Rules:
  * - Dry-run by default; `--apply` writes. Idempotent: a second run plans nothing (written === 0).
  * - Only additions: an existing edge is never removed or modified. Every added edge points at a node in the
- *   cache; a reference to a node that is not cached goes to pending-reverses.json (as NodeCache does), once.
- * - A singular reverse field already set to ANOTHER target is never overwritten (`conflicts`): the cache
- *   says two different things, which a script must not arbitrate. When two sources claim the same empty
- *   singular, the first one in slug order wins and the other is reported the same way.
- * - An artist's release link is NOT reversed onto a work credited to someone else (`foreign-credit`): a
- *   homonym's album in a discography (Rohff -> Akuma's Fitna) would otherwise get the wrong artist grafted
- *   onto its credit, which would also make scripts/audit-cache.ts stop flagging it (homonym-release-links).
- *   Same test as the audit: the work's artists + producers must name the artist, or a group that lists the
- *   artist as a member. A work with no credit at all takes every artist that lists it (the point of the backfill).
+ *   cache; a reference to a node that is not cached goes to pending-reverses.json (as NodeCache does), once,
+ *   and only for these four pairs, so a pending entry is always a list entry on an artist or a label.
+ * - A reference of the wrong type, or a target whose field holds a malformed value, is never written: it is
+ *   listed in `conflicts`.
  * - Nodes are read as raw JSON and the reverse is applied to copies of the TARGETS, from the unmodified
  *   SOURCES. Deliberately not through NodeCache.write / update: they emit the reverses of the reverses and
  *   merge pendings, which is not a backfill.
@@ -34,8 +47,7 @@ import { dirname, join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { z } from "zod";
 import { applySingleReverse, atomicWriteJson, type PendingReverse } from "../../src/cache.js";
-import { EDGE_FIELDS_BY_TYPE, type NodeType } from "../../src/node-spec.js";
-import { reverseFor, reversibleFields } from "../../src/reverse-edges.js";
+import { EDGE_FIELDS_BY_TYPE, type NodeType, REVERSE_EDGE_PAIRS } from "../../src/node-spec.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
 import { isReadableSlug, parseSlug } from "../../src/slug.js";
 import type { EdgeRef, NodePayload } from "../../src/types.js";
@@ -52,6 +64,35 @@ import { onlyAddsSchemaDefaults } from "./2026-10-15-backfill-artist-identity.js
 export const MIGRATION_NAME = "2026-10-17-backfill-reverse-edges";
 export const DEFAULT_MANIFEST_PATH = "out/reverse-edges.json";
 
+/** The only pairs this script backfills, "source.field→target.field". See the header for why. */
+export const SAFE_BACKFILL_PAIRS: ReadonlySet<string> = new Set([
+	"project.artists→artist.discography",
+	"track.artists→artist.notable_tracks",
+	"project.label→label.notable_releases",
+	"artist.labels→label.roster",
+]);
+
+interface Direction {
+	field: string;
+	targetType: NodeType;
+	reverseField: string;
+	key: string;
+}
+
+// The safe pairs resolved against the spec once: forward field, type of the target, reverse field.
+const SAFE_DIRECTIONS_SOURCE = new Map<string, NodeType>();
+const SAFE_DIRECTIONS: Direction[] = [];
+for (const p of REVERSE_EDGE_PAIRS) {
+	const targetType = (EDGE_FIELDS_BY_TYPE[p.sourceType] as Record<string, { targets: readonly NodeType[] }>)[
+		p.sourceField
+	]?.targets[0];
+	if (!targetType || p.reverse.cardinality !== "list") continue;
+	const key = pairKey(p.sourceType, p.sourceField, targetType, p.reverse.field);
+	if (!SAFE_BACKFILL_PAIRS.has(key)) continue;
+	SAFE_DIRECTIONS_SOURCE.set(key, p.sourceType);
+	SAFE_DIRECTIONS.push({ field: p.sourceField, targetType, reverseField: p.reverse.field, key });
+}
+
 type Obj = Record<string, unknown>;
 type PendingFile = Record<string, PendingReverse[]>;
 
@@ -62,9 +103,13 @@ export interface ReverseConflict {
 	/** The node that should receive the reverse edge, and its field. */
 	target: string;
 	targetField: string;
-	kind: "single-occupied" | "target-field" | "foreign-credit";
-	/** single-occupied: the slug the singular field already points to. foreign-credit: the first credited slug. */
-	existing?: string;
+	/** A reference of the wrong type for the field, or a malformed value in the target field. */
+	kind: "target-field";
+}
+
+export interface SkippedPair {
+	pair: string;
+	reason: string;
 }
 
 export interface Manifest {
@@ -81,6 +126,8 @@ export interface Manifest {
 	/** Reverse edges already in place, plus pending entries already queued. */
 	unchanged: number;
 	conflicts: ReverseConflict[];
+	/** Pairs of REVERSE_EDGE_PAIRS this script does not backfill, with the reason. */
+	skippedPairs: SkippedPair[];
 	errors: string[];
 }
 
@@ -103,50 +150,60 @@ const pendingFileSchema = z.record(
 	),
 );
 
+function pairKey(sourceType: NodeType, field: string, targetType: NodeType, targetField: string): string {
+	return `${sourceType}.${field}→${targetType}.${targetField}`;
+}
+
 function refsOf(value: unknown): Obj[] {
 	if (Array.isArray(value)) return value.filter(isRecord);
 	return isRecord(value) ? [value] : [];
 }
 
-/** The edge a source node's slug becomes on the target: what NodeCache.emitReverses builds, plus the credit. */
+/** Why a pair is not backfilled; see the header. Only called for pairs outside SAFE_BACKFILL_PAIRS. */
+function skipReason(
+	sourceType: NodeType,
+	field: string,
+	reverse: { field: string; cardinality: "list" | "single" },
+): string {
+	const targetTypes = (EDGE_FIELDS_BY_TYPE[sourceType] as Record<string, { targets: readonly NodeType[] }>)[
+		field
+	]?.targets;
+	const targetType = targetTypes?.[0];
+	if (targetType === sourceType) return "relation between nodes of the same kind, symmetric by construction";
+	if (reverse.field === "artists") return "would write a credit on a work from an artist's list of works";
+	if (reverse.cardinality === "single" || reverse.field === "tracklist")
+		return "would write a work's project, label or tracklist from the other side's list (homonym links)";
+	if (reverse.field === "genres") return "would write a genre on a node from a genre's list (homonym links)";
+	return "would write a label or an artist link on a node from the other side's list (no identity guard)";
+}
+
+export function skippedPairs(): SkippedPair[] {
+	return REVERSE_EDGE_PAIRS.map((p) => ({
+		pair: pairKey(
+			p.sourceType,
+			p.sourceField,
+			nodeTypeOfTarget(p.sourceType, p.sourceField),
+			p.reverse.field,
+		),
+		reason: skipReason(p.sourceType, p.sourceField, p.reverse),
+	})).filter((p) => !SAFE_BACKFILL_PAIRS.has(p.pair));
+}
+
+function nodeTypeOfTarget(sourceType: NodeType, field: string): NodeType {
+	const spec = (EDGE_FIELDS_BY_TYPE[sourceType] as Record<string, { targets: readonly NodeType[] }>)[field];
+	return spec?.targets[0] ?? sourceType;
+}
+
+/** The edge a source node becomes on the target: its slug, type and name, plus the primary credit of a work. */
 function sourceEdgeOf(source: CacheNodeFile): EdgeRef | null {
 	const { node } = source;
 	if (typeof node.name !== "string" || node.name === "") return null;
 	const edge: EdgeRef = { slug: source.slug as EdgeRef["slug"], type: source.type, name: node.name };
-	if (source.type === "genre" && typeof node.qid === "string" && node.qid !== "") edge.qid = node.qid;
 	if (source.type === "project" || source.type === "track") {
 		const first = refsOf(node.artists)[0];
 		if (first && typeof first.name === "string" && first.name !== "") edge.artist = first.name;
 	}
 	return edge;
-}
-
-function pairKey(sourceType: NodeType, field: string, targetType: NodeType, targetField: string): string {
-	return `${sourceType}.${field}→${targetType}.${targetField}`;
-}
-
-/**
- * True when the work was credited (artists + producers) before this run and neither that credit, as it has
- * grown since, names `artistSlug` nor a group listing it. A work with no credit at the start takes every
- * artist that lists it: crediting only the first would turn the others into homonym links in the audit.
- */
-function foreignCredit(
-	artistSlug: string,
-	original: Obj,
-	current: Obj,
-	bySlug: ReadonlyMap<string, CacheNodeFile>,
-): boolean {
-	if (refsOf(original.artists).length + refsOf(original.producers).length === 0) return false;
-	const credited = [...refsOf(current.artists), ...refsOf(current.producers)].map((e) => e.slug);
-	// Membership is read both ways: the members <-> members pair is symmetric and this very run can add the
-	// missing side, which would flip the answer on the next run.
-	const own = refsOf(bySlug.get(artistSlug)?.node.members).map((m) => m.slug);
-	return !credited.some(
-		(slug) =>
-			slug === artistSlug ||
-			(typeof slug === "string" &&
-				(own.includes(slug) || refsOf(bySlug.get(slug)?.node.members).some((m) => m.slug === artistSlug))),
-	);
 }
 
 /** Pure plan: what to write and what to report. Does not touch the disk. */
@@ -161,100 +218,56 @@ export function planBackfill(nodes: readonly CacheNodeFile[], currentPending: Pe
 	let pendingAdded = 0;
 	const nextPending: PendingFile = structuredClone(currentPending);
 
-	// The credit guard (foreignCredit) reads the credit as it stands, which this pass itself grows: a member
-	// can be seen before the group that credits it. One pass would then leave edges a second run adds, so the
-	// pass is repeated until it adds nothing (credits only grow, so it ends); `unchanged` and the pending
-	// counts are those of the first pass (what was already there), `conflicts` those of the last.
-	for (let pass = 0; ; pass++) {
-		const first = pass === 0;
-		const addedBefore = Object.values(added).reduce((sum, n) => sum + n, 0);
-		conflicts.length = 0;
-		for (const source of nodes) {
-			const sourceEdge = sourceEdgeOf(source);
-			if (!sourceEdge) {
-				if (first && reversibleFields(source.type).some((f) => refsOf(source.node[f]).length > 0)) {
-					errors.push(`${source.slug}: no name, cannot build a reverse edge from it`);
-				}
+	for (const source of nodes) {
+		const sourceEdge = sourceEdgeOf(source);
+		for (const { field, targetType, reverseField, key } of SAFE_DIRECTIONS) {
+			if (SAFE_DIRECTIONS_SOURCE.get(key) !== source.type) continue;
+			const refs = refsOf(source.node[field]);
+			if (refs.length > 0 && !sourceEdge) {
+				errors.push(`${source.slug}: no name, cannot build a reverse edge from it`);
 				continue;
 			}
-			for (const field of reversibleFields(source.type)) {
-				const reverse = reverseFor(source.type, field);
-				if (!reverse) continue;
-				for (const ref of refsOf(source.node[field])) {
-					if (typeof ref.slug !== "string" || !isReadableSlug(ref.slug)) continue;
-					const base = { source: source.slug, field, target: ref.slug, targetField: reverse.field };
-					const forward = (
-						EDGE_FIELDS_BY_TYPE[source.type] as Record<string, { targets: readonly NodeType[] }>
-					)[field];
-					if (!forward?.targets.includes(parseSlug(ref.slug).type)) {
-						// A ref of the wrong type (`artist.labels` naming an artist) is queued nowhere and written nowhere.
-						conflicts.push({ ...base, kind: "target-field" });
-						continue;
-					}
-					const target = bySlug.get(ref.slug);
-					if (!target) {
-						if (!first) continue;
-						const queue = nextPending[ref.slug] ?? [];
-						if (queue.some((p) => p.field === reverse.field && p.edge.slug === sourceEdge.slug)) {
-							unchanged++;
-						} else {
-							queue.push({ field: reverse.field, cardinality: reverse.cardinality, edge: sourceEdge });
-							nextPending[ref.slug] = queue;
-							pendingAdded++;
-						}
-						continue;
-					}
-					const accepts = (
-						EDGE_FIELDS_BY_TYPE[target.type] as Record<string, { targets: readonly NodeType[] }>
-					)[reverse.field];
-					if (!accepts?.targets.includes(source.type)) {
-						conflicts.push({ ...base, kind: "target-field" });
-						continue;
-					}
-					const current = working.get(target.slug) ?? target.node;
-					if (
-						source.type === "artist" &&
-						reverse.field === "artists" &&
-						foreignCredit(source.slug, target.node, current, bySlug)
-					) {
-						conflicts.push({
-							...base,
-							kind: "foreign-credit",
-							existing: String([...refsOf(current.artists), ...refsOf(current.producers)][0]?.slug),
-						});
-						continue;
-					}
-					const held = current[reverse.field];
-					if (held != null && (reverse.cardinality === "list" ? !Array.isArray(held) : !isRecord(held))) {
-						// Malformed value in the target: applySingleReverse would replace it, which is not an addition.
-						conflicts.push({ ...base, kind: "target-field" });
-						continue;
-					}
-					if (reverse.cardinality === "list") {
-						if (refsOf(held).some((e) => e.slug === sourceEdge.slug)) {
-							if (first) unchanged++;
-							continue;
-						}
-					} else if (isRecord(held)) {
-						if (held.slug === sourceEdge.slug) {
-							if (first) unchanged++;
-						} else conflicts.push({ ...base, kind: "single-occupied", existing: String(held.slug) });
-						continue;
-					}
-					working.set(
-						target.slug,
-						applySingleReverse(current as unknown as NodePayload, {
-							field: reverse.field,
-							cardinality: reverse.cardinality,
-							edge: sourceEdge,
-						}) as unknown as Obj,
-					);
-					const key = pairKey(source.type, field, target.type, reverse.field);
-					added[key] = (added[key] ?? 0) + 1;
+			for (const ref of refs) {
+				if (!sourceEdge || typeof ref.slug !== "string" || !isReadableSlug(ref.slug)) continue;
+				const base = { source: source.slug, field, target: ref.slug, targetField: reverseField };
+				if (parseSlug(ref.slug).type !== targetType) {
+					conflicts.push({ ...base, kind: "target-field" });
+					continue;
 				}
+				const target = bySlug.get(ref.slug);
+				if (!target) {
+					const queue = nextPending[ref.slug] ?? [];
+					if (queue.some((p) => p.field === reverseField && p.edge.slug === sourceEdge.slug)) {
+						unchanged++;
+					} else {
+						queue.push({ field: reverseField, cardinality: "list", edge: sourceEdge });
+						nextPending[ref.slug] = queue;
+						pendingAdded++;
+					}
+					continue;
+				}
+				const current = working.get(target.slug) ?? target.node;
+				const held = current[reverseField];
+				if (held != null && !Array.isArray(held)) {
+					// Malformed value in the target: applySingleReverse would replace it, which is not an addition.
+					conflicts.push({ ...base, kind: "target-field" });
+					continue;
+				}
+				if (refsOf(held).some((e) => e.slug === sourceEdge.slug)) {
+					unchanged++;
+					continue;
+				}
+				working.set(
+					target.slug,
+					applySingleReverse(current as unknown as NodePayload, {
+						field: reverseField,
+						cardinality: "list",
+						edge: sourceEdge,
+					}) as unknown as Obj,
+				);
+				added[key] = (added[key] ?? 0) + 1;
 			}
 		}
-		if (Object.values(added).reduce((sum, n) => sum + n, 0) === addedBefore) break;
 	}
 
 	// Validate every node to write before the caller writes any.
@@ -284,6 +297,7 @@ export function planBackfill(nodes: readonly CacheNodeFile[], currentPending: Pe
 			pendingAdded,
 			unchanged,
 			conflicts,
+			skippedPairs: skippedPairs(),
 			errors,
 		},
 	};
@@ -315,9 +329,9 @@ export async function runMigration(options: RunOptions): Promise<{ manifest: Man
 	manifest.errors.push(...pendingErrors);
 	for (const entry of invalid) manifest.errors.push(`unreadable node file ${entry.path}: ${entry.error}`);
 	const blocked = manifest.errors.length > 0;
-
 	if (apply) manifest.mode = "apply";
 	manifest.blocked = blocked;
+
 	if (apply && !blocked) {
 		for (const [path, node] of plan.writes) await atomicWriteJson(path, node);
 		if (plan.pending) await atomicWriteJson(pendingPath, plan.pending);
@@ -336,11 +350,9 @@ export function formatSummary(manifest: Manifest, manifestPath: string | undefin
 	lines.push(`  ${"pending entries added".padEnd(44)} ${manifest.pendingAdded}`);
 	lines.push(`  ${"already in place".padEnd(44)} ${manifest.unchanged}`);
 	lines.push(`  ${"conflicts".padEnd(44)} ${manifest.conflicts.length}`);
+	lines.push(`  ${"pairs skipped (see manifest)".padEnd(44)} ${manifest.skippedPairs.length}`);
 	for (const c of manifest.conflicts.slice(0, 20)) {
-		lines.push(
-			`conflict (${c.kind}): ${c.source}.${c.field} -> ${c.target}.${c.targetField}` +
-				(c.existing ? ` already ${c.existing}` : ""),
-		);
+		lines.push(`conflict (${c.kind}): ${c.source}.${c.field} -> ${c.target}.${c.targetField}`);
 	}
 	if (manifest.conflicts.length > 20) lines.push(`... ${manifest.conflicts.length - 20} more conflicts`);
 	for (const error of manifest.errors) lines.push(`error: ${error}`);

@@ -8,7 +8,10 @@ import {
 	type Manifest,
 	parseCliArgs,
 	runMigration,
+	SAFE_BACKFILL_PAIRS,
 } from "../scripts/migrations/2026-10-17-backfill-reverse-edges.js";
+import { NodeCache } from "../src/cache.js";
+import { REVERSE_EDGE_PAIRS } from "../src/node-spec.js";
 import { parseSlug } from "../src/slug.js";
 import type {
 	ArtistNode,
@@ -176,165 +179,286 @@ function assertCache(nodeCount: number): void {
 const warp = label("label:warp", "Warp");
 const aphex = artist("artist:aphex-twin", "Aphex Twin");
 
-describe("backfill-reverse-edges", () => {
+describe("backfill-reverse-edges: the four safe pairs", () => {
 	it("adds the artist to the roster of its label (artist.labels -> label.roster)", async () => {
 		await writeCache([{ ...aphex, labels: [ref("label:warp", "Warp")] }, warp]);
 
 		const manifest = await run(true);
 
 		const stored = await readNode<LabelNode>("label:warp");
-		expect(stored.roster.map((e) => e.slug)).toEqual(["artist:aphex-twin"]);
-		expect(stored.roster[0]).toEqual({ slug: "artist:aphex-twin", type: "artist", name: "Aphex Twin" });
-		expect(manifest.added["artist.labels→label.roster"]).toBe(1);
+		expect(stored.roster).toEqual([{ slug: "artist:aphex-twin", type: "artist", name: "Aphex Twin" }]);
+		expect(manifest.added).toEqual({ "artist.labels→label.roster": 1 });
 		expect(manifest.written).toBe(1);
 		expect(manifest.mode).toBe("apply");
 		assertCache(2);
 	});
 
-	it("never overwrites a singular field already set to another target, and lists it", async () => {
-		const other = project("project:other--aphex-twin", "Other", {
-			artists: [ref("artist:aphex-twin", "Aphex Twin")],
-		});
-		const mine = project("project:mine--aphex-twin", "Mine", {
-			artists: [ref("artist:aphex-twin", "Aphex Twin")],
-			tracklist: [ref("track:x--aphex-twin", "X")],
-		});
-		const x = track("track:x--aphex-twin", "X", {
-			artists: [ref("artist:aphex-twin", "Aphex Twin")],
-			project: ref("project:other--aphex-twin", "Other"),
-		});
+	it("lists a project in its credited artist's discography, with the primary credit on the edge", async () => {
 		await writeCache([
-			artist("artist:aphex-twin", "Aphex Twin", {
-				discography: [ref("project:other--aphex-twin", "Other"), ref("project:mine--aphex-twin", "Mine")],
-				notable_tracks: [ref("track:x--aphex-twin", "X")],
-			}),
-			other,
-			mine,
-			x,
+			project("project:syro--aphex-twin", "Syro", { artists: [ref("artist:aphex-twin", "Aphex Twin")] }),
+			aphex,
 		]);
+
+		const manifest = await run(true);
+
+		expect((await readNode<ArtistNode>("artist:aphex-twin")).discography).toEqual([
+			{ slug: "project:syro--aphex-twin", type: "project", name: "Syro", artist: "Aphex Twin" },
+		]);
+		expect(manifest.added).toEqual({ "project.artists→artist.discography": 1 });
+		assertCache(2);
+	});
+
+	it("lists a track in its credited artist's notable_tracks", async () => {
+		await writeCache([
+			track("track:minipops--aphex-twin", "minipops", { artists: [ref("artist:aphex-twin", "Aphex Twin")] }),
+			aphex,
+		]);
+
+		const manifest = await run(true);
+
+		expect((await readNode<ArtistNode>("artist:aphex-twin")).notable_tracks.map((e) => e.slug)).toEqual([
+			"track:minipops--aphex-twin",
+		]);
+		expect(manifest.added).toEqual({ "track.artists→artist.notable_tracks": 1 });
+		assertCache(2);
+	});
+
+	it("lists a project in the notable_releases of its label", async () => {
+		await writeCache([
+			project("project:syro--aphex-twin", "Syro", {
+				artists: [ref("artist:aphex-twin", "Aphex Twin")],
+				label: ref("label:warp", "Warp"),
+			}),
+			{ ...aphex, discography: [ref("project:syro--aphex-twin", "Syro", { artist: "Aphex Twin" })] },
+			warp,
+		]);
+
+		const manifest = await run(true);
+
+		expect((await readNode<LabelNode>("label:warp")).notable_releases.map((e) => e.slug)).toEqual([
+			"project:syro--aphex-twin",
+		]);
+		expect(manifest.added).toEqual({ "project.label→label.notable_releases": 1 });
+		assertCache(3);
+	});
+
+	it("is idempotent, never removes or reorders an edge, and does not emit the reverse of a reverse", async () => {
+		const nodes: NodePayload[] = [
+			{
+				...aphex,
+				labels: [ref("label:warp", "Warp")],
+				collaborators: [ref("artist:other", "Other")],
+				discography: [ref("project:old--aphex-twin", "Old")],
+			},
+			{ ...warp, roster: [ref("artist:someone", "Someone")] },
+			project("project:syro--aphex-twin", "Syro", { artists: [ref("artist:aphex-twin", "Aphex Twin")] }),
+			artist("artist:other", "Other"),
+			artist("artist:someone", "Someone"),
+		];
+		await writeCache(nodes);
 		const before = await snapshot();
 
-		const manifest = await run(true);
-
-		const after = await snapshot();
-		expect(after["track/x--aphex-twin.json"]).toBe(before["track/x--aphex-twin.json"]);
-		expect((await readNode<TrackNode>("track:x--aphex-twin")).project?.slug).toBe(
-			"project:other--aphex-twin",
-		);
-		expect(manifest.conflicts).toEqual([
-			{
-				source: "project:mine--aphex-twin",
-				field: "tracklist",
-				target: "track:x--aphex-twin",
-				targetField: "project",
-				kind: "single-occupied",
-				existing: "project:other--aphex-twin",
-			},
-		]);
-		// The other direction is still honoured: the track that names `other` is listed by `other`.
-		expect((await readNode<ProjectNode>("project:other--aphex-twin")).tracklist.map((e) => e.slug)).toEqual([
-			"track:x--aphex-twin",
-		]);
-	});
-
-	it("does not graft an artist onto a work credited to someone else, but takes a group's member and an uncredited work", async () => {
-		const rohff = artist("artist:rohff", "Rohff", {
-			discography: [ref("project:fitna--akuma", "Fitna"), ref("project:new-forms--reprazent", "New Forms")],
-			notable_tracks: [ref("track:orphan--rohff", "Orphan")],
-		});
-		await writeCache([
-			rohff,
-			artist("artist:akuma", "Akuma"),
-			artist("artist:reprazent", "Reprazent", { members: [ref("artist:rohff", "Rohff")] }),
-			project("project:fitna--akuma", "Fitna", { artists: [ref("artist:akuma", "Akuma")] }),
-			project("project:new-forms--reprazent", "New Forms", {
-				artists: [ref("artist:reprazent", "Reprazent")],
-			}),
-			track("track:orphan--rohff", "Orphan"),
-		]);
-
-		const manifest = await run(true);
-
-		expect((await readNode<ProjectNode>("project:fitna--akuma")).artists.map((e) => e.slug)).toEqual([
-			"artist:akuma",
-		]);
-		expect((await readNode<ProjectNode>("project:new-forms--reprazent")).artists.map((e) => e.slug)).toEqual([
-			"artist:reprazent",
-			"artist:rohff",
-		]);
-		expect((await readNode<TrackNode>("track:orphan--rohff")).artists.map((e) => e.slug)).toEqual([
-			"artist:rohff",
-		]);
-		expect(manifest.conflicts).toEqual([
-			{
-				source: "artist:rohff",
-				field: "discography",
-				target: "project:fitna--akuma",
-				targetField: "artists",
-				kind: "foreign-credit",
-				existing: "artist:akuma",
-			},
-		]);
-	});
-
-	it("credits every artist that lists an uncredited work, not only the first", async () => {
-		await writeCache([
-			artist("artist:a", "A", { discography: [ref("project:split--a", "Split")] }),
-			artist("artist:b", "B", { discography: [ref("project:split--a", "Split")] }),
-			project("project:split--a", "Split"),
-		]);
-
-		const manifest = await run(true);
-
-		expect((await readNode<ProjectNode>("project:split--a")).artists.map((e) => e.slug)).toEqual([
-			"artist:a",
-			"artist:b",
-		]);
-		expect(manifest.conflicts).toEqual([]);
-	});
-
-	it("reaches a fixed point: a member seen before the group that credits it is settled in the same run", async () => {
-		// artist:a-pete sorts before artist:b-group. Pass one: a-pete is foreign (the credit is c-john, whose
-		// members are not a-pete) and b-group is accepted (c-john lists it as a member). Only then does the credit
-		// include b-group, which lists a-pete: without a second pass a rerun would add a-pete.
-		await writeCache([
-			artist("artist:a-pete", "Pete", { discography: [ref("project:album--john", "Album")] }),
-			artist("artist:b-group", "Group", {
-				members: [ref("artist:a-pete", "Pete")],
-				discography: [ref("project:album--john", "Album")],
-			}),
-			artist("artist:c-john", "John", { members: [ref("artist:b-group", "Group")] }),
-			project("project:album--john", "Album", { artists: [ref("artist:c-john", "John")] }),
-		]);
-
 		const first = await run(true);
+		const afterFirst = await snapshot();
 		const second = await run(true);
 
-		expect((await readNode<ProjectNode>("project:album--john")).artists.map((e) => e.slug)).toEqual([
-			"artist:c-john",
-			"artist:b-group",
-			"artist:a-pete",
-		]);
-		expect(first.added["artist.discography→project.artists"]).toBe(2);
+		expect(first.written).toBe(2);
 		expect(second.written).toBe(0);
 		expect(second.added).toEqual({});
+		expect(second.pendingAdded).toBe(0);
+		expect(await snapshot()).toEqual(afterFirst);
+		for (const [file, raw] of Object.entries(before)) {
+			const was = JSON.parse(raw) as Record<string, unknown>;
+			const now = JSON.parse(afterFirst[file] ?? "{}") as Record<string, unknown>;
+			for (const [key, value] of Object.entries(was)) {
+				if (Array.isArray(value)) expect(now[key], `${file}.${key}`).toEqual(expect.arrayContaining(value));
+				else expect(now[key], `${file}.${key}`).toEqual(value);
+			}
+		}
+		// The label's new roster entry did not make the artist list the label twice.
+		expect((await readNode<ArtistNode>("artist:aphex-twin")).labels).toEqual([ref("label:warp", "Warp")]);
 	});
 
-	it("reads group membership both ways, so the members pair added by the run cannot flip the credit test", async () => {
+	it("dry-run writes nothing but reports the same plan as --apply", async () => {
+		await writeCache([{ ...aphex, labels: [ref("label:warp", "Warp")] }, warp]);
+		const before = await snapshot();
+
+		const dry = await run(false);
+
+		expect(await snapshot()).toEqual(before);
+		expect(dry.mode).toBe("dry-run");
+		expect(dry.written).toBe(1);
+		const applied = await run(true);
+		expect({ ...applied, mode: "dry-run" }).toEqual(dry);
+	});
+});
+
+describe("backfill-reverse-edges: pending", () => {
+	it("queues a missing artist or label target once, keeping the entries already there", async () => {
+		const existing = {
+			"artist:someone": [{ field: "members", cardinality: "list", edge: ref("artist:band", "Band") }],
+		};
+		await writeCache([{ ...aphex, labels: [ref("label:ghost", "Ghost")] }], existing);
+
+		const first = await run(true);
+		const pending = await readPending();
+
+		expect(first.pendingAdded).toBe(1);
+		expect(first.written).toBe(0);
+		expect(pending["artist:someone"]).toEqual(existing["artist:someone"]);
+		expect(pending["label:ghost"]).toEqual([
+			{ field: "roster", cardinality: "list", edge: ref("artist:aphex-twin", "Aphex Twin") },
+		]);
+
+		const second = await run(true);
+		expect(second.pendingAdded).toBe(0);
+		expect(second.unchanged).toBe(1);
+		expect(await readPending()).toEqual(pending);
+	});
+
+	it("never queues a credit, a project, a label or a genre on a missing work", async () => {
 		await writeCache([
-			artist("artist:g", "G", { members: [ref("artist:m", "M")], discography: [ref("project:w--m", "W")] }),
-			artist("artist:m", "M"),
-			project("project:w--m", "W", { artists: [ref("artist:m", "M")] }),
+			artist("artist:two-unlimited", "2 Unlimited", {
+				discography: [ref("project:ii", "II")],
+				notable_tracks: [ref("track:no-limit", "No Limit")],
+			}),
+			{ ...warp, roster: [ref("artist:ghost", "Ghost")], notable_releases: [ref("project:ghost", "Ghost")] },
+			genre("genre:idm", "IDM", {
+				key_artists: [ref("artist:ghost", "Ghost")],
+				landmark_projects: [ref("project:ii", "II")],
+			}),
+			track("track:x", "X", { project: ref("project:ii", "II") }),
+			project("project:y", "Y", { tracklist: [ref("track:no-limit", "No Limit")] }),
+		]);
+
+		const manifest = await run(true);
+
+		expect(manifest.pendingAdded).toBe(0);
+		await expect(readFile(join(dir, "pending-reverses.json"), "utf8")).rejects.toThrow();
+	});
+});
+
+describe("backfill-reverse-edges: what the deep review of PR #484 reproduced", () => {
+	// Reproductions from the review (scratchpad/rv484). The backfill must graft nothing of this on any node.
+	it("grafts no credit, tracklist, project, label or genre from another node's list", async () => {
+		const nodes: NodePayload[] = [
+			// Moderat's "II" and 2 Unlimited's "II" are two works; the artist side lists a namesake.
+			artist("artist:moderat", "Moderat", { discography: [ref("project:ii", "II")] }),
+			artist("artist:two-unlimited", "2 Unlimited", { discography: [ref("project:ii", "II")] }),
+			project("project:ii", "II", { artists: [ref("artist:moderat", "Moderat")] }),
+			// Touch Me, credited to Rui da Silva, listed by three namesakes.
+			artist("artist:49ers", "49ers", { discography: [ref("project:touch-me", "Touch Me")] }),
+			artist("artist:oakenfold", "Paul Oakenfold", { discography: [ref("project:touch-me", "Touch Me")] }),
+			project("project:touch-me", "Touch Me", { artists: [ref("artist:rui-da-silva", "Rui da Silva")] }),
+			artist("artist:rui-da-silva", "Rui da Silva", { discography: [ref("project:touch-me", "Touch Me")] }),
+			// Deep Space has no credit: two artists list other works of that name.
+			artist("artist:juan-atkins", "Juan Atkins", { discography: [ref("project:deep-space", "Deep Space")] }),
+			artist("artist:oakenfold-2", "Paul Oakenfold 2", {
+				discography: [ref("project:deep-space", "Deep Space")],
+			}),
+			project("project:deep-space", "Deep Space"),
+			// A producer is not an artist of the work.
+			artist("artist:chris-thomas", "Chris Thomas", {
+				discography: [ref("project:nevermind", "Never Mind")],
+			}),
+			project("project:nevermind", "Never Mind", {
+				artists: [ref("artist:sex-pistols", "Sex Pistols")],
+				producers: [ref("artist:chris-thomas", "Chris Thomas")],
+			}),
+			artist("artist:sex-pistols", "Sex Pistols", { discography: [ref("project:nevermind", "Never Mind")] }),
+			// A homonym's tracklist and genre milestones are not copied onto the work.
+			project("project:tempus", "Tempus", { tracklist: [ref("track:stechmuck", "Stechmuck")] }),
+			track("track:stechmuck", "Stechmuck"),
+			genre("genre:italo-disco", "Italo disco", { landmark_tracks: [ref("track:call-me", "Call Me")] }),
+			track("track:call-me", "Call Me", { project: ref("project:tempus", "Tempus") }),
+			artist("artist:blondie", "Blondie", { genres: [ref("genre:italo-disco", "Italo disco")] }),
+			genre("genre:rock", "Rock", { key_artists: [ref("artist:blondie", "Blondie")] }),
+		];
+		await writeCache(nodes);
+		const before = await snapshot();
+
+		await run(true);
+		const after = await snapshot();
+
+		const changed = Object.keys(after).filter((f) => after[f] !== before[f]);
+		// Only the artist-side lists the safe pairs fill may change: Sex Pistols (its album), Moderat (II).
+		for (const file of changed) expect(file.startsWith("artist/"), file).toBe(true);
+		expect((await readNode<ProjectNode>("project:ii")).artists.map((e) => e.slug)).toEqual([
+			"artist:moderat",
+		]);
+		expect((await readNode<ProjectNode>("project:touch-me")).artists.map((e) => e.slug)).toEqual([
+			"artist:rui-da-silva",
+		]);
+		expect((await readNode<ProjectNode>("project:deep-space")).artists).toEqual([]);
+		expect((await readNode<ProjectNode>("project:nevermind")).artists.map((e) => e.slug)).toEqual([
+			"artist:sex-pistols",
+		]);
+		expect((await readNode<ProjectNode>("project:tempus")).tracklist.map((e) => e.slug)).toEqual([
+			"track:stechmuck",
+		]);
+		expect((await readNode<TrackNode>("track:stechmuck")).project).toBeUndefined();
+		expect((await readNode<TrackNode>("track:call-me")).genres).toEqual([]);
+		expect((await readNode<ArtistNode>("artist:blondie")).genres.map((e) => e.slug)).toEqual([
+			"genre:italo-disco",
+		]);
+		expect((await readNode<ArtistNode>("artist:chris-thomas")).discography.map((e) => e.slug)).toEqual([
+			"project:nevermind",
+		]);
+	});
+
+	it("leaves nothing in pending that a later write could turn into a credit (Moderat's II through NodeCache.write)", async () => {
+		await writeCache([
+			artist("artist:two-unlimited", "2 Unlimited", { discography: [ref("project:ii", "II")] }),
+			artist("artist:moderat", "Moderat"),
 		]);
 
 		await run(true);
-		const second = await run(true);
+		await new NodeCache(dir).write(
+			project("project:ii", "II", { artists: [ref("artist:moderat", "Moderat")] }) as NodePayload,
+		);
 
-		expect((await readNode<ProjectNode>("project:w--m")).artists.map((e) => e.slug)).toEqual([
-			"artist:m",
-			"artist:g",
+		expect((await readNode<ProjectNode>("project:ii")).artists.map((e) => e.slug)).toEqual([
+			"artist:moderat",
 		]);
-		expect(second.written).toBe(0);
+	});
+
+	it("lists every pair it skips, with a reason, and none of the four safe ones", async () => {
+		await writeCache([aphex]);
+
+		const { skippedPairs } = await run(false);
+
+		const skipped = skippedPairs.map((p) => p.pair);
+		expect(skipped.length).toBe(REVERSE_EDGE_PAIRS.length - SAFE_BACKFILL_PAIRS.size);
+		for (const safe of SAFE_BACKFILL_PAIRS) expect(skipped).not.toContain(safe);
+		expect(skipped).toContain("artist.discography→project.artists");
+		expect(skipped).toContain("label.roster→artist.labels");
+		expect(skippedPairs.every((p) => p.reason.length > 0)).toBe(true);
+		expect([...SAFE_BACKFILL_PAIRS].sort()).toEqual([
+			"artist.labels→label.roster",
+			"project.artists→artist.discography",
+			"project.label→label.notable_releases",
+			"track.artists→artist.notable_tracks",
+		]);
+	});
+});
+
+describe("backfill-reverse-edges: refusals and CLI", () => {
+	it("refuses to write anything when a node to write fails validation", async () => {
+		const broken = { ...warp, citations: [] } as LabelNode;
+		await writeCache([
+			{ ...aphex, labels: [ref("label:warp", "Warp")] },
+			broken,
+			artist("artist:b", "B", { labels: [ref("label:b", "B")] }),
+			label("label:b", "B"),
+		]);
+		const before = await snapshot();
+
+		const result = await runMigration({ cacheDir: dir, apply: true });
+
+		expect(result.exitCode).toBe(2);
+		expect(result.manifest.errors.length).toBeGreaterThan(0);
+		expect(result.manifest.blocked).toBe(true);
+		expect(await snapshot()).toEqual(before);
 	});
 
 	it("reports a ref of the wrong type and a malformed target value instead of queueing or replacing", async () => {
@@ -352,153 +476,6 @@ describe("backfill-reverse-edges", () => {
 			["artist:b", "target-field"],
 		]);
 		expect(result.manifest.written).toBe(0);
-	});
-
-	it("carries the qid of a genre source onto the artist's genres", async () => {
-		await writeCache([
-			genre("genre:idm", "IDM", { qid: "Q215412", key_artists: [ref("artist:aphex-twin", "Aphex Twin")] }),
-			aphex,
-		]);
-
-		const manifest = await run(true);
-
-		const stored = await readNode<ArtistNode>("artist:aphex-twin");
-		expect(stored.genres).toEqual([{ slug: "genre:idm", type: "genre", name: "IDM", qid: "Q215412" }]);
-		expect(manifest.added["genre.key_artists→artist.genres"]).toBe(1);
-		assertCache(2);
-	});
-
-	it("stamps the primary credit on the edge of a project or track source", async () => {
-		await writeCache([
-			project("project:syro--aphex-twin", "Syro", { artists: [ref("artist:aphex-twin", "Aphex Twin")] }),
-			aphex,
-		]);
-
-		await run(true);
-
-		const stored = await readNode<ArtistNode>("artist:aphex-twin");
-		expect(stored.discography).toEqual([
-			{ slug: "project:syro--aphex-twin", type: "project", name: "Syro", artist: "Aphex Twin" },
-		]);
-	});
-
-	it("queues a missing target in pending-reverses.json once, keeping the entries already there", async () => {
-		const existing = {
-			"artist:someone": [{ field: "members", cardinality: "list", edge: ref("artist:band", "Band") }],
-		};
-		await writeCache([{ ...aphex, labels: [ref("label:ghost", "Ghost")] }], existing);
-
-		const first = await run(true);
-		const pending = await readPending();
-
-		expect(first.pendingAdded).toBe(1);
-		expect(pending["artist:someone"]).toEqual(existing["artist:someone"]);
-		expect(pending["label:ghost"]).toEqual([
-			{ field: "roster", cardinality: "list", edge: ref("artist:aphex-twin", "Aphex Twin") },
-		]);
-		expect(first.written).toBe(0);
-
-		const second = await run(true);
-		expect(second.pendingAdded).toBe(0);
-		expect(second.unchanged).toBe(1);
-		expect(await readPending()).toEqual(pending);
-	});
-
-	it("is idempotent: a second apply writes nothing, and the oracle accepts the result", async () => {
-		await writeCache([
-			{
-				...aphex,
-				labels: [ref("label:warp", "Warp")],
-				discography: [ref("project:syro--aphex-twin", "Syro")],
-			},
-			warp,
-			project("project:syro--aphex-twin", "Syro", {
-				artists: [ref("artist:aphex-twin", "Aphex Twin")],
-				label: ref("label:warp", "Warp"),
-				tracklist: [ref("track:minipops--aphex-twin", "minipops")],
-			}),
-			track("track:minipops--aphex-twin", "minipops", { artists: [ref("artist:aphex-twin", "Aphex Twin")] }),
-			genre("genre:idm", "IDM", { parent_genres: [ref("genre:electronic", "Electronic")] }),
-			genre("genre:electronic", "Electronic", { related_genres: [ref("genre:idm", "IDM")] }),
-		]);
-
-		const first = await run(true);
-		expect(first.written).toBeGreaterThan(0);
-		const afterFirst = await snapshot();
-
-		const second = await run(true);
-
-		expect(second.written).toBe(0);
-		expect(second.added).toEqual({});
-		expect(second.pendingAdded).toBe(0);
-		expect(await snapshot()).toEqual(afterFirst);
-		assertCache(6);
-	});
-
-	it("dry-run writes nothing but reports the same plan as --apply", async () => {
-		await writeCache([{ ...aphex, labels: [ref("label:warp", "Warp")] }, warp, label("label:x", "X")]);
-		const before = await snapshot();
-
-		const dry = await run(false);
-
-		expect(await snapshot()).toEqual(before);
-		expect(dry.mode).toBe("dry-run");
-		expect(dry.written).toBe(1);
-		const applied = await run(true);
-		expect({ ...applied, mode: "dry-run" }).toEqual(dry);
-	});
-
-	it("only adds: every edge of the cache before the run is still there after it", async () => {
-		const nodes: NodePayload[] = [
-			{ ...aphex, labels: [ref("label:warp", "Warp")], influences: [ref("artist:other", "Other")] },
-			{ ...warp, genres: [ref("genre:idm", "IDM")] },
-			genre("genre:idm", "IDM", { key_labels: [ref("label:warp", "Warp")] }),
-		];
-		await writeCache(nodes);
-		const before = await snapshot();
-
-		await run(true);
-		const after = await snapshot();
-
-		for (const [file, raw] of Object.entries(before)) {
-			const was = JSON.parse(raw) as Record<string, unknown>;
-			const now = JSON.parse(after[file] ?? "{}") as Record<string, unknown>;
-			for (const [key, value] of Object.entries(was)) {
-				if (Array.isArray(value)) {
-					expect(now[key], `${file}.${key}`).toEqual(expect.arrayContaining(value));
-				} else {
-					expect(now[key], `${file}.${key}`).toEqual(value);
-				}
-			}
-		}
-	});
-
-	it("does not emit the reverse of a reverse: a roster entry does not make the artist re-list the label", async () => {
-		await writeCache([{ ...aphex, labels: [ref("label:warp", "Warp")] }, warp]);
-
-		await run(true);
-
-		const stored = await readNode<ArtistNode>("artist:aphex-twin");
-		expect(stored.labels).toEqual([ref("label:warp", "Warp")]);
-		await expect(readFile(join(dir, "pending-reverses.json"), "utf8")).rejects.toThrow();
-	});
-
-	it("refuses to write anything when a node to write fails validation", async () => {
-		const broken = { ...warp, citations: [] } as LabelNode;
-		await writeCache([
-			{ ...aphex, labels: [ref("label:warp", "Warp")] },
-			broken,
-			artist("artist:b", "B", { labels: [ref("label:b", "B")] }),
-			label("label:b", "B"),
-		]);
-		const before = await snapshot();
-
-		const result = await runMigration({ cacheDir: dir, apply: true });
-
-		expect(result.exitCode).toBe(2);
-		expect(result.manifest.errors.length).toBeGreaterThan(0);
-		expect(result.manifest.blocked).toBe(true);
-		expect(await snapshot()).toEqual(before);
 	});
 
 	it("parses the CLI contract", () => {
