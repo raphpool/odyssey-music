@@ -16,7 +16,7 @@
  *   homonym's album in a discography (Rohff -> Akuma's Fitna) would otherwise get the wrong artist grafted
  *   onto its credit, which would also make scripts/audit-cache.ts stop flagging it (homonym-release-links).
  *   Same test as the audit: the work's artists + producers must name the artist, or a group that lists the
- *   artist as a member. A work with no credit at all takes the artist (that is the point of the backfill).
+ *   artist as a member. A work with no credit at all takes every artist that lists it (the point of the backfill).
  * - Nodes are read as raw JSON and the reverse is applied to copies of the TARGETS, from the unmodified
  *   SOURCES. Deliberately not through NodeCache.write / update: they emit the reverses of the reverses and
  *   merge pendings, which is not a backfill.
@@ -123,10 +123,19 @@ function pairKey(sourceType: NodeType, field: string, targetType: NodeType, targ
 	return `${sourceType}.${field}→${targetType}.${targetField}`;
 }
 
-/** True when the work is credited (artists + producers) and neither names `artistSlug` nor a group listing it. */
-function foreignCredit(artistSlug: string, work: Obj, bySlug: ReadonlyMap<string, CacheNodeFile>): boolean {
-	const credited = [...refsOf(work.artists), ...refsOf(work.producers)].map((e) => e.slug);
-	if (credited.length === 0) return false;
+/**
+ * True when the work was credited (artists + producers) before this run and neither that credit, as it has
+ * grown since, names `artistSlug` nor a group listing it. A work with no credit at the start takes every
+ * artist that lists it: crediting only the first would turn the others into homonym links in the audit.
+ */
+function foreignCredit(
+	artistSlug: string,
+	original: Obj,
+	current: Obj,
+	bySlug: ReadonlyMap<string, CacheNodeFile>,
+): boolean {
+	if (refsOf(original.artists).length + refsOf(original.producers).length === 0) return false;
+	const credited = [...refsOf(current.artists), ...refsOf(current.producers)].map((e) => e.slug);
 	return !credited.some(
 		(slug) =>
 			slug === artistSlug ||
@@ -192,7 +201,7 @@ export function planBackfill(nodes: readonly CacheNodeFile[], currentPending: Pe
 					if (
 						source.type === "artist" &&
 						reverse.field === "artists" &&
-						foreignCredit(source.slug, current, bySlug)
+						foreignCredit(source.slug, target.node, current, bySlug)
 					) {
 						conflicts.push({
 							...base,

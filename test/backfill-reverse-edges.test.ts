@@ -277,6 +277,22 @@ describe("backfill-reverse-edges", () => {
 		]);
 	});
 
+	it("credits every artist that lists an uncredited work, not only the first", async () => {
+		await writeCache([
+			artist("artist:a", "A", { discography: [ref("project:split--a", "Split")] }),
+			artist("artist:b", "B", { discography: [ref("project:split--a", "Split")] }),
+			project("project:split--a", "Split"),
+		]);
+
+		const manifest = await run(true);
+
+		expect((await readNode<ProjectNode>("project:split--a")).artists.map((e) => e.slug)).toEqual([
+			"artist:a",
+			"artist:b",
+		]);
+		expect(manifest.conflicts).toEqual([]);
+	});
+
 	it("reaches a fixed point: a member seen before the group that credits it is settled in the same run", async () => {
 		// artist:a-pete sorts before artist:b-group. Pass one: a-pete is foreign (the credit is c-john, whose
 		// members are not a-pete) and b-group is accepted (c-john lists it as a member). Only then does the credit
