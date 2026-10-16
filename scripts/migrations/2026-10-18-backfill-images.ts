@@ -11,11 +11,17 @@
  *
  * For each node WITHOUT `image_url` (a node that has one is never touched, so a second run is a no-op):
  *   1. `resolveImage(node, { cache })`;
- *   2. when it finds nothing and the node carries a legacy `photo_url` (artist) / `cover_url` (project,
- *      track) on an allowed host (`isAllowedImageUrl`): `image_url` = that field, `image_source: "legacy"`.
- *      `photo_url` / `cover_url` are never removed or rewritten;
- *   3. otherwise the node stays without image and is listed in the manifest's `none` with a reason:
- *      `no-mbid` | `caa-404` | `no-wikidata` | `no-related-image` (see `noneReason`).
+ *   2. when it finds nothing the node stays without image and is listed in the manifest's `none` with a
+ *      reason: `no-mbid` | `caa-404` | `no-wikidata` | `no-related-image` (see `noneReason`).
+ *
+ * NO LEGACY FALLBACK (2026-10-16, review of the repo run, PR #501). The stored `photo_url` / `cover_url` are
+ * not copied into `image_url`: they were produced by the LLM or by the old `GET /image` (first iTunes
+ * result, unchecked) and nothing verifies them. The first version of this script copied the ones on an
+ * allowed host (`image_source: "legacy"`) and gave `artist:gat-decor` Wikipedia's "Question_book-new.svg"
+ * maintenance icon, and `project:momente--karlheinz-stockhausen` (then `label:stockhausen-verlag`, as a
+ * `derived-cover`) a photo of a Cologne radio hall. A wrong image is worse than none, and a node with an
+ * image is never revisited: safety before rate. `photo_url` / `cover_url` are never read, removed or
+ * rewritten here. The `legacy` value stays in IMAGE_SOURCES (the schema's) and in `bySource`.
  *
  * Untrusted data: every URL written passes `isAllowedImageUrl` (the resolver gates its own, this checks
  * again what it writes), and the node schema refuses a host off the list on write.
@@ -40,9 +46,6 @@
  * a file that cannot be read is listed in `failed` and exits 1: it can be neither resolved nor written, and
  * the identity migrations of the same channel run come first.
  *
- * The legacy field is tried after the whole resolver ladder (contract of TRA-489): an artist with a
- * `photo_url` but a discography image gets that album cover as `derived-cover`, not its photo.
- *
  * Pace: strictly sequential, one node at a time. MusicBrainz is held to one request per second by
  * mbFetch (MB_MIN_INTERVAL_MS) and Wikidata to wikidataConfig.minIntervalMs by their own modules; this
  * script adds no concurrency to either. Cover Art Archive and iTunes have no limiter of their own: the
@@ -55,8 +58,6 @@
  *
  * What the resolver finds when a higher rung did not answer is not "probably right": a lower rung written
  * while the higher one answered 200 with an unusable body is final, a node with an image is never revisited.
- * Legacy `cover_url` on `*.mzstatic.com` is NOT copied (see isTrustedLegacyUrl): the old `GET /image` stored
- * the first iTunes result unchecked there, which is how a stranger's cover reached a node.
  *
  * Writes go through atomicWriteJson after nodePayloadSchema validation, never NodeCache.write (which would
  * emit reverse edges this migration has no business creating). A write that validation would alter (it
@@ -330,27 +331,7 @@ function hasImage(raw: Record<string, unknown>): boolean {
 }
 
 /**
- * A legacy URL worth copying into `image_url`: on an allowed host, and not an iTunes artwork. Before TRA-475
- * `GET /image` stored the FIRST iTunes result for the node's name, without checking title or artist (it
- * gave Grandmaster Flash the Earth, Wind & Fire compilation, and a project with no credit a stranger's
- * cover). Copied into `image_url` such a cover would be final and would feed the derived covers of artists,
- * labels and genres. A legitimate iTunes cover is found by the resolver's `itunes-verified` rung.
- */
-export function isTrustedLegacyUrl(url: string): boolean {
-	if (!isAllowedImageUrl(url)) return false;
-	const host = new URL(url).hostname.toLowerCase();
-	return !host.endsWith(".mzstatic.com");
-}
-
-/** The pre-TRA-455 field of the node that holds a picture of it, when its type has one. */
-function legacyUrl(type: ImageType, raw: Record<string, unknown>): string | undefined {
-	const value =
-		type === "artist" ? raw.photo_url : type === "project" || type === "track" ? raw.cover_url : undefined;
-	return typeof value === "string" ? value : undefined;
-}
-
-/**
- * Why a node the resolver and the legacy fields could not image has no image. One reason per node, the
+ * Why a node the resolver could not image has no image. One reason per node, the
  * first blocker of its ladder (src/images/resolve-image.ts):
  * - project: no MBID, so no Cover Art Archive lookup (`no-mbid`); else the CAA has no front cover (`caa-404`);
  * - track: no project to borrow from (`no-related-image`); a project with no MBID (`no-mbid`); else `caa-404`;
@@ -577,11 +558,7 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 			// from the cache (a track borrowing its project's image) or without an MBID says nothing about it.
 			if (tracker.requests() > 0) consecutiveUnavailable = 0;
 
-			let image: { url: string; source: ImageSource } | null = found;
-			if (!image) {
-				const legacy = legacyUrl(type, raw);
-				if (legacy !== undefined && isTrustedLegacyUrl(legacy)) image = { url: legacy, source: "legacy" };
-			}
+			const image = found;
 			if (!image) {
 				none.push({ slug, reason: await noneReason(payload, cache) });
 			} else if (!isAllowedImageUrl(image.url)) {
