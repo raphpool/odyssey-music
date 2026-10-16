@@ -38,6 +38,16 @@ const steps = jobSteps(workflow);
 const deploySteps = jobSteps(deployWorkflow);
 
 describe("sync-genre-cache workflow", () => {
+	// TRA-573: the identity migrations run here and need MusicBrainz retries beyond the live default of 3.
+	it("sets MB_MAX_ATTEMPTS to 6 at job level, so every step (preview and apply) inherits it", () => {
+		const jobHeader = workflow.slice(
+			workflow.indexOf("\n  sync-genre-cache:"),
+			workflow.indexOf("\n    steps:"),
+		);
+		expect(jobHeader).toMatch(/\n {4}env:\n {6}MB_MAX_ATTEMPTS: "6"$/);
+		expect(workflow).not.toMatch(/MB_MAX_ATTEMPTS: "(?!6")/);
+	});
+
 	it("is a workflow_dispatch-only trigger with a boolean apply input defaulting to false", () => {
 		const onBlock = workflow.slice(workflow.indexOf("\non:"), workflow.indexOf("\nconcurrency:"));
 		expect(onBlock).toMatch(/workflow_dispatch:/);
