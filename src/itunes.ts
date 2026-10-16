@@ -138,13 +138,89 @@ const MZSTATIC_SUFFIX = ".mzstatic.com";
 const THUMBNAIL_SIZE = /100x100bb/;
 
 /**
+ * Edition suffixes that may trail a title without making it another release: the cover is the
+ * same record, only the tracklist or the mastering differs. Matched on the already-normalized
+ * token string, so "(Deluxe Edition)", "[Deluxe Edition]" and "- Deluxe Edition" are one case.
+ * Deliberately NOT here: anything with a number ("2009 Remaster", "20th Anniversary Edition",
+ * "Vol. 2", "II"), because a number is how a sequel or a different release announces itself, and
+ * anything unknown ("Live", "Instrumentals", "Remixes"): when in doubt, no image (TRA-589).
+ */
+const EDITION_SUFFIXES = [
+	"deluxe edition",
+	"deluxe version",
+	"deluxe",
+	"expanded edition",
+	"expanded",
+	"special edition",
+	"bonus track version",
+	"bonus edition",
+	"remastered edition",
+	"remastered version",
+	"remastered",
+	"remaster",
+];
+
+/**
+ * Canonical form of an album title for EQUALITY (not overlap): accents, case, punctuation and
+ * `&`/`and` are folded away, trailing known edition suffixes are dropped, and nothing else is.
+ * This does not reuse `normalizeTokens`, which drops tokens shorter than two characters (so the
+ * "3" of "Clicks & Cuts 3" vanished) and ignores every bracketed group (so "(Vol. 2)" did too).
+ */
+function canonicalAlbumTitle(raw: string): string {
+	let t = raw
+		.normalize("NFD")
+		.replace(/\p{M}/gu, "")
+		.toLowerCase()
+		.replace(/['\u2019`]/g, "")
+		.replace(/&/g, " and ")
+		.replace(/[^\p{L}\p{N}]+/gu, " ")
+		.trim();
+	for (let stripped = true; stripped; ) {
+		stripped = false;
+		for (const suffix of EDITION_SUFFIXES) {
+			if (t.endsWith(` ${suffix}`)) {
+				t = t.slice(0, -(suffix.length + 1)).trim();
+				stripped = true;
+				break;
+			}
+		}
+	}
+	return t;
+}
+
+/**
+ * "Various Artists" and its variants ("Various", "VA", "V.A.", "V/A"). A compilation credit
+ * verifies nothing about the artist, and iTunes files other people's releases under it
+ * (TRA-589: "Clicks & Cuts" resolved to a Various Artists series). Any credit that contains the
+ * token "various" is refused, which also refuses a real artist literally named so: no image is
+ * the price of a safe rule.
+ */
+function isVariousArtists(raw: string): boolean {
+	const tokens = raw
+		.normalize("NFD")
+		.replace(/\p{M}/gu, "")
+		.toLowerCase()
+		.split(/[^\p{L}\p{N}]+/u)
+		.filter(Boolean);
+	return tokens.includes("various") || tokens.join(" ") === "va" || tokens.join(" ") === "v a";
+}
+
+/**
  * Cover art for an album, but only from a result whose collection name AND artist name both match
  * what we asked for (TRA-465). iTunes returns plausible-looking strangers for a text query, so
  * this reads `limit=5` results and takes the best verified one, never
  * `results[0]`. Both names are required: without a known artist nothing can be verified, so null.
  *
- * "Matches" is the threshold `src/streaming-links.ts` uses: `nameMatchScore` not null (every
- * significant token of the expected name has enough overlap, at least one token of the artist).
+ * Verified means, all of:
+ *   - the title is EQUAL once normalized (case, accents, punctuation, `&`/`and`) and stripped of
+ *     trailing edition suffixes from `EDITION_SUFFIXES`. A longer title that merely contains the
+ *     asked one is another release: "Clicks & Cuts" never retains "Clicks & Cuts 3". The rule is
+ *     a whitelist: "Album (Deluxe Edition)" retains "Album", but an unknown or numbered
+ *     suffix ("Vol. 2", "2009 Remaster", "Live") does not;
+ *   - neither the asked artist nor the result's artist is "Various Artists" (a compilation is
+ *     not verifiable; the request is not even sent);
+ *   - the artist passes the `src/streaming-links.ts` threshold: `nameMatchScore` not null (at least
+ *     one significant token of the artist overlaps).
  * The response is third-party data: schema-checked, and the artwork URL must be https on
  * `*.mzstatic.com` in the canonical form `isAllowedImageUrl` accepts.
  *
@@ -156,6 +232,9 @@ export async function lookupVerifiedAlbumArt(
 	fetchImpl: typeof fetch = fetch,
 ): Promise<string | null> {
 	if (!title.trim() || !artistName.trim()) return null;
+	if (isVariousArtists(artistName)) return null;
+	const wantedTitle = canonicalAlbumTitle(title);
+	if (!wantedTitle) return null;
 	const term = `${title} ${artistName}`;
 	const url = `${SEARCH_URL}?term=${encodeURIComponent(term)}&entity=album&limit=5`;
 	const controller = new AbortController();
@@ -171,6 +250,8 @@ export async function lookupVerifiedAlbumArt(
 			if (!parsed.success) continue;
 			const { artworkUrl100, collectionName, artistName: resultArtist } = parsed.data;
 			if (!artworkUrl100 || !collectionName || !resultArtist) continue;
+			if (isVariousArtists(resultArtist)) continue;
+			if (canonicalAlbumTitle(collectionName) !== wantedTitle) continue;
 			const titleScore = nameMatchScore(collectionName, title, undefined);
 			const artistScore = nameMatchScore(resultArtist, artistName, undefined);
 			if (titleScore === null || artistScore === null) continue;
