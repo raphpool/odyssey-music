@@ -89,6 +89,8 @@ interface MbRecording {
 	disambiguation?: string;
 	"first-release-date"?: string;
 	"artist-credit"?: MbArtistCreditEntry[];
+	/** Present in search hits and unvalidated: read with pickReleaseGroupMbid(). */
+	releases?: unknown;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -983,6 +985,36 @@ export interface MbReleaseIdentity {
 	/** Release groups only; recordings have no primary type. */
 	primaryType: string | null;
 	firstReleaseDate: string | null;
+	/**
+	 * Recordings only: the release group of the release the search hit lists best for it (an Album-primary
+	 * one, else the first listed), the cover-bearing home of a track. Null for a release group (that is
+	 * `mbid`) and when the hit names none. Read from the hit; costs no request. Optional in the type only
+	 * so that the fixtures of other suites that build an identity by hand keep compiling: the two
+	 * resolvers always set it, and a reader takes absent as null.
+	 */
+	releaseGroupMbid?: string | null;
+}
+
+/**
+ * The release-group MBID an untrusted `releases` array of a recording hit points to, or null: the first
+ * Album-primary group with no secondary type, else the first Album-primary one (a compilation or a live
+ * album still names this recording, but never beats the studio album), else the first listed.
+ */
+function pickReleaseGroupMbid(releases: unknown): string | null {
+	if (!Array.isArray(releases)) return null;
+	let album: string | null = null;
+	let first: string | null = null;
+	for (const release of releases) {
+		const group = isRecord(release) ? release["release-group"] : undefined;
+		if (!isRecord(group) || !isMbid(group.id)) continue;
+		first ??= group.id;
+		const primary = group["primary-type"];
+		if (typeof primary !== "string" || primary.toLowerCase() !== "album") continue;
+		const secondary = group["secondary-types"];
+		if (!Array.isArray(secondary) || secondary.length === 0) return group.id;
+		album ??= group.id;
+	}
+	return album ?? first;
 }
 
 /** Drop the two characters that would break out of a Lucene phrase; same policy as the older finders. */
@@ -1361,6 +1393,7 @@ export async function resolveReleaseGroupDetailed(
 			credit: toCredits(rg["artist-credit"]),
 			primaryType: rg["primary-type"] ?? null,
 			firstReleaseDate: rg["first-release-date"] || null,
+			releaseGroupMbid: null,
 		},
 	};
 }
@@ -1397,6 +1430,7 @@ export async function resolveRecordingDetailed(
 			credit: toCredits(rec["artist-credit"]),
 			primaryType: null,
 			firstReleaseDate: rec["first-release-date"] || null,
+			releaseGroupMbid: pickReleaseGroupMbid(rec.releases),
 		},
 	};
 }
