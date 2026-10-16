@@ -32,6 +32,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/b1/7f/85/b17f85f8-9fdb-957a-fe0b-b62c7d70502d/LCD1013DI.jpg/600x600bb.jpg",
+  "image_source": "derived-cover",
   "type": "genre",
   "editorial_definition": "Sound art is an interdisciplinary form of creative expression that utilizes sound as its primary medium, often prioritizing spatial, conceptual, and environmental interaction over traditional musical structures like melody and rhythm.",
   "qid": "Q1744327",
