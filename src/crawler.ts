@@ -5,7 +5,7 @@ import { isNotFoundError } from "./errors.js";
 import { loadGenreResolver } from "./genre-identity.js";
 import { createGenreRegistry, type GenreRegistry, loadRedirects } from "./genre-registry.js";
 import type { GenreSeed, GenreSeeds } from "./genre-seeds.js";
-import { type PipelineDeps, type PipelineInput, runPipeline } from "./pipeline.js";
+import { existingImageOf, type PipelineDeps, type PipelineInput, runPipeline } from "./pipeline.js";
 import { normalizeSlugBody } from "./slug.js";
 import {
 	type EdgeRef,
@@ -788,6 +788,10 @@ export async function refreshGenre(
 	// then — only when neither is set — the seed dossier's qid, inherited onto this refresh.
 	const qid = canonical.qid ?? existing.qid ?? dossierQid;
 	if (qid) input.qid = qid;
+	// TRA-549: the refresh must not erase the image the genre already carries when the resolver misses.
+	// Not when the registry moved the refresh onto another slug: that image is another node's.
+	const existingImage = canonical.slug === slug ? existingImageOf(existing) : undefined;
+	if (existingImage) input.existingImage = existingImage;
 
 	if (consumed >= opts.maxNodes) {
 		refused++;

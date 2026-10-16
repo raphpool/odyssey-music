@@ -6,7 +6,7 @@ import { BadRequestError, isNotFoundError } from "../errors.js";
 import type { GenreRegistry } from "../genre-registry.js";
 import { logger } from "../logger.js";
 import { EDGE_FIELDS_BY_TYPE } from "../node-spec.js";
-import { type PipelineDeps, runPipeline } from "../pipeline.js";
+import { existingImageOf, type PipelineDeps, type PipelineInput, runPipeline } from "../pipeline.js";
 import {
 	isScopedSlug,
 	isValidSlug,
@@ -623,16 +623,7 @@ export function createMaterializeService(deps: {
 		if (!body.type || !body.name) {
 			throw new BadRequestError("Pipeline JIT requires both 'type' and 'name'.");
 		}
-		const pipelineInput: {
-			type: NodeType;
-			name: string;
-			disambiguator?: string;
-			mbid?: string;
-			mbidIsClientHint?: boolean;
-			slug?: Slug;
-			qid?: string;
-			artist?: string;
-		} = {
+		const pipelineInput: PipelineInput = {
 			type: body.type as NodeType,
 			name: body.name,
 		};
@@ -650,6 +641,16 @@ export function createMaterializeService(deps: {
 		// TRA-30 (node-service, PR #31) will pass its own opts.slug after this ticket merges --
 		// keep this shape stable (see the pinnedSlug comment in handleMaterialize above).
 		if (opts.slug) pipelineInput.slug = opts.slug;
+		// TRA-549: a refresh rewrites the node it was asked about; its image must outlive a resolver miss.
+		if (opts.fresh && opts.slug) {
+			const current = await readNode(opts.slug);
+			// A refresh that changes the identity (a different mbid) must not carry the old entity's picture.
+			const currentMbid = (current as { mbid?: string } | null)?.mbid;
+			const sameIdentity =
+				!body.mbid || !currentMbid || body.mbid.toLowerCase() === currentMbid.toLowerCase();
+			const image = current && sameIdentity ? existingImageOf(current) : undefined;
+			if (image) pipelineInput.existingImage = image;
+		}
 		// 2026-09-10 (TRA-43): the edge's own qid, carried through as an identity hint --
 		// enrichFromMusicBrainz's genre block gives it precedence over a fresh by-name resolve.
 		// 2026-09-10 (TRA-45): EXCEPT when a disambiguator is present -- a disambiguator asserts
