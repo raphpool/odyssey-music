@@ -28,6 +28,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://coverartarchive.org/release-group/17d74d52-c92b-3b8d-9f87-218ab2d1c4a0/front-500",
+  "image_source": "caa",
   "type": "track",
   "editorial_teaser": "A defining electronic classic from Boards of Canada, 'Roygbiv' blends warm, analog synthesizers with obscure archival samples to evoke a nostalgic, sun-drenched sense of hauntology.",
   "year": "1998",

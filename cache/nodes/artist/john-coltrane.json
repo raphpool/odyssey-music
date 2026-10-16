@@ -33,6 +33,8 @@
     "search_provider": "tavily"
   },
   "mbid": "b625448e-bf4a-41c3-a421-72ad46cdb831",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/John%20Coltrane%201963%20cropped%20ver2.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "One of the most influential jazz musicians of the 20th century, John Coltrane was a virtuosic saxophonist and composer known for his restless innovation across hard bop, modal, and free jazz. His legacy is defined by his relentless search for spiritual and musical transcendence, culminating in iconic works like 'A Love Supreme'.",

@@ -25,6 +25,8 @@
     "search_provider": "tavily"
   },
   "mbid": "2841d983-f8c3-432a-af02-7407a84580a8",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Masami%20Akita%205267969.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "group",
   "editorial_bio": "Merzbow is the moniker of Japanese noise musician Masami Akita, widely regarded as the most prolific and influential figure in the global harsh noise scene.",

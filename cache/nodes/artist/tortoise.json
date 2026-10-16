@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "e0953daa-860f-4dc8-9f1a-b12587cdaf17",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/TortoiseChicago2008.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "group",
   "editorial_bio": "Tortoise is a pioneer of the post-rock movement, known for their instrumental, genre-defying sound that blends jazz, dub, and electronics. Based in Chicago, the group has consistently pushed the boundaries of studio-based composition since their formation in 1991.",

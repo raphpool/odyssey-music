@@ -24,6 +24,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://coverartarchive.org/release-group/5cbd9d7b-597a-3c5e-bfd1-c2b364215560/front-500",
+  "image_source": "derived-cover",
   "type": "genre",
   "editorial_definition": "A retrospective term for the raw, unconventional rock music of the 1960s and early 1970s that prefigured the themes, aesthetics, and sound of the punk rock movement.",
   "qid": "Q27190",

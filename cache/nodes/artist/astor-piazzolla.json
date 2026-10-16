@@ -18,6 +18,8 @@
   ],
   "materialized_at": "2026-09-17T13:03:55.527Z",
   "mbid": "e280268a-a5ab-4bb0-be4d-ec470ca59131",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Astor%20Piazzolla.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "An Argentine virtuoso who transformed tango into a sophisticated, jazz-inflected global art form known as nuevo tango.",

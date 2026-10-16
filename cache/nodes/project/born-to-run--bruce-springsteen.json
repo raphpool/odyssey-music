@@ -28,6 +28,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0a/02/f7/0a02f7a1-ca2a-c0d7-7192-50314971721f/884977157031.jpg/600x600bb.jpg",
+  "image_source": "itunes-verified",
   "type": "project",
   "editorial_pitch": "Bruce Springsteen's breakthrough 1975 masterpiece, a cinematic fusion of rock, R&B, and pop that perfectly captures the restless, romantic yearning of American youth.",
   "year": "1975",
