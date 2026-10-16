@@ -5,6 +5,7 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
 	DEFAULT_MANIFEST_PATH,
 	identityDisagreement,
+	isSafePendingEntry,
 	type Manifest,
 	parseCliArgs,
 	runMigration,
@@ -867,6 +868,94 @@ describe("scope-release-slugs migration", () => {
 			expect((pending["artist:laetitia-sadier"] as Obj[]).map((e) => (e.edge as Obj).slug)).toEqual([
 				"artist:stereolab",
 			]);
+		});
+	});
+
+	describe("pending entries are applied only in a direction the runtime emits (TRA-568, TRA-563)", () => {
+		const entry = (field: string, slug: string, name: string): Obj => ({
+			field,
+			cardinality: "list",
+			edge: ref(slug, name),
+		});
+		const pendingOnDisk = async (): Promise<Record<string, Obj[]>> =>
+			JSON.parse(await readFile(join(cacheDir, "pending-reverses.json"), "utf8")) as Record<string, Obj[]>;
+
+		it("keeps a credit, a genre or a tracklist entry of a work key pending, under the renamed key", async () => {
+			const pole = credit("artist:pole", "Pole");
+			await seed(
+				[
+					node("artist:pole", "Pole"),
+					node("project:steel", "Steel", { artists: pole }),
+					node("project:steel--pole", "Steel", { artists: pole }),
+				],
+				{
+					"project:steel": [
+						entry("artists", "artist:homonym", "Pole"),
+						entry("genres", "genre:dub", "Dub"),
+						entry("producers", "artist:someone", "Someone"),
+						entry("tracklist", "track:homonym--unlimited", "Homonym"),
+					],
+				},
+			);
+			const { manifest, exitCode } = await run(true);
+			expect(exitCode).toBe(0);
+			expect(manifest.redirects).toMatchObject({ "project:steel": "project:steel--pole" });
+			const target = await read("project:steel--pole");
+			expect(edgeSlugs(target, "artists")).toEqual(["artist:pole"]);
+			for (const field of ["genres", "producers", "tracklist"]) expect(edgeSlugs(target, field)).toEqual([]);
+			// Nothing is lost: all four entries are on disk, under the key the work now has.
+			const pending = await pendingOnDisk();
+			expect(Object.keys(pending)).toEqual(["project:steel--pole"]);
+			expect(pending["project:steel--pole"]?.map((e) => e.field)).toEqual([
+				"artists",
+				"genres",
+				"producers",
+				"tracklist",
+			]);
+			expect(manifest.notes.join()).toContain("4 pending reverse edge(s) not applied");
+		});
+
+		it("keeps label.roster -> artist.labels and genre.key_artists -> artist.genres pending, applies the safe ones", async () => {
+			await seed(
+				[
+					node("artist:laetitia-sadier", "Laetitia Sadier"),
+					node("project:x", "X", { artists: credit("artist:l-titia-sadier", "Lætitia Sadier") }),
+				],
+				{
+					"artist:l-titia-sadier": [
+						entry("discography", "project:x", "X"),
+						entry("collaborators", "artist:c", "C"),
+						entry("labels", "label:l", "L"),
+						entry("genres", "genre:g", "G"),
+					],
+				},
+			);
+			await run(true);
+			const target = await read("artist:laetitia-sadier");
+			expect(edgeSlugs(target, "discography")).toContain("project:x--laetitia-sadier");
+			expect(edgeSlugs(target, "collaborators")).toEqual(["artist:c"]);
+			expect(edgeSlugs(target, "labels")).toEqual([]);
+			expect(edgeSlugs(target, "genres")).toEqual([]);
+			const pending = await pendingOnDisk();
+			expect(pending["artist:laetitia-sadier"]?.map((e) => e.field)).toEqual(["labels", "genres"]);
+		});
+
+		it("judges a direction by the edge's type, the target's type and the field", () => {
+			const e = (field: string, slug: string) => ({ field, edge: ref(slug, "N") }) as never;
+			// Not emitted by the runtime.
+			expect(isSafePendingEntry("project:a", e("artists", "artist:x"))).toBe(false);
+			expect(isSafePendingEntry("track:a", e("project", "project:x"))).toBe(false);
+			expect(isSafePendingEntry("project:a", e("tracklist", "track:x"))).toBe(false);
+			expect(isSafePendingEntry("artist:a", e("labels", "label:x"))).toBe(false);
+			expect(isSafePendingEntry("artist:a", e("genres", "genre:x"))).toBe(false);
+			expect(isSafePendingEntry("label:a", e("genres", "genre:x"))).toBe(false);
+			// Emitted: the four safe cross-type directions, and same-kind pairs.
+			expect(isSafePendingEntry("artist:a", e("discography", "project:x"))).toBe(true);
+			expect(isSafePendingEntry("artist:a", e("notable_tracks", "track:x"))).toBe(true);
+			expect(isSafePendingEntry("label:a", e("notable_releases", "project:x"))).toBe(true);
+			expect(isSafePendingEntry("label:a", e("roster", "artist:x"))).toBe(true);
+			expect(isSafePendingEntry("artist:a", e("collaborators", "artist:x"))).toBe(true);
+			expect(isSafePendingEntry("track:a", e("sampled_by", "track:x"))).toBe(true);
 		});
 	});
 
