@@ -1,0 +1,74 @@
+{
+  "slug": "track:konigsforst-1",
+  "name": "Königsforst 1",
+  "editorial_article": "\"Königsforst 1\" is the opening track of the 1998 seminal ambient techno album *Königsforst*, created by German electronic musician Wolfgang Voigt under his influential project alias, Gas. Released during a period of experimentation within the Cologne electronic scene, the track serves as an entry point into the project’s signature aesthetic: a dense, claustrophobic, yet oddly pastoral soundscape of layered, looped, and heavily processed orchestral samples and muffled techno beats. \n\nThe track—along with the rest of the *Königsforst* album—is profoundly shaped by its namesake, the Königsforst forest near Cologne. Wolfgang Voigt drew inspiration from his youthful experiences in this recreation park, often filtered through the lens of LSD-induced perception. This results in music that feels perpetually submerged, characterized by deep, low-frequency oscillations and swirling textures that mimic the sensation of walking through an ancient, dense woodland. \"Königsforst 1\" specifically captures this immersive, hypnotic quality, establishing the project's reputation for crafting \"ambient techno\" that feels both organic and deeply alien. While originally appearing on the *Oktember* EP as \"Oktember A\" before its inclusion on the *Königsforst* album, the track has solidified its status as a cornerstone of late-90s experimental electronic music, marking a high point in Voigt’s ability to manipulate atmosphere and rhythm into a cohesive, dreamlike narrative. Its release on the legendary Mille Plateaux label further cements its place in the history of electronic music as a defining work of the avant-garde techno era.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/K%C3%B6nigsforst",
+      "title": "Königsforst - Wikipedia"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=O6fMmecg7Xk",
+      "title": "Königsforst 1 - YouTube"
+    },
+    {
+      "url": "https://kompakt-gas.bandcamp.com/album/k-nigsforst",
+      "title": "Königsforst - Gas bandcamp"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:24.708Z",
+  "_metrics": {
+    "input_tokens": 11940,
+    "output_tokens": 725,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004072,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 8077,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "track",
+  "editorial_teaser": "\"Königsforst 1\" is the immersive, atmospheric opener to Wolfgang Voigt's seminal Gas album, serving as a gateway into the project's hallmark blend of looped orchestral textures and submerged techno rhythms. Drawing inspiration from the Königsforst forest, the track captures a dreamlike, hypnotic quality that remains a quintessential example of ambient techno.",
+  "year": "1998",
+  "artists": [
+    {
+      "slug": "artist:gas",
+      "type": "artist",
+      "name": "Gas"
+    }
+  ],
+  "project": {
+    "slug": "project:konigsforst",
+    "type": "project",
+    "name": "Königsforst"
+  },
+  "genres": [
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno",
+      "qid": "Q9149801"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:wolfgang-voigt",
+      "type": "artist",
+      "name": "Wolfgang Voigt"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

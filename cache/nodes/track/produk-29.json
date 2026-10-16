@@ -1,0 +1,61 @@
+{
+  "slug": "track:produk-29",
+  "name": "produk 29 [101]",
+  "editorial_article": "\"produk 29 [101]\" is a track by the renowned electronic musician Aphex Twin, released as part of his critically acclaimed 2014 studio album, *Syro*. Serving as one of the standout compositions on the record, the track exemplifies the intricate, high-energy electronic production for which Aphex Twin (Richard D. James) is celebrated. Clocking in at approximately five minutes, \"produk 29 [101]\" features the dense, layered arrangements and rhythmic complexity that define the *Syro* era, balancing frenetic percussion with melodic elements that have become synonymous with his signature sound.\n\nReleased on Warp Records, the track contributed to the massive anticipation and eventual success of *Syro*, which marked James' first major studio album release in over a decade. The title, characteristic of his cryptic and numerical naming conventions, suggests a mechanical or experimental precision. Within the broader context of the album, \"produk 29 [101]\" serves as a bridge between the IDM (Intelligent Dance Music) roots that established Aphex Twin's career in the 1990s and the cleaner, more polished studio production techniques he refined in the 2010s. The track is widely regarded by fans and critics alike as an essential piece of his discography, demonstrating his continuing ability to innovate within the electronic landscape long after his initial rise to prominence. Its inclusion on *Syro* solidified the album's place as a landmark electronic release of the decade.",
+  "citations": [
+    {
+      "url": "https://readdork.com/track/aphex-twin-produk-29-101",
+      "title": "Aphex Twin – Produk 29 [101] (2014) - Dork"
+    },
+    {
+      "url": "https://aphextwin.bandcamp.com/track/produk-29-101",
+      "title": "produk 29 [101] | Aphex Twin"
+    },
+    {
+      "url": "https://www.beatport.com/track/produk-29-101/5859436?srsltid=AfmBOop4SiOqJLlqJkP5r26kMCpi0wqjbd34D4asfZZXInGmRCAK2REO",
+      "title": "Aphex Twin - produk 29 [101] (Original Mix) [Warp Records] - Beatport"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:03:16.915Z",
+  "type": "track",
+  "editorial_teaser": "A highlight from Aphex Twin's 2014 comeback album *Syro*, \"produk 29 [101]\" is a masterclass in layered, high-energy electronic rhythms.",
+  "cover_url": "https://f4.bcbits.com/img/a2665747684_10.jpg",
+  "year": "2014",
+  "duration": "5:03",
+  "artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "project": {
+    "slug": "project:syro",
+    "type": "project",
+    "name": "Syro"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic music",
+      "qid": "Q9778"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

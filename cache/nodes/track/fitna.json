@@ -25,7 +25,7 @@
     }
   ],
   "project": {
-    "slug": "project:fitna--rohff",
+    "slug": "project:fitna",
     "type": "project",
     "name": "Fitna"
   },
@@ -38,7 +38,6 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

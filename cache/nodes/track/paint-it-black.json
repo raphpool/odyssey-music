@@ -1,0 +1,47 @@
+{
+  "slug": "track:paint-it-black",
+  "name": "Paint It, Black",
+  "editorial_article": "Released in 1966, 'Paint It, Black' stands as one of the most iconic singles by the British rock band The Rolling Stones. Originally appearing on the US version of their album 'Aftermath', the track is widely recognized for its distinctive sitar riff and dark, brooding atmosphere. It became a global success, reaching the top of the charts in multiple countries and cementing its place as a cornerstone of the 1960s rock canon. The song's composition and production marked a significant stylistic evolution for the band, moving away from their blues-rock roots toward a more experimental and psychedelic sound. It remains a defining piece of the era, frequently cited for its influence on rock music and its enduring popularity in popular culture.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/54143-The-Rolling-Stones-Paint-It-Black?srsltid=AfmBOoqevNXXiDrLroEbbGtLPaGgtUAnZvwJZTUlUZmo3-oEgMqEA83D",
+      "title": "The Rolling Stones - Paint It, Black"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Paint_It_Black",
+      "title": "Paint It Black - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/master/446645-The-Rolling-Stones-Paint-It-Black?srsltid=AfmBOorc1rixCHVV4JftgbsFKIOp42xGWwxD2-gcvinJV3Jdgbua819z",
+      "title": "The Rolling Stones - Paint It, Black"
+    }
+  ],
+  "materialized_at": "2026-05-13T15:13:57.565Z",
+  "type": "track",
+  "editorial_teaser": "A landmark 1966 single by The Rolling Stones, known for its iconic sitar-driven melody and dark, atmospheric sound.",
+  "year": "1966",
+  "artists": [
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones"
+    }
+  ],
+  "project": {
+    "slug": "project:aftermath",
+    "type": "project",
+    "name": "Aftermath"
+  },
+  "genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock",
+      "qid": "Q11399"
+    }
+  ],
+  "producers": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

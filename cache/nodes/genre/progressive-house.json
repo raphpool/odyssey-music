@@ -110,7 +110,7 @@
   ],
   "landmark_projects": [
     {
-      "slug": "project:renaissance-the-mix-collection--sasha-and-john-digweed",
+      "slug": "project:renaissance-the-mix-collection",
       "type": "project",
       "name": "Renaissance: The Mix Collection"
     },
@@ -122,12 +122,12 @@
   ],
   "landmark_tracks": [
     {
-      "slug": "track:not-forgotten--leftfield",
+      "slug": "track:not-forgotten",
       "type": "track",
       "name": "Not Forgotten"
     },
     {
-      "slug": "track:passion--rod-stewart",
+      "slug": "track:passion",
       "type": "track",
       "name": "Passion"
     }

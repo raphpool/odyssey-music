@@ -30,7 +30,7 @@
       "name": "Enforcement"
     },
     {
-      "slug": "track:phylyps-trak--basic-channel",
+      "slug": "track:phylyps-trak",
       "type": "track",
       "name": "Phylyps Trak"
     },
@@ -67,6 +67,5 @@
       "name": "Moritz von Oswald"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

@@ -1,0 +1,65 @@
+{
+  "slug": "track:born-slippy-nuxx",
+  "name": "Born Slippy .NUXX",
+  "editorial_article": "\"Born Slippy .NUXX\" is a seminal electronic music track by the British group Underworld, famously cementing its legacy as the evocative, euphoric heartbeat of the 1996 film Trainspotting. Originally released as a B-side in 1995, the track’s path to becoming a definitive anthem of the 1990s was solidified by its inclusion in Danny Boyle’s cult-classic film, subsequently reaching number two on the UK Singles Chart upon its 1996 reissue.\n\nMusically, the track is celebrated for its driving, four-on-the-floor kick drum, distorted vocal delivery, and ethereal, sweeping synthesizer chords. Its construction is famously layered and abstract; Karl Hyde wrote the lyrics during a period of struggle with alcoholism, aiming to capture the fragmented, disoriented perspective of a night out in London’s Soho. Hyde’s vocal take—recorded in a single, spontaneous session—features the iconic, repetitive refrain of \"lager, lager, lager,\" which was born from him losing his place in the lyrics. Despite being frequently misinterpreted as a hedonistic party anthem, the song is deeply rooted in personal despair, acting as what Hyde described as a \"cry for help\" rather than a celebration of the era's \"lad culture.\"\n\nUnderworld’s production, helmed by Rick Smith, Karl Hyde, and Darren Emerson, achieves a unique tension between clinical, austere techno textures and an overwhelming, cathartic sense of uplift. Its cultural footprint extends far beyond the club, having been cited by various music publications as one of the most important tracks of its decade. The track’s emotional resonance in Trainspotting—playing during the film's climactic sequence—perfectly encapsulated the era’s blend of grime and euphoria, forever linking the sound of the mid-90s underground to the cinematic landscape of the time. Even decades later, it remains a rare example of dance music that balances sophisticated artistic production with undeniable, visceral accessibility.",
+  "citations": [
+    {
+      "url": "https://www.musicradar.com/artists/underworld-born-slippy-repub",
+      "title": "The story of Born Slippy, Underworld's emotion-stirring dance classic"
+    },
+    {
+      "url": "https://www.theatlantic.com/culture/archive/2016/04/track-of-the-day-born-slippy-nuxx/624133/",
+      "title": "Track of the Day: 'Born Slippy .NUXX' by Underworld - The Atlantic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:55:42.812Z",
+  "type": "track",
+  "editorial_teaser": "\"Born Slippy .NUXX\" is a seminal electronic music track by the British group Underworld, famously cementing its legacy as the evocative, euphoric heartbeat of the 1996 film Trainspotting.",
+  "year": "1996",
+  "artists": [
+    {
+      "slug": "artist:underworld",
+      "type": "artist",
+      "name": "Underworld"
+    }
+  ],
+  "project": {
+    "slug": "project:trainspotting",
+    "type": "project",
+    "name": "Trainspotting (Original Motion Picture Soundtrack)"
+  },
+  "genres": [
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica",
+      "qid": "Q817138"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:rick-smith",
+      "type": "artist",
+      "name": "Rick Smith"
+    },
+    {
+      "slug": "artist:karl-hyde",
+      "type": "artist",
+      "name": "Karl Hyde"
+    },
+    {
+      "slug": "artist:darren-emerson",
+      "type": "artist",
+      "name": "Darren Emerson"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

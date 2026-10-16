@@ -11,7 +11,6 @@
   "materialized_at": "2026-05-13T12:37:45.581Z",
   "type": "genre",
   "editorial_definition": "A subgenre of electronic music originating in the late 1980s UK, characterized by the blending of house music's rhythmic pulse with the atmospheric, expansive textures of ambient music.",
-  "qid": "Q2465085",
   "era": "Late 1980s – mid-1990s",
   "origin": "United Kingdom",
   "parent_genres": [],
@@ -66,20 +65,21 @@
   "key_labels": [],
   "landmark_projects": [
     {
-      "slug": "project:the-orb-s-adventures-beyond-the-ultraworld--the-orb",
+      "slug": "project:the-orb-s-adventures-beyond-the-ultraworld",
       "type": "project",
       "name": "The Orb's Adventures Beyond the Ultraworld"
     },
     {
-      "slug": "project:chill-out--the-klf",
+      "slug": "project:chill-out",
       "type": "project",
       "name": "Chill Out"
     },
     {
-      "slug": "project:lifeforms--the-future-sound-of-london",
+      "slug": "project:lifeforms",
       "type": "project",
       "name": "Lifeforms"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q2465085"
 }

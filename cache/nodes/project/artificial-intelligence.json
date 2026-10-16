@@ -75,17 +75,17 @@
   ],
   "tracklist": [
     {
-      "slug": "track:polygon-window--polygon-window",
+      "slug": "track:polygon-window",
       "type": "track",
       "name": "Polygon Window"
     },
     {
-      "slug": "track:telefone-529--b12",
+      "slug": "track:telefone-529",
       "type": "track",
       "name": "Telefone 529"
     },
     {
-      "slug": "track:crystel--autechre",
+      "slug": "track:crystel",
       "type": "track",
       "name": "Crystel"
     },
@@ -126,6 +126,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

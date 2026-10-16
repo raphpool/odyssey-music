@@ -46,7 +46,7 @@
       "name": "Move Your Body"
     },
     {
-      "slug": "track:acid-tracks--phuture",
+      "slug": "track:acid-tracks",
       "type": "track",
       "name": "Acid Tracks"
     }
@@ -61,6 +61,5 @@
     }
   ],
   "aliases": [],
-  "members": [],
-  "similar_artists": []
+  "members": []
 }

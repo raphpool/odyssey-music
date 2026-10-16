@@ -1,0 +1,140 @@
+{
+  "slug": "project:in-blue",
+  "name": "In Blue",
+  "editorial_article": "In Blue is the third studio album by the Irish pop-rock family band The Corrs, released in July 2000. This project serves as a cornerstone of the group's discography, marking a pivotal moment where they successfully bridged their traditional Irish-folk influences with high-gloss, internationally-marketed pop-rock production. Recorded across prestigious studios in Dublin and Switzerland, the album benefited from the collaboration of several high-profile producers, most notably Robert John \"Mutt\" Lange, whose influence helped shape the album’s radio-ready, polished sound.\n\nThe album is perhaps best remembered for its massive international success, particularly the hit single \"Breathless,\" which reached number one on the UK Singles Chart and solidified their standing in the United States, a market they had been aggressively pursuing. \"In Blue\" is a testament to the Corrs' ability to fuse the tin whistle and bodhrán-led textures of Celtic music with the melodic hooks and rhythmic accessibility of adult contemporary pop. The song \"Rebel Heart,\" featured on the album, earned a Grammy nomination for Best Pop Instrumental Performance, highlighting the band's instrumental versatility beyond their pop-chart aspirations. The record remains a defining pop-rock artifact of the turn of the millennium, reflecting the late-90s and early-00s industry trend of blending traditional elements into mass-appeal, globally palatable formats. Through its commercial performance and lasting radio presence, the album established The Corrs as global stars, blending regional Irish sentiment with the expansive, sleek sonic architecture typical of the era's major-label production standards.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/In_Blue",
+      "title": "In Blue - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/master/108329-The-Corrs-In-Blue?srsltid=AfmBOoplSLaRk77LB7JhR7jXi5HldJupCh8MY_odylU7ZHMntRq4fWa5",
+      "title": "The Corrs – In Blue | Releases - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:37:26.766Z",
+  "mbid": "4e381965-bdc8-370d-a79f-e9bce2c8fed6",
+  "type": "project",
+  "editorial_pitch": "In Blue is the third studio album by Irish pop-rock family band The Corrs, released in 2000, which catapulted the group to widespread international success, particularly in the United States. Produced in collaboration with heavyweights like Robert John \"Mutt\" Lange, the album seamlessly blends the band's signature Celtic-infused pop sensibilities with contemporary production polish, yielding hit singles such as the UK number-one \"Breathless.\"",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/d/d0/In_Blue_%28The_Corrs_album_-_cover_art%29.jpg",
+  "year": "2000",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:the-corrs",
+      "type": "artist",
+      "name": "The Corrs",
+      "mbid": "acf6c776-d0f6-4239-b5a2-a45a613ffa52"
+    }
+  ],
+  "label": {
+    "slug": "label:atlantic-records",
+    "type": "label",
+    "name": "Atlantic Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:pop-rock",
+      "type": "genre",
+      "name": "Pop rock",
+      "qid": "Q484641"
+    },
+    {
+      "slug": "genre:celtic-fusion",
+      "type": "genre",
+      "name": "Celtic fusion",
+      "qid": "Q1092553"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:breathless",
+      "type": "track",
+      "name": "Breathless"
+    },
+    {
+      "slug": "track:give-me-a-reason",
+      "type": "track",
+      "name": "Give Me a Reason"
+    },
+    {
+      "slug": "track:somebody-for-someone",
+      "type": "track",
+      "name": "Somebody for Someone"
+    },
+    {
+      "slug": "track:say",
+      "type": "track",
+      "name": "Say"
+    },
+    {
+      "slug": "track:all-the-love-in-the-world",
+      "type": "track",
+      "name": "All the Love in the World"
+    },
+    {
+      "slug": "track:radio",
+      "type": "track",
+      "name": "Radio"
+    },
+    {
+      "slug": "track:irresistible",
+      "type": "track",
+      "name": "Irresistible"
+    },
+    {
+      "slug": "track:one-night",
+      "type": "track",
+      "name": "One Night"
+    },
+    {
+      "slug": "track:all-in-a-day",
+      "type": "track",
+      "name": "All in a Day"
+    },
+    {
+      "slug": "track:at-your-side",
+      "type": "track",
+      "name": "At Your Side"
+    },
+    {
+      "slug": "track:no-more-cry",
+      "type": "track",
+      "name": "No More Cry"
+    },
+    {
+      "slug": "track:rain",
+      "type": "track",
+      "name": "Rain"
+    },
+    {
+      "slug": "track:give-it-all-up",
+      "type": "track",
+      "name": "Give It All Up"
+    },
+    {
+      "slug": "track:hurt-before",
+      "type": "track",
+      "name": "Hurt Before"
+    },
+    {
+      "slug": "track:rebel-heart",
+      "type": "track",
+      "name": "Rebel Heart"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:robert-john-mutt-lange",
+      "type": "artist",
+      "name": "Robert John \"Mutt\" Lange"
+    },
+    {
+      "slug": "artist:mitchell-froom",
+      "type": "artist",
+      "name": "Mitchell Froom"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

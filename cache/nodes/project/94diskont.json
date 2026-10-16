@@ -38,7 +38,7 @@
   ],
   "tracklist": [
     {
-      "slug": "track:do-while--oval",
+      "slug": "track:do-while",
       "type": "track",
       "name": "Do While"
     },
@@ -64,6 +64,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

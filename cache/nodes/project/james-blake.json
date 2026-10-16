@@ -1,0 +1,92 @@
+{
+  "slug": "project:james-blake",
+  "name": "James Blake",
+  "editorial_article": "Released in early 2011, *James Blake* is the eponymous debut studio album by the English musician James Blake, a landmark record that redefined the boundaries between electronic production and introspective soul. Following a prolific 2010 characterized by a flurry of experimental EPs, this album marked a significant shift toward a more vocal-centric, song-oriented approach. Blake, who had previously been known for the clipped, sample-heavy aesthetic of the UK dubstep scene, pivoted toward a \"post-dubstep\" sound that prioritized raw emotional vulnerability over club-ready aggression.\\n\\nThe album is defined by its minimalist, spatial production—often featuring little more than a piano, deep bass textures, and Blake’s own heavily manipulated, multi-tracked voice. Tracks like \"The Wilhelm Scream\" and his haunting reinterpretation of Feist’s \"Limit to Your Love\" highlight a unique interplay between organic instrumentation and digital glitch. Blake notably transitioned from his reliance on external vocal samples to recording and processing his own voice, pitch-shifting and looping it to create a choir-like, ghostly atmosphere. This self-contained production style, combined with the album’s sparse, melancholic energy, drew comparisons to modern vocal pioneers like Thom Yorke and Justin Vernon. Upon its release on his own ATLAS imprint (distributed by Polydor/Universal), the album was met with widespread critical acclaim, ultimately becoming a touchstone for the \"electro-soul\" movement and cementing Blake's status as a transformative figure in contemporary experimental pop. It captured a moment of change, reflecting a generation of electronic producers who were beginning to embrace traditional song structures with a decidedly modern, technological lens. The vinyl edition includes exclusive tracks \"Tep and the Logic\" and \"You Know Your Youth,\" further emphasizing the depth of his early creative vision.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/release/2832463-James-Blake-James-Blake?srsltid=AfmBOorMtUfJ8AgQAWZavZWURFFGcOGhfHm1dCqU9T5V5mVxDD0NdSzA",
+      "title": "James Blake – James Blake – 2 x Vinyl (180g, 12', 33 ⅓ RPM, Album), 2011 [r2832463] | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:56.651Z",
+  "mbid": "e2c51226-996b-4f7c-9bdf-d52d63c46a26",
+  "type": "project",
+  "editorial_pitch": "A groundbreaking debut that redefined the landscape of post-dubstep, James Blake's 2011 self-titled album melds haunting, minimalist piano balladry with avant-garde electronic manipulation and soul-baring vocals.",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/b/b5/James_Blake_Cover.jpg",
+  "year": "2011",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:james-blake",
+      "type": "artist",
+      "name": "James Blake",
+      "mbid": "8dc08b1f-e393-4f85-a5dd-300f7693a8b8"
+    }
+  ],
+  "label": {
+    "slug": "label:atlas-recordings",
+    "type": "label",
+    "name": "Atlas Recordings"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:post-dubstep",
+      "type": "genre",
+      "name": "Post-dubstep",
+      "qid": "Q106130091"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul",
+      "qid": "Q131272"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:unluck",
+      "type": "track",
+      "name": "Unluck"
+    },
+    {
+      "slug": "track:the-wilhelm-scream",
+      "type": "track",
+      "name": "The Wilhelm Scream"
+    },
+    {
+      "slug": "track:i-never-learnt-to-share",
+      "type": "track",
+      "name": "I Never Learnt to Share"
+    },
+    {
+      "slug": "track:limit-to-your-love",
+      "type": "track",
+      "name": "Limit to Your Love"
+    },
+    {
+      "slug": "track:lindisfarne-i",
+      "type": "track",
+      "name": "Lindisfarne I"
+    },
+    {
+      "slug": "track:lindisfarne-ii",
+      "type": "track",
+      "name": "Lindisfarne II"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:james-blake",
+      "type": "artist",
+      "name": "James Blake"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

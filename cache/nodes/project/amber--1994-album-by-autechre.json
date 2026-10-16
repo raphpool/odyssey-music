@@ -1,0 +1,75 @@
+{
+  "slug": "project:amber--1994-album-by-autechre",
+  "name": "Amber",
+  "editorial_article": "Released in 1994 on the influential Warp Records label, Amber stands as the second studio album by British electronic duo Autechre. Unlike their debut, Incunabula—which largely compiled earlier works—Amber represented a conscious effort to create entirely new material, signaling the duo's maturation into one of the most innovative acts in the electronic landscape. The album is often cited as a definitive, albeit paradoxical, entry in the IDM (Intelligent Dance Music) canon, masterfully blending the rigid, cut-and-paste rhythmic structures typical of the genre with expansive, ethereal ambient soundscapes. \\n\\nMembers Rob Brown and Sean Booth have noted that much of the album was composed rapidly, often completing tracks in under a day, yet the resulting work possesses a timeless quality that has sustained its reputation for decades. Tracks like \\\"Foil\\\" and \\\"Montreal\\\" demonstrate a deep, subterranean focus on texture and atmosphere, often drawing favorable comparisons to the ambient pioneers like Brian Eno, while others lean into the metallic, glitchy, and bass-heavy aesthetics that would define the Warp sound of the era. The cover art, designed by Ian Anderson of The Designers Republic, features a striking detail of sandstone cliffs in Cappadocia, Turkey, mirroring the album's arid, organic, and complex sonic environments. Today, Amber is widely regarded as a classic, having been reissued multiple times and consistently appearing in lists of the most essential electronic albums of the 1990s. It remains a essential listen for anyone tracking the evolution of experimental electronic music, capturing a specific moment where dance music began to collapse inward into pure, contemplative abstraction. Over the years, the record has cemented its status as an ambient opus, providing a blueprint for later generations of electronic producers to explore the intersection of rhythm and stillness. It is, by all accounts, a masterwork of electronic engineering and emotive sound design. Throughout its duration, the album traverses a unique landscape of sound that remains as challenging and rewarding as it was in 1994, proving that Autechre's early work was anything but conventional or easily categorized. Ultimately, Amber stands as a testament to the duo's enduring creative vision and technical ingenuity. It is widely considered an essential milestone in the history of electronic music.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/1302-Autechre-Amber?srsltid=AfmBOoqKvXpu10Q5AxN8PTZ9P6AlcGuZ7ni2DAVQIpnC33zc6hv2Aqbs",
+      "title": "Autechre – Amber | Releases - Discogs"
+    },
+    {
+      "url": "https://www.missionsynths.com/products/autechre-amber?srsltid=AfmBOopC26uK3PN11g2iHufCL0hR_CPXITLrIC5rB747Xx0QgZzJJUFN",
+      "title": "Autechre - Amber - Mission Synths"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:37.975Z",
+  "mbid": "44818c20-67ee-37d2-a8bf-d157fd99ae0b",
+  "type": "project",
+  "editorial_pitch": "Amber is a seminal work of mid-90s electronic music that marks Autechre's transition from compilation-based efforts to a more cohesive, atmospheric, and forward-thinking sonic identity. Balancing the intricate rhythms of IDM with vast, ambient textures, it remains a pillar of the Warp Records catalog.",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/59/Autechre_-_Amber_cover_art.png/250px-Autechre_-_Amber_cover_art.png",
+  "year": "1994",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre",
+      "mbid": "410c9baf-5469-44f6-9852-826524b80c61"
+    }
+  ],
+  "label": {
+    "slug": "label:warp",
+    "type": "label",
+    "name": "Warp"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient music",
+      "qid": "Q193207"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:foil",
+      "type": "track",
+      "name": "Foil"
+    },
+    {
+      "slug": "track:montreal",
+      "type": "track",
+      "name": "Montreal"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:rob-brown",
+      "type": "artist",
+      "name": "Rob Brown"
+    },
+    {
+      "slug": "artist:sean-booth",
+      "type": "artist",
+      "name": "Sean Booth"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

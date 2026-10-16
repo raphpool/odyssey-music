@@ -56,7 +56,7 @@
   "labels": [],
   "discography": [
     {
-      "slug": "project:biokinetics--porter-ricks",
+      "slug": "project:biokinetics",
       "type": "project",
       "name": "Biokinetics"
     },
@@ -78,12 +78,12 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:nautical-dub--porter-ricks",
+      "slug": "track:nautical-dub",
       "type": "track",
       "name": "Nautical Dub"
     },
     {
-      "slug": "track:port-of-nuba--porter-ricks",
+      "slug": "track:port-of-nuba",
       "type": "track",
       "name": "Port of Nuba"
     }

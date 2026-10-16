@@ -56,18 +56,17 @@
       "name": "Trespass"
     },
     {
-      "slug": "project:nursery-cryme--john-anthony",
+      "slug": "project:nursery-cryme",
       "type": "project",
-      "name": "Nursery Cryme",
-      "artist": "John Anthony"
+      "name": "Nursery Cryme"
     },
     {
-      "slug": "project:pawn-hearts--van-der-graaf-generator",
+      "slug": "project:pawn-hearts",
       "type": "project",
       "name": "Pawn Hearts"
     },
     {
-      "slug": "project:for-your-pleasure--roxy-music",
+      "slug": "project:for-your-pleasure",
       "type": "project",
       "name": "For Your Pleasure"
     },
@@ -98,6 +97,5 @@
     }
   ],
   "aliases": [],
-  "members": [],
-  "similar_artists": []
+  "members": []
 }

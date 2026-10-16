@@ -1,0 +1,134 @@
+{
+  "slug": "project:a-wrenched-virile-lore",
+  "name": "A Wrenched Virile Lore",
+  "editorial_article": "Released in 2012, A Wrenched Virile Lore serves as the second major remix album by the influential Scottish post-rock pioneers Mogwai. Coming nearly 15 years after their debut remix collection, Kicking a Dead Pig, this project focuses exclusively on reinterpreting tracks from the band’s 2011 album, Hardcore Will Never Die But You Will. While their early career was defined by their stark contrast between minimalist quietude and devastating, distorted crescendos, A Wrenched Virile Lore showcases a band more comfortable with electronic textures and external collaboration. \\n\\nThe project features an eclectic roster of remixers who pull the source material into darker, more ambient, or rhythmic landscapes. Notable contributions include Justin K. Broadrick (of Godflesh/Jesu fame), who transforms the post-punky \"George Square Thatcher Death Party\" into an anthemic, stadium-ready opener, and Tim Hecker, who offers a haunting, spectral take on \"Rano Pano.\" Other contributors, such as The Soft Moon and Zombi, peel back the layers of Mogwai’s compositions to expose new, motorik and neo-goth possibilities within the melodies. As an album, it functions as a cerebral, alternate-universe expansion of its parent record, proving that Mogwai’s compositional identity remains potent even when subjected to extreme sonic surgery by electronic producers. It is a vital companion piece for listeners interested in the intersection of post-rock and the experimental electronic underground of the early 2010s.",
+  "citations": [
+    {
+      "url": "https://pitchfork.com/reviews/albums/17374-a-wrenched-virile-lore/",
+      "title": "Mogwai: A Wrenched Virile Lore Album Review | Pitchfork"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/A_Wrenched_Virile_Lore",
+      "title": "A Wrenched Virile Lore - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:08:14.012Z",
+  "mbid": "5349a640-32a9-4032-be60-ed68d971b10c",
+  "type": "project",
+  "editorial_pitch": "A Wrenched Virile Lore is the 2012 remix companion to Mogwai's acclaimed album Hardcore Will Never Die But You Will, serving as a cerebral, alternate-universe reimagination of their post-rock foundations. The collection highlights the band's willingness to step outside their signature \"loud-quiet-loud\" structure, allowing a diverse array of electronic and experimental producers—including Justin K. Broadrick, Tim Hecker, and The Soft Moon—to deconstruct and reassemble their source material into new, texturally dense configurations.",
+  "year": "2012",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:mogwai",
+      "type": "artist",
+      "name": "Mogwai",
+      "mbid": "d700b3f5-45af-4d02-95ed-57d301bda93e"
+    }
+  ],
+  "label": {
+    "slug": "label:sub-pop",
+    "type": "label",
+    "name": "Sub Pop"
+  },
+  "genres": [
+    {
+      "slug": "genre:post-rock",
+      "type": "genre",
+      "name": "Post-rock",
+      "qid": "Q209137"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:george-square-thatcher-death-party-justin-k-broadrick-reshape--mogwai",
+      "type": "track",
+      "name": "George Square Thatcher Death Party (Justin K Broadrick reshape)",
+      "mbid": "96a80c4e-7da8-4fda-9d42-6c382ee3b060",
+      "artist": "Mogwai"
+    },
+    {
+      "slug": "track:rano-pano-mogwai-is-my-dick-rmx--mogwai",
+      "type": "track",
+      "name": "Rano Pano (Mogwai is My Dick rmx)",
+      "mbid": "18c1f4b7-465b-41ec-9d25-4e23e32e8fcd",
+      "artist": "Mogwai"
+    },
+    {
+      "slug": "track:white-noise-evp-mix-by-cylob--mogwai",
+      "type": "track",
+      "name": "White Noise (Evp Mix by Cylob)",
+      "mbid": "0b713d24-99f2-48c8-8f7e-25dcdc94fbdb",
+      "artist": "Mogwai"
+    },
+    {
+      "slug": "track:how-to-be-a-werewolf-xander-harris-remix--mogwai",
+      "type": "track",
+      "name": "How to Be a Werewolf (Xander Harris remix)",
+      "mbid": "321b7a29-679b-4b87-bff2-1c84790dcef1",
+      "artist": "Mogwai"
+    },
+    {
+      "slug": "track:letters-to-the-metro-zombi-remix--mogwai",
+      "type": "track",
+      "name": "Letters to the Metro (Zombi remix)",
+      "mbid": "3ba37cd5-cf17-42d7-88ca-5c194b72efde",
+      "artist": "Mogwai"
+    },
+    {
+      "slug": "track:mexican-grand-prix-reworked-by-rm-hubbert--mogwai",
+      "type": "track",
+      "name": "Mexican Grand Prix (Reworked by RM Hubbert)",
+      "mbid": "916f6d46-a0bd-48cb-b67a-5b396acc6ba1",
+      "artist": "Mogwai"
+    },
+    {
+      "slug": "track:rano-pano-tim-hecker-remix--mogwai",
+      "type": "track",
+      "name": "Rano Pano (Tim Hecker remix)",
+      "mbid": "919b1b43-c52c-4639-97d6-83f1ba09e379",
+      "artist": "Mogwai"
+    },
+    {
+      "slug": "track:san-pedro-the-soft-moon-remix--mogwai",
+      "type": "track",
+      "name": "San Pedro (The Soft Moon remix)",
+      "mbid": "cfdee0a3-6f6c-402a-ad6b-c795829be0a9",
+      "artist": "Mogwai"
+    },
+    {
+      "slug": "track:too-raging-to-cheers-umberto-remix--mogwai",
+      "type": "track",
+      "name": "Too Raging to Cheers (Umberto remix)",
+      "mbid": "e1570d8d-f899-4a34-8793-42e03a19dc20",
+      "artist": "Mogwai"
+    },
+    {
+      "slug": "track:la-mort-blanche-robert-hampson-remix--mogwai",
+      "type": "track",
+      "name": "La mort blanche (Robert Hampson remix)",
+      "mbid": "da4de937-ac16-4924-8fd6-e4eb84316052",
+      "artist": "Mogwai"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": [
+    {
+      "slug": "project:hardcore-will-never-die-but-you-will",
+      "type": "project",
+      "name": "Hardcore Will Never Die But You Will"
+    },
+    {
+      "slug": "project:kicking-a-dead-pig",
+      "type": "project",
+      "name": "Kicking a Dead Pig"
+    }
+  ]
+}

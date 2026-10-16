@@ -1,0 +1,146 @@
+{
+  "slug": "project:tango-n-vectif",
+  "name": "Tango N' Vectif",
+  "editorial_article": "Tango N' Vectif is the debut studio album by British electronic music producer Mike Paradinas, released in 1993 under his alias µ-Ziq. As one of the foundational documents of the IDM (Intelligent Dance Music) era, the album was released on Richard D. James's influential Rephlex Records label. Tango N' Vectif emerged during a period of immense creative ferment in the UK electronic underground, standing out for its unique tension between abrasive, industrial-tinged percussion and lush, often melancholic melodic sensibilities. Unlike many of his contemporaries who leaned heavily into either cold functionality or pure abstraction, Paradinas crafted a sound that felt simultaneously dystopian and deeply human, incorporating flanged, distorted drum patterns alongside sweeping ambient pads and complex, evolving synth lines. The record is widely regarded as a benchmark for 1990s electronic music, blending elements of acid techno, ambient techno, and intricate breakbeat programming into a cohesive and atmospheric statement. Its legacy lies in its refusal to adhere to rigid genre boundaries, instead prioritizing melodic ingenuity and sonic texture, which helped define the experimental edge of electronic music in the early 90s. Beyond the dense, rhythmic intensity of tracks like 'Phi*1700 (u/v)' and the title track, the album showcases a level of melodic maturity and experimental depth that established µ-Ziq as a major voice within the Rephlex stable, alongside label-mates like Aphex Twin. The album remains a vital, albeit challenging, listen that bridges the gap between the frantic energy of rave culture and the introspective, headphone-oriented soundscapes that would come to dominate the genre's evolution.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/release/album/-ziq/tango-n-vectif/",
+      "title": "Tango N' Vectif by µ-Ziq (Album, IDM): Reviews, Ratings, Credits, Song list - Rate Your Music"
+    },
+    {
+      "url": "https://www.discogs.com/master/21332-%C2%B5-Ziq-Tango-N-Vectif?srsltid=AfmBOoqjQ4MWgEhUjxIQSkaWChbPelZNTuSTOI5ucj5iiywC-BAX4UCn",
+      "title": "µ-Ziq – Tango N' Vectif | Releases - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:40:54.335Z",
+  "mbid": "7b0f7a83-8d31-3bc8-81cb-66ea119a5090",
+  "type": "project",
+  "editorial_pitch": "Released in 1993 on the legendary Rephlex Records, Tango N' Vectif is the seminal debut from Mike Paradinas (as µ-Ziq), masterfully blending industrial percussion with lush, melodic IDM.",
+  "year": "1993",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "µ-Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
+    }
+  ],
+  "label": {
+    "slug": "label:rephlex",
+    "type": "label",
+    "name": "Rephlex"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient Techno",
+      "qid": "Q9149801"
+    },
+    {
+      "slug": "genre:acid-techno",
+      "type": "genre",
+      "name": "Acid Techno",
+      "qid": "Q341395"
+    },
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat",
+      "qid": "Q663519"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:tango-n-vectif",
+      "type": "track",
+      "name": "Tango N' Vectif"
+    },
+    {
+      "slug": "track:swan-vesta",
+      "type": "track",
+      "name": "Swan Vesta"
+    },
+    {
+      "slug": "track:burnt-sienna",
+      "type": "track",
+      "name": "Burnt Sienna"
+    },
+    {
+      "slug": "track:iesope",
+      "type": "track",
+      "name": "Iesope"
+    },
+    {
+      "slug": "track:auqeam",
+      "type": "track",
+      "name": "Auqeam"
+    },
+    {
+      "slug": "track:vibes",
+      "type": "track",
+      "name": "Vibes"
+    },
+    {
+      "slug": "track:ziq-theme",
+      "type": "track",
+      "name": "µ-Ziq Theme"
+    },
+    {
+      "slug": "track:the-sonic-fox",
+      "type": "track",
+      "name": "The Sonic Fox"
+    },
+    {
+      "slug": "track:amenida",
+      "type": "track",
+      "name": "Amenida"
+    },
+    {
+      "slug": "track:whale-soup",
+      "type": "track",
+      "name": "Whale Soup"
+    },
+    {
+      "slug": "track:xenith-filigree-anus",
+      "type": "track",
+      "name": "Xenith Filigree Anus (Edit)"
+    },
+    {
+      "slug": "track:die-zweite-heimat",
+      "type": "track",
+      "name": "Die Zweite Heimat"
+    },
+    {
+      "slug": "track:phragmal-synthesis",
+      "type": "track",
+      "name": "Phragmal Synthesis (Pt. 3)"
+    },
+    {
+      "slug": "track:phi-1700",
+      "type": "track",
+      "name": "Phi* 1700 (u/v)"
+    },
+    {
+      "slug": "track:beatnik-2",
+      "type": "track",
+      "name": "Beatnik #2"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:michael-paradinas",
+      "type": "artist",
+      "name": "Michael Paradinas"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

@@ -58,12 +58,12 @@
   ],
   "discography": [
     {
-      "slug": "project:landcruising--carl-craig",
+      "slug": "project:landcruising",
       "type": "project",
       "name": "Landcruising"
     },
     {
-      "slug": "project:more-songs-about-food-and-revolutionary-art--carl-craig",
+      "slug": "project:more-songs-about-food-and-revolutionary-art",
       "type": "project",
       "name": "More Songs About Food and Revolutionary Art"
     },
@@ -90,7 +90,7 @@
       "name": "Bug in the Bassbin"
     },
     {
-      "slug": "track:throw--paperclip-people",
+      "slug": "track:throw",
       "type": "track",
       "name": "Throw"
     }

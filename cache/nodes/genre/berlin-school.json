@@ -69,7 +69,7 @@
   "key_labels": [],
   "landmark_projects": [
     {
-      "slug": "project:phaedra--tangerine-dream",
+      "slug": "project:phaedra",
       "type": "project",
       "name": "Phaedra"
     },
@@ -79,7 +79,7 @@
       "name": "Timewind"
     },
     {
-      "slug": "project:rubycon--tangerine-dream",
+      "slug": "project:rubycon",
       "type": "project",
       "name": "Rubycon"
     }

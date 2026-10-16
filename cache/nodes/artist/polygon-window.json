@@ -49,7 +49,7 @@
   ],
   "discography": [
     {
-      "slug": "project:surfing-on-sine-waves--polygon-window",
+      "slug": "project:surfing-on-sine-waves",
       "type": "project",
       "name": "Surfing on Sine Waves"
     },
@@ -66,7 +66,7 @@
       "name": "Quoth"
     },
     {
-      "slug": "track:ut1-dot--polygon-window",
+      "slug": "track:ut1-dot",
       "type": "track",
       "name": "UT1-Dot"
     }

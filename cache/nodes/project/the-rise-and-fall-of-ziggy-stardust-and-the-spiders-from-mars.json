@@ -1,0 +1,137 @@
+{
+  "slug": "project:the-rise-and-fall-of-ziggy-stardust-and-the-spiders-from-mars",
+  "name": "The Rise and Fall of Ziggy Stardust and the Spiders from Mars",
+  "editorial_article": "Released on June 16, 1972, 'The Rise and Fall of Ziggy Stardust and the Spiders from Mars' stands as the definitive glam rock masterpiece and a cornerstone of 20th-century popular music. This fifth studio album by David Bowie, co-produced with Ken Scott at London's Trident Studios, solidified Bowie’s status as a transformative figure in rock. Through the narrative of Ziggy Stardust—a fictional, androgynous rock star sent to save an Earth facing imminent apocalypse—the album serves as a loose concept piece, exploring themes of stardom, sexuality, disillusionment, and the inherent artifice of the rock music industry.\\n\\nThe sonic architecture of the record was crafted alongside Bowie's legendary backing band, the Spiders from Mars: Mick Ronson on guitar, Trevor Bolder on bass, and Mick Woodmansey on drums. Their playing provided a punchy, aggressive edge that moved beyond the folkier textures of Bowie’s previous work, drawing heavily from proto-punk sensibilities and the influence of artists like Iggy Pop, The Velvet Underground, and Marc Bolan. Iconic tracks like \"Starman,\" \"Suffragette City,\" and the climactic \"Rock 'n' Roll Suicide\" showcased Bowie’s knack for theatrical songwriting and pop melody, perfectly captured within the mythos of the doomed extraterrestrial performer.\\n\\nThe cultural impact of the album was immediate, famously propelled by Bowie's performance of \"Starman\" on *Top of the Pops*, which brought his flamboyant alter-ego into the living rooms of a captivated British public. Beyond the charts, the album’s influence persists, having been recognized as a landmark of artistic growth. It remains a definitive statement on the power of the performer to reinvent themselves, shaping generations of musicians who sought to blend high-concept art with raw, rock-and-roll energy. In 2017, the Library of Congress selected it for preservation in the National Recording Registry, cementing its legacy as culturally and aesthetically significant.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Rise_and_Fall_of_Ziggy_Stardust_and_the_Spiders_from_Mars",
+      "title": "The Rise and Fall of Ziggy Stardust and the Spiders from Mars - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:54:21.353Z",
+  "mbid": "6c9ae3dd-32ad-472c-96be-69d0a3536261",
+  "type": "project",
+  "editorial_pitch": "Released on June 16, 1972, 'The Rise and Fall of Ziggy Stardust and the Spiders from Mars' stands as the definitive glam rock masterpiece and a cornerstone of 20th-century popular music.",
+  "year": "1972",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    }
+  ],
+  "label": {
+    "slug": "label:rca-records",
+    "type": "label",
+    "name": "RCA Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:glam-rock",
+      "type": "genre",
+      "name": "Glam rock",
+      "qid": "Q76092"
+    },
+    {
+      "slug": "genre:proto-punk",
+      "type": "genre",
+      "name": "Proto-punk",
+      "qid": "Q27190"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:five-years--david-bowie",
+      "type": "track",
+      "name": "Five Years",
+      "mbid": "9c9345d9-a631-484b-b66b-4e78aa776cb3",
+      "artist": "David Bowie"
+    },
+    {
+      "slug": "track:soul-love--david-bowie",
+      "type": "track",
+      "name": "Soul Love",
+      "mbid": "e8afe383-1478-497e-90b1-7885c7f37f6e",
+      "artist": "David Bowie"
+    },
+    {
+      "slug": "track:moonage-daydream--david-bowie",
+      "type": "track",
+      "name": "Moonage Daydream",
+      "mbid": "c0f27bed-7986-4c88-a9c6-1d16ebc9817b",
+      "artist": "David Bowie"
+    },
+    {
+      "slug": "track:starman--david-bowie",
+      "type": "track",
+      "name": "Starman",
+      "mbid": "308bc940-c25c-4847-ab55-4c4cf22683bc",
+      "artist": "David Bowie"
+    },
+    {
+      "slug": "track:it-ain-t-easy--david-bowie",
+      "type": "track",
+      "name": "It Ain’t Easy",
+      "mbid": "df367f8e-3f2d-4f37-84c7-5e6617e16258",
+      "artist": "David Bowie"
+    },
+    {
+      "slug": "track:lady-stardust--david-bowie",
+      "type": "track",
+      "name": "Lady Stardust",
+      "mbid": "2ca5c833-8f3d-4566-9d61-a2294ea996ac",
+      "artist": "David Bowie"
+    },
+    {
+      "slug": "track:star--david-bowie",
+      "type": "track",
+      "name": "Star",
+      "mbid": "674e786f-19ac-462b-98ab-e5340248a7f2",
+      "artist": "David Bowie"
+    },
+    {
+      "slug": "track:hang-on-to-yourself--david-bowie",
+      "type": "track",
+      "name": "Hang On to Yourself",
+      "mbid": "d76c72e3-3338-4d66-a3e1-7e9f5f71f95b",
+      "artist": "David Bowie"
+    },
+    {
+      "slug": "track:ziggy-stardust--david-bowie",
+      "type": "track",
+      "name": "Ziggy Stardust",
+      "mbid": "a0ca0cc0-cc0d-431c-8a36-dd917ea0dfa2",
+      "artist": "David Bowie"
+    },
+    {
+      "slug": "track:suffragette-city--david-bowie",
+      "type": "track",
+      "name": "Suffragette City",
+      "mbid": "4ce20795-0558-4302-943a-7f621f49aad6",
+      "artist": "David Bowie"
+    },
+    {
+      "slug": "track:rock-n-roll-suicide--david-bowie",
+      "type": "track",
+      "name": "Rock ’n’ Roll Suicide",
+      "mbid": "04534165-f62b-4505-8fc5-1c820df8da45",
+      "artist": "David Bowie"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie"
+    },
+    {
+      "slug": "artist:ken-scott",
+      "type": "artist",
+      "name": "Ken Scott"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

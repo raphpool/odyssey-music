@@ -15,7 +15,6 @@
   "materialized_at": "2026-05-13T12:58:09.907Z",
   "type": "genre",
   "editorial_definition": "Digital Hardcore is an intense, high-energy electronic music subgenre that fuses the confrontational political ethos and vocal style of hardcore punk with the aggressive, industrial-inflected sounds of techno and breakcore.",
-  "qid": "Q56580",
   "era": "1992–2000s",
   "origin": "Berlin, Germany",
   "parent_genres": [],
@@ -76,10 +75,11 @@
       "name": "Delete Yourself!"
     },
     {
-      "slug": "project:60-second-wipe-out--atari-teenage-riot",
+      "slug": "project:60-second-wipe-out",
       "type": "project",
       "name": "60 Second Wipe Out"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q56580"
 }

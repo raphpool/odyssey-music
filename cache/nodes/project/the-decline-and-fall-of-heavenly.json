@@ -1,0 +1,68 @@
+{
+  "slug": "project:the-decline-and-fall-of-heavenly",
+  "name": "The Decline and Fall of Heavenly",
+  "editorial_article": "Formed in the wake of the dissolution of the seminal C86-era act Talulah Gosh, Heavenly emerged in the early 1990s as one of the most vital and influential forces in the British indiepop scene. Centered around the distinct songwriting and vocals of Amelia Fletcher—joined by Peter, Rob, Cathy, and the late Matthew Fletcher—the band became a cornerstone of the legendary Bristol-based Sarah Records. Their sound evolved from the sweet, jangly, and frantic \"anorak-pop\" energy of their early years into a more sophisticated, muscular, and arguably more politically charged indie-rock sound, exemplified by landmark tracks like \"Atta Girl.\" \\n\\nThroughout their career, Heavenly balanced catchy, sun-drenched melodies with sharp, intelligent lyrics that often explored themes of gender politics, riot grrrl sensibilities, and the complexities of human relationships. Despite the relative isolation of the mid-90s UK indie scene, they garnered a cult following that stretched from the UK to international shores, particularly in the US via labels like K Records. Their legacy is characterized by a \"fresh, happy, and influential\" ethos that helped bridge the gap between classic indie-pop jangle and the grittier, more direct sounds of the late 90s. The band’s path was tragically cut short in 1997 following the death of their drummer, Matthew Fletcher, though his sister Amelia continued to influence independent music for decades afterward, notably forming Marine Research and later projects. Their discography, spanning albums such as 'Heavenly vs. Satan' (1991), 'Le Jardin de Heavenly' (1992), and 'The Decline and Fall of Heavenly' (1994), remains a definitive catalog of an era when indie-pop was at its most vibrant and unapologetic.",
+  "citations": [
+    {
+      "url": "https://elefant.com/bands/heavenly/biography",
+      "title": "Heavenly > - Biography - Elefant Records"
+    },
+    {
+      "url": "https://www.twee.net/bands/heavenly/heavenly.html",
+      "title": "Heavenly Discography - TweeNet"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:11:45.302Z",
+  "mbid": "ab3123a2-57ac-3884-9bf3-e90253d1dd5d",
+  "type": "project",
+  "editorial_pitch": "Formed in the wake of the dissolution of the seminal C86-era act Talulah Gosh, Heavenly emerged in the early 1990s as one of the most vital and influential forces in the British indiepop scene.",
+  "year": "1994",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:heavenly",
+      "type": "artist",
+      "name": "Heavenly",
+      "mbid": "d1a0301e-1167-42e8-bf89-c7835e0d3485"
+    }
+  ],
+  "label": {
+    "slug": "label:sarah-records",
+    "type": "label",
+    "name": "Sarah Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie pop",
+      "qid": "Q842324"
+    },
+    {
+      "slug": "genre:twee-pop",
+      "type": "genre",
+      "name": "Twee pop",
+      "qid": "Q370778"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:c-is-the-heavenly-option",
+      "type": "track",
+      "name": "C Is the Heavenly Option"
+    },
+    {
+      "slug": "track:skip-across-the-ocean",
+      "type": "track",
+      "name": "Skip Across the Ocean"
+    },
+    {
+      "slug": "track:hearts-and-crosses",
+      "type": "track",
+      "name": "Hearts and Crosses"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

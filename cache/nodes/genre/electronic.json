@@ -169,7 +169,7 @@
   ],
   "landmark_tracks": [
     {
-      "slug": "track:i-feel-love--donna-summer",
+      "slug": "track:i-feel-love",
       "type": "track",
       "name": "I Feel Love"
     },
@@ -184,12 +184,12 @@
       "name": "1/1"
     },
     {
-      "slug": "track:autobahn--kraftwerk",
+      "slug": "track:autobahn",
       "type": "track",
       "name": "Autobahn"
     },
     {
-      "slug": "track:windowlicker--aphex-twin",
+      "slug": "track:windowlicker",
       "type": "track",
       "name": "Windowlicker"
     }

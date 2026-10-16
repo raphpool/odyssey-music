@@ -1,0 +1,97 @@
+{
+  "slug": "project:pulse-demon",
+  "name": "Pulse Demon",
+  "editorial_article": "Pulse Demon is a seminal studio album by the Japanese noise musician Merzbow, released on May 28, 1996, via Relapse Records. Recorded in Tokyo at the ZSF Produkt Studio between October and November 1995, the album stands as a pillar of the harsh noise genre, often cited for its uncompromising sonic density. Masami Akita, the visionary force behind Merzbow, composed the album using a variety of noise-making tools including metal objects, shortwave radio, tape, voice, and noise electronics. The album's creation was marked by a commitment to direct, live-recorded noise-making, with Akita famously eschewing overdubs to maintain a raw and immediate intensity.\\n\\nThe aesthetic of the album is as striking as its sound; the original CD release featured a distinct holographic silver sleeve, an intentional nod to the 1970s Prospective 21e Siècle imprint of Philips Records and the minimalist op-art visual patterns of Bridget Riley. Akita has described the \"shiny silver\" look as an embodiment of heavy metal's spirit, viewing it through an unconventional, almost philosophical lens. The title itself serves as a dual tribute: referencing the 1970s Afro-rock band Demon Fuzz while also reflecting Akita’s technical approach of utilizing a fuzz box as a specialized pulse generator. Decades after its release, Pulse Demon continues to hold a reputation as an essential artifact of extreme music, celebrated by some as a masterwork of \"viciously unadulterated static\" and critiqued by others for its relentless, deafening output. Its enduring status is confirmed by multiple reissues on labels like Bludhoney and Relapse, cementing its place in the history of experimental sound.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Pulse_Demon",
+      "title": "Pulse Demon - Wikipedia"
+    },
+    {
+      "url": "https://merzbow.bandcamp.com/album/pulse-demon",
+      "title": "Pulse Demon | Merzbow"
+    },
+    {
+      "url": "https://rateyourmusic.com/release/album/merzbow/pulse-demon/",
+      "title": "Pulse Demon by Merzbow (Album, Harsh Noise): Reviews, Ratings ..."
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:55.394Z",
+  "mbid": "9c7ea5d2-2a14-3ba3-bb03-389bf1f0a926",
+  "type": "project",
+  "editorial_pitch": "A cornerstone of harsh noise and Japanoise, Pulse Demon is a high-intensity masterwork of raw, unadulterated sound that pushed the limits of sonic extremity upon its 1996 release.",
+  "year": "1996",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:merzbow",
+      "type": "artist",
+      "name": "Merzbow",
+      "mbid": "2841d983-f8c3-432a-af02-7407a84580a8"
+    }
+  ],
+  "label": {
+    "slug": "label:relapse-records",
+    "type": "label",
+    "name": "Relapse Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:noise",
+      "type": "genre",
+      "name": "Noise",
+      "qid": "Q726239"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:woodpecker-no-1",
+      "type": "track",
+      "name": "Woodpecker No. 1"
+    },
+    {
+      "slug": "track:woodpecker-no-2",
+      "type": "track",
+      "name": "Woodpecker No. 2"
+    },
+    {
+      "slug": "track:spiral-blast",
+      "type": "track",
+      "name": "Spiral Blast"
+    },
+    {
+      "slug": "track:my-station-rock",
+      "type": "track",
+      "name": "My Station Rock"
+    },
+    {
+      "slug": "track:ultra-marine-blues",
+      "type": "track",
+      "name": "Ultra Marine Blues"
+    },
+    {
+      "slug": "track:tokyo-times-ten",
+      "type": "track",
+      "name": "Tokyo Times Ten"
+    },
+    {
+      "slug": "track:worms-plastic-earthbound",
+      "type": "track",
+      "name": "Worms Plastic Earthbound"
+    },
+    {
+      "slug": "track:yellow-hyper-balls",
+      "type": "track",
+      "name": "Yellow Hyper Balls"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:masami-akita",
+      "type": "artist",
+      "name": "Masami Akita"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

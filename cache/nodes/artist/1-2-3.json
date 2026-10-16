@@ -40,10 +40,9 @@
   ],
   "discography": [
     {
-      "slug": "project:new-heaven--1-2-3",
+      "slug": "project:new-heaven",
       "type": "project",
-      "name": "New Heaven",
-      "artist": "1,2,3"
+      "name": "New Heaven"
     },
     {
       "slug": "project:confetti",

@@ -1,0 +1,110 @@
+{
+  "slug": "project:lonesome-crow",
+  "name": "Lonesome Crow",
+  "editorial_article": "Lonesome Crow is the debut studio album by the German rock band Scorpions, released on February 9, 1972. Recorded in October 1971 at Star Studios in Hamburg under the guidance of legendary producer Conny Plank, the album represents a distinct, experimental phase for the group, significantly different from the polished hard rock and power ballads that would later define their global success. At the time of recording, the band featured a young Michael Schenker, then only 16, whose guitar work provided a driving, often psychedelic edge to the compositions. The album served as the soundtrack for the German anti-drug film *Das Kalte Paradies* (*The Cold Paradise*), and its sonic landscape is characterized by a dark, melodic, and at times sprawling approach, blending elements of hard rock, psychedelic rock, and the emerging Krautrock sound of the era.\\n\\nWhile the album is an important historical artifact—marking the band's transition into a professional outfit—it remains an outlier in their discography. The songwriting is credited collectively to the band, a point of long-standing contention for Michael Schenker, who later left to join UFO and has claimed primary authorship over key tracks like \"In Search of the Peace of Mind.\" Apart from that specific song, which appeared intermittently in their live sets for years, Scorpions largely distanced themselves from the material on Lonesome Crow after the tour for their third album, In Trance. The album has seen various reissues under different titles, such as *Action* and *The Original Scorpions*, often with altered track listings, reflecting the band's own evolving relationship with their early, formative work. It stands today as a compelling, raw glimpse into the nascent creativity of a band that was still in the process of discovering its own identity.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Lonesome_Crow",
+      "title": "Lonesome Crow - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:51:32.238Z",
+  "mbid": "0d2e284a-6e58-34a2-80bb-fee809a42755",
+  "type": "project",
+  "editorial_pitch": "The 1972 debut album from Scorpions, showcasing a raw, psychedelic-tinged hard rock sound produced by the legendary Conny Plank.",
+  "year": "1972",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:scorpions",
+      "type": "artist",
+      "name": "Scorpions",
+      "mbid": "c3cceeed-3332-4cf0-8c4c-bbde425147b6"
+    }
+  ],
+  "label": {
+    "slug": "label:brain",
+    "type": "label",
+    "name": "Brain"
+  },
+  "genres": [
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard rock",
+      "qid": "Q83270"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic rock",
+      "qid": "Q206159"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock",
+      "qid": "Q320592"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:i-m-goin-mad--scorpions",
+      "type": "track",
+      "name": "I’m Goin’ Mad",
+      "mbid": "4c34d83f-e907-43ae-9166-c680f057401d",
+      "artist": "Scorpions"
+    },
+    {
+      "slug": "track:it-all-depends--scorpions",
+      "type": "track",
+      "name": "It All Depends",
+      "mbid": "295265ef-0ccf-4cda-919f-0c8c2269c1d0",
+      "artist": "Scorpions"
+    },
+    {
+      "slug": "track:leave-me--scorpions",
+      "type": "track",
+      "name": "Leave Me",
+      "mbid": "e3b207fd-a07d-410d-abc8-14f05893a627",
+      "artist": "Scorpions"
+    },
+    {
+      "slug": "track:in-search-of-the-peace-of-mind--scorpions",
+      "type": "track",
+      "name": "In Search of the Peace of Mind",
+      "mbid": "cd3d211d-7330-48ba-9e11-018683403dda",
+      "artist": "Scorpions"
+    },
+    {
+      "slug": "track:inheritance--scorpions",
+      "type": "track",
+      "name": "Inheritance",
+      "mbid": "6dd41d2a-526b-4747-a19f-3810ac586b9b",
+      "artist": "Scorpions"
+    },
+    {
+      "slug": "track:action--scorpions",
+      "type": "track",
+      "name": "Action",
+      "mbid": "96c33ef2-2657-4daa-8e34-7f559c0f6332",
+      "artist": "Scorpions"
+    },
+    {
+      "slug": "track:lonesome-crow--scorpions",
+      "type": "track",
+      "name": "Lonesome Crow",
+      "mbid": "99ec7954-7934-4e31-9797-aaa42f56cb9c",
+      "artist": "Scorpions"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:conny-plank",
+      "type": "artist",
+      "name": "Conny Plank"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

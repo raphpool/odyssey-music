@@ -64,20 +64,9 @@
       "slug": "artist:mouse-on-mars",
       "type": "artist",
       "name": "Mouse on Mars"
-    },
-    {
-      "slug": "artist:mary-hansen",
-      "type": "artist",
-      "name": "Mary Hansen"
     }
   ],
   "aliases": [],
-  "members": [
-    {
-      "slug": "artist:stereolab",
-      "type": "artist",
-      "name": "Stereolab"
-    }
-  ],
+  "members": [],
   "similar_artists": []
 }

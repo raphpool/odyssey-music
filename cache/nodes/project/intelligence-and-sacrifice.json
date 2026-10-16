@@ -1,0 +1,174 @@
+{
+  "slug": "project:intelligence-and-sacrifice",
+  "name": "Intelligence and Sacrifice",
+  "editorial_article": "Released in 2001, \"Intelligence and Sacrifice\" stands as a definitive milestone in the career of the German electronic music polymath Alec Empire. Following the high-profile dissolution of his revolutionary digital hardcore pioneers, Atari Teenage Riot, Empire sought to reinvent his sound, describing the record as his first \"real\" solo album. The project was issued through his influential Digital Hardcore Recordings label and was notable for its ambitious, sprawling dual-disc structure, which allowed Empire to explore two distinct sides of his sonic identity.\\n\\nThe first disc operates largely within the high-energy, politically charged digital hardcore framework that defined his previous work, blending aggressive punk energy with crushing breakbeats and distorted synthesizer leads. In contrast, the second disc, referred to as \"CD²,\" represents a marked departure, focusing on dense, texturally rich experimental electronics and ambient-leaning compositions that eschew traditional song structures and vocals. This juxtaposition highlighted Empire's versatility as both a confrontational stage performer and a meticulous studio producer. The album is heavily characterized by its use of industrial-strength sampling, featuring nods to heavy metal stalwarts like Slayer, Napalm Death, and Pantera, alongside cinematic audio cues, cementing the record's reputation as a genre-blending assault that captured the anxieties of the turn-of-the-millennium underground scene. Beyond its stylistic innovation, the record remains a critical document of how electronic artists were beginning to reconcile the raw physicality of punk with the limitless possibilities of digital production tools during that era.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Intelligence_and_Sacrifice",
+      "title": "Intelligence and Sacrifice - Wikipedia"
+    },
+    {
+      "url": "https://alecempire.bandcamp.com/album/intelligence-sacrifice-original-digital-hardcore-masters",
+      "title": "Intelligence & Sacrifice (Original Digital Hardcore Masters) | Alec Empire"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:58:32.250Z",
+  "mbid": "b11bfe9d-439d-3c67-aebf-ed4e3380d5fb",
+  "type": "project",
+  "editorial_pitch": "A sprawling 2001 double album from Alec Empire that juxtaposes high-octane digital hardcore with experimental ambient electronics, marking his rebirth as a solo artist post-Atari Teenage Riot.",
+  "year": "2001",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire",
+      "mbid": "d71ba53b-23b0-4870-a429-cce6f345763b"
+    }
+  ],
+  "label": {
+    "slug": "label:beat-records",
+    "type": "label",
+    "name": "Beat Records",
+    "mbid": "ea424c04-1edd-4ce4-8b3b-8181571ccaa3"
+  },
+  "genres": [],
+  "tracklist": [
+    {
+      "slug": "track:path-of-destruction--alec-empire",
+      "type": "track",
+      "name": "Path of Destruction",
+      "mbid": "723c7577-0564-4ecf-80e1-b2c71e82383f",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:the-ride--alec-empire",
+      "type": "track",
+      "name": "The Ride",
+      "mbid": "7e46ebab-e195-454e-89da-9e3f25e765bf",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:tear-it-out-remix--alec-empire",
+      "type": "track",
+      "name": "Tear It Out Remix",
+      "mbid": "68d1c688-3cce-4234-a0bf-86e63a5dbdc6",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:everything-starts-with-a-fuck--alec-empire",
+      "type": "track",
+      "name": "Everything Starts With a Fuck",
+      "mbid": "92be7866-b200-4625-ac96-4e55b481b455",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:killing-machine--alec-empire",
+      "type": "track",
+      "name": "Killing Machine",
+      "mbid": "77ee2dbb-6ef8-4f57-ae46-a186052a1fcf",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:addicted-to-you--alec-empire",
+      "type": "track",
+      "name": "Addicted to You",
+      "mbid": "588cb9cc-e304-462d-907e-17d6a8eede3e",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:intelligence-and-sacrifice--alec-empire",
+      "type": "track",
+      "name": "Intelligence and Sacrifice",
+      "mbid": "b273e8b7-0b40-41e9-9f36-2479e20663c5",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:death-favours-the-enemy--alec-empire",
+      "type": "track",
+      "name": "Death Favours the Enemy",
+      "mbid": "929d3a8f-78a2-4ed7-80d2-d332ae01a9b3",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:buried-alive--alec-empire",
+      "type": "track",
+      "name": "Buried Alive",
+      "mbid": "a41be503-e7f8-4757-97d7-e1d632f14738",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:and-never-be-found--alec-empire",
+      "type": "track",
+      "name": "And Never Be Found",
+      "mbid": "90d7d844-852a-4d2f-9c2d-98e5e7f38f9c",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:new-world-order-final--alec-empire",
+      "type": "track",
+      "name": "New World Order (Final)",
+      "mbid": "6cf38df8-cb4e-455e-bf0f-0743f674983e",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:2641998--alec-empire",
+      "type": "track",
+      "name": "2641998",
+      "mbid": "2e3598bd-52a7-4c63-8768-824489325ab0",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:the-cat-women-of-the-moon--alec-empire",
+      "type": "track",
+      "name": "The Cat Women of the Moon",
+      "mbid": "c197efc2-afe9-48d7-a35f-dcb8d2f8e29d",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:two-turntables-and-a-moog--alec-empire",
+      "type": "track",
+      "name": "Two Turntables and a Moog",
+      "mbid": "52c581df-7d62-4758-977d-9ddb95739816",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:parallel-universe--alec-empire",
+      "type": "track",
+      "name": "Parallel Universe",
+      "mbid": "235ec03e-cce0-44c4-8312-3be2ef53b44e",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:vault-things-of-the-night--alec-empire",
+      "type": "track",
+      "name": "Vault Things of the Night",
+      "mbid": "1ab4055f-0ca4-464e-b355-caef7d184280",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:silence-and-burning-ice--alec-empire",
+      "type": "track",
+      "name": "Silence and Burning Ice",
+      "mbid": "6f76fa5b-b08d-4d98-8d0d-bb828e4afdb2",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:alec-s-ladder--alec-empire",
+      "type": "track",
+      "name": "Alec's Ladder",
+      "mbid": "231b223b-78a1-49f6-8aca-3dcaafb8ee88",
+      "artist": "Alec Empire"
+    },
+    {
+      "slug": "track:electric-bodyrock--alec-empire",
+      "type": "track",
+      "name": "Electric Bodyrock",
+      "mbid": "7ebeb3cc-eb76-4865-a485-1744170bc04b",
+      "artist": "Alec Empire"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

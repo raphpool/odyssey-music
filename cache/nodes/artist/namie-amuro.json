@@ -131,6 +131,12 @@
     }
   ],
   "aliases": [],
-  "members": [],
+  "members": [
+    {
+      "slug": "artist:namie-amuro",
+      "type": "artist",
+      "name": "Namie Amuro"
+    }
+  ],
   "similar_artists": []
 }

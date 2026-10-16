@@ -1,0 +1,102 @@
+{
+  "slug": "project:discreet-music",
+  "name": "Discreet Music",
+  "editorial_article": "Discreet Music, released in 1975, is a pivotal work in the discography of British musician and producer Brian Eno. Serving as his fourth studio album and the first to be released under his full name, it stands as a foundational document of ambient and generative music. The album is famously split into two distinct parts: the title track, a 30-minute minimalist piece composed using an EMS Synthi AKS sequencer and tape delay systems; and three variations on Johann Pachelbel’s Canon in D Major, which were performed by the Cockpit Ensemble and arranged by Gavin Bryars. \\n\\nThe central concept of the title track was born from a desire for music that could coexist with an environment, functioning as \"furniture music\"—a term borrowed from Erik Satie—that the listener could choose to hear or ignore. The recording process itself was highly generative; Eno set up the apparatus and allowed it to run, with his intervention limited to minor adjustments as he dealt with other tasks. The resulting sonic texture is one of gentle, shifting loops that create a landscape for the listener to inhabit. This approach to \"automatic music\" would become a defining characteristic of Eno's career, leading directly to the ambient aesthetic he would further refine on landmark releases like 1978's Ambient 1: Music for Airports. \\n\\nDiscreet Music is often cited as a key turning point where Eno moved away from the more structured art-pop of his earlier records and toward the introspective, atmospheric compositions that reshaped the electronic music landscape. By creating a space where the listener could engage with music at their own level of focus, Eno effectively anticipated the emergence of modern ambient, drone, and soundscape genres. The album remains a testament to the idea that composition can be as much about setting a system in motion as it is about deliberate, note-for-note arrangement.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Discreet_Music",
+      "title": "Discreet Music - Wikipedia"
+    },
+    {
+      "url": "https://reverbmachine.com/blog/deconstructing-brian-enos-discreet-music/",
+      "title": "How Brian Eno Created \"Discreet Music\" | Reverb Machine"
+    },
+    {
+      "url": "http://music.hyperreal.org/artists/brian_eno/discreet-txt.html",
+      "title": "Discreet Music Liner Notes"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:37:36.020Z",
+  "mbid": "8aa4a5d9-808e-3aa9-9088-890efa7214b4",
+  "type": "project",
+  "editorial_pitch": "A foundational masterwork of ambient music, Brian Eno's 1975 album 'Discreet Music' pioneered the concept of 'furniture music' through generative composition, tape loops, and minimalist synthesis.",
+  "year": "1975",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    }
+  ],
+  "label": {
+    "slug": "label:obscure-records",
+    "type": "label",
+    "name": "Obscure Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    },
+    {
+      "slug": "genre:minimalist",
+      "type": "genre",
+      "name": "Minimalist",
+      "qid": "Q572901"
+    },
+    {
+      "slug": "genre:generative-music",
+      "type": "genre",
+      "name": "Generative music"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-garde",
+      "qid": "Q2332751"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:discreet-music--brian-eno",
+      "type": "track",
+      "name": "Discreet Music",
+      "mbid": "96650262-8a7a-41fd-bc08-82deef87a490",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:fullness-of-wind-variation-on-the-canon-in-d-major-by-johann-pachelbel--brian-eno",
+      "type": "track",
+      "name": "Fullness of Wind (variation on the “Canon in D major” by Johann Pachelbel)",
+      "mbid": "b3954949-9228-4caf-be97-7893bb01039b",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:french-catalogues-variation-on-the-canon-in-d-major-by-johann-pachelbel--brian-eno",
+      "type": "track",
+      "name": "French Catalogues (variation on the “Canon in D major” by Johann Pachelbel)",
+      "mbid": "ea195639-c93b-46f2-bdb6-797c78e70d89",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:brutal-ardour-variation-on-the-canon-in-d-major-by-johann-pachelbel--brian-eno",
+      "type": "track",
+      "name": "Brutal Ardour (variation on the “Canon in D major” by Johann Pachelbel)",
+      "mbid": "87c40abd-10af-4fe6-b323-e7ce82c45a8d",
+      "artist": "Brian Eno"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

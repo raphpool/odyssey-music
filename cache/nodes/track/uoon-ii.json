@@ -34,7 +34,7 @@
     }
   ],
   "project": {
-    "slug": "project:vrioon--ryuichi-sakamoto",
+    "slug": "project:vrioon",
     "type": "project",
     "name": "Vrioon"
   },
@@ -58,7 +58,6 @@
       "name": "Ryuichi Sakamoto"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

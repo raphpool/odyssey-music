@@ -57,7 +57,7 @@
       "name": "Shred"
     },
     {
-      "slug": "project:compro--skee-mask",
+      "slug": "project:compro",
       "type": "project",
       "name": "Compro"
     },
@@ -74,17 +74,17 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:50-euro-to-break-boost--skee-mask",
+      "slug": "track:50-euro-to-break-boost",
       "type": "track",
       "name": "50 Euro to Break Boost"
     },
     {
-      "slug": "track:flyby-vfr--skee-mask",
+      "slug": "track:flyby-vfr",
       "type": "track",
       "name": "Flyby VFR"
     },
     {
-      "slug": "track:rev8617--skee-mask",
+      "slug": "track:rev8617",
       "type": "track",
       "name": "Rev8617"
     }

@@ -19,7 +19,6 @@
   "materialized_at": "2026-05-13T12:47:11.587Z",
   "type": "genre",
   "editorial_definition": "A subgenre of electronic music defined by long-form, sequencer-driven compositions, atmospheric synthesizer textures, and the intentional avoidance of traditional, percussion-heavy rhythms in favor of hypnotic, evolving soundscapes. Originating in West Berlin during the early 1970s, it stands as a pivotal development in progressive electronic music, deeply linked to the experimental ethos of the broader Krautrock movement.",
-  "qid": "Q530750",
   "era": "1970s",
   "origin": "West Berlin, Germany",
   "parent_genres": [
@@ -70,7 +69,7 @@
   "key_labels": [],
   "landmark_projects": [
     {
-      "slug": "project:phaedra--tangerine-dream",
+      "slug": "project:phaedra",
       "type": "project",
       "name": "Phaedra"
     },
@@ -80,7 +79,7 @@
       "name": "X"
     },
     {
-      "slug": "project:rubycon--tangerine-dream",
+      "slug": "project:rubycon",
       "type": "project",
       "name": "Rubycon"
     },
@@ -90,5 +89,6 @@
       "name": "Timewind"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q530750"
 }

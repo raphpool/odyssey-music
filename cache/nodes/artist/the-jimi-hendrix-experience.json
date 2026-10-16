@@ -46,17 +46,17 @@
   "labels": [],
   "discography": [
     {
-      "slug": "project:are-you-experienced--the-jimi-hendrix-experience",
+      "slug": "project:are-you-experienced",
       "type": "project",
       "name": "Are You Experienced"
     },
     {
-      "slug": "project:axis-bold-as-love--the-jimi-hendrix-experience",
+      "slug": "project:axis-bold-as-love",
       "type": "project",
       "name": "Axis: Bold as Love"
     },
     {
-      "slug": "project:electric-ladyland--the-jimi-hendrix-experience",
+      "slug": "project:electric-ladyland",
       "type": "project",
       "name": "Electric Ladyland"
     }
@@ -68,7 +68,7 @@
       "name": "Purple Haze"
     },
     {
-      "slug": "track:foxy-lady--the-jimi-hendrix-experience",
+      "slug": "track:foxy-lady",
       "type": "track",
       "name": "Foxy Lady"
     },

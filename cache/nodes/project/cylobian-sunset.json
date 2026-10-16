@@ -1,0 +1,119 @@
+{
+  "slug": "project:cylobian-sunset",
+  "name": "Cylobian Sunset",
+  "editorial_article": "Cylobian Sunset stands as a hallmark release in the discography of British electronic producer Cylob, capturing the nuanced, playful, and often jarring spirit of mid-90s Intelligent Dance Music (IDM). Released independently via the artist's own channels, the project is a testament to the versatility of the genre, moving seamlessly between aggressive, rhythmically complex tracks and fragile, ambient-leaning soundscapes. Listeners and critics alike have praised the album for its cohesive yet adventurous atmosphere, noting how tracks like \"Synek\" and \"Diof\" reflect a masterful command of digital synthesis and unconventional melodic structures. \\n\\nThe project is frequently highlighted for its cinematic quality, effectively utilizing texture and space to evoke a sense of \"robo-emo\"—a descriptor often applied by fans to characterize the balance between cold, calculated programming and genuine, heart-wrenching emotional depth. The influence of the Rephlex Records era is palpable throughout, with the production mirroring the mischievous, brain-bending melodic playfulness often associated with Aphex Twin. From the frantic, skittering beats of \"Ofid\" to the atmospheric weight of the title track, \"Cylobian Sunset\" remains a cornerstone for those interested in the evolution of IDM, continuing to resonate with listeners who value both technical precision and melodic charm. It remains a definitive entry point for exploring Cylob’s broad creative palette, offering a window into a period of electronic music where technical experimentation was deeply intertwined with thematic expression.",
+  "citations": [
+    {
+      "url": "https://cylob.bandcamp.com/album/cylobian-sunset",
+      "title": "Cylobian Sunset | Cylob"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:08:06.884Z",
+  "mbid": "321978a4-4c80-3936-a50e-5439d2a0322c",
+  "type": "project",
+  "editorial_pitch": "Cylobian Sunset is a captivating collection of IDM and ambient electronica from producer Cylob, showcasing a blend of skittering rhythms, feral melodies, and lush, cinematic soundscapes. The album is highly regarded for its distinct personality and emotive technicality, often drawing favorable comparisons to the innovative, off-kilter aesthetic pioneered by artists like Aphex Twin.",
+  "year": "1996",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:cylob",
+      "type": "artist",
+      "name": "Cylob",
+      "mbid": "2256228e-8253-45ad-974e-39ae914c5586"
+    }
+  ],
+  "label": {
+    "slug": "label:rephlex",
+    "type": "label",
+    "name": "Rephlex",
+    "mbid": "820fa04e-9927-40bb-a6c5-1bf883b159c7"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:synek--cylob",
+      "type": "track",
+      "name": "Synek",
+      "mbid": "1231b0dc-2f35-4971-9996-0a8d97f098bd",
+      "artist": "Cylob"
+    },
+    {
+      "slug": "track:diof--cylob",
+      "type": "track",
+      "name": "Diof",
+      "mbid": "4e087e9a-d6b4-4e48-861c-713725fbb488",
+      "artist": "Cylob"
+    },
+    {
+      "slug": "track:bazfoul--cylob",
+      "type": "track",
+      "name": "Bazfoul",
+      "mbid": "ca633501-b62d-4720-9458-b0964114db4b",
+      "artist": "Cylob"
+    },
+    {
+      "slug": "track:foid--cylob",
+      "type": "track",
+      "name": "Foid",
+      "mbid": "c496c3bf-d497-4c74-a38b-9f91d4c995a2",
+      "artist": "Cylob"
+    },
+    {
+      "slug": "track:ofid--cylob",
+      "type": "track",
+      "name": "Ofid",
+      "mbid": "71947114-a5b5-486c-8e01-7c50656b4f56",
+      "artist": "Cylob"
+    },
+    {
+      "slug": "track:instant-shrink--cylob",
+      "type": "track",
+      "name": "Instant Shrink",
+      "mbid": "651e6b3b-caec-4f1f-a05a-ac4cc6b0eec1",
+      "artist": "Cylob"
+    },
+    {
+      "slug": "track:balzouf--cylob",
+      "type": "track",
+      "name": "Balzouf",
+      "mbid": "f154d664-9a27-4dc1-ab7d-073829e9b4d1",
+      "artist": "Cylob"
+    },
+    {
+      "slug": "track:i-left-my-heart-in-syntax-error--cylob",
+      "type": "track",
+      "name": "I Left My Heart in Syntax Error",
+      "mbid": "e9c7bcc9-3856-414a-ad9f-1154dc7444e6",
+      "artist": "Cylob"
+    },
+    {
+      "slug": "track:cylobian-sunset--cylob",
+      "type": "track",
+      "name": "Cylobian Sunset",
+      "mbid": "6ac0dab8-eb28-4a07-aedb-b4fafc8c11b4",
+      "artist": "Cylob"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

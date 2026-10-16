@@ -1,0 +1,51 @@
+{
+  "slug": "track:axel-f",
+  "name": "Axel F",
+  "editorial_article": "\"Axel F\" is an iconic electronic instrumental track composed, produced, and performed by German musician Harold Faltermeyer in 1985. Serving as the primary theme for the hit film *Beverly Hills Cop*, the track is defined by its infectious, rhythmic synth-pop structure and groundbreaking use of synthesizers, which quickly propelled it to international success. Its sound is characterized by a distinctive, catchy saw-tooth lead line—famously programmed on a Roland Jupiter-8—supported by modular Moog bass, snappy chord stabs from a Roland JX-3P, marimba-like tones from a Yamaha DX7, and precise drum programming courtesy of the LinnDrum. \n\nThe track's cultural footprint grew significantly beyond its initial cinematic debut, securing top chart positions across Europe, Canada, and the United States. Its influence on 1980s pop culture and electronic music production remains profound, marking a transition point where film music blended seamlessly with the commercial pop charts. While the original recording remains a staple of synth-pop history, the melody has been revisited, sampled, and reimagined numerous times, most notably through high-profile covers by acts like Crazy Frog decades later, cementing its status as an enduring, globally recognized piece of musical shorthand. Faltermeyer’s meticulous approach to synthesis and his mastery of the gear of the era allowed \"Axel F\" to retain a crisp, futuristic quality that continues to resonate with both electronic music enthusiasts and the general public alike.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Axel_F",
+      "title": "Axel F - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:51.071Z",
+  "type": "track",
+  "editorial_teaser": "\"Axel F\" is a seminal 1985 electronic instrumental track by Harold Faltermeyer, created as the theme for *Beverly Hills Cop* and famous for its pioneering synth-pop production and globally recognized melody.",
+  "year": "1985",
+  "artists": [
+    {
+      "slug": "artist:harold-faltermeyer",
+      "type": "artist",
+      "name": "Harold Faltermeyer"
+    }
+  ],
+  "project": {
+    "slug": "project:beverly-hills-cop",
+    "type": "project",
+    "name": "Beverly Hills Cop (soundtrack)"
+  },
+  "genres": [
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop",
+      "qid": "Q1298934"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:harold-faltermeyer",
+      "type": "artist",
+      "name": "Harold Faltermeyer"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}
