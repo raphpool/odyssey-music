@@ -44,7 +44,8 @@ set -euo pipefail
 # `removed` and the old side of `renamed` are the only server-side deletions (same explicit
 # `rm -f --` as merge losers), and every `redirects` AND `renamed` pair must already be committed in
 # data/genre-redirects.json or data/slug-redirects.json (the "not yet committed" guard below).
-# A migration also gets `--data-dir <dir>`: a SCRATCH copy of those two tables, the only place it
+# A migration also gets `--data-dir <dir>`: a SCRATCH copy of those two tables (plus, TRA-575, the
+# committed identity-exclusions.json the artist step reads), the only place it
 # may read/write redirect tables. It must never write the repo's data/ (a redirect written there
 # would be read back as "committed" and shipped): the script refuses if the repo changed. The tables
 # shipped and checked are the copies taken before the run. Its tables are discarded.
@@ -85,6 +86,10 @@ REPO_REDIRECTS_PATH="${REPO_REDIRECTS_PATH:-$REPO_ROOT/data/genre-redirects.json
 # REPO_REDIRECTS_PATH (test fixtures); the workflow sets none of them.
 REPO_SLUG_REDIRECTS_PATH="${REPO_SLUG_REDIRECTS_PATH:-$REPO_ROOT/data/slug-redirects.json}"
 MIGRATIONS_DIR="${MIGRATIONS_DIR:-$REPO_ROOT/scripts/migrations}"
+# 2026-10-16 (TRA-575): the committed list of artists the identity backfill must never resolve (TRA-574).
+# The artist step reads it from its --data-dir and refuses to run without it, so the channel hands it over
+# there (it is an INPUT: never shipped to the server, never compared with the committed tables).
+REPO_IDENTITY_EXCLUSIONS_PATH="${REPO_IDENTITY_EXCLUSIONS_PATH:-$REPO_ROOT/data/identity-exclusions.json}"
 SERVER_CACHE_REMOTE="${SERVER_CACHE_REMOTE:-/opt/odyssey-music/cache}"
 SERVER_REDIRECTS_REMOTE="${SERVER_REDIRECTS_REMOTE:-/opt/odyssey-music/data/genre-redirects.json}"
 SERVER_SLUG_REDIRECTS_REMOTE="${SERVER_SLUG_REDIRECTS_REMOTE:-/opt/odyssey-music/data/slug-redirects.json}"
@@ -183,6 +188,12 @@ if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
 	# after the writer is stopped.
 	if [[ ! -f "$REPO_SLUG_REDIRECTS_PATH" ]]; then
 		echo "ERROR: $REPO_SLUG_REDIRECTS_PATH is missing -- a migration run ships it to the server." >&2
+		exit 1
+	fi
+	# 2026-10-16 (TRA-575): only the artist step needs the exclusion list; a plain sync, or a run of other
+	# migrations, neither requires nor reads it. Refuse now, before the snapshot, the archive or the stop.
+	if [[ $ARTIST_INDEX -ge 0 && ! -f "$REPO_IDENTITY_EXCLUSIONS_PATH" ]]; then
+		echo "ERROR: $REPO_IDENTITY_EXCLUSIONS_PATH is missing -- $ARTIST_STEP refuses to run without the committed identity-exclusions list (TRA-574). Refusing." >&2
 		exit 1
 	fi
 fi
@@ -428,6 +439,10 @@ if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
 	cp "$REPO_SLUG_REDIRECTS_PATH" "$COMMITTED_SLUG_TABLE"
 	cp "$REPO_REDIRECTS_PATH" "$MIGRATION_DATA_DIR/genre-redirects.json"
 	cp "$REPO_SLUG_REDIRECTS_PATH" "$MIGRATION_DATA_DIR/slug-redirects.json"
+	# TRA-575: present whenever the repo has it; its absence only matters (and is refused above) for $ARTIST_STEP.
+	if [[ -f "$REPO_IDENTITY_EXCLUSIONS_PATH" ]]; then
+		cp "$REPO_IDENTITY_EXCLUSIONS_PATH" "$MIGRATION_DATA_DIR/identity-exclusions.json"
+	fi
 	: >"$MIGRATION_TARGETS"
 	REPO_STATE_BEFORE="$(repo_state)"
 	UNION_ROOT_BEFORE="$(union_root_state)"

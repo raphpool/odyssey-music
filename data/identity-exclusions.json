@@ -1,0 +1,10 @@
+{
+	"artists": {
+		"artist:alfred-d-orsay": "Stored mbid is the group \"Orsay\", not the artist this node describes.",
+		"artist:andy-turner": "The node mixes two people: Andy Turner of Aim (the stored mbid) and Andy Turner of Plaid (its members edges).",
+		"artist:bossa-nova": "A genre recorded as an artist; its stored mbid does not identify a musician.",
+		"artist:johnny-reid": "Stored mbid is \"Johny\", a trance DJ, not the artist this node describes.",
+		"artist:tyla": "Stored mbid is Tyla of Dogs D'Amour, not the South African singer this node describes.",
+		"artist:voices-of-life": "Resolved by name alone without any corroboration; the article describes a Florida choir."
+	}
+}
