@@ -238,10 +238,12 @@ async function caa(mbid: string | undefined, deps: ImageDeps): Promise<ResolvedI
 async function itunes(
 	title: string,
 	artistName: string | undefined,
+	year: string | undefined,
 	deps: ImageDeps,
 ): Promise<ResolvedImage | null> {
 	if (!artistName) return null;
-	const url = await lookupVerifiedAlbumArt(title, artistName, deps.fetch);
+	// The year is what tells two recordings of the same work apart (TRA-595).
+	const url = await lookupVerifiedAlbumArt(title, artistName, deps.fetch, { year });
 	return url ? { url, source: "itunes-verified" } : null;
 }
 
@@ -267,7 +269,7 @@ export async function resolveImage(node: NodePayload, deps: ImageDeps): Promise<
 		case "project":
 			return firstOf([
 				["caa", () => caa(node.mbid, deps)],
-				["itunes", () => itunes(node.name, node.artists[0]?.name, deps)],
+				["itunes", () => itunes(node.name, node.artists[0]?.name, node.year, deps)],
 			]);
 
 		case "track": {
@@ -289,6 +291,8 @@ export async function resolveImage(node: NodePayload, deps: ImageDeps): Promise<
 						itunes(
 							projectRef?.name ?? node.name,
 							node.artists[0]?.name ?? (project?.type === "project" ? project.artists[0]?.name : undefined),
+							// The release year is the album's: the track's own year may be a single's.
+							(project?.type === "project" ? project.year : undefined) ?? projectRef?.year ?? node.year,
 							deps,
 						),
 				],

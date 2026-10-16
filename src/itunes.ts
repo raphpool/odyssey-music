@@ -131,6 +131,7 @@ const albumSearchResultSchema = z.object({
 	artworkUrl100: z.string().optional(),
 	collectionName: z.string().optional(),
 	artistName: z.string().optional(),
+	releaseDate: z.string().optional(),
 });
 const albumSearchResponseSchema = z.object({ results: z.array(z.unknown()) });
 
@@ -206,6 +207,41 @@ function isVariousArtists(raw: string): boolean {
 }
 
 /**
+ * Canonical form of an artist credit for EQUALITY: accents, case, punctuation and `&`/`and` folded,
+ * nothing else. "Terry Riley" and "Daniel Brandell, Horn Ensemble D3 & Terry Riley" are different
+ * credits: a recording by someone else that merely features the artist is another recording of the
+ * work (TRA-595).
+ */
+function canonicalArtist(raw: string): string {
+	return raw
+		.normalize("NFD")
+		.replace(/\p{M}/gu, "")
+		.toLowerCase()
+		.replace(/['\u2019`]/g, "")
+		.replace(/&/g, " and ")
+		.replace(/[^\p{L}\p{N}]+/gu, " ")
+		.trim();
+}
+
+/** First standalone 4-digit run of a year-ish string ("1976", "c. 1976", "1976-03-01T08:00:00Z"). */
+function parseYear(raw: string | undefined): number | null {
+	const m = raw ? /(?<!\d)(\d{4})(?!\d)/.exec(raw) : null;
+	return m?.[1] ? Number(m[1]) : null;
+}
+
+/** Release years further apart than this are two different releases (year-end reissues stay in). */
+const MAX_YEAR_GAP = 1;
+
+export interface AlbumArtOptions {
+	/**
+	 * Year of the node being resolved (`year` of a project, or of the track's project). When it holds a
+	 * year, an iTunes release must be within `MAX_YEAR_GAP` of it. Absent or without a 4-digit year:
+	 * the year is not checked.
+	 */
+	year?: string | undefined;
+}
+
+/**
  * Cover art for an album, but only from a result whose collection name AND artist name both match
  * what we asked for (TRA-465). iTunes returns plausible-looking strangers for a text query, so
  * this reads `limit=5` results and takes the best verified one, never
@@ -219,8 +255,15 @@ function isVariousArtists(raw: string): boolean {
  *     suffix ("Vol. 2", "2009 Remaster", "Live") does not;
  *   - neither the asked artist nor the result's artist is "Various Artists" (a compilation is
  *     not verifiable; the request is not even sent);
- *   - the artist passes the `src/streaming-links.ts` threshold: `nameMatchScore` not null (at least
- *     one significant token of the artist overlaps).
+ *   - the artist credit is EQUAL to the asked artist once normalized (TRA-595): a credit that merely
+ *     contains the artist, or lists several, is another recording of the work ("In C" by
+ *     "Daniel Brandell, Horn Ensemble D3 & Terry Riley", 2020);
+ *   - when `options.year` holds a year, the iTunes release year is within one year of it, and a
+ *     result without a readable `releaseDate` is refused (Music for 18 Musicians: ECM 1978 yes,
+ *     Nonesuch 1998 no). Among the verified results the closest year wins; if the best distance is
+ *     shared by results with different artwork, nothing is retained (an undecidable tie is no
+ *     image). Without a node year every verified result is at distance 0, so the same tie rule
+ *     applies: two exact-credit releases with different artwork and nothing to tell them apart.
  * The response is third-party data: schema-checked, and the artwork URL must be https on
  * `*.mzstatic.com` in the canonical form `isAllowedImageUrl` accepts.
  *
@@ -230,11 +273,14 @@ export async function lookupVerifiedAlbumArt(
 	title: string,
 	artistName: string,
 	fetchImpl: typeof fetch = fetch,
+	options: AlbumArtOptions = {},
 ): Promise<string | null> {
 	if (!title.trim() || !artistName.trim()) return null;
 	if (isVariousArtists(artistName)) return null;
 	const wantedTitle = canonicalAlbumTitle(title);
-	if (!wantedTitle) return null;
+	const wantedArtist = canonicalArtist(artistName);
+	if (!wantedTitle || !wantedArtist) return null;
+	const wantedYear = parseYear(options.year);
 	const term = `${title} ${artistName}`;
 	const url = `${SEARCH_URL}?term=${encodeURIComponent(term)}&entity=album&limit=5`;
 	const controller = new AbortController();
@@ -244,22 +290,32 @@ export async function lookupVerifiedAlbumArt(
 		if (!r.ok) return null;
 		const body = albumSearchResponseSchema.safeParse(await r.json());
 		if (!body.success) return null;
-		let best: { art: string; score: number } | null = null;
+		const verified: Array<{ art: string; gap: number }> = [];
 		for (const raw of body.data.results) {
 			const parsed = albumSearchResultSchema.safeParse(raw);
 			if (!parsed.success) continue;
-			const { artworkUrl100, collectionName, artistName: resultArtist } = parsed.data;
+			const { artworkUrl100, collectionName, artistName: resultArtist, releaseDate } = parsed.data;
 			if (!artworkUrl100 || !collectionName || !resultArtist) continue;
 			if (isVariousArtists(resultArtist)) continue;
+			if (canonicalArtist(resultArtist) !== wantedArtist) continue;
 			if (canonicalAlbumTitle(collectionName) !== wantedTitle) continue;
-			const titleScore = nameMatchScore(collectionName, title, undefined);
-			const artistScore = nameMatchScore(resultArtist, artistName, undefined);
-			if (titleScore === null || artistScore === null) continue;
+			if (nameMatchScore(collectionName, title, undefined) === null) continue;
+			let gap = 0;
+			if (wantedYear !== null) {
+				const year = parseYear(releaseDate);
+				if (year === null) continue;
+				gap = Math.abs(year - wantedYear);
+				if (gap > MAX_YEAR_GAP) continue;
+			}
 			const art = toHighResArtwork(artworkUrl100);
 			if (!art) continue;
-			if (!best || titleScore + artistScore > best.score) best = { art, score: titleScore + artistScore };
+			verified.push({ art, gap });
 		}
-		return best?.art ?? null;
+		if (verified.length === 0) return null;
+		const closest = Math.min(...verified.map((v) => v.gap));
+		const arts = new Set(verified.filter((v) => v.gap === closest).map((v) => v.art));
+		// Two different pictures at the same distance: nothing tells the recordings apart, so no image.
+		return arts.size === 1 ? (arts.values().next().value ?? null) : null;
 	} catch {
 		return null;
 	} finally {
