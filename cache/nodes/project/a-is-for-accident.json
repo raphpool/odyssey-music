@@ -17,14 +17,17 @@
     }
   ],
   "materialized_at": "2026-05-13T12:50:07.217Z",
+  "mbid": "f380b9b4-7b52-3d9c-95e7-5429f75bebc4",
   "type": "project",
   "editorial_pitch": "A raw, visceral introduction to the dark cabaret aesthetic of The Dresden Dolls, collecting early demos and live performances that define their piano-punk sound.",
   "year": "2003",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:the-dresden-dolls",
       "type": "artist",
-      "name": "The Dresden Dolls"
+      "name": "The Dresden Dolls",
+      "mbid": "107c7983-0728-46ea-8550-77e698adf690"
     }
   ],
   "label": {
@@ -58,5 +61,6 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

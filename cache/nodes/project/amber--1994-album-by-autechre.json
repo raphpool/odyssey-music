@@ -13,15 +13,18 @@
     }
   ],
   "materialized_at": "2026-05-13T12:36:37.975Z",
+  "mbid": "44818c20-67ee-37d2-a8bf-d157fd99ae0b",
   "type": "project",
   "editorial_pitch": "Amber is a seminal work of mid-90s electronic music that marks Autechre's transition from compilation-based efforts to a more cohesive, atmospheric, and forward-thinking sonic identity. Balancing the intricate rhythms of IDM with vast, ambient textures, it remains a pillar of the Warp Records catalog.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/thumb/5/59/Autechre_-_Amber_cover_art.png/250px-Autechre_-_Amber_cover_art.png",
   "year": "1994",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:autechre",
       "type": "artist",
-      "name": "Autechre"
+      "name": "Autechre",
+      "mbid": "410c9baf-5469-44f6-9852-826524b80c61"
     }
   ],
   "label": {
@@ -67,5 +70,6 @@
       "name": "Sean Booth"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

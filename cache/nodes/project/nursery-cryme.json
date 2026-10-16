@@ -32,15 +32,18 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "863a205e-07c3-3930-8561-a23045719466",
   "type": "project",
   "editorial_pitch": "Nursery Cryme is the landmark 1971 masterpiece that introduced the classic Genesis lineup, blending gothic storytelling with the complex, symphonic arrangements that defined progressive rock. It features the haunting epic \"The Musical Box\" and remains a essential touchstone for the band's early artistic evolution.",
   "cover_url": "https://www.progarchives.com/progressive_rock_discography_covers/1/cover_183462112008.JPG",
   "year": "1971",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:genesis",
       "type": "artist",
-      "name": "Genesis"
+      "name": "Genesis",
+      "mbid": "8e3fcd7d-bda1-4ca0-b987-b8528d2ee74e"
     }
   ],
   "label": {
@@ -100,5 +103,6 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

@@ -9,14 +9,17 @@
     }
   ],
   "materialized_at": "2026-05-14T09:29:38.591Z",
+  "mbid": "ae4cb316-65dd-3115-92ac-22a34af33bfe",
   "type": "project",
   "editorial_pitch": "Booba's 2006 masterpiece, Ouest Side, remains a definitive pillar of French gangsta rap, showcasing the rapper's lyrical prowess and high-tier production.",
   "year": "2006",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:booba",
       "type": "artist",
-      "name": "Booba"
+      "name": "Booba",
+      "mbid": "785c0e9c-89f6-4bf4-8296-443a46632d62"
     }
   ],
   "label": {
@@ -72,5 +75,6 @@
       "name": "Kore"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

@@ -9,15 +9,31 @@
     }
   ],
   "materialized_at": "2026-05-13T12:49:27.542Z",
+  "mbid": "c7d196d9-afd4-41e7-bb2f-fbc30e1732cd",
   "type": "track",
   "editorial_teaser": "\"Four Violins\" is a seminal work by experimental composer Tony Conrad, composed in 1964.",
+  "year": "1996",
   "artists": [
     {
       "slug": "artist:tony-conrad",
       "type": "artist",
-      "name": "Tony Conrad"
+      "name": "Tony Conrad",
+      "mbid": "39b56aa8-5d36-49ab-ae5e-c3aa836b6620"
     }
   ],
+  "project": {
+    "slug": "project:early-minimalism-volume-one--tony-conrad",
+    "type": "project",
+    "name": "Early Minimalism, Volume One",
+    "mbid": "f58a26e0-b1ef-36e5-8069-7138da9c2370",
+    "artist": "Tony Conrad"
+  },
+  "label": {
+    "slug": "label:table-of-the-elements",
+    "type": "label",
+    "name": "Table of the Elements",
+    "mbid": "6393c9ef-d74a-4911-896f-b95f9d4b8e72"
+  },
   "genres": [
     {
       "slug": "genre:minimalism",
@@ -33,6 +49,7 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

@@ -13,6 +13,7 @@
     }
   ],
   "materialized_at": "2026-05-13T13:02:59.169Z",
+  "mbid": "bfbaaa89-a552-4aca-b569-c7b4dafeef5b",
   "type": "track",
   "editorial_teaser": "A masterpiece of frantic, stuttering breakbeats and fragile melodic sentiment, \"To Cure A Weakling Child\" stands as one of the definitive tracks from Aphex Twin's landmark 1996 album.",
   "cover_url": "https://f4.bcbits.com/img/a1664460568_10.jpg",
@@ -22,13 +23,20 @@
     {
       "slug": "artist:aphex-twin",
       "type": "artist",
-      "name": "Aphex Twin"
+      "name": "Aphex Twin",
+      "mbid": "f22942a1-6f70-4f48-866e-238cb2308fbd"
     }
   ],
   "project": {
     "slug": "project:richard-d-james-album",
     "type": "project",
     "name": "Richard D. James Album"
+  },
+  "label": {
+    "slug": "label:sire-records",
+    "type": "label",
+    "name": "Sire Records",
+    "mbid": "be0fec81-5c18-4494-8bbf-0d81dec006bf"
   },
   "genres": [
     {
@@ -50,6 +58,7 @@
       "name": "Aphex Twin"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

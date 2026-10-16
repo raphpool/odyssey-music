@@ -13,6 +13,7 @@
     }
   ],
   "materialized_at": "2026-05-13T13:07:02.293Z",
+  "mbid": "b044a3f7-8f85-48e7-8121-941591456ef7",
   "type": "track",
   "editorial_teaser": "\"Pewter Dragon\" is an electronic track by the influential producer Mike Paradinas, operating under his pseudonym Jake Slazenger.",
   "year": "2006",
@@ -21,9 +22,23 @@
     {
       "slug": "artist:jake-slazenger",
       "type": "artist",
-      "name": "Jake Slazenger"
+      "name": "Jake Slazenger",
+      "mbid": "91e7ec65-c3a0-4a76-aadb-a2b5bd69ff27"
     }
   ],
+  "project": {
+    "slug": "project:pewter-dragon-on-the-street--jake-slazenger",
+    "type": "project",
+    "name": "Pewter Dragon / On the Street",
+    "mbid": "1abdeba5-c459-319c-93bd-c5bde297bb63",
+    "artist": "Jake Slazenger"
+  },
+  "label": {
+    "slug": "label:planet-mu",
+    "type": "label",
+    "name": "Planet Mu",
+    "mbid": "b4edce40-090f-4956-b82a-5d9d285da40b"
+  },
   "genres": [
     {
       "slug": "genre:electronic",
@@ -45,6 +60,7 @@
       "name": "Mike Paradinas"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

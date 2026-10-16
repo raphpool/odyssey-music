@@ -28,14 +28,17 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "8e8a594f-2175-38c7-a871-abb68ec363e7",
   "type": "project",
   "editorial_pitch": "A seminal masterpiece of modal jazz, Miles Davis’ 1959 classic shifted the course of music history by replacing complex chord changes with open modes, fostering a new era of improvisational freedom.",
   "year": "1959",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:miles-davis",
       "type": "artist",
-      "name": "Miles Davis"
+      "name": "Miles Davis",
+      "mbid": "561d854a-6a28-4aa7-8c99-323e6ce46c2a"
     },
     {
       "slug": "artist:john-coltrane",
@@ -121,6 +124,7 @@
       "name": "Irving Townsend"
     }
   ],
+  "personnel": [],
   "related_projects": [
     {
       "slug": "project:milestones",

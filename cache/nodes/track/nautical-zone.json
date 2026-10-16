@@ -13,19 +13,28 @@
     }
   ],
   "materialized_at": "2026-05-13T13:10:07.654Z",
+  "mbid": "f82f9739-7fa2-4614-b617-0dcce79fb108",
   "type": "track",
   "editorial_teaser": "\"Nautical Zone\" is the closing track of the landmark 1996 album \"Biokinetics\" by the German minimal techno duo Porter Ricks.",
+  "year": "1996",
   "artists": [
     {
       "slug": "artist:porter-ricks",
       "type": "artist",
-      "name": "Porter Ricks"
+      "name": "Porter Ricks",
+      "mbid": "f2c0d29a-9bef-469f-af6e-a9b5deb21308"
     }
   ],
   "project": {
     "slug": "project:biokinetics",
     "type": "project",
     "name": "Biokinetics"
+  },
+  "label": {
+    "slug": "label:chain-reaction",
+    "type": "label",
+    "name": "Chain Reaction",
+    "mbid": "04ac00ca-847b-4d1c-8ea6-85cd7719e946"
   },
   "genres": [
     {
@@ -53,6 +62,7 @@
       "name": "Andy Mellwig"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

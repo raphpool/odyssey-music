@@ -13,15 +13,18 @@
     }
   ],
   "materialized_at": "2026-05-13T12:38:16.688Z",
+  "mbid": "96c98370-1390-33ec-9bc6-ed15e16c3e25",
   "type": "project",
   "editorial_pitch": "Released in 1975, Rubycon is a milestone of the Berlin School electronic movement, marking a high point in Tangerine Dream’s career with its dark, atmospheric, and sequencer-driven soundscapes. It remains a seminal work of early ambient and electronic music, celebrated for its \"voyaging vision\" and immersive, ever-unfolding sonic architecture.",
   "cover_url": "https://data.tangerinedreammusic.com/Data/BildArchiv/zuordnung/00919_big.jpg",
   "year": "1975",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:tangerine-dream",
       "type": "artist",
-      "name": "Tangerine Dream"
+      "name": "Tangerine Dream",
+      "mbid": "23d8426c-18c7-46e6-a51d-7395bd43c641"
     }
   ],
   "label": {
@@ -61,5 +64,6 @@
       "name": "Tangerine Dream"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

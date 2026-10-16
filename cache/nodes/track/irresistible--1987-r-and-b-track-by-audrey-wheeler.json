@@ -9,6 +9,7 @@
     }
   ],
   "materialized_at": "2026-05-13T12:52:44.844Z",
+  "mbid": "69de76c4-adca-45a8-903a-c8ebd7e19834",
   "type": "track",
   "editorial_teaser": "A polished, synth-driven R&B track from 1987, \"Irresistible\" showcases the soulful vocals of session singer Audrey Wheeler over a sophisticated production by Lionel Job and Preston Glass.",
   "year": "1987",
@@ -16,9 +17,23 @@
     {
       "slug": "artist:audrey-wheeler",
       "type": "artist",
-      "name": "Audrey Wheeler"
+      "name": "Audrey Wheeler",
+      "mbid": "980792f9-1903-4da5-a21f-b4c43e7655f3"
     }
   ],
+  "project": {
+    "slug": "project:let-it-be-me--audrey-wheeler",
+    "type": "project",
+    "name": "Let It Be Me",
+    "mbid": "5ecd6ab2-01d7-4974-abe4-3d190e239522",
+    "artist": "Audrey Wheeler"
+  },
+  "label": {
+    "slug": "label:capitol-records",
+    "type": "label",
+    "name": "Capitol Records",
+    "mbid": "abea2d3e-eabf-4480-ab24-9382dd642c73"
+  },
   "genres": [
     {
       "slug": "genre:r-and-b",
@@ -34,6 +49,7 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

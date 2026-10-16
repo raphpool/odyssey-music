@@ -13,17 +13,26 @@
     }
   ],
   "materialized_at": "2026-05-13T12:35:38.043Z",
+  "mbid": "7429e38f-d1af-4db9-b098-65fddb96d80c",
   "type": "project",
   "editorial_pitch": "\"aksel\" is the evocative debut studio album from the Istanbul-based band 123, released in 2009. Serving as both a musical collection and an artistic narrative, the release accompanies a 230-page book of illustrations by Huban Korman, weaving the story of a boy named Aksel, an owl, and a whale into its sonic fabric. The album showcases the band's penchant for atmospheric, genre-blending indie pop, incorporating jazz sensibilities and lush, organic arrangements into a cohesive, story-driven project that established them within the Turkish independent music scene.",
   "cover_url": "https://f4.bcbits.com/img/a0882017721_10.jpg",
   "year": "2009",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:123",
       "type": "artist",
-      "name": "123"
+      "name": "123",
+      "mbid": "aa86172e-0f2c-4d42-ae7f-164998d43a48"
     }
   ],
+  "label": {
+    "slug": "label:aisha-records",
+    "type": "label",
+    "name": "aisha records",
+    "mbid": "3033bfae-9d82-4a87-98f5-23afec38a5ad"
+  },
   "genres": [
     {
       "slug": "genre:indie-pop",
@@ -122,5 +131,6 @@
       "name": "123"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

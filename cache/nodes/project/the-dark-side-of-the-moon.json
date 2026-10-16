@@ -17,15 +17,18 @@
     }
   ],
   "materialized_at": "2026-05-13T12:54:18.864Z",
+  "mbid": "f5093c06-23e3-404f-aeaa-40f72885ee3a",
   "type": "project",
   "editorial_pitch": "A towering achievement in the history of progressive rock, The Dark Side of the Moon is a conceptual masterwork that explores the pressures of modern life, mental health, and the passage of time through pioneering studio techniques. Known for its seamless integration of tape loops, analogue synthesis, and philosophical lyrical depth, the album remains one of the most culturally significant and commercially successful records ever produced.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/thumb/a/ab/The_Dark_Side_of_the_Moon_cover.svg/250px-The_Dark_Side_of_the_Moon_cover.svg.png",
   "year": "1973",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:pink-floyd",
       "type": "artist",
-      "name": "Pink Floyd"
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
     }
   ],
   "label": {
@@ -100,5 +103,6 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

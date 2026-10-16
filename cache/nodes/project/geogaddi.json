@@ -28,15 +28,18 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "8183834a-6c8a-39ef-a7bc-a82f79b929e9",
   "type": "project",
   "editorial_pitch": "A claustrophobic, dark masterpiece of electronic music, *Geogaddi* is a dense, hypnotic journey through occult-themed analog textures and complex, paranoiac soundscapes. It marks Boards of Canada's definitive turn toward the eerie and the esoteric, cementing their legacy in the IDM canon.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/8/86/Geogaddi.jpg",
   "year": "2002",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:boards-of-canada",
       "type": "artist",
-      "name": "Boards of Canada"
+      "name": "Boards of Canada",
+      "mbid": "69158f97-4c07-4c4e-baf8-4e4ab1ed666e"
     }
   ],
   "label": {
@@ -70,7 +73,176 @@
       "qid": "Q85765918"
     }
   ],
-  "tracklist": [],
+  "tracklist": [
+    {
+      "slug": "track:ready-lets-go--boards-of-canada",
+      "type": "track",
+      "name": "Ready Lets Go",
+      "mbid": "a40aa9a8-af16-484b-8fe9-47cc9c4c81ab",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:music-is-math--boards-of-canada",
+      "type": "track",
+      "name": "Music Is Math",
+      "mbid": "f0a4be92-bf11-43e3-90eb-6a47e9bcba0c",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:beware-the-friendly-stranger--boards-of-canada",
+      "type": "track",
+      "name": "Beware the Friendly Stranger",
+      "mbid": "c2e874ec-0376-4afc-8f77-4c6596c5283f",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:gyroscope--boards-of-canada",
+      "type": "track",
+      "name": "Gyroscope",
+      "mbid": "18828062-8b1e-4b1c-84b9-a3472798789f",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:dandelion--boards-of-canada",
+      "type": "track",
+      "name": "Dandelion",
+      "mbid": "bfe43d24-abf9-4bd0-a64e-f605836c1f1f",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:sunshine-recorder--boards-of-canada",
+      "type": "track",
+      "name": "Sunshine Recorder",
+      "mbid": "2d26541b-4512-49cd-8151-3fe5c7b687be",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:in-the-annexe--boards-of-canada",
+      "type": "track",
+      "name": "In the Annexe",
+      "mbid": "11a79554-a2ce-421a-bd06-2ea8c94bdc13",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:julie-and-candy--boards-of-canada",
+      "type": "track",
+      "name": "Julie and Candy",
+      "mbid": "ef080dc7-57bc-4bfb-b18f-e2a36e8de8b6",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:the-smallest-weird-number--boards-of-canada",
+      "type": "track",
+      "name": "The Smallest Weird Number",
+      "mbid": "8697746c-61eb-4081-aac8-618d739739d0",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:1969--boards-of-canada",
+      "type": "track",
+      "name": "1969",
+      "mbid": "1fe9a3b8-8e18-43b9-9f48-4f2d65fef3fe",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:energy-warning--boards-of-canada",
+      "type": "track",
+      "name": "Energy Warning",
+      "mbid": "cd9072f6-15d7-4046-9849-6389a791dcf6",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:the-beach-at-redpoint--boards-of-canada",
+      "type": "track",
+      "name": "The Beach at Redpoint",
+      "mbid": "110ca761-038e-40d8-bcac-42fe96eb0b25",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:opening-the-mouth--boards-of-canada",
+      "type": "track",
+      "name": "Opening the Mouth",
+      "mbid": "fc08d5e5-bbbc-4d0c-8d10-e00f582927e8",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:alpha-and-omega--boards-of-canada",
+      "type": "track",
+      "name": "Alpha and Omega",
+      "mbid": "3a714783-ab2f-4db9-81c8-34b623eda833",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:i-saw-drones--boards-of-canada",
+      "type": "track",
+      "name": "I Saw Drones",
+      "mbid": "17147d60-f2dc-4620-a302-f68e4f0d9fc1",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:the-devil-is-in-the-details--boards-of-canada",
+      "type": "track",
+      "name": "The Devil Is in the Details",
+      "mbid": "a161a2e9-cc3f-4992-ac47-068ef3b3a8ea",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:a-is-to-b-as-b-is-to-c--boards-of-canada",
+      "type": "track",
+      "name": "A Is to B as B Is to C",
+      "mbid": "1d77d5eb-9d68-490a-8b9f-451922c82167",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:over-the-horizon-radar--boards-of-canada",
+      "type": "track",
+      "name": "Over the Horizon Radar",
+      "mbid": "0d5f5736-3787-4acc-8243-cd5fa6b30c94",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:dawn-chorus--boards-of-canada",
+      "type": "track",
+      "name": "Dawn Chorus",
+      "mbid": "aa7c93f6-1b5e-4413-af4e-60e0f08e09ca",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:diving-station--boards-of-canada",
+      "type": "track",
+      "name": "Diving Station",
+      "mbid": "1a36def5-cf28-4fa1-9515-cfe933f8eb74",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:you-could-feel-the-sky--boards-of-canada",
+      "type": "track",
+      "name": "You Could Feel the Sky",
+      "mbid": "939232f4-fb22-46b2-890d-2f4da7e36bbc",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:corsair--boards-of-canada",
+      "type": "track",
+      "name": "Corsair",
+      "mbid": "56259e67-e02c-4fea-a996-7802a48eb127",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:magic-window--boards-of-canada",
+      "type": "track",
+      "name": "Magic Window",
+      "mbid": "6f8815cf-9379-4fa9-ac2b-bc7250505408",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:from-one-source-all-things-depend--boards-of-canada",
+      "type": "track",
+      "name": "From One Source All Things Depend",
+      "mbid": "f3228cd9-46eb-4440-bac6-998c41ff23c3",
+      "artist": "Boards of Canada"
+    }
+  ],
   "producers": [
     {
       "slug": "artist:marcus-eoin",
@@ -83,5 +255,6 @@
       "name": "Michael Sandison"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

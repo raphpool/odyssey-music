@@ -13,6 +13,7 @@
     }
   ],
   "materialized_at": "2026-05-13T13:02:20.776Z",
+  "mbid": "f12fd639-90f1-4149-a113-5f1c3c09505e",
   "type": "track",
   "editorial_teaser": "A brief, melancholic, and tape-saturated instrumental interlude from Boards of Canada's acclaimed 1998 debut, 'Music Has The Right To Children'.",
   "year": "1998",
@@ -20,13 +21,20 @@
     {
       "slug": "artist:boards-of-canada",
       "type": "artist",
-      "name": "Boards of Canada"
+      "name": "Boards of Canada",
+      "mbid": "69158f97-4c07-4c4e-baf8-4e4ab1ed666e"
     }
   ],
   "project": {
     "slug": "project:music-has-the-right-to-children",
     "type": "project",
     "name": "Music Has The Right To Children"
+  },
+  "label": {
+    "slug": "label:skam",
+    "type": "label",
+    "name": "Skam",
+    "mbid": "5c5bc5b7-13a7-49c7-935c-4ec9686d9cae"
   },
   "genres": [
     {
@@ -60,6 +68,7 @@
       "name": "Michael Sandison"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

@@ -9,15 +9,23 @@
     }
   ],
   "materialized_at": "2026-05-13T12:41:02.555Z",
+  "mbid": "180d7f48-ab5a-36c2-9c55-4b378fa48134",
   "type": "project",
   "editorial_pitch": "A defining early exploration of electro-jazz and lounge-influenced experimental techno, released on the legendary Rephlex Records in 1995.",
   "cover_url": "https://fastly-s3.allmusic.com/release/mr0000136472/front/120/yUXk1aMm2N_265LtfqWiPg4Q1ghY8VaPylnm7PwcKNY=.jpg",
   "year": "1995",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:lisa-carbon",
       "type": "artist",
       "name": "Lisa Carbon"
+    },
+    {
+      "slug": "artist:the-lisa-carbon-trio",
+      "type": "artist",
+      "name": "The Lisa Carbon Trio",
+      "mbid": "54b5b9ee-4a2b-4690-96ab-f545d5c62603"
     }
   ],
   "label": {
@@ -89,5 +97,6 @@
       "name": "Lisa Carbon"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

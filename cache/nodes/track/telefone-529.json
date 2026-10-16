@@ -17,6 +17,7 @@
     }
   ],
   "materialized_at": "2026-05-13T12:41:24.082Z",
+  "mbid": "9aa14a42-1441-4b99-82f5-98bfef706172",
   "type": "track",
   "editorial_teaser": "A hallmark of early 90s intelligent dance music (IDM), \"Telefone 529\" by B12 is a masterclass in atmospheric, melodic, and cerebral electronic sound design.",
   "cover_url": "https://f4.bcbits.com/img/a2359898876_2.jpg",
@@ -26,13 +27,20 @@
     {
       "slug": "artist:b12",
       "type": "artist",
-      "name": "B12"
+      "name": "B12",
+      "mbid": "fa187203-5d60-4e3d-9042-cac7de849649"
     }
   ],
   "project": {
     "slug": "project:electro-soma",
     "type": "project",
     "name": "Electro-Soma"
+  },
+  "label": {
+    "slug": "label:tvt-records",
+    "type": "label",
+    "name": "TVT Records",
+    "mbid": "c9117237-b78b-4e47-b452-c9d94fb34916"
   },
   "genres": [
     {
@@ -61,6 +69,7 @@
       "name": "B12"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

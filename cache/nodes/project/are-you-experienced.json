@@ -13,14 +13,17 @@
     }
   ],
   "materialized_at": "2026-05-13T12:59:32.371Z",
+  "mbid": "da40e720-2097-3730-8a7f-0c2ddbff4a96",
   "type": "project",
   "editorial_pitch": "The definitive 1967 debut that introduced the world to the revolutionary guitar mastery of Jimi Hendrix, fusing blues roots with psychedelic innovation.",
   "year": "1967",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:the-jimi-hendrix-experience",
       "type": "artist",
-      "name": "The Jimi Hendrix Experience"
+      "name": "The Jimi Hendrix Experience",
+      "mbid": "33b3c323-77c2-417c-a5b4-af7e6a111cc9"
     }
   ],
   "label": {
@@ -82,5 +85,6 @@
       "name": "Chas Chandler"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

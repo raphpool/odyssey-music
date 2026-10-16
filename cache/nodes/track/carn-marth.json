@@ -13,11 +13,34 @@
     }
   ],
   "materialized_at": "2026-05-13T13:03:00.820Z",
+  "mbid": "61195a2c-1e98-4e11-97b1-a6d7b449d1ce",
   "type": "track",
   "editorial_teaser": "\"Carn Marth\" is a distinctive electronic composition by the British producer Richard D.",
-  "artists": [],
+  "year": "1996",
+  "artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin",
+      "mbid": "f22942a1-6f70-4f48-866e-238cb2308fbd"
+    }
+  ],
+  "project": {
+    "slug": "project:richard-d-james-album--aphex-twin",
+    "type": "project",
+    "name": "Richard D. James Album",
+    "mbid": "84d79dbe-7ac1-3ebc-9b36-238ddfb8229c",
+    "artist": "Aphex Twin"
+  },
+  "label": {
+    "slug": "label:sire-records",
+    "type": "label",
+    "name": "Sire Records",
+    "mbid": "be0fec81-5c18-4494-8bbf-0d81dec006bf"
+  },
   "genres": [],
   "producers": [],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

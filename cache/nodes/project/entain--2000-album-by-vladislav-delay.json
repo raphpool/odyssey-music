@@ -9,15 +9,18 @@
     }
   ],
   "materialized_at": "2026-05-13T12:58:04.624Z",
+  "mbid": "05dafeb5-5626-3541-9f45-152ce5b2269f",
   "type": "project",
   "editorial_pitch": "A seminal work of early 2000s glitch and experimental ambient, Vladislav Delay’s 'Entain' is a masterclass in weaving complex digital artifacts into deeply immersive, rhythmic textures.",
   "cover_url": "https://f4.bcbits.com/img/a0914071667_10.jpg",
   "year": "2000",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:vladislav-delay",
       "type": "artist",
-      "name": "Vladislav Delay"
+      "name": "Vladislav Delay",
+      "mbid": "039cafb3-4f3d-44a9-b956-7705323f025b"
     }
   ],
   "label": {
@@ -45,7 +48,44 @@
       "qid": "Q1931555"
     }
   ],
-  "tracklist": [],
+  "tracklist": [
+    {
+      "slug": "track:kohde--vladislav-delay",
+      "type": "track",
+      "name": "Kohde",
+      "mbid": "b2cc26b7-18dd-4ee0-a34d-9719542e36e4",
+      "artist": "Vladislav Delay"
+    },
+    {
+      "slug": "track:untitled--vladislav-delay",
+      "type": "track",
+      "name": "[untitled]",
+      "mbid": "5bc49e6a-b96c-4e95-af05-2e8932c72acf",
+      "artist": "Vladislav Delay"
+    },
+    {
+      "slug": "track:poiko--vladislav-delay",
+      "type": "track",
+      "name": "Poiko",
+      "mbid": "3ff7ea54-523c-433e-852c-3556eb2245f5",
+      "artist": "Vladislav Delay"
+    },
+    {
+      "slug": "track:notke--vladislav-delay",
+      "type": "track",
+      "name": "Notke",
+      "mbid": "6cdc50df-61e1-410a-91b3-ad41a18e5401",
+      "artist": "Vladislav Delay"
+    },
+    {
+      "slug": "track:ele--vladislav-delay",
+      "type": "track",
+      "name": "Ele",
+      "mbid": "b82f4646-9d15-499c-9092-43ea848d220f",
+      "artist": "Vladislav Delay"
+    }
+  ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

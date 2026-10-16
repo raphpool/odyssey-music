@@ -9,14 +9,17 @@
     }
   ],
   "materialized_at": "2026-05-14T09:26:27.626Z",
+  "mbid": "8fa3f314-78a8-3921-8da4-0c279dbaddef",
   "type": "project",
   "editorial_pitch": "The definitive debut album from the legendary French rap collective Mafia K'1 Fry, featuring the genre-defining anthem 'Pour ceux'.",
   "year": "2003",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:mafia-k-1-fry",
       "type": "artist",
-      "name": "Mafia K'1 Fry"
+      "name": "Mafia K'1 Fry",
+      "mbid": "e8565ebf-bbed-4b5a-9014-20fe7e55b110"
     },
     {
       "slug": "artist:rohff",
@@ -75,5 +78,6 @@
       "name": "Zoxea"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

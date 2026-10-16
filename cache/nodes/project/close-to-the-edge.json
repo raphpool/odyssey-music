@@ -17,14 +17,17 @@
     }
   ],
   "materialized_at": "2026-05-13T12:55:55.069Z",
+  "mbid": "5a59b948-1961-32ff-80d9-e970c7d4ebe9",
   "type": "project",
   "editorial_pitch": "A landmark of progressive rock, this 1972 masterpiece showcases the virtuosity and conceptual depth of the classic Yes lineup at its creative zenith. Defined by its side-long title track and intricate arrangements, it remains a definitive document of the genre's symphonic ambition.",
   "year": "1972",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:yes",
       "type": "artist",
-      "name": "Yes"
+      "name": "Yes",
+      "mbid": "c1d4f2ba-cf39-460c-9528-6b827d3417a1"
     }
   ],
   "label": {
@@ -40,7 +43,29 @@
       "qid": "Q49451"
     }
   ],
-  "tracklist": [],
+  "tracklist": [
+    {
+      "slug": "track:close-to-the-edge-i-the-solid-time-of-change-ii-total-mass-retain-iii-i-get-up-i-get-down-iv-seasons-of-man--yes",
+      "type": "track",
+      "name": "Close to the Edge: I. The Solid Time of Change / II. Total Mass Retain / III. I Get Up I Get Down / IV. Seasons of Man",
+      "mbid": "c878d2c2-ca8e-4627-9e3e-898a51902894",
+      "artist": "Yes"
+    },
+    {
+      "slug": "track:and-you-and-i-cord-of-life-eclipse-the-preacher-the-teacher-the-apocalypse--yes",
+      "type": "track",
+      "name": "And You and I: Cord of Life / Eclipse / The Preacher the Teacher / The Apocalypse",
+      "mbid": "1d1c03ec-c917-417b-86b6-b726c25f5d07",
+      "artist": "Yes"
+    },
+    {
+      "slug": "track:siberian-khatru--yes",
+      "type": "track",
+      "name": "Siberian Khatru",
+      "mbid": "d8b28a71-9a40-49b1-aa7d-685a2212c3a6",
+      "artist": "Yes"
+    }
+  ],
   "producers": [
     {
       "slug": "artist:eddy-offord",
@@ -48,6 +73,7 @@
       "name": "Eddy Offord"
     }
   ],
+  "personnel": [],
   "related_projects": [
     {
       "slug": "project:fragile",

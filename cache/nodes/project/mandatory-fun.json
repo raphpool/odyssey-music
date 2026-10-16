@@ -24,10 +24,19 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "958cacd0-22e9-4e74-8cc8-2a61acce9fbe",
   "type": "project",
   "editorial_pitch": "A landmark in comedy music, Mandatory Fun became the first comedy album to top the Billboard 200, serving as the definitive final studio album from parody legend \"Weird Al\" Yankovic.",
   "year": "2014",
-  "artists": [],
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:weird-al-yankovic",
+      "type": "artist",
+      "name": "\"Weird Al\" Yankovic",
+      "mbid": "7746d775-9550-4360-b8d5-c37bd448ce01"
+    }
+  ],
   "label": {
     "slug": "label:rca-records",
     "type": "label",
@@ -58,5 +67,6 @@
       "name": "\"Weird Al\" Yankovic"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

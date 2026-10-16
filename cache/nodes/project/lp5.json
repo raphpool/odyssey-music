@@ -24,14 +24,17 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "58726780-ad15-3b77-8da8-4baa681862e4",
   "type": "project",
   "editorial_pitch": "A seminal 1998 release by Autechre that bridges the gap between their earlier melodic IDM roots and the austere, highly technical experimentalism of their later career.",
   "year": "1998",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:autechre",
       "type": "artist",
-      "name": "Autechre"
+      "name": "Autechre",
+      "mbid": "410c9baf-5469-44f6-9852-826524b80c61"
     }
   ],
   "label": {
@@ -117,5 +120,6 @@
       "name": "Autechre"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

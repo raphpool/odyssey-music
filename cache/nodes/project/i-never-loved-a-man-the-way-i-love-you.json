@@ -28,14 +28,17 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "c1efa6b7-bab4-4cbd-84b0-30fae0a781fa",
   "type": "project",
   "editorial_pitch": "A transformative landmark in soul music, *I Never Loved a Man the Way I Love You* marked Aretha Franklin’s commercial breakthrough, pairing her unrivaled vocal command with the gritty, authentic sound of the Muscle Shoals rhythm section.",
   "year": "1967",
+  "release_type": "single",
   "artists": [
     {
       "slug": "artist:aretha-franklin",
       "type": "artist",
-      "name": "Aretha Franklin"
+      "name": "Aretha Franklin",
+      "mbid": "2f9ecbed-27be-40e6-abca-6de49d50299e"
     }
   ],
   "label": {
@@ -81,5 +84,6 @@
       "name": "Jerry Wexler"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

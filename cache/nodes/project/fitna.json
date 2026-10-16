@@ -13,14 +13,17 @@
     }
   ],
   "materialized_at": "2026-05-14T09:33:46.182Z",
+  "mbid": "4407bb57-204e-448a-af98-026b5d5f5317",
   "type": "project",
   "editorial_pitch": "Fitna is the 2024 studio album by French rap veteran Rohff, marking another chapter in his storied career.",
   "year": "2024",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:rohff",
       "type": "artist",
-      "name": "Rohff"
+      "name": "Rohff",
+      "mbid": "f4a92aac-995b-47ab-80a5-33218a3e7823"
     }
   ],
   "label": {
@@ -49,5 +52,6 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

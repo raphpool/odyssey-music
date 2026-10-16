@@ -9,6 +9,7 @@
     }
   ],
   "materialized_at": "2026-05-13T15:08:13.723Z",
+  "mbid": "5fc7948b-08ac-4ce5-b66f-9e06d86ee979",
   "type": "track",
   "editorial_teaser": "A hypnotic, minimalist composition from Jan Jelinek's acclaimed 2005 album Kosmischer Pitch, blending vintage instrumentation with electronic manipulation.",
   "year": "2005",
@@ -16,13 +17,20 @@
     {
       "slug": "artist:jan-jelinek",
       "type": "artist",
-      "name": "Jan Jelinek"
+      "name": "Jan Jelinek",
+      "mbid": "ac9b829e-9a7c-4331-8abe-ab1eb49d1771"
     }
   ],
   "project": {
     "slug": "project:kosmischer-pitch",
     "type": "project",
     "name": "Kosmischer Pitch"
+  },
+  "label": {
+    "slug": "label:scape",
+    "type": "label",
+    "name": "~scape",
+    "mbid": "1cf954a8-b0d0-4c7e-8833-8e0e1f5c9a5b"
   },
   "genres": [
     {
@@ -39,6 +47,7 @@
       "name": "Jan Jelinek"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

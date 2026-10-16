@@ -13,17 +13,26 @@
     }
   ],
   "materialized_at": "2026-05-13T13:08:57.287Z",
+  "mbid": "3340a1c6-e657-4862-99d1-92bb9eb3f25c",
   "type": "project",
   "editorial_pitch": "An expansive and genre-defying exploration of sound design that balances ambient textures, breakbeat rhythms, and cinematic atmosphere, marking a pivotal, diverse moment in the Monolake discography.",
   "cover_url": "https://f4.bcbits.com/img/a2163278068_10.jpg",
   "year": "2020",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:monolake",
       "type": "artist",
-      "name": "Monolake"
+      "name": "Monolake",
+      "mbid": "cedf92fe-eba1-45e2-ba16-b1b6af5169b8"
     }
   ],
+  "label": {
+    "slug": "label:imbalance-computer-music",
+    "type": "label",
+    "name": "Imbalance Computer Music",
+    "mbid": "8a2b62ed-d881-41e5-9d93-c18ada0c8318"
+  },
   "genres": [
     {
       "slug": "genre:ambient-techno",
@@ -77,5 +86,6 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

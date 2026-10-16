@@ -13,6 +13,7 @@
     }
   ],
   "materialized_at": "2026-05-13T12:48:44.960Z",
+  "mbid": "1ef3d095-8043-48dc-89d0-ecfbea988ac8",
   "type": "track",
   "editorial_teaser": "\"Montreal\" is a haunting, atmospheric R&B track by Canadian singer-songwriter The Weeknd, originally released as part of his 2011 mixtape 'Echoes of Silence'.",
   "year": "2011",
@@ -20,7 +21,8 @@
     {
       "slug": "artist:the-weeknd",
       "type": "artist",
-      "name": "The Weeknd"
+      "name": "The Weeknd",
+      "mbid": "c8b03190-306c-4120-bb0b-6f2ebfc06ea9"
     }
   ],
   "project": {
@@ -53,6 +55,7 @@
       "name": "Illangelo"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

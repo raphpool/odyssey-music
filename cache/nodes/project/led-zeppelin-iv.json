@@ -32,15 +32,18 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "2e61da88-39e9-3473-81d2-c964cb394952",
   "type": "project",
   "editorial_pitch": "Often considered the quintessential heavy rock album, Led Zeppelin IV is a masterpiece of dynamic shifts and production experimentation, featuring the immortal \"Stairway to Heaven\" and the legendary blues-rock epic \"When the Levee Breaks.\"",
   "cover_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Zeppelin_IV.jpg/500px-Zeppelin_IV.jpg",
   "year": "1971",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:led-zeppelin",
       "type": "artist",
-      "name": "Led Zeppelin"
+      "name": "Led Zeppelin",
+      "mbid": "678d88b2-87b0-403b-b63d-5da7465aecc3"
     }
   ],
   "label": {
@@ -117,5 +120,6 @@
       "name": "Jimmy Page"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

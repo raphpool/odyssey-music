@@ -13,6 +13,7 @@
     }
   ],
   "materialized_at": "2026-05-13T13:07:53.711Z",
+  "mbid": "a9763665-396b-4a16-b097-08d5c69c49b2",
   "type": "track",
   "editorial_teaser": "A quintessential piece of early 90s IDM, \"Amenida\" is an atmospheric, rhythmically complex track from µ-Ziq's debut album that perfectly balances breakbeat energy with melancholic melodic depth.",
   "year": "1993",
@@ -21,13 +22,20 @@
     {
       "slug": "artist:ziq",
       "type": "artist",
-      "name": "µ-Ziq"
+      "name": "µ-Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
     }
   ],
   "project": {
     "slug": "project:tango-n-vectif",
     "type": "project",
     "name": "Tango N'Vectif"
+  },
+  "label": {
+    "slug": "label:rephlex",
+    "type": "label",
+    "name": "Rephlex",
+    "mbid": "820fa04e-9927-40bb-a6c5-1bf883b159c7"
   },
   "genres": [
     {
@@ -56,6 +64,7 @@
       "name": "µ-Ziq"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

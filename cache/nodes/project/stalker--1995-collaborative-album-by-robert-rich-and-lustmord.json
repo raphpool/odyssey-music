@@ -9,19 +9,23 @@
     }
   ],
   "materialized_at": "2026-05-13T12:50:50.959Z",
+  "mbid": "7a0c813e-d27e-3783-a9a4-e933102a236f",
   "type": "project",
   "editorial_pitch": "Released in 1995, 'Stalker' is a seminal work of dark ambient music, representing an atmospheric collaboration between genre pioneers Robert Rich and B. Lustmord. Inspired by the 1979 Andrei Tarkovsky film, the album masterfully captures the film's sense of desolate, industrial, and metaphysical unease through deep, resonant soundscapes.",
   "year": "1995",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:robert-rich",
       "type": "artist",
-      "name": "Robert Rich"
+      "name": "Robert Rich",
+      "mbid": "93209865-ebeb-4346-96a5-f64305cd0185"
     },
     {
       "slug": "artist:lustmord",
       "type": "artist",
-      "name": "Lustmord"
+      "name": "Lustmord",
+      "mbid": "15f2bb82-bce4-44c9-863a-995ae9bde0b4"
     }
   ],
   "label": {
@@ -43,7 +47,57 @@
       "qid": "Q9778"
     }
   ],
-  "tracklist": [],
+  "tracklist": [
+    {
+      "slug": "track:elemental-trigger--robert-rich",
+      "type": "track",
+      "name": "Elemental Trigger",
+      "mbid": "16442fc8-09d3-44c1-a4e8-55b785d1473e",
+      "artist": "Robert Rich"
+    },
+    {
+      "slug": "track:synergistic-perceptions--robert-rich",
+      "type": "track",
+      "name": "Synergistic Perceptions",
+      "mbid": "dd705edb-d241-4343-bd8b-ba9c4e1c3001",
+      "artist": "Robert Rich"
+    },
+    {
+      "slug": "track:hidden-refuge--robert-rich",
+      "type": "track",
+      "name": "Hidden Refuge",
+      "mbid": "9ca5369e-69cc-4398-822d-d86383ea01f5",
+      "artist": "Robert Rich"
+    },
+    {
+      "slug": "track:delusion-fields--robert-rich",
+      "type": "track",
+      "name": "Delusion Fields",
+      "mbid": "f42359c0-9300-44bc-bf55-063e3d588ce0",
+      "artist": "Robert Rich"
+    },
+    {
+      "slug": "track:omnipresent-boundary--robert-rich",
+      "type": "track",
+      "name": "Omnipresent Boundary",
+      "mbid": "a6bff8a4-a1a6-44a0-93ab-967a66a3aa53",
+      "artist": "Robert Rich"
+    },
+    {
+      "slug": "track:undulating-terrain--robert-rich",
+      "type": "track",
+      "name": "Undulating Terrain",
+      "mbid": "9f8e2ccc-558b-45a9-8615-19ffa1e0eb37",
+      "artist": "Robert Rich"
+    },
+    {
+      "slug": "track:a-point-of-no-return--robert-rich",
+      "type": "track",
+      "name": "A Point of No Return",
+      "mbid": "9eba84ab-4b0f-448c-94c6-c0597d1a2fed",
+      "artist": "Robert Rich"
+    }
+  ],
   "producers": [
     {
       "slug": "artist:robert-rich",
@@ -56,5 +110,6 @@
       "name": "Lustmord"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

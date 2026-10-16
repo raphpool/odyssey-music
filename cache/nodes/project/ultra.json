@@ -9,14 +9,17 @@
     }
   ],
   "materialized_at": "2026-05-14T09:29:24.380Z",
+  "mbid": "735d24c5-36c4-4047-8085-1f7a6b98ac08",
   "type": "project",
   "editorial_pitch": "The 1998 debut album from the British pop group Ultra, featuring production by Ian Stanley and a collection of self-penned pop hits.",
   "year": "1998",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:ultra",
       "type": "artist",
-      "name": "Ultra"
+      "name": "Ultra",
+      "mbid": "f12faa24-abf7-45f2-851f-e73c325d9da6"
     }
   ],
   "label": {
@@ -66,5 +69,6 @@
       "name": "Ian Stanley"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

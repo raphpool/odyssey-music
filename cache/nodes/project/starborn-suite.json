@@ -13,10 +13,19 @@
     }
   ],
   "materialized_at": "2026-05-13T12:48:10.351Z",
+  "mbid": "4e7c8c23-c6dc-4898-b5d8-ee0b71b3da08",
   "type": "project",
   "editorial_pitch": "A seminal 1978 New Age masterpiece by Steven Halpern, featuring hypnotic, ambient piano and synthesizer arrangements designed to induce deep states of relaxation.",
   "year": "1978",
-  "artists": [],
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:steven-halpern",
+      "type": "artist",
+      "name": "Steven Halpern",
+      "mbid": "37986d18-e8af-4502-8e08-2a87d7e5853f"
+    }
+  ],
   "label": {
     "slug": "label:halpern-sounds",
     "type": "label",
@@ -36,7 +45,36 @@
       "qid": "Q193207"
     }
   ],
-  "tracklist": [],
+  "tracklist": [
+    {
+      "slug": "track:starborn-suite--steven-halpern",
+      "type": "track",
+      "name": "Starborn Suite",
+      "mbid": "575b3148-43ab-411a-8dfa-cb355707d916",
+      "artist": "Steven Halpern"
+    },
+    {
+      "slug": "track:acknowledgement--steven-halpern",
+      "type": "track",
+      "name": "Acknowledgement",
+      "mbid": "1ad81ecc-35fc-41c4-b643-4b3cccb8024a",
+      "artist": "Steven Halpern"
+    },
+    {
+      "slug": "track:findhorn-sanctuary--steven-halpern",
+      "type": "track",
+      "name": "Findhorn Sanctuary",
+      "mbid": "9cd0578c-a106-4d06-84a0-8835772f2e11",
+      "artist": "Steven Halpern"
+    },
+    {
+      "slug": "track:resolution--steven-halpern",
+      "type": "track",
+      "name": "Resolution",
+      "mbid": "89ea8fe1-0f70-40e4-94c8-229dbc3d7619",
+      "artist": "Steven Halpern"
+    }
+  ],
   "producers": [
     {
       "slug": "artist:steven-halpern",
@@ -44,5 +82,6 @@
       "name": "Steven Halpern"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

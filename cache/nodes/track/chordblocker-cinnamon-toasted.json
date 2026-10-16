@@ -13,13 +13,28 @@
     }
   ],
   "materialized_at": "2026-05-13T13:00:43.721Z",
+  "mbid": "49a16729-6f55-42aa-b874-a01b90b9d0ac",
   "type": "track",
   "editorial_teaser": "\"Chordblocker, Cinnamon Toasted\" is a hyperactive, genre-bending track by the German electronic duo Mouse on Mars, featured as the second track on their 2012 album, *Parastrophics*.",
-  "artists": [],
+  "year": "2012",
+  "artists": [
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars",
+      "mbid": "4d4f5d92-0589-42fa-bc0e-1bd73e17a2ce"
+    }
+  ],
   "project": {
     "slug": "project:parastrophics",
     "type": "project",
     "name": "Parastrophics"
+  },
+  "label": {
+    "slug": "label:monkeytown-records",
+    "type": "label",
+    "name": "Monkeytown Records",
+    "mbid": "dd5e9af0-a9bb-4e11-9c57-5921c8838945"
   },
   "genres": [],
   "producers": [
@@ -39,6 +54,7 @@
       "name": "Andi Toma"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

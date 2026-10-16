@@ -24,14 +24,17 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "a9596c1c-826c-3845-916b-d3c8adeeb44d",
   "type": "project",
   "editorial_pitch": "An abrasive masterpiece of 1999, *60 Second Wipe Out* captures the peak, chaotic energy of digital hardcore pioneers Atari Teenage Riot in a collision of punk anger and programmed industrial noise.",
   "year": "1999",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:atari-teenage-riot",
       "type": "artist",
-      "name": "Atari Teenage Riot"
+      "name": "Atari Teenage Riot",
+      "mbid": "fe404dd9-09b2-4ac8-a0e5-8da1c4027061"
     }
   ],
   "label": {
@@ -53,7 +56,99 @@
       "qid": "Q10922"
     }
   ],
-  "tracklist": [],
+  "tracklist": [
+    {
+      "slug": "track:revolution-action--atari-teenage-riot",
+      "type": "track",
+      "name": "Revolution Action",
+      "mbid": "e579828a-8045-410a-8d1b-f9c185b9ee78",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:by-any-means-necessary--atari-teenage-riot",
+      "type": "track",
+      "name": "By Any Means Necessary",
+      "mbid": "124813e6-37b4-4994-a2dd-a73da1a15b5d",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:western-decay--atari-teenage-riot",
+      "type": "track",
+      "name": "Western Decay",
+      "mbid": "28d6c896-505e-44a1-a725-04419997d76c",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:atari-teenage-riot-ii--atari-teenage-riot",
+      "type": "track",
+      "name": "Atari Teenage Riot II",
+      "mbid": "6d7480c2-a3b5-4535-8772-c58ee8f1ab7f",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:ghostchase--atari-teenage-riot",
+      "type": "track",
+      "name": "Ghostchase",
+      "mbid": "81f71c4f-456d-47f9-a7ff-59a463fbea45",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:too-dead-for-me--atari-teenage-riot",
+      "type": "track",
+      "name": "Too Dead for Me",
+      "mbid": "39586006-21bd-47d3-a8e0-47614dbf6b16",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:u-s-fade-out--atari-teenage-riot",
+      "type": "track",
+      "name": "U.S. Fade Out",
+      "mbid": "bbace64e-d085-45a8-a8a1-ec60b109bb15",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:the-virus-has-been-spread--atari-teenage-riot",
+      "type": "track",
+      "name": "The Virus Has Been Spread",
+      "mbid": "5804ed64-7475-4224-8cc2-2f67c2455119",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:digital-hardcore--atari-teenage-riot",
+      "type": "track",
+      "name": "Digital Hardcore",
+      "mbid": "2321ebe5-135a-4c9f-8616-1d320aad6ca8",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:death-of-a-president-d-i-y--atari-teenage-riot",
+      "type": "track",
+      "name": "Death of a President D.I.Y.!",
+      "mbid": "269ea44e-4673-4034-b029-c61cf6debfbd",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:your-uniform-does-not-impress-me--atari-teenage-riot",
+      "type": "track",
+      "name": "Your Uniform (Does Not Impress Me!)",
+      "mbid": "8dc23ea2-5a38-4700-ac6b-da79381e0c08",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:no-success--atari-teenage-riot",
+      "type": "track",
+      "name": "No Success",
+      "mbid": "794fe603-f05a-45a5-a011-dff2bd2b7d49",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:anarchy-999--atari-teenage-riot",
+      "type": "track",
+      "name": "Anarchy 999",
+      "mbid": "7c23ca67-f8ff-413f-8845-a4ec24eacf57",
+      "artist": "Atari Teenage Riot"
+    }
+  ],
   "producers": [
     {
       "slug": "artist:alec-empire",
@@ -61,5 +156,6 @@
       "name": "Alec Empire"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

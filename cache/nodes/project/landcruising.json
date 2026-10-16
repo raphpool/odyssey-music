@@ -17,14 +17,17 @@
     }
   ],
   "materialized_at": "2026-05-13T13:13:24.903Z",
+  "mbid": "83b13f16-3c7c-3c74-a8cb-9816045298c1",
   "type": "project",
   "editorial_pitch": "A seminal 1995 debut from Detroit techno visionary Carl Craig, 'Landcruising' acts as a cinematic, futuristic driving soundtrack that redefined the emotional potential of electronic music.",
   "year": "1995",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:carl-craig",
       "type": "artist",
-      "name": "Carl Craig"
+      "name": "Carl Craig",
+      "mbid": "6732e9f3-5f24-4ba4-aef1-a2a49442b96b"
     }
   ],
   "label": {
@@ -79,5 +82,6 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

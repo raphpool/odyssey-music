@@ -13,14 +13,17 @@
     }
   ],
   "materialized_at": "2026-05-13T13:01:55.326Z",
+  "mbid": "16113489-d4a6-365c-a09c-64be4fe4e365",
   "type": "project",
   "editorial_pitch": "A seminal 1996 glitch-ambient album by Microstoria (Jan St. Werner and Markus Popp), \"Snd\" is an essential exploration of digital artifacts, sonic texture, and deconstructive composition.",
   "year": "1996",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:microstoria",
       "type": "artist",
-      "name": "Microstoria"
+      "name": "Microstoria",
+      "mbid": "5f3b5920-6aa8-4cc0-b466-77372c71aa4e"
     }
   ],
   "label": {
@@ -102,6 +105,7 @@
       "name": "Markus Popp"
     }
   ],
+  "personnel": [],
   "related_projects": [
     {
       "slug": "project:reprovisers",

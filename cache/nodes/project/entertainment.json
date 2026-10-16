@@ -28,15 +28,18 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "d0493944-992b-3534-9174-8320c1879837",
   "type": "project",
   "editorial_pitch": "A masterclass in post-punk, Gang of Four's 1979 debut *Entertainment!* dismantled rock music's conventions with its angular, funk-infused guitars, sparse production, and deeply incisive, Marxist-informed lyrics. It remains a foundational text of the era, profoundly influencing generations of art-punk and dance-punk artists by proving that the dancefloor could be a site of political agitation.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6d/Entertainment%21.jpg/250px-Entertainment%21.jpg",
   "year": "1979",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:gang-of-four",
       "type": "artist",
-      "name": "Gang of Four"
+      "name": "Gang of Four",
+      "mbid": "d8661c02-f423-4d72-8044-40ff05daf7a1"
     }
   ],
   "label": {
@@ -148,5 +151,6 @@
       "name": "Rob Warr"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

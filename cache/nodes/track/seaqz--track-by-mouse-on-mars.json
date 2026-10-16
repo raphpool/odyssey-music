@@ -17,6 +17,7 @@
     }
   ],
   "materialized_at": "2026-05-13T13:01:14.866Z",
+  "mbid": "73cd465e-9881-4430-a6ed-f31bee90a0e3",
   "type": "track",
   "editorial_teaser": "“Seaqz” serves as the closing track to Mouse on Mars' 2012 album, 'Parastrophics', marking a triumphant and highly anticipated return for the German electronic duo of Jan St.",
   "year": "2012",
@@ -25,13 +26,20 @@
     {
       "slug": "artist:mouse-on-mars",
       "type": "artist",
-      "name": "Mouse on Mars"
+      "name": "Mouse on Mars",
+      "mbid": "4d4f5d92-0589-42fa-bc0e-1bd73e17a2ce"
     }
   ],
   "project": {
     "slug": "project:parastrophics",
     "type": "project",
     "name": "Parastrophics"
+  },
+  "label": {
+    "slug": "label:monkeytown-records",
+    "type": "label",
+    "name": "Monkeytown Records",
+    "mbid": "dd5e9af0-a9bb-4e11-9c57-5921c8838945"
   },
   "genres": [
     {
@@ -64,6 +72,7 @@
       "name": "Andi Toma"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

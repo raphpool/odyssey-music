@@ -17,10 +17,19 @@
     }
   ],
   "materialized_at": "2026-05-13T13:07:07.958Z",
+  "mbid": "0afb7bd6-33a9-3a01-8765-f1de0a1f0972",
   "type": "project",
   "editorial_pitch": "The definitive, singular studio album from Richard D. James's Polygon Window alias, serving as a pillar of Warp Records' early-90s 'Artificial Intelligence' series.",
   "year": "1993",
-  "artists": [],
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:polygon-window",
+      "type": "artist",
+      "name": "Polygon Window",
+      "mbid": "aaa78ce4-e4fe-43b6-abe1-733dc83f8eb1"
+    }
+  ],
   "label": {
     "slug": "label:warp",
     "type": "label",
@@ -100,5 +109,6 @@
       "name": "Richard D. James"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

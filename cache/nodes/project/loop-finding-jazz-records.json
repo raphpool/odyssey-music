@@ -17,11 +17,20 @@
     }
   ],
   "materialized_at": "2026-05-13T12:34:22.038Z",
+  "mbid": "54a5531a-95d6-3d52-8b48-9c1cc3f2e943",
   "type": "project",
   "editorial_pitch": "Released in 2001, Jan Jelinek's \"Loop-Finding-Jazz-Records\" is a seminal masterpiece of the clicks + cuts era, masterfully transforming jazz samples into abstract, hypnotic soundscapes. Through an Ensoniq ASR-10 sampler, Jelinek created a lush, organic, and glitchy universe that transcended its minimalist roots to become a cornerstone of modern electronic production.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a0/Jan_Jelinek_Loop_Finding_Jazz_Records.jpg/250px-Jan_Jelinek_Loop_Finding_Jazz_Records.jpg",
   "year": "2001",
-  "artists": [],
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:jan-jelinek",
+      "type": "artist",
+      "name": "Jan Jelinek",
+      "mbid": "ac9b829e-9a7c-4331-8abe-ab1eb49d1771"
+    }
+  ],
   "label": {
     "slug": "label:scape",
     "type": "label",
@@ -101,5 +110,6 @@
       "name": "Jan Jelinek"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

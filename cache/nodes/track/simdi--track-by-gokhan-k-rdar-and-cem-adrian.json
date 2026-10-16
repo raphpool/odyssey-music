@@ -9,6 +9,7 @@
     }
   ],
   "materialized_at": "2026-05-13T12:42:54.702Z",
+  "mbid": "0890d78d-2843-4185-95d0-25e52d1d166a",
   "type": "track",
   "editorial_teaser": "A evocative 2024 collaboration between Turkish music luminaries Gökhan Kırdar and Cem Adrian, blending polished electronic production with powerful, emotive vocals.",
   "year": "2024",
@@ -17,18 +18,26 @@
     {
       "slug": "artist:gokhan-k-rdar",
       "type": "artist",
-      "name": "Gökhan Kırdar"
+      "name": "Gökhan Kırdar",
+      "mbid": "f65f0ceb-60b3-4e5a-ba1a-63343c263bbe"
     },
     {
       "slug": "artist:cem-adrian",
       "type": "artist",
-      "name": "Cem Adrian"
+      "name": "Cem Adrian",
+      "mbid": "33696d30-adfd-4bd9-b130-0177b5e494e3"
     }
   ],
   "project": {
     "slug": "project:mucevher",
     "type": "project",
     "name": "Mücevher"
+  },
+  "label": {
+    "slug": "label:sony-music-turkey",
+    "type": "label",
+    "name": "SONY MUSIC TURKEY",
+    "mbid": "59ae6bfb-13bc-4d44-8afa-f0bb214f035b"
   },
   "genres": [
     {
@@ -45,6 +54,7 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

@@ -13,6 +13,7 @@
     }
   ],
   "materialized_at": "2026-05-13T13:19:35.652Z",
+  "mbid": "d7107e0e-3aae-463e-8510-bd3558850df5",
   "type": "track",
   "editorial_teaser": "A masterclass in textured soundscapes, \"Suspended In The Deep\" sees UK producer DFRNT navigating an immersive, aquatic landscape of dub techno and IDM.",
   "year": "2012",
@@ -21,13 +22,20 @@
     {
       "slug": "artist:dfrnt",
       "type": "artist",
-      "name": "DFRNT"
+      "name": "DFRNT",
+      "mbid": "33649b4e-9886-4b3f-869f-71e1448f371e"
     }
   ],
   "project": {
     "slug": "project:fading",
     "type": "project",
     "name": "Fading"
+  },
+  "label": {
+    "slug": "label:echodub",
+    "type": "label",
+    "name": "Echodub",
+    "mbid": "7ec6812a-b67e-4c43-b9ba-f7a65e65881b"
   },
   "genres": [
     {
@@ -56,6 +64,7 @@
       "name": "DFRNT"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

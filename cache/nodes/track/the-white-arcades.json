@@ -24,19 +24,28 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "91c4a208-7354-48c9-9bbe-1a85e0554644",
   "type": "track",
   "editorial_teaser": "\"The White Arcades\" is the eponymous opening track from the 1988 studio album of the same name by American ambient composer Harold Budd.",
+  "year": "1988",
   "artists": [
     {
       "slug": "artist:harold-budd",
       "type": "artist",
-      "name": "Harold Budd"
+      "name": "Harold Budd",
+      "mbid": "5c864a6f-146e-4225-986d-3295ce90f784"
     }
   ],
   "project": {
     "slug": "project:the-white-arcades",
     "type": "project",
     "name": "The White Arcades"
+  },
+  "label": {
+    "slug": "label:warner-bros-records",
+    "type": "label",
+    "name": "Warner Bros. Records",
+    "mbid": "c595c289-47ce-4fba-b999-b87503e8cb71"
   },
   "genres": [
     {
@@ -47,6 +56,7 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

@@ -13,14 +13,17 @@
     }
   ],
   "materialized_at": "2026-05-13T12:45:12.378Z",
+  "mbid": "6ca47ad6-762e-3d89-b585-ec2df8fd2ebb",
   "type": "project",
   "editorial_pitch": "www.thug.com is the definitive sophomore studio album by Miami hip-hop icon Trick Daddy, serving as a landmark release in the expansion of Southern rap during the late 1990s. Released in 1998, the album features his breakthrough hit 'Nann Ni**a' and captures the raw, unapologetic spirit of Miami street life, helping to elevate the Slip-N-Slide label and the Florida hip-hop scene to national prominence.",
   "year": "1998",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:trick-daddy",
       "type": "artist",
-      "name": "Trick Daddy"
+      "name": "Trick Daddy",
+      "mbid": "8efb78e6-9401-4f54-902b-57e9c3b54e64"
     }
   ],
   "label": {
@@ -141,5 +144,6 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

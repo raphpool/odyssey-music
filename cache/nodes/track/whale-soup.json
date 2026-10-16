@@ -17,6 +17,7 @@
     }
   ],
   "materialized_at": "2026-05-13T13:07:53.044Z",
+  "mbid": "3b11d1dd-e1b5-4da1-96e2-72b1ee49ed66",
   "type": "track",
   "editorial_teaser": "\"Whale Soup\" is a standout track from the 1993 debut album *Tango N'Vectif* by the influential electronic producer µ-Ziq, the primary project of Mike Paradinas.",
   "year": "1993",
@@ -25,13 +26,20 @@
     {
       "slug": "artist:ziq",
       "type": "artist",
-      "name": "µ-Ziq"
+      "name": "µ-Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
     }
   ],
   "project": {
     "slug": "project:tango-n-vectif",
     "type": "project",
     "name": "Tango N'Vectif"
+  },
+  "label": {
+    "slug": "label:rephlex",
+    "type": "label",
+    "name": "Rephlex",
+    "mbid": "820fa04e-9927-40bb-a6c5-1bf883b159c7"
   },
   "genres": [
     {
@@ -60,6 +68,7 @@
       "name": "µ-Ziq"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

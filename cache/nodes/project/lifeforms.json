@@ -9,15 +9,18 @@
     }
   ],
   "materialized_at": "2026-05-13T12:54:09.137Z",
+  "mbid": "06e12b5c-2888-3fc7-87ad-ed68c262e41b",
   "type": "project",
   "editorial_pitch": "Lifeforms is a sprawling, immersive masterpiece of ambient techno that defined the genre's experimental boundaries in the 1990s, blending dense soundscapes with avant-garde production.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/5/53/FSOL_Lifeforms.jpg",
   "year": "1994",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:the-future-sound-of-london",
       "type": "artist",
-      "name": "The Future Sound of London"
+      "name": "The Future Sound of London",
+      "mbid": "a1d77dd4-8728-4a47-bdfa-9663d791139c"
     }
   ],
   "label": {
@@ -149,5 +152,6 @@
       "name": "The Future Sound of London"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

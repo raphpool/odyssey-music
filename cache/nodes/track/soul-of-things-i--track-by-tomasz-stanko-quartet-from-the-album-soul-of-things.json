@@ -17,19 +17,28 @@
     }
   ],
   "materialized_at": "2026-05-13T12:42:58.684Z",
+  "mbid": "97df2fc8-553f-4cfa-8814-6b003099774b",
   "type": "track",
   "editorial_teaser": "\"Soul of Things I\" is the opening movement of the landmark 2002 album *Soul of Things* by the Tomasz Stańko Quartet.",
+  "year": "2002",
   "artists": [
     {
       "slug": "artist:tomasz-stanko-quartet",
       "type": "artist",
-      "name": "Tomasz Stańko Quartet"
+      "name": "Tomasz Stańko Quartet",
+      "mbid": "b526f421-0f6b-4e7d-a7fa-e1b3564f941b"
     }
   ],
   "project": {
     "slug": "project:soul-of-things",
     "type": "project",
     "name": "Soul of Things"
+  },
+  "label": {
+    "slug": "label:ecm-records",
+    "type": "label",
+    "name": "ECM Records",
+    "mbid": "1edf842b-d727-4d27-8db6-f31882443f89"
   },
   "genres": [
     {
@@ -52,6 +61,7 @@
       "name": "Manfred Eicher"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

@@ -13,15 +13,18 @@
     }
   ],
   "materialized_at": "2026-05-13T12:55:25.454Z",
+  "mbid": "3fa924b2-aae8-3ab6-b2d3-f647a8a8e8f6",
   "type": "project",
   "editorial_pitch": "A landmark in electronic dance music, Underworld's debut as a trio synthesizes the gritty textures of the 90s dancefloor with the poetic, stream-of-consciousness storytelling of Karl Hyde. It remains a seminal work that bridged the gap between underground rave culture and art-school ambition.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/b/b4/Underworld.dubnobasswithmyheadman.jpg",
   "year": "1994",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:underworld",
       "type": "artist",
-      "name": "Underworld"
+      "name": "Underworld",
+      "mbid": "ba2f4f3b-0293-4bc8-bb94-2f73b5207343"
     }
   ],
   "label": {
@@ -78,5 +81,6 @@
       "name": "Underworld"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

@@ -9,14 +9,17 @@
     }
   ],
   "materialized_at": "2026-05-13T13:08:12.050Z",
+  "mbid": "c95bc61d-4403-3e14-9dc8-ca73851c1f36",
   "type": "project",
   "editorial_pitch": "The debut studio album from DMX Krew, Sound of the Street is a defining piece of mid-90s electro that revitalized the genre's classic hardware-driven sound for a new era of electronic listeners on Rephlex Records.",
   "year": "1996",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:dmx-krew",
       "type": "artist",
-      "name": "DMX Krew"
+      "name": "DMX Krew",
+      "mbid": "a3494b6a-32b5-416c-8dea-dce62c8e9244"
     }
   ],
   "label": {
@@ -97,5 +100,6 @@
       "name": "DMX Krew"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

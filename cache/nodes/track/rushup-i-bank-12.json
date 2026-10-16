@@ -28,13 +28,28 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "3516d98c-c426-487e-b89d-f7da9af098b7",
   "type": "track",
   "editorial_teaser": "\"Rushup I Bank 12\" is a pivotal, standout track from *Rushup Edge*, the 2007 album released by the mysterious project The Tuss on the iconic British label Rephlex Records.",
-  "artists": [],
+  "year": "2007",
+  "artists": [
+    {
+      "slug": "artist:the-tuss",
+      "type": "artist",
+      "name": "The Tuss",
+      "mbid": "09292e4d-b7ad-476b-86d9-7806303ef8c3"
+    }
+  ],
   "project": {
     "slug": "project:rushup-edge",
     "type": "project",
     "name": "Rushup Edge"
+  },
+  "label": {
+    "slug": "label:rephlex",
+    "type": "label",
+    "name": "Rephlex",
+    "mbid": "820fa04e-9927-40bb-a6c5-1bf883b159c7"
   },
   "genres": [
     {
@@ -62,6 +77,7 @@
       "name": "Karen Tregaskin"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []
