@@ -1,0 +1,55 @@
+{
+  "slug": "track:spiritual-high",
+  "name": "Spiritual High",
+  "editorial_article": "\"Spiritual High (State of Independence)\" is a defining electronic-pop production by the British collective Moodswings, featuring legendary vocalist Chrissie Hynde. Released in 1991, the track became a notable radio success, particularly for its atmospheric blending of ambient textures, downtempo electronic beats, and soul-inflected vocals. It serves as a reinterpretation—essentially a cover version—of the 1981 classic \"State of Independence,\" originally composed by Vangelis and Jon Anderson. By integrating elements of trip-hop’s early blueprint with the haunting vocal delivery of The Pretenders' frontwoman, Moodswings created a bridge between late-80s sophisticated pop and the early-90s dance-ambient explosion. The song is perhaps most distinctively remembered for its inclusion of sampled audio from civil rights leader Dr. Martin Luther King Jr., which imbues the track with a layer of sociopolitical gravitas that was highly characteristic of the era's experimentation with multi-layered, soundscape-oriented production. Through the contributions of producers and engineers like those at Nice & Nasty, the track achieved a polished, expansive sound that transcended its dance-club origins, establishing it as a memorable artifact of early 90s British electronic production. Beyond its chart performance, \"Spiritual High\" remains a curious case study in how British acts of the period recontextualized 1970s and 80s prog-electronic foundations into the burgeoning downtempo and house scenes.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/80104-Moodswings-Spiritual-High?srsltid=AfmBOooHZrrfSLxoEexZLHhoPCfq_K3NIfRBqTkmcrBV3LlDNQeC84pn",
+      "title": "Moodswings – Spiritual High | Releases | Discogs"
+    },
+    {
+      "url": "https://imvdb.com/video/moodswings/spiritual-high-state-of-independence",
+      "title": "Moodswings - Spiritual High (State Of Independence) (1991) - IMVDb"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:41:44.341Z",
+  "type": "track",
+  "editorial_teaser": "A moody, atmospheric downtempo track featuring Chrissie Hynde, best known for its evocative reinterpretation of the Vangelis and Jon Anderson classic \"State of Independence.\"",
+  "year": "1991",
+  "artists": [
+    {
+      "slug": "artist:moodswings",
+      "type": "artist",
+      "name": "Moodswings"
+    },
+    {
+      "slug": "artist:chrissie-hynde",
+      "type": "artist",
+      "name": "Chrissie Hynde"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo",
+      "qid": "Q251192"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:moodswings",
+      "type": "artist",
+      "name": "Moodswings"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

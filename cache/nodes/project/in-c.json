@@ -1,0 +1,48 @@
+{
+  "slug": "project:in-c",
+  "name": "In C",
+  "editorial_article": "In C (1964) is a seminal musical composition by Terry Riley that serves as one of the definitive cornerstones of American minimalism. Emerging from the vibrant experimental scene of the 1960s in San Francisco, the work was conceived by Riley during a period of intense interest in psychedelic consciousness and the potential for music to act as a meditative, transportive experience. The score itself is deceptively simple: it consists of 53 melodic fragments that any number of instrumentalists are instructed to repeat in a guided, aleatory improvisation. By relying on the repetition of these cells, players create a shifting, phase-like texture that evolves organically based on the ensemble's collective decisions, famously influenced by Riley's earlier experiments with tape loops and \"time-lag accumulators.\"\\n\\nBeyond its structural innovation, In C fundamentally altered the trajectory of modern composition. Its premiere in November 1964 at the San Francisco Tape Music Center, featuring collaborators such as Steve Reich and Pauline Oliveros, marked a departure from rigid mid-century serialism toward a communal, ecstatic musical practice. Steve Reich’s suggestion to include a persistent eighth-note pulse provided the piece with its hallmark steady rhythm, which grounds the otherwise ethereal and shimmering melodic layers. Because the work is open-ended—requiring no fixed instrumentation or duration—it has been interpreted by countless ensembles globally, ranging from traditional chamber orchestras to electronic collectives, cementing its status as an enduring, living text in the canon of 20th-century music. In 2022, Riley’s 1968 recorded version of the piece was deservedly added to the National Recording Registry, acknowledging its profound impact on generations of composers, including Philip Glass, John Adams, and Julius Eastman.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/In_C",
+      "title": "In C - Wikipedia"
+    },
+    {
+      "url": "https://www.allmusic.com/album/terry-riley-in-c-mw0001405495",
+      "title": "Terry Riley: In C | Album - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:47:28.154Z",
+  "type": "project",
+  "editorial_pitch": "A landmark of 20th-century minimalism, Terry Riley’s 'In C' is an open-score composition for any number of musicians that uses 53 repeating melodic fragments to create a shifting, hypnotic, and communal sonic landscape.",
+  "year": "1964",
+  "artists": [
+    {
+      "slug": "artist:terry-riley",
+      "type": "artist",
+      "name": "Terry Riley"
+    }
+  ],
+  "label": {
+    "slug": "label:columbia-masterworks",
+    "type": "label",
+    "name": "Columbia Masterworks"
+  },
+  "genres": [
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism",
+      "qid": "Q572901"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental",
+      "qid": "Q1640319"
+    }
+  ],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

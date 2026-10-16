@@ -62,12 +62,12 @@
       "name": "Makesaracket"
     },
     {
-      "slug": "project:das-ist-ein-groovybeat-ja--jake-slazenger",
+      "slug": "project:das-ist-ein-groovybeat-ja",
       "type": "project",
       "name": "Das Ist Ein Groovybeat, Ja"
     },
     {
-      "slug": "project:drops-a-deuce--jake-slazenger",
+      "slug": "project:drops-a-deuce",
       "type": "project",
       "name": "Drops A Deuce"
     },
@@ -89,7 +89,7 @@
       "name": "Nautilus"
     },
     {
-      "slug": "track:pewter-dragon--jake-slazenger",
+      "slug": "track:pewter-dragon",
       "type": "track",
       "name": "Pewter Dragon"
     }

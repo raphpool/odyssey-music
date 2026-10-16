@@ -1,0 +1,140 @@
+{
+  "slug": "project:five-leaves-left",
+  "name": "Five Leaves Left",
+  "editorial_article": "Five Leaves Left, the 1969 debut studio album by English folk musician Nick Drake, serves as an essential landmark in the landscape of late-sixties folk-rock and chamber folk. Recorded at London’s Sound Techniques studio between 1968 and 1969 under the guidance of producer Joe Boyd, the record was released by Island Records to modest initial attention before eventually being recognized as a definitive, melancholic masterpiece. The album title is widely cited as a reference to a warning printed on Rizla cigarette papers—\"Only five leaves left\"—a subtle detail that mirrors the fragile, introspective nature of Drake’s songwriting. Musically, Five Leaves Left is characterized by a sophisticated, nuanced approach that distinguished Drake from his folk contemporaries. Engineer John Wood noted that Drake preferred to track live, often recording his vocals and guitar simultaneously alongside strings, resulting in a raw, intimate cohesion that captured his gentle, articulate delivery. The session featured notable contributors, including Richard Thompson of Fairport Convention and Danny Thompson of Pentangle, while the intricate, sweeping string arrangements were largely provided by Robert Kirby and Harry Robertson. This blend of sparse, bluesy acoustic guitar work and rich, cinematic orchestration created a unique, timeless sound that navigated the balance between accessibility and deeply personal, introspective lyricism. While initial critical reception was varied, often split between admiration for his talent and confusion regarding the album's lack of pop-radio immediacy, its reputation grew exponentially over the decades following his untimely death, cementing it as one of the most influential and enduring records of the era. It stands as the inaugural chapter in a brief but devastatingly beautiful discography, setting the standard for the chamber-folk movement that followed.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Five_Leaves_Left",
+      "title": "Five Leaves Left - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:50:39.853Z",
+  "_metrics": {
+    "input_tokens": 42608,
+    "output_tokens": 2402,
+    "cache_read_tokens": 4047,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.014356,
+    "llm_calls": 7,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 7,
+    "emit_attempts": 4,
+    "agent_ms": 23997,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "mbid": "b9c4fc17-0dc5-3aa5-b1b9-08e1446e5bea",
+  "type": "project",
+  "editorial_pitch": "The debut masterpiece by Nick Drake, Five Leaves Left is a quintessential work of chamber-folk that masterfully weaves intimate, guitar-driven songwriting with lush, evocative string arrangements. Recorded at the height of the late-sixties British folk scene, it remains a defining, melancholic record of haunting beauty.",
+  "year": "1969",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:nick-drake",
+      "type": "artist",
+      "name": "Nick Drake",
+      "mbid": "99ea432a-e3d8-42cb-9d5e-db316a6a8458"
+    }
+  ],
+  "label": {
+    "slug": "label:island-records",
+    "type": "label",
+    "name": "Island Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:folk",
+      "type": "genre",
+      "name": "Folk music",
+      "qid": "Q43343"
+    },
+    {
+      "slug": "genre:chamber-folk",
+      "type": "genre",
+      "name": "Chamber folk",
+      "qid": "Q98528178"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:time-has-told-me--nick-drake",
+      "type": "track",
+      "name": "Time Has Told Me",
+      "mbid": "e0fdd1fa-502b-4350-9203-9334a592437c",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "track:river-man--nick-drake",
+      "type": "track",
+      "name": "River Man",
+      "mbid": "3bd2888b-6d08-4c48-8f59-a8b680874fdb",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "track:three-hours--nick-drake",
+      "type": "track",
+      "name": "Three Hours",
+      "mbid": "29e63a38-92e5-4704-9d0a-cff049d65765",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "track:way-to-blue--nick-drake",
+      "type": "track",
+      "name": "Way to Blue",
+      "mbid": "d64b7430-c101-43c2-aade-5615a753daf7",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "track:day-is-done--nick-drake",
+      "type": "track",
+      "name": "Day Is Done",
+      "mbid": "42dd6c50-8989-44d4-813f-8afe23a2f75f",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "track:cello-song--nick-drake",
+      "type": "track",
+      "name": "’Cello Song",
+      "mbid": "c61eccdc-448f-4d1a-8401-c6d23ac49139",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "track:the-thoughts-of-mary-jane--nick-drake",
+      "type": "track",
+      "name": "The Thoughts of Mary Jane",
+      "mbid": "540f209a-c39a-4e1d-9cd0-a2f8290723e5",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "track:man-in-a-shed--nick-drake",
+      "type": "track",
+      "name": "Man in a Shed",
+      "mbid": "a2fabfc2-30a4-4f90-a421-ccecee7617d2",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "track:fruit-tree--nick-drake",
+      "type": "track",
+      "name": "Fruit Tree",
+      "mbid": "cfc01749-7b41-455e-bc02-8c70ae98e08a",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "track:saturday-sun--nick-drake",
+      "type": "track",
+      "name": "Saturday Sun",
+      "mbid": "310f9f56-bf10-48ba-8522-dd21b3ca46ea",
+      "artist": "Nick Drake"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:joe-boyd",
+      "type": "artist",
+      "name": "Joe Boyd"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

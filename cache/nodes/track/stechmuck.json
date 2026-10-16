@@ -17,7 +17,7 @@
   "editorial_teaser": "\"Stechmück\" is a masterfully crafted track by the acclaimed German electronic producer Stefan Betke, widely known under the alias Pole.",
   "artists": [],
   "project": {
-    "slug": "project:tempus--skerryvore",
+    "slug": "project:tempus",
     "type": "project",
     "name": "Tempus"
   },
@@ -48,7 +48,6 @@
       "name": "Stefan Betke"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

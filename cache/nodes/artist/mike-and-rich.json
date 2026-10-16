@@ -66,10 +66,9 @@
   ],
   "discography": [
     {
-      "slug": "project:expert-knob-twiddlers--mike-and-rich",
+      "slug": "project:expert-knob-twiddlers",
       "type": "project",
-      "name": "Expert Knob Twiddlers",
-      "artist": "Mike & Rich"
+      "name": "Expert Knob Twiddlers"
     }
   ],
   "notable_tracks": [
@@ -79,7 +78,7 @@
       "name": "Mr. Frosty"
     },
     {
-      "slug": "track:eggy-toast--mike-and-rich",
+      "slug": "track:eggy-toast",
       "type": "track",
       "name": "Eggy Toast"
     }
@@ -99,6 +98,5 @@
       "type": "artist",
       "name": "Richard D. James"
     }
-  ],
-  "similar_artists": []
+  ]
 }

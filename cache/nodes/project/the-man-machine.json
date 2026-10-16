@@ -1,0 +1,92 @@
+{
+  "slug": "project:the-man-machine",
+  "name": "The Man-Machine",
+  "editorial_article": "Released in 1978, *The Man-Machine* (*Die Mensch-Maschine*) stands as the seventh studio album by the seminal German electronic group Kraftwerk. Recorded at their legendary Kling Klang Studio in Düsseldorf, the album marks a pivotal shift in the band's evolution, moving away from the more sprawling, atmospheric compositions of their mid-70s work toward a tighter, more rhythmic, and overtly pop-oriented structure. By stripping away excess and focusing on precise, interlocking synthesizer loops and rigid, metronomic drum patterns, Kraftwerk created a template for synth-pop that would resonate through decades of electronic music production. \\n\\nConceptually, the album is a thematic bridge between human identity and technological progress, exploring the symbiotic relationship between society and the machines that sustain it. This preoccupation with the \"man-machine\" is reflected not only in the lyrics—which touch on themes of robotics, urban life, and modern communication—but also in the music itself, which feels both intensely cold and surprisingly expressive. Tracks like \"The Robots\" and \"The Model\" serve as defining examples of this duality, pairing austere, programmed instrumentation with catchy, deceptively simple melodies. \\n\\nBeyond its sonic impact, *The Man-Machine* is culturally significant for its striking visual presentation. The album art, heavily influenced by the Russian suprematist El Lissitzky, solidified the band’s aesthetic as a modern, avant-garde force. This commitment to a unified visual and sonic language helped Kraftwerk transcend the \"Krautrock\" label of their peers, positioning them instead as architects of a new, digital futurism. For many, this record remains the definitive Kraftwerk statement—a perfect synthesis of humanity and technology, executed with mechanical grace and visionary clarity.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/The_Man-Machine",
+      "title": "The Man-Machine - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:22.857Z",
+  "type": "project",
+  "editorial_pitch": "A foundational masterpiece of electronic pop, The Man-Machine refined Kraftwerk's mechanical aesthetic into a sleek, danceable, and enduringly influential vision of the future. By balancing clinical robotic themes with surprisingly hummable melodies, the album bridged the gap between avant-garde art rock and mainstream synth-pop.",
+  "year": "1978",
+  "artists": [
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk"
+    }
+  ],
+  "label": {
+    "slug": "label:kling-klang",
+    "type": "label",
+    "name": "Kling Klang"
+  },
+  "genres": [
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop",
+      "qid": "Q1298934"
+    },
+    {
+      "slug": "genre:electropop",
+      "type": "genre",
+      "name": "Electropop",
+      "qid": "Q188450"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New wave",
+      "qid": "Q187760"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:the-robots",
+      "type": "track",
+      "name": "The Robots"
+    },
+    {
+      "slug": "track:spacelab",
+      "type": "track",
+      "name": "Spacelab"
+    },
+    {
+      "slug": "track:metropolis",
+      "type": "track",
+      "name": "Metropolis"
+    },
+    {
+      "slug": "track:the-model",
+      "type": "track",
+      "name": "The Model"
+    },
+    {
+      "slug": "track:neon-lights",
+      "type": "track",
+      "name": "Neon Lights"
+    },
+    {
+      "slug": "track:the-man-machine",
+      "type": "track",
+      "name": "The Man-Machine"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:ralf-hutter",
+      "type": "artist",
+      "name": "Ralf Hütter"
+    },
+    {
+      "slug": "artist:florian-schneider",
+      "type": "artist",
+      "name": "Florian Schneider"
+    }
+  ],
+  "related_projects": []
+}

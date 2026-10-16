@@ -101,19 +101,19 @@
   ],
   "landmark_projects": [
     {
-      "slug": "project:45-rpm--paul-van-dyk",
+      "slug": "project:45-rpm",
       "type": "project",
       "name": "45 RPM"
     },
     {
-      "slug": "project:tranceformed-from-beyond--cosmic-baby",
+      "slug": "project:tranceformed-from-beyond",
       "type": "project",
       "name": "Tranceformed From Beyond"
     }
   ],
   "landmark_tracks": [
     {
-      "slug": "track:for-an-angel--paul-van-dyk",
+      "slug": "track:for-an-angel",
       "type": "track",
       "name": "For An Angel"
     },

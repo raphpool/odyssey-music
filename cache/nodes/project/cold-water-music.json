@@ -1,0 +1,152 @@
+{
+  "slug": "project:cold-water-music",
+  "name": "Cold Water Music",
+  "editorial_article": "Cold Water Music, released in 1999, stands as the debut studio album by British musician Aim (Andy Turner) and remains a landmark release for the iconic Manchester-based label Grand Central Records. Emerging from the vibrant UK trip-hop and downtempo scene of the late nineties, the album masterfully synthesizes cinematic atmospheres, boom-bap hip-hop production, and an eclectic array of samples that draw from disparate sources like classic horror soundtracks and sports documentaries. \\n\\nMusically, Cold Water Music is defined by its warm, organic textures and a distinctly melancholic, late-night aesthetic. Aim’s production style eschews the harsher digital edges of contemporary electronic music in favor of a laid-back, lounge-influenced approach. The tracklist is varied, featuring collaborations with vocalists and rappers like Kate Rogers and YZ, alongside moody instrumentals like the title track, which famously incorporates a sample from the film Psycho III. With its ability to balance intricate studio layering with accessible, soulful melodies, the album helped cement the Grand Central sound, offering a polished yet deeply personal interpretation of the burgeoning \"chill-out\" electronic movement that flourished in the UK at the turn of the millennium. It remains a critically lauded touchstone of its era, later finding a second life through its inclusion in high-profile media like the Tony Hawk's Pro Skater soundtrack.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Cold_Water_Music",
+      "title": "Cold Water Music - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:04:21.435Z",
+  "mbid": "e4def5f6-618f-3c56-9557-8b7074a0b12b",
+  "type": "project",
+  "editorial_pitch": "A foundational trip-hop record that helped define the late-90s Manchester sound, blending warm hip-hop production, cinematic samples, and introspective electronic moods.",
+  "year": "1999",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:aim",
+      "type": "artist",
+      "name": "Aim",
+      "mbid": "8e678953-c97b-435b-af18-2425b6db71d0"
+    }
+  ],
+  "label": {
+    "slug": "label:grand-central-records",
+    "type": "label",
+    "name": "Grand Central Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:trip-hop",
+      "type": "genre",
+      "name": "Trip hop",
+      "qid": "Q205560"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica",
+      "qid": "Q817138"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop",
+      "qid": "Q11401"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:intro--aim",
+      "type": "track",
+      "name": "Intro",
+      "mbid": "eabffa8a-350f-4593-842d-82e9fd0774ff",
+      "artist": "Aim"
+    },
+    {
+      "slug": "track:cold-water-music--aim",
+      "type": "track",
+      "name": "Cold Water Music",
+      "mbid": "1cb398e2-d913-4338-a125-0060905bb9c9",
+      "artist": "Aim"
+    },
+    {
+      "slug": "track:the-force--aim",
+      "type": "track",
+      "name": "The Force",
+      "mbid": "e936b9e0-87c6-48d7-85d8-4a1be634f294",
+      "artist": "Aim"
+    },
+    {
+      "slug": "track:sail--aim",
+      "type": "track",
+      "name": "Sail",
+      "mbid": "cdc6b974-824e-4b4d-a938-6e1a8383fd27",
+      "artist": "Aim"
+    },
+    {
+      "slug": "track:downstate--aim",
+      "type": "track",
+      "name": "Downstate",
+      "mbid": "770a88db-cdc7-4985-b4fc-f00003797aa7",
+      "artist": "Aim"
+    },
+    {
+      "slug": "track:ain-t-got-time-to-waste--aim",
+      "type": "track",
+      "name": "Ain’t Got Time to Waste",
+      "mbid": "8f3a4260-5ebf-41bc-ac8b-92cc9a11a9a8",
+      "artist": "Aim"
+    },
+    {
+      "slug": "track:fat-city-interlude--aim",
+      "type": "track",
+      "name": "Fat City (interlude)",
+      "mbid": "d1c871d0-9188-4a36-905b-93e3a5ca79c1",
+      "artist": "Aim"
+    },
+    {
+      "slug": "track:true-to-hip-hop--aim",
+      "type": "track",
+      "name": "True to Hip Hop",
+      "mbid": "523f132d-0ed3-45fb-9f4a-61696d053389",
+      "artist": "Aim"
+    },
+    {
+      "slug": "track:demonique--aim",
+      "type": "track",
+      "name": "Demonique",
+      "mbid": "32a9dd34-9252-471f-b6e7-690e619bcd12",
+      "artist": "Aim"
+    },
+    {
+      "slug": "track:a-tree-a-rock-and-a-cloud--aim",
+      "type": "track",
+      "name": "A Tree, a Rock and a Cloud",
+      "mbid": "febf5b0d-cb36-4542-bb1a-14a213b6b69b",
+      "artist": "Aim"
+    },
+    {
+      "slug": "track:journey-to-the-end-of-the-night--aim",
+      "type": "track",
+      "name": "Journey to the End of the Night",
+      "mbid": "abf8ea86-db9a-48b5-af24-720599d76ec7",
+      "artist": "Aim"
+    },
+    {
+      "slug": "track:from-here-to-fame--aim",
+      "type": "track",
+      "name": "From Here to Fame",
+      "mbid": "639c4b1b-4c03-418b-b44b-e2955f5ee3fa",
+      "artist": "Aim"
+    },
+    {
+      "slug": "track:from-here-to-fame-aim-remix--aim",
+      "type": "track",
+      "name": "From Here to Fame (Aim remix)",
+      "mbid": "f650552a-87e9-4436-ac25-bd25a8189354",
+      "artist": "Aim"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:aim",
+      "type": "artist",
+      "name": "Aim"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

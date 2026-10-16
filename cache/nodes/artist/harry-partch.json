@@ -47,7 +47,7 @@
       "name": "The Wayward"
     },
     {
-      "slug": "project:delusion-of-the-fury--harry-partch",
+      "slug": "project:delusion-of-the-fury",
       "type": "project",
       "name": "Delusion of the Fury"
     },
@@ -59,12 +59,12 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:barstow--harry-partch",
+      "slug": "track:barstow",
       "type": "track",
       "name": "Barstow"
     },
     {
-      "slug": "track:ulysses-at-the-edge--harry-partch",
+      "slug": "track:ulysses-at-the-edge",
       "type": "track",
       "name": "Ulysses at the Edge"
     }

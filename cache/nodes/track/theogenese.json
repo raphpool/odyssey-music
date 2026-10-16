@@ -1,0 +1,56 @@
+{
+  "slug": "track:theogenese",
+  "name": "Theogenese",
+  "editorial_article": "\"Theogenese\" is a standout track from Ricardo Villalobos's seminal 2003 minimal techno album, 'Alcachofa'. Released on the influential Playhouse label, the track exemplifies the unique production aesthetic that solidified Villalobos's reputation in the early 2000s electronic music scene. Clocking in at over nine minutes, \"Theogenese\" embodies the hypnotic, groove-driven sensibility of the era's minimal techno, characterized by intricate, layered percussion and subtle, evolving rhythmic textures that unfold with deliberate patience. \n\nAs a pivotal component of 'Alcachofa', which is widely considered a landmark release for the microhouse and minimal subgenres, \"Theogenese\" demonstrates Villalobos’s mastery of organic-sounding electronic loops and micro-samples. Unlike the more driving, peak-time techno of the period, the track favors a deep, cerebral atmosphere that prioritizes rhythmic development and sonic texture over traditional pop structures. The production techniques present here—often involving long, shifting sequences and carefully modulated frequencies—highlight the producer’s focus on the dancefloor as a space for psychological immersion, a hallmark that would continue to define his work throughout his career in the Berlin electronic scene and beyond. 'Alcachofa' served as a bridge between the clinical precision of early 2000s minimal techno and a more fluid, organic sound palette that resonated far beyond the confines of the genre.",
+  "citations": [
+    {
+      "url": "https://www.albumoftheyear.org/song/209499-theogenese/",
+      "title": "Ricardo Villalobos - Theogenese - Song Ratings - Album of the Year"
+    },
+    {
+      "url": "https://openbroadcast.ch/discover/tracks/4E8CFB1C/",
+      "title": "Theogenese | open broadcast radio"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:06:38.595Z",
+  "type": "track",
+  "editorial_teaser": "A hypnotic, expansive piece of minimal techno from Ricardo Villalobos’s landmark 2003 album, 'Alcachofa'.",
+  "year": "2003",
+  "duration": "9:19",
+  "artists": [
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos"
+    }
+  ],
+  "project": {
+    "slug": "project:alcachofa",
+    "type": "project",
+    "name": "Alcachofa"
+  },
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
+    },
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse",
+      "qid": "Q1931555"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

@@ -1,0 +1,69 @@
+{
+  "slug": "project:monoliths-and-dimensions",
+  "name": "Monoliths & Dimensions",
+  "editorial_article": "Released in May 2009, Monoliths & Dimensions stands as a definitive, landmark studio album by the American drone metal pioneers Sunn O))). Expanding significantly upon the monolithic guitar-driven density that defined their earlier work, this album serves as a culmination of two years of meticulous experimentation and collaboration. Rather than a simple hybrid of metal and orchestral music, the project acts as a prismatic expansion of sound, weaving acoustic instrumentation, intricate brass and reed ensembles, an upright bass trio, and a Viennese women’s choir—led by Jessika Kenney—into the band's core drone foundation. Core members Stephen O’Malley and Greg Anderson worked closely with producers Randall Dunn and Mell Dettmer to harness the timbre of feedback, ultimately crafting a work that remains deeply musical, abstract, and incredibly powerful. The album features a vast array of guest contributors, including composer Eyvind Kang, guitarist Oren Ambarchi, vocalist Attila Csihar, and Earth guitarist Dylan Carlson. The closing track, \"Alice,\" provides a poignant, transcendent tribute to the late jazz harpist Alice Coltrane, anchoring the album's ethereal, heavy-psych leanings in a legacy of deep, spiritual exploration. By integrating these complex, non-linear arrangements, Sunn O))) managed to refine their signature \"dreamsludge\" into something both more expansive and more delicate than previous efforts, solidifying their influence within the experimental and avant-garde spheres. The album’s cover art features Richard Serra’s \"Out-of-round X,\" a visual reflection of the monumental, structured weight the music seeks to evoke. Critically acclaimed upon its release, it continues to be regarded as a pinnacle of the drone metal genre.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Monoliths_%26_Dimensions",
+      "title": "Monoliths & Dimensions - Wikipedia"
+    },
+    {
+      "url": "https://sunn.bandcamp.com/album/monoliths-dimensions",
+      "title": "Monoliths & Dimensions | SUNN O))) - Bandcamp"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:50:17.863Z",
+  "mbid": "2c33e8a0-b2be-3224-8748-92e1d8ea948e",
+  "type": "project",
+  "editorial_pitch": "A monumental fusion of drone metal and avant-garde orchestration, Sunn O)))'s 2009 masterwork expands their feedback-drenched soundscapes with intricate strings, choirs, and spiritual jazz influences.",
+  "year": "2009",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:sunn-o",
+      "type": "artist",
+      "name": "Sunn O)))",
+      "mbid": "1d3da898-4fb4-4445-b704-cd7315e01789"
+    }
+  ],
+  "label": {
+    "slug": "label:southern-lord",
+    "type": "label",
+    "name": "Southern Lord",
+    "mbid": "3b78c7e5-6292-4f6b-b921-bdcbe681ea27"
+  },
+  "genres": [],
+  "tracklist": [
+    {
+      "slug": "track:aghartha--sunn-o",
+      "type": "track",
+      "name": "Aghartha",
+      "mbid": "dbe9012a-a485-4ddc-a977-047f1bf9aba5",
+      "artist": "Sunn O)))"
+    },
+    {
+      "slug": "track:big-church-megszentsegtelenithetetlensegeskedeseitekert--sunn-o",
+      "type": "track",
+      "name": "Big Church [megszentségteleníthetetlenségeskedéseitekért]",
+      "mbid": "12ff927b-739f-4a49-bc5f-55a8bfd99953",
+      "artist": "Sunn O)))"
+    },
+    {
+      "slug": "track:hunting-and-gathering-cydonia--sunn-o",
+      "type": "track",
+      "name": "Hunting & Gathering (Cydonia)",
+      "mbid": "2afdae7a-97ab-45bc-a776-033a8905b2b0",
+      "artist": "Sunn O)))"
+    },
+    {
+      "slug": "track:alice--sunn-o",
+      "type": "track",
+      "name": "Alice",
+      "mbid": "eddb8ed7-e537-40c0-936b-f3f5976d52ee",
+      "artist": "Sunn O)))"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

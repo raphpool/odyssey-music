@@ -1,0 +1,62 @@
+{
+  "slug": "track:fz-pseudotimestretch-e-3",
+  "name": "fz pseudotimestretch+e+3 [138.85]",
+  "editorial_article": "\"fz pseudotimestretch+e+3 [138.85]\" is a compelling, short-form track from Aphex Twin's landmark 2014 studio album, *Syro*. Released via Warp Records, the track serves as a brief but characteristic exploration of the IDM mastermind's studio techniques. The title itself—a nod to \"pseudo-time stretch\" effects—alludes to the meticulous digital manipulation often found in Richard D. James's production, where granular synthesis and rhythmic sequencing are pushed to technical extremes. \\n\\nClocking in at under a minute, the track functions as a hyper-condensed piece within the *Syro* ecosystem. While *Syro* is widely regarded as a sprawling, playful, and highly detailed masterclass in electronic composition, tracks like this act as rhythmic interludes or sonic experiments that maintain the album's frenetic, high-energy momentum. The inclusion of the \"138.85\" numerical suffix is classic Aphex Twin nomenclature, often referencing the track's tempo or specific technical metadata from his studio gear, further grounding the piece in the obsessive, machine-driven process that defines his late-career work. Culturally, the track highlights how Aphex Twin continued to bridge the gap between abstract academic sound design and accessible, highly danceable IDM in the 2010s, reaffirming his status as a pioneer who rarely separates the technical from the musical. Despite its brevity, it remains a favorite among listeners who appreciate the dense, textured approach to beat-making for which the album is celebrated.",
+  "citations": [
+    {
+      "url": "https://aphextwin.bandcamp.com/track/fz-pseudotimestretch-e-3-13885",
+      "title": "fz pseudotimestretch+e+3 [138.85] | Aphex Twin"
+    },
+    {
+      "url": "https://genius.com/Aphex-twin-fz-pseudotimestretch-e-3-13885-lyrics",
+      "title": "Aphex Twin – fz pseudotimestretch+e+3 [138.85] Lyrics - Genius"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:03:18.072Z",
+  "type": "track",
+  "editorial_teaser": "\"fz pseudotimestretch+e+3 [138.85]\" is a compelling, short-form track from Aphex Twin's landmark 2014 studio album, *Syro*.",
+  "year": "2014",
+  "duration": "0:58",
+  "artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "project": {
+    "slug": "project:syro",
+    "type": "project",
+    "name": "Syro"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic",
+      "qid": "Q105763581"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

@@ -1,0 +1,81 @@
+{
+  "slug": "project:flamagra",
+  "name": "Flamagra",
+  "editorial_article": "Flamagra, released in 2019 by Warp Records, represents the sixth studio album by the visionary American producer Flying Lotus (Steven Ellison). Following a five-year hiatus from his full-length solo discography after the critically acclaimed You're Dead!, this project emerges as an ambitious, expansive sonic narrative that synthesizes the artist’s disparate influences into a cohesive, fiery mythology. Ellison conceptualized the album around a central, metaphorical image: an \"eternal flame sitting on a hill,\" an idea that became solidified after a chance encounter with the iconic director David Lynch, who lends his haunting, surrealist spoken-word performance to the album’s lead single, \"Fire Is Coming.\"\\n\\nMusically, Flamagra is a dense, high-fidelity exploration of jazz-funk, experimental hip-hop, and avant-garde electronic music. Across its 67-minute duration, Flying Lotus orchestrates a sprawling roster of collaborators, including Thundercat, Anderson .Paak, Little Dragon, Solange, George Clinton, and Denzel Curry, among many others. The collaborative nature of the album feels less like a series of guest spots and more like a carefully curated ecosystem of sounds. From the jittery, fusion-informed rhythms to the lush, atmospheric textures, the album balances chaotic, frenetic energy with moments of profound, meditative stillness. It is a defining work of the late-2010s experimental electronic landscape, solidifying Ellison's role as a vital nexus point between the worlds of jazz fusion and modern beat-making. By channeling years of disparate sketches and thematic musings into this singular, burning vision, Flamagra remains a hallmark project that captures the restless innovation of one of modern music's most unique producers. The album's structure—featuring 27 tracks—reflects a dense, almost overwhelming creative output that rewards multiple listens, shifting seamlessly between jazz improvisations, trap-inflected beats, and introspective ambient passages, all held together by Flying Lotus’s unmistakable production signature.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Flamagra",
+      "title": "Flamagra - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/master/1552250-Flying-Lotus-Flamagra?srsltid=AfmBOooobzCeBadvsROepJDTTbUW7o_rkFHATCbaARFIK-tZo3QPHO2Y",
+      "title": "Flying Lotus – Flamagra | Releases - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:03:38.273Z",
+  "mbid": "23a0d4ce-5421-4f35-afc4-49983c430edb",
+  "type": "project",
+  "editorial_pitch": "An expansive, psychedelic journey through the intersection of jazz-funk, experimental hip-hop, and electronica, Flamagra serves as a testament to Flying Lotus's mastery of collaborative world-building. Featuring an eclectic roster of guests, the album captures a central thematic tension—an \"eternal flame on a hill\"—that pulses through its sprawling, twenty-seven-track architecture.",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/thumb/9/92/Flying_Lotus_-_Flamagra.png/250px-Flying_Lotus_-_Flamagra.png",
+  "year": "2019",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:flying-lotus",
+      "type": "artist",
+      "name": "Flying Lotus",
+      "mbid": "fc7376fe-1a6f-4414-b4a7-83f50ed59c92"
+    }
+  ],
+  "label": {
+    "slug": "label:warp-records",
+    "type": "label",
+    "name": "Warp Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:jazz-funk",
+      "type": "genre",
+      "name": "Jazz-funk",
+      "qid": "Q38656"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic music",
+      "qid": "Q9778"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:heroes",
+      "type": "track",
+      "name": "Heroes"
+    },
+    {
+      "slug": "track:post-requisite",
+      "type": "track",
+      "name": "Post Requisite"
+    },
+    {
+      "slug": "track:fire-is-coming",
+      "type": "track",
+      "name": "Fire Is Coming"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:flying-lotus",
+      "type": "artist",
+      "name": "Flying Lotus"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

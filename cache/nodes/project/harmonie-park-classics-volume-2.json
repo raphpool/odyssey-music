@@ -1,0 +1,48 @@
+{
+  "slug": "project:harmonie-park-classics-volume-2",
+  "name": "Harmonie Park Classics Volume 2",
+  "editorial_article": "Harmonie Park Classics Volume 2 is a foundational 12-inch EP by the legendary Detroit producer Mike Huckaby, originally released in 2009 on his own label, Deep Transportation. This release stands as a cornerstone of the deep house sound, showcasing Huckaby’s mastery in blending soulful, classic-leaning textures with the precise, rhythmic sensibility of the Detroit school. Comprising two tracks, \"We Can Make It\" and \"Love Filter,\" the EP demonstrates Huckaby's keen ear for sampling and his ability to recontextualize forgotten disco and boogie gems into timeless, modern dancefloor anthems. The deep, pulsating basslines and lush, emotive synth pads define the sound, cementing the release as an essential artifact of Detroit electronic music history.\\n\\nThroughout his life, Mike Huckaby was revered not only as a producer but as an educator, a record store proprietor (notably at Record Time in Detroit), and a bridge between generations of electronic musicians. The \"Harmonie Park Classics\" series serves as a testament to his curation and production prowess, distilling the essence of the city's spirit into vinyl form. Fans and critics alike celebrate the EP for its unwavering warmth and musical depth, qualities that defined much of Huckaby's discography. The tracks have seen multiple reissues, including a remastered version in 2013, ensuring that their influence continues to resonate within the global underground house scene long after his passing. This EP remains a high-water mark for deep house, characterized by an organic, human touch that feels both nostalgic and perpetually fresh.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/194685-Mike-Huckaby-Harmonie-Park-Classics-Volume-2?srsltid=AfmBOooYTo7Esd134rdsH4KxskB-Evvkndq0Ob46iGrqIK2SZ1gIT2F7",
+      "title": "Mike Huckaby – Harmonie Park Classics Volume 2 | Releases | Discogs"
+    },
+    {
+      "url": "https://www.alldayrecords.com/products/mike-huckaby-harmonie-park-classics-volume-2-12-deep-transportation-dt-03",
+      "title": "Mike Huckaby - Harmonie Park Classics Volume 2 - 12\" - All Day Records"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:10:44.077Z",
+  "type": "project",
+  "editorial_pitch": "A definitive masterclass in Detroit deep house, this 12-inch EP features two timeless, soulful tracks by the late, great Mike Huckaby. Essential for those exploring the emotive, sample-heavy side of the Deep Transportation catalog.",
+  "year": "2009",
+  "artists": [
+    {
+      "slug": "artist:mike-huckaby",
+      "type": "artist",
+      "name": "Mike Huckaby"
+    }
+  ],
+  "label": {
+    "slug": "label:deep-transportation",
+    "type": "label",
+    "name": "Deep Transportation"
+  },
+  "genres": [
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep House",
+      "qid": "Q874038"
+    },
+    {
+      "slug": "genre:detroit-house",
+      "type": "genre",
+      "name": "Detroit House",
+      "qid": "Q108610706"
+    }
+  ],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

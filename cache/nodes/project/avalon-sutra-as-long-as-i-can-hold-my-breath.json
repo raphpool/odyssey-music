@@ -1,0 +1,124 @@
+{
+  "slug": "project:avalon-sutra-as-long-as-i-can-hold-my-breath",
+  "name": "Avalon Sutra / As Long As I Can Hold My Breath",
+  "editorial_article": "Released in 2005 on the influential Samadhisound label, *Avalon Sutra / As Long As I Can Hold My Breath* is a profound double-album testament to the enduring influence of ambient composer Harold Budd. The release is structured in two distinct halves that explore the boundaries of minimalism and sonic atmosphere. The first disc, *Avalon Sutra*, serves as a collection of short, intimate compositions featuring Budd's signature delicate, echo-drenched piano improvisations accompanied by subtle string arrangements and woodwinds by Jon Gibson. The tracks—evocative and often melancholic—are deeply personal, with many dedicated to friends and collaborators, including David Sylvian and Barney Wilen.\n\nThe second disc, *As Long As I Can Hold My Breath*, is an expansive, singular piece of music created by experimental sound artist Akira Rabelais. It is essentially a radical, long-form transformation of the original source material found on the first disc, stretching, dissolving, and recontextualizing Budd’s piano motifs into a shimmering, cavernous soundscape that lasts over an hour. At the time of its release, the project was widely publicized as Budd's final musical statement, adding a layer of valediction to the work's delicate, fading quality, though Budd would eventually return to recording. Through its stark juxtaposition of crystalline piano and deep, processed abstraction, the album remains a cornerstone of 21st-century ambient music, reflecting the minimalist aesthetic championed by David Sylvian's label in that era.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Avalon_Sutra_/_As_Long_as_I_Can_Hold_My_Breath",
+      "title": "Avalon Sutra / As Long as I Can Hold My Breath - Wikipedia"
+    },
+    {
+      "url": "http://www.samadhisound.com/archive/harold_budd_avalon_sutra.html",
+      "title": "Harold Budd \"Avalon Sutra\" - Samadhisound"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:36.258Z",
+  "type": "project",
+  "editorial_pitch": "A contemplative, expansive double-album odyssey, Avalon Sutra / As Long As I Can Hold My Breath captures Harold Budd at his most delicate, blending impressionistic piano miniatures with a vast, immersive ambient reinterpretation by Akira Rabelais. Released on David Sylvian's Samadhisound label, it stands as a poignant landmark in contemporary ambient music.",
+  "year": "2005",
+  "artists": [
+    {
+      "slug": "artist:harold-budd",
+      "type": "artist",
+      "name": "Harold Budd"
+    },
+    {
+      "slug": "artist:akira-rabelais",
+      "type": "artist",
+      "name": "Akira Rabelais"
+    }
+  ],
+  "label": {
+    "slug": "label:samadhisound",
+    "type": "label",
+    "name": "Samadhisound"
+  },
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:arabesque-3",
+      "type": "track",
+      "name": "Arabesque 3"
+    },
+    {
+      "slug": "track:it-s-steeper-near-the-roses",
+      "type": "track",
+      "name": "It's Steeper near the Roses (For David Sylvian)"
+    },
+    {
+      "slug": "track:l-enfant-perdu",
+      "type": "track",
+      "name": "L'enfant Perdu"
+    },
+    {
+      "slug": "track:chrysalis-nu",
+      "type": "track",
+      "name": "Chrysalis Nu (To Barney's Memory)"
+    },
+    {
+      "slug": "track:three-faces-west",
+      "type": "track",
+      "name": "Three Faces West (Billy Al Bengston's)"
+    },
+    {
+      "slug": "track:arabesque-2",
+      "type": "track",
+      "name": "Arabesque 2"
+    },
+    {
+      "slug": "track:little-heart",
+      "type": "track",
+      "name": "Little Heart"
+    },
+    {
+      "slug": "track:how-vacantly-you-stare-at-me",
+      "type": "track",
+      "name": "How Vacantly You Stare at Me"
+    },
+    {
+      "slug": "track:a-walk-in-the-park-with-nancy",
+      "type": "track",
+      "name": "A Walk in the Park with Nancy (In Memory)"
+    },
+    {
+      "slug": "track:rue-casimir-delavigne",
+      "type": "track",
+      "name": "Rue Casimir Delavigne (For Daniel Lentz)"
+    },
+    {
+      "slug": "track:arabesque-1",
+      "type": "track",
+      "name": "Arabesque 1"
+    },
+    {
+      "slug": "track:porcelain-ginger",
+      "type": "track",
+      "name": "Porcelain Ginger"
+    },
+    {
+      "slug": "track:faraon",
+      "type": "track",
+      "name": "Faraon"
+    },
+    {
+      "slug": "track:as-long-as-i-can-hold-my-breath",
+      "type": "track",
+      "name": "As Long as I Can Hold My Breath"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:harold-budd",
+      "type": "artist",
+      "name": "Harold Budd"
+    }
+  ],
+  "related_projects": []
+}

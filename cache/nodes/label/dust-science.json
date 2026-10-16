@@ -60,17 +60,17 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:loud-ambient--the-black-dog",
+      "slug": "project:loud-ambient",
       "type": "project",
       "name": "Loud Ambient"
     },
     {
-      "slug": "project:my-brutal-life--the-black-dog",
+      "slug": "project:my-brutal-life",
       "type": "project",
       "name": "My Brutal Life"
     },
     {
-      "slug": "project:fragments--bonobo",
+      "slug": "project:fragments",
       "type": "project",
       "name": "Fragments (Remastered)"
     }

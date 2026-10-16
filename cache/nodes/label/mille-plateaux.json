@@ -72,12 +72,12 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:clicks-cuts--various-artists",
+      "slug": "project:clicks-cuts",
       "type": "project",
       "name": "Clicks + Cuts"
     },
     {
-      "slug": "project:electric-ladyland--the-jimi-hendrix-experience",
+      "slug": "project:electric-ladyland",
       "type": "project",
       "name": "Electric Ladyland"
     }

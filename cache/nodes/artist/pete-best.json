@@ -32,10 +32,9 @@
   ],
   "discography": [
     {
-      "slug": "project:the-beatles--pete-best",
+      "slug": "project:the-beatles",
       "type": "project",
-      "name": "The Beatles",
-      "artist": "Pete Best"
+      "name": "The Beatles"
     },
     {
       "slug": "project:pete-best-band",
@@ -70,6 +69,5 @@
       "type": "artist",
       "name": "The Beatles"
     }
-  ],
-  "similar_artists": []
+  ]
 }

@@ -51,7 +51,7 @@
   "discography": [],
   "notable_tracks": [
     {
-      "slug": "track:do-while--oval",
+      "slug": "track:do-while",
       "type": "track",
       "name": "Do While"
     }
@@ -82,6 +82,5 @@
       "type": "artist",
       "name": "Sebastian Oschatz"
     }
-  ],
-  "similar_artists": []
+  ]
 }

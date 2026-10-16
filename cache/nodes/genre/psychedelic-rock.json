@@ -11,7 +11,6 @@
   "materialized_at": "2026-05-13T12:52:01.161Z",
   "type": "genre",
   "editorial_definition": "A style of rock music popular in the late 1960s, heavily influenced by psychedelic drugs and counterculture, defined by its experimental use of studio effects, feedback, and extended improvisational structures.",
-  "qid": "Q206159",
   "era": "Late 1960s",
   "origin": "United States and United Kingdom",
   "sonic_markers": "Feedback, sitar, extended improvisation, studio effects, surreal lyrics, fuzz distortion, modal experimentation",
@@ -79,12 +78,12 @@
   ],
   "landmark_projects": [
     {
-      "slug": "project:the-piper-at-the-gates-of-dawn--pink-floyd",
+      "slug": "project:the-piper-at-the-gates-of-dawn",
       "type": "project",
       "name": "The Piper at the Gates of Dawn"
     },
     {
-      "slug": "project:sgt-pepper-s-lonely-hearts-club-band--the-beatles",
+      "slug": "project:sgt-pepper-s-lonely-hearts-club-band",
       "type": "project",
       "name": "Sgt. Pepper's Lonely Hearts Club Band"
     },
@@ -110,5 +109,6 @@
       "type": "track",
       "name": "Arnold Layne"
     }
-  ]
+  ],
+  "qid": "Q206159"
 }

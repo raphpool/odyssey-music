@@ -1,0 +1,68 @@
+{
+  "slug": "track:1-1--by-brian-eno",
+  "name": "1/1",
+  "editorial_article": "\"1/1\" is the seminal opening track of Brian Eno’s 1978 masterpiece, *Ambient 1: Music for Airports*. Widely considered the defining moment of the ambient genre, the piece emerged from Eno's desire to create music that functioned as a sound installation, specifically designed to counteract the \"nervous\" and \"tingly\" piped-in music he encountered at Cologne Bonn Airport. By moving away from the conventional structures of popular music, Eno sought to create an environment that could be both listened to attentively and ignored—a concept that has since become a cornerstone of ambient theory.\\n\\nTechnically, the track is a triumph of generative sound design. It was constructed using a sophisticated system of twenty-two tape loops of varying lengths—some up to seventy feet long. These loops featured fragmented recordings of piano notes and choral vocal clusters, which were left to run and interact with one another according to the laws of chance and superposition. Because the loops were of different, non-harmonic lengths, their cycles shifted constantly against each other, ensuring that the musical pattern would not repeat in the same way for a massive duration of time. This approach created a sense of \"eternal\" music, where the composition feels suspended in space, perfectly embodying Eno’s philosophy of the studio as a compositional tool. \"1/1\" remains a profound achievement, influencing decades of experimental, minimalist, and electronic composers who look to its gentle, atmospheric textures as a primary inspiration.",
+  "citations": [
+    {
+      "url": "https://www.songfacts.com/facts/brian-eno/1-1",
+      "title": "1/1 by Brian Eno - Songfacts"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:43.475Z",
+  "_metrics": {
+    "input_tokens": 12644,
+    "output_tokens": 595,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004054,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 6222,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "disambiguator": "by Brian Eno",
+  "type": "track",
+  "editorial_teaser": "\"1/1\" is the seminal opening track of Brian Eno’s 1978 masterpiece, *Ambient 1: Music for Airports*.",
+  "year": "1978",
+  "duration": "16:33",
+  "artists": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    }
+  ],
+  "project": {
+    "slug": "project:ambient-1-music-for-airports",
+    "type": "project",
+    "name": "Ambient 1: Music for Airports"
+  },
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    },
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism",
+      "qid": "Q572901"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

@@ -56,7 +56,7 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:pawn-hearts--van-der-graaf-generator",
+      "slug": "project:pawn-hearts",
       "type": "project",
       "name": "Pawn Hearts"
     },
@@ -66,7 +66,7 @@
       "name": "Foxtrot"
     },
     {
-      "slug": "project:nursery-cryme--genesis",
+      "slug": "project:nursery-cryme",
       "type": "project",
       "name": "Nursery Cryme"
     }

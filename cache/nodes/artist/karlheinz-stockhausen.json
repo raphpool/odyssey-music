@@ -65,22 +65,22 @@
       "name": "Klavierstücke I–XI"
     },
     {
-      "slug": "project:gesang-der-junglinge--karlheinz-stockhausen",
+      "slug": "project:gesang-der-junglinge",
       "type": "project",
       "name": "Gesang der Jünglinge"
     },
     {
-      "slug": "project:gruppen--karlheinz-stockhausen",
+      "slug": "project:gruppen",
       "type": "project",
       "name": "Gruppen"
     },
     {
-      "slug": "project:kontakte--karlheinz-stockhausen",
+      "slug": "project:kontakte",
       "type": "project",
       "name": "Kontakte"
     },
     {
-      "slug": "project:momente--karlheinz-stockhausen",
+      "slug": "project:momente",
       "type": "project",
       "name": "Momente"
     },
@@ -90,7 +90,7 @@
       "name": "Hymnen"
     },
     {
-      "slug": "project:stimmung--karlheinz-stockhausen",
+      "slug": "project:stimmung",
       "type": "project",
       "name": "Stimmung"
     },
@@ -112,12 +112,12 @@
       "name": "Gesang der Jünglinge"
     },
     {
-      "slug": "track:kontakte--karlheinz-stockhausen",
+      "slug": "track:kontakte",
       "type": "track",
       "name": "Kontakte"
     },
     {
-      "slug": "track:stimmung--karlheinz-stockhausen",
+      "slug": "track:stimmung",
       "type": "track",
       "name": "Stimmung"
     }

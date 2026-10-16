@@ -1,0 +1,46 @@
+{
+  "slug": "project:music-for-18-musicians",
+  "name": "Music for 18 Musicians",
+  "editorial_article": "\"Music for 18 Musicians\" is a landmark composition by American composer Steve Reich, widely regarded as one of the most significant works of the 20th-century minimalist movement. Composed between 1974 and 1976 and first premiered in New York City in 1976, the piece marked a distinct shift in Reich’s aesthetic approach. While his earlier works were often characterized by a rigorous, austere, and mechanical focus on phase-shifting, \"Music for 18 Musicians\" embraced a newfound \"lushness,\" harmonic richness, and lyrical quality that Reich himself described as aiming to create \"beautiful music.\"\\n\\nThe work is meticulously structured around an eleven-chord cycle that provides the thematic foundation for its entire duration, approximately 60 minutes. These chords are introduced in the opening section and then explored through a series of pulses and repeating rhythmic patterns driven by an ensemble of marimbas, pianos, xylophones, and vibraphones. The instrumentation also includes clarinets, violin, cello, and women's voices, which blend to create a hypnotic, dense, and ethereal sonic texture. The piece is governed by a 12-beat meter that draws influence from the rhythmic complexities of traditional West African drumming, particularly the atsiagbekor patterns. \\n\\nSince its first recording on ECM Records in 1978, the piece has been recorded by numerous ensembles, including the 1997 Nonesuch version which won a Grammy Award. It remains a cornerstone of the contemporary classical repertoire, having profoundly influenced not only the trajectory of minimalist composition but also the development of modern ambient, electronic, and experimental music. Critics and scholars often point to \"Music for 18 Musicians\" as the definitive high-water mark of Reich's middle period, demonstrating his ability to synthesize formal precision with emotional resonance.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Music_for_18_Musicians",
+      "title": "Music for 18 Musicians - Wikipedia"
+    },
+    {
+      "url": "https://stevereich.com/composition/music-for-18-musicians/",
+      "title": "Music for 18 Musicians - Steve Reich Composer"
+    },
+    {
+      "url": "https://www.boosey.com/cr/music/Steve-Reich-Music-for-18-Musicians/548",
+      "title": "Steve Reich - Music for 18 Musicians"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:47:23.990Z",
+  "type": "project",
+  "editorial_pitch": "A seminal masterpiece of minimalism that transformed the landscape of modern classical music with its lush harmonic cycles and rhythmic vitality.",
+  "year": "1976",
+  "artists": [
+    {
+      "slug": "artist:steve-reich",
+      "type": "artist",
+      "name": "Steve Reich"
+    }
+  ],
+  "label": {
+    "slug": "label:ecm-records",
+    "type": "label",
+    "name": "ECM Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:minimalism",
+      "type": "genre",
+      "name": "Minimalism",
+      "qid": "Q572901"
+    }
+  ],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

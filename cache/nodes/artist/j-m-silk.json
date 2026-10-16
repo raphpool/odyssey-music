@@ -34,7 +34,7 @@
   "discography": [],
   "notable_tracks": [
     {
-      "slug": "track:jack-your-body--steve-silk-hurley",
+      "slug": "track:jack-your-body",
       "type": "track",
       "name": "Jack Your Body"
     },
@@ -65,6 +65,5 @@
       "type": "artist",
       "name": "Keith Nunnally"
     }
-  ],
-  "similar_artists": []
+  ]
 }

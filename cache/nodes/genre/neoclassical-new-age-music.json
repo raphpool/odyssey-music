@@ -15,7 +15,6 @@
   "materialized_at": "2026-05-13T12:36:36.808Z",
   "type": "genre",
   "editorial_definition": "A subgenre of new-age music heavily influenced by early, Baroque, and Classical music, typically characterized by acoustic instrumentation (like piano and harp), slow tempos, and a meditative, pastoral atmosphere.",
-  "qid": "Q613874",
   "parent_genres": [
     {
       "slug": "genre:new-age",
@@ -56,12 +55,12 @@
   "key_labels": [],
   "landmark_projects": [
     {
-      "slug": "project:hosianna-mantra--popol-vuh",
+      "slug": "project:hosianna-mantra",
       "type": "project",
       "name": "Hosianna Mantra"
     },
     {
-      "slug": "project:avalon-sutra-as-long-as-i-can-hold-my-breath--harold-budd",
+      "slug": "project:avalon-sutra-as-long-as-i-can-hold-my-breath",
       "type": "project",
       "name": "Avalon Sutra / As Long As I Can Hold My Breath"
     },
@@ -71,5 +70,6 @@
       "name": "Kagayaki"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q613874"
 }

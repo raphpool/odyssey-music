@@ -52,7 +52,7 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:electro-soma--b12",
+      "slug": "project:electro-soma",
       "type": "project",
       "name": "Electro-Soma"
     },
@@ -62,7 +62,7 @@
       "name": "Time Tourist"
     },
     {
-      "slug": "project:last-days-of-silence--b12",
+      "slug": "project:last-days-of-silence",
       "type": "project",
       "name": "Last Days of Silence"
     }

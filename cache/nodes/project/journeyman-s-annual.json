@@ -29,7 +29,7 @@
   "genres": [],
   "tracklist": [
     {
-      "slug": "track:lost-luggage--anushka-chkheidze",
+      "slug": "track:lost-luggage",
       "type": "track",
       "name": "Lost Luggage"
     },
@@ -45,6 +45,5 @@
     }
   ],
   "producers": [],
-  "personnel": [],
   "related_projects": []
 }

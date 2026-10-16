@@ -19,7 +19,6 @@
   "materialized_at": "2026-05-13T13:01:54.011Z",
   "type": "genre",
   "editorial_definition": "A hybrid subgenre originating in the late 1970s that fuses the abrasive energy and DIY ethos of punk rock with the rhythm-centric, groove-oriented sensibilities of disco and funk.",
-  "qid": "Q1643549",
   "era": "1970s–present",
   "origin": "New York City, United Kingdom",
   "parent_genres": [
@@ -106,12 +105,12 @@
   "key_labels": [],
   "landmark_projects": [
     {
-      "slug": "project:sound-of-silver--lcd-soundsystem",
+      "slug": "project:sound-of-silver",
       "type": "project",
       "name": "Sound of Silver"
     },
     {
-      "slug": "project:entertainment--gang-of-four",
+      "slug": "project:entertainment",
       "type": "project",
       "name": "Entertainment!"
     },
@@ -121,5 +120,6 @@
       "name": "Metal Box"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1643549"
 }

@@ -1,0 +1,70 @@
+{
+  "slug": "track:the-sound-of-the-street",
+  "name": "The Sound Of The Street (Intro)",
+  "editorial_article": "\"The Sound Of The Street (Intro)\" is the atmospheric opening track from the 2004 album 'Liquid Hip Hop' by French trip-hop and turntablist producer DJ Cam. Serving as the curtain-raiser for a project that blends gritty urban textures with the hazy, jazz-inflected aesthetic common to the 1990s and early 2000s downtempo scene, the track establishes the mood for an album heavily rooted in crate-digging, loop-based composition, and rhythmic experimentation. DJ Cam, a seminal figure in the French electronic underground, often utilized the \"intro\" format on his albums to curate a soundscape—in this instance, conjuring the feeling of a late-night wander through metropolitan streets. The track features the signature heavy scratching, lo-fi drum loops, and cinematic sampling that characterized Cam's production style, positioning him alongside contemporary peers like DJ Krush or the abstract hip-hop movement of the era. Despite polarized critical reception to the overall 'Liquid Hip Hop' album, this intro remains a concise representation of the artist's focus on texture and atmosphere over traditional melodic progression, acting as a stylistic bridge between his earlier, lauded work in the trip-hop genre and his more experimental hip-hop explorations of the mid-2000s. The track effectively captures a moment of urban melancholy that is synonymous with Cam's aesthetic, emphasizing the weight and grit of hip-hop while maintaining the lush, sampled textures found in classic trip-hop arrangements. It serves as an essential, if brief, entry point into the sprawling and occasionally divisive landscape of the 'Liquid Hip Hop' record, showcasing how a producer of Cam's caliber could use limited runtime to establish an entire sonic world.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/57467-DJ-Cam-Liquid-Hip-Hop",
+      "title": "DJ Cam – Liquid Hip Hop | Releases | Discogs"
+    },
+    {
+      "url": "https://open.spotify.com/track/5m1mTWlUk69Jarw3oaXhxU",
+      "title": "The Sound Of The Street (intro) - song and lyrics by DJ Cam | Spotify"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:08:27.981Z",
+  "mbid": "453b41fc-e941-4b06-b322-8f5d87440a93",
+  "type": "track",
+  "editorial_teaser": "The atmospheric, crate-digging intro to DJ Cam’s 2004 album 'Liquid Hip Hop', capturing the essence of the artist's signature urban, jazz-infused downtempo production style.",
+  "year": "2004",
+  "artists": [
+    {
+      "slug": "artist:dj-cam",
+      "type": "artist",
+      "name": "DJ Cam",
+      "mbid": "d2e123d0-c53e-4444-a52a-efeff44953c7"
+    }
+  ],
+  "project": {
+    "slug": "project:liquid-hip-hop",
+    "type": "project",
+    "name": "Liquid Hip Hop"
+  },
+  "label": {
+    "slug": "label:recall",
+    "type": "label",
+    "name": "Recall",
+    "mbid": "ecc26cb8-99cb-4ad5-acd5-799ffd73cfa7"
+  },
+  "genres": [
+    {
+      "slug": "genre:trip-hop",
+      "type": "genre",
+      "name": "Trip Hop",
+      "qid": "Q205560"
+    },
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo",
+      "qid": "Q251192"
+    },
+    {
+      "slug": "genre:abstract-hip-hop",
+      "type": "genre",
+      "name": "Abstract Hip Hop",
+      "qid": "Q98528482"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:dj-cam",
+      "type": "artist",
+      "name": "DJ Cam"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

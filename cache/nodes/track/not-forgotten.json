@@ -1,0 +1,51 @@
+{
+  "slug": "track:not-forgotten",
+  "name": "Not Forgotten",
+  "editorial_article": "\"Not Forgotten\" is a foundational piece of early 1990s British electronic music, released by the seminal duo Leftfield in 1990 on the Outer Rhythm label. Emerging from the burgeoning UK rave scene, the track represents a pivotal bridge between the frantic energy of hardcore and the more atmospheric, textured soundscapes that would come to define progressive house and early electronica. Produced by Neil Barnes and Mat Clark, \"Not Forgotten\" is characterized by its driving, hypnotic percussion, deep sub-bass frequencies, and haunting, ethereal vocal samples that create an immersive, almost cinematic atmosphere. \\n\\nAt the time of its release, the track garnered significant attention for its sophisticated production techniques, which set it apart from many of its contemporaries. Its release helped establish Leftfield as pioneers in the scene, setting the stage for their later critically acclaimed work, including their debut album \"Leftism\". \"Not Forgotten\" remains a cornerstone of the early 90s UK rave aesthetic, often cited for its influence on the evolution of dance music production, blending heavy, rhythmic elements with a melodic depth that transcended the dancefloor. Its lasting legacy is evidenced by numerous reissues and the continued reverence in which it is held by electronic music historians and producers alike. Through its blend of gritty, urban rhythm and atmospheric introspection, the track captured a specific moment in British dance culture that felt both transient and eternal.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/66198-Leftfield-Not-Forgotten",
+      "title": "Leftfield – Not Forgotten | Releases | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:13:20.186Z",
+  "type": "track",
+  "editorial_teaser": "Released in 1990, \"Not Forgotten\" by Leftfield is an atmospheric masterpiece of the early UK rave scene, bridging the gap between breakbeat energy and early progressive house textures.",
+  "year": "1990",
+  "artists": [
+    {
+      "slug": "artist:leftfield",
+      "type": "artist",
+      "name": "Leftfield"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive House",
+      "qid": "Q915152"
+    },
+    {
+      "slug": "genre:breakbeat-hardcore",
+      "type": "genre",
+      "name": "Breakbeat Hardcore",
+      "qid": "Q1585075"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:neil-barnes",
+      "type": "artist",
+      "name": "Neil Barnes"
+    },
+    {
+      "slug": "artist:mat-clark",
+      "type": "artist",
+      "name": "Mat Clark"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

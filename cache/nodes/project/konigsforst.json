@@ -35,7 +35,7 @@
   ],
   "tracklist": [
     {
-      "slug": "track:konigsforst-1--gas",
+      "slug": "track:konigsforst-1",
       "type": "track",
       "name": "Königsforst 1"
     },
@@ -82,6 +82,5 @@
       "name": "Wolfgang Voigt"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

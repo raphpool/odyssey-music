@@ -108,12 +108,12 @@
   ],
   "landmark_projects": [
     {
-      "slug": "project:biokinetics--porter-ricks",
+      "slug": "project:biokinetics",
       "type": "project",
       "name": "Biokinetics"
     },
     {
-      "slug": "project:phylyps-trak--basic-channel",
+      "slug": "project:phylyps-trak",
       "type": "project",
       "name": "Phylyps Trak"
     }

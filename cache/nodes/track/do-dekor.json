@@ -17,7 +17,7 @@
   "editorial_teaser": "\"Do Dekor\" is a seminal piece of micro-house production by German electronic artist Jan Jelinek, appearing as a standout track on his highly influential 2001 album, \"Loop-Finding-Jazz-Records.\" Known for his pioneering use of repetitive, warm, and glitch-infused jazz samples, Jel",
   "artists": [],
   "project": {
-    "slug": "project:loop-finding-jazz-records--jan-jelinek",
+    "slug": "project:loop-finding-jazz-records",
     "type": "project",
     "name": "Loop-Finding-Jazz-Records"
   },
@@ -48,7 +48,6 @@
       "name": "Jan Jelinek"
     }
   ],
-  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

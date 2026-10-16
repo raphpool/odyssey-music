@@ -89,7 +89,7 @@
       "name": "Migration"
     },
     {
-      "slug": "project:fragments--bonobo",
+      "slug": "project:fragments",
       "type": "project",
       "name": "Fragments"
     }

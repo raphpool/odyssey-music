@@ -73,7 +73,7 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:electronic-meditation--tangerine-dream",
+      "slug": "project:electronic-meditation",
       "type": "project",
       "name": "Electronic Meditation"
     },
@@ -83,7 +83,7 @@
       "name": "Alpha Centauri"
     },
     {
-      "slug": "project:zeit--tangerine-dream",
+      "slug": "project:zeit",
       "type": "project",
       "name": "Zeit"
     },

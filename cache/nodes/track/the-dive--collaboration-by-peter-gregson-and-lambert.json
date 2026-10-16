@@ -1,0 +1,60 @@
+{
+  "slug": "track:the-dive--collaboration-by-peter-gregson-and-lambert",
+  "name": "The Dive",
+  "editorial_article": "\"The Dive\" is a collaborative instrumental track released in 2020 by the renowned British cellist and composer Peter Gregson and the enigmatic German pianist Lambert. Representing a delicate intersection of modern classical and ambient sensibilities, the piece thrives on the conversational interplay between Gregson's emotive, rich-toned cello and Lambert's minimalist, percussive piano phrasing. \\n\\nReleased via the label von der haardt, the track serves as a prime example of the minimalist piano-cello dialogue that characterized much of the mid-to-late 2010s contemporary classical scene. The collaboration reflects the distinct artistic signatures of both creators: Gregson's commitment to exploring the cello's traditional boundaries through subtle electronic treatments, and Lambert's iconic, mask-wearing persona that emphasizes the anonymity and purity of the instrument. \"The Dive\" does not aim for grand climaxes but instead occupies a contemplative, internal space, building a sonic atmosphere that feels simultaneously intimate and vast. It is a work that captures the essence of \"neo-classical\" music's ability to provide a meditative soundscape for listeners in an increasingly digital and distracted world. Both artists have maintained prolific careers, with Gregson celebrated for his reimagined Bach suites and Lambert for his distinctively melancholic piano works, making their rare collaboration a notable point of convergence within the contemporary European instrumental landscape.",
+  "citations": [
+    {
+      "url": "https://open.spotify.com/track/01hFM9dS9M6lN4rUvo4A2u",
+      "title": "The Dive - song and lyrics by Peter Gregson, Lambert | Spotify"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:43:07.650Z",
+  "mbid": "eb1ca96e-6245-4e01-90c0-c3e4c8b3605d",
+  "type": "track",
+  "editorial_teaser": "A contemplative, atmospheric collaboration between cellist Peter Gregson and pianist Lambert, blending modern classical depth with minimalist piano textures.",
+  "year": "2020",
+  "artists": [
+    {
+      "slug": "artist:peter-gregson",
+      "type": "artist",
+      "name": "Peter Gregson",
+      "mbid": "9f46a6ed-36ab-413a-bc3b-b3cdb1ce002c"
+    },
+    {
+      "slug": "artist:lambert",
+      "type": "artist",
+      "name": "Lambert",
+      "mbid": "ad6568eb-4f17-43dd-a799-46c7eb7e2fee"
+    }
+  ],
+  "project": {
+    "slug": "project:the-dive",
+    "type": "project",
+    "name": "The Dive"
+  },
+  "label": {
+    "slug": "label:von-der-haardt",
+    "type": "label",
+    "name": "von der haardt",
+    "mbid": "d5725ba5-b10d-4d0c-a832-b546431a2820"
+  },
+  "genres": [
+    {
+      "slug": "genre:modern-classical",
+      "type": "genre",
+      "name": "Modern Classical",
+      "qid": "Q65937946"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

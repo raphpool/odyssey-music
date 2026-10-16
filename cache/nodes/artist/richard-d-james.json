@@ -74,10 +74,9 @@
       "name": "Selected Ambient Works 85-92"
     },
     {
-      "slug": "project:richard-d-james-album--richard-d-james",
+      "slug": "project:richard-d-james-album",
       "type": "project",
-      "name": "Richard D. James Album",
-      "artist": "Richard D. James"
+      "name": "Richard D. James Album"
     },
     {
       "slug": "project:drukqs",
@@ -85,24 +84,21 @@
       "name": "Drukqs"
     },
     {
-      "slug": "project:syro--richard-d-james",
+      "slug": "project:syro",
       "type": "project",
-      "name": "Syro",
-      "artist": "Richard D. James"
+      "name": "Syro"
     }
   ],
   "notable_tracks": [
     {
-      "slug": "track:xtal--richard-d-james",
+      "slug": "track:xtal",
       "type": "track",
-      "name": "Xtal",
-      "artist": "Richard D. James"
+      "name": "Xtal"
     },
     {
-      "slug": "track:windowlicker--richard-d-james",
+      "slug": "track:windowlicker",
       "type": "track",
-      "name": "Windowlicker",
-      "artist": "Richard D. James"
+      "name": "Windowlicker"
     },
     {
       "slug": "track:alberto-balsalm",

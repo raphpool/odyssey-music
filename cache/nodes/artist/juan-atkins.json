@@ -46,10 +46,9 @@
   ],
   "discography": [
     {
-      "slug": "project:enter--juan-atkins",
+      "slug": "project:enter",
       "type": "project",
-      "name": "Enter",
-      "artist": "Juan Atkins"
+      "name": "Enter"
     },
     {
       "slug": "project:deep-space",

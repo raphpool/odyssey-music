@@ -1,0 +1,44 @@
+{
+  "slug": "track:full-on-morning",
+  "name": "FULL ON MORNING",
+  "editorial_article": "\"FULL ON MORNING\" is an electronic music track produced by the Brazilian producer Duoon (Antonio Carlos Neto). Active during the late 2000s and early 2010s within the Brazilian underground scene, Duoon became known for his energetic electronic productions, often leaning into psytrance and progressive dance music influences. The track \"FULL ON MORNING\" reflects the high-tempo, high-energy style that defined much of the early independent electronic landscape in cities like Rio de Janeiro, where digital music distribution platforms like SoundCloud began to fundamentally reshape how independent producers reached local and international audiences. As one of Duoon's most-played works on his digital archives, the track serves as a time capsule for that specific era of Brazilian club culture, characterized by a fusion of intense, rhythmic patterns and synth-driven melodies that populated the dawn of the internet-centric DJ-producer generation. While Duoon's discography remains largely housed within these transient digital spaces, the presence of such tracks highlights the proliferation of amateur and semi-professional production talent that emerged from the democratization of music software in the mid-2000s. The track's longevity on streaming platforms, relative to its peers, points to its role in the formative stages of the local electronic scene that would later foster world-renowned figures like Vintage Culture. Through remix work and independent compositions, Duoon contributed to a broader, interconnected web of dance music producers, navigating the transition from physical distribution to the dominant era of streaming.",
+  "citations": [
+    {
+      "url": "https://soundcloud.com/duoon",
+      "title": "Stream DUOON music | Listen to songs, albums, playlists for free on SoundCloud"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:57:09.410Z",
+  "type": "track",
+  "editorial_teaser": "\"FULL ON MORNING\" is an electronic music track produced by the Brazilian producer Duoon (Antonio Carlos Neto).",
+  "artists": [
+    {
+      "slug": "artist:duoon",
+      "type": "artist",
+      "name": "Duoon"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:psytrance",
+      "type": "genre",
+      "name": "Psytrance"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:duoon",
+      "type": "artist",
+      "name": "Duoon"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

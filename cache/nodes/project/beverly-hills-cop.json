@@ -1,0 +1,96 @@
+{
+  "slug": "project:beverly-hills-cop",
+  "name": "Beverly Hills Cop (soundtrack)",
+  "editorial_article": "The soundtrack to the 1984 blockbuster film Beverly Hills Cop serves as a quintessential time capsule of 1980s pop culture, blending the emerging dominance of synth-pop with sleek, radio-ready R&B. While officially titled an original motion picture soundtrack, the collection functions largely as a high-octane compilation, famously featuring the iconic instrumental \"Axel F.\" by Harold Faltermeyer. Faltermeyer’s synthesizer-led theme became an inescapable cultural phenomenon, embodying the slick, high-tech production aesthetic that defined action-comedy scores of the mid-80s. \\n\\nBeyond Faltermeyer’s contribution, the album is a powerhouse of commercial pop, featuring major hits such as Patti LaBelle’s \"New Attitude\" and Glenn Frey’s \"The Heat Is On.\" The album's success was immense, selling millions of copies within its first year and cementing its place in the history of cinema-linked pop music. Notably, the collection includes tracks that were not featured in the film itself, reflecting a common industry practice of the era where soundtrack releases were treated as curated showcases for established and rising pop stars rather than strictly diegetic musical accompaniments. This blend of thematic underscore and chart-topping radio singles established a blueprint for the blockbuster soundtracks that would dominate the remainder of the decade.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/album/beverly-hills-cop-original-motion-picture-soundtrack--mw0000649889",
+      "title": "Beverly Hills Cop [Original Motion Picture Soundtrack] - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:17:34.709Z",
+  "type": "project",
+  "editorial_pitch": "The 1984 soundtrack for Beverly Hills Cop became a definitive pop-culture artifact of the 1980s, driven by an era-defining synth-pop hit and a collection of high-energy contemporary pop and R&B. It stands as a quintessentially commercial curation of its time, capturing the glossy, neon-lit sound of mid-80s Hollywood.",
+  "year": "1984",
+  "artists": [
+    {
+      "slug": "artist:various-artists",
+      "type": "artist",
+      "name": "Various Artists"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop",
+      "qid": "Q1298934"
+    },
+    {
+      "slug": "genre:soundtrack",
+      "type": "genre",
+      "name": "Soundtrack",
+      "qid": "Q107736421"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:new-attitude",
+      "type": "track",
+      "name": "New Attitude"
+    },
+    {
+      "slug": "track:don-t-get-stopped-in-beverly-hills",
+      "type": "track",
+      "name": "Don't Get Stopped in Beverly Hills"
+    },
+    {
+      "slug": "track:do-you-really",
+      "type": "track",
+      "name": "Do You Really (Want My Love?)"
+    },
+    {
+      "slug": "track:emergency",
+      "type": "track",
+      "name": "Emergency"
+    },
+    {
+      "slug": "track:neutron-dance",
+      "type": "track",
+      "name": "Neutron Dance"
+    },
+    {
+      "slug": "track:the-heat-is-on",
+      "type": "track",
+      "name": "The Heat Is On"
+    },
+    {
+      "slug": "track:gratitude",
+      "type": "track",
+      "name": "Gratitude"
+    },
+    {
+      "slug": "track:sitr-it-up",
+      "type": "track",
+      "name": "Sitr It Up"
+    },
+    {
+      "slug": "track:rock-and-roll-me-again",
+      "type": "track",
+      "name": "Rock & Roll Me Again"
+    },
+    {
+      "slug": "track:axel-f",
+      "type": "track",
+      "name": "Axel F."
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

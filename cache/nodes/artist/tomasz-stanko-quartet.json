@@ -48,7 +48,7 @@
   ],
   "discography": [
     {
-      "slug": "project:soul-of-things--tomasz-stanko-quartet",
+      "slug": "project:soul-of-things",
       "type": "project",
       "name": "Soul of Things"
     },
@@ -101,12 +101,12 @@
       "name": "Marcin Wasilewski"
     },
     {
-      "slug": "artist:slawomir-kurkiewicz",
+      "slug": "artist:s-awomir-kurkiewicz",
       "type": "artist",
       "name": "Sławomir Kurkiewicz"
     },
     {
-      "slug": "artist:michal-miskiewicz",
+      "slug": "artist:micha-miskiewicz",
       "type": "artist",
       "name": "Michał Miśkiewicz"
     }

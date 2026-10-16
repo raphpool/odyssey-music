@@ -66,12 +66,12 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:hi-scores--boards-of-canada",
+      "slug": "project:hi-scores",
       "type": "project",
       "name": "Hi Scores"
     },
     {
-      "slug": "project:music-has-the-right-to-children--boards-of-canada",
+      "slug": "project:music-has-the-right-to-children",
       "type": "project",
       "name": "Music Has the Right to Children"
     },
