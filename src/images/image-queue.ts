@@ -27,12 +27,18 @@
  *    abandoned job issues afterwards (cover archive, iTunes, Wikidata, and the MusicBrainz requests of
  *    the node resolver) fails at once, and its late verdict is ignored. NOT handled: MusicBrainz
  *    requests of the hint resolver use the module's own fetch (`WorkResolveOptions` has no `fetch` or
- *    `signal`), and an abandoned background wait still takes its slot once. Bounded by the circuit
- *    breaker (3 timeouts pause the worker) and by one wasted slot per timeout; the real fix is a
- *    `signal` through `mbFetch`, outside this ticket's scope (follow-up ticket).
- *  - Alias table eviction forgets the plain aliases first-in-first-out, but never a conflict: losing a
- *    conflict would let the second homonym be served as if unique. Aliases live in memory only; the
- *    `conflict` sidecar entry (7 days) is what survives a restart, for the service to read (3b.5).
+ *    `signal`) and are not aborted; an aborted MusicBrainz request of the node resolver is retried by
+ *    `mbFetch` (3 attempts), each retry reserving a background slot before failing at once. So an
+ *    abandoned job wastes up to 3 slots, never a request. Bounded by the circuit breaker (3 timeouts pause
+ *    the worker); the real fix is a `signal` through `mbFetch`, outside this ticket (follow-up ticket).
+ *  - Alias table: plain aliases are evicted first-in-first-out beyond 20 000; a conflict is kept in its
+ *    own set (same bound, never reached: 8 351 bare slugs exist today) so that eviction of aliases cannot
+ *    make the second homonym look unique. Aliases live in memory only; the `conflict` sidecar entry (7
+ *    days) is what survives a restart, for the service to read (3b.5).
+ *
+ * Known residual: `makeScopedSlug` follows `ODYSSEY_SCOPED_RELEASE_SLUGS` for the artist part (decision
+ * of the ticket: the flag is not consulted here). With it off, "MØ" and "M" share a key; the pipeline
+ * has the same collision today, and the 3b.5 service is the place to cross-check the page's artist.
  */
 import type { NodeCache } from "../cache.js";
 import { makeScopedSlug, parseSlug } from "../slug.js";
@@ -126,7 +132,22 @@ function guardedFetch(base: typeof fetch | undefined, signal: AbortSignal): type
 }
 
 export function createImageQueue(deps: ImageQueueDeps): ImageQueue {
-	const { cacheDir, cache, log } = deps;
+	const { cacheDir, cache } = deps;
+	// A broken logger must never kill the worker (an unhandled rejection would take the server down).
+	const log: ImageQueueLog = {
+		info: (msg, data) => {
+			try {
+				if (data) deps.log.info(msg, data);
+				else deps.log.info(msg);
+			} catch {}
+		},
+		warn: (msg, data) => {
+			try {
+				if (data) deps.log.warn(msg, data);
+				else deps.log.warn(msg);
+			} catch {}
+		},
+	};
 	const now = deps.now ?? Date.now;
 
 	const jobs = new Map<Slug, Job>(); // every queued or running key
@@ -197,12 +218,21 @@ export function createImageQueue(deps: ImageQueueDeps): ImageQueue {
 			return;
 		}
 		track(
-			writeEntry({
-				key: hint.slug,
-				state: "conflict",
-				hint: { title: hint.title, artist: hint.artist },
-				resolvedAt: new Date(now()).toISOString(),
-			}),
+			(async () => {
+				// The bare slug can also be the key of a resolved entry (a node `project:3`): that entry is a
+				// verdict on a real work, a conflict marker must not replace it. The conflict then lives in memory.
+				const existing = await readImageSidecar(cacheDir, hint.slug, now);
+				if (existing && existing.state !== "conflict") {
+					log.warn("image conflict kept in memory: slug is also a resolved key", { slug: hint.slug });
+					return;
+				}
+				await writeEntry({
+					key: hint.slug,
+					state: "conflict",
+					hint: { title: hint.title, artist: hint.artist },
+					resolvedAt: new Date(now()).toISOString(),
+				});
+			})(),
 		);
 	}
 
@@ -323,6 +353,8 @@ export function createImageQueue(deps: ImageQueueDeps): ImageQueue {
 	}
 
 	async function handleJob(job: Job): Promise<Verdict["outcome"] | "skipped"> {
+		// A fresh `conflict` entry under a node's own slug also stops that node: a bare slug shared by two
+		// works has no picture to give (3b-D3), and TRA-489 is what sets `image_url` on nodes.
 		const existing = await readImageSidecar(cacheDir, job.key, now);
 		if (existing && isSidecarEntryFresh(existing, now)) return "skipped";
 
@@ -355,6 +387,7 @@ export function createImageQueue(deps: ImageQueueDeps): ImageQueue {
 				if (paused) {
 					await new Promise<void>((resolve) => {
 						const timer = setTimeout(resolve, BREAKER_PAUSE_MS);
+						timer.unref?.(); // an idle queue must not keep the process alive
 						cancelPause = () => {
 							clearTimeout(timer);
 							resolve();

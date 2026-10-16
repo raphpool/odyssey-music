@@ -296,6 +296,39 @@ describe("identity and aliases", () => {
 		expect(q.stats().conflicts).toBe(1);
 	});
 
+	it("does not overwrite a resolved entry with a conflict marker", async () => {
+		const found: ImageSidecarEntry = {
+			key: "project:3" as Slug,
+			state: "found",
+			url: COVER,
+			source: "caa",
+			hint: { title: "3", artist: "" },
+			resolvedAt: new Date().toISOString(),
+		};
+		await writeImageSidecar(dir, found);
+		const q = make();
+		q.enqueueHint(hint("3", "Pole", "project:3"));
+		expect(q.enqueueHint(hint("3", "Aphex Twin", "project:3"))).toEqual({
+			accepted: false,
+			reason: "conflict",
+		});
+		await idle(q);
+		await q.stop();
+		expect(q.aliasOf("project:3" as Slug)).toBe("conflict");
+		expect(await readImageSidecar(dir, "project:3" as Slug)).toMatchObject({ state: "found", url: COVER });
+	});
+
+	it("survives a logger that throws", async () => {
+		log.info.mockImplementation(() => {
+			throw new Error("log down");
+		});
+		const q = make();
+		q.enqueueHint(hint("A", "Pole"));
+		q.enqueueHint(hint("B", "Pole"));
+		await idle(q);
+		expect(q.stats().resolved).toBe(2);
+	});
+
 	it("registers no alias for a slug that is already its key", () => {
 		const q = make();
 		q.enqueueHint(hint("Go Plastic", "Squarepusher", "project:go-plastic--squarepusher"));
