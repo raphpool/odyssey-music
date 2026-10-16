@@ -1,11 +1,12 @@
 import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { NodeCache } from "../../src/cache.js";
 import { isAllowedImageUrl } from "../../src/images/hosts.js";
 import { resolveImage } from "../../src/images/resolve-image.js";
 import { wikidataConfig } from "../../src/images/wikidata.js";
+import { fetchWikidataUrlRelMb } from "../../src/musicbrainz.js";
 import type { NodePayload } from "../../src/types.js";
 import {
 	artistNode,
@@ -18,6 +19,12 @@ import {
 	routedFetch,
 	trackNode,
 } from "./helpers.js";
+
+// Passthrough spy: the real function still runs, so every other test is unchanged.
+vi.mock("../../src/musicbrainz.js", async (importOriginal) => {
+	const actual = await importOriginal<typeof import("../../src/musicbrainz.js")>();
+	return { ...actual, fetchWikidataUrlRelMb: vi.fn(actual.fetchWikidataUrlRelMb) };
+});
 
 // Each MBID is used by one test only: mbFetch memoizes by path for 5 minutes.
 const mb = (n: number): string => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
@@ -291,6 +298,27 @@ describe("resolveImage: artist", () => {
 		]);
 		const node = artistNode("roni-size", "Roni Size", { mbid: mb(26) });
 		await expect(resolveImage(node, { cache, fetch: f })).resolves.toBeNull();
+	});
+
+	it("passes the MusicBrainz queue priority of ImageDeps to the url-rels lookup, for artists and labels", async () => {
+		const spy = vi.mocked(fetchWikidataUrlRelMb);
+		const f = routedFetch([mbRels([])]);
+		await resolveImage(artistNode("roni-size", "Roni Size", { mbid: mb(100) }), {
+			cache,
+			fetch: f,
+			priority: "background",
+		});
+		await resolveImage(labelNode("v-recordings", "V Recordings", { mbid: mb(101) }), {
+			cache,
+			fetch: f,
+			priority: "background",
+		});
+		await resolveImage(artistNode("roni-size", "Roni Size", { mbid: mb(102) }), { cache, fetch: f });
+
+		expect(spy).toHaveBeenCalledWith("artist", mb(100), f, { priority: "background" });
+		expect(spy).toHaveBeenCalledWith("label", mb(101), f, { priority: "background" });
+		// No priority in the deps: the lookup is left to its interactive default.
+		expect(spy).toHaveBeenCalledWith("artist", mb(102), f, {});
 	});
 
 	it("ignores a Wikidata link that is not on wikidata.org", async () => {

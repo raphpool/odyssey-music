@@ -303,6 +303,21 @@ let retryQueue = Promise.resolve();
 // timers fire FIFO. Read at call time so tests can change it; 0 disables spacing.
 let lastSlotAt = 0;
 
+/**
+ * Who is asking: `interactive` is the live search and `/materialize` (the default of every caller);
+ * `background` is work nobody waits for (cover resolution after a card is opened) and yields to it.
+ */
+export type MbPriority = "interactive" | "background";
+
+// 2026-10-16 (TRA-579): the on-demand cover worker resolves 30 to 90 covers per opened card; on the FIFO
+// above it would take every other slot at /materialize. A background request therefore reserves nothing
+// while an interactive reservation is still waiting for its slot, and holds at most one slot itself, so
+// an interactive request that arrives later never waits behind more than one background request.
+// The shared spacing is untouched, so the total rate stays the same.
+let pendingInteractive = 0;
+let backgroundSlotHeld = false;
+const backgroundWaiters: Array<() => void> = [];
+
 function reserveSlotDelayMs(): number {
 	const interval = musicBrainzConfig.minIntervalMs;
 	if (interval <= 0) return 0;
@@ -310,6 +325,37 @@ function reserveSlotDelayMs(): number {
 	const at = Math.max(now, lastSlotAt + interval);
 	lastSlotAt = at;
 	return at - now;
+}
+
+function releaseNextBackground(): void {
+	if (pendingInteractive > 0 || backgroundSlotHeld) return;
+	backgroundWaiters.shift()?.();
+}
+
+// Resolves when the caller's slot is reached. With spacing off (`minIntervalMs` 0, tests) there is no
+// slot and no yielding.
+function waitForSlot(priority: MbPriority): Promise<void> {
+	if (musicBrainzConfig.minIntervalMs <= 0) return Promise.resolve();
+	if (priority === "interactive") {
+		pendingInteractive++;
+		return sleep(reserveSlotDelayMs()).finally(() => {
+			pendingInteractive--;
+			releaseNextBackground();
+		});
+	}
+	return new Promise<void>((resolve) => {
+		// Runs synchronously when released, so no interactive request can slip in between the
+		// release decision and the reservation.
+		backgroundWaiters.push(() => {
+			backgroundSlotHeld = true;
+			void sleep(reserveSlotDelayMs()).finally(() => {
+				backgroundSlotHeld = false;
+				resolve();
+				releaseNextBackground();
+			});
+		});
+		releaseNextBackground();
+	});
 }
 
 function retryAfterDelayMs(retryAfter: string | null, now: number): number | null {
@@ -348,6 +394,7 @@ async function mbFetch<T>(
 	path: string,
 	params: Record<string, string>,
 	fetchImpl: typeof fetch = fetch,
+	priority: MbPriority = "interactive",
 ): Promise<T | null> {
 	const key = `${path}?${Object.entries(params)
 		.sort()
@@ -367,7 +414,8 @@ async function mbFetch<T>(
 	const attempts = maxAttempts();
 	for (let attempt = 0; attempt < attempts; attempt++) {
 		// Wait for the slot before arming the abort timer so queueing never eats the fetch timeout.
-		await sleep(reserveSlotDelayMs());
+		// A retry keeps the priority of its first attempt.
+		await waitForSlot(priority);
 		const ctrl = new AbortController();
 		const timer = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT_MS);
 		try {
@@ -631,11 +679,13 @@ export async function fetchWikidataUrlRelMb(
 	entity: "artist" | "label",
 	mbid: string,
 	fetchImpl?: typeof fetch,
+	options: { priority?: MbPriority } = {},
 ): Promise<string | null> {
 	const data = await mbFetch<{ relations?: MbUrlRelation[] }>(
 		`/${entity}/${mbid}`,
 		{ inc: "url-rels" },
 		fetchImpl,
+		options.priority,
 	);
 	if (!data || !Array.isArray(data.relations)) return null;
 	for (const rel of data.relations) {
@@ -1141,6 +1191,8 @@ function shareAcceptedMbid(
 
 /** Options of the detailed work resolvers. */
 export interface WorkResolveOptions {
+	/** Queue priority of the MusicBrainz requests (TRA-579); `interactive` when absent. */
+	priority?: MbPriority;
 	/**
 	 * MBIDs of credited artists that stand for the requested artist, in addition to the equality of names:
 	 * the bands the artist is a member of (Roni Size is credited as "Roni Size / Reprazent"). Accepted by
@@ -1367,7 +1419,12 @@ export async function resolveReleaseGroupDetailed(
 	const none: MbWorkResolution = { identity: null, ambiguous: false, unavailable: false };
 	const query = luceneQuery("releasegroup", title, artistHint);
 	if (!query) return none;
-	const body = await mbFetch<unknown>("/release-group", { query, limit: WORK_SEARCH_LIMIT });
+	const body = await mbFetch<unknown>(
+		"/release-group",
+		{ query, limit: WORK_SEARCH_LIMIT },
+		undefined,
+		options.priority,
+	);
 	const releaseGroups = parseReleaseGroups(body);
 	// mbFetch gives null for an HTTP error, a network error and a body that is not JSON; the parser
 	// gives null for JSON off schema. All four are an outage, not a verdict.
@@ -1407,7 +1464,12 @@ export async function resolveRecordingDetailed(
 	const none: MbWorkResolution = { identity: null, ambiguous: false, unavailable: false };
 	const query = luceneQuery("recording", title, artistHint);
 	if (!query) return none;
-	const body = await mbFetch<unknown>("/recording", { query, limit: WORK_SEARCH_LIMIT });
+	const body = await mbFetch<unknown>(
+		"/recording",
+		{ query, limit: WORK_SEARCH_LIMIT },
+		undefined,
+		options.priority,
+	);
 	const recordings = parseRecordings(body);
 	if (!recordings) return { ...none, unavailable: true };
 	if (isTruncated(body, recordings.length)) return { ...none, ambiguous: true };
