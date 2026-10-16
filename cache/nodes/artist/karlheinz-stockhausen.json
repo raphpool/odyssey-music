@@ -120,6 +120,12 @@
       "slug": "track:stimmung--karlheinz-stockhausen",
       "type": "track",
       "name": "Stimmung"
+    },
+    {
+      "slug": "track:gesang-der-junglinge--karlheinz-stockhausen",
+      "type": "track",
+      "name": "Gesang der Jünglinge",
+      "artist": "Karlheinz Stockhausen"
     }
   ],
   "influences": [

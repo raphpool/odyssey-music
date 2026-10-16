@@ -94,6 +94,12 @@
       "slug": "track:love-me-like-you-do",
       "type": "track",
       "name": "Love Me Like You Do"
+    },
+    {
+      "slug": "track:the-ending--ellie-goulding",
+      "type": "track",
+      "name": "The Ending",
+      "artist": "Ellie Goulding"
     }
   ],
   "influences": [],

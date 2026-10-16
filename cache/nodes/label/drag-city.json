@@ -78,6 +78,16 @@
       "slug": "artist:ty-segall",
       "type": "artist",
       "name": "Ty Segall"
+    },
+    {
+      "slug": "artist:laetitia-sadier",
+      "type": "artist",
+      "name": "Laetitia Sadier"
+    },
+    {
+      "slug": "artist:pavement",
+      "type": "artist",
+      "name": "Pavement"
     }
   ],
   "notable_releases": [

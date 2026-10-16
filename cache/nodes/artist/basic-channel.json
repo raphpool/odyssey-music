@@ -65,6 +65,12 @@
       "slug": "project:bcd-2",
       "type": "project",
       "name": "BCD-2"
+    },
+    {
+      "slug": "project:phylyps-trak--basic-channel",
+      "type": "project",
+      "name": "Phylyps Trak",
+      "artist": "Basic Channel"
     }
   ],
   "notable_tracks": [

@@ -69,6 +69,16 @@
       "slug": "artist:ceephax-acid-crew",
       "type": "artist",
       "name": "Ceephax Acid Crew"
+    },
+    {
+      "slug": "artist:cylob",
+      "type": "artist",
+      "name": "Cylob"
+    },
+    {
+      "slug": "artist:plug",
+      "type": "artist",
+      "name": "Plug"
     }
   ],
   "notable_releases": [
@@ -86,6 +96,23 @@
       "slug": "project:analord",
       "type": "project",
       "name": "Analord"
+    },
+    {
+      "slug": "project:analord-10",
+      "type": "project",
+      "name": "Analord 10"
+    },
+    {
+      "slug": "project:cylobian-sunset--cylob",
+      "type": "project",
+      "name": "Cylobian Sunset",
+      "artist": "Cylob"
+    },
+    {
+      "slug": "project:tango-n-vectif--ziq",
+      "type": "project",
+      "name": "Tango N' Vectif",
+      "artist": "µ-Ziq"
     }
   ]
 }

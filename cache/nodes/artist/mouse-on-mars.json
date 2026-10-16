@@ -84,6 +84,42 @@
       "slug": "track:pinwheel-herman--mouse-on-mars",
       "type": "track",
       "name": "Pinwheel Herman"
+    },
+    {
+      "slug": "track:chordblocker-cinnamon-toasted--mouse-on-mars",
+      "type": "track",
+      "name": "Chordblocker, Cinnamon Toasted",
+      "artist": "Mouse on Mars"
+    },
+    {
+      "slug": "track:gearknot-cherry--mouse-on-mars",
+      "type": "track",
+      "name": "Gearknot Cherry",
+      "artist": "Mouse on Mars"
+    },
+    {
+      "slug": "track:imatch--mouse-on-mars",
+      "type": "track",
+      "name": "Imatch",
+      "artist": "Mouse on Mars"
+    },
+    {
+      "slug": "track:seaqz--mouse-on-mars",
+      "type": "track",
+      "name": "Seaqz",
+      "artist": "Mouse on Mars"
+    },
+    {
+      "slug": "track:the-beach-stop--mouse-on-mars",
+      "type": "track",
+      "name": "The Beach Stop",
+      "artist": "Mouse on Mars"
+    },
+    {
+      "slug": "track:wienuss--mouse-on-mars",
+      "type": "track",
+      "name": "Wienuss",
+      "artist": "Mouse on Mars"
     }
   ],
   "influences": [],

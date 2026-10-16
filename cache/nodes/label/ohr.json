@@ -69,6 +69,11 @@
       "slug": "artist:amon-duul",
       "type": "artist",
       "name": "Amon Düül"
+    },
+    {
+      "slug": "artist:manuel-gottsching",
+      "type": "artist",
+      "name": "Manuel Göttsching"
     }
   ],
   "notable_releases": [
@@ -96,6 +101,12 @@
       "slug": "project:ash-ra-tempel",
       "type": "project",
       "name": "Ash Ra Tempel"
+    },
+    {
+      "slug": "project:atem--tangerine-dream",
+      "type": "project",
+      "name": "Atem",
+      "artist": "Tangerine Dream"
     }
   ]
 }

@@ -81,6 +81,12 @@
       "slug": "project:new-york",
       "type": "project",
       "name": "New York"
+    },
+    {
+      "slug": "project:songs-for-drella--lou-reed",
+      "type": "project",
+      "name": "Songs for Drella",
+      "artist": "Lou Reed"
     }
   ],
   "notable_tracks": [

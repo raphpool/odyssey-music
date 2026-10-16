@@ -49,8 +49,22 @@
       "name": "CES Records"
     }
   ],
-  "discography": [],
-  "notable_tracks": [],
+  "discography": [
+    {
+      "slug": "project:lost-luggage--anushka-chkheidze",
+      "type": "project",
+      "name": "Lost Luggage",
+      "artist": "Anushka Chkheidze"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:lost-luggage--anushka-chkheidze",
+      "type": "track",
+      "name": "Lost Luggage",
+      "artist": "Anushka Chkheidze"
+    }
+  ],
   "influences": [],
   "influenced": [],
   "collaborators": [],

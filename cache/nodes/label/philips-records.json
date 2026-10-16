@@ -61,6 +61,16 @@
       "slug": "artist:neville-marriner",
       "type": "artist",
       "name": "Neville Marriner"
+    },
+    {
+      "slug": "artist:junko-ohashi",
+      "type": "artist",
+      "name": "Junko Ōhashi"
+    },
+    {
+      "slug": "artist:pierre-schaeffer",
+      "type": "artist",
+      "name": "Pierre Schaeffer"
     }
   ],
   "notable_releases": [

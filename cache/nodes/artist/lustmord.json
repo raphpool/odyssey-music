@@ -60,6 +60,12 @@
       "slug": "project:stalker",
       "type": "project",
       "name": "Stalker"
+    },
+    {
+      "slug": "project:stalker--robert-rich",
+      "type": "project",
+      "name": "Stalker",
+      "artist": "Robert Rich"
     }
   ],
   "notable_tracks": [],

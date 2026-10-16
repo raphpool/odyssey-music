@@ -70,6 +70,12 @@
       "slug": "project:resort",
       "type": "project",
       "name": "Resort"
+    },
+    {
+      "slug": "project:shred--skee-mask",
+      "type": "project",
+      "name": "Shred",
+      "artist": "Skee Mask"
     }
   ],
   "notable_tracks": [
@@ -87,6 +93,36 @@
       "slug": "track:rev8617--skee-mask",
       "type": "track",
       "name": "Rev8617"
+    },
+    {
+      "slug": "track:dial-274--skee-mask",
+      "type": "track",
+      "name": "Dial 274",
+      "artist": "Skee Mask"
+    },
+    {
+      "slug": "track:kozmic-flush--skee-mask",
+      "type": "track",
+      "name": "Kozmic Flush",
+      "artist": "Skee Mask"
+    },
+    {
+      "slug": "track:muk-fm--skee-mask",
+      "type": "track",
+      "name": "Muk FM",
+      "artist": "Skee Mask"
+    },
+    {
+      "slug": "track:via-sub-mids--skee-mask",
+      "type": "track",
+      "name": "Via Sub Mids",
+      "artist": "Skee Mask"
+    },
+    {
+      "slug": "track:vli--skee-mask",
+      "type": "track",
+      "name": "Vli",
+      "artist": "Skee Mask"
     }
   ],
   "influences": [],

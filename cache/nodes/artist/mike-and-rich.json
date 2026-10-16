@@ -82,6 +82,36 @@
       "slug": "track:eggy-toast--mike-and-rich",
       "type": "track",
       "name": "Eggy Toast"
+    },
+    {
+      "slug": "track:giant-deflating-football--mike-and-rich",
+      "type": "track",
+      "name": "Giant Deflating Football",
+      "artist": "Mike & Rich"
+    },
+    {
+      "slug": "track:mr-frosty--mike-and-rich",
+      "type": "track",
+      "name": "Mr. Frosty",
+      "artist": "Mike & Rich"
+    },
+    {
+      "slug": "track:reg--mike-and-rich",
+      "type": "track",
+      "name": "Reg",
+      "artist": "Mike & Rich"
+    },
+    {
+      "slug": "track:the-sound-of-the-beady-eyes--mike-and-rich",
+      "type": "track",
+      "name": "The Sound of the Beady Eyes",
+      "artist": "Mike & Rich"
+    },
+    {
+      "slug": "track:upright-kangaroo--mike-and-rich",
+      "type": "track",
+      "name": "Upright Kangaroo",
+      "artist": "Mike & Rich"
     }
   ],
   "influences": [],

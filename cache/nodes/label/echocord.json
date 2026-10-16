@@ -61,6 +61,11 @@
       "slug": "artist:silent-harbour",
       "type": "artist",
       "name": "Silent Harbour"
+    },
+    {
+      "slug": "artist:deadbeat",
+      "type": "artist",
+      "name": "Deadbeat"
     }
   ],
   "notable_releases": [

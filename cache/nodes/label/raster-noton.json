@@ -61,6 +61,16 @@
       "slug": "artist:frank-bretschneider",
       "type": "artist",
       "name": "Frank Bretschneider"
+    },
+    {
+      "slug": "artist:vladislav-delay",
+      "type": "artist",
+      "name": "Vladislav Delay"
+    },
+    {
+      "slug": "artist:wolfgang-voigt",
+      "type": "artist",
+      "name": "Wolfgang Voigt"
     }
   ],
   "notable_releases": [

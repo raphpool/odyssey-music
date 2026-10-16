@@ -50,7 +50,14 @@
     }
   ],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:pulse-demon--merzbow",
+      "type": "project",
+      "name": "Pulse Demon",
+      "artist": "Merzbow"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],

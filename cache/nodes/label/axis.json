@@ -61,6 +61,11 @@
       "slug": "artist:millsart",
       "type": "artist",
       "name": "Millsart"
+    },
+    {
+      "slug": "artist:robert-hood",
+      "type": "artist",
+      "name": "Robert Hood"
     }
   ],
   "notable_releases": [

@@ -54,6 +54,12 @@
       "slug": "project:mecca-ep",
       "type": "project",
       "name": "Mecca EP"
+    },
+    {
+      "slug": "project:every-dog-has-its-day-vol-3--millsart",
+      "type": "project",
+      "name": "Every Dog Has Its Day vol.3",
+      "artist": "Millsart"
     }
   ],
   "notable_tracks": [

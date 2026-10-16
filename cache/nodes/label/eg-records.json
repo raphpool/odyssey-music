@@ -64,6 +64,11 @@
       "slug": "artist:robert-fripp",
       "type": "artist",
       "name": "Robert Fripp"
+    },
+    {
+      "slug": "artist:harold-budd",
+      "type": "artist",
+      "name": "Harold Budd"
     }
   ],
   "notable_releases": [

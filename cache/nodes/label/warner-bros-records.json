@@ -77,6 +77,46 @@
       "slug": "artist:r-e-m",
       "type": "artist",
       "name": "R.E.M."
+    },
+    {
+      "slug": "artist:craig-david",
+      "type": "artist",
+      "name": "Craig David"
+    },
+    {
+      "slug": "artist:deep-purple",
+      "type": "artist",
+      "name": "Deep Purple"
+    },
+    {
+      "slug": "artist:devo",
+      "type": "artist",
+      "name": "Devo"
+    },
+    {
+      "slug": "artist:ice-t",
+      "type": "artist",
+      "name": "Ice-T"
+    },
+    {
+      "slug": "artist:jane-s-addiction",
+      "type": "artist",
+      "name": "Jane's Addiction"
+    },
+    {
+      "slug": "artist:mitchell-froom",
+      "type": "artist",
+      "name": "Mitchell Froom"
+    },
+    {
+      "slug": "artist:randy-newman",
+      "type": "artist",
+      "name": "Randy Newman"
+    },
+    {
+      "slug": "artist:todd-rundgren",
+      "type": "artist",
+      "name": "Todd Rundgren"
     }
   ],
   "notable_releases": [

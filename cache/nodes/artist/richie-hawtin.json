@@ -61,6 +61,12 @@
       "slug": "project:ex",
       "type": "project",
       "name": "EX"
+    },
+    {
+      "slug": "project:artificial-intelligence",
+      "type": "project",
+      "name": "Artificial Intelligence",
+      "artist": "Aphex Twin"
     }
   ],
   "notable_tracks": [

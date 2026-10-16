@@ -90,6 +90,12 @@
       "slug": "track:tears",
       "type": "track",
       "name": "Tears"
+    },
+    {
+      "slug": "track:baby-wants-to-ride--frankie-knuckles",
+      "type": "track",
+      "name": "Baby Wants to Ride",
+      "artist": "Frankie Knuckles"
     }
   ],
   "influences": [],
