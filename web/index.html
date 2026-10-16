@@ -234,13 +234,71 @@ function setBgImage(el, u) {
 
 // In-flight + completed JIT image lookups, keyed by node id. Prevents duplicate
 // requests when the user rapidly clicks back to a node whose hero is still resolving.
+// Only a FINAL answer stays here (found, none, a first-try failure); a lookup that ended without
+// one removes its own entry, see jitResolveImage.
 const imageJitPromises = new Map();
 
+// 2026-10-16 (TRA-585, plan 3b-D6): GET /image answers 202 "pending" while the server resolves the
+// cover in the background. Same budget as iOS: 6 attempts (the first included), spaced by the
+// server's retry_after_seconds clamped to 2..30 s (5 s when absent), about 60 s per work.
+const IMAGE_MAX_ATTEMPTS = 6;
+const IMAGE_RETRY_DEFAULT_S = 5;
+const IMAGE_RETRY_MIN_S = 2;
+const IMAGE_RETRY_MAX_S = 30;
+
+function imageRetryDelayMs(seconds) {
+  const s = typeof seconds === "number" && Number.isFinite(seconds) ? seconds : IMAGE_RETRY_DEFAULT_S;
+  return Math.min(IMAGE_RETRY_MAX_S, Math.max(IMAGE_RETRY_MIN_S, s)) * 1000;
+}
+
 /**
- * Return the node's stored image_url if it has a usable one; otherwise fire
- * `GET /image/:slug` (idempotent per slug), persist the resolved URL into
- * the in-memory byId graph for instant reuse, and return the URL or null.
- * Used by both jitResolveHero (focused hero) and the project-card carousel.
+ * One lookup of `GET /image/:slug`, retried while the server says "pending".
+ * Resolves `{ url, final }`: `final` is false when the answer is only "not yet" (budget spent, the
+ * page changed, network error while retrying), so the caller must not remember it.
+ */
+async function lookupImage(slug) {
+  // The server needs the page the work was listed on to identify a work that has no node (3b-D1).
+  // It is always a slug (never a title), and the server rereads its own edges from it. The page's
+  // own hero (slug === page) has a node of its own and needs no context, so it goes without.
+  const page = crumbs[crumbs.length - 1];
+  const query = page && page !== slug ? `?from=${encodeURIComponent(page)}` : "";
+  for (let attempt = 1; attempt <= IMAGE_MAX_ATTEMPTS; attempt++) {
+    let r;
+    let body = null;
+    try {
+      r = await fetch(`${API_BASE}/image/${encodeURIComponent(slug)}${query}`);
+      body = r.ok ? await r.json() : null;
+    } catch {
+      // A failure on the first try keeps the historical behaviour (null, remembered); mid-retry it
+      // is only "not yet": the next visit of the page gets a fresh budget.
+      return { url: null, final: attempt === 1 };
+    }
+    if (!body) return { url: null, final: true };
+    if (body.state === "found" || (body.state === undefined && body.image_url)) {
+      return { url: body.image_url || null, final: true };
+    }
+    if (!(r.status === 202 || body.state === "pending")) return { url: null, final: true };
+    if (attempt === IMAGE_MAX_ATTEMPTS) break;
+    await new Promise((resolve) => setTimeout(resolve, imageRetryDelayMs(body.retry_after_seconds)));
+    if (crumbs[crumbs.length - 1] !== page) break; // the page was left: stop asking for it
+  }
+  return { url: null, final: false };
+}
+
+/**
+ * Return the node's stored image_url if it has a usable one; otherwise ask
+ * `GET /image/:slug?from=<page>`, persist the resolved URL into the in-memory byId graph for
+ * instant reuse, and return the URL or null. Used by both jitResolveHero (focused hero) and the
+ * project-card carousel.
+ *
+ * The server answers in one of three states (TRA-583, 3b-D5). `found` and `none` are final: their
+ * promise is kept for the page (idempotent per slug). `pending` (202) is "not yet": lookupImage
+ * retries it within a bounded budget (TRA-585, 3b-D6). An answer that is not final (budget spent,
+ * page left, network error mid-retry) yields null AND removes its own entry from imageJitPromises,
+ * otherwise the first pending null would be served to every caller until reload.
+ * A server older than TRA-583 answers `{ image_url, source }` without `state`: non-null is found,
+ * null is none. Concurrent callers for one slug share one series of requests. Never throws and
+ * never blocks rendering (callers are fire-and-forget).
  */
 async function jitResolveImage(slug) {
   // A stored image_url (TRA-455/466) is the answer: the JIT is only the fallback for nodes
@@ -249,13 +307,19 @@ async function jitResolveImage(slug) {
   if (known && safeCssUrl(known.image_url)) return known.image_url;
   if (!JIT_ENABLED) return null;
   if (!imageJitPromises.has(slug)) {
-    imageJitPromises.set(slug, fetch(`${API_BASE}/image/${encodeURIComponent(slug)}`).then((r) => r.ok ? r.json() : null).catch(() => null));
+    const lookup = lookupImage(slug)
+      .catch(() => ({ url: null, final: true }))
+      .then((result) => {
+        if (!result.final && imageJitPromises.get(slug) === lookup) imageJitPromises.delete(slug);
+        return result;
+      });
+    imageJitPromises.set(slug, lookup);
   }
-  const result = await imageJitPromises.get(slug);
-  if (!result || !result.image_url) return null;
+  const { url } = await imageJitPromises.get(slug);
+  if (!url) return null;
   const cached = byId.get(slug);
-  if (cached) cached.image_url = result.image_url;
-  return result.image_url;
+  if (cached) cached.image_url = url;
+  return url;
 }
 
 /**
