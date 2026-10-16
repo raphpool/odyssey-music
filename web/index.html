@@ -579,15 +579,16 @@ async function pingApi() {
       // (artist:drake--9fff2f8a-...) and the resulting node never reconciles with
       // parent edges pointing at the bare slug `artist:drake`. `mbid` is only a hint (it
       // finds a work already in cache; it never creates one).
-      // 2026-10-15 (TRA-481): a catalog hit for a project/track carries the joined artist
-      // credit as `subtitle`; send it as `artist`, else a work not yet cached answers 400
-      // once scoped work slugs are on (TRA-477/TRA-509). An artist/genre/label hit's
-      // subtitle is a sort name or empty, not a credit: never sent as `artist`.
+      // 2026-10-15 (TRA-481, TRA-547): a catalog hit for a project/track carries the first credited
+      // artist as `artist` (structured, from MB's artist-credit); send it, else a work not yet cached
+      // answers 400 once scoped work slugs are on (TRA-477/TRA-509). Never fall back on `subtitle`: it is
+      // the joined credit ("Sasha, John Digweed"), which would build a slug scoped to no artist, and
+      // cutting it on "," would break "Earth, Wind & Fire". A hit without `artist` sends none.
       const reqBody = materializeBody({
         type: hit.type,
         name: hit.name,
         mbid: hit.mbid,
-        artist: isWorkType(hit.type) ? jitArtistName(hit.subtitle) : "",
+        artist: isWorkType(hit.type) ? jitArtistName(hit.artist) : "",
       });
       const r = await fetch(`${API_BASE}/materialize`, {
         method: "POST",
