@@ -5,6 +5,7 @@ import { type GenreRedirects, resolveReadSlug } from "../genre-registry.js";
 import { isAllowedImageUrl } from "../images/hosts.js";
 import type { EnqueueOutcome, ImageQueue } from "../images/image-queue.js";
 import { type ImageSidecarEntry, readImageSidecar } from "../images/image-sidecar.js";
+import { reciprocates } from "../images/resolve-image.js";
 import type { WorkImageHint } from "../images/resolve-work-hint.js";
 import { logger } from "../logger.js";
 import { hasTransliteratedLetter, isScopedSlug } from "../slug.js";
@@ -29,8 +30,8 @@ export interface DisplayImage {
 	slug: Slug;
 	image_url: string | null;
 	/**
-	 * Where the answer comes from: an ImageSource, "legacy", `related:<slug>`, or why there is none
-	 * ("no-match", "not-cached", "cycle", "no-context", "conflict", "ambiguous", "unavailable"), or "pending".
+	 * Where the answer comes from: an ImageSource, "legacy" (a stored `image_url` that carries no `image_source`; never photo_url / cover_url, TRA-592), `related:<slug>`, or why there is none
+	 * ("no-match", "not-cached", "no-context", "conflict", "ambiguous", "unavailable"), or "pending".
 	 */
 	source: string;
 	/** `found` exactly when `image_url` is set. */
@@ -141,8 +142,8 @@ export function workHintsOf(node: NodePayload): WorkImageHint[] {
 
 /**
  * Image lookup behind GET /image/:slug (TRA-475, plan decision 5; on-demand states TRA-582, plan 3b).
- * Order for a node: its stored `image_url`, then (on demand) the sidecar entry resolved for it, then its
- * legacy `photo_url` / `cover_url`, then an image borrowed from a related node, then "no-match".
+ * Order for a node: its stored `image_url`, then (on demand) the sidecar entry resolved for it, then an
+ * image borrowed from a related node, then "no-match". The legacy `photo_url` / `cover_url` are never served.
  * For a slug with no node, on demand only: the sidecar entry of the work it names, or the job that is
  * resolving it. The answer carries a `state`: found, pending (come back in 5 s), or none.
  *
@@ -166,8 +167,7 @@ export function createImageService(deps: {
 	const now = deps.now ?? Date.now;
 	// slug -> expiry. Only a root lookup that ended in "no-match" lands here, and such a slug is a
 	// live node or a redirect to one, so the map is bounded by the graph, not by what clients ask.
-	// A sub-lookup's miss is relative to the `visited` set of the walk that found it (the cycle
-	// guard), so it is not recorded.
+	// A related node is only read for its stored image, never walked, so it has no miss to record.
 	const negative = new Map<Slug, number>();
 	// node slug -> when it was warmed. Fed by nodes read from the cache only, so bounded by the graph.
 	const warmed = new Map<Slug, number>();
@@ -290,11 +290,48 @@ export function createImageService(deps: {
 			: noImage(slug, "no-match");
 	}
 
-	async function walk(slug: Slug, visited: Set<string>, root: RootContext | null): Promise<DisplayImage> {
-		if (visited.has(slug)) return noImage(slug, "cycle");
-		visited.add(slug);
+	/** The edges a node may borrow an image from, in borrowing order. */
+	function borrowEdges(node: NodePayload): EdgeRef[] {
+		switch (node.type) {
+			case "track":
+				return asEdges(node.project);
+			case "artist":
+				return [...asEdges(node.discography), ...asEdges(node.notable_tracks)];
+			case "genre":
+				return [...asEdges(node.landmark_projects), ...asEdges(node.landmark_tracks)];
+			case "label":
+				return asEdges(node.notable_releases);
+			default:
+				return [];
+		}
+	}
+
+	/**
+	 * The first related work that has an allowed `image_url` AND points back at `node` (TRA-592). The
+	 * predicate is the one the resolver uses to derive a cover (`reciprocates`, TRA-591): a list polluted by
+	 * a homonym or a hallucination must not lend its covers here either (2026-10-16, label:mille-plateaux
+	 * got the cover of Electric Ladyland). A track borrows from its own project, as the resolver does
+	 * ("project-image"). A borrowed node lends only the image it stores, never one it borrowed itself.
+	 */
+	async function borrowFromRelated(node: NodePayload): Promise<{ slug: Slug; url: string } | null> {
+		if (node.type === "project") return null; // a project has nothing to borrow from
+		for (const ref of borrowEdges(node)) {
+			const lookupSlug = await resolveReadSlug(ref.slug, deps.redirects, deps.cache);
+			const related = await deps.cache.get(lookupSlug).catch((e: unknown) => {
+				if (isNotFoundError(e)) return null;
+				throw e;
+			});
+			if (!related || (related.type !== "project" && related.type !== "track")) continue;
+			if (!related.image_url || !isAllowedImageUrl(related.image_url)) continue;
+			if (node.type !== "track" && !(await reciprocates(node, related, deps.cache, deps.redirects))) continue;
+			return { slug: ref.slug, url: related.image_url };
+		}
+		return null;
+	}
+
+	async function walk(slug: Slug, root: RootContext): Promise<DisplayImage> {
 		// On demand, the root's memory is the sidecar, not this map (see resolveDisplayImage).
-		if (!root?.onDemand && isKnownMiss(slug)) return noImage(slug, "no-match");
+		if (!root.onDemand && isKnownMiss(slug)) return noImage(slug, "no-match");
 
 		// 2026-09-10 (TRA-39): without resolving the redirect first, GET /image/genre:electronic-music
 		// served { image_url: null, source: "not-cached" } forever (and cached that null for 24h,
@@ -307,9 +344,7 @@ export function createImageService(deps: {
 			throw e;
 		});
 		if (!node) {
-			return root?.onDemand
-				? resolveWithoutNode(slug, root.onDemand, root.from)
-				: noImage(slug, "not-cached");
+			return root.onDemand ? resolveWithoutNode(slug, root.onDemand, root.from) : noImage(slug, "not-cached");
 		}
 
 		if (node.image_url) {
@@ -322,43 +357,24 @@ export function createImageService(deps: {
 		}
 
 		// Only the requested node consults the sidecar: a borrowed node's image is the one it stores.
-		const od = root?.onDemand ?? null;
+		const od = root.onDemand;
 		let decided: ImageSidecarEntry | null = null;
 		if (od) {
 			decided = await readImageSidecar(od.cacheDir, node.slug, now);
 			if (decided?.state === "found") return fromSidecarEntry(slug, decided);
 		}
 
-		// photo_url / cover_url predate the allowlist and are served as is: the mobile layer filters
-		// them with safePublicHttpsUrl and the web front escapes them.
-		const legacy = node.type === "artist" ? node.photo_url : "cover_url" in node ? node.cover_url : undefined;
-		if (legacy) return foundImage(slug, legacy, "legacy");
+		// 2026-10-16 (TRA-592): `photo_url` / `cover_url` are never served. They come from the LLM or from the
+		// old read-time iTunes lookup that took the first search result unverified, so they are what showed
+		// the Earth, Wind & Fire compilation on Grandmaster Flash and a Wikipedia icon on Gat Decor, still in
+		// prod after the backfill (TRA-489) because this path kept serving them. Only a verified image
+		// (`image_url`, the sidecar) or a reciprocal borrow answers.
 
-		const edges: Array<EdgeRef | EdgeRef[] | undefined> = (() => {
-			switch (node.type) {
-				case "track":
-					return [node.project];
-				case "artist":
-					return [node.discography, node.notable_tracks];
-				case "genre":
-					return [node.landmark_projects, node.landmark_tracks];
-				case "label":
-					return [node.notable_releases];
-				default:
-					return [];
-			}
-		})();
-
-		for (const refs of edges) {
-			if (!refs) continue;
-			for (const ref of asEdges(refs)) {
-				const hit = await walk(ref.slug, visited, null);
-				if (hit.image_url) {
-					// A borrowed image is a stopgap: the node gets its own one in the background.
-					if (od && !decided) od.queue.enqueueNode(node);
-					return foundImage(slug, hit.image_url, `related:${ref.slug}`);
-				}
-			}
+		const borrowed = await borrowFromRelated(node);
+		if (borrowed) {
+			// A borrowed image is a stopgap: the node gets its own one in the background.
+			if (od && !decided) od.queue.enqueueNode(node);
+			return foundImage(slug, borrowed.url, `related:${borrowed.slug}`);
 		}
 
 		if (!od) return noImage(slug, "no-match");
@@ -375,7 +391,7 @@ export function createImageService(deps: {
 		// in the sidecar at any moment without clearing this map. A miss remembered while the flag was off
 		// must not hide the pending/found answers once it is switched on.
 		if (!od && isKnownMiss(slug)) return noImage(slug, "no-match");
-		const result = await walk(slug, new Set(), { onDemand: od, ...(opts?.from ? { from: opts.from } : {}) });
+		const result = await walk(slug, { onDemand: od, ...(opts?.from ? { from: opts.from } : {}) });
 		if (!od && result.source === "no-match") negative.set(slug, now() + NEGATIVE_TTL_MS);
 		return result;
 	}

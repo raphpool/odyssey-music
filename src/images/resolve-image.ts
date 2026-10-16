@@ -134,7 +134,7 @@ const isWork = (node: NodePayload): node is Work => node.type === "project" || n
  * - genre: a genre edge with the same slug once both sides went through the redirect table.
  * A band member therefore no longer borrows the band's cover: it credits the band, not the member.
  */
-async function reciprocates(
+export async function reciprocates(
 	subject: Subject,
 	work: Work,
 	cache: NodeCache,
