@@ -646,9 +646,17 @@ export function planMigration(input: PlanInput): Plan {
 		const name = str(f.node.name);
 		if (!name) return { kind: "skip", reason: "no-name" };
 		if (f.type === "project" || f.type === "track") {
-			const credit = edgeList(f.node.artists)[0];
+			const credits = edgeList(f.node.artists);
+			const credit = credits[0];
 			const creditName = str(credit?.name);
 			if (!credit || !creditName) return { kind: "skip", reason: "no-credit" };
+			// TRA-571: the order of `artists` is MusicBrainz's only for a work it resolved (it has an mbid). Without
+			// one the order comes from the model, so `artists[0]` of a collaboration or a compilation is arbitrary
+			// and would freeze a random artist into the canonical slug. "Various Artists" names no artist at all.
+			// Skipped like `no-credit`: the work and every edge to it keep their bare slug.
+			if (isVariousArtists(credit) || (credits.length > 1 && str(f.node.mbid) === undefined)) {
+				return { kind: "skip", reason: "multi-credit-unresolved" };
+			}
 			const creditMbid = str(credit.mbid);
 			const creditSlug = str(credit.slug);
 			// The cache's own artist node names the scope first (by mbid, then by slug): the credit may be
@@ -1202,6 +1210,16 @@ async function readIdentities(path: string): Promise<ArtistIdentities | null> {
 		groups: new Map(Object.entries(parsed.resolved).map(([slug, e]) => [slug, e.groups.map((g) => g.mbid)])),
 		collisions: parsed.collisions.map((c) => ({ mbid: c.mbid, slugs: c.slugs })),
 	};
+}
+
+const VARIOUS_ARTISTS_MBID = "89ad4ac3-39f7-470e-963a-56509c546377";
+
+/** MusicBrainz's "Various Artists" special purpose artist, by mbid or by normalized name. */
+function isVariousArtists(credit: Obj): boolean {
+	return (
+		str(credit.mbid) === VARIOUS_ARTISTS_MBID ||
+		str(credit.name)?.normalize("NFKC").trim().replace(/\s+/g, " ").toLowerCase() === "various artists"
+	);
 }
 
 function pathOf(cacheDir: string, slug: string): string {

@@ -337,6 +337,78 @@ describe("scope-release-slugs migration", () => {
 		expect(manifest.summary.nodes_to_write).toBe(0);
 	});
 
+	describe("a work whose first credit is not canonical (TRA-571)", () => {
+		const VARIOUS = "89ad4ac3-39f7-470e-963a-56509c546377";
+		const two = (a: Obj, b: Obj): Obj[] => [a, b];
+
+		it("does not scope a compilation or a collaboration without mbid, whatever its first credit", async () => {
+			await seed([
+				node("artist:aphex-twin", "Aphex Twin", {
+					discography: [ref("project:artificial-intelligence", "Artificial Intelligence")],
+				}),
+				node("project:artificial-intelligence", "Artificial Intelligence", {
+					artists: two(ref("artist:aphex-twin", "Aphex Twin"), ref("artist:autechre", "Autechre")),
+				}),
+				node("track:duet", "Duet", {
+					artists: two(ref("artist:a", "A"), ref("artist:b", "B")),
+					project: ref("project:artificial-intelligence", "Artificial Intelligence"),
+				}),
+			]);
+			const { manifest, exitCode } = await run(true);
+			expect(exitCode).toBe(0);
+			expect(manifest.skipped).toEqual([
+				{ slug: "project:artificial-intelligence", reason: "multi-credit-unresolved" },
+				{ slug: "track:duet", reason: "multi-credit-unresolved" },
+			]);
+			expect(manifest.renamed).toEqual({});
+			expect(await exists("project:artificial-intelligence")).toBe(true);
+			expect(await exists("project:artificial-intelligence--aphex-twin")).toBe(false);
+			// The edges to a skipped work stay bare, as for `no-credit`: nothing rewritten, nothing detached.
+			expect(edgeSlugs(await read("artist:aphex-twin"), "discography")).toEqual([
+				"project:artificial-intelligence",
+			]);
+			expect((await read("track:duet")).project).toMatchObject({ slug: "project:artificial-intelligence" });
+			expect(manifest.rewritten).toEqual([]);
+			expect(manifest.detached).toEqual([]);
+		});
+
+		it("still scopes a multi-credit work MusicBrainz resolved, on its first credit", async () => {
+			await seed([
+				node("project:split", "Split", {
+					mbid: MBID_A,
+					artists: two(ref("artist:aphex-twin", "Aphex Twin"), ref("artist:autechre", "Autechre")),
+				}),
+			]);
+			const { manifest } = await run(true);
+			expect(manifest.skipped).toEqual([]);
+			expect(manifest.renamed).toEqual({ "project:split": "project:split--aphex-twin" });
+		});
+
+		it("still scopes a single-credit work without mbid", async () => {
+			await seed([node("project:solo", "Solo", { artists: credit("artist:aphex-twin", "Aphex Twin") })]);
+			const { manifest } = await run(true);
+			expect(manifest.renamed).toEqual({ "project:solo": "project:solo--aphex-twin" });
+		});
+
+		it("does not scope a work credited to Various Artists, with or without mbid, by mbid or by name", async () => {
+			await seed([
+				node("project:now-17", "Now 17", { artists: credit("artist:va", "Compilation", { mbid: VARIOUS }) }),
+				node("project:now-18", "Now 18", {
+					mbid: MBID_B,
+					artists: credit("artist:va-2", "  VARIOUS  Artists "),
+				}),
+				node("track:hit", "Hit", { mbid: MBID_A, artists: credit("artist:va-3", "Various Artists") }),
+			]);
+			const { manifest } = await run(true);
+			expect(manifest.skipped.map((s) => [s.slug, s.reason])).toEqual([
+				["project:now-17", "multi-credit-unresolved"],
+				["project:now-18", "multi-credit-unresolved"],
+				["track:hit", "multi-credit-unresolved"],
+			]);
+			expect(manifest.renamed).toEqual({});
+		});
+	});
+
 	it("keeps three remixes of one title apart", async () => {
 		const bugz = credit("artist:bugz-in-the-attic", "Bugz in the Attic");
 		await seed([
