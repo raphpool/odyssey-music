@@ -178,7 +178,14 @@ describe("mobile facade compatibility", () => {
 			state: "found",
 		});
 
-		const image = await http(server.port, "GET", "/mobile/v1/nodes/genre%3Aambient/image");
+		// Reading the page above enqueued its image job (TRA-583 wires the queue into the server): the first
+		// answer is a 202 until the worker has written its verdict, exactly what a client is told to retry.
+		let image = await http(server.port, "GET", "/mobile/v1/nodes/genre%3Aambient/image");
+		for (let attempt = 0; attempt < 50 && image.status === 202; attempt += 1) {
+			await new Promise((done) => setTimeout(done, 100));
+			image = await http(server.port, "GET", "/mobile/v1/nodes/genre%3Aambient/image");
+		}
+		expect(image.status).toBe(200);
 		expect(json(image)).toMatchObject({ slug: "genre:ambient", image_url: null, state: "none" });
 
 		// A slug without a node is no longer a 404 (the iOS store memoizes it as unavailable): it is a "none".
