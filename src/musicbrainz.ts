@@ -1037,6 +1037,16 @@ function creditCarriesMbid(entries: MbArtistCreditEntry[], accepted: ReadonlySet
 	return entries.some((e) => typeof e.artist?.id === "string" && accepted.has(e.artist.id.toLowerCase()));
 }
 
+/** True when one accepted MBID is carried by the credit of every candidate. */
+function shareAcceptedMbid(
+	candidates: { "artist-credit"?: MbArtistCreditEntry[] | undefined }[],
+	accepted: ReadonlySet<string>,
+): boolean {
+	return [...accepted].some((mbid) =>
+		candidates.every((c) => creditCarriesMbid(c["artist-credit"] ?? [], new Set([mbid]))),
+	);
+}
+
 /** Options of the detailed work resolvers. */
 export interface WorkResolveOptions {
 	/**
@@ -1047,6 +1057,15 @@ export interface WorkResolveOptions {
 	 * ("Uoon II").
 	 */
 	acceptCreditMbids?: readonly string[];
+	/**
+	 * MBID of the requested artist. A candidate with a credited artist carrying it is a DIRECT candidate,
+	 * whatever name it is printed under (TRA-552): "Roni Size Presents" is neither equal to the hint nor
+	 * cut into segments by it, so by name alone the artist's own work was set aside without a sound and
+	 * the band's work of the same title won through `acceptCreditMbids`. Compared by MBID only, without
+	 * regard to case; it widens what counts as direct, never what a name may match. Mixed with a
+	 * band-credited candidate it falls under the same rule as any direct one: `ambiguous`.
+	 */
+	requestedArtistMbid?: string | undefined;
 }
 
 function acceptedMbidSet(options: WorkResolveOptions): Set<string> {
@@ -1097,6 +1116,7 @@ function pickByTitleAndCredit<
 	artistHint: string | undefined,
 	kind: "release-group" | "recording",
 	acceptedMbids: ReadonlySet<string> = new Set(),
+	requestedArtistMbid?: string,
 ): Pick<T> {
 	const wanted = normalizeTitleBody(title);
 	if (!wanted) return { kind: "none" };
@@ -1107,7 +1127,15 @@ function pickByTitleAndCredit<
 	// TRA-537), which would take the lone exact-title candidate whatever its credit.
 	if (hasHint && hint === "") return { kind: "none" };
 	// With a hint, only a candidate credited to that artist can be the work; without one the title alone decides.
-	const direct = hasHint ? exact.filter((c) => creditEqualsHint(c["artist-credit"] ?? [], hint)) : exact;
+	// The artist's own MBID makes a credit direct whatever name it is printed under (TRA-552).
+	const requested = requestedArtistMbid?.trim() ? new Set([requestedArtistMbid.trim().toLowerCase()]) : null;
+	const direct = hasHint
+		? exact.filter(
+				(c) =>
+					creditEqualsHint(c["artist-credit"] ?? [], hint) ||
+					(requested !== null && creditCarriesMbid(c["artist-credit"] ?? [], requested)),
+			)
+		: exact;
 	// Credited to a band the artist belongs to, accepted by MBID alone (TRA-539). Mixed with a direct
 	// credit on the same title it is a doubt, not a preference for the direct one (TRA-537 deep review).
 	const viaGroup =
@@ -1115,6 +1143,10 @@ function pickByTitleAndCredit<
 			? exact.filter((c) => !direct.includes(c) && creditCarriesMbid(c["artist-credit"] ?? [], acceptedMbids))
 			: [];
 	if (direct.length > 0 && viaGroup.length > 0) return { kind: "ambiguous" };
+	// Two different bands of the same member, each with a work of this title: which one is meant is a
+	// doubt, not a matter of age (TRA-552; main kept the oldest). Candidates that share one accepted band
+	// (an original and its duplicate) stay the business of the steps below.
+	if (viaGroup.length > 1 && !shareAcceptedMbid(viaGroup, acceptedMbids)) return { kind: "ambiguous" };
 	const pool = direct.length > 0 ? direct : viaGroup;
 	if (pool.length === 0) return { kind: "none" };
 	if (!hasHint && pool.length > 1) return { kind: "ambiguous" };
@@ -1216,6 +1248,7 @@ export async function resolveReleaseGroupDetailed(
 		artistHint,
 		"release-group",
 		acceptedMbidSet(options),
+		options.requestedArtistMbid,
 	);
 	if (picked.kind !== "one") return { ...none, ambiguous: picked.kind === "ambiguous" };
 	const rg = picked.candidate;
@@ -1245,7 +1278,14 @@ export async function resolveRecordingDetailed(
 	const recordings = parseRecordings(body);
 	if (!recordings) return { ...none, unavailable: true };
 	if (isTruncated(body, recordings.length)) return { ...none, ambiguous: true };
-	const picked = pickByTitleAndCredit(recordings, title, artistHint, "recording", acceptedMbidSet(options));
+	const picked = pickByTitleAndCredit(
+		recordings,
+		title,
+		artistHint,
+		"recording",
+		acceptedMbidSet(options),
+		options.requestedArtistMbid,
+	);
 	if (picked.kind !== "one") return { ...none, ambiguous: picked.kind === "ambiguous" };
 	const rec = picked.candidate;
 	return {
