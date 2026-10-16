@@ -291,8 +291,17 @@ function changedKeys(before: Record<string, unknown>, after: Record<string, unkn
 		.sort();
 }
 
+// artistManifestPath defaults to a file inside the tmp root, not the cwd-relative out/artist-identity.json:
+// otherwise a manifest left in out/ by a real migration run changes what these tests resolve (2026-10-16,
+// TRA-559: a "no group is known" test resolved the member through the leftover manifest).
 const run = (options: Partial<Parameters<typeof runBackfill>[0]> = {}) =>
-	runBackfill({ cacheDir: cacheDir(), apply: false, manifestPath, ...options });
+	runBackfill({
+		cacheDir: cacheDir(),
+		apply: false,
+		manifestPath,
+		artistManifestPath: join(root, "out", "artist-identity.json"),
+		...options,
+	});
 
 // --- The four fixtures of the ticket, and the original-script credit ---
 
