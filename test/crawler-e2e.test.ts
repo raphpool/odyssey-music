@@ -554,6 +554,36 @@ describe("refreshGenre() (TRA-63)", () => {
 		expect(refreshed.editorial_definition).not.toBe("The old definition must be replaced.");
 	});
 
+	it("keeps the image of the cached genre when the image resolver finds nothing (TRA-549)", async () => {
+		const cache = new NodeCache(dir);
+		const image_url = "https://upload.wikimedia.org/wikipedia/commons/a/ab/Trap.jpg";
+		await cache.write(
+			genreNode({
+				slug: "genre:trap-hip-hop",
+				name: "Trap Hip-Hop",
+				qid: "Q2913982",
+				image_url,
+				image_source: "wikidata-p18",
+			}),
+		);
+		installPipelineMocks({ draft: genreDraftFixture({ name: "Trap Hip-Hop" }) });
+		const { refreshGenre } = await loadCrawl();
+
+		await refreshGenre(
+			{
+				seed: "genre:unused",
+				maxDepth: 0,
+				maxNodes: 1,
+				concurrency: 4,
+				out: dir,
+				deps: { tavilyApiKey: "test", firecrawlApiKey: "test", resolveImage: async () => null },
+			},
+			"genre:trap-hip-hop",
+		);
+
+		expect(await cache.get("genre:trap-hip-hop")).toMatchObject({ image_url, image_source: "wikidata-p18" });
+	});
+
 	it("keeps the cached genre when its refresh fails", async () => {
 		const cache = new NodeCache(dir);
 		const original = genreNode({

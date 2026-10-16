@@ -99,7 +99,7 @@ import { isAllowedImageUrl } from "./images/hosts.js";
 import type { ResolvedImage } from "./images/resolve-image.js";
 import { firecrawlSearch } from "./tools/firecrawl-search.js";
 import { rankResults, rankUrl, type TavilyResult, tavilySearch } from "./tools/tavily.js";
-import type { ArtistNode, Citation, EdgeRef, NodePayload, NodeType, Slug } from "./types.js";
+import type { ArtistNode, Citation, EdgeRef, ImageSource, NodePayload, NodeType, Slug } from "./types.js";
 import { QID_PATTERN } from "./types.js";
 
 export interface PipelineDeps {
@@ -168,6 +168,17 @@ export interface PipelineInput {
 	// TRA-473: primary artist credited for a project/track. It tells MusicBrainz which of several works
 	// sharing a title is meant; derived from the requested slug's scope, or given by the caller.
 	artist?: string;
+	// TRA-549: the image the node being refreshed already carries. It survives the refresh when the
+	// image resolver yields nothing usable (no match, outage, timeout, refused host) and is still on an
+	// allowed host; a new valid image replaces it. Only applies together with `slug`, when the result
+	// lands on that very slug. Unset for a first materialization.
+	existingImage?: { url: string; source?: ImageSource };
+}
+
+/** The image a cached node carries, in the shape `PipelineInput.existingImage` takes (TRA-549). */
+export function existingImageOf(node: NodePayload): PipelineInput["existingImage"] {
+	if (!node.image_url) return undefined;
+	return { url: node.image_url, ...(node.image_source ? { source: node.image_source } : {}) };
 }
 
 export interface PipelineResult {
@@ -747,7 +758,13 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	// docs/plans/qid-genre-identity.md).
 	await deps.genreRegistry?.canonicalizeNodeEdges(node);
 	// After the genre edges are canonical (a derived cover follows edges by slug), before validation.
-	await attachResolvedImage(node as Record<string, unknown>, deps.resolveImage, log);
+	// The kept image belongs to the node being refreshed: if the enrichment moved the result onto another
+	// slug (a different work or entity), it is not that node's image.
+	const existingImage =
+		input.slug !== undefined && (node as { slug?: string }).slug === input.slug
+			? input.existingImage
+			: undefined;
+	await attachResolvedImage(node as Record<string, unknown>, deps.resolveImage, log, existingImage);
 	// Last, once genres, labels and collaborators are final: the graph fallback compares them.
 	await attachSimilarArtists(
 		node as Record<string, unknown>,
@@ -832,37 +849,52 @@ const IMAGE_RESOLVE_TIMEOUT_MS = 20_000;
  * TRA-479: set `image_url` / `image_source` on the draft when the resolver finds a picture.
  * The URL is third-party data, so it goes through `isAllowedImageUrl` here as well: the node schema
  * refuses a disallowed host and validateNode would throw -- an image must never cost the node.
+ *
+ * TRA-549: when the resolver yields nothing usable on a refresh, the node keeps the image it had --
+ * a refresh must not erase a picture (possibly verified) just because a provider missed this time.
+ * The kept URL is re-checked against the allow-list: the list may have tightened since it was written.
  */
 async function attachResolvedImage(
 	node: Record<string, unknown>,
 	resolveImage: PipelineDeps["resolveImage"],
 	log: PipelineLog,
+	existing?: PipelineInput["existingImage"],
 ): Promise<void> {
-	if (!resolveImage) return;
 	const label = `${String(node.type)}:${String(node.slug)}`;
-	let timer: ReturnType<typeof setTimeout> | undefined;
-	try {
-		const timeout = new Promise<never>((_, reject) => {
-			timer = setTimeout(() => reject(new Error("timed out")), IMAGE_RESOLVE_TIMEOUT_MS);
-		});
-		const found = await Promise.race([resolveImage(node as unknown as NodePayload), timeout]);
-		if (!found) {
-			log(`[pipeline] no image resolved for ${label}`);
-			return;
-		}
-		if (typeof found.url !== "string" || !isAllowedImageUrl(found.url)) {
-			log(`[pipeline] image refused for ${label}: host not allowed`);
-			return;
-		}
-		node.image_url = found.url;
-		if (found.source) node.image_source = found.source;
+	const setImage = (url: string, source: ImageSource | undefined): void => {
+		node.image_url = url;
+		if (source) node.image_source = source;
 		else delete node.image_source;
-		log(`[pipeline] image resolved for ${label} source=${found.source ?? "-"}`);
-	} catch (e) {
-		const msg = e instanceof Error ? e.message : String(e);
-		log(`[pipeline] image resolution skipped for ${label}: ${msg.slice(0, 100)}`);
-	} finally {
-		clearTimeout(timer);
+	};
+	let resolved: ResolvedImage | null = null;
+	if (resolveImage) {
+		let timer: ReturnType<typeof setTimeout> | undefined;
+		try {
+			const timeout = new Promise<never>((_, reject) => {
+				timer = setTimeout(() => reject(new Error("timed out")), IMAGE_RESOLVE_TIMEOUT_MS);
+			});
+			const found = await Promise.race([resolveImage(node as unknown as NodePayload), timeout]);
+			if (!found) log(`[pipeline] no image resolved for ${label}`);
+			else if (typeof found.url !== "string" || !isAllowedImageUrl(found.url)) {
+				log(`[pipeline] image refused for ${label}: host not allowed`);
+			} else resolved = found;
+		} catch (e) {
+			const msg = e instanceof Error ? e.message : String(e);
+			log(`[pipeline] image resolution skipped for ${label}: ${msg.slice(0, 100)}`);
+		} finally {
+			clearTimeout(timer);
+		}
+	}
+	if (resolved) {
+		setImage(resolved.url, resolved.source);
+		log(`[pipeline] image resolved for ${label} source=${resolved.source ?? "-"}`);
+	} else if (existing) {
+		if (!isAllowedImageUrl(existing.url)) {
+			log(`[pipeline] existing image dropped for ${label}: host no longer allowed`);
+			return;
+		}
+		setImage(existing.url, existing.source);
+		log(`[pipeline] existing image kept for ${label} source=${existing.source ?? "-"}`);
 	}
 }
 
