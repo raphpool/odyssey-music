@@ -13,6 +13,8 @@
     }
   ],
   "materialized_at": "2026-05-13T12:34:30.738Z",
+  "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e3/WarpAI.jpg",
+  "image_source": "derived-cover",
   "type": "genre",
   "editorial_definition": "A style of cerebral, experimental electronic music characterized by complex sound design, unconventional rhythmic patterns, and an aesthetic focused on attentive home listening rather than club-based functionality.",
   "qid": "Q660984",

@@ -24,6 +24,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://coverartarchive.org/release-group/2c33e8a0-b2be-3224-8748-92e1d8ea948e/front-500",
+  "image_source": "derived-cover",
   "type": "genre",
   "editorial_definition": "A style of heavy metal that blends the slow, crushing tempos and extreme heaviness of doom metal with the long-duration, sustained tones of minimalist drone music.",
   "qid": "Q1433387",
