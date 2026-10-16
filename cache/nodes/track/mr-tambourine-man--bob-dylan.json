@@ -25,6 +25,8 @@
     "search_provider": "tavily"
   },
   "disambiguator": "song by Bob Dylan",
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/61/ad/46/61ad469e-1e2d-da3c-6847-b939c07924f9/074640912825.jpg/600x600bb.jpg",
+  "image_source": "itunes-verified",
   "type": "track",
   "editorial_teaser": "\"Mr.",
   "year": "1965",
