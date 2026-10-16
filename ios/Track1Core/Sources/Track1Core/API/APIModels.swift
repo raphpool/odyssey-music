@@ -270,7 +270,8 @@ public struct NodeEdge: Decodable, Sendable {
 		qid = try v.decodeIfPresent(String.self, forKey: .qid)
 		year = try v.decodeIfPresent(String.self, forKey: .year)
 		releaseType = try v.decodeIfPresent(String.self, forKey: .releaseType)
-		artist = try v.decodeIfPresent(String.self, forKey: .artist)
+		// Additive, optional field: a malformed value is read as absent instead of failing the whole node page.
+		artist = (try? v.decodeIfPresent(String.self, forKey: .artist)) ?? nil
 		guard slug.type == type, !name.isEmpty,
 			qid.map({ $0.range(of: "^Q[1-9][0-9]*$", options: .regularExpression) != nil }) ?? true,
 			releaseType.map({ ["album", "ep", "single"].contains($0) }) ?? true

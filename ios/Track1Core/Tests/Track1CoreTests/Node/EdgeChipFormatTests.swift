@@ -59,6 +59,16 @@ final class EdgeChipFormatTests: XCTestCase {
 		XCTAssertNil(try JSONDecoder().decode(NodeEdge.self, from: Data(explicitNull.utf8)).artist)
 	}
 
+	// A mistyped additive field must not fail the whole node page (same tolerance as `SearchHit.artist`).
+	func testAMistypedArtistIsReadAsAbsentWithoutFailingTheEdge() throws {
+		let json = """
+			{"slug": "track:fitna--rohff", "type": "track", "name": "Fitna", "artist": 42}
+			"""
+		let edge = try JSONDecoder().decode(NodeEdge.self, from: Data(json.utf8))
+		XCTAssertNil(edge.artist)
+		XCTAssertEqual(edge.name, "Fitna")
+	}
+
 	func testTheArtistDoesNotChangeTheChipMeta() throws {
 		let json = """
 			{"slug": "project:mezzanine", "type": "project", "name": "Mezzanine", "year": "1998",

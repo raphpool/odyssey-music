@@ -159,11 +159,12 @@ final class NodeRelationOpeningTests: XCTestCase {
 	}
 
 	private static func loadedModel(
-		context: NavigationContext, log: EventLog, id: String = "artist:source", name: String = "Source"
+		context: NavigationContext, log: EventLog, id: String = "artist:source", name: String = "Source",
+		edges: String = "{}"
 	) async throws -> NodeViewModel {
 		let type = id.prefix { $0 != ":" }
 		let source = """
-			{"node":{"id":"\(id)","type":"\(type)","name":"\(name)","teaser":null,"article":"","citations":[],"facts":{},"edges":{},"materialized_at":"2026-10-08T00:00:00Z","image_url":null},"source":"cache"}
+			{"node":{"id":"\(id)","type":"\(type)","name":"\(name)","teaser":null,"article":"","citations":[],"facts":{},"edges":\(edges),"materialized_at":"2026-10-08T00:00:00Z","image_url":null},"source":"cache"}
 			"""
 		let decoder = JSONDecoder()
 		decoder.dateDecodingStrategy = .iso8601
@@ -232,17 +233,80 @@ final class NodeRelationOpeningTests: XCTestCase {
 		XCTAssertEqual(model.generationRequest(for: blank, kind: "discography")?.artist, "Rohff")
 	}
 
-	func testAWorkChipOfAProjectPageWithoutEdgeArtistSendsNoArtistRatherThanTheProjectName() async throws {
+	// TRA-482 review: a tracklist chip cached before TRA-477 has no `artist`, and the slug is not scoped; the
+	// server then refuses the work ("needs an artist, an mbid or a scoped slug") once scoped slugs are on.
+	func testATracklistChipWithoutEdgeArtistSendsTheFirstCreditOfTheProjectNotItsName() async throws {
+		let model = try await Self.loadedModel(
+			context: .independent(source: .home), log: EventLog(), id: "project:mezzanine--massive-attack",
+			name: "Mezzanine",
+			edges: #"{"artists":[{"slug":"artist:massive-attack","type":"artist","name":"Massive Attack"}]}"#)
+		let chip = try Self.edge("track:teardrop", name: "Teardrop")
+
+		let request = try XCTUnwrap(model.generationRequest(for: chip, kind: "tracklist"))
+
+		XCTAssertEqual(request.artist, "Massive Attack")
+		XCTAssertEqual(request.source?.slug.rawValue, "project:mezzanine--massive-attack")
+		XCTAssertEqual(request.source?.field, "tracklist")
+	}
+
+	func testAProjectWithASingleOrBlankFirstCreditStillGivesItsArtist() async throws {
+		let single = try await Self.loadedModel(
+			context: .independent(source: .home), log: EventLog(), id: "project:mezzanine--massive-attack",
+			name: "Mezzanine",
+			edges: #"{"artists":{"slug":"artist:massive-attack","type":"artist","name":"Massive Attack"}}"#)
+		let blankFirst = try await Self.loadedModel(
+			context: .independent(source: .home), log: EventLog(), id: "project:mezzanine--massive-attack",
+			name: "Mezzanine",
+			edges: #"{"artists":[{"slug":"artist:blank","type":"artist","name":" "},{"slug":"artist:mad-professor","type":"artist","name":"Mad Professor"}]}"#
+		)
+		let chip = try Self.edge("track:teardrop", name: "Teardrop")
+
+		XCTAssertEqual(single.generationRequest(for: chip, kind: "tracklist")?.artist, "Massive Attack")
+		XCTAssertEqual(blankFirst.generationRequest(for: chip, kind: "tracklist")?.artist, "Mad Professor")
+	}
+
+	func testAProjectWithoutCreditFallsBackToTheScopeOfItsSlugLikeTheServer() async throws {
 		let model = try await Self.loadedModel(
 			context: .independent(source: .home), log: EventLog(), id: "project:mezzanine--massive-attack",
 			name: "Mezzanine")
 		let chip = try Self.edge("track:teardrop", name: "Teardrop")
 
-		let request = try XCTUnwrap(model.generationRequest(for: chip, kind: "tracklist"))
+		XCTAssertEqual(model.generationRequest(for: chip, kind: "tracklist")?.artist, "massive attack")
+	}
 
-		XCTAssertNil(request.artist)
-		XCTAssertEqual(request.source?.slug.rawValue, "project:mezzanine--massive-attack")
-		XCTAssertEqual(request.source?.field, "tracklist")
+	func testAProjectWithNeitherCreditNorScopeSendsNoArtistRatherThanTheProjectName() async throws {
+		let model = try await Self.loadedModel(
+			context: .independent(source: .home), log: EventLog(), id: "project:mezzanine", name: "Mezzanine")
+		let chip = try Self.edge("track:teardrop", name: "Teardrop")
+
+		XCTAssertNil(model.generationRequest(for: chip, kind: "tracklist")?.artist)
+	}
+
+	// `related_projects` lists works of other artists: the project's artist would attach them to the wrong one.
+	func testOtherSectionsOfAProjectPageAndTrackPagesGetNoPageArtist() async throws {
+		let project = try await Self.loadedModel(
+			context: .independent(source: .home), log: EventLog(), id: "project:mezzanine--massive-attack",
+			name: "Mezzanine",
+			edges: #"{"artists":[{"slug":"artist:massive-attack","type":"artist","name":"Massive Attack"}]}"#)
+		let track = try await Self.loadedModel(
+			context: .independent(source: .home), log: EventLog(), id: "track:teardrop--massive-attack",
+			name: "Teardrop",
+			edges: #"{"artists":[{"slug":"artist:massive-attack","type":"artist","name":"Massive Attack"}]}"#)
+
+		let related = try Self.edge("project:other", name: "Other")
+		XCTAssertNil(project.generationRequest(for: related, kind: "related_projects")?.artist)
+		let sampled = try Self.edge("track:sampled", name: "Sampled")
+		XCTAssertNil(track.generationRequest(for: sampled, kind: "samples")?.artist)
+	}
+
+	func testTheEdgeArtistStillWinsOverTheProjectCredit() async throws {
+		let model = try await Self.loadedModel(
+			context: .independent(source: .home), log: EventLog(), id: "project:mezzanine--massive-attack",
+			name: "Mezzanine",
+			edges: #"{"artists":[{"slug":"artist:massive-attack","type":"artist","name":"Massive Attack"}]}"#)
+		let chip = try Self.edge("track:guest--someone", name: "Guest", artist: "Someone")
+
+		XCTAssertEqual(model.generationRequest(for: chip, kind: "tracklist")?.artist, "Someone")
 	}
 
 	func testGenreLabelAndArtistChipsCarryTheSourceButNoArtist() async throws {

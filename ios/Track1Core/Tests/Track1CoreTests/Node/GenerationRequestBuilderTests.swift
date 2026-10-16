@@ -77,6 +77,9 @@ final class GenerationRequestBuilderTests: XCTestCase {
 		XCTAssertNil(GenerationRequestBuilder.contextArtist("Rohff\u{0000}"))
 		XCTAssertNil(GenerationRequestBuilder.contextArtist(String(repeating: "a", count: 201)))
 		XCTAssertEqual(GenerationRequestBuilder.contextArtist(String(repeating: "a", count: 200))?.count, 200)
+		// The server bounds UTF-16 units: 101 emoji are 101 graphemes but 202 units.
+		XCTAssertNil(GenerationRequestBuilder.contextArtist(String(repeating: "\u{1F3B5}", count: 101)))
+		XCTAssertNotNil(GenerationRequestBuilder.contextArtist(String(repeating: "\u{1F3B5}", count: 100)))
 	}
 
 	// The server refuses or ignores it by flag; dropping it here would hide that and attach the work elsewhere.
