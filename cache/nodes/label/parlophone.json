@@ -49,16 +49,6 @@
       "slug": "artist:blur",
       "type": "artist",
       "name": "Blur"
-    },
-    {
-      "slug": "artist:david-bowie",
-      "type": "artist",
-      "name": "David Bowie"
-    },
-    {
-      "slug": "artist:ringo-starr",
-      "type": "artist",
-      "name": "Ringo Starr"
     }
   ],
   "notable_releases": [
@@ -71,12 +61,6 @@
       "slug": "project:parachutes",
       "type": "project",
       "name": "Parachutes"
-    },
-    {
-      "slug": "project:sgt-pepper-s-lonely-hearts-club-band--the-beatles",
-      "type": "project",
-      "name": "Sgt. Pepper's Lonely Hearts Club Band",
-      "artist": "The Beatles"
     }
   ]
 }

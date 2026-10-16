@@ -67,21 +67,6 @@
       "slug": "artist:senor-coconut",
       "type": "artist",
       "name": "Señor Coconut"
-    },
-    {
-      "slug": "artist:atom-heart",
-      "type": "artist",
-      "name": "Atom Heart"
-    },
-    {
-      "slug": "artist:atom-tm",
-      "type": "artist",
-      "name": "Atom TM"
-    },
-    {
-      "slug": "artist:lisa-carbon",
-      "type": "artist",
-      "name": "Lisa Carbon"
     }
   ],
   "notable_releases": [

@@ -100,56 +100,6 @@
       "slug": "artist:tangerine-dream",
       "type": "artist",
       "name": "Tangerine Dream"
-    },
-    {
-      "slug": "artist:ashra",
-      "type": "artist",
-      "name": "Ashra"
-    },
-    {
-      "slug": "artist:bryan-ferry",
-      "type": "artist",
-      "name": "Bryan Ferry"
-    },
-    {
-      "slug": "artist:daft-punk",
-      "type": "artist",
-      "name": "Daft Punk"
-    },
-    {
-      "slug": "artist:devo",
-      "type": "artist",
-      "name": "Devo"
-    },
-    {
-      "slug": "artist:frankie-knuckles",
-      "type": "artist",
-      "name": "Frankie Knuckles"
-    },
-    {
-      "slug": "artist:inner-city",
-      "type": "artist",
-      "name": "Inner City"
-    },
-    {
-      "slug": "artist:roxy-music",
-      "type": "artist",
-      "name": "Roxy Music"
-    },
-    {
-      "slug": "artist:the-chemical-brothers",
-      "type": "artist",
-      "name": "The Chemical Brothers"
-    },
-    {
-      "slug": "artist:ub40",
-      "type": "artist",
-      "name": "UB40"
-    },
-    {
-      "slug": "artist:van-der-graaf-generator",
-      "type": "artist",
-      "name": "Van der Graaf Generator"
     }
   ],
   "notable_releases": [
@@ -177,30 +127,6 @@
       "slug": "project:the-joshua-tree--u2",
       "type": "project",
       "name": "The Joshua Tree"
-    },
-    {
-      "slug": "project:beyond-the-mix--frankie-knuckles",
-      "type": "project",
-      "name": "Beyond the Mix",
-      "artist": "Frankie Knuckles"
-    },
-    {
-      "slug": "project:lifeforms--the-future-sound-of-london",
-      "type": "project",
-      "name": "Lifeforms",
-      "artist": "The Future Sound of London"
-    },
-    {
-      "slug": "project:rubycon--tangerine-dream",
-      "type": "project",
-      "name": "Rubycon",
-      "artist": "Tangerine Dream"
-    },
-    {
-      "slug": "project:stratosfear--tangerine-dream",
-      "type": "project",
-      "name": "Stratosfear",
-      "artist": "Tangerine Dream"
     }
   ]
 }

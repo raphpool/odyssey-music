@@ -61,19 +61,7 @@
       "slug": "artist:digital-mystikz",
       "type": "artist",
       "name": "Digital Mystikz"
-    },
-    {
-      "slug": "artist:youngsta",
-      "type": "artist",
-      "name": "Youngsta"
     }
   ],
-  "notable_releases": [
-    {
-      "slug": "project:return-ii-space--digital-mystikz",
-      "type": "project",
-      "name": "Return II Space",
-      "artist": "Digital Mystikz"
-    }
-  ]
+  "notable_releases": []
 }

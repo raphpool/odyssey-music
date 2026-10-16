@@ -47,44 +47,7 @@
       "slug": "artist:iron-maiden",
       "type": "artist",
       "name": "Iron Maiden"
-    },
-    {
-      "slug": "artist:asha-bhosle",
-      "type": "artist",
-      "name": "Asha Bhosle"
-    },
-    {
-      "slug": "artist:calvin-harris",
-      "type": "artist",
-      "name": "Calvin Harris"
-    },
-    {
-      "slug": "artist:chris-thomas",
-      "type": "artist",
-      "name": "Chris Thomas"
-    },
-    {
-      "slug": "artist:ralf-hutter",
-      "type": "artist",
-      "name": "Ralf Hütter"
-    },
-    {
-      "slug": "artist:rohff",
-      "type": "artist",
-      "name": "Rohff"
-    },
-    {
-      "slug": "artist:sex-pistols",
-      "type": "artist",
-      "name": "Sex Pistols"
     }
   ],
-  "notable_releases": [
-    {
-      "slug": "project:perfect-combination--saphir",
-      "type": "project",
-      "name": "Perfect Combination",
-      "artist": "Saphir"
-    }
-  ]
+  "notable_releases": []
 }

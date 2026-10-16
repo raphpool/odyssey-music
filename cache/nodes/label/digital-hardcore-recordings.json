@@ -77,16 +77,6 @@
       "slug": "artist:cobra-killer",
       "type": "artist",
       "name": "Cobra Killer"
-    },
-    {
-      "slug": "artist:carl-crack",
-      "type": "artist",
-      "name": "Carl Crack"
-    },
-    {
-      "slug": "artist:death-funk",
-      "type": "artist",
-      "name": "Death Funk"
     }
   ],
   "notable_releases": [
@@ -104,17 +94,6 @@
       "slug": "project:don-t-fuck-with-us",
       "type": "project",
       "name": "Don’t Fuck With Us!"
-    },
-    {
-      "slug": "project:60-second-wipe-out--atari-teenage-riot",
-      "type": "project",
-      "name": "60 Second Wipe Out",
-      "artist": "Atari Teenage Riot"
-    },
-    {
-      "slug": "project:delete-yourself",
-      "type": "project",
-      "name": "Delete Yourself!"
     }
   ]
 }

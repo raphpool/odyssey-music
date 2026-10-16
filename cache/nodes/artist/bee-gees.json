@@ -88,12 +88,6 @@
       "slug": "project:saturday-night-fever",
       "type": "project",
       "name": "Saturday Night Fever (soundtrack)"
-    },
-    {
-      "slug": "project:saturday-night-fever-the-original-movie-soundtrack",
-      "type": "project",
-      "name": "Saturday Night Fever: The Original Movie Soundtrack",
-      "artist": "Bee Gees"
     }
   ],
   "notable_tracks": [
@@ -123,6 +117,5 @@
       "name": "BGs"
     }
   ],
-  "members": [],
-  "similar_artists": []
+  "members": []
 }

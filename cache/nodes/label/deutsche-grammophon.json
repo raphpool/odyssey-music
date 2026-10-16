@@ -56,16 +56,6 @@
       "slug": "artist:anne-sophie-mutter",
       "type": "artist",
       "name": "Anne-Sophie Mutter"
-    },
-    {
-      "slug": "artist:joe-hisaishi",
-      "type": "artist",
-      "name": "Joe Hisaishi"
-    },
-    {
-      "slug": "artist:karlheinz-stockhausen",
-      "type": "artist",
-      "name": "Karlheinz Stockhausen"
     }
   ],
   "notable_releases": [
@@ -83,12 +73,6 @@
       "slug": "project:mahler-symphony-no-5",
       "type": "project",
       "name": "Mahler: Symphony No. 5 (Bernstein)"
-    },
-    {
-      "slug": "project:recomposed-by-max-richter-vivaldi-the-four-seasons--max-richter",
-      "type": "project",
-      "name": "Recomposed by Max Richter: Vivaldi – The Four Seasons",
-      "artist": "Max Richter"
     }
   ]
 }

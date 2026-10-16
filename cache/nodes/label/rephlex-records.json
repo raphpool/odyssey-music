@@ -57,51 +57,6 @@
       "slug": "artist:cylob",
       "type": "artist",
       "name": "Cylob"
-    },
-    {
-      "slug": "artist:afx",
-      "type": "artist",
-      "name": "AFX"
-    },
-    {
-      "slug": "artist:ceephax-acid-crew",
-      "type": "artist",
-      "name": "Ceephax Acid Crew"
-    },
-    {
-      "slug": "artist:global-goon",
-      "type": "artist",
-      "name": "Global Goon"
-    },
-    {
-      "slug": "artist:luke-vibert",
-      "type": "artist",
-      "name": "Luke Vibert"
-    },
-    {
-      "slug": "artist:mike-and-rich",
-      "type": "artist",
-      "name": "Mike & Rich"
-    },
-    {
-      "slug": "artist:mike-paradinas",
-      "type": "artist",
-      "name": "Mike Paradinas"
-    },
-    {
-      "slug": "artist:richard-d-james",
-      "type": "artist",
-      "name": "Richard D. James"
-    },
-    {
-      "slug": "artist:squarepusher",
-      "type": "artist",
-      "name": "Squarepusher"
-    },
-    {
-      "slug": "artist:the-tuss",
-      "type": "artist",
-      "name": "The Tuss"
     }
   ],
   "notable_releases": [
@@ -119,30 +74,6 @@
       "slug": "project:polyester",
       "type": "project",
       "name": "Polyester"
-    },
-    {
-      "slug": "project:nu-romantix--dmx-krew",
-      "type": "project",
-      "name": "Nu Romantix",
-      "artist": "DMX Krew"
-    },
-    {
-      "slug": "project:polyester--lisa-carbon",
-      "type": "project",
-      "name": "Polyester",
-      "artist": "Lisa Carbon"
-    },
-    {
-      "slug": "project:rushup-edge--the-tuss",
-      "type": "project",
-      "name": "Rushup Edge",
-      "artist": "The Tuss"
-    },
-    {
-      "slug": "project:sound-of-the-street--dmx-krew",
-      "type": "project",
-      "name": "Sound of the Street",
-      "artist": "DMX Krew"
     }
   ]
 }

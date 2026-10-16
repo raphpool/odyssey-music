@@ -62,24 +62,6 @@
       "slug": "project:spanners",
       "type": "project",
       "name": "Spanners"
-    },
-    {
-      "slug": "project:artificial-intelligence",
-      "type": "project",
-      "name": "Artificial Intelligence",
-      "artist": "Aphex Twin"
-    },
-    {
-      "slug": "project:loud-ambient--the-black-dog",
-      "type": "project",
-      "name": "Loud Ambient",
-      "artist": "The Black Dog"
-    },
-    {
-      "slug": "project:my-brutal-life--the-black-dog",
-      "type": "project",
-      "name": "My Brutal Life",
-      "artist": "The Black Dog"
     }
   ],
   "notable_tracks": [],

@@ -53,16 +53,6 @@
       "slug": "artist:snail-mail",
       "type": "artist",
       "name": "Snail Mail"
-    },
-    {
-      "slug": "artist:mogwai",
-      "type": "artist",
-      "name": "Mogwai"
-    },
-    {
-      "slug": "artist:pole",
-      "type": "artist",
-      "name": "Pole"
     }
   ],
   "notable_releases": [

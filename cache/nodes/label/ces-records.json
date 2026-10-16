@@ -72,12 +72,5 @@
       "name": "NASI"
     }
   ],
-  "notable_releases": [
-    {
-      "slug": "project:lost-luggage--anushka-chkheidze",
-      "type": "project",
-      "name": "Lost Luggage",
-      "artist": "Anushka Chkheidze"
-    }
-  ]
+  "notable_releases": []
 }

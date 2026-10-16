@@ -41,19 +41,11 @@
       "name": "Motherbox"
     }
   ],
-  "discography": [
-    {
-      "slug": "project:the-ep--inside",
-      "type": "project",
-      "name": "The EP",
-      "artist": "Inside"
-    }
-  ],
+  "discography": [],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": [],
-  "similar_artists": []
+  "members": []
 }

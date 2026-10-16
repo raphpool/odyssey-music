@@ -87,21 +87,6 @@
       "slug": "artist:ministry",
       "type": "artist",
       "name": "Ministry"
-    },
-    {
-      "slug": "artist:chrissie-hynde",
-      "type": "artist",
-      "name": "Chrissie Hynde"
-    },
-    {
-      "slug": "artist:ice-t",
-      "type": "artist",
-      "name": "Ice-T"
-    },
-    {
-      "slug": "artist:lou-reed",
-      "type": "artist",
-      "name": "Lou Reed"
     }
   ],
   "notable_releases": [
@@ -129,12 +114,6 @@
       "slug": "project:violator",
       "type": "project",
       "name": "Violator"
-    },
-    {
-      "slug": "project:songs-for-drella--lou-reed",
-      "type": "project",
-      "name": "Songs for Drella",
-      "artist": "Lou Reed"
     }
   ]
 }

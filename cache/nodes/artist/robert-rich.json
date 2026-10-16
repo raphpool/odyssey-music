@@ -67,12 +67,6 @@
       "slug": "project:trances",
       "type": "project",
       "name": "Trances"
-    },
-    {
-      "slug": "project:stalker--robert-rich",
-      "type": "project",
-      "name": "Stalker",
-      "artist": "Robert Rich"
     }
   ],
   "notable_tracks": [],
@@ -80,6 +74,5 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": [],
-  "similar_artists": []
+  "members": []
 }

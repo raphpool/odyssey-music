@@ -67,12 +67,6 @@
       "slug": "project:ringo-s-rotogravure",
       "type": "project",
       "name": "Ringo's Rotogravure"
-    },
-    {
-      "slug": "project:the-beatles",
-      "type": "project",
-      "name": "The Beatles",
-      "artist": "John Lennon"
     }
   ],
   "notable_tracks": [
@@ -80,12 +74,6 @@
       "slug": "track:yellow-submarine",
       "type": "track",
       "name": "Yellow Submarine"
-    },
-    {
-      "slug": "track:the-beatles",
-      "type": "track",
-      "name": "The Beatles",
-      "artist": "John Lennon"
     }
   ],
   "influences": [],

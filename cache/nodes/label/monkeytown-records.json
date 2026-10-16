@@ -78,16 +78,6 @@
       "slug": "artist:fjaak",
       "type": "artist",
       "name": "FJAAK"
-    },
-    {
-      "slug": "artist:andi-toma",
-      "type": "artist",
-      "name": "Andi Toma"
-    },
-    {
-      "slug": "artist:mouse-on-mars",
-      "type": "artist",
-      "name": "Mouse on Mars"
     }
   ],
   "notable_releases": [
@@ -105,12 +95,6 @@
       "slug": "project:enthusiast--siriusmo",
       "type": "project",
       "name": "Enthusiast"
-    },
-    {
-      "slug": "project:parastrophics--mouse-on-mars",
-      "type": "project",
-      "name": "Parastrophics",
-      "artist": "Mouse on Mars"
     }
   ]
 }
