@@ -13,6 +13,7 @@
     }
   ],
   "materialized_at": "2026-05-13T13:10:00.051Z",
+  "mbid": "759dd69e-9330-42f7-b401-ecbfc888a586",
   "type": "track",
   "editorial_teaser": "A quintessential piece of dark, maritime-inspired dub techno, \"Biokinetics 2\" showcases the deep, reverberated textures that defined the 1990s Berlin underground.",
   "year": "1996",
@@ -21,13 +22,20 @@
     {
       "slug": "artist:porter-ricks",
       "type": "artist",
-      "name": "Porter Ricks"
+      "name": "Porter Ricks",
+      "mbid": "f2c0d29a-9bef-469f-af6e-a9b5deb21308"
     }
   ],
   "project": {
     "slug": "project:biokinetics",
     "type": "project",
     "name": "Biokinetics"
+  },
+  "label": {
+    "slug": "label:chain-reaction",
+    "type": "label",
+    "name": "Chain Reaction",
+    "mbid": "04ac00ca-847b-4d1c-8ea6-85cd7719e946"
   },
   "genres": [
     {
@@ -61,6 +69,7 @@
       "name": "Thomas Köner"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

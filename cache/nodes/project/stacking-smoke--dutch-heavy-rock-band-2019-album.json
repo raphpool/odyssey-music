@@ -9,14 +9,17 @@
     }
   ],
   "materialized_at": "2026-05-13T12:47:57.472Z",
+  "mbid": "7d5e3bdc-2412-4839-9fe8-a2b1a0f178b1",
   "type": "project",
   "editorial_pitch": "Stacking Smoke is a pivotal 2019 release from Dutch collective Autumn, showcasing their refined, atmospheric evolution from symphonic origins into a sophisticated and textured brand of modern heavy rock.",
   "year": "2019",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:autumn",
       "type": "artist",
-      "name": "Autumn"
+      "name": "Autumn",
+      "mbid": "5bf4aa74-7ed8-4c32-918b-0a7b941cd933"
     }
   ],
   "label": {
@@ -50,5 +53,6 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

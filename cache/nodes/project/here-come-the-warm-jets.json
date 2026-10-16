@@ -17,12 +17,99 @@
     }
   ],
   "materialized_at": "2026-05-13T12:37:50.164Z",
+  "mbid": "90d9be4c-30be-3e28-949a-66ee22c3a63a",
   "type": "project",
   "editorial_pitch": "A seminal work of art-pop, Brian Eno's debut solo album serves as a masterpiece of calculated chaos, blending glam rock energy with avant-garde production techniques.",
   "year": "1974",
-  "artists": [],
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    }
+  ],
+  "label": {
+    "slug": "label:island",
+    "type": "label",
+    "name": "Island",
+    "mbid": "dfd92cd3-4888-46d2-b968-328b1feb2642"
+  },
   "genres": [],
-  "tracklist": [],
+  "tracklist": [
+    {
+      "slug": "track:needles-in-the-camel-s-eye--brian-eno",
+      "type": "track",
+      "name": "Needles in the Camel’s Eye",
+      "mbid": "f5f23de7-c15b-4978-99ed-dee21d7d5e12",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:the-paw-paw-negro-blowtorch--brian-eno",
+      "type": "track",
+      "name": "The Paw Paw Negro Blowtorch",
+      "mbid": "fa953bf0-432d-4a29-842d-7217e68e74af",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:baby-s-on-fire--brian-eno",
+      "type": "track",
+      "name": "Baby’s on Fire",
+      "mbid": "03f99283-5fa0-4c3d-a54c-e285c760b147",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:cindy-tells-me--brian-eno",
+      "type": "track",
+      "name": "Cindy Tells Me",
+      "mbid": "77a80e37-fb2b-4425-8053-21fbee258502",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:driving-me-backwards--brian-eno",
+      "type": "track",
+      "name": "Driving Me Backwards",
+      "mbid": "0f9af4f4-f685-446b-961f-3e1b70c2104f",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:on-some-faraway-beach--brian-eno",
+      "type": "track",
+      "name": "On Some Faraway Beach",
+      "mbid": "3445493a-87a1-47c2-bfec-7288bdae6a37",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:blank-frank--brian-eno",
+      "type": "track",
+      "name": "Blank Frank",
+      "mbid": "63c11e3c-cb6b-4528-ac69-55b9761c91ca",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:dead-finks-don-t-talk--brian-eno",
+      "type": "track",
+      "name": "Dead Finks Don’t Talk",
+      "mbid": "c0fe9e4c-46da-4de8-adef-08edaf496105",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:some-of-them-are-old--brian-eno",
+      "type": "track",
+      "name": "Some of Them Are Old",
+      "mbid": "ca5d84c0-062d-415e-b8fd-4385b499054a",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:here-come-the-warm-jets--brian-eno",
+      "type": "track",
+      "name": "Here Come the Warm Jets",
+      "mbid": "df6f9697-116e-41b8-b91d-94c718727406",
+      "artist": "Brian Eno"
+    }
+  ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

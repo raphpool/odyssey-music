@@ -13,16 +13,32 @@
     }
   ],
   "materialized_at": "2026-05-13T12:46:57.545Z",
+  "mbid": "712ae2fa-45b8-4af3-820a-f556ca190e55",
   "type": "track",
   "editorial_teaser": "A mesmerizing exercise in spatial sound design, \"50 Euro to Break Boost\" pairs a persistent, rattling breakbeat with bell-like melodies to create a uniquely expansive and immersive electronic atmosphere.",
-  "artists": [],
+  "year": "2018",
+  "artists": [
+    {
+      "slug": "artist:skee-mask",
+      "type": "artist",
+      "name": "Skee Mask",
+      "mbid": "2b3e25ba-983e-44ac-9def-907e03910cd2"
+    }
+  ],
   "project": {
     "slug": "project:compro",
     "type": "project",
     "name": "Compro"
   },
+  "label": {
+    "slug": "label:ilian-tape",
+    "type": "label",
+    "name": "Ilian Tape",
+    "mbid": "cb0e0976-5f14-46ea-b5b7-796f32985439"
+  },
   "genres": [],
   "producers": [],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

@@ -17,14 +17,17 @@
     }
   ],
   "materialized_at": "2026-05-13T13:01:46.768Z",
+  "mbid": "63d74e69-4b50-3215-88aa-cceebf7d6a15",
   "type": "project",
   "editorial_pitch": "A collision between German electronic avant-gardists Mouse on Mars and The Fall's Mark E. Smith, Tromatic Reflexxions is a bracing, glitch-heavy post-punk experiment that balances synthetic sonic abstraction with Smith's inimitable, abrasive wit.",
   "year": "2007",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:von-sudenfed",
       "type": "artist",
-      "name": "Von Südenfed"
+      "name": "Von Südenfed",
+      "mbid": "844fb875-9540-4600-b305-d00f17f60fa6"
     }
   ],
   "label": {
@@ -46,7 +49,93 @@
       "qid": "Q598929"
     }
   ],
-  "tracklist": [],
+  "tracklist": [
+    {
+      "slug": "track:fledermaus-can-t-get-it--von-sudenfed",
+      "type": "track",
+      "name": "Fledermaus Can’t Get It",
+      "mbid": "bbe502c6-f005-43cf-9553-ef58ee5aab43",
+      "artist": "Von Südenfed"
+    },
+    {
+      "slug": "track:the-rhinohead--von-sudenfed",
+      "type": "track",
+      "name": "The Rhinohead",
+      "mbid": "1647cc1f-3b4d-49a2-bcc0-b623a05a906b",
+      "artist": "Von Südenfed"
+    },
+    {
+      "slug": "track:flooded--von-sudenfed",
+      "type": "track",
+      "name": "Flooded",
+      "mbid": "3d77470d-5a0d-477e-8761-0bf97b35c316",
+      "artist": "Von Südenfed"
+    },
+    {
+      "slug": "track:family-feud--von-sudenfed",
+      "type": "track",
+      "name": "Family Feud",
+      "mbid": "4396924d-ace6-4578-9107-7be6953e8b22",
+      "artist": "Von Südenfed"
+    },
+    {
+      "slug": "track:serious-brainskin--von-sudenfed",
+      "type": "track",
+      "name": "Serious Brainskin",
+      "mbid": "1c0089f0-6372-4803-baa6-8d5c23bf04e3",
+      "artist": "Von Südenfed"
+    },
+    {
+      "slug": "track:speech-contamination-german-fear-of-osterreich--von-sudenfed",
+      "type": "track",
+      "name": "Speech Contamination / German Fear of Österreich",
+      "mbid": "1eee85e9-ad17-4a90-a8dd-06fc2075fc99",
+      "artist": "Von Südenfed"
+    },
+    {
+      "slug": "track:the-young-the-faceless-and-the-codes--von-sudenfed",
+      "type": "track",
+      "name": "The Young the Faceless and the Codes",
+      "mbid": "fd4a3b39-8987-4c7e-8a75-4ac28153eb1e",
+      "artist": "Von Südenfed"
+    },
+    {
+      "slug": "track:duckrog--von-sudenfed",
+      "type": "track",
+      "name": "Duckrog",
+      "mbid": "0186d6a7-3aa4-4553-8bc9-e0b0161fee9d",
+      "artist": "Von Südenfed"
+    },
+    {
+      "slug": "track:chicken-yiamas--von-sudenfed",
+      "type": "track",
+      "name": "Chicken Yiamas",
+      "mbid": "eb712415-92b2-4df9-b3b7-c9c9100364d6",
+      "artist": "Von Südenfed"
+    },
+    {
+      "slug": "track:that-sound-wiped--von-sudenfed",
+      "type": "track",
+      "name": "That Sound Wiped",
+      "mbid": "ee996a49-d7f1-447b-b8b2-3658ace23473",
+      "artist": "Von Südenfed"
+    },
+    {
+      "slug": "track:jbak-lois-lane--von-sudenfed",
+      "type": "track",
+      "name": "Jbak Lois Lane",
+      "mbid": "4e6bc9b8-ae26-4ce5-838b-d4dfaa8212f8",
+      "artist": "Von Südenfed"
+    },
+    {
+      "slug": "track:dearest-friends--von-sudenfed",
+      "type": "track",
+      "name": "Dearest Friends",
+      "mbid": "34134cb4-856a-4c6d-8d7f-f6a7d789720b",
+      "artist": "Von Südenfed"
+    }
+  ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

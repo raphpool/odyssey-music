@@ -17,6 +17,7 @@
     }
   ],
   "materialized_at": "2026-05-13T13:01:11.301Z",
+  "mbid": "3f65960a-718d-4d0d-b201-e0f4891d1306",
   "type": "track",
   "editorial_teaser": "\"Gearknot Cherry\" is a jagged, high-energy experimental electronic track by Mouse on Mars, appearing on their 2012 album 'Parastrophics' via Monkeytown Records.",
   "year": "2012",
@@ -25,13 +26,20 @@
     {
       "slug": "artist:mouse-on-mars",
       "type": "artist",
-      "name": "Mouse on Mars"
+      "name": "Mouse on Mars",
+      "mbid": "4d4f5d92-0589-42fa-bc0e-1bd73e17a2ce"
     }
   ],
   "project": {
     "slug": "project:parastrophics",
     "type": "project",
     "name": "Parastrophics"
+  },
+  "label": {
+    "slug": "label:monkeytown-records",
+    "type": "label",
+    "name": "Monkeytown Records",
+    "mbid": "dd5e9af0-a9bb-4e11-9c57-5921c8838945"
   },
   "genres": [
     {
@@ -65,6 +73,7 @@
       "name": "Jan St. Werner"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

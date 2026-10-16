@@ -28,15 +28,18 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "271faeb3-fdd1-3ebb-80aa-97b3116e9341",
   "type": "project",
   "editorial_pitch": "Vespertine is an intimate, chamber-electronic masterpiece where Björk weaves delicate orchestral arrangements with micro-beat glitch textures to explore themes of sanctuary, solitude, and domestic eroticism. It is a defining work of 2000s art pop that transformed the cold precision of electronics into a deeply vulnerable, organic sonic landscape.",
   "cover_url": "https://i.discogs.com/HRcVkqkchF6wOI_BTY96hPPqzObjlLVrV7mnDnkOamg/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExNDA4/LTE1MjMxNDAyMjct/NTExNC5qcGVn.jpeg",
   "year": "2001",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:bjork",
       "type": "artist",
-      "name": "Björk"
+      "name": "Björk",
+      "mbid": "87c5dedd-371d-4a53-9f7f-80522fb7f3cb"
     }
   ],
   "label": {
@@ -138,5 +141,6 @@
       "name": "Matmos"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

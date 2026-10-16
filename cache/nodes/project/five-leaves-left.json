@@ -24,14 +24,17 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "b9c4fc17-0dc5-3aa5-b1b9-08e1446e5bea",
   "type": "project",
   "editorial_pitch": "The debut masterpiece by Nick Drake, Five Leaves Left is a quintessential work of chamber-folk that masterfully weaves intimate, guitar-driven songwriting with lush, evocative string arrangements. Recorded at the height of the late-sixties British folk scene, it remains a defining, melancholic record of haunting beauty.",
   "year": "1969",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:nick-drake",
       "type": "artist",
-      "name": "Nick Drake"
+      "name": "Nick Drake",
+      "mbid": "99ea432a-e3d8-42cb-9d5e-db316a6a8458"
     }
   ],
   "label": {
@@ -53,7 +56,78 @@
       "qid": "Q98528178"
     }
   ],
-  "tracklist": [],
+  "tracklist": [
+    {
+      "slug": "track:time-has-told-me--nick-drake",
+      "type": "track",
+      "name": "Time Has Told Me",
+      "mbid": "e0fdd1fa-502b-4350-9203-9334a592437c",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "track:river-man--nick-drake",
+      "type": "track",
+      "name": "River Man",
+      "mbid": "3bd2888b-6d08-4c48-8f59-a8b680874fdb",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "track:three-hours--nick-drake",
+      "type": "track",
+      "name": "Three Hours",
+      "mbid": "29e63a38-92e5-4704-9d0a-cff049d65765",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "track:way-to-blue--nick-drake",
+      "type": "track",
+      "name": "Way to Blue",
+      "mbid": "d64b7430-c101-43c2-aade-5615a753daf7",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "track:day-is-done--nick-drake",
+      "type": "track",
+      "name": "Day Is Done",
+      "mbid": "42dd6c50-8989-44d4-813f-8afe23a2f75f",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "track:cello-song--nick-drake",
+      "type": "track",
+      "name": "’Cello Song",
+      "mbid": "c61eccdc-448f-4d1a-8401-c6d23ac49139",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "track:the-thoughts-of-mary-jane--nick-drake",
+      "type": "track",
+      "name": "The Thoughts of Mary Jane",
+      "mbid": "540f209a-c39a-4e1d-9cd0-a2f8290723e5",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "track:man-in-a-shed--nick-drake",
+      "type": "track",
+      "name": "Man in a Shed",
+      "mbid": "a2fabfc2-30a4-4f90-a421-ccecee7617d2",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "track:fruit-tree--nick-drake",
+      "type": "track",
+      "name": "Fruit Tree",
+      "mbid": "cfc01749-7b41-455e-bc02-8c70ae98e08a",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "track:saturday-sun--nick-drake",
+      "type": "track",
+      "name": "Saturday Sun",
+      "mbid": "310f9f56-bf10-48ba-8522-dd21b3ca46ea",
+      "artist": "Nick Drake"
+    }
+  ],
   "producers": [
     {
       "slug": "artist:joe-boyd",
@@ -61,5 +135,6 @@
       "name": "Joe Boyd"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

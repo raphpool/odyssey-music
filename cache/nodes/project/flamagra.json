@@ -13,15 +13,18 @@
     }
   ],
   "materialized_at": "2026-05-13T13:03:38.273Z",
+  "mbid": "23a0d4ce-5421-4f35-afc4-49983c430edb",
   "type": "project",
   "editorial_pitch": "An expansive, psychedelic journey through the intersection of jazz-funk, experimental hip-hop, and electronica, Flamagra serves as a testament to Flying Lotus's mastery of collaborative world-building. Featuring an eclectic roster of guests, the album captures a central thematic tension—an \"eternal flame on a hill\"—that pulses through its sprawling, twenty-seven-track architecture.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/thumb/9/92/Flying_Lotus_-_Flamagra.png/250px-Flying_Lotus_-_Flamagra.png",
   "year": "2019",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:flying-lotus",
       "type": "artist",
-      "name": "Flying Lotus"
+      "name": "Flying Lotus",
+      "mbid": "fc7376fe-1a6f-4414-b4a7-83f50ed59c92"
     }
   ],
   "label": {
@@ -73,5 +76,6 @@
       "name": "Flying Lotus"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

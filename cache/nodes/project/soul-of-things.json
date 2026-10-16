@@ -17,10 +17,19 @@
     }
   ],
   "materialized_at": "2026-05-13T13:18:12.795Z",
+  "mbid": "7e23e62d-d6e1-39f4-8fbb-b4e3f882e8e8",
   "type": "project",
   "editorial_pitch": "A masterwork of atmospheric, melancholic jazz, \"Soul of Things\" features the legendary Polish trumpeter Tomasz Stańko in a suite of thirteen evocative variations performed by his telepathic young quartet. Produced by Manfred Eicher for ECM, the album is a definitive statement of modern European jazz, balancing deep, soulful improvisation with structural restraint.",
   "year": "2002",
-  "artists": [],
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:tomasz-stanko-quartet",
+      "type": "artist",
+      "name": "Tomasz Stańko Quartet",
+      "mbid": "b526f421-0f6b-4e7d-a7fa-e1b3564f941b"
+    }
+  ],
   "label": {
     "slug": "label:ecm-records",
     "type": "label",
@@ -40,7 +49,99 @@
       "qid": "Q5928480"
     }
   ],
-  "tracklist": [],
+  "tracklist": [
+    {
+      "slug": "track:soul-of-things-i--tomasz-stanko-quartet",
+      "type": "track",
+      "name": "Soul of Things I",
+      "mbid": "97df2fc8-553f-4cfa-8814-6b003099774b",
+      "artist": "Tomasz Stańko Quartet"
+    },
+    {
+      "slug": "track:soul-of-things-ii--tomasz-stanko-quartet",
+      "type": "track",
+      "name": "Soul of Things II",
+      "mbid": "d366972e-71a9-4795-8df3-2c0c4ffbbc85",
+      "artist": "Tomasz Stańko Quartet"
+    },
+    {
+      "slug": "track:soul-of-things-iii--tomasz-stanko-quartet",
+      "type": "track",
+      "name": "Soul of Things III",
+      "mbid": "cd89d144-de10-4111-a846-002e186c75b7",
+      "artist": "Tomasz Stańko Quartet"
+    },
+    {
+      "slug": "track:soul-of-things-iv--tomasz-stanko-quartet",
+      "type": "track",
+      "name": "Soul of Things IV",
+      "mbid": "eb033830-8222-4fd6-8bf4-51fd9adc903f",
+      "artist": "Tomasz Stańko Quartet"
+    },
+    {
+      "slug": "track:soul-of-things-v--tomasz-stanko-quartet",
+      "type": "track",
+      "name": "Soul of Things V",
+      "mbid": "ceda1fad-5b76-4a7d-a5bf-490d93f96e2f",
+      "artist": "Tomasz Stańko Quartet"
+    },
+    {
+      "slug": "track:soul-of-things-vi--tomasz-stanko-quartet",
+      "type": "track",
+      "name": "Soul of Things VI",
+      "mbid": "b052c8d3-eaac-452b-81ee-89e4427bdbc3",
+      "artist": "Tomasz Stańko Quartet"
+    },
+    {
+      "slug": "track:soul-of-things-vii--tomasz-stanko-quartet",
+      "type": "track",
+      "name": "Soul of Things VII",
+      "mbid": "3194e2b5-6157-48ed-a271-bb34296950ff",
+      "artist": "Tomasz Stańko Quartet"
+    },
+    {
+      "slug": "track:soul-of-things-viii--tomasz-stanko-quartet",
+      "type": "track",
+      "name": "Soul of Things VIII",
+      "mbid": "2f8d37fc-48d1-48ef-a0e3-da14097a0d00",
+      "artist": "Tomasz Stańko Quartet"
+    },
+    {
+      "slug": "track:soul-of-things-ix--tomasz-stanko-quartet",
+      "type": "track",
+      "name": "Soul of Things IX",
+      "mbid": "21215db4-1130-4fce-b515-d7b79d85ce81",
+      "artist": "Tomasz Stańko Quartet"
+    },
+    {
+      "slug": "track:soul-of-things-x--tomasz-stanko-quartet",
+      "type": "track",
+      "name": "Soul of Things X",
+      "mbid": "12fb3a32-413a-4917-be46-d5ef7a29ec7f",
+      "artist": "Tomasz Stańko Quartet"
+    },
+    {
+      "slug": "track:soul-of-things-xi--tomasz-stanko-quartet",
+      "type": "track",
+      "name": "Soul of Things XI",
+      "mbid": "9ab41c2b-12f9-438c-879b-2ebfd94297f8",
+      "artist": "Tomasz Stańko Quartet"
+    },
+    {
+      "slug": "track:soul-of-things-xii--tomasz-stanko-quartet",
+      "type": "track",
+      "name": "Soul of Things XII",
+      "mbid": "d94a548c-7e18-4768-9ee1-f44eb5a5cc78",
+      "artist": "Tomasz Stańko Quartet"
+    },
+    {
+      "slug": "track:soul-of-things-xiii--tomasz-stanko-quartet",
+      "type": "track",
+      "name": "Soul of Things XIII",
+      "mbid": "0e82d33b-b126-4f47-af01-8c2e11ed4242",
+      "artist": "Tomasz Stańko Quartet"
+    }
+  ],
   "producers": [
     {
       "slug": "artist:manfred-eicher",
@@ -48,5 +149,6 @@
       "name": "Manfred Eicher"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

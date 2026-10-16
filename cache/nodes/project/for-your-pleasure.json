@@ -13,15 +13,18 @@
     }
   ],
   "materialized_at": "2026-05-13T12:38:27.599Z",
+  "mbid": "72fd9993-17b8-3402-9f8d-c39cb3d2c27e",
   "type": "project",
   "editorial_pitch": "A landmark of art rock and glam, Roxy Music's second album remains a masterclass in mood, texture, and studio experimentation, marking the high-water mark of the original Bryan Ferry-Brian Eno lineup.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/2/27/Roxy_Music_-_For_Your_Pleasure.png",
   "year": "1973",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:roxy-music",
       "type": "artist",
-      "name": "Roxy Music"
+      "name": "Roxy Music",
+      "mbid": "331ce348-1b08-40b9-8ed7-0763b92bd003"
     }
   ],
   "label": {
@@ -77,5 +80,6 @@
       "name": "Roxy Music"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

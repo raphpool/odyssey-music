@@ -36,14 +36,17 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "5e26c8a8-0b74-327d-a596-8d3324a010eb",
   "type": "project",
   "editorial_pitch": "A definitive milestone in breakcore, Venetian Snares' 2001 album is a frantic, emotionally resonant, and technically astounding exploration of IDM and extreme rhythms, famously constructed using sound samples derived from the artist's own cats.",
   "year": "2001",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:venetian-snares",
       "type": "artist",
-      "name": "Venetian Snares"
+      "name": "Venetian Snares",
+      "mbid": "56abaa47-0101-463b-b37e-e961136fec39"
     }
   ],
   "label": {
@@ -65,7 +68,107 @@
       "qid": "Q660984"
     }
   ],
-  "tracklist": [],
+  "tracklist": [
+    {
+      "slug": "track:chinaski--venetian-snares",
+      "type": "track",
+      "name": "Chinaski",
+      "mbid": "589584d8-6ced-40e6-9e41-ab801ebbdeae",
+      "artist": "Venetian Snares"
+    },
+    {
+      "slug": "track:katzesorge-part-1--venetian-snares",
+      "type": "track",
+      "name": "Katzesorge, Part 1",
+      "mbid": "f469882c-35ef-4248-9181-d2a3ab7326c6",
+      "artist": "Venetian Snares"
+    },
+    {
+      "slug": "track:nepetalactone--venetian-snares",
+      "type": "track",
+      "name": "Nepetalactone",
+      "mbid": "22e928c5-cf1b-4424-83e4-9ba993dc6df1",
+      "artist": "Venetian Snares"
+    },
+    {
+      "slug": "track:poor-kakarookee--venetian-snares",
+      "type": "track",
+      "name": "Poor Kakarookee",
+      "mbid": "d70dad39-5568-4dfe-bcd7-ace1607d4af5",
+      "artist": "Venetian Snares"
+    },
+    {
+      "slug": "track:for-bertha-rand--venetian-snares",
+      "type": "track",
+      "name": "For Bertha Rand",
+      "mbid": "57b60599-a39c-4c60-9407-74595310840e",
+      "artist": "Venetian Snares"
+    },
+    {
+      "slug": "track:breakfast-time-for-baboons--venetian-snares",
+      "type": "track",
+      "name": "Breakfast Time for Baboons",
+      "mbid": "1994562d-2a70-48a3-96e7-925c71b6c422",
+      "artist": "Venetian Snares"
+    },
+    {
+      "slug": "track:fluff-master--venetian-snares",
+      "type": "track",
+      "name": "Fluff Master",
+      "mbid": "53b01b61-d4bb-44cc-aa78-b608c4cd3f71",
+      "artist": "Venetian Snares"
+    },
+    {
+      "slug": "track:bobo--venetian-snares",
+      "type": "track",
+      "name": "Bobo",
+      "mbid": "d5f3f9b0-6d56-4c27-9684-be5f184064c4",
+      "artist": "Venetian Snares"
+    },
+    {
+      "slug": "track:katzesorge-part-2--venetian-snares",
+      "type": "track",
+      "name": "Katzesorge, Part 2",
+      "mbid": "95d15e7d-557b-4f70-b888-8114d6945ffe",
+      "artist": "Venetian Snares"
+    },
+    {
+      "slug": "track:pouncelciot--venetian-snares",
+      "type": "track",
+      "name": "Pouncelciot",
+      "mbid": "53f3d55d-df46-470e-a754-9042171004a3",
+      "artist": "Venetian Snares"
+    },
+    {
+      "slug": "track:kakenrooken-stivlobits--venetian-snares",
+      "type": "track",
+      "name": "Kakenrooken Stivlobits",
+      "mbid": "fc69edfb-88b6-4e95-b838-df1a1b55430c",
+      "artist": "Venetian Snares"
+    },
+    {
+      "slug": "track:lioness--venetian-snares",
+      "type": "track",
+      "name": "Lioness",
+      "mbid": "129e9d39-a11c-4e09-9238-cef383b570f7",
+      "artist": "Venetian Snares"
+    },
+    {
+      "slug": "track:cleaning-each-other--venetian-snares",
+      "type": "track",
+      "name": "Cleaning Each Other",
+      "mbid": "f33b8570-173e-4b4c-827e-29cc0ab1f426",
+      "artist": "Venetian Snares"
+    },
+    {
+      "slug": "track:look--venetian-snares",
+      "type": "track",
+      "name": "Look",
+      "mbid": "a0ae891d-ee53-4a2c-bb10-d92859efa6f0",
+      "artist": "Venetian Snares"
+    }
+  ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

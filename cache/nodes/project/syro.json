@@ -13,14 +13,17 @@
     }
   ],
   "materialized_at": "2026-05-13T12:39:41.441Z",
+  "mbid": "11a7c281-a260-4f77-a1d5-1ff2d4c917eb",
   "type": "project",
   "editorial_pitch": "Released after a 13-year hiatus, Syro is a masterclass in meticulous electronic production, blending Aphex Twin's frantic, signature breakbeats with refined melodic textures and high-fidelity sound design.",
   "year": "2014",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:aphex-twin",
       "type": "artist",
-      "name": "Aphex Twin"
+      "name": "Aphex Twin",
+      "mbid": "f22942a1-6f70-4f48-866e-238cb2308fbd"
     }
   ],
   "label": {
@@ -117,5 +120,6 @@
       "name": "Aphex Twin"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

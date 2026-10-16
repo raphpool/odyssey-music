@@ -13,18 +13,23 @@
     }
   ],
   "materialized_at": "2026-05-13T13:11:24.641Z",
+  "mbid": "124e1397-fea2-3168-9483-a74e27bebe34",
   "type": "project",
   "editorial_pitch": "\"Tranceformed From Beyond,\" released in 1992 on the influential German label MFS, serves as a seminal document of the burgeoning early-90s Frankfurt trance scene.",
+  "year": "1998",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:cosmic-baby",
       "type": "artist",
-      "name": "Cosmic Baby"
+      "name": "Cosmic Baby",
+      "mbid": "e0f2c167-4561-4b61-bda0-507df4f82bfc"
     },
     {
       "slug": "artist:mijk-van-dijk",
       "type": "artist",
-      "name": "Mijk van Dijk"
+      "name": "Mijk van Dijk",
+      "mbid": "4853b4f9-bcd6-4663-86bd-36d1270c6a3b"
     }
   ],
   "label": {
@@ -46,7 +51,163 @@
       "qid": "Q170611"
     }
   ],
-  "tracklist": [],
+  "tracklist": [
+    {
+      "slug": "track:flatline-the-breathing-strings-remix--cosmic-baby",
+      "type": "track",
+      "name": "Flatline (The Breathing Strings remix)",
+      "mbid": "4f8180bf-1088-4061-9b75-b6e6721d17ff",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:open-your-mind--cosmic-baby",
+      "type": "track",
+      "name": "Open Your Mind",
+      "mbid": "57e795d5-f889-43fb-8695-b5f2bae82799",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:dragonfighters--cosmic-baby",
+      "type": "track",
+      "name": "Dragonfighters",
+      "mbid": "b18e9aa3-e651-419c-a303-bd61285c9110",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:the-perfect-day-the-afternoon-mix--cosmic-baby",
+      "type": "track",
+      "name": "The Perfect Day (The Afternoon mix)",
+      "mbid": "54a586d9-ba10-4e6a-9e4f-1fc09e4b2779",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:cosmikk-trigger-4-the-dreams-of-felicia-remix--cosmic-baby",
+      "type": "track",
+      "name": "Cosmikk Trigger 4 (The Dreams of Felicia remix)",
+      "mbid": "544b518e-9d5d-4fdb-9fe1-84a1def0570f",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:it-s-anything-you-want-it-to-be-and-it-s-a-gas-3d-trance--cosmic-baby",
+      "type": "track",
+      "name": "It’s Anything You Want It to Be, and It’s a Gas (3D trance)",
+      "mbid": "d7016dcf-c00a-45c7-8079-64c2fa2d7f75",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:diamond-bullet-act-5-virtual-reality-remix--cosmic-baby",
+      "type": "track",
+      "name": "Diamond Bullet (Act 5: Virtual Reality remix)",
+      "mbid": "1902f67a-8a88-479c-9746-53ed54af4886",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:don-t-panic-the-peaceful-karma-remix--cosmic-baby",
+      "type": "track",
+      "name": "Don’t Panic (The Peaceful Karma remix)",
+      "mbid": "d3c8ee93-2e21-4ea0-b637-fbee091d5027",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:high-on-hope-macrosphere-remix--cosmic-baby",
+      "type": "track",
+      "name": "High on Hope (Macrosphere remix)",
+      "mbid": "a76cdad1-3718-4042-b8f8-8822c5a0da60",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:breath-of-stars-the-stars-from-beyond-remix--cosmic-baby",
+      "type": "track",
+      "name": "Breath of Stars (The Stars From Beyond remix)",
+      "mbid": "5c4beb71-7c72-4319-8b2f-798bb06aec9d",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:transmaniac--cosmic-baby",
+      "type": "track",
+      "name": "Transmaniac",
+      "mbid": "0934919a-7b19-41bd-b07b-b95049a3e008",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:cosmic-babies-the-sonic-trance-remix-the-outro--cosmic-baby",
+      "type": "track",
+      "name": "Cosmic Babies (The Sonic trance remix) / The Outro",
+      "mbid": "435db0df-749b-4472-a6db-fbd8db510383",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:flatline--cosmic-baby",
+      "type": "track",
+      "name": "Flatline (original mix)",
+      "mbid": "c1fb7252-35e9-4981-b8df-794b6cf907b9",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:perfect-day--cosmic-baby",
+      "type": "track",
+      "name": "Perfect Day (original mix)",
+      "mbid": "5e559304-336b-45e1-82ad-fb06e85a38b0",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:cosmikk-trigger--cosmic-baby",
+      "type": "track",
+      "name": "Cosmikk Trigger",
+      "mbid": "e6b938c0-94bd-4da2-8d07-813b9533fd29",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:it-s-anything-you-want-it-to-be-and-it-s-a-gas--cosmic-baby",
+      "type": "track",
+      "name": "It’s Anything You Want It to Be, and It’s a Gas",
+      "mbid": "86a01d47-2d25-4ebb-a8f8-e433b71925c9",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:diamond-bullet-act-1-will-to-power--cosmic-baby",
+      "type": "track",
+      "name": "Diamond Bullet (Act 1: Will to Power)",
+      "mbid": "68de07e2-ed1f-4661-8f37-b235c1cce319",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:don-t-panic-harmonic-mix--cosmic-baby",
+      "type": "track",
+      "name": "Don’t Panic (Harmonic mix)",
+      "mbid": "f2a90200-5c7e-498f-bdfd-d5179b6f5047",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:high-on-hope-mdml-version--cosmic-baby",
+      "type": "track",
+      "name": "High on Hope (MDML‐version)",
+      "mbid": "1f32ffd9-9711-44b0-867b-3b9c564bbe07",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:breath-of-stars-mark-keys-mix--cosmic-baby",
+      "type": "track",
+      "name": "Breath of Stars (Mark Keys mix)",
+      "mbid": "2e2a27a6-edf6-450c-9c18-9e142cb32e34",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:transmanic--cosmic-baby",
+      "type": "track",
+      "name": "Transmanic",
+      "mbid": "91a1ec85-1e3f-4c92-a4ec-87433cdc6b77",
+      "artist": "Cosmic Baby"
+    },
+    {
+      "slug": "track:cosmic-babies-the-sonic-trance-remix--cosmic-baby",
+      "type": "track",
+      "name": "Cosmic Babies (The Sonic trance remix)",
+      "mbid": "c780ea7d-3d9e-4398-9368-b9ace42882d1",
+      "artist": "Cosmic Baby"
+    }
+  ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

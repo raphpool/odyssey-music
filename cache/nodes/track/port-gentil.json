@@ -17,19 +17,28 @@
     }
   ],
   "materialized_at": "2026-05-13T13:09:48.471Z",
+  "mbid": "db066d34-34dc-480b-ac26-60e9399027f7",
   "type": "track",
   "editorial_teaser": "\"Port Gentil\" is a definitive masterwork of dub techno, appearing as the atmospheric centerpiece of the 1996 album *Biokinetics* by the German duo Porter Ricks.",
+  "year": "1996",
   "artists": [
     {
       "slug": "artist:porter-ricks",
       "type": "artist",
-      "name": "Porter Ricks"
+      "name": "Porter Ricks",
+      "mbid": "f2c0d29a-9bef-469f-af6e-a9b5deb21308"
     }
   ],
   "project": {
     "slug": "project:biokinetics",
     "type": "project",
     "name": "Biokinetics"
+  },
+  "label": {
+    "slug": "label:chain-reaction",
+    "type": "label",
+    "name": "Chain Reaction",
+    "mbid": "04ac00ca-847b-4d1c-8ea6-85cd7719e946"
   },
   "genres": [
     {
@@ -46,6 +55,7 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

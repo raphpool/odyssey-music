@@ -32,12 +32,85 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "27b682b2-dd29-3e15-8ef2-f6475f4d262f",
   "type": "project",
   "editorial_pitch": "A landmark of 1990s electronica, this sprawling double album defined the ambient house genre by blending hypnotic house beats, dub reggae basslines, and a collage of surrealist soundscapes. It remains a definitive 'headphone album,' transforming the dance floor into a meditative, intergalactic journey through sound.",
   "year": "1991",
-  "artists": [],
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:the-orb",
+      "type": "artist",
+      "name": "The Orb",
+      "mbid": "42c14c80-bd17-47e4-9bb2-a35897638c4d"
+    }
+  ],
+  "label": {
+    "slug": "label:attic",
+    "type": "label",
+    "name": "Attic",
+    "mbid": "8b136849-43fc-4b4b-bc63-b494d01851dc"
+  },
   "genres": [],
-  "tracklist": [],
+  "tracklist": [
+    {
+      "slug": "track:little-fluffy-clouds--the-orb",
+      "type": "track",
+      "name": "Little Fluffy Clouds",
+      "mbid": "96e8c97e-90f6-4db2-93d9-2a32b03817e3",
+      "artist": "The Orb"
+    },
+    {
+      "slug": "track:earth-gaia--the-orb",
+      "type": "track",
+      "name": "Earth (Gaia)",
+      "mbid": "e9c094c3-b788-46b6-b8c8-ca525f59693a",
+      "artist": "The Orb"
+    },
+    {
+      "slug": "track:supernova-at-the-end-of-the-universe--the-orb",
+      "type": "track",
+      "name": "Supernova at the End of the Universe",
+      "mbid": "5bdb3b6f-b16f-494b-8b5e-03526a51053d",
+      "artist": "The Orb"
+    },
+    {
+      "slug": "track:perpetual-dawn--the-orb",
+      "type": "track",
+      "name": "Perpetual Dawn",
+      "mbid": "5df8d32b-16cb-437c-9035-4ebb52472fa4",
+      "artist": "The Orb"
+    },
+    {
+      "slug": "track:into-the-fourth-dimension--the-orb",
+      "type": "track",
+      "name": "Into the Fourth Dimension",
+      "mbid": "49d5080d-edab-4a85-9374-69fdf9533ad1",
+      "artist": "The Orb"
+    },
+    {
+      "slug": "track:outlands--the-orb",
+      "type": "track",
+      "name": "Outlands",
+      "mbid": "9890ff39-6c43-48a0-85b0-e8cc9c282fa3",
+      "artist": "The Orb"
+    },
+    {
+      "slug": "track:star-6-and-7-8-9--the-orb",
+      "type": "track",
+      "name": "Star 6 & 7 8 9",
+      "mbid": "6a414c0a-fdf6-4433-a309-f538942d96ba",
+      "artist": "The Orb"
+    },
+    {
+      "slug": "track:a-huge-ever-growing-pulsating-brain-that-rules-from-the-centre-of-the-ultraworld-live-mix-mk-10--the-orb",
+      "type": "track",
+      "name": "A Huge Ever Growing Pulsating Brain That Rules From the Centre of the Ultraworld (Live mix Mk 10)",
+      "mbid": "f36acf28-6801-4904-909d-c66183ae9ac4",
+      "artist": "The Orb"
+    }
+  ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

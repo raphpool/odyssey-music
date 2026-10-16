@@ -17,15 +17,18 @@
     }
   ],
   "materialized_at": "2026-05-13T13:04:23.338Z",
+  "mbid": "1a3986de-abc7-393c-ab2b-cb70bde46d75",
   "type": "project",
   "editorial_pitch": "A monumental, 37-minute-long exploration of minimalist hypnotism, this release by Ricardo Villalobos defines the mid-2000s micro-house era with its looping folk-sample architecture and profound rhythmic depth.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/d/d7/VillalobosFizheuer.jpg",
   "year": "2006",
+  "release_type": "ep",
   "artists": [
     {
       "slug": "artist:ricardo-villalobos",
       "type": "artist",
-      "name": "Ricardo Villalobos"
+      "name": "Ricardo Villalobos",
+      "mbid": "bbd79854-df54-4c1b-b7d6-cf7eea2d0afb"
     }
   ],
   "label": {
@@ -66,5 +69,6 @@
       "name": "Ricardo Villalobos"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

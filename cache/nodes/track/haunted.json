@@ -13,6 +13,7 @@
     }
   ],
   "materialized_at": "2026-05-13T13:16:27.537Z",
+  "mbid": "5c7253ab-624d-4802-aae4-fde75d98e80f",
   "type": "track",
   "editorial_teaser": "\"Haunted\" is a moody, atmospheric rock ballad by the legendary British hard rock band Deep Purple, released as part of their 2003 album 'Bananas'.",
   "year": "2003",
@@ -20,13 +21,20 @@
     {
       "slug": "artist:deep-purple",
       "type": "artist",
-      "name": "Deep Purple"
+      "name": "Deep Purple",
+      "mbid": "79491354-3d83-40e3-9d8e-7592d58d790a"
     }
   ],
   "project": {
     "slug": "project:bananas",
     "type": "project",
     "name": "Bananas"
+  },
+  "label": {
+    "slug": "label:sanctuary-records",
+    "type": "label",
+    "name": "Sanctuary Records",
+    "mbid": "94469373-73c9-4699-85df-414d577f9a7b"
   },
   "genres": [
     {
@@ -48,6 +56,7 @@
       "name": "Michael Bradford"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

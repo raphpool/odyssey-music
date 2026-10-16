@@ -28,9 +28,19 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "7422032f-acf9-3d28-b56b-7a273ddd836a",
   "type": "project",
   "editorial_pitch": "Released in 2006, Skream!'s debut studio album is a seminal dubstep landmark that helped propel the dark, bass-heavy South London sound into the global consciousness.",
-  "artists": [],
+  "year": "2006",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:skream",
+      "type": "artist",
+      "name": "Skream",
+      "mbid": "fb5ee67e-e31a-40cf-8b06-5f1a0f53529a"
+    }
+  ],
   "label": {
     "slug": "label:tempa",
     "type": "label",
@@ -62,5 +72,6 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

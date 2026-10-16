@@ -17,16 +17,30 @@
     }
   ],
   "materialized_at": "2026-05-13T12:57:46.233Z",
+  "mbid": "2337a1da-94f5-4047-9b8a-4c35930d99ea",
   "type": "track",
   "editorial_teaser": "A precise, molecular piece of minimalist electronic composition, 'data.superhelix' is a standout track from Ryoji Ikeda's 2005 breakthrough album, 'dataplex'.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/d/dc/Dataplex_%282005%29_album_cover.jpg",
   "year": "2005",
   "duration": "2:28",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:ryoji-ikeda",
+      "type": "artist",
+      "name": "Ryoji Ikeda",
+      "mbid": "bba24968-a575-4b38-8c38-06f7ab6de8c8"
+    }
+  ],
   "project": {
     "slug": "project:dataplex",
     "type": "project",
     "name": "dataplex"
+  },
+  "label": {
+    "slug": "label:raster-noton",
+    "type": "label",
+    "name": "Raster‐Noton",
+    "mbid": "6f4640eb-0881-40b4-a9ac-2a68ad3af0ca"
   },
   "genres": [
     {
@@ -55,6 +69,7 @@
       "name": "Ryoji Ikeda"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

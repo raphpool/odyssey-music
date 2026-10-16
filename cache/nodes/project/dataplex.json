@@ -13,15 +13,18 @@
     }
   ],
   "materialized_at": "2026-05-13T12:38:46.440Z",
+  "mbid": "843e1b8e-4a6a-3f48-8a60-7be4b328ebde",
   "type": "project",
   "editorial_pitch": "A seminal work of digital minimalism and the inaugural entry in Ryoji Ikeda's 'Datamatics' series, Dataplex transforms raw computer data into a clinical, precise, and uniquely rhythmic sonic experience. It is noted for its high-concept approach, including a final track designed to test the mechanical limits of optical media.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/d/dc/Dataplex_%282005%29_album_cover.jpg",
   "year": "2005",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:ryoji-ikeda",
       "type": "artist",
-      "name": "Ryoji Ikeda"
+      "name": "Ryoji Ikeda",
+      "mbid": "bba24968-a575-4b38-8c38-06f7ab6de8c8"
     }
   ],
   "label": {
@@ -152,5 +155,6 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

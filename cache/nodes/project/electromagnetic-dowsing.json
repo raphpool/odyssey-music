@@ -9,14 +9,17 @@
     }
   ],
   "materialized_at": "2026-05-13T13:11:34.357Z",
+  "mbid": "80f934ac-64a9-3bb9-8b17-0d1bdf093f76",
   "type": "project",
   "editorial_pitch": "\"Electromagnetic Dowsing\" is a seminal 12\" vinyl release by the influential Detroit-based duo DeepChord, first issued in 2005 on the S Y N T H label.",
   "year": "2005",
+  "release_type": "single",
   "artists": [
     {
       "slug": "artist:deepchord",
       "type": "artist",
-      "name": "DeepChord"
+      "name": "DeepChord",
+      "mbid": "281a03a8-0bfa-4579-ab50-7760bdd308ae"
     }
   ],
   "label": {
@@ -52,5 +55,6 @@
       "name": "Rod Modell"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

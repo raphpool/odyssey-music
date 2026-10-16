@@ -13,14 +13,17 @@
     }
   ],
   "materialized_at": "2026-05-13T13:05:37.989Z",
+  "mbid": "45f9aae4-3f39-449c-9252-e2ed1637a602",
   "type": "project",
   "editorial_pitch": "A quintessential slice of 1986 German Euro-disco, 'Perfect Combination' blends tight, synth-heavy production with the infectious, rhythm-driven pop melodies that defined the mid-80s European club sound.",
   "year": "1986",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:saphir",
       "type": "artist",
-      "name": "Saphir"
+      "name": "Saphir",
+      "mbid": "23a0248d-053f-4505-8335-7393bb961be4"
     }
   ],
   "label": {
@@ -100,5 +103,6 @@
       "name": "Walter Gerke"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

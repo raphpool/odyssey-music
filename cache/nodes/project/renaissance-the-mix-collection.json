@@ -13,10 +13,19 @@
     }
   ],
   "materialized_at": "2026-05-13T13:13:14.943Z",
+  "mbid": "06f332d3-0394-3dca-984f-56ec10d4efdd",
   "type": "project",
   "editorial_pitch": "Renaissance: The Mix Collection, released in 1994, is a landmark compilation that effectively defined the blueprint for the modern commercial DJ mix album.",
   "year": "1994",
-  "artists": [],
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:sasha-and-john-digweed",
+      "type": "artist",
+      "name": "Sasha & John Digweed",
+      "mbid": "95162abf-5128-4c88-ae79-5cd6f5f81a9f"
+    }
+  ],
   "label": {
     "slug": "label:renaissance-records",
     "type": "label",
@@ -60,5 +69,6 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

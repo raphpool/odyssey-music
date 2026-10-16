@@ -9,10 +9,19 @@
     }
   ],
   "materialized_at": "2026-05-13T13:06:46.856Z",
+  "mbid": "3f72fc60-c880-402f-a256-23229a723017",
   "type": "project",
   "editorial_pitch": "A playful, quirky EP by Mike Paradinas under his Jake Slazenger alias, blending library music aesthetics with his signature electronic whimsy.",
   "year": "2020",
-  "artists": [],
+  "release_type": "ep",
+  "artists": [
+    {
+      "slug": "artist:jake-slazenger",
+      "type": "artist",
+      "name": "Jake Slazenger",
+      "mbid": "91e7ec65-c3a0-4a76-aadb-a2b5bd69ff27"
+    }
+  ],
   "genres": [
     {
       "slug": "genre:electronic",
@@ -35,5 +44,6 @@
       "name": "Mike Paradinas"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

@@ -28,19 +28,23 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "5cbd9d7b-597a-3c5e-bfd1-c2b364215560",
   "type": "project",
   "editorial_pitch": "A seminal work of art rock, The Velvet Underground & Nico challenged the sunny optimism of the 1960s with gritty, avant-garde explorations of urban life, addiction, and desire. Produced by Andy Warhol, the album’s dark, dissonant sonic landscape and Lou Reed’s provocative songwriting laid the foundational blueprint for punk, new wave, and alternative rock.",
   "year": "1967",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:the-velvet-underground",
       "type": "artist",
-      "name": "The Velvet Underground"
+      "name": "The Velvet Underground",
+      "mbid": "94b0fb9d-a066-4823-b2ec-af1d324bcfcf"
     },
     {
       "slug": "artist:nico",
       "type": "artist",
-      "name": "Nico"
+      "name": "Nico",
+      "mbid": "37c61bf2-5fb1-47ae-9605-80025d956958"
     }
   ],
   "label": {
@@ -107,5 +111,6 @@
       "name": "Andy Warhol"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

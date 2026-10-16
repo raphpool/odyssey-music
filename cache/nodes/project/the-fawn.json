@@ -9,10 +9,19 @@
     }
   ],
   "materialized_at": "2026-05-13T12:56:59.429Z",
+  "mbid": "2d4a7027-3bd2-30b4-b39d-ab78b6da14f0",
   "type": "project",
   "editorial_pitch": "A sophisticated turn in the Chicago post-rock scene, The Fawn blends the band's signature indie pop sensibilities with denser, more atmospheric arrangements, marking a refined evolution in The Sea and Cake's sound.",
   "year": "1997",
-  "artists": [],
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:the-sea-and-cake",
+      "type": "artist",
+      "name": "The Sea and Cake",
+      "mbid": "74171cb6-1ff8-42bd-be8a-96660c22e3e0"
+    }
+  ],
   "label": {
     "slug": "label:thrill-jockey",
     "type": "label",
@@ -91,5 +100,6 @@
       "name": "John McEntire"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

@@ -9,13 +9,17 @@
     }
   ],
   "materialized_at": "2026-05-13T12:34:50.332Z",
+  "mbid": "5fdd6ba8-83c1-3a87-b378-d5f61dec5ddd",
   "type": "project",
   "editorial_pitch": "A revolutionary ambient masterpiece that uses layered tape loops to create a calming, generative soundscape designed to transform public anxiety into a space for introspection.",
+  "year": "1978",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:brian-eno",
       "type": "artist",
-      "name": "Brian Eno"
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
     }
   ],
   "label": {
@@ -72,6 +76,7 @@
       "name": "Brian Eno"
     }
   ],
+  "personnel": [],
   "related_projects": [
     {
       "slug": "project:discreet-music",

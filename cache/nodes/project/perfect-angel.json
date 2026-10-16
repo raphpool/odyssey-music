@@ -17,14 +17,17 @@
     }
   ],
   "materialized_at": "2026-05-13T13:10:32.577Z",
+  "mbid": "204bf48e-12bc-317b-ab84-042f963aeaff",
   "type": "project",
   "editorial_pitch": "A landmark 1974 soul-rock masterpiece, *Perfect Angel* highlights Minnie Riperton’s breathtaking five-octave range and features the iconic hit \"Lovin' You,\" produced by Stevie Wonder under the pseudonym El Toro Negro.",
   "year": "1974",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:minnie-riperton",
       "type": "artist",
-      "name": "Minnie Riperton"
+      "name": "Minnie Riperton",
+      "mbid": "e842abf7-8a63-4602-8879-75958c2884a1"
     }
   ],
   "label": {
@@ -111,5 +114,6 @@
       "name": "Richard Rudolph"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

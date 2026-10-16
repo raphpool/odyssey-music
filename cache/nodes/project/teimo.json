@@ -9,12 +9,85 @@
     }
   ],
   "materialized_at": "2026-05-13T12:51:04.888Z",
+  "mbid": "d5d58beb-f2bc-3cea-9dcf-cc2fd4569b2e",
   "type": "project",
   "editorial_pitch": "A cornerstone of dark ambient, Thomas Köner's 1992 masterpiece 'Teimo' uses innovative underwater gong recordings to craft an immersive, glacially slow soundscape that defined the genre's atmosphere.",
   "year": "1992",
-  "artists": [],
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:thomas-koner",
+      "type": "artist",
+      "name": "Thomas Köner",
+      "mbid": "8d1a5451-a106-4cc8-86b7-9905d5f5238a"
+    }
+  ],
+  "label": {
+    "slug": "label:barooni",
+    "type": "label",
+    "name": "Barooni",
+    "mbid": "6b01a418-4574-4874-b7ec-023cb3b18c6b"
+  },
   "genres": [],
-  "tracklist": [],
+  "tracklist": [
+    {
+      "slug": "track:ilira--thomas-koner",
+      "type": "track",
+      "name": "Ilira",
+      "mbid": "6c768b14-8ff4-4078-acf4-7b6a4c5da312",
+      "artist": "Thomas Köner"
+    },
+    {
+      "slug": "track:andenes--thomas-koner",
+      "type": "track",
+      "name": "Andenes",
+      "mbid": "36157d1d-2561-48da-8470-9ea52367cdd2",
+      "artist": "Thomas Köner"
+    },
+    {
+      "slug": "track:teimo--thomas-koner",
+      "type": "track",
+      "name": "Teimo",
+      "mbid": "86bf7467-9b89-4e17-8b4a-6c80d9b8af80",
+      "artist": "Thomas Köner"
+    },
+    {
+      "slug": "track:nieve-penitentes-1--thomas-koner",
+      "type": "track",
+      "name": "Nieve Penitentes 1",
+      "mbid": "322ce92c-2249-49ba-83fc-1083dc68955a",
+      "artist": "Thomas Köner"
+    },
+    {
+      "slug": "track:nieve-penitentes-2--thomas-koner",
+      "type": "track",
+      "name": "Nieve Penitentes 2",
+      "mbid": "8388efc9-369d-4e77-8d95-28252c3856c5",
+      "artist": "Thomas Köner"
+    },
+    {
+      "slug": "track:nieve-penitentes-3--thomas-koner",
+      "type": "track",
+      "name": "Nieve Penitentes 3",
+      "mbid": "b9e3bd4f-11ee-43cb-b92f-e0051150f9cd",
+      "artist": "Thomas Köner"
+    },
+    {
+      "slug": "track:teimo-schluss--thomas-koner",
+      "type": "track",
+      "name": "Teimo (Schluss)",
+      "mbid": "f1dac904-4145-462f-a0a4-33d23661f7b6",
+      "artist": "Thomas Köner"
+    },
+    {
+      "slug": "track:ruska--thomas-koner",
+      "type": "track",
+      "name": "Ruska",
+      "mbid": "70f84a42-f9bc-42dd-8d30-7a8f7fa1f277",
+      "artist": "Thomas Köner"
+    }
+  ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

@@ -13,15 +13,18 @@
     }
   ],
   "materialized_at": "2026-05-13T12:54:55.187Z",
+  "mbid": "6f3e9fa6-be7a-3de8-a2b2-2072ece8a54d",
   "type": "project",
   "editorial_pitch": "A towering achievement in 1980s rock, 'The Joshua Tree' blends anthemic, cinematic scale with profound social commentary, forever defining U2's sound and legacy.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/6/6b/The_Joshua_Tree.png",
   "year": "1987",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:u2",
       "type": "artist",
-      "name": "U2"
+      "name": "U2",
+      "mbid": "a3cb23fc-acd3-4ce0-8f36-1e5aa6a18432"
     }
   ],
   "label": {
@@ -106,5 +109,6 @@
       "name": "Daniel Lanois"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

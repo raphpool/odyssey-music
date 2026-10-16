@@ -17,6 +17,7 @@
     }
   ],
   "materialized_at": "2026-05-13T13:04:14.158Z",
+  "mbid": "7bb58d78-7951-4474-94b0-40b9c35d00ff",
   "type": "track",
   "editorial_teaser": "\"Death Fuck\" is a standout track from the 2007 album *Rushup Edge*, released by The Tuss on the iconic electronic label Rephlex Records.",
   "year": "2007",
@@ -24,13 +25,20 @@
     {
       "slug": "artist:the-tuss",
       "type": "artist",
-      "name": "The Tuss"
+      "name": "The Tuss",
+      "mbid": "09292e4d-b7ad-476b-86d9-7806303ef8c3"
     }
   ],
   "project": {
     "slug": "project:rushup-edge",
     "type": "project",
     "name": "Rushup Edge"
+  },
+  "label": {
+    "slug": "label:rephlex",
+    "type": "label",
+    "name": "Rephlex",
+    "mbid": "820fa04e-9927-40bb-a6c5-1bf883b159c7"
   },
   "genres": [
     {
@@ -57,6 +65,7 @@
       "name": "The Tuss"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

@@ -17,19 +17,28 @@
     }
   ],
   "materialized_at": "2026-05-13T13:10:18.593Z",
+  "mbid": "8a36b8cf-da89-4658-b4f4-00f930a0fad4",
   "type": "track",
   "editorial_teaser": "\"Nautical Nuba\" is a seminal track from the 1996 album \"Biokinetics\" by the German electronic duo Porter Ricks, comprising Thomas Köner and Andy Mellwig.",
+  "year": "1996",
   "artists": [
     {
       "slug": "artist:porter-ricks",
       "type": "artist",
-      "name": "Porter Ricks"
+      "name": "Porter Ricks",
+      "mbid": "f2c0d29a-9bef-469f-af6e-a9b5deb21308"
     }
   ],
   "project": {
     "slug": "project:biokinetics",
     "type": "project",
     "name": "Biokinetics"
+  },
+  "label": {
+    "slug": "label:chain-reaction",
+    "type": "label",
+    "name": "Chain Reaction",
+    "mbid": "04ac00ca-847b-4d1c-8ea6-85cd7719e946"
   },
   "genres": [
     {
@@ -57,6 +66,7 @@
       "name": "Andy Mellwig"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

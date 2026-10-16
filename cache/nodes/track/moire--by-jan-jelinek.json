@@ -13,6 +13,7 @@
     }
   ],
   "materialized_at": "2026-05-13T12:34:35.270Z",
+  "mbid": "052eb96f-365d-4fd9-aac3-dfe4230b2812",
   "type": "track",
   "editorial_teaser": "A landmark piece of early-2000s microhouse and glitch, \"Moiré (Piano & Organ)\" showcases Jan Jelinek’s masterful manipulation of sampled jazz textures into shimmering, hypnotic loops.",
   "year": "2001",
@@ -21,13 +22,20 @@
     {
       "slug": "artist:jan-jelinek",
       "type": "artist",
-      "name": "Jan Jelinek"
+      "name": "Jan Jelinek",
+      "mbid": "ac9b829e-9a7c-4331-8abe-ab1eb49d1771"
     }
   ],
   "project": {
     "slug": "project:loop-finding-jazz-records",
     "type": "project",
     "name": "Loop-Finding-Jazz-Records"
+  },
+  "label": {
+    "slug": "label:scape",
+    "type": "label",
+    "name": "~scape",
+    "mbid": "1cf954a8-b0d0-4c7e-8833-8e0e1f5c9a5b"
   },
   "genres": [
     {
@@ -56,6 +64,7 @@
       "name": "Jan Jelinek"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

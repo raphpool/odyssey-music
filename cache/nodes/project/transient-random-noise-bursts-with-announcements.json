@@ -13,13 +13,17 @@
     }
   ],
   "materialized_at": "2026-05-13T12:59:07.609Z",
+  "mbid": "9cb80efb-6b1a-3d7b-aff8-86f051737d91",
   "type": "project",
   "editorial_pitch": "\"Transient Random-Noise Bursts with Announcements\" is the second studio album by the influential Anglo-French band Stereolab, released in 1993.",
+  "year": "1993",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:stereolab",
       "type": "artist",
-      "name": "Stereolab"
+      "name": "Stereolab",
+      "mbid": "f1df0431-9250-4ec8-95d8-f19ce7cf7fb6"
     }
   ],
   "label": {
@@ -90,5 +94,6 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

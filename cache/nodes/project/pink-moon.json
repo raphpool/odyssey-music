@@ -9,14 +9,17 @@
     }
   ],
   "materialized_at": "2026-05-13T12:54:53.537Z",
+  "mbid": "740ec10a-e887-38a6-a04d-fe2069c9e2a7",
   "type": "project",
   "editorial_pitch": "The final, starkly beautiful masterwork from Nick Drake, *Pink Moon* strips away all ornamentation to leave only a singular voice and guitar in a haunting, intimate landscape.",
   "year": "1972",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:nick-drake",
       "type": "artist",
-      "name": "Nick Drake"
+      "name": "Nick Drake",
+      "mbid": "99ea432a-e3d8-42cb-9d5e-db316a6a8458"
     }
   ],
   "label": {
@@ -102,6 +105,7 @@
       "name": "John Wood"
     }
   ],
+  "personnel": [],
   "related_projects": [
     {
       "slug": "project:five-leaves-left",

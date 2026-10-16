@@ -28,20 +28,24 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "e7b369ce-43a4-4b77-8d11-19f6802f4480",
   "type": "project",
   "editorial_pitch": "A landmark of 1960s experimental pop, this \"lost\" concept album by Joe Meek and the Blue Men is an imaginative, pioneering voyage into space-age electronic soundscapes created using bubble-popping, bottle-banging, and pure studio ingenuity.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/c/c3/I-hear-a-new-world.jpg",
   "year": "1960",
+  "release_type": "ep",
   "artists": [
     {
       "slug": "artist:joe-meek",
       "type": "artist",
-      "name": "Joe Meek"
+      "name": "Joe Meek",
+      "mbid": "a7c141da-a31b-4f8f-b26f-cb9cdfbd6a2c"
     },
     {
       "slug": "artist:the-blue-men",
       "type": "artist",
-      "name": "The Blue Men"
+      "name": "The Blue Men",
+      "mbid": "ef297e07-dd65-4dbd-8a32-d8236ac39274"
     }
   ],
   "label": {
@@ -138,5 +142,6 @@
       "name": "Joe Meek"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

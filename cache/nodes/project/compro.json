@@ -9,14 +9,17 @@
     }
   ],
   "materialized_at": "2026-05-13T12:36:30.152Z",
+  "mbid": "557fddc8-dc5e-4d06-a284-1b3bdab41374",
   "type": "project",
   "editorial_pitch": "An evocative, textured exploration of breakbeat and ambient techno, 'Compro' cemented Skee Mask as a leading voice in modern, mood-driven electronica.",
   "year": "2018",
+  "release_type": "album",
   "artists": [
     {
       "slug": "artist:skee-mask",
       "type": "artist",
-      "name": "Skee Mask"
+      "name": "Skee Mask",
+      "mbid": "2b3e25ba-983e-44ac-9def-907e03910cd2"
     }
   ],
   "label": {
@@ -113,5 +116,6 @@
       "name": "Skee Mask"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

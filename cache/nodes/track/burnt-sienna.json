@@ -9,6 +9,7 @@
     }
   ],
   "materialized_at": "2026-05-13T13:07:40.833Z",
+  "mbid": "92ea42aa-cdc4-42c8-99ec-9614379eea0d",
   "type": "track",
   "editorial_teaser": "\"Burnt Sienna\" is a seminal early track by the electronic producer Mike Paradinas, operating under his iconic pseudonym µ-Ziq.",
   "year": "1993",
@@ -17,13 +18,20 @@
     {
       "slug": "artist:ziq",
       "type": "artist",
-      "name": "µ-Ziq"
+      "name": "µ-Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
     }
   ],
   "project": {
     "slug": "project:tango-n-vectif",
     "type": "project",
     "name": "Tango N'Vectif"
+  },
+  "label": {
+    "slug": "label:rephlex",
+    "type": "label",
+    "name": "Rephlex",
+    "mbid": "820fa04e-9927-40bb-a6c5-1bf883b159c7"
   },
   "genres": [
     {
@@ -52,6 +60,7 @@
       "name": "µ-Ziq"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

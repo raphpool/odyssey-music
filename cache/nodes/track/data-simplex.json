@@ -17,6 +17,7 @@
     }
   ],
   "materialized_at": "2026-05-13T12:57:23.626Z",
+  "mbid": "b6eddf54-79ef-4312-b747-7e93f2a502ca",
   "type": "track",
   "editorial_teaser": "\"data.simplex\" is a stark, precise composition by the acclaimed Japanese electronic artist Ryoji Ikeda, appearing as the second track on his highly influential 2005 album, *dataplex*.",
   "year": "2005",
@@ -25,13 +26,20 @@
     {
       "slug": "artist:ryoji-ikeda",
       "type": "artist",
-      "name": "Ryoji Ikeda"
+      "name": "Ryoji Ikeda",
+      "mbid": "bba24968-a575-4b38-8c38-06f7ab6de8c8"
     }
   ],
   "project": {
     "slug": "project:dataplex",
     "type": "project",
     "name": "dataplex"
+  },
+  "label": {
+    "slug": "label:raster-noton",
+    "type": "label",
+    "name": "Raster‐Noton",
+    "mbid": "6f4640eb-0881-40b4-a9ac-2a68ad3af0ca"
   },
   "genres": [
     {
@@ -60,6 +68,7 @@
       "name": "Ryoji Ikeda"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []
