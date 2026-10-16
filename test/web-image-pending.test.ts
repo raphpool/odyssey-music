@@ -56,7 +56,7 @@ const none: Reply = { body: { state: "none", image_url: null, source: "no-match"
 const failing = (status: number, retryAfter?: number): Reply => ({
 	status,
 	body: { error: "boom" },
-	headers: retryAfter === undefined ? undefined : { "Retry-After": String(retryAfter) },
+	headers: retryAfter === undefined ? {} : { "Retry-After": String(retryAfter) },
 });
 
 let win: PendingWindow | null = null;
@@ -83,7 +83,7 @@ function route(url: string): Response {
 		if (!reply || reply === "network-error") throw new TypeError("network down");
 		return new Response(JSON.stringify(reply.body), {
 			status: reply.status ?? 200,
-			headers: reply.headers,
+			headers: reply.headers ?? {},
 		});
 	}
 	return new Response("{}", { status: 404 });
