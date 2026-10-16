@@ -804,3 +804,40 @@ Réponses aux quatre questions ouvertes du plan, dans le sens des recommandation
    switch est `ODYSSEY_ON_DEMAND_IMAGES=0`.
 4. **Budget de relance (D6)** d'environ 60 s par œuvre (6 tentatives, 2…30 s), dégradé de type sans
    indicateur d'attente.
+
+## Journal des décisions — 2026-10-16 (livraison de nuit et de jour)
+
+Arbitrages pris par le dispatcher sous la délégation de Raphael (« tu valides toi-même les tiers 3 et tu fais les trade-offs nécessaires »), puis avec ses feux verts explicites (mise en prod, plan 3b). Règle directrice : **sûreté avant taux**.
+
+### Identité et migration
+- **Arêtes inverses (TRA-486, #484)** : le backfill est limité aux 4 directions sûres (crédit ou appartenance → liste côté artiste ou label). Aucun crédit, parent ou genre n'est écrit sur une œuvre depuis la liste d'un autre nœud : la version complète créait de faux crédits (Moderat « II » + 2 Unlimited, CANDIACE + Juan Atkins). Le runtime applique la même règle (TRA-563, #486). Les paires écartées sont dans TRA-564.
+- **Résolveur d'œuvres (TRA-560, #485)** : quand des candidats ont des types primaires ou secondaires différents, la date ne départage plus. Sans type sur le nœud, le résultat est `ambiguous`. Coût accepté : Windowlicker et Are You Experienced perdent leur identité.
+- **Compilations (TRA-571, #488)** : une œuvre Various Artists, ou sans mbid avec au moins 3 crédits, n'est pas scopée. À 2 crédits, l'œuvre reste scopée sur `artists[0]`, ce qui garde Fitna d'Akuma détachée de Rohff.
+- **Œuvres sans crédit (TRA-558)** : 88 restent nues. Le drapeau ne sert jamais un homonyme ; au pire, il crée un doublon correctement crédité.
+- **Exclusions d'identité (TRA-574, #491)** : `data/identity-exclusions.json` liste 6 artistes jamais résolus automatiquement (voices-of-life, andy-turner, tyla, johnny-reid, alfred-d-orsay, bossa-nova). Leur mbid stocké faux est retiré.
+- **Canal de migration (TRA-568, #487 ; TRA-573, #490 ; TRA-576, #492)** : il fait passer les 3 migrations d'identité, rejoue la preview à l'apply, ne réessaie MusicBrainz 6 fois qu'en migration (3 en live), et n'émet aucune redirection vers un slug sans nœud.
+- **Prod (TRA-484)** : appliquée le 2026-10-16, après 4 previews refusées sans dégât (fail-closed). Les 216 redirections prod-only ont d'abord été committées (#493). Le drapeau des slugs scopés est allumé (TRA-509, #489), et Rohff → Fitna est vérifié en JIT.
+
+### Textes et images
+- **`\n` littéraux (TRA-492)** : supprimés dans le dépôt (756 nœuds) et en prod. Les `\"` sont traités à part (TRA-577).
+- **Images (TRA-489)** : le run v4 a été appliqué au dépôt et en prod (847 nœuds dans le dépôt). Trois runs avaient été refusés par la review d'échantillons :
+  - le repli **legacy** (`photo_url`/`cover_url` du LLM) est **supprimé** : il n'était pas vérifiable et 2 sur 20 étaient faux (#502) ;
+  - iTunes exige le **crédit exact**, refuse Various Artists, exige l'égalité du titre et l'**année à ±1**, et refuse une égalité ambiguë (TRA-589, #503 ; TRA-595, #512) ;
+  - une image **dérivée** n'est empruntée qu'à une œuvre **réciproque**, qui déclare le label, crédite l'artiste ou porte le genre (TRA-591, #506). Les membres de groupe n'empruntent plus la pochette du groupe.
+- **Affichage** : `GET /image` (TRA-592, #507) et la projection (TRA-594, #509) ne servent plus jamais `photo_url`/`cover_url`. La pochette d'Earth, Wind & Fire de Grandmaster Flash a disparu, remplacée par sa photo Wikidata.
+
+### Pochettes à la demande (partie 3b)
+Livrées : TRA-578 à TRA-586 (#497, #499, #500, #504, #505, #508, #510, #513, #515), plus TRA-596 (#516) pour les cartes web sans nœud. Le drapeau `ODYSSEY_ON_DEMAND_IMAGES` est actif. Le web et iOS relancent sur 202 sans mémoriser l'attente.
+
+### Ouvert
+- Décision de Raphael attendue : règle de réciprocité **assouplie pour les genres** (parent ou sous-genre), environ 30 genres d'image en plus.
+- Tickets ouverts :
+  - TRA-488 : arêtes inverses en prod (le script refuse `--data-dir`, à rendre compatible avec le canal) ;
+  - TRA-564 : paires gardées ;
+  - TRA-565 : purge des pending dangereux ;
+  - TRA-570 et TRA-561 : crédits et tracklists d'homonymes ;
+  - TRA-593 : réciprocité côté clients ;
+  - TRA-577 : `\"` ;
+  - TRA-569 : `remix_of` ;
+  - TRA-572 : outils sans drapeau, à garder gelés.
+- Infra : TRA-540 (sécurité des runners), à traiter par Raphael.
