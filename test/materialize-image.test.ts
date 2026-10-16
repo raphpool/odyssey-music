@@ -174,8 +174,12 @@ describe("image at materialization, through createMaterializeService (TRA-479)",
 			TIMEOUT_MS,
 		);
 
+		// 2026-10-16: this used to assert that a different client mbid dropped the image. Since TRA-546 (#475)
+		// an artist or label that already carries an mbid keeps it whatever the request sends -- a client mbid
+		// is a hint, never an identity change -- so such a refresh is the same entity and keeps its picture.
+		// Symptom: the old premise left the stored image in place, failing this file on main after the merge.
 		it(
-			"does not carry the stored image onto a re-materialization that changes the node's mbid",
+			"keeps the stored image, and the cached mbid, when the refresh carries another client mbid",
 			async () => {
 				installPipelineMocks({ draft: artistDraftFixture() });
 				const seed = await build({
@@ -183,17 +187,24 @@ describe("image at materialization, through createMaterializeService (TRA-479)",
 				});
 				await seed.service.handleMaterialize({ type: "artist", name: "Fixture Artist" });
 				const seeded = (await cache.get(SLUG)) as ArtistNode;
-				await cache.write({ ...seeded, mbid: "aaaaaaaa-1111-4111-8111-000000000001" });
+				const CACHED_MBID = "aaaaaaaa-1111-4111-8111-000000000001";
+				await cache.write({ ...seeded, mbid: CACHED_MBID });
 
 				installPipelineMocks({ draft: artistDraftFixture() });
 				const { service } = await build({ resolveImage: async () => null });
-				await service.handleMaterialize({
-					type: "artist",
-					name: "Fixture Artist",
-					mbid: "bbbbbbbb-2222-4222-8222-000000000002",
-				});
+				await service.handleMaterialize(
+					{
+						type: "artist",
+						name: "Fixture Artist",
+						slug: SLUG,
+						mbid: "bbbbbbbb-2222-4222-8222-000000000002",
+					},
+					{ fresh: true },
+				);
 
-				expect(((await cache.get(SLUG)) as ArtistNode).image_url).toBeUndefined();
+				const stored = (await cache.get(SLUG)) as ArtistNode;
+				expect(stored.mbid).toBe(CACHED_MBID);
+				expect(stored.image_url).toBe(PHOTO);
 			},
 			TIMEOUT_MS,
 		);
