@@ -1,0 +1,72 @@
+{
+  "slug": "track:do-the-strand",
+  "name": "Do the Strand",
+  "editorial_article": "\"Do the Strand\" is a definitive anthem of 1970s glam rock, serving as the opening track to Roxy Music's seminal second album, *For Your Pleasure* (1973). Written by frontman Bryan Ferry, the song functions as both a quintessential glam rock dance floor filler and a sophisticated piece of art-pop that draws upon a dizzying array of cultural references. Unlike the band's debut, which often relied on atmospheric intros, \"Do the Strand\" launches immediately with a driving, high-energy piano and saxophone motif that sets the tone for the rest of the record.\\n\\nLyrically, the song is a pastiche of high and low culture, name-checking artistic heavyweights such as the Sphinx, the *Mona Lisa*, Picasso’s *Guernica*, and Nabokov’s *Lolita*. Ferry intended the track to be a modern homage to the songwriters of the Jazz Age, particularly Cole Porter, attempting to capture an exuberance that was both ironic and deeply earnest. The \"Strand\" itself is a fictitious dance craze—inspired by a cigarette advertisement—that serves as a metaphor for the \"dance of life,\" embodying the buzz, energy, and theatrical flair that characterized the burgeoning glam scene. Despite its status as one of the band's most enduring and beloved tracks, its commercial history was modest, failing to chart upon its UK re-release in 1978. Nevertheless, its influence was immediate; the song’s legacy is perhaps best solidified by the fact that the original incarnation of the Sex Pistols (then called The Strand) took their name directly from the track, signaling the profound impact Roxy Music had on the pioneers of the punk movement that would follow shortly after. The song remains a cornerstone of Roxy Music's live sets, a testament to its enduring appeal and sonic vitality.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Do_the_Strand",
+      "title": "Do the Strand - Wikipedia"
+    },
+    {
+      "url": "http://www.vivaroxymusic.com/songs_118.php",
+      "title": "Do The Strand - Roxy Music - Songs - on VivaRoxyMusic.com"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:56:04.261Z",
+  "type": "track",
+  "editorial_teaser": "\"Do the Strand\" is a definitive anthem of 1970s glam rock, serving as the opening track to Roxy Music's seminal second album, *For Your Pleasure* (1973).",
+  "year": "1973",
+  "duration": "4:04 (album version)",
+  "artists": [
+    {
+      "slug": "artist:roxy-music",
+      "type": "artist",
+      "name": "Roxy Music"
+    }
+  ],
+  "project": {
+    "slug": "project:for-your-pleasure",
+    "type": "project",
+    "name": "For Your Pleasure"
+  },
+  "genres": [
+    {
+      "slug": "genre:glam-rock",
+      "type": "genre",
+      "name": "Glam rock",
+      "qid": "Q76092"
+    },
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art pop",
+      "qid": "Q25094849"
+    },
+    {
+      "slug": "genre:dance-rock",
+      "type": "genre",
+      "name": "Dance-rock",
+      "qid": "Q2281409"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:chris-thomas",
+      "type": "artist",
+      "name": "Chris Thomas"
+    },
+    {
+      "slug": "artist:john-anthony",
+      "type": "artist",
+      "name": "John Anthony"
+    },
+    {
+      "slug": "artist:roxy-music",
+      "type": "artist",
+      "name": "Roxy Music"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

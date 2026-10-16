@@ -88,7 +88,7 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:artificial-intelligence--aphex-twin",
+      "slug": "project:artificial-intelligence",
       "type": "project",
       "name": "Artificial Intelligence"
     },
@@ -98,7 +98,7 @@
       "name": "Selected Ambient Works 85-92"
     },
     {
-      "slug": "project:music-has-the-right-to-children--boards-of-canada",
+      "slug": "project:music-has-the-right-to-children",
       "type": "project",
       "name": "Music Has the Right to Children"
     }

@@ -1,0 +1,49 @@
+{
+  "slug": "track:cruise",
+  "name": "Cruise",
+  "editorial_article": "\"Cruise\" is a defining anthem of 21st-century country music, released in 2012 by the American duo Florida Georgia Line. As the breakout single from their debut album, *Here's to the Good Times*, the track became a cultural phenomenon, eventually ascending to the position of the best-selling digital country song of all time according to Nielsen SoundScan. Characterized by its polished \"bro-country\" sound—a fusion of rock-infused production, hip-hop-influenced rhythmic delivery, and themes centered on rural nightlife and road trips—\"Cruise\" acted as a catalyst for a shift in country music toward pop-friendly, crossover aesthetics.\n\nThe song's success was significantly amplified by a remix featuring rapper Nelly, which helped it achieve multi-format radio dominance and extended its reach far beyond the traditional country charts. \"Cruise\" holds the distinction of spending 24 non-consecutive weeks at No. 1 on the Billboard Hot Country Songs chart, a record-breaking streak at the time. Its commercial dominance solidified Florida Georgia Line as central figures in the modern country establishment and illustrated the evolving landscape of country music, where digital consumption and pop-radio appeal became essential benchmarks for success in the 2010s. The track remains a primary example of the \"genre-busting\" approach that redefined commercial success for Nashville-based artists during that era.",
+  "citations": [
+    {
+      "url": "https://www.billboard.com/music/music-news/florida-georgia-lines-cruise-sets-all-time-country-sales-5862307/",
+      "title": "Florida Georgia Line's 'Cruise' Sets All-Time Country Sales Record"
+    },
+    {
+      "url": "https://open.spotify.com/track/5phnf9YIzJvnj0lUasinbs",
+      "title": "Cruise - song and lyrics by Florida Georgia Line | Spotify"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:19:11.470Z",
+  "type": "track",
+  "editorial_teaser": "A genre-bending 2012 smash hit by Florida Georgia Line that became the best-selling digital country song in history.",
+  "year": "2012",
+  "artists": [
+    {
+      "slug": "artist:florida-georgia-line",
+      "type": "artist",
+      "name": "Florida Georgia Line"
+    }
+  ],
+  "project": {
+    "slug": "project:here-s-to-the-good-times",
+    "type": "project",
+    "name": "Here's To The Good Times"
+  },
+  "genres": [
+    {
+      "slug": "genre:country-pop",
+      "type": "genre",
+      "name": "Country pop",
+      "qid": "Q2280497"
+    },
+    {
+      "slug": "genre:bro-country",
+      "type": "genre",
+      "name": "Bro-country",
+      "qid": "Q16954055"
+    }
+  ],
+  "producers": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

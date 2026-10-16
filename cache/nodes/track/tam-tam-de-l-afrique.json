@@ -1,0 +1,44 @@
+{
+  "slug": "track:tam-tam-de-l-afrique",
+  "name": "Tam Tam de l'Afrique",
+  "editorial_article": "Released in 1991, 'Tam Tam de l'Afrique' is a seminal track by the influential French hip-hop group IAM. Emerging from the Marseille rap scene, the track showcases the group's early commitment to conscious lyrics and innovative production. The release is particularly notable for its international collaboration, featuring a prominent remix by the acclaimed American hip-hop producer Easy Mo Bee, which helped bridge the gap between the French and American rap aesthetics during the early 1990s. The song remains a cornerstone of IAM's discography, reflecting their thematic focus on African identity and social commentary that defined their early career. Through its various iterations, including the 'Home Remix' and the 'Easy Mo Bee Mix,' the track demonstrates the group's versatility and their pivotal role in establishing French hip-hop as a serious, global artistic force during its formative decade.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/release/12034728-IAM-Tam-Tam-de-Lafrique?srsltid=AfmBOooFkolMH7FNZX6tfpH56V1MRMcFiorPEEnMt59DLR1Lkw_Wy4IM"
+    },
+    {
+      "url": "https://www.discogs.com/release/8371230-IAM-Tam-Tam-De-LAfrique?srsltid=AfmBOorZMO1wCUixv0p9bgDt4g8XAz_jDslZuVmgd9M-Hds2upU5mKeD"
+    },
+    {
+      "url": "https://www.discogs.com/release/1227550-IAM-Tam-Tam-De-LAfrique?srsltid=AfmBOooSSXVVIYq0lflFfhSdIM3aYH_u8_6IXc-7T7gQsD2ePFp28rPz"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:31:44.669Z",
+  "type": "track",
+  "editorial_teaser": "A classic 1991 track by French hip-hop pioneers IAM, featuring a notable remix by American producer Easy Mo Bee.",
+  "year": "1991",
+  "artists": [
+    {
+      "slug": "artist:iam",
+      "type": "artist",
+      "name": "IAM"
+    }
+  ],
+  "project": {
+    "slug": "project:tam-tam-de-l-afrique",
+    "type": "project",
+    "name": "Tam Tam de l'Afrique"
+  },
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    }
+  ],
+  "producers": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

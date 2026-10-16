@@ -1,0 +1,54 @@
+{
+  "slug": "track:lithiummelodie-1",
+  "name": "Lithiummelodie 1",
+  "editorial_article": "Lithiummelodie 1 is a track by the German electronic musician Jan Jelinek, originally recorded between 2004 and 2005 at the G.Guillaume studio in Berlin. The piece is a central component of Jelinek's album Kosmischer Pitch, a work that explores the intersection of 1970s German rock influences and experimental electronic production. Upon its initial release in 2005 via the label ~scape, the album was noted for its trance-inducing repetition and subtle manipulation of time, a technique Jelinek often refers to as 'pitch' in reference to Wild Pitch House aesthetics. The track showcases Jelinek's signature approach of layering sound to create a dense, morphing sonic environment that feels both minimalist and deeply textured. In 2025, to mark the 20th anniversary of the original release, the album was remastered by Giuseppe Ielasi and reissued by Faitiche, bringing this influential work back to vinyl and digital formats for a new generation of listeners.",
+  "citations": [
+    {
+      "url": "https://janjelinek.bandcamp.com/track/lithiummelodie-1",
+      "title": "Lithiummelodie 1, by Jan Jelinek"
+    }
+  ],
+  "materialized_at": "2026-05-13T15:08:33.256Z",
+  "mbid": "9159425d-bcf7-43f7-a5f9-bf18e032c5c8",
+  "type": "track",
+  "editorial_teaser": "A key track from Jan Jelinek's 2005 album Kosmischer Pitch, blending 1970s German rock influences with experimental electronic textures.",
+  "year": "2005",
+  "artists": [
+    {
+      "slug": "artist:jan-jelinek",
+      "type": "artist",
+      "name": "Jan Jelinek",
+      "mbid": "ac9b829e-9a7c-4331-8abe-ab1eb49d1771"
+    }
+  ],
+  "project": {
+    "slug": "project:kosmischer-pitch",
+    "type": "project",
+    "name": "Kosmischer Pitch"
+  },
+  "label": {
+    "slug": "label:scape",
+    "type": "label",
+    "name": "~scape",
+    "mbid": "1cf954a8-b0d0-4c7e-8833-8e0e1f5c9a5b"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:minimalist",
+      "type": "genre",
+      "name": "Minimalist",
+      "qid": "Q572901"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

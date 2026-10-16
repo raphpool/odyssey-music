@@ -19,7 +19,6 @@
   "materialized_at": "2026-05-13T13:03:25.390Z",
   "type": "genre",
   "editorial_definition": "A subgenre that integrates traditional jazz improvisation, harmonic complexity, and instrumentation with contemporary electronic production, club rhythms, and sound design.",
-  "qid": "Q1136331",
   "era": "1990s-present",
   "origin": "United States, United Kingdom, Japan, France, Germany, Norway, Mexico, Brazil",
   "sonic_markers": "Incorporation of electronic drum beats, ambient soundscapes, sampled jazz phrases, improvised jazz instrumental solos (trumpet, piano), deep basslines, and influence from downtempo and club music.",
@@ -81,7 +80,7 @@
       "name": "Bugge Wesseltoft"
     },
     {
-      "slug": "artist:nils-petter-molvaer",
+      "slug": "artist:nils-petter-molv-r",
       "type": "artist",
       "name": "Nils Petter Molvær"
     },
@@ -99,5 +98,6 @@
       "name": "Tourist"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1136331"
 }

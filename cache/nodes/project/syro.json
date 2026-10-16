@@ -1,0 +1,125 @@
+{
+  "slug": "project:syro",
+  "name": "Syro",
+  "editorial_article": "Syro is the sixth studio album by the influential electronic artist Aphex Twin (Richard D. James), released in September 2014 on Warp Records. Marking his first major studio full-length release since 2001's Drukqs, Syro was highly anticipated by the global electronic music community, representing a significant return of one of the most enigmatic figures in IDM and ambient techno. The album features a complex, meticulous production style that blends James's signature frantic, micro-edited breakbeats with warmer, more melodic synthesizer passages. Unlike some of his harsher, more abrasive work, Syro presents a more layered, fluid approach to sound design, reflecting years of studio experimentation and the evolution of his hardware-heavy workflow.\\n\\nThe album's release was preceded by a secretive guerrilla marketing campaign, culminating in the announcement via a blimp in London and cryptic social media posts. Critically lauded for its technical precision and emotional depth, Syro won the Grammy Award for Best Dance/Electronic Album in 2015. Tracks like \\\"minipops 67 [120.2]\\\" and \\\"XMAS_EVET10 [120]\\\" showcase a mastery of rhythm and arrangement that solidified James’s status as a perennial pioneer in the genre. Its sonic signature is defined by its pristine recording quality and the intricate interplay between custom-built instruments and vintage analog gear, creating a soundscape that feels both retro-futuristic and timeless. Syro remains a landmark in James's discography, bridging the gap between his earlier chaotic experiments and the more polished, contemplative textures that defined his later career. It is an essential listen that encapsulates the complexity of the electronic music landscape during the early 2010s.",
+  "citations": [
+    {
+      "url": "https://dmy.co/news/aphex-twin-syro-full-album-details-and-tracklist",
+      "title": "Full details of Aphex Twin's new album 'Syro' | DMY"
+    },
+    {
+      "url": "https://www.discogs.com/master/734427-Aphex-Twin-Syro?srsltid=AfmBOooA7fXzM7QDh9GDDjnRBCV3ZK7sZL3ANs2yaVO6WvUcXuFJRp0d",
+      "title": "Aphex Twin – Syro | Releases | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:39:41.441Z",
+  "mbid": "11a7c281-a260-4f77-a1d5-1ff2d4c917eb",
+  "type": "project",
+  "editorial_pitch": "Released after a 13-year hiatus, Syro is a masterclass in meticulous electronic production, blending Aphex Twin's frantic, signature breakbeats with refined melodic textures and high-fidelity sound design.",
+  "year": "2014",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin",
+      "mbid": "f22942a1-6f70-4f48-866e-238cb2308fbd"
+    }
+  ],
+  "label": {
+    "slug": "label:warp-records",
+    "type": "label",
+    "name": "Warp Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat",
+      "qid": "Q663519"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:minipops-67",
+      "type": "track",
+      "name": "minipops 67 [120.2]"
+    },
+    {
+      "slug": "track:xmas-evet10",
+      "type": "track",
+      "name": "XMAS_EVET10 [120]"
+    },
+    {
+      "slug": "track:produk-29",
+      "type": "track",
+      "name": "produk 29 [101]"
+    },
+    {
+      "slug": "track:4-bit-9d-api-e-6",
+      "type": "track",
+      "name": "4 Bit 9d Api+e+6"
+    },
+    {
+      "slug": "track:180db",
+      "type": "track",
+      "name": "180db_"
+    },
+    {
+      "slug": "track:circlont6a",
+      "type": "track",
+      "name": "Circlont6a (Syrobonkus Mix)"
+    },
+    {
+      "slug": "track:fz-pseudotimestretch-e-3",
+      "type": "track",
+      "name": "Fz Pseudotimestretch+e+3"
+    },
+    {
+      "slug": "track:circlont14",
+      "type": "track",
+      "name": "Circlont14 (Shrymoming Mix)"
+    },
+    {
+      "slug": "track:syro-u473t8-e",
+      "type": "track",
+      "name": "Syro U473t8+e (Piezoluminescence Mix)"
+    },
+    {
+      "slug": "track:papat4",
+      "type": "track",
+      "name": "Papat4 (Pineal Mix)"
+    },
+    {
+      "slug": "track:s950tx16wasr10",
+      "type": "track",
+      "name": "S950tx16wasr10 (Earth Portal Mix)"
+    },
+    {
+      "slug": "track:aisatsana",
+      "type": "track",
+      "name": "Aisatsana"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

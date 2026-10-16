@@ -1,0 +1,144 @@
+{
+  "slug": "project:dots-and-loops",
+  "name": "Dots and Loops",
+  "editorial_article": "Dots and Loops, released in 1997, stands as a landmark album in the discography of the Anglo-French experimental pop group Stereolab. Produced by the band alongside John McEntire (of Tortoise) and Andi Toma (of Mouse on Mars), the record marked a significant stylistic pivot for the group. While their earlier work was deeply embedded in the post-rock and krautrock movements, Dots and Loops leaned heavily into a futuristic, polished aesthetic that synthesized bossa nova, swinging 1960s pop, and meticulous electronic production. By incorporating sophisticated horn and string arrangements with complex, loop-based drumming—often inspired by the motorik rhythms of Neu! and Klaus Dinger—Stereolab created a sound that was simultaneously organic and highly manufactured.\\n\\nCritically acclaimed for its breezy, intellectual approach to pop, the album remains a quintessential example of the group's \"retro-futurist\" sound. The production values, characterized by sharp layering and precise sound design, helped bridge the gap between alternative rock and experimental electronic music. Tracks such as \"Brakhage\" and \"Miss Modular\" showcase the band’s ability to combine hummable melodies with avant-garde textures, solidifying Dots and Loops as one of the most influential records of the 1990s. Its enduring legacy is found in its successful experiment of bringing experimental, krautrock-informed sensibilities to a wider, more pop-oriented audience without compromising its artistic integrity.",
+  "citations": [
+    {
+      "url": "https://readdork.com/album/stereolab-dots-and-loops",
+      "title": "Stereolab – Dots and Loops (1997) | Album profile - Dork"
+    },
+    {
+      "url": "https://insheepsclothinghifi.com/album/stereolab-dots-and-loops/",
+      "title": "Stereolab – Dots and Loops | In Sheeps Clothing"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:20.095Z",
+  "_metrics": {
+    "input_tokens": 18823,
+    "output_tokens": 1127,
+    "cache_read_tokens": 8098,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.006599,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 29549,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "mbid": "dcc1e5d0-c35f-3e4a-b0d2-b53b23eb906f",
+  "type": "project",
+  "editorial_pitch": "Dots and Loops, released in 1997, stands as a landmark album in the discography of the Anglo-French experimental pop group Stereolab.",
+  "year": "1997",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:stereolab",
+      "type": "artist",
+      "name": "Stereolab",
+      "mbid": "f1df0431-9250-4ec8-95d8-f19ce7cf7fb6"
+    }
+  ],
+  "label": {
+    "slug": "label:duophonic",
+    "type": "label",
+    "name": "Duophonic"
+  },
+  "genres": [
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock",
+      "qid": "Q320592"
+    },
+    {
+      "slug": "genre:post-rock",
+      "type": "genre",
+      "name": "Post-rock",
+      "qid": "Q209137"
+    },
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art Pop",
+      "qid": "Q25094849"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:brakhage--stereolab",
+      "type": "track",
+      "name": "Brakhage",
+      "mbid": "3e275ef0-5e99-4abb-ab94-99db2fb14742",
+      "artist": "Stereolab"
+    },
+    {
+      "slug": "track:miss-modular--stereolab",
+      "type": "track",
+      "name": "Miss Modular",
+      "mbid": "ff34dedb-36e0-43fa-88c3-19e79c2a3b1a",
+      "artist": "Stereolab"
+    },
+    {
+      "slug": "track:the-flower-called-nowhere--stereolab",
+      "type": "track",
+      "name": "The Flower Called Nowhere",
+      "mbid": "590287ff-2af9-4ddf-aff5-1a71b4480f15",
+      "artist": "Stereolab"
+    },
+    {
+      "slug": "track:diagonals--stereolab",
+      "type": "track",
+      "name": "Diagonals",
+      "mbid": "7e3513ae-9df7-40bd-b9b1-7f8bcbe22fe6",
+      "artist": "Stereolab"
+    },
+    {
+      "slug": "track:prisoner-of-mars--stereolab",
+      "type": "track",
+      "name": "Prisoner of Mars",
+      "mbid": "9e2afb06-d461-4104-8ab9-3b58ca5416e8",
+      "artist": "Stereolab"
+    },
+    {
+      "slug": "track:rainbo-conversation--stereolab",
+      "type": "track",
+      "name": "Rainbo Conversation",
+      "mbid": "11362127-be70-45a0-a1bd-0400db9f6413",
+      "artist": "Stereolab"
+    },
+    {
+      "slug": "track:refractions-in-the-plastic-pulse--stereolab",
+      "type": "track",
+      "name": "Refractions in the Plastic Pulse",
+      "mbid": "4b5eef7d-b400-4ce5-ac6b-9a8c7850b4e6",
+      "artist": "Stereolab"
+    },
+    {
+      "slug": "track:parsec--stereolab",
+      "type": "track",
+      "name": "Parsec",
+      "mbid": "71854455-2e0b-4a6a-855d-b53ee4641f27",
+      "artist": "Stereolab"
+    },
+    {
+      "slug": "track:ticker-tape-of-the-unconscious--stereolab",
+      "type": "track",
+      "name": "Ticker‐Tape of the Unconscious",
+      "mbid": "b982adae-5117-4e66-8aac-5cdb0a3ca123",
+      "artist": "Stereolab"
+    },
+    {
+      "slug": "track:contronatura--stereolab",
+      "type": "track",
+      "name": "Contronatura",
+      "mbid": "1be5d387-96c5-4777-8f45-b55d1b1e1ec0",
+      "artist": "Stereolab"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

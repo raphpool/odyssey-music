@@ -1,0 +1,118 @@
+{
+  "slug": "project:if-you-re-feeling-sinister",
+  "name": "If You're Feeling Sinister",
+  "editorial_article": "Released in 1996 on Jeepster Recordings, If You're Feeling Sinister is the second studio album by the Scottish indie pop ensemble Belle and Sebastian. Led by the enigmatic and prolific songwriter Stuart Murdoch, the group emerged from Glasgow with a sound that was immediately distinct from the dominant Britpop movement of the era. Rather than aiming for the stadium-filling anthems of their contemporaries, the band crafted an intimate, whisper-soft soundscape defined by acoustic guitars, piano, delicate percussion, and violin arrangements that signaled a turn toward what would become known as chamber pop.\\n\\nThe album is widely revered for its literate, vivid lyricism, which presents a series of portraits of marginalized or eccentric characters, often imbued with a gentle sense of melancholy and cynical wit. Songs like \"Get Me Away From Here, I'm Dying\" and the title track, \"If You're Feeling Sinister,\" encapsulate the band's ability to balance profound vulnerability with dry humor. The production is sparse and unadorned, allowing Murdoch's conversational vocal delivery and the ensemble’s tight, modest arrangements to take center stage. This approach resonated deeply with a generation of listeners, establishing Belle and Sebastian as cult icons of the underground music scene.\\n\\nOver the decades since its release, the album has gained an almost mythic status, frequently appearing on critical lists of the greatest records of the 1990s. Its influence extends far beyond its initial release, having helped define the aesthetic of late-90s indie pop and providing a template for countless singer-songwriters who prioritize delicate, narrative-focused composition. It stands as a timeless exploration of youth, romantic confusion, and the quiet tragedies of everyday life, all filtered through an impeccably curated pop sensibility. For many, it remains the quintessential Belle and Sebastian record—a work of quiet perfection that feels as resonant and vital today as it did upon its debut.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/2521-Belle-And-Sebastian-If-Youre-Feeling-Sinister?srsltid=AfmBOopbI_mezwG31-TTeia6QThEcxN8yJjPjp9lCuPpK9cjCnkKBRhC",
+      "title": "Belle And Sebastian – If You're Feeling Sinister | Releases - Discogs"
+    },
+    {
+      "url": "https://www.allmusic.com/album/if-youre-feeling-sinister-mw0000019993",
+      "title": "If You're Feeling Sinister - Belle and Sebasti... - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:50.184Z",
+  "_metrics": {
+    "input_tokens": 14631,
+    "output_tokens": 1008,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.00517,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 14094,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "mbid": "66be5deb-75d5-3737-9037-1c745891d3ec",
+  "type": "project",
+  "editorial_pitch": "A cornerstone of 1990s indie pop, Belle and Sebastian's sophomore album combines literate, character-driven storytelling with delicate, chamber-pop arrangements. It remains a definitive statement of melancholic, melodic Scottish songwriting.",
+  "year": "1996",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:belle-and-sebastian",
+      "type": "artist",
+      "name": "Belle and Sebastian",
+      "mbid": "e5c7b94f-e264-473c-bb0f-37c85d4d5c70"
+    }
+  ],
+  "label": {
+    "slug": "label:jeepster-recordings",
+    "type": "label",
+    "name": "Jeepster Recordings"
+  },
+  "genres": [
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie Pop",
+      "qid": "Q842324"
+    },
+    {
+      "slug": "genre:chamber-pop",
+      "type": "genre",
+      "name": "Chamber Pop",
+      "qid": "Q22991878"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:the-stars-of-track-and-field",
+      "type": "track",
+      "name": "The Stars Of Track And Field"
+    },
+    {
+      "slug": "track:seeing-other-people",
+      "type": "track",
+      "name": "Seeing Other People"
+    },
+    {
+      "slug": "track:me-and-the-major",
+      "type": "track",
+      "name": "Me And The Major"
+    },
+    {
+      "slug": "track:like-dylan-in-the-movies",
+      "type": "track",
+      "name": "Like Dylan In The Movies"
+    },
+    {
+      "slug": "track:the-fox-in-the-snow",
+      "type": "track",
+      "name": "The Fox In The Snow"
+    },
+    {
+      "slug": "track:get-me-away-from-here-i-m-dying",
+      "type": "track",
+      "name": "Get Me Away From Here, I'm Dying"
+    },
+    {
+      "slug": "track:if-you-re-feeling-sinister",
+      "type": "track",
+      "name": "If You're Feeling Sinister"
+    },
+    {
+      "slug": "track:mayfly",
+      "type": "track",
+      "name": "Mayfly"
+    },
+    {
+      "slug": "track:the-boy-done-wrong-again",
+      "type": "track",
+      "name": "The Boy Done Wrong Again"
+    },
+    {
+      "slug": "track:judy-and-the-dream-of-horses",
+      "type": "track",
+      "name": "Judy And The Dream Of Horses"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

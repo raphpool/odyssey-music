@@ -64,7 +64,7 @@
       "name": "Vulvaland"
     },
     {
-      "slug": "project:parastrophics--mouse-on-mars",
+      "slug": "project:parastrophics",
       "type": "project",
       "name": "Parastrophics"
     },
@@ -76,12 +76,12 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:wipe-that-sound--mouse-on-mars",
+      "slug": "track:wipe-that-sound",
       "type": "track",
       "name": "Wipe That Sound"
     },
     {
-      "slug": "track:pinwheel-herman--mouse-on-mars",
+      "slug": "track:pinwheel-herman",
       "type": "track",
       "name": "Pinwheel Herman"
     }

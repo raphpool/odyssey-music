@@ -46,7 +46,7 @@
   ],
   "discography": [
     {
-      "slug": "project:le-code-de-l-honneur--rohff",
+      "slug": "project:le-code-de-l-honneur",
       "type": "project",
       "name": "Le Code de l'honneur"
     },
@@ -66,23 +66,21 @@
       "name": "Au-delà de mes limites"
     },
     {
-      "slug": "project:grand-monsieur--rohff",
+      "slug": "project:grand-monsieur",
       "type": "project",
-      "name": "Grand Monsieur",
-      "artist": "Rohff"
+      "name": "Grand Monsieur"
     },
     {
-      "slug": "project:fitna--rohff",
+      "slug": "project:fitna",
       "type": "project",
       "name": "Fitna"
     }
   ],
   "notable_tracks": [
     {
-      "slug": "track:fitna--rohff",
+      "slug": "track:fitna",
       "type": "track",
-      "name": "Fitna",
-      "artist": "Rohff"
+      "name": "Fitna"
     }
   ],
   "influences": [],

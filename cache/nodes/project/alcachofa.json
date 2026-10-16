@@ -1,0 +1,70 @@
+{
+  "slug": "project:alcachofa",
+  "name": "Alcachofa",
+  "editorial_article": "Released in September 2003 on the influential German imprint Playhouse, Alcachofa stands as the landmark debut studio album by Chilean-German producer Ricardo Villalobos. Widely regarded as a defining masterwork of the minimal techno and microhouse movements, the album solidified Villalobos as a visionary sound designer capable of blending intricate, granular synthesis with deep, emotive, and hypnotic dancefloor rhythms. Spanning both CD and multiple vinyl configurations, the album's composition—often described as \"auteur techno\"—shifted the boundaries of the genre by introducing organic textures, complex polyrhythmic loops, and a unique, often melancholic atmosphere that felt miles away from the harder, repetitive sounds dominating the contemporary techno scene at the time. Throughout the record, Villalobos demonstrates complete mastery over his machines, coaxing human-like emotion out of digital processes. Tracks such as \"Easy Lee\" and \"Dexter\" have achieved legendary status, often cited as essential touchstones of 2000s electronic music. Alcachofa was not merely a collection of club tracks, but a cohesive statement of intent that bridged the gap between cerebral sound art and functional dance music. Its lasting cultural impact is evidenced by its repeated recognition by institutions such as Resident Advisor, which ranked it as the top album of the 2000s, and its ongoing influence on generations of producers who continue to find inspiration in its infinite subtlety, elegance, and groundbreaking approach to the loop. It remains an unmasked portrait of a virtuoso composer who fundamentally altered the trajectory of modern electronic music. The release contains contributions directly from Villalobos as both producer and writer, and its status as a foundational text in minimalist music remains undisputed to this day. It is an album that demands deep listening, revealing new layers of detail with each playback, proving that repetitive structures can, in the right hands, transcend their limitations to become deeply personal and profoundly moving compositions. Its influence on the global techno landscape cannot be overstated. By successfully fusing the technical precision of minimal techno with an unprecedented level of harmonic and rhythmic depth, Villalobos created a record that functions equally well in a dark, late-night club environment and a meditative, private listening space. The album represents a pivot point in electronic music history, where the austere, functional aesthetic of the late 90s gave way to the richer, more expressive, and narrative-driven soundscapes that would dominate the following decade. Every track on the album contributes to this cohesive, immersive experience, demonstrating the producer's ability to sustain tension and release over long, hypnotic durations, a feat that few of his contemporaries managed to achieve with such consistent brilliance and artistic integrity. As such, it is essential listening for any serious electronic music enthusiast, representing the zenith of a genre that sought to find the infinite possibilities hidden within the minimal.",
+  "citations": [
+    {
+      "url": "https://www.hhv-mag.com/feature/records-revisited-ricardo-villalobos-alcachofa/?lang=en",
+      "title": "Records Revisited: Ricardo Villalobos – Alcachofa (2003) - HHV Mag"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:40:39.083Z",
+  "mbid": "44f4da95-17d4-3f3e-92a6-2684fc889135",
+  "type": "project",
+  "editorial_pitch": "A seminal, genre-defining debut that brought soul and complex, granular design to the minimal techno and microhouse landscapes of the early 2000s.",
+  "year": "2003",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos",
+      "mbid": "bbd79854-df54-4c1b-b7d6-cf7eea2d0afb"
+    }
+  ],
+  "label": {
+    "slug": "label:playhouse",
+    "type": "label",
+    "name": "Playhouse"
+  },
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
+    },
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse",
+      "qid": "Q1931555"
+    },
+    {
+      "slug": "genre:tech-house",
+      "type": "genre",
+      "name": "Tech House",
+      "qid": "Q598593"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:easy-lee",
+      "type": "track",
+      "name": "Easy Lee"
+    },
+    {
+      "slug": "track:dexter",
+      "type": "track",
+      "name": "Dexter"
+    },
+    {
+      "slug": "track:theogenese",
+      "type": "track",
+      "name": "Theogenese"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

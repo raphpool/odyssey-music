@@ -1,0 +1,69 @@
+{
+  "slug": "project:psychonavigation",
+  "name": "Psychonavigation",
+  "editorial_article": "Psychonavigation is a foundational ambient-dub collaboration between visionary bassist and producer Bill Laswell and German electronic music pioneer Pete Namlook. Released in 1994 on Namlook's influential FAX +49-69/450464 label, the album represents a distinct convergence of the downtown New York experimental scene and the burgeoning German ambient electronic movement. Recorded at Laswell's Greenpoint studio in Brooklyn, the project captures a specific atmospheric tension that defines the era's fusion of deep, tectonic dub basslines and ethereal synthesizer textures. The three lengthy compositions on the album demonstrate the duo's ability to sustain immersive, hypnotic soundscapes, moving from the monolithic expansiveness of 'Psychic and U.F.O. Revelations in the Last Days' to the intricate, tech-informed warmth of 'Angel Tech.' \\n\\nAs the first in a successful series of collaborations, Psychonavigation served as an essential document of the mid-90s ambient resurgence, where the physical weight of dub production was reconsidered through the lens of ambient music. The synergy between Laswell’s grounding, organic low-end frequencies and Namlook’s expansive, digital sound design remains highly regarded in electronic music circles. The record stands as a testament to the collaborative spirit of FAX +49-69/450464, which acted as a vital conduit for cross-continental experimentation throughout the decade. By marrying the dub-wise sensibilities of New York’s avant-garde with the precise, modular-focused German electronic aesthetic, Laswell and Namlook created a blueprint for ambient dub that continues to resonate with listeners interested in the intersection of dub, drone, and ambient sound environments.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Psychonavigation",
+      "title": "Psychonavigation - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/master/16624",
+      "title": "Psychonavigation (1994) - Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:47:05.297Z",
+  "type": "project",
+  "editorial_pitch": "A landmark 1994 collaboration between ambient legend Pete Namlook and master producer Bill Laswell, blending deep dub basslines with immersive, expansive electronics.",
+  "year": "1994",
+  "artists": [
+    {
+      "slug": "artist:bill-laswell",
+      "type": "artist",
+      "name": "Bill Laswell"
+    },
+    {
+      "slug": "artist:pete-namlook",
+      "type": "artist",
+      "name": "Pete Namlook"
+    }
+  ],
+  "label": {
+    "slug": "label:fax-49-69-450464",
+    "type": "label",
+    "name": "FAX +49-69/450464"
+  },
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    },
+    {
+      "slug": "genre:ambient-dub",
+      "type": "genre",
+      "name": "Ambient Dub",
+      "qid": "Q3613770"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:psychic-and-u-f-o-revelations-in-the-last-days",
+      "type": "track",
+      "name": "Psychic and U.F.O. Revelations in the Last Days"
+    },
+    {
+      "slug": "track:angel-tech",
+      "type": "track",
+      "name": "Angel Tech"
+    },
+    {
+      "slug": "track:black-dawn",
+      "type": "track",
+      "name": "Black Dawn"
+    }
+  ],
+  "producers": [],
+  "related_projects": []
+}

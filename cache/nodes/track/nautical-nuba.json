@@ -1,0 +1,73 @@
+{
+  "slug": "track:nautical-nuba",
+  "name": "Nautical Nuba",
+  "editorial_article": "\"Nautical Nuba\" is a seminal track from the 1996 album \"Biokinetics\" by the German electronic duo Porter Ricks, comprising Thomas Köner and Andy Mellwig. As a key piece within the dub techno canon, the track exemplifies the duo's signature approach to sound design: cavernous, atmosphere-driven textures layered over a minimalist, rhythmic techno pulse. Much like the rest of the album, \"Nautical Nuba\" draws heavily on aquatic and oceanic imagery, utilizing deep, rolling basslines and intricate, submerged sonic artifacts that create an immersive, almost tactile listening experience. \\n\\nReleased on the legendary Berlin-based label Chain Reaction, the track—and the album at large—captured a pivotal moment in the mid-90s experimental electronic music scene. Porter Ricks pushed the boundaries of the techno aesthetic by integrating Köner's background in dark ambient music with Mellwig's precision-engineered rhythmic structures. The result is a piece that feels both expansive and claustrophobic, oscillating between melodic tension and sonic dissolution. It remains a touchstone for producers working within the intersection of ambient and techno, cited frequently for its profound influence on the evolution of deep, textural, and dub-inflected electronic music. \"Nautical Nuba\" continues to resonate as a masterpiece of industrial-tinged ambience, standing as a testament to the innovative spirit of the Chain Reaction label and the enduring legacy of the Porter Ricks collaboration. Throughout the track, one hears the meticulous attention to detail that defined the Chain Reaction aesthetic, a label known for its cold, minimalist, and deeply sub-heavy approach to electronic music. The collaboration between Köner, a master of dark, haunting soundscapes, and Mellwig, a producer deeply ingrained in Berlin's techno scene, proved to be one of the most significant pairings of the decade. By blurring the lines between ambient texture and dancefloor-ready beats, \"Nautical Nuba\" achieves a sublime balance, grounding its abstract sound design in a steady, hypnotic pulse. This track is not merely a song, but an expansive sonic environment, inviting the listener to drift through a dark, submerged landscape of rhythm and noise that defines the very essence of early dub techno.",
+  "citations": [
+    {
+      "url": "https://www.allmusic.com/album/biokinetics-mw0000260832",
+      "title": "Biokinetics - Porter Ricks | Album - AllMusic"
+    },
+    {
+      "url": "https://www.discogs.com/release/653-Porter-Ricks-Biokinetics?srsltid=AfmBOoqPvzQOk4lzKcp1o6gYbo5iwqROOqT_vuvnMoBIQpYcS0WVTzaA",
+      "title": "Porter Ricks – Biokinetics - Discogs"
+    },
+    {
+      "url": "https://rateyourmusic.com/release/album/porter-ricks/biokinetics/",
+      "title": "Biokinetics by Porter Ricks (Album, Dub Techno) - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:10:18.593Z",
+  "mbid": "8a36b8cf-da89-4658-b4f4-00f930a0fad4",
+  "type": "track",
+  "editorial_teaser": "\"Nautical Nuba\" is a seminal track from the 1996 album \"Biokinetics\" by the German electronic duo Porter Ricks, comprising Thomas Köner and Andy Mellwig.",
+  "year": "1996",
+  "artists": [
+    {
+      "slug": "artist:porter-ricks",
+      "type": "artist",
+      "name": "Porter Ricks",
+      "mbid": "f2c0d29a-9bef-469f-af6e-a9b5deb21308"
+    }
+  ],
+  "project": {
+    "slug": "project:biokinetics",
+    "type": "project",
+    "name": "Biokinetics"
+  },
+  "label": {
+    "slug": "label:chain-reaction",
+    "type": "label",
+    "name": "Chain Reaction",
+    "mbid": "04ac00ca-847b-4d1c-8ea6-85cd7719e946"
+  },
+  "genres": [
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub techno",
+      "qid": "Q1262781"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient techno",
+      "qid": "Q9149801"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:thomas-koner",
+      "type": "artist",
+      "name": "Thomas Köner"
+    },
+    {
+      "slug": "artist:andy-mellwig",
+      "type": "artist",
+      "name": "Andy Mellwig"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

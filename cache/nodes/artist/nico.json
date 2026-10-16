@@ -57,7 +57,7 @@
   ],
   "discography": [
     {
-      "slug": "project:the-velvet-underground-and-nico--the-velvet-underground",
+      "slug": "project:the-velvet-underground-and-nico",
       "type": "project",
       "name": "The Velvet Underground & Nico"
     },
@@ -110,6 +110,5 @@
       "type": "artist",
       "name": "The Velvet Underground"
     }
-  ],
-  "similar_artists": []
+  ]
 }

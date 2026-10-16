@@ -1,0 +1,131 @@
+{
+  "slug": "project:c-est-chic",
+  "name": "C'est Chic",
+  "editorial_article": "Released in August 1978 on Atlantic Records, C'est Chic stands as the second studio album by the influential American band Chic. Recorded at the Power Station in New York City, the project represents the pinnacle of the group's commercial dominance during the late 1970s disco era. The album is perhaps most famous for containing the legendary smash hit \"Le Freak,\" a track that topped the Billboard Hot 100, R&B, and Club Play charts, eventually selling millions of copies and cementing Nile Rodgers and Bernard Edwards as master architects of modern dance music.\\n\\nMusically, C'est Chic defines the \"Chic sound\"—a precise, tight, and syncopated fusion of disco, funk, and R&B characterized by Rodgers' intricate rhythm guitar work and Edwards' iconic, melodic bass playing. Beyond its blockbuster lead single, the record features sophisticated arrangements on tracks like \"I Want Your Love,\" which further solidified the band's status as essential players in the international disco scene. The album was not only a commercial powerhouse, spending eleven weeks at the top of the Billboard R&B chart, but it also received critical acclaim for its polished production and rhythmic sophistication. In Europe, the album was initially issued with different artwork under the title Très Chic, featuring a modified tracklist that included \"Dance, Dance, Dance (Yowsah, Yowsah, Yowsah)\" from their debut. C'est Chic remains a landmark document of late 70s American popular music, embodying the elegance and rhythmic urgency that defined the genre at its zenith.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/C%27est_Chic",
+      "title": "C'est Chic - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:12:26.823Z",
+  "mbid": "db46b19c-0e97-30de-ba53-7e823104d14a",
+  "type": "project",
+  "editorial_pitch": "The second album by Chic, featuring their definitive hit \"Le Freak,\" captures the sophisticated funk-disco sound that defined the late 1970s.",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6f/C%27est_Chic_cover.jpg/250px-C%27est_Chic_cover.jpg",
+  "year": "1978",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:chic",
+      "type": "artist",
+      "name": "Chic",
+      "mbid": "a4ed036b-5f18-439c-b1e1-96d205bab255"
+    }
+  ],
+  "label": {
+    "slug": "label:atlantic-records",
+    "type": "label",
+    "name": "Atlantic Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco",
+      "qid": "Q58339"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B",
+      "qid": "Q45981"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:chic-cheer--chic",
+      "type": "track",
+      "name": "Chic Cheer",
+      "mbid": "55e10f6f-d042-4ca4-9fb6-0edce6190897",
+      "artist": "Chic"
+    },
+    {
+      "slug": "track:le-freak--chic",
+      "type": "track",
+      "name": "Le Freak",
+      "mbid": "57acbd93-8745-430e-9c35-4b4c20b3c5d8",
+      "artist": "Chic"
+    },
+    {
+      "slug": "track:savoir-faire--chic",
+      "type": "track",
+      "name": "Savoir Faire",
+      "mbid": "96e3e777-8ca7-4b88-8c72-dd73a4a5f2b4",
+      "artist": "Chic"
+    },
+    {
+      "slug": "track:happy-man--chic",
+      "type": "track",
+      "name": "Happy Man",
+      "mbid": "0e7fa423-26b8-4fd8-b129-ba05d7bd16cc",
+      "artist": "Chic"
+    },
+    {
+      "slug": "track:dance-dance-dance-yowsah-yowsah-yowsah--chic",
+      "type": "track",
+      "name": "Dance, Dance, Dance (Yowsah, Yowsah, Yowsah)",
+      "mbid": "5264a152-150d-47ff-a737-ce468ecc31fa",
+      "artist": "Chic"
+    },
+    {
+      "slug": "track:i-want-your-love--chic",
+      "type": "track",
+      "name": "I Want Your Love",
+      "mbid": "5c32b16a-5025-45c6-9e78-67b330a18dac",
+      "artist": "Chic"
+    },
+    {
+      "slug": "track:at-last-i-am-free--chic",
+      "type": "track",
+      "name": "At Last I Am Free",
+      "mbid": "a7b0ab4a-ae56-4a6b-ba16-450f1690b305",
+      "artist": "Chic"
+    },
+    {
+      "slug": "track:sometimes-you-win--chic",
+      "type": "track",
+      "name": "Sometimes You Win",
+      "mbid": "65352951-b869-460c-ab06-4a254445260d",
+      "artist": "Chic"
+    },
+    {
+      "slug": "track:everybody-dance--chic",
+      "type": "track",
+      "name": "Everybody Dance",
+      "mbid": "db8afd72-a7c6-4e75-8dd3-a339410e80b5",
+      "artist": "Chic"
+    },
+    {
+      "slug": "track:funny-bone--chic",
+      "type": "track",
+      "name": "(Funny) Bone",
+      "mbid": "3152c2b6-bac0-43c7-9fc8-7ba77029919e",
+      "artist": "Chic"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:nile-rodgers",
+      "type": "artist",
+      "name": "Nile Rodgers"
+    },
+    {
+      "slug": "artist:bernard-edwards",
+      "type": "artist",
+      "name": "Bernard Edwards"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

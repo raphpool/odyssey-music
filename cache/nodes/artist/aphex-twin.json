@@ -67,24 +67,24 @@
       "name": "Selected Ambient Works 85–92"
     },
     {
-      "slug": "project:i-care-because-you-do--aphex-twin",
+      "slug": "project:i-care-because-you-do",
       "type": "project",
       "name": "...I Care Because You Do"
     },
     {
-      "slug": "project:richard-d-james-album--aphex-twin",
+      "slug": "project:richard-d-james-album",
       "type": "project",
       "name": "Richard D. James Album"
     },
     {
-      "slug": "project:syro--aphex-twin",
+      "slug": "project:syro",
       "type": "project",
       "name": "Syro"
     }
   ],
   "notable_tracks": [
     {
-      "slug": "track:windowlicker--aphex-twin",
+      "slug": "track:windowlicker",
       "type": "track",
       "name": "Windowlicker"
     },
@@ -94,7 +94,7 @@
       "name": "Come to Daddy"
     },
     {
-      "slug": "track:xtal--aphex-twin",
+      "slug": "track:xtal",
       "type": "track",
       "name": "Xtal"
     },
@@ -127,6 +127,11 @@
       "slug": "artist:mike-paradinas",
       "type": "artist",
       "name": "Mike Paradinas"
+    },
+    {
+      "slug": "artist:michael-paradinas",
+      "type": "artist",
+      "name": "Michael Paradinas"
     }
   ],
   "aliases": [
@@ -156,6 +161,5 @@
       "name": "Richard D. James"
     }
   ],
-  "members": [],
-  "similar_artists": []
+  "members": []
 }

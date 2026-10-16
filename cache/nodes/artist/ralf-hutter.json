@@ -74,17 +74,17 @@
   ],
   "discography": [
     {
-      "slug": "project:autobahn--kraftwerk",
+      "slug": "project:autobahn",
       "type": "project",
       "name": "Autobahn"
     },
     {
-      "slug": "project:the-man-machine--kraftwerk",
+      "slug": "project:the-man-machine",
       "type": "project",
       "name": "The Man-Machine"
     },
     {
-      "slug": "project:computer-world--kraftwerk",
+      "slug": "project:computer-world",
       "type": "project",
       "name": "Computer World"
     },
@@ -96,7 +96,7 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:autobahn--kraftwerk",
+      "slug": "track:autobahn",
       "type": "track",
       "name": "Autobahn"
     },
@@ -106,7 +106,7 @@
       "name": "The Robots"
     },
     {
-      "slug": "track:the-model--kraftwerk",
+      "slug": "track:the-model",
       "type": "track",
       "name": "The Model"
     },

@@ -51,12 +51,12 @@
   ],
   "discography": [
     {
-      "slug": "project:init-ding--microstoria",
+      "slug": "project:init-ding",
       "type": "project",
       "name": "init ding"
     },
     {
-      "slug": "project:snd--microstoria",
+      "slug": "project:snd",
       "type": "project",
       "name": "_snd"
     },

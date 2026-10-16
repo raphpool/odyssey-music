@@ -164,6 +164,12 @@
       "name": "Angenor de Oliveira"
     }
   ],
-  "members": [],
+  "members": [
+    {
+      "slug": "artist:cartola",
+      "type": "artist",
+      "name": "Cartola"
+    }
+  ],
   "similar_artists": []
 }

@@ -1,0 +1,108 @@
+{
+  "slug": "project:nursery-cryme",
+  "name": "Nursery Cryme",
+  "editorial_article": "Nursery Cryme, released in November 1971 on Charisma Records, stands as a pivotal milestone in the history of progressive rock and the career of British band Genesis. As their third studio album, it represents a crucial creative pivot, marking the debut of the band's \"classic\" lineup with the additions of drummer Phil Collins and guitarist Steve Hackett. Replacing drummer John Mayhew and guitarist Anthony Phillips, Collins and Hackett brought a newfound technical dexterity and instrumental color that defined the band's sound throughout the 1970s. \\n\\nThe album is widely revered for its blend of intricate, symphonic arrangements and surreal, quintessentially British storytelling. It opens with the ambitious, ten-minute epic \"The Musical Box,\" a haunting tale of ghostly possession that became a signature live performance piece for frontman Peter Gabriel, who famously adorned theatrical costumes to portray its characters. Tracks like \"The Return of the Giant Hogweed\" demonstrate the band's burgeoning mastery of dynamic shifts, weaving complex, aggressive guitar passages by Hackett with the ornate keyboard textures of Tony Banks. \\n\\nBeyond its technical ambition, Nursery Cryme established the thematic landscape Genesis would explore for years: gothic fantasy, historical narratives, and quirky, character-driven studies like \"Harold the Barrel.\" While the album was not an immediate commercial smash upon its UK release, it secured the band a dedicated following and provided the essential groundwork for their subsequent artistic triumphs, *Foxtrot* and *Selling England by the Pound*. It remains a quintessential example of the symphonic prog subgenre, celebrated for its cohesive narrative depth, refined musicianship, and the perfect synthesis of acoustic delicacy and electric power.",
+  "citations": [
+    {
+      "url": "https://www.progarchives.com/album.asp?id=3",
+      "title": "GENESIS Nursery Cryme reviews - Prog Archives"
+    },
+    {
+      "url": "https://www.allmusic.com/album/nursery-cryme-mw0000193571",
+      "title": "Nursery Cryme - Genesis | Album - AllMusic"
+    },
+    {
+      "url": "https://ultimateclassicrock.com/genesis-nursery-cryme-album/",
+      "title": "How Genesis Began an Exciting New Era on 'Nursery Cryme'"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:53.252Z",
+  "_metrics": {
+    "input_tokens": 12565,
+    "output_tokens": 856,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004425,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 21185,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "mbid": "863a205e-07c3-3930-8561-a23045719466",
+  "type": "project",
+  "editorial_pitch": "Nursery Cryme is the landmark 1971 masterpiece that introduced the classic Genesis lineup, blending gothic storytelling with the complex, symphonic arrangements that defined progressive rock. It features the haunting epic \"The Musical Box\" and remains a essential touchstone for the band's early artistic evolution.",
+  "cover_url": "https://www.progarchives.com/progressive_rock_discography_covers/1/cover_183462112008.JPG",
+  "year": "1971",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:genesis",
+      "type": "artist",
+      "name": "Genesis",
+      "mbid": "8e3fcd7d-bda1-4ca0-b987-b8528d2ee74e"
+    }
+  ],
+  "label": {
+    "slug": "label:charisma-records",
+    "type": "label",
+    "name": "Charisma Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock",
+      "qid": "Q49451"
+    },
+    {
+      "slug": "genre:symphonic-prog",
+      "type": "genre",
+      "name": "Symphonic Prog",
+      "qid": "Q106621063"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:the-musical-box",
+      "type": "track",
+      "name": "The Musical Box"
+    },
+    {
+      "slug": "track:for-absent-friends",
+      "type": "track",
+      "name": "For Absent Friends"
+    },
+    {
+      "slug": "track:the-return-of-the-giant-hogweed",
+      "type": "track",
+      "name": "The Return of the Giant Hogweed"
+    },
+    {
+      "slug": "track:seven-stones",
+      "type": "track",
+      "name": "Seven Stones"
+    },
+    {
+      "slug": "track:harold-the-barrel",
+      "type": "track",
+      "name": "Harold the Barrel"
+    },
+    {
+      "slug": "track:harlequin",
+      "type": "track",
+      "name": "Harlequin"
+    },
+    {
+      "slug": "track:the-fountain-of-salmacis",
+      "type": "track",
+      "name": "The Fountain of Salmacis"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

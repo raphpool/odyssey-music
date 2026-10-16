@@ -124,6 +124,12 @@
       "name": "Pichuco"
     }
   ],
-  "members": [],
+  "members": [
+    {
+      "slug": "artist:anibal-troilo",
+      "type": "artist",
+      "name": "Aníbal Troilo"
+    }
+  ],
   "similar_artists": []
 }

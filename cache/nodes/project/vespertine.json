@@ -1,0 +1,146 @@
+{
+  "slug": "project:vespertine",
+  "name": "Vespertine",
+  "editorial_article": "Released in 2001, Björk's fourth full-length studio album *Vespertine* marked a radical departure from the club-ready, percussive intensity of its predecessor, *Homogenic*. Often described as a \"chamber-electronic\" or \"micro-beat\" masterpiece, the album is defined by its intimate, domestic scale and fragile, crystalline sonic landscape. Björk collaborated closely with the duo Matmos and harpist Zeena Parkins to craft intricate, stuttering beats sampled from everyday household sounds—ice crunching, shuffling cards, and whispers—which were then layered against lush, sweeping orchestral arrangements conducted by Vince Mendoza.\\n\\nLyrically and tonally, the album explores themes of solitude, eroticism, and the sanctity of the interior world. It feels like a private diary set to music, stripping away the extroverted bravado of pop stardom in favor of an ethereal, cocooned atmosphere. The presence of the choir and the delicate harp arrangements provide a human, organic warmth that anchors the skittering electronic manipulations. *Vespertine* remains a landmark release in the evolution of art pop, influential for its seamless integration of avant-garde composition with deeply accessible emotional songwriting. It redefined the possibilities of electronic music as a medium for intimate storytelling, cementing Björk’s status as a visionary artist willing to venture into the quietest, most vulnerable spaces of human experience. The record's legacy persists not just in its pioneering use of glitch aesthetics, but in its unwavering commitment to a singular, cohesive aesthetic vision that turns electronic production into something distinctly poetic.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/37082-Bj%C3%B6rk-Vespertine?srsltid=AfmBOoqEMtJtS2kLZIT3G7toUoj0GwXlSLLPMsZ39T9TOLg7f2uO4eAh",
+      "title": "Björk – Vespertine | Releases | Discogs"
+    },
+    {
+      "url": "https://rateyourmusic.com/release/album/bjork/vespertine-15/",
+      "title": "Vespertine by Björk (Album; One Little Indian) - Rate Your Music"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:47:44.526Z",
+  "_metrics": {
+    "input_tokens": 15211,
+    "output_tokens": 1113,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.005472,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 10606,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "mbid": "271faeb3-fdd1-3ebb-80aa-97b3116e9341",
+  "type": "project",
+  "editorial_pitch": "Vespertine is an intimate, chamber-electronic masterpiece where Björk weaves delicate orchestral arrangements with micro-beat glitch textures to explore themes of sanctuary, solitude, and domestic eroticism. It is a defining work of 2000s art pop that transformed the cold precision of electronics into a deeply vulnerable, organic sonic landscape.",
+  "cover_url": "https://i.discogs.com/HRcVkqkchF6wOI_BTY96hPPqzObjlLVrV7mnDnkOamg/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExNDA4/LTE1MjMxNDAyMjct/NTExNC5qcGVn.jpeg",
+  "year": "2001",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:bjork",
+      "type": "artist",
+      "name": "Björk",
+      "mbid": "87c5dedd-371d-4a53-9f7f-80522fb7f3cb"
+    }
+  ],
+  "label": {
+    "slug": "label:one-little-indian",
+    "type": "label",
+    "name": "One Little Indian"
+  },
+  "genres": [
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art Pop",
+      "qid": "Q25094849"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:glitch-pop",
+      "type": "genre",
+      "name": "Glitch Pop",
+      "qid": "Q106528422"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:hidden-place",
+      "type": "track",
+      "name": "Hidden Place"
+    },
+    {
+      "slug": "track:cocoon",
+      "type": "track",
+      "name": "Cocoon"
+    },
+    {
+      "slug": "track:it-s-not-up-to-you",
+      "type": "track",
+      "name": "It's Not Up To You"
+    },
+    {
+      "slug": "track:undo",
+      "type": "track",
+      "name": "Undo"
+    },
+    {
+      "slug": "track:pagan-poetry",
+      "type": "track",
+      "name": "Pagan Poetry"
+    },
+    {
+      "slug": "track:frosti",
+      "type": "track",
+      "name": "Frosti"
+    },
+    {
+      "slug": "track:aurora",
+      "type": "track",
+      "name": "Aurora"
+    },
+    {
+      "slug": "track:an-echo-a-stain",
+      "type": "track",
+      "name": "An Echo A Stain"
+    },
+    {
+      "slug": "track:sun-in-my-mouth",
+      "type": "track",
+      "name": "Sun In My Mouth"
+    },
+    {
+      "slug": "track:heirloom",
+      "type": "track",
+      "name": "Heirloom"
+    },
+    {
+      "slug": "track:harm-of-will",
+      "type": "track",
+      "name": "Harm Of Will"
+    },
+    {
+      "slug": "track:unison",
+      "type": "track",
+      "name": "Unison"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:bjork",
+      "type": "artist",
+      "name": "Björk"
+    },
+    {
+      "slug": "artist:matmos",
+      "type": "artist",
+      "name": "Matmos"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

@@ -11,7 +11,6 @@
   "materialized_at": "2026-05-13T12:55:37.529Z",
   "type": "genre",
   "editorial_definition": "A sub-genre of progressive rock distinguished by its heavy use of classical music motifs, lush keyboard-driven arrangements, and complex, long-form compositions that push the boundaries of traditional rock structure.",
-  "qid": "Q106621063",
   "era": "1969–1970s (primary peak), 1990s–present (revival)",
   "origin": "United Kingdom, Europe",
   "parent_genres": [
@@ -66,7 +65,7 @@
   "key_labels": [],
   "landmark_projects": [
     {
-      "slug": "project:close-to-the-edge--yes",
+      "slug": "project:close-to-the-edge",
       "type": "project",
       "name": "Close to the Edge"
     },
@@ -76,10 +75,11 @@
       "name": "Selling England by the Pound"
     },
     {
-      "slug": "project:in-the-court-of-the-crimson-king--king-crimson",
+      "slug": "project:in-the-court-of-the-crimson-king",
       "type": "project",
       "name": "In the Court of the Crimson King"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q106621063"
 }

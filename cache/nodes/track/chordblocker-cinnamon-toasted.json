@@ -1,0 +1,61 @@
+{
+  "slug": "track:chordblocker-cinnamon-toasted",
+  "name": "Chordblocker, Cinnamon Toasted",
+  "editorial_article": "\"Chordblocker, Cinnamon Toasted\" is a hyperactive, genre-bending track by the German electronic duo Mouse on Mars, featured as the second track on their 2012 album, *Parastrophics*. Released via Monkeytown Records, the piece serves as a prime example of the group’s return to a more frenetic, experimental sound following a lengthy hiatus. Featuring vocals by Steven Jo, the track is characteristic of the album’s \"kaleidoscopic\" approach, weaving together deconstructed trap sensibilities with unexpected elements like whistling and Hawaiian-inspired guitars. \\n\\nCritics often point to \"Chordblocker, Cinnamon Toasted\" as a microcosm of the entire *Parastrophics* project, which frequently challenges the boundaries of genre, blending dub, drum and bass, disco, and IDM into a cohesive, if volatile, sonic landscape. The track is notable for its playful and almost mischievous production—a hallmark of Jan St. Werner and Andi Toma’s long-running collaboration. Its whimsical, genre-agnostic nature situates it comfortably within the broader electronic output of the early 2010s, where traditional structures were increasingly being subverted by artists looking to push the boundaries of pop, dance, and avant-garde music. It remains a testament to Mouse on Mars' ability to retain their status as influential, unpredictable figures in the electronic scene decades into their career. The track is part of the extensive discography of Mouse on Mars, a duo that has helped define the sound of IDM since their 1994 debut *Vulvaland*. This track, alongside others on the record, showcases their evolution from ambient pop pioneers into the chaotic, avant-garde style that defined their 2010s output. The song continues to be referenced as an essential piece of their complex, high-energy sonic puzzle. Mouse on Mars is known for their work within the broader German electronic community, having influenced countless artists in the IDM and experimental scenes. The track itself reflects the diverse influences of its members, Jan St. Werner and Andi Toma, whose work has spanned from ambient to industrial and beyond. Throughout their career, they have collaborated with various artists, such as Dodo Nkishi, who also features prominently on this album, helping to round out the eclectic sound that is emblematic of their label, Monkeytown Records.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/release/album/mouse-on-mars/parastrophics/reviews/1/",
+      "title": "Reviews of Parastrophics by Mouse on Mars (Album, IDM) - Rate Your Music"
+    },
+    {
+      "url": "https://www.godisinthetvzine.co.uk/2012/01/23/mouse-on-mars-trail-new-album-with-album-track-chrodblocker-cinnamon-toasted/",
+      "title": "Mouse On Mars Trail New Album With Album Track 'Chrodblocker ..."
+    }
+  ],
+  "materialized_at": "2026-05-13T13:00:43.721Z",
+  "mbid": "49a16729-6f55-42aa-b874-a01b90b9d0ac",
+  "type": "track",
+  "editorial_teaser": "\"Chordblocker, Cinnamon Toasted\" is a hyperactive, genre-bending track by the German electronic duo Mouse on Mars, featured as the second track on their 2012 album, *Parastrophics*.",
+  "year": "2012",
+  "artists": [
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars",
+      "mbid": "4d4f5d92-0589-42fa-bc0e-1bd73e17a2ce"
+    }
+  ],
+  "project": {
+    "slug": "project:parastrophics",
+    "type": "project",
+    "name": "Parastrophics"
+  },
+  "label": {
+    "slug": "label:monkeytown-records",
+    "type": "label",
+    "name": "Monkeytown Records",
+    "mbid": "dd5e9af0-a9bb-4e11-9c57-5921c8838945"
+  },
+  "genres": [],
+  "producers": [
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars"
+    },
+    {
+      "slug": "artist:jan-st-werner",
+      "type": "artist",
+      "name": "Jan St. Werner"
+    },
+    {
+      "slug": "artist:andi-toma",
+      "type": "artist",
+      "name": "Andi Toma"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

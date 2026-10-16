@@ -1,0 +1,53 @@
+{
+  "slug": "track:that-s-interesting",
+  "name": "That's Interesting",
+  "editorial_article": "\"That's Interesting\" is a collaborative Afrobeats track by Nigerian artist Dr. SID, featuring production and vocals by the prolific Mavin Records label head, Don Jazzy. Released as a standout track on Dr. SID’s \"The Interesting EP\" in the early 2020s, the song serves as a prime example of the infectious, rhythm-driven sound that has come to define contemporary Nigerian popular music. \n\nThe track is constructed around a crisp, minimalist percussion foundation, characteristic of the polished production style Don Jazzy has honed throughout his career. Dr. SID, known for his charismatic delivery and smooth vocal performance, brings a melodic sensibility that bridges the gap between R&B influences and the high-energy demands of the Afrobeats dancefloor. Lyrically, the song plays with the playful, observational cadence hinted at in its title, creating a hook-heavy atmosphere that emphasizes groove and accessibility.\n\nAs a collaborative effort between one of Nigeria's most enduring hitmakers and a label boss who has shaped the careers of some of the genre's biggest stars, \"That's Interesting\" highlights the synergy inherent in the Mavin Records ecosystem. It stands as a testament to the label's ability to create music that remains grounded in regional percussive traditions while aiming for the global pop sensibilities that have fueled the massive international rise of Afrobeats. The track is not merely a song but a piece of the evolving narrative of Nigerian urban music, showcasing the seamless interplay between performance and high-fidelity, studio-focused production.",
+  "citations": [
+    {
+      "url": "https://www.youtube.com/watch?v=_JldRGH8eTI",
+      "title": "Dr Sid Ft Don Jazzy That's Interesting (Out Now) - YouTube"
+    },
+    {
+      "url": "https://www.jiosaavn.com/lyrics/thats-interesting-lyrics/KQ0Yfh95XF4",
+      "title": "That's Interesting Lyrics - JioSaavn"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:19:19.208Z",
+  "type": "track",
+  "editorial_teaser": "A collaborative, rhythm-driven Afrobeats track by Dr. SID featuring Don Jazzy, representing the polished, hook-heavy production style of the Mavin Records label.",
+  "artists": [
+    {
+      "slug": "artist:dr-sid",
+      "type": "artist",
+      "name": "Dr SID"
+    },
+    {
+      "slug": "artist:don-jazzy",
+      "type": "artist",
+      "name": "Don Jazzy"
+    }
+  ],
+  "project": {
+    "slug": "project:the-interesting-ep",
+    "type": "project",
+    "name": "The Interesting EP"
+  },
+  "genres": [
+    {
+      "slug": "genre:afrobeats",
+      "type": "genre",
+      "name": "Afrobeats",
+      "qid": "Q25099840"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:don-jazzy",
+      "type": "artist",
+      "name": "Don Jazzy"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

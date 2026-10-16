@@ -1,0 +1,65 @@
+{
+  "slug": "track:windowlicker",
+  "name": "Windowlicker",
+  "editorial_article": "\"Windowlicker,\" released in 1999, stands as one of the most significant and recognizable tracks in the discography of Richard D. James, operating under his Aphex Twin moniker. As an artist who frequently pushed the boundaries of electronic music—from the abrasive, drill-and-bass franticism of his earlier work to the ambient soundscapes of his albums—\"Windowlicker\" marked a shift toward something both more accessible and deeply unsettling. The track is built on a haunting, distorted melodic motif, layered with James’s own voice, which he pitch-shifts and processes to create a disorienting, near-hallucinatory vocal presence. \\n\\nThe composition is famous for its intricate, shifting rhythmic structure, which evolves from a steady, danceable groove into increasingly complex, chopped-and-screwed percussion patterns that demand the listener's attention. Beyond its sonic innovations, the track is defined by its iconic promotional campaign, particularly the music video directed by Chris Cunningham. The video, which features James's face superimposed onto the bodies of models, serves as a surrealist parody of the tropes found in late-90s hip-hop music videos. This thematic preoccupation with the manipulation of identity and the human form is a persistent thread in Aphex Twin's art. Furthermore, the track holds a technical legacy, most notably for the hidden spiral image embedded into the final seconds of the audio file, discoverable only through a spectrogram—a testament to James's penchant for hidden, cryptic details. As a cultural marker, \"Windowlicker\" was not merely a commercial success; it became an anthem of the era's electronic experimentalism, securing the adoration of both the underground scene and mainstream music press like NME, while continuing to influence producers across genres.",
+  "citations": [
+    {
+      "url": "https://www.songfacts.com/facts/aphex-twin/windowlicker",
+      "title": "Windowlicker by Aphex Twin - Songfacts"
+    },
+    {
+      "url": "https://aphextwin.bandcamp.com/album/windowlicker",
+      "title": "Windowlicker | Aphex Twin - Bandcamp"
+    },
+    {
+      "url": "https://readdork.com/track/aphex-twin-windowlicker-1999",
+      "title": "Aphex Twin – Windowlicker (1999) | Track profile | Dork"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:35:59.733Z",
+  "type": "track",
+  "editorial_teaser": "\"Windowlicker,\" released in 1999, stands as one of the most significant and recognizable tracks in the discography of Richard D.",
+  "year": "1999",
+  "artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "project": {
+    "slug": "project:windowlicker",
+    "type": "project",
+    "name": "Windowlicker"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic",
+      "qid": "Q105763581"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

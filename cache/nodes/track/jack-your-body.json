@@ -1,0 +1,51 @@
+{
+  "slug": "track:jack-your-body",
+  "name": "Jack Your Body",
+  "editorial_article": "\"Jack Your Body,\" released in 1986 by Chicago producer Steve \"Silk\" Hurley, stands as one of the definitive landmarks in the history of house music. A raw, minimal, and relentlessly percussive track, it encapsulates the pioneering spirit of the Chicago house scene, deriving its name from \"jacking,\" an ecstatic dance style that had emerged in the city's nightlife during the early 1980s. Built around a Roland drum machine—specifically utilizing the signature punchy kick of the Roland 909—and punctuated by simple, repetitive vocal exhortations, the track was essentially alien to the polished pop and disco landscapes of the time. It eschewed traditional melodic hooks in favor of an electronic, percussive drive that helped catalyze the acid house revolution that would soon engulf Europe. Its success is legendary, particularly in the United Kingdom, where it became the first house track to reach number one on the UK Singles Chart in January 1987. Remarkably, its ascent was largely organic; Hurley was unaware of the track's massive popularity in the UK while he was focused on other production work in Chicago, having initially assumed the \"number one\" status referred to a specialty dance chart. The song’s chart dominance was further historicized by the fact that it achieved its position primarily through 12-inch single sales, effectively bypassing the constraints of the era's chart-eligibility rules. Beyond the charts, \"Jack Your Body\" remains a testament to the transformative power of minimalist, machine-driven music. It has been frequently remixed and re-released over the decades, continuing to influence generations of electronic producers who look to its \"old skool\" sampling and uncompromising production as a foundational blueprint for club music. As one of the earliest house records to break into the mainstream consciousness, it serves as a critical bridge between the underground labs of Chicago and the global explosion of electronic dance music. The track represents the raw energy of the mid-80s Chicago club scene and the innovative, machine-focused production techniques that would eventually define decades of dance music production worldwide. It stands as a pivotal moment in cultural history, shifting how pop and dance music were produced, consumed, and marketed, ultimately cementing Hurley's legacy in the canon of electronic music icons. This is not just a song; it is a movement encapsulated in a drum machine pattern, a moment where the sound of the future of dance music became undeniable to the world. It is a testament to the fact that minimal, underground art can find its way into the absolute heart of mainstream culture. It remains an essential artifact for any historian of electronic dance music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Jack_Your_Body",
+      "title": "Jack Your Body - Wikipedia"
+    },
+    {
+      "url": "https://www.discogs.com/master/40458-Steve-Silk-Hurley-Jack-Your-Body?srsltid=AfmBOopPKx00JJpOB76vBTstqhR677tdCfcGKqVDXmeCbSPfpHUzGMLZ",
+      "title": "Steve \\\"Silk\\\" Hurley – Jack Your Body | Releases"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:14:02.701Z",
+  "type": "track",
+  "editorial_teaser": "A landmark 1986 Chicago house track that made history as the first house record to top the UK Singles Chart, driven by a raw, minimalist, Roland-909-centered production.",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/7/77/Jackyourbody.jpg",
+  "year": "1986",
+  "duration": "6:50",
+  "artists": [
+    {
+      "slug": "artist:steve-silk-hurley",
+      "type": "artist",
+      "name": "Steve \"Silk\" Hurley"
+    }
+  ],
+  "project": {
+    "slug": "project:hold-on-to-your-dream",
+    "type": "project",
+    "name": "Hold on to Your Dream"
+  },
+  "genres": [
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago house",
+      "qid": "Q1071961"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:steve-silk-hurley",
+      "type": "artist",
+      "name": "Steve \"Silk\" Hurley"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

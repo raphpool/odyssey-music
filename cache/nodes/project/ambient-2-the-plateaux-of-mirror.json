@@ -49,7 +49,7 @@
       "name": "Steal Away"
     },
     {
-      "slug": "track:the-plateaux-of-mirror--brian-eno",
+      "slug": "track:the-plateaux-of-mirror",
       "type": "track",
       "name": "The Plateaux of Mirror"
     },
@@ -64,12 +64,12 @@
       "name": "An Arc of Doves"
     },
     {
-      "slug": "track:not-yet-remembered--brian-eno",
+      "slug": "track:not-yet-remembered",
       "type": "track",
       "name": "Not Yet Remembered"
     },
     {
-      "slug": "track:the-white-arcades--harold-budd",
+      "slug": "track:the-white-arcades",
       "type": "track",
       "name": "The White Arcades"
     },
@@ -96,10 +96,9 @@
       "name": "Brian Eno"
     }
   ],
-  "personnel": [],
   "related_projects": [
     {
-      "slug": "project:ambient-1-music-for-airports--brian-eno",
+      "slug": "project:ambient-1-music-for-airports",
       "type": "project",
       "name": "Ambient 1: Music for Airports"
     },

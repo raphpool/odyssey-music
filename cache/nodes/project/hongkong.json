@@ -1,0 +1,70 @@
+{
+  "slug": "project:hongkong",
+  "name": "Hongkong",
+  "editorial_article": "*Hongkong* is a seminal electronic music album by the project Monolake, released in 1997. Often cited as a defining work of the \"Basic Channel sound\" or Berlin minimal techno, the record is celebrated for its intricate sound design, deep sense of atmosphere, and masterful use of field recordings. Rather than relying on standard loop-based techno formulas, Robert Henke and Gerhard Behles—the duo behind Monolake at the time—crafted an immersive sonic landscape that reflected the texture of urban environments, specifically evoking the frenetic yet rhythmic pulse of the city that gave the album its name.\\n\\nTechnically groundbreaking, *Hongkong* bridged the gap between avant-garde experimentalism and dancefloor-oriented club music. The production utilizes custom software and hardware techniques that Henke would later further develop through the creation of Ableton Live, which he co-founded. Tracks like \"Mass Transit Railway\" are frequently highlighted for their ability to transform mundane field recordings into profound, resonant textures, creating a rhythmic architecture that feels both organic and machine-made. For many, *Hongkong* remains a benchmark for dub techno, influential for its patience, spatial awareness, and its legacy as an early masterclass in the intersection of digital sound synthesis and club-centric groove. It continues to be revisited by listeners decades later, praised for its enduring depth and its ability to maintain a freshness that rarely fades. It remains a essential piece of the electronic canon.",
+  "citations": [
+    {
+      "url": "https://roberthenke.bandcamp.com/album/hongkong-2",
+      "title": "Hongkong | Monolake | Robert Henke / monolake"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:46:22.061Z",
+  "mbid": "31e04335-1726-3593-b4af-0ac858df5506",
+  "type": "project",
+  "editorial_pitch": "A foundational masterwork of 90s Berlin techno, Monolake's 'Hongkong' is an immersive, texture-heavy album that remains a definitive example of deep, experimental dub techno.",
+  "cover_url": "https://f4.bcbits.com/img/a1007333474_10.jpg",
+  "year": "1997",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:monolake",
+      "type": "artist",
+      "name": "Monolake",
+      "mbid": "cedf92fe-eba1-45e2-ba16-b1b6af5169b8"
+    }
+  ],
+  "label": {
+    "slug": "label:chain-reaction",
+    "type": "label",
+    "name": "Chain Reaction"
+  },
+  "genres": [
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub Techno",
+      "qid": "Q1262781"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:lantau",
+      "type": "track",
+      "name": "Lantau"
+    },
+    {
+      "slug": "track:mass-transit-railway",
+      "type": "track",
+      "name": "Mass Transit Railway"
+    },
+    {
+      "slug": "track:occam",
+      "type": "track",
+      "name": "Occam"
+    },
+    {
+      "slug": "track:arte",
+      "type": "track",
+      "name": "Arte"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

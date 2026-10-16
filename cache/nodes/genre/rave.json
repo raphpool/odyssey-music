@@ -26,7 +26,6 @@
   },
   "type": "genre",
   "editorial_definition": "Rave is an umbrella term for a diverse and high-energy style of electronic dance music that emerged in the late 1980s, defined by its origins in underground warehouse parties and its influence on global EDM culture.",
-  "qid": "Q898709",
   "era": "1988–1999",
   "origin": "United Kingdom",
   "parent_genres": [
@@ -129,7 +128,7 @@
       "name": "Experience"
     },
     {
-      "slug": "project:dubnobasswithmyheadman--underworld",
+      "slug": "project:dubnobasswithmyheadman",
       "type": "project",
       "name": "Dubnobasswithmyheadman"
     }
@@ -145,5 +144,6 @@
       "type": "track",
       "name": "Born Slippy"
     }
-  ]
+  ],
+  "qid": "Q898709"
 }

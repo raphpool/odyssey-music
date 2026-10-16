@@ -47,7 +47,7 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:kind-of-blue--miles-davis",
+      "slug": "project:kind-of-blue",
       "type": "project",
       "name": "Kind of Blue"
     },
@@ -57,7 +57,7 @@
       "name": "Highway 61 Revisited"
     },
     {
-      "slug": "project:born-to-run--bruce-springsteen",
+      "slug": "project:born-to-run",
       "type": "project",
       "name": "Born to Run"
     }

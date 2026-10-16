@@ -21,12 +21,12 @@
   "genres": [],
   "tracklist": [
     {
-      "slug": "track:silent-witness--ub40",
+      "slug": "track:silent-witness",
       "type": "track",
       "name": "Silent Witness"
     },
     {
-      "slug": "track:el-spirito--dfrnt",
+      "slug": "track:el-spirito",
       "type": "track",
       "name": "El Spirito"
     },
@@ -36,7 +36,7 @@
       "name": "Everyone Is Moving"
     },
     {
-      "slug": "track:that-s-interesting--dr-sid",
+      "slug": "track:that-s-interesting",
       "type": "track",
       "name": "That's Interesting"
     },
@@ -51,7 +51,7 @@
       "name": "Prism"
     },
     {
-      "slug": "track:cruise--florida-georgia-line",
+      "slug": "track:cruise",
       "type": "track",
       "name": "Cruise"
     },
@@ -71,7 +71,7 @@
       "name": "Our Little Secret"
     },
     {
-      "slug": "track:suspended-in-the-deep--dfrnt",
+      "slug": "track:suspended-in-the-deep",
       "type": "track",
       "name": "Suspended In The Deep"
     }
@@ -83,6 +83,5 @@
       "name": "DFRNT"
     }
   ],
-  "personnel": [],
   "related_projects": []
 }

@@ -1,0 +1,126 @@
+{
+  "slug": "project:vlsi",
+  "name": "VLSI",
+  "editorial_article": "VLSI is a landmark studio album by electronic project Monolake, released in 2016 through Imbalance Computer Music. The project serves as both a technical exploration of sonic archeology and a socio-political commentary on the pervasive influence of the tech industry. Produced by Robert Henke, the album emerged from research conducted during a residency at Stanford University’s Center for Research in Music and Acoustics (CCRMA). Its title references the 1970s technological breakthrough of Very Large Scale Integration, which enabled the mass production of microprocessors and, by extension, the birth of the digital instruments that define much of modern electronic music.\\n\\nMusically, VLSI functions as an excavation of the digital past. Henke utilizes a vast array of vintage synthesizers, drum machines, and samplers from the 1980s—including the E-mu SP-12, Synclavier II, and Yamaha DX7—re-contextualizing their distinct, limited, and \"dirty\" timbres within a modern, highly refined production framework. The album synthesizes influences from academic computer music, early techno, UK breakbeat, and dubstep, resulting in a soundscape that is at once minimalist, structural, and heavy with a deliberate dystopian undercurrent. VLSI stands as the definitive culmination of a six-EP cycle released by Henke between 2014 and 2016, refined and expanded to reflect on the modern era of high-tech corporatization. The album’s aesthetic is completed by its cover art, which draws directly from seminal 1979 literature on integrated circuit design, grounding the project’s futuristic sonics in the foundational history of computer engineering.",
+  "citations": [
+    {
+      "url": "https://roberthenke.com/releases/ml-032.html",
+      "title": "Monolake - VLSI"
+    },
+    {
+      "url": "https://rateyourmusic.com/release/album/monolake/vlsi/",
+      "title": "VLSI by Monolake (Album, IDM): Reviews, Ratings, Credits, Song list"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:08:50.005Z",
+  "mbid": "548c1d30-722b-4c2e-a28f-f96c077fd48d",
+  "type": "project",
+  "editorial_pitch": "Monolake’s 2016 album VLSI is a masterclass in 'sonic archeology,' re-imagining the artifacts of 1980s digital synthesis through a modern lens of techno and glitch-inflected sound design. Produced by Robert Henke, it serves as a profound, dystopian reflection on the technological age.",
+  "cover_url": "https://roberthenke.com/files_images/music/records/ml-032-1-900.jpeg",
+  "year": "2016",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:monolake",
+      "type": "artist",
+      "name": "Monolake",
+      "mbid": "cedf92fe-eba1-45e2-ba16-b1b6af5169b8"
+    }
+  ],
+  "label": {
+    "slug": "label:imbalance-computer-music",
+    "type": "label",
+    "name": "Imbalance Computer Music"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:techno",
+      "type": "genre",
+      "name": "Techno",
+      "qid": "Q170611"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:arit",
+      "type": "track",
+      "name": "Arit"
+    },
+    {
+      "slug": "track:inwards",
+      "type": "track",
+      "name": "Inwards"
+    },
+    {
+      "slug": "track:crash",
+      "type": "track",
+      "name": "Crash"
+    },
+    {
+      "slug": "track:logc",
+      "type": "track",
+      "name": "LogC"
+    },
+    {
+      "slug": "track:geometry-engine",
+      "type": "track",
+      "name": "Geometry Engine"
+    },
+    {
+      "slug": "track:pio",
+      "type": "track",
+      "name": "Pio"
+    },
+    {
+      "slug": "track:error",
+      "type": "track",
+      "name": "Error"
+    },
+    {
+      "slug": "track:dystopia",
+      "type": "track",
+      "name": "Dystopia"
+    },
+    {
+      "slug": "track:unit",
+      "type": "track",
+      "name": "Unit"
+    },
+    {
+      "slug": "track:nmos",
+      "type": "track",
+      "name": "Nmos"
+    },
+    {
+      "slug": "track:glypnir",
+      "type": "track",
+      "name": "Glypnir"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:robert-henke",
+      "type": "artist",
+      "name": "Robert Henke"
+    },
+    {
+      "slug": "artist:electric-indigo",
+      "type": "artist",
+      "name": "Electric Indigo"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

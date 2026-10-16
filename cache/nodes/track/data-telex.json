@@ -1,0 +1,49 @@
+{
+  "slug": "track:data-telex",
+  "name": "data.telex",
+  "editorial_article": "\"data.telex\" is the thirteenth track from the critically acclaimed 2005 album *Dataplex* by Japanese electronic musician and visual artist Ryoji Ikeda. Known for his rigorous approach to minimalist electronic music and his deep exploration of the physical properties of sound, Ikeda utilizes *Dataplex* to investigate the relationships between data, noise, and rhythm. As a short, precise piece lasting just over one minute, \"data.telex\" embodies the stark, clinical aesthetic that defines Ikeda's *Dataplex* era, where sonic structures are reduced to their fundamental mathematical and digital components. \\n\\nThe track functions as an integral moment in the wider conceptual framework of the album, contributing to a broader study of binary systems and information transmission. Ikeda’s work is characterized by the use of sine tones, white noise, and rapid-fire glitch elements, often pushing the limits of frequency perception and stereo separation. Like much of his output from this period, \"data.telex\" strips away traditional melodic and harmonic structures, focusing instead on the texture and micro-rhythmic precision of synthesized sounds. By titling the album's tracks with variations on the suffix \"-plex,\" Ikeda reinforces the album's status as a data-driven entity, with \"data.telex\" serving as one of many modular, interconnected blocks of digital sound that construct the album’s overarching sonic landscape. His ability to render cold, computational data into a visceral, immersive listening experience remains a landmark achievement in 21st-century electronic music.",
+  "citations": [
+    {
+      "url": "https://www.albumoftheyear.org/song/135656-datatelex/",
+      "title": "Ryoji Ikeda - Data.telex - Song Ratings - Album of the Year"
+    },
+    {
+      "url": "https://open.spotify.com/track/1bonkPspqCDKlyyyk5xhmb",
+      "title": "Data.Telex - song and lyrics by Ryoji Ikeda | Spotify"
+    },
+    {
+      "url": "https://www.besteveralbums.com/thechart.php?t=319358",
+      "title": "Data.Telex (track) by Ryoji Ikeda : Best Ever Albums"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:57:42.061Z",
+  "mbid": "0e9a6617-7c5b-44ec-9204-0eb236117a0e",
+  "type": "track",
+  "editorial_teaser": "\"data.telex\" is the thirteenth track from the critically acclaimed 2005 album *Dataplex* by Japanese electronic musician and visual artist Ryoji Ikeda.",
+  "year": "2005",
+  "artists": [
+    {
+      "slug": "artist:ryoji-ikeda",
+      "type": "artist",
+      "name": "Ryoji Ikeda",
+      "mbid": "bba24968-a575-4b38-8c38-06f7ab6de8c8"
+    }
+  ],
+  "project": {
+    "slug": "project:dataplex",
+    "type": "project",
+    "name": "Dataplex"
+  },
+  "label": {
+    "slug": "label:raster-noton",
+    "type": "label",
+    "name": "Raster‐Noton",
+    "mbid": "6f4640eb-0881-40b4-a9ac-2a68ad3af0ca"
+  },
+  "genres": [],
+  "producers": [],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

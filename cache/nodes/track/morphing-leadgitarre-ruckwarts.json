@@ -1,0 +1,43 @@
+{
+  "slug": "track:morphing-leadgitarre-ruckwarts",
+  "name": "Morphing Leadgitarre Rückwärts",
+  "editorial_article": "Die Morphing Leadgitarre Rückwärts ist ein technisches und musikalisches Experiment, das im Kontext der Beatles-Produktionen der 1960er Jahre steht. Während dieser Ära nutzten die Beatles innovative Aufnahmetechniken, um ihre Klangpalette zu erweitern, wobei das Rückwärtsabspielen von Tonbändern eine zentrale Rolle spielte. Diese Technik, bei der eine Leadgitarre aufgenommen und anschließend in umgekehrter Richtung wiedergegeben wurde, erzeugte einen charakteristischen, morphing-artigen Effekt, der den Sound der Band maßgeblich prägte. Die experimentelle Natur dieser Aufnahmen spiegelt den kreativen Prozess wider, der zwischen 1963 und 1968 stattfand, als die Band ihre Alben sowohl in Mono als auch in Stereo veröffentlichte und dabei ständig neue klangliche Möglichkeiten innerhalb der Musikproduktion auslotete.",
+  "citations": [
+    {
+      "url": "https://daniel-reisinger.at/wp-content/uploads/2019/10/Reisinger_Daniel_Beatles_Mono_Stereo_Musikwissenschaft_Masterarbeit.pdf",
+      "title": "The Beatles in Mono und Stereo. - Daniel Reisinger"
+    },
+    {
+      "url": "https://www.yumpu.com/de/document/view/55624320/debug-174",
+      "title": "De:Bug 174 - YUMPU"
+    }
+  ],
+  "materialized_at": "2026-05-13T15:08:35.851Z",
+  "type": "track",
+  "editorial_teaser": "Ein experimenteller Soundeffekt der 1960er Jahre, der durch das Rückwärtsabspielen von Leadgitarrenaufnahmen innerhalb der Beatles-Produktionen bekannt wurde.",
+  "year": "1966",
+  "artists": [
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles"
+    }
+  ],
+  "project": {
+    "slug": "project:revolver",
+    "type": "project",
+    "name": "Revolver"
+  },
+  "genres": [
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic Rock",
+      "qid": "Q206159"
+    }
+  ],
+  "producers": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

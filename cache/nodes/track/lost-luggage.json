@@ -1,0 +1,58 @@
+{
+  "slug": "track:lost-luggage",
+  "name": "Lost Luggage",
+  "editorial_article": "\"Lost Luggage\" is the titular centerpiece of the 2023 EP by Georgian electronic producer Anushka Chkheidze. Released on September 29, 2023, the track serves as a poignant, atmospheric reflection on themes of displacement, transition, and nostalgia. Chkheidze, who is a prominent figure in the contemporary electronic scene of Tbilisi, composed the EP during a period of movement between her home and new environments, specifically in Utrecht. The track encapsulates the sonic identity for which she has become known: a delicate, immersive blend of ambient textures and IDM-inflected rhythm work that evokes a sense of deep, personal space.\\n\\nClocking in at seven minutes and twenty seconds, the composition unfolds with the patience characteristic of Chkheidze's work. It avoids the frantic energy often associated with IDM, opting instead for a textured, soundscape-driven approach that emphasizes mood over kineticism. The track's title functions as both a literal and metaphorical container for the emotions surrounding travel—the lingering memories of people and places left behind, and the physical reality of moving one's life from one geography to another. By centering the EP around this narrative, Chkheidze crafts an intimate listening experience that resonates with listeners familiar with the transient nature of modern life. Her production, mastered by Giorgi Koridze, ensures that the layers of synthesize pads and subtle percussive pulses retain a pristine, ethereal quality, further establishing Chkheidze as a significant voice in the international experimental electronic community. The EP's overall reception highlights her ability to translate abstract personal experiences into a cohesive, evocative sonic language.",
+  "citations": [
+    {
+      "url": "https://chkheidzeanushka.bandcamp.com/album/lost-luggage",
+      "title": "Lost Luggage | Anushka Chkheidze"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:42:18.816Z",
+  "type": "track",
+  "editorial_teaser": "\"Lost Luggage\" is the titular centerpiece of the 2023 EP by Georgian electronic producer Anushka Chkheidze.",
+  "year": "2023",
+  "duration": "07:20",
+  "artists": [
+    {
+      "slug": "artist:anushka-chkheidze",
+      "type": "artist",
+      "name": "Anushka Chkheidze"
+    }
+  ],
+  "project": {
+    "slug": "project:lost-luggage",
+    "type": "project",
+    "name": "Lost Luggage"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:anushka-chkheidze",
+      "type": "artist",
+      "name": "Anushka Chkheidze"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

@@ -36,17 +36,6 @@
       "type": "genre",
       "name": "Minimal techno",
       "qid": "Q1430587"
-    },
-    {
-      "slug": "genre:dubtronic",
-      "type": "genre",
-      "name": "Dubtronic"
-    },
-    {
-      "slug": "genre:electronic",
-      "type": "genre",
-      "name": "Electronic",
-      "qid": "Q9778"
     }
   ],
   "labels": [
@@ -64,11 +53,6 @@
       "slug": "label:matador-records",
       "type": "label",
       "name": "Matador Records"
-    },
-    {
-      "slug": "label:pole",
-      "type": "label",
-      "name": "Pole"
     }
   ],
   "discography": [
@@ -93,39 +77,21 @@
       "name": "Fading"
     },
     {
-      "slug": "project:tempus--pole",
+      "slug": "project:tempus",
       "type": "project",
-      "name": "Tempus",
-      "artist": "Pole"
+      "name": "Tempus"
     }
   ],
   "notable_tracks": [
     {
-      "slug": "track:raum--pole",
+      "slug": "track:raum",
       "type": "track",
-      "name": "Raum",
-      "artist": "Pole"
+      "name": "Raum"
     },
     {
       "slug": "track:stechmuck",
       "type": "track",
       "name": "Stechmück"
-    },
-    {
-      "slug": "track:1",
-      "type": "track",
-      "name": "1"
-    },
-    {
-      "slug": "track:2",
-      "type": "track",
-      "name": "2"
-    },
-    {
-      "slug": "track:3--pole",
-      "type": "track",
-      "name": "3",
-      "artist": "Pole"
     }
   ],
   "influences": [],

@@ -15,7 +15,6 @@
   "materialized_at": "2026-05-13T12:58:45.729Z",
   "type": "genre",
   "editorial_definition": "A broad rock music movement that emerged from the 1980s underground, defined by its rejection of mainstream classic rock tropes and characterized by distorted guitars, a DIY ethos, and themes of generational discontent.",
-  "qid": "Q11366",
   "era": "1980s–1990s",
   "origin": "United States and United Kingdom",
   "parent_genres": [],
@@ -97,12 +96,12 @@
   ],
   "landmark_projects": [
     {
-      "slug": "project:nevermind--nirvana",
+      "slug": "project:nevermind",
       "type": "project",
       "name": "Nevermind"
     },
     {
-      "slug": "project:murmur--r-e-m",
+      "slug": "project:murmur",
       "type": "project",
       "name": "Murmur"
     },
@@ -123,5 +122,6 @@
       "type": "track",
       "name": "Smells Like Teen Spirit"
     }
-  ]
+  ],
+  "qid": "Q11366"
 }

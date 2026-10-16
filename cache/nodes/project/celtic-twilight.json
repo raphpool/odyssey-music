@@ -1,0 +1,134 @@
+{
+  "slug": "project:celtic-twilight",
+  "name": "Celtic Twilight",
+  "editorial_article": "*Celtic Twilight* (1994) stands as the inaugural release in a seminal series of compilation albums curated by the ambient and new age label Hearts of Space Records. Emerging during the height of the new age boom in the early 1990s, the collection serves as a definitive sonic gateway into the label's signature aesthetic—a seamless blend of traditional Celtic instrumentation, atmospheric synthesizer textures, and introspective, contemplative arrangements. By gathering tracks from key artists within their stable, such as Bill Douglas, Mychael Danna, and Loreena McKennitt, the project captured a specific cultural moment where neo-Celtic music found a significant audience within the global ambient and world music markets.\\n\\nThe album's thematic focus on the \"twilight\"—that liminal space between day and night, myth and reality—anchored its broad commercial appeal, positioning it as an ideal soundtrack for relaxation, meditation, and escapism. Unlike more traditional folk collections, *Celtic Twilight* emphasizes production sheen and \"space music\" sensibilities, relying heavily on ethereal synthesizers and minimalist instrumental interplay. Its success solidified the Hearts of Space label's reputation for high-fidelity, mood-driven curation, directly paralleling the influence of their long-running syndicated radio program of the same name. The series became a touchstone for listeners seeking a modernized, cinematic interpretation of Celtic heritage, effectively bridging the gap between historical folk music and the contemporary electronic-ambient scene. Its influence resonated well beyond its initial release, spawning multiple sequels and cementing a distinct subgenre niche that continues to be associated with the Hearts of Space brand.",
+  "citations": [
+    {
+      "url": "https://heartsofspacerecords.bandcamp.com/album/celtic-twilight",
+      "title": "Celtic Twilight | Various Artists | Hearts of Space Records"
+    },
+    {
+      "url": "https://www.valley-entertainment.com/products/various-artists-celtic-twilight-3-lullabies",
+      "title": "Various Artists - Celtic Twilight 3: Lullabies - Valley Entertainment"
+    },
+    {
+      "url": "https://www.allmusic.com/album/celtic-twilight-vol-1-mw0000628017",
+      "title": "Celtic Twilight, Vol. 1 - Various Artists | Album - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:55.606Z",
+  "mbid": "b9892af3-9fe3-37a6-8bc8-adc8d06d5ecb",
+  "type": "project",
+  "editorial_pitch": "The seminal 1994 compilation that introduced the iconic Hearts of Space ambient-Celtic series, blending traditional melodies with ethereal, contemplative soundscapes.",
+  "cover_url": "https://f4.bcbits.com/img/a3268939059_2.jpg",
+  "year": "1994",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:various-artists",
+      "type": "artist",
+      "name": "Various Artists",
+      "mbid": "89ad4ac3-39f7-470e-963a-56509c546377"
+    }
+  ],
+  "label": {
+    "slug": "label:hearts-of-space-records",
+    "type": "label",
+    "name": "Hearts of Space Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    },
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New Age",
+      "qid": "Q213121"
+    },
+    {
+      "slug": "genre:celtic",
+      "type": "genre",
+      "name": "Celtic",
+      "qid": "Q854451"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:farewell",
+      "type": "track",
+      "name": "Farewell"
+    },
+    {
+      "slug": "track:eastlander",
+      "type": "track",
+      "name": "Eastlander"
+    },
+    {
+      "slug": "track:diamond-dance",
+      "type": "track",
+      "name": "Diamond Dance"
+    },
+    {
+      "slug": "track:women-of-ireland",
+      "type": "track",
+      "name": "Women of Ireland"
+    },
+    {
+      "slug": "track:deirdre-of-the-sorrows",
+      "type": "track",
+      "name": "Deirdre of the Sorrows"
+    },
+    {
+      "slug": "track:windhorse",
+      "type": "track",
+      "name": "Windhorse"
+    },
+    {
+      "slug": "track:sweet-rain",
+      "type": "track",
+      "name": "Sweet Rain"
+    },
+    {
+      "slug": "track:skye-boat-song",
+      "type": "track",
+      "name": "Skye Boat Song"
+    },
+    {
+      "slug": "track:origins",
+      "type": "track",
+      "name": "Origins"
+    },
+    {
+      "slug": "track:lassie-with-the-golden-hair",
+      "type": "track",
+      "name": "Lassie With the Golden Hair"
+    },
+    {
+      "slug": "track:ancient-pines",
+      "type": "track",
+      "name": "Ancient Pines"
+    },
+    {
+      "slug": "track:sky-7",
+      "type": "track",
+      "name": "Sky 7"
+    },
+    {
+      "slug": "track:spirit-evermore",
+      "type": "track",
+      "name": "Spirit Evermore"
+    },
+    {
+      "slug": "track:deep-peace",
+      "type": "track",
+      "name": "Deep Peace"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

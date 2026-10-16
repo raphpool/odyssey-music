@@ -1,0 +1,74 @@
+{
+  "slug": "project:ultra",
+  "name": "Ultra",
+  "editorial_article": "Ultra is the debut studio album by the English pop band Ultra, released in 1998 through East West Records. Produced by former Tears for Fears member Ian Stanley, the project was primarily written and performed by band members James Hearn, Jon O'Mahony, Nick Keynes, and Michael Harwood. The group, which formed during their school years in Buckinghamshire, sought to distinguish themselves from contemporary boy bands by writing their own material and playing their own instruments. The album achieved significant early success in Southeast Asia before receiving a wider release in Europe, where it peaked at number 37 on the UK Albums Chart. By early 1999, the record had reached gold-level sales in Italy and Indonesia, supported by singles such as \"Say You Do,\" \"Say It Once,\" and \"The Right Time.\" While some critics noted the album's strong pop sensibilities, others debated its originality within the crowded pop landscape of the late 1990s.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Ultra_(Ultra_album)",
+      "title": "Ultra (Ultra album) - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:29:24.380Z",
+  "mbid": "735d24c5-36c4-4047-8085-1f7a6b98ac08",
+  "type": "project",
+  "editorial_pitch": "The 1998 debut album from the British pop group Ultra, featuring production by Ian Stanley and a collection of self-penned pop hits.",
+  "year": "1998",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:ultra",
+      "type": "artist",
+      "name": "Ultra",
+      "mbid": "f12faa24-abf7-45f2-851f-e73c325d9da6"
+    }
+  ],
+  "label": {
+    "slug": "label:east-west-records",
+    "type": "label",
+    "name": "East West Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:say-you-do",
+      "type": "track",
+      "name": "Say You Do"
+    },
+    {
+      "slug": "track:say-it-once",
+      "type": "track",
+      "name": "Say It Once"
+    },
+    {
+      "slug": "track:the-right-time",
+      "type": "track",
+      "name": "The Right Time"
+    },
+    {
+      "slug": "track:rescue-me",
+      "type": "track",
+      "name": "Rescue Me"
+    },
+    {
+      "slug": "track:blind-to-the-groove",
+      "type": "track",
+      "name": "Blind to the Groove"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:ian-stanley",
+      "type": "artist",
+      "name": "Ian Stanley"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

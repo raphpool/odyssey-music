@@ -30,7 +30,6 @@
   },
   "type": "genre",
   "editorial_definition": "Grunge is a mid-1980s alternative rock genre originating in Washington state, defined by a fusion of punk rock's raw energy and heavy metal's distorted, sludge-heavy guitar sound. It served as the defining sound of the early 1990s, characterized by angst-ridden, introspective lyrics and a shift toward an unpolished, authentic aesthetic.",
-  "qid": "Q11365",
   "era": "Mid-1980s to mid-1990s",
   "origin": "Seattle, Washington, U.S.",
   "parent_genres": [
@@ -128,7 +127,7 @@
   ],
   "landmark_projects": [
     {
-      "slug": "project:nevermind--nirvana",
+      "slug": "project:nevermind",
       "type": "project",
       "name": "Nevermind"
     },
@@ -148,5 +147,6 @@
       "name": "Dirt"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q11365"
 }

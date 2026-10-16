@@ -1,0 +1,87 @@
+{
+  "slug": "project:starborn-suite",
+  "name": "Starborn Suite",
+  "editorial_article": "*Starborn Suite* is a seminal 1978 album by pioneering New Age composer Steven Halpern, released on his own label, Halpern Sounds. Often cited as a cornerstone of the burgeoning ambient and healing music scenes of the late 1970s, the album reflects Halpern’s focus on psychoacoustic principles and \"anti-frantic\" musical structures. Departing from the complexities of traditional jazz or the dramatic shifts found in contemporary progressive rock, *Starborn Suite* utilizes sustained, resonant textures—achieved through layers of acoustic grand piano, electric piano, and polyphonic string synthesizers—to create a sonic environment intended to induce relaxation and meditative states. \\n\\nThe album’s composition is deliberate, moving away from conventional melodic progression in favor of harmonic stasis and ethereal atmosphere. By emphasizing the spatial qualities of sound and the physiological responses of the listener, Halpern helped define an aesthetic that would eventually become synonymous with the \"New Age\" genre, predating its mainstream commercial explosion. The recording, produced by Halpern himself, maintains a warm, intimate production quality that highlights the interplay between the organic textures of the acoustic piano and the synthetic pads, establishing a template for future ambient soundscapes. *Starborn Suite* remains a vital document of 1970s experimental healing music, embodying the countercultural shift towards mindfulness and interiority through sound.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/207031-Steven-Halpern-Starborn-Suite",
+      "title": "Steven Halpern – Starborn Suite | Releases | Discogs"
+    },
+    {
+      "url": "https://open.spotify.com/album/7zbxv1A1H86ImbVGec6V8G",
+      "title": "Starborn Suite - Album by Steven Halpern | Spotify"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:48:10.351Z",
+  "mbid": "4e7c8c23-c6dc-4898-b5d8-ee0b71b3da08",
+  "type": "project",
+  "editorial_pitch": "A seminal 1978 New Age masterpiece by Steven Halpern, featuring hypnotic, ambient piano and synthesizer arrangements designed to induce deep states of relaxation.",
+  "year": "1978",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:steven-halpern",
+      "type": "artist",
+      "name": "Steven Halpern",
+      "mbid": "37986d18-e8af-4502-8e08-2a87d7e5853f"
+    }
+  ],
+  "label": {
+    "slug": "label:halpern-sounds",
+    "type": "label",
+    "name": "Halpern Sounds"
+  },
+  "genres": [
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New Age",
+      "qid": "Q213121"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:starborn-suite--steven-halpern",
+      "type": "track",
+      "name": "Starborn Suite",
+      "mbid": "575b3148-43ab-411a-8dfa-cb355707d916",
+      "artist": "Steven Halpern"
+    },
+    {
+      "slug": "track:acknowledgement--steven-halpern",
+      "type": "track",
+      "name": "Acknowledgement",
+      "mbid": "1ad81ecc-35fc-41c4-b643-4b3cccb8024a",
+      "artist": "Steven Halpern"
+    },
+    {
+      "slug": "track:findhorn-sanctuary--steven-halpern",
+      "type": "track",
+      "name": "Findhorn Sanctuary",
+      "mbid": "9cd0578c-a106-4d06-84a0-8835772f2e11",
+      "artist": "Steven Halpern"
+    },
+    {
+      "slug": "track:resolution--steven-halpern",
+      "type": "track",
+      "name": "Resolution",
+      "mbid": "89ea8fe1-0f70-40e4-94c8-229dbc3d7619",
+      "artist": "Steven Halpern"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:steven-halpern",
+      "type": "artist",
+      "name": "Steven Halpern"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

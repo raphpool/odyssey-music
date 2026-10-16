@@ -1,0 +1,62 @@
+{
+  "slug": "track:destiny",
+  "name": "Destiny",
+  "editorial_article": "\"Destiny\" is a quintessential downtempo track by English duo Zero 7, released in 2001 as a standout single from their critically acclaimed debut album, *Simple Things*. Produced by Zero 7 members Henry Binns and Sam Hardaker, the song serves as a masterclass in the atmospheric, lounge-influenced electronic sound that dominated the early 2000s UK chillout scene. Originally conceived as an instrumental, the track found its emotional core through the vocal contributions of Australian singer-songwriter Sia Furler and British artist Sophie Barker. Their interplay creates a lush, melancholic, and deeply intimate atmosphere, with the lyrics exploring themes of longing, isolation, and romantic separation. \n\nThe production process behind \"Destiny\" highlights the serendipitous nature of the duo's creative collaborative process. Binns and Hardaker, known for their earlier work in remixing artists like Radiohead and Terry Callier, were seeking the right voices to elevate their instrumental arrangements. Their discovery of Sia, facilitated through a connection with her manager on the football pitch, proved transformative. The track was written and recorded in a single afternoon, capturing a raw, spontaneous energy that belies its polished, \"placid\" production. With its distinctive, smoldering vocal harmonies and its fusion of Phrygian mode melodies with a laid-back beat, \"Destiny\" became an enduring staple of the genre, cementing Zero 7's reputation as architects of modern downtempo. Its cultural footprint was further extended by its iconic music video, which utilized rotoscoping techniques to mirror the track's blend of urban realism and emotional dreaminess. The song remains a defining moment of the era, reflecting the sophisticated, late-night sonic aesthetic that defined a generation of listeners.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/47571-Zero-7-Destiny?srsltid=AfmBOooLk2LRvhzS-IDJYO7h-zV4wfuE5v4BuJGzxt6b4UYoBv4Qaf72",
+      "title": "Zero 7 – Destiny | Releases - Discogs"
+    },
+    {
+      "url": "https://zero7.bandcamp.com/track/destiny-extended-mix-feat-sia-sophie-barker",
+      "title": "Destiny (Extended Mix) [feat. Sia & Sophie Barker] - Zero 7 bandcamp"
+    },
+    {
+      "url": "https://open.spotify.com/track/27ViQppP3LZPCJl2A0w9kp",
+      "title": "Destiny - song and lyrics by Zero 7, Sia, Sophie Barker | Spotify"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:16:21.593Z",
+  "type": "track",
+  "editorial_teaser": "\"Destiny\" is a quintessential downtempo track by English duo Zero 7, released in 2001 as a standout single from their critically acclaimed debut album, *Simple Things*.",
+  "artists": [
+    {
+      "slug": "artist:zero-7",
+      "type": "artist",
+      "name": "Zero 7"
+    },
+    {
+      "slug": "artist:sia",
+      "type": "artist",
+      "name": "Sia"
+    },
+    {
+      "slug": "artist:sophie-barker",
+      "type": "artist",
+      "name": "Sophie Barker"
+    }
+  ],
+  "project": {
+    "slug": "project:simple-things",
+    "type": "project",
+    "name": "Simple Things"
+  },
+  "genres": [
+    {
+      "slug": "genre:downtempo",
+      "type": "genre",
+      "name": "Downtempo",
+      "qid": "Q251192"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:zero-7",
+      "type": "artist",
+      "name": "Zero 7"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

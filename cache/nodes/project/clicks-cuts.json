@@ -1,0 +1,58 @@
+{
+  "slug": "project:clicks-cuts",
+  "name": "Clicks + Cuts",
+  "editorial_article": "Released in the year 2000 by the influential German label Mille Plateaux, the inaugural volume of the Clicks + Cuts series stands as a landmark document in the history of electronic music. Curated during a period of rapid evolution in software-based sound design, the compilation effectively bridged the gap between academic computer music and the adventurous fringes of underground club culture. It acted as a definitive introduction to what would become widely known as 'glitch'—a genre that consciously embraced the sonic artifacts of digital processing, including CD skips, buffer errors, system crashes, and static, treating these technical failures as expressive material.\\n\\nThe series, which eventually spanned multiple volumes, became a vital hub for a global community of producers who were pushing the limits of laptop-based performance and composition. By focusing on the architecture of sound rather than traditional melodic or rhythmic tropes, the artists involved with Clicks + Cuts helped legitimize a new 'deconstructed' aesthetic that rejected the pristine, highly produced nature of contemporary dance music. This radical approach encouraged listeners to find beauty in the micro-details and technical limitations of digital audio hardware, cementing the series' reputation as an essential entry point into the early 2000s experimental electronic landscape. Its influence was vast, providing a platform for key figures like Alva Noto, Ryoji Ikeda, and Pole, while simultaneously defining a sonic identity that remains a cornerstone of 21st-century avant-garde electronic production.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Clicks_%26_Cuts_Series",
+      "title": "Clicks & Cuts Series - Wikipedia"
+    },
+    {
+      "url": "https://pitchfork.com/reviews/albums/1933-clicks-cuts-3-and-digital-disco/",
+      "title": "Various Artists: Clicks & Cuts 3 / Digtal Disco"
+    },
+    {
+      "url": "https://www.electronicbeats.net/genre-guide-clicks-and-cuts/",
+      "title": "Turn On To Glitch With 10 Underrated Clicks & Cuts Classics"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:39:06.862Z",
+  "type": "project",
+  "editorial_pitch": "The defining compilation series that crystallized the glitch aesthetic at the turn of the millennium, Clicks + Cuts serves as the definitive manifesto for the German label Mille Plateaux and the broader digital experimental music movement.",
+  "year": "2000",
+  "artists": [
+    {
+      "slug": "artist:various-artists",
+      "type": "artist",
+      "name": "Various Artists"
+    }
+  ],
+  "label": {
+    "slug": "label:mille-plateaux",
+    "type": "label",
+    "name": "Mille Plateaux"
+  },
+  "genres": [
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch",
+      "qid": "Q1100989"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic",
+      "qid": "Q105763581"
+    }
+  ],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

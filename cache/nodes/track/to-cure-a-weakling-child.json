@@ -1,0 +1,65 @@
+{
+  "slug": "track:to-cure-a-weakling-child",
+  "name": "To Cure A Weakling Child",
+  "editorial_article": "\"To Cure A Weakling Child\" is a seminal electronic track by the influential British producer Richard D. James, recording under his most recognizable alias, Aphex Twin. Originally released on the 1996 album *Richard D. James Album* through Warp Records, the piece is a cornerstone of the drill 'n' bass and IDM (Intelligent Dance Music) subgenres. The track is celebrated for its intricate, hyper-active drum programming juxtaposed against a surprisingly melancholic, almost child-like melodic structure. It exemplifies James’s ability to manipulate high-frequency percussion and stuttering breaks into a surprisingly emotive composition.\\n\\nThe track is famously characterized by its complex rhythmic architecture, featuring dense, multi-layered breakbeats that seem to stumble over themselves in a controlled, chaotic fashion. This frantic rhythmic layer is contrasted with a warm, synth-based melody that evokes a sense of fragile playfulness, which provides the thematic anchor for the \"weakling child\" imagery. The composition became so iconic within the experimental electronic scene that James later revisited the concept, releasing a reworked version titled \"To Cure A Weakling Child (Contour Regard)\" on the *Come to Daddy* EP in 1997. Over the decades, the track has maintained a significant legacy, influencing a generation of producers who sought to bridge the gap between aggressive, technical beat-science and melodic, atmospheric soundscapes. It remains a definitive entry point for those exploring the mid-90s UK IDM movement and serves as a primary example of Richard D. James's production mastery.",
+  "citations": [
+    {
+      "url": "https://aphextwin.bandcamp.com/track/to-cure-a-weakling-child",
+      "title": "To Cure A Weakling Child | Aphex Twin"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=33kQMqZUcgQ",
+      "title": "To Cure a Weakling Child (Contour Regard) - YouTube"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:02:59.169Z",
+  "mbid": "bfbaaa89-a552-4aca-b569-c7b4dafeef5b",
+  "type": "track",
+  "editorial_teaser": "A masterpiece of frantic, stuttering breakbeats and fragile melodic sentiment, \"To Cure A Weakling Child\" stands as one of the definitive tracks from Aphex Twin's landmark 1996 album.",
+  "cover_url": "https://f4.bcbits.com/img/a1664460568_10.jpg",
+  "year": "1996",
+  "duration": "4:03",
+  "artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin",
+      "mbid": "f22942a1-6f70-4f48-866e-238cb2308fbd"
+    }
+  ],
+  "project": {
+    "slug": "project:richard-d-james-album",
+    "type": "project",
+    "name": "Richard D. James Album"
+  },
+  "label": {
+    "slug": "label:sire-records",
+    "type": "label",
+    "name": "Sire Records",
+    "mbid": "be0fec81-5c18-4494-8bbf-0d81dec006bf"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:drill-n-bass",
+      "type": "genre",
+      "name": "drill 'n' bass"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}
