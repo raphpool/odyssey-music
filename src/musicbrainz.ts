@@ -76,6 +76,8 @@ interface MbReleaseGroup {
 	id: string;
 	title: string;
 	"primary-type"?: string;
+	/** Present in search hits and unvalidated: read with an Array.isArray / typeof guard. */
+	"secondary-types"?: unknown;
 	"first-release-date"?: string;
 	"artist-credit"?: MbArtistCreditEntry[];
 }
@@ -1102,9 +1104,12 @@ export interface WorkResolveOptions {
 	/**
 	 * Release groups only: the release type the requested work is known to have ("album", "ep",
 	 * "single"; compared with MB's primary type, without regard to case). When candidates of one title and
-	 * one credit have DIFFERENT primary types, this alone picks among them (TRA-560: a single released
-	 * before the album of the same name used to win on its date and gave the album the single's MBID). It
-	 * never overrides the other steps and never makes a lone candidate of another type a match.
+	 * one credit differ in primary type (or in secondary types: Compilation, Live...), this alone picks
+	 * among them (TRA-560: a single released before the album of the same name used to win on its date and
+	 * gave the album the single's MBID). When it is known, a candidate of another primary type is never
+	 * returned, a lone one included: no candidate of this type is `ambiguous`. It says nothing about
+	 * secondary types, so candidates of this type that differ in them stay `ambiguous`. It never overrides
+	 * the other steps.
 	 */
 	releaseType?: string | undefined;
 }
@@ -1145,9 +1150,15 @@ function strictlyEarlier(a: string, b: string): boolean {
  *    told apart by date (2026-10-16, TRA-560, found in the TRA-483 deep review: the 2024 single "New
  *    Heaven" and the 1967 single "I Never Loved a Man the Way I Love You" came out before their album,
  *    won on age, and gave the album the single's MBID, release_type and tracklist). The release type
- *    the caller knows (`releaseType`) picks the type that agrees, else it is `ambiguous`. A tracklist of
- *    several titles is not taken as proof of an album: the caller's tracklist is not verified, and a
- *    maxi-single has several tracks. A missing primary type counts as a type of its own.
+ *    the caller knows (`releaseType`) picks the type that agrees, else it is `ambiguous`. A known type
+ *    that no candidate has is `ambiguous` too, even for a lone candidate (a node known as an album never
+ *    takes the MBID of a single). A tracklist of several titles is not taken as proof of an album: the
+ *    caller's tracklist is not verified, and a maxi-single has several tracks. A missing primary type
+ *    counts as a type of its own;
+ * 5. secondary types are part of the type: MB files a compilation as primary "Album" + secondary
+ *    "Compilation" (same for Live, Soundtrack, Remix, DJ-mix...), so a dated compilation must not beat an
+ *    undated album by its date. Candidates of one primary type that differ in secondary types are
+ *    `ambiguous`: the caller's release type does not name a secondary one.
  * Ambiguous is not "none": the caller keeps the two apart.
  */
 function pickByTitleAndCredit<
@@ -1157,6 +1168,7 @@ function pickByTitleAndCredit<
 		disambiguation?: string | undefined;
 		"first-release-date"?: string | undefined;
 		"primary-type"?: string | undefined;
+		"secondary-types"?: unknown;
 		"artist-credit"?: MbArtistCreditEntry[] | undefined;
 	},
 >(
@@ -1218,17 +1230,20 @@ function pickByTitleAndCredit<
 		if (plain.length > 1) return { kind: "ambiguous" };
 		return only ? { kind: "one", candidate: only } : { kind: "none" };
 	}
-	const only = pool[0];
-	if (pool.length === 1 && only) return { kind: "one", candidate: only };
-	// Different primary types are different works (a single is not its album): never settled by date.
-	const typeOf = (c: T) => (c["primary-type"] ?? "").trim().toLowerCase();
+	// Different types are different works (a single is not its album, a compilation is not the album it
+	// compiles): never settled by date. Secondary types come from an untrusted hit: keep the strings only.
+	const primaryOf = (c: T) => (c["primary-type"] ?? "").trim().toLowerCase();
+	const kindOf = (c: T) => {
+		const secondary = Array.isArray(c["secondary-types"]) ? c["secondary-types"] : [];
+		const names = secondary.flatMap((s) => (typeof s === "string" ? [s.trim().toLowerCase()] : []));
+		return `${primaryOf(c)}/${names.sort().join(",")}`;
+	};
 	const known = releaseType?.trim().toLowerCase() ?? "";
-	const sameType = pool.every((c) => typeOf(c) === typeOf(pool[0] ?? c));
-	const ofType = sameType ? pool : known === "" ? [] : pool.filter((c) => typeOf(c) === known);
-	if (ofType.length === 0) return { kind: "ambiguous" };
-	// The one candidate of the type the caller knows, dated or not.
-	const lone = ofType[0];
-	if (ofType.length === 1 && lone) return { kind: "one", candidate: lone };
+	// A type the caller knows is never traded for another one, even when it is the only candidate.
+	const ofType = known === "" ? pool : pool.filter((c) => primaryOf(c) === known);
+	const first = ofType[0];
+	if (!first || ofType.some((c) => kindOf(c) !== kindOf(first))) return { kind: "ambiguous" };
+	if (ofType.length === 1) return { kind: "one", candidate: first };
 	const dated = ofType.filter((c) => (c["first-release-date"] ?? "") !== "");
 	const earliest = [...dated].sort((a, b) =>
 		(a["first-release-date"] ?? "").localeCompare(b["first-release-date"] ?? ""),

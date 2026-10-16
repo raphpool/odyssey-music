@@ -2034,19 +2034,19 @@ describe("pickByTitleAndCredit: release groups of different primary types", () =
 		);
 	});
 
-	it("takes the node's type even when another type is older, undated or a compilation", async () => {
+	it("takes the node's type even when another type is older or the node's own is undated", async () => {
 		stubMb({
 			"release-groups": [
-				hit(NEW_HEAVEN_SINGLE, "New Heaven", [[INTER_ARMA, "Inter Arma"]], { "primary-type": "Single" }),
-				hit("763aa505-0560-4560-8560-000000000002", "New Heaven", [[INTER_ARMA, "Inter Arma"]], {
-					"primary-type": "Compilation",
+				hit(NEW_HEAVEN_SINGLE, "Typed Pick", [[INTER_ARMA, "Inter Arma"]], { "primary-type": "Single" }),
+				hit("763aa505-0560-4560-8560-000000000002", "Typed Pick", [[INTER_ARMA, "Inter Arma"]], {
+					"primary-type": "EP",
 					"first-release-date": "2001-01-01",
 				}),
-				hit(NEW_HEAVEN_ALBUM, "New Heaven", [[INTER_ARMA, "Inter Arma"]], { "primary-type": "Album" }),
+				hit(NEW_HEAVEN_ALBUM, "Typed Pick", [[INTER_ARMA, "Inter Arma"]], { "primary-type": "Album" }),
 			],
 		});
 		expect(
-			(await resolveReleaseGroupDetailed("New Heaven", "Inter Arma", { releaseType: "album" })).identity
+			(await resolveReleaseGroupDetailed("Typed Pick", "Inter Arma", { releaseType: "album" })).identity
 				?.mbid,
 		).toBe(NEW_HEAVEN_ALBUM);
 	});
@@ -2100,12 +2100,133 @@ describe("pickByTitleAndCredit: release groups of different primary types", () =
 		expect(
 			(await resolveReleaseGroupDetailed("Same Type", "Inter Arma", { releaseType: "album" })).identity?.mbid,
 		).toBe(original);
-		// The node's type picks among types; it never rejects when the candidates share one.
+		// A node known as a single never takes an album, even when the albums agree among themselves.
 		stub();
+		expect(await resolveReleaseGroupDetailed("Same Type", "Inter Arma", { releaseType: "single" })).toEqual(
+			ambiguous,
+		);
+	});
+
+	it("never gives a node of a known type the MBID of another type, a lone candidate included", async () => {
+		const lone = (title: string, type: string) =>
+			stubMb({
+				"release-groups": [
+					hit("763aa505-0560-4560-8560-000000000010", title, [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": type,
+						"first-release-date": "2024-02-27",
+					}),
+				],
+			});
+		// An album node whose only candidate is a single.
+		lone("Lone Single", "Single");
+		expect(await resolveReleaseGroupDetailed("Lone Single", "Inter Arma", { releaseType: "album" })).toEqual(
+			ambiguous,
+		);
+		// The same candidate for a node that agrees, or that knows nothing, is still taken.
+		lone("Lone Single", "Single");
 		expect(
-			(await resolveReleaseGroupDetailed("Same Type", "Inter Arma", { releaseType: "single" })).identity
+			(await resolveReleaseGroupDetailed("Lone Single", "Inter Arma", { releaseType: "Single" })).identity
 				?.mbid,
-		).toBe(original);
+		).toBe("763aa505-0560-4560-8560-000000000010");
+		lone("Lone Single Two", "Single");
+		expect((await resolveReleaseGroupDetailed("Lone Single Two", "Inter Arma")).identity?.mbid).toBe(
+			"763aa505-0560-4560-8560-000000000010",
+		);
+		// A candidate with no primary type has no type to agree with the node's.
+		stubMb({
+			"release-groups": [
+				hit("763aa505-0560-4560-8560-000000000011", "Untyped Lone", [[INTER_ARMA, "Inter Arma"]]),
+			],
+		});
+		expect(await resolveReleaseGroupDetailed("Untyped Lone", "Inter Arma", { releaseType: "album" })).toEqual(
+			ambiguous,
+		);
+	});
+
+	// MB files a compilation (or a live album, a soundtrack...) as primary "Album" plus a secondary type;
+	// there is no "Compilation" primary type.
+	describe("secondary types", () => {
+		const compilation = "763aa505-0560-4560-8560-000000000020";
+		const album = "763aa505-0560-4560-8560-000000000021";
+		const stubCompilation = (title: string) =>
+			stubMb({
+				"release-groups": [
+					hit(compilation, title, [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"secondary-types": ["Compilation"],
+						"first-release-date": "2001-01-01",
+					}),
+					hit(album, title, [[INTER_ARMA, "Inter Arma"]], { "primary-type": "Album" }),
+				],
+			});
+
+		it("does not let a dated compilation beat an undated album of the same primary type", async () => {
+			stubCompilation("Best Of Nothing");
+			expect(await resolveReleaseGroupDetailed("Best Of Nothing", "Inter Arma")).toEqual(ambiguous);
+		});
+
+		it("stays ambiguous when the node names a primary type only", async () => {
+			stubCompilation("Best Of Nothing Two");
+			expect(
+				await resolveReleaseGroupDetailed("Best Of Nothing Two", "Inter Arma", { releaseType: "album" }),
+			).toEqual(ambiguous);
+		});
+
+		it("is ambiguous between a live album and a studio album, whatever their dates", async () => {
+			stubMb({
+				"release-groups": [
+					hit(album, "Live Or Not", [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"secondary-types": [],
+						"first-release-date": "1999-01-01",
+					}),
+					hit(compilation, "Live Or Not", [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"secondary-types": ["Live"],
+						"first-release-date": "1998-01-01",
+					}),
+				],
+			});
+			expect(await resolveReleaseGroupDetailed("Live Or Not", "Inter Arma")).toEqual(ambiguous);
+		});
+
+		it("still tells an original from its reissue when the secondary types agree", async () => {
+			stubMb({
+				"release-groups": [
+					hit(album, "Same Secondary", [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"secondary-types": ["Live"],
+						"first-release-date": "2005-01-01",
+					}),
+					hit(compilation, "Same Secondary", [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"secondary-types": ["live"],
+						"first-release-date": "1999-01-01",
+					}),
+				],
+			});
+			expect((await resolveReleaseGroupDetailed("Same Secondary", "Inter Arma")).identity?.mbid).toBe(
+				compilation,
+			);
+		});
+
+		it("reads an off-shape secondary-types as none, never as a crash", async () => {
+			stubMb({
+				"release-groups": [
+					hit(album, "Odd Shape", [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"secondary-types": "Live",
+						"first-release-date": "2005-01-01",
+					}),
+					hit(compilation, "Odd Shape", [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"secondary-types": [null, 3],
+						"first-release-date": "1999-01-01",
+					}),
+				],
+			});
+			expect((await resolveReleaseGroupDetailed("Odd Shape", "Inter Arma")).identity?.mbid).toBe(compilation);
+		});
 	});
 
 	it("does not take a candidate with no primary type for the same type as a typed one", async () => {
