@@ -10,6 +10,8 @@
  *   label   → Wikidata P154 then P18 (QID via MusicBrainz or a verified search) → a notable release
  *   genre   → cover of the first landmark project, then landmark track, that has an image
  *
+ * The borrowed cover must come from a work that points back at the node (TRA-591): see `reciprocates`.
+ *
  * Nothing is written: this only computes a candidate. Every returned URL passes
  * `isAllowedImageUrl` (the same gate the node schema applies on write), and a failing rung (network
  * error, malformed third-party response) falls through to the next one instead of throwing.
@@ -18,6 +20,7 @@
  * cover, never to be presented as a photo of the entity.
  */
 import type { NodeCache } from "../cache.js";
+import { type GenreRedirects, loadRedirects, resolveReadSlug } from "../genre-registry.js";
 import { lookupVerifiedAlbumArt } from "../itunes.js";
 import { logger } from "../logger.js";
 import { fetchWikidataUrlRelMb, type MbPriority } from "../musicbrainz.js";
@@ -38,6 +41,11 @@ export interface ImageDeps {
 	fetch?: typeof fetch;
 	/** Queue priority of the MusicBrainz lookups (TRA-579); `interactive` when absent. */
 	priority?: MbPriority;
+	/**
+	 * Slug redirect table used to compare genres by their canonical slug (TRA-591). Loaded lazily from
+	 * `data/` when absent; an unreadable table counts as empty, i.e. strict slug equality.
+	 */
+	redirects?: GenreRedirects;
 }
 
 // Calls `fetchWikidataUrlRelMb` directly rather than `fetchWikidataQid`: that wrapper (src/images/wikidata.ts)
@@ -92,27 +100,100 @@ async function readNode(cache: NodeCache, ref: EdgeRef): Promise<NodePayload | n
 	}
 }
 
-/** The first cached node among `refs` that has an allowed `image_url`. */
-async function firstCachedImage(
+/** The works a node may borrow a cover from (`project` / `track`) and the edges they declare. */
+type Work = Extract<NodePayload, { type: "project" | "track" }>;
+type Subject = Extract<NodePayload, { type: "artist" | "label" | "genre" }>;
+
+let defaultRedirects: GenreRedirects | undefined;
+
+async function redirectsOf(deps: Pick<ImageDeps, "redirects">): Promise<GenreRedirects> {
+	if (deps.redirects) return deps.redirects;
+	if (defaultRedirects) return defaultRedirects;
+	try {
+		defaultRedirects = await loadRedirects();
+		return defaultRedirects;
+	} catch (e) {
+		// Not memoized, so a later call retries. With no table two genres match only on equal slugs: the
+		// strictest reading, which can only refuse a cover, never lend a wrong one.
+		log.warn("redirect table unreadable, genres compared by strict slug", {
+			error: e instanceof Error ? e.message : String(e),
+		});
+		return new Map();
+	}
+}
+
+const isWork = (node: NodePayload): node is Work => node.type === "project" || node.type === "track";
+
+/**
+ * Does `work` point back at `subject`? A cover is borrowed only from a work that declares the node
+ * itself: a notable_releases / discography / landmark list polluted by a homonym or a hallucination must
+ * not lend its covers (2026-10-16, label:mille-plateaux got the cover of Electric Ladyland, a Reprise
+ * release). Equality is strict everywhere:
+ * - label: the work's label slug is the label's slug;
+ * - artist: the work credits the artist's slug, or an artist edge carrying the same non-empty mbid;
+ * - genre: a genre edge with the same slug once both sides went through the redirect table.
+ * A band member therefore no longer borrows the band's cover: it credits the band, not the member.
+ */
+async function reciprocates(
+	subject: Subject,
+	work: Work,
 	cache: NodeCache,
-	refs: ReadonlyArray<EdgeRef | undefined>,
-): Promise<{ url: string; source: ImageSource | undefined } | null> {
-	for (const ref of refs) {
-		if (!ref) continue;
-		const node = await readNode(cache, ref);
-		if (node?.image_url && isAllowedImageUrl(node.image_url)) {
-			return { url: node.image_url, source: node.image_source };
+	redirects: GenreRedirects,
+): Promise<boolean> {
+	switch (subject.type) {
+		case "label":
+			return work.label?.slug === subject.slug;
+		case "artist":
+			return work.artists.some(
+				(a) =>
+					a.type === "artist" &&
+					(a.slug === subject.slug || (!!subject.mbid && !!a.mbid && a.mbid === subject.mbid)),
+			);
+		case "genre": {
+			const wanted = await resolveReadSlug(subject.slug, redirects, cache);
+			for (const g of work.genres) {
+				if (g.type !== "genre") continue;
+				if (g.slug === subject.slug || (await resolveReadSlug(g.slug, redirects, cache)) === wanted)
+					return true;
+			}
+			return false;
 		}
 	}
-	return null;
+}
+
+interface Borrowed {
+	/** The cover of the first reciprocal work, or null when none lends one. */
+	url: string | null;
+	/** Cached works with an allowed image that were skipped because they do not point back at the node. */
+	skipped: number;
+}
+
+/** The first cached work among `refs` that has an allowed `image_url` AND points back at `subject`. */
+async function borrowFrom(
+	subject: Subject,
+	refs: ReadonlyArray<EdgeRef | undefined>,
+	deps: Pick<ImageDeps, "cache" | "redirects">,
+): Promise<Borrowed> {
+	// Only genres go through the redirect table: label and artist equality stays on the raw slug (or mbid).
+	const redirects = subject.type === "genre" ? await redirectsOf(deps) : new Map();
+	let skipped = 0;
+	for (const ref of refs) {
+		if (!ref) continue;
+		const work = await readNode(deps.cache, ref);
+		if (!work || !isWork(work) || !work.image_url || !isAllowedImageUrl(work.image_url)) continue;
+		if (await reciprocates(subject, work, deps.cache, redirects)) return { url: work.image_url, skipped };
+		skipped++;
+	}
+	return { url: null, skipped };
 }
 
 async function derivedCover(
-	cache: NodeCache,
+	subject: Subject,
 	refs: ReadonlyArray<EdgeRef | undefined>,
+	deps: ImageDeps,
 ): Promise<ResolvedImage | null> {
-	const found = await firstCachedImage(cache, refs);
-	return found ? { url: found.url, source: "derived-cover" } : null;
+	const { url } = await borrowFrom(subject, refs, deps);
+	return url ? { url, source: "derived-cover" } : null;
 }
 
 /** A singular edge that older node shapes may not declare yet (`landmark_project`, TRA-457). */
@@ -121,6 +202,31 @@ function optionalEdge(node: NodePayload, key: string): EdgeRef | undefined {
 	if (typeof value !== "object" || value === null) return undefined;
 	const slug = (value as { slug?: unknown }).slug;
 	return typeof slug === "string" ? (value as EdgeRef) : undefined;
+}
+
+/** The edges the derived rung reads for a node, in borrowing order. */
+function derivedRefs(node: Subject): Array<EdgeRef | undefined> {
+	switch (node.type) {
+		case "artist":
+			return [optionalEdge(node, "landmark_project"), ...node.discography];
+		case "label":
+			return node.notable_releases;
+		case "genre":
+			return [...node.landmark_projects, ...node.landmark_tracks];
+	}
+}
+
+/**
+ * True when the derived rung found images among the node's listed works but none points back at the node:
+ * the backfill reports such a node as `no-reciprocal-cover` rather than blaming a missing image (TRA-591).
+ */
+export async function refusedUnreciprocalCover(
+	node: NodePayload,
+	deps: Pick<ImageDeps, "cache" | "redirects">,
+): Promise<boolean> {
+	if (node.type !== "artist" && node.type !== "label" && node.type !== "genre") return false;
+	const { url, skipped } = await borrowFrom(node, derivedRefs(node), deps);
+	return url === null && skipped > 0;
 }
 
 async function caa(mbid: string | undefined, deps: ImageDeps): Promise<ResolvedImage | null> {
@@ -196,10 +302,7 @@ export async function resolveImage(node: NodePayload, deps: ImageDeps): Promise<
 					async () =>
 						wikidataImage(node.mbid ? await mbWikidataQid("artist", node.mbid, deps) : null, ["p18"], deps),
 				],
-				[
-					"derived-cover",
-					() => derivedCover(cache, [optionalEdge(node, "landmark_project"), ...node.discography]),
-				],
+				["derived-cover", () => derivedCover(node, derivedRefs(node), deps)],
 			]);
 
 		case "label":
@@ -213,13 +316,13 @@ export async function resolveImage(node: NodePayload, deps: ImageDeps): Promise<
 						return wikidataImage(qid, ["p154", "p18"], deps);
 					},
 				],
-				["derived-cover", () => derivedCover(cache, node.notable_releases)],
+				["derived-cover", () => derivedCover(node, derivedRefs(node), deps)],
 			]);
 
 		case "genre":
 			return firstOf([
-				["landmark-projects", () => derivedCover(cache, node.landmark_projects)],
-				["landmark-tracks", () => derivedCover(cache, node.landmark_tracks)],
+				["landmark-projects", () => derivedCover(node, node.landmark_projects, deps)],
+				["landmark-tracks", () => derivedCover(node, node.landmark_tracks, deps)],
 			]);
 	}
 }

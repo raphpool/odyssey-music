@@ -12,7 +12,8 @@
  * For each node WITHOUT `image_url` (a node that has one is never touched, so a second run is a no-op):
  *   1. `resolveImage(node, { cache })`;
  *   2. when it finds nothing the node stays without image and is listed in the manifest's `none` with a
- *      reason: `no-mbid` | `caa-404` | `no-wikidata` | `no-related-image` (see `noneReason`).
+ *      reason: `no-mbid` | `caa-404` | `no-wikidata` | `no-related-image` | `no-reciprocal-cover`
+ *      (see `noneReason`).
  *
  * NO LEGACY FALLBACK (2026-10-16, review of the repo run, PR #501). The stored `photo_url` / `cover_url` are
  * not copied into `image_url`: they were produced by the LLM or by the old `GET /image` (first iTunes
@@ -87,7 +88,7 @@ import { pathToFileURL } from "node:url";
 import { atomicWriteJson, NodeCache } from "../../src/cache.js";
 import { musicBrainzConfig } from "../../src/config.js";
 import { isAllowedImageUrl } from "../../src/images/hosts.js";
-import { resolveImage } from "../../src/images/resolve-image.js";
+import { refusedUnreciprocalCover, resolveImage } from "../../src/images/resolve-image.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
 import { IMAGE_SOURCES, type ImageSource, type NodePayload, type Slug } from "../../src/types.js";
 import {
@@ -105,7 +106,13 @@ export const DEFAULT_MANIFEST_PATH = "out/images.json";
 export const IMAGE_TYPE_ORDER = ["project", "track", "artist", "label", "genre"] as const;
 export type ImageType = (typeof IMAGE_TYPE_ORDER)[number];
 
-export const NONE_REASONS = ["no-mbid", "caa-404", "no-wikidata", "no-related-image"] as const;
+export const NONE_REASONS = [
+	"no-mbid",
+	"caa-404",
+	"no-wikidata",
+	"no-related-image",
+	"no-reciprocal-cover",
+] as const;
 export type NoneReason = (typeof NONE_REASONS)[number];
 
 /** Consecutive nodes ended on an unavailable source after which the run stops. */
@@ -338,9 +345,12 @@ function hasImage(raw: Record<string, unknown>): boolean {
  * - artist: no MBID, so no Wikidata lookup (`no-mbid`); else Wikidata has no P18 for it (`no-wikidata`);
  * - label: the QID comes from MusicBrainz or a verified name search, and none has an image (`no-wikidata`);
  * - genre: none of its landmark projects / tracks has an image (`no-related-image`).
- * The `derived-cover` rungs of an artist or a label having failed too is implied, not a reason of its own.
+ * The `derived-cover` rungs of an artist or a label having failed too is implied, not a reason of its own,
+ * except when they found images among the listed works and refused every one because the work does not
+ * point back at the node (TRA-591): that artist, label or genre is `no-reciprocal-cover`.
  */
 export async function noneReason(node: NodePayload, cache: NodeCache): Promise<NoneReason> {
+	if (await refusedUnreciprocalCover(node, { cache })) return "no-reciprocal-cover";
 	switch (node.type) {
 		case "project":
 			return node.mbid ? "caa-404" : "no-mbid";

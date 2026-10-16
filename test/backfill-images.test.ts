@@ -117,7 +117,10 @@ function run(overrides: Partial<BackfillOptions> & Pick<BackfillOptions, "fetch"
 
 describe("order and derived covers (AC 1)", () => {
 	it("gives the project a caa image and the genre the same URL as derived-cover, then a re-run writes nothing", async () => {
-		const project = projectNode("ok", "OK Computer", { mbid: mb(1) });
+		const project = projectNode("ok", "OK Computer", {
+			mbid: mb(1),
+			genres: [edge("genre", "indie", "Indie")],
+		});
 		const g = genreNode("indie", "Indie", { landmark_projects: [edge("project", "ok", "OK Computer")] });
 		await seed(dir, project, g);
 		const f = routedFetch([caaFound(1)]);
@@ -145,8 +148,16 @@ describe("order and derived covers (AC 1)", () => {
 		// Alphabetically artist: < genre: < label: < project: < track:, the reverse of the dependencies.
 		await seed(
 			dir,
-			projectNode("rg", "A Record", { mbid: mb(2) }),
-			trackNode("song", "A Song", { project: edge("project", "rg", "A Record") }),
+			projectNode("rg", "A Record", {
+				mbid: mb(2),
+				artists: [edge("artist", "someone", "Someone")],
+				label: edge("label", "imprint", "Imprint"),
+				genres: [edge("genre", "style", "Style")],
+			}),
+			trackNode("song", "A Song", {
+				project: edge("project", "rg", "A Record"),
+				genres: [edge("genre", "style", "Style")],
+			}),
 			artistNode("someone", "Someone", { discography: [edge("project", "rg", "A Record")] }),
 			labelNode("imprint", "Imprint", { notable_releases: [edge("project", "rg", "A Record")] }),
 			genreNode("style", "Style", { landmark_tracks: [edge("track", "song", "A Song")] }),
@@ -170,7 +181,7 @@ describe("order and derived covers (AC 1)", () => {
 	it("a dry-run writes no node but plans the derived images exactly like an apply", async () => {
 		await seed(
 			dir,
-			projectNode("ok", "OK Computer", { mbid: mb(3) }),
+			projectNode("ok", "OK Computer", { mbid: mb(3), genres: [edge("genre", "indie", "Indie")] }),
 			genreNode("indie", "Indie", { landmark_projects: [edge("project", "ok", "OK Computer")] }),
 		);
 		const before = [await readText(dir, "project:ok"), await readText(dir, "genre:indie")];
@@ -420,14 +431,17 @@ describe("fail-closed on an unavailable source", () => {
 	it("a node that reads a node that failed waits for the re-run, and ends with the same picture as its input", async () => {
 		await seed(
 			dir,
-			projectNode("p", "P", { mbid: mb(70) }),
-			trackNode("t", "T", { project: edge("project", "p", "P") }),
+			projectNode("p", "P", {
+				mbid: mb(70),
+				genres: [edge("genre", "g", "G"), edge("genre", "h", "H")],
+			}),
+			trackNode("t", "T", { project: edge("project", "p", "P"), genres: [edge("genre", "g", "G")] }),
 			genreNode("g", "G", {
 				landmark_projects: [edge("project", "p", "P")],
 				landmark_tracks: [edge("track", "t", "T")],
 			}),
 			// This genre's first landmark failed, its second is fine: resolved now it would show the second.
-			projectNode("q", "Q", { mbid: mb(71) }),
+			projectNode("q", "Q", { mbid: mb(71), genres: [edge("genre", "h", "H")] }),
 			genreNode("h", "H", {
 				landmark_projects: [edge("project", "p", "P"), edge("project", "q", "Q")],
 			}),
@@ -475,7 +489,11 @@ describe("fail-closed on an unavailable source", () => {
 describe("manifest and resume", () => {
 	it("carries the migration channel's fields and no timestamp, and is identical for a dry-run and an apply", async () => {
 		const nodes = [
-			projectNode("ok", "OK Computer", { mbid: mb(30) }),
+			projectNode("ok", "OK Computer", {
+				mbid: mb(30),
+				genres: [edge("genre", "indie", "Indie")],
+				artists: [edge("artist", "fan", "Fan")],
+			}),
 			projectNode("bare", "Bare"),
 			genreNode("indie", "Indie", { landmark_projects: [edge("project", "ok", "OK Computer")] }),
 			artistNode("flash", "Flash", { photo_url: WIKIMEDIA_PHOTO }),
@@ -521,7 +539,7 @@ describe("manifest and resume", () => {
 	it("--resume keeps the coverage before the first run; bySource is the state of the cache either way", async () => {
 		await seed(
 			dir,
-			projectNode("ok", "OK Computer", { mbid: mb(31) }),
+			projectNode("ok", "OK Computer", { mbid: mb(31), artists: [edge("artist", "fan", "Fan")] }),
 			artistNode("fan", "Fan", { discography: [edge("project", "ok", "OK Computer")] }),
 		);
 		await run({ types: ["project"], fetch: routedFetch([caaFound(31)]) });
@@ -627,6 +645,46 @@ describe("parseCliArgs (the flags the migration channel passes)", () => {
 		[["/c", "extra"]],
 	])("refuses %j", (argv) => {
 		expect(parseCliArgs(argv as string[])).toBeNull();
+	});
+});
+
+describe("derived covers need a work that points back at the node (TRA-591)", () => {
+	it("a polluted notable_releases leaves the label without image, listed as no-reciprocal-cover", async () => {
+		await seed(
+			dir,
+			projectNode("electric-ladyland--the-jimi-hendrix-experience", "Electric Ladyland", {
+				mbid: mb(90),
+				artists: [edge("artist", "the-jimi-hendrix-experience", "The Jimi Hendrix Experience")],
+				label: edge("label", "reprise-records", "Reprise Records"),
+			}),
+			labelNode("mille-plateaux", "Mille Plateaux", {
+				notable_releases: [
+					edge("project", "electric-ladyland--the-jimi-hendrix-experience", "Electric Ladyland"),
+				],
+			}),
+			// A band member listing the band's album, and a genre listing a work of another genre.
+			projectNode("band-album", "Band Album", {
+				mbid: mb(91),
+				artists: [edge("artist", "the-band", "The Band")],
+				genres: [edge("genre", "house", "House")],
+			}),
+			artistNode("member", "Member", { discography: [edge("project", "band-album", "Band Album")] }),
+			genreNode("jungle", "Jungle", { landmark_projects: [edge("project", "band-album", "Band Album")] }),
+		);
+		const result = await run({ fetch: routedFetch([caaFound(90), caaFound(91), mbNoRelations]) });
+
+		expect(result.exitCode).toBe(0);
+		expect(await read(dir, "project:electric-ladyland--the-jimi-hendrix-experience")).toMatchObject({
+			image_source: "caa",
+		});
+		for (const slug of ["label:mille-plateaux", "artist:member", "genre:jungle"]) {
+			expect(await read(dir, slug), slug).not.toHaveProperty("image_url");
+		}
+		expect(result.manifest.none).toEqual([
+			{ slug: "artist:member", reason: "no-reciprocal-cover" },
+			{ slug: "genre:jungle", reason: "no-reciprocal-cover" },
+			{ slug: "label:mille-plateaux", reason: "no-reciprocal-cover" },
+		]);
 	});
 });
 
