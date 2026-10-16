@@ -9,6 +9,8 @@
     }
   ],
   "materialized_at": "2026-05-14T09:28:15.042Z",
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/a1/6f/e0/a16fe0d9-3c19-055c-577f-e8edff1adf4c/886975462520_cover.jpg/600x600bb.jpg",
+  "image_source": "itunes-verified",
   "type": "project",
   "editorial_pitch": "A landmark 2009 compilation curated by Rim'K that bridges French hip-hop with North African musical traditions through a diverse array of collaborations.",
   "year": "2009",
@@ -156,5 +158,6 @@
       "name": "Skread"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

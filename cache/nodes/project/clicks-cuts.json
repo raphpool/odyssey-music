@@ -17,6 +17,8 @@
     }
   ],
   "materialized_at": "2026-05-13T12:39:06.862Z",
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2a/d4/27/2ad42762-d951-0073-cda1-dc4bce672151/192562475096.jpg/600x600bb.jpg",
+  "image_source": "itunes-verified",
   "type": "project",
   "editorial_pitch": "The defining compilation series that crystallized the glitch aesthetic at the turn of the millennium, Clicks + Cuts serves as the definitive manifesto for the German label Mille Plateaux and the broader digital experimental music movement.",
   "year": "2000",
@@ -54,5 +56,6 @@
   ],
   "tracklist": [],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

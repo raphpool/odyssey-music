@@ -32,6 +32,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Delete_Yourself%21.jpg/250px-Delete_Yourself%21.jpg",
+  "image_source": "legacy",
   "type": "project",
   "editorial_pitch": "Delete Yourself! is the visceral, chaotic, and politically charged debut album that effectively birthed the \"digital hardcore\" genre, blending abrasive punk ethos with breakbeat chaos and radical leftist ideology. Produced by Alec Empire and David Harrow, it remains a defining artifact of 1990s counter-culture, weaponizing distortion and high-speed BPMs to deliver a relentless assault against neo-Nazism and systemic conformity.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/thumb/3/30/Delete_Yourself%21.jpg/250px-Delete_Yourself%21.jpg",
@@ -75,5 +77,6 @@
       "name": "David Harrow"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

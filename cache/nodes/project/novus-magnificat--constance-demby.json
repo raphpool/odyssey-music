@@ -32,6 +32,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music111/v4/93/94/ff/9394ff29-bda0-dcd0-2954-5f9b21385b72/Constance_Demby_-_Novus_Magnificat_-_30th_Anniversary_Edition_-_3000x3000.jpg/600x600bb.jpg",
+  "image_source": "itunes-verified",
   "type": "project",
   "editorial_pitch": "A landmark of 1980s new age and space music, Constance Demby's 'Novus Magnificat' is a symphonic electronic masterpiece that blends classical sensibilities with pioneering digital sampling.",
   "year": "1986",

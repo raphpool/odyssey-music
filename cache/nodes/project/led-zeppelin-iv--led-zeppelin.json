@@ -33,6 +33,8 @@
     "search_provider": "tavily"
   },
   "mbid": "2e61da88-39e9-3473-81d2-c964cb394952",
+  "image_url": "https://coverartarchive.org/release-group/2e61da88-39e9-3473-81d2-c964cb394952/front-500",
+  "image_source": "caa",
   "type": "project",
   "editorial_pitch": "Often considered the quintessential heavy rock album, Led Zeppelin IV is a masterpiece of dynamic shifts and production experimentation, featuring the immortal \"Stairway to Heaven\" and the legendary blues-rock epic \"When the Levee Breaks.\"",
   "cover_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Zeppelin_IV.jpg/500px-Zeppelin_IV.jpg",
