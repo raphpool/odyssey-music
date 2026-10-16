@@ -168,8 +168,24 @@ describe("mobile facade compatibility", () => {
 			node: { id: "genre:ambient" },
 		});
 
+		// TRA-584: same slug, same source and URL as the legacy route; the mobile one adds the state.
+		const mobileImage = await http(server.port, "GET", "/mobile/v1/nodes/artist%3Afixture-artist/image");
+		expect(mobileImage.status).toBe(200);
+		expect(json(mobileImage)).toMatchObject({
+			slug: "artist:fixture-artist",
+			image_url: "https://images.example.com/fixture-artist.jpg",
+			source: "legacy",
+			state: "found",
+		});
+
 		const image = await http(server.port, "GET", "/mobile/v1/nodes/genre%3Aambient/image");
-		expect(json(image)).toMatchObject({ slug: "genre:ambient", image_url: null });
+		expect(json(image)).toMatchObject({ slug: "genre:ambient", image_url: null, state: "none" });
+
+		// A slug without a node is no longer a 404 (the iOS store memoizes it as unavailable): it is a "none".
+		const danglingImage = await http(server.port, "GET", "/mobile/v1/nodes/project%3Anowhere/image");
+		expect(danglingImage.status).toBe(200);
+		expect(danglingImage.headers["cache-control"]).toBe("no-store");
+		expect(json(danglingImage)).toMatchObject({ slug: "project:nowhere", image_url: null, state: "none" });
 
 		const links = await http(server.port, "GET", "/mobile/v1/nodes/genre%3Aambient/links");
 		expect(json(links)).toMatchObject({ slug: "genre:ambient", spotify: null, apple: null, sources: {} });
