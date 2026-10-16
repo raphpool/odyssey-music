@@ -207,7 +207,11 @@ describe("unescape-newlines: which fields and which text", () => {
 			"x \\n y",
 			"\\n\\nlead",
 		]) {
-			expect(unescapeEditorialText(text)).toEqual({ text: normalizeEditorialText(text), kept: 0 });
+			expect(unescapeEditorialText(text)).toEqual({
+				text: normalizeEditorialText(text),
+				kept: 0,
+				converted: true,
+			});
 		}
 	});
 });
@@ -221,11 +225,23 @@ describe("unescape-newlines: a \\n that is content is not an escape", () => {
 		expect(result.kept).toBe(2);
 	});
 
-	it("keeps a \\n inside an inline code span or a fence", () => {
-		const text = 'Use \\n\\n between, as in `printf("a\\nb")` and:\\n\\n```\nx = "a\\nb"\n```';
+	it("keeps a \\n inside a fenced code block, and converts the one outside", () => {
+		const text = 'Use \\n\\n between:\\n\\n```\nx = "a\\nb"\n```';
 		const result = unescapeEditorialText(text);
-		expect(result.text).toBe('Use\n\n between, as in `printf("a\\nb")` and:\n\n```\nx = "a\\nb"\n```');
-		expect(result.kept).toBe(2);
+		expect(result.text).toBe('Use\n\n between:\n\n```\nx = "a\\nb"\n```');
+		expect(result.kept).toBe(1);
+	});
+
+	it("does not take two stray backticks for a code span: the escapes between them are converted", () => {
+		// The broken articles hold no real line break, so an apostrophe-like backtick pairs across paragraphs.
+		const result = unescapeEditorialText("l`album\\n\\nl`autre");
+		expect(result).toEqual({ text: "l`album\n\nl`autre", kept: 0, converted: true });
+	});
+
+	it("says a text converted nothing when only content escapes are left", () => {
+		const result = unescapeEditorialText("Path C:\\\\new   \n\n\n\nend");
+		expect(result.converted).toBe(false);
+		expect(result.kept).toBe(1);
 	});
 
 	it("works when the text already holds the private-use character used to shield backslashes", () => {
@@ -240,6 +256,33 @@ describe("unescape-newlines: a \\n that is content is not an escape", () => {
 		expect((await readNode("artist:mixed")).editorial_article).toBe(`${PARAGRAPH}\n\nPath C:\\\\new.`);
 		// The kept \n is still there for the audit to flag: a human decides.
 		expect((await run(true)).written).toBe(0);
+	});
+});
+
+describe("unescape-newlines: fields outside the migration", () => {
+	it("does not rewrite a field whose only escapes are content, whatever else normalization would change", async () => {
+		const kept = `${PARAGRAPH} C:\\\\new   \n\n\n\n${PARAGRAPH}`;
+		await writeCache([artist("artist:content", { editorial_article: kept })]);
+		const before = await snapshot();
+		const manifest = await run(true);
+		expect(manifest.written).toBe(0);
+		expect(manifest.kept).toBe(1);
+		expect(await snapshot()).toEqual(before);
+	});
+
+	it("lists, without touching it, a literal \\n in a top-level string the migration does not read", async () => {
+		await writeCache([
+			artist("artist:gap", { editorial_article: ESCAPED, name: "Odd\\nName", disambiguator: "x\\ny" }),
+			artist("artist:gap2", { name: "Other\\nName" }),
+		]);
+		const manifest = await run(true);
+		expect(manifest.uncovered).toEqual([
+			{ slug: "artist:gap", fields: ["name", "disambiguator"] },
+			{ slug: "artist:gap2", fields: ["name"] },
+		]);
+		const node = await readNode("artist:gap");
+		expect([node.name, node.disambiguator]).toEqual(["Odd\\nName", "x\\ny"]);
+		expect(node.editorial_article).toBe(FIXED);
 	});
 });
 
@@ -310,6 +353,7 @@ describe("unescape-newlines: dry-run, manifest and CLI", () => {
 			written: 1,
 			byField: { editorial_article: 1 },
 			changed: [{ slug: "artist:escaped", fields: ["editorial_article"] }],
+			uncovered: [],
 			errors: [],
 		});
 		expect(typeof m.generated_at).toBe("string");

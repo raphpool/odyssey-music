@@ -10,22 +10,29 @@
  * prose (it is an untrusted third-party value that is validated, not rewritten) and the escape is not in it.
  *
  * Rules:
- * - A field is rewritten only if it holds a literal escape. A field with nothing but trailing spaces or a
- *   triple line break is left alone: that is another normalization (out of scope of the ticket), and it would
- *   turn a ~765 node migration into an ~840 node one for no gain on the `literal-newlines` audit.
+ * - A field is rewritten only if it holds a literal escape that is converted. A field with nothing but
+ *   trailing spaces or a triple line break is left alone: that is another normalization (out of scope of
+ *   the ticket), and it would turn a ~760 node migration into an ~840 node one for no gain on the
+ *   `literal-newlines` audit.
  * - A rewritten field goes through `normalizeEditorialText` whole, so it ends exactly as a new write would.
  * - Not every `\n` is an escape. Two kinds of text are kept verbatim, because they are content and not the
  *   model's double escape: (1) a `\n` whose backslash is itself escaped (`\\n`, an even run of backslashes:
  *   a backslash followed by the letter n, as in a Windows path or a printf format), (2) a `\n` inside a
- *   markdown code span or fence. No node of the cache of 2026-10-16 has either (measured), so this is a net, not
- *   a feature: a kept `\n` is counted in `kept` and the audit keeps flagging the node, on purpose, for a human.
- *   (TRA-458's function converts them; it does not know about code. The pipeline therefore still would.)
+ *   fenced code block. Inline code spans are NOT shielded: the broken articles hold no real line break, so
+ *   two stray backticks (an apostrophe) would pair up across paragraphs and shield every escape between
+ *   them. No node of the cache of 2026-10-16 has a kept `\n` or even a backtick (measured), so this is a
+ *   net, not a feature: a kept `\n` is counted in `kept` and the audit keeps flagging the node, on purpose,
+ *   for a human. (TRA-458's function converts them all; it does not know about code, so the pipeline would.)
+ * - Only the fields above are read. A literal `\n` in any other top-level string of a node (the audit looks
+ *   at all of them) is not touched and is listed in `uncovered`, so a gap between this migration and the
+ *   `literal-newlines` audit is explained by the manifest, not found later.
  * - Dry-run by default; `--apply` writes. Idempotent: a second run writes nothing (`written === 0`).
  * - Every node to write is validated (`nodePayloadSchema`) before the first write, and the validation must
- *   not drop a field the node carries (the validated copy only gates the write: what is written is the node
- *   as read with its text fields changed, so the diff of a node is its text and nothing else). One refusal (a node that would no longer pass the schema, such as an
- *   article that falls under its `minLength` of 80 once trimmed, or an unreadable file) blocks the whole run:
- *   it is listed in `errors` and nothing is written (exit 1 in a dry-run, 2 with --apply).
+ *   not drop a field the node carries. The validated copy only gates the write: what is written is the node
+ *   as read with its text fields changed, so the diff of a node is its text and nothing else. One refusal (a
+ *   node that would no longer pass the schema, such as an article that falls under its `minLength` of 80
+ *   once trimmed, or an unreadable file) blocks the whole run: it is listed in `errors` and nothing is
+ *   written (exit 1 in a dry-run, 2 with --apply).
  *
  * Channel contract (deploy/sync-genre-cache.sh --migration): `<cache-dir> --apply --manifest <path>
  * --data-dir <dir>`. `--data-dir` is accepted and ignored (this migration reads no table). The manifest holds
@@ -60,8 +67,8 @@ export function textFieldsOf(type: NodeType): string[] {
 	return fields.filter((f) => !f.endsWith("_url"));
 }
 
-/** A markdown fence or an inline code span (no line break inside a span; a literal `\n` is not one). */
-const CODE_SPAN = /```[\s\S]*?```|`[^`\n]*`/g;
+/** A fenced code block. Not the inline span: see the header. */
+const CODE_FENCE = /```[\s\S]*?```/g;
 
 /** A private-use character absent from the text, to stand in for the backslashes that must survive. */
 function freeSentinel(text: string): string {
@@ -74,29 +81,38 @@ function freeSentinel(text: string): string {
 
 /**
  * `text` as a new write would have it, except that a `\n` which is content stays: see the header. `kept`
- * counts those. The sentinel replaces the backslash that must not be read as an escape, then goes back.
+ * counts the runs of backslashes left before an n; `converted` tells whether at least one escape was read
+ * as one. The sentinel replaces the backslash that must not be read as an escape, then goes back.
  */
-export function unescapeEditorialText(text: string): { text: string; kept: number } {
+export function unescapeEditorialText(text: string): { text: string; kept: number; converted: boolean } {
 	const sentinel = freeSentinel(text);
 	let kept = 0;
-	const shield = (run: string): string => {
-		kept += (run.match(/\\(?=n|r\\n)/g) ?? []).length;
-		return run.replace(/\\(?=n|r\\n)/g, sentinel);
+	const shield = (block: string): string => {
+		kept += (block.match(/\\+(?=n)/g) ?? []).length;
+		return block.replace(/\\(?=n|r\\n)/g, sentinel);
 	};
-	// Code first (its backslashes are all content), then a run of backslashes before n (or r\\n): an even run is
-	// pairs of escaped backslashes, so the letter is a letter; an odd run ends on a real escape.
-	const shielded = text.replace(CODE_SPAN, shield).replace(/\\+(?=n|r\\n)/g, (run) => {
-		if (run.length % 2 === 1) return run;
-		kept++;
-		return `${run.slice(0, -1)}${sentinel}`;
-	});
-	return { text: normalizeEditorialText(shielded).replaceAll(sentinel, "\\"), kept };
+	// Code first (its backslashes are all content), then a run of backslashes before n (or r\n): an even run
+	// is pairs of escaped backslashes, so the letter is a letter; an odd run ends on a real escape.
+	const shielded = text
+		.replace(CODE_FENCE, shield)
+		.replace(/\\+(?=n|r\\n)/g, (run, offset: number, whole: string) => {
+			if (run.length % 2 === 1) return run;
+			if (whole[offset + run.length] === "n") kept++;
+			return `${run.slice(0, -1)}${sentinel}`;
+		});
+	return {
+		text: normalizeEditorialText(shielded).replaceAll(sentinel, "\\"),
+		kept,
+		converted: shielded.includes("\\n"),
+	};
 }
 
 export interface ChangedNode {
 	slug: string;
 	fields: string[];
 }
+
+const bySlug = (a: ChangedNode, b: ChangedNode): number => (a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0);
 
 export interface Manifest {
 	migration: string;
@@ -116,6 +132,8 @@ export interface Manifest {
 	kept: number;
 	/** The nodes to write and the fields that change, by slug. */
 	changed: ChangedNode[];
+	/** Nodes with a literal `\\n` in a top-level string this migration does not read (listed, never touched). */
+	uncovered: ChangedNode[];
 	errors: string[];
 }
 
@@ -130,6 +148,7 @@ export function planUnescape(nodes: readonly CacheNodeFile[]): Plan {
 	const writes = new Map<string, Obj>();
 	const byField: Record<string, number> = {};
 	const changed: ChangedNode[] = [];
+	const uncovered: ChangedNode[] = [];
 	const errors: string[] = [];
 	let kept = 0;
 
@@ -141,10 +160,15 @@ export function planUnescape(nodes: readonly CacheNodeFile[]): Plan {
 			if (typeof value !== "string" || !value.includes("\\n")) continue;
 			const fixed = unescapeEditorialText(value);
 			kept += fixed.kept;
-			if (fixed.text === value) continue;
+			if (!fixed.converted) continue;
 			next[field] = fixed.text;
 			fields.push(field);
 		}
+		const covered = new Set(textFieldsOf(type));
+		const gap = Object.entries(node)
+			.filter(([k, v]) => !covered.has(k) && typeof v === "string" && v.includes("\\n"))
+			.map(([k]) => k);
+		if (gap.length > 0) uncovered.push({ slug, fields: gap });
 		if (fields.length === 0) continue;
 
 		const parsed = nodePayloadSchema.safeParse(next);
@@ -176,7 +200,8 @@ export function planUnescape(nodes: readonly CacheNodeFile[]): Plan {
 			written: writes.size,
 			byField: Object.fromEntries(Object.entries(byField).sort(([a], [b]) => (a < b ? -1 : 1))),
 			kept,
-			changed: changed.sort((a, b) => (a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0)),
+			changed: changed.sort(bySlug),
+			uncovered: uncovered.sort(bySlug),
 			errors,
 		},
 	};
@@ -215,6 +240,7 @@ export function formatSummary(manifest: Manifest, manifestPath: string | undefin
 		lines.push(`  ${field.padEnd(32)} ${count}`);
 	}
 	lines.push(`  ${"literal \\n kept (content)".padEnd(32)} ${manifest.kept}`);
+	lines.push(`  ${"nodes with a \\n in another field".padEnd(32)} ${manifest.uncovered.length}`);
 	for (const error of manifest.errors) lines.push(`error: ${error}`);
 	if (manifestPath) lines.push(`manifest: ${manifestPath}`);
 	if (manifest.blocked) lines.push("blocked: nothing written to the cache");
