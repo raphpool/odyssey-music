@@ -86,12 +86,12 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:annihilati-n",
+      "slug": "project:annihilation--dj-paul-elstak",
       "type": "project",
       "name": "Annihilatiøn",
-      "mbid": "98242d08-bde3-4411-b000-4d2d8c99d0da",
       "year": "2025",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "DJ Paul Elstak"
     },
     {
       "slug": "project:internet-hooligan",

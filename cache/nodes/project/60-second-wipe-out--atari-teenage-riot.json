@@ -1,0 +1,161 @@
+{
+  "slug": "project:60-second-wipe-out--atari-teenage-riot",
+  "name": "60 Second Wipe Out",
+  "editorial_article": "Released in 1999 on Digital Hardcore Recordings, *60 Second Wipe Out* stands as the third studio album by the Berlin-based anarchist digital hardcore pioneers, Atari Teenage Riot. Moving away from the purely electronic, breakbeat-heavy intensity of their earlier work, this record incorporates more direct, punk-inflected energy while maintaining the group's signature confrontational sonic aesthetic. Produced by founding member Alec Empire, the album serves as a definitive statement of the 'digital hardcore' genre—a volatile fusion of industrial noise, anarcho-punk, and frantic breakcore programmed into weaponized political protest music.\n\nThe album is notable for its raw, aggressive production, which balances harsh, distortion-heavy synths with live guitar elements and political, chant-like vocal performances. Featuring contributions from group stalwarts Hanin Elias, Carl Crack, and Nic Endo, as well as guest appearances from figures like Kathleen Hanna and Dino Cazares, *60 Second Wipe Out* captures a chaotic intersection of 90s underground movements. Despite its polarizing critical reception at the time—often critiqued for its unrelenting intensity—it remains a landmark project that effectively bridged the gap between electronic subcultures and hardcore punk activism, solidifying ATR's reputation as one of the most abrasive and uncompromising acts of their era. The tracklist includes aggressive anthems like \"Revolution Action\" and \"Digital Hardcore,\" which have since become synonymous with the group's legacy of using high-BPM chaos to challenge cultural and political apathy.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/60_Second_Wipe_Out",
+      "title": "60 Second Wipe Out - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:03.408Z",
+  "_metrics": {
+    "input_tokens": 21113,
+    "output_tokens": 1294,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007219,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 13129,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "mbid": "a9596c1c-826c-3845-916b-d3c8adeeb44d",
+  "type": "project",
+  "editorial_pitch": "An abrasive masterpiece of 1999, *60 Second Wipe Out* captures the peak, chaotic energy of digital hardcore pioneers Atari Teenage Riot in a collision of punk anger and programmed industrial noise.",
+  "year": "1999",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:atari-teenage-riot",
+      "type": "artist",
+      "name": "Atari Teenage Riot",
+      "mbid": "fe404dd9-09b2-4ac8-a0e5-8da1c4027061"
+    }
+  ],
+  "label": {
+    "slug": "label:digital-hardcore-recordings",
+    "type": "label",
+    "name": "Digital Hardcore Recordings"
+  },
+  "genres": [
+    {
+      "slug": "genre:digital-hardcore",
+      "type": "genre",
+      "name": "Digital hardcore",
+      "qid": "Q56580"
+    },
+    {
+      "slug": "genre:hardcore-punk",
+      "type": "genre",
+      "name": "Hardcore punk",
+      "qid": "Q10922"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:revolution-action--atari-teenage-riot",
+      "type": "track",
+      "name": "Revolution Action",
+      "mbid": "e579828a-8045-410a-8d1b-f9c185b9ee78",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:by-any-means-necessary--atari-teenage-riot",
+      "type": "track",
+      "name": "By Any Means Necessary",
+      "mbid": "124813e6-37b4-4994-a2dd-a73da1a15b5d",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:western-decay--atari-teenage-riot",
+      "type": "track",
+      "name": "Western Decay",
+      "mbid": "28d6c896-505e-44a1-a725-04419997d76c",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:atari-teenage-riot-ii--atari-teenage-riot",
+      "type": "track",
+      "name": "Atari Teenage Riot II",
+      "mbid": "6d7480c2-a3b5-4535-8772-c58ee8f1ab7f",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:ghostchase--atari-teenage-riot",
+      "type": "track",
+      "name": "Ghostchase",
+      "mbid": "81f71c4f-456d-47f9-a7ff-59a463fbea45",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:too-dead-for-me--atari-teenage-riot",
+      "type": "track",
+      "name": "Too Dead for Me",
+      "mbid": "39586006-21bd-47d3-a8e0-47614dbf6b16",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:u-s-fade-out--atari-teenage-riot",
+      "type": "track",
+      "name": "U.S. Fade Out",
+      "mbid": "bbace64e-d085-45a8-a8a1-ec60b109bb15",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:the-virus-has-been-spread--atari-teenage-riot",
+      "type": "track",
+      "name": "The Virus Has Been Spread",
+      "mbid": "5804ed64-7475-4224-8cc2-2f67c2455119",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:digital-hardcore--atari-teenage-riot",
+      "type": "track",
+      "name": "Digital Hardcore",
+      "mbid": "2321ebe5-135a-4c9f-8616-1d320aad6ca8",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:death-of-a-president-d-i-y--atari-teenage-riot",
+      "type": "track",
+      "name": "Death of a President D.I.Y.!",
+      "mbid": "269ea44e-4673-4034-b029-c61cf6debfbd",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:your-uniform-does-not-impress-me--atari-teenage-riot",
+      "type": "track",
+      "name": "Your Uniform (Does Not Impress Me!)",
+      "mbid": "8dc23ea2-5a38-4700-ac6b-da79381e0c08",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:no-success--atari-teenage-riot",
+      "type": "track",
+      "name": "No Success",
+      "mbid": "794fe603-f05a-45a5-a011-dff2bd2b7d49",
+      "artist": "Atari Teenage Riot"
+    },
+    {
+      "slug": "track:anarchy-999--atari-teenage-riot",
+      "type": "track",
+      "name": "Anarchy 999",
+      "mbid": "7c23ca67-f8ff-413f-8845-a4ec24eacf57",
+      "artist": "Atari Teenage Riot"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

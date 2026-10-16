@@ -104,12 +104,12 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:tubular-bells",
+      "slug": "project:tubular-bells--mike-oldfield",
       "type": "project",
       "name": "Tubular Bells"
     },
     {
-      "slug": "project:never-mind-the-bollocks-here-s-the-sex-pistols",
+      "slug": "project:never-mind-the-bollocks-here-s-the-sex-pistols--sex-pistols",
       "type": "project",
       "name": "Never Mind the Bollocks, Here's the Sex Pistols"
     },
@@ -119,12 +119,12 @@
       "name": "Mezzanine"
     },
     {
-      "slug": "project:colour-by-numbers",
+      "slug": "project:colour-by-numbers--culture-club",
       "type": "project",
       "name": "Colour by Numbers"
     },
     {
-      "slug": "project:the-joshua-tree",
+      "slug": "project:the-joshua-tree--u2",
       "type": "project",
       "name": "The Joshua Tree"
     }

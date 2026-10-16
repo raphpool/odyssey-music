@@ -71,12 +71,12 @@
   ],
   "discography": [
     {
-      "slug": "project:loop-finding-jazz-records",
+      "slug": "project:loop-finding-jazz-records--jan-jelinek",
       "type": "project",
       "name": "Loop-Finding-Jazz-Records"
     },
     {
-      "slug": "project:kosmischer-pitch",
+      "slug": "project:kosmischer-pitch--jan-jelinek",
       "type": "project",
       "name": "Kosmischer Pitch"
     },
@@ -93,7 +93,7 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:tendency",
+      "slug": "track:tendency--jan-jelinek",
       "type": "track",
       "name": "Tendency"
     }

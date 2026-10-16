@@ -87,7 +87,7 @@
       "name": "Timewind"
     },
     {
-      "slug": "project:moondawn",
+      "slug": "project:moondawn--klaus-schulze",
       "type": "project",
       "name": "Moondawn"
     },
@@ -97,9 +97,10 @@
       "name": "X"
     },
     {
-      "slug": "project:in-blue",
+      "slug": "project:in-blue--klaus-schulze",
       "type": "project",
-      "name": "In Blue"
+      "name": "In Blue",
+      "artist": "Klaus Schulze"
     }
   ],
   "notable_tracks": [

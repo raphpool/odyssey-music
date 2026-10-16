@@ -52,7 +52,7 @@
   ],
   "discography": [
     {
-      "slug": "project:electro-soma",
+      "slug": "project:electro-soma--b12",
       "type": "project",
       "name": "Electro-Soma"
     },
@@ -62,16 +62,17 @@
       "name": "Time Tourist"
     },
     {
-      "slug": "project:last-days-of-silence",
+      "slug": "project:last-days-of-silence--b12",
       "type": "project",
       "name": "Last Days of Silence"
     }
   ],
   "notable_tracks": [
     {
-      "slug": "track:scriptures",
+      "slug": "track:scriptures--b12",
       "type": "track",
-      "name": "Scriptures"
+      "name": "Scriptures",
+      "artist": "B12"
     },
     {
       "slug": "track:soundtrack-of-space",
@@ -94,5 +95,6 @@
       "type": "artist",
       "name": "Steve Rutter"
     }
-  ]
+  ],
+  "similar_artists": []
 }

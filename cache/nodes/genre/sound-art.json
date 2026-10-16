@@ -34,6 +34,7 @@
   },
   "type": "genre",
   "editorial_definition": "Sound art is an interdisciplinary form of creative expression that utilizes sound as its primary medium, often prioritizing spatial, conceptual, and environmental interaction over traditional musical structures like melody and rhythm.",
+  "qid": "Q1744327",
   "era": "Late 20th century to present",
   "origin": "International/Western Contemporary Art Scene",
   "sonic_markers": "Aleatory structures, site-specific acoustic design, generative sound, non-linear composition, environmental field recordings, integration with sculpture, use of non-musical objects.",
@@ -82,7 +83,7 @@
       "name": "Rainforest"
     },
     {
-      "slug": "project:i-am-sitting-in-a-room",
+      "slug": "project:i-am-sitting-in-a-room--alvin-lucier",
       "type": "project",
       "name": "I Am Sitting in a Room"
     },
@@ -92,6 +93,5 @@
       "name": "Body Music"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q1744327"
+  "landmark_tracks": []
 }

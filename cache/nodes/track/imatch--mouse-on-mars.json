@@ -1,0 +1,62 @@
+{
+  "slug": "track:imatch--mouse-on-mars",
+  "name": "Imatch",
+  "editorial_article": "\"Imatch\" is a track by the influential German electronic duo Mouse on Mars, released in 2012 as part of their studio album *Parastrophics*. Known for their experimental and often frenetic approach to electronic production, Mouse on Mars utilized this period to further refine their signature \"glitch-pop\" aesthetic, blending complex, disjointed rhythms with melodic hooks and unconventional sound design.\n\nOn \"Imatch,\" the duo demonstrates their mastery of sonic architecture, weaving together synthesized textures and mechanical percussive elements that feel both precise and unpredictable. The track epitomizes the late-career development of the pair—comprised of Jan St. Werner and Andi Toma—where they bridged the gap between the idiosyncratic IDM sounds of the late 1990s and a more polished, modern approach to experimental pop music. The composition is a standout moment on *Parastrophics*, an album that marked a significant return to form for the group after a period of side projects and collaborative ventures.\n\nListeners familiar with Mouse on Mars will recognize the playful tension inherent in \"Imatch,\" where digital artifacts and processed sounds are treated with the care of instrumental motifs. By 2012, the group had cemented their status as pioneers of the German electronic landscape, and \"Imatch\" serves as a testament to their ability to remain innovative without sacrificing the rhythmic vitality that made their early works so impactful. Its intricate layers and crisp production highlight the technical proficiency that has defined their work since their debut in the early 1990s.",
+  "citations": [
+    {
+      "url": "https://open.spotify.com/track/5ZWT36FBFR8TEplLVu6jH3",
+      "title": "imatch - song and lyrics by Mouse On Mars | Spotify"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:00:52.659Z",
+  "type": "track",
+  "editorial_teaser": "\"Imatch\" is a masterfully intricate, glitch-tinged electronic track from German duo Mouse on Mars, featured on their 2012 album 'Parastrophics'.",
+  "artists": [
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars"
+    }
+  ],
+  "project": {
+    "slug": "project:parastrophics--mouse-on-mars",
+    "type": "project",
+    "name": "Parastrophics"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:experimental-pop",
+      "type": "genre",
+      "name": "Experimental Pop",
+      "qid": "Q25094591"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:jan-st-werner",
+      "type": "artist",
+      "name": "Jan St. Werner"
+    },
+    {
+      "slug": "artist:andi-toma",
+      "type": "artist",
+      "name": "Andi Toma"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

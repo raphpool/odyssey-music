@@ -1862,26 +1862,6 @@
       }
     }
   ],
-  "artist:l-titia-sadier": [
-    {
-      "field": "members",
-      "cardinality": "list",
-      "edge": {
-        "slug": "artist:stereolab",
-        "type": "artist",
-        "name": "Stereolab"
-      }
-    },
-    {
-      "field": "collaborators",
-      "cardinality": "list",
-      "edge": {
-        "slug": "artist:mary-hansen",
-        "type": "artist",
-        "name": "Mary Hansen"
-      }
-    }
-  ],
   "artist:andy-ramsay": [
     {
       "field": "members",
@@ -2270,7 +2250,7 @@
       "field": "sampled_by",
       "cardinality": "list",
       "edge": {
-        "slug": "track:giant-deflating-football--track-by-mike-and-rich",
+        "slug": "track:giant-deflating-football--mike-and-rich",
         "type": "track",
         "name": "Giant Deflating Football"
       }
@@ -2281,7 +2261,7 @@
       "field": "collaborators",
       "cardinality": "list",
       "edge": {
-        "slug": "artist:michael-paradinas",
+        "slug": "artist:mike-paradinas",
         "type": "artist",
         "name": "Michael Paradinas"
       }
@@ -3065,7 +3045,7 @@
       }
     }
   ],
-  "artist:s-awomir-kurkiewicz": [
+  "artist:slawomir-kurkiewicz": [
     {
       "field": "members",
       "cardinality": "list",
@@ -3076,7 +3056,7 @@
       }
     }
   ],
-  "artist:micha-miskiewicz": [
+  "artist:michal-miskiewicz": [
     {
       "field": "members",
       "cardinality": "list",

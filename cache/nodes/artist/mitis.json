@@ -100,9 +100,10 @@
       "name": "All I Have"
     },
     {
-      "slug": "project:together",
+      "slug": "project:together--mitis",
       "type": "project",
-      "name": "Together"
+      "name": "Together",
+      "artist": "MitiS"
     },
     {
       "slug": "project:memories",

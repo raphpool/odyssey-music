@@ -1,0 +1,127 @@
+{
+  "slug": "project:born-to-run--bruce-springsteen",
+  "name": "Born to Run",
+  "editorial_article": "Born to Run, released on August 25, 1975, is the third studio album by American singer-songwriter Bruce Springsteen and his breakthrough masterpiece. Following the lukewarm commercial performance of his first two records, Springsteen faced immense pressure from Columbia Records to deliver a hit or face being dropped from the label. Driven by a desire to create \"the greatest rock record\" he had ever heard, Springsteen and his backing ensemble, the E Street Band, spent over a year meticulously crafting the album at 914 Sound Studios and Record Plant Studios in New York. The production process, co-managed by Springsteen, Mike Appel, and Jon Landau, was heavily influenced by Phil Spector’s grandiose \"Wall of Sound\" aesthetic, resulting in a dense, cinematic sonic landscape that prioritized ambition and emotional intensity.\\n\\nLyrically, the album serves as a thematic departure from the Jersey Shore-centric narratives of his earlier work. It captures the universal, restless spirit of American youth—a collection of characters trapped by their circumstances who dream of escape and redemption through the promise of the open road. The title track, specifically, became an anthem of this longing. Despite initial critical skepticism and industry pressure, the album was propelled by an aggressive promotional campaign and eventually secured its place in the rock canon. It has since been recognized as a landmark in music history, honored with an induction into the National Recording Registry for its profound cultural and aesthetic significance. Today, Born to Run remains the definitive Springsteen statement, perfectly balancing heartland rock sensibilities with a grand, pop-oriented ambition that forever changed the trajectory of his career.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Born_to_Run",
+      "title": "Born to Run - Wikipedia"
+    },
+    {
+      "url": "http://brucebase.wikidot.com/retail:born-to-run",
+      "title": "Born To Run - Brucebase Wiki"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:52:35.767Z",
+  "_metrics": {
+    "input_tokens": 20051,
+    "output_tokens": 1356,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007047,
+    "llm_calls": 4,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 4,
+    "emit_attempts": 2,
+    "agent_ms": 13120,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "project",
+  "editorial_pitch": "Bruce Springsteen's breakthrough 1975 masterpiece, a cinematic fusion of rock, R&B, and pop that perfectly captures the restless, romantic yearning of American youth.",
+  "year": "1975",
+  "artists": [
+    {
+      "slug": "artist:bruce-springsteen",
+      "type": "artist",
+      "name": "Bruce Springsteen"
+    }
+  ],
+  "label": {
+    "slug": "label:columbia-records",
+    "type": "label",
+    "name": "Columbia Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:rock-and-roll",
+      "type": "genre",
+      "name": "Rock and roll",
+      "qid": "Q7749"
+    },
+    {
+      "slug": "genre:pop-rock",
+      "type": "genre",
+      "name": "Pop rock",
+      "qid": "Q484641"
+    },
+    {
+      "slug": "genre:folk-rock",
+      "type": "genre",
+      "name": "Folk rock",
+      "qid": "Q186472"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:thunder-road",
+      "type": "track",
+      "name": "Thunder Road"
+    },
+    {
+      "slug": "track:tenth-avenue-freeze-out",
+      "type": "track",
+      "name": "Tenth Avenue Freeze-Out"
+    },
+    {
+      "slug": "track:night",
+      "type": "track",
+      "name": "Night"
+    },
+    {
+      "slug": "track:backstreets",
+      "type": "track",
+      "name": "Backstreets"
+    },
+    {
+      "slug": "track:born-to-run",
+      "type": "track",
+      "name": "Born to Run"
+    },
+    {
+      "slug": "track:she-s-the-one",
+      "type": "track",
+      "name": "She's the One"
+    },
+    {
+      "slug": "track:meeting-across-the-river",
+      "type": "track",
+      "name": "Meeting Across the River"
+    },
+    {
+      "slug": "track:jungleland",
+      "type": "track",
+      "name": "Jungleland"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:bruce-springsteen",
+      "type": "artist",
+      "name": "Bruce Springsteen"
+    },
+    {
+      "slug": "artist:mike-appel",
+      "type": "artist",
+      "name": "Mike Appel"
+    },
+    {
+      "slug": "artist:jon-landau",
+      "type": "artist",
+      "name": "Jon Landau"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

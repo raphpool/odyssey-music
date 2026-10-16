@@ -1,0 +1,125 @@
+{
+  "slug": "project:lp5--autechre",
+  "name": "LP5",
+  "editorial_article": "LP5, released in 1998 on Warp Records, stands as a critical pivot point in the evolution of the English electronic duo Autechre. Often referred to simply as \"Autechre\" or \"Album\" due to the complete lack of identifying text on its original packaging, the record marked a profound shift away from the melodic, \"warm\" IDM soundscapes that defined their earlier work—most notably on albums like Amber—toward the colder, highly technical, and rhythmically complex avant-garde electronics they would continue to pioneer. Incorporating elements of electroacoustic music and digital sound processing, the album demonstrates a transition into a more rigid, mathematical, and abstract sonic territory.\\n\\nTechnically, LP5 is a testament to the group's evolving process. As revealed in later interviews, the production saw the duo utilizing a specific array of hardware and software, including the Nord Lead 1, Yamaha DX100, and the Ensoniq ASR-10 sampler. Rhythms were meticulously programmed, at times using Logic Pro or specialized sound editing software, reflecting an increasing obsession with the generative possibilities of their tools. The track \"Drane2\" serves as a specific cultural marker within the late 90s electronic scene; it was explicitly created as a direct sonic response to Aphex Twin's \"Bucephalus Bouncing Ball,\" which itself was a response to an earlier Autechre track, \"Drane.\" This interplay highlights the competitive yet deeply influential relationship between the architects of the IDM genre. Retrospectively, LP5 is widely viewed as a peak of the duo's career, balancing a lingering access to their earlier emotional depth with the intense, challenging abstractions of their subsequent creative trajectory. Its legacy endures as a defining entry in the Intelligent Dance Music canon, celebrated for its uncompromising resistance to convention.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/LP5",
+      "title": "LP5 - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:00.763Z",
+  "_metrics": {
+    "input_tokens": 25626,
+    "output_tokens": 2069,
+    "cache_read_tokens": 4054,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.009611,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 15308,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "mbid": "58726780-ad15-3b77-8da8-4baa681862e4",
+  "type": "project",
+  "editorial_pitch": "A seminal 1998 release by Autechre that bridges the gap between their earlier melodic IDM roots and the austere, highly technical experimentalism of their later career.",
+  "year": "1998",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre",
+      "mbid": "410c9baf-5469-44f6-9852-826524b80c61"
+    }
+  ],
+  "label": {
+    "slug": "label:warp-records",
+    "type": "label",
+    "name": "Warp Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic",
+      "qid": "Q105763581"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:acroyear2",
+      "type": "track",
+      "name": "Acroyear2"
+    },
+    {
+      "slug": "track:777",
+      "type": "track",
+      "name": "777"
+    },
+    {
+      "slug": "track:rae",
+      "type": "track",
+      "name": "Rae"
+    },
+    {
+      "slug": "track:melve",
+      "type": "track",
+      "name": "Melve"
+    },
+    {
+      "slug": "track:vose-in",
+      "type": "track",
+      "name": "Vose In"
+    },
+    {
+      "slug": "track:fold4-wrap5",
+      "type": "track",
+      "name": "Fold4,Wrap5"
+    },
+    {
+      "slug": "track:under-boac",
+      "type": "track",
+      "name": "Under BOAC"
+    },
+    {
+      "slug": "track:corc",
+      "type": "track",
+      "name": "Corc"
+    },
+    {
+      "slug": "track:caliper-remote",
+      "type": "track",
+      "name": "Caliper Remote"
+    },
+    {
+      "slug": "track:arch-carrier",
+      "type": "track",
+      "name": "Arch Carrier"
+    },
+    {
+      "slug": "track:drane2",
+      "type": "track",
+      "name": "Drane2"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

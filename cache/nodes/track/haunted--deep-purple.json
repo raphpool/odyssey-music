@@ -1,0 +1,63 @@
+{
+  "slug": "track:haunted--deep-purple",
+  "name": "Haunted",
+  "editorial_article": "\"Haunted\" is a moody, atmospheric rock ballad by the legendary British hard rock band Deep Purple, released as part of their 2003 album 'Bananas'. Marking the first album to feature Don Airey on keyboards following the departure of Jon Lord, 'Bananas' represented a significant transition for the band. \"Haunted\" stands out within the tracklist for its departure from the band's typical high-octane hard rock sound, instead embracing a cinematic, atmospheric production style that includes string arrangements and female backing vocals. \\n\\nUpon its release, the song became a point of contention among the band’s long-term fanbase, serving as a polarizing example of the group’s willingness to experiment with more pop-oriented or AOR (Album Oriented Rock) textures during the Steve Morse era. While some listeners praised the track’s emotional depth and the delicate guitar work of Steve Morse, others found the departure from their hard-hitting, riff-driven legacy to be jarring. Despite this mixed reception, \"Haunted\" remains a notable chapter in Deep Purple’s extensive discography, illustrating the band's effort to integrate fresh sonic influences while navigating a new era of their long-standing career. The track highlights the band’s attempt to balance their heavy rock heritage with softer, more melodic arrangements in the early 21st century. The track also features the work of producer Michael Bradford, who sought to capture a live-feel, spontaneous energy throughout the recording of the 'Bananas' album, even when working on more structured, symphonic-adjacent ballads like \"Haunted\".",
+  "citations": [
+    {
+      "url": "http://www.deep-purple.net/review-files/bananas/album.htm",
+      "title": "deep purple, bananas, initial reactions"
+    },
+    {
+      "url": "https://rateyourmusic.com/release/album/deep-purple/bananas/reviews/1/",
+      "title": "Reviews of Bananas by Deep Purple (Album, Hard Rock)"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:16:27.537Z",
+  "mbid": "5c7253ab-624d-4802-aae4-fde75d98e80f",
+  "type": "track",
+  "editorial_teaser": "\"Haunted\" is a moody, atmospheric rock ballad by the legendary British hard rock band Deep Purple, released as part of their 2003 album 'Bananas'.",
+  "year": "2003",
+  "artists": [
+    {
+      "slug": "artist:deep-purple",
+      "type": "artist",
+      "name": "Deep Purple",
+      "mbid": "79491354-3d83-40e3-9d8e-7592d58d790a"
+    }
+  ],
+  "project": {
+    "slug": "project:bananas",
+    "type": "project",
+    "name": "Bananas"
+  },
+  "label": {
+    "slug": "label:sanctuary-records",
+    "type": "label",
+    "name": "Sanctuary Records",
+    "mbid": "94469373-73c9-4699-85df-414d577f9a7b"
+  },
+  "genres": [
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard Rock",
+      "qid": "Q83270"
+    },
+    {
+      "slug": "genre:rock-ballad",
+      "type": "genre",
+      "name": "Rock Ballad"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:michael-bradford",
+      "type": "artist",
+      "name": "Michael Bradford"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

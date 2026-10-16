@@ -431,12 +431,6 @@
     }
   ],
   "aliases": [],
-  "members": [
-    {
-      "slug": "artist:willie-colon",
-      "type": "artist",
-      "name": "Willie Colón"
-    }
-  ],
+  "members": [],
   "similar_artists": []
 }

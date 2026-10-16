@@ -53,9 +53,10 @@
   "discography": [],
   "notable_tracks": [
     {
-      "slug": "track:yaln-zl-k",
+      "slug": "track:yalnizlik--cem-adrian",
       "type": "track",
-      "name": "Yalnızlık"
+      "name": "Yalnızlık",
+      "artist": "Cem Adrian"
     },
     {
       "slug": "track:sessizce",

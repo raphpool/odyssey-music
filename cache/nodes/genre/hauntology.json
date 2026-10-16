@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T13:01:06.479Z",
   "type": "genre",
   "editorial_definition": "A genre of electronic and experimental music characterized by the use of degraded analog textures and found-sound collage to evoke a sense of haunted, lost mid-20th-century nostalgia.",
+  "qid": "Q85765918",
   "era": "2000s–Present",
   "origin": "United Kingdom",
   "parent_genres": [
@@ -100,7 +101,7 @@
   ],
   "landmark_projects": [
     {
-      "slug": "project:music-has-the-right-to-children",
+      "slug": "project:music-has-the-right-to-children--boards-of-canada",
       "type": "project",
       "name": "Music Has the Right to Children"
     },
@@ -115,6 +116,5 @@
       "name": "The Disintegration Loops"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q85765918"
+  "landmark_tracks": []
 }

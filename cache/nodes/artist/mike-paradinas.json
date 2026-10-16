@@ -41,6 +41,12 @@
       "slug": "genre:drill-n-bass",
       "type": "genre",
       "name": "Drill 'n' bass"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "labels": [
@@ -57,7 +63,7 @@
   ],
   "discography": [
     {
-      "slug": "project:tango-n-vectif",
+      "slug": "project:tango-n-vectif--ziq",
       "type": "project",
       "name": "Tango n' Vectif"
     },
@@ -67,9 +73,15 @@
       "name": "Lunatic Harness"
     },
     {
-      "slug": "project:expert-knob-twiddlers",
+      "slug": "project:expert-knob-twiddlers--mike-paradinas",
       "type": "project",
-      "name": "Expert Knob Twiddlers"
+      "name": "Expert Knob Twiddlers",
+      "artist": "Mike Paradinas"
+    },
+    {
+      "slug": "project:royal-astronomy",
+      "type": "project",
+      "name": "Royal Astronomy"
     }
   ],
   "notable_tracks": [
@@ -111,6 +123,11 @@
       "slug": "artist:richard-d-james",
       "type": "artist",
       "name": "Richard D. James"
+    },
+    {
+      "slug": "artist:mark-pritchard",
+      "type": "artist",
+      "name": "Mark Pritchard"
     }
   ],
   "aliases": [

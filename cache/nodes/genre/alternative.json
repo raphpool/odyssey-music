@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T13:18:01.354Z",
   "type": "genre",
   "editorial_definition": "A broadly defined category of rock music originating in the late 1970s that emphasizes independence from mainstream commercial trends, often drawing upon the DIY ethos and experimental spirit of post-punk and underground music.",
+  "qid": "Q1695023",
   "era": "1980s-present",
   "origin": "United States and United Kingdom, late 1970s",
   "parent_genres": [],
@@ -123,16 +124,15 @@
   ],
   "landmark_projects": [
     {
-      "slug": "project:nevermind",
+      "slug": "project:nevermind--nirvana",
       "type": "project",
       "name": "Nevermind"
     },
     {
-      "slug": "project:murmur",
+      "slug": "project:murmur--r-e-m",
       "type": "project",
       "name": "Murmur"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q1695023"
+  "landmark_tracks": []
 }

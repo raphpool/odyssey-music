@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T12:54:16.242Z",
   "type": "genre",
   "editorial_definition": "Glam rock is a high-energy, visually spectacular subgenre of 1970s rock, defined by its blend of 1950s rock and roll roots with flamboyant, androgynous fashion and theatrical stage personae.",
+  "qid": "Q76092",
   "era": "1970-1975",
   "origin": "United Kingdom",
   "parent_genres": [],
@@ -55,7 +56,7 @@
   "key_labels": [],
   "landmark_projects": [
     {
-      "slug": "project:the-rise-and-fall-of-ziggy-stardust-and-the-spiders-from-mars",
+      "slug": "project:the-rise-and-fall-of-ziggy-stardust-and-the-spiders-from-mars--david-bowie",
       "type": "project",
       "name": "The Rise and Fall of Ziggy Stardust and the Spiders from Mars"
     },
@@ -65,11 +66,10 @@
       "name": "Electric Warrior"
     },
     {
-      "slug": "project:for-your-pleasure",
+      "slug": "project:for-your-pleasure--roxy-music",
       "type": "project",
       "name": "For Your Pleasure"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q76092"
+  "landmark_tracks": []
 }

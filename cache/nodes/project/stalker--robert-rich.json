@@ -1,0 +1,115 @@
+{
+  "slug": "project:stalker--robert-rich",
+  "name": "Stalker",
+  "editorial_article": "'Stalker' stands as a landmark release in the evolution of dark ambient music, born from the creative union of two of the genre's most respected figures: Robert Rich and B. Lustmord. Released in 1995 via Fathom, a subsidiary of Hearts of Space Records, the album serves as a sonic interpretation of the themes present in Andrei Tarkovsky's 1979 Soviet masterpiece of the same name. Rather than composing a traditional soundtrack, the artists created a series of expansive, brooding soundscapes that mirror the film's claustrophobic yet infinite atmosphere. The recording process, which took place throughout 1994 and 1995, resulted in a cohesive narrative journey that moves through dense, shifting textures and ominous sub-bass frequencies.\\n\\nThroughout the seven tracks, the duo constructs an immersive environment that evokes the decay and spiritual emptiness of 'The Zone' as depicted in the film. The album has been lauded for its ability to generate profound tension through minimalism, utilizing sound design that feels both organic and deeply alien. The cover art, featuring a photograph by landscape photographer Brad Cole, perfectly encapsulates the haunting, post-industrial aesthetic that defines the music within. For listeners of electronic and ambient music, 'Stalker' remains an essential touchstone for how film-inspired music can transcend mere accompaniment, instead standing as a deeply evocative work of art that captures the bleak, philosophical weight of its source material.\\n\\nOver the decades, the album has maintained a reputation as a masterpiece of the dark ambient scene, showcasing the nuanced interplay between Rich's penchant for organic, microtonal textures and Lustmord's signature approach to deep, cavernous low-end and unsettling atmospheric density. It remains a testament to the power of collaboration in electronic music, proving that two distinct artistic voices could meld perfectly to honor a cinematic work while expanding the sonic boundaries of their genre. The album was mixed by Robert Rich, with mastering contributions from Bob Olhsson and Rich himself, further cementing the high level of production care invested in the work. It remains a foundational record for the genre, frequently cited by ambient music scholars and fans alike.",
+  "citations": [
+    {
+      "url": "https://robertrich.com/album/stalker/",
+      "title": "Robert Rich | Stalker - Robert Rich"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:50:50.959Z",
+  "mbid": "7a0c813e-d27e-3783-a9a4-e933102a236f",
+  "type": "project",
+  "editorial_pitch": "Released in 1995, 'Stalker' is a seminal work of dark ambient music, representing an atmospheric collaboration between genre pioneers Robert Rich and B. Lustmord. Inspired by the 1979 Andrei Tarkovsky film, the album masterfully captures the film's sense of desolate, industrial, and metaphysical unease through deep, resonant soundscapes.",
+  "year": "1995",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:robert-rich",
+      "type": "artist",
+      "name": "Robert Rich",
+      "mbid": "93209865-ebeb-4346-96a5-f64305cd0185"
+    },
+    {
+      "slug": "artist:lustmord",
+      "type": "artist",
+      "name": "Lustmord",
+      "mbid": "15f2bb82-bce4-44c9-863a-995ae9bde0b4"
+    }
+  ],
+  "label": {
+    "slug": "label:hearts-of-space-records",
+    "type": "label",
+    "name": "Hearts of Space Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:dark-ambient",
+      "type": "genre",
+      "name": "Dark ambient",
+      "qid": "Q756956"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:elemental-trigger--robert-rich",
+      "type": "track",
+      "name": "Elemental Trigger",
+      "mbid": "16442fc8-09d3-44c1-a4e8-55b785d1473e",
+      "artist": "Robert Rich"
+    },
+    {
+      "slug": "track:synergistic-perceptions--robert-rich",
+      "type": "track",
+      "name": "Synergistic Perceptions",
+      "mbid": "dd705edb-d241-4343-bd8b-ba9c4e1c3001",
+      "artist": "Robert Rich"
+    },
+    {
+      "slug": "track:hidden-refuge--robert-rich",
+      "type": "track",
+      "name": "Hidden Refuge",
+      "mbid": "9ca5369e-69cc-4398-822d-d86383ea01f5",
+      "artist": "Robert Rich"
+    },
+    {
+      "slug": "track:delusion-fields--robert-rich",
+      "type": "track",
+      "name": "Delusion Fields",
+      "mbid": "f42359c0-9300-44bc-bf55-063e3d588ce0",
+      "artist": "Robert Rich"
+    },
+    {
+      "slug": "track:omnipresent-boundary--robert-rich",
+      "type": "track",
+      "name": "Omnipresent Boundary",
+      "mbid": "a6bff8a4-a1a6-44a0-93ab-967a66a3aa53",
+      "artist": "Robert Rich"
+    },
+    {
+      "slug": "track:undulating-terrain--robert-rich",
+      "type": "track",
+      "name": "Undulating Terrain",
+      "mbid": "9f8e2ccc-558b-45a9-8615-19ffa1e0eb37",
+      "artist": "Robert Rich"
+    },
+    {
+      "slug": "track:a-point-of-no-return--robert-rich",
+      "type": "track",
+      "name": "A Point of No Return",
+      "mbid": "9eba84ab-4b0f-448c-94c6-c0597d1a2fed",
+      "artist": "Robert Rich"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:robert-rich",
+      "type": "artist",
+      "name": "Robert Rich"
+    },
+    {
+      "slug": "artist:lustmord",
+      "type": "artist",
+      "name": "Lustmord"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

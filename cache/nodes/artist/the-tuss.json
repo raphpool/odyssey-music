@@ -47,7 +47,7 @@
   ],
   "discography": [
     {
-      "slug": "project:rushup-edge",
+      "slug": "project:rushup-edge--the-tuss",
       "type": "project",
       "name": "Rushup Edge"
     },
@@ -64,12 +64,12 @@
       "name": "Synthacon 9"
     },
     {
-      "slug": "track:rushup-i-bank-12",
+      "slug": "track:rushup-i-bank-12--the-tuss",
       "type": "track",
       "name": "Rushup I Bank 12"
     },
     {
-      "slug": "track:death-fuck",
+      "slug": "track:death-fuck--the-tuss",
       "type": "track",
       "name": "Death Fuck"
     }

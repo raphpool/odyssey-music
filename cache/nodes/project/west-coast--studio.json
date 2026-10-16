@@ -1,0 +1,83 @@
+{
+  "slug": "project:west-coast--studio",
+  "name": "West Coast",
+  "editorial_article": "West Coast, the 2006 debut album by the Swedish duo Studio (consisting of art school graduates Dan Lissvik and Rasmus Hägg), stands as a defining work of mid-2000s underground electronic music. Originally released on the band's own Information label, the record gained widespread critical acclaim for its unique sonic palette, which journalists famously described as conjuring \"impossible visions of Can making a Happy Mondays tribute album or the Cure backed by Fela Kuti.\" The album functions as a seamless, hypnotic flow of Balearic house, dub, disco, and krautrock, characterized by repetitive, groove-focused structures and a relaxed, sun-soaked atmosphere that belies its Gothenburg, Sweden, origins. \n\nCultivating an aura of mystery and detached cool, Studio avoided standard pop production techniques in favor of a minimalist approach that prioritized texture and rhythm. Tracks like \"West Side\" and \"Life's A Beach!\" exemplify the band's signature style—a delicate balance of organic instrumentation and subtle electronic sequencing that feels both nostalgic and forward-thinking. Though a formal follow-up to West Coast never arrived, its legacy continued to grow through the compilation releases Yearbook 1 and 2, which cemented Studio's influence on the broader chill-wave and indie-electronic scenes. In early 2025, the album was reissued via Ghostly International, finally receiving a broader digital and physical release that introduced its singular \"cold-front-meets-hot-front\" sound to a new generation of listeners, reinforcing its status as a landmark of 21st-century atmospheric pop.",
+  "citations": [
+    {
+      "url": "https://studio.bandcamp.com/album/west-coast-2",
+      "title": "West Coast | STUDIO - Bandcamp"
+    },
+    {
+      "url": "https://pitchfork.com/news/studio-announce-west-coast-reissue-share-new-origin-video-watch/",
+      "title": "Studio Announce West Coast Reissue, Share New “Origin” Video: Watch | Pitchfork"
+    },
+    {
+      "url": "https://www.normanrecords.com/records/206576-studio-west-coast",
+      "title": "Studio: West Coast Vinyl & CD. Norman Records UK"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:09:05.159Z",
+  "mbid": "ecc43e69-b3cc-3c80-baf6-6d14824a624c",
+  "type": "project",
+  "editorial_pitch": "Originally released in 2006, West Coast is a seminal debut album from the Swedish duo Studio that masterfully blends Balearic, dub, disco, and Krautrock influences into a sun-drenched, hypnotic soundscape. It remains a cult classic for its unique ability to evoke a faraway romanticism through minimalist, groove-oriented production.",
+  "year": "2006",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:studio",
+      "type": "artist",
+      "name": "Studio",
+      "mbid": "63070885-2d88-4ce5-afad-21d08c7189ea"
+    }
+  ],
+  "label": {
+    "slug": "label:information",
+    "type": "label",
+    "name": "Information"
+  },
+  "genres": [
+    {
+      "slug": "genre:balearic-beat",
+      "type": "genre",
+      "name": "Balearic beat",
+      "qid": "Q2866725"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock",
+      "qid": "Q320592"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:out-there",
+      "type": "track",
+      "name": "Out There"
+    },
+    {
+      "slug": "track:west-side",
+      "type": "track",
+      "name": "West Side"
+    },
+    {
+      "slug": "track:origin",
+      "type": "track",
+      "name": "Origin"
+    },
+    {
+      "slug": "track:life-s-a-beach",
+      "type": "track",
+      "name": "Life's A Beach!"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "related_projects": []
+}

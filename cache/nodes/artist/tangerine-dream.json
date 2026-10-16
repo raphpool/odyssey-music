@@ -48,17 +48,17 @@
   ],
   "discography": [
     {
-      "slug": "project:phaedra",
+      "slug": "project:phaedra--tangerine-dream",
       "type": "project",
       "name": "Phaedra"
     },
     {
-      "slug": "project:rubycon",
+      "slug": "project:rubycon--tangerine-dream",
       "type": "project",
       "name": "Rubycon"
     },
     {
-      "slug": "project:stratosfear",
+      "slug": "project:stratosfear--tangerine-dream",
       "type": "project",
       "name": "Stratosfear"
     }

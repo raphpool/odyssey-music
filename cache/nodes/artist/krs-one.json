@@ -630,12 +630,6 @@
       "name": "The Blastmaster"
     }
   ],
-  "members": [
-    {
-      "slug": "artist:krs-one",
-      "type": "artist",
-      "name": "KRS-One"
-    }
-  ],
+  "members": [],
   "similar_artists": []
 }

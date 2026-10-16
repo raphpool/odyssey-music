@@ -1,0 +1,107 @@
+{
+  "slug": "project:autopsie-vol-1--booba",
+  "name": "Autopsie, Vol. 1",
+  "editorial_article": "Released in May 2005, Autopsie, Vol. 1 is a seminal mixtape compilation by French rapper Booba, released through his own label, Tallac Records. The project serves as a comprehensive collection of tracks, freestyles, and collaborations that highlight the hardcore hip-hop aesthetic Booba cultivated during the mid-2000s. As a double-CD release, the mixtape features a mix of solo material, radio freestyles, and appearances from his former group, Lunatic, as well as various associates from the French rap scene. The project captures a raw, street-oriented sound that was instrumental in solidifying Booba's influence in the French hip-hop landscape. By blending studio tracks with live radio segments, the compilation provides a multifaceted look at the artist's technical prowess and his ability to curate a gritty, cohesive atmosphere that defined his early solo career.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Skread_production_discography",
+      "title": "Skread production discography - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-14T09:28:44.226Z",
+  "type": "project",
+  "editorial_pitch": "A definitive 2005 mixtape collection from French rap icon Booba, showcasing his hardcore style through a mix of studio tracks, radio freestyles, and key collaborations.",
+  "year": "2005",
+  "artists": [
+    {
+      "slug": "artist:booba",
+      "type": "artist",
+      "name": "Booba"
+    },
+    {
+      "slug": "artist:lunatic",
+      "type": "artist",
+      "name": "Lunatic"
+    },
+    {
+      "slug": "artist:nessbeal",
+      "type": "artist",
+      "name": "Nessbeal"
+    },
+    {
+      "slug": "artist:akon",
+      "type": "artist",
+      "name": "Akon"
+    },
+    {
+      "slug": "artist:arsenik",
+      "type": "artist",
+      "name": "Arsenik"
+    }
+  ],
+  "label": {
+    "slug": "label:tallac-records",
+    "type": "label",
+    "name": "Tallac Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip Hop",
+      "qid": "Q11401"
+    },
+    {
+      "slug": "genre:hardcore-hip-hop",
+      "type": "genre",
+      "name": "Hardcore Hip-Hop",
+      "qid": "Q966564"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:cash-flow-1995",
+      "type": "track",
+      "name": "Cash Flow 1995"
+    },
+    {
+      "slug": "track:civilise",
+      "type": "track",
+      "name": "Civilisé"
+    },
+    {
+      "slug": "track:les-vrais-savent",
+      "type": "track",
+      "name": "Les Vrais Savent"
+    },
+    {
+      "slug": "track:destinee",
+      "type": "track",
+      "name": "Destinée"
+    },
+    {
+      "slug": "track:tallac",
+      "type": "track",
+      "name": "Tallac"
+    },
+    {
+      "slug": "track:le-crime-paie",
+      "type": "track",
+      "name": "Le Crime Paie"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:animalsons",
+      "type": "artist",
+      "name": "Animalsons"
+    },
+    {
+      "slug": "artist:skread",
+      "type": "artist",
+      "name": "Skread"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}
