@@ -27,7 +27,10 @@ function artist(slug: string, name: string): ArtistNode {
 		editorial_bio: "A fixture artist bio.",
 		citations: [{ url: "https://example.com/fixture-artist" }],
 		materialized_at: new Date().toISOString(),
-		photo_url: "https://images.example.com/fixture.jpg",
+		// A verified, stored image (TRA-592): GET /image no longer serves photo_url, and with on-demand images on
+		// by default (TRA-583) a node without one answers 202 pending. This file tests path handling, not images.
+		image_url: "https://coverartarchive.org/release/fixture/front-500.jpg",
+		image_source: "caa",
 		genres: [],
 		labels: [],
 		discography: [],
