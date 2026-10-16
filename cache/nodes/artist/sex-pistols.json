@@ -58,7 +58,14 @@
       "name": "A&M Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:never-mind-the-bollocks-here-s-the-sex-pistols--sex-pistols",
+      "type": "project",
+      "name": "Never Mind the Bollocks, Here's the Sex Pistols",
+      "artist": "Sex Pistols"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:god-save-the-queen",

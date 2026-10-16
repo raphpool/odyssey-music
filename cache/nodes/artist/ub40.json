@@ -68,6 +68,12 @@
       "slug": "project:promises-and-lies",
       "type": "project",
       "name": "Promises and Lies"
+    },
+    {
+      "slug": "project:impossible-love--ub40",
+      "type": "project",
+      "name": "Impossible Love",
+      "artist": "UB40"
     }
   ],
   "notable_tracks": [
@@ -75,6 +81,12 @@
       "slug": "track:red-red-wine",
       "type": "track",
       "name": "Red Red Wine"
+    },
+    {
+      "slug": "track:silent-witness--ub40",
+      "type": "track",
+      "name": "Silent Witness",
+      "artist": "UB40"
     }
   ],
   "influences": [],

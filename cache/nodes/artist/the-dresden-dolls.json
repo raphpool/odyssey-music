@@ -45,7 +45,14 @@
       "name": "Roadrunner Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:a-is-for-accident--the-dresden-dolls",
+      "type": "project",
+      "name": "A Is for Accident",
+      "artist": "The Dresden Dolls"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:girl-anachronism",

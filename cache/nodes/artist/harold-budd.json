@@ -76,6 +76,12 @@
       "slug": "project:the-white-arcades",
       "type": "project",
       "name": "The White Arcades"
+    },
+    {
+      "slug": "project:avalon-sutra-as-long-as-i-can-hold-my-breath--harold-budd",
+      "type": "project",
+      "name": "Avalon Sutra / As Long As I Can Hold My Breath",
+      "artist": "Harold Budd"
     }
   ],
   "notable_tracks": [
@@ -88,6 +94,24 @@
       "slug": "track:the-white-arcades--harold-budd",
       "type": "track",
       "name": "The White Arcades"
+    },
+    {
+      "slug": "track:as-long-as-i-can-hold-my-breath--harold-budd",
+      "type": "track",
+      "name": "As Long as I Can Hold My Breath",
+      "artist": "Harold Budd"
+    },
+    {
+      "slug": "track:not-yet-remembered--brian-eno",
+      "type": "track",
+      "name": "Not Yet Remembered",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:the-plateaux-of-mirror--brian-eno",
+      "type": "track",
+      "name": "The Plateaux of Mirror",
+      "artist": "Brian Eno"
     }
   ],
   "influences": [

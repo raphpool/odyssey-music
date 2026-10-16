@@ -47,6 +47,11 @@
       "slug": "artist:robert-henke",
       "type": "artist",
       "name": "Robert Henke"
+    },
+    {
+      "slug": "artist:torsten-profrock",
+      "type": "artist",
+      "name": "Torsten Pröfrock"
     }
   ],
   "notable_releases": [

@@ -73,6 +73,18 @@
       "slug": "project:musik-x-press",
       "type": "project",
       "name": "Musik X-Press"
+    },
+    {
+      "slug": "project:beaucoup-fish--underworld",
+      "type": "project",
+      "name": "Beaucoup Fish",
+      "artist": "Underworld"
+    },
+    {
+      "slug": "project:dubnobasswithmyheadman--underworld",
+      "type": "project",
+      "name": "Dubnobasswithmyheadman",
+      "artist": "Underworld"
     }
   ]
 }

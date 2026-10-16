@@ -24,7 +24,14 @@
   "genres": [],
   "labels": [],
   "discography": [],
-  "notable_tracks": [],
+  "notable_tracks": [
+    {
+      "slug": "track:axel-f--harold-faltermeyer",
+      "type": "track",
+      "name": "Axel F",
+      "artist": "Harold Faltermeyer"
+    }
+  ],
   "influences": [],
   "influenced": [],
   "collaborators": [],

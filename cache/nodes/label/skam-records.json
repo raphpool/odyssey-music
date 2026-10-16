@@ -62,6 +62,21 @@
       "slug": "artist:freeform",
       "type": "artist",
       "name": "Freeform"
+    },
+    {
+      "slug": "artist:marcus-eoin",
+      "type": "artist",
+      "name": "Marcus Eoin"
+    },
+    {
+      "slug": "artist:rob-brown",
+      "type": "artist",
+      "name": "Rob Brown"
+    },
+    {
+      "slug": "artist:sean-booth",
+      "type": "artist",
+      "name": "Sean Booth"
     }
   ],
   "notable_releases": [

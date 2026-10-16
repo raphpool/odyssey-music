@@ -57,7 +57,14 @@
     }
   ],
   "discography": [],
-  "notable_tracks": [],
+  "notable_tracks": [
+    {
+      "slug": "track:spiritual-high--moodswings",
+      "type": "track",
+      "name": "Spiritual High",
+      "artist": "Moodswings"
+    }
+  ],
   "influences": [],
   "influenced": [],
   "collaborators": [],

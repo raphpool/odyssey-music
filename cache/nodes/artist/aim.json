@@ -61,8 +61,22 @@
       "name": "Grand Central Records"
     }
   ],
-  "discography": [],
-  "notable_tracks": [],
+  "discography": [
+    {
+      "slug": "project:cold-water-music--aim",
+      "type": "project",
+      "name": "Cold Water Music",
+      "artist": "Aim"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:cold-water-music--aim",
+      "type": "track",
+      "name": "Cold Water Music",
+      "artist": "Aim"
+    }
+  ],
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -97,6 +97,12 @@
       "slug": "project:emergency",
       "type": "project",
       "name": "Emergency (1984)"
+    },
+    {
+      "slug": "project:saturday-night-fever-the-original-movie-soundtrack--bee-gees",
+      "type": "project",
+      "name": "Saturday Night Fever: The Original Movie Soundtrack",
+      "artist": "Bee Gees"
     }
   ],
   "notable_tracks": [

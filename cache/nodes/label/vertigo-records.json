@@ -51,6 +51,11 @@
       "slug": "artist:manfred-mann-s-earth-band",
       "type": "artist",
       "name": "Manfred Mann's Earth Band"
+    },
+    {
+      "slug": "artist:van-der-graaf-generator",
+      "type": "artist",
+      "name": "Van der Graaf Generator"
     }
   ],
   "notable_releases": [

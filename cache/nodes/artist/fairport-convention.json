@@ -42,7 +42,14 @@
     }
   ],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:liege-and-lief--fairport-convention",
+      "type": "project",
+      "name": "Liege & Lief",
+      "artist": "Fairport Convention"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:meet-on-the-ledge",

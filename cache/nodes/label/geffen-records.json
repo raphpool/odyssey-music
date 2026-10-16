@@ -43,6 +43,16 @@
       "slug": "artist:blink-182",
       "type": "artist",
       "name": "Blink-182"
+    },
+    {
+      "slug": "artist:jesse-saunders",
+      "type": "artist",
+      "name": "Jesse Saunders"
+    },
+    {
+      "slug": "artist:mos-def",
+      "type": "artist",
+      "name": "Mos Def"
     }
   ],
   "notable_releases": [

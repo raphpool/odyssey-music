@@ -52,6 +52,11 @@
       "slug": "artist:sonny-rollins",
       "type": "artist",
       "name": "Sonny Rollins"
+    },
+    {
+      "slug": "artist:stan-getz",
+      "type": "artist",
+      "name": "Stan Getz"
     }
   ],
   "notable_releases": [

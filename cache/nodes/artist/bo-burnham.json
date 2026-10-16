@@ -44,7 +44,14 @@
       "name": "Comedy Central Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:inside--bo-burnham",
+      "type": "project",
+      "name": "Inside",
+      "artist": "Bo Burnham"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],

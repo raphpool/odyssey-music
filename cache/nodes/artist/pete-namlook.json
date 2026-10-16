@@ -87,6 +87,12 @@
       "slug": "project:2350-broadway",
       "type": "project",
       "name": "2350 Broadway"
+    },
+    {
+      "slug": "project:move-d-namlook--move-d",
+      "type": "project",
+      "name": "Move D / Namlook",
+      "artist": "Move D"
     }
   ],
   "notable_tracks": [],

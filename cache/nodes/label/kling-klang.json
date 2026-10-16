@@ -30,6 +30,11 @@
       "slug": "artist:kraftwerk",
       "type": "artist",
       "name": "Kraftwerk"
+    },
+    {
+      "slug": "artist:ralf-hutter",
+      "type": "artist",
+      "name": "Ralf Hütter"
     }
   ],
   "notable_releases": [

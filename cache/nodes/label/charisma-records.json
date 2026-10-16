@@ -52,6 +52,11 @@
       "slug": "artist:monty-python",
       "type": "artist",
       "name": "Monty Python"
+    },
+    {
+      "slug": "artist:john-anthony",
+      "type": "artist",
+      "name": "John Anthony"
     }
   ],
   "notable_releases": [

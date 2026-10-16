@@ -80,6 +80,30 @@
       "slug": "project:syro--aphex-twin",
       "type": "project",
       "name": "Syro"
+    },
+    {
+      "slug": "project:artificial-intelligence--aphex-twin",
+      "type": "project",
+      "name": "Artificial Intelligence",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "project:expert-knob-twiddlers--aphex-twin",
+      "type": "project",
+      "name": "Expert Knob Twiddlers",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "project:selected-ambient-works-volume-ii--aphex-twin",
+      "type": "project",
+      "name": "Selected Ambient Works Volume II",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "project:windowlicker--aphex-twin",
+      "type": "project",
+      "name": "Windowlicker",
+      "artist": "Aphex Twin"
     }
   ],
   "notable_tracks": [
@@ -102,6 +126,114 @@
       "slug": "track:alberto-balsalm",
       "type": "track",
       "name": "Alberto Balsalm"
+    },
+    {
+      "slug": "track:1-2--aphex-twin",
+      "type": "track",
+      "name": "1/2",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "track:180db--aphex-twin",
+      "type": "track",
+      "name": "180db_",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "track:3--aphex-twin",
+      "type": "track",
+      "name": "#3",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "track:4--aphex-twin",
+      "type": "track",
+      "name": "4",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "track:4-bit-9d-api-e-6-126-26--aphex-twin",
+      "type": "track",
+      "name": "4 Bit 9d Api+e+6 [126.26]",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "track:aisatsana-102--aphex-twin",
+      "type": "track",
+      "name": "aisatsana [102]",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "track:carn-marth--aphex-twin",
+      "type": "track",
+      "name": "Carn Marth",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "track:circlont14-shrymoming-mix--aphex-twin",
+      "type": "track",
+      "name": "Circlont14 (Shrymoming Mix)",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "track:crying-in-your-face--aphex-twin",
+      "type": "track",
+      "name": "Crying in Your Face",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "track:fz-pseudotimestretch-e-3-138-85--aphex-twin",
+      "type": "track",
+      "name": "fz pseudotimestretch+e+3 [138.85]",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "track:girl-boy-song--aphex-twin",
+      "type": "track",
+      "name": "Girl/Boy Song",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "track:goon-gumpas--aphex-twin",
+      "type": "track",
+      "name": "Goon Gumpas",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "track:icct-hedral--aphex-twin",
+      "type": "track",
+      "name": "Icct Hedral",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "track:papat4-pineal-mix--aphex-twin",
+      "type": "track",
+      "name": "Papat4 (Pineal Mix)",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "track:produk-29-101--aphex-twin",
+      "type": "track",
+      "name": "produk 29 [101]",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "track:to-cure-a-weakling-child--aphex-twin",
+      "type": "track",
+      "name": "To Cure A Weakling Child",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "track:xmas-evet10-120-thanaton3-mix--aphex-twin",
+      "type": "track",
+      "name": "XMAS_EVET10 [120] [thanaton3 mix]",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "track:yellow-calx--aphex-twin",
+      "type": "track",
+      "name": "Yellow Calx",
+      "artist": "Aphex Twin"
     }
   ],
   "influences": [],

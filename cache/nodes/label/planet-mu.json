@@ -108,6 +108,41 @@
       "slug": "artist:ital-tek",
       "type": "artist",
       "name": "Ital Tek"
+    },
+    {
+      "slug": "artist:ceephax-acid-crew",
+      "type": "artist",
+      "name": "Ceephax Acid Crew"
+    },
+    {
+      "slug": "artist:jake-slazenger",
+      "type": "artist",
+      "name": "Jake Slazenger"
+    },
+    {
+      "slug": "artist:lara-rix-martin",
+      "type": "artist",
+      "name": "Lara Rix-Martin"
+    },
+    {
+      "slug": "artist:machinedrum",
+      "type": "artist",
+      "name": "Machinedrum"
+    },
+    {
+      "slug": "artist:mike-and-rich",
+      "type": "artist",
+      "name": "Mike & Rich"
+    },
+    {
+      "slug": "artist:speedy-j",
+      "type": "artist",
+      "name": "Speedy J"
+    },
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ-Ziq"
     }
   ],
   "notable_releases": [
@@ -125,6 +160,12 @@
       "slug": "project:bangkok-impact",
       "type": "project",
       "name": "Bangkok Impact"
+    },
+    {
+      "slug": "project:songs-about-my-cats--venetian-snares",
+      "type": "project",
+      "name": "Songs About My Cats",
+      "artist": "Venetian Snares"
     }
   ]
 }

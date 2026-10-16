@@ -57,6 +57,12 @@
       "slug": "project:alpha-omega",
       "type": "project",
       "name": "Alpha Omega"
+    },
+    {
+      "slug": "project:fabriclive-37--caspa",
+      "type": "project",
+      "name": "Fabriclive.37",
+      "artist": "Caspa"
     }
   ],
   "notable_tracks": [

@@ -39,6 +39,12 @@
       "slug": "project:rap-com--various",
       "type": "project",
       "name": "Rap.Com"
+    },
+    {
+      "slug": "project:100-rap-francais--jarod",
+      "type": "project",
+      "name": "100% Rap Français",
+      "artist": "Jarod"
     }
   ]
 }

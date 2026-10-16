@@ -86,6 +86,30 @@
       "slug": "track:port-of-nuba--porter-ricks",
       "type": "track",
       "name": "Port of Nuba"
+    },
+    {
+      "slug": "track:biokinetics-2--porter-ricks",
+      "type": "track",
+      "name": "Biokinetics 2",
+      "artist": "Porter Ricks"
+    },
+    {
+      "slug": "track:nautical-nuba--porter-ricks",
+      "type": "track",
+      "name": "Nautical Nuba",
+      "artist": "Porter Ricks"
+    },
+    {
+      "slug": "track:nautical-zone--porter-ricks",
+      "type": "track",
+      "name": "Nautical Zone",
+      "artist": "Porter Ricks"
+    },
+    {
+      "slug": "track:port-gentil--porter-ricks",
+      "type": "track",
+      "name": "Port Gentil",
+      "artist": "Porter Ricks"
     }
   ],
   "influences": [],
