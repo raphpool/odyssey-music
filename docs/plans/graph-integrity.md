@@ -229,6 +229,95 @@ schéma se durcit (1.16).
       1.13, 1.14)
 - [ ] TRA-485 1.16 Exiger au moins un artiste sur les projets et les tracks — tier/3, 1 pt
       (dépend de 1.13)
+- [ ] TRA-509 1.18 Activer les slugs d'œuvres scopés en prod (bascule du drapeau) — tier/3, 1 pt
+      (dépend de tout ce qui précède : voir « Bascule du drapeau (TRA-509) » ci-dessous)
+
+#### Bascule du drapeau (TRA-509)
+
+Tout le comportement « slug d'identité » de la Partie 1 (slugs d'œuvres `<titre>--<artiste>`,
+translittération `ø æ œ ł ß đ þ`, contexte artiste de `/materialize`) est derrière
+`ODYSSEY_SCOPED_RELEASE_SLUGS` (`src/flags.ts`, **désactivé par défaut**). Chaque merge sur `main`
+déploie en prod : la bascule est donc le seul incrément qui change le comportement de la prod, et
+elle ne doit être mergée qu'une fois les deux caches migrés.
+
+**Mécanisme retenu.** `Environment=ODYSSEY_SCOPED_RELEASE_SLUGS=1` dans l'unité systemd
+`odyssey-server.service`, telle que la génère `deploy/deploy-server.sh`. Pourquoi pas
+`deploy/bootstrap-env.sh` : il n'est joué qu'à la main, au provisioning ou à un changement de clé, et
+un déploiement ne réécrit jamais `/etc/odyssey-music.env` (les clés d'API vivent sur un seul hôte et
+ne transitent pas par la CI). Une variable posée là n'atteindrait le service qu'au prochain bootstrap manuel. L'unité,
+elle, est réécrite, suivie de `daemon-reload` et `restart`, à **chaque** déploiement : le merge de la
+PR TRA-509 suffit. Conséquence à connaître : systemd donne priorité à `EnvironmentFile=` sur
+`Environment=`, donc une ligne `ODYSSEY_SCOPED_RELEASE_SLUGS=...` écrite dans
+`/etc/odyssey-music.env` l'emporte sur l'unité. Le déploiement affiche la valeur réellement reçue
+par le processus (`-> ODYSSEY_SCOPED_RELEASE_SLUGS=1 in the running service`) et avertit si le
+fichier d'env définit la variable. Test : `test/scoped-slugs-deploy-flag.test.ts`.
+
+**Défaut de `src/config.ts` / `src/flags.ts` : inchangé (désactivé).** Le critère « tous les tests et
+l'audit passent avec le drapeau à 1 » n'est pas la bonne mesure : le défaut s'applique à *tous* les
+processus qui fabriquent des slugs (crawler local, workflows `top-up-genres`, migrations de
+`deploy/sync-genre-cache.sh`, qui fixe volontairement le drapeau à 0 pour les backfills d'artistes et
+d'œuvres, puis à 1 pour la seule étape de scoping). Le basculer ici ferait écrire des slugs scopés à
+un crawl local sur un cache qui ne l'est pas encore. La prod est le seul environnement à activer.
+
+**Prérequis avant de passer la PR de « brouillon » à « prête » :**
+
+- tous les `blockedBy` de TRA-509 mergés (TRA-477, 481, 482, 462, 473, 476, 563, 538, 546, 547,
+  558, 483, 484) ;
+- `npm run audit:cache -- cache` vert, `unscoped-release-slugs` au niveau attendu après TRA-483 (avant
+  la migration du dépôt : 463) ;
+- TRA-484 appliqué et vérifié : un échantillon de nœuds scopés se lit via `GET /node/<slug scopé>`
+  et un ancien slug répond avec `redirected_from`.
+
+**Après merge (à vérifier, `API=https://dropcliffs.com/api/odyssey`)** :
+
+```bash
+API=https://dropcliffs.com/api/odyssey
+
+# 1. Le déploiement du merge est bien en ligne (sha_short = celui du merge de la PR TRA-509).
+curl -fsS "$API/version" | jq '{sha_short, deployed_at}'
+
+# 2. Lecture : un nœud migré par son slug scopé, et par son ancien slug (redirection).
+curl -fsS "$API/node/project:<titre>--<artiste>" | jq '{slug: .node.slug, artists: .node.artists}'
+curl -fsS "$API/node/project:<titre>"            | jq '{slug: .node.slug, redirected_from}'
+
+# 3. JIT d'un artiste de test (absent du cache : GET /node/artist:<slug> répond 404 avant).
+curl -fsS -X POST "$API/materialize" -H 'Content-Type: application/json' \
+  -d '{"type":"artist","name":"<ARTISTE_TEST>"}' \
+  | jq -r '.node.slug, (.node.discography[] | .slug)' | head
+# -> les œuvres de la discographie portent un slug scopé (<titre>--<artiste>).
+
+# 4. Clic sur une de ses œuvres, comme le front (body de materializeBody, web/index.html).
+curl -fsS -X POST "$API/materialize" -H 'Content-Type: application/json' \
+  -d '{"type":"project","name":"<TITRE>","artist":"<ARTISTE_TEST>","slug":"project:<titre>--<artiste>",
+       "source":{"slug":"artist:<artiste>","field":"discography"}}' | jq '.node.slug'
+# -> le slug scopé de l'arête, inchangé.
+
+# 5. Aucun doublon non scopé : le slug nu n'a PAS été créé.
+curl -s -o /dev/null -w '%{http_code}\n' "$API/node/project:<titre>"   # attendu : 404 (nœud neuf)
+curl -fsS "$API/node/project:<titre>--<artiste>" | jq '.node.slug'      # attendu : 200, slug scopé
+```
+
+Pour une œuvre déjà migrée, l'étape 5 se lit autrement : `GET /node/project:<titre>` répond 200 avec
+`redirected_from` et `node.slug` scopé (la redirection, pas un second nœud). Contrôle de fond côté
+cache de prod, sans écrire : l'audit sur une copie du cache de prod (`unscoped-release-slugs` et
+`duplicate-names` ne montent pas par rapport au niveau d'avant la bascule).
+
+**Rollback.** Remettre la valeur à `0` dans l'unité (`Environment=ODYSSEY_SCOPED_RELEASE_SLUGS=0` dans
+`deploy/deploy-server.sh`), merger et laisser `deploy.yml` redéployer. On ne touche **à aucun nœud
+migré** : les anciens slugs restent lisibles via `data/slug-redirects.json` (lue par tous les chemins de
+lecture, TRA-453), et les nœuds scopés restent lisibles sous leur slug. Drapeau à 0, le serveur
+revient aux slugs que `main` émettait avant la bascule (voir `src/flags.ts`) ; les
+nœuds écrits entre la bascule et le rollback gardent leur slug scopé et ne sont pas réécrits, ce qui est
+sans conséquence pour la lecture. Coupe-feu sans déploiement (si `deploy.yml` est bloqué) : écrire
+`ODYSSEY_SCOPED_RELEASE_SLUGS=0` dans `/etc/odyssey-music.env` puis `systemctl restart
+odyssey-server.service` (l'`EnvironmentFile=` l'emporte sur l'unité) ; à retirer ensuite, car un
+`bootstrap-env.sh` ultérieur réécrit ce fichier en entier.
+
+**Hors périmètre de ce ticket (suivi).** Les processus qui ne sont pas le serveur ne reçoivent pas le
+drapeau : `npm run crawl` en local, et le workflow `top-up-genres` (`.github/`, tier/3, interdit sans
+ticket dédié). Tant qu'ils ne l'ont pas, ils continuent d'écrire des slugs non scopés / non
+translittérés, ce que l'audit signale. Voir `src/flags.ts` : « every process that mints slugs must
+have it ».
 
 ### Partie 2 — Arêtes inverses
 
