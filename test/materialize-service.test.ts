@@ -8,10 +8,19 @@ import type { ApiEnv } from "../src/env.js";
 import { BadRequestError } from "../src/errors.js";
 import { createGenreResolver, loadGenreResolver } from "../src/genre-identity.js";
 import { createGenreRegistry } from "../src/genre-registry.js";
-import type { ArtistNode, EdgeRef, GenreNode, ProjectNode, Slug, TrackNode } from "../src/types.js";
+import type {
+	ArtistNode,
+	EdgeRef,
+	GenreNode,
+	LabelNode,
+	ProjectNode,
+	Slug,
+	TrackNode,
+} from "../src/types.js";
 import {
 	artistDraftFixture,
 	EMPTY_PROJECT_META,
+	FIXTURE_WIKI_URL,
 	genreDraftFixture,
 	installPipelineMocks,
 	projectDraftFixture,
@@ -1575,6 +1584,173 @@ describe("createMaterializeService artist context (TRA-477)", () => {
 				const result = await service.handleMaterialize({ type: "track", name: "Garbage", mbid: BITUME });
 
 				expect((result.node as TrackNode).mbid).toBeUndefined();
+			},
+			TIMEOUT_MS,
+		);
+	});
+
+	// TRA-546: same rule as above for artists and labels. Probe: POST /materialize
+	// {type:"artist", name:"Nobody", mbid:<another artist's>} used to create `artist:nobody` carrying that
+	// mbid, and the cache index then served "Nobody" to every request for the real artist.
+	describe("a client mbid on an artist or a label is only a hint (TRA-546)", () => {
+		const RONI = "dddddddd-1111-4111-8111-0000000000a1";
+		const SERVER = "dddddddd-1111-4111-8111-0000000000a2";
+		const LABEL_PROSE = "A fictional label invented for the mbid hint tests (TRA-546). ".repeat(2);
+
+		async function armArtist(found: string | null) {
+			const mb = await import("../src/musicbrainz.js");
+			vi.mocked(mb.resolveArtistDetailed).mockImplementation(async (name) => ({
+				artist: found ? { mbid: found, name, kind: "person", disambiguation: null, area: null } : null,
+				candidates: found ? 1 : 3,
+				path: "name",
+				unavailable: false,
+				matchedWords: [],
+			}));
+			vi.mocked(mb.fetchArtistEntityMb).mockImplementation(async () => null);
+			return mb;
+		}
+		async function armLabel(found: string | null) {
+			const mb = await import("../src/musicbrainz.js");
+			vi.mocked(mb.findLabelMbidByName).mockImplementation(async () => found);
+			vi.mocked(mb.fetchLabelEntityMb).mockImplementation(async () =>
+				found
+					? { mbid: found, name: "Nobody Records", country: null, founded: null, disambiguation: null }
+					: null,
+			);
+			vi.mocked(mb.fetchLabelMetaMb).mockImplementation(async () => ({ roster: [], notableReleases: [] }));
+			return mb;
+		}
+		const labelDraft = {
+			name: "Nobody Records",
+			editorial_article: LABEL_PROSE,
+			citations: [{ url: FIXTURE_WIKI_URL, title: "Fixture Artist" }],
+			editorial_description: "A fictional label.",
+			genres: [],
+			roster: [],
+			notable_releases: [],
+		};
+
+		it(
+			"does not stamp the mbid of another artist on a new Nobody (reviewer probe)",
+			async () => {
+				geminiReturning(artistDraftFixture({ name: "Nobody" }));
+				await armArtist(null);
+				const service = await buildService(true);
+
+				const result = await service.handleMaterialize({ type: "artist", name: "Nobody", mbid: RONI });
+
+				expect(result.node.slug).toBe("artist:nobody");
+				expect((result.node as ArtistNode).mbid).toBeUndefined();
+				expect(((await cache.get("artist:nobody")) as ArtistNode).mbid).toBeUndefined();
+				expect((await buildCacheIndex(dir)).byMbid(RONI)).toBeNull();
+
+				// MB resolves the name to somebody else entirely: neither mbid is written for the hint.
+				geminiReturning(artistDraftFixture({ name: "Nobody" }));
+				await armArtist(SERVER);
+				const other = await service.handleMaterialize(
+					{ type: "artist", name: "Nobody", mbid: RONI },
+					{ fresh: true },
+				);
+				expect((other.node as ArtistNode).mbid).toBeUndefined();
+				expect((await buildCacheIndex(dir)).byMbid(RONI)).toBeNull();
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"writes the artist's mbid when MB resolves the name to that very mbid",
+			async () => {
+				geminiReturning(artistDraftFixture({ name: "Roni Size" }));
+				await armArtist(RONI);
+				const service = await buildService(true);
+
+				const result = await service.handleMaterialize({ type: "artist", name: "Roni Size", mbid: RONI });
+
+				expect((result.node as ArtistNode).mbid).toBe(RONI);
+				expect((await buildCacheIndex(dir)).byMbid(RONI)).toBe("artist:roni-size");
+			},
+			TIMEOUT_MS,
+		);
+
+		describe("refreshing an artist that already carries a server mbid", () => {
+			const cachedNobody = () => artistNode("artist:nobody" as Slug, "Nobody", { mbid: SERVER });
+
+			it(
+				"keeps the mbid on fresh=1 when MusicBrainz is ambiguous",
+				async () => {
+					await cache.write(cachedNobody());
+					geminiReturning(artistDraftFixture({ name: "Nobody" }));
+					await armArtist(null);
+					const service = await buildService(true);
+
+					const result = await service.handleMaterialize({ type: "artist", name: "Nobody" }, { fresh: true });
+
+					expect(result.source).toBe("jit");
+					expect((result.node as ArtistNode).mbid).toBe(SERVER);
+					expect(((await cache.get("artist:nobody")) as ArtistNode).mbid).toBe(SERVER);
+					expect((await buildCacheIndex(dir)).byMbid(SERVER)).toBe("artist:nobody");
+				},
+				TIMEOUT_MS,
+			);
+
+			it(
+				"keeps the server mbid when the client sends another one, with or without fresh",
+				async () => {
+					await cache.write(cachedNobody());
+					geminiReturning(artistDraftFixture({ name: "Nobody" }));
+					await armArtist(null);
+					const service = await buildService(true);
+
+					const served = await service.handleMaterialize({ type: "artist", name: "Nobody", mbid: RONI });
+					expect(served).toMatchObject({ source: "cache", node: { mbid: SERVER } });
+
+					const refreshed = await service.handleMaterialize(
+						{ type: "artist", name: "Nobody", mbid: RONI },
+						{ fresh: true },
+					);
+					expect((refreshed.node as ArtistNode).mbid).toBe(SERVER);
+					expect((await buildCacheIndex(dir)).byMbid(RONI)).toBeNull();
+				},
+				TIMEOUT_MS,
+			);
+		});
+
+		it(
+			"serves a cached artist or label without an mbid as is: an unconfirmed hint never re-runs the pipeline",
+			async () => {
+				await cache.write(artistNode("artist:nobody" as Slug, "Nobody"));
+				const tavily = await noPipeline();
+				const service = await buildService(true);
+
+				const result = await service.handleMaterialize({ type: "artist", name: "Nobody", mbid: RONI });
+
+				expect(result).toMatchObject({ source: "cache", node: { slug: "artist:nobody" } });
+				expect((result.node as ArtistNode).mbid).toBeUndefined();
+				expect(tavily).not.toHaveBeenCalled();
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"does the same for a label: the mbid is written only when MB's name search lands on it",
+			async () => {
+				geminiReturning(labelDraft);
+				await armLabel(null);
+				const service = await buildService(true);
+
+				const probe = await service.handleMaterialize({ type: "label", name: "Nobody Records", mbid: RONI });
+				expect(probe.node.slug).toBe("label:nobody-records");
+				expect((probe.node as LabelNode).mbid).toBeUndefined();
+				expect((await buildCacheIndex(dir)).byMbid(RONI)).toBeNull();
+
+				geminiReturning(labelDraft);
+				await armLabel(RONI);
+				const confirmed = await service.handleMaterialize(
+					{ type: "label", name: "Nobody Records", mbid: RONI },
+					{ fresh: true },
+				);
+				expect((confirmed.node as LabelNode).mbid).toBe(RONI);
+				expect((await buildCacheIndex(dir)).byMbid(RONI)).toBe("label:nobody-records");
 			},
 			TIMEOUT_MS,
 		);
