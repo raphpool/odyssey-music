@@ -517,6 +517,43 @@ describe("project:new-forms", () => {
 		expect((await readNode("project:twin-forms")).mbid).toBeUndefined();
 	});
 
+	// TRA-552: the artist's MBID, from the artist manifest, makes his own work direct under any printed
+	// name; the group's work of the same title then makes the title a doubt, not the group's work.
+	it("keeps a title ambiguous when the member's own work is printed under another name", async () => {
+		stubMb([
+			{
+				kind: "release-group",
+				id: RONI_SIZE_2022_RG,
+				title: "Presented Forms",
+				credit: [{ id: RONI_SIZE, name: "Roni Size Presents" }],
+				date: "2022",
+				primaryType: "Album",
+			},
+			{
+				kind: "release-group",
+				id: rg,
+				title: "Presented Forms",
+				credit: [{ id: reprazent, name: "Roni Size / Reprazent" }],
+				date: "1997",
+				primaryType: "Album",
+			},
+		]);
+		await seed(
+			artistNode("artist:roni-size", {
+				name: "Roni Size",
+				discography: [edge("project:presented-forms", "Presented Forms")],
+			}),
+			projectNode("project:presented-forms", "Presented Forms"),
+		);
+		const artistManifestPath = await writeMemberManifest(reprazent);
+
+		const result = await run({ apply: true, artistManifestPath });
+
+		expect(result.manifest.resolved).toEqual({});
+		expect(result.manifest.unresolved.map((u) => u.reason)).toEqual(["ambiguous-candidates"]);
+		expect((await readNode("project:presented-forms")).mbid).toBeUndefined();
+	});
+
 	// TRA-537 (2026-10-15): a member's name alone does not resolve the group's work ("Roni Size" for
 	// "Roni Size / Reprazent"): without the group's MBID the member stays unresolved.
 	it("leaves a member unresolved when MusicBrainz credits the group only and no group is known", async () => {

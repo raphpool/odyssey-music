@@ -1813,6 +1813,128 @@ describe("work resolvers: credits accepted by MBID (TRA-539)", () => {
 		).toEqual(ambiguous);
 	});
 
+	describe("requestedArtistMbid and two bands (TRA-552)", () => {
+		const PRESENTS = "ffffffff-1111-4111-8111-0000000000a1";
+		const BAND_WORK = "ffffffff-1111-4111-8111-0000000000a2";
+		const OLDER = "ffffffff-1111-4111-8111-0000000000a3";
+		const NEWER = "ffffffff-1111-4111-8111-0000000000a4";
+
+		// "Roni Size Presents" is not the hint and no segment of it either: by name alone the artist's own
+		// work vanished and the band's work of the same title won.
+		const fixture = () =>
+			stubMb({
+				recordings: [
+					hit(PRESENTS, "X Test", [[RONI, "Roni Size Presents"]], { "first-release-date": "2000" }),
+					hit(BAND_WORK, "X Test", [[REPRAZENT_BAND, "Roni Size / Reprazent"]], {
+						"first-release-date": "1999",
+					}),
+				],
+			});
+
+		it("documents the gap: without the artist's MBID the band's work wins", async () => {
+			fixture();
+			const out = await resolveRecordingDetailed("X Test", "Roni Size", {
+				acceptCreditMbids: [REPRAZENT_BAND],
+			});
+			expect(out.identity?.mbid).toBe(BAND_WORK);
+		});
+
+		it("is ambiguous, not the band's work, when the artist's own work is printed under another name", async () => {
+			fixture();
+			expect(
+				await resolveRecordingDetailed("X Test", "Roni Size", {
+					acceptCreditMbids: [REPRAZENT_BAND],
+					requestedArtistMbid: RONI,
+				}),
+			).toEqual(ambiguous);
+		});
+
+		it("compares the requested MBID without regard to case, on release groups too", async () => {
+			stubMb({
+				"release-groups": [
+					hit(PRESENTS, "X Test", [[RONI, "Roni Size Presents"]]),
+					hit(BAND_WORK, "X Test", [[REPRAZENT_BAND, "Roni Size / Reprazent"]]),
+				],
+			});
+			expect(
+				await resolveReleaseGroupDetailed("X Test", "Roni Size", {
+					acceptCreditMbids: [REPRAZENT_BAND],
+					requestedArtistMbid: RONI.toUpperCase(),
+				}),
+			).toEqual(ambiguous);
+		});
+
+		it("resolves the artist's own work printed under another name when no band competes", async () => {
+			stubMb({ recordings: [hit(PRESENTS, "Y Test", [[RONI, "Roni Size Presents"]])] });
+			expect(
+				(await resolveRecordingDetailed("Y Test", "Roni Size", { requestedArtistMbid: RONI })).identity?.mbid,
+			).toBe(PRESENTS);
+			expect(await resolveRecordingDetailed("Y Test", "Roni Size")).toEqual(none);
+		});
+
+		it("never reads another artist's MBID as the requested one", async () => {
+			stubMb({ recordings: [hit(PRESENTS, "Z Test", [[RONI, "Roni Size Presents"]])] });
+			expect(
+				await resolveRecordingDetailed("Z Test", "Roni Size", { requestedArtistMbid: OTHER_BAND }),
+			).toEqual(none);
+		});
+
+		it("is ambiguous when two different accepted bands each have a work of the title (recording)", async () => {
+			stubMb({
+				recordings: [
+					hit(OLDER, "Twin Test", [[REPRAZENT_BAND, "Roni Size / Reprazent"]], {
+						"first-release-date": "1997",
+					}),
+					hit(NEWER, "Twin Test", [[OTHER_BAND, "Another Band"]], { "first-release-date": "2005" }),
+				],
+			});
+			expect(
+				await resolveRecordingDetailed("Twin Test", "Roni Size", {
+					acceptCreditMbids: [REPRAZENT_BAND, OTHER_BAND],
+				}),
+			).toEqual(ambiguous);
+		});
+
+		it("is ambiguous, not the oldest, when two different accepted bands each have a release group of the title", async () => {
+			stubMb({
+				"release-groups": [
+					hit(OLDER, "Twin Test", [[REPRAZENT_BAND, "Roni Size / Reprazent"]], {
+						"first-release-date": "1997",
+					}),
+					hit(NEWER, "Twin Test", [[OTHER_BAND, "Another Band"]], { "first-release-date": "2005" }),
+				],
+			});
+			expect(
+				await resolveReleaseGroupDetailed("Twin Test", "Roni Size", {
+					acceptCreditMbids: [REPRAZENT_BAND, OTHER_BAND],
+				}),
+			).toEqual(ambiguous);
+		});
+
+		it("still takes the earliest release group when both candidates belong to the same accepted band", async () => {
+			stubMb({
+				"release-groups": [
+					hit(OLDER, "Twin Same Band", [[REPRAZENT_BAND, "Roni Size / Reprazent"]], {
+						"first-release-date": "1997",
+					}),
+					hit(NEWER, "Twin Same Band", [[REPRAZENT_BAND, "Reprazent"]], { "first-release-date": "2005" }),
+				],
+			});
+			const out = await resolveReleaseGroupDetailed("Twin Same Band", "Roni Size", {
+				acceptCreditMbids: [REPRAZENT_BAND, OTHER_BAND],
+			});
+			expect(out.identity?.mbid).toBe(OLDER);
+		});
+
+		it("resolves when only one of the listed bands has a work of the title", async () => {
+			stubMb({ "release-groups": [hit(OLDER, "Twin Lone", [[REPRAZENT_BAND, "Roni Size / Reprazent"]])] });
+			const out = await resolveReleaseGroupDetailed("Twin Lone", "Roni Size", {
+				acceptCreditMbids: [REPRAZENT_BAND, OTHER_BAND],
+			});
+			expect(out.identity?.mbid).toBe(OLDER);
+		});
+	});
+
 	it("still picks the one direct candidate when no band-credited candidate exists", async () => {
 		const id = "ffffffff-1111-4111-8111-000000000006";
 		stubMb({
