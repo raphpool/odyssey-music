@@ -2,7 +2,7 @@ import { copyFile, mkdir, readFile, rename, unlink, writeFile } from "node:fs/pr
 import { dirname, join } from "node:path";
 import { isNotFoundError, NotFoundError, ValidationError } from "./errors.js";
 import { logger } from "./logger.js";
-import { reverseFor, reversibleFields } from "./reverse-edges.js";
+import { isEmittedPendingReverse, reverseFor, reversibleFields } from "./reverse-edges.js";
 import { nodePayloadSchema, readNodePayloadSchema } from "./schemas.js";
 import { isValidSlug, parseSlug } from "./slug.js";
 import type { EdgeRef, NodePayload, Slug } from "./types.js";
@@ -429,7 +429,17 @@ export class NodeCache {
 	 */
 	private async commitLocked(parsed: NodePayload, delta: CacheWriteDelta): Promise<void> {
 		const pending = this.pendingReverses[parsed.slug] ?? [];
-		const merged = applyReverses(parsed, pending);
+		// TRA-563: a pending entry written before the runtime stopped emitting unsafe directions (a credit on a
+		// work from a namesake's list) is not applied. It stays on disk until the purge migration.
+		const applicable: PendingReverse[] = [];
+		const skipped: PendingReverse[] = [];
+		for (const p of pending) {
+			(isEmittedPendingReverse(parsed.type, p) ? applicable : skipped).push(p);
+		}
+		if (skipped.length) {
+			log.warn("ignored unsafe pending reverse edges", { slug: parsed.slug, skipped: skipped.length });
+		}
+		const merged = applyReverses(parsed, applicable);
 		// Re-validation of `parsed` (strictly validated by the caller) plus reverse edges queued
 		// earlier: a legacy slug among them must not fail the write of a valid node (TRA-501).
 		const validated = readNodePayloadSchema.parse(merged) as NodePayload;
@@ -438,8 +448,9 @@ export class NodeCache {
 		await atomicWriteJson(file, validated);
 		this.stats.written++;
 		delta.written++;
-		if (pending.length) {
-			delete this.pendingReverses[parsed.slug];
+		if (applicable.length) {
+			if (skipped.length) this.pendingReverses[parsed.slug] = skipped;
+			else delete this.pendingReverses[parsed.slug];
 			this.pendingDirty = true;
 		}
 	}
