@@ -448,6 +448,7 @@ describe("resolveReleaseGroup", () => {
 			credit: [{ mbid: REPRAZENT, name: "Roni Size / Reprazent" }],
 			primaryType: "Album",
 			firstReleaseDate: "1997-06-23",
+			releaseGroupMbid: null,
 		});
 		expect(out?.credit[0]?.name).toBe("Roni Size / Reprazent");
 		expect(urls).toHaveLength(1);
@@ -614,6 +615,7 @@ describe("resolveReleaseGroup", () => {
 			credit: [{ mbid: "89ce39a8-ae2b-4d24-8cd3-1c9ed7f1a5e1", name: "Various Artists" }],
 			primaryType: null,
 			firstReleaseDate: null,
+			releaseGroupMbid: null,
 		});
 	});
 
@@ -722,6 +724,7 @@ describe("resolveRecording", () => {
 			credit: [{ mbid: "bbbbbbbb-2222-4222-8222-000000000002", name: "Rohff" }],
 			primaryType: null,
 			firstReleaseDate: "2008-05-12",
+			releaseGroupMbid: null,
 		});
 		expect(urls[0]?.pathname).toBe("/ws/2/recording");
 		expect(urls[0]?.searchParams.get("query")).toBe('recording:"Fitna" AND artist:"Rohff"');
@@ -1334,6 +1337,77 @@ describe("resolveRecordingDetailed / resolveReleaseGroupDetailed", () => {
 				unavailable: false,
 			});
 		}
+	});
+
+	// TRA-578 (3b.1): a track's cover is its release group's; the search hit already lists the releases.
+	describe("releaseGroupMbid", () => {
+		const album = "eeeeeeee-5555-4555-8555-000000000001";
+		const single = "eeeeeeee-5555-4555-8555-000000000002";
+		const release = (id: string, primaryType: string | undefined, secondaryTypes: string[] = []) => ({
+			id: "ffffffff-6666-4666-8666-000000000000",
+			"release-group": {
+				id,
+				...(primaryType ? { "primary-type": primaryType } : {}),
+				...(secondaryTypes.length > 0 ? { "secondary-types": secondaryTypes } : {}),
+			},
+		});
+		const identityFor = async (title: string, releases: unknown) => {
+			stubMb({
+				recordings: [hit("dddddddd-4444-4444-8444-000000000041", title, credit, { releases })],
+			});
+			return (await resolveRecordingDetailed(title, "Kraftwerk")).identity;
+		};
+
+		it("prefers the release group of an Album-primary release over an earlier-listed single", async () => {
+			const out = await identityFor("Pocket Calculator", [
+				release(single, "Single"),
+				release(album, "album"),
+			]);
+			expect(out?.releaseGroupMbid).toBe(album);
+		});
+
+		it("prefers a studio Album over a compilation or live Album listed before it", async () => {
+			const out = await identityFor("Computer Love", [
+				release(single, "Album", ["Live"]),
+				release(album, "Album"),
+			]);
+			expect(out?.releaseGroupMbid).toBe(album);
+		});
+
+		it("still names an Album with secondary types when no studio Album is listed", async () => {
+			const out = await identityFor("The Model", [
+				release(single, "Single"),
+				release(album, "Album", ["Compilation"]),
+			]);
+			expect(out?.releaseGroupMbid).toBe(album);
+		});
+
+		it("falls back to the first release group listed when none is an Album", async () => {
+			const out = await identityFor("Numbers", [release(single, "Single"), release(album, "EP")]);
+			expect(out?.releaseGroupMbid).toBe(single);
+		});
+
+		it("is null when the hit lists no release, or none with a valid release-group id", async () => {
+			expect((await identityFor("Metropolis", undefined))?.releaseGroupMbid).toBeNull();
+			expect((await identityFor("Neon Lights", []))?.releaseGroupMbid).toBeNull();
+			expect(
+				(await identityFor("Spacelab", [release("not-an-mbid", "Album"), { "release-group": "x" }]))
+					?.releaseGroupMbid,
+			).toBeNull();
+		});
+
+		it("is null for a release group: its own mbid is the release group", async () => {
+			stubMb({
+				"release-groups": [
+					hit("dddddddd-4444-4444-8444-000000000042", "Computer World", credit, {
+						"primary-type": "Album",
+					}),
+				],
+			});
+			const out = await resolveReleaseGroupDetailed("Computer World", "Kraftwerk");
+			expect(out.identity?.mbid).toBe("dddddddd-4444-4444-8444-000000000042");
+			expect(out.identity?.releaseGroupMbid).toBeNull();
+		});
 	});
 
 	it("finds nothing, not an ambiguity, when the only exact recording is a live one", async () => {

@@ -6,6 +6,8 @@ tickets créés le 2026-10-14 dans le projet Linear **P-TRA-5 « Intégrité du 
 46 issues TRA-448 à TRA-493. Mesures faites sur le cache committé à
 `e04bebc` (581 artistes, 294 projets, 243 tracks, 184 labels, 316 genres, 1 618 nœuds,
 21 896 arêtes). Script d'audit de référence : `scripts/audit-cache.ts` (Partie 0).
+Addendum du 2026-10-16 : « Partie 3b — Pochettes à la demande » en fin de document, validée par
+Raphael le 2026-10-16 (« ok plan »).
 
 ## Problème
 
@@ -229,6 +231,112 @@ schéma se durcit (1.16).
       1.13, 1.14)
 - [ ] TRA-485 1.16 Exiger au moins un artiste sur les projets et les tracks — tier/3, 1 pt
       (dépend de 1.13)
+- [ ] TRA-509 1.18 Activer les slugs d'œuvres scopés en prod (bascule du drapeau) — tier/3, 1 pt
+      (dépend de tout ce qui précède : voir « Bascule du drapeau (TRA-509) » ci-dessous)
+
+#### Bascule du drapeau (TRA-509)
+
+Tout le comportement « slug d'identité » de la Partie 1 (slugs d'œuvres `<titre>--<artiste>`,
+translittération `ø æ œ ł ß đ þ`, contexte artiste de `/materialize`) est derrière
+`ODYSSEY_SCOPED_RELEASE_SLUGS` (`src/flags.ts`, **désactivé par défaut**). Chaque merge sur `main`
+déploie en prod : la bascule est donc le seul incrément qui change le comportement de la prod, et
+elle ne doit être mergée qu'une fois les deux caches migrés.
+
+**Mécanisme retenu.** `Environment=ODYSSEY_SCOPED_RELEASE_SLUGS=1` dans l'unité systemd
+`odyssey-server.service`, telle que la génère `deploy/deploy-server.sh`. Pourquoi pas
+`deploy/bootstrap-env.sh` : il n'est joué qu'à la main, au provisioning ou à un changement de clé, et
+un déploiement ne réécrit jamais `/etc/odyssey-music.env` (les clés d'API vivent sur un seul hôte et
+ne transitent pas par la CI). Une variable posée là n'atteindrait le service qu'au prochain bootstrap manuel. L'unité,
+elle, est réécrite, suivie de `daemon-reload` et `restart`, à **chaque** déploiement : le merge de la
+PR TRA-509 suffit. Conséquence à connaître : systemd donne priorité à `EnvironmentFile=` sur
+`Environment=`, donc une ligne `ODYSSEY_SCOPED_RELEASE_SLUGS=...` écrite dans
+`/etc/odyssey-music.env` l'emporte sur l'unité. Le déploiement lit l'environnement du processus en cours
+(`/proc/<MainPID>/environ`), affiche la valeur réellement reçue (`-> ODYSSEY_SCOPED_RELEASE_SLUGS=1 in
+the running service (unit: 1)`) et émet un `WARN` (sans échouer : un coupe-feu volontaire ne doit pas
+bloquer les déploiements) quand elle diffère de celle de l'unité ou que le service n'est pas levé.
+L'écart est aussi publié en annotation GitHub (`::warning title=... mismatch::`, sur la sortie
+standard relayée par ssh) pour apparaître dans le résumé du run. Test :
+`test/scoped-slugs-deploy-flag.test.ts` (exécute ce bloc contre un `systemctl` et un `/proc` factices).
+Ce test ne dépend pas de la valeur commitée : il exige une seule ligne `Environment=ODYSSEY_SCOPED_RELEASE_SLUGS=0|1`
+dans le script courant, en tire deux copies (forcée à `1`, forcée à `0`) et rejoue les mêmes
+vérifications sur chacune. Il reste donc vert que le script porte `1` (livré par TRA-509) ou `0`
+(commit de rollback) : `deploy.yml` lance `npm run test` **avant** `Deploy server`, un test qui exigerait
+l'une des valeurs arrêterait le rollback au lieu de le déployer. Preuve : la ligne passée vraiment à `0`
+dans une copie, `vitest run test/scoped-slugs-deploy-flag.test.ts` donne 17 tests verts (voir la PR). La
+valeur livrée (1) est documentée ici, pas assertée.
+
+**Défaut de `src/config.ts` / `src/flags.ts` : inchangé (désactivé).** Le critère « tous les tests et
+l'audit passent avec le drapeau à 1 » n'est pas la bonne mesure : le défaut s'applique à *tous* les
+processus qui fabriquent des slugs (crawler local, workflows `top-up-genres`, migrations de
+`deploy/sync-genre-cache.sh`, qui fixe volontairement le drapeau à 0 pour les backfills d'artistes et
+d'œuvres, puis à 1 pour la seule étape de scoping). Le basculer ici ferait écrire des slugs scopés à
+un crawl local sur un cache qui ne l'est pas encore. La prod est le seul environnement à activer.
+
+**Prérequis avant de passer la PR de « brouillon » à « prête » (aucun garde-fou de code ne les
+vérifie : le merge déploie le drapeau à 1, sans condition) :**
+
+- tous les `blockedBy` de TRA-509 mergés (TRA-477, 481, 482, 462, 473, 476, 563, 538, 546, 547,
+  558, 483, 484) ;
+- `npm run audit:cache -- cache` vert, `unscoped-release-slugs` au niveau attendu après TRA-483 (avant
+  la migration du dépôt : 463) ;
+- TRA-484 appliqué et vérifié : un échantillon de nœuds scopés se lit via `GET /node/<slug scopé>`
+  et un ancien slug répond avec `redirected_from`.
+
+**Après merge (à vérifier, `API=https://dropcliffs.com/api/odyssey`)** :
+
+```bash
+API=https://dropcliffs.com/api/odyssey
+
+# 1. Le déploiement du merge est bien en ligne (sha_short = celui du merge de la PR TRA-509).
+curl -fsS "$API/version" | jq '{sha_short, deployed_at}'
+
+# 2. Lecture : un nœud migré par son slug scopé, et par son ancien slug (redirection).
+curl -fsS "$API/node/project:<titre>--<artiste>" | jq '{slug: .node.slug, artists: .node.artists}'
+curl -fsS "$API/node/project:<titre>"            | jq '{slug: .node.slug, redirected_from}'
+
+# 3. JIT d'un artiste de test (absent du cache : GET /node/artist:<slug> répond 404 avant).
+curl -fsS -X POST "$API/materialize" -H 'Content-Type: application/json' \
+  -d '{"type":"artist","name":"<ARTISTE_TEST>"}' \
+  | jq -r '.node.slug, (.node.discography[] | .slug)' | head
+# -> les œuvres de la discographie portent un slug scopé (<titre>--<artiste>).
+
+# 4. Clic sur une de ses œuvres, comme le front (body de materializeBody, web/index.html).
+curl -fsS -X POST "$API/materialize" -H 'Content-Type: application/json' \
+  -d '{"type":"project","name":"<TITRE>","artist":"<ARTISTE_TEST>","slug":"project:<titre>--<artiste>",
+       "source":{"slug":"artist:<artiste>","field":"discography"}}' | jq '.node.slug'
+# -> le slug scopé de l'arête, inchangé.
+
+# 5. Aucun doublon non scopé : le slug nu n'a PAS été créé.
+curl -s -o /dev/null -w '%{http_code}\n' "$API/node/project:<titre>"   # attendu : 404 (nœud neuf)
+curl -fsS "$API/node/project:<titre>--<artiste>" | jq '.node.slug'      # attendu : 200, slug scopé
+```
+
+Pour une œuvre déjà migrée, l'étape 5 se lit autrement : `GET /node/project:<titre>` répond 200 avec
+`redirected_from` et `node.slug` scopé (la redirection, pas un second nœud). Contrôle de fond côté
+cache de prod, sans écrire : l'audit sur une copie du cache de prod (`unscoped-release-slugs` et
+`duplicate-names` ne montent pas par rapport au niveau d'avant la bascule).
+
+**Rollback** (testé : le test du drapeau passe avec l'unité à `0`, donc `npm run test` reste vert et
+`deploy.yml` atteint `Deploy server`). Remettre la valeur à `0` dans l'unité (`Environment=ODYSSEY_SCOPED_RELEASE_SLUGS=0` dans
+`deploy/deploy-server.sh`), merger et laisser `deploy.yml` redéployer. On ne touche **à aucun nœud
+migré** : les anciens slugs restent lisibles via `data/slug-redirects.json` (lue par tous les chemins de
+lecture, TRA-453), et les nœuds scopés restent lisibles sous leur slug. Drapeau à 0, le serveur
+revient aux slugs que `main` émettait avant la bascule (voir `src/flags.ts`) ; les
+nœuds écrits entre la bascule et le rollback gardent leur slug scopé et ne sont pas réécrits. Le
+rollback garantit la **lecture**, pas l'absence de nouveaux doublons : cache migré et drapeau à 0, un
+JIT d'œuvre sans contexte artiste (`artist` est ignoré drapeau éteint) peut écrire un slug nu à côté du
+slug scopé, le cas que décrit `src/flags.ts`. Après un rollback, relancer `npm run audit:cache` sur une
+copie du cache de prod : si `duplicate-names` ou `unscoped-release-slugs` montent, ouvrir un ticket de
+nettoyage (fusion par la migration d'identité, idempotente), sans éditer le cache à la main. Coupe-feu sans déploiement (si `deploy.yml` est bloqué) : écrire
+`ODYSSEY_SCOPED_RELEASE_SLUGS=0` dans `/etc/odyssey-music.env` puis `systemctl restart
+odyssey-server.service` (l'`EnvironmentFile=` l'emporte sur l'unité) ; à retirer ensuite, car un
+`bootstrap-env.sh` ultérieur réécrit ce fichier en entier.
+
+**Hors périmètre de ce ticket (suivi).** Les processus qui ne sont pas le serveur ne reçoivent pas le
+drapeau : `npm run crawl` en local, et le workflow `top-up-genres` (`.github/`, tier/3, suivi dans
+TRA-572). Tant qu'ils ne l'ont pas, ils continuent d'écrire des slugs non scopés / non
+translittérés, ce que l'audit signale. Voir `src/flags.ts` : « every process that mints slugs must
+have it ».
 
 ### Partie 2 — Arêtes inverses
 
@@ -254,6 +362,8 @@ schéma se durcit (1.16).
       (dépend de 3.1)
 - [ ] TRA-467 3.7 `[P]` Afficher l'image de chaque nœud dans l'app iOS — tier/2, 2 pts (dépend
       de 3.1)
+- Suite proposée le 2026-10-16 : **Partie 3b — Pochettes à la demande** (section dédiée en fin de
+  document, 9 tâches 3b.1 → 3b.9, validée le 2026-10-16).
 
 ### Partie 4 — Artistes similaires
 
@@ -386,3 +496,311 @@ les enchaîner (pas trois PR ouvertes en même temps sur le schéma).
   similaires ».
 - Aucune re-matérialisation sans `POST /materialize?fresh=1` explicite ; `GET /image` n'écrit
   plus rien.
+
+## Partie 3b — Pochettes à la demande
+
+Statut : **validé par Raphael le 2026-10-16 (« ok plan »)**, les quatre questions ouvertes tranchées
+(voir « Décisions validées par Raphael » en fin de partie) ; tickets créés le 2026-10-16 dans le
+milestone « Partie 3b — Pochettes à la demande » de P-TRA-5 : TRA-578 à TRA-586 (3b.1 → 3b.9).
+Brief : option A (le serveur trouve la pochette d'une œuvre même sans fiche, avec la vérification
+MusicBrainz du reste du projet) + « à chaque fiche, même les existantes, lorsqu'elles s'ouvrent, on
+va chercher la pochette de tous les albums présents ». Cartographie faite sur `origin/main` à
+`7ef31bf7` ; les numéros de ligne s'y réfèrent.
+
+### Problème
+
+Sur une fiche artiste (Squarepusher, web et iOS), les vignettes de discographie (*Feed Me Weird
+Things*, *Go Plastic*, *Ufabulum*) restent des dégradés. Chaîne vérifiée :
+
+1. **L'image n'est calculée qu'à la matérialisation.** `attachResolvedImage` (`src/pipeline.ts:849-898`)
+   appelle `resolveImage(node, deps)` (`src/images/resolve-image.ts:136`), puis `cache.write`.
+   `GET /image/:slug` (`src/server.ts:277-296`) est en lecture seule depuis TRA-475 : `image_url`
+   stocké → anciens champs → arêtes (`related:`) → `no-match`. Un slug **sans nœud** répond 200
+   `{image_url: null, source: "not-cached"}` avec `Cache-Control: public, max-age=86400` ; la route
+   mobile `GET /mobile/v1/nodes/:slug/image` (`src/mobile/media.ts:56-66`, `src/mobile/router.ts:90-124`)
+   répond 404.
+2. **Mesure** sur le cache d'`origin/main` : 9 411 slugs d'œuvres distincts référencés par des arêtes
+   pour 533 nœuds projet/track, soit ≈ 94 % des slugs référencés sans nœud (le « 60 % » du brief compte
+   par arête). 8 351 de ces slugs sont encore **nus** (sans `--`) : la migration TRA-483 n'est pas
+   appliquée au dépôt à `7ef31bf7`.
+3. **Les clients mémorisent l'échec.** iOS garde `.unavailable` pour la session
+   (`ios/Track1Core/Sources/Track1Core/Media/NodeImageStore.swift:32-36, 94-102`) ; le web garde la
+   promesse `null` dans `imageJitPromises` pour la page (`web/index.html:245-260`). Une réponse « pas
+   encore » est donc aujourd'hui un échec définitif.
+4. **Le résolveur exige un `NodePayload` complet.** Aucune fonction ne rend titre + artiste depuis un
+   slug (`scopeOf`, `src/slug.ts:207`, ne rend qu'un corps normalisé). En revanche l'arête affichée porte
+   déjà `name`, `type`, `mbid?`, `releaseType?`, `artist?` (`EdgeRef`, `src/types.ts:23-33`), et la
+   fiche source connaît son propre artiste.
+5. **La file MusicBrainz est FIFO stricte** (`reserveSlotDelayMs`, `src/musicbrainz.ts:302-311`),
+   1 req/s, sans priorité, partagée avec `/materialize` et la recherche live (TRA-450, TRA-573).
+
+### Non-buts
+
+- Écrire un nœud pour une œuvre non matérialisée, ou écrire un nœud existant depuis le chemin de
+  lecture : la matérialisation (TRA-479) et le backfill (TRA-489) restent les seuls à poser `image_url`
+  sur un nœud.
+- Trouver l'image d'un **artiste, label ou genre sans nœud** (arêtes `members`, `collaborators`,
+  `roster`, `key_artists`…) : il faudrait une résolution d'identité d'artiste à la demande ; le dégradé
+  reste.
+- Corriger le rattachement d'une fiche homonyme existante (`project:3` d'Aphex Twin affiché depuis
+  Pole) : c'est la Partie 1.
+- Changer l'échelle du résolveur d'images, la liste d'hôtes, ou l'UI d'attente (spinner, légende) : le
+  dégradé de type reste l'état d'attente.
+- Précharger le cache entier : seule une fiche **ouverte** déclenche des résolutions.
+
+### Décisions d'archi
+
+**3b-D1. L'identité d'une œuvre sans nœud vient de l'arête affichée, jamais du slug ni du client.**
+La fiche ouverte fournit, pour chaque arête `project`/`track` de ses listes d'œuvres (`discography`,
+`notable_tracks`, `tracklist`, `landmark_projects`, `landmark_tracks`, `notable_releases`, `project`),
+un **indice** `{slug, type, title: edge.name, artist, mbid?, releaseType?}` où `artist` = `edge.artist`,
+sinon l'artiste de la fiche source (fiche artiste : son nom ; projet/track : `artists[0].name`), sinon
+pas d'indice (arête ignorée). Rejeté — reconstruire titre et artiste depuis le slug : perte
+d'information (ponctuation, casse, « 3 »), et 8 351 slugs nus n'ont pas d'artiste. Rejeté — laisser le
+client envoyer titre et artiste en paramètres : une pochette fausse pourrait être posée sous
+n'importe quel slug (empoisonnement du cache) ; le serveur ne lit que ses propres nœuds.
+
+**3b-D2. Résolution « sûreté avant taux », identique au pipeline : MusicBrainz tranche l'identité,
+puis Cover Art Archive, puis iTunes vérifié.** `resolveWorkImageByHint(hint)` : si `hint.mbid` est
+présent → `coverArtUrl(mbid)` (`src/images/coverart.ts:21`, vérifie 307/404) ; sinon
+`resolveReleaseGroupDetailed(title, artist, { releaseType })` (`src/musicbrainz.ts:1330`, règle
+single/album de TRA-560 ; track : `resolveRecordingDetailed`, release-group lu dans la réponse de
+recherche) → `coverArtUrl` → repli `lookupVerifiedAlbumArt(title, artist)` (`src/itunes.ts:153`).
+`ambiguous` → pas d'image (négatif 7 j) ; `no-match` → négatif 7 j ; `unavailable` → négatif court
+(1 h). Au plus 2 appels MusicBrainz par œuvre ; toute URL passe `isAllowedImageUrl`
+(`src/images/hosts.ts:24`). Rejeté — iTunes seul, sans MusicBrainz : c'est l'emprunt sans crédit que
+TRA-475 a retiré (Earth, Wind & Fire sur Grandmaster Flash). Rejeté — Gemini : coût et homonymes.
+
+**3b-D3. Stockage : un sidecar dérivé `cache/images/`, ignoré par git, dont la clé est l'identité
+scopée ; le serveur n'écrit jamais un nœud à la lecture.** Entrée
+`{key, state: "found" | "missing" | "unavailable" | "conflict", url?, source?, mbid?, reason?,
+hint: {title, artist}, resolvedAt}` dans `cache/images/<type>-<body>.json` (convention de
+`cache/links/`, `src/streaming-links.ts:84`), écriture atomique (`atomicWriteJson`,
+`src/cache.ts:674`), schéma Zod à la lecture, fichier corrompu supprimé (modèle `readValidatedSidecar`,
+`src/youtube.ts`). La clé est `makeScopedSlug(type, title, artist)` (`src/slug.ts:162`) calculée depuis
+l'indice, quel que soit le drapeau `ODYSSEY_SCOPED_RELEASE_SLUGS` : un slug nu (`project:3`) n'est qu'un
+**alias** résolu en mémoire via la fiche qui l'a affiché ; deux indices d'artistes différents pour un
+même slug nu → `conflict`, aucune image servie pour le nu (les clés scopées restent servies chacune à
+sa fiche). Un nœud existant sans `image_url` passe par le même sidecar (clé = son slug, résolution
+par `resolveImage(node)`). Rejeté — poser `image_url` sur le nœud existant par `cache.update`
+(verrou TRA-535) : rouvre l'écriture à la lecture que TRA-475 a fermée, fait diverger prod et dépôt
+(le `rsync` du canal d'union écraserait l'image à la prochaine migration) et doublonne TRA-489, qui
+reste le chemin qui pose l'image sur les nœuds. Rejeté — clé = slug demandé : la migration d'identité
+(TRA-478/483) renommera 8 351 clés, et un même slug nu servirait la pochette d'un homonyme. Rejeté —
+un nœud « squelette » : il entrerait dans `data.json`, la recherche et l'audit.
+
+**3b-D4. Résolution en arrière-plan par un worker séquentiel, avec une priorité `background` dans
+la file MusicBrainz.** L'ouverture d'une fiche appelle `warm(node)` : synchrone, en mémoire,
+O(arêtes) — un job `node` si la fiche n'a pas d'`image_url`, un job `hint` par œuvre affichée,
+dédupliqués par clé, file bornée à 5 000 entrées. Un seul worker consomme la file (concurrence 1,
+20 s au plus par job comme `IMAGE_RESOLVE_TIMEOUT_MS`, `src/pipeline.ts:846`, coupe-circuit de 60 s
+après 3 `unavailable` consécutifs) et écrit le sidecar. `mbFetch` gagne une priorité : une requête
+`background` ne réserve un créneau que lorsqu'aucune requête interactive n'attend ; l'option
+`priority` est plombée explicitement dans `WorkResolveOptions` (`src/musicbrainz.ts:1111`),
+`ImageDeps` (`resolve-image.ts`) et `fetchWikidataUrlRelMb` (`src/musicbrainz.ts:628`). Rejeté —
+résoudre dans la requête `/image` : 30 à 60 s de latence par fiche et affamement de `/materialize`.
+Rejeté — `AsyncLocalStorage` pour porter la priorité : implicite, invisible à la lecture des
+signatures. Rejeté — une seconde file MusicBrainz : double le débit au-delà de la politique MB.
+
+**3b-D5. Contrat de réponse à trois états ; seule une image trouvée est cachable.**
+`found` → 200 `{slug, image_url, source}`, `Cache-Control` inchangé (`public, max-age=86400` web,
+`private, max-age=86400` mobile). `pending` (job en file ou en cours) → **202**
+`{slug, image_url: null, source: "pending", retry_after_seconds: 5}` + `Retry-After: 5` +
+`Cache-Control: no-store`. `none` (`missing`, `conflict`, `no-match`, ou slug sans nœud et sans
+contexte → `source: "no-context"`) → 200 `image_url: null`, `Cache-Control: no-store`. La route mobile
+cesse de répondre 404 pour un slug sans nœud : même contrat. Le web passe `?from=<slug de la fiche>`
+à `GET /image/:slug` (il ne lit pas `/node/:slug` à l'ouverture d'une fiche : `web/index.html:467` ne
+sert qu'à la recherche) ; le serveur charge `from` **dans son propre cache** et appelle `warm`. iOS ne
+passe rien : `GET /mobile/v1/nodes/:slug` chauffe la fiche avant d'émettre sa réponse, et le routeur
+mobile refuse déjà tout paramètre de requête (`src/mobile/router.ts:100-103`). Compatibilité : un client
+ancien voit `image_url: null` → le dégradé d'aujourd'hui ; un `null` public encore en cache HTTP expire
+en ≤ 24 h. Rejeté — 200 avec `source: "pending"` seul : les caches HTTP et `imageJitPromises` le
+gardent. Rejeté — 404 pour `pending` : iOS le mémorise comme échec définitif, et `APIClient.request`
+(`APIClient.swift:105`) ne décode pas le corps d'une erreur.
+
+**3b-D6. Relance bornée côté client, et l'attente n'est jamais mémorisée.** Même budget web et iOS :
+relance après `retry_after_seconds` (borné à 2…30 s, 5 s par défaut), 6 tentatives au plus (≈ 60 s
+par œuvre), annulée quand la vue disparaît (annulation de `Task` iOS ; `isConnected` et fil d'Ariane
+web). `pending` n'entre ni dans `resolutions` ni dans `imageJitPromises` : seuls `found`, `none` et une
+erreur réseau y entrent ; un budget épuisé n'est pas mémorisé non plus (la prochaine apparition de la
+vue relance un budget). Les demandes concurrentes d'une même clé partagent une tâche (existant,
+`resolutionsInFlight`). Rejeté — notification serveur (SSE) : une surface de plus pour gagner quelques
+secondes. Rejeté — relance illimitée : tempête de requêtes quand le serveur est à l'arrêt, exactement
+ce que le commentaire de `NodeImageStore` interdit.
+
+**3b-D7. Un interrupteur d'arrêt, actif par défaut.** `ODYSSEY_ON_DEMAND_IMAGES=0`, lu à l'appel
+dans `src/flags.ts` (même modèle que `scopedReleaseSlugsEnabled`), désactive `warm`, le worker et la
+lecture du sidecar : `/image` retrouve exactement le comportement de `7ef31bf7`. Rejeté — drapeau
+éteint par défaut et ticket `deploy/` pour l'allumer : un tier/3 de plus pour un comportement borné et
+réversible à chaud.
+
+### Découpage
+
+`[P]` = parallélisable dans sa vague ; 1 pt ≈ 1,5 h ; chaque tâche < 300 lignes de diff (tests
+compris) et un seul type de changement. Dépendances externes déjà livrées : TRA-452/560 (résolveurs),
+TRA-465 (images), TRA-450/573 (file MB), TRA-475/479 (lecture seule, image à la matérialisation).
+Aucun ticket ne touche le schéma, `deploy/`, `.github/` ni `scripts/migrations/`.
+
+- [ ] TRA-578 3b.1 `[P]` Résoudre la pochette d'une œuvre sans nœud depuis un indice
+      (`src/images/resolve-work-hint.ts`) — tier/2, 3 pts
+- [ ] TRA-579 3b.2 `[P]` Priorité `background` dans la file MusicBrainz (`src/musicbrainz.ts`) — tier/2, 2 pts
+- [ ] TRA-580 3b.3 `[P]` Sidecar `cache/images/` : lecture validée, écriture atomique, cache négatif à TTL
+      (`src/images/image-sidecar.ts`, `.gitignore`) — tier/2, 2 pts
+- [ ] TRA-581 3b.4 File de résolution en arrière-plan : worker séquentiel, alias slug nu → clé scopée,
+      conflits, coupe-circuit (`src/images/image-queue.ts`) — tier/2, 3 pts (dépend de 3b.1, 3b.2, 3b.3)
+- [ ] TRA-582 3b.5 `image-service` : états `found`/`pending`/`none`, `warm(node)`, contexte `from`, drapeau
+      `ODYSSEY_ON_DEMAND_IMAGES` (`src/services/image-service.ts`, `src/flags.ts`) — tier/2, 3 pts
+      (dépend de 3b.4)
+- [ ] TRA-583 3b.6 `[P]` Routes web : 202 + `Retry-After` + `no-store` sur `GET /image/:slug[?from=]`, chauffe
+      sur `GET /node/:slug`, compteurs dans `/health` (`src/server.ts`) — tier/2, 2 pts (dépend de 3b.5)
+- [ ] TRA-584 3b.7 `[P]` Routes mobile : même contrat sur `/mobile/v1/nodes/:slug/image`, chauffe sur
+      `/mobile/v1/nodes/:slug` (`src/mobile/media.ts`, `src/mobile/router.ts`) — tier/2, 2 pts (dépend
+      de 3b.5)
+- [ ] TRA-585 3b.8 `[P]` Web : `?from=`, relance bornée sur `pending`, attente jamais mémorisée
+      (`web/index.html`) — tier/2, 2 pts (dépend de 3b.6)
+- [ ] TRA-586 3b.9 `[P]` iOS : `ImageResponse.retryAfterSeconds`, relance bornée et annulable dans
+      `NodeImageStore` (`ios/Track1Core`) — tier/2, 3 pts (dépend de 3b.7)
+
+**Vagues** : A = {3b.1, 3b.2, 3b.3} (3 lanes) → B = 3b.4 → C = 3b.5 → D = {3b.6, 3b.7} →
+E = {3b.8, 3b.9}. Chaque vague est déployable seule : A à C sont du code mort tant que D ne le câble
+pas ; D change le serveur sans casser les clients actuels (D5) ; E apporte le gain visible. 3b.1 et
+3b.2 touchent tous deux `WorkResolveOptions` : 3b.2 ajoute `priority`, 3b.1 ne fait que la consommer,
+l'ordre de merge est libre. La Partie 3b est indépendante de 3.5 (TRA-489) et peut tourner sur une
+lane pendant la vague C du plan principal.
+
+#### Contenu attendu par tâche
+
+**3b.1 (TRA-578) — Résolveur par indice.** Nouveau `src/images/resolve-work-hint.ts` + `test/images/resolve-work-hint.test.ts`.
+Signature : `resolveWorkImageByHint(hint: WorkImageHint, deps?: { fetch?: typeof fetch; priority?: MbPriority }): Promise<WorkImageResolution>`
+avec `WorkImageHint = { slug: Slug; type: "project" | "track"; title: string; artist: string; mbid?: string; releaseType?: string }`
+et `WorkImageResolution = { kind: "found"; url: string; source: ImageSource; mbid?: string } | { kind: "missing"; reason: "ambiguous" | "no-match" } | { kind: "unavailable" }`
+(`source` reprend les valeurs d'`ImageSource`, `src/types.ts:40-49`, utilisées par `resolveImage` pour
+CAA et iTunes). Aucune I/O disque. Critères : `mbid` fourni → CAA sans appel MB ; sans `mbid` → un appel
+MB, crédit vérifié par `pickByTitleAndCredit` ; `ambiguous` → `missing/ambiguous` sans appel CAA ni
+iTunes ; MB indisponible → `unavailable` ; CAA 404 → repli iTunes vérifié ; URL hors liste → rejetée ;
+track → recording puis release-group de la réponse de recherche, sinon `no-match` ; compteur d'appels
+MB ≤ 2 dans chaque test.
+
+**3b.2 (TRA-579) — Priorité MB.** `src/musicbrainz.ts` : `export type MbPriority = "interactive" | "background"` ;
+`priority?: MbPriority` sur `WorkResolveOptions` et sur `fetchWikidataUrlRelMb` ; `mbFetch` la reçoit
+(valeur par défaut `interactive`, aucun appelant existant ne change). Règle : une réservation
+`background` n'est faite que lorsqu'aucune réservation interactive n'est en attente ; les retries
+gardent la priorité de leur première tentative. Critères (`test/musicbrainz.test.ts`, bloc « mbFetch
+request spacing ») : à départ simultané, deux interactives puis une background obtiennent les créneaux
+0 s, 1 s, 2 s ; une background émise pendant une rafale de 5 interactives part en dernier ; sans
+interactive, les background sont espacées de 1 s ; les 130 tests existants restent verts.
+
+**3b.3 (TRA-580) — Sidecar.** Nouveau `src/images/image-sidecar.ts` + test, et `cache/images/` ajouté à
+`.gitignore` à côté de `cache/youtube/` et `cache/links/` (l.25-26). API : `imageSidecarPath(cacheDir, key)`,
+`readImageSidecar(cacheDir, key, now?): Promise<ImageSidecarEntry | null>` (entrée périmée → `null`),
+`writeImageSidecar(cacheDir, entry): Promise<void>`. TTL : `found` sans expiration, `missing` et
+`conflict` 7 j (`MISS_TTL_MS` de `streaming-links.ts:42`), `unavailable` 1 h. Critères : aller-retour ;
+fichier corrompu → supprimé et `null` ; expiration par horloge injectée ; la clé ne produit jamais un
+chemin hors du dossier (`..`, `/`) ; `git status` reste propre après une écriture.
+
+**3b.4 (TRA-581) — File et worker.** Nouveau `src/images/image-queue.ts` + test. API :
+`createImageQueue(deps: { cacheDir; cache: NodeCache; resolveNode: typeof resolveImage; resolveHint: typeof resolveWorkImageByHint; now?; log })`
+→ `{ enqueueNode(node): void; enqueueHint(hint): void; stateOf(key): "pending" | "idle"; aliasOf(bareSlug): Slug | "conflict" | null; stats(); stop(): Promise<void> }`.
+Comportement : boucle séquentielle démarrée au premier job ; relit le sidecar avant de résoudre (frais →
+saute) ; timeout 20 s ; écrit l'entrée ; journal structuré par job (`image job`, `{key, kind, outcome, ms}`) ;
+coupe-circuit 60 s après 3 `unavailable` consécutifs ; file bornée 5 000 (au-delà : refus compté dans
+`dropped`) ; alias `Map<Slug, Slug | "conflict">` borné 20 000 ; dédup par clé. Critères : FIFO ; dédup ;
+conflit sur un nu vu depuis deux artistes ; coupe-circuit puis reprise ; pas de résolution si le sidecar
+est frais ; `stop()` termine le job en cours et n'en démarre pas d'autre.
+
+**3b.5 (TRA-582) — Service.** `src/services/image-service.ts`, `src/flags.ts` (`onDemandImagesEnabled()`),
+`test/image-service.test.ts`. `DisplayImage` gagne `state: "found" | "pending" | "none"` et
+`retry_after_seconds?`. `resolveDisplayImage(slug, opts?: { from?: Slug })` : `image_url` du nœud →
+sidecar (clé = slug du nœud, ou slug scopé demandé, ou `aliasOf(slug)`) → marche `related:` existante
+→ `pending` si `stateOf` l'est → chauffe de `from` s'il est fourni et en cache (puis `pending`) →
+`none` (`no-context`). `warm(node)` : indices selon D1, `enqueueNode` si pas d'`image_url`, mémo des
+fiches chauffées (10 min) pour ne pas relire le nœud à chaque carte. Drapeau éteint → ni sidecar, ni
+`warm`, ni `pending`. Critères : les 12 tests existants verts ; fiche artiste à 3 œuvres → 3 indices
+portant l'artiste source ; arête sans artiste sur une fiche genre → ignorée ; `from` inconnu → ignoré ;
+slug nu sans contexte → `none/no-context` ; drapeau à `0` → aucune lecture de `cache/images/`.
+
+**3b.6 (TRA-583) — Routes web.** `src/server.ts` : handler `/image` → statut et en-têtes selon `state` (D5),
+`?from=` décodé par `decodeSlugParam` (`server.ts:363`) et refusé à 400 s'il est malformé ; `/node/:slug`
+appelle `imageService.warm(result.node)` avant `json(res, 200, …)` ; `/health` (`server.ts:239`) expose
+`images: queue.stats()` ; le worker est créé au démarrage et arrêté là où le serveur ferme ses
+ressources. Critères : `test/server-slug-traversal.test.ts` (4) verts ; nouveau
+`test/server-image-contract.test.ts` : 202 + `Retry-After: 5` + `no-store` ; `found` garde
+`public, max-age=86400` ; `none` est `no-store` ; `from` malformé → 400 ; `GET /node` déclenche `warm`
+(espion) ; drapeau à `0` → réponses identiques à `7ef31bf7`.
+
+**3b.7 (TRA-584) — Routes mobile.** `src/mobile/media.ts` : `image(slug)` ne rend plus `null` quand le nœud
+manque mais le résultat du service (toujours filtré par `safePublicHttpsUrl`), expose `state` et
+`retry_after_seconds` ; `warm(node)` ajouté à `MobileMedia`. `src/mobile/router.ts` : la lecture de la
+fiche (`resource` indéfini) appelle `media.warm` avant la réponse ; `image` répond 202 + `Retry-After`
++ `no-store` pour `pending`, `no-store` pour `none`, `private, max-age=86400` seulement pour `found`.
+Critères : `test/mobile/media.test.ts` (5) et `test/mobile/compatibility.test.ts` (1) adaptés ; cas
+202 ; slug sans nœud → 200 `none` et non 404 ; `nodes.test.ts` vert ; le contrat iOS
+(`test/ios-node-page-spec.test.ts`) inchangé.
+
+**3b.8 (TRA-585) — Web.** `web/index.html` : `jitResolveImage(slug)` ajoute `?from=<crumbs[crumbs.length-1]>`,
+traite 202 / `source: "pending"` par relance (`retry_after_seconds` borné 2…30 s, 6 tentatives, arrêt si
+la carte n'est plus connectée ou si la fiche a changé), ne stocke dans `imageJitPromises` qu'un
+résultat final ; `paintCardWhenReady` et `jitResolveHero` gardent leur interface. Critères (jsdom,
+modèle `test/web-hero-image.test.ts`) dans un nouveau `test/web-image-pending.test.ts` : 202 puis 200 →
+carte peinte ; 6 × 202 → dégradé conservé et aucune promesse `null` mémorisée ; `from` présent dans
+l'URL appelée ; navigation vers une autre fiche → plus de relance ; Biome vert.
+
+**3b.9 (TRA-586) — iOS.** `ios/Track1Core/Sources/Track1Core/API/APIModels.swift` : `ImageResponse` gagne
+`retryAfterSeconds: Int?` (clé `retry_after_seconds`). `NodeImageStore.swift` : une réponse
+`source == "pending"` n'est pas mémorisée ; relance après `retryAfterSeconds` (borné 2…30 s, 5 s par
+défaut), 6 tentatives, `Task.isCancelled` vérifié entre deux, puis `nil` sans mémorisation ; les appels
+concurrents partagent la tâche. Critères (`swift test`, `Tests/Track1CoreTests/Media/NodeImageStoreTests.swift`,
+5 tests existants verts) : `pending` puis `found` → image rendue et un seul chargement ; 6 × `pending` →
+`nil`, et l'appel suivant relance ; annulation de la `Task` → aucune relance ; `none` → `.unavailable`
+pour la session (inchangé) ; `APIClientTests.testReadsImageLinksSearchAndGenerationResponses` décode
+le nouveau champ ; `ios-check` vert.
+
+### Risques et garde-fous
+
+- **Affamement de `/materialize` ou de la recherche live par les pochettes.** Garde-fous : priorité
+  `background` (3b.2), concurrence 1, file bornée, coupe-circuit ; test d'ordre dans
+  `musicbrainz.test.ts` ; compteurs `images.{pending, resolved, missing, dropped, paused}` dans `/health`.
+- **Fausse pochette (homonyme).** Garde-fous : identité par arête (D1), crédit MusicBrainz exact et
+  `ambiguous → none` (D2), clé scopée et `conflict` sur un slug nu (D3) ; `isAllowedImageUrl` sur toute
+  URL.
+- **Tempête de relances.** Garde-fous : `Retry-After`, 6 tentatives, tâche partagée par clé côté
+  client, `no-store` ; côté serveur, dédup par clé et file bornée.
+- **Caches HTTP intermédiaires.** Les `null` publics de 24 h déjà émis expirent seuls ; dès 3b.6, tout
+  `image_url: null` est `no-store`. Les 24 h de transition sont acceptées.
+- **Croissance du sidecar en prod.** ≤ 9 411 fichiers ≈ 3 Mo, régénérables ; `rm -rf cache/images` est
+  toujours sûr ; le dossier est ignoré, aucun canal ne le ramène dans le dépôt.
+- **Migration d'identité (TRA-478/483) pendant ou après 3b.** La clé scopée ne dépend pas du slug de
+  l'arête ; les alias sont recalculés à chaque `warm`. Un nœud créé pour une œuvre déjà dans le sidecar
+  gagne (`image_url` lu en premier) ; l'entrée orpheline est inerte.
+- **Ancienne app iOS face au nouveau contrat.** 202 + `null` = dégradé, comme aujourd'hui ; le gain
+  arrive avec 3b.9. Aucun changement du contrat `NodePageSpec`.
+- **iTunes en repli.** Un appel par œuvre au plus, seulement après MusicBrainz et CAA ; une erreur
+  compte comme `unavailable` (1 h), pas comme `missing`.
+
+### Critères de sortie
+
+- Squarepusher (iOS, web 320 px et desktop) : *Feed Me Weird Things*, *Go Plastic*, *Ufabulum*
+  affichent leur pochette ≤ 60 s après la première ouverture, sans fiche créée
+  (`cache/nodes/project/` inchangé), et dès l'ouverture suivante.
+- Pendant la chauffe d'une fiche de 30 œuvres, un `POST /materialize` obtient son premier créneau
+  MusicBrainz en < 2 s (test d'ordre 3b.2) ; la file ne dépasse pas 1 req/s au total.
+- `GET /image/<slug sans nœud>?from=<fiche>` : 202 + `Retry-After` puis 200 `found` ;
+  `Cache-Control: no-store` sur tout `image_url: null` ; `/mobile/v1/nodes/<slug sans nœud>/image` ne
+  répond plus 404.
+- `project:3` affiché depuis deux artistes : aucune image sur le slug nu, une par clé scopée.
+- `ODYSSEY_ON_DEMAND_IMAGES=0` : réponses et écritures identiques à `7ef31bf7`.
+- Après une session de navigation : `git status` propre, aucun nœud écrit, `cache/images/` peuplé.
+
+### Décisions validées par Raphael, 2026-10-16
+
+Réponses aux quatre questions ouvertes du plan, dans le sens des recommandations :
+
+1. **Sidecar seul (D3).** Une pochette trouvée à la demande pour un nœud existant n'entre pas dans le
+   dépôt ; le serveur n'écrit jamais un nœud à la lecture. TRA-489 (backfill) couvre la pose de
+   `image_url` sur les nœuds existants.
+2. **Œuvres seulement.** Les artistes, labels et genres sans nœud gardent le dégradé ; aucune
+   résolution d'identité d'artiste à la demande.
+3. **Drapeau actif par défaut (D7)** dès le merge de 3b.6 et 3b.7, sans ticket `deploy/` ; le kill
+   switch est `ODYSSEY_ON_DEMAND_IMAGES=0`.
+4. **Budget de relance (D6)** d'environ 60 s par œuvre (6 tentatives, 2…30 s), dégradé de type sans
+   indicateur d'attente.
