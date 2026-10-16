@@ -4,7 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { NodeCache } from "../../src/cache.js";
-import { buildCacheIndex } from "../../src/cache-index.js";
+import { buildCacheIndex, createCacheIndexHolder } from "../../src/cache-index.js";
 import { createMobileCatalog } from "../../src/mobile/catalog.js";
 import { createMobileRouter } from "../../src/mobile/router.js";
 import {
@@ -181,8 +181,11 @@ describe("mobile search", () => {
 	});
 
 	function search(results: CatalogResult[] = [], fail = false) {
+		// Same wiring as server.ts: one shared holder, invalidated through the dependency.
+		const holder = createCacheIndexHolder(() => buildCacheIndex(directory));
 		return createMobileSearch({
-			buildIndex: () => buildCacheIndex(directory),
+			buildIndex: () => holder.get(),
+			invalidateCacheIndex: () => holder.invalidate(),
 			catalogIndex: catalog(results, fail),
 		});
 	}
@@ -359,6 +362,25 @@ describe("mobile search", () => {
 		expect((await reader.search({ q: "new", type: "artist", limit: 8 })).hits).toMatchObject([
 			{ source: "cache", slug: "artist:new-ambient" },
 		]);
+	});
+
+	it("does not freeze a failed index build: the next search retries it", async () => {
+		let builds = 0;
+		const holder = createCacheIndexHolder(async () => {
+			if (builds++ === 0) throw new Error("scan failed");
+			return buildCacheIndex(directory);
+		});
+		const reader = createMobileSearch({
+			buildIndex: () => holder.get(),
+			invalidateCacheIndex: () => holder.invalidate(),
+			catalogIndex: catalog([]),
+		});
+
+		await expect(reader.search({ q: "ambient", type: "artist", limit: 8 })).rejects.toThrow("scan failed");
+		expect((await reader.search({ q: "ambient", type: "artist", limit: 8 })).hits).toMatchObject([
+			{ source: "cache", slug: "artist:ambient-artist" },
+		]);
+		expect(builds).toBe(2);
 	});
 
 	it("serves no-store HTTP search responses and public typed errors", async () => {
