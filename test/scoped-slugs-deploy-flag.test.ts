@@ -57,23 +57,29 @@ afterEach(() => {
 	else process.env[FLAG] = saved;
 });
 
-// The script as shipped by this PR (flag on), and the same script as a rollback commit would leave it
-// (flag off). Both must stay deployable: deploy.yml runs `npm run test` BEFORE `Deploy server`, so a
-// test pinning the value to 1 would make the documented rollback (set the unit to 0, merge) stop at the
-// test step and never reach the server. The value shipped by this PR is documented, not asserted.
-const SHIPPED_LINE = `Environment=${FLAG}=1`;
-const rolledBackScript = deployScript.replace(SHIPPED_LINE, `Environment=${FLAG}=0`);
+// Both variants are built from the CURRENT script, whatever its value (1 as shipped by TRA-509, 0 once
+// the rollback commit is merged): deploy.yml runs `npm run test` BEFORE `Deploy server`, so a test that
+// required the current script to hold a given value would stop the rollback (or the re-enable) at the
+// test step and never reach the server. The checks below run on a copy forced to 1 and on a copy
+// forced to 0; the value actually committed is documented in the PR and the plan, not asserted here.
+const FLAG_LINE = new RegExp(`^Environment=${FLAG}=[01]$`, "m");
+const FLAG_LINE_GLOBAL = new RegExp(FLAG_LINE.source, "gm");
+const withFlag = (value: "0" | "1") => deployScript.replace(FLAG_LINE, `Environment=${FLAG}=${value}`);
+const flagOnScript = withFlag("1");
+const flagOffScript = withFlag("0");
 
 describe("deploy-server.sh: scoped release slugs flag (TRA-509)", () => {
-	it("the rollback simulation really changes the script (guard against a vacuous test)", () => {
-		expect(deployScript).toContain(SHIPPED_LINE);
-		expect(rolledBackScript).not.toBe(deployScript);
-		expect(rolledBackScript).toContain(`Environment=${FLAG}=0`);
+	it("the current script has exactly one flag line set to 0 or 1, and each variant carries its value", () => {
+		expect(deployScript.match(FLAG_LINE_GLOBAL)).toHaveLength(1);
+		expect(flagOnScript).toContain(`\nEnvironment=${FLAG}=1\n`);
+		expect(flagOnScript).not.toContain(`Environment=${FLAG}=0`);
+		expect(flagOffScript).toContain(`\nEnvironment=${FLAG}=0\n`);
+		expect(flagOffScript).not.toContain(`Environment=${FLAG}=1`);
 	});
 
 	describe.each([
-		["as shipped", deployScript],
-		["rolled back (unit set to 0)", rolledBackScript],
+		["flag forced to 1", flagOnScript],
+		["flag forced to 0 (rollback)", flagOffScript],
 	])("%s", (_label, script) => {
 		it("sets the flag exactly once in the [Service] section of the generated unit, to 0 or 1", () => {
 			const values = unitFlagValues(script);

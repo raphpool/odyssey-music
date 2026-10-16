@@ -255,10 +255,13 @@ bloquer les déploiements) quand elle diffère de celle de l'unité ou que le se
 L'écart est aussi publié en annotation GitHub (`::warning title=... mismatch::`, sur la sortie
 standard relayée par ssh) pour apparaître dans le résumé du run. Test :
 `test/scoped-slugs-deploy-flag.test.ts` (exécute ce bloc contre un `systemctl` et un `/proc` factices).
-Ce test accepte la variable à `0` comme à `1` et rejoue ses vérifications sur une copie du script
-passée à `0` : `deploy.yml` lance `npm run test` **avant** `Deploy server`, donc un test qui figerait
-la valeur à 1 arrêterait le rollback au lieu de le déployer. L'état livré par la PR (1) est documenté ici,
-pas asserté.
+Ce test ne dépend pas de la valeur commitée : il exige une seule ligne `Environment=ODYSSEY_SCOPED_RELEASE_SLUGS=0|1`
+dans le script courant, en tire deux copies (forcée à `1`, forcée à `0`) et rejoue les mêmes
+vérifications sur chacune. Il reste donc vert que le script porte `1` (livré par TRA-509) ou `0`
+(commit de rollback) : `deploy.yml` lance `npm run test` **avant** `Deploy server`, un test qui exigerait
+l'une des valeurs arrêterait le rollback au lieu de le déployer. Preuve : la ligne passée vraiment à `0`
+dans une copie, `vitest run test/scoped-slugs-deploy-flag.test.ts` donne 17 tests verts (voir la PR). La
+valeur livrée (1) est documentée ici, pas assertée.
 
 **Défaut de `src/config.ts` / `src/flags.ts` : inchangé (désactivé).** Le critère « tous les tests et
 l'audit passent avec le drapeau à 1 » n'est pas la bonne mesure : le défaut s'applique à *tous* les
