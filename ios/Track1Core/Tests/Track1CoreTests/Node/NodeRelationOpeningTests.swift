@@ -257,8 +257,8 @@ final class NodeRelationOpeningTests: XCTestCase {
 		let blankFirst = try await Self.loadedModel(
 			context: .independent(source: .home), log: EventLog(), id: "project:mezzanine--massive-attack",
 			name: "Mezzanine",
-			edges: #"{"artists":[{"slug":"artist:blank","type":"artist","name":" "},{"slug":"artist:mad-professor","type":"artist","name":"Mad Professor"}]}"#
-		)
+			edges: #"{"artists":[{"slug":"artist:blank","type":"artist","name":" "},"#
+				+ #"{"slug":"artist:mad-professor","type":"artist","name":"Mad Professor"}]}"#)
 		let chip = try Self.edge("track:teardrop", name: "Teardrop")
 
 		XCTAssertEqual(single.generationRequest(for: chip, kind: "tracklist")?.artist, "Massive Attack")
