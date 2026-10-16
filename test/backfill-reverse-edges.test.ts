@@ -351,7 +351,7 @@ describe("backfill-reverse-edges", () => {
 			["artist:aphex-twin", "target-field"],
 			["artist:b", "target-field"],
 		]);
-		expect(result.manifest.errors.length).toBeGreaterThan(0);
+		expect(result.manifest.written).toBe(0);
 	});
 
 	it("carries the qid of a genre source onto the artist's genres", async () => {
@@ -496,7 +496,7 @@ describe("backfill-reverse-edges", () => {
 		const result = await runMigration({ cacheDir: dir, apply: true });
 
 		expect(result.exitCode).toBe(2);
-		expect(result.manifest.errors.length).toBeGreaterThan(0);
+		expect(result.manifest.written).toBe(0);
 		expect(result.manifest.blocked).toBe(true);
 		expect(await snapshot()).toEqual(before);
 	});
