@@ -962,7 +962,9 @@ describe("works MusicBrainz cannot single out", () => {
 		expect((await readNode("track:the-model")).mbid).toBe(works[3]?.id);
 	});
 
-	it("takes the earliest release group of a title, not a later EP under a look-alike credit (Windowlicker)", async () => {
+	// TRA-560: release groups of different types are never settled by date. The node's own release_type
+	// picks the type; without it the work is left alone.
+	async function seedWindowlicker(overrides: Record<string, unknown>) {
 		const aphex = mbid();
 		const single = { kind: "release-group" as const, id: mbid(), title: "Windowlicker", date: "1999-03-22" };
 		stubMb([
@@ -979,8 +981,14 @@ describe("works MusicBrainz cannot single out", () => {
 			projectNode("project:windowlicker", "Windowlicker", {
 				year: "1999",
 				artists: [edge("artist:aphex-twin", "Aphex Twin")],
+				...overrides,
 			}),
 		);
+		return { aphex, single };
+	}
+
+	it("takes the release group of the node's own type, not a later EP under a look-alike credit (Windowlicker)", async () => {
+		const { aphex, single } = await seedWindowlicker({ release_type: "single" });
 
 		const result = await run({ apply: true });
 
@@ -988,6 +996,37 @@ describe("works MusicBrainz cannot single out", () => {
 		expect(result.manifest.resolved["project:windowlicker"]?.credit).toEqual([
 			{ mbid: aphex, name: "Aphex Twin" },
 		]);
+	});
+
+	it("leaves a work whose candidates have different types unresolved when the node has no release type", async () => {
+		await seedWindowlicker({});
+
+		const result = await run({ apply: true });
+
+		expect(result.manifest.unresolved.map((u) => u.reason)).toEqual(["ambiguous-candidates"]);
+		expect((await readNode("project:windowlicker")).mbid).toBeUndefined();
+	});
+
+	it("gives an album its own release group, not its older single's (New Heaven)", async () => {
+		const rg = {
+			kind: "release-group" as const,
+			title: "New Heaven",
+			credit: [{ id: mbid(), name: "Inter Arma" }],
+		};
+		const single = { ...rg, id: mbid(), primaryType: "Single", date: "2024-02-27" };
+		const album = { ...rg, id: mbid(), primaryType: "Album", date: "2024-04-26" };
+		stubMb([single, album]);
+		await seed(
+			projectNode("project:new-heaven", "New Heaven", {
+				release_type: "album",
+				artists: [edge("artist:inter-arma", "Inter Arma")],
+			}),
+		);
+
+		const result = await run({ apply: true });
+
+		expect(result.manifest.resolved["project:new-heaven"]?.mbid).toBe(album.id);
+		expect(result.manifest.resolved["project:new-heaven"]?.release_type).toBe("album");
 	});
 
 	it("leaves release groups of one title unresolved when none is strictly the earliest", async () => {
