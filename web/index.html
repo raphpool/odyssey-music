@@ -335,13 +335,18 @@ async function jitResolveHero(slug) {
 }
 
 /**
- * For a .project-card with data-id="<slug>" data-needs-image="1": fire JIT
- * image resolution and paint the .cover background when the URL arrives.
+ * For a .project-card with data-id="<slug>" (cached node) or data-jit-slug="<slug>" (dangling: no
+ * node yet) and data-needs-image="1": fire JIT image resolution and paint the .cover background
+ * when the URL arrives. A dangling card stays dangling (no data-id added): a click still
+ * materializes it. 2026-10-16 (TRA-596): the dangling case was skipped, so a work without a node
+ * (3 cards of 4 on artist:squarepusher) never asked /image?from=, the very case 3b-D1 serves.
  * Safe to call after the card has scrolled off (the URL still lands in byId
  * for the next visit; we just skip painting the detached element).
  */
 async function paintCardWhenReady(cardEl) {
-  const slug = cardEl.dataset.id;
+  // A dead card (its materialization already failed) is not asked about again at every visit.
+  if (!cardEl.dataset.id && cardEl.classList.contains("dead")) return;
+  const slug = cardEl.dataset.id || cardEl.dataset.jitSlug;
   if (!slug) return;
   const url = await jitResolveImage(slug);
   if (!url) return;
