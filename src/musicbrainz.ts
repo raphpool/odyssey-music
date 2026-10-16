@@ -21,6 +21,13 @@ export interface CatalogResult {
 	name: string;
 	subtitle: string;
 	extra?: string;
+	/**
+	 * Project/track only: the FIRST credited artist, read from the structured `artist-credit`, never
+	 * cut out of `subtitle` (the joined credit; "Earth, Wind & Fire" is one artist). TRA-547.
+	 */
+	artist?: string;
+	/** MBID of that first credited artist, when MB gave a valid one: the search service maps it to a cache slug. */
+	artist_mbid?: string;
 }
 
 export interface CatalogIndex {
@@ -192,6 +199,30 @@ function joinArtistCredit(ac: MbReleaseGroup["artist-credit"]): string {
 		.map((c) => c.name ?? c.artist?.name ?? "")
 		.filter(Boolean)
 		.join(", ");
+}
+
+/**
+ * The first credited artist of an untrusted `artist-credit` array: canonical name first (the name
+ * the artist's node carries, as toCredits() reads it), else the credited-as name. Entries are
+ * already shape-checked by hasValidArtistCredit(); a blank first entry is skipped, not guessed at.
+ */
+export function primaryArtistCredit(
+	ac: MbReleaseGroup["artist-credit"],
+): { name: string; mbid?: string } | null {
+	for (const entry of ac ?? []) {
+		const name = entry.artist?.name ?? entry.name;
+		if (!isText(name)) continue;
+		const id = entry.artist?.id;
+		return isMbid(id) ? { name, mbid: id } : { name };
+	}
+	return null;
+}
+
+function withPrimaryArtist(r: CatalogResult, ac: MbReleaseGroup["artist-credit"]): void {
+	const primary = primaryArtistCredit(ac);
+	if (!primary) return;
+	r.artist = primary.name;
+	if (primary.mbid) r.artist_mbid = primary.mbid;
 }
 
 function fmtLength(ms: number | undefined): string | undefined {
@@ -385,6 +416,7 @@ async function searchReleaseGroups(
 			name: rg.title,
 			subtitle: joinArtistCredit(rg["artist-credit"]),
 		};
+		withPrimaryArtist(r, rg["artist-credit"]);
 		if (rg["primary-type"]) r.extra = rg["primary-type"];
 		return r;
 	});
@@ -411,6 +443,7 @@ async function searchRecordings(
 			name: rec.title,
 			subtitle: joinArtistCredit(rec["artist-credit"]),
 		};
+		withPrimaryArtist(r, rec["artist-credit"]);
 		const len = fmtLength(rec.length);
 		if (len) r.extra = len;
 		return r;
