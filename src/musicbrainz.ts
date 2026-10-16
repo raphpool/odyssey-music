@@ -270,8 +270,14 @@ const SPECIAL_PURPOSE_MBIDS = new Set([
 const mbCache = new Map<string, { at: number; data: unknown }>();
 const MB_CACHE_TTL_MS = musicBrainzConfig.cacheTtlMs;
 const MB_CACHE_MAX = musicBrainzConfig.cacheMaxEntries;
-const MB_MAX_ATTEMPTS = 3;
+// 2026-10-16 (TRA-573): a single 503 on /artist, after 3 attempts spaced by 1 s, failed a 50-minute
+// identity-migration preview (~1 900 requests). A few seconds of MusicBrainz unavailability must be
+// absorbed, so: 6 attempts, exponential backoff from 1 s (1, 2, 4, 8, 16 s), each wait capped at 30 s.
+const MB_MAX_ATTEMPTS = 6;
 const MB_RETRY_DELAY_MS = 1_000;
+// Hard ceiling on any single retry wait, `Retry-After` included: a huge header value must not
+// stall a migration for hours.
+const MB_MAX_RETRY_WAIT_MS = 30_000;
 // Throttling (429/503) and the gateway errors MusicBrainz sits behind (500/502/504, seen on
 // 2026-10-15 during the TRA-463 review) are transient: same backoff for all of them.
 const RETRYABLE_STATUSES = new Set([429, 500, 502, 503, 504]);
@@ -301,6 +307,14 @@ function retryAfterDelayMs(retryAfter: string | null, now: number): number | nul
 	const retryAt = Date.parse(retryAfter);
 	if (Number.isNaN(retryAt)) return null;
 	return Math.max(0, retryAt - now);
+}
+
+// `attempt` is the zero-based index of the attempt that just failed. The backoff is a floor for
+// `Retry-After` (the longer wins), and the result is capped. The global request spacing still
+// applies on top of this wait, when the next attempt reserves its slot.
+function retryWaitMs(attempt: number, retryAfterMs: number | null): number {
+	const backoff = MB_RETRY_DELAY_MS * 2 ** attempt;
+	return Math.min(MB_MAX_RETRY_WAIT_MS, Math.max(backoff, retryAfterMs ?? 0));
 }
 
 async function sleep(delayMs: number): Promise<void> {
@@ -336,7 +350,7 @@ async function mbFetch<T>(
 	url.searchParams.set("fmt", "json");
 
 	// MusicBrainz returns 503 or 429 when its rate limit is exceeded. Queue retries globally
-	// and wait at least one second so concurrent callers cannot create a recovery burst.
+	// and back off exponentially so concurrent callers cannot create a recovery burst.
 	for (let attempt = 0; attempt < MB_MAX_ATTEMPTS; attempt++) {
 		// Wait for the slot before arming the abort timer so queueing never eats the fetch timeout.
 		await sleep(reserveSlotDelayMs());
@@ -349,8 +363,7 @@ async function mbFetch<T>(
 			});
 			if (RETRYABLE_STATUSES.has(r.status) && attempt < MB_MAX_ATTEMPTS - 1) {
 				const retryAfter = retryAfterDelayMs(r.headers.get("Retry-After"), Date.now());
-				const wait = Math.max(MB_RETRY_DELAY_MS, retryAfter ?? 0);
-				await queueRetry(wait);
+				await queueRetry(retryWaitMs(attempt, retryAfter));
 				continue;
 			}
 			if (!r.ok) {
