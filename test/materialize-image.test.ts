@@ -132,4 +132,90 @@ describe("image at materialization, through createMaterializeService (TRA-479)",
 		},
 		TIMEOUT_MS,
 	);
+	describe("refresh (TRA-549)", () => {
+		const NEW_PHOTO = "https://upload.wikimedia.org/wikipedia/commons/b/bc/Fixture_Artist_2.jpg";
+
+		/** A node already in the cache with PHOTO, then `fresh` refreshed with the given resolver. */
+		async function refreshWith(resolveImage: () => Promise<{ url: string; source: "wikidata-p18" } | null>) {
+			installPipelineMocks({ draft: artistDraftFixture() });
+			const seed = await build({
+				resolveImage: async () => ({ url: PHOTO, source: "wikidata-p18" as const }),
+			});
+			await seed.service.handleMaterialize({ type: "artist", name: "Fixture Artist" });
+			expect(((await cache.get(SLUG)) as ArtistNode).image_url).toBe(PHOTO);
+
+			installPipelineMocks({ draft: artistDraftFixture() });
+			const { service } = await build({ resolveImage });
+			await service.handleMaterialize(
+				{ type: "artist", name: "Fixture Artist", slug: SLUG },
+				{ fresh: true },
+			);
+			return (await cache.get(SLUG)) as ArtistNode;
+		}
+
+		it(
+			"keeps the stored image when the resolver finds nothing",
+			async () => {
+				const stored = await refreshWith(async () => null);
+				expect(stored.image_url).toBe(PHOTO);
+				expect(stored.image_source).toBe("wikidata-p18");
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"keeps the stored image when the resolver throws",
+			async () => {
+				const stored = await refreshWith(async () => {
+					throw new Error("wikidata is down");
+				});
+				expect(stored.image_url).toBe(PHOTO);
+			},
+			TIMEOUT_MS,
+		);
+
+		// 2026-10-16: this used to assert that a different client mbid dropped the image. Since TRA-546 (#475)
+		// an artist or label that already carries an mbid keeps it whatever the request sends -- a client mbid
+		// is a hint, never an identity change -- so such a refresh is the same entity and keeps its picture.
+		// Symptom: the old premise left the stored image in place, failing this file on main after the merge.
+		it(
+			"keeps the stored image, and the cached mbid, when the refresh carries another client mbid",
+			async () => {
+				installPipelineMocks({ draft: artistDraftFixture() });
+				const seed = await build({
+					resolveImage: async () => ({ url: PHOTO, source: "wikidata-p18" as const }),
+				});
+				await seed.service.handleMaterialize({ type: "artist", name: "Fixture Artist" });
+				const seeded = (await cache.get(SLUG)) as ArtistNode;
+				const CACHED_MBID = "aaaaaaaa-1111-4111-8111-000000000001";
+				await cache.write({ ...seeded, mbid: CACHED_MBID });
+
+				installPipelineMocks({ draft: artistDraftFixture() });
+				const { service } = await build({ resolveImage: async () => null });
+				await service.handleMaterialize(
+					{
+						type: "artist",
+						name: "Fixture Artist",
+						slug: SLUG,
+						mbid: "bbbbbbbb-2222-4222-8222-000000000002",
+					},
+					{ fresh: true },
+				);
+
+				const stored = (await cache.get(SLUG)) as ArtistNode;
+				expect(stored.mbid).toBe(CACHED_MBID);
+				expect(stored.image_url).toBe(PHOTO);
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"replaces the stored image with a new valid one",
+			async () => {
+				const stored = await refreshWith(async () => ({ url: NEW_PHOTO, source: "wikidata-p18" as const }));
+				expect(stored.image_url).toBe(NEW_PHOTO);
+			},
+			TIMEOUT_MS,
+		);
+	});
 });
