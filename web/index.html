@@ -708,15 +708,12 @@ async function pingApi() {
     for (const f of LIST_EDGES[node.type]) if (Array.isArray(node[f]) && node[f].length) edges[f] = node[f];
     for (const f of SINGLE_EDGES[node.type]) if (node[f] && typeof node[f] === "object") edges[f] = node[f];
     const vizNode = { id: node.slug, type: node.type, name: node.name, teaser: teaserVal, article: node.editorial_article, citations: node.citations || [], edges };
-    // Same projection as src/graph.ts (TRA-455): image_url, else the legacy per-type URL;
-    // image_source only describes image_url. Dropping them here left a freshly materialized
-    // node imageless until the next full reload (TRA-466).
+    // Same projection as src/graph.ts (TRA-455): the node's own image_url only, never the legacy
+    // photo_url / cover_url (unverified, TRA-594); image_source only describes image_url. Dropping
+    // them here left a freshly materialized node imageless until the next full reload (TRA-466).
     if (node.image_url) {
       vizNode.image_url = node.image_url;
       if (node.image_source) vizNode.image_source = node.image_source;
-    } else {
-      const legacy = [node.photo_url, node.cover_url].find((u) => typeof u === "string" && u !== "");
-      if (legacy) vizNode.image_url = legacy;
     }
     byId.set(vizNode.id, vizNode);
     DATA.nodes.push(vizNode);

@@ -117,19 +117,21 @@ describe("toVizNode — node-level qid whitelist (TRA-19)", () => {
 describe("toVizNode — image_url projection (TRA-455)", () => {
 	const caa = "https://coverartarchive.org/release-group/6a9b9f3e/front-500";
 
-	it("falls back to photo_url for an artist without image_url", () => {
+	it("does not promote photo_url to image_url for an artist without image_url (TRA-594)", () => {
 		const artist = artistNode({ slug: "artist:a", name: "A", photo_url: "https://example.com/a.jpg" });
-		expect(toVizNode(artist).image_url).toBe("https://example.com/a.jpg");
+		expect("image_url" in toVizNode(artist)).toBe(false);
 	});
 
-	it("falls back to cover_url for a project without image_url", () => {
+	it("does not promote a mzstatic cover_url to image_url (Grandmaster Flash, TRA-594)", () => {
 		const project = {
 			type: "project",
-			slug: "project:p",
-			name: "P",
-			cover_url: "https://example.com/p.jpg",
+			slug: "project:the-message--grandmaster-flash",
+			name: "The Message",
+			cover_url: "https://is1-ssl.mzstatic.com/image/thumb/Music/earth-wind-fire/600x600bb.jpg",
 		} as unknown as NodePayload;
-		expect(toVizNode(project).image_url).toBe("https://example.com/p.jpg");
+		const viz = toVizNode(project);
+		expect("image_url" in viz).toBe(false);
+		expect("image_source" in viz).toBe(false);
 	});
 
 	it("lets image_url win over photo_url and projects image_source", () => {
@@ -145,11 +147,10 @@ describe("toVizNode — image_url projection (TRA-455)", () => {
 		expect(viz.image_source).toBe("caa");
 	});
 
-	it("does not project image_source next to a photo_url / cover_url fallback", () => {
-		// image_source describes image_url only; a stray value must not label the fallback.
+	it("does not project a stray image_source without an image_url", () => {
 		const artist = artistNode({ slug: "artist:a", name: "A", photo_url: "https://example.com/a.jpg" });
 		const viz = toVizNode({ ...artist, image_source: "caa" });
-		expect(viz.image_url).toBe("https://example.com/a.jpg");
+		expect("image_url" in viz).toBe(false);
 		expect("image_source" in viz).toBe(false);
 	});
 
@@ -170,6 +171,19 @@ describe("toVizNode — image_url projection (TRA-455)", () => {
 		await writeRawNode(dir, genreNode({ slug: "genre:dub", name: "Dub", image_url: caa }));
 		const graph = await buildGraphFromCache(dir);
 		expect(graph.nodes.find((n) => n.id === "genre:dub")?.image_url).toBe(caa);
+	});
+
+	it("drops a legacy cover_url through buildGraphFromCache, static and live options (TRA-594)", async () => {
+		await writeRawNode(dir, {
+			...artistNode({ slug: "artist:gm", name: "GM" }),
+			photo_url: "https://is1-ssl.mzstatic.com/image/thumb/Music/x/600x600bb.jpg",
+		} as NodePayload);
+		for (const graph of [
+			await buildGraphFromCache(dir),
+			await buildGraphFromCache(dir, STATIC_GRAPH_OPTIONS),
+		]) {
+			expect("image_url" in (graph.nodes.find((n) => n.id === "artist:gm") ?? {})).toBe(false);
+		}
 	});
 });
 

@@ -61,9 +61,10 @@ function sanitizeCitations(citations: Citation[]): Citation[] {
 	});
 }
 
-// image_url falls back to photo_url / cover_url, which accept http:// and ports; iOS decodes
-// image_url as a validated public URL and fails the WHOLE node response on a refusal (review of
-// TRA-455: artist:giorgio-moroder). A refused image is dropped with its image_source, not the node.
+// iOS decodes image_url as a validated public URL and fails the WHOLE node response on a refusal
+// (review of TRA-455: artist:giorgio-moroder, when image_url still fell back to the http:// photo_url;
+// the fallback is gone since TRA-594 but the guard stays). A refused image is dropped with its
+// image_source, not the node.
 function sanitizeNodeImage(node: VizNode): VizNode {
 	if (node.image_url === undefined) return node;
 	const safe = safePublicHttpsUrl(node.image_url);

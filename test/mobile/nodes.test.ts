@@ -156,31 +156,21 @@ describe("mobile node reader", () => {
 		expect(result?.node.image_source).toBe("derived-cover");
 	});
 
-	// iOS decodes image_url as a validated public https URL and fails the whole node on refusal.
+	// TRA-594: legacy photo_url / cover_url are never promoted to image_url, whatever their shape.
 	it.each([
 		["http scheme", "http://www.giorgiomoroder.com/photo.jpg"],
 		["https with a port", "https://example.com:8443/photo.jpg"],
 		["private host", "https://localhost/photo.jpg"],
-	])("omits an unsafe photo_url fallback (%s) without hiding the node", async (_label, photoUrl) => {
-		await cache.write(artistNode({ slug: "artist:unsafe", name: "Unsafe", photo_url: photoUrl }));
+		["safe https", "https://example.com/photo.jpg"],
+		["mzstatic", "https://is1-ssl.mzstatic.com/image/thumb/Music/x/600x600bb.jpg"],
+	])("projects no image from a legacy photo_url (%s) and keeps the node", async (_label, photoUrl) => {
+		await cache.write(artistNode({ slug: "artist:legacy", name: "Legacy", photo_url: photoUrl }));
 		const reader = createMobileNodeReader({ cache, redirects: new Map() });
 
-		const result = await reader.read("artist:unsafe");
+		const result = await reader.read("artist:legacy");
 
-		expect(result?.node.id).toBe("artist:unsafe");
+		expect(result?.node.id).toBe("artist:legacy");
 		expect(result ? "image_url" in result.node : true).toBe(false);
-		expect(result ? "image_source" in result.node : true).toBe(false);
-	});
-
-	it("keeps a safe photo_url fallback and projects no image_source for it", async () => {
-		await cache.write(
-			artistNode({ slug: "artist:safe", name: "Safe", photo_url: "https://example.com/photo.jpg" }),
-		);
-		const reader = createMobileNodeReader({ cache, redirects: new Map() });
-
-		const result = await reader.read("artist:safe");
-
-		expect(result?.node.image_url).toBe("https://example.com/photo.jpg");
 		expect(result ? "image_source" in result.node : true).toBe(false);
 	});
 
