@@ -83,6 +83,12 @@
       "slug": "project:unisex",
       "type": "project",
       "name": "Unisex"
+    },
+    {
+      "slug": "project:the-decline-and-fall-of-heavenly--heavenly",
+      "type": "project",
+      "name": "The Decline and Fall of Heavenly",
+      "artist": "Heavenly"
     }
   ]
 }

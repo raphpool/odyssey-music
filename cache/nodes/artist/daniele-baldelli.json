@@ -223,6 +223,12 @@
       "mbid": "ce1a142e-b4af-466a-9f9a-30619f001609",
       "year": "2005",
       "releaseType": "album"
+    },
+    {
+      "slug": "project:cosmic-the-original--daniele-baldelli",
+      "type": "project",
+      "name": "Cosmic - The Original",
+      "artist": "Daniele Baldelli"
     }
   ],
   "notable_tracks": [

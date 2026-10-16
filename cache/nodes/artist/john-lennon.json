@@ -60,6 +60,12 @@
       "slug": "project:double-fantasy",
       "type": "project",
       "name": "Double Fantasy"
+    },
+    {
+      "slug": "project:the-beatles",
+      "type": "project",
+      "name": "The Beatles",
+      "artist": "John Lennon"
     }
   ],
   "notable_tracks": [
@@ -77,6 +83,12 @@
       "slug": "track:instant-karma",
       "type": "track",
       "name": "Instant Karma!"
+    },
+    {
+      "slug": "track:the-beatles",
+      "type": "track",
+      "name": "The Beatles",
+      "artist": "John Lennon"
     }
   ],
   "influences": [],

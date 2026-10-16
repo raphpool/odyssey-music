@@ -74,6 +74,56 @@
       "slug": "artist:crosby-stills-nash-and-young",
       "type": "artist",
       "name": "Crosby, Stills, Nash & Young"
+    },
+    {
+      "slug": "artist:bernard-edwards",
+      "type": "artist",
+      "name": "Bernard Edwards"
+    },
+    {
+      "slug": "artist:chic",
+      "type": "artist",
+      "name": "Chic"
+    },
+    {
+      "slug": "artist:craig-david",
+      "type": "artist",
+      "name": "Craig David"
+    },
+    {
+      "slug": "artist:daniel-johnston",
+      "type": "artist",
+      "name": "Daniel Johnston"
+    },
+    {
+      "slug": "artist:gucci-mane",
+      "type": "artist",
+      "name": "Gucci Mane"
+    },
+    {
+      "slug": "artist:jamie-principle",
+      "type": "artist",
+      "name": "Jamie Principle"
+    },
+    {
+      "slug": "artist:skrillex",
+      "type": "artist",
+      "name": "Skrillex"
+    },
+    {
+      "slug": "artist:t-i",
+      "type": "artist",
+      "name": "T.I."
+    },
+    {
+      "slug": "artist:the-corrs",
+      "type": "artist",
+      "name": "The Corrs"
+    },
+    {
+      "slug": "artist:the-velvet-underground",
+      "type": "artist",
+      "name": "The Velvet Underground"
     }
   ],
   "notable_releases": [
@@ -91,6 +141,24 @@
       "slug": "project:modern-sounds-in-country-and-western-music",
       "type": "project",
       "name": "Modern Sounds in Country and Western Music"
+    },
+    {
+      "slug": "project:c-est-chic--chic",
+      "type": "project",
+      "name": "C'est Chic",
+      "artist": "Chic"
+    },
+    {
+      "slug": "project:close-to-the-edge--yes",
+      "type": "project",
+      "name": "Close to the Edge",
+      "artist": "Yes"
+    },
+    {
+      "slug": "project:in-blue--the-corrs",
+      "type": "project",
+      "name": "In Blue",
+      "artist": "The Corrs"
     }
   ]
 }

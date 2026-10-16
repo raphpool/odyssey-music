@@ -81,6 +81,12 @@
       "slug": "project:another-green-world--brian-eno",
       "type": "project",
       "name": "Another Green World"
+    },
+    {
+      "slug": "project:ambient-4-on-land--brian-eno",
+      "type": "project",
+      "name": "Ambient 4: On Land",
+      "artist": "Brian Eno"
     }
   ],
   "notable_tracks": [
@@ -93,6 +99,42 @@
       "slug": "track:1-1",
       "type": "track",
       "name": "1/1"
+    },
+    {
+      "slug": "track:1-1--brian-eno",
+      "type": "track",
+      "name": "1/1",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:2-1--brian-eno",
+      "type": "track",
+      "name": "2/1",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:dunwich-beach-autumn-1960--brian-eno",
+      "type": "track",
+      "name": "Dunwich Beach, Autumn 1960",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:not-yet-remembered",
+      "type": "track",
+      "name": "Not Yet Remembered",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:the-plateaux-of-mirror",
+      "type": "track",
+      "name": "The Plateaux of Mirror",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "track:unfamiliar-wind-leeks-hills--brian-eno",
+      "type": "track",
+      "name": "Unfamiliar Wind (Leeks Hills)",
+      "artist": "Brian Eno"
     }
   ],
   "influences": [

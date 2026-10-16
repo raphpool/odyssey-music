@@ -42,6 +42,11 @@
       "slug": "artist:philip-jeck",
       "type": "artist",
       "name": "Philip Jeck"
+    },
+    {
+      "slug": "artist:thomas-koner",
+      "type": "artist",
+      "name": "Thomas Köner"
     }
   ],
   "notable_releases": [

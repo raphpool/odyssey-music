@@ -44,7 +44,26 @@
       "name": "Skam Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:geogaddi--boards-of-canada",
+      "type": "project",
+      "name": "Geogaddi",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "project:hi-scores--boards-of-canada",
+      "type": "project",
+      "name": "Hi Scores",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "project:music-has-the-right-to-children--boards-of-canada",
+      "type": "project",
+      "name": "Music Has the Right to Children",
+      "artist": "Boards of Canada"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:roygbiv--boards-of-canada",
@@ -60,6 +79,42 @@
       "slug": "track:everything-you-do-is-a-balloon",
       "type": "track",
       "name": "Everything You Do Is a Balloon"
+    },
+    {
+      "slug": "track:an-eagle-in-your-mind--boards-of-canada",
+      "type": "track",
+      "name": "An Eagle in Your Mind",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:kaini-industries--boards-of-canada",
+      "type": "track",
+      "name": "Kaini Industries",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:sixtyten--boards-of-canada",
+      "type": "track",
+      "name": "Sixtyten",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:telephasic-workshop--boards-of-canada",
+      "type": "track",
+      "name": "Telephasic Workshop",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:triangles-and-rhombuses--boards-of-canada",
+      "type": "track",
+      "name": "Triangles & Rhombuses",
+      "artist": "Boards of Canada"
+    },
+    {
+      "slug": "track:wildlife-analysis--boards-of-canada",
+      "type": "track",
+      "name": "Wildlife Analysis",
+      "artist": "Boards of Canada"
     }
   ],
   "influences": [],

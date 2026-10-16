@@ -52,7 +52,14 @@
       "name": "Grand Royal"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:60-second-wipe-out--atari-teenage-riot",
+      "type": "project",
+      "name": "60 Second Wipe Out",
+      "artist": "Atari Teenage Riot"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:revolution-action",

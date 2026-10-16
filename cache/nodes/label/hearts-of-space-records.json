@@ -65,6 +65,12 @@
       "slug": "project:celtic-twilight",
       "type": "project",
       "name": "Celtic Twilight"
+    },
+    {
+      "slug": "project:stalker--robert-rich",
+      "type": "project",
+      "name": "Stalker",
+      "artist": "Robert Rich"
     }
   ]
 }

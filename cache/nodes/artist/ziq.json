@@ -41,12 +41,61 @@
       "name": "Rephlex Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:expert-knob-twiddlers",
+      "type": "project",
+      "name": "Expert Knob Twiddlers",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "project:tango-n-vectif--ziq",
+      "type": "project",
+      "name": "Tango N' Vectif",
+      "artist": "µ-Ziq"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:the-fear",
       "type": "track",
       "name": "The Fear"
+    },
+    {
+      "slug": "track:amenida--ziq",
+      "type": "track",
+      "name": "Amenida",
+      "artist": "µ-Ziq"
+    },
+    {
+      "slug": "track:burnt-sienna--ziq",
+      "type": "track",
+      "name": "Burnt Sienna",
+      "artist": "µ-Ziq"
+    },
+    {
+      "slug": "track:phragmal-synthesis-pt-3--ziq",
+      "type": "track",
+      "name": "Phragmal Synthesis (Pt. 3)",
+      "artist": "µ-Ziq"
+    },
+    {
+      "slug": "track:tango-n-vectif--ziq",
+      "type": "track",
+      "name": "Tango N' Vectif",
+      "artist": "µ-Ziq"
+    },
+    {
+      "slug": "track:whale-soup--ziq",
+      "type": "track",
+      "name": "Whale Soup",
+      "artist": "µ-Ziq"
+    },
+    {
+      "slug": "track:ziq-theme--ziq",
+      "type": "track",
+      "name": "µ-Ziq Theme",
+      "artist": "µ-Ziq"
     }
   ],
   "influences": [],

@@ -63,7 +63,14 @@
       "name": "Planet Mu"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:artificial-intelligence",
+      "type": "project",
+      "name": "Artificial Intelligence",
+      "artist": "Aphex Twin"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],

@@ -52,6 +52,12 @@
       "slug": "track:les-tam-tam-de-l-afrique",
       "type": "track",
       "name": "Les tam-tam de l'Afrique"
+    },
+    {
+      "slug": "track:tam-tam-de-l-afrique--iam",
+      "type": "track",
+      "name": "Tam Tam de l'Afrique",
+      "artist": "IAM"
     }
   ],
   "influences": [],

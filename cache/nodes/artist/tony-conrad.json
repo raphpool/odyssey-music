@@ -42,7 +42,14 @@
       "name": "Table of the Elements"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:four-violins--tony-conrad",
+      "type": "project",
+      "name": "Four Violins",
+      "artist": "Tony Conrad"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:four-violins--tony-conrad",

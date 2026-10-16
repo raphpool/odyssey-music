@@ -64,6 +64,12 @@
       "slug": "project:live-at-the-bbc--the-beatles",
       "type": "project",
       "name": "Live at the BBC"
+    },
+    {
+      "slug": "project:sgt-pepper-s-lonely-hearts-club-band--the-beatles",
+      "type": "project",
+      "name": "Sgt. Pepper's Lonely Hearts Club Band",
+      "artist": "The Beatles"
     }
   ],
   "notable_tracks": [
@@ -71,6 +77,12 @@
       "slug": "track:the-beatles",
       "type": "track",
       "name": "The Beatles"
+    },
+    {
+      "slug": "track:morphing-leadgitarre-ruckwarts--the-beatles",
+      "type": "track",
+      "name": "Morphing Leadgitarre Rückwärts",
+      "artist": "The Beatles"
     }
   ],
   "influences": [],

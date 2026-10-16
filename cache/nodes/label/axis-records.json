@@ -53,6 +53,12 @@
       "slug": "project:sequence",
       "type": "project",
       "name": "Sequence"
+    },
+    {
+      "slug": "project:every-dog-has-its-day-vol-3--millsart",
+      "type": "project",
+      "name": "Every Dog Has Its Day vol.3",
+      "artist": "Millsart"
     }
   ]
 }

@@ -38,7 +38,14 @@
       "name": "Smithsonian Folkways Recordings"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:music-for-zen-meditation--tony-scott",
+      "type": "project",
+      "name": "Music for Zen Meditation",
+      "artist": "Tony Scott"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:rokudan",
@@ -55,5 +62,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

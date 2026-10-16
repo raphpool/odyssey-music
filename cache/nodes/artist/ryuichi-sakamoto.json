@@ -89,6 +89,12 @@
       "slug": "project:the-last-emperor",
       "type": "project",
       "name": "The Last Emperor"
+    },
+    {
+      "slug": "project:vrioon--ryuichi-sakamoto",
+      "type": "project",
+      "name": "Vrioon",
+      "artist": "Ryuichi Sakamoto"
     }
   ],
   "notable_tracks": [
@@ -106,6 +112,18 @@
       "slug": "track:forbidden-colours",
       "type": "track",
       "name": "Forbidden Colours"
+    },
+    {
+      "slug": "track:trioon-ii--track-by-alva-noto-ryuichi-sakamoto-from-the-album-vrioon",
+      "type": "track",
+      "name": "Trioon II",
+      "artist": "Alva Noto"
+    },
+    {
+      "slug": "track:uoon-ii",
+      "type": "track",
+      "name": "Uoon II",
+      "artist": "Alva Noto"
     }
   ],
   "influences": [],

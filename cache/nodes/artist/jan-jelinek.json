@@ -96,6 +96,36 @@
       "slug": "track:tendency--jan-jelinek",
       "type": "track",
       "name": "Tendency"
+    },
+    {
+      "slug": "track:im-diskodickicht--jan-jelinek",
+      "type": "track",
+      "name": "Im Diskodickicht",
+      "artist": "Jan Jelinek"
+    },
+    {
+      "slug": "track:lithiummelodie-1--jan-jelinek",
+      "type": "track",
+      "name": "Lithiummelodie 1",
+      "artist": "Jan Jelinek"
+    },
+    {
+      "slug": "track:moire-piano-and-organ--jan-jelinek",
+      "type": "track",
+      "name": "Moiré (Piano & Organ)",
+      "artist": "Jan Jelinek"
+    },
+    {
+      "slug": "track:planeten-in-halbtrauer--jan-jelinek",
+      "type": "track",
+      "name": "Planeten In Halbtrauer",
+      "artist": "Jan Jelinek"
+    },
+    {
+      "slug": "track:poren--jan-jelinek",
+      "type": "track",
+      "name": "Poren",
+      "artist": "Jan Jelinek"
     }
   ],
   "influences": [],

@@ -58,6 +58,16 @@
       "slug": "artist:cristian-vogel",
       "type": "artist",
       "name": "Cristian Vogel"
+    },
+    {
+      "slug": "artist:mike-huckaby",
+      "type": "artist",
+      "name": "Mike Huckaby"
+    },
+    {
+      "slug": "artist:moritz-von-oswald",
+      "type": "artist",
+      "name": "Moritz von Oswald"
     }
   ],
   "notable_releases": [
@@ -75,6 +85,12 @@
       "slug": "project:tresor-30",
       "type": "project",
       "name": "Tresor 30"
+    },
+    {
+      "slug": "project:waveform-transmission-vol-3--jeff-mills",
+      "type": "project",
+      "name": "Waveform Transmission, Vol. 3",
+      "artist": "Jeff Mills"
     }
   ]
 }
