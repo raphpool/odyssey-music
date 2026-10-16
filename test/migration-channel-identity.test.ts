@@ -214,7 +214,7 @@ exec "$REAL_RSYNC" "\${args[@]}"`,
 	writeFakeBin(
 		binDir,
 		"npx",
-		`node -e 'require("fs").appendFileSync(process.env.TEST_CALLS, JSON.stringify(process.argv.slice(1)) + "\\n")' -- "$@"
+		`node -e 'require("fs").appendFileSync(process.env.TEST_CALLS, JSON.stringify([...process.argv.slice(1), "FLAG=" + process.env.ODYSSEY_SCOPED_RELEASE_SLUGS]) + "\\n")' -- "$@"
 exec "$REAL_NPX" "$@"`,
 	);
 	return { repoCacheDir, serverRoot, binDir, callsLog, replayDir: join(root, "replay") };
@@ -322,6 +322,10 @@ describe("migration channel: the three identity migrations (TRA-568)", () => {
 		expect(preview.stdout).toContain(`${SCOPE_STEP} (apply)`);
 		expect(preview.stdout).not.toContain("is off");
 		expect(process.env.ODYSSEY_SCOPED_RELEASE_SLUGS).toBeUndefined();
+		// ...and only the scope gets it: the artist and work backfills run on a cache that still holds unscoped slugs.
+		expect(callOf(preview, SCOPE_STEP)).toContain("FLAG=1");
+		expect(callOf(preview, ARTIST_STEP)).toContain("FLAG=0");
+		expect(callOf(preview, RELEASE_STEP)).toContain("FLAG=0");
 	});
 
 	it("calls the scope with the artist manifest written by this run's artist step", () => {

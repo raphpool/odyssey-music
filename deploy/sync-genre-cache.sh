@@ -176,7 +176,7 @@ if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
 		if [[ "${MIGRATIONS[$i]}" == "$ARTIST_STEP" ]]; then ARTIST_INDEX=$i; fi
 	done
 	if [[ $SCOPE_INDEX -ge 0 && ( $ARTIST_INDEX -lt 0 || $ARTIST_INDEX -gt $SCOPE_INDEX ) ]]; then
-		echo "ERROR: $SCOPE_STEP needs the artist manifest of this run: pass --migration $ARTIST_STEP before it (artists, then works, then scope) -- refusing." >&2
+		echo "ERROR: $SCOPE_STEP needs the artist manifest of this run: pass --migration $ARTIST_STEP before it (artists first) -- refusing." >&2
 		exit 1
 	fi
 	# Shipped next to genre-redirects.json after the transfer: a missing file must refuse now, not
@@ -440,7 +440,18 @@ if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
 	# them with --resume (no MusicBrainz request for what they resolved) and is refused if the identities it
 	# ends with differ from the recorded ones (a name MB did not resolve before, or no longer resolves).
 	REPLAY_DIR="${MIGRATION_REPLAY_DIR:-}"
-	[[ -z "$REPLAY_DIR" ]] || mkdir -p "$REPLAY_DIR"
+	if [[ -n "$REPLAY_DIR" ]]; then
+		mkdir -p "$REPLAY_DIR"
+		# What the recorded manifests belong to: the commit and the migrations of the run. A directory left
+		# by another run is refused, never replayed (a stale manifest would pass the comparison below for
+		# everything it already resolved).
+		REPLAY_CONTEXT="$(git -C "$REPO_ROOT" rev-parse HEAD 2>/dev/null || echo unknown) ${MIGRATIONS[*]}"
+		if [[ -f "$REPLAY_DIR/context" && "$(cat "$REPLAY_DIR/context")" != "$REPLAY_CONTEXT" ]]; then
+			echo "ERROR: $REPLAY_DIR was recorded by another run (other commit or other migrations) -- empty it, or unset MIGRATION_REPLAY_DIR. Refusing before any write." >&2
+			exit 1
+		fi
+		printf '%s\n' "$REPLAY_CONTEXT" >"$REPLAY_DIR/context"
+	fi
 	for name in "${MIGRATIONS[@]}"; do
 		MIGRATION_MANIFEST="$WORKDIR/$name.manifest.json"
 		MIGRATION_EXTRA=()
@@ -472,9 +483,13 @@ if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
 		esac
 		echo "==> Running migration $name on the union (never on the repo or the server)"
 		set +e
-		# ODYSSEY_SCOPED_RELEASE_SLUGS is set for this process only (the scope refuses to run without it
-		# and the target slugs depend on it); it is not exported to the shell, so the server never sees it.
-		(cd "$REPO_ROOT" && ODYSSEY_SCOPED_RELEASE_SLUGS=1 npx tsx "$MIGRATIONS_DIR/$name.ts" "$UNION_DIR" --apply --manifest "$MIGRATION_MANIFEST" --data-dir "$MIGRATION_DATA_DIR" ${MIGRATION_EXTRA[@]+"${MIGRATION_EXTRA[@]}"})
+		# ODYSSEY_SCOPED_RELEASE_SLUGS=1 for the scope's process only: it refuses to run without it and its
+		# target slugs depend on it, whereas the artist and work backfills run on a cache that still holds
+		# the unscoped slugs (flag on, their makeSlug would aim credits at slugs that do not exist yet, see
+		# src/flags.ts). Not exported to the shell, so the server never sees it.
+		SCOPE_FLAG=0
+		if [[ "$name" == "$SCOPE_STEP" ]]; then SCOPE_FLAG=1; fi
+		(cd "$REPO_ROOT" && ODYSSEY_SCOPED_RELEASE_SLUGS=$SCOPE_FLAG npx tsx "$MIGRATIONS_DIR/$name.ts" "$UNION_DIR" --apply --manifest "$MIGRATION_MANIFEST" --data-dir "$MIGRATION_DATA_DIR" ${MIGRATION_EXTRA[@]+"${MIGRATION_EXTRA[@]}"})
 		MIGRATION_EXIT=$?
 		set -e
 		if [[ $MIGRATION_EXIT -ne 0 ]]; then
