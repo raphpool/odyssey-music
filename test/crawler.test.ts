@@ -92,6 +92,24 @@ describe("enqueueEdges (TRA-28 review B1)", () => {
 		expect(popped?.entry.input.qid).toBe("Q9778");
 	});
 
+	// TRA-480: similar_artists are recommendations, not structure -- a crawl must not run away on them.
+	it("does not put similar_artists targets on the frontier", () => {
+		const frontier = new FrontierQueue();
+		const node = artistNode({
+			labels: [{ type: "label", slug: "label:fixture-label", name: "Fixture Label" }],
+			similar_artists: ["Alpha", "Beta", "Gamma"].map((name) => ({
+				type: "artist" as const,
+				slug: makeSlug("artist", name),
+				name,
+			})),
+		});
+
+		enqueueEdges(node, 0, frontier, () => {});
+
+		expect(frontier.size()).toBe(1);
+		expect(frontier.pop()?.slug).toBe("label:fixture-label");
+	});
+
 	it("leaves PipelineInput.qid unset for an edge without one (no undefined leaking through)", () => {
 		const frontier = new FrontierQueue();
 		const node = artistNode({

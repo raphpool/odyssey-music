@@ -56,6 +56,7 @@ import { createImageService } from "./services/image-service.js";
 import { createMaterializeService, type MaterializeRequest } from "./services/materialize-service.js";
 import { createNodeService } from "./services/node-service.js";
 import { createSearchService } from "./services/search-service.js";
+import { makeSimilarArtistsResolver } from "./similar-artists-wiring.js";
 import { handleStream } from "./stream.js";
 import { LINKABLE_TYPES, resolveStreamingLinks } from "./streaming-links.js";
 import type { EdgeRef, NodeType, Slug } from "./types.js";
@@ -105,6 +106,8 @@ const materializeService = createMaterializeService({
 	invalidateCacheIndex,
 	// TRA-479: a node gets its image when it is materialized (GET /image only reads it back).
 	resolveImage: (node) => resolveImage(node, { cache }),
+	// TRA-480: ... and its similar artists (ListenBrainz, else the graph).
+	similarArtists: makeSimilarArtistsResolver({ cache, getCacheIndex }),
 });
 const getNode = createNodeService({ cache, runJit: materializeService.runJit, redirects: genreRedirects });
 const imageService = createImageService({ cache, redirects: genreRedirects });
