@@ -128,6 +128,7 @@ describe("image at materialization, through createMaterializeService (TRA-479)",
 				slug: SLUG,
 				image_url: PHOTO,
 				source: "wikidata-p18",
+				state: "found",
 			});
 		},
 		TIMEOUT_MS,
