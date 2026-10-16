@@ -34,7 +34,11 @@
  *
  * Usage: tsx scripts/migrations/2026-10-15-backfill-release-identity.ts <cache-dir> [--apply]
  *        [--manifest out/release-identity.json] [--artist-manifest out/artist-identity.json]
- *        [--resume] [--limit N]
+ *        [--resume] [--limit N] [--data-dir <dir>]
+ *
+ * Migration channel (deploy/sync-genre-cache.sh, TRA-568): `--data-dir` is accepted and unused (nothing
+ * is renamed here), and the manifest carries the channel's constant fields: `migration`, `removed: []`,
+ * `renamed: {}`, `redirects: {}`.
  */
 import { mkdir, readFile } from "node:fs/promises";
 import { dirname } from "node:path";
@@ -62,6 +66,7 @@ import {
 } from "./2026-09-04-merge-genre-duplicates.js";
 import { onlyAddsSchemaDefaults } from "./2026-10-15-backfill-artist-identity.js";
 
+export const MIGRATION_NAME = "2026-10-15-backfill-release-identity";
 export const DEFAULT_MANIFEST_PATH = "out/release-identity.json";
 export const DEFAULT_ARTIST_MANIFEST_PATH = "out/artist-identity.json";
 
@@ -112,6 +117,11 @@ export interface AmbiguousWork {
 }
 
 export interface ReleaseManifest {
+	/** The channel's manifest contract (TRA-568): this migration deletes and renames nothing. */
+	migration: string;
+	removed: string[];
+	renamed: Record<string, string>;
+	redirects: Record<string, string>;
 	generated_at: string;
 	resolved: Record<string, ResolvedWork>;
 	unresolved: UnresolvedWork[];
@@ -197,6 +207,7 @@ async function readManifest(path: string): Promise<ReleaseManifest | null> {
 		"several-artist-nodes-share-the-credit-mbid",
 	];
 	return {
+		...CHANNEL_FIELDS(),
 		generated_at: typeof parsed.generated_at === "string" ? parsed.generated_at : "",
 		resolved,
 		unresolved: parsed.unresolved.flatMap((u: unknown) =>
@@ -279,6 +290,8 @@ export function findCollisions(
 		.sort((a, b) => (a.mbid < b.mbid ? -1 : a.mbid > b.mbid ? 1 : 0));
 }
 
+const CHANNEL_FIELDS = () => ({ migration: MIGRATION_NAME, removed: [], renamed: {}, redirects: {} });
+
 function buildManifest(
 	resolved: Record<string, ResolvedWork>,
 	unresolved: UnresolvedWork[],
@@ -288,6 +301,7 @@ function buildManifest(
 	const sorted: Record<string, ResolvedWork> = {};
 	for (const slug of Object.keys(resolved).sort()) sorted[slug] = resolved[slug] as ResolvedWork;
 	return {
+		...CHANNEL_FIELDS(),
 		generated_at: new Date().toISOString(),
 		resolved: sorted,
 		unresolved: [...unresolved].sort(bySlug),
@@ -887,7 +901,8 @@ export interface CliArgs {
 }
 
 /**
- * Parses `<cache-dir> [--apply] [--manifest <path>] [--artist-manifest <path>] [--limit N] [--resume]`.
+ * Parses `<cache-dir> [--apply] [--manifest <path>] [--artist-manifest <path>] [--limit N] [--resume]
+ * [--data-dir <dir>]`.
  * Null (CLI exits 2) on a missing cache-dir, a repeated flag, a flag without its value (or with
  * another flag as value), a `--limit` that is not a positive integer, or any token no flag consumes:
  * an ambiguous argument never falls through to a guess.
@@ -900,6 +915,7 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 	let manifestPath: string | undefined;
 	let artistManifestPath: string | undefined;
 	let limit: number | undefined;
+	let dataDirSeen = false;
 	for (let i = 1; i < argv.length; i++) {
 		const token = argv[i];
 		if (token === "--apply" && !apply) apply = true;
@@ -907,12 +923,14 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 		else if (
 			(token === "--manifest" && manifestPath === undefined) ||
 			(token === "--artist-manifest" && artistManifestPath === undefined) ||
-			(token === "--limit" && limit === undefined)
+			(token === "--limit" && limit === undefined) ||
+			(token === "--data-dir" && !dataDirSeen)
 		) {
 			const value = argv[++i];
 			if (value === undefined || value.startsWith("-")) return null;
 			if (token === "--manifest") manifestPath = value;
 			else if (token === "--artist-manifest") artistManifestPath = value;
+			else if (token === "--data-dir") dataDirSeen = true;
 			else if (/^[1-9]\d*$/.test(value)) limit = Number(value);
 			else return null;
 		} else return null;
@@ -933,7 +951,7 @@ async function main(): Promise<void> {
 	if (!args) {
 		process.stderr.write(
 			"usage: 2026-10-15-backfill-release-identity.ts <cache-dir> [--apply] [--manifest <path>] " +
-				"[--artist-manifest <path>] [--limit N] [--resume]\n",
+				"[--artist-manifest <path>] [--limit N] [--resume] [--data-dir <dir>]\n",
 		);
 		process.exit(2);
 	}

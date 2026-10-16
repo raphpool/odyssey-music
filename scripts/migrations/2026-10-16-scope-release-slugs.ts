@@ -75,7 +75,13 @@ import { z } from "zod";
 import { atomicWriteJson, type PendingReverse } from "../../src/cache.js";
 import { scopedReleaseSlugsEnabled } from "../../src/flags.js";
 import { parseSlugRedirects } from "../../src/genre-registry.js";
-import { LIST_EDGES_BY_TYPE, type NodeType, SINGULAR_EDGES_BY_TYPE } from "../../src/node-spec.js";
+import {
+	EDGE_FIELDS_BY_TYPE,
+	LIST_EDGES_BY_TYPE,
+	type NodeType,
+	REVERSE_EDGE_PAIRS,
+	SINGULAR_EDGES_BY_TYPE,
+} from "../../src/node-spec.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
 import {
 	hasTransliteratedLetter,
@@ -1027,10 +1033,21 @@ export function planMigration(input: PlanInput): Plan {
 		.sort()
 		.map((from) => ({ from, to: pendingMap[from] as string }));
 	const appliedPending = new Map<string, PendingReverse[]>();
+	const withheldNotes: string[] = [];
 	for (const { to } of pendingRenames) {
 		const target = results.get(to);
-		const entries = pending.result[to];
-		if (!target || !entries) continue;
+		const all = pending.result[to];
+		if (!target || !all) continue;
+		// TRA-568: only the directions the runtime still emits are applied here. The others are never lost:
+		// they stay in pending-reverses.json under the renamed key (written below), for the purge of TRA-565.
+		const entries = all.filter((entry) => isSafePendingEntry(to, entry));
+		const withheld = all.filter((entry) => !isSafePendingEntry(to, entry));
+		if (withheld.length > 0) {
+			withheldNotes.push(
+				`${to}: ${withheld.length} pending reverse edge(s) not applied (direction not emitted by the runtime, TRA-563)`,
+			);
+		}
+		if (entries.length === 0) continue;
 		const next: Obj = { ...target };
 		for (const { field, cardinality, edge } of entries) {
 			if (edge.slug === to) continue;
@@ -1043,7 +1060,8 @@ export function planMigration(input: PlanInput): Plan {
 		}
 		results.set(to, next);
 		appliedPending.set(to, entries);
-		delete pending.result[to];
+		if (withheld.length > 0) pending.result[to] = withheld;
+		else delete pending.result[to];
 	}
 
 	// 8. Writes: what is new, merged, or edited.
@@ -1120,7 +1138,7 @@ export function planMigration(input: PlanInput): Plan {
 			self_edges_removed: selfEdges,
 			pending_reverses: pendingRenames,
 			errors,
-			notes: [],
+			notes: withheldNotes,
 			summary: {
 				nodes: files.length,
 				renamed: Object.keys(renamed).length,
@@ -1220,6 +1238,39 @@ function isVariousArtists(credit: Obj): boolean {
 		str(credit.mbid) === VARIOUS_ARTISTS_MBID ||
 		str(credit.name)?.normalize("NFKC").trim().replace(/\s+/g, " ").toLowerCase() === "various artists"
 	);
+}
+
+// A pending reverse entry is applied to a node only if the runtime would still emit that direction (TRA-563,
+// PR #486: isEmittedPendingReverse). Same semantics, copied: a same-kind pair (collaborators, samples, genre
+// parents...) is symmetric by construction; a cross-type pair only when it is one of the four safe ones below.
+// Everything else (credit, parent or genre on a work; tracklist; roster -> artist.labels; genre key_artists /
+// key_labels -> genres...) waits under its key, because a namesake's list must not graft an edge onto this node.
+// TODO(TRA-563): import isEmittedPendingReverse from src/reverse-edges.ts
+const SAFE_BACKFILL_PAIRS: ReadonlySet<string> = new Set([
+	"project.artists→artist.discography",
+	"track.artists→artist.notable_tracks",
+	"project.label→label.notable_releases",
+	"artist.labels→label.roster",
+]);
+
+// "sourceType>targetType.reverseField" of every direction emitted.
+const EMITTED_DIRECTIONS: ReadonlySet<string> = new Set(
+	REVERSE_EDGE_PAIRS.flatMap((pair) => {
+		const targetType = (
+			EDGE_FIELDS_BY_TYPE[pair.sourceType] as Record<string, { targets: readonly NodeType[] }>
+		)[pair.sourceField]?.targets[0];
+		if (!targetType) return [];
+		const sameKind = targetType === pair.sourceType;
+		const key = `${pair.sourceType}.${pair.sourceField}→${targetType}.${pair.reverse.field}`;
+		return sameKind || SAFE_BACKFILL_PAIRS.has(key)
+			? [`${pair.sourceType}>${targetType}.${pair.reverse.field}`]
+			: [];
+	}),
+);
+
+/** True when the pending entry queued under `key` is a direction the runtime still emits. */
+export function isSafePendingEntry(key: string, entry: Pick<PendingReverse, "field" | "edge">): boolean {
+	return EMITTED_DIRECTIONS.has(`${entry.edge.type}>${parseSlug(key).type}.${entry.field}`);
 }
 
 function pathOf(cacheDir: string, slug: string): string {
@@ -1359,7 +1410,12 @@ export async function runMigration(options: MigrationOptions): Promise<Migration
 	// A node file we cannot read (malformed slug, bad JSON) is left alone and listed, not a reason to stop.
 	plan.manifest.malformed.push(...invalid.map((i) => ({ slug: i.path, reason: `unreadable: ${i.error}` })));
 	plan.manifest.summary.malformed = plan.manifest.malformed.length;
-	const manifest: Manifest = { ...base, ...plan.manifest, notes, written: 0 };
+	const manifest: Manifest = {
+		...base,
+		...plan.manifest,
+		notes: [...notes, ...plan.manifest.notes],
+		written: 0,
+	};
 	const blocked = plan.manifest.invariantViolations.length > 0;
 	if (blocked) {
 		manifest.errors.push(

@@ -6,6 +6,7 @@ import {
 	DEFAULT_MANIFEST_PATH,
 	findCollisions,
 	type IdentityManifest,
+	MIGRATION_NAME,
 	onlyAddsSchemaDefaults,
 	parseCliArgs,
 	type ResolvedArtist,
@@ -1222,6 +1223,13 @@ describe("runBackfill", () => {
 		expect(await readNode(a.slug)).toEqual({ ...a, mbid: POLE, artist_kind: "person", similar_artists: [] });
 		expect(await readNode(b.slug)).toEqual({ ...b, mbid: POLE, artist_kind: "person", similar_artists: [] });
 		expect(await readManifestFile()).toEqual({ ...result.manifest });
+		// TRA-568: the fields the migration channel validates; this migration renames and deletes nothing.
+		expect(result.manifest).toMatchObject({
+			migration: MIGRATION_NAME,
+			removed: [],
+			renamed: {},
+			redirects: {},
+		});
 	});
 
 	it("records the person kind and the bands of Roni Size, and leaves an ambiguous artist intact", async () => {
@@ -1754,6 +1762,17 @@ describe("parseCliArgs", () => {
 			limit: 5,
 			manifestPath: "m.json",
 		});
+	});
+
+	it("accepts the channel's --data-dir and ignores it (TRA-568)", () => {
+		expect(parseCliArgs(["cache", "--apply", "--manifest", "m.json", "--data-dir", "d"])).toEqual({
+			cacheDir: "cache",
+			apply: true,
+			resume: false,
+			manifestPath: "m.json",
+		});
+		expect(parseCliArgs(["cache", "--data-dir", "d", "--data-dir", "e"])).toBeNull();
+		expect(parseCliArgs(["cache", "--data-dir"])).toBeNull();
 	});
 
 	it.each([

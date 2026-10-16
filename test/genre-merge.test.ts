@@ -356,6 +356,40 @@ describe("rewritePendingReverses", () => {
 		expect(result["artist:third-party"]?.[0]?.edge.slug).toBe("genre:electronic-music");
 	});
 
+	it("does not duplicate an entry both merged keys held (same field and edge.slug), TRA-568", () => {
+		const shared = (name: string) => ({
+			field: "genres",
+			cardinality: "list" as const,
+			edge: { slug: "artist:someone" as const, type: "artist" as const, name },
+		});
+		const other = {
+			field: "genres",
+			cardinality: "list" as const,
+			edge: { slug: "artist:someone-else" as const, type: "artist" as const, name: "Someone Else" },
+		};
+		const { result, changed } = rewritePendingReverses(
+			{
+				"genre:electronic": [shared("Someone"), other],
+				"genre:electronic-music": [shared("Someone (again)")],
+			},
+			new Map([["genre:electronic", "genre:electronic-music"]]),
+		);
+		expect(changed).toBe(true);
+		expect(result["genre:electronic-music"]?.map((e) => `${e.field}:${e.edge.slug}`)).toEqual([
+			"genres:artist:someone",
+			"genres:artist:someone-else",
+		]);
+		// Same edge under another field is another entry.
+		const { result: kept } = rewritePendingReverses(
+			{
+				"genre:electronic": [shared("Someone")],
+				"genre:electronic-music": [{ ...shared("Someone"), field: "key_artists" }],
+			},
+			new Map([["genre:electronic", "genre:electronic-music"]]),
+		);
+		expect(kept["genre:electronic-music"]).toHaveLength(2);
+	});
+
 	it("reports no change when nothing in the table touches a loser slug", () => {
 		const pending = {
 			"artist:untouched": [
