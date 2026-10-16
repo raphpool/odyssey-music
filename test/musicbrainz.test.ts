@@ -39,6 +39,7 @@ const suiteMinIntervalMs = musicBrainzConfig.minIntervalMs;
 afterEach(() => {
 	musicBrainzConfig.minIntervalMs = suiteMinIntervalMs;
 	vi.unstubAllGlobals();
+	vi.unstubAllEnvs();
 	vi.useRealTimers();
 });
 
@@ -140,21 +141,40 @@ describe("fetchEntityGenresMb", () => {
 	});
 
 	it("returns an empty array when the MB request fails", async () => {
-		// A 500 is retried with backoff (TRA-573): fake clock, no real wait.
-		vi.useFakeTimers();
 		vi.stubGlobal(
 			"fetch",
 			vi.fn(async () => failedResponse(500)),
 		);
-		const pending = fetchEntityGenresMb("artist", "66666666-6666-6666-6666-666666666666");
-		await vi.advanceTimersByTimeAsync(60_000);
-		expect(await pending).toEqual([]);
+		const out = await fetchEntityGenresMb("artist", "66666666-6666-6666-6666-666666666666");
+		expect(out).toEqual([]);
 	});
 
-	// TRA-573: 6 attempts, exponential backoff 1, 2, 4, 8, 16 s. Cumulative request offsets (s):
+	// TRA-573: exponential backoff 1, 2, 4, 8, 16 s; 3 attempts by default, up to 8 with MB_MAX_ATTEMPTS.
+	// Cumulative request offsets (ms) with six attempts:
 	const BACKOFF_OFFSETS_MS = [0, 1_000, 3_000, 7_000, 15_000, 31_000];
 
-	it("backs off exponentially and stops after six attempts, without throwing", async () => {
+	it("defaults to three attempts, backed off by 1 s then 2 s, without throwing", async () => {
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date("2026-09-13T00:00:00.000Z"));
+		const t0 = Date.now();
+		const requestTimes: number[] = [];
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async () => {
+				requestTimes.push(Date.now());
+				return failedResponse(503);
+			}),
+		);
+
+		const pending = fetchEntityGenresMb("artist", "77777777-7777-7777-7777-777777777776");
+		await vi.advanceTimersByTimeAsync(60_000);
+
+		expect(await pending).toEqual([]);
+		expect(requestTimes.map((t) => t - t0)).toEqual([0, 1_000, 3_000]);
+	});
+
+	it("backs off exponentially and stops after six attempts when MB_MAX_ATTEMPTS=6", async () => {
+		vi.stubEnv("MB_MAX_ATTEMPTS", "6");
 		vi.useFakeTimers();
 		vi.setSystemTime(new Date("2026-09-14T00:00:00.000Z"));
 		const t0 = Date.now();
@@ -174,7 +194,8 @@ describe("fetchEntityGenresMb", () => {
 		expect(requestTimes.map((t) => t - t0)).toEqual(BACKOFF_OFFSETS_MS);
 	});
 
-	it("succeeds when the sixth attempt answers after five 503", async () => {
+	it("succeeds when the sixth attempt answers after five 503 with MB_MAX_ATTEMPTS=6", async () => {
+		vi.stubEnv("MB_MAX_ATTEMPTS", "6");
 		vi.useFakeTimers();
 		vi.setSystemTime(new Date("2026-09-15T00:00:00.000Z"));
 		const t0 = Date.now();
@@ -197,6 +218,7 @@ describe("fetchEntityGenresMb", () => {
 	});
 
 	it("flags a resolver unavailable (fail-closed) after six 503, without throwing", async () => {
+		vi.stubEnv("MB_MAX_ATTEMPTS", "6");
 		vi.useFakeTimers();
 		vi.setSystemTime(new Date("2026-09-16T00:00:00.000Z"));
 		const fetchMock = vi.fn(async () => failedResponse(503));
@@ -210,6 +232,7 @@ describe("fetchEntityGenresMb", () => {
 	});
 
 	it("keeps the longer of the backoff and Retry-After for each wait", async () => {
+		vi.stubEnv("MB_MAX_ATTEMPTS", "6");
 		vi.useFakeTimers();
 		vi.setSystemTime(new Date("2026-09-17T00:00:00.000Z"));
 		const t0 = Date.now();
@@ -232,6 +255,33 @@ describe("fetchEntityGenresMb", () => {
 		expect(await pending).toEqual([]);
 		expect(requestTimes.map((t) => t - t0)).toEqual([0, 10_000, 12_000, 16_000, 24_000]);
 	});
+
+	it.each([
+		["abc", 3],
+		["", 3],
+		["2.5", 3],
+		["0", 1],
+		["-4", 1],
+		["99", 8],
+		["4", 4],
+	])(
+		"reads MB_MAX_ATTEMPTS=%j as %i attempts (invalid: default, out of range: clamped)",
+		async (raw, expected) => {
+			vi.stubEnv("MB_MAX_ATTEMPTS", raw);
+			vi.useFakeTimers();
+			const fetchMock = vi.fn(async () => failedResponse(503));
+			vi.stubGlobal("fetch", fetchMock);
+
+			const pending = fetchEntityGenresMb(
+				"artist",
+				`77777777-7777-7777-7777-7777777777b${expected}${raw.length}`,
+			);
+			await vi.advanceTimersByTimeAsync(300_000);
+
+			expect(await pending).toEqual([]);
+			expect(fetchMock).toHaveBeenCalledTimes(expected);
+		},
+	);
 
 	it("caps every wait at 30 s, whether Retry-After is in seconds or an HTTP date", async () => {
 		vi.useFakeTimers();
@@ -638,16 +688,11 @@ describe("resolveReleaseGroup", () => {
 		stubMbNetworkError();
 		expect(await resolveReleaseGroup("Network Down", "Anyone")).toBeNull();
 
-		// A 500 is retried with backoff (TRA-573): fake clock, no real wait.
-		vi.useFakeTimers();
 		vi.stubGlobal(
 			"fetch",
 			vi.fn(async () => failedResponse(500)),
 		);
-		const serverDown = resolveReleaseGroup("Server Down", "Anyone");
-		await vi.advanceTimersByTimeAsync(60_000);
-		expect(await serverDown).toBeNull();
-		vi.useRealTimers();
+		expect(await resolveReleaseGroup("Server Down", "Anyone")).toBeNull();
 
 		// Third-party payload: an id that is not an MBID invalidates the whole response.
 		stubMb({ "release-groups": [{ id: "not-an-mbid", title: "Malformed Id" }] });
@@ -1026,6 +1071,7 @@ describe("mbFetch request spacing", () => {
 	});
 
 	it("adds the backoff to the interval instead of replacing it", async () => {
+		vi.stubEnv("MB_MAX_ATTEMPTS", "6");
 		const t0 = startAt("2031-01-01T00:00:00.000Z");
 		const requestTimes: number[] = [];
 		vi.stubGlobal(

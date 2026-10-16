@@ -441,8 +441,7 @@ describe("TRA-218 MusicBrainz identity resolution", () => {
 
 		expect(homonym?.homonym).toBe(true);
 		expect(unavailable?.resolutionError).toMatch(/unresolved/i);
-		// The homonym is skipped; the track lookup is attempted once per mbFetch attempt (6 since TRA-573).
-		expect(fetch).toHaveBeenCalledTimes(6);
+		expect(fetch).toHaveBeenCalledTimes(3);
 	});
 
 	it("rejects same-name MusicBrainz results with distinct MBIDs as unresolved homonyms", async () => {

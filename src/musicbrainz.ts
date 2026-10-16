@@ -271,9 +271,20 @@ const mbCache = new Map<string, { at: number; data: unknown }>();
 const MB_CACHE_TTL_MS = musicBrainzConfig.cacheTtlMs;
 const MB_CACHE_MAX = musicBrainzConfig.cacheMaxEntries;
 // 2026-10-16 (TRA-573): a single 503 on /artist, after 3 attempts spaced by 1 s, failed a 50-minute
-// identity-migration preview (~1 900 requests). A few seconds of MusicBrainz unavailability must be
-// absorbed, so: 6 attempts, exponential backoff from 1 s (1, 2, 4, 8, 16 s), each wait capped at 30 s.
-const MB_MAX_ATTEMPTS = 6;
+// identity-migration preview (~1 900 requests; runs 38846707669 and 38848516320). Retries back off
+// exponentially from 1 s (1, 2, 4, 8, 16 s), each wait capped at 30 s. The attempt count stays 3 by
+// default, because the live /search path shares this queue: six attempts would keep a user request open
+// ~90 s during an outage instead of ~6 s. Migrations opt in with MB_MAX_ATTEMPTS (sync-genre-cache.yml).
+const MB_DEFAULT_ATTEMPTS = 3;
+const MB_ATTEMPTS_BOUNDS = { min: 1, max: 8 } as const;
+
+// Read at call time so tests can change it. An unparsable value falls back to the default (a typo in
+// a workflow must not take the live path down); a number outside the bounds is clamped.
+function maxAttempts(): number {
+	const raw = process.env.MB_MAX_ATTEMPTS?.trim();
+	if (!raw || !/^-?\d+$/.test(raw)) return MB_DEFAULT_ATTEMPTS;
+	return Math.min(MB_ATTEMPTS_BOUNDS.max, Math.max(MB_ATTEMPTS_BOUNDS.min, Number(raw)));
+}
 const MB_RETRY_DELAY_MS = 1_000;
 // Hard ceiling on any single retry wait, `Retry-After` included: a huge header value must not
 // stall a migration for hours.
@@ -351,7 +362,8 @@ async function mbFetch<T>(
 
 	// MusicBrainz returns 503 or 429 when its rate limit is exceeded. Queue retries globally
 	// and back off exponentially so concurrent callers cannot create a recovery burst.
-	for (let attempt = 0; attempt < MB_MAX_ATTEMPTS; attempt++) {
+	const attempts = maxAttempts();
+	for (let attempt = 0; attempt < attempts; attempt++) {
 		// Wait for the slot before arming the abort timer so queueing never eats the fetch timeout.
 		await sleep(reserveSlotDelayMs());
 		const ctrl = new AbortController();
@@ -361,7 +373,7 @@ async function mbFetch<T>(
 				headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
 				signal: ctrl.signal,
 			});
-			if (RETRYABLE_STATUSES.has(r.status) && attempt < MB_MAX_ATTEMPTS - 1) {
+			if (RETRYABLE_STATUSES.has(r.status) && attempt < attempts - 1) {
 				const retryAfter = retryAfterDelayMs(r.headers.get("Retry-After"), Date.now());
 				await queueRetry(retryWaitMs(attempt, retryAfter));
 				continue;
@@ -380,7 +392,7 @@ async function mbFetch<T>(
 			return data;
 		} catch (e) {
 			const msg = e instanceof Error ? e.message : String(e);
-			if (attempt === MB_MAX_ATTEMPTS - 1) log.warn("fetch failed", { path: url.pathname, error: msg });
+			if (attempt === attempts - 1) log.warn("fetch failed", { path: url.pathname, error: msg });
 		} finally {
 			clearTimeout(timer);
 		}

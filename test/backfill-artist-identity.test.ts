@@ -141,26 +141,6 @@ afterEach(() => {
 	vi.unstubAllGlobals();
 });
 
-// TRA-573: mbFetch backs off up to 31 s over its 6 attempts on a 5xx. A test that makes MB fail
-// drives a fake clock until the work settles, instead of really waiting. Only the timers mbFetch
-// uses are faked; setImmediate stays real so file I/O gets to run between two clock ticks.
-async function withFakeBackoff<T>(work: () => Promise<T>): Promise<T> {
-	vi.useFakeTimers({ toFake: ["setTimeout", "clearTimeout", "Date"] });
-	try {
-		let settled = false;
-		const pending = work().finally(() => {
-			settled = true;
-		});
-		while (!settled) {
-			await vi.advanceTimersByTimeAsync(1_000);
-			await new Promise<void>((resolve) => setImmediate(resolve));
-		}
-		return await pending;
-	} finally {
-		vi.useRealTimers();
-	}
-}
-
 // --- resolveArtist ---
 
 describe("resolveArtist", () => {
@@ -467,10 +447,7 @@ describe("resolveArtist", () => {
 		it("reads a failed later page as MB being unavailable, not as a smaller pool", async () => {
 			const lone: FakeArtist = { id: "abababab-0000-4000-8000-000000000f01", name: "Guysix", area: "Dallas" };
 			stubMb([lone, ...crowd("ac", "Guysix", 149)], { failOffsets: [100] });
-			expect(await withFakeBackoff(() => resolveArtistDetailed("Guysix"))).toMatchObject({
-				artist: null,
-				unavailable: true,
-			});
+			expect(await resolveArtistDetailed("Guysix")).toMatchObject({ artist: null, unavailable: true });
 		});
 
 		// TRA-508 review B2: MB's offset paging repeats an entry among results of equal score and never
@@ -1145,9 +1122,7 @@ describe("fetchArtistProfileMb", () => {
 		const urls = stubMb([{ id: "ababab02-0000-4000-8000-000000000001", name: "Down" }], {
 			badGateway: ["ababab02-0000-4000-8000-000000000001"],
 		});
-		expect(
-			await withFakeBackoff(() => fetchArtistProfileMb("ababab02-0000-4000-8000-000000000001")),
-		).toBeNull();
+		expect(await fetchArtistProfileMb("ababab02-0000-4000-8000-000000000001")).toBeNull();
 		expect(await fetchArtistProfileMb("../label/x")).toBeNull();
 		expect(urls.every((u) => u.pathname.endsWith("ababab02-0000-4000-8000-000000000001"))).toBe(true);
 		vi.stubGlobal(
@@ -1351,7 +1326,7 @@ describe("runBackfill", () => {
 		);
 		await seed(artistNode("artist:search-outage", { name: "Search Outage" }));
 
-		const result = await withFakeBackoff(() => run({ apply: true }));
+		const result = await run({ apply: true });
 
 		expect(result.failed).toEqual([
 			{ slug: "artist:search-outage", reason: "MusicBrainz search unavailable" },
@@ -1463,7 +1438,7 @@ describe("runBackfill", () => {
 		await seed(artistNode("artist:gateway-trouble", { name: "Gateway Trouble" }));
 		const before = await readFile(nodePath("artist:gateway-trouble"), "utf8");
 
-		const failedRun = await withFakeBackoff(() => run({ apply: true }));
+		const failedRun = await run({ apply: true });
 
 		expect(failedRun.exitCode).toBe(1);
 		expect(failedRun.failed.map((f) => f.slug)).toEqual(["artist:gateway-trouble"]);
