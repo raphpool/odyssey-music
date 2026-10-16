@@ -77,6 +77,7 @@ function artist(slug: string, name: string, discography: ReturnType<typeof edge>
 // One artist per scenario: the queue deduplicates, so a shared artist would make the tests order-dependent.
 const FROM_BAND = { slug: "artist:from-band", name: "From Band", work: "Lost Album" };
 const WARM_BAND = { slug: "artist:warm-band", name: "Warm Band", work: "Quiet Album" };
+const MOBILE_BAND = { slug: "artist:mobile-band", name: "Mobile Band", work: "Pocket Album" };
 const OFF_BAND = { slug: "artist:off-band", name: "Off Band", work: "Silent Album" };
 const workSlug = (band: { name: string; work: string }): Slug => scopedProject(band.work, band.name);
 
@@ -95,7 +96,7 @@ async function availablePort(): Promise<number> {
 async function startServer(name: string, extraEnv: Record<string, string>): Promise<TestServer> {
 	const cacheDir = join(directory, name, "cache");
 	const cache = new NodeCache(cacheDir);
-	for (const band of [FROM_BAND, WARM_BAND, OFF_BAND]) {
+	for (const band of [FROM_BAND, WARM_BAND, MOBILE_BAND, OFF_BAND]) {
 		// Two works: the worker takes the first one and the network never answers, so the second stays
 		// queued whatever the machine load (a lone work could already be in flight when /health is read).
 		await cache.write(
@@ -287,13 +288,18 @@ describe("GET /image/:slug, on-demand contract (TRA-583)", () => {
 	});
 });
 
-describe("mobile routes keep the read-only image answers until 3b.7 (TRA-583)", () => {
-	it("never says pending on /mobile/v1/nodes/:slug/image, which caches every 200 for a day", async () => {
-		const reply = await on.get(`/mobile/v1/nodes/${encodeURIComponent(WARM_BAND.slug)}/image`);
-		expect(reply.status).toBe(200);
-		expect(reply.json).toMatchObject({ slug: WARM_BAND.slug, image_url: null, source: "no-match" });
-		expect(reply.json.state).toBe("none");
-		expect(reply.json).not.toHaveProperty("retry_after_seconds");
+describe("mobile image route shares the on-demand service (TRA-583, TRA-584)", () => {
+	it("answers 202 + Retry-After + no-store for a pending work, and never 200 with a max-age", async () => {
+		// Reading the page on mobile warms it; the work then has a job in the same queue as the web.
+		const page = await on.get(`/mobile/v1/nodes/${encodeURIComponent(MOBILE_BAND.slug)}`);
+		expect(page.status).toBe(200);
+
+		const reply = await on.get(`/mobile/v1/nodes/${encodeURIComponent(workSlug(MOBILE_BAND))}/image`);
+		expect(reply.status).toBe(202);
+		expect(reply.headers.get("retry-after")).toBe("5");
+		expect(reply.headers.get("cache-control")).toBe("no-store");
+		expect(reply.headers.get("cache-control")).not.toContain("max-age");
+		expect(reply.json).toMatchObject({ image_url: null, source: "pending", state: "pending" });
 	});
 });
 

@@ -99,7 +99,6 @@ const getCacheIndex = (): Promise<CacheIndex> => cacheIndexHolder.get();
 function invalidateCacheIndex(): void {
 	cacheIndexHolder.invalidate();
 	imageService.clearNegativeCache();
-	mobileImageService.clearNegativeCache();
 }
 
 const handleSearch = createSearchService({ getCacheIndex, catalogIndex });
@@ -129,16 +128,12 @@ const imageService = createImageService({
 	redirects: genreRedirects,
 	onDemand: { queue: imageQueue, cacheDir: CACHE_DIR },
 });
-// 2026-10-16 (TRA-583): the mobile routes answer 200 + "private, max-age=86400" whatever the image state,
-// so on the on-demand service a `pending` would be frozen for a day on the phone. They keep the read-only
-// service until 3b.7 (TRA-584) gives them the 202 contract; `invalidateCacheIndex` empties both.
-const mobileImageService = createImageService({ cache, redirects: genreRedirects });
 const graphService = createGraphService(CACHE_DIR);
 const mobileCatalog = createMobileCatalog({ getGraph: () => graphService.getGraph() });
 const mobileNodes = createMobileNodeReader({ cache, redirects: genreRedirects });
 const mobileMedia = createMobileMedia({
 	nodes: mobileNodes,
-	imageService: mobileImageService,
+	imageService,
 	resolveLinks: resolveStreamingLinks,
 	cacheDir: CACHE_DIR,
 });
