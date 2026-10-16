@@ -31,3 +31,18 @@ export function scopedReleaseSlugsEnabled(): boolean {
 	const raw = process.env.ODYSSEY_SCOPED_RELEASE_SLUGS?.trim().toLowerCase();
 	return raw === "true" || raw === "1";
 }
+
+/**
+ * Whether covers are resolved on demand (graph-integrity plan, part 3b, decision 3b-D7; TRA-582):
+ * opening a page enqueues its missing images, and GET /image answers from the `cache/images/` sidecar
+ * and the queue's state. On by default, because the work is bounded (one sequential worker, a bounded
+ * queue, a circuit breaker) and writes no node. `ODYSSEY_ON_DEMAND_IMAGES=0` (or `false`) is the kill
+ * switch: it takes effect at the next request, with no restart, and gives back the read-only answers
+ * of TRA-475 -- no sidecar read, no enqueue, no `pending`.
+ *
+ * A function, not a constant, for the same reason as scopedReleaseSlugsEnabled: read at each call.
+ */
+export function onDemandImagesEnabled(): boolean {
+	const raw = process.env.ODYSSEY_ON_DEMAND_IMAGES?.trim().toLowerCase();
+	return raw !== "0" && raw !== "false";
+}
