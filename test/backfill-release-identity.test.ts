@@ -1638,6 +1638,15 @@ describe("parseCliArgs", () => {
 		});
 	});
 
+	it("accepts the channel's --data-dir and ignores it (TRA-568)", () => {
+		expect(parseCliArgs(["cache", "--apply", "--data-dir", "d"])).toMatchObject({
+			cacheDir: "cache",
+			apply: true,
+		});
+		expect(parseCliArgs(["cache", "--data-dir", "d", "--data-dir", "e"])).toBeNull();
+		expect(parseCliArgs(["cache", "--data-dir"])).toBeNull();
+	});
+
 	it("refuses anything ambiguous", () => {
 		for (const argv of [
 			[],
