@@ -152,6 +152,13 @@ Environment=MOBILE_STATE_DIR=/var/lib/track1-mobile
 # MOBILE_PUSH_ENABLED is absent/false by default. Production activation and EXPO_ACCESS_TOKEN
 # stay in /etc/odyssey-music.env; never embed either value in this generated unit.
 # MOBILE_APNS_PUSH_ENABLED is independent. Its APNS_* settings remain only in the server env file.
+# TRA-509 (2026-10-16): scoped work slugs (`project:<title>--<artist>`) and transliterated slugs, see
+# src/flags.ts. The unit is rewritten and the service restarted on EVERY deploy, whereas
+# /etc/odyssey-music.env is bootstrapped once: a value here reaches the running service at the next
+# deploy, a value only in bootstrap-env.sh would never reach it. Rollback = set this to 0 and deploy
+# (docs/plans/graph-integrity.md, "Bascule du drapeau (TRA-509)"). systemd gives EnvironmentFile=
+# precedence over Environment=, so a line written in /etc/odyssey-music.env wins over this one.
+Environment=ODYSSEY_SCOPED_RELEASE_SLUGS=1
 ExecStart=/opt/odyssey-music/node_modules/.bin/tsx /opt/odyssey-music/src/server.ts
 Restart=on-failure
 RestartSec=3
@@ -167,6 +174,15 @@ systemctl enable odyssey-server.service
 systemctl restart odyssey-server.service
 sleep 3
 systemctl is-active odyssey-server.service || (journalctl -u odyssey-server --no-pager -n 50; exit 1)
+
+# TRA-509: put the flag the running process really received in the deploy log. EnvironmentFile= beats
+# Environment=, so a leftover line in the env file would silently win over the unit written above.
+SERVICE_PID="$(systemctl show -p MainPID --value odyssey-server.service)"
+EFFECTIVE_FLAG="$( (tr '\0' '\n' < "/proc/$SERVICE_PID/environ" || true) | sed -n 's/^ODYSSEY_SCOPED_RELEASE_SLUGS=//p' | tail -n 1)"
+echo "  -> ODYSSEY_SCOPED_RELEASE_SLUGS=${EFFECTIVE_FLAG:-<unset>} in the running service"
+if grep -q '^ODYSSEY_SCOPED_RELEASE_SLUGS=' /etc/odyssey-music.env; then
+  echo "WARN: /etc/odyssey-music.env sets ODYSSEY_SCOPED_RELEASE_SLUGS and overrides the unit." >&2
+fi
 
 # Nginx routing for /api/odyssey/ is owned by the dropcliffs deploy template
 # (projects/dropcliffs/deploy/nginx.conf). Do NOT patch nginx in place here —
