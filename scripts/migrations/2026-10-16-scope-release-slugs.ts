@@ -856,7 +856,17 @@ export function planMigration(input: PlanInput): Plan {
 	// 5. Redirects (old -> final), flattened; the rewrite map is the same table.
 	const additions: Record<string, string> = {};
 	for (const [slug, fin] of finalOf) if (slug !== fin) additions[slug] = fin;
-	for (const [slug, fin] of danglingRenames) additions[slug] = finalOf.get(fin) ?? fin;
+	// TRA-576: a dangling slug (no node of its own) is a redirect source only when its target is a node of the
+	// migrated union. Otherwise (`artist:fr-bbblarnir` -> `artist:fraebbblarnir`, both without node, carried by the
+	// edges of a prod-only node) there is nothing to redirect to: only the edges are rewritten, and the channel,
+	// which refuses a redirect to a slug with no node, no longer rejects the union.
+	const nodeSlugs = new Set(finalOf.values());
+	const danglingEdgeOnly: Record<string, string> = {};
+	for (const [slug, fin] of danglingRenames) {
+		const to = finalOf.get(fin) ?? fin;
+		if (nodeSlugs.has(to)) additions[slug] = to;
+		else danglingEdgeOnly[slug] = to;
+	}
 	let rewriteMap: Record<string, string> = {};
 	let edgeMap: Record<string, string> = {};
 	let mergedRedirects: Record<string, string> = {};
@@ -870,6 +880,7 @@ export function planMigration(input: PlanInput): Plan {
 			{
 				...Object.fromEntries(Object.entries(input.existingRedirects).filter(([k]) => !bySlug.has(k))),
 				...rewriteMap,
+				...danglingEdgeOnly,
 			},
 		);
 		parseSlugRedirects({ redirects: mergedRedirects });
