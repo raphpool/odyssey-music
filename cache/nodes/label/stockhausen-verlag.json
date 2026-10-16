@@ -13,6 +13,8 @@
     }
   ],
   "materialized_at": "2026-05-13T12:44:10.206Z",
+  "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Bundesarchiv_B_145_Bild-F001346-0001%2C_K%C3%B6ln%2C_WDR_Rundfunkstudio.jpg/330px-Bundesarchiv_B_145_Bild-F001346-0001%2C_K%C3%B6ln%2C_WDR_Rundfunkstudio.jpg",
+  "image_source": "derived-cover",
   "type": "label",
   "editorial_description": "A specialized German record label founded by Karlheinz Stockhausen to serve as the definitive, composer-controlled archive and distributor for his complete body of work.",
   "founded": "1975",

@@ -32,6 +32,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Rough%20Trade%20-%20panoramio%20(1).jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "label",
   "editorial_description": "An iconic independent label that grew from a London record shop into a global force, defining the sound of post-punk, indie, and alternative music for over four decades.",
   "founded": "1978",

@@ -24,6 +24,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/OWSLA.svg?width=600",
+  "image_source": "wikidata-p154",
   "type": "label",
   "editorial_description": "A seminal Los Angeles-based electronic music label and creative collective co-founded by Skrillex, known for spearheading the mid-2010s bass and trap explosion.",
   "founded": "2011",

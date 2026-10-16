@@ -24,6 +24,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/50/28/5b/50285b53-7d6b-4a62-d922-a41ca8605658/17464137-ce2d-4054-ba2a-7227c7d081be.jpg/600x600bb.jpg",
+  "image_source": "derived-cover",
   "type": "label",
   "editorial_description": "A legacy American record label founded in 1924, renowned for its definitive recordings of classical music, prestigious Broadway cast albums, and historical spoken-word documents.",
   "founded": "1924",

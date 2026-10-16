@@ -32,6 +32,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Underground%20Resistance%20Logo.svg?width=600",
+  "image_source": "wikidata-p154",
   "type": "label",
   "editorial_description": "A seminal Detroit-based musical collective and label founded in 1989, renowned for pioneering a militant, politically charged approach to techno that prioritizes artistic independence and community empowerment over commercial interests.",
   "founded": "1989",

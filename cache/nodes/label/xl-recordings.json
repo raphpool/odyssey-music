@@ -24,6 +24,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/XL%20Recordings%20Logo.svg?width=600",
+  "image_source": "wikidata-p154",
   "type": "label",
   "editorial_description": "A powerhouse of British independent music known for its eclectic roster, ranging from 90s rave pioneers to global icons like Adele and The xx.",
   "founded": "1989",

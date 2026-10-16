@@ -32,6 +32,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Mulogo.jpg?width=600",
+  "image_source": "wikidata-p154",
   "type": "label",
   "editorial_description": "A highly influential London-based electronic music label founded by Mike Paradinas, recognized for its role in shaping IDM, jungle, dubstep, and Chicago footwork.",
   "founded": "1995",

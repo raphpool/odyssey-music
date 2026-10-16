@@ -28,6 +28,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://coverartarchive.org/release-group/ab3123a2-57ac-3884-9bf3-e90253d1dd5d/front-500",
+  "image_source": "derived-cover",
   "type": "label",
   "editorial_description": "A highly influential Bristol-based indie pop label (1987–1995) known for its committed DIY ethos, 100-release limit, and foundational role in defining the 'twee' aesthetic.",
   "founded": "1987",
