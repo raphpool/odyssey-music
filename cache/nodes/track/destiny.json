@@ -17,6 +17,8 @@
     }
   ],
   "materialized_at": "2026-05-13T13:16:21.593Z",
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/c0/09/c8/c009c808-ffc7-77b6-1355-92fc6c120af9/885012034942.png/600x600bb.jpg",
+  "image_source": "itunes-verified",
   "type": "track",
   "editorial_teaser": "\"Destiny\" is a quintessential downtempo track by English duo Zero 7, released in 2001 as a standout single from their critically acclaimed debut album, *Simple Things*.",
   "artists": [
@@ -56,6 +58,7 @@
       "name": "Zero 7"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

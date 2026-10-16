@@ -28,6 +28,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://coverartarchive.org/release-group/da40e720-2097-3730-8a7f-0c2ddbff4a96/front-500",
+  "image_source": "caa",
   "type": "track",
   "editorial_teaser": "A monumental 1967 rock anthem defined by its searing, effects-laden guitar riff and pioneering studio techniques.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/6/64/PurpleHaze-GermanSingle.jpg",
