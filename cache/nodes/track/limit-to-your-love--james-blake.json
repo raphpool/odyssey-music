@@ -1,0 +1,71 @@
+{
+  "slug": "track:limit-to-your-love--james-blake",
+  "name": "Limit to Your Love",
+  "editorial_article": "Released in November 2010, James Blake’s \"Limit to Your Love\" stands as a landmark moment in post-dubstep and electronic pop, signaling the transition of a producer known for rhythmic, warped club music into an innovative, soulful singer-songwriter. A cover of the Feist original, Blake’s version strips the source material down to its barest essentials: a sparse, echoing piano melody, a subtle drum patter, and a massive, rattling sub-bass that acts as the track’s emotional anchor. The production is notable for its restraint and architectural use of silence, with Blake employing long pauses that draw the listener into a tense, introspective space before the bass pulses return. \\n\\nAt the time of its release, the song brought Blake widespread attention, revealing a warm, vulnerable vocal range that countered the cold, mechanical precision often associated with contemporary electronic music. By blending the organic intimacy of piano balladry with the weight of bass-heavy UK sound system culture, the track bridged a significant divide, influencing a wave of electronic artists to embrace traditional song structures and emotive vocal performance. It arrived as a pivotal single from his early EP cycle, eventually serving as a centerpiece for his self-titled debut studio album in 2011. Its success proved that electronic music could be as subtle and emotionally devastating as traditional pop, establishing Blake as a singular figure in 21st-century music.",
+  "citations": [
+    {
+      "url": "https://pitchfork.com/reviews/tracks/12014-james-blake-limit-to-your-love/",
+      "title": "James Blake: 'Limit to Your Love' Track Review | Pitchfork"
+    },
+    {
+      "url": "https://open.spotify.com/track/33BnSMHgX0AsbKSIbkuMwh",
+      "title": "Limit To Your Love - song and lyrics by James Blake - Spotify"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:56.889Z",
+  "_metrics": {
+    "input_tokens": 23737,
+    "output_tokens": 1588,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.008316,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 28298,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "track",
+  "editorial_teaser": "James Blake's stripped-back, bass-heavy reimagining of Feist's \"Limit to Your Love\" transformed the landscape of electronic music, blending minimalist piano balladry with profound sub-bass tension.",
+  "year": "2010",
+  "artists": [
+    {
+      "slug": "artist:james-blake",
+      "type": "artist",
+      "name": "James Blake"
+    }
+  ],
+  "project": {
+    "slug": "project:james-blake--james-blake",
+    "type": "project",
+    "name": "James Blake (album)"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:post-dubstep",
+      "type": "genre",
+      "name": "Post-dubstep",
+      "qid": "Q106130091"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:james-blake",
+      "type": "artist",
+      "name": "James Blake"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

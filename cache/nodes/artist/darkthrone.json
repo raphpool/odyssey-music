@@ -227,12 +227,12 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:under-beskyttelse-av-m-rke",
+      "slug": "project:under-beskyttelse-av-morke--darkthrone",
       "type": "project",
       "name": "Under beskyttelse av mørke",
-      "mbid": "b0ee8e0b-6d42-3dba-900b-c3da3b3f0296",
       "year": "2005",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Darkthrone"
     },
     {
       "slug": "project:sardonic-wrath",

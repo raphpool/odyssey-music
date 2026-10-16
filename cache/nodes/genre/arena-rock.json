@@ -26,6 +26,7 @@
   },
   "type": "genre",
   "editorial_definition": "A radio-friendly, highly produced style of hard rock designed for massive concert arenas, featuring soaring choruses, power ballads, and memorable riffs.",
+  "qid": "Q379033",
   "era": "Mid-1970s to 1980s",
   "origin": "United States",
   "parent_genres": [
@@ -84,7 +85,7 @@
   "key_labels": [],
   "landmark_projects": [
     {
-      "slug": "project:led-zeppelin-iv",
+      "slug": "project:led-zeppelin-iv--led-zeppelin",
       "type": "project",
       "name": "Led Zeppelin IV"
     },
@@ -99,6 +100,5 @@
       "name": "Alive!"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q379033"
+  "landmark_tracks": []
 }

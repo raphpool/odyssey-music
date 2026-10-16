@@ -92,7 +92,7 @@
       "name": "Alicia"
     },
     {
-      "slug": "track:anti-war-dub",
+      "slug": "track:anti-war-dub--digital-mystikz",
       "type": "track",
       "name": "Anti War Dub"
     }
@@ -123,5 +123,6 @@
       "type": "artist",
       "name": "Digital Mystikz"
     }
-  ]
+  ],
+  "similar_artists": []
 }

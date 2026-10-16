@@ -53,12 +53,12 @@
   ],
   "discography": [
     {
-      "slug": "project:music-has-the-right-to-children",
+      "slug": "project:music-has-the-right-to-children--boards-of-canada",
       "type": "project",
       "name": "Music Has the Right to Children"
     },
     {
-      "slug": "project:geogaddi",
+      "slug": "project:geogaddi--boards-of-canada",
       "type": "project",
       "name": "Geogaddi"
     },
@@ -70,7 +70,7 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:roygbiv",
+      "slug": "track:roygbiv--boards-of-canada",
       "type": "track",
       "name": "Roygbiv"
     },
@@ -84,7 +84,7 @@
   "influenced": [],
   "collaborators": [
     {
-      "slug": "artist:michael-sandison",
+      "slug": "artist:mike-sandison",
       "type": "artist",
       "name": "Michael Sandison"
     }

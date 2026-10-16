@@ -1,0 +1,52 @@
+{
+  "slug": "track:right-in-the-they-thems--chat-music",
+  "name": "Right in the They/Thems",
+  "editorial_article": "\"Right in the They/Thems\" is a short-form, satirical musical composition by the artist Chat Music, released in April 2025. Emerging from an internet-centric landscape of rapid-fire, meme-adjacent audio production, the track serves as a brief, pointed commentary often characterized by the niche \"internet-humor\" music scene. At less than one minute in duration, the piece epitomizes the \"snackable\" content era, where short clips and social media virality dictate production formats and consumption patterns. As part of a prolific release schedule by Chat Music—who maintains a consistent output of similarly pithy, provocatively titled tracks—this release highlights a contemporary trend where artists utilize extreme brevity and ironic subject matter to capture attention within algorithmic music recommendation engines. While the track's subject matter leans into cultural discourse, its primary cultural footprint lies in its status as an artifact of digital-native creative culture, where the barrier between musical expression and social media reaction video is increasingly blurred. It represents a specific, highly disposable segment of 2020s pop culture, designed for quick circulation and rapid consumption rather than long-form artistic development. The track, which emphasizes its own brevity, reflects the broader output of Chat Music, a project deeply intertwined with the fast-paced, context-heavy environment of modern streaming platforms. By leaning into provocative titles and micro-formats, the project effectively captures the engagement of audiences looking for humorous, highly relatable, and highly shareable digital content in an age of constant media noise. Its release on the label Chat Music Records further cements its place in this rapidly evolving corner of the independent, algorithmically driven music ecosystem.",
+  "citations": [
+    {
+      "url": "https://open.spotify.com/intl-de/track/0ZIZFtQwcqbMUtE5Oh6Tnf",
+      "title": "Right in the They/Thems - song and lyrics by Chat Music | Spotify"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:34:39.639Z",
+  "type": "track",
+  "editorial_teaser": "\"Right in the They/Thems\" is a short-form, satirical musical composition by the artist Chat Music, released in April 2025.",
+  "year": "2025",
+  "duration": "0:59",
+  "artists": [
+    {
+      "slug": "artist:chat-music",
+      "type": "artist",
+      "name": "Chat Music"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:comedy-music",
+      "type": "genre",
+      "name": "Comedy Music",
+      "qid": "Q5151495"
+    },
+    {
+      "slug": "genre:satire",
+      "type": "genre",
+      "name": "Satire"
+    },
+    {
+      "slug": "genre:internet-culture",
+      "type": "genre",
+      "name": "Internet Culture"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:chat-music",
+      "type": "artist",
+      "name": "Chat Music"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

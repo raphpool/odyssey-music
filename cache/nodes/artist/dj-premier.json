@@ -120,12 +120,12 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:together",
+      "slug": "project:together--dj-premier",
       "type": "project",
       "name": "Together",
-      "mbid": "8593347d-3873-4bc6-b7a4-e45bf4242bdb",
       "year": "2024",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "DJ Premier"
     },
     {
       "slug": "project:define-my-name",

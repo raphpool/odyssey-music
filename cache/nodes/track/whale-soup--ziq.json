@@ -1,0 +1,75 @@
+{
+  "slug": "track:whale-soup--ziq",
+  "name": "Whale Soup",
+  "editorial_article": "\"Whale Soup\" is a standout track from the 1993 debut album *Tango N'Vectif* by the influential electronic producer µ-Ziq, the primary project of Mike Paradinas. Released during the burgeoning era of intelligent dance music (IDM) and early breakbeat experimentalism, the track captures the raw, frenetic energy that helped define the Rephlex Records sound—the legendary label founded by Aphex Twin and Grant Wilson-Claridge. \\n\\nMusically, \"Whale Soup\" showcases the intricate, rhythm-forward production style that Paradinas pioneered in the early 1990s. It blends the crisp, syncopated breakbeats common in the UK rave and hardcore scenes of the time with the skewed, playful melodic sensibilities that would become a hallmark of µ-Ziq’s lengthy career. The track serves as a pivotal bridge between the high-octane dance floor music of the early 90s and the more introspective, home-listening electronic textures that would evolve into the \"intelligent\" subgenre. \\n\\nBy including \"Whale Soup\" on *Tango N'Vectif*, µ-Ziq established himself as a central figure in a community that pushed the boundaries of electronic music, bridging the gap between underground rave culture and avant-garde sound design. The track's enduring legacy is seen in how it continues to be referenced by fans and critics as a quintessential piece of early IDM history, reflecting a moment when the boundaries of techno and breakbeat were being shattered and reconstituted into entirely new sonic shapes. Through his meticulous layering and refusal to conform to standard four-to-the-floor tropes, Paradinas ensured that tracks like \"Whale Soup\" remained distinct, vibrant, and deeply influential to subsequent generations of electronic artists.",
+  "citations": [
+    {
+      "url": "https://mikeparadinas.bandcamp.com/track/whale-soup-2",
+      "title": "Whale Soup | µ-Ziq | Mike Paradinas"
+    },
+    {
+      "url": "https://www.besteveralbums.com/thechart.php?t=313466",
+      "title": "Whale Soup (track) by µ-Ziq : Best Ever Albums"
+    },
+    {
+      "url": "https://www.albumoftheyear.org/song/287264-whale-soup/",
+      "title": "µ-Ziq - Whale Soup - Song Ratings - Album of the Year"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:07:53.044Z",
+  "mbid": "3b11d1dd-e1b5-4da1-96e2-72b1ee49ed66",
+  "type": "track",
+  "editorial_teaser": "\"Whale Soup\" is a standout track from the 1993 debut album *Tango N'Vectif* by the influential electronic producer µ-Ziq, the primary project of Mike Paradinas.",
+  "year": "1993",
+  "duration": "03:22",
+  "artists": [
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "µ-Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
+    }
+  ],
+  "project": {
+    "slug": "project:tango-n-vectif--ziq",
+    "type": "project",
+    "name": "Tango N'Vectif"
+  },
+  "label": {
+    "slug": "label:rephlex",
+    "type": "label",
+    "name": "Rephlex",
+    "mbid": "820fa04e-9927-40bb-a6c5-1bf883b159c7"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat",
+      "qid": "Q663519"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "µ-Ziq"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

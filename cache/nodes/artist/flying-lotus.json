@@ -53,17 +53,17 @@
   ],
   "discography": [
     {
-      "slug": "project:cosmogramma",
+      "slug": "project:cosmogramma--flying-lotus",
       "type": "project",
       "name": "Cosmogramma"
     },
     {
-      "slug": "project:you-re-dead",
+      "slug": "project:you-re-dead--flying-lotus",
       "type": "project",
       "name": "You're Dead!"
     },
     {
-      "slug": "project:flamagra",
+      "slug": "project:flamagra--flying-lotus",
       "type": "project",
       "name": "Flamagra"
     }
@@ -75,7 +75,7 @@
       "name": "Never Catch Me"
     },
     {
-      "slug": "track:mmmhmm",
+      "slug": "track:mmmhmm--flying-lotus",
       "type": "track",
       "name": "Mmmhmm"
     }

@@ -501,11 +501,6 @@
   ],
   "members": [
     {
-      "slug": "artist:dj-paul",
-      "type": "artist",
-      "name": "DJ Paul"
-    },
-    {
       "slug": "artist:three-6-mafia",
       "type": "artist",
       "name": "Three 6 Mafia"

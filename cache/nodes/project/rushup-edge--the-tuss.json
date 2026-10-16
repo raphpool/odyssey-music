@@ -1,0 +1,106 @@
+{
+  "slug": "project:rushup-edge--the-tuss",
+  "name": "Rushup Edge",
+  "editorial_article": "Rushup Edge is the first and only studio album released under the alias The Tuss, a project that emerged in 2007 on Rephlex Records. Initially shrouded in mystery and credited to a \"Karen Tregaskin,\" the music—a blistering, high-energy fusion of acid techno, drill and bass, and breakcore—was eventually confirmed to be the work of legendary British electronic producer Richard D. James, better known as Aphex Twin. Released during a period of relative quiet for James, the album served as a bridge between the clinical, analog-focused work of his 'Analord' series and the more complex, beat-driven arrangements characteristic of his earlier 1990s output.\\n\\nThe record is widely regarded by fans and critics alike as one of the most vital, focused releases of James' later career. It eschews the ambient explorations found elsewhere in his discography in favor of a propulsive, machine-driven intensity. Tracks like \"Rushup I Bank 12\" and \"Death Fuck\" are celebrated for their \"mangled machine funk\" and intricate drum programming, showcasing a master of electronic production at the height of his powers. In the years following its original 2007 release, 'Rushup Edge' gained a cult status among electronic music enthusiasts, leading to a digital reissue on James' own web store in 2017 with additional bonus material. It stands as a unique, playful, and technically brilliant artifact of 2000s IDM that continues to influence contemporary producers of experimental electronic music. This album remains a cornerstone for those tracking the evolution of acid-driven IDM in the mid-2000s, perfectly balancing technical complexity with a raw, visceral approach to synthesis and sequencing that remains quintessentially Aphex Twin in its execution. Throughout the project, James utilizes his trademark approach to sound design, creating layers of dense, polyrhythmic textures that demand both analytical attention and physical immersion. As an artifact of the Rephlex label era, it highlights the label's commitment to releasing unconventional and boundary-pushing electronic sounds during the decade. Even years later, the album sounds fresh, retaining the jagged edge and inventive spirit that defined the best of the era's experimental output.",
+  "citations": [
+    {
+      "url": "https://www.last.fm/music/The+Tuss/Rushup+Edge",
+      "title": "Rushup Edge — The Tuss - Last.fm"
+    },
+    {
+      "url": "https://aphextwin.warp.net/release/86013-the-tuss-rushup-edge-?lang=en_GB&srsltid=AfmBOoqDeLLf5Rko8DBHcrxontrq2XgCwvkW9xYsFckRNZ-DzF7JRIWt",
+      "title": "The Tuss - Rushup Edge . Aphex Twin."
+    }
+  ],
+  "materialized_at": "2026-05-13T13:04:03.503Z",
+  "mbid": "8af1251f-ce01-3baf-b960-93c00e7baf45",
+  "type": "project",
+  "editorial_pitch": "A high-energy masterclass in acid techno and drill and bass, Rushup Edge stands as one of Richard D. James' most focused and exhilarating studio projects released under his enigmatic The Tuss alias.",
+  "year": "2007",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:the-tuss",
+      "type": "artist",
+      "name": "The Tuss",
+      "mbid": "09292e4d-b7ad-476b-86d9-7806303ef8c3"
+    }
+  ],
+  "label": {
+    "slug": "label:rephlex-records",
+    "type": "label",
+    "name": "Rephlex Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:acid-techno",
+      "type": "genre",
+      "name": "Acid Techno",
+      "qid": "Q341395"
+    },
+    {
+      "slug": "genre:drill-and-bass",
+      "type": "genre",
+      "name": "Drill and Bass",
+      "qid": "Q1259016"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:synthacon-9",
+      "type": "track",
+      "name": "Synthacon 9"
+    },
+    {
+      "slug": "track:last-rushup-10",
+      "type": "track",
+      "name": "Last Rushup 10"
+    },
+    {
+      "slug": "track:shiz-ko-e",
+      "type": "track",
+      "name": "Shiz Ko E"
+    },
+    {
+      "slug": "track:rushup-i-bank-12--the-tuss",
+      "type": "track",
+      "name": "Rushup I Bank 12"
+    },
+    {
+      "slug": "track:death-fuck--the-tuss",
+      "type": "track",
+      "name": "Death Fuck"
+    },
+    {
+      "slug": "track:goodbye-rute",
+      "type": "track",
+      "name": "Goodbye Rute"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ],
+  "personnel": [],
+  "related_projects": [
+    {
+      "slug": "project:confederation-trough",
+      "type": "project",
+      "name": "Confederation Trough"
+    },
+    {
+      "slug": "project:syro--aphex-twin",
+      "type": "project",
+      "name": "Syro"
+    }
+  ]
+}

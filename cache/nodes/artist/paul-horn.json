@@ -54,9 +54,10 @@
   ],
   "discography": [
     {
-      "slug": "project:inside",
+      "slug": "project:inside--paul-horn",
       "type": "project",
-      "name": "Inside"
+      "name": "Inside",
+      "artist": "Paul Horn"
     },
     {
       "slug": "project:traveler",

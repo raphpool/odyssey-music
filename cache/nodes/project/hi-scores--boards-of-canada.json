@@ -1,0 +1,110 @@
+{
+  "slug": "project:hi-scores--boards-of-canada",
+  "name": "Hi Scores",
+  "editorial_article": "Hi Scores is a pivotal 1996 EP by the Scottish electronic duo Boards of Canada (Mike Sandison and Marcus Eoin). Serving as the duo's first widely available release, it arrived on the Skam Records label, marking a significant step out of the cult underground scene and into the broader consciousness of the electronic music world. For many listeners, this EP was the initial introduction to the duo's unique sonic universe—a landscape characterized by retro-futuristic synthesizer textures, degraded analog tape loops, and a profound, haunting sense of childhood nostalgia.\n\nMusically, the EP sits firmly within the IDM (Intelligent Dance Music) canon of the mid-90s, yet it distinguishes itself through a distinctly pastoral and organic approach to production. The six-track collection demonstrates a sophisticated tension between rhythmic precision and melodic drift. Tracks like \"Turquoise Hexagon Sun\" exemplify the group's ability to weave intricate, stuttering beats with hazy, emotional synths, a sound that would become the blueprint for their seminal debut album, Music Has the Right to Children (1998). The production was handled entirely by Sandison and Eoin at their \"Hexagon Sun\" studio, cementing the private, insular aesthetic that would define their entire discography.\n\nUpon its release, Hi Scores did not just offer a handful of tracks; it introduced an atmosphere that resonated deeply with the electronic underground. It serves as a fascinating historical artifact, bridging the gap between their earlier, harder-to-find work (such as the 1995 EP Twoism) and their later acclaim. The enduring power of Hi Scores lies in how it perfectly captured a liminal space: between dancefloor energy and bedroom listening, between digital experimentation and warm, analog memory. Its subsequent remastering and reissue in 2014 underscored its ongoing status as a quintessential, foundational work in the development of modern ambient and electronic music.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Hi_Scores",
+      "title": "Hi Scores - Wikipedia"
+    },
+    {
+      "url": "https://pitchfork.com/reviews/albums/19832-boards-of-canada-hi-scores-ep/",
+      "title": "Boards of Canada: Hi Scores EP Album Review | Pitchfork"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:53:15.918Z",
+  "_metrics": {
+    "input_tokens": 12471,
+    "output_tokens": 866,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004417,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 10638,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "mbid": "7600e51e-065c-39d2-bd0e-556a968cce02",
+  "type": "project",
+  "editorial_pitch": "A foundational EP that acted as the bridge between Boards of Canada's early, self-released material and their definitive electronic masterpiece, Music Has the Right to Children. It captures the duo's signature blend of analog warmth, nostalgic melancholy, and intricate, IDM-influenced rhythm structures.",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/thumb/8/89/Boardsofcanadahiscores.jpg/250px-Boardsofcanadahiscores.jpg",
+  "year": "1996",
+  "release_type": "ep",
+  "artists": [
+    {
+      "slug": "artist:boards-of-canada",
+      "type": "artist",
+      "name": "Boards of Canada",
+      "mbid": "69158f97-4c07-4c4e-baf8-4e4ab1ed666e"
+    }
+  ],
+  "label": {
+    "slug": "label:skam-records",
+    "type": "label",
+    "name": "Skam Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:hi-scores",
+      "type": "track",
+      "name": "Hi Scores"
+    },
+    {
+      "slug": "track:turquoise-hexagon-sun",
+      "type": "track",
+      "name": "Turquoise Hexagon Sun"
+    },
+    {
+      "slug": "track:nlogax",
+      "type": "track",
+      "name": "Nlogax"
+    },
+    {
+      "slug": "track:june-9th",
+      "type": "track",
+      "name": "June 9th"
+    },
+    {
+      "slug": "track:seeya-later",
+      "type": "track",
+      "name": "Seeya Later"
+    },
+    {
+      "slug": "track:everything-you-do-is-a-balloon",
+      "type": "track",
+      "name": "Everything You Do Is a Balloon"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:mike-sandison",
+      "type": "artist",
+      "name": "Mike Sandison"
+    },
+    {
+      "slug": "artist:marcus-eoin",
+      "type": "artist",
+      "name": "Marcus Eoin"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}
