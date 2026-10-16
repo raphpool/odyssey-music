@@ -663,21 +663,25 @@ async function lookUp(
 	name: string,
 	hint: { name: string; mbid?: string },
 	groups: readonly string[] = [],
+	releaseType?: string,
 ): Promise<{ found: MbReleaseIdentity | null; ambiguous: boolean; unavailable: boolean }> {
 	const resolve = type === "project" ? resolveReleaseGroupDetailed : resolveRecordingDetailed;
 	// An outage is not a verdict: the resolvers say so themselves (`unavailable`), whether MB refused,
 	// was unreachable or answered with something unreadable.
 	// The artist's own MBID lets the resolver count a work printed under another name as direct (TRA-552).
+	// The node's own release type tells a single from the album of the same name (TRA-560); a track has none.
+	const typed = type === "project" && releaseType !== undefined ? { releaseType } : {};
 	const first = await resolve(name, hint.name, {
 		acceptCreditMbids: groups,
 		...(hint.mbid === undefined ? {} : { requestedArtistMbid: hint.mbid }),
+		...typed,
 	});
 	if (first.unavailable) return { found: null, ambiguous: false, unavailable: true };
 	// Look-alikes are a verdict, not a reason to look elsewhere.
 	if (first.identity !== null || first.ambiguous || hint.mbid === undefined) {
 		return { found: first.identity, ambiguous: first.ambiguous, unavailable: false };
 	}
-	const second = await resolve(name);
+	const second = await resolve(name, undefined, typed);
 	if (second.unavailable) return { found: null, ambiguous: false, unavailable: true };
 	return { found: second.identity, ambiguous: second.ambiguous, unavailable: false };
 }
@@ -767,7 +771,7 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 			}
 			attempted++;
 			const groups = hint.mbid === undefined ? [] : (ctx.groupsByMbid.get(hint.mbid) ?? []);
-			const lookedUp = await lookUp(type, name, hint, groups);
+			const lookedUp = await lookUp(type, name, hint, groups, text(node.release_type));
 			if (lookedUp.unavailable) {
 				failed.push({ slug, reason: "MusicBrainz search unavailable" });
 				continue;
