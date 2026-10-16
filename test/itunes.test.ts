@@ -60,6 +60,110 @@ describe("lookupVerifiedAlbumArt", () => {
 		await expect(lookupVerifiedAlbumArt("New Forms", "Roni Size Reprazent", f)).resolves.toBe(art600("b"));
 	});
 
+	// TRA-589: the Clicks & Cuts backfill row resolved to the cover of a different release.
+	it("does not retain a longer title that only adds a volume number (Clicks & Cuts -> Clicks & Cuts 3)", async () => {
+		const f = itunes([
+			{ collectionName: "Clicks & Cuts 3", artistName: "Mille Plateaux", artworkUrl100: art("cc3") },
+		]);
+		await expect(lookupVerifiedAlbumArt("Clicks & Cuts", "Mille Plateaux", f)).resolves.toBeNull();
+	});
+
+	it.each(["Album 2", "Album Vol. 2", "Album (Vol. 2)", "Album II", "Album Part 2", "Album Live"])(
+		"does not retain %s for Album (numbers and unknown suffixes are other releases)",
+		async (other) => {
+			const f = itunes([{ collectionName: other, artistName: "Some Artist", artworkUrl100: art("o") }]);
+			await expect(lookupVerifiedAlbumArt("Album", "Some Artist", f)).resolves.toBeNull();
+		},
+	);
+
+	it("does not retain a shorter title either (Clicks & Cuts 3 asked, Clicks & Cuts returned)", async () => {
+		const f = itunes([
+			{ collectionName: "Clicks & Cuts", artistName: "Mille Plateaux", artworkUrl100: art("cc1") },
+		]);
+		await expect(lookupVerifiedAlbumArt("Clicks & Cuts 3", "Mille Plateaux", f)).resolves.toBeNull();
+	});
+
+	it("still retains an exact title, across case, accents, punctuation and & / and", async () => {
+		const exact = itunes([
+			{ collectionName: "Clicks & Cuts", artistName: "Mille Plateaux", artworkUrl100: art("cc1") },
+		]);
+		await expect(lookupVerifiedAlbumArt("Clicks & Cuts", "Mille Plateaux", exact)).resolves.toBe(
+			art600("cc1"),
+		);
+		const folded = itunes([
+			{ collectionName: "CLICKS AND CUTS", artistName: "Mille Plateaux", artworkUrl100: art("cc1") },
+		]);
+		await expect(lookupVerifiedAlbumArt("Clicks & Cuts", "Mille Plateaux", folded)).resolves.toBe(
+			art600("cc1"),
+		);
+		const accents = itunes([
+			{ collectionName: "Dé\u0301jà Vu", artistName: "Some Artist", artworkUrl100: art("dv") },
+		]);
+		await expect(lookupVerifiedAlbumArt("Déjà Vu", "Some Artist", accents)).resolves.toBe(art600("dv"));
+	});
+
+	// Documented rule: trailing edition suffixes from a whitelist are ignored, nothing else is.
+	it.each([
+		"Album (Deluxe Edition)",
+		"Album [Deluxe Edition]",
+		"Album - Remastered",
+		"Album (Expanded Edition)",
+		"Album (Deluxe) [Remastered]",
+	])("retains %s for Album (known edition suffix)", async (edition) => {
+		const f = itunes([{ collectionName: edition, artistName: "Some Artist", artworkUrl100: art("e") }]);
+		await expect(lookupVerifiedAlbumArt("Album", "Some Artist", f)).resolves.toBe(art600("e"));
+	});
+
+	it("retains the plain album when the asked title carries the edition suffix", async () => {
+		const f = itunes([{ collectionName: "Album", artistName: "Some Artist", artworkUrl100: art("e") }]);
+		await expect(lookupVerifiedAlbumArt("Album (Deluxe Edition)", "Some Artist", f)).resolves.toBe(
+			art600("e"),
+		);
+	});
+
+	it("never treats a numbered edition as an edition suffix (year remaster, anniversary)", async () => {
+		const f = itunes([
+			{ collectionName: "Album (2009 Remaster)", artistName: "Some Artist", artworkUrl100: art("a") },
+			{
+				collectionName: "Album (20th Anniversary Edition)",
+				artistName: "Some Artist",
+				artworkUrl100: art("b"),
+			},
+		]);
+		await expect(lookupVerifiedAlbumArt("Album", "Some Artist", f)).resolves.toBeNull();
+	});
+
+	it.each([
+		"Various Artists",
+		"Various",
+		"various artist",
+		"VA",
+		"V.A.",
+		"V/A",
+		"Various Artists & Roni Size",
+	])("never retains a result credited to %s", async (credit) => {
+		const f = itunes([{ collectionName: "New Forms", artistName: credit, artworkUrl100: art("va") }]);
+		await expect(lookupVerifiedAlbumArt("New Forms", "Roni Size", f)).resolves.toBeNull();
+	});
+
+	it("skips the Various Artists result and takes the real artist's", async () => {
+		const f = itunes([
+			{ collectionName: "New Forms", artistName: "Various Artists", artworkUrl100: art("va") },
+			{ collectionName: "New Forms", artistName: "Roni Size", artworkUrl100: art("ok") },
+		]);
+		await expect(lookupVerifiedAlbumArt("New Forms", "Roni Size", f)).resolves.toBe(art600("ok"));
+	});
+
+	it("does not even ask when the requested artist is Various Artists", async () => {
+		const f = itunes([
+			{ collectionName: "New Forms", artistName: "Various Artists", artworkUrl100: art("va") },
+		]);
+		for (const asked of ["Various Artists", "Various", "VA", "V.A."]) {
+			await expect(lookupVerifiedAlbumArt("New Forms", asked, f)).resolves.toBeNull();
+		}
+		expect(f.calls).toEqual([]);
+	});
+
 	it("refuses an artwork URL off *.mzstatic.com", async () => {
 		const f = itunes([
 			{
