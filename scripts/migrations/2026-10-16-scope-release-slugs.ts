@@ -657,10 +657,13 @@ export function planMigration(input: PlanInput): Plan {
 			const creditName = str(credit?.name);
 			if (!credit || !creditName) return { kind: "skip", reason: "no-credit" };
 			// TRA-571: the order of `artists` is MusicBrainz's only for a work it resolved (it has an mbid). Without
-			// one the order comes from the model, so `artists[0]` of a collaboration or a compilation is arbitrary
-			// and would freeze a random artist into the canonical slug. "Various Artists" names no artist at all.
-			// Skipped like `no-credit`: the work and every edge to it keep their bare slug.
-			if (isVariousArtists(credit) || (credits.length > 1 && str(f.node.mbid) === undefined)) {
+			// one it comes from the model, and the first credit of a COMPILATION (Warp's "Artificial Intelligence")
+			// is arbitrary: scoping on it freezes a random artist into the canonical slug. "Various Artists" names
+			// no artist at all. Skipped like `no-credit`: the work and every edge to it keep their bare slug.
+			if (
+				isVariousArtists(credit) ||
+				(credits.length >= UNRESOLVED_COMPILATION_CREDITS && str(f.node.mbid) === undefined)
+			) {
 				return { kind: "skip", reason: "multi-credit-unresolved" };
 			}
 			const creditMbid = str(credit.mbid);
@@ -1229,6 +1232,14 @@ async function readIdentities(path: string): Promise<ArtistIdentities | null> {
 		collisions: parsed.collisions.map((c) => ({ mbid: c.mbid, slugs: c.slugs })),
 	};
 }
+
+/**
+ * From this many credits, a work without mbid is taken for a compilation and not scoped. 3 and not 2: a
+ * collaboration or a "feat." has two credits and keeps its main artist first (track:fitna, Akuma and AXMO, must
+ * stay scoped `--akuma` so that Rohff's link to it is detached, the project's original bug), whereas a
+ * compilation lists at least three artists, in an order that means nothing.
+ */
+export const UNRESOLVED_COMPILATION_CREDITS = 3;
 
 const VARIOUS_ARTISTS_MBID = "89ad4ac3-39f7-470e-963a-56509c546377";
 

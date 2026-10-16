@@ -9,6 +9,7 @@ import {
 	type Manifest,
 	parseCliArgs,
 	runMigration,
+	UNRESOLVED_COMPILATION_CREDITS,
 } from "../scripts/migrations/2026-10-16-scope-release-slugs.js";
 import { parseSlugRedirects } from "../src/genre-registry.js";
 import { LIST_EDGES_BY_TYPE, type NodeType } from "../src/node-spec.js";
@@ -340,18 +341,22 @@ describe("scope-release-slugs migration", () => {
 
 	describe("a work whose first credit is not canonical (TRA-571)", () => {
 		const VARIOUS = "89ad4ac3-39f7-470e-963a-56509c546377";
-		const two = (a: Obj, b: Obj): Obj[] => [a, b];
+		const credits = (...refs: Obj[]): Obj[] => refs;
 
-		it("does not scope a compilation or a collaboration without mbid, whatever its first credit", async () => {
+		it("does not scope a compilation of three credits without mbid, and leaves the edges to it bare", async () => {
 			await seed([
 				node("artist:aphex-twin", "Aphex Twin", {
 					discography: [ref("project:artificial-intelligence", "Artificial Intelligence")],
 				}),
 				node("project:artificial-intelligence", "Artificial Intelligence", {
-					artists: two(ref("artist:aphex-twin", "Aphex Twin"), ref("artist:autechre", "Autechre")),
+					artists: credits(
+						ref("artist:aphex-twin", "Aphex Twin"),
+						ref("artist:autechre", "Autechre"),
+						ref("artist:b12", "B12"),
+					),
 				}),
-				node("track:duet", "Duet", {
-					artists: two(ref("artist:a", "A"), ref("artist:b", "B")),
+				node("track:mix", "Mix", {
+					artists: credits(ref("artist:a", "A"), ref("artist:b", "B"), ref("artist:c", "C")),
 					project: ref("project:artificial-intelligence", "Artificial Intelligence"),
 				}),
 			]);
@@ -359,7 +364,7 @@ describe("scope-release-slugs migration", () => {
 			expect(exitCode).toBe(0);
 			expect(manifest.skipped).toEqual([
 				{ slug: "project:artificial-intelligence", reason: "multi-credit-unresolved" },
-				{ slug: "track:duet", reason: "multi-credit-unresolved" },
+				{ slug: "track:mix", reason: "multi-credit-unresolved" },
 			]);
 			expect(manifest.renamed).toEqual({});
 			expect(await exists("project:artificial-intelligence")).toBe(true);
@@ -368,16 +373,40 @@ describe("scope-release-slugs migration", () => {
 			expect(edgeSlugs(await read("artist:aphex-twin"), "discography")).toEqual([
 				"project:artificial-intelligence",
 			]);
-			expect((await read("track:duet")).project).toMatchObject({ slug: "project:artificial-intelligence" });
+			expect((await read("track:mix")).project).toMatchObject({ slug: "project:artificial-intelligence" });
 			expect(manifest.rewritten).toEqual([]);
 			expect(manifest.detached).toEqual([]);
 		});
 
-		it("still scopes a multi-credit work MusicBrainz resolved, on its first credit", async () => {
+		it("keeps track:fitna (Akuma and AXMO, no mbid) scoped on its main artist, and Rohff's link detached", async () => {
+			expect(UNRESOLVED_COMPILATION_CREDITS).toBe(3);
+			await seed([
+				node("track:fitna", "Fitna", {
+					artists: credits(ref("artist:akuma", "Akuma"), ref("artist:axmo", "AXMO")),
+				}),
+				node("artist:akuma", "Akuma", { notable_tracks: [ref("track:fitna", "Fitna")] }),
+				node("artist:rohff", "Rohff", { notable_tracks: [ref("track:fitna", "Fitna")] }),
+			]);
+			const { manifest } = await run(true);
+			expect(manifest.skipped).toEqual([]);
+			expect(manifest.renamed).toEqual({ "track:fitna": "track:fitna--akuma" });
+			expect(manifest.detached).toMatchObject([
+				{ node: "artist:rohff", from: "track:fitna", to: "track:fitna--rohff" },
+			]);
+			expect(edgeSlugs(await read("artist:akuma"), "notable_tracks")).toEqual(["track:fitna--akuma"]);
+			expect(edgeSlugs(await read("artist:rohff"), "notable_tracks")).toEqual(["track:fitna--rohff"]);
+		});
+
+		it("still scopes a work MusicBrainz resolved, whatever its number of credits, on its first credit", async () => {
 			await seed([
 				node("project:split", "Split", {
 					mbid: MBID_A,
-					artists: two(ref("artist:aphex-twin", "Aphex Twin"), ref("artist:autechre", "Autechre")),
+					artists: credits(
+						ref("artist:aphex-twin", "Aphex Twin"),
+						ref("artist:autechre", "Autechre"),
+						ref("artist:b12", "B12"),
+						ref("artist:plaid", "Plaid"),
+					),
 				}),
 			]);
 			const { manifest } = await run(true);
