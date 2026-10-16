@@ -9,6 +9,7 @@ import {
 	type Manifest,
 	parseCliArgs,
 	runMigration,
+	UNRESOLVED_COMPILATION_CREDITS,
 } from "../scripts/migrations/2026-10-16-scope-release-slugs.js";
 import { parseSlugRedirects } from "../src/genre-registry.js";
 import { LIST_EDGES_BY_TYPE, type NodeType } from "../src/node-spec.js";
@@ -336,6 +337,131 @@ describe("scope-release-slugs migration", () => {
 		expect(manifest.skipped).toEqual([{ slug: "project:lonely", reason: "no-credit" }]);
 		expect(await exists("project:lonely")).toBe(true);
 		expect(manifest.summary.nodes_to_write).toBe(0);
+	});
+
+	describe("a work whose first credit is not canonical (TRA-571)", () => {
+		const VARIOUS = "89ad4ac3-39f7-470e-963a-56509c546377";
+		const credits = (...refs: Obj[]): Obj[] => refs;
+
+		it("does not scope a compilation of three credits without mbid, and leaves the edges to it bare", async () => {
+			await seed([
+				node("artist:aphex-twin", "Aphex Twin", {
+					discography: [ref("project:artificial-intelligence", "Artificial Intelligence")],
+				}),
+				node("artist:autechre", "Autechre", {
+					discography: [ref("project:artificial-intelligence", "Artificial Intelligence")],
+				}),
+				node("project:artificial-intelligence", "Artificial Intelligence", {
+					artists: credits(
+						ref("artist:aphex-twin", "Aphex Twin"),
+						ref("artist:autechre", "Autechre"),
+						ref("artist:b12", "B12"),
+					),
+				}),
+				node("track:mix", "Mix", {
+					artists: credits(ref("artist:a", "A"), ref("artist:b", "B"), ref("artist:c", "C")),
+					project: ref("project:artificial-intelligence", "Artificial Intelligence"),
+				}),
+			]);
+			const { manifest, exitCode } = await run(true);
+			expect(exitCode).toBe(0);
+			expect(manifest.skipped).toEqual([
+				{ slug: "project:artificial-intelligence", reason: "multi-credit-unresolved" },
+				{ slug: "track:mix", reason: "multi-credit-unresolved" },
+			]);
+			expect(manifest.renamed).toEqual({});
+			expect(await exists("project:artificial-intelligence")).toBe(true);
+			expect(await exists("project:artificial-intelligence--aphex-twin")).toBe(false);
+			// The edges to a skipped work stay bare, as for `no-credit`: nothing rewritten, nothing detached.
+			expect(edgeSlugs(await read("artist:aphex-twin"), "discography")).toEqual([
+				"project:artificial-intelligence",
+			]);
+			// ...for the second credit too (Autechre), not only for the first one the slug would have been built on.
+			expect(edgeSlugs(await read("artist:autechre"), "discography")).toEqual([
+				"project:artificial-intelligence",
+			]);
+			expect((await read("track:mix")).project).toMatchObject({ slug: "project:artificial-intelligence" });
+			expect(manifest.rewritten).toEqual([]);
+			expect(manifest.detached).toEqual([]);
+		});
+
+		it("keeps track:fitna (Akuma and AXMO, no mbid) scoped on its main artist, and Rohff's link detached", async () => {
+			expect(UNRESOLVED_COMPILATION_CREDITS).toBe(3);
+			await seed([
+				node("track:fitna", "Fitna", {
+					artists: credits(ref("artist:akuma", "Akuma"), ref("artist:axmo", "AXMO")),
+				}),
+				node("artist:akuma", "Akuma", { notable_tracks: [ref("track:fitna", "Fitna")] }),
+				node("artist:rohff", "Rohff", { notable_tracks: [ref("track:fitna", "Fitna")] }),
+			]);
+			const { manifest } = await run(true);
+			expect(manifest.skipped).toEqual([]);
+			expect(manifest.renamed).toEqual({ "track:fitna": "track:fitna--akuma" });
+			expect(manifest.detached).toMatchObject([
+				{ node: "artist:rohff", from: "track:fitna", to: "track:fitna--rohff" },
+			]);
+			expect(edgeSlugs(await read("artist:akuma"), "notable_tracks")).toEqual(["track:fitna--akuma"]);
+			expect(edgeSlugs(await read("artist:rohff"), "notable_tracks")).toEqual(["track:fitna--rohff"]);
+		});
+
+		it("still scopes a work MusicBrainz resolved, whatever its number of credits, on its first credit", async () => {
+			await seed([
+				node("project:split", "Split", {
+					mbid: MBID_A,
+					artists: credits(
+						ref("artist:aphex-twin", "Aphex Twin"),
+						ref("artist:autechre", "Autechre"),
+						ref("artist:b12", "B12"),
+						ref("artist:plaid", "Plaid"),
+					),
+				}),
+			]);
+			const { manifest } = await run(true);
+			expect(manifest.skipped).toEqual([]);
+			expect(manifest.renamed).toEqual({ "project:split": "project:split--aphex-twin" });
+		});
+
+		it("still scopes a single-credit work without mbid", async () => {
+			await seed([node("project:solo", "Solo", { artists: credit("artist:aphex-twin", "Aphex Twin") })]);
+			const { manifest } = await run(true);
+			expect(manifest.renamed).toEqual({ "project:solo": "project:solo--aphex-twin" });
+		});
+
+		it("does not scope a work credited to Various Artists, with or without mbid, by mbid or by name", async () => {
+			await seed([
+				node("project:now-17", "Now 17", { artists: credit("artist:va", "Compilation", { mbid: VARIOUS }) }),
+				node("project:now-18", "Now 18", {
+					mbid: MBID_B,
+					artists: credit("artist:va-2", "  VARIOUS  Artists "),
+				}),
+				node("track:hit", "Hit", { mbid: MBID_A, artists: credit("artist:va-3", "Various Artists") }),
+			]);
+			const { manifest } = await run(true);
+			expect(manifest.skipped.map((s) => [s.slug, s.reason])).toEqual([
+				["project:now-17", "multi-credit-unresolved"],
+				["project:now-18", "multi-credit-unresolved"],
+				["track:hit", "multi-credit-unresolved"],
+			]);
+			expect(manifest.renamed).toEqual({});
+		});
+
+		it.each([
+			["the mbid in upper case", { slug: "artist:va", name: "Compilation", mbid: VARIOUS.toUpperCase() }],
+			["the name Various", { slug: "artist:v", name: "Various" }],
+			["the name Various Artists, case and spaces folded", { slug: "artist:v", name: " vARIOUS   artists" }],
+			["the slug artist:various", { slug: "artist:various", name: "Rap Compilation" }],
+			["the slug artist:various-artists", { slug: "artist:various-artists", name: "Compilation" }],
+		])("does not scope a work credited to Various Artists by %s", async (_label, who) => {
+			await seed([
+				node("project:rap-com", "Rap Com", { artists: [{ ...who, type: "artist" }] }),
+				node("artist:various", "Various", { discography: [ref("project:rap-com", "Rap Com")] }),
+			]);
+			const { manifest } = await run(true);
+			expect(manifest.skipped).toEqual([{ slug: "project:rap-com", reason: "multi-credit-unresolved" }]);
+			expect(manifest.renamed).toEqual({});
+			expect(await exists("project:rap-com--various")).toBe(false);
+			expect(edgeSlugs(await read("artist:various"), "discography")).toEqual(["project:rap-com"]);
+		});
 	});
 
 	it("keeps three remixes of one title apart", async () => {
