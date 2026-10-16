@@ -33,9 +33,12 @@ import { buildCacheIndex, type CacheIndex, createCacheIndexHolder } from "./cach
 import { readApnsPushConfiguration, serverConfig, streamConfig } from "./config.js";
 import { loadEnv } from "./env.js";
 import { AppError, isNotFoundError } from "./errors.js";
+import { onDemandImagesEnabled } from "./flags.js";
 import { loadGenreResolver } from "./genre-identity.js";
 import { createGenreRegistry, loadRedirects, resolveReadSlug } from "./genre-registry.js";
+import { createImageQueue } from "./images/image-queue.js";
 import { resolveImage } from "./images/resolve-image.js";
+import { resolveWorkImageByHint } from "./images/resolve-work-hint.js";
 import { logger } from "./logger.js";
 import { createApnsPushSender } from "./mobile/apns-sender.js";
 import { createMobileCatalog } from "./mobile/catalog.js";
@@ -52,11 +55,12 @@ import { createMobileRouter } from "./mobile/router.js";
 import { createMobileSearch } from "./mobile/search.js";
 import { type CatalogIndex, createMusicBrainzCatalog } from "./musicbrainz.js";
 import { createGraphService } from "./services/graph-service.js";
-import { createImageService } from "./services/image-service.js";
+import { createImageService, type DisplayImage } from "./services/image-service.js";
 import { createMaterializeService, type MaterializeRequest } from "./services/materialize-service.js";
 import { createNodeService } from "./services/node-service.js";
 import { createSearchService } from "./services/search-service.js";
 import { makeSimilarArtistsResolver } from "./similar-artists-wiring.js";
+import { isReadableSlug } from "./slug.js";
 import { handleStream } from "./stream.js";
 import { LINKABLE_TYPES, resolveStreamingLinks } from "./streaming-links.js";
 import type { EdgeRef, NodeType, Slug } from "./types.js";
@@ -110,7 +114,20 @@ const materializeService = createMaterializeService({
 	similarArtists: makeSimilarArtistsResolver({ cache, getCacheIndex }),
 });
 const getNode = createNodeService({ cache, runJit: materializeService.runJit, redirects: genreRedirects });
-const imageService = createImageService({ cache, redirects: genreRedirects });
+// TRA-583: ONE queue per process (plan 3b-D4), so its single worker is the only background consumer of
+// the MusicBrainz budget. ODYSSEY_ON_DEMAND_IMAGES is read by the service at each call, not here.
+const imageQueue = createImageQueue({
+	cacheDir: CACHE_DIR,
+	cache,
+	resolveNode: resolveImage,
+	resolveHint: resolveWorkImageByHint,
+	log,
+});
+const imageService = createImageService({
+	cache,
+	redirects: genreRedirects,
+	onDemand: { queue: imageQueue, cacheDir: CACHE_DIR },
+});
 const graphService = createGraphService(CACHE_DIR);
 const mobileCatalog = createMobileCatalog({ getGraph: () => graphService.getGraph() });
 const mobileNodes = createMobileNodeReader({ cache, redirects: genreRedirects });
@@ -237,7 +254,12 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 	const path = url.pathname;
 	if (await mobileRouter.handle({ req, res, url })) return;
 	if (req.method === "GET" && path === "/health") {
-		json(res, 200, { ok: true, cacheDir: CACHE_DIR });
+		json(res, 200, {
+			ok: true,
+			cacheDir: CACHE_DIR,
+			on_demand_images: onDemandImagesEnabled(),
+			images: imageQueue.stats(),
+		});
 		return;
 	}
 	if (req.method === "GET" && path === "/version") {
@@ -271,6 +293,13 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 			json(res, 404, { error: "not cached", slug: raw });
 			return;
 		}
+		// TRA-583: opening a page enqueues its missing covers. Synchronous and in memory on purpose (3b-D4):
+		// deferred, an /image request for one of its works could land first and read "no-context".
+		try {
+			imageService.warm(result.node);
+		} catch (e) {
+			log.warn("image warm failed", { slug: raw, error: e instanceof Error ? e.message : String(e) });
+		}
 		json(res, 200, result);
 		return;
 	}
@@ -280,12 +309,18 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 			json(res, 400, { error: "missing or malformed slug" });
 			return;
 		}
+		// `from` is a slug the server re-reads from its own cache (3b-D1), never a title or an artist.
+		// URLSearchParams has already percent-decoded it; decoding again would change what `%25` means.
+		const fromParam = url.searchParams.get("from");
+		if (fromParam !== null && !isSafeSlugParam(fromParam)) {
+			json(res, 400, { error: "missing or malformed slug" });
+			return;
+		}
 		try {
-			const result = await imageService.resolveDisplayImage(raw as Slug);
-			// 24h public cache — the image URL itself never changes once resolved, and
-			// iTunes' rate limit makes re-asking expensive. Stale OK for an hour past expiry.
-			res.setHeader("Cache-Control", "public, max-age=86400, stale-while-revalidate=3600");
-			json(res, 200, result);
+			const result = await imageService.resolveDisplayImage(raw as Slug, {
+				...(fromParam ? { from: fromParam as Slug } : {}),
+			});
+			sendImage(res, result);
 		} catch (e) {
 			// TRA-502: a client error (unsafe slug) answers 400, and the body never carries a
 			// file extract; the full error goes to the log.
@@ -357,6 +392,35 @@ async function route(req: IncomingMessage, res: ServerResponse): Promise<void> {
 		return;
 	}
 	json(res, 404, { error: "not found", path });
+}
+
+/** A readable slug whose body cannot leave `nodes/<type>/` (same rule as NodeCache, TRA-502). */
+function isSafeSlugParam(value: string): boolean {
+	return isReadableSlug(value) && !/[/\\\0]|\.\./.test(value);
+}
+
+/**
+ * 2026-10-16 (TRA-583, plan 3b-D5): only a found image is cacheable. Every answer used to carry
+ * "public, max-age=86400" (TRA-475: the URL never changes once resolved), which froze a null for a day in
+ * browsers and intermediaries; on demand, that null is usually "not yet". Pending is a 202 with Retry-After
+ * and no-store (a 404 is remembered by iOS as a final failure, a bare 200 would be kept by HTTP caches and
+ * by the web page's per-slug promise). None is no-store too: "no-context" becomes a real answer as soon as
+ * the client opens the page that lists the work. With ODYSSEY_ON_DEMAND_IMAGES=0 the service never says
+ * pending and a null keeps its old public header, so the kill switch restores the previous behaviour.
+ */
+function sendImage(res: ServerResponse, result: DisplayImage): void {
+	if (result.state === "pending") {
+		res.setHeader("Retry-After", String(result.retry_after_seconds ?? 5));
+		res.setHeader("Cache-Control", "no-store");
+		json(res, 202, result);
+		return;
+	}
+	const cacheable = result.state === "found" || !onDemandImagesEnabled();
+	res.setHeader(
+		"Cache-Control",
+		cacheable ? "public, max-age=86400, stale-while-revalidate=3600" : "no-store",
+	);
+	json(res, 200, result);
 }
 
 /** Percent-decodes a slug path segment; null when empty or malformed (a client error, not a 500). */
@@ -483,7 +547,7 @@ function shutdown(signal: "SIGINT" | "SIGTERM"): void {
 	if (shuttingDown) return;
 	shuttingDown = true;
 	log.info("shutting down", { signal });
-	void Promise.all([mobilePushScheduler?.stop(), mobileApnsPushScheduler?.stop()])
+	void Promise.all([mobilePushScheduler?.stop(), mobileApnsPushScheduler?.stop(), imageQueue.stop()])
 		.then(() => mobileApnsPushSender?.close?.())
 		.finally(() => {
 			server.close((error) => {
