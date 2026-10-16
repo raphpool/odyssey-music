@@ -681,6 +681,8 @@ export function createMaterializeService(deps: {
 		// overwrite: serve it as is.
 		if (!opts.fresh || (opts.slug !== undefined && r.slug !== opts.slug)) {
 			const existing = await readNode(r.slug);
+			// No invalidateCacheIndex() here on purpose (TRA-548): runPipeline only reads the cache (research,
+			// genre registry lookups) and never writes a node, so nothing changed on disk before this return.
 			if (existing) return { node: existing, ...(requestedSlug ? { requestedSlug } : {}) };
 		}
 		// TRA-538: a work's mbid is written by the pipeline from its own MusicBrainz resolution (title +
