@@ -21,11 +21,11 @@
 		"track": 62
 	},
 	"missing-image": {
-		"genre": 316,
-		"label": 184,
-		"artist": 415,
-		"project": 215,
-		"track": 220
+		"genre": 281,
+		"label": 97,
+		"artist": 163,
+		"project": 94,
+		"track": 80
 	},
 	"reciprocity-missing": {
 		"artist.labels->label.roster": 0,

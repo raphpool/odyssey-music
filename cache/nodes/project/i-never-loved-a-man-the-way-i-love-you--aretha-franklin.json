@@ -28,6 +28,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/d1/31/ee/d131eec4-614c-d661-b580-3dc32b8547e8/603497896622.jpg/600x600bb.jpg",
+  "image_source": "itunes-verified",
   "type": "project",
   "editorial_pitch": "A transformative landmark in soul music, *I Never Loved a Man the Way I Love You* marked Aretha Franklin’s commercial breakthrough, pairing her unrivaled vocal command with the gritty, authentic sound of the Muscle Shoals rhythm section.",
   "year": "1967",

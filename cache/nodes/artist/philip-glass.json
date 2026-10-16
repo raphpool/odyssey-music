@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "5ae54dee-4dba-49c0-802a-a3b3b3adfe9b",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Philip%20Glass%20018%20crop.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "An American composer and pianist widely regarded as one of the most influential figures of the late 20th century, best known for his pioneering work in minimalism characterized by repetitive, additive, and cyclical musical structures.",

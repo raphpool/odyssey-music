@@ -25,6 +25,8 @@
     "search_provider": "tavily"
   },
   "mbid": "3b47247e-5b57-49b6-a0ed-bad80243802a",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/SonnyRollins.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "Walter Theodore \"Sonny\" Rollins (born September 7, 1930) is an American jazz tenor saxophonist and composer whose towering influence and technical virtuosity earned him the moniker \"Saxophone Colossus.\" Born and raised in New York City, Rollins was a central figure in the mid-20t",

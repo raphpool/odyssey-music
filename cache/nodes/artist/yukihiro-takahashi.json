@@ -29,6 +29,8 @@
     "search_provider": "tavily"
   },
   "mbid": "e1410ddc-9745-4b5d-814d-77eb0cdfa6ad",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/YMOTakahashi2008(cropped).jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "person",
   "editorial_bio": "A legendary Japanese multi-instrumentalist, singer, and songwriter known for his foundational role in Yellow Magic Orchestra and his prolific, synth-driven solo career.",

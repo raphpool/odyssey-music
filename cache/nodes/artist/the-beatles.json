@@ -18,6 +18,8 @@
   ],
   "materialized_at": "2026-05-14T09:14:08.762Z",
   "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Beatles%20Trenter%201963.jpg?width=600",
+  "image_source": "wikidata-p18",
   "type": "artist",
   "artist_kind": "group",
   "editorial_bio": "The Beatles were a seminal British rock group from Liverpool who pioneered musical experimentation and became one of the most influential bands in history.",
