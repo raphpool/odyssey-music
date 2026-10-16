@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { NodeCache } from "../../src/cache.js";
 import { isAllowedImageUrl } from "../../src/images/hosts.js";
-import { resolveImage } from "../../src/images/resolve-image.js";
+import { refusedUnreciprocalCover, resolveImage } from "../../src/images/resolve-image.js";
 import { wikidataConfig } from "../../src/images/wikidata.js";
 import { fetchWikidataUrlRelMb } from "../../src/musicbrainz.js";
 import type { NodePayload } from "../../src/types.js";
@@ -224,8 +224,16 @@ describe("resolveImage: artist", () => {
 
 	it("falls back to the landmark project's cover as a derived cover, never a photo source", async () => {
 		await seed(
-			projectNode("new-forms", "New Forms", { image_url: COVER(21), image_source: "caa" }),
-			projectNode("in-the-m-de", "In the Møde", { image_url: COVER(22), image_source: "caa" }),
+			projectNode("new-forms", "New Forms", {
+				image_url: COVER(21),
+				image_source: "caa",
+				artists: [edge("artist", "roni-size", "Roni Size")],
+			}),
+			projectNode("in-the-m-de", "In the Møde", {
+				image_url: COVER(22),
+				image_source: "caa",
+				artists: [edge("artist", "roni-size", "Roni Size")],
+			}),
 		);
 		const f = routedFetch([mbRels([wikidataRel("Q964002")]), claims("Q964002", {})]);
 		const node = roni({
@@ -241,7 +249,11 @@ describe("resolveImage: artist", () => {
 	it("takes the first discography release that has an image when there is no landmark project", async () => {
 		await seed(
 			projectNode("no-image", "No Image"),
-			projectNode("new-forms", "New Forms", { image_url: COVER(23), image_source: "caa" }),
+			projectNode("new-forms", "New Forms", {
+				image_url: COVER(23),
+				image_source: "caa",
+				artists: [edge("artist", "roni-size", "Roni Size")],
+			}),
 		);
 		const f = routedFetch([mbRels([]), claims("Q1", {})]);
 		const node = roni({
@@ -258,13 +270,91 @@ describe("resolveImage: artist", () => {
 	});
 
 	it("derives from the discography without any request when the artist has no MBID", async () => {
-		await seed(projectNode("new-forms", "New Forms", { image_url: COVER(24), image_source: "caa" }));
+		await seed(
+			projectNode("new-forms", "New Forms", {
+				image_url: COVER(24),
+				image_source: "caa",
+				artists: [edge("artist", "roni-size", "Roni Size")],
+			}),
+		);
 		const f = routedFetch([]);
 		const node = artistNode("roni-size", "Roni Size", {
 			discography: [edge("project", "new-forms", "New Forms")],
 		});
 		await expect(resolveImage(node, { cache, fetch: f })).resolves.toMatchObject({ source: "derived-cover" });
 		expect(f.calls).toEqual([]);
+	});
+
+	it("refuses a band's cover for a member the band lists but that is not credited on it (TRA-591)", async () => {
+		await seed(
+			projectNode("band-album", "Band Album", {
+				image_url: COVER(60),
+				image_source: "caa",
+				artists: [edge("artist", "the-band", "The Band")],
+			}),
+		);
+		const f = routedFetch([mbRels([]), claims("Q1", {})]);
+		const node = artistNode("marcus-eoin", "Marcus Eoin", {
+			mbid: mb(61),
+			discography: [edge("project", "band-album", "Band Album")],
+		});
+		await expect(resolveImage(node, { cache, fetch: f })).resolves.toBeNull();
+	});
+
+	it("borrows from a release that credits the artist by MBID under another slug, never by name (TRA-591)", async () => {
+		await seed(
+			projectNode("by-mbid", "By MBID", {
+				image_url: COVER(62),
+				image_source: "caa",
+				artists: [edge("artist", "roni-size-reprazent", "Roni Size", { mbid: mb(63) })],
+			}),
+			projectNode("by-name", "By Name", {
+				image_url: COVER(64),
+				image_source: "caa",
+				artists: [edge("artist", "someone-else", "Roni Size")],
+			}),
+			projectNode("other-mbid", "Other MBID", {
+				image_url: COVER(65),
+				image_source: "caa",
+				artists: [edge("artist", "another", "Another", { mbid: mb(66) })],
+			}),
+		);
+		const f = routedFetch([mbRels([]), claims("Q1", {})]);
+		const mkNode = (discography: ReturnType<typeof edge>[], mbid: string) =>
+			artistNode("roni-size", "Roni Size", { mbid, discography });
+		await expect(
+			resolveImage(
+				mkNode(
+					[
+						edge("project", "by-name", "By Name"),
+						edge("project", "other-mbid", "Other MBID"),
+						edge("project", "by-mbid", "By MBID"),
+					],
+					mb(63),
+				),
+				{ cache, fetch: f },
+			),
+		).resolves.toEqual({ url: COVER(62), source: "derived-cover" });
+		await expect(
+			resolveImage(
+				mkNode([edge("project", "by-name", "By Name"), edge("project", "other-mbid", "Other MBID")], mb(67)),
+				{ cache, fetch: routedFetch([mbRels([]), claims("Q1", {})]) },
+			),
+		).resolves.toBeNull();
+	});
+
+	it("never matches on an empty or missing MBID (TRA-591)", async () => {
+		await seed(
+			projectNode("no-mbid", "No MBID", {
+				image_url: COVER(68),
+				image_source: "caa",
+				artists: [edge("artist", "someone-else", "Someone Else")],
+			}),
+		);
+		const node = artistNode("roni-size", "Roni Size", {
+			discography: [edge("project", "no-mbid", "No MBID")],
+		});
+		await expect(resolveImage(node, { cache, fetch: routedFetch([]) })).resolves.toBeNull();
 	});
 
 	it("is null when there is no photo and nothing imaged to derive from", async () => {
@@ -384,7 +474,11 @@ describe("resolveImage: label", () => {
 	it("falls back to the cover of the first notable release that has an image (Warp, no P18/P154)", async () => {
 		await seed(
 			projectNode("mus-no-image", "Untitled"),
-			projectNode("lp5", "LP5", { image_url: COVER(33), image_source: "caa" }),
+			projectNode("lp5", "LP5", {
+				image_url: COVER(33),
+				image_source: "caa",
+				label: edge("label", "warp", "Warp"),
+			}),
 		);
 		const f = routedFetch([mbRels([wikidataRel("Q1312")]), claims("Q1312", {})]);
 		const node = labelNode("warp", "Warp", { mbid: mb(33), notable_releases: warpReleases });
@@ -392,6 +486,52 @@ describe("resolveImage: label", () => {
 			url: COVER(33),
 			source: "derived-cover",
 		});
+	});
+
+	it("takes a reciprocal release in second position and skips a first one filed under another label (TRA-591)", async () => {
+		await seed(
+			projectNode("foreign", "Foreign", {
+				image_url: COVER(70),
+				image_source: "caa",
+				label: edge("label", "reprise-records", "Reprise Records"),
+			}),
+			projectNode("ours", "Ours", {
+				image_url: COVER(71),
+				image_source: "caa",
+				label: edge("label", "mille-plateaux", "Mille Plateaux"),
+			}),
+		);
+		const f = routedFetch([mbRels([]), ["wbsearchentities", () => jsonResponse({ search: [] })]]);
+		const node = labelNode("mille-plateaux", "Mille Plateaux", {
+			mbid: mb(72),
+			notable_releases: [edge("project", "foreign", "Foreign"), edge("project", "ours", "Ours")],
+		});
+		await expect(resolveImage(node, { cache, fetch: f })).resolves.toEqual({
+			url: COVER(71),
+			source: "derived-cover",
+		});
+	});
+
+	it("label:mille-plateaux does not receive the cover of Electric Ladyland, a Reprise release (TRA-591)", async () => {
+		await seed(
+			projectNode("electric-ladyland--the-jimi-hendrix-experience", "Electric Ladyland", {
+				image_url: COVER(73),
+				image_source: "caa",
+				artists: [edge("artist", "the-jimi-hendrix-experience", "The Jimi Hendrix Experience")],
+				label: edge("label", "reprise-records", "Reprise Records"),
+			}),
+			projectNode("no-label", "Unlabelled", { image_url: COVER(74), image_source: "caa" }),
+		);
+		const f = routedFetch([mbRels([]), ["wbsearchentities", () => jsonResponse({ search: [] })]]);
+		const node = labelNode("mille-plateaux", "Mille Plateaux", {
+			mbid: mb(75),
+			notable_releases: [
+				edge("project", "electric-ladyland--the-jimi-hendrix-experience", "Electric Ladyland"),
+				edge("project", "no-label", "Unlabelled"),
+			],
+		});
+		await expect(resolveImage(node, { cache, fetch: f })).resolves.toBeNull();
+		await expect(refusedUnreciprocalCover(node, { cache })).resolves.toBe(true);
 	});
 
 	it("is null without an imaged notable release", async () => {
@@ -426,13 +566,17 @@ describe("resolveImage: genre", () => {
 	it("skips a first landmark project without image and takes the second", async () => {
 		await seed(
 			projectNode("bare", "Bare"),
-			projectNode("second", "Second", { image_url: COVER(40), image_source: "caa" }),
+			projectNode("second", "Second", {
+				image_url: COVER(40),
+				image_source: "caa",
+				genres: [edge("genre", "jungle", "Jungle")],
+			}),
 		);
 		const node = genreNode("jungle", "Jungle", {
 			landmark_projects: [edge("project", "bare", "Bare"), edge("project", "second", "Second")],
 		});
 		const f = routedFetch([]);
-		await expect(resolveImage(node, { cache, fetch: f })).resolves.toEqual({
+		await expect(resolveImage(node, { cache, fetch: f, redirects: new Map() })).resolves.toEqual({
 			url: COVER(40),
 			source: "derived-cover",
 		});
@@ -442,18 +586,76 @@ describe("resolveImage: genre", () => {
 	it("only looks at landmark tracks when no landmark project has an image", async () => {
 		await seed(
 			projectNode("bare", "Bare"),
-			trackNode("anthem", "Anthem", { image_url: COVER(41), image_source: "derived-cover" }),
+			trackNode("anthem", "Anthem", {
+				image_url: COVER(41),
+				image_source: "derived-cover",
+				genres: [edge("genre", "jungle", "Jungle")],
+			}),
 		);
 		const node = genreNode("jungle", "Jungle", {
 			landmark_projects: [edge("project", "bare", "Bare")],
 			landmark_tracks: [edge("track", "anthem", "Anthem")],
 		});
-		await expect(resolveImage(node, { cache })).resolves.toEqual({ url: COVER(41), source: "derived-cover" });
+		await expect(resolveImage(node, { cache, redirects: new Map() })).resolves.toEqual({
+			url: COVER(41),
+			source: "derived-cover",
+		});
+	});
+
+	it("refuses a landmark project that does not list the genre, and a track likewise (TRA-591)", async () => {
+		await seed(
+			projectNode("elsewhere", "Elsewhere", {
+				image_url: COVER(80),
+				image_source: "caa",
+				genres: [edge("genre", "house", "House")],
+			}),
+			trackNode("elsewhere-track", "Elsewhere Track", {
+				image_url: COVER(81),
+				image_source: "caa",
+				genres: [edge("genre", "house", "House")],
+			}),
+		);
+		const node = genreNode("jungle", "Jungle", {
+			landmark_projects: [edge("project", "elsewhere", "Elsewhere")],
+			landmark_tracks: [edge("track", "elsewhere-track", "Elsewhere Track")],
+		});
+		await expect(resolveImage(node, { cache, redirects: new Map() })).resolves.toBeNull();
+		await expect(refusedUnreciprocalCover(node, { cache, redirects: new Map() })).resolves.toBe(true);
+	});
+
+	it("compares genres after redirects, and only through the table (TRA-591)", async () => {
+		await seed(
+			projectNode("old-slug", "Old Slug", {
+				image_url: COVER(82),
+				image_source: "caa",
+				genres: [edge("genre", "drum-and-bass", "Drum and Bass")],
+			}),
+			projectNode("neighbour", "Neighbour", {
+				image_url: COVER(83),
+				image_source: "caa",
+				genres: [edge("genre", "drum-n-bass-ish", "Drum n Bass-ish")],
+			}),
+		);
+		const redirects = new Map([["genre:drum-and-bass" as const, "genre:dnb" as const]]);
+		const dnb = genreNode("dnb", "DnB", {
+			landmark_projects: [edge("project", "neighbour", "Neighbour"), edge("project", "old-slug", "Old Slug")],
+		});
+		await expect(resolveImage(dnb, { cache, redirects })).resolves.toEqual({
+			url: COVER(82),
+			source: "derived-cover",
+		});
+		// Without the table the retired slug is just a different slug: refused.
+		await expect(resolveImage(dnb, { cache, redirects: new Map() })).resolves.toBeNull();
+		// A near-name neighbour never matches, redirects or not.
+		const onlyNeighbour = genreNode("dnb", "DnB", {
+			landmark_projects: [edge("project", "neighbour", "Neighbour")],
+		});
+		await expect(resolveImage(onlyNeighbour, { cache, redirects })).resolves.toBeNull();
 	});
 
 	it("is null when nothing is imaged", async () => {
 		const node = genreNode("jungle", "Jungle", { landmark_projects: [edge("project", "ghost", "Ghost")] });
-		await expect(resolveImage(node, { cache })).resolves.toBeNull();
+		await expect(resolveImage(node, { cache, redirects: new Map() })).resolves.toBeNull();
 	});
 });
 
