@@ -257,26 +257,34 @@ export function createMaterializeService(deps: {
 				log.warn("materialize: refused to repoint an edge", { ...source, target: node.slug });
 				return false;
 			}
-			const sourceNode = await readNode(source.slug);
-			if (!sourceNode) return false;
-			const fields = sourceNode as unknown as Record<string, unknown>;
-			const current = fields[source.field];
+			// TRA-535: the read-modify-write runs under the cache's per-node lock. "precache all" sends up to
+			// 4 parallel /materialize with the same source: unlocked, each rewrite overwrote the others.
 			const repoint = (ref: unknown) =>
 				isRecord(ref) && ref.slug === requested ? { ...ref, slug: node.slug } : ref;
-			if (Array.isArray(current)) {
-				if (!current.some((ref) => isRecord(ref) && ref.slug === requested)) return false;
-				// Only the replaced edge is touched: it is dropped when the list already holds the target,
-				// every other entry stays as it was (committed lists carry same-slug entries that differ).
-				const present = current.some((ref) => isRecord(ref) && ref.slug === node.slug);
-				fields[source.field] = present
-					? current.filter((ref) => !(isRecord(ref) && ref.slug === requested))
-					: current.map(repoint);
-			} else if (isRecord(current) && current.slug === requested) {
-				fields[source.field] = repoint(current);
-			} else {
-				return false;
-			}
-			await deps.cache.replace(sourceNode);
+			const written = await deps.cache
+				.update(source.slug, (sourceNode) => {
+					const fields = { ...(sourceNode as unknown as Record<string, unknown>) };
+					const current = fields[source.field];
+					if (Array.isArray(current)) {
+						if (!current.some((ref) => isRecord(ref) && ref.slug === requested)) return null;
+						// Only the replaced edge is touched: it is dropped when the list already holds the target,
+						// every other entry stays as it was (committed lists carry same-slug entries that differ).
+						const present = current.some((ref) => isRecord(ref) && ref.slug === node.slug);
+						fields[source.field] = present
+							? current.filter((ref) => !(isRecord(ref) && ref.slug === requested))
+							: current.map(repoint);
+					} else if (isRecord(current) && current.slug === requested) {
+						fields[source.field] = repoint(current);
+					} else {
+						return null;
+					}
+					return fields as unknown as NodePayload;
+				})
+				.catch((e: unknown) => {
+					if (isNotFoundError(e)) return false;
+					throw e;
+				});
+			if (!written) return false;
 			deps.invalidateCacheIndex?.();
 			return true;
 		} catch (e) {
