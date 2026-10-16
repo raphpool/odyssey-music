@@ -5,6 +5,7 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
 	DEFAULT_MANIFEST_PATH,
 	identityDisagreement,
+	isSafePendingEntry,
 	type Manifest,
 	parseCliArgs,
 	runMigration,
@@ -867,6 +868,72 @@ describe("scope-release-slugs migration", () => {
 			expect((pending["artist:laetitia-sadier"] as Obj[]).map((e) => (e.edge as Obj).slug)).toEqual([
 				"artist:stereolab",
 			]);
+		});
+	});
+
+	describe("pending entries that put a credit, a parent or a genre on a work (TRA-568)", () => {
+		const entry = (field: string, slug: string, name: string): Obj => ({
+			field,
+			cardinality: "list",
+			edge: ref(slug, name),
+		});
+
+		it("never applies them to the existing node a work key moves onto; the rest of the key is applied", async () => {
+			const pole = credit("artist:pole", "Pole");
+			await seed(
+				[
+					node("artist:pole", "Pole"),
+					node("project:steel", "Steel", { artists: pole }),
+					node("project:steel--pole", "Steel", { artists: pole }),
+				],
+				{
+					"project:steel": [
+						entry("artists", "artist:homonym", "Pole"),
+						entry("genres", "genre:dub", "Dub"),
+						entry("producers", "artist:someone", "Someone"),
+						entry("related_projects", "project:other", "Other"),
+					],
+				},
+			);
+			const { manifest, exitCode } = await run(true);
+			expect(exitCode).toBe(0);
+			expect(manifest.redirects).toMatchObject({ "project:steel": "project:steel--pole" });
+			const target = await read("project:steel--pole");
+			expect(edgeSlugs(target, "artists")).toEqual(["artist:pole"]);
+			expect(edgeSlugs(target, "genres")).toEqual([]);
+			expect(edgeSlugs(target, "producers")).toEqual([]);
+			expect(edgeSlugs(target, "related_projects")).toEqual(["project:other"]);
+			const pending = JSON.parse(await readFile(join(cacheDir, "pending-reverses.json"), "utf8")) as Obj;
+			expect(Object.keys(pending)).toEqual(["project:steel--pole"]);
+			expect((pending["project:steel--pole"] as Obj[]).map((e) => e.field)).toEqual([
+				"artists",
+				"genres",
+				"producers",
+			]);
+			expect(manifest.notes.join()).toContain("3 pending reverse edge(s) not applied");
+		});
+
+		it("still applies the same fields on an artist key, where the reverse edge is the safe direction", async () => {
+			await seed(
+				[
+					node("artist:laetitia-sadier", "Laetitia Sadier"),
+					node("project:x", "X", { artists: credit("artist:l-titia-sadier", "Lætitia Sadier") }),
+				],
+				{ "artist:l-titia-sadier": [entry("discography", "project:x", "X")] },
+			);
+			await run(true);
+			expect(edgeSlugs(await read("artist:laetitia-sadier"), "discography")).toContain(
+				"project:x--laetitia-sadier",
+			);
+		});
+
+		it("classifies by the key's type and the field", () => {
+			expect(isSafePendingEntry("project:a", { field: "artists" })).toBe(false);
+			expect(isSafePendingEntry("track:a", { field: "project" })).toBe(false);
+			expect(isSafePendingEntry("track:a", { field: "label" })).toBe(false);
+			expect(isSafePendingEntry("track:a", { field: "samples" })).toBe(true);
+			expect(isSafePendingEntry("artist:a", { field: "discography" })).toBe(true);
+			expect(isSafePendingEntry("label:a", { field: "roster" })).toBe(true);
 		});
 	});
 

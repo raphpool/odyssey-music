@@ -117,6 +117,11 @@ SMOKE_RETRY_DELAY="${SMOKE_RETRY_DELAY:-3}"
 APPLY=0
 MIGRATIONS=()
 MIGRATION_NAME_PATTERN='^[0-9]{4}-[0-9]{2}-[0-9]{2}-[a-z0-9]+(-[a-z0-9]+)*$'
+# 2026-10-16 (TRA-568): the three identity migrations (artists -> works -> scope) get channel wiring the
+# generic contract does not cover; see "Identity chain" below.
+ARTIST_STEP="2026-10-15-backfill-artist-identity"
+RELEASE_STEP="2026-10-15-backfill-release-identity"
+SCOPE_STEP="2026-10-16-scope-release-slugs"
 while [[ $# -gt 0 ]]; do
 	case "$1" in
 		--apply) APPLY=1 ;;
@@ -160,6 +165,20 @@ if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
 			exit 1
 		fi
 	done
+	# TRA-568, identity chain: the scope reads the artist manifest of THIS run (collisions such as
+	# pole / pole--stefan-betke, a prod-only artist without mbid). Its default, out/artist-identity.json,
+	# is gitignored and may be a stale file on the runner, so the scope is refused unless the artist
+	# step is part of the run and comes first -- before the snapshot, the archive or the stop.
+	SCOPE_INDEX=-1
+	ARTIST_INDEX=-1
+	for i in "${!MIGRATIONS[@]}"; do
+		if [[ "${MIGRATIONS[$i]}" == "$SCOPE_STEP" ]]; then SCOPE_INDEX=$i; fi
+		if [[ "${MIGRATIONS[$i]}" == "$ARTIST_STEP" ]]; then ARTIST_INDEX=$i; fi
+	done
+	if [[ $SCOPE_INDEX -ge 0 && ( $ARTIST_INDEX -lt 0 || $ARTIST_INDEX -gt $SCOPE_INDEX ) ]]; then
+		echo "ERROR: $SCOPE_STEP needs the artist manifest of this run: pass --migration $ARTIST_STEP before it (artists, then works, then scope) -- refusing." >&2
+		exit 1
+	fi
 	# Shipped next to genre-redirects.json after the transfer: a missing file must refuse now, not
 	# after the writer is stopped.
 	if [[ ! -f "$REPO_SLUG_REDIRECTS_PATH" ]]; then
@@ -414,11 +433,48 @@ if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
 	UNION_ROOT_BEFORE="$(union_root_state)"
 	PENDING_COUNTS_BEFORE="$(pending_counts)"
 	(cd "$REPO_ROOT" && npx tsx scripts/validate-migrated-union.ts snapshot "$UNION_DIR" "$WORKDIR/union-before.json")
+	# 2026-10-16 (TRA-568): preview and apply are two runs of this script in one job, each recomputing the
+	# identity migrations from live MusicBrainz (mbFetch's cache is in memory, per process: there is no HTTP
+	# cache on disk to keep). When MIGRATION_REPLAY_DIR is set (the workflow points it at a job-scoped dir),
+	# the first run leaves the manifests of the two MusicBrainz-backed migrations there; a later run replays
+	# them with --resume (no MusicBrainz request for what they resolved) and is refused if the identities it
+	# ends with differ from the recorded ones (a name MB did not resolve before, or no longer resolves).
+	REPLAY_DIR="${MIGRATION_REPLAY_DIR:-}"
+	[[ -z "$REPLAY_DIR" ]] || mkdir -p "$REPLAY_DIR"
 	for name in "${MIGRATIONS[@]}"; do
 		MIGRATION_MANIFEST="$WORKDIR/$name.manifest.json"
+		MIGRATION_EXTRA=()
+		REPLAY_FILE=""
+		REPLAYING=0
+		case "$name" in
+			"$ARTIST_STEP" | "$RELEASE_STEP")
+				if [[ -n "$REPLAY_DIR" ]]; then
+					REPLAY_FILE="$REPLAY_DIR/$name.manifest.json"
+					if [[ -f "$REPLAY_FILE" ]]; then
+						cp "$REPLAY_FILE" "$MIGRATION_MANIFEST"
+						MIGRATION_EXTRA+=(--resume)
+						REPLAYING=1
+						echo "==> Replaying the manifest recorded by the preview for $name (--resume)"
+					fi
+				fi
+				# The release step reads the artist manifest of this run, never a stale out/artist-identity.json.
+				if [[ "$name" == "$RELEASE_STEP" && -f "$WORKDIR/$ARTIST_STEP.manifest.json" ]]; then
+					MIGRATION_EXTRA+=(--artist-manifest "$WORKDIR/$ARTIST_STEP.manifest.json")
+				fi
+				;;
+			"$SCOPE_STEP")
+				if [[ ! -f "$WORKDIR/$ARTIST_STEP.manifest.json" ]]; then
+					echo "ERROR: $name needs the artist manifest of this run ($WORKDIR/$ARTIST_STEP.manifest.json), written by $ARTIST_STEP just before it -- refusing." >&2
+					exit 1
+				fi
+				MIGRATION_EXTRA+=(--artist-manifest "$WORKDIR/$ARTIST_STEP.manifest.json")
+				;;
+		esac
 		echo "==> Running migration $name on the union (never on the repo or the server)"
 		set +e
-		(cd "$REPO_ROOT" && npx tsx "$MIGRATIONS_DIR/$name.ts" "$UNION_DIR" --apply --manifest "$MIGRATION_MANIFEST" --data-dir "$MIGRATION_DATA_DIR")
+		# ODYSSEY_SCOPED_RELEASE_SLUGS is set for this process only (the scope refuses to run without it
+		# and the target slugs depend on it); it is not exported to the shell, so the server never sees it.
+		(cd "$REPO_ROOT" && ODYSSEY_SCOPED_RELEASE_SLUGS=1 npx tsx "$MIGRATIONS_DIR/$name.ts" "$UNION_DIR" --apply --manifest "$MIGRATION_MANIFEST" --data-dir "$MIGRATION_DATA_DIR" ${MIGRATION_EXTRA[@]+"${MIGRATION_EXTRA[@]}"})
 		MIGRATION_EXIT=$?
 		set -e
 		if [[ $MIGRATION_EXIT -ne 0 ]]; then
@@ -428,6 +484,21 @@ if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
 		if [[ ! -f "$MIGRATION_MANIFEST" ]]; then
 			echo "ERROR: migration $name wrote no manifest at $MIGRATION_MANIFEST (--manifest is part of the contract) -- refusing." >&2
 			exit 1
+		fi
+		if [[ $REPLAYING -eq 1 ]]; then
+			if ! node -e '
+const fs = require("fs");
+const canon = (v) => Array.isArray(v) ? v.map(canon) : v !== null && typeof v === "object"
+	? Object.fromEntries(Object.keys(v).sort().map((k) => [k, canon(v[k])])) : v;
+const read = (p) => { const m = JSON.parse(fs.readFileSync(p, "utf8")); delete m.generated_at; return JSON.stringify(canon(m)); };
+if (read(process.argv[1]) !== read(process.argv[2])) process.exit(1);
+' "$REPLAY_FILE" "$MIGRATION_MANIFEST"; then
+				echo "ERROR: migration $name ended with other identities than the preview recorded in $REPLAY_FILE -- the apply must not differ from the preview. Refusing before any write." >&2
+				exit 1
+			fi
+			echo "==> $name: same identities as the preview"
+		elif [[ -n "$REPLAY_FILE" ]]; then
+			cp "$MIGRATION_MANIFEST" "$REPLAY_FILE"
 		fi
 		echo "==> Migration manifest: $name"
 		cat "$MIGRATION_MANIFEST"
@@ -541,6 +612,10 @@ process.stdout.write(lines.join("\n"));
 	echo "==> pending-reverses.json after the migrations: $PENDING_KEYS_AFTER key(s), $PENDING_ENTRIES_AFTER entries"
 	if [[ $PENDING_KEYS_AFTER -lt $PENDING_KEYS_BEFORE || $PENDING_ENTRIES_AFTER -lt $PENDING_ENTRIES_BEFORE ]]; then
 		echo "WARNING: the migrations shrank pending-reverses.json ($PENDING_KEYS_BEFORE -> $PENDING_KEYS_AFTER keys, $PENDING_ENTRIES_BEFORE -> $PENDING_ENTRIES_AFTER entries): check this is intended (a rename merging keys, entries applied) before --apply." >&2
+	fi
+	# TRA-568: a rise is as suspicious as a drop (two keys merging used to concatenate their lists).
+	if [[ $PENDING_ENTRIES_AFTER -gt $PENDING_ENTRIES_BEFORE ]]; then
+		echo "WARNING: the migrations RAISED the entries of pending-reverses.json ($PENDING_ENTRIES_BEFORE -> $PENDING_ENTRIES_AFTER): a merge of two keys must not multiply entries, check the duplicates before --apply." >&2
 	fi
 	node -e '
 const fs = require("fs");

@@ -72,7 +72,14 @@ describe("sync-genre-cache workflow", () => {
 		// inside --apply), against a real remote host and a cache/ tree that only grows, so 15
 		// minutes -- fine for deploy.yml's single deploy-server.sh call -- is tight here.
 		const jobBlock = workflow.slice(workflow.indexOf("\njobs:"), workflow.indexOf("\n    steps:"));
-		expect(jobBlock).toMatch(/timeout-minutes:\s*30/);
+		// TRA-568: the three identity migrations alone take about 50 minutes (rate-limited MusicBrainz),
+		// so the budget is 120; a cancellation in the middle of the rsync leaves a mixed state.
+		const minutes = Number(/timeout-minutes:\s*(\d+)/.exec(jobBlock)?.[1]);
+		expect(minutes).toBeGreaterThanOrEqual(120);
+	});
+
+	it("gives the identity manifests a job-scoped replay dir, so the apply replays the preview (TRA-568)", () => {
+		expect(workflow).toMatch(/MIGRATION_REPLAY_DIR=\$RUNNER_TEMP\/migration-replay/);
 	});
 
 	it("reuses the deploy job's ssh-agent + known_hosts wrapper step verbatim", () => {

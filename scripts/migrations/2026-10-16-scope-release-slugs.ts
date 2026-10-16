@@ -1019,10 +1019,21 @@ export function planMigration(input: PlanInput): Plan {
 		.sort()
 		.map((from) => ({ from, to: pendingMap[from] as string }));
 	const appliedPending = new Map<string, PendingReverse[]>();
+	const withheldNotes: string[] = [];
 	for (const { to } of pendingRenames) {
 		const target = results.get(to);
-		const entries = pending.result[to];
-		if (!target || !entries) continue;
+		const all = pending.result[to];
+		if (!target || !all) continue;
+		// TRA-568: an entry that puts a credit, a parent or a genre on a work is never applied here; it waits
+		// under its key (the runtime and the purge of TRA-563 / TRA-565 decide what becomes of it).
+		const entries = all.filter((entry) => isSafePendingEntry(to, entry));
+		const withheld = all.filter((entry) => !isSafePendingEntry(to, entry));
+		if (withheld.length > 0) {
+			withheldNotes.push(
+				`${to}: ${withheld.length} pending reverse edge(s) not applied (credit, parent or genre on a work)`,
+			);
+		}
+		if (entries.length === 0) continue;
 		const next: Obj = { ...target };
 		for (const { field, cardinality, edge } of entries) {
 			if (edge.slug === to) continue;
@@ -1035,7 +1046,8 @@ export function planMigration(input: PlanInput): Plan {
 		}
 		results.set(to, next);
 		appliedPending.set(to, entries);
-		delete pending.result[to];
+		if (withheld.length > 0) pending.result[to] = withheld;
+		else delete pending.result[to];
 	}
 
 	// 8. Writes: what is new, merged, or edited.
@@ -1112,7 +1124,7 @@ export function planMigration(input: PlanInput): Plan {
 			self_edges_removed: selfEdges,
 			pending_reverses: pendingRenames,
 			errors,
-			notes: [],
+			notes: withheldNotes,
 			summary: {
 				nodes: files.length,
 				renamed: Object.keys(renamed).length,
@@ -1202,6 +1214,19 @@ async function readIdentities(path: string): Promise<ArtistIdentities | null> {
 		groups: new Map(Object.entries(parsed.resolved).map(([slug, e]) => [slug, e.groups.map((g) => g.mbid)])),
 		collisions: parsed.collisions.map((c) => ({ mbid: c.mbid, slugs: c.slugs })),
 	};
+}
+
+// Fields through which a pending reverse edge would put a credit, a parent or a genre on a work. Same rule as
+// the runtime's safe pairs (project.artists -> artist.discography, track.artists -> artist.notable_tracks,
+// project.label -> label.notable_releases, artist.labels -> label.roster): the safe direction lands on an
+// artist or a label, never on a work. A homonym's list must not graft a credit onto a work (TRA-563).
+// TODO(TRA-563): factor with the runtime safe-pairs list once it is on main.
+const WORK_FIELDS_NEVER_PENDING = new Set(["artists", "producers", "project", "label", "genres"]);
+
+/** False for a pending entry that sets a credit, a parent or a genre on the work `key` names. */
+export function isSafePendingEntry(key: string, entry: Pick<PendingReverse, "field">): boolean {
+	const { type } = parseSlug(key);
+	return !((type === "project" || type === "track") && WORK_FIELDS_NEVER_PENDING.has(entry.field));
 }
 
 function pathOf(cacheDir: string, slug: string): string {
@@ -1341,7 +1366,12 @@ export async function runMigration(options: MigrationOptions): Promise<Migration
 	// A node file we cannot read (malformed slug, bad JSON) is left alone and listed, not a reason to stop.
 	plan.manifest.malformed.push(...invalid.map((i) => ({ slug: i.path, reason: `unreadable: ${i.error}` })));
 	plan.manifest.summary.malformed = plan.manifest.malformed.length;
-	const manifest: Manifest = { ...base, ...plan.manifest, notes, written: 0 };
+	const manifest: Manifest = {
+		...base,
+		...plan.manifest,
+		notes: [...notes, ...plan.manifest.notes],
+		written: 0,
+	};
 	const blocked = plan.manifest.invariantViolations.length > 0;
 	if (blocked) {
 		manifest.errors.push(
