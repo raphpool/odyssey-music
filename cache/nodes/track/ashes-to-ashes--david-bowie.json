@@ -28,6 +28,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/71/fe/14/71fe14df-5d77-9d69-2968-c38b6bfa82a4/190295842598.jpg/600x600bb.jpg",
+  "image_source": "itunes-verified",
   "type": "track",
   "editorial_teaser": "A haunting, art-pop reimagining of the Major Tom saga, \"Ashes to Ashes\" serves as both a melancholic nursery rhyme for the 1980s and a powerful, disillusioned farewell to Bowie's own past.",
   "year": "1980",

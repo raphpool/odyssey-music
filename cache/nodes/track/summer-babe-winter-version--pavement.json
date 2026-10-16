@@ -32,6 +32,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://coverartarchive.org/release-group/869f9eac-2a40-3a41-80a3-6bf2297a7cbc/front-500",
+  "image_source": "caa",
   "type": "track",
   "editorial_teaser": "\"Summer Babe (Winter Version)\" is the iconic opening track of Pavement’s seminal 1992 debut album, *Slanted and Enchanted*.",
   "year": "1992",

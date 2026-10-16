@@ -13,6 +13,8 @@
     }
   ],
   "materialized_at": "2026-05-13T13:07:23.716Z",
+  "image_url": "https://upload.wikimedia.org/wikipedia/en/a/af/ABBA_-_The_Winner_Takes_It_All-Elaine.png",
+  "image_source": "legacy",
   "type": "track",
   "editorial_teaser": "A masterpiece of emotive pop, this 1980 ballad is widely considered one of ABBA's greatest achievements, capturing the pain of a relationship's end with profound, cinematic grace.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/a/af/ABBA_-_The_Winner_Takes_It_All-Elaine.png",
@@ -36,6 +38,7 @@
       "name": "Björn Ulvaeus"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

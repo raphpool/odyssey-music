@@ -24,6 +24,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/72/73/8f/72738f62-d8a1-f1f9-e84d-244ff697d1db/13UABIM56926.rgb.jpg/600x600bb.jpg",
+  "image_source": "itunes-verified",
   "type": "track",
   "editorial_teaser": "\"Call Me\" is a seminal new wave anthem released by the American band Blondie in 1980.",
   "year": "1980",

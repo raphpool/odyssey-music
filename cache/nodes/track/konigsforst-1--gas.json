@@ -32,6 +32,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "image_url": "https://upload.wikimedia.org/wikipedia/en/b/b2/Gas_konigsforst_cover.png",
+  "image_source": "legacy",
   "type": "track",
   "editorial_teaser": "\"Königsforst 1\" is the immersive, atmospheric opener to Wolfgang Voigt's seminal Gas album, serving as a gateway into the project's hallmark blend of looped orchestral textures and submerged techno rhythms. Drawing inspiration from the Königsforst forest, the track captures a dreamlike, hypnotic quality that remains a quintessential example of ambient techno.",
   "year": "1998",
