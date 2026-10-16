@@ -108,7 +108,18 @@ export function isSidecarEntryFresh(entry: ImageSidecarEntry, now: () => number 
 	if (ttl === null) return true;
 	const at = Date.parse(entry.resolvedAt);
 	if (Number.isNaN(at)) return false;
-	return now() - at <= ttl;
+	const age = now() - at;
+	// A date in the future (clock skew, hand-edited file) must not pin a miss forever.
+	return age >= 0 && age <= ttl;
+}
+
+/**
+ * Delete an invalid file, unless a concurrent atomic write replaced it since we read it: a fresh
+ * valid entry must not be lost to a reader that judged the previous content.
+ */
+async function discardIfUnchanged(file: string, readText: string): Promise<void> {
+	const current = await readFile(file, "utf8").catch(() => null);
+	if (current === readText) await unlink(file).catch(() => {});
 }
 
 /**
@@ -121,23 +132,27 @@ export async function readImageSidecar(
 	key: Slug,
 	now: () => number = Date.now,
 ): Promise<ImageSidecarEntry | null> {
-	const file = imageSidecarPath(cacheDir, key);
+	let file: string;
+	try {
+		file = imageSidecarPath(cacheDir, key);
+	} catch {
+		return null; // a malformed key is a miss for a reader, never a crash
+	}
 	let text: string;
 	try {
 		text = await readFile(file, "utf8");
 	} catch {
 		return null;
 	}
-	let raw: unknown;
+	let parsed: ReturnType<typeof entrySchema.safeParse>;
 	try {
-		raw = JSON.parse(text);
+		parsed = entrySchema.safeParse(JSON.parse(text));
 	} catch {
-		await unlink(file).catch(() => {});
+		await discardIfUnchanged(file, text);
 		return null;
 	}
-	const parsed = entrySchema.safeParse(raw);
 	if (!parsed.success) {
-		await unlink(file).catch(() => {});
+		await discardIfUnchanged(file, text);
 		return null;
 	}
 	const entry = parsed.data as ImageSidecarEntry;

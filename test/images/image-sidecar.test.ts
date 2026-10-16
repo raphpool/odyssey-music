@@ -150,6 +150,11 @@ describe("invalid files", () => {
 		expect(await exists(file)).toBe(false);
 	});
 
+	it("returns null instead of throwing on a malformed key", async () => {
+		await expect(readImageSidecar(dir, "track:" as Slug, now)).resolves.toBeNull();
+		await expect(readImageSidecar(dir, "nocolon" as Slug, now)).resolves.toBeNull();
+	});
+
 	it("neither serves nor deletes a valid file that belongs to another key", async () => {
 		// "track:a/b" and "track:a_b" sanitize to the same filename.
 		const other: Slug = "track:a/b";
@@ -199,6 +204,11 @@ describe("time to live", () => {
 	it("never expires a found entry", async () => {
 		await writeImageSidecar(dir, entry({ resolvedAt: ago(400 * DAY) }));
 		await expect(readImageSidecar(dir, KEY, now)).resolves.toMatchObject({ state: "found" });
+	});
+
+	it("treats a resolvedAt in the future as expired so a miss cannot be pinned", async () => {
+		await writeImageSidecar(dir, missing(-2 * DAY));
+		await expect(readImageSidecar(dir, KEY, now)).resolves.toBeNull();
 	});
 
 	it("keeps an expired file on disk for the next write to overwrite", async () => {
