@@ -98,6 +98,47 @@ describe("resolveImage: project", () => {
 		});
 	});
 
+	it("passes the node's year to the iTunes check: the 1998 re-recording is refused, the 1978 release kept (TRA-595)", async () => {
+		const nonesuch = {
+			collectionName: "Music for 18 Musicians",
+			artistName: "Steve Reich",
+			releaseDate: "1998-01-01T08:00:00Z",
+			artworkUrl100: itunesArt.replace("/x/", "/nonesuch/"),
+		};
+		const ecm = { ...nonesuch, releaseDate: "1978-01-01T08:00:00Z", artworkUrl100: itunesArt };
+		const node = projectNode("music-for-18-musicians", "Music for 18 Musicians", {
+			year: "1978",
+			artists: [edge("artist", "steve-reich", "Steve Reich")],
+		});
+		const refused = routedFetch([caaMissing, itunesWith([nonesuch])]);
+		await expect(resolveImage(node, { cache, fetch: refused })).resolves.toBeNull();
+		const kept = routedFetch([caaMissing, itunesWith([nonesuch, ecm])]);
+		await expect(resolveImage(node, { cache, fetch: kept })).resolves.toEqual({
+			url: itunesArt.replace("100x100bb", "600x600bb"),
+			source: "itunes-verified",
+		});
+	});
+
+	it("does not check the year of a project that has none", async () => {
+		const f = routedFetch([
+			caaMissing,
+			itunesWith([
+				{
+					collectionName: "New Forms",
+					artistName: "Roni Size",
+					releaseDate: "1998-01-01T08:00:00Z",
+					artworkUrl100: itunesArt,
+				},
+			]),
+		]);
+		const node = projectNode("new-forms", "New Forms", {
+			artists: [edge("artist", "roni-size", "Roni Size")],
+		});
+		await expect(resolveImage(node, { cache, fetch: f })).resolves.toMatchObject({
+			source: "itunes-verified",
+		});
+	});
+
 	it("is null when CAA has no cover and no iTunes result matches artist AND title (never results[0])", async () => {
 		const f = routedFetch([
 			caaMissing,
@@ -193,6 +234,27 @@ describe("resolveImage: track", () => {
 		});
 		const term = new URL(f.calls.find((c) => c.includes("itunes")) ?? "").searchParams.get("term");
 		expect(term).toBe("New Forms Roni Size");
+	});
+
+	it("checks a track against its project's year, not its own", async () => {
+		await seed(projectNode("new-forms", "New Forms", { year: "1997" }));
+		const album = {
+			collectionName: "New Forms",
+			artistName: "Roni Size",
+			releaseDate: "1997-06-01T07:00:00Z",
+			artworkUrl100: itunesArt,
+		};
+		const node = trackNode("brown-paper-bag", "Brown Paper Bag", {
+			year: "2005", // e.g. a later single: would wrongly refuse the album if it were used
+			project: edge("project", "new-forms", "New Forms", { year: "1997" }),
+			artists: [edge("artist", "roni-size", "Roni Size")],
+		});
+		const f = routedFetch([caaMissing, itunesWith([album])]);
+		await expect(resolveImage(node, { cache, fetch: f })).resolves.toMatchObject({
+			source: "itunes-verified",
+		});
+		const other = routedFetch([caaMissing, itunesWith([{ ...album, releaseDate: "2005-01-01T00:00:00Z" }])]);
+		await expect(resolveImage(node, { cache, fetch: other })).resolves.toBeNull();
 	});
 
 	it("is null for an orphan track whose iTunes results do not match", async () => {

@@ -210,6 +210,19 @@ final class HeroImageSourceTests: XCTestCase {
 		XCTAssertEqual(backend.reads, ["project:a", "project:b"])
 	}
 
+	func testAPendingCandidateIsSkippedWithoutWaitingAndTheNextOneIsRendered() async throws {
+		let backend = Backend(
+			images: ["project:b": "https://img.example.com/b.jpg"], pending: ["project:a"])
+		let store = backend.makeStore()
+		let candidates: [HeroCandidate] = [.node(try Self.id("project:a")), .node(try Self.id("project:b"))]
+
+		let image = await HeroImageSource.firstImage(among: candidates, store: store)
+
+		XCTAssertEqual(image, "https://img.example.com/b.jpg")
+		XCTAssertEqual(backend.reads, ["project:a", "project:b"])
+		XCTAssertEqual(backend.sleepCount, 0, "A hero never waits for a pending candidate.")
+	}
+
 	func testChainGivesNilWhenNoCandidateHasAnImageOrThereIsNone() async throws {
 		let store = Backend(images: [:]).makeStore()
 
@@ -264,25 +277,31 @@ final class HeroImageSourceTests: XCTestCase {
 private final class Backend: @unchecked Sendable {
 	private let lock = NSLock()
 	private let images: [String: String]
+	private let pending: Set<String>
 	private var recorded: [String] = []
+	private var sleeps = 0
 
-	init(images: [String: String]) {
+	init(images: [String: String], pending: Set<String> = []) {
 		self.images = images
+		self.pending = pending
 	}
 
 	var reads: [String] { lock.withLock { recorded } }
+	var sleepCount: Int { lock.withLock { sleeps } }
 
 	func makeStore() -> NodeImageStore<String> {
 		NodeImageStore<String>(
 			readImage: { [self] in read($0) },
-			load: { url in url.absoluteString == "https://img.example.com/missing.jpg" ? nil : url.absoluteString }
+			load: { url in url.absoluteString == "https://img.example.com/missing.jpg" ? nil : url.absoluteString },
+			sleep: { [self] _ in lock.withLock { sleeps += 1 } }
 		)
 	}
 
 	private func read(_ identity: NodeIdentity) -> APIResult<ImageResponse> {
 		lock.withLock { recorded.append(identity.rawValue) }
 		let url = images[identity.rawValue].map { "\"\($0)\"" } ?? "null"
-		let body = #"{"slug":"\#(identity.rawValue)","image_url":\#(url),"source":"test"}"#
+		let state = pending.contains(identity.rawValue) ? #","state":"pending","retry_after_seconds":5"# : ""
+		let body = #"{"slug":"\#(identity.rawValue)","image_url":\#(url),"source":"test"\#(state)}"#
 		guard let response = try? JSONDecoder().decode(ImageResponse.self, from: Data(body.utf8)) else {
 			return .failure(.invalidResponse)
 		}

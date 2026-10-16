@@ -71,6 +71,8 @@ public enum HeroImageSource {
 	private static let derivedCoverSource = "derived-cover"
 
 	/// The first candidate that yields an image, or `nil` when none does or the caller was cancelled.
+	/// A candidate the server is still resolving (`pending`) is skipped without waiting, so a node with no
+	/// image of its own shows a derived cover now rather than after a minute (TRA-586).
 	/// Candidates are tried one after the other, never in parallel: the first one usually wins and a
 	/// speculative `/image` read for the rest would only cost requests.
 	public static func firstImage<Image: Sendable>(
@@ -88,7 +90,7 @@ public enum HeroImageSource {
 			let image: Image?
 			switch candidate {
 			case .url(let url): image = await store.image(at: url)
-			case .node(let identity): image = await store.image(for: identity)
+			case .node(let identity): image = await store.image(for: identity, policy: .noWait)
 			}
 			if Task.isCancelled { return nil }
 			if let image { return (image, candidate) }
