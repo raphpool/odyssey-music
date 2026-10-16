@@ -109,7 +109,10 @@ jobs:
           )
           for attempt in $(seq 1 24); do
             git fetch origin "${{ github.event.pull_request.base.sha }}" --depth=50
-            paths=$(git diff --name-only "${{ github.event.pull_request.base.sha }}"..."$SHA" | jq -R . | jq -s .)
+            # TRA-553: --no-renames, so the source of a rename is a path of the PR too, and -z, so that git does not
+            # quote a path with a non-ASCII byte (the quote would defeat the `^` anchors of the policy); see tier-guard
+            # in ci.yml.
+            paths=$(git diff -z --name-only --no-renames "${{ github.event.pull_request.base.sha }}"..."$SHA" | tr '\0' '\n' | jq -R . | jq -s .)
             labels=$(gh api --paginate "repos/$REPOSITORY/issues/${{ github.event.pull_request.number }}/labels" --jq '.[].name' | jq -R . | jq -s .)
             # TRA-520: among the check-runs that pass `select_review` the latest by start time wins (a re-run adds
             # one); none at all is `missing`, which never passes. Everything is paginated and goes through files, not

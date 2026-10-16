@@ -131,12 +131,22 @@ jobs:
         # TRA-498: the base branch name reaches the shell through env, never interpolated into the script.
         env: { GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}", BASE_REF: "${{ github.event.pull_request.base.ref }}" }
         run: |
+          # TRA-553 (2026-10-16): without pipefail, a failing `git diff` piped into `tr` would leave CHANGED empty
+          # with status 0 (the default shell is `bash -e`, which looks at the last command of a pipeline only):
+          # no label, no failure. With it the step fails.
+          set -o pipefail
           BASE="origin/$BASE_REF"
           git fetch origin "$BASE_REF" --depth=50
-          CHANGED=$(git diff --name-only "$BASE"...HEAD)
+          # TRA-553 (2026-10-15): --no-renames, otherwise `git mv REVIEW.md docs/REVIEW.md` lists only the
+          # destination and the sensitive source path escapes the grep; with it both sides are listed. -z: without
+          # it git quotes a path with a non-ASCII byte (`".github/workflows/\303\251.yml"`), and the leading quote
+          # defeats every `^` anchor of the pattern; NUL-separated, paths come out raw (a newline inside a path
+          # can only split it into more lines, which over-escalates and never hides one).
+          CHANGED=$(git diff -z --name-only --no-renames "$BASE"...HEAD | tr '\0' '\n')
           # TRA-498: this pattern is `sensitivePath` of scripts/ci/review-gate-policy.ts with `\/` written `/`;
-          # test/ci-integrity-job.test.ts fails when the two drift apart.
-          if echo "$CHANGED" | grep -Eq '(^|/)(auth|payment[s]?|migrations|infra|deploy)/|^\.github/|^scripts/(deploy-|ci/review-gate-policy|ci/review-reuse|ci/threshold-ratchet\.ts$|audit-cache\.ts$)|^data/integrity-thresholds\.json$|^\.codex/scripts/publish-review-status\.sh$|\.sql$|secrets'; then
+          # test/ci-integrity-job.test.ts fails when the two drift apart. TRA-553: `-i` is its flag `i` (APFS
+          # ignores case on the runner, so `review.md` is `REVIEW.md` there).
+          if echo "$CHANGED" | grep -Eqi '(^|/)(auth|payment[s]?|migrations|infra|deploy)/|^\.github/|^scripts/(deploy-|ci/review-gate-policy|ci/review-reuse|ci/threshold-ratchet\.ts$|audit-cache\.ts$)|^data/integrity-thresholds\.json$|^\.codex/scripts/publish-review-status\.sh$|^REVIEW\.md$|\.sql$|secrets'; then
             echo "Chemin sensible touché → tier/3"
             gh pr edit "${{ github.event.pull_request.number }}" --add-label "tier/3"
             gh pr edit "${{ github.event.pull_request.number }}" --remove-label "tier/1" || true

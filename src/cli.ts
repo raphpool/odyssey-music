@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { Command } from "commander";
+import { NodeCache } from "./cache.js";
 import { cliConfig } from "./config.js";
 import {
 	backfillSeedGenres,
@@ -14,6 +15,7 @@ import {
 import { type ApiEnv, loadEnv } from "./env.js";
 import { type GenreSeed, type GenreSeeds, loadGenreSeeds } from "./genre-seeds.js";
 import { type GenreTaxonomy as CanonicalGenreTaxonomy, validateGenreTaxonomy } from "./genre-taxonomy.js";
+import { resolveImage } from "./images/resolve-image.js";
 import { logger } from "./logger.js";
 import type { PipelineDeps } from "./pipeline.js";
 
@@ -53,11 +55,20 @@ export function resolveSearchProvider(value: string): "tavily" | "firecrawl" {
 // testable: inlined in the action closure, a dropped `searchProvider` field is invisible to
 // every existing test (nothing asserts on `deps` directly), so the CLI's --search-provider
 // flag could silently stop reaching the pipeline without a single red test.
-export function buildCrawlDeps(searchProvider: "tavily" | "firecrawl", env: ApiEnv): PipelineDeps {
+export function buildCrawlDeps(
+	searchProvider: "tavily" | "firecrawl",
+	env: ApiEnv,
+	// TRA-479: the cache directory the crawl writes to. Given, the nodes it materializes get an image
+	// (a derived cover reads edges already in that cache). Left out, no image step -- as before.
+	out?: string,
+): PipelineDeps {
 	return {
 		tavilyApiKey: env.TAVILY_API_KEY,
 		firecrawlApiKey: env.FIRECRAWL_API_KEY,
 		searchProvider,
+		...(out === undefined
+			? {}
+			: { resolveImage: (node) => resolveImage(node, { cache: new NodeCache(out) }) }),
 	};
 }
 
@@ -254,7 +265,7 @@ program
 			// an environment that never configured Gemini/Tavily/Firecrawl.
 			const deps: PipelineDeps = isBackfill
 				? { tavilyApiKey: "", firecrawlApiKey: "" }
-				: buildCrawlDeps(searchProvider, loadEnv({ searchProvider }));
+				: buildCrawlDeps(searchProvider, loadEnv({ searchProvider }), opts.out);
 			const t0 = Date.now();
 			const strategy: "bfs" | "popularity" | "hybrid" =
 				opts.strategy === "bfs" ? "bfs" : opts.strategy === "popularity" ? "popularity" : "hybrid";
