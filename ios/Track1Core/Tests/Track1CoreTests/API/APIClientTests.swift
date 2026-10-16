@@ -150,6 +150,26 @@ final class APIClientTests: XCTestCase {
 		assertFailure(await makeErrorClient(.notConnectedToInternet).search(query: "massive"), equals: .network)
 	}
 
+	func testImageResponseFromAnOlderServerHasNoStateAndIsNotPending() throws {
+		let body = #"{"slug":"artist:massive-attack","image_url":null,"source":"cache"}"#
+
+		let decoded = try JSONDecoder().decode(ImageResponse.self, from: Data(body.utf8))
+
+		XCTAssertNil(decoded.state)
+		XCTAssertNil(decoded.retryAfterSeconds)
+		XCTAssertFalse(decoded.isPending)
+	}
+
+	func testImageResponseReadsAMalformedStateOrDelayAsAbsent() throws {
+		let body =
+			#"{"slug":"artist:massive-attack","image_url":null,"source":"cache","state":[],"retry_after_seconds":"soon"}"#
+
+		let decoded = try JSONDecoder().decode(ImageResponse.self, from: Data(body.utf8))
+
+		XCTAssertNil(decoded.state)
+		XCTAssertNil(decoded.retryAfterSeconds)
+	}
+
 	func testReadsImageLinksSearchAndGenerationResponses() async {
 		let requestID = UUID(uuidString: "11111111-1111-4111-8111-111111111111")!
 		let client = makeClient { request in
@@ -157,7 +177,9 @@ final class APIClientTests: XCTestCase {
 			case "/mobile/v1/nodes/artist:massive-attack/image":
 				return response(
 					request, status: 200,
-					body: "{\"slug\":\"artist:massive-attack\",\"image_url\":null,\"source\":\"cache\"}")
+					body:
+						"{\"slug\":\"artist:massive-attack\",\"image_url\":null,\"source\":\"cache\",\"state\":\"pending\",\"retry_after_seconds\":5}"
+				)
 			case "/mobile/v1/nodes/artist:massive-attack/links":
 				return response(
 					request, status: 200,
@@ -181,7 +203,12 @@ final class APIClientTests: XCTestCase {
 			}
 		}
 
-		guard case .success = await client.image(identity) else { return XCTFail("Expected image response.") }
+		guard case .success(let image, _) = await client.image(identity) else {
+			return XCTFail("Expected image response.")
+		}
+		XCTAssertEqual(image.state, "pending")
+		XCTAssertEqual(image.retryAfterSeconds, 5)
+		XCTAssertTrue(image.isPending)
 		guard case .success = await client.links(identity) else { return XCTFail("Expected links response.") }
 		guard case .success = await client.search(query: "acid&bass") else {
 			return XCTFail("Expected search response.")

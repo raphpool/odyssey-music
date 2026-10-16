@@ -283,9 +283,16 @@ public struct ImageResponse: Decodable, Sendable {
 	public let slug: NodeIdentity
 	public let imageURL: URL?
 	public let source: String
+	/// "found", "pending" or "none". `nil` for a server that predates the 202 contract (TRA-586).
+	public let state: String?
+	/// Server hint for the next attempt while `state` is "pending".
+	public let retryAfterSeconds: Int?
+	/// The server is still resolving the image in the background: this is "not yet", not a failure.
+	public var isPending: Bool { state == "pending" }
 	enum CodingKeys: String, CodingKey {
-		case slug, source
+		case slug, source, state
 		case imageURL = "image_url"
+		case retryAfterSeconds = "retry_after_seconds"
 	}
 	public init(from decoder: Decoder) throws {
 		let v = try decoder.container(keyedBy: CodingKeys.self)
@@ -293,6 +300,9 @@ public struct ImageResponse: Decodable, Sendable {
 		imageURL = try v.decodeRequiredNullable(ValidatedPublicURL.self, forKey: .imageURL)?.value
 		source = try v.decode(String.self, forKey: .source)
 		guard !source.isEmpty else { throw APIModelError.invalidValue }
+		// Additive, optional fields: a malformed value is read as absent instead of failing the response.
+		state = (try? v.decodeIfPresent(String.self, forKey: .state)) ?? nil
+		retryAfterSeconds = (try? v.decodeIfPresent(Int.self, forKey: .retryAfterSeconds)) ?? nil
 	}
 }
 public struct LinksResponse: Decodable, Sendable {
