@@ -980,6 +980,16 @@ function creditKey(name: string): string {
 	return body.startsWith("the-") ? body.slice(4) : body;
 }
 
+/**
+ * True when two artist names are the same artist under creditKey: the one equality rule of the credit
+ * step, shared with the backfill's downstream confirmation (TRA-539) so that a single rule exists.
+ * Never containment; two names that reduce to nothing are not equal.
+ */
+export function sameCreditName(a: string, b: string): boolean {
+	const ka = creditKey(a);
+	return ka !== "" && ka === creditKey(b);
+}
+
 /** Names of the credited artist's aliases, from an untrusted search hit: anything that is not a name is dropped. */
 function aliasNames(entry: MbArtistCreditEntry): string[] {
 	const aliases = entry.artist?.aliases;
@@ -1052,6 +1062,49 @@ function creditEqualsHint(entries: MbArtistCreditEntry[], hintKey: string): bool
 	});
 }
 
+/**
+ * True when one of the credited artists carries one of the accepted MBIDs. MBIDs only: a name is never
+ * enough here (TRA-539); the caller got these from a source it trusts (the artist's MB memberships).
+ */
+function creditCarriesMbid(entries: MbArtistCreditEntry[], accepted: ReadonlySet<string>): boolean {
+	return entries.some((e) => typeof e.artist?.id === "string" && accepted.has(e.artist.id.toLowerCase()));
+}
+
+/** True when one accepted MBID is carried by the credit of every candidate. */
+function shareAcceptedMbid(
+	candidates: { "artist-credit"?: MbArtistCreditEntry[] | undefined }[],
+	accepted: ReadonlySet<string>,
+): boolean {
+	return [...accepted].some((mbid) =>
+		candidates.every((c) => creditCarriesMbid(c["artist-credit"] ?? [], new Set([mbid]))),
+	);
+}
+
+/** Options of the detailed work resolvers. */
+export interface WorkResolveOptions {
+	/**
+	 * MBIDs of credited artists that stand for the requested artist, in addition to the equality of names:
+	 * the bands the artist is a member of (Roni Size is credited as "Roni Size / Reprazent"). Accepted by
+	 * MBID only. A title that has one candidate credited to the artist by name AND another credited to such
+	 * a band is `ambiguous`, never resolved to the direct one: the two may be the original and a duplicate
+	 * ("Uoon II").
+	 */
+	acceptCreditMbids?: readonly string[];
+	/**
+	 * MBID of the requested artist. A candidate with a credited artist carrying it is a DIRECT candidate,
+	 * whatever name it is printed under (TRA-552): "Roni Size Presents" is neither equal to the hint nor
+	 * cut into segments by it, so by name alone the artist's own work was set aside without a sound and
+	 * the band's work of the same title won through `acceptCreditMbids`. Compared by MBID only, without
+	 * regard to case; it widens what counts as direct, never what a name may match. Mixed with a
+	 * band-credited candidate it falls under the same rule as any direct one: `ambiguous`.
+	 */
+	requestedArtistMbid?: string | undefined;
+}
+
+function acceptedMbidSet(options: WorkResolveOptions): Set<string> {
+	return new Set((options.acceptCreditMbids ?? []).map((m) => m.toLowerCase()));
+}
+
 type Pick<T> = { kind: "one"; candidate: T } | { kind: "none" } | { kind: "ambiguous" };
 
 /** True when `a` is a strictly earlier date than `b`: "1999" is not earlier than "1999-05-03" (same year). */
@@ -1095,6 +1148,8 @@ function pickByTitleAndCredit<
 	title: string,
 	artistHint: string | undefined,
 	kind: "release-group" | "recording",
+	acceptedMbids: ReadonlySet<string> = new Set(),
+	requestedArtistMbid?: string,
 ): Pick<T> {
 	const wanted = normalizeTitleBody(title);
 	if (!wanted) return { kind: "none" };
@@ -1105,7 +1160,27 @@ function pickByTitleAndCredit<
 	// TRA-537), which would take the lone exact-title candidate whatever its credit.
 	if (hasHint && hint === "") return { kind: "none" };
 	// With a hint, only a candidate credited to that artist can be the work; without one the title alone decides.
-	const pool = hasHint ? exact.filter((c) => creditEqualsHint(c["artist-credit"] ?? [], hint)) : exact;
+	// The artist's own MBID makes a credit direct whatever name it is printed under (TRA-552).
+	const requested = requestedArtistMbid?.trim() ? new Set([requestedArtistMbid.trim().toLowerCase()]) : null;
+	const direct = hasHint
+		? exact.filter(
+				(c) =>
+					creditEqualsHint(c["artist-credit"] ?? [], hint) ||
+					(requested !== null && creditCarriesMbid(c["artist-credit"] ?? [], requested)),
+			)
+		: exact;
+	// Credited to a band the artist belongs to, accepted by MBID alone (TRA-539). Mixed with a direct
+	// credit on the same title it is a doubt, not a preference for the direct one (TRA-537 deep review).
+	const viaGroup =
+		hasHint && acceptedMbids.size > 0
+			? exact.filter((c) => !direct.includes(c) && creditCarriesMbid(c["artist-credit"] ?? [], acceptedMbids))
+			: [];
+	if (direct.length > 0 && viaGroup.length > 0) return { kind: "ambiguous" };
+	// Two different bands of the same member, each with a work of this title: which one is meant is a
+	// doubt, not a matter of age (TRA-552; main kept the oldest). Candidates that share one accepted band
+	// (an original and its duplicate) stay the business of the steps below.
+	if (viaGroup.length > 1 && !shareAcceptedMbid(viaGroup, acceptedMbids)) return { kind: "ambiguous" };
+	const pool = direct.length > 0 ? direct : viaGroup;
 	if (pool.length === 0) return { kind: "none" };
 	if (!hasHint && pool.length > 1) return { kind: "ambiguous" };
 	// An exact-title candidate set aside because its credit is a group or duo that NAMES the artist
@@ -1189,6 +1264,7 @@ export interface MbWorkResolution {
 export async function resolveReleaseGroupDetailed(
 	title: string,
 	artistHint?: string,
+	options: WorkResolveOptions = {},
 ): Promise<MbWorkResolution> {
 	const none: MbWorkResolution = { identity: null, ambiguous: false, unavailable: false };
 	const query = luceneQuery("releasegroup", title, artistHint);
@@ -1199,7 +1275,14 @@ export async function resolveReleaseGroupDetailed(
 	// gives null for JSON off schema. All four are an outage, not a verdict.
 	if (!releaseGroups) return { ...none, unavailable: true };
 	if (isTruncated(body, releaseGroups.length)) return { ...none, ambiguous: true };
-	const picked = pickByTitleAndCredit(releaseGroups, title, artistHint, "release-group");
+	const picked = pickByTitleAndCredit(
+		releaseGroups,
+		title,
+		artistHint,
+		"release-group",
+		acceptedMbidSet(options),
+		options.requestedArtistMbid,
+	);
 	if (picked.kind !== "one") return { ...none, ambiguous: picked.kind === "ambiguous" };
 	const rg = picked.candidate;
 	return {
@@ -1219,6 +1302,7 @@ export async function resolveReleaseGroupDetailed(
 export async function resolveRecordingDetailed(
 	title: string,
 	artistHint?: string,
+	options: WorkResolveOptions = {},
 ): Promise<MbWorkResolution> {
 	const none: MbWorkResolution = { identity: null, ambiguous: false, unavailable: false };
 	const query = luceneQuery("recording", title, artistHint);
@@ -1227,7 +1311,14 @@ export async function resolveRecordingDetailed(
 	const recordings = parseRecordings(body);
 	if (!recordings) return { ...none, unavailable: true };
 	if (isTruncated(body, recordings.length)) return { ...none, ambiguous: true };
-	const picked = pickByTitleAndCredit(recordings, title, artistHint, "recording");
+	const picked = pickByTitleAndCredit(
+		recordings,
+		title,
+		artistHint,
+		"recording",
+		acceptedMbidSet(options),
+		options.requestedArtistMbid,
+	);
 	if (picked.kind !== "one") return { ...none, ambiguous: picked.kind === "ambiguous" };
 	const rec = picked.candidate;
 	return {
@@ -1387,22 +1478,35 @@ const COUNTRY_CODES: Record<string, string> = {
 	AU: "australia",
 };
 
-/** Lowercase, accent-free, country-folded words (>= 3 chars) of free text, minus filler. */
-function contextWords(text: string): string[] {
-	let s = text
+/** Lowercase, accent-free text, with the dots of abbreviations ("U.S.", "St.") removed. */
+function foldText(text: string): string {
+	return text
 		.normalize("NFKD")
 		.replace(/\p{M}/gu, "")
 		.toLowerCase()
 		.replace(/(?<=\p{L})\.(?=\p{L})/gu, "")
 		.replace(/(?<=\p{L})\./gu, "");
+}
+
+/** Every word of free text, folded by {@link foldText}, each country folded to one token, nothing dropped. */
+function foldedWords(text: string): string[] {
+	let s = foldText(text);
 	for (const [pattern, token] of COUNTRY_PHRASES) s = s.replace(pattern, ` ${token} `);
-	const words = s.split(/[^\p{L}\p{N}]+/u).map((w) => COUNTRY_WORDS[w] ?? w);
-	return [...new Set(words.filter((w) => w.length >= 3 && !HINT_STOPWORDS.has(w)))];
+	return s
+		.split(/[^\p{L}\p{N}]+/u)
+		.filter((w) => w !== "")
+		.map((w) => COUNTRY_WORDS[w] ?? w);
+}
+
+/** Lowercase, accent-free, country-folded words (>= 3 chars) of free text, minus filler. */
+function contextWords(text: string): string[] {
+	return [...new Set(foldedWords(text).filter((w) => w.length >= 3 && !HINT_STOPWORDS.has(w)))];
 }
 
 /**
  * True when a name keeps a letter that is not a-z once accents are stripped ("坂本龍一", "Группа", but
- * also "ø", "ł", "ß", which NFKD does not decompose): slug normalization would erase it.
+ * also "ø", "ł", "ß", "ð", "ı", which NFKD does not decompose): slug normalization (flag off) would
+ * erase it. It reads the NFKD fold, not the slug flag or the transliteration table.
  */
 function hasUnfoldableLetter(name: string): boolean {
 	return /\p{L}/u.test(name.normalize("NFKD").replace(/\p{M}/gu, "").replace(/[a-z]/gi, ""));
@@ -1411,11 +1515,14 @@ function hasUnfoldableLetter(name: string): boolean {
 /**
  * Name identity between a requested artist name and an MB name or alias. Latin names compare through
  * normalizeSlugBody (case, accents, punctuation, "&"). A name with letters it would erase compares
- * literally (NFKC, case-folded) instead: normalizeSlugBody reduces "坂本龍一" to "" and "Группа X" to "x",
- * and, with the slug transliteration off (default), "Mø" to "m", which would make unrelated artists equal.
- * With ODYSSEY_SCOPED_RELEASE_SLUGS on (TRA-528) "Mø" becomes "mo", but the guard stays: it does not read
- * the flag, so a name with "ø" is compared literally either way ("Mø" vs "Mo" is false, "Mø" vs "MØ"
- * true). Stricter than the slug, never looser.
+ * literally (NFKC, case-folded) instead: normalizeSlugBody reduces "坂本龍一" to "" and "Группа X" to "x".
+ * The same goes for the letters NFKD leaves whole (ø æ œ ł ß đ ð ı þ), and the guard does NOT read
+ * ODYSSEY_SCOPED_RELEASE_SLUGS, so it behaves the same with the flag off and on:
+ * - flag off (default, TRA-528/TRA-531): normalizeSlugBody drops them ("Mø" -> "m", "Kırdar" -> "k-rdar"),
+ *   so slug comparison would make unrelated artists equal ("Mø" = "M");
+ * - flag on: they are transliterated ("Mø" -> "mo", "Kırdar" -> "kirdar"), which would be safe, but the
+ *   literal comparison is kept: "Mø" vs "Mo" and "Kırdar" vs "Kirdar" are false, "Mø" vs "MØ" true.
+ * Stricter than the slug, never looser.
  */
 function sameArtistName(a: string, b: string): boolean {
 	if (hasUnfoldableLetter(a) || hasUnfoldableLetter(b)) {
@@ -1435,11 +1542,12 @@ interface MbArtistSearchHit {
 	 */
 	context: Set<string>;
 	/**
-	 * Words of the areas MB types as anything but `Country` (a city, a subdivision, an island): the only
-	 * words that tell homonyms apart. Empty when MB gives no area or no type.
+	 * Whole names ({@link placeSegment}) of the areas MB types as anything but `Country` (a city, a
+	 * subdivision, an island): the only places that tell homonyms apart, compared whole, never word by
+	 * word ("new york" is not "york"). Empty when MB gives no area or no type.
 	 */
 	places: Set<string>;
-	/** The words of `places` that come from an area typed `City`: what a partial pool is trusted on. */
+	/** The names of `places` that come from an area typed `City`: what a partial pool is trusted on. */
 	cities: Set<string>;
 }
 
@@ -1528,9 +1636,9 @@ function parseArtistSearchHits(body: unknown): ArtistSearchPage | null {
 				),
 			),
 			// An area of unknown type is not a place: it might be a country MB left untyped.
-			places: new Set(areas.filter((a) => isPlaceType(a.type)).flatMap((a) => contextWords(a.name))),
+			places: new Set(areas.filter((a) => isPlaceType(a.type)).flatMap((a) => areaPlaces(a.name))),
 			cities: new Set(
-				areas.filter((a) => a.type?.trim().toLowerCase() === "city").flatMap((a) => contextWords(a.name)),
+				areas.filter((a) => a.type?.trim().toLowerCase() === "city").flatMap((a) => areaPlaces(a.name)),
 			),
 		});
 	}
@@ -1548,40 +1656,108 @@ function hintWords(hints: readonly (string | undefined)[]): string[] {
 }
 
 /**
- * The words of a node's `origin` that can name a place: its first segment ("Sydney" of "Sydney,
- * Australia", "Guadalajara" of "Guadalajara, Jalisco, Mexico"), minus country tokens. Segments are cut at
- * `,` `;` and `/`. Later segments are regions and countries, and MB areas below `Country` bear their
- * names ("Western Australia"). An origin of a single segment gives no word at all: it is most often a
- * country, and the countries no list names ("Georgia", "Lebanon", "Panama") would match an MB area
- * (a US state, a city) the same way (2026-10-15, TRA-508 re-review). A bare city is lost on purpose.
+ * A place name as one comparable unit: lowercase, accent-free, punctuation and hyphens folded to single
+ * spaces, every word kept, the directional ones too. Neither country-folded nor filtered: two places are
+ * the same only when their whole names are ("North Carolina" is not "South Carolina", "New York" is not
+ * "York", "Altamonte Springs" is not "Colorado Springs").
  */
-function originPlaceWords(origin: string | undefined): string[] {
+function placeSegment(text: string): string {
+	return foldText(text)
+		.split(/[^\p{L}\p{N}]+/u)
+		.filter((w) => w !== "")
+		.join(" ");
+}
+
+/**
+ * The places an MB area name stands for: the whole name, then each of its `,` `;` `/` segments that keeps
+ * a word, cut as a node's `origin` is. MB puts commas in area names ("Washington, D.C.", "Watts, Los
+ * Angeles"): compared whole only, the origin "Washington, D.C., U.S." (segment "washington") would equal
+ * the State of Washington and not D.C. itself, so a homonym from the State would win (2026-10-15, TRA-533
+ * deep review). The type of an area (City) applies to each of its places.
+ */
+function areaPlaces(name: string): string[] {
+	const parts = name
+		.split(/[,;/]/)
+		.filter((part) => contextWords(part).length > 0)
+		.map(placeSegment);
+	return [...new Set([placeSegment(name), ...parts])].filter((place) => place !== "");
+}
+
+/**
+ * Names of a city that MB gives shorter, to the name MB gives. Compared against areas typed `City` only
+ * (the State of New York is not New York City). Never "City" removed in general: Kansas City is not
+ * Kansas, Mexico City is not Mexico, Quebec City is not Quebec (TRA-533 deep review: Chic).
+ */
+const CITY_ALIASES: Readonly<Record<string, string>> = { "new york city": "new york" };
+
+/**
+ * Words that may stand around a country's name without making it a place: "Republic of the Congo",
+ * "South Africa", "New Zealand", "North Korea". (As before TRA-533, "New Mexico" is a country segment
+ * too: a US state named after a country is lost on purpose.)
+ */
+const COUNTRY_FILLER: ReadonlySet<string> = new Set([
+	"the",
+	"of",
+	"republic",
+	"new",
+	"north",
+	"south",
+	"east",
+	"west",
+]);
+
+/** True when a text says nothing but a country: "England", "U.S.", "Republic of Ireland", "South Africa". */
+function isCountrySegment(text: string): boolean {
+	return foldedWords(text).every((w) => COUNTRY_TOKENS.has(w) || COUNTRY_FILLER.has(w));
+}
+
+/**
+ * The place a node's `origin` names, as one whole {@link placeSegment}: its first segment ("sydney" of
+ * "Sydney, Australia", "new york" of "New York, USA"), or none. Segments are cut at `,` `;` and `/`.
+ * Later segments are regions and countries, and MB areas below `Country` bear their names ("Western
+ * Australia"). No place at all when:
+ * - the origin has a single segment: it is most often a country, and the countries no list names
+ *   ("Georgia", "Lebanon", "Panama") would match an MB area (a US state, a city) the same way
+ *   (2026-10-15, TRA-508 re-review). A bare city is lost on purpose;
+ * - the segment is only a country ({@link COUNTRY_TOKENS}): MB names areas below `Country` after countries
+ *   (TRA-508 review: Keith Richards, Nico). "Mexico City" is a city, not a country;
+ * - the segment has no word that {@link contextWords} keeps ("New", "LA"): too little to be a place.
+ * The segment is compared whole against MB's area names, never word by word. Word by word, "New York"
+ * became "york" and shared a place with York, North and South Carolina shared "carolina", and "springs"
+ * alone tied Altamonte Springs to Colorado Springs (2026-10-15, TRA-533, found in the TRA-508 review).
+ */
+function originPlaceSegments(origin: string | undefined): string[] {
 	const segments = (origin ?? "").split(/[,;/]/).filter((segment) => segment.trim() !== "");
 	const [first] = segments;
-	return first && segments.length > 1 ? contextWords(first).filter((w) => !COUNTRY_TOKENS.has(w)) : [];
+	if (!first || segments.length < 2) return [];
+	const place = placeSegment(first);
+	return contextWords(first).length > 0 && !isCountrySegment(first) ? [place] : [];
 }
 
 /**
  * What the pool's candidates are chosen with. `words` are all the node's hint words (disambiguator and
- * origin): they can only refuse a lone candidate. `origin` are {@link originPlaceWords}: the only words
- * that can separate homonyms, and only against {@link MbArtistSearchHit.places}.
+ * origin): they can only refuse a lone candidate. `origin` are {@link originPlaceSegments}: the only
+ * places that can separate homonyms, and only against {@link MbArtistSearchHit.places}.
  */
 interface ArtistHints {
 	words: string[];
 	origin: string[];
+	/** {@link CITY_ALIASES} of `origin`: places that only an area typed `City` can share. */
+	cityAliases: string[];
 }
 
 /**
  * The one candidate MB means, with the hint words that decided it, or null.
  *
  * Several exact homonyms: the one whose places (areas MB does not type `Country`) share strictly more
- * words with the node's origin than every other, and at least one. Neither a country, nor MB's
+ * whole place names with the node's origin than every other, and at least one ({@link originPlaceSegments}:
+ * a name is shared only when it is the same whole name, "New York" is not "York"). Neither a country, nor MB's
  * disambiguation, nor the node's free-text disambiguator separates homonyms: the real "Aphex Twin" has
  * no country in its MB context while the impostor "UK experimental electronic artist" has one and the
  * word "electronic" (2026-10-15, TRA-506 and TRA-508 reviews: "Cornwall, England", then
  * "electronic musician", made the impostor win). MB's side drops `Country` areas by type (no list of
  * countries to keep: Kazakhstan, Georgia and Puerto Rico used to slip through one); the node's side
- * keeps the first segment of its origin only, without country tokens, because MB names areas below
+ * keeps the first segment of its origin only, unless it is a country, because MB names areas below
  * `Country` after countries ("Western Australia" took Keith Richards, "Ciudad de México" took Nico).
  *
  * A single candidate is accepted unless the node has hints and MB has a context for it and the two share
@@ -1596,8 +1772,12 @@ function pickByHints(
 	hints: ArtistHints,
 	complete: boolean,
 ): { hit: MbArtistSearchHit; matched: string[] } | null {
-	const sharedPlaces = (hit: MbArtistSearchHit) => hints.origin.filter((w) => hit.places.has(w));
-	const sharesCity = (hit: MbArtistSearchHit) => hints.origin.some((w) => hit.cities.has(w));
+	const sharedPlaces = (hit: MbArtistSearchHit) => [
+		...hints.origin.filter((w) => hit.places.has(w)),
+		...hints.cityAliases.filter((w) => hit.cities.has(w)),
+	];
+	const sharesCity = (hit: MbArtistSearchHit) =>
+		[...hints.origin, ...hints.cityAliases].some((w) => hit.cities.has(w));
 	const [only] = pool;
 	if (pool.length === 1 && only) {
 		const common = hints.words.filter((w) => only.context.has(w));
@@ -1624,9 +1804,11 @@ export interface MbArtistResolution {
 	/** True when a search got no usable answer, which says nothing about the artist. */
 	unavailable: boolean;
 	/**
-	 * The hint words that chose the artist, for audit: the places shared with the node's origin when
-	 * homonyms were told apart, else the hint words shared with MB's context. Empty when nothing was
-	 * chosen, or when the node gave no hint.
+	 * What chose the artist, for audit. Whole normalized place names ("new york", "altamonte springs")
+	 * shared with the node's origin when homonyms were told apart or a partial pool was trusted; else
+	 * hint words (single words) shared with MB's context. Empty when nothing was chosen, or when the
+	 * node gave no hint. (TRA-533: kept under this name for the manifest; entries are no longer always
+	 * single words.)
 	 */
 	matchedWords: string[];
 }
@@ -1713,9 +1895,14 @@ export async function resolveArtistDetailed(
 		pool = aliasFound.hits.filter((h) => h.aliases.some((alias) => sameArtistName(alias, name)));
 	}
 	if (pool.length === 0) return none;
+	const origin = originPlaceSegments(hints.origin);
 	const picked = pickByHints(
 		pool,
-		{ words: hintWords([hints.disambiguator, hints.origin]), origin: originPlaceWords(hints.origin) },
+		{
+			words: hintWords([hints.disambiguator, hints.origin]),
+			origin,
+			cityAliases: origin.flatMap((place) => CITY_ALIASES[place] ?? []),
+		},
 		complete,
 	);
 	return {

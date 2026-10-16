@@ -422,10 +422,141 @@ describe("project:new-forms", () => {
 		]);
 	});
 
-	// TRA-537 (2026-10-15): before, a member's name resolved the group's work ("Roni Size" for "Roni Size
-	// / Reprazent", then confirmed by the group's MBID). The resolver now demands that the credit equals
-	// the artist asked for, so the member stays unresolved: safety before resolution rate.
-	it("leaves a member unresolved when MusicBrainz credits the group only", async () => {
+	// Fixed literals: mbid() restarts with every test, so it would collide with the ids drawn above.
+	const RONI_SIZE = "00000000-0000-4000-8000-0000000000a1";
+	const OTHER_BAND = "00000000-0000-4000-8000-0000000000a2";
+	const RONI_SIZE_2022_RG = "00000000-0000-4000-8000-0000000000a4";
+
+	/** The artist manifest of TRA-463: Roni Size, a member of Reprazent. */
+	async function writeMemberManifest(groupMbid: string): Promise<string> {
+		await mkdir(join(root, "out"), { recursive: true });
+		const artistManifestPath = join(root, "out", "artist-identity.json");
+		await writeFile(
+			artistManifestPath,
+			JSON.stringify({
+				resolved: {
+					"artist:roni-size": {
+						mbid: RONI_SIZE,
+						groups: [{ mbid: groupMbid, name: "Roni Size / Reprazent" }],
+					},
+				},
+				unresolved: [],
+			}),
+		);
+		return artistManifestPath;
+	}
+
+	const seedMember = () =>
+		seed(
+			artistNode("artist:roni-size", {
+				name: "Roni Size",
+				discography: [edge("project:new-forms", "New Forms")],
+			}),
+			projectNode("project:new-forms", "New Forms"),
+		);
+
+	// TRA-539 (2026-10-15): TRA-537 made the resolver demand an equal credit, which cut the member -> group
+	// path. It is back, by the group's MBID from the artist manifest and by nothing else.
+	it("resolves a member's work credited to the group, by the group's MBID from the artist manifest", async () => {
+		stubMb(works);
+		await seedMember();
+		const artistManifestPath = await writeMemberManifest(reprazent);
+
+		const result = await run({ apply: true, artistManifestPath });
+
+		expect(result.manifest.unresolved).toEqual([]);
+		expect(result.manifest.resolved["project:new-forms"]?.mbid).toBe(rg);
+		expect((await readNode("project:new-forms")).mbid).toBe(rg);
+	});
+
+	it("does not resolve it for a member whose manifest lists another band", async () => {
+		stubMb(works);
+		await seedMember();
+		const artistManifestPath = await writeMemberManifest(OTHER_BAND);
+
+		const result = await run({ apply: true, artistManifestPath });
+
+		expect(result.manifest.resolved).toEqual({});
+		expect(result.manifest.unresolved).toHaveLength(1);
+		expect((await readNode("project:new-forms")).mbid).toBeUndefined();
+	});
+
+	// A title of its own: MusicBrainz answers are cached per request for the whole file.
+	it("keeps a title ambiguous when one candidate is credited to the member and another to the group", async () => {
+		stubMb([
+			{
+				kind: "release-group",
+				id: RONI_SIZE_2022_RG,
+				title: "Twin Forms",
+				credit: [{ id: RONI_SIZE, name: "Roni Size" }],
+				date: "2022",
+				primaryType: "Album",
+			},
+			{
+				kind: "release-group",
+				id: rg,
+				title: "Twin Forms",
+				credit: [{ id: reprazent, name: "Roni Size / Reprazent" }],
+				date: "1997",
+				primaryType: "Album",
+			},
+		]);
+		await seed(
+			artistNode("artist:roni-size", {
+				name: "Roni Size",
+				discography: [edge("project:twin-forms", "Twin Forms")],
+			}),
+			projectNode("project:twin-forms", "Twin Forms"),
+		);
+		const artistManifestPath = await writeMemberManifest(reprazent);
+
+		const result = await run({ apply: true, artistManifestPath });
+
+		expect(result.manifest.resolved).toEqual({});
+		expect(result.manifest.unresolved.map((u) => u.reason)).toEqual(["ambiguous-candidates"]);
+		expect((await readNode("project:twin-forms")).mbid).toBeUndefined();
+	});
+
+	// TRA-552: the artist's MBID, from the artist manifest, makes his own work direct under any printed
+	// name; the group's work of the same title then makes the title a doubt, not the group's work.
+	it("keeps a title ambiguous when the member's own work is printed under another name", async () => {
+		stubMb([
+			{
+				kind: "release-group",
+				id: RONI_SIZE_2022_RG,
+				title: "Presented Forms",
+				credit: [{ id: RONI_SIZE, name: "Roni Size Presents" }],
+				date: "2022",
+				primaryType: "Album",
+			},
+			{
+				kind: "release-group",
+				id: rg,
+				title: "Presented Forms",
+				credit: [{ id: reprazent, name: "Roni Size / Reprazent" }],
+				date: "1997",
+				primaryType: "Album",
+			},
+		]);
+		await seed(
+			artistNode("artist:roni-size", {
+				name: "Roni Size",
+				discography: [edge("project:presented-forms", "Presented Forms")],
+			}),
+			projectNode("project:presented-forms", "Presented Forms"),
+		);
+		const artistManifestPath = await writeMemberManifest(reprazent);
+
+		const result = await run({ apply: true, artistManifestPath });
+
+		expect(result.manifest.resolved).toEqual({});
+		expect(result.manifest.unresolved.map((u) => u.reason)).toEqual(["ambiguous-candidates"]);
+		expect((await readNode("project:presented-forms")).mbid).toBeUndefined();
+	});
+
+	// TRA-537 (2026-10-15): a member's name alone does not resolve the group's work ("Roni Size" for
+	// "Roni Size / Reprazent"): without the group's MBID the member stays unresolved.
+	it("leaves a member unresolved when MusicBrainz credits the group only and no group is known", async () => {
 		stubMb(works);
 		await seed(
 			artistNode("artist:roni-size", {
@@ -1338,8 +1469,16 @@ describe("creditConfirmsHint", () => {
 	const credit = [{ mbid: "00000000-0000-4000-8000-0000000000aa", name: "Roni Size / Reprazent" }];
 	const person = "00000000-0000-4000-8000-0000000000cc";
 
-	it("without a known MBID, accepts a credit that names the hint in whole words", () => {
-		expect(creditConfirmsHint(credit, { name: "Roni Size" })).toBe(true);
+	it("without a known MBID, accepts a credit whose name equals the hint's, 'The' and case aside", () => {
+		const beatles = [{ mbid: "00000000-0000-4000-8000-0000000000ee", name: "The Beatles" }];
+		expect(creditConfirmsHint(beatles, { name: "beatles" })).toBe(true);
+		expect(creditConfirmsHint(beatles, { name: "The Beatles" })).toBe(true);
+	});
+
+	it("without a known MBID, refuses a credit that merely contains the hint's words ('Prince Buster')", () => {
+		const buster = [{ mbid: "00000000-0000-4000-8000-0000000000ff", name: "Prince Buster" }];
+		expect(creditConfirmsHint(buster, { name: "Prince" })).toBe(false);
+		expect(creditConfirmsHint(credit, { name: "Roni Size" })).toBe(false);
 	});
 
 	it("without a known MBID, refuses another artist, a partial word, and a name with no Latin letter", () => {
@@ -1355,7 +1494,8 @@ describe("creditConfirmsHint", () => {
 
 	it("with a known MBID, refuses a credit that merely resembles the name (Mala, Mala Rodriguez, Earth)", () => {
 		const mala = [{ mbid: "00000000-0000-4000-8000-0000000000bb", name: "Mala Rodríguez" }];
-		expect(creditConfirmsHint(mala, { name: "Mala" })).toBe(true);
+		expect(creditConfirmsHint(mala, { name: "Mala" })).toBe(false);
+		expect(creditConfirmsHint(mala, { name: "Mala Rodríguez" })).toBe(true);
 		expect(creditConfirmsHint(mala, { name: "Mala", mbid: person })).toBe(false);
 		const earth = [{ mbid: "00000000-0000-4000-8000-0000000000dd", name: "Earth" }];
 		expect(creditConfirmsHint(earth, { name: "Earth", mbid: person })).toBe(false);

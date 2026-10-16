@@ -1,5 +1,7 @@
 import { spawnSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { chmodSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { dirname, join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { classifyRisk, sensitivePath } from "../scripts/ci/review-gate-policy.js";
 
@@ -110,9 +112,11 @@ describe("ci.yml shell scripts (TRA-498)", () => {
 
 describe("tier-guard sensitive paths (TRA-498)", () => {
 	// The grep of the job and `sensitivePath` of review-gate-policy.ts are two copies of one list.
-	const grep = /grep -Eq '([^']+)'/.exec(jobBlock("tier-guard"))?.[1] as string;
+	// TRA-553: `-i` is the flag `i` of `sensitivePath`; it is part of what is compared and what is run.
+	const grep = /grep -Eqi '([^']+)'/.exec(jobBlock("tier-guard"))?.[1] as string;
 	const gate = (path: string) => classifyRisk([path], []) === 3;
-	const grepMatches = (path: string) => spawnSync("grep", ["-Eq", grep], { input: `${path}\n` }).status === 0;
+	const grepMatches = (path: string) =>
+		spawnSync("grep", ["-Eqi", grep], { input: `${path}\n` }).status === 0;
 
 	// One path per alternative of the pattern (and a nested variant), then neighbours that must not escalate.
 	const sensitive = [
@@ -133,8 +137,15 @@ describe("tier-guard sensitive paths (TRA-498)", () => {
 		"scripts/audit-cache.ts",
 		"data/integrity-thresholds.json",
 		".codex/scripts/publish-review-status.sh",
+		"REVIEW.md",
 		"db/schema.sql",
 		"config/secrets.json",
+		// TRA-553: the runners' APFS ignores case, so a differently cased path is the same file there.
+		"review.md",
+		"Review.MD",
+		".GitHub/workflows/ci.yml",
+		"Scripts/CI/Review-Reuse.ts",
+		"DB/SCHEMA.SQL",
 	];
 	const ordinary = [
 		"src/author/a.ts",
@@ -153,12 +164,142 @@ describe("tier-guard sensitive paths (TRA-498)", () => {
 		".codex/scripts/other.sh",
 		".codex/scripts/publish-review-status.sh.bak",
 		"db/schema.sqlx",
+		"docs/REVIEW.md",
+		"docs/review.md",
+		"REVIEW.md.bak",
 		"src/graph.ts",
 	];
 
 	it("is the sensitivePath pattern of the review gate, text for text", () => {
 		expect(grep).toBeDefined();
 		expect(grep).toBe(sensitivePath.source.replaceAll("\\/", "/"));
+		// The flag is the other half of the pattern: `-i` in the grep, `i` and nothing else on the regex.
+		expect(sensitivePath.flags).toBe("i");
+	});
+
+	// TRA-553: `git diff --name-only` lists a rename by its destination only, so `git mv REVIEW.md docs/REVIEW.md`
+	// plus an edit used to leave the sensitive source out of the list. The job's own command runs on a real
+	// repository, and its output goes through the job's own grep.
+	describe("a rename out of a sensitive path", () => {
+		const git = (cwd: string, ...args: string[]): string => {
+			const result = spawnSync("git", args, { cwd, encoding: "utf8" });
+			if (result.status !== 0) throw new Error(`git ${args.join(" ")}: ${result.stderr}`);
+			return result.stdout;
+		};
+		const diffCommand = /CHANGED=\$\((git diff [^)]*)\)/.exec(jobBlock("tier-guard"))?.[1] as string;
+
+		/** A repository whose last commit moves `from` to `to` and edits it; returns it with the commit before. */
+		const withRename = (from: string, to: string) => {
+			const dir = mkdtempSync(join(tmpdir(), "tier-guard-rename-"));
+			git(dir, "init", "-q", "-b", "main");
+			git(dir, "config", "user.email", "ci@example.test");
+			git(dir, "config", "user.name", "ci");
+			git(dir, "config", "commit.gpgsign", "false");
+			const body = Array.from({ length: 40 }, (_, line) => `line ${line} of the file\n`).join("");
+			mkdirSync(dirname(join(dir, from)), { recursive: true });
+			writeFileSync(join(dir, from), body);
+			git(dir, "add", "-A");
+			git(dir, "commit", "-q", "-m", "base");
+			const base = git(dir, "rev-parse", "HEAD").trim();
+			mkdirSync(dirname(join(dir, to)), { recursive: true });
+			git(dir, "mv", from, to);
+			writeFileSync(join(dir, to), `${body}one more line\n`);
+			git(dir, "add", "-A");
+			git(dir, "commit", "-q", "-m", "move and edit");
+			return { dir, base };
+		};
+
+		it("takes the git diff of the job with --name-only --no-renames", () => {
+			expect(diffCommand).toContain("--name-only");
+			expect(diffCommand).toContain("--no-renames");
+			expect(diffCommand).toMatch(/git diff -z /);
+		});
+
+		it.each([
+			["REVIEW.md", "docs/REVIEW.md"],
+			["review.md", "docs/notes.md"],
+			["scripts/ci/review-reuse.ts", "src/review-reuse.ts"],
+		])("lists the source of %s -> %s, so the job escalates", (from, to) => {
+			const { dir, base } = withRename(from, to);
+			try {
+				const listed = spawnSync("bash", ["-c", diffCommand], {
+					cwd: dir,
+					encoding: "utf8",
+					env: { ...process.env, BASE: base },
+				});
+				expect(listed.status).toBe(0);
+				expect(listed.stdout.trim().split("\n").sort()).toEqual([from, to].sort());
+				expect(spawnSync("grep", ["-Eqi", grep], { input: listed.stdout }).status).toBe(0);
+			} finally {
+				rmSync(dir, { recursive: true, force: true });
+			}
+		});
+
+		it("lists a path with a non-ASCII byte raw, not quoted, so the `^` anchors still match", () => {
+			const { dir, base } = withRename("src/a.ts", ".github/workflows/é.yml");
+			try {
+				const listed = spawnSync("bash", ["-c", diffCommand], {
+					cwd: dir,
+					encoding: "utf8",
+					env: { ...process.env, BASE: base },
+				});
+				expect(listed.stdout.trim().split("\n").sort()).toEqual([".github/workflows/é.yml", "src/a.ts"]);
+				expect(spawnSync("grep", ["-Eqi", grep], { input: listed.stdout }).status).toBe(0);
+				// The default output, which the job used to read: quoted and escaped, hence invisible to the grep.
+				const quoted = git(dir, "diff", "--name-only", "--no-renames", `${base}...HEAD`);
+				expect(quoted).toContain('"');
+				expect(spawnSync("grep", ["-Eqi", grep], { input: quoted.replace("src/a.ts", "") }).status).toBe(1);
+			} finally {
+				rmSync(dir, { recursive: true, force: true });
+			}
+		});
+
+		it("was invisible without --no-renames (the destination alone does not match)", () => {
+			const { dir, base } = withRename("REVIEW.md", "docs/REVIEW.md");
+			try {
+				const listed = git(dir, "diff", "--name-only", "-M", `${base}...HEAD`);
+				expect(listed.trim()).toBe("docs/REVIEW.md");
+				expect(spawnSync("grep", ["-Eqi", grep], { input: listed }).status).toBe(1);
+			} finally {
+				rmSync(dir, { recursive: true, force: true });
+			}
+		});
+	});
+
+	// TRA-553: `git diff -z … | tr` hides the status of git diff unless pipefail is on; then CHANGED would be empty
+	// with status 0 and a sensitive PR would pass unlabelled. The step's own script runs with a git that fails.
+	describe("a failing git diff", () => {
+		const script = runScripts(jobBlock("tier-guard")).find((text) => text.includes("git diff")) as string;
+		const runWithFailingDiff = (text: string) => {
+			const dir = mkdtempSync(join(tmpdir(), "tier-guard-fail-"));
+			try {
+				const bin = join(dir, "bin");
+				mkdirSync(bin);
+				const calls = join(dir, "gh-calls");
+				writeFileSync(join(bin, "git"), '#!/bin/bash\n[ "$1" = diff ] && exit 2\nexit 0\n');
+				writeFileSync(join(bin, "gh"), `#!/bin/bash\necho "$@" >> '${calls}'\nexit 0\n`);
+				chmodSync(join(bin, "git"), 0o755);
+				chmodSync(join(bin, "gh"), 0o755);
+				// `bash -e {0}` is what GitHub runs for a `run:` without `shell:`.
+				const result = spawnSync("bash", ["-e", "-c", text], {
+					cwd: dir,
+					encoding: "utf8",
+					env: { PATH: `${bin}:${process.env.PATH}`, BASE_REF: "main", GH_TOKEN: "x" },
+				});
+				return result.status;
+			} finally {
+				rmSync(dir, { recursive: true, force: true });
+			}
+		};
+
+		it("makes the step fail", () => {
+			expect(script).toContain("set -o pipefail");
+			expect(runWithFailingDiff(script)).not.toBe(0);
+		});
+
+		it("would have passed silently without pipefail (the test is able to fail)", () => {
+			expect(runWithFailingDiff(script.replace("set -o pipefail", ":"))).toBe(0);
+		});
 	});
 
 	it.each(sensitive)("escalates %s in the workflow grep and in the review gate policy", (path) => {
