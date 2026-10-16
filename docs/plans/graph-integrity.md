@@ -252,8 +252,13 @@ PR TRA-509 suffit. Conséquence à connaître : systemd donne priorité à `Envi
 (`/proc/<MainPID>/environ`), affiche la valeur réellement reçue (`-> ODYSSEY_SCOPED_RELEASE_SLUGS=1 in
 the running service (unit: 1)`) et émet un `WARN` (sans échouer : un coupe-feu volontaire ne doit pas
 bloquer les déploiements) quand elle diffère de celle de l'unité ou que le service n'est pas levé.
-Test : `test/scoped-slugs-deploy-flag.test.ts` (exécute ce bloc contre un `systemctl` et un `/proc`
-factices).
+L'écart est aussi publié en annotation GitHub (`::warning title=... mismatch::`, sur la sortie
+standard relayée par ssh) pour apparaître dans le résumé du run. Test :
+`test/scoped-slugs-deploy-flag.test.ts` (exécute ce bloc contre un `systemctl` et un `/proc` factices).
+Ce test accepte la variable à `0` comme à `1` et rejoue ses vérifications sur une copie du script
+passée à `0` : `deploy.yml` lance `npm run test` **avant** `Deploy server`, donc un test qui figerait
+la valeur à 1 arrêterait le rollback au lieu de le déployer. L'état livré par la PR (1) est documenté ici,
+pas asserté.
 
 **Défaut de `src/config.ts` / `src/flags.ts` : inchangé (désactivé).** Le critère « tous les tests et
 l'audit passent avec le drapeau à 1 » n'est pas la bonne mesure : le défaut s'applique à *tous* les
@@ -306,7 +311,8 @@ Pour une œuvre déjà migrée, l'étape 5 se lit autrement : `GET /node/project
 cache de prod, sans écrire : l'audit sur une copie du cache de prod (`unscoped-release-slugs` et
 `duplicate-names` ne montent pas par rapport au niveau d'avant la bascule).
 
-**Rollback.** Remettre la valeur à `0` dans l'unité (`Environment=ODYSSEY_SCOPED_RELEASE_SLUGS=0` dans
+**Rollback** (testé : le test du drapeau passe avec l'unité à `0`, donc `npm run test` reste vert et
+`deploy.yml` atteint `Deploy server`). Remettre la valeur à `0` dans l'unité (`Environment=ODYSSEY_SCOPED_RELEASE_SLUGS=0` dans
 `deploy/deploy-server.sh`), merger et laisser `deploy.yml` redéployer. On ne touche **à aucun nœud
 migré** : les anciens slugs restent lisibles via `data/slug-redirects.json` (lue par tous les chemins de
 lecture, TRA-453), et les nœuds scopés restent lisibles sous leur slug. Drapeau à 0, le serveur

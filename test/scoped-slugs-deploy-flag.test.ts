@@ -17,19 +17,38 @@ const bootstrapScript = readFileSync(join(REPO_ROOT, "deploy/bootstrap-env.sh"),
 
 const FLAG = "ODYSSEY_SCOPED_RELEASE_SLUGS";
 
-/** The systemd unit embedded in the script: the quoted heredoc `<<'UNIT'` ... `UNIT`. */
-function embeddedUnit(): string {
-	const start = deployScript.indexOf("<<'UNIT'\n");
-	const end = deployScript.indexOf("\nUNIT\n", start);
+/** The remote script: the quoted heredoc `<<'REMOTE'` ... `REMOTE` run over ssh. */
+function remoteScript(script: string): string {
+	const start = script.indexOf("<<'REMOTE'\n");
+	const end = script.indexOf("\nREMOTE\n", start);
+	if (start === -1 || end === -1) throw new Error("REMOTE heredoc not found in deploy-server.sh");
+	return script.slice(start + "<<'REMOTE'\n".length, end);
+}
+
+/** The systemd unit embedded in the remote script: the quoted heredoc `<<'UNIT'` ... `UNIT`. */
+function embeddedUnit(script: string): string {
+	const remote = remoteScript(script);
+	const start = remote.indexOf("<<'UNIT'\n");
+	const end = remote.indexOf("\nUNIT\n", start);
 	if (start === -1 || end === -1) throw new Error("systemd unit heredoc not found in deploy-server.sh");
-	return deployScript.slice(start + "<<'UNIT'\n".length, end);
+	return remote.slice(start + "<<'UNIT'\n".length, end);
 }
 
 /** Value of the `Environment=FLAG=...` directives of the [Service] section, in file order. */
-function unitFlagValues(): string[] {
-	const unit = embeddedUnit();
+function unitFlagValues(script: string): string[] {
+	const unit = embeddedUnit(script);
 	const service = unit.slice(unit.indexOf("[Service]"), unit.indexOf("[Install]"));
 	return [...service.matchAll(new RegExp(`^Environment=${FLAG}=(.*)$`, "gm"))].map((m) => m[1] ?? "");
+}
+
+/** Shell blocks (`if`/`for`/`while`/`case`) still open at `index`, judged on column-0 keywords. */
+function openBlocksBefore(text: string, index: number): number {
+	let depth = 0;
+	for (const line of text.slice(0, index).split("\n")) {
+		if (/^(if|for|while|until|case)\b/.test(line)) depth++;
+		if (/^(fi|done|esac)\b/.test(line)) depth--;
+	}
+	return depth;
 }
 
 const saved = process.env[FLAG];
@@ -38,28 +57,51 @@ afterEach(() => {
 	else process.env[FLAG] = saved;
 });
 
+// The script as shipped by this PR (flag on), and the same script as a rollback commit would leave it
+// (flag off). Both must stay deployable: deploy.yml runs `npm run test` BEFORE `Deploy server`, so a
+// test pinning the value to 1 would make the documented rollback (set the unit to 0, merge) stop at the
+// test step and never reach the server. The value shipped by this PR is documented, not asserted.
+const SHIPPED_LINE = `Environment=${FLAG}=1`;
+const rolledBackScript = deployScript.replace(SHIPPED_LINE, `Environment=${FLAG}=0`);
+
 describe("deploy-server.sh: scoped release slugs flag (TRA-509)", () => {
-	it("sets the flag exactly once in the [Service] section of the generated unit", () => {
-		expect(unitFlagValues()).toHaveLength(1);
+	it("the rollback simulation really changes the script (guard against a vacuous test)", () => {
+		expect(deployScript).toContain(SHIPPED_LINE);
+		expect(rolledBackScript).not.toBe(deployScript);
+		expect(rolledBackScript).toContain(`Environment=${FLAG}=0`);
 	});
 
-	it("sets it to a value src/flags.ts reads as enabled", () => {
-		const [value] = unitFlagValues();
-		expect(value).toBeDefined();
-		process.env[FLAG] = value;
-		expect(scopedReleaseSlugsEnabled()).toBe(true);
-	});
+	describe.each([
+		["as shipped", deployScript],
+		["rolled back (unit set to 0)", rolledBackScript],
+	])("%s", (_label, script) => {
+		it("sets the flag exactly once in the [Service] section of the generated unit, to 0 or 1", () => {
+			const values = unitFlagValues(script);
+			expect(values).toHaveLength(1);
+			expect(["0", "1"]).toContain(values[0]);
+		});
 
-	it("rewrites the unit and restarts the service on every deploy, not under a condition", () => {
-		const write = deployScript.search(/^cat > \/etc\/systemd\/system\/odyssey-server\.service <<'UNIT'$/m);
-		const reload = deployScript.indexOf("systemctl daemon-reload");
-		const restart = deployScript.indexOf("systemctl restart odyssey-server.service");
-		// Column 0: a top-level statement of the remote script, so not nested in an if/for block.
-		expect(write).toBeGreaterThan(-1);
-		expect(reload).toBeGreaterThan(write);
-		expect(restart).toBeGreaterThan(reload);
-		const restartLineStart = deployScript.lastIndexOf("\n", restart) + 1;
-		expect(deployScript.slice(restartLineStart, restart)).toBe("");
+		it("sets it to a value src/flags.ts reads consistently", () => {
+			const [value] = unitFlagValues(script);
+			process.env[FLAG] = value;
+			expect(scopedReleaseSlugsEnabled()).toBe(value === "1");
+		});
+
+		it("rewrites the unit, reloads systemd and restarts the service on every deploy, in REMOTE, unconditionally", () => {
+			const remote = remoteScript(script);
+			const write = remote.search(/^cat > \/etc\/systemd\/system\/odyssey-server\.service <<'UNIT'$/m);
+			const reload = remote.search(/^systemctl daemon-reload$/m);
+			const restart = remote.search(/^systemctl restart odyssey-server\.service$/m);
+			expect(write).toBeGreaterThan(-1);
+			expect(reload).toBeGreaterThan(write);
+			expect(restart).toBeGreaterThan(reload);
+			// Column-0 statements of the remote script, with no if/for/while/case open around them.
+			for (const index of [write, reload, restart]) expect(openBlocksBefore(remote, index)).toBe(0);
+			// And all of it runs remotely: none of the three is outside the REMOTE heredoc.
+			const outside = script.replace(remote, "");
+			expect(outside).not.toContain("systemctl daemon-reload");
+			expect(outside).not.toContain("systemctl restart odyssey-server.service");
+		});
 	});
 
 	it("never writes /etc/odyssey-music.env: the flag lives in the unit, not in the env file", () => {
@@ -115,6 +157,7 @@ describe("deploy-server.sh: report of the flag the running service received (TRA
 		expect(r.status).toBe(0);
 		expect(r.stdout).toContain(`${FLAG}=1 in the running service (unit: 1)`);
 		expect(r.stderr).toBe("");
+		expect(r.stdout).not.toContain("::warning");
 	});
 
 	it("warns when the env file overrides the unit (the process has 0, the unit says 1)", () => {
@@ -123,6 +166,8 @@ describe("deploy-server.sh: report of the flag the running service received (TRA
 		expect(r.stdout).toContain(`${FLAG}=0 in the running service (unit: 1)`);
 		expect(r.stderr).toContain("WARN");
 		expect(r.stderr).toContain("overrides the unit");
+		// GitHub annotation, on stdout (the stream ssh relays into the job log).
+		expect(r.stdout).toMatch(/^::warning title=ODYSSEY_SCOPED_RELEASE_SLUGS mismatch::/m);
 	});
 
 	it("does not warn on a deliberate rollback written in the unit (0 and 0)", () => {
@@ -132,6 +177,7 @@ describe("deploy-server.sh: report of the flag the running service received (TRA
 			unit: UNIT_ON.replace(`${FLAG}=1`, `${FLAG}=0`),
 		});
 		expect(r.stderr).toBe("");
+		expect(r.stdout).not.toContain("::warning");
 	});
 
 	it("says <unset> when the process has no such variable", () => {

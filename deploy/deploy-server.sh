@@ -194,6 +194,9 @@ echo "  -> ${FLAG_NAME}=${EFFECTIVE_FLAG} in the running service (unit: ${UNIT_F
 if [[ "$EFFECTIVE_FLAG" != "$UNIT_FLAG" ]]; then
   echo "WARN: the running service has ${FLAG_NAME}=${EFFECTIVE_FLAG}, not the unit's ${UNIT_FLAG}:" >&2
   echo "      /etc/odyssey-music.env overrides the unit, or the service is not up." >&2
+  # GitHub Actions annotation: ssh relays the remote stdout into the job log, where this line is
+  # promoted to a visible warning on the run summary (a plain stderr line would stay buried in the log).
+  echo "::warning title=${FLAG_NAME} mismatch::the running service has ${EFFECTIVE_FLAG}, the unit declares ${UNIT_FLAG} (/etc/odyssey-music.env override, or the service is not up)"
 fi
 # <<< TRA-509 flag report
 
