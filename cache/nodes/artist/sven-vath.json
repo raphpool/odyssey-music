@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:09:50.563Z",
+  "mbid": "14008378-5900-4370-831e-3d17f9749caf",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Sven Väth is a foundational figure in the global techno movement and arguably Germany's most enduring electronic music ambassador.",
   "origin": "Frankfurt, Germany",
   "active_years": "1981-present",
@@ -98,5 +100,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

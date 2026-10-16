@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:05:34.962Z",
+  "mbid": "4346875a-2bba-4566-8dc1-680c38ba44c6",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pioneer of Chicago house and the father of deep house, Larry Heard redefined the landscape of dance music by infusing the rigid machinery of early house with deep, soulful, and jazz-influenced melodies. Working frequently under the alias Mr. Fingers, he has been a creative force since 1984, leaving an indelible mark on both club culture and ambient electronic soundscapes.",
   "origin": "Chicago, Illinois, U.S.",
   "active_years": "1983–present",
@@ -78,7 +80,7 @@
       "name": "Can You Feel It"
     },
     {
-      "slug": "track:mystery-of-love",
+      "slug": "track:mystery-of-love--mr-fingers",
       "type": "track",
       "name": "Mystery of Love"
     },
@@ -119,5 +121,6 @@
       "name": "Trio Zero"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

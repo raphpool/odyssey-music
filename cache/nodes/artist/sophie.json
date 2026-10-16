@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:59:26.433Z",
+  "mbid": "774b02d7-5056-4b0f-9d69-a82b6ae27cde",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "SOPHIE (born Sophie Xeon, 1986–2021) was a trailblazing Scottish-born electronic producer, songwriter, and DJ who fundamentally reshaped the landscape of contemporary pop and experimental electronic music.",
   "photo_url": "https://cdn.sonemic.net/i/600/w/d6e4d95a42b3310fa1a77858c76c6b9f/6711312/sophie-its-okay-to-cry-cover-art.jpg",
   "origin": "Northampton, United Kingdom",
@@ -75,5 +77,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

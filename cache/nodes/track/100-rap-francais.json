@@ -45,7 +45,7 @@
     }
   ],
   "project": {
-    "slug": "project:100-rap-francais",
+    "slug": "project:100-rap-francais--jarod",
     "type": "project",
     "name": "100% Rap Français"
   },
@@ -58,6 +58,7 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

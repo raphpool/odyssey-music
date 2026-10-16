@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:17:24.225Z",
+  "mbid": "e598d30e-4ce1-402e-94a7-6f44779da6b7",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Orange Juice were a highly influential Scottish jangle pop and post-punk band, founded in 1976, that became the cornerstone of the Postcard Records label and a vital precursor to the 1980s indie pop movement. Led by Edwyn Collins, the band is remembered for their bright, intricate guitar sound and their role in defining the \"Sound of Young Scotland.\"",
   "origin": "Bearsden, Scotland",
   "genres": [
@@ -110,5 +112,6 @@
       "type": "artist",
       "name": "Zeke Manyika"
     }
-  ]
+  ],
+  "similar_artists": []
 }

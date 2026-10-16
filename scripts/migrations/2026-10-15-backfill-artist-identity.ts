@@ -25,14 +25,23 @@
  * Usage: tsx scripts/migrations/2026-10-15-backfill-artist-identity.ts <cache-dir> [--apply]
  *        [--manifest out/artist-identity.json] [--limit N] [--resume] [--data-dir <dir>]
  *
- * Migration channel (deploy/sync-genre-cache.sh, TRA-568): it passes `--data-dir` (the scratch redirect
- * tables; accepted and unused, nothing is renamed here) and validates the manifest's channel fields,
- * which this one carries as constants: `migration`, `removed: []`, `renamed: {}`, `redirects: {}`.
+ * Exclusion list (TRA-574): `identity-exclusions.json` in the data dir (`--data-dir`, else the repo's
+ * `data/`) names the artists this migration must never resolve. An excluded artist is not looked up on
+ * MusicBrainz at all, appears in the manifest as `excluded` with its reason, and its node is written
+ * WITHOUT the `mbid` and `artist_kind` an earlier (wrong) resolution left on it. Edges and editorial
+ * fields are never touched. The file is read before anything else and the run is refused (exit 2) when
+ * it is absent or invalid: with no list, a run would resolve exactly the artists that were reviewed out.
+ *
+ * Migration channel (deploy/sync-genre-cache.sh, TRA-568): it passes `--data-dir` (the scratch directory
+ * holding the redirect tables, and the exclusion list: see the channel's copy) and validates the
+ * manifest's channel fields, which this one carries as constants: `migration`, `removed: []`,
+ * `renamed: {}`, `redirects: {}`. Nothing is renamed here.
  */
 import { mkdir, readFile } from "node:fs/promises";
-import { dirname } from "node:path";
+import { dirname, join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { isDeepStrictEqual } from "node:util";
+import { z } from "zod";
 import { atomicWriteJson } from "../../src/cache.js";
 import { musicBrainzConfig } from "../../src/config.js";
 import {
@@ -42,7 +51,9 @@ import {
 	resolveArtistDetailed,
 } from "../../src/musicbrainz.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
+import { isValidSlug } from "../../src/slug.js";
 import {
+	defaultDataDir,
 	isRecord,
 	looksLikeCacheDir,
 	readCacheNodes,
@@ -51,6 +62,7 @@ import {
 
 export const MIGRATION_NAME = "2026-10-15-backfill-artist-identity";
 export const DEFAULT_MANIFEST_PATH = "out/artist-identity.json";
+export const EXCLUSIONS_FILE = "identity-exclusions.json";
 
 /** Upper bound of requests per artist: search, alias search, profile. */
 const CALLS_PER_ARTIST = 3;
@@ -98,12 +110,25 @@ export interface IdentityManifest {
 	generated_at: string;
 	resolved: Record<string, ResolvedArtist>;
 	unresolved: { slug: string; name: string; candidates: number }[];
+	/**
+	 * Artists of the exclusion list present in the cache (TRA-574): never looked up, their mbid removed.
+	 * Never in `resolved`, so never in a collision and never read as a group member by the scope step.
+	 */
+	excluded: ExcludedArtist[];
 	/** Two or more slugs resolved on the same MBID: left for the merge step (1.12) to decide. */
 	collisions: { mbid: string; slugs: string[] }[];
 }
 
+export interface ExcludedArtist {
+	slug: string;
+	status: "excluded";
+	reason: string;
+}
+
 export interface BackfillOptions {
 	cacheDir: string;
+	/** Where `identity-exclusions.json` is read: the channel's `--data-dir`, else the repo's `data/`. */
+	dataDir: string;
 	apply: boolean;
 	manifestPath?: string;
 	/** Maximum number of artists sent to MusicBrainz in this run; entries reused by --resume are free. */
@@ -118,7 +143,59 @@ export interface BackfillResult {
 	written: string[];
 	/** Left untouched and not reported as unresolved: unusable stored mbid, MB lookup failure, refused write. */
 	failed: { slug: string; reason: string }[];
-	exitCode: 0 | 1;
+	/** Set when the run was refused before reading the cache (exit 2): nothing was queried or written. */
+	refused?: string;
+	exitCode: 0 | 1 | 2;
+}
+
+export type ExclusionsResult =
+	| { ok: true; artists: ReadonlyMap<string, string> }
+	| { ok: false; error: string };
+
+// Strict on purpose: a typo'd top-level key or a key that is not an artist's canonical slug would be an
+// exclusion that silently excludes nothing, which is the failure this list exists to prevent.
+const exclusionsSchema = z
+	.object({
+		artists: z.record(z.string().trim().min(1)),
+	})
+	.strict()
+	.superRefine((value, ctx) => {
+		for (const key of Object.keys(value.artists)) {
+			if (!key.startsWith("artist:") || !isValidSlug(key)) {
+				ctx.addIssue({
+					code: z.ZodIssueCode.custom,
+					path: ["artists", key],
+					message: "key is not the canonical slug of an artist (artist:<slug>)",
+				});
+			}
+		}
+	});
+
+/**
+ * Reads and validates `<dataDir>/identity-exclusions.json` (TRA-574). A typed result, never a default:
+ * an absent file is an error, not an empty list (fail-closed).
+ */
+export async function loadExclusions(dataDir: string): Promise<ExclusionsResult> {
+	const path = join(dataDir, EXCLUSIONS_FILE);
+	let text: string;
+	try {
+		text = await readFile(path, "utf8");
+	} catch (e) {
+		const reason = (e as NodeJS.ErrnoException).code === "ENOENT" ? "is missing" : "is unreadable";
+		return { ok: false, error: `${path} ${reason}: refusing to run without the exclusion list (TRA-574)` };
+	}
+	let raw: unknown;
+	try {
+		raw = JSON.parse(text);
+	} catch {
+		return { ok: false, error: `${path} is not valid JSON` };
+	}
+	const parsed = exclusionsSchema.safeParse(raw);
+	if (!parsed.success) {
+		const issues = parsed.error.issues.map((i) => `${i.path.join(".") || "(root)"}: ${i.message}`);
+		return { ok: false, error: `${path} is invalid: ${issues.join("; ")}` };
+	}
+	return { ok: true, artists: new Map(Object.entries(parsed.data.artists)) };
 }
 
 function isResolvedArtist(value: unknown): value is ResolvedArtist {
@@ -174,6 +251,7 @@ async function readManifest(path: string): Promise<IdentityManifest | null> {
 				? [{ slug: u.slug, name: u.name, candidates: u.candidates }]
 				: [],
 		),
+		excluded: [],
 		collisions: [],
 	};
 }
@@ -194,6 +272,7 @@ const CHANNEL_FIELDS = () => ({ migration: MIGRATION_NAME, removed: [], renamed:
 function buildManifest(
 	resolved: Record<string, ResolvedArtist>,
 	unresolved: IdentityManifest["unresolved"],
+	excluded: IdentityManifest["excluded"],
 ): IdentityManifest {
 	const sorted: Record<string, ResolvedArtist> = {};
 	for (const slug of Object.keys(resolved).sort()) sorted[slug] = resolved[slug] as ResolvedArtist;
@@ -202,6 +281,7 @@ function buildManifest(
 		generated_at: new Date().toISOString(),
 		resolved: sorted,
 		unresolved: [...unresolved].sort((a, b) => (a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0)),
+		excluded: [...excluded].sort((a, b) => (a.slug < b.slug ? -1 : a.slug > b.slug ? 1 : 0)),
 		collisions: findCollisions(sorted),
 	};
 }
@@ -239,6 +319,16 @@ export function withIdentity(
 	return next.mbid === node.mbid && next.artist_kind === node.artist_kind ? null : next;
 }
 
+/**
+ * The node without the identity an earlier resolution gave it (`mbid`, `artist_kind`), or null when it
+ * carries neither. Only those two fields: an edge or an editorial field is never removed (TRA-574).
+ */
+export function withoutIdentity(node: Record<string, unknown>): Record<string, unknown> | null {
+	if (!("mbid" in node) && !("artist_kind" in node)) return null;
+	const { mbid: _mbid, artist_kind: _kind, ...rest } = node;
+	return rest;
+}
+
 function optionalText(value: unknown): string | undefined {
 	return typeof value === "string" && value.trim() !== "" ? value : undefined;
 }
@@ -248,9 +338,26 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 	const manifestPath = options.manifestPath ?? DEFAULT_MANIFEST_PATH;
 	const log = options.log ?? (() => {});
 
+	// Before anything else, dry-run included: no query and no write happens without the list.
+	const exclusions = await loadExclusions(options.dataDir);
+	if (!exclusions.ok) {
+		return {
+			manifest: buildManifest({}, [], []),
+			written: [],
+			failed: [],
+			refused: exclusions.error,
+			exitCode: 2,
+		};
+	}
+
 	const { nodes, invalid } = await readCacheNodes(cacheDir);
 	warnSkippedNodeFiles(invalid);
 	const artists = nodes.filter((n) => n.type === "artist");
+	const excluded: ExcludedArtist[] = artists.flatMap((a) => {
+		const reason = exclusions.artists.get(a.slug);
+		return reason === undefined ? [] : [{ slug: a.slug, status: "excluded" as const, reason }];
+	});
+	const isExcluded = (slug: string): boolean => exclusions.artists.has(slug);
 
 	const prior = options.resume ? await readManifest(manifestPath) : null;
 	// Seeded with every prior entry so a checkpoint never forgets artists not reached yet; an entry
@@ -261,27 +368,48 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 	const written: string[] = [];
 	const slugs = new Set(artists.map((a) => a.slug));
 	for (const [slug, entry] of Object.entries(prior?.resolved ?? {}))
-		if (slugs.has(slug)) resolved[slug] = entry;
+		if (slugs.has(slug) && !isExcluded(slug)) resolved[slug] = entry;
 
 	const reusable = (slug: string, stored: unknown): boolean => {
 		const entry = resolved[slug];
 		return entry !== undefined && (stored === undefined || stored === entry.mbid);
 	};
-	const pending = artists.filter((a) => !reusable(a.slug, a.node.mbid));
+	const pending = artists.filter((a) => !isExcluded(a.slug) && !reusable(a.slug, a.node.mbid));
 	const toQuery = limit === undefined ? pending.length : Math.min(limit, pending.length);
 	const seconds = Math.ceil(
 		(toQuery * CALLS_PER_ARTIST * Math.max(musicBrainzConfig.minIntervalMs, 0)) / 1000,
 	);
 	log(
-		`${artists.length} artists, ${artists.length - pending.length} reused from the manifest, ${toQuery} to ` +
+		`${artists.length} artists, ${excluded.length} excluded, ` +
+			`${artists.length - excluded.length - pending.length} reused from the manifest, ${toQuery} to ` +
 			`query: up to ${toQuery * CALLS_PER_ARTIST} MusicBrainz requests (more for a name with hundreds of search ` +
 			`results: up to 5 pages per search), about ${Math.ceil(seconds / 60)} min ` +
 			`at one request per ${musicBrainzConfig.minIntervalMs} ms${apply ? "" : " (dry-run)"}`,
 	);
 
+	const writeNode = async (slug: string, path: string, next: Record<string, unknown>): Promise<void> => {
+		const parsed = nodePayloadSchema.safeParse(next);
+		if (!parsed.success) {
+			failed.push({ slug, reason: `refusing to write an invalid node: ${parsed.error.message}` });
+		} else if (!onlyAddsSchemaDefaults(next, parsed.data)) {
+			// The schema strips undeclared fields, edges' included; beyond the identity fields, only the
+			// addition of a missing list at its default (empty) is tolerated.
+			failed.push({ slug, reason: "refusing to write: validation would alter fields the node carries" });
+		} else {
+			await atomicWriteJson(path, parsed.data);
+			written.push(path);
+		}
+	};
+
 	let attempted = 0;
 	let checkpointed = 0;
 	for (const { slug, path, node } of artists) {
+		if (isExcluded(slug)) {
+			// Never resolved, never queried; the identity a wrong resolution left on the node goes.
+			const next = apply ? withoutIdentity(node) : null;
+			if (next) await writeNode(slug, path, next);
+			continue;
+		}
 		const stored = node.mbid;
 		let entry: ResolvedArtist | undefined;
 		if (reusable(slug, stored)) {
@@ -350,27 +478,15 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 
 		if (apply && entry) {
 			const next = withIdentity(node, entry);
-			if (next) {
-				const parsed = nodePayloadSchema.safeParse(next);
-				if (!parsed.success) {
-					failed.push({ slug, reason: `refusing to write an invalid node: ${parsed.error.message}` });
-				} else if (!onlyAddsSchemaDefaults(next, parsed.data)) {
-					// The schema strips undeclared fields, edges' included; beyond mbid / artist_kind, only the
-					// addition of a missing list at its default (empty) is tolerated.
-					failed.push({ slug, reason: "refusing to write: validation would alter fields the node carries" });
-				} else {
-					await atomicWriteJson(path, parsed.data);
-					written.push(path);
-				}
-			}
+			if (next) await writeNode(slug, path, next);
 		}
 		if (attempted - checkpointed >= CHECKPOINT_EVERY) {
 			checkpointed = attempted;
-			await writeManifest(manifestPath, buildManifest(resolved, unresolved));
+			await writeManifest(manifestPath, buildManifest(resolved, unresolved, excluded));
 		}
 	}
 
-	const manifest = buildManifest(resolved, unresolved);
+	const manifest = buildManifest(resolved, unresolved, excluded);
 	await writeManifest(manifestPath, manifest);
 	// A failure is a hole in the manifest, not a verdict: exit 1 so the operator re-runs with --resume.
 	return { manifest, written, failed, exitCode: failed.length > 0 ? 1 : 0 };
@@ -380,11 +496,12 @@ export function formatSummary(result: BackfillResult, apply: boolean, manifestPa
 	const { manifest, written, failed } = result;
 	const lines = [
 		`resolved ${Object.keys(manifest.resolved).length}, unresolved ${manifest.unresolved.length}, ` +
-			`collisions ${manifest.collisions.length}, failed ${failed.length}`,
+			`excluded ${manifest.excluded.length}, collisions ${manifest.collisions.length}, failed ${failed.length}`,
 		apply ? `${written.length} node file(s) written` : "dry-run: no node file written",
 		`manifest: ${manifestPath}`,
 	];
 	for (const c of manifest.collisions) lines.push(`collision ${c.mbid}: ${c.slugs.join(", ")}`);
+	for (const x of manifest.excluded) lines.push(`excluded ${x.slug}: ${x.reason}`);
 	for (const u of manifest.unresolved) lines.push(`unresolved ${u.slug} (${u.candidates} candidate(s))`);
 	for (const f of failed) lines.push(`failed ${f.slug}: ${f.reason}`);
 	return lines.join("\n");
@@ -396,6 +513,8 @@ export interface CliArgs {
 	cacheDir: string;
 	apply: boolean;
 	manifestPath: string;
+	/** `--data-dir`, else the repo's `data/` (TRA-574): where the exclusion list is read. */
+	dataDir: string;
 	limit?: number;
 	resume: boolean;
 }
@@ -413,7 +532,7 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 	let resume = false;
 	let manifestPath: string | undefined;
 	let limit: number | undefined;
-	let dataDirSeen = false;
+	let dataDir: string | undefined;
 	for (let i = 1; i < argv.length; i++) {
 		const token = argv[i];
 		if (token === "--apply" && !apply) apply = true;
@@ -421,12 +540,12 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 		else if (
 			(token === "--manifest" && manifestPath === undefined) ||
 			(token === "--limit" && limit === undefined) ||
-			(token === "--data-dir" && !dataDirSeen)
+			(token === "--data-dir" && dataDir === undefined)
 		) {
 			const value = argv[++i];
 			if (value === undefined || value.startsWith("-")) return null;
 			if (token === "--manifest") manifestPath = value;
-			else if (token === "--data-dir") dataDirSeen = true;
+			else if (token === "--data-dir") dataDir = value;
 			else if (/^[1-9]\d*$/.test(value)) limit = Number(value);
 			else return null;
 		} else return null;
@@ -436,6 +555,7 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 		apply,
 		resume,
 		manifestPath: manifestPath ?? DEFAULT_MANIFEST_PATH,
+		dataDir: dataDir ?? defaultDataDir(),
 		...(limit !== undefined ? { limit } : {}),
 	};
 }
@@ -456,10 +576,15 @@ async function main(): Promise<void> {
 		cacheDir: args.cacheDir,
 		apply: args.apply,
 		manifestPath: args.manifestPath,
+		dataDir: args.dataDir,
 		resume: args.resume,
 		...(args.limit !== undefined ? { limit: args.limit } : {}),
 		log: (line) => process.stdout.write(`${line}\n`),
 	});
+	if (result.refused !== undefined) {
+		process.stderr.write(`error: ${result.refused}\n`);
+		process.exit(result.exitCode);
+	}
 	console.log(formatSummary(result, args.apply, args.manifestPath));
 	process.exit(result.exitCode);
 }

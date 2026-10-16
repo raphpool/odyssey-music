@@ -102,6 +102,11 @@
       "slug": "artist:robert-wyatt",
       "type": "artist",
       "name": "Robert Wyatt"
+    },
+    {
+      "slug": "artist:television-personalities",
+      "type": "artist",
+      "name": "Television Personalities"
     }
   ],
   "notable_releases": [

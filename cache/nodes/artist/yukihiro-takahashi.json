@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "e1410ddc-9745-4b5d-814d-77eb0cdfa6ad",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A legendary Japanese multi-instrumentalist, singer, and songwriter known for his foundational role in Yellow Magic Orchestra and his prolific, synth-driven solo career.",
   "origin": "Tokyo, Japan",
   "active_years": "1972-2023",
@@ -109,5 +111,6 @@
       "type": "artist",
       "name": "Yellow Magic Orchestra"
     }
-  ]
+  ],
+  "similar_artists": []
 }

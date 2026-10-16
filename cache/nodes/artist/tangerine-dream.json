@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:34:55.136Z",
+  "mbid": "23d8426c-18c7-46e6-a51d-7395bd43c641",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Tangerine Dream is a pioneering German electronic music group founded in 1967 by Edgar Froese in Berlin.",
   "photo_url": "https://data.tangerinedreammusic.com/Data/BildArchiv/zuordnung/01081.jpg",
   "origin": "Berlin, Germany",
@@ -46,19 +48,37 @@
   ],
   "discography": [
     {
-      "slug": "project:phaedra",
+      "slug": "project:phaedra--tangerine-dream",
       "type": "project",
       "name": "Phaedra"
     },
     {
-      "slug": "project:rubycon",
+      "slug": "project:rubycon--tangerine-dream",
       "type": "project",
       "name": "Rubycon"
     },
     {
-      "slug": "project:stratosfear",
+      "slug": "project:stratosfear--tangerine-dream",
       "type": "project",
       "name": "Stratosfear"
+    },
+    {
+      "slug": "project:atem--tangerine-dream",
+      "type": "project",
+      "name": "Atem",
+      "artist": "Tangerine Dream"
+    },
+    {
+      "slug": "project:electronic-meditation--tangerine-dream",
+      "type": "project",
+      "name": "Electronic Meditation",
+      "artist": "Tangerine Dream"
+    },
+    {
+      "slug": "project:zeit--tangerine-dream",
+      "type": "project",
+      "name": "Zeit",
+      "artist": "Tangerine Dream"
     }
   ],
   "notable_tracks": [
@@ -71,11 +91,24 @@
       "slug": "track:rubycon",
       "type": "track",
       "name": "Rubycon"
+    },
+    {
+      "slug": "track:rubycon-part-two--tangerine-dream",
+      "type": "track",
+      "name": "Rubycon, Part Two",
+      "artist": "Tangerine Dream"
+    },
+    {
+      "slug": "track:the-big-sleep-in-search-of-hades--tangerine-dream",
+      "type": "track",
+      "name": "The Big Sleep in Search of Hades",
+      "artist": "Tangerine Dream"
     }
   ],
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

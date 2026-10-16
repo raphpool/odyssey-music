@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:39:11.894Z",
+  "mbid": "1cc6e6ad-2680-4399-a8f1-3dfd6f69e651",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A foundational producer, label founder, and artist whose work defines the Cologne minimal techno scene and the ambient-industrial hybrid style.",
   "photo_url": "https://s3.amazonaws.com/media.kompakt.fm/01/assets/artists/5tEq2GG5GYAq-fitted.jpg",
   "origin": "Cologne, Germany",
@@ -72,7 +74,7 @@
       "name": "Königsforst"
     },
     {
-      "slug": "project:earquake-wolfgang-voigt-1991-1999",
+      "slug": "project:earquake-wolfgang-voigt-1991-1999--wolfgang-voigt",
       "type": "project",
       "name": "EARQUAKE – Wolfgang Voigt 1991 – 1999"
     }
@@ -84,7 +86,7 @@
       "name": "Pop 1"
     },
     {
-      "slug": "track:konigsforst-1",
+      "slug": "track:konigsforst-1--gas",
       "type": "track",
       "name": "Königsforst 1"
     },
@@ -124,5 +126,6 @@
       "name": "Love Inc."
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

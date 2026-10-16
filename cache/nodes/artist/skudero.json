@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:00:15.329Z",
+  "mbid": "8880c6be-e2c8-460b-a5aa-c1d54d89cf16",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pioneering Spanish mákina DJ and producer who served as the resident at the legendary Pont Aeri club.",
   "origin": "Terrassa, Spain",
   "active_years": "1994-present",
@@ -80,5 +82,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

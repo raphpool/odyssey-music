@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:05:28.190Z",
+  "mbid": "f55cc026-59e9-4bbd-80ce-4dd951c840bb",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Mahmoud Guinia was a legendary Moroccan Gnawa musician and master guembri player known for bridging traditional spiritual rhythms with global jazz collaborations.",
   "origin": "Essaouira, Morocco",
   "active_years": "1960-2015",
@@ -114,5 +116,6 @@
       "type": "artist",
       "name": "Mokhtar Gania"
     }
-  ]
+  ],
+  "similar_artists": []
 }

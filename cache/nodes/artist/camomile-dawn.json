@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:59:35.116Z",
+  "mbid": "131aface-d868-41a3-9942-c13978e3b1c5",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Istanbul-based producer specializing in lo-fi house and electronic rhythms.",
   "origin": "Istanbul, Turkey",
   "active_years": "2010s-present",
@@ -79,5 +81,6 @@
       "name": "Sumatran Black"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

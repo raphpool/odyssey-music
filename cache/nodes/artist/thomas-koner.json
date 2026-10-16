@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:37:05.012Z",
+  "mbid": "8d1a5451-a106-4cc8-86b7-9905d5f5238a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Thomas Köner is a German multimedia artist and composer whose work has profoundly influenced the landscape of ambient, dark ambient, and electronic music.",
   "genres": [
     {
@@ -59,7 +61,7 @@
       "name": "Permafrost"
     },
     {
-      "slug": "project:teimo",
+      "slug": "project:teimo--thomas-koner",
       "type": "project",
       "name": "Teimo"
     },
@@ -91,5 +93,6 @@
       "type": "artist",
       "name": "Porter Ricks"
     }
-  ]
+  ],
+  "similar_artists": []
 }

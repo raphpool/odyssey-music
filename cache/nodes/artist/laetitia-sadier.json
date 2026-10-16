@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:39:23.945Z",
+  "mbid": "9710d91f-bfbd-4f84-9c54-cb04f2a464b1",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Lætitia Sadier is a French musician and songwriter best known for co-founding Stereolab and her subsequent diverse solo and collaborative career. Her work is celebrated for its unique blend of avant-pop, krautrock, and political lyricism, defined by her signature, coolly detached vocal style.",
   "origin": "Vincennes, France",
   "genres": [
@@ -62,8 +64,20 @@
       "slug": "artist:mouse-on-mars",
       "type": "artist",
       "name": "Mouse on Mars"
+    },
+    {
+      "slug": "artist:mary-hansen",
+      "type": "artist",
+      "name": "Mary Hansen"
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [
+    {
+      "slug": "artist:stereolab",
+      "type": "artist",
+      "name": "Stereolab"
+    }
+  ],
+  "similar_artists": []
 }

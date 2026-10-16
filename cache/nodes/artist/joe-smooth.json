@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:14:17.066Z",
+  "mbid": "348443bb-74fe-4459-8c19-3b72ad033d6c",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Joe Smooth is a legendary Chicago-born house music producer and DJ who helped pioneer the genre in the late 1980s. He is globally celebrated for his sophisticated, soulful production style and remains an active, touring fixture in the electronic music community.",
   "genres": [
     {
@@ -54,5 +56,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:32:12.783Z",
+  "mbid": "386b69b4-e188-4f4f-8b2d-2a375fc6608d",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Kool Shen is a pioneering French rapper, producer, and actor, best known as a co-founder of the legendary hip-hop group Suprême NTM.",
   "origin": "Saint-Denis, France",
   "active_years": "1989-present",
@@ -103,5 +105,6 @@
       "type": "artist",
       "name": "Suprême NTM"
     }
-  ]
+  ],
+  "similar_artists": []
 }

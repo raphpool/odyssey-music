@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:54:49.365Z",
+  "mbid": "c3aeb863-7b26-4388-94e8-5a240f2be21b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Thomas Alan Waits (born December 7, 1949, in Pomona, California) is an American singer-songwriter, composer, and actor renowned for his gravelly, distinctive voice and deeply atmospheric, idiosyncratic storytelling.",
   "origin": "Pomona, California, USA",
   "active_years": "1973-present",
@@ -51,5 +53,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

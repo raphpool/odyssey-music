@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:43:59.435Z",
+  "mbid": "7adaabfb-acfb-47bc-8c7c-59471c2f0db8",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Human League, formed in Sheffield, England, in 1977, stands as one of the most influential acts in the development of synth-pop and electronic music.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/The_Human_League_2007.jpg/960px-The_Human_League_2007.jpg",
   "origin": "Sheffield, England",
@@ -134,5 +136,6 @@
       "type": "artist",
       "name": "Ian Craig Marsh"
     }
-  ]
+  ],
+  "similar_artists": []
 }

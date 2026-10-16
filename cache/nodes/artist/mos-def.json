@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:22:08.568Z",
+  "mbid": "f5c4c27e-5902-4fc0-adfb-7775da3d5363",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An influential rapper and versatile actor from Brooklyn, known for his work in Black Star and his critically acclaimed solo debut Black on Both Sides.",
   "origin": "Brooklyn, New York City",
   "active_years": "1987-present",
@@ -439,5 +441,6 @@
       "name": "Yasiin Bey"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

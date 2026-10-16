@@ -32,7 +32,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "3b4db0d5-97a8-4aa8-a375-9b8c78a56932",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Michael Rother is a pioneering German multi-instrumentalist and composer, celebrated for his foundational role in the Krautrock movement and his innovative solo discography that melds guitar soundscapes with electronic experimentalism. His work with legendary groups like Neu! and Harmonia, alongside producer Conny Plank, has profoundly influenced global music culture.",
   "origin": "Hamburg, Germany",
   "genres": [
@@ -90,5 +92,6 @@
       "type": "artist",
       "name": "Neu!"
     }
-  ]
+  ],
+  "similar_artists": []
 }

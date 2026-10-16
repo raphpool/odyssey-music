@@ -16,11 +16,12 @@ import type { ApiEnv } from "../src/env.js";
 import { loadEnv } from "../src/env.js";
 import { loadGenreResolver } from "../src/genre-identity.js";
 import { createGenreRegistry, loadGenreRedirects } from "../src/genre-registry.js";
+import { crawledListEdges } from "../src/node-spec.js";
 import { type PipelineInput, runPipeline } from "../src/pipeline.js";
 import { nodePayloadSchema } from "../src/schemas.js";
 import { parseSlug } from "../src/slug.js";
 import type { EdgeRef, NodePayload, NodeType, Slug } from "../src/types.js";
-import { LIST_EDGES_BY_TYPE, SINGULAR_EDGES_BY_TYPE } from "../src/types.js";
+import { SINGULAR_EDGES_BY_TYPE } from "../src/types.js";
 
 export interface TopUpResult {
 	targetsFound: number;
@@ -86,7 +87,8 @@ export async function topUpDangling(
 					dangling.set(e.slug, entry);
 				}
 			};
-			for (const field of LIST_EDGES_BY_TYPE[parsed.type]) {
+			// TRA-480: similar_artists targets are recommendations, they must not rank as "missing".
+			for (const field of crawledListEdges(parsed.type)) {
 				const v = obj[field];
 				if (Array.isArray(v)) for (const e of v as EdgeRef[]) inspect(e);
 			}

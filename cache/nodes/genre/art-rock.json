@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T12:37:47.851Z",
   "type": "genre",
   "editorial_definition": "An eclectic branch of rock music that incorporates elements of avant-garde, classical, and academic music, often utilizing complex production, conceptual themes, and expanded instrumentation to elevate the rock format.",
+  "qid": "Q217467",
   "era": "1960s-1970s",
   "origin": "United Kingdom / United States",
   "parent_genres": [],
@@ -90,21 +91,20 @@
   "key_labels": [],
   "landmark_projects": [
     {
-      "slug": "project:the-rise-and-fall-of-ziggy-stardust-and-the-spiders-from-mars",
+      "slug": "project:the-rise-and-fall-of-ziggy-stardust-and-the-spiders-from-mars--david-bowie",
       "type": "project",
       "name": "The Rise and Fall of Ziggy Stardust and the Spiders from Mars"
     },
     {
-      "slug": "project:the-dark-side-of-the-moon",
+      "slug": "project:the-dark-side-of-the-moon--pink-floyd",
       "type": "project",
       "name": "The Dark Side of the Moon"
     },
     {
-      "slug": "project:the-velvet-underground-and-nico",
+      "slug": "project:the-velvet-underground-and-nico--the-velvet-underground",
       "type": "project",
       "name": "The Velvet Underground & Nico"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q217467"
+  "landmark_tracks": []
 }

@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:13:43.477Z",
+  "mbid": "2981acc0-69ab-4cb1-8233-e325b3309e9d",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Paperclip People is a foundational Detroit techno project by visionary producer Carl Craig, celebrated for delivering some of the most iconic, rhythmically driving, and funk-inflected dancefloor classics in electronic music history.",
   "genres": [
     {
@@ -49,7 +51,7 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:throw",
+      "slug": "track:throw--paperclip-people",
       "type": "track",
       "name": "Throw"
     },
@@ -75,5 +77,6 @@
       "type": "artist",
       "name": "Carl Craig"
     }
-  ]
+  ],
+  "similar_artists": []
 }

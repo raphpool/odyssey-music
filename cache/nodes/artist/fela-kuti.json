@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:04:26.716Z",
+  "mbid": "6514cffa-fbe0-4965-ad88-e998ead8a82a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Nigerian multi-instrumentalist and political activist who pioneered the Afrobeat genre.",
   "origin": "Abeokuta, Nigeria",
   "active_years": "1958-1997",
@@ -539,5 +541,6 @@
       "type": "artist",
       "name": "Lekan Animashaun"
     }
-  ]
+  ],
+  "similar_artists": []
 }

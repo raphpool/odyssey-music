@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:50:00.211Z",
+  "mbid": "8b431ac6-0806-4e4a-9b6b-1734370fa890",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Xiu Xiu is a long-standing American experimental rock and art pop project formed in San Jose, California, in 2002 by singer-songwriter Jamie Stewart.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/XiuXiuLegitBiz.jpg/250px-XiuXiuLegitBiz.jpg",
   "origin": "San Jose, California, U.S.",
@@ -106,5 +108,6 @@
       "type": "artist",
       "name": "Angela Seo"
     }
-  ]
+  ],
+  "similar_artists": []
 }

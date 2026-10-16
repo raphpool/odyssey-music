@@ -37,6 +37,12 @@
       "qid": "Q11399"
     }
   ],
-  "roster": [],
+  "roster": [
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze"
+    }
+  ],
   "notable_releases": []
 }

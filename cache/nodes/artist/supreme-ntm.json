@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:30:11.932Z",
+  "mbid": "0135e5ec-4ffd-46e5-9c3c-566b3df46a8d",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "A pioneering French hip hop duo from Saint-Denis, Suprême NTM became an iconic force in the 1990s rap scene through their aggressive style and social commentary.",
   "origin": "Saint-Denis, France",
   "active_years": "1989-1998",
@@ -62,5 +64,6 @@
       "type": "artist",
       "name": "Kool Shen"
     }
-  ]
+  ],
+  "similar_artists": []
 }

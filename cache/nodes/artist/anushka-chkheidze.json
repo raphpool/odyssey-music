@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:14:20.026Z",
+  "mbid": "61550996-9ae9-45d9-95a3-2dc3f713502b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Anushka Chkheidze is a Georgian electronic composer, producer, and performer whose work has become a defining voice in the contemporary Tbilisi electronic scene.",
   "photo_url": "https://cdn.sanity.io/images/s97dpaie/production/483790a9705f06c061085422db638cf7596db690-2560x1697.png?rect=0,129,2560,1440&w=1600&h=900&q=85&fit=crop&auto=format",
   "genres": [
@@ -47,11 +49,26 @@
       "name": "CES Records"
     }
   ],
-  "discography": [],
-  "notable_tracks": [],
+  "discography": [
+    {
+      "slug": "project:lost-luggage--anushka-chkheidze",
+      "type": "project",
+      "name": "Lost Luggage",
+      "artist": "Anushka Chkheidze"
+    }
+  ],
+  "notable_tracks": [
+    {
+      "slug": "track:lost-luggage--anushka-chkheidze",
+      "type": "track",
+      "name": "Lost Luggage",
+      "artist": "Anushka Chkheidze"
+    }
+  ],
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

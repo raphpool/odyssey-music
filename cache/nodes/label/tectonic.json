@@ -78,6 +78,11 @@
       "slug": "artist:joker",
       "type": "artist",
       "name": "Joker"
+    },
+    {
+      "slug": "artist:cyrus",
+      "type": "artist",
+      "name": "Cyrus"
     }
   ],
   "notable_releases": [

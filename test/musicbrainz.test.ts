@@ -39,6 +39,7 @@ const suiteMinIntervalMs = musicBrainzConfig.minIntervalMs;
 afterEach(() => {
 	musicBrainzConfig.minIntervalMs = suiteMinIntervalMs;
 	vi.unstubAllGlobals();
+	vi.unstubAllEnvs();
 	vi.useRealTimers();
 });
 
@@ -148,9 +149,35 @@ describe("fetchEntityGenresMb", () => {
 		expect(out).toEqual([]);
 	});
 
-	it("spaces 503 retries by one second and stops after the bounded retry count", async () => {
+	// TRA-573: exponential backoff 1, 2, 4, 8, 16 s; 3 attempts by default, up to 8 with MB_MAX_ATTEMPTS.
+	// Cumulative request offsets (ms) with six attempts:
+	const BACKOFF_OFFSETS_MS = [0, 1_000, 3_000, 7_000, 15_000, 31_000];
+
+	it("defaults to three attempts, backed off by 1 s then 2 s, without throwing", async () => {
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date("2026-09-13T00:00:00.000Z"));
+		const t0 = Date.now();
+		const requestTimes: number[] = [];
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async () => {
+				requestTimes.push(Date.now());
+				return failedResponse(503);
+			}),
+		);
+
+		const pending = fetchEntityGenresMb("artist", "77777777-7777-7777-7777-777777777776");
+		await vi.advanceTimersByTimeAsync(60_000);
+
+		expect(await pending).toEqual([]);
+		expect(requestTimes.map((t) => t - t0)).toEqual([0, 1_000, 3_000]);
+	});
+
+	it("backs off exponentially and stops after six attempts when MB_MAX_ATTEMPTS=6", async () => {
+		vi.stubEnv("MB_MAX_ATTEMPTS", "6");
 		vi.useFakeTimers();
 		vi.setSystemTime(new Date("2026-09-14T00:00:00.000Z"));
+		const t0 = Date.now();
 		const requestTimes: number[] = [];
 		vi.stubGlobal(
 			"fetch",
@@ -161,14 +188,121 @@ describe("fetchEntityGenresMb", () => {
 		);
 
 		const pending = fetchEntityGenresMb("artist", "77777777-7777-7777-7777-777777777777");
-		await vi.advanceTimersByTimeAsync(2_000);
+		await vi.advanceTimersByTimeAsync(60_000);
 
 		expect(await pending).toEqual([]);
-		expect(requestTimes).toEqual([
-			new Date("2026-09-14T00:00:00.000Z").getTime(),
-			new Date("2026-09-14T00:00:01.000Z").getTime(),
-			new Date("2026-09-14T00:00:02.000Z").getTime(),
-		]);
+		expect(requestTimes.map((t) => t - t0)).toEqual(BACKOFF_OFFSETS_MS);
+	});
+
+	it("succeeds when the sixth attempt answers after five 503 with MB_MAX_ATTEMPTS=6", async () => {
+		vi.stubEnv("MB_MAX_ATTEMPTS", "6");
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date("2026-09-15T00:00:00.000Z"));
+		const t0 = Date.now();
+		const requestTimes: number[] = [];
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async () => {
+				requestTimes.push(Date.now());
+				return requestTimes.length < 6
+					? failedResponse(503)
+					: jsonResponse({ genres: [{ name: "Techno", count: 5, id: "g1" }] });
+			}),
+		);
+
+		const pending = fetchEntityGenresMb("artist", "77777777-7777-7777-7777-777777777778");
+		await vi.advanceTimersByTimeAsync(31_000);
+
+		expect(await pending).toEqual([{ name: "techno", mbid: "g1" }]);
+		expect(requestTimes.map((t) => t - t0)).toEqual(BACKOFF_OFFSETS_MS);
+	});
+
+	it("flags a resolver unavailable (fail-closed) after six 503, without throwing", async () => {
+		vi.stubEnv("MB_MAX_ATTEMPTS", "6");
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date("2026-09-16T00:00:00.000Z"));
+		const fetchMock = vi.fn(async () => failedResponse(503));
+		vi.stubGlobal("fetch", fetchMock);
+
+		const pending = resolveReleaseGroupDetailed("Backoff Exhausted Album", "Anyone");
+		await vi.advanceTimersByTimeAsync(60_000);
+
+		expect(await pending).toEqual({ identity: null, ambiguous: false, unavailable: true });
+		expect(fetchMock).toHaveBeenCalledTimes(6);
+	});
+
+	it("keeps the longer of the backoff and Retry-After for each wait", async () => {
+		vi.stubEnv("MB_MAX_ATTEMPTS", "6");
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date("2026-09-17T00:00:00.000Z"));
+		const t0 = Date.now();
+		const requestTimes: number[] = [];
+		// Waits after attempts 0..3: Retry-After 10 s beats the 1 s backoff, 1 s loses to 2 s,
+		// a 4 s backoff is kept for an absent header, and 3 s loses to the 8 s backoff.
+		const retryAfters = ["10", "1", undefined, "3"];
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async () => {
+				const call = requestTimes.length;
+				requestTimes.push(Date.now());
+				return call < 4 ? failedResponse(503, retryAfters[call]) : jsonResponse({ genres: [] });
+			}),
+		);
+
+		const pending = fetchEntityGenresMb("artist", "77777777-7777-7777-7777-777777777779");
+		await vi.advanceTimersByTimeAsync(24_000);
+
+		expect(await pending).toEqual([]);
+		expect(requestTimes.map((t) => t - t0)).toEqual([0, 10_000, 12_000, 16_000, 24_000]);
+	});
+
+	it.each([
+		["abc", 3],
+		["", 3],
+		["2.5", 3],
+		["0", 1],
+		["-4", 1],
+		["99", 8],
+		["4", 4],
+	])(
+		"reads MB_MAX_ATTEMPTS=%j as %i attempts (invalid: default, out of range: clamped)",
+		async (raw, expected) => {
+			vi.stubEnv("MB_MAX_ATTEMPTS", raw);
+			vi.useFakeTimers();
+			const fetchMock = vi.fn(async () => failedResponse(503));
+			vi.stubGlobal("fetch", fetchMock);
+
+			const pending = fetchEntityGenresMb(
+				"artist",
+				`77777777-7777-7777-7777-7777777777b${expected}${raw.length}`,
+			);
+			await vi.advanceTimersByTimeAsync(300_000);
+
+			expect(await pending).toEqual([]);
+			expect(fetchMock).toHaveBeenCalledTimes(expected);
+		},
+	);
+
+	it("caps every wait at 30 s, whether Retry-After is in seconds or an HTTP date", async () => {
+		vi.useFakeTimers();
+		vi.setSystemTime(new Date("2026-09-18T00:00:00.000Z"));
+		const t0 = Date.now();
+		const requestTimes: number[] = [];
+		const retryAfters = ["86400", "Fri, 01 Jan 2100 00:00:00 GMT"];
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async () => {
+				const call = requestTimes.length;
+				requestTimes.push(Date.now());
+				return call < 2 ? failedResponse(429, retryAfters[call]) : jsonResponse({ genres: [] });
+			}),
+		);
+
+		const pending = fetchEntityGenresMb("artist", "77777777-7777-7777-7777-77777777777a");
+		await vi.advanceTimersByTimeAsync(60_000);
+
+		expect(await pending).toEqual([]);
+		expect(requestTimes.map((t) => t - t0)).toEqual([0, 30_000, 60_000]);
 	});
 
 	it.each([500, 502, 504])("retries a transient %i like a 503, one second apart", async (status) => {
@@ -934,6 +1068,27 @@ describe("mbFetch request spacing", () => {
 		expect(requests).toHaveLength(3);
 		expect(gaps.every((gap) => gap >= 1_000)).toBe(true);
 		expect(requests.map((r) => r.at - t0)).toEqual([0, 1_000, 2_000]);
+	});
+
+	it("adds the backoff to the interval instead of replacing it", async () => {
+		vi.stubEnv("MB_MAX_ATTEMPTS", "6");
+		const t0 = startAt("2031-01-01T00:00:00.000Z");
+		const requestTimes: number[] = [];
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async () => {
+				requestTimes.push(Date.now());
+				return requestTimes.length < 4 ? failedResponse(503) : jsonResponse({ genres: [] });
+			}),
+		);
+
+		const pending = fetchEntityGenresMb("artist", "d2000000-0000-0000-0000-000000000000");
+		await vi.advanceTimersByTimeAsync(7_000);
+		await pending;
+
+		const offsets = requestTimes.map((t) => t - t0);
+		expect(offsets).toEqual([0, 1_000, 3_000, 7_000]);
+		expect(offsets.slice(1).every((at, i) => at - (offsets[i] ?? 0) >= 1_000)).toBe(true);
 	});
 
 	it("does not space requests when MB_MIN_INTERVAL_MS is 0", async () => {

@@ -48,7 +48,8 @@ import {
 	TEASER_FIELD_BY_TYPE,
 } from "./node-spec.js";
 import { nodePayloadSchema } from "./schemas.js";
-import { makeScopedSlug, makeSlug, pickScopeArtistName } from "./slug.js";
+import { MAX_SIMILAR_ARTISTS } from "./similar-artists.js";
+import { isValidSlug, makeScopedSlug, makeSlug, pickScopeArtistName } from "./slug.js";
 import { localFetch } from "./tools/local-fetcher.js";
 
 /** Title-case a lowercased genre name for display. Handles "r&b" -> "R&B" and "hip-hop" -> "Hip-Hop". */
@@ -98,7 +99,7 @@ import { isAllowedImageUrl } from "./images/hosts.js";
 import type { ResolvedImage } from "./images/resolve-image.js";
 import { firecrawlSearch } from "./tools/firecrawl-search.js";
 import { rankResults, rankUrl, type TavilyResult, tavilySearch } from "./tools/tavily.js";
-import type { Citation, EdgeRef, NodePayload, NodeType, Slug } from "./types.js";
+import type { ArtistNode, Citation, EdgeRef, ImageSource, NodePayload, NodeType, Slug } from "./types.js";
 import { QID_PATTERN } from "./types.js";
 
 export interface PipelineDeps {
@@ -132,6 +133,12 @@ export interface PipelineDeps {
 	// it, so the mbid it reads is the one the pipeline settled on. A miss, a throw or a timeout leaves
 	// the node without an image: the pipeline never fails because of it.
 	resolveImage?: (node: NodePayload) => Promise<ResolvedImage | null>;
+	// OPTIONAL (TRA-480): similar artists of an artist being materialized, run after MusicBrainz enrichment.
+	// The artist it receives carries `mbid` only when the server confirmed it (MusicBrainz's own resolution,
+	// or a trusted caller's): a client's unconfirmed hint is stripped, so it never reaches ListenBrainz.
+	// Unset = `similar_artists: []`, as before. A throw or a timeout leaves the node with `[]`: the pipeline
+	// never fails because of it.
+	similarArtists?: (artist: ArtistNode) => Promise<EdgeRef[]>;
 }
 
 /** The artist node a cache holds for an MB artist id: its slug and the name it is filed under. */
@@ -161,6 +168,17 @@ export interface PipelineInput {
 	// TRA-473: primary artist credited for a project/track. It tells MusicBrainz which of several works
 	// sharing a title is meant; derived from the requested slug's scope, or given by the caller.
 	artist?: string;
+	// TRA-549: the image the node being refreshed already carries. It survives the refresh when the
+	// image resolver yields nothing usable (no match, outage, timeout, refused host) and is still on an
+	// allowed host; a new valid image replaces it. Only applies together with `slug`, when the result
+	// lands on that very slug. Unset for a first materialization.
+	existingImage?: { url: string; source?: ImageSource };
+}
+
+/** The image a cached node carries, in the shape `PipelineInput.existingImage` takes (TRA-549). */
+export function existingImageOf(node: NodePayload): PipelineInput["existingImage"] {
+	if (!node.image_url) return undefined;
+	return { url: node.image_url, ...(node.image_source ? { source: node.image_source } : {}) };
 }
 
 export interface PipelineResult {
@@ -740,7 +758,20 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	// docs/plans/qid-genre-identity.md).
 	await deps.genreRegistry?.canonicalizeNodeEdges(node);
 	// After the genre edges are canonical (a derived cover follows edges by slug), before validation.
-	await attachResolvedImage(node as Record<string, unknown>, deps.resolveImage, log);
+	// The kept image belongs to the node being refreshed: if the enrichment moved the result onto another
+	// slug (a different work or entity), it is not that node's image.
+	const existingImage =
+		input.slug !== undefined && (node as { slug?: string }).slug === input.slug
+			? input.existingImage
+			: undefined;
+	await attachResolvedImage(node as Record<string, unknown>, deps.resolveImage, log, existingImage);
+	// Last, once genres, labels and collaborators are final: the graph fallback compares them.
+	await attachSimilarArtists(
+		node as Record<string, unknown>,
+		deps.similarArtists,
+		enrichment.confirmedArtistMbid,
+		log,
+	);
 	const validated = validateNode(node);
 
 	return {
@@ -751,6 +782,65 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	};
 }
 
+// Upper bound on the similar-artists step: one ListenBrainz request (5 s) plus its rate-limit slot.
+const SIMILAR_ARTISTS_TIMEOUT_MS = 15_000;
+// Same bound as the ListenBrainz row validation (src/similar-artists.ts): the injected function is a trust boundary.
+const MAX_SIMILAR_NAME_LENGTH = 200;
+
+/**
+ * TRA-480: set `similar_artists` on an artist draft. ListenBrainz data is third-party, so every edge is
+ * checked again here: an artist target, a canonical slug (a legacy slug read back from the cache would
+ * make validateNode throw -- the node must not pay for a recommendation), not the artist itself.
+ * `confirmedMbid` is the server-confirmed MBID, or undefined (graph fallback only, no network call).
+ */
+async function attachSimilarArtists(
+	node: Record<string, unknown>,
+	similarArtists: PipelineDeps["similarArtists"],
+	confirmedMbid: string | undefined,
+	log: PipelineLog,
+): Promise<void> {
+	if (!similarArtists || node.type !== "artist") return;
+	const label = String(node.slug);
+	let timer: ReturnType<typeof setTimeout> | undefined;
+	try {
+		const artist: Record<string, unknown> = { ...node };
+		delete artist.mbid;
+		if (confirmedMbid) artist.mbid = confirmedMbid;
+		const timeout = new Promise<never>((_, reject) => {
+			timer = setTimeout(() => reject(new Error("timed out")), SIMILAR_ARTISTS_TIMEOUT_MS);
+		});
+		const found = await Promise.race([similarArtists(artist as unknown as ArtistNode), timeout]);
+		const seen = new Set<string>([label]);
+		const edges: EdgeRef[] = [];
+		let dropped = 0;
+		for (const edge of Array.isArray(found) ? found : []) {
+			if (edges.length >= MAX_SIMILAR_ARTISTS) break;
+			const ok =
+				edge?.type === "artist" &&
+				typeof edge.slug === "string" &&
+				isValidSlug(edge.slug) &&
+				typeof edge.name === "string" &&
+				edge.name.trim() !== "" &&
+				edge.name.length <= MAX_SIMILAR_NAME_LENGTH &&
+				!seen.has(edge.slug);
+			if (!ok) {
+				dropped++;
+				continue;
+			}
+			seen.add(edge.slug);
+			edges.push(edge);
+		}
+		node.similar_artists = edges;
+		log(`[pipeline] similar artists for ${label}: ${edges.length} kept, ${dropped} dropped`);
+	} catch (e) {
+		const msg = e instanceof Error ? e.message : String(e);
+		node.similar_artists = [];
+		log(`[pipeline] similar artists skipped for ${label}: ${msg.slice(0, 100)}`);
+	} finally {
+		clearTimeout(timer);
+	}
+}
+
 // Upper bound on the image step: the resolver makes several third-party requests, and none of them
 // may hold a materialization (a Gemini call already paid for) hostage.
 const IMAGE_RESOLVE_TIMEOUT_MS = 20_000;
@@ -759,37 +849,52 @@ const IMAGE_RESOLVE_TIMEOUT_MS = 20_000;
  * TRA-479: set `image_url` / `image_source` on the draft when the resolver finds a picture.
  * The URL is third-party data, so it goes through `isAllowedImageUrl` here as well: the node schema
  * refuses a disallowed host and validateNode would throw -- an image must never cost the node.
+ *
+ * TRA-549: when the resolver yields nothing usable on a refresh, the node keeps the image it had --
+ * a refresh must not erase a picture (possibly verified) just because a provider missed this time.
+ * The kept URL is re-checked against the allow-list: the list may have tightened since it was written.
  */
 async function attachResolvedImage(
 	node: Record<string, unknown>,
 	resolveImage: PipelineDeps["resolveImage"],
 	log: PipelineLog,
+	existing?: PipelineInput["existingImage"],
 ): Promise<void> {
-	if (!resolveImage) return;
 	const label = `${String(node.type)}:${String(node.slug)}`;
-	let timer: ReturnType<typeof setTimeout> | undefined;
-	try {
-		const timeout = new Promise<never>((_, reject) => {
-			timer = setTimeout(() => reject(new Error("timed out")), IMAGE_RESOLVE_TIMEOUT_MS);
-		});
-		const found = await Promise.race([resolveImage(node as unknown as NodePayload), timeout]);
-		if (!found) {
-			log(`[pipeline] no image resolved for ${label}`);
-			return;
-		}
-		if (typeof found.url !== "string" || !isAllowedImageUrl(found.url)) {
-			log(`[pipeline] image refused for ${label}: host not allowed`);
-			return;
-		}
-		node.image_url = found.url;
-		if (found.source) node.image_source = found.source;
+	const setImage = (url: string, source: ImageSource | undefined): void => {
+		node.image_url = url;
+		if (source) node.image_source = source;
 		else delete node.image_source;
-		log(`[pipeline] image resolved for ${label} source=${found.source ?? "-"}`);
-	} catch (e) {
-		const msg = e instanceof Error ? e.message : String(e);
-		log(`[pipeline] image resolution skipped for ${label}: ${msg.slice(0, 100)}`);
-	} finally {
-		clearTimeout(timer);
+	};
+	let resolved: ResolvedImage | null = null;
+	if (resolveImage) {
+		let timer: ReturnType<typeof setTimeout> | undefined;
+		try {
+			const timeout = new Promise<never>((_, reject) => {
+				timer = setTimeout(() => reject(new Error("timed out")), IMAGE_RESOLVE_TIMEOUT_MS);
+			});
+			const found = await Promise.race([resolveImage(node as unknown as NodePayload), timeout]);
+			if (!found) log(`[pipeline] no image resolved for ${label}`);
+			else if (typeof found.url !== "string" || !isAllowedImageUrl(found.url)) {
+				log(`[pipeline] image refused for ${label}: host not allowed`);
+			} else resolved = found;
+		} catch (e) {
+			const msg = e instanceof Error ? e.message : String(e);
+			log(`[pipeline] image resolution skipped for ${label}: ${msg.slice(0, 100)}`);
+		} finally {
+			clearTimeout(timer);
+		}
+	}
+	if (resolved) {
+		setImage(resolved.url, resolved.source);
+		log(`[pipeline] image resolved for ${label} source=${resolved.source ?? "-"}`);
+	} else if (existing) {
+		if (!isAllowedImageUrl(existing.url)) {
+			log(`[pipeline] existing image dropped for ${label}: host no longer allowed`);
+			return;
+		}
+		setImage(existing.url, existing.source);
+		log(`[pipeline] existing image kept for ${label} source=${existing.source ?? "-"}`);
 	}
 }
 
@@ -1045,6 +1150,12 @@ export interface MbEnrichment {
 	 * otherwise, and the slug asked for stays.
 	 */
 	scopeArtist?: string;
+	/**
+	 * The artist's MBID when the server stands behind it: MusicBrainz's own resolution, or a caller that is
+	 * not an HTTP client (`mbidIsClientHint` unset). Absent for an artist left without MBID or carrying a
+	 * client's unconfirmed one (TRA-538, TRA-480).
+	 */
+	confirmedArtistMbid?: string;
 }
 
 /** An artist reference for an MB credit, or null when no slug can be made for it (non-Latin, not cached). */
@@ -1142,6 +1253,7 @@ async function enrichNode(
 				if (resolution.artist && confirmsHint(resolution.artist.mbid, clientHint)) {
 					mbid = resolution.artist.mbid;
 					kind = resolution.artist.kind;
+					enrichment.confirmedArtistMbid = mbid;
 				} else if (resolution.artist) {
 					log(
 						`[pipeline] artist "${input.name}" left without MBID (MB resolved ${resolution.artist.mbid}, hint not confirmed)`,
@@ -1153,6 +1265,9 @@ async function enrichNode(
 				}
 			} else {
 				// A caller-supplied MBID names the artist for certain; only its kind is still unknown.
+				// An HTTP client's is still unconfirmed (TRA-538): kept on the node as before, but never used
+				// to look up recommendations.
+				if (input.mbidIsClientHint !== true) enrichment.confirmedArtistMbid = mbid;
 				try {
 					kind = (await fetchArtistEntityMb(mbid))?.kind;
 				} catch (e) {

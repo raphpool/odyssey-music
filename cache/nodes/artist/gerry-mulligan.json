@@ -32,7 +32,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "68f19808-1f7b-46d4-bd1d-71aaf0f6b267",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Gerry Mulligan was a transformative American jazz baritone saxophonist, composer, and arranger, famously recognized for his cool jazz work and his legendary pianoless quartet.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Gerry_Mulligan_%281980s_portrait_by_William_P._Gottlieb%29.jpg/500px-Gerry_Mulligan_%281980s_portrait_by_William_P._Gottlieb%29.jpg",
   "origin": "Queens, New York, USA",
@@ -112,5 +114,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

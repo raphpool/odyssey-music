@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { NodeCache } from "../src/cache.js";
 import type { ApiEnv } from "../src/env.js";
-import type { ArtistNode } from "../src/types.js";
+import type { ArtistNode, Slug } from "../src/types.js";
 import { genreDraftFixture, installPipelineMocks } from "./helpers/pipeline-mocks.js";
 
 // TRA-28 review B2: `topUpDangling` (scripts/top-up-dangling.ts) selects a dangling target by
@@ -57,6 +57,30 @@ describe("topUpDangling (TRA-28 review B2)", () => {
 	afterEach(async () => {
 		await rm(dir, { recursive: true, force: true });
 	});
+
+	// TRA-480: similar_artists targets are recommendations; they must not rank as "dangling" nodes to
+	// materialize (the pipeline would not be called at all here, so no mocks are armed).
+	it(
+		"ignores the targets of similar_artists when ranking dangling references",
+		async () => {
+			const cache = new NodeCache(dir);
+			await cache.write({
+				...artistReferencingDanglingGenre(),
+				genres: [],
+				similar_artists: ["Alpha", "Beta", "Gamma"].map((name) => ({
+					type: "artist" as const,
+					slug: `artist:${name.toLowerCase()}` as Slug,
+					name,
+				})),
+			});
+			const topUpDangling = await loadTopUpDangling();
+
+			const result = await topUpDangling(dir, 10, 1, ENV);
+
+			expect(result.targetsFound).toBe(0);
+		},
+		TIMEOUT_MS,
+	);
 
 	it(
 		"materializes a dangling reference under its own slug, and a second run finds nothing left dangling",

@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:57:25.019Z",
+  "mbid": "5791156a-75e9-454d-9a23-fbc2896f9151",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Chicago ghetto house pioneer and veteran Dance Mania producer known for driving, minimalist dance floor tracks.",
   "origin": "Chicago, Illinois",
   "active_years": "1990s-present",
@@ -223,5 +225,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

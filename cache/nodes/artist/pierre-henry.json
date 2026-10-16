@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:45:28.179Z",
+  "mbid": "24e0aaa1-7961-4ab8-865e-e736226e41c9",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Pierre Henry (1927–2017) was a towering figure in French twentieth-century music, widely recognized as a foundational pioneer of musique concrète.",
   "origin": "Paris, France",
   "genres": [
@@ -76,5 +78,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

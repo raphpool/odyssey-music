@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:42:00.520Z",
+  "mbid": "6732e9f3-5f24-4ba4-aef1-a2a49442b96b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pivotal architect of the Detroit techno sound, Carl Craig has spent over three decades redefining the boundaries of electronic music through his prolific solo work, myriad aliases, and his foundational label, Planet E Communications.",
   "origin": "Detroit, Michigan, U.S.",
   "active_years": "1989-present",
@@ -56,12 +58,12 @@
   ],
   "discography": [
     {
-      "slug": "project:landcruising",
+      "slug": "project:landcruising--carl-craig",
       "type": "project",
       "name": "Landcruising"
     },
     {
-      "slug": "project:more-songs-about-food-and-revolutionary-art",
+      "slug": "project:more-songs-about-food-and-revolutionary-art--carl-craig",
       "type": "project",
       "name": "More Songs About Food and Revolutionary Art"
     },
@@ -88,9 +90,15 @@
       "name": "Bug in the Bassbin"
     },
     {
-      "slug": "track:throw",
+      "slug": "track:throw--paperclip-people",
       "type": "track",
       "name": "Throw"
+    },
+    {
+      "slug": "track:bug-in-the-bassbin--carl-craig",
+      "type": "track",
+      "name": "Bug in the Bassbin",
+      "artist": "Carl Craig"
     }
   ],
   "influences": [],
@@ -129,5 +137,6 @@
       "type": "artist",
       "name": "Paperclip People"
     }
-  ]
+  ],
+  "similar_artists": []
 }

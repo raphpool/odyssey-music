@@ -48,6 +48,11 @@
       "slug": "artist:nrbq",
       "type": "artist",
       "name": "NRBQ"
+    },
+    {
+      "slug": "artist:chrissie-hynde",
+      "type": "artist",
+      "name": "Chrissie Hynde"
     }
   ],
   "notable_releases": [
@@ -55,6 +60,12 @@
       "slug": "project:billboard-top-hits-series",
       "type": "project",
       "name": "Billboard Top Hits series"
+    },
+    {
+      "slug": "project:no-world-order--todd-rundgren",
+      "type": "project",
+      "name": "No World Order",
+      "artist": "Todd Rundgren"
     }
   ]
 }

@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "092b603f-eb4c-4958-b10e-02420de5885b",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Formed in Boston in 1976, The Cars were a defining force in American new wave, successfully bridging the gap between 1960s power pop, 1970s glam, and the nascent art-pop potential of the synthesizer.",
   "photo_url": "https://cdn.britannica.com/79/240079-050-50B51171/The-Cars-Rock-Band-Ric-Ocasek-1984.jpg",
   "origin": "Boston, Massachusetts",
@@ -103,5 +105,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

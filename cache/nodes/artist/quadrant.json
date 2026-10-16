@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:46:13.445Z",
+  "mbid": "7c1cc8a1-a237-40b6-ab4a-dca495a8f470",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Quadrant is a Seattle-based drum and bass production entity, primarily known as the project of producer Leigh Caplan, though it has evolved through various collaborative configurations, including notable work with Iris and Kid Hops.",
   "origin": "Seattle, USA",
   "genres": [
@@ -70,5 +72,6 @@
       "name": "Basic Channel"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:34:47.527Z",
+  "mbid": "2e710b0c-6ff3-4c21-87d5-16ebbbca212c",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Klaus Schulze (1947–2022) was a monumental figure in the history of electronic music, a German composer whose pioneering work with synthesizers, sequencers, and long-form soundscapes laid the bedrock for the Berlin School, ambient music, and contemporary electronic genres.",
   "origin": "Berlin, Germany",
   "active_years": "1969–2022",
@@ -85,7 +87,7 @@
       "name": "Timewind"
     },
     {
-      "slug": "project:moondawn",
+      "slug": "project:moondawn--klaus-schulze",
       "type": "project",
       "name": "Moondawn"
     },
@@ -95,9 +97,10 @@
       "name": "X"
     },
     {
-      "slug": "project:in-blue",
+      "slug": "project:in-blue--klaus-schulze",
       "type": "project",
-      "name": "In Blue"
+      "name": "In Blue",
+      "artist": "Klaus Schulze"
     }
   ],
   "notable_tracks": [
@@ -117,5 +120,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

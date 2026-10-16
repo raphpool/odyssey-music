@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "67930b3e-e00b-469f-8c74-fd69f20522ec",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Sade is a British band formed in London in 1982, renowned for their smooth fusion of jazz, R&B, and pop, defined by vocalist Sade Adu's soulful delivery. Their elegant, atmospheric sound has made them icons of the sophisti-pop and quiet storm genres.",
   "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000279337/400/OZ8J7YLsJqQHEYwDVexVSVWnbEN5fCjifro6xhIBuB4=.jpg",
   "origin": "London, England",
@@ -114,5 +116,6 @@
       "type": "artist",
       "name": "Paul S. Denman"
     }
-  ]
+  ],
+  "similar_artists": []
 }

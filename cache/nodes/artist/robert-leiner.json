@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:46:35.938Z",
+  "mbid": "a5b92ee5-5959-4afb-a310-09f33a159804",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Robert Leiner is an influential Swedish electronic musician and producer, best known for his pivotal role in the early 1990s ambient techno scene. Emerging from the vibrant electronic music landscape of Scandinavia, he gained international recognition through his association with the legendary Belgian label R&S Records.",
   "photo_url": "https://ra.co/dj/robertleiner",
   "origin": "Sweden",
@@ -83,5 +85,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

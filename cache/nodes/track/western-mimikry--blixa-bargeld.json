@@ -1,0 +1,65 @@
+{
+  "slug": "track:western-mimikry--blixa-bargeld",
+  "name": "Western Mimikry",
+  "editorial_article": "Western Mimikry is a track featured on the 2010 collaborative album Mimikry by the duo ANBB, consisting of Blixa Bargeld and Alva Noto. Released on the Raster-Noton label, the project represents a fusion of electronic, glitch, and experimental soundscapes, characteristic of the label's precise, minimalist aesthetic. The album, which includes tracks like Berghain and Wust, highlights the synergy between Bargeld's avant-garde vocal and structural sensibilities and Noto's meticulous digital sound design. Western Mimikry serves as a pivotal moment in this collaboration, reflecting the duo's exploration of industrial and modern classical textures within a contemporary electronic framework. The album was released in various formats, including CD and a limited edition box set, cementing its place in the experimental electronic scene of the early 2010s.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/278482-ANBB-Mimikry?srsltid=AfmBOoq833-8uj1T9FsJrj6kHFHWPiyFXvoM7qv6CIhYMEeHskWKpzdG"
+    },
+    {
+      "url": "https://www.discogs.com/master/3433994-Mimikry-Visar-V%C3%A4gen?srsltid=AfmBOoogD7VKLTl63aoF70D7tPuyn7da7WBwRq-qyWGPYAFHr6G9bBBY"
+    }
+  ],
+  "materialized_at": "2026-05-13T15:08:33.243Z",
+  "type": "track",
+  "editorial_teaser": "Western Mimikry is a standout track from the 2010 collaborative album Mimikry, a project by Blixa Bargeld and Alva Noto that masterfully blends glitch and industrial experimentalism.",
+  "year": "2010",
+  "artists": [
+    {
+      "slug": "artist:blixa-bargeld",
+      "type": "artist",
+      "name": "Blixa Bargeld"
+    },
+    {
+      "slug": "artist:alva-noto",
+      "type": "artist",
+      "name": "Alva Noto"
+    }
+  ],
+  "project": {
+    "slug": "project:mimikry",
+    "type": "project",
+    "name": "Mimikry"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch",
+      "qid": "Q1100989"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental",
+      "qid": "Q1640319"
+    },
+    {
+      "slug": "genre:industrial",
+      "type": "genre",
+      "name": "Industrial",
+      "qid": "Q487965"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:08:23.716Z",
+  "mbid": "af75ebe4-3ab1-423d-a499-2a6f9d011ce2",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Lee \"Scratch\" Perry (1936–2021), born Rainford Hugh Perry in Kendal, Jamaica, stands as one of the most transformative and eccentric figures in the history of popular music.",
   "origin": "Kingston, Jamaica",
   "genres": [
@@ -82,5 +84,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

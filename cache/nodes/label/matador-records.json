@@ -53,16 +53,26 @@
       "slug": "artist:snail-mail",
       "type": "artist",
       "name": "Snail Mail"
+    },
+    {
+      "slug": "artist:mogwai",
+      "type": "artist",
+      "name": "Mogwai"
+    },
+    {
+      "slug": "artist:pole",
+      "type": "artist",
+      "name": "Pole"
     }
   ],
   "notable_releases": [
     {
-      "slug": "project:slanted-and-enchanted",
+      "slug": "project:slanted-and-enchanted--pavement",
       "type": "project",
       "name": "Slanted and Enchanted"
     },
     {
-      "slug": "project:exile-in-guyville",
+      "slug": "project:exile-in-guyville--liz-phair",
       "type": "project",
       "name": "Exile in Guyville"
     },

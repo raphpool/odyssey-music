@@ -99,6 +99,12 @@
       "slug": "project:the-temptations-sing-smokey",
       "type": "project",
       "name": "The Temptations Sing Smokey"
+    },
+    {
+      "slug": "project:ii--boyz-ii-men",
+      "type": "project",
+      "name": "II",
+      "artist": "Boyz II Men"
     }
   ]
 }

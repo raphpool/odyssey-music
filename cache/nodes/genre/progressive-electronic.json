@@ -26,6 +26,7 @@
   },
   "type": "genre",
   "editorial_definition": "A synthesizer-centric genre emphasizing long-form composition, sound design, and experimental structures, evolving from the progressive rock and krautrock movements of the late 1960s.",
+  "qid": "Q79784514",
   "era": "1969-present",
   "origin": "Germany, Europe",
   "parent_genres": [
@@ -92,7 +93,7 @@
   "key_labels": [],
   "landmark_projects": [
     {
-      "slug": "project:phaedra",
+      "slug": "project:phaedra--tangerine-dream",
       "type": "project",
       "name": "Phaedra"
     },
@@ -112,6 +113,5 @@
       "name": "Oxygène"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q79784514"
+  "landmark_tracks": []
 }

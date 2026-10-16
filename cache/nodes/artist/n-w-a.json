@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:20:40.043Z",
+  "mbid": "3a54bffa-2314-44a2-927b-60144119c780",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "A pioneering Compton hip-hop collective that defined the gangsta rap subgenre and challenged social and political norms in the late 1980s.",
   "origin": "Compton, California",
   "active_years": "1987-1991, 1999-2001, 2015-2016",
@@ -160,5 +162,6 @@
       "type": "artist",
       "name": "MC Ren"
     }
-  ]
+  ],
+  "similar_artists": []
 }

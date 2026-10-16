@@ -63,6 +63,11 @@
       "slug": "artist:sandro-perri",
       "type": "artist",
       "name": "Sandro Perri"
+    },
+    {
+      "slug": "artist:deadbeat",
+      "type": "artist",
+      "name": "Deadbeat"
     }
   ],
   "notable_releases": [

@@ -53,23 +53,44 @@
       "slug": "artist:bill-bruford",
       "type": "artist",
       "name": "Bill Bruford"
+    },
+    {
+      "slug": "artist:andy-mackay",
+      "type": "artist",
+      "name": "Andy Mackay"
+    },
+    {
+      "slug": "artist:bryan-ferry",
+      "type": "artist",
+      "name": "Bryan Ferry"
     }
   ],
   "notable_releases": [
     {
-      "slug": "project:in-the-court-of-the-crimson-king",
+      "slug": "project:in-the-court-of-the-crimson-king--king-crimson",
       "type": "project",
       "name": "In the Court of the Crimson King"
     },
     {
-      "slug": "project:here-come-the-warm-jets",
+      "slug": "project:here-come-the-warm-jets--brian-eno",
       "type": "project",
       "name": "Here Come the Warm Jets"
     },
     {
-      "slug": "project:for-your-pleasure",
+      "slug": "project:for-your-pleasure--roxy-music",
       "type": "project",
       "name": "For Your Pleasure"
+    },
+    {
+      "slug": "project:ambient-1-music-for-airports--brian-eno",
+      "type": "project",
+      "name": "Ambient 1: Music for Airports",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "project:ambient-2-the-plateaux-of-mirror",
+      "type": "project",
+      "name": "Ambient 2: The Plateaux of Mirror"
     }
   ]
 }

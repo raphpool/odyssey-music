@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T20:59:42.333Z",
+  "mbid": "d71b56b6-fea1-4300-8a69-94c78feeb4aa",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pioneering Brazilian funk carioca artist from Rio de Janeiro whose work became a cornerstone of global baile funk fusion.",
   "origin": "Rio de Janeiro, Brazil",
   "active_years": "2002-2006, 2012-present",
@@ -133,5 +135,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

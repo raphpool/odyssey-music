@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:35:33.465Z",
+  "mbid": "cce15a87-fa96-459d-9e10-e4fd03acc703",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A legendary Detroit producer, DJ, and educator known for his deep house and techno sound, his role in the Record Time store, and his dedication to teaching youth.",
   "photo_url": "https://waldorfmusic.com/wp-content/uploads/2025/03/mike-a.jpg",
   "origin": "Detroit, USA",
@@ -48,11 +50,25 @@
       "name": "S Y N T H"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:harmonie-park-classics-volume-1--mike-huckaby",
+      "type": "project",
+      "name": "Harmonie Park Classics Volume 1",
+      "artist": "Mike Huckaby"
+    },
+    {
+      "slug": "project:harmonie-park-classics-volume-2--mike-huckaby",
+      "type": "project",
+      "name": "Harmonie Park Classics Volume 2",
+      "artist": "Mike Huckaby"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

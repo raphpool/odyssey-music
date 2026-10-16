@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:56:35.023Z",
+  "mbid": "bf4143da-9b14-4ae8-8787-2a1dfe610a76",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "A seminal Dutch gabber act founded in 1993, Rotterdam Terror Corps remains a foundational force in hardcore techno, known for their high-energy productions and pyrotechnic-heavy live performances.",
   "origin": "Rotterdam, Netherlands",
   "active_years": "1993-present",
@@ -284,5 +286,6 @@
       "type": "artist",
       "name": "DJ Paul Elstak"
     }
-  ]
+  ],
+  "similar_artists": []
 }

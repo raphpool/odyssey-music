@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:14:40.162Z",
+  "mbid": "720c46ba-a0e4-4b58-aee2-3bd70c70901f",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Nigerian singer-songwriter and rapper who pioneered the Afrorave genre, achieving global chart success with the hit single 'Calm Down'.",
   "origin": "Benin City, Edo, Nigeria",
   "active_years": "2019-present",
@@ -162,5 +164,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "7113aab7-628f-4050-ae49-dbecac110ca8",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "UB40 is an iconic English reggae and pop band formed in Birmingham in December 1978.",
   "genres": [
     {
@@ -66,6 +68,12 @@
       "slug": "project:promises-and-lies",
       "type": "project",
       "name": "Promises and Lies"
+    },
+    {
+      "slug": "project:impossible-love--ub40",
+      "type": "project",
+      "name": "Impossible Love",
+      "artist": "UB40"
     }
   ],
   "notable_tracks": [
@@ -73,11 +81,18 @@
       "slug": "track:red-red-wine",
       "type": "track",
       "name": "Red Red Wine"
+    },
+    {
+      "slug": "track:silent-witness--ub40",
+      "type": "track",
+      "name": "Silent Witness",
+      "artist": "UB40"
     }
   ],
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

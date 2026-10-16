@@ -416,3 +416,75 @@ describe("migration channel: a replay dir left by another run is refused (TRA-56
 		expect(existsSync(join(fx.serverRoot, "backups"))).toBe(false);
 	});
 });
+
+describe("migration channel: the identity exclusion list reaches the artist step (TRA-575)", () => {
+	const exclusionsAt = (fx: Fixture, name: string, content: string): string => {
+		const path = join(dirname(fx.callsLog), name);
+		writeFileSync(path, content);
+		return path;
+	};
+
+	it("hands the committed list to the artist step: it excludes the artist, with the reason", async () => {
+		const fx = makeFixture();
+		const list = exclusionsAt(
+			fx,
+			"exclusions.json",
+			JSON.stringify({ artists: { "artist:pole--stefan-betke": "fixture reason for the channel" } }),
+		);
+
+		const out = await runChannel(fx, migrationArgs([ARTIST_STEP]), {
+			REPO_IDENTITY_EXCLUSIONS_PATH: list,
+		});
+
+		expect(out.stderr).not.toMatch(/ERROR/);
+		expect(out.status).toBe(0);
+		// The step printed its manifest: it read the file from the --data-dir the channel built.
+		expect(out.stdout).toContain('"status": "excluded"');
+		expect(out.stdout).toContain("fixture reason for the channel");
+		expect(out.stdout).toMatch(/"slug": "artist:pole--stefan-betke"/);
+	}, 120_000);
+
+	it("with the repo's own committed list the artist step is not refused (the file is in --data-dir)", async () => {
+		const fx = makeFixture();
+		const out = await runChannel(fx, migrationArgs([ARTIST_STEP]));
+		expect(out.stderr).not.toMatch(/ERROR/);
+		expect(out.status).toBe(0);
+		expect(out.stdout).toContain('"excluded": []');
+	}, 120_000);
+
+	it("refuses an artist step when the list is missing from the repo, before touching the server", async () => {
+		const fx = makeFixture();
+		const out = await runChannel(fx, ["--apply", ...migrationArgs([ARTIST_STEP])], {
+			REPO_IDENTITY_EXCLUSIONS_PATH: join(dirname(fx.callsLog), "absent.json"),
+		});
+		expect(out.status).toBe(1);
+		expect(out.stderr).toContain("absent.json is missing");
+		expect(out.stderr).toContain(
+			`${ARTIST_STEP} refuses to run without the committed identity-exclusions list`,
+		);
+		expect(out.npx).toEqual([]);
+		expect(existsSync(join(fx.serverRoot, "backups"))).toBe(false);
+	}, 120_000);
+
+	it("stops the run when the list is invalid: the artist step itself refuses", async () => {
+		const fx = makeFixture();
+		const out = await runChannel(fx, ["--apply", ...migrationArgs([ARTIST_STEP])], {
+			REPO_IDENTITY_EXCLUSIONS_PATH: exclusionsAt(fx, "bad.json", JSON.stringify({ artists: { tyla: "x" } })),
+		});
+		expect(out.status).toBe(1);
+		expect(out.stderr).toContain(`migration ${ARTIST_STEP} failed (exit 2)`);
+		expect(existsSync(join(fx.serverRoot, "backups"))).toBe(false);
+	}, 120_000);
+
+	it("does not require the list for a run without the artist step", async () => {
+		const fx = makeFixture();
+		const missing = join(dirname(fx.callsLog), "absent.json");
+		const other = await runChannel(fx, migrationArgs([RELEASE_STEP]), {
+			REPO_IDENTITY_EXCLUSIONS_PATH: missing,
+		});
+		expect(other.stderr).not.toContain("identity-exclusions");
+		expect(callOf(other, RELEASE_STEP)).toBeDefined();
+		const plain = await runChannel(fx, [], { REPO_IDENTITY_EXCLUSIONS_PATH: missing });
+		expect(plain.stderr).not.toContain("identity-exclusions");
+	}, 120_000);
+});

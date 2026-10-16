@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:06:38.415Z",
+  "mbid": "3e2fb7a8-195a-4d9e-b042-6451ee1e6b8d",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Prolific British electronic musician, founder of Planet Mu, and a primary architect of 1990s IDM and drill 'n' bass under the μ-Ziq moniker.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Mike_Paradinas_%28cropped%29.jpg/500px-Mike_Paradinas_%28cropped%29.jpg",
   "origin": "Wimbledon, London, England",
@@ -39,6 +41,12 @@
       "slug": "genre:drill-n-bass",
       "type": "genre",
       "name": "Drill 'n' bass"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "labels": [
@@ -55,7 +63,7 @@
   ],
   "discography": [
     {
-      "slug": "project:tango-n-vectif",
+      "slug": "project:tango-n-vectif--ziq",
       "type": "project",
       "name": "Tango n' Vectif"
     },
@@ -65,9 +73,15 @@
       "name": "Lunatic Harness"
     },
     {
-      "slug": "project:expert-knob-twiddlers",
+      "slug": "project:expert-knob-twiddlers--mike-paradinas",
       "type": "project",
-      "name": "Expert Knob Twiddlers"
+      "name": "Expert Knob Twiddlers",
+      "artist": "Mike Paradinas"
+    },
+    {
+      "slug": "project:royal-astronomy",
+      "type": "project",
+      "name": "Royal Astronomy"
     }
   ],
   "notable_tracks": [
@@ -109,6 +123,11 @@
       "slug": "artist:richard-d-james",
       "type": "artist",
       "name": "Richard D. James"
+    },
+    {
+      "slug": "artist:mark-pritchard",
+      "type": "artist",
+      "name": "Mark Pritchard"
     }
   ],
   "aliases": [
@@ -159,5 +178,6 @@
       "type": "artist",
       "name": "Mike & Rich"
     }
-  ]
+  ],
+  "similar_artists": []
 }

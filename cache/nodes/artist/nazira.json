@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:59:57.236Z",
+  "mbid": "d38a97eb-d91b-44fd-9aff-a431f8a30528",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A prominent Kazakh DJ and producer known for founding the ZVUK event series in Almaty and bringing experimental electronic sounds to international stages.",
   "origin": "Almaty, Kazakhstan",
   "active_years": "2016-present",
@@ -70,5 +72,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

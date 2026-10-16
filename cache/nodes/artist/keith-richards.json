@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T15:13:55.116Z",
+  "mbid": "f0ed72a3-ae8f-4cf7-b51d-2696a2330230",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Keith Richards is an iconic English guitarist, songwriter, and founding member of the Rolling Stones, celebrated for his legendary riffs and long-standing creative partnership with Mick Jagger.",
   "origin": "Dartford, Kent, England",
   "active_years": "1962-present",
@@ -102,5 +104,6 @@
       "type": "artist",
       "name": "The Rolling Stones"
     }
-  ]
+  ],
+  "similar_artists": []
 }

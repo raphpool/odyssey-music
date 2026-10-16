@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:19:14.264Z",
+  "mbid": "25b7b584-d952-4662-a8b9-dd8cdfbfeb64",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Rakim Athelston Mayers is a Harlem-born rapper and creative director who spearheaded the cloud rap movement and founded the creative collective AWGE.",
   "origin": "Harlem, New York City, U.S.",
   "active_years": "2007-present",
@@ -800,5 +802,6 @@
       "name": "Pretty Flacko"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -1,0 +1,60 @@
+{
+  "slug": "project:gruppen--karlheinz-stockhausen",
+  "name": "Gruppen",
+  "editorial_article": "*Gruppen* (1955–1957) is a seminal work for three orchestras by the influential German composer Karlheinz Stockhausen. Representing a pinnacle of post-war serialist composition, the work is a landmark in 20th-century music, famous for its innovative spatialization and its radical approach to musical time. Written during a transformative period in Stockhausen’s life while he was inspired by the alpine landscapes of Paspels, Switzerland, *Gruppen* was intended to reconcile the meticulous precision of serialist techniques with a newfound orchestral scale and sonic intensity.\\n\\nThe composition requires three separate orchestras, each with its own conductor, arranged in a horseshoe formation around the audience. This configuration was not merely a novelty but a compositional necessity to maintain the distinctiveness of concurrent, musically independent passages. Stockhausen’s title refers to his focus on \"groups\"—cohesive blocks of musical material unified by shared characteristics such as dynamics, timbre, or register—which interact in ways that challenge traditional notions of thematic development. The work also utilizes a sophisticated serial organization of duration, mirroring his development of the \"duration series\" in his theoretical work *... wie die Zeit vergeht ...*. \\n\\n*Gruppen* had its world premiere in Cologne on March 24, 1958, conducted by Stockhausen himself, alongside Pierre Boulez and Bruno Maderna. The piece remains a testament to the Darmstadt school's ambition to synthesize total serialism with expanded spatial possibilities. It is widely regarded as an indisputable masterpiece that bridged the gap between early pointillist serialism and the more expansive, immersive textures that would define Stockhausen's later experiments in sound. Even today, performing *Gruppen* is a monumental task that requires rare cooperation and precision, cementing its status as one of the most demanding and significant orchestral works of the mid-20th century.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Gruppen",
+      "title": "Gruppen - Wikipedia"
+    },
+    {
+      "url": "https://www.karlheinzstockhausen.org/gruppen_english.htm",
+      "title": "GRUPPEN / GROUPS - KARLHEINZ STOCKHAUSEN"
+    },
+    {
+      "url": "https://stockhausenspace.blogspot.com/2014/12/opus-6-gruppen.html",
+      "title": "Stockhausen: Sounds in Space: GRUPPEN"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:44:09.668Z",
+  "type": "project",
+  "editorial_pitch": "A monumental 1955-57 composition by Karlheinz Stockhausen that redefined spatial music by orchestrating three separate ensembles to surround the audience.",
+  "year": "1957",
+  "artists": [
+    {
+      "slug": "artist:karlheinz-stockhausen",
+      "type": "artist",
+      "name": "Karlheinz Stockhausen"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:serialism",
+      "type": "genre",
+      "name": "Serialism",
+      "qid": "Q507246"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-Garde",
+      "qid": "Q2332751"
+    },
+    {
+      "slug": "genre:20th-century-classical",
+      "type": "genre",
+      "name": "20th-Century Classical",
+      "qid": "Q1338153"
+    }
+  ],
+  "tracklist": [],
+  "producers": [
+    {
+      "slug": "artist:karlheinz-stockhausen",
+      "type": "artist",
+      "name": "Karlheinz Stockhausen"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

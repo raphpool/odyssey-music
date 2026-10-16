@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:35:12.701Z",
+  "mbid": "a78d2a35-c083-4179-a5d8-49f84e5ec863",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Formed in Sheffield, England, in 1989, The Black Dog stands as one of the most significant and influential forces in British electronic music.",
   "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000048481/400/UvXzOEjqfKImFbvTtWmA8z6KsMttLlyBmmVTZ6_CLs0=.jpg",
   "origin": "Sheffield, England",
@@ -52,7 +54,7 @@
   ],
   "discography": [
     {
-      "slug": "project:bytes",
+      "slug": "project:bytes--the-black-dog",
       "type": "project",
       "name": "Bytes"
     },
@@ -60,6 +62,24 @@
       "slug": "project:spanners",
       "type": "project",
       "name": "Spanners"
+    },
+    {
+      "slug": "project:artificial-intelligence",
+      "type": "project",
+      "name": "Artificial Intelligence",
+      "artist": "Aphex Twin"
+    },
+    {
+      "slug": "project:loud-ambient--the-black-dog",
+      "type": "project",
+      "name": "Loud Ambient",
+      "artist": "The Black Dog"
+    },
+    {
+      "slug": "project:my-brutal-life--the-black-dog",
+      "type": "project",
+      "name": "My Brutal Life",
+      "artist": "The Black Dog"
     }
   ],
   "notable_tracks": [],
@@ -83,5 +103,6 @@
       "type": "artist",
       "name": "Andy Turner"
     }
-  ]
+  ],
+  "similar_artists": []
 }

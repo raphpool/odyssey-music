@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "e0953daa-860f-4dc8-9f1a-b12587cdaf17",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Tortoise is a pioneer of the post-rock movement, known for their instrumental, genre-defying sound that blends jazz, dub, and electronics. Based in Chicago, the group has consistently pushed the boundaries of studio-based composition since their formation in 1991.",
   "photo_url": "https://cdn.sonemic.net/i/600/w/d916f62dfa50de919124a3b913cbcab3/12319497/tortoise-tnt-cover-art.jpg",
   "origin": "Chicago, IL, United States",
@@ -143,5 +145,6 @@
       "type": "artist",
       "name": "Jeff Parker"
     }
-  ]
+  ],
+  "similar_artists": []
 }

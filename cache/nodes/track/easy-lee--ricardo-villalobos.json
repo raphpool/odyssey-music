@@ -1,0 +1,59 @@
+{
+  "slug": "track:easy-lee--ricardo-villalobos",
+  "name": "Easy Lee",
+  "editorial_article": "\"Easy Lee\" is one of the most revered tracks in the discography of Chilean-born producer Ricardo Villalobos, originally released as a centerpiece of his 2003 masterpiece album, *Alcachofa*. A definitive anthem of early-2000s minimal techno, the track exemplifies Villalobos' uncanny ability to merge cold, precise electronic programming with a warm, almost organic sense of rhythm. Characterized by its hypnotic, shuffling percussion and a distinctively pitch-shifted, alien-sounding vocal hook, \"Easy Lee\" creates an immersive sonic environment that feels equally suited for the late-night darkness of an underground club and the quiet focus of home listening. \\n\\nIts enduring cultural significance lies in its refusal to adhere to the rigid, repetitive structures common in the techno of its era. Instead, Villalobos crafts a sprawling, intricate soundscape that feels like a conversation between man and machine, full of subtle shifts and micro-details that reward repeated listens. Over the decades, it has become a touchstone of the minimal scene, frequently cited by DJs and fans alike as a timeless example of how subtle, rhythmic complexity can drive a dancefloor as effectively as the hardest peak-time banger. Whether encountered in its original album context or on later vinyl re-releases—such as the 2015 pairing with \"Dexter\"—\"Easy Lee\" remains a quintessential entry in the canon of modern electronic dance music, representing the peak of a singular artist's creative vision.",
+  "citations": [
+    {
+      "url": "https://soundcloud.com/dropsabanger/ricardo-villalobos-easy-lee-last-men-on-earth-edit-free-download",
+      "title": "Ricardo Villalobos - Easy Lee (Last Men On Earth Edit) [FREE Download]"
+    },
+    {
+      "url": "https://www.discogs.com/release/7396139-Ricardo-Villalobos-Easy-Lee-Dexter?srsltid=AfmBOoo96pz9UKjmax9-a1fDW0TKt_PcXiZJfSZq5S2YqMxsihZbcZMh",
+      "title": "Ricardo Villalobos – Easy Lee / Dexter – Vinyl (12', 45 RPM, Stereo), 2015 [r7396139] | Discogs"
+    },
+    {
+      "url": "https://www.beatport.com/track/ricardo-villalobos-original-mix/9685107?srsltid=AfmBOopbrWGhvjm40rBMlOmvrllwVvU8rQ8bx5nhUWkBPSmR2eY1valU",
+      "title": "Ricardo Villalobos (Original mix) - Easy Lee - Beatport"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:04:28.110Z",
+  "type": "track",
+  "editorial_teaser": "A seminal work of minimal techno, Ricardo Villalobos’ \"Easy Lee\" is celebrated for its hypnotic percussion, unique vocal processing, and its status as a cornerstone track from the landmark 2003 album 'Alcachofa'.",
+  "artists": [
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos"
+    }
+  ],
+  "project": {
+    "slug": "project:alcachofa--ricardo-villalobos",
+    "type": "project",
+    "name": "Alcachofa"
+  },
+  "genres": [
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
+    },
+    {
+      "slug": "genre:tech-house",
+      "type": "genre",
+      "name": "Tech House",
+      "qid": "Q598593"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

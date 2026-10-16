@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:07:09.553Z",
+  "mbid": "d11ea373-77ed-46eb-96a8-b70ea633081e",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Global Goon is the electronic music project of British musician Jonathan Taylor, a key figure in the UK's 1990s braindance scene known for his time at Rephlex Records and his unique, melodic approach to IDM.",
   "origin": "Lydiate, England",
   "genres": [
@@ -78,5 +80,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

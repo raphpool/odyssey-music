@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:14:08.762Z",
+  "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Beatles were a seminal British rock group from Liverpool who pioneered musical experimentation and became one of the most influential bands in history.",
   "origin": "Liverpool, England",
   "active_years": "1960-1970",
@@ -59,9 +61,15 @@
       "name": "The Beatles"
     },
     {
-      "slug": "project:live-at-the-bbc",
+      "slug": "project:live-at-the-bbc--the-beatles",
       "type": "project",
       "name": "Live at the BBC"
+    },
+    {
+      "slug": "project:sgt-pepper-s-lonely-hearts-club-band--the-beatles",
+      "type": "project",
+      "name": "Sgt. Pepper's Lonely Hearts Club Band",
+      "artist": "The Beatles"
     }
   ],
   "notable_tracks": [
@@ -69,6 +77,12 @@
       "slug": "track:the-beatles",
       "type": "track",
       "name": "The Beatles"
+    },
+    {
+      "slug": "track:morphing-leadgitarre-ruckwarts--the-beatles",
+      "type": "track",
+      "name": "Morphing Leadgitarre Rückwärts",
+      "artist": "The Beatles"
     }
   ],
   "influences": [],
@@ -106,5 +120,6 @@
       "type": "artist",
       "name": "Pete Best"
     }
-  ]
+  ],
+  "similar_artists": []
 }

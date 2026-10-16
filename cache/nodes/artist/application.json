@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:03:57.165Z",
+  "mbid": "64f36451-a9f5-4ceb-b31e-2a1faf8aa2d9",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Application is an electronic music producer known for a sharp, machine-driven sound emerging from the Sheffield electronic scene in 2014. Their work is characterized by a high degree of technical precision, merging elements of techno and electro into cohesive, high-energy, and rhythmically dense compositions.",
   "origin": "Sheffield, UK",
   "active_years": "2014",
@@ -73,5 +75,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

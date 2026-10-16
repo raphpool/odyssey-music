@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:17:10.227Z",
+  "mbid": "35d4519c-e1b8-4131-810f-042bb2ec748f",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Loefah is a pioneering London-based producer who was central to the birth of the dubstep genre and later shifted the landscape of UK bass music through his label, Swamp 81. Known for his dark, minimal aesthetic and deep, dread-inducing sound design, he continues to be a highly influential figure in electronic music.",
   "origin": "Croydon, UK",
   "active_years": "2004-present",
@@ -103,5 +105,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:48:19.563Z",
+  "mbid": "44c64a30-1d58-49c5-b314-6e02fba49526",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Joe Hisaishi is a prolific Japanese composer and pianist renowned for his long-standing collaboration with director Hayao Miyazaki and his seminal contributions to the soundtracks of Studio Ghibli films. His work blends minimalist, classical, and electronic elements, creating emotionally evocative scores that have earned him international acclaim.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Joe_Hisaishi_2011.jpg/250px-Joe_Hisaishi_2011.jpg",
   "origin": "Nakano, Nagano, Japan",
@@ -82,5 +84,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

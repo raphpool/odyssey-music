@@ -56,6 +56,11 @@
       "slug": "artist:bill-laswell",
       "type": "artist",
       "name": "Bill Laswell"
+    },
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze"
     }
   ],
   "notable_releases": [
@@ -65,12 +70,12 @@
       "name": "Air - Air"
     },
     {
-      "slug": "project:psychonavigation",
+      "slug": "project:psychonavigation--bill-laswell",
       "type": "project",
       "name": "Psychonavigation"
     },
     {
-      "slug": "project:move-d-namlook",
+      "slug": "project:move-d-namlook--move-d",
       "type": "project",
       "name": "Move D / Namlook (various)"
     }

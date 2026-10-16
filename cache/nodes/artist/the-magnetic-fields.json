@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:17:28.046Z",
+  "mbid": "3ff72a59-f39d-411d-9f93-2d4a86413013",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Magnetic Fields are an American band formed in Boston in 1989, serving primarily as the vehicle for the prolific and idiosyncratic songwriting of Stephin Merritt.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/MagneticVlcsnap-2024-04-14-11h09m07s983.png/960px-MagneticVlcsnap-2024-04-14-11h09m07s983.png",
   "origin": "Boston, Massachusetts, U.S.",
@@ -112,5 +114,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

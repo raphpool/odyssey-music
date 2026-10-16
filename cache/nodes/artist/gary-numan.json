@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:43:58.957Z",
+  "mbid": "6cb79cb2-9087-44d4-828b-5c6fdff2c957",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Gary Numan, born Gary Anthony James Webb in 1958, is a towering figure in the evolution of electronic music and a definitive icon of the British post-punk and new wave scenes.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Glasto2025-211_Gary_Numan_%28cropped%29.jpg/250px-Glasto2025-211_Gary_Numan_%28cropped%29.jpg",
   "origin": "London, England",
@@ -103,5 +105,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:15:50.664Z",
+  "mbid": "09721ba6-8972-4862-b272-b69465265de5",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Clubroot, the moniker of English producer Dan Richmond (born c.",
   "genres": [
     {
@@ -52,5 +54,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

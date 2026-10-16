@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:05:10.581Z",
+  "mbid": "09e543a1-2a27-4436-a597-92ea89495b27",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "A French quintet dedicated to the modern revival of Ethio-jazz, active from 2009 until 2021.",
   "origin": "France",
   "active_years": "2009-2021",
@@ -168,5 +170,6 @@
       "type": "artist",
       "name": "David Georgelet"
     }
-  ]
+  ],
+  "similar_artists": []
 }

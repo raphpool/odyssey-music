@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "1cfbc7d1-299c-46e6-ba4c-1facb84ba435",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Artful Dodger emerged from Southampton, England, in the late 1990s as a pivotal force in the UK garage movement.",
   "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000604374/400/QP_NMShytdXLLvJF-cyojD6KsMttLlyBmmVTZ6_CLs0=.jpg",
   "origin": "Southampton, England",
@@ -66,5 +68,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

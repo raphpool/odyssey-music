@@ -47,11 +47,16 @@
       "slug": "artist:edmx",
       "type": "artist",
       "name": "EDMX"
+    },
+    {
+      "slug": "artist:cylob",
+      "type": "artist",
+      "name": "Cylob"
     }
   ],
   "notable_releases": [
     {
-      "slug": "project:sound-of-the-street",
+      "slug": "project:sound-of-the-street--dmx-krew",
       "type": "project",
       "name": "Sound Of The Street"
     },

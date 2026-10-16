@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:10:00.367Z",
+  "mbid": "b539e453-c4fe-47e3-8a07-8517eac74429",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A genre-defining Japanese-American singer-songwriter and producer who helped bridge J-pop and international R&B.",
   "origin": "Tokyo, Japan",
   "active_years": "1996-present",
@@ -164,5 +166,6 @@
       "name": "Utada"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:16:04.334Z",
+  "mbid": "dc9b8085-fe1e-4b83-8d41-6dd8d295513c",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Gary McCann, better known as Caspa, is a pioneering figure in the UK dubstep scene, originating from West London. Initially inspired by Jungle and Hip Hop, McCann pivoted to music production after a promising basketball career was sidelined by injury. His contributions to the genre were pivotal in the mid-2000s; he was instrumental in establishing the labels Dub Police and Sub Soldiers, which became essential platforms for the developing dubstep sound and fostered foundational talent such as Rusko. Caspa’s sonic signature—characterized by heavy, sub-bass-driven structures and aggressive, rhythmic syncopation—gained significant traction, leading to iconic remixes for artists ranging from Depeche Mode to Deadmau5. With a career spanning over two decades, he has been a consistent fixture at major international festivals and remains a vital influence in the global bass music community. His work reflects both the raw, club-focused origins of dubstep in London and its subsequent expansion into broader electronic landscapes. His debut album, 'Everybody's Talking, Nobody's Listening' (2009), marked a major milestone for the genre, featuring collaborations that bridged the gap between underground dubstep culture and mainstream appeal. Since moving to Denver, Colorado in 2014, he has continued to produce and tour, maintaining his legacy as a key architect of the sound.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/3/39/Caspa.png",
   "origin": "London, England",
@@ -55,6 +57,12 @@
       "slug": "project:alpha-omega",
       "type": "project",
       "name": "Alpha Omega"
+    },
+    {
+      "slug": "project:fabriclive-37--caspa",
+      "type": "project",
+      "name": "Fabriclive.37",
+      "artist": "Caspa"
     }
   ],
   "notable_tracks": [
@@ -90,5 +98,6 @@
       "name": "Quiet Storm"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:42:12.444Z",
+  "mbid": "10d673bd-c091-4278-a9ce-5e4ea48af1cb",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A foundational architect of Chicago house music, Jesse Saunders is credited with releasing one of the genre's first commercial records, the influential 'On & On'.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Promotional_photo%21_2013-08-09_00-25.jpeg/250px-Promotional_photo%21_2013-08-09_00-25.jpeg",
   "origin": "Chicago, Illinois, U.S.",
@@ -60,5 +62,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

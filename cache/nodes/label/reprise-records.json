@@ -69,11 +69,16 @@
       "slug": "artist:green-day",
       "type": "artist",
       "name": "Green Day"
+    },
+    {
+      "slug": "artist:randy-newman",
+      "type": "artist",
+      "name": "Randy Newman"
     }
   ],
   "notable_releases": [
     {
-      "slug": "project:are-you-experienced",
+      "slug": "project:are-you-experienced--the-jimi-hendrix-experience",
       "type": "project",
       "name": "Are You Experienced"
     },
@@ -86,6 +91,12 @@
       "slug": "project:everybody-knows-this-is-nowhere",
       "type": "project",
       "name": "Everybody Knows This Is Nowhere"
+    },
+    {
+      "slug": "project:electric-ladyland--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Electric Ladyland",
+      "artist": "The Jimi Hendrix Experience"
     }
   ]
 }

@@ -1,0 +1,87 @@
+{
+  "slug": "project:tubular-bells--mike-oldfield",
+  "name": "Tubular Bells",
+  "editorial_article": "Tubular Bells is the landmark debut studio album by English multi-instrumentalist Mike Oldfield, released on May 25, 1973. It holds a distinct place in music history as the inaugural release on Virgin Records, a move that helped launch the Virgin Group empire. Recorded primarily at The Manor Studio in Oxfordshire when Oldfield was just 19 years old, the album is a tour de force of studio experimentation and progressive composition. Oldfield played nearly all the instruments himself, utilizing pioneering multi-track recording techniques—a feat he developed by blocking off the erase head of a tape recorder to allow for layer upon layer of overdubbing.\\n\\nMusically, the album is divided into two long-form, primarily instrumental movements that blend progressive rock with elements of folk, classical music, and the minimalist structures of composers like Terry Riley. Its sonic palette is remarkably vast, ranging from delicate piano and acoustic guitar melodies to heavy rock instrumentation and the iconic, titular tubular bells. While the album initially experienced slow sales, it achieved massive, worldwide commercial success following its use in the 1973 horror film The Exorcist, which propelled the opening theme into the public consciousness. Since its release, it has become one of the best-selling British albums of all time and remains a quintessential example of 1970s experimental rock. Its influence has been honored in various cultural milestones, including the 2012 Summer Olympics opening ceremony in London.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Tubular_Bells",
+      "title": "Tubular Bells - Wikipedia"
+    },
+    {
+      "url": "https://open.spotify.com/album/0a3YQpBnRzJzNktOjb6Dum",
+      "title": "Tubular Bells - Album by Mike Oldfield | Spotify"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:48:10.443Z",
+  "_metrics": {
+    "input_tokens": 28445,
+    "output_tokens": 1986,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.01009,
+    "llm_calls": 5,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 3,
+    "agent_ms": 18488,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "project",
+  "editorial_pitch": "A technical and creative masterpiece of 1970s progressive rock, Mike Oldfield's debut album is a sprawling instrumental achievement that launched Virgin Records and became a global cultural phenomenon.",
+  "cover_url": "https://upload.wikimedia.org/wikipedia/en/0/0d/Mike_oldfield_tubular_bells_album_cover.jpg",
+  "year": "1973",
+  "artists": [
+    {
+      "slug": "artist:mike-oldfield",
+      "type": "artist",
+      "name": "Mike Oldfield"
+    }
+  ],
+  "label": {
+    "slug": "label:virgin-records",
+    "type": "label",
+    "name": "Virgin Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive rock",
+      "qid": "Q49451"
+    },
+    {
+      "slug": "genre:instrumental-rock",
+      "type": "genre",
+      "name": "Instrumental rock",
+      "qid": "Q1650296"
+    },
+    {
+      "slug": "genre:new-age-music",
+      "type": "genre",
+      "name": "New-age music",
+      "qid": "Q213121"
+    }
+  ],
+  "tracklist": [],
+  "producers": [],
+  "personnel": [],
+  "related_projects": [
+    {
+      "slug": "project:the-orchestral-tubular-bells",
+      "type": "project",
+      "name": "The Orchestral Tubular Bells"
+    },
+    {
+      "slug": "project:tubular-bells-ii",
+      "type": "project",
+      "name": "Tubular Bells II"
+    },
+    {
+      "slug": "project:tubular-bells-iii",
+      "type": "project",
+      "name": "Tubular Bells III"
+    }
+  ]
+}

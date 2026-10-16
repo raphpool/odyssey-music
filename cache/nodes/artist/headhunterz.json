@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:58:32.234Z",
+  "mbid": "79dbc936-adf2-4a29-8e01-c1fbe5613b0a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Dutch DJ and producer Willem Rebergen, known as Headhunterz, is a key figure in the global hardstyle movement, celebrated for anthemic productions and his long-standing role in shaping the genre's sound.",
   "origin": "Veenendaal, Netherlands",
   "active_years": "2003-present",
@@ -762,5 +764,6 @@
       "type": "artist",
       "name": "Willem Rebergen"
     }
-  ]
+  ],
+  "similar_artists": []
 }

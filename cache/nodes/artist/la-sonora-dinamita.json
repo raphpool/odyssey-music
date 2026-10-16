@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:02:10.875Z",
+  "mbid": "46a153df-a143-403b-948c-0131cb1a1067",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "A pioneering Colombo-Mexican cumbia ensemble that brought traditional tropical rhythms to international stages through extensive brass arrangements.",
   "origin": "Cartagena de Indias, Colombia and Mexico City, Mexico",
   "active_years": "1960-1963, 1977-present",
@@ -561,5 +563,6 @@
       "type": "artist",
       "name": "Vilma Díaz"
     }
-  ]
+  ],
+  "similar_artists": []
 }

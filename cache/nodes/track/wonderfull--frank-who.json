@@ -1,0 +1,42 @@
+{
+  "slug": "track:wonderfull--frank-who",
+  "name": "Wonderfull",
+  "editorial_article": "\"Wonderfull\" is a high-energy trance track released in 2003 by the electronic music artist Frank Who? (an alias of producer F. Massif). Emerging during a prolific period for the Dutch trance scene, the track was released on 1969 Recordings, a label synonymous with the melodic and driving soundscape of the early 2000s trance movement in the Netherlands. \"Wonderfull\" captures the essence of that specific era, characterized by expansive synthesizer melodies, rhythmic intensity, and atmospheric production techniques designed for expansive dancefloors.\n\nThe track serves as a testament to the club-focused sound production of the time, emphasizing a driving 4/4 rhythm paired with soaring, trance-typical leads that oscillate between melancholy and euphoria. Like many 12-inch releases from the 1969 Recordings imprint during the early 2000s, it highlights the technical craftsmanship that defined the Dutch trance community. Frank Who? skillfully balances the mechanical precision of electronic percussion with fluid, emotive melodic layers, typical of the crossover between progressive trance and the harder, faster rhythms popular in Dutch clubs in 2003. While the track remains a niche piece of the larger global trance discography, it embodies the sophisticated studio approach that established the Netherlands as a central hub for electronic dance music at the turn of the millennium. The track stands alongside other notable productions from the same label and era, reflecting a period when trance shifted toward more polished, big-room sensibilities. It is a work that values build-up, sonic texture, and rhythmic drive, elements that made early 2000s Dutch trance a significant cultural force in international club culture. The project also features the track \"MSN (Make Some Noise),\" further rooting its identity in the aesthetic trends of its time.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/1128003-Frank-Who-Wonderfull",
+      "title": "Frank Who? – Wonderfull | Releases | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:49:14.789Z",
+  "type": "track",
+  "editorial_teaser": "A driving 2003 Dutch trance production by Frank Who? that encapsulates the melodic euphoria and rhythmic precision of the era's peak-time club sound.",
+  "year": "2003",
+  "duration": "7:08",
+  "artists": [
+    {
+      "slug": "artist:frank-who",
+      "type": "artist",
+      "name": "Frank Who?"
+    }
+  ],
+  "genres": [
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance",
+      "qid": "Q170435"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:f-massif",
+      "type": "artist",
+      "name": "F. Massif"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

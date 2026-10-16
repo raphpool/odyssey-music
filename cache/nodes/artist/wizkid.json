@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:14:26.091Z",
+  "mbid": "efc5d365-a448-4e2f-9b5f-4a7c84be725c",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A Nigerian singer and songwriter who helped bring Afrobeats to a global audience through hits like 'One Dance' and 'Essence'.",
   "origin": "Lagos, Nigeria",
   "active_years": "2001-present",
@@ -607,5 +609,6 @@
       "name": "Big Wiz"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

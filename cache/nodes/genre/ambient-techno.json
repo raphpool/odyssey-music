@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:34:42.425Z",
   "type": "genre",
   "editorial_definition": "A hybrid genre of electronic music that fuses the repetitive rhythmic foundations of techno with the ethereal, textural soundscapes of ambient, designed primarily for home listening rather than the dancefloor.",
+  "qid": "Q9149801",
   "era": "1990s",
   "origin": "United Kingdom",
   "parent_genres": [
@@ -134,11 +135,10 @@
       "name": "Zauberberg"
     },
     {
-      "slug": "project:compro",
+      "slug": "project:compro--skee-mask",
       "type": "project",
       "name": "Compro"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q9149801"
+  "landmark_tracks": []
 }

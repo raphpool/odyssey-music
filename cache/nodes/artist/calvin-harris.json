@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "8dd98bdc-80ec-4e93-8509-2f46bafc09a7",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Calvin Harris (born Adam Richard Wiles on January 17, 1984) is a Scottish electronic music producer, DJ, and songwriter who stands as one of the most successful figures in the history of modern dance music.",
   "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000945951/400/RJDLnVuvpNYH8_dHHgi8pA4Q1ghY8VaPylnm7PwcKNY=.jpg",
   "origin": "Dumfries, Scotland",
@@ -155,5 +157,6 @@
       "name": "Adam Richard Wiles"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

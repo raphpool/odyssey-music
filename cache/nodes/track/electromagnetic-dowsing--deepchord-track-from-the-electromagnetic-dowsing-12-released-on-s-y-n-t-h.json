@@ -34,7 +34,7 @@
   "year": "2005",
   "artists": [],
   "project": {
-    "slug": "project:electromagnetic-dowsing",
+    "slug": "project:electromagnetic-dowsing--deepchord",
     "type": "project",
     "name": "Electromagnetic Dowsing"
   },
@@ -53,6 +53,7 @@
       "name": "Rod Modell"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:36:40.969Z",
   "type": "genre",
   "editorial_definition": "A broad, experimental musical genre characterized by the intentional use of discordant, non-traditional, and abrasive sounds to challenge conventional song structures, tonality, and the binary between music and noise.",
+  "qid": "Q726239",
   "era": "Early 20th century to present",
   "origin": "Global, with significant developments in Italy (Futurism), France (Musique concrète), and Japan.",
   "sonic_markers": "Extreme volume, harsh distortion, feedback, atonality, lack of traditional meter, static textures, and field recordings.",
@@ -130,7 +131,7 @@
   ],
   "landmark_projects": [
     {
-      "slug": "project:pulse-demon",
+      "slug": "project:pulse-demon--merzbow",
       "type": "project",
       "name": "Pulse Demon"
     },
@@ -140,6 +141,5 @@
       "name": "20 Jazz Funk Greats"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q726239"
+  "landmark_tracks": []
 }

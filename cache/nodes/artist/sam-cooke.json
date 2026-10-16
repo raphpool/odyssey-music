@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "6c8fd0be-d961-454c-aee0-4366a6dbc993",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Sam Cooke, born Samuel Cook in 1931 in Clarksdale, Mississippi, was a seminal American singer, songwriter, and entrepreneur, widely regarded as the principal architect of soul music.",
   "photo_url": "https://cdn.britannica.com/55/147555-050-CFFB39EB/Sam-Cooke.jpg",
   "origin": "Clarksdale, Mississippi",
@@ -129,5 +131,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

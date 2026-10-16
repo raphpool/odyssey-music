@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:07:04.384Z",
+  "mbid": "c2a1a86c-1219-4a03-b34b-e4db2506bcb0",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A legendary Congolese bandleader and vocalist, Pépé Kallé was a primary architect of modern soukous and a key figure in the global reach of Congolese rumba.",
   "origin": "Kinshasa, Democratic Republic of the Congo",
   "active_years": "1966–1998",
@@ -128,5 +130,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-14T09:19:50.744Z",
+  "mbid": "f82bcf78-5b69-4622-a5ef-73800768d9ac",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Jay-Z is an iconic American rapper, songwriter, and producer from Brooklyn who co-founded Roc-A-Fella Records in 1994.",
   "origin": "Brooklyn, New York",
   "active_years": "1994-present",
@@ -82,5 +84,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

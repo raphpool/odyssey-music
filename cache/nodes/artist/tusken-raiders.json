@@ -43,9 +43,10 @@
       "name": "CINGHIALE"
     },
     {
-      "slug": "track:drinking-with-the-monster",
+      "slug": "track:drinking-with-the-monster--tusken-raiders",
       "type": "track",
-      "name": "DRINKING WITH THE MONSTER"
+      "name": "DRINKING WITH THE MONSTER",
+      "artist": "Tusken Raiders"
     },
     {
       "slug": "track:burn",
@@ -68,5 +69,6 @@
       "name": "Mike Paradinas"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

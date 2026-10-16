@@ -5,7 +5,8 @@ import { isNotFoundError } from "./errors.js";
 import { loadGenreResolver } from "./genre-identity.js";
 import { createGenreRegistry, type GenreRegistry, loadRedirects } from "./genre-registry.js";
 import type { GenreSeed, GenreSeeds } from "./genre-seeds.js";
-import { type PipelineDeps, type PipelineInput, runPipeline } from "./pipeline.js";
+import { crawledListEdges } from "./node-spec.js";
+import { existingImageOf, type PipelineDeps, type PipelineInput, runPipeline } from "./pipeline.js";
 import { normalizeSlugBody } from "./slug.js";
 import {
 	type EdgeRef,
@@ -788,6 +789,10 @@ export async function refreshGenre(
 	// then — only when neither is set — the seed dossier's qid, inherited onto this refresh.
 	const qid = canonical.qid ?? existing.qid ?? dossierQid;
 	if (qid) input.qid = qid;
+	// TRA-549: the refresh must not erase the image the genre already carries when the resolver misses.
+	// Not when the registry moved the refresh onto another slug: that image is another node's.
+	const existingImage = canonical.slug === slug ? existingImageOf(existing) : undefined;
+	if (existingImage) input.existingImage = existingImage;
 
 	if (consumed >= opts.maxNodes) {
 		refused++;
@@ -915,7 +920,8 @@ export function enqueueEdges(
 		if (added) log(`  + frontier ${e.slug} (depth=${depth}) disambig=${disambiguator}`);
 	};
 	const obj = node as unknown as Record<string, unknown>;
-	for (const field of LIST_EDGES_BY_TYPE[node.type]) {
+	// TRA-480: similar_artists are recommendations, not structure -- never put on the frontier.
+	for (const field of crawledListEdges(node.type)) {
 		const v = obj[field];
 		if (Array.isArray(v)) for (const e of v as EdgeRef[]) collect(e, field);
 	}
