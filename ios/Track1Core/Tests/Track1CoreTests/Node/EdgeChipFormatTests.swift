@@ -36,6 +36,48 @@ final class EdgeChipFormatTests: XCTestCase {
 		XCTAssertEqual(EdgeChipFormat.meta(of: edge), "· 2015 · album")
 	}
 
+	// MARK: artist (TRA-482)
+
+	func testAnEdgeDecodesTheArtistTheServerStampedOnAWork() throws {
+		let json = """
+			{"slug": "track:fitna--rohff", "type": "track", "name": "Fitna", "artist": "Rohff"}
+			"""
+		let edge = try JSONDecoder().decode(NodeEdge.self, from: Data(json.utf8))
+		XCTAssertEqual(edge.artist, "Rohff")
+		XCTAssertEqual(edge.slug.rawValue, "track:fitna--rohff")
+	}
+
+	func testAnEdgeWithoutArtistStillDecodes() throws {
+		let json = """
+			{"slug": "genre:trip-hop", "type": "genre", "name": "Trip hop"}
+			"""
+		let edge = try JSONDecoder().decode(NodeEdge.self, from: Data(json.utf8))
+		XCTAssertNil(edge.artist)
+		let explicitNull = """
+			{"slug": "project:mezzanine", "type": "project", "name": "Mezzanine", "artist": null}
+			"""
+		XCTAssertNil(try JSONDecoder().decode(NodeEdge.self, from: Data(explicitNull.utf8)).artist)
+	}
+
+	// A mistyped additive field must not fail the whole node page (same tolerance as `SearchHit.artist`).
+	func testAMistypedArtistIsReadAsAbsentWithoutFailingTheEdge() throws {
+		let json = """
+			{"slug": "track:fitna--rohff", "type": "track", "name": "Fitna", "artist": 42}
+			"""
+		let edge = try JSONDecoder().decode(NodeEdge.self, from: Data(json.utf8))
+		XCTAssertNil(edge.artist)
+		XCTAssertEqual(edge.name, "Fitna")
+	}
+
+	func testTheArtistDoesNotChangeTheChipMeta() throws {
+		let json = """
+			{"slug": "project:mezzanine", "type": "project", "name": "Mezzanine", "year": "1998",
+			 "releaseType": "album", "artist": "Massive Attack"}
+			"""
+		let edge = try JSONDecoder().decode(NodeEdge.self, from: Data(json.utf8))
+		XCTAssertEqual(EdgeChipFormat.meta(of: edge), "· 1998 · album")
+	}
+
 	// MARK: type label
 
 	func testTypeLabelsAreTheLowercaseEnglishTypes() {
