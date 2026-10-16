@@ -54,4 +54,10 @@ describe("buildCrawlDeps", () => {
 		expect(buildCrawlDeps("tavily", env, "/tmp/odyssey-cache").resolveImage).toBeTypeOf("function");
 		expect(buildCrawlDeps("tavily", env).resolveImage).toBeUndefined();
 	});
+
+	// TRA-480: same condition for similar artists (the graph fallback reads the cache being written).
+	it("wires a similar-artists resolver only when the crawl has a cache directory", () => {
+		expect(buildCrawlDeps("tavily", env, "/tmp/odyssey-cache").similarArtists).toBeTypeOf("function");
+		expect(buildCrawlDeps("tavily", env).similarArtists).toBeUndefined();
+	});
 });
