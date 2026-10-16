@@ -20,10 +20,11 @@
 import type { NodeCache } from "../cache.js";
 import { lookupVerifiedAlbumArt } from "../itunes.js";
 import { logger } from "../logger.js";
+import { fetchWikidataUrlRelMb, type MbPriority } from "../musicbrainz.js";
 import type { EdgeRef, ImageSource, NodePayload } from "../types.js";
 import { coverArtUrl } from "./coverart.js";
 import { isAllowedImageUrl } from "./hosts.js";
-import { commonsFileUrl, fetchWikidataImages, fetchWikidataQid, searchWikidataLabel } from "./wikidata.js";
+import { commonsFileUrl, fetchWikidataImages, searchWikidataLabel } from "./wikidata.js";
 
 const log = logger.child({ module: "resolve-image" });
 
@@ -35,6 +36,27 @@ export interface ResolvedImage {
 export interface ImageDeps {
 	cache: NodeCache;
 	fetch?: typeof fetch;
+	/** Queue priority of the MusicBrainz lookups (TRA-579); `interactive` when absent. */
+	priority?: MbPriority;
+}
+
+// Calls `fetchWikidataUrlRelMb` directly rather than `fetchWikidataQid`: that wrapper (src/images/wikidata.ts)
+// is outside the scope of TRA-579 and does not carry a priority. Same contract: any failure is a null QID.
+async function mbWikidataQid(
+	entity: "artist" | "label",
+	mbid: string,
+	deps: ImageDeps,
+): Promise<string | null> {
+	try {
+		return await fetchWikidataUrlRelMb(
+			entity,
+			mbid,
+			deps.fetch,
+			deps.priority ? { priority: deps.priority } : {},
+		);
+	} catch {
+		return null;
+	}
 }
 
 /** Run one rung; a thrown error is a miss for that rung, not a failure of the ladder. */
@@ -172,11 +194,7 @@ export async function resolveImage(node: NodePayload, deps: ImageDeps): Promise<
 				[
 					"wikidata",
 					async () =>
-						wikidataImage(
-							node.mbid ? await fetchWikidataQid("artist", node.mbid, deps.fetch) : null,
-							["p18"],
-							deps,
-						),
+						wikidataImage(node.mbid ? await mbWikidataQid("artist", node.mbid, deps) : null, ["p18"], deps),
 				],
 				[
 					"derived-cover",
@@ -190,7 +208,7 @@ export async function resolveImage(node: NodePayload, deps: ImageDeps): Promise<
 					"wikidata",
 					async () => {
 						const qid =
-							(node.mbid ? await fetchWikidataQid("label", node.mbid, deps.fetch) : null) ??
+							(node.mbid ? await mbWikidataQid("label", node.mbid, deps) : null) ??
 							(await searchWikidataLabel(node.name, node.mbid, deps.fetch));
 						return wikidataImage(qid, ["p154", "p18"], deps);
 					},

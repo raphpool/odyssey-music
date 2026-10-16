@@ -9,6 +9,7 @@ import {
 	fetchProjectMetaMb,
 	fetchTrackMetaDetailedMb,
 	fetchTrackMetaMb,
+	fetchWikidataUrlRelMb,
 	resolveRecording,
 	resolveRecordingDetailed,
 	resolveReleaseGroup,
@@ -1103,6 +1104,150 @@ describe("mbFetch request spacing", () => {
 		);
 
 		expect(fetchMock).toHaveBeenCalledTimes(3);
+	});
+
+	// TRA-579: `background` yields to every interactive reservation still waiting for its slot.
+	describe("background priority", () => {
+		const id = (tag: string) => `${tag}000000-0000-0000-0000-000000000000`;
+		const interactive = (tag: string) => fetchEntityGenresMb("artist", id(tag));
+		const background = (tag: string) =>
+			fetchWikidataUrlRelMb("artist", id(tag), undefined, { priority: "background" });
+
+		// Records "<last path segment> @ offset" of every request, answering 200 unless `fail` says 503.
+		function stubRecording(t0: number, fail = new Set<string>()): string[] {
+			const log: string[] = [];
+			vi.stubGlobal(
+				"fetch",
+				vi.fn(async (input: URL) => {
+					const name = input.pathname.split("/").at(-1) ?? "";
+					log.push(`${name.slice(0, 2)}@${Date.now() - t0}`);
+					const first = fail.delete(name);
+					return first ? failedResponse(503) : jsonResponse({ genres: [], relations: [] });
+				}),
+			);
+			return log;
+		}
+
+		it("gives slots 0 s, 1 s, 2 s to two interactive requests then a background one started together", async () => {
+			const t0 = startAt("2032-01-01T00:00:00.000Z");
+			const log = stubRecording(t0);
+
+			const pending = [interactive("a1"), interactive("a2"), background("b1")];
+			await vi.advanceTimersByTimeAsync(2_000);
+			await Promise.all(pending);
+
+			expect(log).toEqual(["a1@0", "a2@1000", "b1@2000"]);
+		});
+
+		it("sends a background request issued during a burst of five interactive ones after the fifth", async () => {
+			const t0 = startAt("2033-01-01T00:00:00.000Z");
+			const log = stubRecording(t0);
+
+			const pending: Promise<unknown>[] = ["a1", "a2", "a3", "a4", "a5"].map(interactive);
+			pending.push(background("b1"));
+			await vi.advanceTimersByTimeAsync(5_000);
+			await Promise.all(pending);
+
+			expect(log).toEqual(["a1@0", "a2@1000", "a3@2000", "a4@3000", "a5@4000", "b1@5000"]);
+		});
+
+		it("lets an interactive request issued while a background one waits go first", async () => {
+			const t0 = startAt("2034-01-01T00:00:00.000Z");
+			const log = stubRecording(t0);
+
+			const pending: Promise<unknown>[] = [interactive("a1"), interactive("a2"), background("b1")];
+			await vi.advanceTimersByTimeAsync(500);
+			pending.push(interactive("a3"));
+			await vi.advanceTimersByTimeAsync(3_000);
+			await Promise.all(pending);
+
+			expect(log).toEqual(["a1@0", "a2@1000", "a3@2000", "b1@3000"]);
+		});
+
+		it("spaces two background requests by one second when nothing interactive is pending", async () => {
+			const t0 = startAt("2035-01-01T00:00:00.000Z");
+			const log = stubRecording(t0);
+
+			const pending = [background("b1"), background("b2")];
+			await vi.advanceTimersByTimeAsync(1_000);
+			await Promise.all(pending);
+
+			expect(log).toEqual(["b1@0", "b2@1000"]);
+		});
+
+		it("holds at most one slot for background requests, so a late interactive one waits behind one at most", async () => {
+			const t0 = startAt("2036-01-01T00:00:00.000Z");
+			const log = stubRecording(t0);
+
+			const pending: Promise<unknown>[] = ["b1", "b2", "b3"].map(background);
+			await vi.advanceTimersByTimeAsync(0);
+			pending.push(interactive("a1"));
+			await vi.advanceTimersByTimeAsync(3_000);
+			await Promise.all(pending);
+
+			// b2 reserved slot 1 000 as soon as b1's slot was reached; b3 then waits for a1 (slot 2 000), so
+			// a1 never stands behind more than one background request.
+			expect(log).toEqual(["b1@0", "b2@1000", "a1@2000", "b3@3000"]);
+		});
+
+		it("keeps the background priority on the retry of a first attempt that failed with a 503", async () => {
+			const t0 = startAt("2037-01-01T00:00:00.000Z");
+			const log = stubRecording(t0, new Set([id("b1")]));
+
+			const pending: Promise<unknown>[] = [background("b1")];
+			await vi.advanceTimersByTimeAsync(500);
+			pending.push(interactive("a1"), interactive("a2"));
+			await vi.advanceTimersByTimeAsync(700);
+			pending.push(interactive("a3"));
+			await vi.advanceTimersByTimeAsync(4_000);
+			await Promise.all(pending);
+
+			// The retry wakes at 1 000 ms while a1 and a2 still wait for their slots: it queues behind a3 too.
+			expect(log).toEqual(["b1@0", "a1@1000", "a2@2000", "a3@3000", "b1@4000"]);
+		});
+
+		it.each([
+			["resolveReleaseGroupDetailed", resolveReleaseGroupDetailed, "release-group", "2038-01-01"],
+			["resolveRecordingDetailed", resolveRecordingDetailed, "recording", "2039-01-01"],
+		] as const)("is carried by the priority option of %s", async (_name, resolve, path, date) => {
+			const t0 = startAt(`${date}T00:00:00.000Z`);
+			const log = stubRecording(t0);
+
+			const pending: Promise<unknown>[] = [interactive("a1"), interactive("a2")];
+			pending.push(resolve(`Title ${path}`, "Artist", { priority: "background" }));
+			await vi.advanceTimersByTimeAsync(500);
+			pending.push(interactive("a3"));
+			await vi.advanceTimersByTimeAsync(3_000);
+			await Promise.all(pending);
+
+			// Without the option, the resolver is interactive and takes the third slot (FIFO).
+			expect(log).toHaveLength(4);
+			expect(log.at(-1)).toBe(`${path.slice(0, 2)}@3000`);
+		});
+
+		it("resolveReleaseGroupDetailed without an option keeps its place in the FIFO", async () => {
+			const t0 = startAt("2040-01-01T00:00:00.000Z");
+			const log = stubRecording(t0);
+
+			const pending: Promise<unknown>[] = [interactive("a1"), interactive("a2")];
+			pending.push(resolveReleaseGroupDetailed("Title default", "Artist"));
+			await vi.advanceTimersByTimeAsync(500);
+			pending.push(interactive("a3"));
+			await vi.advanceTimersByTimeAsync(3_000);
+			await Promise.all(pending);
+
+			expect(log.map((entry) => entry.slice(0, 2))).toEqual(["a1", "a2", "re", "a3"]);
+		});
+
+		it("neither spaces nor yields when MB_MIN_INTERVAL_MS is 0", async () => {
+			musicBrainzConfig.minIntervalMs = 0;
+			const fetchMock = vi.fn(async () => jsonResponse({ relations: [] }));
+			vi.stubGlobal("fetch", fetchMock);
+
+			await Promise.all([background("c1"), background("c2"), interactive("c3")]);
+
+			expect(fetchMock).toHaveBeenCalledTimes(3);
+		});
 	});
 });
 
