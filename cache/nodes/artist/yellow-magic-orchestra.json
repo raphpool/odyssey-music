@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:44:04.094Z",
+  "mbid": "ac5af671-1df0-4312-8b7b-e61992ecc883",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Yellow Magic Orchestra (YMO) is a legendary Japanese electronic music group formed in Tokyo in 1978, consisting of members Haruomi Hosono, Ryuichi Sakamoto, and Yukihiro Takahashi. They were early pioneers of the synthpop and technopop genres, known for their influential use of synthesizers, sequencers, and computer technology in a popular music context.",
   "origin": "Tokyo, Japan",
   "genres": [
@@ -92,5 +94,6 @@
       "type": "artist",
       "name": "Yukihiro Takahashi"
     }
-  ]
+  ],
+  "similar_artists": []
 }

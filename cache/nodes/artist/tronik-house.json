@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:11:48.341Z",
+  "mbid": "32c9b3e5-63e1-4cc9-bd77-812ed434926a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Tronik House is a seminal alias used by the legendary Detroit techno pioneer Kevin Saunderson. Emerging during the early 1990s, this project served as a vital vehicle for Saunderson to explore the harder, more aggressive edges of the evolving electronic dance music landscape. Unlike the smoother, synth-pop-inflected sounds often associated with his work as Inner City, the Tronik House output was firmly rooted in the grit and industrial intensity of the Detroit techno scene, bridging the gap between classic techno foundations and the emergent, high-energy rave sound of the era.",
   "genres": [
     {
@@ -76,5 +78,6 @@
       "name": "Kevin Saunderson"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

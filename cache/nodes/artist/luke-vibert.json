@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:02:24.359Z",
+  "mbid": "0b59a279-54ef-4723-854e-a12b61e9581a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Luke Vibert (born 26 January 1973) is a highly influential British electronic musician and producer, widely recognized for his vast output and masterful ability to traverse diverse subgenres of electronic music.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/en/thumb/c/ce/Luke_Vibert_2.JPG/250px-Luke_Vibert_2.JPG",
   "origin": "Redruth, Cornwall, England",
@@ -93,6 +95,12 @@
       "slug": "track:shadows",
       "type": "track",
       "name": "Shadows"
+    },
+    {
+      "slug": "track:get-your-head-down--luke-vibert",
+      "type": "track",
+      "name": "Get Your Head Down",
+      "artist": "Luke Vibert"
     }
   ],
   "influences": [],
@@ -131,5 +139,6 @@
       "type": "artist",
       "name": "Plug"
     }
-  ]
+  ],
+  "similar_artists": []
 }

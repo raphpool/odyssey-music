@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:55:03.231Z",
+  "mbid": "589801f8-fe67-49bd-abcf-cca79c5d0776",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Luc Ferrari (1929–2005) was a seminal French composer and a foundational figure in the development of musique concrète, electroacoustic music, and radio art.",
   "photo_url": "https://storage.ressources.ircam.fr/ressources/persons/photos/56b2d1e9-74e6-42c7-ab8c-5d416133e91a-thumbnail.png",
   "origin": "Paris, France",
@@ -45,5 +47,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

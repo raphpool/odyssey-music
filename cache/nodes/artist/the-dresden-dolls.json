@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:49:55.948Z",
+  "mbid": "107c7983-0728-46ea-8550-77e698adf690",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Dresden Dolls are an influential American dark cabaret duo from Boston, consisting of Amanda Palmer and Brian Viglione, renowned for their theatrical, piano-and-drums-driven \"Brechtian punk cabaret\" sound. Forming in 2000, they gained a cult following through their highly expressive live shows and iconic tracks like \"Coin-Operated Boy.\"",
   "origin": "Boston, Massachusetts, US",
   "genres": [
@@ -43,7 +45,14 @@
       "name": "Roadrunner Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:a-is-for-accident--the-dresden-dolls",
+      "type": "project",
+      "name": "A Is for Accident",
+      "artist": "The Dresden Dolls"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:girl-anachronism",
@@ -60,5 +69,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

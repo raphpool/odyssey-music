@@ -32,7 +32,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "2d262241-ad1e-4b2d-904a-c38039f0a531",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Ashra is the influential German electronic project formed by guitarist Manuel Göttsching as a successor to his seminal krautrock band Ash Ra Tempel, known for pioneering sequencer-driven ambient music and expansive electronic compositions.",
   "origin": "Berlin, Germany",
   "active_years": "1976–2000s",
@@ -92,5 +94,6 @@
       "name": "Manuel Göttsching"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -87,6 +87,11 @@
       "slug": "artist:embryo",
       "type": "artist",
       "name": "Embryo"
+    },
+    {
+      "slug": "artist:conny-plank",
+      "type": "artist",
+      "name": "Conny Plank"
     }
   ],
   "notable_releases": [
@@ -101,7 +106,7 @@
       "name": "Cluster II"
     },
     {
-      "slug": "project:lonesome-crow",
+      "slug": "project:lonesome-crow--scorpions",
       "type": "project",
       "name": "Lonesome Crow"
     },
@@ -111,7 +116,7 @@
       "name": "Känguru"
     },
     {
-      "slug": "project:neu-75",
+      "slug": "project:neu-75--neu",
       "type": "project",
       "name": "Neu! 75"
     }

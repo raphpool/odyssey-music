@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:23:35.431Z",
+  "mbid": "a8754ac4-a85e-4f48-a81f-eecd482570ef",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Memphis-based rap collective instrumental in the rise of crunk and horrorcore, known for their Oscar-winning anthem 'It's Hard out Here for a Pimp'.",
   "origin": "Memphis, Tennessee",
   "active_years": "1991–2012, 2019–present",
@@ -364,5 +366,6 @@
       "type": "artist",
       "name": "Gangsta Boo"
     }
-  ]
+  ],
+  "similar_artists": []
 }

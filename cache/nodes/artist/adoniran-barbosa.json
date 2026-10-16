@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:03:14.704Z",
+  "mbid": "b3cf1138-7300-4c6a-9f5d-79457848499b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An influential Brazilian singer and composer, Adoniran Barbosa defined the 'samba paulista' style with his authentic portrayals of urban life in São Paulo.",
   "origin": "Valinhos, São Paulo, Brazil",
   "active_years": "1935-1977",
@@ -127,5 +129,6 @@
       "name": "João Rubinato"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

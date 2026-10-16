@@ -72,6 +72,11 @@
       "slug": "artist:marco-carola",
       "type": "artist",
       "name": "Marco Carola"
+    },
+    {
+      "slug": "artist:plastikman",
+      "type": "artist",
+      "name": "Plastikman"
     }
   ],
   "notable_releases": []

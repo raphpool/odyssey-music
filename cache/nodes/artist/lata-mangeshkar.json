@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:07:53.757Z",
+  "mbid": "aeb71bd8-447d-4415-8ea1-2b7d664f67e1",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An iconic Indian playback singer and composer whose career spanned eight decades, earning her titles like the Queen of Melody and Voice of the Millennium.",
   "origin": "Indore, India",
   "active_years": "1942-2022",
@@ -188,5 +190,6 @@
       "name": "Anandghan"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

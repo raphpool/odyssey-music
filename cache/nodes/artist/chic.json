@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:12:27.302Z",
+  "mbid": "a4ed036b-5f18-439c-b1e1-96d205bab255",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Chic is a foundational American disco and funk group formed in 1977 by guitarist Nile Rodgers and bassist Bernard Edwards in New York City.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Chicgf.JPG/250px-Chicgf.JPG",
   "origin": "New York City, NY",
@@ -56,7 +58,7 @@
       "name": "Chic"
     },
     {
-      "slug": "project:c-est-chic",
+      "slug": "project:c-est-chic--chic",
       "type": "project",
       "name": "C'est Chic"
     },
@@ -98,5 +100,6 @@
       "type": "artist",
       "name": "Tony Thompson"
     }
-  ]
+  ],
+  "similar_artists": []
 }

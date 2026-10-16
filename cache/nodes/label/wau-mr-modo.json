@@ -62,11 +62,16 @@
       "slug": "artist:manasseh",
       "type": "artist",
       "name": "Manasseh"
+    },
+    {
+      "slug": "artist:alex-paterson",
+      "type": "artist",
+      "name": "Alex Paterson"
     }
   ],
   "notable_releases": [
     {
-      "slug": "project:the-orb-s-adventures-beyond-the-ultraworld",
+      "slug": "project:the-orb-s-adventures-beyond-the-ultraworld--the-orb",
       "type": "project",
       "name": "The Orb's Adventures Beyond The Ultraworld"
     }

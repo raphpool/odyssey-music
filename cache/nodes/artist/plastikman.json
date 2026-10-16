@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:09:50.622Z",
+  "mbid": "abee98f6-5239-4abf-bbe6-e1e2815a0dd6",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Plastikman is the seminal electronic music alias of British-Canadian producer Richie Hawtin, serving as one of the most influential vessels for the development of minimal techno in the 1990s.",
   "genres": [
     {
@@ -60,5 +62,6 @@
       "name": "Richie Hawtin"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

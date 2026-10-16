@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "46957dac-b5ff-40a9-a427-ab53bc414f6e",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Florian Schneider (1947–2020) was a pioneering German musician, composer, and a founding member of the seminal electronic music group Kraftwerk.",
   "photo_url": "https://media.npr.org/assets/img/2020/05/07/gettyimages-160844877_wide-fc748a86988a3634f62b463ef1f9fc32cb15cfb3.jpg",
   "origin": "Düsseldorf, Germany",
@@ -65,5 +67,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

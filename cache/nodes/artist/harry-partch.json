@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:36:08.622Z",
+  "mbid": "914360f1-82e2-47ff-943b-1d7b977bd27a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Harry Partch (1901–1974) was a singular figure in 20th-century American music, renowned as a composer, music theorist, and creator of custom-built musical instruments.",
   "origin": "Oakland, California",
   "active_years": "1923-1974",
@@ -45,7 +47,7 @@
       "name": "The Wayward"
     },
     {
-      "slug": "project:delusion-of-the-fury",
+      "slug": "project:delusion-of-the-fury--harry-partch",
       "type": "project",
       "name": "Delusion of the Fury"
     },
@@ -57,12 +59,12 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:barstow",
+      "slug": "track:barstow--harry-partch",
       "type": "track",
       "name": "Barstow"
     },
     {
-      "slug": "track:ulysses-at-the-edge",
+      "slug": "track:ulysses-at-the-edge--harry-partch",
       "type": "track",
       "name": "Ulysses at the Edge"
     }
@@ -77,5 +79,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

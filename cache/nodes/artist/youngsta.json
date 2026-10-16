@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:16:42.065Z",
+  "mbid": "df7bb489-3f43-4405-95b9-7dd2bb31072f",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Daniel Lockhart, better known as Youngsta, is a seminal figure in the development and global propagation of UK dubstep.",
   "origin": "London, UK",
   "active_years": "\"1990s-present\"",
@@ -75,5 +77,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

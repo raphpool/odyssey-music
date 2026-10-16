@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:59:51.570Z",
+  "mbid": "d368d799-3575-41ec-bae2-084b630601bf",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Shanghai-based electronic producer and SVBKVLT affiliate known for aggressive, post-industrial club music and experimental sound design.",
   "origin": "Shanghai, China",
   "active_years": "2017-present",
@@ -108,5 +110,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

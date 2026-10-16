@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:43:48.839Z",
+  "mbid": "8de929b2-8ea8-4885-a5c3-5b4db755b3be",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pioneering Egyptian-American composer and ethnomusicologist, Halim El-Dabh is celebrated for his early experiments with wire recording and his profound contributions to electronic, orchestral, and percussive music across global traditions.",
   "origin": "Cairo, Egypt",
   "active_years": "1940s–2017",
@@ -82,5 +84,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

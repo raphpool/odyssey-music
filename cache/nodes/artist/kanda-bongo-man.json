@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:06:52.939Z",
+  "mbid": "aee0642c-1d8b-4a64-9993-443f94242b2e",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pioneering Congolese soukous musician whose structural innovations and kwassa kwassa dance rhythm transformed African popular music.",
   "origin": "Inongo, Democratic Republic of the Congo",
   "active_years": "1973-present",
@@ -170,5 +172,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

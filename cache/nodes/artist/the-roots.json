@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:00:59.044Z",
+  "mbid": "80b3cf5e-18fe-4c59-98c7-e5bb87210710",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "A pioneering Philadelphia-based hip-hop band known for their live instrumentation and long-running tenure as the house band for The Tonight Show Starring Jimmy Fallon.",
   "origin": "Philadelphia, Pennsylvania",
   "active_years": "1987-present",
@@ -401,5 +403,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

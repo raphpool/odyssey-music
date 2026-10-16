@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:56:33.635Z",
+  "mbid": "74171cb6-1ff8-42bd-be8a-96660c22e3e0",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Sea and Cake is a seminal Chicago-based indie rock band that emerged in the mid-1990s as a cornerstone of the city's vibrant post-rock scene.",
   "origin": "Chicago, Illinois, U.S.",
   "genres": [
@@ -65,7 +67,7 @@
       "name": "The Biz"
     },
     {
-      "slug": "project:the-fawn",
+      "slug": "project:the-fawn--the-sea-and-cake",
       "type": "project",
       "name": "The Fawn"
     },
@@ -147,5 +149,6 @@
       "type": "artist",
       "name": "Eric Claridge"
     }
-  ]
+  ],
+  "similar_artists": []
 }

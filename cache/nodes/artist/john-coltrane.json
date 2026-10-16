@@ -32,7 +32,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "b625448e-bf4a-41c3-a421-72ad46cdb831",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "One of the most influential jazz musicians of the 20th century, John Coltrane was a virtuosic saxophonist and composer known for his restless innovation across hard bop, modal, and free jazz. His legacy is defined by his relentless search for spiritual and musical transcendence, culminating in iconic works like 'A Love Supreme'.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/John_Coltrane_1963_cropped_ver2.jpg/500px-John_Coltrane_1963_cropped_ver2.jpg",
   "origin": "Hamlet, North Carolina, U.S.",
@@ -111,6 +113,12 @@
       "slug": "project:blue-train",
       "type": "project",
       "name": "Blue Train"
+    },
+    {
+      "slug": "project:kind-of-blue--miles-davis",
+      "type": "project",
+      "name": "Kind of Blue",
+      "artist": "Miles Davis"
     }
   ],
   "notable_tracks": [
@@ -167,5 +175,6 @@
       "name": "Trane"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

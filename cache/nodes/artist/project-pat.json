@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:23:41.642Z",
+  "mbid": "8b8985eb-f71f-4229-9f11-171a7aac98c1",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A cornerstone of Memphis rap and an influential member of the Hypnotize Camp Posse, Project Pat is known for his signature flow and collaborations with Three 6 Mafia.",
   "origin": "Memphis, Tennessee",
   "active_years": "1991-present",
@@ -445,5 +447,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

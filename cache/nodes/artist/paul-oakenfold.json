@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:55:12.887Z",
+  "mbid": "7bf1f441-ccf1-4258-9797-07c8d16eb44c",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "British record producer, trance DJ, and label founder influential in the evolution of electronic music since the 1980s.",
   "origin": "London, England",
   "active_years": "1980-present",
@@ -775,5 +777,6 @@
       "name": "Electra"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

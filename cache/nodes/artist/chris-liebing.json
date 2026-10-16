@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:06:34.426Z",
+  "mbid": "86a1c458-2d97-42cd-a142-a8fee30ae4a1",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A seminal figure in German techno known for his evolution from hard minimal roots to atmospheric and eclectic soundscapes.",
   "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000110283/400/5dH638qwfM5-txc3V1jTmIAf7E_1E-2MlBBPmPAXRBU=.jpg",
   "origin": "Giessen, Germany",
@@ -78,5 +80,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

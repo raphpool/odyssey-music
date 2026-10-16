@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:14:30.967Z",
+  "mbid": "8dc08b1f-e393-4f85-a5dd-300f7693a8b8",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "James Blake is a genre-defying English producer and singer-songwriter known for his pioneering, atmospheric fusion of dubstep textures and emotive, soulful R&B ballads. He gained widespread acclaim for his self-titled debut in 2011 and has since become an influential figure in modern pop, collaborating with artists such as Beyoncé, Kendrick Lamar, and Bon Iver.",
   "origin": "Enfield, London, England",
   "active_years": "2000s - 2020s",
@@ -67,7 +69,7 @@
   ],
   "discography": [
     {
-      "slug": "project:james-blake",
+      "slug": "project:james-blake--james-blake",
       "type": "project",
       "name": "James Blake"
     },
@@ -94,7 +96,7 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:limit-to-your-love",
+      "slug": "track:limit-to-your-love--james-blake",
       "type": "track",
       "name": "Limit to Your Love"
     },
@@ -113,5 +115,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

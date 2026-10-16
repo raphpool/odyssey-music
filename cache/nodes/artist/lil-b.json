@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:19:05.939Z",
+  "mbid": "1550f952-c91b-40d7-9b4d-d26a259ee932",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An influential Berkeley-born rapper and producer known for pioneering internet rap and his 'Based' lifestyle philosophy.",
   "origin": "Berkeley, California, U.S.",
   "active_years": "2004-present",
@@ -350,5 +352,6 @@
       "type": "artist",
       "name": "Brandon Christopher McCartney"
     }
-  ]
+  ],
+  "similar_artists": []
 }

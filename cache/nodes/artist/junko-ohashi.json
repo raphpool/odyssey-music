@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:09:04.772Z",
+  "mbid": "1c006b2c-eb12-4f50-a339-2d0c697c9045",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A legendary Japanese vocalist celebrated for her powerful range and seminal contributions to city pop and soul throughout the late 1970s and 80s.",
   "origin": "Yūbari, Hokkaido, Japan",
   "active_years": "1974-2023",
@@ -98,5 +100,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

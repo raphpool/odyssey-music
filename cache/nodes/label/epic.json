@@ -114,6 +114,21 @@
       "slug": "artist:fiona-apple",
       "type": "artist",
       "name": "Fiona Apple"
+    },
+    {
+      "slug": "artist:death-grips",
+      "type": "artist",
+      "name": "Death Grips"
+    },
+    {
+      "slug": "artist:supreme-ntm",
+      "type": "artist",
+      "name": "Suprême NTM"
+    },
+    {
+      "slug": "artist:tenacious-d",
+      "type": "artist",
+      "name": "Tenacious D"
     }
   ],
   "notable_releases": [
@@ -136,6 +151,12 @@
       "slug": "project:the-miseducation-of-lauryn-hill",
       "type": "project",
       "name": "The Miseducation of Lauryn Hill"
+    },
+    {
+      "slug": "project:beg-to-differ--prong",
+      "type": "project",
+      "name": "Beg to Differ",
+      "artist": "Prong"
     }
   ]
 }

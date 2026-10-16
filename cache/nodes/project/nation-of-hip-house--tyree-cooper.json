@@ -1,0 +1,128 @@
+{
+  "slug": "project:nation-of-hip-house--tyree-cooper",
+  "name": "Nation of Hip House",
+  "editorial_article": "Released in 1989 through CBS, Nation of Hip House showcases the Chicago producer Tyree Cooper’s central role in the development of the hip house movement. The album features the contributions of rapper Kool Rock Steady, who previously collaborated with Tyree on the 1988 hit single Turn Up The Bass. This project collects various tracks that bridged the gap between the burgeoning Chicago house sound and contemporary hip-hop aesthetics. Among the album's contents are cuts like Let the Music Take Control and Hip House is a Style, which reflect the label's commitment to pushing the crossover genre forward. Tyree, who first entered the industry with his 1986 release I Fear the Night, uses this record to consolidate his influence on the late-1980s dance scene.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Tyree_Cooper",
+      "title": "Tyree Cooper - Wikipedia"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=k9y0QP-EYyI",
+      "title": "Tyree - Nation of Hip House [Full Album] - YouTube"
+    }
+  ],
+  "materialized_at": "2026-09-17T12:59:05.205Z",
+  "mbid": "8f89a5f6-0fed-43b7-a082-f78c3ef714fb",
+  "type": "project",
+  "editorial_pitch": "A definitive snapshot of the late-80s Chicago hip house movement, led by producer Tyree Cooper and featuring rapper Kool Rock Steady.",
+  "year": "1989",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:tyree",
+      "type": "artist",
+      "name": "Tyree",
+      "mbid": "ef71268b-07b0-4fc9-aafc-c1909da8edef"
+    }
+  ],
+  "label": {
+    "slug": "label:indisc",
+    "type": "label",
+    "name": "Indisc",
+    "mbid": "75c2d95b-4e16-4519-b04f-ffcc1925846c"
+  },
+  "genres": [
+    {
+      "slug": "genre:hip-house",
+      "type": "genre",
+      "name": "Hip house",
+      "qid": "Q601235"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid house",
+      "qid": "Q341364"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:let-the-music-take-control",
+      "type": "track",
+      "name": "Let the Music Take Control",
+      "mbid": "cd164c1a-65b1-4010-abd9-029b676514c6"
+    },
+    {
+      "slug": "track:hip-house-is-a-style",
+      "type": "track",
+      "name": "Hip House Is a Style",
+      "mbid": "665963a6-bc8e-46bc-a8f0-8620c26ae000"
+    },
+    {
+      "slug": "track:tonight",
+      "type": "track",
+      "name": "Tonight",
+      "mbid": "1e07cd77-3171-4370-976f-7e25b418c86c"
+    },
+    {
+      "slug": "track:the-nation-of-hip-house",
+      "type": "track",
+      "name": "The Nation of Hip House",
+      "mbid": "083d3a99-a905-4478-97ea-7f9b320e79fc"
+    },
+    {
+      "slug": "track:move-your-body",
+      "type": "track",
+      "name": "Move Your Body",
+      "mbid": "aff1db54-a822-478a-bb95-9e57ec5f87c5"
+    },
+    {
+      "slug": "track:this-is-how-it-should-be-done",
+      "type": "track",
+      "name": "This Is How It Should Be Done",
+      "mbid": "16d53bc2-7dbe-44bc-8465-778f3a9925b8"
+    },
+    {
+      "slug": "track:on-the-smooth-tip",
+      "type": "track",
+      "name": "On the Smooth Tip",
+      "mbid": "314e516c-d6d6-4392-9c50-4a252b1d35d0"
+    },
+    {
+      "slug": "track:night-time",
+      "type": "track",
+      "name": "Night Time",
+      "mbid": "00ef875a-a13d-40a4-afb9-b1ad26563960"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:tyree",
+      "type": "artist",
+      "name": "Tyree",
+      "mbid": "ef71268b-07b0-4fc9-aafc-c1909da8edef"
+    }
+  ],
+  "personnel": [
+    {
+      "slug": "artist:craig-s-loftis",
+      "type": "artist",
+      "name": "Craig S. Loftis",
+      "mbid": "ab9a0313-7a26-4325-acd3-7f809b7726c6"
+    },
+    {
+      "slug": "artist:j-m-d",
+      "type": "artist",
+      "name": "J.M.D.",
+      "mbid": "0ba72ec8-64eb-47ff-97e0-ef5b402fd8d7"
+    }
+  ],
+  "related_projects": []
+}

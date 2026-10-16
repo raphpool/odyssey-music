@@ -21,7 +21,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:57:00.862Z",
+  "mbid": "ba270d06-5529-4889-bbe9-2995fddf2b7d",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Eriko Toyoda is a Berlin-based Japanese vocalist, composer, and sound artist whose work navigates the fragile intersections of ambient, glitch, and art-pop.",
   "genres": [
     {
@@ -84,5 +86,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

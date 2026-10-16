@@ -1,0 +1,51 @@
+{
+  "slug": "track:stereo-cocktail--malibu-mode7",
+  "name": "Stereo Cocktail",
+  "editorial_article": "\"Stereo Cocktail\" is a standout track by the Oregon-based electronic artist Malibu Mode7, released on July 16, 2019, as part of the project *Blue Crush*. Malibu Mode7, also associated with the Sunset Hotline label, has carved out a niche by reimagining classic soundscapes through an authentic chiptune and soundfont-heavy aesthetic. The track embodies the producer's signature style, which serves as a bridge between the nostalgia-laden atmospheres of vaporwave and the precise, rhythmic energy of chiptune and synthwave.\\n\\n*Blue Crush*, the album from which \"Stereo Cocktail\" is drawn, is described by the artist as capturing a \"dreamlike paradisio,\" blending highs and lows that move with the fluidity of oceanic waves. The song itself, running at 3 minutes and 28 seconds, utilizes the producer's penchant for lo-fi, pixelated textures that evoke a foggy, reconstructed past. By weaving these sonic elements, Malibu Mode7 creates a sound that is both retro-futuristic and intimately familiar to fans of the vaporwave and chiptune subcultures. The track's release coincided with a period of growth for the artist within these electronic communities, where such recontextualized soundscapes have found a dedicated audience on platforms like Bandcamp. Through \"Stereo Cocktail,\" Malibu Mode7 effectively encapsulates the essence of their creative project: the synthesis of pixelated digital artifice with the lush, hazy moods of modern electronic pop.",
+  "citations": [
+    {
+      "url": "https://malibumode7.bandcamp.com/track/stereo-cocktail",
+      "title": "Stereo Cocktail | Malibu Mode7"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:09:17.354Z",
+  "type": "track",
+  "editorial_teaser": "\"Stereo Cocktail\" is a standout track by the Oregon-based electronic artist Malibu Mode7, released on July 16, 2019, as part of the project *Blue Crush*.",
+  "artists": [
+    {
+      "slug": "artist:malibu-mode7",
+      "type": "artist",
+      "name": "Malibu Mode7"
+    }
+  ],
+  "project": {
+    "slug": "project:blue-crush",
+    "type": "project",
+    "name": "Blue Crush"
+  },
+  "genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:chillwave",
+      "type": "genre",
+      "name": "Chillwave",
+      "qid": "Q2626684"
+    },
+    {
+      "slug": "genre:chiptune",
+      "type": "genre",
+      "name": "Chiptune",
+      "qid": "Q135637"
+    }
+  ],
+  "producers": [],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

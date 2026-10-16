@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:15:51.384Z",
+  "mbid": "fa0e2024-95ff-44b6-9a86-f0ab120b6a72",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Todd Edwards (born Todd Edward Imperatrice, December 9, 1972) is an American garage house record producer, DJ, and singer-songwriter from Bloomfield, New Jersey.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Todd_Edwards_crop.jpg/250px-Todd_Edwards_crop.jpg",
   "origin": "Bloomfield, New Jersey",
@@ -73,5 +75,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

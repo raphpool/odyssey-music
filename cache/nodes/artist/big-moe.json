@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:21:30.918Z",
+  "mbid": "42aedc65-3723-45ad-a75b-f0af10940c95",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A founding member of Houston's Screwed Up Click, Big Moe was a pivotal figure in the Southern hip-hop scene, best known for his 2002 hit Purple Stuff.",
   "origin": "Houston, Texas",
   "active_years": "1993-2007",
@@ -152,5 +154,6 @@
       "type": "artist",
       "name": "DJ Screw"
     }
-  ]
+  ],
+  "similar_artists": []
 }

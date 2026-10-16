@@ -30,7 +30,7 @@
       "name": "Daphne of the Dunes"
     },
     {
-      "slug": "track:barstow",
+      "slug": "track:barstow--harry-partch",
       "type": "track",
       "name": "Barstow"
     },
@@ -41,5 +41,6 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:55:43.006Z",
+  "mbid": "138dd95b-9311-416e-bcdd-a80067289de6",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Florida-based producer and DJ Eddie Pappa is a pioneer of the Florida Breaks sound and founder of the Zone record label.",
   "origin": "Orlando, Florida",
   "active_years": "1991-present",
@@ -350,5 +352,6 @@
       "name": "City-Wide Allstars"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

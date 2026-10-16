@@ -62,16 +62,31 @@
       "slug": "artist:freeform",
       "type": "artist",
       "name": "Freeform"
+    },
+    {
+      "slug": "artist:marcus-eoin",
+      "type": "artist",
+      "name": "Marcus Eoin"
+    },
+    {
+      "slug": "artist:rob-brown",
+      "type": "artist",
+      "name": "Rob Brown"
+    },
+    {
+      "slug": "artist:sean-booth",
+      "type": "artist",
+      "name": "Sean Booth"
     }
   ],
   "notable_releases": [
     {
-      "slug": "project:hi-scores",
+      "slug": "project:hi-scores--boards-of-canada",
       "type": "project",
       "name": "Hi Scores"
     },
     {
-      "slug": "project:music-has-the-right-to-children",
+      "slug": "project:music-has-the-right-to-children--boards-of-canada",
       "type": "project",
       "name": "Music Has the Right to Children"
     },

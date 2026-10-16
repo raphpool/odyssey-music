@@ -1,0 +1,67 @@
+{
+  "slug": "track:data-flex--ryoji-ikeda",
+  "name": "data.flex",
+  "editorial_article": "\"data.flex\" is a precise, minimalist track by Japanese sound artist Ryoji Ikeda, featured as the 14th entry on his 2005 album, *Dataplex*. Released through the seminal experimental label Raster-Noton, the piece embodies Ikeda's signature approach to digital sound: the reduction of information to its fundamental components. As part of the *Datamatics* series, the album and its individual movements explore the raw computer data that permeates modern existence, translating mathematical logic into an audible, rhythmic experience.\n\nMusically, \"data.flex\" functions within the highly technical framework of Ikeda's aesthetic. It eschews traditional melody in favor of a granular, rhythmic tapestry that critics have described as \"surgical.\" By isolating pure waveforms and clock-like pulses, Ikeda creates an environment that feels both abstractly scientific and remarkably funky in a cerebral sense. Its placement within *Dataplex* contributes to the overarching ambition of the album: to interpret the noise of the digital age as a complex, organized structure. The track exemplifies the post-glitch movement's potential to bridge the gap between avant-garde sound art and high-fidelity, repetitive electronic music, standing as a pivotal moment in Ikeda's exploration of digital materiality.",
+  "citations": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Dataplex",
+      "title": "Dataplex - Wikipedia"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:57:39.692Z",
+  "mbid": "77d8fa03-470e-41a6-b217-c0a30587185c",
+  "type": "track",
+  "editorial_teaser": "\"data.flex\" is a precise, minimalist track by Japanese sound artist Ryoji Ikeda, featured as the 14th entry on his 2005 album, *Dataplex*.",
+  "year": "2005",
+  "duration": "2:28",
+  "artists": [
+    {
+      "slug": "artist:ryoji-ikeda",
+      "type": "artist",
+      "name": "Ryoji Ikeda",
+      "mbid": "bba24968-a575-4b38-8c38-06f7ab6de8c8"
+    }
+  ],
+  "project": {
+    "slug": "project:dataplex--ryoji-ikeda",
+    "type": "project",
+    "name": "Dataplex"
+  },
+  "label": {
+    "slug": "label:raster-noton",
+    "type": "label",
+    "name": "Raster‐Noton",
+    "mbid": "6f4640eb-0881-40b4-a9ac-2a68ad3af0ca"
+  },
+  "genres": [
+    {
+      "slug": "genre:microsound",
+      "type": "genre",
+      "name": "Microsound",
+      "qid": "Q3503814"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal techno",
+      "qid": "Q1430587"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental",
+      "qid": "Q1640319"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:ryoji-ikeda",
+      "type": "artist",
+      "name": "Ryoji Ikeda"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

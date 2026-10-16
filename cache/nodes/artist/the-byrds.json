@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "2819834e-4e08-47b0-a2c4-b7672318e8f0",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Byrds were a seminal American rock band formed in Los Angeles in 1964, whose innovations in sound and songwriting helped shape the landscape of modern popular music. Central to their identity was the chiming, jangling 12-string Rickenbacker guitar sound pioneered by Roger McGuinn, which, when combined with their ethereal vocal harmonies and a restless, eclectic approach to song selection, allowed them to bridge the divide between the acoustic folk scene and the burgeoning electric rock revolution. Initially gaining fame as the American answer to the British Invasion, the band quickly transcended that title by pioneering genres such as folk-rock, psychedelia, and country-rock throughout their lifespan. The original lineup—Roger McGuinn, Gene Clark, David Crosby, Chris Hillman, and Michael Clarke—left an indelible mark on culture with their 1965 debut, \"Mr. Tambourine Man,\" which transformed the Bob Dylan song into a definitive folk-rock anthem. Their evolution was rapid and daring; from the baroque, experimental textures found on albums like 'The Notorious Byrd Brothers' to the foundational country-rock blueprint laid out on 'Sweetheart of the Rodeo' with Gram Parsons, the group proved themselves to be among the most artistically adventurous acts of their era. While constant personnel changes marked their career, the influence of their jangle-pop sound reverberated through decades, leaving an undisputed legacy that can be heard in the works of artists ranging from Tom Petty to R.E.M. and the broader jangle-pop movement of the post-punk era. By masterfully blending the commercial appeal of the British Invasion with the lyrical depth of American folk, they established a template for rock music that emphasized musicianship and forward-thinking experimentation, cementing their status as architects of the late-20th-century American rock canon.",
   "photo_url": "https://fastly-s3.allmusic.com/artist/mn0000631774/400/gNPBIPI8dnS6n_RCMhagYN_M69_UI9rrJSVvWL2-yAg=.jpg",
   "origin": "Los Angeles, California",
@@ -76,5 +78,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

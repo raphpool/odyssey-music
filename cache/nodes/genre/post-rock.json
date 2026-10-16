@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:50:34.352Z",
   "type": "genre",
   "editorial_definition": "Post-rock is an experimental form of rock music that utilizes traditional rock instruments to create atmospheric, non-traditional compositions, often characterized by long instrumental passages, progressive song structures, and an emphasis on texture over standard verse-chorus patterns.",
+  "qid": "Q209137",
   "era": "1990s - present",
   "origin": "United States, United Kingdom, Iceland",
   "parent_genres": [
@@ -100,7 +101,7 @@
       "name": "Spiderland"
     },
     {
-      "slug": "project:ag-tis-byrjun",
+      "slug": "project:agaetis-byrjun",
       "type": "project",
       "name": "Ágætis Byrjun"
     },
@@ -110,6 +111,5 @@
       "name": "Young Team"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q209137"
+  "landmark_tracks": []
 }

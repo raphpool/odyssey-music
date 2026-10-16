@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:58:59.835Z",
+  "mbid": "ef71268b-07b0-4fc9-aafc-c1909da8edef",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An architect of Chicago hip house and a classic acid house producer who helped bring the Chicago sound to international dance floors.",
   "origin": "Chicago, Illinois, US",
   "active_years": "1986-present",
@@ -258,7 +260,7 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:nation-of-hip-house",
+      "slug": "project:nation-of-hip-house--tyree-cooper",
       "type": "project",
       "name": "Nation of Hip House",
       "mbid": "8f89a5f6-0fed-43b7-a082-f78c3ef714fb",
@@ -355,12 +357,7 @@
       "name": "Sebastian Krieg"
     }
   ],
-  "aliases": [
-    {
-      "slug": "artist:tyree",
-      "type": "artist",
-      "name": "Tyree"
-    }
-  ],
-  "members": []
+  "aliases": [],
+  "members": [],
+  "similar_artists": []
 }

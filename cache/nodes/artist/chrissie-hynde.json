@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:10:45.051Z",
+  "mbid": "a5d79c54-81c3-4a73-af6a-ad5c143d3f21",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Chrissie Hynde (born September 7, 1951) is a seminal American-British singer, songwriter, and musician who became a central figure in the post-punk and new wave scenes of the late 1970s. Born in Akron, Ohio, Hynde moved to London in 1973, immersing herself in the burgeoning punk movement where she worked at Vivienne Westwood’s boutique, 'Sex', and navigated various short-lived musical projects. Her tenacity led to the formation of the Pretenders in 1978 in Hereford, England. As the group's lead vocalist, guitarist, and primary songwriter, Hynde established a distinct rock sound characterized by her sharp lyricism and gritty vocal style. Throughout her career, she has remained the band's only consistent member, guiding it through critical acclaim and commercial success. Hynde’s influence spans decades, and her contributions to rock music were recognized in 2005 with her induction into the Rock and Roll Hall of Fame. Her artistry extends beyond her iconic work with the Pretenders, including collaborations with diverse artists such as Frank Sinatra, Cher, and UB40, and a solo career that saw the release of her debut album, 'Stockholm', in 2014.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Chrissie_Hynde_2013.jpg/500px-Chrissie_Hynde_2013.jpg",
   "origin": "Akron, Ohio, USA",
@@ -55,10 +57,18 @@
     }
   ],
   "discography": [],
-  "notable_tracks": [],
+  "notable_tracks": [
+    {
+      "slug": "track:spiritual-high--moodswings",
+      "type": "track",
+      "name": "Spiritual High",
+      "artist": "Moodswings"
+    }
+  ],
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

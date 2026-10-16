@@ -67,6 +67,11 @@
       "slug": "artist:mark-rae",
       "type": "artist",
       "name": "Mark Rae"
+    },
+    {
+      "slug": "artist:andy-turner",
+      "type": "artist",
+      "name": "Andy Turner"
     }
   ],
   "notable_releases": [
@@ -84,6 +89,12 @@
       "slug": "project:frying-the-fat",
       "type": "project",
       "name": "Frying the Fat"
+    },
+    {
+      "slug": "project:cold-water-music--aim",
+      "type": "project",
+      "name": "Cold Water Music",
+      "artist": "Aim"
     }
   ]
 }

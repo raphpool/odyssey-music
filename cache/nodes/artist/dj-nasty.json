@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:57:55.890Z",
+  "mbid": "25378785-3fc1-4eea-af1f-4108052ec708",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Detroit-based producer and ghettotech pioneer known for his mid-90s releases and high-energy electronic dance music.",
   "origin": "Detroit, United States",
   "active_years": "1990s-present",
@@ -109,5 +111,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "2f9ecbed-27be-40e6-abca-6de49d50299e",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Aretha Louise Franklin (1942–2018), universally revered as the \"Queen of Soul,\" was an American singer, songwriter, and pianist whose profound influence spanned gospel, R&B, soul, and pop.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Aretha_Franklin_1968.jpg/500px-Aretha_Franklin_1968.jpg",
   "origin": "Detroit, Michigan, U.S.",
@@ -70,11 +72,19 @@
       "name": "Arista Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:i-never-loved-a-man-the-way-i-love-you--aretha-franklin",
+      "type": "project",
+      "name": "I Never Loved a Man the Way I Love You",
+      "artist": "Aretha Franklin"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

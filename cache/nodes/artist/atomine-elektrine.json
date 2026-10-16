@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T15:11:00.310Z",
+  "mbid": "097cd6d8-605e-4595-94d0-7e3f790feff3",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Atomine Elektrine is an experimental electronic project by Swedish musician Peter Andersson, known for his prolific work in dark ambient and industrial music.",
   "origin": "Sweden",
   "active_years": "1990s-present",
@@ -89,5 +91,6 @@
       "type": "artist",
       "name": "Peter Andersson"
     }
-  ]
+  ],
+  "similar_artists": []
 }

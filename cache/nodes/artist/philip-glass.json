@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "5ae54dee-4dba-49c0-802a-a3b3b3adfe9b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An American composer and pianist widely regarded as one of the most influential figures of the late 20th century, best known for his pioneering work in minimalism characterized by repetitive, additive, and cyclical musical structures.",
   "genres": [
     {
@@ -71,6 +73,12 @@
       "slug": "project:einstein-on-the-beach",
       "type": "project",
       "name": "Einstein on the Beach"
+    },
+    {
+      "slug": "project:einstein-on-the-beach--philip-glass",
+      "type": "project",
+      "name": "Einstein on the Beach",
+      "artist": "Philip Glass"
     }
   ],
   "notable_tracks": [
@@ -89,5 +97,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

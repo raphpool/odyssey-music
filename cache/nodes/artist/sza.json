@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:20:01.568Z",
+  "mbid": "272989c8-5535-492d-a25c-9f58803e027f",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "An influential American singer-songwriter and first female signee to Top Dawg Entertainment, known for her record-breaking albums Ctrl and SOS.",
   "origin": "St. Louis, Missouri",
   "active_years": "2012-present",
@@ -403,5 +405,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

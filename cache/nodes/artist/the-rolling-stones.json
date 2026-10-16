@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:55:10.514Z",
+  "mbid": "b071f9fa-14b0-4217-8e97-eb41da73f598",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Formed in London in 1962, The Rolling Stones are a legendary rock band known for their longevity, blues-infused sound, and iconic status as cultural rebels and arena rock titans.",
   "origin": "London, England",
   "genres": [
@@ -39,7 +41,7 @@
       "name": "(I Can't Get No) Satisfaction"
     },
     {
-      "slug": "track:paint-it-black",
+      "slug": "track:paint-it-black--the-rolling-stones",
       "type": "track",
       "name": "Paint It, Black"
     },
@@ -94,5 +96,6 @@
       "type": "artist",
       "name": "Darryl Jones"
     }
-  ]
+  ],
+  "similar_artists": []
 }

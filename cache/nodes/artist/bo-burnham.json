@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:44:58.429Z",
+  "mbid": "889db25c-d1df-457a-b0d1-c405f34a01f3",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Bo Burnham is a multifaceted American artist known for his pioneering work in musical comedy, satirical songwriting, and filmmaking. From his early viral YouTube beginnings to his critically acclaimed Netflix specials like 'Inside', Burnham has consistently challenged the boundaries of performance by integrating deep existential commentary with high-concept humor.",
   "origin": "Hamilton, Massachusetts, U.S.",
   "genres": [
@@ -42,11 +44,19 @@
       "name": "Comedy Central Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:inside--bo-burnham",
+      "type": "project",
+      "name": "Inside",
+      "artist": "Bo Burnham"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -1,0 +1,91 @@
+{
+  "slug": "project:enter--russian-circles",
+  "name": "Enter",
+  "editorial_article": "Released in 2006, Enter is the debut studio album by the Chicago-based instrumental post-metal trio Russian Circles. Recorded at the legendary Electrical Audio studios, the album marked the band as a potent force in the burgeoning mid-2000s post-rock and post-metal scenes. The trio—comprised of guitarist Mike Sullivan, bassist Colin DeKuiper, and drummer Dave Turncrantz—crafts a sound that is both technically precise and emotionally resonant. Unlike many of their contemporaries who leaned heavily into ethereal, sprawling ambient soundscapes, Russian Circles anchored their compositions in a muscular, rhythmic foundation that felt more indebted to heavy rock and metal than to traditional post-rock textures.\\n\\nThe album's sonic identity is defined by its clever use of interlocking guitar melodies and the trio’s ability to build tension through dynamic shifts, effectively employing a seamless flow between tracks, punctuated by frequent fades that create a sense of continuous progression. Tracks like \"Death Rides a Horse\" and the titular \"Enter\" highlight the band's mastery of building complex arrangements from relatively simple, looping melodic phrases. By merging the technical dexterity of math-rock with the crushing volume of metal, the band created a distinctive, driving sound that remains a landmark of the genre. Enter solidified Russian Circles' reputation, setting the stage for a prolific career defined by technical growth and cinematic intensity. It remains an essential document for those interested in the evolution of instrumental heavy music.",
+  "citations": [
+    {
+      "url": "https://www.progarchives.com/album.asp?id=12397",
+      "title": "RUSSIAN CIRCLES Enter reviews - Prog Archives"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:12:11.691Z",
+  "mbid": "424e3082-cd25-35cd-aceb-ee5270e114f6",
+  "type": "project",
+  "editorial_pitch": "Enter is the formidable debut studio album by Chicago instrumental post-metal trio Russian Circles, released in 2006. It established the band's signature blend of crushing, rhythmic weight and cinematic, guitar-driven melody.",
+  "year": "2006",
+  "release_type": "album",
+  "artists": [
+    {
+      "slug": "artist:russian-circles",
+      "type": "artist",
+      "name": "Russian Circles",
+      "mbid": "cca40a67-e959-46f8-a3f3-8a3f77d2da9e"
+    }
+  ],
+  "label": {
+    "slug": "label:flameshovel-records",
+    "type": "label",
+    "name": "Flameshovel Records"
+  },
+  "genres": [
+    {
+      "slug": "genre:post-rock",
+      "type": "genre",
+      "name": "Post-rock",
+      "qid": "Q209137"
+    },
+    {
+      "slug": "genre:post-metal",
+      "type": "genre",
+      "name": "Post-metal",
+      "qid": "Q41343"
+    },
+    {
+      "slug": "genre:instrumental-rock",
+      "type": "genre",
+      "name": "Instrumental rock",
+      "qid": "Q1650296"
+    }
+  ],
+  "tracklist": [
+    {
+      "slug": "track:carpe",
+      "type": "track",
+      "name": "Carpe"
+    },
+    {
+      "slug": "track:micah",
+      "type": "track",
+      "name": "Micah"
+    },
+    {
+      "slug": "track:death-rides-a-horse",
+      "type": "track",
+      "name": "Death Rides a Horse"
+    },
+    {
+      "slug": "track:enter",
+      "type": "track",
+      "name": "Enter"
+    },
+    {
+      "slug": "track:you-already-did",
+      "type": "track",
+      "name": "You Already Did"
+    },
+    {
+      "slug": "track:new-macabre",
+      "type": "track",
+      "name": "New Macabre"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:greg-norman",
+      "type": "artist",
+      "name": "Greg Norman"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

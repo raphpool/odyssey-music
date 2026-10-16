@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:48:48.147Z",
+  "mbid": "ae7defd2-004f-4d98-a06b-251fd73d07c7",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pioneering multi-instrumentalist and sound sculptor known for her profound contributions to New Age and space-ambient music, most notably her 1986 masterwork 'Novus Magnificat'.",
   "origin": "Oakland, California, U.S.",
   "active_years": "1960s–2021",
@@ -55,7 +57,7 @@
       "name": "Skies Above Skies"
     },
     {
-      "slug": "project:novus-magnificat",
+      "slug": "project:novus-magnificat--constance-demby",
       "type": "project",
       "name": "Novus Magnificat"
     },
@@ -87,5 +89,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

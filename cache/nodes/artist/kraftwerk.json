@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:35:47.948Z",
+  "mbid": "5700dcd4-c139-4f31-aa3e-6382b9af9032",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Kraftwerk are pioneers of electronic music who transformed the sound of the 20th century through their minimalist 'robot pop' and pioneering use of synthesis. Formed in Düsseldorf, they remain one of the most influential acts in history, bridging the gap between avant-garde krautrock and modern global pop.",
   "origin": "Düsseldorf, Germany",
   "genres": [
@@ -46,7 +48,7 @@
   ],
   "discography": [
     {
-      "slug": "project:autobahn",
+      "slug": "project:autobahn--kraftwerk",
       "type": "project",
       "name": "Autobahn"
     },
@@ -56,24 +58,24 @@
       "name": "Trans-Europe Express"
     },
     {
-      "slug": "project:the-man-machine",
+      "slug": "project:the-man-machine--kraftwerk",
       "type": "project",
       "name": "The Man-Machine"
     },
     {
-      "slug": "project:computer-world",
+      "slug": "project:computer-world--kraftwerk",
       "type": "project",
       "name": "Computer World"
     }
   ],
   "notable_tracks": [
     {
-      "slug": "track:autobahn",
+      "slug": "track:autobahn--kraftwerk",
       "type": "track",
       "name": "Autobahn"
     },
     {
-      "slug": "track:the-model",
+      "slug": "track:the-model--kraftwerk",
       "type": "track",
       "name": "The Model"
     },
@@ -93,5 +95,6 @@
   ],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

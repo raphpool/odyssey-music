@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:58:49.631Z",
+  "mbid": "d222ef21-486d-4b5d-961b-05f4ed96bd88",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Death Funk is a specific artistic alias used by the influential German electronic musician Alexander Wilke, better known globally as Alec Empire.",
   "origin": "Germany",
   "genres": [
@@ -67,5 +69,6 @@
       "name": "Alec Empire"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

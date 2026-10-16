@@ -55,6 +55,12 @@
       "slug": "project:production-series-vol-1",
       "type": "project",
       "name": "Production Series Vol 1"
+    },
+    {
+      "slug": "project:fitna--rohff",
+      "type": "project",
+      "name": "Fitna",
+      "artist": "Rohff"
     }
   ]
 }

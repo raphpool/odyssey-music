@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:40:14.988Z",
+  "mbid": "c13f201c-83bc-4a6e-a7b0-7fbcd13adddc",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Francesco Del Garda is an Italian DJ and selector who has carved out a distinct space in the global electronic music scene through his deep-seated dedication to vinyl culture and a relentlessly groovy, fluid approach to dance music.",
   "origin": "Italy",
   "active_years": "1994-present",
@@ -44,5 +46,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

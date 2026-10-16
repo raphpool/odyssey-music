@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:14:11.243Z",
+  "mbid": "a2afc4c2-5fce-4d4d-871e-a294c127b8c3",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Vince Lawrence is an internationally recognized house music pioneer, producer, and entrepreneur from Chicago, famously co-authoring \"On and On,\" often cited as the first house record. He is the founder of Slang Music Group and has been a central figure in the legacy and global expansion of the Chicago house sound for over four decades.",
   "origin": "\"Chicago, USA\"",
   "active_years": "\"1980s - Present\"",
@@ -70,5 +72,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

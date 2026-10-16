@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:57:31.435Z",
+  "mbid": "b73e51c1-cf7e-450e-ab10-a8a24e5b8993",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pioneering Chicago house artist who defined the minimalist, high-energy ghetto house sound using the Roland TR-909.",
   "origin": "South Side, Chicago",
   "active_years": "1980-2023",
@@ -462,5 +464,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

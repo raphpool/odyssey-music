@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "68be8273-cb12-4053-964d-157b7e5cf265",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Sasha, the professional moniker of Welsh DJ and producer Alexander Paul Coe, is a pioneering force in the global electronic dance music scene. Emerging in the late 1980s, he rose to prominence through residencies at legendary clubs like Shelly's, The Haçienda, and Renaissance, where his nuanced approach to mixing helped bridge the gap between burgeoning house, techno, and trance sounds. Often credited as one of the architects of the progressive house movement, Sasha's influence expanded globally through his high-profile partnership with John Digweed. Their collaborative 'Northern Exposure' series of mix albums became a touchstone for the genre in the late 1990s, defining a sophisticated, atmospheric sound that captivated dance floors from the UK to the United States and Australia.",
   "photo_url": "https://fastly-s3.allmusic.com/artist/mn0002141576/400/LbTj_fosl4WbJINGfEhDqQ4Q1ghY8VaPylnm7PwcKNY=.jpg",
   "origin": "Bangor, Wales",
@@ -145,5 +147,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

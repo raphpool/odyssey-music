@@ -24,7 +24,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "2841d983-f8c3-432a-af02-7407a84580a8",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Merzbow is the moniker of Japanese noise musician Masami Akita, widely regarded as the most prolific and influential figure in the global harsh noise scene.",
   "origin": "Tokyo, Japan",
   "genres": [
@@ -48,7 +50,14 @@
     }
   ],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:pulse-demon--merzbow",
+      "type": "project",
+      "name": "Pulse Demon",
+      "artist": "Merzbow"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],
@@ -65,5 +74,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

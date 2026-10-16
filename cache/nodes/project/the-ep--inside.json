@@ -1,0 +1,55 @@
+{
+  "slug": "project:the-ep--inside",
+  "name": "The EP",
+  "editorial_article": "'The EP' is a 1993 vinyl release from the project known as Inside, a short-lived but highly regarded entity within the UK's burgeoning electronic music scene of the early nineties. Released on Happy Music, the project provided a distinct, deep, and atmospheric contribution to the era's sound, characterized by intricate production and hypnotic rhythms. The release comprises three tracks: 'Music For Windows' on the A-side, and 'Wonderfull' and 'Wears Harvey' on the B-side. It was written and produced by Kurt Howes and Merlin, two figures whose collaborative efforts captured the experimental and dance-floor-oriented energy prevalent in the UK club underground during this period. Over the decades, the record has attained a cult status among crate-diggers and DJs, often mentioned in the same breath as other seminal underground releases of the mid-90s, cherished for its subtle, nuanced approach to electronic sound design that avoids the bombast of more commercial rave acts of the time. While 'Inside' as an artist persona remained somewhat enigmatic, the enduring impact of 'The EP' demonstrates the lasting resonance of the deep, understated sonic explorations that flourished in the UK's warehouse and club circuits. The record remains a quintessential example of the era's dedication to atmospheric, meticulously crafted electronic music, serving as a testament to the creativity that was thriving well outside the mainstream music industry spotlight.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/release/966968-Inside-The-EP?srsltid=AfmBOopywuccFMgwcAiLMdWoG6w4K1bfffNgHK3dtbyCUOBWseFtVcgK",
+      "title": "Inside – The EP – Vinyl (12', EP), 1993 [r966968] | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:36:41.802Z",
+  "type": "project",
+  "editorial_pitch": "A cult artifact of the early 90s UK electronic underground, 'The EP' by the mysterious project Inside remains a sought-after gem for vinyl collectors and DJs who favor deep, hypnotic soundscapes.",
+  "cover_url": "https://i.discogs.com/G7kfSKOlI9Dxm5PdQiVXDW5_Dipj0tpyMJhb_EXQ5jw/rs:fit/g:sm/q:40/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYyNjgx/LTExNzc2OTY2NDAu/anBlZw.jpeg",
+  "year": "1993",
+  "artists": [
+    {
+      "slug": "artist:inside",
+      "type": "artist",
+      "name": "Inside"
+    }
+  ],
+  "genres": [],
+  "tracklist": [
+    {
+      "slug": "track:music-for-windows",
+      "type": "track",
+      "name": "Music For Windows"
+    },
+    {
+      "slug": "track:wonderfull",
+      "type": "track",
+      "name": "Wonderfull"
+    },
+    {
+      "slug": "track:wears-harvey",
+      "type": "track",
+      "name": "Wears Harvey"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:kurt-howes",
+      "type": "artist",
+      "name": "Kurt Howes"
+    },
+    {
+      "slug": "artist:merlin",
+      "type": "artist",
+      "name": "Merlin"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

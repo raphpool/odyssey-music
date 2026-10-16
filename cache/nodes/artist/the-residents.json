@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:45:14.757Z",
+  "mbid": "8c9b336e-acc8-4e20-9195-6ed0634da9fc",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Residents are a pioneering American art collective and music group formed in the late 1960s, widely considered one of the most influential and enduring acts in the experimental, avant-garde, and art pop movements.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/The_Residents_Eye_-_EMP_-_Sarah_Stierch.jpg/250px-The_Residents_Eye_-_EMP_-_Sarah_Stierch.jpg",
   "origin": "Shreveport, Louisiana, U.S.",
@@ -83,5 +85,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -89,6 +89,86 @@
       "slug": "artist:cat-stevens",
       "type": "artist",
       "name": "Cat Stevens"
+    },
+    {
+      "slug": "artist:49ers",
+      "type": "artist",
+      "name": "49ers"
+    },
+    {
+      "slug": "artist:andy-mackay",
+      "type": "artist",
+      "name": "Andy Mackay"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno"
+    },
+    {
+      "slug": "artist:bryan-ferry",
+      "type": "artist",
+      "name": "Bryan Ferry"
+    },
+    {
+      "slug": "artist:dizzee-rascal",
+      "type": "artist",
+      "name": "Dizzee Rascal"
+    },
+    {
+      "slug": "artist:hikaru-utada",
+      "type": "artist",
+      "name": "Hikaru Utada"
+    },
+    {
+      "slug": "artist:john-cale",
+      "type": "artist",
+      "name": "John Cale"
+    },
+    {
+      "slug": "artist:larry-levan",
+      "type": "artist",
+      "name": "Larry Levan"
+    },
+    {
+      "slug": "artist:lee-scratch-perry",
+      "type": "artist",
+      "name": "Lee 'Scratch' Perry"
+    },
+    {
+      "slug": "artist:mariah-carey",
+      "type": "artist",
+      "name": "Mariah Carey"
+    },
+    {
+      "slug": "artist:roxy-music",
+      "type": "artist",
+      "name": "Roxy Music"
+    },
+    {
+      "slug": "artist:skepta",
+      "type": "artist",
+      "name": "Skepta"
+    },
+    {
+      "slug": "artist:the-orb",
+      "type": "artist",
+      "name": "The Orb"
+    },
+    {
+      "slug": "artist:the-peech-boys",
+      "type": "artist",
+      "name": "The Peech Boys"
+    },
+    {
+      "slug": "artist:the-skatalites",
+      "type": "artist",
+      "name": "The Skatalites"
+    },
+    {
+      "slug": "artist:the-specials",
+      "type": "artist",
+      "name": "The Specials"
     }
   ],
   "notable_releases": [
@@ -98,24 +178,42 @@
       "name": "Catch a Fire"
     },
     {
-      "slug": "project:the-joshua-tree",
+      "slug": "project:the-joshua-tree--u2",
       "type": "project",
       "name": "The Joshua Tree"
     },
     {
-      "slug": "project:in-the-court-of-the-crimson-king",
+      "slug": "project:in-the-court-of-the-crimson-king--king-crimson",
       "type": "project",
       "name": "In the Court of the Crimson King"
     },
     {
-      "slug": "project:pink-moon",
+      "slug": "project:pink-moon--nick-drake",
       "type": "project",
       "name": "Pink Moon"
     },
     {
-      "slug": "project:liege-and-lief",
+      "slug": "project:liege-and-lief--fairport-convention",
       "type": "project",
       "name": "Liege & Lief"
+    },
+    {
+      "slug": "project:another-green-world--brian-eno",
+      "type": "project",
+      "name": "Another Green World",
+      "artist": "Brian Eno"
+    },
+    {
+      "slug": "project:five-leaves-left--nick-drake",
+      "type": "project",
+      "name": "Five Leaves Left",
+      "artist": "Nick Drake"
+    },
+    {
+      "slug": "project:for-your-pleasure--roxy-music",
+      "type": "project",
+      "name": "For Your Pleasure",
+      "artist": "Roxy Music"
     }
   ]
 }

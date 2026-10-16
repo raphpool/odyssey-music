@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:47:22.611Z",
+  "mbid": "7bf257bf-19a8-4205-8ae8-98511e50b719",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Terry Riley is a pioneering American composer and performer, widely recognized as a founding figure of the minimalist movement for his revolutionary 1964 work 'In C' and his fusion of Indian classical music with Western contemporary composition.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Terry_Riley_1980.jpg",
   "origin": "Colfax, California, USA",
@@ -52,7 +54,7 @@
   ],
   "discography": [
     {
-      "slug": "project:in-c",
+      "slug": "project:in-c--terry-riley",
       "type": "project",
       "name": "In C"
     },
@@ -110,5 +112,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

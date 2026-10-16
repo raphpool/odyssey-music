@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:51:59.137Z",
+  "mbid": "cd7b53ed-3d81-4199-b523-56c61206c1a3",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Amon Düül emerged in 1967 as a radical political art commune in Munich, West Germany, standing as a pivotal, if unconventional, figure in the early Krautrock movement.",
   "origin": "Munich, West Germany",
   "genres": [
@@ -39,5 +41,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

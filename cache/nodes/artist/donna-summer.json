@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:47:22.907Z",
+  "mbid": "b60527cc-54f3-4bbe-a01b-dcf34c95ae14",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Donna Summer, born LaDonna Adrian Gaines in Boston in 1948, was a pioneering American singer-songwriter who rose to international prominence during the 1970s as the defining \"Queen of Disco.\" After spending time in Germany during her early career, where she began working with inf",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Nobel_Peace_Price_Concert_2009_Donna_Summer2.jpg/250px-Nobel_Peace_Price_Concert_2009_Donna_Summer2.jpg",
   "origin": "Boston, Massachusetts, USA",
@@ -89,7 +91,7 @@
       "name": "Love to Love You Baby"
     },
     {
-      "slug": "track:i-feel-love",
+      "slug": "track:i-feel-love--donna-summer",
       "type": "track",
       "name": "I Feel Love"
     },
@@ -103,5 +105,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

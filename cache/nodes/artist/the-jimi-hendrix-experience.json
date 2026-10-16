@@ -17,7 +17,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:59:35.391Z",
+  "mbid": "33b3c323-77c2-417c-a5b4-af7e6a111cc9",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "The Jimi Hendrix Experience was a pioneering and highly influential rock band formed in London in 1966, known for revolutionizing the sound of the electric guitar.",
   "origin": "Westminster, Greater London, United Kingdom",
   "active_years": "1966-1970",
@@ -44,29 +46,29 @@
   "labels": [],
   "discography": [
     {
-      "slug": "project:are-you-experienced",
+      "slug": "project:are-you-experienced--the-jimi-hendrix-experience",
       "type": "project",
       "name": "Are You Experienced"
     },
     {
-      "slug": "project:axis-bold-as-love",
+      "slug": "project:axis-bold-as-love--the-jimi-hendrix-experience",
       "type": "project",
       "name": "Axis: Bold as Love"
     },
     {
-      "slug": "project:electric-ladyland",
+      "slug": "project:electric-ladyland--the-jimi-hendrix-experience",
       "type": "project",
       "name": "Electric Ladyland"
     }
   ],
   "notable_tracks": [
     {
-      "slug": "track:purple-haze",
+      "slug": "track:purple-haze--the-jimi-hendrix-experience",
       "type": "track",
       "name": "Purple Haze"
     },
     {
-      "slug": "track:foxy-lady",
+      "slug": "track:foxy-lady--the-jimi-hendrix-experience",
       "type": "track",
       "name": "Foxy Lady"
     },
@@ -96,5 +98,6 @@
       "type": "artist",
       "name": "Mitch Mitchell"
     }
-  ]
+  ],
+  "similar_artists": []
 }

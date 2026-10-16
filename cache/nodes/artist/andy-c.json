@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:19:49.022Z",
+  "mbid": "ec853694-30a1-4c7e-84e6-4ca87ee3c314",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Andy C, born Andrew Michael Clarke in Walsall, England, is a foundational figure in the drum and bass genre, widely regarded as one of the most influential DJs and producers in the scene's history.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Andy_C_live_in_2011_3_%28cropped%29.jpg/250px-Andy_C_live_in_2011_3_%28cropped%29.jpg",
   "origin": "Walsall, England",
@@ -71,5 +73,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

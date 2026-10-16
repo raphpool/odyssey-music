@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:18:21.268Z",
+  "mbid": "36bfa85f-737b-41db-a8fc-b8825850ffc3",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Pavement was an iconic American indie rock band formed in Stockton, California, in 1989, that defined the aesthetic of the 1990s underground.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Pavement%2C_the_band%2C_in_Tokyo.jpg",
   "origin": "Stockton, California, U.S.",
@@ -52,7 +54,7 @@
   ],
   "discography": [
     {
-      "slug": "project:slanted-and-enchanted",
+      "slug": "project:slanted-and-enchanted--pavement",
       "type": "project",
       "name": "Slanted and Enchanted"
     },
@@ -84,7 +86,7 @@
       "name": "Cut Your Hair"
     },
     {
-      "slug": "track:summer-babe",
+      "slug": "track:summer-babe-winter-version--pavement",
       "type": "track",
       "name": "Summer Babe (Winter Version)"
     },
@@ -124,5 +126,6 @@
       "type": "artist",
       "name": "Steve West"
     }
-  ]
+  ],
+  "similar_artists": []
 }

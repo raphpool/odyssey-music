@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:12:18.152Z",
+  "mbid": "5a1b05f4-493f-4f32-939c-e1556e2069fe",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "An influential 1979 New York studio project led by producer Patrick Adams and featuring vocalists Jocelyn Brown and Leroy Burgess.",
   "origin": "New York, NY",
   "active_years": "1979-1986",
@@ -151,5 +153,6 @@
       "type": "artist",
       "name": "Patrick Adams"
     }
-  ]
+  ],
+  "similar_artists": []
 }

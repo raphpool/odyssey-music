@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-09-17T12:57:02.992Z",
+  "mbid": "1c6bb329-0b00-42d0-b838-94341420b642",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "An influential Italian house and Eurodance act known for chart-topping dance hits and early 90s Italo house production techniques.",
   "origin": "Brescia, Italy",
   "active_years": "1988-1998",
@@ -294,5 +296,6 @@
       "type": "artist",
       "name": "Alysha Warren"
     }
-  ]
+  ],
+  "similar_artists": []
 }

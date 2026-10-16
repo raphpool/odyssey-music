@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:43:41.688Z",
+  "mbid": "3d05eb8b-1644-4143-9a61-b28e33c4d85f",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Pioneering electronic duo from London, instrumental in the development of jungle, drum and bass, and broken beat.",
   "origin": "Dollis Hill, London, England",
   "active_years": "1989–present",
@@ -142,5 +144,6 @@
       "type": "artist",
       "name": "Dego"
     }
-  ]
+  ],
+  "similar_artists": []
 }

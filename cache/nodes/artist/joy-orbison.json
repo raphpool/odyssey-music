@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T13:14:41.202Z",
+  "mbid": "8542f9a4-bd91-4066-91cf-359d2d9950db",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Peter O'Grady, professionally known as Joy Orbison (or Joy O), is a highly influential English electronic musician based in London.",
   "photo_url": "https://en.wikipedia.org/wiki/File:Joy_Orbison.jpg",
   "origin": "Croydon, England",
@@ -66,7 +68,7 @@
   "discography": [],
   "notable_tracks": [
     {
-      "slug": "track:hyph-mngo",
+      "slug": "track:hyph-mngo--joy-orbison",
       "type": "track",
       "name": "Hyph Mngo"
     },
@@ -85,5 +87,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

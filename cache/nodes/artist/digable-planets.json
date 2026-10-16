@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:19:37.469Z",
+  "mbid": "ff44f779-74ab-48f8-aac3-39ebe8f7c18e",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "An influential 1990s trio known for pioneering the jazz rap subgenre with lyrical precision and eclectic production.",
   "origin": "Brooklyn, New York / Philadelphia, Pennsylvania",
   "active_years": "1987–1995, 2005–2011, 2015–present",
@@ -137,5 +139,6 @@
       "type": "artist",
       "name": "Mariana Vieira"
     }
-  ]
+  ],
+  "similar_artists": []
 }

@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-09-17T13:19:30.237Z",
+  "mbid": "a8ebde98-7e91-46c7-992c-90039ba42017",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "An influential East Coast hip-hop trio from Long Island known for their creative sampling, jazz rap experimentation, and long-standing membership in the Native Tongues collective.",
   "origin": "Amityville, Long Island, New York",
   "active_years": "1988-present",
@@ -632,5 +634,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

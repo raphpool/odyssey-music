@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:35:47.521Z",
+  "mbid": "fd09d776-ddfd-4558-afe7-814420d704ed",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A pioneering German composer and central figure of the 20th-century avant-garde, renowned for his revolutionary contributions to electronic music, serialism, and spatialized sound.",
   "photo_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Stockhausen_1994_WDR.jpg/960px-Stockhausen_1994_WDR.jpg",
   "origin": "Mödrath, Germany",
@@ -63,22 +65,22 @@
       "name": "Klavierstücke I–XI"
     },
     {
-      "slug": "project:gesang-der-junglinge",
+      "slug": "project:gesang-der-junglinge--karlheinz-stockhausen",
       "type": "project",
       "name": "Gesang der Jünglinge"
     },
     {
-      "slug": "project:gruppen",
+      "slug": "project:gruppen--karlheinz-stockhausen",
       "type": "project",
       "name": "Gruppen"
     },
     {
-      "slug": "project:kontakte",
+      "slug": "project:kontakte--karlheinz-stockhausen",
       "type": "project",
       "name": "Kontakte"
     },
     {
-      "slug": "project:momente",
+      "slug": "project:momente--karlheinz-stockhausen",
       "type": "project",
       "name": "Momente"
     },
@@ -88,7 +90,7 @@
       "name": "Hymnen"
     },
     {
-      "slug": "project:stimmung",
+      "slug": "project:stimmung--karlheinz-stockhausen",
       "type": "project",
       "name": "Stimmung"
     },
@@ -110,14 +112,20 @@
       "name": "Gesang der Jünglinge"
     },
     {
-      "slug": "track:kontakte",
+      "slug": "track:kontakte--karlheinz-stockhausen",
       "type": "track",
       "name": "Kontakte"
     },
     {
-      "slug": "track:stimmung",
+      "slug": "track:stimmung--karlheinz-stockhausen",
       "type": "track",
       "name": "Stimmung"
+    },
+    {
+      "slug": "track:gesang-der-junglinge--karlheinz-stockhausen",
+      "type": "track",
+      "name": "Gesang der Jünglinge",
+      "artist": "Karlheinz Stockhausen"
     }
   ],
   "influences": [
@@ -130,5 +138,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:48:18.692Z",
+  "mbid": "f940c4dd-f687-4c6a-872b-1cce3f78dc0a",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Alex de Grassi is an American fingerstyle guitarist, composer, and educator recognized for his pivotal role in the development of contemporary acoustic guitar music.",
   "photo_url": "https://images.squarespace-cdn.com/content/v1/54bd3e27e4b0b6572f8dd8c8/1421699488683-H3O1QO483E89EO3TX5C4/youngalex.jpg",
   "origin": "San Francisco Bay Area, USA",
@@ -70,5 +72,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

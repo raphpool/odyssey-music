@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "2db0940a-c1a8-479d-a1ad-a00e1939505b",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "A British electronic music producer best known as one-half of the duo Bedrock with John Digweed.",
   "genres": [
     {
@@ -85,5 +87,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

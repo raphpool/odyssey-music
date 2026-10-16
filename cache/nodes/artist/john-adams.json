@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:47:33.270Z",
+  "mbid": "94f46f90-f220-458d-acd6-5f14c55ab9b2",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "John Adams is a preeminent American composer, conductor, and creative thinker whose work has played a definitive role in shaping contemporary classical music.",
   "origin": "Worcester, Massachusetts, USA",
   "active_years": "1970s-present",
@@ -66,5 +68,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

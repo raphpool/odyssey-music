@@ -9,7 +9,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:49:14.413Z",
+  "mbid": "f339c28b-d65e-4744-a3c3-2027091ddf5c",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Kurt Howes is a producer, composer, and multi-faceted musician whose career has seen him contribute significantly to the European house music scene during the early-to-mid 2000s. Known for his technical proficiency in the studio, Howes was a frequent collaborator on major dance compilations and club-oriented projects that defined the era of \"funky house\" and commercial club sounds. His name appears across numerous high-profile releases, including various volumes of \"Clubber's Guide,\" \"The Annual,\" and Hed Kandi releases, reflecting his role as a reliable and influential architect of the floor-filling electronic sound of that period. Beyond his work in electronic production, Howes has explored various facets of musical composition, bridging the gap between underground club tracks and broader pop-dance appeal. His work often prioritizes rhythmic drive and melodic accessibility, making him a staple of the era's dance music landscape. While he is most frequently associated with the vibrant house music circuit, his versatility as a composer and collaborator has allowed him to participate in diverse projects that range from sleek, production-heavy house anthems to more nuanced compositions, establishing a legacy defined by consistency and a keen understanding of dancefloor dynamics. His professional versatility allowed him to work alongside various producers and acts in the dance world, cementing his reputation as a key figure in the mid-2000s club movement.",
   "genres": [
     {
@@ -43,5 +45,6 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

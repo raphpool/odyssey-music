@@ -28,7 +28,9 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "e5db18cb-4b1f-496d-a308-548b611090d3",
   "type": "artist",
+  "artist_kind": "group",
   "editorial_bio": "Formed in London in 1975, the Sex Pistols were the catalysts of the UK punk explosion, known for their short, explosive career and lasting influence on music and counterculture. Their only studio album, 'Never Mind the Bollocks, Here's the Sex Pistols', remains a defining pillar of the genre.",
   "origin": "London, England",
   "genres": [
@@ -56,7 +58,14 @@
       "name": "A&M Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:never-mind-the-bollocks-here-s-the-sex-pistols--sex-pistols",
+      "type": "project",
+      "name": "Never Mind the Bollocks, Here's the Sex Pistols",
+      "artist": "Sex Pistols"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:god-save-the-queen",
@@ -99,5 +108,6 @@
       "type": "artist",
       "name": "Sid Vicious"
     }
-  ]
+  ],
+  "similar_artists": []
 }

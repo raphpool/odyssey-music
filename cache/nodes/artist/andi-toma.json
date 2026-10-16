@@ -13,7 +13,9 @@
     }
   ],
   "materialized_at": "2026-05-13T12:59:48.629Z",
+  "mbid": "7138147f-3d17-48e4-a5b0-99125e5ae190",
   "type": "artist",
+  "artist_kind": "person",
   "editorial_bio": "Andi Toma is a German electronic musician and producer, widely celebrated as one half of the influential experimental electronic duo Mouse on Mars.",
   "photo_url": "https://images.squarespace-cdn.com/content/v1/57fe634737c581bd88718be3/1477393827398-FJWNZLWHGIMWLW2M4H3T/11157413_968994703125335_8660105955931706848_o.jpg?format=2500w",
   "origin": "Germany",
@@ -67,7 +69,7 @@
       "name": "Iaora Tahiti"
     },
     {
-      "slug": "project:parastrophics",
+      "slug": "project:parastrophics--mouse-on-mars",
       "type": "project",
       "name": "Parastrophics"
     }
@@ -94,5 +96,6 @@
       "type": "artist",
       "name": "Von Südenfed"
     }
-  ]
+  ],
+  "similar_artists": []
 }
