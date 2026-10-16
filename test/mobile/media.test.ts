@@ -158,11 +158,13 @@ describe("mobile media reader", () => {
 			resolvedAt: "2026-01-01T00:00:00.000Z",
 		}));
 
-		// 2026-10-16 (TRA-584): a refused URL is "none", never a "found" without a URL.
+		// 2026-10-16 (TRA-592): a hostile photo_url is no longer served at all by the image service, so the
+		// answer is "none"/"no-match". The mobile layer's own refusal of an unsafe URL (source "unsafe-url")
+		// is covered by the route contract tests below, which stub the service.
 		await expect(reader.image("artist:hostile")).resolves.toEqual({
 			slug: "artist:hostile",
 			image_url: null,
-			source: "unsafe-url",
+			source: "no-match",
 			state: "none",
 		});
 		await expect(reader.image("genre:a")).resolves.toMatchObject({
@@ -228,7 +230,9 @@ describe("mobile media reader", () => {
 			artistNode({
 				slug: "artist:cached",
 				name: "Cached",
-				photo_url: "https://images.example.com/cached.jpg",
+				// A stored, verified image (TRA-592: GET /image no longer serves photo_url).
+				image_url: "https://coverartarchive.org/release/cached/front-500.jpg",
+				image_source: "caa",
 			}),
 		);
 		const { nodes, media: reader } = media(async () => ({
@@ -259,7 +263,7 @@ describe("mobile media reader", () => {
 			expect(response.headers["cache-control"]).toBe("private, max-age=86400");
 		expect(JSON.parse(node.body)).toMatchObject({ source: "cache", node: { id: "artist:cached" } });
 		expect(JSON.parse(image.body)).toMatchObject({
-			image_url: "https://images.example.com/cached.jpg",
+			image_url: "https://coverartarchive.org/release/cached/front-500.jpg",
 			state: "found",
 		});
 		expect(JSON.parse(links.body)).toMatchObject({ spotify: "https://open.spotify.com/artist/cached" });
