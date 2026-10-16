@@ -378,7 +378,7 @@ describe("scope-release-slugs migration", () => {
 			}),
 		]);
 		const { manifest } = await run(false);
-		expect(manifest.detached).toHaveLength(1);
+		expect(manifest.conflicts).toMatchObject([{ kind: "detach-target" }]);
 	});
 
 	it("does not merge a namesake without mbid whose credit differs (Mo / MØ)", async () => {
@@ -1175,6 +1175,45 @@ describe("scope-release-slugs migration", () => {
 			await applySafely();
 		});
 
+		const seedRedirects = async (redirects: Record<string, string>): Promise<void> => {
+			await mkdir(dirname(redirectsPath), { recursive: true });
+			await writeFile(redirectsPath, JSON.stringify({ source: "test", redirects }));
+		};
+		const moCitation = a("artist:x", "X", undefined, {
+			collaborators: [ref("artist:mo", "Mo", { mbid: MBID_A })],
+		});
+
+		it("a non-empty redirect table opens no way in: MØ onto artist:mo, cited by Mo, is refused all the same", async () => {
+			for (const redirects of [{}, { "artist:q": "artist:mo" }, { "artist:m": "artist:mo" }]) {
+				await rm(cacheDir, { recursive: true, force: true });
+				await mkdir(join(cacheDir, "nodes"), { recursive: true });
+				await seed([a("artist:m", "MØ", MBID_B), moCitation]);
+				await seedRedirects(redirects);
+				const result = await applySafely();
+				expect(result.exitCode, JSON.stringify(redirects)).toBe(2);
+				expect(result.manifest.invariantViolations).toMatchObject([{ node: "artist:x", to: "artist:mo" }]);
+			}
+		});
+
+		it("union-like table (the repo's migrated artist:mo and prod's old artist:m, one identity) stays safe", async () => {
+			await seed([a("artist:mo", "MØ", MBID_B), a("artist:m", "MØ", MBID_B), moCitation]);
+			await seedRedirects({ "artist:m": "artist:mo" });
+			await applySafely();
+		});
+
+		it("P4d: an edge whose scoped slug is its own work's rename destination is listed as a conflict, not as detached", async () => {
+			await seed([
+				a("track:song", "Song", MBID_B, { artists: credit("artist:m", "MØ", { mbid: MBID_B }) }),
+				a("artist:m", "MØ", MBID_B),
+				a("artist:mo", "Mo", MBID_A, { notable_tracks: [ref("track:song", "Song")] }),
+			]);
+			const result = await applySafely();
+			expect(result.manifest.detached).toEqual([]);
+			expect(result.manifest.conflicts).toContainEqual(
+				expect.objectContaining({ kind: "detach-target", slugs: ["artist:mo", "track:song--mo"] }),
+			);
+		});
+
 		it("refuses the attacks that attach a stranger (exit 2, the violation listed)", async () => {
 			await seed([
 				a("artist:m", "MØ", MBID_B),
@@ -1280,6 +1319,18 @@ describe("scope-release-slugs migration", () => {
 					}
 				}
 				await seed([...nodes, ...works]);
+				if (rand() < 0.5) {
+					const table: Record<string, string> = {};
+					for (let k = 1 + Math.floor(rand() * 2); k > 0; k--) {
+						const from = `artist:${legacy(pick(entities).name)}`;
+						const to = `artist:${modern(pick(entities).name)}`;
+						const clash = from === to || taken.has(from) || from === "artist:" || to === "artist:";
+						if (clash || to in table || Object.values(table).includes(from)) continue;
+						table[from] = to;
+					}
+					await mkdir(dirname(redirectsPath), { recursive: true });
+					await writeFile(redirectsPath, JSON.stringify({ source: "test", redirects: table }));
+				}
 				if (rand() < 0.15) {
 					const e = pick(entities);
 					const slug = `artist:${modern(e.name)}`;

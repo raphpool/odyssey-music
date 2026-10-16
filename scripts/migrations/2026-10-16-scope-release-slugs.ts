@@ -481,9 +481,6 @@ export function validatePlan(
 	},
 	before: readonly CacheNodeFile[],
 	unreadable: ReadonlySet<string> = new Set(),
-	// Slugs an earlier, interrupted run of this script already redirected to: the edges that cite them are its own
-	// output (guarded then), not new citations.
-	priorTargets: ReadonlySet<string> = new Set(),
 ): InvariantViolation[] {
 	const bySlug = new Map(before.map((f) => [f.slug, f]));
 	const detachedTo = new Map(plan.detached.map((d) => [`${d.node}|${d.field}|${d.from}`, d.to]));
@@ -518,8 +515,7 @@ export function validatePlan(
 				const after = plan.finals.get(to);
 				const sameNode =
 					after !== undefined && beforeNode !== undefined && (plan.origin.get(to) ?? []).includes(beforeNode);
-				const needsCheck =
-					!sameNode && !(to === from && priorTargets.has(from)) && (to !== from || after !== undefined);
+				const needsCheck = !sameNode && (to !== from || after !== undefined);
 				const credit = detachedSlug ? sourceName : isWork(to) ? str(edge.artist) : str(edge.name);
 				const facet: IdentityFacet = {
 					slug: `ref:${fin}.${field}.${from}`,
@@ -972,6 +968,17 @@ export function planMigration(input: PlanInput): Plan {
 						errors.push(`cannot detach ${fin}.${field} -> ${oldSlug}: no scoped slug for ${name ?? "?"}`);
 						return edge;
 					}
+					// The scoped slug is where the edge's own target is going (the work's rename destination): the
+					// edge keeps pointing at that same work, credited to someone else. Not a detachment.
+					const formerTarget = bySlug.get(oldSlug);
+					if (formerTarget && (origin.get(scoped.slug) ?? []).includes(formerTarget)) {
+						conflicts.push({
+							kind: "detach-target",
+							slugs: [fin, scoped.slug],
+							reason: `${fin} cites ${oldSlug}, which is renamed to ${scoped.slug} and credited to another artist: left on that work, not detached`,
+						});
+						return edge;
+					}
 					// Path 4: the scoped slug may already be a node; it must be this artist's.
 					const clash = bySlug.get(scoped.slug);
 					const clashCredit = clash ? str(edgeList(clash.node.artists)[0]?.name) : undefined;
@@ -1074,12 +1081,7 @@ export function planMigration(input: PlanInput): Plan {
 		if (results.has(slug)) errors.push(`redirect key ${slug} is also a live node after the migration`);
 	}
 
-	const invariantViolations = validatePlan(
-		{ finals: results, origin, edgeMap, detached },
-		files,
-		unreadable,
-		new Set(Object.values(input.existingRedirects)),
-	);
+	const invariantViolations = validatePlan({ finals: results, origin, edgeMap, detached }, files, unreadable);
 
 	const sortRecord = (r: Record<string, string>): Record<string, string> =>
 		Object.fromEntries(Object.entries(r).sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)));
