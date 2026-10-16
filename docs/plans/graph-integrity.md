@@ -248,9 +248,12 @@ ne transitent pas par la CI). Une variable posée là n'atteindrait le service q
 elle, est réécrite, suivie de `daemon-reload` et `restart`, à **chaque** déploiement : le merge de la
 PR TRA-509 suffit. Conséquence à connaître : systemd donne priorité à `EnvironmentFile=` sur
 `Environment=`, donc une ligne `ODYSSEY_SCOPED_RELEASE_SLUGS=...` écrite dans
-`/etc/odyssey-music.env` l'emporte sur l'unité. Le déploiement affiche la valeur réellement reçue
-par le processus (`-> ODYSSEY_SCOPED_RELEASE_SLUGS=1 in the running service`) et avertit si le
-fichier d'env définit la variable. Test : `test/scoped-slugs-deploy-flag.test.ts`.
+`/etc/odyssey-music.env` l'emporte sur l'unité. Le déploiement lit l'environnement du processus en cours
+(`/proc/<MainPID>/environ`), affiche la valeur réellement reçue (`-> ODYSSEY_SCOPED_RELEASE_SLUGS=1 in
+the running service (unit: 1)`) et émet un `WARN` (sans échouer : un coupe-feu volontaire ne doit pas
+bloquer les déploiements) quand elle diffère de celle de l'unité ou que le service n'est pas levé.
+Test : `test/scoped-slugs-deploy-flag.test.ts` (exécute ce bloc contre un `systemctl` et un `/proc`
+factices).
 
 **Défaut de `src/config.ts` / `src/flags.ts` : inchangé (désactivé).** Le critère « tous les tests et
 l'audit passent avec le drapeau à 1 » n'est pas la bonne mesure : le défaut s'applique à *tous* les
@@ -259,7 +262,8 @@ processus qui fabriquent des slugs (crawler local, workflows `top-up-genres`, mi
 d'œuvres, puis à 1 pour la seule étape de scoping). Le basculer ici ferait écrire des slugs scopés à
 un crawl local sur un cache qui ne l'est pas encore. La prod est le seul environnement à activer.
 
-**Prérequis avant de passer la PR de « brouillon » à « prête » :**
+**Prérequis avant de passer la PR de « brouillon » à « prête » (aucun garde-fou de code ne les
+vérifie : le merge déploie le drapeau à 1, sans condition) :**
 
 - tous les `blockedBy` de TRA-509 mergés (TRA-477, 481, 482, 462, 473, 476, 563, 538, 546, 547,
   558, 483, 484) ;
@@ -307,8 +311,12 @@ cache de prod, sans écrire : l'audit sur une copie du cache de prod (`unscoped-
 migré** : les anciens slugs restent lisibles via `data/slug-redirects.json` (lue par tous les chemins de
 lecture, TRA-453), et les nœuds scopés restent lisibles sous leur slug. Drapeau à 0, le serveur
 revient aux slugs que `main` émettait avant la bascule (voir `src/flags.ts`) ; les
-nœuds écrits entre la bascule et le rollback gardent leur slug scopé et ne sont pas réécrits, ce qui est
-sans conséquence pour la lecture. Coupe-feu sans déploiement (si `deploy.yml` est bloqué) : écrire
+nœuds écrits entre la bascule et le rollback gardent leur slug scopé et ne sont pas réécrits. Le
+rollback garantit la **lecture**, pas l'absence de nouveaux doublons : cache migré et drapeau à 0, un
+JIT d'œuvre sans contexte artiste (`artist` est ignoré drapeau éteint) peut écrire un slug nu à côté du
+slug scopé, le cas que décrit `src/flags.ts`. Après un rollback, relancer `npm run audit:cache` sur une
+copie du cache de prod : si `duplicate-names` ou `unscoped-release-slugs` montent, ouvrir un ticket de
+nettoyage (fusion par la migration d'identité, idempotente), sans éditer le cache à la main. Coupe-feu sans déploiement (si `deploy.yml` est bloqué) : écrire
 `ODYSSEY_SCOPED_RELEASE_SLUGS=0` dans `/etc/odyssey-music.env` puis `systemctl restart
 odyssey-server.service` (l'`EnvironmentFile=` l'emporte sur l'unité) ; à retirer ensuite, car un
 `bootstrap-env.sh` ultérieur réécrit ce fichier en entier.
