@@ -693,6 +693,32 @@ describe("similar_artists backfill (TRA-490)", () => {
 			}
 		});
 
+		it("counts the edges a --force node keeps on disk even when its ListenBrainz answer is all discarded (review of #527)", async () => {
+			// A already carries artist:wink -> MBID 60. Its ListenBrainz answer is a single row ("MO") that the
+			// client turns into artist:m and the script then drops (artist:mo, the canonical slug, is an alias of A):
+			// source stays listenbrainz with no edge, A falls back to the graph, finds nothing, and keeps its old edges.
+			const kept = [edge("artist", "wink", "Wink", { mbid: mb(60) })];
+			await putArtist("a", "A", {
+				mbid: mb(1),
+				similar_artists: kept,
+				aliases: [edge("artist", "mo", "MØ")],
+			});
+			await putArtist("b", "B", { mbid: mb(2) });
+			const before = await raw("artist:a");
+			const answer = (id: string) =>
+				jsonResponse(id === mb(1) ? [row(61, "MØ", 9)] : id === mb(2) ? [row(62, "Wink", 9)] : []);
+
+			const result = await run({ force: true, fetch: lbFetch(answer) });
+
+			expect(await raw("artist:a")).toBe(before); // A keeps MBID 60 on disk
+			expect(result.manifest.kept.map((k) => k.slug)).toEqual(["artist:a"]);
+			// B proposed MBID 62 for the same slug: dropped, so artist:wink never stands for two people.
+			expect((await read("artist:b")).similar_artists).toEqual([]);
+			expect(result.manifest.ambiguousSlugs).toEqual([
+				{ slug: "artist:wink", mbids: [mb(60), mb(62)].sort(), dropped: 1 },
+			]);
+		});
+
 		it("falls back to the graph when the collision leaves nothing of ListenBrainz's answer", async () => {
 			await putArtist("one", "One", { mbid: mb(1), collaborators: shared() });
 			await putArtist("peer", "Peer", { collaborators: shared() });

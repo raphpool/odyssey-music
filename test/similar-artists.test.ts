@@ -219,10 +219,11 @@ describe("fetchSimilarArtistsLb", () => {
 });
 
 describe("computeSimilarFromGraph", () => {
-	// TRA-603 (2026-10-17): a collaborator link (common or direct) weighs 3 and is enough alone; a genre weighs
-	// 2 up to GENRE_NICHE_MAX_CARRIERS carriers (enough alone), 1 up to GENRE_MAX_CARRIERS, else 0; a label
-	// counts (2) only next to a genre of at most GENRE_MAX_CARRIERS; the artist is not among the carriers.
-	// Ties are no longer alphabetical. `wide(n, extra)` makes n fillers carrying the same links.
+	// TRA-603 (2026-10-17): a candidate is admitted by a collaborator link (common or direct), by two common genres
+	// of non-zero weight, or by one such genre and an indie label; one genre or one label alone never admits. The
+	// weights (genre: 2 up to GENRE_NICHE_MAX_CARRIERS carriers, 1 up to GENRE_MAX_CARRIERS, else 0; collaborator
+	// link 3; label 2) only order. The artist is not among the carriers. Ties are no longer alphabetical.
+	// `wide(n, extra)` makes n fillers carrying the same links.
 	const wide = (n: number, extra: Partial<ArtistNode>): ArtistNode[] =>
 		Array.from({ length: n }, (_, i) => artist(`Filler ${String(i).padStart(3, "0")}`, extra));
 	const genre = (name: string) => [edge("genre", name)];

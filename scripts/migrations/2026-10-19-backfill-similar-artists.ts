@@ -556,11 +556,17 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 		}
 	}
 
-	// Phase 2, collisions (TRA-603). A canonical slug that stands for two different MBIDs in the final state of
-	// the cache (the edges already there that this run keeps, plus the edges it is about to write) is ambiguous:
-	// whichever artist is materialized first under it, the other one's page opens the wrong person
-	// (artist:wink = Josh Wink for juan-atkins, the J-pop duo for junko-ohashi). Every NEW edge to such a slug is
-	// dropped, the first seen included: the safe behaviour, and it does not depend on the order of the run.
+	// Phase 2, collisions (TRA-603). A canonical slug that stands for two different MBIDs in the cache as it may
+	// end up (the edges already there, plus the edges this run is about to write) is ambiguous: whichever artist
+	// is materialized first under it, the other one's page opens the wrong person (artist:wink = Josh Wink for
+	// juan-atkins, the J-pop duo for junko-ohashi). Every NEW edge to such a slug is dropped, the first seen
+	// included: the safe behaviour, and it does not depend on the order of the run.
+	//
+	// Conservative on purpose (review of PR #527): the edges already on disk are ALL recorded, and so are all the
+	// new ones, whatever the provisional source of a decision. The final source is only known in phase 3 (a
+	// ListenBrainz answer whose edges are all discarded falls back to the graph, and under --force the node then
+	// keeps its old edges), so an edge kept on disk must count even for a node that looked replaceable. Seeing an
+	// ambiguity that is not one only drops edges, which is safe.
 	const keepsExisting = (d: Decision): boolean => d.hasEdges && d.source !== "listenbrainz";
 	const mbidsBySlug = new Map<string, Set<string>>();
 	const note = (edge: unknown): void => {
@@ -569,17 +575,18 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 		mbids.add(edge.mbid);
 		mbidsBySlug.set(edge.slug, mbids);
 	};
-	const resolved = new Set(decisions.filter((d) => !keepsExisting(d)).map((d) => d.slug));
-	for (const { slug, node: raw } of entries)
-		if (!resolved.has(slug)) for (const edge of edgesOf(raw)) note(edge);
-	for (const d of decisions) if (!keepsExisting(d)) for (const edge of d.edges) note(edge);
+	for (const { node: raw } of entries) for (const edge of edgesOf(raw)) note(edge);
+	for (const d of decisions) for (const edge of d.edges) note(edge);
 	for (const [slug, mbids] of mbidsBySlug) {
 		if (mbids.size >= 2) ambiguous.set(slug, { mbids: [...mbids].sort(), dropped: 0 });
 	}
+	// The edges dropped for a node are counted only once the node is known to be written: a node that keeps its
+	// old edges (`kept`) or ends without any (`none`) did not lose them.
+	let droppedByNode: string[] = [];
 	const stripAmbiguous = (edges: EdgeRef[]): EdgeRef[] =>
 		edges.filter((edge) => {
 			const entry = ambiguous.get(edge.slug);
-			if (entry) entry.dropped++;
+			if (entry) droppedByNode.push(edge.slug);
 			return !entry;
 		});
 
@@ -588,6 +595,7 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 	for (const d of decisions) {
 		const { slug, path, raw, artist, hasEdges, reason } = d;
 		let { source, edges } = d;
+		droppedByNode = [];
 		try {
 			if (!keepsExisting(d)) {
 				edges = stripAmbiguous(edges);
@@ -609,7 +617,14 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 		if (hasEdges && source !== "listenbrainz") {
 			// --force: never trade existing edges for a fallback or for nothing.
 			kept.push({ slug, reason });
-		} else if (source === "none") {
+			if (++processed % CHECKPOINT_EVERY === 0) await writeManifest();
+			continue;
+		}
+		for (const dropped of droppedByNode) {
+			const entry = ambiguous.get(dropped);
+			if (entry) entry.dropped++;
+		}
+		if (source === "none") {
 			none.push({ slug, reason });
 		} else {
 			const next = { ...raw, similar_artists: edges };
