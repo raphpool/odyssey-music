@@ -4,7 +4,7 @@ import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { NodeCache } from "../../src/cache.js";
 import type { GenreRedirects } from "../../src/genre-registry.js";
-import { reciprocates } from "../../src/images/reciprocity.js";
+import { reciprocates, reciprocity } from "../../src/images/reciprocity.js";
 import type { Slug } from "../../src/types.js";
 import { artistNode, edge, genreNode, labelNode, projectNode, trackNode } from "./helpers.js";
 
@@ -89,6 +89,25 @@ describe("genre subject (TRA-597)", () => {
 	it("accepts a track as well as a project", async () => {
 		const track = trackNode("t", "T", { genres: [edge("genre", "drum-and-bass", "Drum and bass")] });
 		expect(await reciprocates(jungle, track, cache, none)).toBe(true);
+	});
+});
+
+describe("reciprocity kind (TRA-597)", () => {
+	it("tells the genre itself (exact) from a direct parent or subgenre (neighbour)", async () => {
+		expect(await reciprocity(jungle, workTagged("jungle"), cache, none)).toBe("exact");
+		expect(await reciprocity(jungle, workTagged("drum-and-bass"), cache, none)).toBe("neighbour");
+		expect(await reciprocity(jungle, workTagged("ragga-jungle"), cache, none)).toBe("neighbour");
+		expect(await reciprocity(jungle, workTagged("reggae"), cache, none)).toBeNull();
+	});
+
+	it("is exact as soon as the work also carries the genre itself, whatever the tag order", async () => {
+		expect(await reciprocity(jungle, workTagged("drum-and-bass", "jungle"), cache, none)).toBe("exact");
+	});
+
+	it("is always exact for a label or an artist that matches", async () => {
+		const label = labelNode("mille-plateaux", "Mille Plateaux");
+		const work = projectNode("w", "W", { label: edge("label", "mille-plateaux", "Mille Plateaux") });
+		expect(await reciprocity(label, work, cache, none)).toBe("exact");
 	});
 });
 

@@ -823,14 +823,15 @@ Arbitrages pris par le dispatcher sous la délégation de Raphael (« tu valides
 - **Images (TRA-489)** : le run v4 a été appliqué au dépôt et en prod (847 nœuds dans le dépôt). Trois runs avaient été refusés par la review d'échantillons :
   - le repli **legacy** (`photo_url`/`cover_url` du LLM) est **supprimé** : il n'était pas vérifiable et 2 sur 20 étaient faux (#502) ;
   - iTunes exige le **crédit exact**, refuse Various Artists, exige l'égalité du titre et l'**année à ±1**, et refuse une égalité ambiguë (TRA-589, #503 ; TRA-595, #512) ;
-  - une image **dérivée** n'est empruntée qu'à une œuvre **réciproque**, qui déclare le label, crédite l'artiste ou porte le genre (TRA-591, #506). Les membres de groupe n'empruntent plus la pochette du groupe.
+  - une image **dérivée** n'est empruntée qu'à une œuvre **réciproque**, qui déclare le label, crédite l'artiste ou porte le genre (TRA-591, #506). Les membres de groupe n'empruntent plus la pochette du groupe ;
+  - **décision de Raphael, 2026-10-17 (TRA-597)** : la règle est **assouplie pour les genres uniquement**. Une œuvre est acceptée si elle porte le genre, son **parent direct** (`parent_genres`) ou un **sous-genre direct** (`subgenres`), après la table de redirections. Un seul niveau : ni grand-parent, ni genre « related ». **Exact avant voisin** : une œuvre portant le genre lui-même et ayant une image l'emporte sur toute œuvre parent / sous-genre, quel que soit l'ordre des listes (projets puis pistes) ; l'ordre est conservé dans chaque catégorie. **Labels et artistes restent stricts.** Les relations viennent des arêtes du nœud genre (la taxonomie éditoriale n'a que des familles). Mesure hors réseau sur le cache de main : 47 → 54 genres avec une œuvre réciproque (+7, loin des ~30 estimés).
 - **Affichage** : `GET /image` (TRA-592, #507) et la projection (TRA-594, #509) ne servent plus jamais `photo_url`/`cover_url`. La pochette d'Earth, Wind & Fire de Grandmaster Flash a disparu, remplacée par sa photo Wikidata.
 
 ### Pochettes à la demande (partie 3b)
 Livrées : TRA-578 à TRA-586 (#497, #499, #500, #504, #505, #508, #510, #513, #515), plus TRA-596 (#516) pour les cartes web sans nœud. Le drapeau `ODYSSEY_ON_DEMAND_IMAGES` est actif. Le web et iOS relancent sur 202 sans mémoriser l'attente.
 
 ### Ouvert
-- Décision de Raphael attendue : règle de réciprocité **assouplie pour les genres** (parent ou sous-genre), environ 30 genres d'image en plus.
+- ~~Décision de Raphael attendue : réciprocité assouplie pour les genres~~ : **prise le 2026-10-17** (TRA-597), voir « Textes et images ».
 - Tickets ouverts :
   - TRA-488 : arêtes inverses en prod (le script refuse `--data-dir`, à rendre compatible avec le canal) ;
   - TRA-564 : paires gardées ;

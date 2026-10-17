@@ -736,6 +736,48 @@ describe("a genre also borrows from a work carrying its direct parent or subgenr
 	});
 });
 
+describe("exact before neighbour for a genre cover (TRA-597)", () => {
+	it("a drum-and-bass landmark listed before an imaged jungle landmark does not win, even when the exact one is a track", async () => {
+		await seed(
+			dir,
+			projectNode("dnb-album", "DnB Album", {
+				mbid: mb(98),
+				genres: [edge("genre", "drum-and-bass", "DnB")],
+			}),
+			projectNode("jungle-album", "Jungle Album", {
+				mbid: mb(99),
+				genres: [edge("genre", "jungle", "Jungle")],
+			}),
+			trackNode("jungle-two-cut", "Jungle Two Cut", {
+				project: edge("project", "jungle-album", "Jungle Album"),
+				genres: [edge("genre", "jungle-two", "Jungle Two")],
+			}),
+			genreNode("jungle", "Jungle", {
+				parent_genres: [edge("genre", "drum-and-bass", "DnB")],
+				landmark_projects: [
+					edge("project", "dnb-album", "DnB Album"),
+					edge("project", "jungle-album", "Jungle Album"),
+				],
+			}),
+			// Same, with the exact work only in landmark_tracks, which comes after landmark_projects.
+			projectNode("only-dnb", "Only DnB", { mbid: mb(100), genres: [edge("genre", "drum-and-bass", "DnB")] }),
+			genreNode("jungle-two", "Jungle Two", {
+				parent_genres: [edge("genre", "drum-and-bass", "DnB")],
+				landmark_projects: [edge("project", "only-dnb", "Only DnB")],
+				landmark_tracks: [edge("track", "jungle-two-cut", "Jungle Two Cut")],
+			}),
+		);
+		await run({ fetch: routedFetch([caaFound(98), caaFound(99), caaFound(100), mbNoRelations]) });
+
+		expect(await read(dir, "genre:jungle")).toMatchObject({
+			image_url: caaUrl(99),
+			image_source: "derived-cover",
+		});
+		// The track takes its project's image (99); the exact track beats the neighbour project (100).
+		expect(await read(dir, "genre:jungle-two")).toMatchObject({ image_url: caaUrl(99) });
+	});
+});
+
 describe("an unverified iTunes cover_url is not copied either (review of #495, B1)", () => {
 	const ITUNES_COVER =
 		"https://is1-ssl.mzstatic.com/image/thumb/Music/v4/aa/bb/cc/192641477133_Cover.jpg/1500x1500bb.jpg";
