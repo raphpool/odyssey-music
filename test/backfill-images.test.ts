@@ -688,6 +688,50 @@ describe("derived covers need a work that points back at the node (TRA-591)", ()
 	});
 });
 
+describe("a genre also borrows from a work carrying its direct parent or subgenre (TRA-597)", () => {
+	it("derives jungle's cover from a drum-and-bass album, refuses a related-only and a grandparent album", async () => {
+		await seed(
+			dir,
+			projectNode("dnb-album", "DnB Album", {
+				mbid: mb(95),
+				genres: [edge("genre", "drum-and-bass", "DnB")],
+			}),
+			projectNode("reggae-album", "Reggae Album", {
+				mbid: mb(96),
+				genres: [edge("genre", "reggae", "Reggae")],
+			}),
+			projectNode("breakbeat-album", "Breakbeat Album", {
+				mbid: mb(97),
+				genres: [edge("genre", "breakbeat", "Breakbeat")],
+			}),
+			genreNode("jungle", "Jungle", {
+				parent_genres: [edge("genre", "drum-and-bass", "DnB")],
+				landmark_projects: [edge("project", "dnb-album", "DnB Album")],
+			}),
+			genreNode("ragga-jungle", "Ragga jungle", {
+				parent_genres: [edge("genre", "jungle", "Jungle")],
+				landmark_projects: [edge("project", "breakbeat-album", "Breakbeat Album")],
+			}),
+			genreNode("dancehall", "Dancehall", {
+				related_genres: [edge("genre", "reggae", "Reggae")],
+				landmark_projects: [edge("project", "reggae-album", "Reggae Album")],
+			}),
+		);
+		const result = await run({
+			fetch: routedFetch([caaFound(95), caaFound(96), caaFound(97), mbNoRelations]),
+		});
+
+		expect(result.exitCode).toBe(0);
+		expect(await read(dir, "genre:jungle")).toMatchObject({
+			image_url: caaUrl(95),
+			image_source: "derived-cover",
+		});
+		for (const slug of ["genre:ragga-jungle", "genre:dancehall"]) {
+			expect(await read(dir, slug), slug).not.toHaveProperty("image_url");
+		}
+	});
+});
+
 describe("an unverified iTunes cover_url is not copied either (review of #495, B1)", () => {
 	const ITUNES_COVER =
 		"https://is1-ssl.mzstatic.com/image/thumb/Music/v4/aa/bb/cc/192641477133_Cover.jpg/1500x1500bb.jpg";

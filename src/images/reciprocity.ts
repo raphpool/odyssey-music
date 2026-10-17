@@ -7,7 +7,7 @@
  */
 import type { NodeCache } from "../cache.js";
 import { type GenreRedirects, resolveReadSlug } from "../genre-registry.js";
-import type { NodePayload } from "../types.js";
+import type { NodePayload, Slug } from "../types.js";
 
 /** The works a node may borrow a cover from (`project` / `track`) and the edges they declare. */
 export type Work = Extract<NodePayload, { type: "project" | "track" }>;
@@ -22,7 +22,8 @@ export const isWork = (node: NodePayload): node is Work => node.type === "projec
  * release). Equality is strict everywhere:
  * - label: the work's label slug is the label's slug;
  * - artist: the work credits the artist's slug, or an artist edge carrying the same non-empty mbid;
- * - genre: a genre edge with the same slug once both sides went through the redirect table.
+ * - genre: a genre edge with the same slug, or with a direct parent (`parent_genres`) or a direct
+ *   subgenre (`subgenres`) of the genre, once all sides went through the redirect table (TRA-597).
  * A band member therefore no longer borrows the band's cover: it credits the band, not the member.
  */
 export async function reciprocates(
@@ -41,10 +42,19 @@ export async function reciprocates(
 					(a.slug === subject.slug || (!!subject.mbid && !!a.mbid && a.mbid === subject.mbid)),
 			);
 		case "genre": {
-			const wanted = await resolveReadSlug(subject.slug, redirects, cache);
+			// TRA-597 (Raphael's decision, 2026-10-17): a genre page often cites an album tagged with a
+			// neighbouring genre ("jungle" citing a drum-and-bass album). The cover is still the right sleeve of
+			// the right album, so a genre also accepts a work that carries its direct parent or a direct
+			// subgenre. One level only: no grandparent, no sibling, no `related_genres`. The relations come from
+			// the genre node's own edges: data/genre-taxonomy.json only groups genres into families, it holds no
+			// parent/child relation. Label and artist stay strict (see above).
+			const accepted = new Set<Slug>([subject.slug, await resolveReadSlug(subject.slug, redirects, cache)]);
+			for (const e of [...subject.parent_genres, ...subject.subgenres]) {
+				if (e.type === "genre") accepted.add(await resolveReadSlug(e.slug, redirects, cache));
+			}
 			for (const g of work.genres) {
 				if (g.type !== "genre") continue;
-				if (g.slug === subject.slug || (await resolveReadSlug(g.slug, redirects, cache)) === wanted)
+				if (accepted.has(g.slug) || accepted.has(await resolveReadSlug(g.slug, redirects, cache)))
 					return true;
 			}
 			return false;
