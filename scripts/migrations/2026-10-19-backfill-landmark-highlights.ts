@@ -53,18 +53,23 @@
  * RULE v3 (TRA-601, 2026-10-17, after the review of the repository run, #528, which found 13 bad choices
  * among 976; a choice is final, so the rule is tightened once more BEFORE any run). Three changes:
  *   1. `non-canonical` exclusion, both fields, after the identity and compilation rules: a title that
- *      contains as a whole expression a remix, a mix, a best-of, a bootleg or a live recording
- *      (NON_CANONICAL_PHRASES), or a soundtrack marker in parentheses or at the end of the title
- *      (NON_CANONICAL_TRAILING_PHRASES), is not the artist's canonical work. Symptom: Bee Gees ->
+ *      contains as a whole expression a remix, a mix, a best-of or a bootleg (NON_CANONICAL_PHRASES), a
+ *      "the best of" / "the very best of" at its head (NON_CANONICAL_LEADING_PHRASES), or a soundtrack
+ *      marker in parentheses or at the end of the title (NON_CANONICAL_TRAILING_PHRASES), is not the
+ *      artist's canonical work. Live recordings are NOT excluded. Symptom: Bee Gees ->
  *      "Saturday Night Fever (soundtrack)", a duplicate of the excluded compilation outside the cache;
  *      Suprême NTM -> "Anthologie"; Stuart Sutcliffe -> "Anthology 1"; Beppe Loda -> "... Rmx"; Nazira ->
  *      "... DJ set"; Plaid -> "Maru (Skee Mask Remix)". `mix` alone is not in the list: "Mix-Up" (Cabaret
  *      Voltaire) is a studio album.
- *   2. A sole option without support is no choice: when exactly one eligible entry is left and its score is
- *      0, nothing is chosen, the artist goes to `skipped` for that field and the manifest lists it in
- *      `soleUnsupported`. Symptom: Killer Kau (one single of 2021), Emperor's track:emperor. Better no
- *      choice than a final one with nothing behind it. (This replaces v2's "chosen when it is the only
- *      one" for an entry named after an artist.)
+ *   2. A sole option without support is no choice, in two cases only: when exactly one eligible entry is
+ *      left, its score is 0 and (a) it is downgraded as named after an artist (both fields: Emperor's
+ *      track:emperor), or (b) for `landmark_project` only, its edge is a `single` (Killer Kau's one single
+ *      of 2021: a lone single is not a flagship album). Nothing is chosen, the artist goes to `skipped` for
+ *      that field and the manifest lists it in `soleUnsupported`. A sole entry without a signal that is
+ *      none of these stays chosen (Juan Atkins' Enter, Richie Hawtin's Plasticity: legitimate, only
+ *      unverifiable). A first draft refused every sole entry without a signal: 66 fields instead of a
+ *      handful, so it was narrowed (coordinator, 2026-10-17). This replaces v2's "chosen when it is the
+ *      only one" for an entry named after an artist.
  *   3. A verified self-titled record is not downgraded: when the title is the name (or an alias) of THE
  *      artist and the resolved target is in the cache and credits it, the name downgrade does not apply
  *      (project:supreme-ntm, 1998, lost to a best-of). It stays for the name of ANOTHER artist (The Beatles
@@ -165,7 +170,9 @@ export const DEFAULT_MANIFEST_PATH = "out/landmark.json";
  * repository run, #528): Bee Gees -> "Saturday Night Fever (soundtrack)", Suprême NTM -> "Anthologie",
  * Stuart Sutcliffe -> "Anthology 1", Beppe Loda -> "... Rmx", Nazira -> "Nazira DJ set - Miller Mix",
  * Plaid -> "Maru (Skee Mask Remix)". The list is deliberately short and exact: `mix` alone is NOT in it
- * (Cabaret Voltaire's "Mix-Up" is a studio album), nor `live`, `best`, `collection`.
+ * (Cabaret Voltaire's "Mix-Up" is a studio album), nor `live`, `best`, `collection`. `live at` was in the
+ * first draft and was taken out (coordinator, 2026-10-17): Live at the Apollo (James Brown) and Live at
+ * the Paradise Garage (Larry Levan) are the real landmarks of their artists.
  */
 export const NON_CANONICAL_PHRASES = [
 	// a remix
@@ -182,13 +189,17 @@ export const NON_CANONICAL_PHRASES = [
 	// a best-of
 	"anthology",
 	"anthologie",
-	"best of",
 	"greatest hits",
-	"very best",
-	// a bootleg, a live recording
+	// a bootleg
 	"bootleg",
-	"live at",
 ] as const;
+
+/**
+ * "Best of" markers, which only count at the HEAD of the title: "The Best of ..." and "The Very Best of ..."
+ * are compilations. A "best of" elsewhere is not: Opolopo's "Best Of Both Worlds" is a studio album. Accepted
+ * and documented false positive: João Gilberto's "The Best of Two Worlds", a studio album, is excluded.
+ */
+export const NON_CANONICAL_LEADING_PHRASES = ["the best of", "the very best of"] as const;
 
 /**
  * Soundtrack markers, which only count between parentheses / brackets or at the END of the title: "Dune
@@ -268,7 +279,7 @@ export type TargetState =
 	| { kind: "redirected" }
 	/** Credits 3 artists or more and is not scoped on this one (landmark_project only, after the identity rules). */
 	| { kind: "compilation" }
-	/** The title says it is a remix, a mix, a soundtrack, a best-of, a bootleg or a live recording (rule v3). */
+	/** The title says it is a remix, a mix, a soundtrack, a best-of or a bootleg (rule v3). */
 	| { kind: "non-canonical" }
 	| { kind: "credited"; imaged: boolean };
 
@@ -289,6 +300,8 @@ export interface Candidate {
 	emptyCredit: boolean;
 	/** Release year of the edge; null when it has none that reads as a year. */
 	year: number | null;
+	/** The edge says this is a `single` (landmark_project only: a lone single is not a flagship album). */
+	single: boolean;
 }
 
 export type Choice =
@@ -339,6 +352,8 @@ export function scoreOf(c: Candidate): { score: number; reason: Reason } {
 export interface ChooseOptions {
 	/** Tie on the OLDEST year first (landmark_project); the list order alone otherwise (reference_track). */
 	oldestFirst: boolean;
+	/** A sole eligible `single` without signal is no choice (landmark_project); a sole track is not concerned. */
+	soleSingleUnsupported: boolean;
 }
 
 /** Is `a` strictly better than `b`? Score, then not named after an artist, then the year; else `b` stays. */
@@ -377,8 +392,14 @@ export function choose(candidates: readonly Candidate[], options: ChooseOptions)
 		}
 	}
 	if (best === null) return { kind: "all-excluded", excluded };
-	// Better no choice than a final one without any support: the only option left, with nothing behind it.
-	if (eligible === 1 && best.score === 0) {
+	// Better no choice than a final one without any support: the only option left, with nothing behind it,
+	// when it is downgraded as named after an artist, or a lone single for a flagship album. Any other sole
+	// entry without a signal is legitimate, only unverifiable: it stays chosen.
+	if (
+		eligible === 1 &&
+		best.score === 0 &&
+		(best.candidate.namedAfterArtist || (options.soleSingleUnsupported && best.candidate.single))
+	) {
 		return { kind: "sole-unsupported", slug: best.candidate.slug, excluded };
 	}
 	return {
@@ -447,11 +468,14 @@ export function yearOf(year: unknown): number | null {
 
 const hasPhrase = (text: string, phrase: string): boolean => ` ${text} `.includes(` ${phrase} `);
 
-/** Is this raw title a remix, a mix, a soundtrack, a best-of, a bootleg or a live recording (rule v3)? */
+/** Is this raw title a remix, a mix, a soundtrack, a best-of or a bootleg (rule v3)? Live recordings are not. */
 export function isNonCanonical(rawTitle: string): boolean {
 	const title = normalizeText(rawTitle);
 	if (title === "") return false;
 	if (NON_CANONICAL_PHRASES.some((phrase) => hasPhrase(title, phrase))) return true;
+	// "The best of ..." at the head of the title only.
+	if (NON_CANONICAL_LEADING_PHRASES.some((phrase) => title === phrase || title.startsWith(`${phrase} `)))
+		return true;
 	// Soundtrack markers: at the end of the title...
 	if (NON_CANONICAL_TRAILING_PHRASES.some((phrase) => title === phrase || title.endsWith(` ${phrase}`)))
 		return true;
@@ -736,9 +760,13 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 					album: field === "landmark_project" && (edge.releaseType === "album" || cachedAlbum),
 					namedAfterArtist,
 					year: yearOf(edge.year),
+					single: field === "landmark_project" && edge.releaseType === "single",
 				});
 			}
-			const choice = choose(candidates, { oldestFirst: field === "landmark_project" });
+			const choice = choose(candidates, {
+				oldestFirst: field === "landmark_project",
+				soleSingleUnsupported: field === "landmark_project",
+			});
 			const dropped = choice.kind === "empty" ? [] : choice.excluded;
 			for (const d of dropped) mine.excluded.push({ artist: slug, field, target: d.slug, reason: d.reason });
 			if (choice.kind === "sole-unsupported") {
@@ -823,7 +851,7 @@ export function formatSummary(result: BackfillResult, apply: boolean, manifestPa
 		);
 	}
 	lines.push(
-		`${manifest.soleUnsupported.length} artist field(s) left empty: a sole entry without any signal`,
+		`${manifest.soleUnsupported.length} artist field(s) left empty: a sole entry downgraded or a lone single`,
 		`${manifest.excluded.length} entr(ies) excluded (${EXCLUSION_REASONS.map((r) => `${manifest.excluded.filter((e) => e.reason === r).length} ${r}`).join(", ")})`,
 		`${manifest.failed.length} failed`,
 		apply ? `${written.length} node file(s) written` : "dry-run: no node file written",
