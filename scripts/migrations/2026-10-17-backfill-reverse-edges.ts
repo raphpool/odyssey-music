@@ -39,8 +39,19 @@
  *
  * Apply order: node files, then pending-reverses.json. After a crash between the two, a re-run completes it.
  *
+ * Migration channel (deploy/sync-genre-cache.sh, TRA-488, 2026-10-17): `--apply`, `--manifest` and
+ * `--data-dir` are the flags it passes. `--data-dir` is accepted and ignored: this migration reads and writes
+ * no redirect table. Symptom before: the channel's `--data-dir` made the parser return null (exit 2) and the
+ * apply stopped before any write. The manifest also carries the three fields the channel validates
+ * (`removed`, `renamed`, `redirects`), always empty: nothing is deleted, renamed or redirected. The manifest
+ * holds no timestamp, so two runs on the same cache give the same bytes (the channel compares previews).
+ * The pending entries it adds are list entries on an artist or a label for the four safe pairs only, which
+ * `isSafePendingEntry` (2026-10-16-scope-release-slugs.ts) and `isEmittedPendingReverse` (src/reverse-edges.ts)
+ * both accept; the channel prints a "RAISED the entries of pending-reverses.json" warning for such a run,
+ * which is expected here (a refusal it is not).
+ *
  * Usage: tsx scripts/migrations/2026-10-17-backfill-reverse-edges.ts <cache-dir> [--apply]
- *        [--manifest out/reverse-edges.json]
+ *        [--manifest out/reverse-edges.json] [--data-dir <dir>]
  */
 import { mkdir } from "node:fs/promises";
 import { dirname, join } from "node:path";
@@ -126,6 +137,10 @@ export interface Manifest {
 	/** Reverse edges already in place, plus pending entries already queued. */
 	unchanged: number;
 	conflicts: ReverseConflict[];
+	/** The channel's contract (TRA-488): this migration deletes, renames and redirects nothing. */
+	removed: string[];
+	renamed: Record<string, string>;
+	redirects: Record<string, string>;
 	/** Pairs of REVERSE_EDGE_PAIRS this script does not backfill, with the reason. */
 	skippedPairs: SkippedPair[];
 	errors: string[];
@@ -297,6 +312,9 @@ export function planBackfill(nodes: readonly CacheNodeFile[], currentPending: Pe
 			pendingAdded,
 			unchanged,
 			conflicts,
+			removed: [],
+			renamed: {},
+			redirects: {},
 			skippedPairs: skippedPairs(),
 			errors,
 		},
@@ -369,19 +387,27 @@ export interface CliArgs {
 	manifestPath: string;
 }
 
-/** `<cache-dir> [--apply] [--manifest p]`; null (exit 2) on anything else. */
+/**
+ * `<cache-dir> [--apply] [--manifest p] [--data-dir d]`; null (exit 2) on anything else. `--data-dir` is the
+ * migration channel's and is ignored (TRA-488).
+ */
 export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 	const cacheDir = argv[0];
 	if (!cacheDir || cacheDir.startsWith("-")) return null;
 	let apply = false;
 	let manifestPath: string | undefined;
+	let dataDirSeen = false;
 	for (let i = 1; i < argv.length; i++) {
 		const token = argv[i];
 		if (token === "--apply" && !apply) apply = true;
-		else if (token === "--manifest" && manifestPath === undefined) {
+		else if (
+			(token === "--manifest" && manifestPath === undefined) ||
+			(token === "--data-dir" && !dataDirSeen)
+		) {
 			const value = argv[++i];
 			if (value === undefined || value.startsWith("-")) return null;
-			manifestPath = value;
+			if (token === "--manifest") manifestPath = value;
+			else dataDirSeen = true;
 		} else return null;
 	}
 	return { cacheDir, apply, manifestPath: manifestPath ?? DEFAULT_MANIFEST_PATH };
@@ -391,7 +417,7 @@ async function main(): Promise<void> {
 	const args = parseCliArgs(process.argv.slice(2));
 	if (!args) {
 		process.stderr.write(
-			"usage: 2026-10-17-backfill-reverse-edges.ts <cache-dir> [--apply] [--manifest <path>]\n",
+			"usage: 2026-10-17-backfill-reverse-edges.ts <cache-dir> [--apply] [--manifest <path>] [--data-dir <dir>]\n",
 		);
 		process.exit(2);
 	}
