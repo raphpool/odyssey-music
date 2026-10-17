@@ -3,11 +3,16 @@ import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
+	type Candidate,
 	choose,
 	type LandmarkManifest,
 	MIGRATION_NAME,
+	mentionedIn,
+	normalizeText,
 	parseCliArgs,
+	type Reason,
 	runBackfill,
+	yearOf,
 } from "../scripts/migrations/2026-10-19-backfill-landmark-highlights.js";
 import { parseSlug } from "../src/slug.js";
 import type { EdgeRef, NodePayload } from "../src/types.js";
@@ -67,6 +72,21 @@ const writeRedirects = async (slugs: Record<string, string>, genres: Record<stri
 const run = (apply = true, dir = cacheDir, manifest = manifestPath) =>
 	runBackfill({ cacheDir: dir, apply, manifestPath: manifest, dataDir });
 
+/** The per-reason counters of a manifest, zero unless given. */
+const reasons = (given: Partial<Record<Reason, number>>): Record<Reason, number> => ({
+	genreLandmark: 0,
+	mentioned: 0,
+	album: 0,
+	imaged: 0,
+	cached: 0,
+	first: 0,
+	...given,
+});
+
+/** An article that quotes `titles` (the default fixture article quotes nothing). */
+const articleQuoting = (...titles: string[]): string =>
+	`A long article that talks about the artist, well past the eighty character floor. Known for ${titles.map((t) => `"${t}"`).join(" and ")}.`;
+
 describe("landmark_project (TRA-491)", () => {
 	it("picks the album a genre lists as a landmark, whatever its position, reason genreLandmark", async () => {
 		const discography: EdgeRef[] = ["a1", "a2", "a3"].map((s) => edge("project", `${s}--roni`, s));
@@ -81,7 +101,7 @@ describe("landmark_project (TRA-491)", () => {
 		expect(result.exitCode).toBe(0);
 		expect((await read("artist:roni")).landmark_project).toEqual(discography[2]);
 		const m = await manifestOf();
-		expect(m.byReason.landmark_project).toEqual({ genreLandmark: 1, imaged: 0, cached: 0, first: 0 });
+		expect(m.byReason.landmark_project).toEqual(reasons({ genreLandmark: 1 }));
 		expect(m.picks).toContainEqual({
 			artist: "artist:roni",
 			field: "landmark_project",
@@ -116,7 +136,7 @@ describe("landmark_project (TRA-491)", () => {
 		expect((await read("artist:first")).landmark_project).toEqual(firstList[0]);
 		expect((await read("artist:empty")).landmark_project).toBeUndefined();
 		const m = await manifestOf();
-		expect(m.byReason.landmark_project).toEqual({ genreLandmark: 0, imaged: 1, cached: 1, first: 1 });
+		expect(m.byReason.landmark_project).toEqual(reasons({ imaged: 1, cached: 1, first: 1 }));
 		expect(m.skipped.landmark_project).toEqual(["artist:empty"]);
 		expect(m.skipped.reference_track).toEqual([
 			"artist:cached",
@@ -126,13 +146,10 @@ describe("landmark_project (TRA-491)", () => {
 		]);
 	});
 
-	it("breaks a tie by list order and copies the edge as is (mbid, year, releaseType, artist)", async () => {
-		const first = edge("project", "t1--tie", "T1", {
-			mbid: MBID_A,
-			year: "1997",
-			releaseType: "album",
-			artist: "Tie",
-		});
+	it("breaks a tie without any year by list order and copies the edge as is (mbid, releaseType, artist)", async () => {
+		// TRA-601: the tie went to the first of the list only; it now goes to the oldest year first, so this
+		// case has no year (an `ep`, to stay out of the `album` signal) and the list order decides.
+		const first = edge("project", "t1--tie", "T1", { mbid: MBID_A, releaseType: "ep", artist: "Tie" });
 		const second = edge("project", "t2--tie", "T2");
 		await put(artistNode("tie", "Tie", { discography: [first, second] }));
 		await put(album("t1--tie", "tie"));
@@ -198,7 +215,7 @@ describe("identity: a target that does not credit the artist is never chosen", (
 				reason: "not-credited",
 			},
 		]);
-		expect(m.byReason.landmark_project).toEqual({ genreLandmark: 0, imaged: 0, cached: 1, first: 0 });
+		expect(m.byReason.landmark_project).toEqual(reasons({ cached: 1 }));
 	});
 
 	it("skips the artist when every entry is excluded (no field written, file unchanged)", async () => {
@@ -377,12 +394,314 @@ describe("identity: a target that does not credit the artist is never chosen", (
 
 	it("choose() is pure: the signals count only for a credited target", () => {
 		const e = (slug: string) => ({ slug, type: "project", name: slug });
-		const picked = choose([
-			{ edge: e("project:a"), slug: "project:a", state: { kind: "uncredited" }, genres: 3 },
-			{ edge: e("project:b"), slug: "project:b", state: { kind: "credited", imaged: false }, genres: 0 },
-		]);
+		const c = (slug: string, state: Candidate["state"], genres = 0): Candidate => ({
+			edge: e(slug),
+			slug,
+			state,
+			genres,
+			mentioned: false,
+			album: false,
+			namedAfterArtist: false,
+			year: null,
+		});
+		const picked = choose(
+			[c("project:a", { kind: "uncredited" }, 3), c("project:b", { kind: "credited", imaged: false })],
+			{ oldestFirst: true },
+		);
 		expect(picked).toMatchObject({ kind: "chosen", slug: "project:b", reason: "cached" });
-		expect(choose([])).toEqual({ kind: "empty" });
+		expect(choose([], { oldestFirst: true })).toEqual({ kind: "empty" });
+	});
+});
+
+describe("rule v2 (TRA-601)", () => {
+	const pickOf = async (artist: string, field = "landmark_project") =>
+		(await manifestOf()).picks.find((p) => p.artist === artist && p.field === field);
+
+	it("takes the older album quoted in the article over the recent single listed first, reason mentioned", async () => {
+		const single = edge("project", "fresh-single", "Fresh Single", { year: "2024", releaseType: "single" });
+		const old = edge("project", "old-record", "Old Record", { year: "1997", releaseType: "album" });
+		await put(
+			artistNode("daft", "Daft", {
+				discography: [single, old],
+				editorial_article: articleQuoting("Old Record"),
+			}),
+		);
+
+		await run();
+
+		expect((await read("artist:daft")).landmark_project).toEqual(old);
+		expect(await pickOf("artist:daft")).toMatchObject({ target: "project:old-record", reason: "mentioned" });
+		// 50 (mentioned) + 20 (album): the target is not in the cache, so no cached / imaged point.
+		expect((await pickOf("artist:daft"))?.score).toBe(70);
+	});
+
+	it("without any signal but the release type, takes the 1997 album over the 2024 single listed first", async () => {
+		const single = edge("project", "fresh-single", "Fresh Single", { year: "2024", releaseType: "single" });
+		const old = edge("project", "old-record", "Old Record", { year: "1997", releaseType: "album" });
+		await put(artistNode("plain", "Plain", { discography: [single, old] }));
+
+		await run();
+
+		expect((await read("artist:plain")).landmark_project).toEqual(old);
+		expect(await pickOf("artist:plain")).toMatchObject({ reason: "album", score: 20 });
+	});
+
+	it("reads the release type of a cached target when the edge has none", async () => {
+		const bare = edge("project", "bare--typed", "Bare");
+		const other = edge("project", "other--typed", "Other");
+		await put(artistNode("typed", "Typed", { discography: [other, bare] }));
+		await put(album("other--typed", "typed", { release_type: "single" }));
+		await put(album("bare--typed", "typed", { release_type: "album" }));
+
+		await run();
+
+		expect((await read("artist:typed")).landmark_project).toEqual(bare);
+		expect(await pickOf("artist:typed")).toMatchObject({ reason: "album", score: 21 });
+	});
+
+	it("breaks a tie by the oldest year, an entry without a year coming after those that have one", async () => {
+		const noYear = edge("project", "a-undated", "Undated");
+		const recent = edge("project", "b-recent", "Recent", { year: "2010", releaseType: "ep" });
+		const oldest = edge("project", "c-oldest", "Oldest", { year: "1999", releaseType: "ep" });
+		await put(artistNode("ties", "Ties", { discography: [noYear, recent, oldest] }));
+		await put(artistNode("undated", "Undated Artist", { discography: [noYear, recent] }));
+
+		await run();
+
+		expect((await read("artist:ties")).landmark_project).toEqual(oldest);
+		expect((await read("artist:undated")).landmark_project).toEqual(recent);
+		expect(await pickOf("artist:ties")).toMatchObject({ reason: "first", score: 0 });
+	});
+
+	it("keeps the list order for equal years, and for the tracks whatever their years", async () => {
+		const a = edge("project", "a-same", "Same A", { year: "2001", releaseType: "ep" });
+		const b = edge("project", "b-same", "Same B", { year: "2001", releaseType: "ep" });
+		const young = edge("track", "young", "Young Song", { year: "2020" });
+		const old = edge("track", "old", "Old Song", { year: "1980" });
+		await put(artistNode("list", "List", { discography: [a, b], notable_tracks: [young, old] }));
+
+		await run();
+
+		expect((await read("artist:list")).landmark_project).toEqual(a);
+		// reference_track: "ties go to the list order, unchanged": the year does not count there.
+		expect((await read("artist:list")).reference_track).toEqual(young);
+	});
+
+	it("excludes a cached work that credits 3 artists without a scope on the artist, reason compilation", async () => {
+		const kob = edge("project", "kind-of-blue--miles-davis", "Kind of Blue", { year: "1959" });
+		const own = edge("project", "giant-steps--john-coltrane", "Giant Steps", { year: "1960" });
+		const credits = ["miles-davis", "john-coltrane", "cannonball-adderley"].map((s) => edge("artist", s, s));
+		await put(artistNode("john-coltrane", "John Coltrane", { discography: [kob, own] }));
+		await put(artistNode("miles-davis", "Miles Davis", { discography: [kob] }));
+		await put(
+			projectNode("kind-of-blue--miles-davis", "Kind of Blue", {
+				artists: credits,
+				image_url: IMG,
+				image_source: "caa",
+			}),
+		);
+		await put(album("giant-steps--john-coltrane", "john-coltrane"));
+
+		await run();
+
+		// Imaged and older, yet out for the sideman; scoped on Miles Davis, so it stays his.
+		expect((await read("artist:john-coltrane")).landmark_project).toEqual(own);
+		expect((await read("artist:miles-davis")).landmark_project).toEqual(kob);
+		expect((await manifestOf()).excluded).toEqual([
+			{
+				artist: "artist:john-coltrane",
+				field: "landmark_project",
+				target: "project:kind-of-blue--miles-davis",
+				reason: "compilation",
+			},
+		]);
+	});
+
+	it("does not exclude a work with 2 credits, nor the same work for a reference track", async () => {
+		const duo = edge("project", "duo-album", "Duo Album");
+		const song = edge("track", "comp-song", "Comp Song");
+		await put(artistNode("duo", "Duo", { discography: [duo], notable_tracks: [song] }));
+		await put(
+			projectNode("duo-album", "Duo Album", {
+				artists: [edge("artist", "duo", "Duo"), edge("artist", "mate", "Mate")],
+			}),
+		);
+		const three = [edge("artist", "duo", "Duo"), edge("artist", "m1", "M1"), edge("artist", "m2", "M2")];
+		await put(trackNode("comp-song", "Comp Song", { artists: three }));
+
+		await run();
+
+		expect((await read("artist:duo")).landmark_project).toEqual(duo);
+		expect((await read("artist:duo")).reference_track).toEqual(song);
+		expect((await manifestOf()).excluded).toEqual([]);
+	});
+
+	it("skips an artist whose only entry is a compilation, and the identity rules still come first", async () => {
+		const comp = edge("project", "various-comp", "Various Comp");
+		const foreign = edge("project", "elsewhere--other", "Elsewhere");
+		await put(artistNode("lonely", "Lonely", { discography: [comp, foreign] }));
+		const three = [
+			edge("artist", "lonely", "Lonely"),
+			edge("artist", "m1", "M1"),
+			edge("artist", "m2", "M2"),
+		];
+		await put(projectNode("various-comp", "Various Comp", { artists: three }));
+		// Does not credit the artist AND has 3 credits: `not-credited`, not `compilation`.
+		await put(projectNode("elsewhere--other", "Elsewhere", { artists: three.slice(1) }));
+
+		await run();
+
+		const m = await manifestOf();
+		expect(m.skipped.landmark_project).toEqual(["artist:lonely"]);
+		expect(m.excluded.map((x) => [x.target, x.reason])).toEqual([
+			["project:elsewhere--other", "not-credited"],
+			["project:various-comp", "compilation"],
+		]);
+	});
+
+	it("gives no signal to an entry named like an artist of the cache: it loses to any other, wins alone", async () => {
+		const band = edge("project", "the-beatles", "The Beatles");
+		const solo = edge("project", "solo-record--paul", "Solo Record");
+		// The Beatles' own node carries every signal (imaged, genre landmark, quoted in the article).
+		await put(artistNode("the-beatles", "The Beatles", { discography: [] }));
+		await put(
+			artistNode("paul", "Paul", {
+				discography: [band, solo],
+				editorial_article: articleQuoting("The Beatles"),
+			}),
+		);
+		await put(
+			artistNode("george", "George", {
+				discography: [band],
+				editorial_article: articleQuoting("The Beatles"),
+			}),
+		);
+		await put(
+			album("the-beatles", "paul", {
+				artists: [edge("artist", "paul", "Paul"), edge("artist", "george", "George")],
+				image_url: IMG,
+				image_source: "caa",
+			}),
+		);
+		await put(album("solo-record--paul", "paul"));
+		await put(genreNode("rock", "Rock", { landmark_projects: [band] }));
+
+		await run();
+
+		expect((await read("artist:paul")).landmark_project).toEqual(solo);
+		expect((await read("artist:george")).landmark_project).toEqual(band);
+		// Alone, it is chosen with no signal at all.
+		expect(await pickOf("artist:george")).toMatchObject({
+			target: "project:the-beatles",
+			reason: "first",
+			score: 0,
+		});
+	});
+
+	it("does not flag a non-ASCII title as named after an artist whose name has no ASCII character", async () => {
+		// "久石譲" normalizes to "": it must not make every entry normalized to "" look like an artist's name.
+		const kanji = edge("project", "kanji-album", "日本語", { releaseType: "album" });
+		const plain = edge("project", "plain-ep", "Plain", { releaseType: "ep" });
+		await put(artistNode("hisaishi", "久石譲"));
+		await put(artistNode("kanji", "Kanji", { discography: [plain, kanji] }));
+
+		await run();
+
+		expect(await pickOf("artist:kanji")).toMatchObject({ target: "project:kanji-album", reason: "album" });
+	});
+
+	it("applies the same signals to a reference track: quoted in the article, reason mentioned", async () => {
+		const t1 = edge("track", "alpha-song--dj", "Alpha Song");
+		const t2 = edge("track", "beta-song--dj", "Beta Song");
+		await put(
+			artistNode("dj", "DJ", { notable_tracks: [t1, t2], editorial_article: articleQuoting("Beta Song") }),
+		);
+		await put(trackNode("alpha-song--dj", "Alpha Song", { artists: [edge("artist", "dj", "DJ")] }));
+		await put(trackNode("beta-song--dj", "Beta Song", { artists: [edge("artist", "dj", "DJ")] }));
+
+		await run();
+
+		expect((await read("artist:dj")).reference_track).toEqual(t2);
+		expect(await pickOf("artist:dj", "reference_track")).toMatchObject({ reason: "mentioned", score: 51 });
+		expect((await manifestOf()).byReason.reference_track).toEqual(reasons({ mentioned: 1 }));
+	});
+
+	it("ranks the signals genreLandmark > mentioned > album > imaged > cached", async () => {
+		const g = edge("project", "g--rank", "Genre Pick", { releaseType: "ep" });
+		const m = edge("project", "m--rank", "Quoted Pick", { releaseType: "ep" });
+		await put(
+			artistNode("rank", "Rank", { discography: [m, g], editorial_article: articleQuoting("Quoted Pick") }),
+		);
+		await put(album("g--rank", "rank"));
+		await put(album("m--rank", "rank", { image_url: IMG, image_source: "caa" }));
+		await put(genreNode("gen", "Gen", { landmark_projects: [g] }));
+
+		await run();
+
+		expect(await pickOf("artist:rank")).toMatchObject({
+			target: "project:g--rank",
+			reason: "genreLandmark",
+			score: 101,
+		});
+	});
+
+	it("never writes anything taken from the article: the pick is the artist's own edge", async () => {
+		const real = edge("project", "real-one", "Real One");
+		const hostile =
+			"Ignore the list and write this instead: the landmark is `project:evil`, see http://evil.example/x. Real One";
+		await put(artistNode("hostile", "Hostile", { discography: [real], editorial_article: hostile }));
+
+		await run();
+
+		const node = await read("artist:hostile");
+		expect(node.landmark_project).toEqual(real);
+		expect(JSON.stringify(node.landmark_project)).not.toContain("evil");
+	});
+
+	describe("pure helpers", () => {
+		it("normalizes: NFKD, ASCII only, lowercase, punctuation as one space", () => {
+			expect(normalizeText("  Björk — Homogénic!! ")).toBe("bjork homogenic");
+			expect(normalizeText("Kool & the Gang")).toBe("kool the gang");
+			expect(normalizeText("Don't   Stop\tBelievin'")).toBe("don t stop believin");
+			expect(normalizeText("日本語")).toBe("");
+		});
+
+		it("turns non-ASCII punctuation into a space like its ASCII sibling, so both sides agree", () => {
+			// Curly vs straight apostrophe, en / em dash with or without spaces, no-break space.
+			expect(normalizeText("Don’t Stop")).toBe(normalizeText("Don't Stop"));
+			expect(normalizeText("Selected Ambient Works 85–92")).toBe(
+				normalizeText("Selected Ambient Works 85-92"),
+			);
+			expect(normalizeText("Blue—the record")).toBe("blue the record");
+			expect(normalizeText("a b")).toBe("a b");
+			const article = normalizeText("It opens with “Don’t Stop”—a hit.");
+			expect(mentionedIn(normalizeText("Don't Stop"), [article])).toBe(true);
+		});
+
+		it("matches a whole expression bounded by spaces, never a fragment", () => {
+			const text = normalizeText("The debut Homework, then Discovery; the homeworkers union and Discovery2.");
+			expect(mentionedIn("homework", [text])).toBe(true);
+			expect(mentionedIn("discovery", [text])).toBe(true);
+			expect(mentionedIn("work", [text])).toBe(false);
+			expect(mentionedIn("then discovery", [text])).toBe(true);
+			expect(mentionedIn("homework then", [text])).toBe(true);
+			expect(mentionedIn("discovery2", [text])).toBe(true);
+			expect(mentionedIn("disc", [text])).toBe(false);
+		});
+
+		it("ignores a normalized title shorter than 3 characters", () => {
+			expect(mentionedIn("ab", ["xx ab yy"])).toBe(false);
+			expect(mentionedIn("abc", ["xx abc yy"])).toBe(true);
+			expect(mentionedIn("", ["xx yy"])).toBe(false);
+		});
+
+		it("reads a year from the first four digits only", () => {
+			expect(yearOf("1997")).toBe(1997);
+			expect(yearOf("1997-05-01")).toBe(1997);
+			expect(yearOf("circa 1997")).toBeNull();
+			expect(yearOf(undefined)).toBeNull();
+			expect(yearOf("")).toBeNull();
+		});
 	});
 });
 
