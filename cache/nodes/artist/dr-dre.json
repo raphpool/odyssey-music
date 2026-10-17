@@ -514,6 +514,19 @@
       "name": "The Next Episode"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-chronic",
+    "type": "project",
+    "name": "The Chronic",
+    "mbid": "ad444843-7160-33d7-b0c9-fc99f2c14a99",
+    "year": "1992",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:nuthin-but-a-g-thang",
+    "type": "track",
+    "name": "Nuthin' but a 'G' Thang"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

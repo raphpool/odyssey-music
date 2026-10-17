@@ -389,6 +389,19 @@
       "name": "The Way You Move"
     }
   ],
+  "landmark_project": {
+    "slug": "project:atliens",
+    "type": "project",
+    "name": "ATLiens",
+    "mbid": "672fa6be-ae6a-38a2-a0d3-6a393a3929bf",
+    "year": "1996",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:hey-ya",
+    "type": "track",
+    "name": "Hey Ya!"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -404,5 +417,6 @@
       "type": "artist",
       "name": "Big Boi"
     }
-  ]
+  ],
+  "similar_artists": []
 }

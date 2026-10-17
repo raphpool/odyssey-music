@@ -60,6 +60,11 @@
       "name": "Dance Suite: Shuttlecock, Lantern Parade, Ainu Children's Dance"
     }
   ],
+  "reference_track": {
+    "slug": "track:rokudan",
+    "type": "track",
+    "name": "Rokudan"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

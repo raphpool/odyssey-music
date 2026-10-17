@@ -66,6 +66,11 @@
       "name": "Marilyn"
     }
   ],
+  "reference_track": {
+    "slug": "track:blue-train-lines",
+    "type": "track",
+    "name": "Blue Train Lines"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

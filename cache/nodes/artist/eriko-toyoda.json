@@ -76,6 +76,16 @@
       "name": "Seductive Eyes"
     }
   ],
+  "landmark_project": {
+    "slug": "project:small-talk",
+    "type": "project",
+    "name": "Small Talk"
+  },
+  "reference_track": {
+    "slug": "track:seductive-eyes",
+    "type": "track",
+    "name": "Seductive Eyes"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

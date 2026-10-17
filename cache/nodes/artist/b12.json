@@ -94,6 +94,17 @@
       "artist": "B12"
     }
   ],
+  "landmark_project": {
+    "slug": "project:electro-soma--b12",
+    "type": "project",
+    "name": "Electro-Soma"
+  },
+  "reference_track": {
+    "slug": "track:telefone-529--b12",
+    "type": "track",
+    "name": "Telefone 529",
+    "artist": "B12"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

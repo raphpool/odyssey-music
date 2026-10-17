@@ -103,6 +103,16 @@
       "name": "Black Water"
     }
   ],
+  "landmark_project": {
+    "slug": "project:multifunktionsebene",
+    "type": "project",
+    "name": "Multifunktionsebene"
+  },
+  "reference_track": {
+    "slug": "track:black-water",
+    "type": "track",
+    "name": "Black Water"
+  },
   "influences": [
     {
       "slug": "artist:modeselektor",

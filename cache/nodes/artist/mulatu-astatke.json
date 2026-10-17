@@ -190,6 +190,19 @@
       "name": "Musicawi Silt"
     }
   ],
+  "landmark_project": {
+    "slug": "project:ethio-jazz",
+    "type": "project",
+    "name": "Ethio Jazz",
+    "mbid": "b3940e49-3c5e-48b5-b9e1-f2b7e01feaff",
+    "year": "1974",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:tezeta",
+    "type": "track",
+    "name": "Tezeta"
+  },
   "influences": [],
   "influenced": [
     {

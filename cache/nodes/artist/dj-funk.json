@@ -241,6 +241,14 @@
       "name": "Let There Be Light (DJ Funk Remix)"
     }
   ],
+  "landmark_project": {
+    "slug": "project:ghetto-trax",
+    "type": "project",
+    "name": "Ghetto Trax",
+    "mbid": "518b988f-aec7-3fc3-99dc-83f19ec5e9da",
+    "year": "1994",
+    "releaseType": "album"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

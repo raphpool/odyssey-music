@@ -158,6 +158,19 @@
       "name": "Spirit"
     }
   ],
+  "landmark_project": {
+    "slug": "project:acid-tracks--phuture",
+    "type": "project",
+    "name": "Acid Tracks",
+    "mbid": "1f8b74ce-9f1e-3e3c-8651-609bfe3b6676",
+    "year": "1987",
+    "releaseType": "ep"
+  },
+  "reference_track": {
+    "slug": "track:acid-tracks--phuture",
+    "type": "track",
+    "name": "Acid Tracks"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

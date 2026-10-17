@@ -82,6 +82,11 @@
     }
   ],
   "notable_tracks": [],
+  "landmark_project": {
+    "slug": "project:sleepmoss",
+    "type": "project",
+    "name": "Sleepmoss"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

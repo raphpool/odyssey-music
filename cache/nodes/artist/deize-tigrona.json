@@ -115,6 +115,19 @@
       "name": "Sadomasoquista (Vem de Chicote)"
     }
   ],
+  "landmark_project": {
+    "slug": "project:foi-eu-que-fiz",
+    "type": "project",
+    "name": "Foi Eu Que Fiz",
+    "mbid": "66d6a29e-a14d-47d2-994d-9c488d7b4e94",
+    "year": "2022",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:injecao",
+    "type": "track",
+    "name": "Injeção"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -90,6 +90,16 @@
       "name": "Starless"
     }
   ],
+  "landmark_project": {
+    "slug": "project:in-the-court-of-the-crimson-king--king-crimson",
+    "type": "project",
+    "name": "In the Court of the Crimson King"
+  },
+  "reference_track": {
+    "slug": "track:21st-century-schizoid-man",
+    "type": "track",
+    "name": "21st Century Schizoid Man"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

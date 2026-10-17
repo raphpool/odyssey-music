@@ -117,6 +117,16 @@
       "name": "Glass Museum"
     }
   ],
+  "landmark_project": {
+    "slug": "project:millions-now-living-will-never-die",
+    "type": "project",
+    "name": "Millions Now Living Will Never Die"
+  },
+  "reference_track": {
+    "slug": "track:tnt",
+    "type": "track",
+    "name": "TNT"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -103,6 +103,16 @@
       "artist": "Carl Craig"
     }
   ],
+  "landmark_project": {
+    "slug": "project:landcruising--carl-craig",
+    "type": "project",
+    "name": "Landcruising"
+  },
+  "reference_track": {
+    "slug": "track:bug-in-the-bassbin",
+    "type": "track",
+    "name": "Bug in the Bassbin"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

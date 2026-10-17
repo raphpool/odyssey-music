@@ -88,6 +88,16 @@
       "name": "Good Life"
     }
   ],
+  "landmark_project": {
+    "slug": "project:heavenly",
+    "type": "project",
+    "name": "Heavenly"
+  },
+  "reference_track": {
+    "slug": "track:big-fun",
+    "type": "track",
+    "name": "Big Fun"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

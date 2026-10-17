@@ -539,6 +539,19 @@
       "name": "Come Closer"
     }
   ],
+  "landmark_project": {
+    "slug": "project:superstar",
+    "type": "project",
+    "name": "Superstar",
+    "mbid": "2ae3eb0a-6f6a-4da8-9c7f-be5e3db62033",
+    "year": "2011",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:essence",
+    "type": "track",
+    "name": "Essence"
+  },
   "influences": [
     {
       "slug": "artist:fela-kuti",

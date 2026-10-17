@@ -68,6 +68,11 @@
       "name": "Shop In Store"
     }
   ],
+  "reference_track": {
+    "slug": "track:shop-in-store",
+    "type": "track",
+    "name": "Shop In Store"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

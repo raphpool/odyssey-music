@@ -232,6 +232,19 @@
       "name": "What You Know Bout Love"
     }
   ],
+  "landmark_project": {
+    "slug": "project:shoot-for-the-stars-aim-for-the-moon",
+    "type": "project",
+    "name": "Shoot for the Stars Aim for the Moon",
+    "mbid": "d6d1de65-7e43-4277-b723-fc74a2b385e1",
+    "year": "2020",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:welcome-to-the-party",
+    "type": "track",
+    "name": "Welcome to the Party"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -273,5 +286,6 @@
       "name": "Shar"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

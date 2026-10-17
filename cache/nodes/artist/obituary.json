@@ -229,6 +229,19 @@
       "name": "The Wrong Time"
     }
   ],
+  "landmark_project": {
+    "slug": "project:cause-of-death",
+    "type": "project",
+    "name": "Cause of Death",
+    "mbid": "41418c5f-ccd5-313f-92d0-c86c149571f5",
+    "year": "1990",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:the-end-complete",
+    "type": "track",
+    "name": "The End Complete"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -104,6 +104,16 @@
       "name": "Valley Girl"
     }
   ],
+  "landmark_project": {
+    "slug": "project:freak-out",
+    "type": "project",
+    "name": "Freak Out!"
+  },
+  "reference_track": {
+    "slug": "track:peaches-en-regalia",
+    "type": "track",
+    "name": "Peaches en Regalia"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

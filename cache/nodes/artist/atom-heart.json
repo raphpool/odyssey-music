@@ -94,6 +94,16 @@
       "name": "Jet Chamber"
     }
   ],
+  "landmark_project": {
+    "slug": "project:morphogenetic-fields",
+    "type": "project",
+    "name": "Morphogenetic Fields"
+  },
+  "reference_track": {
+    "slug": "track:colours",
+    "type": "track",
+    "name": "Colours"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -130,5 +140,6 @@
       "name": "Atom TM"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

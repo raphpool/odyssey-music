@@ -75,6 +75,19 @@
       "name": "Love Groove Dance Party"
     }
   ],
+  "landmark_project": {
+    "slug": "project:a-voyage-into-trance",
+    "type": "project",
+    "name": "A Voyage Into Trance",
+    "mbid": "cefa3ea1-cf1d-40b0-9cfb-5e2e2c411cfd",
+    "year": "1996",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:love-groove-dance-party",
+    "type": "track",
+    "name": "Love Groove Dance Party"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

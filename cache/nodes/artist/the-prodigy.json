@@ -91,6 +91,11 @@
       "name": "Charly"
     }
   ],
+  "reference_track": {
+    "slug": "track:firestarter",
+    "type": "track",
+    "name": "Firestarter"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -318,6 +318,19 @@
       "name": "Run It"
     }
   ],
+  "landmark_project": {
+    "slug": "project:splendor-and-misery",
+    "type": "project",
+    "name": "Splendor & Misery",
+    "mbid": "b5c6b555-6d29-465d-ae82-71519dcfae39",
+    "year": "2016",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:la-mala-ordina",
+    "type": "track",
+    "name": "La Mala Ordina"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

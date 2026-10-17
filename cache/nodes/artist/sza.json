@@ -382,6 +382,19 @@
       "name": "Kill Bill"
     }
   ],
+  "landmark_project": {
+    "slug": "project:ctrl",
+    "type": "project",
+    "name": "Ctrl",
+    "mbid": "8f892c1b-0709-4cf4-9711-493892a9eb9b",
+    "year": "2017",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:all-the-stars",
+    "type": "track",
+    "name": "All the Stars"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

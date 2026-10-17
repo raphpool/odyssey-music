@@ -117,6 +117,16 @@
       "name": "Babooshka"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-dreaming",
+    "type": "project",
+    "name": "The Dreaming"
+  },
+  "reference_track": {
+    "slug": "track:wuthering-heights",
+    "type": "track",
+    "name": "Wuthering Heights"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -757,6 +757,19 @@
       "name": "Not Like Us"
     }
   ],
+  "landmark_project": {
+    "slug": "project:good-kid-m-a-a-d-city",
+    "type": "project",
+    "name": "good kid, m.A.A.d city",
+    "mbid": "499c19c8-0dab-4824-884b-6191d145e95b",
+    "year": "2012",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:not-like-us",
+    "type": "track",
+    "name": "Not Like Us"
+  },
   "influences": [
     {
       "slug": "artist:lil-b",

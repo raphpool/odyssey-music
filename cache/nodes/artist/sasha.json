@@ -129,6 +129,16 @@
       "name": "Wavy Gravy"
     }
   ],
+  "landmark_project": {
+    "slug": "project:xpander",
+    "type": "project",
+    "name": "Xpander"
+  },
+  "reference_track": {
+    "slug": "track:xpander",
+    "type": "track",
+    "name": "Xpander"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

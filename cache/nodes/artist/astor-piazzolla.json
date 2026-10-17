@@ -100,6 +100,16 @@
       "name": "Oblivion"
     }
   ],
+  "landmark_project": {
+    "slug": "project:libertango",
+    "type": "project",
+    "name": "Libertango"
+  },
+  "reference_track": {
+    "slug": "track:libertango",
+    "type": "track",
+    "name": "Libertango"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

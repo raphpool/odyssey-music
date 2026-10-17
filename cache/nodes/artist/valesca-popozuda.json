@@ -379,6 +379,19 @@
       "name": "Quero te dar"
     }
   ],
+  "landmark_project": {
+    "slug": "project:pimenta",
+    "type": "project",
+    "name": "Pimenta",
+    "mbid": "9277d2c1-908d-40ed-af80-9b3b874456b9",
+    "year": "2017",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:late-que-eu-to-passando",
+    "type": "track",
+    "name": "Late que eu tô passando"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

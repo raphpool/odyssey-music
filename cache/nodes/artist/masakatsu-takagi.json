@@ -87,6 +87,16 @@
       "name": "Wolf Children Theme"
     }
   ],
+  "landmark_project": {
+    "slug": "project:pia",
+    "type": "project",
+    "name": "Pia"
+  },
+  "reference_track": {
+    "slug": "track:wolf-children-theme",
+    "type": "track",
+    "name": "Wolf Children Theme"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

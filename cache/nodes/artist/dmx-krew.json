@@ -71,6 +71,16 @@
       "name": "Sound of the Street"
     }
   ],
+  "landmark_project": {
+    "slug": "project:sound-of-the-street--dmx-krew",
+    "type": "project",
+    "name": "Sound of the Street"
+  },
+  "reference_track": {
+    "slug": "track:sound-of-the-street",
+    "type": "track",
+    "name": "Sound of the Street"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

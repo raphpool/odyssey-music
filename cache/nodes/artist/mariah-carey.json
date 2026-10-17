@@ -122,6 +122,16 @@
       "name": "We Belong Together"
     }
   ],
+  "landmark_project": {
+    "slug": "project:emotions",
+    "type": "project",
+    "name": "Emotions"
+  },
+  "reference_track": {
+    "slug": "track:all-i-want-for-christmas-is-you",
+    "type": "track",
+    "name": "All I Want for Christmas Is You"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

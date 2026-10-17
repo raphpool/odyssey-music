@@ -72,6 +72,11 @@
       "name": "Extasis"
     }
   ],
+  "reference_track": {
+    "slug": "track:extasis",
+    "type": "track",
+    "name": "Extasis"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

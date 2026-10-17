@@ -389,6 +389,19 @@
       "name": "Free Nelson Mandela"
     }
   ],
+  "landmark_project": {
+    "slug": "project:encore",
+    "type": "project",
+    "name": "Encore",
+    "mbid": "85f0b4c9-e891-4045-be7c-e13d1017ccc7",
+    "year": "2019",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:gangsters",
+    "type": "track",
+    "name": "Gangsters"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

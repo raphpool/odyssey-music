@@ -102,6 +102,16 @@
       "name": "Hare Krishna"
     }
   ],
+  "landmark_project": {
+    "slug": "project:music-for-zen-meditation--tony-scott",
+    "type": "project",
+    "name": "Music for Zen Meditation"
+  },
+  "reference_track": {
+    "slug": "track:hare-krishna",
+    "type": "track",
+    "name": "Hare Krishna"
+  },
   "influences": [
     {
       "slug": "artist:billie-holiday",

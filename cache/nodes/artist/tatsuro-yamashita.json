@@ -107,6 +107,17 @@
       "name": "Sparkle"
     }
   ],
+  "landmark_project": {
+    "slug": "project:ride-on-time--tatsuro-yamashita",
+    "type": "project",
+    "name": "Ride on Time",
+    "artist": "Tatsurō Yamashita"
+  },
+  "reference_track": {
+    "slug": "track:christmas-eve",
+    "type": "track",
+    "name": "Christmas Eve"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

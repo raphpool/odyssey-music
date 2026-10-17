@@ -96,6 +96,16 @@
       "name": "Why Can't I?"
     }
   ],
+  "landmark_project": {
+    "slug": "project:exile-in-guyville--liz-phair",
+    "type": "project",
+    "name": "Exile in Guyville"
+  },
+  "reference_track": {
+    "slug": "track:f-ck-and-run",
+    "type": "track",
+    "name": "F*ck and Run"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

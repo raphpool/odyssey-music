@@ -73,6 +73,16 @@
       "name": "For What You Dream Of"
     }
   ],
+  "landmark_project": {
+    "slug": "project:northern-exposure",
+    "type": "project",
+    "name": "Northern Exposure"
+  },
+  "reference_track": {
+    "slug": "track:for-what-you-dream-of",
+    "type": "track",
+    "name": "For What You Dream Of"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -71,6 +71,16 @@
       "name": "Un ange dans le ciel"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dernier-round",
+    "type": "project",
+    "name": "Dernier Round"
+  },
+  "reference_track": {
+    "slug": "track:that-s-my-people",
+    "type": "track",
+    "name": "That's my people"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

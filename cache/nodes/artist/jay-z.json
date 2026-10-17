@@ -70,6 +70,16 @@
       "name": "99 Problems"
     }
   ],
+  "landmark_project": {
+    "slug": "project:reasonable-doubt",
+    "type": "project",
+    "name": "Reasonable Doubt"
+  },
+  "reference_track": {
+    "slug": "track:empire-state-of-mind",
+    "type": "track",
+    "name": "Empire State of Mind"
+  },
   "influences": [],
   "influenced": [
     {

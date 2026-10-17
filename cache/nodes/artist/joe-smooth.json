@@ -46,6 +46,11 @@
       "name": "Promised Land"
     }
   ],
+  "reference_track": {
+    "slug": "track:promised-land",
+    "type": "track",
+    "name": "Promised Land"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

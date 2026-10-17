@@ -115,6 +115,16 @@
       "artist": "John Lennon"
     }
   ],
+  "landmark_project": {
+    "slug": "project:mccartney",
+    "type": "project",
+    "name": "McCartney"
+  },
+  "reference_track": {
+    "slug": "track:band-on-the-run",
+    "type": "track",
+    "name": "Band on the Run"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

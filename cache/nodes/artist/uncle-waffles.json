@@ -134,6 +134,19 @@
       "name": "Wadibusa"
     }
   ],
+  "landmark_project": {
+    "slug": "project:solace",
+    "type": "project",
+    "name": "Solace",
+    "mbid": "a996dfdb-e80c-423e-95ca-30cbe2afd3e4",
+    "year": "2023",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:tanzania",
+    "type": "track",
+    "name": "Tanzania"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -734,6 +734,19 @@
       "name": "Baby"
     }
   ],
+  "landmark_project": {
+    "slug": "project:back-for-the-first-time",
+    "type": "project",
+    "name": "Back for the First Time",
+    "mbid": "280243c1-f6e1-3a57-8ed9-cda8373def33",
+    "year": "2000",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:stand-up",
+    "type": "track",
+    "name": "Stand Up"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -775,5 +788,6 @@
       "name": "Chris Lova Lova"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

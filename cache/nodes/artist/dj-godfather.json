@@ -333,6 +333,19 @@
       "name": "King Of The Circle"
     }
   ],
+  "landmark_project": {
+    "slug": "project:da-bomb-volume-1",
+    "type": "project",
+    "name": "Da Bomb Volume 1",
+    "mbid": "16711608-5c4a-445c-a9da-118781ff5fad",
+    "year": "1998",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:king-of-the-circle",
+    "type": "track",
+    "name": "King Of The Circle"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

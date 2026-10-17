@@ -296,6 +296,19 @@
       "name": "Do You See"
     }
   ],
+  "landmark_project": {
+    "slug": "project:regulate-g-funk-era",
+    "type": "project",
+    "name": "Regulate… G Funk Era",
+    "mbid": "7d2ec03f-4abb-3fef-b7e5-465334a47b54",
+    "year": "1994",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:regulate",
+    "type": "track",
+    "name": "Regulate"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

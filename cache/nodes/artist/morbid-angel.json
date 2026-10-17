@@ -242,6 +242,19 @@
       "name": "Nevermore"
     }
   ],
+  "landmark_project": {
+    "slug": "project:altars-of-madness",
+    "type": "project",
+    "name": "Altars of Madness",
+    "mbid": "e5be441e-53ec-376a-b261-426e8f06e144",
+    "year": "1989",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:god-of-emptiness",
+    "type": "track",
+    "name": "God of Emptiness"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

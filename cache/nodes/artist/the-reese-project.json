@@ -81,6 +81,16 @@
       "name": "I Believe"
     }
   ],
+  "landmark_project": {
+    "slug": "project:faith-hope-and-clarity",
+    "type": "project",
+    "name": "Faith Hope & Clarity"
+  },
+  "reference_track": {
+    "slug": "track:direct-me",
+    "type": "track",
+    "name": "Direct Me"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -96,5 +106,6 @@
       "type": "artist",
       "name": "Ann Saunderson"
     }
-  ]
+  ],
+  "similar_artists": []
 }

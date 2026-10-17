@@ -117,6 +117,16 @@
       "name": "Pennies from Heaven"
     }
   ],
+  "landmark_project": {
+    "slug": "project:paradise",
+    "type": "project",
+    "name": "Paradise"
+  },
+  "reference_track": {
+    "slug": "track:big-fun",
+    "type": "track",
+    "name": "Big Fun"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -93,6 +93,16 @@
       "name": "There Must Be Love"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-program",
+    "type": "project",
+    "name": "The Program"
+  },
+  "reference_track": {
+    "slug": "track:needin-u",
+    "type": "track",
+    "name": "Needin' U"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -123,5 +133,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

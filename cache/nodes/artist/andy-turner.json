@@ -71,6 +71,18 @@
       "name": "Ain't Got Time to Waste"
     }
   ],
+  "landmark_project": {
+    "slug": "project:cold-water-music--andy-turner",
+    "type": "project",
+    "name": "Cold Water Music",
+    "artist": "Andy Turner"
+  },
+  "reference_track": {
+    "slug": "track:cold-water-music--andy-turner",
+    "type": "track",
+    "name": "Cold Water Music",
+    "artist": "Andy Turner"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

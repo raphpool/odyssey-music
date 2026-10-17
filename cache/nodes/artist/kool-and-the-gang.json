@@ -129,6 +129,16 @@
       "name": "Get Down on It"
     }
   ],
+  "landmark_project": {
+    "slug": "project:kool-and-the-gang",
+    "type": "project",
+    "name": "Kool and the Gang (1969)"
+  },
+  "reference_track": {
+    "slug": "track:jungle-boogie",
+    "type": "track",
+    "name": "Jungle Boogie"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

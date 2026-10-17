@@ -107,6 +107,19 @@
       "name": "Waka Waka"
     }
   ],
+  "landmark_project": {
+    "slug": "project:africa-mousso",
+    "type": "project",
+    "name": "Africa Mousso",
+    "mbid": "4d97ac15-0452-3ace-ab51-5143f9f37d5f",
+    "year": "1996",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:loketo",
+    "type": "track",
+    "name": "Loketo"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

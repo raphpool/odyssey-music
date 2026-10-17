@@ -218,6 +218,19 @@
       "name": "Aguanilé"
     }
   ],
+  "landmark_project": {
+    "slug": "project:la-voz",
+    "type": "project",
+    "name": "La voz",
+    "mbid": "35dee68f-a1ad-3090-b055-6a6033178782",
+    "year": "1975",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:el-cantante",
+    "type": "track",
+    "name": "El Cantante"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

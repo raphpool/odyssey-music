@@ -107,6 +107,16 @@
       "name": "Airegin"
     }
   ],
+  "landmark_project": {
+    "slug": "project:saxophone-colossus",
+    "type": "project",
+    "name": "Saxophone Colossus"
+  },
+  "reference_track": {
+    "slug": "track:st-thomas",
+    "type": "track",
+    "name": "St. Thomas"
+  },
   "influences": [
     {
       "slug": "artist:coleman-hawkins",

@@ -103,6 +103,16 @@
       "name": "Are 'Friends' Electric?"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-pleasure-principle",
+    "type": "project",
+    "name": "The Pleasure Principle"
+  },
+  "reference_track": {
+    "slug": "track:cars",
+    "type": "track",
+    "name": "Cars"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

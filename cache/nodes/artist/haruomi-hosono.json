@@ -115,6 +115,16 @@
       "name": "Cosmic Surfin'"
     }
   ],
+  "landmark_project": {
+    "slug": "project:hosono-house",
+    "type": "project",
+    "name": "Hosono House"
+  },
+  "reference_track": {
+    "slug": "track:kaze-wo-atsumete",
+    "type": "track",
+    "name": "Kaze wo Atsumete"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

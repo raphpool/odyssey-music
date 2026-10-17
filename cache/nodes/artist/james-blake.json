@@ -113,6 +113,16 @@
       "name": "CMYK"
     }
   ],
+  "landmark_project": {
+    "slug": "project:james-blake--james-blake",
+    "type": "project",
+    "name": "James Blake"
+  },
+  "reference_track": {
+    "slug": "track:limit-to-your-love--james-blake",
+    "type": "track",
+    "name": "Limit to Your Love"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

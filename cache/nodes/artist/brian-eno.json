@@ -139,6 +139,16 @@
       "artist": "Brian Eno"
     }
   ],
+  "landmark_project": {
+    "slug": "project:ambient-1-music-for-airports--brian-eno",
+    "type": "project",
+    "name": "Ambient 1: Music for Airports"
+  },
+  "reference_track": {
+    "slug": "track:1-1",
+    "type": "track",
+    "name": "1/1"
+  },
   "influences": [
     {
       "slug": "artist:pierre-schaeffer",

@@ -105,6 +105,19 @@
       "name": "Samba Italiano"
     }
   ],
+  "landmark_project": {
+    "slug": "project:adoniran-barbosa-e-convidados",
+    "type": "project",
+    "name": "Adoniran Barbosa e Convidados",
+    "mbid": "d7f1289a-e019-4bf8-aaf9-95bd401c9800",
+    "year": "1975",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:trem-das-onze",
+    "type": "track",
+    "name": "Trem das Onze"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

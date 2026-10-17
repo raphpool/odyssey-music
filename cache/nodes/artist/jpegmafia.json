@@ -125,6 +125,16 @@
       "name": "Bald!"
     }
   ],
+  "landmark_project": {
+    "slug": "project:black-ben-carson",
+    "type": "project",
+    "name": "Black Ben Carson"
+  },
+  "reference_track": {
+    "slug": "track:jesus-forgive-me-i-am-a-thot",
+    "type": "track",
+    "name": "Jesus Forgive Me, I Am a Thot"
+  },
   "influences": [
     {
       "slug": "artist:kanye-west",
@@ -182,5 +192,6 @@
       "name": "Peggy"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

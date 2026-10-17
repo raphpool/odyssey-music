@@ -92,6 +92,12 @@
       "artist": "Deep Purple"
     }
   ],
+  "reference_track": {
+    "slug": "track:haunted--deep-purple",
+    "type": "track",
+    "name": "Haunted",
+    "artist": "Deep Purple"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

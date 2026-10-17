@@ -587,9 +587,23 @@
       "name": "Around the Way Girl"
     }
   ],
+  "landmark_project": {
+    "slug": "project:todd-smith",
+    "type": "project",
+    "name": "Todd Smith",
+    "mbid": "0b3296f5-4445-3e8c-aef5-edfb65979234",
+    "year": "2006",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:mama-said-knock-you-out",
+    "type": "track",
+    "name": "Mama Said Knock You Out"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

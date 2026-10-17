@@ -147,6 +147,19 @@
       "name": "Café del Mar"
     }
   ],
+  "landmark_project": {
+    "slug": "project:souvenir",
+    "type": "project",
+    "name": "Souvenir",
+    "mbid": "152bf780-ea78-39c1-80bb-7f659468a9a8",
+    "year": "1998",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:cafe-del-mar",
+    "type": "track",
+    "name": "Café del Mar"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

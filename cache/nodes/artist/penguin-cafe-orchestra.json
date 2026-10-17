@@ -90,6 +90,16 @@
       "name": "Perpetuum Mobile"
     }
   ],
+  "landmark_project": {
+    "slug": "project:music-from-the-penguin-cafe",
+    "type": "project",
+    "name": "Music from the Penguin Cafe"
+  },
+  "reference_track": {
+    "slug": "track:music-for-a-found-harmonium",
+    "type": "track",
+    "name": "Music for a Found Harmonium"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

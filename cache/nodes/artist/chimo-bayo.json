@@ -124,6 +124,19 @@
       "name": "La Fiesta del Fuego"
     }
   ],
+  "landmark_project": {
+    "slug": "project:asi-me-gusta-a-mi",
+    "type": "project",
+    "name": "Así me gusta a mí",
+    "mbid": "22e8960d-9121-335c-bfb8-4bec29feaaac",
+    "year": "1991",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:asi-me-gusta-a-mi",
+    "type": "track",
+    "name": "Así me gusta a mí"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -64,6 +64,16 @@
       "name": "Life Is Something Special"
     }
   ],
+  "landmark_project": {
+    "slug": "project:life-is-something-special",
+    "type": "project",
+    "name": "Life Is Something Special"
+  },
+  "reference_track": {
+    "slug": "track:don-t-make-me-wait",
+    "type": "track",
+    "name": "Don't Make Me Wait"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -79,5 +89,6 @@
       "type": "artist",
       "name": "Bernard Fowler"
     }
-  ]
+  ],
+  "similar_artists": []
 }

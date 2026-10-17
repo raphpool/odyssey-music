@@ -98,6 +98,16 @@
       "name": "All Blues"
     }
   ],
+  "landmark_project": {
+    "slug": "project:birth-of-the-cool",
+    "type": "project",
+    "name": "Birth of the Cool"
+  },
+  "reference_track": {
+    "slug": "track:so-what",
+    "type": "track",
+    "name": "So What"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

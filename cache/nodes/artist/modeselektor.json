@@ -103,6 +103,16 @@
       "name": "The Dark Side of the Sun"
     }
   ],
+  "landmark_project": {
+    "slug": "project:monkeytown",
+    "type": "project",
+    "name": "Monkeytown"
+  },
+  "reference_track": {
+    "slug": "track:shipwreck",
+    "type": "track",
+    "name": "Shipwreck"
+  },
   "influences": [],
   "influenced": [
     {

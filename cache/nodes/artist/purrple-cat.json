@@ -517,6 +517,19 @@
       "name": "1 A.M Study Session"
     }
   ],
+  "landmark_project": {
+    "slug": "project:nostalgia-and-moving-on",
+    "type": "project",
+    "name": "Nostalgia and Moving On",
+    "mbid": "07f774d6-c66c-4bd4-887f-c3d1dd43c63b",
+    "year": "2019",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:1-a-m-study-session",
+    "type": "track",
+    "name": "1 A.M Study Session"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

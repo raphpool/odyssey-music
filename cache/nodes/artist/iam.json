@@ -62,6 +62,17 @@
       "artist": "IAM"
     }
   ],
+  "landmark_project": {
+    "slug": "project:de-la-planete-mars",
+    "type": "project",
+    "name": "De la planète Mars"
+  },
+  "reference_track": {
+    "slug": "track:tam-tam-de-l-afrique--iam",
+    "type": "track",
+    "name": "Tam Tam de l'Afrique",
+    "artist": "IAM"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

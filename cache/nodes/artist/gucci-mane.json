@@ -724,6 +724,19 @@
       "name": "Black Beatles"
     }
   ],
+  "landmark_project": {
+    "slug": "project:trap-house",
+    "type": "project",
+    "name": "Trap House",
+    "mbid": "d566cfdc-c6dc-3755-b693-55af67d81f9a",
+    "year": "2005",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:black-beatles",
+    "type": "track",
+    "name": "Black Beatles"
+  },
   "influences": [],
   "influenced": [
     {
@@ -781,5 +794,6 @@
       "name": "East Atlanta Santa"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -94,6 +94,16 @@
       "artist": "John Lennon"
     }
   ],
+  "landmark_project": {
+    "slug": "project:wonderwall-music",
+    "type": "project",
+    "name": "Wonderwall Music"
+  },
+  "reference_track": {
+    "slug": "track:my-sweet-lord",
+    "type": "track",
+    "name": "My Sweet Lord"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

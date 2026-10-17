@@ -112,6 +112,18 @@
       "name": "Alberto Balsalm"
     }
   ],
+  "landmark_project": {
+    "slug": "project:richard-d-james-album--richard-d-james",
+    "type": "project",
+    "name": "Richard D. James Album",
+    "artist": "Richard D. James"
+  },
+  "reference_track": {
+    "slug": "track:xtal--richard-d-james",
+    "type": "track",
+    "name": "Xtal",
+    "artist": "Richard D. James"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

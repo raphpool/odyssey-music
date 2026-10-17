@@ -117,6 +117,16 @@
       "name": "This Is What It Feels Like"
     }
   ],
+  "landmark_project": {
+    "slug": "project:76",
+    "type": "project",
+    "name": "76 (2003)"
+  },
+  "reference_track": {
+    "slug": "track:blue-fear",
+    "type": "track",
+    "name": "Blue Fear"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -613,6 +613,19 @@
       "name": "Trancescript"
     }
   ],
+  "landmark_project": {
+    "slug": "project:acperience",
+    "type": "project",
+    "name": "Acperience",
+    "mbid": "b62bc10f-6b91-3a67-9916-31b8885bae7f",
+    "year": "1993",
+    "releaseType": "ep"
+  },
+  "reference_track": {
+    "slug": "track:hardtrance-acperience",
+    "type": "track",
+    "name": "Hardtrance Acperience"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

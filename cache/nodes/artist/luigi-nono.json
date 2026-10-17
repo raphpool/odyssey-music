@@ -70,6 +70,16 @@
       "name": "Intolleranza 1960"
     }
   ],
+  "landmark_project": {
+    "slug": "project:intolleranza-1960",
+    "type": "project",
+    "name": "Intolleranza 1960"
+  },
+  "reference_track": {
+    "slug": "track:il-canto-sospeso",
+    "type": "track",
+    "name": "Il canto sospeso"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

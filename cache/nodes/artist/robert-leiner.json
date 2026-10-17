@@ -81,6 +81,16 @@
       "name": "Neuromancer"
     }
   ],
+  "landmark_project": {
+    "slug": "project:visions-of-the-past",
+    "type": "project",
+    "name": "Visions of the Past"
+  },
+  "reference_track": {
+    "slug": "track:neuromancer",
+    "type": "track",
+    "name": "Neuromancer"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

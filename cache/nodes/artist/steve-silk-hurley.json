@@ -36,6 +36,11 @@
       "name": "Jack Your Body"
     }
   ],
+  "reference_track": {
+    "slug": "track:jack-your-body--steve-silk-hurley",
+    "type": "track",
+    "name": "Jack Your Body"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -93,6 +93,16 @@
       "artist": "John Lennon"
     }
   ],
+  "landmark_project": {
+    "slug": "project:imagine",
+    "type": "project",
+    "name": "Imagine"
+  },
+  "reference_track": {
+    "slug": "track:give-peace-a-chance",
+    "type": "track",
+    "name": "Give Peace a Chance"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
