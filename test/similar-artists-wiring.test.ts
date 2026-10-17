@@ -41,7 +41,8 @@ function artist(name: string, extra: Partial<ArtistNode> = {}): ArtistNode {
 	};
 }
 
-const TECHNO: EdgeRef = { type: "genre", slug: "genre:techno" as Slug, name: "Techno" };
+// A common collaborator: since TRA-603 one shared genre is no longer a link strong enough for the graph fallback.
+const GO_BETWEEN: EdgeRef = { type: "artist", slug: "artist:go-between" as Slug, name: "Go Between" };
 
 describe("makeSimilarArtistsResolver (TRA-480)", () => {
 	let dir: string;
@@ -79,7 +80,7 @@ describe("makeSimilarArtistsResolver (TRA-480)", () => {
 	});
 
 	it("falls back to the graph, asking ListenBrainz only once, when it has nothing", async () => {
-		await cache.write(artist("Peer", { genres: [TECHNO] }));
+		await cache.write(artist("Peer", { collaborators: [GO_BETWEEN] }));
 		await cache.write(artist("Stranger"));
 		const fetch = lbFetch(503);
 		const resolve = makeSimilarArtistsResolver({
@@ -88,14 +89,14 @@ describe("makeSimilarArtistsResolver (TRA-480)", () => {
 			fetch: fetch as unknown as typeof globalThis.fetch,
 		});
 
-		const edges = await resolve(artist("Subject", { mbid: SUBJECT_MBID, genres: [TECHNO] }));
+		const edges = await resolve(artist("Subject", { mbid: SUBJECT_MBID, collaborators: [GO_BETWEEN] }));
 
 		expect(edges.map((e) => e.slug)).toEqual(["artist:peer"]);
 		expect(fetch).toHaveBeenCalledTimes(1);
 	});
 
 	it("uses the graph alone, with no network call, for an artist without mbid", async () => {
-		await cache.write(artist("Peer", { genres: [TECHNO] }));
+		await cache.write(artist("Peer", { collaborators: [GO_BETWEEN] }));
 		const fetch = lbFetch(200);
 		const resolve = makeSimilarArtistsResolver({
 			cache,
@@ -103,7 +104,7 @@ describe("makeSimilarArtistsResolver (TRA-480)", () => {
 			fetch: fetch as unknown as typeof globalThis.fetch,
 		});
 
-		const edges = await resolve(artist("Subject", { genres: [TECHNO] }));
+		const edges = await resolve(artist("Subject", { collaborators: [GO_BETWEEN] }));
 
 		expect(edges.map((e) => e.slug)).toEqual(["artist:peer"]);
 		expect(fetch).not.toHaveBeenCalled();

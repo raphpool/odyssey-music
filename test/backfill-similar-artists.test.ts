@@ -41,7 +41,8 @@ function lbFetch(answer: Answer): MockFetch {
 	}) as unknown as MockFetch;
 }
 const lbDown = (): MockFetch => lbFetch(() => new Response("", { status: 503 }));
-const house = (): ReturnType<typeof edge>[] => [edge("genre", "house", "House")];
+// The strong link of the graph fallback (TRA-603): a common collaborator. One shared genre is no longer enough.
+const shared = (): ReturnType<typeof edge>[] => [edge("artist", "go-between", "Go Between")];
 
 let dir: string;
 let scratch: string;
@@ -131,8 +132,8 @@ describe("similar_artists backfill (TRA-490)", () => {
 		});
 
 		it("falls back to the graph for an artist without mbid, without any request", async () => {
-			await putArtist("seed", "Seed", { genres: house() });
-			await putArtist("peer", "Peer", { genres: house() });
+			await putArtist("seed", "Seed", { collaborators: shared() });
+			await putArtist("peer", "Peer", { collaborators: shared() });
 			const fetchFn = lbDown();
 
 			const result = await run({ fetch: fetchFn });
@@ -150,8 +151,8 @@ describe("similar_artists backfill (TRA-490)", () => {
 			["a network error", () => Promise.reject(new TypeError("fetch failed")), "lb-unavailable"],
 			["a 404", () => new Response("", { status: 404 }), "lb-rejected"],
 		] as const)("falls back to the graph on %s: counted, not an error", async (_label, answer, reason) => {
-			await putArtist("seed", "Seed", { mbid: mb(1), genres: house() });
-			await putArtist("peer", "Peer", { genres: house() });
+			await putArtist("seed", "Seed", { mbid: mb(1), collaborators: shared() });
+			await putArtist("peer", "Peer", { collaborators: shared() });
 			// Five more artists ListenBrainz answers (nothing): 1 request in 6 unavailable stays under the threshold.
 			for (let i = 20; i < 25; i++) await putArtist(`calm-${i}`, `Calm ${i}`, { mbid: mb(i) });
 
@@ -170,9 +171,9 @@ describe("similar_artists backfill (TRA-490)", () => {
 		});
 
 		it("never uses an invalid answer: not an array, or rows that fail the schema", async () => {
-			await putArtist("seed", "Seed", { mbid: mb(1), genres: house() });
-			await putArtist("peer", "Peer", { genres: house() });
-			await putArtist("other", "Other", { mbid: mb(9), genres: house() });
+			await putArtist("seed", "Seed", { mbid: mb(1), collaborators: shared() });
+			await putArtist("peer", "Peer", { collaborators: shared() });
+			await putArtist("other", "Other", { mbid: mb(9), collaborators: shared() });
 			const answers: Record<string, unknown> = {
 				[mb(1)]: { error: "oops", artists: [row(5, "Evil", 9)] },
 				[mb(9)]: [
@@ -237,8 +238,8 @@ describe("similar_artists backfill (TRA-490)", () => {
 		});
 
 		it("falls back to the graph when every candidate was unsafe", async () => {
-			await putArtist("seed", "Seed", { mbid: mb(1), genres: house() });
-			await putArtist("nirvana", "Nirvana", { mbid: mb(50), genres: house() });
+			await putArtist("seed", "Seed", { mbid: mb(1), collaborators: shared() });
+			await putArtist("nirvana", "Nirvana", { mbid: mb(50), collaborators: shared() });
 
 			const result = await run({ fetch: lbFetch(() => jsonResponse([row(2, "Nirvana", 100)])) });
 
@@ -266,7 +267,7 @@ describe("similar_artists backfill (TRA-490)", () => {
 			const seed = await putArtist("seed", "Seed", {
 				mbid: mb(1),
 				editorial_bio: 'Bio with "quotes", accents éè and a\nnewline.',
-				genres: house(),
+				collaborators: shared(),
 			});
 			// A key order that is NOT the schema's: similar_artists first.
 			const { similar_artists, ...rest } = seed;
@@ -361,8 +362,8 @@ describe("similar_artists backfill (TRA-490)", () => {
 		it("gives the channel's contract and the distribution, sorted, with no timestamp", async () => {
 			await putArtist("zed", "Zed", { mbid: mb(1) });
 			await putArtist("alpha", "Alpha", { mbid: mb(2) });
-			await putArtist("mid", "Mid", { mbid: mb(3), genres: house() });
-			await putArtist("friend", "Friend", { genres: house() });
+			await putArtist("mid", "Mid", { mbid: mb(3), collaborators: shared() });
+			await putArtist("friend", "Friend", { collaborators: shared() });
 			await putArtist("lonely", "Lonely");
 			const answers: Record<string, () => Response> = {
 				[mb(1)]: () => jsonResponse([row(10, "Out One", 3)]),
@@ -382,6 +383,7 @@ describe("similar_artists backfill (TRA-490)", () => {
 				counts: { listenbrainz: 2, graph: 2, none: 1, kept: 0, errors: 0 },
 				fallbacks: { "no-mbid": 2, "lb-unavailable": 1, "lb-rejected": 0, "lb-no-usable-edge": 0 },
 				unsafeCandidates: 0,
+				ambiguousSlugs: [],
 				edgeDigests: {
 					"artist:alpha": expect.stringMatching(/^[0-9a-f]{16}$/),
 					"artist:friend": expect.stringMatching(/^[0-9a-f]{16}$/),
@@ -403,8 +405,8 @@ describe("similar_artists backfill (TRA-490)", () => {
 
 	describe("--force and --resume", () => {
 		it("--force replaces a fallback by ListenBrainz's answer once it is back", async () => {
-			await putArtist("seed", "Seed", { mbid: mb(1), genres: house() });
-			await putArtist("peer", "Peer", { genres: house() });
+			await putArtist("seed", "Seed", { mbid: mb(1), collaborators: shared() });
+			await putArtist("peer", "Peer", { collaborators: shared() });
 			await run({ fetch: lbDown() });
 			expect((await read("artist:seed")).similar_artists.map((e) => e.slug)).toEqual(["artist:peer"]);
 
@@ -532,7 +534,7 @@ describe("similar_artists backfill (TRA-490)", () => {
 		});
 
 		it("drops Laetitia Sadier (ae ligature) when another artist holds artist:laetitia-sadier", async () => {
-			await putArtist("seed", "Seed", { mbid: mb(1), genres: house() });
+			await putArtist("seed", "Seed", { mbid: mb(1), collaborators: shared() });
 			await putArtist("laetitia-sadier", "Lætitia Sadier", { mbid: mb(70) });
 			// No redirect entry here: the cached node alone, found under its canonical slug, must stop it.
 
@@ -560,8 +562,8 @@ describe("similar_artists backfill (TRA-490)", () => {
 		});
 
 		it("keeps the cached slug of an artist reached by MBID, and the graph's edges, untouched by the rewrite", async () => {
-			await putArtist("seed", "Seed", { mbid: mb(1), genres: house() });
-			await putArtist("lindstrom", "Hans-Peter Lindstrøm", { mbid: mb(90), genres: house() });
+			await putArtist("seed", "Seed", { mbid: mb(1), collaborators: shared() });
+			await putArtist("lindstrom", "Hans-Peter Lindstrøm", { mbid: mb(90), collaborators: shared() });
 
 			await run({
 				fetch: lbFetch((id) => jsonResponse(id === mb(1) ? [row(90, "Hans-Peter Lindstrøm", 9)] : [])),
@@ -608,8 +610,8 @@ describe("similar_artists backfill (TRA-490)", () => {
 
 	describe("--force: a dry-run's manifest then --force --apply --resume", () => {
 		it("does not skip a node that carries graph edges while the manifest announced ListenBrainz's", async () => {
-			await putArtist("seed", "Seed", { mbid: mb(1), genres: house() });
-			await putArtist("peer", "Peer", { genres: house() });
+			await putArtist("seed", "Seed", { mbid: mb(1), collaborators: shared() });
+			await putArtist("peer", "Peer", { collaborators: shared() });
 			await run({ fetch: lbDown() }); // apply, service down: seed carries the graph's edge
 			expect((await read("artist:seed")).similar_artists.map((e) => e.slug)).toEqual(["artist:peer"]);
 
@@ -624,6 +626,112 @@ describe("similar_artists backfill (TRA-490)", () => {
 			expect((await read("artist:seed")).similar_artists.map((e) => e.slug)).toEqual(["artist:real-peer"]);
 			expect(applied.manifest.listenbrainz).toEqual(["artist:seed"]);
 			expect(applied.written).toHaveLength(1);
+		});
+	});
+
+	describe("a canonical slug that stands for two MBIDs (TRA-603)", () => {
+		const winks = (id: string) => {
+			if (id === mb(1)) return [row(60, "Wink", 9), row(61, "Only For One", 8)];
+			if (id === mb(2)) return [row(62, "Wink", 9), row(63, "Only For Two", 8)];
+			return [];
+		};
+
+		it("drops every edge to artist:wink when two nodes of the run name two different MBIDs, and lists it", async () => {
+			await putArtist("juan-atkins", "Juan Atkins", { mbid: mb(1) });
+			await putArtist("junko-ohashi", "Junko Ohashi", { mbid: mb(2) });
+
+			const result = await run({ fetch: lbFetch((id) => jsonResponse(winks(id))) });
+
+			expect((await read("artist:juan-atkins")).similar_artists.map((e) => e.slug)).toEqual([
+				"artist:only-for-one",
+			]);
+			expect((await read("artist:junko-ohashi")).similar_artists.map((e) => e.slug)).toEqual([
+				"artist:only-for-two",
+			]);
+			expect(result.manifest.ambiguousSlugs).toEqual([
+				{ slug: "artist:wink", mbids: [mb(60), mb(62)].sort(), dropped: 2 },
+			]);
+			expect(result.manifest.listenbrainz).toEqual(["artist:juan-atkins", "artist:junko-ohashi"]);
+		});
+
+		it("does not depend on the order of the run: the first one seen is dropped too", async () => {
+			await putArtist("a-first", "A First", { mbid: mb(2) });
+			await putArtist("z-last", "Z Last", { mbid: mb(1) });
+
+			await run({ fetch: lbFetch((id) => jsonResponse(winks(id))) });
+
+			for (const slug of ["artist:a-first", "artist:z-last"]) {
+				expect((await read(slug)).similar_artists.map((e) => e.slug)).not.toContain("artist:wink");
+			}
+		});
+
+		it("also counts the edges already in the cache: a new edge to a slug held there under another MBID is dropped", async () => {
+			const existing = [edge("artist", "wink", "Wink", { mbid: mb(60) })];
+			await putArtist("old", "Old", { similar_artists: existing });
+			await putArtist("seed", "Seed", { mbid: mb(2) });
+			const before = await raw("artist:old");
+
+			const result = await run({ fetch: lbFetch((id) => jsonResponse(winks(id))) });
+
+			expect(await raw("artist:old")).toBe(before); // what is already there is not this run's to rewrite
+			expect((await read("artist:seed")).similar_artists.map((e) => e.slug)).toEqual(["artist:only-for-two"]);
+			expect(result.manifest.ambiguousSlugs).toEqual([
+				{ slug: "artist:wink", mbids: [mb(60), mb(62)].sort(), dropped: 1 },
+			]);
+		});
+
+		it("is not a collision when the two edges name the same MBID", async () => {
+			await putArtist("one", "One", { mbid: mb(1) });
+			await putArtist("two", "Two", { mbid: mb(2) });
+			const same = (id: string) => jsonResponse(id === mb(1) || id === mb(2) ? [row(60, "Wink", 9)] : []);
+
+			const result = await run({ fetch: lbFetch(same) });
+
+			expect(result.manifest.ambiguousSlugs).toEqual([]);
+			for (const slug of ["artist:one", "artist:two"]) {
+				expect((await read(slug)).similar_artists.map((e) => e.slug)).toEqual(["artist:wink"]);
+			}
+		});
+
+		it("counts the edges a --force node keeps on disk even when its ListenBrainz answer is all discarded (review of #527)", async () => {
+			// A already carries artist:wink -> MBID 60. Its ListenBrainz answer is a single row ("MO") that the
+			// client turns into artist:m and the script then drops (artist:mo, the canonical slug, is an alias of A):
+			// source stays listenbrainz with no edge, A falls back to the graph, finds nothing, and keeps its old edges.
+			const kept = [edge("artist", "wink", "Wink", { mbid: mb(60) })];
+			await putArtist("a", "A", {
+				mbid: mb(1),
+				similar_artists: kept,
+				aliases: [edge("artist", "mo", "MØ")],
+			});
+			await putArtist("b", "B", { mbid: mb(2) });
+			const before = await raw("artist:a");
+			const answer = (id: string) =>
+				jsonResponse(id === mb(1) ? [row(61, "MØ", 9)] : id === mb(2) ? [row(62, "Wink", 9)] : []);
+
+			const result = await run({ force: true, fetch: lbFetch(answer) });
+
+			expect(await raw("artist:a")).toBe(before); // A keeps MBID 60 on disk
+			expect(result.manifest.kept.map((k) => k.slug)).toEqual(["artist:a"]);
+			// B proposed MBID 62 for the same slug: dropped, so artist:wink never stands for two people.
+			expect((await read("artist:b")).similar_artists).toEqual([]);
+			expect(result.manifest.ambiguousSlugs).toEqual([
+				{ slug: "artist:wink", mbids: [mb(60), mb(62)].sort(), dropped: 1 },
+			]);
+		});
+
+		it("falls back to the graph when the collision leaves nothing of ListenBrainz's answer", async () => {
+			await putArtist("one", "One", { mbid: mb(1), collaborators: shared() });
+			await putArtist("peer", "Peer", { collaborators: shared() });
+			await putArtist("two", "Two", { mbid: mb(2) });
+			const onlyWink = (id: string) =>
+				jsonResponse(id === mb(1) ? [row(60, "Wink", 9)] : id === mb(2) ? [row(62, "Wink", 9)] : []);
+
+			const result = await run({ fetch: lbFetch(onlyWink) });
+
+			expect((await read("artist:one")).similar_artists.map((e) => e.slug)).toEqual(["artist:peer"]);
+			expect(result.manifest.graph).toContainEqual({ slug: "artist:one", reason: "lb-no-usable-edge" });
+			expect(result.manifest.none).toContainEqual({ slug: "artist:two", reason: "lb-no-usable-edge" });
+			expect(result.manifest.ambiguousSlugs.map((a) => a.slug)).toEqual(["artist:wink"]);
 		});
 	});
 

@@ -124,10 +124,69 @@ function countCommon(a: ReadonlySet<string>, b: ReadonlySet<string>): number {
 	return n;
 }
 
+// 2026-10-17 (TRA-603, review of the repository run of TRA-490, 127 artists served by the graph fallback,
+// 24 false edges out of about 90). The first scoring was 3 per common collaborator, 2 per common label, 1 per
+// common genre, any score above 0 kept, ties broken alphabetically. One wide genre or one major label was
+// enough: Kabza De Small got 7 false edges out of 10 (generic house), The Peech Boys 7 (the Island catalogue),
+// Gucci Mane 4 (Aretha Franklin, Chic), Ralf Hutter -> Calvin Harris, Schoenberg -> Paul McCartney; and the
+// alphabetical tie-break put "A Guy Called Gerald" in 32 of the 127 lists.
+//
+// A first fix weighed a genre by 1 / log2(1 + n). Measured on the cache the same day it was too severe and
+// still wrong: Burial lost Joy Orbison and Loefah (two niche genres, 0.48 < 2) while Gucci Mane kept Aretha
+// Franklin, Chic and Bernard Edwards through Atlantic Records (11 artists, under the cap of a major). What
+// separates a real neighbour from a false one is not how rare a genre is but whether it is a niche at all, and
+// that a label alone proves nothing: a label only counts between artists who also share a niche genre.
+//
+// The second fix (one niche genre at 40 carriers) gave 2 false edges instead of 24, but the review of the same
+// day listed the good neighbours it lost: Sean Booth without Rob Brown (the other half of Autechre), Steve
+// Rutter without Mike Golding (B12), Boris without Sunn O))), Mayhem without Darkthrone, Guy without Bell Biv
+// DeVoe, Killer Kau without Kabza De Small, and idm (45 carriers) and ambient (41) cut off in a cache centred on
+// electronic music. Hence the direct link between two artists (a duo must not lose its other half) and tiers of
+// genre specificity (10 carriers or fewer, up to 60, above). A third version let a genre of 10 carriers or fewer
+// stand alone, and measured: classical (5 carriers) linked Schoenberg to Paul McCartney and Joe Hisaishi, swing (2)
+// Guy to Frank Sinatra, psychedelic-rock (9) Keiji Haino to Pink Floyd, The Byrds and Jane's Addiction. In a cache
+// this small a count of carriers says how rare a tag is here, not how specific it is.
+//
+// So the weights no longer decide who is admitted, they only order. A candidate is admitted when one of these holds:
+//   - a common collaborator, or a direct link between the two artists;
+//   - at least two common genres of non-zero weight;
+//   - one common genre of non-zero weight and a common indie label.
+// A single genre never is enough, whatever its tier, and a label alone never is either. A genre is counted without
+// the artist itself, so that a new sheet (not yet in the cache) and the backfill (where it is) get the same answer.
+
+/** A genre carried by at most this many artists of `others` (the artist excluded) is a niche: weight 2. */
+export const GENRE_NICHE_MAX_CARRIERS = 10;
+/** A genre carried by more than this many artists of `others` (the artist excluded) is too wide to say anything: weight 0. */
+export const GENRE_MAX_CARRIERS = 60;
+/** A label cited by at most this many artists of `others` is an indie; more is a major (Island, Columbia): it does not count. */
+export const LABEL_MAX_CARRIERS = 15;
+/** Weight of a common collaborator, and of a direct link between the two artists; either admits a candidate alone. */
+export const COLLABORATOR_WEIGHT = 3;
+/** Weight of a common niche genre (GENRE_NICHE_MAX_CARRIERS carriers or fewer). Orders, never admits alone. */
+export const NICHE_GENRE_WEIGHT = 2;
+/** Weight of a common genre carried by GENRE_NICHE_MAX_CARRIERS + 1 to GENRE_MAX_CARRIERS artists. Orders, never admits alone. */
+export const GENRE_WEIGHT = 1;
+/** Weight of a common indie label (see LABEL_MAX_CARRIERS), counted only next to a common genre of non-zero weight. */
+export const LABEL_WEIGHT = 2;
+/** Common genres of non-zero weight that admit a candidate without a collaborator link or a label. */
+export const MIN_COMMON_GENRES = 2;
+
+function countCarriers(sets: readonly ReadonlySet<string>[]): Map<string, number> {
+	const counts = new Map<string, number>();
+	for (const set of sets) for (const slug of set) counts.set(slug, (counts.get(slug) ?? 0) + 1);
+	return counts;
+}
+
 /**
- * Artists of `others` that share structure with `artist`: 3 per common collaborator, 2 per common label,
- * 1 per common genre (by slug). The artist, its aliases and its members never appear; score 0 is
- * dropped; ordered by score desc then name asc. Deliberately one-way: no inverse edge is implied.
+ * Artists of `others` that share structure with `artist`. Admitted: a candidate with a collaborator link (a
+ * common collaborator, or a direct one: the candidate in `artist.collaborators` or the artist in
+ * `candidate.collaborators`), or with MIN_COMMON_GENRES common genres of non-zero weight, or with one such genre
+ * and a common label cited by at most LABEL_MAX_CARRIERS artists of `others`. A single genre never admits, and
+ * nor does a label alone. The list may be shorter than 10, or empty. The score only orders: 3 per collaborator
+ * link (each common one, plus the direct one), 2 per common genre carried by at most GENRE_NICHE_MAX_CARRIERS
+ * artists of `others`, 1 up to GENRE_MAX_CARRIERS, else 0, and 2 per indie label next to such a genre. The artist
+ * itself is not counted among the carriers. Ordered by score desc, then number of common genres desc, then name asc. The artist, its
+ * aliases and its members never appear. Deliberately one-way: no inverse edge is implied.
  */
 export function computeSimilarFromGraph(
 	artist: ArtistNode,
@@ -142,21 +201,69 @@ export function computeSimilarFromGraph(
 	const labels = slugSet(artist.labels);
 	const genres = slugSet(artist.genres);
 
-	const seen = new Set<string>();
-	const candidates: SimilarCandidate[] = [];
+	// One pass to dedupe `others` (it may be a one-shot iterable) and one to count who carries what.
+	const unique = new Map<
+		string,
+		{ node: ArtistNode; collaborators: Set<string>; labels: Set<string>; genres: Set<string> }
+	>();
 	for (const other of others) {
-		if (excluded.has(other.slug) || seen.has(other.slug)) continue;
-		seen.add(other.slug);
-		const score =
-			3 * countCommon(collaborators, slugSet(other.collaborators)) +
-			2 * countCommon(labels, slugSet(other.labels)) +
-			countCommon(genres, slugSet(other.genres));
-		if (score <= 0) continue;
-		const candidate: SimilarCandidate = { name: other.name, score, slug: other.slug };
-		if (other.mbid) candidate.mbid = other.mbid;
-		candidates.push(candidate);
+		if (!unique.has(other.slug)) {
+			unique.set(other.slug, {
+				node: other,
+				collaborators: slugSet(other.collaborators),
+				labels: slugSet(other.labels),
+				genres: slugSet(other.genres),
+			});
+		}
 	}
-	return candidates.sort((a, b) => b.score - a.score || (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
+	const counted = [...unique.values()].filter((u) => u.node.slug !== artist.slug);
+	const labelCarriers = countCarriers(counted.map((u) => u.labels));
+	const genreCarriers = countCarriers(counted.map((u) => u.genres));
+
+	const ranked: { candidate: SimilarCandidate; commonGenres: number }[] = [];
+	for (const [
+		slug,
+		{ node, collaborators: otherCollaborators, labels: otherLabels, genres: otherGenres },
+	] of unique) {
+		if (excluded.has(slug)) continue;
+		const commonCollaborators = countCommon(collaborators, otherCollaborators);
+		const directLink = collaborators.has(slug) || otherCollaborators.has(artist.slug);
+		const collaboratorLink = commonCollaborators > 0 || directLink;
+		let commonGenres = 0;
+		let genreScore = 0;
+		let weightedGenres = 0;
+		for (const genre of genres) {
+			if (!otherGenres.has(genre)) continue;
+			commonGenres++;
+			const carriers = genreCarriers.get(genre) ?? 0;
+			if (carriers <= GENRE_NICHE_MAX_CARRIERS) genreScore += NICHE_GENRE_WEIGHT;
+			else if (carriers <= GENRE_MAX_CARRIERS) genreScore += GENRE_WEIGHT;
+			if (carriers <= GENRE_MAX_CARRIERS) weightedGenres++;
+		}
+		let score = COLLABORATOR_WEIGHT * commonCollaborators + genreScore;
+		if (directLink) score += COLLABORATOR_WEIGHT;
+		let indieLabel = false;
+		if (weightedGenres > 0) {
+			for (const label of labels) {
+				if (otherLabels.has(label) && (labelCarriers.get(label) ?? 0) <= LABEL_MAX_CARRIERS) {
+					score += LABEL_WEIGHT;
+					indieLabel = true;
+				}
+			}
+		}
+		if (!collaboratorLink && weightedGenres < MIN_COMMON_GENRES && !indieLabel) continue;
+		const candidate: SimilarCandidate = { name: node.name, score, slug: node.slug };
+		if (node.mbid) candidate.mbid = node.mbid;
+		ranked.push({ candidate, commonGenres });
+	}
+	return ranked
+		.sort(
+			(a, b) =>
+				b.candidate.score - a.candidate.score ||
+				b.commonGenres - a.commonGenres ||
+				(a.candidate.name < b.candidate.name ? -1 : a.candidate.name > b.candidate.name ? 1 : 0),
+		)
+		.map((r) => r.candidate);
 }
 
 // True when every letter of the name is Latin. makeSlug only keeps [a-z0-9], so a name in another

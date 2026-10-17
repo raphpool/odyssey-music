@@ -81,10 +81,11 @@ function makeFixture(): Fixture {
 	writeFileSync(callsLog, "");
 
 	writeNode(repoCacheDir, node("genre:only-repo", "only-repo"));
-	const house = [{ slug: "genre:only-repo", type: "genre", name: "only-repo" }];
-	writeNode(repoCacheDir, node("artist:flash", "Flash", { genres: house }));
-	writeNode(repoCacheDir, node("artist:spark", "Spark", { genres: house }));
+	const shared = [{ slug: "artist:loner", type: "artist", name: "Loner" }];
+	writeNode(repoCacheDir, node("artist:flash", "Flash", { collaborators: shared }));
+	writeNode(repoCacheDir, node("artist:spark", "Spark", { collaborators: shared }));
 	writeNode(repoCacheDir, node("artist:loner", "Loner"));
+	writeNode(repoCacheDir, node("artist:nobody", "Nobody"));
 	writeNode(repoCacheDir, node("project:bare", "Bare"));
 	mkdirSync(join(dirname(repoCacheDir), "data"), { recursive: true });
 	writeFileSync(
@@ -230,19 +231,22 @@ describe("migration channel: the similar_artists backfill (TRA-490)", () => {
 			removed: [],
 			renamed: {},
 			redirects: {},
-			counts: { listenbrainz: 0, graph: 2, none: 1, kept: 0, errors: 0 },
-			fallbacks: { "no-mbid": 3, "lb-unavailable": 0, "lb-rejected": 0, "lb-no-usable-edge": 0 },
+			counts: { listenbrainz: 0, graph: 3, none: 1, kept: 0, errors: 0 },
+			fallbacks: { "no-mbid": 4, "lb-unavailable": 0, "lb-rejected": 0, "lb-no-usable-edge": 0 },
 			unsafeCandidates: 0,
+			ambiguousSlugs: [],
 			edgeDigests: {
 				"artist:flash": expect.stringMatching(/^[0-9a-f]{16}$/),
+				"artist:loner": expect.stringMatching(/^[0-9a-f]{16}$/),
 				"artist:spark": expect.stringMatching(/^[0-9a-f]{16}$/),
 			},
 			listenbrainz: [],
 			graph: [
 				{ slug: "artist:flash", reason: "no-mbid" },
+				{ slug: "artist:loner", reason: "no-mbid" },
 				{ slug: "artist:spark", reason: "no-mbid" },
 			],
-			none: [{ slug: "artist:loner", reason: "no-mbid" }],
+			none: [{ slug: "artist:nobody", reason: "no-mbid" }],
 			kept: [],
 			errors: [],
 		});
