@@ -74,5 +74,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:richie-hawtin",
+      "type": "artist",
+      "name": "Richie Hawtin",
+      "mbid": "76da816f-ea05-4172-ad9e-ffb69c32199f"
+    },
+    {
+      "slug": "artist:plastikman",
+      "type": "artist",
+      "name": "Plastikman",
+      "mbid": "abee98f6-5239-4abf-bbe6-e1e2815a0dd6"
+    },
+    {
+      "slug": "artist:speedy-j",
+      "type": "artist",
+      "name": "Speedy J",
+      "mbid": "734fa82c-864e-468b-bee4-944cb4b1952b"
+    },
+    {
+      "slug": "artist:pete-namlook",
+      "type": "artist",
+      "name": "Pete Namlook",
+      "mbid": "a7e2051b-f66d-4e44-8320-526957d4ec02"
+    },
+    {
+      "slug": "artist:john-acquaviva",
+      "type": "artist",
+      "name": "John Acquaviva",
+      "mbid": "928e71ac-c6f6-4ffe-b9cc-ccfd1d19b124"
+    },
+    {
+      "slug": "artist:sven-vath",
+      "type": "artist",
+      "name": "Sven Väth",
+      "mbid": "14008378-5900-4370-831e-3d17f9749caf"
+    },
+    {
+      "slug": "artist:chris-liebing",
+      "type": "artist",
+      "name": "Chris Liebing",
+      "mbid": "86a1c458-2d97-42cd-a142-a8fee30ae4a1"
+    },
+    {
+      "slug": "artist:basic-channel",
+      "type": "artist",
+      "name": "Basic Channel",
+      "mbid": "d145a57e-7afb-4793-8cc4-2fad292374ef"
+    },
+    {
+      "slug": "artist:porter-ricks",
+      "type": "artist",
+      "name": "Porter Ricks",
+      "mbid": "f2c0d29a-9bef-469f-af6e-a9b5deb21308"
+    },
+    {
+      "slug": "artist:rhythm-and-sound",
+      "type": "artist",
+      "name": "Rhythm & Sound",
+      "mbid": "0bf220da-eb15-4bf2-9460-f640aaeda272"
+    }
+  ]
 }

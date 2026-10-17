@@ -254,5 +254,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:astor-piazzolla",
+      "type": "artist",
+      "name": "Astor Piazzolla",
+      "mbid": "e280268a-a5ab-4bb0-be4d-ec470ca59131"
+    },
+    {
+      "slug": "artist:anibal-troilo",
+      "type": "artist",
+      "name": "Aníbal Troilo",
+      "mbid": "9a7f8969-387f-4161-b643-4b0e733f8d64"
+    },
+    {
+      "slug": "artist:osvaldo-pugliese",
+      "type": "artist",
+      "name": "Osvaldo Pugliese",
+      "mbid": "813a79f0-1878-466a-831b-cec332ba510c"
+    },
+    {
+      "slug": "artist:mercedes-sosa",
+      "type": "artist",
+      "name": "Mercedes Sosa",
+      "mbid": "324b9329-7be6-491f-9ee1-65bfa10c7577"
+    },
+    {
+      "slug": "artist:julio-sosa",
+      "type": "artist",
+      "name": "Julio Sosa",
+      "mbid": "a9c6a721-367c-4a5a-9e69-62498f6386eb"
+    },
+    {
+      "slug": "artist:silvio-rodriguez",
+      "type": "artist",
+      "name": "Silvio Rodríguez",
+      "mbid": "42e1a761-429e-403c-971a-e85c2f748cfa"
+    },
+    {
+      "slug": "artist:francisco-canaro",
+      "type": "artist",
+      "name": "Francisco Canaro",
+      "mbid": "a7389752-9e5d-406d-9a02-9141600e4315"
+    },
+    {
+      "slug": "artist:roberto-goyeneche",
+      "type": "artist",
+      "name": "Roberto Goyeneche",
+      "mbid": "03da2ea1-bf64-4052-a15e-d18c6f9f637a"
+    },
+    {
+      "slug": "artist:adriana-varela",
+      "type": "artist",
+      "name": "Adriana Varela",
+      "mbid": "61ba9eed-0fe9-499b-8dbe-88a7d7c1ff27"
+    },
+    {
+      "slug": "artist:otros-aires",
+      "type": "artist",
+      "name": "Otros Aires",
+      "mbid": "cc9dda02-a13f-4b00-a300-2b1ed67f00cd"
+    }
+  ]
 }

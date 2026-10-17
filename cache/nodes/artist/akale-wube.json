@@ -184,5 +184,66 @@
       "name": "David Georgelet"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:manu-dibango",
+      "type": "artist",
+      "name": "Manu Dibango",
+      "mbid": "826b488f-5164-45ca-abc4-ab11b3c321eb"
+    },
+    {
+      "slug": "artist:mulatu-astatke",
+      "type": "artist",
+      "name": "ሙላቱ አስታጥቄ",
+      "mbid": "67f0c7ca-14e8-47a3-be0e-bd2f2ffe25bb"
+    },
+    {
+      "slug": "artist:genet-asefa",
+      "type": "artist",
+      "name": "Genet Asefa",
+      "mbid": "684c7b7f-ca42-4b0d-89d0-da5b865c262d"
+    },
+    {
+      "slug": "artist:karl-hector-and-the-malcouns",
+      "type": "artist",
+      "name": "Karl Hector & the Malcouns",
+      "mbid": "187f64cc-ebbc-4f87-b53e-169bc6ad84f6"
+    },
+    {
+      "slug": "artist:the-heliocentrics",
+      "type": "artist",
+      "name": "The Heliocentrics",
+      "mbid": "f221328f-bc6b-40f1-a750-ce11a1321489"
+    },
+    {
+      "slug": "artist:the-budos-band",
+      "type": "artist",
+      "name": "The Budos Band",
+      "mbid": "b6fa9b9b-41cf-45a6-adc0-0a4c9a8c0d3c"
+    },
+    {
+      "slug": "artist:the-sorcerers",
+      "type": "artist",
+      "name": "The Sorcerers",
+      "mbid": "2e7291f1-7335-48d2-ad37-be656d031880"
+    },
+    {
+      "slug": "artist:tony-allen",
+      "type": "artist",
+      "name": "Tony Allen",
+      "mbid": "ea524cc6-191a-4c05-ab88-3bb5c0880ca5"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:john-coltrane",
+      "type": "artist",
+      "name": "John Coltrane",
+      "mbid": "b625448e-bf4a-41c3-a421-72ad46cdb831"
+    }
+  ]
 }

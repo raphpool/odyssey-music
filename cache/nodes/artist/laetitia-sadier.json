@@ -81,5 +81,66 @@
       "name": "Stereolab"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:atlas-sound",
+      "type": "artist",
+      "name": "Atlas Sound",
+      "mbid": "1a02453e-5f86-4220-abd6-1d889d2fa517"
+    },
+    {
+      "slug": "artist:noah-lennox",
+      "type": "artist",
+      "name": "Noah Lennox",
+      "mbid": "90358962-58da-4987-8dfc-ca3417002039"
+    },
+    {
+      "slug": "artist:common",
+      "type": "artist",
+      "name": "Common",
+      "mbid": "c0a1179b-b14a-4d68-a3c1-1fdab16ed602"
+    },
+    {
+      "slug": "artist:beach-house",
+      "type": "artist",
+      "name": "Beach House",
+      "mbid": "d5cc67b8-1cc4-453b-96e8-44487acdebea"
+    },
+    {
+      "slug": "artist:juana-molina",
+      "type": "artist",
+      "name": "Juana Molina",
+      "mbid": "eca5dd0e-edc7-4658-85f0-762e263b4acd"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:jenn-wasner",
+      "type": "artist",
+      "name": "Jenn Wasner",
+      "mbid": "c7616574-4d5d-425d-b45e-5b9392e8661c"
+    },
+    {
+      "slug": "artist:panda-bear",
+      "type": "artist",
+      "name": "Panda Bear",
+      "mbid": "fd3c3f9f-a471-498e-ab3a-940ac20b6bbd"
+    },
+    {
+      "slug": "artist:awkwafina",
+      "type": "artist",
+      "name": "Awkwafina",
+      "mbid": "f35da7e6-09f1-4dd7-ac7c-bee4c72c3bf5"
+    },
+    {
+      "slug": "artist:dart-chillz",
+      "type": "artist",
+      "name": "Dart Chillz",
+      "mbid": "8c6cc16b-1ea1-4ced-9c6f-e6cd2c22b7cc"
+    }
+  ]
 }

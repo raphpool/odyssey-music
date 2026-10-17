@@ -149,5 +149,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:belle-and-sebastian",
+      "type": "artist",
+      "name": "Belle and Sebastian",
+      "mbid": "e5c7b94f-e264-473c-bb0f-37c85d4d5c70"
+    },
+    {
+      "slug": "artist:feist",
+      "type": "artist",
+      "name": "Feist",
+      "mbid": "a670e05a-cea8-4b37-bce9-d82daf1a0fa4"
+    },
+    {
+      "slug": "artist:sufjan-stevens",
+      "type": "artist",
+      "name": "Sufjan Stevens",
+      "mbid": "01d3c51b-9b98-418a-8d8e-37f6fab59d8c"
+    },
+    {
+      "slug": "artist:elliott-smith",
+      "type": "artist",
+      "name": "Elliott Smith",
+      "mbid": "03ad1736-b7c9-412a-b442-82536d63a5c4"
+    },
+    {
+      "slug": "artist:pj-harvey",
+      "type": "artist",
+      "name": "PJ Harvey",
+      "mbid": "e795e03d-b5d5-4a5f-834d-162cfb308a2c"
+    },
+    {
+      "slug": "artist:iron-and-wine",
+      "type": "artist",
+      "name": "Iron & Wine",
+      "mbid": "c3f28da8-662d-4f09-bdc7-3084bf685930"
+    },
+    {
+      "slug": "artist:arcade-fire",
+      "type": "artist",
+      "name": "Arcade Fire",
+      "mbid": "52074ba6-e495-4ef3-9bb4-0703888a9f68"
+    },
+    {
+      "slug": "artist:beck",
+      "type": "artist",
+      "name": "Beck",
+      "mbid": "309c62ba-7a22-4277-9f67-4a162526d18a"
+    },
+    {
+      "slug": "artist:the-shins",
+      "type": "artist",
+      "name": "The Shins",
+      "mbid": "6c8b9855-ba8b-48f9-ac1d-42167f7f7b18"
+    }
+  ]
 }

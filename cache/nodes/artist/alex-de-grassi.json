@@ -78,5 +78,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:william-ackerman",
+      "type": "artist",
+      "name": "William Ackerman",
+      "mbid": "5155c952-8353-4e75-a56e-12e67aefdcb3"
+    },
+    {
+      "slug": "artist:michael-hedges",
+      "type": "artist",
+      "name": "Michael Hedges",
+      "mbid": "fbaba2b0-3a6f-41b1-9ecd-f89c1a666e99"
+    },
+    {
+      "slug": "artist:george-winston",
+      "type": "artist",
+      "name": "George Winston",
+      "mbid": "a6b93c3c-88bc-431c-a46c-155dee9371aa"
+    },
+    {
+      "slug": "artist:liz-story",
+      "type": "artist",
+      "name": "Liz Story",
+      "mbid": "7bee0ff4-2513-4f25-9099-5b3c59281c05"
+    },
+    {
+      "slug": "artist:jim-brickman",
+      "type": "artist",
+      "name": "Jim Brickman",
+      "mbid": "e573ad8c-d829-4c68-a9be-0d4460cca073"
+    },
+    {
+      "slug": "artist:steve-erquiaga",
+      "type": "artist",
+      "name": "Steve Erquiaga",
+      "mbid": "9df3cdb8-3595-4e80-b154-f64f3c1275bb"
+    },
+    {
+      "slug": "artist:leo-kottke",
+      "type": "artist",
+      "name": "Leo Kottke",
+      "mbid": "1a21878d-05b1-4983-a059-7cf3abee04b7"
+    },
+    {
+      "slug": "artist:philip-aaberg",
+      "type": "artist",
+      "name": "Philip Aaberg",
+      "mbid": "086321ef-15b3-434a-a57b-9f0de3023161"
+    },
+    {
+      "slug": "artist:john-renbourn",
+      "type": "artist",
+      "name": "John Renbourn",
+      "mbid": "4e64ce27-3326-49ac-abf0-494c63979c96"
+    },
+    {
+      "slug": "artist:nightnoise",
+      "type": "artist",
+      "name": "Nightnoise",
+      "mbid": "91d35928-5983-4653-b552-5cafb314b465"
+    }
+  ]
 }

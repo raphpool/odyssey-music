@@ -132,5 +132,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:miles-davis",
+      "type": "artist",
+      "name": "Miles Davis",
+      "mbid": "561d854a-6a28-4aa7-8c99-323e6ce46c2a"
+    },
+    {
+      "slug": "artist:john-coltrane",
+      "type": "artist",
+      "name": "John Coltrane",
+      "mbid": "b625448e-bf4a-41c3-a421-72ad46cdb831"
+    },
+    {
+      "slug": "artist:duke-ellington",
+      "type": "artist",
+      "name": "Duke Ellington",
+      "mbid": "3af06bc4-68ad-4cae-bb7a-7eeeb45e411f"
+    },
+    {
+      "slug": "artist:dizzy-gillespie",
+      "type": "artist",
+      "name": "Dizzy Gillespie",
+      "mbid": "e9ba8ccb-505f-4e5c-b909-65998d0d35b5"
+    },
+    {
+      "slug": "artist:charles-mingus",
+      "type": "artist",
+      "name": "Charles Mingus",
+      "mbid": "f3b8e107-abe8-4743-b6a3-4a4ee995e71f"
+    },
+    {
+      "slug": "artist:chet-baker",
+      "type": "artist",
+      "name": "Chet Baker",
+      "mbid": "1ba1d493-7114-45e2-b163-a36d49a0c065"
+    },
+    {
+      "slug": "artist:louis-armstrong",
+      "type": "artist",
+      "name": "Louis Armstrong",
+      "mbid": "eea8a864-fcda-4602-9569-38ab446decd6"
+    },
+    {
+      "slug": "artist:thelonious-monk",
+      "type": "artist",
+      "name": "Thelonious Monk",
+      "mbid": "8e8c7417-c905-46b1-b42a-5260b4274ed4"
+    },
+    {
+      "slug": "artist:billie-holiday",
+      "type": "artist",
+      "name": "Billie Holiday",
+      "mbid": "d59c4cda-11d9-48db-8bfe-b557ee602aed"
+    },
+    {
+      "slug": "artist:ella-fitzgerald",
+      "type": "artist",
+      "name": "Ella Fitzgerald",
+      "mbid": "54799c0e-eb45-4eea-996d-c4d71a63c499"
+    }
+  ]
 }

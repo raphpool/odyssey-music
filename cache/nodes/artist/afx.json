@@ -113,5 +113,65 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:luke-vibert",
+      "type": "artist",
+      "name": "Luke Vibert",
+      "mbid": "0b59a279-54ef-4723-854e-a12b61e9581a"
+    },
+    {
+      "slug": "artist:ceephax-acid-crew",
+      "type": "artist",
+      "name": "Ceephax Acid Crew",
+      "mbid": "f226bcd7-114e-418f-8fa5-e24a47a89cf5"
+    },
+    {
+      "slug": "artist:dmx-krew",
+      "type": "artist",
+      "name": "DMX Krew",
+      "mbid": "a3494b6a-32b5-416c-8dea-dce62c8e9244"
+    },
+    {
+      "slug": "artist:the-tuss",
+      "type": "artist",
+      "name": "The Tuss",
+      "mbid": "09292e4d-b7ad-476b-86d9-7806303ef8c3"
+    },
+    {
+      "slug": "artist:cylob",
+      "type": "artist",
+      "name": "Cylob",
+      "mbid": "2256228e-8253-45ad-974e-39ae914c5586"
+    },
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas",
+      "mbid": "3e2fb7a8-195a-4d9e-b042-6451ee1e6b8d"
+    },
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ-Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
+    },
+    {
+      "slug": "artist:global-goon",
+      "type": "artist",
+      "name": "Global Goon",
+      "mbid": "d11ea373-77ed-46eb-96a8-b70ea633081e"
+    },
+    {
+      "slug": "artist:mike-and-rich",
+      "type": "artist",
+      "name": "Mike & Rich"
+    },
+    {
+      "slug": "artist:squarepusher",
+      "type": "artist",
+      "name": "Squarepusher",
+      "mbid": "4d86ad4e-28d8-4e9f-8cf4-735c57060fdc"
+    }
+  ]
 }

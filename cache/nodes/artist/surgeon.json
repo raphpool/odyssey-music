@@ -70,5 +70,37 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:chris-liebing",
+      "type": "artist",
+      "name": "Chris Liebing",
+      "mbid": "86a1c458-2d97-42cd-a142-a8fee30ae4a1"
+    },
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas",
+      "mbid": "3e2fb7a8-195a-4d9e-b042-6451ee1e6b8d"
+    },
+    {
+      "slug": "artist:richie-hawtin",
+      "type": "artist",
+      "name": "Richie Hawtin",
+      "mbid": "76da816f-ea05-4172-ad9e-ffb69c32199f"
+    },
+    {
+      "slug": "artist:speedy-j",
+      "type": "artist",
+      "name": "Speedy J",
+      "mbid": "734fa82c-864e-468b-bee4-944cb4b1952b"
+    },
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ-Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
+    }
+  ]
 }

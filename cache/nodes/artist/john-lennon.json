@@ -114,5 +114,66 @@
       "name": "The Beatles"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones",
+      "mbid": "b071f9fa-14b0-4217-8e97-eb41da73f598"
+    },
+    {
+      "slug": "artist:queen",
+      "type": "artist",
+      "name": "Queen",
+      "mbid": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
+    },
+    {
+      "slug": "artist:bob-dylan",
+      "type": "artist",
+      "name": "Bob Dylan",
+      "mbid": "72c536dc-7137-4477-a521-567eeb840fa8"
+    },
+    {
+      "slug": "artist:led-zeppelin",
+      "type": "artist",
+      "name": "Led Zeppelin",
+      "mbid": "678d88b2-87b0-403b-b63d-5da7465aecc3"
+    },
+    {
+      "slug": "artist:paul-mccartney",
+      "type": "artist",
+      "name": "Paul McCartney",
+      "mbid": "ba550d0e-adac-4864-b88b-407cab5e76af"
+    },
+    {
+      "slug": "artist:elton-john",
+      "type": "artist",
+      "name": "Elton John",
+      "mbid": "b83bc61f-8451-4a5d-8b8e-7e9ed295e822"
+    },
+    {
+      "slug": "artist:the-beach-boys",
+      "type": "artist",
+      "name": "The Beach Boys",
+      "mbid": "ebfc1398-8d96-47e3-82c3-f782abcdb13d"
+    },
+    {
+      "slug": "artist:the-who",
+      "type": "artist",
+      "name": "The Who",
+      "mbid": "9fdaa16b-a6c4-4831-b87c-bc9ca8ce7eaa"
+    }
+  ]
 }

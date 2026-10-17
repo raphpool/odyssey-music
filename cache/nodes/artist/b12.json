@@ -121,5 +121,45 @@
       "name": "Steve Rutter"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:atom-heart",
+      "type": "artist",
+      "name": "Atom Heart"
+    },
+    {
+      "slug": "artist:the-black-dog",
+      "type": "artist",
+      "name": "The Black Dog",
+      "mbid": "a78d2a35-c083-4179-a5d8-49f84e5ec863"
+    },
+    {
+      "slug": "artist:marcus-eoin",
+      "type": "artist",
+      "name": "Marcus Eoin",
+      "mbid": "74edfdf2-4e76-4031-ae9b-16f1c7b4ba06"
+    },
+    {
+      "slug": "artist:mike-and-rich",
+      "type": "artist",
+      "name": "Mike & Rich"
+    },
+    {
+      "slug": "artist:richard-d-james",
+      "type": "artist",
+      "name": "Richard D. James",
+      "mbid": "79a09151-f6cc-48f9-9907-3fdd0b68373f"
+    },
+    {
+      "slug": "artist:the-future-sound-of-london",
+      "type": "artist",
+      "name": "The Future Sound of London",
+      "mbid": "a1d77dd4-8728-4a47-bdfa-9663d791139c"
+    }
+  ]
 }

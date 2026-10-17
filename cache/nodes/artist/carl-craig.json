@@ -150,5 +150,66 @@
       "name": "Paperclip People"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:booka-shade",
+      "type": "artist",
+      "name": "Booka Shade",
+      "mbid": "9940c604-2456-4193-a403-ab18420bc1e9"
+    },
+    {
+      "slug": "artist:model-500",
+      "type": "artist",
+      "name": "Model 500",
+      "mbid": "e569aee8-33ff-48e5-b0ed-4ceba1a37714"
+    },
+    {
+      "slug": "artist:jeff-mills",
+      "type": "artist",
+      "name": "Jeff Mills",
+      "mbid": "470a4ced-1323-4c91-8fd5-0bb3fb4c932a"
+    },
+    {
+      "slug": "artist:agoria",
+      "type": "artist",
+      "name": "Agoria",
+      "mbid": "90ba97be-5daf-4365-8704-9a74b780591b"
+    },
+    {
+      "slug": "artist:robert-hood",
+      "type": "artist",
+      "name": "Robert Hood",
+      "mbid": "e8a61400-baf7-4fb3-a3e3-c9e7b665547f"
+    },
+    {
+      "slug": "artist:kenny-larkin",
+      "type": "artist",
+      "name": "Kenny Larkin",
+      "mbid": "ed8e364a-6087-4425-bd58-6b146893c4b4"
+    },
+    {
+      "slug": "artist:trentemoller",
+      "type": "artist",
+      "name": "Trentemøller",
+      "mbid": "95e9aba6-f85c-48a0-9ec9-395d4f0e3875"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:drexciya",
+      "type": "artist",
+      "name": "Drexciya",
+      "mbid": "66f398bf-ae55-4f13-b993-fa871c57157f"
+    }
+  ]
 }

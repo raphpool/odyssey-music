@@ -83,5 +83,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:sunn-o",
+      "type": "artist",
+      "name": "Sunn O)))",
+      "mbid": "1d3da898-4fb4-4445-b704-cd7315e01789"
+    },
+    {
+      "slug": "artist:swans",
+      "type": "artist",
+      "name": "Swans",
+      "mbid": "3285dc48-9505-469d-ad8a-bdf2d3dba632"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:coil",
+      "type": "artist",
+      "name": "Coil",
+      "mbid": "c16fbb7e-57b1-462c-97c5-bd0e11248765"
+    },
+    {
+      "slug": "artist:venetian-snares",
+      "type": "artist",
+      "name": "Venetian Snares",
+      "mbid": "56abaa47-0101-463b-b37e-e961136fec39"
+    },
+    {
+      "slug": "artist:melvins",
+      "type": "artist",
+      "name": "Melvins",
+      "mbid": "9ccfbc94-a4f4-42f7-b6f5-d903ab77cccb"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:ulver",
+      "type": "artist",
+      "name": "Ulver",
+      "mbid": "7d209631-ccb8-4a87-8516-64abe4c22dba"
+    },
+    {
+      "slug": "artist:death-grips",
+      "type": "artist",
+      "name": "Death Grips",
+      "mbid": "f9133036-ab3d-4e97-bd11-7a2c98ad148a"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
+    }
+  ]
 }

@@ -100,5 +100,36 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:grobschnitt",
+      "type": "artist",
+      "name": "Grobschnitt",
+      "mbid": "666fd16d-d9f9-4eff-80ed-a064d5bbca7c"
+    },
+    {
+      "slug": "artist:tangerine-dream",
+      "type": "artist",
+      "name": "Tangerine Dream",
+      "mbid": "23d8426c-18c7-46e6-a51d-7395bd43c641"
+    },
+    {
+      "slug": "artist:mike-oldfield",
+      "type": "artist",
+      "name": "Mike Oldfield",
+      "mbid": "a1684a49-feaa-4150-b758-d9412fc59f12"
+    },
+    {
+      "slug": "artist:cluster",
+      "type": "artist",
+      "name": "Cluster",
+      "mbid": "393ce5ee-4550-48e2-97f9-50a47a74bdc1"
+    },
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze",
+      "mbid": "2e710b0c-6ff3-4c21-87d5-16ebbbca212c"
+    }
+  ]
 }

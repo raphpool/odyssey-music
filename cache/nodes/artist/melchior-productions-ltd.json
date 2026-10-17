@@ -76,5 +76,17 @@
       "name": "Thomas Melchior"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:zip",
+      "type": "artist",
+      "name": "Zip"
+    },
+    {
+      "slug": "artist:sonja-moonear",
+      "type": "artist",
+      "name": "Sonja Moonear",
+      "mbid": "d6c86545-6fae-41b0-be0c-7a614190360b"
+    }
+  ]
 }

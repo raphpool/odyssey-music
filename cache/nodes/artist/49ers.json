@@ -310,5 +310,66 @@
       "name": "Alysha Warren"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:ice-mc",
+      "type": "artist",
+      "name": "Ice MC",
+      "mbid": "fbd89fe5-c0d1-4539-9f12-f29e8f863782"
+    },
+    {
+      "slug": "artist:50-cent",
+      "type": "artist",
+      "name": "50 Cent",
+      "mbid": "8e68819d-71be-4e7d-b41d-f1df81b01d3f"
+    },
+    {
+      "slug": "artist:moby",
+      "type": "artist",
+      "name": "Moby",
+      "mbid": "8970d868-0723-483b-a75b-51088913d3d4"
+    },
+    {
+      "slug": "artist:black-box",
+      "type": "artist",
+      "name": "Black Box",
+      "mbid": "d73596bb-a8f8-4aae-a323-d881f5245149"
+    },
+    {
+      "slug": "artist:technotronic",
+      "type": "artist",
+      "name": "Technotronic",
+      "mbid": "62173ce5-37ef-41b1-86cd-45401a8955fc"
+    },
+    {
+      "slug": "artist:ac-dc",
+      "type": "artist",
+      "name": "AC/DC",
+      "mbid": "66c662b6-6e2f-4930-8610-912e24c63ed1"
+    },
+    {
+      "slug": "artist:abba",
+      "type": "artist",
+      "name": "ABBA",
+      "mbid": "d87e52c5-bb8d-4da8-b941-9f4928627dc8"
+    },
+    {
+      "slug": "artist:inner-city",
+      "type": "artist",
+      "name": "Inner City",
+      "mbid": "65a8e571-8a08-433f-a5bf-ead38c269ea6"
+    },
+    {
+      "slug": "artist:c-c-music-factory",
+      "type": "artist",
+      "name": "C+C Music Factory",
+      "mbid": "c9d4f63d-6c2c-47ae-84fe-819001e3d3ea"
+    },
+    {
+      "slug": "artist:deee-lite",
+      "type": "artist",
+      "name": "Deee‐Lite",
+      "mbid": "83d401e8-3322-4491-98d3-ec3a567c5047"
+    }
+  ]
 }

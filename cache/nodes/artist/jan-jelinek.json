@@ -161,5 +161,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre",
+      "mbid": "410c9baf-5469-44f6-9852-826524b80c61"
+    },
+    {
+      "slug": "artist:tim-hecker",
+      "type": "artist",
+      "name": "Tim Hecker",
+      "mbid": "c7ee3bc9-780c-42c0-91e9-4cd70ad692d3"
+    },
+    {
+      "slug": "artist:monolake",
+      "type": "artist",
+      "name": "Monolake",
+      "mbid": "cedf92fe-eba1-45e2-ba16-b1b6af5169b8"
+    },
+    {
+      "slug": "artist:biosphere",
+      "type": "artist",
+      "name": "Biosphere",
+      "mbid": "a5ee1ebe-a645-45d2-8319-d101fe62e581"
+    },
+    {
+      "slug": "artist:plaid",
+      "type": "artist",
+      "name": "Plaid",
+      "mbid": "7e54d133-2525-4bc0-ae94-65584145a386"
+    },
+    {
+      "slug": "artist:fennesz",
+      "type": "artist",
+      "name": "Fennesz",
+      "mbid": "a6f8d42d-d3ff-4268-8d39-ee01341733bb"
+    },
+    {
+      "slug": "artist:loscil",
+      "type": "artist",
+      "name": "Loscil",
+      "mbid": "4f2c565b-ac40-4678-ba61-4fcf3b97edbc"
+    },
+    {
+      "slug": "artist:pole",
+      "type": "artist",
+      "name": "Pole",
+      "mbid": "ad957b43-9dc0-42e1-940c-19b21ec77f3a"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:susumu-yokota",
+      "type": "artist",
+      "name": "Susumu Yokota",
+      "mbid": "7b05d6fe-91e8-4cb9-a401-2a13b1578716"
+    }
+  ]
 }

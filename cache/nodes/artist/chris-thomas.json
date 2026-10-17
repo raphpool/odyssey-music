@@ -100,5 +100,18 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:chrissie-hynde",
+      "type": "artist",
+      "name": "Chrissie Hynde",
+      "mbid": "a5d79c54-81c3-4a73-af6a-ad5c143d3f21"
+    },
+    {
+      "slug": "artist:sex-pistols",
+      "type": "artist",
+      "name": "Sex Pistols",
+      "mbid": "e5db18cb-4b1f-496d-a308-548b611090d3"
+    }
+  ]
 }

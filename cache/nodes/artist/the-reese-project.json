@@ -107,5 +107,35 @@
       "name": "Ann Saunderson"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:paris-grey",
+      "type": "artist",
+      "name": "Paris Grey",
+      "mbid": "4d11ce09-4ee7-4e95-9f54-4e9ca7e25707"
+    },
+    {
+      "slug": "artist:tronik-house",
+      "type": "artist",
+      "name": "Tronik House",
+      "mbid": "32c9b3e5-63e1-4cc9-bd77-812ed434926a"
+    },
+    {
+      "slug": "artist:carl-craig",
+      "type": "artist",
+      "name": "Carl Craig",
+      "mbid": "6732e9f3-5f24-4ba4-aef1-a2a49442b96b"
+    },
+    {
+      "slug": "artist:david-morales",
+      "type": "artist",
+      "name": "David Morales"
+    },
+    {
+      "slug": "artist:inner-city",
+      "type": "artist",
+      "name": "Inner City",
+      "mbid": "65a8e571-8a08-433f-a5bf-ead38c269ea6"
+    }
+  ]
 }

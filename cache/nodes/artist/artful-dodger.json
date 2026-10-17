@@ -79,5 +79,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:craig-david",
+      "type": "artist",
+      "name": "Craig David",
+      "mbid": "89e39f67-65cc-4f90-b145-b1b56c209f8a"
+    },
+    {
+      "slug": "artist:mj-cole",
+      "type": "artist",
+      "name": "MJ Cole",
+      "mbid": "6e5c1366-5891-4e01-bb13-6c8b2c8cdd35"
+    },
+    {
+      "slug": "artist:coldplay",
+      "type": "artist",
+      "name": "Coldplay",
+      "mbid": "cc197bad-dc9c-440d-a5b5-d52ba2e14234"
+    },
+    {
+      "slug": "artist:architechs",
+      "type": "artist",
+      "name": "Architechs",
+      "mbid": "cc05a3f5-7cb6-4471-819a-ded21bfcee87"
+    },
+    {
+      "slug": "artist:madonna",
+      "type": "artist",
+      "name": "Madonna",
+      "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287"
+    },
+    {
+      "slug": "artist:sweet-female-attitude",
+      "type": "artist",
+      "name": "Sweet Female Attitude",
+      "mbid": "0ace7725-f454-44c9-869d-c98b9c6a54a9"
+    },
+    {
+      "slug": "artist:rihanna",
+      "type": "artist",
+      "name": "Rihanna",
+      "mbid": "73e5e69d-3554-40d8-8516-00cb38737a1c"
+    },
+    {
+      "slug": "artist:mc-alistair",
+      "type": "artist",
+      "name": "MC Alistair",
+      "mbid": "ca706a4a-b08d-4a51-b6ff-975b229594a3"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    },
+    {
+      "slug": "artist:gabrielle",
+      "type": "artist",
+      "name": "Gabrielle",
+      "mbid": "d55fe7ec-3c7f-44e7-b9cc-b025c4351f70"
+    }
+  ]
 }

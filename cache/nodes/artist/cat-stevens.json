@@ -80,5 +80,12 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:haruomi-hosono",
+      "type": "artist",
+      "name": "Haruomi Hosono",
+      "mbid": "078be324-de92-4c72-9371-65bdcf324154"
+    }
+  ]
 }

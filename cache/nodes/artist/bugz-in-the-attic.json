@@ -248,5 +248,66 @@
       "name": "Matt Lord"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:hero-no-7",
+      "type": "artist",
+      "name": "Hero No.7",
+      "mbid": "2e174956-19eb-4c90-87ea-834a95c11b70"
+    },
+    {
+      "slug": "artist:dynamix-ii",
+      "type": "artist",
+      "name": "Dynamix II",
+      "mbid": "7a025186-92ea-40b4-8a9a-a6e452754033"
+    },
+    {
+      "slug": "artist:emilio-lopez",
+      "type": "artist",
+      "name": "Emilio Lopez",
+      "mbid": "04b2a47d-0399-4db7-b25c-bee4ace05a9d"
+    },
+    {
+      "slug": "artist:sandra-melody",
+      "type": "artist",
+      "name": "Sandra Melody",
+      "mbid": "cadd58fd-e4fa-49b7-bb0c-1e8ef27b4c1f"
+    },
+    {
+      "slug": "artist:j-rocc",
+      "type": "artist",
+      "name": "J‐Rocc",
+      "mbid": "75f94a97-f38e-4284-be50-960cd1a3c742"
+    },
+    {
+      "slug": "artist:flying-fish",
+      "type": "artist",
+      "name": "Flying Fish",
+      "mbid": "5bbe9f4a-df62-41a3-9a97-a2670baab2ab"
+    },
+    {
+      "slug": "artist:j-sands",
+      "type": "artist",
+      "name": "J Sands",
+      "mbid": "40575803-de3a-4de4-9e40-7e98746aa675"
+    },
+    {
+      "slug": "artist:dynamite-mc",
+      "type": "artist",
+      "name": "Dynamite MC",
+      "mbid": "c5830e94-bf0d-4320-85e9-3e2a30ec617d"
+    },
+    {
+      "slug": "artist:antoinette",
+      "type": "artist",
+      "name": "Antoinette",
+      "mbid": "955dae71-531c-414e-ba75-09490632a907"
+    },
+    {
+      "slug": "artist:reel-people",
+      "type": "artist",
+      "name": "Reel People",
+      "mbid": "7935ac9d-f99f-4659-8eb4-59dc1d20e811"
+    }
+  ]
 }

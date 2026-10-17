@@ -129,5 +129,66 @@
       "name": "Paul S. Denman"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:norah-jones",
+      "type": "artist",
+      "name": "Norah Jones",
+      "mbid": "985c709c-7771-4de3-9024-7bda29ebe3f9"
+    },
+    {
+      "slug": "artist:madonna",
+      "type": "artist",
+      "name": "Madonna",
+      "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287"
+    },
+    {
+      "slug": "artist:u2",
+      "type": "artist",
+      "name": "U2",
+      "mbid": "a3cb23fc-acd3-4ce0-8f36-1e5aa6a18432"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:coldplay",
+      "type": "artist",
+      "name": "Coldplay",
+      "mbid": "cc197bad-dc9c-440d-a5b5-d52ba2e14234"
+    },
+    {
+      "slug": "artist:sting",
+      "type": "artist",
+      "name": "Sting",
+      "mbid": "7944ed53-2a58-4035-9b93-140a71e41c34"
+    },
+    {
+      "slug": "artist:george-michael",
+      "type": "artist",
+      "name": "George Michael",
+      "mbid": "ccb8f30e-4d71-40c4-8b1d-846dafe73e2c"
+    },
+    {
+      "slug": "artist:amy-winehouse",
+      "type": "artist",
+      "name": "Amy Winehouse",
+      "mbid": "dfe9a7c4-8cf2-47f4-9dcb-d233c2b86ec3"
+    }
+  ]
 }

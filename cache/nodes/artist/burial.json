@@ -59,5 +59,49 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:clubroot",
+      "type": "artist",
+      "name": "Clubroot",
+      "mbid": "09721ba6-8972-4862-b272-b69465265de5"
+    },
+    {
+      "slug": "artist:horsepower-productions",
+      "type": "artist",
+      "name": "Horsepower Productions",
+      "mbid": "128e0f34-8eb9-4ead-b569-c3dbd89566bc"
+    },
+    {
+      "slug": "artist:joy-orbison",
+      "type": "artist",
+      "name": "Joy Orbison",
+      "mbid": "8542f9a4-bd91-4066-91cf-359d2d9950db"
+    },
+    {
+      "slug": "artist:loefah",
+      "type": "artist",
+      "name": "Loefah",
+      "mbid": "35d4519c-e1b8-4131-810f-042bb2ec748f"
+    },
+    {
+      "slug": "artist:sorrow",
+      "type": "artist",
+      "name": "Sorrow",
+      "mbid": "41525655-c37e-47a0-afc4-2388fb7548d7"
+    },
+    {
+      "slug": "artist:synkro",
+      "type": "artist",
+      "name": "Synkro",
+      "mbid": "242b5585-a436-4105-85cc-7ec195e96d26"
+    },
+    {
+      "slug": "artist:youngsta",
+      "type": "artist",
+      "name": "Youngsta",
+      "mbid": "df7bb489-3f43-4405-95b9-7dd2bb31072f"
+    }
+  ]
 }

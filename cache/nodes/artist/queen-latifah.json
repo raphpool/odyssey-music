@@ -338,5 +338,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-roots",
+      "type": "artist",
+      "name": "The Roots",
+      "mbid": "80b3cf5e-18fe-4c59-98c7-e5bb87210710"
+    },
+    {
+      "slug": "artist:de-la-soul",
+      "type": "artist",
+      "name": "De La Soul",
+      "mbid": "a8ebde98-7e91-46c7-992c-90039ba42017"
+    },
+    {
+      "slug": "artist:naughty-by-nature",
+      "type": "artist",
+      "name": "Naughty by Nature",
+      "mbid": "3bdcd49d-212e-4f4f-877a-eac1e4a2bddc"
+    },
+    {
+      "slug": "artist:lin-manuel-miranda",
+      "type": "artist",
+      "name": "Lin‐Manuel Miranda",
+      "mbid": "925c7673-0e85-410f-b7e4-d9705a7aa619"
+    },
+    {
+      "slug": "artist:coldcut",
+      "type": "artist",
+      "name": "Coldcut",
+      "mbid": "cedd2cc6-c77f-4104-b333-0547b29e0b71"
+    },
+    {
+      "slug": "artist:beastie-boys",
+      "type": "artist",
+      "name": "Beastie Boys",
+      "mbid": "9beb62b2-88db-4cea-801e-162cd344ee53"
+    },
+    {
+      "slug": "artist:kelly-clarkson",
+      "type": "artist",
+      "name": "Kelly Clarkson",
+      "mbid": "d339efbb-77b9-4147-ba9e-59f2f24550b2"
+    },
+    {
+      "slug": "artist:renee-zellweger",
+      "type": "artist",
+      "name": "Renée Zellweger",
+      "mbid": "01bdf8e1-36d1-4c2e-bab8-8cd2de4bb169"
+    },
+    {
+      "slug": "artist:snoop-dogg",
+      "type": "artist",
+      "name": "Snoop Dogg",
+      "mbid": "f90e8b26-9e52-4669-a5c9-e28529c47894"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    }
+  ]
 }

@@ -166,5 +166,66 @@
       "name": "Tom Rowlands"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:daft-punk",
+      "type": "artist",
+      "name": "Daft Punk",
+      "mbid": "056e4f3e-d505-4dad-8ec1-d04f521cbb56"
+    },
+    {
+      "slug": "artist:the-prodigy",
+      "type": "artist",
+      "name": "The Prodigy",
+      "mbid": "4a4ee089-93b1-4470-af9a-6ff575d32704"
+    },
+    {
+      "slug": "artist:massive-attack",
+      "type": "artist",
+      "name": "Massive Attack",
+      "mbid": "10adbe5e-a2c0-4bf3-8249-2b4cbf6e6ca8"
+    },
+    {
+      "slug": "artist:moby",
+      "type": "artist",
+      "name": "Moby",
+      "mbid": "8970d868-0723-483b-a75b-51088913d3d4"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:fatboy-slim",
+      "type": "artist",
+      "name": "Fatboy Slim",
+      "mbid": "34c63966-445c-4613-afe1-4f0e1e53ae9a"
+    },
+    {
+      "slug": "artist:gorillaz",
+      "type": "artist",
+      "name": "Gorillaz",
+      "mbid": "e21857d5-3256-4547-afb3-4b6ded592596"
+    },
+    {
+      "slug": "artist:royksopp",
+      "type": "artist",
+      "name": "Röyksopp",
+      "mbid": "1c70a3fc-fa3c-4be1-8b55-c3192db8a884"
+    },
+    {
+      "slug": "artist:air",
+      "type": "artist",
+      "name": "Air",
+      "mbid": "cb67438a-7f50-4f2b-a6f1-2bb2729fd538"
+    },
+    {
+      "slug": "artist:portishead",
+      "type": "artist",
+      "name": "Portishead",
+      "mbid": "8f6bd1e4-fbe1-4f50-aa9b-94c450ec0f11"
+    }
+  ]
 }

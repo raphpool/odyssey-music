@@ -84,5 +84,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:chase-and-status",
+      "type": "artist",
+      "name": "Chase & Status",
+      "mbid": "82e454e2-38ee-4e69-89a6-cc65167753d1"
+    },
+    {
+      "slug": "artist:dillinja",
+      "type": "artist",
+      "name": "Dillinja",
+      "mbid": "5d39821b-83ad-4c9a-bbaa-2ae32ab0f7b8"
+    },
+    {
+      "slug": "artist:sub-focus",
+      "type": "artist",
+      "name": "Sub Focus",
+      "mbid": "8cf49f40-b8fe-4a63-b4ea-f922d6145bb4"
+    },
+    {
+      "slug": "artist:high-contrast",
+      "type": "artist",
+      "name": "High Contrast",
+      "mbid": "889b69e3-7b18-4889-b953-9f2931597204"
+    },
+    {
+      "slug": "artist:dj-zinc",
+      "type": "artist",
+      "name": "DJ Zinc",
+      "mbid": "174d9bdb-4e9c-4c42-8e6a-a29db39bdda5"
+    },
+    {
+      "slug": "artist:dj-fresh",
+      "type": "artist",
+      "name": "DJ Fresh",
+      "mbid": "77049387-0580-4a3a-a05f-d12b5d6b5042"
+    },
+    {
+      "slug": "artist:ltj-bukem",
+      "type": "artist",
+      "name": "LTJ Bukem",
+      "mbid": "28c1b7b7-355a-48b1-b2c4-75b8eb8080ef"
+    },
+    {
+      "slug": "artist:bad-company-uk",
+      "type": "artist",
+      "name": "Bad Company UK",
+      "mbid": "eba5d39f-8cb7-4d54-871d-297e5d7f1aad"
+    },
+    {
+      "slug": "artist:krust",
+      "type": "artist",
+      "name": "Krust",
+      "mbid": "a12a225b-e835-42e2-aac1-00bd43a09662"
+    },
+    {
+      "slug": "artist:roni-size",
+      "type": "artist",
+      "name": "Roni Size",
+      "mbid": "2eeba1d4-f67d-45be-a22e-ab73e925aa43"
+    }
+  ]
 }

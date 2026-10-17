@@ -408,5 +408,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:anitta",
+      "type": "artist",
+      "name": "Anitta",
+      "mbid": "d606b860-cc03-4959-a3fd-3a24bccf2560"
+    },
+    {
+      "slug": "artist:ludmilla",
+      "type": "artist",
+      "name": "LUDMILLA",
+      "mbid": "cf71e106-1003-4390-8477-cf268229df66"
+    },
+    {
+      "slug": "artist:gloria-groove",
+      "type": "artist",
+      "name": "Gloria Groove",
+      "mbid": "30af9387-037c-4f4f-9a81-17c6d9f5a26e"
+    },
+    {
+      "slug": "artist:pabllo-vittar",
+      "type": "artist",
+      "name": "Pabllo Vittar",
+      "mbid": "d9550ac2-7bcf-4655-a3fe-24922e254a74"
+    },
+    {
+      "slug": "artist:ariana-grande",
+      "type": "artist",
+      "name": "Ariana Grande",
+      "mbid": "f4fdbb4c-e4b7-47a0-b83b-d91bbfcfa387"
+    },
+    {
+      "slug": "artist:aretuza-lovi",
+      "type": "artist",
+      "name": "Aretuza Lovi",
+      "mbid": "fb31707d-49e2-4731-b0b5-22cbb0461fa2"
+    },
+    {
+      "slug": "artist:demi-lovato",
+      "type": "artist",
+      "name": "Demi Lovato",
+      "mbid": "faf4cefb-036c-4c88-b93a-5b03dd0a0e6b"
+    },
+    {
+      "slug": "artist:karol-conka",
+      "type": "artist",
+      "name": "Karol Conká",
+      "mbid": "b3f4d9ea-8f7d-408c-9c5f-061e7ef9be46"
+    },
+    {
+      "slug": "artist:christina-aguilera",
+      "type": "artist",
+      "name": "Christina Aguilera",
+      "mbid": "b202beb7-99bd-47e7-8b72-195c8d72ebdd"
+    },
+    {
+      "slug": "artist:iza",
+      "type": "artist",
+      "name": "IZA",
+      "mbid": "de25f861-7578-49b2-b646-31d2c561d5ed"
+    }
+  ]
 }

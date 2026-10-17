@@ -109,5 +109,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:robert-hood",
+      "type": "artist",
+      "name": "Robert Hood",
+      "mbid": "e8a61400-baf7-4fb3-a3e3-c9e7b665547f"
+    },
+    {
+      "slug": "artist:drexciya",
+      "type": "artist",
+      "name": "Drexciya",
+      "mbid": "66f398bf-ae55-4f13-b993-fa871c57157f"
+    },
+    {
+      "slug": "artist:richie-hawtin",
+      "type": "artist",
+      "name": "Richie Hawtin",
+      "mbid": "76da816f-ea05-4172-ad9e-ffb69c32199f"
+    },
+    {
+      "slug": "artist:plastikman",
+      "type": "artist",
+      "name": "Plastikman",
+      "mbid": "abee98f6-5239-4abf-bbe6-e1e2815a0dd6"
+    },
+    {
+      "slug": "artist:joey-beltram",
+      "type": "artist",
+      "name": "Joey Beltram",
+      "mbid": "5330d6d0-711b-415b-93e4-071e46d0d5f2"
+    },
+    {
+      "slug": "artist:carl-craig",
+      "type": "artist",
+      "name": "Carl Craig",
+      "mbid": "6732e9f3-5f24-4ba4-aef1-a2a49442b96b"
+    },
+    {
+      "slug": "artist:underground-resistance",
+      "type": "artist",
+      "name": "Underground Resistance",
+      "mbid": "8dcd24c7-bf87-4f32-8e3f-7a79b3f25a85"
+    },
+    {
+      "slug": "artist:model-500",
+      "type": "artist",
+      "name": "Model 500",
+      "mbid": "e569aee8-33ff-48e5-b0ed-4ceba1a37714"
+    },
+    {
+      "slug": "artist:derrick-may",
+      "type": "artist",
+      "name": "Derrick May",
+      "mbid": "371c8525-8111-4497-83ba-1ead9d7ed148"
+    },
+    {
+      "slug": "artist:moby",
+      "type": "artist",
+      "name": "Moby",
+      "mbid": "8970d868-0723-483b-a75b-51088913d3d4"
+    }
+  ]
 }

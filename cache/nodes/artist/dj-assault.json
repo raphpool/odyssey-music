@@ -415,5 +415,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:dopplereffekt",
+      "type": "artist",
+      "name": "Dopplereffekt",
+      "mbid": "9a1994c7-40b8-49a2-a53a-03e8313bf17c"
+    },
+    {
+      "slug": "artist:aux-88",
+      "type": "artist",
+      "name": "AUX 88",
+      "mbid": "92317e0b-181b-4119-aba1-77261515daf8"
+    },
+    {
+      "slug": "artist:ectomorph",
+      "type": "artist",
+      "name": "Ectomorph",
+      "mbid": "00d4301c-871f-49ef-9d14-cc4812d6d0a4"
+    },
+    {
+      "slug": "artist:mr-de",
+      "type": "artist",
+      "name": "Mr. De’",
+      "mbid": "2bba63bc-bfbe-496c-a201-2287a6681318"
+    },
+    {
+      "slug": "artist:the-unknown-dj",
+      "type": "artist",
+      "name": "The Unknown DJ",
+      "mbid": "a6b92638-b9d8-4f8f-b471-d914c175d72e"
+    },
+    {
+      "slug": "artist:krafty-kuts",
+      "type": "artist",
+      "name": "Krafty Kuts",
+      "mbid": "d14416ef-2283-49ef-9118-d690613d0bc9"
+    },
+    {
+      "slug": "artist:nine-inch-nails",
+      "type": "artist",
+      "name": "Nine Inch Nails",
+      "mbid": "b7ffd2af-418f-4be2-bdd1-22f8b48613da"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:deekline-and-wizard",
+      "type": "artist",
+      "name": "Deekline & Wizard",
+      "mbid": "27bdf4e1-6d70-4ebb-86d0-99a76f150714"
+    },
+    {
+      "slug": "artist:oliver-dodd",
+      "type": "artist",
+      "name": "Oliver Dodd",
+      "mbid": "1e55803b-a34b-4529-b4a0-06a356d0dc3c"
+    }
+  ]
 }

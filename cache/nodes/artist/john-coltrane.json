@@ -188,5 +188,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:miles-davis",
+      "type": "artist",
+      "name": "Miles Davis",
+      "mbid": "561d854a-6a28-4aa7-8c99-323e6ce46c2a"
+    },
+    {
+      "slug": "artist:charles-mingus",
+      "type": "artist",
+      "name": "Charles Mingus",
+      "mbid": "f3b8e107-abe8-4743-b6a3-4a4ee995e71f"
+    },
+    {
+      "slug": "artist:thelonious-monk",
+      "type": "artist",
+      "name": "Thelonious Monk",
+      "mbid": "8e8c7417-c905-46b1-b42a-5260b4274ed4"
+    },
+    {
+      "slug": "artist:duke-ellington",
+      "type": "artist",
+      "name": "Duke Ellington",
+      "mbid": "3af06bc4-68ad-4cae-bb7a-7eeeb45e411f"
+    },
+    {
+      "slug": "artist:herbie-hancock",
+      "type": "artist",
+      "name": "Herbie Hancock",
+      "mbid": "27613b78-1b9d-4ec3-9db5-fa0743465fdd"
+    },
+    {
+      "slug": "artist:chet-baker",
+      "type": "artist",
+      "name": "Chet Baker",
+      "mbid": "1ba1d493-7114-45e2-b163-a36d49a0c065"
+    },
+    {
+      "slug": "artist:bill-evans",
+      "type": "artist",
+      "name": "Bill Evans",
+      "mbid": "8247a3f2-3a8e-4256-b322-6c57b03a4e36"
+    },
+    {
+      "slug": "artist:sonny-rollins",
+      "type": "artist",
+      "name": "Sonny Rollins",
+      "mbid": "3b47247e-5b57-49b6-a0ed-bad80243802a"
+    },
+    {
+      "slug": "artist:the-dave-brubeck-quartet",
+      "type": "artist",
+      "name": "The Dave Brubeck Quartet",
+      "mbid": "7bf711e9-4e69-4e08-b6e8-c0cb5805f1e7"
+    },
+    {
+      "slug": "artist:charlie-parker",
+      "type": "artist",
+      "name": "Charlie Parker",
+      "mbid": "c7356af9-9ea6-4a78-a55b-c73775716312"
+    }
+  ]
 }

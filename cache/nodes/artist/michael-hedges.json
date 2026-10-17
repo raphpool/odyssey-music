@@ -90,5 +90,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:william-ackerman",
+      "type": "artist",
+      "name": "William Ackerman",
+      "mbid": "5155c952-8353-4e75-a56e-12e67aefdcb3"
+    },
+    {
+      "slug": "artist:leo-kottke",
+      "type": "artist",
+      "name": "Leo Kottke",
+      "mbid": "1a21878d-05b1-4983-a059-7cf3abee04b7"
+    },
+    {
+      "slug": "artist:andy-mckee",
+      "type": "artist",
+      "name": "Andy McKee",
+      "mbid": "39d6c679-b41c-470c-a755-4566bde24063"
+    },
+    {
+      "slug": "artist:kaki-king",
+      "type": "artist",
+      "name": "Kaki King",
+      "mbid": "451f8f16-990a-412c-ab3a-b61e5d265b55"
+    },
+    {
+      "slug": "artist:trace-bundy",
+      "type": "artist",
+      "name": "Trace Bundy",
+      "mbid": "4fad3035-e539-4a59-bcf9-9530bbfffa8c"
+    },
+    {
+      "slug": "artist:craig-d-andrea",
+      "type": "artist",
+      "name": "Craig D'Andrea",
+      "mbid": "b604ca10-8fa2-46d6-939a-59acccb646c8"
+    },
+    {
+      "slug": "artist:antoine-dufour",
+      "type": "artist",
+      "name": "Antoine Dufour",
+      "mbid": "163dbbf3-4e39-4007-b930-e3648bb94906"
+    },
+    {
+      "slug": "artist:tommy-emmanuel",
+      "type": "artist",
+      "name": "Tommy Emmanuel",
+      "mbid": "50c629c6-6f22-4bf9-a3c2-f2855e6704be"
+    },
+    {
+      "slug": "artist:alex-de-grassi",
+      "type": "artist",
+      "name": "Alex de Grassi",
+      "mbid": "f940c4dd-f687-4c6a-872b-1cce3f78dc0a"
+    },
+    {
+      "slug": "artist:john-renbourn",
+      "type": "artist",
+      "name": "John Renbourn",
+      "mbid": "4e64ce27-3326-49ac-abf0-494c63979c96"
+    }
+  ]
 }

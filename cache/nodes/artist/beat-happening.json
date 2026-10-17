@@ -104,5 +104,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:sonic-youth",
+      "type": "artist",
+      "name": "Sonic Youth",
+      "mbid": "5cbef01b-cc35-4f52-af7b-d0df0c4f61b9"
+    },
+    {
+      "slug": "artist:dinosaur-jr",
+      "type": "artist",
+      "name": "Dinosaur Jr.",
+      "mbid": "77c167d2-4965-4421-830a-9815e4956475"
+    },
+    {
+      "slug": "artist:guided-by-voices",
+      "type": "artist",
+      "name": "Guided by Voices",
+      "mbid": "6c85f4c3-026c-4c16-9a7c-f546f42ed0fb"
+    },
+    {
+      "slug": "artist:pixies",
+      "type": "artist",
+      "name": "Pixies",
+      "mbid": "b6b2bb8d-54a9-491f-9607-7b546023b433"
+    },
+    {
+      "slug": "artist:galaxie-500",
+      "type": "artist",
+      "name": "Galaxie 500",
+      "mbid": "4de3cfed-b459-42bd-bfbb-7a843fbc73df"
+    },
+    {
+      "slug": "artist:belle-and-sebastian",
+      "type": "artist",
+      "name": "Belle and Sebastian",
+      "mbid": "e5c7b94f-e264-473c-bb0f-37c85d4d5c70"
+    },
+    {
+      "slug": "artist:my-bloody-valentine",
+      "type": "artist",
+      "name": "My Bloody Valentine",
+      "mbid": "8ca01f46-53ac-4af2-8516-55a909c0905e"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:the-replacements",
+      "type": "artist",
+      "name": "The Replacements",
+      "mbid": "dc0d05ce-2f47-4962-b4fa-8631a0a51987"
+    },
+    {
+      "slug": "artist:neutral-milk-hotel",
+      "type": "artist",
+      "name": "Neutral Milk Hotel",
+      "mbid": "a506f761-2c22-4b2f-8a94-bd748c2c8f75"
+    }
+  ]
 }

@@ -106,5 +106,66 @@
       "name": "Porter Ricks"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:tim-hecker",
+      "type": "artist",
+      "name": "Tim Hecker",
+      "mbid": "c7ee3bc9-780c-42c0-91e9-4cd70ad692d3"
+    },
+    {
+      "slug": "artist:loscil",
+      "type": "artist",
+      "name": "Loscil",
+      "mbid": "4f2c565b-ac40-4678-ba61-4fcf3b97edbc"
+    },
+    {
+      "slug": "artist:biosphere",
+      "type": "artist",
+      "name": "Biosphere",
+      "mbid": "a5ee1ebe-a645-45d2-8319-d101fe62e581"
+    },
+    {
+      "slug": "artist:stars-of-the-lid",
+      "type": "artist",
+      "name": "Stars of the Lid",
+      "mbid": "a1154343-1ea1-4007-97d3-2382482a90cd"
+    },
+    {
+      "slug": "artist:william-basinski",
+      "type": "artist",
+      "name": "William Basinski",
+      "mbid": "3b731282-d7f4-41a5-af0a-d0c1c3319802"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:lustmord",
+      "type": "artist",
+      "name": "Lustmord",
+      "mbid": "15f2bb82-bce4-44c9-863a-995ae9bde0b4"
+    },
+    {
+      "slug": "artist:lawrence-english",
+      "type": "artist",
+      "name": "Lawrence English",
+      "mbid": "eadd64ca-a4f8-4c0c-8405-fa46a7be2380"
+    },
+    {
+      "slug": "artist:atrium-carceri",
+      "type": "artist",
+      "name": "Atrium Carceri",
+      "mbid": "7ef4295f-90a1-432d-85a5-264d4eb6615a"
+    },
+    {
+      "slug": "artist:chihei-hatakeyama",
+      "type": "artist",
+      "name": "Chihei Hatakeyama",
+      "mbid": "a0778b30-0caa-46cb-a775-b1f2ccc669e8"
+    }
+  ]
 }

@@ -137,5 +137,66 @@
       "name": "Lisa"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:twice",
+      "type": "artist",
+      "name": "TWICE",
+      "mbid": "8da127cc-c432-418f-b356-ef36210d82ac"
+    },
+    {
+      "slug": "artist:red-velvet",
+      "type": "artist",
+      "name": "Red Velvet",
+      "mbid": "4f0cb3b7-6c06-4317-ae35-ddf3106a17ee"
+    },
+    {
+      "slug": "artist:bts",
+      "type": "artist",
+      "name": "BTS",
+      "mbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853"
+    },
+    {
+      "slug": "artist:lady-gaga",
+      "type": "artist",
+      "name": "Lady Gaga",
+      "mbid": "650e7db6-b795-4eb5-a702-5ea2fc46c848"
+    },
+    {
+      "slug": "artist:dua-lipa",
+      "type": "artist",
+      "name": "Dua Lipa",
+      "mbid": "6f1a58bf-9b1b-49cf-a44a-6cefad7ae04f"
+    },
+    {
+      "slug": "artist:ariana-grande",
+      "type": "artist",
+      "name": "Ariana Grande",
+      "mbid": "f4fdbb4c-e4b7-47a0-b83b-d91bbfcfa387"
+    },
+    {
+      "slug": "artist:cardi-b",
+      "type": "artist",
+      "name": "Cardi B",
+      "mbid": "2f3c4d70-0462-40da-bba3-0aec5772c556"
+    },
+    {
+      "slug": "artist:selena-gomez",
+      "type": "artist",
+      "name": "Selena Gomez",
+      "mbid": "e4bc69e2-a064-4f93-ada1-f7f209cc1cc3"
+    },
+    {
+      "slug": "artist:i-dle",
+      "type": "artist",
+      "name": "i‐dle",
+      "mbid": "0068ae6c-7156-40f9-a81f-39294af6a549"
+    },
+    {
+      "slug": "artist:itzy",
+      "type": "artist",
+      "name": "ITZY",
+      "mbid": "bce172fc-51bb-43f7-9a25-b406a0a581d5"
+    }
+  ]
 }

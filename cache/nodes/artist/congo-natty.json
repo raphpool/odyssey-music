@@ -98,5 +98,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:nanci-correia",
+      "type": "artist",
+      "name": "Nãnci Correia",
+      "mbid": "eb86ed71-ce60-4181-8186-fe9c34857132"
+    },
+    {
+      "slug": "artist:sista-mary",
+      "type": "artist",
+      "name": "Sista Mary",
+      "mbid": "1563117b-63bb-4240-af80-108e1670d063"
+    },
+    {
+      "slug": "artist:buggsy",
+      "type": "artist",
+      "name": "Buggsy",
+      "mbid": "0b591bac-f4ee-4fdc-a2ce-62de27207e30"
+    },
+    {
+      "slug": "artist:2-nice",
+      "type": "artist",
+      "name": "2 Nice",
+      "mbid": "964bf1c1-8b8b-4a2c-8b5e-cc98f8c7e350"
+    },
+    {
+      "slug": "artist:daddy-freddy",
+      "type": "artist",
+      "name": "Daddy Freddy",
+      "mbid": "8128c6d5-7f42-4308-9803-00c69de41503"
+    },
+    {
+      "slug": "artist:la-la-and-the-boo-ya",
+      "type": "artist",
+      "name": "La La & The Boo Ya",
+      "mbid": "ba6da8b8-0cc8-4a6c-ad8a-8a75429f059b"
+    },
+    {
+      "slug": "artist:phoebe-iron-dread-hibbert",
+      "type": "artist",
+      "name": "Phoebe \"Iron Dread\" Hibbert",
+      "mbid": "9ab7bdf1-48ab-4585-8342-547e08824d67"
+    },
+    {
+      "slug": "artist:martha-kean",
+      "type": "artist",
+      "name": "Martha Kean",
+      "mbid": "da473327-3045-436b-851d-c5eec513160c"
+    },
+    {
+      "slug": "artist:lady-chann",
+      "type": "artist",
+      "name": "Lady Chann",
+      "mbid": "1594ccd3-97b1-4b7f-8e2d-ddbaf4fcb51e"
+    },
+    {
+      "slug": "artist:top-cat",
+      "type": "artist",
+      "name": "Top Cat",
+      "mbid": "de7a3306-5466-4223-affc-f23ac39d4710"
+    }
+  ]
 }

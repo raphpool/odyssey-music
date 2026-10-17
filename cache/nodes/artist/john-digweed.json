@@ -99,5 +99,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:michel-de-hey",
+      "type": "artist",
+      "name": "Michel de Hey",
+      "mbid": "304fd4d8-c905-43a1-a3c9-910ebcfc9481"
+    },
+    {
+      "slug": "artist:guy-j",
+      "type": "artist",
+      "name": "Guy J",
+      "mbid": "bfaa69de-b75c-410a-8a23-c1accc0b5107"
+    },
+    {
+      "slug": "artist:trick-and-kubic",
+      "type": "artist",
+      "name": "Trick & Kubic",
+      "mbid": "9b18738e-a8bf-4fb5-85d6-b3752937c4ce"
+    },
+    {
+      "slug": "artist:dana-bergquist",
+      "type": "artist",
+      "name": "Dana Bergquist",
+      "mbid": "92bcaaa7-f8b5-4ff9-a6b1-e472e8678e8c"
+    },
+    {
+      "slug": "artist:rocco",
+      "type": "artist",
+      "name": "Rocco",
+      "mbid": "ea25106f-3603-4b7e-8097-16e8288e5fc2"
+    },
+    {
+      "slug": "artist:david-k",
+      "type": "artist",
+      "name": "David K",
+      "mbid": "51926bb9-4c94-464d-b3dc-bf0db156e03b"
+    },
+    {
+      "slug": "artist:catwash",
+      "type": "artist",
+      "name": "Catwash",
+      "mbid": "ad603f69-452f-4944-9188-d389a9068648"
+    },
+    {
+      "slug": "artist:goldfrapp",
+      "type": "artist",
+      "name": "Goldfrapp",
+      "mbid": "7b885d42-3c41-4f43-9944-a5855ec5155e"
+    },
+    {
+      "slug": "artist:paul-kalkbrenner",
+      "type": "artist",
+      "name": "Paul Kalkbrenner",
+      "mbid": "a5f92d47-b562-4582-b267-71963a515f4c"
+    },
+    {
+      "slug": "artist:tigerskin",
+      "type": "artist",
+      "name": "Tigerskin",
+      "mbid": "36c90df6-ee3e-4dba-9418-f421e2cb46b2"
+    }
+  ]
 }

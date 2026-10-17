@@ -180,5 +180,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:chico-buarque",
+      "type": "artist",
+      "name": "Chico Buarque",
+      "mbid": "3a5d1cc7-627e-48ea-aba3-fdd20d782c33"
+    },
+    {
+      "slug": "artist:jorge-ben-jor",
+      "type": "artist",
+      "name": "Jorge Ben Jor",
+      "mbid": "19499124-36d4-4ccc-b28d-04dde3d2076f"
+    },
+    {
+      "slug": "artist:elis-regina",
+      "type": "artist",
+      "name": "Elis Regina",
+      "mbid": "e9e85a54-074c-4d29-a886-bcaaa9d44f9f"
+    },
+    {
+      "slug": "artist:caetano-veloso",
+      "type": "artist",
+      "name": "Caetano Veloso",
+      "mbid": "f07dbc2f-317b-470f-bad4-5f1b0eb6faf1"
+    },
+    {
+      "slug": "artist:novos-baianos",
+      "type": "artist",
+      "name": "Novos Baianos",
+      "mbid": "7b543eba-995a-4c30-a37e-f8cac424f167"
+    },
+    {
+      "slug": "artist:joao-gilberto",
+      "type": "artist",
+      "name": "João Gilberto",
+      "mbid": "286ec4c2-b5ca-4f85-b331-280a6d73dd14"
+    },
+    {
+      "slug": "artist:antonio-carlos-jobim",
+      "type": "artist",
+      "name": "Antônio Carlos Jobim",
+      "mbid": "7a8dbe84-f4c0-4457-bfa3-edced1f8cde0"
+    },
+    {
+      "slug": "artist:gal-costa",
+      "type": "artist",
+      "name": "Gal Costa",
+      "mbid": "fc63a914-272d-4b95-9221-61adcce6f793"
+    },
+    {
+      "slug": "artist:gilberto-gil",
+      "type": "artist",
+      "name": "Gilberto Gil",
+      "mbid": "cf6b70f6-2616-481c-912c-0263cabfc974"
+    },
+    {
+      "slug": "artist:paulinho-da-viola",
+      "type": "artist",
+      "name": "Paulinho da Viola",
+      "mbid": "087fc778-c1ed-4f32-bff7-19f8eeba9e57"
+    }
+  ]
 }

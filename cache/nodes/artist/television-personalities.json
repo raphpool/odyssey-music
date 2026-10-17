@@ -143,5 +143,66 @@
       "name": "Ed Ball"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:wire",
+      "type": "artist",
+      "name": "Wire",
+      "mbid": "7f2a8098-50e3-451c-8696-c5d9f64f4762"
+    },
+    {
+      "slug": "artist:the-fall",
+      "type": "artist",
+      "name": "The Fall",
+      "mbid": "d5da1841-9bc8-4813-9f89-11098090148e"
+    },
+    {
+      "slug": "artist:felt",
+      "type": "artist",
+      "name": "Felt",
+      "mbid": "6999f790-25f4-44a3-b745-1e3e01fde0f5"
+    },
+    {
+      "slug": "artist:the-cure",
+      "type": "artist",
+      "name": "The Cure",
+      "mbid": "69ee3720-a7cb-4402-b48d-a02c366f2bcf"
+    },
+    {
+      "slug": "artist:suicide",
+      "type": "artist",
+      "name": "Suicide",
+      "mbid": "7a0f02e0-0ab8-4a62-9e14-c6925cfaed07"
+    },
+    {
+      "slug": "artist:joy-division",
+      "type": "artist",
+      "name": "Joy Division",
+      "mbid": "9a58fda3-f4ed-4080-a3a5-f457aac9fcdd"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:orange-juice",
+      "type": "artist",
+      "name": "Orange Juice",
+      "mbid": "e598d30e-4ce1-402e-94a7-6f44779da6b7"
+    },
+    {
+      "slug": "artist:the-jesus-and-mary-chain",
+      "type": "artist",
+      "name": "The Jesus and Mary Chain",
+      "mbid": "e938a15c-b17e-4e7a-9f68-ff0d536cab44"
+    },
+    {
+      "slug": "artist:beat-happening",
+      "type": "artist",
+      "name": "Beat Happening",
+      "mbid": "449e44cb-bcae-4c48-a1af-5d8df0f81456"
+    }
+  ]
 }

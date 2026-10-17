@@ -157,5 +157,66 @@
       "name": "Dego"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:air",
+      "type": "artist",
+      "name": "Air",
+      "mbid": "cb67438a-7f50-4f2b-a6f1-2bb2729fd538"
+    },
+    {
+      "slug": "artist:jazzanova",
+      "type": "artist",
+      "name": "Jazzanova",
+      "mbid": "b5a6ea29-3065-4869-ac66-a44002e55d4d"
+    },
+    {
+      "slug": "artist:nightmares-on-wax",
+      "type": "artist",
+      "name": "Nightmares on Wax",
+      "mbid": "b8c5cc4f-239f-4e02-b46f-b040b77c2030"
+    },
+    {
+      "slug": "artist:bonobo",
+      "type": "artist",
+      "name": "Bonobo",
+      "mbid": "9a709693-b4f8-4da9-8cc1-038c911a61be"
+    },
+    {
+      "slug": "artist:zero-7",
+      "type": "artist",
+      "name": "Zero 7",
+      "mbid": "c23b637b-97c6-41eb-8ef6-6c724efc80a8"
+    },
+    {
+      "slug": "artist:thievery-corporation",
+      "type": "artist",
+      "name": "Thievery Corporation",
+      "mbid": "a505bb48-ad65-4af4-ae47-29149715bff9"
+    },
+    {
+      "slug": "artist:jill-scott",
+      "type": "artist",
+      "name": "Jill Scott",
+      "mbid": "b1fb6a18-1626-4011-80fb-eaf83dfebcb6"
+    },
+    {
+      "slug": "artist:ursula-rucker",
+      "type": "artist",
+      "name": "Ursula Rucker",
+      "mbid": "833db6f1-0400-41b1-ba81-cb2c830e2134"
+    },
+    {
+      "slug": "artist:moby",
+      "type": "artist",
+      "name": "Moby",
+      "mbid": "8970d868-0723-483b-a75b-51088913d3d4"
+    },
+    {
+      "slug": "artist:portishead",
+      "type": "artist",
+      "name": "Portishead",
+      "mbid": "8f6bd1e4-fbe1-4f50-aa9b-94c450ec0f11"
+    }
+  ]
 }

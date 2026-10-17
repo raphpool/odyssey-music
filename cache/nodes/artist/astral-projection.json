@@ -436,5 +436,12 @@
       "name": "Lior Perlmutter"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:hallucinogen",
+      "type": "artist",
+      "name": "Hallucinogen",
+      "mbid": "37186f53-8d72-44e6-81e6-7dfd18223747"
+    }
+  ]
 }

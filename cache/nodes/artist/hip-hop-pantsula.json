@@ -127,5 +127,24 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:khuli-chana",
+      "type": "artist",
+      "name": "Khuli Chana",
+      "mbid": "9335fbe8-fab3-4e3e-94b6-f3c306869f8a"
+    },
+    {
+      "slug": "artist:towdee-mac",
+      "type": "artist",
+      "name": "Towdee Mac",
+      "mbid": "77196abd-5c7e-494f-aaca-1014989aca7d"
+    },
+    {
+      "slug": "artist:uncle-waffles",
+      "type": "artist",
+      "name": "Uncle Waffles",
+      "mbid": "aec7779a-aa40-4b6e-8764-bd64b0500caf"
+    }
+  ]
 }

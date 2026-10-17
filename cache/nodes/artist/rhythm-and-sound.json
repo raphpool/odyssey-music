@@ -72,5 +72,66 @@
       "name": "Mark Ernestus"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:monolake",
+      "type": "artist",
+      "name": "Monolake",
+      "mbid": "cedf92fe-eba1-45e2-ba16-b1b6af5169b8"
+    },
+    {
+      "slug": "artist:massive-attack",
+      "type": "artist",
+      "name": "Massive Attack",
+      "mbid": "10adbe5e-a2c0-4bf3-8249-2b4cbf6e6ca8"
+    },
+    {
+      "slug": "artist:cornell-campbell",
+      "type": "artist",
+      "name": "Cornell Campbell",
+      "mbid": "4272801c-1180-4098-80f9-d7ab27dadea9"
+    },
+    {
+      "slug": "artist:augustus-pablo",
+      "type": "artist",
+      "name": "Augustus Pablo",
+      "mbid": "e2f9c452-7eb0-4782-bc3e-36f2c456ffe0"
+    },
+    {
+      "slug": "artist:pole",
+      "type": "artist",
+      "name": "Pole",
+      "mbid": "ad957b43-9dc0-42e1-940c-19b21ec77f3a"
+    },
+    {
+      "slug": "artist:deepchord",
+      "type": "artist",
+      "name": "Deepchord",
+      "mbid": "281a03a8-0bfa-4579-ab50-7760bdd308ae"
+    },
+    {
+      "slug": "artist:scientist",
+      "type": "artist",
+      "name": "Scientist",
+      "mbid": "90d63976-5e70-4c73-a500-eb67997d6ed2"
+    },
+    {
+      "slug": "artist:sly-and-robbie",
+      "type": "artist",
+      "name": "Sly & Robbie",
+      "mbid": "6e14dc18-9313-4afa-9344-4b6c2bf80fca"
+    },
+    {
+      "slug": "artist:four-tet",
+      "type": "artist",
+      "name": "Four Tet",
+      "mbid": "3bcff06f-675a-451f-9075-99e8657047e8"
+    },
+    {
+      "slug": "artist:jan-jelinek",
+      "type": "artist",
+      "name": "Jan Jelinek",
+      "mbid": "ac9b829e-9a7c-4331-8abe-ab1eb49d1771"
+    }
+  ]
 }

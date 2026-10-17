@@ -83,5 +83,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:regina-spektor",
+      "type": "artist",
+      "name": "Regina Spektor",
+      "mbid": "fbb375f9-48bb-4635-824e-4120273b3ba7"
+    },
+    {
+      "slug": "artist:amanda-palmer",
+      "type": "artist",
+      "name": "Amanda Palmer",
+      "mbid": "3c0eb318-d2ba-45aa-9077-b83746cc56da"
+    },
+    {
+      "slug": "artist:nine-inch-nails",
+      "type": "artist",
+      "name": "Nine Inch Nails",
+      "mbid": "b7ffd2af-418f-4be2-bdd1-22f8b48613da"
+    },
+    {
+      "slug": "artist:nirvana",
+      "type": "artist",
+      "name": "Nirvana",
+      "mbid": "5b11f4ce-a62d-471e-81fc-a69a8278c7da"
+    },
+    {
+      "slug": "artist:muse",
+      "type": "artist",
+      "name": "Muse",
+      "mbid": "9c9f1380-2516-4fc9-a3e6-f9f61941d090"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:placebo",
+      "type": "artist",
+      "name": "Placebo",
+      "mbid": "847e8284-8582-4b0e-9c26-b042a4f49e57"
+    },
+    {
+      "slug": "artist:the-cure",
+      "type": "artist",
+      "name": "The Cure",
+      "mbid": "69ee3720-a7cb-4402-b48d-a02c366f2bcf"
+    }
+  ]
 }

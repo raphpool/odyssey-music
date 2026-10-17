@@ -395,5 +395,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:atb",
+      "type": "artist",
+      "name": "ATB",
+      "mbid": "22a096ef-c70d-4d70-ae19-4fc2412d4986"
+    },
+    {
+      "slug": "artist:tiesto",
+      "type": "artist",
+      "name": "Tiësto",
+      "mbid": "aabb1d9f-be12-45b3-a84d-a1fc3e8181fd"
+    },
+    {
+      "slug": "artist:scooter",
+      "type": "artist",
+      "name": "Scooter",
+      "mbid": "83e59f23-3b0b-4304-834d-5bcafd5df6d2"
+    },
+    {
+      "slug": "artist:paul-van-dyk",
+      "type": "artist",
+      "name": "Paul van Dyk",
+      "mbid": "092ca127-2e07-4cbd-9cba-e412b4ddddd9"
+    },
+    {
+      "slug": "artist:sash",
+      "type": "artist",
+      "name": "Sash!",
+      "mbid": "29e26734-788a-44aa-8d86-a452bc4232a6"
+    },
+    {
+      "slug": "artist:blank-and-jones",
+      "type": "artist",
+      "name": "Blank & Jones",
+      "mbid": "6606c527-376a-47b4-bb35-748d01e14f6d"
+    },
+    {
+      "slug": "artist:cosmic-gate",
+      "type": "artist",
+      "name": "Cosmic Gate",
+      "mbid": "5f3b32e5-efb5-4096-9260-587c155e50b7"
+    },
+    {
+      "slug": "artist:darude",
+      "type": "artist",
+      "name": "Darude",
+      "mbid": "9ffad8aa-b671-4a9a-a527-a95bdaaa0ec4"
+    },
+    {
+      "slug": "artist:sylver",
+      "type": "artist",
+      "name": "Sylver",
+      "mbid": "b910d27d-dc4f-4f2e-9a10-43057eb96a5a"
+    },
+    {
+      "slug": "artist:chicane",
+      "type": "artist",
+      "name": "Chicane",
+      "mbid": "8b506e4a-c343-467b-aad6-300a9bfac355"
+    }
+  ]
 }

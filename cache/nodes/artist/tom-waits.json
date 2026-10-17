@@ -56,5 +56,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:bob-dylan",
+      "type": "artist",
+      "name": "Bob Dylan",
+      "mbid": "72c536dc-7137-4477-a521-567eeb840fa8"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:leonard-cohen",
+      "type": "artist",
+      "name": "Leonard Cohen",
+      "mbid": "65314b12-0e08-43fa-ba33-baaa7b874c15"
+    },
+    {
+      "slug": "artist:nick-cave-and-the-bad-seeds",
+      "type": "artist",
+      "name": "Nick Cave & the Bad Seeds",
+      "mbid": "172e1f1a-504d-4488-b053-6344ba63e6d0"
+    },
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones",
+      "mbid": "b071f9fa-14b0-4217-8e97-eb41da73f598"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
+    },
+    {
+      "slug": "artist:neil-young",
+      "type": "artist",
+      "name": "Neil Young",
+      "mbid": "75167b8b-44e4-407b-9d35-effe87b223cf"
+    },
+    {
+      "slug": "artist:johnny-cash",
+      "type": "artist",
+      "name": "Johnny Cash",
+      "mbid": "d43d12a1-2dc9-4257-a2fd-0a3bb1081b86"
+    }
+  ]
 }

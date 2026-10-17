@@ -142,5 +142,66 @@
       "name": "Yellow Magic Orchestra"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:tatsuro-yamashita",
+      "type": "artist",
+      "name": "山下達郎",
+      "mbid": "ad62391d-ab7e-4ac9-9ce8-3704bc6746bb"
+    },
+    {
+      "slug": "artist:ryuichi-sakamoto",
+      "type": "artist",
+      "name": "坂本龍一",
+      "mbid": "a7f7df4a-77d8-4f12-8acd-5c60c93f4de8"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:yukihiro-takahashi",
+      "type": "artist",
+      "name": "高橋幸宏",
+      "mbid": "e1410ddc-9745-4b5d-814d-77eb0cdfa6ad"
+    },
+    {
+      "slug": "artist:cornelius",
+      "type": "artist",
+      "name": "Cornelius",
+      "mbid": "df765d93-621c-437f-99fe-fda9e135f89a"
+    },
+    {
+      "slug": "artist:towa-tei",
+      "type": "artist",
+      "name": "TOWA TEI",
+      "mbid": "440cb8ef-cee3-4711-8408-b1bd6e93f390"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk",
+      "mbid": "5700dcd4-c139-4f31-aa3e-6382b9af9032"
+    },
+    {
+      "slug": "artist:leon-vynehall",
+      "type": "artist",
+      "name": "Leon Vynehall",
+      "mbid": "b98202d3-4fb4-4e32-9ff3-b9e1987d02cf"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    }
+  ]
 }

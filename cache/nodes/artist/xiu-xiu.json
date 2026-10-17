@@ -121,5 +121,66 @@
       "name": "Angela Seo"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:the-microphones",
+      "type": "artist",
+      "name": "the Microphones",
+      "mbid": "6f2f87e7-3ce9-4f1c-81dd-6f068a78cf26"
+    },
+    {
+      "slug": "artist:death-grips",
+      "type": "artist",
+      "name": "Death Grips",
+      "mbid": "f9133036-ab3d-4e97-bd11-7a2c98ad148a"
+    },
+    {
+      "slug": "artist:swans",
+      "type": "artist",
+      "name": "Swans",
+      "mbid": "3285dc48-9505-469d-ad8a-bdf2d3dba632"
+    },
+    {
+      "slug": "artist:grouper",
+      "type": "artist",
+      "name": "Grouper",
+      "mbid": "7e571e09-887e-4544-b993-eb75e7837ec1"
+    },
+    {
+      "slug": "artist:modest-mouse",
+      "type": "artist",
+      "name": "Modest Mouse",
+      "mbid": "a96ac800-bfcb-412a-8a63-0a98df600700"
+    },
+    {
+      "slug": "artist:neutral-milk-hotel",
+      "type": "artist",
+      "name": "Neutral Milk Hotel",
+      "mbid": "a506f761-2c22-4b2f-8a94-bd748c2c8f75"
+    },
+    {
+      "slug": "artist:deerhoof",
+      "type": "artist",
+      "name": "Deerhoof",
+      "mbid": "11eabe0c-2638-4808-92f9-1dbd9c453429"
+    },
+    {
+      "slug": "artist:interpol",
+      "type": "artist",
+      "name": "Interpol",
+      "mbid": "b23e8a63-8f47-4882-b55b-df2c92ef400e"
+    },
+    {
+      "slug": "artist:pixies",
+      "type": "artist",
+      "name": "Pixies",
+      "mbid": "b6b2bb8d-54a9-491f-9607-7b546023b433"
+    }
+  ]
 }

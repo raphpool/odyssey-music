@@ -135,5 +135,66 @@
       "name": "Moderat"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:four-tet",
+      "type": "artist",
+      "name": "Four Tet",
+      "mbid": "3bcff06f-675a-451f-9075-99e8657047e8"
+    },
+    {
+      "slug": "artist:soap-and-skin",
+      "type": "artist",
+      "name": "Soap&Skin",
+      "mbid": "93cf754c-6bdc-4b05-96b5-f210a7936af6"
+    },
+    {
+      "slug": "artist:bonobo",
+      "type": "artist",
+      "name": "Bonobo",
+      "mbid": "9a709693-b4f8-4da9-8cc1-038c911a61be"
+    },
+    {
+      "slug": "artist:caribou",
+      "type": "artist",
+      "name": "Caribou",
+      "mbid": "735e3514-a8ae-401f-af3b-6300df1b8d2c"
+    },
+    {
+      "slug": "artist:telefon-tel-aviv",
+      "type": "artist",
+      "name": "Telefon Tel Aviv",
+      "mbid": "453f1594-112e-4d3c-921a-8d14e9c97b2e"
+    },
+    {
+      "slug": "artist:jon-hopkins",
+      "type": "artist",
+      "name": "Jon Hopkins",
+      "mbid": "0b0c25f4-f31c-46a5-a4fb-ccbf53d663bd"
+    },
+    {
+      "slug": "artist:royksopp",
+      "type": "artist",
+      "name": "Röyksopp",
+      "mbid": "1c70a3fc-fa3c-4be1-8b55-c3192db8a884"
+    },
+    {
+      "slug": "artist:air",
+      "type": "artist",
+      "name": "Air",
+      "mbid": "cb67438a-7f50-4f2b-a6f1-2bb2729fd538"
+    },
+    {
+      "slug": "artist:tycho",
+      "type": "artist",
+      "name": "Tycho",
+      "mbid": "cbef45a9-7acb-4325-94c9-70081ac8d1b8"
+    },
+    {
+      "slug": "artist:trentemoller",
+      "type": "artist",
+      "name": "Trentemøller",
+      "mbid": "95e9aba6-f85c-48a0-9ec9-395d4f0e3875"
+    }
+  ]
 }

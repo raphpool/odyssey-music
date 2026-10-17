@@ -95,5 +95,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:photek",
+      "type": "artist",
+      "name": "Photek",
+      "mbid": "2095b935-2007-4ae0-a48a-ef4d6fc3aac0"
+    },
+    {
+      "slug": "artist:dillinja",
+      "type": "artist",
+      "name": "Dillinja",
+      "mbid": "5d39821b-83ad-4c9a-bbaa-2ae32ab0f7b8"
+    },
+    {
+      "slug": "artist:alex-reece",
+      "type": "artist",
+      "name": "Alex Reece",
+      "mbid": "1c8e46d4-9343-48ce-aed8-0862e03878fd"
+    },
+    {
+      "slug": "artist:j-majik",
+      "type": "artist",
+      "name": "J Majik",
+      "mbid": "f318b2c0-78f5-4795-91a3-0fcbc4bb782c"
+    },
+    {
+      "slug": "artist:ltj-bukem",
+      "type": "artist",
+      "name": "LTJ Bukem",
+      "mbid": "28c1b7b7-355a-48b1-b2c4-75b8eb8080ef"
+    },
+    {
+      "slug": "artist:digital",
+      "type": "artist",
+      "name": "Digital",
+      "mbid": "b83c0c75-5cdd-44c8-b1af-b04e5e2c306c"
+    },
+    {
+      "slug": "artist:goldie",
+      "type": "artist",
+      "name": "Goldie",
+      "mbid": "c5393047-0c44-48eb-b5a8-070759f04371"
+    },
+    {
+      "slug": "artist:rufige-kru",
+      "type": "artist",
+      "name": "Rufige Kru",
+      "mbid": "f16b6af9-86fb-4f9a-bd7f-a05b8eb25155"
+    },
+    {
+      "slug": "artist:lemon-d",
+      "type": "artist",
+      "name": "Lemon D",
+      "mbid": "69f9a51f-9c1d-4a7a-9848-e08d8ab17225"
+    },
+    {
+      "slug": "artist:peshay",
+      "type": "artist",
+      "name": "Peshay",
+      "mbid": "f7be8db8-cf51-4266-b4a6-81f0a1d40575"
+    }
+  ]
 }

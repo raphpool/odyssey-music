@@ -95,5 +95,24 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:daft-punk",
+      "type": "artist",
+      "name": "Daft Punk",
+      "mbid": "056e4f3e-d505-4dad-8ec1-d04f521cbb56"
+    },
+    {
+      "slug": "artist:leon-vynehall",
+      "type": "artist",
+      "name": "Leon Vynehall",
+      "mbid": "b98202d3-4fb4-4e32-9ff3-b9e1987d02cf"
+    },
+    {
+      "slug": "artist:killer-kau",
+      "type": "artist",
+      "name": "Killer Kau",
+      "mbid": "f6b3332c-2835-48f1-94fb-a09649e0a4ef"
+    }
+  ]
 }

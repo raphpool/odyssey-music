@@ -840,5 +840,66 @@
       "name": "Black Hippy"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:rihanna",
+      "type": "artist",
+      "name": "Rihanna",
+      "mbid": "73e5e69d-3554-40d8-8516-00cb38737a1c"
+    },
+    {
+      "slug": "artist:drake",
+      "type": "artist",
+      "name": "Drake",
+      "mbid": "9fff2f8a-21e6-47de-a2b8-7f449929d43f"
+    },
+    {
+      "slug": "artist:ye",
+      "type": "artist",
+      "name": "Ye",
+      "mbid": "164f0d73-1234-4e2c-8743-d77bf2191051"
+    },
+    {
+      "slug": "artist:thundercat",
+      "type": "artist",
+      "name": "Thundercat",
+      "mbid": "044fd265-79dd-43eb-afc4-8b20becf7e17"
+    },
+    {
+      "slug": "artist:the-weeknd",
+      "type": "artist",
+      "name": "The Weeknd",
+      "mbid": "c8b03190-306c-4120-bb0b-6f2ebfc06ea9"
+    },
+    {
+      "slug": "artist:snoop-dogg",
+      "type": "artist",
+      "name": "Snoop Dogg",
+      "mbid": "f90e8b26-9e52-4669-a5c9-e28529c47894"
+    },
+    {
+      "slug": "artist:bilal",
+      "type": "artist",
+      "name": "Bilal",
+      "mbid": "260097c7-d628-4a3f-966f-956ea430c0d8"
+    },
+    {
+      "slug": "artist:u2",
+      "type": "artist",
+      "name": "U2",
+      "mbid": "a3cb23fc-acd3-4ce0-8f36-1e5aa6a18432"
+    },
+    {
+      "slug": "artist:sza",
+      "type": "artist",
+      "name": "SZA",
+      "mbid": "272989c8-5535-492d-a25c-9f58803e027f"
+    },
+    {
+      "slug": "artist:travis-scott",
+      "type": "artist",
+      "name": "Travis Scott",
+      "mbid": "e4a51f17-a57b-47b1-b37b-f552d0f8e9e6"
+    }
+  ]
 }

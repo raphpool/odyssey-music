@@ -105,5 +105,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:queen",
+      "type": "artist",
+      "name": "Queen",
+      "mbid": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
+    },
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones",
+      "mbid": "b071f9fa-14b0-4217-8e97-eb41da73f598"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:led-zeppelin",
+      "type": "artist",
+      "name": "Led Zeppelin",
+      "mbid": "678d88b2-87b0-403b-b63d-5da7465aecc3"
+    },
+    {
+      "slug": "artist:the-cure",
+      "type": "artist",
+      "name": "The Cure",
+      "mbid": "69ee3720-a7cb-4402-b48d-a02c366f2bcf"
+    },
+    {
+      "slug": "artist:the-clash",
+      "type": "artist",
+      "name": "The Clash",
+      "mbid": "8f92558c-2baa-4758-8c38-615519e9deda"
+    },
+    {
+      "slug": "artist:the-who",
+      "type": "artist",
+      "name": "The Who",
+      "mbid": "9fdaa16b-a6c4-4831-b87c-bc9ca8ce7eaa"
+    },
+    {
+      "slug": "artist:the-doors",
+      "type": "artist",
+      "name": "The Doors",
+      "mbid": "9efff43b-3b29-4082-824e-bc82f646f93d"
+    }
+  ]
 }

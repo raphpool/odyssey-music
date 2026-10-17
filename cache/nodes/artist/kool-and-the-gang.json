@@ -144,5 +144,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:earth-wind-and-fire",
+      "type": "artist",
+      "name": "Earth, Wind & Fire",
+      "mbid": "535afeda-2538-435d-9dd1-5e10be586774"
+    },
+    {
+      "slug": "artist:stevie-wonder",
+      "type": "artist",
+      "name": "Stevie Wonder",
+      "mbid": "1ee18fb3-18a6-4c7f-8ba0-bc41cdd0462e"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    },
+    {
+      "slug": "artist:al-green",
+      "type": "artist",
+      "name": "Al Green",
+      "mbid": "fb7272ba-f130-4f0a-934d-6eeea4c18c9a"
+    },
+    {
+      "slug": "artist:marvin-gaye",
+      "type": "artist",
+      "name": "Marvin Gaye",
+      "mbid": "afdb7919-059d-43c1-b668-ba1d265e7e42"
+    },
+    {
+      "slug": "artist:dusty-springfield",
+      "type": "artist",
+      "name": "Dusty Springfield",
+      "mbid": "b896aa8c-2761-40ce-b485-0e1fffd26167"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:the-jacksons",
+      "type": "artist",
+      "name": "The Jacksons",
+      "mbid": "e5257dc5-1edd-4fca-b7e6-1158e00522c8"
+    },
+    {
+      "slug": "artist:commodores",
+      "type": "artist",
+      "name": "Commodores",
+      "mbid": "900ab237-327b-44e2-87e4-73250bbe025a"
+    }
+  ]
 }

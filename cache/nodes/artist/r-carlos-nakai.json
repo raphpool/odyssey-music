@@ -121,5 +121,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:peter-kater",
+      "type": "artist",
+      "name": "Peter Kater",
+      "mbid": "c290c018-02c4-445f-bfca-cac9186c79d0"
+    },
+    {
+      "slug": "artist:enya",
+      "type": "artist",
+      "name": "Enya",
+      "mbid": "4967c0a1-b9f3-465e-8440-4598fd9fc33c"
+    },
+    {
+      "slug": "artist:deuter",
+      "type": "artist",
+      "name": "Deuter",
+      "mbid": "c4e7031f-a5f0-476a-b1f0-1f3e8c573f4b"
+    },
+    {
+      "slug": "artist:lisa-gerrard",
+      "type": "artist",
+      "name": "Lisa Gerrard",
+      "mbid": "cd645207-1664-46af-9953-264e9ae54089"
+    },
+    {
+      "slug": "artist:david-arkenstone",
+      "type": "artist",
+      "name": "David Arkenstone",
+      "mbid": "50a45c3d-b54b-4fd5-bb83-5046e4ff6813"
+    },
+    {
+      "slug": "artist:steven-halpern",
+      "type": "artist",
+      "name": "Steven Halpern",
+      "mbid": "37986d18-e8af-4502-8e08-2a87d7e5853f"
+    },
+    {
+      "slug": "artist:liquid-mind",
+      "type": "artist",
+      "name": "Liquid Mind",
+      "mbid": "af263abd-194b-4494-bfd8-3aab8d2fc00a"
+    },
+    {
+      "slug": "artist:clannad",
+      "type": "artist",
+      "name": "Clannad",
+      "mbid": "d45641da-371c-430e-8907-6086590ab282"
+    },
+    {
+      "slug": "artist:vangelis",
+      "type": "artist",
+      "name": "Vangelis",
+      "mbid": "57fca0e2-f9ad-4ae6-af9d-6a6f50cbcd5f"
+    },
+    {
+      "slug": "artist:gandalf",
+      "type": "artist",
+      "name": "Gandalf",
+      "mbid": "0e49cfc8-6c12-426d-8985-5005f9256e18"
+    }
+  ]
 }

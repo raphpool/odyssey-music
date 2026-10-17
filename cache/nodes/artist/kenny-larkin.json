@@ -87,5 +87,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:carl-craig",
+      "type": "artist",
+      "name": "Carl Craig",
+      "mbid": "6732e9f3-5f24-4ba4-aef1-a2a49442b96b"
+    },
+    {
+      "slug": "artist:drexciya",
+      "type": "artist",
+      "name": "Drexciya",
+      "mbid": "66f398bf-ae55-4f13-b993-fa871c57157f"
+    },
+    {
+      "slug": "artist:robert-hood",
+      "type": "artist",
+      "name": "Robert Hood",
+      "mbid": "e8a61400-baf7-4fb3-a3e3-c9e7b665547f"
+    },
+    {
+      "slug": "artist:model-500",
+      "type": "artist",
+      "name": "Model 500",
+      "mbid": "e569aee8-33ff-48e5-b0ed-4ceba1a37714"
+    },
+    {
+      "slug": "artist:underground-resistance",
+      "type": "artist",
+      "name": "Underground Resistance",
+      "mbid": "8dcd24c7-bf87-4f32-8e3f-7a79b3f25a85"
+    },
+    {
+      "slug": "artist:polygon-window",
+      "type": "artist",
+      "name": "Polygon Window",
+      "mbid": "aaa78ce4-e4fe-43b6-abe1-733dc83f8eb1"
+    },
+    {
+      "slug": "artist:speedy-j",
+      "type": "artist",
+      "name": "Speedy J",
+      "mbid": "734fa82c-864e-468b-bee4-944cb4b1952b"
+    },
+    {
+      "slug": "artist:joey-beltram",
+      "type": "artist",
+      "name": "Joey Beltram",
+      "mbid": "5330d6d0-711b-415b-93e4-071e46d0d5f2"
+    },
+    {
+      "slug": "artist:f-u-s-e",
+      "type": "artist",
+      "name": "F.U.S.E.",
+      "mbid": "99c0c596-68e9-4226-8089-518addce180c"
+    },
+    {
+      "slug": "artist:derrick-may",
+      "type": "artist",
+      "name": "Derrick May",
+      "mbid": "371c8525-8111-4497-83ba-1ead9d7ed148"
+    }
+  ]
 }

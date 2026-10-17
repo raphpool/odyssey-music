@@ -108,5 +108,66 @@
       "name": "Phuture"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:armando",
+      "type": "artist",
+      "name": "Armando",
+      "mbid": "bced6ffd-d099-406d-9ee0-4a6b51f8405b"
+    },
+    {
+      "slug": "artist:maurice-joshua",
+      "type": "artist",
+      "name": "Maurice Joshua",
+      "mbid": "131c9ee5-8876-4d27-a448-87910d697577"
+    },
+    {
+      "slug": "artist:lfo",
+      "type": "artist",
+      "name": "LFO",
+      "mbid": "e6d0179f-b899-4563-b6c6-88715aaae0b8"
+    },
+    {
+      "slug": "artist:phortune",
+      "type": "artist",
+      "name": "Phortune",
+      "mbid": "b852eafa-e10c-4c6c-980d-15274d56c4b7"
+    },
+    {
+      "slug": "artist:caustic-window",
+      "type": "artist",
+      "name": "Caustic Window",
+      "mbid": "bc1fd2f7-1ecf-46d1-9ca6-47b7d7880c4d"
+    },
+    {
+      "slug": "artist:hula",
+      "type": "artist",
+      "name": "Hula",
+      "mbid": "7eba320c-44b2-41f6-ba43-666e00ea65a5"
+    },
+    {
+      "slug": "artist:daddy-freddy",
+      "type": "artist",
+      "name": "Daddy Freddy",
+      "mbid": "8128c6d5-7f42-4308-9803-00c69de41503"
+    },
+    {
+      "slug": "artist:lidell-townsell",
+      "type": "artist",
+      "name": "Lidell Townsell",
+      "mbid": "0c380fce-55df-40a1-8084-e27b8f344017"
+    },
+    {
+      "slug": "artist:lil-louis",
+      "type": "artist",
+      "name": "Lil’ Louis",
+      "mbid": "58acc9f3-594a-4db7-bf1d-ac0f62cb2df2"
+    },
+    {
+      "slug": "artist:tyree",
+      "type": "artist",
+      "name": "Tyree",
+      "mbid": "ef71268b-07b0-4fc9-aafc-c1909da8edef"
+    }
+  ]
 }

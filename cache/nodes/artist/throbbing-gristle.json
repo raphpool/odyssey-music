@@ -96,5 +96,66 @@
       "name": "Peter Christopherson"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:coil",
+      "type": "artist",
+      "name": "Coil",
+      "mbid": "c16fbb7e-57b1-462c-97c5-bd0e11248765"
+    },
+    {
+      "slug": "artist:einsturzende-neubauten",
+      "type": "artist",
+      "name": "Einstürzende Neubauten",
+      "mbid": "6e9ac29b-798c-4af7-8d9e-55cdc72a999c"
+    },
+    {
+      "slug": "artist:cabaret-voltaire",
+      "type": "artist",
+      "name": "Cabaret Voltaire",
+      "mbid": "439a29ad-f4ef-4857-a7cd-3d4a551056c8"
+    },
+    {
+      "slug": "artist:swans",
+      "type": "artist",
+      "name": "Swans",
+      "mbid": "3285dc48-9505-469d-ad8a-bdf2d3dba632"
+    },
+    {
+      "slug": "artist:psychic-tv",
+      "type": "artist",
+      "name": "Psychic TV",
+      "mbid": "14c5a3a3-f5ed-4978-99af-486010e3a007"
+    },
+    {
+      "slug": "artist:skinny-puppy",
+      "type": "artist",
+      "name": "Skinny Puppy",
+      "mbid": "5a24bc1a-c093-4a82-84ed-8d7f2da0570d"
+    },
+    {
+      "slug": "artist:suicide",
+      "type": "artist",
+      "name": "Suicide",
+      "mbid": "7a0f02e0-0ab8-4a62-9e14-c6925cfaed07"
+    },
+    {
+      "slug": "artist:the-residents",
+      "type": "artist",
+      "name": "The Residents",
+      "mbid": "8c9b336e-acc8-4e20-9195-6ed0634da9fc"
+    },
+    {
+      "slug": "artist:current-93",
+      "type": "artist",
+      "name": "Current 93",
+      "mbid": "944655bc-16b1-48d2-b4ff-f73654612fcf"
+    },
+    {
+      "slug": "artist:laibach",
+      "type": "artist",
+      "name": "Laibach",
+      "mbid": "c779e090-909f-4403-a90e-c1d08cdbb719"
+    }
+  ]
 }

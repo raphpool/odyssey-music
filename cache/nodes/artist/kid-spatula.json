@@ -105,5 +105,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:jega",
+      "type": "artist",
+      "name": "Jega",
+      "mbid": "6b43e5f2-49e8-46ce-94cb-a9b23e5bb4e8"
+    },
+    {
+      "slug": "artist:luke-vibert",
+      "type": "artist",
+      "name": "Luke Vibert",
+      "mbid": "0b59a279-54ef-4723-854e-a12b61e9581a"
+    },
+    {
+      "slug": "artist:ceephax-acid-crew",
+      "type": "artist",
+      "name": "Ceephax Acid Crew",
+      "mbid": "f226bcd7-114e-418f-8fa5-e24a47a89cf5"
+    },
+    {
+      "slug": "artist:gescom",
+      "type": "artist",
+      "name": "Gescom",
+      "mbid": "edc88ebf-4790-4cb8-8a40-13efda4a00fa"
+    },
+    {
+      "slug": "artist:cylob",
+      "type": "artist",
+      "name": "Cylob",
+      "mbid": "2256228e-8253-45ad-974e-39ae914c5586"
+    },
+    {
+      "slug": "artist:two-lone-swordsmen",
+      "type": "artist",
+      "name": "Two Lone Swordsmen",
+      "mbid": "e3b208cf-b18f-450e-a661-79f4eabe8090"
+    },
+    {
+      "slug": "artist:global-goon",
+      "type": "artist",
+      "name": "Global Goon",
+      "mbid": "d11ea373-77ed-46eb-96a8-b70ea633081e"
+    },
+    {
+      "slug": "artist:wisp",
+      "type": "artist",
+      "name": "Wisp",
+      "mbid": "4159ac30-ecce-43a6-b200-b48801968e30"
+    },
+    {
+      "slug": "artist:bola",
+      "type": "artist",
+      "name": "Bola",
+      "mbid": "037bb92d-efd5-48d9-b197-3ce699067e3c"
+    },
+    {
+      "slug": "artist:the-black-dog",
+      "type": "artist",
+      "name": "The Black Dog",
+      "mbid": "a78d2a35-c083-4179-a5d8-49f84e5ec863"
+    }
+  ]
 }

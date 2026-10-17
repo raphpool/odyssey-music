@@ -82,5 +82,24 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:hip-hop-pantsula",
+      "type": "artist",
+      "name": "Hip Hop Pantsula",
+      "mbid": "36b47aca-c378-4f7f-b4a8-9cb2ccb81dc1"
+    },
+    {
+      "slug": "artist:khuli-chana",
+      "type": "artist",
+      "name": "Khuli Chana",
+      "mbid": "9335fbe8-fab3-4e3e-94b6-f3c306869f8a"
+    },
+    {
+      "slug": "artist:purrple-cat",
+      "type": "artist",
+      "name": "Purrple Cat",
+      "mbid": "553d1b5f-7cb6-4df7-8a69-e78b4bc4f7a5"
+    }
+  ]
 }

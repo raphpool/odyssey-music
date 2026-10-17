@@ -99,5 +99,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:neil-landstrumm",
+      "type": "artist",
+      "name": "Neil Landstrumm",
+      "mbid": "1805915b-0120-419e-926f-9d117ff67c39"
+    },
+    {
+      "slug": "artist:jeff-mills",
+      "type": "artist",
+      "name": "Jeff Mills",
+      "mbid": "470a4ced-1323-4c91-8fd5-0bb3fb4c932a"
+    },
+    {
+      "slug": "artist:the-black-dog",
+      "type": "artist",
+      "name": "The Black Dog",
+      "mbid": "a78d2a35-c083-4179-a5d8-49f84e5ec863"
+    },
+    {
+      "slug": "artist:joey-beltram",
+      "type": "artist",
+      "name": "Joey Beltram",
+      "mbid": "5330d6d0-711b-415b-93e4-071e46d0d5f2"
+    },
+    {
+      "slug": "artist:james-ruskin",
+      "type": "artist",
+      "name": "James Ruskin",
+      "mbid": "9f50b54d-4eb7-4d20-9d6d-69220075005f"
+    },
+    {
+      "slug": "artist:drexciya",
+      "type": "artist",
+      "name": "Drexciya",
+      "mbid": "66f398bf-ae55-4f13-b993-fa871c57157f"
+    },
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire",
+      "mbid": "d71ba53b-23b0-4870-a429-cce6f345763b"
+    },
+    {
+      "slug": "artist:the-advent",
+      "type": "artist",
+      "name": "The Advent",
+      "mbid": "b3a35974-4703-4423-92bf-a1b5ac6cac3b"
+    },
+    {
+      "slug": "artist:dave-clarke",
+      "type": "artist",
+      "name": "Dave Clarke",
+      "mbid": "0d7fffb1-c282-4995-96a9-f6f2ea3c86e0"
+    },
+    {
+      "slug": "artist:plastikman",
+      "type": "artist",
+      "name": "Plastikman",
+      "mbid": "abee98f6-5239-4abf-bbe6-e1e2815a0dd6"
+    }
+  ]
 }

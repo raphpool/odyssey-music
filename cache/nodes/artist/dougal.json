@@ -438,5 +438,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:darren-styles",
+      "type": "artist",
+      "name": "Darren Styles",
+      "mbid": "94bd816b-af21-44f8-aed7-99d49f8de3e9"
+    },
+    {
+      "slug": "artist:dougal-and-gammer",
+      "type": "artist",
+      "name": "Dougal & Gammer",
+      "mbid": "3a80e321-bff2-4a3c-8c85-0bec439d4d4a"
+    },
+    {
+      "slug": "artist:scott-brown",
+      "type": "artist",
+      "name": "Scott Brown",
+      "mbid": "ccb77c78-ffc3-4790-9006-61f2277e9c91"
+    },
+    {
+      "slug": "artist:gammer",
+      "type": "artist",
+      "name": "Gammer",
+      "mbid": "ce019954-4e3d-4dd2-adc7-3c9308589d2b"
+    },
+    {
+      "slug": "artist:stonebank",
+      "type": "artist",
+      "name": "Stonebank",
+      "mbid": "d0deaa96-033c-4ab9-bbe5-68004c6757ef"
+    },
+    {
+      "slug": "artist:hixxy",
+      "type": "artist",
+      "name": "Hixxy",
+      "mbid": "f84c6074-dd3e-4d60-b67b-bd72e93b36a5"
+    },
+    {
+      "slug": "artist:dj-brisk",
+      "type": "artist",
+      "name": "DJ Brisk",
+      "mbid": "4c267d83-4e12-4c37-b4b1-9324d05ed64e"
+    },
+    {
+      "slug": "artist:dj-ham",
+      "type": "artist",
+      "name": "DJ Ham",
+      "mbid": "73b90c12-c049-489b-addd-f33eeacd86cd"
+    },
+    {
+      "slug": "artist:dj-seduction",
+      "type": "artist",
+      "name": "DJ Seduction",
+      "mbid": "9d2c1376-8a02-4f90-8fd9-8546ddb8f635"
+    },
+    {
+      "slug": "artist:tokyo-machine",
+      "type": "artist",
+      "name": "Tokyo Machine",
+      "mbid": "63c662d7-cfa5-493b-9ad4-6f428438f2fd"
+    }
+  ]
 }

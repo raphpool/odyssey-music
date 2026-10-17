@@ -85,5 +85,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:fennesz",
+      "type": "artist",
+      "name": "Fennesz",
+      "mbid": "a6f8d42d-d3ff-4268-8d39-ee01341733bb"
+    },
+    {
+      "slug": "artist:pole",
+      "type": "artist",
+      "name": "Pole",
+      "mbid": "ad957b43-9dc0-42e1-940c-19b21ec77f3a"
+    },
+    {
+      "slug": "artist:pan-sonic",
+      "type": "artist",
+      "name": "Pan Sonic",
+      "mbid": "52d9bff7-1776-46ae-8e1b-7a76afc73358"
+    },
+    {
+      "slug": "artist:jan-jelinek",
+      "type": "artist",
+      "name": "Jan Jelinek",
+      "mbid": "ac9b829e-9a7c-4331-8abe-ab1eb49d1771"
+    },
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ‐Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
+    },
+    {
+      "slug": "artist:ryoji-ikeda",
+      "type": "artist",
+      "name": "Ryoji Ikeda",
+      "mbid": "bba24968-a575-4b38-8c38-06f7ab6de8c8"
+    },
+    {
+      "slug": "artist:eluvium",
+      "type": "artist",
+      "name": "Eluvium",
+      "mbid": "86139012-695b-42f4-98f1-1f353f7230b4"
+    },
+    {
+      "slug": "artist:plaid",
+      "type": "artist",
+      "name": "Plaid",
+      "mbid": "7e54d133-2525-4bc0-ae94-65584145a386"
+    },
+    {
+      "slug": "artist:murcof",
+      "type": "artist",
+      "name": "Murcof",
+      "mbid": "e8d1f02e-7e77-4415-85b6-dc17e08debbf"
+    },
+    {
+      "slug": "artist:maps-and-diagrams",
+      "type": "artist",
+      "name": "Maps and Diagrams",
+      "mbid": "7441bccd-67f4-4294-90d9-f9fd1bb4a37e"
+    }
+  ]
 }

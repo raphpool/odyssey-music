@@ -74,5 +74,35 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:lara-rix-martin",
+      "type": "artist",
+      "name": "Lara Rix-Martin",
+      "mbid": "366c1381-9716-4866-b1c1-dfd4498351eb"
+    },
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas",
+      "mbid": "3e2fb7a8-195a-4d9e-b042-6451ee1e6b8d"
+    },
+    {
+      "slug": "artist:richard-d-james",
+      "type": "artist",
+      "name": "Richard D. James",
+      "mbid": "79a09151-f6cc-48f9-9907-3fdd0b68373f"
+    },
+    {
+      "slug": "artist:speedy-j",
+      "type": "artist",
+      "name": "Speedy J",
+      "mbid": "734fa82c-864e-468b-bee4-944cb4b1952b"
+    }
+  ]
 }

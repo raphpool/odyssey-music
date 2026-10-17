@@ -61,5 +61,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:otto-luening",
+      "type": "artist",
+      "name": "Otto Luening",
+      "mbid": "15a62cc4-fe9d-42c0-8239-fb39634c8fe3"
+    },
+    {
+      "slug": "artist:john-cage",
+      "type": "artist",
+      "name": "John Cage",
+      "mbid": "76325a9d-6c25-4649-96b1-84e9b99d6b4b"
+    },
+    {
+      "slug": "artist:pierre-schaeffer",
+      "type": "artist",
+      "name": "Pierre Schaeffer",
+      "mbid": "cc48f77c-32c5-46e1-9f35-119d61671e1b"
+    },
+    {
+      "slug": "artist:olivier-messiaen",
+      "type": "artist",
+      "name": "Olivier Messiaen",
+      "mbid": "c6e5c5f4-984e-432a-87b8-b6afa288bca1"
+    },
+    {
+      "slug": "artist:oskar-sala",
+      "type": "artist",
+      "name": "Oskar Sala",
+      "mbid": "6197a5e8-ff2f-4b3d-84ae-fa136616e63a"
+    },
+    {
+      "slug": "artist:richard-maxfield",
+      "type": "artist",
+      "name": "Richard Maxfield",
+      "mbid": "781c93a3-4475-4de9-a928-397efbfe4f03"
+    },
+    {
+      "slug": "artist:tod-dockstader",
+      "type": "artist",
+      "name": "Tod Dockstader",
+      "mbid": "a80175ee-6a9e-4bc4-b009-1bc48ac2cb13"
+    },
+    {
+      "slug": "artist:karlheinz-stockhausen",
+      "type": "artist",
+      "name": "Karlheinz Stockhausen",
+      "mbid": "fd09d776-ddfd-4558-afe7-814420d704ed"
+    },
+    {
+      "slug": "artist:daphne-oram",
+      "type": "artist",
+      "name": "Daphne Oram",
+      "mbid": "7f58c859-52f8-4072-9ca4-dcae5c10de77"
+    },
+    {
+      "slug": "artist:vladimir-ussachevsky",
+      "type": "artist",
+      "name": "Vladimir Ussachevsky",
+      "mbid": "5645f557-ed01-4b9d-87d4-da827ec90e9f"
+    }
+  ]
 }

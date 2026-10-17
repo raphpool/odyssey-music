@@ -780,5 +780,66 @@
       "name": "Yung Gud"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:bladee",
+      "type": "artist",
+      "name": "Bladee",
+      "mbid": "cd689e77-dfdd-4f81-b50c-5e5a3f5e38a4"
+    },
+    {
+      "slug": "artist:ecco2k",
+      "type": "artist",
+      "name": "Ecco2K",
+      "mbid": "66ab36ce-8f58-46fb-9284-396c2c90ecbd"
+    },
+    {
+      "slug": "artist:travis-scott",
+      "type": "artist",
+      "name": "Travis Scott",
+      "mbid": "e4a51f17-a57b-47b1-b37b-f552d0f8e9e6"
+    },
+    {
+      "slug": "artist:thaiboy-digital",
+      "type": "artist",
+      "name": "Thaiboy Digital",
+      "mbid": "68d311c0-525f-4f72-a044-84e54565d02d"
+    },
+    {
+      "slug": "artist:bones",
+      "type": "artist",
+      "name": "BONES",
+      "mbid": "e3f7631b-e50b-4923-9049-2fa84dfcaf71"
+    },
+    {
+      "slug": "artist:tyler-the-creator",
+      "type": "artist",
+      "name": "Tyler, The Creator",
+      "mbid": "f6beac20-5dfe-4d1f-ae02-0b0a740aafd6"
+    },
+    {
+      "slug": "artist:uicideboy",
+      "type": "artist",
+      "name": "$uicideboy$",
+      "mbid": "ef326b3d-61f0-4379-aca0-21237d696d63"
+    },
+    {
+      "slug": "artist:lil-uzi-vert",
+      "type": "artist",
+      "name": "Lil Uzi Vert",
+      "mbid": "8837b875-3689-4646-b3fd-d8b53815c7a8"
+    },
+    {
+      "slug": "artist:ferg",
+      "type": "artist",
+      "name": "FERG",
+      "mbid": "8ab5d936-49d1-415e-92c8-151e0e7dd912"
+    },
+    {
+      "slug": "artist:drake",
+      "type": "artist",
+      "name": "Drake",
+      "mbid": "9fff2f8a-21e6-47de-a2b8-7f449929d43f"
+    }
+  ]
 }

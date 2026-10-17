@@ -67,5 +67,67 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:pole",
+      "type": "artist",
+      "name": "Pole",
+      "mbid": "ad957b43-9dc0-42e1-940c-19b21ec77f3a"
+    },
+    {
+      "slug": "artist:moderat",
+      "type": "artist",
+      "name": "Moderat",
+      "mbid": "7754905b-8bf7-48e2-935a-03d566fec464"
+    },
+    {
+      "slug": "artist:jan-jelinek",
+      "type": "artist",
+      "name": "Jan Jelinek",
+      "mbid": "ac9b829e-9a7c-4331-8abe-ab1eb49d1771"
+    },
+    {
+      "slug": "artist:lithops",
+      "type": "artist",
+      "name": "Lithops",
+      "mbid": "6fe647a2-a5fd-48a3-9e38-2f7517a57466"
+    },
+    {
+      "slug": "artist:basic-channel",
+      "type": "artist",
+      "name": "Basic Channel",
+      "mbid": "d145a57e-7afb-4793-8cc4-2fad292374ef"
+    },
+    {
+      "slug": "artist:mark-ernestus",
+      "type": "artist",
+      "name": "Mark Ernestus",
+      "mbid": "6fb800e6-65db-4368-8472-b125e185f823"
+    },
+    {
+      "slug": "artist:monolake",
+      "type": "artist",
+      "name": "Monolake",
+      "mbid": "cedf92fe-eba1-45e2-ba16-b1b6af5169b8"
+    },
+    {
+      "slug": "artist:porter-ricks",
+      "type": "artist",
+      "name": "Porter Ricks",
+      "mbid": "f2c0d29a-9bef-469f-af6e-a9b5deb21308"
+    },
+    {
+      "slug": "artist:rhythm-and-sound",
+      "type": "artist",
+      "name": "Rhythm & Sound",
+      "mbid": "0bf220da-eb15-4bf2-9460-f640aaeda272"
+    },
+    {
+      "slug": "artist:torsten-profrock",
+      "type": "artist",
+      "name": "Torsten Pröfrock",
+      "mbid": "b6c39371-cca8-4822-8c7d-64372c7e3072"
+    }
+  ]
 }

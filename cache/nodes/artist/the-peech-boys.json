@@ -90,5 +90,17 @@
       "name": "Bernard Fowler"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:inner-life",
+      "type": "artist",
+      "name": "Inner Life",
+      "mbid": "5a1b05f4-493f-4f32-939c-e1556e2069fe"
+    },
+    {
+      "slug": "artist:the-whispers",
+      "type": "artist",
+      "name": "The Whispers"
+    }
+  ]
 }

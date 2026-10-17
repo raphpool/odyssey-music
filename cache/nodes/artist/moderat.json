@@ -111,5 +111,66 @@
       "name": "Modeselektor"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:eased",
+      "type": "artist",
+      "name": "Eased",
+      "mbid": "799365c1-0581-4683-a434-952a4e6d5bd1"
+    },
+    {
+      "slug": "artist:four-tet",
+      "type": "artist",
+      "name": "Four Tet",
+      "mbid": "3bcff06f-675a-451f-9075-99e8657047e8"
+    },
+    {
+      "slug": "artist:jon-hopkins",
+      "type": "artist",
+      "name": "Jon Hopkins",
+      "mbid": "0b0c25f4-f31c-46a5-a4fb-ccbf53d663bd"
+    },
+    {
+      "slug": "artist:caribou",
+      "type": "artist",
+      "name": "Caribou",
+      "mbid": "735e3514-a8ae-401f-af3b-6300df1b8d2c"
+    },
+    {
+      "slug": "artist:bonobo",
+      "type": "artist",
+      "name": "Bonobo",
+      "mbid": "9a709693-b4f8-4da9-8cc1-038c911a61be"
+    },
+    {
+      "slug": "artist:royksopp",
+      "type": "artist",
+      "name": "Röyksopp",
+      "mbid": "1c70a3fc-fa3c-4be1-8b55-c3192db8a884"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:trentemoller",
+      "type": "artist",
+      "name": "Trentemøller",
+      "mbid": "95e9aba6-f85c-48a0-9ec9-395d4f0e3875"
+    },
+    {
+      "slug": "artist:mount-kimbie",
+      "type": "artist",
+      "name": "Mount Kimbie",
+      "mbid": "4a3a5fc0-af4b-4990-957b-8d94f7bfe706"
+    },
+    {
+      "slug": "artist:nicolas-jaar",
+      "type": "artist",
+      "name": "Nicolas Jaar",
+      "mbid": "06e99a1b-4020-4380-ab27-1a3e0c5e557c"
+    }
+  ]
 }

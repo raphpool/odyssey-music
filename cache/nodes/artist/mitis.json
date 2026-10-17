@@ -138,5 +138,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:seven-lions",
+      "type": "artist",
+      "name": "Seven Lions",
+      "mbid": "75c016da-48e4-4992-8a10-b7128189b272"
+    },
+    {
+      "slug": "artist:blackmill",
+      "type": "artist",
+      "name": "Blackmill",
+      "mbid": "746876a5-8243-4f05-b1a8-8e211a4282e0"
+    },
+    {
+      "slug": "artist:porter-robinson",
+      "type": "artist",
+      "name": "Porter Robinson",
+      "mbid": "4ae36ade-1798-48c4-b06b-cc68b7d3d83f"
+    },
+    {
+      "slug": "artist:rameses-b",
+      "type": "artist",
+      "name": "Rameses B",
+      "mbid": "bbd9a0a9-3605-4c3f-b9d0-48eb928a5275"
+    },
+    {
+      "slug": "artist:veela",
+      "type": "artist",
+      "name": "Veela",
+      "mbid": "de3387d3-d6e0-4fe2-9dad-78e7bbcb2dd4"
+    },
+    {
+      "slug": "artist:laura-brehm",
+      "type": "artist",
+      "name": "Laura Brehm",
+      "mbid": "8c0b35f5-facb-4688-9c2b-a24c174e5882"
+    },
+    {
+      "slug": "artist:krewella",
+      "type": "artist",
+      "name": "Krewella",
+      "mbid": "d87475fa-76a1-4e12-962c-fc9941fdda72"
+    },
+    {
+      "slug": "artist:feint",
+      "type": "artist",
+      "name": "Feint",
+      "mbid": "e6e29ff5-b0e4-4985-a63f-e99d12b21728"
+    },
+    {
+      "slug": "artist:danyka-nadeau",
+      "type": "artist",
+      "name": "Danyka Nadeau",
+      "mbid": "887d85d6-604f-4d94-a96c-206102a5c259"
+    },
+    {
+      "slug": "artist:crywolf",
+      "type": "artist",
+      "name": "Crywolf",
+      "mbid": "61a64e46-1558-4d13-b365-af150bdbe604"
+    }
+  ]
 }

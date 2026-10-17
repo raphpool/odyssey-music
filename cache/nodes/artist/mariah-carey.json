@@ -143,5 +143,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:britney-spears",
+      "type": "artist",
+      "name": "Britney Spears",
+      "mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76"
+    },
+    {
+      "slug": "artist:michael-buble",
+      "type": "artist",
+      "name": "Michael Bublé",
+      "mbid": "611700cf-27f0-4dc9-ae80-c513a767853e"
+    },
+    {
+      "slug": "artist:ariana-grande",
+      "type": "artist",
+      "name": "Ariana Grande",
+      "mbid": "f4fdbb4c-e4b7-47a0-b83b-d91bbfcfa387"
+    },
+    {
+      "slug": "artist:kelly-clarkson",
+      "type": "artist",
+      "name": "Kelly Clarkson",
+      "mbid": "d339efbb-77b9-4147-ba9e-59f2f24550b2"
+    },
+    {
+      "slug": "artist:rihanna",
+      "type": "artist",
+      "name": "Rihanna",
+      "mbid": "73e5e69d-3554-40d8-8516-00cb38737a1c"
+    },
+    {
+      "slug": "artist:christina-aguilera",
+      "type": "artist",
+      "name": "Christina Aguilera",
+      "mbid": "b202beb7-99bd-47e7-8b72-195c8d72ebdd"
+    },
+    {
+      "slug": "artist:frank-sinatra",
+      "type": "artist",
+      "name": "Frank Sinatra",
+      "mbid": "197450cd-0124-4164-b723-3c22dd16494d"
+    },
+    {
+      "slug": "artist:beyonce",
+      "type": "artist",
+      "name": "Beyoncé",
+      "mbid": "859d0860-d480-4efd-970c-c05d5f1776b8"
+    },
+    {
+      "slug": "artist:madonna",
+      "type": "artist",
+      "name": "Madonna",
+      "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287"
+    },
+    {
+      "slug": "artist:whitney-houston",
+      "type": "artist",
+      "name": "Whitney Houston",
+      "mbid": "0307edfc-437c-4b48-8700-80680e66a228"
+    }
+  ]
 }

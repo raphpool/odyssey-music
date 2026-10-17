@@ -254,5 +254,18 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:uncle-waffles",
+      "type": "artist",
+      "name": "Uncle Waffles",
+      "mbid": "aec7779a-aa40-4b6e-8764-bd64b0500caf"
+    },
+    {
+      "slug": "artist:killer-kau",
+      "type": "artist",
+      "name": "Killer Kau",
+      "mbid": "f6b3332c-2835-48f1-94fb-a09649e0a4ef"
+    }
+  ]
 }

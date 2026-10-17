@@ -378,5 +378,18 @@
       "name": "Ghul"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:emperor",
+      "type": "artist",
+      "name": "Emperor",
+      "mbid": "d9951785-7906-4daf-9a60-21753bf64aa9"
+    },
+    {
+      "slug": "artist:morbid-angel",
+      "type": "artist",
+      "name": "Morbid Angel",
+      "mbid": "4355a36d-805e-478d-8589-64f0292724b2"
+    }
+  ]
 }

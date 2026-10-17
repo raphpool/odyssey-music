@@ -114,5 +114,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre",
+      "mbid": "410c9baf-5469-44f6-9852-826524b80c61"
+    },
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ‐Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
+    },
+    {
+      "slug": "artist:plaid",
+      "type": "artist",
+      "name": "Plaid",
+      "mbid": "7e54d133-2525-4bc0-ae94-65584145a386"
+    },
+    {
+      "slug": "artist:squarepusher",
+      "type": "artist",
+      "name": "Squarepusher",
+      "mbid": "4d86ad4e-28d8-4e9f-8cf4-735c57060fdc"
+    },
+    {
+      "slug": "artist:the-black-dog",
+      "type": "artist",
+      "name": "The Black Dog",
+      "mbid": "a78d2a35-c083-4179-a5d8-49f84e5ec863"
+    },
+    {
+      "slug": "artist:clark",
+      "type": "artist",
+      "name": "Clark",
+      "mbid": "5d0c202c-e30f-40c4-abf5-c0007af0d1cc"
+    },
+    {
+      "slug": "artist:luke-vibert",
+      "type": "artist",
+      "name": "Luke Vibert",
+      "mbid": "0b59a279-54ef-4723-854e-a12b61e9581a"
+    },
+    {
+      "slug": "artist:venetian-snares",
+      "type": "artist",
+      "name": "Venetian Snares",
+      "mbid": "56abaa47-0101-463b-b37e-e961136fec39"
+    },
+    {
+      "slug": "artist:jega",
+      "type": "artist",
+      "name": "Jega",
+      "mbid": "6b43e5f2-49e8-46ce-94cb-a9b23e5bb4e8"
+    },
+    {
+      "slug": "artist:two-lone-swordsmen",
+      "type": "artist",
+      "name": "Two Lone Swordsmen",
+      "mbid": "e3b208cf-b18f-450e-a661-79f4eabe8090"
+    }
+  ]
 }

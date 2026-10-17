@@ -121,5 +121,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-beach-boys",
+      "type": "artist",
+      "name": "The Beach Boys",
+      "mbid": "ebfc1398-8d96-47e3-82c3-f782abcdb13d"
+    },
+    {
+      "slug": "artist:harry-nilsson",
+      "type": "artist",
+      "name": "Harry Nilsson",
+      "mbid": "e5963d26-01fa-40f5-b200-e0127f410a45"
+    },
+    {
+      "slug": "artist:james-taylor",
+      "type": "artist",
+      "name": "James Taylor",
+      "mbid": "107d0c22-d051-4d98-8206-4e14de02132a"
+    },
+    {
+      "slug": "artist:michael-giacchino",
+      "type": "artist",
+      "name": "Michael Giacchino",
+      "mbid": "150e14bd-915d-4574-b574-f77dd7ea72ad"
+    },
+    {
+      "slug": "artist:r-e-m",
+      "type": "artist",
+      "name": "R.E.M.",
+      "mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58"
+    },
+    {
+      "slug": "artist:joni-mitchell",
+      "type": "artist",
+      "name": "Joni Mitchell",
+      "mbid": "a6de8ef9-b1a1-4756-97aa-481bbb8a4069"
+    },
+    {
+      "slug": "artist:thomas-newman",
+      "type": "artist",
+      "name": "Thomas Newman",
+      "mbid": "348f3a5f-5112-4d72-b33b-11c60b4f9af2"
+    },
+    {
+      "slug": "artist:hans-zimmer",
+      "type": "artist",
+      "name": "Hans Zimmer",
+      "mbid": "e6de1f3b-6484-491c-88dd-6d619f142abc"
+    },
+    {
+      "slug": "artist:alan-silvestri",
+      "type": "artist",
+      "name": "Alan Silvestri",
+      "mbid": "f4c53778-e48d-4da4-9ddd-cc007f715d64"
+    },
+    {
+      "slug": "artist:danny-elfman",
+      "type": "artist",
+      "name": "Danny Elfman",
+      "mbid": "5b24fbab-c58f-4c37-a59d-ab232e2d98c4"
+    }
+  ]
 }

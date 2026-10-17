@@ -135,5 +135,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:jeff-mills",
+      "type": "artist",
+      "name": "Jeff Mills",
+      "mbid": "470a4ced-1323-4c91-8fd5-0bb3fb4c932a"
+    },
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos",
+      "mbid": "bbd79854-df54-4c1b-b7d6-cf7eea2d0afb"
+    },
+    {
+      "slug": "artist:alex-smoke",
+      "type": "artist",
+      "name": "Alex Smoke",
+      "mbid": "a2caa7c9-2510-40f0-9fb9-88f45cf993ba"
+    },
+    {
+      "slug": "artist:apparat",
+      "type": "artist",
+      "name": "Apparat",
+      "mbid": "dc3dbfc1-f1f1-49c6-9d7c-425fabf3ae12"
+    },
+    {
+      "slug": "artist:richard-harvey",
+      "type": "artist",
+      "name": "Richard Harvey",
+      "mbid": "b61a7817-99a8-408e-9a7d-07855b88ce1c"
+    },
+    {
+      "slug": "artist:gui-boratto",
+      "type": "artist",
+      "name": "Gui Boratto",
+      "mbid": "f3e2ad21-900e-46a0-8597-2a3e457a7c27"
+    },
+    {
+      "slug": "artist:marco-carola",
+      "type": "artist",
+      "name": "Marco Carola",
+      "mbid": "daa683bc-1a8d-48da-be35-864526c444a6"
+    },
+    {
+      "slug": "artist:booka-shade",
+      "type": "artist",
+      "name": "Booka Shade",
+      "mbid": "9940c604-2456-4193-a403-ab18420bc1e9"
+    },
+    {
+      "slug": "artist:mathew-jonson",
+      "type": "artist",
+      "name": "Mathew Jonson",
+      "mbid": "955718ae-8a26-4b98-8a34-02c44ab4bfdf"
+    },
+    {
+      "slug": "artist:santos-rodriguez",
+      "type": "artist",
+      "name": "Santos Rodriguez",
+      "mbid": "31a3dec5-4872-4022-a989-471dc8edf868"
+    }
+  ]
 }

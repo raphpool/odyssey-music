@@ -277,5 +277,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:common",
+      "type": "artist",
+      "name": "Common",
+      "mbid": "c0a1179b-b14a-4d68-a3c1-1fdab16ed602"
+    },
+    {
+      "slug": "artist:black-thought",
+      "type": "artist",
+      "name": "Black Thought",
+      "mbid": "5f39d33c-a167-4a63-9c44-71d27618b712"
+    },
+    {
+      "slug": "artist:fela-kuti",
+      "type": "artist",
+      "name": "Fela Kuti",
+      "mbid": "6514cffa-fbe0-4965-ad88-e998ead8a82a"
+    },
+    {
+      "slug": "artist:chinese-man",
+      "type": "artist",
+      "name": "Chinese Man",
+      "mbid": "0837d2bc-ceb6-4512-9490-b30f5c0390fa"
+    },
+    {
+      "slug": "artist:mos-def",
+      "type": "artist",
+      "name": "Yasiin Bey",
+      "mbid": "f5c4c27e-5902-4fc0-adfb-7775da3d5363"
+    },
+    {
+      "slug": "artist:tony-allen",
+      "type": "artist",
+      "name": "Tony Allen",
+      "mbid": "ea524cc6-191a-4c05-ab88-3bb5c0880ca5"
+    },
+    {
+      "slug": "artist:manu-dibango",
+      "type": "artist",
+      "name": "Manu Dibango",
+      "mbid": "826b488f-5164-45ca-abc4-ab11b3c321eb"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:orchestra-baobab",
+      "type": "artist",
+      "name": "Orchestra Baobab",
+      "mbid": "30331c85-26d4-4daa-9f66-3075cac4c20b"
+    }
+  ]
 }

@@ -148,5 +148,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:stars-of-the-lid",
+      "type": "artist",
+      "name": "Stars of the Lid",
+      "mbid": "a1154343-1ea1-4007-97d3-2382482a90cd"
+    },
+    {
+      "slug": "artist:daniel-lanois",
+      "type": "artist",
+      "name": "Daniel Lanois",
+      "mbid": "ca0489a4-3a7b-4def-b66e-e00b2f579ae0"
+    },
+    {
+      "slug": "artist:biosphere",
+      "type": "artist",
+      "name": "Biosphere",
+      "mbid": "a5ee1ebe-a645-45d2-8319-d101fe62e581"
+    },
+    {
+      "slug": "artist:hammock",
+      "type": "artist",
+      "name": "Hammock",
+      "mbid": "5b9d784c-33eb-4a78-a976-c97b672370fa"
+    },
+    {
+      "slug": "artist:loscil",
+      "type": "artist",
+      "name": "Loscil",
+      "mbid": "4f2c565b-ac40-4678-ba61-4fcf3b97edbc"
+    },
+    {
+      "slug": "artist:tim-hecker",
+      "type": "artist",
+      "name": "Tim Hecker",
+      "mbid": "c7ee3bc9-780c-42c0-91e9-4cd70ad692d3"
+    },
+    {
+      "slug": "artist:robin-guthrie",
+      "type": "artist",
+      "name": "Robin Guthrie",
+      "mbid": "47d7b25e-585b-4c97-b98b-411b21a53379"
+    },
+    {
+      "slug": "artist:eluvium",
+      "type": "artist",
+      "name": "Eluvium",
+      "mbid": "86139012-695b-42f4-98f1-1f353f7230b4"
+    },
+    {
+      "slug": "artist:nils-frahm",
+      "type": "artist",
+      "name": "Nils Frahm",
+      "mbid": "d03a54bc-6e07-4c04-a8d4-7fbf2bd07a01"
+    }
+  ]
 }

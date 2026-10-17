@@ -148,5 +148,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:slayer",
+      "type": "artist",
+      "name": "Slayer",
+      "mbid": "bdacc37b-8633-4bf8-9dd5-4662ee651aec"
+    },
+    {
+      "slug": "artist:megadeth",
+      "type": "artist",
+      "name": "Megadeth",
+      "mbid": "a9044915-8be3-4c7e-b11f-9e2d2ea0a91e"
+    },
+    {
+      "slug": "artist:opeth",
+      "type": "artist",
+      "name": "Opeth",
+      "mbid": "c14b4180-dc87-481e-b17a-64e4150f90f6"
+    },
+    {
+      "slug": "artist:morbid-angel",
+      "type": "artist",
+      "name": "Morbid Angel",
+      "mbid": "4355a36d-805e-478d-8589-64f0292724b2"
+    },
+    {
+      "slug": "artist:iron-maiden",
+      "type": "artist",
+      "name": "Iron Maiden",
+      "mbid": "ca891d65-d9b0-4258-89f7-e6ba29d83767"
+    },
+    {
+      "slug": "artist:sepultura",
+      "type": "artist",
+      "name": "Sepultura",
+      "mbid": "1d93c839-22e7-4f76-ad84-d27039efc048"
+    },
+    {
+      "slug": "artist:carcass",
+      "type": "artist",
+      "name": "Carcass",
+      "mbid": "d50a4b89-ff1f-4659-9fde-f76f8d5b3c89"
+    },
+    {
+      "slug": "artist:cannibal-corpse",
+      "type": "artist",
+      "name": "Cannibal Corpse",
+      "mbid": "af8e4cc5-ef54-458d-a194-7b210acf638f"
+    },
+    {
+      "slug": "artist:pantera",
+      "type": "artist",
+      "name": "Pantera",
+      "mbid": "541f16f5-ad7a-428e-af89-9fa1b16d3c9c"
+    },
+    {
+      "slug": "artist:judas-priest",
+      "type": "artist",
+      "name": "Judas Priest",
+      "mbid": "6b335658-22c8-485d-93de-0bc29a1d0349"
+    }
+  ]
 }

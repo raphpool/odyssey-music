@@ -124,5 +124,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:drexciya",
+      "type": "artist",
+      "name": "Drexciya",
+      "mbid": "66f398bf-ae55-4f13-b993-fa871c57157f"
+    },
+    {
+      "slug": "artist:jeff-mills",
+      "type": "artist",
+      "name": "Jeff Mills",
+      "mbid": "470a4ced-1323-4c91-8fd5-0bb3fb4c932a"
+    },
+    {
+      "slug": "artist:underground-resistance",
+      "type": "artist",
+      "name": "Underground Resistance",
+      "mbid": "8dcd24c7-bf87-4f32-8e3f-7a79b3f25a85"
+    },
+    {
+      "slug": "artist:joey-beltram",
+      "type": "artist",
+      "name": "Joey Beltram",
+      "mbid": "5330d6d0-711b-415b-93e4-071e46d0d5f2"
+    },
+    {
+      "slug": "artist:model-500",
+      "type": "artist",
+      "name": "Model 500",
+      "mbid": "e569aee8-33ff-48e5-b0ed-4ceba1a37714"
+    },
+    {
+      "slug": "artist:carl-craig",
+      "type": "artist",
+      "name": "Carl Craig",
+      "mbid": "6732e9f3-5f24-4ba4-aef1-a2a49442b96b"
+    },
+    {
+      "slug": "artist:motor-city-drum-ensemble",
+      "type": "artist",
+      "name": "Motor City Drum Ensemble",
+      "mbid": "0323f501-4b5e-4682-a062-e60f6212f9c3"
+    },
+    {
+      "slug": "artist:plastikman",
+      "type": "artist",
+      "name": "Plastikman",
+      "mbid": "abee98f6-5239-4abf-bbe6-e1e2815a0dd6"
+    },
+    {
+      "slug": "artist:james-ruskin",
+      "type": "artist",
+      "name": "James Ruskin",
+      "mbid": "9f50b54d-4eb7-4d20-9d6d-69220075005f"
+    },
+    {
+      "slug": "artist:kenny-larkin",
+      "type": "artist",
+      "name": "Kenny Larkin",
+      "mbid": "ed8e364a-6087-4425-bd58-6b146893c4b4"
+    }
+  ]
 }

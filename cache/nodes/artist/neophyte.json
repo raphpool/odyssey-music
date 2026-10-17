@@ -685,5 +685,18 @@
       "name": "Jarno Butter"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:dj-paul-elstak",
+      "type": "artist",
+      "name": "DJ Paul Elstak",
+      "mbid": "026c4d7c-8dfe-46e8-ab14-cf9304d6863d"
+    },
+    {
+      "slug": "artist:rotterdam-terror-corps",
+      "type": "artist",
+      "name": "Rotterdam Terror Corps",
+      "mbid": "bf4143da-9b14-4ae8-8787-2a1dfe610a76"
+    }
+  ]
 }

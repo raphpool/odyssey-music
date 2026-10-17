@@ -83,5 +83,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:mutt",
+      "type": "artist",
+      "name": "Mutt",
+      "mbid": "eb4c3d88-1573-42c9-b543-3b456d660efe"
+    },
+    {
+      "slug": "artist:brother",
+      "type": "artist",
+      "name": "Brother",
+      "mbid": "78ec0931-fea8-484b-accd-f57f09f5ea34"
+    },
+    {
+      "slug": "artist:madmen-and-poets",
+      "type": "artist",
+      "name": "Madmen & Poets",
+      "mbid": "5af2101f-6824-473b-8114-3afc1550f59f"
+    },
+    {
+      "slug": "artist:calculon",
+      "type": "artist",
+      "name": "Calculon",
+      "mbid": "e9c1c0ef-9453-4d86-9dde-1931d1627cb0"
+    },
+    {
+      "slug": "artist:well-being",
+      "type": "artist",
+      "name": "Well Being",
+      "mbid": "4ea7f276-f7cc-43ae-8d2f-4fcfbf2427d1"
+    },
+    {
+      "slug": "artist:bcee",
+      "type": "artist",
+      "name": "BCee",
+      "mbid": "c98df5a4-4dba-4992-8381-092bf81d2e68"
+    },
+    {
+      "slug": "artist:s-p-y",
+      "type": "artist",
+      "name": "S.P.Y",
+      "mbid": "abe931fd-bc88-40ee-ba42-f0ef2dc2eba5"
+    },
+    {
+      "slug": "artist:iris",
+      "type": "artist",
+      "name": "Iris",
+      "mbid": "9ab8c1be-a2cd-4e3b-a572-8fc73dfe31d6"
+    },
+    {
+      "slug": "artist:bulletproof",
+      "type": "artist",
+      "name": "Bulletproof",
+      "mbid": "6998f397-6ae0-4995-98dc-3b48b62d72b6"
+    },
+    {
+      "slug": "artist:drifter",
+      "type": "artist",
+      "name": "Drifter",
+      "mbid": "f0ff8982-bcff-487c-8a25-7718ba899836"
+    }
+  ]
 }

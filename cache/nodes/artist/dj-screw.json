@@ -342,5 +342,66 @@
       "name": "Lil' Keke"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:ugk",
+      "type": "artist",
+      "name": "UGK",
+      "mbid": "9603810b-5d6d-41a6-aca8-330ef966d55c"
+    },
+    {
+      "slug": "artist:e-s-g",
+      "type": "artist",
+      "name": "E.S.G.",
+      "mbid": "7a702538-cd5e-41e8-bf03-ec6c33770f22"
+    },
+    {
+      "slug": "artist:point-blank",
+      "type": "artist",
+      "name": "Point Blank",
+      "mbid": "6fd0f42d-bc93-449a-9e80-c03bb02c6cb6"
+    },
+    {
+      "slug": "artist:mack-10",
+      "type": "artist",
+      "name": "Mack 10",
+      "mbid": "c3b4e25b-977f-4cb6-96d7-f68afbac732f"
+    },
+    {
+      "slug": "artist:botany-boyz",
+      "type": "artist",
+      "name": "Botany Boyz",
+      "mbid": "d9b2940f-b351-4ea7-917f-170b6eac292f"
+    },
+    {
+      "slug": "artist:20-2-life",
+      "type": "artist",
+      "name": "20‐2‐Life",
+      "mbid": "a800a10e-47a9-4d77-801b-c507da551133"
+    },
+    {
+      "slug": "artist:three-6-mafia",
+      "type": "artist",
+      "name": "Three 6 Mafia",
+      "mbid": "a8754ac4-a85e-4f48-a81f-eecd482570ef"
+    },
+    {
+      "slug": "artist:z-ro",
+      "type": "artist",
+      "name": "Z‐Ro",
+      "mbid": "36cf5c5e-14fb-42c0-a232-56bd449a81df"
+    },
+    {
+      "slug": "artist:k-rino",
+      "type": "artist",
+      "name": "K‐Rino",
+      "mbid": "6c495d1f-0ff3-45e9-a9fd-84ada8d8ee82"
+    },
+    {
+      "slug": "artist:travis-scott",
+      "type": "artist",
+      "name": "Travis Scott",
+      "mbid": "e4a51f17-a57b-47b1-b37b-f552d0f8e9e6"
+    }
+  ]
 }

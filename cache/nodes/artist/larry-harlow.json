@@ -166,5 +166,48 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:eddie-palmieri",
+      "type": "artist",
+      "name": "Eddie Palmieri",
+      "mbid": "42b5af45-312e-4dc1-ad0c-84dea2d5dcb2"
+    },
+    {
+      "slug": "artist:grupo-fantasma",
+      "type": "artist",
+      "name": "Grupo Fantasma",
+      "mbid": "d1aed914-6a94-4643-9af4-b80682aa6c14"
+    },
+    {
+      "slug": "artist:brownout",
+      "type": "artist",
+      "name": "Brownout",
+      "mbid": "c7c1b94b-92d6-4ffb-bc53-949e24d8b858"
+    },
+    {
+      "slug": "artist:tito-puente",
+      "type": "artist",
+      "name": "Tito Puente",
+      "mbid": "f19ad155-d809-4770-ab8d-7579467d9f55"
+    },
+    {
+      "slug": "artist:willie-colon",
+      "type": "artist",
+      "name": "Willie Colón",
+      "mbid": "f1edfbed-9315-4550-859c-599cc3fdee57"
+    },
+    {
+      "slug": "artist:el-gran-combo-de-puerto-rico",
+      "type": "artist",
+      "name": "El Gran Combo de Puerto Rico",
+      "mbid": "a34ab81e-a7e0-4d0c-b5f8-2438f104733d"
+    },
+    {
+      "slug": "artist:joe-bataan",
+      "type": "artist",
+      "name": "Joe Bataan",
+      "mbid": "de7d54d7-0fce-4fb9-84f0-6fee794335d2"
+    }
+  ]
 }

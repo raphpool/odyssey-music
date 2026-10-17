@@ -71,5 +71,66 @@
       "name": "Underworld"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:the-chemical-brothers",
+      "type": "artist",
+      "name": "The Chemical Brothers",
+      "mbid": "1946a82a-f927-40c2-8235-38d64f50d043"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:caribou",
+      "type": "artist",
+      "name": "Caribou",
+      "mbid": "735e3514-a8ae-401f-af3b-6300df1b8d2c"
+    },
+    {
+      "slug": "artist:massive-attack",
+      "type": "artist",
+      "name": "Massive Attack",
+      "mbid": "10adbe5e-a2c0-4bf3-8249-2b4cbf6e6ca8"
+    },
+    {
+      "slug": "artist:the-national",
+      "type": "artist",
+      "name": "The National",
+      "mbid": "664c3e0e-42d8-48c1-b209-1efca19c0325"
+    },
+    {
+      "slug": "artist:arcade-fire",
+      "type": "artist",
+      "name": "Arcade Fire",
+      "mbid": "52074ba6-e495-4ef3-9bb4-0703888a9f68"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:the-war-on-drugs",
+      "type": "artist",
+      "name": "The War on Drugs",
+      "mbid": "87b9b3b8-ab93-426c-a200-4012d667a626"
+    },
+    {
+      "slug": "artist:st-vincent",
+      "type": "artist",
+      "name": "St. Vincent",
+      "mbid": "5334edc0-5faf-4ca5-b1df-000de3e1f752"
+    }
+  ]
 }

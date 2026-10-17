@@ -65,5 +65,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:808-state",
+      "type": "artist",
+      "name": "808 State",
+      "mbid": "36f35db0-bc09-43e7-8650-a123224943c7"
+    },
+    {
+      "slug": "artist:farley-jackmaster-funk",
+      "type": "artist",
+      "name": "Farley Jackmaster Funk",
+      "mbid": "4b9621eb-09d2-4e40-8ef2-a874ffe7eaea"
+    },
+    {
+      "slug": "artist:mr-fingers",
+      "type": "artist",
+      "name": "Mr. Fingers",
+      "mbid": "1e47567e-5192-43b9-af98-75e4998f9e52"
+    },
+    {
+      "slug": "artist:johnny-cash",
+      "type": "artist",
+      "name": "Johnny Cash",
+      "mbid": "d43d12a1-2dc9-4257-a2fd-0a3bb1081b86"
+    },
+    {
+      "slug": "artist:m-a-r-r-s",
+      "type": "artist",
+      "name": "M|A|R|R|S",
+      "mbid": "13176bb9-9a3a-48ae-b05d-75a0bb668d01"
+    },
+    {
+      "slug": "artist:soft-house-company",
+      "type": "artist",
+      "name": "Soft House Company",
+      "mbid": "d7d928f4-77d6-456c-af0c-f12947764db8"
+    },
+    {
+      "slug": "artist:new-order",
+      "type": "artist",
+      "name": "New Order",
+      "mbid": "f1106b17-dcbb-45f6-b938-199ccfab50cc"
+    },
+    {
+      "slug": "artist:inner-city",
+      "type": "artist",
+      "name": "Inner City",
+      "mbid": "65a8e571-8a08-433f-a5bf-ead38c269ea6"
+    },
+    {
+      "slug": "artist:pixies",
+      "type": "artist",
+      "name": "Pixies",
+      "mbid": "b6b2bb8d-54a9-491f-9607-7b546023b433"
+    },
+    {
+      "slug": "artist:adonis",
+      "type": "artist",
+      "name": "Adonis",
+      "mbid": "835f5076-6b5d-4ba1-a3fe-d81a5838a0fc"
+    }
+  ]
 }

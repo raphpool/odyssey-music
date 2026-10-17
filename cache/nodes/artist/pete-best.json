@@ -80,5 +80,12 @@
       "name": "The Beatles"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:keith-richards",
+      "type": "artist",
+      "name": "Keith Richards",
+      "mbid": "f0ed72a3-ae8f-4cf7-b51d-2696a2330230"
+    }
+  ]
 }

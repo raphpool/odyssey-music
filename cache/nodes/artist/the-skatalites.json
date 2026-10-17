@@ -483,5 +483,66 @@
       "name": "Jackie Mittoo"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:toots-and-the-maytals",
+      "type": "artist",
+      "name": "Toots & The Maytals",
+      "mbid": "29730ee3-e1c7-4e28-9ccd-3a0e6b0e8103"
+    },
+    {
+      "slug": "artist:bob-marley-and-the-wailers",
+      "type": "artist",
+      "name": "Bob Marley & The Wailers",
+      "mbid": "c296e10c-110a-4103-9e77-47bfebb7fb2e"
+    },
+    {
+      "slug": "artist:desmond-dekker",
+      "type": "artist",
+      "name": "Desmond Dekker",
+      "mbid": "8ac5bea6-3a62-4e28-9df7-03f24d4c06fc"
+    },
+    {
+      "slug": "artist:the-specials",
+      "type": "artist",
+      "name": "The Specials",
+      "mbid": "07eb40a2-2914-439c-a01d-15a685b84ddf"
+    },
+    {
+      "slug": "artist:the-ethiopians",
+      "type": "artist",
+      "name": "The Ethiopians",
+      "mbid": "1646c8fd-d950-4978-b944-0c7597a7837a"
+    },
+    {
+      "slug": "artist:the-upsetters",
+      "type": "artist",
+      "name": "The Upsetters",
+      "mbid": "7bcf8b20-72a6-48b1-bad3-b28869090dda"
+    },
+    {
+      "slug": "artist:derrick-morgan",
+      "type": "artist",
+      "name": "Derrick Morgan",
+      "mbid": "2f2c85b9-135d-4830-a925-ee7548332f70"
+    },
+    {
+      "slug": "artist:roland-alphonso",
+      "type": "artist",
+      "name": "Roland Alphonso",
+      "mbid": "dc340029-a165-4139-a80e-e1cae33b37b9"
+    },
+    {
+      "slug": "artist:lee-scratch-perry",
+      "type": "artist",
+      "name": "Lee “Scratch” Perry",
+      "mbid": "af75ebe4-3ab1-423d-a499-2a6f9d011ce2"
+    },
+    {
+      "slug": "artist:ken-boothe",
+      "type": "artist",
+      "name": "Ken Boothe",
+      "mbid": "f8eee368-dfe3-4e01-ad1b-9b306a6afb23"
+    }
+  ]
 }

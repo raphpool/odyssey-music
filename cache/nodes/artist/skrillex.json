@@ -96,5 +96,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:sirah",
+      "type": "artist",
+      "name": "Sirah",
+      "mbid": "e451c0ae-5dbe-42d2-9830-9bc96efa3ea9"
+    },
+    {
+      "slug": "artist:ellie-goulding",
+      "type": "artist",
+      "name": "Ellie Goulding",
+      "mbid": "33ca19f4-18c8-4411-98df-ac23890ce9f5"
+    },
+    {
+      "slug": "artist:korn",
+      "type": "artist",
+      "name": "Korn",
+      "mbid": "ac865b2e-bba8-4f5a-8756-dd40d5e39f46"
+    },
+    {
+      "slug": "artist:deadmau5",
+      "type": "artist",
+      "name": "deadmau5",
+      "mbid": "4a00ec9d-c635-463a-8cd4-eb61725f0c60"
+    },
+    {
+      "slug": "artist:pennybirdrabbit",
+      "type": "artist",
+      "name": "Pennybirdrabbit",
+      "mbid": "ab3a807c-1998-4f0a-801e-a49495e4a8b5"
+    },
+    {
+      "slug": "artist:nero",
+      "type": "artist",
+      "name": "NERO",
+      "mbid": "bd057a0c-a7b6-47bf-8dc3-45e0efac1798"
+    },
+    {
+      "slug": "artist:kill-the-noise",
+      "type": "artist",
+      "name": "Kill the Noise",
+      "mbid": "a9930a14-8fbb-435a-ad25-f4b6cae71523"
+    },
+    {
+      "slug": "artist:the-doors",
+      "type": "artist",
+      "name": "The Doors",
+      "mbid": "9efff43b-3b29-4082-824e-bc82f646f93d"
+    },
+    {
+      "slug": "artist:avicii",
+      "type": "artist",
+      "name": "Avicii",
+      "mbid": "c85cfd6b-b1e9-4a50-bd55-eb725f04f7d5"
+    },
+    {
+      "slug": "artist:pendulum",
+      "type": "artist",
+      "name": "Pendulum",
+      "mbid": "beff21d3-88c7-4ee0-8b7a-40b6db22c6d7"
+    }
+  ]
 }

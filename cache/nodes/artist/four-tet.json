@@ -113,5 +113,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:bonobo",
+      "type": "artist",
+      "name": "Bonobo",
+      "mbid": "9a709693-b4f8-4da9-8cc1-038c911a61be"
+    },
+    {
+      "slug": "artist:caribou",
+      "type": "artist",
+      "name": "Caribou",
+      "mbid": "735e3514-a8ae-401f-af3b-6300df1b8d2c"
+    },
+    {
+      "slug": "artist:jon-hopkins",
+      "type": "artist",
+      "name": "Jon Hopkins",
+      "mbid": "0b0c25f4-f31c-46a5-a4fb-ccbf53d663bd"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:massive-attack",
+      "type": "artist",
+      "name": "Massive Attack",
+      "mbid": "10adbe5e-a2c0-4bf3-8249-2b4cbf6e6ca8"
+    },
+    {
+      "slug": "artist:air",
+      "type": "artist",
+      "name": "Air",
+      "mbid": "cb67438a-7f50-4f2b-a6f1-2bb2729fd538"
+    },
+    {
+      "slug": "artist:tycho",
+      "type": "artist",
+      "name": "Tycho",
+      "mbid": "cbef45a9-7acb-4325-94c9-70081ac8d1b8"
+    },
+    {
+      "slug": "artist:mount-kimbie",
+      "type": "artist",
+      "name": "Mount Kimbie",
+      "mbid": "4a3a5fc0-af4b-4990-957b-8d94f7bfe706"
+    },
+    {
+      "slug": "artist:apparat",
+      "type": "artist",
+      "name": "Apparat",
+      "mbid": "dc3dbfc1-f1f1-49c6-9d7c-425fabf3ae12"
+    },
+    {
+      "slug": "artist:amon-tobin",
+      "type": "artist",
+      "name": "Amon Tobin",
+      "mbid": "630662ea-1c7d-4208-99fd-ba3afec20f0c"
+    }
+  ]
 }

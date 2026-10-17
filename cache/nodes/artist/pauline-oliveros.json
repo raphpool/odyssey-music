@@ -72,5 +72,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:laurie-spiegel",
+      "type": "artist",
+      "name": "Laurie Spiegel",
+      "mbid": "f006d7dc-643a-4c9b-abde-a04fb4ae1c90"
+    },
+    {
+      "slug": "artist:steve-reich",
+      "type": "artist",
+      "name": "Steve Reich",
+      "mbid": "a3031680-c359-458f-a641-70ccbaec6a74"
+    },
+    {
+      "slug": "artist:raymond-scott",
+      "type": "artist",
+      "name": "Raymond Scott",
+      "mbid": "1807480c-c81e-401a-8016-300758f51008"
+    },
+    {
+      "slug": "artist:morton-subotnick",
+      "type": "artist",
+      "name": "Morton Subotnick",
+      "mbid": "c5e98895-2ef3-4850-972e-03f6dbe9ff1c"
+    },
+    {
+      "slug": "artist:vladimir-ussachevsky",
+      "type": "artist",
+      "name": "Vladimir Ussachevsky",
+      "mbid": "5645f557-ed01-4b9d-87d4-da827ec90e9f"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:david-tudor",
+      "type": "artist",
+      "name": "David Tudor",
+      "mbid": "6df5ba4e-71c9-4d1e-99f8-9a045163eb3f"
+    },
+    {
+      "slug": "artist:laurie-anderson",
+      "type": "artist",
+      "name": "Laurie Anderson",
+      "mbid": "86809b51-cbe2-45f1-804a-e66eed635dea"
+    },
+    {
+      "slug": "artist:tod-dockstader",
+      "type": "artist",
+      "name": "Tod Dockstader",
+      "mbid": "a80175ee-6a9e-4bc4-b009-1bc48ac2cb13"
+    },
+    {
+      "slug": "artist:terry-riley",
+      "type": "artist",
+      "name": "Terry Riley",
+      "mbid": "7bf257bf-19a8-4205-8ae8-98511e50b719"
+    }
+  ]
 }

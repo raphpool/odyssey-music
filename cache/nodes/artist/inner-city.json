@@ -132,5 +132,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:moby",
+      "type": "artist",
+      "name": "Moby",
+      "mbid": "8970d868-0723-483b-a75b-51088913d3d4"
+    },
+    {
+      "slug": "artist:depeche-mode",
+      "type": "artist",
+      "name": "Depeche Mode",
+      "mbid": "8538e728-ca0b-4321-b7e5-cff6565dd4c0"
+    },
+    {
+      "slug": "artist:808-state",
+      "type": "artist",
+      "name": "808 State",
+      "mbid": "36f35db0-bc09-43e7-8650-a123224943c7"
+    },
+    {
+      "slug": "artist:new-order",
+      "type": "artist",
+      "name": "New Order",
+      "mbid": "f1106b17-dcbb-45f6-b938-199ccfab50cc"
+    },
+    {
+      "slug": "artist:u2",
+      "type": "artist",
+      "name": "U2",
+      "mbid": "a3cb23fc-acd3-4ce0-8f36-1e5aa6a18432"
+    },
+    {
+      "slug": "artist:madonna",
+      "type": "artist",
+      "name": "Madonna",
+      "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287"
+    },
+    {
+      "slug": "artist:soul-ii-soul",
+      "type": "artist",
+      "name": "Soul II Soul",
+      "mbid": "9350241a-d698-4489-92bf-41794f383ff3"
+    },
+    {
+      "slug": "artist:the-cure",
+      "type": "artist",
+      "name": "The Cure",
+      "mbid": "69ee3720-a7cb-4402-b48d-a02c366f2bcf"
+    },
+    {
+      "slug": "artist:black-box",
+      "type": "artist",
+      "name": "Black Box",
+      "mbid": "d73596bb-a8f8-4aae-a323-d881f5245149"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    }
+  ]
 }

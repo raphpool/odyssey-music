@@ -124,5 +124,30 @@
       "name": "Jarobi White"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:de-la-soul",
+      "type": "artist",
+      "name": "De La Soul",
+      "mbid": "a8ebde98-7e91-46c7-992c-90039ba42017"
+    },
+    {
+      "slug": "artist:digable-planets",
+      "type": "artist",
+      "name": "Digable Planets",
+      "mbid": "ff44f779-74ab-48f8-aac3-39ebe8f7c18e"
+    },
+    {
+      "slug": "artist:kendrick-lamar",
+      "type": "artist",
+      "name": "Kendrick Lamar",
+      "mbid": "381086ea-f511-4aba-bdf9-71c753dc5077"
+    },
+    {
+      "slug": "artist:krs-one",
+      "type": "artist",
+      "name": "KRS-One",
+      "mbid": "fc4568b6-cbe3-4a3d-8409-28510c19e3e2"
+    }
+  ]
 }

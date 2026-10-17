@@ -130,5 +130,65 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:david-morales",
+      "type": "artist",
+      "name": "David Morales"
+    },
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles",
+      "mbid": "b7a98e65-7ce4-4fab-8cf3-6b3ccda6115a"
+    },
+    {
+      "slug": "artist:satoshi-tomiie",
+      "type": "artist",
+      "name": "Satoshi Tomiie",
+      "mbid": "97b07d48-eada-45ce-950d-f7140ea2b4f9"
+    },
+    {
+      "slug": "artist:dj-pierre",
+      "type": "artist",
+      "name": "DJ Pierre",
+      "mbid": "bc5d318a-096a-4bc3-8a2e-742905c0036b"
+    },
+    {
+      "slug": "artist:chip-e",
+      "type": "artist",
+      "name": "Chip E.",
+      "mbid": "31b07129-85d8-4ed2-abd3-0794deedd686"
+    },
+    {
+      "slug": "artist:jamie-principle",
+      "type": "artist",
+      "name": "Jamie Principle",
+      "mbid": "500df185-4a22-40a5-baf6-bdcabab5ed22"
+    },
+    {
+      "slug": "artist:jesse-saunders",
+      "type": "artist",
+      "name": "Jesse Saunders",
+      "mbid": "10d673bd-c091-4278-a9ce-5e4ea48af1cb"
+    },
+    {
+      "slug": "artist:phuture",
+      "type": "artist",
+      "name": "Phuture",
+      "mbid": "d4c75da5-45d7-49ef-abd6-babca3eb8d18"
+    },
+    {
+      "slug": "artist:hardfloor",
+      "type": "artist",
+      "name": "Hardfloor",
+      "mbid": "49c5cce4-aaa6-4600-a9a2-2b045fb6a87b"
+    },
+    {
+      "slug": "artist:larry-heard",
+      "type": "artist",
+      "name": "Larry Heard",
+      "mbid": "4346875a-2bba-4566-8dc1-680c38ba44c6"
+    }
+  ]
 }

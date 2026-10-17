@@ -101,5 +101,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:daft-punk",
+      "type": "artist",
+      "name": "Daft Punk",
+      "mbid": "056e4f3e-d505-4dad-8ec1-d04f521cbb56"
+    },
+    {
+      "slug": "artist:the-chemical-brothers",
+      "type": "artist",
+      "name": "The Chemical Brothers",
+      "mbid": "1946a82a-f927-40c2-8235-38d64f50d043"
+    },
+    {
+      "slug": "artist:moby",
+      "type": "artist",
+      "name": "Moby",
+      "mbid": "8970d868-0723-483b-a75b-51088913d3d4"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:massive-attack",
+      "type": "artist",
+      "name": "Massive Attack",
+      "mbid": "10adbe5e-a2c0-4bf3-8249-2b4cbf6e6ca8"
+    },
+    {
+      "slug": "artist:nirvana",
+      "type": "artist",
+      "name": "Nirvana",
+      "mbid": "5b11f4ce-a62d-471e-81fc-a69a8278c7da"
+    },
+    {
+      "slug": "artist:red-hot-chili-peppers",
+      "type": "artist",
+      "name": "Red Hot Chili Peppers",
+      "mbid": "8bfac288-ccc5-448d-9573-c33ea2aa5c30"
+    },
+    {
+      "slug": "artist:pendulum",
+      "type": "artist",
+      "name": "Pendulum",
+      "mbid": "beff21d3-88c7-4ee0-8b7a-40b6db22c6d7"
+    },
+    {
+      "slug": "artist:fatboy-slim",
+      "type": "artist",
+      "name": "Fatboy Slim",
+      "mbid": "34c63966-445c-4613-afe1-4f0e1e53ae9a"
+    },
+    {
+      "slug": "artist:muse",
+      "type": "artist",
+      "name": "Muse",
+      "mbid": "9c9f1380-2516-4fc9-a3e6-f9f61941d090"
+    }
+  ]
 }

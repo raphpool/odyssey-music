@@ -105,5 +105,29 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:bernard-edwards",
+      "type": "artist",
+      "name": "Bernard Edwards",
+      "mbid": "ba7ff664-5c64-4a62-a3e2-63445c1a25db"
+    },
+    {
+      "slug": "artist:chic",
+      "type": "artist",
+      "name": "Chic",
+      "mbid": "a4ed036b-5f18-439c-b1e1-96d205bab255"
+    },
+    {
+      "slug": "artist:kool-and-the-gang",
+      "type": "artist",
+      "name": "Kool and the Gang",
+      "mbid": "2469950a-f0ca-425a-bfbc-baf55ea3afde"
+    },
+    {
+      "slug": "artist:grace-jones",
+      "type": "artist",
+      "name": "Grace Jones"
+    }
+  ]
 }

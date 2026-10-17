@@ -130,5 +130,66 @@
       "name": "Roxy Music"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:todd-terje",
+      "type": "artist",
+      "name": "Todd Terje",
+      "mbid": "a0cded3a-4ca3-4ddb-8e46-ed9037f30aea"
+    },
+    {
+      "slug": "artist:the-cure",
+      "type": "artist",
+      "name": "The Cure",
+      "mbid": "69ee3720-a7cb-4402-b48d-a02c366f2bcf"
+    },
+    {
+      "slug": "artist:depeche-mode",
+      "type": "artist",
+      "name": "Depeche Mode",
+      "mbid": "8538e728-ca0b-4321-b7e5-cff6565dd4c0"
+    },
+    {
+      "slug": "artist:tears-for-fears",
+      "type": "artist",
+      "name": "Tears for Fears",
+      "mbid": "7c7f9c94-dee8-4903-892b-6cf44652e2de"
+    },
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones",
+      "mbid": "b071f9fa-14b0-4217-8e97-eb41da73f598"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:talking-heads",
+      "type": "artist",
+      "name": "Talking Heads",
+      "mbid": "a94a7155-c79d-4409-9fcf-220cb0e4dc3a"
+    },
+    {
+      "slug": "artist:simple-minds",
+      "type": "artist",
+      "name": "Simple Minds",
+      "mbid": "f41490ce-fe39-435d-86c0-ab5ce098b423"
+    },
+    {
+      "slug": "artist:u2",
+      "type": "artist",
+      "name": "U2",
+      "mbid": "a3cb23fc-acd3-4ce0-8f36-1e5aa6a18432"
+    }
+  ]
 }

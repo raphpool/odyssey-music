@@ -85,5 +85,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:charli-xcx",
+      "type": "artist",
+      "name": "Charli xcx",
+      "mbid": "260b6184-8828-48eb-945c-bc4cb6fc34ca"
+    },
+    {
+      "slug": "artist:arca",
+      "type": "artist",
+      "name": "Arca",
+      "mbid": "f7625f34-1799-42a4-a1c6-22b5377c767b"
+    },
+    {
+      "slug": "artist:grimes",
+      "type": "artist",
+      "name": "Grimes",
+      "mbid": "7e5a2a59-6d9f-4a17-b7c2-e1eedb7bd222"
+    },
+    {
+      "slug": "artist:flume",
+      "type": "artist",
+      "name": "Flume",
+      "mbid": "35fd8d42-b4a6-4414-9827-8766bd0daa3c"
+    },
+    {
+      "slug": "artist:kero-kero-bonito",
+      "type": "artist",
+      "name": "Kero Kero Bonito",
+      "mbid": "5e284bdc-3774-41dc-b5e2-b125d0349acf"
+    },
+    {
+      "slug": "artist:shygirl",
+      "type": "artist",
+      "name": "Shygirl",
+      "mbid": "9385f1a7-8623-4d0c-b171-f1e6e87220c5"
+    },
+    {
+      "slug": "artist:fka-twigs",
+      "type": "artist",
+      "name": "FKA twigs",
+      "mbid": "1e4e9db7-5068-4a9c-bdd0-5777e47172c8"
+    },
+    {
+      "slug": "artist:rina-sawayama",
+      "type": "artist",
+      "name": "Rina Sawayama",
+      "mbid": "52494f9b-789d-4467-bcaf-9915e70cc8f6"
+    },
+    {
+      "slug": "artist:100-gecs",
+      "type": "artist",
+      "name": "100 gecs",
+      "mbid": "d6d45dda-2377-4faa-947b-e071efa085c0"
+    },
+    {
+      "slug": "artist:death-grips",
+      "type": "artist",
+      "name": "Death Grips",
+      "mbid": "f9133036-ab3d-4e97-bd11-7a2c98ad148a"
+    }
+  ]
 }

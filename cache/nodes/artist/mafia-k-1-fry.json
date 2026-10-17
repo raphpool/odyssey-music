@@ -91,5 +91,66 @@
       "name": "Rim'K"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:medine",
+      "type": "artist",
+      "name": "Médine",
+      "mbid": "6287622e-28d7-4129-b141-34802042c8f0"
+    },
+    {
+      "slug": "artist:rohff",
+      "type": "artist",
+      "name": "Rohff",
+      "mbid": "f4a92aac-995b-47ab-80a5-33218a3e7823"
+    },
+    {
+      "slug": "artist:sinik",
+      "type": "artist",
+      "name": "Sinik",
+      "mbid": "023d37f7-4350-4bdb-863c-92af6bacbac7"
+    },
+    {
+      "slug": "artist:sniper",
+      "type": "artist",
+      "name": "Sniper",
+      "mbid": "88ad74d6-2dde-496f-86f3-722ff9274ea9"
+    },
+    {
+      "slug": "artist:fonky-family",
+      "type": "artist",
+      "name": "Fonky Family",
+      "mbid": "dfbc2d9e-d1c0-442b-970f-af28bb597537"
+    },
+    {
+      "slug": "artist:lunatic",
+      "type": "artist",
+      "name": "Lunatic",
+      "mbid": "c4dc0648-cf89-4e38-81de-28ab8a2a41b9"
+    },
+    {
+      "slug": "artist:kery-james",
+      "type": "artist",
+      "name": "Kery James",
+      "mbid": "cf33388f-96db-4f15-83eb-f5faacbf8f99"
+    },
+    {
+      "slug": "artist:la-rumeur",
+      "type": "artist",
+      "name": "La Rumeur",
+      "mbid": "3d0e05e9-c1aa-4d57-a8e6-cb6ab5b6d930"
+    },
+    {
+      "slug": "artist:youssoupha",
+      "type": "artist",
+      "name": "Youssoupha",
+      "mbid": "6fabf3aa-1822-49f2-b6c7-57560464696f"
+    },
+    {
+      "slug": "artist:ideal-j",
+      "type": "artist",
+      "name": "Ideal J",
+      "mbid": "08a1d2cc-4e44-4da5-a37a-d41e93ea518b"
+    }
+  ]
 }

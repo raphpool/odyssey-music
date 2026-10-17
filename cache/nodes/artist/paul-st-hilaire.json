@@ -124,5 +124,42 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:lee-scratch-perry",
+      "type": "artist",
+      "name": "Lee 'Scratch' Perry",
+      "mbid": "af75ebe4-3ab1-423d-a499-2a6f9d011ce2"
+    },
+    {
+      "slug": "artist:mark-ernestus",
+      "type": "artist",
+      "name": "Mark Ernestus",
+      "mbid": "6fb800e6-65db-4368-8472-b125e185f823"
+    },
+    {
+      "slug": "artist:moritz-von-oswald",
+      "type": "artist",
+      "name": "Moritz von Oswald",
+      "mbid": "48c4ea31-fe9d-4bbf-8a1c-a2996abcfb9f"
+    },
+    {
+      "slug": "artist:rhythm-and-sound",
+      "type": "artist",
+      "name": "Rhythm & Sound",
+      "mbid": "0bf220da-eb15-4bf2-9460-f640aaeda272"
+    },
+    {
+      "slug": "artist:basic-channel",
+      "type": "artist",
+      "name": "Basic Channel",
+      "mbid": "d145a57e-7afb-4793-8cc4-2fad292374ef"
+    },
+    {
+      "slug": "artist:tony-allen",
+      "type": "artist",
+      "name": "Tony Allen",
+      "mbid": "ea524cc6-191a-4c05-ab88-3bb5c0880ca5"
+    }
+  ]
 }

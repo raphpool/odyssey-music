@@ -117,5 +117,66 @@
       "name": "Vince Clarke"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-cure",
+      "type": "artist",
+      "name": "The Cure",
+      "mbid": "69ee3720-a7cb-4402-b48d-a02c366f2bcf"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:new-order",
+      "type": "artist",
+      "name": "New Order",
+      "mbid": "f1106b17-dcbb-45f6-b938-199ccfab50cc"
+    },
+    {
+      "slug": "artist:queen",
+      "type": "artist",
+      "name": "Queen",
+      "mbid": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3"
+    },
+    {
+      "slug": "artist:nirvana",
+      "type": "artist",
+      "name": "Nirvana",
+      "mbid": "5b11f4ce-a62d-471e-81fc-a69a8278c7da"
+    },
+    {
+      "slug": "artist:u2",
+      "type": "artist",
+      "name": "U2",
+      "mbid": "a3cb23fc-acd3-4ce0-8f36-1e5aa6a18432"
+    },
+    {
+      "slug": "artist:r-e-m",
+      "type": "artist",
+      "name": "R.E.M.",
+      "mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:tears-for-fears",
+      "type": "artist",
+      "name": "Tears for Fears",
+      "mbid": "7c7f9c94-dee8-4903-892b-6cf44652e2de"
+    }
+  ]
 }

@@ -114,5 +114,66 @@
       "name": "Kyle Gass"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:system-of-a-down",
+      "type": "artist",
+      "name": "System of a Down",
+      "mbid": "cc0b7089-c08d-4c10-b6b0-873582c17fd6"
+    },
+    {
+      "slug": "artist:red-hot-chili-peppers",
+      "type": "artist",
+      "name": "Red Hot Chili Peppers",
+      "mbid": "8bfac288-ccc5-448d-9573-c33ea2aa5c30"
+    },
+    {
+      "slug": "artist:foo-fighters",
+      "type": "artist",
+      "name": "Foo Fighters",
+      "mbid": "67f66c07-6e61-4026-ade5-7e782fad3a5d"
+    },
+    {
+      "slug": "artist:muse",
+      "type": "artist",
+      "name": "Muse",
+      "mbid": "9c9f1380-2516-4fc9-a3e6-f9f61941d090"
+    },
+    {
+      "slug": "artist:nirvana",
+      "type": "artist",
+      "name": "Nirvana",
+      "mbid": "5b11f4ce-a62d-471e-81fc-a69a8278c7da"
+    },
+    {
+      "slug": "artist:metallica",
+      "type": "artist",
+      "name": "Metallica",
+      "mbid": "65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab"
+    },
+    {
+      "slug": "artist:rage-against-the-machine",
+      "type": "artist",
+      "name": "Rage Against the Machine",
+      "mbid": "3798b104-01cb-484c-a3b0-56adc6399b80"
+    },
+    {
+      "slug": "artist:the-offspring",
+      "type": "artist",
+      "name": "The Offspring",
+      "mbid": "23a03e33-a603-404e-bcbf-2c00159d7067"
+    },
+    {
+      "slug": "artist:linkin-park",
+      "type": "artist",
+      "name": "Linkin Park",
+      "mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419"
+    },
+    {
+      "slug": "artist:queens-of-the-stone-age",
+      "type": "artist",
+      "name": "Queens of the Stone Age",
+      "mbid": "7dc8f5bd-9d0b-4087-9f73-dc164950bbd8"
+    }
+  ]
 }

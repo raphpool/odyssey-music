@@ -128,5 +128,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:billie-holiday",
+      "type": "artist",
+      "name": "Billie Holiday",
+      "mbid": "d59c4cda-11d9-48db-8bfe-b557ee602aed"
+    },
+    {
+      "slug": "artist:willie-bobo",
+      "type": "artist",
+      "name": "Willie Bobo",
+      "mbid": "dadec058-023e-498a-b1c7-776d03cc88ce"
+    },
+    {
+      "slug": "artist:dinah-washington",
+      "type": "artist",
+      "name": "Dinah Washington",
+      "mbid": "d385947d-c00d-4311-9cf1-a032a1d4040b"
+    },
+    {
+      "slug": "artist:shirley-horn",
+      "type": "artist",
+      "name": "Shirley Horn",
+      "mbid": "1f72d108-f2dc-44cd-8213-8d3426cc2c9a"
+    },
+    {
+      "slug": "artist:oscar-brown-jr",
+      "type": "artist",
+      "name": "Oscar Brown Jr.",
+      "mbid": "fad74575-8a16-4c50-99a5-5d20fda0bd46"
+    },
+    {
+      "slug": "artist:dizzy-gillespie",
+      "type": "artist",
+      "name": "Dizzy Gillespie",
+      "mbid": "e9ba8ccb-505f-4e5c-b909-65998d0d35b5"
+    },
+    {
+      "slug": "artist:ramsey-lewis",
+      "type": "artist",
+      "name": "Ramsey Lewis",
+      "mbid": "fe19b809-e86c-4736-882a-53b72e23171b"
+    },
+    {
+      "slug": "artist:archie-shepp",
+      "type": "artist",
+      "name": "Archie Shepp",
+      "mbid": "5ceff60b-8183-49bf-a855-328d3c172106"
+    },
+    {
+      "slug": "artist:thievery-corporation",
+      "type": "artist",
+      "name": "Thievery Corporation",
+      "mbid": "a505bb48-ad65-4af4-ae47-29149715bff9"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    }
+  ]
 }

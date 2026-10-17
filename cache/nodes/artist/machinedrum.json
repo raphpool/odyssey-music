@@ -200,5 +200,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:lone",
+      "type": "artist",
+      "name": "Lone",
+      "mbid": "cb8fc40c-bde5-4a84-94e4-ee1d4de385be"
+    },
+    {
+      "slug": "artist:four-tet",
+      "type": "artist",
+      "name": "Four Tet",
+      "mbid": "3bcff06f-675a-451f-9075-99e8657047e8"
+    },
+    {
+      "slug": "artist:mount-kimbie",
+      "type": "artist",
+      "name": "Mount Kimbie",
+      "mbid": "4a3a5fc0-af4b-4990-957b-8d94f7bfe706"
+    },
+    {
+      "slug": "artist:flying-lotus",
+      "type": "artist",
+      "name": "Flying Lotus",
+      "mbid": "fc7376fe-1a6f-4414-b4a7-83f50ed59c92"
+    },
+    {
+      "slug": "artist:clark",
+      "type": "artist",
+      "name": "Clark",
+      "mbid": "5d0c202c-e30f-40c4-abf5-c0007af0d1cc"
+    },
+    {
+      "slug": "artist:nosaj-thing",
+      "type": "artist",
+      "name": "Nosaj Thing",
+      "mbid": "b476bc5e-19ca-4e5a-82c8-1a068d601a7d"
+    },
+    {
+      "slug": "artist:shlohmo",
+      "type": "artist",
+      "name": "Shlohmo",
+      "mbid": "21a0e450-ae4d-473a-add4-744542ab9bf5"
+    },
+    {
+      "slug": "artist:shigeto",
+      "type": "artist",
+      "name": "Shigeto",
+      "mbid": "9006da5a-73cc-4b98-9395-78570b827fb1"
+    },
+    {
+      "slug": "artist:gold-panda",
+      "type": "artist",
+      "name": "Gold Panda",
+      "mbid": "bfbccd40-1a06-4ee7-b24d-b2f8cc714fa9"
+    },
+    {
+      "slug": "artist:faltydl",
+      "type": "artist",
+      "name": "FaltyDL",
+      "mbid": "094825f4-824e-4ab9-9739-75b3d2328509"
+    }
+  ]
 }

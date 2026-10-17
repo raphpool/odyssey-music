@@ -80,5 +80,13 @@
       "type": "artist",
       "name": "Mitchell Froom/Tchad Blake"
     }
+  ],
+  "similar_artists": [
+    {
+      "slug": "artist:mitchell-froom",
+      "type": "artist",
+      "name": "Mitchell Froom",
+      "mbid": "0af28ac4-6fcf-402d-a188-50c6b910e0bf"
+    }
   ]
 }

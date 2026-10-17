@@ -109,5 +109,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:basic-channel",
+      "type": "artist",
+      "name": "Basic Channel",
+      "mbid": "d145a57e-7afb-4793-8cc4-2fad292374ef"
+    },
+    {
+      "slug": "artist:maurizio",
+      "type": "artist",
+      "name": "Maurizio",
+      "mbid": "21a25e0c-098a-45a3-a211-41c39fc2103f"
+    },
+    {
+      "slug": "artist:monolake",
+      "type": "artist",
+      "name": "Monolake",
+      "mbid": "cedf92fe-eba1-45e2-ba16-b1b6af5169b8"
+    },
+    {
+      "slug": "artist:fluxion",
+      "type": "artist",
+      "name": "Fluxion",
+      "mbid": "0d9a2bfe-abb8-4ceb-a947-c4fbef03973b"
+    },
+    {
+      "slug": "artist:deepchord",
+      "type": "artist",
+      "name": "Deepchord",
+      "mbid": "281a03a8-0bfa-4579-ab50-7760bdd308ae"
+    },
+    {
+      "slug": "artist:quantec",
+      "type": "artist",
+      "name": "Quantec",
+      "mbid": "3fcbed4b-6fdc-4a1e-a54b-6b079b5fd591"
+    },
+    {
+      "slug": "artist:marko-furstenberg",
+      "type": "artist",
+      "name": "Marko Fürstenberg",
+      "mbid": "fb6de16a-dd2f-4637-8f11-60ad31e0a66a"
+    },
+    {
+      "slug": "artist:rhythm-and-sound",
+      "type": "artist",
+      "name": "Rhythm & Sound",
+      "mbid": "0bf220da-eb15-4bf2-9460-f640aaeda272"
+    },
+    {
+      "slug": "artist:porter-ricks",
+      "type": "artist",
+      "name": "Porter Ricks",
+      "mbid": "f2c0d29a-9bef-469f-af6e-a9b5deb21308"
+    },
+    {
+      "slug": "artist:substance",
+      "type": "artist",
+      "name": "Substance",
+      "mbid": "8f453d4e-724a-4e1e-b846-264555fda377"
+    }
+  ]
 }

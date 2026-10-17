@@ -625,5 +625,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:skepta",
+      "type": "artist",
+      "name": "Skepta",
+      "mbid": "38474d18-9204-4f60-a137-1fcc6750b869"
+    },
+    {
+      "slug": "artist:travis-scott",
+      "type": "artist",
+      "name": "Travis Scott",
+      "mbid": "e4a51f17-a57b-47b1-b37b-f552d0f8e9e6"
+    },
+    {
+      "slug": "artist:burna-boy",
+      "type": "artist",
+      "name": "Burna Boy",
+      "mbid": "78a19169-ac75-4868-b504-7e2e073118e0"
+    },
+    {
+      "slug": "artist:ariana-grande",
+      "type": "artist",
+      "name": "Ariana Grande",
+      "mbid": "f4fdbb4c-e4b7-47a0-b83b-d91bbfcfa387"
+    },
+    {
+      "slug": "artist:j-hus",
+      "type": "artist",
+      "name": "J Hus",
+      "mbid": "eca85dd0-f1fb-4e83-8c47-61403f479254"
+    },
+    {
+      "slug": "artist:metro-boomin",
+      "type": "artist",
+      "name": "Metro Boomin",
+      "mbid": "59db3d82-86ea-451f-881f-dffc8ec387c9"
+    },
+    {
+      "slug": "artist:b-live",
+      "type": "artist",
+      "name": "B-Live",
+      "mbid": "92332803-2137-4d0c-966a-5b474b21a9b3"
+    },
+    {
+      "slug": "artist:davido",
+      "type": "artist",
+      "name": "Davido",
+      "mbid": "a9ae7d4b-10f0-4da8-8b8c-21722a074a54"
+    },
+    {
+      "slug": "artist:lancey-foux",
+      "type": "artist",
+      "name": "Lancey Foux",
+      "mbid": "6a45326d-df49-474e-8169-e3524914331b"
+    },
+    {
+      "slug": "artist:dave",
+      "type": "artist",
+      "name": "Dave",
+      "mbid": "f93bac9e-b20a-403e-abc9-06a2fc151df1"
+    }
+  ]
 }

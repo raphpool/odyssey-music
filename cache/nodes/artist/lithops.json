@@ -69,5 +69,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:fennesz",
+      "type": "artist",
+      "name": "Fennesz",
+      "mbid": "a6f8d42d-d3ff-4268-8d39-ee01341733bb"
+    },
+    {
+      "slug": "artist:pole",
+      "type": "artist",
+      "name": "Pole",
+      "mbid": "ad957b43-9dc0-42e1-940c-19b21ec77f3a"
+    },
+    {
+      "slug": "artist:two-lone-swordsmen",
+      "type": "artist",
+      "name": "Two Lone Swordsmen",
+      "mbid": "e3b208cf-b18f-450e-a661-79f4eabe8090"
+    },
+    {
+      "slug": "artist:microstoria",
+      "type": "artist",
+      "name": "Microstoria",
+      "mbid": "5f3b5920-6aa8-4cc0-b466-77372c71aa4e"
+    },
+    {
+      "slug": "artist:plaid",
+      "type": "artist",
+      "name": "Plaid",
+      "mbid": "7e54d133-2525-4bc0-ae94-65584145a386"
+    },
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ‐Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
+    },
+    {
+      "slug": "artist:biosphere",
+      "type": "artist",
+      "name": "Biosphere",
+      "mbid": "a5ee1ebe-a645-45d2-8319-d101fe62e581"
+    },
+    {
+      "slug": "artist:prefuse-73",
+      "type": "artist",
+      "name": "Prefuse 73",
+      "mbid": "fc61dd75-880b-44ba-9ba9-c7b643d33413"
+    },
+    {
+      "slug": "artist:jan-jelinek",
+      "type": "artist",
+      "name": "Jan Jelinek",
+      "mbid": "ac9b829e-9a7c-4331-8abe-ab1eb49d1771"
+    },
+    {
+      "slug": "artist:ryoji-ikeda",
+      "type": "artist",
+      "name": "Ryoji Ikeda",
+      "mbid": "bba24968-a575-4b38-8c38-06f7ab6de8c8"
+    }
+  ]
 }

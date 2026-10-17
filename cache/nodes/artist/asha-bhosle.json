@@ -183,5 +183,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:lata-mangeshkar",
+      "type": "artist",
+      "name": "Lata Mangeshkar",
+      "mbid": "aeb71bd8-447d-4415-8ea1-2b7d664f67e1"
+    },
+    {
+      "slug": "artist:mohammed-rafi",
+      "type": "artist",
+      "name": "Mohammed Rafi",
+      "mbid": "28365249-f3fd-44db-8131-32cb170970c4"
+    },
+    {
+      "slug": "artist:rahul-dev-burman",
+      "type": "artist",
+      "name": "Rahul Dev Burman",
+      "mbid": "0278f30f-266b-4261-ba3a-67491555eab0"
+    },
+    {
+      "slug": "artist:mukesh",
+      "type": "artist",
+      "name": "Mukesh",
+      "mbid": "bc396309-3a20-4520-9431-1444142d1051"
+    },
+    {
+      "slug": "artist:a-r-rahman",
+      "type": "artist",
+      "name": "A. R. Rahman",
+      "mbid": "e0bba708-bdd3-478d-84ea-c706413bedab"
+    },
+    {
+      "slug": "artist:alka-yagnik",
+      "type": "artist",
+      "name": "Alka Yagnik",
+      "mbid": "52cf0679-e1cf-42ca-b9b5-86e018b36d91"
+    },
+    {
+      "slug": "artist:manna-dey",
+      "type": "artist",
+      "name": "Manna Dey",
+      "mbid": "22f54aa9-3408-4de4-b953-cd44564f10a4"
+    },
+    {
+      "slug": "artist:udit-narayan",
+      "type": "artist",
+      "name": "Udit Narayan",
+      "mbid": "43a90725-7432-4f08-baa6-4c939d6f69a9"
+    },
+    {
+      "slug": "artist:kalyanji-anandji",
+      "type": "artist",
+      "name": "Kalyanji Anandji",
+      "mbid": "5316ee10-f6aa-412b-b2da-43115f7a5514"
+    },
+    {
+      "slug": "artist:sonu-nigam",
+      "type": "artist",
+      "name": "Sonu Nigam",
+      "mbid": "93622908-0806-4173-94c1-9e42597af011"
+    }
+  ]
 }

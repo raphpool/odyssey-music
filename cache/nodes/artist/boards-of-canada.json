@@ -146,5 +146,17 @@
       "name": "Marcus Eoin"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:rob-brown",
+      "type": "artist",
+      "name": "Rob Brown"
+    },
+    {
+      "slug": "artist:sean-booth",
+      "type": "artist",
+      "name": "Sean Booth",
+      "mbid": "18da95e1-52a8-44e6-bcba-2ff5d35b01d2"
+    }
+  ]
 }

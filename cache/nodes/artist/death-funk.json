@@ -80,5 +80,30 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:atari-teenage-riot",
+      "type": "artist",
+      "name": "Atari Teenage Riot",
+      "mbid": "fe404dd9-09b2-4ac8-a0e5-8da1c4027061"
+    },
+    {
+      "slug": "artist:death-grips",
+      "type": "artist",
+      "name": "Death Grips",
+      "mbid": "f9133036-ab3d-4e97-bd11-7a2c98ad148a"
+    },
+    {
+      "slug": "artist:carl-crack",
+      "type": "artist",
+      "name": "Carl Crack",
+      "mbid": "6b2e7187-9114-4050-a7af-eba918aebde8"
+    },
+    {
+      "slug": "artist:hanin-elias",
+      "type": "artist",
+      "name": "Hanin Elias",
+      "mbid": "e8b9f2dd-b197-47a6-81d5-7f5850e18b37"
+    }
+  ]
 }

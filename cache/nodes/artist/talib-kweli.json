@@ -98,5 +98,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:mos-def",
+      "type": "artist",
+      "name": "Yasiin Bey",
+      "mbid": "f5c4c27e-5902-4fc0-adfb-7775da3d5363"
+    },
+    {
+      "slug": "artist:the-roots",
+      "type": "artist",
+      "name": "The Roots",
+      "mbid": "80b3cf5e-18fe-4c59-98c7-e5bb87210710"
+    },
+    {
+      "slug": "artist:dangerdoom",
+      "type": "artist",
+      "name": "DANGERDOOM",
+      "mbid": "be0cb2f2-71c3-4e95-a584-c19248951ff4"
+    },
+    {
+      "slug": "artist:ghostface-killah",
+      "type": "artist",
+      "name": "Ghostface Killah",
+      "mbid": "3b39abeb-0064-4eed-9ddd-ee47a45c54cb"
+    },
+    {
+      "slug": "artist:dj-shadow",
+      "type": "artist",
+      "name": "DJ Shadow",
+      "mbid": "efa2c11a-1a35-4b60-bc1b-66d37de88511"
+    },
+    {
+      "slug": "artist:common",
+      "type": "artist",
+      "name": "Common",
+      "mbid": "c0a1179b-b14a-4d68-a3c1-1fdab16ed602"
+    },
+    {
+      "slug": "artist:mf-doom",
+      "type": "artist",
+      "name": "MF DOOM",
+      "mbid": "188711ed-c99b-439c-844a-ca831f63a727"
+    },
+    {
+      "slug": "artist:jay-z",
+      "type": "artist",
+      "name": "JAŸ-Z",
+      "mbid": "f82bcf78-5b69-4622-a5ef-73800768d9ac"
+    },
+    {
+      "slug": "artist:gang-starr",
+      "type": "artist",
+      "name": "Gang Starr",
+      "mbid": "9ef8042a-2528-4f5c-b7c1-5e72b1efe170"
+    },
+    {
+      "slug": "artist:pretty-lights",
+      "type": "artist",
+      "name": "Pretty Lights",
+      "mbid": "3a07764c-7cc5-42e9-8205-3de7532f4771"
+    }
+  ]
 }

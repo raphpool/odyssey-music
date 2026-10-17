@@ -86,5 +86,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:nine-inch-nails",
+      "type": "artist",
+      "name": "Nine Inch Nails",
+      "mbid": "b7ffd2af-418f-4be2-bdd1-22f8b48613da"
+    },
+    {
+      "slug": "artist:wagon-christ",
+      "type": "artist",
+      "name": "Wagon Christ",
+      "mbid": "991b8af4-328a-4441-8dc5-f7af0c89af08"
+    },
+    {
+      "slug": "artist:meat-beat-manifesto",
+      "type": "artist",
+      "name": "Meat Beat Manifesto",
+      "mbid": "dcb2955e-ff59-4ff2-a608-cbb90ee3ac38"
+    },
+    {
+      "slug": "artist:baby-ford",
+      "type": "artist",
+      "name": "Baby Ford",
+      "mbid": "da0d0eb4-cf77-44af-8f50-d8c30f10ba0c"
+    },
+    {
+      "slug": "artist:the-mike-flowers-pops",
+      "type": "artist",
+      "name": "The Mike Flowers Pops",
+      "mbid": "f08b987f-df56-4719-8300-3bd2889bd967"
+    },
+    {
+      "slug": "artist:bochum-welt",
+      "type": "artist",
+      "name": "Bochum Welt",
+      "mbid": "3fc812b0-07ef-443d-ac97-77a71c0f1aee"
+    },
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ‐Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
+    },
+    {
+      "slug": "artist:cylob",
+      "type": "artist",
+      "name": "Cylob",
+      "mbid": "2256228e-8253-45ad-974e-39ae914c5586"
+    },
+    {
+      "slug": "artist:luke-vibert",
+      "type": "artist",
+      "name": "Luke Vibert",
+      "mbid": "0b59a279-54ef-4723-854e-a12b61e9581a"
+    },
+    {
+      "slug": "artist:phillip-boa-and-the-voodooclub",
+      "type": "artist",
+      "name": "Phillip Boa and the Voodooclub",
+      "mbid": "ace6f889-2d53-4b93-bf70-cbfc4fe0d256"
+    }
+  ]
 }

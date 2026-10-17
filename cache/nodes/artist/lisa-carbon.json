@@ -106,5 +106,12 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:senor-coconut",
+      "type": "artist",
+      "name": "Señor Coconut",
+      "mbid": "ba07ae41-8e41-4411-bcf6-e37e4864d821"
+    }
+  ]
 }

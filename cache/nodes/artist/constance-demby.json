@@ -100,5 +100,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:deuter",
+      "type": "artist",
+      "name": "Deuter",
+      "mbid": "c4e7031f-a5f0-476a-b1f0-1f3e8c573f4b"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:steve-roach",
+      "type": "artist",
+      "name": "Steve Roach",
+      "mbid": "8347dd6d-b9a2-4e96-a610-d1ed67b189f1"
+    },
+    {
+      "slug": "artist:steven-halpern",
+      "type": "artist",
+      "name": "Steven Halpern",
+      "mbid": "37986d18-e8af-4502-8e08-2a87d7e5853f"
+    },
+    {
+      "slug": "artist:liquid-mind",
+      "type": "artist",
+      "name": "Liquid Mind",
+      "mbid": "af263abd-194b-4494-bfd8-3aab8d2fc00a"
+    },
+    {
+      "slug": "artist:jonn-serrie",
+      "type": "artist",
+      "name": "Jonn Serrie",
+      "mbid": "8208bc32-5cf6-4b5e-b5bb-c060a78f7a77"
+    },
+    {
+      "slug": "artist:2002",
+      "type": "artist",
+      "name": "2002",
+      "mbid": "d5c1310e-5526-47c9-8530-9cc0af291631"
+    },
+    {
+      "slug": "artist:michael-stearns",
+      "type": "artist",
+      "name": "Michael Stearns",
+      "mbid": "d85b8725-81eb-4ce0-81c3-daf5cf4cb7b7"
+    },
+    {
+      "slug": "artist:aeoliah",
+      "type": "artist",
+      "name": "Aeoliah",
+      "mbid": "585a9c75-dcca-4019-97df-899921f841f9"
+    },
+    {
+      "slug": "artist:patrick-o-hearn",
+      "type": "artist",
+      "name": "Patrick O’Hearn",
+      "mbid": "98775867-3fef-4d2c-aea7-115c7e58326a"
+    }
+  ]
 }

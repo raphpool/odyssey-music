@@ -106,5 +106,12 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:skudero",
+      "type": "artist",
+      "name": "Skudero",
+      "mbid": "8880c6be-e2c8-460b-a5aa-c1d54d89cf16"
+    }
+  ]
 }

@@ -287,5 +287,24 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:central-cee",
+      "type": "artist",
+      "name": "Central Cee",
+      "mbid": "b0337af1-8d93-4671-b6c9-ba306bf942bf"
+    },
+    {
+      "slug": "artist:nate-dogg",
+      "type": "artist",
+      "name": "Nate Dogg",
+      "mbid": "405528df-2632-4730-80fc-83e775a97651"
+    },
+    {
+      "slug": "artist:chief-keef",
+      "type": "artist",
+      "name": "Chief Keef",
+      "mbid": "9118f524-be76-4eaf-875c-ccf15e2a2ad6"
+    }
+  ]
 }

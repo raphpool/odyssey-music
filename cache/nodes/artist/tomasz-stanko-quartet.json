@@ -130,5 +130,66 @@
       "name": "Michał Miśkiewicz"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:esbjorn-svensson-trio",
+      "type": "artist",
+      "name": "Esbjörn Svensson Trio",
+      "mbid": "cfa7c6b1-bbb3-4f9a-a636-cbfafb9b4bcf"
+    },
+    {
+      "slug": "artist:john-coltrane",
+      "type": "artist",
+      "name": "John Coltrane",
+      "mbid": "b625448e-bf4a-41c3-a421-72ad46cdb831"
+    },
+    {
+      "slug": "artist:tord-gustavsen-trio",
+      "type": "artist",
+      "name": "Tord Gustavsen Trio",
+      "mbid": "02811c5c-3cfc-4354-a116-8a254581ef6e"
+    },
+    {
+      "slug": "artist:manu-katche",
+      "type": "artist",
+      "name": "Manu Katché",
+      "mbid": "2581fa6c-1a78-4c59-9f18-020ed8cb18be"
+    },
+    {
+      "slug": "artist:jan-garbarek",
+      "type": "artist",
+      "name": "Jan Garbarek",
+      "mbid": "ea7aba28-8853-4e30-83b7-7deeb3da36cd"
+    },
+    {
+      "slug": "artist:marcin-wasilewski-trio",
+      "type": "artist",
+      "name": "Marcin Wasilewski Trio",
+      "mbid": "e1ae74e0-200d-48cc-8cd1-ef005a480c6f"
+    },
+    {
+      "slug": "artist:contemporary-noise-ensemble",
+      "type": "artist",
+      "name": "Contemporary Noise Ensemble",
+      "mbid": "eabebb6d-6e83-4412-a31f-b8720978d5df"
+    },
+    {
+      "slug": "artist:tomasz-stanko-quintet",
+      "type": "artist",
+      "name": "Tomasz Stańko Quintet",
+      "mbid": "9c76ff99-8d34-4ef1-b569-2bd3c11418d7"
+    },
+    {
+      "slug": "artist:louis-armstrong",
+      "type": "artist",
+      "name": "Louis Armstrong",
+      "mbid": "eea8a864-fcda-4602-9569-38ab446decd6"
+    },
+    {
+      "slug": "artist:john-surman",
+      "type": "artist",
+      "name": "John Surman",
+      "mbid": "4da58868-23ff-4839-b7f3-e79b00cf6d6f"
+    }
+  ]
 }

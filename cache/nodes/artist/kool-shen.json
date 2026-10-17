@@ -118,5 +118,66 @@
       "name": "Suprême NTM"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:oxmo-puccino",
+      "type": "artist",
+      "name": "Oxmo Puccino",
+      "mbid": "faf5d956-ba11-4e01-9634-2f1c9ec92df5"
+    },
+    {
+      "slug": "artist:sinik",
+      "type": "artist",
+      "name": "Sinik",
+      "mbid": "023d37f7-4350-4bdb-863c-92af6bacbac7"
+    },
+    {
+      "slug": "artist:jeff-le-nerf",
+      "type": "artist",
+      "name": "Jeff Le Nerf",
+      "mbid": "ee836afb-4214-44c4-a9bc-ea46be37dd71"
+    },
+    {
+      "slug": "artist:zoxea",
+      "type": "artist",
+      "name": "Zoxea",
+      "mbid": "f9e375f0-fc94-431d-a7d9-124480c3e2b9"
+    },
+    {
+      "slug": "artist:youssoupha",
+      "type": "artist",
+      "name": "Youssoupha",
+      "mbid": "6fabf3aa-1822-49f2-b6c7-57560464696f"
+    },
+    {
+      "slug": "artist:iam",
+      "type": "artist",
+      "name": "IAM",
+      "mbid": "7aa4a16e-9d5a-41d3-968e-fae1a2c84d05"
+    },
+    {
+      "slug": "artist:lino",
+      "type": "artist",
+      "name": "Lino",
+      "mbid": "940a9649-efd1-4cf0-b682-19331f2dbb27"
+    },
+    {
+      "slug": "artist:salif",
+      "type": "artist",
+      "name": "Salif",
+      "mbid": "789edc91-6362-4e92-b8db-cd6b5456b176"
+    },
+    {
+      "slug": "artist:soprano",
+      "type": "artist",
+      "name": "Soprano",
+      "mbid": "e52815f0-0db9-49b2-acb7-1af6b2dfa936"
+    },
+    {
+      "slug": "artist:jmi-sissoko",
+      "type": "artist",
+      "name": "Jmi Sissoko",
+      "mbid": "d0d98f35-0de0-4b47-8281-c810af4f12e8"
+    }
+  ]
 }

@@ -109,5 +109,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:sunn-o",
+      "type": "artist",
+      "name": "Sunn O)))",
+      "mbid": "1d3da898-4fb4-4445-b704-cd7315e01789"
+    },
+    {
+      "slug": "artist:electric-wizard",
+      "type": "artist",
+      "name": "Electric Wizard",
+      "mbid": "da7d57e6-0619-4f0f-8d15-d0b4195c3f55"
+    },
+    {
+      "slug": "artist:sleep",
+      "type": "artist",
+      "name": "Sleep",
+      "mbid": "6fc69ec6-3e59-4ff7-849d-b5da932abe4d"
+    },
+    {
+      "slug": "artist:om",
+      "type": "artist",
+      "name": "Om",
+      "mbid": "d7a3a832-05bf-4aae-a3f7-572e298ce88d"
+    },
+    {
+      "slug": "artist:melvins",
+      "type": "artist",
+      "name": "Melvins",
+      "mbid": "9ccfbc94-a4f4-42f7-b6f5-d903ab77cccb"
+    },
+    {
+      "slug": "artist:neurosis",
+      "type": "artist",
+      "name": "Neurosis",
+      "mbid": "a9416fb3-4d28-4575-abae-f0d160be83ed"
+    },
+    {
+      "slug": "artist:kyuss",
+      "type": "artist",
+      "name": "Kyuss",
+      "mbid": "ea0f2a37-7007-4217-a812-396227f5013a"
+    },
+    {
+      "slug": "artist:isis",
+      "type": "artist",
+      "name": "Isis",
+      "mbid": "5e521e8c-0ab2-44c4-8fd8-14d8d3321265"
+    },
+    {
+      "slug": "artist:jesu",
+      "type": "artist",
+      "name": "Jesu",
+      "mbid": "ae69d81f-552d-4013-8dfc-4778d8f38742"
+    },
+    {
+      "slug": "artist:nine-inch-nails",
+      "type": "artist",
+      "name": "Nine Inch Nails",
+      "mbid": "b7ffd2af-418f-4be2-bdd1-22f8b48613da"
+    }
+  ]
 }

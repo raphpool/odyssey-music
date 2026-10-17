@@ -139,5 +139,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:mikkel-metal",
+      "type": "artist",
+      "name": "Mikkel Metal",
+      "mbid": "a670aad2-7915-49ba-bacf-25f1931098ee"
+    },
+    {
+      "slug": "artist:thomas-fehlmann",
+      "type": "artist",
+      "name": "Thomas Fehlmann",
+      "mbid": "3970056e-1c2a-4556-815b-010c3acad220"
+    },
+    {
+      "slug": "artist:marsen-jules",
+      "type": "artist",
+      "name": "Marsen Jules",
+      "mbid": "e033bee0-7b39-4ff7-86a0-c189bf57e35b"
+    },
+    {
+      "slug": "artist:triola",
+      "type": "artist",
+      "name": "Triola",
+      "mbid": "ab1a3c79-6e4c-4fe3-89d2-0e1d031e594e"
+    },
+    {
+      "slug": "artist:jurgen-paape",
+      "type": "artist",
+      "name": "Jürgen Paape",
+      "mbid": "cc6d62db-32cc-43a4-83be-e6187e35f34d"
+    },
+    {
+      "slug": "artist:bvdub",
+      "type": "artist",
+      "name": "bvdub",
+      "mbid": "94d43a2c-b5f5-4d02-988c-20332d1eebd3"
+    },
+    {
+      "slug": "artist:michael-mayer",
+      "type": "artist",
+      "name": "Michael Mayer",
+      "mbid": "d17801d0-4353-4725-8bf5-d0bbedc403a6"
+    },
+    {
+      "slug": "artist:the-orb",
+      "type": "artist",
+      "name": "The Orb",
+      "mbid": "42c14c80-bd17-47e4-9bb2-a35897638c4d"
+    },
+    {
+      "slug": "artist:jens-uwe-beyer",
+      "type": "artist",
+      "name": "Jens-Uwe Beyer",
+      "mbid": "3fb28598-d262-4934-8ee9-f47f8f169da8"
+    },
+    {
+      "slug": "artist:leandro-fresco",
+      "type": "artist",
+      "name": "Leandro Fresco",
+      "mbid": "5352740d-5cce-4a3c-a924-938f1fe35962"
+    }
+  ]
 }

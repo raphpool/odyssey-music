@@ -70,5 +70,18 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:ralf-hutter",
+      "type": "artist",
+      "name": "Ralf Hütter",
+      "mbid": "da3f4766-628e-4da3-a871-014728993157"
+    },
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk",
+      "mbid": "5700dcd4-c139-4f31-aa3e-6382b9af9032"
+    }
+  ]
 }

@@ -239,5 +239,66 @@
       "name": "Ron Maney"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:adonis",
+      "type": "artist",
+      "name": "Adonis",
+      "mbid": "835f5076-6b5d-4ba1-a3fe-d81a5838a0fc"
+    },
+    {
+      "slug": "artist:mr-fingers",
+      "type": "artist",
+      "name": "Mr. Fingers",
+      "mbid": "1e47567e-5192-43b9-af98-75e4998f9e52"
+    },
+    {
+      "slug": "artist:maurice-joshua",
+      "type": "artist",
+      "name": "Maurice Joshua",
+      "mbid": "131c9ee5-8876-4d27-a448-87910d697577"
+    },
+    {
+      "slug": "artist:armando",
+      "type": "artist",
+      "name": "Armando",
+      "mbid": "bced6ffd-d099-406d-9ee0-4a6b51f8405b"
+    },
+    {
+      "slug": "artist:model-500",
+      "type": "artist",
+      "name": "Model 500",
+      "mbid": "e569aee8-33ff-48e5-b0ed-4ceba1a37714"
+    },
+    {
+      "slug": "artist:farley-jackmaster-funk",
+      "type": "artist",
+      "name": "Farley Jackmaster Funk",
+      "mbid": "4b9621eb-09d2-4e40-8ef2-a874ffe7eaea"
+    },
+    {
+      "slug": "artist:pierre-s-pfantasy-club",
+      "type": "artist",
+      "name": "Pierre’s Pfantasy Club",
+      "mbid": "7d4de20c-74b7-4c76-9f6d-ea6dba85439d"
+    },
+    {
+      "slug": "artist:reese-and-santonio",
+      "type": "artist",
+      "name": "Reese & Santonio",
+      "mbid": "55e6055a-d24d-41be-9298-671f54613728"
+    },
+    {
+      "slug": "artist:tyree",
+      "type": "artist",
+      "name": "Tyree",
+      "mbid": "ef71268b-07b0-4fc9-aafc-c1909da8edef"
+    },
+    {
+      "slug": "artist:rhythim-is-rhythim",
+      "type": "artist",
+      "name": "Rhythim Is Rhythim",
+      "mbid": "159edf29-c4ae-49c7-b1e6-1f082c60d4e3"
+    }
+  ]
 }

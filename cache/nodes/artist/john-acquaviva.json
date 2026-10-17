@@ -60,5 +60,54 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:crookers",
+      "type": "artist",
+      "name": "Crookers",
+      "mbid": "ff711332-b409-44dd-ad1d-f7714f8906db"
+    },
+    {
+      "slug": "artist:fake-blood",
+      "type": "artist",
+      "name": "Fake Blood",
+      "mbid": "b5232ddf-8e3c-4bde-a63f-47e88cb8ae11"
+    },
+    {
+      "slug": "artist:aquasky",
+      "type": "artist",
+      "name": "Aquasky",
+      "mbid": "bd8f19ba-c3e9-410c-9253-e4d997a0c310"
+    },
+    {
+      "slug": "artist:the-bpa",
+      "type": "artist",
+      "name": "The BPA",
+      "mbid": "3150be04-f42f-43e0-ab5c-77965a4f7a7d"
+    },
+    {
+      "slug": "artist:herve",
+      "type": "artist",
+      "name": "Hervé",
+      "mbid": "942075c2-c929-4e1e-922b-f8d7f2d436b5"
+    },
+    {
+      "slug": "artist:santigold",
+      "type": "artist",
+      "name": "Santigold",
+      "mbid": "97b20fe3-0924-4a5f-9955-d0b5c5f9587f"
+    },
+    {
+      "slug": "artist:gorillaz",
+      "type": "artist",
+      "name": "Gorillaz",
+      "mbid": "e21857d5-3256-4547-afb3-4b6ded592596"
+    },
+    {
+      "slug": "artist:kidda",
+      "type": "artist",
+      "name": "Kidda",
+      "mbid": "6fba3339-e6e1-43c8-a365-624d6ea6e1ba"
+    }
+  ]
 }

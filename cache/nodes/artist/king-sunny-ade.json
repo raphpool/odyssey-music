@@ -93,5 +93,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:manu-dibango",
+      "type": "artist",
+      "name": "Manu Dibango",
+      "mbid": "826b488f-5164-45ca-abc4-ab11b3c321eb"
+    },
+    {
+      "slug": "artist:fela-kuti",
+      "type": "artist",
+      "name": "Fela Kuti",
+      "mbid": "6514cffa-fbe0-4965-ad88-e998ead8a82a"
+    },
+    {
+      "slug": "artist:femi-kuti",
+      "type": "artist",
+      "name": "Femi Kuti",
+      "mbid": "702d2b90-eef0-4354-b2c4-6366eba92b7f"
+    },
+    {
+      "slug": "artist:salif-keita",
+      "type": "artist",
+      "name": "Salif Keita",
+      "mbid": "b29a24ff-2c55-437e-867b-1456c9f3f73e"
+    },
+    {
+      "slug": "artist:youssou-n-dour",
+      "type": "artist",
+      "name": "Youssou N’Dour",
+      "mbid": "af081ea2-7a2c-4fbd-8200-92d62056b5f5"
+    },
+    {
+      "slug": "artist:tinariwen",
+      "type": "artist",
+      "name": "Tinariwen",
+      "mbid": "5c98fc12-be83-4246-ae5b-2184192913b9"
+    },
+    {
+      "slug": "artist:ali-farka-toure",
+      "type": "artist",
+      "name": "Ali Farka Touré",
+      "mbid": "9be2a5ac-8201-489b-b5f6-91f958bf9060"
+    },
+    {
+      "slug": "artist:talking-heads",
+      "type": "artist",
+      "name": "Talking Heads",
+      "mbid": "a94a7155-c79d-4409-9fcf-220cb0e4dc3a"
+    },
+    {
+      "slug": "artist:tony-allen",
+      "type": "artist",
+      "name": "Tony Allen",
+      "mbid": "ea524cc6-191a-4c05-ab88-3bb5c0880ca5"
+    },
+    {
+      "slug": "artist:toumani-diabate",
+      "type": "artist",
+      "name": "Toumani Diabaté",
+      "mbid": "b96ba7e7-d882-409a-9825-ed3d6dbb437d"
+    }
+  ]
 }

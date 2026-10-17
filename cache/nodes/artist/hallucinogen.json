@@ -236,5 +236,66 @@
       "name": "Simon Posford"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:shpongle",
+      "type": "artist",
+      "name": "Shpongle",
+      "mbid": "ffe9ec08-6b6b-4993-9394-e280b429dbfd"
+    },
+    {
+      "slug": "artist:infected-mushroom",
+      "type": "artist",
+      "name": "Infected Mushroom",
+      "mbid": "eab76c9f-ff91-4431-b6dd-3b976c598020"
+    },
+    {
+      "slug": "artist:younger-brother",
+      "type": "artist",
+      "name": "Younger Brother",
+      "mbid": "22aaf663-732d-4ba7-b409-0722d2b5258b"
+    },
+    {
+      "slug": "artist:ott",
+      "type": "artist",
+      "name": "Ott",
+      "mbid": "1a40f886-0877-4bab-9ab1-761147dadb89"
+    },
+    {
+      "slug": "artist:1200-micrograms",
+      "type": "artist",
+      "name": "1200 Micrograms",
+      "mbid": "bf346e67-b4b1-41c0-bcc7-a8f4df4fbbbb"
+    },
+    {
+      "slug": "artist:juno-reactor",
+      "type": "artist",
+      "name": "Juno Reactor",
+      "mbid": "16231a34-9ccd-410e-8690-f74e98fe16a4"
+    },
+    {
+      "slug": "artist:the-infinity-project",
+      "type": "artist",
+      "name": "The Infinity Project",
+      "mbid": "23e6861f-b66f-4880-b3eb-f3ab1bafd840"
+    },
+    {
+      "slug": "artist:entheogenic",
+      "type": "artist",
+      "name": "Entheogenic",
+      "mbid": "9dbe0453-2f86-45a2-a54c-df0d947f857e"
+    },
+    {
+      "slug": "artist:bluetech",
+      "type": "artist",
+      "name": "Bluetech",
+      "mbid": "54980b39-7dea-4e2b-8b1f-21322a464ef5"
+    },
+    {
+      "slug": "artist:electric-universe",
+      "type": "artist",
+      "name": "Electric Universe",
+      "mbid": "c4acef6a-1835-4da4-bdea-ba3b789dd36d"
+    }
+  ]
 }

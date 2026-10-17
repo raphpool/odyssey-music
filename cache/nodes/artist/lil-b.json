@@ -368,5 +368,66 @@
       "name": "Brandon Christopher McCartney"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:thundercat",
+      "type": "artist",
+      "name": "Thundercat",
+      "mbid": "044fd265-79dd-43eb-afc4-8b20becf7e17"
+    },
+    {
+      "slug": "artist:ye",
+      "type": "artist",
+      "name": "Ye",
+      "mbid": "164f0d73-1234-4e2c-8743-d77bf2191051"
+    },
+    {
+      "slug": "artist:vince-staples",
+      "type": "artist",
+      "name": "Vince Staples",
+      "mbid": "78e854b8-9713-4ff2-9218-6b3784893bff"
+    },
+    {
+      "slug": "artist:kendrick-lamar",
+      "type": "artist",
+      "name": "Kendrick Lamar",
+      "mbid": "381086ea-f511-4aba-bdf9-71c753dc5077"
+    },
+    {
+      "slug": "artist:clams-casino",
+      "type": "artist",
+      "name": "Clams Casino",
+      "mbid": "772a0eb3-fe31-4a08-b583-690296f44900"
+    },
+    {
+      "slug": "artist:childish-gambino",
+      "type": "artist",
+      "name": "Childish Gambino",
+      "mbid": "7fb57fba-a6ef-44c2-abab-2fa3bdee607e"
+    },
+    {
+      "slug": "artist:mac-miller",
+      "type": "artist",
+      "name": "Mac Miller",
+      "mbid": "a0e8a1b1-5f8f-475a-a253-17415c17d0ff"
+    },
+    {
+      "slug": "artist:tyler-the-creator",
+      "type": "artist",
+      "name": "Tyler, The Creator",
+      "mbid": "f6beac20-5dfe-4d1f-ae02-0b0a740aafd6"
+    },
+    {
+      "slug": "artist:a-ap-rocky",
+      "type": "artist",
+      "name": "A$AP Rocky",
+      "mbid": "25b7b584-d952-4662-a8b9-dd8cdfbfeb64"
+    },
+    {
+      "slug": "artist:drake",
+      "type": "artist",
+      "name": "Drake",
+      "mbid": "9fff2f8a-21e6-47de-a2b8-7f449929d43f"
+    }
+  ]
 }
