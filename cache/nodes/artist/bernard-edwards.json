@@ -133,5 +133,24 @@
       "name": "Chic"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:marlena-shaw",
+      "type": "artist",
+      "name": "Marlena Shaw",
+      "mbid": "f94db5b3-9260-4e81-9d35-6806e50c713f"
+    },
+    {
+      "slug": "artist:al-green",
+      "type": "artist",
+      "name": "Al Green",
+      "mbid": "fb7272ba-f130-4f0a-934d-6eeea4c18c9a"
+    },
+    {
+      "slug": "artist:betty-davis",
+      "type": "artist",
+      "name": "Betty Davis",
+      "mbid": "bb17dc42-ecaf-42ca-aa35-b23207573060"
+    }
+  ]
 }

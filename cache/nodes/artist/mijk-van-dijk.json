@@ -112,5 +112,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:brother-from-another-planet",
+      "type": "artist",
+      "name": "Brother From Another Planet",
+      "mbid": "9a0b766c-af34-4134-b8e3-ad075edd16d9"
+    },
+    {
+      "slug": "artist:hardfloor",
+      "type": "artist",
+      "name": "Hardfloor",
+      "mbid": "49c5cce4-aaa6-4600-a9a2-2b045fb6a87b"
+    },
+    {
+      "slug": "artist:westbam",
+      "type": "artist",
+      "name": "WestBam",
+      "mbid": "12d5646a-b9e3-4510-ad37-5682c02a66ef"
+    },
+    {
+      "slug": "artist:joey-beltram",
+      "type": "artist",
+      "name": "Joey Beltram",
+      "mbid": "5330d6d0-711b-415b-93e4-071e46d0d5f2"
+    },
+    {
+      "slug": "artist:bcj",
+      "type": "artist",
+      "name": "BCJ",
+      "mbid": "e2024fc5-4fc4-4498-b5c5-7bb4a6aec56a"
+    },
+    {
+      "slug": "artist:scan-x",
+      "type": "artist",
+      "name": "Scan X",
+      "mbid": "b6fed5cc-7d4a-4f14-8b86-862b112ab6a0"
+    },
+    {
+      "slug": "artist:derrick-may",
+      "type": "artist",
+      "name": "Derrick May",
+      "mbid": "371c8525-8111-4497-83ba-1ead9d7ed148"
+    },
+    {
+      "slug": "artist:system-7",
+      "type": "artist",
+      "name": "System 7",
+      "mbid": "74102466-c9fa-4dbe-a9cd-3afbf0aa0929"
+    },
+    {
+      "slug": "artist:dave-angel",
+      "type": "artist",
+      "name": "Dave Angel",
+      "mbid": "98572ea2-67a6-4ea5-8a3b-fcd1740c0115"
+    },
+    {
+      "slug": "artist:the-advent",
+      "type": "artist",
+      "name": "The Advent",
+      "mbid": "b3a35974-4703-4423-92bf-a1b5ac6cac3b"
+    }
+  ]
 }

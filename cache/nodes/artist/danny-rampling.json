@@ -101,5 +101,64 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:dj-icey",
+      "type": "artist",
+      "name": "DJ Icey",
+      "mbid": "138dd95b-9311-416e-bcdd-a80067289de6"
+    },
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    },
+    {
+      "slug": "artist:dj-pierre",
+      "type": "artist",
+      "name": "DJ Pierre",
+      "mbid": "bc5d318a-096a-4bc3-8a2e-742905c0036b"
+    },
+    {
+      "slug": "artist:jamie-principle",
+      "type": "artist",
+      "name": "Jamie Principle",
+      "mbid": "500df185-4a22-40a5-baf6-bdcabab5ed22"
+    },
+    {
+      "slug": "artist:kevin-saunderson",
+      "type": "artist",
+      "name": "Kevin Saunderson",
+      "mbid": "bf259ecd-fe89-4738-82fc-ecdd67de1fcc"
+    },
+    {
+      "slug": "artist:marshall-jefferson",
+      "type": "artist",
+      "name": "Marshall Jefferson"
+    },
+    {
+      "slug": "artist:phuture",
+      "type": "artist",
+      "name": "Phuture",
+      "mbid": "d4c75da5-45d7-49ef-abd6-babca3eb8d18"
+    },
+    {
+      "slug": "artist:tyree",
+      "type": "artist",
+      "name": "Tyree Cooper",
+      "mbid": "ef71268b-07b0-4fc9-aafc-c1909da8edef"
+    },
+    {
+      "slug": "artist:atom-heart",
+      "type": "artist",
+      "name": "Atom Heart"
+    },
+    {
+      "slug": "artist:camomile-dawn",
+      "type": "artist",
+      "name": "Camomile Dawn",
+      "mbid": "131aface-d868-41a3-9942-c13978e3b1c5"
+    }
+  ]
 }

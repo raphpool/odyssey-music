@@ -88,5 +88,54 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:luc-ferrari",
+      "type": "artist",
+      "name": "Luc Ferrari",
+      "mbid": "589801f8-fe67-49bd-abcf-cca79c5d0776"
+    },
+    {
+      "slug": "artist:ivo-malec",
+      "type": "artist",
+      "name": "Ivo Malec",
+      "mbid": "04cef5f9-8e4d-40a6-8d39-649848f29550"
+    },
+    {
+      "slug": "artist:pierre-schaeffer",
+      "type": "artist",
+      "name": "Pierre Schaeffer",
+      "mbid": "cc48f77c-32c5-46e1-9f35-119d61671e1b"
+    },
+    {
+      "slug": "artist:john-zorn",
+      "type": "artist",
+      "name": "John Zorn",
+      "mbid": "7ec4a553-73e5-4c0d-a071-a82b83a309e6"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:john-fahey",
+      "type": "artist",
+      "name": "John Fahey",
+      "mbid": "95bb27d2-43c7-4a92-85ee-f95a245f0ee4"
+    },
+    {
+      "slug": "artist:robert-ashley",
+      "type": "artist",
+      "name": "Robert Ashley",
+      "mbid": "a9e399ea-b3d1-43d8-b21a-83676c1a36a5"
+    },
+    {
+      "slug": "artist:alain-savouret",
+      "type": "artist",
+      "name": "Alain Savouret",
+      "mbid": "e01da4fb-2b84-42a6-830b-5fd2430ba4d6"
+    }
+  ]
 }

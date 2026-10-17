@@ -183,5 +183,36 @@
       "name": "Dionisio Yepes"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:vicente-garcia",
+      "type": "artist",
+      "name": "Vicente García",
+      "mbid": "2f1507e5-6e8b-4a67-828e-5ce3f75c1281"
+    },
+    {
+      "slug": "artist:diego-gomez",
+      "type": "artist",
+      "name": "Diego Gómez",
+      "mbid": "3ea19515-24dd-45c2-9f99-816aca6b04fa"
+    },
+    {
+      "slug": "artist:jorge-drexler",
+      "type": "artist",
+      "name": "Jorge Drexler",
+      "mbid": "abb91078-f7db-41f2-8f07-7f37bb739143"
+    },
+    {
+      "slug": "artist:zoe",
+      "type": "artist",
+      "name": "Zoé",
+      "mbid": "5838185a-0ee6-4a0b-8d4e-76a6e15f7d4b"
+    },
+    {
+      "slug": "artist:toto-la-momposina",
+      "type": "artist",
+      "name": "Totó la Momposina",
+      "mbid": "6904c849-97ab-4bf2-af51-467e8dd98ec9"
+    }
+  ]
 }

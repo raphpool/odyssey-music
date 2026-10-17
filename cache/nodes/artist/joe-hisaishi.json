@@ -87,5 +87,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:howard-shore",
+      "type": "artist",
+      "name": "Howard Shore",
+      "mbid": "9b58672a-e68e-4972-956e-a8985a165a1f"
+    },
+    {
+      "slug": "artist:hans-zimmer",
+      "type": "artist",
+      "name": "Hans Zimmer",
+      "mbid": "e6de1f3b-6484-491c-88dd-6d619f142abc"
+    },
+    {
+      "slug": "artist:john-williams",
+      "type": "artist",
+      "name": "John Williams",
+      "mbid": "53b106e7-0cc6-42cc-ac95-ed8d30a3a98e"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:danny-elfman",
+      "type": "artist",
+      "name": "Danny Elfman",
+      "mbid": "5b24fbab-c58f-4c37-a59d-ab232e2d98c4"
+    },
+    {
+      "slug": "artist:ryuichi-sakamoto",
+      "type": "artist",
+      "name": "坂本龍一",
+      "mbid": "a7f7df4a-77d8-4f12-8acd-5c60c93f4de8"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
+    },
+    {
+      "slug": "artist:coldplay",
+      "type": "artist",
+      "name": "Coldplay",
+      "mbid": "cc197bad-dc9c-440d-a5b5-d52ba2e14234"
+    }
+  ]
 }

@@ -71,5 +71,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:king-krule",
+      "type": "artist",
+      "name": "King Krule",
+      "mbid": "c0daae21-ec2a-4dd0-a323-4f53f5945d04"
+    },
+    {
+      "slug": "artist:james-blake",
+      "type": "artist",
+      "name": "James Blake",
+      "mbid": "8dc08b1f-e393-4f85-a5dd-300f7693a8b8"
+    },
+    {
+      "slug": "artist:four-tet",
+      "type": "artist",
+      "name": "Four Tet",
+      "mbid": "3bcff06f-675a-451f-9075-99e8657047e8"
+    },
+    {
+      "slug": "artist:caribou",
+      "type": "artist",
+      "name": "Caribou",
+      "mbid": "735e3514-a8ae-401f-af3b-6300df1b8d2c"
+    },
+    {
+      "slug": "artist:flying-lotus",
+      "type": "artist",
+      "name": "Flying Lotus",
+      "mbid": "fc7376fe-1a6f-4414-b4a7-83f50ed59c92"
+    },
+    {
+      "slug": "artist:gold-panda",
+      "type": "artist",
+      "name": "Gold Panda",
+      "mbid": "bfbccd40-1a06-4ee7-b24d-b2f8cc714fa9"
+    },
+    {
+      "slug": "artist:bonobo",
+      "type": "artist",
+      "name": "Bonobo",
+      "mbid": "9a709693-b4f8-4da9-8cc1-038c911a61be"
+    },
+    {
+      "slug": "artist:shlohmo",
+      "type": "artist",
+      "name": "Shlohmo",
+      "mbid": "21a0e450-ae4d-473a-add4-744542ab9bf5"
+    },
+    {
+      "slug": "artist:nosaj-thing",
+      "type": "artist",
+      "name": "Nosaj Thing",
+      "mbid": "b476bc5e-19ca-4e5a-82c8-1a068d601a7d"
+    },
+    {
+      "slug": "artist:mica-levi",
+      "type": "artist",
+      "name": "Mica Levi",
+      "mbid": "996d6c0c-c27e-4c08-8307-ca341f65147e"
+    }
+  ]
 }

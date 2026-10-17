@@ -69,5 +69,66 @@
       "name": "J. M. Silk"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:m-a-r-r-s",
+      "type": "artist",
+      "name": "M|A|R|R|S",
+      "mbid": "13176bb9-9a3a-48ae-b05d-75a0bb668d01"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:mr-fingers",
+      "type": "artist",
+      "name": "Mr. Fingers",
+      "mbid": "1e47567e-5192-43b9-af98-75e4998f9e52"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:kylie-minogue",
+      "type": "artist",
+      "name": "Kylie Minogue",
+      "mbid": "2fddb92d-24b2-46a5-bf28-3aed46f4684c"
+    },
+    {
+      "slug": "artist:new-order",
+      "type": "artist",
+      "name": "New Order",
+      "mbid": "f1106b17-dcbb-45f6-b938-199ccfab50cc"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
+    },
+    {
+      "slug": "artist:wham",
+      "type": "artist",
+      "name": "Wham!",
+      "mbid": "d570bb31-b9ca-45a4-a2d9-11b186d9c159"
+    },
+    {
+      "slug": "artist:pet-shop-boys",
+      "type": "artist",
+      "name": "Pet Shop Boys",
+      "mbid": "be540c02-7898-4b79-9acc-c8122c7d9e83"
+    }
+  ]
 }

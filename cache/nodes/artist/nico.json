@@ -113,5 +113,66 @@
       "name": "The Velvet Underground"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:lou-reed",
+      "type": "artist",
+      "name": "Lou Reed",
+      "mbid": "9d1ebcfe-4c15-4d18-95d3-d919898638a1"
+    },
+    {
+      "slug": "artist:terry-riley",
+      "type": "artist",
+      "name": "Terry Riley",
+      "mbid": "7bf257bf-19a8-4205-8ae8-98511e50b719"
+    },
+    {
+      "slug": "artist:charlie-parker",
+      "type": "artist",
+      "name": "Charlie Parker",
+      "mbid": "c7356af9-9ea6-4a78-a55b-c73775716312"
+    },
+    {
+      "slug": "artist:frank-zappa",
+      "type": "artist",
+      "name": "Frank Zappa",
+      "mbid": "e20747e7-55a4-452e-8766-7b985585082d"
+    },
+    {
+      "slug": "artist:gary-numan",
+      "type": "artist",
+      "name": "Gary Numan",
+      "mbid": "6cb79cb2-9087-44d4-828b-5c6fdff2c957"
+    },
+    {
+      "slug": "artist:queen-latifah",
+      "type": "artist",
+      "name": "Queen Latifah",
+      "mbid": "7a305f29-539a-456e-93b7-61b0e2ba3ef2"
+    },
+    {
+      "slug": "artist:richard-seidel",
+      "type": "artist",
+      "name": "Richard Seidel",
+      "mbid": "916defe0-51c1-45f9-ac92-6d6512ae372d"
+    },
+    {
+      "slug": "artist:stan-getz",
+      "type": "artist",
+      "name": "Stan Getz",
+      "mbid": "8f2422ab-0ec6-4c92-80c4-afe9622fab32"
+    },
+    {
+      "slug": "artist:stereolab",
+      "type": "artist",
+      "name": "Stereolab",
+      "mbid": "f1df0431-9250-4ec8-95d8-f19ce7cf7fb6"
+    },
+    {
+      "slug": "artist:the-cars",
+      "type": "artist",
+      "name": "The Cars",
+      "mbid": "092b603f-eb4c-4958-b10e-02420de5885b"
+    }
+  ]
 }

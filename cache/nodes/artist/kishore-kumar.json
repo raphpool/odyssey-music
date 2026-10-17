@@ -112,5 +112,19 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:lata-mangeshkar",
+      "type": "artist",
+      "name": "Lata Mangeshkar",
+      "mbid": "aeb71bd8-447d-4415-8ea1-2b7d664f67e1"
+    },
+    {
+      "slug": "artist:asha-bhosle",
+      "type": "artist",
+      "name": "Asha Bhosle",
+      "mbid": "79c5547a-e098-495c-8dac-7e99546aa46b"
+    }
+  ]
 }

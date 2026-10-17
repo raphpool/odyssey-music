@@ -149,5 +149,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:immortal",
+      "type": "artist",
+      "name": "Immortal",
+      "mbid": "b863cf80-19c6-4a87-8e42-6cff7ac8f18f"
+    },
+    {
+      "slug": "artist:darkthrone",
+      "type": "artist",
+      "name": "Darkthrone",
+      "mbid": "af8fd97c-db72-4e30-b2aa-30ebd0c4f1a0"
+    },
+    {
+      "slug": "artist:enslaved",
+      "type": "artist",
+      "name": "Enslaved",
+      "mbid": "29bb04d6-5602-464c-8577-f55a27511b27"
+    },
+    {
+      "slug": "artist:satyricon",
+      "type": "artist",
+      "name": "Satyricon",
+      "mbid": "8eed05a5-e9a1-4dda-8b33-e354c4ecc8b6"
+    },
+    {
+      "slug": "artist:dimmu-borgir",
+      "type": "artist",
+      "name": "Dimmu Borgir",
+      "mbid": "17167af8-c1da-45cc-bba2-9d23f068b7a3"
+    },
+    {
+      "slug": "artist:bathory",
+      "type": "artist",
+      "name": "Bathory",
+      "mbid": "d292b4cd-37bd-4a88-a823-8710f273cc31"
+    },
+    {
+      "slug": "artist:burzum",
+      "type": "artist",
+      "name": "Burzum",
+      "mbid": "49cd96a6-42c3-44f6-ba2a-cd9301046b96"
+    },
+    {
+      "slug": "artist:behemoth",
+      "type": "artist",
+      "name": "Behemoth",
+      "mbid": "69632f9c-31eb-43d5-a864-e73ac72efc66"
+    },
+    {
+      "slug": "artist:dissection",
+      "type": "artist",
+      "name": "Dissection",
+      "mbid": "92d48f3d-a9cb-4011-a002-2e9ac3a6843d"
+    },
+    {
+      "slug": "artist:marduk",
+      "type": "artist",
+      "name": "Marduk",
+      "mbid": "b7dc7c76-53f1-49ac-8dc2-d469ed7f8e65"
+    }
+  ]
 }

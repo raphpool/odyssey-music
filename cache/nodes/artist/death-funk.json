@@ -70,5 +70,65 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:atari-teenage-riot",
+      "type": "artist",
+      "name": "Atari Teenage Riot",
+      "mbid": "fe404dd9-09b2-4ac8-a0e5-8da1c4027061"
+    },
+    {
+      "slug": "artist:carl-crack",
+      "type": "artist",
+      "name": "Carl Crack",
+      "mbid": "6b2e7187-9114-4050-a7af-eba918aebde8"
+    },
+    {
+      "slug": "artist:hanin-elias",
+      "type": "artist",
+      "name": "Hanin Elias",
+      "mbid": "e8b9f2dd-b197-47a6-81d5-7f5850e18b37"
+    },
+    {
+      "slug": "artist:death-grips",
+      "type": "artist",
+      "name": "Death Grips",
+      "mbid": "f9133036-ab3d-4e97-bd11-7a2c98ad148a"
+    },
+    {
+      "slug": "artist:dj-icey",
+      "type": "artist",
+      "name": "DJ Icey",
+      "mbid": "138dd95b-9311-416e-bcdd-a80067289de6"
+    },
+    {
+      "slug": "artist:krafty-kuts",
+      "type": "artist",
+      "name": "Krafty Kuts",
+      "mbid": "d14416ef-2283-49ef-9118-d690613d0bc9"
+    },
+    {
+      "slug": "artist:lustmord",
+      "type": "artist",
+      "name": "Lustmord",
+      "mbid": "15f2bb82-bce4-44c9-863a-995ae9bde0b4"
+    },
+    {
+      "slug": "artist:merzbow",
+      "type": "artist",
+      "name": "Merzbow",
+      "mbid": "2841d983-f8c3-432a-af02-7407a84580a8"
+    },
+    {
+      "slug": "artist:plump-djs",
+      "type": "artist",
+      "name": "Plump DJs",
+      "mbid": "870aaacf-ef15-4633-856b-212a1054377e"
+    },
+    {
+      "slug": "artist:raison-d-etre",
+      "type": "artist",
+      "name": "Raison d’être"
+    }
+  ]
 }

@@ -49,5 +49,65 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:charlie-parker",
+      "type": "artist",
+      "name": "Charlie Parker",
+      "mbid": "c7356af9-9ea6-4a78-a55b-c73775716312"
+    },
+    {
+      "slug": "artist:queen-latifah",
+      "type": "artist",
+      "name": "Queen Latifah",
+      "mbid": "7a305f29-539a-456e-93b7-61b0e2ba3ef2"
+    },
+    {
+      "slug": "artist:sonny-rollins",
+      "type": "artist",
+      "name": "Sonny Rollins",
+      "mbid": "3b47247e-5b57-49b6-a0ed-bad80243802a"
+    },
+    {
+      "slug": "artist:stan-getz",
+      "type": "artist",
+      "name": "Stan Getz",
+      "mbid": "8f2422ab-0ec6-4c92-80c4-afe9622fab32"
+    },
+    {
+      "slug": "artist:tony-scott",
+      "type": "artist",
+      "name": "Tony Scott",
+      "mbid": "a36c67b0-8712-4e60-8a52-f8c89fac20c7"
+    },
+    {
+      "slug": "artist:frank-zappa",
+      "type": "artist",
+      "name": "Frank Zappa",
+      "mbid": "e20747e7-55a4-452e-8766-7b985585082d"
+    },
+    {
+      "slug": "artist:nico",
+      "type": "artist",
+      "name": "Nico"
+    },
+    {
+      "slug": "artist:the-velvet-underground",
+      "type": "artist",
+      "name": "The Velvet Underground",
+      "mbid": "94b0fb9d-a066-4823-b2ec-af1d324bcfcf"
+    },
+    {
+      "slug": "artist:antonio-carlos-jobim",
+      "type": "artist",
+      "name": "Antônio Carlos Jobim",
+      "mbid": "7a8dbe84-f4c0-4457-bfa3-edced1f8cde0"
+    },
+    {
+      "slug": "artist:bill-bruford",
+      "type": "artist",
+      "name": "Bill Bruford",
+      "mbid": "0211756e-139e-4b4c-a721-9ee9db363f12"
+    }
+  ]
 }

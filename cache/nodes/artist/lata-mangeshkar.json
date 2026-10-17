@@ -193,5 +193,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:asha-bhosle",
+      "type": "artist",
+      "name": "Asha Bhosle",
+      "mbid": "79c5547a-e098-495c-8dac-7e99546aa46b"
+    },
+    {
+      "slug": "artist:mohammed-rafi",
+      "type": "artist",
+      "name": "Mohammed Rafi",
+      "mbid": "28365249-f3fd-44db-8131-32cb170970c4"
+    },
+    {
+      "slug": "artist:jon-brion",
+      "type": "artist",
+      "name": "Jon Brion",
+      "mbid": "a32e4aac-1db8-4dc6-be34-a813c4530627"
+    },
+    {
+      "slug": "artist:mukesh",
+      "type": "artist",
+      "name": "Mukesh",
+      "mbid": "bc396309-3a20-4520-9431-1444142d1051"
+    },
+    {
+      "slug": "artist:manna-dey",
+      "type": "artist",
+      "name": "Manna Dey",
+      "mbid": "22f54aa9-3408-4de4-b953-cd44564f10a4"
+    },
+    {
+      "slug": "artist:the-willowz",
+      "type": "artist",
+      "name": "The Willowz",
+      "mbid": "f33afb93-8d58-49e6-8546-957a41066ae0"
+    },
+    {
+      "slug": "artist:alka-yagnik",
+      "type": "artist",
+      "name": "Alka Yagnik",
+      "mbid": "52cf0679-e1cf-42ca-b9b5-86e018b36d91"
+    },
+    {
+      "slug": "artist:don-nelson",
+      "type": "artist",
+      "name": "Don Nelson",
+      "mbid": "55a197eb-6a12-4248-aadd-03582cbce394"
+    },
+    {
+      "slug": "artist:rahul-dev-burman",
+      "type": "artist",
+      "name": "Rahul Dev Burman",
+      "mbid": "0278f30f-266b-4261-ba3a-67491555eab0"
+    },
+    {
+      "slug": "artist:a-r-rahman",
+      "type": "artist",
+      "name": "A. R. Rahman",
+      "mbid": "e0bba708-bdd3-478d-84ea-c706413bedab"
+    }
+  ]
 }

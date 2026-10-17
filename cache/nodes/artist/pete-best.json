@@ -69,5 +69,66 @@
       "type": "artist",
       "name": "The Beatles"
     }
+  ],
+  "similar_artists": [
+    {
+      "slug": "artist:keith-richards",
+      "type": "artist",
+      "name": "Keith Richards",
+      "mbid": "f0ed72a3-ae8f-4cf7-b51d-2696a2330230"
+    },
+    {
+      "slug": "artist:e-t-mensah",
+      "type": "artist",
+      "name": "E.T. Mensah",
+      "mbid": "23c8fdc8-e593-48df-87f4-df448a85ba43"
+    },
+    {
+      "slug": "artist:bob-dylan",
+      "type": "artist",
+      "name": "Bob Dylan",
+      "mbid": "72c536dc-7137-4477-a521-567eeb840fa8"
+    },
+    {
+      "slug": "artist:chris-thomas",
+      "type": "artist",
+      "name": "Chris Thomas",
+      "mbid": "2a25263b-54ad-42c5-acea-e50b3913369c"
+    },
+    {
+      "slug": "artist:chrissie-hynde",
+      "type": "artist",
+      "name": "Chrissie Hynde",
+      "mbid": "a5d79c54-81c3-4a73-af6a-ad5c143d3f21"
+    },
+    {
+      "slug": "artist:george-harrison",
+      "type": "artist",
+      "name": "George Harrison"
+    },
+    {
+      "slug": "artist:john-lennon",
+      "type": "artist",
+      "name": "John Lennon",
+      "mbid": "4d5447d7-c61c-4120-ba1b-d7f471d385b9"
+    },
+    {
+      "slug": "artist:paul-mccartney",
+      "type": "artist",
+      "name": "Paul McCartney",
+      "mbid": "ba550d0e-adac-4864-b88b-407cab5e76af"
+    },
+    {
+      "slug": "artist:randy-newman",
+      "type": "artist",
+      "name": "Randy Newman",
+      "mbid": "da7bb7d8-557d-4635-9ca1-e6e985525bd5"
+    },
+    {
+      "slug": "artist:ringo-starr",
+      "type": "artist",
+      "name": "Ringo Starr",
+      "mbid": "300c4c73-33ac-4255-9d57-4e32627f5e13"
+    }
   ]
 }

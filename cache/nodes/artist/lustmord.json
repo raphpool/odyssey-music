@@ -76,5 +76,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:atrium-carceri",
+      "type": "artist",
+      "name": "Atrium Carceri",
+      "mbid": "7ef4295f-90a1-432d-85a5-264d4eb6615a"
+    },
+    {
+      "slug": "artist:desiderii-marginis",
+      "type": "artist",
+      "name": "Desiderii Marginis",
+      "mbid": "282ca70f-fe7b-4e43-84ab-1f52007947d5"
+    },
+    {
+      "slug": "artist:nine-inch-nails",
+      "type": "artist",
+      "name": "Nine Inch Nails",
+      "mbid": "b7ffd2af-418f-4be2-bdd1-22f8b48613da"
+    },
+    {
+      "slug": "artist:melvins",
+      "type": "artist",
+      "name": "Melvins",
+      "mbid": "9ccfbc94-a4f4-42f7-b6f5-d903ab77cccb"
+    },
+    {
+      "slug": "artist:ulver",
+      "type": "artist",
+      "name": "Ulver",
+      "mbid": "7d209631-ccb8-4a87-8516-64abe4c22dba"
+    },
+    {
+      "slug": "artist:kammarheit",
+      "type": "artist",
+      "name": "Kammarheit",
+      "mbid": "ccf9cc7f-28ef-4b98-9488-1d7eb41880bd"
+    },
+    {
+      "slug": "artist:coil",
+      "type": "artist",
+      "name": "Coil",
+      "mbid": "c16fbb7e-57b1-462c-97c5-bd0e11248765"
+    },
+    {
+      "slug": "artist:biosphere",
+      "type": "artist",
+      "name": "Biosphere",
+      "mbid": "a5ee1ebe-a645-45d2-8319-d101fe62e581"
+    },
+    {
+      "slug": "artist:arcana",
+      "type": "artist",
+      "name": "Arcana",
+      "mbid": "93c1606c-28ef-4955-ae75-331a0975608d"
+    },
+    {
+      "slug": "artist:inade",
+      "type": "artist",
+      "name": "Inade",
+      "mbid": "ceb27ed1-9300-4991-8076-1ff1c204315c"
+    }
+  ]
 }

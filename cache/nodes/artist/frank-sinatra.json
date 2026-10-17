@@ -118,5 +118,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:nat-king-cole",
+      "type": "artist",
+      "name": "Nat King Cole",
+      "mbid": "fbe054ec-a143-4101-9e9e-64abc5ff5ac9"
+    },
+    {
+      "slug": "artist:dean-martin",
+      "type": "artist",
+      "name": "Dean Martin",
+      "mbid": "5e6c760b-42e0-4df4-a221-0269355da00a"
+    },
+    {
+      "slug": "artist:elvis-presley",
+      "type": "artist",
+      "name": "Elvis Presley",
+      "mbid": "01809552-4f87-45b0-afff-2c6f0730a3be"
+    },
+    {
+      "slug": "artist:ella-fitzgerald",
+      "type": "artist",
+      "name": "Ella Fitzgerald",
+      "mbid": "54799c0e-eb45-4eea-996d-c4d71a63c499"
+    },
+    {
+      "slug": "artist:louis-armstrong",
+      "type": "artist",
+      "name": "Louis Armstrong",
+      "mbid": "eea8a864-fcda-4602-9569-38ab446decd6"
+    },
+    {
+      "slug": "artist:bing-crosby",
+      "type": "artist",
+      "name": "Bing Crosby",
+      "mbid": "2437980f-513a-44fc-80f1-b90d9d7fcf8f"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:michael-buble",
+      "type": "artist",
+      "name": "Michael Bublé",
+      "mbid": "611700cf-27f0-4dc9-ae80-c513a767853e"
+    },
+    {
+      "slug": "artist:the-beach-boys",
+      "type": "artist",
+      "name": "The Beach Boys",
+      "mbid": "ebfc1398-8d96-47e3-82c3-f782abcdb13d"
+    },
+    {
+      "slug": "artist:tony-bennett",
+      "type": "artist",
+      "name": "Tony Bennett",
+      "mbid": "8be0594f-8c13-46bb-ab06-f93ffba5c776"
+    }
+  ]
 }

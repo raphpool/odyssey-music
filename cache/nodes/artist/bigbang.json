@@ -111,5 +111,66 @@
       "name": "Daesung"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:bts",
+      "type": "artist",
+      "name": "BTS",
+      "mbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853"
+    },
+    {
+      "slug": "artist:blackpink",
+      "type": "artist",
+      "name": "BLACKPINK",
+      "mbid": "48646387-1664-4c9a-9139-9bfd091b823c"
+    },
+    {
+      "slug": "artist:girls-generation",
+      "type": "artist",
+      "name": "Girls’ Generation",
+      "mbid": "b7442f18-d9be-4185-8b51-482510046156"
+    },
+    {
+      "slug": "artist:2ne1",
+      "type": "artist",
+      "name": "2NE1",
+      "mbid": "e119e5ff-0de0-421c-a630-0516c6acede8"
+    },
+    {
+      "slug": "artist:exo",
+      "type": "artist",
+      "name": "EXO",
+      "mbid": "b3785a55-2cf6-497d-b8e3-cfa21a36f997"
+    },
+    {
+      "slug": "artist:red-velvet",
+      "type": "artist",
+      "name": "Red Velvet",
+      "mbid": "4f0cb3b7-6c06-4317-ae35-ddf3106a17ee"
+    },
+    {
+      "slug": "artist:shinee",
+      "type": "artist",
+      "name": "SHINee",
+      "mbid": "70e5098b-c4ae-4cd7-9799-3c1b9b57c753"
+    },
+    {
+      "slug": "artist:f",
+      "type": "artist",
+      "name": "f(x)",
+      "mbid": "37fa0bfd-8bf7-422c-a97a-f8deda49b3a4"
+    },
+    {
+      "slug": "artist:twice",
+      "type": "artist",
+      "name": "TWICE",
+      "mbid": "8da127cc-c432-418f-b356-ef36210d82ac"
+    },
+    {
+      "slug": "artist:exid",
+      "type": "artist",
+      "name": "EXID",
+      "mbid": "62cc95e0-86de-46e0-925a-353e330cf4e4"
+    }
+  ]
 }

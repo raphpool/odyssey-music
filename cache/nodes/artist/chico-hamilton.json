@@ -124,5 +124,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:bill-evans",
+      "type": "artist",
+      "name": "Bill Evans",
+      "mbid": "8247a3f2-3a8e-4256-b322-6c57b03a4e36"
+    },
+    {
+      "slug": "artist:wes-montgomery",
+      "type": "artist",
+      "name": "Wes Montgomery",
+      "mbid": "663f8232-8c46-4851-803f-a91d31593b14"
+    },
+    {
+      "slug": "artist:wayne-shorter",
+      "type": "artist",
+      "name": "Wayne Shorter",
+      "mbid": "2379937f-6e0d-46a2-b8ff-633fafd72002"
+    },
+    {
+      "slug": "artist:art-pepper",
+      "type": "artist",
+      "name": "Art Pepper",
+      "mbid": "266b9126-4a40-4b9b-b21e-422d72e64254"
+    },
+    {
+      "slug": "artist:sonny-rollins",
+      "type": "artist",
+      "name": "Sonny Rollins",
+      "mbid": "3b47247e-5b57-49b6-a0ed-bad80243802a"
+    },
+    {
+      "slug": "artist:keith-jarrett",
+      "type": "artist",
+      "name": "Keith Jarrett",
+      "mbid": "061c4920-3ea6-4835-98f6-02f3b82f5e3a"
+    },
+    {
+      "slug": "artist:stan-getz",
+      "type": "artist",
+      "name": "Stan Getz",
+      "mbid": "8f2422ab-0ec6-4c92-80c4-afe9622fab32"
+    },
+    {
+      "slug": "artist:charles-mingus",
+      "type": "artist",
+      "name": "Charles Mingus",
+      "mbid": "f3b8e107-abe8-4743-b6a3-4a4ee995e71f"
+    },
+    {
+      "slug": "artist:the-oscar-peterson-trio",
+      "type": "artist",
+      "name": "The Oscar Peterson Trio",
+      "mbid": "b083ec9b-27e0-4fda-801d-cb40861a0578"
+    },
+    {
+      "slug": "artist:bill-evans-trio",
+      "type": "artist",
+      "name": "Bill Evans Trio",
+      "mbid": "d0630a08-3b40-4cb4-9f48-7d525262c1f6"
+    }
+  ]
 }

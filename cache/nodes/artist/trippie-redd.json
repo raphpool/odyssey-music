@@ -141,5 +141,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:xxxtentacion",
+      "type": "artist",
+      "name": "XXXTENTACION",
+      "mbid": "61af87f4-16ee-4431-8504-cc06187079fb"
+    },
+    {
+      "slug": "artist:travis-scott",
+      "type": "artist",
+      "name": "Travis Scott",
+      "mbid": "e4a51f17-a57b-47b1-b37b-f552d0f8e9e6"
+    },
+    {
+      "slug": "artist:juice-wrld",
+      "type": "artist",
+      "name": "Juice WRLD",
+      "mbid": "4e4ebde4-0c56-4dec-844b-6c73adcdd92d"
+    },
+    {
+      "slug": "artist:lil-uzi-vert",
+      "type": "artist",
+      "name": "Lil Uzi Vert",
+      "mbid": "8837b875-3689-4646-b3fd-d8b53815c7a8"
+    },
+    {
+      "slug": "artist:drake",
+      "type": "artist",
+      "name": "Drake",
+      "mbid": "9fff2f8a-21e6-47de-a2b8-7f449929d43f"
+    },
+    {
+      "slug": "artist:joji",
+      "type": "artist",
+      "name": "Joji",
+      "mbid": "8264722b-df00-467a-858e-5c97cda169c9"
+    },
+    {
+      "slug": "artist:post-malone",
+      "type": "artist",
+      "name": "Post Malone",
+      "mbid": "b1e26560-60e5-4236-bbdb-9aa5a8d5ee19"
+    },
+    {
+      "slug": "artist:lil-baby",
+      "type": "artist",
+      "name": "Lil Baby",
+      "mbid": "d42a5768-ada1-4fb6-85fd-f61aba6264e0"
+    },
+    {
+      "slug": "artist:21-savage",
+      "type": "artist",
+      "name": "21 Savage",
+      "mbid": "37b2cb82-ef79-4d46-a184-a549450aa231"
+    },
+    {
+      "slug": "artist:the-weeknd",
+      "type": "artist",
+      "name": "The Weeknd",
+      "mbid": "c8b03190-306c-4120-bb0b-6f2ebfc06ea9"
+    }
+  ]
 }

@@ -566,5 +566,66 @@
       "name": "Vilma Díaz"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:los-corraleros-de-majagual",
+      "type": "artist",
+      "name": "Los Corraleros de Majagual",
+      "mbid": "b4d9bc42-4765-4ab1-afe8-ea127b6be048"
+    },
+    {
+      "slug": "artist:la-tipica-ra7",
+      "type": "artist",
+      "name": "La Típica RA7",
+      "mbid": "684f64c9-af9e-48dd-94a5-050dd200e7cb"
+    },
+    {
+      "slug": "artist:los-angeles-azules",
+      "type": "artist",
+      "name": "Los Ángeles Azules",
+      "mbid": "dcb5e5c6-5f21-4266-b5b6-556f54a6b6b5"
+    },
+    {
+      "slug": "artist:fruko-y-sus-tesos",
+      "type": "artist",
+      "name": "Fruko y sus Tesos",
+      "mbid": "ee0552e7-de2b-4fc2-8739-9c33a905c3e7"
+    },
+    {
+      "slug": "artist:pedro-laza-y-sus-pelayeros",
+      "type": "artist",
+      "name": "Pedro Laza y sus Pelayeros",
+      "mbid": "8ddbd830-f22d-469b-9dbc-27e2d0c37c0f"
+    },
+    {
+      "slug": "artist:the-latin-brothers",
+      "type": "artist",
+      "name": "The Latin Brothers",
+      "mbid": "9d267219-0d89-45c9-a761-5f3ab824ed0c"
+    },
+    {
+      "slug": "artist:elia-y-elizabeth",
+      "type": "artist",
+      "name": "Elia y Elizabeth",
+      "mbid": "1e7510f3-9b01-412a-b9d2-dc6b4d913410"
+    },
+    {
+      "slug": "artist:los-pamperos",
+      "type": "artist",
+      "name": "Los Pamperos",
+      "mbid": "3509ef8b-ad81-402f-8060-fca1bf6dfd03"
+    },
+    {
+      "slug": "artist:rodrigo-amarante",
+      "type": "artist",
+      "name": "Rodrigo Amarante",
+      "mbid": "6122e623-d38d-47b0-95d8-7a3d73a01a55"
+    },
+    {
+      "slug": "artist:orquesta-ritmo-de-sabanas",
+      "type": "artist",
+      "name": "Orquesta Ritmo de Sábanas",
+      "mbid": "b05e0009-c611-4842-a8aa-de66f7c91d9a"
+    }
+  ]
 }

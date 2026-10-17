@@ -69,5 +69,61 @@
       "name": "The Orb"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-future-sound-of-london",
+      "type": "artist",
+      "name": "The Future Sound of London",
+      "mbid": "a1d77dd4-8728-4a47-bdfa-9663d791139c"
+    },
+    {
+      "slug": "artist:afx",
+      "type": "artist",
+      "name": "AFX"
+    },
+    {
+      "slug": "artist:andi-toma",
+      "type": "artist",
+      "name": "Andi Toma",
+      "mbid": "7138147f-3d17-48e4-a5b0-99125e5ae190"
+    },
+    {
+      "slug": "artist:anushka-chkheidze",
+      "type": "artist",
+      "name": "Anushka Chkheidze",
+      "mbid": "61550996-9ae9-45d9-95a3-2dc3f713502b"
+    },
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:apparat",
+      "type": "artist",
+      "name": "Apparat",
+      "mbid": "dc3dbfc1-f1f1-49c6-9d7c-425fabf3ae12"
+    },
+    {
+      "slug": "artist:atom-heart",
+      "type": "artist",
+      "name": "Atom Heart"
+    },
+    {
+      "slug": "artist:atom-tm",
+      "type": "artist",
+      "name": "Atom TM",
+      "mbid": "a874e630-134c-4450-97c4-54e596404290"
+    },
+    {
+      "slug": "artist:b12",
+      "type": "artist",
+      "name": "B12"
+    },
+    {
+      "slug": "artist:boards-of-canada",
+      "type": "artist",
+      "name": "Boards of Canada"
+    }
+  ]
 }

@@ -595,5 +595,66 @@
       "name": "Gerald Simpson"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:808-state",
+      "type": "artist",
+      "name": "808 State",
+      "mbid": "36f35db0-bc09-43e7-8650-a123224943c7"
+    },
+    {
+      "slug": "artist:finley-quaye",
+      "type": "artist",
+      "name": "Finley Quaye",
+      "mbid": "e6fbff56-aee6-4f80-8f6f-d8c345694074"
+    },
+    {
+      "slug": "artist:wendy-page",
+      "type": "artist",
+      "name": "Wendy Page",
+      "mbid": "34ee5935-2ad5-452c-98c9-9eb7425de836"
+    },
+    {
+      "slug": "artist:jennifer-neal",
+      "type": "artist",
+      "name": "Jennifer Neal",
+      "mbid": "ebbf84d8-c648-419a-9acc-2f54f50ce9b8"
+    },
+    {
+      "slug": "artist:lou-rhodes",
+      "type": "artist",
+      "name": "Lou Rhodes",
+      "mbid": "41b2f0f1-9142-49e9-a830-5291fe1a7b93"
+    },
+    {
+      "slug": "artist:david-simpson",
+      "type": "artist",
+      "name": "David Simpson",
+      "mbid": "05381b5e-d1e4-4c6d-b208-609545874ddf"
+    },
+    {
+      "slug": "artist:lady-miss-kier",
+      "type": "artist",
+      "name": "Lady Miss Kier",
+      "mbid": "e0fd9f95-f768-415f-8ec6-e43c1d91ee22"
+    },
+    {
+      "slug": "artist:orbital",
+      "type": "artist",
+      "name": "Orbital",
+      "mbid": "f3e2a7d9-c6bb-4848-95e5-04c0a1e2f511"
+    },
+    {
+      "slug": "artist:new-order",
+      "type": "artist",
+      "name": "New Order",
+      "mbid": "f1106b17-dcbb-45f6-b938-199ccfab50cc"
+    },
+    {
+      "slug": "artist:air",
+      "type": "artist",
+      "name": "Air",
+      "mbid": "cb67438a-7f50-4f2b-a6f1-2bb2729fd538"
+    }
+  ]
 }

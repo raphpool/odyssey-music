@@ -135,5 +135,66 @@
       "name": "Moderat"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:thom-yorke",
+      "type": "artist",
+      "name": "Thom Yorke",
+      "mbid": "8ed2e0b3-aa4c-4e13-bec3-dc7393ed4d6b"
+    },
+    {
+      "slug": "artist:siriusmo",
+      "type": "artist",
+      "name": "Siriusmo",
+      "mbid": "4285ce75-f472-4adb-927d-51534d72b7c3"
+    },
+    {
+      "slug": "artist:otto-von-schirach",
+      "type": "artist",
+      "name": "Otto von Schirach",
+      "mbid": "1f3b044c-8671-4958-ac9f-96e61d5341b2"
+    },
+    {
+      "slug": "artist:apparat",
+      "type": "artist",
+      "name": "Apparat",
+      "mbid": "dc3dbfc1-f1f1-49c6-9d7c-425fabf3ae12"
+    },
+    {
+      "slug": "artist:ttc",
+      "type": "artist",
+      "name": "TTC",
+      "mbid": "62bd8d93-5e1e-480f-8642-9c346e93ff11"
+    },
+    {
+      "slug": "artist:four-tet",
+      "type": "artist",
+      "name": "Four Tet",
+      "mbid": "3bcff06f-675a-451f-9075-99e8657047e8"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:puppetmastaz",
+      "type": "artist",
+      "name": "Puppetmastaz",
+      "mbid": "ffe53025-23f7-4c80-ac9d-442a3275d4a6"
+    },
+    {
+      "slug": "artist:trentemoller",
+      "type": "artist",
+      "name": "Trentemøller",
+      "mbid": "95e9aba6-f85c-48a0-9ec9-395d4f0e3875"
+    },
+    {
+      "slug": "artist:bonobo",
+      "type": "artist",
+      "name": "Bonobo",
+      "mbid": "9a709693-b4f8-4da9-8cc1-038c911a61be"
+    }
+  ]
 }

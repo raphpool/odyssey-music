@@ -116,5 +116,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:jamie-lidell",
+      "type": "artist",
+      "name": "Jamie Lidell",
+      "mbid": "0daf1c34-212a-442f-905d-c44f2adcc020"
+    },
+    {
+      "slug": "artist:kangding-ray",
+      "type": "artist",
+      "name": "Kangding Ray",
+      "mbid": "db9ee7c8-d0b7-4004-972b-62d99dcd2d15"
+    },
+    {
+      "slug": "artist:monolake",
+      "type": "artist",
+      "name": "Monolake",
+      "mbid": "cedf92fe-eba1-45e2-ba16-b1b6af5169b8"
+    },
+    {
+      "slug": "artist:alva-noto",
+      "type": "artist",
+      "name": "Alva Noto",
+      "mbid": "48ec4bb6-47a6-4e2c-8287-7617464eb193"
+    },
+    {
+      "slug": "artist:byetone",
+      "type": "artist",
+      "name": "Byetone",
+      "mbid": "38fd1c6a-ba2f-400a-926e-f88fac8583cc"
+    },
+    {
+      "slug": "artist:frank-bretschneider",
+      "type": "artist",
+      "name": "Frank Bretschneider",
+      "mbid": "be4f6406-88fb-4a8f-bea6-ba8a7cb7b2ac"
+    },
+    {
+      "slug": "artist:vladislav-delay",
+      "type": "artist",
+      "name": "Vladislav Delay",
+      "mbid": "039cafb3-4f3d-44a9-b956-7705323f025b"
+    },
+    {
+      "slug": "artist:ryoji-ikeda",
+      "type": "artist",
+      "name": "Ryoji Ikeda",
+      "mbid": "bba24968-a575-4b38-8c38-06f7ab6de8c8"
+    },
+    {
+      "slug": "artist:senking",
+      "type": "artist",
+      "name": "Senking",
+      "mbid": "eb7861ed-906d-44a5-a865-788a9b4b180d"
+    },
+    {
+      "slug": "artist:jan-jelinek",
+      "type": "artist",
+      "name": "Jan Jelinek",
+      "mbid": "ac9b829e-9a7c-4331-8abe-ab1eb49d1771"
+    }
+  ]
 }

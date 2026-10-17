@@ -440,5 +440,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:stan-getz",
+      "type": "artist",
+      "name": "Stan Getz",
+      "mbid": "8f2422ab-0ec6-4c92-80c4-afe9622fab32"
+    },
+    {
+      "slug": "artist:joao-gilberto",
+      "type": "artist",
+      "name": "João Gilberto",
+      "mbid": "286ec4c2-b5ca-4f85-b331-280a6d73dd14"
+    },
+    {
+      "slug": "artist:astrud-gilberto",
+      "type": "artist",
+      "name": "Astrud Gilberto",
+      "mbid": "8d08cabf-03a3-4f38-a815-8197a0984f19"
+    },
+    {
+      "slug": "artist:elis-regina",
+      "type": "artist",
+      "name": "Elis Regina",
+      "mbid": "e9e85a54-074c-4d29-a886-bcaaa9d44f9f"
+    },
+    {
+      "slug": "artist:frank-sinatra",
+      "type": "artist",
+      "name": "Frank Sinatra",
+      "mbid": "197450cd-0124-4164-b723-3c22dd16494d"
+    },
+    {
+      "slug": "artist:caetano-veloso",
+      "type": "artist",
+      "name": "Caetano Veloso",
+      "mbid": "f07dbc2f-317b-470f-bad4-5f1b0eb6faf1"
+    },
+    {
+      "slug": "artist:nara-leao",
+      "type": "artist",
+      "name": "Nara Leão",
+      "mbid": "3a13549a-9578-4547-9308-4167816c51df"
+    },
+    {
+      "slug": "artist:chico-buarque",
+      "type": "artist",
+      "name": "Chico Buarque",
+      "mbid": "3a5d1cc7-627e-48ea-aba3-fdd20d782c33"
+    },
+    {
+      "slug": "artist:jorge-ben-jor",
+      "type": "artist",
+      "name": "Jorge Ben Jor",
+      "mbid": "19499124-36d4-4ccc-b28d-04dde3d2076f"
+    },
+    {
+      "slug": "artist:gilberto-gil",
+      "type": "artist",
+      "name": "Gilberto Gil",
+      "mbid": "cf6b70f6-2616-481c-912c-0263cabfc974"
+    }
+  ]
 }

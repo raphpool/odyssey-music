@@ -98,5 +98,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:khruangbin",
+      "type": "artist",
+      "name": "Khruangbin",
+      "mbid": "aea4c9b9-9f8d-49dc-b2ca-57d6f26e8634"
+    },
+    {
+      "slug": "artist:alice-coltrane",
+      "type": "artist",
+      "name": "Alice Coltrane",
+      "mbid": "d24fc285-7b2f-47da-8ac5-4070b08570b1"
+    },
+    {
+      "slug": "artist:dorothy-ashby",
+      "type": "artist",
+      "name": "Dorothy Ashby",
+      "mbid": "c0b33447-18d5-4d50-93c1-a9aa7463bd48"
+    },
+    {
+      "slug": "artist:can",
+      "type": "artist",
+      "name": "Can",
+      "mbid": "13501c7d-d181-45ba-af52-5f101d8516a0"
+    },
+    {
+      "slug": "artist:el-michels-affair",
+      "type": "artist",
+      "name": "El Michels Affair",
+      "mbid": "dbf0a5c5-3665-4495-b13b-99438a6a0900"
+    },
+    {
+      "slug": "artist:ebo-taylor",
+      "type": "artist",
+      "name": "Ebo Taylor",
+      "mbid": "8b034085-b06d-4c42-9be3-d709be169d79"
+    },
+    {
+      "slug": "artist:francis-bebey",
+      "type": "artist",
+      "name": "Francis Bebey",
+      "mbid": "fab6adab-b46f-45f8-8700-bc44408ba583"
+    },
+    {
+      "slug": "artist:william-onyeabor",
+      "type": "artist",
+      "name": "William Onyeabor",
+      "mbid": "53dd0229-8a42-4bd7-8ffb-29bdec25e9c6"
+    },
+    {
+      "slug": "artist:gabor-szabo",
+      "type": "artist",
+      "name": "Gábor Szabó",
+      "mbid": "ee69197a-ca57-42ba-bd23-93b756391a5d"
+    },
+    {
+      "slug": "artist:the-durutti-column",
+      "type": "artist",
+      "name": "The Durutti Column",
+      "mbid": "aaddb5e3-f8a5-4a9d-8674-f885112ecf0e"
+    }
+  ]
 }

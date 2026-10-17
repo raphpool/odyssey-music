@@ -139,5 +139,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:biosphere",
+      "type": "artist",
+      "name": "Biosphere",
+      "mbid": "a5ee1ebe-a645-45d2-8319-d101fe62e581"
+    },
+    {
+      "slug": "artist:steve-roach",
+      "type": "artist",
+      "name": "Steve Roach",
+      "mbid": "8347dd6d-b9a2-4e96-a610-d1ed67b189f1"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze",
+      "mbid": "2e710b0c-6ff3-4c21-87d5-16ebbbca212c"
+    },
+    {
+      "slug": "artist:bill-laswell",
+      "type": "artist",
+      "name": "Bill Laswell",
+      "mbid": "8b7a121c-5b50-4912-ab4c-e49a631a2db0"
+    },
+    {
+      "slug": "artist:tetsu-inoue",
+      "type": "artist",
+      "name": "Tetsu Inoue",
+      "mbid": "a6af6859-abf0-420b-be61-72812aa9d94e"
+    },
+    {
+      "slug": "artist:global-communication",
+      "type": "artist",
+      "name": "Global Communication",
+      "mbid": "8179e236-86df-459f-bd51-0107138d0a6a"
+    },
+    {
+      "slug": "artist:orbital",
+      "type": "artist",
+      "name": "Orbital",
+      "mbid": "f3e2a7d9-c6bb-4848-95e5-04c0a1e2f511"
+    },
+    {
+      "slug": "artist:ash-ra-tempel",
+      "type": "artist",
+      "name": "Ash Ra Tempel",
+      "mbid": "7e62de5d-1cc6-4779-a588-8923cf9fe09d"
+    },
+    {
+      "slug": "artist:vidna-obmana",
+      "type": "artist",
+      "name": "Vidna Obmana",
+      "mbid": "3211fd9d-a5b6-4413-9782-4fd01825919c"
+    }
+  ]
 }

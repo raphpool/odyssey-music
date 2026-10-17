@@ -95,5 +95,66 @@
       "name": "Roxy Music"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-venus-in-furs",
+      "type": "artist",
+      "name": "The Venus in Furs",
+      "mbid": "0860ed05-2e3a-4872-a44a-8e6d8a7e9696"
+    },
+    {
+      "slug": "artist:t-rex",
+      "type": "artist",
+      "name": "T. Rex",
+      "mbid": "c842d29f-a297-48cd-bb71-4f77fd672b16"
+    },
+    {
+      "slug": "artist:shudder-to-think",
+      "type": "artist",
+      "name": "Shudder to Think",
+      "mbid": "5a6e19e0-3ff0-4b3d-869e-3c539d6d8707"
+    },
+    {
+      "slug": "artist:carter-burwell",
+      "type": "artist",
+      "name": "Carter Burwell",
+      "mbid": "b88ca659-0393-4a62-abd8-f290e6c7a7e2"
+    },
+    {
+      "slug": "artist:lou-reed",
+      "type": "artist",
+      "name": "Lou Reed",
+      "mbid": "9d1ebcfe-4c15-4d18-95d3-d919898638a1"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:grant-lee-buffalo",
+      "type": "artist",
+      "name": "Grant Lee Buffalo",
+      "mbid": "b2ccf20a-0569-4375-a486-7ca9c5e65afc"
+    },
+    {
+      "slug": "artist:placebo",
+      "type": "artist",
+      "name": "Placebo",
+      "mbid": "847e8284-8582-4b0e-9c26-b042a4f49e57"
+    },
+    {
+      "slug": "artist:wylde-ratttz",
+      "type": "artist",
+      "name": "Wylde Ratttz",
+      "mbid": "e6d8c1dd-e7bc-4e44-87ad-66aa2d3e6580"
+    },
+    {
+      "slug": "artist:steve-harley",
+      "type": "artist",
+      "name": "Steve Harley",
+      "mbid": "58177b75-d725-45e1-9b35-df18f1fd15c2"
+    }
+  ]
 }

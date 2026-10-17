@@ -78,5 +78,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:kelli-ali",
+      "type": "artist",
+      "name": "Kelli Ali",
+      "mbid": "e91466e9-e518-4b02-9198-a6c338694c9d"
+    },
+    {
+      "slug": "artist:cevin-fisher",
+      "type": "artist",
+      "name": "Cevin Fisher",
+      "mbid": "6ac09211-c911-4220-8cd1-3585888d3967"
+    },
+    {
+      "slug": "artist:diane-charlemagne",
+      "type": "artist",
+      "name": "Diane Charlemagne",
+      "mbid": "35508fc3-7da2-4adb-986f-2c6b79117d21"
+    },
+    {
+      "slug": "artist:deanna",
+      "type": "artist",
+      "name": "Deanna",
+      "mbid": "84ef6a36-f161-48da-b22f-bffc3aad18de"
+    },
+    {
+      "slug": "artist:john-schmersal",
+      "type": "artist",
+      "name": "John Schmersal",
+      "mbid": "9f0f837b-e427-4611-aef4-5db88298bfaf"
+    },
+    {
+      "slug": "artist:madam",
+      "type": "artist",
+      "name": "Madam",
+      "mbid": "c18088ff-b8e9-43a7-ad7e-a411af90c410"
+    },
+    {
+      "slug": "artist:bipath",
+      "type": "artist",
+      "name": "Bipath",
+      "mbid": "d33637ed-d1c3-4e27-b7da-fe2da86763ab"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:teimoso",
+      "type": "artist",
+      "name": "Teimoso",
+      "mbid": "fa8fb806-5ffc-4b63-8551-bf439bf34280"
+    },
+    {
+      "slug": "artist:aco",
+      "type": "artist",
+      "name": "ACO",
+      "mbid": "32a56b19-ff74-4a0b-aea9-29220e053e37"
+    }
+  ]
 }

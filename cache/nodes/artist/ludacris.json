@@ -775,5 +775,64 @@
       "name": "Chris Lova Lova"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:t-i",
+      "type": "artist",
+      "name": "T.I.",
+      "mbid": "f7ba7fbe-c6bd-4ac0-bee9-c25c558d7d62"
+    },
+    {
+      "slug": "artist:jeezy",
+      "type": "artist",
+      "name": "Jeezy"
+    },
+    {
+      "slug": "artist:outkast",
+      "type": "artist",
+      "name": "OutKast"
+    },
+    {
+      "slug": "artist:warren-g",
+      "type": "artist",
+      "name": "Warren G",
+      "mbid": "85d7666c-d3ce-4e2c-8b1b-f20db7cdae4f"
+    },
+    {
+      "slug": "artist:daft-punk",
+      "type": "artist",
+      "name": "Daft Punk",
+      "mbid": "056e4f3e-d505-4dad-8ec1-d04f521cbb56"
+    },
+    {
+      "slug": "artist:nas",
+      "type": "artist",
+      "name": "Nas"
+    },
+    {
+      "slug": "artist:paul-oakenfold",
+      "type": "artist",
+      "name": "Paul Oakenfold",
+      "mbid": "7bf1f441-ccf1-4258-9797-07c8d16eb44c"
+    },
+    {
+      "slug": "artist:three-6-mafia",
+      "type": "artist",
+      "name": "Three 6 Mafia",
+      "mbid": "a8754ac4-a85e-4f48-a81f-eecd482570ef"
+    },
+    {
+      "slug": "artist:ugk",
+      "type": "artist",
+      "name": "UGK",
+      "mbid": "9603810b-5d6d-41a6-aca8-330ef966d55c"
+    },
+    {
+      "slug": "artist:wizkid",
+      "type": "artist",
+      "name": "Wizkid",
+      "mbid": "efc5d365-a448-4e2f-9b5f-4a7c84be725c"
+    }
+  ]
 }

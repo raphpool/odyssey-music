@@ -107,5 +107,65 @@
       "name": "Stereolab"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:laetitia-sadier",
+      "type": "artist",
+      "name": "Laetitia Sadier",
+      "mbid": "9710d91f-bfbd-4f84-9c54-cb04f2a464b1"
+    },
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars",
+      "mbid": "4d4f5d92-0589-42fa-bc0e-1bd73e17a2ce"
+    },
+    {
+      "slug": "artist:1-2-3",
+      "type": "artist",
+      "name": "1,2,3",
+      "mbid": "d5f95a78-4a24-4a7b-8d26-a16d0f15cc3b"
+    },
+    {
+      "slug": "artist:bjork",
+      "type": "artist",
+      "name": "Björk",
+      "mbid": "87c5dedd-371d-4a53-9f7f-80522fb7f3cb"
+    },
+    {
+      "slug": "artist:califone",
+      "type": "artist",
+      "name": "Califone",
+      "mbid": "68025033-de1b-42f5-8a21-bedfb8895dda"
+    },
+    {
+      "slug": "artist:cat-power",
+      "type": "artist",
+      "name": "Cat Power",
+      "mbid": "05755bf1-380c-487f-983f-d1a02401fa28"
+    },
+    {
+      "slug": "artist:eriko-toyoda",
+      "type": "artist",
+      "name": "Eriko Toyoda",
+      "mbid": "ba270d06-5529-4889-bbe9-2995fddf2b7d"
+    },
+    {
+      "slug": "artist:grace-jones",
+      "type": "artist",
+      "name": "Grace Jones"
+    },
+    {
+      "slug": "artist:james-blake",
+      "type": "artist",
+      "name": "James Blake",
+      "mbid": "8dc08b1f-e393-4f85-a5dd-300f7693a8b8"
+    },
+    {
+      "slug": "artist:kate-bush",
+      "type": "artist",
+      "name": "Kate Bush",
+      "mbid": "4b585938-f271-45e2-b19a-91c634b5e396"
+    }
+  ]
 }

@@ -88,5 +88,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:soccer-mommy",
+      "type": "artist",
+      "name": "Soccer Mommy",
+      "mbid": "84803b1d-dcb3-490d-9af5-debbba64a011"
+    },
+    {
+      "slug": "artist:mitski",
+      "type": "artist",
+      "name": "Mitski",
+      "mbid": "fa58cf24-0e44-421d-8519-8bf461dcfaa5"
+    },
+    {
+      "slug": "artist:japanese-breakfast",
+      "type": "artist",
+      "name": "Japanese Breakfast",
+      "mbid": "8c529495-91f5-4e2f-b71b-adcb66878d04"
+    },
+    {
+      "slug": "artist:phoebe-bridgers",
+      "type": "artist",
+      "name": "Phoebe Bridgers",
+      "mbid": "96855c21-b832-4366-ba12-0d2330c36a86"
+    },
+    {
+      "slug": "artist:big-thief",
+      "type": "artist",
+      "name": "Big Thief",
+      "mbid": "9f81247f-7f57-42f3-a8ba-75bef554e591"
+    },
+    {
+      "slug": "artist:lucy-dacus",
+      "type": "artist",
+      "name": "Lucy Dacus",
+      "mbid": "dbe7fdf7-81b2-418b-b3f6-81ae71532f40"
+    },
+    {
+      "slug": "artist:alvvays",
+      "type": "artist",
+      "name": "Alvvays",
+      "mbid": "99450990-b24e-4132-bb68-235f8c3e2564"
+    },
+    {
+      "slug": "artist:beach-house",
+      "type": "artist",
+      "name": "Beach House",
+      "mbid": "d5cc67b8-1cc4-453b-96e8-44487acdebea"
+    },
+    {
+      "slug": "artist:car-seat-headrest",
+      "type": "artist",
+      "name": "Car Seat Headrest",
+      "mbid": "0fabbc1d-8d94-4a61-bd1d-1099ad1e4559"
+    },
+    {
+      "slug": "artist:angel-olsen",
+      "type": "artist",
+      "name": "Angel Olsen",
+      "mbid": "185527bf-c293-4c24-8213-ed98fb8976be"
+    }
+  ]
 }

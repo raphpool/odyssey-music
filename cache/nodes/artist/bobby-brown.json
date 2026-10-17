@@ -347,5 +347,61 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:guy",
+      "type": "artist",
+      "name": "Guy"
+    },
+    {
+      "slug": "artist:bell-biv-devoe",
+      "type": "artist",
+      "name": "Bell Biv DeVoe",
+      "mbid": "9b16908a-a78c-45a7-8366-d2a41967f745"
+    },
+    {
+      "slug": "artist:frank-ocean",
+      "type": "artist",
+      "name": "Frank Ocean"
+    },
+    {
+      "slug": "artist:the-roots",
+      "type": "artist",
+      "name": "The Roots",
+      "mbid": "80b3cf5e-18fe-4c59-98c7-e5bb87210710"
+    },
+    {
+      "slug": "artist:2-unlimited",
+      "type": "artist",
+      "name": "2 Unlimited"
+    },
+    {
+      "slug": "artist:blackpink",
+      "type": "artist",
+      "name": "BLACKPINK",
+      "mbid": "48646387-1664-4c9a-9139-9bfd091b823c"
+    },
+    {
+      "slug": "artist:bts",
+      "type": "artist",
+      "name": "BTS",
+      "mbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853"
+    },
+    {
+      "slug": "artist:bee-gees",
+      "type": "artist",
+      "name": "Bee Gees"
+    },
+    {
+      "slug": "artist:buddy-holly",
+      "type": "artist",
+      "name": "Buddy Holly",
+      "mbid": "d352f5dd-3023-4565-a7bb-52396bf8821d"
+    },
+    {
+      "slug": "artist:cat-stevens",
+      "type": "artist",
+      "name": "Cat Stevens"
+    }
+  ]
 }

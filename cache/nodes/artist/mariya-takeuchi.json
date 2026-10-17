@@ -158,5 +158,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:tatsuro-yamashita",
+      "type": "artist",
+      "name": "山下達郎",
+      "mbid": "ad62391d-ab7e-4ac9-9ce8-3704bc6746bb"
+    },
+    {
+      "slug": "artist:junko-ohashi",
+      "type": "artist",
+      "name": "大橋純子",
+      "mbid": "1c006b2c-eb12-4f50-a339-2d0c697c9045"
+    },
+    {
+      "slug": "artist:daft-punk",
+      "type": "artist",
+      "name": "Daft Punk",
+      "mbid": "056e4f3e-d505-4dad-8ec1-d04f521cbb56"
+    },
+    {
+      "slug": "artist:hikaru-utada",
+      "type": "artist",
+      "name": "宇多田ヒカル",
+      "mbid": "b539e453-c4fe-47e3-8a07-8517eac74429"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:gorillaz",
+      "type": "artist",
+      "name": "Gorillaz",
+      "mbid": "e21857d5-3256-4547-afb3-4b6ded592596"
+    },
+    {
+      "slug": "artist:ayumi-hamasaki",
+      "type": "artist",
+      "name": "浜崎あゆみ",
+      "mbid": "2b615bcf-baa0-4657-b9a5-1a5f34c386c4"
+    },
+    {
+      "slug": "artist:kero-kero-bonito",
+      "type": "artist",
+      "name": "Kero Kero Bonito",
+      "mbid": "5e284bdc-3774-41dc-b5e2-b125d0349acf"
+    }
+  ]
 }

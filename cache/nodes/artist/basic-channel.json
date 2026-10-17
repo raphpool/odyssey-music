@@ -124,5 +124,66 @@
       "name": "Mark Ernestus"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:monolake",
+      "type": "artist",
+      "name": "Monolake",
+      "mbid": "cedf92fe-eba1-45e2-ba16-b1b6af5169b8"
+    },
+    {
+      "slug": "artist:vainqueur",
+      "type": "artist",
+      "name": "Vainqueur",
+      "mbid": "5041c9e5-9cac-4b8e-8559-cdda296ddb0a"
+    },
+    {
+      "slug": "artist:porter-ricks",
+      "type": "artist",
+      "name": "Porter Ricks",
+      "mbid": "f2c0d29a-9bef-469f-af6e-a9b5deb21308"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:pole",
+      "type": "artist",
+      "name": "Pole",
+      "mbid": "ad957b43-9dc0-42e1-940c-19b21ec77f3a"
+    },
+    {
+      "slug": "artist:drexciya",
+      "type": "artist",
+      "name": "Drexciya",
+      "mbid": "66f398bf-ae55-4f13-b993-fa871c57157f"
+    },
+    {
+      "slug": "artist:plastikman",
+      "type": "artist",
+      "name": "Plastikman",
+      "mbid": "abee98f6-5239-4abf-bbe6-e1e2815a0dd6"
+    },
+    {
+      "slug": "artist:andy-stott",
+      "type": "artist",
+      "name": "Andy Stott",
+      "mbid": "ecf5ab37-019f-4cc1-9fdc-218de6a41b65"
+    },
+    {
+      "slug": "artist:robert-hood",
+      "type": "artist",
+      "name": "Robert Hood",
+      "mbid": "e8a61400-baf7-4fb3-a3e3-c9e7b665547f"
+    },
+    {
+      "slug": "artist:vladislav-delay",
+      "type": "artist",
+      "name": "Vladislav Delay",
+      "mbid": "039cafb3-4f3d-44a9-b956-7705323f025b"
+    }
+  ]
 }

@@ -735,5 +735,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:travis-scott",
+      "type": "artist",
+      "name": "Travis Scott",
+      "mbid": "e4a51f17-a57b-47b1-b37b-f552d0f8e9e6"
+    },
+    {
+      "slug": "artist:playboi-carti",
+      "type": "artist",
+      "name": "Playboi Carti",
+      "mbid": "2baf3276-ed6a-4349-8d2e-f4601e7b2167"
+    },
+    {
+      "slug": "artist:lil-uzi-vert",
+      "type": "artist",
+      "name": "Lil Uzi Vert",
+      "mbid": "8837b875-3689-4646-b3fd-d8b53815c7a8"
+    },
+    {
+      "slug": "artist:young-thug",
+      "type": "artist",
+      "name": "Young Thug",
+      "mbid": "800760de-bdf8-43a2-8fe0-44a2401a5515"
+    },
+    {
+      "slug": "artist:drake",
+      "type": "artist",
+      "name": "Drake",
+      "mbid": "9fff2f8a-21e6-47de-a2b8-7f449929d43f"
+    },
+    {
+      "slug": "artist:future",
+      "type": "artist",
+      "name": "Future",
+      "mbid": "48262e82-db9f-4a92-b650-dfef979b73ec"
+    },
+    {
+      "slug": "artist:a-ap-rocky",
+      "type": "artist",
+      "name": "A$AP Rocky",
+      "mbid": "25b7b584-d952-4662-a8b9-dd8cdfbfeb64"
+    },
+    {
+      "slug": "artist:pi-erre-bourne",
+      "type": "artist",
+      "name": "Pi’erre Bourne",
+      "mbid": "be0d7749-0974-48ba-93bb-6e974ec193a2"
+    },
+    {
+      "slug": "artist:rick-ross",
+      "type": "artist",
+      "name": "Rick Ross",
+      "mbid": "13bcb2bb-db37-4397-baf5-e0f085be2d64"
+    },
+    {
+      "slug": "artist:gunna",
+      "type": "artist",
+      "name": "Gunna",
+      "mbid": "100b8734-f4f0-4536-9960-47f7c59d1b4c"
+    }
+  ]
 }

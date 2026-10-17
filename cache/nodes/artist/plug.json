@@ -108,5 +108,66 @@
       "name": "Luke Vibert"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:wagon-christ",
+      "type": "artist",
+      "name": "Wagon Christ",
+      "mbid": "991b8af4-328a-4441-8dc5-f7af0c89af08"
+    },
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ‐Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
+    },
+    {
+      "slug": "artist:martha-and-the-muffins",
+      "type": "artist",
+      "name": "Martha and the Muffins",
+      "mbid": "d0a4fd70-d8ab-442e-8fb0-f5608936dce3"
+    },
+    {
+      "slug": "artist:ceephax-acid-crew",
+      "type": "artist",
+      "name": "Ceephax Acid Crew",
+      "mbid": "f226bcd7-114e-418f-8fa5-e24a47a89cf5"
+    },
+    {
+      "slug": "artist:jega",
+      "type": "artist",
+      "name": "Jega",
+      "mbid": "6b43e5f2-49e8-46ce-94cb-a9b23e5bb4e8"
+    },
+    {
+      "slug": "artist:polygon-window",
+      "type": "artist",
+      "name": "Polygon Window",
+      "mbid": "aaa78ce4-e4fe-43b6-abe1-733dc83f8eb1"
+    },
+    {
+      "slug": "artist:dj-shadow",
+      "type": "artist",
+      "name": "DJ Shadow",
+      "mbid": "efa2c11a-1a35-4b60-bc1b-66d37de88511"
+    },
+    {
+      "slug": "artist:orbital",
+      "type": "artist",
+      "name": "Orbital",
+      "mbid": "f3e2a7d9-c6bb-4848-95e5-04c0a1e2f511"
+    },
+    {
+      "slug": "artist:kerrier-district",
+      "type": "artist",
+      "name": "Kerrier District",
+      "mbid": "b9bc9708-12d0-4c13-a82c-a0b239e9c377"
+    },
+    {
+      "slug": "artist:flying-lotus",
+      "type": "artist",
+      "name": "Flying Lotus",
+      "mbid": "fc7376fe-1a6f-4414-b4a7-83f50ed59c92"
+    }
+  ]
 }

@@ -467,5 +467,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:dj-funk",
+      "type": "artist",
+      "name": "DJ Funk",
+      "mbid": "9c446bec-9272-4828-a958-9dd43e33cc97"
+    },
+    {
+      "slug": "artist:gaiola-das-popozudas",
+      "type": "artist",
+      "name": "Gaiola das Popozudas",
+      "mbid": "67d708a8-8de6-41d2-963f-112366af685c"
+    },
+    {
+      "slug": "artist:boys-noize",
+      "type": "artist",
+      "name": "Boys Noize",
+      "mbid": "d2f4a968-1f6e-4a4a-9376-ee2b2a50c87a"
+    },
+    {
+      "slug": "artist:cajmere",
+      "type": "artist",
+      "name": "Cajmere",
+      "mbid": "18d18849-fd22-4720-9ae4-5bc3ce39f93d"
+    },
+    {
+      "slug": "artist:turbulence",
+      "type": "artist",
+      "name": "Turbulence",
+      "mbid": "0e12d01b-e8ae-4cf5-8888-649be4ca90af"
+    },
+    {
+      "slug": "artist:dj-nasty",
+      "type": "artist",
+      "name": "DJ Nasty",
+      "mbid": "25378785-3fc1-4eea-af1f-4108052ec708"
+    },
+    {
+      "slug": "artist:model-500",
+      "type": "artist",
+      "name": "Model 500",
+      "mbid": "e569aee8-33ff-48e5-b0ed-4ceba1a37714"
+    },
+    {
+      "slug": "artist:jammin-gerald",
+      "type": "artist",
+      "name": "Jammin Gerald",
+      "mbid": "79770c33-ff90-48ea-b9ab-917ccc8adbb7"
+    },
+    {
+      "slug": "artist:jammer",
+      "type": "artist",
+      "name": "Jammer",
+      "mbid": "1d6e8676-3b7f-4e39-9aa3-0b0af45479c8"
+    },
+    {
+      "slug": "artist:hashim",
+      "type": "artist",
+      "name": "Hashim",
+      "mbid": "ec0337b1-95b3-47e9-b801-742e7db45b9a"
+    }
+  ]
 }

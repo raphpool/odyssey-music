@@ -821,5 +821,66 @@
       "name": "Young Thug"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:ye",
+      "type": "artist",
+      "name": "Ye",
+      "mbid": "164f0d73-1234-4e2c-8743-d77bf2191051"
+    },
+    {
+      "slug": "artist:drake",
+      "type": "artist",
+      "name": "Drake",
+      "mbid": "9fff2f8a-21e6-47de-a2b8-7f449929d43f"
+    },
+    {
+      "slug": "artist:lil-wayne",
+      "type": "artist",
+      "name": "Lil Wayne",
+      "mbid": "ac9a487a-d9d2-4f27-bb23-0f4686488345"
+    },
+    {
+      "slug": "artist:justin-timberlake",
+      "type": "artist",
+      "name": "Justin Timberlake",
+      "mbid": "596ffa74-3d08-44ef-b113-765d43d12738"
+    },
+    {
+      "slug": "artist:jay-z",
+      "type": "artist",
+      "name": "JAŸ-Z",
+      "mbid": "f82bcf78-5b69-4622-a5ef-73800768d9ac"
+    },
+    {
+      "slug": "artist:rihanna",
+      "type": "artist",
+      "name": "Rihanna",
+      "mbid": "73e5e69d-3554-40d8-8516-00cb38737a1c"
+    },
+    {
+      "slug": "artist:eminem",
+      "type": "artist",
+      "name": "Eminem",
+      "mbid": "b95ce3ff-3d05-4e87-9e01-c97b66af13d4"
+    },
+    {
+      "slug": "artist:snoop-dogg",
+      "type": "artist",
+      "name": "Snoop Dogg",
+      "mbid": "f90e8b26-9e52-4669-a5c9-e28529c47894"
+    },
+    {
+      "slug": "artist:rick-ross",
+      "type": "artist",
+      "name": "Rick Ross",
+      "mbid": "13bcb2bb-db37-4397-baf5-e0f085be2d64"
+    },
+    {
+      "slug": "artist:usher",
+      "type": "artist",
+      "name": "Usher",
+      "mbid": "3414d446-735a-443c-931f-10634f57e5b9"
+    }
+  ]
 }

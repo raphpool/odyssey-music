@@ -130,5 +130,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:nero",
+      "type": "artist",
+      "name": "NERO",
+      "mbid": "bd057a0c-a7b6-47bf-8dc3-45e0efac1798"
+    },
+    {
+      "slug": "artist:skrillex",
+      "type": "artist",
+      "name": "Skrillex",
+      "mbid": "ae002c5d-aac6-490b-a39a-30aa9e2edf2b"
+    },
+    {
+      "slug": "artist:flux-pavilion",
+      "type": "artist",
+      "name": "Flux Pavilion",
+      "mbid": "3ce513c5-bdd4-492c-a875-07e0f3e1993b"
+    },
+    {
+      "slug": "artist:deadmau5",
+      "type": "artist",
+      "name": "deadmau5",
+      "mbid": "4a00ec9d-c635-463a-8cd4-eb61725f0c60"
+    },
+    {
+      "slug": "artist:amber-coffman",
+      "type": "artist",
+      "name": "Amber Coffman",
+      "mbid": "edf4954c-019c-4b09-ba81-c56ec3d859f9"
+    },
+    {
+      "slug": "artist:pendulum",
+      "type": "artist",
+      "name": "Pendulum",
+      "mbid": "beff21d3-88c7-4ee0-8b7a-40b6db22c6d7"
+    },
+    {
+      "slug": "artist:caspa",
+      "type": "artist",
+      "name": "Caspa",
+      "mbid": "dc9b8085-fe1e-4b83-8d41-6dd8d295513c"
+    },
+    {
+      "slug": "artist:chase-and-status",
+      "type": "artist",
+      "name": "Chase & Status",
+      "mbid": "82e454e2-38ee-4e69-89a6-cc65167753d1"
+    },
+    {
+      "slug": "artist:netsky",
+      "type": "artist",
+      "name": "Netsky",
+      "mbid": "587fd8ec-2e9d-4ce6-8bc5-97d0a9334883"
+    },
+    {
+      "slug": "artist:feed-me",
+      "type": "artist",
+      "name": "Feed Me",
+      "mbid": "c8eec78b-f3c5-4d59-a010-e709f7be4508"
+    }
+  ]
 }

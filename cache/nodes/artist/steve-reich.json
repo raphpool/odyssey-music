@@ -54,5 +54,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:philip-glass",
+      "type": "artist",
+      "name": "Philip Glass",
+      "mbid": "5ae54dee-4dba-49c0-802a-a3b3b3adfe9b"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:nils-frahm",
+      "type": "artist",
+      "name": "Nils Frahm",
+      "mbid": "d03a54bc-6e07-4c04-a8d4-7fbf2bd07a01"
+    },
+    {
+      "slug": "artist:tim-hecker",
+      "type": "artist",
+      "name": "Tim Hecker",
+      "mbid": "c7ee3bc9-780c-42c0-91e9-4cd70ad692d3"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:michael-nyman",
+      "type": "artist",
+      "name": "Michael Nyman",
+      "mbid": "c3161cf7-cab1-4409-9b1f-876561dd7716"
+    },
+    {
+      "slug": "artist:stars-of-the-lid",
+      "type": "artist",
+      "name": "Stars of the Lid",
+      "mbid": "a1154343-1ea1-4007-97d3-2382482a90cd"
+    },
+    {
+      "slug": "artist:terry-riley",
+      "type": "artist",
+      "name": "Terry Riley",
+      "mbid": "7bf257bf-19a8-4205-8ae8-98511e50b719"
+    },
+    {
+      "slug": "artist:kronos-quartet",
+      "type": "artist",
+      "name": "Kronos Quartet",
+      "mbid": "f5586dfa-7031-4af0-8042-19b6a1170389"
+    },
+    {
+      "slug": "artist:erik-satie",
+      "type": "artist",
+      "name": "Erik Satie",
+      "mbid": "e1d521ea-5b97-4981-987c-ba988b2a87d7"
+    }
+  ]
 }

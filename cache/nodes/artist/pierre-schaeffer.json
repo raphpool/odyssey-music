@@ -86,5 +86,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:john-cage",
+      "type": "artist",
+      "name": "John Cage",
+      "mbid": "76325a9d-6c25-4649-96b1-84e9b99d6b4b"
+    },
+    {
+      "slug": "artist:olivier-messiaen",
+      "type": "artist",
+      "name": "Olivier Messiaen",
+      "mbid": "c6e5c5f4-984e-432a-87b8-b6afa288bca1"
+    },
+    {
+      "slug": "artist:pierre-henry",
+      "type": "artist",
+      "name": "Pierre Henry",
+      "mbid": "24e0aaa1-7961-4ab8-865e-e736226e41c9"
+    },
+    {
+      "slug": "artist:otto-luening",
+      "type": "artist",
+      "name": "Otto Luening",
+      "mbid": "15a62cc4-fe9d-42c0-8239-fb39634c8fe3"
+    },
+    {
+      "slug": "artist:henri-pousseur",
+      "type": "artist",
+      "name": "Henri Pousseur",
+      "mbid": "9919dfaa-a15c-43f2-ab28-d352ad2f5d40"
+    },
+    {
+      "slug": "artist:hugh-le-caine",
+      "type": "artist",
+      "name": "Hugh Le Caine",
+      "mbid": "e7ae24a5-41c9-4952-8613-804d6082114b"
+    },
+    {
+      "slug": "artist:luc-ferrari",
+      "type": "artist",
+      "name": "Luc Ferrari",
+      "mbid": "589801f8-fe67-49bd-abcf-cca79c5d0776"
+    },
+    {
+      "slug": "artist:karlheinz-stockhausen",
+      "type": "artist",
+      "name": "Karlheinz Stockhausen",
+      "mbid": "fd09d776-ddfd-4558-afe7-814420d704ed"
+    },
+    {
+      "slug": "artist:walter-ruttmann",
+      "type": "artist",
+      "name": "Walter Ruttmann",
+      "mbid": "86c81926-3b2e-4be7-ab9f-dec8f718e9ed"
+    },
+    {
+      "slug": "artist:vladimir-ussachevsky",
+      "type": "artist",
+      "name": "Vladimir Ussachevsky",
+      "mbid": "5645f557-ed01-4b9d-87d4-da827ec90e9f"
+    }
+  ]
 }

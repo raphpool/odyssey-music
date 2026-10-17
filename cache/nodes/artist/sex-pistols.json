@@ -111,5 +111,66 @@
       "name": "Sid Vicious"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-clash",
+      "type": "artist",
+      "name": "The Clash",
+      "mbid": "8f92558c-2baa-4758-8c38-615519e9deda"
+    },
+    {
+      "slug": "artist:ramones",
+      "type": "artist",
+      "name": "Ramones",
+      "mbid": "d6ed7887-a401-47a8-893c-34b967444d26"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones",
+      "mbid": "b071f9fa-14b0-4217-8e97-eb41da73f598"
+    },
+    {
+      "slug": "artist:iggy-pop",
+      "type": "artist",
+      "name": "Iggy Pop",
+      "mbid": "f37b3f31-b1f8-4b88-8cb5-b34f709b17d7"
+    },
+    {
+      "slug": "artist:dead-kennedys",
+      "type": "artist",
+      "name": "Dead Kennedys",
+      "mbid": "37c78aeb-d196-42b5-b991-6afb4fc9bc2e"
+    },
+    {
+      "slug": "artist:joy-division",
+      "type": "artist",
+      "name": "Joy Division",
+      "mbid": "9a58fda3-f4ed-4080-a3a5-f457aac9fcdd"
+    },
+    {
+      "slug": "artist:the-who",
+      "type": "artist",
+      "name": "The Who",
+      "mbid": "9fdaa16b-a6c4-4831-b87c-bc9ca8ce7eaa"
+    },
+    {
+      "slug": "artist:buzzcocks",
+      "type": "artist",
+      "name": "Buzzcocks",
+      "mbid": "31e9c35b-2675-4632-8596-f9bd9286f6c8"
+    },
+    {
+      "slug": "artist:pixies",
+      "type": "artist",
+      "name": "Pixies",
+      "mbid": "b6b2bb8d-54a9-491f-9607-7b546023b433"
+    }
+  ]
 }

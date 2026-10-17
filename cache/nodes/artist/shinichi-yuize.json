@@ -65,5 +65,47 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:los-gaiteros-de-san-jacinto",
+      "type": "artist",
+      "name": "Los Gaiteros de San Jacinto",
+      "mbid": "2e574282-8fd1-4625-a6ce-eecad43232d8"
+    },
+    {
+      "slug": "artist:halim-el-dabh",
+      "type": "artist",
+      "name": "Halim El-Dabh",
+      "mbid": "8de929b2-8ea8-4885-a5c3-5b4db755b3be"
+    },
+    {
+      "slug": "artist:iannis-xenakis",
+      "type": "artist",
+      "name": "Iannis Xenakis"
+    },
+    {
+      "slug": "artist:john-adams",
+      "type": "artist",
+      "name": "John Adams",
+      "mbid": "94f46f90-f220-458d-acd6-5f14c55ab9b2"
+    },
+    {
+      "slug": "artist:luigi-nono",
+      "type": "artist",
+      "name": "Luigi Nono",
+      "mbid": "5ccdf2f8-3f68-4fa3-a084-767216dec444"
+    },
+    {
+      "slug": "artist:philip-glass",
+      "type": "artist",
+      "name": "Philip Glass",
+      "mbid": "5ae54dee-4dba-49c0-802a-a3b3b3adfe9b"
+    },
+    {
+      "slug": "artist:terry-riley",
+      "type": "artist",
+      "name": "Terry Riley",
+      "mbid": "7bf257bf-19a8-4205-8ae8-98511e50b719"
+    }
+  ]
 }

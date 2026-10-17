@@ -136,5 +136,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:astor-piazzolla-y-su-quinteto-tango-nuevo",
+      "type": "artist",
+      "name": "Astor Piazzolla y su Quinteto Tango Nuevo",
+      "mbid": "d2f6d6d9-f45d-47bb-a48e-1943ee93f456"
+    },
+    {
+      "slug": "artist:astor-piazzolla-y-su-quinteto",
+      "type": "artist",
+      "name": "Astor Piazzolla y su Quinteto",
+      "mbid": "21c07728-e057-4718-b2bb-1b4c632208f3"
+    },
+    {
+      "slug": "artist:gotan-project",
+      "type": "artist",
+      "name": "Gotan Project",
+      "mbid": "66cc244d-6f96-4668-a6e9-0f9cd5acc940"
+    },
+    {
+      "slug": "artist:carlos-gardel",
+      "type": "artist",
+      "name": "Carlos Gardel",
+      "mbid": "bb54817c-6829-4ccc-bc58-030abb85c583"
+    },
+    {
+      "slug": "artist:caetano-veloso",
+      "type": "artist",
+      "name": "Caetano Veloso",
+      "mbid": "f07dbc2f-317b-470f-bad4-5f1b0eb6faf1"
+    },
+    {
+      "slug": "artist:louis-armstrong",
+      "type": "artist",
+      "name": "Louis Armstrong",
+      "mbid": "eea8a864-fcda-4602-9569-38ab446decd6"
+    },
+    {
+      "slug": "artist:astor-piazzolla-y-su-conjunto-9",
+      "type": "artist",
+      "name": "Astor Piazzolla y su Conjunto 9",
+      "mbid": "514bf499-3832-48a4-87cc-533c9064dee8"
+    },
+    {
+      "slug": "artist:bajofondo",
+      "type": "artist",
+      "name": "Bajofondo",
+      "mbid": "c78a5d46-c631-41bc-8772-439002e3d3aa"
+    },
+    {
+      "slug": "artist:jack-johnson",
+      "type": "artist",
+      "name": "Jack Johnson",
+      "mbid": "ff6e677f-91dd-4986-a174-8db0474b1799"
+    },
+    {
+      "slug": "artist:roberto-goyeneche",
+      "type": "artist",
+      "name": "Roberto Goyeneche",
+      "mbid": "03da2ea1-bf64-4052-a15e-d18c6f9f637a"
+    }
+  ]
 }

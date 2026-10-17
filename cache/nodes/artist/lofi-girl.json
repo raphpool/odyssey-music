@@ -86,5 +86,24 @@
       "type": "artist",
       "name": "Juan Pablo Machado"
     }
+  ],
+  "similar_artists": [
+    {
+      "slug": "artist:merlinberlin",
+      "type": "artist",
+      "name": "MerlinBerlin",
+      "mbid": "7193287a-75d8-43e9-9a26-74295f2ad147"
+    },
+    {
+      "slug": "artist:nujabes",
+      "type": "artist",
+      "name": "Nujabes"
+    },
+    {
+      "slug": "artist:purrple-cat",
+      "type": "artist",
+      "name": "Purrple Cat",
+      "mbid": "553d1b5f-7cb6-4df7-8a69-e78b4bc4f7a5"
+    }
   ]
 }

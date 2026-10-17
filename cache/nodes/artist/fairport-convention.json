@@ -100,5 +100,66 @@
       "name": "Ashley Hutchings"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:nick-drake",
+      "type": "artist",
+      "name": "Nick Drake",
+      "mbid": "99ea432a-e3d8-42cb-9d5e-db316a6a8458"
+    },
+    {
+      "slug": "artist:donovan",
+      "type": "artist",
+      "name": "Donovan",
+      "mbid": "72d7d717-0837-4f2a-9641-d0f9fdd3acf7"
+    },
+    {
+      "slug": "artist:joni-mitchell",
+      "type": "artist",
+      "name": "Joni Mitchell",
+      "mbid": "a6de8ef9-b1a1-4756-97aa-481bbb8a4069"
+    },
+    {
+      "slug": "artist:john-martyn",
+      "type": "artist",
+      "name": "John Martyn",
+      "mbid": "e821a756-487f-4931-a02f-27cf11cec7bf"
+    },
+    {
+      "slug": "artist:steeleye-span",
+      "type": "artist",
+      "name": "Steeleye Span",
+      "mbid": "68c6926c-03e0-4afc-9f54-2190b2c8d468"
+    },
+    {
+      "slug": "artist:tim-buckley",
+      "type": "artist",
+      "name": "Tim Buckley",
+      "mbid": "8546949d-f46c-45ab-8391-85b26dda6b65"
+    },
+    {
+      "slug": "artist:pentangle",
+      "type": "artist",
+      "name": "Pentangle",
+      "mbid": "a4e31e59-e662-4cf4-bd4f-d7bf712bc21f"
+    },
+    {
+      "slug": "artist:the-beach-boys",
+      "type": "artist",
+      "name": "The Beach Boys",
+      "mbid": "ebfc1398-8d96-47e3-82c3-f782abcdb13d"
+    },
+    {
+      "slug": "artist:jethro-tull",
+      "type": "artist",
+      "name": "Jethro Tull",
+      "mbid": "ece57992-dc2e-4f67-a269-fa43626c1a3d"
+    },
+    {
+      "slug": "artist:johnny-cash",
+      "type": "artist",
+      "name": "Johnny Cash",
+      "mbid": "d43d12a1-2dc9-4257-a2fd-0a3bb1081b86"
+    }
+  ]
 }

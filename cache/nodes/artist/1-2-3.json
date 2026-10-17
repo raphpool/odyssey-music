@@ -68,5 +68,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:jr-jr",
+      "type": "artist",
+      "name": "JR JR",
+      "mbid": "d690733f-62e9-46ee-8e52-3b906de73c97"
+    },
+    {
+      "slug": "artist:givers",
+      "type": "artist",
+      "name": "GIVERS",
+      "mbid": "b1ed0477-1f0a-41bb-9b8b-2fe8bc2d85aa"
+    },
+    {
+      "slug": "artist:reptar",
+      "type": "artist",
+      "name": "Reptar",
+      "mbid": "7aed304a-234f-4ae4-b5a4-d367b8090603"
+    },
+    {
+      "slug": "artist:newvillager",
+      "type": "artist",
+      "name": "NewVillager",
+      "mbid": "456a2c98-ec8e-4a52-80ec-4a4decff8c3d"
+    },
+    {
+      "slug": "artist:grouplove",
+      "type": "artist",
+      "name": "Grouplove",
+      "mbid": "d8e41375-bd8d-4e39-9da7-f0c171e97086"
+    },
+    {
+      "slug": "artist:fleet-foxes",
+      "type": "artist",
+      "name": "Fleet Foxes",
+      "mbid": "fa97dd36-1b82-43d7-a6e4-2adeafd59cef"
+    },
+    {
+      "slug": "artist:tv-on-the-radio",
+      "type": "artist",
+      "name": "TV on the Radio",
+      "mbid": "eb872766-98f6-453d-883f-2ae908a18315"
+    },
+    {
+      "slug": "artist:tune-yards",
+      "type": "artist",
+      "name": "tUnE-yArDs",
+      "mbid": "fac3ff34-6ba4-425a-8f01-b181ef4a908a"
+    },
+    {
+      "slug": "artist:foster-the-people",
+      "type": "artist",
+      "name": "Foster the People",
+      "mbid": "e0e1a584-dd0a-4bd1-88d1-c4c62895039d"
+    },
+    {
+      "slug": "artist:passion-pit",
+      "type": "artist",
+      "name": "Passion Pit",
+      "mbid": "daeec599-bf5d-4428-994a-e76ba5f86e2f"
+    }
+  ]
 }

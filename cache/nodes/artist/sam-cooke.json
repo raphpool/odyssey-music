@@ -134,5 +134,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:otis-redding",
+      "type": "artist",
+      "name": "Otis Redding",
+      "mbid": "82b1f5fd-cd31-41a9-b5d4-7e33f0eb9751"
+    },
+    {
+      "slug": "artist:aretha-franklin",
+      "type": "artist",
+      "name": "Aretha Franklin",
+      "mbid": "2f9ecbed-27be-40e6-abca-6de49d50299e"
+    },
+    {
+      "slug": "artist:stevie-wonder",
+      "type": "artist",
+      "name": "Stevie Wonder",
+      "mbid": "1ee18fb3-18a6-4c7f-8ba0-bc41cdd0462e"
+    },
+    {
+      "slug": "artist:marvin-gaye",
+      "type": "artist",
+      "name": "Marvin Gaye",
+      "mbid": "afdb7919-059d-43c1-b668-ba1d265e7e42"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:ray-charles",
+      "type": "artist",
+      "name": "Ray Charles",
+      "mbid": "2ce02909-598b-44ef-a456-151ba0a3bd70"
+    },
+    {
+      "slug": "artist:the-temptations",
+      "type": "artist",
+      "name": "The Temptations",
+      "mbid": "d8df96ae-8fcf-4997-b3e6-e5d1aaf0f69e"
+    },
+    {
+      "slug": "artist:elvis-presley",
+      "type": "artist",
+      "name": "Elvis Presley",
+      "mbid": "01809552-4f87-45b0-afff-2c6f0730a3be"
+    },
+    {
+      "slug": "artist:the-beach-boys",
+      "type": "artist",
+      "name": "The Beach Boys",
+      "mbid": "ebfc1398-8d96-47e3-82c3-f782abcdb13d"
+    },
+    {
+      "slug": "artist:the-supremes",
+      "type": "artist",
+      "name": "The Supremes",
+      "mbid": "c1aa2ec9-53e7-4d90-8d36-bac75832e986"
+    }
+  ]
 }

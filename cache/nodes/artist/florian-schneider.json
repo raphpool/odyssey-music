@@ -70,5 +70,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk",
+      "mbid": "5700dcd4-c139-4f31-aa3e-6382b9af9032"
+    },
+    {
+      "slug": "artist:ralf-hutter",
+      "type": "artist",
+      "name": "Ralf Hütter",
+      "mbid": "da3f4766-628e-4da3-a871-014728993157"
+    },
+    {
+      "slug": "artist:ashra",
+      "type": "artist",
+      "name": "Ashra",
+      "mbid": "2d262241-ad1e-4b2d-904a-c38039f0a531"
+    },
+    {
+      "slug": "artist:cluster",
+      "type": "artist",
+      "name": "Cluster",
+      "mbid": "393ce5ee-4550-48e2-97f9-50a47a74bdc1"
+    },
+    {
+      "slug": "artist:conny-plank",
+      "type": "artist",
+      "name": "Conny Plank",
+      "mbid": "c2e32e77-ca58-4211-97b5-7e9eadac2f1d"
+    },
+    {
+      "slug": "artist:daniele-baldelli",
+      "type": "artist",
+      "name": "Daniele Baldelli",
+      "mbid": "f1090a95-baf7-4870-966a-398c1ee9dc4f"
+    },
+    {
+      "slug": "artist:giorgio-moroder",
+      "type": "artist",
+      "name": "Giorgio Moroder",
+      "mbid": "38dd6337-19ae-4793-ab4b-313eff523457"
+    },
+    {
+      "slug": "artist:karl-hyde",
+      "type": "artist",
+      "name": "Karl Hyde",
+      "mbid": "05de4cde-ba6e-4be8-a8fb-0aa4f6c56df8"
+    },
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze",
+      "mbid": "2e710b0c-6ff3-4c21-87d5-16ebbbca212c"
+    },
+    {
+      "slug": "artist:michael-rother",
+      "type": "artist",
+      "name": "Michael Rother",
+      "mbid": "3b4db0d5-97a8-4aa8-a375-9b8c78a56932"
+    }
+  ]
 }

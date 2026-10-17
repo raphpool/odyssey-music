@@ -112,5 +112,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:nightmares-on-wax",
+      "type": "artist",
+      "name": "Nightmares on Wax",
+      "mbid": "b8c5cc4f-239f-4e02-b46f-b040b77c2030"
+    },
+    {
+      "slug": "artist:the-future-sound-of-london",
+      "type": "artist",
+      "name": "The Future Sound of London",
+      "mbid": "a1d77dd4-8728-4a47-bdfa-9663d791139c"
+    },
+    {
+      "slug": "artist:kid-spatula",
+      "type": "artist",
+      "name": "Kid Spatula",
+      "mbid": "8a82e15f-66cc-459d-9004-54b1207aa358"
+    },
+    {
+      "slug": "artist:two-lone-swordsmen",
+      "type": "artist",
+      "name": "Two Lone Swordsmen",
+      "mbid": "e3b208cf-b18f-450e-a661-79f4eabe8090"
+    },
+    {
+      "slug": "artist:lfo",
+      "type": "artist",
+      "name": "LFO",
+      "mbid": "e6d0179f-b899-4563-b6c6-88715aaae0b8"
+    },
+    {
+      "slug": "artist:polygon-window",
+      "type": "artist",
+      "name": "Polygon Window",
+      "mbid": "aaa78ce4-e4fe-43b6-abe1-733dc83f8eb1"
+    },
+    {
+      "slug": "artist:the-black-dog",
+      "type": "artist",
+      "name": "The Black Dog",
+      "mbid": "a78d2a35-c083-4179-a5d8-49f84e5ec863"
+    },
+    {
+      "slug": "artist:prefuse-73",
+      "type": "artist",
+      "name": "Prefuse 73",
+      "mbid": "fc61dd75-880b-44ba-9ba9-c7b643d33413"
+    },
+    {
+      "slug": "artist:orbital",
+      "type": "artist",
+      "name": "Orbital",
+      "mbid": "f3e2a7d9-c6bb-4848-95e5-04c0a1e2f511"
+    },
+    {
+      "slug": "artist:wagon-christ",
+      "type": "artist",
+      "name": "Wagon Christ",
+      "mbid": "991b8af4-328a-4441-8dc5-f7af0c89af08"
+    }
+  ]
 }

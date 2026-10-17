@@ -637,5 +637,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:gorillaz",
+      "type": "artist",
+      "name": "Gorillaz",
+      "mbid": "e21857d5-3256-4547-afb3-4b6ded592596"
+    },
+    {
+      "slug": "artist:beastie-boys",
+      "type": "artist",
+      "name": "Beastie Boys",
+      "mbid": "9beb62b2-88db-4cea-801e-162cd344ee53"
+    },
+    {
+      "slug": "artist:mos-def",
+      "type": "artist",
+      "name": "Yasiin Bey",
+      "mbid": "f5c4c27e-5902-4fc0-adfb-7775da3d5363"
+    },
+    {
+      "slug": "artist:common",
+      "type": "artist",
+      "name": "Common",
+      "mbid": "c0a1179b-b14a-4d68-a3c1-1fdab16ed602"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:q-tip",
+      "type": "artist",
+      "name": "Q‐Tip",
+      "mbid": "b3c94036-6166-41d2-91a2-dc3a0b5fa188"
+    },
+    {
+      "slug": "artist:the-roots",
+      "type": "artist",
+      "name": "The Roots",
+      "mbid": "80b3cf5e-18fe-4c59-98c7-e5bb87210710"
+    },
+    {
+      "slug": "artist:lou-reed",
+      "type": "artist",
+      "name": "Lou Reed",
+      "mbid": "9d1ebcfe-4c15-4d18-95d3-d919898638a1"
+    },
+    {
+      "slug": "artist:jungle-brothers",
+      "type": "artist",
+      "name": "Jungle Brothers",
+      "mbid": "ce3bc975-a76f-415b-a6cd-1e568c5714dd"
+    },
+    {
+      "slug": "artist:little-dragon",
+      "type": "artist",
+      "name": "Little Dragon",
+      "mbid": "c8a9ae11-63bf-409b-8bf3-a96b3712a2ff"
+    }
+  ]
 }

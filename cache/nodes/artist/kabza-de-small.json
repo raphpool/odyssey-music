@@ -241,5 +241,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:uncle-waffles",
+      "type": "artist",
+      "name": "Uncle Waffles",
+      "mbid": "aec7779a-aa40-4b6e-8764-bd64b0500caf"
+    },
+    {
+      "slug": "artist:killer-kau",
+      "type": "artist",
+      "name": "Killer Kau",
+      "mbid": "f6b3332c-2835-48f1-94fb-a09649e0a4ef"
+    },
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    },
+    {
+      "slug": "artist:camomile-dawn",
+      "type": "artist",
+      "name": "Camomile Dawn",
+      "mbid": "131aface-d868-41a3-9942-c13978e3b1c5"
+    },
+    {
+      "slug": "artist:carl-craig",
+      "type": "artist",
+      "name": "Carl Craig",
+      "mbid": "6732e9f3-5f24-4ba4-aef1-a2a49442b96b"
+    },
+    {
+      "slug": "artist:chip-e",
+      "type": "artist",
+      "name": "Chip E.",
+      "mbid": "31b07129-85d8-4ed2-abd3-0794deedd686"
+    },
+    {
+      "slug": "artist:dj-assault",
+      "type": "artist",
+      "name": "DJ Assault",
+      "mbid": "acb4865d-0c4c-4dd5-b958-c399b5d75b8e"
+    },
+    {
+      "slug": "artist:dj-mehdi",
+      "type": "artist",
+      "name": "DJ Mehdi",
+      "mbid": "66ad8456-1d33-4d7d-b8c3-a8f1a3b1e74f"
+    },
+    {
+      "slug": "artist:dj-nasty",
+      "type": "artist",
+      "name": "DJ Nasty",
+      "mbid": "25378785-3fc1-4eea-af1f-4108052ec708"
+    },
+    {
+      "slug": "artist:dj-pierre",
+      "type": "artist",
+      "name": "DJ Pierre",
+      "mbid": "bc5d318a-096a-4bc3-8a2e-742905c0036b"
+    }
+  ]
 }

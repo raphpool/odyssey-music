@@ -767,5 +767,64 @@
       "type": "artist",
       "name": "Gustav Elijah Åhr"
     }
+  ],
+  "similar_artists": [
+    {
+      "slug": "artist:jpegmafia",
+      "type": "artist",
+      "name": "JPEGMAFIA"
+    },
+    {
+      "slug": "artist:t-i",
+      "type": "artist",
+      "name": "T.I.",
+      "mbid": "f7ba7fbe-c6bd-4ac0-bee9-c25c558d7d62"
+    },
+    {
+      "slug": "artist:earl-sweatshirt",
+      "type": "artist",
+      "name": "Earl Sweatshirt"
+    },
+    {
+      "slug": "artist:nas",
+      "type": "artist",
+      "name": "Nas"
+    },
+    {
+      "slug": "artist:three-6-mafia",
+      "type": "artist",
+      "name": "Three 6 Mafia",
+      "mbid": "a8754ac4-a85e-4f48-a81f-eecd482570ef"
+    },
+    {
+      "slug": "artist:trippie-redd",
+      "type": "artist",
+      "name": "Trippie Redd",
+      "mbid": "8032cf05-d916-4b2a-9c53-6e75d4a24bd8"
+    },
+    {
+      "slug": "artist:yung-lean",
+      "type": "artist",
+      "name": "Yung Lean",
+      "mbid": "757ed661-fbad-4e45-b1cd-a6b09f06f54a"
+    },
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    },
+    {
+      "slug": "artist:a-ap-rocky",
+      "type": "artist",
+      "name": "A$AP Rocky",
+      "mbid": "25b7b584-d952-4662-a8b9-dd8cdfbfeb64"
+    },
+    {
+      "slug": "artist:aretha-franklin",
+      "type": "artist",
+      "name": "Aretha Franklin",
+      "mbid": "2f9ecbed-27be-40e6-abca-6de49d50299e"
+    }
   ]
 }

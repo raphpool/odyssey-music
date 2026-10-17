@@ -85,5 +85,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:orelsan",
+      "type": "artist",
+      "name": "Orelsan",
+      "mbid": "6cad3ce5-6380-4594-a8da-ae7d273b683d"
+    },
+    {
+      "slug": "artist:casseurs-flowters",
+      "type": "artist",
+      "name": "Casseurs Flowters",
+      "mbid": "0e2fe8d5-08d6-4b6c-9e59-a0858cdcdf77"
+    },
+    {
+      "slug": "artist:gringe",
+      "type": "artist",
+      "name": "Gringe",
+      "mbid": "008b4779-f6e1-4e17-9c1a-0806b4d0986b"
+    },
+    {
+      "slug": "artist:diamond-deuklo",
+      "type": "artist",
+      "name": "Diamond Deuklo",
+      "mbid": "d6cfc183-a36f-4e53-96c0-45be4e0d7ac9"
+    },
+    {
+      "slug": "artist:the-neptunes",
+      "type": "artist",
+      "name": "The Neptunes",
+      "mbid": "253bfe58-d68a-4f96-9b7a-70d977cbf66d"
+    },
+    {
+      "slug": "artist:damso",
+      "type": "artist",
+      "name": "Damso",
+      "mbid": "71ff695e-896a-4043-aea4-93eadde08d09"
+    },
+    {
+      "slug": "artist:lomepal",
+      "type": "artist",
+      "name": "Lomepal",
+      "mbid": "5386511f-b7bd-4058-9b5e-2c5dc426e1c9"
+    },
+    {
+      "slug": "artist:georgio",
+      "type": "artist",
+      "name": "Georgio",
+      "mbid": "4020ea18-d886-483c-910f-a0e7e039c097"
+    },
+    {
+      "slug": "artist:stromae",
+      "type": "artist",
+      "name": "Stromae",
+      "mbid": "ab2528d9-719f-4261-8098-21849222a0f2"
+    },
+    {
+      "slug": "artist:nekfeu",
+      "type": "artist",
+      "name": "Nekfeu",
+      "mbid": "d721866d-5640-44ee-87f7-23dd062abd8a"
+    }
+  ]
 }

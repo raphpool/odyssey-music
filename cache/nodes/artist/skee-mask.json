@@ -132,5 +132,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:four-tet",
+      "type": "artist",
+      "name": "Four Tet",
+      "mbid": "3bcff06f-675a-451f-9075-99e8657047e8"
+    },
+    {
+      "slug": "artist:oneohtrix-point-never",
+      "type": "artist",
+      "name": "Oneohtrix Point Never",
+      "mbid": "9cea062d-d476-447f-98b4-e67e14bfd1e4"
+    },
+    {
+      "slug": "artist:andy-stott",
+      "type": "artist",
+      "name": "Andy Stott",
+      "mbid": "ecf5ab37-019f-4cc1-9fdc-218de6a41b65"
+    },
+    {
+      "slug": "artist:floating-points",
+      "type": "artist",
+      "name": "Floating Points",
+      "mbid": "69d9c5ba-7bba-4cb7-ab32-8ccc48ad4f97"
+    },
+    {
+      "slug": "artist:rival-consoles",
+      "type": "artist",
+      "name": "Rival Consoles",
+      "mbid": "803f2853-7e3e-4dff-96a7-9f77b5f56de5"
+    },
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre",
+      "mbid": "410c9baf-5469-44f6-9852-826524b80c61"
+    },
+    {
+      "slug": "artist:clark",
+      "type": "artist",
+      "name": "Clark",
+      "mbid": "5d0c202c-e30f-40c4-abf5-c0007af0d1cc"
+    },
+    {
+      "slug": "artist:yves-tumor",
+      "type": "artist",
+      "name": "Yves Tumor",
+      "mbid": "b675f327-4738-4af4-bb83-1adb0003f2d3"
+    },
+    {
+      "slug": "artist:djrum",
+      "type": "artist",
+      "name": "Djrum",
+      "mbid": "ed19b934-f1a8-4b04-aa74-6f9033caed26"
+    },
+    {
+      "slug": "artist:leon-vynehall",
+      "type": "artist",
+      "name": "Leon Vynehall",
+      "mbid": "b98202d3-4fb4-4e32-9ff3-b9e1987d02cf"
+    }
+  ]
 }

@@ -47,5 +47,65 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:robert-hood",
+      "type": "artist",
+      "name": "Robert Hood",
+      "mbid": "e8a61400-baf7-4fb3-a3e3-c9e7b665547f"
+    },
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    },
+    {
+      "slug": "artist:bfc",
+      "type": "artist",
+      "name": "BFC"
+    },
+    {
+      "slug": "artist:camomile-dawn",
+      "type": "artist",
+      "name": "Camomile Dawn",
+      "mbid": "131aface-d868-41a3-9942-c13978e3b1c5"
+    },
+    {
+      "slug": "artist:chris-liebing",
+      "type": "artist",
+      "name": "Chris Liebing",
+      "mbid": "86a1c458-2d97-42cd-a142-a8fee30ae4a1"
+    },
+    {
+      "slug": "artist:dj-assault",
+      "type": "artist",
+      "name": "DJ Assault",
+      "mbid": "acb4865d-0c4c-4dd5-b958-c399b5d75b8e"
+    },
+    {
+      "slug": "artist:dj-pierre",
+      "type": "artist",
+      "name": "DJ Pierre",
+      "mbid": "bc5d318a-096a-4bc3-8a2e-742905c0036b"
+    },
+    {
+      "slug": "artist:dj-slugo",
+      "type": "artist",
+      "name": "DJ Slugo",
+      "mbid": "5791156a-75e9-454d-9a23-fbc2896f9151"
+    },
+    {
+      "slug": "artist:fjaak",
+      "type": "artist",
+      "name": "FJAAK",
+      "mbid": "56acaa47-eb2f-43d7-a1f1-19466c550e31"
+    },
+    {
+      "slug": "artist:fumiya-tanaka",
+      "type": "artist",
+      "name": "Fumiya Tanaka",
+      "mbid": "86b9a88e-d18f-43c5-9805-f8eb41007aa2"
+    }
+  ]
 }

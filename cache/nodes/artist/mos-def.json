@@ -444,5 +444,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:kids-see-ghosts",
+      "type": "artist",
+      "name": "KIDS SEE GHOSTS",
+      "mbid": "793e220b-64f8-46d9-954d-e033dbcfeef4"
+    },
+    {
+      "slug": "artist:pusha-t",
+      "type": "artist",
+      "name": "Pusha T",
+      "mbid": "14ecd19f-7121-4192-8549-e5056241a42f"
+    },
+    {
+      "slug": "artist:ty-dolla-ign",
+      "type": "artist",
+      "name": "Ty Dolla $ign",
+      "mbid": "7bd66c18-cb33-49aa-9279-140acedbdb49"
+    },
+    {
+      "slug": "artist:partynextdoor",
+      "type": "artist",
+      "name": "PARTYNEXTDOOR",
+      "mbid": "f23ef341-33bd-47c1-b83c-846a78581f05"
+    },
+    {
+      "slug": "artist:tyler-the-creator",
+      "type": "artist",
+      "name": "Tyler, The Creator",
+      "mbid": "f6beac20-5dfe-4d1f-ae02-0b0a740aafd6"
+    },
+    {
+      "slug": "artist:travis-scott",
+      "type": "artist",
+      "name": "Travis Scott",
+      "mbid": "e4a51f17-a57b-47b1-b37b-f552d0f8e9e6"
+    },
+    {
+      "slug": "artist:kid-cudi",
+      "type": "artist",
+      "name": "Kid Cudi",
+      "mbid": "e0e1db18-f7ba-4dee-95ff-7ae8cf545460"
+    },
+    {
+      "slug": "artist:jid",
+      "type": "artist",
+      "name": "JID",
+      "mbid": "d616b606-cf6a-4b6e-ab0f-e253b8db6610"
+    },
+    {
+      "slug": "artist:louis-prima",
+      "type": "artist",
+      "name": "Louis Prima",
+      "mbid": "b5997eef-2516-491a-a10e-5cee842bbcdc"
+    },
+    {
+      "slug": "artist:death-grips",
+      "type": "artist",
+      "name": "Death Grips",
+      "mbid": "f9133036-ab3d-4e97-bd11-7a2c98ad148a"
+    }
+  ]
 }

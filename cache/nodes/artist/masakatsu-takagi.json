@@ -92,5 +92,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:ryuichi-sakamoto",
+      "type": "artist",
+      "name": "坂本龍一",
+      "mbid": "a7f7df4a-77d8-4f12-8acd-5c60c93f4de8"
+    },
+    {
+      "slug": "artist:world-s-end-girlfriend",
+      "type": "artist",
+      "name": "world’s end girlfriend",
+      "mbid": "f8f653b9-11d6-4f6b-adc1-4bfd146e7b7d"
+    },
+    {
+      "slug": "artist:cornelius",
+      "type": "artist",
+      "name": "Cornelius",
+      "mbid": "df765d93-621c-437f-99fe-fda9e135f89a"
+    },
+    {
+      "slug": "artist:haruka-nakamura",
+      "type": "artist",
+      "name": "haruka nakamura",
+      "mbid": "ffcb192d-4dd8-4c92-b387-f1e711a8ffb8"
+    },
+    {
+      "slug": "artist:piana",
+      "type": "artist",
+      "name": "Piana",
+      "mbid": "5fa32de5-1541-4e52-b80a-cd7f43320d4a"
+    },
+    {
+      "slug": "artist:gutevolk",
+      "type": "artist",
+      "name": "Gutevolk",
+      "mbid": "38284e06-c741-40c4-b247-f7dc0de5f24c"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:i-am-robot-and-proud",
+      "type": "artist",
+      "name": "I Am Robot and Proud",
+      "mbid": "bf50d552-3c8c-42b4-9758-7ec8bb4e6583"
+    },
+    {
+      "slug": "artist:aus",
+      "type": "artist",
+      "name": "aus",
+      "mbid": "656c6856-4196-4f8f-a388-e6d1627190eb"
+    },
+    {
+      "slug": "artist:lullatone",
+      "type": "artist",
+      "name": "Lullatone",
+      "mbid": "a49b394a-2d64-4d57-b4fe-b389a3cabafd"
+    }
+  ]
 }

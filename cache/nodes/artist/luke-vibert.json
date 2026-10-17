@@ -142,5 +142,66 @@
       "name": "Plug"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre",
+      "mbid": "410c9baf-5469-44f6-9852-826524b80c61"
+    },
+    {
+      "slug": "artist:squarepusher",
+      "type": "artist",
+      "name": "Squarepusher",
+      "mbid": "4d86ad4e-28d8-4e9f-8cf4-735c57060fdc"
+    },
+    {
+      "slug": "artist:amon-tobin",
+      "type": "artist",
+      "name": "Amon Tobin",
+      "mbid": "630662ea-1c7d-4208-99fd-ba3afec20f0c"
+    },
+    {
+      "slug": "artist:plaid",
+      "type": "artist",
+      "name": "Plaid",
+      "mbid": "7e54d133-2525-4bc0-ae94-65584145a386"
+    },
+    {
+      "slug": "artist:clark",
+      "type": "artist",
+      "name": "Clark",
+      "mbid": "5d0c202c-e30f-40c4-abf5-c0007af0d1cc"
+    },
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ‐Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
+    },
+    {
+      "slug": "artist:four-tet",
+      "type": "artist",
+      "name": "Four Tet",
+      "mbid": "3bcff06f-675a-451f-9075-99e8657047e8"
+    },
+    {
+      "slug": "artist:bonobo",
+      "type": "artist",
+      "name": "Bonobo",
+      "mbid": "9a709693-b4f8-4da9-8cc1-038c911a61be"
+    },
+    {
+      "slug": "artist:venetian-snares",
+      "type": "artist",
+      "name": "Venetian Snares",
+      "mbid": "56abaa47-0101-463b-b37e-e961136fec39"
+    },
+    {
+      "slug": "artist:coldcut",
+      "type": "artist",
+      "name": "Coldcut",
+      "mbid": "cedd2cc6-c77f-4104-b333-0547b29e0b71"
+    }
+  ]
 }

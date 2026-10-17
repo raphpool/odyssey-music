@@ -73,5 +73,65 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:jamie-principle",
+      "type": "artist",
+      "name": "Jamie Principle",
+      "mbid": "500df185-4a22-40a5-baf6-bdcabab5ed22"
+    },
+    {
+      "slug": "artist:joe-smooth",
+      "type": "artist",
+      "name": "Joe Smooth",
+      "mbid": "348443bb-74fe-4459-8c19-3b72ad033d6c"
+    },
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles",
+      "mbid": "b7a98e65-7ce4-4fab-8cf3-6b3ccda6115a"
+    },
+    {
+      "slug": "artist:dj-pierre",
+      "type": "artist",
+      "name": "DJ Pierre",
+      "mbid": "bc5d318a-096a-4bc3-8a2e-742905c0036b"
+    },
+    {
+      "slug": "artist:marshall-jefferson",
+      "type": "artist",
+      "name": "Marshall Jefferson"
+    },
+    {
+      "slug": "artist:phuture",
+      "type": "artist",
+      "name": "Phuture",
+      "mbid": "d4c75da5-45d7-49ef-abd6-babca3eb8d18"
+    },
+    {
+      "slug": "artist:ron-hardy",
+      "type": "artist",
+      "name": "Ron Hardy",
+      "mbid": "e4b49610-5a84-4fc9-9cfe-726da0514969"
+    },
+    {
+      "slug": "artist:larry-heard",
+      "type": "artist",
+      "name": "Larry Heard",
+      "mbid": "4346875a-2bba-4566-8dc1-680c38ba44c6"
+    },
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    },
+    {
+      "slug": "artist:camomile-dawn",
+      "type": "artist",
+      "name": "Camomile Dawn",
+      "mbid": "131aface-d868-41a3-9942-c13978e3b1c5"
+    }
+  ]
 }

@@ -54,5 +54,65 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:melchior-productions-ltd",
+      "type": "artist",
+      "name": "Melchior Productions Ltd"
+    },
+    {
+      "slug": "artist:sonja-moonear",
+      "type": "artist",
+      "name": "Sonja Moonear",
+      "mbid": "d6c86545-6fae-41b0-be0c-7a614190360b"
+    },
+    {
+      "slug": "artist:fumiya-tanaka",
+      "type": "artist",
+      "name": "Fumiya Tanaka",
+      "mbid": "86b9a88e-d18f-43c5-9805-f8eb41007aa2"
+    },
+    {
+      "slug": "artist:losoul",
+      "type": "artist",
+      "name": "Losoul",
+      "mbid": "c64bbb9f-1acb-40fa-abb3-2ca0246bdee1"
+    },
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos",
+      "mbid": "bbd79854-df54-4c1b-b7d6-cf7eea2d0afb"
+    },
+    {
+      "slug": "artist:isolee",
+      "type": "artist",
+      "name": "Isolée",
+      "mbid": "4c99c0b4-5d46-44d2-8c49-ba47a522b016"
+    },
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    },
+    {
+      "slug": "artist:bfc",
+      "type": "artist",
+      "name": "BFC"
+    },
+    {
+      "slug": "artist:basic-channel",
+      "type": "artist",
+      "name": "Basic Channel",
+      "mbid": "d145a57e-7afb-4793-8cc4-2fad292374ef"
+    },
+    {
+      "slug": "artist:chris-liebing",
+      "type": "artist",
+      "name": "Chris Liebing",
+      "mbid": "86a1c458-2d97-42cd-a142-a8fee30ae4a1"
+    }
+  ]
 }

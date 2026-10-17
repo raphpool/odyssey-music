@@ -780,5 +780,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:moby",
+      "type": "artist",
+      "name": "Moby",
+      "mbid": "8970d868-0723-483b-a75b-51088913d3d4"
+    },
+    {
+      "slug": "artist:linkin-park",
+      "type": "artist",
+      "name": "Linkin Park",
+      "mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419"
+    },
+    {
+      "slug": "artist:rob-dougan",
+      "type": "artist",
+      "name": "Rob Dougan",
+      "mbid": "42edf21b-2dda-4382-aa6b-49b6483bcf73"
+    },
+    {
+      "slug": "artist:fluke",
+      "type": "artist",
+      "name": "Fluke",
+      "mbid": "3c3d3ad8-3935-4c00-affb-768563916f36"
+    },
+    {
+      "slug": "artist:juno-reactor",
+      "type": "artist",
+      "name": "Juno Reactor",
+      "mbid": "16231a34-9ccd-410e-8690-f74e98fe16a4"
+    },
+    {
+      "slug": "artist:muse",
+      "type": "artist",
+      "name": "Muse",
+      "mbid": "9c9f1380-2516-4fc9-a3e6-f9f61941d090"
+    },
+    {
+      "slug": "artist:paul-van-dyk",
+      "type": "artist",
+      "name": "Paul van Dyk",
+      "mbid": "092ca127-2e07-4cbd-9cba-e412b4ddddd9"
+    },
+    {
+      "slug": "artist:tiesto",
+      "type": "artist",
+      "name": "Tiësto",
+      "mbid": "aabb1d9f-be12-45b3-a84d-a1fc3e8181fd"
+    },
+    {
+      "slug": "artist:the-crystal-method",
+      "type": "artist",
+      "name": "The Crystal Method",
+      "mbid": "aaf09f31-bb5c-43e5-9f54-bb6554c33a71"
+    },
+    {
+      "slug": "artist:atb",
+      "type": "artist",
+      "name": "ATB",
+      "mbid": "22a096ef-c70d-4d70-ae19-4fc2412d4986"
+    }
+  ]
 }

@@ -88,5 +88,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:tiga",
+      "type": "artist",
+      "name": "Tiga",
+      "mbid": "58e5332d-383e-414c-9917-776d7b1493a2"
+    },
+    {
+      "slug": "artist:john-tonks",
+      "type": "artist",
+      "name": "John Tonks",
+      "mbid": "24f547ad-94d4-4ae2-b34c-6c53bffc96c3"
+    },
+    {
+      "slug": "artist:fenomenon",
+      "type": "artist",
+      "name": "Fenomenon",
+      "mbid": "89f3b568-1c17-4849-9f27-0636805009fd"
+    },
+    {
+      "slug": "artist:groove-armada",
+      "type": "artist",
+      "name": "Groove Armada",
+      "mbid": "35723b60-732e-4bd8-957f-320b416e7b7f"
+    },
+    {
+      "slug": "artist:guy-j",
+      "type": "artist",
+      "name": "Guy J",
+      "mbid": "bfaa69de-b75c-410a-8a23-c1accc0b5107"
+    },
+    {
+      "slug": "artist:robert-babicz",
+      "type": "artist",
+      "name": "Robert Babicz",
+      "mbid": "c0c0e16b-91f5-4e6a-bc34-3e80c23c0faf"
+    },
+    {
+      "slug": "artist:jose-gonzalez",
+      "type": "artist",
+      "name": "José González",
+      "mbid": "cd8c5019-5d75-4d5c-bc28-e1e26a7dd5c8"
+    },
+    {
+      "slug": "artist:cicada",
+      "type": "artist",
+      "name": "Cicada",
+      "mbid": "b435ad90-7cfb-4f86-8c41-02581684dedf"
+    },
+    {
+      "slug": "artist:marco-bailey",
+      "type": "artist",
+      "name": "Marco Bailey",
+      "mbid": "32a821fe-7e6d-4215-a118-2d828d867a7a"
+    },
+    {
+      "slug": "artist:tom-hodge",
+      "type": "artist",
+      "name": "Tom Hodge",
+      "mbid": "dfcc32ac-7e58-45dd-8517-5c0354f7fb47"
+    }
+  ]
 }

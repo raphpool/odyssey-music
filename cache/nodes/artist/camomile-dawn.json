@@ -82,5 +82,64 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:killer-kau",
+      "type": "artist",
+      "name": "Killer Kau",
+      "mbid": "f6b3332c-2835-48f1-94fb-a09649e0a4ef"
+    },
+    {
+      "slug": "artist:113",
+      "type": "artist",
+      "name": "113"
+    },
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    },
+    {
+      "slug": "artist:dj-assault",
+      "type": "artist",
+      "name": "DJ Assault",
+      "mbid": "acb4865d-0c4c-4dd5-b958-c399b5d75b8e"
+    },
+    {
+      "slug": "artist:dj-pierre",
+      "type": "artist",
+      "name": "DJ Pierre",
+      "mbid": "bc5d318a-096a-4bc3-8a2e-742905c0036b"
+    },
+    {
+      "slug": "artist:dj-slugo",
+      "type": "artist",
+      "name": "DJ Slugo",
+      "mbid": "5791156a-75e9-454d-9a23-fbc2896f9151"
+    },
+    {
+      "slug": "artist:daft-punk",
+      "type": "artist",
+      "name": "Daft Punk",
+      "mbid": "056e4f3e-d505-4dad-8ec1-d04f521cbb56"
+    },
+    {
+      "slug": "artist:fjaak",
+      "type": "artist",
+      "name": "FJAAK",
+      "mbid": "56acaa47-eb2f-43d7-a1f1-19466c550e31"
+    },
+    {
+      "slug": "artist:francesco-del-garda",
+      "type": "artist",
+      "name": "Francesco Del Garda",
+      "mbid": "c13f201c-83bc-4a6e-a7b0-7fbcd13adddc"
+    },
+    {
+      "slug": "artist:jaguar",
+      "type": "artist",
+      "name": "Jaguar"
+    }
+  ]
 }

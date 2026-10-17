@@ -362,5 +362,65 @@
       "name": "Dimension Ball"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:purrple-cat",
+      "type": "artist",
+      "name": "Purrple Cat",
+      "mbid": "553d1b5f-7cb6-4df7-8a69-e78b4bc4f7a5"
+    },
+    {
+      "slug": "artist:death-grips",
+      "type": "artist",
+      "name": "Death Grips",
+      "mbid": "f9133036-ab3d-4e97-bd11-7a2c98ad148a"
+    },
+    {
+      "slug": "artist:digable-planets",
+      "type": "artist",
+      "name": "Digable Planets",
+      "mbid": "ff44f779-74ab-48f8-aac3-39ebe8f7c18e"
+    },
+    {
+      "slug": "artist:earl-sweatshirt",
+      "type": "artist",
+      "name": "Earl Sweatshirt"
+    },
+    {
+      "slug": "artist:kendrick-lamar",
+      "type": "artist",
+      "name": "Kendrick Lamar",
+      "mbid": "381086ea-f511-4aba-bdf9-71c753dc5077"
+    },
+    {
+      "slug": "artist:the-roots",
+      "type": "artist",
+      "name": "The Roots",
+      "mbid": "80b3cf5e-18fe-4c59-98c7-e5bb87210710"
+    },
+    {
+      "slug": "artist:a-tribe-called-quest",
+      "type": "artist",
+      "name": "A Tribe Called Quest"
+    },
+    {
+      "slug": "artist:a-ap-rocky",
+      "type": "artist",
+      "name": "A$AP Rocky",
+      "mbid": "25b7b584-d952-4662-a8b9-dd8cdfbfeb64"
+    },
+    {
+      "slug": "artist:bell-biv-devoe",
+      "type": "artist",
+      "name": "Bell Biv DeVoe",
+      "mbid": "9b16908a-a78c-45a7-8366-d2a41967f745"
+    },
+    {
+      "slug": "artist:big-hawk",
+      "type": "artist",
+      "name": "Big Hawk",
+      "mbid": "1e8b3e4f-83c3-4b30-afa0-220363a7df5a"
+    }
+  ]
 }

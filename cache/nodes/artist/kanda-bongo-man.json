@@ -175,5 +175,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:baaba-maal",
+      "type": "artist",
+      "name": "Baaba Maal",
+      "mbid": "cec7447d-a39c-41c5-ba74-5d7057e5c731"
+    },
+    {
+      "slug": "artist:tabu-ley-rochereau",
+      "type": "artist",
+      "name": "Tabu Ley Rochereau",
+      "mbid": "85a694a0-dde9-4d79-a3b5-11950be0f3de"
+    },
+    {
+      "slug": "artist:papa-wemba",
+      "type": "artist",
+      "name": "Papa Wemba",
+      "mbid": "07f9fb91-1147-4532-a522-ac36dacd1c72"
+    },
+    {
+      "slug": "artist:youssou-n-dour",
+      "type": "artist",
+      "name": "Youssou N’Dour",
+      "mbid": "af081ea2-7a2c-4fbd-8200-92d62056b5f5"
+    },
+    {
+      "slug": "artist:koffi-olomide",
+      "type": "artist",
+      "name": "Koffi Olomidé",
+      "mbid": "45d921dd-aaf9-4f72-9a8c-101ec24b9186"
+    },
+    {
+      "slug": "artist:sam-mangwana",
+      "type": "artist",
+      "name": "Sam Mangwana",
+      "mbid": "d2f6f28f-d44b-4338-a0f9-079da0faf2e6"
+    },
+    {
+      "slug": "artist:bob-marley-and-the-wailers",
+      "type": "artist",
+      "name": "Bob Marley & The Wailers",
+      "mbid": "c296e10c-110a-4103-9e77-47bfebb7fb2e"
+    },
+    {
+      "slug": "artist:toumani-diabate",
+      "type": "artist",
+      "name": "Toumani Diabaté",
+      "mbid": "b96ba7e7-d882-409a-9825-ed3d6dbb437d"
+    },
+    {
+      "slug": "artist:miriam-makeba",
+      "type": "artist",
+      "name": "Miriam Makeba",
+      "mbid": "bc5c2918-4aba-4ef6-a245-100563a4487f"
+    }
+  ]
 }

@@ -46,5 +46,64 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    },
+    {
+      "slug": "artist:dj-mehdi",
+      "type": "artist",
+      "name": "DJ Mehdi",
+      "mbid": "66ad8456-1d33-4d7d-b8c3-a8f1a3b1e74f"
+    },
+    {
+      "slug": "artist:daft-punk",
+      "type": "artist",
+      "name": "Daft Punk",
+      "mbid": "056e4f3e-d505-4dad-8ec1-d04f521cbb56"
+    },
+    {
+      "slug": "artist:inner-city",
+      "type": "artist",
+      "name": "Inner City",
+      "mbid": "65a8e571-8a08-433f-a5bf-ead38c269ea6"
+    },
+    {
+      "slug": "artist:krafty-kuts",
+      "type": "artist",
+      "name": "Krafty Kuts",
+      "mbid": "d14416ef-2283-49ef-9118-d690613d0bc9"
+    },
+    {
+      "slug": "artist:leon-vynehall",
+      "type": "artist",
+      "name": "Leon Vynehall",
+      "mbid": "b98202d3-4fb4-4e32-9ff3-b9e1987d02cf"
+    },
+    {
+      "slug": "artist:robert-owens",
+      "type": "artist",
+      "name": "Robert Owens"
+    },
+    {
+      "slug": "artist:sasha",
+      "type": "artist",
+      "name": "Sasha",
+      "mbid": "68be8273-cb12-4053-964d-157b7e5cf265"
+    },
+    {
+      "slug": "artist:skream",
+      "type": "artist",
+      "name": "Skream"
+    },
+    {
+      "slug": "artist:the-chemical-brothers",
+      "type": "artist",
+      "name": "The Chemical Brothers",
+      "mbid": "1946a82a-f927-40c2-8235-38d64f50d043"
+    }
+  ]
 }

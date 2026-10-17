@@ -72,5 +72,65 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:purrple-cat",
+      "type": "artist",
+      "name": "Purrple Cat",
+      "mbid": "553d1b5f-7cb6-4df7-8a69-e78b4bc4f7a5"
+    },
+    {
+      "slug": "artist:113",
+      "type": "artist",
+      "name": "113"
+    },
+    {
+      "slug": "artist:camomile-dawn",
+      "type": "artist",
+      "name": "Camomile Dawn",
+      "mbid": "131aface-d868-41a3-9942-c13978e3b1c5"
+    },
+    {
+      "slug": "artist:hip-hop-pantsula",
+      "type": "artist",
+      "name": "Hip Hop Pantsula",
+      "mbid": "36b47aca-c378-4f7f-b4a8-9cb2ccb81dc1"
+    },
+    {
+      "slug": "artist:khuli-chana",
+      "type": "artist",
+      "name": "Khuli Chana",
+      "mbid": "9335fbe8-fab3-4e3e-94b6-f3c306869f8a"
+    },
+    {
+      "slug": "artist:killer-kau",
+      "type": "artist",
+      "name": "Killer Kau",
+      "mbid": "f6b3332c-2835-48f1-94fb-a09649e0a4ef"
+    },
+    {
+      "slug": "artist:a-ap-rocky",
+      "type": "artist",
+      "name": "A$AP Rocky",
+      "mbid": "25b7b584-d952-4662-a8b9-dd8cdfbfeb64"
+    },
+    {
+      "slug": "artist:bell-biv-devoe",
+      "type": "artist",
+      "name": "Bell Biv DeVoe",
+      "mbid": "9b16908a-a78c-45a7-8366-d2a41967f745"
+    },
+    {
+      "slug": "artist:big-hawk",
+      "type": "artist",
+      "name": "Big Hawk",
+      "mbid": "1e8b3e4f-83c3-4b30-afa0-220363a7df5a"
+    },
+    {
+      "slug": "artist:booba",
+      "type": "artist",
+      "name": "Booba",
+      "mbid": "785c0e9c-89f6-4bf4-8296-443a46632d62"
+    }
+  ]
 }

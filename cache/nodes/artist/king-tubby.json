@@ -86,5 +86,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:augustus-pablo",
+      "type": "artist",
+      "name": "Augustus Pablo",
+      "mbid": "e2f9c452-7eb0-4782-bc3e-36f2c456ffe0"
+    },
+    {
+      "slug": "artist:the-upsetters",
+      "type": "artist",
+      "name": "The Upsetters",
+      "mbid": "7bcf8b20-72a6-48b1-bad3-b28869090dda"
+    },
+    {
+      "slug": "artist:scientist",
+      "type": "artist",
+      "name": "Scientist",
+      "mbid": "90d63976-5e70-4c73-a500-eb67997d6ed2"
+    },
+    {
+      "slug": "artist:lee-scratch-perry",
+      "type": "artist",
+      "name": "Lee “Scratch” Perry",
+      "mbid": "af75ebe4-3ab1-423d-a499-2a6f9d011ce2"
+    },
+    {
+      "slug": "artist:the-aggrovators",
+      "type": "artist",
+      "name": "The Aggrovators",
+      "mbid": "d2eba907-21a2-4240-8667-1da3a1fe63d0"
+    },
+    {
+      "slug": "artist:horace-andy",
+      "type": "artist",
+      "name": "Horace Andy",
+      "mbid": "2027b08d-45b1-4fb5-aa6d-f6ccc4db78e5"
+    },
+    {
+      "slug": "artist:gregory-isaacs",
+      "type": "artist",
+      "name": "Gregory Isaacs",
+      "mbid": "9abff216-e204-4dbc-9849-d1dbe1fbbda8"
+    },
+    {
+      "slug": "artist:prince-jammy",
+      "type": "artist",
+      "name": "Prince Jammy",
+      "mbid": "7d2f071d-ffa4-4ce7-bea2-0685374c1b2a"
+    },
+    {
+      "slug": "artist:roots-radics",
+      "type": "artist",
+      "name": "Roots Radics",
+      "mbid": "8a8f4e35-5882-4034-88f5-ba2694d78160"
+    },
+    {
+      "slug": "artist:bob-marley-and-the-wailers",
+      "type": "artist",
+      "name": "Bob Marley & The Wailers",
+      "mbid": "c296e10c-110a-4103-9e77-47bfebb7fb2e"
+    }
+  ]
 }

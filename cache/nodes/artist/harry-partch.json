@@ -82,5 +82,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:howlin-wolf",
+      "type": "artist",
+      "name": "Howlin’ Wolf",
+      "mbid": "ca5b38c2-f39d-45a4-ad3d-daf4448846ef"
+    },
+    {
+      "slug": "artist:john-brim",
+      "type": "artist",
+      "name": "John Brim",
+      "mbid": "6d98b675-a3c2-418e-bb5d-edfe3a320213"
+    },
+    {
+      "slug": "artist:frank-zappa",
+      "type": "artist",
+      "name": "Frank Zappa",
+      "mbid": "e20747e7-55a4-452e-8766-7b985585082d"
+    },
+    {
+      "slug": "artist:jack-kerouac",
+      "type": "artist",
+      "name": "Jack Kerouac",
+      "mbid": "ccf81e74-b701-4277-a599-3e0942e70b53"
+    },
+    {
+      "slug": "artist:allen-ginsberg",
+      "type": "artist",
+      "name": "Allen Ginsberg",
+      "mbid": "8fc551bc-0c60-43fd-a234-2776561c2b18"
+    },
+    {
+      "slug": "artist:pauline-oliveros",
+      "type": "artist",
+      "name": "Pauline Oliveros",
+      "mbid": "62c31c9d-d2d9-4b2a-9549-4be129e9559a"
+    },
+    {
+      "slug": "artist:billie-holiday",
+      "type": "artist",
+      "name": "Billie Holiday",
+      "mbid": "d59c4cda-11d9-48db-8bfe-b557ee602aed"
+    },
+    {
+      "slug": "artist:nat-king-cole",
+      "type": "artist",
+      "name": "Nat King Cole",
+      "mbid": "fbe054ec-a143-4101-9e9e-64abc5ff5ac9"
+    },
+    {
+      "slug": "artist:steve-reich",
+      "type": "artist",
+      "name": "Steve Reich",
+      "mbid": "a3031680-c359-458f-a641-70ccbaec6a74"
+    },
+    {
+      "slug": "artist:jesca-hoop",
+      "type": "artist",
+      "name": "Jesca Hoop",
+      "mbid": "b5330942-ffdf-49cb-8a13-b5d7b5d67bff"
+    }
+  ]
 }

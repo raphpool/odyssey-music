@@ -78,5 +78,66 @@
       "name": "Carl Craig"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:model-500",
+      "type": "artist",
+      "name": "Model 500",
+      "mbid": "e569aee8-33ff-48e5-b0ed-4ceba1a37714"
+    },
+    {
+      "slug": "artist:drexciya",
+      "type": "artist",
+      "name": "Drexciya",
+      "mbid": "66f398bf-ae55-4f13-b993-fa871c57157f"
+    },
+    {
+      "slug": "artist:theo-parrish",
+      "type": "artist",
+      "name": "Theo Parrish",
+      "mbid": "15388d42-9197-4ca1-9ffe-240f763b84cb"
+    },
+    {
+      "slug": "artist:rhythm-and-sound",
+      "type": "artist",
+      "name": "Rhythm & Sound",
+      "mbid": "0bf220da-eb15-4bf2-9460-f640aaeda272"
+    },
+    {
+      "slug": "artist:kenny-larkin",
+      "type": "artist",
+      "name": "Kenny Larkin",
+      "mbid": "ed8e364a-6087-4425-bd58-6b146893c4b4"
+    },
+    {
+      "slug": "artist:francesco-tristano",
+      "type": "artist",
+      "name": "Francesco Tristano",
+      "mbid": "c2de59ca-07b1-431f-b946-e3e5421ede63"
+    },
+    {
+      "slug": "artist:alex-gopher",
+      "type": "artist",
+      "name": "Alex Gopher",
+      "mbid": "ee1a6d4a-b1ff-46a8-acf2-af575424bda5"
+    },
+    {
+      "slug": "artist:marcel-dettmann",
+      "type": "artist",
+      "name": "Marcel Dettmann",
+      "mbid": "6d7238a1-f0bc-4408-93fc-8ec64c06f7af"
+    },
+    {
+      "slug": "artist:tres-demented",
+      "type": "artist",
+      "name": "Tres Demented",
+      "mbid": "dc5c5afb-8138-4704-9f07-f0aa8bbb3a7d"
+    },
+    {
+      "slug": "artist:aaron-neville",
+      "type": "artist",
+      "name": "Aaron Neville",
+      "mbid": "2f53411b-ec29-4979-aa46-62786a2bb377"
+    }
+  ]
 }

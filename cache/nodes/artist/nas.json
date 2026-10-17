@@ -738,5 +738,63 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:krs-one",
+      "type": "artist",
+      "name": "KRS-One",
+      "mbid": "fc4568b6-cbe3-4a3d-8409-28510c19e3e2"
+    },
+    {
+      "slug": "artist:de-la-soul",
+      "type": "artist",
+      "name": "De La Soul",
+      "mbid": "a8ebde98-7e91-46c7-992c-90039ba42017"
+    },
+    {
+      "slug": "artist:earl-sweatshirt",
+      "type": "artist",
+      "name": "Earl Sweatshirt"
+    },
+    {
+      "slug": "artist:jeezy",
+      "type": "artist",
+      "name": "Jeezy"
+    },
+    {
+      "slug": "artist:lil-peep",
+      "type": "artist",
+      "name": "Lil Peep"
+    },
+    {
+      "slug": "artist:ludacris",
+      "type": "artist",
+      "name": "Ludacris"
+    },
+    {
+      "slug": "artist:t-i",
+      "type": "artist",
+      "name": "T.I.",
+      "mbid": "f7ba7fbe-c6bd-4ac0-bee9-c25c558d7d62"
+    },
+    {
+      "slug": "artist:three-6-mafia",
+      "type": "artist",
+      "name": "Three 6 Mafia",
+      "mbid": "a8754ac4-a85e-4f48-a81f-eecd482570ef"
+    },
+    {
+      "slug": "artist:warren-g",
+      "type": "artist",
+      "name": "Warren G",
+      "mbid": "85d7666c-d3ce-4e2c-8b1b-f20db7cdae4f"
+    },
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    }
+  ]
 }

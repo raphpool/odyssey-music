@@ -65,5 +65,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:pfm",
+      "type": "artist",
+      "name": "PFM",
+      "mbid": "5fbdf5fa-af85-4958-b6b6-dbac49b16e71"
+    },
+    {
+      "slug": "artist:big-bud",
+      "type": "artist",
+      "name": "Big Bud",
+      "mbid": "4da825c5-2cee-45d2-aed3-8ee1a045abd3"
+    },
+    {
+      "slug": "artist:blame",
+      "type": "artist",
+      "name": "Blame",
+      "mbid": "c5e139cf-3686-47bf-99de-657f08b4ae64"
+    },
+    {
+      "slug": "artist:peshay",
+      "type": "artist",
+      "name": "Peshay",
+      "mbid": "f7be8db8-cf51-4266-b4a6-81f0a1d40575"
+    },
+    {
+      "slug": "artist:tayla",
+      "type": "artist",
+      "name": "Tayla",
+      "mbid": "422b7ddd-b982-4824-8d20-5a8a603f5803"
+    },
+    {
+      "slug": "artist:thievery-corporation",
+      "type": "artist",
+      "name": "Thievery Corporation",
+      "mbid": "a505bb48-ad65-4af4-ae47-29149715bff9"
+    },
+    {
+      "slug": "artist:the-prodigy",
+      "type": "artist",
+      "name": "The Prodigy",
+      "mbid": "4a4ee089-93b1-4470-af9a-6ff575d32704"
+    },
+    {
+      "slug": "artist:photek",
+      "type": "artist",
+      "name": "Photek",
+      "mbid": "2095b935-2007-4ae0-a48a-ef4d6fc3aac0"
+    },
+    {
+      "slug": "artist:blu-mar-ten",
+      "type": "artist",
+      "name": "Blu Mar Ten",
+      "mbid": "8cecffe6-783a-4aeb-8720-68e46cc5c55d"
+    },
+    {
+      "slug": "artist:bonobo",
+      "type": "artist",
+      "name": "Bonobo",
+      "mbid": "9a709693-b4f8-4da9-8cc1-038c911a61be"
+    }
+  ]
 }

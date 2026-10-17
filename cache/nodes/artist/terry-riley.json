@@ -115,5 +115,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:philip-glass",
+      "type": "artist",
+      "name": "Philip Glass",
+      "mbid": "5ae54dee-4dba-49c0-802a-a3b3b3adfe9b"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:tortoise",
+      "type": "artist",
+      "name": "Tortoise",
+      "mbid": "e0953daa-860f-4dc8-9f1a-b12587cdaf17"
+    },
+    {
+      "slug": "artist:max-roach",
+      "type": "artist",
+      "name": "Max Roach",
+      "mbid": "0b6aea55-d855-4a33-ae08-b0280dd28684"
+    },
+    {
+      "slug": "artist:koushik",
+      "type": "artist",
+      "name": "Koushik",
+      "mbid": "51aad2ec-44b2-4466-8c10-60018972e6c3"
+    },
+    {
+      "slug": "artist:rahsaan-roland-kirk",
+      "type": "artist",
+      "name": "Rahsaan Roland Kirk",
+      "mbid": "4a1f7fe0-e509-4c4a-9fa1-9cf6c3ca891c"
+    },
+    {
+      "slug": "artist:steve-reich",
+      "type": "artist",
+      "name": "Steve Reich",
+      "mbid": "a3031680-c359-458f-a641-70ccbaec6a74"
+    },
+    {
+      "slug": "artist:gravediggaz",
+      "type": "artist",
+      "name": "Gravediggaz",
+      "mbid": "7010fbf2-cbfd-4625-b0ef-a7efb9285320"
+    },
+    {
+      "slug": "artist:hal-blaine",
+      "type": "artist",
+      "name": "Hal Blaine",
+      "mbid": "b1d81a5e-6f6f-4d13-83ff-15a2559d6f8d"
+    },
+    {
+      "slug": "artist:manfred-mann-chapter-three",
+      "type": "artist",
+      "name": "Manfred Mann Chapter Three",
+      "mbid": "f96d7b66-25b2-4af4-9293-32644073a8bd"
+    }
+  ]
 }

@@ -124,5 +124,63 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:james-brown",
+      "type": "artist",
+      "name": "James Brown"
+    },
+    {
+      "slug": "artist:mc-solaar",
+      "type": "artist",
+      "name": "MC Solaar",
+      "mbid": "bbbd2644-b4cb-4bb5-a442-315310f68a0b"
+    },
+    {
+      "slug": "artist:stuart-sutcliffe",
+      "type": "artist",
+      "name": "Stuart Sutcliffe",
+      "mbid": "49a51491-650e-44b3-8085-2f07ac2986dd"
+    },
+    {
+      "slug": "artist:2-unlimited",
+      "type": "artist",
+      "name": "2 Unlimited"
+    },
+    {
+      "slug": "artist:blackpink",
+      "type": "artist",
+      "name": "BLACKPINK",
+      "mbid": "48646387-1664-4c9a-9139-9bfd091b823c"
+    },
+    {
+      "slug": "artist:bts",
+      "type": "artist",
+      "name": "BTS",
+      "mbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853"
+    },
+    {
+      "slug": "artist:beppe-loda",
+      "type": "artist",
+      "name": "Beppe Loda",
+      "mbid": "bbecd9f9-130c-4e56-a7b9-bde8f4376d52"
+    },
+    {
+      "slug": "artist:bernard-edwards",
+      "type": "artist",
+      "name": "Bernard Edwards",
+      "mbid": "ba7ff664-5c64-4a62-a3e2-63445c1a25db"
+    },
+    {
+      "slug": "artist:bobby-brown",
+      "type": "artist",
+      "name": "Bobby Brown"
+    },
+    {
+      "slug": "artist:buddy-holly",
+      "type": "artist",
+      "name": "Buddy Holly",
+      "mbid": "d352f5dd-3023-4565-a7bb-52396bf8821d"
+    }
+  ]
 }

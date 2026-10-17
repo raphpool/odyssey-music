@@ -393,5 +393,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:burna-boy",
+      "type": "artist",
+      "name": "Burna Boy",
+      "mbid": "78a19169-ac75-4868-b504-7e2e073118e0"
+    },
+    {
+      "slug": "artist:chris-brown",
+      "type": "artist",
+      "name": "Chris Brown",
+      "mbid": "c234fa42-e6a6-443e-937e-2f4b073538a3"
+    },
+    {
+      "slug": "artist:wizkid",
+      "type": "artist",
+      "name": "Wizkid",
+      "mbid": "efc5d365-a448-4e2f-9b5f-4a7c84be725c"
+    },
+    {
+      "slug": "artist:teyana-taylor",
+      "type": "artist",
+      "name": "Teyana Taylor",
+      "mbid": "c7eb03c1-f8cb-4815-afc8-46df3b253129"
+    },
+    {
+      "slug": "artist:travis-scott",
+      "type": "artist",
+      "name": "Travis Scott",
+      "mbid": "e4a51f17-a57b-47b1-b37b-f552d0f8e9e6"
+    },
+    {
+      "slug": "artist:lil-baby",
+      "type": "artist",
+      "name": "Lil Baby",
+      "mbid": "d42a5768-ada1-4fb6-85fd-f61aba6264e0"
+    },
+    {
+      "slug": "artist:the-weeknd",
+      "type": "artist",
+      "name": "The Weeknd",
+      "mbid": "c8b03190-306c-4120-bb0b-6f2ebfc06ea9"
+    },
+    {
+      "slug": "artist:tiwa-savage",
+      "type": "artist",
+      "name": "Tiwa Savage",
+      "mbid": "9d9f7ce8-e1cf-4413-b2c9-b90b69bc17f6"
+    },
+    {
+      "slug": "artist:mr-eazi",
+      "type": "artist",
+      "name": "Mr Eazi",
+      "mbid": "72adb13a-800e-44b5-9aef-5c7d8cb6a2d7"
+    },
+    {
+      "slug": "artist:a-boogie-wit-da-hoodie",
+      "type": "artist",
+      "name": "A Boogie Wit da Hoodie",
+      "mbid": "c1708d03-8a66-46eb-848e-fe0d233ffb39"
+    }
+  ]
 }

@@ -96,5 +96,66 @@
       "type": "artist",
       "name": "Ann Saunderson"
     }
+  ],
+  "similar_artists": [
+    {
+      "slug": "artist:paris-grey",
+      "type": "artist",
+      "name": "Paris Grey",
+      "mbid": "4d11ce09-4ee7-4e95-9f54-4e9ca7e25707"
+    },
+    {
+      "slug": "artist:tronik-house",
+      "type": "artist",
+      "name": "Tronik House",
+      "mbid": "32c9b3e5-63e1-4cc9-bd77-812ed434926a"
+    },
+    {
+      "slug": "artist:carl-craig",
+      "type": "artist",
+      "name": "Carl Craig",
+      "mbid": "6732e9f3-5f24-4ba4-aef1-a2a49442b96b"
+    },
+    {
+      "slug": "artist:david-morales",
+      "type": "artist",
+      "name": "David Morales"
+    },
+    {
+      "slug": "artist:inner-city",
+      "type": "artist",
+      "name": "Inner City",
+      "mbid": "65a8e571-8a08-433f-a5bf-ead38c269ea6"
+    },
+    {
+      "slug": "artist:morbid-angel",
+      "type": "artist",
+      "name": "Morbid Angel",
+      "mbid": "4355a36d-805e-478d-8589-64f0292724b2"
+    },
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    },
+    {
+      "slug": "artist:camomile-dawn",
+      "type": "artist",
+      "name": "Camomile Dawn",
+      "mbid": "131aface-d868-41a3-9942-c13978e3b1c5"
+    },
+    {
+      "slug": "artist:chip-e",
+      "type": "artist",
+      "name": "Chip E.",
+      "mbid": "31b07129-85d8-4ed2-abd3-0794deedd686"
+    },
+    {
+      "slug": "artist:dj-assault",
+      "type": "artist",
+      "name": "DJ Assault",
+      "mbid": "acb4865d-0c4c-4dd5-b958-c399b5d75b8e"
+    }
   ]
 }

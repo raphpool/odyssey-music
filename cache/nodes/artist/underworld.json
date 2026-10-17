@@ -130,5 +130,65 @@
       "name": "Darren Emerson"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-chemical-brothers",
+      "type": "artist",
+      "name": "The Chemical Brothers",
+      "mbid": "1946a82a-f927-40c2-8235-38d64f50d043"
+    },
+    {
+      "slug": "artist:sasha",
+      "type": "artist",
+      "name": "Sasha",
+      "mbid": "68be8273-cb12-4053-964d-157b7e5cf265"
+    },
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    },
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:application",
+      "type": "artist",
+      "name": "Application",
+      "mbid": "64f36451-a9f5-4ceb-b31e-2a1faf8aa2d9"
+    },
+    {
+      "slug": "artist:bugz-in-the-attic",
+      "type": "artist",
+      "name": "Bugz in the Attic",
+      "mbid": "e12903cf-78ff-4d15-8dfa-54985733827f"
+    },
+    {
+      "slug": "artist:dj-godfather",
+      "type": "artist",
+      "name": "DJ Godfather",
+      "mbid": "45fc5c0a-3614-4018-95e9-9101ac827e2b"
+    },
+    {
+      "slug": "artist:dj-icey",
+      "type": "artist",
+      "name": "DJ Icey",
+      "mbid": "138dd95b-9311-416e-bcdd-a80067289de6"
+    },
+    {
+      "slug": "artist:gat-decor",
+      "type": "artist",
+      "name": "Gat Decor",
+      "mbid": "3eeb99ca-baf1-4f74-b8df-62d397870b29"
+    },
+    {
+      "slug": "artist:hardfloor",
+      "type": "artist",
+      "name": "Hardfloor",
+      "mbid": "49c5cce4-aaa6-4600-a9a2-2b045fb6a87b"
+    }
+  ]
 }

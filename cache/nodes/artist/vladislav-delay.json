@@ -97,5 +97,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre",
+      "mbid": "410c9baf-5469-44f6-9852-826524b80c61"
+    },
+    {
+      "slug": "artist:alva-noto",
+      "type": "artist",
+      "name": "Alva Noto",
+      "mbid": "48ec4bb6-47a6-4e2c-8287-7617464eb193"
+    },
+    {
+      "slug": "artist:monolake",
+      "type": "artist",
+      "name": "Monolake",
+      "mbid": "cedf92fe-eba1-45e2-ba16-b1b6af5169b8"
+    },
+    {
+      "slug": "artist:pole",
+      "type": "artist",
+      "name": "Pole",
+      "mbid": "ad957b43-9dc0-42e1-940c-19b21ec77f3a"
+    },
+    {
+      "slug": "artist:tim-hecker",
+      "type": "artist",
+      "name": "Tim Hecker",
+      "mbid": "c7ee3bc9-780c-42c0-91e9-4cd70ad692d3"
+    },
+    {
+      "slug": "artist:jan-jelinek",
+      "type": "artist",
+      "name": "Jan Jelinek",
+      "mbid": "ac9b829e-9a7c-4331-8abe-ab1eb49d1771"
+    },
+    {
+      "slug": "artist:murcof",
+      "type": "artist",
+      "name": "Murcof",
+      "mbid": "e8d1f02e-7e77-4415-85b6-dc17e08debbf"
+    },
+    {
+      "slug": "artist:loscil",
+      "type": "artist",
+      "name": "Loscil",
+      "mbid": "4f2c565b-ac40-4678-ba61-4fcf3b97edbc"
+    },
+    {
+      "slug": "artist:frank-bretschneider",
+      "type": "artist",
+      "name": "Frank Bretschneider",
+      "mbid": "be4f6406-88fb-4a8f-bea6-ba8a7cb7b2ac"
+    },
+    {
+      "slug": "artist:kangding-ray",
+      "type": "artist",
+      "name": "Kangding Ray",
+      "mbid": "db9ee7c8-d0b7-4004-972b-62d99dcd2d15"
+    }
+  ]
 }

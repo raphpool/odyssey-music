@@ -591,5 +591,66 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:central-cee",
+      "type": "artist",
+      "name": "Central Cee",
+      "mbid": "b0337af1-8d93-4671-b6c9-ba306bf942bf"
+    },
+    {
+      "slug": "artist:salt-n-pepa",
+      "type": "artist",
+      "name": "Salt-N-Pepa",
+      "mbid": "26bcd35d-56a3-4e4d-8ad7-7bc5787c3af1"
+    },
+    {
+      "slug": "artist:the-roots",
+      "type": "artist",
+      "name": "The Roots",
+      "mbid": "80b3cf5e-18fe-4c59-98c7-e5bb87210710"
+    },
+    {
+      "slug": "artist:a-ap-rocky",
+      "type": "artist",
+      "name": "A$AP Rocky",
+      "mbid": "25b7b584-d952-4662-a8b9-dd8cdfbfeb64"
+    },
+    {
+      "slug": "artist:bob-dylan",
+      "type": "artist",
+      "name": "Bob Dylan",
+      "mbid": "72c536dc-7137-4477-a521-567eeb840fa8"
+    },
+    {
+      "slug": "artist:d-train",
+      "type": "artist",
+      "name": "D-Train",
+      "mbid": "1d0b2ed9-56a2-4792-a5a1-a47313fb24c4"
+    },
+    {
+      "slug": "artist:de-la-soul",
+      "type": "artist",
+      "name": "De La Soul",
+      "mbid": "a8ebde98-7e91-46c7-992c-90039ba42017"
+    },
+    {
+      "slug": "artist:duke-ellington",
+      "type": "artist",
+      "name": "Duke Ellington",
+      "mbid": "3af06bc4-68ad-4cae-bb7a-7eeeb45e411f"
+    },
+    {
+      "slug": "artist:krs-one",
+      "type": "artist",
+      "name": "KRS-One",
+      "mbid": "fc4568b6-cbe3-4a3d-8409-28510c19e3e2"
+    },
+    {
+      "slug": "artist:nas",
+      "type": "artist",
+      "name": "Nas"
+    }
+  ]
 }

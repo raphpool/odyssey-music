@@ -166,5 +166,66 @@
       "name": "Atari Teenage Riot"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:merzbow",
+      "type": "artist",
+      "name": "Merzbow",
+      "mbid": "2841d983-f8c3-432a-af02-7407a84580a8"
+    },
+    {
+      "slug": "artist:coil",
+      "type": "artist",
+      "name": "Coil",
+      "mbid": "c16fbb7e-57b1-462c-97c5-bd0e11248765"
+    },
+    {
+      "slug": "artist:gorillaz",
+      "type": "artist",
+      "name": "Gorillaz",
+      "mbid": "e21857d5-3256-4547-afb3-4b6ded592596"
+    },
+    {
+      "slug": "artist:meat-beat-manifesto",
+      "type": "artist",
+      "name": "Meat Beat Manifesto",
+      "mbid": "dcb2955e-ff59-4ff2-a608-cbb90ee3ac38"
+    },
+    {
+      "slug": "artist:enduser",
+      "type": "artist",
+      "name": "Enduser",
+      "mbid": "12a9818a-60aa-4482-a8fa-05ed7949b178"
+    },
+    {
+      "slug": "artist:ec8or",
+      "type": "artist",
+      "name": "EC8OR",
+      "mbid": "168e3ccd-91f5-480c-970a-b35171c71164"
+    },
+    {
+      "slug": "artist:new-order",
+      "type": "artist",
+      "name": "New Order",
+      "mbid": "f1106b17-dcbb-45f6-b938-199ccfab50cc"
+    },
+    {
+      "slug": "artist:orbital",
+      "type": "artist",
+      "name": "Orbital",
+      "mbid": "f3e2a7d9-c6bb-4848-95e5-04c0a1e2f511"
+    },
+    {
+      "slug": "artist:wumpscut",
+      "type": "artist",
+      "name": ":wumpscut:",
+      "mbid": "e4e79264-c1ec-490c-b823-b2918204cd4f"
+    },
+    {
+      "slug": "artist:lolita-storm",
+      "type": "artist",
+      "name": "Lolita Storm",
+      "mbid": "7a2d7204-28f4-46a9-9ad5-ce6f5582b7bb"
+    }
+  ]
 }

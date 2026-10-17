@@ -671,5 +671,43 @@
       "type": "artist",
       "name": "Jarno Butter"
     }
+  ],
+  "similar_artists": [
+    {
+      "slug": "artist:dj-paul-elstak",
+      "type": "artist",
+      "name": "DJ Paul Elstak",
+      "mbid": "026c4d7c-8dfe-46e8-ab14-cf9304d6863d"
+    },
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire",
+      "mbid": "d71ba53b-23b0-4870-a429-cce6f345763b"
+    },
+    {
+      "slug": "artist:pastis",
+      "type": "artist",
+      "name": "Pastis",
+      "mbid": "17a729c0-0df1-40a4-b444-0c3d4ca3f8e5"
+    },
+    {
+      "slug": "artist:rotterdam-terror-corps",
+      "type": "artist",
+      "name": "Rotterdam Terror Corps",
+      "mbid": "bf4143da-9b14-4ae8-8787-2a1dfe610a76"
+    },
+    {
+      "slug": "artist:skudero",
+      "type": "artist",
+      "name": "Skudero",
+      "mbid": "8880c6be-e2c8-460b-a5aa-c1d54d89cf16"
+    },
+    {
+      "slug": "artist:tronik-house",
+      "type": "artist",
+      "name": "Tronik House",
+      "mbid": "32c9b3e5-63e1-4cc9-bd77-812ed434926a"
+    }
   ]
 }

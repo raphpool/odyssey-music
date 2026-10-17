@@ -62,5 +62,67 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:amon-duul",
+      "type": "artist",
+      "name": "Amon Düül",
+      "mbid": "cd7b53ed-3d81-4199-b523-56c61206c1a3"
+    },
+    {
+      "slug": "artist:ashra",
+      "type": "artist",
+      "name": "Ashra",
+      "mbid": "2d262241-ad1e-4b2d-904a-c38039f0a531"
+    },
+    {
+      "slug": "artist:chas-chandler",
+      "type": "artist",
+      "name": "Chas Chandler",
+      "mbid": "87f12745-5b9b-4224-8b16-236cf28ce46f"
+    },
+    {
+      "slug": "artist:cluster",
+      "type": "artist",
+      "name": "Cluster",
+      "mbid": "393ce5ee-4550-48e2-97f9-50a47a74bdc1"
+    },
+    {
+      "slug": "artist:conny-plank",
+      "type": "artist",
+      "name": "Conny Plank",
+      "mbid": "c2e32e77-ca58-4211-97b5-7e9eadac2f1d"
+    },
+    {
+      "slug": "artist:earth",
+      "type": "artist",
+      "name": "Earth",
+      "mbid": "60dd41cf-8f9d-46d8-bc19-dc7e5acb24c8"
+    },
+    {
+      "slug": "artist:florian-schneider",
+      "type": "artist",
+      "name": "Florian Schneider",
+      "mbid": "46957dac-b5ff-40a9-a427-ab53bc414f6e"
+    },
+    {
+      "slug": "artist:grobschnitt",
+      "type": "artist",
+      "name": "Grobschnitt",
+      "mbid": "666fd16d-d9f9-4eff-80ed-a064d5bbca7c"
+    },
+    {
+      "slug": "artist:jane-s-addiction",
+      "type": "artist",
+      "name": "Jane's Addiction",
+      "mbid": "e3434cc7-d348-491a-9dc8-325af3d9086d"
+    },
+    {
+      "slug": "artist:jimi-hendrix",
+      "type": "artist",
+      "name": "Jimi Hendrix",
+      "mbid": "06fb1c8b-566e-4cb2-985b-b467c90781d4"
+    }
+  ]
 }

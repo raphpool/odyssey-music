@@ -57,5 +57,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles",
+      "mbid": "b7a98e65-7ce4-4fab-8cf3-6b3ccda6115a"
+    },
+    {
+      "slug": "artist:inner-city",
+      "type": "artist",
+      "name": "Inner City",
+      "mbid": "65a8e571-8a08-433f-a5bf-ead38c269ea6"
+    },
+    {
+      "slug": "artist:mr-fingers",
+      "type": "artist",
+      "name": "Mr. Fingers",
+      "mbid": "1e47567e-5192-43b9-af98-75e4998f9e52"
+    },
+    {
+      "slug": "artist:moby",
+      "type": "artist",
+      "name": "Moby",
+      "mbid": "8970d868-0723-483b-a75b-51088913d3d4"
+    },
+    {
+      "slug": "artist:depeche-mode",
+      "type": "artist",
+      "name": "Depeche Mode",
+      "mbid": "8538e728-ca0b-4321-b7e5-cff6565dd4c0"
+    },
+    {
+      "slug": "artist:808-state",
+      "type": "artist",
+      "name": "808 State",
+      "mbid": "36f35db0-bc09-43e7-8650-a123224943c7"
+    },
+    {
+      "slug": "artist:the-prodigy",
+      "type": "artist",
+      "name": "The Prodigy",
+      "mbid": "4a4ee089-93b1-4470-af9a-6ff575d32704"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk",
+      "mbid": "5700dcd4-c139-4f31-aa3e-6382b9af9032"
+    },
+    {
+      "slug": "artist:cece-rogers",
+      "type": "artist",
+      "name": "CeCe Rogers",
+      "mbid": "b9c5ad5d-8fb6-4f69-a7af-5b5380d4c6d6"
+    }
+  ]
 }

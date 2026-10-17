@@ -122,5 +122,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:a-r-rahman",
+      "type": "artist",
+      "name": "A. R. Rahman",
+      "mbid": "e0bba708-bdd3-478d-84ea-c706413bedab"
+    },
+    {
+      "slug": "artist:the-ballistic-brothers",
+      "type": "artist",
+      "name": "The Ballistic Brothers",
+      "mbid": "83e5d4c7-0e5e-4084-8ca0-f8f93d7469ce"
+    },
+    {
+      "slug": "artist:electribe-101",
+      "type": "artist",
+      "name": "Electribe 101",
+      "mbid": "7f6a2b09-0666-410c-a5fb-b8cb111fdc8e"
+    },
+    {
+      "slug": "artist:les-negresses-vertes",
+      "type": "artist",
+      "name": "Les Négresses Vertes",
+      "mbid": "d9968436-64d6-4a33-85e8-7f4fcfa78d63"
+    },
+    {
+      "slug": "artist:marika",
+      "type": "artist",
+      "name": "Marika",
+      "mbid": "b965c0fc-8b15-4e25-bed5-33224cfd2808"
+    },
+    {
+      "slug": "artist:jose-padilla",
+      "type": "artist",
+      "name": "José Padilla",
+      "mbid": "3a238c56-3790-4a6a-89af-4aa0c71fa732"
+    },
+    {
+      "slug": "artist:ame-strong",
+      "type": "artist",
+      "name": "Âme Strong",
+      "mbid": "ed223f2e-4f1a-4527-bf8c-0b9351452c4b"
+    },
+    {
+      "slug": "artist:afterlife",
+      "type": "artist",
+      "name": "Afterlife",
+      "mbid": "ab2241c7-ff64-4b52-90d8-4a7b0517d47c"
+    },
+    {
+      "slug": "artist:levitation",
+      "type": "artist",
+      "name": "Levitation",
+      "mbid": "a5041a85-efdb-4115-bd73-fd9142d2c4ae"
+    },
+    {
+      "slug": "artist:cyberfit",
+      "type": "artist",
+      "name": "Cyberfit",
+      "mbid": "3a5417b1-527f-493e-a6c1-1b4014e218ba"
+    }
+  ]
 }

@@ -422,5 +422,67 @@
       "type": "artist",
       "name": "Lior Perlmutter"
     }
+  ],
+  "similar_artists": [
+    {
+      "slug": "artist:hallucinogen",
+      "type": "artist",
+      "name": "Hallucinogen",
+      "mbid": "37186f53-8d72-44e6-81e6-7dfd18223747"
+    },
+    {
+      "slug": "artist:armin-van-buuren",
+      "type": "artist",
+      "name": "Armin van Buuren",
+      "mbid": "477b8c0c-c5fc-4ad2-b5b2-191f0bf2a9df"
+    },
+    {
+      "slug": "artist:astrix",
+      "type": "artist",
+      "name": "Astrix",
+      "mbid": "13875f81-5bfc-4939-a6cc-296c3f8d0fa5"
+    },
+    {
+      "slug": "artist:jam-and-spoon",
+      "type": "artist",
+      "name": "Jam & Spoon",
+      "mbid": "a15988bf-2d7d-4576-9405-2352873bc5a4"
+    },
+    {
+      "slug": "artist:kai-tracid",
+      "type": "artist",
+      "name": "Kai Tracid",
+      "mbid": "6546b116-81c8-4783-9219-19f6e8f3c020"
+    },
+    {
+      "slug": "artist:mijk-van-dijk",
+      "type": "artist",
+      "name": "Mijk van Dijk",
+      "mbid": "4853b4f9-bcd6-4663-86bd-36d1270c6a3b"
+    },
+    {
+      "slug": "artist:paul-oakenfold",
+      "type": "artist",
+      "name": "Paul Oakenfold",
+      "mbid": "7bf1f441-ccf1-4258-9797-07c8d16eb44c"
+    },
+    {
+      "slug": "artist:paul-van-dyk",
+      "type": "artist",
+      "name": "Paul van Dyk",
+      "mbid": "092ca127-2e07-4cbd-9cba-e412b4ddddd9"
+    },
+    {
+      "slug": "artist:sasha",
+      "type": "artist",
+      "name": "Sasha",
+      "mbid": "68be8273-cb12-4053-964d-157b7e5cf265"
+    },
+    {
+      "slug": "artist:sven-vath",
+      "type": "artist",
+      "name": "Sven Väth",
+      "mbid": "14008378-5900-4370-831e-3d17f9749caf"
+    }
   ]
 }

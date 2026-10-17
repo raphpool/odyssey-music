@@ -129,5 +129,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:elvis-presley",
+      "type": "artist",
+      "name": "Elvis Presley",
+      "mbid": "01809552-4f87-45b0-afff-2c6f0730a3be"
+    },
+    {
+      "slug": "artist:chuck-berry",
+      "type": "artist",
+      "name": "Chuck Berry",
+      "mbid": "592a3b6d-c42b-4567-99c9-ecf63bd66499"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:jerry-lee-lewis",
+      "type": "artist",
+      "name": "Jerry Lee Lewis",
+      "mbid": "b59ac58d-036e-4bba-8112-c32a34c4575b"
+    },
+    {
+      "slug": "artist:buddy-holly",
+      "type": "artist",
+      "name": "Buddy Holly",
+      "mbid": "d352f5dd-3023-4565-a7bb-52396bf8821d"
+    },
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones",
+      "mbid": "b071f9fa-14b0-4217-8e97-eb41da73f598"
+    },
+    {
+      "slug": "artist:fats-domino",
+      "type": "artist",
+      "name": "Fats Domino",
+      "mbid": "e787de5d-49e2-4b1f-9bde-1fd3a671b971"
+    },
+    {
+      "slug": "artist:eddie-cochran",
+      "type": "artist",
+      "name": "Eddie Cochran",
+      "mbid": "17995d1c-5b3c-4ee9-98f5-105ee3b4ada1"
+    },
+    {
+      "slug": "artist:ray-charles",
+      "type": "artist",
+      "name": "Ray Charles",
+      "mbid": "2ce02909-598b-44ef-a456-151ba0a3bd70"
+    },
+    {
+      "slug": "artist:johnny-cash",
+      "type": "artist",
+      "name": "Johnny Cash",
+      "mbid": "d43d12a1-2dc9-4257-a2fd-0a3bb1081b86"
+    }
+  ]
 }

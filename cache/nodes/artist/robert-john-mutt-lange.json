@@ -77,5 +77,48 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:dallas-smith",
+      "type": "artist",
+      "name": "Dallas Smith",
+      "mbid": "933de17e-4f37-45a4-bad6-56ad20c21b87"
+    },
+    {
+      "slug": "artist:deep-purple",
+      "type": "artist",
+      "name": "Deep Purple",
+      "mbid": "79491354-3d83-40e3-9d8e-7592d58d790a"
+    },
+    {
+      "slug": "artist:guns-n-roses",
+      "type": "artist",
+      "name": "Guns N' Roses",
+      "mbid": "eeb1195b-f213-4ce1-b28c-8565211f8e43"
+    },
+    {
+      "slug": "artist:jimi-hendrix",
+      "type": "artist",
+      "name": "Jimi Hendrix",
+      "mbid": "06fb1c8b-566e-4cb2-985b-b467c90781d4"
+    },
+    {
+      "slug": "artist:led-zeppelin",
+      "type": "artist",
+      "name": "Led Zeppelin",
+      "mbid": "678d88b2-87b0-403b-b63d-5da7465aecc3"
+    },
+    {
+      "slug": "artist:tenacious-d",
+      "type": "artist",
+      "name": "Tenacious D",
+      "mbid": "148ddea2-6839-4354-8e2c-5dfadf136b7f"
+    },
+    {
+      "slug": "artist:the-jimi-hendrix-experience",
+      "type": "artist",
+      "name": "The Jimi Hendrix Experience",
+      "mbid": "33b3c323-77c2-417c-a5b4-af7e6a111cc9"
+    }
+  ]
 }

@@ -87,5 +87,59 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:bjork",
+      "type": "artist",
+      "name": "Björk",
+      "mbid": "87c5dedd-371d-4a53-9f7f-80522fb7f3cb"
+    },
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars",
+      "mbid": "4d4f5d92-0589-42fa-bc0e-1bd73e17a2ce"
+    },
+    {
+      "slug": "artist:ryuichi-sakamoto",
+      "type": "artist",
+      "name": "Ryuichi Sakamoto",
+      "mbid": "a7f7df4a-77d8-4f12-8acd-5c60c93f4de8"
+    },
+    {
+      "slug": "artist:grace-jones",
+      "type": "artist",
+      "name": "Grace Jones"
+    },
+    {
+      "slug": "artist:james-blake",
+      "type": "artist",
+      "name": "James Blake",
+      "mbid": "8dc08b1f-e393-4f85-a5dd-300f7693a8b8"
+    },
+    {
+      "slug": "artist:kate-bush",
+      "type": "artist",
+      "name": "Kate Bush",
+      "mbid": "4b585938-f271-45e2-b19a-91c634b5e396"
+    },
+    {
+      "slug": "artist:mary-hansen",
+      "type": "artist",
+      "name": "Mary Hansen",
+      "mbid": "5488ad16-f1df-48af-9835-36fde3fc7c53"
+    },
+    {
+      "slug": "artist:phil-manzanera",
+      "type": "artist",
+      "name": "Phil Manzanera",
+      "mbid": "0d2cf864-5e99-472e-845f-5d1579979eee"
+    },
+    {
+      "slug": "artist:the-residents",
+      "type": "artist",
+      "name": "The Residents",
+      "mbid": "8c9b336e-acc8-4e20-9195-6ed0634da9fc"
+    }
+  ]
 }

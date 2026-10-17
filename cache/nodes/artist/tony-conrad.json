@@ -70,5 +70,12 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:gastr-del-sol",
+      "type": "artist",
+      "name": "Gastr del Sol",
+      "mbid": "8f54d90b-f322-4e5d-a0fd-bdc960f2d20f"
+    }
+  ]
 }

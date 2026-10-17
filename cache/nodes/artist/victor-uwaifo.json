@@ -101,5 +101,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-funkees",
+      "type": "artist",
+      "name": "The Funkees",
+      "mbid": "5bdc8759-a592-4202-a48c-691d4bec5c6d"
+    },
+    {
+      "slug": "artist:ebo-taylor",
+      "type": "artist",
+      "name": "Ebo Taylor",
+      "mbid": "8b034085-b06d-4c42-9be3-d709be169d79"
+    },
+    {
+      "slug": "artist:blo",
+      "type": "artist",
+      "name": "BLO",
+      "mbid": "2b90d4c2-34f6-4e65-bcf3-917b18a88c57"
+    },
+    {
+      "slug": "artist:t-p-orchestre-poly-rythmo",
+      "type": "artist",
+      "name": "T.P. Orchestre Poly‐Rythmo",
+      "mbid": "6e2e4f60-1a79-41fc-892e-47d61edf4569"
+    },
+    {
+      "slug": "artist:e-t-mensah",
+      "type": "artist",
+      "name": "E.T. Mensah",
+      "mbid": "23c8fdc8-e593-48df-87f4-df448a85ba43"
+    },
+    {
+      "slug": "artist:tony-allen",
+      "type": "artist",
+      "name": "Tony Allen",
+      "mbid": "ea524cc6-191a-4c05-ab88-3bb5c0880ca5"
+    },
+    {
+      "slug": "artist:monomono",
+      "type": "artist",
+      "name": "Monomono",
+      "mbid": "cae5f279-e420-4f62-99a4-6849f2078862"
+    },
+    {
+      "slug": "artist:victor-olaiya",
+      "type": "artist",
+      "name": "Victor Olaiya",
+      "mbid": "8f310fab-e867-4398-9e8a-55fb76051b06"
+    },
+    {
+      "slug": "artist:tunji-oyelana",
+      "type": "artist",
+      "name": "Tunji Oyelana",
+      "mbid": "5c9ff31a-bf1c-4386-9777-ee96a6ad9c30"
+    },
+    {
+      "slug": "artist:colomach",
+      "type": "artist",
+      "name": "Colomach",
+      "mbid": "2ceb7beb-b2df-43d5-8a6d-a459960e50b6"
+    }
+  ]
 }

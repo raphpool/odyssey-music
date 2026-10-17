@@ -170,5 +170,66 @@
       "name": "Yellow Magic Orchestra"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:max-richter",
+      "type": "artist",
+      "name": "Max Richter",
+      "mbid": "509f20b2-5df3-4aec-9bbc-002131fb3f99"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:hans-zimmer",
+      "type": "artist",
+      "name": "Hans Zimmer",
+      "mbid": "e6de1f3b-6484-491c-88dd-6d619f142abc"
+    },
+    {
+      "slug": "artist:johann-johannsson",
+      "type": "artist",
+      "name": "Jóhann Jóhannsson",
+      "mbid": "578c1e77-4756-44dd-86a9-b1e71a5b635e"
+    },
+    {
+      "slug": "artist:goldmund",
+      "type": "artist",
+      "name": "Goldmund",
+      "mbid": "6ea0f255-4920-44e4-89ff-586c27b219a0"
+    },
+    {
+      "slug": "artist:nils-frahm",
+      "type": "artist",
+      "name": "Nils Frahm",
+      "mbid": "d03a54bc-6e07-4c04-a8d4-7fbf2bd07a01"
+    },
+    {
+      "slug": "artist:thomas-newman",
+      "type": "artist",
+      "name": "Thomas Newman",
+      "mbid": "348f3a5f-5112-4d72-b33b-11c60b4f9af2"
+    },
+    {
+      "slug": "artist:philip-glass",
+      "type": "artist",
+      "name": "Philip Glass",
+      "mbid": "5ae54dee-4dba-49c0-802a-a3b3b3adfe9b"
+    },
+    {
+      "slug": "artist:alexandre-desplat",
+      "type": "artist",
+      "name": "Alexandre Desplat",
+      "mbid": "391846f7-f09f-470c-b188-c16b3a2022e4"
+    },
+    {
+      "slug": "artist:ludovico-einaudi",
+      "type": "artist",
+      "name": "Ludovico Einaudi",
+      "mbid": "fa34b363-79df-434f-a5b8-be4e6898543f"
+    }
+  ]
 }

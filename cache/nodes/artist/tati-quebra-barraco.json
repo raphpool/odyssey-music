@@ -101,5 +101,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:gaiola-das-popozudas",
+      "type": "artist",
+      "name": "Gaiola das Popozudas",
+      "mbid": "67d708a8-8de6-41d2-963f-112366af685c"
+    },
+    {
+      "slug": "artist:bonde-faz-gostoso",
+      "type": "artist",
+      "name": "Bonde Faz Gostoso",
+      "mbid": "a7d515ce-9c02-4592-812c-b96959ca2430"
+    },
+    {
+      "slug": "artist:spice-girls",
+      "type": "artist",
+      "name": "Spice Girls",
+      "mbid": "bf0caafc-2b20-4e07-ab85-87e14ff430ce"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    },
+    {
+      "slug": "artist:xerife-do-funk",
+      "type": "artist",
+      "name": "Xerife do Funk",
+      "mbid": "1af73355-bb29-4e4c-ae02-5d7344c0bb6a"
+    },
+    {
+      "slug": "artist:raffa",
+      "type": "artist",
+      "name": "Raffa",
+      "mbid": "a699996a-50e2-4124-97d8-6e0615b3d799"
+    },
+    {
+      "slug": "artist:bonde-das-bad-girls",
+      "type": "artist",
+      "name": "Bonde das Bad Girls",
+      "mbid": "74cb2d64-d668-44ff-acc1-2077681746dc"
+    },
+    {
+      "slug": "artist:rihanna",
+      "type": "artist",
+      "name": "Rihanna",
+      "mbid": "73e5e69d-3554-40d8-8516-00cb38737a1c"
+    },
+    {
+      "slug": "artist:amilcka-e-chocolate",
+      "type": "artist",
+      "name": "Amilcka e Chocolate",
+      "mbid": "15182245-c8ff-436e-987c-c753de6ea423"
+    },
+    {
+      "slug": "artist:mc-carol",
+      "type": "artist",
+      "name": "MC Carol",
+      "mbid": "bb7fbfc2-7e7e-4a83-84b4-44afeb76f365"
+    }
+  ]
 }

@@ -114,5 +114,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:uncle-waffles",
+      "type": "artist",
+      "name": "Uncle Waffles",
+      "mbid": "aec7779a-aa40-4b6e-8764-bd64b0500caf"
+    },
+    {
+      "slug": "artist:khuli-chana",
+      "type": "artist",
+      "name": "Khuli Chana",
+      "mbid": "9335fbe8-fab3-4e3e-94b6-f3c306869f8a"
+    },
+    {
+      "slug": "artist:towdee-mac",
+      "type": "artist",
+      "name": "Towdee Mac",
+      "mbid": "77196abd-5c7e-494f-aaca-1014989aca7d"
+    },
+    {
+      "slug": "artist:a-ap-rocky",
+      "type": "artist",
+      "name": "A$AP Rocky",
+      "mbid": "25b7b584-d952-4662-a8b9-dd8cdfbfeb64"
+    },
+    {
+      "slug": "artist:bell-biv-devoe",
+      "type": "artist",
+      "name": "Bell Biv DeVoe",
+      "mbid": "9b16908a-a78c-45a7-8366-d2a41967f745"
+    },
+    {
+      "slug": "artist:big-hawk",
+      "type": "artist",
+      "name": "Big Hawk",
+      "mbid": "1e8b3e4f-83c3-4b30-afa0-220363a7df5a"
+    },
+    {
+      "slug": "artist:booba",
+      "type": "artist",
+      "name": "Booba",
+      "mbid": "785c0e9c-89f6-4bf4-8296-443a46632d62"
+    },
+    {
+      "slug": "artist:central-cee",
+      "type": "artist",
+      "name": "Central Cee",
+      "mbid": "b0337af1-8d93-4671-b6c9-ba306bf942bf"
+    },
+    {
+      "slug": "artist:chief-keef",
+      "type": "artist",
+      "name": "Chief Keef",
+      "mbid": "9118f524-be76-4eaf-875c-ccf15e2a2ad6"
+    },
+    {
+      "slug": "artist:dj-mehdi",
+      "type": "artist",
+      "name": "DJ Mehdi",
+      "mbid": "66ad8456-1d33-4d7d-b8c3-a8f1a3b1e74f"
+    }
+  ]
 }

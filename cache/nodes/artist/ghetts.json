@@ -91,5 +91,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:skepta",
+      "type": "artist",
+      "name": "Skepta",
+      "mbid": "38474d18-9204-4f60-a137-1fcc6750b869"
+    },
+    {
+      "slug": "artist:little-simz",
+      "type": "artist",
+      "name": "Little Simz",
+      "mbid": "3cdb40fe-a63e-4bb9-b40d-17cda5f50979"
+    },
+    {
+      "slug": "artist:ed-sheeran",
+      "type": "artist",
+      "name": "Ed Sheeran",
+      "mbid": "b8a7c51f-362c-4dcb-a259-bc6e0095f0a6"
+    },
+    {
+      "slug": "artist:giggs",
+      "type": "artist",
+      "name": "Giggs",
+      "mbid": "bb7dd5d7-95e6-46a0-9692-cb99134995b6"
+    },
+    {
+      "slug": "artist:wiley",
+      "type": "artist",
+      "name": "Wiley",
+      "mbid": "d0f61299-9caa-4e6b-8b10-2839de120b27"
+    },
+    {
+      "slug": "artist:jme",
+      "type": "artist",
+      "name": "Jme",
+      "mbid": "57879ca6-44aa-4b75-9a97-b801f57a1331"
+    },
+    {
+      "slug": "artist:kano",
+      "type": "artist",
+      "name": "Kano",
+      "mbid": "2bf3971e-8595-4bd2-aace-8a71c42afb66"
+    },
+    {
+      "slug": "artist:stormzy",
+      "type": "artist",
+      "name": "Stormzy",
+      "mbid": "67fd5116-7a49-4abf-a34f-b08774128a7a"
+    },
+    {
+      "slug": "artist:devlin",
+      "type": "artist",
+      "name": "Devlin",
+      "mbid": "a2006708-8bc2-41bc-a9e9-72d14d7ce850"
+    },
+    {
+      "slug": "artist:the-qemists",
+      "type": "artist",
+      "name": "The Qemists",
+      "mbid": "eae38719-96b6-4aa5-8303-5bb08f953c86"
+    }
+  ]
 }

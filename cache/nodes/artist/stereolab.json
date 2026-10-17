@@ -153,5 +153,66 @@
       "name": "Mary Hansen"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:yo-la-tengo",
+      "type": "artist",
+      "name": "Yo La Tengo",
+      "mbid": "3f542031-b054-454d-b57b-812fa2a81b11"
+    },
+    {
+      "slug": "artist:sonic-youth",
+      "type": "artist",
+      "name": "Sonic Youth",
+      "mbid": "5cbef01b-cc35-4f52-af7b-d0df0c4f61b9"
+    },
+    {
+      "slug": "artist:broadcast",
+      "type": "artist",
+      "name": "Broadcast",
+      "mbid": "aaae25bf-c794-45d7-bab7-cdc7c655bfa6"
+    },
+    {
+      "slug": "artist:pavement",
+      "type": "artist",
+      "name": "Pavement",
+      "mbid": "36bfa85f-737b-41db-a8fc-b8825850ffc3"
+    },
+    {
+      "slug": "artist:my-bloody-valentine",
+      "type": "artist",
+      "name": "My Bloody Valentine",
+      "mbid": "8ca01f46-53ac-4af2-8516-55a909c0905e"
+    },
+    {
+      "slug": "artist:cocteau-twins",
+      "type": "artist",
+      "name": "Cocteau Twins",
+      "mbid": "000fc734-b7e1-4a01-92d1-f544261b43f5"
+    },
+    {
+      "slug": "artist:pixies",
+      "type": "artist",
+      "name": "Pixies",
+      "mbid": "b6b2bb8d-54a9-491f-9607-7b546023b433"
+    },
+    {
+      "slug": "artist:belle-and-sebastian",
+      "type": "artist",
+      "name": "Belle and Sebastian",
+      "mbid": "e5c7b94f-e264-473c-bb0f-37c85d4d5c70"
+    },
+    {
+      "slug": "artist:deerhunter",
+      "type": "artist",
+      "name": "Deerhunter",
+      "mbid": "4f416ed7-dda2-45de-a6f1-b986e861cf4b"
+    },
+    {
+      "slug": "artist:slowdive",
+      "type": "artist",
+      "name": "Slowdive",
+      "mbid": "a16371b9-7d36-497a-a9d4-42b0a0440c5e"
+    }
+  ]
 }

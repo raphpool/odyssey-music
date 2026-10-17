@@ -88,5 +88,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:britney-spears",
+      "type": "artist",
+      "name": "Britney Spears",
+      "mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:depeche-mode",
+      "type": "artist",
+      "name": "Depeche Mode",
+      "mbid": "8538e728-ca0b-4321-b7e5-cff6565dd4c0"
+    },
+    {
+      "slug": "artist:new-order",
+      "type": "artist",
+      "name": "New Order",
+      "mbid": "f1106b17-dcbb-45f6-b938-199ccfab50cc"
+    },
+    {
+      "slug": "artist:donna-summer",
+      "type": "artist",
+      "name": "Donna Summer",
+      "mbid": "b60527cc-54f3-4bbe-a01b-dcf34c95ae14"
+    },
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk",
+      "mbid": "5700dcd4-c139-4f31-aa3e-6382b9af9032"
+    },
+    {
+      "slug": "artist:the-human-league",
+      "type": "artist",
+      "name": "The Human League",
+      "mbid": "7adaabfb-acfb-47bc-8c7c-59471c2f0db8"
+    },
+    {
+      "slug": "artist:orchestral-manoeuvres-in-the-dark",
+      "type": "artist",
+      "name": "Orchestral Manoeuvres in the Dark",
+      "mbid": "6d072aa8-c851-49c5-92f9-cbca05f4bed9"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    }
+  ]
 }

@@ -86,5 +86,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:pixies",
+      "type": "artist",
+      "name": "Pixies",
+      "mbid": "b6b2bb8d-54a9-491f-9607-7b546023b433"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:sonic-youth",
+      "type": "artist",
+      "name": "Sonic Youth",
+      "mbid": "5cbef01b-cc35-4f52-af7b-d0df0c4f61b9"
+    },
+    {
+      "slug": "artist:future-of-the-left",
+      "type": "artist",
+      "name": "Future of the Left",
+      "mbid": "82c5d269-41b3-498b-8596-d960c7556268"
+    },
+    {
+      "slug": "artist:modest-mouse",
+      "type": "artist",
+      "name": "Modest Mouse",
+      "mbid": "a96ac800-bfcb-412a-8a63-0a98df600700"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:nirvana",
+      "type": "artist",
+      "name": "Nirvana",
+      "mbid": "5b11f4ce-a62d-471e-81fc-a69a8278c7da"
+    },
+    {
+      "slug": "artist:queens-of-the-stone-age",
+      "type": "artist",
+      "name": "Queens of the Stone Age",
+      "mbid": "7dc8f5bd-9d0b-4087-9f73-dc164950bbd8"
+    },
+    {
+      "slug": "artist:pavement",
+      "type": "artist",
+      "name": "Pavement",
+      "mbid": "36bfa85f-737b-41db-a8fc-b8825850ffc3"
+    },
+    {
+      "slug": "artist:the-jesus-lizard",
+      "type": "artist",
+      "name": "The Jesus Lizard",
+      "mbid": "dfebd6c0-dae7-4cc8-a8e9-0dbaa382209f"
+    }
+  ]
 }

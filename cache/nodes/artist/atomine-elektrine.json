@@ -92,5 +92,66 @@
       "name": "Peter Andersson"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:desiderii-marginis",
+      "type": "artist",
+      "name": "Desiderii Marginis",
+      "mbid": "282ca70f-fe7b-4e43-84ab-1f52007947d5"
+    },
+    {
+      "slug": "artist:arcana",
+      "type": "artist",
+      "name": "Arcana",
+      "mbid": "93c1606c-28ef-4955-ae75-331a0975608d"
+    },
+    {
+      "slug": "artist:deutsch-nepal",
+      "type": "artist",
+      "name": "Deutsch Nepal",
+      "mbid": "5fcdf74f-f615-407b-98c1-da168c6030ce"
+    },
+    {
+      "slug": "artist:in-slaughter-natives",
+      "type": "artist",
+      "name": "In Slaughter Natives",
+      "mbid": "d4a92b25-9a99-42b5-93b4-ad4ae49323a5"
+    },
+    {
+      "slug": "artist:atrium-carceri",
+      "type": "artist",
+      "name": "Atrium Carceri",
+      "mbid": "7ef4295f-90a1-432d-85a5-264d4eb6615a"
+    },
+    {
+      "slug": "artist:brighter-death-now",
+      "type": "artist",
+      "name": "Brighter Death Now",
+      "mbid": "60bf0dce-6daa-4ef0-b9b7-0100a185f42a"
+    },
+    {
+      "slug": "artist:consono",
+      "type": "artist",
+      "name": "ConSono",
+      "mbid": "b88b2f45-c217-46a6-b6ad-2943f5d4e472"
+    },
+    {
+      "slug": "artist:mz-412",
+      "type": "artist",
+      "name": "MZ.412",
+      "mbid": "7e990fa7-ee9e-4002-9822-d2c615f2d091"
+    },
+    {
+      "slug": "artist:ordo-equilibrio",
+      "type": "artist",
+      "name": "Ordo Equilibrio",
+      "mbid": "a73cdd8c-ed17-4f50-ab74-b462fb6d1115"
+    },
+    {
+      "slug": "artist:morthound",
+      "type": "artist",
+      "name": "Morthound",
+      "mbid": "f83d147d-694f-4d90-9b15-780cc0ae6d94"
+    }
+  ]
 }

@@ -117,5 +117,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:terranova",
+      "type": "artist",
+      "name": "Terranova",
+      "mbid": "00950dec-8f3a-4a17-9717-e7872a954d8b"
+    },
+    {
+      "slug": "artist:nicolette-krebitz",
+      "type": "artist",
+      "name": "Nicolette Krebitz",
+      "mbid": "5b8d9375-259e-4f3d-8691-3049ec75ee49"
+    },
+    {
+      "slug": "artist:can",
+      "type": "artist",
+      "name": "Can",
+      "mbid": "13501c7d-d181-45ba-af52-5f101d8516a0"
+    },
+    {
+      "slug": "artist:amon-duul-ii",
+      "type": "artist",
+      "name": "Amon Düül II",
+      "mbid": "9d78c6da-a415-4e1d-a55d-5e37b3bbc65d"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:popol-vuh",
+      "type": "artist",
+      "name": "Popol Vuh",
+      "mbid": "2f4bf325-2bbb-4d5f-8681-b0fef130bff0"
+    },
+    {
+      "slug": "artist:neu",
+      "type": "artist",
+      "name": "Neu!",
+      "mbid": "adec1fc3-83c1-48f7-9e49-8347ac6d40b0"
+    },
+    {
+      "slug": "artist:cath-coffey",
+      "type": "artist",
+      "name": "Cath Coffey",
+      "mbid": "68c631f4-5058-47d5-9809-38daf83d4c86"
+    },
+    {
+      "slug": "artist:cluster",
+      "type": "artist",
+      "name": "Cluster",
+      "mbid": "393ce5ee-4550-48e2-97f9-50a47a74bdc1"
+    },
+    {
+      "slug": "artist:harmonia",
+      "type": "artist",
+      "name": "Harmonia",
+      "mbid": "1aa7dcb0-9c9b-4609-a7a5-bdeee26e39e8"
+    }
+  ]
 }

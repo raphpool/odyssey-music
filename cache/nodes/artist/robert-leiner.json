@@ -86,5 +86,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:vibrasphere",
+      "type": "artist",
+      "name": "Vibrasphere",
+      "mbid": "b822008d-f2eb-46fe-8ec4-3ad7499a6062"
+    },
+    {
+      "slug": "artist:kris-kylven",
+      "type": "artist",
+      "name": "Kris Kylven",
+      "mbid": "bb9aa2d3-b3a3-464c-a0de-ef453ccda635"
+    },
+    {
+      "slug": "artist:healer",
+      "type": "artist",
+      "name": "Healer",
+      "mbid": "e17cb9c3-34b7-4dcb-b4a1-192b32062135"
+    },
+    {
+      "slug": "artist:matenda",
+      "type": "artist",
+      "name": "Matenda",
+      "mbid": "cc3b92d5-4ae1-421f-ab91-86ff172a2e30"
+    },
+    {
+      "slug": "artist:syb-sonic",
+      "type": "artist",
+      "name": "Syb-Sonic",
+      "mbid": "9b627b3a-4590-444e-8aad-6cebb68346d3"
+    },
+    {
+      "slug": "artist:stress-assassin",
+      "type": "artist",
+      "name": "Stress Assassin",
+      "mbid": "6bb0bfbd-7f80-40d4-9bb8-4a1d6d0f4907"
+    },
+    {
+      "slug": "artist:states-of-mind",
+      "type": "artist",
+      "name": "States of Mind",
+      "mbid": "ea4e7502-d44e-44b3-9f2f-68cb45fadcf9"
+    },
+    {
+      "slug": "artist:12-moons",
+      "type": "artist",
+      "name": "12 Moons",
+      "mbid": "87693d8d-5f0d-45ad-9662-169447facfc0"
+    },
+    {
+      "slug": "artist:slot-machine",
+      "type": "artist",
+      "name": "Slot Machine",
+      "mbid": "ccb95384-a43d-4e7c-93f9-cae896143d56"
+    },
+    {
+      "slug": "artist:digital-mystery-tour",
+      "type": "artist",
+      "name": "Digital Mystery Tour",
+      "mbid": "9b893e4b-333b-4eb5-a647-1da1248af032"
+    }
+  ]
 }

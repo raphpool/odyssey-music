@@ -119,5 +119,66 @@
       "name": "113"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:mr-oizo",
+      "type": "artist",
+      "name": "Mr. Oizo",
+      "mbid": "a4a3048f-3968-4848-9f53-94e3d4f88b53"
+    },
+    {
+      "slug": "artist:sebastian",
+      "type": "artist",
+      "name": "SebastiAn",
+      "mbid": "4072139a-699c-4011-9bcc-baae6f959390"
+    },
+    {
+      "slug": "artist:busy-p",
+      "type": "artist",
+      "name": "Busy P",
+      "mbid": "03ba9e7e-0452-4f39-bd3d-c29671155122"
+    },
+    {
+      "slug": "artist:digitalism",
+      "type": "artist",
+      "name": "Digitalism",
+      "mbid": "7b52603c-a84c-4a76-8dc8-899bb4dd9fa7"
+    },
+    {
+      "slug": "artist:mr-flash",
+      "type": "artist",
+      "name": "Mr. Flash",
+      "mbid": "792f877d-8c68-45db-871a-085643604b49"
+    },
+    {
+      "slug": "artist:kavinsky",
+      "type": "artist",
+      "name": "Kavinsky",
+      "mbid": "eb6de5f6-98f8-4b5a-bfdc-f87fa4936baa"
+    },
+    {
+      "slug": "artist:feadz",
+      "type": "artist",
+      "name": "Feadz",
+      "mbid": "a12f80e7-3926-44ac-b843-f4c6663549c9"
+    },
+    {
+      "slug": "artist:vitalic",
+      "type": "artist",
+      "name": "Vitalic",
+      "mbid": "1f064e2d-aa55-4631-8f62-e2c14bbe1f4e"
+    },
+    {
+      "slug": "artist:krazy-baldhead",
+      "type": "artist",
+      "name": "Krazy Baldhead",
+      "mbid": "e5892cbb-6673-42ce-b512-f244100ed024"
+    },
+    {
+      "slug": "artist:boys-noize",
+      "type": "artist",
+      "name": "Boys Noize",
+      "mbid": "d2f4a968-1f6e-4a4a-9376-ee2b2a50c87a"
+    }
+  ]
 }

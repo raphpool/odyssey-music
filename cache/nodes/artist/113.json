@@ -87,5 +87,67 @@
       "type": "artist",
       "name": "Rim'K"
     }
+  ],
+  "similar_artists": [
+    {
+      "slug": "artist:camomile-dawn",
+      "type": "artist",
+      "name": "Camomile Dawn",
+      "mbid": "131aface-d868-41a3-9942-c13978e3b1c5"
+    },
+    {
+      "slug": "artist:killer-kau",
+      "type": "artist",
+      "name": "Killer Kau",
+      "mbid": "f6b3332c-2835-48f1-94fb-a09649e0a4ef"
+    },
+    {
+      "slug": "artist:purrple-cat",
+      "type": "artist",
+      "name": "Purrple Cat",
+      "mbid": "553d1b5f-7cb6-4df7-8a69-e78b4bc4f7a5"
+    },
+    {
+      "slug": "artist:towdee-mac",
+      "type": "artist",
+      "name": "Towdee Mac",
+      "mbid": "77196abd-5c7e-494f-aaca-1014989aca7d"
+    },
+    {
+      "slug": "artist:devo",
+      "type": "artist",
+      "name": "Devo",
+      "mbid": "d2db1078-c170-4e22-b261-14f3ad60a690"
+    },
+    {
+      "slug": "artist:gary-numan",
+      "type": "artist",
+      "name": "Gary Numan",
+      "mbid": "6cb79cb2-9087-44d4-828b-5c6fdff2c957"
+    },
+    {
+      "slug": "artist:orange-juice",
+      "type": "artist",
+      "name": "Orange Juice",
+      "mbid": "e598d30e-4ce1-402e-94a7-6f44779da6b7"
+    },
+    {
+      "slug": "artist:television-personalities",
+      "type": "artist",
+      "name": "Television Personalities",
+      "mbid": "62c2cd94-30a8-43ed-9d06-8f689111c69c"
+    },
+    {
+      "slug": "artist:u2",
+      "type": "artist",
+      "name": "U2",
+      "mbid": "a3cb23fc-acd3-4ce0-8f36-1e5aa6a18432"
+    },
+    {
+      "slug": "artist:von-sudenfed",
+      "type": "artist",
+      "name": "Von Südenfed",
+      "mbid": "844fb875-9540-4600-b305-d00f17f60fa6"
+    }
   ]
 }

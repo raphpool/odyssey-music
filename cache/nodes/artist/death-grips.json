@@ -225,5 +225,66 @@
       "name": "Andy Morin"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:kendrick-lamar",
+      "type": "artist",
+      "name": "Kendrick Lamar",
+      "mbid": "381086ea-f511-4aba-bdf9-71c753dc5077"
+    },
+    {
+      "slug": "artist:ye",
+      "type": "artist",
+      "name": "Ye",
+      "mbid": "164f0d73-1234-4e2c-8743-d77bf2191051"
+    },
+    {
+      "slug": "artist:mexican-girl",
+      "type": "artist",
+      "name": "Mexican Girl",
+      "mbid": "e9d2c0db-4845-4885-8c66-82e65b605cab"
+    },
+    {
+      "slug": "artist:danny-brown",
+      "type": "artist",
+      "name": "Danny Brown",
+      "mbid": "960afc67-9c21-46dd-9c7f-ff2b509e3150"
+    },
+    {
+      "slug": "artist:tyler-the-creator",
+      "type": "artist",
+      "name": "Tyler, The Creator",
+      "mbid": "f6beac20-5dfe-4d1f-ae02-0b0a740aafd6"
+    },
+    {
+      "slug": "artist:madvillain",
+      "type": "artist",
+      "name": "Madvillain",
+      "mbid": "4e024037-14b7-4aea-99ad-c6ace63b9620"
+    },
+    {
+      "slug": "artist:run-the-jewels",
+      "type": "artist",
+      "name": "Run the Jewels",
+      "mbid": "a80c5dc5-b12e-4667-9f5a-b568961f3839"
+    },
+    {
+      "slug": "artist:gorillaz",
+      "type": "artist",
+      "name": "Gorillaz",
+      "mbid": "e21857d5-3256-4547-afb3-4b6ded592596"
+    },
+    {
+      "slug": "artist:mf-doom",
+      "type": "artist",
+      "name": "MF DOOM",
+      "mbid": "188711ed-c99b-439c-844a-ca831f63a727"
+    },
+    {
+      "slug": "artist:andrew-adamson",
+      "type": "artist",
+      "name": "Andrew Adamson",
+      "mbid": "2a8c4101-a45e-49f3-be43-91573b39b851"
+    }
+  ]
 }

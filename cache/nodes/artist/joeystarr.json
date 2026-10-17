@@ -87,5 +87,66 @@
       "name": "Suprême NTM"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:iam",
+      "type": "artist",
+      "name": "IAM",
+      "mbid": "7aa4a16e-9d5a-41d3-968e-fae1a2c84d05"
+    },
+    {
+      "slug": "artist:sniper",
+      "type": "artist",
+      "name": "Sniper",
+      "mbid": "88ad74d6-2dde-496f-86f3-722ff9274ea9"
+    },
+    {
+      "slug": "artist:bigflo-and-oli",
+      "type": "artist",
+      "name": "Bigflo & Oli",
+      "mbid": "f4824366-d97b-4929-a970-a94845306f4a"
+    },
+    {
+      "slug": "artist:dadoo",
+      "type": "artist",
+      "name": "Dadoo",
+      "mbid": "212084fe-50b8-4e0c-8dea-cb63ac1d810f"
+    },
+    {
+      "slug": "artist:fonky-family",
+      "type": "artist",
+      "name": "Fonky Family",
+      "mbid": "dfbc2d9e-d1c0-442b-970f-af28bb597537"
+    },
+    {
+      "slug": "artist:booba",
+      "type": "artist",
+      "name": "Booba",
+      "mbid": "785c0e9c-89f6-4bf4-8296-443a46632d62"
+    },
+    {
+      "slug": "artist:stupeflip",
+      "type": "artist",
+      "name": "Stupeflip",
+      "mbid": "754abc13-d242-4585-8276-2c8c45aa37cf"
+    },
+    {
+      "slug": "artist:disiz",
+      "type": "artist",
+      "name": "Disiz",
+      "mbid": "daba3096-88f2-4322-9b00-10938b0220b8"
+    },
+    {
+      "slug": "artist:noir-desir",
+      "type": "artist",
+      "name": "Noir Désir",
+      "mbid": "e6358374-5eea-4205-be22-382ed6df493c"
+    },
+    {
+      "slug": "artist:oxmo-puccino",
+      "type": "artist",
+      "name": "Oxmo Puccino",
+      "mbid": "faf5d956-ba11-4e01-9634-2f1c9ec92df5"
+    }
+  ]
 }

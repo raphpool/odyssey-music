@@ -154,5 +154,66 @@
       "name": "Patrick Adams"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-salsoul-orchestra",
+      "type": "artist",
+      "name": "The Salsoul Orchestra",
+      "mbid": "ad580d3e-3e21-414f-b131-ecdb379d1c1e"
+    },
+    {
+      "slug": "artist:first-choice",
+      "type": "artist",
+      "name": "First Choice",
+      "mbid": "bd1510da-7c76-4be3-a71e-9f5c71273176"
+    },
+    {
+      "slug": "artist:chic",
+      "type": "artist",
+      "name": "Chic",
+      "mbid": "a4ed036b-5f18-439c-b1e1-96d205bab255"
+    },
+    {
+      "slug": "artist:change",
+      "type": "artist",
+      "name": "Change",
+      "mbid": "9974d324-3d58-4f93-812b-41eb3ca75eed"
+    },
+    {
+      "slug": "artist:crown-heights-affair",
+      "type": "artist",
+      "name": "Crown Heights Affair",
+      "mbid": "a5755348-3a50-4c27-a577-6d09fd5b95c9"
+    },
+    {
+      "slug": "artist:d-train",
+      "type": "artist",
+      "name": "D‐Train",
+      "mbid": "1d0b2ed9-56a2-4792-a5a1-a47313fb24c4"
+    },
+    {
+      "slug": "artist:patrice-rushen",
+      "type": "artist",
+      "name": "Patrice Rushen",
+      "mbid": "a247b1b8-8f47-4568-9a89-fa16b4a2b77f"
+    },
+    {
+      "slug": "artist:aurra",
+      "type": "artist",
+      "name": "Aurra",
+      "mbid": "4ec7c9bb-9ddc-4e43-9a8c-5806e91740c1"
+    },
+    {
+      "slug": "artist:instant-funk",
+      "type": "artist",
+      "name": "Instant Funk",
+      "mbid": "1658b247-7a13-439f-911e-5791ba9df3d6"
+    },
+    {
+      "slug": "artist:sharon-redd",
+      "type": "artist",
+      "name": "Sharon Redd",
+      "mbid": "642489a8-a6b2-4bc9-8b41-6bf9613812ae"
+    }
+  ]
 }

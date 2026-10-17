@@ -84,5 +84,65 @@
       "name": "Monolake"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:andy-mellwig",
+      "type": "artist",
+      "name": "Andy Mellwig",
+      "mbid": "4c787fb7-b052-4d6c-9980-c5b1641458a5"
+    },
+    {
+      "slug": "artist:basic-channel",
+      "type": "artist",
+      "name": "Basic Channel",
+      "mbid": "d145a57e-7afb-4793-8cc4-2fad292374ef"
+    },
+    {
+      "slug": "artist:mark-ernestus",
+      "type": "artist",
+      "name": "Mark Ernestus",
+      "mbid": "6fb800e6-65db-4368-8472-b125e185f823"
+    },
+    {
+      "slug": "artist:vainqueur",
+      "type": "artist",
+      "name": "Vainqueur",
+      "mbid": "5041c9e5-9cac-4b8e-8559-cdda296ddb0a"
+    },
+    {
+      "slug": "artist:moritz-von-oswald",
+      "type": "artist",
+      "name": "Moritz von Oswald",
+      "mbid": "48c4ea31-fe9d-4bbf-8a1c-a2996abcfb9f"
+    },
+    {
+      "slug": "artist:pole",
+      "type": "artist",
+      "name": "Pole",
+      "mbid": "ad957b43-9dc0-42e1-940c-19b21ec77f3a"
+    },
+    {
+      "slug": "artist:wolfgang-voigt",
+      "type": "artist",
+      "name": "Wolfgang Voigt",
+      "mbid": "1cc6e6ad-2680-4399-a8f1-3dfd6f69e651"
+    },
+    {
+      "slug": "artist:deadbeat",
+      "type": "artist",
+      "name": "Deadbeat"
+    },
+    {
+      "slug": "artist:porter-ricks",
+      "type": "artist",
+      "name": "Porter Ricks",
+      "mbid": "f2c0d29a-9bef-469f-af6e-a9b5deb21308"
+    },
+    {
+      "slug": "artist:rhythm-and-sound",
+      "type": "artist",
+      "name": "Rhythm & Sound",
+      "mbid": "0bf220da-eb15-4bf2-9460-f640aaeda272"
+    }
+  ]
 }

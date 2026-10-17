@@ -365,5 +365,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:floating-points",
+      "type": "artist",
+      "name": "Floating Points",
+      "mbid": "69d9c5ba-7bba-4cb7-ab32-8ccc48ad4f97"
+    },
+    {
+      "slug": "artist:lone",
+      "type": "artist",
+      "name": "Lone",
+      "mbid": "cb8fc40c-bde5-4a84-94e4-ee1d4de385be"
+    },
+    {
+      "slug": "artist:ross-from-friends",
+      "type": "artist",
+      "name": "Ross From Friends",
+      "mbid": "8a562b21-af9e-4b6a-8c43-327cdf6713b0"
+    },
+    {
+      "slug": "artist:bicep",
+      "type": "artist",
+      "name": "Bicep",
+      "mbid": "10e8f0df-90f9-4957-aedd-c4e0d187e3a8"
+    },
+    {
+      "slug": "artist:rival-consoles",
+      "type": "artist",
+      "name": "Rival Consoles",
+      "mbid": "803f2853-7e3e-4dff-96a7-9f77b5f56de5"
+    },
+    {
+      "slug": "artist:jacques-greene",
+      "type": "artist",
+      "name": "Jacques Greene",
+      "mbid": "a64a323b-4df9-48b5-a277-4cfc3f30a34f"
+    },
+    {
+      "slug": "artist:romare",
+      "type": "artist",
+      "name": "Romare",
+      "mbid": "b014d579-b549-4b21-b90d-5264e0433988"
+    },
+    {
+      "slug": "artist:tycho",
+      "type": "artist",
+      "name": "Tycho",
+      "mbid": "cbef45a9-7acb-4325-94c9-70081ac8d1b8"
+    },
+    {
+      "slug": "artist:daphni",
+      "type": "artist",
+      "name": "Daphni",
+      "mbid": "859216c4-5d01-479b-b6c3-e20cc591a86a"
+    },
+    {
+      "slug": "artist:project-pablo",
+      "type": "artist",
+      "name": "Project Pablo",
+      "mbid": "3dbfe280-7498-4845-b69f-d010fb85d471"
+    }
+  ]
 }

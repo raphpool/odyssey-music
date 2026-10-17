@@ -80,5 +80,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:coldplay",
+      "type": "artist",
+      "name": "Coldplay",
+      "mbid": "cc197bad-dc9c-440d-a5b5-d52ba2e14234"
+    },
+    {
+      "slug": "artist:alicia-keys",
+      "type": "artist",
+      "name": "Alicia Keys",
+      "mbid": "8ef1df30-ae4f-4dbd-9351-1a32b208a01e"
+    },
+    {
+      "slug": "artist:p-nk",
+      "type": "artist",
+      "name": "P!nk",
+      "mbid": "f4d5cc07-3bc9-4836-9b15-88a08359bc63"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    },
+    {
+      "slug": "artist:ne-yo",
+      "type": "artist",
+      "name": "Ne‐Yo",
+      "mbid": "a4a01f5d-18e7-4571-8c3a-76ec0e24e2d7"
+    },
+    {
+      "slug": "artist:eminem",
+      "type": "artist",
+      "name": "Eminem",
+      "mbid": "b95ce3ff-3d05-4e87-9e01-c97b66af13d4"
+    },
+    {
+      "slug": "artist:linkin-park",
+      "type": "artist",
+      "name": "Linkin Park",
+      "mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419"
+    },
+    {
+      "slug": "artist:destiny-s-child",
+      "type": "artist",
+      "name": "Destiny’s Child",
+      "mbid": "a796b92e-c137-4895-9c89-10f900617a4f"
+    },
+    {
+      "slug": "artist:christina-aguilera",
+      "type": "artist",
+      "name": "Christina Aguilera",
+      "mbid": "b202beb7-99bd-47e7-8b72-195c8d72ebdd"
+    },
+    {
+      "slug": "artist:jennifer-lopez",
+      "type": "artist",
+      "name": "Jennifer Lopez",
+      "mbid": "f0602f55-1770-483d-89bd-4bae0d0ac086"
+    }
+  ]
 }

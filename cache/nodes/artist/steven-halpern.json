@@ -91,5 +91,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:deuter",
+      "type": "artist",
+      "name": "Deuter",
+      "mbid": "c4e7031f-a5f0-476a-b1f0-1f3e8c573f4b"
+    },
+    {
+      "slug": "artist:liquid-mind",
+      "type": "artist",
+      "name": "Liquid Mind",
+      "mbid": "af263abd-194b-4494-bfd8-3aab8d2fc00a"
+    },
+    {
+      "slug": "artist:dean-evenson",
+      "type": "artist",
+      "name": "Dean Evenson",
+      "mbid": "2b47310c-8ec1-4577-8356-b9bf655ac82a"
+    },
+    {
+      "slug": "artist:iasos",
+      "type": "artist",
+      "name": "Iasos",
+      "mbid": "c5556b56-c9a5-4429-b44c-4263e8409fdf"
+    },
+    {
+      "slug": "artist:michael-stearns",
+      "type": "artist",
+      "name": "Michael Stearns",
+      "mbid": "d85b8725-81eb-4ce0-81c3-daf5cf4cb7b7"
+    },
+    {
+      "slug": "artist:philip-aaberg",
+      "type": "artist",
+      "name": "Philip Aaberg",
+      "mbid": "086321ef-15b3-434a-a57b-9f0de3023161"
+    },
+    {
+      "slug": "artist:george-winston",
+      "type": "artist",
+      "name": "George Winston",
+      "mbid": "a6b93c3c-88bc-431c-a46c-155dee9371aa"
+    },
+    {
+      "slug": "artist:karunesh",
+      "type": "artist",
+      "name": "Karunesh",
+      "mbid": "bf35e4fb-d6d9-42aa-a60e-822960444c6e"
+    },
+    {
+      "slug": "artist:constance-demby",
+      "type": "artist",
+      "name": "Constance Demby",
+      "mbid": "ae7defd2-004f-4d98-a06b-251fd73d07c7"
+    },
+    {
+      "slug": "artist:rudy-adrian",
+      "type": "artist",
+      "name": "Rudy Adrian",
+      "mbid": "aae9b192-e3c5-4ce9-a6d6-6033fdd335f8"
+    }
+  ]
 }

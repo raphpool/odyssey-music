@@ -62,5 +62,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:phuture",
+      "type": "artist",
+      "name": "Phuture",
+      "mbid": "d4c75da5-45d7-49ef-abd6-babca3eb8d18"
+    },
+    {
+      "slug": "artist:ron-hardy",
+      "type": "artist",
+      "name": "Ron Hardy",
+      "mbid": "e4b49610-5a84-4fc9-9cfe-726da0514969"
+    },
+    {
+      "slug": "artist:jamie-principle",
+      "type": "artist",
+      "name": "Jamie Principle",
+      "mbid": "500df185-4a22-40a5-baf6-bdcabab5ed22"
+    },
+    {
+      "slug": "artist:dj-pierre",
+      "type": "artist",
+      "name": "DJ Pierre",
+      "mbid": "bc5d318a-096a-4bc3-8a2e-742905c0036b"
+    },
+    {
+      "slug": "artist:joe-smooth",
+      "type": "artist",
+      "name": "Joe Smooth",
+      "mbid": "348443bb-74fe-4459-8c19-3b72ad033d6c"
+    },
+    {
+      "slug": "artist:larry-heard",
+      "type": "artist",
+      "name": "Larry Heard",
+      "mbid": "4346875a-2bba-4566-8dc1-680c38ba44c6"
+    },
+    {
+      "slug": "artist:vince-lawrence",
+      "type": "artist",
+      "name": "Vince Lawrence",
+      "mbid": "a2afc4c2-5fce-4d4d-871e-a294c127b8c3"
+    },
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    },
+    {
+      "slug": "artist:chip-e",
+      "type": "artist",
+      "name": "Chip E.",
+      "mbid": "31b07129-85d8-4ed2-abd3-0794deedd686"
+    },
+    {
+      "slug": "artist:danny-rampling",
+      "type": "artist",
+      "name": "Danny Rampling",
+      "mbid": "77124f1c-1231-49fa-905e-564d0e0aa60b"
+    }
+  ]
 }

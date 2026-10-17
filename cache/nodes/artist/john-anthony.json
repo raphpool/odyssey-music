@@ -99,5 +99,65 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:van-der-graaf-generator",
+      "type": "artist",
+      "name": "Van der Graaf Generator",
+      "mbid": "b892f72d-05e2-4ff7-b863-3d5dec6331fd"
+    },
+    {
+      "slug": "artist:andy-mackay",
+      "type": "artist",
+      "name": "Andy Mackay",
+      "mbid": "2f82f693-9345-4ca4-aa87-9fb7e98d39c7"
+    },
+    {
+      "slug": "artist:cat-stevens",
+      "type": "artist",
+      "name": "Cat Stevens"
+    },
+    {
+      "slug": "artist:chuck-berry",
+      "type": "artist",
+      "name": "Chuck Berry",
+      "mbid": "592a3b6d-c42b-4567-99c9-ecf63bd66499"
+    },
+    {
+      "slug": "artist:donna-summer",
+      "type": "artist",
+      "name": "Donna Summer",
+      "mbid": "b60527cc-54f3-4bbe-a01b-dcf34c95ae14"
+    },
+    {
+      "slug": "artist:jose-padilla",
+      "type": "artist",
+      "name": "José Padilla",
+      "mbid": "3a238c56-3790-4a6a-89af-4aa0c71fa732"
+    },
+    {
+      "slug": "artist:kool-and-the-gang",
+      "type": "artist",
+      "name": "Kool and the Gang",
+      "mbid": "2469950a-f0ca-425a-bfbc-baf55ea3afde"
+    },
+    {
+      "slug": "artist:phil-manzanera",
+      "type": "artist",
+      "name": "Phil Manzanera",
+      "mbid": "0d2cf864-5e99-472e-845f-5d1579979eee"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
+    },
+    {
+      "slug": "artist:sex-pistols",
+      "type": "artist",
+      "name": "Sex Pistols",
+      "mbid": "e5db18cb-4b1f-496d-a308-548b611090d3"
+    }
+  ]
 }

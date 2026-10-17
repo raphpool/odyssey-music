@@ -75,5 +75,63 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:loefah",
+      "type": "artist",
+      "name": "Loefah",
+      "mbid": "35d4519c-e1b8-4131-810f-042bb2ec748f"
+    },
+    {
+      "slug": "artist:mala",
+      "type": "artist",
+      "name": "Mala"
+    },
+    {
+      "slug": "artist:skream",
+      "type": "artist",
+      "name": "Skream"
+    },
+    {
+      "slug": "artist:burial",
+      "type": "artist",
+      "name": "Burial"
+    },
+    {
+      "slug": "artist:caspa",
+      "type": "artist",
+      "name": "Caspa",
+      "mbid": "dc9b8085-fe1e-4b83-8d41-6dd8d295513c"
+    },
+    {
+      "slug": "artist:clubroot",
+      "type": "artist",
+      "name": "Clubroot",
+      "mbid": "09721ba6-8972-4862-b272-b69465265de5"
+    },
+    {
+      "slug": "artist:coki",
+      "type": "artist",
+      "name": "Coki",
+      "mbid": "a9bfea30-6c6b-418a-84d6-b92ce2d85b92"
+    },
+    {
+      "slug": "artist:digital-mystikz",
+      "type": "artist",
+      "name": "Digital Mystikz",
+      "mbid": "2c1583ab-3bfa-41b9-b849-4d4b5d891339"
+    },
+    {
+      "slug": "artist:flux-pavilion",
+      "type": "artist",
+      "name": "Flux Pavilion",
+      "mbid": "3ce513c5-bdd4-492c-a875-07e0f3e1993b"
+    },
+    {
+      "slug": "artist:horsepower-productions",
+      "type": "artist",
+      "name": "Horsepower Productions",
+      "mbid": "128e0f34-8eb9-4ead-b569-c3dbd89566bc"
+    }
+  ]
 }

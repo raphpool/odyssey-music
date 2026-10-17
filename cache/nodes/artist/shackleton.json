@@ -98,5 +98,66 @@
       "name": "Sam Shackleton"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:appleblim",
+      "type": "artist",
+      "name": "Appleblim",
+      "mbid": "30dc6466-ff47-44e8-b012-c240b76bd08e"
+    },
+    {
+      "slug": "artist:scuba",
+      "type": "artist",
+      "name": "Scuba",
+      "mbid": "8bb978c1-a003-4f6f-ac53-0c84ec8b28ee"
+    },
+    {
+      "slug": "artist:zomby",
+      "type": "artist",
+      "name": "Zomby",
+      "mbid": "21a6751e-887e-4eae-9989-de45d452feb6"
+    },
+    {
+      "slug": "artist:ital-tek",
+      "type": "artist",
+      "name": "Ital Tek",
+      "mbid": "66f89780-6c07-4c4b-8e4c-be4098090bf3"
+    },
+    {
+      "slug": "artist:distance",
+      "type": "artist",
+      "name": "Distance",
+      "mbid": "472bc127-8861-45e8-bc9e-31e8dd32de7a"
+    },
+    {
+      "slug": "artist:boxcutter",
+      "type": "artist",
+      "name": "Boxcutter",
+      "mbid": "2ae2838b-3723-418e-b994-9907eb5a8e76"
+    },
+    {
+      "slug": "artist:pinch",
+      "type": "artist",
+      "name": "Pinch",
+      "mbid": "0b70e909-b5cc-48fc-96c2-f34ee642878d"
+    },
+    {
+      "slug": "artist:the-spaceape",
+      "type": "artist",
+      "name": "The Spaceape",
+      "mbid": "88b53a2c-aac3-426d-b179-73f2355fddd8"
+    },
+    {
+      "slug": "artist:benga",
+      "type": "artist",
+      "name": "Benga",
+      "mbid": "d3ba1c50-d403-40df-8eac-80d74551a7e3"
+    },
+    {
+      "slug": "artist:gatekeeper",
+      "type": "artist",
+      "name": "Gatekeeper",
+      "mbid": "f2713760-aaca-4b75-ab8c-86a36304d729"
+    }
+  ]
 }

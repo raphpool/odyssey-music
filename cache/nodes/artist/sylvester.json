@@ -80,5 +80,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:donna-summer",
+      "type": "artist",
+      "name": "Donna Summer",
+      "mbid": "b60527cc-54f3-4bbe-a01b-dcf34c95ae14"
+    },
+    {
+      "slug": "artist:chic",
+      "type": "artist",
+      "name": "Chic",
+      "mbid": "a4ed036b-5f18-439c-b1e1-96d205bab255"
+    },
+    {
+      "slug": "artist:diana-ross",
+      "type": "artist",
+      "name": "Diana Ross",
+      "mbid": "60d41417-feda-4734-bbbf-7dcc30e08a83"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    },
+    {
+      "slug": "artist:earth-wind-and-fire",
+      "type": "artist",
+      "name": "Earth, Wind & Fire",
+      "mbid": "535afeda-2538-435d-9dd1-5e10be586774"
+    },
+    {
+      "slug": "artist:sister-sledge",
+      "type": "artist",
+      "name": "Sister Sledge",
+      "mbid": "1ed00158-c6a3-45cd-819c-2f91997fc480"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:abba",
+      "type": "artist",
+      "name": "ABBA",
+      "mbid": "d87e52c5-bb8d-4da8-b941-9f4928627dc8"
+    },
+    {
+      "slug": "artist:madonna",
+      "type": "artist",
+      "name": "Madonna",
+      "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287"
+    },
+    {
+      "slug": "artist:kc-and-the-sunshine-band",
+      "type": "artist",
+      "name": "KC and the Sunshine Band",
+      "mbid": "76a5a114-ed6a-4eb6-8a81-ad5768d4b41c"
+    }
+  ]
 }

@@ -361,5 +361,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:fast-eddie-smith",
+      "type": "artist",
+      "name": "“Fast” Eddie Smith",
+      "mbid": "c0b3d632-282e-4323-a242-104f60bb8645"
+    },
+    {
+      "slug": "artist:phuture",
+      "type": "artist",
+      "name": "Phuture",
+      "mbid": "d4c75da5-45d7-49ef-abd6-babca3eb8d18"
+    },
+    {
+      "slug": "artist:armando",
+      "type": "artist",
+      "name": "Armando",
+      "mbid": "bced6ffd-d099-406d-9ee0-4a6b51f8405b"
+    },
+    {
+      "slug": "artist:bam-bam",
+      "type": "artist",
+      "name": "Bam Bam",
+      "mbid": "3bda6c16-f5cf-4999-a10f-6e44c0cfb254"
+    },
+    {
+      "slug": "artist:swan-lake",
+      "type": "artist",
+      "name": "Swan Lake",
+      "mbid": "16a2e303-2713-4953-94c9-9fd1c747389c"
+    },
+    {
+      "slug": "artist:jolly-roger",
+      "type": "artist",
+      "name": "Jolly Roger",
+      "mbid": "2214596f-673e-4434-800c-7a86a491f480"
+    },
+    {
+      "slug": "artist:dvs1",
+      "type": "artist",
+      "name": "DVS1",
+      "mbid": "09a28356-b096-4d7e-8aed-03e2199bf924"
+    },
+    {
+      "slug": "artist:adonis",
+      "type": "artist",
+      "name": "Adonis",
+      "mbid": "835f5076-6b5d-4ba1-a3fe-d81a5838a0fc"
+    },
+    {
+      "slug": "artist:baby-ford",
+      "type": "artist",
+      "name": "Baby Ford",
+      "mbid": "da0d0eb4-cf77-44af-8f50-d8c30f10ba0c"
+    },
+    {
+      "slug": "artist:ben-klock",
+      "type": "artist",
+      "name": "Ben Klock",
+      "mbid": "c5af0c3f-e401-43ed-a096-b504606a05cb"
+    }
+  ]
 }

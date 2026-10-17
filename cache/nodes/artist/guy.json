@@ -179,5 +179,53 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:bobby-brown",
+      "type": "artist",
+      "name": "Bobby Brown"
+    },
+    {
+      "slug": "artist:bell-biv-devoe",
+      "type": "artist",
+      "name": "Bell Biv DeVoe",
+      "mbid": "9b16908a-a78c-45a7-8366-d2a41967f745"
+    },
+    {
+      "slug": "artist:craig-david",
+      "type": "artist",
+      "name": "Craig David",
+      "mbid": "89e39f67-65cc-4f90-b145-b1b56c209f8a"
+    },
+    {
+      "slug": "artist:frank-ocean",
+      "type": "artist",
+      "name": "Frank Ocean"
+    },
+    {
+      "slug": "artist:frank-sinatra",
+      "type": "artist",
+      "name": "Frank Sinatra",
+      "mbid": "197450cd-0124-4164-b723-3c22dd16494d"
+    },
+    {
+      "slug": "artist:hikaru-utada",
+      "type": "artist",
+      "name": "Hikaru Utada",
+      "mbid": "b539e453-c4fe-47e3-8a07-8517eac74429"
+    },
+    {
+      "slug": "artist:namie-amuro",
+      "type": "artist",
+      "name": "Namie Amuro",
+      "mbid": "888994e5-6f53-4f53-bced-b20482aea42a"
+    },
+    {
+      "slug": "artist:sza",
+      "type": "artist",
+      "name": "SZA",
+      "mbid": "272989c8-5535-492d-a25c-9f58803e027f"
+    }
+  ]
 }

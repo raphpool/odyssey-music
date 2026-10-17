@@ -96,5 +96,54 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:fikret-kizilok",
+      "type": "artist",
+      "name": "Fikret Kızılok",
+      "mbid": "bdcfb781-68cd-4178-b10c-e9f6fb01da18"
+    },
+    {
+      "slug": "artist:cem-karaca",
+      "type": "artist",
+      "name": "Cem Karaca",
+      "mbid": "802247cc-77a2-4671-a02d-ad25bf90e23c"
+    },
+    {
+      "slug": "artist:ezginin-gunlugu",
+      "type": "artist",
+      "name": "Ezginin Günlüğü",
+      "mbid": "e8421a37-3ae6-4f32-9668-0f7dc216410b"
+    },
+    {
+      "slug": "artist:levent-yuksel",
+      "type": "artist",
+      "name": "Levent Yüksel",
+      "mbid": "ffa7ebbe-cf85-4f4c-8fd3-4a15602013e1"
+    },
+    {
+      "slug": "artist:bulent-ortacgil",
+      "type": "artist",
+      "name": "Bülent Ortaçgil",
+      "mbid": "fda2967c-cfbe-43f9-8e16-0a78ad5cea83"
+    },
+    {
+      "slug": "artist:yeni-turku",
+      "type": "artist",
+      "name": "Yeni Türkü",
+      "mbid": "4dba3527-4b8d-4767-aed0-79a8dcc3ccf0"
+    },
+    {
+      "slug": "artist:sertab-erener",
+      "type": "artist",
+      "name": "Sertab Erener",
+      "mbid": "d138302b-4f57-4d1d-83e3-47f95cb51774"
+    },
+    {
+      "slug": "artist:ajda-pekkan",
+      "type": "artist",
+      "name": "Ajda Pekkan",
+      "mbid": "838bdef5-4fb9-4465-82c6-e716e6590564"
+    }
+  ]
 }

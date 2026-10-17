@@ -87,5 +87,66 @@
       "name": "Mark Spoon"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:dr-alban",
+      "type": "artist",
+      "name": "Dr. Alban",
+      "mbid": "85a3072a-08eb-43a4-a57d-f7084503ee4c"
+    },
+    {
+      "slug": "artist:robert-miles",
+      "type": "artist",
+      "name": "Robert Miles",
+      "mbid": "e83144dd-bb95-49fe-b1dd-00bab25cca9e"
+    },
+    {
+      "slug": "artist:culture-beat",
+      "type": "artist",
+      "name": "Culture Beat",
+      "mbid": "97c30dea-ca61-4efe-be4c-3d56de7900db"
+    },
+    {
+      "slug": "artist:pet-shop-boys",
+      "type": "artist",
+      "name": "Pet Shop Boys",
+      "mbid": "be540c02-7898-4b79-9acc-c8122c7d9e83"
+    },
+    {
+      "slug": "artist:u96",
+      "type": "artist",
+      "name": "U96",
+      "mbid": "5a2e73e9-15b3-4bd5-bd4b-7a331ead808a"
+    },
+    {
+      "slug": "artist:plavka",
+      "type": "artist",
+      "name": "Plavka",
+      "mbid": "a27e4059-26ed-4b5a-986b-824d520cd1e2"
+    },
+    {
+      "slug": "artist:orbital",
+      "type": "artist",
+      "name": "Orbital",
+      "mbid": "f3e2a7d9-c6bb-4848-95e5-04c0a1e2f511"
+    },
+    {
+      "slug": "artist:ace-of-base",
+      "type": "artist",
+      "name": "Ace of Base",
+      "mbid": "d4a1404d-e00c-4bac-b3ba-e3557f6468d6"
+    },
+    {
+      "slug": "artist:snap",
+      "type": "artist",
+      "name": "Snap!",
+      "mbid": "cd23732d-ffd2-444e-8884-53475d7ac7d9"
+    },
+    {
+      "slug": "artist:enigma",
+      "type": "artist",
+      "name": "Enigma",
+      "mbid": "f1d1df24-91af-4d27-83a4-9b4ad29b37eb"
+    }
+  ]
 }

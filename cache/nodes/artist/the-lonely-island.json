@@ -122,5 +122,66 @@
       "name": "Jorma Taccone"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:justin-timberlake",
+      "type": "artist",
+      "name": "Justin Timberlake",
+      "mbid": "596ffa74-3d08-44ef-b113-765d43d12738"
+    },
+    {
+      "slug": "artist:t-pain",
+      "type": "artist",
+      "name": "T‐Pain",
+      "mbid": "ce55e49a-32f4-4757-9849-bf04d06d5fcc"
+    },
+    {
+      "slug": "artist:rihanna",
+      "type": "artist",
+      "name": "Rihanna",
+      "mbid": "73e5e69d-3554-40d8-8516-00cb38737a1c"
+    },
+    {
+      "slug": "artist:michael-bolton",
+      "type": "artist",
+      "name": "Michael Bolton",
+      "mbid": "e8bee5d1-a3a5-4c1a-ada4-f1ca22101e84"
+    },
+    {
+      "slug": "artist:chris-parnell",
+      "type": "artist",
+      "name": "Chris Parnell",
+      "mbid": "e22fd8b6-ed46-4408-a375-245d96d9e6ba"
+    },
+    {
+      "slug": "artist:beck",
+      "type": "artist",
+      "name": "Beck",
+      "mbid": "309c62ba-7a22-4277-9f67-4a162526d18a"
+    },
+    {
+      "slug": "artist:julian-casablancas",
+      "type": "artist",
+      "name": "Julian Casablancas",
+      "mbid": "c5ce487b-0462-444e-a184-4de0fef7e028"
+    },
+    {
+      "slug": "artist:lady-gaga",
+      "type": "artist",
+      "name": "Lady Gaga",
+      "mbid": "650e7db6-b795-4eb5-a702-5ea2fc46c848"
+    },
+    {
+      "slug": "artist:natalie-portman",
+      "type": "artist",
+      "name": "Natalie Portman",
+      "mbid": "b0f27273-9018-4df4-b4b1-9be9fe9a3f0e"
+    },
+    {
+      "slug": "artist:linkin-park",
+      "type": "artist",
+      "name": "Linkin Park",
+      "mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419"
+    }
+  ]
 }

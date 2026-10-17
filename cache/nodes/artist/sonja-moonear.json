@@ -56,5 +56,62 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:zip",
+      "type": "artist",
+      "name": "Zip"
+    },
+    {
+      "slug": "artist:fumiya-tanaka",
+      "type": "artist",
+      "name": "Fumiya Tanaka",
+      "mbid": "86b9a88e-d18f-43c5-9805-f8eb41007aa2"
+    },
+    {
+      "slug": "artist:melchior-productions-ltd",
+      "type": "artist",
+      "name": "Melchior Productions Ltd"
+    },
+    {
+      "slug": "artist:bfc",
+      "type": "artist",
+      "name": "BFC"
+    },
+    {
+      "slug": "artist:basic-channel",
+      "type": "artist",
+      "name": "Basic Channel",
+      "mbid": "d145a57e-7afb-4793-8cc4-2fad292374ef"
+    },
+    {
+      "slug": "artist:chris-liebing",
+      "type": "artist",
+      "name": "Chris Liebing",
+      "mbid": "86a1c458-2d97-42cd-a142-a8fee30ae4a1"
+    },
+    {
+      "slug": "artist:deadbeat",
+      "type": "artist",
+      "name": "Deadbeat"
+    },
+    {
+      "slug": "artist:francesco-del-garda",
+      "type": "artist",
+      "name": "Francesco Del Garda",
+      "mbid": "c13f201c-83bc-4a6e-a7b0-7fbcd13adddc"
+    },
+    {
+      "slug": "artist:isolee",
+      "type": "artist",
+      "name": "Isolée",
+      "mbid": "4c99c0b4-5d46-44d2-8c49-ba47a522b016"
+    },
+    {
+      "slug": "artist:jan-jelinek",
+      "type": "artist",
+      "name": "Jan Jelinek",
+      "mbid": "ac9b829e-9a7c-4331-8abe-ab1eb49d1771"
+    }
+  ]
 }

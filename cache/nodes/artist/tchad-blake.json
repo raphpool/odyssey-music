@@ -80,5 +80,66 @@
       "type": "artist",
       "name": "Mitchell Froom/Tchad Blake"
     }
+  ],
+  "similar_artists": [
+    {
+      "slug": "artist:mitchell-froom",
+      "type": "artist",
+      "name": "Mitchell Froom",
+      "mbid": "0af28ac4-6fcf-402d-a188-50c6b910e0bf"
+    },
+    {
+      "slug": "artist:bo-burnham",
+      "type": "artist",
+      "name": "Bo Burnham",
+      "mbid": "889db25c-d1df-457a-b0d1-c405f34a01f3"
+    },
+    {
+      "slug": "artist:bryan-ferry",
+      "type": "artist",
+      "name": "Bryan Ferry",
+      "mbid": "4ef7a9e2-2cf5-483a-8616-ef7791a98026"
+    },
+    {
+      "slug": "artist:frank-zappa",
+      "type": "artist",
+      "name": "Frank Zappa",
+      "mbid": "e20747e7-55a4-452e-8766-7b985585082d"
+    },
+    {
+      "slug": "artist:halim-el-dabh",
+      "type": "artist",
+      "name": "Halim El-Dabh",
+      "mbid": "8de929b2-8ea8-4885-a5c3-5b4db755b3be"
+    },
+    {
+      "slug": "artist:harold-budd",
+      "type": "artist",
+      "name": "Harold Budd",
+      "mbid": "5c864a6f-146e-4225-986d-3295ce90f784"
+    },
+    {
+      "slug": "artist:harry-partch",
+      "type": "artist",
+      "name": "Harry Partch",
+      "mbid": "914360f1-82e2-47ff-943b-1d7b977bd27a"
+    },
+    {
+      "slug": "artist:iannis-xenakis",
+      "type": "artist",
+      "name": "Iannis Xenakis"
+    },
+    {
+      "slug": "artist:john-cage",
+      "type": "artist",
+      "name": "John Cage",
+      "mbid": "76325a9d-6c25-4649-96b1-84e9b99d6b4b"
+    },
+    {
+      "slug": "artist:john-cale",
+      "type": "artist",
+      "name": "John Cale",
+      "mbid": "72c090b6-a68e-4cb9-b330-85278681a714"
+    }
   ]
 }

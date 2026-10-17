@@ -134,5 +134,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:ayumi-hamasaki",
+      "type": "artist",
+      "name": "浜崎あゆみ",
+      "mbid": "2b615bcf-baa0-4657-b9a5-1a5f34c386c4"
+    },
+    {
+      "slug": "artist:hikaru-utada",
+      "type": "artist",
+      "name": "宇多田ヒカル",
+      "mbid": "b539e453-c4fe-47e3-8a07-8517eac74429"
+    },
+    {
+      "slug": "artist:boa",
+      "type": "artist",
+      "name": "BoA",
+      "mbid": "a16d1433-ba89-4f72-a47b-a370add0bb55"
+    },
+    {
+      "slug": "artist:perfume",
+      "type": "artist",
+      "name": "Perfume",
+      "mbid": "486067ad-56d6-48b5-957b-d6cfe3e1af73"
+    },
+    {
+      "slug": "artist:l-arc-en-ciel",
+      "type": "artist",
+      "name": "L’Arc〜en〜Ciel",
+      "mbid": "62b61409-d13e-4281-9e3f-06941c2c5f5f"
+    },
+    {
+      "slug": "artist:girls-generation",
+      "type": "artist",
+      "name": "Girls’ Generation",
+      "mbid": "b7442f18-d9be-4185-8b51-482510046156"
+    },
+    {
+      "slug": "artist:crystal-kay",
+      "type": "artist",
+      "name": "Crystal Kay",
+      "mbid": "86443348-fd26-48cf-bd13-7ea7fa27505c"
+    },
+    {
+      "slug": "artist:every-little-thing",
+      "type": "artist",
+      "name": "Every Little Thing",
+      "mbid": "acf20c38-8a14-4406-9039-fe78d26c2e4e"
+    },
+    {
+      "slug": "artist:m-flo",
+      "type": "artist",
+      "name": "m‐flo",
+      "mbid": "22dd2db3-88ea-4428-a7a8-5cd3acf23175"
+    },
+    {
+      "slug": "artist:yui",
+      "type": "artist",
+      "name": "YUI",
+      "mbid": "80d1d7e0-fdab-4009-8375-54bd63d74c0e"
+    }
+  ]
 }

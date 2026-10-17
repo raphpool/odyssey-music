@@ -148,5 +148,66 @@
       "name": "Jeff Parker"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:explosions-in-the-sky",
+      "type": "artist",
+      "name": "Explosions in the Sky",
+      "mbid": "4236acde-2ce2-441c-a3d4-38d55f1b5474"
+    },
+    {
+      "slug": "artist:sigur-ros",
+      "type": "artist",
+      "name": "Sigur Rós",
+      "mbid": "f6f2326f-6b25-4170-b89d-e235b25508e8"
+    },
+    {
+      "slug": "artist:do-make-say-think",
+      "type": "artist",
+      "name": "Do Make Say Think",
+      "mbid": "882d41ca-194d-405a-bfc5-b698ccfd77b4"
+    },
+    {
+      "slug": "artist:stereolab",
+      "type": "artist",
+      "name": "Stereolab",
+      "mbid": "f1df0431-9250-4ec8-95d8-f19ce7cf7fb6"
+    },
+    {
+      "slug": "artist:slint",
+      "type": "artist",
+      "name": "Slint",
+      "mbid": "2869c510-2679-4a3f-bf15-e5e8b49f2f28"
+    },
+    {
+      "slug": "artist:this-will-destroy-you",
+      "type": "artist",
+      "name": "This Will Destroy You",
+      "mbid": "9512eed7-a1a9-4e2f-8cac-c10d1448c1ce"
+    },
+    {
+      "slug": "artist:the-album-leaf",
+      "type": "artist",
+      "name": "The Album Leaf",
+      "mbid": "ffb18e19-64a4-4a65-b4ce-979e00c3c69d"
+    },
+    {
+      "slug": "artist:godspeed-you-black-emperor",
+      "type": "artist",
+      "name": "Godspeed You! Black Emperor",
+      "mbid": "3648db01-b29d-4ab9-835c-83f6a5068fe4"
+    },
+    {
+      "slug": "artist:65daysofstatic",
+      "type": "artist",
+      "name": "65daysofstatic",
+      "mbid": "0cd12ab3-9628-45ef-a97b-ff18624f14a0"
+    },
+    {
+      "slug": "artist:god-is-an-astronaut",
+      "type": "artist",
+      "name": "God Is an Astronaut",
+      "mbid": "e9dfc148-d5f6-425e-b80b-f99ed2bd7c09"
+    }
+  ]
 }

@@ -55,5 +55,17 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:atari-teenage-riot",
+      "type": "artist",
+      "name": "Atari Teenage Riot",
+      "mbid": "fe404dd9-09b2-4ac8-a0e5-8da1c4027061"
+    },
+    {
+      "slug": "artist:lil-peep",
+      "type": "artist",
+      "name": "Lil Peep"
+    }
+  ]
 }

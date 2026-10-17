@@ -84,5 +84,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:bonobo",
+      "type": "artist",
+      "name": "Bonobo",
+      "mbid": "9a709693-b4f8-4da9-8cc1-038c911a61be"
+    },
+    {
+      "slug": "artist:nightmares-on-wax",
+      "type": "artist",
+      "name": "Nightmares on Wax",
+      "mbid": "b8c5cc4f-239f-4e02-b46f-b040b77c2030"
+    },
+    {
+      "slug": "artist:thievery-corporation",
+      "type": "artist",
+      "name": "Thievery Corporation",
+      "mbid": "a505bb48-ad65-4af4-ae47-29149715bff9"
+    },
+    {
+      "slug": "artist:air",
+      "type": "artist",
+      "name": "Air",
+      "mbid": "cb67438a-7f50-4f2b-a6f1-2bb2729fd538"
+    },
+    {
+      "slug": "artist:zero-7",
+      "type": "artist",
+      "name": "Zero 7",
+      "mbid": "c23b637b-97c6-41eb-8ef6-6c724efc80a8"
+    },
+    {
+      "slug": "artist:dj-shadow",
+      "type": "artist",
+      "name": "DJ Shadow",
+      "mbid": "efa2c11a-1a35-4b60-bc1b-66d37de88511"
+    },
+    {
+      "slug": "artist:tosca",
+      "type": "artist",
+      "name": "Tosca",
+      "mbid": "3231d12a-c42d-4977-b2a4-a6e4d87978e1"
+    },
+    {
+      "slug": "artist:rjd2",
+      "type": "artist",
+      "name": "RJD2",
+      "mbid": "1a120ec5-35b3-4f3e-aa49-7201550d9feb"
+    },
+    {
+      "slug": "artist:quantic",
+      "type": "artist",
+      "name": "Quantic",
+      "mbid": "f1560407-8826-4ec9-b78f-e0c3fa3ea4f5"
+    },
+    {
+      "slug": "artist:blockhead",
+      "type": "artist",
+      "name": "Blockhead",
+      "mbid": "3bd76ebe-c7dc-47bd-a8af-9e46d2a4f782"
+    }
+  ]
 }

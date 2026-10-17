@@ -104,5 +104,66 @@
       "name": "The Crickets"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:elvis-presley",
+      "type": "artist",
+      "name": "Elvis Presley",
+      "mbid": "01809552-4f87-45b0-afff-2c6f0730a3be"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:chuck-berry",
+      "type": "artist",
+      "name": "Chuck Berry",
+      "mbid": "592a3b6d-c42b-4567-99c9-ecf63bd66499"
+    },
+    {
+      "slug": "artist:the-kinks",
+      "type": "artist",
+      "name": "The Kinks",
+      "mbid": "17b53d9f-5c63-4a09-a593-dde4608e0db9"
+    },
+    {
+      "slug": "artist:the-beach-boys",
+      "type": "artist",
+      "name": "The Beach Boys",
+      "mbid": "ebfc1398-8d96-47e3-82c3-f782abcdb13d"
+    },
+    {
+      "slug": "artist:johnny-cash",
+      "type": "artist",
+      "name": "Johnny Cash",
+      "mbid": "d43d12a1-2dc9-4257-a2fd-0a3bb1081b86"
+    },
+    {
+      "slug": "artist:little-richard",
+      "type": "artist",
+      "name": "Little Richard",
+      "mbid": "95c2339b-8277-49a6-9aaf-08d8eeeaa0be"
+    },
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones",
+      "mbid": "b071f9fa-14b0-4217-8e97-eb41da73f598"
+    },
+    {
+      "slug": "artist:eddie-cochran",
+      "type": "artist",
+      "name": "Eddie Cochran",
+      "mbid": "17995d1c-5b3c-4ee9-98f5-105ee3b4ada1"
+    },
+    {
+      "slug": "artist:roy-orbison",
+      "type": "artist",
+      "name": "Roy Orbison",
+      "mbid": "0bbbc496-c7b5-4b3f-bb6d-bd312827d6e5"
+    }
+  ]
 }

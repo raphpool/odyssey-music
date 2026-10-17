@@ -128,5 +128,42 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:joe-hisaishi",
+      "type": "artist",
+      "name": "Joe Hisaishi",
+      "mbid": "44c64a30-1d58-49c5-b314-6e02fba49526"
+    },
+    {
+      "slug": "artist:karlheinz-stockhausen",
+      "type": "artist",
+      "name": "Karlheinz Stockhausen",
+      "mbid": "fd09d776-ddfd-4558-afe7-814420d704ed"
+    },
+    {
+      "slug": "artist:luigi-nono",
+      "type": "artist",
+      "name": "Luigi Nono",
+      "mbid": "5ccdf2f8-3f68-4fa3-a084-767216dec444"
+    },
+    {
+      "slug": "artist:paul-mccartney",
+      "type": "artist",
+      "name": "Paul McCartney",
+      "mbid": "ba550d0e-adac-4864-b88b-407cab5e76af"
+    },
+    {
+      "slug": "artist:ryuichi-sakamoto",
+      "type": "artist",
+      "name": "Ryuichi Sakamoto",
+      "mbid": "a7f7df4a-77d8-4f12-8acd-5c60c93f4de8"
+    },
+    {
+      "slug": "artist:wendy-carlos",
+      "type": "artist",
+      "name": "Wendy Carlos",
+      "mbid": "7e3b3173-2c1f-42c0-8544-0e6d19bb181f"
+    }
+  ]
 }

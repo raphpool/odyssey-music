@@ -39,5 +39,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    },
+    {
+      "slug": "artist:tears-for-fears",
+      "type": "artist",
+      "name": "Tears for Fears",
+      "mbid": "7c7f9c94-dee8-4903-892b-6cf44652e2de"
+    },
+    {
+      "slug": "artist:depeche-mode",
+      "type": "artist",
+      "name": "Depeche Mode",
+      "mbid": "8538e728-ca0b-4321-b7e5-cff6565dd4c0"
+    },
+    {
+      "slug": "artist:madonna",
+      "type": "artist",
+      "name": "Madonna",
+      "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287"
+    },
+    {
+      "slug": "artist:a-ha",
+      "type": "artist",
+      "name": "a‐ha",
+      "mbid": "7364dea6-ca9a-48e3-be01-b44ad0d19897"
+    },
+    {
+      "slug": "artist:jan-hammer",
+      "type": "artist",
+      "name": "Jan Hammer",
+      "mbid": "49afd610-0265-4ab1-9e13-f0cc98e33e1d"
+    },
+    {
+      "slug": "artist:phil-collins",
+      "type": "artist",
+      "name": "Phil Collins",
+      "mbid": "401c3991-b76b-499d-8082-9f2df958ef78"
+    },
+    {
+      "slug": "artist:u2",
+      "type": "artist",
+      "name": "U2",
+      "mbid": "a3cb23fc-acd3-4ce0-8f36-1e5aa6a18432"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:eurythmics",
+      "type": "artist",
+      "name": "Eurythmics",
+      "mbid": "b4d32cff-f19e-455f-86c4-f347d824ca61"
+    }
+  ]
 }

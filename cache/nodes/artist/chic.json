@@ -103,5 +103,66 @@
       "name": "Tony Thompson"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:earth-wind-and-fire",
+      "type": "artist",
+      "name": "Earth, Wind & Fire",
+      "mbid": "535afeda-2538-435d-9dd1-5e10be586774"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    },
+    {
+      "slug": "artist:donna-summer",
+      "type": "artist",
+      "name": "Donna Summer",
+      "mbid": "b60527cc-54f3-4bbe-a01b-dcf34c95ae14"
+    },
+    {
+      "slug": "artist:sister-sledge",
+      "type": "artist",
+      "name": "Sister Sledge",
+      "mbid": "1ed00158-c6a3-45cd-819c-2f91997fc480"
+    },
+    {
+      "slug": "artist:kool-and-the-gang",
+      "type": "artist",
+      "name": "Kool & the Gang",
+      "mbid": "2469950a-f0ca-425a-bfbc-baf55ea3afde"
+    },
+    {
+      "slug": "artist:marvin-gaye",
+      "type": "artist",
+      "name": "Marvin Gaye",
+      "mbid": "afdb7919-059d-43c1-b668-ba1d265e7e42"
+    },
+    {
+      "slug": "artist:diana-ross",
+      "type": "artist",
+      "name": "Diana Ross",
+      "mbid": "60d41417-feda-4734-bbbf-7dcc30e08a83"
+    },
+    {
+      "slug": "artist:the-jacksons",
+      "type": "artist",
+      "name": "The Jacksons",
+      "mbid": "e5257dc5-1edd-4fca-b7e6-1158e00522c8"
+    },
+    {
+      "slug": "artist:abba",
+      "type": "artist",
+      "name": "ABBA",
+      "mbid": "d87e52c5-bb8d-4da8-b941-9f4928627dc8"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    }
+  ]
 }

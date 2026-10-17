@@ -433,5 +433,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:gorillaz",
+      "type": "artist",
+      "name": "Gorillaz",
+      "mbid": "e21857d5-3256-4547-afb3-4b6ded592596"
+    },
+    {
+      "slug": "artist:vince-staples",
+      "type": "artist",
+      "name": "Vince Staples",
+      "mbid": "78e854b8-9713-4ff2-9218-6b3784893bff"
+    },
+    {
+      "slug": "artist:dram",
+      "type": "artist",
+      "name": "DRAM",
+      "mbid": "6247d69d-426f-440f-97e0-74a9a0b00358"
+    },
+    {
+      "slug": "artist:jamie-xx",
+      "type": "artist",
+      "name": "Jamie xx",
+      "mbid": "d1515727-4a93-4c0d-88cb-d7a9fce01879"
+    },
+    {
+      "slug": "artist:kelela",
+      "type": "artist",
+      "name": "Kelela",
+      "mbid": "045494aa-e913-4e62-bf4e-dcc276e0075a"
+    },
+    {
+      "slug": "artist:peven-everett",
+      "type": "artist",
+      "name": "Peven Everett",
+      "mbid": "7b42e4cf-650b-4fe0-bc7d-c95e31247729"
+    },
+    {
+      "slug": "artist:kali-uchis",
+      "type": "artist",
+      "name": "Kali Uchis",
+      "mbid": "d0c7656d-8169-4f77-9dbe-b8f24e40105d"
+    },
+    {
+      "slug": "artist:romy",
+      "type": "artist",
+      "name": "Romy",
+      "mbid": "b46efb1e-ecd9-4044-9820-14c64c2d657e"
+    },
+    {
+      "slug": "artist:jehnny-beth",
+      "type": "artist",
+      "name": "Jehnny Beth",
+      "mbid": "fdac609a-63d0-49b9-823a-daec52a0db97"
+    },
+    {
+      "slug": "artist:anthony-hamilton",
+      "type": "artist",
+      "name": "Anthony Hamilton",
+      "mbid": "af7f5e8e-ac05-4d55-b860-a4dc72c78e66"
+    }
+  ]
 }

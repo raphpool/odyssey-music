@@ -170,5 +170,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:amalia-townsend",
+      "type": "artist",
+      "name": "Amalia Townsend",
+      "mbid": "dbf02102-57e5-4097-86fa-4d4268b64ffd"
+    },
+    {
+      "slug": "artist:sacha-williamson",
+      "type": "artist",
+      "name": "Sacha Williamson",
+      "mbid": "3739f0c7-7e97-41b6-b50c-a38261e06f90"
+    },
+    {
+      "slug": "artist:farah",
+      "type": "artist",
+      "name": "Farah",
+      "mbid": "ee4d4247-7616-4cb8-9967-3d7216dc40c9"
+    },
+    {
+      "slug": "artist:chet-faker",
+      "type": "artist",
+      "name": "Chet Faker",
+      "mbid": "a21b2652-62ed-4767-a3d2-0aa802abf080"
+    },
+    {
+      "slug": "artist:badbadnotgood",
+      "type": "artist",
+      "name": "BADBADNOTGOOD",
+      "mbid": "754294d5-d7d2-4ea2-8184-1dcaaf55a56f"
+    },
+    {
+      "slug": "artist:krts",
+      "type": "artist",
+      "name": "Krts",
+      "mbid": "279624c1-ff1a-4656-b111-ee3e6fab69c0"
+    },
+    {
+      "slug": "artist:ocelote-rojo",
+      "type": "artist",
+      "name": "Ocelote Rojo",
+      "mbid": "32bd82eb-7596-47a9-9aba-84df6dcc8b24"
+    },
+    {
+      "slug": "artist:colman-brothers",
+      "type": "artist",
+      "name": "Colman Brothers",
+      "mbid": "27585a2c-5587-40a2-a820-831f1eb64ca8"
+    },
+    {
+      "slug": "artist:bobby-blunt",
+      "type": "artist",
+      "name": "Bobby Blunt",
+      "mbid": "63c85fb8-5818-46b5-88c2-5f1028e888b8"
+    },
+    {
+      "slug": "artist:colonel-red",
+      "type": "artist",
+      "name": "Colonel Red",
+      "mbid": "68f031c8-3fe8-48cc-930c-a99a77f876d8"
+    }
+  ]
 }

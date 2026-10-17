@@ -544,5 +544,66 @@
       "name": "Lekan Animashaun"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:talking-heads",
+      "type": "artist",
+      "name": "Talking Heads",
+      "mbid": "a94a7155-c79d-4409-9fcf-220cb0e4dc3a"
+    },
+    {
+      "slug": "artist:ebo-taylor",
+      "type": "artist",
+      "name": "Ebo Taylor",
+      "mbid": "8b034085-b06d-4c42-9be3-d709be169d79"
+    },
+    {
+      "slug": "artist:the-budos-band",
+      "type": "artist",
+      "name": "The Budos Band",
+      "mbid": "b6fa9b9b-41cf-45a6-adc0-0a4c9a8c0d3c"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:femi-kuti",
+      "type": "artist",
+      "name": "Femi Kuti",
+      "mbid": "702d2b90-eef0-4354-b2c4-6366eba92b7f"
+    },
+    {
+      "slug": "artist:bob-marley-and-the-wailers",
+      "type": "artist",
+      "name": "Bob Marley & The Wailers",
+      "mbid": "c296e10c-110a-4103-9e77-47bfebb7fb2e"
+    },
+    {
+      "slug": "artist:funkadelic",
+      "type": "artist",
+      "name": "Funkadelic",
+      "mbid": "cf042013-3edd-46c4-9b0e-a62faac98d0b"
+    },
+    {
+      "slug": "artist:the-meters",
+      "type": "artist",
+      "name": "The Meters",
+      "mbid": "851827d6-ae31-4093-a166-1420cac610a4"
+    },
+    {
+      "slug": "artist:manu-dibango",
+      "type": "artist",
+      "name": "Manu Dibango",
+      "mbid": "826b488f-5164-45ca-abc4-ab11b3c321eb"
+    }
+  ]
 }

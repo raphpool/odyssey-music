@@ -246,5 +246,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:dj-deeon",
+      "type": "artist",
+      "name": "DJ Deeon",
+      "mbid": "b73e51c1-cf7e-450e-ab10-a8a24e5b8993"
+    },
+    {
+      "slug": "artist:thomas-bangalter",
+      "type": "artist",
+      "name": "Thomas Bangalter",
+      "mbid": "122a2714-24f8-4046-a532-64064b5076d2"
+    },
+    {
+      "slug": "artist:mr-oizo",
+      "type": "artist",
+      "name": "Mr. Oizo",
+      "mbid": "a4a3048f-3968-4848-9f53-94e3d4f88b53"
+    },
+    {
+      "slug": "artist:the-beach-boys",
+      "type": "artist",
+      "name": "The Beach Boys",
+      "mbid": "ebfc1398-8d96-47e3-82c3-f782abcdb13d"
+    },
+    {
+      "slug": "artist:machinedrum",
+      "type": "artist",
+      "name": "Machinedrum",
+      "mbid": "d1785218-d8f4-4a83-a33d-8cf737eef918"
+    },
+    {
+      "slug": "artist:splack-pack",
+      "type": "artist",
+      "name": "Splack Pack",
+      "mbid": "f2c57c26-0f58-448c-bac4-b33cebff287a"
+    },
+    {
+      "slug": "artist:cls",
+      "type": "artist",
+      "name": "CLS",
+      "mbid": "53900ab1-8a1c-443c-b552-b53e6b52b3b7"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:wax-master-maurice",
+      "type": "artist",
+      "name": "Wax Master Maurice",
+      "mbid": "d8e2d735-fb84-4c87-b2fc-f02e266c5b1d"
+    },
+    {
+      "slug": "artist:jammin-gerald",
+      "type": "artist",
+      "name": "Jammin Gerald",
+      "mbid": "79770c33-ff90-48ea-b9ab-917ccc8adbb7"
+    }
+  ]
 }

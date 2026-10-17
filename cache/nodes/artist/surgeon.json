@@ -70,5 +70,67 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:chris-liebing",
+      "type": "artist",
+      "name": "Chris Liebing",
+      "mbid": "86a1c458-2d97-42cd-a142-a8fee30ae4a1"
+    },
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas",
+      "mbid": "3e2fb7a8-195a-4d9e-b042-6451ee1e6b8d"
+    },
+    {
+      "slug": "artist:richie-hawtin",
+      "type": "artist",
+      "name": "Richie Hawtin",
+      "mbid": "76da816f-ea05-4172-ad9e-ffb69c32199f"
+    },
+    {
+      "slug": "artist:cristian-vogel",
+      "type": "artist",
+      "name": "Cristian Vogel",
+      "mbid": "7c021e08-e3f3-47e6-bede-8f308c94ae74"
+    },
+    {
+      "slug": "artist:moritz-von-oswald",
+      "type": "artist",
+      "name": "Moritz von Oswald",
+      "mbid": "48c4ea31-fe9d-4bbf-8a1c-a2996abcfb9f"
+    },
+    {
+      "slug": "artist:robert-hood",
+      "type": "artist",
+      "name": "Robert Hood",
+      "mbid": "e8a61400-baf7-4fb3-a3e3-c9e7b665547f"
+    },
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ-Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
+    },
+    {
+      "slug": "artist:iesope-drift",
+      "type": "artist",
+      "name": "Iesope Drift",
+      "mbid": "c2384629-3aaf-49bd-896c-f2ef331cef0f"
+    },
+    {
+      "slug": "artist:mike-huckaby",
+      "type": "artist",
+      "name": "Mike Huckaby",
+      "mbid": "cce15a87-fa96-459d-9e10-e4fd03acc703"
+    },
+    {
+      "slug": "artist:polygon-window",
+      "type": "artist",
+      "name": "Polygon Window",
+      "mbid": "aaa78ce4-e4fe-43b6-abe1-733dc83f8eb1"
+    }
+  ]
 }

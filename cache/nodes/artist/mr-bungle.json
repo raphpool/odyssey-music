@@ -47,5 +47,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:faith-no-more",
+      "type": "artist",
+      "name": "Faith No More",
+      "mbid": "b15ebd71-a252-417d-9e1c-3e6863da68f8"
+    },
+    {
+      "slug": "artist:primus",
+      "type": "artist",
+      "name": "Primus",
+      "mbid": "84dc4f23-c0b8-4fe1-bbca-a3993ddc8fc2"
+    },
+    {
+      "slug": "artist:tomahawk",
+      "type": "artist",
+      "name": "Tomahawk",
+      "mbid": "947911f8-60bc-44ab-9782-f97020f15b43"
+    },
+    {
+      "slug": "artist:nine-inch-nails",
+      "type": "artist",
+      "name": "Nine Inch Nails",
+      "mbid": "b7ffd2af-418f-4be2-bdd1-22f8b48613da"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:tool",
+      "type": "artist",
+      "name": "Tool",
+      "mbid": "66fc5bf8-daa4-4241-b378-9bc9077939d2"
+    },
+    {
+      "slug": "artist:fantomas",
+      "type": "artist",
+      "name": "Fantômas",
+      "mbid": "057aa66c-cf6e-499d-bda8-5adc47ad4197"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
+    },
+    {
+      "slug": "artist:queens-of-the-stone-age",
+      "type": "artist",
+      "name": "Queens of the Stone Age",
+      "mbid": "7dc8f5bd-9d0b-4087-9f73-dc164950bbd8"
+    },
+    {
+      "slug": "artist:system-of-a-down",
+      "type": "artist",
+      "name": "System of a Down",
+      "mbid": "cc0b7089-c08d-4c10-b6b0-873582c17fd6"
+    }
+  ]
 }

@@ -132,5 +132,66 @@
       "name": "David Jackson"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:yes",
+      "type": "artist",
+      "name": "Yes",
+      "mbid": "c1d4f2ba-cf39-460c-9528-6b827d3417a1"
+    },
+    {
+      "slug": "artist:gentle-giant",
+      "type": "artist",
+      "name": "Gentle Giant",
+      "mbid": "f795c501-1c41-4be2-bc2a-875eba75aa31"
+    },
+    {
+      "slug": "artist:jethro-tull",
+      "type": "artist",
+      "name": "Jethro Tull",
+      "mbid": "ece57992-dc2e-4f67-a269-fa43626c1a3d"
+    },
+    {
+      "slug": "artist:camel",
+      "type": "artist",
+      "name": "Camel",
+      "mbid": "94b7a39b-f3cc-4796-90dd-b1786a62877e"
+    },
+    {
+      "slug": "artist:emerson-lake-and-palmer",
+      "type": "artist",
+      "name": "Emerson, Lake & Palmer",
+      "mbid": "ad996aef-cc1c-42ac-af5c-619c370f4b8a"
+    },
+    {
+      "slug": "artist:king-crimson",
+      "type": "artist",
+      "name": "King Crimson",
+      "mbid": "b38225b8-8e5f-42aa-bcdc-7bae5b5bdab3"
+    },
+    {
+      "slug": "artist:frank-zappa",
+      "type": "artist",
+      "name": "Frank Zappa",
+      "mbid": "e20747e7-55a4-452e-8766-7b985585082d"
+    },
+    {
+      "slug": "artist:caravan",
+      "type": "artist",
+      "name": "Caravan",
+      "mbid": "82dd3f5d-4c36-4dbe-981d-6845c91445f8"
+    },
+    {
+      "slug": "artist:marillion",
+      "type": "artist",
+      "name": "Marillion",
+      "mbid": "1932f5b6-0b7b-4050-b1df-833ca89e5f44"
+    },
+    {
+      "slug": "artist:soft-machine",
+      "type": "artist",
+      "name": "Soft Machine",
+      "mbid": "5193ce6b-a315-4c50-ae49-54e69ffbc988"
+    }
+  ]
 }

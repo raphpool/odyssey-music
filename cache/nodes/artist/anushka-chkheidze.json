@@ -72,5 +72,64 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:plaid",
+      "type": "artist",
+      "name": "Plaid",
+      "mbid": "7e54d133-2525-4bc0-ae94-65584145a386"
+    },
+    {
+      "slug": "artist:afx",
+      "type": "artist",
+      "name": "AFX"
+    },
+    {
+      "slug": "artist:andi-toma",
+      "type": "artist",
+      "name": "Andi Toma",
+      "mbid": "7138147f-3d17-48e4-a5b0-99125e5ae190"
+    },
+    {
+      "slug": "artist:andy-mellwig",
+      "type": "artist",
+      "name": "Andy Mellwig",
+      "mbid": "4c787fb7-b052-4d6c-9980-c5b1641458a5"
+    },
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:ashra",
+      "type": "artist",
+      "name": "Ashra",
+      "mbid": "2d262241-ad1e-4b2d-904a-c38039f0a531"
+    },
+    {
+      "slug": "artist:atom-tm",
+      "type": "artist",
+      "name": "Atom TM",
+      "mbid": "a874e630-134c-4450-97c4-54e596404290"
+    },
+    {
+      "slug": "artist:atomine-elektrine",
+      "type": "artist",
+      "name": "Atomine Elektrine",
+      "mbid": "097cd6d8-605e-4595-94d0-7e3f790feff3"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:cluster",
+      "type": "artist",
+      "name": "Cluster",
+      "mbid": "393ce5ee-4550-48e2-97f9-50a47a74bdc1"
+    }
+  ]
 }

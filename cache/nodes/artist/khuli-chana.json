@@ -145,5 +145,18 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:beastie-boys",
+      "type": "artist",
+      "name": "Beastie Boys",
+      "mbid": "9beb62b2-88db-4cea-801e-162cd344ee53"
+    },
+    {
+      "slug": "artist:gramatik",
+      "type": "artist",
+      "name": "Gramatik",
+      "mbid": "9b62a8a3-fcd5-4b51-a970-0f08a440ed6d"
+    }
+  ]
 }

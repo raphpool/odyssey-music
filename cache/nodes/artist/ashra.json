@@ -95,5 +95,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:tangerine-dream",
+      "type": "artist",
+      "name": "Tangerine Dream",
+      "mbid": "23d8426c-18c7-46e6-a51d-7395bd43c641"
+    },
+    {
+      "slug": "artist:cluster",
+      "type": "artist",
+      "name": "Cluster",
+      "mbid": "393ce5ee-4550-48e2-97f9-50a47a74bdc1"
+    },
+    {
+      "slug": "artist:daft-punk",
+      "type": "artist",
+      "name": "Daft Punk",
+      "mbid": "056e4f3e-d505-4dad-8ec1-d04f521cbb56"
+    },
+    {
+      "slug": "artist:inner-city",
+      "type": "artist",
+      "name": "Inner City",
+      "mbid": "65a8e571-8a08-433f-a5bf-ead38c269ea6"
+    },
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze",
+      "mbid": "2e710b0c-6ff3-4c21-87d5-16ebbbca212c"
+    },
+    {
+      "slug": "artist:massive-attack",
+      "type": "artist",
+      "name": "Massive Attack",
+      "mbid": "10adbe5e-a2c0-4bf3-8249-2b4cbf6e6ca8"
+    },
+    {
+      "slug": "artist:mike-oldfield",
+      "type": "artist",
+      "name": "Mike Oldfield",
+      "mbid": "a1684a49-feaa-4150-b758-d9412fc59f12"
+    },
+    {
+      "slug": "artist:the-chemical-brothers",
+      "type": "artist",
+      "name": "The Chemical Brothers",
+      "mbid": "1946a82a-f927-40c2-8235-38d64f50d043"
+    },
+    {
+      "slug": "artist:the-human-league",
+      "type": "artist",
+      "name": "The Human League",
+      "mbid": "7adaabfb-acfb-47bc-8c7c-59471c2f0db8"
+    },
+    {
+      "slug": "artist:andy-mellwig",
+      "type": "artist",
+      "name": "Andy Mellwig",
+      "mbid": "4c787fb7-b052-4d6c-9980-c5b1641458a5"
+    }
+  ]
 }

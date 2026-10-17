@@ -98,5 +98,66 @@
       "name": "Pat Smear"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:red-hot-chili-peppers",
+      "type": "artist",
+      "name": "Red Hot Chili Peppers",
+      "mbid": "8bfac288-ccc5-448d-9573-c33ea2aa5c30"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:foo-fighters",
+      "type": "artist",
+      "name": "Foo Fighters",
+      "mbid": "67f66c07-6e61-4026-ade5-7e782fad3a5d"
+    },
+    {
+      "slug": "artist:green-day",
+      "type": "artist",
+      "name": "Green Day",
+      "mbid": "084308bd-1654-436f-ba03-df6697104e19"
+    },
+    {
+      "slug": "artist:pearl-jam",
+      "type": "artist",
+      "name": "Pearl Jam",
+      "mbid": "83b9cbe7-9857-49e2-ab8e-b57b01038103"
+    },
+    {
+      "slug": "artist:the-smashing-pumpkins",
+      "type": "artist",
+      "name": "The Smashing Pumpkins",
+      "mbid": "ba0d6274-db14-4ef5-b28d-657ebde1a396"
+    },
+    {
+      "slug": "artist:metallica",
+      "type": "artist",
+      "name": "Metallica",
+      "mbid": "65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:muse",
+      "type": "artist",
+      "name": "Muse",
+      "mbid": "9c9f1380-2516-4fc9-a3e6-f9f61941d090"
+    },
+    {
+      "slug": "artist:rage-against-the-machine",
+      "type": "artist",
+      "name": "Rage Against the Machine",
+      "mbid": "3798b104-01cb-484c-a3b0-56adc6399b80"
+    }
+  ]
 }

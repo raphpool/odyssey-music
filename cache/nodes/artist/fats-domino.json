@@ -103,5 +103,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:elvis-presley",
+      "type": "artist",
+      "name": "Elvis Presley",
+      "mbid": "01809552-4f87-45b0-afff-2c6f0730a3be"
+    },
+    {
+      "slug": "artist:chuck-berry",
+      "type": "artist",
+      "name": "Chuck Berry",
+      "mbid": "592a3b6d-c42b-4567-99c9-ecf63bd66499"
+    },
+    {
+      "slug": "artist:little-richard",
+      "type": "artist",
+      "name": "Little Richard",
+      "mbid": "95c2339b-8277-49a6-9aaf-08d8eeeaa0be"
+    },
+    {
+      "slug": "artist:buddy-holly",
+      "type": "artist",
+      "name": "Buddy Holly",
+      "mbid": "d352f5dd-3023-4565-a7bb-52396bf8821d"
+    },
+    {
+      "slug": "artist:ray-charles",
+      "type": "artist",
+      "name": "Ray Charles",
+      "mbid": "2ce02909-598b-44ef-a456-151ba0a3bd70"
+    },
+    {
+      "slug": "artist:eddie-cochran",
+      "type": "artist",
+      "name": "Eddie Cochran",
+      "mbid": "17995d1c-5b3c-4ee9-98f5-105ee3b4ada1"
+    },
+    {
+      "slug": "artist:jerry-lee-lewis",
+      "type": "artist",
+      "name": "Jerry Lee Lewis",
+      "mbid": "b59ac58d-036e-4bba-8112-c32a34c4575b"
+    },
+    {
+      "slug": "artist:the-beach-boys",
+      "type": "artist",
+      "name": "The Beach Boys",
+      "mbid": "ebfc1398-8d96-47e3-82c3-f782abcdb13d"
+    },
+    {
+      "slug": "artist:johnny-cash",
+      "type": "artist",
+      "name": "Johnny Cash",
+      "mbid": "d43d12a1-2dc9-4257-a2fd-0a3bb1081b86"
+    },
+    {
+      "slug": "artist:the-platters",
+      "type": "artist",
+      "name": "The Platters",
+      "mbid": "3fb55c03-3ad9-4341-8d0b-7c4c49aefca0"
+    }
+  ]
 }

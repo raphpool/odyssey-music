@@ -109,5 +109,18 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:john-adams",
+      "type": "artist",
+      "name": "John Adams",
+      "mbid": "94f46f90-f220-458d-acd6-5f14c55ab9b2"
+    },
+    {
+      "slug": "artist:the-magnetic-fields",
+      "type": "artist",
+      "name": "The Magnetic Fields",
+      "mbid": "3ff72a59-f39d-411d-9f93-2d4a86413013"
+    }
+  ]
 }

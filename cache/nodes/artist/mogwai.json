@@ -118,5 +118,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:cat-power",
+      "type": "artist",
+      "name": "Cat Power",
+      "mbid": "05755bf1-380c-487f-983f-d1a02401fa28"
+    },
+    {
+      "slug": "artist:liz-phair",
+      "type": "artist",
+      "name": "Liz Phair",
+      "mbid": "149326c2-b8a3-48e3-b3d2-9b5b9593127f"
+    },
+    {
+      "slug": "artist:pavement",
+      "type": "artist",
+      "name": "Pavement",
+      "mbid": "36bfa85f-737b-41db-a8fc-b8825850ffc3"
+    },
+    {
+      "slug": "artist:pole",
+      "type": "artist",
+      "name": "Pole",
+      "mbid": "ad957b43-9dc0-42e1-940c-19b21ec77f3a"
+    },
+    {
+      "slug": "artist:snail-mail",
+      "type": "artist",
+      "name": "Snail Mail",
+      "mbid": "86cd4d38-857c-42bd-a5da-9acedcab1e01"
+    },
+    {
+      "slug": "artist:califone",
+      "type": "artist",
+      "name": "Califone",
+      "mbid": "68025033-de1b-42f5-8a21-bedfb8895dda"
+    },
+    {
+      "slug": "artist:godspeed-you-black-emperor",
+      "type": "artist",
+      "name": "Godspeed You! Black Emperor",
+      "mbid": "3648db01-b29d-4ab9-835c-83f6a5068fe4"
+    },
+    {
+      "slug": "artist:laetitia-sadier",
+      "type": "artist",
+      "name": "Laetitia Sadier",
+      "mbid": "9710d91f-bfbd-4f84-9c54-cb04f2a464b1"
+    },
+    {
+      "slug": "artist:stereolab",
+      "type": "artist",
+      "name": "Stereolab",
+      "mbid": "f1df0431-9250-4ec8-95d8-f19ce7cf7fb6"
+    },
+    {
+      "slug": "artist:the-sea-and-cake",
+      "type": "artist",
+      "name": "The Sea and Cake",
+      "mbid": "74171cb6-1ff8-42bd-be8a-96660c22e3e0"
+    }
+  ]
 }

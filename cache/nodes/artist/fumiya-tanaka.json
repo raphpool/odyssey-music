@@ -88,5 +88,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos",
+      "mbid": "bbd79854-df54-4c1b-b7d6-cf7eea2d0afb"
+    },
+    {
+      "slug": "artist:andrew-gillings",
+      "type": "artist",
+      "name": "Andrew Gillings",
+      "mbid": "20c52107-d61c-41b6-8aa8-4bab29c0b51f"
+    },
+    {
+      "slug": "artist:basic-channel",
+      "type": "artist",
+      "name": "Basic Channel",
+      "mbid": "d145a57e-7afb-4793-8cc4-2fad292374ef"
+    },
+    {
+      "slug": "artist:newdeal",
+      "type": "artist",
+      "name": "NEWDEAL",
+      "mbid": "3843904d-1330-49ae-8c3f-7b9d13aa16e5"
+    },
+    {
+      "slug": "artist:patrick-ense",
+      "type": "artist",
+      "name": "Patrick Ense",
+      "mbid": "a4194f61-b07e-4aa1-a25c-d851f976a2b7"
+    },
+    {
+      "slug": "artist:kagami",
+      "type": "artist",
+      "name": "KAGAMI",
+      "mbid": "d0cf00b5-bfd3-49be-863f-f2d50e7773b6"
+    },
+    {
+      "slug": "artist:audio-active",
+      "type": "artist",
+      "name": "Audio Active",
+      "mbid": "f8771204-eedc-4bc2-bab5-daadaaec6bae"
+    },
+    {
+      "slug": "artist:coolon",
+      "type": "artist",
+      "name": "COOLON",
+      "mbid": "492e60fc-9e57-4fb3-bb95-bc2b0a41ebf7"
+    },
+    {
+      "slug": "artist:heiko-laux",
+      "type": "artist",
+      "name": "Heiko Laux",
+      "mbid": "75a282a9-c483-4d8e-86c6-1cb029068ca8"
+    },
+    {
+      "slug": "artist:taichi-master",
+      "type": "artist",
+      "name": "TAICHI MASTER",
+      "mbid": "6f57d697-63e0-4734-94c3-e4ae30d46102"
+    }
+  ]
 }

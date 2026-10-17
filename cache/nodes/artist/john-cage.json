@@ -113,5 +113,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:pierre-schaeffer",
+      "type": "artist",
+      "name": "Pierre Schaeffer",
+      "mbid": "cc48f77c-32c5-46e1-9f35-119d61671e1b"
+    },
+    {
+      "slug": "artist:olivier-messiaen",
+      "type": "artist",
+      "name": "Olivier Messiaen",
+      "mbid": "c6e5c5f4-984e-432a-87b8-b6afa288bca1"
+    },
+    {
+      "slug": "artist:otto-luening",
+      "type": "artist",
+      "name": "Otto Luening",
+      "mbid": "15a62cc4-fe9d-42c0-8239-fb39634c8fe3"
+    },
+    {
+      "slug": "artist:erik-satie",
+      "type": "artist",
+      "name": "Erik Satie",
+      "mbid": "e1d521ea-5b97-4981-987c-ba988b2a87d7"
+    },
+    {
+      "slug": "artist:steve-reich",
+      "type": "artist",
+      "name": "Steve Reich",
+      "mbid": "a3031680-c359-458f-a641-70ccbaec6a74"
+    },
+    {
+      "slug": "artist:hugh-le-caine",
+      "type": "artist",
+      "name": "Hugh Le Caine",
+      "mbid": "e7ae24a5-41c9-4952-8613-804d6082114b"
+    },
+    {
+      "slug": "artist:karlheinz-stockhausen",
+      "type": "artist",
+      "name": "Karlheinz Stockhausen",
+      "mbid": "fd09d776-ddfd-4558-afe7-814420d704ed"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:henri-pousseur",
+      "type": "artist",
+      "name": "Henri Pousseur",
+      "mbid": "9919dfaa-a15c-43f2-ab28-d352ad2f5d40"
+    },
+    {
+      "slug": "artist:oskar-sala",
+      "type": "artist",
+      "name": "Oskar Sala",
+      "mbid": "6197a5e8-ff2f-4b3d-84ae-fa136616e63a"
+    }
+  ]
 }

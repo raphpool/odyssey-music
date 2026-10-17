@@ -70,5 +70,64 @@
       "type": "artist",
       "name": "Thomas Melchior"
     }
+  ],
+  "similar_artists": [
+    {
+      "slug": "artist:zip",
+      "type": "artist",
+      "name": "Zip"
+    },
+    {
+      "slug": "artist:fumiya-tanaka",
+      "type": "artist",
+      "name": "Fumiya Tanaka",
+      "mbid": "86b9a88e-d18f-43c5-9805-f8eb41007aa2"
+    },
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos",
+      "mbid": "bbd79854-df54-4c1b-b7d6-cf7eea2d0afb"
+    },
+    {
+      "slug": "artist:sonja-moonear",
+      "type": "artist",
+      "name": "Sonja Moonear",
+      "mbid": "d6c86545-6fae-41b0-be0c-7a614190360b"
+    },
+    {
+      "slug": "artist:losoul",
+      "type": "artist",
+      "name": "Losoul",
+      "mbid": "c64bbb9f-1acb-40fa-abb3-2ca0246bdee1"
+    },
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    },
+    {
+      "slug": "artist:a-s-y-s",
+      "type": "artist",
+      "name": "A*S*Y*S",
+      "mbid": "2e40998c-e1c3-4063-9b03-03279ff64d4b"
+    },
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:application",
+      "type": "artist",
+      "name": "Application",
+      "mbid": "64f36451-a9f5-4ceb-b31e-2a1faf8aa2d9"
+    },
+    {
+      "slug": "artist:atom-heart",
+      "type": "artist",
+      "name": "Atom Heart"
+    }
   ]
 }

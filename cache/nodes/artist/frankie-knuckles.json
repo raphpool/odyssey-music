@@ -141,5 +141,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:mr-fingers",
+      "type": "artist",
+      "name": "Mr. Fingers",
+      "mbid": "1e47567e-5192-43b9-af98-75e4998f9e52"
+    },
+    {
+      "slug": "artist:inner-city",
+      "type": "artist",
+      "name": "Inner City",
+      "mbid": "65a8e571-8a08-433f-a5bf-ead38c269ea6"
+    },
+    {
+      "slug": "artist:the-night-writers",
+      "type": "artist",
+      "name": "The Night Writers",
+      "mbid": "7751b2dd-1b49-428f-8a00-026c0d0e221b"
+    },
+    {
+      "slug": "artist:jamie-principle",
+      "type": "artist",
+      "name": "Jamie Principle",
+      "mbid": "500df185-4a22-40a5-baf6-bdcabab5ed22"
+    },
+    {
+      "slug": "artist:kevin-irving",
+      "type": "artist",
+      "name": "Kevin Irving",
+      "mbid": "4ea9a471-050b-4fdc-876d-4dc08a4049de"
+    },
+    {
+      "slug": "artist:screamin-rachael",
+      "type": "artist",
+      "name": "Screamin’ Rachael",
+      "mbid": "854ae827-88a3-473c-8b7c-4895fa869be7"
+    },
+    {
+      "slug": "artist:new-order",
+      "type": "artist",
+      "name": "New Order",
+      "mbid": "f1106b17-dcbb-45f6-b938-199ccfab50cc"
+    },
+    {
+      "slug": "artist:maurice-joshua",
+      "type": "artist",
+      "name": "Maurice Joshua",
+      "mbid": "131c9ee5-8876-4d27-a448-87910d697577"
+    },
+    {
+      "slug": "artist:joe-smooth",
+      "type": "artist",
+      "name": "Joe Smooth",
+      "mbid": "348443bb-74fe-4459-8c19-3b72ad033d6c"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    }
+  ]
 }

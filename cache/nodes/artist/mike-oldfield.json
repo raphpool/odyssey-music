@@ -86,5 +86,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:vangelis",
+      "type": "artist",
+      "name": "Vangelis",
+      "mbid": "57fca0e2-f9ad-4ae6-af9d-6a6f50cbcd5f"
+    },
+    {
+      "slug": "artist:enya",
+      "type": "artist",
+      "name": "Enya",
+      "mbid": "4967c0a1-b9f3-465e-8440-4598fd9fc33c"
+    },
+    {
+      "slug": "artist:genesis",
+      "type": "artist",
+      "name": "Genesis",
+      "mbid": "8e3fcd7d-bda1-4ca0-b987-b8528d2ee74e"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:u2",
+      "type": "artist",
+      "name": "U2",
+      "mbid": "a3cb23fc-acd3-4ce0-8f36-1e5aa6a18432"
+    },
+    {
+      "slug": "artist:jean-michel-jarre",
+      "type": "artist",
+      "name": "Jean‐Michel Jarre",
+      "mbid": "86e2e2ad-6d1b-44fd-9463-b6683718a1cc"
+    },
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones",
+      "mbid": "b071f9fa-14b0-4217-8e97-eb41da73f598"
+    },
+    {
+      "slug": "artist:elton-john",
+      "type": "artist",
+      "name": "Elton John",
+      "mbid": "b83bc61f-8451-4a5d-8b8e-7e9ed295e822"
+    },
+    {
+      "slug": "artist:enigma",
+      "type": "artist",
+      "name": "Enigma",
+      "mbid": "f1d1df24-91af-4d27-83a4-9b4ad29b37eb"
+    }
+  ]
 }

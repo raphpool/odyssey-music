@@ -118,5 +118,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:miles-davis",
+      "type": "artist",
+      "name": "Miles Davis",
+      "mbid": "561d854a-6a28-4aa7-8c99-323e6ce46c2a"
+    },
+    {
+      "slug": "artist:john-coltrane",
+      "type": "artist",
+      "name": "John Coltrane",
+      "mbid": "b625448e-bf4a-41c3-a421-72ad46cdb831"
+    },
+    {
+      "slug": "artist:charles-mingus",
+      "type": "artist",
+      "name": "Charles Mingus",
+      "mbid": "f3b8e107-abe8-4743-b6a3-4a4ee995e71f"
+    },
+    {
+      "slug": "artist:thelonious-monk",
+      "type": "artist",
+      "name": "Thelonious Monk",
+      "mbid": "8e8c7417-c905-46b1-b42a-5260b4274ed4"
+    },
+    {
+      "slug": "artist:bill-evans",
+      "type": "artist",
+      "name": "Bill Evans",
+      "mbid": "8247a3f2-3a8e-4256-b322-6c57b03a4e36"
+    },
+    {
+      "slug": "artist:dexter-gordon",
+      "type": "artist",
+      "name": "Dexter Gordon",
+      "mbid": "cc1588e1-5ba3-45a6-b80c-b31035c89339"
+    },
+    {
+      "slug": "artist:chet-baker",
+      "type": "artist",
+      "name": "Chet Baker",
+      "mbid": "1ba1d493-7114-45e2-b163-a36d49a0c065"
+    },
+    {
+      "slug": "artist:charlie-parker",
+      "type": "artist",
+      "name": "Charlie Parker",
+      "mbid": "c7356af9-9ea6-4a78-a55b-c73775716312"
+    },
+    {
+      "slug": "artist:stan-getz",
+      "type": "artist",
+      "name": "Stan Getz",
+      "mbid": "8f2422ab-0ec6-4c92-80c4-afe9622fab32"
+    },
+    {
+      "slug": "artist:herbie-hancock",
+      "type": "artist",
+      "name": "Herbie Hancock",
+      "mbid": "27613b78-1b9d-4ec3-9db5-fa0743465fdd"
+    }
+  ]
 }

@@ -95,5 +95,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:apparat",
+      "type": "artist",
+      "name": "Apparat",
+      "mbid": "dc3dbfc1-f1f1-49c6-9d7c-425fabf3ae12"
+    },
+    {
+      "slug": "artist:ellen-allien",
+      "type": "artist",
+      "name": "Ellen Allien",
+      "mbid": "2ff63f00-0954-4b14-9007-e19b822fc8b2"
+    },
+    {
+      "slug": "artist:gui-boratto",
+      "type": "artist",
+      "name": "Gui Boratto",
+      "mbid": "f3e2ad21-900e-46a0-8597-2a3e457a7c27"
+    },
+    {
+      "slug": "artist:floating-points",
+      "type": "artist",
+      "name": "Floating Points",
+      "mbid": "69d9c5ba-7bba-4cb7-ab32-8ccc48ad4f97"
+    },
+    {
+      "slug": "artist:wk7",
+      "type": "artist",
+      "name": "WK7",
+      "mbid": "b7467904-b2de-4c1e-b8fa-e57405b41989"
+    },
+    {
+      "slug": "artist:crazy-bald-heads",
+      "type": "artist",
+      "name": "Crazy Bald Heads",
+      "mbid": "ce6c37f5-e855-4ba0-97e0-90dac0d662cf"
+    },
+    {
+      "slug": "artist:booka-shade",
+      "type": "artist",
+      "name": "Booka Shade",
+      "mbid": "9940c604-2456-4193-a403-ab18420bc1e9"
+    },
+    {
+      "slug": "artist:kma-productions",
+      "type": "artist",
+      "name": "KMA Productions",
+      "mbid": "f763147d-adda-4379-a1b1-e3d912c7aa47"
+    },
+    {
+      "slug": "artist:red-rack-em",
+      "type": "artist",
+      "name": "Red Rack’em",
+      "mbid": "943578c3-2351-46bf-bdb9-d29d5b3e6eb9"
+    },
+    {
+      "slug": "artist:alex-smoke",
+      "type": "artist",
+      "name": "Alex Smoke",
+      "mbid": "a2caa7c9-2510-40f0-9fb9-88f45cf993ba"
+    }
+  ]
 }

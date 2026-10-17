@@ -140,5 +140,36 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:ice-mc",
+      "type": "artist",
+      "name": "Ice MC",
+      "mbid": "fbd89fe5-c0d1-4539-9f12-f29e8f863782"
+    },
+    {
+      "slug": "artist:t99",
+      "type": "artist",
+      "name": "T99",
+      "mbid": "6f12634a-4774-4a2d-ba49-670c2720397f"
+    },
+    {
+      "slug": "artist:snap",
+      "type": "artist",
+      "name": "Snap!",
+      "mbid": "cd23732d-ffd2-444e-8884-53475d7ac7d9"
+    },
+    {
+      "slug": "artist:cubic-22",
+      "type": "artist",
+      "name": "Cubic 22",
+      "mbid": "9ac44078-f8dc-4755-a9ac-553b4fa449e7"
+    },
+    {
+      "slug": "artist:egma",
+      "type": "artist",
+      "name": "Egma",
+      "mbid": "d474432e-8fb7-4faa-8bf1-721a202163d0"
+    }
+  ]
 }

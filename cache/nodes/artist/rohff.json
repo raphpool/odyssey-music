@@ -110,5 +110,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:booba",
+      "type": "artist",
+      "name": "Booba",
+      "mbid": "785c0e9c-89f6-4bf4-8296-443a46632d62"
+    },
+    {
+      "slug": "artist:iam",
+      "type": "artist",
+      "name": "IAM",
+      "mbid": "7aa4a16e-9d5a-41d3-968e-fae1a2c84d05"
+    },
+    {
+      "slug": "artist:supreme-ntm",
+      "type": "artist",
+      "name": "Suprême NTM",
+      "mbid": "0135e5ec-4ffd-46e5-9c3c-566b3df46a8d"
+    },
+    {
+      "slug": "artist:la-fouine",
+      "type": "artist",
+      "name": "La Fouine",
+      "mbid": "998f1ece-a2b0-47d2-93df-17553430ab73"
+    },
+    {
+      "slug": "artist:mc-solaar",
+      "type": "artist",
+      "name": "MC Solaar",
+      "mbid": "bbbd2644-b4cb-4bb5-a442-315310f68a0b"
+    },
+    {
+      "slug": "artist:sniper",
+      "type": "artist",
+      "name": "Sniper",
+      "mbid": "88ad74d6-2dde-496f-86f3-722ff9274ea9"
+    },
+    {
+      "slug": "artist:kery-james",
+      "type": "artist",
+      "name": "Kery James",
+      "mbid": "cf33388f-96db-4f15-83eb-f5faacbf8f99"
+    },
+    {
+      "slug": "artist:oxmo-puccino",
+      "type": "artist",
+      "name": "Oxmo Puccino",
+      "mbid": "faf5d956-ba11-4e01-9634-2f1c9ec92df5"
+    },
+    {
+      "slug": "artist:youssoupha",
+      "type": "artist",
+      "name": "Youssoupha",
+      "mbid": "6fabf3aa-1822-49f2-b6c7-57560464696f"
+    },
+    {
+      "slug": "artist:lunatic",
+      "type": "artist",
+      "name": "Lunatic",
+      "mbid": "c4dc0648-cf89-4e38-81de-28ab8a2a41b9"
+    }
+  ]
 }

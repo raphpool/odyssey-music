@@ -87,5 +87,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:gyorgy-ligeti",
+      "type": "artist",
+      "name": "György Ligeti",
+      "mbid": "da5e774b-026a-4117-82a4-11d246c05a8b"
+    },
+    {
+      "slug": "artist:jean-claude-risset",
+      "type": "artist",
+      "name": "Jean‐Claude Risset",
+      "mbid": "5264157c-3140-40f9-b742-b54d010ba602"
+    },
+    {
+      "slug": "artist:beatriz-ferreyra",
+      "type": "artist",
+      "name": "Beatriz Ferreyra",
+      "mbid": "cdeead15-2551-4b7d-b0e5-00b167e57f38"
+    },
+    {
+      "slug": "artist:maja-s-k-ratkje",
+      "type": "artist",
+      "name": "Maja S. K. Ratkje",
+      "mbid": "dc9ea3d1-5e9f-497e-b324-98be33dbac06"
+    },
+    {
+      "slug": "artist:stephen-vitiello",
+      "type": "artist",
+      "name": "Stephen Vitiello",
+      "mbid": "dd6a95fb-28e8-4863-a94c-4232459cef99"
+    },
+    {
+      "slug": "artist:pierre-schaeffer",
+      "type": "artist",
+      "name": "Pierre Schaeffer",
+      "mbid": "cc48f77c-32c5-46e1-9f35-119d61671e1b"
+    },
+    {
+      "slug": "artist:wang-changcun",
+      "type": "artist",
+      "name": "Wang Changcun",
+      "mbid": "4aff3c51-4285-4a0a-9256-78fb9cc1f833"
+    },
+    {
+      "slug": "artist:laurie-spiegel",
+      "type": "artist",
+      "name": "Laurie Spiegel",
+      "mbid": "f006d7dc-643a-4c9b-abde-a04fb4ae1c90"
+    },
+    {
+      "slug": "artist:chlorgeschlecht",
+      "type": "artist",
+      "name": "Chlorgeschlecht",
+      "mbid": "1d8372ef-70a5-46eb-8c94-a315227a4b74"
+    },
+    {
+      "slug": "artist:john-fahey",
+      "type": "artist",
+      "name": "John Fahey",
+      "mbid": "95bb27d2-43c7-4a92-85ee-f95a245f0ee4"
+    }
+  ]
 }

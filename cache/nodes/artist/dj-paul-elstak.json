@@ -744,5 +744,66 @@
       "name": "Rotterdam Terror Corps"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:party-animals",
+      "type": "artist",
+      "name": "Party Animals",
+      "mbid": "5dc47602-da19-4515-8173-1e05d57b3a9e"
+    },
+    {
+      "slug": "artist:scooter",
+      "type": "artist",
+      "name": "Scooter",
+      "mbid": "83e59f23-3b0b-4304-834d-5bcafd5df6d2"
+    },
+    {
+      "slug": "artist:charly-lownoise-and-mental-theo",
+      "type": "artist",
+      "name": "Charly Lownoise & Mental Theo",
+      "mbid": "83639534-95e6-4094-9e6c-81b01f17bc79"
+    },
+    {
+      "slug": "artist:2-brothers-on-the-4th-floor",
+      "type": "artist",
+      "name": "2 Brothers on the 4th Floor",
+      "mbid": "b7639749-d40b-44a5-b04a-cb15599a5956"
+    },
+    {
+      "slug": "artist:the-prodigy",
+      "type": "artist",
+      "name": "The Prodigy",
+      "mbid": "4a4ee089-93b1-4470-af9a-6ff575d32704"
+    },
+    {
+      "slug": "artist:4-tune-fairytales",
+      "type": "artist",
+      "name": "4 Tune Fairytales",
+      "mbid": "869dca8e-721c-485e-9c58-fef5e410a476"
+    },
+    {
+      "slug": "artist:dj-isaac",
+      "type": "artist",
+      "name": "DJ Isaac",
+      "mbid": "c46d3fa5-83a7-4a07-b2c4-428946bf84d9"
+    },
+    {
+      "slug": "artist:scott-brown",
+      "type": "artist",
+      "name": "Scott Brown",
+      "mbid": "ccb77c78-ffc3-4790-9006-61f2277e9c91"
+    },
+    {
+      "slug": "artist:angerfist",
+      "type": "artist",
+      "name": "Angerfist",
+      "mbid": "91d8e441-73a6-48a6-aed1-2bef4da87799"
+    },
+    {
+      "slug": "artist:technohead",
+      "type": "artist",
+      "name": "Technohead",
+      "mbid": "77728cc5-a820-4973-a564-13aced876a2e"
+    }
+  ]
 }

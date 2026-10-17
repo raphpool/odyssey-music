@@ -81,5 +81,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:elliott-smith",
+      "type": "artist",
+      "name": "Elliott Smith",
+      "mbid": "03ad1736-b7c9-412a-b442-82536d63a5c4"
+    },
+    {
+      "slug": "artist:bob-dylan",
+      "type": "artist",
+      "name": "Bob Dylan",
+      "mbid": "72c536dc-7137-4477-a521-567eeb840fa8"
+    },
+    {
+      "slug": "artist:simon-and-garfunkel",
+      "type": "artist",
+      "name": "Simon & Garfunkel",
+      "mbid": "5d02f264-e225-41ff-83f7-d9b1f0b1874a"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:iron-and-wine",
+      "type": "artist",
+      "name": "Iron & Wine",
+      "mbid": "c3f28da8-662d-4f09-bdc7-3084bf685930"
+    },
+    {
+      "slug": "artist:sufjan-stevens",
+      "type": "artist",
+      "name": "Sufjan Stevens",
+      "mbid": "01d3c51b-9b98-418a-8d8e-37f6fab59d8c"
+    },
+    {
+      "slug": "artist:neil-young",
+      "type": "artist",
+      "name": "Neil Young",
+      "mbid": "75167b8b-44e4-407b-9d35-effe87b223cf"
+    },
+    {
+      "slug": "artist:the-velvet-underground",
+      "type": "artist",
+      "name": "The Velvet Underground",
+      "mbid": "94b0fb9d-a066-4823-b2ec-af1d324bcfcf"
+    },
+    {
+      "slug": "artist:the-shins",
+      "type": "artist",
+      "name": "The Shins",
+      "mbid": "6c8b9855-ba8b-48f9-ac1d-42167f7f7b18"
+    }
+  ]
 }

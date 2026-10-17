@@ -138,5 +138,63 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:bob-dylan",
+      "type": "artist",
+      "name": "Bob Dylan",
+      "mbid": "72c536dc-7137-4477-a521-567eeb840fa8"
+    },
+    {
+      "slug": "artist:elvis-presley",
+      "type": "artist",
+      "name": "Elvis Presley",
+      "mbid": "01809552-4f87-45b0-afff-2c6f0730a3be"
+    },
+    {
+      "slug": "artist:pop-smoke",
+      "type": "artist",
+      "name": "Pop Smoke"
+    },
+    {
+      "slug": "artist:ringo-starr",
+      "type": "artist",
+      "name": "Ringo Starr",
+      "mbid": "300c4c73-33ac-4255-9d57-4e32627f5e13"
+    },
+    {
+      "slug": "artist:the-lonely-island",
+      "type": "artist",
+      "name": "The Lonely Island",
+      "mbid": "028e1863-cab4-4a3d-9dd9-91c682c91005"
+    },
+    {
+      "slug": "artist:2-unlimited",
+      "type": "artist",
+      "name": "2 Unlimited"
+    },
+    {
+      "slug": "artist:blackpink",
+      "type": "artist",
+      "name": "BLACKPINK",
+      "mbid": "48646387-1664-4c9a-9139-9bfd091b823c"
+    },
+    {
+      "slug": "artist:bts",
+      "type": "artist",
+      "name": "BTS",
+      "mbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853"
+    },
+    {
+      "slug": "artist:bee-gees",
+      "type": "artist",
+      "name": "Bee Gees"
+    },
+    {
+      "slug": "artist:bobby-brown",
+      "type": "artist",
+      "name": "Bobby Brown"
+    }
+  ]
 }

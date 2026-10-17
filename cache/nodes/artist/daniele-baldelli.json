@@ -255,5 +255,42 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:eddy-meets-yannah",
+      "type": "artist",
+      "name": "Eddy meets Yannah",
+      "mbid": "d2a77089-c85b-4754-a28a-aea785ca1b43"
+    },
+    {
+      "slug": "artist:felix-laband",
+      "type": "artist",
+      "name": "Felix Laband",
+      "mbid": "a36e9173-2c46-42c6-b319-e9a4155ef2aa"
+    },
+    {
+      "slug": "artist:jean-paul-bondy",
+      "type": "artist",
+      "name": "Jean-Paul Bondy",
+      "mbid": "7f6d3d35-d9e5-43a9-b1ec-f4e5356edf68"
+    },
+    {
+      "slug": "artist:wahoo",
+      "type": "artist",
+      "name": "Wahoo",
+      "mbid": "8933821a-eaab-431f-9e9e-60333938eb9d"
+    },
+    {
+      "slug": "artist:kabanjak",
+      "type": "artist",
+      "name": "Kabanjak",
+      "mbid": "cad26fa5-cd93-4d8d-b97a-3c3643cb6043"
+    },
+    {
+      "slug": "artist:jazz-stuff-combo",
+      "type": "artist",
+      "name": "Jazz Stuff Combo",
+      "mbid": "9806fd29-b3f4-4fc0-9200-db35984eb406"
+    }
+  ]
 }

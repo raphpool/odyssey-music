@@ -78,5 +78,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:marschmellows",
+      "type": "artist",
+      "name": "Marschmellows",
+      "mbid": "4efda34a-3f54-4137-a639-ce5ab6fbe399"
+    },
+    {
+      "slug": "artist:farben",
+      "type": "artist",
+      "name": "Farben",
+      "mbid": "fbc30dda-81ee-434c-8d04-88dda6a78ad2"
+    },
+    {
+      "slug": "artist:georg-levin",
+      "type": "artist",
+      "name": "Georg Levin",
+      "mbid": "1a87841d-2b59-43da-9e74-387232667f90"
+    },
+    {
+      "slug": "artist:daniel-bell",
+      "type": "artist",
+      "name": "Daniel Bell",
+      "mbid": "0fdfc9ce-4892-45d0-b7c1-80217781ecd0"
+    },
+    {
+      "slug": "artist:the-juan-maclean",
+      "type": "artist",
+      "name": "The Juan MacLean",
+      "mbid": "f8f1220b-1661-42c3-beea-d59e8e00b993"
+    },
+    {
+      "slug": "artist:j-dilla",
+      "type": "artist",
+      "name": "J Dilla",
+      "mbid": "cbcbb22c-3a8d-46af-b4ba-09c98f0d7931"
+    },
+    {
+      "slug": "artist:nick-holder",
+      "type": "artist",
+      "name": "Nick Holder",
+      "mbid": "ab77c1ff-f2df-4499-966c-1070d81e0a76"
+    },
+    {
+      "slug": "artist:problem-kids",
+      "type": "artist",
+      "name": "Problem Kids",
+      "mbid": "b6af1f05-bfd2-49a8-a511-751d7ccd30b3"
+    },
+    {
+      "slug": "artist:paul-hester",
+      "type": "artist",
+      "name": "Paul Hester",
+      "mbid": "1c99b786-166f-492d-9359-73083de39bf6"
+    },
+    {
+      "slug": "artist:jacquee-bennett",
+      "type": "artist",
+      "name": "Jacquee Bennett",
+      "mbid": "310f7179-289f-42b2-8f59-4b7ca07455db"
+    }
+  ]
 }

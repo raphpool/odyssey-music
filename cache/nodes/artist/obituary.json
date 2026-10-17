@@ -282,5 +282,66 @@
       "name": "Ken Andrews"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:death",
+      "type": "artist",
+      "name": "Death",
+      "mbid": "dbb3b771-ae77-4381-b61c-758b5b7898ec"
+    },
+    {
+      "slug": "artist:morbid-angel",
+      "type": "artist",
+      "name": "Morbid Angel",
+      "mbid": "4355a36d-805e-478d-8589-64f0292724b2"
+    },
+    {
+      "slug": "artist:cannibal-corpse",
+      "type": "artist",
+      "name": "Cannibal Corpse",
+      "mbid": "af8e4cc5-ef54-458d-a194-7b210acf638f"
+    },
+    {
+      "slug": "artist:slayer",
+      "type": "artist",
+      "name": "Slayer",
+      "mbid": "bdacc37b-8633-4bf8-9dd5-4662ee651aec"
+    },
+    {
+      "slug": "artist:carcass",
+      "type": "artist",
+      "name": "Carcass",
+      "mbid": "d50a4b89-ff1f-4659-9fde-f76f8d5b3c89"
+    },
+    {
+      "slug": "artist:deicide",
+      "type": "artist",
+      "name": "Deicide",
+      "mbid": "0bd96fa4-9835-49b0-a1f2-7421e6a79dfa"
+    },
+    {
+      "slug": "artist:sepultura",
+      "type": "artist",
+      "name": "Sepultura",
+      "mbid": "1d93c839-22e7-4f76-ad84-d27039efc048"
+    },
+    {
+      "slug": "artist:metallica",
+      "type": "artist",
+      "name": "Metallica",
+      "mbid": "65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab"
+    },
+    {
+      "slug": "artist:bolt-thrower",
+      "type": "artist",
+      "name": "Bolt Thrower",
+      "mbid": "68bd8072-0412-44b1-81dd-807aa6c1918c"
+    },
+    {
+      "slug": "artist:megadeth",
+      "type": "artist",
+      "name": "Megadeth",
+      "mbid": "a9044915-8be3-4c7e-b11f-9e2d2ea0a91e"
+    }
+  ]
 }

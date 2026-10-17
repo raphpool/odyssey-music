@@ -78,5 +78,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:daft-punk",
+      "type": "artist",
+      "name": "Daft Punk",
+      "mbid": "056e4f3e-d505-4dad-8ec1-d04f521cbb56"
+    },
+    {
+      "slug": "artist:dj-falcon",
+      "type": "artist",
+      "name": "DJ Falcon",
+      "mbid": "98764c37-c165-4aae-85eb-02c8114ded63"
+    },
+    {
+      "slug": "artist:nile-rodgers",
+      "type": "artist",
+      "name": "Nile Rodgers",
+      "mbid": "c6d571dd-c0ae-4ac8-9500-780b1b9b25e5"
+    },
+    {
+      "slug": "artist:panda-bear",
+      "type": "artist",
+      "name": "Panda Bear",
+      "mbid": "fd3c3f9f-a471-498e-ab3a-940ac20b6bbd"
+    },
+    {
+      "slug": "artist:paul-williams",
+      "type": "artist",
+      "name": "Paul Williams",
+      "mbid": "2307602e-a3ce-4f37-bb2b-d54f1980ed5f"
+    },
+    {
+      "slug": "artist:julian-casablancas",
+      "type": "artist",
+      "name": "Julian Casablancas",
+      "mbid": "c5ce487b-0462-444e-a184-4de0fef7e028"
+    },
+    {
+      "slug": "artist:chilly-gonzales",
+      "type": "artist",
+      "name": "Chilly Gonzales",
+      "mbid": "9c306413-56b6-4ff6-982a-7e4b87d01340"
+    },
+    {
+      "slug": "artist:the-strokes",
+      "type": "artist",
+      "name": "The Strokes",
+      "mbid": "f181961b-20f7-459e-89de-920ef03c7ed0"
+    },
+    {
+      "slug": "artist:linkin-park",
+      "type": "artist",
+      "name": "Linkin Park",
+      "mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419"
+    },
+    {
+      "slug": "artist:kavinsky",
+      "type": "artist",
+      "name": "Kavinsky",
+      "mbid": "eb6de5f6-98f8-4b5a-bfdc-f87fa4936baa"
+    }
+  ]
 }

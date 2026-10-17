@@ -136,5 +136,66 @@
       "name": "The Reese Project"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:model-500",
+      "type": "artist",
+      "name": "Model 500",
+      "mbid": "e569aee8-33ff-48e5-b0ed-4ceba1a37714"
+    },
+    {
+      "slug": "artist:tadeo",
+      "type": "artist",
+      "name": "Tadeo",
+      "mbid": "0c0db39b-52c3-4b25-854c-4a44df6f3813"
+    },
+    {
+      "slug": "artist:joey-beltram",
+      "type": "artist",
+      "name": "Joey Beltram",
+      "mbid": "5330d6d0-711b-415b-93e4-071e46d0d5f2"
+    },
+    {
+      "slug": "artist:carl-cox",
+      "type": "artist",
+      "name": "Carl Cox",
+      "mbid": "8f614665-3418-4ca8-aa6a-737b4636b995"
+    },
+    {
+      "slug": "artist:samuli-kemppi",
+      "type": "artist",
+      "name": "Samuli Kemppi",
+      "mbid": "ed442b01-8de1-4f0b-9188-e68b2960f050"
+    },
+    {
+      "slug": "artist:planetary-assault-systems",
+      "type": "artist",
+      "name": "Planetary Assault Systems",
+      "mbid": "4c8dab3d-7b87-44ae-aec8-9b645f6b3e2d"
+    },
+    {
+      "slug": "artist:deetron",
+      "type": "artist",
+      "name": "Deetron",
+      "mbid": "7bf55794-bd9c-4a1e-a3f3-2ad60095c9ee"
+    },
+    {
+      "slug": "artist:onallee",
+      "type": "artist",
+      "name": "Onallee",
+      "mbid": "243936c3-fcad-4474-92d7-ce3002c498d2"
+    },
+    {
+      "slug": "artist:redshape",
+      "type": "artist",
+      "name": "Redshape",
+      "mbid": "2d4d556e-2a39-4caf-9bc9-9d34b14c7926"
+    },
+    {
+      "slug": "artist:kenny-larkin",
+      "type": "artist",
+      "name": "Kenny Larkin",
+      "mbid": "ed8e364a-6087-4425-bd58-6b146893c4b4"
+    }
+  ]
 }

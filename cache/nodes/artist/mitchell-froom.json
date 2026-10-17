@@ -103,5 +103,24 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:mike-doughty",
+      "type": "artist",
+      "name": "Mike Doughty",
+      "mbid": "f3bcf7b3-be33-493b-8557-b201b3567828"
+    },
+    {
+      "slug": "artist:soul-coughing",
+      "type": "artist",
+      "name": "Soul Coughing",
+      "mbid": "8067c102-4996-42bc-9980-06ce2e644eae"
+    },
+    {
+      "slug": "artist:they-might-be-giants",
+      "type": "artist",
+      "name": "They Might Be Giants",
+      "mbid": "183d6ef6-e161-47ff-9085-063c8b897e97"
+    }
+  ]
 }

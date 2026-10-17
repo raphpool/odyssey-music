@@ -76,5 +76,48 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:thievery-corporation",
+      "type": "artist",
+      "name": "Thievery Corporation",
+      "mbid": "a505bb48-ad65-4af4-ae47-29149715bff9"
+    },
+    {
+      "slug": "artist:bonobo",
+      "type": "artist",
+      "name": "Bonobo",
+      "mbid": "9a709693-b4f8-4da9-8cc1-038c911a61be"
+    },
+    {
+      "slug": "artist:shigeto",
+      "type": "artist",
+      "name": "Shigeto",
+      "mbid": "9006da5a-73cc-4b98-9395-78570b827fb1"
+    },
+    {
+      "slug": "artist:plaid",
+      "type": "artist",
+      "name": "Plaid",
+      "mbid": "7e54d133-2525-4bc0-ae94-65584145a386"
+    },
+    {
+      "slug": "artist:tycho",
+      "type": "artist",
+      "name": "Tycho",
+      "mbid": "cbef45a9-7acb-4325-94c9-70081ac8d1b8"
+    },
+    {
+      "slug": "artist:kasim-keto",
+      "type": "artist",
+      "name": "Kasim Keto",
+      "mbid": "cf1fd999-0333-4e19-9aa5-25bf98c02947"
+    },
+    {
+      "slug": "artist:iglooghost",
+      "type": "artist",
+      "name": "Iglooghost",
+      "mbid": "e42e0cb0-2722-4807-9102-889a2d4adcc3"
+    }
+  ]
 }

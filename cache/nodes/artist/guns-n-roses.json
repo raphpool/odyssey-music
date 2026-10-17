@@ -113,5 +113,66 @@
       "name": "Duff McKagan"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:queen",
+      "type": "artist",
+      "name": "Queen",
+      "mbid": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3"
+    },
+    {
+      "slug": "artist:ac-dc",
+      "type": "artist",
+      "name": "AC/DC",
+      "mbid": "66c662b6-6e2f-4930-8610-912e24c63ed1"
+    },
+    {
+      "slug": "artist:metallica",
+      "type": "artist",
+      "name": "Metallica",
+      "mbid": "65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab"
+    },
+    {
+      "slug": "artist:nirvana",
+      "type": "artist",
+      "name": "Nirvana",
+      "mbid": "5b11f4ce-a62d-471e-81fc-a69a8278c7da"
+    },
+    {
+      "slug": "artist:led-zeppelin",
+      "type": "artist",
+      "name": "Led Zeppelin",
+      "mbid": "678d88b2-87b0-403b-b63d-5da7465aecc3"
+    },
+    {
+      "slug": "artist:aerosmith",
+      "type": "artist",
+      "name": "Aerosmith",
+      "mbid": "3d2b98e5-556f-4451-a3ff-c50ea18d57cb"
+    },
+    {
+      "slug": "artist:red-hot-chili-peppers",
+      "type": "artist",
+      "name": "Red Hot Chili Peppers",
+      "mbid": "8bfac288-ccc5-448d-9573-c33ea2aa5c30"
+    },
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones",
+      "mbid": "b071f9fa-14b0-4217-8e97-eb41da73f598"
+    },
+    {
+      "slug": "artist:bon-jovi",
+      "type": "artist",
+      "name": "Bon Jovi",
+      "mbid": "5dcdb5eb-cb72-4e6e-9e63-b7bace604965"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
+    }
+  ]
 }

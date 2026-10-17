@@ -133,5 +133,18 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:tabu-ley-rochereau",
+      "type": "artist",
+      "name": "Tabu Ley Rochereau",
+      "mbid": "85a694a0-dde9-4d79-a3b5-11950be0f3de"
+    },
+    {
+      "slug": "artist:koffi-olomide",
+      "type": "artist",
+      "name": "Koffi Olomidé",
+      "mbid": "45d921dd-aaf9-4f72-9a8c-101ec24b9186"
+    }
+  ]
 }

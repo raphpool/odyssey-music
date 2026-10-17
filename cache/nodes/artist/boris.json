@@ -71,5 +71,36 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:merzbow",
+      "type": "artist",
+      "name": "Merzbow",
+      "mbid": "2841d983-f8c3-432a-af02-7407a84580a8"
+    },
+    {
+      "slug": "artist:earth",
+      "type": "artist",
+      "name": "Earth",
+      "mbid": "60dd41cf-8f9d-46d8-bc19-dc7e5acb24c8"
+    },
+    {
+      "slug": "artist:keiji-haino",
+      "type": "artist",
+      "name": "Keiji Haino"
+    },
+    {
+      "slug": "artist:mclusky",
+      "type": "artist",
+      "name": "Mclusky",
+      "mbid": "26860648-1c93-4849-bc52-a8541ec88219"
+    },
+    {
+      "slug": "artist:sunn-o",
+      "type": "artist",
+      "name": "Sunn O)))",
+      "mbid": "1d3da898-4fb4-4445-b704-cd7315e01789"
+    }
+  ]
 }

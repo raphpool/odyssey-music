@@ -91,5 +91,54 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:tim-hecker",
+      "type": "artist",
+      "name": "Tim Hecker",
+      "mbid": "c7ee3bc9-780c-42c0-91e9-4cd70ad692d3"
+    },
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre",
+      "mbid": "410c9baf-5469-44f6-9852-826524b80c61"
+    },
+    {
+      "slug": "artist:low",
+      "type": "artist",
+      "name": "Low",
+      "mbid": "42faad37-8aaa-42e4-a300-5a7dae79ed24"
+    },
+    {
+      "slug": "artist:laurie-spiegel",
+      "type": "artist",
+      "name": "Laurie Spiegel",
+      "mbid": "f006d7dc-643a-4c9b-abde-a04fb4ae1c90"
+    },
+    {
+      "slug": "artist:kevin-drumm",
+      "type": "artist",
+      "name": "Kevin Drumm",
+      "mbid": "03796b89-8767-4fe8-b3ee-0e3ee7c3bdf8"
+    },
+    {
+      "slug": "artist:bowery-electric",
+      "type": "artist",
+      "name": "Bowery Electric",
+      "mbid": "89cbe6ac-80af-421b-9276-cf373a1480c3"
+    },
+    {
+      "slug": "artist:celer",
+      "type": "artist",
+      "name": "Celer",
+      "mbid": "6ef3e8f1-675d-46e0-8604-2983b42bc7dc"
+    },
+    {
+      "slug": "artist:pauline-oliveros",
+      "type": "artist",
+      "name": "Pauline Oliveros",
+      "mbid": "62c31c9d-d2d9-4b2a-9549-4be129e9559a"
+    }
+  ]
 }

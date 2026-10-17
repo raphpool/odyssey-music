@@ -160,5 +160,24 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:kabza-de-small",
+      "type": "artist",
+      "name": "Kabza De Small",
+      "mbid": "36f9accc-d9f6-4dd2-8c23-91da477ce35c"
+    },
+    {
+      "slug": "artist:hip-hop-pantsula",
+      "type": "artist",
+      "name": "Hip Hop Pantsula",
+      "mbid": "36b47aca-c378-4f7f-b4a8-9cb2ccb81dc1"
+    },
+    {
+      "slug": "artist:killer-kau",
+      "type": "artist",
+      "name": "Killer Kau",
+      "mbid": "f6b3332c-2835-48f1-94fb-a09649e0a4ef"
+    }
+  ]
 }

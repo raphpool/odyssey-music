@@ -114,5 +114,66 @@
       "name": "Yellow Magic Orchestra"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:haruomi-hosono",
+      "type": "artist",
+      "name": "細野晴臣",
+      "mbid": "078be324-de92-4c72-9371-65bdcf324154"
+    },
+    {
+      "slug": "artist:wendy-matthews",
+      "type": "artist",
+      "name": "Wendy Matthews",
+      "mbid": "e37ec83a-c552-45b7-993f-8dbd206ff539"
+    },
+    {
+      "slug": "artist:kumisolo",
+      "type": "artist",
+      "name": "Kumisolo",
+      "mbid": "0c917317-865c-4275-a97c-b307bb956fdf"
+    },
+    {
+      "slug": "artist:f-o-e",
+      "type": "artist",
+      "name": "F.O.E",
+      "mbid": "5eebd833-d596-449a-8d5c-77ae5e0ddbc2"
+    },
+    {
+      "slug": "artist:sketch-show",
+      "type": "artist",
+      "name": "SKETCH SHOW",
+      "mbid": "48dc5b7e-f4d2-47ab-911a-e39ba892074a"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:the-cakekitchen",
+      "type": "artist",
+      "name": "The Cakekitchen",
+      "mbid": "3c126e06-a50b-49a4-b89d-4d980d2cbfc1"
+    },
+    {
+      "slug": "artist:tatsuro-yamashita",
+      "type": "artist",
+      "name": "山下達郎",
+      "mbid": "ad62391d-ab7e-4ac9-9ce8-3704bc6746bb"
+    },
+    {
+      "slug": "artist:orange-juice",
+      "type": "artist",
+      "name": "Orange Juice",
+      "mbid": "e598d30e-4ce1-402e-94a7-6f44779da6b7"
+    },
+    {
+      "slug": "artist:interior",
+      "type": "artist",
+      "name": "INTERIOR",
+      "mbid": "517e9593-6ddf-4bb1-8d7c-a525912a4015"
+    }
+  ]
 }

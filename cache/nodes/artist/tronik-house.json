@@ -79,5 +79,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:reese",
+      "type": "artist",
+      "name": "Reese",
+      "mbid": "e753448b-2970-4f7d-9265-532ef0657891"
+    },
+    {
+      "slug": "artist:e-dancer",
+      "type": "artist",
+      "name": "E-Dancer",
+      "mbid": "c60445cf-b428-4563-b09a-5868bbdecbbd"
+    },
+    {
+      "slug": "artist:reese-and-santonio",
+      "type": "artist",
+      "name": "Reese & Santonio",
+      "mbid": "55e6055a-d24d-41be-9298-671f54613728"
+    },
+    {
+      "slug": "artist:moby",
+      "type": "artist",
+      "name": "Moby",
+      "mbid": "8970d868-0723-483b-a75b-51088913d3d4"
+    },
+    {
+      "slug": "artist:inner-city",
+      "type": "artist",
+      "name": "Inner City",
+      "mbid": "65a8e571-8a08-433f-a5bf-ead38c269ea6"
+    },
+    {
+      "slug": "artist:the-prodigy",
+      "type": "artist",
+      "name": "The Prodigy",
+      "mbid": "4a4ee089-93b1-4470-af9a-6ff575d32704"
+    },
+    {
+      "slug": "artist:dave-angel",
+      "type": "artist",
+      "name": "Dave Angel",
+      "mbid": "98572ea2-67a6-4ea5-8a3b-fcd1740c0115"
+    },
+    {
+      "slug": "artist:n-joi",
+      "type": "artist",
+      "name": "N‐Joi",
+      "mbid": "aed893c3-cac5-4f23-b175-979348bd6fee"
+    },
+    {
+      "slug": "artist:joey-beltram",
+      "type": "artist",
+      "name": "Joey Beltram",
+      "mbid": "5330d6d0-711b-415b-93e4-071e46d0d5f2"
+    },
+    {
+      "slug": "artist:dhs",
+      "type": "artist",
+      "name": "DHS",
+      "mbid": "257180c1-0817-4166-8bbd-d47be8da9991"
+    }
+  ]
 }

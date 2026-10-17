@@ -138,5 +138,66 @@
       "name": "Jung Kook"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:blackpink",
+      "type": "artist",
+      "name": "BLACKPINK",
+      "mbid": "48646387-1664-4c9a-9139-9bfd091b823c"
+    },
+    {
+      "slug": "artist:dua-lipa",
+      "type": "artist",
+      "name": "Dua Lipa",
+      "mbid": "6f1a58bf-9b1b-49cf-a44a-6cefad7ae04f"
+    },
+    {
+      "slug": "artist:halsey",
+      "type": "artist",
+      "name": "Halsey",
+      "mbid": "3377f3bb-60fc-4403-aea9-7e800612e060"
+    },
+    {
+      "slug": "artist:ariana-grande",
+      "type": "artist",
+      "name": "Ariana Grande",
+      "mbid": "f4fdbb4c-e4b7-47a0-b83b-d91bbfcfa387"
+    },
+    {
+      "slug": "artist:twice",
+      "type": "artist",
+      "name": "TWICE",
+      "mbid": "8da127cc-c432-418f-b356-ef36210d82ac"
+    },
+    {
+      "slug": "artist:the-weeknd",
+      "type": "artist",
+      "name": "The Weeknd",
+      "mbid": "c8b03190-306c-4120-bb0b-6f2ebfc06ea9"
+    },
+    {
+      "slug": "artist:red-velvet",
+      "type": "artist",
+      "name": "Red Velvet",
+      "mbid": "4f0cb3b7-6c06-4317-ae35-ddf3106a17ee"
+    },
+    {
+      "slug": "artist:ed-sheeran",
+      "type": "artist",
+      "name": "Ed Sheeran",
+      "mbid": "b8a7c51f-362c-4dcb-a259-bc6e0095f0a6"
+    },
+    {
+      "slug": "artist:billie-eilish",
+      "type": "artist",
+      "name": "Billie Eilish",
+      "mbid": "f4abc0b5-3f7a-4eff-8f78-ac078dbce533"
+    },
+    {
+      "slug": "artist:justin-bieber",
+      "type": "artist",
+      "name": "Justin Bieber",
+      "mbid": "e0140a67-e4d1-4f13-8a01-364355bee46e"
+    }
+  ]
 }

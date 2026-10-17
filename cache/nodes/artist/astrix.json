@@ -387,5 +387,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:infected-mushroom",
+      "type": "artist",
+      "name": "Infected Mushroom",
+      "mbid": "eab76c9f-ff91-4431-b6dd-3b976c598020"
+    },
+    {
+      "slug": "artist:1200-micrograms",
+      "type": "artist",
+      "name": "1200 Micrograms",
+      "mbid": "bf346e67-b4b1-41c0-bcc7-a8f4df4fbbbb"
+    },
+    {
+      "slug": "artist:shpongle",
+      "type": "artist",
+      "name": "Shpongle",
+      "mbid": "ffe9ec08-6b6b-4993-9394-e280b429dbfd"
+    },
+    {
+      "slug": "artist:juno-reactor",
+      "type": "artist",
+      "name": "Juno Reactor",
+      "mbid": "16231a34-9ccd-410e-8690-f74e98fe16a4"
+    },
+    {
+      "slug": "artist:talamasca",
+      "type": "artist",
+      "name": "Talamasca",
+      "mbid": "7e1666e2-b82d-40f6-98ff-920dc6fe3f8b"
+    },
+    {
+      "slug": "artist:hope-6",
+      "type": "artist",
+      "name": "Hope 6",
+      "mbid": "1381bcd2-af0c-4b24-8e62-acf080d42bb7"
+    },
+    {
+      "slug": "artist:savant",
+      "type": "artist",
+      "name": "Savant",
+      "mbid": "541a58c4-29b3-48b1-b060-3d37b037a226"
+    },
+    {
+      "slug": "artist:electric-universe",
+      "type": "artist",
+      "name": "Electric Universe",
+      "mbid": "c4acef6a-1835-4da4-bdea-ba3b789dd36d"
+    },
+    {
+      "slug": "artist:hallucinogen",
+      "type": "artist",
+      "name": "Hallucinogen",
+      "mbid": "37186f53-8d72-44e6-81e6-7dfd18223747"
+    },
+    {
+      "slug": "artist:pegboard-nerds",
+      "type": "artist",
+      "name": "Pegboard Nerds",
+      "mbid": "c729681b-c5c1-4509-a6d1-f916c51aefd7"
+    }
+  ]
 }

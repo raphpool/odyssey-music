@@ -107,5 +107,66 @@
       "name": "The Rolling Stones"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:mick-jagger",
+      "type": "artist",
+      "name": "Mick Jagger",
+      "mbid": "b5ffc3aa-b868-4b88-905f-d73d51dbe51c"
+    },
+    {
+      "slug": "artist:buddy-guy",
+      "type": "artist",
+      "name": "Buddy Guy",
+      "mbid": "4336a134-d091-4e54-9967-c7c433db6d4e"
+    },
+    {
+      "slug": "artist:tom-petty-and-the-heartbreakers",
+      "type": "artist",
+      "name": "Tom Petty and the Heartbreakers",
+      "mbid": "f93dbc64-6f08-4033-bcc7-8a0bb4689849"
+    },
+    {
+      "slug": "artist:eagles",
+      "type": "artist",
+      "name": "Eagles",
+      "mbid": "f46bd570-5768-462e-b84c-c7c993bbf47e"
+    },
+    {
+      "slug": "artist:ronnie-wood",
+      "type": "artist",
+      "name": "Ronnie Wood",
+      "mbid": "92ed8183-8f22-42b2-af4e-d44137610fa0"
+    },
+    {
+      "slug": "artist:iggy-pop",
+      "type": "artist",
+      "name": "Iggy Pop",
+      "mbid": "f37b3f31-b1f8-4b88-8cb5-b34f709b17d7"
+    },
+    {
+      "slug": "artist:muddy-waters",
+      "type": "artist",
+      "name": "Muddy Waters",
+      "mbid": "f86f1f07-d182-45ce-ae93-ef610880ca72"
+    },
+    {
+      "slug": "artist:linkin-park",
+      "type": "artist",
+      "name": "Linkin Park",
+      "mbid": "f59c5520-5f46-4d2c-b2c4-822eabf53419"
+    },
+    {
+      "slug": "artist:cake",
+      "type": "artist",
+      "name": "CAKE",
+      "mbid": "fa7b9055-3703-473a-8a09-adf2fe031a24"
+    },
+    {
+      "slug": "artist:jack-johnson",
+      "type": "artist",
+      "name": "Jack Johnson",
+      "mbid": "ff6e677f-91dd-4986-a174-8db0474b1799"
+    }
+  ]
 }

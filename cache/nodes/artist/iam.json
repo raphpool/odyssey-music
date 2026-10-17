@@ -73,5 +73,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:supreme-ntm",
+      "type": "artist",
+      "name": "Suprême NTM",
+      "mbid": "0135e5ec-4ffd-46e5-9c3c-566b3df46a8d"
+    },
+    {
+      "slug": "artist:mc-solaar",
+      "type": "artist",
+      "name": "MC Solaar",
+      "mbid": "bbbd2644-b4cb-4bb5-a442-315310f68a0b"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:fonky-family",
+      "type": "artist",
+      "name": "Fonky Family",
+      "mbid": "dfbc2d9e-d1c0-442b-970f-af28bb597537"
+    },
+    {
+      "slug": "artist:akhenaton",
+      "type": "artist",
+      "name": "Akhenaton",
+      "mbid": "55808e24-5150-4abd-b86b-7c3d7a080da3"
+    },
+    {
+      "slug": "artist:oxmo-puccino",
+      "type": "artist",
+      "name": "Oxmo Puccino",
+      "mbid": "faf5d956-ba11-4e01-9634-2f1c9ec92df5"
+    },
+    {
+      "slug": "artist:gorillaz",
+      "type": "artist",
+      "name": "Gorillaz",
+      "mbid": "e21857d5-3256-4547-afb3-4b6ded592596"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
+    },
+    {
+      "slug": "artist:beastie-boys",
+      "type": "artist",
+      "name": "Beastie Boys",
+      "mbid": "9beb62b2-88db-4cea-801e-162cd344ee53"
+    },
+    {
+      "slug": "artist:shurik-n",
+      "type": "artist",
+      "name": "Shurik’n",
+      "mbid": "4f025aa8-99a3-4f78-9026-cb885e1aafa8"
+    }
+  ]
 }

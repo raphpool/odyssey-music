@@ -76,5 +76,64 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:jimmy-cauty",
+      "type": "artist",
+      "name": "Jimmy Cauty",
+      "mbid": "2444b25f-7b85-4ab4-ab2e-474624f08bda"
+    },
+    {
+      "slug": "artist:boris",
+      "type": "artist",
+      "name": "Boris"
+    },
+    {
+      "slug": "artist:chas-chandler",
+      "type": "artist",
+      "name": "Chas Chandler",
+      "mbid": "87f12745-5b9b-4224-8b16-236cf28ce46f"
+    },
+    {
+      "slug": "artist:earth",
+      "type": "artist",
+      "name": "Earth",
+      "mbid": "60dd41cf-8f9d-46d8-bc19-dc7e5acb24c8"
+    },
+    {
+      "slug": "artist:frank-zappa",
+      "type": "artist",
+      "name": "Frank Zappa",
+      "mbid": "e20747e7-55a4-452e-8766-7b985585082d"
+    },
+    {
+      "slug": "artist:guru-guru",
+      "type": "artist",
+      "name": "Guru Guru"
+    },
+    {
+      "slug": "artist:halim-el-dabh",
+      "type": "artist",
+      "name": "Halim El-Dabh",
+      "mbid": "8de929b2-8ea8-4885-a5c3-5b4db755b3be"
+    },
+    {
+      "slug": "artist:harold-budd",
+      "type": "artist",
+      "name": "Harold Budd",
+      "mbid": "5c864a6f-146e-4225-986d-3295ce90f784"
+    },
+    {
+      "slug": "artist:harry-partch",
+      "type": "artist",
+      "name": "Harry Partch",
+      "mbid": "914360f1-82e2-47ff-943b-1d7b977bd27a"
+    },
+    {
+      "slug": "artist:iannis-xenakis",
+      "type": "artist",
+      "name": "Iannis Xenakis"
+    }
+  ]
 }

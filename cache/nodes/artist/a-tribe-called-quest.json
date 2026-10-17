@@ -113,5 +113,67 @@
       "type": "artist",
       "name": "Jarobi White"
     }
+  ],
+  "similar_artists": [
+    {
+      "slug": "artist:krs-one",
+      "type": "artist",
+      "name": "KRS-One",
+      "mbid": "fc4568b6-cbe3-4a3d-8409-28510c19e3e2"
+    },
+    {
+      "slug": "artist:de-la-soul",
+      "type": "artist",
+      "name": "De La Soul",
+      "mbid": "a8ebde98-7e91-46c7-992c-90039ba42017"
+    },
+    {
+      "slug": "artist:digable-planets",
+      "type": "artist",
+      "name": "Digable Planets",
+      "mbid": "ff44f779-74ab-48f8-aac3-39ebe8f7c18e"
+    },
+    {
+      "slug": "artist:eazy-e",
+      "type": "artist",
+      "name": "Eazy-E",
+      "mbid": "c3009d7a-51ac-4c9c-888a-04f5c3c4be0c"
+    },
+    {
+      "slug": "artist:kendrick-lamar",
+      "type": "artist",
+      "name": "Kendrick Lamar",
+      "mbid": "381086ea-f511-4aba-bdf9-71c753dc5077"
+    },
+    {
+      "slug": "artist:mike-oldfield",
+      "type": "artist",
+      "name": "Mike Oldfield",
+      "mbid": "a1684a49-feaa-4150-b758-d9412fc59f12"
+    },
+    {
+      "slug": "artist:paul-horn",
+      "type": "artist",
+      "name": "Paul Horn",
+      "mbid": "98ee7535-03e4-4899-aa5c-40da2fe716dd"
+    },
+    {
+      "slug": "artist:sade",
+      "type": "artist",
+      "name": "Sade",
+      "mbid": "67930b3e-e00b-469f-8c74-fd69f20522ec"
+    },
+    {
+      "slug": "artist:ugk",
+      "type": "artist",
+      "name": "UGK",
+      "mbid": "9603810b-5d6d-41a6-aca8-330ef966d55c"
+    },
+    {
+      "slug": "artist:a-ap-rocky",
+      "type": "artist",
+      "name": "A$AP Rocky",
+      "mbid": "25b7b584-d952-4662-a8b9-dd8cdfbfeb64"
+    }
   ]
 }

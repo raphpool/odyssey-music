@@ -117,5 +117,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:phaeleh",
+      "type": "artist",
+      "name": "Phaeleh",
+      "mbid": "caae4789-c38c-4803-8808-2886b37ca8f9"
+    },
+    {
+      "slug": "artist:clubroot",
+      "type": "artist",
+      "name": "Clubroot",
+      "mbid": "09721ba6-8972-4862-b272-b69465265de5"
+    },
+    {
+      "slug": "artist:bonobo",
+      "type": "artist",
+      "name": "Bonobo",
+      "mbid": "9a709693-b4f8-4da9-8cc1-038c911a61be"
+    },
+    {
+      "slug": "artist:submerse",
+      "type": "artist",
+      "name": "Submerse",
+      "mbid": "ed379147-2fab-4406-8b85-9c62251cfddc"
+    },
+    {
+      "slug": "artist:sepalcure",
+      "type": "artist",
+      "name": "Sepalcure",
+      "mbid": "c4b933ea-dfa3-4d56-81f9-9f924e2540ec"
+    },
+    {
+      "slug": "artist:scuba",
+      "type": "artist",
+      "name": "Scuba",
+      "mbid": "8bb978c1-a003-4f6f-ac53-0c84ec8b28ee"
+    },
+    {
+      "slug": "artist:indigo",
+      "type": "artist",
+      "name": "Indigo",
+      "mbid": "08a5475e-499a-43d6-8eff-89cd079250cd"
+    },
+    {
+      "slug": "artist:tycho",
+      "type": "artist",
+      "name": "Tycho",
+      "mbid": "cbef45a9-7acb-4325-94c9-70081ac8d1b8"
+    },
+    {
+      "slug": "artist:photek",
+      "type": "artist",
+      "name": "Photek",
+      "mbid": "2095b935-2007-4ae0-a48a-ef4d6fc3aac0"
+    },
+    {
+      "slug": "artist:submotion-orchestra",
+      "type": "artist",
+      "name": "Submotion Orchestra",
+      "mbid": "5a59b740-deb2-4bd4-8abb-5a46b9c3aa6f"
+    }
+  ]
 }

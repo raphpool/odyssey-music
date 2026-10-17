@@ -508,5 +508,66 @@
       "name": "Three 6 Mafia"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:koopsta-knicca",
+      "type": "artist",
+      "name": "Koopsta Knicca",
+      "mbid": "19a0da10-d1a2-473a-9214-123da1da05e1"
+    },
+    {
+      "slug": "artist:project-pat",
+      "type": "artist",
+      "name": "Project Pat",
+      "mbid": "8b8985eb-f71f-4229-9f11-171a7aac98c1"
+    },
+    {
+      "slug": "artist:lord-infamous",
+      "type": "artist",
+      "name": "Lord Infamous",
+      "mbid": "98f078b7-6c22-49a6-8bdc-bc7e9ac116f8"
+    },
+    {
+      "slug": "artist:raekwon",
+      "type": "artist",
+      "name": "Raekwon",
+      "mbid": "4e954b02-fae2-4bd7-9547-e055a6ac0527"
+    },
+    {
+      "slug": "artist:anderson-paak",
+      "type": "artist",
+      "name": "Anderson .Paak",
+      "mbid": "d02dd67e-f655-4600-bc47-f789f59e7367"
+    },
+    {
+      "slug": "artist:offset",
+      "type": "artist",
+      "name": "Offset",
+      "mbid": "92631c53-91ed-48f5-a09d-a104ba69cdc7"
+    },
+    {
+      "slug": "artist:juicy-j",
+      "type": "artist",
+      "name": "Juicy J",
+      "mbid": "c45d161f-83ce-4464-ba41-44202e6916d9"
+    },
+    {
+      "slug": "artist:kelly-price",
+      "type": "artist",
+      "name": "Kelly Price",
+      "mbid": "76afa937-2afb-4359-923f-5faa18070e81"
+    },
+    {
+      "slug": "artist:scarface",
+      "type": "artist",
+      "name": "Scarface",
+      "mbid": "7d0b6027-8132-4417-8c4c-ef0bbf9161c0"
+    },
+    {
+      "slug": "artist:ugk",
+      "type": "artist",
+      "name": "UGK",
+      "mbid": "9603810b-5d6d-41a6-aca8-330ef966d55c"
+    }
+  ]
 }

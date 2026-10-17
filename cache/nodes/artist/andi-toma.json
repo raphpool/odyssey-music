@@ -97,5 +97,64 @@
       "name": "Von Südenfed"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars",
+      "mbid": "4d4f5d92-0589-42fa-bc0e-1bd73e17a2ce"
+    },
+    {
+      "slug": "artist:modeselektor",
+      "type": "artist",
+      "name": "Modeselektor",
+      "mbid": "8a7a4e72-a099-425f-8238-80706fc1c746"
+    },
+    {
+      "slug": "artist:apparat",
+      "type": "artist",
+      "name": "Apparat",
+      "mbid": "dc3dbfc1-f1f1-49c6-9d7c-425fabf3ae12"
+    },
+    {
+      "slug": "artist:moderat",
+      "type": "artist",
+      "name": "Moderat",
+      "mbid": "7754905b-8bf7-48e2-935a-03d566fec464"
+    },
+    {
+      "slug": "artist:afx",
+      "type": "artist",
+      "name": "AFX"
+    },
+    {
+      "slug": "artist:anushka-chkheidze",
+      "type": "artist",
+      "name": "Anushka Chkheidze",
+      "mbid": "61550996-9ae9-45d9-95a3-2dc3f713502b"
+    },
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:death-grips",
+      "type": "artist",
+      "name": "Death Grips",
+      "mbid": "f9133036-ab3d-4e97-bd11-7a2c98ad148a"
+    },
+    {
+      "slug": "artist:fjaak",
+      "type": "artist",
+      "name": "FJAAK",
+      "mbid": "56acaa47-eb2f-43d7-a1f1-19466c550e31"
+    },
+    {
+      "slug": "artist:four-tet",
+      "type": "artist",
+      "name": "Four Tet",
+      "mbid": "3bcff06f-675a-451f-9075-99e8657047e8"
+    }
+  ]
 }

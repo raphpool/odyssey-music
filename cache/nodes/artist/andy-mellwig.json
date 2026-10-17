@@ -77,5 +77,65 @@
       "name": "Porter Ricks"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:markus-popp",
+      "type": "artist",
+      "name": "Markus Popp",
+      "mbid": "9340bee1-4024-453a-a9ee-60d11134738d"
+    },
+    {
+      "slug": "artist:monolake",
+      "type": "artist",
+      "name": "Monolake",
+      "mbid": "cedf92fe-eba1-45e2-ba16-b1b6af5169b8"
+    },
+    {
+      "slug": "artist:oval",
+      "type": "artist",
+      "name": "Oval"
+    },
+    {
+      "slug": "artist:torsten-profrock",
+      "type": "artist",
+      "name": "Torsten Pröfrock",
+      "mbid": "b6c39371-cca8-4822-8c7d-64372c7e3072"
+    },
+    {
+      "slug": "artist:basic-channel",
+      "type": "artist",
+      "name": "Basic Channel",
+      "mbid": "d145a57e-7afb-4793-8cc4-2fad292374ef"
+    },
+    {
+      "slug": "artist:mark-ernestus",
+      "type": "artist",
+      "name": "Mark Ernestus",
+      "mbid": "6fb800e6-65db-4368-8472-b125e185f823"
+    },
+    {
+      "slug": "artist:microstoria",
+      "type": "artist",
+      "name": "Microstoria",
+      "mbid": "5f3b5920-6aa8-4cc0-b466-77372c71aa4e"
+    },
+    {
+      "slug": "artist:moritz-von-oswald",
+      "type": "artist",
+      "name": "Moritz von Oswald",
+      "mbid": "48c4ea31-fe9d-4bbf-8a1c-a2996abcfb9f"
+    },
+    {
+      "slug": "artist:vainqueur",
+      "type": "artist",
+      "name": "Vainqueur",
+      "mbid": "5041c9e5-9cac-4b8e-8559-cdda296ddb0a"
+    },
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire",
+      "mbid": "d71ba53b-23b0-4870-a429-cce6f345763b"
+    }
+  ]
 }

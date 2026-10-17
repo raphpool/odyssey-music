@@ -87,5 +87,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-prodigy",
+      "type": "artist",
+      "name": "The Prodigy",
+      "mbid": "4a4ee089-93b1-4470-af9a-6ff575d32704"
+    },
+    {
+      "slug": "artist:nero",
+      "type": "artist",
+      "name": "NERO",
+      "mbid": "bd057a0c-a7b6-47bf-8dc3-45e0efac1798"
+    },
+    {
+      "slug": "artist:skrillex",
+      "type": "artist",
+      "name": "Skrillex",
+      "mbid": "ae002c5d-aac6-490b-a39a-30aa9e2edf2b"
+    },
+    {
+      "slug": "artist:deadmau5",
+      "type": "artist",
+      "name": "deadmau5",
+      "mbid": "4a00ec9d-c635-463a-8cd4-eb61725f0c60"
+    },
+    {
+      "slug": "artist:knife-party",
+      "type": "artist",
+      "name": "Knife Party",
+      "mbid": "82a8aee6-0772-4399-9238-b5903eab413f"
+    },
+    {
+      "slug": "artist:feed-me",
+      "type": "artist",
+      "name": "Feed Me",
+      "mbid": "c8eec78b-f3c5-4d59-a010-e709f7be4508"
+    },
+    {
+      "slug": "artist:sleaford-mods",
+      "type": "artist",
+      "name": "Sleaford Mods",
+      "mbid": "09d8290b-6ada-422f-8ce3-19349fb1c15d"
+    },
+    {
+      "slug": "artist:doctor-p",
+      "type": "artist",
+      "name": "Doctor P",
+      "mbid": "569f11cd-2d27-40da-9b01-237f7837db77"
+    },
+    {
+      "slug": "artist:pendulum",
+      "type": "artist",
+      "name": "Pendulum",
+      "mbid": "beff21d3-88c7-4ee0-8b7a-40b6db22c6d7"
+    },
+    {
+      "slug": "artist:porter-robinson",
+      "type": "artist",
+      "name": "Porter Robinson",
+      "mbid": "4ae36ade-1798-48c4-b06b-cc68b7d3d83f"
+    }
+  ]
 }

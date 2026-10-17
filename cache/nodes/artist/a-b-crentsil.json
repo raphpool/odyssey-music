@@ -58,5 +58,30 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:e-t-mensah",
+      "type": "artist",
+      "name": "E.T. Mensah",
+      "mbid": "23c8fdc8-e593-48df-87f4-df448a85ba43"
+    },
+    {
+      "slug": "artist:king-sunny-ade",
+      "type": "artist",
+      "name": "King Sunny Ade",
+      "mbid": "3e110caa-e9e8-4c33-98dc-ebbf0c6d2494"
+    },
+    {
+      "slug": "artist:tony-allen",
+      "type": "artist",
+      "name": "Tony Allen",
+      "mbid": "ea524cc6-191a-4c05-ab88-3bb5c0880ca5"
+    },
+    {
+      "slug": "artist:victor-uwaifo",
+      "type": "artist",
+      "name": "Victor Uwaifo",
+      "mbid": "a77f26ec-ec08-40dc-bc22-aeec8ce7c610"
+    }
+  ]
 }

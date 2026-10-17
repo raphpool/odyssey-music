@@ -467,5 +467,66 @@
       "name": "Roddy Radiation"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-clash",
+      "type": "artist",
+      "name": "The Clash",
+      "mbid": "8f92558c-2baa-4758-8c38-615519e9deda"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:madness",
+      "type": "artist",
+      "name": "Madness",
+      "mbid": "5f58803e-8c4c-478e-8b51-477f38483ede"
+    },
+    {
+      "slug": "artist:the-cure",
+      "type": "artist",
+      "name": "The Cure",
+      "mbid": "69ee3720-a7cb-4402-b48d-a02c366f2bcf"
+    },
+    {
+      "slug": "artist:talking-heads",
+      "type": "artist",
+      "name": "Talking Heads",
+      "mbid": "a94a7155-c79d-4409-9fcf-220cb0e4dc3a"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:the-stranglers",
+      "type": "artist",
+      "name": "The Stranglers",
+      "mbid": "a96d82a0-cdca-40bf-b4c8-3d7ec178d85b"
+    },
+    {
+      "slug": "artist:the-jam",
+      "type": "artist",
+      "name": "The Jam",
+      "mbid": "23228f18-01d5-493e-94ce-cfcde82a8db2"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:the-beat",
+      "type": "artist",
+      "name": "The Beat",
+      "mbid": "9727e632-c228-47f8-a7ae-398df94f00c7"
+    }
+  ]
 }

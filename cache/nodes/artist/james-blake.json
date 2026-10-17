@@ -118,5 +118,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:bon-iver",
+      "type": "artist",
+      "name": "Bon Iver",
+      "mbid": "437a0e49-c6ae-42f6-a6c1-84f25ed366bc"
+    },
+    {
+      "slug": "artist:kendrick-lamar",
+      "type": "artist",
+      "name": "Kendrick Lamar",
+      "mbid": "381086ea-f511-4aba-bdf9-71c753dc5077"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:beyonce",
+      "type": "artist",
+      "name": "Beyoncé",
+      "mbid": "859d0860-d480-4efd-970c-c05d5f1776b8"
+    },
+    {
+      "slug": "artist:the-weeknd",
+      "type": "artist",
+      "name": "The Weeknd",
+      "mbid": "c8b03190-306c-4120-bb0b-6f2ebfc06ea9"
+    },
+    {
+      "slug": "artist:rza",
+      "type": "artist",
+      "name": "RZA",
+      "mbid": "29c28ac3-27c5-4822-8eb6-0af89a3a7240"
+    },
+    {
+      "slug": "artist:mount-kimbie",
+      "type": "artist",
+      "name": "Mount Kimbie",
+      "mbid": "4a3a5fc0-af4b-4990-957b-8d94f7bfe706"
+    },
+    {
+      "slug": "artist:the-xx",
+      "type": "artist",
+      "name": "The xx",
+      "mbid": "c5c2ea1c-4bde-4f4d-bd0b-47b200bf99d6"
+    },
+    {
+      "slug": "artist:caribou",
+      "type": "artist",
+      "name": "Caribou",
+      "mbid": "735e3514-a8ae-401f-af3b-6300df1b8d2c"
+    },
+    {
+      "slug": "artist:little-dragon",
+      "type": "artist",
+      "name": "Little Dragon",
+      "mbid": "c8a9ae11-63bf-409b-8bf3-a96b3712a2ff"
+    }
+  ]
 }

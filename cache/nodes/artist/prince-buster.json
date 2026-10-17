@@ -343,5 +343,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:toots-and-the-maytals",
+      "type": "artist",
+      "name": "Toots & The Maytals",
+      "mbid": "29730ee3-e1c7-4e28-9ccd-3a0e6b0e8103"
+    },
+    {
+      "slug": "artist:desmond-dekker",
+      "type": "artist",
+      "name": "Desmond Dekker",
+      "mbid": "8ac5bea6-3a62-4e28-9df7-03f24d4c06fc"
+    },
+    {
+      "slug": "artist:derrick-morgan",
+      "type": "artist",
+      "name": "Derrick Morgan",
+      "mbid": "2f2c85b9-135d-4830-a925-ee7548332f70"
+    },
+    {
+      "slug": "artist:the-ethiopians",
+      "type": "artist",
+      "name": "The Ethiopians",
+      "mbid": "1646c8fd-d950-4978-b944-0c7597a7837a"
+    },
+    {
+      "slug": "artist:the-skatalites",
+      "type": "artist",
+      "name": "The Skatalites",
+      "mbid": "87ac7e25-f278-47a0-b109-5eb131dc96b6"
+    },
+    {
+      "slug": "artist:the-paragons",
+      "type": "artist",
+      "name": "The Paragons",
+      "mbid": "be976b44-a297-425c-be6a-a648418b3161"
+    },
+    {
+      "slug": "artist:the-upsetters",
+      "type": "artist",
+      "name": "The Upsetters",
+      "mbid": "7bcf8b20-72a6-48b1-bad3-b28869090dda"
+    },
+    {
+      "slug": "artist:alton-ellis",
+      "type": "artist",
+      "name": "Alton Ellis",
+      "mbid": "b04d9207-306c-42db-8b6a-c94d49b4b08a"
+    },
+    {
+      "slug": "artist:the-pioneers",
+      "type": "artist",
+      "name": "The Pioneers",
+      "mbid": "cb0078e6-e694-4674-9c76-6d39dc9beb4b"
+    },
+    {
+      "slug": "artist:justin-hinds-and-the-dominoes",
+      "type": "artist",
+      "name": "Justin Hinds & the Dominoes",
+      "mbid": "a9d8482e-4d91-4521-9213-cf6dbc901aaf"
+    }
+  ]
 }

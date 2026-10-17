@@ -154,5 +154,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:hamza-el-din",
+      "type": "artist",
+      "name": "Hamza El Din",
+      "mbid": "fc4612dc-001e-49f9-b96d-5cbf04f3dd2b"
+    },
+    {
+      "slug": "artist:baaba-maal",
+      "type": "artist",
+      "name": "Baaba Maal",
+      "mbid": "cec7447d-a39c-41c5-ba74-5d7057e5c731"
+    },
+    {
+      "slug": "artist:foday-musa-suso",
+      "type": "artist",
+      "name": "Foday Musa Suso",
+      "mbid": "a0e3eb65-ba3f-48fa-b653-3a73310b1e28"
+    },
+    {
+      "slug": "artist:abdel-gadir-salim",
+      "type": "artist",
+      "name": "Abdel Gadir Salim",
+      "mbid": "7681f1f0-39cd-4030-a9b0-77d86639a67f"
+    },
+    {
+      "slug": "artist:justinian-tamusuza",
+      "type": "artist",
+      "name": "Justinian Tamusuza",
+      "mbid": "ba780c25-3fed-4389-8f1d-7b7a717c1643"
+    },
+    {
+      "slug": "artist:dumisani-maraire",
+      "type": "artist",
+      "name": "Dumisani Maraire",
+      "mbid": "9a4d5b32-a34a-4aec-b781-865b4fb56026"
+    },
+    {
+      "slug": "artist:dimi-mint-abba",
+      "type": "artist",
+      "name": "Dimi Mint Abba",
+      "mbid": "8c7bb863-d74c-478b-ad17-d6a96a8a6f8d"
+    },
+    {
+      "slug": "artist:abou-djouba",
+      "type": "artist",
+      "name": "Abou Djouba",
+      "mbid": "e3e43025-8cfd-4ae9-8b3f-faa941b0390d"
+    },
+    {
+      "slug": "artist:obo-addy",
+      "type": "artist",
+      "name": "Obo Addy",
+      "mbid": "bd297b96-57d1-434a-80d6-f07f1c6df0c4"
+    },
+    {
+      "slug": "artist:kadda-cherif-hadria",
+      "type": "artist",
+      "name": "Kadda Cherif Hadria",
+      "mbid": "e25db7cf-3ec1-4d9c-b8d5-98ff9ea7cd9e"
+    }
+  ]
 }

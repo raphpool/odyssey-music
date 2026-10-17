@@ -103,5 +103,66 @@
       "name": "Jan St. Werner"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-fall",
+      "type": "artist",
+      "name": "The Fall",
+      "mbid": "d5da1841-9bc8-4813-9f89-11098090148e"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:bjork",
+      "type": "artist",
+      "name": "Björk",
+      "mbid": "87c5dedd-371d-4a53-9f7f-80522fb7f3cb"
+    },
+    {
+      "slug": "artist:joy-division",
+      "type": "artist",
+      "name": "Joy Division",
+      "mbid": "9a58fda3-f4ed-4080-a3a5-f457aac9fcdd"
+    },
+    {
+      "slug": "artist:hot-chip",
+      "type": "artist",
+      "name": "Hot Chip",
+      "mbid": "d8915e13-d67a-4aa0-9c0b-1f126af951af"
+    },
+    {
+      "slug": "artist:nine-inch-nails",
+      "type": "artist",
+      "name": "Nine Inch Nails",
+      "mbid": "b7ffd2af-418f-4be2-bdd1-22f8b48613da"
+    },
+    {
+      "slug": "artist:stereolab",
+      "type": "artist",
+      "name": "Stereolab",
+      "mbid": "f1df0431-9250-4ec8-95d8-f19ce7cf7fb6"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:gang-of-four",
+      "type": "artist",
+      "name": "Gang of Four",
+      "mbid": "d8661c02-f423-4d72-8044-40ff05daf7a1"
+    },
+    {
+      "slug": "artist:new-order",
+      "type": "artist",
+      "name": "New Order",
+      "mbid": "f1106b17-dcbb-45f6-b938-199ccfab50cc"
+    }
+  ]
 }

@@ -77,5 +77,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:teoman",
+      "type": "artist",
+      "name": "Teoman",
+      "mbid": "5b4237d9-d8e9-462b-a76d-558522a5871c"
+    },
+    {
+      "slug": "artist:sebnem-ferah",
+      "type": "artist",
+      "name": "Şebnem Ferah",
+      "mbid": "4e6a53e1-e27e-4cf0-9f6e-b51fc0335d0a"
+    },
+    {
+      "slug": "artist:sezen-aksu",
+      "type": "artist",
+      "name": "Sezen Aksu",
+      "mbid": "635e2a34-a566-47c4-b61d-fa5d203856aa"
+    },
+    {
+      "slug": "artist:cem-karaca",
+      "type": "artist",
+      "name": "Cem Karaca",
+      "mbid": "802247cc-77a2-4671-a02d-ad25bf90e23c"
+    },
+    {
+      "slug": "artist:duman",
+      "type": "artist",
+      "name": "Duman",
+      "mbid": "f8a9a911-47de-49fe-ba96-7e5b5f08b7d0"
+    },
+    {
+      "slug": "artist:mabel-matiz",
+      "type": "artist",
+      "name": "Mabel Matiz",
+      "mbid": "42a14dc3-c6e8-4fb6-a2f9-0d24afeaad2d"
+    },
+    {
+      "slug": "artist:bulent-ortacgil",
+      "type": "artist",
+      "name": "Bülent Ortaçgil",
+      "mbid": "fda2967c-cfbe-43f9-8e16-0a78ad5cea83"
+    },
+    {
+      "slug": "artist:ajda-pekkan",
+      "type": "artist",
+      "name": "Ajda Pekkan",
+      "mbid": "838bdef5-4fb9-4465-82c6-e716e6590564"
+    },
+    {
+      "slug": "artist:pinhani",
+      "type": "artist",
+      "name": "Pinhani",
+      "mbid": "7e498e43-5863-4e38-a1b1-e790a2aebe3e"
+    },
+    {
+      "slug": "artist:nil-karaibrahimgil",
+      "type": "artist",
+      "name": "Nil Karaibrahimgil",
+      "mbid": "46f6013f-35b8-4df0-9449-abe41dc859b5"
+    }
+  ]
 }

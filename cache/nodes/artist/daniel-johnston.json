@@ -114,5 +114,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:neutral-milk-hotel",
+      "type": "artist",
+      "name": "Neutral Milk Hotel",
+      "mbid": "a506f761-2c22-4b2f-8a94-bd748c2c8f75"
+    },
+    {
+      "slug": "artist:pixies",
+      "type": "artist",
+      "name": "Pixies",
+      "mbid": "b6b2bb8d-54a9-491f-9607-7b546023b433"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:the-magnetic-fields",
+      "type": "artist",
+      "name": "The Magnetic Fields",
+      "mbid": "3ff72a59-f39d-411d-9f93-2d4a86413013"
+    },
+    {
+      "slug": "artist:nick-drake",
+      "type": "artist",
+      "name": "Nick Drake",
+      "mbid": "99ea432a-e3d8-42cb-9d5e-db316a6a8458"
+    },
+    {
+      "slug": "artist:the-velvet-underground",
+      "type": "artist",
+      "name": "The Velvet Underground",
+      "mbid": "94b0fb9d-a066-4823-b2ec-af1d324bcfcf"
+    },
+    {
+      "slug": "artist:belle-and-sebastian",
+      "type": "artist",
+      "name": "Belle and Sebastian",
+      "mbid": "e5c7b94f-e264-473c-bb0f-37c85d4d5c70"
+    },
+    {
+      "slug": "artist:tom-waits",
+      "type": "artist",
+      "name": "Tom Waits",
+      "mbid": "c3aeb863-7b26-4388-94e8-5a240f2be21b"
+    },
+    {
+      "slug": "artist:wilco",
+      "type": "artist",
+      "name": "Wilco",
+      "mbid": "9e53f84d-ef44-4c16-9677-5fd4d78cbd7d"
+    }
+  ]
 }

@@ -88,5 +88,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:model-500",
+      "type": "artist",
+      "name": "Model 500",
+      "mbid": "e569aee8-33ff-48e5-b0ed-4ceba1a37714"
+    },
+    {
+      "slug": "artist:jacob-s-optical-stairway",
+      "type": "artist",
+      "name": "Jacob’s Optical Stairway",
+      "mbid": "fa296ceb-b1aa-4bbc-adcd-ce039e2d835c"
+    },
+    {
+      "slug": "artist:cybotron",
+      "type": "artist",
+      "name": "Cybotron",
+      "mbid": "cd1a3be7-a10b-499c-acdd-1defaea473f8"
+    },
+    {
+      "slug": "artist:drexciya",
+      "type": "artist",
+      "name": "Drexciya",
+      "mbid": "66f398bf-ae55-4f13-b993-fa871c57157f"
+    },
+    {
+      "slug": "artist:underground-resistance",
+      "type": "artist",
+      "name": "Underground Resistance",
+      "mbid": "8dcd24c7-bf87-4f32-8e3f-7a79b3f25a85"
+    },
+    {
+      "slug": "artist:robert-hood",
+      "type": "artist",
+      "name": "Robert Hood",
+      "mbid": "e8a61400-baf7-4fb3-a3e3-c9e7b665547f"
+    },
+    {
+      "slug": "artist:infiniti",
+      "type": "artist",
+      "name": "Infiniti",
+      "mbid": "82999a0b-057c-4635-8e29-7eeb88e0ac0c"
+    },
+    {
+      "slug": "artist:jeff-mills",
+      "type": "artist",
+      "name": "Jeff Mills",
+      "mbid": "470a4ced-1323-4c91-8fd5-0bb3fb4c932a"
+    },
+    {
+      "slug": "artist:wink",
+      "type": "artist",
+      "name": "Wink",
+      "mbid": "996a7ed9-d3ae-4a09-819d-c864e7056b47"
+    },
+    {
+      "slug": "artist:carl-craig",
+      "type": "artist",
+      "name": "Carl Craig",
+      "mbid": "6732e9f3-5f24-4ba4-aef1-a2a49442b96b"
+    }
+  ]
 }

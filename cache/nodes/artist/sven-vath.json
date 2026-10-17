@@ -103,5 +103,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:orbital",
+      "type": "artist",
+      "name": "Orbital",
+      "mbid": "f3e2a7d9-c6bb-4848-95e5-04c0a1e2f511"
+    },
+    {
+      "slug": "artist:anthony-rother",
+      "type": "artist",
+      "name": "Anthony Rother",
+      "mbid": "2aadb587-524c-4b07-b712-0f700526730e"
+    },
+    {
+      "slug": "artist:moby",
+      "type": "artist",
+      "name": "Moby",
+      "mbid": "8970d868-0723-483b-a75b-51088913d3d4"
+    },
+    {
+      "slug": "artist:cygnus-x",
+      "type": "artist",
+      "name": "Cygnus X",
+      "mbid": "937a194f-61b0-40e6-a1d7-e142ccf96dc7"
+    },
+    {
+      "slug": "artist:speedy-j",
+      "type": "artist",
+      "name": "Speedy J",
+      "mbid": "734fa82c-864e-468b-bee4-944cb4b1952b"
+    },
+    {
+      "slug": "artist:the-future-sound-of-london",
+      "type": "artist",
+      "name": "The Future Sound of London",
+      "mbid": "a1d77dd4-8728-4a47-bdfa-9663d791139c"
+    },
+    {
+      "slug": "artist:humate",
+      "type": "artist",
+      "name": "Humate",
+      "mbid": "58a2c45a-f6ac-4417-aa3d-e1574e9746b2"
+    },
+    {
+      "slug": "artist:blank-and-jones",
+      "type": "artist",
+      "name": "Blank & Jones",
+      "mbid": "6606c527-376a-47b4-bb35-748d01e14f6d"
+    },
+    {
+      "slug": "artist:thievery-corporation",
+      "type": "artist",
+      "name": "Thievery Corporation",
+      "mbid": "a505bb48-ad65-4af4-ae47-29149715bff9"
+    },
+    {
+      "slug": "artist:the-prodigy",
+      "type": "artist",
+      "name": "The Prodigy",
+      "mbid": "4a4ee089-93b1-4470-af9a-6ff575d32704"
+    }
+  ]
 }

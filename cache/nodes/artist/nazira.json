@@ -73,5 +73,65 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    },
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:application",
+      "type": "artist",
+      "name": "Application",
+      "mbid": "64f36451-a9f5-4ceb-b31e-2a1faf8aa2d9"
+    },
+    {
+      "slug": "artist:dj-godfather",
+      "type": "artist",
+      "name": "DJ Godfather",
+      "mbid": "45fc5c0a-3614-4018-95e9-9101ac827e2b"
+    },
+    {
+      "slug": "artist:hardfloor",
+      "type": "artist",
+      "name": "Hardfloor",
+      "mbid": "49c5cce4-aaa6-4600-a9a2-2b045fb6a87b"
+    },
+    {
+      "slug": "artist:hyph11e",
+      "type": "artist",
+      "name": "Hyph11E",
+      "mbid": "d368d799-3575-41ec-bae2-084b630601bf"
+    },
+    {
+      "slug": "artist:lx-empire",
+      "type": "artist",
+      "name": "LX Empire",
+      "mbid": "d218b12b-23e2-4cd1-b054-04a606fc99b7"
+    },
+    {
+      "slug": "artist:mike-golding",
+      "type": "artist",
+      "name": "Mike Golding",
+      "mbid": "410213ef-1ee6-4ed8-a812-618f43560015"
+    },
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas",
+      "mbid": "3e2fb7a8-195a-4d9e-b042-6451ee1e6b8d"
+    },
+    {
+      "slug": "artist:modeselektor",
+      "type": "artist",
+      "name": "Modeselektor",
+      "mbid": "8a7a4e72-a099-425f-8238-80706fc1c746"
+    }
+  ]
 }

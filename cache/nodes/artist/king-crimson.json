@@ -101,5 +101,66 @@
       "name": "Bill Bruford"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:led-zeppelin",
+      "type": "artist",
+      "name": "Led Zeppelin",
+      "mbid": "678d88b2-87b0-403b-b63d-5da7465aecc3"
+    },
+    {
+      "slug": "artist:yes",
+      "type": "artist",
+      "name": "Yes",
+      "mbid": "c1d4f2ba-cf39-460c-9528-6b827d3417a1"
+    },
+    {
+      "slug": "artist:jethro-tull",
+      "type": "artist",
+      "name": "Jethro Tull",
+      "mbid": "ece57992-dc2e-4f67-a269-fa43626c1a3d"
+    },
+    {
+      "slug": "artist:rush",
+      "type": "artist",
+      "name": "Rush",
+      "mbid": "534ee493-bfac-4575-a44a-0ae41e2c3fe4"
+    },
+    {
+      "slug": "artist:genesis",
+      "type": "artist",
+      "name": "Genesis",
+      "mbid": "8e3fcd7d-bda1-4ca0-b987-b8528d2ee74e"
+    },
+    {
+      "slug": "artist:frank-zappa",
+      "type": "artist",
+      "name": "Frank Zappa",
+      "mbid": "e20747e7-55a4-452e-8766-7b985585082d"
+    },
+    {
+      "slug": "artist:the-doors",
+      "type": "artist",
+      "name": "The Doors",
+      "mbid": "9efff43b-3b29-4082-824e-bc82f646f93d"
+    },
+    {
+      "slug": "artist:porcupine-tree",
+      "type": "artist",
+      "name": "Porcupine Tree",
+      "mbid": "169c4c28-858e-497b-81a4-8bc15e0026ea"
+    }
+  ]
 }

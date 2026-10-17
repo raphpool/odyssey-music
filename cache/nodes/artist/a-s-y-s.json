@@ -536,5 +536,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:umek",
+      "type": "artist",
+      "name": "Umek",
+      "mbid": "a03affe5-47af-48c4-9b8e-67654fa318ec"
+    },
+    {
+      "slug": "artist:joyhauser",
+      "type": "artist",
+      "name": "Joyhauser",
+      "mbid": "bd79872c-44d3-422e-be24-5452521c3795"
+    },
+    {
+      "slug": "artist:brennan-heart",
+      "type": "artist",
+      "name": "Brennan Heart",
+      "mbid": "6f95ac0e-728c-4b4c-b08e-e8519d2e6ab6"
+    },
+    {
+      "slug": "artist:boris-brejcha",
+      "type": "artist",
+      "name": "Boris Brejcha",
+      "mbid": "ae0d1794-c9d3-4436-94fc-ceff6130da2c"
+    },
+    {
+      "slug": "artist:amelie-lens",
+      "type": "artist",
+      "name": "Amelie Lens",
+      "mbid": "67db280d-c3e4-49d9-978e-4050f4e209ef"
+    },
+    {
+      "slug": "artist:charlotte-de-witte",
+      "type": "artist",
+      "name": "Charlotte de Witte",
+      "mbid": "1de4e373-e597-4087-bf3d-256ec597749e"
+    },
+    {
+      "slug": "artist:alignment",
+      "type": "artist",
+      "name": "Alignment",
+      "mbid": "9e5b7051-27ea-4e16-aef0-71dd40d044b5"
+    },
+    {
+      "slug": "artist:kai-tracid",
+      "type": "artist",
+      "name": "Kai Tracid",
+      "mbid": "6546b116-81c8-4783-9219-19f6e8f3c020"
+    },
+    {
+      "slug": "artist:moonbeam",
+      "type": "artist",
+      "name": "Moonbeam",
+      "mbid": "6810896c-f5c2-48b3-82e9-95196ac86ed7"
+    },
+    {
+      "slug": "artist:showtek",
+      "type": "artist",
+      "name": "Showtek",
+      "mbid": "5663c716-c38f-4454-99ce-5afb3c5af567"
+    }
+  ]
 }

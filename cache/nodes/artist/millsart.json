@@ -85,5 +85,54 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:laurent-garnier",
+      "type": "artist",
+      "name": "Laurent Garnier",
+      "mbid": "ec477866-bfaa-48e0-affd-1c151ef61b7b"
+    },
+    {
+      "slug": "artist:underground-resistance",
+      "type": "artist",
+      "name": "Underground Resistance",
+      "mbid": "8dcd24c7-bf87-4f32-8e3f-7a79b3f25a85"
+    },
+    {
+      "slug": "artist:planetary-assault-systems",
+      "type": "artist",
+      "name": "Planetary Assault Systems",
+      "mbid": "4c8dab3d-7b87-44ae-aec8-9b645f6b3e2d"
+    },
+    {
+      "slug": "artist:nitzer-ebb",
+      "type": "artist",
+      "name": "Nitzer Ebb",
+      "mbid": "d260c14e-2ef1-4d3d-8739-70d517efac8a"
+    },
+    {
+      "slug": "artist:front-242",
+      "type": "artist",
+      "name": "Front 242",
+      "mbid": "8fb6c00f-61d8-4f27-98f9-53e1ba481626"
+    },
+    {
+      "slug": "artist:louis-armstrong",
+      "type": "artist",
+      "name": "Louis Armstrong",
+      "mbid": "eea8a864-fcda-4602-9569-38ab446decd6"
+    },
+    {
+      "slug": "artist:luke-slater",
+      "type": "artist",
+      "name": "Luke Slater",
+      "mbid": "2dea2870-5f17-42f7-ac32-d76ccde70dbd"
+    },
+    {
+      "slug": "artist:derrick-may",
+      "type": "artist",
+      "name": "Derrick May",
+      "mbid": "371c8525-8111-4497-83ba-1ead9d7ed148"
+    }
+  ]
 }

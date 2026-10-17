@@ -83,5 +83,63 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:pastis",
+      "type": "artist",
+      "name": "Pastis",
+      "mbid": "17a729c0-0df1-40a4-b444-0c3d4ca3f8e5"
+    },
+    {
+      "slug": "artist:tronik-house",
+      "type": "artist",
+      "name": "Tronik House",
+      "mbid": "32c9b3e5-63e1-4cc9-bd77-812ed434926a"
+    },
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    },
+    {
+      "slug": "artist:a-s-y-s",
+      "type": "artist",
+      "name": "A*S*Y*S",
+      "mbid": "2e40998c-e1c3-4063-9b03-03279ff64d4b"
+    },
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire",
+      "mbid": "d71ba53b-23b0-4870-a429-cce6f345763b"
+    },
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:application",
+      "type": "artist",
+      "name": "Application",
+      "mbid": "64f36451-a9f5-4ceb-b31e-2a1faf8aa2d9"
+    },
+    {
+      "slug": "artist:atom-heart",
+      "type": "artist",
+      "name": "Atom Heart"
+    },
+    {
+      "slug": "artist:atom-tm",
+      "type": "artist",
+      "name": "Atom TM",
+      "mbid": "a874e630-134c-4450-97c4-54e596404290"
+    },
+    {
+      "slug": "artist:b12",
+      "type": "artist",
+      "name": "B12"
+    }
+  ]
 }

@@ -123,5 +123,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:arcade-fire",
+      "type": "artist",
+      "name": "Arcade Fire",
+      "mbid": "52074ba6-e495-4ef3-9bb4-0703888a9f68"
+    },
+    {
+      "slug": "artist:daft-punk",
+      "type": "artist",
+      "name": "Daft Punk",
+      "mbid": "056e4f3e-d505-4dad-8ec1-d04f521cbb56"
+    },
+    {
+      "slug": "artist:mgmt",
+      "type": "artist",
+      "name": "MGMT",
+      "mbid": "c485632c-b784-4ee9-8ea1-c5fb365681fc"
+    },
+    {
+      "slug": "artist:hot-chip",
+      "type": "artist",
+      "name": "Hot Chip",
+      "mbid": "d8915e13-d67a-4aa0-9c0b-1f126af951af"
+    },
+    {
+      "slug": "artist:gorillaz",
+      "type": "artist",
+      "name": "Gorillaz",
+      "mbid": "e21857d5-3256-4547-afb3-4b6ded592596"
+    },
+    {
+      "slug": "artist:the-strokes",
+      "type": "artist",
+      "name": "The Strokes",
+      "mbid": "f181961b-20f7-459e-89de-920ef03c7ed0"
+    },
+    {
+      "slug": "artist:phoenix",
+      "type": "artist",
+      "name": "Phoenix",
+      "mbid": "8d455809-96b3-4bb6-8829-ea4beb580d35"
+    },
+    {
+      "slug": "artist:vampire-weekend",
+      "type": "artist",
+      "name": "Vampire Weekend",
+      "mbid": "af37c51c-0790-4a29-b995-456f98a6b8c9"
+    },
+    {
+      "slug": "artist:beck",
+      "type": "artist",
+      "name": "Beck",
+      "mbid": "309c62ba-7a22-4277-9f67-4a162526d18a"
+    }
+  ]
 }

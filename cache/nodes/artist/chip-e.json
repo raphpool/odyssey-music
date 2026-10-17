@@ -87,5 +87,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:fingers-inc",
+      "type": "artist",
+      "name": "Fingers Inc.",
+      "mbid": "6bf6b3f0-3388-481f-8ae8-4023e1a76d70"
+    },
+    {
+      "slug": "artist:adonis",
+      "type": "artist",
+      "name": "Adonis",
+      "mbid": "835f5076-6b5d-4ba1-a3fe-d81a5838a0fc"
+    },
+    {
+      "slug": "artist:farley-jackmaster-funk",
+      "type": "artist",
+      "name": "Farley Jackmaster Funk",
+      "mbid": "4b9621eb-09d2-4e40-8ef2-a874ffe7eaea"
+    },
+    {
+      "slug": "artist:the-it",
+      "type": "artist",
+      "name": "The It",
+      "mbid": "8642c411-204e-4878-83b1-bf122c753197"
+    },
+    {
+      "slug": "artist:fast-eddie-smith",
+      "type": "artist",
+      "name": "“Fast” Eddie Smith",
+      "mbid": "c0b3d632-282e-4323-a242-104f60bb8645"
+    },
+    {
+      "slug": "artist:le-noiz",
+      "type": "artist",
+      "name": "Le Noiz",
+      "mbid": "9071d1d1-790e-45ff-b5c9-2e56e45fa128"
+    },
+    {
+      "slug": "artist:dymond",
+      "type": "artist",
+      "name": "Dymond",
+      "mbid": "0d8d256a-0dad-42c2-97c6-d5e6a2d5f9c1"
+    },
+    {
+      "slug": "artist:white-knight",
+      "type": "artist",
+      "name": "White Knight",
+      "mbid": "26510e10-8c49-45fb-bec3-ce31082bc1f3"
+    },
+    {
+      "slug": "artist:steve-silk-hurley",
+      "type": "artist",
+      "name": "Steve “Silk” Hurley",
+      "mbid": "050a75ac-c855-408f-8570-805aee9df416"
+    },
+    {
+      "slug": "artist:quest",
+      "type": "artist",
+      "name": "Quest",
+      "mbid": "010aed59-6636-45c8-8f9d-0a7e0538411d"
+    }
+  ]
 }

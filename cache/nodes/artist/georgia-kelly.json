@@ -76,5 +76,61 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:paul-horn",
+      "type": "artist",
+      "name": "Paul Horn",
+      "mbid": "98ee7535-03e4-4899-aa5c-40da2fe716dd"
+    },
+    {
+      "slug": "artist:dallas-smith",
+      "type": "artist",
+      "name": "Dallas Smith",
+      "mbid": "933de17e-4f37-45a4-bad6-56ad20c21b87"
+    },
+    {
+      "slug": "artist:alex-de-grassi",
+      "type": "artist",
+      "name": "Alex De Grassi",
+      "mbid": "f940c4dd-f687-4c6a-872b-1cce3f78dc0a"
+    },
+    {
+      "slug": "artist:constance-demby",
+      "type": "artist",
+      "name": "Constance Demby",
+      "mbid": "ae7defd2-004f-4d98-a06b-251fd73d07c7"
+    },
+    {
+      "slug": "artist:joe-hisaishi",
+      "type": "artist",
+      "name": "Joe Hisaishi",
+      "mbid": "44c64a30-1d58-49c5-b314-6e02fba49526"
+    },
+    {
+      "slug": "artist:michael-hedges",
+      "type": "artist",
+      "name": "Michael Hedges",
+      "mbid": "fbaba2b0-3a6f-41b1-9ecd-f89c1a666e99"
+    },
+    {
+      "slug": "artist:r-carlos-nakai",
+      "type": "artist",
+      "name": "R. Carlos Nakai",
+      "mbid": "3c050ada-9db8-4e87-86fb-11c5294f9711"
+    },
+    {
+      "slug": "artist:steven-halpern",
+      "type": "artist",
+      "name": "Steven Halpern",
+      "mbid": "37986d18-e8af-4502-8e08-2a87d7e5853f"
+    },
+    {
+      "slug": "artist:tony-scott",
+      "type": "artist",
+      "name": "Tony Scott",
+      "mbid": "a36c67b0-8712-4e60-8a52-f8c89fac20c7"
+    }
+  ]
 }

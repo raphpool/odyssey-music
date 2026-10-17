@@ -81,5 +81,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:iam",
+      "type": "artist",
+      "name": "IAM",
+      "mbid": "7aa4a16e-9d5a-41d3-968e-fae1a2c84d05"
+    },
+    {
+      "slug": "artist:bambi-cruz",
+      "type": "artist",
+      "name": "Bambi Cruz",
+      "mbid": "7047608d-c4a2-4844-92c9-26c9c7913def"
+    },
+    {
+      "slug": "artist:black-jack",
+      "type": "artist",
+      "name": "Black Jack",
+      "mbid": "2f2944aa-d85d-42f8-947d-a8f78c91f48d"
+    },
+    {
+      "slug": "artist:gorillaz",
+      "type": "artist",
+      "name": "Gorillaz",
+      "mbid": "e21857d5-3256-4547-afb3-4b6ded592596"
+    },
+    {
+      "slug": "artist:supreme-ntm",
+      "type": "artist",
+      "name": "Suprême NTM",
+      "mbid": "0135e5ec-4ffd-46e5-9c3c-566b3df46a8d"
+    },
+    {
+      "slug": "artist:air",
+      "type": "artist",
+      "name": "Air",
+      "mbid": "cb67438a-7f50-4f2b-a6f1-2bb2729fd538"
+    },
+    {
+      "slug": "artist:serge-gainsbourg",
+      "type": "artist",
+      "name": "Serge Gainsbourg",
+      "mbid": "b21ef19b-c6aa-4775-90d3-3cc3e067ce6d"
+    },
+    {
+      "slug": "artist:noir-desir",
+      "type": "artist",
+      "name": "Noir Désir",
+      "mbid": "e6358374-5eea-4205-be22-382ed6df493c"
+    },
+    {
+      "slug": "artist:coldplay",
+      "type": "artist",
+      "name": "Coldplay",
+      "mbid": "cc197bad-dc9c-440d-a5b5-d52ba2e14234"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    }
+  ]
 }

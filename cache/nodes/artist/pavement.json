@@ -129,5 +129,66 @@
       "name": "Steve West"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:pixies",
+      "type": "artist",
+      "name": "Pixies",
+      "mbid": "b6b2bb8d-54a9-491f-9607-7b546023b433"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:sonic-youth",
+      "type": "artist",
+      "name": "Sonic Youth",
+      "mbid": "5cbef01b-cc35-4f52-af7b-d0df0c4f61b9"
+    },
+    {
+      "slug": "artist:yo-la-tengo",
+      "type": "artist",
+      "name": "Yo La Tengo",
+      "mbid": "3f542031-b054-454d-b57b-812fa2a81b11"
+    },
+    {
+      "slug": "artist:the-flaming-lips",
+      "type": "artist",
+      "name": "The Flaming Lips",
+      "mbid": "1f43d76f-8edf-44f6-aaf1-b65f05ad9402"
+    },
+    {
+      "slug": "artist:modest-mouse",
+      "type": "artist",
+      "name": "Modest Mouse",
+      "mbid": "a96ac800-bfcb-412a-8a63-0a98df600700"
+    },
+    {
+      "slug": "artist:beck",
+      "type": "artist",
+      "name": "Beck",
+      "mbid": "309c62ba-7a22-4277-9f67-4a162526d18a"
+    },
+    {
+      "slug": "artist:neutral-milk-hotel",
+      "type": "artist",
+      "name": "Neutral Milk Hotel",
+      "mbid": "a506f761-2c22-4b2f-8a94-bd748c2c8f75"
+    },
+    {
+      "slug": "artist:the-smashing-pumpkins",
+      "type": "artist",
+      "name": "The Smashing Pumpkins",
+      "mbid": "ba0d6274-db14-4ef5-b28d-657ebde1a396"
+    },
+    {
+      "slug": "artist:my-bloody-valentine",
+      "type": "artist",
+      "name": "My Bloody Valentine",
+      "mbid": "8ca01f46-53ac-4af2-8516-55a909c0905e"
+    }
+  ]
 }

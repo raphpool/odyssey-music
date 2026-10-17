@@ -105,5 +105,66 @@
       "name": "Kevin Kozicki"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:rodhad",
+      "type": "artist",
+      "name": "Rødhåd",
+      "mbid": "9f7479a6-217e-424d-b7ff-715c7a8096a8"
+    },
+    {
+      "slug": "artist:modeselektor",
+      "type": "artist",
+      "name": "Modeselektor",
+      "mbid": "8a7a4e72-a099-425f-8238-80706fc1c746"
+    },
+    {
+      "slug": "artist:blawan",
+      "type": "artist",
+      "name": "Blawan",
+      "mbid": "c27d4389-390e-497c-9a41-dd446ace742c"
+    },
+    {
+      "slug": "artist:i-hate-models",
+      "type": "artist",
+      "name": "I Hate Models",
+      "mbid": "f9a4de7f-d3c6-4de8-8892-7aca52610edd"
+    },
+    {
+      "slug": "artist:mall-grab",
+      "type": "artist",
+      "name": "Mall Grab",
+      "mbid": "845ddc8b-36ba-4d7b-9c6f-bd7623cd3cac"
+    },
+    {
+      "slug": "artist:solid-blake",
+      "type": "artist",
+      "name": "Solid Blake",
+      "mbid": "37aa4d00-33ad-4fc9-a9c1-a552c0bde455"
+    },
+    {
+      "slug": "artist:dj-seinfeld",
+      "type": "artist",
+      "name": "DJ Seinfeld",
+      "mbid": "595058cd-36fe-4994-8933-df92ff68ebd7"
+    },
+    {
+      "slug": "artist:randomer",
+      "type": "artist",
+      "name": "Randomer",
+      "mbid": "38b7e676-2fda-44ec-bc7c-9f5a9f3623c3"
+    },
+    {
+      "slug": "artist:boston-168",
+      "type": "artist",
+      "name": "Boston 168",
+      "mbid": "1700ab31-532a-48b7-817a-274c4777088e"
+    },
+    {
+      "slug": "artist:ancient-methods",
+      "type": "artist",
+      "name": "Ancient Methods",
+      "mbid": "f6746081-942c-4392-91e5-35a43d86b02d"
+    }
+  ]
 }

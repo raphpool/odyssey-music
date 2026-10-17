@@ -149,5 +149,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:mariya-takeuchi",
+      "type": "artist",
+      "name": "竹内まりや",
+      "mbid": "02bdc7ec-d102-4698-85e2-789a42d40b9c"
+    },
+    {
+      "slug": "artist:haruomi-hosono",
+      "type": "artist",
+      "name": "細野晴臣",
+      "mbid": "078be324-de92-4c72-9371-65bdcf324154"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:junko-ohashi",
+      "type": "artist",
+      "name": "大橋純子",
+      "mbid": "1c006b2c-eb12-4f50-a339-2d0c697c9045"
+    },
+    {
+      "slug": "artist:the-beach-boys",
+      "type": "artist",
+      "name": "The Beach Boys",
+      "mbid": "ebfc1398-8d96-47e3-82c3-f782abcdb13d"
+    },
+    {
+      "slug": "artist:sugar-babe",
+      "type": "artist",
+      "name": "SUGAR BABE",
+      "mbid": "08614e29-9470-4547-9d2c-d13287727173"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    },
+    {
+      "slug": "artist:hikaru-utada",
+      "type": "artist",
+      "name": "宇多田ヒカル",
+      "mbid": "b539e453-c4fe-47e3-8a07-8517eac74429"
+    },
+    {
+      "slug": "artist:macross-82-99",
+      "type": "artist",
+      "name": "MACROSS 82–99",
+      "mbid": "f87f944d-d31e-49f1-a43f-39139c2306bb"
+    },
+    {
+      "slug": "artist:yellow-magic-orchestra",
+      "type": "artist",
+      "name": "Yellow Magic Orchestra",
+      "mbid": "ac5af671-1df0-4312-8b7b-e61992ecc883"
+    }
+  ]
 }

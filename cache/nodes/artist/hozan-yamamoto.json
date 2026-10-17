@@ -59,5 +59,53 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:bill-bruford",
+      "type": "artist",
+      "name": "Bill Bruford",
+      "mbid": "0211756e-139e-4b4c-a721-9ee9db363f12"
+    },
+    {
+      "slug": "artist:chico-hamilton",
+      "type": "artist",
+      "name": "Chico Hamilton",
+      "mbid": "699067a0-ae8c-45fc-82c1-6227d91f9bb4"
+    },
+    {
+      "slug": "artist:frank-zappa",
+      "type": "artist",
+      "name": "Frank Zappa",
+      "mbid": "e20747e7-55a4-452e-8766-7b985585082d"
+    },
+    {
+      "slug": "artist:king-crimson",
+      "type": "artist",
+      "name": "King Crimson",
+      "mbid": "b38225b8-8e5f-42aa-bcdc-7bae5b5bdab3"
+    },
+    {
+      "slug": "artist:miles-davis",
+      "type": "artist",
+      "name": "Miles Davis",
+      "mbid": "561d854a-6a28-4aa7-8c99-323e6ce46c2a"
+    },
+    {
+      "slug": "artist:nujabes",
+      "type": "artist",
+      "name": "Nujabes"
+    },
+    {
+      "slug": "artist:ornette-coleman",
+      "type": "artist",
+      "name": "Ornette Coleman",
+      "mbid": "169c0d1b-fcb8-4a43-9097-829aa7b39205"
+    },
+    {
+      "slug": "artist:squarepusher",
+      "type": "artist",
+      "name": "Squarepusher",
+      "mbid": "4d86ad4e-28d8-4e9f-8cf4-735c57060fdc"
+    }
+  ]
 }

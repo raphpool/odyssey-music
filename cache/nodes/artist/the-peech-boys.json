@@ -79,5 +79,65 @@
       "type": "artist",
       "name": "Bernard Fowler"
     }
+  ],
+  "similar_artists": [
+    {
+      "slug": "artist:grace-jones",
+      "type": "artist",
+      "name": "Grace Jones"
+    },
+    {
+      "slug": "artist:49ers",
+      "type": "artist",
+      "name": "49ers",
+      "mbid": "1c6bb329-0b00-42d0-b838-94341420b642"
+    },
+    {
+      "slug": "artist:andy-mackay",
+      "type": "artist",
+      "name": "Andy Mackay",
+      "mbid": "2f82f693-9345-4ca4-aa87-9fb7e98d39c7"
+    },
+    {
+      "slug": "artist:bob-marley-and-the-wailers",
+      "type": "artist",
+      "name": "Bob Marley & The Wailers",
+      "mbid": "c296e10c-110a-4103-9e77-47bfebb7fb2e"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:bryan-ferry",
+      "type": "artist",
+      "name": "Bryan Ferry",
+      "mbid": "4ef7a9e2-2cf5-483a-8616-ef7791a98026"
+    },
+    {
+      "slug": "artist:cat-stevens",
+      "type": "artist",
+      "name": "Cat Stevens"
+    },
+    {
+      "slug": "artist:dizzee-rascal",
+      "type": "artist",
+      "name": "Dizzee Rascal",
+      "mbid": "1a99cc88-aea3-4fe3-96b9-20791667f65f"
+    },
+    {
+      "slug": "artist:hikaru-utada",
+      "type": "artist",
+      "name": "Hikaru Utada",
+      "mbid": "b539e453-c4fe-47e3-8a07-8517eac74429"
+    },
+    {
+      "slug": "artist:inner-life",
+      "type": "artist",
+      "name": "Inner Life",
+      "mbid": "5a1b05f4-493f-4f32-939c-e1556e2069fe"
+    }
   ]
 }

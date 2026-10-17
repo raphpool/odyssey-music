@@ -57,5 +57,64 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:andy-mackay",
+      "type": "artist",
+      "name": "Andy Mackay",
+      "mbid": "2f82f693-9345-4ca4-aa87-9fb7e98d39c7"
+    },
+    {
+      "slug": "artist:bryan-ferry",
+      "type": "artist",
+      "name": "Bryan Ferry",
+      "mbid": "4ef7a9e2-2cf5-483a-8616-ef7791a98026"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:earth",
+      "type": "artist",
+      "name": "Earth",
+      "mbid": "60dd41cf-8f9d-46d8-bc19-dc7e5acb24c8"
+    },
+    {
+      "slug": "artist:guru-guru",
+      "type": "artist",
+      "name": "Guru Guru"
+    },
+    {
+      "slug": "artist:jane-s-addiction",
+      "type": "artist",
+      "name": "Jane's Addiction",
+      "mbid": "e3434cc7-d348-491a-9dc8-325af3d9086d"
+    },
+    {
+      "slug": "artist:jimi-hendrix",
+      "type": "artist",
+      "name": "Jimi Hendrix",
+      "mbid": "06fb1c8b-566e-4cb2-985b-b467c90781d4"
+    },
+    {
+      "slug": "artist:keiji-haino",
+      "type": "artist",
+      "name": "Keiji Haino"
+    },
+    {
+      "slug": "artist:lou-reed",
+      "type": "artist",
+      "name": "Lou Reed",
+      "mbid": "9d1ebcfe-4c15-4d18-95d3-d919898638a1"
+    },
+    {
+      "slug": "artist:phil-manzanera",
+      "type": "artist",
+      "name": "Phil Manzanera",
+      "mbid": "0d2cf864-5e99-472e-845f-5d1579979eee"
+    }
+  ]
 }

@@ -134,5 +134,63 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    },
+    {
+      "slug": "artist:cyrus",
+      "type": "artist",
+      "name": "Cyrus"
+    },
+    {
+      "slug": "artist:digital-mystikz",
+      "type": "artist",
+      "name": "Digital Mystikz",
+      "mbid": "2c1583ab-3bfa-41b9-b849-4d4b5d891339"
+    },
+    {
+      "slug": "artist:horsepower-productions",
+      "type": "artist",
+      "name": "Horsepower Productions",
+      "mbid": "128e0f34-8eb9-4ead-b569-c3dbd89566bc"
+    },
+    {
+      "slug": "artist:loefah",
+      "type": "artist",
+      "name": "Loefah",
+      "mbid": "35d4519c-e1b8-4131-810f-042bb2ec748f"
+    },
+    {
+      "slug": "artist:robert-owens",
+      "type": "artist",
+      "name": "Robert Owens"
+    },
+    {
+      "slug": "artist:sasha",
+      "type": "artist",
+      "name": "Sasha",
+      "mbid": "68be8273-cb12-4053-964d-157b7e5cf265"
+    },
+    {
+      "slug": "artist:the-chemical-brothers",
+      "type": "artist",
+      "name": "The Chemical Brothers",
+      "mbid": "1946a82a-f927-40c2-8235-38d64f50d043"
+    },
+    {
+      "slug": "artist:youngsta",
+      "type": "artist",
+      "name": "Youngsta",
+      "mbid": "df7bb489-3f43-4405-95b9-7dd2bb31072f"
+    },
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    }
+  ]
 }

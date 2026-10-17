@@ -136,5 +136,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:buraka-som-sistema",
+      "type": "artist",
+      "name": "Buraka Som Sistema",
+      "mbid": "2061f628-01cd-4343-a078-900f639d67fe"
+    },
+    {
+      "slug": "artist:bruno-m",
+      "type": "artist",
+      "name": "Bruno M",
+      "mbid": "d008653d-8e43-488b-a595-a438f98c9bd9"
+    },
+    {
+      "slug": "artist:saborosa",
+      "type": "artist",
+      "name": "Saborosa",
+      "mbid": "d950333d-3782-4b38-b5e9-18a5559fedf9"
+    },
+    {
+      "slug": "artist:virus-syndicate",
+      "type": "artist",
+      "name": "Virus Syndicate",
+      "mbid": "86d1c6a9-d372-43b1-88d1-674329dd53b9"
+    },
+    {
+      "slug": "artist:bonde-do-tigrao",
+      "type": "artist",
+      "name": "Bonde do Tigrão",
+      "mbid": "41888db3-db2f-4bda-930e-d218d2aca881"
+    },
+    {
+      "slug": "artist:petty",
+      "type": "artist",
+      "name": "Petty",
+      "mbid": "12a19dfe-3491-4375-b8de-e63e521b17f4"
+    },
+    {
+      "slug": "artist:bonde-do-vinho",
+      "type": "artist",
+      "name": "Bonde do Vinho",
+      "mbid": "7a3b552a-6f1c-4635-98ff-cf721a5d34eb"
+    },
+    {
+      "slug": "artist:dj-znobia",
+      "type": "artist",
+      "name": "DJ Znóbia",
+      "mbid": "58e7b47a-f8b2-43c4-91bb-ae5d4e414696"
+    },
+    {
+      "slug": "artist:amilcka-e-chocolate",
+      "type": "artist",
+      "name": "Amilcka e Chocolate",
+      "mbid": "15182245-c8ff-436e-987c-c753de6ea423"
+    },
+    {
+      "slug": "artist:edu-k",
+      "type": "artist",
+      "name": "Edu K",
+      "mbid": "ea1d7c4c-9ad0-452d-ad72-d50eb273d28c"
+    }
+  ]
 }

@@ -104,5 +104,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:luke-bryan",
+      "type": "artist",
+      "name": "Luke Bryan",
+      "mbid": "aab35942-f176-4f77-bbf9-1d6aa98ccf3f"
+    },
+    {
+      "slug": "artist:thomas-rhett",
+      "type": "artist",
+      "name": "Thomas Rhett",
+      "mbid": "bca8bfc0-9d5b-449b-b713-914596f88d56"
+    },
+    {
+      "slug": "artist:florida-georgia-line",
+      "type": "artist",
+      "name": "Florida Georgia Line",
+      "mbid": "c16817df-0160-490d-a437-c128cbca9218"
+    },
+    {
+      "slug": "artist:jason-aldean",
+      "type": "artist",
+      "name": "Jason Aldean",
+      "mbid": "f24df11a-7e35-4979-a4db-a3b2a170ce27"
+    },
+    {
+      "slug": "artist:dean-brody",
+      "type": "artist",
+      "name": "Dean Brody",
+      "mbid": "55daeec5-3f2f-4d61-b51e-0c6a30241b9e"
+    },
+    {
+      "slug": "artist:brantley-gilbert",
+      "type": "artist",
+      "name": "Brantley Gilbert",
+      "mbid": "9ad8aede-6938-48f2-93fa-908bc4da9ef6"
+    },
+    {
+      "slug": "artist:jon-pardi",
+      "type": "artist",
+      "name": "Jon Pardi",
+      "mbid": "ad590765-191c-4c07-9d64-49633488e9a8"
+    },
+    {
+      "slug": "artist:chase-rice",
+      "type": "artist",
+      "name": "Chase Rice",
+      "mbid": "79c478c4-9bd7-42f1-8d26-f3c45ac49258"
+    },
+    {
+      "slug": "artist:chad-brownlee",
+      "type": "artist",
+      "name": "Chad Brownlee",
+      "mbid": "ee941f3a-bcb7-469e-95cd-cc6830b4da04"
+    },
+    {
+      "slug": "artist:keith-urban",
+      "type": "artist",
+      "name": "Keith Urban",
+      "mbid": "f45da029-7b00-4bf3-962c-0eeb20309cc4"
+    }
+  ]
 }

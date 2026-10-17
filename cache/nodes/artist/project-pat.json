@@ -450,5 +450,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:blood-orange",
+      "type": "artist",
+      "name": "Blood Orange",
+      "mbid": "3d254f1e-7d18-431b-baeb-68e57695dfdb"
+    },
+    {
+      "slug": "artist:drake",
+      "type": "artist",
+      "name": "Drake",
+      "mbid": "9fff2f8a-21e6-47de-a2b8-7f449929d43f"
+    },
+    {
+      "slug": "artist:three-6-mafia",
+      "type": "artist",
+      "name": "Three 6 Mafia",
+      "mbid": "a8754ac4-a85e-4f48-a81f-eecd482570ef"
+    },
+    {
+      "slug": "artist:juicy-j",
+      "type": "artist",
+      "name": "Juicy J",
+      "mbid": "c45d161f-83ce-4464-ba41-44202e6916d9"
+    },
+    {
+      "slug": "artist:tei-shi",
+      "type": "artist",
+      "name": "Tei Shi",
+      "mbid": "921f2966-dfe6-4101-95fc-c8233d76f59f"
+    },
+    {
+      "slug": "artist:travis-scott",
+      "type": "artist",
+      "name": "Travis Scott",
+      "mbid": "e4a51f17-a57b-47b1-b37b-f552d0f8e9e6"
+    },
+    {
+      "slug": "artist:janet-mock",
+      "type": "artist",
+      "name": "Janet Mock",
+      "mbid": "9f707772-c5f0-41dc-907f-7eeb5ae05ba9"
+    },
+    {
+      "slug": "artist:steve-lacy",
+      "type": "artist",
+      "name": "Steve Lacy",
+      "mbid": "b29020d6-5dbf-4c99-b16f-c009f8a712ff"
+    },
+    {
+      "slug": "artist:lil-wayne",
+      "type": "artist",
+      "name": "Lil Wayne",
+      "mbid": "ac9a487a-d9d2-4f27-bb23-0f4686488345"
+    },
+    {
+      "slug": "artist:ian-isiah",
+      "type": "artist",
+      "name": "Ian Isiah",
+      "mbid": "1a8bec5d-4c47-490e-a443-e34222863284"
+    }
+  ]
 }

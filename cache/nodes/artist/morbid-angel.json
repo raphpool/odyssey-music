@@ -310,5 +310,66 @@
       "name": "Charlie Koryn"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:death",
+      "type": "artist",
+      "name": "Death",
+      "mbid": "dbb3b771-ae77-4381-b61c-758b5b7898ec"
+    },
+    {
+      "slug": "artist:cannibal-corpse",
+      "type": "artist",
+      "name": "Cannibal Corpse",
+      "mbid": "af8e4cc5-ef54-458d-a194-7b210acf638f"
+    },
+    {
+      "slug": "artist:carcass",
+      "type": "artist",
+      "name": "Carcass",
+      "mbid": "d50a4b89-ff1f-4659-9fde-f76f8d5b3c89"
+    },
+    {
+      "slug": "artist:deicide",
+      "type": "artist",
+      "name": "Deicide",
+      "mbid": "0bd96fa4-9835-49b0-a1f2-7421e6a79dfa"
+    },
+    {
+      "slug": "artist:slayer",
+      "type": "artist",
+      "name": "Slayer",
+      "mbid": "bdacc37b-8633-4bf8-9dd5-4662ee651aec"
+    },
+    {
+      "slug": "artist:obituary",
+      "type": "artist",
+      "name": "Obituary",
+      "mbid": "2e8ac3ed-2a89-4377-ba80-790106aba554"
+    },
+    {
+      "slug": "artist:metallica",
+      "type": "artist",
+      "name": "Metallica",
+      "mbid": "65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab"
+    },
+    {
+      "slug": "artist:napalm-death",
+      "type": "artist",
+      "name": "Napalm Death",
+      "mbid": "ce7bba8b-026b-4aa6-bddb-f98ed6d595e4"
+    },
+    {
+      "slug": "artist:nile",
+      "type": "artist",
+      "name": "Nile",
+      "mbid": "adc68a50-38ee-456d-927e-715cbf74c0d5"
+    },
+    {
+      "slug": "artist:sepultura",
+      "type": "artist",
+      "name": "Sepultura",
+      "mbid": "1d93c839-22e7-4f76-ad84-d27039efc048"
+    }
+  ]
 }

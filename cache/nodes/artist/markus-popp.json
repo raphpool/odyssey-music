@@ -111,5 +111,66 @@
       "name": "Oval"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:microstoria",
+      "type": "artist",
+      "name": "Microstoria",
+      "mbid": "5f3b5920-6aa8-4cc0-b466-77372c71aa4e"
+    },
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire",
+      "mbid": "d71ba53b-23b0-4870-a429-cce6f345763b"
+    },
+    {
+      "slug": "artist:fennesz",
+      "type": "artist",
+      "name": "Fennesz",
+      "mbid": "a6f8d42d-d3ff-4268-8d39-ee01341733bb"
+    },
+    {
+      "slug": "artist:haruomi-hosono",
+      "type": "artist",
+      "name": "Haruomi Hosono",
+      "mbid": "078be324-de92-4c72-9371-65bdcf324154"
+    },
+    {
+      "slug": "artist:andy-mellwig",
+      "type": "artist",
+      "name": "Andy Mellwig",
+      "mbid": "4c787fb7-b052-4d6c-9980-c5b1641458a5"
+    },
+    {
+      "slug": "artist:yukihiro-takahashi",
+      "type": "artist",
+      "name": "Yukihiro Takahashi",
+      "mbid": "e1410ddc-9745-4b5d-814d-77eb0cdfa6ad"
+    },
+    {
+      "slug": "artist:laetitia-sadier",
+      "type": "artist",
+      "name": "Laetitia Sadier",
+      "mbid": "9710d91f-bfbd-4f84-9c54-cb04f2a464b1"
+    },
+    {
+      "slug": "artist:lithops",
+      "type": "artist",
+      "name": "Lithops",
+      "mbid": "6fe647a2-a5fd-48a3-9e38-2f7517a57466"
+    },
+    {
+      "slug": "artist:anushka-chkheidze",
+      "type": "artist",
+      "name": "Anushka Chkheidze",
+      "mbid": "61550996-9ae9-45d9-95a3-2dc3f713502b"
+    },
+    {
+      "slug": "artist:ashra",
+      "type": "artist",
+      "name": "Ashra",
+      "mbid": "2d262241-ad1e-4b2d-904a-c38039f0a531"
+    }
+  ]
 }

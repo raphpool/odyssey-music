@@ -76,5 +76,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:victor-uwaifo",
+      "type": "artist",
+      "name": "Victor Uwaifo",
+      "mbid": "a77f26ec-ec08-40dc-bc22-aeec8ce7c610"
+    },
+    {
+      "slug": "artist:orchestra-baobab",
+      "type": "artist",
+      "name": "Orchestra Baobab",
+      "mbid": "30331c85-26d4-4daa-9f66-3075cac4c20b"
+    },
+    {
+      "slug": "artist:bembeya-jazz-national",
+      "type": "artist",
+      "name": "Bembeya Jazz National",
+      "mbid": "3767e5f9-b921-4d90-bf2e-8a90f362d35a"
+    },
+    {
+      "slug": "artist:eric-agyeman",
+      "type": "artist",
+      "name": "Eric Agyeman",
+      "mbid": "6109d9e6-cb4b-43f7-b238-79c376d49665"
+    },
+    {
+      "slug": "artist:balla-et-ses-balladins",
+      "type": "artist",
+      "name": "Balla et ses Balladins",
+      "mbid": "f361ad6e-b504-4ba5-b494-799bf65449a0"
+    },
+    {
+      "slug": "artist:e-k-s-band",
+      "type": "artist",
+      "name": "E.K.'s Band",
+      "mbid": "8edde54f-bd93-4c3e-99e6-e293bee0566c"
+    },
+    {
+      "slug": "artist:super-eagles",
+      "type": "artist",
+      "name": "Super Eagles",
+      "mbid": "03ca39b2-8195-416a-bc94-9621ba4e3f24"
+    },
+    {
+      "slug": "artist:victor-olaiya",
+      "type": "artist",
+      "name": "Victor Olaiya",
+      "mbid": "8f310fab-e867-4398-9e8a-55fb76051b06"
+    },
+    {
+      "slug": "artist:opotopo",
+      "type": "artist",
+      "name": "Opotopo",
+      "mbid": "508456f9-8fdb-4ef3-976b-342802a5b493"
+    },
+    {
+      "slug": "artist:tabu-ley-rochereau",
+      "type": "artist",
+      "name": "Tabu Ley Rochereau",
+      "mbid": "85a694a0-dde9-4d79-a3b5-11950be0f3de"
+    }
+  ]
 }

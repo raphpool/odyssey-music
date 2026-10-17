@@ -118,5 +118,66 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:kool-and-the-gang",
+      "type": "artist",
+      "name": "Kool and the Gang",
+      "mbid": "2469950a-f0ca-425a-bfbc-baf55ea3afde"
+    },
+    {
+      "slug": "artist:aretha-franklin",
+      "type": "artist",
+      "name": "Aretha Franklin",
+      "mbid": "2f9ecbed-27be-40e6-abca-6de49d50299e"
+    },
+    {
+      "slug": "artist:bee-gees",
+      "type": "artist",
+      "name": "Bee Gees"
+    },
+    {
+      "slug": "artist:bernard-edwards",
+      "type": "artist",
+      "name": "Bernard Edwards",
+      "mbid": "ba7ff664-5c64-4a62-a3e2-63445c1a25db"
+    },
+    {
+      "slug": "artist:chic",
+      "type": "artist",
+      "name": "Chic",
+      "mbid": "a4ed036b-5f18-439c-b1e1-96d205bab255"
+    },
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles",
+      "mbid": "b7a98e65-7ce4-4fab-8cf3-6b3ccda6115a"
+    },
+    {
+      "slug": "artist:mc-solaar",
+      "type": "artist",
+      "name": "MC Solaar",
+      "mbid": "bbbd2644-b4cb-4bb5-a442-315310f68a0b"
+    },
+    {
+      "slug": "artist:mariah-carey",
+      "type": "artist",
+      "name": "Mariah Carey",
+      "mbid": "494e8d09-f85b-4543-892f-a5096aed1cd4"
+    },
+    {
+      "slug": "artist:opolopo",
+      "type": "artist",
+      "name": "Opolopo",
+      "mbid": "50e1d32b-8873-4f30-aec0-f22c46346872"
+    },
+    {
+      "slug": "artist:otis-redding",
+      "type": "artist",
+      "name": "Otis Redding",
+      "mbid": "82b1f5fd-cd31-41a9-b5d4-7e33f0eb9751"
+    }
+  ]
 }

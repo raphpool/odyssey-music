@@ -76,5 +76,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:sub-focus",
+      "type": "artist",
+      "name": "Sub Focus",
+      "mbid": "8cf49f40-b8fe-4a63-b4ea-f922d6145bb4"
+    },
+    {
+      "slug": "artist:culture-shock",
+      "type": "artist",
+      "name": "Culture Shock",
+      "mbid": "0068b96e-42d7-4d88-b3c1-a8299db93526"
+    },
+    {
+      "slug": "artist:dc-breaks",
+      "type": "artist",
+      "name": "DC Breaks",
+      "mbid": "6b477dd3-5133-40cb-a830-ba461bc88ff9"
+    },
+    {
+      "slug": "artist:delta-heavy",
+      "type": "artist",
+      "name": "Delta Heavy",
+      "mbid": "be166079-6f21-4d0d-af2a-9f55c4b34455"
+    },
+    {
+      "slug": "artist:wilkinson",
+      "type": "artist",
+      "name": "Wilkinson",
+      "mbid": "c9fa114f-8426-4286-a289-9f16c8e092b5"
+    },
+    {
+      "slug": "artist:noisia",
+      "type": "artist",
+      "name": "Noisia",
+      "mbid": "ec22a32b-acab-432e-a88c-ffe6ae68fa16"
+    },
+    {
+      "slug": "artist:high-contrast",
+      "type": "artist",
+      "name": "High Contrast",
+      "mbid": "889b69e3-7b18-4889-b953-9f2931597204"
+    },
+    {
+      "slug": "artist:calyx-and-teebee",
+      "type": "artist",
+      "name": "Calyx & TeeBee",
+      "mbid": "43b161b8-4fb7-4aed-8056-d927e3c17be2"
+    },
+    {
+      "slug": "artist:loadstar",
+      "type": "artist",
+      "name": "Loadstar",
+      "mbid": "d7d3e885-15a1-4d53-943c-0ffca6628cbe"
+    },
+    {
+      "slug": "artist:origin-unknown",
+      "type": "artist",
+      "name": "Origin Unknown",
+      "mbid": "b5525d77-93e5-4562-b575-8d39d7765245"
+    }
+  ]
 }

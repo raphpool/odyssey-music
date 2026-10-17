@@ -226,5 +226,30 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:dj-deeon",
+      "type": "artist",
+      "name": "DJ Deeon",
+      "mbid": "b73e51c1-cf7e-450e-ab10-a8a24e5b8993"
+    },
+    {
+      "slug": "artist:dj-assault",
+      "type": "artist",
+      "name": "DJ Assault",
+      "mbid": "acb4865d-0c4c-4dd5-b958-c399b5d75b8e"
+    },
+    {
+      "slug": "artist:mall-grab",
+      "type": "artist",
+      "name": "Mall Grab",
+      "mbid": "845ddc8b-36ba-4d7b-9c6f-bd7623cd3cac"
+    },
+    {
+      "slug": "artist:cajmere",
+      "type": "artist",
+      "name": "Cajmere",
+      "mbid": "18d18849-fd22-4720-9ae4-5bc3ce39f93d"
+    }
+  ]
 }

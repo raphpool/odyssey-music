@@ -98,5 +98,55 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:bernard-parmegiani",
+      "type": "artist",
+      "name": "Bernard Parmegiani",
+      "mbid": "3e3fbd8f-20b8-4f00-a1b2-8c14c9dd14f9"
+    },
+    {
+      "slug": "artist:hugh-le-caine",
+      "type": "artist",
+      "name": "Hugh Le Caine",
+      "mbid": "e7ae24a5-41c9-4952-8613-804d6082114b"
+    },
+    {
+      "slug": "artist:luc-ferrari",
+      "type": "artist",
+      "name": "Luc Ferrari",
+      "mbid": "589801f8-fe67-49bd-abcf-cca79c5d0776"
+    },
+    {
+      "slug": "artist:pierre-schaeffer",
+      "type": "artist",
+      "name": "Pierre Schaeffer",
+      "mbid": "cc48f77c-32c5-46e1-9f35-119d61671e1b"
+    },
+    {
+      "slug": "artist:fennesz",
+      "type": "artist",
+      "name": "Fennesz",
+      "mbid": "a6f8d42d-d3ff-4268-8d39-ee01341733bb"
+    },
+    {
+      "slug": "artist:karlheinz-stockhausen",
+      "type": "artist",
+      "name": "Karlheinz Stockhausen",
+      "mbid": "fd09d776-ddfd-4558-afe7-814420d704ed"
+    },
+    {
+      "slug": "artist:pierre-henry",
+      "type": "artist",
+      "name": "Pierre Henry",
+      "mbid": "24e0aaa1-7961-4ab8-865e-e736226e41c9"
+    },
+    {
+      "slug": "artist:eliane-radigue",
+      "type": "artist",
+      "name": "Éliane Radigue",
+      "mbid": "32981181-5e3f-4160-a872-625980035593"
+    }
+  ]
 }

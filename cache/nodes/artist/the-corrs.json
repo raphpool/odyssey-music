@@ -88,5 +88,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-cranberries",
+      "type": "artist",
+      "name": "The Cranberries",
+      "mbid": "c98d40fd-f6cf-4b26-883e-eaa515ee2851"
+    },
+    {
+      "slug": "artist:coldplay",
+      "type": "artist",
+      "name": "Coldplay",
+      "mbid": "cc197bad-dc9c-440d-a5b5-d52ba2e14234"
+    },
+    {
+      "slug": "artist:r-e-m",
+      "type": "artist",
+      "name": "R.E.M.",
+      "mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58"
+    },
+    {
+      "slug": "artist:dido",
+      "type": "artist",
+      "name": "Dido",
+      "mbid": "d1353a0c-26fb-4318-a116-defde9c7c9ad"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:natalie-imbruglia",
+      "type": "artist",
+      "name": "Natalie Imbruglia",
+      "mbid": "60530915-9371-4b16-bc31-5c4456317ae0"
+    },
+    {
+      "slug": "artist:sheryl-crow",
+      "type": "artist",
+      "name": "Sheryl Crow",
+      "mbid": "80ccfede-c258-4575-a7ad-c982e9932e0f"
+    },
+    {
+      "slug": "artist:robbie-williams",
+      "type": "artist",
+      "name": "Robbie Williams",
+      "mbid": "db4624cf-0e44-481e-a9dc-2142b833ec2f"
+    },
+    {
+      "slug": "artist:elton-john",
+      "type": "artist",
+      "name": "Elton John",
+      "mbid": "b83bc61f-8451-4a5d-8b8e-7e9ed295e822"
+    },
+    {
+      "slug": "artist:roxette",
+      "type": "artist",
+      "name": "Roxette",
+      "mbid": "d3b2711f-2baa-441a-be95-14945ca7e6ea"
+    }
+  ]
 }

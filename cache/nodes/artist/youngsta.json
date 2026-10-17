@@ -78,5 +78,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:kryptic-minds",
+      "type": "artist",
+      "name": "Kryptic Minds",
+      "mbid": "89845f0d-2ab9-4edb-b032-7102c914a6e5"
+    },
+    {
+      "slug": "artist:alys-be",
+      "type": "artist",
+      "name": "Alys Be",
+      "mbid": "54d535f1-7bf5-4f69-a114-294775d8f414"
+    },
+    {
+      "slug": "artist:kromestar",
+      "type": "artist",
+      "name": "Kromestar",
+      "mbid": "63dd3d57-d98f-4f27-bc1c-017ed75cd6f7"
+    },
+    {
+      "slug": "artist:benga",
+      "type": "artist",
+      "name": "Benga",
+      "mbid": "d3ba1c50-d403-40df-8eac-80d74551a7e3"
+    },
+    {
+      "slug": "artist:plastician",
+      "type": "artist",
+      "name": "Plastician",
+      "mbid": "93fffcaa-8b52-4b49-9859-5e95d9261d92"
+    },
+    {
+      "slug": "artist:tunnidge",
+      "type": "artist",
+      "name": "Tunnidge",
+      "mbid": "d4fdeb41-0ad8-43d0-ae00-15e4a271494f"
+    },
+    {
+      "slug": "artist:icicle",
+      "type": "artist",
+      "name": "Icicle",
+      "mbid": "fc2c1cb5-fd7b-42f7-99c6-cb8e2a78b68f"
+    },
+    {
+      "slug": "artist:kulture",
+      "type": "artist",
+      "name": "Kulture",
+      "mbid": "4fdde741-92d7-4c8b-b85a-d1840e5b3aa8"
+    },
+    {
+      "slug": "artist:emalkay",
+      "type": "artist",
+      "name": "Emalkay",
+      "mbid": "92d8cf58-fda1-4f4d-ab51-c4d6cd21bf5f"
+    },
+    {
+      "slug": "artist:coki",
+      "type": "artist",
+      "name": "Coki",
+      "mbid": "a9bfea30-6c6b-418a-84d6-b92ce2d85b92"
+    }
+  ]
 }

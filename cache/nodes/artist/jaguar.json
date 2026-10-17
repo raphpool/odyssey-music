@@ -49,5 +49,67 @@
       "name": "Alec Empire"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    },
+    {
+      "slug": "artist:camomile-dawn",
+      "type": "artist",
+      "name": "Camomile Dawn",
+      "mbid": "131aface-d868-41a3-9942-c13978e3b1c5"
+    },
+    {
+      "slug": "artist:dj-assault",
+      "type": "artist",
+      "name": "DJ Assault",
+      "mbid": "acb4865d-0c4c-4dd5-b958-c399b5d75b8e"
+    },
+    {
+      "slug": "artist:dj-pierre",
+      "type": "artist",
+      "name": "DJ Pierre",
+      "mbid": "bc5d318a-096a-4bc3-8a2e-742905c0036b"
+    },
+    {
+      "slug": "artist:dj-slugo",
+      "type": "artist",
+      "name": "DJ Slugo",
+      "mbid": "5791156a-75e9-454d-9a23-fbc2896f9151"
+    },
+    {
+      "slug": "artist:fjaak",
+      "type": "artist",
+      "name": "FJAAK",
+      "mbid": "56acaa47-eb2f-43d7-a1f1-19466c550e31"
+    },
+    {
+      "slug": "artist:francesco-del-garda",
+      "type": "artist",
+      "name": "Francesco Del Garda",
+      "mbid": "c13f201c-83bc-4a6e-a7b0-7fbcd13adddc"
+    },
+    {
+      "slug": "artist:john-acquaviva",
+      "type": "artist",
+      "name": "John Acquaviva",
+      "mbid": "928e71ac-c6f6-4ffe-b9cc-ccfd1d19b124"
+    },
+    {
+      "slug": "artist:john-digweed",
+      "type": "artist",
+      "name": "John Digweed",
+      "mbid": "68cac857-3147-43d0-879e-c63dc9c82014"
+    },
+    {
+      "slug": "artist:joy-orbison",
+      "type": "artist",
+      "name": "Joy Orbison",
+      "mbid": "8542f9a4-bd91-4066-91cf-359d2d9950db"
+    }
+  ]
 }

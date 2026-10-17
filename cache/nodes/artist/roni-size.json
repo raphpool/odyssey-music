@@ -139,5 +139,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-prodigy",
+      "type": "artist",
+      "name": "The Prodigy",
+      "mbid": "4a4ee089-93b1-4470-af9a-6ff575d32704"
+    },
+    {
+      "slug": "artist:alex-reece",
+      "type": "artist",
+      "name": "Alex Reece",
+      "mbid": "1c8e46d4-9343-48ce-aed8-0862e03878fd"
+    },
+    {
+      "slug": "artist:count-basic",
+      "type": "artist",
+      "name": "Count Basic",
+      "mbid": "152cfd61-07f8-4559-a64c-a93201a91418"
+    },
+    {
+      "slug": "artist:orbital",
+      "type": "artist",
+      "name": "Orbital",
+      "mbid": "f3e2a7d9-c6bb-4848-95e5-04c0a1e2f511"
+    },
+    {
+      "slug": "artist:depeche-mode",
+      "type": "artist",
+      "name": "Depeche Mode",
+      "mbid": "8538e728-ca0b-4321-b7e5-cff6565dd4c0"
+    },
+    {
+      "slug": "artist:bomb-the-bass",
+      "type": "artist",
+      "name": "Bomb the Bass",
+      "mbid": "b2a28d4a-5f5d-49f6-b944-9f5a4bffc4d9"
+    },
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre",
+      "mbid": "410c9baf-5469-44f6-9852-826524b80c61"
+    },
+    {
+      "slug": "artist:moby",
+      "type": "artist",
+      "name": "Moby",
+      "mbid": "8970d868-0723-483b-a75b-51088913d3d4"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:goldie",
+      "type": "artist",
+      "name": "Goldie",
+      "mbid": "c5393047-0c44-48eb-b5a8-070759f04371"
+    }
+  ]
 }

@@ -119,5 +119,30 @@
       "name": "Mokhtar Gania"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    },
+    {
+      "slug": "artist:pete-namlook",
+      "type": "artist",
+      "name": "Pete Namlook",
+      "mbid": "a7e2051b-f66d-4e44-8320-526957d4ec02"
+    },
+    {
+      "slug": "artist:hamid-el-kasri",
+      "type": "artist",
+      "name": "Hamid El Kasri",
+      "mbid": "0326ff65-a31b-4a54-9c79-4777c2bb3a1e"
+    },
+    {
+      "slug": "artist:hassan-hakmoun",
+      "type": "artist",
+      "name": "Hassan Hakmoun",
+      "mbid": "3d3fdc17-ba59-4ba0-a326-a7803e65d4fc"
+    }
+  ]
 }

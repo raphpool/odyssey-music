@@ -93,5 +93,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:dexter-gordon",
+      "type": "artist",
+      "name": "Dexter Gordon",
+      "mbid": "cc1588e1-5ba3-45a6-b80c-b31035c89339"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:michael-stearns",
+      "type": "artist",
+      "name": "Michael Stearns",
+      "mbid": "d85b8725-81eb-4ce0-81c3-daf5cf4cb7b7"
+    },
+    {
+      "slug": "artist:dave-brubeck",
+      "type": "artist",
+      "name": "Dave Brubeck",
+      "mbid": "de0222a6-e1c4-403d-8b01-3f66d505061b"
+    },
+    {
+      "slug": "artist:sonny-stitt",
+      "type": "artist",
+      "name": "Sonny Stitt",
+      "mbid": "d7828cdd-7d63-49c0-b09b-cf3df7ecaf80"
+    },
+    {
+      "slug": "artist:deuter",
+      "type": "artist",
+      "name": "Deuter",
+      "mbid": "c4e7031f-a5f0-476a-b1f0-1f3e8c573f4b"
+    },
+    {
+      "slug": "artist:r-carlos-nakai",
+      "type": "artist",
+      "name": "R. Carlos Nakai",
+      "mbid": "3c050ada-9db8-4e87-86fb-11c5294f9711"
+    },
+    {
+      "slug": "artist:dj-cheb-i-sabbah",
+      "type": "artist",
+      "name": "DJ Cheb i Sabbah",
+      "mbid": "d4570f76-d803-429d-80ec-1b966c2c45ed"
+    }
+  ]
 }

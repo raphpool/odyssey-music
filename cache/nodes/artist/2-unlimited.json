@@ -381,5 +381,63 @@
       "type": "artist",
       "name": "Phil Wilde"
     }
+  ],
+  "similar_artists": [
+    {
+      "slug": "artist:49ers",
+      "type": "artist",
+      "name": "49ers",
+      "mbid": "1c6bb329-0b00-42d0-b838-94341420b642"
+    },
+    {
+      "slug": "artist:blackpink",
+      "type": "artist",
+      "name": "BLACKPINK",
+      "mbid": "48646387-1664-4c9a-9139-9bfd091b823c"
+    },
+    {
+      "slug": "artist:bts",
+      "type": "artist",
+      "name": "BTS",
+      "mbid": "0d79fe8e-ba27-4859-bb8c-2f255f346853"
+    },
+    {
+      "slug": "artist:bee-gees",
+      "type": "artist",
+      "name": "Bee Gees"
+    },
+    {
+      "slug": "artist:bobby-brown",
+      "type": "artist",
+      "name": "Bobby Brown"
+    },
+    {
+      "slug": "artist:buddy-holly",
+      "type": "artist",
+      "name": "Buddy Holly",
+      "mbid": "d352f5dd-3023-4565-a7bb-52396bf8821d"
+    },
+    {
+      "slug": "artist:cat-stevens",
+      "type": "artist",
+      "name": "Cat Stevens"
+    },
+    {
+      "slug": "artist:chimo-bayo",
+      "type": "artist",
+      "name": "Chimo Bayo",
+      "mbid": "bba7d3bb-3dee-4753-b435-862d052868e0"
+    },
+    {
+      "slug": "artist:elvis-presley",
+      "type": "artist",
+      "name": "Elvis Presley",
+      "mbid": "01809552-4f87-45b0-afff-2c6f0730a3be"
+    },
+    {
+      "slug": "artist:frank-ocean",
+      "type": "artist",
+      "name": "Frank Ocean"
+    }
   ]
 }

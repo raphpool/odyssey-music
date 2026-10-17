@@ -131,5 +131,65 @@
       "name": "The Beatles"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:paul-mccartney",
+      "type": "artist",
+      "name": "Paul McCartney",
+      "mbid": "ba550d0e-adac-4864-b88b-407cab5e76af"
+    },
+    {
+      "slug": "artist:bob-dylan",
+      "type": "artist",
+      "name": "Bob Dylan",
+      "mbid": "72c536dc-7137-4477-a521-567eeb840fa8"
+    },
+    {
+      "slug": "artist:chris-thomas",
+      "type": "artist",
+      "name": "Chris Thomas",
+      "mbid": "2a25263b-54ad-42c5-acea-e50b3913369c"
+    },
+    {
+      "slug": "artist:chrissie-hynde",
+      "type": "artist",
+      "name": "Chrissie Hynde",
+      "mbid": "a5d79c54-81c3-4a73-af6a-ad5c143d3f21"
+    },
+    {
+      "slug": "artist:john-lennon",
+      "type": "artist",
+      "name": "John Lennon",
+      "mbid": "4d5447d7-c61c-4120-ba1b-d7f471d385b9"
+    },
+    {
+      "slug": "artist:keith-richards",
+      "type": "artist",
+      "name": "Keith Richards",
+      "mbid": "f0ed72a3-ae8f-4cf7-b51d-2696a2330230"
+    },
+    {
+      "slug": "artist:pete-best",
+      "type": "artist",
+      "name": "Pete Best"
+    },
+    {
+      "slug": "artist:randy-newman",
+      "type": "artist",
+      "name": "Randy Newman",
+      "mbid": "da7bb7d8-557d-4635-9ca1-e6e985525bd5"
+    },
+    {
+      "slug": "artist:ringo-starr",
+      "type": "artist",
+      "name": "Ringo Starr",
+      "mbid": "300c4c73-33ac-4255-9d57-4e32627f5e13"
+    },
+    {
+      "slug": "artist:stuart-sutcliffe",
+      "type": "artist",
+      "name": "Stuart Sutcliffe",
+      "mbid": "49a51491-650e-44b3-8085-2f07ac2986dd"
+    }
+  ]
 }

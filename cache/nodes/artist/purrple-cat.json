@@ -528,5 +528,66 @@
       "name": "Emma Wilson"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:kupla",
+      "type": "artist",
+      "name": "Kupla",
+      "mbid": "2140553b-34d8-4b97-b08c-d77c32f60e81"
+    },
+    {
+      "slug": "artist:wys",
+      "type": "artist",
+      "name": "WYS",
+      "mbid": "c441f8bb-f537-485d-8c62-09e782d860ae"
+    },
+    {
+      "slug": "artist:mondo-loops",
+      "type": "artist",
+      "name": "Mondo Loops",
+      "mbid": "ad6f94ac-951f-406a-afa0-af8feb89efab"
+    },
+    {
+      "slug": "artist:jhove",
+      "type": "artist",
+      "name": "Jhove",
+      "mbid": "1d9ff8bd-4f43-490e-9b05-9934bd809dd6"
+    },
+    {
+      "slug": "artist:softy",
+      "type": "artist",
+      "name": "softy",
+      "mbid": "7b8bf45e-bdb2-4a3d-be45-b11e531330b3"
+    },
+    {
+      "slug": "artist:tender-spring",
+      "type": "artist",
+      "name": "tender spring",
+      "mbid": "dd1096c2-b800-42cb-beea-6eb1f6427546"
+    },
+    {
+      "slug": "artist:hoogway",
+      "type": "artist",
+      "name": "Hoogway",
+      "mbid": "c200ba60-2932-4f01-8c40-c9c332d7fe2c"
+    },
+    {
+      "slug": "artist:sleepermane",
+      "type": "artist",
+      "name": "Sleepermane",
+      "mbid": "1abb59b4-2dc6-47ab-b939-60f1b3dba2c2"
+    },
+    {
+      "slug": "artist:hm-surf",
+      "type": "artist",
+      "name": "HM Surf",
+      "mbid": "99905c35-b758-4677-a56a-4ec907d2b448"
+    },
+    {
+      "slug": "artist:yasumu",
+      "type": "artist",
+      "name": "Yasumu",
+      "mbid": "92c3cc97-801c-4421-8006-66c8abc0309d"
+    }
+  ]
 }

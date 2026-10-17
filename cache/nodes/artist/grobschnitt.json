@@ -88,5 +88,66 @@
       "name": "Wolfgang \"Popo\" Jäger"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:eloy",
+      "type": "artist",
+      "name": "Eloy",
+      "mbid": "bc154a90-890b-409e-b850-53ca299ab0d6"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
+    },
+    {
+      "slug": "artist:jane",
+      "type": "artist",
+      "name": "Jane",
+      "mbid": "bfdaa32b-40b5-4d20-b63a-cb528096524d"
+    },
+    {
+      "slug": "artist:jethro-tull",
+      "type": "artist",
+      "name": "Jethro Tull",
+      "mbid": "ece57992-dc2e-4f67-a269-fa43626c1a3d"
+    },
+    {
+      "slug": "artist:genesis",
+      "type": "artist",
+      "name": "Genesis",
+      "mbid": "8e3fcd7d-bda1-4ca0-b987-b8528d2ee74e"
+    },
+    {
+      "slug": "artist:birth-control",
+      "type": "artist",
+      "name": "Birth Control",
+      "mbid": "b7664585-0e72-4b48-b089-db6add8fc42f"
+    },
+    {
+      "slug": "artist:amon-duul-ii",
+      "type": "artist",
+      "name": "Amon Düül II",
+      "mbid": "9d78c6da-a415-4e1d-a55d-5e37b3bbc65d"
+    },
+    {
+      "slug": "artist:kraan",
+      "type": "artist",
+      "name": "Kraan",
+      "mbid": "d634f58c-aa2c-4430-9c85-b8e0d1c66878"
+    },
+    {
+      "slug": "artist:camel",
+      "type": "artist",
+      "name": "Camel",
+      "mbid": "94b7a39b-f3cc-4796-90dd-b1786a62877e"
+    },
+    {
+      "slug": "artist:neu",
+      "type": "artist",
+      "name": "Neu!",
+      "mbid": "adec1fc3-83c1-48f7-9e49-8347ac6d40b0"
+    }
+  ]
 }

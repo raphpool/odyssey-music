@@ -71,5 +71,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:steve-reich",
+      "type": "artist",
+      "name": "Steve Reich",
+      "mbid": "a3031680-c359-458f-a641-70ccbaec6a74"
+    },
+    {
+      "slug": "artist:ryuichi-sakamoto",
+      "type": "artist",
+      "name": "坂本龍一",
+      "mbid": "a7f7df4a-77d8-4f12-8acd-5c60c93f4de8"
+    },
+    {
+      "slug": "artist:terry-riley",
+      "type": "artist",
+      "name": "Terry Riley",
+      "mbid": "7bf257bf-19a8-4205-8ae8-98511e50b719"
+    },
+    {
+      "slug": "artist:bandolero",
+      "type": "artist",
+      "name": "Bandolero",
+      "mbid": "c2230375-d760-46b1-968a-a1db6924f223"
+    },
+    {
+      "slug": "artist:loredana-berte",
+      "type": "artist",
+      "name": "Loredana Bertè",
+      "mbid": "160d593b-9539-4cdf-b80d-52bfbfef0304"
+    },
+    {
+      "slug": "artist:michael-nyman",
+      "type": "artist",
+      "name": "Michael Nyman",
+      "mbid": "c3161cf7-cab1-4409-9b1f-876561dd7716"
+    },
+    {
+      "slug": "artist:frank-glazer",
+      "type": "artist",
+      "name": "Frank Glazer",
+      "mbid": "4866539b-9965-4075-8238-6a6c47bfaa1e"
+    },
+    {
+      "slug": "artist:the-psychedelic-furs",
+      "type": "artist",
+      "name": "The Psychedelic Furs",
+      "mbid": "9f930ddf-be2f-4de5-a39f-7ae47305752e"
+    },
+    {
+      "slug": "artist:wim-mertens",
+      "type": "artist",
+      "name": "Wim Mertens",
+      "mbid": "bc2fd8bc-91ea-4b7e-a52e-d67bea5c0313"
+    },
+    {
+      "slug": "artist:kronos-quartet",
+      "type": "artist",
+      "name": "Kronos Quartet",
+      "mbid": "f5586dfa-7031-4af0-8042-19b6a1170389"
+    }
+  ]
 }

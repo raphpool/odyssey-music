@@ -87,5 +87,65 @@
       "name": "Plaid"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:aim",
+      "type": "artist",
+      "name": "Aim",
+      "mbid": "8e678953-c97b-435b-af18-2425b6db71d0"
+    },
+    {
+      "slug": "artist:bonobo",
+      "type": "artist",
+      "name": "Bonobo",
+      "mbid": "9a709693-b4f8-4da9-8cc1-038c911a61be"
+    },
+    {
+      "slug": "artist:massive-attack",
+      "type": "artist",
+      "name": "Massive Attack",
+      "mbid": "10adbe5e-a2c0-4bf3-8249-2b4cbf6e6ca8"
+    },
+    {
+      "slug": "artist:daniele-baldelli",
+      "type": "artist",
+      "name": "Daniele Baldelli",
+      "mbid": "f1090a95-baf7-4870-966a-398c1ee9dc4f"
+    },
+    {
+      "slug": "artist:gokhan-kirdar",
+      "type": "artist",
+      "name": "Gökhan Kırdar",
+      "mbid": "f65f0ceb-60b3-4e5a-ba1a-63343c263bbe"
+    },
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald",
+      "mbid": "b343730d-a34e-44d5-9191-a83f00231716"
+    },
+    {
+      "slug": "artist:afx",
+      "type": "artist",
+      "name": "AFX"
+    },
+    {
+      "slug": "artist:andi-toma",
+      "type": "artist",
+      "name": "Andi Toma",
+      "mbid": "7138147f-3d17-48e4-a5b0-99125e5ae190"
+    },
+    {
+      "slug": "artist:andy-mellwig",
+      "type": "artist",
+      "name": "Andy Mellwig",
+      "mbid": "4c787fb7-b052-4d6c-9980-c5b1641458a5"
+    },
+    {
+      "slug": "artist:anushka-chkheidze",
+      "type": "artist",
+      "name": "Anushka Chkheidze",
+      "mbid": "61550996-9ae9-45d9-95a3-2dc3f713502b"
+    }
+  ]
 }

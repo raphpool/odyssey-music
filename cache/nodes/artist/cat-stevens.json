@@ -74,5 +74,66 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:mariah-carey",
+      "type": "artist",
+      "name": "Mariah Carey",
+      "mbid": "494e8d09-f85b-4543-892f-a5096aed1cd4"
+    },
+    {
+      "slug": "artist:nick-drake",
+      "type": "artist",
+      "name": "Nick Drake",
+      "mbid": "99ea432a-e3d8-42cb-9d5e-db316a6a8458"
+    },
+    {
+      "slug": "artist:49ers",
+      "type": "artist",
+      "name": "49ers",
+      "mbid": "1c6bb329-0b00-42d0-b838-94341420b642"
+    },
+    {
+      "slug": "artist:andy-mackay",
+      "type": "artist",
+      "name": "Andy Mackay",
+      "mbid": "2f82f693-9345-4ca4-aa87-9fb7e98d39c7"
+    },
+    {
+      "slug": "artist:bob-marley-and-the-wailers",
+      "type": "artist",
+      "name": "Bob Marley & The Wailers",
+      "mbid": "c296e10c-110a-4103-9e77-47bfebb7fb2e"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:bryan-ferry",
+      "type": "artist",
+      "name": "Bryan Ferry",
+      "mbid": "4ef7a9e2-2cf5-483a-8616-ef7791a98026"
+    },
+    {
+      "slug": "artist:dizzee-rascal",
+      "type": "artist",
+      "name": "Dizzee Rascal",
+      "mbid": "1a99cc88-aea3-4fe3-96b9-20791667f65f"
+    },
+    {
+      "slug": "artist:grace-jones",
+      "type": "artist",
+      "name": "Grace Jones"
+    },
+    {
+      "slug": "artist:haruomi-hosono",
+      "type": "artist",
+      "name": "Haruomi Hosono",
+      "mbid": "078be324-de92-4c72-9371-65bdcf324154"
+    }
+  ]
 }

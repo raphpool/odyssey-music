@@ -139,5 +139,66 @@
       "name": "Ian Craig Marsh"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:depeche-mode",
+      "type": "artist",
+      "name": "Depeche Mode",
+      "mbid": "8538e728-ca0b-4321-b7e5-cff6565dd4c0"
+    },
+    {
+      "slug": "artist:tears-for-fears",
+      "type": "artist",
+      "name": "Tears for Fears",
+      "mbid": "7c7f9c94-dee8-4903-892b-6cf44652e2de"
+    },
+    {
+      "slug": "artist:duran-duran",
+      "type": "artist",
+      "name": "Duran Duran",
+      "mbid": "1a1cd7f3-e5df-4eca-bae2-2757c9e656b5"
+    },
+    {
+      "slug": "artist:new-order",
+      "type": "artist",
+      "name": "New Order",
+      "mbid": "f1106b17-dcbb-45f6-b938-199ccfab50cc"
+    },
+    {
+      "slug": "artist:the-cure",
+      "type": "artist",
+      "name": "The Cure",
+      "mbid": "69ee3720-a7cb-4402-b48d-a02c366f2bcf"
+    },
+    {
+      "slug": "artist:soft-cell",
+      "type": "artist",
+      "name": "Soft Cell",
+      "mbid": "7fb50287-029d-47cc-825a-235ca28024b2"
+    },
+    {
+      "slug": "artist:orchestral-manoeuvres-in-the-dark",
+      "type": "artist",
+      "name": "Orchestral Manoeuvres in the Dark",
+      "mbid": "6d072aa8-c851-49c5-92f9-cbca05f4bed9"
+    },
+    {
+      "slug": "artist:simple-minds",
+      "type": "artist",
+      "name": "Simple Minds",
+      "mbid": "f41490ce-fe39-435d-86c0-ab5ce098b423"
+    },
+    {
+      "slug": "artist:eurythmics",
+      "type": "artist",
+      "name": "Eurythmics",
+      "mbid": "b4d32cff-f19e-455f-86c4-f347d824ca61"
+    },
+    {
+      "slug": "artist:a-ha",
+      "type": "artist",
+      "name": "a‐ha",
+      "mbid": "7364dea6-ca9a-48e3-be01-b44ad0d19897"
+    }
+  ]
 }

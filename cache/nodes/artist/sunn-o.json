@@ -83,5 +83,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:earth",
+      "type": "artist",
+      "name": "Earth",
+      "mbid": "60dd41cf-8f9d-46d8-bc19-dc7e5acb24c8"
+    },
+    {
+      "slug": "artist:ulver",
+      "type": "artist",
+      "name": "Ulver",
+      "mbid": "7d209631-ccb8-4a87-8516-64abe4c22dba"
+    },
+    {
+      "slug": "artist:swans",
+      "type": "artist",
+      "name": "Swans",
+      "mbid": "3285dc48-9505-469d-ad8a-bdf2d3dba632"
+    },
+    {
+      "slug": "artist:melvins",
+      "type": "artist",
+      "name": "Melvins",
+      "mbid": "9ccfbc94-a4f4-42f7-b6f5-d903ab77cccb"
+    },
+    {
+      "slug": "artist:electric-wizard",
+      "type": "artist",
+      "name": "Electric Wizard",
+      "mbid": "da7d57e6-0619-4f0f-8d15-d0b4195c3f55"
+    },
+    {
+      "slug": "artist:nine-inch-nails",
+      "type": "artist",
+      "name": "Nine Inch Nails",
+      "mbid": "b7ffd2af-418f-4be2-bdd1-22f8b48613da"
+    },
+    {
+      "slug": "artist:merzbow",
+      "type": "artist",
+      "name": "Merzbow",
+      "mbid": "2841d983-f8c3-432a-af02-7407a84580a8"
+    },
+    {
+      "slug": "artist:neurosis",
+      "type": "artist",
+      "name": "Neurosis",
+      "mbid": "a9416fb3-4d28-4575-abae-f0d160be83ed"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
+    },
+    {
+      "slug": "artist:metallica",
+      "type": "artist",
+      "name": "Metallica",
+      "mbid": "65f4f0c5-ef9e-490c-aee3-909e7ae6b2ab"
+    }
+  ]
 }

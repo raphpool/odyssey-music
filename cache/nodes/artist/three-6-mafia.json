@@ -369,5 +369,66 @@
       "name": "Gangsta Boo"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:justin-timberlake",
+      "type": "artist",
+      "name": "Justin Timberlake",
+      "mbid": "596ffa74-3d08-44ef-b113-765d43d12738"
+    },
+    {
+      "slug": "artist:project-pat",
+      "type": "artist",
+      "name": "Project Pat",
+      "mbid": "8b8985eb-f71f-4229-9f11-171a7aac98c1"
+    },
+    {
+      "slug": "artist:will-i-am",
+      "type": "artist",
+      "name": "will.i.am",
+      "mbid": "d574c9bd-46f6-440a-8d6a-8412a283eeb1"
+    },
+    {
+      "slug": "artist:t-i",
+      "type": "artist",
+      "name": "T.I.",
+      "mbid": "f7ba7fbe-c6bd-4ac0-bee9-c25c558d7d62"
+    },
+    {
+      "slug": "artist:snoop-dogg",
+      "type": "artist",
+      "name": "Snoop Dogg",
+      "mbid": "f90e8b26-9e52-4669-a5c9-e28529c47894"
+    },
+    {
+      "slug": "artist:lil-wayne",
+      "type": "artist",
+      "name": "Lil Wayne",
+      "mbid": "ac9a487a-d9d2-4f27-bb23-0f4686488345"
+    },
+    {
+      "slug": "artist:eminem",
+      "type": "artist",
+      "name": "Eminem",
+      "mbid": "b95ce3ff-3d05-4e87-9e01-c97b66af13d4"
+    },
+    {
+      "slug": "artist:jay-z",
+      "type": "artist",
+      "name": "JAŸ-Z",
+      "mbid": "f82bcf78-5b69-4622-a5ef-73800768d9ac"
+    },
+    {
+      "slug": "artist:mike-jones",
+      "type": "artist",
+      "name": "Mike Jones",
+      "mbid": "08962fc5-ed17-453b-9c68-ff7922eb4957"
+    },
+    {
+      "slug": "artist:timbaland",
+      "type": "artist",
+      "name": "Timbaland",
+      "mbid": "daa09819-5da5-4c7a-8bef-eb372bb27ff1"
+    }
+  ]
 }

@@ -150,5 +150,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:moby",
+      "type": "artist",
+      "name": "Moby",
+      "mbid": "8970d868-0723-483b-a75b-51088913d3d4"
+    },
+    {
+      "slug": "artist:tycho",
+      "type": "artist",
+      "name": "Tycho",
+      "mbid": "cbef45a9-7acb-4325-94c9-70081ac8d1b8"
+    },
+    {
+      "slug": "artist:orbital",
+      "type": "artist",
+      "name": "Orbital",
+      "mbid": "f3e2a7d9-c6bb-4848-95e5-04c0a1e2f511"
+    },
+    {
+      "slug": "artist:bonobo",
+      "type": "artist",
+      "name": "Bonobo",
+      "mbid": "9a709693-b4f8-4da9-8cc1-038c911a61be"
+    },
+    {
+      "slug": "artist:the-future-sound-of-london",
+      "type": "artist",
+      "name": "The Future Sound of London",
+      "mbid": "a1d77dd4-8728-4a47-bdfa-9663d791139c"
+    },
+    {
+      "slug": "artist:bt",
+      "type": "artist",
+      "name": "BT",
+      "mbid": "88e2147d-0332-46f6-85b2-b5f463ba957b"
+    },
+    {
+      "slug": "artist:way-out-west",
+      "type": "artist",
+      "name": "Way Out West",
+      "mbid": "2c2a80cf-193d-4be6-992e-311428085474"
+    },
+    {
+      "slug": "artist:air",
+      "type": "artist",
+      "name": "Air",
+      "mbid": "cb67438a-7f50-4f2b-a6f1-2bb2729fd538"
+    },
+    {
+      "slug": "artist:hybrid",
+      "type": "artist",
+      "name": "Hybrid",
+      "mbid": "9f2524e1-cda1-4304-941e-ebb448d32a16"
+    },
+    {
+      "slug": "artist:chicane",
+      "type": "artist",
+      "name": "Chicane",
+      "mbid": "8b506e4a-c343-467b-aad6-300a9bfac355"
+    }
+  ]
 }

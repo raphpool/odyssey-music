@@ -76,5 +76,63 @@
       "name": "The Peech Boys"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:david-morales",
+      "type": "artist",
+      "name": "David Morales"
+    },
+    {
+      "slug": "artist:chip-e",
+      "type": "artist",
+      "name": "Chip E.",
+      "mbid": "31b07129-85d8-4ed2-abd3-0794deedd686"
+    },
+    {
+      "slug": "artist:grace-jones",
+      "type": "artist",
+      "name": "Grace Jones"
+    },
+    {
+      "slug": "artist:jamie-principle",
+      "type": "artist",
+      "name": "Jamie Principle",
+      "mbid": "500df185-4a22-40a5-baf6-bdcabab5ed22"
+    },
+    {
+      "slug": "artist:jesse-saunders",
+      "type": "artist",
+      "name": "Jesse Saunders",
+      "mbid": "10d673bd-c091-4278-a9ce-5e4ea48af1cb"
+    },
+    {
+      "slug": "artist:robert-owens",
+      "type": "artist",
+      "name": "Robert Owens"
+    },
+    {
+      "slug": "artist:satoshi-tomiie",
+      "type": "artist",
+      "name": "Satoshi Tomiie",
+      "mbid": "97b07d48-eada-45ce-950d-f7140ea2b4f9"
+    },
+    {
+      "slug": "artist:49ers",
+      "type": "artist",
+      "name": "49ers",
+      "mbid": "1c6bb329-0b00-42d0-b838-94341420b642"
+    },
+    {
+      "slug": "artist:andy-mackay",
+      "type": "artist",
+      "name": "Andy Mackay",
+      "mbid": "2f82f693-9345-4ca4-aa87-9fb7e98d39c7"
+    },
+    {
+      "slug": "artist:bob-marley-and-the-wailers",
+      "type": "artist",
+      "name": "Bob Marley & The Wailers",
+      "mbid": "c296e10c-110a-4103-9e77-47bfebb7fb2e"
+    }
+  ]
 }

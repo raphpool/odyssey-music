@@ -81,5 +81,36 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:beat-happening",
+      "type": "artist",
+      "name": "Beat Happening",
+      "mbid": "449e44cb-bcae-4c48-a1af-5d8df0f81456"
+    },
+    {
+      "slug": "artist:cat-power",
+      "type": "artist",
+      "name": "Cat Power",
+      "mbid": "05755bf1-380c-487f-983f-d1a02401fa28"
+    },
+    {
+      "slug": "artist:daniel-johnston",
+      "type": "artist",
+      "name": "Daniel Johnston",
+      "mbid": "8a7ca8b0-d23c-4eff-8fe9-6220ba5c9c76"
+    },
+    {
+      "slug": "artist:pavement",
+      "type": "artist",
+      "name": "Pavement",
+      "mbid": "36bfa85f-737b-41db-a8fc-b8825850ffc3"
+    },
+    {
+      "slug": "artist:purrple-cat",
+      "type": "artist",
+      "name": "Purrple Cat",
+      "mbid": "553d1b5f-7cb6-4df7-8a69-e78b4bc4f7a5"
+    }
+  ]
 }

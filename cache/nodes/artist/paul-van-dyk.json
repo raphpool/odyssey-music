@@ -150,5 +150,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:atb",
+      "type": "artist",
+      "name": "ATB",
+      "mbid": "22a096ef-c70d-4d70-ae19-4fc2412d4986"
+    },
+    {
+      "slug": "artist:tiesto",
+      "type": "artist",
+      "name": "Tiësto",
+      "mbid": "aabb1d9f-be12-45b3-a84d-a1fc3e8181fd"
+    },
+    {
+      "slug": "artist:chicane",
+      "type": "artist",
+      "name": "Chicane",
+      "mbid": "8b506e4a-c343-467b-aad6-300a9bfac355"
+    },
+    {
+      "slug": "artist:moby",
+      "type": "artist",
+      "name": "Moby",
+      "mbid": "8970d868-0723-483b-a75b-51088913d3d4"
+    },
+    {
+      "slug": "artist:armin-van-buuren",
+      "type": "artist",
+      "name": "Armin van Buuren",
+      "mbid": "477b8c0c-c5fc-4ad2-b5b2-191f0bf2a9df"
+    },
+    {
+      "slug": "artist:ferry-corsten",
+      "type": "artist",
+      "name": "Ferry Corsten",
+      "mbid": "47347cb8-ac34-4916-84b6-d85d4e5e5384"
+    },
+    {
+      "slug": "artist:bt",
+      "type": "artist",
+      "name": "BT",
+      "mbid": "88e2147d-0332-46f6-85b2-b5f463ba957b"
+    },
+    {
+      "slug": "artist:paul-oakenfold",
+      "type": "artist",
+      "name": "Paul Oakenfold",
+      "mbid": "7bf1f441-ccf1-4258-9797-07c8d16eb44c"
+    },
+    {
+      "slug": "artist:the-chemical-brothers",
+      "type": "artist",
+      "name": "The Chemical Brothers",
+      "mbid": "1946a82a-f927-40c2-8235-38d64f50d043"
+    },
+    {
+      "slug": "artist:the-prodigy",
+      "type": "artist",
+      "name": "The Prodigy",
+      "mbid": "4a4ee089-93b1-4470-af9a-6ff575d32704"
+    }
+  ]
 }
