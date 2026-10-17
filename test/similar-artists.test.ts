@@ -4,6 +4,9 @@ import { listenBrainzConfig, musicBrainzConfig } from "../src/config.js";
 import {
 	computeSimilarFromGraph,
 	fetchSimilarArtistsLb,
+	GENRE_MAX_CARRIERS,
+	LABEL_MAX_CARRIERS,
+	MIN_GRAPH_SCORE,
 	resolveSimilarArtists,
 } from "../src/similar-artists.js";
 import type { ArtistNode, EdgeRef, Slug } from "../src/types.js";
@@ -216,7 +219,14 @@ describe("fetchSimilarArtistsLb", () => {
 });
 
 describe("computeSimilarFromGraph", () => {
-	it("scores 3 per collaborator, 2 per label and 1 per genre in common", () => {
+	// TRA-603 (2026-10-17): genres and labels are weighed by what they single out, a candidate needs a common
+	// collaborator or a score of 2, and ties are no longer alphabetical. Helpers for the cases below.
+	const bump = (n: number, make: (i: number) => ArtistNode): ArtistNode[] =>
+		Array.from({ length: n }, (_, i) => make(i));
+	const wide = (n: number, extra: Partial<ArtistNode>): ArtistNode[] =>
+		bump(n, (i) => artist(`Filler ${String(i).padStart(3, "0")}`, extra));
+
+	it("weighs 3 per common collaborator, 2 per common indie label and 1 / log2(1 + n) per common genre", () => {
 		const me = artist("Me", {
 			collaborators: [edge("artist", "Collab")],
 			labels: [edge("label", "Warp"), edge("label", "Ninja")],
@@ -227,47 +237,133 @@ describe("computeSimilarFromGraph", () => {
 			labels: [edge("label", "Warp")],
 			genres: [edge("genre", "Idm"), edge("genre", "Techno")],
 		});
+		// n = 1 for each genre (only Near carries them among `others`): 1 / log2(2) = 1.
 		expect(computeSimilarFromGraph(me, [near])).toEqual([
-			{ name: "Near", score: 3 + 2 + 2, slug: near.slug },
+			{ name: "Near", score: 3 + 2 + 1 + 1, slug: near.slug },
 		]);
 	});
 
-	it("scores 4 for one shared collaborator and one shared genre", () => {
+	it("keeps a candidate with a common collaborator even when nothing else is shared", () => {
 		const me = artist("Me", { collaborators: [edge("artist", "Collab")], genres: [edge("genre", "Idm")] });
-		const other = artist("Other", {
-			collaborators: [edge("artist", "Collab")],
-			genres: [edge("genre", "Idm")],
-			mbid: mbid(7),
-		});
+		const other = artist("Other", { collaborators: [edge("artist", "Collab")], mbid: mbid(7) });
 		expect(computeSimilarFromGraph(me, [other])).toEqual([
-			{ name: "Other", score: 4, slug: other.slug, mbid: mbid(7) },
+			{ name: "Other", score: 3, slug: other.slug, mbid: mbid(7) },
 		]);
 	});
 
-	it("never returns the artist, its aliases or its members, and drops score 0", () => {
-		const alias = artist("Alias", { genres: [edge("genre", "Idm")] });
-		const member = artist("Member", { genres: [edge("genre", "Idm")] });
+	it("weighs a genre by its specificity: the more artists carry it, the less it says", () => {
 		const me = artist("Me", {
-			genres: [edge("genre", "Idm")],
+			collaborators: [edge("artist", "Collab")],
+			genres: [edge("genre", "Rare"), edge("genre", "Common")],
+		});
+		const withRare = artist("With Rare", {
+			collaborators: [edge("artist", "Collab")],
+			genres: [edge("genre", "Rare")],
+		});
+		const withCommon = artist("With Common", {
+			collaborators: [edge("artist", "Collab")],
+			genres: [edge("genre", "Common")],
+		});
+		const crowd = wide(5, { genres: [edge("genre", "Common")] });
+		const out = computeSimilarFromGraph(me, [withRare, withCommon, ...crowd]);
+		const score = (name: string) => out.find((c) => c.name === name)?.score;
+		// Rare: 1 carrier -> 1 / log2(2) = 1. Common: 6 carriers (With Common + 5) -> 1 / log2(7).
+		expect(score("With Rare")).toBeCloseTo(3 + 1, 10);
+		expect(score("With Common")).toBeCloseTo(3 + 1 / Math.log2(7), 10);
+		expect(out.map((c) => c.name)).toEqual(["With Rare", "With Common"]);
+	});
+
+	it("gives no similar artist from a genre carried by more than GENRE_MAX_CARRIERS artists alone", () => {
+		const me = artist("Me", { genres: [edge("genre", "House")] });
+		const crowd = wide(GENRE_MAX_CARRIERS + 1, { genres: [edge("genre", "House")] });
+		expect(computeSimilarFromGraph(me, crowd)).toEqual([]);
+		// Even two such wide genres together weigh 0 + 0.
+		const meTwo = artist("Me", { genres: [edge("genre", "House"), edge("genre", "Pop")] });
+		const both = wide(GENRE_MAX_CARRIERS + 1, { genres: [edge("genre", "House"), edge("genre", "Pop")] });
+		expect(computeSimilarFromGraph(meTwo, both)).toEqual([]);
+	});
+
+	it("gives no similar artist from a label cited by more than LABEL_MAX_CARRIERS artists alone (a major)", () => {
+		const me = artist("Me", { labels: [edge("label", "Island")] });
+		const roster = wide(LABEL_MAX_CARRIERS + 1, { labels: [edge("label", "Island")] });
+		expect(computeSimilarFromGraph(me, roster)).toEqual([]);
+	});
+
+	it("keeps an artist of a small label (at most LABEL_MAX_CARRIERS carriers), worth 2", () => {
+		const me = artist("Me", { labels: [edge("label", "Hyperdub")] });
+		const roster = wide(LABEL_MAX_CARRIERS, { labels: [edge("label", "Hyperdub")] });
+		const out = computeSimilarFromGraph(me, roster);
+		expect(out).toHaveLength(LABEL_MAX_CARRIERS);
+		expect(out.every((c) => c.score === 2)).toBe(true);
+	});
+
+	it("does not keep one niche genre alone, but keeps a common collaborator", () => {
+		const me = artist("Me", { collaborators: [edge("artist", "Collab")], genres: [edge("genre", "Idm")] });
+		const nicheOnly = artist("Niche Only", { genres: [edge("genre", "Idm")] });
+		const collaborator = artist("Collaborator", { collaborators: [edge("artist", "Collab")] });
+		const out = computeSimilarFromGraph(me, [nicheOnly, collaborator]);
+		expect(out.map((c) => c.name)).toEqual(["Collaborator"]);
+	});
+
+	it("keeps a candidate whose niche genres add up to MIN_GRAPH_SCORE", () => {
+		const me = artist("Me", { genres: [edge("genre", "A"), edge("genre", "B")] });
+		const twin = artist("Twin", { genres: [edge("genre", "A"), edge("genre", "B")] });
+		const half = artist("Half", { genres: [edge("genre", "A")] });
+		// A and B are carried by Twin only among `others` (n = 1 each, 1 / log2(2) = 1): 1 + 1 = MIN_GRAPH_SCORE.
+		expect(MIN_GRAPH_SCORE).toBe(2);
+		expect(computeSimilarFromGraph(me, [twin]).map((c) => c.name)).toEqual(["Twin"]);
+		// With Half also carrying A (n = 2), Twin weighs 1 / log2(3) + 1 and falls under the threshold.
+		expect(computeSimilarFromGraph(me, [twin, half])).toEqual([]);
+	});
+
+	it("never returns the artist, its aliases or its members, and drops candidates with no link", () => {
+		const alias = artist("Alias", { collaborators: [edge("artist", "Collab")] });
+		const member = artist("Member", { collaborators: [edge("artist", "Collab")] });
+		const me = artist("Me", {
+			collaborators: [edge("artist", "Collab")],
 			aliases: [{ slug: alias.slug, type: "artist", name: "Alias" }],
 			members: [{ slug: member.slug, type: "artist", name: "Member" }],
 		});
 		const unrelated = artist("Unrelated", { genres: [edge("genre", "Country")] });
-		const real = artist("Real", { genres: [edge("genre", "Idm")] });
+		const real = artist("Real", { collaborators: [edge("artist", "Collab")] });
 		expect(computeSimilarFromGraph(me, [me, alias, member, unrelated, real]).map((c) => c.name)).toEqual([
 			"Real",
 		]);
 	});
 
-	it("orders by score desc then name asc, and ignores duplicates in the iterable", () => {
-		const me = artist("Me", { genres: [edge("genre", "A"), edge("genre", "B")] });
-		const b = artist("Beta", { genres: [edge("genre", "A")] });
-		const a = artist("Alpha", { genres: [edge("genre", "A")] });
-		const top = artist("Top", { genres: [edge("genre", "A"), edge("genre", "B")] });
-		expect(computeSimilarFromGraph(me, [b, a, top, a]).map((c) => [c.name, c.score])).toEqual([
-			["Top", 2],
-			["Alpha", 1],
-			["Beta", 1],
+	it("orders by score, then common genres, then name: alphabetical order no longer decides when scores differ", () => {
+		const me = artist("Me", {
+			collaborators: [edge("artist", "Collab")],
+			genres: [edge("genre", "A"), edge("genre", "B")],
+		});
+		// All three share the collaborator (3). Zed also shares both niche genres, Mid one, Alpha none.
+		const alpha = artist("Alpha", { collaborators: [edge("artist", "Collab")] });
+		const mid = artist("Mid", { collaborators: [edge("artist", "Collab")], genres: [edge("genre", "A")] });
+		const zed = artist("Zed", {
+			collaborators: [edge("artist", "Collab")],
+			genres: [edge("genre", "A"), edge("genre", "B")],
+		});
+		const out = computeSimilarFromGraph(me, [alpha, mid, zed, alpha]);
+		expect(out.map((c) => c.name)).toEqual(["Zed", "Mid", "Alpha"]);
+		expect(out[0]?.score).toBeGreaterThan(out[1]?.score ?? 0);
+		expect(out[1]?.score).toBeGreaterThan(out[2]?.score ?? 0);
+	});
+
+	it("breaks an exact score tie by the number of common genres, then by name", () => {
+		const me = artist("Me", { collaborators: [edge("artist", "Collab")], genres: [edge("genre", "House")] });
+		// House is wide (weight 0): it adds nothing to the score but still counts as a common genre.
+		const fillers = wide(GENRE_MAX_CARRIERS + 1, { genres: [edge("genre", "House")] });
+		const zed = artist("Zed", {
+			collaborators: [edge("artist", "Collab")],
+			genres: [edge("genre", "House")],
+		});
+		const alpha = artist("Alpha", { collaborators: [edge("artist", "Collab")] });
+		const beta = artist("Beta", { collaborators: [edge("artist", "Collab")] });
+		const out = computeSimilarFromGraph(me, [beta, alpha, zed, ...fillers]);
+		expect(out.map((c) => [c.name, c.score])).toEqual([
+			["Zed", 3],
+			["Alpha", 3],
+			["Beta", 3],
 		]);
 	});
 });
@@ -345,8 +441,8 @@ describe("resolveSimilarArtists", () => {
 	});
 
 	function graphFixture() {
-		const me = artist("Me", { mbid: KANYE, genres: [edge("genre", "Idm")] });
-		const peer = artist("Peer", { genres: [edge("genre", "Idm")], mbid: mbid(9) });
+		const me = artist("Me", { mbid: KANYE, collaborators: [edge("artist", "Go Between")] });
+		const peer = artist("Peer", { collaborators: [edge("artist", "Go Between")], mbid: mbid(9) });
 		return { me, peer };
 	}
 
@@ -368,7 +464,7 @@ describe("resolveSimilarArtists", () => {
 
 	it("goes straight to the graph, with no network call, for an artist without mbid", async () => {
 		const { peer } = graphFixture();
-		const me = artist("Me", { genres: [edge("genre", "Idm")] });
+		const me = artist("Me", { collaborators: [edge("artist", "Go Between")] });
 		const fetchMock = vi.fn();
 		const out = await resolveSimilarArtists(me, {
 			cacheIndex: emptyIndex(),
@@ -381,18 +477,18 @@ describe("resolveSimilarArtists", () => {
 	});
 
 	it("keeps the real slug of a cached graph neighbour even when it is disambiguated", async () => {
-		const me = artist("Me", { genres: [edge("genre", "Idm")] });
-		const pole = artist("Pole", { genres: [edge("genre", "Idm")] });
+		const me = artist("Me", { collaborators: [edge("artist", "Go Between")] });
+		const pole = artist("Pole", { collaborators: [edge("artist", "Go Between")] });
 		pole.slug = "artist:pole--stefan-betke" as Slug;
 		const out = await resolveSimilarArtists(me, { cacheIndex: emptyIndex(), others: () => [pole] });
 		expect(out.edges.map((e) => e.slug)).toEqual(["artist:pole--stefan-betke"]);
 	});
 
 	it("caps the graph fallback at 10 edges", async () => {
-		const me = artist("Me", { genres: [edge("genre", "Idm")] });
+		const me = artist("Me", { collaborators: [edge("artist", "Go Between")] });
 		const crowd = Array.from({ length: 15 }, (_, i) =>
 			artist(`Peer ${String(i).padStart(2, "0")}`, {
-				genres: [edge("genre", "Idm")],
+				collaborators: [edge("artist", "Go Between")],
 			}),
 		);
 		const out = await resolveSimilarArtists(me, { cacheIndex: emptyIndex(), others: () => crowd });

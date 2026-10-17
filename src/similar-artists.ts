@@ -124,10 +124,43 @@ function countCommon(a: ReadonlySet<string>, b: ReadonlySet<string>): number {
 	return n;
 }
 
+// 2026-10-17 (TRA-603, review of the repository run of TRA-490, 127 artists served by the graph fallback,
+// 24 false edges out of about 90). The first scoring was 3 per common collaborator, 2 per common label, 1 per
+// common genre, any score above 0 kept, ties broken alphabetically. One wide genre or one major label was
+// enough: Kabza De Small got 7 false edges out of 10 (generic house), The Peech Boys 7 (the Island catalogue),
+// Gucci Mane 4 (Aretha Franklin, Chic), Ralf Hutter -> Calvin Harris, Schoenberg -> Paul McCartney; and the
+// alphabetical tie-break put "A Guy Called Gerald" in 32 of the 127 lists. A genre or label is therefore worth
+// what it singles out, and a candidate needs more than one weak link. Better no similar artist than a false one.
+
+/** A genre carried by more than this many artists of `others` is too wide to say anything: weight 0. */
+export const GENRE_MAX_CARRIERS = 40;
+/** A label cited by at most this many artists of `others` is an indie; more is a major (Island, Columbia): weight 0. */
+export const LABEL_MAX_CARRIERS = 15;
+/** Weight of a common collaborator, and the only link that is enough on its own. */
+export const COLLABORATOR_WEIGHT = 3;
+/** Weight of a common indie label (see LABEL_MAX_CARRIERS). */
+export const LABEL_WEIGHT = 2;
+/** Without a common collaborator, a candidate needs at least this score: one niche genre (weight < 2) is not enough. */
+export const MIN_GRAPH_SCORE = 2;
+
+/** Specificity of a genre: 1 / log2(1 + n) for the n artists of `others` that carry it, 0 above GENRE_MAX_CARRIERS. */
+function genreWeight(carriers: number): number {
+	return carriers > GENRE_MAX_CARRIERS ? 0 : 1 / Math.log2(1 + carriers);
+}
+
+function countCarriers(sets: readonly ReadonlySet<string>[]): Map<string, number> {
+	const counts = new Map<string, number>();
+	for (const set of sets) for (const slug of set) counts.set(slug, (counts.get(slug) ?? 0) + 1);
+	return counts;
+}
+
 /**
- * Artists of `others` that share structure with `artist`: 3 per common collaborator, 2 per common label,
- * 1 per common genre (by slug). The artist, its aliases and its members never appear; score 0 is
- * dropped; ordered by score desc then name asc. Deliberately one-way: no inverse edge is implied.
+ * Artists of `others` that share structure with `artist`. A common collaborator weighs 3; a common label 2 if at
+ * most LABEL_MAX_CARRIERS artists of `others` cite it, else 0; a common genre 1 / log2(1 + n) for the n artists
+ * of `others` that carry it, 0 above GENRE_MAX_CARRIERS. A candidate is kept only with a common collaborator or
+ * a score of MIN_GRAPH_SCORE or more, so the list may be shorter than 10, or empty. Ordered by score desc (it is
+ * continuous, so ties are rare), then number of common genres desc, then name asc. The artist, its aliases and
+ * its members never appear. Deliberately one-way: no inverse edge is implied.
  */
 export function computeSimilarFromGraph(
 	artist: ArtistNode,
@@ -142,21 +175,45 @@ export function computeSimilarFromGraph(
 	const labels = slugSet(artist.labels);
 	const genres = slugSet(artist.genres);
 
-	const seen = new Set<string>();
-	const candidates: SimilarCandidate[] = [];
+	// One pass to dedupe `others` (it may be a one-shot iterable) and one to count who carries what.
+	const unique = new Map<string, { node: ArtistNode; labels: Set<string>; genres: Set<string> }>();
 	for (const other of others) {
-		if (excluded.has(other.slug) || seen.has(other.slug)) continue;
-		seen.add(other.slug);
-		const score =
-			3 * countCommon(collaborators, slugSet(other.collaborators)) +
-			2 * countCommon(labels, slugSet(other.labels)) +
-			countCommon(genres, slugSet(other.genres));
-		if (score <= 0) continue;
-		const candidate: SimilarCandidate = { name: other.name, score, slug: other.slug };
-		if (other.mbid) candidate.mbid = other.mbid;
-		candidates.push(candidate);
+		if (!unique.has(other.slug)) {
+			unique.set(other.slug, { node: other, labels: slugSet(other.labels), genres: slugSet(other.genres) });
+		}
 	}
-	return candidates.sort((a, b) => b.score - a.score || (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
+	const labelCarriers = countCarriers([...unique.values()].map((u) => u.labels));
+	const genreCarriers = countCarriers([...unique.values()].map((u) => u.genres));
+
+	const ranked: { candidate: SimilarCandidate; commonGenres: number }[] = [];
+	for (const [slug, { node, labels: otherLabels, genres: otherGenres }] of unique) {
+		if (excluded.has(slug)) continue;
+		const commonCollaborators = countCommon(collaborators, slugSet(node.collaborators));
+		let score = COLLABORATOR_WEIGHT * commonCollaborators;
+		for (const label of labels) {
+			if (otherLabels.has(label) && (labelCarriers.get(label) ?? 0) <= LABEL_MAX_CARRIERS) {
+				score += LABEL_WEIGHT;
+			}
+		}
+		let commonGenres = 0;
+		for (const genre of genres) {
+			if (!otherGenres.has(genre)) continue;
+			commonGenres++;
+			score += genreWeight(genreCarriers.get(genre) ?? 0);
+		}
+		if (commonCollaborators === 0 && score < MIN_GRAPH_SCORE) continue;
+		const candidate: SimilarCandidate = { name: node.name, score, slug: node.slug };
+		if (node.mbid) candidate.mbid = node.mbid;
+		ranked.push({ candidate, commonGenres });
+	}
+	return ranked
+		.sort(
+			(a, b) =>
+				b.candidate.score - a.candidate.score ||
+				b.commonGenres - a.commonGenres ||
+				(a.candidate.name < b.candidate.name ? -1 : a.candidate.name > b.candidate.name ? 1 : 0),
+		)
+		.map((r) => r.candidate);
 }
 
 // True when every letter of the name is Latin. makeSlug only keeps [a-z0-9], so a name in another

@@ -55,7 +55,17 @@
  * fields as constants (`migration`, `removed: []`, `renamed: {}`, `redirects: {}`). It describes the nodes
  * this run RESOLVED (plus, with --resume, those the previous manifest decided): a node skipped because it
  * already had edges is not in it. `--resume` reads the manifest of the previous run at `--manifest`; it is
- * rewritten every CHECKPOINT_EVERY nodes so an interrupted run loses little.
+ * rewritten every CHECKPOINT_EVERY nodes while the nodes are written (see the collisions below: nothing is
+ * written, nor checkpointed, until every artist is resolved).
+ *
+ * COLLISIONS (TRA-603, review of the repository run). Two edges can carry the same canonical slug for two
+ * different MBIDs: `artist:wink` was Josh Wink for juan-atkins and the J-pop duo for junko-ohashi, and the
+ * guard only compares a slug with the cache and the redirects. After all artists are resolved, a slug that
+ * stands for two MBIDs or more in the final state (the edges already in the cache that this run keeps, plus
+ * the ones it writes) is ambiguous: EVERY edge this run would write to it is dropped, the first seen included,
+ * and it is listed in `ambiguousSlugs` with its MBIDs and the number of edges dropped. A node left with
+ * nothing from ListenBrainz falls back to the graph. In a dry-run that resumes, the edges of the nodes the
+ * previous manifest settled are not known and cannot take part in the check.
  *
  * Migration channel (deploy/sync-genre-cache.sh): `--apply`, `--manifest` and `--data-dir` are the flags it
  * passes. `--data-dir` is where the redirect tables are read (never written).
@@ -124,6 +134,8 @@ export interface SimilarManifest {
 	fallbacks: Record<FallbackReason, number>;
 	/** ListenBrainz rows dropped as name-only matches of a homonym (this run, not carried by --resume). */
 	unsafeCandidates: number;
+	/** Slugs that stand for two MBIDs or more in the final state; every new edge to them was dropped. */
+	ambiguousSlugs: { slug: string; mbids: string[]; dropped: number }[];
 	/** Fingerprint of the edges decided for each node of `listenbrainz` and `graph`, see --resume. */
 	edgeDigests: Record<string, string>;
 	/** Nodes whose edges come from ListenBrainz. */
@@ -426,6 +438,7 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 	const none: SimilarManifest["none"] = [];
 	const kept: SimilarManifest["kept"] = [];
 	const edgeDigests = new Map<string, string>();
+	const ambiguous = new Map<string, { mbids: string[]; dropped: number }>();
 	const written: string[] = [];
 	const requests = { asked: 0, unavailable: 0 };
 
@@ -449,6 +462,7 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 			},
 			fallbacks,
 			unsafeCandidates: guard.dropped(),
+			ambiguousSlugs: [...ambiguous].map(([slug, info]) => ({ slug, ...info })).sort(bySlug),
 			edgeDigests: Object.fromEntries([...edgeDigests].sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0))),
 			listenbrainz: [...listenbrainz].sort(),
 			graph: [...graph].sort(bySlug),
@@ -485,7 +499,20 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 			`at about one per second (${Math.ceil(lbCalls / 60)} min)${apply ? "" : " (dry-run)"}`,
 	);
 
-	let processed = 0;
+	// Phase 1, resolve: every artist is resolved before any is written, because the collision check below
+	// needs the edges of the whole run. Nothing is written, and the manifest is not checkpointed, until then.
+	interface Decision {
+		slug: string;
+		path: string;
+		raw: Record<string, unknown>;
+		artist: ArtistNode;
+		hasEdges: boolean;
+		source: SimilarSource;
+		edges: EdgeRef[];
+		reason: FallbackReason;
+	}
+	const deps = { cacheIndex, others: () => others, fetch: guard.fetch };
+	const decisions: Decision[] = [];
 	for (const { slug, path, node: raw } of entries) {
 		const artist = artists.get(slug);
 		const hasEdges = edgesOf(raw).length > 0;
@@ -508,32 +535,76 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 		}
 
 		guard.reset();
-		let source: SimilarSource;
-		let edges: EdgeRef[];
 		try {
-			const deps = { cacheIndex, others: () => others, fetch: guard.fetch };
 			const result = await resolveSimilarArtists(artist, deps);
-			source = result.source;
-			edges = canonicalizeEdges(artist, result.edges, slugContext);
-			if (source === "listenbrainz" && edges.length === 0) {
-				// Every edge ListenBrainz gave had no canonical slug: the graph, asked without a network call.
-				const { mbid: _asked, ...withoutMbid } = artist;
-				edges = canonicalizeEdges(
-					artist,
-					(await resolveSimilarArtists(withoutMbid, deps)).edges,
-					slugContext,
-				);
-				source = "graph";
+			const edges = canonicalizeEdges(artist, result.edges, slugContext);
+			const outcome = guard.outcome();
+			if (outcome !== "not-asked") requests.asked++;
+			if (outcome === "unavailable") requests.unavailable++;
+			decisions.push({
+				slug,
+				path,
+				raw,
+				artist,
+				hasEdges,
+				source: result.source,
+				edges,
+				reason: fallbackReason(artist, outcome),
+			});
+		} catch (e) {
+			errors.push({ slug, reason: `resolver threw: ${e instanceof Error ? e.message : String(e)}` });
+		}
+	}
+
+	// Phase 2, collisions (TRA-603). A canonical slug that stands for two different MBIDs in the final state of
+	// the cache (the edges already there that this run keeps, plus the edges it is about to write) is ambiguous:
+	// whichever artist is materialized first under it, the other one's page opens the wrong person
+	// (artist:wink = Josh Wink for juan-atkins, the J-pop duo for junko-ohashi). Every NEW edge to such a slug is
+	// dropped, the first seen included: the safe behaviour, and it does not depend on the order of the run.
+	const keepsExisting = (d: Decision): boolean => d.hasEdges && d.source !== "listenbrainz";
+	const mbidsBySlug = new Map<string, Set<string>>();
+	const note = (edge: unknown): void => {
+		if (!isRecord(edge) || typeof edge.slug !== "string" || typeof edge.mbid !== "string") return;
+		const mbids = mbidsBySlug.get(edge.slug) ?? new Set<string>();
+		mbids.add(edge.mbid);
+		mbidsBySlug.set(edge.slug, mbids);
+	};
+	const resolved = new Set(decisions.filter((d) => !keepsExisting(d)).map((d) => d.slug));
+	for (const { slug, node: raw } of entries)
+		if (!resolved.has(slug)) for (const edge of edgesOf(raw)) note(edge);
+	for (const d of decisions) if (!keepsExisting(d)) for (const edge of d.edges) note(edge);
+	for (const [slug, mbids] of mbidsBySlug) {
+		if (mbids.size >= 2) ambiguous.set(slug, { mbids: [...mbids].sort(), dropped: 0 });
+	}
+	const stripAmbiguous = (edges: EdgeRef[]): EdgeRef[] =>
+		edges.filter((edge) => {
+			const entry = ambiguous.get(edge.slug);
+			if (entry) entry.dropped++;
+			return !entry;
+		});
+
+	// Phase 3, decide and write.
+	let processed = 0;
+	for (const d of decisions) {
+		const { slug, path, raw, artist, hasEdges, reason } = d;
+		let { source, edges } = d;
+		try {
+			if (!keepsExisting(d)) {
+				edges = stripAmbiguous(edges);
+				if (source === "listenbrainz" && edges.length === 0) {
+					// Nothing usable left of ListenBrainz's answer: the graph, asked without a network call.
+					const { mbid: _asked, ...withoutMbid } = artist;
+					edges = stripAmbiguous(
+						canonicalizeEdges(artist, (await resolveSimilarArtists(withoutMbid, deps)).edges, slugContext),
+					);
+					source = "graph";
+				}
+				if (edges.length === 0) source = "none";
 			}
-			if (edges.length === 0) source = "none";
 		} catch (e) {
 			errors.push({ slug, reason: `resolver threw: ${e instanceof Error ? e.message : String(e)}` });
 			continue;
 		}
-		const outcome = guard.outcome();
-		if (outcome !== "not-asked") requests.asked++;
-		if (outcome === "unavailable") requests.unavailable++;
-		const reason = fallbackReason(artist, outcome);
 
 		if (hasEdges && source !== "listenbrainz") {
 			// --force: never trade existing edges for a fallback or for nothing.
