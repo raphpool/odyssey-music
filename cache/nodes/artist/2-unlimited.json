@@ -108,7 +108,7 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:ii",
+      "slug": "project:ii--2-unlimited",
       "type": "project",
       "name": "II",
       "mbid": "950eecef-c234-3880-b1cf-b7c65c158f2f",
@@ -381,5 +381,6 @@
       "type": "artist",
       "name": "Phil Wilde"
     }
-  ]
+  ],
+  "similar_artists": []
 }

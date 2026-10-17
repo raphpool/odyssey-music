@@ -56,7 +56,7 @@
   ],
   "discography": [
     {
-      "slug": "project:incunabula",
+      "slug": "project:incunabula--rob-brown",
       "type": "project",
       "name": "Incunabula"
     },
@@ -93,5 +93,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }
