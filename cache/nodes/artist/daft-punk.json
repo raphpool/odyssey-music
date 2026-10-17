@@ -186,7 +186,7 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:human-after-all",
+      "slug": "project:human-after-all-medley--daft-punk",
       "type": "project",
       "name": "Human After All (Medley)",
       "mbid": "00eb1335-7ff0-4dd6-8cee-51f395b06fd3",
@@ -250,14 +250,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:human-after-all",
-      "type": "project",
-      "name": "Human After All",
-      "mbid": "14d335b6-71e9-43a3-9ad8-cf8367990c23",
-      "year": "2005",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:technologic",
       "type": "project",
       "name": "Technologic",
@@ -266,7 +258,7 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:human-after-all",
+      "slug": "project:human-after-all--daft-punk",
       "type": "project",
       "name": "Human After All",
       "mbid": "f9e8042a-674e-3f01-80ec-7f0ab1c537df",
@@ -478,7 +470,7 @@
       "name": "Da Funk"
     },
     {
-      "slug": "track:around-the-world",
+      "slug": "track:around-the-world--daft-punk",
       "type": "track",
       "name": "Around the World"
     },

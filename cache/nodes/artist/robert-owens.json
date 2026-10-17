@@ -74,7 +74,7 @@
       "name": "Mine to Give"
     },
     {
-      "slug": "track:tears",
+      "slug": "track:tears--robert-owens",
       "type": "track",
       "name": "Tears"
     }
@@ -119,5 +119,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }
