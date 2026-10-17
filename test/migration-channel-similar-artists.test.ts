@@ -233,6 +233,10 @@ describe("migration channel: the similar_artists backfill (TRA-490)", () => {
 			counts: { listenbrainz: 0, graph: 2, none: 1, kept: 0, errors: 0 },
 			fallbacks: { "no-mbid": 3, "lb-unavailable": 0, "lb-rejected": 0, "lb-no-usable-edge": 0 },
 			unsafeCandidates: 0,
+			edgeDigests: {
+				"artist:flash": expect.stringMatching(/^[0-9a-f]{16}$/),
+				"artist:spark": expect.stringMatching(/^[0-9a-f]{16}$/),
+			},
 			listenbrainz: [],
 			graph: [
 				{ slug: "artist:flash", reason: "no-mbid" },

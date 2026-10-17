@@ -4,6 +4,8 @@ import { dirname, join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
 	type BackfillOptions,
+	formatSummary,
+	MAX_UNAVAILABLE_RATE,
 	MIGRATION_NAME,
 	parseCliArgs,
 	runBackfill,
@@ -43,6 +45,7 @@ const house = (): ReturnType<typeof edge>[] => [edge("genre", "house", "House")]
 
 let dir: string;
 let scratch: string;
+let dataDir: string;
 const suiteInterval = listenBrainzConfig.minIntervalMs;
 
 beforeEach(async () => {
@@ -50,12 +53,19 @@ beforeEach(async () => {
 	scratch = await mkdtemp(join(tmpdir(), "odyssey-backfill-similar-"));
 	dir = join(scratch, "cache");
 	await mkdir(join(dir, "nodes"), { recursive: true });
+	dataDir = join(scratch, "data");
+	await writeRedirects({});
 });
 
 afterEach(async () => {
 	listenBrainzConfig.minIntervalMs = suiteInterval;
 	await rm(scratch, { recursive: true, force: true });
 });
+
+async function writeRedirects(redirects: Record<string, string>): Promise<void> {
+	await mkdir(dataDir, { recursive: true });
+	await writeFile(join(dataDir, "slug-redirects.json"), JSON.stringify({ redirects }), "utf8");
+}
 
 const manifestFile = (): string => join(scratch, "out", "similar.json");
 const pathOf = (slug: string): string => {
@@ -86,7 +96,7 @@ async function snapshot(): Promise<Record<string, string>> {
 }
 
 function run(options: Partial<BackfillOptions> = {}) {
-	return runBackfill({ cacheDir: dir, apply: true, manifestPath: manifestFile(), ...options });
+	return runBackfill({ cacheDir: dir, apply: true, manifestPath: manifestFile(), dataDir, ...options });
 }
 
 describe("similar_artists backfill (TRA-490)", () => {
@@ -142,8 +152,10 @@ describe("similar_artists backfill (TRA-490)", () => {
 		] as const)("falls back to the graph on %s: counted, not an error", async (_label, answer, reason) => {
 			await putArtist("seed", "Seed", { mbid: mb(1), genres: house() });
 			await putArtist("peer", "Peer", { genres: house() });
+			// Five more artists ListenBrainz answers (nothing): 1 request in 6 unavailable stays under the threshold.
+			for (let i = 20; i < 25; i++) await putArtist(`calm-${i}`, `Calm ${i}`, { mbid: mb(i) });
 
-			const result = await run({ fetch: lbFetch(answer) });
+			const result = await run({ fetch: lbFetch((id) => (id === mb(1) ? answer() : jsonResponse([]))) });
 
 			expect(result.manifest.errors).toEqual([]);
 			expect(result.exitCode).toBe(0);
@@ -151,6 +163,10 @@ describe("similar_artists backfill (TRA-490)", () => {
 			expect(result.manifest.counts.errors).toBe(0);
 			expect(result.manifest.fallbacks[reason]).toBeGreaterThanOrEqual(1);
 			expect((await read("artist:seed")).similar_artists.map((e) => e.slug)).toEqual(["artist:peer"]);
+			expect(result.listenbrainzRequests).toEqual({
+				asked: 6,
+				unavailable: reason === "lb-unavailable" ? 1 : 0,
+			});
 		});
 
 		it("never uses an invalid answer: not an array, or rows that fail the schema", async () => {
@@ -366,6 +382,12 @@ describe("similar_artists backfill (TRA-490)", () => {
 				counts: { listenbrainz: 2, graph: 2, none: 1, kept: 0, errors: 0 },
 				fallbacks: { "no-mbid": 2, "lb-unavailable": 1, "lb-rejected": 0, "lb-no-usable-edge": 0 },
 				unsafeCandidates: 0,
+				edgeDigests: {
+					"artist:alpha": expect.stringMatching(/^[0-9a-f]{16}$/),
+					"artist:friend": expect.stringMatching(/^[0-9a-f]{16}$/),
+					"artist:mid": expect.stringMatching(/^[0-9a-f]{16}$/),
+					"artist:zed": expect.stringMatching(/^[0-9a-f]{16}$/),
+				},
 				listenbrainz: ["artist:alpha", "artist:zed"],
 				graph: [
 					{ slug: "artist:friend", reason: "no-mbid" },
@@ -492,6 +514,164 @@ describe("similar_artists backfill (TRA-490)", () => {
 		});
 	});
 
+	// 2026-10-17, deep review of PR #522. None of these tests sets ODYSSEY_SCOPED_RELEASE_SLUGS, like the
+	// channel (flag off): the slugs they expect are the canonical (flag-on) ones, the cache's.
+	describe("canonical slugs and the redirect table", () => {
+		it("drops Gokhan Kirdar (dotless i) when another artist holds artist:gokhan-kirdar, redirect key included", async () => {
+			await putArtist("seed", "Seed", { mbid: mb(1) });
+			await putArtist("gokhan-kirdar", "Gökhan Kırdar", { mbid: mb(60) });
+			await writeRedirects({ "artist:gokhan-k-rdar": "artist:gokhan-kirdar" });
+
+			const result = await run({
+				fetch: lbFetch((id) => jsonResponse(id === mb(1) ? [row(61, "Gökhan Kırdar", 9)] : [])),
+			});
+
+			expect((await read("artist:seed")).similar_artists).toEqual([]);
+			expect(result.manifest.unsafeCandidates).toBe(1);
+			expect(result.manifest.none).toContainEqual({ slug: "artist:seed", reason: "lb-no-usable-edge" });
+		});
+
+		it("drops Laetitia Sadier (ae ligature) when another artist holds artist:laetitia-sadier", async () => {
+			await putArtist("seed", "Seed", { mbid: mb(1), genres: house() });
+			await putArtist("laetitia-sadier", "Lætitia Sadier", { mbid: mb(70) });
+			// No redirect entry here: the cached node alone, found under its canonical slug, must stop it.
+
+			const result = await run({
+				fetch: lbFetch((id) => jsonResponse(id === mb(1) ? [row(71, "Lætitia Sadier", 9)] : [])),
+			});
+
+			expect((await read("artist:seed")).similar_artists).toEqual([]);
+			expect(result.manifest.unsafeCandidates).toBe(1);
+		});
+
+		it("writes the canonical slug of a name the flag-off slug would mangle: MO is artist:mo, not artist:m", async () => {
+			await putArtist("seed", "Seed", { mbid: mb(1) });
+			await putArtist("m", "M", { mbid: mb(80) }); // somebody else, who owns artist:m
+			const rows = [row(81, "MØ", 9), row(82, "Trentemøller", 8), row(83, "Mgła", 7), row(84, "Straße", 6)];
+
+			await run({ fetch: lbFetch((id) => jsonResponse(id === mb(1) ? rows : [])) });
+
+			expect((await read("artist:seed")).similar_artists.map((e) => [e.slug, e.mbid])).toEqual([
+				["artist:mo", mb(81)],
+				["artist:trentemoller", mb(82)],
+				["artist:mgla", mb(83)],
+				["artist:strasse", mb(84)],
+			]);
+		});
+
+		it("keeps the cached slug of an artist reached by MBID, and the graph's edges, untouched by the rewrite", async () => {
+			await putArtist("seed", "Seed", { mbid: mb(1), genres: house() });
+			await putArtist("lindstrom", "Hans-Peter Lindstrøm", { mbid: mb(90), genres: house() });
+
+			await run({
+				fetch: lbFetch((id) => jsonResponse(id === mb(1) ? [row(90, "Hans-Peter Lindstrøm", 9)] : [])),
+			});
+
+			expect((await read("artist:seed")).similar_artists).toEqual([
+				{ slug: "artist:lindstrom", type: "artist", name: "Hans-Peter Lindstrøm", mbid: mb(90) },
+			]);
+		});
+
+		it("drops a candidate whose slug is a redirect key to another artist (another mbid)", async () => {
+			await putArtist("seed", "Seed", { mbid: mb(1) });
+			await putArtist("new-name", "New Name", { mbid: mb(100) });
+			await writeRedirects({ "artist:old-name": "artist:new-name" });
+
+			const result = await run({
+				fetch: lbFetch((id) =>
+					jsonResponse(id === mb(1) ? [row(101, "Old Name", 9), row(102, "Free Name", 8)] : []),
+				),
+			});
+
+			// artist:old-name would open artist:new-name (mbid 100), not the candidate (mbid 101).
+			expect((await read("artist:seed")).similar_artists.map((e) => e.slug)).toEqual(["artist:free-name"]);
+			expect(result.manifest.unsafeCandidates).toBe(1);
+		});
+
+		it("refuses the run, before any write, on a missing or invalid redirect table (fail closed)", async () => {
+			await putArtist("seed", "Seed", { mbid: mb(1) });
+			const before = await snapshot();
+			const fetchFn = lbFetch(() => jsonResponse([row(2, "Peer", 5)]));
+
+			await rm(join(dataDir, "slug-redirects.json"));
+			await expect(run({ fetch: fetchFn })).rejects.toThrow(/redirect table not found/);
+
+			await writeFile(join(dataDir, "slug-redirects.json"), "{ not json", "utf8");
+			await expect(run({ fetch: fetchFn })).rejects.toThrow();
+			await writeRedirects({ "artist:a": "artist:b", "artist:b": "artist:c" }); // not flattened
+			await expect(run({ fetch: fetchFn })).rejects.toThrow(/flattened/);
+
+			expect(await snapshot()).toEqual(before);
+			expect(fetchFn).not.toHaveBeenCalled();
+		});
+	});
+
+	describe("--force: a dry-run's manifest then --force --apply --resume", () => {
+		it("does not skip a node that carries graph edges while the manifest announced ListenBrainz's", async () => {
+			await putArtist("seed", "Seed", { mbid: mb(1), genres: house() });
+			await putArtist("peer", "Peer", { genres: house() });
+			await run({ fetch: lbDown() }); // apply, service down: seed carries the graph's edge
+			expect((await read("artist:seed")).similar_artists.map((e) => e.slug)).toEqual(["artist:peer"]);
+
+			await run({ apply: false, force: true, fetch: lbFetch(() => jsonResponse([row(2, "Real Peer", 5)])) });
+			const applied = await run({
+				apply: true,
+				force: true,
+				resume: true,
+				fetch: lbFetch(() => jsonResponse([row(2, "Real Peer", 5)])),
+			});
+
+			expect((await read("artist:seed")).similar_artists.map((e) => e.slug)).toEqual(["artist:real-peer"]);
+			expect(applied.manifest.listenbrainz).toEqual(["artist:seed"]);
+			expect(applied.written).toHaveLength(1);
+		});
+	});
+
+	describe("ListenBrainz outage (MAX_UNAVAILABLE_RATE)", () => {
+		async function fiveArtists(): Promise<void> {
+			for (let i = 1; i <= 5; i++) await putArtist(`a${i}`, `A ${i}`, { mbid: mb(i) });
+		}
+		const down = (...ids: number[]) =>
+			lbFetch((id) =>
+				ids.some((n) => mb(n) === id)
+					? new Response("", { status: 503 })
+					: jsonResponse([row(50, "Peer", 5)]),
+			);
+
+		it("is 20 % exactly: exit 0", async () => {
+			expect(MAX_UNAVAILABLE_RATE).toBe(0.2);
+			await fiveArtists();
+
+			const result = await run({ fetch: down(1) });
+
+			expect(result.listenbrainzRequests).toEqual({ asked: 5, unavailable: 1 });
+			expect(result.exitCode).toBe(0);
+		});
+
+		it("exits 1 above it, yet keeps the counts, the fallbacks and an empty errors", async () => {
+			await fiveArtists();
+
+			const result = await run({ fetch: down(1, 2) });
+
+			expect(result.listenbrainzRequests).toEqual({ asked: 5, unavailable: 2 });
+			expect(result.exitCode).toBe(1);
+			expect(result.manifest.errors).toEqual([]);
+			expect(result.manifest.fallbacks["lb-unavailable"]).toBe(2);
+			expect(formatSummary(result, true, "m.json")).toContain(
+				"2 of 5 ListenBrainz request(s) unavailable (more than 20 %",
+			);
+		});
+
+		it("does not count the artists it never asked about (no mbid)", async () => {
+			await putArtist("loner", "Loner");
+
+			const result = await run({ fetch: lbDown() });
+
+			expect(result.listenbrainzRequests).toEqual({ asked: 0, unavailable: 0 });
+			expect(result.exitCode).toBe(0);
+		});
+	});
+
 	describe("command line", () => {
 		it("parses the contract and the channel's flags", () => {
 			expect(parseCliArgs(["cache"])).toEqual({
@@ -500,10 +680,18 @@ describe("similar_artists backfill (TRA-490)", () => {
 				force: false,
 				resume: false,
 				manifestPath: "out/similar.json",
+				dataDir: undefined,
 			});
 			expect(
 				parseCliArgs(["cache", "--apply", "--manifest", "m.json", "--data-dir", "d", "--resume", "--force"]),
-			).toEqual({ cacheDir: "cache", apply: true, force: true, resume: true, manifestPath: "m.json" });
+			).toEqual({
+				cacheDir: "cache",
+				apply: true,
+				force: true,
+				resume: true,
+				manifestPath: "m.json",
+				dataDir: "d",
+			});
 		});
 
 		it.each([
