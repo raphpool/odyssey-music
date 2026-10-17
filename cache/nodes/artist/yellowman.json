@@ -554,5 +554,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:bob-marley-and-the-wailers",
+      "type": "artist",
+      "name": "Bob Marley & The Wailers",
+      "mbid": "c296e10c-110a-4103-9e77-47bfebb7fb2e"
+    },
+    {
+      "slug": "artist:barrington-levy",
+      "type": "artist",
+      "name": "Barrington Levy",
+      "mbid": "8ddf3da1-dfa9-490a-93cc-7d4072319995"
+    },
+    {
+      "slug": "artist:peter-tosh",
+      "type": "artist",
+      "name": "Peter Tosh",
+      "mbid": "7db6aae5-6644-4513-9bfc-ca2e79d4469c"
+    },
+    {
+      "slug": "artist:gregory-isaacs",
+      "type": "artist",
+      "name": "Gregory Isaacs",
+      "mbid": "9abff216-e204-4dbc-9849-d1dbe1fbbda8"
+    },
+    {
+      "slug": "artist:dennis-brown",
+      "type": "artist",
+      "name": "Dennis Brown",
+      "mbid": "24c0aaf3-4ac2-4f9a-9ce6-a1545a96f017"
+    },
+    {
+      "slug": "artist:john-holt",
+      "type": "artist",
+      "name": "John Holt",
+      "mbid": "38d64df7-5b7f-42ca-9d98-9541640ca84f"
+    },
+    {
+      "slug": "artist:burning-spear",
+      "type": "artist",
+      "name": "Burning Spear",
+      "mbid": "16dad944-c492-43dd-88ed-e0b7ac520c40"
+    },
+    {
+      "slug": "artist:black-uhuru",
+      "type": "artist",
+      "name": "Black Uhuru",
+      "mbid": "8ee00333-ec2c-439b-a619-ae160aca2a15"
+    },
+    {
+      "slug": "artist:steel-pulse",
+      "type": "artist",
+      "name": "Steel Pulse",
+      "mbid": "37367b2f-69e4-4df2-9e64-75ca6204764b"
+    },
+    {
+      "slug": "artist:jimmy-cliff",
+      "type": "artist",
+      "name": "Jimmy Cliff",
+      "mbid": "2caa54a7-b08c-41da-b892-3a41abe778be"
+    }
+  ]
 }

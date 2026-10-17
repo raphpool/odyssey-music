@@ -128,5 +128,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:massive-attack",
+      "type": "artist",
+      "name": "Massive Attack",
+      "mbid": "10adbe5e-a2c0-4bf3-8249-2b4cbf6e6ca8"
+    },
+    {
+      "slug": "artist:tycho",
+      "type": "artist",
+      "name": "Tycho",
+      "mbid": "cbef45a9-7acb-4325-94c9-70081ac8d1b8"
+    },
+    {
+      "slug": "artist:andreya-triana",
+      "type": "artist",
+      "name": "Andreya Triana",
+      "mbid": "f7533313-24a9-490a-a648-700167d42ae6"
+    },
+    {
+      "slug": "artist:air",
+      "type": "artist",
+      "name": "Air",
+      "mbid": "cb67438a-7f50-4f2b-a6f1-2bb2729fd538"
+    },
+    {
+      "slug": "artist:thievery-corporation",
+      "type": "artist",
+      "name": "Thievery Corporation",
+      "mbid": "a505bb48-ad65-4af4-ae47-29149715bff9"
+    },
+    {
+      "slug": "artist:emancipator",
+      "type": "artist",
+      "name": "Emancipator",
+      "mbid": "aa1d4315-5246-42b2-b62b-f997d046d8b2"
+    },
+    {
+      "slug": "artist:royksopp",
+      "type": "artist",
+      "name": "Röyksopp",
+      "mbid": "1c70a3fc-fa3c-4be1-8b55-c3192db8a884"
+    },
+    {
+      "slug": "artist:zero-7",
+      "type": "artist",
+      "name": "Zero 7",
+      "mbid": "c23b637b-97c6-41eb-8ef6-6c724efc80a8"
+    },
+    {
+      "slug": "artist:nightmares-on-wax",
+      "type": "artist",
+      "name": "Nightmares on Wax",
+      "mbid": "b8c5cc4f-239f-4e02-b46f-b040b77c2030"
+    },
+    {
+      "slug": "artist:amon-tobin",
+      "type": "artist",
+      "name": "Amon Tobin",
+      "mbid": "630662ea-1c7d-4208-99fd-ba3afec20f0c"
+    }
+  ]
 }

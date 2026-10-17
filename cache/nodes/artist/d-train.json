@@ -227,5 +227,66 @@
       "name": "Hubert Eaves III"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:kool-and-the-gang",
+      "type": "artist",
+      "name": "Kool & the Gang",
+      "mbid": "2469950a-f0ca-425a-bfbc-baf55ea3afde"
+    },
+    {
+      "slug": "artist:change",
+      "type": "artist",
+      "name": "Change",
+      "mbid": "9974d324-3d58-4f93-812b-41eb3ca75eed"
+    },
+    {
+      "slug": "artist:earth-wind-and-fire",
+      "type": "artist",
+      "name": "Earth, Wind & Fire",
+      "mbid": "535afeda-2538-435d-9dd1-5e10be586774"
+    },
+    {
+      "slug": "artist:evelyn-champagne-king",
+      "type": "artist",
+      "name": "Evelyn “Champagne” King",
+      "mbid": "f104e236-9655-4022-b794-d1567357e3b0"
+    },
+    {
+      "slug": "artist:patrice-rushen",
+      "type": "artist",
+      "name": "Patrice Rushen",
+      "mbid": "a247b1b8-8f47-4568-9a89-fa16b4a2b77f"
+    },
+    {
+      "slug": "artist:chic",
+      "type": "artist",
+      "name": "Chic",
+      "mbid": "a4ed036b-5f18-439c-b1e1-96d205bab255"
+    },
+    {
+      "slug": "artist:chaka-khan",
+      "type": "artist",
+      "name": "Chaka Khan",
+      "mbid": "900e9144-019d-4043-86cb-ec0e127c39d0"
+    },
+    {
+      "slug": "artist:stevie-wonder",
+      "type": "artist",
+      "name": "Stevie Wonder",
+      "mbid": "1ee18fb3-18a6-4c7f-8ba0-bc41cdd0462e"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    },
+    {
+      "slug": "artist:shalamar",
+      "type": "artist",
+      "name": "Shalamar",
+      "mbid": "8e57b7d5-4548-4e2b-b32d-af4b4a51cb80"
+    }
+  ]
 }

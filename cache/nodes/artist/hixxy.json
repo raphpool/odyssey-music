@@ -366,5 +366,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:styles-and-breeze",
+      "type": "artist",
+      "name": "Styles & Breeze",
+      "mbid": "9c9cdf41-7a54-4674-95dc-a2a07bebd9b8"
+    },
+    {
+      "slug": "artist:dougal-and-gammer",
+      "type": "artist",
+      "name": "Dougal & Gammer",
+      "mbid": "3a80e321-bff2-4a3c-8c85-0bec439d4d4a"
+    },
+    {
+      "slug": "artist:darren-styles",
+      "type": "artist",
+      "name": "Darren Styles",
+      "mbid": "94bd816b-af21-44f8-aed7-99d49f8de3e9"
+    },
+    {
+      "slug": "artist:scott-brown",
+      "type": "artist",
+      "name": "Scott Brown",
+      "mbid": "ccb77c78-ffc3-4790-9006-61f2277e9c91"
+    },
+    {
+      "slug": "artist:re-con",
+      "type": "artist",
+      "name": "Re-Con",
+      "mbid": "a0ccc8c8-ce74-446b-ba10-a86488d32de9"
+    },
+    {
+      "slug": "artist:gammer",
+      "type": "artist",
+      "name": "Gammer",
+      "mbid": "ce019954-4e3d-4dd2-adc7-3c9308589d2b"
+    },
+    {
+      "slug": "artist:ufo",
+      "type": "artist",
+      "name": "UFO",
+      "mbid": "c827b8a7-0372-4711-9777-532b387e834b"
+    },
+    {
+      "slug": "artist:sy-and-unknown",
+      "type": "artist",
+      "name": "Sy & Unknown",
+      "mbid": "fd91bfb7-60da-4a6e-a14c-f8f014009444"
+    },
+    {
+      "slug": "artist:dj-brisk",
+      "type": "artist",
+      "name": "DJ Brisk",
+      "mbid": "4c267d83-4e12-4c37-b4b1-9324d05ed64e"
+    },
+    {
+      "slug": "artist:technikore",
+      "type": "artist",
+      "name": "Technikore",
+      "mbid": "7e4e0369-5deb-475d-9f0a-a55b867a5633"
+    }
+  ]
 }

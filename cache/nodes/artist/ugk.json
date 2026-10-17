@@ -284,5 +284,66 @@
       "name": "Bun B"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:joe-fox",
+      "type": "artist",
+      "name": "Joe Fox",
+      "mbid": "373a3176-8784-43ab-89f8-16531d5e0bcb"
+    },
+    {
+      "slug": "artist:jay-z",
+      "type": "artist",
+      "name": "JAŸ-Z",
+      "mbid": "f82bcf78-5b69-4622-a5ef-73800768d9ac"
+    },
+    {
+      "slug": "artist:schoolboy-q",
+      "type": "artist",
+      "name": "ScHoolboy Q",
+      "mbid": "bce6d667-cde8-485e-b078-c0a05adea36d"
+    },
+    {
+      "slug": "artist:lil-wayne",
+      "type": "artist",
+      "name": "Lil Wayne",
+      "mbid": "ac9a487a-d9d2-4f27-bb23-0f4686488345"
+    },
+    {
+      "slug": "artist:the-notorious-b-i-g",
+      "type": "artist",
+      "name": "The Notorious B.I.G.",
+      "mbid": "d5d97b2b-b83b-4976-814a-056d9076c8c3"
+    },
+    {
+      "slug": "artist:t-i",
+      "type": "artist",
+      "name": "T.I.",
+      "mbid": "f7ba7fbe-c6bd-4ac0-bee9-c25c558d7d62"
+    },
+    {
+      "slug": "artist:james-fauntleroy",
+      "type": "artist",
+      "name": "James Fauntleroy",
+      "mbid": "4e481ad9-aa5d-4a1a-b2fc-444c0ad48b7e"
+    },
+    {
+      "slug": "artist:bones",
+      "type": "artist",
+      "name": "BONES",
+      "mbid": "e3f7631b-e50b-4923-9049-2fa84dfcaf71"
+    },
+    {
+      "slug": "artist:mark-ronson",
+      "type": "artist",
+      "name": "Mark Ronson",
+      "mbid": "c3c82bdc-d9e7-4836-9746-c24ead47ca19"
+    },
+    {
+      "slug": "artist:eminem",
+      "type": "artist",
+      "name": "Eminem",
+      "mbid": "b95ce3ff-3d05-4e87-9e01-c97b66af13d4"
+    }
+  ]
 }

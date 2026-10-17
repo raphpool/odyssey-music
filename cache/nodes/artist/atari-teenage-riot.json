@@ -122,5 +122,66 @@
       "name": "Carl Crack"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:tom-morello",
+      "type": "artist",
+      "name": "Tom Morello",
+      "mbid": "42a636a0-dbe4-4d0c-abe2-1590fad9531b"
+    },
+    {
+      "slug": "artist:front-line-assembly",
+      "type": "artist",
+      "name": "Front Line Assembly",
+      "mbid": "b847e9d2-c931-4daf-900c-42c7b2c42e16"
+    },
+    {
+      "slug": "artist:garbage",
+      "type": "artist",
+      "name": "Garbage",
+      "mbid": "f9ef7a22-4262-4596-a2a8-1d19345b8e50"
+    },
+    {
+      "slug": "artist:wumpscut",
+      "type": "artist",
+      "name": ":wumpscut:",
+      "mbid": "e4e79264-c1ec-490c-b823-b2918204cd4f"
+    },
+    {
+      "slug": "artist:orbital",
+      "type": "artist",
+      "name": "Orbital",
+      "mbid": "f3e2a7d9-c6bb-4848-95e5-04c0a1e2f511"
+    },
+    {
+      "slug": "artist:combichrist",
+      "type": "artist",
+      "name": "Combichrist",
+      "mbid": "c29f4522-f710-4bb5-a06b-d436fcc3b2fd"
+    },
+    {
+      "slug": "artist:rabbit-junk",
+      "type": "artist",
+      "name": "Rabbit Junk",
+      "mbid": "24cf1eac-69b5-4cdf-9ad3-792b495106b4"
+    },
+    {
+      "slug": "artist:laibach",
+      "type": "artist",
+      "name": "Laibach",
+      "mbid": "c779e090-909f-4403-a90e-c1d08cdbb719"
+    },
+    {
+      "slug": "artist:henry-rollins",
+      "type": "artist",
+      "name": "Henry Rollins",
+      "mbid": "656b39fb-979c-4c57-bb87-61d1a8eb38d1"
+    },
+    {
+      "slug": "artist:mansun",
+      "type": "artist",
+      "name": "Mansun",
+      "mbid": "a8be3422-d905-42c9-90b6-90ee45e3e938"
+    }
+  ]
 }

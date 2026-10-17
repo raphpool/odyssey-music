@@ -122,5 +122,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:vangelis",
+      "type": "artist",
+      "name": "Vangelis",
+      "mbid": "57fca0e2-f9ad-4ae6-af9d-6a6f50cbcd5f"
+    },
+    {
+      "slug": "artist:jean-michel-jarre",
+      "type": "artist",
+      "name": "Jean‐Michel Jarre",
+      "mbid": "86e2e2ad-6d1b-44fd-9463-b6683718a1cc"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk",
+      "mbid": "5700dcd4-c139-4f31-aa3e-6382b9af9032"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:mike-oldfield",
+      "type": "artist",
+      "name": "Mike Oldfield",
+      "mbid": "a1684a49-feaa-4150-b758-d9412fc59f12"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:can",
+      "type": "artist",
+      "name": "Can",
+      "mbid": "13501c7d-d181-45ba-af52-5f101d8516a0"
+    },
+    {
+      "slug": "artist:depeche-mode",
+      "type": "artist",
+      "name": "Depeche Mode",
+      "mbid": "8538e728-ca0b-4321-b7e5-cff6565dd4c0"
+    }
+  ]
 }

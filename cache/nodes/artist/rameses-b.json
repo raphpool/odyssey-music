@@ -84,5 +84,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:feint",
+      "type": "artist",
+      "name": "Feint",
+      "mbid": "e6e29ff5-b0e4-4985-a63f-e99d12b21728"
+    },
+    {
+      "slug": "artist:veela",
+      "type": "artist",
+      "name": "Veela",
+      "mbid": "de3387d3-d6e0-4fe2-9dad-78e7bbcb2dd4"
+    },
+    {
+      "slug": "artist:laura-brehm",
+      "type": "artist",
+      "name": "Laura Brehm",
+      "mbid": "8c0b35f5-facb-4688-9c2b-a24c174e5882"
+    },
+    {
+      "slug": "artist:danyka-nadeau",
+      "type": "artist",
+      "name": "Danyka Nadeau",
+      "mbid": "887d85d6-604f-4d94-a96c-206102a5c259"
+    },
+    {
+      "slug": "artist:rogue",
+      "type": "artist",
+      "name": "Rogue",
+      "mbid": "64d8e19f-ad15-4957-a403-035bfef0e2e7"
+    },
+    {
+      "slug": "artist:tristam",
+      "type": "artist",
+      "name": "Tristam",
+      "mbid": "1849970f-0c71-4f80-89d3-0704797df50e"
+    },
+    {
+      "slug": "artist:direct",
+      "type": "artist",
+      "name": "Direct",
+      "mbid": "78a2cf98-3fac-43f1-86b5-974bed8c89ca"
+    },
+    {
+      "slug": "artist:pegboard-nerds",
+      "type": "artist",
+      "name": "Pegboard Nerds",
+      "mbid": "c729681b-c5c1-4509-a6d1-f916c51aefd7"
+    },
+    {
+      "slug": "artist:mitis",
+      "type": "artist",
+      "name": "MitiS",
+      "mbid": "593c7d05-825c-40f0-b5ff-153b3b6c605b"
+    },
+    {
+      "slug": "artist:blackmill",
+      "type": "artist",
+      "name": "Blackmill",
+      "mbid": "746876a5-8243-4f05-b1a8-8e211a4282e0"
+    }
+  ]
 }

@@ -500,5 +500,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:tim-deluxe",
+      "type": "artist",
+      "name": "Tim Deluxe",
+      "mbid": "54d86cc6-2c30-47b4-bb68-cf5d82560e5c"
+    },
+    {
+      "slug": "artist:plump-djs",
+      "type": "artist",
+      "name": "Plump DJs",
+      "mbid": "870aaacf-ef15-4633-856b-212a1054377e"
+    },
+    {
+      "slug": "artist:dynamite-mc",
+      "type": "artist",
+      "name": "Dynamite MC",
+      "mbid": "c5830e94-bf0d-4320-85e9-3e2a30ec617d"
+    },
+    {
+      "slug": "artist:a-skillz",
+      "type": "artist",
+      "name": "A.Skillz",
+      "mbid": "96962ef6-326e-4c0e-8e9c-2944a00bd41b"
+    },
+    {
+      "slug": "artist:ashley-slater",
+      "type": "artist",
+      "name": "Ashley Slater",
+      "mbid": "1658c51b-3b8f-4c72-8314-3dd4fa524837"
+    },
+    {
+      "slug": "artist:scratch-perverts",
+      "type": "artist",
+      "name": "Scratch Perverts",
+      "mbid": "3989ff5c-412c-4abb-a461-ad733291ed45"
+    },
+    {
+      "slug": "artist:theo",
+      "type": "artist",
+      "name": "Theo",
+      "mbid": "2fbd8516-48cd-46bf-81c8-6a4ccb45dd02"
+    },
+    {
+      "slug": "artist:dj-icey",
+      "type": "artist",
+      "name": "DJ Icey",
+      "mbid": "138dd95b-9311-416e-bcdd-a80067289de6"
+    },
+    {
+      "slug": "artist:bespoke",
+      "type": "artist",
+      "name": "Bespoke",
+      "mbid": "1f8c7a47-3ec7-4278-9c96-b50fa665e710"
+    },
+    {
+      "slug": "artist:yolanda",
+      "type": "artist",
+      "name": "Yolanda",
+      "mbid": "124c3f59-ebba-4e81-b2eb-b0b4fd39945c"
+    }
+  ]
 }

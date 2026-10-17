@@ -111,5 +111,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:pj-harvey",
+      "type": "artist",
+      "name": "PJ Harvey",
+      "mbid": "e795e03d-b5d5-4a5f-834d-162cfb308a2c"
+    },
+    {
+      "slug": "artist:nirvana",
+      "type": "artist",
+      "name": "Nirvana",
+      "mbid": "5b11f4ce-a62d-471e-81fc-a69a8278c7da"
+    },
+    {
+      "slug": "artist:r-e-m",
+      "type": "artist",
+      "name": "R.E.M.",
+      "mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58"
+    },
+    {
+      "slug": "artist:beck",
+      "type": "artist",
+      "name": "Beck",
+      "mbid": "309c62ba-7a22-4277-9f67-4a162526d18a"
+    },
+    {
+      "slug": "artist:fiona-apple",
+      "type": "artist",
+      "name": "Fiona Apple",
+      "mbid": "a9ee533f-8871-4f62-a6bb-91eb264abc90"
+    },
+    {
+      "slug": "artist:tori-amos",
+      "type": "artist",
+      "name": "Tori Amos",
+      "mbid": "c0b2500e-0cef-4130-869d-732b23ed9df5"
+    },
+    {
+      "slug": "artist:the-smashing-pumpkins",
+      "type": "artist",
+      "name": "The Smashing Pumpkins",
+      "mbid": "ba0d6274-db14-4ef5-b28d-657ebde1a396"
+    },
+    {
+      "slug": "artist:pixies",
+      "type": "artist",
+      "name": "Pixies",
+      "mbid": "b6b2bb8d-54a9-491f-9607-7b546023b433"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    }
+  ]
 }

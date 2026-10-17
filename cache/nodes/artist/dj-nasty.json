@@ -125,5 +125,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:gaiola-das-popozudas",
+      "type": "artist",
+      "name": "Gaiola das Popozudas",
+      "mbid": "67d708a8-8de6-41d2-963f-112366af685c"
+    },
+    {
+      "slug": "artist:le-tigre",
+      "type": "artist",
+      "name": "Le Tigre",
+      "mbid": "2d67239c-aa40-4ad5-a807-9052b66857a6"
+    },
+    {
+      "slug": "artist:dj-deeon",
+      "type": "artist",
+      "name": "DJ Deeon",
+      "mbid": "b73e51c1-cf7e-450e-ab10-a8a24e5b8993"
+    },
+    {
+      "slug": "artist:turbulence",
+      "type": "artist",
+      "name": "Turbulence",
+      "mbid": "0e12d01b-e8ae-4cf5-8888-649be4ca90af"
+    },
+    {
+      "slug": "artist:cajmere",
+      "type": "artist",
+      "name": "Cajmere",
+      "mbid": "18d18849-fd22-4720-9ae4-5bc3ce39f93d"
+    },
+    {
+      "slug": "artist:m-i-a",
+      "type": "artist",
+      "name": "M.I.A.",
+      "mbid": "7cf0ea9d-86b9-4dad-ba9e-2355a64899ea"
+    },
+    {
+      "slug": "artist:jammer",
+      "type": "artist",
+      "name": "Jammer",
+      "mbid": "1d6e8676-3b7f-4e39-9aa3-0b0af45479c8"
+    },
+    {
+      "slug": "artist:hashim",
+      "type": "artist",
+      "name": "Hashim",
+      "mbid": "ec0337b1-95b3-47e9-b801-742e7db45b9a"
+    },
+    {
+      "slug": "artist:model-500",
+      "type": "artist",
+      "name": "Model 500",
+      "mbid": "e569aee8-33ff-48e5-b0ed-4ceba1a37714"
+    },
+    {
+      "slug": "artist:killer-mike",
+      "type": "artist",
+      "name": "Killer Mike",
+      "mbid": "47864525-aea7-439a-800f-17c57e51cbcc"
+    }
+  ]
 }

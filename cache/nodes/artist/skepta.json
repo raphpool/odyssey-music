@@ -97,5 +97,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:a-ap-rocky",
+      "type": "artist",
+      "name": "A$AP Rocky",
+      "mbid": "25b7b584-d952-4662-a8b9-dd8cdfbfeb64"
+    },
+    {
+      "slug": "artist:travis-scott",
+      "type": "artist",
+      "name": "Travis Scott",
+      "mbid": "e4a51f17-a57b-47b1-b37b-f552d0f8e9e6"
+    },
+    {
+      "slug": "artist:kendrick-lamar",
+      "type": "artist",
+      "name": "Kendrick Lamar",
+      "mbid": "381086ea-f511-4aba-bdf9-71c753dc5077"
+    },
+    {
+      "slug": "artist:drake",
+      "type": "artist",
+      "name": "Drake",
+      "mbid": "9fff2f8a-21e6-47de-a2b8-7f449929d43f"
+    },
+    {
+      "slug": "artist:playboi-carti",
+      "type": "artist",
+      "name": "Playboi Carti",
+      "mbid": "2baf3276-ed6a-4349-8d2e-f4601e7b2167"
+    },
+    {
+      "slug": "artist:kid-cudi",
+      "type": "artist",
+      "name": "Kid Cudi",
+      "mbid": "e0e1db18-f7ba-4dee-95ff-7ae8cf545460"
+    },
+    {
+      "slug": "artist:lil-uzi-vert",
+      "type": "artist",
+      "name": "Lil Uzi Vert",
+      "mbid": "8837b875-3689-4646-b3fd-d8b53815c7a8"
+    },
+    {
+      "slug": "artist:jme",
+      "type": "artist",
+      "name": "Jme",
+      "mbid": "57879ca6-44aa-4b75-9a97-b801f57a1331"
+    },
+    {
+      "slug": "artist:tyler-the-creator",
+      "type": "artist",
+      "name": "Tyler, The Creator",
+      "mbid": "f6beac20-5dfe-4d1f-ae02-0b0a740aafd6"
+    },
+    {
+      "slug": "artist:slowthai",
+      "type": "artist",
+      "name": "slowthai",
+      "mbid": "333e76b4-9606-4fd3-bcb3-8e7660bb4d96"
+    }
+  ]
 }

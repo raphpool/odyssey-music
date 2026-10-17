@@ -245,5 +245,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:feqadu-amde-mesqel",
+      "type": "artist",
+      "name": "Fèqadu Amdè‐Mesqel",
+      "mbid": "93f39b70-e795-4bcd-8973-0a0407dedd4f"
+    },
+    {
+      "slug": "artist:abu",
+      "type": "artist",
+      "name": "Abu",
+      "mbid": "fe4cbaf6-bec4-49ac-8348-4b2d6605bf6c"
+    },
+    {
+      "slug": "artist:belle-and-sebastian",
+      "type": "artist",
+      "name": "Belle and Sebastian",
+      "mbid": "e5c7b94f-e264-473c-bb0f-37c85d4d5c70"
+    },
+    {
+      "slug": "artist:broadcast",
+      "type": "artist",
+      "name": "Broadcast",
+      "mbid": "aaae25bf-c794-45d7-bab7-cdc7c655bfa6"
+    },
+    {
+      "slug": "artist:joe-pass",
+      "type": "artist",
+      "name": "Joe Pass",
+      "mbid": "2f43e416-f1bf-4f04-8853-a0019aa12441"
+    },
+    {
+      "slug": "artist:dorothy-ashby",
+      "type": "artist",
+      "name": "Dorothy Ashby",
+      "mbid": "c0b33447-18d5-4d50-93c1-a9aa7463bd48"
+    },
+    {
+      "slug": "artist:girma-hadgu",
+      "type": "artist",
+      "name": "Girma Hadgu",
+      "mbid": "b8d966aa-429e-4757-9323-b34fca462105"
+    },
+    {
+      "slug": "artist:marie-laforet",
+      "type": "artist",
+      "name": "Marie Laforêt",
+      "mbid": "24e2bb07-b2b9-4376-860d-352851ef13f4"
+    },
+    {
+      "slug": "artist:the-wonder-who",
+      "type": "artist",
+      "name": "The Wonder Who?",
+      "mbid": "75874408-e5a8-4bdd-94cf-3dfc8ce1acdc"
+    },
+    {
+      "slug": "artist:gold-panda",
+      "type": "artist",
+      "name": "Gold Panda",
+      "mbid": "bfbccd40-1a06-4ee7-b24d-b2f8cc714fa9"
+    }
+  ]
 }

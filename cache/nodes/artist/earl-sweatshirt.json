@@ -396,5 +396,63 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:a-ap-rocky",
+      "type": "artist",
+      "name": "A$AP Rocky",
+      "mbid": "25b7b584-d952-4662-a8b9-dd8cdfbfeb64"
+    },
+    {
+      "slug": "artist:jpegmafia",
+      "type": "artist",
+      "name": "JPEGMAFIA"
+    },
+    {
+      "slug": "artist:frank-ocean",
+      "type": "artist",
+      "name": "Frank Ocean"
+    },
+    {
+      "slug": "artist:death-grips",
+      "type": "artist",
+      "name": "Death Grips",
+      "mbid": "f9133036-ab3d-4e97-bd11-7a2c98ad148a"
+    },
+    {
+      "slug": "artist:jay-z",
+      "type": "artist",
+      "name": "Jay-Z",
+      "mbid": "f82bcf78-5b69-4622-a5ef-73800768d9ac"
+    },
+    {
+      "slug": "artist:digable-planets",
+      "type": "artist",
+      "name": "Digable Planets",
+      "mbid": "ff44f779-74ab-48f8-aac3-39ebe8f7c18e"
+    },
+    {
+      "slug": "artist:kendrick-lamar",
+      "type": "artist",
+      "name": "Kendrick Lamar",
+      "mbid": "381086ea-f511-4aba-bdf9-71c753dc5077"
+    },
+    {
+      "slug": "artist:nujabes",
+      "type": "artist",
+      "name": "Nujabes"
+    },
+    {
+      "slug": "artist:the-roots",
+      "type": "artist",
+      "name": "The Roots",
+      "mbid": "80b3cf5e-18fe-4c59-98c7-e5bb87210710"
+    },
+    {
+      "slug": "artist:clipping",
+      "type": "artist",
+      "name": "clipping.",
+      "mbid": "84ca8fa4-7cca-4948-a90a-cb44db29853d"
+    }
+  ]
 }

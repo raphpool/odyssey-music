@@ -127,5 +127,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:belle-and-sebastian",
+      "type": "artist",
+      "name": "Belle and Sebastian",
+      "mbid": "e5c7b94f-e264-473c-bb0f-37c85d4d5c70"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:elliott-smith",
+      "type": "artist",
+      "name": "Elliott Smith",
+      "mbid": "03ad1736-b7c9-412a-b442-82536d63a5c4"
+    },
+    {
+      "slug": "artist:yo-la-tengo",
+      "type": "artist",
+      "name": "Yo La Tengo",
+      "mbid": "3f542031-b054-454d-b57b-812fa2a81b11"
+    },
+    {
+      "slug": "artist:the-shins",
+      "type": "artist",
+      "name": "The Shins",
+      "mbid": "6c8b9855-ba8b-48f9-ac1d-42167f7f7b18"
+    },
+    {
+      "slug": "artist:pixies",
+      "type": "artist",
+      "name": "Pixies",
+      "mbid": "b6b2bb8d-54a9-491f-9607-7b546023b433"
+    },
+    {
+      "slug": "artist:pavement",
+      "type": "artist",
+      "name": "Pavement",
+      "mbid": "36bfa85f-737b-41db-a8fc-b8825850ffc3"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:neutral-milk-hotel",
+      "type": "artist",
+      "name": "Neutral Milk Hotel",
+      "mbid": "a506f761-2c22-4b2f-8a94-bd748c2c8f75"
+    }
+  ]
 }

@@ -97,5 +97,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:thom-yorke",
+      "type": "artist",
+      "name": "Thom Yorke",
+      "mbid": "8ed2e0b3-aa4c-4e13-bec3-dc7393ed4d6b"
+    },
+    {
+      "slug": "artist:thundercat",
+      "type": "artist",
+      "name": "Thundercat",
+      "mbid": "044fd265-79dd-43eb-afc4-8b20becf7e17"
+    },
+    {
+      "slug": "artist:laura-darlington",
+      "type": "artist",
+      "name": "Laura Darlington",
+      "mbid": "dce804b7-e9cd-442d-85b2-a310e6ba7334"
+    },
+    {
+      "slug": "artist:niki-randa",
+      "type": "artist",
+      "name": "Niki Randa",
+      "mbid": "69d8a18e-e182-4a9f-9e31-e5c0767340e1"
+    },
+    {
+      "slug": "artist:captain-murphy",
+      "type": "artist",
+      "name": "Captain Murphy",
+      "mbid": "34cc9ebb-9c0e-412e-ad7d-2abe1e4256e7"
+    },
+    {
+      "slug": "artist:kendrick-lamar",
+      "type": "artist",
+      "name": "Kendrick Lamar",
+      "mbid": "381086ea-f511-4aba-bdf9-71c753dc5077"
+    },
+    {
+      "slug": "artist:gonjasufi",
+      "type": "artist",
+      "name": "Gonjasufi",
+      "mbid": "caf10f94-6c3a-4a71-b5f1-523c74007f92"
+    },
+    {
+      "slug": "artist:deradoorian",
+      "type": "artist",
+      "name": "Deradoorian",
+      "mbid": "d609e858-c033-4cfb-8441-6736e23b291c"
+    },
+    {
+      "slug": "artist:little-dragon",
+      "type": "artist",
+      "name": "Little Dragon",
+      "mbid": "c8a9ae11-63bf-409b-8bf3-a96b3712a2ff"
+    },
+    {
+      "slug": "artist:j-dilla",
+      "type": "artist",
+      "name": "J Dilla",
+      "mbid": "cbcbb22c-3a8d-46af-b4ba-09c98f0d7931"
+    }
+  ]
 }

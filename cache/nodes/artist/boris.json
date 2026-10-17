@@ -77,5 +77,18 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:sunn-o",
+      "type": "artist",
+      "name": "Sunn O)))",
+      "mbid": "1d3da898-4fb4-4445-b704-cd7315e01789"
+    },
+    {
+      "slug": "artist:merzbow",
+      "type": "artist",
+      "name": "Merzbow",
+      "mbid": "2841d983-f8c3-432a-af02-7407a84580a8"
+    }
+  ]
 }

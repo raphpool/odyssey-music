@@ -85,5 +85,12 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:beppe-loda",
+      "type": "artist",
+      "name": "Beppe Loda",
+      "mbid": "bbecd9f9-130c-4e56-a7b9-bde8f4376d52"
+    }
+  ]
 }

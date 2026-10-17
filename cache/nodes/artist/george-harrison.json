@@ -141,5 +141,24 @@
       "name": "The Beatles"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:bob-dylan",
+      "type": "artist",
+      "name": "Bob Dylan",
+      "mbid": "72c536dc-7137-4477-a521-567eeb840fa8"
+    },
+    {
+      "slug": "artist:ringo-starr",
+      "type": "artist",
+      "name": "Ringo Starr",
+      "mbid": "300c4c73-33ac-4255-9d57-4e32627f5e13"
+    },
+    {
+      "slug": "artist:paul-mccartney",
+      "type": "artist",
+      "name": "Paul McCartney",
+      "mbid": "ba550d0e-adac-4864-b88b-407cab5e76af"
+    }
+  ]
 }

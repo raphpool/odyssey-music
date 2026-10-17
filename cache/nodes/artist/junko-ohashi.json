@@ -111,5 +111,60 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:mariya-takeuchi",
+      "type": "artist",
+      "name": "竹内まりや",
+      "mbid": "02bdc7ec-d102-4698-85e2-789a42d40b9c"
+    },
+    {
+      "slug": "artist:tatsuro-yamashita",
+      "type": "artist",
+      "name": "山下達郎",
+      "mbid": "ad62391d-ab7e-4ac9-9ce8-3704bc6746bb"
+    },
+    {
+      "slug": "artist:casiopea",
+      "type": "artist",
+      "name": "Casiopea",
+      "mbid": "b2853652-db74-44b7-b4b3-ffb72af6b910"
+    },
+    {
+      "slug": "artist:suchmos",
+      "type": "artist",
+      "name": "Suchmos",
+      "mbid": "5561990a-0601-4a71-b766-3268ea687ab3"
+    },
+    {
+      "slug": "artist:t-square",
+      "type": "artist",
+      "name": "T‐SQUARE",
+      "mbid": "0480ca1e-6fe0-42e7-893b-8b876fa1f902"
+    },
+    {
+      "slug": "artist:yung-bae",
+      "type": "artist",
+      "name": "Yung Bae",
+      "mbid": "b218faea-829a-45f0-8bb4-54df2bc17d41"
+    },
+    {
+      "slug": "artist:desired",
+      "type": "artist",
+      "name": "Desired",
+      "mbid": "3aa9278e-fbbf-4d65-9f4a-50c96beb95bd"
+    },
+    {
+      "slug": "artist:beckett",
+      "type": "artist",
+      "name": "Beckett",
+      "mbid": "07cf1f9a-e0a5-4c5a-a14b-983e405de1c2"
+    },
+    {
+      "slug": "artist:hikaru-utada",
+      "type": "artist",
+      "name": "宇多田ヒカル",
+      "mbid": "b539e453-c4fe-47e3-8a07-8517eac74429"
+    }
+  ]
 }

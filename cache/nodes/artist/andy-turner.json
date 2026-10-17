@@ -99,5 +99,24 @@
       "name": "Plaid"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:aim",
+      "type": "artist",
+      "name": "Aim",
+      "mbid": "8e678953-c97b-435b-af18-2425b6db71d0"
+    },
+    {
+      "slug": "artist:bonobo",
+      "type": "artist",
+      "name": "Bonobo",
+      "mbid": "9a709693-b4f8-4da9-8cc1-038c911a61be"
+    },
+    {
+      "slug": "artist:massive-attack",
+      "type": "artist",
+      "name": "Massive Attack",
+      "mbid": "10adbe5e-a2c0-4bf3-8249-2b4cbf6e6ca8"
+    }
+  ]
 }

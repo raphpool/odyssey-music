@@ -118,5 +118,66 @@
       "name": "Zeke Manyika"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:new-order",
+      "type": "artist",
+      "name": "New Order",
+      "mbid": "f1106b17-dcbb-45f6-b938-199ccfab50cc"
+    },
+    {
+      "slug": "artist:wire",
+      "type": "artist",
+      "name": "Wire",
+      "mbid": "7f2a8098-50e3-451c-8696-c5d9f64f4762"
+    },
+    {
+      "slug": "artist:echo-and-the-bunnymen",
+      "type": "artist",
+      "name": "Echo & the Bunnymen",
+      "mbid": "ccd4879c-5e88-4385-b131-bf65296bf245"
+    },
+    {
+      "slug": "artist:the-fall",
+      "type": "artist",
+      "name": "The Fall",
+      "mbid": "d5da1841-9bc8-4813-9f89-11098090148e"
+    },
+    {
+      "slug": "artist:xtc",
+      "type": "artist",
+      "name": "XTC",
+      "mbid": "97c86b2c-2765-46a2-aef8-76a7e24c430f"
+    },
+    {
+      "slug": "artist:gang-of-four",
+      "type": "artist",
+      "name": "Gang of Four",
+      "mbid": "d8661c02-f423-4d72-8044-40ff05daf7a1"
+    },
+    {
+      "slug": "artist:the-jesus-and-mary-chain",
+      "type": "artist",
+      "name": "The Jesus and Mary Chain",
+      "mbid": "e938a15c-b17e-4e7a-9f68-ff0d536cab44"
+    },
+    {
+      "slug": "artist:television",
+      "type": "artist",
+      "name": "Television",
+      "mbid": "490bde43-5edb-4a93-b3b3-7a0465fd8909"
+    },
+    {
+      "slug": "artist:r-e-m",
+      "type": "artist",
+      "name": "R.E.M.",
+      "mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58"
+    },
+    {
+      "slug": "artist:belle-and-sebastian",
+      "type": "artist",
+      "name": "Belle and Sebastian",
+      "mbid": "e5c7b94f-e264-473c-bb0f-37c85d4d5c70"
+    }
+  ]
 }

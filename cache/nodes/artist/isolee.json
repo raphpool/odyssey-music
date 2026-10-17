@@ -71,5 +71,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:dj-koze",
+      "type": "artist",
+      "name": "DJ Koze",
+      "mbid": "dd4458c8-6728-4a44-980c-48107fa72bb8"
+    },
+    {
+      "slug": "artist:pantha-du-prince",
+      "type": "artist",
+      "name": "Pantha du Prince",
+      "mbid": "ac18992d-d90c-41d0-b56b-66fe1d51608e"
+    },
+    {
+      "slug": "artist:apparat",
+      "type": "artist",
+      "name": "Apparat",
+      "mbid": "dc3dbfc1-f1f1-49c6-9d7c-425fabf3ae12"
+    },
+    {
+      "slug": "artist:caribou",
+      "type": "artist",
+      "name": "Caribou",
+      "mbid": "735e3514-a8ae-401f-af3b-6300df1b8d2c"
+    },
+    {
+      "slug": "artist:ellen-allien",
+      "type": "artist",
+      "name": "Ellen Allien",
+      "mbid": "2ff63f00-0954-4b14-9007-e19b822fc8b2"
+    },
+    {
+      "slug": "artist:trentemoller",
+      "type": "artist",
+      "name": "Trentemøller",
+      "mbid": "95e9aba6-f85c-48a0-9ec9-395d4f0e3875"
+    },
+    {
+      "slug": "artist:bonobo",
+      "type": "artist",
+      "name": "Bonobo",
+      "mbid": "9a709693-b4f8-4da9-8cc1-038c911a61be"
+    },
+    {
+      "slug": "artist:booka-shade",
+      "type": "artist",
+      "name": "Booka Shade",
+      "mbid": "9940c604-2456-4193-a403-ab18420bc1e9"
+    },
+    {
+      "slug": "artist:moderat",
+      "type": "artist",
+      "name": "Moderat",
+      "mbid": "7754905b-8bf7-48e2-935a-03d566fec464"
+    },
+    {
+      "slug": "artist:john-tejada",
+      "type": "artist",
+      "name": "John Tejada",
+      "mbid": "bda6d00e-f8f7-43a5-b8f8-f1ebc55b46d3"
+    }
+  ]
 }

@@ -351,5 +351,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:dj-assault",
+      "type": "artist",
+      "name": "DJ Assault",
+      "mbid": "acb4865d-0c4c-4dd5-b958-c399b5d75b8e"
+    },
+    {
+      "slug": "artist:dj-deeon",
+      "type": "artist",
+      "name": "DJ Deeon",
+      "mbid": "b73e51c1-cf7e-450e-ab10-a8a24e5b8993"
+    },
+    {
+      "slug": "artist:feadz",
+      "type": "artist",
+      "name": "Feadz",
+      "mbid": "a12f80e7-3926-44ac-b843-f4c6663549c9"
+    },
+    {
+      "slug": "artist:electric-company",
+      "type": "artist",
+      "name": "Electric Company",
+      "mbid": "a2eddbfc-1fbf-4329-9baf-07076600d7a0"
+    },
+    {
+      "slug": "artist:modeselektor",
+      "type": "artist",
+      "name": "Modeselektor",
+      "mbid": "8a7a4e72-a099-425f-8238-80706fc1c746"
+    },
+    {
+      "slug": "artist:apparat",
+      "type": "artist",
+      "name": "Apparat",
+      "mbid": "dc3dbfc1-f1f1-49c6-9d7c-425fabf3ae12"
+    },
+    {
+      "slug": "artist:manasyt",
+      "type": "artist",
+      "name": "MANASYt",
+      "mbid": "929dace0-4214-4596-ab3a-30379324bdbd"
+    },
+    {
+      "slug": "artist:dj-shortstop",
+      "type": "artist",
+      "name": "DJ Shortstop",
+      "mbid": "134027a4-e97d-4b7d-9332-62a3688525a3"
+    },
+    {
+      "slug": "artist:dj-funk",
+      "type": "artist",
+      "name": "DJ Funk",
+      "mbid": "9c446bec-9272-4828-a958-9dd43e33cc97"
+    },
+    {
+      "slug": "artist:closer-musik",
+      "type": "artist",
+      "name": "Closer Musik",
+      "mbid": "5ad42a9e-8382-4bb4-919e-d53f8fe68866"
+    }
+  ]
 }

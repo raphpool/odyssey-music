@@ -110,5 +110,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre",
+      "mbid": "410c9baf-5469-44f6-9852-826524b80c61"
+    },
+    {
+      "slug": "artist:musicology",
+      "type": "artist",
+      "name": "Musicology",
+      "mbid": "fc07862d-695c-497a-a22b-ce8fb8960938"
+    },
+    {
+      "slug": "artist:dr-alex-paterson",
+      "type": "artist",
+      "name": "Dr Alex Paterson",
+      "mbid": "8207564b-d26e-4b60-a952-044d2520ba8a"
+    },
+    {
+      "slug": "artist:the-dice-man",
+      "type": "artist",
+      "name": "The Dice Man",
+      "mbid": "4776e9f6-f1f9-48d2-b703-abfc6925aba7"
+    },
+    {
+      "slug": "artist:up",
+      "type": "artist",
+      "name": "UP!",
+      "mbid": "32529f7d-85cb-459e-a337-f91faafc960b"
+    },
+    {
+      "slug": "artist:plaid",
+      "type": "artist",
+      "name": "Plaid",
+      "mbid": "7e54d133-2525-4bc0-ae94-65584145a386"
+    },
+    {
+      "slug": "artist:i-a-o",
+      "type": "artist",
+      "name": "I.A.O",
+      "mbid": "1a0f9992-41ca-4447-af15-2d3396de773e"
+    },
+    {
+      "slug": "artist:the-future-sound-of-london",
+      "type": "artist",
+      "name": "The Future Sound of London",
+      "mbid": "a1d77dd4-8728-4a47-bdfa-9663d791139c"
+    },
+    {
+      "slug": "artist:orbital",
+      "type": "artist",
+      "name": "Orbital",
+      "mbid": "f3e2a7d9-c6bb-4848-95e5-04c0a1e2f511"
+    },
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ‐Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
+    }
+  ]
 }

@@ -26,5 +26,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:clubroot",
+      "type": "artist",
+      "name": "Clubroot",
+      "mbid": "09721ba6-8972-4862-b272-b69465265de5"
+    },
+    {
+      "slug": "artist:incomer",
+      "type": "artist",
+      "name": "Incomer",
+      "mbid": "a135267c-0c9c-4216-8d61-24fab43be0f8"
+    },
+    {
+      "slug": "artist:lorn",
+      "type": "artist",
+      "name": "LORN",
+      "mbid": "ce45313f-00cd-4748-a7f8-a5b64463a5d8"
+    },
+    {
+      "slug": "artist:synkro",
+      "type": "artist",
+      "name": "Synkro",
+      "mbid": "242b5585-a436-4105-85cc-7ec195e96d26"
+    },
+    {
+      "slug": "artist:sorrow",
+      "type": "artist",
+      "name": "Sorrow",
+      "mbid": "41525655-c37e-47a0-afc4-2388fb7548d7"
+    },
+    {
+      "slug": "artist:nocow",
+      "type": "artist",
+      "name": "Nocow",
+      "mbid": "7c278bc0-a40f-483c-8a35-e8158cf72fbd"
+    },
+    {
+      "slug": "artist:bulb",
+      "type": "artist",
+      "name": "Bulb",
+      "mbid": "ba59a040-8218-4965-9bd4-1b4a018e9230"
+    },
+    {
+      "slug": "artist:phaeleh",
+      "type": "artist",
+      "name": "Phaeleh",
+      "mbid": "caae4789-c38c-4803-8808-2886b37ca8f9"
+    },
+    {
+      "slug": "artist:bonobo",
+      "type": "artist",
+      "name": "Bonobo",
+      "mbid": "9a709693-b4f8-4da9-8cc1-038c911a61be"
+    },
+    {
+      "slug": "artist:ital-tek",
+      "type": "artist",
+      "name": "Ital Tek",
+      "mbid": "66f89780-6c07-4c4b-8e4c-be4098090bf3"
+    }
+  ]
 }

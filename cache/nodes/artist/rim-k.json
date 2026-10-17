@@ -93,5 +93,66 @@
       "name": "Mafia K'1 Fry"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:sch",
+      "type": "artist",
+      "name": "SCH",
+      "mbid": "070a4a70-705b-41ba-a30a-cac559c781f8"
+    },
+    {
+      "slug": "artist:booba",
+      "type": "artist",
+      "name": "Booba",
+      "mbid": "785c0e9c-89f6-4bf4-8296-443a46632d62"
+    },
+    {
+      "slug": "artist:damso",
+      "type": "artist",
+      "name": "Damso",
+      "mbid": "71ff695e-896a-4043-aea4-93eadde08d09"
+    },
+    {
+      "slug": "artist:ninho",
+      "type": "artist",
+      "name": "Ninho",
+      "mbid": "41fe37a6-f4bb-4340-9c14-e2c8e5d854f1"
+    },
+    {
+      "slug": "artist:niska",
+      "type": "artist",
+      "name": "Niska",
+      "mbid": "e369e789-6f07-4ce8-a70f-e136bc57bf3b"
+    },
+    {
+      "slug": "artist:pnl",
+      "type": "artist",
+      "name": "PNL",
+      "mbid": "da04991d-8e8a-43be-9892-1e6342a77410"
+    },
+    {
+      "slug": "artist:kaaris",
+      "type": "artist",
+      "name": "Kaaris",
+      "mbid": "81920682-bb79-4b62-afa8-fe8dece0227c"
+    },
+    {
+      "slug": "artist:plk",
+      "type": "artist",
+      "name": "PLK",
+      "mbid": "55304866-1b79-4365-a6b1-961c95e9fc57"
+    },
+    {
+      "slug": "artist:vald",
+      "type": "artist",
+      "name": "Vald",
+      "mbid": "062ab94e-b7a5-47a9-b3f4-cc1750c3f859"
+    },
+    {
+      "slug": "artist:hamza",
+      "type": "artist",
+      "name": "Hamza",
+      "mbid": "6a2244c9-3122-454e-b83d-b23e2968884e"
+    }
+  ]
 }

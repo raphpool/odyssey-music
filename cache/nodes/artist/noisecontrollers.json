@@ -780,5 +780,66 @@
       "name": "Arjan Terpstra"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:headhunterz",
+      "type": "artist",
+      "name": "Headhunterz",
+      "mbid": "79dbc936-adf2-4a29-8e01-c1fbe5613b0a"
+    },
+    {
+      "slug": "artist:d-block-and-s-te-fan",
+      "type": "artist",
+      "name": "D‐Block & S‐te‐Fan",
+      "mbid": "c81fd471-e2bd-4c7e-9b0a-fd893e74e523"
+    },
+    {
+      "slug": "artist:brennan-heart",
+      "type": "artist",
+      "name": "Brennan Heart",
+      "mbid": "6f95ac0e-728c-4b4c-b08e-e8519d2e6ab6"
+    },
+    {
+      "slug": "artist:wildstylez",
+      "type": "artist",
+      "name": "Wildstylez",
+      "mbid": "43fca023-da2f-4cc8-baaa-648cac5323bd"
+    },
+    {
+      "slug": "artist:frontliner",
+      "type": "artist",
+      "name": "Frontliner",
+      "mbid": "68a2c082-aa5a-4138-a445-506ed0790176"
+    },
+    {
+      "slug": "artist:zatox",
+      "type": "artist",
+      "name": "Zatox",
+      "mbid": "b1141d0f-8e55-4b3d-a2b2-958b8d3d96ae"
+    },
+    {
+      "slug": "artist:da-tweekaz",
+      "type": "artist",
+      "name": "Da Tweekaz",
+      "mbid": "1127158d-787a-4dbe-8180-b9e695c02504"
+    },
+    {
+      "slug": "artist:psyko-punkz",
+      "type": "artist",
+      "name": "Psyko Punkz",
+      "mbid": "4d24ceaf-19e7-49de-9c9f-2727fae287de"
+    },
+    {
+      "slug": "artist:bass-modulators",
+      "type": "artist",
+      "name": "Bass Modulators",
+      "mbid": "a9a01b0e-4336-417b-bc9e-e16c20b26650"
+    },
+    {
+      "slug": "artist:showtek",
+      "type": "artist",
+      "name": "Showtek",
+      "mbid": "5663c716-c38f-4454-99ce-5afb3c5af567"
+    }
+  ]
 }

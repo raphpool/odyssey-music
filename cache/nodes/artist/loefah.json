@@ -116,5 +116,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:digital-mystikz",
+      "type": "artist",
+      "name": "Digital Mystikz",
+      "mbid": "2c1583ab-3bfa-41b9-b849-4d4b5d891339"
+    },
+    {
+      "slug": "artist:benga",
+      "type": "artist",
+      "name": "Benga",
+      "mbid": "d3ba1c50-d403-40df-8eac-80d74551a7e3"
+    },
+    {
+      "slug": "artist:coki",
+      "type": "artist",
+      "name": "Coki",
+      "mbid": "a9bfea30-6c6b-418a-84d6-b92ce2d85b92"
+    },
+    {
+      "slug": "artist:distance",
+      "type": "artist",
+      "name": "Distance",
+      "mbid": "472bc127-8861-45e8-bc9e-31e8dd32de7a"
+    },
+    {
+      "slug": "artist:d1",
+      "type": "artist",
+      "name": "D1",
+      "mbid": "d9def9b7-72e1-48d8-b03c-d79a80b1c52f"
+    },
+    {
+      "slug": "artist:kode9",
+      "type": "artist",
+      "name": "Kode9",
+      "mbid": "e95a9d7f-fc26-4e56-8032-90cd954deea0"
+    },
+    {
+      "slug": "artist:kromestar",
+      "type": "artist",
+      "name": "Kromestar",
+      "mbid": "63dd3d57-d98f-4f27-bc1c-017ed75cd6f7"
+    },
+    {
+      "slug": "artist:pinch",
+      "type": "artist",
+      "name": "Pinch",
+      "mbid": "0b70e909-b5cc-48fc-96c2-f34ee642878d"
+    },
+    {
+      "slug": "artist:mrk1",
+      "type": "artist",
+      "name": "MRK1",
+      "mbid": "ca7227bf-7be1-4f9e-844a-56bb86295103"
+    },
+    {
+      "slug": "artist:the-spaceape",
+      "type": "artist",
+      "name": "The Spaceape",
+      "mbid": "88b53a2c-aac3-426d-b179-73f2355fddd8"
+    }
+  ]
 }

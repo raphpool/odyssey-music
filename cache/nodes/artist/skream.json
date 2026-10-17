@@ -144,5 +144,41 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:cyrus",
+      "type": "artist",
+      "name": "Cyrus"
+    },
+    {
+      "slug": "artist:digital-mystikz",
+      "type": "artist",
+      "name": "Digital Mystikz",
+      "mbid": "2c1583ab-3bfa-41b9-b849-4d4b5d891339"
+    },
+    {
+      "slug": "artist:horsepower-productions",
+      "type": "artist",
+      "name": "Horsepower Productions",
+      "mbid": "128e0f34-8eb9-4ead-b569-c3dbd89566bc"
+    },
+    {
+      "slug": "artist:loefah",
+      "type": "artist",
+      "name": "Loefah",
+      "mbid": "35d4519c-e1b8-4131-810f-042bb2ec748f"
+    },
+    {
+      "slug": "artist:youngsta",
+      "type": "artist",
+      "name": "Youngsta",
+      "mbid": "df7bb489-3f43-4405-95b9-7dd2bb31072f"
+    },
+    {
+      "slug": "artist:joy-orbison",
+      "type": "artist",
+      "name": "Joy Orbison",
+      "mbid": "8542f9a4-bd91-4066-91cf-359d2d9950db"
+    }
+  ]
 }

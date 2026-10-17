@@ -795,5 +795,62 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:t-i",
+      "type": "artist",
+      "name": "T.I.",
+      "mbid": "f7ba7fbe-c6bd-4ac0-bee9-c25c558d7d62"
+    },
+    {
+      "slug": "artist:jeezy",
+      "type": "artist",
+      "name": "Jeezy"
+    },
+    {
+      "slug": "artist:chief-keef",
+      "type": "artist",
+      "name": "Chief Keef",
+      "mbid": "9118f524-be76-4eaf-875c-ccf15e2a2ad6"
+    },
+    {
+      "slug": "artist:dj-paul",
+      "type": "artist",
+      "name": "DJ Paul",
+      "mbid": "43906e48-a7c0-4b80-a5dd-37d1fe6ccdb9"
+    },
+    {
+      "slug": "artist:a-ap-rocky",
+      "type": "artist",
+      "name": "A$AP Rocky",
+      "mbid": "25b7b584-d952-4662-a8b9-dd8cdfbfeb64"
+    },
+    {
+      "slug": "artist:juice-wrld",
+      "type": "artist",
+      "name": "Juice WRLD",
+      "mbid": "4e4ebde4-0c56-4dec-844b-6c73adcdd92d"
+    },
+    {
+      "slug": "artist:skrillex",
+      "type": "artist",
+      "name": "Skrillex",
+      "mbid": "ae002c5d-aac6-490b-a39a-30aa9e2edf2b"
+    },
+    {
+      "slug": "artist:lil-peep",
+      "type": "artist",
+      "name": "Lil Peep"
+    },
+    {
+      "slug": "artist:ludacris",
+      "type": "artist",
+      "name": "Ludacris"
+    },
+    {
+      "slug": "artist:outkast",
+      "type": "artist",
+      "name": "OutKast"
+    }
+  ]
 }

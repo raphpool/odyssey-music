@@ -123,5 +123,24 @@
       "name": "The Velvet Underground"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:john-cale",
+      "type": "artist",
+      "name": "John Cale",
+      "mbid": "72c090b6-a68e-4cb9-b330-85278681a714"
+    },
+    {
+      "slug": "artist:lou-reed",
+      "type": "artist",
+      "name": "Lou Reed",
+      "mbid": "9d1ebcfe-4c15-4d18-95d3-d919898638a1"
+    },
+    {
+      "slug": "artist:terry-riley",
+      "type": "artist",
+      "name": "Terry Riley",
+      "mbid": "7bf257bf-19a8-4205-8ae8-98511e50b719"
+    }
+  ]
 }

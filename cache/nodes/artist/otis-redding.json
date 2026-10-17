@@ -131,5 +131,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:aretha-franklin",
+      "type": "artist",
+      "name": "Aretha Franklin",
+      "mbid": "2f9ecbed-27be-40e6-abca-6de49d50299e"
+    },
+    {
+      "slug": "artist:stevie-wonder",
+      "type": "artist",
+      "name": "Stevie Wonder",
+      "mbid": "1ee18fb3-18a6-4c7f-8ba0-bc41cdd0462e"
+    },
+    {
+      "slug": "artist:marvin-gaye",
+      "type": "artist",
+      "name": "Marvin Gaye",
+      "mbid": "afdb7919-059d-43c1-b668-ba1d265e7e42"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:the-beach-boys",
+      "type": "artist",
+      "name": "The Beach Boys",
+      "mbid": "ebfc1398-8d96-47e3-82c3-f782abcdb13d"
+    },
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones",
+      "mbid": "b071f9fa-14b0-4217-8e97-eb41da73f598"
+    },
+    {
+      "slug": "artist:sam-cooke",
+      "type": "artist",
+      "name": "Sam Cooke",
+      "mbid": "6c8fd0be-d961-454c-aee0-4366a6dbc993"
+    },
+    {
+      "slug": "artist:al-green",
+      "type": "artist",
+      "name": "Al Green",
+      "mbid": "fb7272ba-f130-4f0a-934d-6eeea4c18c9a"
+    },
+    {
+      "slug": "artist:the-temptations",
+      "type": "artist",
+      "name": "The Temptations",
+      "mbid": "d8df96ae-8fcf-4997-b3e6-e5d1aaf0f69e"
+    },
+    {
+      "slug": "artist:ray-charles",
+      "type": "artist",
+      "name": "Ray Charles",
+      "mbid": "2ce02909-598b-44ef-a456-151ba0a3bd70"
+    }
+  ]
 }

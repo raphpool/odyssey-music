@@ -117,5 +117,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:cluster",
+      "type": "artist",
+      "name": "Cluster",
+      "mbid": "393ce5ee-4550-48e2-97f9-50a47a74bdc1"
+    },
+    {
+      "slug": "artist:hans-joachim-roedelius",
+      "type": "artist",
+      "name": "Hans‐Joachim Roedelius",
+      "mbid": "57cf7d67-5372-420a-9c89-77c7513d6506"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:ash-ra-tempel",
+      "type": "artist",
+      "name": "Ash Ra Tempel",
+      "mbid": "7e62de5d-1cc6-4779-a588-8923cf9fe09d"
+    },
+    {
+      "slug": "artist:dieter-moebius",
+      "type": "artist",
+      "name": "Dieter Moebius",
+      "mbid": "5fb5b6a9-add2-4e2e-812e-ff3712dbdb26"
+    },
+    {
+      "slug": "artist:harald-grosskopf",
+      "type": "artist",
+      "name": "Harald Grosskopf",
+      "mbid": "6a9ced55-b46b-482a-a46b-824631777e22"
+    },
+    {
+      "slug": "artist:mani-neumeier",
+      "type": "artist",
+      "name": "Mani Neumeier",
+      "mbid": "2212064d-6b36-438f-b719-984663d6ecd6"
+    },
+    {
+      "slug": "artist:johannes-cernota",
+      "type": "artist",
+      "name": "Johannes Cernota",
+      "mbid": "46e58a84-5254-4c8d-8447-c7f153e3161b"
+    },
+    {
+      "slug": "artist:martin-rev",
+      "type": "artist",
+      "name": "Martin Rev",
+      "mbid": "15dba3af-bb9a-4a19-808d-fbffc085c4ff"
+    },
+    {
+      "slug": "artist:edgar-froese",
+      "type": "artist",
+      "name": "Edgar Froese",
+      "mbid": "610a62e8-541b-42e4-a3fe-8dd595be93a8"
+    }
+  ]
 }

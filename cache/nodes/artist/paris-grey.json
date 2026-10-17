@@ -62,5 +62,24 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:phuture",
+      "type": "artist",
+      "name": "Phuture",
+      "mbid": "d4c75da5-45d7-49ef-abd6-babca3eb8d18"
+    },
+    {
+      "slug": "artist:patrick-adams",
+      "type": "artist",
+      "name": "Patrick Adams",
+      "mbid": "7409a8fa-2291-47b2-8c2e-4011ca63ce8a"
+    },
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles",
+      "mbid": "b7a98e65-7ce4-4fab-8cf3-6b3ccda6115a"
+    }
+  ]
 }

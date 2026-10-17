@@ -225,5 +225,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:lila-downs",
+      "type": "artist",
+      "name": "Lila Downs",
+      "mbid": "ad29ae1c-2eda-4071-9dc8-31910e7e546c"
+    },
+    {
+      "slug": "artist:bomba-estereo",
+      "type": "artist",
+      "name": "Bomba Estéreo",
+      "mbid": "aea8576d-7ad5-4430-bf2e-63725d80f05c"
+    },
+    {
+      "slug": "artist:susana-baca",
+      "type": "artist",
+      "name": "Susana Baca",
+      "mbid": "176af481-a5db-4902-84e0-393e7811b8c4"
+    },
+    {
+      "slug": "artist:quantic",
+      "type": "artist",
+      "name": "Quantic",
+      "mbid": "f1560407-8826-4ec9-b78f-e0c3fa3ea4f5"
+    },
+    {
+      "slug": "artist:manu-chao",
+      "type": "artist",
+      "name": "Manu Chao",
+      "mbid": "7570a0dd-5a67-401b-b19a-261eee01a284"
+    },
+    {
+      "slug": "artist:ibrahim-ferrer",
+      "type": "artist",
+      "name": "Ibrahim Ferrer",
+      "mbid": "a61930ae-dfe3-4574-bc5b-b0fa8d8efb62"
+    },
+    {
+      "slug": "artist:lhasa-de-sela",
+      "type": "artist",
+      "name": "Lhasa De Sela",
+      "mbid": "95db1c7c-21b8-4956-82ad-20217cd5d395"
+    },
+    {
+      "slug": "artist:paul-kalkbrenner",
+      "type": "artist",
+      "name": "Paul Kalkbrenner",
+      "mbid": "a5f92d47-b562-4582-b267-71963a515f4c"
+    },
+    {
+      "slug": "artist:ondatropica",
+      "type": "artist",
+      "name": "Ondatrópica",
+      "mbid": "110df860-7524-4075-9816-d661e30b77ed"
+    },
+    {
+      "slug": "artist:chicha-libre",
+      "type": "artist",
+      "name": "Chicha Libre",
+      "mbid": "3009bda7-2fe6-4a68-ad89-fb24e88c2ff6"
+    }
+  ]
 }

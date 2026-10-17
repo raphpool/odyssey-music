@@ -176,5 +176,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:afterlife",
+      "type": "artist",
+      "name": "Afterlife",
+      "mbid": "ab2241c7-ff64-4b52-90d8-4a7b0517d47c"
+    },
+    {
+      "slug": "artist:nightmares-on-wax",
+      "type": "artist",
+      "name": "Nightmares on Wax",
+      "mbid": "b8c5cc4f-239f-4e02-b46f-b040b77c2030"
+    },
+    {
+      "slug": "artist:moby",
+      "type": "artist",
+      "name": "Moby",
+      "mbid": "8970d868-0723-483b-a75b-51088913d3d4"
+    },
+    {
+      "slug": "artist:thievery-corporation",
+      "type": "artist",
+      "name": "Thievery Corporation",
+      "mbid": "a505bb48-ad65-4af4-ae47-29149715bff9"
+    },
+    {
+      "slug": "artist:zero-7",
+      "type": "artist",
+      "name": "Zero 7",
+      "mbid": "c23b637b-97c6-41eb-8ef6-6c724efc80a8"
+    },
+    {
+      "slug": "artist:a-man-called-adam",
+      "type": "artist",
+      "name": "A Man Called Adam",
+      "mbid": "b4265534-cf8f-4a8f-827d-fc490ccd15b8"
+    },
+    {
+      "slug": "artist:fila-brazillia",
+      "type": "artist",
+      "name": "Fila Brazillia",
+      "mbid": "21267448-e8aa-40f5-90cb-f9ef26ccc009"
+    },
+    {
+      "slug": "artist:air",
+      "type": "artist",
+      "name": "Air",
+      "mbid": "cb67438a-7f50-4f2b-a6f1-2bb2729fd538"
+    },
+    {
+      "slug": "artist:the-sabres-of-paradise",
+      "type": "artist",
+      "name": "The Sabres of Paradise",
+      "mbid": "3acb627b-787c-4276-bafe-516a5806aeb8"
+    },
+    {
+      "slug": "artist:john-martyn",
+      "type": "artist",
+      "name": "John Martyn",
+      "mbid": "e821a756-487f-4931-a02f-27cf11cec7bf"
+    }
+  ]
 }

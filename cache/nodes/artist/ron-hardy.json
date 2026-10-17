@@ -68,5 +68,36 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:model-500",
+      "type": "artist",
+      "name": "Model 500",
+      "mbid": "e569aee8-33ff-48e5-b0ed-4ceba1a37714"
+    },
+    {
+      "slug": "artist:seaside-houz-boyz",
+      "type": "artist",
+      "name": "Seaside Houz Boyz",
+      "mbid": "f8acd028-f48d-45ac-b720-f89b3dfbe2f4"
+    },
+    {
+      "slug": "artist:mac-umba",
+      "type": "artist",
+      "name": "Mac Umba",
+      "mbid": "61d1e106-4088-4460-a098-f293bf14aa31"
+    },
+    {
+      "slug": "artist:adonis",
+      "type": "artist",
+      "name": "Adonis",
+      "mbid": "835f5076-6b5d-4ba1-a3fe-d81a5838a0fc"
+    },
+    {
+      "slug": "artist:farley-jackmaster-funk",
+      "type": "artist",
+      "name": "Farley Jackmaster Funk",
+      "mbid": "4b9621eb-09d2-4e40-8ef2-a874ffe7eaea"
+    }
+  ]
 }

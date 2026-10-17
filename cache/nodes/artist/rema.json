@@ -180,5 +180,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:fka-twigs",
+      "type": "artist",
+      "name": "FKA twigs",
+      "mbid": "1e4e9db7-5068-4a9c-bdd0-5777e47172c8"
+    },
+    {
+      "slug": "artist:the-weeknd",
+      "type": "artist",
+      "name": "The Weeknd",
+      "mbid": "c8b03190-306c-4120-bb0b-6f2ebfc06ea9"
+    },
+    {
+      "slug": "artist:daniel-caesar",
+      "type": "artist",
+      "name": "Daniel Caesar",
+      "mbid": "b46e298d-d3a5-4695-a03e-63e8c523b23e"
+    },
+    {
+      "slug": "artist:jorja-smith",
+      "type": "artist",
+      "name": "Jorja Smith",
+      "mbid": "d62614aa-ef2c-44cd-8a7b-91292755a1d0"
+    },
+    {
+      "slug": "artist:pa-salieu",
+      "type": "artist",
+      "name": "Pa Salieu",
+      "mbid": "03100b87-7d27-4d56-b049-2007599656cc"
+    },
+    {
+      "slug": "artist:harry-styles",
+      "type": "artist",
+      "name": "Harry Styles",
+      "mbid": "7eb1ce54-a355-41f9-8d68-e018b096d427"
+    },
+    {
+      "slug": "artist:shygirl",
+      "type": "artist",
+      "name": "Shygirl",
+      "mbid": "9385f1a7-8623-4d0c-b171-f1e6e87220c5"
+    },
+    {
+      "slug": "artist:solo",
+      "type": "artist",
+      "name": "Solo",
+      "mbid": "8efb3841-d46b-4c7f-86d2-995d9c102e24"
+    },
+    {
+      "slug": "artist:burna-boy",
+      "type": "artist",
+      "name": "Burna Boy",
+      "mbid": "78a19169-ac75-4868-b504-7e2e073118e0"
+    },
+    {
+      "slug": "artist:unknown-t",
+      "type": "artist",
+      "name": "Unknown T",
+      "mbid": "a688dc7a-c743-4ec2-9355-c3dcdb30bf0e"
+    }
+  ]
 }

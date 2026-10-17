@@ -82,5 +82,24 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:paul-horn",
+      "type": "artist",
+      "name": "Paul Horn",
+      "mbid": "98ee7535-03e4-4899-aa5c-40da2fe716dd"
+    },
+    {
+      "slug": "artist:steven-halpern",
+      "type": "artist",
+      "name": "Steven Halpern",
+      "mbid": "37986d18-e8af-4502-8e08-2a87d7e5853f"
+    },
+    {
+      "slug": "artist:dallas-smith",
+      "type": "artist",
+      "name": "Dallas Smith",
+      "mbid": "933de17e-4f37-45a4-bad6-56ad20c21b87"
+    }
+  ]
 }

@@ -49,5 +49,13 @@
       "name": "Alec Empire"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:joy-orbison",
+      "type": "artist",
+      "name": "Joy Orbison",
+      "mbid": "8542f9a4-bd91-4066-91cf-359d2d9950db"
+    }
+  ]
 }

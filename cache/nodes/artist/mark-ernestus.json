@@ -133,5 +133,66 @@
       "name": "Rhythm & Sound"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:actress",
+      "type": "artist",
+      "name": "Actress",
+      "mbid": "973321d1-9565-4214-a6ef-a77f1890c294"
+    },
+    {
+      "slug": "artist:charles-levine",
+      "type": "artist",
+      "name": "Charles Levine",
+      "mbid": "a15f1bd1-51a0-4d7b-9017-50e7f6b1ee03"
+    },
+    {
+      "slug": "artist:jamie-xx",
+      "type": "artist",
+      "name": "Jamie xx",
+      "mbid": "d1515727-4a93-4c0d-88cb-d7a9fce01879"
+    },
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos",
+      "mbid": "bbd79854-df54-4c1b-b7d6-cf7eea2d0afb"
+    },
+    {
+      "slug": "artist:fennesz",
+      "type": "artist",
+      "name": "Fennesz",
+      "mbid": "a6f8d42d-d3ff-4268-8d39-ee01341733bb"
+    },
+    {
+      "slug": "artist:max-loderbauer",
+      "type": "artist",
+      "name": "Max Loderbauer",
+      "mbid": "b792a074-0d9c-4aa8-b798-1a40694e287a"
+    },
+    {
+      "slug": "artist:koreless",
+      "type": "artist",
+      "name": "Koreless",
+      "mbid": "ec0bfe7d-fc42-43c7-a2ea-dbf33a869ba3"
+    },
+    {
+      "slug": "artist:manuel-tur",
+      "type": "artist",
+      "name": "Manuel Tur",
+      "mbid": "ac0895e8-4b73-4fe2-adaf-701d47f433ca"
+    },
+    {
+      "slug": "artist:pantha-du-prince",
+      "type": "artist",
+      "name": "Pantha du Prince",
+      "mbid": "ac18992d-d90c-41d0-b56b-66fe1d51608e"
+    },
+    {
+      "slug": "artist:holly-backler",
+      "type": "artist",
+      "name": "Holly Backler",
+      "mbid": "866e019e-dbf3-4e2c-bcfe-ed7ccc1befc5"
+    }
+  ]
 }

@@ -118,5 +118,36 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:jacob-collier",
+      "type": "artist",
+      "name": "Jacob Collier",
+      "mbid": "1df15ee0-b52b-4315-9cb9-bc5a27a685e9"
+    },
+    {
+      "slug": "artist:laura-mvula",
+      "type": "artist",
+      "name": "Laura Mvula",
+      "mbid": "37d067eb-495e-4888-ad97-4b5708ffd3a9"
+    },
+    {
+      "slug": "artist:voces8",
+      "type": "artist",
+      "name": "VOCES8",
+      "mbid": "2a264f51-0a83-4972-858d-a4825ff02ad9"
+    },
+    {
+      "slug": "artist:suzie-collier",
+      "type": "artist",
+      "name": "Suzie Collier",
+      "mbid": "3b75abce-edc8-487e-bd2a-0165d6e8aac5"
+    },
+    {
+      "slug": "artist:take-6",
+      "type": "artist",
+      "name": "Take 6",
+      "mbid": "abbbef3b-19d7-4ef8-9ef2-e4d2c556509c"
+    }
+  ]
 }

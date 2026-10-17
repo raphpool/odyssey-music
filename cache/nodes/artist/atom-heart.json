@@ -141,5 +141,62 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:pete-namlook",
+      "type": "artist",
+      "name": "Pete Namlook",
+      "mbid": "a7e2051b-f66d-4e44-8320-526957d4ec02"
+    },
+    {
+      "slug": "artist:richie-hawtin",
+      "type": "artist",
+      "name": "Richie Hawtin",
+      "mbid": "76da816f-ea05-4172-ad9e-ffb69c32199f"
+    },
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze",
+      "mbid": "2e710b0c-6ff3-4c21-87d5-16ebbbca212c"
+    },
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:b12",
+      "type": "artist",
+      "name": "B12"
+    },
+    {
+      "slug": "artist:steve-rutter",
+      "type": "artist",
+      "name": "Steve Rutter"
+    },
+    {
+      "slug": "artist:the-black-dog",
+      "type": "artist",
+      "name": "The Black Dog",
+      "mbid": "a78d2a35-c083-4179-a5d8-49f84e5ec863"
+    },
+    {
+      "slug": "artist:ceephax-acid-crew",
+      "type": "artist",
+      "name": "Ceephax Acid Crew",
+      "mbid": "f226bcd7-114e-418f-8fa5-e24a47a89cf5"
+    },
+    {
+      "slug": "artist:marcus-eoin",
+      "type": "artist",
+      "name": "Marcus Eoin",
+      "mbid": "74edfdf2-4e76-4031-ae9b-16f1c7b4ba06"
+    },
+    {
+      "slug": "artist:mike-and-rich",
+      "type": "artist",
+      "name": "Mike & Rich"
+    }
+  ]
 }

@@ -149,5 +149,18 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:kraftwerk",
+      "type": "artist",
+      "name": "Kraftwerk",
+      "mbid": "5700dcd4-c139-4f31-aa3e-6382b9af9032"
+    },
+    {
+      "slug": "artist:florian-schneider",
+      "type": "artist",
+      "name": "Florian Schneider",
+      "mbid": "46957dac-b5ff-40a9-a427-ab53bc414f6e"
+    }
+  ]
 }

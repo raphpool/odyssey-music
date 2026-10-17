@@ -97,5 +97,30 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:bjork",
+      "type": "artist",
+      "name": "Björk",
+      "mbid": "87c5dedd-371d-4a53-9f7f-80522fb7f3cb"
+    },
+    {
+      "slug": "artist:markus-popp",
+      "type": "artist",
+      "name": "Markus Popp",
+      "mbid": "9340bee1-4024-453a-a9ee-60d11134738d"
+    },
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars",
+      "mbid": "4d4f5d92-0589-42fa-bc0e-1bd73e17a2ce"
+    },
+    {
+      "slug": "artist:ryuichi-sakamoto",
+      "type": "artist",
+      "name": "Ryuichi Sakamoto",
+      "mbid": "a7f7df4a-77d8-4f12-8acd-5c60c93f4de8"
+    }
+  ]
 }

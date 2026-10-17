@@ -167,5 +167,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:autechre",
+      "type": "artist",
+      "name": "Autechre",
+      "mbid": "410c9baf-5469-44f6-9852-826524b80c61"
+    },
+    {
+      "slug": "artist:squarepusher",
+      "type": "artist",
+      "name": "Squarepusher",
+      "mbid": "4d86ad4e-28d8-4e9f-8cf4-735c57060fdc"
+    },
+    {
+      "slug": "artist:plaid",
+      "type": "artist",
+      "name": "Plaid",
+      "mbid": "7e54d133-2525-4bc0-ae94-65584145a386"
+    },
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ‐Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
+    },
+    {
+      "slug": "artist:amon-tobin",
+      "type": "artist",
+      "name": "Amon Tobin",
+      "mbid": "630662ea-1c7d-4208-99fd-ba3afec20f0c"
+    },
+    {
+      "slug": "artist:clark",
+      "type": "artist",
+      "name": "Clark",
+      "mbid": "5d0c202c-e30f-40c4-abf5-c0007af0d1cc"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:prefuse-73",
+      "type": "artist",
+      "name": "Prefuse 73",
+      "mbid": "fc61dd75-880b-44ba-9ba9-c7b643d33413"
+    },
+    {
+      "slug": "artist:the-future-sound-of-london",
+      "type": "artist",
+      "name": "The Future Sound of London",
+      "mbid": "a1d77dd4-8728-4a47-bdfa-9663d791139c"
+    },
+    {
+      "slug": "artist:luke-vibert",
+      "type": "artist",
+      "name": "Luke Vibert",
+      "mbid": "0b59a279-54ef-4723-854e-a12b61e9581a"
+    }
+  ]
 }

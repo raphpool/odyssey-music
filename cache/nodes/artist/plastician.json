@@ -88,5 +88,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:benga",
+      "type": "artist",
+      "name": "Benga",
+      "mbid": "d3ba1c50-d403-40df-8eac-80d74551a7e3"
+    },
+    {
+      "slug": "artist:digital-mystikz",
+      "type": "artist",
+      "name": "Digital Mystikz",
+      "mbid": "2c1583ab-3bfa-41b9-b849-4d4b5d891339"
+    },
+    {
+      "slug": "artist:d1",
+      "type": "artist",
+      "name": "D1",
+      "mbid": "d9def9b7-72e1-48d8-b03c-d79a80b1c52f"
+    },
+    {
+      "slug": "artist:loefah",
+      "type": "artist",
+      "name": "Loefah",
+      "mbid": "35d4519c-e1b8-4131-810f-042bb2ec748f"
+    },
+    {
+      "slug": "artist:joker",
+      "type": "artist",
+      "name": "Joker",
+      "mbid": "4ec9883f-f359-4b41-bcf9-4d92e97f2f20"
+    },
+    {
+      "slug": "artist:kromestar",
+      "type": "artist",
+      "name": "Kromestar",
+      "mbid": "63dd3d57-d98f-4f27-bc1c-017ed75cd6f7"
+    },
+    {
+      "slug": "artist:nero",
+      "type": "artist",
+      "name": "NERO",
+      "mbid": "bd057a0c-a7b6-47bf-8dc3-45e0efac1798"
+    },
+    {
+      "slug": "artist:mrk1",
+      "type": "artist",
+      "name": "MRK1",
+      "mbid": "ca7227bf-7be1-4f9e-844a-56bb86295103"
+    },
+    {
+      "slug": "artist:distance",
+      "type": "artist",
+      "name": "Distance",
+      "mbid": "472bc127-8861-45e8-bc9e-31e8dd32de7a"
+    },
+    {
+      "slug": "artist:rusko",
+      "type": "artist",
+      "name": "Rusko",
+      "mbid": "ed962474-bb85-47f9-b108-073184f09bc8"
+    }
+  ]
 }

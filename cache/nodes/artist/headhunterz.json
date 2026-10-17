@@ -780,5 +780,66 @@
       "name": "Willem Rebergen"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:d-block-and-s-te-fan",
+      "type": "artist",
+      "name": "D‐Block & S‐te‐Fan",
+      "mbid": "c81fd471-e2bd-4c7e-9b0a-fd893e74e523"
+    },
+    {
+      "slug": "artist:noisecontrollers",
+      "type": "artist",
+      "name": "Noisecontrollers",
+      "mbid": "6c4335db-e676-418f-98e2-f8037ac88576"
+    },
+    {
+      "slug": "artist:brennan-heart",
+      "type": "artist",
+      "name": "Brennan Heart",
+      "mbid": "6f95ac0e-728c-4b4c-b08e-e8519d2e6ab6"
+    },
+    {
+      "slug": "artist:wildstylez",
+      "type": "artist",
+      "name": "Wildstylez",
+      "mbid": "43fca023-da2f-4cc8-baaa-648cac5323bd"
+    },
+    {
+      "slug": "artist:coone",
+      "type": "artist",
+      "name": "Coone",
+      "mbid": "8ec5439a-ff50-4b0f-9e75-fc3e517e75ff"
+    },
+    {
+      "slug": "artist:showtek",
+      "type": "artist",
+      "name": "Showtek",
+      "mbid": "5663c716-c38f-4454-99ce-5afb3c5af567"
+    },
+    {
+      "slug": "artist:da-tweekaz",
+      "type": "artist",
+      "name": "Da Tweekaz",
+      "mbid": "1127158d-787a-4dbe-8180-b9e695c02504"
+    },
+    {
+      "slug": "artist:frontliner",
+      "type": "artist",
+      "name": "Frontliner",
+      "mbid": "68a2c082-aa5a-4138-a445-506ed0790176"
+    },
+    {
+      "slug": "artist:dj-isaac",
+      "type": "artist",
+      "name": "DJ Isaac",
+      "mbid": "c46d3fa5-83a7-4a07-b2c4-428946bf84d9"
+    },
+    {
+      "slug": "artist:ran-d",
+      "type": "artist",
+      "name": "Ran‐D",
+      "mbid": "aa901f16-b91a-476f-ad41-ad09348c2244"
+    }
+  ]
 }

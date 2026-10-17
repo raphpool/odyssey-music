@@ -71,5 +71,18 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:halim-el-dabh",
+      "type": "artist",
+      "name": "Halim El-Dabh",
+      "mbid": "8de929b2-8ea8-4885-a5c3-5b4db755b3be"
+    },
+    {
+      "slug": "artist:terry-riley",
+      "type": "artist",
+      "name": "Terry Riley",
+      "mbid": "7bf257bf-19a8-4205-8ae8-98511e50b719"
+    }
+  ]
 }

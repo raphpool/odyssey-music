@@ -420,5 +420,65 @@
       "name": "Gordy Harmon"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:inner-life",
+      "type": "artist",
+      "name": "Inner Life",
+      "mbid": "5a1b05f4-493f-4f32-939c-e1556e2069fe"
+    },
+    {
+      "slug": "artist:frankie-knuckles",
+      "type": "artist",
+      "name": "Frankie Knuckles",
+      "mbid": "b7a98e65-7ce4-4fab-8cf3-6b3ccda6115a"
+    },
+    {
+      "slug": "artist:kool-and-the-gang",
+      "type": "artist",
+      "name": "Kool and the Gang",
+      "mbid": "2469950a-f0ca-425a-bfbc-baf55ea3afde"
+    },
+    {
+      "slug": "artist:d-train",
+      "type": "artist",
+      "name": "D-Train",
+      "mbid": "1d0b2ed9-56a2-4792-a5a1-a47313fb24c4"
+    },
+    {
+      "slug": "artist:opolopo",
+      "type": "artist",
+      "name": "Opolopo",
+      "mbid": "50e1d32b-8873-4f30-aec0-f22c46346872"
+    },
+    {
+      "slug": "artist:the-peech-boys",
+      "type": "artist",
+      "name": "The Peech Boys"
+    },
+    {
+      "slug": "artist:aretha-franklin",
+      "type": "artist",
+      "name": "Aretha Franklin",
+      "mbid": "2f9ecbed-27be-40e6-abca-6de49d50299e"
+    },
+    {
+      "slug": "artist:bernard-edwards",
+      "type": "artist",
+      "name": "Bernard Edwards",
+      "mbid": "ba7ff664-5c64-4a62-a3e2-63445c1a25db"
+    },
+    {
+      "slug": "artist:chic",
+      "type": "artist",
+      "name": "Chic",
+      "mbid": "a4ed036b-5f18-439c-b1e1-96d205bab255"
+    },
+    {
+      "slug": "artist:donna-summer",
+      "type": "artist",
+      "name": "Donna Summer",
+      "mbid": "b60527cc-54f3-4bbe-a01b-dcf34c95ae14"
+    }
+  ]
 }

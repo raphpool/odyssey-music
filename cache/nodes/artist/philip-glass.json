@@ -110,5 +110,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:max-richter",
+      "type": "artist",
+      "name": "Max Richter",
+      "mbid": "509f20b2-5df3-4aec-9bbc-002131fb3f99"
+    },
+    {
+      "slug": "artist:ludovico-einaudi",
+      "type": "artist",
+      "name": "Ludovico Einaudi",
+      "mbid": "fa34b363-79df-434f-a5b8-be4e6898543f"
+    },
+    {
+      "slug": "artist:yann-tiersen",
+      "type": "artist",
+      "name": "Yann Tiersen",
+      "mbid": "12d432a3-feb0-49b1-a107-d20751880764"
+    },
+    {
+      "slug": "artist:clint-mansell",
+      "type": "artist",
+      "name": "Clint Mansell",
+      "mbid": "fc015f11-be38-4b7d-b3e8-5d809242ecec"
+    },
+    {
+      "slug": "artist:hans-zimmer",
+      "type": "artist",
+      "name": "Hans Zimmer",
+      "mbid": "e6de1f3b-6484-491c-88dd-6d619f142abc"
+    },
+    {
+      "slug": "artist:michael-nyman",
+      "type": "artist",
+      "name": "Michael Nyman",
+      "mbid": "c3161cf7-cab1-4409-9b1f-876561dd7716"
+    },
+    {
+      "slug": "artist:nils-frahm",
+      "type": "artist",
+      "name": "Nils Frahm",
+      "mbid": "d03a54bc-6e07-4c04-a8d4-7fbf2bd07a01"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:olafur-arnalds",
+      "type": "artist",
+      "name": "Ólafur Arnalds",
+      "mbid": "6655955b-1c1e-4bcb-84e4-81bcd9efab30"
+    },
+    {
+      "slug": "artist:michael-riesman",
+      "type": "artist",
+      "name": "Michael Riesman",
+      "mbid": "28132b79-6aff-4c69-833d-84b1e5876615"
+    }
+  ]
 }

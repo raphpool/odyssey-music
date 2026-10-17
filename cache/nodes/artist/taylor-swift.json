@@ -149,5 +149,24 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:bob-dylan",
+      "type": "artist",
+      "name": "Bob Dylan",
+      "mbid": "72c536dc-7137-4477-a521-567eeb840fa8"
+    },
+    {
+      "slug": "artist:elvis-presley",
+      "type": "artist",
+      "name": "Elvis Presley",
+      "mbid": "01809552-4f87-45b0-afff-2c6f0730a3be"
+    },
+    {
+      "slug": "artist:ringo-starr",
+      "type": "artist",
+      "name": "Ringo Starr",
+      "mbid": "300c4c73-33ac-4255-9d57-4e32627f5e13"
+    }
+  ]
 }

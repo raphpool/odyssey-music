@@ -56,5 +56,22 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:zip",
+      "type": "artist",
+      "name": "Zip"
+    },
+    {
+      "slug": "artist:melchior-productions-ltd",
+      "type": "artist",
+      "name": "Melchior Productions Ltd"
+    },
+    {
+      "slug": "artist:fumiya-tanaka",
+      "type": "artist",
+      "name": "Fumiya Tanaka",
+      "mbid": "86b9a88e-d18f-43c5-9805-f8eb41007aa2"
+    }
+  ]
 }

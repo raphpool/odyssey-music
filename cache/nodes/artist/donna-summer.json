@@ -118,5 +118,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    },
+    {
+      "slug": "artist:madonna",
+      "type": "artist",
+      "name": "Madonna",
+      "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287"
+    },
+    {
+      "slug": "artist:abba",
+      "type": "artist",
+      "name": "ABBA",
+      "mbid": "d87e52c5-bb8d-4da8-b941-9f4928627dc8"
+    },
+    {
+      "slug": "artist:elton-john",
+      "type": "artist",
+      "name": "Elton John",
+      "mbid": "b83bc61f-8451-4a5d-8b8e-7e9ed295e822"
+    },
+    {
+      "slug": "artist:diana-ross",
+      "type": "artist",
+      "name": "Diana Ross",
+      "mbid": "60d41417-feda-4734-bbbf-7dcc30e08a83"
+    },
+    {
+      "slug": "artist:earth-wind-and-fire",
+      "type": "artist",
+      "name": "Earth, Wind & Fire",
+      "mbid": "535afeda-2538-435d-9dd1-5e10be586774"
+    },
+    {
+      "slug": "artist:fleetwood-mac",
+      "type": "artist",
+      "name": "Fleetwood Mac",
+      "mbid": "bd13909f-1c29-4c27-a874-d4aaf27c5b1a"
+    },
+    {
+      "slug": "artist:chic",
+      "type": "artist",
+      "name": "Chic",
+      "mbid": "a4ed036b-5f18-439c-b1e1-96d205bab255"
+    },
+    {
+      "slug": "artist:marvin-gaye",
+      "type": "artist",
+      "name": "Marvin Gaye",
+      "mbid": "afdb7919-059d-43c1-b668-ba1d265e7e42"
+    },
+    {
+      "slug": "artist:cyndi-lauper",
+      "type": "artist",
+      "name": "Cyndi Lauper",
+      "mbid": "7bd9e20e-74b9-446a-a2ed-a223f82a36e7"
+    }
+  ]
 }

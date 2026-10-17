@@ -80,5 +80,22 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:loefah",
+      "type": "artist",
+      "name": "Loefah",
+      "mbid": "35d4519c-e1b8-4131-810f-042bb2ec748f"
+    },
+    {
+      "slug": "artist:mala",
+      "type": "artist",
+      "name": "Mala"
+    },
+    {
+      "slug": "artist:skream",
+      "type": "artist",
+      "name": "Skream"
+    }
+  ]
 }

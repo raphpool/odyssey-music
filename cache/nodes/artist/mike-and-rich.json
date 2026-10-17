@@ -141,5 +141,64 @@
       "name": "Richard D. James"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:ceephax-acid-crew",
+      "type": "artist",
+      "name": "Ceephax Acid Crew",
+      "mbid": "f226bcd7-114e-418f-8fa5-e24a47a89cf5"
+    },
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ-Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
+    },
+    {
+      "slug": "artist:plug",
+      "type": "artist",
+      "name": "Plug",
+      "mbid": "e334509f-5aa9-4596-8762-50a6c8a422f4"
+    },
+    {
+      "slug": "artist:afx",
+      "type": "artist",
+      "name": "AFX"
+    },
+    {
+      "slug": "artist:dmx-krew",
+      "type": "artist",
+      "name": "DMX Krew",
+      "mbid": "a3494b6a-32b5-416c-8dea-dce62c8e9244"
+    },
+    {
+      "slug": "artist:global-goon",
+      "type": "artist",
+      "name": "Global Goon",
+      "mbid": "d11ea373-77ed-46eb-96a8-b70ea633081e"
+    },
+    {
+      "slug": "artist:jake-slazenger",
+      "type": "artist",
+      "name": "Jake Slazenger",
+      "mbid": "91e7ec65-c3a0-4a76-aadb-a2b5bd69ff27"
+    },
+    {
+      "slug": "artist:lara-rix-martin",
+      "type": "artist",
+      "name": "Lara Rix-Martin",
+      "mbid": "366c1381-9716-4866-b1c1-dfd4498351eb"
+    },
+    {
+      "slug": "artist:luke-vibert",
+      "type": "artist",
+      "name": "Luke Vibert",
+      "mbid": "0b59a279-54ef-4723-854e-a12b61e9581a"
+    }
+  ]
 }

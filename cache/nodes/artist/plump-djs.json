@@ -391,5 +391,66 @@
       "name": "Andy Gardner"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:freestylers",
+      "type": "artist",
+      "name": "Freestylers",
+      "mbid": "60dd8303-5ee8-4c99-a19c-009e07c17aeb"
+    },
+    {
+      "slug": "artist:orbital",
+      "type": "artist",
+      "name": "Orbital",
+      "mbid": "f3e2a7d9-c6bb-4848-95e5-04c0a1e2f511"
+    },
+    {
+      "slug": "artist:soul-of-man",
+      "type": "artist",
+      "name": "Soul of Man",
+      "mbid": "ea7a48eb-5d3b-45d3-bc16-8c00f27b8dc1"
+    },
+    {
+      "slug": "artist:the-crystal-method",
+      "type": "artist",
+      "name": "The Crystal Method",
+      "mbid": "aaf09f31-bb5c-43e5-9f54-bb6554c33a71"
+    },
+    {
+      "slug": "artist:stanton-warriors",
+      "type": "artist",
+      "name": "Stanton Warriors",
+      "mbid": "ba07d1f0-9839-43f5-b88e-f4b93b6b05f1"
+    },
+    {
+      "slug": "artist:drumattic-twins",
+      "type": "artist",
+      "name": "Drumattic Twins",
+      "mbid": "6955cddd-62d3-4acf-bce2-b94eca8a8d06"
+    },
+    {
+      "slug": "artist:ils",
+      "type": "artist",
+      "name": "Ils",
+      "mbid": "16b97aaa-d7c0-469f-8c97-47c705b2d02f"
+    },
+    {
+      "slug": "artist:evil-nine",
+      "type": "artist",
+      "name": "Evil Nine",
+      "mbid": "250b7089-69e4-43b2-bae3-a83d9f6d71bb"
+    },
+    {
+      "slug": "artist:pendulum",
+      "type": "artist",
+      "name": "Pendulum",
+      "mbid": "beff21d3-88c7-4ee0-8b7a-40b6db22c6d7"
+    },
+    {
+      "slug": "artist:moby",
+      "type": "artist",
+      "name": "Moby",
+      "mbid": "8970d868-0723-483b-a75b-51088913d3d4"
+    }
+  ]
 }

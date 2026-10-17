@@ -789,5 +789,62 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:t-i",
+      "type": "artist",
+      "name": "T.I.",
+      "mbid": "f7ba7fbe-c6bd-4ac0-bee9-c25c558d7d62"
+    },
+    {
+      "slug": "artist:outkast",
+      "type": "artist",
+      "name": "OutKast"
+    },
+    {
+      "slug": "artist:three-6-mafia",
+      "type": "artist",
+      "name": "Three 6 Mafia",
+      "mbid": "a8754ac4-a85e-4f48-a81f-eecd482570ef"
+    },
+    {
+      "slug": "artist:ugk",
+      "type": "artist",
+      "name": "UGK",
+      "mbid": "9603810b-5d6d-41a6-aca8-330ef966d55c"
+    },
+    {
+      "slug": "artist:jeezy",
+      "type": "artist",
+      "name": "Jeezy"
+    },
+    {
+      "slug": "artist:warren-g",
+      "type": "artist",
+      "name": "Warren G",
+      "mbid": "85d7666c-d3ce-4e2c-8b1b-f20db7cdae4f"
+    },
+    {
+      "slug": "artist:gucci-mane",
+      "type": "artist",
+      "name": "Gucci Mane"
+    },
+    {
+      "slug": "artist:kendrick-lamar",
+      "type": "artist",
+      "name": "Kendrick Lamar",
+      "mbid": "381086ea-f511-4aba-bdf9-71c753dc5077"
+    },
+    {
+      "slug": "artist:salt-n-pepa",
+      "type": "artist",
+      "name": "Salt-N-Pepa",
+      "mbid": "26bcd35d-56a3-4e4d-8ad7-7bc5787c3af1"
+    },
+    {
+      "slug": "artist:nas",
+      "type": "artist",
+      "name": "Nas"
+    }
+  ]
 }

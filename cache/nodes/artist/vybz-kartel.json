@@ -790,5 +790,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:major-lazer",
+      "type": "artist",
+      "name": "Major Lazer",
+      "mbid": "75be165a-ad83-4d12-bd28-f589a15c479f"
+    },
+    {
+      "slug": "artist:busy-signal",
+      "type": "artist",
+      "name": "Busy Signal",
+      "mbid": "63e2a7b3-3167-460f-9f72-24af5670b7bc"
+    },
+    {
+      "slug": "artist:ms-thing",
+      "type": "artist",
+      "name": "Ms. Thing",
+      "mbid": "e8755c00-8d3d-462b-b78b-f52a9c45ba42"
+    },
+    {
+      "slug": "artist:santigold",
+      "type": "artist",
+      "name": "Santigold",
+      "mbid": "97b20fe3-0924-4a5f-9955-d0b5c5f9587f"
+    },
+    {
+      "slug": "artist:jovi-rockwell",
+      "type": "artist",
+      "name": "Jovi Rockwell",
+      "mbid": "7535c1eb-ebd0-443a-b73d-cb034fcb2708"
+    },
+    {
+      "slug": "artist:prince-zimboo",
+      "type": "artist",
+      "name": "Prince Zimboo",
+      "mbid": "b022be55-79de-4be8-9efa-1932ded0850a"
+    },
+    {
+      "slug": "artist:ricky-blaze",
+      "type": "artist",
+      "name": "Ricky Blaze",
+      "mbid": "e42fe0f0-8573-4d9b-bfca-761d9160b7df"
+    },
+    {
+      "slug": "artist:amanda-blank",
+      "type": "artist",
+      "name": "Amanda Blank",
+      "mbid": "a6cf5c5c-7432-4ac7-801a-cef2b03e81bb"
+    },
+    {
+      "slug": "artist:sean-paul",
+      "type": "artist",
+      "name": "Sean Paul",
+      "mbid": "c3da3346-2643-48a7-93cd-011f6834b3d7"
+    },
+    {
+      "slug": "artist:turbulence",
+      "type": "artist",
+      "name": "Turbulence",
+      "mbid": "0e12d01b-e8ae-4cf5-8888-649be4ca90af"
+    }
+  ]
 }

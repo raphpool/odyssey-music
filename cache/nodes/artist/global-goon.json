@@ -86,5 +86,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ‐Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
+    },
+    {
+      "slug": "artist:cylob",
+      "type": "artist",
+      "name": "Cylob",
+      "mbid": "2256228e-8253-45ad-974e-39ae914c5586"
+    },
+    {
+      "slug": "artist:ceephax-acid-crew",
+      "type": "artist",
+      "name": "Ceephax Acid Crew",
+      "mbid": "f226bcd7-114e-418f-8fa5-e24a47a89cf5"
+    },
+    {
+      "slug": "artist:luke-vibert",
+      "type": "artist",
+      "name": "Luke Vibert",
+      "mbid": "0b59a279-54ef-4723-854e-a12b61e9581a"
+    },
+    {
+      "slug": "artist:jega",
+      "type": "artist",
+      "name": "Jega",
+      "mbid": "6b43e5f2-49e8-46ce-94cb-a9b23e5bb4e8"
+    },
+    {
+      "slug": "artist:bochum-welt",
+      "type": "artist",
+      "name": "Bochum Welt",
+      "mbid": "3fc812b0-07ef-443d-ac97-77a71c0f1aee"
+    },
+    {
+      "slug": "artist:kettel",
+      "type": "artist",
+      "name": "Kettel",
+      "mbid": "071cb80d-a198-4f88-b41e-f4dd9a65ec80"
+    },
+    {
+      "slug": "artist:dmx-krew",
+      "type": "artist",
+      "name": "DMX Krew",
+      "mbid": "a3494b6a-32b5-416c-8dea-dce62c8e9244"
+    },
+    {
+      "slug": "artist:kid-spatula",
+      "type": "artist",
+      "name": "Kid Spatula",
+      "mbid": "8a82e15f-66cc-459d-9004-54b1207aa358"
+    },
+    {
+      "slug": "artist:wagon-christ",
+      "type": "artist",
+      "name": "Wagon Christ",
+      "mbid": "991b8af4-328a-4441-8dc5-f7af0c89af08"
+    }
+  ]
 }

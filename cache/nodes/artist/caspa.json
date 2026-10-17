@@ -112,5 +112,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:rusko",
+      "type": "artist",
+      "name": "Rusko",
+      "mbid": "ed962474-bb85-47f9-b108-073184f09bc8"
+    },
+    {
+      "slug": "artist:coki",
+      "type": "artist",
+      "name": "Coki",
+      "mbid": "a9bfea30-6c6b-418a-84d6-b92ce2d85b92"
+    },
+    {
+      "slug": "artist:l-wiz",
+      "type": "artist",
+      "name": "L‐Wiz",
+      "mbid": "746e2591-edbc-43f1-ba58-d81433e17b87"
+    },
+    {
+      "slug": "artist:the-others",
+      "type": "artist",
+      "name": "The Others",
+      "mbid": "00b51372-dc0d-44a8-b8ea-52f63918f9d2"
+    },
+    {
+      "slug": "artist:benga",
+      "type": "artist",
+      "name": "Benga",
+      "mbid": "d3ba1c50-d403-40df-8eac-80d74551a7e3"
+    },
+    {
+      "slug": "artist:uncle-sam",
+      "type": "artist",
+      "name": "Uncle Sam",
+      "mbid": "86d5eb57-637e-4a03-939e-bc83e282116e"
+    },
+    {
+      "slug": "artist:matty-g",
+      "type": "artist",
+      "name": "Matty G",
+      "mbid": "484fcb82-8ee2-464f-8fcf-c507c4d44e5c"
+    },
+    {
+      "slug": "artist:d1",
+      "type": "artist",
+      "name": "D1",
+      "mbid": "d9def9b7-72e1-48d8-b03c-d79a80b1c52f"
+    },
+    {
+      "slug": "artist:distance",
+      "type": "artist",
+      "name": "Distance",
+      "mbid": "472bc127-8861-45e8-bc9e-31e8dd32de7a"
+    },
+    {
+      "slug": "artist:cluekid",
+      "type": "artist",
+      "name": "Cluekid",
+      "mbid": "3712ad7e-6a5b-44d2-ad40-780c6d85ca7d"
+    }
+  ]
 }

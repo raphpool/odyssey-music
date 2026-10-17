@@ -781,5 +781,63 @@
       "name": "Gustav Elijah Åhr"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:trippie-redd",
+      "type": "artist",
+      "name": "Trippie Redd",
+      "mbid": "8032cf05-d916-4b2a-9c53-6e75d4a24bd8"
+    },
+    {
+      "slug": "artist:yung-lean",
+      "type": "artist",
+      "name": "Yung Lean",
+      "mbid": "757ed661-fbad-4e45-b1cd-a6b09f06f54a"
+    },
+    {
+      "slug": "artist:jpegmafia",
+      "type": "artist",
+      "name": "JPEGMAFIA"
+    },
+    {
+      "slug": "artist:a-ap-rocky",
+      "type": "artist",
+      "name": "A$AP Rocky",
+      "mbid": "25b7b584-d952-4662-a8b9-dd8cdfbfeb64"
+    },
+    {
+      "slug": "artist:chief-keef",
+      "type": "artist",
+      "name": "Chief Keef",
+      "mbid": "9118f524-be76-4eaf-875c-ccf15e2a2ad6"
+    },
+    {
+      "slug": "artist:gucci-mane",
+      "type": "artist",
+      "name": "Gucci Mane"
+    },
+    {
+      "slug": "artist:jeezy",
+      "type": "artist",
+      "name": "Jeezy"
+    },
+    {
+      "slug": "artist:juice-wrld",
+      "type": "artist",
+      "name": "Juice WRLD",
+      "mbid": "4e4ebde4-0c56-4dec-844b-6c73adcdd92d"
+    },
+    {
+      "slug": "artist:lil-b",
+      "type": "artist",
+      "name": "Lil B",
+      "mbid": "1550f952-c91b-40d7-9b4d-d26a259ee932"
+    },
+    {
+      "slug": "artist:t-i",
+      "type": "artist",
+      "name": "T.I.",
+      "mbid": "f7ba7fbe-c6bd-4ac0-bee9-c25c558d7d62"
+    }
+  ]
 }

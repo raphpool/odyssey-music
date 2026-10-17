@@ -605,5 +605,53 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:salt-n-pepa",
+      "type": "artist",
+      "name": "Salt-N-Pepa",
+      "mbid": "26bcd35d-56a3-4e4d-8ad7-7bc5787c3af1"
+    },
+    {
+      "slug": "artist:a-ap-rocky",
+      "type": "artist",
+      "name": "A$AP Rocky",
+      "mbid": "25b7b584-d952-4662-a8b9-dd8cdfbfeb64"
+    },
+    {
+      "slug": "artist:de-la-soul",
+      "type": "artist",
+      "name": "De La Soul",
+      "mbid": "a8ebde98-7e91-46c7-992c-90039ba42017"
+    },
+    {
+      "slug": "artist:krs-one",
+      "type": "artist",
+      "name": "KRS-One",
+      "mbid": "fc4568b6-cbe3-4a3d-8409-28510c19e3e2"
+    },
+    {
+      "slug": "artist:nas",
+      "type": "artist",
+      "name": "Nas"
+    },
+    {
+      "slug": "artist:queen-latifah",
+      "type": "artist",
+      "name": "Queen Latifah",
+      "mbid": "7a305f29-539a-456e-93b7-61b0e2ba3ef2"
+    },
+    {
+      "slug": "artist:central-cee",
+      "type": "artist",
+      "name": "Central Cee",
+      "mbid": "b0337af1-8d93-4671-b6c9-ba306bf942bf"
+    },
+    {
+      "slug": "artist:the-roots",
+      "type": "artist",
+      "name": "The Roots",
+      "mbid": "80b3cf5e-18fe-4c59-98c7-e5bb87210710"
+    }
+  ]
 }

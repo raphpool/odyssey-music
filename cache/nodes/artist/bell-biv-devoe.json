@@ -231,5 +231,66 @@
       "name": "Ronnie DeVoe"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:tlc",
+      "type": "artist",
+      "name": "TLC",
+      "mbid": "99790314-885a-4975-8614-9c5bc890364d"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    },
+    {
+      "slug": "artist:boyz-ii-men",
+      "type": "artist",
+      "name": "Boyz II Men",
+      "mbid": "b42eca0f-9381-43db-badb-1cba080a7dc2"
+    },
+    {
+      "slug": "artist:blackstreet",
+      "type": "artist",
+      "name": "Blackstreet",
+      "mbid": "d72d000b-b860-44f4-9ac1-5d82e3fff9a9"
+    },
+    {
+      "slug": "artist:en-vogue",
+      "type": "artist",
+      "name": "En Vogue",
+      "mbid": "9a883a69-436b-4d17-9ffd-122a9bf4419a"
+    },
+    {
+      "slug": "artist:swv",
+      "type": "artist",
+      "name": "SWV",
+      "mbid": "fffc6a35-ae65-48be-bcc0-9d604e05665e"
+    },
+    {
+      "slug": "artist:mary-j-blige",
+      "type": "artist",
+      "name": "Mary J. Blige",
+      "mbid": "db76c5ca-d555-4f09-b1db-baa1b713d875"
+    },
+    {
+      "slug": "artist:the-notorious-b-i-g",
+      "type": "artist",
+      "name": "The Notorious B.I.G.",
+      "mbid": "d5d97b2b-b83b-4976-814a-056d9076c8c3"
+    },
+    {
+      "slug": "artist:destiny-s-child",
+      "type": "artist",
+      "name": "Destiny’s Child",
+      "mbid": "a796b92e-c137-4895-9c89-10f900617a4f"
+    },
+    {
+      "slug": "artist:aaliyah",
+      "type": "artist",
+      "name": "Aaliyah",
+      "mbid": "bc85da58-52d9-457d-ae8d-5d8d4ec870a9"
+    }
+  ]
 }

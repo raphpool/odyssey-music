@@ -113,5 +113,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:kaaris",
+      "type": "artist",
+      "name": "Kaaris",
+      "mbid": "81920682-bb79-4b62-afa8-fe8dece0227c"
+    },
+    {
+      "slug": "artist:damso",
+      "type": "artist",
+      "name": "Damso",
+      "mbid": "71ff695e-896a-4043-aea4-93eadde08d09"
+    },
+    {
+      "slug": "artist:sch",
+      "type": "artist",
+      "name": "SCH",
+      "mbid": "070a4a70-705b-41ba-a30a-cac559c781f8"
+    },
+    {
+      "slug": "artist:niska",
+      "type": "artist",
+      "name": "Niska",
+      "mbid": "e369e789-6f07-4ce8-a70f-e136bc57bf3b"
+    },
+    {
+      "slug": "artist:pnl",
+      "type": "artist",
+      "name": "PNL",
+      "mbid": "da04991d-8e8a-43be-9892-1e6342a77410"
+    },
+    {
+      "slug": "artist:orelsan",
+      "type": "artist",
+      "name": "Orelsan",
+      "mbid": "6cad3ce5-6380-4594-a8da-ae7d273b683d"
+    },
+    {
+      "slug": "artist:drake",
+      "type": "artist",
+      "name": "Drake",
+      "mbid": "9fff2f8a-21e6-47de-a2b8-7f449929d43f"
+    },
+    {
+      "slug": "artist:ninho",
+      "type": "artist",
+      "name": "Ninho",
+      "mbid": "41fe37a6-f4bb-4340-9c14-e2c8e5d854f1"
+    },
+    {
+      "slug": "artist:nekfeu",
+      "type": "artist",
+      "name": "Nekfeu",
+      "mbid": "d721866d-5640-44ee-87f7-23dd062abd8a"
+    },
+    {
+      "slug": "artist:jul",
+      "type": "artist",
+      "name": "Jul",
+      "mbid": "8e6c44df-06fc-4852-83d0-ef0efed6630a"
+    }
+  ]
 }

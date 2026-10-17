@@ -95,5 +95,66 @@
       "name": "Atari Teenage Riot"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:alec-empire",
+      "type": "artist",
+      "name": "Alec Empire",
+      "mbid": "d71ba53b-23b0-4870-a429-cce6f345763b"
+    },
+    {
+      "slug": "artist:ec8or",
+      "type": "artist",
+      "name": "EC8OR",
+      "mbid": "168e3ccd-91f5-480c-970a-b35171c71164"
+    },
+    {
+      "slug": "artist:lolita-storm",
+      "type": "artist",
+      "name": "Lolita Storm",
+      "mbid": "7a2d7204-28f4-46a9-9ad5-ce6f5582b7bb"
+    },
+    {
+      "slug": "artist:cobra-killer",
+      "type": "artist",
+      "name": "Cobra Killer",
+      "mbid": "6f9cd8ed-7b45-4ad8-9844-8b3249165156"
+    },
+    {
+      "slug": "artist:patric-catani",
+      "type": "artist",
+      "name": "Patric Catani",
+      "mbid": "ec69ad04-41e5-4723-876a-85c9116ac0f5"
+    },
+    {
+      "slug": "artist:hanin-elias",
+      "type": "artist",
+      "name": "Hanin Elias",
+      "mbid": "e8b9f2dd-b197-47a6-81d5-7f5850e18b37"
+    },
+    {
+      "slug": "artist:christoph-de-babalon",
+      "type": "artist",
+      "name": "Christoph de Babalon",
+      "mbid": "96ef39a7-578d-4446-8a27-04e1d3c52484"
+    },
+    {
+      "slug": "artist:ohgr",
+      "type": "artist",
+      "name": "ohGr",
+      "mbid": "bf307de0-a1c5-4cd9-b7e5-aa6d8aede3fb"
+    },
+    {
+      "slug": "artist:the-smashing-pumpkins",
+      "type": "artist",
+      "name": "The Smashing Pumpkins",
+      "mbid": "ba0d6274-db14-4ef5-b28d-657ebde1a396"
+    },
+    {
+      "slug": "artist:nic-endo",
+      "type": "artist",
+      "name": "Nic Endo",
+      "mbid": "433cebcc-b3b3-4516-99ae-63aa991b1401"
+    }
+  ]
 }

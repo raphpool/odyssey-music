@@ -117,5 +117,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:talking-heads",
+      "type": "artist",
+      "name": "Talking Heads",
+      "mbid": "a94a7155-c79d-4409-9fcf-220cb0e4dc3a"
+    },
+    {
+      "slug": "artist:the-cure",
+      "type": "artist",
+      "name": "The Cure",
+      "mbid": "69ee3720-a7cb-4402-b48d-a02c366f2bcf"
+    },
+    {
+      "slug": "artist:the-clash",
+      "type": "artist",
+      "name": "The Clash",
+      "mbid": "8f92558c-2baa-4758-8c38-615519e9deda"
+    },
+    {
+      "slug": "artist:joy-division",
+      "type": "artist",
+      "name": "Joy Division",
+      "mbid": "9a58fda3-f4ed-4080-a3a5-f457aac9fcdd"
+    },
+    {
+      "slug": "artist:new-order",
+      "type": "artist",
+      "name": "New Order",
+      "mbid": "f1106b17-dcbb-45f6-b938-199ccfab50cc"
+    },
+    {
+      "slug": "artist:depeche-mode",
+      "type": "artist",
+      "name": "Depeche Mode",
+      "mbid": "8538e728-ca0b-4321-b7e5-cff6565dd4c0"
+    },
+    {
+      "slug": "artist:duran-duran",
+      "type": "artist",
+      "name": "Duran Duran",
+      "mbid": "1a1cd7f3-e5df-4eca-bae2-2757c9e656b5"
+    },
+    {
+      "slug": "artist:the-smiths",
+      "type": "artist",
+      "name": "The Smiths",
+      "mbid": "40f5d9e4-2de7-4f2d-ad41-e31a9a9fea27"
+    },
+    {
+      "slug": "artist:the-police",
+      "type": "artist",
+      "name": "The Police",
+      "mbid": "9e0e2b01-41db-4008-bd8b-988977d6019a"
+    },
+    {
+      "slug": "artist:pixies",
+      "type": "artist",
+      "name": "Pixies",
+      "mbid": "b6b2bb8d-54a9-491f-9607-7b546023b433"
+    }
+  ]
 }

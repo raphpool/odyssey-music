@@ -131,5 +131,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:cartola",
+      "type": "artist",
+      "name": "Cartola",
+      "mbid": "7c743881-aed4-47d4-93d5-9fdd6e2904bb"
+    },
+    {
+      "slug": "artist:adoniran-barbosa",
+      "type": "artist",
+      "name": "Adoniran Barbosa",
+      "mbid": "b3cf1138-7300-4c6a-9f5d-79457848499b"
+    },
+    {
+      "slug": "artist:elis-regina",
+      "type": "artist",
+      "name": "Elis Regina",
+      "mbid": "e9e85a54-074c-4d29-a886-bcaaa9d44f9f"
+    },
+    {
+      "slug": "artist:novos-baianos",
+      "type": "artist",
+      "name": "Novos Baianos",
+      "mbid": "7b543eba-995a-4c30-a37e-f8cac424f167"
+    },
+    {
+      "slug": "artist:aracy-de-almeida",
+      "type": "artist",
+      "name": "Aracy de Almeida",
+      "mbid": "22ced03a-f966-4c94-91ea-50343f83a2b1"
+    },
+    {
+      "slug": "artist:francisco-alves",
+      "type": "artist",
+      "name": "Francisco Alves",
+      "mbid": "c2a0fbf2-34bb-4a71-b426-2f5359adc736"
+    },
+    {
+      "slug": "artist:martinho-da-vila",
+      "type": "artist",
+      "name": "Martinho da Vila",
+      "mbid": "88a13d24-7915-4b51-8d95-c8de00ab79ea"
+    },
+    {
+      "slug": "artist:nelson-cavaquinho",
+      "type": "artist",
+      "name": "Nelson Cavaquinho",
+      "mbid": "208f9d6d-430b-4c44-9a97-cfc624fec1c3"
+    },
+    {
+      "slug": "artist:mario-reis",
+      "type": "artist",
+      "name": "Mário Reis",
+      "mbid": "90ca682d-8a6e-490f-bca8-97d91a7a6cd5"
+    },
+    {
+      "slug": "artist:marilia-batista",
+      "type": "artist",
+      "name": "Marília Batista",
+      "mbid": "dc173bd7-b3b2-4095-a96a-f3b3d577ef16"
+    }
+  ]
 }

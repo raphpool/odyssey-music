@@ -114,5 +114,66 @@
       "name": "Rachel Blumberg"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:wilco",
+      "type": "artist",
+      "name": "Wilco",
+      "mbid": "9e53f84d-ef44-4c16-9677-5fd4d78cbd7d"
+    },
+    {
+      "slug": "artist:spoon",
+      "type": "artist",
+      "name": "Spoon",
+      "mbid": "84eac621-1c5a-49a1-9500-555099c6e184"
+    },
+    {
+      "slug": "artist:okkervil-river",
+      "type": "artist",
+      "name": "Okkervil River",
+      "mbid": "9fa07bb4-8312-4cd7-a19a-4fdbc5797148"
+    },
+    {
+      "slug": "artist:belle-and-sebastian",
+      "type": "artist",
+      "name": "Belle and Sebastian",
+      "mbid": "e5c7b94f-e264-473c-bb0f-37c85d4d5c70"
+    },
+    {
+      "slug": "artist:iron-and-wine",
+      "type": "artist",
+      "name": "Iron & Wine",
+      "mbid": "c3f28da8-662d-4f09-bdc7-3084bf685930"
+    },
+    {
+      "slug": "artist:the-decemberists",
+      "type": "artist",
+      "name": "The Decemberists",
+      "mbid": "97b1142f-c71e-4971-8736-4a8ceaf6b4c3"
+    },
+    {
+      "slug": "artist:the-mountain-goats",
+      "type": "artist",
+      "name": "The Mountain Goats",
+      "mbid": "9639cd52-c351-4a17-9797-58880e95a7ef"
+    },
+    {
+      "slug": "artist:bonnie-prince-billy",
+      "type": "artist",
+      "name": "Bonnie “Prince” Billy",
+      "mbid": "7b0a63b2-b8e8-490e-b724-1d30cb5edfe3"
+    },
+    {
+      "slug": "artist:sun-kil-moon",
+      "type": "artist",
+      "name": "Sun Kil Moon",
+      "mbid": "ef2c6449-d02b-415b-ad8c-c14c08266552"
+    }
+  ]
 }

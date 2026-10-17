@@ -111,5 +111,66 @@
       "name": "Mitch Mitchell"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones",
+      "mbid": "b071f9fa-14b0-4217-8e97-eb41da73f598"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:led-zeppelin",
+      "type": "artist",
+      "name": "Led Zeppelin",
+      "mbid": "678d88b2-87b0-403b-b63d-5da7465aecc3"
+    },
+    {
+      "slug": "artist:the-doors",
+      "type": "artist",
+      "name": "The Doors",
+      "mbid": "9efff43b-3b29-4082-824e-bc82f646f93d"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
+    },
+    {
+      "slug": "artist:the-who",
+      "type": "artist",
+      "name": "The Who",
+      "mbid": "9fdaa16b-a6c4-4831-b87c-bc9ca8ce7eaa"
+    },
+    {
+      "slug": "artist:bob-dylan",
+      "type": "artist",
+      "name": "Bob Dylan",
+      "mbid": "72c536dc-7137-4477-a521-567eeb840fa8"
+    },
+    {
+      "slug": "artist:cream",
+      "type": "artist",
+      "name": "Cream",
+      "mbid": "04cd0cfd-bfd1-4c36-bc38-95c35e2c045f"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:creedence-clearwater-revival",
+      "type": "artist",
+      "name": "Creedence Clearwater Revival",
+      "mbid": "109958eb-a335-4c5e-907e-597ff4c6af46"
+    }
+  ]
 }

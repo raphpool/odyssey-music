@@ -752,5 +752,63 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:krs-one",
+      "type": "artist",
+      "name": "KRS-One",
+      "mbid": "fc4568b6-cbe3-4a3d-8409-28510c19e3e2"
+    },
+    {
+      "slug": "artist:dj-premier",
+      "type": "artist",
+      "name": "DJ Premier",
+      "mbid": "084e06f5-3c82-4b71-bd94-dd69e7bd515e"
+    },
+    {
+      "slug": "artist:de-la-soul",
+      "type": "artist",
+      "name": "De La Soul",
+      "mbid": "a8ebde98-7e91-46c7-992c-90039ba42017"
+    },
+    {
+      "slug": "artist:a-ap-rocky",
+      "type": "artist",
+      "name": "A$AP Rocky",
+      "mbid": "25b7b584-d952-4662-a8b9-dd8cdfbfeb64"
+    },
+    {
+      "slug": "artist:digable-planets",
+      "type": "artist",
+      "name": "Digable Planets",
+      "mbid": "ff44f779-74ab-48f8-aac3-39ebe8f7c18e"
+    },
+    {
+      "slug": "artist:ll-cool-j",
+      "type": "artist",
+      "name": "LL Cool J"
+    },
+    {
+      "slug": "artist:salt-n-pepa",
+      "type": "artist",
+      "name": "Salt-N-Pepa",
+      "mbid": "26bcd35d-56a3-4e4d-8ad7-7bc5787c3af1"
+    },
+    {
+      "slug": "artist:jeezy",
+      "type": "artist",
+      "name": "Jeezy"
+    },
+    {
+      "slug": "artist:ludacris",
+      "type": "artist",
+      "name": "Ludacris"
+    },
+    {
+      "slug": "artist:warren-g",
+      "type": "artist",
+      "name": "Warren G",
+      "mbid": "85d7666c-d3ce-4e2c-8b1b-f20db7cdae4f"
+    }
+  ]
 }

@@ -67,5 +67,66 @@
       "name": "Kool Shen"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:iam",
+      "type": "artist",
+      "name": "IAM",
+      "mbid": "7aa4a16e-9d5a-41d3-968e-fae1a2c84d05"
+    },
+    {
+      "slug": "artist:mc-solaar",
+      "type": "artist",
+      "name": "MC Solaar",
+      "mbid": "bbbd2644-b4cb-4bb5-a442-315310f68a0b"
+    },
+    {
+      "slug": "artist:oxmo-puccino",
+      "type": "artist",
+      "name": "Oxmo Puccino",
+      "mbid": "faf5d956-ba11-4e01-9634-2f1c9ec92df5"
+    },
+    {
+      "slug": "artist:jaeyez",
+      "type": "artist",
+      "name": "Jaeyez",
+      "mbid": "b1588efd-430b-40d2-9cdb-ffda6ff9df5e"
+    },
+    {
+      "slug": "artist:fonky-family",
+      "type": "artist",
+      "name": "Fonky Family",
+      "mbid": "dfbc2d9e-d1c0-442b-970f-af28bb597537"
+    },
+    {
+      "slug": "artist:beastie-boys",
+      "type": "artist",
+      "name": "Beastie Boys",
+      "mbid": "9beb62b2-88db-4cea-801e-162cd344ee53"
+    },
+    {
+      "slug": "artist:daft-punk",
+      "type": "artist",
+      "name": "Daft Punk",
+      "mbid": "056e4f3e-d505-4dad-8ec1-d04f521cbb56"
+    },
+    {
+      "slug": "artist:orelsan",
+      "type": "artist",
+      "name": "Orelsan",
+      "mbid": "6cad3ce5-6380-4594-a8da-ae7d273b683d"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:nirvana",
+      "type": "artist",
+      "name": "Nirvana",
+      "mbid": "5b11f4ce-a62d-471e-81fc-a69a8278c7da"
+    }
+  ]
 }

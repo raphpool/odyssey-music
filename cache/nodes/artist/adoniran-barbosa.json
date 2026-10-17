@@ -145,5 +145,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:cartola",
+      "type": "artist",
+      "name": "Cartola",
+      "mbid": "7c743881-aed4-47d4-93d5-9fdd6e2904bb"
+    },
+    {
+      "slug": "artist:chico-buarque",
+      "type": "artist",
+      "name": "Chico Buarque",
+      "mbid": "3a5d1cc7-627e-48ea-aba3-fdd20d782c33"
+    },
+    {
+      "slug": "artist:elis-regina",
+      "type": "artist",
+      "name": "Elis Regina",
+      "mbid": "e9e85a54-074c-4d29-a886-bcaaa9d44f9f"
+    },
+    {
+      "slug": "artist:paulinho-da-viola",
+      "type": "artist",
+      "name": "Paulinho da Viola",
+      "mbid": "087fc778-c1ed-4f32-bff7-19f8eeba9e57"
+    },
+    {
+      "slug": "artist:jorge-ben-jor",
+      "type": "artist",
+      "name": "Jorge Ben Jor",
+      "mbid": "19499124-36d4-4ccc-b28d-04dde3d2076f"
+    },
+    {
+      "slug": "artist:clara-nunes",
+      "type": "artist",
+      "name": "Clara Nunes",
+      "mbid": "1fe4421e-850f-46e2-a8be-b760c57cb9c7"
+    },
+    {
+      "slug": "artist:novos-baianos",
+      "type": "artist",
+      "name": "Novos Baianos",
+      "mbid": "7b543eba-995a-4c30-a37e-f8cac424f167"
+    },
+    {
+      "slug": "artist:caetano-veloso",
+      "type": "artist",
+      "name": "Caetano Veloso",
+      "mbid": "f07dbc2f-317b-470f-bad4-5f1b0eb6faf1"
+    },
+    {
+      "slug": "artist:zeca-pagodinho",
+      "type": "artist",
+      "name": "Zeca Pagodinho",
+      "mbid": "7d3d9d52-a44f-4ba1-a080-cf64698912c0"
+    },
+    {
+      "slug": "artist:beth-carvalho",
+      "type": "artist",
+      "name": "Beth Carvalho",
+      "mbid": "02809fda-8319-4628-b165-a51213bf30ac"
+    }
+  ]
 }

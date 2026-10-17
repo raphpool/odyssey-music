@@ -546,5 +546,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-weeknd",
+      "type": "artist",
+      "name": "The Weeknd",
+      "mbid": "c8b03190-306c-4120-bb0b-6f2ebfc06ea9"
+    },
+    {
+      "slug": "artist:ed-sheeran",
+      "type": "artist",
+      "name": "Ed Sheeran",
+      "mbid": "b8a7c51f-362c-4dcb-a259-bc6e0095f0a6"
+    },
+    {
+      "slug": "artist:travis-scott",
+      "type": "artist",
+      "name": "Travis Scott",
+      "mbid": "e4a51f17-a57b-47b1-b37b-f552d0f8e9e6"
+    },
+    {
+      "slug": "artist:post-malone",
+      "type": "artist",
+      "name": "Post Malone",
+      "mbid": "b1e26560-60e5-4236-bbdb-9aa5a8d5ee19"
+    },
+    {
+      "slug": "artist:lil-baby",
+      "type": "artist",
+      "name": "Lil Baby",
+      "mbid": "d42a5768-ada1-4fb6-85fd-f61aba6264e0"
+    },
+    {
+      "slug": "artist:onerepublic",
+      "type": "artist",
+      "name": "OneRepublic",
+      "mbid": "c33c2065-b1c3-4406-b066-d33a9e2ea71a"
+    },
+    {
+      "slug": "artist:chris-brown",
+      "type": "artist",
+      "name": "Chris Brown",
+      "mbid": "c234fa42-e6a6-443e-937e-2f4b073538a3"
+    },
+    {
+      "slug": "artist:polo-g",
+      "type": "artist",
+      "name": "Polo G",
+      "mbid": "7e1e5648-1d6a-4248-975a-98603e781848"
+    },
+    {
+      "slug": "artist:rema",
+      "type": "artist",
+      "name": "Rema",
+      "mbid": "720c46ba-a0e4-4b58-aee2-3bd70c70901f"
+    },
+    {
+      "slug": "artist:aj-tracey",
+      "type": "artist",
+      "name": "AJ Tracey",
+      "mbid": "b8638bdc-728d-4d43-a908-7be7db29073b"
+    }
+  ]
 }

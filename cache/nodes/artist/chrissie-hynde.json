@@ -78,5 +78,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:ub40",
+      "type": "artist",
+      "name": "UB40",
+      "mbid": "7113aab7-628f-4050-ae49-dbecac110ca8"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:pretenders",
+      "type": "artist",
+      "name": "Pretenders",
+      "mbid": "e9c832b0-384b-4ee6-aec0-111372784aac"
+    },
+    {
+      "slug": "artist:coldplay",
+      "type": "artist",
+      "name": "Coldplay",
+      "mbid": "cc197bad-dc9c-440d-a5b5-d52ba2e14234"
+    },
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones",
+      "mbid": "b071f9fa-14b0-4217-8e97-eb41da73f598"
+    },
+    {
+      "slug": "artist:r-e-m",
+      "type": "artist",
+      "name": "R.E.M.",
+      "mbid": "ea4dfa26-f633-4da6-a52a-f49ea4897b58"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:fleetwood-mac",
+      "type": "artist",
+      "name": "Fleetwood Mac",
+      "mbid": "bd13909f-1c29-4c27-a874-d4aaf27c5b1a"
+    },
+    {
+      "slug": "artist:elton-john",
+      "type": "artist",
+      "name": "Elton John",
+      "mbid": "b83bc61f-8451-4a5d-8b8e-7e9ed295e822"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    }
+  ]
 }

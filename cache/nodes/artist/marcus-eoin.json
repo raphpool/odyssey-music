@@ -107,5 +107,60 @@
       "name": "Mike Sandison"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:rob-brown",
+      "type": "artist",
+      "name": "Rob Brown"
+    },
+    {
+      "slug": "artist:sean-booth",
+      "type": "artist",
+      "name": "Sean Booth",
+      "mbid": "18da95e1-52a8-44e6-bcba-2ff5d35b01d2"
+    },
+    {
+      "slug": "artist:aphex-twin",
+      "type": "artist",
+      "name": "Aphex Twin"
+    },
+    {
+      "slug": "artist:atom-heart",
+      "type": "artist",
+      "name": "Atom Heart"
+    },
+    {
+      "slug": "artist:b12",
+      "type": "artist",
+      "name": "B12"
+    },
+    {
+      "slug": "artist:mike-and-rich",
+      "type": "artist",
+      "name": "Mike & Rich"
+    },
+    {
+      "slug": "artist:richard-d-james",
+      "type": "artist",
+      "name": "Richard D. James",
+      "mbid": "79a09151-f6cc-48f9-9907-3fdd0b68373f"
+    },
+    {
+      "slug": "artist:steve-rutter",
+      "type": "artist",
+      "name": "Steve Rutter"
+    },
+    {
+      "slug": "artist:the-black-dog",
+      "type": "artist",
+      "name": "The Black Dog",
+      "mbid": "a78d2a35-c083-4179-a5d8-49f84e5ec863"
+    },
+    {
+      "slug": "artist:the-future-sound-of-london",
+      "type": "artist",
+      "name": "The Future Sound of London",
+      "mbid": "a1d77dd4-8728-4a47-bdfa-9663d791139c"
+    }
+  ]
 }

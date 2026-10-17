@@ -165,5 +165,66 @@
       "name": "Bob Marley & The Wailers"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:toots-and-the-maytals",
+      "type": "artist",
+      "name": "Toots & The Maytals",
+      "mbid": "29730ee3-e1c7-4e28-9ccd-3a0e6b0e8103"
+    },
+    {
+      "slug": "artist:jimmy-cliff",
+      "type": "artist",
+      "name": "Jimmy Cliff",
+      "mbid": "2caa54a7-b08c-41da-b892-3a41abe778be"
+    },
+    {
+      "slug": "artist:burning-spear",
+      "type": "artist",
+      "name": "Burning Spear",
+      "mbid": "16dad944-c492-43dd-88ed-e0b7ac520c40"
+    },
+    {
+      "slug": "artist:gregory-isaacs",
+      "type": "artist",
+      "name": "Gregory Isaacs",
+      "mbid": "9abff216-e204-4dbc-9849-d1dbe1fbbda8"
+    },
+    {
+      "slug": "artist:bob-marley",
+      "type": "artist",
+      "name": "Bob Marley",
+      "mbid": "ed2ac1e9-d51d-4eff-a2c2-85e81abd6360"
+    },
+    {
+      "slug": "artist:black-uhuru",
+      "type": "artist",
+      "name": "Black Uhuru",
+      "mbid": "8ee00333-ec2c-439b-a619-ae160aca2a15"
+    },
+    {
+      "slug": "artist:steel-pulse",
+      "type": "artist",
+      "name": "Steel Pulse",
+      "mbid": "37367b2f-69e4-4df2-9e64-75ca6204764b"
+    },
+    {
+      "slug": "artist:dennis-brown",
+      "type": "artist",
+      "name": "Dennis Brown",
+      "mbid": "24c0aaf3-4ac2-4f9a-9ce6-a1545a96f017"
+    },
+    {
+      "slug": "artist:bunny-wailer",
+      "type": "artist",
+      "name": "Bunny Wailer",
+      "mbid": "d4ab32fd-e45d-44bf-9e70-891521672085"
+    },
+    {
+      "slug": "artist:culture",
+      "type": "artist",
+      "name": "Culture",
+      "mbid": "dda3f50d-2205-40c6-8f70-223f2eacd92a"
+    }
+  ]
 }

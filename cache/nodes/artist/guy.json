@@ -193,5 +193,11 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:bobby-brown",
+      "type": "artist",
+      "name": "Bobby Brown"
+    }
+  ]
 }

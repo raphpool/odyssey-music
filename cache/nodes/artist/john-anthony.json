@@ -104,5 +104,30 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:van-der-graaf-generator",
+      "type": "artist",
+      "name": "Van der Graaf Generator",
+      "mbid": "b892f72d-05e2-4ff7-b863-3d5dec6331fd"
+    },
+    {
+      "slug": "artist:andy-mackay",
+      "type": "artist",
+      "name": "Andy Mackay",
+      "mbid": "2f82f693-9345-4ca4-aa87-9fb7e98d39c7"
+    },
+    {
+      "slug": "artist:phil-manzanera",
+      "type": "artist",
+      "name": "Phil Manzanera",
+      "mbid": "0d2cf864-5e99-472e-845f-5d1579979eee"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
+    }
+  ]
 }

@@ -395,5 +395,12 @@
       "name": "Phil Wilde"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:49ers",
+      "type": "artist",
+      "name": "49ers",
+      "mbid": "1c6bb329-0b00-42d0-b838-94341420b642"
+    }
+  ]
 }

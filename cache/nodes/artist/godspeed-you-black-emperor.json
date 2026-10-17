@@ -99,5 +99,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:explosions-in-the-sky",
+      "type": "artist",
+      "name": "Explosions in the Sky",
+      "mbid": "4236acde-2ce2-441c-a3d4-38d55f1b5474"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:sigur-ros",
+      "type": "artist",
+      "name": "Sigur Rós",
+      "mbid": "f6f2326f-6b25-4170-b89d-e235b25508e8"
+    },
+    {
+      "slug": "artist:god-is-an-astronaut",
+      "type": "artist",
+      "name": "God Is an Astronaut",
+      "mbid": "e9dfc148-d5f6-425e-b80b-f99ed2bd7c09"
+    },
+    {
+      "slug": "artist:a-silver-mt-zion",
+      "type": "artist",
+      "name": "A Silver Mt. Zion",
+      "mbid": "54a55229-e611-439f-928e-d89919ff9d29"
+    },
+    {
+      "slug": "artist:mono",
+      "type": "artist",
+      "name": "MONO",
+      "mbid": "ffe02aed-ef7e-4736-a186-c2f1dd55ce8d"
+    },
+    {
+      "slug": "artist:65daysofstatic",
+      "type": "artist",
+      "name": "65daysofstatic",
+      "mbid": "0cd12ab3-9628-45ef-a97b-ff18624f14a0"
+    },
+    {
+      "slug": "artist:this-will-destroy-you",
+      "type": "artist",
+      "name": "This Will Destroy You",
+      "mbid": "9512eed7-a1a9-4e2f-8cac-c10d1448c1ce"
+    },
+    {
+      "slug": "artist:do-make-say-think",
+      "type": "artist",
+      "name": "Do Make Say Think",
+      "mbid": "882d41ca-194d-405a-bfc5-b698ccfd77b4"
+    },
+    {
+      "slug": "artist:russian-circles",
+      "type": "artist",
+      "name": "Russian Circles",
+      "mbid": "cca40a67-e959-46f8-a3f3-8a3f77d2da9e"
+    }
+  ]
 }

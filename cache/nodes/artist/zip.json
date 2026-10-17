@@ -54,5 +54,42 @@
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": [
+    {
+      "slug": "artist:melchior-productions-ltd",
+      "type": "artist",
+      "name": "Melchior Productions Ltd"
+    },
+    {
+      "slug": "artist:sonja-moonear",
+      "type": "artist",
+      "name": "Sonja Moonear",
+      "mbid": "d6c86545-6fae-41b0-be0c-7a614190360b"
+    },
+    {
+      "slug": "artist:isolee",
+      "type": "artist",
+      "name": "Isolée",
+      "mbid": "4c99c0b4-5d46-44d2-8c49-ba47a522b016"
+    },
+    {
+      "slug": "artist:fumiya-tanaka",
+      "type": "artist",
+      "name": "Fumiya Tanaka",
+      "mbid": "86b9a88e-d18f-43c5-9805-f8eb41007aa2"
+    },
+    {
+      "slug": "artist:losoul",
+      "type": "artist",
+      "name": "Losoul",
+      "mbid": "c64bbb9f-1acb-40fa-abb3-2ca0246bdee1"
+    },
+    {
+      "slug": "artist:ricardo-villalobos",
+      "type": "artist",
+      "name": "Ricardo Villalobos",
+      "mbid": "bbd79854-df54-4c1b-b7d6-cf7eea2d0afb"
+    }
+  ]
 }

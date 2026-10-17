@@ -81,5 +81,66 @@
       "name": "Roxy Music"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:robert-wyatt",
+      "type": "artist",
+      "name": "Robert Wyatt",
+      "mbid": "9f041c61-f382-4048-a1f1-33105124bb99"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
+    },
+    {
+      "slug": "artist:801",
+      "type": "artist",
+      "name": "801",
+      "mbid": "c65492b4-28af-4d63-b9f5-1db325fd5976"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:john-cale",
+      "type": "artist",
+      "name": "John Cale",
+      "mbid": "72c090b6-a68e-4cb9-b330-85278681a714"
+    },
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:gentle-giant",
+      "type": "artist",
+      "name": "Gentle Giant",
+      "mbid": "f795c501-1c41-4be2-bc2a-875eba75aa31"
+    },
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones",
+      "mbid": "b071f9fa-14b0-4217-8e97-eb41da73f598"
+    },
+    {
+      "slug": "artist:soft-machine",
+      "type": "artist",
+      "name": "Soft Machine",
+      "mbid": "5193ce6b-a315-4c50-ae49-54e69ffbc988"
+    }
+  ]
 }

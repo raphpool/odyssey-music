@@ -98,5 +98,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:frank-zappa",
+      "type": "artist",
+      "name": "Frank Zappa",
+      "mbid": "e20747e7-55a4-452e-8766-7b985585082d"
+    },
+    {
+      "slug": "artist:captain-beefheart-and-his-magic-band",
+      "type": "artist",
+      "name": "Captain Beefheart & His Magic Band",
+      "mbid": "8dcd04e4-7695-4d80-bae9-1d7d680a38ef"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:swans",
+      "type": "artist",
+      "name": "Swans",
+      "mbid": "3285dc48-9505-469d-ad8a-bdf2d3dba632"
+    },
+    {
+      "slug": "artist:tom-waits",
+      "type": "artist",
+      "name": "Tom Waits",
+      "mbid": "c3aeb863-7b26-4388-94e8-5a240f2be21b"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    },
+    {
+      "slug": "artist:throbbing-gristle",
+      "type": "artist",
+      "name": "Throbbing Gristle",
+      "mbid": "e135d690-9c53-4333-8f11-98aec8c9f434"
+    },
+    {
+      "slug": "artist:talking-heads",
+      "type": "artist",
+      "name": "Talking Heads",
+      "mbid": "a94a7155-c79d-4409-9fcf-220cb0e4dc3a"
+    },
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones",
+      "mbid": "b071f9fa-14b0-4217-8e97-eb41da73f598"
+    }
+  ]
 }

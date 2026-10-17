@@ -90,5 +90,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:britney-spears",
+      "type": "artist",
+      "name": "Britney Spears",
+      "mbid": "45a663b5-b1cb-4a91-bff6-2bef7bbfdd76"
+    },
+    {
+      "slug": "artist:backstreet-boys",
+      "type": "artist",
+      "name": "Backstreet Boys",
+      "mbid": "2f569e60-0a1b-4fb9-95a4-3dc1525d1aad"
+    },
+    {
+      "slug": "artist:madonna",
+      "type": "artist",
+      "name": "Madonna",
+      "mbid": "79239441-bfd5-4981-a70c-55c3f15c1287"
+    },
+    {
+      "slug": "artist:christina-aguilera",
+      "type": "artist",
+      "name": "Christina Aguilera",
+      "mbid": "b202beb7-99bd-47e7-8b72-195c8d72ebdd"
+    },
+    {
+      "slug": "artist:lady-gaga",
+      "type": "artist",
+      "name": "Lady Gaga",
+      "mbid": "650e7db6-b795-4eb5-a702-5ea2fc46c848"
+    },
+    {
+      "slug": "artist:michael-jackson",
+      "type": "artist",
+      "name": "Michael Jackson",
+      "mbid": "f27ec8db-af05-4f36-916e-3d57f91ecf5e"
+    },
+    {
+      "slug": "artist:mariah-carey",
+      "type": "artist",
+      "name": "Mariah Carey",
+      "mbid": "494e8d09-f85b-4543-892f-a5096aed1cd4"
+    },
+    {
+      "slug": "artist:no-doubt",
+      "type": "artist",
+      "name": "No Doubt",
+      "mbid": "fbd2a255-1d57-4d31-ac11-65b671c19958"
+    },
+    {
+      "slug": "artist:kylie-minogue",
+      "type": "artist",
+      "name": "Kylie Minogue",
+      "mbid": "2fddb92d-24b2-46a5-bf28-3aed46f4684c"
+    },
+    {
+      "slug": "artist:ace-of-base",
+      "type": "artist",
+      "name": "Ace of Base",
+      "mbid": "d4a1404d-e00c-4bac-b3ba-e3557f6468d6"
+    }
+  ]
 }

@@ -715,5 +715,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:jeff-mills",
+      "type": "artist",
+      "name": "Jeff Mills",
+      "mbid": "470a4ced-1323-4c91-8fd5-0bb3fb4c932a"
+    },
+    {
+      "slug": "artist:planetary-assault-systems",
+      "type": "artist",
+      "name": "Planetary Assault Systems",
+      "mbid": "4c8dab3d-7b87-44ae-aec8-9b645f6b3e2d"
+    },
+    {
+      "slug": "artist:truncate",
+      "type": "artist",
+      "name": "Truncate",
+      "mbid": "e5bd3c6a-faca-47d1-a8bd-90aac7cf9c8a"
+    },
+    {
+      "slug": "artist:shifted",
+      "type": "artist",
+      "name": "Shifted",
+      "mbid": "ae750766-c946-48dc-b71e-f7f328e33932"
+    },
+    {
+      "slug": "artist:steve-bicknell",
+      "type": "artist",
+      "name": "Steve Bicknell",
+      "mbid": "f4480ff7-6fc5-4f3b-9731-05d41caa286f"
+    },
+    {
+      "slug": "artist:neel",
+      "type": "artist",
+      "name": "Neel",
+      "mbid": "6e1758b7-c7dd-430a-a959-6ed93f202cba"
+    },
+    {
+      "slug": "artist:psyk",
+      "type": "artist",
+      "name": "Psyk",
+      "mbid": "f9c60791-a9ab-48ec-8824-170c42ea4466"
+    },
+    {
+      "slug": "artist:dustin-zahn",
+      "type": "artist",
+      "name": "Dustin Zahn",
+      "mbid": "66d24424-fa6c-4657-adcd-615eaef3a74a"
+    },
+    {
+      "slug": "artist:mike-storm",
+      "type": "artist",
+      "name": "Mike Storm",
+      "mbid": "77135be4-63cb-401e-a4d5-6568d7a7ffb7"
+    },
+    {
+      "slug": "artist:sirko-mueller",
+      "type": "artist",
+      "name": "Sirko Mueller",
+      "mbid": "d9f33c78-e193-453d-97e3-08f472b04710"
+    }
+  ]
 }

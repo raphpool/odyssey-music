@@ -157,5 +157,18 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:kanda-bongo-man",
+      "type": "artist",
+      "name": "Kanda Bongo Man",
+      "mbid": "aee0642c-1d8b-4a64-9993-443f94242b2e"
+    },
+    {
+      "slug": "artist:pepe-kalle",
+      "type": "artist",
+      "name": "Pépé Kallé",
+      "mbid": "c2a1a86c-1219-4a03-b34b-e4db2506bcb0"
+    }
+  ]
 }

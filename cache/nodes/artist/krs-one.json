@@ -646,5 +646,66 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:wu-tang-clan",
+      "type": "artist",
+      "name": "Wu‐Tang Clan",
+      "mbid": "0febdcf7-4e1f-4661-9493-b40427de2c13"
+    },
+    {
+      "slug": "artist:gang-starr",
+      "type": "artist",
+      "name": "Gang Starr",
+      "mbid": "9ef8042a-2528-4f5c-b7c1-5e72b1efe170"
+    },
+    {
+      "slug": "artist:public-enemy",
+      "type": "artist",
+      "name": "Public Enemy",
+      "mbid": "bf2e15d0-4b77-469e-bfb4-f8414415baca"
+    },
+    {
+      "slug": "artist:snoop-dogg",
+      "type": "artist",
+      "name": "Snoop Dogg",
+      "mbid": "f90e8b26-9e52-4669-a5c9-e28529c47894"
+    },
+    {
+      "slug": "artist:the-notorious-b-i-g",
+      "type": "artist",
+      "name": "The Notorious B.I.G.",
+      "mbid": "d5d97b2b-b83b-4976-814a-056d9076c8c3"
+    },
+    {
+      "slug": "artist:mobb-deep",
+      "type": "artist",
+      "name": "Mobb Deep",
+      "mbid": "d75d1f08-bbb8-4eae-9877-399ca9121197"
+    },
+    {
+      "slug": "artist:mos-def",
+      "type": "artist",
+      "name": "Yasiin Bey",
+      "mbid": "f5c4c27e-5902-4fc0-adfb-7775da3d5363"
+    },
+    {
+      "slug": "artist:cypress-hill",
+      "type": "artist",
+      "name": "Cypress Hill",
+      "mbid": "51508c1f-8d07-4a00-9cf1-26c570fe7b78"
+    },
+    {
+      "slug": "artist:busta-rhymes",
+      "type": "artist",
+      "name": "Busta Rhymes",
+      "mbid": "10a9ff92-9637-4498-afea-7044b2ab0dc0"
+    },
+    {
+      "slug": "artist:jay-z",
+      "type": "artist",
+      "name": "JAŸ-Z",
+      "mbid": "f82bcf78-5b69-4622-a5ef-73800768d9ac"
+    }
+  ]
 }

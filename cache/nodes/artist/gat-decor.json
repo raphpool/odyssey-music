@@ -71,5 +71,66 @@
       "name": "Simon Hanson"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:moby",
+      "type": "artist",
+      "name": "Moby",
+      "mbid": "8970d868-0723-483b-a75b-51088913d3d4"
+    },
+    {
+      "slug": "artist:the-prodigy",
+      "type": "artist",
+      "name": "The Prodigy",
+      "mbid": "4a4ee089-93b1-4470-af9a-6ff575d32704"
+    },
+    {
+      "slug": "artist:the-original",
+      "type": "artist",
+      "name": "The Original",
+      "mbid": "47b8b8d3-2987-4e90-a496-adee4164c565"
+    },
+    {
+      "slug": "artist:jinny",
+      "type": "artist",
+      "name": "Jinny",
+      "mbid": "45a484af-f846-41fc-b018-6253ad8723d0"
+    },
+    {
+      "slug": "artist:urban-cookie-collective",
+      "type": "artist",
+      "name": "Urban Cookie Collective",
+      "mbid": "cb862bb0-676b-47bd-8def-b9f8b8330117"
+    },
+    {
+      "slug": "artist:joey-beltram",
+      "type": "artist",
+      "name": "Joey Beltram",
+      "mbid": "5330d6d0-711b-415b-93e4-071e46d0d5f2"
+    },
+    {
+      "slug": "artist:orbital",
+      "type": "artist",
+      "name": "Orbital",
+      "mbid": "f3e2a7d9-c6bb-4848-95e5-04c0a1e2f511"
+    },
+    {
+      "slug": "artist:inner-city",
+      "type": "artist",
+      "name": "Inner City",
+      "mbid": "65a8e571-8a08-433f-a5bf-ead38c269ea6"
+    },
+    {
+      "slug": "artist:de-lacy",
+      "type": "artist",
+      "name": "De’Lacy",
+      "mbid": "4e09e365-d82d-4935-90f7-fd688a198813"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    }
+  ]
 }

@@ -88,5 +88,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:adam-beyer",
+      "type": "artist",
+      "name": "Adam Beyer",
+      "mbid": "0d6daf47-0be9-44ee-a9e8-fb5a7b718538"
+    },
+    {
+      "slug": "artist:sven-vath",
+      "type": "artist",
+      "name": "Sven Väth",
+      "mbid": "14008378-5900-4370-831e-3d17f9749caf"
+    },
+    {
+      "slug": "artist:apparat",
+      "type": "artist",
+      "name": "Apparat",
+      "mbid": "dc3dbfc1-f1f1-49c6-9d7c-425fabf3ae12"
+    },
+    {
+      "slug": "artist:ben-sims",
+      "type": "artist",
+      "name": "Ben Sims",
+      "mbid": "bfdd55cf-82e6-4fad-95f6-135136da25d6"
+    },
+    {
+      "slug": "artist:umek",
+      "type": "artist",
+      "name": "Umek",
+      "mbid": "a03affe5-47af-48c4-9b8e-67654fa318ec"
+    },
+    {
+      "slug": "artist:trentemoller",
+      "type": "artist",
+      "name": "Trentemøller",
+      "mbid": "95e9aba6-f85c-48a0-9ec9-395d4f0e3875"
+    },
+    {
+      "slug": "artist:planetary-assault-systems",
+      "type": "artist",
+      "name": "Planetary Assault Systems",
+      "mbid": "4c8dab3d-7b87-44ae-aec8-9b645f6b3e2d"
+    },
+    {
+      "slug": "artist:polly-scattergood",
+      "type": "artist",
+      "name": "Polly Scattergood",
+      "mbid": "e0fdee35-0790-4a5a-8cd8-bc83d4854422"
+    },
+    {
+      "slug": "artist:marco-bailey",
+      "type": "artist",
+      "name": "Marco Bailey",
+      "mbid": "32a821fe-7e6d-4215-a118-2d828d867a7a"
+    },
+    {
+      "slug": "artist:len-faki",
+      "type": "artist",
+      "name": "Len Faki",
+      "mbid": "220f98db-2c1a-4c0c-a2d6-eebcc139d53c"
+    }
+  ]
 }

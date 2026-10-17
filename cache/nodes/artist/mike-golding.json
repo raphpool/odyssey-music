@@ -95,5 +95,11 @@
       "name": "B12"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:steve-rutter",
+      "type": "artist",
+      "name": "Steve Rutter"
+    }
+  ]
 }

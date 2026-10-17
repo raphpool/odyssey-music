@@ -124,5 +124,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:roman-rodney",
+      "type": "artist",
+      "name": "Roman Rodney",
+      "mbid": "a3e3669b-9af6-4cd0-b2e2-942c79421543"
+    },
+    {
+      "slug": "artist:klein",
+      "type": "artist",
+      "name": "Klein",
+      "mbid": "760e95ff-c503-4567-8109-759b9594c182"
+    },
+    {
+      "slug": "artist:tlc-fam",
+      "type": "artist",
+      "name": "TLC Fam",
+      "mbid": "238d0be0-d858-4718-972a-c5554078b5b1"
+    },
+    {
+      "slug": "artist:dj-tre",
+      "type": "artist",
+      "name": "DJ Tre",
+      "mbid": "cc73eaea-be18-4490-82df-0065a3dc972d"
+    },
+    {
+      "slug": "artist:nazar",
+      "type": "artist",
+      "name": "Nazar",
+      "mbid": "78202e16-b25b-4fc7-a122-9f4fc110c6b1"
+    },
+    {
+      "slug": "artist:david-hykes",
+      "type": "artist",
+      "name": "David Hykes",
+      "mbid": "23581798-f70f-4e96-a122-30f5976c6810"
+    },
+    {
+      "slug": "artist:cooly-g",
+      "type": "artist",
+      "name": "Cooly G",
+      "mbid": "e9cf71a9-b45c-4497-809a-600e9ee93fa2"
+    },
+    {
+      "slug": "artist:virgin",
+      "type": "artist",
+      "name": "Virgin",
+      "mbid": "b7059e2e-f538-43fa-a831-32d5fb6d2944"
+    },
+    {
+      "slug": "artist:mr-fingers",
+      "type": "artist",
+      "name": "Mr. Fingers",
+      "mbid": "1e47567e-5192-43b9-af98-75e4998f9e52"
+    },
+    {
+      "slug": "artist:julz-da-deejay",
+      "type": "artist",
+      "name": "Julz da Deejay",
+      "mbid": "3a6941f4-da81-4af8-aa89-d5569c864e8c"
+    }
+  ]
 }

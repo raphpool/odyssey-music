@@ -376,5 +376,41 @@
     }
   ],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:purrple-cat",
+      "type": "artist",
+      "name": "Purrple Cat",
+      "mbid": "553d1b5f-7cb6-4df7-8a69-e78b4bc4f7a5"
+    },
+    {
+      "slug": "artist:death-grips",
+      "type": "artist",
+      "name": "Death Grips",
+      "mbid": "f9133036-ab3d-4e97-bd11-7a2c98ad148a"
+    },
+    {
+      "slug": "artist:digable-planets",
+      "type": "artist",
+      "name": "Digable Planets",
+      "mbid": "ff44f779-74ab-48f8-aac3-39ebe8f7c18e"
+    },
+    {
+      "slug": "artist:earl-sweatshirt",
+      "type": "artist",
+      "name": "Earl Sweatshirt"
+    },
+    {
+      "slug": "artist:kendrick-lamar",
+      "type": "artist",
+      "name": "Kendrick Lamar",
+      "mbid": "381086ea-f511-4aba-bdf9-71c753dc5077"
+    },
+    {
+      "slug": "artist:the-roots",
+      "type": "artist",
+      "name": "The Roots",
+      "mbid": "80b3cf5e-18fe-4c59-98c7-e5bb87210710"
+    }
+  ]
 }

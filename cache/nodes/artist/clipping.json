@@ -352,5 +352,66 @@
       "name": "Jonathan Snipes"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:death-grips",
+      "type": "artist",
+      "name": "Death Grips",
+      "mbid": "f9133036-ab3d-4e97-bd11-7a2c98ad148a"
+    },
+    {
+      "slug": "artist:cam",
+      "type": "artist",
+      "name": "Cam",
+      "mbid": "a4d5bb4e-f73f-4a88-b87b-d7c6300813a4"
+    },
+    {
+      "slug": "artist:danny-brown",
+      "type": "artist",
+      "name": "Danny Brown",
+      "mbid": "960afc67-9c21-46dd-9c7f-ff2b509e3150"
+    },
+    {
+      "slug": "artist:robyn-hood",
+      "type": "artist",
+      "name": "Robyn Hood",
+      "mbid": "f22d42cb-3dca-40c1-b37b-f1aef1d47388"
+    },
+    {
+      "slug": "artist:run-the-jewels",
+      "type": "artist",
+      "name": "Run the Jewels",
+      "mbid": "a80c5dc5-b12e-4667-9f5a-b568961f3839"
+    },
+    {
+      "slug": "artist:ed-balloon",
+      "type": "artist",
+      "name": "Ed Balloon",
+      "mbid": "1ed08b54-db32-41e4-84ad-8b868d53152a"
+    },
+    {
+      "slug": "artist:king-t",
+      "type": "artist",
+      "name": "King T",
+      "mbid": "7ec04edc-59ce-4fc4-8c0a-f519f38be4fd"
+    },
+    {
+      "slug": "artist:pedestrian-deposit",
+      "type": "artist",
+      "name": "Pedestrian Deposit",
+      "mbid": "c5fcdd3b-08be-4dcd-9beb-8408fd4427ec"
+    },
+    {
+      "slug": "artist:michael-esposito",
+      "type": "artist",
+      "name": "Michael Esposito",
+      "mbid": "66623295-7643-4a5a-9e92-be45a54b6ce8"
+    },
+    {
+      "slug": "artist:chinaina",
+      "type": "artist",
+      "name": "Chinaina",
+      "mbid": "ddb02826-e26e-451d-8c39-d3fe8898af72"
+    }
+  ]
 }

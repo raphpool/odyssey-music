@@ -447,5 +447,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:hector-lavoe",
+      "type": "artist",
+      "name": "Héctor Lavoe",
+      "mbid": "2cf18512-c129-482b-aff1-7430a1a7850b"
+    },
+    {
+      "slug": "artist:ruben-blades",
+      "type": "artist",
+      "name": "Rubén Blades",
+      "mbid": "f050673a-dfb3-4200-b057-bf78213de36c"
+    },
+    {
+      "slug": "artist:ray-barretto",
+      "type": "artist",
+      "name": "Ray Barretto",
+      "mbid": "169153fd-ba80-401a-8ccd-2825efaf9155"
+    },
+    {
+      "slug": "artist:celia-cruz",
+      "type": "artist",
+      "name": "Celia Cruz",
+      "mbid": "7b8e1188-9ca4-4aa5-8393-172de6fa04de"
+    },
+    {
+      "slug": "artist:el-gran-combo-de-puerto-rico",
+      "type": "artist",
+      "name": "El Gran Combo de Puerto Rico",
+      "mbid": "a34ab81e-a7e0-4d0c-b5f8-2438f104733d"
+    },
+    {
+      "slug": "artist:tito-puente",
+      "type": "artist",
+      "name": "Tito Puente",
+      "mbid": "f19ad155-d809-4770-ab8d-7579467d9f55"
+    },
+    {
+      "slug": "artist:marc-anthony",
+      "type": "artist",
+      "name": "Marc Anthony",
+      "mbid": "25607613-aceb-445a-8519-83a2ee0f8402"
+    },
+    {
+      "slug": "artist:grupo-niche",
+      "type": "artist",
+      "name": "Grupo Niche",
+      "mbid": "5436ce22-af50-4714-addc-afd5d2efc77f"
+    },
+    {
+      "slug": "artist:oscar-d-leon",
+      "type": "artist",
+      "name": "Oscar D’León",
+      "mbid": "b6059fbd-b176-4585-bb58-ea2f34269500"
+    },
+    {
+      "slug": "artist:ismael-rivera",
+      "type": "artist",
+      "name": "Ismael Rivera",
+      "mbid": "769e41cb-78ca-4252-b8c2-376169b83051"
+    }
+  ]
 }

@@ -360,5 +360,22 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:bell-biv-devoe",
+      "type": "artist",
+      "name": "Bell Biv DeVoe",
+      "mbid": "9b16908a-a78c-45a7-8366-d2a41967f745"
+    },
+    {
+      "slug": "artist:guy",
+      "type": "artist",
+      "name": "Guy"
+    },
+    {
+      "slug": "artist:frank-ocean",
+      "type": "artist",
+      "name": "Frank Ocean"
+    }
+  ]
 }

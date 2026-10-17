@@ -103,5 +103,12 @@
       "name": "Peter Andersson"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:lustmord",
+      "type": "artist",
+      "name": "Lustmord",
+      "mbid": "15f2bb82-bce4-44c9-863a-995ae9bde0b4"
+    }
+  ]
 }

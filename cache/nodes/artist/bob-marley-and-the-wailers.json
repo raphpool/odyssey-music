@@ -112,5 +112,66 @@
       "name": "Carlton Barrett"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-beatles",
+      "type": "artist",
+      "name": "The Beatles",
+      "mbid": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d"
+    },
+    {
+      "slug": "artist:the-rolling-stones",
+      "type": "artist",
+      "name": "The Rolling Stones",
+      "mbid": "b071f9fa-14b0-4217-8e97-eb41da73f598"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie",
+      "mbid": "5441c29d-3602-4898-b1a1-b77fa23b8e50"
+    },
+    {
+      "slug": "artist:pink-floyd",
+      "type": "artist",
+      "name": "Pink Floyd",
+      "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:bob-dylan",
+      "type": "artist",
+      "name": "Bob Dylan",
+      "mbid": "72c536dc-7137-4477-a521-567eeb840fa8"
+    },
+    {
+      "slug": "artist:led-zeppelin",
+      "type": "artist",
+      "name": "Led Zeppelin",
+      "mbid": "678d88b2-87b0-403b-b63d-5da7465aecc3"
+    },
+    {
+      "slug": "artist:the-wailers",
+      "type": "artist",
+      "name": "The Wailers",
+      "mbid": "c9e99d40-4a2c-4ca7-ac5b-e842264ee271"
+    },
+    {
+      "slug": "artist:red-hot-chili-peppers",
+      "type": "artist",
+      "name": "Red Hot Chili Peppers",
+      "mbid": "8bfac288-ccc5-448d-9573-c33ea2aa5c30"
+    },
+    {
+      "slug": "artist:u2",
+      "type": "artist",
+      "name": "U2",
+      "mbid": "a3cb23fc-acd3-4ce0-8f36-1e5aa6a18432"
+    }
+  ]
 }

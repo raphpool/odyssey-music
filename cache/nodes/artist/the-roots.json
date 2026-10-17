@@ -419,5 +419,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:dice-raw",
+      "type": "artist",
+      "name": "Dice Raw",
+      "mbid": "0a42bec8-3bae-4caa-8aa4-8a232a3854ff"
+    },
+    {
+      "slug": "artist:talib-kweli",
+      "type": "artist",
+      "name": "Talib Kweli",
+      "mbid": "bb3cbea2-5ad4-4917-bc84-8a1975d40315"
+    },
+    {
+      "slug": "artist:common",
+      "type": "artist",
+      "name": "Common",
+      "mbid": "c0a1179b-b14a-4d68-a3c1-1fdab16ed602"
+    },
+    {
+      "slug": "artist:mos-def",
+      "type": "artist",
+      "name": "Yasiin Bey",
+      "mbid": "f5c4c27e-5902-4fc0-adfb-7775da3d5363"
+    },
+    {
+      "slug": "artist:radiohead",
+      "type": "artist",
+      "name": "Radiohead",
+      "mbid": "a74b1b7f-71a5-4011-9441-d0b5e4122711"
+    },
+    {
+      "slug": "artist:bilal",
+      "type": "artist",
+      "name": "Bilal",
+      "mbid": "260097c7-d628-4a3f-966f-956ea430c0d8"
+    },
+    {
+      "slug": "artist:jay-z",
+      "type": "artist",
+      "name": "JAŸ-Z",
+      "mbid": "f82bcf78-5b69-4622-a5ef-73800768d9ac"
+    },
+    {
+      "slug": "artist:beastie-boys",
+      "type": "artist",
+      "name": "Beastie Boys",
+      "mbid": "9beb62b2-88db-4cea-801e-162cd344ee53"
+    },
+    {
+      "slug": "artist:wu-tang-clan",
+      "type": "artist",
+      "name": "Wu‐Tang Clan",
+      "mbid": "0febdcf7-4e1f-4661-9493-b40427de2c13"
+    },
+    {
+      "slug": "artist:gang-starr",
+      "type": "artist",
+      "name": "Gang Starr",
+      "mbid": "9ef8042a-2528-4f5c-b7c1-5e72b1efe170"
+    }
+  ]
 }

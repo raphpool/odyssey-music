@@ -527,5 +527,64 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:t-i",
+      "type": "artist",
+      "name": "T.I.",
+      "mbid": "f7ba7fbe-c6bd-4ac0-bee9-c25c558d7d62"
+    },
+    {
+      "slug": "artist:gucci-mane",
+      "type": "artist",
+      "name": "Gucci Mane"
+    },
+    {
+      "slug": "artist:ugk",
+      "type": "artist",
+      "name": "UGK",
+      "mbid": "9603810b-5d6d-41a6-aca8-330ef966d55c"
+    },
+    {
+      "slug": "artist:ludacris",
+      "type": "artist",
+      "name": "Ludacris"
+    },
+    {
+      "slug": "artist:warren-g",
+      "type": "artist",
+      "name": "Warren G",
+      "mbid": "85d7666c-d3ce-4e2c-8b1b-f20db7cdae4f"
+    },
+    {
+      "slug": "artist:dj-paul",
+      "type": "artist",
+      "name": "DJ Paul",
+      "mbid": "43906e48-a7c0-4b80-a5dd-37d1fe6ccdb9"
+    },
+    {
+      "slug": "artist:chief-keef",
+      "type": "artist",
+      "name": "Chief Keef",
+      "mbid": "9118f524-be76-4eaf-875c-ccf15e2a2ad6"
+    },
+    {
+      "slug": "artist:dr-dre",
+      "type": "artist",
+      "name": "Dr. Dre",
+      "mbid": "5f6ab597-f57a-40da-be9e-adad48708203"
+    },
+    {
+      "slug": "artist:eazy-e",
+      "type": "artist",
+      "name": "Eazy-E",
+      "mbid": "c3009d7a-51ac-4c9c-888a-04f5c3c4be0c"
+    },
+    {
+      "slug": "artist:ice-t",
+      "type": "artist",
+      "name": "Ice-T",
+      "mbid": "8a75ce0d-1df3-47cc-b076-ce2f4e8250f0"
+    }
+  ]
 }

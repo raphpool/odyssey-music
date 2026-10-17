@@ -109,5 +109,30 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:bernard-parmegiani",
+      "type": "artist",
+      "name": "Bernard Parmegiani",
+      "mbid": "3e3fbd8f-20b8-4f00-a1b2-8c14c9dd14f9"
+    },
+    {
+      "slug": "artist:hugh-le-caine",
+      "type": "artist",
+      "name": "Hugh Le Caine",
+      "mbid": "e7ae24a5-41c9-4952-8613-804d6082114b"
+    },
+    {
+      "slug": "artist:luc-ferrari",
+      "type": "artist",
+      "name": "Luc Ferrari",
+      "mbid": "589801f8-fe67-49bd-abcf-cca79c5d0776"
+    },
+    {
+      "slug": "artist:pierre-schaeffer",
+      "type": "artist",
+      "name": "Pierre Schaeffer",
+      "mbid": "cc48f77c-32c5-46e1-9f35-119d61671e1b"
+    }
+  ]
 }

@@ -104,5 +104,23 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:sean-booth",
+      "type": "artist",
+      "name": "Sean Booth",
+      "mbid": "18da95e1-52a8-44e6-bcba-2ff5d35b01d2"
+    },
+    {
+      "slug": "artist:boards-of-canada",
+      "type": "artist",
+      "name": "Boards of Canada"
+    },
+    {
+      "slug": "artist:marcus-eoin",
+      "type": "artist",
+      "name": "Marcus Eoin",
+      "mbid": "74edfdf2-4e76-4031-ae9b-16f1c7b4ba06"
+    }
+  ]
 }

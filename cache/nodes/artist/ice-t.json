@@ -463,5 +463,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:2pac",
+      "type": "artist",
+      "name": "2Pac",
+      "mbid": "382f1005-e9ab-4684-afd4-0bdae4ee37f2"
+    },
+    {
+      "slug": "artist:megadeth",
+      "type": "artist",
+      "name": "Megadeth",
+      "mbid": "a9044915-8be3-4c7e-b11f-9e2d2ea0a91e"
+    },
+    {
+      "slug": "artist:ice-cube",
+      "type": "artist",
+      "name": "Ice Cube",
+      "mbid": "1d11e2a1-4531-4d61-a8c7-7b5c6a608fd2"
+    },
+    {
+      "slug": "artist:public-enemy",
+      "type": "artist",
+      "name": "Public Enemy",
+      "mbid": "bf2e15d0-4b77-469e-bfb4-f8414415baca"
+    },
+    {
+      "slug": "artist:beastie-boys",
+      "type": "artist",
+      "name": "Beastie Boys",
+      "mbid": "9beb62b2-88db-4cea-801e-162cd344ee53"
+    },
+    {
+      "slug": "artist:slayer",
+      "type": "artist",
+      "name": "Slayer",
+      "mbid": "bdacc37b-8633-4bf8-9dd5-4662ee651aec"
+    },
+    {
+      "slug": "artist:n-w-a",
+      "type": "artist",
+      "name": "N.W.A",
+      "mbid": "3a54bffa-2314-44a2-927b-60144119c780"
+    },
+    {
+      "slug": "artist:eminem",
+      "type": "artist",
+      "name": "Eminem",
+      "mbid": "b95ce3ff-3d05-4e87-9e01-c97b66af13d4"
+    },
+    {
+      "slug": "artist:snoop-dogg",
+      "type": "artist",
+      "name": "Snoop Dogg",
+      "mbid": "f90e8b26-9e52-4669-a5c9-e28529c47894"
+    },
+    {
+      "slug": "artist:house-of-pain",
+      "type": "artist",
+      "name": "House of Pain",
+      "mbid": "c2d6a6fb-7999-4bb3-b2df-7d752fdf4e95"
+    }
+  ]
 }

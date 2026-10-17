@@ -107,5 +107,48 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:steve-reich",
+      "type": "artist",
+      "name": "Steve Reich",
+      "mbid": "a3031680-c359-458f-a641-70ccbaec6a74"
+    },
+    {
+      "slug": "artist:philip-glass",
+      "type": "artist",
+      "name": "Philip Glass",
+      "mbid": "5ae54dee-4dba-49c0-802a-a3b3b3adfe9b"
+    },
+    {
+      "slug": "artist:nam-june-paik",
+      "type": "artist",
+      "name": "Nam June Paik",
+      "mbid": "40d95b34-b523-48ff-bd61-fcf586ae3f58"
+    },
+    {
+      "slug": "artist:joseph-beuys",
+      "type": "artist",
+      "name": "Joseph Beuys",
+      "mbid": "8406a8fa-3718-492e-b0ff-1e0b920cc6e2"
+    },
+    {
+      "slug": "artist:eric-andersen",
+      "type": "artist",
+      "name": "Eric Andersen",
+      "mbid": "69268541-0d69-4e0b-a121-2697bc8fff1b"
+    },
+    {
+      "slug": "artist:philip-corner",
+      "type": "artist",
+      "name": "Philip Corner",
+      "mbid": "624f0a57-43a6-4c1d-9471-d7acc0651b7f"
+    },
+    {
+      "slug": "artist:dick-higgins",
+      "type": "artist",
+      "name": "Dick Higgins",
+      "mbid": "7465e024-5e12-4b9f-ad36-4b5b4b744019"
+    }
+  ]
 }

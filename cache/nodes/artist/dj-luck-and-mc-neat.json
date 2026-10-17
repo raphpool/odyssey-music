@@ -80,5 +80,66 @@
   ],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:artful-dodger",
+      "type": "artist",
+      "name": "Artful Dodger",
+      "mbid": "1cfbc7d1-299c-46e6-ba4c-1facb84ba435"
+    },
+    {
+      "slug": "artist:bugzy-malone",
+      "type": "artist",
+      "name": "Bugzy Malone",
+      "mbid": "0476663e-5e1b-4102-8d15-e6ec8d481a3a"
+    },
+    {
+      "slug": "artist:craig-david",
+      "type": "artist",
+      "name": "Craig David",
+      "mbid": "89e39f67-65cc-4f90-b145-b1b56c209f8a"
+    },
+    {
+      "slug": "artist:mj-cole",
+      "type": "artist",
+      "name": "MJ Cole",
+      "mbid": "6e5c1366-5891-4e01-bb13-6c8b2c8cdd35"
+    },
+    {
+      "slug": "artist:skepta",
+      "type": "artist",
+      "name": "Skepta",
+      "mbid": "38474d18-9204-4f60-a137-1fcc6750b869"
+    },
+    {
+      "slug": "artist:sweet-female-attitude",
+      "type": "artist",
+      "name": "Sweet Female Attitude",
+      "mbid": "0ace7725-f454-44c9-869d-c98b9c6a54a9"
+    },
+    {
+      "slug": "artist:architechs",
+      "type": "artist",
+      "name": "Architechs",
+      "mbid": "cc05a3f5-7cb6-4471-819a-ded21bfcee87"
+    },
+    {
+      "slug": "artist:stormzy",
+      "type": "artist",
+      "name": "Stormzy",
+      "mbid": "67fd5116-7a49-4abf-a34f-b08774128a7a"
+    },
+    {
+      "slug": "artist:gabrielle",
+      "type": "artist",
+      "name": "Gabrielle",
+      "mbid": "d55fe7ec-3c7f-44e7-b9cc-b025c4351f70"
+    },
+    {
+      "slug": "artist:so-solid-crew",
+      "type": "artist",
+      "name": "So Solid Crew",
+      "mbid": "6b77fc81-cc4f-4c31-bb4a-dc97cbd284f7"
+    }
+  ]
 }

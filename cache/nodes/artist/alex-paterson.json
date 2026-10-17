@@ -69,5 +69,12 @@
       "name": "The Orb"
     }
   ],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:the-future-sound-of-london",
+      "type": "artist",
+      "name": "The Future Sound of London",
+      "mbid": "a1d77dd4-8728-4a47-bdfa-9663d791139c"
+    }
+  ]
 }

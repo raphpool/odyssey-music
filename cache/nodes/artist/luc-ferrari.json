@@ -50,5 +50,66 @@
   "collaborators": [],
   "aliases": [],
   "members": [],
-  "similar_artists": []
+  "similar_artists": [
+    {
+      "slug": "artist:pierre-schaeffer",
+      "type": "artist",
+      "name": "Pierre Schaeffer",
+      "mbid": "cc48f77c-32c5-46e1-9f35-119d61671e1b"
+    },
+    {
+      "slug": "artist:morton-subotnick",
+      "type": "artist",
+      "name": "Morton Subotnick",
+      "mbid": "c5e98895-2ef3-4850-972e-03f6dbe9ff1c"
+    },
+    {
+      "slug": "artist:vladimir-ussachevsky",
+      "type": "artist",
+      "name": "Vladimir Ussachevsky",
+      "mbid": "5645f557-ed01-4b9d-87d4-da827ec90e9f"
+    },
+    {
+      "slug": "artist:pierre-henry",
+      "type": "artist",
+      "name": "Pierre Henry",
+      "mbid": "24e0aaa1-7961-4ab8-865e-e736226e41c9"
+    },
+    {
+      "slug": "artist:tod-dockstader",
+      "type": "artist",
+      "name": "Tod Dockstader",
+      "mbid": "a80175ee-6a9e-4bc4-b009-1bc48ac2cb13"
+    },
+    {
+      "slug": "artist:jean-claude-risset",
+      "type": "artist",
+      "name": "Jean‐Claude Risset",
+      "mbid": "5264157c-3140-40f9-b742-b54d010ba602"
+    },
+    {
+      "slug": "artist:edgard-varese",
+      "type": "artist",
+      "name": "Edgard Varèse",
+      "mbid": "9a6d6ce0-3496-4db2-8c7a-f2a9a14548a9"
+    },
+    {
+      "slug": "artist:bernard-parmegiani",
+      "type": "artist",
+      "name": "Bernard Parmegiani",
+      "mbid": "3e3fbd8f-20b8-4f00-a1b2-8c14c9dd14f9"
+    },
+    {
+      "slug": "artist:david-tudor",
+      "type": "artist",
+      "name": "David Tudor",
+      "mbid": "6df5ba4e-71c9-4d1e-99f8-9a045163eb3f"
+    },
+    {
+      "slug": "artist:pauline-oliveros",
+      "type": "artist",
+      "name": "Pauline Oliveros",
+      "mbid": "62c31c9d-d2d9-4b2a-9549-4be129e9559a"
+    }
+  ]
 }
