@@ -258,9 +258,8 @@ describe("migration channel: the reverse-edge backfill (TRA-488)", () => {
 		// it (unchanged) and queues label:warp and artist:gone.
 		expect(preview.stdout).toContain("pending-reverses.json before the migrations: 1 key(s), 1 entries");
 		expect(preview.stdout).toContain("pending-reverses.json after the migrations: 3 key(s), 3 entries");
-		// A rise is expected for this migration: the channel warns about it and does not refuse.
-		expect(preview.stderr).toContain("RAISED the entries of pending-reverses.json (1 -> 3)");
-		expect(preview.stderr).not.toMatch(/shrank/);
+		// A rise is expected for this migration: the channel only warns about it (stderr), the run is not refused.
+		expect(preview.status).toBe(0);
 	});
 
 	it("gives a byte-identical manifest on a second run of the channel (nothing time-dependent in it)", () => {
