@@ -4,15 +4,51 @@
  * offline among the edges the artist already carries (decision 7: re-calling Gemini for 581 nodes was
  * rejected). The rule is readable in the manifest, entry by entry.
  *
- * For each artist WITHOUT `landmark_project` and with a non-empty `discography`, every entry of the
- * discography is scored:
+ * RULE v2 (TRA-601, 2026-10-17). The first rule (PR #520: genre landmark / imaged / cached, a tie goes to
+ * the first of the list) was measured on a copy of the cache on 2026-10-17 and gave four bad PRODUCT choices,
+ * while a choice, once written, is final (idempotence) and this script had not been applied anywhere. The
+ * rule is therefore changed in place, the migration keeps its name. Each signal exists for one symptom:
+ *   - `first` was the MOST RECENT release (discographies are sorted by year, newest first): 342 choices had
+ *     no signal, 76 of them in 2024-2026, and in 78 cases a single although the list holds an album (Daft
+ *     Punk -> "Veridis Quo", a 2024 single; Dr. Dre -> a 2025 single). Hence `album` and the OLDEST year.
+ *   - a title quoted in the artist's own article is the strongest editorial signal the cache has about what
+ *     the artist is known for (`mentioned`): Selected Ambient Works 85-92 for Aphex Twin, Imagine for
+ *     Lennon, Zombie for Fela, instead of whatever came first.
+ *   - multi-artist compilations became an artist's flagship (Artificial Intelligence for Aphex Twin, Richie
+ *     Hawtin and B12; Saturday Night Fever for Kool & the Gang; Techno! The New Dance Sound of Detroit for
+ *     Juan Atkins), and a sideman got the leader's record (Kind of Blue, imaged, for Coltrane). Hence the
+ *     `compilation` exclusion: the dispatcher's decision of 2026-10-17, reversible by Raphael (journal of
+ *     docs/plans/graph-integrity.md).
+ *   - works named after an artist (project:the-beatles and track:the-beatles, two nodes that describe the
+ *     group) became the album AND the reference track of the 4 Beatles: such an entry gets no signal.
+ *
+ * For each artist WITHOUT `landmark_project` and with a non-empty `discography`, the entries are first
+ * filtered by the identity rules below, then every eligible entry is scored:
  *   +100 per genre of the cache whose `landmark_projects` lists the entry's slug  (reason `genreLandmark`)
+ *   +50  when the entry's title is quoted in the artist's article                   (reason `mentioned`)
+ *   +20  when the edge (or the cached target) is an `album`                         (reason `album`)
  *   +10  when the target is in the cache and has an `image_url`                    (reason `imaged`)
  *   +1   when the target is in the cache                                           (reason `cached`)
- * The highest score wins, a tie goes to the first in the list. The reason is the strongest signal the
- * winner has, `first` when it has none. Same rule for `reference_track` over `notable_tracks`, with the
- * genres' `landmark_tracks`. The chosen edge is copied as is (slug, name, mbid, artist, ...) from the
- * artist's OWN list: nothing is invented and no other node is read for its edges.
+ * The highest score wins; a tie goes to the OLDEST year (an entry without a year comes after those with
+ * one), then to the first of the list. The reason is the strongest signal the winner has, in the order
+ * above, `first` when it has none. Same rule for `reference_track` over `notable_tracks` and the genres'
+ * `landmark_tracks`, without `album`, without the compilation exclusion, and a tie goes to the first of the
+ * list. The chosen edge is copied as is (slug, name, mbid, artist, ...) from the artist's OWN list: nothing
+ * is invented and no other node is read for its edges.
+ * `mentioned`: title and text are normalized the same way (NFKD, ASCII only, lowercase, punctuation becomes
+ * a space, spaces collapsed; see normalizeText) and the title must appear as a WHOLE expression,
+ * bounded by spaces, in the normalized text ("homework" is not found in "homeworkers"). A title of fewer
+ * than 3 characters, made only of 4 digits (a year), or equal to the name of an artist or of a genre of the
+ * cache, never counts. Before the lookup the article loses the artist's name, its aliases and the genres'
+ * names (whole expressions, except those the title itself contains), found by the review of 2026-10-17:
+ * "Chuck Berry" quoted the title Chuck, "argentine tango" Tango (Carlos Gardel), "acid house" Acid
+ * (Dougal), "released in 2010" the title 2010 (Earl Sweatshirt). The article comes from an LLM, so it is
+ * untrusted: it only feeds a score, nothing taken from it is ever written.
+ * Name downgrade: an entry whose normalized title equals the normalized name of an artist of the cache
+ * (any artist: a self-titled work is a work named after an artist too) receives NO signal (score 0) and
+ * comes after every other entry on a tie; it is chosen only when it is the only eligible one. Not when
+ * its resolved slug is scoped on THE artist (project:skream--skream, project:inside--paul-horn): that
+ * work is the artist's own, the name collision is only apparent (review of 2026-10-17).
  *
  * Identity, safety before rate (2026-10-17, same family of defect as the homonyms of TRA-570 / TRA-561): an
  * artist's `discography` / `notable_tracks` can list a work that belongs to somebody else with the same
@@ -21,9 +57,27 @@
  *     artist's slug nor an artist edge with the same non-empty mbid, the rule of `reciprocates`,
  *     src/images/reciprocity.ts) is EXCLUDED from the choice, whatever its score, and listed in
  *     `excluded`; so is a target whose file cannot be read (it cannot be shown to credit anyone);
- *   - the "referenced by a genre" and "imaged" signals only count for a target that credits the artist;
- *   - a target that is not in the cache and is not redirected cannot be checked: it stays eligible, with a
- *     score of 0.
+ *     EXCEPTION (TRA-601, 2026-10-17): a cached target whose `artists` is EMPTY is an absence of proof, not a
+ *     proof of a foreign credit, so it stays eligible when ALL of these hold: (1) its title is `mentioned` in
+ *     the artist's article; (2) its resolved slug is not scoped on somebody else (a `--bob-dylan` scope IS a
+ *     foreign credit: the Byrds -> Dylan case); (3) its OWN text (`editorial_article`, `editorial_pitch` or
+ *     `editorial_teaser`) names the artist or an alias, as a whole expression. Symptom: the rule above
+ *     excluded project:selected-ambient-works-85-92 (`artists: []`, no mbid) and Aphex Twin fell back to
+ *     Windowlicker; but with (1) alone the review of the same day brought back homonyms, whose title is
+ *     identical by definition: DFRNT's Fading for Pole, the rapper Germ's Every Dog Has Its Day for
+ *     Millsart, the Baltimore punk trio The Wayward for Harry Partch. A target that credits ANOTHER artist
+ *     stays excluded, quoted or not (Moderat -> "II" of Boyz II Men, Juan Atkins -> "Clear"). A kept
+ *     target never gets the `cached` point (it was not shown to credit the artist), keeps the other
+ *     signals (the identity is attested on both sides), and its pick carries `emptyCredit: true`.
+ *   - the "referenced by a genre" and "imaged" signals only count for a target that credits the artist
+ *     (or is kept by the exception above);
+ *   - a target that is not in the cache and is not redirected cannot be checked: it stays eligible, with no
+ *     identity signal (it can still be `mentioned` or an `album`: both come from the artist's own data, so
+ *     an entry that could not be checked can outrank a verified one: accepted by TRA-601, the reason is in
+ *     the manifest, and Homework for Daft Punk is such a case).
+ * COMPILATION (TRA-601, `landmark_project` only, AFTER the identity rules): a resolved target that is in the
+ * cache, credits 3 artists or more (distinct slugs) and whose slug is NOT scoped on the artist is excluded
+ * (`compilation`). Kind of Blue stays for Miles Davis (project:kind-of-blue--miles-davis), not for Coltrane.
  * REDIRECTS (2026-10-17, deep review of PR #520): every candidate is resolved the way the reads resolve it
  * (`resolveReadSlug`: a live cache node wins, otherwise one hop of data/genre-redirects.json +
  * data/slug-redirects.json). A redirected target that is absent from the cache is NOT "unknown": the front
@@ -91,10 +145,10 @@ export const HIGHLIGHT_FIELDS = [
 ] as const;
 export type HighlightField = (typeof HIGHLIGHT_FIELDS)[number]["field"];
 
-export const REASONS = ["genreLandmark", "imaged", "cached", "first"] as const;
+export const REASONS = ["genreLandmark", "mentioned", "album", "imaged", "cached", "first"] as const;
 export type Reason = (typeof REASONS)[number];
 
-export const EXCLUSION_REASONS = ["not-credited", "redirected", "unreadable"] as const;
+export const EXCLUSION_REASONS = ["not-credited", "redirected", "unreadable", "compilation"] as const;
 export type ExclusionReason = (typeof EXCLUSION_REASONS)[number];
 
 export interface HighlightPick {
@@ -103,6 +157,8 @@ export interface HighlightPick {
 	target: string;
 	reason: Reason;
 	score: number;
+	/** Present (true) only when the target has an empty credit and was kept because the article quotes it. */
+	emptyCredit?: true;
 }
 
 export interface Exclusion {
@@ -123,7 +179,7 @@ export interface LandmarkManifest {
 	byReason: Record<HighlightField, Record<Reason, number>>;
 	/** Artists left without the field: an empty list, or every entry excluded. */
 	skipped: Record<HighlightField, string[]>;
-	/** Entries kept out of the choice because their target does not credit the artist. */
+	/** Entries kept out of the choice: the target does not credit the artist, is unreadable, redirected or a compilation. */
 	excluded: Exclusion[];
 	/** Every choice, with the score that decided it. */
 	picks: HighlightPick[];
@@ -140,6 +196,8 @@ export type TargetState =
 	| { kind: "uncredited" }
 	/** Redirected to a node absent from the cache and not scoped on the artist: the reads open somebody's work. */
 	| { kind: "redirected" }
+	/** Credits 3 artists or more and is not scoped on this one (landmark_project only, after the identity rules). */
+	| { kind: "compilation" }
 	| { kind: "credited"; imaged: boolean };
 
 export interface Candidate {
@@ -149,6 +207,16 @@ export interface Candidate {
 	state: TargetState;
 	/** How many genres of the cache list this slug in their landmark list. */
 	genres: number;
+	/** The title is quoted in the artist's article (see mentionedIn): a signal of the artist's own data. */
+	mentioned: boolean;
+	/** The edge, or the cached target, is an `album`. Never set for a track. */
+	album: boolean;
+	/** The title is the name of an artist of the cache: no signal at all, and last on a tie. */
+	namedAfterArtist: boolean;
+	/** The target has an empty credit and is kept only because the artist's article quotes its title. */
+	emptyCredit: boolean;
+	/** Release year of the edge; null when it has none that reads as a year. */
+	year: number | null;
 }
 
 export type Choice =
@@ -160,46 +228,135 @@ export type Choice =
 			slug: string;
 			reason: Reason;
 			score: number;
+			emptyCredit: boolean;
 			excluded: { slug: string; reason: ExclusionReason }[];
 	  };
 
-/** The score of an eligible candidate; the signals count only for a target that credits the artist. */
-export function scoreOf(c: Candidate): number {
-	if (c.state.kind === "absent") return 0;
-	if (c.state.kind !== "credited") return Number.NEGATIVE_INFINITY;
-	return c.genres * 100 + (c.state.imaged ? 10 : 0) + 1;
+/**
+ * Score and reason of an ELIGIBLE candidate (absent or credited). The genre, image and cache signals count
+ * only for a target that credits the artist; `mentioned` and `album` come from the artist's own data and
+ * also count for a target that is not in the cache. An entry named after an artist has no signal at all.
+ */
+export function scoreOf(c: Candidate): { score: number; reason: Reason } {
+	if (c.namedAfterArtist) return { score: 0, reason: "first" };
+	const credited = c.state.kind === "credited";
+	const genres = credited ? c.genres : 0;
+	const imaged = c.state.kind === "credited" && c.state.imaged;
+	// A target kept by the empty-credit gate was never shown to credit the artist: it is not "cached" for it.
+	const cached = credited && !c.emptyCredit;
+	const score =
+		genres * 100 + (c.mentioned ? 50 : 0) + (c.album ? 20 : 0) + (imaged ? 10 : 0) + (cached ? 1 : 0);
+	// The strongest signal, in the order of the weights.
+	const reason: Reason =
+		genres > 0
+			? "genreLandmark"
+			: c.mentioned
+				? "mentioned"
+				: c.album
+					? "album"
+					: imaged
+						? "imaged"
+						: cached
+							? "cached"
+							: "first";
+	return { score, reason };
 }
 
-export function reasonOf(score: number): Reason {
-	return score >= 100 ? "genreLandmark" : score >= 10 ? "imaged" : score >= 1 ? "cached" : "first";
+export interface ChooseOptions {
+	/** Tie on the OLDEST year first (landmark_project); the list order alone otherwise (reference_track). */
+	oldestFirst: boolean;
 }
 
-/** The best eligible candidate (highest score, first on a tie), or why there is none. */
-export function choose(candidates: readonly Candidate[]): Choice {
+/** Is `a` strictly better than `b`? Score, then not named after an artist, then the year; else `b` stays. */
+function beats(a: Candidate, scoreA: number, b: Candidate, scoreB: number, options: ChooseOptions): boolean {
+	if (scoreA !== scoreB) return scoreA > scoreB;
+	if (a.namedAfterArtist !== b.namedAfterArtist) return b.namedAfterArtist;
+	if (options.oldestFirst && a.year !== b.year) {
+		if (a.year === null) return false; // no year: after every entry that has one
+		return b.year === null || a.year < b.year;
+	}
+	return false;
+}
+
+/** The best eligible candidate (highest score, then oldest year, then list order), or why there is none. */
+export function choose(candidates: readonly Candidate[], options: ChooseOptions): Choice {
 	if (candidates.length === 0) return { kind: "empty" };
 	const excluded: { slug: string; reason: ExclusionReason }[] = [];
-	let best: { candidate: Candidate; score: number } | null = null;
+	let best: { candidate: Candidate; score: number; reason: Reason } | null = null;
 	for (const candidate of candidates) {
 		const kind = candidate.state.kind;
-		if (kind === "uncredited" || kind === "unreadable" || kind === "redirected") {
-			excluded.push({
-				slug: candidate.slug,
-				reason: kind === "uncredited" ? "not-credited" : kind === "redirected" ? "redirected" : "unreadable",
-			});
+		if (kind === "uncredited" || kind === "unreadable" || kind === "redirected" || kind === "compilation") {
+			excluded.push({ slug: candidate.slug, reason: kind === "uncredited" ? "not-credited" : kind });
 			continue;
 		}
-		const score = scoreOf(candidate);
-		if (best === null || score > best.score) best = { candidate, score };
+		const { score, reason } = scoreOf(candidate);
+		if (best === null || beats(candidate, score, best.candidate, best.score, options)) {
+			best = { candidate, score, reason };
+		}
 	}
 	if (best === null) return { kind: "all-excluded", excluded };
 	return {
 		kind: "chosen",
 		edge: best.candidate.edge,
 		slug: best.candidate.slug,
-		reason: reasonOf(best.score),
+		reason: best.reason,
 		score: best.score,
+		emptyCredit: best.candidate.emptyCredit,
 		excluded,
 	};
+}
+
+/**
+ * Text normalized for the title match: NFKD, ASCII only, lowercase, every run of punctuation or spaces
+ * becomes one space. Accents first decompose and their marks are dropped ("é" gives "e"); a non-ASCII
+ * LETTER with no decomposition ("ø", "ß", "日") is dropped; a non-ASCII PUNCTUATION, symbol or space (curly
+ * apostrophe, en / em dash, no-break space) becomes a space like its ASCII sibling. Without that last rule
+ * a curly apostrophe in the article ("Don’t Stop") would give "dont stop" against "don t stop" for the
+ * title typed with ', and "Blue—the" would glue two words (found by the review, 2026-10-17). Applied to the
+ * titles AND to the article, so both sides agree on every character.
+ */
+export function normalizeText(text: string): string {
+	return text
+		.normalize("NFKD")
+		.replace(/\P{ASCII}/gu, (char) => (/[\p{P}\p{S}\p{Z}]/u.test(char) ? " " : ""))
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, " ")
+		.trim();
+}
+
+/** The shortest normalized title that can count as quoted in a text. */
+export const MIN_MENTION_LENGTH = 3;
+
+/**
+ * Is the normalized `title` a WHOLE expression, bounded by spaces, of one of the normalized `texts`? A title
+ * of fewer than 3 characters, or made only of 4 digits (a year: "released in 2010"), never counts.
+ */
+export function mentionedIn(title: string, texts: readonly string[]): boolean {
+	if (title.length < MIN_MENTION_LENGTH || /^\d{4}$/.test(title)) return false;
+	const needle = ` ${title} `;
+	return texts.some((text) => ` ${text} `.includes(needle));
+}
+
+/**
+ * The normalized `text` without the given normalized phrases, each removed as a WHOLE expression (a phrase
+ * is replaced by one space, longest first). Used to take the artist's own name, aliases and the genres'
+ * names out of the article before a title is looked up: "Chuck Berry" must not quote the title Chuck,
+ * "argentine tango" the title Tango, "acid house" the title Acid.
+ */
+export function stripPhrases(text: string, phrases: readonly string[]): string {
+	let padded = ` ${text} `;
+	for (const phrase of [...phrases].sort((a, b) => b.length - a.length)) {
+		const needle = ` ${phrase} `;
+		while (padded.includes(needle)) padded = padded.split(needle).join(" ");
+	}
+	return padded.trim();
+}
+
+/** The year of an edge ("1997", "1997-05-01"), null when it does not start with four digits. */
+export function yearOf(year: unknown): number | null {
+	if (typeof year !== "string") return null;
+	const match = /^\d{4}/.exec(year.trim());
+	return match ? Number(match[0]) : null;
 }
 
 // --- Run ---
@@ -237,6 +394,16 @@ export interface BackfillResult {
 /** Is `work` scoped on the artist itself (`--<artist slug body>` or `--<normalized artist name>`)? */
 export function scopedOnArtist(work: string, artistSlug: string, artistName: string): boolean {
 	return scopeOf(work) === parseSlug(artistSlug).body || scopeMatchesArtist(work, artistName);
+}
+
+/** A cached work crediting at least this many artists, without a scope on the artist, is a compilation. */
+export const COMPILATION_MIN_CREDITS = 3;
+
+/** Does the target's OWN text (article, pitch or teaser) name one of the artist's names, as a whole expression? */
+function namesArtist(work: Work, names: readonly string[]): boolean {
+	const own = work.type === "project" ? work.editorial_pitch : work.editorial_teaser;
+	const texts = [work.editorial_article, own].map(normalizeText);
+	return names.some((name) => mentionedIn(name, texts));
 }
 
 const compareLex = (a: string, b: string): number => (a < b ? -1 : a > b ? 1 : 0);
@@ -307,11 +474,32 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 		return hit;
 	};
 
+	// The normalized name of every artist of the cache: an entry titled like one is "named after an artist".
+	const artistNames = new Set<string>();
+	for (const { type, node } of nodes) {
+		if (type !== "artist" || typeof node.name !== "string") continue;
+		// An all non-ASCII name normalizes to "": it would flag every all non-ASCII title (found by the review).
+		const name = normalizeText(node.name);
+		if (name !== "") artistNames.add(name);
+	}
+	// Likewise the genres: a title that is a genre's name, or sits inside "argentine tango", is no quotation.
+	const genreNames = new Set<string>();
+	for (const { type, node } of nodes) {
+		if (type !== "genre" || typeof node.name !== "string") continue;
+		const name = normalizeText(node.name);
+		if (name !== "") genreNames.add(name);
+	}
+
 	const written = { landmark_project: 0, reference_track: 0 };
-	const byReason = {
-		landmark_project: { genreLandmark: 0, imaged: 0, cached: 0, first: 0 },
-		reference_track: { genreLandmark: 0, imaged: 0, cached: 0, first: 0 },
-	};
+	const zeroReasons = (): Record<Reason, number> => ({
+		genreLandmark: 0,
+		mentioned: 0,
+		album: 0,
+		imaged: 0,
+		cached: 0,
+		first: 0,
+	});
+	const byReason = { landmark_project: zeroReasons(), reference_track: zeroReasons() };
 	const skipped: Record<HighlightField, string[]> = { landmark_project: [], reference_track: [] };
 	const excluded: Exclusion[] = [];
 	const picks: HighlightPick[] = [];
@@ -334,6 +522,17 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 		// Same cast as the image backfill: the schema's output type differs from NodePayload only by `undefined`
 		// on optional fields (exactOptionalPropertyTypes).
 		const artist = parsed.data as Extract<NodePayload, { type: "artist" }>;
+		// The artist's own texts, normalized once. Artists carry no teaser / pitch (those are on works):
+		// `editorial_article` is the text the title is looked up in.
+		const article = normalizeText(artist.editorial_article);
+		// The artist's own names (name and aliases) and the genres' names are taken out of the article before a
+		// title is looked up; only those the article actually contains are worth stripping.
+		const ownNames = [artist.name, ...artist.aliases.map((a) => a.name)]
+			.map(normalizeText)
+			.filter((n) => n !== "");
+		const strippable = [...new Set([...ownNames, ...genreNames])].filter((phrase) =>
+			` ${article} `.includes(` ${phrase} `),
+		);
 
 		const next: Record<string, unknown> = { ...raw };
 		const mine: { picks: HighlightPick[]; excluded: Exclusion[]; skipped: HighlightField[] } = {
@@ -352,14 +551,53 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				// What a read of this slug opens: the node itself when it is live, else one redirect hop.
 				const target = await resolveReadSlug(edge.slug as Slug, redirects, cache);
 				let state: TargetState = { kind: "absent" };
+				let cachedAlbum = false;
+				let emptyCredit = false;
+				const title = normalizeText(typeof edge.name === "string" ? edge.name : "");
+				const titleIsArtistName = title !== "" && artistNames.has(title);
+				// Named after an artist: no signal, last on a tie. Not when the target is scoped on THIS artist
+				// (project:skream--skream, project:inside--paul-horn): that is the artist's own work.
+				const namedAfterArtist = titleIsArtistName && !scopedOnArtist(target, slug, artist.name);
+				// Quoted in the article, which first loses the artist's names and the genres' names, except the
+				// ones the title itself contains. Never a title that is an artist's or a genre's name.
+				const mentioned =
+					!titleIsArtistName &&
+					!genreNames.has(title) &&
+					mentionedIn(title, [
+						stripPhrases(
+							article,
+							strippable.filter((phrase) => !` ${title} `.includes(` ${phrase} `)),
+						),
+					]);
 				if (inCache.has(target)) {
 					const work = await readWork(target);
 					if (work === null || (work.type !== "project" && work.type !== "track")) {
 						state = { kind: "unreadable" };
-					} else if ((await reciprocity(artist, work as Work, cache, redirects)) === null) {
-						state = { kind: "uncredited" };
 					} else {
-						state = { kind: "credited", imaged: hasImage.has(target) };
+						const credits = (await reciprocity(artist, work as Work, cache, redirects)) !== null;
+						// An EMPTY credit is an absence of proof, not a proof of a foreign credit, so the target is
+						// kept (TRA-601) when (1) the artist's article quotes its title, (2) its slug is not scoped
+						// on somebody else and (3) its own text names the artist. An identical title is the mark of
+						// a homonym: (1) alone brought back DFRNT's Fading for Pole.
+						emptyCredit =
+							!credits &&
+							work.artists.length === 0 &&
+							mentioned &&
+							(scopeOf(target) === null || scopedOnArtist(target, slug, artist.name)) &&
+							namesArtist(work, ownNames);
+						if (!credits && !emptyCredit) {
+							state = { kind: "uncredited" };
+						} else if (
+							field === "landmark_project" &&
+							new Set(work.artists.map((a) => a.slug)).size >= COMPILATION_MIN_CREDITS &&
+							!scopedOnArtist(target, slug, artist.name)
+						) {
+							// After the identity rules: only a work that credits the artist is judged on its credits.
+							state = { kind: "compilation" };
+						} else {
+							state = { kind: "credited", imaged: hasImage.has(target) };
+							cachedAlbum = work.type === "project" && work.release_type === "album";
+						}
 					}
 				} else if (target !== edge.slug && !scopedOnArtist(target, slug, artist.name)) {
 					state = { kind: "redirected" };
@@ -369,9 +607,14 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 					slug: edge.slug,
 					state,
 					genres: state.kind === "credited" ? (genreCount[genreList].get(target) ?? 0) : 0,
+					mentioned,
+					emptyCredit,
+					album: field === "landmark_project" && (edge.releaseType === "album" || cachedAlbum),
+					namedAfterArtist,
+					year: yearOf(edge.year),
 				});
 			}
-			const choice = choose(candidates);
+			const choice = choose(candidates, { oldestFirst: field === "landmark_project" });
 			const dropped = choice.kind === "empty" ? [] : choice.excluded;
 			for (const d of dropped) mine.excluded.push({ artist: slug, field, target: d.slug, reason: d.reason });
 			if (choice.kind !== "chosen") {
@@ -385,6 +628,7 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				target: choice.slug,
 				reason: choice.reason,
 				score: choice.score,
+				...(choice.emptyCredit ? { emptyCredit: true as const } : {}),
 			});
 		}
 
@@ -443,7 +687,7 @@ export function formatSummary(result: BackfillResult, apply: boolean, manifestPa
 	for (const { field } of HIGHLIGHT_FIELDS) {
 		const r = manifest.byReason[field];
 		lines.push(
-			`${field.padEnd(16)} ${manifest.written[field]} chosen (genreLandmark ${r.genreLandmark}, imaged ${r.imaged}, cached ${r.cached}, first ${r.first}), ${manifest.skipped[field].length} skipped`,
+			`${field.padEnd(16)} ${manifest.written[field]} chosen (${REASONS.map((reason) => `${reason} ${r[reason]}`).join(", ")}), ${manifest.skipped[field].length} skipped`,
 		);
 	}
 	lines.push(
