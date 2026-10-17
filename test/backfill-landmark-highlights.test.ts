@@ -6,6 +6,8 @@ import {
 	type Candidate,
 	choose,
 	isNonCanonical,
+	isPlaceholder,
+	isPlaceholderSlug,
 	type LandmarkManifest,
 	MIGRATION_NAME,
 	mentionedIn,
@@ -1340,6 +1342,129 @@ describe("rule v3 (TRA-601)", () => {
 			// Both are cached and credited (score 1 each): only the downgrade puts the band after the solo record.
 			expect((await read("artist:lennon")).landmark_project).toEqual(solo);
 		});
+	});
+});
+
+describe("placeholder titles (TRA-606)", () => {
+	it("recognises a filler title exactly, never a real title that contains the word", () => {
+		for (const title of [
+			"Unknown",
+			"UNKNOWN",
+			"Untitled",
+			"N/A",
+			"n.a.",
+			"TBD",
+			"None",
+			"null",
+			"Various",
+			"Unknown Album",
+			"Unknown Track",
+			"  Unknown! ",
+		]) {
+			expect(isPlaceholder(title), title).toBe(true);
+		}
+		for (const title of [
+			"Unknown Pleasures", // Joy Division
+			"Untitled Unmastered", // Kendrick Lamar
+			"Unknown Mortal Orchestra",
+			"Various Positions", // Leonard Cohen
+			"None but the Righteous",
+			"Nonexistent",
+			"Null Island",
+			"Untitled 1",
+			"",
+		]) {
+			expect(isPlaceholder(title), title).toBe(false);
+		}
+		expect(isPlaceholderSlug("project:unknown")).toBe(true);
+		expect(isPlaceholderSlug("track:unknown")).toBe(true);
+		expect(isPlaceholderSlug("project:unknown-pleasures")).toBe(false);
+		expect(isPlaceholderSlug("project:unknown--someone")).toBe(false);
+	});
+
+	it("excludes project:unknown and track:unknown, and leaves the artist skipped when they are the only entries", async () => {
+		await put(
+			artistNode("nes", "Nes", {
+				discography: [edge("project", "unknown", "Unknown")],
+				notable_tracks: [edge("track", "unknown", "Unknown")],
+			}),
+		);
+		const before = await readFile(pathOf(cacheDir, "artist:nes"), "utf8");
+
+		await run();
+
+		expect(await readFile(pathOf(cacheDir, "artist:nes"), "utf8")).toBe(before);
+		const m = await manifestOf();
+		expect(m.excluded).toEqual([
+			{ artist: "artist:nes", field: "landmark_project", target: "project:unknown", reason: "placeholder" },
+			{ artist: "artist:nes", field: "reference_track", target: "track:unknown", reason: "placeholder" },
+		]);
+		expect(m.skipped).toEqual({ landmark_project: ["artist:nes"], reference_track: ["artist:nes"] });
+		expect(m.soleUnsupported).toEqual([]);
+		expect(m.written).toEqual({ landmark_project: 0, reference_track: 0 });
+	});
+
+	it("excludes the bare slug whatever the name of the entry, and a filler name under any slug", async () => {
+		const bare = edge("project", "unknown", "Debut Album", { releaseType: "album", year: "1990" });
+		const filler = edge("project", "n-a--filler", "N/A", { releaseType: "album", year: "1991" });
+		const real = edge("project", "real-one", "Real One", { year: "2000" });
+		const real2 = edge("project", "real-two", "Real Two", { year: "2001" });
+		await put(artistNode("filler", "Filler", { discography: [bare, filler, real, real2] }));
+
+		await run();
+
+		// The two fillers are older albums: they would win without the exclusion.
+		expect((await read("artist:filler")).landmark_project).toEqual(real);
+		expect((await manifestOf()).excluded).toEqual([
+			{
+				artist: "artist:filler",
+				field: "landmark_project",
+				target: "project:n-a--filler",
+				reason: "placeholder",
+			},
+			{
+				artist: "artist:filler",
+				field: "landmark_project",
+				target: "project:unknown",
+				reason: "placeholder",
+			},
+		]);
+	});
+
+	it("keeps a real title that contains the word (Unknown Pleasures, Untitled Unmastered)", async () => {
+		const pleasures = edge("project", "unknown-pleasures", "Unknown Pleasures", {
+			releaseType: "album",
+			year: "1979",
+		});
+		const unmastered = edge("project", "untitled-unmastered", "Untitled Unmastered", {
+			releaseType: "album",
+			year: "2016",
+		});
+		await put(artistNode("joy", "Joy", { discography: [unmastered, pleasures] }));
+
+		await run();
+
+		expect((await read("artist:joy")).landmark_project).toEqual(pleasures);
+		expect((await manifestOf()).excluded).toEqual([]);
+	});
+
+	it("leaves the identity reason first: a cached project:unknown that credits somebody else is not-credited", async () => {
+		const bare = edge("project", "unknown", "Unknown");
+		const real = edge("project", "real-one", "Real One");
+		const real2 = edge("project", "real-two", "Real Two");
+		await put(artistNode("homonym", "Homonym", { discography: [bare, real, real2] }));
+		await put(album("unknown", "somebody-else"));
+
+		await run();
+
+		expect((await manifestOf()).excluded).toEqual([
+			{
+				artist: "artist:homonym",
+				field: "landmark_project",
+				target: "project:unknown",
+				reason: "not-credited",
+			},
+		]);
 	});
 });
 
