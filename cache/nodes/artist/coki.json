@@ -79,6 +79,16 @@
       "name": "Tree Trunk"
     }
   ],
+  "landmark_project": {
+    "slug": "project:spongebob-the-end",
+    "type": "project",
+    "name": "Spongebob / The End"
+  },
+  "reference_track": {
+    "slug": "track:spongebob",
+    "type": "track",
+    "name": "Spongebob"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

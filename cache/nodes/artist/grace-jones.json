@@ -70,9 +70,20 @@
       "name": "Slave to the Rhythm"
     }
   ],
+  "landmark_project": {
+    "slug": "project:nightclubbing",
+    "type": "project",
+    "name": "Nightclubbing"
+  },
+  "reference_track": {
+    "slug": "track:pull-up-to-the-bumper",
+    "type": "track",
+    "name": "Pull Up to the Bumper"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -82,6 +82,11 @@
       "name": "My Neighbor Totoro"
     }
   ],
+  "reference_track": {
+    "slug": "track:my-neighbor-totoro",
+    "type": "track",
+    "name": "My Neighbor Totoro"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

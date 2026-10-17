@@ -107,6 +107,16 @@
       "name": "Jesus Wants Me for a Sunbeam"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dum-dum",
+    "type": "project",
+    "name": "Dum-Dum"
+  },
+  "reference_track": {
+    "slug": "track:molly-s-lips",
+    "type": "track",
+    "name": "Molly's Lips"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

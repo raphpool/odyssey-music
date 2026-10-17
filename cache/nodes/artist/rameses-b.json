@@ -74,6 +74,11 @@
       "name": "Thinking About You"
     }
   ],
+  "reference_track": {
+    "slug": "track:beside-you",
+    "type": "track",
+    "name": "Beside You"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

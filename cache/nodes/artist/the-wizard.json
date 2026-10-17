@@ -70,6 +70,16 @@
       "name": "Time Dilation"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-grimoire",
+    "type": "project",
+    "name": "The Grimoire"
+  },
+  "reference_track": {
+    "slug": "track:desert-queen",
+    "type": "track",
+    "name": "Desert Queen"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

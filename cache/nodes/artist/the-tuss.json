@@ -76,6 +76,16 @@
       "name": "Death Fuck"
     }
   ],
+  "landmark_project": {
+    "slug": "project:rushup-edge--the-tuss",
+    "type": "project",
+    "name": "Rushup Edge"
+  },
+  "reference_track": {
+    "slug": "track:rushup-i-bank-12--the-tuss",
+    "type": "track",
+    "name": "Rushup I Bank 12"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -52,11 +52,21 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:tears",
+      "slug": "track:tears--satoshi-tomiie",
       "type": "track",
       "name": "Tears"
     }
   ],
+  "landmark_project": {
+    "slug": "project:full-lick",
+    "type": "project",
+    "name": "Full Lick"
+  },
+  "reference_track": {
+    "slug": "track:tears--satoshi-tomiie",
+    "type": "track",
+    "name": "Tears"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

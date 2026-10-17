@@ -67,6 +67,11 @@
       "name": "Fragments of Time"
     }
   ],
+  "reference_track": {
+    "slug": "track:face-to-face",
+    "type": "track",
+    "name": "Face to Face"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

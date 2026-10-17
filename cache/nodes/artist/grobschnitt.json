@@ -57,6 +57,11 @@
       "name": "Solar Music"
     }
   ],
+  "reference_track": {
+    "slug": "track:solar-music",
+    "type": "track",
+    "name": "Solar Music"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

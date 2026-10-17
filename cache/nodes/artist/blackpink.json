@@ -101,6 +101,16 @@
       "name": "Shut Down"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-album",
+    "type": "project",
+    "name": "The Album"
+  },
+  "reference_track": {
+    "slug": "track:whistle",
+    "type": "track",
+    "name": "Whistle"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

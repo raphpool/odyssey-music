@@ -128,6 +128,16 @@
       "name": "Endless Summer"
     }
   ],
+  "landmark_project": {
+    "slug": "project:hotel-paral-lel",
+    "type": "project",
+    "name": "Hotel Paral.lel"
+  },
+  "reference_track": {
+    "slug": "track:endless-summer",
+    "type": "track",
+    "name": "Endless Summer"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

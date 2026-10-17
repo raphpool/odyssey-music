@@ -107,6 +107,19 @@
       "name": "St. Andrews"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dirty-debutant-volume-1",
+    "type": "project",
+    "name": "Dirty Debutant, Volume 1",
+    "mbid": "478b00de-c8d6-4ca0-8a76-fd7a34a59189",
+    "year": "1999",
+    "releaseType": "ep"
+  },
+  "reference_track": {
+    "slug": "track:pussy-hole",
+    "type": "track",
+    "name": "Pussy Hole"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

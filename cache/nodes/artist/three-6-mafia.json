@@ -327,6 +327,19 @@
       "name": "Poppin' My Collar"
     }
   ],
+  "landmark_project": {
+    "slug": "project:mystic-stylez",
+    "type": "project",
+    "name": "Mystic Stylez",
+    "mbid": "ac6859cf-3bc7-31da-9255-b7d6a08cc6a9",
+    "year": "1995",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:stay-fly",
+    "type": "track",
+    "name": "Stay Fly"
+  },
   "influences": [],
   "influenced": [
     {

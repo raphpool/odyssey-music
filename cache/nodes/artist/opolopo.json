@@ -159,6 +159,19 @@
       "name": "No More Lies"
     }
   ],
+  "landmark_project": {
+    "slug": "project:best-of-both-worlds",
+    "type": "project",
+    "name": "Best Of Both Worlds",
+    "mbid": "4004c383-a477-4440-82cf-34c26e8c1f9c",
+    "year": "2024",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:no-more-lies",
+    "type": "track",
+    "name": "No More Lies"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

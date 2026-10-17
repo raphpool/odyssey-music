@@ -54,6 +54,11 @@
       "name": "The Second Dream of The High-Tension Line Stepdown Transformer"
     }
   ],
+  "reference_track": {
+    "slug": "track:trio-for-strings",
+    "type": "track",
+    "name": "Trio for Strings"
+  },
   "influences": [
     {
       "slug": "artist:pandit-pran-nath",

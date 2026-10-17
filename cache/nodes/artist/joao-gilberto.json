@@ -307,6 +307,19 @@
       "name": "Bim Bom"
     }
   ],
+  "landmark_project": {
+    "slug": "project:chega-de-saudade",
+    "type": "project",
+    "name": "Chega de saudade",
+    "mbid": "9e4072b4-11c3-3fe6-be4f-4a607bbb94f9",
+    "year": "1959",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:chega-de-saudade",
+    "type": "track",
+    "name": "Chega de Saudade"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -105,6 +105,16 @@
       "name": "Ko-Ko"
     }
   ],
+  "landmark_project": {
+    "slug": "project:bird-and-diz",
+    "type": "project",
+    "name": "Bird and Diz"
+  },
+  "reference_track": {
+    "slug": "track:ornithology",
+    "type": "track",
+    "name": "Ornithology"
+  },
   "influences": [],
   "influenced": [
     {

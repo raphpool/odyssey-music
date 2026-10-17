@@ -68,6 +68,11 @@
       "name": "Nazira DJ set - Miller Mix: Almaty 2024"
     }
   ],
+  "landmark_project": {
+    "slug": "project:zvuk",
+    "type": "project",
+    "name": "ZVUK"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

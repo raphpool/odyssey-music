@@ -249,6 +249,19 @@
       "name": "White Gurl"
     }
   ],
+  "landmark_project": {
+    "slug": "project:ridin-dirty",
+    "type": "project",
+    "name": "Ridin’ Dirty",
+    "mbid": "d1935561-e375-317b-b49b-ddbc78c52603",
+    "year": "1996",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:break-em-off-somethin",
+    "type": "track",
+    "name": "Break 'Em Off Somethin'"
+  },
   "influences": [],
   "influenced": [
     {

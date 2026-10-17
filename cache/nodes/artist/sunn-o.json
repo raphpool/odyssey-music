@@ -62,6 +62,16 @@
       "name": "Alice"
     }
   ],
+  "landmark_project": {
+    "slug": "project:monoliths-and-dimensions--sunn-o",
+    "type": "project",
+    "name": "Monoliths & Dimensions"
+  },
+  "reference_track": {
+    "slug": "track:alice",
+    "type": "track",
+    "name": "Alice"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

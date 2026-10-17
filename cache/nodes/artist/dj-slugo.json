@@ -221,6 +221,19 @@
       "name": "Clear Water"
     }
   ],
+  "landmark_project": {
+    "slug": "project:freaks-like-it-raw-part-3",
+    "type": "project",
+    "name": "Freaks Like It Raw, Part 3",
+    "mbid": "6e6b0507-8e9b-32e3-9100-7bb0363247dd",
+    "year": "2002",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:pajamas",
+    "type": "track",
+    "name": "Pajamas"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -114,6 +114,16 @@
       "artist": "Porter Ricks"
     }
   ],
+  "landmark_project": {
+    "slug": "project:biokinetics--porter-ricks",
+    "type": "project",
+    "name": "Biokinetics"
+  },
+  "reference_track": {
+    "slug": "track:nautical-dub--porter-ricks",
+    "type": "track",
+    "name": "Nautical Dub"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

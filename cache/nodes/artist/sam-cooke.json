@@ -118,6 +118,16 @@
       "name": "A Change Is Gonna Come"
     }
   ],
+  "landmark_project": {
+    "slug": "project:you-send-me",
+    "type": "project",
+    "name": "You Send Me"
+  },
+  "reference_track": {
+    "slug": "track:you-send-me",
+    "type": "track",
+    "name": "You Send Me"
+  },
   "influences": [
     {
       "slug": "artist:nat-king-cole",

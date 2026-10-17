@@ -52,6 +52,11 @@
       "name": "Galaxy"
     }
   ],
+  "reference_track": {
+    "slug": "track:galaxy",
+    "type": "track",
+    "name": "Galaxy"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -68,5 +73,6 @@
       "name": "Carl Craig"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

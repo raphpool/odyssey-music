@@ -118,6 +118,16 @@
       "name": "Mint"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dance-tracks-vol-1",
+    "type": "project",
+    "name": "Dance Tracks Vol.1"
+  },
+  "reference_track": {
+    "slug": "track:taiyou-no-season",
+    "type": "track",
+    "name": "Taiyou no Season"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

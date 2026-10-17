@@ -255,6 +255,19 @@
       "name": "Nikes"
     }
   ],
+  "landmark_project": {
+    "slug": "project:channel-orange",
+    "type": "project",
+    "name": "channel ORANGE",
+    "mbid": "f8f4167d-897c-4b25-a171-638374d1dfa4",
+    "year": "2012",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:novacane",
+    "type": "track",
+    "name": "Novacane"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -301,5 +314,6 @@
       "name": "Lonny Breaux"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -89,6 +89,17 @@
       "name": "Bang the Drum All Day"
     }
   ],
+  "landmark_project": {
+    "slug": "project:no-world-order--todd-rundgren",
+    "type": "project",
+    "name": "No World Order",
+    "artist": "Todd Rundgren"
+  },
+  "reference_track": {
+    "slug": "track:i-saw-the-light",
+    "type": "track",
+    "name": "I Saw the Light"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

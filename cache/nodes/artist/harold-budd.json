@@ -116,6 +116,17 @@
       "artist": "Brian Eno"
     }
   ],
+  "landmark_project": {
+    "slug": "project:avalon-sutra-as-long-as-i-can-hold-my-breath--harold-budd",
+    "type": "project",
+    "name": "Avalon Sutra / As Long As I Can Hold My Breath",
+    "artist": "Harold Budd"
+  },
+  "reference_track": {
+    "slug": "track:the-white-arcades--harold-budd",
+    "type": "track",
+    "name": "The White Arcades"
+  },
   "influences": [
     {
       "slug": "artist:john-cage",

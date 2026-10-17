@@ -65,6 +65,11 @@
       "name": "K-Scope"
     }
   ],
+  "reference_track": {
+    "slug": "track:diamond-head",
+    "type": "track",
+    "name": "Diamond Head"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -133,6 +133,16 @@
       "name": "We Found Love"
     }
   ],
+  "landmark_project": {
+    "slug": "project:i-created-disco",
+    "type": "project",
+    "name": "I Created Disco"
+  },
+  "reference_track": {
+    "slug": "track:feel-so-close",
+    "type": "track",
+    "name": "Feel So Close"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

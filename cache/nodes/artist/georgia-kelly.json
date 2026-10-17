@@ -56,6 +56,11 @@
     }
   ],
   "notable_tracks": [],
+  "landmark_project": {
+    "slug": "project:seapeace",
+    "type": "project",
+    "name": "Seapeace"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -76,5 +81,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

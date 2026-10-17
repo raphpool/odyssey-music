@@ -204,6 +204,19 @@
       "name": "Streaky"
     }
   ],
+  "landmark_project": {
+    "slug": "project:no-love-deep-web",
+    "type": "project",
+    "name": "No Love Deep Web",
+    "mbid": "dcdee807-7a10-44c6-8e33-36625d8579ba",
+    "year": "2012",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:full-moon",
+    "type": "track",
+    "name": "Full Moon (Death Classic)"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

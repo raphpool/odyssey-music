@@ -69,6 +69,16 @@
       "name": "Bensusan"
     }
   ],
+  "landmark_project": {
+    "slug": "project:aerial-boundaries",
+    "type": "project",
+    "name": "Aerial Boundaries"
+  },
+  "reference_track": {
+    "slug": "track:aerial-boundaries",
+    "type": "track",
+    "name": "Aerial Boundaries"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

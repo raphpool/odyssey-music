@@ -77,6 +77,16 @@
       "name": "Anchin Kfu Ayinkash"
     }
   ],
+  "landmark_project": {
+    "slug": "project:tche-belew",
+    "type": "project",
+    "name": "Tche Belew"
+  },
+  "reference_track": {
+    "slug": "track:muziqawi-silt",
+    "type": "track",
+    "name": "Muziqawi Silt"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

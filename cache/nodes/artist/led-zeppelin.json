@@ -128,6 +128,17 @@
       "artist": "Led Zeppelin"
     }
   ],
+  "landmark_project": {
+    "slug": "project:led-zeppelin-iv--led-zeppelin",
+    "type": "project",
+    "name": "Led Zeppelin IV"
+  },
+  "reference_track": {
+    "slug": "track:the-rain-song--led-zeppelin",
+    "type": "track",
+    "name": "The Rain Song",
+    "artist": "Led Zeppelin"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

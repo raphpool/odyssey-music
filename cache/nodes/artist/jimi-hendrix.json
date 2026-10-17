@@ -82,6 +82,16 @@
       "artist": "Jimi Hendrix"
     }
   ],
+  "landmark_project": {
+    "slug": "project:band-of-gypsys",
+    "type": "project",
+    "name": "Band of Gypsys"
+  },
+  "reference_track": {
+    "slug": "track:purple-haze--the-jimi-hendrix-experience",
+    "type": "track",
+    "name": "Purple Haze"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

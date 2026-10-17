@@ -299,6 +299,19 @@
       "name": "Latifah's Had It Up 2 Here"
     }
   ],
+  "landmark_project": {
+    "slug": "project:nature-of-a-sista",
+    "type": "project",
+    "name": "Nature of a Sista’",
+    "mbid": "29934195-4a25-3589-9e7c-ec4129e96a15",
+    "year": "1991",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:u-n-i-t-y",
+    "type": "track",
+    "name": "U.N.I.T.Y."
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

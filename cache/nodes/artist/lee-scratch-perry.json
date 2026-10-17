@@ -71,6 +71,11 @@
       "name": "Mr. Brown"
     }
   ],
+  "reference_track": {
+    "slug": "track:people-funny-boy",
+    "type": "track",
+    "name": "People Funny Boy"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

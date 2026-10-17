@@ -93,6 +93,16 @@
       "name": "Spectra"
     }
   ],
+  "landmark_project": {
+    "slug": "project:minimal-nation",
+    "type": "project",
+    "name": "Minimal Nation"
+  },
+  "reference_track": {
+    "slug": "track:the-pace",
+    "type": "track",
+    "name": "The Pace"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

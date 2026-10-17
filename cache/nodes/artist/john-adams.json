@@ -66,6 +66,16 @@
       "name": "Short Ride in a Fast Machine"
     }
   ],
+  "landmark_project": {
+    "slug": "project:harmonielehre",
+    "type": "project",
+    "name": "Harmonielehre"
+  },
+  "reference_track": {
+    "slug": "track:short-ride-in-a-fast-machine",
+    "type": "track",
+    "name": "Short Ride in a Fast Machine"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

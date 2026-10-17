@@ -718,6 +718,19 @@
       "name": "Faster Kill Pussycat"
     }
   ],
+  "landmark_project": {
+    "slug": "project:bunkka",
+    "type": "project",
+    "name": "Bunkka",
+    "mbid": "80006664-bb78-3716-b1e7-5f3fddee4522",
+    "year": "2002",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:bullet-in-the-gun",
+    "type": "track",
+    "name": "Bullet in the Gun"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

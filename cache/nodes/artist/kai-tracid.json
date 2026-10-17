@@ -366,6 +366,19 @@
       "name": "DT64"
     }
   ],
+  "landmark_project": {
+    "slug": "project:trance-and-acid--kai-tracid",
+    "type": "project",
+    "name": "Trance & Acid",
+    "mbid": "d5f50afa-49eb-3e2b-9873-ef831bc287d4",
+    "year": "2002",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:liquid-skies",
+    "type": "track",
+    "name": "Liquid Skies"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -49,6 +49,16 @@
       "name": "My Bonnie"
     }
   ],
+  "landmark_project": {
+    "slug": "project:pete-best-band",
+    "type": "project",
+    "name": "Pete Best Band"
+  },
+  "reference_track": {
+    "slug": "track:my-bonnie",
+    "type": "track",
+    "name": "My Bonnie"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -69,5 +79,6 @@
       "type": "artist",
       "name": "The Beatles"
     }
-  ]
+  ],
+  "similar_artists": []
 }

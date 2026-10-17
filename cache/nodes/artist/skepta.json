@@ -81,6 +81,11 @@
       "artist": "Plastician"
     }
   ],
+  "reference_track": {
+    "slug": "track:shutdown",
+    "type": "track",
+    "name": "Shutdown"
+  },
   "influences": [],
   "influenced": [
     {

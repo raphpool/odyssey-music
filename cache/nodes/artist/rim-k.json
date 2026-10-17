@@ -61,6 +61,16 @@
       "name": "Clandestino"
     }
   ],
+  "landmark_project": {
+    "slug": "project:clandestino",
+    "type": "project",
+    "name": "Clandestino"
+  },
+  "reference_track": {
+    "slug": "track:clandestino",
+    "type": "track",
+    "name": "Clandestino"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

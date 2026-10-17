@@ -80,6 +80,11 @@
       "name": "Make It Bun Dem"
     }
   ],
+  "reference_track": {
+    "slug": "track:bangarang",
+    "type": "track",
+    "name": "Bangarang"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

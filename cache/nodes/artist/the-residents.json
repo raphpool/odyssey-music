@@ -83,6 +83,16 @@
       "name": "Hello Skinny"
     }
   ],
+  "landmark_project": {
+    "slug": "project:meet-the-residents",
+    "type": "project",
+    "name": "Meet the Residents"
+  },
+  "reference_track": {
+    "slug": "track:santa-dog",
+    "type": "track",
+    "name": "Santa Dog"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

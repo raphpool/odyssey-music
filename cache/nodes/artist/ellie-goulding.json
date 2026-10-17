@@ -104,6 +104,16 @@
       "artist": "Ellie Goulding"
     }
   ],
+  "landmark_project": {
+    "slug": "project:lights",
+    "type": "project",
+    "name": "Lights"
+  },
+  "reference_track": {
+    "slug": "track:lights",
+    "type": "track",
+    "name": "Lights"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

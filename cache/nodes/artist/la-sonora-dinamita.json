@@ -525,6 +525,19 @@
       "name": "A mover la colita"
     }
   ],
+  "landmark_project": {
+    "slug": "project:mi-cucu",
+    "type": "project",
+    "name": "Mi cucú",
+    "mbid": "034b80c0-f8e6-44c7-972d-600290ee7fa6",
+    "year": "1988",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:mi-cucu",
+    "type": "track",
+    "name": "Mi Cucu"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -84,6 +84,11 @@
       "name": "Sterntaler"
     }
   ],
+  "reference_track": {
+    "slug": "track:flammende-herzen",
+    "type": "track",
+    "name": "Flammende Herzen"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

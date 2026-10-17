@@ -124,6 +124,17 @@
       "artist": "Mouse on Mars"
     }
   ],
+  "landmark_project": {
+    "slug": "project:parastrophics--mouse-on-mars",
+    "type": "project",
+    "name": "Parastrophics"
+  },
+  "reference_track": {
+    "slug": "track:chordblocker-cinnamon-toasted--mouse-on-mars",
+    "type": "track",
+    "name": "Chordblocker, Cinnamon Toasted",
+    "artist": "Mouse on Mars"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

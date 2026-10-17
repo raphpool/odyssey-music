@@ -94,6 +94,11 @@
       "name": "Our Secret"
     }
   ],
+  "reference_track": {
+    "slug": "track:bad-seeds",
+    "type": "track",
+    "name": "Bad Seeds"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

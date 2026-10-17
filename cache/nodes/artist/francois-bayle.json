@@ -94,9 +94,20 @@
       "name": "Toupie dans le ciel"
     }
   ],
+  "landmark_project": {
+    "slug": "project:erosphere",
+    "type": "project",
+    "name": "Erosphère"
+  },
+  "reference_track": {
+    "slug": "track:tremblement-de-terre-tres-doux",
+    "type": "track",
+    "name": "Tremblement de terre très doux"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

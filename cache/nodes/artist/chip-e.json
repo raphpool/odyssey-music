@@ -66,6 +66,16 @@
       "name": "Time to Jack"
     }
   ],
+  "landmark_project": {
+    "slug": "project:jack-trax",
+    "type": "project",
+    "name": "Jack Trax"
+  },
+  "reference_track": {
+    "slug": "track:it-s-house",
+    "type": "track",
+    "name": "It's House"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

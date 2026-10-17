@@ -123,6 +123,19 @@
       "name": "This Gift"
     }
   ],
+  "landmark_project": {
+    "slug": "project:gift-of-the-gnawa",
+    "type": "project",
+    "name": "Gift of the Gnawa",
+    "mbid": "a5f9bbc3-9d12-3f6a-ac3b-ddc879556fb8",
+    "year": "1991",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:this-gift",
+    "type": "track",
+    "name": "This Gift"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

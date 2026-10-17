@@ -96,7 +96,7 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:the-peak",
+      "slug": "track:the-peak--alec-empire",
       "type": "track",
       "name": "The Peak"
     },
@@ -112,6 +112,16 @@
       "artist": "Alec Empire"
     }
   ],
+  "landmark_project": {
+    "slug": "project:generation-star-wars--alec-empire",
+    "type": "project",
+    "name": "Generation Star Wars"
+  },
+  "reference_track": {
+    "slug": "track:intelligence-and-sacrifice",
+    "type": "track",
+    "name": "Intelligence and Sacrifice"
+  },
   "influences": [
     {
       "slug": "artist:atari-teenage-riot",

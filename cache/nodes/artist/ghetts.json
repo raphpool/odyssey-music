@@ -65,6 +65,16 @@
       "name": "Crud"
     }
   ],
+  "landmark_project": {
+    "slug": "project:2000-and-life",
+    "type": "project",
+    "name": "2000 & Life"
+  },
+  "reference_track": {
+    "slug": "track:skengman",
+    "type": "track",
+    "name": "Skengman"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

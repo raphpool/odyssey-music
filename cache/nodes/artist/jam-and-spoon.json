@@ -71,6 +71,16 @@
       "name": "Find Me"
     }
   ],
+  "landmark_project": {
+    "slug": "project:tripomatic-fairytales-2001",
+    "type": "project",
+    "name": "Tripomatic Fairytales 2001"
+  },
+  "reference_track": {
+    "slug": "track:stella",
+    "type": "track",
+    "name": "Stella"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

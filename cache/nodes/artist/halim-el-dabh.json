@@ -71,6 +71,16 @@
       "name": "Wire Recorder Piece"
     }
   ],
+  "landmark_project": {
+    "slug": "project:wire-recorder-piece",
+    "type": "project",
+    "name": "Wire Recorder Piece"
+  },
+  "reference_track": {
+    "slug": "track:wire-recorder-piece",
+    "type": "track",
+    "name": "Wire Recorder Piece"
+  },
   "influences": [
     {
       "slug": "artist:fela-sowande",

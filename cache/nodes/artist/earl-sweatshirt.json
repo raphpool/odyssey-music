@@ -320,6 +320,19 @@
       "name": "Sentry"
     }
   ],
+  "landmark_project": {
+    "slug": "project:doris",
+    "type": "project",
+    "name": "Doris",
+    "mbid": "6de45ac3-5eca-44c4-8b71-cdc60c41bf5d",
+    "year": "2013",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:chum",
+    "type": "track",
+    "name": "Chum"
+  },
   "influences": [
     {
       "slug": "artist:lil-b",
@@ -382,5 +395,6 @@
       "name": "dar Qness"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

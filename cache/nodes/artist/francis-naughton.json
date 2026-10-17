@@ -58,6 +58,11 @@
     }
   ],
   "notable_tracks": [],
+  "landmark_project": {
+    "slug": "project:come-what-may",
+    "type": "project",
+    "name": "Come What May"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -68,5 +73,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -645,6 +645,19 @@
       "name": "Hardcore To Da Bone"
     }
   ],
+  "landmark_project": {
+    "slug": "project:noise-is-the-message",
+    "type": "project",
+    "name": "Noise Is The Message",
+    "mbid": "08a7769b-6444-4162-a555-16d537a53503",
+    "year": "1994",
+    "releaseType": "ep"
+  },
+  "reference_track": {
+    "slug": "track:execute",
+    "type": "track",
+    "name": "Execute"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -671,5 +684,6 @@
       "type": "artist",
       "name": "Jarno Butter"
     }
-  ]
+  ],
+  "similar_artists": []
 }

@@ -112,6 +112,16 @@
       "name": "Return to the Tempel"
     }
   ],
+  "landmark_project": {
+    "slug": "project:moondawn--klaus-schulze",
+    "type": "project",
+    "name": "Moondawn"
+  },
+  "reference_track": {
+    "slug": "track:return-to-the-tempel",
+    "type": "track",
+    "name": "Return to the Tempel"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

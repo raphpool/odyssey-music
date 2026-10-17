@@ -83,6 +83,11 @@
       "name": "De Natura Sonorum"
     }
   ],
+  "reference_track": {
+    "slug": "track:violostries",
+    "type": "track",
+    "name": "Violostries"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

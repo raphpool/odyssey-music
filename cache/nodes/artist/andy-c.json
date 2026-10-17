@@ -55,6 +55,11 @@
       "name": "Heartbeat Loud"
     }
   ],
+  "reference_track": {
+    "slug": "track:valley-of-the-shadows",
+    "type": "track",
+    "name": "Valley of the Shadows"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -124,6 +124,19 @@
       "name": "Never Grow Up"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-mostwakoriginator-e-s-t-2009",
+    "type": "project",
+    "name": "The MostwakOriginator e.s.t. 2009",
+    "mbid": "9cc10fa0-19e1-4677-ac26-37e4a579c01b",
+    "year": "2010",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:hape-le-hape-2-1",
+    "type": "track",
+    "name": "Hape Le Hape 2.1"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

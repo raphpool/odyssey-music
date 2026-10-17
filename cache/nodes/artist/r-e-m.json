@@ -93,6 +93,16 @@
       "name": "Losing My Religion"
     }
   ],
+  "landmark_project": {
+    "slug": "project:murmur--r-e-m",
+    "type": "project",
+    "name": "Murmur"
+  },
+  "reference_track": {
+    "slug": "track:radio-free-europe",
+    "type": "track",
+    "name": "Radio Free Europe"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

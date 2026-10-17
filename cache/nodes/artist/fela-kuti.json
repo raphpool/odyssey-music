@@ -511,6 +511,19 @@
       "name": "Lady"
     }
   ],
+  "landmark_project": {
+    "slug": "project:zombie",
+    "type": "project",
+    "name": "Zombie",
+    "mbid": "517cbfb2-2279-4af9-8ca7-1c4c1a444925",
+    "year": "1976",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:zombie",
+    "type": "track",
+    "name": "Zombie"
+  },
   "influences": [],
   "influenced": [
     {

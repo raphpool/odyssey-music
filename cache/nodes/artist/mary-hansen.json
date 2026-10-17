@@ -70,6 +70,11 @@
       "name": "Twenty Feet Behind"
     }
   ],
+  "reference_track": {
+    "slug": "track:twenty-feet-behind",
+    "type": "track",
+    "name": "Twenty Feet Behind"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

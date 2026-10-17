@@ -60,6 +60,16 @@
       "name": "Elektrokinetic"
     }
   ],
+  "landmark_project": {
+    "slug": "project:binomial-fusion",
+    "type": "project",
+    "name": "Binomial Fusion"
+  },
+  "reference_track": {
+    "slug": "track:the-dream",
+    "type": "track",
+    "name": "The dream"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

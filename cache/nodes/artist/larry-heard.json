@@ -90,6 +90,16 @@
       "name": "Washing Machine"
     }
   ],
+  "landmark_project": {
+    "slug": "project:another-side",
+    "type": "project",
+    "name": "Another Side"
+  },
+  "reference_track": {
+    "slug": "track:can-you-feel-it",
+    "type": "track",
+    "name": "Can You Feel It"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

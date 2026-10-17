@@ -64,6 +64,11 @@
       "name": "Golden Gate"
     }
   ],
+  "reference_track": {
+    "slug": "track:claret",
+    "type": "track",
+    "name": "Claret"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

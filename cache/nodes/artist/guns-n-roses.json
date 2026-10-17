@@ -92,6 +92,16 @@
       "name": "November Rain"
     }
   ],
+  "landmark_project": {
+    "slug": "project:appetite-for-destruction--guns-n-roses",
+    "type": "project",
+    "name": "Appetite for Destruction"
+  },
+  "reference_track": {
+    "slug": "track:sweet-child-o-mine",
+    "type": "track",
+    "name": "Sweet Child o' Mine"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

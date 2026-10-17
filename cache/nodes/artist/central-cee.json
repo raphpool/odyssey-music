@@ -470,6 +470,19 @@
       "name": "Band4Band"
     }
   ],
+  "landmark_project": {
+    "slug": "project:can-t-rush-greatness",
+    "type": "project",
+    "name": "CAN’T RUSH GREATNESS",
+    "mbid": "19eb98ff-d741-4ec2-9137-905654b6e722",
+    "year": "2025",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:loading",
+    "type": "track",
+    "name": "Loading"
+  },
   "influences": [
     {
       "slug": "artist:skepta",

@@ -311,6 +311,19 @@
       "name": "Counting Stars"
     }
   ],
+  "landmark_project": {
+    "slug": "project:metaphorical-music",
+    "type": "project",
+    "name": "Metaphorical Music",
+    "mbid": "2e52bd6a-53e6-325c-925b-19eaa449db44",
+    "year": "2003",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:battlecry",
+    "type": "track",
+    "name": "Battlecry"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -362,5 +375,6 @@
       "name": "Dimension Ball"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

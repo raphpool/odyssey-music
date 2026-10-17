@@ -131,6 +131,19 @@
       "name": "Baby (Is It a Crime)"
     }
   ],
+  "landmark_project": {
+    "slug": "project:heis",
+    "type": "project",
+    "name": "HEIS",
+    "mbid": "03381bd9-19b5-4240-b6dd-ea7e1a6b31fc",
+    "year": "2024",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:dumebi",
+    "type": "track",
+    "name": "Dumebi"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

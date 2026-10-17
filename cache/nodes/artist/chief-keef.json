@@ -718,6 +718,19 @@
       "name": "Faneto"
     }
   ],
+  "landmark_project": {
+    "slug": "project:finally-rich",
+    "type": "project",
+    "name": "Finally Rich",
+    "mbid": "249eeae3-9e0f-4d19-a580-9b80bf054f41",
+    "year": "2012",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:i-don-t-like",
+    "type": "track",
+    "name": "I Don't Like"
+  },
   "influences": [
     {
       "slug": "artist:lil-b",

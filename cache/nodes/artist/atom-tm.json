@@ -74,11 +74,21 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:liedgut",
+      "slug": "track:liedgut--atom-tm",
       "type": "track",
       "name": "Liedgut"
     }
   ],
+  "landmark_project": {
+    "slug": "project:pop-artificielle",
+    "type": "project",
+    "name": "Pop Artificielle"
+  },
+  "reference_track": {
+    "slug": "track:liedgut--atom-tm",
+    "type": "track",
+    "name": "Liedgut"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

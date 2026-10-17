@@ -75,6 +75,16 @@
       "name": "7 Days"
     }
   ],
+  "landmark_project": {
+    "slug": "project:born-to-do-it",
+    "type": "project",
+    "name": "Born to Do It"
+  },
+  "reference_track": {
+    "slug": "track:fill-me-in",
+    "type": "track",
+    "name": "Fill Me In"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

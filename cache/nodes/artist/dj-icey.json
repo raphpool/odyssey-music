@@ -328,6 +328,19 @@
       "name": "City of Groove"
     }
   ],
+  "landmark_project": {
+    "slug": "project:different-day",
+    "type": "project",
+    "name": "Different Day",
+    "mbid": "75a1f50f-9f7d-3661-8d57-afcc8d20ec63",
+    "year": "2003",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:this-is-how-my-drummer-drums",
+    "type": "track",
+    "name": "This Is How My Drummer Drums"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

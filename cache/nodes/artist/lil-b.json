@@ -271,6 +271,19 @@
       "name": "Fuck KD"
     }
   ],
+  "landmark_project": {
+    "slug": "project:i-m-gay",
+    "type": "project",
+    "name": "I’m Gay (I’m Happy)",
+    "mbid": "1fb883a7-bed9-467e-a345-38617ec3e5d8",
+    "year": "2011",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:vans",
+    "type": "track",
+    "name": "Vans"
+  },
   "influences": [],
   "influenced": [
     {
