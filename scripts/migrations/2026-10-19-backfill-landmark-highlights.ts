@@ -51,7 +51,14 @@
  *     artist's slug nor an artist edge with the same non-empty mbid, the rule of `reciprocates`,
  *     src/images/reciprocity.ts) is EXCLUDED from the choice, whatever its score, and listed in
  *     `excluded`; so is a target whose file cannot be read (it cannot be shown to credit anyone);
- *   - the "referenced by a genre" and "imaged" signals only count for a target that credits the artist;
+ *     EXCEPTION (TRA-601, 2026-10-17): a cached target whose `artists` is EMPTY stays eligible, with all its
+ *     signals, when its title is `mentioned` in the artist's article. An empty credit is an absence of
+ *     proof, not a proof of a foreign credit, and the article is the independent evidence. Symptom: the
+ *     rule above excluded project:selected-ambient-works-85-92 (`artists: []`, no mbid) and Aphex Twin fell
+ *     back to Windowlicker. A target that credits ANOTHER artist stays excluded, quoted or not (Moderat ->
+ *     "II" of Boyz II Men, Juan Atkins -> "Clear"). The manifest marks such a pick `emptyCredit: true`.
+ *   - the "referenced by a genre" and "imaged" signals only count for a target that credits the artist
+ *     (or is kept by the exception above);
  *   - a target that is not in the cache and is not redirected cannot be checked: it stays eligible, with no
  *     identity signal (it can still be `mentioned` or an `album`: both come from the artist's own data, so
  *     an entry that could not be checked can outrank a verified one: accepted by TRA-601, the reason is in
@@ -138,6 +145,8 @@ export interface HighlightPick {
 	target: string;
 	reason: Reason;
 	score: number;
+	/** Present (true) only when the target has an empty credit and was kept because the article quotes it. */
+	emptyCredit?: true;
 }
 
 export interface Exclusion {
@@ -192,6 +201,8 @@ export interface Candidate {
 	album: boolean;
 	/** The title is the name of an artist of the cache: no signal at all, and last on a tie. */
 	namedAfterArtist: boolean;
+	/** The target has an empty credit and is kept only because the artist's article quotes its title. */
+	emptyCredit: boolean;
 	/** Release year of the edge; null when it has none that reads as a year. */
 	year: number | null;
 }
@@ -205,6 +216,7 @@ export type Choice =
 			slug: string;
 			reason: Reason;
 			score: number;
+			emptyCredit: boolean;
 			excluded: { slug: string; reason: ExclusionReason }[];
 	  };
 
@@ -275,6 +287,7 @@ export function choose(candidates: readonly Candidate[], options: ChooseOptions)
 		slug: best.candidate.slug,
 		reason: best.reason,
 		score: best.score,
+		emptyCredit: best.candidate.emptyCredit,
 		excluded,
 	};
 }
@@ -485,34 +498,43 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				const target = await resolveReadSlug(edge.slug as Slug, redirects, cache);
 				let state: TargetState = { kind: "absent" };
 				let cachedAlbum = false;
+				let emptyCredit = false;
+				const title = normalizeText(typeof edge.name === "string" ? edge.name : "");
+				const namedAfterArtist = title !== "" && artistNames.has(title);
+				const mentioned = !namedAfterArtist && mentionedIn(title, texts);
 				if (inCache.has(target)) {
 					const work = await readWork(target);
 					if (work === null || (work.type !== "project" && work.type !== "track")) {
 						state = { kind: "unreadable" };
-					} else if ((await reciprocity(artist, work as Work, cache, redirects)) === null) {
-						state = { kind: "uncredited" };
-					} else if (
-						field === "landmark_project" &&
-						new Set(work.artists.map((a) => a.slug)).size >= COMPILATION_MIN_CREDITS &&
-						!scopedOnArtist(target, slug, artist.name)
-					) {
-						// After the identity rules: only a work that credits the artist is judged on its credits.
-						state = { kind: "compilation" };
 					} else {
-						state = { kind: "credited", imaged: hasImage.has(target) };
-						cachedAlbum = work.type === "project" && work.release_type === "album";
+						const credits = (await reciprocity(artist, work as Work, cache, redirects)) !== null;
+						// An EMPTY credit is an absence of proof, not a proof of a foreign credit: the target is kept
+						// when the artist's article quotes its title (TRA-601). A target that credits somebody else is not.
+						emptyCredit = !credits && work.artists.length === 0 && mentioned;
+						if (!credits && !emptyCredit) {
+							state = { kind: "uncredited" };
+						} else if (
+							field === "landmark_project" &&
+							new Set(work.artists.map((a) => a.slug)).size >= COMPILATION_MIN_CREDITS &&
+							!scopedOnArtist(target, slug, artist.name)
+						) {
+							// After the identity rules: only a work that credits the artist is judged on its credits.
+							state = { kind: "compilation" };
+						} else {
+							state = { kind: "credited", imaged: hasImage.has(target) };
+							cachedAlbum = work.type === "project" && work.release_type === "album";
+						}
 					}
 				} else if (target !== edge.slug && !scopedOnArtist(target, slug, artist.name)) {
 					state = { kind: "redirected" };
 				}
-				const title = normalizeText(typeof edge.name === "string" ? edge.name : "");
-				const namedAfterArtist = title !== "" && artistNames.has(title);
 				candidates.push({
 					edge,
 					slug: edge.slug,
 					state,
 					genres: state.kind === "credited" ? (genreCount[genreList].get(target) ?? 0) : 0,
-					mentioned: !namedAfterArtist && mentionedIn(title, texts),
+					mentioned,
+					emptyCredit,
 					album: field === "landmark_project" && (edge.releaseType === "album" || cachedAlbum),
 					namedAfterArtist,
 					year: yearOf(edge.year),
@@ -532,6 +554,7 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				target: choice.slug,
 				reason: choice.reason,
 				score: choice.score,
+				...(choice.emptyCredit ? { emptyCredit: true as const } : {}),
 			});
 		}
 

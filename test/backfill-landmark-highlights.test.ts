@@ -402,6 +402,7 @@ describe("identity: a target that does not credit the artist is never chosen", (
 			mentioned: false,
 			album: false,
 			namedAfterArtist: false,
+			emptyCredit: false,
 			year: null,
 		});
 		const picked = choose(
@@ -595,6 +596,69 @@ describe("rule v2 (TRA-601)", () => {
 			target: "project:the-beatles",
 			reason: "first",
 			score: 0,
+		});
+	});
+
+	describe("empty credit (TRA-601)", () => {
+		const setup = async (article: string | undefined, credits: EdgeRef[]) => {
+			const saw = edge("project", "selected-works", "Selected Works", { releaseType: "ep" });
+			const other = edge("project", "other-work--aphex", "Other Work", { releaseType: "ep" });
+			await put(
+				artistNode("aphex", "Aphex", {
+					discography: [other, saw],
+					...(article === undefined ? {} : { editorial_article: article }),
+				}),
+			);
+			await put(projectNode("selected-works", "Selected Works", { artists: credits }));
+			return { saw, other };
+		};
+
+		it("keeps a cached target with an empty credit when the article quotes its title, with its signals", async () => {
+			const { saw } = await setup(articleQuoting("Selected Works"), []);
+
+			await run();
+
+			expect((await read("artist:aphex")).landmark_project).toEqual(saw);
+			// 50 (mentioned) + 1 (cached): it is eligible with all its signals, and flagged in the manifest.
+			expect(await pickOf("artist:aphex")).toEqual({
+				artist: "artist:aphex",
+				field: "landmark_project",
+				target: "project:selected-works",
+				reason: "mentioned",
+				score: 51,
+				emptyCredit: true,
+			});
+			expect((await manifestOf()).excluded).toEqual([]);
+		});
+
+		it("still excludes a cached target with an empty credit that the article does not quote", async () => {
+			const { other } = await setup(undefined, []);
+
+			await run();
+
+			expect((await read("artist:aphex")).landmark_project).toEqual(other);
+			expect((await manifestOf()).excluded).toEqual([
+				{
+					artist: "artist:aphex",
+					field: "landmark_project",
+					target: "project:selected-works",
+					reason: "not-credited",
+				},
+			]);
+			expect((await pickOf("artist:aphex"))?.emptyCredit).toBeUndefined();
+		});
+
+		it("still excludes a quoted target that credits another artist", async () => {
+			const { other } = await setup(articleQuoting("Selected Works"), [
+				edge("artist", "somebody-else", "Somebody Else"),
+			]);
+
+			await run();
+
+			expect((await read("artist:aphex")).landmark_project).toEqual(other);
+			expect((await manifestOf()).excluded).toMatchObject([
+				{ target: "project:selected-works", reason: "not-credited" },
+			]);
 		});
 	});
 
