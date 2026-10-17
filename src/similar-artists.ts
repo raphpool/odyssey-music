@@ -142,27 +142,34 @@ function countCommon(a: ReadonlySet<string>, b: ReadonlySet<string>): number {
 // Rutter without Mike Golding (B12), Boris without Sunn O))), Mayhem without Darkthrone, Guy without Bell Biv
 // DeVoe, Killer Kau without Kabza De Small, and idm (45 carriers) and ambient (41) cut off in a cache centred on
 // electronic music. Hence the direct link between two artists (a duo must not lose its other half) and tiers of
-// genre specificity: 10 carriers or fewer is a niche that says enough on its own (black metal, new jack swing,
-// noise rock, amapiano), up to 60 it is a weak link that needs a second one, above it says nothing.
-// A genre is counted without the artist itself, so that a new sheet (not yet in the cache) and the backfill
-// (where it is) get the same answer.
+// genre specificity (10 carriers or fewer, up to 60, above). A third version let a genre of 10 carriers or fewer
+// stand alone, and measured: classical (5 carriers) linked Schoenberg to Paul McCartney and Joe Hisaishi, swing (2)
+// Guy to Frank Sinatra, psychedelic-rock (9) Keiji Haino to Pink Floyd, The Byrds and Jane's Addiction. In a cache
+// this small a count of carriers says how rare a tag is here, not how specific it is.
+//
+// So the weights no longer decide who is admitted, they only order. A candidate is admitted when one of these holds:
+//   - a common collaborator, or a direct link between the two artists;
+//   - at least two common genres of non-zero weight;
+//   - one common genre of non-zero weight and a common indie label.
+// A single genre never is enough, whatever its tier, and a label alone never is either. A genre is counted without
+// the artist itself, so that a new sheet (not yet in the cache) and the backfill (where it is) get the same answer.
 
-/** A genre carried by at most this many artists of `others` (the artist excluded) is a niche: weight 2, enough alone. */
+/** A genre carried by at most this many artists of `others` (the artist excluded) is a niche: weight 2. */
 export const GENRE_NICHE_MAX_CARRIERS = 10;
 /** A genre carried by more than this many artists of `others` (the artist excluded) is too wide to say anything: weight 0. */
 export const GENRE_MAX_CARRIERS = 60;
-/** A label cited by at most this many artists of `others` is an indie; more is a major (Island, Columbia): weight 0. */
+/** A label cited by at most this many artists of `others` is an indie; more is a major (Island, Columbia): it does not count. */
 export const LABEL_MAX_CARRIERS = 15;
-/** Weight of a common collaborator, and of a direct link between the two artists; either is enough on its own. */
+/** Weight of a common collaborator, and of a direct link between the two artists; either admits a candidate alone. */
 export const COLLABORATOR_WEIGHT = 3;
-/** Weight of a common niche genre (GENRE_NICHE_MAX_CARRIERS carriers or fewer): enough on its own. */
+/** Weight of a common niche genre (GENRE_NICHE_MAX_CARRIERS carriers or fewer). Orders, never admits alone. */
 export const NICHE_GENRE_WEIGHT = 2;
-/** Weight of a common genre carried by GENRE_NICHE_MAX_CARRIERS + 1 to GENRE_MAX_CARRIERS artists: needs a second link. */
+/** Weight of a common genre carried by GENRE_NICHE_MAX_CARRIERS + 1 to GENRE_MAX_CARRIERS artists. Orders, never admits alone. */
 export const GENRE_WEIGHT = 1;
-/** Weight of a common indie label (see LABEL_MAX_CARRIERS), counted only when a genre of at most GENRE_MAX_CARRIERS is also common. */
+/** Weight of a common indie label (see LABEL_MAX_CARRIERS), counted only next to a common genre of non-zero weight. */
 export const LABEL_WEIGHT = 2;
-/** Without a collaborator link, a candidate needs at least this score: one genre of 11 to 60 carriers (1) is not enough. */
-export const MIN_GRAPH_SCORE = 2;
+/** Common genres of non-zero weight that admit a candidate without a collaborator link or a label. */
+export const MIN_COMMON_GENRES = 2;
 
 function countCarriers(sets: readonly ReadonlySet<string>[]): Map<string, number> {
 	const counts = new Map<string, number>();
@@ -171,14 +178,14 @@ function countCarriers(sets: readonly ReadonlySet<string>[]): Map<string, number
 }
 
 /**
- * Artists of `others` that share structure with `artist`. A collaborator link weighs 3, once: a common
- * collaborator (each one counts) or a direct one, the candidate in `artist.collaborators` or the artist in
- * `candidate.collaborators`. A common genre weighs 2 if at most GENRE_NICHE_MAX_CARRIERS artists of `others`
- * carry it, 1 up to GENRE_MAX_CARRIERS, else 0. A common label weighs 2 if at most LABEL_MAX_CARRIERS artists
- * of `others` cite it, else 0, and only when a genre of at most GENRE_MAX_CARRIERS is also common: a label
- * alone never makes two artists similar. The artist itself is not counted among the carriers. A candidate is
- * kept only with a collaborator link or a score of MIN_GRAPH_SCORE or more, so the list may be shorter than
- * 10, or empty. Ordered by score desc, then number of common genres desc, then name asc. The artist, its
+ * Artists of `others` that share structure with `artist`. Admitted: a candidate with a collaborator link (a
+ * common collaborator, or a direct one: the candidate in `artist.collaborators` or the artist in
+ * `candidate.collaborators`), or with MIN_COMMON_GENRES common genres of non-zero weight, or with one such genre
+ * and a common label cited by at most LABEL_MAX_CARRIERS artists of `others`. A single genre never admits, and
+ * nor does a label alone. The list may be shorter than 10, or empty. The score only orders: 3 per collaborator
+ * link (each common one, plus the direct one), 2 per common genre carried by at most GENRE_NICHE_MAX_CARRIERS
+ * artists of `others`, 1 up to GENRE_MAX_CARRIERS, else 0, and 2 per indie label next to such a genre. The artist
+ * itself is not counted among the carriers. Ordered by score desc, then number of common genres desc, then name asc. The artist, its
  * aliases and its members never appear. Deliberately one-way: no inverse edge is implied.
  */
 export function computeSimilarFromGraph(
@@ -224,25 +231,27 @@ export function computeSimilarFromGraph(
 		const collaboratorLink = commonCollaborators > 0 || directLink;
 		let commonGenres = 0;
 		let genreScore = 0;
-		let reliableGenre = false;
+		let weightedGenres = 0;
 		for (const genre of genres) {
 			if (!otherGenres.has(genre)) continue;
 			commonGenres++;
 			const carriers = genreCarriers.get(genre) ?? 0;
 			if (carriers <= GENRE_NICHE_MAX_CARRIERS) genreScore += NICHE_GENRE_WEIGHT;
 			else if (carriers <= GENRE_MAX_CARRIERS) genreScore += GENRE_WEIGHT;
-			if (carriers <= GENRE_MAX_CARRIERS) reliableGenre = true;
+			if (carriers <= GENRE_MAX_CARRIERS) weightedGenres++;
 		}
 		let score = COLLABORATOR_WEIGHT * commonCollaborators + genreScore;
 		if (directLink) score += COLLABORATOR_WEIGHT;
-		if (reliableGenre) {
+		let indieLabel = false;
+		if (weightedGenres > 0) {
 			for (const label of labels) {
 				if (otherLabels.has(label) && (labelCarriers.get(label) ?? 0) <= LABEL_MAX_CARRIERS) {
 					score += LABEL_WEIGHT;
+					indieLabel = true;
 				}
 			}
 		}
-		if (!collaboratorLink && score < MIN_GRAPH_SCORE) continue;
+		if (!collaboratorLink && weightedGenres < MIN_COMMON_GENRES && !indieLabel) continue;
 		const candidate: SimilarCandidate = { name: node.name, score, slug: node.slug };
 		if (node.mbid) candidate.mbid = node.mbid;
 		ranked.push({ candidate, commonGenres });
