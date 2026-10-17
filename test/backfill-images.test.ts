@@ -688,6 +688,96 @@ describe("derived covers need a work that points back at the node (TRA-591)", ()
 	});
 });
 
+describe("a genre also borrows from a work carrying its direct parent or subgenre (TRA-597)", () => {
+	it("derives jungle's cover from a drum-and-bass album, refuses a related-only and a grandparent album", async () => {
+		await seed(
+			dir,
+			projectNode("dnb-album", "DnB Album", {
+				mbid: mb(95),
+				genres: [edge("genre", "drum-and-bass", "DnB")],
+			}),
+			projectNode("reggae-album", "Reggae Album", {
+				mbid: mb(96),
+				genres: [edge("genre", "reggae", "Reggae")],
+			}),
+			projectNode("breakbeat-album", "Breakbeat Album", {
+				mbid: mb(97),
+				genres: [edge("genre", "breakbeat", "Breakbeat")],
+			}),
+			genreNode("drum-and-bass", "Drum and bass", {
+				parent_genres: [edge("genre", "breakbeat", "Breakbeat")],
+			}),
+			genreNode("jungle", "Jungle", {
+				parent_genres: [edge("genre", "drum-and-bass", "DnB")],
+				landmark_projects: [edge("project", "dnb-album", "DnB Album")],
+			}),
+			genreNode("ragga-jungle", "Ragga jungle", {
+				parent_genres: [edge("genre", "jungle", "Jungle")],
+				// drum-and-bass is jungle's parent: ragga-jungle's grandparent.
+				landmark_projects: [edge("project", "dnb-album", "DnB Album")],
+			}),
+			genreNode("dancehall", "Dancehall", {
+				related_genres: [edge("genre", "reggae", "Reggae")],
+				landmark_projects: [edge("project", "reggae-album", "Reggae Album")],
+			}),
+		);
+		const result = await run({
+			fetch: routedFetch([caaFound(95), caaFound(96), caaFound(97), mbNoRelations]),
+		});
+
+		expect(result.exitCode).toBe(0);
+		expect(await read(dir, "genre:jungle")).toMatchObject({
+			image_url: caaUrl(95),
+			image_source: "derived-cover",
+		});
+		for (const slug of ["genre:ragga-jungle", "genre:dancehall"]) {
+			expect(await read(dir, slug), slug).not.toHaveProperty("image_url");
+		}
+	});
+});
+
+describe("exact before neighbour for a genre cover (TRA-597)", () => {
+	it("a drum-and-bass landmark listed before an imaged jungle landmark does not win, even when the exact one is a track", async () => {
+		await seed(
+			dir,
+			projectNode("dnb-album", "DnB Album", {
+				mbid: mb(98),
+				genres: [edge("genre", "drum-and-bass", "DnB")],
+			}),
+			projectNode("jungle-album", "Jungle Album", {
+				mbid: mb(99),
+				genres: [edge("genre", "jungle", "Jungle")],
+			}),
+			trackNode("jungle-two-cut", "Jungle Two Cut", {
+				project: edge("project", "jungle-album", "Jungle Album"),
+				genres: [edge("genre", "jungle-two", "Jungle Two")],
+			}),
+			genreNode("jungle", "Jungle", {
+				parent_genres: [edge("genre", "drum-and-bass", "DnB")],
+				landmark_projects: [
+					edge("project", "dnb-album", "DnB Album"),
+					edge("project", "jungle-album", "Jungle Album"),
+				],
+			}),
+			// Same, with the exact work only in landmark_tracks, which comes after landmark_projects.
+			projectNode("only-dnb", "Only DnB", { mbid: mb(100), genres: [edge("genre", "drum-and-bass", "DnB")] }),
+			genreNode("jungle-two", "Jungle Two", {
+				parent_genres: [edge("genre", "drum-and-bass", "DnB")],
+				landmark_projects: [edge("project", "only-dnb", "Only DnB")],
+				landmark_tracks: [edge("track", "jungle-two-cut", "Jungle Two Cut")],
+			}),
+		);
+		await run({ fetch: routedFetch([caaFound(98), caaFound(99), caaFound(100), mbNoRelations]) });
+
+		expect(await read(dir, "genre:jungle")).toMatchObject({
+			image_url: caaUrl(99),
+			image_source: "derived-cover",
+		});
+		// The track takes its project's image (99); the exact track beats the neighbour project (100).
+		expect(await read(dir, "genre:jungle-two")).toMatchObject({ image_url: caaUrl(99) });
+	});
+});
+
 describe("an unverified iTunes cover_url is not copied either (review of #495, B1)", () => {
 	const ITUNES_COVER =
 		"https://is1-ssl.mzstatic.com/image/thumb/Music/v4/aa/bb/cc/192641477133_Cover.jpg/1500x1500bb.jpg";

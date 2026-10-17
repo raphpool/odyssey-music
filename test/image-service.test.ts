@@ -412,6 +412,99 @@ describe("resolveDisplayImage (TRA-475)", () => {
 			expect((await service().resolveDisplayImage("genre:techno" as Slug)).state).toBe("none");
 		});
 
+		it("a genre borrows a landmark carrying its direct parent, not its grandparent (TRA-597)", async () => {
+			await cache.write(
+				projectNode({
+					slug: "project:dnb-album",
+					name: "DnB Album",
+					image_url: CAA_URL,
+					genres: [{ type: "genre", slug: "genre:drum-and-bass", name: "Drum and bass" }],
+				}),
+			);
+			await cache.write(
+				projectNode({
+					slug: "project:breakbeat-album",
+					name: "Breakbeat Album",
+					image_url: CAA_URL,
+					genres: [{ type: "genre", slug: "genre:breakbeat", name: "Breakbeat" }],
+				}),
+			);
+			const landmarks = (...slugs: string[]) =>
+				slugs.map((s) => ({ type: "project" as const, slug: s as Slug, name: s }));
+			await cache.write(
+				genreNode({
+					slug: "genre:drum-and-bass",
+					name: "Drum and bass",
+					parent_genres: [{ type: "genre", slug: "genre:breakbeat", name: "Breakbeat" }],
+				}),
+			);
+			// jungle's landmark carries breakbeat, a grandparent (drum-and-bass's parent): refused.
+			await cache.write(
+				genreNode({
+					slug: "genre:jungle",
+					name: "Jungle",
+					parent_genres: [{ type: "genre", slug: "genre:drum-and-bass", name: "Drum and bass" }],
+					landmark_projects: landmarks("project:breakbeat-album"),
+				}),
+			);
+			expect((await service().resolveDisplayImage("genre:jungle" as Slug)).state).toBe("none");
+
+			// The same genre listing a drum-and-bass album, its direct parent: borrowed.
+			await cache.write(
+				genreNode({
+					slug: "genre:jungle",
+					name: "Jungle",
+					parent_genres: [{ type: "genre", slug: "genre:drum-and-bass", name: "Drum and bass" }],
+					landmark_projects: landmarks("project:dnb-album"),
+				}),
+			);
+			const result = await service().resolveDisplayImage("genre:jungle" as Slug);
+			expect(result.state).not.toBe("none");
+			expect(result.image_url).toBe(CAA_URL);
+		});
+
+		it("a genre prefers a listed work carrying the genre itself over an earlier parent-genre work (TRA-597)", async () => {
+			const EXACT_URL = "https://coverartarchive.org/release/exact/front-500.jpg";
+			await cache.write(
+				projectNode({
+					slug: "project:dnb-album",
+					name: "DnB Album",
+					image_url: CAA_URL,
+					genres: [{ type: "genre", slug: "genre:drum-and-bass", name: "Drum and bass" }],
+				}),
+			);
+			await cache.write(
+				projectNode({
+					slug: "project:jungle-album",
+					name: "Jungle Album",
+					image_url: EXACT_URL,
+					genres: [{ type: "genre", slug: "genre:jungle", name: "Jungle" }],
+				}),
+			);
+			const edges = ["project:dnb-album", "project:jungle-album"].map((s) => ({
+				type: "project" as const,
+				slug: s as Slug,
+				name: s,
+			}));
+			const parent = [{ type: "genre" as const, slug: "genre:drum-and-bass" as Slug, name: "Drum and bass" }];
+			await cache.write(
+				genreNode({ slug: "genre:jungle", name: "Jungle", parent_genres: parent, landmark_projects: edges }),
+			);
+
+			expect((await service().resolveDisplayImage("genre:jungle" as Slug)).image_url).toBe(EXACT_URL);
+
+			// Without an exact work with an image, the parent-genre work is the fallback.
+			await cache.write(
+				genreNode({
+					slug: "genre:jungle",
+					name: "Jungle",
+					parent_genres: parent,
+					landmark_projects: edges.slice(0, 1),
+				}),
+			);
+			expect((await service().resolveDisplayImage("genre:jungle" as Slug)).image_url).toBe(CAA_URL);
+		});
+
 		it("a track still borrows its own project's image, as the resolver does", async () => {
 			await cache.write(
 				projectNode({ slug: "project:lp", name: "LP", image_url: CAA_URL, image_source: "caa" }),

@@ -5,7 +5,7 @@ import { type GenreRedirects, resolveReadSlug } from "../genre-registry.js";
 import { isAllowedImageUrl } from "../images/hosts.js";
 import type { EnqueueOutcome, ImageQueue } from "../images/image-queue.js";
 import { type ImageSidecarEntry, readImageSidecar } from "../images/image-sidecar.js";
-import { reciprocates } from "../images/reciprocity.js";
+import { reciprocity } from "../images/reciprocity.js";
 import type { WorkImageHint } from "../images/resolve-work-hint.js";
 import { logger } from "../logger.js";
 import { hasTransliteratedLetter, isScopedSlug } from "../slug.js";
@@ -310,11 +310,15 @@ export function createImageService(deps: {
 	 * The first related work that has an allowed `image_url` AND points back at `node` (TRA-592). The
 	 * predicate is the one the resolver uses to derive a cover (`reciprocates`, TRA-591): a list polluted by
 	 * a homonym or a hallucination must not lend its covers here either (2026-10-16, label:mille-plateaux
-	 * got the cover of Electric Ladyland). A track borrows from its own project, as the resolver does
+	 * got the cover of Electric Ladyland). For a genre, "points back" also covers a work carrying its direct
+	 * parent or a direct subgenre (TRA-597). A track borrows from its own project, as the resolver does
 	 * ("project-image"). A borrowed node lends only the image it stores, never one it borrowed itself.
 	 */
 	async function borrowFromRelated(node: NodePayload): Promise<{ slug: Slug; url: string } | null> {
 		if (node.type === "project") return null; // a project has nothing to borrow from
+		// Exact before neighbour (TRA-597), as in the resolver: a genre's parent / subgenre work is only the
+		// fallback when no listed work carrying the genre itself has an image.
+		let neighbour: { slug: Slug; url: string } | null = null;
 		for (const ref of borrowEdges(node)) {
 			const lookupSlug = await resolveReadSlug(ref.slug, deps.redirects, deps.cache);
 			const related = await deps.cache.get(lookupSlug).catch((e: unknown) => {
@@ -323,10 +327,12 @@ export function createImageService(deps: {
 			});
 			if (!related || (related.type !== "project" && related.type !== "track")) continue;
 			if (!related.image_url || !isAllowedImageUrl(related.image_url)) continue;
-			if (node.type !== "track" && !(await reciprocates(node, related, deps.cache, deps.redirects))) continue;
-			return { slug: ref.slug, url: related.image_url };
+			if (node.type === "track") return { slug: ref.slug, url: related.image_url };
+			const kind = await reciprocity(node, related, deps.cache, deps.redirects);
+			if (kind === "exact") return { slug: ref.slug, url: related.image_url };
+			if (kind === "neighbour") neighbour ??= { slug: ref.slug, url: related.image_url };
 		}
-		return null;
+		return neighbour;
 	}
 
 	async function walk(slug: Slug, root: RootContext): Promise<DisplayImage> {

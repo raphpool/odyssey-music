@@ -11,6 +11,7 @@
  *   genre   → cover of the first landmark project, then landmark track, that has an image
  *
  * The borrowed cover must come from a work that points back at the node (TRA-591): see `reciprocates`.
+ * For a genre that includes a work carrying its direct parent or a direct subgenre (TRA-597).
  *
  * Nothing is written: this only computes a candidate. Every returned URL passes
  * `isAllowedImageUrl` (the same gate the node schema applies on write), and a failing rung (network
@@ -27,7 +28,7 @@ import { fetchWikidataUrlRelMb, type MbPriority } from "../musicbrainz.js";
 import type { EdgeRef, ImageSource, NodePayload } from "../types.js";
 import { coverArtUrl } from "./coverart.js";
 import { isAllowedImageUrl } from "./hosts.js";
-import { isWork, reciprocates, type Subject } from "./reciprocity.js";
+import { isWork, reciprocity, type Subject } from "./reciprocity.js";
 import { commonsFileUrl, fetchWikidataImages, searchWikidataLabel } from "./wikidata.js";
 
 const log = logger.child({ module: "resolve-image" });
@@ -135,14 +136,19 @@ async function borrowFrom(
 	// Only genres go through the redirect table: label and artist equality stays on the raw slug (or mbid).
 	const redirects = subject.type === "genre" ? await redirectsOf(deps) : new Map();
 	let skipped = 0;
+	// Exact before neighbour (TRA-597): the first work carrying the genre itself wins; a parent / subgenre
+	// work lends its cover only when no exact one has an image. List order is kept within each kind.
+	let neighbour: string | null = null;
 	for (const ref of refs) {
 		if (!ref) continue;
 		const work = await readNode(deps.cache, ref);
 		if (!work || !isWork(work) || !work.image_url || !isAllowedImageUrl(work.image_url)) continue;
-		if (await reciprocates(subject, work, deps.cache, redirects)) return { url: work.image_url, skipped };
-		skipped++;
+		const kind = await reciprocity(subject, work, deps.cache, redirects);
+		if (kind === "exact") return { url: work.image_url, skipped };
+		if (kind === "neighbour") neighbour ??= work.image_url;
+		else skipped++;
 	}
-	return { url: null, skipped };
+	return { url: neighbour, skipped };
 }
 
 async function derivedCover(
@@ -282,9 +288,8 @@ export async function resolveImage(node: NodePayload, deps: ImageDeps): Promise<
 			]);
 
 		case "genre":
-			return firstOf([
-				["landmark-projects", () => derivedCover(node, node.landmark_projects, deps)],
-				["landmark-tracks", () => derivedCover(node, node.landmark_tracks, deps)],
-			]);
+			// One pass over projects then tracks (TRA-597): an exact landmark track must beat a neighbour
+			// landmark project, so the two lists cannot be separate rungs any more.
+			return firstOf([["derived-cover", () => derivedCover(node, derivedRefs(node), deps)]]);
 	}
 }

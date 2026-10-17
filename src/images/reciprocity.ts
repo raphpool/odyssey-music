@@ -7,7 +7,7 @@
  */
 import type { NodeCache } from "../cache.js";
 import { type GenreRedirects, resolveReadSlug } from "../genre-registry.js";
-import type { NodePayload } from "../types.js";
+import type { NodePayload, Slug } from "../types.js";
 
 /** The works a node may borrow a cover from (`project` / `track`) and the edges they declare. */
 export type Work = Extract<NodePayload, { type: "project" | "track" }>;
@@ -22,8 +22,11 @@ export const isWork = (node: NodePayload): node is Work => node.type === "projec
  * release). Equality is strict everywhere:
  * - label: the work's label slug is the label's slug;
  * - artist: the work credits the artist's slug, or an artist edge carrying the same non-empty mbid;
- * - genre: a genre edge with the same slug once both sides went through the redirect table.
+ * - genre: a genre edge with the same slug, or with a direct parent (`parent_genres`) or a direct
+ *   subgenre (`subgenres`) of the genre, once all sides went through the redirect table (TRA-597).
  * A band member therefore no longer borrows the band's cover: it credits the band, not the member.
+ *
+ * Callers that pick a cover use `reciprocity` and prefer an "exact" work over a "neighbour" one (TRA-597).
  */
 export async function reciprocates(
 	subject: Subject,
@@ -31,23 +34,57 @@ export async function reciprocates(
 	cache: NodeCache,
 	redirects: GenreRedirects,
 ): Promise<boolean> {
+	return (await reciprocity(subject, work, cache, redirects)) !== null;
+}
+
+/**
+ * How a work points back at its subject: "exact" when it declares the node itself, "neighbour" when it only
+ * carries a genre's direct parent or a direct subgenre (TRA-597). Label and artist can only be "exact".
+ * The resolver and GET /image both take the first "exact" work in list order and fall back to the first
+ * "neighbour" only when no work is exact (2026-10-17, Raphael: a drum-and-bass album listed before a
+ * jungle album must not win jungle's cover).
+ */
+export type Reciprocity = "exact" | "neighbour";
+
+export async function reciprocity(
+	subject: Subject,
+	work: Work,
+	cache: NodeCache,
+	redirects: GenreRedirects,
+): Promise<Reciprocity | null> {
 	switch (subject.type) {
 		case "label":
-			return work.label?.slug === subject.slug;
+			return work.label?.slug === subject.slug ? "exact" : null;
 		case "artist":
 			return work.artists.some(
 				(a) =>
 					a.type === "artist" &&
 					(a.slug === subject.slug || (!!subject.mbid && !!a.mbid && a.mbid === subject.mbid)),
-			);
+			)
+				? "exact"
+				: null;
 		case "genre": {
-			const wanted = await resolveReadSlug(subject.slug, redirects, cache);
+			// TRA-597 (Raphael's decision, 2026-10-17): a genre page often cites an album tagged with a
+			// neighbouring genre ("jungle" citing a drum-and-bass album). The cover is still the right sleeve of
+			// the right album, so a genre also accepts a work that carries its direct parent or a direct
+			// subgenre. One level only: no grandparent, no sibling, no `related_genres`. The relations come from
+			// the genre node's own edges: data/genre-taxonomy.json only groups genres into families, it holds no
+			// parent/child relation. Label and artist stay strict (see above).
+			const own = new Set<Slug>([subject.slug, await resolveReadSlug(subject.slug, redirects, cache)]);
+			const neighbours = new Set<Slug>();
+			for (const e of [...subject.parent_genres, ...subject.subgenres]) {
+				if (e.type !== "genre") continue;
+				neighbours.add(e.slug);
+				neighbours.add(await resolveReadSlug(e.slug, redirects, cache));
+			}
+			let found: Reciprocity | null = null;
 			for (const g of work.genres) {
 				if (g.type !== "genre") continue;
-				if (g.slug === subject.slug || (await resolveReadSlug(g.slug, redirects, cache)) === wanted)
-					return true;
+				const resolved = await resolveReadSlug(g.slug, redirects, cache);
+				if (own.has(g.slug) || own.has(resolved)) return "exact";
+				if (neighbours.has(g.slug) || neighbours.has(resolved)) found = "neighbour";
 			}
-			return false;
+			return found;
 		}
 	}
 }
