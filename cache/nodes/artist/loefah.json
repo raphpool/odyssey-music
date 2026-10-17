@@ -90,6 +90,16 @@
       "name": "Disko Rekah"
     }
   ],
+  "landmark_project": {
+    "slug": "project:mud-rufage",
+    "type": "project",
+    "name": "Mud / Rufage"
+  },
+  "reference_track": {
+    "slug": "track:mud",
+    "type": "track",
+    "name": "Mud"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

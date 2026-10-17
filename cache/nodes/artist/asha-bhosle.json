@@ -100,6 +100,16 @@
       "name": "Aaja Aaja"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dil-padosi-hai",
+    "type": "project",
+    "name": "Dil Padosi Hai"
+  },
+  "reference_track": {
+    "slug": "track:piya-tu-ab-to-aaja",
+    "type": "track",
+    "name": "Piya Tu Ab To Aaja"
+  },
   "influences": [
     {
       "slug": "artist:deenanath-mangeshkar",

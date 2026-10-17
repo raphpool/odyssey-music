@@ -83,6 +83,16 @@
       "name": "Funeral Singers"
     }
   ],
+  "landmark_project": {
+    "slug": "project:roots-and-crowns",
+    "type": "project",
+    "name": "Roots & Crowns"
+  },
+  "reference_track": {
+    "slug": "track:funeral-singers",
+    "type": "track",
+    "name": "Funeral Singers"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

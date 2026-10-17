@@ -77,6 +77,19 @@
       "name": "On My Own"
     }
   ],
+  "landmark_project": {
+    "slug": "project:8-goals-away",
+    "type": "project",
+    "name": "8 Goals Away (UN Song)",
+    "mbid": "c8bbd1af-98a6-4179-8798-baef659a50d3",
+    "year": "2010",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:on-my-own",
+    "type": "track",
+    "name": "On My Own"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

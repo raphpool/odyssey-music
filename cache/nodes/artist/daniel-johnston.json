@@ -98,6 +98,16 @@
       "name": "Speeding Motorcycle"
     }
   ],
+  "landmark_project": {
+    "slug": "project:songs-of-pain",
+    "type": "project",
+    "name": "Songs of Pain"
+  },
+  "reference_track": {
+    "slug": "track:true-love-will-find-you-in-the-end",
+    "type": "track",
+    "name": "True Love Will Find You in the End"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

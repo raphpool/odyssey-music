@@ -61,6 +61,16 @@
       "name": "The Climax"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-secret-tapes-of-dr-eich",
+    "type": "project",
+    "name": "The Secret Tapes Of Dr. Eich"
+  },
+  "reference_track": {
+    "slug": "track:throw--paperclip-people",
+    "type": "track",
+    "name": "Throw"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

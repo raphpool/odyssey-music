@@ -97,6 +97,16 @@
       "name": "Blood Sweat & Tears"
     }
   ],
+  "landmark_project": {
+    "slug": "project:2-cool-4-skool",
+    "type": "project",
+    "name": "2 Cool 4 Skool"
+  },
+  "reference_track": {
+    "slug": "track:no-more-dream",
+    "type": "track",
+    "name": "No More Dream"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

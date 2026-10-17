@@ -70,6 +70,16 @@
       "name": "Gare au Jaguarr"
     }
   ],
+  "landmark_project": {
+    "slug": "project:gare-au-jaguarr",
+    "type": "project",
+    "name": "Gare au Jaguarr"
+  },
+  "reference_track": {
+    "slug": "track:gare-au-jaguarr",
+    "type": "track",
+    "name": "Gare au Jaguarr"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

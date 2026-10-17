@@ -68,6 +68,16 @@
       "name": "Straight Outta Hell"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-savage-and-beyond",
+    "type": "project",
+    "name": "The Savage And Beyond"
+  },
+  "reference_track": {
+    "slug": "track:straight-outta-hell",
+    "type": "track",
+    "name": "Straight Outta Hell"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

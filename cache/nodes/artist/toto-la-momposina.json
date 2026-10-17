@@ -201,6 +201,19 @@
       "name": "La Verdolaga"
     }
   ],
+  "landmark_project": {
+    "slug": "project:la-candela-viva",
+    "type": "project",
+    "name": "La candela viva",
+    "mbid": "7fdc2849-403e-4631-9f11-abcc17dd05a9",
+    "year": "2013",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:el-pescador",
+    "type": "track",
+    "name": "El Pescador"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

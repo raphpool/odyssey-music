@@ -69,7 +69,7 @@
       "name": "Entain"
     },
     {
-      "slug": "project:visa",
+      "slug": "project:visa--vladislav-delay",
       "type": "project",
       "name": "Visa"
     },
@@ -92,6 +92,16 @@
       "name": "Huone"
     }
   ],
+  "landmark_project": {
+    "slug": "project:multila--vladislav-delay",
+    "type": "project",
+    "name": "Multila"
+  },
+  "reference_track": {
+    "slug": "track:vastaa",
+    "type": "track",
+    "name": "Vastaa"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

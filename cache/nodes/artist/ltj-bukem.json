@@ -60,6 +60,11 @@
       "name": "Music"
     }
   ],
+  "reference_track": {
+    "slug": "track:horizons",
+    "type": "track",
+    "name": "Horizons"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

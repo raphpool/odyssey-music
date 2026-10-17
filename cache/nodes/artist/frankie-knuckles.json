@@ -72,7 +72,7 @@
       "name": "Beyond the Mix"
     },
     {
-      "slug": "project:welcome-to-the-real-world",
+      "slug": "project:welcome-to-the-real-world--frankie-knuckles",
       "type": "project",
       "name": "Welcome to the Real World"
     }
@@ -89,7 +89,7 @@
       "name": "Baby Wants to Ride"
     },
     {
-      "slug": "track:tears",
+      "slug": "track:tears--frankie-knuckles",
       "type": "track",
       "name": "Tears"
     },
@@ -100,6 +100,16 @@
       "artist": "Frankie Knuckles"
     }
   ],
+  "landmark_project": {
+    "slug": "project:beyond-the-mix--frankie-knuckles",
+    "type": "project",
+    "name": "Beyond the Mix"
+  },
+  "reference_track": {
+    "slug": "track:your-love--frankie-knuckles",
+    "type": "track",
+    "name": "Your Love"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -64,6 +64,16 @@
       "name": "Re-Rewind (The Crowd Say Bo Selecta)"
     }
   ],
+  "landmark_project": {
+    "slug": "project:it-s-all-about-the-stragglers",
+    "type": "project",
+    "name": "It's All About the Stragglers"
+  },
+  "reference_track": {
+    "slug": "track:re-rewind",
+    "type": "track",
+    "name": "Re-Rewind (The Crowd Say Bo Selecta)"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

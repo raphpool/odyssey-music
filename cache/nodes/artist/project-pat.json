@@ -419,6 +419,19 @@
       "name": "Knife Talk"
     }
   ],
+  "landmark_project": {
+    "slug": "project:ghetty-green",
+    "type": "project",
+    "name": "Ghetty Green",
+    "mbid": "f9f6c3c4-5c9d-32d1-9c92-0b6f0920bc3d",
+    "year": "1999",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:sippin-on-some-syrup",
+    "type": "track",
+    "name": "Sippin' on Some Syrup"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

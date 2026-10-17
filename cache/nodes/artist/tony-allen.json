@@ -438,6 +438,19 @@
       "name": "Moanin'"
     }
   ],
+  "landmark_project": {
+    "slug": "project:lagos-no-shaking",
+    "type": "project",
+    "name": "Lagos No Shaking",
+    "mbid": "202253de-54e6-3856-9f73-5595e35e7aec",
+    "year": "2006",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:yere-faga",
+    "type": "track",
+    "name": "Yere faga"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

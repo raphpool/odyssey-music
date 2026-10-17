@@ -112,6 +112,16 @@
       "name": "I Know Where Syd Barrett Lives"
     }
   ],
+  "landmark_project": {
+    "slug": "project:and-don-t-the-kids-just-love-it",
+    "type": "project",
+    "name": "...And Don't the Kids Just Love It"
+  },
+  "reference_track": {
+    "slug": "track:part-time-punks",
+    "type": "track",
+    "name": "Part Time Punks"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

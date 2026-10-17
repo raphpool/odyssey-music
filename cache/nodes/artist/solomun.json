@@ -54,9 +54,20 @@
       "name": "Kackvogel"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dance-baby",
+    "type": "project",
+    "name": "Dance Baby"
+  },
+  "reference_track": {
+    "slug": "track:kackvogel",
+    "type": "track",
+    "name": "Kackvogel"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

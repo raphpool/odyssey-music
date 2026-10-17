@@ -97,7 +97,7 @@
       "name": "Stimmung"
     },
     {
-      "slug": "project:mantra",
+      "slug": "project:mantra--karlheinz-stockhausen",
       "type": "project",
       "name": "Mantra"
     },
@@ -130,6 +130,16 @@
       "artist": "Karlheinz Stockhausen"
     }
   ],
+  "landmark_project": {
+    "slug": "project:gesang-der-junglinge--karlheinz-stockhausen",
+    "type": "project",
+    "name": "Gesang der Jünglinge"
+  },
+  "reference_track": {
+    "slug": "track:kontakte--karlheinz-stockhausen",
+    "type": "track",
+    "name": "Kontakte"
+  },
   "influences": [
     {
       "slug": "artist:pierre-schaeffer",

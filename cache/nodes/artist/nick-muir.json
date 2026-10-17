@@ -77,6 +77,16 @@
       "name": "Heaven Scent"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dark-blue",
+    "type": "project",
+    "name": "Dark Blue"
+  },
+  "reference_track": {
+    "slug": "track:for-what-you-dream-of",
+    "type": "track",
+    "name": "For What You Dream Of"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

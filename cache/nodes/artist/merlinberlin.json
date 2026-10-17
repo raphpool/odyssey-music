@@ -80,6 +80,16 @@
       "name": "Anomaly"
     }
   ],
+  "landmark_project": {
+    "slug": "project:lens-shift-ep",
+    "type": "project",
+    "name": "Lens Shift EP"
+  },
+  "reference_track": {
+    "slug": "track:navi-el",
+    "type": "track",
+    "name": "Navi’el"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

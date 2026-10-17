@@ -67,6 +67,16 @@
       "name": "Smells Like Nirvana"
     }
   ],
+  "landmark_project": {
+    "slug": "project:mandatory-fun--weird-al-yankovic",
+    "type": "project",
+    "name": "Mandatory Fun"
+  },
+  "reference_track": {
+    "slug": "track:eat-it",
+    "type": "track",
+    "name": "Eat It"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

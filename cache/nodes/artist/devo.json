@@ -102,6 +102,16 @@
       "name": "Uncontrollable Urge"
     }
   ],
+  "landmark_project": {
+    "slug": "project:freedom-of-choice",
+    "type": "project",
+    "name": "Freedom of Choice"
+  },
+  "reference_track": {
+    "slug": "track:whip-it",
+    "type": "track",
+    "name": "Whip It"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

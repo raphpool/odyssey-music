@@ -189,6 +189,19 @@
       "name": "Zombie (Part One)"
     }
   ],
+  "landmark_project": {
+    "slug": "project:back-in-the-doghouse",
+    "type": "project",
+    "name": "Back in the Doghouse",
+    "mbid": "b6dd5e17-02e7-3498-92aa-5fb16b49c0e5",
+    "year": "2006",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:booty-la-la",
+    "type": "track",
+    "name": "Booty La La"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

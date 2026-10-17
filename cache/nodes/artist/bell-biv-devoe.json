@@ -160,6 +160,19 @@
       "name": "The Best Things in Life Are Free"
     }
   ],
+  "landmark_project": {
+    "slug": "project:three-stripes",
+    "type": "project",
+    "name": "Three Stripes",
+    "mbid": "65bdbe37-5da3-4a39-bd91-2638d165b5d4",
+    "year": "2017",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:poison",
+    "type": "track",
+    "name": "Poison"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

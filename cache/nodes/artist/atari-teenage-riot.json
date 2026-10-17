@@ -79,6 +79,17 @@
       "name": "Rage"
     }
   ],
+  "landmark_project": {
+    "slug": "project:60-second-wipe-out--atari-teenage-riot",
+    "type": "project",
+    "name": "60 Second Wipe Out",
+    "artist": "Atari Teenage Riot"
+  },
+  "reference_track": {
+    "slug": "track:rage",
+    "type": "track",
+    "name": "Rage"
+  },
   "influences": [],
   "influenced": [
     {

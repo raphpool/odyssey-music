@@ -67,6 +67,17 @@
       "name": "Coin-Operated Boy"
     }
   ],
+  "landmark_project": {
+    "slug": "project:a-is-for-accident--the-dresden-dolls",
+    "type": "project",
+    "name": "A Is for Accident",
+    "artist": "The Dresden Dolls"
+  },
+  "reference_track": {
+    "slug": "track:girl-anachronism",
+    "type": "track",
+    "name": "Girl Anachronism"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

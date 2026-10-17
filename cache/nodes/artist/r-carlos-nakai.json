@@ -80,6 +80,16 @@
       "name": "Cycles"
     }
   ],
+  "landmark_project": {
+    "slug": "project:changes",
+    "type": "project",
+    "name": "Changes"
+  },
+  "reference_track": {
+    "slug": "track:canyon-trilogy",
+    "type": "track",
+    "name": "Canyon Trilogy"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

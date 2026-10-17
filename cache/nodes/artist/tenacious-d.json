@@ -88,6 +88,16 @@
       "name": "Wonderboy"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-pick-of-destiny",
+    "type": "project",
+    "name": "The Pick Of Destiny"
+  },
+  "reference_track": {
+    "slug": "track:tribute",
+    "type": "track",
+    "name": "Tribute"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

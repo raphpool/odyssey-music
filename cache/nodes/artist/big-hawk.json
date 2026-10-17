@@ -131,6 +131,19 @@
       "name": "Swang"
     }
   ],
+  "landmark_project": {
+    "slug": "project:hawk",
+    "type": "project",
+    "name": "HAWK",
+    "mbid": "57c58382-d749-3aa5-a585-b7ea6239fb03",
+    "year": "2002",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:u-already-know",
+    "type": "track",
+    "name": "U Already Know"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

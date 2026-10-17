@@ -83,6 +83,16 @@
       "name": "A Rainbow in Curved Air"
     }
   ],
+  "landmark_project": {
+    "slug": "project:in-c--terry-riley",
+    "type": "project",
+    "name": "In C"
+  },
+  "reference_track": {
+    "slug": "track:in-c",
+    "type": "track",
+    "name": "In C"
+  },
   "influences": [
     {
       "slug": "artist:la-monte-young",

@@ -335,6 +335,19 @@
       "name": "I Fear the Night"
     }
   ],
+  "landmark_project": {
+    "slug": "project:acid-over",
+    "type": "project",
+    "name": "Acid Over",
+    "mbid": "76957f20-8053-4263-9905-636d62fcf305",
+    "year": "1987",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:turn-up-the-bass",
+    "type": "track",
+    "name": "Turn Up the Bass"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

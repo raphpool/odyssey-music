@@ -71,6 +71,11 @@
     }
   ],
   "notable_tracks": [],
+  "landmark_project": {
+    "slug": "project:juju-music",
+    "type": "project",
+    "name": "Juju Music"
+  },
   "influences": [
     {
       "slug": "artist:tunde-nightingale",

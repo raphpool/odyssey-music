@@ -83,6 +83,11 @@
       "name": "3 a.m. Eternal"
     }
   ],
+  "reference_track": {
+    "slug": "track:doctorin-the-tardis",
+    "type": "track",
+    "name": "Doctorin' the Tardis"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

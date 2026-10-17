@@ -74,6 +74,16 @@
       "name": "Silhouette Romance"
     }
   ],
+  "landmark_project": {
+    "slug": "project:feeling-now",
+    "type": "project",
+    "name": "Feeling Now"
+  },
+  "reference_track": {
+    "slug": "track:tasogare-my-love",
+    "type": "track",
+    "name": "Tasogare My Love"
+  },
   "influences": [
     {
       "slug": "artist:sergio-mendes",

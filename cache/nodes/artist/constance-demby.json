@@ -74,6 +74,16 @@
       "name": "Novus Magnificat"
     }
   ],
+  "landmark_project": {
+    "slug": "project:novus-magnificat--constance-demby",
+    "type": "project",
+    "name": "Novus Magnificat"
+  },
+  "reference_track": {
+    "slug": "track:novus-magnificat",
+    "type": "track",
+    "name": "Novus Magnificat"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

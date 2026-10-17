@@ -51,6 +51,11 @@
       "name": "Dripsody"
     }
   ],
+  "reference_track": {
+    "slug": "track:dripsody--hugh-le-caine",
+    "type": "track",
+    "name": "Dripsody"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

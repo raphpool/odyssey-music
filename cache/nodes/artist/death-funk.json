@@ -59,6 +59,16 @@
       "name": "Funk Riot Beat"
     }
   ],
+  "landmark_project": {
+    "slug": "project:funk-riot-beat",
+    "type": "project",
+    "name": "Funk Riot Beat"
+  },
+  "reference_track": {
+    "slug": "track:funk-riot-beat",
+    "type": "track",
+    "name": "Funk Riot Beat"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

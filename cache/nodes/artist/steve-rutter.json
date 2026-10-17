@@ -88,6 +88,16 @@
       "name": "Sleep Gives Freedom"
     }
   ],
+  "landmark_project": {
+    "slug": "project:riddle-me-sane",
+    "type": "project",
+    "name": "Riddle Me Sane"
+  },
+  "reference_track": {
+    "slug": "track:sleep-gives-freedom",
+    "type": "track",
+    "name": "Sleep Gives Freedom"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

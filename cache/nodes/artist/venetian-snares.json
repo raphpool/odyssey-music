@@ -99,6 +99,16 @@
       "name": "Koonut-Kaliffee"
     }
   ],
+  "landmark_project": {
+    "slug": "project:songs-about-my-cats--venetian-snares",
+    "type": "project",
+    "name": "Songs About My Cats"
+  },
+  "reference_track": {
+    "slug": "track:szamar-madar",
+    "type": "track",
+    "name": "Szamár Madár"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

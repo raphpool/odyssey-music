@@ -59,6 +59,17 @@
       "name": "Four Violins"
     }
   ],
+  "landmark_project": {
+    "slug": "project:four-violins--tony-conrad",
+    "type": "project",
+    "name": "Four Violins",
+    "artist": "Tony Conrad"
+  },
+  "reference_track": {
+    "slug": "track:four-violins--tony-conrad",
+    "type": "track",
+    "name": "Four Violins"
+  },
   "influences": [
     {
       "slug": "artist:la-monte-young",

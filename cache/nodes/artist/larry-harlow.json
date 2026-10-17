@@ -111,6 +111,19 @@
       "name": "L'Via L'Viaquez"
     }
   ],
+  "landmark_project": {
+    "slug": "project:la-responsabilidad",
+    "type": "project",
+    "name": "La responsabilidad",
+    "mbid": "23d5cba7-3779-4943-8e38-ba0b1d70d1bf",
+    "year": "1979",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:l-via-l-viaquez",
+    "type": "track",
+    "name": "L'Via L'Viaquez"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

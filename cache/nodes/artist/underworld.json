@@ -98,6 +98,16 @@
       "artist": "Underworld"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dubnobasswithmyheadman--underworld",
+    "type": "project",
+    "name": "Dubnobasswithmyheadman"
+  },
+  "reference_track": {
+    "slug": "track:born-slippy-nuxx--underworld",
+    "type": "track",
+    "name": "Born Slippy .NUXX"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

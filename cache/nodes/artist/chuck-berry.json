@@ -91,6 +91,16 @@
       "name": "My Ding-a-Ling"
     }
   ],
+  "landmark_project": {
+    "slug": "project:chuck",
+    "type": "project",
+    "name": "Chuck"
+  },
+  "reference_track": {
+    "slug": "track:maybellene",
+    "type": "track",
+    "name": "Maybellene"
+  },
   "influences": [],
   "influenced": [
     {

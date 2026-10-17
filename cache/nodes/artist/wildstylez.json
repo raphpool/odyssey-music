@@ -508,7 +508,7 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:timeless",
+      "slug": "project:timeless--wildstylez",
       "type": "project",
       "name": "Timeless",
       "mbid": "306b4c2f-6849-4e8e-b689-d5570308c452",
@@ -711,6 +711,19 @@
       "name": "Typically Dutch"
     }
   ],
+  "landmark_project": {
+    "slug": "project:lose-control",
+    "type": "project",
+    "name": "Lose Control",
+    "mbid": "2c6ab8f2-392d-42c5-8b81-e165a31eb1fd",
+    "year": "2015",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:year-of-summer",
+    "type": "track",
+    "name": "Year of Summer"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

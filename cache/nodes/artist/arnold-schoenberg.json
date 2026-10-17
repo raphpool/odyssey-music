@@ -75,6 +75,11 @@
     }
   ],
   "notable_tracks": [],
+  "landmark_project": {
+    "slug": "project:verklarte-nacht",
+    "type": "project",
+    "name": "Verklärte Nacht"
+  },
   "influences": [
     {
       "slug": "artist:johannes-brahms",

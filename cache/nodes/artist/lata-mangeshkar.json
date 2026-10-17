@@ -124,6 +124,16 @@
       "name": "Ajeeb Dastaan Hai Yeh"
     }
   ],
+  "landmark_project": {
+    "slug": "project:mahal",
+    "type": "project",
+    "name": "Mahal"
+  },
+  "reference_track": {
+    "slug": "track:aayega-aanewaala",
+    "type": "track",
+    "name": "Aayega Aanewaala"
+  },
   "influences": [
     {
       "slug": "artist:noor-jehan",

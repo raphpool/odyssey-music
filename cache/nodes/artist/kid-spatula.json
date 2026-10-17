@@ -79,6 +79,16 @@
       "name": "Otdok"
     }
   ],
+  "landmark_project": {
+    "slug": "project:spatula-freak",
+    "type": "project",
+    "name": "Spatula Freak"
+  },
+  "reference_track": {
+    "slug": "track:otdok",
+    "type": "track",
+    "name": "Otdok"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

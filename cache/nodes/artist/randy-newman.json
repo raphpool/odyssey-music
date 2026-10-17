@@ -106,6 +106,16 @@
       "name": "You've Got a Friend in Me"
     }
   ],
+  "landmark_project": {
+    "slug": "project:good-old-boys",
+    "type": "project",
+    "name": "Good Old Boys"
+  },
+  "reference_track": {
+    "slug": "track:short-people",
+    "type": "track",
+    "name": "Short People"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

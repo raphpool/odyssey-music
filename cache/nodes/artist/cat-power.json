@@ -134,6 +134,16 @@
       "name": "Nude as the News"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dear-sir",
+    "type": "project",
+    "name": "Dear Sir"
+  },
+  "reference_track": {
+    "slug": "track:the-greatest",
+    "type": "track",
+    "name": "The Greatest"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

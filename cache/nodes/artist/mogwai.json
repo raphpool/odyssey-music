@@ -113,6 +113,16 @@
       "name": "Auto Rock"
     }
   ],
+  "landmark_project": {
+    "slug": "project:mogwai-young-team",
+    "type": "project",
+    "name": "Mogwai Young Team"
+  },
+  "reference_track": {
+    "slug": "track:fear-satan",
+    "type": "track",
+    "name": "Fear Satan"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

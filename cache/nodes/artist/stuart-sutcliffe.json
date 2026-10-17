@@ -59,6 +59,16 @@
       "name": "Love Me Tender"
     }
   ],
+  "landmark_project": {
+    "slug": "project:live-at-the-star-club-in-hamburg-germany-1962",
+    "type": "project",
+    "name": "Live! at the Star-Club in Hamburg, Germany; 1962"
+  },
+  "reference_track": {
+    "slug": "track:love-me-tender",
+    "type": "track",
+    "name": "Love Me Tender"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

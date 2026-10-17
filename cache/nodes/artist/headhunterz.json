@@ -724,6 +724,19 @@
       "name": "Live Forever"
     }
   ],
+  "landmark_project": {
+    "slug": "project:live-forever",
+    "type": "project",
+    "name": "Live Forever",
+    "mbid": "30dd2206-166f-40f3-8bfd-232b0320b807",
+    "year": "2024",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:live-forever",
+    "type": "track",
+    "name": "Live Forever"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

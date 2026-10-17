@@ -62,6 +62,16 @@
       "name": "Mood Indigo"
     }
   ],
+  "landmark_project": {
+    "slug": "project:black-brown-and-beige",
+    "type": "project",
+    "name": "Black, Brown and Beige"
+  },
+  "reference_track": {
+    "slug": "track:take-the-a-train",
+    "type": "track",
+    "name": "Take the 'A' Train"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

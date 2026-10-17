@@ -78,6 +78,16 @@
       "artist": "Frankie Knuckles"
     }
   ],
+  "landmark_project": {
+    "slug": "project:midnite-hour",
+    "type": "project",
+    "name": "Midnite Hour"
+  },
+  "reference_track": {
+    "slug": "track:your-love--frankie-knuckles",
+    "type": "track",
+    "name": "Your Love"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -47,6 +47,19 @@
       "name": "Devil"
     }
   ],
+  "landmark_project": {
+    "slug": "project:hollywood-highlife-party-moses",
+    "type": "project",
+    "name": "Hollywood Highlife Party / Moses",
+    "mbid": "aa4d1534-14e4-3a7e-a9bf-4c91b1b286c2",
+    "year": "2000",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:devil",
+    "type": "track",
+    "name": "Devil"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

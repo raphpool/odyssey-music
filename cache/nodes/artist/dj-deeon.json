@@ -462,6 +462,19 @@
       "name": "2 B Free"
     }
   ],
+  "landmark_project": {
+    "slug": "project:funk-city",
+    "type": "project",
+    "name": "Funk City",
+    "mbid": "0ee53171-a701-436e-bce1-57eca2b8b21d",
+    "year": "1994",
+    "releaseType": "ep"
+  },
+  "reference_track": {
+    "slug": "track:freak-like-me",
+    "type": "track",
+    "name": "Freak Like Me"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -61,7 +61,7 @@
   "discography": [],
   "notable_tracks": [
     {
-      "slug": "track:mr-tambourine-man",
+      "slug": "track:mr-tambourine-man--the-byrds",
       "type": "track",
       "name": "Mr. Tambourine Man"
     },
@@ -76,6 +76,11 @@
       "name": "Eight Miles High"
     }
   ],
+  "reference_track": {
+    "slug": "track:mr-tambourine-man--the-byrds",
+    "type": "track",
+    "name": "Mr. Tambourine Man"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -104,6 +104,16 @@
       "name": "Mr Kirk's Nightmare"
     }
   ],
+  "landmark_project": {
+    "slug": "project:two-pages",
+    "type": "project",
+    "name": "Two Pages"
+  },
+  "reference_track": {
+    "slug": "track:mr-kirk-s-nightmare",
+    "type": "track",
+    "name": "Mr Kirk's Nightmare"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

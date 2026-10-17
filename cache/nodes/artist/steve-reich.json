@@ -49,6 +49,16 @@
       "name": "It's Gonna Rain"
     }
   ],
+  "landmark_project": {
+    "slug": "project:music-for-18-musicians--steve-reich",
+    "type": "project",
+    "name": "Music for 18 Musicians"
+  },
+  "reference_track": {
+    "slug": "track:it-s-gonna-rain",
+    "type": "track",
+    "name": "It's Gonna Rain"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

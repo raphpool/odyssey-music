@@ -91,6 +91,16 @@
       "artist": "UB40"
     }
   ],
+  "landmark_project": {
+    "slug": "project:signing-off",
+    "type": "project",
+    "name": "Signing Off"
+  },
+  "reference_track": {
+    "slug": "track:red-red-wine",
+    "type": "track",
+    "name": "Red Red Wine"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

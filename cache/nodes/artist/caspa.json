@@ -84,6 +84,17 @@
       "name": "War"
     }
   ],
+  "landmark_project": {
+    "slug": "project:fabriclive-37--caspa",
+    "type": "project",
+    "name": "Fabriclive.37",
+    "artist": "Caspa"
+  },
+  "reference_track": {
+    "slug": "track:cockney-flute",
+    "type": "track",
+    "name": "Cockney Flute"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

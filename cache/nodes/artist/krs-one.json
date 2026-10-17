@@ -591,6 +591,19 @@
       "name": "Step into a World (Rapture's Delight)"
     }
   ],
+  "landmark_project": {
+    "slug": "project:return-of-the-boom-bap",
+    "type": "project",
+    "name": "Return of the Boom Bap",
+    "mbid": "a03a1ce3-3e3e-31b1-92e5-9f142ba2ad0c",
+    "year": "1993",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:sound-of-da-police",
+    "type": "track",
+    "name": "Sound of da Police"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

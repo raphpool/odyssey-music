@@ -72,6 +72,12 @@
       "artist": "Gökhan Kırdar"
     }
   ],
+  "reference_track": {
+    "slug": "track:simdi--track-by-gokhan-k-rdar-and-cem-adrian",
+    "type": "track",
+    "name": "Şimdi",
+    "artist": "Gökhan Kırdar"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

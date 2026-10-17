@@ -85,6 +85,16 @@
       "name": "Corazón Loco"
     }
   ],
+  "landmark_project": {
+    "slug": "project:polyester",
+    "type": "project",
+    "name": "Polyester"
+  },
+  "reference_track": {
+    "slug": "track:hey-music",
+    "type": "track",
+    "name": "Hey! Music!"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

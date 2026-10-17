@@ -58,7 +58,7 @@
       "name": "Moderat"
     },
     {
-      "slug": "project:ii",
+      "slug": "project:ii--moderat",
       "type": "project",
       "name": "II"
     },
@@ -85,6 +85,16 @@
       "name": "A New Error"
     }
   ],
+  "landmark_project": {
+    "slug": "project:iii",
+    "type": "project",
+    "name": "III"
+  },
+  "reference_track": {
+    "slug": "track:bad-kingdom",
+    "type": "track",
+    "name": "Bad Kingdom"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

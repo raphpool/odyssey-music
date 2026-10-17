@@ -93,6 +93,16 @@
       "name": "Love Is Strange"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-chirping-crickets",
+    "type": "project",
+    "name": "The Chirping Crickets"
+  },
+  "reference_track": {
+    "slug": "track:peggy-sue-got-married",
+    "type": "track",
+    "name": "Peggy Sue Got Married"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

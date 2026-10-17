@@ -105,6 +105,16 @@
       "name": "Brother Sport"
     }
   ],
+  "landmark_project": {
+    "slug": "project:merriweather-post-pavilion",
+    "type": "project",
+    "name": "Merriweather Post Pavilion"
+  },
+  "reference_track": {
+    "slug": "track:my-girls",
+    "type": "track",
+    "name": "My Girls"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -84,6 +84,11 @@
       "name": "Deep Distance"
     }
   ],
+  "reference_track": {
+    "slug": "track:sunrain",
+    "type": "track",
+    "name": "Sunrain"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

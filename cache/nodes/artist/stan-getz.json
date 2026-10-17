@@ -114,6 +114,16 @@
       "name": "Desafinado"
     }
   ],
+  "landmark_project": {
+    "slug": "project:getz-gilberto",
+    "type": "project",
+    "name": "Getz/Gilberto"
+  },
+  "reference_track": {
+    "slug": "track:the-girl-from-ipanema",
+    "type": "track",
+    "name": "The Girl from Ipanema"
+  },
   "influences": [
     {
       "slug": "artist:lester-young",

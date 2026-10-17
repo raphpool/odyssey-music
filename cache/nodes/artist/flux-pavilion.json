@@ -60,6 +60,16 @@
       "name": "I Can't Stop"
     }
   ],
+  "landmark_project": {
+    "slug": "project:tesla",
+    "type": "project",
+    "name": "Tesla"
+  },
+  "reference_track": {
+    "slug": "track:bass-cannon",
+    "type": "track",
+    "name": "Bass Cannon"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

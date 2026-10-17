@@ -114,6 +114,17 @@
       "artist": "Mike & Rich"
     }
   ],
+  "landmark_project": {
+    "slug": "project:expert-knob-twiddlers--mike-and-rich",
+    "type": "project",
+    "name": "Expert Knob Twiddlers",
+    "artist": "Mike & Rich"
+  },
+  "reference_track": {
+    "slug": "track:mr-frosty",
+    "type": "track",
+    "name": "Mr. Frosty"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

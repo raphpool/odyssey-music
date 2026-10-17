@@ -113,6 +113,16 @@
       "name": "Night Fever"
     }
   ],
+  "landmark_project": {
+    "slug": "project:bee-gees-1st",
+    "type": "project",
+    "name": "Bee Gees' 1st"
+  },
+  "reference_track": {
+    "slug": "track:night-fever",
+    "type": "track",
+    "name": "Night Fever"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

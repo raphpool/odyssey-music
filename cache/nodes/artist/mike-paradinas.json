@@ -98,6 +98,16 @@
       "name": "The Fear"
     }
   ],
+  "landmark_project": {
+    "slug": "project:lunatic-harness",
+    "type": "project",
+    "name": "Lunatic Harness"
+  },
+  "reference_track": {
+    "slug": "track:brace-yourself",
+    "type": "track",
+    "name": "Brace Yourself"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

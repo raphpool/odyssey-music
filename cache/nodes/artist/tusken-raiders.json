@@ -38,7 +38,7 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:cinghiale",
+      "slug": "track:cinghiale--tusken-raiders",
       "type": "track",
       "name": "CINGHIALE"
     },
@@ -54,6 +54,16 @@
       "name": "BURN"
     }
   ],
+  "landmark_project": {
+    "slug": "project:we-ride-on",
+    "type": "project",
+    "name": "We Ride On"
+  },
+  "reference_track": {
+    "slug": "track:cinghiale--tusken-raiders",
+    "type": "track",
+    "name": "CINGHIALE"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

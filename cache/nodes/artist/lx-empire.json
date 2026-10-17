@@ -53,6 +53,11 @@
       "name": "Unequal Chord"
     }
   ],
+  "reference_track": {
+    "slug": "track:unequal-chord",
+    "type": "track",
+    "name": "Unequal Chord"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

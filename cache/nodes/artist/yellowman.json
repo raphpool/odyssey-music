@@ -514,6 +514,19 @@
       "name": "Mad Over Me"
     }
   ],
+  "landmark_project": {
+    "slug": "project:king-yellowman",
+    "type": "project",
+    "name": "King Yellowman",
+    "mbid": "91ca13b8-4061-3115-860f-bd7e861923b2",
+    "year": "1984",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:zungguzungguguzungguzeng",
+    "type": "track",
+    "name": "Zungguzungguguzungguzeng"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

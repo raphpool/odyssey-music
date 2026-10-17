@@ -47,6 +47,16 @@
       "name": "To Combat Regret"
     }
   ],
+  "landmark_project": {
+    "slug": "project:to-combat-regret",
+    "type": "project",
+    "name": "To Combat Regret"
+  },
+  "reference_track": {
+    "slug": "track:to-combat-regret",
+    "type": "track",
+    "name": "To Combat Regret"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -87,5 +97,6 @@
       "type": "artist",
       "name": "Rim'K"
     }
-  ]
+  ],
+  "similar_artists": []
 }

@@ -71,6 +71,11 @@
     }
   ],
   "notable_tracks": [],
+  "landmark_project": {
+    "slug": "project:heresy",
+    "type": "project",
+    "name": "Heresy"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

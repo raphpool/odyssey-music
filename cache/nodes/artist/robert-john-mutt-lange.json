@@ -56,6 +56,11 @@
       "name": "Hysteria"
     }
   ],
+  "reference_track": {
+    "slug": "track:back-in-black",
+    "type": "track",
+    "name": "Back in Black"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -665,6 +665,19 @@
       "name": "Titan"
     }
   ],
+  "landmark_project": {
+    "slug": "project:black-propaganda",
+    "type": "project",
+    "name": "Black Propaganda",
+    "mbid": "5cd59a45-d601-469f-ab67-b396f2e13d5b",
+    "year": "2012",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:anaconda",
+    "type": "track",
+    "name": "Anaconda"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -80,6 +80,16 @@
       "name": "With or Without You"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-joshua-tree--u2",
+    "type": "project",
+    "name": "The Joshua Tree"
+  },
+  "reference_track": {
+    "slug": "track:sunday-bloody-sunday",
+    "type": "track",
+    "name": "Sunday Bloody Sunday"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
