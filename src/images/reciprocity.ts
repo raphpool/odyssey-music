@@ -50,7 +50,9 @@ export async function reciprocates(
 			// parent/child relation. Label and artist stay strict (see above).
 			const accepted = new Set<Slug>([subject.slug, await resolveReadSlug(subject.slug, redirects, cache)]);
 			for (const e of [...subject.parent_genres, ...subject.subgenres]) {
-				if (e.type === "genre") accepted.add(await resolveReadSlug(e.slug, redirects, cache));
+				if (e.type !== "genre") continue;
+				accepted.add(e.slug);
+				accepted.add(await resolveReadSlug(e.slug, redirects, cache));
 			}
 			for (const g of work.genres) {
 				if (g.type !== "genre") continue;

@@ -310,7 +310,8 @@ export function createImageService(deps: {
 	 * The first related work that has an allowed `image_url` AND points back at `node` (TRA-592). The
 	 * predicate is the one the resolver uses to derive a cover (`reciprocates`, TRA-591): a list polluted by
 	 * a homonym or a hallucination must not lend its covers here either (2026-10-16, label:mille-plateaux
-	 * got the cover of Electric Ladyland). A track borrows from its own project, as the resolver does
+	 * got the cover of Electric Ladyland). For a genre, "points back" also covers a work carrying its direct
+	 * parent or a direct subgenre (TRA-597). A track borrows from its own project, as the resolver does
 	 * ("project-image"). A borrowed node lends only the image it stores, never one it borrowed itself.
 	 */
 	async function borrowFromRelated(node: NodePayload): Promise<{ slug: Slug; url: string } | null> {

@@ -431,6 +431,13 @@ describe("resolveDisplayImage (TRA-475)", () => {
 			);
 			const landmarks = (...slugs: string[]) =>
 				slugs.map((s) => ({ type: "project" as const, slug: s as Slug, name: s }));
+			await cache.write(
+				genreNode({
+					slug: "genre:drum-and-bass",
+					name: "Drum and bass",
+					parent_genres: [{ type: "genre", slug: "genre:breakbeat", name: "Breakbeat" }],
+				}),
+			);
 			// jungle's landmark carries breakbeat, a grandparent (drum-and-bass's parent): refused.
 			await cache.write(
 				genreNode({

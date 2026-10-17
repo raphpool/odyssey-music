@@ -11,6 +11,7 @@
  *   genre   → cover of the first landmark project, then landmark track, that has an image
  *
  * The borrowed cover must come from a work that points back at the node (TRA-591): see `reciprocates`.
+ * For a genre that includes a work carrying its direct parent or a direct subgenre (TRA-597).
  *
  * Nothing is written: this only computes a candidate. Every returned URL passes
  * `isAllowedImageUrl` (the same gate the node schema applies on write), and a failing rung (network

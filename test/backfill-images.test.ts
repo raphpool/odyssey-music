@@ -704,13 +704,17 @@ describe("a genre also borrows from a work carrying its direct parent or subgenr
 				mbid: mb(97),
 				genres: [edge("genre", "breakbeat", "Breakbeat")],
 			}),
+			genreNode("drum-and-bass", "Drum and bass", {
+				parent_genres: [edge("genre", "breakbeat", "Breakbeat")],
+			}),
 			genreNode("jungle", "Jungle", {
 				parent_genres: [edge("genre", "drum-and-bass", "DnB")],
 				landmark_projects: [edge("project", "dnb-album", "DnB Album")],
 			}),
 			genreNode("ragga-jungle", "Ragga jungle", {
 				parent_genres: [edge("genre", "jungle", "Jungle")],
-				landmark_projects: [edge("project", "breakbeat-album", "Breakbeat Album")],
+				// drum-and-bass is jungle's parent: ragga-jungle's grandparent.
+				landmark_projects: [edge("project", "dnb-album", "DnB Album")],
 			}),
 			genreNode("dancehall", "Dancehall", {
 				related_genres: [edge("genre", "reggae", "Reggae")],
