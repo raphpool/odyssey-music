@@ -78,6 +78,11 @@
     }
   ],
   "notable_tracks": [],
+  "landmark_project": {
+    "slug": "project:stalker",
+    "type": "project",
+    "name": "Stalker"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

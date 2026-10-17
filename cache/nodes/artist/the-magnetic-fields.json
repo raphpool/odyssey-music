@@ -112,6 +112,16 @@
       "name": "The Book of Love"
     }
   ],
+  "landmark_project": {
+    "slug": "project:69-love-songs",
+    "type": "project",
+    "name": "69 Love Songs"
+  },
+  "reference_track": {
+    "slug": "track:100-000-fireflies",
+    "type": "track",
+    "name": "100,000 Fireflies"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -90,6 +90,19 @@
       "name": "Barrio de tango"
     }
   ],
+  "landmark_project": {
+    "slug": "project:sur",
+    "type": "project",
+    "name": "Sur",
+    "mbid": "176b3858-56d4-42f9-a4b9-893b4fcb0133",
+    "year": "1995",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:responso",
+    "type": "track",
+    "name": "Responso"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -117,6 +117,16 @@
       "name": "Flaming June"
     }
   ],
+  "landmark_project": {
+    "slug": "project:45-rpm--paul-van-dyk",
+    "type": "project",
+    "name": "45 RPM"
+  },
+  "reference_track": {
+    "slug": "track:for-an-angel--paul-van-dyk",
+    "type": "track",
+    "name": "For an Angel"
+  },
   "influences": [
     {
       "slug": "artist:orchestral-manoeuvres-in-the-dark",

@@ -256,6 +256,19 @@
       "name": "Girl to Girl"
     }
   ],
+  "landmark_project": {
+    "slug": "project:playing-with-my-heart",
+    "type": "project",
+    "name": "Playing With My Heart",
+    "mbid": "a21fb85f-d64f-32c4-b052-5ecad1f6355b",
+    "year": "1992",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:touch-me",
+    "type": "track",
+    "name": "Touch Me"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

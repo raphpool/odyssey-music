@@ -75,6 +75,19 @@
       "name": "Se Marcar"
     }
   ],
+  "landmark_project": {
+    "slug": "project:boladona",
+    "type": "project",
+    "name": "Boladona",
+    "mbid": "e33860bf-2b3f-37c5-96dc-5af6277b44f2",
+    "year": "2004",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:boladona",
+    "type": "track",
+    "name": "Boladona"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

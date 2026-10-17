@@ -317,6 +317,19 @@
       "name": "Get into Love"
     }
   ],
+  "landmark_project": {
+    "slug": "project:set-me-free-feel-so-good",
+    "type": "project",
+    "name": "Set Me Free / Feel So Good",
+    "mbid": "1990b74e-8e76-4568-851d-18fb0be339ee",
+    "year": "1995",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:toy-town",
+    "type": "track",
+    "name": "Toy Town"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

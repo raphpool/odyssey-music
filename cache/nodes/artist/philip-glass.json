@@ -95,6 +95,16 @@
       "name": "Metamorphosis One"
     }
   ],
+  "landmark_project": {
+    "slug": "project:einstein-on-the-beach",
+    "type": "project",
+    "name": "Einstein on the Beach"
+  },
+  "reference_track": {
+    "slug": "track:koyaanisqatsi",
+    "type": "track",
+    "name": "Koyaanisqatsi"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

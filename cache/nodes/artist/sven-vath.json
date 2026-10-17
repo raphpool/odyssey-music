@@ -92,6 +92,16 @@
       "name": "Electrica Salsa"
     }
   ],
+  "landmark_project": {
+    "slug": "project:accident-in-paradise",
+    "type": "project",
+    "name": "Accident in Paradise"
+  },
+  "reference_track": {
+    "slug": "track:l-esperanza",
+    "type": "track",
+    "name": "L'Esperanza"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

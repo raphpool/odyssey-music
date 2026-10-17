@@ -719,6 +719,19 @@
       "name": "Come & Go"
     }
   ],
+  "landmark_project": {
+    "slug": "project:goodbye-and-good-riddance",
+    "type": "project",
+    "name": "Goodbye & Good Riddance",
+    "mbid": "8bd7dded-24ea-488c-a3e3-3c7158ea12ee",
+    "year": "2018",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:lucid-dreams",
+    "type": "track",
+    "name": "Lucid Dreams"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

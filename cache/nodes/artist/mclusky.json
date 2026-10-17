@@ -81,6 +81,16 @@
       "name": "She Will Only Bring You Happiness"
     }
   ],
+  "landmark_project": {
+    "slug": "project:mclusky-do-dallas--mclusky",
+    "type": "project",
+    "name": "mclusky Do Dallas"
+  },
+  "reference_track": {
+    "slug": "track:to-hell-with-good-intentions--mclusky",
+    "type": "track",
+    "name": "To Hell With Good Intentions"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

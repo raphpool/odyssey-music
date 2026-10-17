@@ -424,6 +424,19 @@
       "name": "99 Problems"
     }
   ],
+  "landmark_project": {
+    "slug": "project:rhyme-pays",
+    "type": "project",
+    "name": "Rhyme Pays",
+    "mbid": "999771bd-aefa-3df9-8398-e557e2352322",
+    "year": "1987",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:reckless",
+    "type": "track",
+    "name": "Reckless"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

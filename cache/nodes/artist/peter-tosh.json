@@ -122,6 +122,16 @@
       "name": "Equal Rights"
     }
   ],
+  "landmark_project": {
+    "slug": "project:legalize-it",
+    "type": "project",
+    "name": "Legalize It"
+  },
+  "reference_track": {
+    "slug": "track:legalize-it",
+    "type": "track",
+    "name": "Legalize It"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

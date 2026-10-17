@@ -107,6 +107,16 @@
       "artist": "Tangerine Dream"
     }
   ],
+  "landmark_project": {
+    "slug": "project:phaedra--tangerine-dream",
+    "type": "project",
+    "name": "Phaedra"
+  },
+  "reference_track": {
+    "slug": "track:phaedra",
+    "type": "track",
+    "name": "Phaedra"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

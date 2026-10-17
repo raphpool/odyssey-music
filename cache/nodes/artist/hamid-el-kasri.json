@@ -79,6 +79,19 @@
       "name": "Everlasting Motion"
     }
   ],
+  "landmark_project": {
+    "slug": "project:bouhala-gnawa",
+    "type": "project",
+    "name": "Bouhala Gnawa",
+    "mbid": "d8292e26-0371-444e-9740-9043a820c54d",
+    "year": "2007",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:everlasting-motion",
+    "type": "track",
+    "name": "Everlasting Motion"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

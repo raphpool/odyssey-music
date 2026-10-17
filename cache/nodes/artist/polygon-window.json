@@ -79,6 +79,16 @@
       "artist": "Polygon Window"
     }
   ],
+  "landmark_project": {
+    "slug": "project:surfing-on-sine-waves--polygon-window",
+    "type": "project",
+    "name": "Surfing on Sine Waves"
+  },
+  "reference_track": {
+    "slug": "track:ut1-dot--polygon-window",
+    "type": "track",
+    "name": "UT1-Dot"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

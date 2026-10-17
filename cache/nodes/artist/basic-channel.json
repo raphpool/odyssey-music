@@ -87,6 +87,17 @@
       "name": "Quadrant Dub"
     }
   ],
+  "landmark_project": {
+    "slug": "project:phylyps-trak--basic-channel",
+    "type": "project",
+    "name": "Phylyps Trak",
+    "artist": "Basic Channel"
+  },
+  "reference_track": {
+    "slug": "track:phylyps-trak--basic-channel",
+    "type": "track",
+    "name": "Phylyps Trak"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

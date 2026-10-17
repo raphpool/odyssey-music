@@ -113,6 +113,16 @@
       "name": "Eyesdown"
     }
   ],
+  "landmark_project": {
+    "slug": "project:black-sands",
+    "type": "project",
+    "name": "Black Sands"
+  },
+  "reference_track": {
+    "slug": "track:pick-up",
+    "type": "track",
+    "name": "Pick Up"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

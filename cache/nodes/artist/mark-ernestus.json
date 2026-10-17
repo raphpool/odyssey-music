@@ -91,6 +91,16 @@
       "name": "Ndagga (feat. Jeri-Jeri)"
     }
   ],
+  "landmark_project": {
+    "slug": "project:basic-channel",
+    "type": "project",
+    "name": "Basic Channel (album)"
+  },
+  "reference_track": {
+    "slug": "track:mango-walk",
+    "type": "track",
+    "name": "Mango Walk"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

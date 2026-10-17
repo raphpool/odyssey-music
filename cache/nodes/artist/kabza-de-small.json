@@ -205,6 +205,19 @@
       "name": "Kabza Chant"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-return-of-the-scorpion-kings",
+    "type": "project",
+    "name": "The Return of the Scorpion Kings",
+    "mbid": "8dd4b02e-687c-4e55-b17f-3a49710d4c95",
+    "year": "2019",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:umshove",
+    "type": "track",
+    "name": "Umshove"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

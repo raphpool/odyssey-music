@@ -70,6 +70,16 @@
       "name": "Noodletown"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dopamine",
+    "type": "project",
+    "name": "Dopamine"
+  },
+  "reference_track": {
+    "slug": "track:noodletown",
+    "type": "track",
+    "name": "Noodletown"
+  },
   "influences": [
     {
       "slug": "artist:david-laflamme",

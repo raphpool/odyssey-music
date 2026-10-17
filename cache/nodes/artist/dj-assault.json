@@ -364,6 +364,19 @@
       "name": "Ass and Titties"
     }
   ],
+  "landmark_project": {
+    "slug": "project:jefferson-ave",
+    "type": "project",
+    "name": "Jefferson Ave.",
+    "mbid": "cd793f9c-cc13-3d9a-8425-f2caebb643f4",
+    "year": "2001",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:sex-on-the-beach",
+    "type": "track",
+    "name": "Sex on the Beach"
+  },
   "influences": [
     {
       "slug": "artist:jeff-mills",

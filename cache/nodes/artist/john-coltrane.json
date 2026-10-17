@@ -140,6 +140,16 @@
       "name": "Acknowledgement"
     }
   ],
+  "landmark_project": {
+    "slug": "project:giant-steps",
+    "type": "project",
+    "name": "Giant Steps"
+  },
+  "reference_track": {
+    "slug": "track:giant-steps",
+    "type": "track",
+    "name": "Giant Steps"
+  },
   "influences": [
     {
       "slug": "artist:charlie-parker",

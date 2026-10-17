@@ -96,6 +96,16 @@
       "name": "Pewter Dragon"
     }
   ],
+  "landmark_project": {
+    "slug": "project:das-ist-ein-groovybeat-ja--jake-slazenger",
+    "type": "project",
+    "name": "Das Ist Ein Groovybeat, Ja"
+  },
+  "reference_track": {
+    "slug": "track:pewter-dragon--jake-slazenger",
+    "type": "track",
+    "name": "Pewter Dragon"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

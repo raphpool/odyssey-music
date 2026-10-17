@@ -116,6 +116,16 @@
       "name": "The Flower Called Nowhere"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dots-and-loops--stereolab",
+    "type": "project",
+    "name": "Dots and Loops"
+  },
+  "reference_track": {
+    "slug": "track:french-disko",
+    "type": "track",
+    "name": "French Disko"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

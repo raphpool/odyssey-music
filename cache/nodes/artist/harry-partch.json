@@ -71,6 +71,16 @@
       "name": "Ulysses at the Edge"
     }
   ],
+  "landmark_project": {
+    "slug": "project:genesis-of-a-music",
+    "type": "project",
+    "name": "Genesis of a Music"
+  },
+  "reference_track": {
+    "slug": "track:barstow--harry-partch",
+    "type": "track",
+    "name": "Barstow"
+  },
   "influences": [
     {
       "slug": "artist:hermann-von-helmholtz",

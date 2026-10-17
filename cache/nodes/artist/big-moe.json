@@ -112,6 +112,19 @@
       "name": "Just a Dog"
     }
   ],
+  "landmark_project": {
+    "slug": "project:city-of-syrup",
+    "type": "project",
+    "name": "City of Syrup",
+    "mbid": "be8760fa-3efb-3f3b-8553-759430365d91",
+    "year": "2000",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:mann",
+    "type": "track",
+    "name": "Mann!"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

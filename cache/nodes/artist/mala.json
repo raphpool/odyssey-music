@@ -97,6 +97,16 @@
       "name": "Anti War Dub"
     }
   ],
+  "landmark_project": {
+    "slug": "project:mala-in-cuba",
+    "type": "project",
+    "name": "Mala in Cuba"
+  },
+  "reference_track": {
+    "slug": "track:changes",
+    "type": "track",
+    "name": "Changes"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -102,6 +102,16 @@
       "name": "Conditionierer"
     }
   ],
+  "landmark_project": {
+    "slug": "project:rastakraut-pasta",
+    "type": "project",
+    "name": "Rastakraut Pasta"
+  },
+  "reference_track": {
+    "slug": "track:rastakraut-pasta",
+    "type": "track",
+    "name": "Rastakraut Pasta"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -505,6 +505,19 @@
       "name": "Wicked"
     }
   ],
+  "landmark_project": {
+    "slug": "project:acid-save-your-soul",
+    "type": "project",
+    "name": "Acid Save Your Soul",
+    "mbid": "825e5fc1-2fdc-3d89-9cb6-b0fafb386ce9",
+    "year": "2005",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:acid-nightmare",
+    "type": "track",
+    "name": "Acid Nightmare"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

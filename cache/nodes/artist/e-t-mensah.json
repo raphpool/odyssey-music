@@ -55,6 +55,19 @@
       "name": "Ghana Freedom"
     }
   ],
+  "landmark_project": {
+    "slug": "project:e-t-mensah-is-back-again",
+    "type": "project",
+    "name": "E.T. Mensah Is Back Again",
+    "mbid": "f2c55fbb-8755-448b-a0fb-dc633efd6608",
+    "year": "1976",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:ghana-freedom",
+    "type": "track",
+    "name": "Ghana Freedom"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

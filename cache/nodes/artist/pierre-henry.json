@@ -70,6 +70,16 @@
       "name": "Jericho Jerk"
     }
   ],
+  "landmark_project": {
+    "slug": "project:symphonie-pour-un-homme-seul",
+    "type": "project",
+    "name": "Symphonie pour un homme seul"
+  },
+  "reference_track": {
+    "slug": "track:psyche-rock",
+    "type": "track",
+    "name": "Psyché Rock"
+  },
   "influences": [
     {
       "slug": "artist:pierre-schaeffer",

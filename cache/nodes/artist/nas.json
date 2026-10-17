@@ -728,6 +728,19 @@
       "name": "I Can"
     }
   ],
+  "landmark_project": {
+    "slug": "project:if-i-ruled-the-world",
+    "type": "project",
+    "name": "If I Ruled the World",
+    "mbid": "c233c348-d72b-4d63-88f4-8b3a544425fa",
+    "year": "1996",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:if-i-ruled-the-world",
+    "type": "track",
+    "name": "If I Ruled the World (Imagine That)"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -738,5 +751,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

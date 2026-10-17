@@ -97,6 +97,16 @@
       "name": "Lifeforms"
     }
   ],
+  "landmark_project": {
+    "slug": "project:lifeforms--the-future-sound-of-london",
+    "type": "project",
+    "name": "Lifeforms"
+  },
+  "reference_track": {
+    "slug": "track:papua-new-guinea",
+    "type": "track",
+    "name": "Papua New Guinea"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

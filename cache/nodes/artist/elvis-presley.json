@@ -72,6 +72,16 @@
       "name": "That's All Right"
     }
   ],
+  "landmark_project": {
+    "slug": "project:elvis-christmas-album",
+    "type": "project",
+    "name": "Elvis' Christmas Album"
+  },
+  "reference_track": {
+    "slug": "track:that-s-all-right",
+    "type": "track",
+    "name": "That's All Right"
+  },
   "influences": [],
   "influenced": [
     {

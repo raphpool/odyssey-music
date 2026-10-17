@@ -478,6 +478,19 @@
       "name": "Ain't No Other Man"
     }
   ],
+  "landmark_project": {
+    "slug": "project:beats-2-blaze-mics-to",
+    "type": "project",
+    "name": "Beats 2 Blaze Mics To",
+    "mbid": "20d6fdd8-1e42-4806-bb3a-4e0b236125a0",
+    "year": "2001",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:ain-t-no-other-man",
+    "type": "track",
+    "name": "Ain't No Other Man"
+  },
   "influences": [
     {
       "slug": "artist:marley-marl",

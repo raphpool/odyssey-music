@@ -210,6 +210,19 @@
       "name": "Mi Buenos Aires querido"
     }
   ],
+  "landmark_project": {
+    "slug": "project:tangos",
+    "type": "project",
+    "name": "Tangos",
+    "mbid": "3c2eff10-94bf-3c9a-90a6-1dd1dcabb339",
+    "year": "1992",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:mi-noche-triste",
+    "type": "track",
+    "name": "Mi noche triste"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -73,6 +73,11 @@
       "name": "Atlas (T++ Remix)"
     }
   ],
+  "landmark_project": {
+    "slug": "project:traktor",
+    "type": "project",
+    "name": "Traktor"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

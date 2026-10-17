@@ -82,6 +82,16 @@
       "name": "Good Times"
     }
   ],
+  "landmark_project": {
+    "slug": "project:c-est-chic--chic",
+    "type": "project",
+    "name": "C'est Chic"
+  },
+  "reference_track": {
+    "slug": "track:le-freak",
+    "type": "track",
+    "name": "Le Freak"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

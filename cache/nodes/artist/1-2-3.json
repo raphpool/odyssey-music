@@ -63,6 +63,16 @@
       "name": "Bigger Black Car"
     }
   ],
+  "landmark_project": {
+    "slug": "project:confetti",
+    "type": "project",
+    "name": "Confetti"
+  },
+  "reference_track": {
+    "slug": "track:confetti",
+    "type": "track",
+    "name": "Confetti"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -83,6 +83,16 @@
       "name": "Thinning"
     }
   ],
+  "landmark_project": {
+    "slug": "project:habit",
+    "type": "project",
+    "name": "Habit"
+  },
+  "reference_track": {
+    "slug": "track:thinning",
+    "type": "track",
+    "name": "Thinning"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

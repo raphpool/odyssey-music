@@ -79,6 +79,18 @@
       "artist": "Aim"
     }
   ],
+  "landmark_project": {
+    "slug": "project:cold-water-music--aim",
+    "type": "project",
+    "name": "Cold Water Music",
+    "artist": "Aim"
+  },
+  "reference_track": {
+    "slug": "track:cold-water-music--aim",
+    "type": "track",
+    "name": "Cold Water Music",
+    "artist": "Aim"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

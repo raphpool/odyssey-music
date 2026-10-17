@@ -159,6 +159,19 @@
       "name": "Let's Chill"
     }
   ],
+  "landmark_project": {
+    "slug": "project:groove-me",
+    "type": "project",
+    "name": "Groove Me",
+    "mbid": "e44fba1e-1be9-47d8-a4b7-7270530ab2f6",
+    "year": "1988",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:groove-me",
+    "type": "track",
+    "name": "Groove Me"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -179,5 +192,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

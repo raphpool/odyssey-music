@@ -91,6 +91,17 @@
       "artist": "Gökhan Kırdar"
     }
   ],
+  "landmark_project": {
+    "slug": "project:trip",
+    "type": "project",
+    "name": "Trip"
+  },
+  "reference_track": {
+    "slug": "track:simdi--track-by-gokhan-k-rdar-and-cem-adrian",
+    "type": "track",
+    "name": "Şimdi",
+    "artist": "Gökhan Kırdar"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

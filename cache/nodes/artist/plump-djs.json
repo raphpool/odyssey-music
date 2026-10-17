@@ -362,6 +362,19 @@
       "name": "You Belong to Us"
     }
   ],
+  "landmark_project": {
+    "slug": "project:eargasm",
+    "type": "project",
+    "name": "Eargasm",
+    "mbid": "13d2d5ac-de92-3b12-99de-e72ea5883698",
+    "year": "2003",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:plump-chunks",
+    "type": "track",
+    "name": "Plump Chunks"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

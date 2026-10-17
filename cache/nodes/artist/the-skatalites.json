@@ -418,6 +418,19 @@
       "name": "Simmer Down"
     }
   ],
+  "landmark_project": {
+    "slug": "project:ska-authentic",
+    "type": "project",
+    "name": "Ska Authentic",
+    "mbid": "4f967d4c-68b4-306c-bc83-d9b66a3dd93f",
+    "year": "1964",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:guns-of-navarone",
+    "type": "track",
+    "name": "Guns of Navarone"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

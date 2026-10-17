@@ -77,6 +77,16 @@
       "name": "Call Me"
     }
   ],
+  "landmark_project": {
+    "slug": "project:deja-vu",
+    "type": "project",
+    "name": "Deja Vu"
+  },
+  "reference_track": {
+    "slug": "track:take-my-breath-away",
+    "type": "track",
+    "name": "Take My Breath Away"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

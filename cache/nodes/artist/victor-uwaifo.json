@@ -74,6 +74,19 @@
       "name": "Arabade"
     }
   ],
+  "landmark_project": {
+    "slug": "project:no-palava-delicate-lover",
+    "type": "project",
+    "name": "No Palava - Delicate Lover",
+    "mbid": "483b7e4e-2ded-4939-ae1f-4e4e868dace3",
+    "year": "1984",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:joromi",
+    "type": "track",
+    "name": "Joromi"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

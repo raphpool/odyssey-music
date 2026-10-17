@@ -396,6 +396,19 @@
       "name": "Stylo"
     }
   ],
+  "landmark_project": {
+    "slug": "project:black-on-both-sides",
+    "type": "project",
+    "name": "Black on Both Sides",
+    "mbid": "d6658b47-463a-390e-9417-99c818aea004",
+    "year": "1999",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:ms-fat-booty",
+    "type": "track",
+    "name": "Ms. Fat Booty"
+  },
   "influences": [],
   "influenced": [
     {

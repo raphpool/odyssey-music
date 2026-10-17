@@ -96,6 +96,16 @@
       "name": "Army of Me"
     }
   ],
+  "landmark_project": {
+    "slug": "project:vespertine--bjork",
+    "type": "project",
+    "name": "Vespertine"
+  },
+  "reference_track": {
+    "slug": "track:human-behaviour",
+    "type": "track",
+    "name": "Human Behaviour"
+  },
   "influences": [],
   "influenced": [
     {

@@ -78,6 +78,16 @@
       "name": "What Time Is Love?"
     }
   ],
+  "landmark_project": {
+    "slug": "project:chill-out--the-klf",
+    "type": "project",
+    "name": "Chill Out"
+  },
+  "reference_track": {
+    "slug": "track:3-a-m-eternal",
+    "type": "track",
+    "name": "3 a.m. Eternal"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -83,6 +83,16 @@
       "name": "Plasticity"
     }
   ],
+  "landmark_project": {
+    "slug": "project:consumed",
+    "type": "project",
+    "name": "Consumed"
+  },
+  "reference_track": {
+    "slug": "track:plasticity",
+    "type": "track",
+    "name": "Plasticity"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

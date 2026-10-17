@@ -94,6 +94,16 @@
       "name": "The Bees Made Honey in the Lion's Skull"
     }
   ],
+  "landmark_project": {
+    "slug": "project:hex-or-printing-in-the-infernal-method",
+    "type": "project",
+    "name": "Hex; or Printing in the Infernal Method"
+  },
+  "reference_track": {
+    "slug": "track:the-bees-made-honey-in-the-lion-s-skull",
+    "type": "track",
+    "name": "The Bees Made Honey in the Lion's Skull"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

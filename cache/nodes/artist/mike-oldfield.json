@@ -81,6 +81,16 @@
       "name": "Moonlight Shadow"
     }
   ],
+  "landmark_project": {
+    "slug": "project:tubular-bells--mike-oldfield",
+    "type": "project",
+    "name": "Tubular Bells"
+  },
+  "reference_track": {
+    "slug": "track:moonlight-shadow",
+    "type": "track",
+    "name": "Moonlight Shadow"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

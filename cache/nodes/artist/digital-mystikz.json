@@ -65,6 +65,16 @@
       "artist": "Digital Mystikz"
     }
   ],
+  "landmark_project": {
+    "slug": "project:return-ii-space--digital-mystikz",
+    "type": "project",
+    "name": "Return II Space"
+  },
+  "reference_track": {
+    "slug": "track:anti-war-dub--digital-mystikz",
+    "type": "track",
+    "name": "Anti War Dub"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

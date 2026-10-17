@@ -85,6 +85,16 @@
       "name": "Último desejo"
     }
   ],
+  "landmark_project": {
+    "slug": "project:com-que-roupa",
+    "type": "project",
+    "name": "Com que roupa?"
+  },
+  "reference_track": {
+    "slug": "track:com-que-roupa",
+    "type": "track",
+    "name": "Com que roupa?"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

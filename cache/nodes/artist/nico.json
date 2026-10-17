@@ -96,6 +96,16 @@
       "name": "All Tomorrow's Parties"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-velvet-underground-and-nico--the-velvet-underground",
+    "type": "project",
+    "name": "The Velvet Underground & Nico"
+  },
+  "reference_track": {
+    "slug": "track:femme-fatale",
+    "type": "track",
+    "name": "Femme Fatale"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

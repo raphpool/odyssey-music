@@ -106,6 +106,19 @@
       "name": "Black Pepper"
     }
   ],
+  "landmark_project": {
+    "slug": "project:aperture",
+    "type": "project",
+    "name": "Aperture",
+    "mbid": "29c5bc93-e719-45ba-88a4-cf9ca83de14b",
+    "year": "2020",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:encrust",
+    "type": "track",
+    "name": "Encrust"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

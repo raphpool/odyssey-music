@@ -133,6 +133,16 @@
       "name": "Pencil Pimp"
     }
   ],
+  "landmark_project": {
+    "slug": "project:now-you-know",
+    "type": "project",
+    "name": "Now You Know"
+  },
+  "reference_track": {
+    "slug": "track:she-died-there",
+    "type": "track",
+    "name": "She Died There"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

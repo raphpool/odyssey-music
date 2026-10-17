@@ -76,6 +76,16 @@
       "name": "Magik"
     }
   ],
+  "landmark_project": {
+    "slug": "project:magik",
+    "type": "project",
+    "name": "Magik"
+  },
+  "reference_track": {
+    "slug": "track:magik",
+    "type": "track",
+    "name": "Magik"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

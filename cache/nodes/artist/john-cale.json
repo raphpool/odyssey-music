@@ -88,6 +88,16 @@
       "name": "Fear Is a Man's Best Friend"
     }
   ],
+  "landmark_project": {
+    "slug": "project:music-for-a-new-society--john-cale",
+    "type": "project",
+    "name": "Music for a New Society"
+  },
+  "reference_track": {
+    "slug": "track:paris-1919",
+    "type": "track",
+    "name": "Paris 1919"
+  },
   "influences": [
     {
       "slug": "artist:la-monte-young",

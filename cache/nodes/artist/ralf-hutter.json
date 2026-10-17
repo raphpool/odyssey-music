@@ -118,6 +118,16 @@
       "name": "Computer Love"
     }
   ],
+  "landmark_project": {
+    "slug": "project:tour-de-france-soundtracks",
+    "type": "project",
+    "name": "Tour de France Soundtracks"
+  },
+  "reference_track": {
+    "slug": "track:the-robots",
+    "type": "track",
+    "name": "The Robots"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -85,6 +85,11 @@
     }
   ],
   "notable_tracks": [],
+  "landmark_project": {
+    "slug": "project:bytes--the-black-dog",
+    "type": "project",
+    "name": "Bytes"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

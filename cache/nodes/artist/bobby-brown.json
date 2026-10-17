@@ -306,6 +306,19 @@
       "name": "Humpin' Around"
     }
   ],
+  "landmark_project": {
+    "slug": "project:my-prerogative",
+    "type": "project",
+    "name": "My Prerogative",
+    "mbid": "ed63234c-9464-4baa-af1c-f05536574610",
+    "year": "1988",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:my-prerogative",
+    "type": "track",
+    "name": "My Prerogative"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

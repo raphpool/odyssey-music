@@ -352,6 +352,19 @@
       "name": "High on Cold War"
     }
   ],
+  "landmark_project": {
+    "slug": "project:a-blaze-in-the-northern-sky",
+    "type": "project",
+    "name": "A Blaze in the Northern Sky",
+    "mbid": "3ab57384-506c-33ff-9ecc-e5a6134e17bd",
+    "year": "1992",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:too-old-too-cold",
+    "type": "track",
+    "name": "Too Old, Too Cold"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

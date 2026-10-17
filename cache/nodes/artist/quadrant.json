@@ -62,6 +62,16 @@
       "name": "Lost City"
     }
   ],
+  "landmark_project": {
+    "slug": "project:206",
+    "type": "project",
+    "name": "206"
+  },
+  "reference_track": {
+    "slug": "track:only-mortal",
+    "type": "track",
+    "name": "Only Mortal"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

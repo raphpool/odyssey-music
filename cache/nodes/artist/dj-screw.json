@@ -297,6 +297,19 @@
       "name": "Pimp Tha Pen"
     }
   ],
+  "landmark_project": {
+    "slug": "project:diary-of-the-originator-chapter-354",
+    "type": "project",
+    "name": "Diary of the Originator: Chapter 354 (Comin Out That 4 '95)",
+    "mbid": "f4e834d7-e057-41c4-be0c-a8f73abbd473",
+    "year": "1995",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:watch-yo-screw",
+    "type": "track",
+    "name": "Watch Yo Screw"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

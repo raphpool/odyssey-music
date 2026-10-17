@@ -125,6 +125,19 @@
       "name": "Corra e Olhe o Céu"
     }
   ],
+  "landmark_project": {
+    "slug": "project:fala-mangueira",
+    "type": "project",
+    "name": "Fala Mangueira!",
+    "mbid": "e6421a42-b481-3bfb-a8e9-6b3de5533ac2",
+    "year": "1968",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:o-mundo-e-um-moinho",
+    "type": "track",
+    "name": "O Mundo é Um Moinho"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

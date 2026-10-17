@@ -65,6 +65,16 @@
       "name": "Pour ceux"
     }
   ],
+  "landmark_project": {
+    "slug": "project:la-cerise-sur-le-ghetto--mafia-k-1-fry",
+    "type": "project",
+    "name": "La Cerise sur le ghetto"
+  },
+  "reference_track": {
+    "slug": "track:pour-ceux",
+    "type": "track",
+    "name": "Pour ceux"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -345,6 +345,19 @@
       "name": "Acid Rocker"
     }
   ],
+  "landmark_project": {
+    "slug": "project:eye-to-eye",
+    "type": "project",
+    "name": "Eye to Eye",
+    "mbid": "8fbe7056-d1bd-3adc-8232-5f55e79723d3",
+    "year": "2002",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:in-peace",
+    "type": "track",
+    "name": "In Peace"
+  },
   "influences": [
     {
       "slug": "artist:infected-mushroom",

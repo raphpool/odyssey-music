@@ -71,6 +71,16 @@
       "name": "Manifesto 01 EP"
     }
   ],
+  "landmark_project": {
+    "slug": "project:system-fork",
+    "type": "project",
+    "name": "System Fork"
+  },
+  "reference_track": {
+    "slug": "track:system-fork",
+    "type": "track",
+    "name": "System Fork"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

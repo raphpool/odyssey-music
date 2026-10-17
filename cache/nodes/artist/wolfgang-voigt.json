@@ -98,6 +98,16 @@
       "name": "Wassermann - Wurst"
     }
   ],
+  "landmark_project": {
+    "slug": "project:earquake-wolfgang-voigt-1991-1999--wolfgang-voigt",
+    "type": "project",
+    "name": "EARQUAKE – Wolfgang Voigt 1991 – 1999"
+  },
+  "reference_track": {
+    "slug": "track:pop-1",
+    "type": "track",
+    "name": "Pop 1"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

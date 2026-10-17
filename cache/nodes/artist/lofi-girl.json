@@ -71,6 +71,19 @@
       "name": "Snowman"
     }
   ],
+  "landmark_project": {
+    "slug": "project:time-flows",
+    "type": "project",
+    "name": "Time Flows",
+    "mbid": "7271dfb5-1941-427b-9489-0c83c36dfe63",
+    "year": "2021",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:snowman",
+    "type": "track",
+    "name": "Snowman"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -86,5 +99,6 @@
       "type": "artist",
       "name": "Juan Pablo Machado"
     }
-  ]
+  ],
+  "similar_artists": []
 }

@@ -349,6 +349,19 @@
       "name": "None of Your Business"
     }
   ],
+  "landmark_project": {
+    "slug": "project:hot-cool-and-vicious",
+    "type": "project",
+    "name": "Hot, Cool & Vicious",
+    "mbid": "064a787b-9619-3b66-b5f6-606396df0354",
+    "year": "1986",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:shoop",
+    "type": "track",
+    "name": "Shoop"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

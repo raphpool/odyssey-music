@@ -98,6 +98,16 @@
       "name": "Caramel"
     }
   ],
+  "landmark_project": {
+    "slug": "project:cluster-71",
+    "type": "project",
+    "name": "Cluster '71"
+  },
+  "reference_track": {
+    "slug": "track:sowiesoso",
+    "type": "track",
+    "name": "Sowiesoso"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

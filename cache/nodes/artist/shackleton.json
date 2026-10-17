@@ -65,6 +65,16 @@
       "name": "Powerplant"
     }
   ],
+  "landmark_project": {
+    "slug": "project:music-for-the-quiet-hour-the-drawbar-organ-eps",
+    "type": "project",
+    "name": "Music For The Quiet Hour / The Drawbar Organ EPs"
+  },
+  "reference_track": {
+    "slug": "track:katyusha",
+    "type": "track",
+    "name": "Katyusha"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

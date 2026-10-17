@@ -130,6 +130,18 @@
       "artist": "Pole"
     }
   ],
+  "landmark_project": {
+    "slug": "project:tempus--pole",
+    "type": "project",
+    "name": "Tempus",
+    "artist": "Pole"
+  },
+  "reference_track": {
+    "slug": "track:raum--pole",
+    "type": "track",
+    "name": "Raum",
+    "artist": "Pole"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
