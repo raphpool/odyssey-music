@@ -27,6 +27,8 @@ beforeEach(async () => {
 	root = await mkdtemp(join(tmpdir(), "landmark-"));
 	cacheDir = join(root, "cache");
 	manifestPath = join(root, "out", "landmark.json");
+	dataDir = join(root, "data");
+	await writeRedirects({});
 	await mkdir(join(cacheDir, "nodes"), { recursive: true });
 });
 afterEach(async () => {
@@ -54,8 +56,16 @@ const manifestOf = async (path = manifestPath): Promise<LandmarkManifest> =>
 const album = (slug: string, artist: string, extra: Record<string, unknown> = {}) =>
 	projectNode(slug, slug, { artists: [edge("artist", artist, artist)], ...extra });
 
+/** The redirect tables of a run: a temp data dir (the channel's --data-dir), empty unless a test fills it. */
+let dataDir: string;
+const writeRedirects = async (slugs: Record<string, string>, genres: Record<string, string> = {}) => {
+	await mkdir(dataDir, { recursive: true });
+	await writeFile(join(dataDir, "slug-redirects.json"), JSON.stringify({ redirects: slugs }));
+	await writeFile(join(dataDir, "genre-redirects.json"), JSON.stringify({ redirects: genres }));
+};
+
 const run = (apply = true, dir = cacheDir, manifest = manifestPath) =>
-	runBackfill({ cacheDir: dir, apply, manifestPath: manifest });
+	runBackfill({ cacheDir: dir, apply, manifestPath: manifest, dataDir });
 
 describe("landmark_project (TRA-491)", () => {
 	it("picks the album a genre lists as a landmark, whatever its position, reason genreLandmark", async () => {
@@ -263,6 +273,108 @@ describe("identity: a target that does not credit the artist is never chosen", (
 		expect((await manifestOf()).failed.map((f) => f.slug)).toEqual(["artist:bad"]);
 	});
 
+	it("excludes an absent target that a redirect sends to another artist's work (Byrds -> Dylan)", async () => {
+		const bare = edge("track", "mr-tambourine-man", "Mr. Tambourine Man");
+		const mine = edge("track", "turn-turn-turn--the-byrds", "Turn! Turn! Turn!");
+		await put(artistNode("the-byrds", "The Byrds", { notable_tracks: [bare, mine] }));
+		// The bare slug is no node: the reads open the Dylan track it redirects to, which is in the cache.
+		await put(
+			trackNode("mr-tambourine-man--bob-dylan", "Mr. Tambourine Man", {
+				artists: [edge("artist", "bob-dylan", "Bob Dylan")],
+			}),
+		);
+		// `mine` is not in the cache: eligible with a score of 0, and listed AFTER the bare slug, which would
+		// win as `first` if the redirect were not followed.
+		await writeRedirects({ "track:mr-tambourine-man": "track:mr-tambourine-man--bob-dylan" });
+
+		await run();
+
+		expect((await read("artist:the-byrds")).reference_track).toEqual(mine);
+		expect((await manifestOf()).excluded).toEqual([
+			{
+				artist: "artist:the-byrds",
+				field: "reference_track",
+				target: "track:mr-tambourine-man",
+				reason: "not-credited",
+			},
+		]);
+	});
+
+	it("excludes a redirected target whose destination is not in the cache, unless it is scoped on the artist", async () => {
+		const foreign = edge("project", "incunabula", "Incunabula");
+		await put(artistNode("sean-booth", "Sean Booth", { discography: [foreign] }));
+		await put(artistNode("only-own", "Only Own", { discography: [edge("project", "ghost", "Ghost")] }));
+		await writeRedirects({
+			"project:incunabula": "project:incunabula--method-of-defiance", // not in the cache: prod-only
+			"project:ghost": "project:ghost--only-own", // lands on a slug scoped on the artist
+		});
+
+		await run();
+
+		const m = await manifestOf();
+		expect(m.excluded).toContainEqual({
+			artist: "artist:sean-booth",
+			field: "landmark_project",
+			target: "project:incunabula",
+			reason: "redirected",
+		});
+		expect(m.skipped.landmark_project).toContain("artist:sean-booth");
+		expect((await read("artist:sean-booth")).landmark_project).toBeUndefined();
+		// Scoped on the artist itself: eligible (score 0), copied with the slug of the list.
+		expect((await read("artist:only-own")).landmark_project).toEqual(edge("project", "ghost", "Ghost"));
+	});
+
+	it("accepts a redirected target whose destination credits the artist, keeps the list's slug, reads the signals on the destination", async () => {
+		const oldSlug = edge("project", "old-name", "New Name");
+		const filler = edge("project", "filler--acc", "Filler");
+		await put(artistNode("acc", "Acc", { discography: [filler, oldSlug] }));
+		await put(album("filler--acc", "acc"));
+		await put(album("new-name--acc", "acc", { image_url: IMG, image_source: "caa" }));
+		await put(genreNode("g", "G", { landmark_projects: [edge("project", "new-name--acc", "New Name")] }));
+		await writeRedirects({ "project:old-name": "project:new-name--acc" });
+
+		await run();
+
+		// genreLandmark (+100) and imaged (+10) are read on the destination; the pick keeps the artist's slug.
+		expect((await read("artist:acc")).landmark_project).toEqual(oldSlug);
+		expect((await manifestOf()).picks).toContainEqual({
+			artist: "artist:acc",
+			field: "landmark_project",
+			target: "project:old-name",
+			reason: "genreLandmark",
+			score: 111,
+		});
+	});
+
+	it("lets a live node win over a redirect keyed on its own slug (the reads' rule)", async () => {
+		const live = edge("project", "live--liv", "Live");
+		await put(artistNode("liv", "Liv", { discography: [live] }));
+		await put(album("live--liv", "liv"));
+		await writeRedirects({ "project:live--liv": "project:elsewhere--other" });
+
+		await run();
+
+		expect((await read("artist:liv")).landmark_project).toEqual(live);
+		expect((await manifestOf()).excluded).toEqual([]);
+	});
+
+	it("refuses the run, writing nothing, when a redirect table is unreadable or missing", async () => {
+		await put(artistNode("t", "T", { discography: [edge("project", "p--t", "P")] }));
+		const before = await readFile(pathOf(cacheDir, "artist:t"), "utf8");
+
+		await writeFile(join(dataDir, "slug-redirects.json"), "{ not json");
+		await expect(run()).rejects.toThrow();
+		await writeFile(
+			join(dataDir, "slug-redirects.json"),
+			JSON.stringify({ redirects: { "track:a": "project:b" } }),
+		);
+		await expect(run()).rejects.toThrow(/type mismatch/);
+		await rm(join(dataDir, "slug-redirects.json"));
+		await expect(run()).rejects.toThrow(/redirect table not found/);
+
+		expect(await readFile(pathOf(cacheDir, "artist:t"), "utf8")).toBe(before);
+	});
+
 	it("choose() is pure: the signals count only for a credited target", () => {
 		const e = (slug: string) => ({ slug, type: "project", name: slug });
 		const picked = choose([
@@ -327,11 +439,12 @@ describe("run contract", () => {
 		});
 	});
 
-	it("parses the channel's flags and ignores --data-dir", () => {
+	it("parses the channel's flags, --data-dir included", () => {
 		expect(parseCliArgs(["c", "--apply", "--manifest", "m.json", "--data-dir", "d"])).toEqual({
 			cacheDir: "c",
 			apply: true,
 			manifestPath: "m.json",
+			dataDir: "d",
 		});
 		expect(parseCliArgs(["c"])?.manifestPath).toBe("out/landmark.json");
 		expect(parseCliArgs(["c", "--manifest"])).toBeNull();

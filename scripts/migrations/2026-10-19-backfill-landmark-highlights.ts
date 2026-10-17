@@ -22,7 +22,23 @@
  *     src/images/reciprocity.ts) is EXCLUDED from the choice, whatever its score, and listed in
  *     `excluded`; so is a target whose file cannot be read (it cannot be shown to credit anyone);
  *   - the "referenced by a genre" and "imaged" signals only count for a target that credits the artist;
- *   - a target that is not in the cache cannot be checked: it stays eligible, with a score of 0.
+ *   - a target that is not in the cache and is not redirected cannot be checked: it stays eligible, with a
+ *     score of 0.
+ * REDIRECTS (2026-10-17, deep review of PR #520): every candidate is resolved the way the reads resolve it
+ * (`resolveReadSlug`: a live cache node wins, otherwise one hop of data/genre-redirects.json +
+ * data/slug-redirects.json). A redirected target that is absent from the cache is NOT "unknown": the front
+ * and GET /node open the work it redirects to, which may belong to a homonym (artist:the-byrds ->
+ * track:mr-tambourine-man -> track:mr-tambourine-man--bob-dylan). So: when the resolved node is in the
+ * cache, the credit rule applies to THAT node (and the genre / image signals are read on it); when it is
+ * not, the entry is excluded (`redirected`), unless the redirect lands on a slug scoped on the artist
+ * itself (`--<artist slug body or name>`), which stays eligible with a score of 0. The tables are read
+ * from `--data-dir` (the channel's scratch copy) or else the repo's data/; an unreadable or invalid
+ * table, or a missing slug table when `--data-dir` is given, refuses the run before any write (fail
+ * closed). The edge copied keeps the slug of the artist's own list, NOT the resolved one: the pipeline
+ * requires the pick to be a member of its list compared by slug (enforceArtistChoices, TRA-470: a pick
+ * that is not becomes the list's first entry), and the scope migration moves a list entry and the pick
+ * together (CREDITED_FIELDS, 2026-10-16-scope-release-slugs.ts) so that they stay equal. Rewriting only
+ * the pick would break both.
  * When every entry is excluded the artist goes to `skipped` for that field, like an empty list.
  * ORDER (precondition): the credit is read on the target's `artists`, which the identity migrations
  * (artist and release identity, scope) and the reverse-edge backfill (2026-10-17) fill in. Run on a cache
@@ -31,7 +47,9 @@
  * has the field is never revisited), so run this AFTER those migrations, not before.
  *
  * An artist that already has the field is never touched; the node's other fields are not either (only
- * `landmark_project` and `reference_track` are added), so a second run changes nothing. Writes go through
+ * `landmark_project` and `reference_track` are added, plus the schema's own default `similar_artists: []`
+ * on a node that did not carry it, which validation adds to every artist it writes: onlyAddsSchemaDefaults
+ * lets that one through and nothing else), so a second run changes nothing. Writes go through
  * atomicWriteJson after nodePayloadSchema validation, never NodeCache.write (which would emit reverse
  * edges); a write that validation would alter is refused and the artist listed in `failed` (exit 1).
  * Pure and offline: no network call, no clock.
@@ -39,18 +57,21 @@
  * Manifest: deterministic (sorted, no timestamp), the same in a dry-run, an apply and a re-run on a copy.
  * It carries the migration channel's constants (`migration`, `removed: []`, `renamed: {}`,
  * `redirects: {}`). Counters are per field because the two choices are independent (an artist can get a
- * flagship but no reference track). Migration channel (deploy/sync-genre-cache.sh): `--apply`,
- * `--manifest` and `--data-dir` are the flags it passes; `--data-dir` is accepted and ignored.
+ * flagship but no reference track). A re-run on an already filled cache has an empty `picks`: the manifest
+ * is the same only for the same input. Migration channel (deploy/sync-genre-cache.sh): `--apply`,
+ * `--manifest` and `--data-dir` are the flags it passes; `--data-dir` is where the redirect tables are read.
  *
  * Usage: tsx scripts/migrations/2026-10-19-backfill-landmark-highlights.ts <cache-dir> [--apply]
  *        [--manifest out/landmark.json] [--data-dir <dir>]
  */
-import { mkdir } from "node:fs/promises";
+import { mkdir, stat } from "node:fs/promises";
 import { dirname, join, relative } from "node:path";
 import { pathToFileURL } from "node:url";
 import { atomicWriteJson, NodeCache } from "../../src/cache.js";
+import { loadRedirects, resolveReadSlug } from "../../src/genre-registry.js";
 import { reciprocity, type Work } from "../../src/images/reciprocity.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
+import { parseSlug, scopeMatchesArtist, scopeOf } from "../../src/slug.js";
 import type { NodePayload, Slug } from "../../src/types.js";
 import {
 	isRecord,
@@ -73,7 +94,8 @@ export type HighlightField = (typeof HIGHLIGHT_FIELDS)[number]["field"];
 export const REASONS = ["genreLandmark", "imaged", "cached", "first"] as const;
 export type Reason = (typeof REASONS)[number];
 
-export type ExclusionReason = "not-credited" | "unreadable";
+export const EXCLUSION_REASONS = ["not-credited", "redirected", "unreadable"] as const;
+export type ExclusionReason = (typeof EXCLUSION_REASONS)[number];
 
 export interface HighlightPick {
 	artist: string;
@@ -116,6 +138,8 @@ export type TargetState =
 	| { kind: "absent" }
 	| { kind: "unreadable" }
 	| { kind: "uncredited" }
+	/** Redirected to a node absent from the cache and not scoped on the artist: the reads open somebody's work. */
+	| { kind: "redirected" }
 	| { kind: "credited"; imaged: boolean };
 
 export interface Candidate {
@@ -156,10 +180,11 @@ export function choose(candidates: readonly Candidate[]): Choice {
 	const excluded: { slug: string; reason: ExclusionReason }[] = [];
 	let best: { candidate: Candidate; score: number } | null = null;
 	for (const candidate of candidates) {
-		if (candidate.state.kind === "uncredited" || candidate.state.kind === "unreadable") {
+		const kind = candidate.state.kind;
+		if (kind === "uncredited" || kind === "unreadable" || kind === "redirected") {
 			excluded.push({
 				slug: candidate.slug,
-				reason: candidate.state.kind === "uncredited" ? "not-credited" : "unreadable",
+				reason: kind === "uncredited" ? "not-credited" : kind === "redirected" ? "redirected" : "unreadable",
 			});
 			continue;
 		}
@@ -183,13 +208,35 @@ export interface BackfillOptions {
 	cacheDir: string;
 	apply: boolean;
 	manifestPath: string;
+	/** Where the redirect tables are read (the channel's scratch copy); the repo's data/ when absent. */
+	dataDir?: string | undefined;
 	log?: (line: string) => void;
+}
+
+/**
+ * The redirect table the reads use (genre + slug files). Throws on an unreadable or invalid table, and on
+ * a missing slug table when a directory was given explicitly: the run is refused, never run on a guess.
+ */
+export async function loadRunRedirects(dataDir: string | undefined): Promise<ReadonlyMap<Slug, Slug>> {
+	if (dataDir === undefined) return loadRedirects();
+	const slugTable = join(dataDir, "slug-redirects.json");
+	try {
+		await stat(slugTable);
+	} catch {
+		throw new Error(`redirect table not found: ${slugTable}`);
+	}
+	return loadRedirects({ genre: join(dataDir, "genre-redirects.json"), slug: slugTable });
 }
 
 export interface BackfillResult {
 	manifest: LandmarkManifest;
 	written: string[];
 	exitCode: number;
+}
+
+/** Is `work` scoped on the artist itself (`--<artist slug body>` or `--<normalized artist name>`)? */
+export function scopedOnArtist(work: string, artistSlug: string, artistName: string): boolean {
+	return scopeOf(work) === parseSlug(artistSlug).body || scopeMatchesArtist(work, artistName);
 }
 
 const compareLex = (a: string, b: string): number => (a < b ? -1 : a > b ? 1 : 0);
@@ -201,6 +248,8 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 	const { cacheDir, apply, manifestPath } = options;
 	const log = options.log ?? (() => undefined);
 	const cache = new NodeCache(cacheDir);
+	// First of all: a table that cannot be read refuses the run before anything is decided or written.
+	const redirects = await loadRunRedirects(options.dataDir);
 
 	const { nodes, invalid } = await readCacheNodes(cacheDir);
 	warnSkippedNodeFiles(invalid);
@@ -217,7 +266,11 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 			reason: `unreadable node file: ${error.split(cacheDir).join("<cache>")}`,
 		}));
 
-	// How many genres list each slug as a landmark, per genre list.
+	// Every file on disk, a corrupt one included: a target that exists but cannot be read is `unreadable`,
+	// never `absent` (which would keep it eligible).
+	const inCache = new Set<string>(await cache.listSlugs());
+
+	// How many genres list each slug as a landmark, per genre list, keyed by the slug the reads resolve to.
 	const genreCount: Record<(typeof HIGHLIGHT_FIELDS)[number]["genreList"], Map<string, number>> = {
 		landmark_projects: new Map(),
 		landmark_tracks: new Map(),
@@ -229,19 +282,18 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 		for (const { genreList } of HIGHLIGHT_FIELDS) {
 			const entries = node[genreList];
 			if (!Array.isArray(entries)) continue;
-			// One genre counts once per slug, even when it lists a slug twice.
+			// One genre counts once per target, even when it lists it twice (or under two names).
 			const seen = new Set<string>();
 			for (const e of entries) {
-				if (!isRecord(e) || typeof e.slug !== "string" || seen.has(e.slug)) continue;
-				seen.add(e.slug);
-				genreCount[genreList].set(e.slug, (genreCount[genreList].get(e.slug) ?? 0) + 1);
+				if (!isRecord(e) || typeof e.slug !== "string") continue;
+				const target = await resolveReadSlug(e.slug as Slug, redirects, cache);
+				if (seen.has(target)) continue;
+				seen.add(target);
+				genreCount[genreList].set(target, (genreCount[genreList].get(target) ?? 0) + 1);
 			}
 		}
 	}
 
-	// Every file on disk, a corrupt one included: a target that exists but cannot be read is `unreadable`,
-	// never `absent` (which would keep it eligible).
-	const inCache = new Set<string>(await cache.listSlugs());
 	const workCache = new Map<string, Promise<NodePayload | null>>();
 	const readWork = (slug: string): Promise<NodePayload | null> => {
 		let hit = workCache.get(slug);
@@ -297,22 +349,26 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				// A slug listed twice is one candidate: the first occurrence wins, as the tie rule says.
 				if (!isRecord(edge) || typeof edge.slug !== "string" || seenTargets.has(edge.slug)) continue;
 				seenTargets.add(edge.slug);
+				// What a read of this slug opens: the node itself when it is live, else one redirect hop.
+				const target = await resolveReadSlug(edge.slug as Slug, redirects, cache);
 				let state: TargetState = { kind: "absent" };
-				if (inCache.has(edge.slug)) {
-					const work = await readWork(edge.slug);
+				if (inCache.has(target)) {
+					const work = await readWork(target);
 					if (work === null || (work.type !== "project" && work.type !== "track")) {
 						state = { kind: "unreadable" };
-					} else if ((await reciprocity(artist, work as Work, cache, new Map())) === null) {
+					} else if ((await reciprocity(artist, work as Work, cache, redirects)) === null) {
 						state = { kind: "uncredited" };
 					} else {
-						state = { kind: "credited", imaged: hasImage.has(edge.slug) };
+						state = { kind: "credited", imaged: hasImage.has(target) };
 					}
+				} else if (target !== edge.slug && !scopedOnArtist(target, slug, artist.name)) {
+					state = { kind: "redirected" };
 				}
 				candidates.push({
 					edge,
 					slug: edge.slug,
 					state,
-					genres: state.kind === "credited" ? (genreCount[genreList].get(edge.slug) ?? 0) : 0,
+					genres: state.kind === "credited" ? (genreCount[genreList].get(target) ?? 0) : 0,
 				});
 			}
 			const choice = choose(candidates);
@@ -391,7 +447,7 @@ export function formatSummary(result: BackfillResult, apply: boolean, manifestPa
 		);
 	}
 	lines.push(
-		`${manifest.excluded.length} entr(ies) excluded (${manifest.excluded.filter((e) => e.reason === "not-credited").length} not credited by the target, ${manifest.excluded.filter((e) => e.reason === "unreadable").length} unreadable target)`,
+		`${manifest.excluded.length} entr(ies) excluded (${EXCLUSION_REASONS.map((r) => `${manifest.excluded.filter((e) => e.reason === r).length} ${r}`).join(", ")})`,
 		`${manifest.failed.length} failed`,
 		apply ? `${written.length} node file(s) written` : "dry-run: no node file written",
 		`manifest: ${manifestPath}`,
@@ -406,33 +462,34 @@ export interface CliArgs {
 	cacheDir: string;
 	apply: boolean;
 	manifestPath: string;
+	dataDir?: string | undefined;
 }
 
 /**
  * Parses `<cache-dir> [--apply] [--manifest <path>] [--data-dir <dir>]`. `--data-dir` is the migration
- * channel's and is ignored. Null (the CLI exits 2) on a missing cache-dir, a repeated flag, a flag without
- * its value (or with another flag as value) or any token no flag consumes.
+ * channel's scratch copy of the redirect tables. Null (the CLI exits 2) on a missing cache-dir, a repeated
+ * flag, a flag without its value (or with another flag as value) or any token no flag consumes.
  */
 export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 	const cacheDir = argv[0];
 	if (!cacheDir || cacheDir.startsWith("-")) return null;
 	let apply = false;
 	let manifestPath: string | undefined;
-	let dataDirSeen = false;
+	let dataDir: string | undefined;
 	for (let i = 1; i < argv.length; i++) {
 		const token = argv[i];
 		if (token === "--apply" && !apply) apply = true;
 		else if (
 			(token === "--manifest" && manifestPath === undefined) ||
-			(token === "--data-dir" && !dataDirSeen)
+			(token === "--data-dir" && dataDir === undefined)
 		) {
 			const value = argv[++i];
 			if (value === undefined || value.startsWith("-")) return null;
 			if (token === "--manifest") manifestPath = value;
-			else dataDirSeen = true;
+			else dataDir = value;
 		} else return null;
 	}
-	return { cacheDir, apply, manifestPath: manifestPath ?? DEFAULT_MANIFEST_PATH };
+	return { cacheDir, apply, manifestPath: manifestPath ?? DEFAULT_MANIFEST_PATH, dataDir };
 }
 
 async function main(): Promise<void> {
@@ -451,6 +508,7 @@ async function main(): Promise<void> {
 		cacheDir: args.cacheDir,
 		apply: args.apply,
 		manifestPath: args.manifestPath,
+		dataDir: args.dataDir,
 		log: (line) => process.stdout.write(`${line}\n`),
 	});
 	console.log(formatSummary(result, args.apply, args.manifestPath));
