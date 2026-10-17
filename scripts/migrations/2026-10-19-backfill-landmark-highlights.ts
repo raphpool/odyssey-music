@@ -75,6 +75,14 @@
  *      (project:supreme-ntm, 1998, lost to a best-of). It stays for the name of ANOTHER artist (The Beatles
  *      for Lennon) and for a self-titled record that cannot be verified.
  *
+ * PLACEHOLDER TITLES (TRA-606, 2026-10-17): the production preview of this migration would have given
+ * `project:unknown` as flagship album AND `track:unknown` as reference track to two artists that exist only in
+ * production (Nes and Zeu), which a page shows as "Unknown". A filler is never a choice: an entry whose
+ * normalized title is EXACTLY one of PLACEHOLDER_TITLES, or whose slug is the bare `project:unknown` /
+ * `track:unknown` whatever its name, is excluded (`placeholder`), for both fields, after the identity rules.
+ * Exact, never "contains": "Unknown Pleasures" (Joy Division) and "Untitled Unmastered" (Kendrick Lamar) are
+ * real titles. An artist left with nothing goes to `skipped`.
+ *
  * Identity, safety before rate (2026-10-17, same family of defect as the homonyms of TRA-570 / TRA-561): an
  * artist's `discography` / `notable_tracks` can list a work that belongs to somebody else with the same
  * name. A flagship that points at another artist's album is worse than none, so:
@@ -224,6 +232,7 @@ export const EXCLUSION_REASONS = [
 	"unreadable",
 	"compilation",
 	"non-canonical",
+	"placeholder",
 ] as const;
 export type ExclusionReason = (typeof EXCLUSION_REASONS)[number];
 
@@ -281,6 +290,8 @@ export type TargetState =
 	| { kind: "compilation" }
 	/** The title says it is a remix, a mix, a soundtrack, a best-of or a bootleg (rule v3). */
 	| { kind: "non-canonical" }
+	/** A filler title ("Unknown", "Untitled", ...) or the bare slug project:unknown / track:unknown (TRA-606). */
+	| { kind: "placeholder" }
 	| { kind: "credited"; imaged: boolean };
 
 export interface Candidate {
@@ -380,7 +391,8 @@ export function choose(candidates: readonly Candidate[], options: ChooseOptions)
 			kind === "unreadable" ||
 			kind === "redirected" ||
 			kind === "compilation" ||
-			kind === "non-canonical"
+			kind === "non-canonical" ||
+			kind === "placeholder"
 		) {
 			excluded.push({ slug: candidate.slug, reason: kind === "uncredited" ? "not-credited" : kind });
 			continue;
@@ -464,6 +476,36 @@ export function yearOf(year: unknown): number | null {
 	if (typeof year !== "string") return null;
 	const match = /^\d{4}/.exec(year.trim());
 	return match ? Number(match[0]) : null;
+}
+
+/**
+ * Titles that are fillers, not works (TRA-606): matched EXACTLY on the normalized title, never as a part of
+ * it ("Unknown Pleasures" and "Untitled Unmastered" are real titles). `n a` is "N/A".
+ */
+export const PLACEHOLDER_TITLES = [
+	"unknown",
+	"untitled",
+	"n a",
+	"tbd",
+	"none",
+	"null",
+	"various",
+	"unknown album",
+	"unknown track",
+] as const;
+
+/** The bare slugs a pipeline gives to a work whose name it could not read. */
+export const PLACEHOLDER_SLUGS = ["project:unknown", "track:unknown"] as const;
+
+/** Is this raw title exactly a filler? */
+export function isPlaceholder(rawTitle: string): boolean {
+	const title = normalizeText(rawTitle);
+	return PLACEHOLDER_TITLES.some((placeholder) => title === placeholder);
+}
+
+/** Is this slug the bare `project:unknown` / `track:unknown`, whatever the name of the entry? */
+export function isPlaceholderSlug(slug: string): boolean {
+	return PLACEHOLDER_SLUGS.some((placeholder) => slug === placeholder);
 }
 
 const hasPhrase = (text: string, phrase: string): boolean => ` ${text} `.includes(` ${phrase} `);
@@ -737,8 +779,14 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				} else if (target !== edge.slug && !scopedOnArtist(target, slug, artist.name)) {
 					state = { kind: "redirected" };
 				}
-				// Rule v3: a release that is not canonical by its title leaves the choice (identity rules first).
-				if ((state.kind === "absent" || state.kind === "credited") && isNonCanonical(rawTitle)) {
+				// A filler title leaves the choice (TRA-606), then, rule v3, a release that is not canonical by its
+				// title (identity rules first).
+				if (
+					(state.kind === "absent" || state.kind === "credited") &&
+					(isPlaceholder(rawTitle) || isPlaceholderSlug(edge.slug) || isPlaceholderSlug(target))
+				) {
+					state = { kind: "placeholder" };
+				} else if ((state.kind === "absent" || state.kind === "credited") && isNonCanonical(rawTitle)) {
 					state = { kind: "non-canonical" };
 				}
 				// Named after an artist: no signal, last on a tie. Not when the target is scoped on THIS artist
