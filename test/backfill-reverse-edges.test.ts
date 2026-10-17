@@ -3,6 +3,7 @@ import { mkdir, mkdtemp, readdir, readFile, rm, writeFile } from "node:fs/promis
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { isSafePendingEntry } from "../scripts/migrations/2026-10-16-scope-release-slugs.js";
 import {
 	formatSummary,
 	type Manifest,
@@ -10,8 +11,13 @@ import {
 	runMigration,
 	SAFE_BACKFILL_PAIRS,
 } from "../scripts/migrations/2026-10-17-backfill-reverse-edges.js";
+import {
+	checkPendingReversesAfterMigration,
+	parsePendingReverses,
+} from "../scripts/pending-reverses-union.js";
 import { NodeCache } from "../src/cache.js";
 import { REVERSE_EDGE_PAIRS } from "../src/node-spec.js";
+import { isEmittedPendingReverse } from "../src/reverse-edges.js";
 import { parseSlug } from "../src/slug.js";
 import type {
 	ArtistNode,
@@ -495,9 +501,66 @@ describe("backfill-reverse-edges: refusals and CLI", () => {
 		expect(parseCliArgs(["cache", "--bogus"])).toBeNull();
 	});
 
+	it("accepts the migration channel's --data-dir and ignores it (TRA-488)", () => {
+		expect(parseCliArgs(["cache", "--apply", "--manifest", "m.json", "--data-dir", "scratch"])).toEqual({
+			cacheDir: "cache",
+			apply: true,
+			manifestPath: "m.json",
+		});
+		expect(parseCliArgs(["cache", "--data-dir", "scratch"])).toEqual({
+			cacheDir: "cache",
+			apply: false,
+			manifestPath: "out/reverse-edges.json",
+		});
+		expect(parseCliArgs(["cache", "--data-dir"])).toBeNull();
+		expect(parseCliArgs(["cache", "--data-dir", "--apply"])).toBeNull();
+		expect(parseCliArgs(["cache", "--data-dir", "a", "--data-dir", "b"])).toBeNull();
+	});
+
 	it("summarizes the plan", async () => {
 		await writeCache([{ ...aphex, labels: [ref("label:warp", "Warp")] }, warp]);
 		const manifest = await run(false);
 		expect(formatSummary(manifest, "m.json")).toContain("artist.labels→label.roster");
+	});
+});
+
+describe("backfill-reverse-edges: migration channel contract (TRA-488)", () => {
+	it("declares nothing removed, renamed or redirected, and carries no timestamp", async () => {
+		await writeCache([{ ...aphex, labels: [ref("label:warp", "Warp")] }, warp]);
+		const first = await run(true);
+		expect(first).toMatchObject({
+			migration: "2026-10-17-backfill-reverse-edges",
+			removed: [],
+			renamed: {},
+			redirects: {},
+		});
+		expect(JSON.stringify(first)).not.toMatch(/generated_at|\d{4}-\d{2}-\d{2}T/);
+	});
+
+	it("only queues pending entries that the scope migration and the runtime both accept, and the channel validates", async () => {
+		await writeCache([
+			{ ...aphex, labels: [ref("label:ghost", "Ghost")] },
+			project("project:syro", "Syro", {
+				artists: [ref("artist:nobody", "Nobody")],
+				label: ref("label:phantom", "Phantom"),
+			}),
+			track("track:minipops", "minipops", { artists: [ref("artist:ghost-artist", "Ghost Artist")] }),
+		]);
+		const { pendingAdded } = await run(true);
+		const pending = await readPending();
+
+		expect(pendingAdded).toBe(4);
+		const keys = Object.keys(pending).sort();
+		expect(keys).toEqual(["artist:ghost-artist", "artist:nobody", "label:ghost", "label:phantom"]);
+		for (const [key, entries] of Object.entries(pending)) {
+			for (const entry of entries) {
+				expect(isSafePendingEntry(key, entry), `${key} ${entry.field}`).toBe(true);
+				expect(isEmittedPendingReverse(parseSlug(key).type, entry), `${key} ${entry.field}`).toBe(true);
+			}
+		}
+		// The channel's own checks on the file it would ship: shape, then the edge schema of the target field.
+		const parsed = parsePendingReverses(JSON.stringify(pending));
+		expect(parsed.ok).toBe(true);
+		if (parsed.ok) expect(checkPendingReversesAfterMigration(parsed.value, new Set())).toEqual([]);
 	});
 });
