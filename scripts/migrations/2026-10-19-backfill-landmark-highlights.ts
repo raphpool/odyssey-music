@@ -46,9 +46,29 @@
  * untrusted: it only feeds a score, nothing taken from it is ever written.
  * Name downgrade: an entry whose normalized title equals the normalized name of an artist of the cache
  * (any artist: a self-titled work is a work named after an artist too) receives NO signal (score 0) and
- * comes after every other entry on a tie; it is chosen only when it is the only eligible one. Not when
- * its resolved slug is scoped on THE artist (project:skream--skream, project:inside--paul-horn): that
- * work is the artist's own, the name collision is only apparent (review of 2026-10-17).
+ * comes after every other entry on a tie. Not when its resolved slug is scoped on THE artist
+ * (project:skream--skream, project:inside--paul-horn): that work is the artist's own, the name collision is
+ * only apparent (review of 2026-10-17).
+ *
+ * RULE v3 (TRA-601, 2026-10-17, after the review of the repository run, #528, which found 13 bad choices
+ * among 976; a choice is final, so the rule is tightened once more BEFORE any run). Three changes:
+ *   1. `non-canonical` exclusion, both fields, after the identity and compilation rules: a title that
+ *      contains as a whole expression a remix, a mix, a best-of, a bootleg or a live recording
+ *      (NON_CANONICAL_PHRASES), or a soundtrack marker in parentheses or at the end of the title
+ *      (NON_CANONICAL_TRAILING_PHRASES), is not the artist's canonical work. Symptom: Bee Gees ->
+ *      "Saturday Night Fever (soundtrack)", a duplicate of the excluded compilation outside the cache;
+ *      Suprême NTM -> "Anthologie"; Stuart Sutcliffe -> "Anthology 1"; Beppe Loda -> "... Rmx"; Nazira ->
+ *      "... DJ set"; Plaid -> "Maru (Skee Mask Remix)". `mix` alone is not in the list: "Mix-Up" (Cabaret
+ *      Voltaire) is a studio album.
+ *   2. A sole option without support is no choice: when exactly one eligible entry is left and its score is
+ *      0, nothing is chosen, the artist goes to `skipped` for that field and the manifest lists it in
+ *      `soleUnsupported`. Symptom: Killer Kau (one single of 2021), Emperor's track:emperor. Better no
+ *      choice than a final one with nothing behind it. (This replaces v2's "chosen when it is the only
+ *      one" for an entry named after an artist.)
+ *   3. A verified self-titled record is not downgraded: when the title is the name (or an alias) of THE
+ *      artist and the resolved target is in the cache and credits it, the name downgrade does not apply
+ *      (project:supreme-ntm, 1998, lost to a best-of). It stays for the name of ANOTHER artist (The Beatles
+ *      for Lennon) and for a self-titled record that cannot be verified.
  *
  * Identity, safety before rate (2026-10-17, same family of defect as the homonyms of TRA-570 / TRA-561): an
  * artist's `discography` / `notable_tracks` can list a work that belongs to somebody else with the same
@@ -138,6 +158,45 @@ import { onlyAddsSchemaDefaults } from "./2026-10-15-backfill-artist-identity.js
 export const MIGRATION_NAME = "2026-10-19-backfill-landmark-highlights";
 export const DEFAULT_MANIFEST_PATH = "out/landmark.json";
 
+/**
+ * RULE v3 (TRA-601, 2026-10-17): releases that are not the artist's canonical work, recognised by their TITLE
+ * (the artist's own edge). A normalized title that contains one of these as a WHOLE expression is excluded
+ * (`non-canonical`), for both fields, after the identity and compilation rules. Symptom (review of the
+ * repository run, #528): Bee Gees -> "Saturday Night Fever (soundtrack)", Suprême NTM -> "Anthologie",
+ * Stuart Sutcliffe -> "Anthology 1", Beppe Loda -> "... Rmx", Nazira -> "Nazira DJ set - Miller Mix",
+ * Plaid -> "Maru (Skee Mask Remix)". The list is deliberately short and exact: `mix` alone is NOT in it
+ * (Cabaret Voltaire's "Mix-Up" is a studio album), nor `live`, `best`, `collection`.
+ */
+export const NON_CANONICAL_PHRASES = [
+	// a remix
+	"remix",
+	"remixes",
+	"remixed",
+	"rmx",
+	// a mix
+	"dj set",
+	"dj mix",
+	"mixed by",
+	"megamix",
+	"medley",
+	// a best-of
+	"anthology",
+	"anthologie",
+	"best of",
+	"greatest hits",
+	"very best",
+	// a bootleg, a live recording
+	"bootleg",
+	"live at",
+] as const;
+
+/**
+ * Soundtrack markers, which only count between parentheses / brackets or at the END of the title: "Dune
+ * (Original Motion Picture Soundtrack)" and "Saturday Night Fever: The Original Movie Soundtrack" are
+ * soundtracks, "Soundtrack to My Life" and "Ostrich" are not.
+ */
+export const NON_CANONICAL_TRAILING_PHRASES = ["soundtrack", "original motion picture", "ost"] as const;
+
 /** The two fields this migration may add, the artist list each is chosen in, and the genre list that signals it. */
 export const HIGHLIGHT_FIELDS = [
 	{ field: "landmark_project", list: "discography", genreList: "landmark_projects" },
@@ -148,7 +207,13 @@ export type HighlightField = (typeof HIGHLIGHT_FIELDS)[number]["field"];
 export const REASONS = ["genreLandmark", "mentioned", "album", "imaged", "cached", "first"] as const;
 export type Reason = (typeof REASONS)[number];
 
-export const EXCLUSION_REASONS = ["not-credited", "redirected", "unreadable", "compilation"] as const;
+export const EXCLUSION_REASONS = [
+	"not-credited",
+	"redirected",
+	"unreadable",
+	"compilation",
+	"non-canonical",
+] as const;
 export type ExclusionReason = (typeof EXCLUSION_REASONS)[number];
 
 export interface HighlightPick {
@@ -179,7 +244,12 @@ export interface LandmarkManifest {
 	byReason: Record<HighlightField, Record<Reason, number>>;
 	/** Artists left without the field: an empty list, or every entry excluded. */
 	skipped: Record<HighlightField, string[]>;
-	/** Entries kept out of the choice: the target does not credit the artist, is unreadable, redirected or a compilation. */
+	/**
+	 * Artists whose only eligible entry had no signal at all: nothing chosen (rule v3). They are also in
+	 * `skipped` for that field.
+	 */
+	soleUnsupported: { artist: string; field: HighlightField; target: string }[];
+	/** Entries kept out of the choice: not credited, unreadable, redirected, a compilation or non-canonical. */
 	excluded: Exclusion[];
 	/** Every choice, with the score that decided it. */
 	picks: HighlightPick[];
@@ -198,6 +268,8 @@ export type TargetState =
 	| { kind: "redirected" }
 	/** Credits 3 artists or more and is not scoped on this one (landmark_project only, after the identity rules). */
 	| { kind: "compilation" }
+	/** The title says it is a remix, a mix, a soundtrack, a best-of, a bootleg or a live recording (rule v3). */
+	| { kind: "non-canonical" }
 	| { kind: "credited"; imaged: boolean };
 
 export interface Candidate {
@@ -222,6 +294,8 @@ export interface Candidate {
 export type Choice =
 	| { kind: "empty" }
 	| { kind: "all-excluded"; excluded: { slug: string; reason: ExclusionReason }[] }
+	/** One eligible entry is left and it has no signal at all (score 0): nothing is chosen (rule v3). */
+	| { kind: "sole-unsupported"; slug: string; excluded: { slug: string; reason: ExclusionReason }[] }
 	| {
 			kind: "chosen";
 			edge: Record<string, unknown>;
@@ -283,18 +357,30 @@ export function choose(candidates: readonly Candidate[], options: ChooseOptions)
 	if (candidates.length === 0) return { kind: "empty" };
 	const excluded: { slug: string; reason: ExclusionReason }[] = [];
 	let best: { candidate: Candidate; score: number; reason: Reason } | null = null;
+	let eligible = 0;
 	for (const candidate of candidates) {
 		const kind = candidate.state.kind;
-		if (kind === "uncredited" || kind === "unreadable" || kind === "redirected" || kind === "compilation") {
+		if (
+			kind === "uncredited" ||
+			kind === "unreadable" ||
+			kind === "redirected" ||
+			kind === "compilation" ||
+			kind === "non-canonical"
+		) {
 			excluded.push({ slug: candidate.slug, reason: kind === "uncredited" ? "not-credited" : kind });
 			continue;
 		}
+		eligible++;
 		const { score, reason } = scoreOf(candidate);
 		if (best === null || beats(candidate, score, best.candidate, best.score, options)) {
 			best = { candidate, score, reason };
 		}
 	}
 	if (best === null) return { kind: "all-excluded", excluded };
+	// Better no choice than a final one without any support: the only option left, with nothing behind it.
+	if (eligible === 1 && best.score === 0) {
+		return { kind: "sole-unsupported", slug: best.candidate.slug, excluded };
+	}
 	return {
 		kind: "chosen",
 		edge: best.candidate.edge,
@@ -357,6 +443,24 @@ export function yearOf(year: unknown): number | null {
 	if (typeof year !== "string") return null;
 	const match = /^\d{4}/.exec(year.trim());
 	return match ? Number(match[0]) : null;
+}
+
+const hasPhrase = (text: string, phrase: string): boolean => ` ${text} `.includes(` ${phrase} `);
+
+/** Is this raw title a remix, a mix, a soundtrack, a best-of, a bootleg or a live recording (rule v3)? */
+export function isNonCanonical(rawTitle: string): boolean {
+	const title = normalizeText(rawTitle);
+	if (title === "") return false;
+	if (NON_CANONICAL_PHRASES.some((phrase) => hasPhrase(title, phrase))) return true;
+	// Soundtrack markers: at the end of the title...
+	if (NON_CANONICAL_TRAILING_PHRASES.some((phrase) => title === phrase || title.endsWith(` ${phrase}`)))
+		return true;
+	// ... or inside parentheses / brackets.
+	for (const group of rawTitle.matchAll(/[([]([^)\]]*)[)\]]/g)) {
+		const inner = normalizeText(group[1] ?? "");
+		if (NON_CANONICAL_TRAILING_PHRASES.some((phrase) => hasPhrase(inner, phrase))) return true;
+	}
+	return false;
 }
 
 // --- Run ---
@@ -502,6 +606,7 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 	const byReason = { landmark_project: zeroReasons(), reference_track: zeroReasons() };
 	const skipped: Record<HighlightField, string[]> = { landmark_project: [], reference_track: [] };
 	const excluded: Exclusion[] = [];
+	const soleUnsupported: LandmarkManifest["soleUnsupported"] = [];
 	const picks: HighlightPick[] = [];
 	const writtenPaths: string[] = [];
 
@@ -535,10 +640,16 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 		);
 
 		const next: Record<string, unknown> = { ...raw };
-		const mine: { picks: HighlightPick[]; excluded: Exclusion[]; skipped: HighlightField[] } = {
+		const mine: {
+			picks: HighlightPick[];
+			excluded: Exclusion[];
+			skipped: HighlightField[];
+			sole: LandmarkManifest["soleUnsupported"];
+		} = {
 			picks: [],
 			excluded: [],
 			skipped: [],
+			sole: [],
 		};
 		for (const { field, list, genreList } of pending) {
 			const entries = Array.isArray(raw[list]) ? (raw[list] as unknown[]) : [];
@@ -553,11 +664,10 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				let state: TargetState = { kind: "absent" };
 				let cachedAlbum = false;
 				let emptyCredit = false;
-				const title = normalizeText(typeof edge.name === "string" ? edge.name : "");
+				const rawTitle = typeof edge.name === "string" ? edge.name : "";
+				const title = normalizeText(rawTitle);
 				const titleIsArtistName = title !== "" && artistNames.has(title);
-				// Named after an artist: no signal, last on a tie. Not when the target is scoped on THIS artist
-				// (project:skream--skream, project:inside--paul-horn): that is the artist's own work.
-				const namedAfterArtist = titleIsArtistName && !scopedOnArtist(target, slug, artist.name);
+				let verifiedCredit = false;
 				// Quoted in the article, which first loses the artist's names and the genres' names, except the
 				// ones the title itself contains. Never a title that is an artist's or a genre's name.
 				const mentioned =
@@ -575,6 +685,7 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 						state = { kind: "unreadable" };
 					} else {
 						const credits = (await reciprocity(artist, work as Work, cache, redirects)) !== null;
+						verifiedCredit = credits;
 						// An EMPTY credit is an absence of proof, not a proof of a foreign credit, so the target is
 						// kept (TRA-601) when (1) the artist's article quotes its title, (2) its slug is not scoped
 						// on somebody else and (3) its own text names the artist. An identical title is the mark of
@@ -602,6 +713,19 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				} else if (target !== edge.slug && !scopedOnArtist(target, slug, artist.name)) {
 					state = { kind: "redirected" };
 				}
+				// Rule v3: a release that is not canonical by its title leaves the choice (identity rules first).
+				if ((state.kind === "absent" || state.kind === "credited") && isNonCanonical(rawTitle)) {
+					state = { kind: "non-canonical" };
+				}
+				// Named after an artist: no signal, last on a tie. Not when the target is scoped on THIS artist
+				// (project:skream--skream, project:inside--paul-horn), nor, rule v3, when the title is the name of
+				// THIS artist and the target is in the cache and credits it (project:supreme-ntm): a self-titled
+				// record that is verified is the artist's own. Still downgraded for another artist's name (The
+				// Beatles for Lennon) and for a self-titled record that cannot be verified.
+				const verifiedSelfTitled =
+					ownNames.includes(title) && state.kind === "credited" && verifiedCredit && !emptyCredit;
+				const namedAfterArtist =
+					titleIsArtistName && !scopedOnArtist(target, slug, artist.name) && !verifiedSelfTitled;
 				candidates.push({
 					edge,
 					slug: edge.slug,
@@ -617,6 +741,9 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 			const choice = choose(candidates, { oldestFirst: field === "landmark_project" });
 			const dropped = choice.kind === "empty" ? [] : choice.excluded;
 			for (const d of dropped) mine.excluded.push({ artist: slug, field, target: d.slug, reason: d.reason });
+			if (choice.kind === "sole-unsupported") {
+				mine.sole.push({ artist: slug, field, target: choice.slug });
+			}
 			if (choice.kind !== "chosen") {
 				mine.skipped.push(field);
 				continue;
@@ -634,6 +761,7 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 
 		// Exclusions and skips are reported even when the artist gets nothing; picks only once the write is safe.
 		excluded.push(...mine.excluded);
+		soleUnsupported.push(...mine.sole);
 		for (const field of mine.skipped) skipped[field].push(slug);
 		if (mine.picks.length === 0) continue;
 
@@ -669,6 +797,10 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 			landmark_project: skipped.landmark_project.sort(compareLex),
 			reference_track: skipped.reference_track.sort(compareLex),
 		},
+		soleUnsupported: soleUnsupported.sort(
+			(a, b) =>
+				compareLex(a.artist, b.artist) || compareLex(a.field, b.field) || compareLex(a.target, b.target),
+		),
 		excluded: excluded.sort(
 			(a, b) =>
 				compareLex(a.artist, b.artist) || compareLex(a.field, b.field) || compareLex(a.target, b.target),
@@ -691,6 +823,7 @@ export function formatSummary(result: BackfillResult, apply: boolean, manifestPa
 		);
 	}
 	lines.push(
+		`${manifest.soleUnsupported.length} artist field(s) left empty: a sole entry without any signal`,
 		`${manifest.excluded.length} entr(ies) excluded (${EXCLUSION_REASONS.map((r) => `${manifest.excluded.filter((e) => e.reason === r).length} ${r}`).join(", ")})`,
 		`${manifest.failed.length} failed`,
 		apply ? `${written.length} node file(s) written` : "dry-run: no node file written",
