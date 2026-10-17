@@ -129,8 +129,15 @@ function countCommon(a: ReadonlySet<string>, b: ReadonlySet<string>): number {
 // common genre, any score above 0 kept, ties broken alphabetically. One wide genre or one major label was
 // enough: Kabza De Small got 7 false edges out of 10 (generic house), The Peech Boys 7 (the Island catalogue),
 // Gucci Mane 4 (Aretha Franklin, Chic), Ralf Hutter -> Calvin Harris, Schoenberg -> Paul McCartney; and the
-// alphabetical tie-break put "A Guy Called Gerald" in 32 of the 127 lists. A genre or label is therefore worth
-// what it singles out, and a candidate needs more than one weak link. Better no similar artist than a false one.
+// alphabetical tie-break put "A Guy Called Gerald" in 32 of the 127 lists.
+//
+// A first fix weighed a genre by 1 / log2(1 + n). Measured on the cache the same day it was too severe and
+// still wrong: Burial lost Joy Orbison and Loefah (two niche genres, 0.48 < 2) while Gucci Mane kept Aretha
+// Franklin, Chic and Bernard Edwards through Atlantic Records (11 artists, under the cap of a major). What
+// separates a real neighbour from a false one is not how rare a genre is but whether it is a niche at all, and
+// that a label alone proves nothing: a label only counts between artists who also share a niche genre.
+// So: a genre is a niche (weight 1) or too wide to say anything (weight 0), a label is worth 2 only next to a
+// niche genre, a collaborator is enough on its own. Better no similar artist than a false one.
 
 /** A genre carried by more than this many artists of `others` is too wide to say anything: weight 0. */
 export const GENRE_MAX_CARRIERS = 40;
@@ -138,15 +145,12 @@ export const GENRE_MAX_CARRIERS = 40;
 export const LABEL_MAX_CARRIERS = 15;
 /** Weight of a common collaborator, and the only link that is enough on its own. */
 export const COLLABORATOR_WEIGHT = 3;
-/** Weight of a common indie label (see LABEL_MAX_CARRIERS). */
+/** Weight of a common niche genre (one carried by at most GENRE_MAX_CARRIERS artists). */
+export const GENRE_WEIGHT = 1;
+/** Weight of a common indie label (see LABEL_MAX_CARRIERS), counted only when a niche genre is also common. */
 export const LABEL_WEIGHT = 2;
-/** Without a common collaborator, a candidate needs at least this score: one niche genre (weight < 2) is not enough. */
+/** Without a common collaborator, a candidate needs at least this score: one niche genre (1) is not enough. */
 export const MIN_GRAPH_SCORE = 2;
-
-/** Specificity of a genre: 1 / log2(1 + n) for the n artists of `others` that carry it, 0 above GENRE_MAX_CARRIERS. */
-function genreWeight(carriers: number): number {
-	return carriers > GENRE_MAX_CARRIERS ? 0 : 1 / Math.log2(1 + carriers);
-}
 
 function countCarriers(sets: readonly ReadonlySet<string>[]): Map<string, number> {
 	const counts = new Map<string, number>();
@@ -155,12 +159,13 @@ function countCarriers(sets: readonly ReadonlySet<string>[]): Map<string, number
 }
 
 /**
- * Artists of `others` that share structure with `artist`. A common collaborator weighs 3; a common label 2 if at
- * most LABEL_MAX_CARRIERS artists of `others` cite it, else 0; a common genre 1 / log2(1 + n) for the n artists
- * of `others` that carry it, 0 above GENRE_MAX_CARRIERS. A candidate is kept only with a common collaborator or
- * a score of MIN_GRAPH_SCORE or more, so the list may be shorter than 10, or empty. Ordered by score desc (it is
- * continuous, so ties are rare), then number of common genres desc, then name asc. The artist, its aliases and
- * its members never appear. Deliberately one-way: no inverse edge is implied.
+ * Artists of `others` that share structure with `artist`. A common collaborator weighs 3. A common niche genre
+ * (carried by at most GENRE_MAX_CARRIERS artists of `others`) weighs 1, a wider one 0. A common label weighs 2
+ * if at most LABEL_MAX_CARRIERS artists of `others` cite it, else 0, and only when at least one niche genre is
+ * also common: a label alone never makes two artists similar. A candidate is kept only with a common
+ * collaborator or a score of MIN_GRAPH_SCORE or more, so the list may be shorter than 10, or empty. Ordered by
+ * score desc, then number of common genres desc, then name asc. The artist, its aliases and its members never
+ * appear. Deliberately one-way: no inverse edge is implied.
  */
 export function computeSimilarFromGraph(
 	artist: ArtistNode,
@@ -189,17 +194,20 @@ export function computeSimilarFromGraph(
 	for (const [slug, { node, labels: otherLabels, genres: otherGenres }] of unique) {
 		if (excluded.has(slug)) continue;
 		const commonCollaborators = countCommon(collaborators, slugSet(node.collaborators));
-		let score = COLLABORATOR_WEIGHT * commonCollaborators;
-		for (const label of labels) {
-			if (otherLabels.has(label) && (labelCarriers.get(label) ?? 0) <= LABEL_MAX_CARRIERS) {
-				score += LABEL_WEIGHT;
-			}
-		}
 		let commonGenres = 0;
+		let nicheGenres = 0;
 		for (const genre of genres) {
 			if (!otherGenres.has(genre)) continue;
 			commonGenres++;
-			score += genreWeight(genreCarriers.get(genre) ?? 0);
+			if ((genreCarriers.get(genre) ?? 0) <= GENRE_MAX_CARRIERS) nicheGenres++;
+		}
+		let score = COLLABORATOR_WEIGHT * commonCollaborators + GENRE_WEIGHT * nicheGenres;
+		if (nicheGenres > 0) {
+			for (const label of labels) {
+				if (otherLabels.has(label) && (labelCarriers.get(label) ?? 0) <= LABEL_MAX_CARRIERS) {
+					score += LABEL_WEIGHT;
+				}
+			}
 		}
 		if (commonCollaborators === 0 && score < MIN_GRAPH_SCORE) continue;
 		const candidate: SimilarCandidate = { name: node.name, score, slug: node.slug };
