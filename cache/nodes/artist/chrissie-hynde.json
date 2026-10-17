@@ -67,6 +67,12 @@
       "artist": "Moodswings"
     }
   ],
+  "reference_track": {
+    "slug": "track:spiritual-high--moodswings",
+    "type": "track",
+    "name": "Spiritual High",
+    "artist": "Moodswings"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

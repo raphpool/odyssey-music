@@ -73,6 +73,16 @@
       "name": "Masai"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dubstep-allstars-vol-2",
+    "type": "project",
+    "name": "Dubstep Allstars Vol. 2"
+  },
+  "reference_track": {
+    "slug": "track:masai",
+    "type": "track",
+    "name": "Masai"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

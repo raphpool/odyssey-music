@@ -67,6 +67,18 @@
       "artist": "Anushka Chkheidze"
     }
   ],
+  "landmark_project": {
+    "slug": "project:lost-luggage--anushka-chkheidze",
+    "type": "project",
+    "name": "Lost Luggage",
+    "artist": "Anushka Chkheidze"
+  },
+  "reference_track": {
+    "slug": "track:lost-luggage--anushka-chkheidze",
+    "type": "track",
+    "name": "Lost Luggage",
+    "artist": "Anushka Chkheidze"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

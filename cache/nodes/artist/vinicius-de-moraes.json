@@ -359,6 +359,19 @@
       "name": "Chega de Saudade"
     }
   ],
+  "landmark_project": {
+    "slug": "project:la-voglia-la-pazzia-l-incoscienza-l-allegria",
+    "type": "project",
+    "name": "La voglia, la pazzia, l'incoscienza, l'allegria",
+    "mbid": "f81a8c55-00a6-3b2d-a067-bef408ee5244",
+    "year": "1976",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:the-girl-from-ipanema",
+    "type": "track",
+    "name": "The Girl from Ipanema"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

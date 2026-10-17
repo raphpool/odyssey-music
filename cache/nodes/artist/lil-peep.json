@@ -730,6 +730,19 @@
       "name": "Spotlight"
     }
   ],
+  "landmark_project": {
+    "slug": "project:come-over-when-you-re-sober-pt-1",
+    "type": "project",
+    "name": "Come Over When You’re Sober, Pt. 1",
+    "mbid": "e8f9e703-e2ad-4289-bf7a-43dd9568d712",
+    "year": "2017",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:star-shopping",
+    "type": "track",
+    "name": "Star Shopping"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -767,5 +780,6 @@
       "type": "artist",
       "name": "Gustav Elijah Åhr"
     }
-  ]
+  ],
+  "similar_artists": []
 }

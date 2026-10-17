@@ -87,6 +87,16 @@
       "artist": "AFX"
     }
   ],
+  "landmark_project": {
+    "slug": "project:analogue-bubblebath",
+    "type": "project",
+    "name": "Analogue Bubblebath"
+  },
+  "reference_track": {
+    "slug": "track:analogue-bubblebath",
+    "type": "track",
+    "name": "Analogue Bubblebath"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

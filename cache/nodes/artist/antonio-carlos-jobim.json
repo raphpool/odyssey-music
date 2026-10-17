@@ -393,6 +393,19 @@
       "name": "Corcovado"
     }
   ],
+  "landmark_project": {
+    "slug": "project:getz-gilberto",
+    "type": "project",
+    "name": "Getz / Gilberto",
+    "mbid": "b248d212-aace-3c3e-a23d-e13aaac1f87a",
+    "year": "1964",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:the-girl-from-ipanema",
+    "type": "track",
+    "name": "The Girl from Ipanema"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -91,6 +91,16 @@
       "name": "Military Jazz"
     }
   ],
+  "landmark_project": {
+    "slug": "project:drum-n-bass-for-papa",
+    "type": "project",
+    "name": "Drum 'n' Bass for Papa"
+  },
+  "reference_track": {
+    "slug": "track:military-jazz",
+    "type": "track",
+    "name": "Military Jazz"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

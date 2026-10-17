@@ -74,6 +74,16 @@
       "name": "VIP Drumz"
     }
   ],
+  "landmark_project": {
+    "slug": "project:shadow-boxing",
+    "type": "project",
+    "name": "Shadow Boxing"
+  },
+  "reference_track": {
+    "slug": "track:shadow-boxing",
+    "type": "track",
+    "name": "Shadow Boxing"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

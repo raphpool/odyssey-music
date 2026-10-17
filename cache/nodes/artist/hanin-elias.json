@@ -60,6 +60,11 @@
       "name": "Teenage Riot"
     }
   ],
+  "reference_track": {
+    "slug": "track:teenage-riot",
+    "type": "track",
+    "name": "Teenage Riot"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

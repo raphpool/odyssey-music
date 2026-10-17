@@ -54,6 +54,16 @@
       "name": "Masterblaster 2000"
     }
   ],
+  "landmark_project": {
+    "slug": "project:a-little-bit-of-luck",
+    "type": "project",
+    "name": "A Little Bit of Luck"
+  },
+  "reference_track": {
+    "slug": "track:a-little-bit-of-luck",
+    "type": "track",
+    "name": "A Little Bit of Luck"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

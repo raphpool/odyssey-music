@@ -72,6 +72,16 @@
       "name": "Gun Music"
     }
   ],
+  "landmark_project": {
+    "slug": "project:quality",
+    "type": "project",
+    "name": "Quality"
+  },
+  "reference_track": {
+    "slug": "track:get-by",
+    "type": "track",
+    "name": "Get By"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

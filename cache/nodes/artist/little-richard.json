@@ -118,6 +118,16 @@
       "name": "Rip It Up"
     }
   ],
+  "landmark_project": {
+    "slug": "project:here-s-little-richard",
+    "type": "project",
+    "name": "Here's Little Richard"
+  },
+  "reference_track": {
+    "slug": "track:good-golly-miss-molly",
+    "type": "track",
+    "name": "Good Golly Miss Molly"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

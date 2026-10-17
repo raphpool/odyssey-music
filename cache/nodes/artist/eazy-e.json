@@ -234,6 +234,19 @@
       "name": "Just tah Let U Know"
     }
   ],
+  "landmark_project": {
+    "slug": "project:eazy-duz-it",
+    "type": "project",
+    "name": "Eazy‐Duz‐It",
+    "mbid": "9c32d266-006d-3301-94b0-da3ca5daf3a9",
+    "year": "1988",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:eazy-er-said-than-dunn",
+    "type": "track",
+    "name": "Eazy-er Said Than Dunn"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

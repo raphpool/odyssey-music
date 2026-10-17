@@ -83,6 +83,11 @@
       "name": "Flutter"
     }
   ],
+  "reference_track": {
+    "slug": "track:basscadet",
+    "type": "track",
+    "name": "Basscadet"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -93,5 +98,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

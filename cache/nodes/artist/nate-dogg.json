@@ -412,6 +412,19 @@
       "name": "Nobody Does It Better"
     }
   ],
+  "landmark_project": {
+    "slug": "project:g-funk-classics-vol-1",
+    "type": "project",
+    "name": "G‐Funk Classics, Vol. 1",
+    "mbid": "3e5e98ad-5217-437d-8272-f03e71782713",
+    "year": "1997",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:regulate",
+    "type": "track",
+    "name": "Regulate"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

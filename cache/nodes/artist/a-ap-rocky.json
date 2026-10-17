@@ -737,6 +737,19 @@
       "name": "ASAP Forever"
     }
   ],
+  "landmark_project": {
+    "slug": "project:long-live-a-ap",
+    "type": "project",
+    "name": "LONG.LIVE.A$AP",
+    "mbid": "c0eb54b5-757a-452a-a248-d7dbdb39cd18",
+    "year": "2013",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:peso",
+    "type": "track",
+    "name": "Peso"
+  },
   "influences": [
     {
       "slug": "artist:the-diplomats",

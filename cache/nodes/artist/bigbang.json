@@ -90,6 +90,16 @@
       "name": "Still Life"
     }
   ],
+  "landmark_project": {
+    "slug": "project:bigbang-vol-1",
+    "type": "project",
+    "name": "BigBang Vol. 1"
+  },
+  "reference_track": {
+    "slug": "track:lies",
+    "type": "track",
+    "name": "Lies"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

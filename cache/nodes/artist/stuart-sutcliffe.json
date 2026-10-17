@@ -59,6 +59,16 @@
       "name": "Love Me Tender"
     }
   ],
+  "landmark_project": {
+    "slug": "project:anthology-1",
+    "type": "project",
+    "name": "Anthology 1"
+  },
+  "reference_track": {
+    "slug": "track:love-me-tender",
+    "type": "track",
+    "name": "Love Me Tender"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

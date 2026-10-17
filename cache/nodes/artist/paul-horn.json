@@ -72,6 +72,17 @@
       "name": "Inside (The Taj Mahal)"
     }
   ],
+  "landmark_project": {
+    "slug": "project:inside--paul-horn",
+    "type": "project",
+    "name": "Inside",
+    "artist": "Paul Horn"
+  },
+  "reference_track": {
+    "slug": "track:inside",
+    "type": "track",
+    "name": "Inside (The Taj Mahal)"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

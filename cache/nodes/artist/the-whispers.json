@@ -371,6 +371,19 @@
       "name": "It's a Love Thing"
     }
   ],
+  "landmark_project": {
+    "slug": "project:and-the-beat-goes-on",
+    "type": "project",
+    "name": "And the Beat Goes On",
+    "mbid": "13fc512c-fd7f-3599-8d01-863a0eaca346",
+    "year": "1979",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:and-the-beat-goes-on",
+    "type": "track",
+    "name": "And the Beat Goes On"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -406,5 +419,6 @@
       "type": "artist",
       "name": "Gordy Harmon"
     }
-  ]
+  ],
+  "similar_artists": []
 }

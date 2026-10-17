@@ -50,6 +50,12 @@
     }
   ],
   "notable_tracks": [],
+  "landmark_project": {
+    "slug": "project:the-ep--inside",
+    "type": "project",
+    "name": "The EP",
+    "artist": "Inside"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

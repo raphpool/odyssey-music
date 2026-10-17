@@ -127,6 +127,19 @@
       "name": "Boyz-n-the-Hood"
     }
   ],
+  "landmark_project": {
+    "slug": "project:straight-outta-compton",
+    "type": "project",
+    "name": "Straight Outta Compton",
+    "mbid": "fed1608d-80b7-38d2-aeb8-c6357f0d4c23",
+    "year": "1988",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:straight-outta-compton",
+    "type": "track",
+    "name": "Straight Outta Compton"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

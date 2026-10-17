@@ -71,6 +71,19 @@
       "name": "Bruttissimo"
     }
   ],
+  "landmark_project": {
+    "slug": "project:le-rohmer-lp",
+    "type": "project",
+    "name": "Le Rohmer LP",
+    "mbid": "4c0e91c3-e9a9-449d-b817-dd76221a0f1b",
+    "year": "2019",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:bruttissimo",
+    "type": "track",
+    "name": "Bruttissimo"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

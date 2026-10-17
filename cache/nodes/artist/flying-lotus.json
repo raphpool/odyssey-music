@@ -82,6 +82,16 @@
       "name": "Mmmhmm"
     }
   ],
+  "landmark_project": {
+    "slug": "project:cosmogramma--flying-lotus",
+    "type": "project",
+    "name": "Cosmogramma"
+  },
+  "reference_track": {
+    "slug": "track:mmmhmm--flying-lotus",
+    "type": "track",
+    "name": "Mmmhmm"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

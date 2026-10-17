@@ -54,6 +54,17 @@
       "name": "BURN"
     }
   ],
+  "landmark_project": {
+    "slug": "project:we-ride-on",
+    "type": "project",
+    "name": "We Ride On"
+  },
+  "reference_track": {
+    "slug": "track:drinking-with-the-monster--tusken-raiders",
+    "type": "track",
+    "name": "DRINKING WITH THE MONSTER",
+    "artist": "Tusken Raiders"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

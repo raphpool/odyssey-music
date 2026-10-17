@@ -101,6 +101,16 @@
       "name": "Lazy Sunday"
     }
   ],
+  "landmark_project": {
+    "slug": "project:incredibad",
+    "type": "project",
+    "name": "Incredibad"
+  },
+  "reference_track": {
+    "slug": "track:lazy-sunday",
+    "type": "track",
+    "name": "Lazy Sunday"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

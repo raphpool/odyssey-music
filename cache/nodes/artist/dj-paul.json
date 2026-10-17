@@ -460,6 +460,19 @@
       "name": "Talk Up"
     }
   ],
+  "landmark_project": {
+    "slug": "project:volume-10-da-killa-mix",
+    "type": "project",
+    "name": "Volume 10. Da Killa Mix",
+    "mbid": "684d30ef-4466-4b5b-b534-80d7ce174526",
+    "year": "1992",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:it-s-hard-out-here-for-a-pimp",
+    "type": "track",
+    "name": "It's Hard out Here for a Pimp"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

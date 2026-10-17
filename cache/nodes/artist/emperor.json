@@ -144,6 +144,19 @@
       "name": "Emperor"
     }
   ],
+  "landmark_project": {
+    "slug": "project:in-the-nightside-eclipse",
+    "type": "project",
+    "name": "In the Nightside Eclipse",
+    "mbid": "e8170089-f81a-3103-bb22-e6f43c4fcaf9",
+    "year": "1994",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:emperor",
+    "type": "track",
+    "name": "Emperor"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

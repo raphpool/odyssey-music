@@ -702,6 +702,19 @@
       "name": "XTCWTF"
     }
   ],
+  "landmark_project": {
+    "slug": "project:offensive",
+    "type": "project",
+    "name": "Offensive",
+    "mbid": "16905515-5891-360d-9d92-60e72a3e0823",
+    "year": "2001",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:rainbow-in-the-sky",
+    "type": "track",
+    "name": "Rainbow in the Sky"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

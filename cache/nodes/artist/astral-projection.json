@@ -407,6 +407,19 @@
       "name": "Dancing Galaxy"
     }
   ],
+  "landmark_project": {
+    "slug": "project:trust-in-trance",
+    "type": "project",
+    "name": "Trust in Trance",
+    "mbid": "2b6bfcfd-46a5-3f98-a58f-2c51d7c9e960",
+    "year": "1996",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:kabalah",
+    "type": "track",
+    "name": "Kabalah"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -422,5 +435,6 @@
       "type": "artist",
       "name": "Lior Perlmutter"
     }
-  ]
+  ],
+  "similar_artists": []
 }

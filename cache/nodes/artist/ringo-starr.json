@@ -90,6 +90,16 @@
       "artist": "John Lennon"
     }
   ],
+  "landmark_project": {
+    "slug": "project:ringo",
+    "type": "project",
+    "name": "Ringo"
+  },
+  "reference_track": {
+    "slug": "track:yellow-submarine",
+    "type": "track",
+    "name": "Yellow Submarine"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

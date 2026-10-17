@@ -76,6 +76,16 @@
       "name": "The Rhinohead"
     }
   ],
+  "landmark_project": {
+    "slug": "project:tromatic-reflexxions--von-sudenfed",
+    "type": "project",
+    "name": "Tromatic Reflexxions"
+  },
+  "reference_track": {
+    "slug": "track:fledermaus-can-t-get-it",
+    "type": "track",
+    "name": "Fledermaus Can't Get It"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -401,6 +401,19 @@
       "name": "Proceed"
     }
   ],
+  "landmark_project": {
+    "slug": "project:organix",
+    "type": "project",
+    "name": "Organix",
+    "mbid": "8f21622f-6076-3f69-add5-c5d26c28bb2d",
+    "year": "1993",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:you-got-me",
+    "type": "track",
+    "name": "You Got Me"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

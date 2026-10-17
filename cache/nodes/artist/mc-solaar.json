@@ -70,6 +70,16 @@
       "name": "Bouge de là"
     }
   ],
+  "landmark_project": {
+    "slug": "project:triptyque-balade-astrale",
+    "type": "project",
+    "name": "Triptyque : Balade astrale"
+  },
+  "reference_track": {
+    "slug": "track:bouge-de-la",
+    "type": "track",
+    "name": "Bouge de là"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

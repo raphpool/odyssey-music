@@ -137,6 +137,19 @@
       "name": "Tengo Amores Con la Gaita"
     }
   ],
+  "landmark_project": {
+    "slug": "project:un-fuego-de-sangre-pura",
+    "type": "project",
+    "name": "Un fuego de sangre pura",
+    "mbid": "319044a8-55ff-4461-b1e4-3e8a48691f41",
+    "year": "2006",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:tengo-amores-con-la-gaita",
+    "type": "track",
+    "name": "Tengo Amores Con la Gaita"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -72,6 +72,19 @@
       "name": "Puspawarna"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-music-of-k-r-t-wasitodiningrat",
+    "type": "project",
+    "name": "The Music of K.R.T. Wasitodiningrat",
+    "mbid": "db3826cf-a36e-4708-b7fb-0aa2d44f4d73",
+    "year": "1992",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:puspawarna",
+    "type": "track",
+    "name": "Puspawarna"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -76,6 +76,16 @@
       "name": "Just Can't Get Enough"
     }
   ],
+  "landmark_project": {
+    "slug": "project:speak-and-spell",
+    "type": "project",
+    "name": "Speak & Spell"
+  },
+  "reference_track": {
+    "slug": "track:enjoy-the-silence",
+    "type": "track",
+    "name": "Enjoy the Silence"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

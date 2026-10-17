@@ -72,6 +72,16 @@
       "name": "You Know You're Right"
     }
   ],
+  "landmark_project": {
+    "slug": "project:nevermind--nirvana",
+    "type": "project",
+    "name": "Nevermind"
+  },
+  "reference_track": {
+    "slug": "track:you-know-you-re-right",
+    "type": "track",
+    "name": "You Know You're Right"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

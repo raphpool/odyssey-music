@@ -80,6 +80,17 @@
       "name": "Anarchy in the U.K."
     }
   ],
+  "landmark_project": {
+    "slug": "project:never-mind-the-bollocks-here-s-the-sex-pistols--sex-pistols",
+    "type": "project",
+    "name": "Never Mind the Bollocks, Here's the Sex Pistols",
+    "artist": "Sex Pistols"
+  },
+  "reference_track": {
+    "slug": "track:god-save-the-queen",
+    "type": "track",
+    "name": "God Save the Queen"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

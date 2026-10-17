@@ -85,6 +85,16 @@
       "name": "Interstellar Overdrive"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-piper-at-the-gates-of-dawn--pink-floyd",
+    "type": "project",
+    "name": "The Piper at the Gates of Dawn"
+  },
+  "reference_track": {
+    "slug": "track:echoes",
+    "type": "track",
+    "name": "Echoes"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

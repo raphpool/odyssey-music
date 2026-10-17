@@ -142,6 +142,17 @@
       "artist": "Bob Dylan"
     }
   ],
+  "landmark_project": {
+    "slug": "project:bringing-it-all-back-home",
+    "type": "project",
+    "name": "Bringing It All Back Home"
+  },
+  "reference_track": {
+    "slug": "track:mr-tambourine-man--bob-dylan",
+    "type": "track",
+    "name": "Mr. Tambourine Man",
+    "artist": "Bob Dylan"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

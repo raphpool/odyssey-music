@@ -99,6 +99,16 @@
       "name": "Miss the Rage"
     }
   ],
+  "landmark_project": {
+    "slug": "project:a-love-letter-to-you",
+    "type": "project",
+    "name": "A Love Letter to You"
+  },
+  "reference_track": {
+    "slug": "track:love-scars",
+    "type": "track",
+    "name": "Love Scars"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

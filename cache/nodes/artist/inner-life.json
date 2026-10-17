@@ -133,6 +133,19 @@
       "name": "Moment of My Life"
     }
   ],
+  "landmark_project": {
+    "slug": "project:i-m-caught-up",
+    "type": "project",
+    "name": "I'm Caught Up (In a One Night Love Affair)",
+    "mbid": "e64edfcf-ed5c-42e5-a5b2-ad3378da850c",
+    "year": "1979",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:i-m-caught-up",
+    "type": "track",
+    "name": "I'm Caught Up (In a One Night Love Affair)"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

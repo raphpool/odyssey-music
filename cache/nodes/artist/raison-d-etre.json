@@ -66,6 +66,16 @@
       "name": "Enthraled By The Wind Of Lonelienes"
     }
   ],
+  "landmark_project": {
+    "slug": "project:enthraled-by-the-wind-of-lonelienes",
+    "type": "project",
+    "name": "Enthraled By The Wind Of Lonelienes"
+  },
+  "reference_track": {
+    "slug": "track:enthraled-by-the-wind-of-lonelienes",
+    "type": "track",
+    "name": "Enthraled By The Wind Of Lonelienes"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -92,5 +102,6 @@
       "type": "artist",
       "name": "Peter Andersson"
     }
-  ]
+  ],
+  "similar_artists": []
 }

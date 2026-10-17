@@ -88,6 +88,16 @@
       "name": "Ruff Way"
     }
   ],
+  "landmark_project": {
+    "slug": "project:adsom-a-divine-state-of-mind",
+    "type": "project",
+    "name": "ADSOM - A Divine State of Mind"
+  },
+  "reference_track": {
+    "slug": "track:never-tell-you",
+    "type": "track",
+    "name": "Never Tell You"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -113,5 +123,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

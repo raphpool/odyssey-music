@@ -130,6 +130,19 @@
       "name": "The Philosopher"
     }
   ],
+  "landmark_project": {
+    "slug": "project:scream-bloody-gore",
+    "type": "project",
+    "name": "Scream Bloody Gore",
+    "mbid": "4b2378ca-9617-3b4a-bac3-dcc23a0467bf",
+    "year": "1987",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:lack-of-comprehension",
+    "type": "track",
+    "name": "Lack of Comprehension"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

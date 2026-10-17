@@ -93,6 +93,16 @@
       "name": "Hero"
     }
   ],
+  "landmark_project": {
+    "slug": "project:neu-75--neu",
+    "type": "project",
+    "name": "Neu! '75"
+  },
+  "reference_track": {
+    "slug": "track:hallogallo",
+    "type": "track",
+    "name": "Hallogallo"
+  },
   "influences": [
     {
       "slug": "artist:kraftwerk",

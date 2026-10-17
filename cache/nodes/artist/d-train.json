@@ -181,6 +181,19 @@
       "name": "Misunderstanding"
     }
   ],
+  "landmark_project": {
+    "slug": "project:you-re-the-one-for-me",
+    "type": "project",
+    "name": "You’re the One for Me",
+    "mbid": "3f5ba858-84c5-3094-b0bb-5a1a3ca52648",
+    "year": "1982",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:you-re-the-one-for-me",
+    "type": "track",
+    "name": "You're the One for Me"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

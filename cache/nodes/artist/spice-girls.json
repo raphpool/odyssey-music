@@ -80,6 +80,11 @@
       "name": "Spice Up Your Life"
     }
   ],
+  "reference_track": {
+    "slug": "track:wannabe",
+    "type": "track",
+    "name": "Wannabe"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

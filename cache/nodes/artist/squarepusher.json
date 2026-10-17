@@ -98,6 +98,18 @@
       "artist": "Squarepusher"
     }
   ],
+  "landmark_project": {
+    "slug": "project:hard-normal-daddy--squarepusher",
+    "type": "project",
+    "name": "Hard Normal Daddy",
+    "artist": "Squarepusher"
+  },
+  "reference_track": {
+    "slug": "track:beep-street--squarepusher",
+    "type": "track",
+    "name": "Beep Street",
+    "artist": "Squarepusher"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

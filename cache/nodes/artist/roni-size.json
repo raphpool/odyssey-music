@@ -97,6 +97,16 @@
       "name": "Share the Fall"
     }
   ],
+  "landmark_project": {
+    "slug": "project:in-the-mode",
+    "type": "project",
+    "name": "In the Mode"
+  },
+  "reference_track": {
+    "slug": "track:heroes",
+    "type": "track",
+    "name": "Heroes"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

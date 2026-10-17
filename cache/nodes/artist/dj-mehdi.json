@@ -72,6 +72,16 @@
       "name": "Lucky Boy"
     }
   ],
+  "landmark_project": {
+    "slug": "project:lucky-boy",
+    "type": "project",
+    "name": "Lucky Boy"
+  },
+  "reference_track": {
+    "slug": "track:lucky-boy",
+    "type": "track",
+    "name": "Lucky Boy"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

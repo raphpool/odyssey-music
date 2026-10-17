@@ -87,6 +87,19 @@
       "name": "Counter"
     }
   ],
+  "landmark_project": {
+    "slug": "project:disco-arabica-beppe-loda-rmx",
+    "type": "project",
+    "name": "DISCO ARABICA - Beppe Loda Rmx",
+    "mbid": "e3f0269d-cfb3-450f-b621-1f960dbc42e6",
+    "year": "2025",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:counter",
+    "type": "track",
+    "name": "Counter"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

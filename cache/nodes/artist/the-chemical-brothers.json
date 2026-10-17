@@ -118,6 +118,16 @@
       "name": "Hey Boy Hey Girl"
     }
   ],
+  "landmark_project": {
+    "slug": "project:exit-planet-dust",
+    "type": "project",
+    "name": "Exit Planet Dust"
+  },
+  "reference_track": {
+    "slug": "track:block-rockin-beats",
+    "type": "track",
+    "name": "Block Rockin' Beats"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

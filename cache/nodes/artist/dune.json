@@ -366,6 +366,19 @@
       "name": "Who Wants to Live Forever"
     }
   ],
+  "landmark_project": {
+    "slug": "project:expedicion",
+    "type": "project",
+    "name": "Expedicion",
+    "mbid": "68dff5f8-8467-3a67-8d3b-1ccc84bcf7bb",
+    "year": "1996",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:hardcore-vibes",
+    "type": "track",
+    "name": "Hardcore Vibes"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -401,5 +414,6 @@
       "type": "artist",
       "name": "Tina Lacebal"
     }
-  ]
+  ],
+  "similar_artists": []
 }

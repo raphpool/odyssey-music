@@ -130,6 +130,16 @@
       "artist": "Jan Jelinek"
     }
   ],
+  "landmark_project": {
+    "slug": "project:loop-finding-jazz-records--jan-jelinek",
+    "type": "project",
+    "name": "Loop-Finding-Jazz-Records"
+  },
+  "reference_track": {
+    "slug": "track:tendency--jan-jelinek",
+    "type": "track",
+    "name": "Tendency"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

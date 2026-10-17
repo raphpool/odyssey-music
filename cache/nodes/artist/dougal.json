@@ -403,6 +403,19 @@
       "name": "DJ Dougal Takes Control"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dj-dougal-takes-control",
+    "type": "project",
+    "name": "DJ Dougal Takes Control",
+    "mbid": "d21efc2d-15c2-4d68-a385-b484004de296",
+    "year": "1996",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:dj-dougal-takes-control",
+    "type": "track",
+    "name": "DJ Dougal Takes Control"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

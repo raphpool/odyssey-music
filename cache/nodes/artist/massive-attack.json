@@ -97,6 +97,16 @@
       "name": "Teardrop"
     }
   ],
+  "landmark_project": {
+    "slug": "project:blue-lines",
+    "type": "project",
+    "name": "Blue Lines"
+  },
+  "reference_track": {
+    "slug": "track:unfinished-sympathy",
+    "type": "track",
+    "name": "Unfinished Sympathy"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

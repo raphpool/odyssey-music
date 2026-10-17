@@ -51,6 +51,16 @@
       "name": "Suprême NTM"
     }
   ],
+  "landmark_project": {
+    "slug": "project:anthologie",
+    "type": "project",
+    "name": "Anthologie"
+  },
+  "reference_track": {
+    "slug": "track:supreme-ntm",
+    "type": "track",
+    "name": "Suprême NTM"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

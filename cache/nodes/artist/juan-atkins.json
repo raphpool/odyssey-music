@@ -77,6 +77,17 @@
       "name": "No UFOs"
     }
   ],
+  "landmark_project": {
+    "slug": "project:enter--juan-atkins",
+    "type": "project",
+    "name": "Enter",
+    "artist": "Juan Atkins"
+  },
+  "reference_track": {
+    "slug": "track:no-ufos",
+    "type": "track",
+    "name": "No UFOs"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -720,6 +720,19 @@
       "name": "Solar"
     }
   ],
+  "landmark_project": {
+    "slug": "project:e-nc2",
+    "type": "project",
+    "name": "E = NC² (The Science of Hardstyle)",
+    "mbid": "5f38ecb9-42d8-4199-ad86-030aee95394f",
+    "year": "2012",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:tonight",
+    "type": "track",
+    "name": "Tonight"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -61,6 +61,11 @@
       "name": "Beau Mot Plage"
     }
   ],
+  "reference_track": {
+    "slug": "track:beau-mot-plage--isolee",
+    "type": "track",
+    "name": "Beau Mot Plage"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

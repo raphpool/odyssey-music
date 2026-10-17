@@ -76,6 +76,11 @@
       "name": "I Shot the Sheriff"
     }
   ],
+  "reference_track": {
+    "slug": "track:simmer-down",
+    "type": "track",
+    "name": "Simmer Down"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

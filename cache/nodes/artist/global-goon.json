@@ -76,6 +76,11 @@
       "name": "G.O.L.D."
     }
   ],
+  "reference_track": {
+    "slug": "track:craehrzhd",
+    "type": "track",
+    "name": "Craehrzhd"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

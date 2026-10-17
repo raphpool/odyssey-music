@@ -113,6 +113,16 @@
       "name": "Night Fever"
     }
   ],
+  "landmark_project": {
+    "slug": "project:saturday-night-fever",
+    "type": "project",
+    "name": "Saturday Night Fever (soundtrack)"
+  },
+  "reference_track": {
+    "slug": "track:night-fever",
+    "type": "track",
+    "name": "Night Fever"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

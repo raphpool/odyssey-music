@@ -84,6 +84,16 @@
       "name": "Sad Pony Guerrilla Girl"
     }
   ],
+  "landmark_project": {
+    "slug": "project:knife-play",
+    "type": "project",
+    "name": "Knife Play"
+  },
+  "reference_track": {
+    "slug": "track:i-luv-the-valley-oh",
+    "type": "track",
+    "name": "I Luv the Valley OH!"
+  },
   "influences": [
     {
       "slug": "artist:nina-simone",

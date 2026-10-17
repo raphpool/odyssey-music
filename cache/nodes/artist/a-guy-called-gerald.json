@@ -542,6 +542,19 @@
       "name": "FX"
     }
   ],
+  "landmark_project": {
+    "slug": "project:black-secret-technology",
+    "type": "project",
+    "name": "Black Secret Technology",
+    "mbid": "13ca213d-548e-31db-a314-427a3a688c16",
+    "year": "1995",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:voodoo-ray",
+    "type": "track",
+    "name": "Voodoo Ray"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

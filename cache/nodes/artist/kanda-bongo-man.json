@@ -159,6 +159,19 @@
       "name": "Kwassa Kwassa"
     }
   ],
+  "landmark_project": {
+    "slug": "project:kwassa-kwassa",
+    "type": "project",
+    "name": "Kwassa Kwassa",
+    "mbid": "2e9ff17b-10e9-33c2-86f7-27a8bc79efe3",
+    "year": "1989",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:kwassa-kwassa",
+    "type": "track",
+    "name": "Kwassa Kwassa"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

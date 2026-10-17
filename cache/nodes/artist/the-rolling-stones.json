@@ -53,6 +53,11 @@
       "name": "Get Off of My Cloud"
     }
   ],
+  "reference_track": {
+    "slug": "track:paint-it-black--the-rolling-stones",
+    "type": "track",
+    "name": "Paint It, Black"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

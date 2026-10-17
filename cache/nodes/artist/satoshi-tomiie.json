@@ -57,6 +57,11 @@
       "name": "Tears"
     }
   ],
+  "landmark_project": {
+    "slug": "project:full-lick",
+    "type": "project",
+    "name": "Full Lick"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

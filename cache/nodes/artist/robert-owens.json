@@ -79,6 +79,16 @@
       "name": "Tears"
     }
   ],
+  "landmark_project": {
+    "slug": "project:rhythms-in-me",
+    "type": "project",
+    "name": "Rhythms in Me"
+  },
+  "reference_track": {
+    "slug": "track:i-ll-be-your-friend",
+    "type": "track",
+    "name": "I'll Be Your Friend"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -119,5 +129,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

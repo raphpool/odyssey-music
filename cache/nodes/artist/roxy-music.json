@@ -95,6 +95,17 @@
       "artist": "Roxy Music"
     }
   ],
+  "landmark_project": {
+    "slug": "project:for-your-pleasure--roxy-music",
+    "type": "project",
+    "name": "For Your Pleasure"
+  },
+  "reference_track": {
+    "slug": "track:do-the-strand--roxy-music",
+    "type": "track",
+    "name": "Do the Strand",
+    "artist": "Roxy Music"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

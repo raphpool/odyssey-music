@@ -93,6 +93,17 @@
       "artist": "Tomasz Stańko Quartet"
     }
   ],
+  "landmark_project": {
+    "slug": "project:soul-of-things--tomasz-stanko-quartet",
+    "type": "project",
+    "name": "Soul of Things"
+  },
+  "reference_track": {
+    "slug": "track:soul-of-things-i--tomasz-stanko-quartet",
+    "type": "track",
+    "name": "Soul of Things I",
+    "artist": "Tomasz Stańko Quartet"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

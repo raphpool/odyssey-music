@@ -97,6 +97,16 @@
       "name": "Saravah!"
     }
   ],
+  "landmark_project": {
+    "slug": "project:murdered-by-the-music",
+    "type": "project",
+    "name": "Murdered by the Music"
+  },
+  "reference_track": {
+    "slug": "track:murdered-by-the-music",
+    "type": "track",
+    "name": "Murdered by the Music"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -64,6 +64,11 @@
       "name": "Gorgon Sound"
     }
   ],
+  "reference_track": {
+    "slug": "track:fist-of-fury",
+    "type": "track",
+    "name": "Fist of Fury"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

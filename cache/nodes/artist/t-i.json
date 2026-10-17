@@ -752,6 +752,19 @@
       "name": "Live Your Life"
     }
   ],
+  "landmark_project": {
+    "slug": "project:i-m-serious",
+    "type": "project",
+    "name": "I’m Serious",
+    "mbid": "deb35c22-f779-361e-a8e8-25607a3cba45",
+    "year": "2001",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:rubber-band-man",
+    "type": "track",
+    "name": "Rubber Band Man"
+  },
   "influences": [
     {
       "slug": "artist:jeezy",

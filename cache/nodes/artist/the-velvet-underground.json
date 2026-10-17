@@ -102,6 +102,16 @@
       "name": "Sunday Morning"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-velvet-underground-and-nico--the-velvet-underground",
+    "type": "project",
+    "name": "The Velvet Underground & Nico"
+  },
+  "reference_track": {
+    "slug": "track:heroin",
+    "type": "track",
+    "name": "Heroin"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -503,6 +503,19 @@
       "name": "I Luv It"
     }
   ],
+  "landmark_project": {
+    "slug": "project:let-s-get-it-thug-motivation-101",
+    "type": "project",
+    "name": "Let’s Get It: Thug Motivation 101",
+    "mbid": "889b5843-34bd-3f12-b9a5-eeaaab799ef5",
+    "year": "2005",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:soul-survivor",
+    "type": "track",
+    "name": "Soul Survivor"
+  },
   "influences": [],
   "influenced": [
     {
@@ -513,5 +526,6 @@
   ],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

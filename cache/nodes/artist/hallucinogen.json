@@ -190,6 +190,19 @@
       "name": "Gamma Goblins"
     }
   ],
+  "landmark_project": {
+    "slug": "project:twisted",
+    "type": "project",
+    "name": "Twisted",
+    "mbid": "12a863d9-b86d-3782-992b-81bf895dadba",
+    "year": "1995",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:lsd",
+    "type": "track",
+    "name": "LSD"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

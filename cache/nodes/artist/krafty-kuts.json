@@ -461,6 +461,19 @@
       "name": "Can U Feel Me"
     }
   ],
+  "landmark_project": {
+    "slug": "project:tricka-technology",
+    "type": "project",
+    "name": "Tricka Technology",
+    "mbid": "01171cb5-d953-303b-a4a4-d44890f88c1a",
+    "year": "2004",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:can-u-feel-me",
+    "type": "track",
+    "name": "Can U Feel Me"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

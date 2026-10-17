@@ -239,6 +239,19 @@
       "name": "Ready for War"
     }
   ],
+  "landmark_project": {
+    "slug": "project:schizophrenic",
+    "type": "project",
+    "name": "Schizophrenic",
+    "mbid": "60007f77-0b01-3cdd-91b9-5b098b29b807",
+    "year": "2000",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:ready-for-war",
+    "type": "track",
+    "name": "Ready for War"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -98,6 +98,16 @@
       "name": "Destinée"
     }
   ],
+  "landmark_project": {
+    "slug": "project:lunatic",
+    "type": "project",
+    "name": "Lunatic"
+  },
+  "reference_track": {
+    "slug": "track:destinee",
+    "type": "track",
+    "name": "Destinée"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

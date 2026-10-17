@@ -98,6 +98,16 @@
       "name": "No Ordinary Love"
     }
   ],
+  "landmark_project": {
+    "slug": "project:diamond-life",
+    "type": "project",
+    "name": "Diamond Life"
+  },
+  "reference_track": {
+    "slug": "track:smooth-operator",
+    "type": "track",
+    "name": "Smooth Operator"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

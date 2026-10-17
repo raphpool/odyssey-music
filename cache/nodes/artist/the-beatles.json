@@ -87,6 +87,18 @@
       "artist": "The Beatles"
     }
   ],
+  "landmark_project": {
+    "slug": "project:sgt-pepper-s-lonely-hearts-club-band--the-beatles",
+    "type": "project",
+    "name": "Sgt. Pepper's Lonely Hearts Club Band",
+    "artist": "The Beatles"
+  },
+  "reference_track": {
+    "slug": "track:morphing-leadgitarre-ruckwarts--the-beatles",
+    "type": "track",
+    "name": "Morphing Leadgitarre Rückwärts",
+    "artist": "The Beatles"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -98,6 +98,16 @@
       "name": "My Angel Rocks Back and Forth"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dialogue",
+    "type": "project",
+    "name": "Dialogue"
+  },
+  "reference_track": {
+    "slug": "track:as-serious-as-your-life",
+    "type": "track",
+    "name": "As Serious as Your Life"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

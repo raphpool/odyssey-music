@@ -94,6 +94,16 @@
       "name": "Vose Vii"
     }
   ],
+  "landmark_project": {
+    "slug": "project:confield",
+    "type": "project",
+    "name": "Confield"
+  },
+  "reference_track": {
+    "slug": "track:cichli",
+    "type": "track",
+    "name": "Cichli"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -79,6 +79,11 @@
       "name": "Tron Overture"
     }
   ],
+  "reference_track": {
+    "slug": "track:brandenburg-concerto-no-3-in-g-major-i-allegro",
+    "type": "track",
+    "name": "Brandenburg Concerto No. 3 in G Major: I. Allegro"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

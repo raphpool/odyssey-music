@@ -90,6 +90,16 @@
       "artist": "Ricardo Villalobos"
     }
   ],
+  "landmark_project": {
+    "slug": "project:alcachofa--ricardo-villalobos",
+    "type": "project",
+    "name": "Alcachofa"
+  },
+  "reference_track": {
+    "slug": "track:fizheuer-zieheuer",
+    "type": "track",
+    "name": "Fizheuer Zieheuer"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

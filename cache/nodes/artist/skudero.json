@@ -72,6 +72,19 @@
       "name": "Extasis"
     }
   ],
+  "landmark_project": {
+    "slug": "project:infectious-flight",
+    "type": "project",
+    "name": "Infectious Flight",
+    "mbid": "81d49912-2feb-4768-84ae-723b9b161431",
+    "year": "1998",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:extasis",
+    "type": "track",
+    "name": "Extasis"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
