@@ -19,6 +19,12 @@
  *     `aliases`, one of A's `members`, or an artist that lists A in its `members` (the group) or in its
  *     `aliases`. Richie Hawtin -> Plastikman's *Spastik*, Sean Booth -> Autechre's *Amber* are not wrong. A
  *     relative is matched by slug, or by mbid when both sides have one.
+ *   - skipped, `named-in-article` (PROJECTS only): the target is in the cache, credits an artist B that is not a
+ *     relative of A, and B's name appears as a whole expression in A's `editorial_article` (NFKD, ASCII,
+ *     lowercase, punctuation as spaces, the normalization of TRA-601). B is A's group or leader, with no link in
+ *     the cache: Sean Booth -> *Amber* of Autechre, Gerry Mulligan -> *Birth of the Cool* of Miles Davis. For a
+ *     track the rule does not apply: a cover is another recording (The Byrds -> Dylan's *Mr. Tambourine Man*).
+ *     An absent target, or one that credits nobody, follows the rules above (Incunabula).
  *   - unjudged: an absent target with NO scope (or an unreadable one). Nothing says whose work it is, so it
  *     is not rewritten, and it is counted apart.
  *
@@ -30,8 +36,10 @@
  *   - `landmark_project` / `reference_track` pointing at the old slug move with the list entry (the rule of
  *     CREDITED_FIELDS in 2026-10-16-scope-release-slugs.ts): the pipeline requires a pick to be a member of its
  *     list compared by slug (enforceArtistChoices, TRA-470).
- *   - the list already holds the scoped slug: the misdirected entry is REMOVED instead of creating a duplicate
- *     (reason `duplicate-of-scoped`), and a pick on the old slug moves to the surviving entry.
+ *   - entries that converge on the same scoped slug (several rewritten ones, or one the list already holds)
+ *     are ONE work: only the best is kept, `releaseType` album, then ep, then single, then none; on a tie the
+ *     oldest year; then list order. The others are dropped and listed in `deduplicated`, never duplicated. A
+ *     pick on one of them follows the slug, which is the same whichever entry is kept.
  *   - no node is created and no redirect is touched: the scoped work is generated on demand, with the right
  *     identity.
  *   - the scoped slug is a node of the cache that does not credit A: a COLLISION. The run is refused (exit 1)
@@ -91,7 +99,7 @@ export const EDGE_LISTS = [
 export type EdgeList = (typeof EDGE_LISTS)[number]["list"];
 export type PickField = (typeof EDGE_LISTS)[number]["pick"];
 
-export const REWRITE_REASONS = ["cached-not-credited", "absent-other-scope", "duplicate-of-scoped"] as const;
+export const REWRITE_REASONS = ["cached-not-credited", "absent-other-scope"] as const;
 export type RewriteReason = (typeof REWRITE_REASONS)[number];
 
 export const UNJUDGED_REASONS = [
@@ -118,9 +126,29 @@ export interface SkippedRelative {
 	from: string;
 	/** What the redirect resolves to. */
 	target: string;
-	/** The relative the target is credited or scoped on. */
+	/** The relative the target is credited or scoped on, or the credited artist the article names. */
 	relative: string;
-	relation: Relation;
+	/** The kind of relative, or `named-in-article` (a cached project that credits an artist A's article names). */
+	reason: Relation | "named-in-article";
+}
+/** What the manifest says of an entry of a list: its slug as it was, and what tells two editions apart. */
+export interface EdgeSummary {
+	slug: string;
+	name: string;
+	mbid?: string;
+	releaseType?: string;
+	year?: string;
+}
+/** An entry dropped because it converges, with others, on the same scoped slug: the best one is kept. */
+export interface Deduplicated {
+	artist: string;
+	field: EdgeList;
+	/** The slug the dropped entry had. */
+	from: string;
+	/** The scoped slug the group converges on (the kept entry has it too). */
+	to: string;
+	removed: EdgeSummary;
+	kept: EdgeSummary;
 }
 export interface Unjudged {
 	artist: string;
@@ -157,13 +185,14 @@ export interface RescopeManifest {
 		/** Redirected entries whose target credits the artist (or is scoped on it): correct, left alone. */
 		credited: number;
 		rewritten: number;
-		duplicatesRemoved: number;
+		deduplicated: number;
 		skippedAliasOrMember: number;
 		unjudged: number;
 		collisions: number;
 		choicesMoved: number;
 	};
 	rewritten: RewrittenEdge[];
+	deduplicated: Deduplicated[];
 	skippedAliasOrMember: SkippedRelative[];
 	unjudged: Unjudged[];
 	collisions: Collision[];
@@ -305,6 +334,68 @@ export function relativesOf(
 	return out;
 }
 
+/** One entry of a list while it is decided: the edge as it will be written, and what happened to it. */
+export interface Slot {
+	edge: unknown;
+	/** Set when the entry was rewritten: the slug it had, the scoped slug it takes, why. */
+	from?: string;
+	to?: string;
+	reason?: RewriteReason;
+}
+
+const finalSlug = (s: Slot): string | undefined => (isRecord(s.edge) ? str(s.edge.slug) : undefined);
+
+const RELEASE_TYPE_RANK: Readonly<Record<string, number>> = { album: 0, ep: 1, single: 2 };
+
+/**
+ * The entry to keep among entries that converge on one scoped slug: `releaseType` album, then ep, then single,
+ * then any other or none; on a tie the oldest year (an entry with no year comes last); then list order.
+ */
+export function pickBest(group: readonly Slot[]): Slot {
+	const key = (s: Slot): [number, number] => {
+		const e = isRecord(s.edge) ? s.edge : {};
+		const type = str(e.releaseType)?.toLowerCase();
+		const year = Number.parseInt(str(e.year) ?? "", 10);
+		return [
+			type === undefined ? 3 : (RELEASE_TYPE_RANK[type] ?? 3),
+			Number.isNaN(year) ? Number.POSITIVE_INFINITY : year,
+		];
+	};
+	let best = group[0] as Slot;
+	for (const s of group.slice(1)) {
+		const [a, b] = [key(s), key(best)];
+		if (a[0] < b[0] || (a[0] === b[0] && a[1] < b[1])) best = s;
+	}
+	return best;
+}
+
+/** The entry as it was in the list (before any rewrite). */
+function summarize(s: Slot): EdgeSummary {
+	const e = isRecord(s.edge) ? s.edge : {};
+	const out: EdgeSummary = { slug: s.from ?? str(e.slug) ?? "", name: str(e.name) ?? "" };
+	for (const k of ["mbid", "releaseType", "year"] as const) {
+		const v = str(e[k]);
+		if (v !== undefined) out[k] = v;
+	}
+	return out;
+}
+
+/** Text as TRA-601 compares it: NFKD, ASCII, lowercase, every run of punctuation a single space. */
+export function normalizeForPhrase(text: string): string {
+	return text
+		.normalize("NFKD")
+		.replace(/[̀-ͯ]/g, "")
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, " ")
+		.trim();
+}
+
+/** Does `name` appear as a whole expression in `article`? Both are compared once normalized. */
+export function namedIn(article: string, name: string): boolean {
+	const phrase = normalizeForPhrase(name);
+	return phrase !== "" && ` ${article} `.includes(` ${phrase} `);
+}
+
 /** The first relative that `work` credits (artist edge, by slug or by mbid). */
 function creditedRelative(work: Work, relatives: readonly Relative[]): Relative | undefined {
 	return relatives.find((r) =>
@@ -315,13 +406,19 @@ function creditedRelative(work: Work, relatives: readonly Relative[]): Relative 
 export type Verdict =
 	| { kind: "credited" }
 	| { kind: "relative"; relative: Relative }
-	| { kind: "misdirected"; reason: Exclude<RewriteReason, "duplicate-of-scoped"> }
+	/** A cached project credits an artist that the artist's own article names (its group, its leader). */
+	| { kind: "named-in-article"; artist: string }
+	| { kind: "misdirected"; reason: RewriteReason }
 	| { kind: "unjudged"; reason: "absent-unscoped-target" | "unreadable-target" };
 
 export interface JudgeInput {
 	target: string;
+	/** The type of the entry being judged. */
+	type: "project" | "track";
 	slug: string;
 	name: string;
+	/** The artist's `editorial_article`, through `normalizeForPhrase`. */
+	article: string;
 	relatives: readonly Relative[];
 	/** The target as the cache holds it: absent, unreadable, or the work. */
 	work: { kind: "absent" } | { kind: "unreadable" } | { kind: "work"; work: Work; creditsArtist: boolean };
@@ -329,7 +426,7 @@ export interface JudgeInput {
 
 /** Does the resolved target credit the artist, a relative of the artist, or nobody who is one of them? */
 export function judge(input: JudgeInput): Verdict {
-	const { target, slug, name, relatives, work } = input;
+	const { target, type, slug, name, article, relatives, work } = input;
 	if (work.kind === "unreadable") return { kind: "unjudged", reason: "unreadable-target" };
 	if (work.kind === "work") {
 		if (work.creditsArtist) return { kind: "credited" };
@@ -338,7 +435,12 @@ export function judge(input: JudgeInput): Verdict {
 		// A work that names its artists and does not name ours is somebody else's, whatever its slug scope says:
 		// two artists called "Flash" share the scope `--flash`. The scope is only a fallback when the work
 		// credits nobody.
-		if (work.work.artists.some((a) => a.type === "artist")) {
+		const credits = work.work.artists.filter((a) => a.type === "artist");
+		if (credits.length > 0) {
+			// A group or a leader the cache does not link (Autechre for Sean Booth, Miles Davis for Gerry Mulligan)
+			// is told by the article itself. Projects only: a track by somebody else is a cover, another recording.
+			const named = type === "project" ? credits.find((a) => namedIn(article, a.name)) : undefined;
+			if (named) return { kind: "named-in-article", artist: named.slug };
 			return { kind: "misdirected", reason: "cached-not-credited" };
 		}
 	}
@@ -428,6 +530,7 @@ export async function runRescope(options: RescopeOptions): Promise<RescopeResult
 	};
 
 	const rewritten: RewrittenEdge[] = [];
+	const deduplicated: Deduplicated[] = [];
 	const skippedRelatives: SkippedRelative[] = [];
 	const unjudged: Unjudged[] = [];
 	const collisions: Collision[] = [];
@@ -439,9 +542,11 @@ export async function runRescope(options: RescopeOptions): Promise<RescopeResult
 
 	for (const { slug, path, node: raw } of nodes.filter((n) => n.type === "artist")) {
 		const name = str(raw.name) ?? slug;
+		const article = normalizeForPhrase(str(raw.editorial_article) ?? "");
 		// Decided per artist, committed to the manifest only once the node is known to be writable.
 		const mine = {
 			rewritten: [] as RewrittenEdge[],
+			deduplicated: [] as Deduplicated[],
 			skipped: [] as SkippedRelative[],
 			unjudged: [] as Unjudged[],
 			collisions: [] as Collision[],
@@ -456,27 +561,27 @@ export async function runRescope(options: RescopeOptions): Promise<RescopeResult
 
 		for (const { list, pick } of EDGE_LISTS) {
 			const entries = Array.isArray(raw[list]) ? (raw[list] as unknown[]) : [];
-			const present = new Set<string>();
-			for (const e of entries) if (isRecord(e) && typeof e.slug === "string") present.add(e.slug);
-			const moved = new Map<string, string>();
-			const out: unknown[] = [];
-			let changed = false;
+			// One slot per entry, in list order: the entry as it will be written, and what happened to it.
+			const slots: Slot[] = [];
+			const keep = (edge: unknown) => slots.push({ edge });
+			// Old slug -> the scoped slugs its entries took (one old slug can serve works of different titles).
+			const moved = new Map<string, Set<string>>();
 
 			for (const edge of entries) {
 				const from = isRecord(edge) ? str(edge.slug) : undefined;
 				if (!isRecord(edge) || from === undefined || !isReadableSlug(from)) {
-					out.push(edge);
+					keep(edge);
 					continue;
 				}
 				const type = parseSlug(from).type;
 				if (type !== "project" && type !== "track") {
-					out.push(edge);
+					keep(edge);
 					continue;
 				}
 				// What a read of this slug opens: the node itself when it is live, else one redirect hop.
 				const target = await resolveReadSlug(from as Slug, redirects, cache);
 				if (target === from) {
-					out.push(edge);
+					keep(edge);
 					continue;
 				}
 				mine.redirectedEdges++;
@@ -492,7 +597,7 @@ export async function runRescope(options: RescopeOptions): Promise<RescopeResult
 					}
 				}
 				if (artist === null) {
-					out.push(edge);
+					keep(edge);
 					continue;
 				}
 				relatives ??= relativesOf(raw, slug, artists, relationIndex);
@@ -509,28 +614,28 @@ export async function runRescope(options: RescopeOptions): Promise<RescopeResult
 									creditsArtist: await reciprocates(artist, work as Work, cache, redirects),
 								};
 				}
-				const verdict = judge({ target, slug, name, relatives, work: workState });
+				const verdict = judge({ target, type, slug, name, article, relatives, work: workState });
 
 				if (verdict.kind === "credited") {
 					mine.credited++;
-					out.push(edge);
+					keep(edge);
 					continue;
 				}
-				if (verdict.kind === "relative") {
+				if (verdict.kind === "relative" || verdict.kind === "named-in-article") {
 					mine.skipped.push({
 						artist: slug,
 						field: list,
 						from,
 						target,
-						relative: verdict.relative.slug,
-						relation: verdict.relative.relation,
+						relative: verdict.kind === "relative" ? verdict.relative.slug : verdict.artist,
+						reason: verdict.kind === "relative" ? verdict.relative.relation : "named-in-article",
 					});
-					out.push(edge);
+					keep(edge);
 					continue;
 				}
 				if (verdict.kind === "unjudged") {
 					mine.unjudged.push({ artist: slug, field: list, from, target, reason: verdict.reason });
-					out.push(edge);
+					keep(edge);
 					continue;
 				}
 
@@ -543,7 +648,7 @@ export async function runRescope(options: RescopeOptions): Promise<RescopeResult
 						target,
 						reason: scoped === null ? "no-scoped-slug" : "redirect-from-scoped-slug",
 					});
-					out.push(edge);
+					keep(edge);
 					continue;
 				}
 				// The scoped version is a node already: it is taken only if it credits this artist.
@@ -551,7 +656,7 @@ export async function runRescope(options: RescopeOptions): Promise<RescopeResult
 					const existing = await readWork(scoped);
 					if (existing === null || (existing.type !== "project" && existing.type !== "track")) {
 						mine.collisions.push({ artist: slug, field: list, from, to: scoped, reason: "unreadable" });
-						out.push(edge);
+						keep(edge);
 						continue;
 					}
 					if (!(await reciprocates(artist, existing as Work, cache, redirects))) {
@@ -562,31 +667,59 @@ export async function runRescope(options: RescopeOptions): Promise<RescopeResult
 							to: scoped,
 							reason: "credits-another-artist",
 						});
-						out.push(edge);
+						keep(edge);
 						continue;
 					}
 				}
-				moved.set(from, scoped);
-				changed = true;
-				if (present.has(scoped)) {
-					// The list already holds the scoped slug (it was there, or an earlier entry just took it).
-					mine.rewritten.push({ artist: slug, field: list, from, to: scoped, reason: "duplicate-of-scoped" });
-					continue;
-				}
-				present.add(scoped);
-				mine.rewritten.push({ artist: slug, field: list, from, to: scoped, reason: verdict.reason });
-				out.push({ ...edge, slug: scoped });
+				moved.set(from, new Set([...(moved.get(from) ?? []), scoped]));
+				slots.push({ edge: { ...edge, slug: scoped }, from, to: scoped, reason: verdict.reason });
 			}
 
-			if (!changed) continue;
-			next[list] = out;
-			// The pick moves with its list entry, to the slug the entry took (or the surviving duplicate).
+			if (!slots.some((s) => s.to !== undefined)) continue;
+
+			// Entries that converge on the same scoped slug (rewritten ones, or one the list already holds) are
+			// ONE work: keep the best, list the others. The kept entry stays where it was in the list.
+			const removed = new Set<Slot>();
+			for (const target of new Set(slots.flatMap((s) => (s.to === undefined ? [] : [s.to])))) {
+				const group = slots.filter((s) => finalSlug(s) === target);
+				const best = pickBest(group);
+				for (const s of group) {
+					if (s === best) continue;
+					removed.add(s);
+					mine.deduplicated.push({
+						artist: slug,
+						field: list,
+						from: s.from ?? target,
+						to: target,
+						removed: summarize(s),
+						kept: summarize(best),
+					});
+				}
+			}
+			for (const s of slots) {
+				if (s.from !== undefined && s.to !== undefined && s.reason !== undefined && !removed.has(s)) {
+					mine.rewritten.push({ artist: slug, field: list, from: s.from, to: s.to, reason: s.reason });
+				}
+			}
+			next[list] = slots.filter((s) => !removed.has(s)).map((s) => s.edge);
+
+			// The pick moves with its list entry: the slug is the same whichever entry of a group is kept.
 			const choice = raw[pick];
 			const choiceSlug = isRecord(choice) ? str(choice.slug) : undefined;
-			const moveTo = choiceSlug === undefined ? undefined : moved.get(choiceSlug);
-			if (isRecord(choice) && choiceSlug !== undefined && moveTo !== undefined) {
-				next[pick] = { ...choice, slug: moveTo };
-				mine.moved.push({ artist: slug, field: pick, from: choiceSlug, to: moveTo });
+			const candidates = choiceSlug === undefined ? undefined : moved.get(choiceSlug);
+			if (isRecord(choice) && choiceSlug !== undefined && candidates !== undefined) {
+				const choiceType = parseSlug(choiceSlug).type;
+				const own =
+					choiceType === "project" || choiceType === "track"
+						? canonicalScopedSlug(choiceType, str(choice.name) ?? "", name)
+						: null;
+				// One old slug can have served works of several titles: the pick's own title decides.
+				const moveTo =
+					candidates.size === 1 ? [...candidates][0] : own && candidates.has(own) ? own : undefined;
+				if (moveTo !== undefined) {
+					next[pick] = { ...choice, slug: moveTo };
+					mine.moved.push({ artist: slug, field: pick, from: choiceSlug, to: moveTo });
+				}
 			}
 		}
 
@@ -594,7 +727,7 @@ export async function runRescope(options: RescopeOptions): Promise<RescopeResult
 			failed.push({ slug, reason: `refusing to fix an invalid node: ${parseFailure}` });
 			continue;
 		}
-		if (mine.rewritten.length > 0) {
+		if (mine.rewritten.length + mine.deduplicated.length > 0) {
 			const valid = nodePayloadSchema.safeParse(next);
 			if (!valid.success) {
 				failed.push({ slug, reason: `refusing to write an invalid node: ${valid.error.message}` });
@@ -607,9 +740,9 @@ export async function runRescope(options: RescopeOptions): Promise<RescopeResult
 			}
 			pendingWrites.push({ path, data: valid.data });
 		}
-		// Committed to the manifest once the artist is known to be writable, so that the counters add up:
-		// redirectedEdges = credited + rewritten + skippedAliasOrMember + unjudged + collisions.
+		// Committed to the manifest once the artist is known to be writable: a failed artist contributes nothing.
 		rewritten.push(...mine.rewritten);
+		deduplicated.push(...mine.deduplicated);
 		choicesMoved.push(...mine.moved);
 		collisions.push(...mine.collisions);
 		unjudged.push(...mine.unjudged);
@@ -627,7 +760,6 @@ export async function runRescope(options: RescopeOptions): Promise<RescopeResult
 		}
 	}
 
-	const duplicatesRemoved = rewritten.filter((r) => r.reason === "duplicate-of-scoped").length;
 	const manifest: RescopeManifest = {
 		migration: MIGRATION_NAME,
 		removed: [],
@@ -638,13 +770,14 @@ export async function runRescope(options: RescopeOptions): Promise<RescopeResult
 			redirectedEdges,
 			credited,
 			rewritten: rewritten.length,
-			duplicatesRemoved,
+			deduplicated: deduplicated.length,
 			skippedAliasOrMember: skippedRelatives.length,
 			unjudged: unjudged.length,
 			collisions: collisions.length,
 			choicesMoved: choicesMoved.length,
 		},
 		rewritten: rewritten.sort(byEdge),
+		deduplicated: deduplicated.sort(byEdge),
 		skippedAliasOrMember: skippedRelatives.sort(byEdge),
 		unjudged: unjudged.sort(byEdge),
 		collisions: collisions.sort(byEdge),
@@ -660,7 +793,7 @@ export function formatSummary(result: RescopeResult, apply: boolean, manifestPat
 	const { manifest, written } = result;
 	const s = manifest.summary;
 	const lines = [
-		`${s.redirectedEdges} redirected edge(s): ${s.credited} credit the artist, ${s.rewritten} rewritten (${s.duplicatesRemoved} duplicate(s) removed), ${s.skippedAliasOrMember} alias/member/group, ${s.unjudged} unjudged`,
+		`${s.redirectedEdges} redirected edge(s): ${s.credited} credit the artist, ${s.rewritten} rewritten (${s.deduplicated} duplicate(s) removed), ${s.skippedAliasOrMember} alias/member/group/named in the article, ${s.unjudged} unjudged`,
 		`${s.choicesMoved} landmark/reference pick(s) moved`,
 		`${s.collisions} collision(s)${s.collisions > 0 ? ": run refused, nothing written" : ""}`,
 		`${manifest.failed.length} failed`,

@@ -6,6 +6,7 @@ import {
 	canonicalScopedSlug,
 	MIGRATION_NAME,
 	parseCliArgs,
+	pickBest,
 	type RescopeManifest,
 	runRescope,
 } from "../scripts/migrations/2026-10-18-rescope-misdirected-artist-edges.js";
@@ -283,7 +284,7 @@ describe("no false positive: the artist's own work, aliases, members, groups", (
 				from: "track:spastik",
 				target: "track:spastik--plastikman",
 				relative: "artist:plastikman",
-				relation: "alias",
+				reason: "alias",
 			},
 		]);
 	});
@@ -320,7 +321,7 @@ describe("no false positive: the artist's own work, aliases, members, groups", (
 
 		expect(slugsOf(await read("artist:sean-booth"), "discography")).toEqual(["project:amber"]);
 		expect((await manifestOf()).skippedAliasOrMember).toMatchObject([
-			{ relative: "artist:autechre", relation: "group" },
+			{ relative: "artist:autechre", reason: "group" },
 		]);
 	});
 
@@ -337,7 +338,7 @@ describe("no false positive: the artist's own work, aliases, members, groups", (
 		await run();
 
 		expect(slugsOf(await read("artist:autechre"), "discography")).toEqual(["project:solo"]);
-		expect((await manifestOf()).skippedAliasOrMember).toMatchObject([{ relation: "member" }]);
+		expect((await manifestOf()).skippedAliasOrMember).toMatchObject([{ reason: "member" }]);
 	});
 
 	it("a relative is matched by mbid when slugs differ and both sides have one", async () => {
@@ -512,10 +513,103 @@ describe("the artist's picks move with their list entry", () => {
 	});
 });
 
-describe("duplicates", () => {
-	it("the list already holds the scoped slug: the misdirected entry is removed, no duplicate", async () => {
-		const scoped = edge("project", "wish-you-were-here--pink-floyd", "Wish You Were Here");
-		const bare = edge("project", "wish-you-were-here", "Wish You Were Here");
+describe("entries that converge on one scoped slug: only the best is kept (deduplicated)", () => {
+	const REDIRECT = { "project:human-after-all": "project:human-after-all--twin-atlantic" };
+
+	it("Daft Punk: the album wins over the two singles, which are listed in `deduplicated`", async () => {
+		const medley = edge("project", "human-after-all", "Human After All (Medley)", {
+			mbid: "00eb1335-7ff0-4dd6-8cee-51f395b06fd3",
+			year: "2012",
+			releaseType: "single",
+		});
+		const single = edge("project", "human-after-all", "Human After All", {
+			mbid: "14d335b6-71e9-43a3-9ad8-cf8367990c23",
+			year: "2005",
+			releaseType: "single",
+		});
+		const albumEdge = edge("project", "human-after-all", "Human After All", {
+			mbid: "f9e8042a-674e-3f01-80ec-7f0ab1c537df",
+			year: "2005",
+			releaseType: "album",
+		});
+		await put(artistNode("daft-punk", "Daft Punk", { discography: [medley, single, albumEdge] }));
+		await writeRedirects(REDIRECT);
+
+		await run();
+
+		// The "(Medley)" title is another work (another scoped slug): it is rewritten, not merged. The two
+		// editions of the same title converge, and the album stays where it was in the list.
+		expect((await read("artist:daft-punk")).discography).toEqual([
+			{ ...medley, slug: "project:human-after-all-medley--daft-punk" },
+			{ ...albumEdge, slug: "project:human-after-all--daft-punk" },
+		]);
+		const m = await manifestOf();
+		expect(m.deduplicated).toEqual([
+			{
+				artist: "artist:daft-punk",
+				field: "discography",
+				from: "project:human-after-all",
+				to: "project:human-after-all--daft-punk",
+				removed: {
+					slug: "project:human-after-all",
+					name: "Human After All",
+					mbid: "14d335b6-71e9-43a3-9ad8-cf8367990c23",
+					releaseType: "single",
+					year: "2005",
+				},
+				kept: {
+					slug: "project:human-after-all",
+					name: "Human After All",
+					mbid: "f9e8042a-674e-3f01-80ec-7f0ab1c537df",
+					releaseType: "album",
+					year: "2005",
+				},
+			},
+		]);
+		expect(m.rewritten.map((r) => r.to)).toEqual([
+			"project:human-after-all-medley--daft-punk",
+			"project:human-after-all--daft-punk",
+		]);
+		expect(m.summary).toMatchObject({ rewritten: 2, deduplicated: 1 });
+	});
+
+	it("a pick on the bare slug follows the slug, whichever entry is kept", async () => {
+		const single = edge("project", "human-after-all", "Human After All", { releaseType: "single" });
+		const albumEdge = edge("project", "human-after-all", "Human After All", { releaseType: "album" });
+		await put(
+			artistNode("daft-punk", "Daft Punk", { discography: [single, albumEdge], landmark_project: single }),
+		);
+		await writeRedirects(REDIRECT);
+
+		await run();
+
+		const node = await read("artist:daft-punk");
+		expect(node.landmark_project).toEqual({ ...single, slug: "project:human-after-all--daft-punk" });
+		expect(slugsOf(node, "discography")).toContain((node.landmark_project as EdgeRef).slug);
+		expect((await manifestOf()).choicesMoved).toHaveLength(1);
+	});
+
+	it("the pick follows the title when one bare slug served several works", async () => {
+		const medley = edge("project", "human-after-all", "Human After All (Medley)");
+		const plain = edge("project", "human-after-all", "Human After All");
+		await put(
+			artistNode("daft-punk", "Daft Punk", { discography: [medley, plain], landmark_project: medley }),
+		);
+		await writeRedirects(REDIRECT);
+
+		await run();
+
+		expect(((await read("artist:daft-punk")).landmark_project as EdgeRef).slug).toBe(
+			"project:human-after-all-medley--daft-punk",
+		);
+	});
+
+	it("the list already holds the scoped slug: the best of the two is kept, the other listed", async () => {
+		// The existing scoped entry is the album: it wins over the misdirected single, which is dropped.
+		const scoped = edge("project", "wish-you-were-here--pink-floyd", "Wish You Were Here", {
+			releaseType: "album",
+		});
+		const bare = edge("project", "wish-you-were-here", "Wish You Were Here", { releaseType: "single" });
 		const other = edge("project", "animals", "Animals");
 		await put(artistNode("pink-floyd", "Pink Floyd", { discography: [bare, other, scoped] }));
 		await writeRedirects({ "project:wish-you-were-here": "project:wish-you-were-here--american-hot-wax" });
@@ -523,44 +617,225 @@ describe("duplicates", () => {
 		await run();
 
 		expect((await read("artist:pink-floyd")).discography).toEqual([other, scoped]);
-		expect((await manifestOf()).rewritten).toEqual([
-			{
-				artist: "artist:pink-floyd",
-				field: "discography",
-				from: "project:wish-you-were-here",
-				to: "project:wish-you-were-here--pink-floyd",
-				reason: "duplicate-of-scoped",
-			},
+		const m = await manifestOf();
+		expect(m.rewritten).toEqual([]);
+		expect(m.deduplicated).toMatchObject([
+			{ from: "project:wish-you-were-here", to: "project:wish-you-were-here--pink-floyd" },
 		]);
 	});
 
-	it("the pick on the removed entry moves to the surviving one", async () => {
+	it("an equal pair keeps the first of the list, even when it is the one being rewritten", async () => {
 		const scoped = edge("project", "wish-you-were-here--pink-floyd", "Wish You Were Here");
 		const bare = edge("project", "wish-you-were-here", "Wish You Were Here");
-		await put(
-			artistNode("pink-floyd", "Pink Floyd", { discography: [bare, scoped], landmark_project: bare }),
-		);
+		await put(artistNode("pink-floyd", "Pink Floyd", { discography: [bare, scoped] }));
 		await writeRedirects({ "project:wish-you-were-here": "project:wish-you-were-here--american-hot-wax" });
 
 		await run();
 
-		const node = await read("artist:pink-floyd");
-		expect(slugsOf(node, "discography")).toEqual(["project:wish-you-were-here--pink-floyd"]);
-		expect((node.landmark_project as EdgeRef).slug).toBe("project:wish-you-were-here--pink-floyd");
+		expect(slugsOf(await read("artist:pink-floyd"), "discography")).toEqual([
+			"project:wish-you-were-here--pink-floyd",
+		]);
+		expect((await manifestOf()).rewritten).toHaveLength(1);
 	});
 
-	it("two misdirected entries that land on the same scoped slug give one entry", async () => {
-		const first = edge("project", "human-after-all", "Human After All", { releaseType: "single" });
-		const second = edge("project", "human-after-all", "Human After All", { releaseType: "album" });
-		await put(artistNode("daft-punk", "Daft Punk", { discography: [first, second] }));
-		await writeRedirects({ "project:human-after-all": "project:human-after-all--twin-atlantic" });
+	it("a list that is not touched keeps its own duplicates (nothing to rescope there)", async () => {
+		const a = edge("project", "plain", "Plain");
+		await put(artistNode("flash", "Flash", { discography: [a, a] }));
+		await writeRedirects({ "project:other": "project:other--someone" });
 
 		await run();
 
-		expect((await read("artist:daft-punk")).discography).toEqual([
-			{ ...first, slug: "project:human-after-all--daft-punk" },
+		expect(slugsOf(await read("artist:flash"), "discography")).toEqual(["project:plain", "project:plain"]);
+	});
+
+	describe("pickBest", () => {
+		const slot = (extra: Record<string, unknown>) => ({ edge: edge("project", "x", "X", extra) });
+
+		it("ranks album, then ep, then single, then no type or another type", () => {
+			const [none, single, ep, albumSlot, live] = [
+				slot({}),
+				slot({ releaseType: "single" }),
+				slot({ releaseType: "ep" }),
+				slot({ releaseType: "album" }),
+				slot({ releaseType: "live" }),
+			];
+			expect(pickBest([none, single, ep, albumSlot, live])).toBe(albumSlot);
+			expect(pickBest([none, single, ep, live])).toBe(ep);
+			expect(pickBest([none, live, single])).toBe(single);
+			expect(pickBest([live, none])).toBe(live);
+		});
+
+		it("on a tie of type, the oldest year wins; no year comes last; then the list order", () => {
+			const [y2009, y2001, noYear, y2001bis] = [
+				slot({ releaseType: "album", year: "2009" }),
+				slot({ releaseType: "album", year: "2001" }),
+				slot({ releaseType: "album" }),
+				slot({ releaseType: "album", year: "2001" }),
+			];
+			expect(pickBest([y2009, y2001, noYear])).toBe(y2001);
+			expect(pickBest([noYear, y2009])).toBe(y2009);
+			expect(pickBest([y2001, y2001bis])).toBe(y2001);
+			expect(pickBest([y2001bis, y2001])).toBe(y2001bis);
+		});
+
+		it("a better type beats an older year", () => {
+			const [oldSingle, newAlbum] = [
+				slot({ releaseType: "single", year: "1990" }),
+				slot({ releaseType: "album", year: "2020" }),
+			];
+			expect(pickBest([oldSingle, newAlbum])).toBe(newAlbum);
+		});
+	});
+});
+
+describe("a group or leader the cache does not link, named in the article (projects only)", () => {
+	const article = (text: string) => ({ editorial_article: text.repeat(3) });
+
+	it("Mulligan: Birth of the Cool by Miles Davis is not rewritten, reason named-in-article", async () => {
+		await put(
+			artistNode("gerry-mulligan", "Gerry Mulligan", {
+				...article("Gerry Mulligan played on the Birth of the Cool sessions led by Miles Davis. "),
+				discography: [edge("project", "birth-of-the-cool", "Birth of the Cool")],
+			}),
+		);
+		await put(album("birth-of-the-cool--miles-davis", "miles-davis", "Miles Davis"));
+		await writeRedirects({ "project:birth-of-the-cool": "project:birth-of-the-cool--miles-davis" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:gerry-mulligan"), "discography")).toEqual([
+			"project:birth-of-the-cool",
 		]);
-		expect((await manifestOf()).summary).toMatchObject({ rewritten: 2, duplicatesRemoved: 1 });
+		const m = await manifestOf();
+		expect(m.rewritten).toEqual([]);
+		expect(m.skippedAliasOrMember).toEqual([
+			{
+				artist: "artist:gerry-mulligan",
+				field: "discography",
+				from: "project:birth-of-the-cool",
+				target: "project:birth-of-the-cool--miles-davis",
+				relative: "artist:miles-davis",
+				reason: "named-in-article",
+			},
+		]);
+	});
+
+	it("Booth: Amber by Autechre, which is absent from the cache as an artist, is not rewritten", async () => {
+		await put(
+			artistNode("sean-booth", "Sean Booth", {
+				...article("Sean Booth is best known as one-half of the IDM duo Autechre. "),
+				discography: [edge("project", "amber", "Amber")],
+			}),
+		);
+		await put(album("amber--autechre", "autechre", "Autechre"));
+		await writeRedirects({ "project:amber": "project:amber--autechre" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:sean-booth"), "discography")).toEqual(["project:amber"]);
+		expect((await manifestOf()).skippedAliasOrMember).toMatchObject([
+			{ relative: "artist:autechre", reason: "named-in-article" },
+		]);
+	});
+
+	it("compares like TRA-601: accents, case and punctuation do not matter", async () => {
+		await put(
+			artistNode("flash", "Flash", {
+				...article("Flash, the long-time sideman of BJÖRK (and of nobody else). "),
+				discography: [edge("project", "debut", "Debut")],
+			}),
+		);
+		await put(album("debut--bjork", "bjork", "Björk"));
+		await writeRedirects({ "project:debut": "project:debut--bjork" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:flash"), "discography")).toEqual(["project:debut"]);
+	});
+
+	it("a TRACK in the same situation is rewritten: a cover is another recording", async () => {
+		await put(
+			artistNode("the-byrds", "The Byrds", {
+				...article("The Byrds covered Bob Dylan on their first album. "),
+				notable_tracks: [edge("track", "mr-tambourine-man", "Mr. Tambourine Man")],
+			}),
+		);
+		await put(
+			trackNode("mr-tambourine-man--bob-dylan", "Mr. Tambourine Man", {
+				artists: [edge("artist", "bob-dylan", "Bob Dylan")],
+			}),
+		);
+		await writeRedirects({ "track:mr-tambourine-man": "track:mr-tambourine-man--bob-dylan" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:the-byrds"), "notable_tracks")).toEqual([
+			"track:mr-tambourine-man--the-byrds",
+		]);
+		expect((await manifestOf()).skippedAliasOrMember).toEqual([]);
+	});
+
+	it("a name the article does not cite is rewritten", async () => {
+		await put(
+			artistNode("moderat", "Moderat", {
+				...article("Moderat is a Berlin trio of electronic musicians. "),
+				discography: [edge("project", "ii", "II")],
+			}),
+		);
+		await put(album("ii--boyz-ii-men", "boyz-ii-men", "Boyz II Men"));
+		await writeRedirects({ "project:ii": "project:ii--boyz-ii-men" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:moderat"), "discography")).toEqual(["project:ii--moderat"]);
+	});
+
+	it("the name must be a whole expression, not a piece of a longer word", async () => {
+		await put(
+			artistNode("flash", "Flash", {
+				...article("Flash grew up in Cherokee County. "),
+				discography: [edge("project", "debut", "Debut")],
+			}),
+		);
+		await put(album("debut--cher", "cher", "Cher"));
+		await writeRedirects({ "project:debut": "project:debut--cher" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:flash"), "discography")).toEqual(["project:debut--flash"]);
+	});
+
+	it("only a CACHED work that credits somebody: an absent target (Incunabula) stays rewritten", async () => {
+		await put(
+			artistNode("sean-booth", "Sean Booth", {
+				...article("Sean Booth is one-half of Autechre and of Method of Defiance. "),
+				discography: [edge("project", "incunabula", "Incunabula")],
+			}),
+		);
+		await writeRedirects({ "project:incunabula": "project:incunabula--method-of-defiance" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:sean-booth"), "discography")).toEqual([
+			"project:incunabula--sean-booth",
+		]);
+	});
+
+	it("a cached project that credits nobody is not told by the article either", async () => {
+		await put(
+			artistNode("sean-booth", "Sean Booth", {
+				...article("Sean Booth is one-half of Autechre and of Method of Defiance. "),
+				discography: [edge("project", "incunabula", "Incunabula")],
+			}),
+		);
+		await put(projectNode("incunabula--method-of-defiance", "Incunabula", { artists: [] }));
+		await writeRedirects({ "project:incunabula": "project:incunabula--method-of-defiance" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:sean-booth"), "discography")).toEqual([
+			"project:incunabula--sean-booth",
+		]);
 	});
 });
 
@@ -715,7 +990,7 @@ describe("dry-run, idempotence, determinism", () => {
 			redirectedEdges: 3,
 			credited: 0,
 			rewritten: 2,
-			duplicatesRemoved: 0,
+			deduplicated: 0,
 			skippedAliasOrMember: 1,
 			unjudged: 0,
 			collisions: 0,
