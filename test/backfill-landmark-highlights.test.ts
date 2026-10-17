@@ -12,10 +12,11 @@ import {
 	parseCliArgs,
 	type Reason,
 	runBackfill,
+	stripPhrases,
 	yearOf,
 } from "../scripts/migrations/2026-10-19-backfill-landmark-highlights.js";
 import { parseSlug } from "../src/slug.js";
-import type { EdgeRef, NodePayload } from "../src/types.js";
+import type { ArtistNode, EdgeRef, NodePayload } from "../src/types.js";
 import { artistNode, edge, genreNode, projectNode, trackNode } from "./images/helpers.js";
 
 // TRA-491: the deterministic flagship / reference-track backfill, offline. Nothing is mocked: the cache is
@@ -600,35 +601,129 @@ describe("rule v2 (TRA-601)", () => {
 	});
 
 	describe("empty credit (TRA-601)", () => {
-		const setup = async (article: string | undefined, credits: EdgeRef[]) => {
-			const saw = edge("project", "selected-works", "Selected Works", { releaseType: "ep" });
+		/** The target's own text, as it names the artist (or not). */
+		const NAMES_APHEX =
+			"A record by Aphex, written and produced in a small flat, well past the eighty character floor.";
+		const NAMES_ANOTHER =
+			"A record by the UK-based electronic producer DFRNT, made well past the eighty character floor.";
+
+		const setup = async (
+			article: string | undefined,
+			credits: EdgeRef[],
+			targetText = NAMES_APHEX,
+			targetSlug = "selected-works",
+			artistExtra: Partial<ArtistNode> = {},
+		) => {
+			const saw = edge("project", targetSlug, "Selected Works", { releaseType: "ep" });
 			const other = edge("project", "other-work--aphex", "Other Work", { releaseType: "ep" });
 			await put(
 				artistNode("aphex", "Aphex", {
 					discography: [other, saw],
 					...(article === undefined ? {} : { editorial_article: article }),
+					...artistExtra,
 				}),
 			);
-			await put(projectNode("selected-works", "Selected Works", { artists: credits }));
+			await put(
+				projectNode(targetSlug, "Selected Works", {
+					artists: credits,
+					editorial_article: targetText,
+					editorial_pitch: targetText,
+				}),
+			);
 			return { saw, other };
 		};
 
-		it("keeps a cached target with an empty credit when the article quotes its title, with its signals", async () => {
+		it("keeps a cached target with an empty credit when the artist's article quotes it and its own text names the artist", async () => {
 			const { saw } = await setup(articleQuoting("Selected Works"), []);
 
 			await run();
 
 			expect((await read("artist:aphex")).landmark_project).toEqual(saw);
-			// 50 (mentioned) + 1 (cached): it is eligible with all its signals, and flagged in the manifest.
+			// 50 (mentioned) and no `cached` point: the target was never shown to credit the artist.
 			expect(await pickOf("artist:aphex")).toEqual({
 				artist: "artist:aphex",
 				field: "landmark_project",
 				target: "project:selected-works",
 				reason: "mentioned",
-				score: 51,
+				score: 50,
 				emptyCredit: true,
 			});
 			expect((await manifestOf()).excluded).toEqual([]);
+		});
+
+		it("accepts an alias of the artist in the target's own text, and the pitch or teaser as well as the article", async () => {
+			const { saw } = await setup(
+				articleQuoting("Selected Works"),
+				[],
+				"A record signed by Richard D James, made well past the eighty character floor of the schema.",
+				"selected-works",
+				{ aliases: [edge("artist", "richard-d-james", "Richard D. James")] },
+			);
+
+			await run();
+
+			expect((await read("artist:aphex")).landmark_project).toEqual(saw);
+		});
+
+		it("excludes a bare target whose own text names ANOTHER artist (a homonym), even when the article quotes it", async () => {
+			const { other } = await setup(articleQuoting("Selected Works"), [], NAMES_ANOTHER);
+
+			await run();
+
+			expect((await read("artist:aphex")).landmark_project).toEqual(other);
+			expect((await manifestOf()).excluded).toEqual([
+				{
+					artist: "artist:aphex",
+					field: "landmark_project",
+					target: "project:selected-works",
+					reason: "not-credited",
+				},
+			]);
+		});
+
+		it("excludes a bare target whose slug is scoped on somebody else, even when its text names the artist", async () => {
+			const { other } = await setup(
+				articleQuoting("Selected Works"),
+				[],
+				NAMES_APHEX,
+				"selected-works--bob-dylan",
+			);
+
+			await run();
+
+			expect((await read("artist:aphex")).landmark_project).toEqual(other);
+			expect((await manifestOf()).excluded).toMatchObject([
+				{ target: "project:selected-works--bob-dylan", reason: "not-credited" },
+			]);
+		});
+
+		it("excludes the redirect Byrds -> a bare Dylan track, whose scope proves a foreign credit", async () => {
+			const bare = edge("track", "mr-tambourine-man", "Mr. Tambourine Man");
+			const mine = edge("track", "turn-turn-turn--the-byrds", "Turn! Turn! Turn!");
+			await put(
+				artistNode("the-byrds", "The Byrds", {
+					notable_tracks: [bare, mine],
+					editorial_article: articleQuoting("Mr. Tambourine Man"),
+				}),
+			);
+			// Empty credit, quoted, and its own text names the Byrds: only the scope on Dylan blocks it.
+			await put(
+				trackNode("mr-tambourine-man--bob-dylan", "Mr. Tambourine Man", {
+					artists: [],
+					editorial_teaser: "The Byrds turned it into a hit, well past the floor of the schema.",
+				}),
+			);
+			await writeRedirects({ "track:mr-tambourine-man": "track:mr-tambourine-man--bob-dylan" });
+
+			await run();
+
+			expect((await read("artist:the-byrds")).reference_track).toEqual(mine);
+			expect((await manifestOf()).excluded).toContainEqual({
+				artist: "artist:the-byrds",
+				field: "reference_track",
+				target: "track:mr-tambourine-man",
+				reason: "not-credited",
+			});
 		});
 
 		it("still excludes a cached target with an empty credit that the article does not quote", async () => {
@@ -659,6 +754,145 @@ describe("rule v2 (TRA-601)", () => {
 			expect((await manifestOf()).excluded).toMatchObject([
 				{ target: "project:selected-works", reason: "not-credited" },
 			]);
+		});
+	});
+
+	describe("fortuitous quotations (review of 2026-10-17)", () => {
+		/** `title` is listed second, `Other Thing` first: a title that does not count leaves the list order. */
+		const chosenOver = async (
+			artistName: string,
+			article: string,
+			title: string,
+			field: "landmark_project" | "reference_track" = "landmark_project",
+		) => {
+			const type = field === "landmark_project" ? "project" : "track";
+			const list = field === "landmark_project" ? "discography" : "notable_tracks";
+			const other = edge(type, "other-thing", "Other Thing");
+			const target = edge(type, "the-target", title);
+			await put(artistNode("subject", artistName, { [list]: [other, target], editorial_article: article }));
+			await run();
+			return {
+				other,
+				target,
+				pick: await pickOf("artist:subject", field),
+				node: await read("artist:subject"),
+			};
+		};
+
+		it("does not take the artist's own name for a quoted title (Chuck Berry -> Chuck)", async () => {
+			const { pick } = await chosenOver("Chuck Berry", articleQuoting("Chuck Berry"), "Chuck");
+			expect(pick).toMatchObject({ target: "project:other-thing", reason: "first" });
+		});
+
+		it("still counts a title that contains the artist's name (Chuck Berry Is on Top)", async () => {
+			const { pick } = await chosenOver(
+				"Chuck Berry",
+				articleQuoting("Chuck Berry Is on Top"),
+				"Chuck Berry Is on Top",
+			);
+			expect(pick).toMatchObject({ target: "project:the-target", reason: "mentioned" });
+		});
+
+		it("does not take a genre's name for a quoted title (Carlos Gardel -> Tango, Dougal -> Acid)", async () => {
+			await put(genreNode("argentine-tango", "Argentine Tango"));
+			await put(genreNode("acid-house", "Acid House"));
+			const tango = await chosenOver(
+				"Carlos Gardel",
+				"The king of the argentine tango, a singer well past the eighty character floor of the schema.",
+				"Tango",
+			);
+			expect(tango.pick).toMatchObject({ target: "project:other-thing", reason: "first" });
+
+			const acid = await chosenOver(
+				"Dougal",
+				"A leading acid house DJ, well past the eighty character floor of the schema, in the UK.",
+				"Acid",
+			);
+			expect(acid.pick).toMatchObject({ target: "project:other-thing", reason: "first" });
+		});
+
+		it("never counts a title that is exactly a genre's name, nor an artist's name", async () => {
+			await put(genreNode("tango", "Tango"));
+			const { pick } = await chosenOver("Gardel", articleQuoting("Tango"), "Tango");
+			expect(pick).toMatchObject({ target: "project:other-thing", reason: "first" });
+		});
+
+		it("ignores a title made of a year (Earl Sweatshirt -> 2010)", async () => {
+			const { pick } = await chosenOver(
+				"Earl Sweatshirt",
+				"A rapper from Chicago whose first record, released in 2010, was a surprise, well past the floor.",
+				"2010",
+				"reference_track",
+			);
+			expect(pick).toMatchObject({ target: "track:other-thing", reason: "first" });
+		});
+
+		it("strips phrases as whole expressions only, and all their occurrences", () => {
+			expect(stripPhrases("an acid house night and acid house again", ["acid house"])).toBe(
+				"an night and again",
+			);
+			expect(stripPhrases("acid house acid house", ["acid house"])).toBe("");
+			expect(stripPhrases("a houseboat", ["house"])).toBe("a houseboat");
+			expect(stripPhrases("dance hall", ["dance", "dance hall"])).toBe("");
+		});
+	});
+
+	describe("works named after an artist, and ties (review of 2026-10-17)", () => {
+		it("keeps a work named like the artist when its slug is scoped on that artist (Skream!, Inside)", async () => {
+			const own = edge("project", "skream--skream", "Skream!");
+			const other = edge("project", "outside-the-box--skream", "Outside the Box");
+			await put(artistNode("skream", "Skream", { discography: [other, own] }));
+			await put(album("skream--skream", "skream"));
+			await put(album("outside-the-box--skream", "skream"));
+			await put(genreNode("dubstep", "Dubstep", { landmark_projects: [own] }));
+			const horn = edge("project", "inside--paul-horn", "Inside");
+			const second = edge("project", "second--paul-horn", "Second");
+			await put(artistNode("paul-horn", "Paul Horn", { discography: [second, horn] }));
+			await put(artistNode("inside", "Inside"));
+			await put(album("inside--paul-horn", "paul-horn"));
+			await put(album("second--paul-horn", "paul-horn"));
+			await put(genreNode("new-age", "New Age", { landmark_projects: [horn] }));
+
+			await run();
+
+			expect((await read("artist:skream")).landmark_project).toEqual(own);
+			expect((await read("artist:paul-horn")).landmark_project).toEqual(horn);
+			expect(await pickOf("artist:skream")).toMatchObject({ reason: "genreLandmark", score: 101 });
+		});
+
+		it("on a tie, an entry named after an artist loses to any other, whatever the list order", async () => {
+			// Both uncached, no year, no signal: only the name downgrade can order them (not the score).
+			const band = edge("project", "the-beatles", "The Beatles");
+			const plain = edge("project", "plain-record", "Plain Record");
+			await put(artistNode("the-beatles", "The Beatles"));
+			await put(artistNode("fan", "Fan", { discography: [band, plain] }));
+
+			await run();
+
+			expect((await read("artist:fan")).landmark_project).toEqual(plain);
+		});
+
+		it("an entry without a year comes after those that have one, whatever the list order", async () => {
+			const dated = edge("project", "dated", "Dated", { year: "2010", releaseType: "ep" });
+			const undated = edge("project", "undated", "Undated", { releaseType: "ep" });
+			await put(artistNode("before", "Before", { discography: [undated, dated] }));
+			await put(artistNode("after", "After", { discography: [dated, undated] }));
+
+			await run();
+
+			expect((await read("artist:before")).landmark_project).toEqual(dated);
+			expect((await read("artist:after")).landmark_project).toEqual(dated);
+		});
+
+		it("never gives the `album` signal to a track, even when its edge says album", async () => {
+			const first = edge("track", "first-song", "First Song");
+			const second = edge("track", "second-song", "Second Song", { releaseType: "album" });
+			await put(artistNode("songs", "Songs", { notable_tracks: [first, second] }));
+
+			await run();
+
+			expect((await read("artist:songs")).reference_track).toEqual(first);
+			expect(await pickOf("artist:songs", "reference_track")).toMatchObject({ reason: "first", score: 0 });
 		});
 	});
 

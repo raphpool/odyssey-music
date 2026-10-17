@@ -38,11 +38,17 @@
  * `mentioned`: title and text are normalized the same way (NFKD, ASCII only, lowercase, punctuation becomes
  * a space, spaces collapsed; see normalizeText) and the title must appear as a WHOLE expression,
  * bounded by spaces, in the normalized text ("homework" is not found in "homeworkers"). A title of fewer
- * than 3 characters, or equal to the name of an artist of the cache, never counts. The article comes from
- * an LLM, so it is untrusted: it only feeds a score, nothing taken from it is ever written.
+ * than 3 characters, made only of 4 digits (a year), or equal to the name of an artist or of a genre of the
+ * cache, never counts. Before the lookup the article loses the artist's name, its aliases and the genres'
+ * names (whole expressions, except those the title itself contains), found by the review of 2026-10-17:
+ * "Chuck Berry" quoted the title Chuck, "argentine tango" Tango (Carlos Gardel), "acid house" Acid
+ * (Dougal), "released in 2010" the title 2010 (Earl Sweatshirt). The article comes from an LLM, so it is
+ * untrusted: it only feeds a score, nothing taken from it is ever written.
  * Name downgrade: an entry whose normalized title equals the normalized name of an artist of the cache
  * (any artist: a self-titled work is a work named after an artist too) receives NO signal (score 0) and
- * comes after every other entry on a tie; it is chosen only when it is the only eligible one.
+ * comes after every other entry on a tie; it is chosen only when it is the only eligible one. Not when
+ * its resolved slug is scoped on THE artist (project:skream--skream, project:inside--paul-horn): that
+ * work is the artist's own, the name collision is only apparent (review of 2026-10-17).
  *
  * Identity, safety before rate (2026-10-17, same family of defect as the homonyms of TRA-570 / TRA-561): an
  * artist's `discography` / `notable_tracks` can list a work that belongs to somebody else with the same
@@ -51,12 +57,18 @@
  *     artist's slug nor an artist edge with the same non-empty mbid, the rule of `reciprocates`,
  *     src/images/reciprocity.ts) is EXCLUDED from the choice, whatever its score, and listed in
  *     `excluded`; so is a target whose file cannot be read (it cannot be shown to credit anyone);
- *     EXCEPTION (TRA-601, 2026-10-17): a cached target whose `artists` is EMPTY stays eligible, with all its
- *     signals, when its title is `mentioned` in the artist's article. An empty credit is an absence of
- *     proof, not a proof of a foreign credit, and the article is the independent evidence. Symptom: the
- *     rule above excluded project:selected-ambient-works-85-92 (`artists: []`, no mbid) and Aphex Twin fell
- *     back to Windowlicker. A target that credits ANOTHER artist stays excluded, quoted or not (Moderat ->
- *     "II" of Boyz II Men, Juan Atkins -> "Clear"). The manifest marks such a pick `emptyCredit: true`.
+ *     EXCEPTION (TRA-601, 2026-10-17): a cached target whose `artists` is EMPTY is an absence of proof, not a
+ *     proof of a foreign credit, so it stays eligible when ALL of these hold: (1) its title is `mentioned` in
+ *     the artist's article; (2) its resolved slug is not scoped on somebody else (a `--bob-dylan` scope IS a
+ *     foreign credit: the Byrds -> Dylan case); (3) its OWN text (`editorial_article`, `editorial_pitch` or
+ *     `editorial_teaser`) names the artist or an alias, as a whole expression. Symptom: the rule above
+ *     excluded project:selected-ambient-works-85-92 (`artists: []`, no mbid) and Aphex Twin fell back to
+ *     Windowlicker; but with (1) alone the review of the same day brought back homonyms, whose title is
+ *     identical by definition: DFRNT's Fading for Pole, the rapper Germ's Every Dog Has Its Day for
+ *     Millsart, the Baltimore punk trio The Wayward for Harry Partch. A target that credits ANOTHER artist
+ *     stays excluded, quoted or not (Moderat -> "II" of Boyz II Men, Juan Atkins -> "Clear"). A kept
+ *     target never gets the `cached` point (it was not shown to credit the artist), keeps the other
+ *     signals (the identity is attested on both sides), and its pick carries `emptyCredit: true`.
  *   - the "referenced by a genre" and "imaged" signals only count for a target that credits the artist
  *     (or is kept by the exception above);
  *   - a target that is not in the cache and is not redirected cannot be checked: it stays eligible, with no
@@ -230,8 +242,10 @@ export function scoreOf(c: Candidate): { score: number; reason: Reason } {
 	const credited = c.state.kind === "credited";
 	const genres = credited ? c.genres : 0;
 	const imaged = c.state.kind === "credited" && c.state.imaged;
+	// A target kept by the empty-credit gate was never shown to credit the artist: it is not "cached" for it.
+	const cached = credited && !c.emptyCredit;
 	const score =
-		genres * 100 + (c.mentioned ? 50 : 0) + (c.album ? 20 : 0) + (imaged ? 10 : 0) + (credited ? 1 : 0);
+		genres * 100 + (c.mentioned ? 50 : 0) + (c.album ? 20 : 0) + (imaged ? 10 : 0) + (cached ? 1 : 0);
 	// The strongest signal, in the order of the weights.
 	const reason: Reason =
 		genres > 0
@@ -242,7 +256,7 @@ export function scoreOf(c: Candidate): { score: number; reason: Reason } {
 					? "album"
 					: imaged
 						? "imaged"
-						: credited
+						: cached
 							? "cached"
 							: "first";
 	return { score, reason };
@@ -313,11 +327,29 @@ export function normalizeText(text: string): string {
 /** The shortest normalized title that can count as quoted in a text. */
 export const MIN_MENTION_LENGTH = 3;
 
-/** Is the normalized `title` a WHOLE expression, bounded by spaces, of one of the normalized `texts`? */
+/**
+ * Is the normalized `title` a WHOLE expression, bounded by spaces, of one of the normalized `texts`? A title
+ * of fewer than 3 characters, or made only of 4 digits (a year: "released in 2010"), never counts.
+ */
 export function mentionedIn(title: string, texts: readonly string[]): boolean {
-	if (title.length < MIN_MENTION_LENGTH) return false;
+	if (title.length < MIN_MENTION_LENGTH || /^\d{4}$/.test(title)) return false;
 	const needle = ` ${title} `;
 	return texts.some((text) => ` ${text} `.includes(needle));
+}
+
+/**
+ * The normalized `text` without the given normalized phrases, each removed as a WHOLE expression (a phrase
+ * is replaced by one space, longest first). Used to take the artist's own name, aliases and the genres'
+ * names out of the article before a title is looked up: "Chuck Berry" must not quote the title Chuck,
+ * "argentine tango" the title Tango, "acid house" the title Acid.
+ */
+export function stripPhrases(text: string, phrases: readonly string[]): string {
+	let padded = ` ${text} `;
+	for (const phrase of [...phrases].sort((a, b) => b.length - a.length)) {
+		const needle = ` ${phrase} `;
+		while (padded.includes(needle)) padded = padded.split(needle).join(" ");
+	}
+	return padded.trim();
 }
 
 /** The year of an edge ("1997", "1997-05-01"), null when it does not start with four digits. */
@@ -366,6 +398,13 @@ export function scopedOnArtist(work: string, artistSlug: string, artistName: str
 
 /** A cached work crediting at least this many artists, without a scope on the artist, is a compilation. */
 export const COMPILATION_MIN_CREDITS = 3;
+
+/** Does the target's OWN text (article, pitch or teaser) name one of the artist's names, as a whole expression? */
+function namesArtist(work: Work, names: readonly string[]): boolean {
+	const own = work.type === "project" ? work.editorial_pitch : work.editorial_teaser;
+	const texts = [work.editorial_article, own].map(normalizeText);
+	return names.some((name) => mentionedIn(name, texts));
+}
 
 const compareLex = (a: string, b: string): number => (a < b ? -1 : a > b ? 1 : 0);
 
@@ -443,6 +482,13 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 		const name = normalizeText(node.name);
 		if (name !== "") artistNames.add(name);
 	}
+	// Likewise the genres: a title that is a genre's name, or sits inside "argentine tango", is no quotation.
+	const genreNames = new Set<string>();
+	for (const { type, node } of nodes) {
+		if (type !== "genre" || typeof node.name !== "string") continue;
+		const name = normalizeText(node.name);
+		if (name !== "") genreNames.add(name);
+	}
 
 	const written = { landmark_project: 0, reference_track: 0 };
 	const zeroReasons = (): Record<Reason, number> => ({
@@ -478,7 +524,15 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 		const artist = parsed.data as Extract<NodePayload, { type: "artist" }>;
 		// The artist's own texts, normalized once. Artists carry no teaser / pitch (those are on works):
 		// `editorial_article` is the text the title is looked up in.
-		const texts = [normalizeText(artist.editorial_article)];
+		const article = normalizeText(artist.editorial_article);
+		// The artist's own names (name and aliases) and the genres' names are taken out of the article before a
+		// title is looked up; only those the article actually contains are worth stripping.
+		const ownNames = [artist.name, ...artist.aliases.map((a) => a.name)]
+			.map(normalizeText)
+			.filter((n) => n !== "");
+		const strippable = [...new Set([...ownNames, ...genreNames])].filter((phrase) =>
+			` ${article} `.includes(` ${phrase} `),
+		);
 
 		const next: Record<string, unknown> = { ...raw };
 		const mine: { picks: HighlightPick[]; excluded: Exclusion[]; skipped: HighlightField[] } = {
@@ -500,17 +554,37 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				let cachedAlbum = false;
 				let emptyCredit = false;
 				const title = normalizeText(typeof edge.name === "string" ? edge.name : "");
-				const namedAfterArtist = title !== "" && artistNames.has(title);
-				const mentioned = !namedAfterArtist && mentionedIn(title, texts);
+				const titleIsArtistName = title !== "" && artistNames.has(title);
+				// Named after an artist: no signal, last on a tie. Not when the target is scoped on THIS artist
+				// (project:skream--skream, project:inside--paul-horn): that is the artist's own work.
+				const namedAfterArtist = titleIsArtistName && !scopedOnArtist(target, slug, artist.name);
+				// Quoted in the article, which first loses the artist's names and the genres' names, except the
+				// ones the title itself contains. Never a title that is an artist's or a genre's name.
+				const mentioned =
+					!titleIsArtistName &&
+					!genreNames.has(title) &&
+					mentionedIn(title, [
+						stripPhrases(
+							article,
+							strippable.filter((phrase) => !` ${title} `.includes(` ${phrase} `)),
+						),
+					]);
 				if (inCache.has(target)) {
 					const work = await readWork(target);
 					if (work === null || (work.type !== "project" && work.type !== "track")) {
 						state = { kind: "unreadable" };
 					} else {
 						const credits = (await reciprocity(artist, work as Work, cache, redirects)) !== null;
-						// An EMPTY credit is an absence of proof, not a proof of a foreign credit: the target is kept
-						// when the artist's article quotes its title (TRA-601). A target that credits somebody else is not.
-						emptyCredit = !credits && work.artists.length === 0 && mentioned;
+						// An EMPTY credit is an absence of proof, not a proof of a foreign credit, so the target is
+						// kept (TRA-601) when (1) the artist's article quotes its title, (2) its slug is not scoped
+						// on somebody else and (3) its own text names the artist. An identical title is the mark of
+						// a homonym: (1) alone brought back DFRNT's Fading for Pole.
+						emptyCredit =
+							!credits &&
+							work.artists.length === 0 &&
+							mentioned &&
+							(scopeOf(target) === null || scopedOnArtist(target, slug, artist.name)) &&
+							namesArtist(work, ownNames);
 						if (!credits && !emptyCredit) {
 							state = { kind: "uncredited" };
 						} else if (
