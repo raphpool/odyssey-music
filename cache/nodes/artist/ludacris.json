@@ -734,6 +734,19 @@
       "name": "Baby"
     }
   ],
+  "landmark_project": {
+    "slug": "project:real-hustla",
+    "type": "project",
+    "name": "Real Hustla",
+    "mbid": "f3f76f9a-a1dc-4b09-966c-b619d6556266",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:what-s-your-fantasy",
+    "type": "track",
+    "name": "What's Your Fantasy"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -775,5 +788,6 @@
       "name": "Chris Lova Lova"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

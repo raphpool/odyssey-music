@@ -74,6 +74,11 @@
       "name": "Bambaata"
     }
   ],
+  "reference_track": {
+    "slug": "track:shake-ur-body",
+    "type": "track",
+    "name": "Shake Ur Body"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

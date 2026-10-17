@@ -478,6 +478,19 @@
       "name": "Ain't No Other Man"
     }
   ],
+  "landmark_project": {
+    "slug": "project:for-the-gig",
+    "type": "project",
+    "name": "For The Gig",
+    "mbid": "da7c4a5a-e008-4727-900c-7497a21f418b",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:mass-appeal",
+    "type": "track",
+    "name": "Mass Appeal"
+  },
   "influences": [
     {
       "slug": "artist:marley-marl",

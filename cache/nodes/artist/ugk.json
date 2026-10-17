@@ -249,6 +249,19 @@
       "name": "White Gurl"
     }
   ],
+  "landmark_project": {
+    "slug": "project:gossip",
+    "type": "project",
+    "name": "Gossip",
+    "mbid": "e9834f78-5818-4c39-b136-e9945a750bd2",
+    "year": "2012",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:pocket-full-of-stones",
+    "type": "track",
+    "name": "Pocket Full of Stones"
+  },
   "influences": [],
   "influenced": [
     {

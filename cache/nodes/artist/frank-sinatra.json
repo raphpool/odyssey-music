@@ -107,6 +107,16 @@
       "name": "Fly Me to the Moon"
     }
   ],
+  "landmark_project": {
+    "slug": "project:in-the-wee-small-hours",
+    "type": "project",
+    "name": "In the Wee Small Hours"
+  },
+  "reference_track": {
+    "slug": "track:my-way",
+    "type": "track",
+    "name": "My Way"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

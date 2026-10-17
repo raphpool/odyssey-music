@@ -88,6 +88,16 @@
       "name": "Wonderboy"
     }
   ],
+  "landmark_project": {
+    "slug": "project:tenacious-d",
+    "type": "project",
+    "name": "Tenacious D"
+  },
+  "reference_track": {
+    "slug": "track:tribute",
+    "type": "track",
+    "name": "Tribute"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

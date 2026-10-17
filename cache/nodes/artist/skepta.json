@@ -81,6 +81,12 @@
       "artist": "Plastician"
     }
   ],
+  "reference_track": {
+    "slug": "track:intensive-snare--plastician",
+    "type": "track",
+    "name": "Intensive Snare",
+    "artist": "Plastician"
+  },
   "influences": [],
   "influenced": [
     {

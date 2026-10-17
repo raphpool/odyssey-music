@@ -422,6 +422,19 @@
       "name": "Ova Dweet"
     }
   ],
+  "landmark_project": {
+    "slug": "project:gyalentines-ii",
+    "type": "project",
+    "name": "Gyalentines II",
+    "mbid": "99ff1bcf-76fc-4e12-a368-0c39fa442ea5",
+    "year": "2026",
+    "releaseType": "ep"
+  },
+  "reference_track": {
+    "slug": "track:clarks",
+    "type": "track",
+    "name": "Clarks"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

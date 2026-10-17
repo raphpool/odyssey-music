@@ -70,9 +70,15 @@
       "name": "Peace Train"
     }
   ],
+  "reference_track": {
+    "slug": "track:wild-world",
+    "type": "track",
+    "name": "Wild World"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

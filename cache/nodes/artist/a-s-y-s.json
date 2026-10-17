@@ -505,6 +505,19 @@
       "name": "Wicked"
     }
   ],
+  "landmark_project": {
+    "slug": "project:discoteca",
+    "type": "project",
+    "name": "Discoteca",
+    "mbid": "71e6102d-6eec-46ef-a8e0-fddec2e13859",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:acid-nightmare",
+    "type": "track",
+    "name": "Acid Nightmare"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -105,6 +105,19 @@
       "name": "Samba Italiano"
     }
   ],
+  "landmark_project": {
+    "slug": "project:meus-primeiros-sambas",
+    "type": "project",
+    "name": "Meus Primeiros Sambas",
+    "mbid": "2e20c200-bbe0-43c9-a4ff-9e4a873a8f51",
+    "year": "2023",
+    "releaseType": "ep"
+  },
+  "reference_track": {
+    "slug": "track:trem-das-onze",
+    "type": "track",
+    "name": "Trem das Onze"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

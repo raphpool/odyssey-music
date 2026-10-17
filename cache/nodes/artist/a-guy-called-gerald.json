@@ -542,6 +542,19 @@
       "name": "FX"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-swaggle",
+    "type": "project",
+    "name": "The Swaggle",
+    "mbid": "46c40b54-0ae7-4672-b6bd-a4600ab07658",
+    "year": "2016",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:voodoo-ray",
+    "type": "track",
+    "name": "Voodoo Ray"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

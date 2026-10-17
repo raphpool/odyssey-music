@@ -134,9 +134,20 @@
       "name": "Cardigan"
     }
   ],
+  "landmark_project": {
+    "slug": "project:taylor-swift",
+    "type": "project",
+    "name": "Taylor Swift"
+  },
+  "reference_track": {
+    "slug": "track:love-story",
+    "type": "track",
+    "name": "Love Story"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

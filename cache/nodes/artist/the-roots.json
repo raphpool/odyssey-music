@@ -401,6 +401,19 @@
       "name": "Proceed"
     }
   ],
+  "landmark_project": {
+    "slug": "project:new-year-s-eve-polka",
+    "type": "project",
+    "name": "New Year’s Eve Polka (5‐4‐3‐2‐1)",
+    "mbid": "acdb5fa9-b9a2-4350-bd9d-a9af02f0f05a",
+    "year": "2024",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:you-got-me",
+    "type": "track",
+    "name": "You Got Me"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -121,6 +121,16 @@
       "name": "Evolution"
     }
   ],
+  "landmark_project": {
+    "slug": "project:a-song-for-xx",
+    "type": "project",
+    "name": "A Song for XX"
+  },
+  "reference_track": {
+    "slug": "track:poker-face",
+    "type": "track",
+    "name": "Poker Face"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

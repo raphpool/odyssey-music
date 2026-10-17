@@ -713,6 +713,19 @@
       "name": "Red Bottom Sky"
     }
   ],
+  "landmark_project": {
+    "slug": "project:storm",
+    "type": "project",
+    "name": "STORM",
+    "mbid": "58a7d9ce-fcf5-449c-8260-cc6d34d94e1e",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:ginseng-strip-2002",
+    "type": "track",
+    "name": "Ginseng Strip 2002"
+  },
   "influences": [
     {
       "slug": "artist:lil-b",

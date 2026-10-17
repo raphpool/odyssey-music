@@ -366,6 +366,19 @@
       "name": "Who Wants to Live Forever"
     }
   ],
+  "landmark_project": {
+    "slug": "project:chemistry",
+    "type": "project",
+    "name": "Chemistry",
+    "mbid": "c4830483-7fef-4948-ab55-949214f9425d",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:hardcore-vibes",
+    "type": "track",
+    "name": "Hardcore Vibes"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -401,5 +414,6 @@
       "type": "artist",
       "name": "Tina Lacebal"
     }
-  ]
+  ],
+  "similar_artists": []
 }

@@ -539,6 +539,19 @@
       "name": "Come Closer"
     }
   ],
+  "landmark_project": {
+    "slug": "project:coca-body",
+    "type": "project",
+    "name": "COCA BODY",
+    "mbid": "12dd5eea-eae9-4589-b228-5bffd580e79c",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:holla-at-your-boy",
+    "type": "track",
+    "name": "Holla at Your Boy"
+  },
   "influences": [
     {
       "slug": "artist:fela-kuti",

@@ -98,6 +98,16 @@
       "name": "Gold Soundz"
     }
   ],
+  "landmark_project": {
+    "slug": "project:slanted-and-enchanted--pavement",
+    "type": "project",
+    "name": "Slanted and Enchanted"
+  },
+  "reference_track": {
+    "slug": "track:summer-babe-winter-version--pavement",
+    "type": "track",
+    "name": "Summer Babe (Winter Version)"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -728,6 +728,19 @@
       "name": "I Can"
     }
   ],
+  "landmark_project": {
+    "slug": "project:u-aint-gotta-chance",
+    "type": "project",
+    "name": "U Aint Gotta Chance",
+    "mbid": "61583696-2136-4fbc-ac20-be290d4a9510",
+    "year": "2025",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:halftime",
+    "type": "track",
+    "name": "Halftime"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -738,5 +751,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

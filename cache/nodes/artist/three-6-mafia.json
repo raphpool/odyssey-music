@@ -327,6 +327,19 @@
       "name": "Poppin' My Collar"
     }
   ],
+  "landmark_project": {
+    "slug": "project:drugs-and-liquor",
+    "type": "project",
+    "name": "Drugs & Liquor",
+    "mbid": "90440dc0-a324-4fdc-8065-305c0e37c69f",
+    "year": "2022",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:stay-fly",
+    "type": "track",
+    "name": "Stay Fly"
+  },
   "influences": [],
   "influenced": [
     {

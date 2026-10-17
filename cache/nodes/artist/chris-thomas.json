@@ -85,6 +85,16 @@
       "name": "God Save the Queen"
     }
   ],
+  "landmark_project": {
+    "slug": "project:back-to-the-egg",
+    "type": "project",
+    "name": "Back to the Egg"
+  },
+  "reference_track": {
+    "slug": "track:birthday",
+    "type": "track",
+    "name": "Birthday"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

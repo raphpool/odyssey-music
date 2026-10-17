@@ -718,6 +718,19 @@
       "name": "Faster Kill Pussycat"
     }
   ],
+  "landmark_project": {
+    "slug": "project:1998",
+    "type": "project",
+    "name": "1998",
+    "mbid": "f2526960-110b-44a0-a53c-b503b365783d",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:bullet-in-the-gun",
+    "type": "track",
+    "name": "Bullet in the Gun"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -424,6 +424,19 @@
       "name": "99 Problems"
     }
   ],
+  "landmark_project": {
+    "slug": "project:criminal-migraine",
+    "type": "project",
+    "name": "Criminal Migraine",
+    "mbid": "c44b357a-3446-4d24-b41e-8da35152c0a1",
+    "year": "2026",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:6-in-the-mornin",
+    "type": "track",
+    "name": "6 in the Mornin'"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

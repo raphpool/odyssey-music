@@ -297,6 +297,19 @@
       "name": "Pimp Tha Pen"
     }
   ],
+  "landmark_project": {
+    "slug": "project:diary-of-the-originator-chapter-366",
+    "type": "project",
+    "name": "Diary of the Originator: Chapter 366 (Flow '96)",
+    "mbid": "051aee89-b636-40eb-a541-5f9b1e959b72",
+    "year": "2025",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:watch-yo-screw",
+    "type": "track",
+    "name": "Watch Yo Screw"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

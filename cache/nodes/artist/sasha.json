@@ -129,6 +129,16 @@
       "name": "Wavy Gravy"
     }
   ],
+  "landmark_project": {
+    "slug": "project:northern-exposure-vol-1",
+    "type": "project",
+    "name": "Northern Exposure, Vol. 1"
+  },
+  "reference_track": {
+    "slug": "track:xpander",
+    "type": "track",
+    "name": "Xpander"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

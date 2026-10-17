@@ -503,6 +503,19 @@
       "name": "Starboy"
     }
   ],
+  "landmark_project": {
+    "slug": "project:veridis-quo",
+    "type": "project",
+    "name": "Veridis Quo",
+    "mbid": "70fdfa1b-f1ed-4a6b-b52c-c96020e3bf21",
+    "year": "2024",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:da-funk",
+    "type": "track",
+    "name": "Da Funk"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

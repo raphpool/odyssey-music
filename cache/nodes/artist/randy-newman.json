@@ -106,6 +106,16 @@
       "name": "You've Got a Friend in Me"
     }
   ],
+  "landmark_project": {
+    "slug": "project:randy-newman",
+    "type": "project",
+    "name": "Randy Newman"
+  },
+  "reference_track": {
+    "slug": "track:short-people",
+    "type": "track",
+    "name": "Short People"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

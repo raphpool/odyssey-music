@@ -75,6 +75,19 @@
       "name": "Love Groove Dance Party"
     }
   ],
+  "landmark_project": {
+    "slug": "project:strobelight",
+    "type": "project",
+    "name": "Strobelight",
+    "mbid": "80f86764-ccf6-4322-880c-175f2385b8e2",
+    "year": "2003",
+    "releaseType": "ep"
+  },
+  "reference_track": {
+    "slug": "track:love-groove-dance-party",
+    "type": "track",
+    "name": "Love Groove Dance Party"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

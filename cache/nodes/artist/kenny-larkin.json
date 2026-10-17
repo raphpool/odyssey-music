@@ -77,6 +77,11 @@
       "name": "Catatonic"
     }
   ],
+  "reference_track": {
+    "slug": "track:we-shall-overcome",
+    "type": "track",
+    "name": "We Shall Overcome"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

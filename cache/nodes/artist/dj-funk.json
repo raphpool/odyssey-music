@@ -241,6 +241,19 @@
       "name": "Let There Be Light (DJ Funk Remix)"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dik-work",
+    "type": "project",
+    "name": "Dik Work",
+    "mbid": "023cee2e-73fc-42c0-946e-2aff0a3a18c2",
+    "year": "2016",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:let-there-be-light",
+    "type": "track",
+    "name": "Let There Be Light (DJ Funk Remix)"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

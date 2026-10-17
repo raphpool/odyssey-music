@@ -160,6 +160,19 @@
       "name": "The Best Things in Life Are Free"
     }
   ],
+  "landmark_project": {
+    "slug": "project:act-like-you-know",
+    "type": "project",
+    "name": "Act Like You Know",
+    "mbid": "6dcb6c96-f460-4f2a-97af-1821ac2d65a2",
+    "year": "2023",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:poison",
+    "type": "track",
+    "name": "Poison"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

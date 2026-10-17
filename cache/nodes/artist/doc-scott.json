@@ -74,6 +74,16 @@
       "name": "VIP Drumz"
     }
   ],
+  "landmark_project": {
+    "slug": "project:nhs-ep-surgery",
+    "type": "project",
+    "name": "NHS EP - Surgery"
+  },
+  "reference_track": {
+    "slug": "track:shadow-boxing",
+    "type": "track",
+    "name": "Shadow Boxing"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

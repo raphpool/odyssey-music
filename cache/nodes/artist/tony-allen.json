@@ -438,6 +438,19 @@
       "name": "Moanin'"
     }
   ],
+  "landmark_project": {
+    "slug": "project:tony-s-house",
+    "type": "project",
+    "name": "Tony’s House",
+    "mbid": "3cb8eb07-859d-4eba-aed7-8e24d255a903",
+    "year": "2025",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:yere-faga",
+    "type": "track",
+    "name": "Yere faga"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

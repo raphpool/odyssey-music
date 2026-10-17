@@ -393,6 +393,19 @@
       "name": "Corcovado"
     }
   ],
+  "landmark_project": {
+    "slug": "project:deluxe-edition",
+    "type": "project",
+    "name": "Deluxe Edition",
+    "mbid": "62dd322c-0890-47d1-b0ad-04cfce1c71ba",
+    "year": "2019",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:the-girl-from-ipanema",
+    "type": "track",
+    "name": "The Girl from Ipanema"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

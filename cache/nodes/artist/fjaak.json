@@ -78,6 +78,16 @@
       "name": "Wolves"
     }
   ],
+  "landmark_project": {
+    "slug": "project:fjaak",
+    "type": "project",
+    "name": "FJAAK"
+  },
+  "reference_track": {
+    "slug": "track:don-t-leave-me",
+    "type": "track",
+    "name": "Don't Leave Me"
+  },
   "influences": [
     {
       "slug": "artist:modeselektor",

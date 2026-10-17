@@ -318,6 +318,19 @@
       "name": "Run It"
     }
   ],
+  "landmark_project": {
+    "slug": "project:forever-war",
+    "type": "project",
+    "name": "Forever War",
+    "mbid": "23ede299-f94f-4c6c-a359-01d70941e9fb",
+    "year": "2025",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:nothing-is-safe",
+    "type": "track",
+    "name": "Nothing Is Safe"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

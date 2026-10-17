@@ -345,6 +345,19 @@
       "name": "Acid Rocker"
     }
   ],
+  "landmark_project": {
+    "slug": "project:visions",
+    "type": "project",
+    "name": "Visions",
+    "mbid": "9e76c74b-7df3-497f-9998-6458a409fb55",
+    "year": "2021",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:in-peace",
+    "type": "track",
+    "name": "In Peace"
+  },
   "influences": [
     {
       "slug": "artist:infected-mushroom",

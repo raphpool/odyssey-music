@@ -306,6 +306,19 @@
       "name": "Humpin' Around"
     }
   ],
+  "landmark_project": {
+    "slug": "project:like-bobby",
+    "type": "project",
+    "name": "Like Bobby",
+    "mbid": "7d11f09c-0882-4bcc-b912-5e76f36c319e",
+    "year": "2018",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:my-prerogative",
+    "type": "track",
+    "name": "My Prerogative"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

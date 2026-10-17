@@ -65,6 +65,11 @@
       "name": "If Summer Had Its Ghosts"
     }
   ],
+  "reference_track": {
+    "slug": "track:feels-good-to-me",
+    "type": "track",
+    "name": "Feels Good to Me"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

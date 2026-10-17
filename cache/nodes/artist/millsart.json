@@ -74,6 +74,17 @@
       "name": "Humana"
     }
   ],
+  "landmark_project": {
+    "slug": "project:every-dog-has-its-day-vol-3--millsart",
+    "type": "project",
+    "name": "Every Dog Has Its Day vol.3",
+    "artist": "Millsart"
+  },
+  "reference_track": {
+    "slug": "track:step-to-enchantment",
+    "type": "track",
+    "name": "Step to Enchantment"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

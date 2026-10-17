@@ -122,6 +122,16 @@
       "name": "We Belong Together"
     }
   ],
+  "landmark_project": {
+    "slug": "project:mariah-carey",
+    "type": "project",
+    "name": "Mariah Carey"
+  },
+  "reference_track": {
+    "slug": "track:vision-of-love",
+    "type": "track",
+    "name": "Vision of Love"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

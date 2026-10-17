@@ -81,6 +81,16 @@
       "name": "Trouble"
     }
   ],
+  "landmark_project": {
+    "slug": "project:talk-is-cheap",
+    "type": "project",
+    "name": "Talk Is Cheap"
+  },
+  "reference_track": {
+    "slug": "track:run-rudolph-run",
+    "type": "track",
+    "name": "Run Rudolph Run"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

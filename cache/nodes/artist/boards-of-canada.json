@@ -119,6 +119,17 @@
       "artist": "Boards of Canada"
     }
   ],
+  "landmark_project": {
+    "slug": "project:music-has-the-right-to-children--boards-of-canada",
+    "type": "project",
+    "name": "Music Has the Right to Children",
+    "artist": "Boards of Canada"
+  },
+  "reference_track": {
+    "slug": "track:roygbiv--boards-of-canada",
+    "type": "track",
+    "name": "Roygbiv"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

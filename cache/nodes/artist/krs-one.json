@@ -591,6 +591,19 @@
       "name": "Step into a World (Rapture's Delight)"
     }
   ],
+  "landmark_project": {
+    "slug": "project:temple-of-hip-hop-global-awareness",
+    "type": "project",
+    "name": "Temple of Hip Hop: Global Awareness",
+    "mbid": "fa0d16c2-ef14-4d58-ac95-4942c52a4eee",
+    "year": "2025",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:sound-of-da-police",
+    "type": "track",
+    "name": "Sound of da Police"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

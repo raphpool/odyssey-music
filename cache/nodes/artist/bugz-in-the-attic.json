@@ -189,6 +189,19 @@
       "name": "Zombie (Part One)"
     }
   ],
+  "landmark_project": {
+    "slug": "project:chakattic-ep",
+    "type": "project",
+    "name": "Chakattic EP",
+    "mbid": "ac7ad669-63a6-4cea-95cc-f92a50d1e89b",
+    "year": "2018",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:booty-la-la",
+    "type": "track",
+    "name": "Booty La La"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

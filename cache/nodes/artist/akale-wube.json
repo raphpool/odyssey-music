@@ -113,6 +113,19 @@
       "name": "Anbessa"
     }
   ],
+  "landmark_project": {
+    "slug": "project:anbessa",
+    "type": "project",
+    "name": "Anbessa",
+    "mbid": "c9b090dc-ea00-4d72-8edf-99172acfbf7b",
+    "year": "2022",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:anbessa",
+    "type": "track",
+    "name": "Anbessa"
+  },
   "influences": [
     {
       "slug": "artist:mulatu-astatke",

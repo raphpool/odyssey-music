@@ -121,6 +121,19 @@
       "name": "Rebirth of Slick (Cool Like Dat)"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dial-7",
+    "type": "project",
+    "name": "Dial 7",
+    "mbid": "5ec01a3f-3c45-4385-a38c-ce9db0f0dae0",
+    "year": "1995",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:rebirth-of-slick",
+    "type": "track",
+    "name": "Rebirth of Slick (Cool Like Dat)"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

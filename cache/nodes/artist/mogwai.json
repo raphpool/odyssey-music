@@ -113,6 +113,17 @@
       "name": "Auto Rock"
     }
   ],
+  "landmark_project": {
+    "slug": "project:a-wrenched-virile-lore--mogwai",
+    "type": "project",
+    "name": "A Wrenched Virile Lore",
+    "artist": "Mogwai"
+  },
+  "reference_track": {
+    "slug": "track:fear-satan",
+    "type": "track",
+    "name": "Fear Satan"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -124,6 +124,19 @@
       "name": "La Fiesta del Fuego"
     }
   ],
+  "landmark_project": {
+    "slug": "project:esta-si",
+    "type": "project",
+    "name": "Esta Si",
+    "mbid": "d0aa7b1d-8870-4e0d-97f6-f74c41c215fd",
+    "year": "2022",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:asi-me-gusta-a-mi",
+    "type": "track",
+    "name": "Así me gusta a mí"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

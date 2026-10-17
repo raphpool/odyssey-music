@@ -134,6 +134,19 @@
       "name": "Wadibusa"
     }
   ],
+  "landmark_project": {
+    "slug": "project:4-da-streets",
+    "type": "project",
+    "name": "4 Da Streets!",
+    "mbid": "b85ceadc-aef6-475a-9c1d-30e891c2d440",
+    "year": "2026",
+    "releaseType": "ep"
+  },
+  "reference_track": {
+    "slug": "track:tanzania",
+    "type": "track",
+    "name": "Tanzania"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

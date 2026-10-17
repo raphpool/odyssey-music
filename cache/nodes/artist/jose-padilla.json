@@ -147,6 +147,19 @@
       "name": "Café del Mar"
     }
   ],
+  "landmark_project": {
+    "slug": "project:desde-casa-hagamosunafiesta-con-amigos",
+    "type": "project",
+    "name": "Desde Casa: #Hagamosunafiesta Con Amigos",
+    "mbid": "0cb8a825-3409-4276-b79c-500209316c04",
+    "year": "2020",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:cafe-del-mar",
+    "type": "track",
+    "name": "Café del Mar"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

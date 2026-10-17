@@ -94,6 +94,16 @@
       "name": "The Bees Made Honey in the Lion's Skull"
     }
   ],
+  "landmark_project": {
+    "slug": "project:earth-2-special-low-frequency-version",
+    "type": "project",
+    "name": "Earth 2 - Special Low Frequency Version"
+  },
+  "reference_track": {
+    "slug": "track:geometry-of-murder",
+    "type": "track",
+    "name": "Geometry of Murder"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

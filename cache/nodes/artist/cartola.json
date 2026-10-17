@@ -125,6 +125,19 @@
       "name": "Corra e Olhe o Céu"
     }
   ],
+  "landmark_project": {
+    "slug": "project:tempos-idos",
+    "type": "project",
+    "name": "Tempos Idos",
+    "mbid": "7a3d1121-561c-48df-a7c6-e4d4d02aca80",
+    "year": "2016",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:o-sol-nascera",
+    "type": "track",
+    "name": "O Sol Nascerá"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

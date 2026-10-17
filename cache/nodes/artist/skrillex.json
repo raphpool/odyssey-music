@@ -80,6 +80,11 @@
       "name": "Make It Bun Dem"
     }
   ],
+  "reference_track": {
+    "slug": "track:scary-monsters-and-nice-sprites",
+    "type": "track",
+    "name": "Scary Monsters and Nice Sprites"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

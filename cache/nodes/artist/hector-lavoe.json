@@ -218,6 +218,19 @@
       "name": "Aguanilé"
     }
   ],
+  "landmark_project": {
+    "slug": "project:guaracha",
+    "type": "project",
+    "name": "Güaracha (remastered 2026)",
+    "mbid": "15cf63f0-8833-45aa-9b37-aa7f68d78803",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:el-cantante",
+    "type": "track",
+    "name": "El Cantante"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

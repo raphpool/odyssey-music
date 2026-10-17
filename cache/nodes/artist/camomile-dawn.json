@@ -71,6 +71,19 @@
       "name": "Bruttissimo"
     }
   ],
+  "landmark_project": {
+    "slug": "project:bruttissimo",
+    "type": "project",
+    "name": "Bruttissimo",
+    "mbid": "602c7fb9-01b5-474f-8127-bfb9c1a88dfb",
+    "year": "2021",
+    "releaseType": "ep"
+  },
+  "reference_track": {
+    "slug": "track:bruttissimo",
+    "type": "track",
+    "name": "Bruttissimo"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

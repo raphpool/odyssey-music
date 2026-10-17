@@ -128,6 +128,18 @@
       "artist": "Alva Noto"
     }
   ],
+  "landmark_project": {
+    "slug": "project:vrioon--ryuichi-sakamoto",
+    "type": "project",
+    "name": "Vrioon",
+    "artist": "Ryuichi Sakamoto"
+  },
+  "reference_track": {
+    "slug": "track:trioon-ii--alva-noto",
+    "type": "track",
+    "name": "Trioon II",
+    "artist": "Alva Noto"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

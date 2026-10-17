@@ -89,6 +89,17 @@
       "name": "Under Pressure"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-rise-and-fall-of-ziggy-stardust-and-the-spiders-from-mars--david-bowie",
+    "type": "project",
+    "name": "The Rise and Fall of Ziggy Stardust and the Spiders from Mars",
+    "artist": "David Bowie"
+  },
+  "reference_track": {
+    "slug": "track:ashes-to-ashes--david-bowie",
+    "type": "track",
+    "name": "Ashes to Ashes"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

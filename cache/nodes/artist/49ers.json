@@ -256,6 +256,19 @@
       "name": "Girl to Girl"
     }
   ],
+  "landmark_project": {
+    "slug": "project:i-got-the-music-aka-i-got-it",
+    "type": "project",
+    "name": "I Got the Music aka I Got It",
+    "mbid": "23121500-b995-4c69-a39c-c656f8b9cb36",
+    "year": "1997",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:touch-me",
+    "type": "track",
+    "name": "Touch Me"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

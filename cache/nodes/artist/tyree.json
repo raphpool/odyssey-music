@@ -335,6 +335,19 @@
       "name": "I Fear the Night"
     }
   ],
+  "landmark_project": {
+    "slug": "project:nation-of-hip-house--tyree-cooper",
+    "type": "project",
+    "name": "Nation of Hip House",
+    "mbid": "8f89a5f6-0fed-43b7-a082-f78c3ef714fb",
+    "year": "1989",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:turn-up-the-bass",
+    "type": "track",
+    "name": "Turn Up the Bass"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

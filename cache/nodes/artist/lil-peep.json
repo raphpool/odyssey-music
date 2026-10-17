@@ -730,6 +730,19 @@
       "name": "Spotlight"
     }
   ],
+  "landmark_project": {
+    "slug": "project:don-t-panic",
+    "type": "project",
+    "name": "DON'T PANIC",
+    "mbid": "f3bc44cf-a42d-4881-91f7-d6aad9c7ad61",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:star-shopping",
+    "type": "track",
+    "name": "Star Shopping"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -767,5 +780,6 @@
       "type": "artist",
       "name": "Gustav Elijah Åhr"
     }
-  ]
+  ],
+  "similar_artists": []
 }

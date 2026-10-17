@@ -103,6 +103,16 @@
       "name": "Bad Girls"
     }
   ],
+  "landmark_project": {
+    "slug": "project:lady-of-the-night",
+    "type": "project",
+    "name": "Lady of the Night"
+  },
+  "reference_track": {
+    "slug": "track:i-feel-love--donna-summer",
+    "type": "track",
+    "name": "I Feel Love"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

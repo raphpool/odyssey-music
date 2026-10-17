@@ -379,6 +379,19 @@
       "name": "Quero te dar"
     }
   ],
+  "landmark_project": {
+    "slug": "project:segredinho",
+    "type": "project",
+    "name": "Segredinho",
+    "mbid": "4b2c622e-0d1a-4562-97ba-14901eda9dba",
+    "year": "2025",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:late-que-eu-to-passando",
+    "type": "track",
+    "name": "Late que eu tô passando"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -419,6 +419,19 @@
       "name": "Knife Talk"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dem-goats",
+    "type": "project",
+    "name": "Dem Goats",
+    "mbid": "2a4a8fc5-773e-4c5b-be4d-8cfb034c8cec",
+    "year": "2026",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:sippin-on-some-syrup",
+    "type": "track",
+    "name": "Sippin' on Some Syrup"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

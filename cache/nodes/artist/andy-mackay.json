@@ -78,6 +78,16 @@
       "name": "Love Is the Drug"
     }
   ],
+  "landmark_project": {
+    "slug": "project:in-search-of-eddie-riff",
+    "type": "project",
+    "name": "In Search of Eddie Riff"
+  },
+  "reference_track": {
+    "slug": "track:editions-of-you",
+    "type": "track",
+    "name": "Editions of You"
+  },
   "influences": [
     {
       "slug": "artist:chuck-berry",

@@ -65,6 +65,11 @@
       "name": "King Tubby Meets Rockers Uptown"
     }
   ],
+  "reference_track": {
+    "slug": "track:king-tubby-meets-rockers-uptown",
+    "type": "track",
+    "name": "King Tubby Meets Rockers Uptown"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -93,6 +93,16 @@
       "name": "Love Is Strange"
     }
   ],
+  "landmark_project": {
+    "slug": "project:buddy-holly",
+    "type": "project",
+    "name": "Buddy Holly"
+  },
+  "reference_track": {
+    "slug": "track:peggy-sue-got-married",
+    "type": "track",
+    "name": "Peggy Sue Got Married"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

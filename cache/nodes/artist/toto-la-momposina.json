@@ -201,6 +201,19 @@
       "name": "La Verdolaga"
     }
   ],
+  "landmark_project": {
+    "slug": "project:la-luna",
+    "type": "project",
+    "name": "La Luna",
+    "mbid": "c1ed23e4-c174-4e52-b363-8473a915820e",
+    "year": "2023",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:el-pescador",
+    "type": "track",
+    "name": "El Pescador"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

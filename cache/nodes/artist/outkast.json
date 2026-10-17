@@ -389,6 +389,19 @@
       "name": "The Way You Move"
     }
   ],
+  "landmark_project": {
+    "slug": "project:int-l-players-anthem",
+    "type": "project",
+    "name": "Int’l Players Anthem (I Choose You)",
+    "mbid": "87b43fc5-9be6-4441-9c65-dd5483072427",
+    "year": "2007",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:player-s-ball",
+    "type": "track",
+    "name": "Player's Ball"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -404,5 +417,6 @@
       "type": "artist",
       "name": "Big Boi"
     }
-  ]
+  ],
+  "similar_artists": []
 }

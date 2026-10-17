@@ -334,6 +334,19 @@
       "name": "Falsified and Hated"
     }
   ],
+  "landmark_project": {
+    "slug": "project:agenda-ignis-disgusting-semla",
+    "type": "project",
+    "name": "Agenda Ignis / Disgusting Semla",
+    "mbid": "e86161fd-b2b8-4f35-b4bf-e9d9f539baf8",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:psywar",
+    "type": "track",
+    "name": "Psywar"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -364,5 +377,6 @@
       "type": "artist",
       "name": "Ghul"
     }
-  ]
+  ],
+  "similar_artists": []
 }

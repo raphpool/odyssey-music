@@ -470,6 +470,19 @@
       "name": "Band4Band"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-team",
+    "type": "project",
+    "name": "The Team",
+    "mbid": "ef82aa54-8b21-4665-bb0e-4829f1c9bc31",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:loading",
+    "type": "track",
+    "name": "Loading"
+  },
   "influences": [
     {
       "slug": "artist:skepta",

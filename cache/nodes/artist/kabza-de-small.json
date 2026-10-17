@@ -205,6 +205,19 @@
       "name": "Kabza Chant"
     }
   ],
+  "landmark_project": {
+    "slug": "project:kings-will-rise",
+    "type": "project",
+    "name": "Kings Will Rise",
+    "mbid": "0d0cb8eb-3ea2-4be5-822f-c63325bdb8e8",
+    "year": "2025",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:umshove",
+    "type": "track",
+    "name": "Umshove"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -91,6 +91,16 @@
       "name": "My Ding-a-Ling"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-london-chuck-berry-sessions",
+    "type": "project",
+    "name": "The London Chuck Berry Sessions"
+  },
+  "reference_track": {
+    "slug": "track:maybellene",
+    "type": "track",
+    "name": "Maybellene"
+  },
   "influences": [],
   "influenced": [
     {

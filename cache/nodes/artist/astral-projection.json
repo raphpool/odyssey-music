@@ -407,6 +407,19 @@
       "name": "Dancing Galaxy"
     }
   ],
+  "landmark_project": {
+    "slug": "project:for-all-mankind",
+    "type": "project",
+    "name": "For All Mankind",
+    "mbid": "284adf7d-7b02-4c41-b1aa-b293e615870f",
+    "year": "2025",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:kabalah",
+    "type": "track",
+    "name": "Kabalah"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -422,5 +435,6 @@
       "type": "artist",
       "name": "Lior Perlmutter"
     }
-  ]
+  ],
+  "similar_artists": []
 }

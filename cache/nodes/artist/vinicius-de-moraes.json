@@ -359,6 +359,19 @@
       "name": "Chega de Saudade"
     }
   ],
+  "landmark_project": {
+    "slug": "project:cancoes-de-amor",
+    "type": "project",
+    "name": "Canções de Amor",
+    "mbid": "4ce078f1-1c8d-4f46-aeff-6df941646888",
+    "year": "2023",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:the-girl-from-ipanema",
+    "type": "track",
+    "name": "The Girl from Ipanema"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

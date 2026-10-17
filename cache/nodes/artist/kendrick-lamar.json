@@ -757,6 +757,19 @@
       "name": "Not Like Us"
     }
   ],
+  "landmark_project": {
+    "slug": "project:gnx",
+    "type": "project",
+    "name": "GNX",
+    "mbid": "32cb822c-a14e-49ce-a169-f209c5f31e0f",
+    "year": "2024",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:swimming-pools",
+    "type": "track",
+    "name": "Swimming Pools (Drank)"
+  },
   "influences": [
     {
       "slug": "artist:lil-b",

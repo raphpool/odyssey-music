@@ -74,6 +74,19 @@
       "name": "Arabade"
     }
   ],
+  "landmark_project": {
+    "slug": "project:big-sound",
+    "type": "project",
+    "name": "Big Sound",
+    "mbid": "1c087ca8-c3ac-4ff3-bbcf-51813b1c38b9",
+    "year": "2009",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:joromi",
+    "type": "track",
+    "name": "Joromi"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

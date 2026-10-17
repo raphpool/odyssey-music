@@ -665,6 +665,19 @@
       "name": "Titan"
     }
   ],
+  "landmark_project": {
+    "slug": "project:curation-one",
+    "type": "project",
+    "name": "Curation One",
+    "mbid": "8a9f3273-807a-4382-a87c-3014482d605f",
+    "year": "2026",
+    "releaseType": "ep"
+  },
+  "reference_track": {
+    "slug": "track:anaconda",
+    "type": "track",
+    "name": "Anaconda"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

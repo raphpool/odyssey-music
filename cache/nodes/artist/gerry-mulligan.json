@@ -101,6 +101,16 @@
       "name": "Five Brothers"
     }
   ],
+  "landmark_project": {
+    "slug": "project:gerry-mulligan-quartet",
+    "type": "project",
+    "name": "Gerry Mulligan Quartet"
+  },
+  "reference_track": {
+    "slug": "track:walkin-shoes",
+    "type": "track",
+    "name": "Walkin' Shoes"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

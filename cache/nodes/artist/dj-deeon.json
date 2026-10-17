@@ -462,6 +462,19 @@
       "name": "2 B Free"
     }
   ],
+  "landmark_project": {
+    "slug": "project:freak-like-me",
+    "type": "project",
+    "name": "Freak Like Me (Ben Kim Remix)",
+    "mbid": "91a66060-17aa-4fce-b7fd-183434db5724",
+    "year": "2025",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:freak-like-me",
+    "type": "track",
+    "name": "Freak Like Me"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

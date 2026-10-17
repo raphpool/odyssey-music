@@ -72,6 +72,16 @@
       "name": "Stress"
     }
   ],
+  "landmark_project": {
+    "slug": "project:cross",
+    "type": "project",
+    "name": "Cross"
+  },
+  "reference_track": {
+    "slug": "track:d-a-n-c-e",
+    "type": "track",
+    "name": "D.A.N.C.E."
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -87,5 +97,6 @@
       "type": "artist",
       "name": "Xavier de Rosnay"
     }
-  ]
+  ],
+  "similar_artists": []
 }

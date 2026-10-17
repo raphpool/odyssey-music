@@ -92,6 +92,16 @@
       "name": "Blueberry Hill"
     }
   ],
+  "landmark_project": {
+    "slug": "project:fats-domino-65",
+    "type": "project",
+    "name": "Fats Domino '65"
+  },
+  "reference_track": {
+    "slug": "track:the-fat-man",
+    "type": "track",
+    "name": "The Fat Man"
+  },
   "influences": [],
   "influenced": [
     {

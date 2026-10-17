@@ -461,6 +461,19 @@
       "name": "Can U Feel Me"
     }
   ],
+  "landmark_project": {
+    "slug": "project:turbulence",
+    "type": "project",
+    "name": "Turbulence",
+    "mbid": "d7d0ae5b-50a3-4daf-b553-1d261271ff1d",
+    "year": "2026",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:can-u-feel-me",
+    "type": "track",
+    "name": "Can U Feel Me"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

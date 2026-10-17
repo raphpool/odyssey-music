@@ -94,6 +94,18 @@
       "artist": "John Lennon"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-beatles",
+    "type": "project",
+    "name": "The Beatles",
+    "artist": "John Lennon"
+  },
+  "reference_track": {
+    "slug": "track:the-beatles",
+    "type": "track",
+    "name": "The Beatles",
+    "artist": "John Lennon"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

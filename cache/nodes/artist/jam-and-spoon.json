@@ -71,6 +71,16 @@
       "name": "Find Me"
     }
   ],
+  "landmark_project": {
+    "slug": "project:tripomatic-fairytales-2001",
+    "type": "project",
+    "name": "Tripomatic Fairytales 2001"
+  },
+  "reference_track": {
+    "slug": "track:right-in-the-night",
+    "type": "track",
+    "name": "Right In the Night"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

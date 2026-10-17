@@ -76,6 +76,11 @@
       "name": "Computer Game"
     }
   ],
+  "reference_track": {
+    "slug": "track:technopolis",
+    "type": "track",
+    "name": "Technopolis"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

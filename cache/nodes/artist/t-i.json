@@ -752,6 +752,19 @@
       "name": "Live Your Life"
     }
   ],
+  "landmark_project": {
+    "slug": "project:kill-the-king",
+    "type": "project",
+    "name": "Kill The King",
+    "mbid": "1fd6a620-fc5b-4629-8d4b-b5c4f2f718a9",
+    "year": "2026",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:rubber-band-man",
+    "type": "track",
+    "name": "Rubber Band Man"
+  },
   "influences": [
     {
       "slug": "artist:jeezy",

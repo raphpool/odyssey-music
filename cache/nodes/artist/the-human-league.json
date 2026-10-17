@@ -108,6 +108,16 @@
       "name": "Love Action (I Believe in Love)"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dare",
+    "type": "project",
+    "name": "Dare"
+  },
+  "reference_track": {
+    "slug": "track:don-t-you-want-me",
+    "type": "track",
+    "name": "Don't You Want Me"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

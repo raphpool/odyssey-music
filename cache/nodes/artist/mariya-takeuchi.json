@@ -126,6 +126,16 @@
       "name": "Inochi no Uta"
     }
   ],
+  "landmark_project": {
+    "slug": "project:beginning",
+    "type": "project",
+    "name": "Beginning"
+  },
+  "reference_track": {
+    "slug": "track:september",
+    "type": "track",
+    "name": "September"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -328,6 +328,19 @@
       "name": "City of Groove"
     }
   ],
+  "landmark_project": {
+    "slug": "project:take-a-little-take-a-lot",
+    "type": "project",
+    "name": "Take A Little Take A Lot",
+    "mbid": "07493092-d76b-452c-85df-9593a53ac68a",
+    "year": "2018",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:this-is-how-my-drummer-drums",
+    "type": "track",
+    "name": "This Is How My Drummer Drums"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

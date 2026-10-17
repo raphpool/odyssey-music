@@ -418,6 +418,19 @@
       "name": "Simmer Down"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-skatalites-in-dub",
+    "type": "project",
+    "name": "The Skatalites in Dub",
+    "mbid": "1f766215-464b-4d64-9b28-b1d3e1104d55",
+    "year": "2022",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:guns-of-navarone",
+    "type": "track",
+    "name": "Guns of Navarone"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

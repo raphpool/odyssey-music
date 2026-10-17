@@ -71,6 +71,16 @@
       "name": "Ulysses at the Edge"
     }
   ],
+  "landmark_project": {
+    "slug": "project:delusion-of-the-fury--harry-partch",
+    "type": "project",
+    "name": "Delusion of the Fury"
+  },
+  "reference_track": {
+    "slug": "track:barstow--harry-partch",
+    "type": "track",
+    "name": "Barstow"
+  },
   "influences": [
     {
       "slug": "artist:hermann-von-helmholtz",

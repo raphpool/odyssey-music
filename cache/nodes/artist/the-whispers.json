@@ -371,6 +371,19 @@
       "name": "It's a Love Thing"
     }
   ],
+  "landmark_project": {
+    "slug": "project:maybe-the-fire-isn-t-out",
+    "type": "project",
+    "name": "Maybe the Fire Isn't Out",
+    "mbid": "471cd805-55d1-4c67-8b06-5273ca9596aa",
+    "year": "2023",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:and-the-beat-goes-on",
+    "type": "track",
+    "name": "And the Beat Goes On"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -406,5 +419,6 @@
       "type": "artist",
       "name": "Gordy Harmon"
     }
-  ]
+  ],
+  "similar_artists": []
 }

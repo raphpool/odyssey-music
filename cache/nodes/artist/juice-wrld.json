@@ -719,6 +719,19 @@
       "name": "Come & Go"
     }
   ],
+  "landmark_project": {
+    "slug": "project:we-don-t-get-along",
+    "type": "project",
+    "name": "We Don’t Get Along",
+    "mbid": "4ef3119f-6d26-4346-bd44-9a302e14e391",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:lucid-dreams",
+    "type": "track",
+    "name": "Lucid Dreams"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

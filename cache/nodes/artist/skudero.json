@@ -72,6 +72,19 @@
       "name": "Extasis"
     }
   ],
+  "landmark_project": {
+    "slug": "project:white-flag-remix",
+    "type": "project",
+    "name": "White Flag Remix",
+    "mbid": "c15ab16d-d3ba-4387-8902-f1cc205eead3",
+    "year": "2004",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:extasis",
+    "type": "track",
+    "name": "Extasis"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

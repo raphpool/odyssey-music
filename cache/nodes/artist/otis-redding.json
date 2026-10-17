@@ -116,6 +116,16 @@
       "name": "(Sittin' On) The Dock of the Bay"
     }
   ],
+  "landmark_project": {
+    "slug": "project:pain-in-my-heart",
+    "type": "project",
+    "name": "Pain in My Heart"
+  },
+  "reference_track": {
+    "slug": "track:these-arms-of-mine",
+    "type": "track",
+    "name": "These Arms of Mine"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

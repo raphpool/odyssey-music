@@ -107,6 +107,19 @@
       "name": "St. Andrews"
     }
   ],
+  "landmark_project": {
+    "slug": "project:double-deuce-deuce",
+    "type": "project",
+    "name": "Double Deuce Deuce",
+    "mbid": "e11de43e-4d04-4721-9259-f0587bfbb478",
+    "year": "2008",
+    "releaseType": "ep"
+  },
+  "reference_track": {
+    "slug": "track:pussy-hole",
+    "type": "track",
+    "name": "Pussy Hole"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

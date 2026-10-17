@@ -83,6 +83,17 @@
       "name": "Plasticity"
     }
   ],
+  "landmark_project": {
+    "slug": "project:artificial-intelligence",
+    "type": "project",
+    "name": "Artificial Intelligence",
+    "artist": "Aphex Twin"
+  },
+  "reference_track": {
+    "slug": "track:plasticity",
+    "type": "track",
+    "name": "Plasticity"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

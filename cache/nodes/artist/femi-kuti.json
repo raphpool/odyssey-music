@@ -213,6 +213,19 @@
       "name": "Make We Remember"
     }
   ],
+  "landmark_project": {
+    "slug": "project:journey-through-life",
+    "type": "project",
+    "name": "Journey Through Life",
+    "mbid": "01669840-6ae1-44af-b107-0519d0b3cce6",
+    "year": "2025",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:sorry-sorry",
+    "type": "track",
+    "name": "Sorry Sorry"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

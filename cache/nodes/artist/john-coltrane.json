@@ -140,6 +140,17 @@
       "name": "Acknowledgement"
     }
   ],
+  "landmark_project": {
+    "slug": "project:kind-of-blue--miles-davis",
+    "type": "project",
+    "name": "Kind of Blue",
+    "artist": "Miles Davis"
+  },
+  "reference_track": {
+    "slug": "track:giant-steps",
+    "type": "track",
+    "name": "Giant Steps"
+  },
   "influences": [
     {
       "slug": "artist:charlie-parker",

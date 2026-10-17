@@ -137,6 +137,19 @@
       "name": "Tengo Amores Con la Gaita"
     }
   ],
+  "landmark_project": {
+    "slug": "project:las-mellas",
+    "type": "project",
+    "name": "Las Mellas (Cerrero dub mix)",
+    "mbid": "565286de-7625-4673-9e46-96367ad8db69",
+    "year": "2020",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:tengo-amores-con-la-gaita",
+    "type": "track",
+    "name": "Tengo Amores Con la Gaita"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

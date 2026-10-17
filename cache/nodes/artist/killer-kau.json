@@ -66,6 +66,19 @@
       "name": "Amaneighbour"
     }
   ],
+  "landmark_project": {
+    "slug": "project:amaneighbour",
+    "type": "project",
+    "name": "Amaneighbour",
+    "mbid": "c6a9c5a5-20e5-4e61-ba70-61a97d670aaf",
+    "year": "2021",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:tholukuthi-hey",
+    "type": "track",
+    "name": "Tholukuthi Hey"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

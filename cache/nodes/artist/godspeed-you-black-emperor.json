@@ -84,6 +84,16 @@
       "name": "Storm"
     }
   ],
+  "landmark_project": {
+    "slug": "project:f-a",
+    "type": "project",
+    "name": "F#A#∞"
+  },
+  "reference_track": {
+    "slug": "track:the-dead-flag-blues",
+    "type": "track",
+    "name": "The Dead Flag Blues"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -503,6 +503,19 @@
       "name": "I Luv It"
     }
   ],
+  "landmark_project": {
+    "slug": "project:errtime",
+    "type": "project",
+    "name": "ErrTime",
+    "mbid": "8a35f75f-5c6d-4de3-8a9d-5c06e6b33230",
+    "year": "2025",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:soul-survivor",
+    "type": "track",
+    "name": "Soul Survivor"
+  },
   "influences": [],
   "influenced": [
     {
@@ -513,5 +526,6 @@
   ],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

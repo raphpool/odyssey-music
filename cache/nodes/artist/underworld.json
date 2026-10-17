@@ -98,6 +98,17 @@
       "artist": "Underworld"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dubnobasswithmyheadman--underworld",
+    "type": "project",
+    "name": "Dubnobasswithmyheadman"
+  },
+  "reference_track": {
+    "slug": "track:drift--underworld",
+    "type": "track",
+    "name": "Drift",
+    "artist": "Underworld"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -204,6 +204,19 @@
       "name": "Streaky"
     }
   ],
+  "landmark_project": {
+    "slug": "project:gmail-and-the-restraining-orders",
+    "type": "project",
+    "name": "Gmail and the Restraining Orders",
+    "mbid": "1a3bc18a-6d50-4a40-ad99-559740b2d29e",
+    "year": "2019",
+    "releaseType": "ep"
+  },
+  "reference_track": {
+    "slug": "track:full-moon",
+    "type": "track",
+    "name": "Full Moon (Death Classic)"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

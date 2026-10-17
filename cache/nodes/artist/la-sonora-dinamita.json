@@ -525,6 +525,19 @@
       "name": "A mover la colita"
     }
   ],
+  "landmark_project": {
+    "slug": "project:el-coronavirus",
+    "type": "project",
+    "name": "El coronavirus",
+    "mbid": "a0bff218-7e71-42dc-a90a-62cfd1792819",
+    "year": "2020",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:mi-cucu",
+    "type": "track",
+    "name": "Mi Cucu"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

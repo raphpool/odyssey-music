@@ -242,6 +242,19 @@
       "name": "Nevermore"
     }
   ],
+  "landmark_project": {
+    "slug": "project:kingdoms-disdained",
+    "type": "project",
+    "name": "Kingdoms Disdained",
+    "mbid": "a782c277-caad-4a09-afbd-312599275d32",
+    "year": "2017",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:god-of-emptiness",
+    "type": "track",
+    "name": "God of Emptiness"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

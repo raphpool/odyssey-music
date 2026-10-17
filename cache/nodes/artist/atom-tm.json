@@ -79,6 +79,11 @@
       "name": "Liedgut"
     }
   ],
+  "landmark_project": {
+    "slug": "project:hd",
+    "type": "project",
+    "name": "HD"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

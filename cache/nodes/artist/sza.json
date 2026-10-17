@@ -382,6 +382,19 @@
       "name": "Kill Bill"
     }
   ],
+  "landmark_project": {
+    "slug": "project:is-it-cool",
+    "type": "project",
+    "name": "is it cool?",
+    "mbid": "41953313-f7b2-4e9f-a555-65e753405c7d",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:love-galore",
+    "type": "track",
+    "name": "Love Galore"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

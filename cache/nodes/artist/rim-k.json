@@ -61,6 +61,17 @@
       "name": "Clandestino"
     }
   ],
+  "landmark_project": {
+    "slug": "project:la-cerise-sur-le-ghetto--mafia-k-1-fry",
+    "type": "project",
+    "name": "La Cerise sur le ghetto",
+    "artist": "Mafia K'1 Fry"
+  },
+  "reference_track": {
+    "slug": "track:clandestino",
+    "type": "track",
+    "name": "Clandestino"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

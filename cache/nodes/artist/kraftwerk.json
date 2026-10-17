@@ -87,6 +87,16 @@
       "name": "Computer Love"
     }
   ],
+  "landmark_project": {
+    "slug": "project:autobahn--kraftwerk",
+    "type": "project",
+    "name": "Autobahn"
+  },
+  "reference_track": {
+    "slug": "track:autobahn--kraftwerk",
+    "type": "track",
+    "name": "Autobahn"
+  },
   "influences": [],
   "influenced": [
     {

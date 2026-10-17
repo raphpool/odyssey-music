@@ -70,6 +70,16 @@
       "name": "Bouge de là"
     }
   ],
+  "landmark_project": {
+    "slug": "project:mc-solaar",
+    "type": "project",
+    "name": "MC Solaar"
+  },
+  "reference_track": {
+    "slug": "track:bouge-de-la",
+    "type": "track",
+    "name": "Bouge de là"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -412,6 +412,19 @@
       "name": "Nobody Does It Better"
     }
   ],
+  "landmark_project": {
+    "slug": "project:i-got-love",
+    "type": "project",
+    "name": "I Got Love",
+    "mbid": "dfba83aa-ea1d-4dd2-969b-252e18d139ae",
+    "year": "2025",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:regulate",
+    "type": "track",
+    "name": "Regulate"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

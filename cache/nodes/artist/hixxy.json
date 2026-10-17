@@ -317,6 +317,19 @@
       "name": "Get into Love"
     }
   ],
+  "landmark_project": {
+    "slug": "project:wanting-to-get-high",
+    "type": "project",
+    "name": "Wanting to Get High",
+    "mbid": "088dd38d-93da-4af1-956e-5c683be8e3ed",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:toy-town",
+    "type": "track",
+    "name": "Toy Town"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

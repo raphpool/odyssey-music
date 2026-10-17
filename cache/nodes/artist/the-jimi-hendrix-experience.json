@@ -80,6 +80,16 @@
       "name": "The Wind Cries Mary"
     }
   ],
+  "landmark_project": {
+    "slug": "project:are-you-experienced--the-jimi-hendrix-experience",
+    "type": "project",
+    "name": "Are You Experienced"
+  },
+  "reference_track": {
+    "slug": "track:purple-haze--the-jimi-hendrix-experience",
+    "type": "track",
+    "name": "Purple Haze"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

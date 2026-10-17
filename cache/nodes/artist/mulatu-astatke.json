@@ -190,6 +190,19 @@
       "name": "Musicawi Silt"
     }
   ],
+  "landmark_project": {
+    "slug": "project:mulatu-plays-mulatu",
+    "type": "project",
+    "name": "Mulatu Plays Mulatu",
+    "mbid": "d2db712f-5791-44e5-a007-e3c85de49947",
+    "year": "2025",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:tezeta",
+    "type": "track",
+    "name": "Tezeta"
+  },
   "influences": [],
   "influenced": [
     {

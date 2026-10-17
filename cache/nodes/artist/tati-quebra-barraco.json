@@ -75,6 +75,19 @@
       "name": "Se Marcar"
     }
   ],
+  "landmark_project": {
+    "slug": "project:faz-direito",
+    "type": "project",
+    "name": "Faz Direito",
+    "mbid": "abe96f3b-3371-4968-9004-b33beb2876df",
+    "year": "2022",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:boladona",
+    "type": "track",
+    "name": "Boladona"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

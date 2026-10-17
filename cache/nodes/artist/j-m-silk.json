@@ -44,6 +44,11 @@
       "name": "Let the Music Take Control"
     }
   ],
+  "reference_track": {
+    "slug": "track:let-the-music-take-control",
+    "type": "track",
+    "name": "Let the Music Take Control"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -75,6 +75,16 @@
       "name": "Música Sí"
     }
   ],
+  "landmark_project": {
+    "slug": "project:dj-makina-vol-3",
+    "type": "project",
+    "name": "DJ Makina Vol. 3"
+  },
+  "reference_track": {
+    "slug": "track:musica-si",
+    "type": "track",
+    "name": "Música Sí"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

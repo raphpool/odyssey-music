@@ -730,6 +730,19 @@
       "name": "Fever"
     }
   ],
+  "landmark_project": {
+    "slug": "project:just-love",
+    "type": "project",
+    "name": "Just Love",
+    "mbid": "b424734e-d43a-4416-9073-1bb7024b2b94",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:romping-shop",
+    "type": "track",
+    "name": "Romping Shop"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

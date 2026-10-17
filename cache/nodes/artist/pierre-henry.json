@@ -70,6 +70,16 @@
       "name": "Jericho Jerk"
     }
   ],
+  "landmark_project": {
+    "slug": "project:messe-pour-le-temps-present",
+    "type": "project",
+    "name": "Messe pour le temps présent"
+  },
+  "reference_track": {
+    "slug": "track:psyche-rock",
+    "type": "track",
+    "name": "Psyché Rock"
+  },
   "influences": [
     {
       "slug": "artist:pierre-schaeffer",

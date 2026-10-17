@@ -122,6 +122,16 @@
       "name": "Face My Fears"
     }
   ],
+  "landmark_project": {
+    "slug": "project:first-love",
+    "type": "project",
+    "name": "First Love"
+  },
+  "reference_track": {
+    "slug": "track:automatic",
+    "type": "track",
+    "name": "Automatic"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

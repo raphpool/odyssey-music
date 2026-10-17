@@ -127,6 +127,16 @@
       "artist": "Skee Mask"
     }
   ],
+  "landmark_project": {
+    "slug": "project:compro--skee-mask",
+    "type": "project",
+    "name": "Compro"
+  },
+  "reference_track": {
+    "slug": "track:50-euro-to-break-boost--skee-mask",
+    "type": "track",
+    "name": "50 Euro to Break Boost"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

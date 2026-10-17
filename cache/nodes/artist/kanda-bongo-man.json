@@ -159,6 +159,19 @@
       "name": "Kwassa Kwassa"
     }
   ],
+  "landmark_project": {
+    "slug": "project:kekete-bue",
+    "type": "project",
+    "name": "Kekete bue",
+    "mbid": "118a4570-8bc9-4833-bce6-5e9f289ba08e",
+    "year": "2022",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:kwassa-kwassa",
+    "type": "track",
+    "name": "Kwassa Kwassa"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

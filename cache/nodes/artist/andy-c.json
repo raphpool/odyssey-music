@@ -55,6 +55,11 @@
       "name": "Heartbeat Loud"
     }
   ],
+  "reference_track": {
+    "slug": "track:body-rock",
+    "type": "track",
+    "name": "Body Rock"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

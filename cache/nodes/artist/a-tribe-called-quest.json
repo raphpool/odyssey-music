@@ -88,6 +88,16 @@
       "name": "Find A Way"
     }
   ],
+  "landmark_project": {
+    "slug": "project:people-s-instinctive-travels-and-the-paths-of-rhythm",
+    "type": "project",
+    "name": "People's Instinctive Travels and the Paths of Rhythm"
+  },
+  "reference_track": {
+    "slug": "track:find-a-way",
+    "type": "track",
+    "name": "Find A Way"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -113,5 +123,6 @@
       "type": "artist",
       "name": "Jarobi White"
     }
-  ]
+  ],
+  "similar_artists": []
 }

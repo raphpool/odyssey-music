@@ -100,6 +100,18 @@
       "artist": "µ-Ziq"
     }
   ],
+  "landmark_project": {
+    "slug": "project:tango-n-vectif--ziq",
+    "type": "project",
+    "name": "Tango N' Vectif",
+    "artist": "µ-Ziq"
+  },
+  "reference_track": {
+    "slug": "track:amenida--ziq",
+    "type": "track",
+    "name": "Amenida",
+    "artist": "µ-Ziq"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

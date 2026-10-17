@@ -232,6 +232,19 @@
       "name": "What You Know Bout Love"
     }
   ],
+  "landmark_project": {
+    "slug": "project:sunshine",
+    "type": "project",
+    "name": "Sunshine",
+    "mbid": "a8247fc5-0ee8-42bc-bdb6-2d17cc1d3765",
+    "year": "2022",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:welcome-to-the-party",
+    "type": "track",
+    "name": "Welcome to the Party"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -273,5 +286,6 @@
       "name": "Shar"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

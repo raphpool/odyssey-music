@@ -511,6 +511,19 @@
       "name": "Lady"
     }
   ],
+  "landmark_project": {
+    "slug": "project:no-nation",
+    "type": "project",
+    "name": "No Nation (Ayakata)",
+    "mbid": "f911b57a-e89b-4075-97c6-081eba1a2a5e",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:zombie",
+    "type": "track",
+    "name": "Zombie"
+  },
   "influences": [],
   "influenced": [
     {

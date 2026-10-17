@@ -94,6 +94,16 @@
       "name": "Solanus"
     }
   ],
+  "landmark_project": {
+    "slug": "project:lyot",
+    "type": "project",
+    "name": "Lyot"
+  },
+  "reference_track": {
+    "slug": "track:lyot",
+    "type": "track",
+    "name": "Lyot"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

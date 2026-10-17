@@ -352,6 +352,19 @@
       "name": "High on Cold War"
     }
   ],
+  "landmark_project": {
+    "slug": "project:pre-historic-metal",
+    "type": "project",
+    "name": "Pre‐Historic Metal",
+    "mbid": "597bcce2-5e06-4753-9f8b-822d058a174c",
+    "year": "2026",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:too-old-too-cold",
+    "type": "track",
+    "name": "Too Old, Too Cold"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

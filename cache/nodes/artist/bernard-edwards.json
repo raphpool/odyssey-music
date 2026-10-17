@@ -106,6 +106,16 @@
       "name": "I Want Your Love"
     }
   ],
+  "landmark_project": {
+    "slug": "project:chic",
+    "type": "project",
+    "name": "Chic"
+  },
+  "reference_track": {
+    "slug": "track:good-times",
+    "type": "track",
+    "name": "Good Times"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

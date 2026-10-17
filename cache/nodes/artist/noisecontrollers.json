@@ -720,6 +720,19 @@
       "name": "Solar"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-lost-gods",
+    "type": "project",
+    "name": "The Lost Gods",
+    "mbid": "a24546ec-8f65-466c-915d-fbb9ee3f9ac6",
+    "year": "2025",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:tonight",
+    "type": "track",
+    "name": "Tonight"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

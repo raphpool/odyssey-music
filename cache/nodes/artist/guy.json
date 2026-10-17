@@ -159,6 +159,19 @@
       "name": "Let's Chill"
     }
   ],
+  "landmark_project": {
+    "slug": "project:guy-iii",
+    "type": "project",
+    "name": "Guy III",
+    "mbid": "9274e145-7448-3f4c-a96c-2f438c56d0ac",
+    "year": "2000",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:groove-me",
+    "type": "track",
+    "name": "Groove Me"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -179,5 +192,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

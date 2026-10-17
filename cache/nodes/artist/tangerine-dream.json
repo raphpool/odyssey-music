@@ -107,6 +107,17 @@
       "artist": "Tangerine Dream"
     }
   ],
+  "landmark_project": {
+    "slug": "project:phaedra--tangerine-dream",
+    "type": "project",
+    "name": "Phaedra"
+  },
+  "reference_track": {
+    "slug": "track:rubycon-part-two--tangerine-dream",
+    "type": "track",
+    "name": "Rubycon, Part Two",
+    "artist": "Tangerine Dream"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

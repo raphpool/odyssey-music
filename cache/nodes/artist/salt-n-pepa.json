@@ -349,6 +349,19 @@
       "name": "None of Your Business"
     }
   ],
+  "landmark_project": {
+    "slug": "project:push-it",
+    "type": "project",
+    "name": "Push It! (rework)",
+    "mbid": "1d95ffde-53d0-4ef5-8197-872b4170c80c",
+    "year": "2025",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:push-it",
+    "type": "track",
+    "name": "Push It"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

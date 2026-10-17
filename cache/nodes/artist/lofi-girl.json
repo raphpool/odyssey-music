@@ -71,6 +71,19 @@
       "name": "Snowman"
     }
   ],
+  "landmark_project": {
+    "slug": "project:chill-music",
+    "type": "project",
+    "name": "Chill Music",
+    "mbid": "1382e902-12f6-4410-b7e8-82994bd8840b",
+    "year": "2023",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:snowman",
+    "type": "track",
+    "name": "Snowman"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -86,5 +99,6 @@
       "type": "artist",
       "name": "Juan Pablo Machado"
     }
-  ]
+  ],
+  "similar_artists": []
 }

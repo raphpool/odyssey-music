@@ -98,6 +98,16 @@
       "name": "Destinée"
     }
   ],
+  "landmark_project": {
+    "slug": "project:ouest-side--booba",
+    "type": "project",
+    "name": "Ouest Side"
+  },
+  "reference_track": {
+    "slug": "track:destinee",
+    "type": "track",
+    "name": "Destinée"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

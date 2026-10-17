@@ -102,6 +102,16 @@
       "name": "Uncontrollable Urge"
     }
   ],
+  "landmark_project": {
+    "slug": "project:q-are-we-not-men-a-we-are-devo",
+    "type": "project",
+    "name": "Q: Are We Not Men? A: We Are DEVO!"
+  },
+  "reference_track": {
+    "slug": "track:whip-it",
+    "type": "track",
+    "name": "Whip It"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

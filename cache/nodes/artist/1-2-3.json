@@ -63,6 +63,17 @@
       "name": "Bigger Black Car"
     }
   ],
+  "landmark_project": {
+    "slug": "project:new-heaven--1-2-3",
+    "type": "project",
+    "name": "New Heaven",
+    "artist": "1,2,3"
+  },
+  "reference_track": {
+    "slug": "track:confetti",
+    "type": "track",
+    "name": "Confetti"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

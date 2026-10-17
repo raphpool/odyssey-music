@@ -127,6 +127,19 @@
       "name": "Boyz-n-the-Hood"
     }
   ],
+  "landmark_project": {
+    "slug": "project:niggaz4life",
+    "type": "project",
+    "name": "Niggaz4Life",
+    "mbid": "80347957-efcf-3d67-80d5-8575d3c31852",
+    "year": "1991",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:straight-outta-compton",
+    "type": "track",
+    "name": "Straight Outta Compton"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

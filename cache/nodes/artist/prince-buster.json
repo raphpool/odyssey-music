@@ -311,6 +311,19 @@
       "name": "Wash Wash"
     }
   ],
+  "landmark_project": {
+    "slug": "project:funky-jamaica",
+    "type": "project",
+    "name": "Funky Jamaica",
+    "mbid": "cecf12a7-6313-4886-855c-be803273390d",
+    "year": "2025",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:al-capone",
+    "type": "track",
+    "name": "Al Capone"
+  },
   "influences": [
     {
       "slug": "artist:the-clovers",

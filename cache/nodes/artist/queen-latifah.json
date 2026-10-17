@@ -299,6 +299,19 @@
       "name": "Latifah's Had It Up 2 Here"
     }
   ],
+  "landmark_project": {
+    "slug": "project:king-king",
+    "type": "project",
+    "name": "King King",
+    "mbid": "30fcdd8f-59fc-4185-b096-8ebf34221dd0",
+    "year": "2024",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:u-n-i-t-y",
+    "type": "track",
+    "name": "U.N.I.T.Y."
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

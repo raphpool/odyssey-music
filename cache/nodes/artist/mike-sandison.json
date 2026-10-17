@@ -79,6 +79,11 @@
       "name": "Dayvan Cowboy"
     }
   ],
+  "reference_track": {
+    "slug": "track:dayvan-cowboy",
+    "type": "track",
+    "name": "Dayvan Cowboy"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

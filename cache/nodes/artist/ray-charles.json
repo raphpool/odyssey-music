@@ -93,6 +93,16 @@
       "name": "What'd I Say"
     }
   ],
+  "landmark_project": {
+    "slug": "project:modern-sounds-in-country-and-western-music",
+    "type": "project",
+    "name": "Modern Sounds in Country and Western Music"
+  },
+  "reference_track": {
+    "slug": "track:hit-the-road-jack",
+    "type": "track",
+    "name": "Hit the Road Jack"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

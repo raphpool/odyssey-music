@@ -82,6 +82,11 @@
       "name": "My Neighbor Totoro"
     }
   ],
+  "reference_track": {
+    "slug": "track:one-summer-s-day",
+    "type": "track",
+    "name": "One Summer's Day"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

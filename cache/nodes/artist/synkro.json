@@ -112,6 +112,16 @@
       "name": "Acceptance"
     }
   ],
+  "landmark_project": {
+    "slug": "project:acceptance",
+    "type": "project",
+    "name": "Acceptance"
+  },
+  "reference_track": {
+    "slug": "track:memories-of-love",
+    "type": "track",
+    "name": "Memories of Love"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

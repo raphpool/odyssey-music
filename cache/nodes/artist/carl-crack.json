@@ -68,6 +68,16 @@
       "name": "Speed"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-future-of-war",
+    "type": "project",
+    "name": "The Future of War"
+  },
+  "reference_track": {
+    "slug": "track:hetzjagd-auf-nazis",
+    "type": "track",
+    "name": "Hetzjagd Auf Nazis!"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

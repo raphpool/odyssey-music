@@ -144,6 +144,19 @@
       "name": "Emperor"
     }
   ],
+  "landmark_project": {
+    "slug": "project:prometheus-the-discipline-of-fire-and-demise",
+    "type": "project",
+    "name": "Prometheus: The Discipline of Fire & Demise",
+    "mbid": "aa881868-5718-3879-b198-df04ee1b3ef8",
+    "year": "2001",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:emperor",
+    "type": "track",
+    "name": "Emperor"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

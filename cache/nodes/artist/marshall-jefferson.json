@@ -51,6 +51,11 @@
       "name": "Acid Tracks"
     }
   ],
+  "reference_track": {
+    "slug": "track:move-your-body",
+    "type": "track",
+    "name": "Move Your Body"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

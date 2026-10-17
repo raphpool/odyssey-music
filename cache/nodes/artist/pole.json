@@ -130,6 +130,17 @@
       "artist": "Pole"
     }
   ],
+  "landmark_project": {
+    "slug": "project:1",
+    "type": "project",
+    "name": "1"
+  },
+  "reference_track": {
+    "slug": "track:raum--pole",
+    "type": "track",
+    "name": "Raum",
+    "artist": "Pole"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

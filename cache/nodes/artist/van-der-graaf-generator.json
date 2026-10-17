@@ -100,6 +100,11 @@
     }
   ],
   "notable_tracks": [],
+  "landmark_project": {
+    "slug": "project:pawn-hearts--van-der-graaf-generator",
+    "type": "project",
+    "name": "Pawn Hearts"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -60,6 +60,17 @@
       "name": "Dance Suite: Shuttlecock, Lantern Parade, Ainu Children's Dance"
     }
   ],
+  "landmark_project": {
+    "slug": "project:music-for-zen-meditation--tony-scott",
+    "type": "project",
+    "name": "Music for Zen Meditation",
+    "artist": "Tony Scott"
+  },
+  "reference_track": {
+    "slug": "track:rokudan",
+    "type": "track",
+    "name": "Rokudan"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

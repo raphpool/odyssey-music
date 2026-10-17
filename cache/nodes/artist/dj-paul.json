@@ -460,6 +460,19 @@
       "name": "Talk Up"
     }
   ],
+  "landmark_project": {
+    "slug": "project:goat-of-all-goats",
+    "type": "project",
+    "name": "Goat of All Goats",
+    "mbid": "00459514-29e5-4c13-bad8-b8fd595212cc",
+    "year": "2026",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:it-s-hard-out-here-for-a-pimp",
+    "type": "track",
+    "name": "It's Hard out Here for a Pimp"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

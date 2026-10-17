@@ -79,6 +79,19 @@
       "name": "Everlasting Motion"
     }
   ],
+  "landmark_project": {
+    "slug": "project:roots-and-plugged",
+    "type": "project",
+    "name": "Roots & Plugged",
+    "mbid": "7a1de477-6b28-49d1-be29-29ba31d62a76",
+    "year": "2022",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:everlasting-motion",
+    "type": "track",
+    "name": "Everlasting Motion"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

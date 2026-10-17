@@ -113,6 +113,17 @@
       "name": "Night Fever"
     }
   ],
+  "landmark_project": {
+    "slug": "project:saturday-night-fever-the-original-movie-soundtrack",
+    "type": "project",
+    "name": "Saturday Night Fever: The Original Movie Soundtrack",
+    "artist": "Bee Gees"
+  },
+  "reference_track": {
+    "slug": "track:stayin-alive",
+    "type": "track",
+    "name": "Stayin' Alive"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

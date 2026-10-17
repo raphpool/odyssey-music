@@ -517,6 +517,19 @@
       "name": "1 A.M Study Session"
     }
   ],
+  "landmark_project": {
+    "slug": "project:city-nights-3",
+    "type": "project",
+    "name": "City Nights 3",
+    "mbid": "47d80e2c-adb2-49fe-ba0f-e594e897d80e",
+    "year": "2026",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:1-a-m-study-session",
+    "type": "track",
+    "name": "1 A.M Study Session"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

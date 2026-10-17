@@ -389,6 +389,19 @@
       "name": "Free Nelson Mandela"
     }
   ],
+  "landmark_project": {
+    "slug": "project:ghost-town",
+    "type": "project",
+    "name": "Ghost Town (re‐recorded – sped up)",
+    "mbid": "4bad4557-65a4-47bc-b603-b2775dd0b6b0",
+    "year": "2023",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:gangsters",
+    "type": "track",
+    "name": "Gangsters"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

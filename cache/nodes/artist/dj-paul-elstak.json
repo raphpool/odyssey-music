@@ -702,6 +702,19 @@
       "name": "XTCWTF"
     }
   ],
+  "landmark_project": {
+    "slug": "project:hit-the-speakers",
+    "type": "project",
+    "name": "Hit The Speakers",
+    "mbid": "a2832eca-4de9-4017-8213-094139bf3d41",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:rainbow-in-the-sky",
+    "type": "track",
+    "name": "Rainbow in the Sky"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

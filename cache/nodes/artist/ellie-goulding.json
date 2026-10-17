@@ -104,6 +104,17 @@
       "artist": "Ellie Goulding"
     }
   ],
+  "landmark_project": {
+    "slug": "project:lights",
+    "type": "project",
+    "name": "Lights"
+  },
+  "reference_track": {
+    "slug": "track:the-ending--ellie-goulding",
+    "type": "track",
+    "name": "The Ending",
+    "artist": "Ellie Goulding"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

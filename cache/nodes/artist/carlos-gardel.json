@@ -210,6 +210,19 @@
       "name": "Mi Buenos Aires querido"
     }
   ],
+  "landmark_project": {
+    "slug": "project:now-s-the-time",
+    "type": "project",
+    "name": "Now's the Time",
+    "mbid": "5e91023c-a1ed-4080-a3f4-52a19c8047f3",
+    "year": "2021",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:mi-noche-triste",
+    "type": "track",
+    "name": "Mi noche triste"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

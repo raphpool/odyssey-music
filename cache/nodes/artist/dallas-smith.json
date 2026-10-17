@@ -93,6 +93,16 @@
       "name": "Slow Rollin'"
     }
   ],
+  "landmark_project": {
+    "slug": "project:jumped-right-in",
+    "type": "project",
+    "name": "Jumped Right In"
+  },
+  "reference_track": {
+    "slug": "track:tippin-point",
+    "type": "track",
+    "name": "Tippin' Point"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

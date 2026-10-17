@@ -112,6 +112,19 @@
       "name": "Just a Dog"
     }
   ],
+  "landmark_project": {
+    "slug": "project:bar-yar-yar",
+    "type": "project",
+    "name": "Bar Yar Yar",
+    "mbid": "839b7742-3b00-436a-81b6-1772851910a8",
+    "year": "2019",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:mann",
+    "type": "track",
+    "name": "Mann!"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -130,6 +130,19 @@
       "name": "The Philosopher"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-sound-of-perseverance",
+    "type": "project",
+    "name": "The Sound of Perseverance",
+    "mbid": "0cd38da9-90a9-3e0b-bef6-e70036c8a619",
+    "year": "1998",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:lack-of-comprehension",
+    "type": "track",
+    "name": "Lack of Comprehension"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -83,6 +83,18 @@
       "artist": "The Corrs"
     }
   ],
+  "landmark_project": {
+    "slug": "project:in-blue--the-corrs",
+    "type": "project",
+    "name": "In Blue",
+    "artist": "The Corrs"
+  },
+  "reference_track": {
+    "slug": "track:give-it-all-up--the-corrs",
+    "type": "track",
+    "name": "Give It All Up",
+    "artist": "The Corrs"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

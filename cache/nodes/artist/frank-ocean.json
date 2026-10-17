@@ -255,6 +255,19 @@
       "name": "Nikes"
     }
   ],
+  "landmark_project": {
+    "slug": "project:cayendo",
+    "type": "project",
+    "name": "Cayendo (acoustic)",
+    "mbid": "b15c3956-0087-4654-a74e-6de689814891",
+    "year": "2020",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:novacane",
+    "type": "track",
+    "name": "Novacane"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -301,5 +314,6 @@
       "name": "Lonny Breaux"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

@@ -351,6 +351,19 @@
       "name": "Faces"
     }
   ],
+  "landmark_project": {
+    "slug": "project:control-your-body",
+    "type": "project",
+    "name": "Control Your Body (Hardwell edit)",
+    "mbid": "81e08536-1863-443c-aeaa-871f9c20208c",
+    "year": "2024",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:get-ready-for-this",
+    "type": "track",
+    "name": "Get Ready for This"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -381,5 +394,6 @@
       "type": "artist",
       "name": "Phil Wilde"
     }
-  ]
+  ],
+  "similar_artists": []
 }

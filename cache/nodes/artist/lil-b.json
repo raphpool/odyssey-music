@@ -271,6 +271,19 @@
       "name": "Fuck KD"
     }
   ],
+  "landmark_project": {
+    "slug": "project:r-u-ok",
+    "type": "project",
+    "name": "R u ok?",
+    "mbid": "ac1e2e42-972e-430f-9a18-089c42c026d2",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:vans",
+    "type": "track",
+    "name": "Vans"
+  },
   "influences": [],
   "influenced": [
     {

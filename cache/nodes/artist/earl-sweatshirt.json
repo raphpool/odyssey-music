@@ -320,6 +320,19 @@
       "name": "Sentry"
     }
   ],
+  "landmark_project": {
+    "slug": "project:leadbelly",
+    "type": "project",
+    "name": "Leadbelly",
+    "mbid": "602e21cc-7707-4d0f-b4f4-a5937cc7f438",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:chum",
+    "type": "track",
+    "name": "Chum"
+  },
   "influences": [
     {
       "slug": "artist:lil-b",
@@ -382,5 +395,6 @@
       "name": "dar Qness"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

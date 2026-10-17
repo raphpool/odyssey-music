@@ -91,6 +91,17 @@
       "artist": "Gökhan Kırdar"
     }
   ],
+  "landmark_project": {
+    "slug": "project:vagabond-floating-mine",
+    "type": "project",
+    "name": "Vagabond Floating Mine"
+  },
+  "reference_track": {
+    "slug": "track:simdi--track-by-gokhan-k-rdar-and-cem-adrian",
+    "type": "track",
+    "name": "Şimdi",
+    "artist": "Gökhan Kırdar"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

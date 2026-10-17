@@ -124,6 +124,19 @@
       "name": "Never Grow Up"
     }
   ],
+  "landmark_project": {
+    "slug": "project:money",
+    "type": "project",
+    "name": "Money",
+    "mbid": "66691562-9460-4d1c-984c-69936c8b6956",
+    "year": "2015",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:hape-le-hape-2-1",
+    "type": "track",
+    "name": "Hape Le Hape 2.1"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

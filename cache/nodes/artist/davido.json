@@ -388,6 +388,19 @@
       "name": "Unavailable"
     }
   ],
+  "landmark_project": {
+    "slug": "project:oriade",
+    "type": "project",
+    "name": "Oriadé",
+    "mbid": "9f8bd39e-f84b-47cd-8071-3e7556a60778",
+    "year": "2026",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:dami-duro",
+    "type": "track",
+    "name": "Dami Duro"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

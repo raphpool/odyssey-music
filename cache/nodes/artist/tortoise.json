@@ -117,6 +117,16 @@
       "name": "Glass Museum"
     }
   ],
+  "landmark_project": {
+    "slug": "project:tortoise",
+    "type": "project",
+    "name": "Tortoise"
+  },
+  "reference_track": {
+    "slug": "track:djed",
+    "type": "track",
+    "name": "Djed"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

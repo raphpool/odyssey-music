@@ -296,6 +296,19 @@
       "name": "Do You See"
     }
   ],
+  "landmark_project": {
+    "slug": "project:let-me-breathe",
+    "type": "project",
+    "name": "Let Me Breathe",
+    "mbid": "f75163cb-6a65-4114-b4ad-ebdf021d01ee",
+    "year": "2024",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:regulate",
+    "type": "track",
+    "name": "Regulate"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -103,6 +103,16 @@
       "name": "Drive"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-cars",
+    "type": "project",
+    "name": "The Cars"
+  },
+  "reference_track": {
+    "slug": "track:just-what-i-needed",
+    "type": "track",
+    "name": "Just What I Needed"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -44,6 +44,12 @@
       "artist": "Gat Decor"
     }
   ],
+  "reference_track": {
+    "slug": "track:passion--gat-decor",
+    "type": "track",
+    "name": "Passion",
+    "artist": "Gat Decor"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

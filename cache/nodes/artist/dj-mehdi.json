@@ -72,6 +72,16 @@
       "name": "Lucky Boy"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-story-of-espion",
+    "type": "project",
+    "name": "The Story of Espion"
+  },
+  "reference_track": {
+    "slug": "track:lucky-boy",
+    "type": "track",
+    "name": "Lucky Boy"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

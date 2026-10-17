@@ -737,6 +737,19 @@
       "name": "ASAP Forever"
     }
   ],
+  "landmark_project": {
+    "slug": "project:flackito-jodye",
+    "type": "project",
+    "name": "FLACKITO JODYE",
+    "mbid": "5111f0b1-2f53-4abf-9880-276b9ad826d6",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:peso",
+    "type": "track",
+    "name": "Peso"
+  },
   "influences": [
     {
       "slug": "artist:the-diplomats",

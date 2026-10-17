@@ -91,6 +91,16 @@
       "name": "In a Landscape"
     }
   ],
+  "landmark_project": {
+    "slug": "project:sonatas-and-interludes",
+    "type": "project",
+    "name": "Sonatas and Interludes"
+  },
+  "reference_track": {
+    "slug": "track:4-33",
+    "type": "track",
+    "name": "4'33\""
+  },
   "influences": [
     {
       "slug": "artist:arnold-schoenberg",

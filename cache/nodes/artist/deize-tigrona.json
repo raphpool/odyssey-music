@@ -115,6 +115,19 @@
       "name": "Sadomasoquista (Vem de Chicote)"
     }
   ],
+  "landmark_project": {
+    "slug": "project:nao-tem-role-tranquilo",
+    "type": "project",
+    "name": "NÃO TEM ROLÊ TRANQUILO",
+    "mbid": "36a557fa-d90f-4ba4-8e70-9601f08e541f",
+    "year": "2024",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:injecao",
+    "type": "track",
+    "name": "Injeção"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

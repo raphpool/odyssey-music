@@ -60,6 +60,11 @@
       "name": "Vulnerabilities"
     }
   ],
+  "reference_track": {
+    "slug": "track:crown",
+    "type": "track",
+    "name": "Crown"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
@@ -70,5 +75,6 @@
       "type": "artist",
       "name": "Thomas Melchior"
     }
-  ]
+  ],
+  "similar_artists": []
 }

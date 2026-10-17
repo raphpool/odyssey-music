@@ -114,9 +114,20 @@
       "name": "Get Up (I Feel Like Being a) Sex Machine"
     }
   ],
+  "landmark_project": {
+    "slug": "project:live-at-the-apollo",
+    "type": "project",
+    "name": "Live at the Apollo"
+  },
+  "reference_track": {
+    "slug": "track:please-please-please",
+    "type": "track",
+    "name": "Please, Please, Please"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

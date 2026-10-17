@@ -311,6 +311,19 @@
       "name": "Counting Stars"
     }
   ],
+  "landmark_project": {
+    "slug": "project:life",
+    "type": "project",
+    "name": "Life(sic)",
+    "mbid": "79ccbbb9-3bb8-4fc6-9c3b-0dc9e862b83e",
+    "year": "2019",
+    "releaseType": "ep"
+  },
+  "reference_track": {
+    "slug": "track:battlecry",
+    "type": "track",
+    "name": "Battlecry"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -362,5 +375,6 @@
       "name": "Dimension Ball"
     }
   ],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

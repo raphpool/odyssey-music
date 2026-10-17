@@ -91,6 +91,18 @@
       "artist": "UB40"
     }
   ],
+  "landmark_project": {
+    "slug": "project:impossible-love--ub40",
+    "type": "project",
+    "name": "Impossible Love",
+    "artist": "UB40"
+  },
+  "reference_track": {
+    "slug": "track:silent-witness--ub40",
+    "type": "track",
+    "name": "Silent Witness",
+    "artist": "UB40"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

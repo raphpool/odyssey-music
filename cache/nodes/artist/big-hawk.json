@@ -131,6 +131,19 @@
       "name": "Swang"
     }
   ],
+  "landmark_project": {
+    "slug": "project:endangered-species",
+    "type": "project",
+    "name": "Endangered Species",
+    "mbid": "22630763-bfd7-4f30-bf61-e8a36bc6e353",
+    "year": "2007",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:wanna-be-a-baller",
+    "type": "track",
+    "name": "Wanna Be A Baller"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

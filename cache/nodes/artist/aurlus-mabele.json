@@ -107,6 +107,19 @@
       "name": "Waka Waka"
     }
   ],
+  "landmark_project": {
+    "slug": "project:ca-va-ce-savoir",
+    "type": "project",
+    "name": "Ca Va Ce Savoir?",
+    "mbid": "4ebe4b7b-5ca2-4ead-9e05-abd28de89619",
+    "year": "2004",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:betty",
+    "type": "track",
+    "name": "Betty"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

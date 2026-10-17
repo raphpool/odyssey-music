@@ -98,6 +98,17 @@
       "name": "The Fear"
     }
   ],
+  "landmark_project": {
+    "slug": "project:expert-knob-twiddlers--mike-paradinas",
+    "type": "project",
+    "name": "Expert Knob Twiddlers",
+    "artist": "Mike Paradinas"
+  },
+  "reference_track": {
+    "slug": "track:brace-yourself",
+    "type": "track",
+    "name": "Brace Yourself"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

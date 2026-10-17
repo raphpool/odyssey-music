@@ -107,6 +107,16 @@
       "name": "Sparkle"
     }
   ],
+  "landmark_project": {
+    "slug": "project:circus-town",
+    "type": "project",
+    "name": "Circus Town"
+  },
+  "reference_track": {
+    "slug": "track:christmas-eve",
+    "type": "track",
+    "name": "Christmas Eve"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

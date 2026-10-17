@@ -85,6 +85,16 @@
       "name": "Teimo"
     }
   ],
+  "landmark_project": {
+    "slug": "project:teimo--thomas-koner",
+    "type": "project",
+    "name": "Teimo"
+  },
+  "reference_track": {
+    "slug": "track:permafrost",
+    "type": "track",
+    "name": "Permafrost"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

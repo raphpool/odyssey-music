@@ -587,9 +587,23 @@
       "name": "Around the Way Girl"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-force",
+    "type": "project",
+    "name": "The FORCE",
+    "mbid": "e22e9cc4-87c5-46db-9c95-c6e7db9e68f2",
+    "year": "2024",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:i-m-bad",
+    "type": "track",
+    "name": "I'm Bad"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

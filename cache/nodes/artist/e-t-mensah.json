@@ -55,6 +55,19 @@
       "name": "Ghana Freedom"
     }
   ],
+  "landmark_project": {
+    "slug": "project:day-by-day",
+    "type": "project",
+    "name": "Day by Day",
+    "mbid": "9d94a573-71df-3907-a246-1045f9df6f9c",
+    "year": "1991",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:ghana-freedom",
+    "type": "track",
+    "name": "Ghana Freedom"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

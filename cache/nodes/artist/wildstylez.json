@@ -711,6 +711,19 @@
       "name": "Typically Dutch"
     }
   ],
+  "landmark_project": {
+    "slug": "project:love",
+    "type": "project",
+    "name": "LOVE",
+    "mbid": "8c763088-bfe8-416e-92c0-00cc29f9f593",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:year-of-summer",
+    "type": "track",
+    "name": "Year of Summer"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

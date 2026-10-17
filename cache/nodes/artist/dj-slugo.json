@@ -221,6 +221,19 @@
       "name": "Clear Water"
     }
   ],
+  "landmark_project": {
+    "slug": "project:work-that-ep",
+    "type": "project",
+    "name": "Work That EP",
+    "mbid": "1b9b2f65-9607-4ecf-9221-981b310f57ca",
+    "year": "2024",
+    "releaseType": "ep"
+  },
+  "reference_track": {
+    "slug": "track:pajamas",
+    "type": "track",
+    "name": "Pajamas"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

@@ -71,6 +71,16 @@
       "name": "Ramblin'"
     }
   ],
+  "landmark_project": {
+    "slug": "project:something-else",
+    "type": "project",
+    "name": "Something Else!!!!"
+  },
+  "reference_track": {
+    "slug": "track:lonely-woman",
+    "type": "track",
+    "name": "Lonely Woman"
+  },
   "influences": [],
   "influenced": [
     {

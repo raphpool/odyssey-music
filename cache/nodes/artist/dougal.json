@@ -403,6 +403,19 @@
       "name": "DJ Dougal Takes Control"
     }
   ],
+  "landmark_project": {
+    "slug": "project:just-be-good-to-me",
+    "type": "project",
+    "name": "Just Be Good to Me",
+    "mbid": "063dc560-1679-4e1d-b7ea-0c89d1f55ea1",
+    "year": "2026",
+    "releaseType": "single"
+  },
+  "reference_track": {
+    "slug": "track:dj-dougal-takes-control",
+    "type": "track",
+    "name": "DJ Dougal Takes Control"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

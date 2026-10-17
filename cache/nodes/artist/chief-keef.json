@@ -718,6 +718,19 @@
       "name": "Faneto"
     }
   ],
+  "landmark_project": {
+    "slug": "project:skeletor",
+    "type": "project",
+    "name": "Skeletor",
+    "mbid": "63e5f1b2-93a6-4eb5-b6e5-76932c999021",
+    "year": "2026",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:i-don-t-like",
+    "type": "track",
+    "name": "I Don't Like"
+  },
   "influences": [
     {
       "slug": "artist:lil-b",

@@ -307,6 +307,19 @@
       "name": "Bim Bom"
     }
   ],
+  "landmark_project": {
+    "slug": "project:exclusive",
+    "type": "project",
+    "name": "Exclusive",
+    "mbid": "14faeba4-0761-4214-bd35-8597097f2a9f",
+    "year": "2024",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:the-girl-from-ipanema",
+    "type": "track",
+    "name": "The Girl from Ipanema"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

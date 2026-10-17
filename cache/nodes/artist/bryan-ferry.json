@@ -109,6 +109,16 @@
       "name": "Don't Stop the Dance"
     }
   ],
+  "landmark_project": {
+    "slug": "project:these-foolish-things",
+    "type": "project",
+    "name": "These Foolish Things"
+  },
+  "reference_track": {
+    "slug": "track:slave-to-love",
+    "type": "track",
+    "name": "Slave to Love"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

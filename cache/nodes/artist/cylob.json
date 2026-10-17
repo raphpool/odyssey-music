@@ -87,6 +87,16 @@
       "name": "Cylobian Sunset"
     }
   ],
+  "landmark_project": {
+    "slug": "project:cylobian-sunset--cylob",
+    "type": "project",
+    "name": "Cylobian Sunset"
+  },
+  "reference_track": {
+    "slug": "track:rewind",
+    "type": "track",
+    "name": "Rewind"
+  },
   "influences": [
     {
       "slug": "artist:aphex-twin",

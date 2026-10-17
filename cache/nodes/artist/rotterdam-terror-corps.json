@@ -239,6 +239,19 @@
       "name": "Ready for War"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-essence-of-hardcore",
+    "type": "project",
+    "name": "The Essence Of Hardcore",
+    "mbid": "b35064a3-5897-4ca3-81bf-4695c0d671f3",
+    "year": "2024",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:ready-for-war",
+    "type": "track",
+    "name": "Ready for War"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

@@ -632,6 +632,19 @@
       "name": "Stakes Is High"
     }
   ],
+  "landmark_project": {
+    "slug": "project:cabin-in-the-sky",
+    "type": "project",
+    "name": "Cabin in the Sky",
+    "mbid": "05e414ac-82dd-4fbd-bd85-a6d294c8a1df",
+    "year": "2025",
+    "releaseType": "album"
+  },
+  "reference_track": {
+    "slug": "track:me-myself-and-i",
+    "type": "track",
+    "name": "Me Myself and I"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

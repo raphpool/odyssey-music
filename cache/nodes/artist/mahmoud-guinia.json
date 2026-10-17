@@ -76,6 +76,16 @@
       "name": "The Trance Of Seven Colors"
     }
   ],
+  "landmark_project": {
+    "slug": "project:the-trance-of-seven-colors",
+    "type": "project",
+    "name": "The Trance Of Seven Colors"
+  },
+  "reference_track": {
+    "slug": "track:the-trance-of-seven-colors",
+    "type": "track",
+    "name": "The Trance Of Seven Colors"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [

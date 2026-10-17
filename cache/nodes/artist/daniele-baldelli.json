@@ -250,6 +250,17 @@
       "name": "Alkemio"
     }
   ],
+  "landmark_project": {
+    "slug": "project:cosmic-the-original--daniele-baldelli",
+    "type": "project",
+    "name": "Cosmic - The Original",
+    "artist": "Daniele Baldelli"
+  },
+  "reference_track": {
+    "slug": "track:cosmic-parsley",
+    "type": "track",
+    "name": "Cosmic Parsley"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [],

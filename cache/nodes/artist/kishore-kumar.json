@@ -82,6 +82,16 @@
       "name": "Zindagi Ek Safar Hai Suhana"
     }
   ],
+  "landmark_project": {
+    "slug": "project:chalti-ka-naam-gaadi",
+    "type": "project",
+    "name": "Chalti Ka Naam Gaadi"
+  },
+  "reference_track": {
+    "slug": "track:mere-sapnon-ki-rani",
+    "type": "track",
+    "name": "Mere Sapnon Ki Rani"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
@@ -112,5 +122,6 @@
     }
   ],
   "aliases": [],
-  "members": []
+  "members": [],
+  "similar_artists": []
 }

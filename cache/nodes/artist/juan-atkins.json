@@ -77,6 +77,17 @@
       "name": "No UFOs"
     }
   ],
+  "landmark_project": {
+    "slug": "project:techno-the-new-dance-sound-of-detroit",
+    "type": "project",
+    "name": "Techno! The New Dance Sound of Detroit",
+    "artist": "Derrick May"
+  },
+  "reference_track": {
+    "slug": "track:no-ufos",
+    "type": "track",
+    "name": "No UFOs"
+  },
   "influences": [],
   "influenced": [],
   "collaborators": [
