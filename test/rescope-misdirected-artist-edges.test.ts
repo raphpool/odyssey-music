@@ -4,11 +4,14 @@ import { dirname, join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
 	canonicalScopedSlug,
+	isNameOf,
 	MIGRATION_NAME,
+	normalizeForPhrase,
 	parseCliArgs,
 	pickBest,
 	type RescopeManifest,
 	runRescope,
+	withoutNames,
 } from "../scripts/migrations/2026-10-18-rescope-misdirected-artist-edges.js";
 import { parseSlug } from "../src/slug.js";
 import type { EdgeRef, NodePayload } from "../src/types.js";
@@ -382,7 +385,7 @@ describe("no false positive: the artist's own work, aliases, members, groups", (
 		const result = await run();
 
 		// Its scoped version is that very node, which credits the other Flash: a collision, not a silent pass.
-		expect(result.exitCode).toBe(1);
+		expect(result.exitCode).toBe(0);
 		expect((await manifestOf()).collisions).toMatchObject([
 			{ from: "project:ii", to: "project:ii--flash", reason: "credits-another-artist" },
 		]);
@@ -689,7 +692,7 @@ describe("entries that converge on one scoped slug: only the best is kept (dedup
 });
 
 describe("a group or leader the cache does not link, named in the article (projects only)", () => {
-	const article = (text: string) => ({ editorial_article: text.repeat(3) });
+	const article = (text: string) => ({ editorial_article: text.repeat(Math.ceil(90 / text.length)) });
 
 	it("Mulligan: Birth of the Cool by Miles Davis is not rewritten, reason named-in-article", async () => {
 		await put(
@@ -840,32 +843,6 @@ describe("a group or leader the cache does not link, named in the article (proje
 });
 
 describe("collision: the scoped slug is somebody else's node", () => {
-	it("refuses the run and writes nothing, not even for the other artists", async () => {
-		await put(artistNode("flash", "Flash", { discography: [edge("project", "ii", "II")] }));
-		// An innocent artist with a fixable edge: it must not be written either.
-		await put(artistNode("pink-floyd", "Pink Floyd", { discography: [edge("project", "wish", "Wish")] }));
-		await put(album("ii--flash", "somebody-else", "Somebody Else"));
-		await put(album("ii--boyz-ii-men", "boyz-ii-men", "Boyz II Men"));
-		await writeRedirects({ "project:ii": "project:ii--boyz-ii-men", "project:wish": "project:wish--other" });
-		const before = { flash: await raw("artist:flash"), floyd: await raw("artist:pink-floyd") };
-
-		const result = await run(true);
-
-		expect(result.exitCode).toBe(1);
-		expect(result.written).toEqual([]);
-		expect(await raw("artist:flash")).toBe(before.flash);
-		expect(await raw("artist:pink-floyd")).toBe(before.floyd);
-		expect((await manifestOf()).collisions).toEqual([
-			{
-				artist: "artist:flash",
-				field: "discography",
-				from: "project:ii",
-				to: "project:ii--flash",
-				reason: "credits-another-artist",
-			},
-		]);
-	});
-
 	it("the scoped slug exists and credits the artist: it is taken", async () => {
 		await put(artistNode("flash", "Flash", { discography: [edge("project", "ii", "II")] }));
 		await put(album("ii--flash", "flash", "Flash"));
@@ -878,8 +855,51 @@ describe("collision: the scoped slug is somebody else's node", () => {
 		expect(slugsOf(await read("artist:flash"), "discography")).toEqual(["project:ii--flash"]);
 		expect((await manifestOf()).collisions).toEqual([]);
 	});
+});
 
-	it("a scoped node that cannot be read is a collision too", async () => {
+describe("collision: one edge is skipped, the run goes on", () => {
+	it("the edge stays as it is, is listed, the other artists are written, exit 0", async () => {
+		await put(artistNode("flash", "Flash", { discography: [edge("project", "ii", "II")] }));
+		await put(artistNode("pink-floyd", "Pink Floyd", { discography: [edge("project", "wish", "Wish")] }));
+		await put(album("ii--flash", "somebody-else", "Somebody Else"));
+		await put(album("ii--boyz-ii-men", "boyz-ii-men", "Boyz II Men"));
+		await writeRedirects({ "project:ii": "project:ii--boyz-ii-men", "project:wish": "project:wish--other" });
+		const flash = await raw("artist:flash");
+
+		const result = await run(true);
+
+		expect(result.exitCode).toBe(0);
+		expect(await raw("artist:flash")).toBe(flash);
+		expect(slugsOf(await read("artist:pink-floyd"), "discography")).toEqual(["project:wish--pink-floyd"]);
+		expect(result.written).toHaveLength(1);
+		const m = await manifestOf();
+		expect(m.collisions).toEqual([
+			{
+				artist: "artist:flash",
+				field: "discography",
+				from: "project:ii",
+				to: "project:ii--flash",
+				reason: "credits-another-artist",
+			},
+		]);
+		expect(m.summary).toMatchObject({ collisions: 1, rewritten: 1 });
+	});
+
+	it("the other edges of the same list are still rewritten", async () => {
+		await put(
+			artistNode("flash", "Flash", {
+				discography: [edge("project", "ii", "II"), edge("project", "wish", "Wish")],
+			}),
+		);
+		await put(album("ii--flash", "somebody-else", "Somebody Else"));
+		await writeRedirects({ "project:ii": "project:ii--boyz-ii-men", "project:wish": "project:wish--other" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:flash"), "discography")).toEqual(["project:ii", "project:wish--flash"]);
+	});
+
+	it("a scoped node that cannot be read is a collision too, and also skipped", async () => {
 		await put(artistNode("flash", "Flash", { discography: [edge("project", "ii", "II")] }));
 		const broken = pathOf(cacheDir, "project:ii--flash");
 		await mkdir(dirname(broken), { recursive: true });
@@ -889,9 +909,543 @@ describe("collision: the scoped slug is somebody else's node", () => {
 
 		const result = await run();
 
-		expect(result.exitCode).toBe(1);
+		expect(result.exitCode).toBe(0);
 		expect((await manifestOf()).collisions).toMatchObject([{ reason: "unreadable" }]);
 		expect(slugsOf(await read("artist:flash"), "discography")).toEqual(["project:ii"]);
+	});
+});
+
+describe("credit: artists, producers, the very same release (TRA-602 review)", () => {
+	it("Moroder: a track he produced for Donna Summer is his, not rewritten", async () => {
+		await put(
+			artistNode("giorgio-moroder", "Giorgio Moroder", {
+				notable_tracks: [edge("track", "i-feel-love", "I Feel Love")],
+			}),
+		);
+		await put(
+			trackNode("i-feel-love--donna-summer", "I Feel Love", {
+				artists: [edge("artist", "donna-summer", "Donna Summer")],
+				producers: [edge("artist", "giorgio-moroder", "Giorgio Moroder")],
+			}),
+		);
+		await writeRedirects({ "track:i-feel-love": "track:i-feel-love--donna-summer" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:giorgio-moroder"), "notable_tracks")).toEqual(["track:i-feel-love"]);
+		expect((await manifestOf()).summary).toMatchObject({ credited: 1, rewritten: 0 });
+	});
+
+	it("a producer matched by mbid counts, when the slugs differ", async () => {
+		const mbid = "55555555-5555-4555-8555-555555555555";
+		await put(
+			artistNode("giorgio-moroder", "Giorgio Moroder", {
+				mbid,
+				notable_tracks: [edge("track", "i-feel-love", "I Feel Love")],
+			}),
+		);
+		await put(
+			trackNode("i-feel-love--donna-summer", "I Feel Love", {
+				artists: [edge("artist", "donna-summer", "Donna Summer")],
+				producers: [edge("artist", "moroder-old-slug", "Giorgio Moroder", { mbid })],
+			}),
+		);
+		await writeRedirects({ "track:i-feel-love": "track:i-feel-love--donna-summer" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:giorgio-moroder"), "notable_tracks")).toEqual(["track:i-feel-love"]);
+	});
+
+	it("Hütter: a track Kraftwerk credits and he produced is not rewritten, whatever his article says", async () => {
+		await put(
+			artistNode("ralf-hutter", "Ralf Hütter", {
+				editorial_article: "Ralf Hütter co-founded Kraftwerk in Düsseldorf. ".repeat(3),
+				notable_tracks: [edge("track", "autobahn", "Autobahn")],
+			}),
+		);
+		await put(
+			trackNode("autobahn--kraftwerk", "Autobahn", {
+				artists: [edge("artist", "kraftwerk", "Kraftwerk")],
+				producers: [edge("artist", "ralf-hutter", "Ralf Hütter")],
+			}),
+		);
+		await writeRedirects({ "track:autobahn": "track:autobahn--kraftwerk" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:ralf-hutter"), "notable_tracks")).toEqual(["track:autobahn"]);
+		expect((await manifestOf()).summary).toMatchObject({ credited: 1, rewritten: 0 });
+	});
+
+	it("Digweed: the edge's mbid is the target's own (the same release, credited to a duo): not rewritten", async () => {
+		const mbid = "66666666-6666-4666-8666-666666666666";
+		await put(
+			artistNode("john-digweed", "John Digweed", {
+				discography: [edge("project", "northern-exposure", "Northern Exposure", { mbid })],
+			}),
+		);
+		await put(
+			projectNode("northern-exposure--sasha-and-john-digweed", "Northern Exposure", {
+				mbid,
+				artists: [edge("artist", "sasha-and-john-digweed", "Sasha & John Digweed")],
+			}),
+		);
+		await writeRedirects({
+			"project:northern-exposure": "project:northern-exposure--sasha-and-john-digweed",
+		});
+
+		await run();
+
+		expect(slugsOf(await read("artist:john-digweed"), "discography")).toEqual(["project:northern-exposure"]);
+	});
+
+	it("a different mbid, or a producer who is somebody else, is still rewritten", async () => {
+		await put(
+			artistNode("flash", "Flash", {
+				discography: [
+					edge("project", "ii", "II", { mbid: "77777777-7777-4777-8777-777777777777" }),
+					edge("project", "iii", "III"),
+				],
+			}),
+		);
+		await put(
+			projectNode("ii--boyz-ii-men", "II", {
+				mbid: "88888888-8888-4888-8888-888888888888",
+				artists: [edge("artist", "boyz-ii-men", "Boyz II Men")],
+			}),
+		);
+		await put(
+			projectNode("iii--boyz-ii-men", "III", {
+				artists: [edge("artist", "boyz-ii-men", "Boyz II Men")],
+				producers: [edge("artist", "not-flash", "Not Flash")],
+			}),
+		);
+		await writeRedirects({
+			"project:ii": "project:ii--boyz-ii-men",
+			"project:iii": "project:iii--boyz-ii-men",
+		});
+
+		await run();
+
+		expect(slugsOf(await read("artist:flash"), "discography")).toEqual([
+			"project:ii--flash",
+			"project:iii--flash",
+		]);
+	});
+
+	it("the scoped node that exists credits the artist as a producer: it is taken, no collision", async () => {
+		await put(artistNode("flash", "Flash", { discography: [edge("project", "ii", "II")] }));
+		await put(
+			projectNode("ii--flash", "II", {
+				artists: [edge("artist", "somebody", "Somebody")],
+				producers: [edge("artist", "flash", "Flash")],
+			}),
+		);
+		await put(album("ii--boyz-ii-men", "boyz-ii-men", "Boyz II Men"));
+		await writeRedirects({ "project:ii": "project:ii--boyz-ii-men" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:flash"), "discography")).toEqual(["project:ii--flash"]);
+		expect((await manifestOf()).collisions).toEqual([]);
+	});
+
+	it("a relative who only produced the work counts as a relative (alias as producer)", async () => {
+		await put(
+			artistNode("richie-hawtin", "Richie Hawtin", {
+				aliases: [edge("artist", "plastikman", "Plastikman")],
+				notable_tracks: [edge("track", "spastik", "Spastik")],
+			}),
+		);
+		await put(
+			trackNode("spastik--somebody", "Spastik", {
+				artists: [edge("artist", "somebody", "Somebody")],
+				producers: [edge("artist", "plastikman", "Plastikman")],
+			}),
+		);
+		await writeRedirects({ "track:spastik": "track:spastik--somebody" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:richie-hawtin"), "notable_tracks")).toEqual(["track:spastik"]);
+		expect((await manifestOf()).skippedAliasOrMember).toMatchObject([
+			{ relative: "artist:plastikman", reason: "alias" },
+		]);
+	});
+
+	it("Amber: a member listed in the producers of the group's album is credited (no article needed)", async () => {
+		await put(
+			artistNode("sean-booth", "Sean Booth", {
+				mbid: "18da95e1-52a8-44e6-bcba-2ff5d35b01d2",
+				discography: [edge("project", "amber", "Amber")],
+			}),
+		);
+		await put(
+			projectNode("amber--autechre", "Amber", {
+				artists: [edge("artist", "autechre", "Autechre")],
+				producers: [edge("artist", "sean-booth", "Sean Booth"), edge("artist", "rob-brown", "Rob Brown")],
+			}),
+		);
+		await writeRedirects({ "project:amber": "project:amber--autechre" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:sean-booth"), "discography")).toEqual(["project:amber"]);
+		expect((await manifestOf()).summary).toMatchObject({ credited: 1, skippedAliasOrMember: 0 });
+	});
+});
+
+describe("the edge's `artist` hint (TRA-602 review)", () => {
+	it("B12: an edge that names another main artist is not rewritten to --B12, it is traced as unjudged", async () => {
+		const e = edge("project", "artificial-intelligence", "Artificial Intelligence", { artist: "Aphex Twin" });
+		await put(artistNode("b12", "B12", { discography: [e] }));
+		await writeRedirects({
+			"project:artificial-intelligence": "project:artificial-intelligence--aphex-twin",
+		});
+		const before = await raw("artist:b12");
+
+		const result = await run();
+
+		expect(await raw("artist:b12")).toBe(before);
+		expect(result.written).toEqual([]);
+		const m = await manifestOf();
+		expect(m.rewritten).toEqual([]);
+		expect(m.unjudged).toEqual([
+			{
+				artist: "artist:b12",
+				field: "discography",
+				from: "project:artificial-intelligence",
+				target: "project:artificial-intelligence--aphex-twin",
+				reason: "artist-hint",
+			},
+		]);
+	});
+
+	it("also for a cached target that credits somebody else", async () => {
+		await put(
+			artistNode("b12", "B12", {
+				discography: [edge("project", "ii", "II", { artist: "Boyz II Men" })],
+			}),
+		);
+		await put(album("ii--boyz-ii-men", "boyz-ii-men", "Boyz II Men"));
+		await writeRedirects({ "project:ii": "project:ii--boyz-ii-men" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:b12"), "discography")).toEqual(["project:ii"]);
+		expect((await manifestOf()).unjudged).toMatchObject([{ reason: "artist-hint" }]);
+	});
+
+	it("a hint that is the artist's own name, in any spelling, changes nothing: the edge is rewritten", async () => {
+		await put(
+			artistNode("royksopp", "Røyksopp", {
+				discography: [edge("project", "junior", "Junior", { artist: "Royksopp" })],
+			}),
+		);
+		await writeRedirects({ "project:junior": "project:junior--somebody" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:royksopp"), "discography")).toEqual(["project:junior--royksopp"]);
+		expect((await manifestOf()).unjudged).toEqual([]);
+	});
+
+	it("a hint does not matter when the target credits the artist", async () => {
+		await put(
+			artistNode("flash", "Flash", {
+				discography: [edge("project", "ii", "II", { artist: "Someone Else" })],
+			}),
+		);
+		await put(album("ii--flash", "flash", "Flash"));
+		await writeRedirects({ "project:ii": "project:ii--flash" });
+
+		await run();
+
+		expect((await manifestOf()).unjudged).toEqual([]);
+		expect((await manifestOf()).summary.credited).toBe(1);
+	});
+});
+
+describe("a cached target with no credit and no scope", () => {
+	it("is not judged: a transliteration redirect to a work whose credits were never filled in", async () => {
+		await put(
+			artistNode("sigur-ros", "Sigur Rós", {
+				discography: [edge("project", "ag-tis-byrjun", "Ágætis byrjun")],
+			}),
+		);
+		await put(projectNode("agaetis-byrjun", "Ágætis byrjun", { artists: [] }));
+		await writeRedirects({ "project:ag-tis-byrjun": "project:agaetis-byrjun" });
+		const before = await raw("artist:sigur-ros");
+
+		const result = await run();
+
+		expect(await raw("artist:sigur-ros")).toBe(before);
+		expect(result.written).toEqual([]);
+		expect((await manifestOf()).unjudged).toMatchObject([
+			{
+				from: "project:ag-tis-byrjun",
+				target: "project:agaetis-byrjun",
+				reason: "cached-unscoped-no-credit",
+			},
+		]);
+	});
+});
+
+describe("named-in-article, the false negatives (TRA-602 review)", () => {
+	const article = (text: string) => ({ editorial_article: text.repeat(Math.ceil(90 / text.length)) });
+
+	it("Ultra: the title of the work is not a group the article names; the edge is rewritten", async () => {
+		await put(
+			artistNode("depeche-mode", "Depeche Mode", {
+				...article("In 1997 Depeche Mode released Ultra, after a hard time. "),
+				discography: [edge("project", "ultra", "Ultra")],
+			}),
+		);
+		await put(album("ultra--ultra", "ultra", "Ultra"));
+		await writeRedirects({ "project:ultra": "project:ultra--ultra" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:depeche-mode"), "discography")).toEqual([
+			"project:ultra--depeche-mode",
+		]);
+		expect((await manifestOf()).skippedAliasOrMember).toEqual([]);
+	});
+
+	it("an eponymous homonym: the credited artist has the artist's own name, so the article does not tell them apart", async () => {
+		await put(
+			artistNode("ultra", "Ultra", {
+				...article("Ultra were a band. Ultra played Ultra songs. "),
+				discography: [edge("project", "debut", "Debut")],
+			}),
+		);
+		await put(album("debut--ultra", "ultra-2", "Ultra"));
+		await writeRedirects({ "project:debut": "project:debut--ultra" });
+
+		const result = await run();
+
+		const m = await manifestOf();
+		expect(m.skippedAliasOrMember).toEqual([]);
+		// Not skipped: it is judged somebody else's. Its scoped version is that very node: a collision.
+		expect(m.collisions).toMatchObject([{ reason: "credits-another-artist" }]);
+		expect(result.exitCode).toBe(0);
+	});
+
+	it("a credited name of 3 characters or less is not looked for: 'M' is in \"I'm\"", async () => {
+		await put(
+			artistNode("flash", "Flash", {
+				...article("Flash said I'm fine, and I'm here. "),
+				discography: [edge("project", "ii", "II")],
+			}),
+		);
+		await put(album("ii--m", "m", "M"));
+		await writeRedirects({ "project:ii": "project:ii--m" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:flash"), "discography")).toEqual(["project:ii--flash"]);
+	});
+
+	it("4 characters are looked for, 3 are not", async () => {
+		await put(
+			artistNode("flash", "Flash", {
+				...article("Flash toured with Cher. "),
+				discography: [edge("project", "ii", "II")],
+			}),
+		);
+		await put(album("ii--cher", "cher", "Cher"));
+		await writeRedirects({ "project:ii": "project:ii--cher" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:flash"), "discography")).toEqual(["project:ii"]);
+		await put(
+			artistNode("flash", "Flash", {
+				...article("Flash toured with Bob. "),
+				discography: [edge("project", "ii", "II")],
+			}),
+		);
+		await put(album("ii--bob", "bob", "Bob"));
+		await writeRedirects({ "project:ii": "project:ii--bob" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:flash"), "discography")).toEqual(["project:ii--flash"]);
+	});
+
+	it("the artist's own name is removed from the article first", async () => {
+		await put(
+			artistNode("blue-note-quartet", "Blue Note Quartet", {
+				...article("The Blue Note Quartet formed in Paris. "),
+				discography: [edge("project", "ii", "II")],
+			}),
+		);
+		await put(album("ii--blue-note", "blue-note", "Blue Note"));
+		await writeRedirects({ "project:ii": "project:ii--blue-note" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:blue-note-quartet"), "discography")).toEqual([
+			"project:ii--blue-note-quartet",
+		]);
+	});
+
+	it("so is the name of each alias", async () => {
+		await put(
+			artistNode("flash", "Flash", {
+				...article("Flash also recorded as Dark Prince in Berlin. "),
+				aliases: [edge("artist", "flash-alt", "Dark Prince")],
+				discography: [edge("project", "ii", "II")],
+			}),
+		);
+		await put(album("ii--dark-prince", "dark-prince-2", "Dark Prince"));
+		await writeRedirects({ "project:ii": "project:ii--dark-prince" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:flash"), "discography")).toEqual(["project:ii--flash"]);
+	});
+
+	it("accents in the article do not hide a name written without them (NFKD)", async () => {
+		await put(
+			artistNode("flash", "Flash", {
+				...article("Flash was the sideman of Björk. "),
+				discography: [edge("project", "debut", "Debut")],
+			}),
+		);
+		await put(album("debut--bjork", "bjork", "Bjork"));
+		await writeRedirects({ "project:debut": "project:debut--bjork" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:flash"), "discography")).toEqual(["project:debut"]);
+	});
+});
+
+describe("text helpers", () => {
+	it("normalizeForPhrase: NFKD, ASCII, lowercase, punctuation as one space", () => {
+		expect(normalizeForPhrase("Björk (Sigur-Rós)!")).toBe("bjork sigur ros");
+		expect(normalizeForPhrase("Björk")).toBe("bjork");
+		expect(normalizeForPhrase("ＡＢＣ")).toBe("abc");
+		expect(normalizeForPhrase("  ")).toBe("");
+	});
+
+	it("withoutNames removes whole expressions only", () => {
+		expect(withoutNames("the blue note quartet and blue notes", ["Blue Note"])).toBe(
+			"the quartet and blue notes",
+		);
+		expect(withoutNames("flash flash flash", ["Flash"])).toBe("");
+		expect(withoutNames("a b", ["", "!!"])).toBe("a b");
+	});
+
+	it("isNameOf: any spelling of a scope", () => {
+		expect(isNameOf("Royksopp", "artist:royksopp", "Røyksopp")).toBe(true);
+		expect(isNameOf("Röyksopp", "artist:royksopp", "Røyksopp")).toBe(true);
+		expect(isNameOf("Aphex Twin", "artist:b12", "B12")).toBe(false);
+	});
+});
+
+describe("membership, the other way round, and the choice's title (mutation holes)", () => {
+	it("a relative that lists the artist in ITS aliases is a relative (alias-of)", async () => {
+		await put(
+			artistNode("plastikman", "Plastikman", { notable_tracks: [edge("track", "spastik", "Spastik")] }),
+		);
+		await put(
+			artistNode("richie-hawtin", "Richie Hawtin", { aliases: [edge("artist", "plastikman", "Plastikman")] }),
+		);
+		await writeRedirects({ "track:spastik": "track:spastik--richie-hawtin" });
+
+		await run();
+
+		expect(slugsOf(await read("artist:plastikman"), "notable_tracks")).toEqual(["track:spastik"]);
+		expect((await manifestOf()).skippedAliasOrMember).toMatchObject([
+			{ relative: "artist:richie-hawtin", reason: "alias-of" },
+		]);
+	});
+
+	it("the pick is the SECOND title served by the bare slug: it follows its own title, not the first candidate", async () => {
+		const medley = edge("project", "human-after-all", "Human After All (Medley)");
+		const plain = edge("project", "human-after-all", "Human After All");
+		await put(
+			artistNode("daft-punk", "Daft Punk", { discography: [medley, plain], landmark_project: plain }),
+		);
+		await writeRedirects({ "project:human-after-all": "project:human-after-all--twin-atlantic" });
+
+		await run();
+
+		expect(((await read("artist:daft-punk")).landmark_project as EdgeRef).slug).toBe(
+			"project:human-after-all--daft-punk",
+		);
+	});
+
+	it("an artist whose node validation would alter (an undeclared field) is refused: exit 1, nothing written", async () => {
+		await put(artistNode("moderat", "Moderat", { discography: [edge("project", "ii", "II")] }));
+		await put({
+			...artistNode("flash", "Flash", { discography: [edge("project", "ii", "II")] }),
+			legacy_field: "kept by hand",
+		});
+		await put(album("ii--boyz-ii-men", "boyz-ii-men", "Boyz II Men"));
+		await writeRedirects({ "project:ii": "project:ii--boyz-ii-men" });
+		const before = await raw("artist:moderat");
+
+		const result = await run();
+
+		expect(result.exitCode).toBe(1);
+		expect(result.written).toEqual([]);
+		expect(await raw("artist:moderat")).toBe(before);
+		expect((await manifestOf()).failed).toMatchObject([
+			{ slug: "artist:flash", reason: expect.stringMatching(/would alter/) },
+		]);
+	});
+
+	it("the lists of the manifest are sorted by artist, field and old slug, not by list order", async () => {
+		await put(
+			artistNode("flash", "Flash", {
+				discography: [edge("project", "zeta", "Zeta"), edge("project", "alpha", "Alpha")],
+				notable_tracks: [edge("track", "omega", "Omega"), edge("track", "beta", "Beta")],
+			}),
+		);
+		await put(artistNode("a-band", "A Band", { discography: [edge("project", "zeta", "Zeta")] }));
+		await put(
+			artistNode("unjudged", "Unjudged", {
+				discography: [edge("project", "old-b", "Old B"), edge("project", "old-a", "Old A")],
+			}),
+		);
+		await writeRedirects({
+			"project:zeta": "project:zeta--someone",
+			"project:alpha": "project:alpha--someone",
+			"track:omega": "track:omega--someone",
+			"track:beta": "track:beta--someone",
+			"project:old-a": "project:old-a-renamed",
+			"project:old-b": "project:old-b-renamed",
+		});
+
+		await run();
+
+		const m = await manifestOf();
+		expect(m.rewritten.map((r) => `${r.artist} ${r.field} ${r.from}`)).toEqual([
+			"artist:a-band discography project:zeta",
+			"artist:flash discography project:alpha",
+			"artist:flash discography project:zeta",
+			"artist:flash notable_tracks track:beta",
+			"artist:flash notable_tracks track:omega",
+		]);
+		expect(m.unjudged.map((u) => u.from)).toEqual(["project:old-a", "project:old-b"]);
+	});
+
+	it("an edge already scoped on the artist whose own slug is a redirect key cannot be fixed: unjudged", async () => {
+		await put(artistNode("flash", "Flash", { discography: [edge("project", "ii--flash", "II")] }));
+		await put(album("ii--boyz-ii-men", "boyz-ii-men", "Boyz II Men"));
+		await writeRedirects({ "project:ii--flash": "project:ii--boyz-ii-men" });
+		const before = await raw("artist:flash");
+
+		await run();
+
+		expect(await raw("artist:flash")).toBe(before);
+		expect((await manifestOf()).unjudged).toMatchObject([
+			{ from: "project:ii--flash", reason: "redirect-from-scoped-slug" },
+		]);
 	});
 });
 

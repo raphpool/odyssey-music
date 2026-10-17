@@ -10,8 +10,11 @@
  * Detection. For every artist A and every entry of `discography` / `notable_tracks` whose slug is a project /
  * track that the reads redirect (`resolveReadSlug`: a live cache node wins, otherwise ONE hop of the merged
  * tables), the resolved target is judged against A:
- *   - credited: the target is in the cache and credits A (`reciprocates`, src/images/reciprocity.ts: A's slug,
- *     or an artist edge with the same non-empty mbid). Left alone.
+ *   - credited: the target is in the cache and credits A: A is in its `artists` (`reciprocates`,
+ *     src/images/reciprocity.ts: A's slug, or an artist edge with the same non-empty mbid) or in its
+ *     `producers` (same match), or the mbid of A's edge is the target's own mbid (the very same release, e.g. a
+ *     duo credit). That is the server's reading (`creditsArtist`, materialize-service): a work Giorgio Moroder
+ *     produced for Donna Summer is his. Left alone.
  *   - misdirected, in the cache: the target does not credit A (nor a relative of A, nor is it scoped on one).
  *   - misdirected, absent: the target is not in the cache and its scope (`scopeOf`) is not A's, nor a
  *     relative's.
@@ -24,9 +27,15 @@
  *     lowercase, punctuation as spaces, the normalization of TRA-601). B is A's group or leader, with no link in
  *     the cache: Sean Booth -> *Amber* of Autechre, Gerry Mulligan -> *Birth of the Cool* of Miles Davis. For a
  *     track the rule does not apply: a cover is another recording (The Byrds -> Dylan's *Mr. Tambourine Man*).
- *     An absent target, or one that credits nobody, follows the rules above (Incunabula).
- *   - unjudged: an absent target with NO scope (or an unreadable one). Nothing says whose work it is, so it
- *     is not rewritten, and it is counted apart.
+ *     An absent target, or one that credits nobody, follows the rules above (Incunabula). B's name must have 4
+ *     characters or more ("M" is in "I'm"), differ from A's name and from the work's title (Depeche Mode's article
+ *     cites "Ultra", the album of the artist Ultra), and A's own name and aliases are removed from the article
+ *     first.
+ *   - unjudged: an absent target with NO scope, a cached one that credits nobody and has no scope either (a
+ *     transliteration redirect to a work whose credits were never filled in), or an unreadable one. Nothing
+ *     says whose work it is, so it is not rewritten, and it is counted apart. So is an edge that carries an
+ *     `artist` hint other than A (`artist-hint`): the server mints the scoped slug from that name
+ *     (`jitArtistFor`), a slug scoped on A would never be repointed and would dangle.
  *
  * Fix. The edge's slug becomes the version scoped on A: `makeScopedSlug(type, edge.name, A.name)`, then
  * `transliteratedSlug`, i.e. the CANONICAL (transliterated) form whatever ODYSSEY_SCOPED_RELEASE_SLUGS says.
@@ -42,8 +51,10 @@
  *     pick on one of them follows the slug, which is the same whichever entry is kept.
  *   - no node is created and no redirect is touched: the scoped work is generated on demand, with the right
  *     identity.
- *   - the scoped slug is a node of the cache that does not credit A: a COLLISION. The run is refused (exit 1)
- *     and nothing is written, whatever the other artists need.
+ *   - the scoped slug is a node of the cache that does not credit A (or cannot be read): a COLLISION. That edge
+ *     is left as it is and listed in `collisions`; the run goes on and exits 0. Refusing the run would block
+ *     every other correction for one edge, and the script is idempotent: the collision can be settled by hand
+ *     and the script run again.
  * ORDER (precondition): the credit is read on the target's `artists`; run this AFTER the identity and scope
  * migrations and the reverse-edge backfill (2026-10-15 .. 2026-10-17), and BEFORE the 2026-10-19 backfills
  * (the landmark backfill excludes an entry that redirects to somebody else's work; once rewritten, the entry
@@ -51,7 +62,7 @@
  *
  * Writes go through atomicWriteJson after nodePayloadSchema validation, never NodeCache.write (which would
  * emit reverse edges); a write that validation would alter is refused and the artist listed in `failed`
- * (exit 1), and then NOTHING is written, like for a collision: a half-migrated cache is worse than none.
+ * (exit 1), and then NOTHING is written for anybody: a half-migrated cache is worse than none.
  * Pure and offline: no network call, no clock. A second run finds nothing to do (idempotent).
  *
  * Manifest: deterministic (sorted, no timestamp), the same in a dry-run, an apply and a re-run on a copy. It
@@ -107,6 +118,8 @@ export const UNJUDGED_REASONS = [
 	"unreadable-target",
 	"no-scoped-slug",
 	"redirect-from-scoped-slug",
+	"cached-unscoped-no-credit",
+	"artist-hint",
 ] as const;
 export type UnjudgedReason = (typeof UNJUDGED_REASONS)[number];
 
@@ -233,6 +246,14 @@ export function scopeBodiesOf(slug: string, name: string): Set<string> {
 		// An empty body: this name has no slug, so it cannot be a scope either.
 	}
 	return bodies;
+}
+
+/** Does `hint` (an edge's `artist`) name the artist `slug` / `name`, in any spelling a scope can have? */
+export function isNameOf(hint: string, slug: string, name: string): boolean {
+	const mine = scopeBodiesOf(slug, name);
+	const theirs = scopeBodiesOf("artist:x", hint);
+	theirs.delete("x");
+	return [...theirs].some((body) => mine.has(body));
 }
 
 /** Is `work` scoped on the artist `slug` / `name`? */
@@ -396,10 +417,51 @@ export function namedIn(article: string, name: string): boolean {
 	return phrase !== "" && ` ${article} `.includes(` ${phrase} `);
 }
 
-/** The first relative that `work` credits (artist edge, by slug or by mbid). */
+/** A credited name shorter than this is not looked for in an article. */
+export const MIN_NAMED_LENGTH = 4;
+
+/** The article without the names of the artist and of its aliases (TRA-601): they cite no OTHER artist. */
+export function withoutNames(article: string, names: readonly string[]): string {
+	let out = article;
+	for (const name of names) {
+		const phrase = normalizeForPhrase(name);
+		if (phrase === "") continue;
+		out = out.replace(new RegExp(`(?<![a-z0-9])${phrase}(?![a-z0-9])`, "g"), " ");
+	}
+	return out.replace(/\s+/g, " ").trim();
+}
+
+/** The artists a work credits as its authors: `artists` and `producers` (the server's `creditsArtist`). */
+const creditsOf = (work: Work) => [...work.artists, ...work.producers].filter((a) => a.type === "artist");
+
+/**
+ * Does the work credit `artist`? Its `artists` (`reciprocates`, the rule of the covers) or its `producers`, by
+ * slug or by mbid, or it is the very release the edge names (the edge's mbid is the work's own). The server
+ * decides on `artists` and `producers` (`creditsArtist`, materialize-service); a work Giorgio Moroder produced
+ * for Donna Summer is his, and one release credited to a duo is the one its members' edges name.
+ */
+export async function creditsAnArtist(
+	artist: Extract<NodePayload, { type: "artist" }>,
+	work: Work,
+	edgeMbid: string | undefined,
+	cache: NodeCache,
+	redirects: ReadonlyMap<Slug, Slug>,
+): Promise<boolean> {
+	if (await reciprocates(artist, work, cache, redirects)) return true;
+	const me: ArtistRef = { slug: artist.slug, name: artist.name, mbid: str(artist.mbid) };
+	if (
+		work.producers.some((p) => p.type === "artist" && sameArtist({ slug: p.slug, mbid: str(p.mbid) }, me))
+	) {
+		return true;
+	}
+	const own = str(work.mbid);
+	return own !== undefined && edgeMbid !== undefined && own === edgeMbid;
+}
+
+/** The first relative that `work` credits (artist or producer edge, by slug or by mbid). */
 function creditedRelative(work: Work, relatives: readonly Relative[]): Relative | undefined {
 	return relatives.find((r) =>
-		work.artists.some((a) => a.type === "artist" && sameArtist({ slug: a.slug, mbid: str(a.mbid) }, r)),
+		creditsOf(work).some((a) => sameArtist({ slug: a.slug, mbid: str(a.mbid) }, r)),
 	);
 }
 
@@ -409,7 +471,10 @@ export type Verdict =
 	/** A cached project credits an artist that the artist's own article names (its group, its leader). */
 	| { kind: "named-in-article"; artist: string }
 	| { kind: "misdirected"; reason: RewriteReason }
-	| { kind: "unjudged"; reason: "absent-unscoped-target" | "unreadable-target" };
+	| {
+			kind: "unjudged";
+			reason: "absent-unscoped-target" | "unreadable-target" | "cached-unscoped-no-credit";
+	  };
 
 export interface JudgeInput {
 	target: string;
@@ -417,8 +482,10 @@ export interface JudgeInput {
 	type: "project" | "track";
 	slug: string;
 	name: string;
-	/** The artist's `editorial_article`, through `normalizeForPhrase`. */
+	/** The artist's `editorial_article`, through `normalizeForPhrase`, without the names of the artist and its aliases. */
 	article: string;
+	/** The titles of the work (the edge's, the node's), through `normalizeForPhrase`. */
+	titles?: readonly string[];
 	relatives: readonly Relative[];
 	/** The target as the cache holds it: absent, unreadable, or the work. */
 	work: { kind: "absent" } | { kind: "unreadable" } | { kind: "work"; work: Work; creditsArtist: boolean };
@@ -427,6 +494,7 @@ export interface JudgeInput {
 /** Does the resolved target credit the artist, a relative of the artist, or nobody who is one of them? */
 export function judge(input: JudgeInput): Verdict {
 	const { target, type, slug, name, article, relatives, work } = input;
+	const titles = input.titles ?? [];
 	if (work.kind === "unreadable") return { kind: "unjudged", reason: "unreadable-target" };
 	if (work.kind === "work") {
 		if (work.creditsArtist) return { kind: "credited" };
@@ -435,11 +503,19 @@ export function judge(input: JudgeInput): Verdict {
 		// A work that names its artists and does not name ours is somebody else's, whatever its slug scope says:
 		// two artists called "Flash" share the scope `--flash`. The scope is only a fallback when the work
 		// credits nobody.
-		const credits = work.work.artists.filter((a) => a.type === "artist");
+		const credits = creditsOf(work.work);
 		if (credits.length > 0) {
 			// A group or a leader the cache does not link (Autechre for Sean Booth, Miles Davis for Gerry Mulligan)
 			// is told by the article itself. Projects only: a track by somebody else is a cover, another recording.
-			const named = type === "project" ? credits.find((a) => namedIn(article, a.name)) : undefined;
+			// Not a name of 3 letters or less ("M" is in "I'm"), not the artist's own name (an eponymous
+			// homonym), not the work's own title (Depeche Mode's article cites "Ultra", the album of Ultra).
+			const own = normalizeForPhrase(name);
+			const citable = (credited: string): boolean => {
+				const phrase = normalizeForPhrase(credited);
+				return phrase.length >= MIN_NAMED_LENGTH && phrase !== own && !titles.includes(phrase);
+			};
+			const named =
+				type === "project" ? credits.find((a) => citable(a.name) && namedIn(article, a.name)) : undefined;
 			if (named) return { kind: "named-in-article", artist: named.slug };
 			return { kind: "misdirected", reason: "cached-not-credited" };
 		}
@@ -447,8 +523,15 @@ export function judge(input: JudgeInput): Verdict {
 	if (scopedOn(target, slug, name)) return { kind: "credited" };
 	const scoped = relatives.find((r) => scopedOn(target, r.slug, r.name));
 	if (scoped) return { kind: "relative", relative: scoped };
+	if (scopeOf(target) === null) {
+		// Nothing says whose work it is: no credit, no scope. An absent target, or a cached one that credits
+		// nobody (a transliteration redirect to a work whose credits were never filled in), is not judged.
+		return {
+			kind: "unjudged",
+			reason: work.kind === "work" ? "cached-unscoped-no-credit" : "absent-unscoped-target",
+		};
+	}
 	if (work.kind === "work") return { kind: "misdirected", reason: "cached-not-credited" };
-	if (scopeOf(target) === null) return { kind: "unjudged", reason: "absent-unscoped-target" };
 	return { kind: "misdirected", reason: "absent-other-scope" };
 }
 
@@ -542,7 +625,10 @@ export async function runRescope(options: RescopeOptions): Promise<RescopeResult
 
 	for (const { slug, path, node: raw } of nodes.filter((n) => n.type === "artist")) {
 		const name = str(raw.name) ?? slug;
-		const article = normalizeForPhrase(str(raw.editorial_article) ?? "");
+		const article = withoutNames(normalizeForPhrase(str(raw.editorial_article) ?? ""), [
+			name,
+			...edgesOf(raw.aliases).flatMap((e) => str(e.name) ?? []),
+		]);
 		// Decided per artist, committed to the manifest only once the node is known to be writable.
 		const mine = {
 			rewritten: [] as RewrittenEdge[],
@@ -611,10 +697,20 @@ export async function runRescope(options: RescopeOptions): Promise<RescopeResult
 							: {
 									kind: "work",
 									work: work as Work,
-									creditsArtist: await reciprocates(artist, work as Work, cache, redirects),
+									creditsArtist: await creditsAnArtist(
+										artist,
+										work as Work,
+										str(edge.mbid),
+										cache,
+										redirects,
+									),
 								};
 				}
-				const verdict = judge({ target, type, slug, name, article, relatives, work: workState });
+				const titles = [
+					str(edge.name),
+					workState.kind === "work" ? str(workState.work.name) : undefined,
+				].flatMap((t) => (t === undefined ? [] : [normalizeForPhrase(t)]));
+				const verdict = judge({ target, type, slug, name, article, titles, relatives, work: workState });
 
 				if (verdict.kind === "credited") {
 					mine.credited++;
@@ -639,6 +735,16 @@ export async function runRescope(options: RescopeOptions): Promise<RescopeResult
 					continue;
 				}
 
+				// The edge names the work's main artist and it is not this one: the server mints the scoped slug from
+				// THAT name (jitArtistFor), so a slug scoped on this artist would never be repointed and would dangle.
+				// Not rewritten, and not left without a trace.
+				const hint = str(edge.artist);
+				if (hint !== undefined && !isNameOf(hint, slug, name)) {
+					mine.unjudged.push({ artist: slug, field: list, from, target, reason: "artist-hint" });
+					keep(edge);
+					continue;
+				}
+
 				const scoped = canonicalScopedSlug(type, str(edge.name) ?? "", name);
 				if (scoped === null || scoped === from) {
 					mine.unjudged.push({
@@ -659,7 +765,7 @@ export async function runRescope(options: RescopeOptions): Promise<RescopeResult
 						keep(edge);
 						continue;
 					}
-					if (!(await reciprocates(artist, existing as Work, cache, redirects))) {
+					if (!(await creditsAnArtist(artist, existing as Work, str(edge.mbid), cache, redirects))) {
 						mine.collisions.push({
 							artist: slug,
 							field: list,
@@ -753,7 +859,7 @@ export async function runRescope(options: RescopeOptions): Promise<RescopeResult
 
 	// A collision or a failure refuses the whole run: nothing is written, whatever the other artists need.
 	const written: string[] = [];
-	if (apply && collisions.length === 0 && failed.length === 0) {
+	if (apply && failed.length === 0) {
 		for (const w of pendingWrites) {
 			await atomicWriteJson(w.path, w.data);
 			written.push(w.path);
@@ -786,7 +892,7 @@ export async function runRescope(options: RescopeOptions): Promise<RescopeResult
 	};
 	await mkdir(dirname(manifestPath), { recursive: true });
 	await atomicWriteJson(manifestPath, manifest);
-	return { manifest, written, exitCode: failed.length > 0 || collisions.length > 0 ? 1 : 0 };
+	return { manifest, written, exitCode: failed.length > 0 ? 1 : 0 };
 }
 
 export function formatSummary(result: RescopeResult, apply: boolean, manifestPath: string): string {
@@ -795,7 +901,7 @@ export function formatSummary(result: RescopeResult, apply: boolean, manifestPat
 	const lines = [
 		`${s.redirectedEdges} redirected edge(s): ${s.credited} credit the artist, ${s.rewritten} rewritten (${s.deduplicated} duplicate(s) removed), ${s.skippedAliasOrMember} alias/member/group/named in the article, ${s.unjudged} unjudged`,
 		`${s.choicesMoved} landmark/reference pick(s) moved`,
-		`${s.collisions} collision(s)${s.collisions > 0 ? ": run refused, nothing written" : ""}`,
+		`${s.collisions} collision(s)${s.collisions > 0 ? ": those edges are left as they are" : ""}`,
 		`${manifest.failed.length} failed`,
 		apply ? `${written.length} node file(s) written` : "dry-run: no node file written",
 		`manifest: ${manifestPath}`,

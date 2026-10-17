@@ -81,12 +81,14 @@ function makeFixture(): Fixture {
 	writeFileSync(callsLog, "");
 
 	writeNode(repoCacheDir, node("genre:only-repo", "only-repo"));
-	// Moderat lists the bare, ambiguous `project:ii`; the global redirect sends it to Boyz II Men's album.
-	// Flash lists a bare slug that is not redirected and one that already credits it: both stay.
+	// Moderat lists the bare `project:zz-fixture-ii`; the fixture's redirect table sends it to Boyz II Men's album.
+	// That key exists ONLY in the fixture's table (the repo's own data/ has no such key), which is what proves
+	// that the table is read from --data-dir.
+	// Flash lists a bare slug that is not a redirect key: it stays.
 	writeNode(
 		repoCacheDir,
 		node("artist:moderat", "Moderat", {
-			discography: [{ slug: "project:ii", type: "project", name: "II", year: "2009" }],
+			discography: [{ slug: "project:zz-fixture-ii", type: "project", name: "II", year: "2009" }],
 		}),
 	);
 	writeNode(
@@ -97,7 +99,7 @@ function makeFixture(): Fixture {
 	);
 	writeNode(
 		repoCacheDir,
-		node("project:ii--boyz-ii-men", "II", {
+		node("project:zz-fixture-ii--boyz-ii-men", "II", {
 			artists: [{ slug: "artist:boyz-ii-men", type: "artist", name: "Boyz II Men" }],
 		}),
 	);
@@ -127,7 +129,7 @@ function makeFixture(): Fixture {
 	writeFileSync(join(serverRoot, "data", "genre-redirects.json"), JSON.stringify({ redirects: {} }));
 	writeFileSync(
 		join(serverRoot, "data", "slug-redirects.json"),
-		JSON.stringify({ redirects: { "project:ii": "project:ii--boyz-ii-men" } }),
+		JSON.stringify({ redirects: { "project:zz-fixture-ii": "project:zz-fixture-ii--boyz-ii-men" } }),
 	);
 	writeFileSync(join(serverRoot, ".service-active"), "");
 
@@ -251,7 +253,7 @@ describe("migration channel: the rescope of misdirected artist edges (TRA-602)",
 				{
 					artist: "artist:moderat",
 					field: "discography",
-					from: "project:ii",
+					from: "project:zz-fixture-ii",
 					to: "project:ii--moderat",
 					reason: "cached-not-credited",
 				},
@@ -261,6 +263,14 @@ describe("migration channel: the rescope of misdirected artist edges (TRA-602)",
 			collisions: [],
 			failed: [],
 		});
+	});
+
+	it("proves that --data-dir is what is read: the repo's own table does not hold the fixture's key", () => {
+		// A script that ignored --data-dir would fall back on data/slug-redirects.json of the repo, find no
+		// redirect for this key and rewrite nothing: the test above would fail.
+		expect(readFileSync(resolve("data/slug-redirects.json"), "utf8")).not.toContain("zz-fixture-ii");
+		expect(readFileSync(resolve("data/genre-redirects.json"), "utf8")).not.toContain("zz-fixture-ii");
+		expect((JSON.parse(manifestOf(preview)) as { rewritten: unknown[] }).rewritten).toHaveLength(1);
 	});
 
 	it("gives a byte-identical manifest on a second run of the channel (nothing time-dependent in it)", () => {
