@@ -5,6 +5,7 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
 	type Candidate,
 	choose,
+	isNonCanonical,
 	type LandmarkManifest,
 	MIGRATION_NAME,
 	mentionedIn,
@@ -294,7 +295,9 @@ describe("identity: a target that does not credit the artist is never chosen", (
 	it("excludes an absent target that a redirect sends to another artist's work (Byrds -> Dylan)", async () => {
 		const bare = edge("track", "mr-tambourine-man", "Mr. Tambourine Man");
 		const mine = edge("track", "turn-turn-turn--the-byrds", "Turn! Turn! Turn!");
-		await put(artistNode("the-byrds", "The Byrds", { notable_tracks: [bare, mine] }));
+		// A second option, so that the choice is not a sole option without support (rule v3).
+		const third = edge("track", "eight-miles-high--the-byrds", "Eight Miles High");
+		await put(artistNode("the-byrds", "The Byrds", { notable_tracks: [bare, mine, third] }));
 		// The bare slug is no node: the reads open the Dylan track it redirects to, which is in the cache.
 		await put(
 			trackNode("mr-tambourine-man--bob-dylan", "Mr. Tambourine Man", {
@@ -321,7 +324,11 @@ describe("identity: a target that does not credit the artist is never chosen", (
 	it("excludes a redirected target whose destination is not in the cache, unless it is scoped on the artist", async () => {
 		const foreign = edge("project", "incunabula", "Incunabula");
 		await put(artistNode("sean-booth", "Sean Booth", { discography: [foreign] }));
-		await put(artistNode("only-own", "Only Own", { discography: [edge("project", "ghost", "Ghost")] }));
+		await put(
+			artistNode("only-own", "Only Own", {
+				discography: [edge("project", "ghost", "Ghost"), edge("project", "second", "Second")],
+			}),
+		);
 		await writeRedirects({
 			"project:incunabula": "project:incunabula--method-of-defiance", // not in the cache: prod-only
 			"project:ghost": "project:ghost--only-own", // lands on a slug scoped on the artist
@@ -405,13 +412,14 @@ describe("identity: a target that does not credit the artist is never chosen", (
 			namedAfterArtist: false,
 			emptyCredit: false,
 			year: null,
+			single: false,
 		});
 		const picked = choose(
 			[c("project:a", { kind: "uncredited" }, 3), c("project:b", { kind: "credited", imaged: false })],
-			{ oldestFirst: true },
+			{ oldestFirst: true, soleSingleUnsupported: true },
 		);
 		expect(picked).toMatchObject({ kind: "chosen", slug: "project:b", reason: "cached" });
-		expect(choose([], { oldestFirst: true })).toEqual({ kind: "empty" });
+		expect(choose([], { oldestFirst: true, soleSingleUnsupported: true })).toEqual({ kind: "empty" });
 	});
 });
 
@@ -591,13 +599,11 @@ describe("rule v2 (TRA-601)", () => {
 		await run();
 
 		expect((await read("artist:paul")).landmark_project).toEqual(solo);
-		expect((await read("artist:george")).landmark_project).toEqual(band);
-		// Alone, it is chosen with no signal at all.
-		expect(await pickOf("artist:george")).toMatchObject({
-			target: "project:the-beatles",
-			reason: "first",
-			score: 0,
-		});
+		// Alone, it has no signal at all: rule v3, nothing is chosen (v2 chose it).
+		expect((await read("artist:george")).landmark_project).toBeUndefined();
+		expect((await manifestOf()).soleUnsupported).toEqual([
+			{ artist: "artist:george", field: "landmark_project", target: "project:the-beatles" },
+		]);
 	});
 
 	describe("empty credit (TRA-601)", () => {
@@ -630,6 +636,9 @@ describe("rule v2 (TRA-601)", () => {
 					editorial_pitch: targetText,
 				}),
 			);
+			// The other option is cached and credited: when the target is excluded it is not a sole option
+			// without support (rule v3).
+			await put(album("other-work--aphex", "aphex"));
 			return { saw, other };
 		};
 
@@ -700,9 +709,10 @@ describe("rule v2 (TRA-601)", () => {
 		it("excludes the redirect Byrds -> a bare Dylan track, whose scope proves a foreign credit", async () => {
 			const bare = edge("track", "mr-tambourine-man", "Mr. Tambourine Man");
 			const mine = edge("track", "turn-turn-turn--the-byrds", "Turn! Turn! Turn!");
+			const third = edge("track", "eight-miles-high--the-byrds", "Eight Miles High");
 			await put(
 				artistNode("the-byrds", "The Byrds", {
-					notable_tracks: [bare, mine],
+					notable_tracks: [bare, mine, third],
 					editorial_article: articleQuoting("Mr. Tambourine Man"),
 				}),
 			);
@@ -999,6 +1009,336 @@ describe("rule v2 (TRA-601)", () => {
 			expect(yearOf("circa 1997")).toBeNull();
 			expect(yearOf(undefined)).toBeNull();
 			expect(yearOf("")).toBeNull();
+		});
+	});
+});
+
+describe("rule v3 (TRA-601)", () => {
+	const pickOf = async (artist: string, field = "landmark_project") =>
+		(await manifestOf()).picks.find((p) => p.artist === artist && p.field === field);
+
+	describe("non-canonical releases", () => {
+		it("recognises remixes, mixes, best-ofs, bootlegs, live recordings and soundtracks by their title", () => {
+			for (const title of [
+				"Saturday Night Fever (soundtrack)",
+				"Saturday Night Fever: The Original Movie Soundtrack",
+				"Dune (Original Motion Picture Soundtrack)",
+				"Shaft [OST]",
+				"Shaft (OST) Part 1", // in parentheses, but not at the end
+				"Soundtrack to My Life (Soundtrack) Deluxe",
+				"Shaft OST",
+				"Anthologie",
+				"Anthology 1",
+				"The Very Best of Someone",
+				"The Best Of",
+				"The Best of Two Worlds", // accepted false positive
+				"Greatest Hits Vol. 2",
+				"DISCO ARABICA - Beppe Loda Rmx",
+				"Maru (Skee Mask Remix)",
+				"The Remixes",
+				"Remixed",
+				"Nazira DJ set - Miller Mix: Almaty 2024",
+				"Club Night (DJ Mix)",
+				"Mixed by Somebody",
+				"Megamix",
+				"Medley",
+				"Bootleg Series Vol. 1",
+			]) {
+				expect(isNonCanonical(title), title).toBe(true);
+			}
+		});
+
+		it("does not take for non-canonical a studio record that merely looks like one", () => {
+			for (const title of [
+				"Mix-Up", // Cabaret Voltaire: `mix` alone is not in the list
+				"Mixed Emotions",
+				"Remixology", // not a whole expression
+				"Soundtrack to My Life", // a soundtrack marker counts at the end or in parentheses only
+				"Ostrich",
+				"The Best Is Yet to Come",
+				"Alive at Last",
+				"Live and Let Die",
+				"Anthem",
+				"Best Of Both Worlds", // Opolopo: "best of" counts at the head of the title only
+				"Live at the Apollo", // live recordings are landmarks
+				"Live at the Paradise Garage",
+				"The Very Best", // only "the (very) best of"
+				"The Best Offer", // a whole expression, not a prefix
+				"Homework",
+				"",
+			]) {
+				expect(isNonCanonical(title), title).toBe(false);
+			}
+		});
+
+		it("excludes such an entry from the choice, for both fields, with the reason non-canonical", async () => {
+			const remix = edge("project", "club-remix", "Maru (Skee Mask Remix)", {
+				releaseType: "album",
+				year: "1990",
+			});
+			const studio = edge("project", "studio-one", "Studio One", { year: "2001" });
+			const studio2 = edge("project", "studio-two", "Studio Two", { year: "2002" });
+			const rt = edge("track", "maru-remix", "Maru (Skee Mask Remix)");
+			const t1 = edge("track", "wondergan", "Wondergan");
+			const t2 = edge("track", "other", "Other Song");
+			await put(
+				artistNode("plaid", "Plaid", {
+					discography: [remix, studio, studio2],
+					notable_tracks: [rt, t1, t2],
+				}),
+			);
+
+			await run();
+
+			// The remix has the `album` signal and the oldest year: it would win without the exclusion.
+			expect((await read("artist:plaid")).landmark_project).toEqual(studio);
+			expect((await read("artist:plaid")).reference_track).toEqual(t1);
+			expect((await manifestOf()).excluded).toEqual([
+				{
+					artist: "artist:plaid",
+					field: "landmark_project",
+					target: "project:club-remix",
+					reason: "non-canonical",
+				},
+				{
+					artist: "artist:plaid",
+					field: "reference_track",
+					target: "track:maru-remix",
+					reason: "non-canonical",
+				},
+			]);
+		});
+
+		it("keeps Mix-Up: `mix` alone does not exclude it", async () => {
+			const mixUp = edge("project", "mix-up", "Mix-Up", { releaseType: "album", year: "1979" });
+			const other = edge("project", "other-record", "Other Record", { year: "1981" });
+			await put(artistNode("cabaret", "Cabaret", { discography: [other, mixUp] }));
+
+			await run();
+
+			expect((await read("artist:cabaret")).landmark_project).toEqual(mixUp);
+			expect((await manifestOf()).excluded).toEqual([]);
+		});
+
+		it("leaves the identity reason first: a remix that does not credit the artist is not-credited", async () => {
+			const remix = edge("project", "club-remix", "Club Remix");
+			const studio = edge("project", "studio-one", "Studio One");
+			const studio2 = edge("project", "studio-two", "Studio Two");
+			await put(artistNode("dj", "DJ", { discography: [remix, studio, studio2] }));
+			await put(album("club-remix", "somebody-else"));
+
+			await run();
+
+			expect((await manifestOf()).excluded).toEqual([
+				{
+					artist: "artist:dj",
+					field: "landmark_project",
+					target: "project:club-remix",
+					reason: "not-credited",
+				},
+			]);
+		});
+
+		it("skips the artist whose only entries are non-canonical", async () => {
+			await put(
+				artistNode("only-mixes", "Only Mixes", {
+					discography: [edge("project", "m1", "Night Megamix"), edge("project", "m2", "Day Medley")],
+				}),
+			);
+
+			await run();
+
+			const m = await manifestOf();
+			expect(m.skipped.landmark_project).toEqual(["artist:only-mixes"]);
+			expect(m.soleUnsupported).toEqual([]);
+			expect(m.excluded.map((e) => e.reason)).toEqual(["non-canonical", "non-canonical"]);
+		});
+	});
+
+	describe("a sole option without support", () => {
+		it("chooses no album when the only option is a lone single, and no track when it is named after an artist", async () => {
+			await put(artistNode("emperor", "Emperor"));
+			await put(
+				artistNode("killer-kau", "Killer Kau", {
+					discography: [
+						edge("project", "amaneighbour", "Amaneighbour", { year: "2021", releaseType: "single" }),
+					],
+				}),
+			);
+			await put(
+				artistNode("the-band", "The Band", {
+					notable_tracks: [edge("track", "the-band", "The Band")],
+				}),
+			);
+			const before = await readFile(pathOf(cacheDir, "artist:killer-kau"), "utf8");
+
+			await run();
+
+			expect(await readFile(pathOf(cacheDir, "artist:killer-kau"), "utf8")).toBe(before);
+			const m = await manifestOf();
+			expect(m.skipped.landmark_project).toContain("artist:killer-kau");
+			expect(m.skipped.reference_track).toContain("artist:the-band");
+			expect(m.soleUnsupported).toEqual([
+				{ artist: "artist:killer-kau", field: "landmark_project", target: "project:amaneighbour" },
+				{ artist: "artist:the-band", field: "reference_track", target: "track:the-band" },
+			]);
+			expect(m.written).toEqual({ landmark_project: 0, reference_track: 0 });
+		});
+
+		it("also applies when the other entries were excluded: one eligible lone single is left", async () => {
+			const foreign = edge("project", "foreign--other", "Foreign");
+			const lone = edge("project", "lone", "Lone", { releaseType: "single" });
+			await put(artistNode("left", "Left", { discography: [foreign, lone] }));
+			await put(album("foreign--other", "other"));
+
+			await run();
+
+			const m = await manifestOf();
+			expect(m.soleUnsupported).toEqual([
+				{ artist: "artist:left", field: "landmark_project", target: "project:lone" },
+			]);
+			expect(m.excluded).toHaveLength(1);
+		});
+
+		it("does not apply to a sole entry without signal that is legitimate: Enter, Plasticity", async () => {
+			// An uncached album with no type and no year, and a track: unverifiable, not unsupported.
+			const enter = edge("project", "enter--juan-atkins", "Enter");
+			const plasticity = edge("track", "plasticity", "Plasticity");
+			await put(artistNode("juan-atkins", "Juan Atkins", { discography: [enter] }));
+			await put(artistNode("richie-hawtin", "Richie Hawtin", { notable_tracks: [plasticity] }));
+			// A sole single for a REFERENCE TRACK is not concerned either: the single rule is for albums.
+			const song = edge("track", "song", "Song", { releaseType: "single" });
+			await put(artistNode("songwriter", "Songwriter", { notable_tracks: [song] }));
+
+			await run();
+
+			expect((await read("artist:juan-atkins")).landmark_project).toEqual(enter);
+			expect((await read("artist:richie-hawtin")).reference_track).toEqual(plasticity);
+			expect((await read("artist:songwriter")).reference_track).toEqual(song);
+			expect((await manifestOf()).soleUnsupported).toEqual([]);
+		});
+
+		it("does not apply to a sole single that has a signal (quoted, cached)", async () => {
+			const quoted = edge("project", "quoted", "Quoted Work", { releaseType: "single" });
+			const cached = edge("project", "cached--cached-artist", "Cached Work", { releaseType: "single" });
+			await put(
+				artistNode("q", "Q", { discography: [quoted], editorial_article: articleQuoting("Quoted Work") }),
+			);
+			await put(artistNode("cached-artist", "Cached Artist", { discography: [cached] }));
+			await put(album("cached--cached-artist", "cached-artist"));
+
+			await run();
+
+			expect((await read("artist:q")).landmark_project).toEqual(quoted);
+			expect((await read("artist:cached-artist")).landmark_project).toEqual(cached);
+			expect((await manifestOf()).soleUnsupported).toEqual([]);
+		});
+
+		it("does not apply to two entries, even two lone singles: the tie rules choose", async () => {
+			const a = edge("project", "a-work", "A Work", { releaseType: "single" });
+			const b = edge("project", "b-work", "B Work", { releaseType: "single" });
+			await put(artistNode("two", "Two", { discography: [a, b] }));
+
+			await run();
+
+			expect((await read("artist:two")).landmark_project).toEqual(a);
+			expect((await manifestOf()).soleUnsupported).toEqual([]);
+		});
+
+		it("choose() is pure: only a downgraded entry, or a lone single when asked, gives sole-unsupported", () => {
+			const c = (slug: string, extra: Partial<Candidate> = {}): Candidate => ({
+				edge: { slug, type: "project", name: slug },
+				slug,
+				state: { kind: "absent" },
+				genres: 0,
+				mentioned: false,
+				album: false,
+				namedAfterArtist: false,
+				emptyCredit: false,
+				year: null,
+				single: false,
+				...extra,
+			});
+			const albums = { oldestFirst: true, soleSingleUnsupported: true };
+			const tracks = { oldestFirst: false, soleSingleUnsupported: false };
+			expect(choose([c("project:a", { namedAfterArtist: true })], albums)).toMatchObject({
+				kind: "sole-unsupported",
+				slug: "project:a",
+			});
+			expect(choose([c("project:a", { namedAfterArtist: true })], tracks)).toMatchObject({
+				kind: "sole-unsupported",
+			});
+			expect(choose([c("project:a", { single: true })], albums)).toMatchObject({ kind: "sole-unsupported" });
+			expect(choose([c("project:a", { single: true })], tracks)).toMatchObject({ kind: "chosen" });
+			expect(choose([c("project:a")], albums)).toMatchObject({ kind: "chosen", slug: "project:a" });
+			expect(choose([c("project:a", { single: true, mentioned: true })], albums)).toMatchObject({
+				kind: "chosen",
+			});
+			expect(
+				choose([c("project:a", { single: true }), c("project:b", { single: true })], albums),
+			).toMatchObject({ kind: "chosen", slug: "project:a" });
+		});
+	});
+
+	describe("a verified self-titled record", () => {
+		it("is not downgraded when it is in the cache and credits the artist (Suprême NTM)", async () => {
+			const best = edge("project", "anthologie", "Anthologie");
+			const own = edge("project", "supreme-ntm", "Suprême NTM", { year: "1998" });
+			await put(artistNode("supreme-ntm", "Suprême NTM", { discography: [best, own] }));
+			await put(album("supreme-ntm", "supreme-ntm"));
+
+			await run();
+
+			expect((await read("artist:supreme-ntm")).landmark_project).toEqual(own);
+			// `cached` only: the title is the artist's name, so it is never "quoted".
+			expect(await pickOf("artist:supreme-ntm")).toMatchObject({
+				target: "project:supreme-ntm",
+				reason: "cached",
+				score: 1,
+			});
+		});
+
+		it("wins alone as well, and beats an unsupported entry listed before it", async () => {
+			const other = edge("project", "other-work", "Other Work");
+			const own = edge("project", "the-band", "The Band");
+			await put(artistNode("the-band", "The Band", { discography: [other, own] }));
+			await put(album("the-band", "the-band"));
+			await put(
+				artistNode("solo-band", "Solo Band", { discography: [edge("project", "solo-band", "Solo Band")] }),
+			);
+			await put(album("solo-band", "solo-band"));
+
+			await run();
+
+			expect((await read("artist:the-band")).landmark_project).toEqual(own);
+			expect((await read("artist:solo-band")).landmark_project).toEqual(
+				edge("project", "solo-band", "Solo Band"),
+			);
+		});
+
+		it("is still downgraded when it cannot be verified (not in the cache)", async () => {
+			const own = edge("project", "ghost-band", "Ghost Band");
+			const other = edge("project", "other-work", "Other Work");
+			await put(artistNode("ghost-band", "Ghost Band", { discography: [own, other] }));
+
+			await run();
+
+			// Both are uncached with no signal: the self-titled one is listed first but loses the tie.
+			expect((await read("artist:ghost-band")).landmark_project).toEqual(other);
+		});
+
+		it("is still downgraded for the name of ANOTHER artist, even when it is cached and credits the artist", async () => {
+			const band = edge("project", "the-beatles", "The Beatles");
+			const solo = edge("project", "solo-record--lennon", "Solo Record");
+			await put(artistNode("the-beatles", "The Beatles"));
+			await put(artistNode("lennon", "Lennon", { discography: [band, solo] }));
+			await put(album("the-beatles", "lennon"));
+			await put(album("solo-record--lennon", "lennon"));
+
+			await run();
+
+			// Both are cached and credited (score 1 each): only the downgrade puts the band after the solo record.
+			expect((await read("artist:lennon")).landmark_project).toEqual(solo);
 		});
 	});
 });
