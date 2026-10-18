@@ -45,6 +45,7 @@ import { makeScopedSlug, parseSlug } from "../slug.js";
 import type { ImageSource, NodePayload, Slug } from "../types.js";
 import { isAllowedImageUrl } from "./hosts.js";
 import {
+	IMAGE_RULES_VERSION,
 	type ImageSidecarEntry,
 	isSidecarEntryFresh,
 	readImageSidecar,
@@ -231,6 +232,7 @@ export function createImageQueue(deps: ImageQueueDeps): ImageQueue {
 					state: "conflict",
 					hint: { title: hint.title, artist: hint.artist },
 					resolvedAt: new Date(now()).toISOString(),
+					rules: IMAGE_RULES_VERSION,
 				});
 			})(),
 		);
@@ -288,14 +290,26 @@ export function createImageQueue(deps: ImageQueueDeps): ImageQueue {
 			return await underDeadline(async (signal): Promise<Verdict> => {
 				const fetchImpl = guardedFetch(deps.fetch, signal);
 				if (job.kind === "node" && node) {
-					const found = await deps.resolveNode(node, { cache, fetch: fetchImpl, priority: "background" });
-					if (!found) return { outcome: "missing", reason: "no-match" };
+					const outage = { musicBrainz: false };
+					const found = await deps.resolveNode(node, {
+						cache,
+						fetch: fetchImpl,
+						priority: "background",
+						viaMusicBrainz: true,
+						outage,
+					});
+					// No image and a MusicBrainz outage on the way: nothing is known, so nothing is refused for 7 days.
+					if (!found)
+						return outage.musicBrainz
+							? { outcome: "unavailable" }
+							: { outcome: "missing", reason: "no-match" };
 					return { outcome: "found", url: found.url, source: found.source };
 				}
 				if (job.kind !== "hint") return { outcome: "unavailable" };
 				const r = await deps.resolveHint(job.hint, {
 					fetch: fetchImpl,
 					mbOptions: { priority: "background" },
+					compilations: true,
 				});
 				if (r.kind === "found") {
 					return {
@@ -318,7 +332,12 @@ export function createImageQueue(deps: ImageQueueDeps): ImageQueue {
 			job.kind === "hint"
 				? { title: job.hint.title, artist: job.hint.artist }
 				: { title: node?.name ?? "", artist: "" };
-		const base = { key: job.key, hint, resolvedAt: new Date(now()).toISOString() };
+		const base = {
+			key: job.key,
+			hint,
+			resolvedAt: new Date(now()).toISOString(),
+			rules: IMAGE_RULES_VERSION,
+		};
 		switch (verdict.outcome) {
 			case "found":
 				return {

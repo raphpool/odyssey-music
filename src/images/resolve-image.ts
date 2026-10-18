@@ -4,7 +4,8 @@
  * One ladder per node type, first success wins, and the rung that succeeded is reported as
  * `ImageSource` so a batch can later be invalidated or re-run by provenance:
  *
- *   project → Cover Art Archive (release-group MBID) → verified iTunes (title AND artist)
+ *   project → Cover Art Archive (release-group MBID) → MusicBrainz names the release group (only when
+ *             `deps.viaMusicBrainz`, TRA-612, for a project with no MBID) → verified iTunes (title AND artist)
  *   track   → its project's image → CAA by the project's MBID → verified iTunes
  *   artist  → Wikidata P18 via MusicBrainz → cover of the landmark project / a discography release
  *   label   → Wikidata P154 then P18 (QID via MusicBrainz or a verified search) → a notable release
@@ -29,6 +30,7 @@ import type { EdgeRef, ImageSource, NodePayload } from "../types.js";
 import { coverArtUrl } from "./coverart.js";
 import { isAllowedImageUrl } from "./hosts.js";
 import { isWork, reciprocity, type Subject } from "./reciprocity.js";
+import { resolveAlbumByMusicBrainz } from "./resolve-work-hint.js";
 import { commonsFileUrl, fetchWikidataImages, searchWikidataLabel } from "./wikidata.js";
 
 const log = logger.child({ module: "resolve-image" });
@@ -48,6 +50,19 @@ export interface ImageDeps {
 	 * `data/` when absent; an unreadable table counts as empty, i.e. strict slug equality.
 	 */
 	redirects?: GenreRedirects;
+	/**
+	 * A project without an MBID asks MusicBrainz which release group it is (the hint resolver's rules, TRA-612),
+	 * between the Cover Art Archive and iTunes. Off by default: materialization has just run that very
+	 * resolution to stamp the MBID, so only the on-demand queue, which serves nodes materialized before a
+	 * rule was relaxed, turns it on. The MBID found is used for the cover and never written to the node.
+	 */
+	viaMusicBrainz?: boolean;
+	/**
+	 * Filled in by the resolver when a MusicBrainz request of the `viaMusicBrainz` rung failed (HTTP error,
+	 * timeout, network, unreadable answer). `null` from `resolveImage` then means "could not tell", not
+	 * "no image": the queue records `unavailable` (retried in an hour) instead of `missing` (kept 7 days).
+	 */
+	outage?: { musicBrainz: boolean };
 }
 
 // Calls `fetchWikidataUrlRelMb` directly rather than `fetchWikidataQid`: that wrapper (src/images/wikidata.ts)
@@ -199,6 +214,41 @@ async function caa(mbid: string | undefined, deps: ImageDeps): Promise<ResolvedI
 	return url ? { url, source: "caa" } : null;
 }
 
+/** The cover of the release group MusicBrainz names for a project that holds no MBID; null when it names none. */
+async function musicBrainzCover(
+	node: Extract<NodePayload, { type: "project" }>,
+	deps: ImageDeps,
+): Promise<ResolvedImage | null> {
+	const artist = node.artists[0];
+	if (node.mbid || !deps.viaMusicBrainz || !artist?.name) return null;
+	// The edge of a project almost never carries the MBID: the credited artist's own node does.
+	const artistMbid = artist.mbid ?? (await creditedArtistMbid(artist, deps.cache));
+	const found = await resolveAlbumByMusicBrainz(
+		{
+			title: node.name,
+			artist: artist.name,
+			releaseType: node.release_type,
+			artistMbid,
+		},
+		{ slug: node.slug },
+		{
+			compilations: true,
+			...(deps.fetch ? { fetch: deps.fetch } : {}),
+			...(deps.priority ? { mbOptions: { priority: deps.priority } } : {}),
+		},
+	);
+	// A MusicBrainz outage is no verdict on the work: the caller is told, so that it is not kept as a miss.
+	if (found?.kind === "unavailable" && deps.outage) deps.outage.musicBrainz = true;
+	// Only the Cover Art Archive rung can answer here (iTunes is not part of resolveAlbumByMusicBrainz).
+	return found?.kind === "found" ? { url: found.url, source: "caa" } : null;
+}
+
+/** The MBID held by the node of a credited artist, or undefined: unreadable, not an artist, or without MBID. */
+async function creditedArtistMbid(artist: EdgeRef, cache: NodeCache): Promise<string | undefined> {
+	const node = await readNode(cache, artist);
+	return node?.type === "artist" ? node.mbid : undefined;
+}
+
 async function itunes(
 	title: string,
 	artistName: string | undefined,
@@ -233,6 +283,7 @@ export async function resolveImage(node: NodePayload, deps: ImageDeps): Promise<
 		case "project":
 			return firstOf([
 				["caa", () => caa(node.mbid, deps)],
+				["musicbrainz", () => musicBrainzCover(node, deps)],
 				["itunes", () => itunes(node.name, node.artists[0]?.name, node.year, deps)],
 			]);
 

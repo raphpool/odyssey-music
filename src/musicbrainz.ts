@@ -1243,6 +1243,54 @@ function strictlyEarlier(a: string, b: string): boolean {
 }
 
 /**
+ * The two titles a double A-side single is made of: "Sine of the Dub / Stalker" -> two. Empty for anything
+ * else: a bare "/" is no separator ("AC/DC"), and three titles or more are an EP or an album of several works
+ * ("Numbers / Computer World / Radioactivity" is not Kraftwerk's album "Computer World", measured 2026-10-18).
+ */
+function doubleSidedSegments(title: string): string[] {
+	const parts = title.split(/\s+\/\s+/u);
+	return parts.length === 2 ? parts.map((p) => normalizeTitleBody(p)) : [];
+}
+
+/**
+ * A release group that is a double A-side single of the requested work (2026-10-18, TRA-612: Kode9's
+ * "Sine of the Dub" is filed by MB as "Sine of the Dub / Stalker", so the exact-title step found nothing).
+ * Only ever an additional acceptance, never a new refusal: any doubt answers "none", as before.
+ * It is tried only when NO candidate has the exact title, whoever it is credited to: an exact title
+ * always wins over a segment. The candidate must be credited to the artist (equality of names, or the
+ * artist's own MBID), be a primary-type Single of exactly two titles that agrees with the caller's known
+ * release type, and carry no secondary type (a "Remix" or "Live" release group of a similar title is not the work); exactly one may remain.
+ */
+function pickDoubleSided<
+	T extends {
+		title: string;
+		"primary-type"?: string | undefined;
+		"secondary-types"?: unknown;
+		"artist-credit"?: MbArtistCreditEntry[] | undefined;
+	},
+>(
+	candidates: T[],
+	wanted: string,
+	hint: string,
+	requested: ReadonlySet<string> | null,
+	releaseType: string | undefined,
+): Pick<T> {
+	const known = releaseType?.trim().toLowerCase() ?? "";
+	const matches = candidates.filter((c) => {
+		if (!doubleSidedSegments(c.title).includes(wanted)) return false;
+		const primary = (c["primary-type"] ?? "").trim().toLowerCase();
+		// A single, and only a single: "Gesang der Jünglinge / Kontakte" is an album of two works, not the first
+		// one (measured 2026-10-18 on the cache). The caller's known release type must agree as well.
+		if (primary !== "single" || (known !== "" && primary !== known)) return false;
+		if (Array.isArray(c["secondary-types"]) && c["secondary-types"].length > 0) return false;
+		const credit = c["artist-credit"] ?? [];
+		return creditEqualsHint(credit, hint) || (requested !== null && creditCarriesMbid(credit, requested));
+	});
+	const only = matches[0];
+	return matches.length === 1 && only ? { kind: "one", candidate: only } : { kind: "none" };
+}
+
+/**
  * Choose the candidate MB actually means. Never defaults to the first result: MB ranks "New Forms²"
  * and "New Forms" both at 100, and returns up to 8 look-alikes of one title and one credit in an order
  * that changes from one request to the next (2026-10-15, TRA-474 review: Kraftwerk's "Autobahn" came
@@ -1276,6 +1324,8 @@ function strictlyEarlier(a: string, b: string): boolean {
  *    "Compilation" (same for Live, Soundtrack, Remix, DJ-mix...), so a dated compilation must not beat an
  *    undated album by its date. Candidates of one primary type that differ in secondary types are
  *    `ambiguous`: the caller's release type does not name a secondary one.
+ * 6. release groups only, and only when step 1 left NO candidate at all: a double A-side single whose title
+ *    has the requested one as a " / " segment is accepted under the same credit rule (pickDoubleSided).
  * Ambiguous is not "none": the caller keeps the two apart.
  */
 function pickByTitleAndCredit<
@@ -1309,6 +1359,10 @@ function pickByTitleAndCredit<
 	// With a hint, only a candidate credited to that artist can be the work; without one the title alone decides.
 	// The artist's own MBID makes a credit direct whatever name it is printed under (TRA-552).
 	const requested = requestedArtistMbid?.trim() ? new Set([requestedArtistMbid.trim().toLowerCase()]) : null;
+	// No release group has this title: the work may be one side of a double A-side single (TRA-612).
+	if (kind === "release-group" && hasHint && exact.length === 0) {
+		return pickDoubleSided(candidates, wanted, hint, requested, releaseType);
+	}
 	const direct = hasHint
 		? exact.filter(
 				(c) =>
@@ -1507,6 +1561,104 @@ export async function resolveRecordingDetailed(
 			releaseGroupMbid: pickReleaseGroupMbid(rec.releases),
 		},
 	};
+}
+
+/**
+ * Answer of {@link findCompilationCoverReleaseGroup}. Deliberately NOT an {@link MbReleaseIdentity}: it
+ * carries a release-group MBID for a Cover Art Archive lookup and nothing else, so no caller can stamp
+ * it as a node's `mbid` or take a credit from it by mistake (TRA-612).
+ */
+export type MbCompilationCover =
+	| { kind: "found"; releaseGroupMbid: string }
+	| { kind: "none" }
+	| { kind: "ambiguous" }
+	| { kind: "unavailable" };
+
+const VARIOUS_ARTISTS_MBID = "89ad4ac3-39f7-470e-963a-56509c546377";
+
+/** Secondary types of an untrusted release-group object, lowercased; anything that is not a string is dropped. */
+function secondaryTypesOf(group: Record<string, unknown>): string[] {
+	const raw = group["secondary-types"];
+	return Array.isArray(raw)
+		? raw.flatMap((s) => (typeof s === "string" ? [s.trim().toLowerCase()] : []))
+		: [];
+}
+
+/**
+ * The compilation release group titled `title` that MB proves `contextArtist` appears on (2026-10-18,
+ * TRA-612: "Hyperdub 10.3" is credited to Various Artists, so the artist-credit step refused it for Kode9
+ * whose tracks it holds). For a COVER only: the answer is never an identity (see {@link MbCompilationCover}).
+ *
+ * ONE request, a recording search `release:"<title>" AND artist:"<artist>"`: the hits are recordings
+ * credited to the artist, and each lists the releases it appears on with their release group and credit.
+ * The release group is accepted if, and only if:
+ *  - its normalized title equals the requested one (edition noise ignored, as everywhere else);
+ *  - it is the only release group of that title among the artist's recordings;
+ *  - it has the secondary type Compilation, and every release of it the hits list is credited to
+ *    Various Artists (a compilation credited to a real artist is that artist's album, not a proof here);
+ *  - one of the artist's recordings is on it, credited by `requestedArtistMbid` when the caller knows it (a
+ *    namesake under the same name does not count), and by equality of names only when it does not.
+ * A truncated page is picked from blind: `ambiguous`. Same priority rules as the other resolvers.
+ */
+export async function findCompilationCoverReleaseGroup(
+	title: string,
+	contextArtist: string,
+	options: { priority?: MbPriority | undefined; requestedArtistMbid?: string | undefined } = {},
+): Promise<MbCompilationCover> {
+	const wanted = normalizeTitleBody(title);
+	const hint = creditKey(contextArtist);
+	const release = lucenePhrase(stripEditionNoise(title));
+	const artist = normalizeSlugBody(contextArtist) ? lucenePhrase(contextArtist) : "";
+	if (!wanted || !hint || !release || !artist) return { kind: "none" };
+	const body = await mbFetch<unknown>(
+		"/recording",
+		{ query: `release:"${release}" AND artist:"${artist}"`, limit: WORK_SEARCH_LIMIT },
+		undefined,
+		options.priority,
+	);
+	const recordings = parseRecordings(body);
+	if (!recordings) return { kind: "unavailable" };
+	if (isTruncated(body, recordings.length)) return { kind: "ambiguous" };
+	const requested = options.requestedArtistMbid?.trim()
+		? new Set([options.requestedArtistMbid.trim().toLowerCase()])
+		: null;
+	const groups = new Map<string, { compilation: boolean; variousArtistsOnly: boolean }>();
+	for (const rec of recordings) {
+		const credit = rec["artist-credit"] ?? [];
+		// The artist's MBID, when known, is the only proof: a namesake printed under the same name does not count.
+		// The name decides only when no MBID is known.
+		const credited =
+			requested !== null ? creditCarriesMbid(credit, requested) : creditEqualsHint(credit, hint);
+		if (!credited) continue;
+		for (const rel of Array.isArray(rec.releases) ? rec.releases : []) {
+			const group = isRecord(rel) ? rel["release-group"] : undefined;
+			if (!isRecord(group) || !isMbid(group.id) || typeof group.title !== "string") continue;
+			if (normalizeTitleBody(group.title) !== wanted) continue;
+			const releaseCredit = isRecord(rel) && Array.isArray(rel["artist-credit"]) ? rel["artist-credit"] : [];
+			const various =
+				releaseCredit.length > 0 &&
+				releaseCredit.every(
+					(e) =>
+						isRecord(e) &&
+						isRecord(e.artist) &&
+						typeof e.artist.id === "string" &&
+						e.artist.id.toLowerCase() === VARIOUS_ARTISTS_MBID,
+				);
+			const seen = groups.get(group.id.toLowerCase());
+			groups.set(group.id.toLowerCase(), {
+				// Accumulated, not overwritten: hits come back in an order that varies from one request to the next.
+				compilation: (seen?.compilation ?? false) || secondaryTypesOf(group).includes("compilation"),
+				variousArtistsOnly: various && (seen?.variousArtistsOnly ?? true),
+			});
+		}
+	}
+	if (groups.size > 1) return { kind: "ambiguous" };
+	const [only] = [...groups];
+	if (!only) return { kind: "none" };
+	const [releaseGroupMbid, proof] = only;
+	return proof.compilation && proof.variousArtistsOnly
+		? { kind: "found", releaseGroupMbid }
+		: { kind: "none" };
 }
 
 /** {@link resolveReleaseGroupDetailed} without the flags: null means "do not use". */

@@ -25,6 +25,21 @@ import { isAllowedImageUrl } from "./hosts.js";
 
 export type ImageSidecarState = "found" | "missing" | "unavailable" | "conflict";
 
+/**
+ * Version of the rules that decide whether a work has a cover. Written into every entry; a `missing` or
+ * `conflict` verdict (kept 7 days) written under an older version, or under none, is stale and is computed
+ * again on the next request. Raise it whenever a change makes the resolvers accept what they used to refuse.
+ *
+ * 2 (2026-10-18, TRA-612): a double A-side single ("Sine of the Dub / Stalker") and a compilation that holds
+ * the artist's own tracks ("Hyperdub 10.3") now get their cover. Without this, the Kode9 page would have kept
+ * the old `no-match` of both works for up to 7 days after the deploy, with no way to clear it but a manual
+ * action on the server. `found` (definitive) and `unavailable` (1 h) are unaffected.
+ */
+export const IMAGE_RULES_VERSION = 2;
+
+/** Entries written before the version existed are version 1. */
+const LEGACY_RULES_VERSION = 1;
+
 export interface ImageSidecarEntry {
 	/** `project:<title>--<artist>` | `track:…` | the slug of an existing node. */
 	key: Slug;
@@ -39,6 +54,8 @@ export interface ImageSidecarEntry {
 	hint: { title: string; artist: string };
 	/** ISO-8601. */
 	resolvedAt: string;
+	/** {@link IMAGE_RULES_VERSION} at write time. Absent on files written before it existed. */
+	rules?: number;
 }
 
 const HOUR_MS = 60 * 60 * 1000;
@@ -66,6 +83,7 @@ const entrySchema = z
 		reason: z.enum(["ambiguous", "no-match"]).optional(),
 		hint: z.object({ title: z.string(), artist: z.string() }),
 		resolvedAt: z.string().datetime({ offset: true }),
+		rules: z.number().int().min(1).optional(),
 	})
 	.superRefine((e, ctx) => {
 		const found = e.state === "found";
@@ -114,6 +132,16 @@ export function isSidecarEntryFresh(entry: ImageSidecarEntry, now: () => number 
 }
 
 /**
+ * False for a refusal (`missing`, `conflict`) made under older rules than the current ones, or under none:
+ * it says nothing about what the current rules would answer. Found and unavailable entries are not refusals
+ * of a work, and keep their own life.
+ */
+export function isSidecarEntryCurrent(entry: ImageSidecarEntry): boolean {
+	const refusal = entry.state === "missing" || entry.state === "conflict";
+	return !refusal || (entry.rules ?? LEGACY_RULES_VERSION) >= IMAGE_RULES_VERSION;
+}
+
+/**
  * Delete an invalid file, unless a concurrent atomic write replaced it since we read it: a fresh
  * valid entry must not be lost to a reader that judged the previous content.
  */
@@ -159,12 +187,14 @@ export async function readImageSidecar(
 	// Two keys can sanitize to the same filename (`a/b` and `a_b`): a valid file that belongs to
 	// another key is not ours to serve, nor to delete.
 	if (entry.key !== key) return null;
-	return isSidecarEntryFresh(entry, now) ? entry : null;
+	// A stale refusal is left on disk for the next write to replace, like an expired one.
+	return isSidecarEntryFresh(entry, now) && isSidecarEntryCurrent(entry) ? entry : null;
 }
 
 /** Validates, creates `cache/images/` if needed, then writes atomically. Throws on an invalid entry. */
 export async function writeImageSidecar(cacheDir: string, entry: ImageSidecarEntry): Promise<void> {
-	const data = entrySchema.parse(entry);
+	// Every write is made under the current rules; only a file already on disk can carry an older version.
+	const data = entrySchema.parse({ ...entry, rules: entry.rules ?? IMAGE_RULES_VERSION });
 	const file = imageSidecarPath(cacheDir, entry.key);
 	await mkdir(join(cacheDir, "images"), { recursive: true });
 	await atomicWriteJson(file, data);

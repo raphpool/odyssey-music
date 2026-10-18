@@ -5,6 +5,7 @@ import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
+	IMAGE_RULES_VERSION,
 	type ImageSidecarEntry,
 	imageSidecarPath,
 	isSidecarEntryFresh,
@@ -60,7 +61,8 @@ describe("write then read", () => {
 		const e = entry();
 		await writeImageSidecar(dir, e);
 		const back = await readImageSidecar(dir, KEY, now);
-		expect(back).toEqual(e);
+		// Every write now carries the rules version (TRA-612).
+		expect(back).toEqual({ ...e, rules: IMAGE_RULES_VERSION });
 		expect(back?.url).toBe(e.url);
 		expect(back?.source).toBe("caa");
 		expect(back?.mbid).toBe(e.mbid);
@@ -73,7 +75,7 @@ describe("write then read", () => {
 		delete e.url;
 		delete e.source;
 		await writeImageSidecar(dir, e);
-		await expect(readImageSidecar(dir, KEY, now)).resolves.toEqual(e);
+		await expect(readImageSidecar(dir, KEY, now)).resolves.toEqual({ ...e, rules: IMAGE_RULES_VERSION });
 	});
 
 	it("returns null for an absent file", async () => {
