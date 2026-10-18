@@ -26,6 +26,7 @@
   },
   "type": "genre",
   "editorial_definition": "A subgenre of techno that prioritizes sonic exploration and structural innovation over dancefloor functionality, characterized by abstract textures, complex or broken rhythms, and heavy digital signal processing.",
+  "qid": "Q105636937",
   "era": "1990s to present",
   "origin": "United Kingdom and Germany",
   "parent_genres": [],
@@ -69,9 +70,9 @@
   ],
   "key_labels": [
     {
-      "slug": "label:warp-records",
+      "slug": "label:warp",
       "type": "label",
-      "name": "Warp Records"
+      "name": "Warp"
     },
     {
       "slug": "label:basic-channel",
@@ -85,6 +86,5 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q105636937"
+  "landmark_tracks": []
 }

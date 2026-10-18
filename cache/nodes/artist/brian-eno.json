@@ -53,14 +53,14 @@
       "name": "Island Records"
     },
     {
-      "slug": "label:warp-records",
+      "slug": "label:warp",
       "type": "label",
-      "name": "Warp Records"
+      "name": "Warp"
     },
     {
-      "slug": "label:eg-records",
+      "slug": "label:e-g-records",
       "type": "label",
-      "name": "EG Records"
+      "name": "E.G. Records"
     }
   ],
   "discography": [

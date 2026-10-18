@@ -34,6 +34,7 @@
   },
   "type": "genre",
   "editorial_definition": "A fusion genre that integrates elements of country music with mainstream pop production to achieve broad crossover appeal, often characterized by polished, high-fidelity sound and contemporary songwriting.",
+  "qid": "Q2280497",
   "parent_genres": [],
   "subgenres": [],
   "related_genres": [
@@ -90,9 +91,9 @@
       "name": "RCA Records"
     },
     {
-      "slug": "label:columbia-records",
+      "slug": "label:columbia",
       "type": "label",
-      "name": "Columbia Records"
+      "name": "Columbia"
     }
   ],
   "landmark_projects": [
@@ -112,6 +113,5 @@
       "name": "Back Home Again"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q2280497"
+  "landmark_tracks": []
 }

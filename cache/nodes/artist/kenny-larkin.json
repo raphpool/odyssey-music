@@ -49,9 +49,9 @@
       "name": "Transmat"
     },
     {
-      "slug": "label:warp-records",
+      "slug": "label:warp",
       "type": "label",
-      "name": "Warp Records"
+      "name": "Warp"
     },
     {
       "slug": "label:plus-8-records",

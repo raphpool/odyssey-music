@@ -34,6 +34,17 @@
       "type": "genre",
       "name": "Acid House",
       "qid": "Q341364"
+    },
+    {
+      "slug": "genre:braindance",
+      "type": "genre",
+      "name": "Braindance"
+    },
+    {
+      "slug": "genre:acid-techno",
+      "type": "genre",
+      "name": "Acid Techno",
+      "qid": "Q341395"
     }
   ],
   "roster": [
@@ -81,6 +92,36 @@
       "slug": "artist:plug",
       "type": "artist",
       "name": "Plug"
+    },
+    {
+      "slug": "artist:afx",
+      "type": "artist",
+      "name": "AFX"
+    },
+    {
+      "slug": "artist:global-goon",
+      "type": "artist",
+      "name": "Global Goon"
+    },
+    {
+      "slug": "artist:mike-and-rich",
+      "type": "artist",
+      "name": "Mike & Rich"
+    },
+    {
+      "slug": "artist:mike-paradinas",
+      "type": "artist",
+      "name": "Mike Paradinas"
+    },
+    {
+      "slug": "artist:richard-d-james",
+      "type": "artist",
+      "name": "Richard D. James"
+    },
+    {
+      "slug": "artist:the-tuss",
+      "type": "artist",
+      "name": "The Tuss"
     }
   ],
   "notable_releases": [
@@ -115,6 +156,40 @@
       "type": "project",
       "name": "Tango N' Vectif",
       "artist": "µ-Ziq"
+    },
+    {
+      "slug": "project:expert-knob-twiddlers--aphex-twin",
+      "type": "project",
+      "name": "Expert Knob Twiddlers"
+    },
+    {
+      "slug": "project:polyester",
+      "type": "project",
+      "name": "Polyester"
+    },
+    {
+      "slug": "project:nu-romantix--dmx-krew",
+      "type": "project",
+      "name": "Nu Romantix",
+      "artist": "DMX Krew"
+    },
+    {
+      "slug": "project:polyester--lisa-carbon",
+      "type": "project",
+      "name": "Polyester",
+      "artist": "Lisa Carbon"
+    },
+    {
+      "slug": "project:rushup-edge--the-tuss",
+      "type": "project",
+      "name": "Rushup Edge",
+      "artist": "The Tuss"
+    },
+    {
+      "slug": "project:sound-of-the-street--dmx-krew",
+      "type": "project",
+      "name": "Sound of the Street",
+      "artist": "DMX Krew"
     }
   ]
 }

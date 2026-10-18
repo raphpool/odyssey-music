@@ -42,14 +42,14 @@
   ],
   "labels": [
     {
-      "slug": "label:rephlex-records",
+      "slug": "label:rephlex",
       "type": "label",
-      "name": "Rephlex Records"
+      "name": "Rephlex"
     },
     {
-      "slug": "label:warp-records",
+      "slug": "label:warp",
       "type": "label",
-      "name": "Warp Records"
+      "name": "Warp"
     }
   ],
   "discography": [

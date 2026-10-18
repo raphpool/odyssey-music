@@ -19,7 +19,33 @@
   "editorial_description": "A highly influential, if controversial, British label synonymous with the progressive and art-rock movements, known for stewarding the careers of King Crimson, Brian Eno, and Roxy Music.",
   "founded": "1969",
   "location": "UK",
-  "genres": [],
+  "active_years": "1969–1996",
+  "genres": [
+    {
+      "slug": "genre:progressive-rock",
+      "type": "genre",
+      "name": "Progressive Rock",
+      "qid": "Q49451"
+    },
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art Rock",
+      "qid": "Q217467"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    },
+    {
+      "slug": "genre:experimental",
+      "type": "genre",
+      "name": "Experimental",
+      "qid": "Q1640319"
+    }
+  ],
   "roster": [
     {
       "slug": "artist:king-crimson",
@@ -65,6 +91,11 @@
       "slug": "artist:bryan-ferry",
       "type": "artist",
       "name": "Bryan Ferry"
+    },
+    {
+      "slug": "artist:harold-budd",
+      "type": "artist",
+      "name": "Harold Budd"
     }
   ],
   "notable_releases": [
@@ -93,6 +124,11 @@
       "slug": "project:ambient-2-the-plateaux-of-mirror",
       "type": "project",
       "name": "Ambient 2: The Plateaux of Mirror"
+    },
+    {
+      "slug": "project:red",
+      "type": "project",
+      "name": "Red"
     }
   ]
 }

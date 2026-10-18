@@ -1,9 +1,9 @@
 {
 	"homonym-release-links": 20,
 	"release-links-to-empty-credit": 41,
-	"zero-edge-nodes": 30,
+	"zero-edge-nodes": 28,
 	"self-edges": 0,
-	"duplicate-names": 1,
+	"duplicate-names": 0,
 	"unscoped-release-slugs": 87,
 	"literal-newlines": 0,
 	"missing-similar-artists": 31,
@@ -15,14 +15,14 @@
 	},
 	"single-citation": {
 		"genre": 135,
-		"label": 34,
+		"label": 33,
 		"artist": 138,
 		"project": 99,
 		"track": 62
 	},
 	"missing-image": {
 		"genre": 274,
-		"label": 97,
+		"label": 95,
 		"artist": 163,
 		"project": 94,
 		"track": 80
@@ -30,16 +30,16 @@
 	"reciprocity-missing": {
 		"artist.labels->label.roster": 0,
 		"artist.discography->project.artists": 59,
-		"label.roster->artist.labels": 128,
+		"label.roster->artist.labels": 110,
 		"genre.key_artists->artist.genres": 246,
 		"track.project->project.tracklist": 33,
 		"project.artists->artist.discography": 0,
 		"artist.notable_tracks->track.artists": 25,
 		"track.artists->artist.notable_tracks": 0,
 		"project.tracklist->track.project": 41,
-		"label.notable_releases->project.label": 58,
+		"label.notable_releases->project.label": 52,
 		"project.label->label.notable_releases": 0,
-		"genre.key_labels->label.genres": 100,
+		"genre.key_labels->label.genres": 98,
 		"genre.landmark_projects->project.genres": 53,
 		"genre.landmark_tracks->track.genres": 15,
 		"genre.parent_genres->genre.subgenres": 151,

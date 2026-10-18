@@ -24,8 +24,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
-  "image_url": "https://coverartarchive.org/release-group/6792b6d1-4e65-3c3c-9d20-d08aa1dcfc60/front-500",
-  "image_source": "derived-cover",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Columbia%20Records%20Colored%20Logo.svg?width=600",
+  "image_source": "wikidata-p154",
   "type": "label",
   "editorial_description": "The oldest surviving record label in the world, Columbia Records has defined the trajectory of the music industry for over a century, from the birth of the phonograph to the digital age. It remains a flagship division of Sony Music Entertainment, housing a vast and culturally vital catalog of essential recordings across every major musical genre.",
   "founded": "1889",
@@ -95,6 +95,111 @@
       "slug": "artist:tenacious-d",
       "type": "artist",
       "name": "Tenacious D"
+    },
+    {
+      "slug": "artist:bruce-springsteen",
+      "type": "artist",
+      "name": "Bruce Springsteen"
+    },
+    {
+      "slug": "artist:adele",
+      "type": "artist",
+      "name": "Adele"
+    },
+    {
+      "slug": "artist:harry-styles",
+      "type": "artist",
+      "name": "Harry Styles"
+    },
+    {
+      "slug": "artist:a-guy-called-gerald",
+      "type": "artist",
+      "name": "A Guy Called Gerald"
+    },
+    {
+      "slug": "artist:aretha-franklin",
+      "type": "artist",
+      "name": "Aretha Franklin"
+    },
+    {
+      "slug": "artist:calvin-harris",
+      "type": "artist",
+      "name": "Calvin Harris"
+    },
+    {
+      "slug": "artist:chico-hamilton",
+      "type": "artist",
+      "name": "Chico Hamilton"
+    },
+    {
+      "slug": "artist:daft-punk",
+      "type": "artist",
+      "name": "Daft Punk"
+    },
+    {
+      "slug": "artist:david-bowie",
+      "type": "artist",
+      "name": "David Bowie"
+    },
+    {
+      "slug": "artist:earl-sweatshirt",
+      "type": "artist",
+      "name": "Earl Sweatshirt"
+    },
+    {
+      "slug": "artist:frank-sinatra",
+      "type": "artist",
+      "name": "Frank Sinatra"
+    },
+    {
+      "slug": "artist:john-cale",
+      "type": "artist",
+      "name": "John Cale"
+    },
+    {
+      "slug": "artist:lcd-soundsystem",
+      "type": "artist",
+      "name": "LCD Soundsystem"
+    },
+    {
+      "slug": "artist:lil-peep",
+      "type": "artist",
+      "name": "Lil Peep"
+    },
+    {
+      "slug": "artist:mariah-carey",
+      "type": "artist",
+      "name": "Mariah Carey"
+    },
+    {
+      "slug": "artist:nas",
+      "type": "artist",
+      "name": "Nas"
+    },
+    {
+      "slug": "artist:peter-tosh",
+      "type": "artist",
+      "name": "Peter Tosh"
+    },
+    {
+      "slug": "artist:stan-getz",
+      "type": "artist",
+      "name": "Stan Getz"
+    },
+    {
+      "slug": "artist:t-i",
+      "type": "artist",
+      "name": "T.I."
+    },
+    {
+      "slug": "artist:three-6-mafia",
+      "type": "artist",
+      "name": "Three 6 Mafia"
+    },
+    {
+      "slug": "artist:yellowman",
+      "type": "artist",
+      "name": "Yellowman"
     }
   ],
   "notable_releases": [
@@ -103,6 +208,27 @@
       "type": "project",
       "name": "The Piper at the Gates of Dawn",
       "artist": "Pink Floyd"
+    },
+    {
+      "slug": "project:kind-of-blue--miles-davis",
+      "type": "project",
+      "name": "Kind of Blue"
+    },
+    {
+      "slug": "project:highway-61-revisited",
+      "type": "project",
+      "name": "Highway 61 Revisited"
+    },
+    {
+      "slug": "project:born-to-run--bruce-springsteen",
+      "type": "project",
+      "name": "Born to Run"
+    },
+    {
+      "slug": "project:delusion-of-the-fury--harry-partch",
+      "type": "project",
+      "name": "Delusion of the Fury",
+      "artist": "Harry Partch"
     }
   ]
 }

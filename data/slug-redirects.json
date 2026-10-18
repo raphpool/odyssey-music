@@ -1,6 +1,6 @@
 {
-  "source": "release slug scoping",
-  "generated_at": "2026-10-16T03:06:43.145Z",
+  "source": "label merge (TRA-600)",
+  "generated_at": "2026-10-18T10:48:00.025Z",
   "redirects": {
     "artist:drake--canadian-rapper": "artist:drake",
     "artist:gokhan-k-rdar": "artist:gokhan-kirdar",
@@ -14,6 +14,12 @@
     "artist:pole--stefan-betke": "artist:pole",
     "artist:pupajim--roster-of-label-stand-high-records": "artist:pupajim",
     "artist:s-awomir-kurkiewicz": "artist:slawomir-kurkiewicz",
+    "label:axis-records": "label:axis",
+    "label:columbia-records": "label:columbia",
+    "label:eg-records": "label:e-g-records",
+    "label:epic-records": "label:epic",
+    "label:rephlex-records": "label:rephlex",
+    "label:warp-records": "label:warp",
     "project:0oc": "project:0oc--anna",
     "project:100-rap-francais": "project:100-rap-francais--jarod",
     "project:20-of-the-best": "project:20-of-the-best--ub40",
