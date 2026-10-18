@@ -180,7 +180,16 @@ export interface NodeIndex {
 	relations: RelationIndex;
 	/** Work slug (after one hop of the redirect tables) -> the artists whose lists name it. */
 	listers: ReadonlyMap<string, readonly { artist: string; edge: Obj }[]>;
+	/**
+	 * `type:<title body>` -> the artists that list a work of that title SCOPED ON THEMSELVES
+	 * (`project:human-after-all--daft-punk`): the right slug of the work, whose node may not exist yet.
+	 */
+	siblings: ReadonlyMap<string, readonly { artist: string; edge: Obj }[]>;
 }
+
+/** `type:<title body>` of a work slug, without its scope. */
+const titleKey = (slug: string): string =>
+	`${typeOfSlug(slug)}:${slug.slice(slug.indexOf(":") + 1).split("--")[0]}`;
 
 export function buildIndex(
 	nodes: ReadonlyMap<string, Obj>,
@@ -189,6 +198,7 @@ export function buildIndex(
 	const artists = new Map<string, Obj>();
 	for (const [slug, node] of nodes) if (typeOfSlug(slug) === "artist") artists.set(slug, node);
 	const listers = new Map<string, { artist: string; edge: Obj }[]>();
+	const siblings = new Map<string, { artist: string; edge: Obj }[]>();
 	for (const [artist, node] of [...artists].sort(([a], [b]) => compareLex(a, b))) {
 		for (const field of ["discography", "notable_tracks"] as const) {
 			for (const edge of edgesOf(node[field])) {
@@ -197,10 +207,14 @@ export function buildIndex(
 				// A live node wins over a redirect, as in resolveReadSlug.
 				const target = nodes.has(slug) ? slug : (redirects.get(slug) ?? slug);
 				listers.set(target, [...(listers.get(target) ?? []), { artist, edge }]);
+				if (isWorkSlug(slug) && scopedOn(slug, artist, str(node.name) ?? artist)) {
+					const key = titleKey(slug);
+					siblings.set(key, [...(siblings.get(key) ?? []), { artist, edge }]);
+				}
 			}
 		}
 	}
-	return { nodes, artists, relations: indexRelations(artists), listers };
+	return { nodes, artists, relations: indexRelations(artists), listers, siblings };
 }
 
 const PLACEHOLDER_CREDIT = /^(various artists|unknown|anonymous|traditional|no artist)$/;
@@ -314,6 +328,7 @@ export function detectHomonymWorks(index: NodeIndex): Detection {
 			});
 		};
 		for (const { artist, edge } of index.listers.get(slug) ?? []) consider(artist, "lists", edge);
+		for (const { artist, edge } of index.siblings.get(titleKey(slug)) ?? []) consider(artist, "lists", edge);
 		for (const edge of edgesOf(node.producers)) {
 			const producer = str(edge.slug);
 			if (producer !== undefined && typeOfSlug(producer) === "artist") consider(producer, "producer", edge);
@@ -336,12 +351,22 @@ export function detectHomonymWorks(index: NodeIndex): Detection {
 			keep("no-candidate");
 			continue;
 		}
+		// A band and its members are one answer: the members give way to the band that is also a candidate
+		// (Daft Punk, not Thomas Bangalter and Guy-Manuel de Homem-Christo).
+		const isMemberOf = (x: ArticleArtist, group: ArticleArtist): boolean =>
+			relativesOf(index.artists.get(group.slug) ?? {}, group.slug, index.artists, index.relations).some(
+				(r) => r.relation === "member" && sameArtist({ slug: x.slug, mbid: x.mbid }, r),
+			) ||
+			relativesOf(index.artists.get(x.slug) ?? {}, x.slug, index.artists, index.relations).some(
+				(r) => r.relation === "group" && sameArtist({ slug: group.slug, mbid: group.mbid }, r),
+			);
+		const collapsed = remaining.filter((x) => !remaining.some((y) => y !== x && isMemberOf(x, y)));
 		suspects.push({
 			slug,
 			type,
 			name: title,
 			credited: credits.map(({ slug: s, name, mbid }) => ({ slug: s, name, mbid })),
-			articleArtists: remaining,
+			articleArtists: collapsed,
 		});
 	}
 	return { suspects, kept, exempted };
@@ -429,9 +454,9 @@ export function withoutWrongIdentity(node: Obj): Obj {
 /**
  * The resolver's answer for `name` under the article's artist. The artist's own MBID lets the resolver count a
  * work printed under another name as direct, and the release type known from its own list entry tells a single
- * from the album of the same name (TRA-552, TRA-560). When nothing is found and the artist's MBID is known, the
- * title alone is searched: the credit is checked against the artist's MBID afterwards, so this widens what is
- * looked at, not what is accepted.
+ * from the album of the same name (TRA-552, TRA-560). Unlike the identity backfill there is NO second search on
+ * the title alone: it would find the very homonym this repairs (the node's own release), and "nothing credited
+ * to the article's artist" is exactly the answer that decides between a fix and a strip.
  */
 async function lookUp(
 	type: WorkType,
@@ -441,17 +466,11 @@ async function lookUp(
 ): Promise<{ found: MbReleaseIdentity | null; ambiguous: boolean; unavailable: boolean }> {
 	const resolve = type === "project" ? resolveReleaseGroupDetailed : resolveRecordingDetailed;
 	const typed = type === "project" && releaseType !== undefined ? { releaseType } : {};
-	const first = await resolve(name, hint.name, {
+	const answer = await resolve(name, hint.name, {
 		...(hint.mbid === undefined ? {} : { requestedArtistMbid: hint.mbid }),
 		...typed,
 	});
-	if (first.unavailable) return { found: null, ambiguous: false, unavailable: true };
-	if (first.identity !== null || first.ambiguous || hint.mbid === undefined) {
-		return { found: first.identity, ambiguous: first.ambiguous, unavailable: false };
-	}
-	const second = await resolve(name, undefined, typed);
-	if (second.unavailable) return { found: null, ambiguous: false, unavailable: true };
-	return { found: second.identity, ambiguous: second.ambiguous, unavailable: false };
+	return { found: answer.identity, ambiguous: answer.ambiguous, unavailable: answer.unavailable };
 }
 
 function yearOf(date: string | null): string | null {
@@ -512,7 +531,7 @@ export interface Stripped {
 }
 export interface Skipped {
 	slug: string;
-	reason: "several-article-artists" | "already-consistent";
+	reason: "several-article-artists" | "already-consistent" | "no-replacement-weak-evidence";
 	artists: string[];
 }
 export interface Conflict {
@@ -675,63 +694,95 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 	for (const suspect of detection.suspects) {
 		const file = files.get(suspect.slug);
 		if (!file) continue;
-		const [only] = suspect.articleArtists;
-		if (suspect.articleArtists.length !== 1 || only === undefined) {
+		// Every artist the prose names is tried: exactly one that MusicBrainz confirms settles it.
+		const currentMbids = new Set(suspect.credited.flatMap((c) => c.mbid ?? []));
+		const rejected: Stripped["reason"][] = [];
+		const confirmed: {
+			artist: ArticleArtist;
+			found: MbReleaseIdentity;
+			year: string | null;
+			mapped: Extract<ReturnType<typeof mapCredit>, { ok: true }>;
+		}[] = [];
+		let unavailable = false;
+		let consistent = false;
+		for (const artist of suspect.articleArtists) {
+			const releaseType = RELEASE_TYPES.find((t) => t === artist.entry?.releaseType);
+			const lookedUp = await lookUp(suspect.type, suspect.name, artist, releaseType);
+			if (lookedUp.unavailable) {
+				unavailable = true;
+				break;
+			}
+			const found = lookedUp.found;
+			if (!found) {
+				rejected.push(lookedUp.ambiguous ? "ambiguous-candidates" : "no-match");
+				continue;
+			}
+			// The very identity the node carries, or a credit that already holds one of its artists: not a homonym.
+			if (found.mbid === str(file.node.mbid) || found.credit.some((c) => currentMbids.has(c.mbid))) {
+				consistent = true;
+				break;
+			}
+			const hint = { name: artist.name, ...(artist.mbid === undefined ? {} : { mbid: artist.mbid }) };
+			const year = yearOf(found.firstReleaseDate);
+			const mapped = mapCredit(found.credit, ctx);
+			if (!creditConfirmsHint(found.credit, hint)) rejected.push("credit-mismatch");
+			else if (!yearsAgree(artist.entry?.year, year)) rejected.push("year-mismatch");
+			else if (!mapped.ok) rejected.push("unmappable-credit");
+			else confirmed.push({ artist, found, year, mapped });
+		}
+		if (unavailable) {
+			failed.push({ slug: suspect.slug, reason: "MusicBrainz search unavailable" });
+			continue;
+		}
+		if (consistent) {
 			skipped.push({
 				slug: suspect.slug,
-				reason: "several-article-artists",
+				reason: "already-consistent",
 				artists: suspect.articleArtists.map((a) => a.slug),
 			});
 			continue;
 		}
-		const strip = (reason: Stripped["reason"]): void => {
+		if (confirmed.length > 1) {
+			skipped.push({
+				slug: suspect.slug,
+				reason: "several-article-artists",
+				artists: confirmed.map((c) => c.artist.slug),
+			});
+			continue;
+		}
+		const [chosen] = confirmed;
+		if (chosen === undefined) {
+			// No replacement. Removing a credit is destructive: it needs ONE article artist with both links to
+			// the work (it lists the work AND the work lists it as a producer, as in both prod cases).
+			const [only] = suspect.articleArtists;
+			if (
+				suspect.articleArtists.length !== 1 ||
+				only === undefined ||
+				!(only.evidence.includes("lists") && only.evidence.includes("producer"))
+			) {
+				skipped.push({
+					slug: suspect.slug,
+					reason: "no-replacement-weak-evidence",
+					artists: suspect.articleArtists.map((a) => a.slug),
+				});
+				continue;
+			}
 			const node = withoutWrongIdentity(file.node);
-			const dropFrom = wrongNeighbours(file.node, node);
 			stripped.push({
 				slug: suspect.slug,
 				type: suspect.type,
 				node,
-				dropFrom,
-				report: { slug: suspect.slug, artist: only.slug, reason, droppedEdges: 0 },
+				dropFrom: wrongNeighbours(file.node, node),
+				report: {
+					slug: suspect.slug,
+					artist: only.slug,
+					reason: rejected[0] ?? "no-match",
+					droppedEdges: 0,
+				},
 			});
-		};
-
-		const releaseType = RELEASE_TYPES.find((t) => t === only.entry?.releaseType);
-		const lookedUp = await lookUp(suspect.type, suspect.name, only, releaseType);
-		if (lookedUp.unavailable) {
-			failed.push({ slug: suspect.slug, reason: "MusicBrainz search unavailable" });
 			continue;
 		}
-		const found = lookedUp.found;
-		if (!found) {
-			strip(lookedUp.ambiguous ? "ambiguous-candidates" : "no-match");
-			continue;
-		}
-		// The very identity the node carries, or a credit that already holds one of its artists: not a homonym.
-		const currentMbids = new Set(suspect.credited.flatMap((c) => c.mbid ?? []));
-		if (found.mbid === str(file.node.mbid) || found.credit.some((c) => currentMbids.has(c.mbid))) {
-			skipped.push({ slug: suspect.slug, reason: "already-consistent", artists: [only.slug] });
-			continue;
-		}
-		if (
-			!creditConfirmsHint(found.credit, {
-				name: only.name,
-				...(only.mbid === undefined ? {} : { mbid: only.mbid }),
-			})
-		) {
-			strip("credit-mismatch");
-			continue;
-		}
-		const year = yearOf(found.firstReleaseDate);
-		if (!yearsAgree(only.entry?.year, year)) {
-			strip("year-mismatch");
-			continue;
-		}
-		const mapped = mapCredit(found.credit, ctx);
-		if (!mapped.ok) {
-			strip("unmappable-credit");
-			continue;
-		}
+		const { artist: only, found, year, mapped } = chosen;
 		const fetched =
 			suspect.type === "project"
 				? await fetchProjectMetaDetailedMb(found.mbid)
