@@ -583,11 +583,15 @@ export class NodeCache {
 	}
 
 	private async emitReverses(source: NodePayload, delta: CacheWriteDelta): Promise<void> {
-		// A genre source's qid rides along on the reverse edge it emits (TRA-18).
+		// A genre source's qid rides along on the reverse edge it emits (TRA-18). So does a project's mbid, but
+		// only toward the artist's discography (TRA-623, 2026-10-19): that edge was counted "without mbid" by
+		// the audit ratchet although the project node already knew its id.
 		const sourceEdge: EdgeRef =
 			source.type === "genre" && source.qid
 				? { slug: source.slug, type: source.type, name: source.name, qid: source.qid }
 				: { slug: source.slug, type: source.type, name: source.name };
+		const discographyEdge: EdgeRef =
+			source.type === "project" && source.mbid ? { ...sourceEdge, mbid: source.mbid } : sourceEdge;
 		const fields = reversibleFields(source.type);
 		for (const field of fields) {
 			const value = (source as unknown as Record<string, unknown>)[field];
@@ -599,7 +603,8 @@ export class NodeCache {
 			const reverse = reverseFor(source.type, field);
 			if (!reverse) continue;
 			for (const targetRef of refs) {
-				await this.applyReverseToTarget(targetRef.slug, reverse.field, reverse.cardinality, sourceEdge);
+				const edge = reverse.field === "discography" ? discographyEdge : sourceEdge;
+				await this.applyReverseToTarget(targetRef.slug, reverse.field, reverse.cardinality, edge);
 				this.stats.revUpdates++;
 				delta.revUpdates++;
 			}
