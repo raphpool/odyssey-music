@@ -520,6 +520,27 @@ describe("runFix: Wish You Were Here, credited to American Hot Wax", () => {
 		expect(await readFile(nodePath(s.old), "utf8")).toBe(before);
 	});
 
+	it("does not re-credit a work to an artist its prose only mentions further down (Jah Wobble for a PiL single)", async () => {
+		const s = await homonym("Wish Ten");
+		const node = await readNode(s.old);
+		await seed({
+			...node,
+			slug: s.old,
+			editorial_pitch: "A confrontational post-punk anthem.",
+			editorial_article: `${article.repeat(4)} The bass was played by Pink Floyd.`,
+		});
+		stubMb(s.works, { filterByArtist: true });
+		const before = await readFile(nodePath(s.old), "utf8");
+
+		const result = await run(true);
+
+		expect(result.manifest.skipped).toEqual([
+			{ slug: s.old, reason: "article-artist-not-in-lead", artists: ["artist:pink-floyd"] },
+		]);
+		expect(result.exitCode).toBe(0);
+		expect(await readFile(nodePath(s.old), "utf8")).toBe(before);
+	});
+
 	it("writes nothing and exits 1 while MusicBrainz does not answer", async () => {
 		const s = await homonym("Wish Seven");
 		stubMb(s.works, { fail: (url) => /release-group$/.test(url.pathname) });

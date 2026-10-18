@@ -141,6 +141,12 @@ export interface ArticleArtist {
 	mbid?: string | undefined;
 	/** `lists`: the artist lists the work; `producer`: the work lists the artist among its producers. */
 	evidence: ("lists" | "producer")[];
+	/**
+	 * Named in the lead of the prose (pitch, teaser, first 300 characters of the article): the work is ABOUT
+	 * this artist. An artist only mentioned further down (the bassist of the band the article is about) is not
+	 * one the fix may re-credit the work to.
+	 */
+	inLead: boolean;
 	/** The artist's own entry for the work (release type and year are hints for the new lookup). */
 	entry?: { releaseType?: string; year?: string } | undefined;
 }
@@ -221,6 +227,9 @@ export function buildIndex(
 	}
 	return { nodes, artists, relations: indexRelations(artists), listers, siblings };
 }
+
+/** How much of the article counts as its lead. */
+const LEAD_LENGTH = 300;
 
 const PLACEHOLDER_CREDIT = /^(various artists|unknown|anonymous|traditional|no artist)$/;
 
@@ -310,6 +319,12 @@ export function detectHomonymWorks(index: NodeIndex): Detection {
 		// The artists that could be the one the prose is about.
 		const title = str(node.name) ?? "";
 		const textWithoutTitle = withoutNames(text, [title]);
+		const lead = withoutNames(
+			normalizeForPhrase(
+				`${str(node.editorial_pitch) ?? ""} . ${str(node.editorial_teaser) ?? ""} . ${(str(node.editorial_article) ?? "").slice(0, LEAD_LENGTH)}`,
+			),
+			[title],
+		);
 		const candidates = new Map<string, ArticleArtist>();
 		const consider = (artistSlug: string, evidence: "lists" | "producer", edge: Obj): void => {
 			const artistNode = index.artists.get(artistSlug);
@@ -328,6 +343,7 @@ export function detectHomonymWorks(index: NodeIndex): Detection {
 				slug: artistSlug,
 				name,
 				mbid,
+				inLead: false,
 				evidence: [evidence],
 				...(entry ? { entry } : {}),
 			});
@@ -350,7 +366,7 @@ export function detectHomonymWorks(index: NodeIndex): Detection {
 				exempted.push({ work: slug, artist: candidate.slug, reason });
 				continue;
 			}
-			remaining.push(candidate);
+			remaining.push({ ...candidate, inLead: named(lead, candidateForms, MIN_NAMED_LENGTH) });
 		}
 		if (remaining.length === 0) {
 			keep("no-candidate");
@@ -551,7 +567,11 @@ export interface Stripped {
 }
 export interface Skipped {
 	slug: string;
-	reason: "several-article-artists" | "already-consistent" | "no-replacement-weak-evidence";
+	reason:
+		| "several-article-artists"
+		| "already-consistent"
+		| "no-replacement-weak-evidence"
+		| "article-artist-not-in-lead";
 	artists: string[];
 }
 export interface Conflict {
@@ -725,7 +745,16 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 		}[] = [];
 		let unavailable = false;
 		let consistent = false;
-		for (const artist of suspect.articleArtists) {
+		const tryable = suspect.articleArtists.filter((a) => a.inLead);
+		if (tryable.length === 0) {
+			skipped.push({
+				slug: suspect.slug,
+				reason: "article-artist-not-in-lead",
+				artists: suspect.articleArtists.map((a) => a.slug),
+			});
+			continue;
+		}
+		for (const artist of tryable) {
 			const releaseType =
 				RELEASE_TYPES.find((t) => t === artist.entry?.releaseType) ??
 				(suspect.type === "project" ? releaseTypeFromProse(file.node) : undefined);
@@ -776,8 +805,9 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 		if (chosen === undefined) {
 			// No replacement. Removing a credit is destructive: it needs ONE article artist with both links to
 			// the work (it lists the work AND the work lists it as a producer, as in both prod cases).
-			const [only] = suspect.articleArtists;
+			const [only] = tryable;
 			if (
+				tryable.length !== 1 ||
 				suspect.articleArtists.length !== 1 ||
 				only === undefined ||
 				!(only.evidence.includes("lists") && only.evidence.includes("producer"))
