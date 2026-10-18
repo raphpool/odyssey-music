@@ -8,6 +8,7 @@ import {
 	type AuditReport,
 	auditNodes,
 	compareWithThresholds,
+	coverageNodeType,
 	formatViolation,
 	INFORMATIVE_METRICS,
 	main,
@@ -148,8 +149,39 @@ describe("auditNodes", () => {
 		);
 		expect(metric(report, "discography-edge-without-mbid")).toBe(1);
 		expect(report.samples["discography-edge-without-mbid"]).toEqual(["artist:few"]);
+		expect(metric(report, "artist-discography-without-mbid")).toBe(1);
+		expect(report.samples["artist-discography-without-mbid"]).toEqual(["artist:few"]);
 		expect(metric(report, "artist-discography-under-3")).toBe(1);
 		expect(report.samples["artist-discography-under-3"]).toEqual(["artist:few"]);
+	});
+
+	it("counts an artist once however many of its discography edges lack an mbid", () => {
+		const bare = (id: string) => edge(`project:${id}--many`);
+		const report = auditNodes(
+			toMap(
+				node("artist:many", { discography: [bare("a"), bare("b"), bare("c"), bare("d")] }),
+				node("artist:none", { discography: [] }),
+			),
+		);
+		expect(metric(report, "discography-edge-without-mbid")).toBe(4);
+		expect(metric(report, "artist-discography-without-mbid")).toBe(1);
+	});
+
+	it("keeps the per-edge mbid count informative and the per-artist counts ratcheted (amends 8-D6)", () => {
+		expect(INFORMATIVE_METRICS.has("discography-edge-without-mbid")).toBe(true);
+		expect(INFORMATIVE_METRICS.has("artist-discography-without-mbid")).toBe(false);
+		expect(INFORMATIVE_METRICS.has("artist-discography-under-3")).toBe(false);
+		expect(coverageNodeType("artist-discography-without-mbid")).toBe("artist");
+		expect(coverageNodeType("artist-discography-under-3")).toBe("artist");
+		expect(coverageNodeType("discography-edge-without-mbid")).toBeNull();
+
+		const report = auditNodes(toMap(node("artist:a", { discography: [edge("project:x--a")] })));
+		const thresholds = thresholdsFromReport(report);
+		expect(thresholds).not.toHaveProperty("discography-edge-without-mbid");
+		expect(thresholds).toHaveProperty("artist-discography-without-mbid", 1);
+		expect(thresholds).toHaveProperty("artist-discography-under-3", 1);
+		// The per-edge count has no ceiling and is never reported as "no threshold".
+		expect(compareWithThresholds(report, thresholds)).toEqual([]);
 	});
 
 	it("counts an empty or whitespace mbid as missing, per edge", () => {

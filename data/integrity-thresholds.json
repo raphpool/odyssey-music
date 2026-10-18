@@ -9,8 +9,8 @@
 	"missing-similar-artists": 31,
 	"missing-landmark-project": 108,
 	"missing-reference-track": 77,
-	"discography-edge-without-mbid": 1214,
 	"artist-discography-under-3": 196,
+	"artist-discography-without-mbid": 339,
 	"empty-artists": {
 		"project": 62,
 		"track": 26
