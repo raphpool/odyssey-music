@@ -288,7 +288,12 @@ export function createImageQueue(deps: ImageQueueDeps): ImageQueue {
 			return await underDeadline(async (signal): Promise<Verdict> => {
 				const fetchImpl = guardedFetch(deps.fetch, signal);
 				if (job.kind === "node" && node) {
-					const found = await deps.resolveNode(node, { cache, fetch: fetchImpl, priority: "background" });
+					const found = await deps.resolveNode(node, {
+						cache,
+						fetch: fetchImpl,
+						priority: "background",
+						viaMusicBrainz: true,
+					});
 					if (!found) return { outcome: "missing", reason: "no-match" };
 					return { outcome: "found", url: found.url, source: found.source };
 				}
@@ -296,6 +301,7 @@ export function createImageQueue(deps: ImageQueueDeps): ImageQueue {
 				const r = await deps.resolveHint(job.hint, {
 					fetch: fetchImpl,
 					mbOptions: { priority: "background" },
+					compilations: true,
 				});
 				if (r.kind === "found") {
 					return {

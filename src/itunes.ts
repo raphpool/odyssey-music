@@ -196,7 +196,7 @@ function canonicalAlbumTitle(raw: string): string {
  * token "various" is refused, which also refuses a real artist literally named so: no image is
  * the price of a safe rule.
  */
-function isVariousArtists(raw: string): boolean {
+export function isVariousArtists(raw: string): boolean {
 	const tokens = raw
 		.normalize("NFD")
 		.replace(/\p{M}/gu, "")
