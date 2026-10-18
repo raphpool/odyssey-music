@@ -251,15 +251,19 @@ describe("scoped work edges (TRA-462)", () => {
 			installPipelineMocks({ draft: artistDraftFixture({ name: "Rohff" }) });
 			const runPipeline = await loadRunPipeline();
 			const { fetchArtistDiscographyMb } = await import("../src/musicbrainz.js");
-			vi.mocked(fetchArtistDiscographyMb).mockImplementation(async () => [
-				{
-					mbid: MB_ID,
-					title: "La Fierté",
-					firstReleaseDate: "2010-01-01",
-					primaryType: "Album",
-					secondaryTypes: [],
-				},
-			]);
+			vi.mocked(fetchArtistDiscographyMb).mockImplementation(async () => ({
+				releases: [
+					{
+						mbid: MB_ID,
+						title: "La Fierté",
+						firstReleaseDate: "2010-01-01",
+						primaryType: "Album",
+						secondaryTypes: [],
+						artistCredits: [],
+					},
+				],
+				unavailable: false,
+			}));
 
 			const result = await runPipeline({ type: "artist", name: "Rohff" }, DEPS);
 
@@ -405,15 +409,19 @@ describe("scoped work edges, flag off (TRA-509)", () => {
 			installPipelineMocks({ draft: artistDraftFixture({ name: "Rohff" }) });
 			const runPipeline = await loadRunPipeline();
 			const { fetchArtistDiscographyMb } = await import("../src/musicbrainz.js");
-			vi.mocked(fetchArtistDiscographyMb).mockImplementation(async () => [
-				{
-					mbid: MB_ID,
-					title: "La Fierté",
-					firstReleaseDate: "2010-01-01",
-					primaryType: "Album",
-					secondaryTypes: [],
-				},
-			]);
+			vi.mocked(fetchArtistDiscographyMb).mockImplementation(async () => ({
+				releases: [
+					{
+						mbid: MB_ID,
+						title: "La Fierté",
+						firstReleaseDate: "2010-01-01",
+						primaryType: "Album",
+						secondaryTypes: [],
+						artistCredits: [],
+					},
+				],
+				unavailable: false,
+			}));
 
 			const result = await runPipeline({ type: "artist", name: "Rohff" }, DEPS);
 
@@ -783,7 +791,10 @@ describe("MB identity at enrichment (TRA-473)", () => {
 					unavailable: false,
 					matchedWords: [],
 				}));
-				vi.mocked(m.fetchArtistDiscographyMb).mockImplementation(async () => []);
+				vi.mocked(m.fetchArtistDiscographyMb).mockImplementation(async () => ({
+					releases: [],
+					unavailable: false,
+				}));
 				vi.mocked(m.fetchArtistEntityMb).mockImplementation(async () => null);
 				return m;
 			};
@@ -944,15 +955,19 @@ describe("MB identity at enrichment (TRA-473)", () => {
 					unavailable: false,
 					matchedWords: [],
 				}));
-				vi.mocked(m.fetchArtistDiscographyMb).mockImplementation(async () => [
-					{
-						mbid: RG_MBID,
-						title: "New Forms",
-						firstReleaseDate: "1997-06-01",
-						primaryType: "Album",
-						secondaryTypes: [],
-					},
-				]);
+				vi.mocked(m.fetchArtistDiscographyMb).mockImplementation(async () => ({
+					releases: [
+						{
+							mbid: RG_MBID,
+							title: "New Forms",
+							firstReleaseDate: "1997-06-01",
+							primaryType: "Album",
+							secondaryTypes: [],
+							artistCredits: [],
+						},
+					],
+					unavailable: false,
+				}));
 				const runPipeline = await loadRunPipeline();
 
 				const result = await runPipeline({ type: "artist", name: "Roni Size" }, DEPS);
@@ -1715,6 +1730,7 @@ describe.each([
 				firstReleaseDate: date,
 				primaryType: "Album" as const,
 				secondaryTypes: [],
+				artistCredits: [],
 			});
 			const releases = [
 				mbRelease("Old Record", "2001-01-01", "11111111-2222-3333-4444-555555555501"),
@@ -1726,7 +1742,7 @@ describe.each([
 			// The pick is in the draft but not in the MB list that overwrites it: back to MB's first entry.
 			const lines: string[] = [];
 			installPipelineMocks({ draft: artistDraftFixture() });
-			vi.mocked(fetchArtistDiscographyMb).mockImplementation(async () => releases);
+			vi.mocked(fetchArtistDiscographyMb).mockImplementation(async () => ({ releases, unavailable: false }));
 			const off = (
 				await runPipeline(
 					{ type: "artist", name: "Fixture Artist" },
@@ -1747,7 +1763,7 @@ describe.each([
 					landmark_project: { type: "project", name: "Old Record", artist: "Fixture Artist" },
 				}),
 			});
-			vi.mocked(fetchArtistDiscographyMb).mockImplementation(async () => releases);
+			vi.mocked(fetchArtistDiscographyMb).mockImplementation(async () => ({ releases, unavailable: false }));
 			const on = (await runPipeline({ type: "artist", name: "Fixture Artist" }, DEPS)).node as ArtistNode;
 			expect(on.landmark_project?.slug).toBe(slug("project", "old-record"));
 			expect(on.landmark_project?.mbid).toBe("11111111-2222-3333-4444-555555555501");
