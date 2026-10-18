@@ -17,10 +17,15 @@ const MBID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{
 /**
  * Canonical front-500 URL for a release group, or null when it has no front cover (404), the
  * input is not a UUID, the redirect target is off the image allowlist, or the request fails.
+ *
+ * `onOutage` is called when the null means "could not tell" and not "no cover": a status other than 200,
+ * 3xx and 404 (429, 5xx), a timeout or a network error. The archive.org side throttles and fails at times
+ * (2026-10-18, TRA-612 follow-up): a caller that records verdicts must not keep such a null for a week.
  */
 export async function coverArtUrl(
 	releaseGroupMbid: string,
 	fetchImpl: typeof fetch = fetch,
+	onOutage?: () => void,
 ): Promise<string | null> {
 	// The MBID lands in a URL path: refuse anything that is not a plain UUID.
 	if (!MBID_PATTERN.test(releaseGroupMbid)) return null;
@@ -47,10 +52,12 @@ export async function coverArtUrl(
 			}
 			if (!isAllowedImageUrl(target)) return null;
 		} else if (r.status !== 200) {
+			if (r.status !== 404) onOutage?.();
 			return null;
 		}
 		return isAllowedImageUrl(canonical) ? canonical : null;
 	} catch {
+		onOutage?.();
 		return null;
 	} finally {
 		clearTimeout(timer);

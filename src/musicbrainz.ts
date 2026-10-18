@@ -1229,13 +1229,6 @@ export interface WorkResolveOptions {
 	 * still go to the date rule. Off by default: no existing caller changes.
 	 */
 	preferPlainRelease?: boolean | undefined;
-	/**
-	 * Release groups only (TRA-612). The caller wants a PICTURE and nothing else: the result is never stamped on a
-	 * node as an identity. A double A-side single is then accepted even when the caller's known release type is
-	 * not "single" (a discography that lists the work as an album). Everything else, the credit rule included, is
-	 * unchanged. Off by default: the pipeline and the migrations keep the agreement rule of TRA-560.
-	 */
-	coverOnly?: boolean | undefined;
 }
 
 function acceptedMbidSet(options: WorkResolveOptions): Set<string> {
@@ -1281,18 +1274,14 @@ function pickDoubleSided<
 	hint: string,
 	requested: ReadonlySet<string> | null,
 	releaseType: string | undefined,
-	coverOnly: boolean,
 ): Pick<T> {
 	const known = releaseType?.trim().toLowerCase() ?? "";
 	const matches = candidates.filter((c) => {
 		if (!doubleSidedSegments(c.title).includes(wanted)) return false;
 		const primary = (c["primary-type"] ?? "").trim().toLowerCase();
 		// A single, and only a single: "Gesang der Jünglinge / Kontakte" is an album of two works, not the first
-		// one (measured 2026-10-18 on the cache). The caller's known release type must agree as well, except for a
-		// cover (TRA-612, 2026-10-18): the discography lists Kode9's 2006 "Sine of the Dub" as an album, MB files
-		// its double A-side as a single, and the agreement rule (TRA-560, which protects the identity a node
-		// is stamped with) refused it. A cover borrows nothing but a picture, and the credit rule stays whole.
-		if (primary !== "single" || (!coverOnly && known !== "" && primary !== known)) return false;
+		// one (measured 2026-10-18 on the cache). The caller's known release type must agree as well.
+		if (primary !== "single" || (known !== "" && primary !== known)) return false;
 		if (Array.isArray(c["secondary-types"]) && c["secondary-types"].length > 0) return false;
 		const credit = c["artist-credit"] ?? [];
 		return creditEqualsHint(credit, hint) || (requested !== null && creditCarriesMbid(credit, requested));
@@ -1358,7 +1347,6 @@ function pickByTitleAndCredit<
 	requestedArtistMbid?: string,
 	releaseType?: string,
 	preferPlainRelease = false,
-	coverOnly = false,
 ): Pick<T> {
 	const wanted = normalizeTitleBody(title);
 	if (!wanted) return { kind: "none" };
@@ -1373,7 +1361,7 @@ function pickByTitleAndCredit<
 	const requested = requestedArtistMbid?.trim() ? new Set([requestedArtistMbid.trim().toLowerCase()]) : null;
 	// No release group has this title: the work may be one side of a double A-side single (TRA-612).
 	if (kind === "release-group" && hasHint && exact.length === 0) {
-		return pickDoubleSided(candidates, wanted, hint, requested, releaseType, coverOnly);
+		return pickDoubleSided(candidates, wanted, hint, requested, releaseType);
 	}
 	const direct = hasHint
 		? exact.filter(
@@ -1516,7 +1504,6 @@ export async function resolveReleaseGroupDetailed(
 		options.requestedArtistMbid,
 		options.releaseType,
 		options.preferPlainRelease === true,
-		options.coverOnly === true,
 	);
 	if (picked.kind !== "one") return { ...none, ambiguous: picked.kind === "ambiguous" };
 	const rg = picked.candidate;

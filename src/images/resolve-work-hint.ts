@@ -75,12 +75,17 @@ export interface WorkHintDeps {
 	/** Handed as is to the MusicBrainz resolvers: not filtered here, so a later field needs no change. */
 	mbOptions?: Omit<WorkResolveOptions, "releaseType">;
 	/**
-	 * The caller wants a cover and nothing else (TRA-612): turns the compilation rung on, and lets a double A-side
-	 * single give its cover to a work the discography lists as an album (`coverOnly`). Off by default because the
-	 * compilation rung costs one more MusicBrainz request for every album the first rung found no work for: only
-	 * the on-demand queue pays it.
+	 * Turns the compilation rung on (TRA-612). Off by default because the rung costs one more MusicBrainz
+	 * request for every album the first rung found no work for: only the on-demand queue pays it.
 	 */
 	compilations?: boolean;
+	/**
+	 * Set to `coverArt: true` when the Cover Art Archive could not answer (429, 5xx, timeout, network): a
+	 * `none` that follows then means "could not tell", not "no cover" (TRA-612 follow-up). The resolver answers
+	 * `unavailable` instead of `missing` when nothing else found a cover; the caller may pass its own object to
+	 * read the flag too.
+	 */
+	outage?: { coverArt: boolean };
 }
 
 type Found = Extract<WorkImageResolution, { kind: "found" }>;
@@ -110,7 +115,11 @@ async function coverArchive(
 	hint: Pick<WorkImageHint, "slug">,
 	deps: WorkHintDeps,
 ): Promise<Found | null> {
-	const url = await attempt("caa", hint, () => coverArtUrl(releaseGroupMbid, deps.fetch));
+	const url = await attempt("caa", hint, () =>
+		coverArtUrl(releaseGroupMbid, deps.fetch, () => {
+			if (deps.outage) deps.outage.coverArt = true;
+		}),
+	);
 	return url && isAllowedImageUrl(url) ? { kind: "found", url, source: "caa", mbid: releaseGroupMbid } : null;
 }
 
@@ -187,7 +196,6 @@ export function resolveAlbumByMusicBrainz(
 				...deps.mbOptions,
 				releaseType: album.releaseType,
 				...(album.artistMbid ? { requestedArtistMbid: album.artistMbid } : {}),
-				...(deps.compilations ? { coverOnly: true } : {}),
 			}),
 		// An artist whose MBID the caller holds must be credited by that MBID, not only by a name a homonym
 		// shares (TRA-560, TRA-570, TRA-604: a node whose wrong MBID was removed must not get it back as a cover).
@@ -211,8 +219,9 @@ async function resolveAlbum(
 
 export async function resolveWorkImageByHint(
 	hint: WorkImageHint,
-	deps: WorkHintDeps = {},
+	callerDeps: WorkHintDeps = {},
 ): Promise<WorkImageResolution> {
+	const deps: WorkHintDeps = callerDeps.outage ? callerDeps : { ...callerDeps, outage: { coverArt: false } };
 	const title = hint.title.trim();
 	const artist = hint.artist.trim();
 	if (!title || !artist) return NO_MATCH;
@@ -253,5 +262,7 @@ export async function resolveWorkImageByHint(
 	const url = await attempt("itunes", hint, () =>
 		lookupVerifiedAlbumArt(itunesTitle, itunesArtist, deps.fetch),
 	);
-	return url && isAllowedImageUrl(url) ? { kind: "found", url, source: "itunes-verified" } : NO_MATCH;
+	if (url && isAllowedImageUrl(url)) return { kind: "found", url, source: "itunes-verified" };
+	// The Cover Art Archive failed on the way: nothing is known, so nothing is refused for 7 days.
+	return deps.outage?.coverArt ? { kind: "unavailable" } : NO_MATCH;
 }

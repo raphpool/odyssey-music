@@ -36,9 +36,9 @@ export type ImageSidecarState = "found" | "missing" | "unavailable" | "conflict"
  * action on the server. `found` (definitive) and `unavailable` (1 h) are unaffected.
  *
  * 3 (2026-10-18, TRA-612 follow-up): after the deploy of 2, `project:sine-of-the-dub--kode9` was re-checked and
- * stayed `no-match`. A double A-side single now gives its cover to a work whose known release type is not
- * "single" (a discography edge that lists it as an album shares the node's queue key and decides its verdict).
- * The verdict written under 2 is stale again.
+ * kept `no-match`. A Cover Art Archive that fails (429, 5xx, timeout, network) is no longer recorded as
+ * `missing`: it ends as `unavailable` (1 h). The `missing` written under 2, possibly by such a failure, is
+ * stale again.
  */
 export const IMAGE_RULES_VERSION = 3;
 
