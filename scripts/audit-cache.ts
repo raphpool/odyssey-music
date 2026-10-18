@@ -195,6 +195,8 @@ export function auditNodes(
 		"dangling-edges",
 		"edge-name-drift",
 		"pending-reverse-targets-existing",
+		"discography-edge-without-mbid",
+		"artist-discography-under-3",
 	]) {
 		c.scalar(m);
 	}
@@ -251,6 +253,14 @@ export function auditNodes(
 			if (edgesOf(node, "similar_artists").length === 0) c.hit("missing-similar-artists", slug);
 			if (edgesOf(node, "landmark_project").length === 0) c.hit("missing-landmark-project", slug);
 			if (edgesOf(node, "reference_track").length === 0) c.hit("missing-reference-track", slug);
+			// Discography quality (TRA-616, ratcheted like the other scalars): an edge without an MBID could not
+			// be tied to a MusicBrainz release group, and a short discography is often a truncated lookup.
+			// Raw entries are counted on purpose (the ticket's contract), not through `edgesOf`.
+			const discography = Array.isArray(node.discography) ? node.discography : [];
+			for (const entry of discography) {
+				if (!(isRecord(entry) && hasText(entry.mbid))) c.hit("discography-edge-without-mbid", slug);
+			}
+			if (discography.length < 3) c.hit("artist-discography-under-3", slug);
 			for (const field of RELEASE_LINK_FIELDS) {
 				for (const edge of edgesOf(node, field)) {
 					const target = nodes.get(edge.slug);

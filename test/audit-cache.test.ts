@@ -129,6 +129,59 @@ describe("auditNodes", () => {
 		expect(report.samples["self-edges"]).toEqual(["genre:loop"]);
 	});
 
+	it("counts discography edges without an mbid and artists with fewer than 3 entries (TRA-616)", () => {
+		const report = auditNodes(
+			toMap(
+				node("artist:few", {
+					discography: [
+						{ ...edge("project:a--few"), mbid: "11111111-1111-1111-1111-111111111111" },
+						edge("project:b--few"),
+					],
+				}),
+				node("artist:full", {
+					discography: ["a", "b", "c"].map((id) => ({
+						...edge(`project:${id}--full`),
+						mbid: `${id.repeat(8)}-2222-2222-2222-222222222222`,
+					})),
+				}),
+			),
+		);
+		expect(metric(report, "discography-edge-without-mbid")).toBe(1);
+		expect(report.samples["discography-edge-without-mbid"]).toEqual(["artist:few"]);
+		expect(metric(report, "artist-discography-under-3")).toBe(1);
+		expect(report.samples["artist-discography-under-3"]).toEqual(["artist:few"]);
+	});
+
+	it("counts an empty or whitespace mbid as missing, per edge", () => {
+		const report = auditNodes(
+			toMap(
+				node("artist:a", {
+					discography: [
+						{ ...edge("project:x--a"), mbid: "" },
+						{ ...edge("project:y--a"), mbid: "  " },
+						{ ...edge("project:z--a"), mbid: 42 },
+						{ ...edge("project:w--a"), mbid: "33333333-3333-3333-3333-333333333333" },
+					],
+				}),
+			),
+		);
+		expect(metric(report, "discography-edge-without-mbid")).toBe(3);
+		expect(metric(report, "artist-discography-under-3")).toBe(0);
+	});
+
+	it("counts an artist with no discography field, or a non-array one, as under 3 entries", () => {
+		const report = auditNodes(
+			toMap(
+				node("artist:absent"),
+				node("artist:garbage", { discography: "none" }),
+				node("genre:not-an-artist"),
+			),
+		);
+		expect(metric(report, "artist-discography-under-3")).toBe(2);
+		expect(report.samples["artist-discography-under-3"]).toEqual(["artist:absent", "artist:garbage"]);
+		expect(metric(report, "discography-edge-without-mbid")).toBe(0);
+	});
+
 	it("reads single edges (project, label) as edges", () => {
 		const report = auditNodes(
 			toMap(
