@@ -34,8 +34,13 @@ export type ImageSidecarState = "found" | "missing" | "unavailable" | "conflict"
  * the artist's own tracks ("Hyperdub 10.3") now get their cover. Without this, the Kode9 page would have kept
  * the old `no-match` of both works for up to 7 days after the deploy, with no way to clear it but a manual
  * action on the server. `found` (definitive) and `unavailable` (1 h) are unaffected.
+ *
+ * 3 (2026-10-18, TRA-612 follow-up): after the deploy of 2, `project:sine-of-the-dub--kode9` was re-checked and
+ * stayed `no-match`. A double A-side single now gives its cover to a work whose known release type is not
+ * "single" (a discography edge that lists it as an album shares the node's queue key and decides its verdict).
+ * The verdict written under 2 is stale again.
  */
-export const IMAGE_RULES_VERSION = 2;
+export const IMAGE_RULES_VERSION = 3;
 
 /** Entries written before the version existed are version 1. */
 const LEGACY_RULES_VERSION = 1;

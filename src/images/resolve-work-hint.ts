@@ -75,8 +75,10 @@ export interface WorkHintDeps {
 	/** Handed as is to the MusicBrainz resolvers: not filtered here, so a later field needs no change. */
 	mbOptions?: Omit<WorkResolveOptions, "releaseType">;
 	/**
-	 * Turns the compilation rung on (TRA-612). Off by default because the rung costs one more MusicBrainz
-	 * request for every album the first rung found no work for: only the on-demand queue pays it.
+	 * The caller wants a cover and nothing else (TRA-612): turns the compilation rung on, and lets a double A-side
+	 * single give its cover to a work the discography lists as an album (`coverOnly`). Off by default because the
+	 * compilation rung costs one more MusicBrainz request for every album the first rung found no work for: only
+	 * the on-demand queue pays it.
 	 */
 	compilations?: boolean;
 }
@@ -185,6 +187,7 @@ export function resolveAlbumByMusicBrainz(
 				...deps.mbOptions,
 				releaseType: album.releaseType,
 				...(album.artistMbid ? { requestedArtistMbid: album.artistMbid } : {}),
+				...(deps.compilations ? { coverOnly: true } : {}),
 			}),
 		// An artist whose MBID the caller holds must be credited by that MBID, not only by a name a homonym
 		// shares (TRA-560, TRA-570, TRA-604: a node whose wrong MBID was removed must not get it back as a cover).
