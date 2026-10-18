@@ -45,6 +45,7 @@ import { makeScopedSlug, parseSlug } from "../slug.js";
 import type { ImageSource, NodePayload, Slug } from "../types.js";
 import { isAllowedImageUrl } from "./hosts.js";
 import {
+	IMAGE_RULES_VERSION,
 	type ImageSidecarEntry,
 	isSidecarEntryFresh,
 	readImageSidecar,
@@ -231,6 +232,7 @@ export function createImageQueue(deps: ImageQueueDeps): ImageQueue {
 					state: "conflict",
 					hint: { title: hint.title, artist: hint.artist },
 					resolvedAt: new Date(now()).toISOString(),
+					rules: IMAGE_RULES_VERSION,
 				});
 			})(),
 		);
@@ -324,7 +326,12 @@ export function createImageQueue(deps: ImageQueueDeps): ImageQueue {
 			job.kind === "hint"
 				? { title: job.hint.title, artist: job.hint.artist }
 				: { title: node?.name ?? "", artist: "" };
-		const base = { key: job.key, hint, resolvedAt: new Date(now()).toISOString() };
+		const base = {
+			key: job.key,
+			hint,
+			resolvedAt: new Date(now()).toISOString(),
+			rules: IMAGE_RULES_VERSION,
+		};
 		switch (verdict.outcome) {
 			case "found":
 				return {

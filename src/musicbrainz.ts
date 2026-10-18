@@ -1627,10 +1627,17 @@ export async function findCompilationCoverReleaseGroup(
 			const releaseCredit = isRecord(rel) && Array.isArray(rel["artist-credit"]) ? rel["artist-credit"] : [];
 			const various =
 				releaseCredit.length > 0 &&
-				releaseCredit.every((e) => isRecord(e) && isRecord(e.artist) && e.artist.id === VARIOUS_ARTISTS_MBID);
+				releaseCredit.every(
+					(e) =>
+						isRecord(e) &&
+						isRecord(e.artist) &&
+						typeof e.artist.id === "string" &&
+						e.artist.id.toLowerCase() === VARIOUS_ARTISTS_MBID,
+				);
 			const seen = groups.get(group.id.toLowerCase());
 			groups.set(group.id.toLowerCase(), {
-				compilation: secondaryTypesOf(group).includes("compilation"),
+				// Accumulated, not overwritten: hits come back in an order that varies from one request to the next.
+				compilation: (seen?.compilation ?? false) || secondaryTypesOf(group).includes("compilation"),
 				variousArtistsOnly: various && (seen?.variousArtistsOnly ?? true),
 			});
 		}
