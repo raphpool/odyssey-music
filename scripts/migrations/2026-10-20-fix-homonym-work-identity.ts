@@ -64,7 +64,7 @@
  *        [--manifest out/fix-homonym-work-identity.json] [--data-dir <dir>]
  */
 import { mkdir, rm, stat } from "node:fs/promises";
-import { dirname, join } from "node:path";
+import { dirname, join, relative } from "node:path";
 import { pathToFileURL } from "node:url";
 import { atomicWriteJson, type PendingReverse } from "../../src/cache.js";
 import { parseSlugRedirects } from "../../src/genre-registry.js";
@@ -381,7 +381,9 @@ export function detectHomonymWorks(index: NodeIndex): Detection {
 			relativesOf(index.artists.get(x.slug) ?? {}, x.slug, index.artists, index.relations).some(
 				(r) => r.relation === "group" && sameArtist({ slug: group.slug, mbid: group.mbid }, r),
 			);
-		const collapsed = remaining.filter((x) => !remaining.some((y) => y !== x && isMemberOf(x, y)));
+		const withoutMembers = remaining.filter((x) => !remaining.some((y) => y !== x && isMemberOf(x, y)));
+		// Mutual member / group edges in the cache would leave nobody: then every candidate stays.
+		const collapsed = withoutMembers.length > 0 ? withoutMembers : remaining;
 		suspects.push({
 			slug,
 			type,
@@ -454,8 +456,12 @@ function exemption(
 export function withoutWrongIdentity(node: Obj): Obj {
 	const next: Obj = { ...node };
 	delete next.mbid;
-	delete next.year;
-	delete next.release_type;
+	// The backfill only fills these when absent, so a value the node's own prose states is the node's.
+	const prose = proseOf(node, WORK_PROSE);
+	const year = str(node.year);
+	if (year === undefined || !/^\d{4}$/.test(year) || !` ${prose} `.includes(` ${year} `)) delete next.year;
+	const releaseType = str(node.release_type)?.toLowerCase();
+	if (releaseType === undefined || releaseTypeFromProse(node) !== releaseType) delete next.release_type;
 	next.artists = [];
 	if (next.image_source === "caa") {
 		delete next.image_url;
@@ -502,11 +508,16 @@ async function lookUp(
  * the wrong identity's, and the artist's list entry often has none.
  */
 export function releaseTypeFromProse(node: Obj): (typeof RELEASE_TYPES)[number] | undefined {
-	const text = normalizeForPhrase(
-		`${str(node.editorial_pitch) ?? ""} . ${(str(node.editorial_article) ?? "").slice(0, 300)}`,
-	);
-	const named = RELEASE_TYPES.filter((t) => ` ${text} `.includes(` ${t} `));
-	return named.length === 1 ? named[0] : undefined;
+	const text = `${str(node.editorial_pitch) ?? ""} . ${(str(node.editorial_article) ?? "").slice(0, LEAD_LENGTH)}`;
+	// Whole words only: "single-minded" names no single. "EP" is read as written, "ep" is not a word.
+	const words = new Set([
+		...(text.match(/(?<![\p{L}\p{N}-])(album|single)(?![\p{L}\p{N}-])/giu) ?? []).map((w) => w.toLowerCase()),
+		...(text.match(/(?<![\p{L}\p{N}-])EP(?![\p{L}\p{N}-])/gu) ?? []).map(() => "ep"),
+	]);
+	const [only] = words;
+	return words.size === 1 && RELEASE_TYPES.some((t) => t === only)
+		? (only as (typeof RELEASE_TYPES)[number])
+		: undefined;
 }
 
 function yearOf(date: string | null): string | null {
@@ -724,7 +735,7 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 	log(`${detection.suspects.length} suspect work(s) among ${nodes.filter((n) => isWorkSlug(n.slug)).length}`);
 
 	const failed: FixManifest["failed"] = invalid
-		.filter((entry) => /[/\\](project|track)[/\\]/.test(entry.path))
+		.filter((entry) => /^(project|track)[/\\]/.test(relative(join(cacheDir, "nodes"), entry.path)))
 		.map((entry) => ({ slug: entry.path, reason: `unreadable node file: ${entry.error}` }));
 	const stripped: StripPlan[] = [];
 	const fixes: FixPlan[] = [];
@@ -987,7 +998,14 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 		const theirs: CacheNodeFile = { ...existing, node: planned.get(plan.newSlug) ?? existing.node };
 		const ours: CacheNodeFile = { ...existing, node: fixedNode };
 		const { winner } = elect([ours, theirs], false);
-		planned.set(plan.newSlug, mergeNodes(winner, [winner === ours ? theirs : ours], plan.newSlug));
+		const merged = mergeNodes(winner, [winner === ours ? theirs : ours], plan.newSlug);
+		// Whoever wins the election, the identity just resolved is the work's: the stub that already stood at the
+		// target would otherwise keep (or lack) the year, the release type and the cover of its own.
+		for (const field of ["year", "release_type", "image_url", "image_source"] as const) {
+			if (fixedNode[field] !== undefined) merged[field] = fixedNode[field];
+		}
+		merged.artists = fixedNode.artists;
+		planned.set(plan.newSlug, merged);
 		plan.report.merged = true;
 	}
 
@@ -1002,7 +1020,16 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 	let pending: ReturnType<typeof rewritePendingReverses> = { result: {}, changed: false };
 	try {
 		const raw = JSON.parse(await readTextOrDefault(pendingPath, "{}")) as Record<string, PendingReverse[]>;
-		pending = rewritePendingReverses(raw, new Map(Object.entries(moves)));
+		// A reverse edge awaiting a wrong neighbour's node, pointing at the old work, existed only because of the
+		// wrong identity: it is dropped, not re-pointed at the right work.
+		const cleaned = Object.fromEntries(
+			Object.entries(raw).map(([key, list]) => [
+				key,
+				list.filter((entry) => !(wrongTo.get(key) ?? []).includes(entry.edge.slug)),
+			]),
+		);
+		pending = rewritePendingReverses(cleaned, new Map(Object.entries(moves)));
+		if (JSON.stringify(cleaned) !== JSON.stringify(raw)) pending.changed = true;
 	} catch (e) {
 		failed.push({ slug: "pending-reverses.json", reason: e instanceof Error ? e.message : String(e) });
 	}

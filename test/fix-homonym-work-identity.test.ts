@@ -688,7 +688,22 @@ describe("releaseTypeFromProse", () => {
 		expect(of("A 1983 single by Tears for Fears.")).toBe("single");
 		expect(of("A four-track EP.")).toBe("ep");
 		expect(of("An album and its single.")).toBeUndefined();
+		// Whole words only: a hyphenated compound names no release type.
+		expect(of("A single-minded record.")).toBeUndefined();
 		expect(of("Explore Bill Laswell's dub compilation.")).toBeUndefined();
+	});
+});
+
+describe("withoutWrongIdentity: year and release type", () => {
+	it("keeps a year and a release type the node's own prose states, drops the ones it contradicts", () => {
+		const prose = { editorial_article: "A studio album, released in 1975." };
+		expect(withoutWrongIdentity({ ...prose, year: "1975", release_type: "album" })).toMatchObject({
+			year: "1975",
+			release_type: "album",
+		});
+		const dropped = withoutWrongIdentity({ ...prose, year: "2001", release_type: "ep" });
+		expect(dropped.year).toBeUndefined();
+		expect(dropped.release_type).toBeUndefined();
 	});
 });
 
