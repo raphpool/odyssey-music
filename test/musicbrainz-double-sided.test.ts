@@ -75,6 +75,17 @@ describe("double A-side single (TRA-612)", () => {
 		expect((await resolveReleaseGroupDetailed("Dub", "Kode9")).identity).toBeNull();
 	});
 
+	it("refuses an EP of three titles and an album of two: only a two-title single is a double A-side", async () => {
+		// Measured on the cache: Kraftwerk's "Computer World" met the EP "Numbers / Computer World / Radioactivity".
+		rgNetwork([releaseGroup(mb(30), "Numbers / Anthem Thirty / Radioactivity", { "primary-type": "EP" })]);
+		expect((await resolveReleaseGroupDetailed("Anthem Thirty", "Kode9")).identity).toBeNull();
+		rgNetwork([releaseGroup(mb(31), "Numbers / Anthem Thirty One / Radioactivity")]);
+		expect((await resolveReleaseGroupDetailed("Anthem Thirty One", "Kode9")).identity).toBeNull();
+		// ... and Stockhausen's album "Gesang der Jünglinge / Kontakte".
+		rgNetwork([releaseGroup(mb(32), "Anthem Thirty Two / Kontakte", { "primary-type": "Album" })]);
+		expect((await resolveReleaseGroupDetailed("Anthem Thirty Two", "Kode9")).identity).toBeNull();
+	});
+
 	it("refuses it when the credit does not hold the artist", async () => {
 		rgNetwork([
 			releaseGroup(mb(5), "Anthem Five / Stalker", {

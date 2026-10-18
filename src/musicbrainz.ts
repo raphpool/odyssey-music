@@ -1242,10 +1242,14 @@ function strictlyEarlier(a: string, b: string): boolean {
 	return a < b && !b.startsWith(a);
 }
 
-/** The titles a double A-side single is made of: "Sine of the Dub / Stalker" -> two. A bare "/" is no separator ("AC/DC"). */
+/**
+ * The two titles a double A-side single is made of: "Sine of the Dub / Stalker" -> two. Empty for anything
+ * else: a bare "/" is no separator ("AC/DC"), and three titles or more are an EP or an album of several works
+ * ("Numbers / Computer World / Radioactivity" is not Kraftwerk's album "Computer World", measured 2026-10-18).
+ */
 function doubleSidedSegments(title: string): string[] {
 	const parts = title.split(/\s+\/\s+/u);
-	return parts.length < 2 ? [] : parts.map((p) => normalizeTitleBody(p));
+	return parts.length === 2 ? parts.map((p) => normalizeTitleBody(p)) : [];
 }
 
 /**
@@ -1254,8 +1258,8 @@ function doubleSidedSegments(title: string): string[] {
  * Only ever an additional acceptance, never a new refusal: any doubt answers "none", as before.
  * It is tried only when NO candidate has the exact title, whoever it is credited to: an exact title
  * always wins over a segment. The candidate must be credited to the artist (equality of names, or the
- * artist's own MBID), carry a primary type that agrees with the caller's known release type, and carry no
- * secondary type (a "Remix" or "Live" release group of a similar title is not the work); exactly one may remain.
+ * artist's own MBID), be a primary-type Single of exactly two titles that agrees with the caller's known
+ * release type, and carry no secondary type (a "Remix" or "Live" release group of a similar title is not the work); exactly one may remain.
  */
 function pickDoubleSided<
 	T extends {
@@ -1275,7 +1279,9 @@ function pickDoubleSided<
 	const matches = candidates.filter((c) => {
 		if (!doubleSidedSegments(c.title).includes(wanted)) return false;
 		const primary = (c["primary-type"] ?? "").trim().toLowerCase();
-		if (primary === "" || (known !== "" && primary !== known)) return false;
+		// A single, and only a single: "Gesang der Jünglinge / Kontakte" is an album of two works, not the first
+		// one (measured 2026-10-18 on the cache). The caller's known release type must agree as well.
+		if (primary !== "single" || (known !== "" && primary !== known)) return false;
 		if (Array.isArray(c["secondary-types"]) && c["secondary-types"].length > 0) return false;
 		const credit = c["artist-credit"] ?? [];
 		return creditEqualsHint(credit, hint) || (requested !== null && creditCarriesMbid(credit, requested));
