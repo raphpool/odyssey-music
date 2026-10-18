@@ -844,3 +844,342 @@ Livrées : TRA-578 à TRA-586 (#497, #499, #500, #504, #505, #508, #510, #513, #
   - TRA-569 : `remix_of` ;
   - TRA-572 : outils sans drapeau, à garder gelés.
 - Infra : TRA-540 (sécurité des runners), à traiter par Raphael.
+
+## Partie 8 — Discographies : identifiants MusicBrainz et complétion des maigres
+
+Statut : **validé par Raphael le 2026-10-18** (« ok plan validé implémente »), les trois questions ouvertes tranchées dans le sens des recommandations (voir fin de partie) ; tickets créés le 2026-10-18 : TRA-613 à TRA-616 (8.1 → 8.4, milestone « Partie 8a — Politique et prévention »), TRA-617 à TRA-621 (8.5 → 8.9, « Partie 8b — Backfill des discographies »), TRA-622 (8.10, « Partie 8c — Mesure des pochettes »). Cartographie
+faite sur `main` à `a31a4d9e` ; les numéros de ligne s'y réfèrent. Brief : donner aux arêtes de
+`discography` le mbid de leur release group (la pochette vient alors directement du Cover Art Archive,
+sans rapprochement par titre : fix racine de TRA-612), compléter les discographies maigres depuis
+MusicBrainz, faire de même à la génération, mesurer avant/après, plafonner les listes des prolifiques.
+
+### Problème
+
+1. **Deux générations de discographies cohabitent.** Depuis `c17f4e92` (2026-05-19), `enrichNode`
+   (`src/pipeline.ts:1278-1336`) **remplace** la liste du LLM par les release groups MusicBrainz dès que
+   l'artiste a un mbid : Album / EP / Single sans type secondaire, tous les albums puis EP et singles les
+   plus récents jusqu'à 80, tri par `firstReleaseDate` décroissante, arêtes scopées avec `mbid`, `year`,
+   `releaseType`. Les artistes générés avant, ou sans mbid au moment de la génération, gardent la liste
+   Gemini (2 à 10 titres, `minItems/maxItems` du schéma `pipeline.ts:434-439`) : sans mbid, sans année,
+   sans type. Rien ne pose un mbid sur ces entrées ni ne les complète ensuite.
+2. **Mesure « avant » sur le cache du dépôt** (`scratchpad/measure-disco.mjs`, 2026-10-18) :
+   - 578 artistes, **497 avec mbid**, 81 sans (dont Aphex Twin et Burial) ;
+   - 5 854 arêtes `discography`, **4 640 avec mbid (79,3 %)**, 4 585 avec `year` (chaîne), 4 643 avec
+     `releaseType` ; 1 211 sans type ;
+   - **196 artistes à moins de 3 entrées** (100 à 0, 38 à 1, 58 à 2), dont **164 ont un mbid** (81 à 0
+     entrée) : la cible du backfill. 297 artistes avec mbid ont au moins une entrée sans mbid ; 119 ont
+     une liste entièrement MusicBrainz ; 4 sont mixtes ;
+   - tri : 141 listes triées par année décroissante (toutes celles de MusicBrainz), 0 croissante ou
+     désordonnée, 437 sans deux années comparables ;
+   - taille : 44 listes de plus de 40 entrées, **16 exactement à 80** (le plafond) ; chez ces 44, médiane
+     de 9 albums, les singles dominent (A$AP Rocky : 5 albums, 75 singles ; Kendrick Lamar : 9 / 70) ;
+   - qualité produit : 218 titres portant remix / edit / mix / bootleg / mashup / megamix / sampler, la
+     plupart **avec mbid** (« Control Your Body (Hardwell edit) », « Megamix », « The Remix Album ») :
+     le filtre des types secondaires ne suffit pas, MusicBrainz les type Single ou Album sans secondaire ;
+     93 titres en double chez 66 artistes (Miles Davis : « Birth of the Cool » deux fois) ;
+   - témoins : Daft Punk 47 entrées toutes MusicBrainz (5 albums, 5 EP, 37 singles, en tête « Veridis
+     Quo » 2024, « Discovery (Sample Bandit Bootlegs) ») ; Björk 5, Coltrane 5, Lennon 7, Miles Davis 4,
+     Zappa 4, The Beatles 3, toutes LLM sans mbid ni année ; Burial 0 et sans mbid ; **Kode9 et Prince
+     absents du dépôt** (Kode9 n'existe qu'en prod, JIT ; `artist:prince-buster` n'est pas Prince).
+3. **Sans mbid, la pochette dépend du rapprochement par titre** (`resolveWorkImageByHint`,
+   `src/images/resolve-work-hint.ts:220`) : un titre MusicBrainz différent (« Sine of the Dub / Stalker »)
+   ou une compilation suffisent à perdre l'image (TRA-612, #538, #539). Avec `edge.mbid`, le chemin est
+   `coverArtUrl(mbid)` directement, sans appel MusicBrainz.
+4. **Les `project` sont des nœuds à la demande.** 294 nœuds projet pour 5 854 arêtes ; un nœud naît sur
+   clic (`POST /materialize`, `web/index.html:2413-2444`), par le crawler ou `scripts/top-up-dangling.ts`,
+   jamais à la lecture (`src/services/node-service.ts:34-39`). Écrire une discographie d'artiste n'émet
+   **aucune** inverse vers `project.artists` (paire filtrée, TRA-563, `src/reverse-edges.ts:53-71`) ; seule
+   l'écriture d'un projet avec `artists:[A]` ajoute le projet à `A.discography` (`src/cache.ts:585-636`).
+
+### Non-buts
+
+- Résoudre l'identité des 81 artistes sans mbid (Aphex Twin, Burial) : c'est la Partie 1 (TRA-463) et
+  ses exclusions (TRA-574) ; ils ne sont pas touchés.
+- Créer des nœuds `project` pour les arêtes ajoutées, ou des arêtes inverses : voir 8-D4.
+- Supprimer, dédoublonner ou réordonner autrement que par année une entrée existante (les 93 doublons
+  restent) ; tronquer les 44 listes existantes de plus de 40 entrées (question ouverte 1).
+- `notable_tracks`, les compilations Various Artists, les œuvres en crédit secondaire (l'artiste n'est
+  pas le premier crédit), la règle double face A de TRA-612 pour poser une identité.
+- Changer l'affichage web ou iOS des discographies (`projectCarouselHtml`, `web/index.html:2454-2461`,
+  affiche tout, dans l'ordre reçu).
+- Rapatrier les nœuds JIT de prod dans le dépôt (Partie 7).
+
+### Décisions d'archi
+
+**8-D1. Une seule politique de sélection, pure et partagée, dans `src/discography-policy.ts` ; le
+pipeline et la migration l'appellent.** Entrée : les release groups MusicBrainz de l'artiste **avec
+leurs crédits** ; sortie : les arêtes retenues, dans l'ordre. Règles, dans cet ordre : (1) type primaire
+Album / EP / Single et aucun type secondaire (existant) ; (2) **premier crédit = mbid de l'artiste**, au
+plus 2 crédits, jamais Various Artists (`89ad4ac3-39f7-470e-963a-56509c546377`) — même règle que les
+compilations de TRA-571 ; (3) **titre canonique** : exclu si le titre normalisé contient `remix(es)`,
+`megamix`, `mashup` / `mash-up`, `bootleg`, `sampler`, `karaoke`, `greatest hits`, `anthology`, commence
+par `the (very) best of`, ou finit par une parenthèse / un crochet contenant `edit`, `mix`, `dub`,
+`version`, `instrumental`, `acapella`, `remix` ; (4) **plafond 40, albums d'abord** : tous les albums par
+année décroissante jusqu'au plafond, puis les EP, puis les singles, chacun du plus récent au plus ancien ;
+(5) ordre final par `year` décroissante (comparaison de `firstReleaseDate`, égalité départagée par le
+titre), **les entrées sans date en dernier**. Rejeté — garder 80 et « tous les albums » sans plafond
+(existant) : 75 singles noient 5 albums chez A$AP Rocky, c'est la leçon produit du 2026-10-17. Rejeté —
+plafond par type (20 albums + 10 EP + 10 singles) : un artiste à 30 albums (Zappa, Stones) perdrait des
+albums au profit de singles. Rejeté — filtrer les titres par Gemini : coût et non-déterminisme.
+
+**8-D2. `fetchArtistDiscographyMb` rend les crédits et distingue la panne du vide.** Nouvelle
+signature : `fetchArtistDiscographyMb(artistMbid, opts?: { limit?: number; priority?: MbPriority })
+: Promise<{ releases: MbReleaseGroupSummary[]; unavailable: boolean }>` ; `MbReleaseGroupSummary`
+gagne `artistCredits: { mbid: string; name: string }[]` (paramètre `inc=artist-credits` du browse,
+`/release-group?artist=<mbid>&type=…`). Réponse validée à la main comme `parseReleaseGroups`
+(`src/musicbrainz.ts:124-176`) ; une page en échec rend `unavailable: true` au lieu d'une liste
+silencieusement tronquée (`.catch(() => null)`, l.590 et 603). Pagination inchangée (100 par page, 4
+pages par type), espacement 1 s de la file existante (`MB_MIN_INTERVAL_MS`, `src/config.ts:47`),
+User-Agent de `musicBrainzConfig` sans aucune donnée personnelle ajoutée. Rejeté — un second appel
+`lookup` par release group pour lire les crédits : 400 requêtes de plus par artiste prolifique.
+
+**8-D3. Le backfill est additif et exact : il ajoute, il pose, il ne retire jamais.** Pour chaque
+artiste avec mbid (hors `data/identity-exclusions.json`) : (a) **pose** `mbid` sur une entrée sans mbid
+dont le titre normalisé (`normalizeTitleBody`, `src/slug.ts:119-131`) est égal à celui d'**un seul**
+release group crédité à l'artiste (tous types confondus, y compris Live / Compilation : « Live at the
+BBC » reçoit son mbid) ; deux candidats de types primaires différents et une entrée sans `releaseType` →
+`ambiguous`, rien n'est posé (règle TRA-560) ; une entrée avec `year` dont l'année diffère de plus de ±1
+→ `year-mismatch`, rien n'est posé ; `year` et `releaseType` sont **complétés seulement s'ils sont
+absents** ; `name` et `slug` ne changent jamais ; (b) **ajoute** les release groups retenus par 8-D1 qui
+ne correspondent à aucune entrée existante (par mbid, puis par titre normalisé), dans l'ordre de
+priorité de 8-D1, tant que la liste reste ≤ 40 ; une liste déjà à 40 ou plus ne reçoit rien ; (c) le
+slug d'une entrée ajoutée est `makeScopedSlug("project", title, pickScopeArtistName([node.name]))`
+(`src/slug.ts:162`, comme le pipeline l.1313-1315), **rattaché à un nœud projet existant** d'abord par
+mbid (index `mbid → slug` des `cache/nodes/project/`), sinon par `resolveReadSlug` sur le slug calculé
+(redirections de `data/slug-redirects.json`) ; (d) la liste est re-triée selon 8-D1 (5) **seulement si
+elle a changé** ; une liste intacte est octet pour octet identique. Garde-fou d'identité sans requête
+supplémentaire : si aucun release group de l'artiste n'a pour premier crédit un nom normalisé égal au
+`name` du nœud (ou à l'un des crédits si le nœud est un groupe), l'artiste est **sauté** (`name-mismatch`)
+et listé dans le manifeste. Rejeté — remplacer les listes LLM par la liste MusicBrainz comme le fait le
+pipeline : un backfill ne doit jamais effacer une entrée que Raphael a pu valider (règle de la Partie 1).
+Rejeté — rapprocher par double face A : identité approximative, réservée aux pochettes (TRA-612).
+
+**8-D4. Les entrées ajoutées sont des arêtes seules : ni nœud `project`, ni arête inverse, ni
+`pending-reverses.json`.** Le graphe est « arêtes d'abord » (294 nœuds pour 5 854 arêtes) ; la pochette
+d'une arête vient de son mbid sans nœud (3b-D1/D2) ; un nœud par entrée ajoutée coûterait un appel
+Gemini chacun et entrerait dans `data.json`, la recherche et l'audit (3b-D3 l'a déjà rejeté). L'écriture
+passe par `nodePayloadSchema.safeParse` + `onlyAddsSchemaDefaults` + `atomicWriteJson`, jamais
+`NodeCache.write` (modèle `2026-10-19-backfill-landmark-highlights.ts:140, 844-855`). Les nœuds projet
+existants ne sont pas touchés : quand un projet existe et crédite l'artiste, l'inverse
+`project.artists → artist.discography` est déjà posée (`cache.ts:585-636`). Rejeté — nœuds squelettes
+(3b-D3). Rejeté — pré-matérialiser par `scripts/top-up-dangling.ts` : hors scope, coût LLM.
+
+**8-D5. À la génération, MusicBrainz continue de remplacer la liste du LLM, avec la politique 8-D1 ;
+le plafond passe de 80 à 40.** Le brouillon Gemini n'est pas une donnée existante : il contient des
+doublons et des titres de remplissage (TRA-601, `PLACEHOLDER_TITLES`). Seul le filtre change : crédits
+(8-D2), titres non canoniques, plafond. Sans mbid, ou MusicBrainz indisponible, ou aucun release group
+retenu, la liste Gemini reste (existant, l.1294 et 1332) ; `enforceArtistChoices` (l.1944) garde
+`landmark_project` dans la liste. Rejeté — fusionner comme le backfill : réintroduit les doublons du LLM
+dans chaque nouvelle fiche.
+
+**8-D6. Mesure : deux métriques d'audit cliquetées, et un script de pochettes en lecture seule.**
+`scripts/audit-cache.ts` gagne `discography-edge-without-mbid` (1 214 aujourd'hui) et
+`artist-discography-under-3` (196), plafonds posés à ces valeurs dans `data/integrity-thresholds.json`
+puis abaissés par la PR de cache (cliquet `scripts/ci/threshold-ratchet.ts`). Le taux de pochettes n'est
+mesurable qu'avec le sidecar `cache/images/` (ignoré par git, 3b-D3) ou en HTTP : nouveau
+`scripts/measure-discography-covers.ts`, (a) mode hors ligne sur un dossier de cache contenant `nodes/`
+et `images/` — par arête de discographie : `found` / `missing` / `unavailable` / `absent` (clé = slug
+scopé de l'arête, ou `image_url` du nœud projet s'il existe), agrégé par artiste et au total ; (b) mode
+HTTP `--base <url> --artists <slugs>` qui appelle `GET /node/:slug` puis `GET /image/<slug>?from=<artist>`
+pour chaque arête, relance sur 202 (6 × `retry_after_seconds`, comme le web), et compte les 200 `found`.
+Mesure prod « avant » : rsync en lecture seule de `/opt/odyssey-music/cache/{nodes,images}` vers le
+scratchpad du runner + mode (a), et mode (b) sur les 10 témoins ; « après » : les mêmes, 24 h après le
+run (le temps que la file de fond résolve). Rejeté — un compteur dans `/health` : il n'est pas par
+artiste et ne survit pas au redémarrage.
+
+**8-D7. Run dépôt puis run prod par le canal, avec une mesure à blanc produit obligatoire.** La PR du
+script joint le manifeste du dry-run sur le cache du dépôt **et** un tableau pour 10 témoins nommés :
+Daft Punk, Aphex Twin (sans mbid : attendu « sauté »), John Lennon, John Coltrane, The Beatles, Burial
+(sans mbid : « sauté »), Miles Davis, Björk, Frank Zappa (prolifique : vérifie le plafond ; remplace
+Prince, absent du dépôt), et **Kode9 lu dans le manifeste de la preview du canal** (il n'existe qu'en
+prod). Pour chacun : entrées avant / après, mbid posés, ajouts (titre, type, année), ambiguïtés, quasi-doublons (`nearDuplicates`), et unjugement produit (compilation prise pour une œuvre ? single parasite ? album manquant ?). Le run prod
+n'est lancé qu'après ce tableau. Même convention que D10 : dry-run par défaut, manifeste déterministe,
+`--resume`, 1 req/s.
+
+### Découpage
+
+`[P]` = parallélisable dans sa vague ; 1 pt ≈ 1,5 h ; chaque tâche < 300 lignes de diff (tests compris),
+un seul type de changement, ≤ 600 lignes par PR sinon OK de Raphael. Rappels pour chaque ticket :
+MusicBrainz à 1 req/s (file existante, ne pas la contourner), aucune donnée personnelle dans les
+en-têtes ; tests `env -u GEMINI_API_KEY npx vitest run <fichiers> --maxWorkers=2` ; jamais `--no-verify` ;
+jamais d'édition de `cache/` à la main ; `scripts/migrations/` et le schéma = `tier/3`.
+
+#### Partie 8a — Politique partagée et prévention à la génération (déployable seule)
+
+- [ ] TRA-613 8.1 `[P]` Politique de sélection pure (`src/discography-policy.ts`, `test/discography-policy.test.ts`)
+      — tier/2, 3 pts
+- [ ] TRA-614 8.2 `[P]` `fetchArtistDiscographyMb` : crédits, validation, `unavailable`
+      (`src/musicbrainz.ts`, `test/musicbrainz.test.ts`, `test/helpers/pipeline-mocks.ts`) — tier/2, 2 pts
+- [ ] TRA-615 8.3 Pipeline : l'override utilise la politique, plafond 40 (`src/pipeline.ts`,
+      `test/pipeline-e2e.test.ts`) — tier/2, 2 pts (dépend de 8.1, 8.2)
+- [ ] TRA-616 8.4 `[P]` Audit : deux métriques cliquetées (`scripts/audit-cache.ts`,
+      `data/integrity-thresholds.json`, `test/audit-cache.test.ts`) — tier/3 (sensitivePath), 1 pt
+
+#### Partie 8b — Backfill des discographies (dépend de 8a)
+
+- [ ] TRA-617 8.5 `[P]` Fusion pure `mergeDiscography` (`src/discography-policy.ts`,
+      `test/discography-merge.test.ts`) — tier/2, 3 pts (dépend de 8.1)
+- [ ] TRA-618 8.6 Migration `scripts/migrations/2026-10-21-backfill-discography-mbid.ts` : CLI, manifeste,
+      `--resume`, `--only` (`test/backfill-discography-mbid.test.ts`) — tier/3, 3 pts (dépend de 8.2, 8.5)
+- [ ] TRA-619 8.7 `[P]` Test du canal (`test/migration-channel-discography-mbid.test.ts`) — tier/3, 1 pt
+      (dépend de 8.6)
+- [ ] TRA-620 8.8 Mesure à blanc (10 témoins) puis run dépôt : PR `chore(cache)` + plafonds abaissés
+      — tier/3 (sensitivePath), 2 pts (dépend de 8.6, 8.4)
+- [ ] TRA-621 8.9 Run prod : preview du canal (Kode9 lu dans le manifeste), apply, mesure « après »
+      — tier/3, 2 pts (dépend de 8.7, 8.8, 8.10)
+
+#### Partie 8c — Mesure des pochettes (déployable seule)
+
+- [ ] TRA-622 8.10 `[P]` `scripts/measure-discography-covers.ts` (hors ligne + HTTP) et mesure prod
+      « avant » jointe au ticket (`test/measure-discography-covers.test.ts`) — tier/2, 2 pts
+
+**Vagues** : A = {8.1, 8.2, 8.4, 8.10} (≤ 3 lanes, 8.10 peut attendre) → B = {8.3, 8.5} → C = 8.6 →
+D = {8.7, 8.8} → E = 8.9. 8a est livrable seule (les nouvelles fiches gagnent la politique) ; 8c aussi ;
+8b n'a de valeur qu'après 8.9.
+
+#### Contenu attendu par tâche
+
+**8.1 — Politique.** Nouveau module, aucune I/O. Types : `ReleaseGroupCandidate = { mbid; title;
+firstReleaseDate; primaryType; secondaryTypes: string[]; artistCredits: { mbid; name }[] }`,
+`DiscographyPolicy = { artistMbid: string; artistName: string; cap: number }` (`DEFAULT_DISCOGRAPHY_CAP = 40`),
+`ExclusionReason = "secondary-type" | "primary-type" | "credit" | "various-artists" | "non-canonical"`.
+Fonctions : `isNonCanonicalReleaseTitle(title): boolean` ; `classifyRelease(c, policy): { ok: true } |
+{ ok: false; reason }` ; `selectReleases(candidates, policy): { kept: ReleaseGroupCandidate[]; excluded:
+{ mbid; title; reason }[] }` (règles 8-D1 (1)→(4)) ; `orderDiscography(edges: EdgeRef[]): EdgeRef[]`
+(8-D1 (5), stable, sans date en dernier) ; `toDiscographyEdge(c, policy): EdgeRef | null` (slug scopé via
+`makeScopedSlug` et `pickScopeArtistName`, `year` = 4 premiers caractères, `releaseType` en minuscules).
+Critères (tests nommés) : « Control Your Body (Hardwell edit) », « No Limit (Remixes, Pt. 3) », « Megamix »,
+« The Remix Album », « Essence (4 Track Album Sampler) », « Body Mind & Soul (Original Mix) » → exclus
+`non-canonical` ; « Discovery », « Random Access Memories », « Da Funk », « Selected Ambient Works 85–92 »,
+« Live at the Apollo » → gardés ; crédit `[Spaceape, Kode9]` → exclu `credit`, `[Kode9, Spaceape]` → gardé,
+3 crédits → exclu, Various Artists → exclu ; 5 albums + 90 singles → 5 albums + 35 singles les plus
+récents, ordre final par année décroissante ; 45 albums → 40 albums, 0 single ; une entrée sans date est
+dernière ; `orderDiscography` est stable sur une liste déjà triée.
+
+**8.2 — Client MusicBrainz.** `src/musicbrainz.ts:560-632` : `inc=artist-credits` sur chaque page,
+parse manuel (`id`, `title`, `first-release-date`, `primary-type`, `secondary-types`, `artist-credit[].artist.{id,name}`),
+entrée sans `id` ou sans titre ignorée et comptée, page en échec → `unavailable: true` (la liste rendue
+reste celle des pages lues), `priority` transmis à `mbFetch`. Les mocks de `test/helpers/pipeline-mocks.ts:110`
+et les tests de `test/pipeline-e2e.test.ts` (l.248, 402, 935-1000, ~1709-1755) passent à la nouvelle
+forme. Critères (`test/musicbrainz.test.ts`, fetch stubbé) : l'URL porte `inc=artist-credits` ; 3 types ×
+pagination jusqu'à 4 pages ; crédits lus ; 503 sur une page → `unavailable: true` ; réponse malformée →
+entrée ignorée, pas d'exception ; les tests d'espacement (l.957+) restent verts.
+
+**8.3 — Pipeline.** `src/pipeline.ts:1287-1336` : `selectReleases` + `toDiscographyEdge` remplacent le
+bloc `PRIMARY_OK` / `TARGET = 80` ; `unavailable: true` → journal `MB discography unavailable, LLM list
+kept` et liste Gemini conservée ; le journal existant (l.1333) indique albums / EP / singles / exclus.
+Critères (`test/pipeline-e2e.test.ts`) : artiste avec mbid, mock de 5 albums + 90 singles + 1 single
+crédité en second + 1 compilation VA → 40 entrées, 5 albums, aucun crédit secondaire, ordre par année ;
+`unavailable` → liste du brouillon intacte ; `landmark_project` reste membre de la liste ; aucun autre
+test ne change.
+
+**8.4 — Audit.** `Collector` de `scripts/audit-cache.ts` : `discography-edge-without-mbid` (par arête)
+et `artist-discography-under-3` (par artiste, `discography.length < 3`) ; plafonds initiaux 1 214 et 196.
+Critères : test unitaire sur un cache temporaire ; `npm run check` et le job `integrity` verts sur le
+cache de `main` sans changer les autres seuils.
+
+**8.5 — Fusion.** Dans `src/discography-policy.ts` : `mergeDiscography(input: { existing: EdgeRef[];
+candidates: ReleaseGroupCandidate[]; allCredited: ReleaseGroupCandidate[]; policy; projectIndex:
+{ byMbid: Map<string, Slug>; resolveSlug: (slug: Slug) => Slug } }): MergeResult` avec `MergeResult =
+{ edges: EdgeRef[]; changed: boolean; posed: { slug; mbid; filled: ("year" | "releaseType")[] }[];
+added: { slug; mbid; title; year?; releaseType }[]; ambiguous: { slug; reason: "multiple" | "type" |
+"year-mismatch" }[]; capReached: boolean }` (8-D3 (a)→(d)). Critères : pose sur titre unique ; « Live at
+the BBC » posé depuis `allCredited` bien qu'exclu des ajouts ; deux candidats de types différents sans
+`releaseType` → `ambiguous/type` ; `year` « 1968 » contre 1975 → `year-mismatch` ; `year` et
+`releaseType` absents complétés, présents inchangés ; doublons existants (« Birth of the Cool » ×2) tous
+posés, aucun retiré ; ajout rattaché au slug du nœud projet par mbid, sinon redirection, sinon slug scopé ;
+liste à 40 → rien ajouté, `capReached` ; liste intacte → `changed: false` et référence identique.
+
+**8.6 — Migration.** `scripts/migrations/2026-10-21-backfill-discography-mbid.ts`, contrat de fait
+(`MIGRATION_NAME`, `DEFAULT_MANIFEST_PATH = "out/discography-mbid.json"`, `runBackfill(options): Promise<{
+manifest; written; exitCode }>`, `formatSummary`, `parseCliArgs` strict : `<cache-dir> [--apply]
+[--manifest <p>] [--data-dir <d>] [--resume] [--only <slug,…>]`, `main()` gardé par `import.meta.url`).
+Lecture par `readCacheNodes` (`2026-09-04-merge-genre-duplicates.ts:362`), exclusions lues dans
+`--data-dir/identity-exclusions.json` (copie du canal, `sync-genre-cache.sh:443-444`) sinon `data/`,
+redirections par `loadRedirects` + `resolveReadSlug` (`src/genre-registry.ts:165-214`). Manifeste
+déterministe (trié, sans horodatage ; `removed: []`, `renamed: {}`, `redirects: {}`), par artiste :
+`{ slug, mbid, before, after, posed, added, ambiguous, nearDuplicates, excluded (compteurs par raison), skipped?:
+"no-mbid" | "excluded" | "name-mismatch" | "unavailable" | "cap" }`, totaux en tête. Point de reprise tous
+les 25 artistes ; `--resume` saute un artiste dont la liste est celle que le manifeste précédent a décidée
+(modèle similar-artists l.352). Critères (`test/backfill-discography-mbid.test.ts`, cache `mkdtemp`,
+fetch injecté) : dry-run n'écrit aucun nœud et produit le manifeste ; `--apply` écrit par
+`atomicWriteJson` après `safeParse` + `onlyAddsSchemaDefaults` ; nœud intact non réécrit ; artiste exclu
+/ sans mbid / `name-mismatch` / `unavailable` sauté avec la raison ; `--only artist:kode9` ne lit que lui ;
+deux runs donnent le même manifeste ; `pending-reverses.json` et `cache/nodes/project/` inchangés ;
+≤ 1 requête à la fois (compteur sur le fetch injecté).
+
+**8.7 — Canal.** `test/migration-channel-discography-mbid.test.ts` sur le modèle de
+`migration-channel-landmark-highlights.test.ts` (ssh et rsync factices) : la migration passe par
+`--migration 2026-10-21-backfill-discography-mbid`, le manifeste est accepté par la validation de forme
+(`sync-genre-cache.sh:538-610`), l'union passe `validate-migrated-union.ts`, aucune suppression.
+
+**8.8 — Run dépôt.** Dry-run complet sur `cache/` (≈ 497 artistes, ≈ 1 500 à 2 000 requêtes, ≈ 30 min),
+tableau des 10 témoins (8-D7) dans la PR du script **avant** merge ; puis `--apply --data-dir data`,
+PR `chore(cache): discographies MusicBrainz sur le cache du dépôt` avec `data/integrity-thresholds.json`
+abaissé aux nouvelles valeurs. Critères : part d'arêtes avec mbid ≥ 90 % ; artistes avec mbid à moins de
+3 entrées ≤ 20 (reste : artistes à 0-2 release groups retenus, listés) ; aucun artiste au-dessus de 40
+qui n'y était déjà ; aucun `name`/`slug` existant modifié (diff vérifié par un script jetable) ; job
+`integrity` vert.
+
+**8.9 — Run prod.** `workflow_dispatch` `sync-genre-cache.yml` avec `migration=2026-10-21-backfill-discography-mbid`
+sans `apply` (preview) → manifeste de l'union lu : entrée `artist:kode9` (attendu : « Memories of the
+Future », « Black Sun », « Nothing » ajoutés, mbid posés sur ses 2 entrées si titres exacts) et totaux ;
+puis `apply=true` depuis `main` propre ; vérification `GET /node/artist:kode9` (≥ 5 entrées avec mbid) et
+`GET /image/<slug>?from=artist:kode9` → `found` ≤ 60 s ; mesure « après » par 8.10 à +24 h.
+
+**8.10 — Mesure des pochettes.** Script en lecture seule (8-D6), sortie JSON + tableau texte : par
+artiste `{ edges, withMbid, found, missing, unavailable, absent }` et totaux ; mode HTTP borné (6 relances,
+10 témoins). Aucune écriture, aucune requête MusicBrainz. Critères : test sur un cache temporaire avec
+sidecar ; mode HTTP testé contre un serveur factice (202 puis 200) ; mesure prod « avant » (hors ligne +
+HTTP sur les 10 témoins) jointe au ticket avant 8.9.
+
+### Risques et garde-fous
+
+- **Mbid d'artiste faux sur un nœud → discographie d'un autre artiste ajoutée en bloc.** Garde-fous :
+  exclusions TRA-574, `name-mismatch` sans requête (8-D3), tableau des 10 témoins avant tout apply,
+  manifeste exhaustif relu par le dispatcher, aucune suppression (réversible par une migration de retrait
+  par mbid).
+- **Singles parasites et compilations.** Garde-fous : crédits (8-D2), titres non canoniques, plafond
+  albums d'abord ; les cas nommés de la mesure sont des tests.
+- **Quasi-doublons à l'ajout.** Une entrée existante sans mbid dont le titre diffère du release group
+  (« Sine of the Dub » contre « Sine of the Dub / Stalker », TRA-612) n'est pas rapprochée, et la règle
+  (b) ajoute le release group à côté. Garde-fou : le manifeste compte les ajouts dont le titre normalisé
+  commence par celui d'une entrée existante sans mbid (`near-duplicate`), et ils apparaissent dans le
+  tableau des témoins ; on décide sur cette mesure, sans rapprochement approximatif dans le script.
+- **Panne MusicBrainz en cours de run.** Garde-fous : `unavailable` distinct du vide, artiste sauté et
+  listé, `--resume`, 3 tentatives de `mbFetch`.
+- **Changement d'ordre des listes existantes** (tri par année) : `landmark_project` reste membre ; les
+  chips web et iOS suivent l'ordre reçu ; accepté.
+- **Prod-only (Kode9) et union.** Le canal unionne dépôt ∪ prod : la migration tourne sur les artistes
+  JIT ; les nœuds du dépôt déjà traités par 8.8 sont intacts (`changed: false`).
+- **Taille des PR.** Les PR de code restent < 300 lignes ; la PR de cache est une PR de données, comme
+  #528 et #537.
+- **Volume MusicBrainz** : ≈ 2 000 requêtes à 1 req/s pour le dépôt, autant pour la prod ; aucune
+  parallélisation au-delà de la file.
+
+### Critères de sortie
+
+- Dépôt : arêtes `discography` avec mbid ≥ 90 % (79,3 % avant) ; artistes avec mbid à moins de 3
+  entrées ≤ 20 (164 avant) ; plafonds d'audit abaissés d'autant ; aucune liste existante raccourcie.
+- Prod : `artist:kode9` liste ≥ 5 œuvres avec mbid ; leurs pochettes sont `found` sans rapprochement
+  par titre ; la mesure 8.10 « après » montre un taux `found` supérieur à « avant » sur les 10 témoins et
+  au total.
+- Génération : une fiche artiste nouvelle a ≤ 40 entrées, albums tous présents jusqu'au plafond, aucun
+  crédit secondaire ni titre non canonique (test 8.3).
+- Un re-run des deux migrations (dépôt, prod) produit un manifeste sans `posed` ni `added`.
+
+### Questions ouvertes pour Raphael — tranchées le 2026-10-18
+
+1. **Listes existantes au-dessus du plafond** (44 artistes, 16 à 80 entrées, singles dominants) : les
+   laisser intactes (recommandé, « jamais de suppression ») ou prévoir une migration de retrait des
+   singles au-delà de 40, après mesure ?
+2. **Génération** : MusicBrainz continue de **remplacer** la liste Gemini (8-D5) plutôt que de la
+   fusionner comme le backfill. Confirmer.
+3. **Compléments additifs** : poser aussi `year` et `releaseType` quand ils manquent sur une entrée
+   rapprochée (8-D3 (a)), au-delà du seul mbid du brief. Confirmer.
+
+Réponses de Raphael (2026-10-18, « plan validé go ») : (1) les 44 listes existantes au-dessus de 40
+restent intactes, aucune migration de retrait ; (2) confirmé, MusicBrainz remplace la liste Gemini à la
+génération ; (3) confirmé, `year` et `releaseType` sont complétés quand ils manquent. Risque ajouté par
+le dispatcher : quasi-doublons à l'ajout, compteur `near-duplicate` dans le manifeste (8.6) et colonne
+dans le tableau des témoins (8.8).
