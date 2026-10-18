@@ -1,0 +1,142 @@
+{
+	"source": "TRA-600: identity of the 9 duplicate label groups, MusicBrainz + Wikidata (looked up 2026-10-18)",
+	"groups": [
+		{
+			"key": "warp",
+			"status": "proven",
+			"members": ["label:warp", "label:warp-records"],
+			"mb": { "mbid": "46f0f4cd-8aab-4b33-b698-f459faf64190", "name": "Warp", "aliases": ["Warp Records"], "wikidata": "Q543707" },
+			"wd": { "qid": "Q543707", "label": "Warp", "aliases": ["Warp Records"], "inception": 1989, "mbids": ["46f0f4cd-8aab-4b33-b698-f459faf64190"] },
+			"anchors": [],
+			"evidence": [
+				"https://musicbrainz.org/label/46f0f4cd-8aab-4b33-b698-f459faf64190",
+				"https://www.wikidata.org/wiki/Q543707"
+			]
+		},
+		{
+			"key": "columbia",
+			"status": "proven",
+			"members": ["label:columbia", "label:columbia-records"],
+			"mb": { "mbid": "011d1192-6f65-45bd-85c4-0400dd45693e", "name": "Columbia", "aliases": ["Columbia Records", "Columbia US"], "wikidata": "Q183387" },
+			"wd": {
+				"qid": "Q183387",
+				"label": "Columbia Records",
+				"aliases": ["Columbia"],
+				"inception": 1889,
+				"mbids": ["011d1192-6f65-45bd-85c4-0400dd45693e", "ad6f8706-c95e-443b-8579-8e3ecd27126c"]
+			},
+			"anchors": [],
+			"evidence": [
+				"https://musicbrainz.org/label/011d1192-6f65-45bd-85c4-0400dd45693e",
+				"https://www.wikidata.org/wiki/Q183387",
+				"Not this one: MusicBrainz ad6f8706-c95e-443b-8579-8e3ecd27126c (Columbia Records, EMI 1931-1990, UK) is Q1112471 on its own side"
+			]
+		},
+		{
+			"key": "rephlex",
+			"status": "proven",
+			"members": ["label:rephlex", "label:rephlex-records"],
+			"mb": { "mbid": "820fa04e-9927-40bb-a6c5-1bf883b159c7", "name": "Rephlex", "aliases": [], "wikidata": "Q1462331" },
+			"wd": { "qid": "Q1462331", "label": "Rephlex", "aliases": ["Rephlex Records"], "inception": 1991, "mbids": ["820fa04e-9927-40bb-a6c5-1bf883b159c7"] },
+			"anchors": [],
+			"evidence": [
+				"https://musicbrainz.org/label/820fa04e-9927-40bb-a6c5-1bf883b159c7",
+				"https://www.wikidata.org/wiki/Q1462331"
+			]
+		},
+		{
+			"key": "epic",
+			"status": "proven",
+			"members": ["label:epic", "label:epic-records"],
+			"mb": { "mbid": "8f638ddb-131a-4cc3-b3d4-7ebdac201b55", "name": "Epic", "aliases": ["Epic Records", "Epic Canada"], "wikidata": "Q216364" },
+			"wd": {
+				"qid": "Q216364",
+				"label": "Epic Records",
+				"aliases": ["Epic"],
+				"inception": 1953,
+				"mbids": [
+					"8f638ddb-131a-4cc3-b3d4-7ebdac201b55",
+					"e2e4ff42-7af5-4af6-95fd-70defc9f38e2",
+					"e4c26cf8-e9af-402a-a1d9-77e9ae909cb8",
+					"66f594e3-e930-4943-99f9-f45add71e0f8",
+					"6c4ae0f0-0449-41f6-b1dc-981b23edc115",
+					"928fc635-b7e5-41d9-9f1b-085c8e39fb2c",
+					"9bf18fd0-bdd9-4cc7-9148-534bafbb14a4",
+					"ba8cad5d-4a27-44d7-8284-1c4a6834c94a",
+					"f0927951-fb95-4f74-9193-9dcfab4e1929"
+				]
+			},
+			"anchors": [],
+			"evidence": [
+				"https://musicbrainz.org/label/8f638ddb-131a-4cc3-b3d4-7ebdac201b55",
+				"https://www.wikidata.org/wiki/Q216364",
+				"Wikidata P966 of Q216364 lists 9 mbids: 8f638ddb and e2e4ff42 at normal rank, the 7 others deprecated",
+				"Not these: Epic Records Japan (74d4bedc-649c-4855-89ec-c3ec02e68861, Q846383), Epic Records Germany (3da55ce4-7c2e-4f05-b546-1049c3536ea2, Q96743129)"
+			]
+		},
+		{
+			"key": "eg",
+			"status": "proven",
+			"members": ["label:e-g-records", "label:eg-records"],
+			"mb": {
+				"mbid": "71ee312d-4081-4699-a332-ba837a54d200",
+				"name": "E’G",
+				"aliases": ["E.G. Records", "EG", "EG Records", "E’G Records"],
+				"wikidata": "Q1611073"
+			},
+			"wd": { "qid": "Q1611073", "label": "E.G. Records", "aliases": ["EG", "E’G"], "inception": 1969, "mbids": ["71ee312d-4081-4699-a332-ba837a54d200"] },
+			"anchors": [],
+			"evidence": [
+				"https://musicbrainz.org/label/71ee312d-4081-4699-a332-ba837a54d200",
+				"https://www.wikidata.org/wiki/Q1611073",
+				"Not this one: E.G. Records, The Whitlams' own label (abb08659-386b-42ca-be00-c20ba8d5f29d)"
+			]
+		},
+		{
+			"key": "axis",
+			"status": "proven",
+			"members": ["label:axis", "label:axis-records"],
+			"mb": { "mbid": "0aa73845-13c6-49fc-935f-82b8db65cd8e", "name": "Axis", "aliases": ["Axis Records"], "wikidata": "Q2874802" },
+			"wd": { "qid": "Q2874802", "label": "Axis", "aliases": ["Axis Records", "Axis Records LLC"], "inception": 1992, "mbids": ["0aa73845-13c6-49fc-935f-82b8db65cd8e"] },
+			"anchors": ["Jeff Mills"],
+			"evidence": [
+				"https://musicbrainz.org/label/0aa73845-13c6-49fc-935f-82b8db65cd8e",
+				"https://www.wikidata.org/wiki/Q2874802",
+				"Homonyms ruled out, seven MusicBrainz labels are named Axis Records: Dutch dance 520dd37f-a5d2-4647-8959-42b2d764a6e0, San Francisco techno/industrial 13cbd0e9-0acc-4900-abc2-06812c517b86, UK metal 1986-88 b028249b-f96d-44ff-aa25-c4569e1b4d1e, Polish 1999-2005 a53f1728-c423-431e-958a-e7686d1b41e8, 4AD precursor 1979 d6025dee-9ac4-4790-ac52-b83bb032b23e, Poughquag NY c46820db-f182-402a-b561-d37f98768ba9, bootlegs of the UK metal label fd0e08f0-b6dd-4a25-b840-27039ed270e4",
+				"Both cache articles describe Jeff Mills' label, founded 1992 (anchor), rosters Jeff Mills / Robert Hood / X-102. Locations differ (label:axis: Chicago / Detroit / Berlin; label:axis-records: Miami, which matches Wikidata Q2874802 P159 = Miami Beach): location is not used as identity"
+			]
+		},
+		{
+			"key": "virgin",
+			"status": "refused",
+			"members": ["label:virgin", "label:virgin-records"],
+			"reason": "MusicBrainz and Wikidata both keep two entities: Virgin (imprint, 49b58bdb-3d74-40c6-956a-4c4b46115c9c, Q50133002) and Virgin Records (84009bd4-0ba1-411e-a952-78e6f9428572, Q203059, different from Q2513768). Neither says the two cache nodes are one label.",
+			"evidence": [
+				"https://musicbrainz.org/label/49b58bdb-3d74-40c6-956a-4c4b46115c9c",
+				"https://musicbrainz.org/label/84009bd4-0ba1-411e-a952-78e6f9428572",
+				"https://www.wikidata.org/wiki/Q50133002",
+				"https://www.wikidata.org/wiki/Q203059"
+			]
+		},
+		{
+			"key": "kms",
+			"status": "refused",
+			"members": ["label:kms", "label:kms-records"],
+			"reason": "No identifier links the two sources: MusicBrainz KMS (6b271325-b78a-4002-8ae6-e3ecaa91347b, 1987, Detroit) has no Wikidata relation and Wikidata Q1718826 (KMS Records) has no P966. Name, year and country agree, which is not a proof. Reopen when one side gets the link.",
+			"evidence": [
+				"https://musicbrainz.org/label/6b271325-b78a-4002-8ae6-e3ecaa91347b",
+				"https://www.wikidata.org/wiki/Q1718826"
+			]
+		},
+		{
+			"key": "plus8",
+			"status": "refused",
+			"members": ["label:plus-8", "label:plus-8-records"],
+			"reason": "No identifier links the two sources: MusicBrainz Plus 8 Records Ltd. (f8c842b4-3b25-4fcc-89f9-da08d5d8b7b4, 1990-05, Windsor) has no Wikidata relation and Wikidata Q1428839 (Plus 8) has no P966. Name, year and country agree, which is not a proof. Reopen when one side gets the link.",
+			"evidence": [
+				"https://musicbrainz.org/label/f8c842b4-3b25-4fcc-89f9-da08d5d8b7b4",
+				"https://www.wikidata.org/wiki/Q1428839"
+			]
+		}
+	]
+}
