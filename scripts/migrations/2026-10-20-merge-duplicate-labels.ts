@@ -26,8 +26,11 @@
  *
  * Dry-run by default; `--apply` writes. Idempotent: once merged, the group no longer exists. Every node to write
  * is validated (nodePayloadSchema) before the first write; one error blocks the whole run (exit 1, 2 with
- * --apply). Apply order: survivors, nodes that pointed at a loser, pending-reverses.json, redirects, THEN the
- * deletion of the losers, so a crash leaves a duplicate (harmless) and never a dangling edge.
+ * --apply). Apply order: every node to write (survivors and the nodes that pointed at a loser, sorted by path:
+ * any order is safe, the losers still exist), pending-reverses.json, redirects, THEN the deletion of the losers,
+ * so a crash leaves a duplicate (harmless) and never a dangling edge. The redirects table is stamped with this
+ * run as `source` and its time as `generated_at`, only when it changes (like the genre merge): the manifest
+ * holds no timestamp and a second run writes nothing.
  *
  * Migration channel (deploy/sync-genre-cache.sh): `--apply`, `--manifest` and `--data-dir` are the flags it
  * passes; the manifest declares `removed` (the loser files), `renamed` (empty: nothing is renamed) and
@@ -44,6 +47,7 @@ import { atomicWriteJson, type PendingReverse } from "../../src/cache.js";
 import { parseSlugRedirects } from "../../src/genre-registry.js";
 import { EDGE_FIELDS_BY_TYPE, type NodeType } from "../../src/node-spec.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
+import { IMAGE_SOURCES, type ImageSource } from "../../src/types.js";
 import {
 	type CacheNodeFile,
 	defaultDataDir,
@@ -242,10 +246,21 @@ function mergeInto(survivor: Obj, losers: readonly Obj[]): Obj {
 		const donor = losers.find((l) => !lacks(l, f));
 		if (lacks(merged, f) && donor) merged[f] = donor[f];
 	}
-	const imageDonor = losers.find((l) => !lacks(l, "image_url"));
-	if (lacks(merged, "image_url") && imageDonor) {
+	// The image of the best source wins (IMAGE_SOURCES order: a Wikidata logo beats a cover derived from a release,
+	// which is what Columbia and Epic would lose otherwise); at equal rank the survivor's own stays.
+	const rank = (n: Obj): number => {
+		if (lacks(n, "image_url")) return Number.POSITIVE_INFINITY;
+		const at = IMAGE_SOURCES.indexOf(n.image_source as ImageSource);
+		return at < 0 ? IMAGE_SOURCES.length : at;
+	};
+	const imageDonor = losers.reduce<Obj | null>(
+		(best, l) => (rank(l) < rank(best ?? merged) ? l : best),
+		null,
+	);
+	if (imageDonor) {
 		merged.image_url = imageDonor.image_url;
 		if (imageDonor.image_source !== undefined) merged.image_source = imageDonor.image_source;
+		else delete merged.image_source;
 	}
 	return merged;
 }
@@ -413,9 +428,11 @@ export function planMerge(
 		renamed,
 		new Map([...repointTo].map(([from, to]) => [from, to.slug])),
 	);
-	manifest.pendingRewritten = Object.values(pending)
-		.flat()
-		.filter((p) => repointTo.has(p.edge.slug)).length;
+	manifest.pendingRewritten = Object.entries(pending).reduce(
+		(sum, [key, list]) =>
+			sum + (repointTo.has(key) ? list.length : list.filter((p) => repointTo.has(p.edge.slug)).length),
+		0,
+	);
 	return {
 		writes: checked,
 		deletions: [...losers.values()].map((l) => l.path),
@@ -464,13 +481,11 @@ export async function runMigration(options: RunOptions): Promise<{ manifest: Man
 	manifest.errors.push(...errors);
 
 	const redirectsPath = join(options.dataDir ?? defaultDataDir(), "slug-redirects.json");
-	let table: Obj = { redirects: {} };
 	let mergedRedirects: Record<string, string> = {};
 	try {
-		const raw = JSON.parse(await readTextOrDefault(redirectsPath, '{"redirects":{}}')) as unknown;
+		const raw = JSON.parse(await readTextOrDefault(redirectsPath, '{"redirects":{}}')) as Obj;
 		parseSlugRedirects(raw);
-		table = raw as Obj;
-		mergedRedirects = mergeRedirects(table.redirects as Record<string, string>, plan.redirects);
+		mergedRedirects = mergeRedirects(raw.redirects as Record<string, string>, plan.redirects);
 		parseSlugRedirects({ redirects: mergedRedirects });
 		const live = new Set(nodes.filter((n) => !plan.deletions.includes(n.path)).map((n) => n.slug));
 		for (const key of Object.keys(plan.redirects)) {
@@ -489,7 +504,12 @@ export async function runMigration(options: RunOptions): Promise<{ manifest: Man
 		if (plan.pending) await atomicWriteJson(pendingPath, plan.pending);
 		if (manifest.merged.length > 0) {
 			await mkdir(dirname(redirectsPath), { recursive: true });
-			await atomicWriteJson(redirectsPath, { ...table, redirects: mergedRedirects });
+			// Like the genre merge: this run is the table's new source, stamped only when the table changes.
+			await atomicWriteJson(redirectsPath, {
+				source: "label merge (TRA-600)",
+				generated_at: new Date().toISOString(),
+				redirects: mergedRedirects,
+			});
 		}
 		for (const path of plan.deletions) await rm(path);
 	}

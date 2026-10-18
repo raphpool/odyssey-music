@@ -201,6 +201,39 @@ describe("merging two labels proven identical", () => {
 		expect(again.manifest).toMatchObject({ merged: [], refused: [], removed: [], redirects: {}, written: 0 });
 	});
 
+	it.each([
+		[
+			"a better source on the loser wins (logo over derived cover)",
+			"derived-cover",
+			"wikidata-p154",
+			"loser",
+		],
+		["an equal source keeps the survivor's", "caa", "caa", "survivor"],
+		["a worse source on the loser never wins", "wikidata-p154", "derived-cover", "survivor"],
+		["no image on the survivor takes the loser's", undefined, "derived-cover", "loser"],
+	] as const)("image: %s", async (_label, own, other, expected) => {
+		const image = (who: string, source?: string): Obj =>
+			source ? { image_url: `https://coverartarchive.org/${who}/front-500`, image_source: source } : {};
+		const nodes = warpNodes().map((n) =>
+			n.slug === "label:warp"
+				? { ...n, ...image("survivor", own) }
+				: n.slug === "label:warp-records"
+					? { ...n, ...image("loser", other) }
+					: n,
+		);
+		const { cache, data } = makeCache(nodes);
+		const { manifest } = await runMigration({
+			cacheDir: cache,
+			apply: true,
+			dataDir: data,
+			identities: proof(),
+		});
+		expect(manifest.errors).toEqual([]);
+		const winner = read(cache, "label:warp");
+		expect(winner.image_url).toBe(`https://coverartarchive.org/${expected}/front-500`);
+		expect(winner.image_source).toBe(expected === "loser" ? other : own);
+	});
+
 	it("keeps the survivor named like MusicBrainz, else the richest, else the lowest slug", async () => {
 		const { cache } = makeCache(warpNodes());
 		const { nodes } = await readCacheNodes(cache);
