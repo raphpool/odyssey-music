@@ -1221,6 +1221,14 @@ export interface WorkResolveOptions {
 	 * the other steps.
 	 */
 	releaseType?: string | undefined;
+	/**
+	 * Release groups only, and only together with a known `releaseType` (TRA-604). Candidates of that type that
+	 * differ in secondary types (the studio album, its 2013 compilation, a remix album: all primary "Album",
+	 * all credited to Pink Floyd) are `ambiguous` by default. With this set, the ones with NO secondary type
+	 * are the work: the studio release, never a compilation, live or remix of the same title. Several plain ones
+	 * still go to the date rule. Off by default: no existing caller changes.
+	 */
+	preferPlainRelease?: boolean | undefined;
 }
 
 function acceptedMbidSet(options: WorkResolveOptions): Set<string> {
@@ -1288,6 +1296,7 @@ function pickByTitleAndCredit<
 	acceptedMbids: ReadonlySet<string> = new Set(),
 	requestedArtistMbid?: string,
 	releaseType?: string,
+	preferPlainRelease = false,
 ): Pick<T> {
 	const wanted = normalizeTitleBody(title);
 	if (!wanted) return { kind: "none" };
@@ -1349,7 +1358,9 @@ function pickByTitleAndCredit<
 	};
 	const known = releaseType?.trim().toLowerCase() ?? "";
 	// A type the caller knows is never traded for another one, even when it is the only candidate.
-	const ofType = known === "" ? pool : pool.filter((c) => primaryOf(c) === known);
+	const typed = known === "" ? pool : pool.filter((c) => primaryOf(c) === known);
+	const plain = typed.filter((c) => kindOf(c) === `${known}/`);
+	const ofType = preferPlainRelease && known !== "" && plain.length > 0 ? plain : typed;
 	const first = ofType[0];
 	if (!first || ofType.some((c) => kindOf(c) !== kindOf(first))) return { kind: "ambiguous" };
 	if (ofType.length === 1) return { kind: "one", candidate: first };
@@ -1438,6 +1449,7 @@ export async function resolveReleaseGroupDetailed(
 		acceptedMbidSet(options),
 		options.requestedArtistMbid,
 		options.releaseType,
+		options.preferPlainRelease === true,
 	);
 	if (picked.kind !== "one") return { ...none, ambiguous: picked.kind === "ambiguous" };
 	const rg = picked.candidate;

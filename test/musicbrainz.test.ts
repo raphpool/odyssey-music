@@ -2630,3 +2630,115 @@ describe("pickByTitleAndCredit: release groups of different primary types", () =
 		);
 	});
 });
+
+// TRA-604: `project:wish-you-were-here--american-hot-wax` carried the MBID of a 2001 release by American Hot Wax
+// although its article is Pink Floyd's album, and `track:around-the-world--stanley-black-and-his-orchestra` the one
+// of a 1958 recording. The identity backfill had picked the release on the title. The resolver now has to ask for
+// the artist's credit: a look-alike of the same title credited to somebody else is never an answer.
+describe("work resolvers: a homonym's work of the same title is never the answer (TRA-604)", () => {
+	const PINK_FLOYD = "cccccccc-0604-4604-8604-000000000001";
+	const AMERICAN_HOT_WAX = "cccccccc-0604-4604-8604-000000000002";
+	const DAFT_PUNK = "cccccccc-0604-4604-8604-000000000003";
+	const STANLEY_BLACK = "cccccccc-0604-4604-8604-000000000004";
+	const HOT_WAX_RG = "217d2789-9121-3407-be70-73b0e3c5826e";
+	const FLOYD_RG = "cccccccc-0604-4604-8604-000000000011";
+	const BLACK_REC = "cccccccc-0604-4604-8604-000000000021";
+	const DAFT_REC = "cccccccc-0604-4604-8604-000000000022";
+	const none = { identity: null, ambiguous: false, unavailable: false };
+	const hotWaxRelease = () =>
+		hit(HOT_WAX_RG, "Wish You Were Here", [[AMERICAN_HOT_WAX, "American Hot Wax"]], {
+			"primary-type": "EP",
+			"first-release-date": "2001-05-01",
+		});
+	const blackRecording = () =>
+		hit(BLACK_REC, "Around the World", [[STANLEY_BLACK, "Stanley Black & His Orchestra"]], {
+			"first-release-date": "1958",
+		});
+
+	it("does not give 'Wish You Were Here' by Pink Floyd the release of American Hot Wax", async () => {
+		// MB answered with the homonym's release only: for Pink Floyd that is no work at all, not the work.
+		stubMb({ "release-groups": [hotWaxRelease()] });
+		expect(await resolveReleaseGroupDetailed("Wish You Were Here", "Pink Floyd")).toEqual(none);
+		expect(
+			await resolveReleaseGroupDetailed("Wish You Were Here", "Pink Floyd", {
+				requestedArtistMbid: PINK_FLOYD,
+				releaseType: "album",
+			}),
+		).toEqual(none);
+	});
+
+	it("picks Pink Floyd's own release when both are in the answer, and each artist gets its own", async () => {
+		stubMb({
+			"release-groups": [
+				{ ...hotWaxRelease(), "first-release-date": "1999-01-01" },
+				hit(FLOYD_RG, "Wish You Were Here", [[PINK_FLOYD, "Pink Floyd"]], {
+					"primary-type": "Album",
+					"first-release-date": "1975-09-12",
+				}),
+			],
+		});
+		// mbFetch memoizes by URL for the whole file: another spelling of the hint (the credit comparison ignores
+		// case) is another request, so the answer stubbed above is the one this test gets.
+		const floyd = await resolveReleaseGroupDetailed("Wish You Were Here", "PINK FLOYD", {
+			requestedArtistMbid: PINK_FLOYD,
+		});
+		expect(floyd.identity?.mbid).toBe(FLOYD_RG);
+		expect(floyd.identity?.credit).toEqual([{ mbid: PINK_FLOYD, name: "Pink Floyd" }]);
+		const hotWax = await resolveReleaseGroupDetailed("Wish You Were Here", "American Hot Wax");
+		expect(hotWax.identity?.mbid).toBe(HOT_WAX_RG);
+	});
+
+	it("takes the studio album over its compilation, live and singles only when asked to (preferPlainRelease)", async () => {
+		// The shape MB answers for Pink Floyd on 2026-10-18: one plain Album, a 2013 compilation, two singles.
+		const releases = () => ({
+			"release-groups": [
+				hit(FLOYD_RG, "Wish You Were Here", [[PINK_FLOYD, "Pink Floyd"]], {
+					"primary-type": "Album",
+					"first-release-date": "1975-09-12",
+				}),
+				hit("cccccccc-0604-4604-8604-000000000031", "Wish You Were Here", [[PINK_FLOYD, "Pink Floyd"]], {
+					"primary-type": "Album",
+					"secondary-types": ["Compilation"],
+					"first-release-date": "2013",
+				}),
+				hit("cccccccc-0604-4604-8604-000000000032", "Wish You Were Here", [[PINK_FLOYD, "Pink Floyd"]], {
+					"primary-type": "Single",
+					"first-release-date": "2013-06-14",
+				}),
+			],
+		});
+		stubMb(releases());
+		// Default: look-alikes of the same type that differ in secondary types stay a doubt (TRA-560).
+		expect(
+			await resolveReleaseGroupDetailed("Wish You Were Here", "pink floyd", { releaseType: "album" }),
+		).toEqual({
+			identity: null,
+			ambiguous: true,
+			unavailable: false,
+		});
+		stubMb(releases());
+		const plain = await resolveReleaseGroupDetailed("Wish You Were Here", "PiNk FlOyD", {
+			releaseType: "album",
+			preferPlainRelease: true,
+		});
+		expect(plain.identity?.mbid).toBe(FLOYD_RG);
+		// Without a known type the option decides nothing: an album and a single are still told apart by the caller.
+		stubMb(releases());
+		expect(
+			(await resolveReleaseGroupDetailed("Wish You Were Here", "PINK floyd", { preferPlainRelease: true }))
+				.ambiguous,
+		).toBe(true);
+	});
+
+	it("does not give Daft Punk's 'Around the World' the recording of Stanley Black and His Orchestra", async () => {
+		stubMb({ recordings: [blackRecording()] });
+		expect(await resolveRecordingDetailed("Around the World", "Daft Punk")).toEqual(none);
+		stubMb({
+			recordings: [
+				blackRecording(),
+				hit(DAFT_REC, "Around the World", [[DAFT_PUNK, "Daft Punk"]], { "first-release-date": "1997-01-20" }),
+			],
+		});
+		expect((await resolveRecordingDetailed("Around the World", "DAFT PUNK")).identity?.mbid).toBe(DAFT_REC);
+	});
+});
