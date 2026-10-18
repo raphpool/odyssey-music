@@ -29,9 +29,9 @@
     }
   ],
   "label": {
-    "slug": "label:warp-records",
+    "slug": "label:warp",
     "type": "label",
-    "name": "Warp Records"
+    "name": "Warp"
   },
   "genres": [
     {

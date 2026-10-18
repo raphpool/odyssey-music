@@ -73,9 +73,9 @@
   ],
   "key_labels": [
     {
-      "slug": "label:columbia-records",
+      "slug": "label:columbia",
       "type": "label",
-      "name": "Columbia Records"
+      "name": "Columbia"
     },
     {
       "slug": "label:atlantic-records",

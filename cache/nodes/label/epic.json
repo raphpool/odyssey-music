@@ -32,8 +32,8 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
-  "image_url": "https://coverartarchive.org/release-group/a3d1045e-4129-3477-959f-2d0b17b03877/front-500",
-  "image_source": "derived-cover",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Epic%20Records.svg?width=600",
+  "image_source": "wikidata-p154",
   "type": "label",
   "editorial_description": "A foundational major label under Sony Music Entertainment with a rich legacy spanning jazz, classical, rock, pop, and hip-hop.",
   "founded": "1953",
@@ -131,6 +131,41 @@
       "slug": "artist:tenacious-d",
       "type": "artist",
       "name": "Tenacious D"
+    },
+    {
+      "slug": "artist:21-savage",
+      "type": "artist",
+      "name": "21 Savage"
+    },
+    {
+      "slug": "artist:judas-priest",
+      "type": "artist",
+      "name": "Judas Priest"
+    },
+    {
+      "slug": "artist:tammy-wynette",
+      "type": "artist",
+      "name": "Tammy Wynette"
+    },
+    {
+      "slug": "artist:a-tribe-called-quest",
+      "type": "artist",
+      "name": "A Tribe Called Quest"
+    },
+    {
+      "slug": "artist:eazy-e",
+      "type": "artist",
+      "name": "Eazy-E"
+    },
+    {
+      "slug": "artist:mike-oldfield",
+      "type": "artist",
+      "name": "Mike Oldfield"
+    },
+    {
+      "slug": "artist:paul-horn",
+      "type": "artist",
+      "name": "Paul Horn"
     }
   ],
   "notable_releases": [
@@ -159,6 +194,12 @@
       "type": "project",
       "name": "Beg to Differ",
       "artist": "Prong"
+    },
+    {
+      "slug": "project:perfect-angel--minnie-riperton",
+      "type": "project",
+      "name": "Perfect Angel",
+      "artist": "Minnie Riperton"
     }
   ]
 }

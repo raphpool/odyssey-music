@@ -44,6 +44,12 @@
       "type": "genre",
       "name": "Electronic",
       "qid": "Q9778"
+    },
+    {
+      "slug": "genre:minimal-techno",
+      "type": "genre",
+      "name": "Minimal Techno",
+      "qid": "Q1430587"
     }
   ],
   "roster": [
@@ -66,6 +72,11 @@
       "slug": "artist:robert-hood",
       "type": "artist",
       "name": "Robert Hood"
+    },
+    {
+      "slug": "artist:x-102",
+      "type": "artist",
+      "name": "X-102"
     }
   ],
   "notable_releases": [
@@ -83,6 +94,22 @@
       "slug": "project:the-exhibitionist",
       "type": "project",
       "name": "The Exhibitionist"
+    },
+    {
+      "slug": "project:the-rings-of-saturn",
+      "type": "project",
+      "name": "The Rings of Saturn (as X-102)"
+    },
+    {
+      "slug": "project:sequence",
+      "type": "project",
+      "name": "Sequence"
+    },
+    {
+      "slug": "project:every-dog-has-its-day-vol-3--millsart",
+      "type": "project",
+      "name": "Every Dog Has Its Day vol.3",
+      "artist": "Millsart"
     }
   ]
 }

@@ -89,9 +89,9 @@
   ],
   "key_labels": [
     {
-      "slug": "label:rephlex-records",
+      "slug": "label:rephlex",
       "type": "label",
-      "name": "Rephlex Records"
+      "name": "Rephlex"
     }
   ],
   "landmark_projects": [],

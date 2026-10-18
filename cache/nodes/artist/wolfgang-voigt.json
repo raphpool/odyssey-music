@@ -49,9 +49,9 @@
       "name": "Kompakt"
     },
     {
-      "slug": "label:warp-records",
+      "slug": "label:warp",
       "type": "label",
-      "name": "Warp Records"
+      "name": "Warp"
     },
     {
       "slug": "label:raster-noton",

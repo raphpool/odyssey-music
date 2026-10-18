@@ -43,9 +43,9 @@
   ],
   "labels": [
     {
-      "slug": "label:axis-records",
+      "slug": "label:axis",
       "type": "label",
-      "name": "Axis Records"
+      "name": "Axis"
     },
     {
       "slug": "label:underground-resistance",
