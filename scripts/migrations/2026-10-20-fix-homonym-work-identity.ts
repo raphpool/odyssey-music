@@ -14,8 +14,10 @@
  *     `editorial_teaser`), under any name the cache knows for it (credit, node name, aliases, "&" / "and",
  *     a leading "The"), and
  *   - an artist that is NOT a credited one is: it lists the work in `discography` / `notable_tracks` (through
- *     one hop of the redirect tables, the way a read resolves it) or is one of its `producers`, AND its name
- *     (4 letters or more, not the work's own title) is named in that prose.
+ *     one hop of the redirect tables, the way a read resolves it, or by listing the SAME title scoped on
+ *     itself: `project:human-after-all--daft-punk`, the right slug of the work) or is one of its `producers`,
+ *     AND its name (4 letters or more, not the work's own title) is named in that prose. A band and its
+ *     members that are all candidates count as the band.
  * Left alone, with the reason counted: a credit named in the prose; a credited artist who also produced the
  * work (Giorgio Moroder on a Donna Summer track); an article artist that is a RELATIVE of a credited one
  * (members / aliases / group, either direction: Kraftwerk and Ralf Hutter, Boards of Canada and Marcus Eoin)
@@ -23,12 +25,15 @@
  * with no prose, a credit in a script the comparison cannot read, "Various Artists". Safety before rate: a
  * work the heuristic cannot judge is not touched.
  *
- * Fix. For each suspect with ONE article artist A (several = left alone, listed):
+ * Fix. For each suspect, every artist its prose names is tried (one confirmed = the answer, several = left alone
+ * and listed):
  *   1. look the work up again under A (the resolvers of src/musicbrainz.ts, which require the credit to equal
- *      A), with the release type and the year of A's own list entry as hints (the node's are the wrong
- *      identity's);
+ *      A; no second search on the title alone), with the release type and the year of A's own list entry as
+ *      hints (the node's are the wrong identity's);
  *   2. the credit must confirm A (by mbid when A has one), the year must agree with A's entry, and the credit
- *      must map onto cache artists: otherwise the identity is WRONG and has no replacement: `stripped`;
+ *      must map onto cache artists. No artist confirmed: the identity is WRONG and has no replacement, and it
+ *      is `stripped` only when ONE article artist both lists the work and is among its producers (the two
+ *      prod cases); with less evidence the work is reported (`skipped`) and left as it is;
  *   3. success: everything the wrong identity gave the node is removed (mbid, credit, year, release type, a CAA
  *      cover, a label / project / tracklist that carries an MB id), and TRA-474's own write (`planWrite`)
  *      puts the right identity back: mbid, credit, year, release type, tracklist / project / label from MB.
@@ -465,12 +470,27 @@ async function lookUp(
 	releaseType: string | undefined,
 ): Promise<{ found: MbReleaseIdentity | null; ambiguous: boolean; unavailable: boolean }> {
 	const resolve = type === "project" ? resolveReleaseGroupDetailed : resolveRecordingDetailed;
-	const typed = type === "project" && releaseType !== undefined ? { releaseType } : {};
+	// A known type also asks for the plain release over its compilations, lives and remixes (TRA-604).
+	const typed =
+		type === "project" && releaseType !== undefined ? { releaseType, preferPlainRelease: true } : {};
 	const answer = await resolve(name, hint.name, {
 		...(hint.mbid === undefined ? {} : { requestedArtistMbid: hint.mbid }),
 		...typed,
 	});
 	return { found: answer.identity, ambiguous: answer.ambiguous, unavailable: answer.unavailable };
+}
+
+/**
+ * The release type a project's own prose states: "album", "single" or "EP" when exactly one of them is named in
+ * its pitch and the opening of its article ("Pink Floyd's ninth studio album"). The node's own `release_type` is
+ * the wrong identity's, and the artist's list entry often has none.
+ */
+export function releaseTypeFromProse(node: Obj): (typeof RELEASE_TYPES)[number] | undefined {
+	const text = normalizeForPhrase(
+		`${str(node.editorial_pitch) ?? ""} . ${(str(node.editorial_article) ?? "").slice(0, 300)}`,
+	);
+	const named = RELEASE_TYPES.filter((t) => ` ${text} `.includes(` ${t} `));
+	return named.length === 1 ? named[0] : undefined;
 }
 
 function yearOf(date: string | null): string | null {
@@ -706,7 +726,9 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 		let unavailable = false;
 		let consistent = false;
 		for (const artist of suspect.articleArtists) {
-			const releaseType = RELEASE_TYPES.find((t) => t === artist.entry?.releaseType);
+			const releaseType =
+				RELEASE_TYPES.find((t) => t === artist.entry?.releaseType) ??
+				(suspect.type === "project" ? releaseTypeFromProse(file.node) : undefined);
 			const lookedUp = await lookUp(suspect.type, suspect.name, artist, releaseType);
 			if (lookedUp.unavailable) {
 				unavailable = true;

@@ -2688,6 +2688,48 @@ describe("work resolvers: a homonym's work of the same title is never the answer
 		expect(hotWax.identity?.mbid).toBe(HOT_WAX_RG);
 	});
 
+	it("takes the studio album over its compilation, live and singles only when asked to (preferPlainRelease)", async () => {
+		// The shape MB answers for Pink Floyd on 2026-10-18: one plain Album, a 2013 compilation, two singles.
+		const releases = () => ({
+			"release-groups": [
+				hit(FLOYD_RG, "Wish You Were Here", [[PINK_FLOYD, "Pink Floyd"]], {
+					"primary-type": "Album",
+					"first-release-date": "1975-09-12",
+				}),
+				hit("cccccccc-0604-4604-8604-000000000031", "Wish You Were Here", [[PINK_FLOYD, "Pink Floyd"]], {
+					"primary-type": "Album",
+					"secondary-types": ["Compilation"],
+					"first-release-date": "2013",
+				}),
+				hit("cccccccc-0604-4604-8604-000000000032", "Wish You Were Here", [[PINK_FLOYD, "Pink Floyd"]], {
+					"primary-type": "Single",
+					"first-release-date": "2013-06-14",
+				}),
+			],
+		});
+		stubMb(releases());
+		// Default: look-alikes of the same type that differ in secondary types stay a doubt (TRA-560).
+		expect(
+			await resolveReleaseGroupDetailed("Wish You Were Here", "pink floyd", { releaseType: "album" }),
+		).toEqual({
+			identity: null,
+			ambiguous: true,
+			unavailable: false,
+		});
+		stubMb(releases());
+		const plain = await resolveReleaseGroupDetailed("Wish You Were Here", "PiNk FlOyD", {
+			releaseType: "album",
+			preferPlainRelease: true,
+		});
+		expect(plain.identity?.mbid).toBe(FLOYD_RG);
+		// Without a known type the option decides nothing: an album and a single are still told apart by the caller.
+		stubMb(releases());
+		expect(
+			(await resolveReleaseGroupDetailed("Wish You Were Here", "PINK floyd", { preferPlainRelease: true }))
+				.ambiguous,
+		).toBe(true);
+	});
+
 	it("does not give Daft Punk's 'Around the World' the recording of Stanley Black and His Orchestra", async () => {
 		stubMb({ recordings: [blackRecording()] });
 		expect(await resolveRecordingDetailed("Around the World", "Daft Punk")).toEqual(none);

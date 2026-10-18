@@ -5,6 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
 	type FixManifest,
 	parseCliArgs,
+	releaseTypeFromProse,
 	runFix,
 	withoutWrongIdentity,
 } from "../scripts/migrations/2026-10-20-fix-homonym-work-identity.js";
@@ -653,6 +654,20 @@ describe("runFix: Around the World, credited to Stanley Black", () => {
 		expect((await readRedirects())["track:around-the-world"]).toBe(next);
 		expect((await readNode("artist:stanley-black")).notable_tracks).toEqual([]);
 		expect((await readNode("project:hollywood-love-themes")).tracklist).toEqual([]);
+	});
+});
+
+describe("releaseTypeFromProse", () => {
+	it("reads the one release type the prose names, and nothing when it names none or several", () => {
+		const of = (pitch: string, article = "") =>
+			releaseTypeFromProse({ editorial_pitch: pitch, editorial_article: article });
+		expect(of("Pink Floyd's 1975 concept album.", "Pink Floyd's ninth studio album, released in 1975.")).toBe(
+			"album",
+		);
+		expect(of("A 1983 single by Tears for Fears.")).toBe("single");
+		expect(of("A four-track EP.")).toBe("ep");
+		expect(of("An album and its single.")).toBeUndefined();
+		expect(of("Explore Bill Laswell's dub compilation.")).toBeUndefined();
 	});
 });
 
