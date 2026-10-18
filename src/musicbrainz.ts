@@ -1596,7 +1596,8 @@ function secondaryTypesOf(group: Record<string, unknown>): string[] {
  *  - it is the only release group of that title among the artist's recordings;
  *  - it has the secondary type Compilation, and every release of it the hits list is credited to
  *    Various Artists (a compilation credited to a real artist is that artist's album, not a proof here);
- *  - one of the artist's recordings (credited by equality of names, or by `requestedArtistMbid`) is on it.
+ *  - one of the artist's recordings is on it, credited by `requestedArtistMbid` when the caller knows it (a
+ *    namesake under the same name does not count), and by equality of names only when it does not.
  * A truncated page is picked from blind: `ambiguous`. Same priority rules as the other resolvers.
  */
 export async function findCompilationCoverReleaseGroup(
@@ -1624,8 +1625,11 @@ export async function findCompilationCoverReleaseGroup(
 	const groups = new Map<string, { compilation: boolean; variousArtistsOnly: boolean }>();
 	for (const rec of recordings) {
 		const credit = rec["artist-credit"] ?? [];
-		if (!creditEqualsHint(credit, hint) && !(requested !== null && creditCarriesMbid(credit, requested)))
-			continue;
+		// The artist's MBID, when known, is the only proof: a namesake printed under the same name does not count.
+		// The name decides only when no MBID is known.
+		const credited =
+			requested !== null ? creditCarriesMbid(credit, requested) : creditEqualsHint(credit, hint);
+		if (!credited) continue;
 		for (const rel of Array.isArray(rec.releases) ? rec.releases : []) {
 			const group = isRecord(rel) ? rel["release-group"] : undefined;
 			if (!isRecord(group) || !isMbid(group.id) || typeof group.title !== "string") continue;

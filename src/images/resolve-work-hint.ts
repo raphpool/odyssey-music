@@ -162,7 +162,10 @@ async function viaCompilation(
 			requestedArtistMbid: album.artistMbid,
 		}),
 	);
-	if (verdict?.kind !== "found") return null;
+	// An outage says nothing about the work: it must end as `unavailable` (retried in an hour), never as the
+	// `missing` verdict that would be kept for 7 days.
+	if (verdict === null || verdict.kind === "unavailable") return { kind: "unavailable" };
+	if (verdict.kind !== "found") return null;
 	const cover = await coverArchive(verdict.releaseGroupMbid, hint, deps);
 	// No `mbid`: a cover borrowed from a compilation says nothing about the identity of the work.
 	return cover ? { kind: "found", url: cover.url, source: "caa" } : null;

@@ -298,6 +298,25 @@ describe("findCompilationCoverReleaseGroup (TRA-612)", () => {
 		).toEqual({ kind: "found", releaseGroupMbid: HYPERDUB });
 	});
 
+	it("when the artist's MBID is known, a namesake under the same name does not count; the name decides only without it", async () => {
+		const namesake = { name: "Kode9", artist: { id: OTHER, name: "Kode9" } };
+		recNetwork([recording([release(HYPERDUB, "Compilation Nu")], [namesake])]);
+		expect(
+			await findCompilationCoverReleaseGroup("Compilation Nu", "Kode9", { requestedArtistMbid: KODE9 }),
+		).toEqual({
+			kind: "none",
+		});
+		recNetwork([recording([release(HYPERDUB, "Compilation Xi")], [namesake])]);
+		expect(await findCompilationCoverReleaseGroup("Compilation Xi", "Kode9")).toEqual({
+			kind: "found",
+			releaseGroupMbid: HYPERDUB,
+		});
+		recNetwork([recording([release(HYPERDUB, "Compilation Omicron")], [kode9])]);
+		expect(
+			await findCompilationCoverReleaseGroup("Compilation Omicron", "Kode9", { requestedArtistMbid: KODE9 }),
+		).toEqual({ kind: "found", releaseGroupMbid: HYPERDUB });
+	});
+
 	it("does not pick from a truncated page, and reports an outage as unavailable", async () => {
 		recNetwork([recording([release(HYPERDUB, "Compilation Kappa")])], 250);
 		expect(await findCompilationCoverReleaseGroup("Compilation Kappa", "Kode9")).toEqual({

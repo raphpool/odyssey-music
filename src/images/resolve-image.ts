@@ -57,6 +57,12 @@ export interface ImageDeps {
 	 * rule was relaxed, turns it on. The MBID found is used for the cover and never written to the node.
 	 */
 	viaMusicBrainz?: boolean;
+	/**
+	 * Filled in by the resolver when a MusicBrainz request of the `viaMusicBrainz` rung failed (HTTP error,
+	 * timeout, network, unreadable answer). `null` from `resolveImage` then means "could not tell", not
+	 * "no image": the queue records `unavailable` (retried in an hour) instead of `missing` (kept 7 days).
+	 */
+	outage?: { musicBrainz: boolean };
 }
 
 // Calls `fetchWikidataUrlRelMb` directly rather than `fetchWikidataQid`: that wrapper (src/images/wikidata.ts)
@@ -215,12 +221,14 @@ async function musicBrainzCover(
 ): Promise<ResolvedImage | null> {
 	const artist = node.artists[0];
 	if (node.mbid || !deps.viaMusicBrainz || !artist?.name) return null;
+	// The edge of a project almost never carries the MBID: the credited artist's own node does.
+	const artistMbid = artist.mbid ?? (await creditedArtistMbid(artist, deps.cache));
 	const found = await resolveAlbumByMusicBrainz(
 		{
 			title: node.name,
 			artist: artist.name,
 			releaseType: node.release_type,
-			artistMbid: artist.mbid,
+			artistMbid,
 		},
 		{ slug: node.slug },
 		{
@@ -229,8 +237,16 @@ async function musicBrainzCover(
 			...(deps.priority ? { mbOptions: { priority: deps.priority } } : {}),
 		},
 	);
+	// A MusicBrainz outage is no verdict on the work: the caller is told, so that it is not kept as a miss.
+	if (found?.kind === "unavailable" && deps.outage) deps.outage.musicBrainz = true;
 	// Only the Cover Art Archive rung can answer here (iTunes is not part of resolveAlbumByMusicBrainz).
 	return found?.kind === "found" ? { url: found.url, source: "caa" } : null;
+}
+
+/** The MBID held by the node of a credited artist, or undefined: unreadable, not an artist, or without MBID. */
+async function creditedArtistMbid(artist: EdgeRef, cache: NodeCache): Promise<string | undefined> {
+	const node = await readNode(cache, artist);
+	return node?.type === "artist" ? node.mbid : undefined;
 }
 
 async function itunes(
