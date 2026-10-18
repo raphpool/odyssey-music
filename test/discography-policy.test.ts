@@ -66,6 +66,28 @@ describe("isNonCanonicalReleaseTitle", () => {
 		expect(isNonCanonicalReleaseTitle(title)).toBe(false);
 	});
 
+	it("keeps Fearless (Taylor's Version) and excludes Madvillainy (Instrumentals)", () => {
+		expect(isNonCanonicalReleaseTitle("Fearless (Taylor's Version)")).toBe(false);
+		expect(isNonCanonicalReleaseTitle("Madvillainy (Instrumentals)")).toBe(true);
+	});
+
+	it("treats version as a variant only next to a qualifier", () => {
+		expect(isNonCanonicalReleaseTitle("Track (Radio Version)")).toBe(true);
+		expect(isNonCanonicalReleaseTitle("Track [Extended Version]")).toBe(true);
+		expect(isNonCanonicalReleaseTitle("Track - Live Version")).toBe(true);
+		expect(isNonCanonicalReleaseTitle("Album (Deluxe Version)")).toBe(false);
+		expect(isNonCanonicalReleaseTitle("Album (Original Version)")).toBe(false);
+	});
+
+	it("applies the same rule to a dash suffix: Track - Radio Edit, Song - Extended Mix", () => {
+		expect(isNonCanonicalReleaseTitle("Track - Radio Edit")).toBe(true);
+		expect(isNonCanonicalReleaseTitle("Song - Extended Mix")).toBe(true);
+		expect(isNonCanonicalReleaseTitle("Song \u2013 Club Mix")).toBe(true);
+		expect(isNonCanonicalReleaseTitle("Selected Ambient Works 85\u201392")).toBe(false);
+		expect(isNonCanonicalReleaseTitle("Live - Life")).toBe(false);
+		expect(isNonCanonicalReleaseTitle("Radio Edit - Part One")).toBe(false);
+	});
+
 	it("matches whole words and bracket qualifiers only", () => {
 		expect(isNonCanonicalReleaseTitle("Remixed")).toBe(false);
 		expect(isNonCanonicalReleaseTitle("Abbey Road (Deluxe Edition)")).toBe(false);
@@ -206,6 +228,34 @@ describe("selectReleases", () => {
 		expect(backward).toEqual(forward);
 	});
 
+	it("collapses an album and a single of the same title: Black Sun keeps the album", () => {
+		const album = release({ title: "Black Sun", primaryType: "Album", firstReleaseDate: "2011-05-01" });
+		const single = release({ title: "Black Sun", primaryType: "Single", firstReleaseDate: "2010-09-01" });
+		for (const input of [
+			[album, single],
+			[single, album],
+		]) {
+			const { kept } = selectReleases(input, policy);
+			expect(kept).toEqual([album]);
+		}
+	});
+
+	it("keeps the stronger type then the earliest date among duplicates, and frees cap room", () => {
+		const ep = release({ title: "Echo", primaryType: "EP", firstReleaseDate: "2005-01-01" });
+		const singleLate = release({ title: "Echo", primaryType: "Single", firstReleaseDate: "2004-01-01" });
+		expect(selectReleases([singleLate, ep], policy).kept).toEqual([ep]);
+
+		const early = release({ title: "Twin", primaryType: "Single", firstReleaseDate: "2001-01-01" });
+		const late = release({ title: "Twin", primaryType: "Single", firstReleaseDate: "2003-01-01" });
+		const undated = release({ title: "Twin", primaryType: "Single", firstReleaseDate: "" });
+		expect(selectReleases([undated, late, early], policy).kept).toEqual([early]);
+
+		const other = release({ title: "Other", primaryType: "Single", firstReleaseDate: "2000-01-01" });
+		expect(selectReleases([late, early, other], { ...policy, cap: 2 }).kept).toEqual(
+			[early, other].sort((a, b) => b.firstReleaseDate.localeCompare(a.firstReleaseDate)),
+		);
+	});
+
 	it("reports policy rejections with their reason and honours a custom cap", () => {
 		const remix = release({ title: "The Remix Album" });
 		const compilation = release({ secondaryTypes: ["Compilation"] });
@@ -252,10 +302,41 @@ describe("toDiscographyEdge", () => {
 			slug: "project:discovery--daft-punk",
 			type: "project",
 			name: "Discovery",
+			artist: "Daft Punk",
 			mbid: discovery.mbid,
 			year: "2001",
 			releaseType: "album",
 		});
+	});
+
+	it("has the exact shape scopedWorkEdge gives the MusicBrainz discography override today", () => {
+		// Mirrors scopedWorkEdge (src/pipeline.ts, scoped-slug branch): trimmed name, `artist` stamped with the
+		// trimmed scope name, mbid / year / releaseType only when present, no other key. TRA-615 replaces that
+		// block with this helper, so the edge written to the cache must not change.
+		const padded = release({ title: "  Discovery ", firstReleaseDate: "2001-03-12" });
+		const edgeForPaddedInput = toDiscographyEdge(padded, { ...policy, artistName: " Daft Punk " });
+		expect(edgeForPaddedInput).toStrictEqual({
+			slug: "project:discovery--daft-punk",
+			type: "project",
+			name: "Discovery",
+			artist: "Daft Punk",
+			mbid: padded.mbid,
+			year: "2001",
+			releaseType: "album",
+		});
+
+		const bare = release({ mbid: "", title: "Da Funk", firstReleaseDate: "", primaryType: "Single" });
+		expect(toDiscographyEdge(bare, policy)).toStrictEqual({
+			slug: "project:da-funk--daft-punk",
+			type: "project",
+			name: "Da Funk",
+			artist: "Daft Punk",
+			releaseType: "single",
+		});
+	});
+
+	it("returns null for an artist name that cannot scope a slug", () => {
+		expect(toDiscographyEdge(release({ title: "Discovery" }), { ...policy, artistName: "  " })).toBeNull();
 	});
 
 	it("omits the year when MusicBrainz has no date", () => {
