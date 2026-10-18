@@ -79,6 +79,13 @@ export interface WorkHintDeps {
 	 * request for every album the first rung found no work for: only the on-demand queue pays it.
 	 */
 	compilations?: boolean;
+	/**
+	 * Set to `coverArt: true` when the Cover Art Archive could not answer (429, 5xx, timeout, network): a
+	 * `none` that follows then means "could not tell", not "no cover" (TRA-612 follow-up). The resolver answers
+	 * `unavailable` instead of `missing` when nothing else found a cover; the caller may pass its own object to
+	 * read the flag too.
+	 */
+	outage?: { coverArt: boolean };
 }
 
 type Found = Extract<WorkImageResolution, { kind: "found" }>;
@@ -108,7 +115,11 @@ async function coverArchive(
 	hint: Pick<WorkImageHint, "slug">,
 	deps: WorkHintDeps,
 ): Promise<Found | null> {
-	const url = await attempt("caa", hint, () => coverArtUrl(releaseGroupMbid, deps.fetch));
+	const url = await attempt("caa", hint, () =>
+		coverArtUrl(releaseGroupMbid, deps.fetch, () => {
+			if (deps.outage) deps.outage.coverArt = true;
+		}),
+	);
 	return url && isAllowedImageUrl(url) ? { kind: "found", url, source: "caa", mbid: releaseGroupMbid } : null;
 }
 
@@ -208,8 +219,9 @@ async function resolveAlbum(
 
 export async function resolveWorkImageByHint(
 	hint: WorkImageHint,
-	deps: WorkHintDeps = {},
+	callerDeps: WorkHintDeps = {},
 ): Promise<WorkImageResolution> {
+	const deps: WorkHintDeps = callerDeps.outage ? callerDeps : { ...callerDeps, outage: { coverArt: false } };
 	const title = hint.title.trim();
 	const artist = hint.artist.trim();
 	if (!title || !artist) return NO_MATCH;
@@ -250,5 +262,7 @@ export async function resolveWorkImageByHint(
 	const url = await attempt("itunes", hint, () =>
 		lookupVerifiedAlbumArt(itunesTitle, itunesArtist, deps.fetch),
 	);
-	return url && isAllowedImageUrl(url) ? { kind: "found", url, source: "itunes-verified" } : NO_MATCH;
+	if (url && isAllowedImageUrl(url)) return { kind: "found", url, source: "itunes-verified" };
+	// The Cover Art Archive failed on the way: nothing is known, so nothing is refused for 7 days.
+	return deps.outage?.coverArt ? { kind: "unavailable" } : NO_MATCH;
 }

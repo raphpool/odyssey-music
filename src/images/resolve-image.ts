@@ -62,7 +62,7 @@ export interface ImageDeps {
 	 * timeout, network, unreadable answer). `null` from `resolveImage` then means "could not tell", not
 	 * "no image": the queue records `unavailable` (retried in an hour) instead of `missing` (kept 7 days).
 	 */
-	outage?: { musicBrainz: boolean };
+	outage?: { musicBrainz: boolean; coverArt?: boolean };
 }
 
 // Calls `fetchWikidataUrlRelMb` directly rather than `fetchWikidataQid`: that wrapper (src/images/wikidata.ts)
@@ -210,7 +210,9 @@ export async function refusedUnreciprocalCover(
 
 async function caa(mbid: string | undefined, deps: ImageDeps): Promise<ResolvedImage | null> {
 	if (!mbid) return null;
-	const url = await coverArtUrl(mbid, deps.fetch);
+	const url = await coverArtUrl(mbid, deps.fetch, () => {
+		if (deps.outage) deps.outage.coverArt = true;
+	});
 	return url ? { url, source: "caa" } : null;
 }
 
@@ -223,6 +225,7 @@ async function musicBrainzCover(
 	if (node.mbid || !deps.viaMusicBrainz || !artist?.name) return null;
 	// The edge of a project almost never carries the MBID: the credited artist's own node does.
 	const artistMbid = artist.mbid ?? (await creditedArtistMbid(artist, deps.cache));
+	const coverArtOutage = { coverArt: false };
 	const found = await resolveAlbumByMusicBrainz(
 		{
 			title: node.name,
@@ -233,12 +236,14 @@ async function musicBrainzCover(
 		{ slug: node.slug },
 		{
 			compilations: true,
+			outage: coverArtOutage,
 			...(deps.fetch ? { fetch: deps.fetch } : {}),
 			...(deps.priority ? { mbOptions: { priority: deps.priority } } : {}),
 		},
 	);
 	// A MusicBrainz outage is no verdict on the work: the caller is told, so that it is not kept as a miss.
 	if (found?.kind === "unavailable" && deps.outage) deps.outage.musicBrainz = true;
+	if (coverArtOutage.coverArt && deps.outage) deps.outage.coverArt = true;
 	// Only the Cover Art Archive rung can answer here (iTunes is not part of resolveAlbumByMusicBrainz).
 	return found?.kind === "found" ? { url: found.url, source: "caa" } : null;
 }

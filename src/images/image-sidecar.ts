@@ -34,8 +34,13 @@ export type ImageSidecarState = "found" | "missing" | "unavailable" | "conflict"
  * the artist's own tracks ("Hyperdub 10.3") now get their cover. Without this, the Kode9 page would have kept
  * the old `no-match` of both works for up to 7 days after the deploy, with no way to clear it but a manual
  * action on the server. `found` (definitive) and `unavailable` (1 h) are unaffected.
+ *
+ * 3 (2026-10-18, TRA-612 follow-up): after the deploy of 2, `project:sine-of-the-dub--kode9` was re-checked and
+ * kept `no-match`. A Cover Art Archive that fails (429, 5xx, timeout, network) is no longer recorded as
+ * `missing`: it ends as `unavailable` (1 h). The `missing` written under 2, possibly by such a failure, is
+ * stale again.
  */
-export const IMAGE_RULES_VERSION = 2;
+export const IMAGE_RULES_VERSION = 3;
 
 /** Entries written before the version existed are version 1. */
 const LEGACY_RULES_VERSION = 1;

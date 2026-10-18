@@ -290,7 +290,7 @@ export function createImageQueue(deps: ImageQueueDeps): ImageQueue {
 			return await underDeadline(async (signal): Promise<Verdict> => {
 				const fetchImpl = guardedFetch(deps.fetch, signal);
 				if (job.kind === "node" && node) {
-					const outage = { musicBrainz: false };
+					const outage = { musicBrainz: false, coverArt: false };
 					const found = await deps.resolveNode(node, {
 						cache,
 						fetch: fetchImpl,
@@ -300,7 +300,7 @@ export function createImageQueue(deps: ImageQueueDeps): ImageQueue {
 					});
 					// No image and a MusicBrainz outage on the way: nothing is known, so nothing is refused for 7 days.
 					if (!found)
-						return outage.musicBrainz
+						return outage.musicBrainz || outage.coverArt
 							? { outcome: "unavailable" }
 							: { outcome: "missing", reason: "no-match" };
 					return { outcome: "found", url: found.url, source: found.source };
