@@ -1284,7 +1284,7 @@ async function enrichNode(
 					const obj = node as Record<string, unknown>;
 					obj.genres = mbGenreEdges(genres, genreResolver);
 				}
-				const releases = await fetchArtistDiscographyMb(mbid, { limit: 100 });
+				const { releases } = await fetchArtistDiscographyMb(mbid, { limit: 100 });
 				// Keep Album/EP/Single primary types, drop anything with secondary types
 				// (Live, Compilation, Soundtrack, Remix, …). Raph 2026-05-24: include EPs and
 				// singles in the discography chip list, not just LPs. "In the Stars" (Stones,
