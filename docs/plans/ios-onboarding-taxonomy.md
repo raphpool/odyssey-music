@@ -119,6 +119,7 @@ Rejeté :
   de « tous ses genres cochés un par un », et l'intention éditoriale est perdue à chaque réouverture.
 
 ### D3 — Une famille sans sous-genre coché vaut toute la famille ; cocher des sous-genres restreint à ceux-là
+Remplacée le 2026-10-18 par `docs/plans/ios-onboarding-accordion.md` (sélection à un seul niveau).
 
 Règle de dérivation, pure et testée seule :
 
@@ -702,6 +703,7 @@ en prod (R2).
 - **Q1 — Sémantique de la sélection (D3).** Famille sans sous-genre coché = toute la famille ;
   cocher des sous-genres restreint la recommandation à ceux-là. Recommandation : oui. Alternative :
   famille toujours entière, sous-genres en bonus — demande une pondération dans `Affinity`, hors scope.
+  Remplacée le 2026-10-18 par `docs/plans/ios-onboarding-accordion.md` (sélection à un seul niveau).
 - **Q2 — Repli quand le serveur dégrade la taxonomie (D4).** (a) état « indisponible, réessayer »
   existant, Aujourd'hui intact ; (b) instantané embarqué dans l'app (Partie 3, +5 pts, procédure de
   régénération) ; (c) garder l'arbre dérivé des arêtes. Recommandation : (a) maintenant, (b) dès
