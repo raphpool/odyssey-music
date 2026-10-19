@@ -129,6 +129,22 @@ export function isNonCanonicalReleaseTitle(title: string): boolean {
 const TRAILING_YEAR_SUFFIX = /\s*(?:\(\s*((?:19|20)\d{2})\s*\)|\[\s*((?:19|20)\d{2})\s*\])$/u;
 const TRAILING_EP_SUFFIX = /(?:\s+[-\u2013\u2014]\s+ep|\s*\(\s*ep\s*\)|\s*\[\s*ep\s*\]|\s+ep)$/iu;
 
+// The title with its trailing year / EP suffixes peeled off, in any order and as many times as they come, and
+// the year those suffixes stated (the first one met). A suffix is never peeled if nothing would be left.
+function peelSuffixes(title: string): { rest: string; year: number | null } {
+	let rest = stripEditionNoise(title.normalize("NFKD"));
+	let year: number | null = null;
+	for (;;) {
+		const yearMatch = TRAILING_YEAR_SUFFIX.exec(rest);
+		const stripped = rest.replace(TRAILING_YEAR_SUFFIX, "").replace(TRAILING_EP_SUFFIX, "").trim();
+		if (stripped === rest || normalizeTitleBody(stripped) === "") break;
+		const stated = yearMatch?.[1] ?? yearMatch?.[2];
+		if (year === null && stated !== undefined) year = Number(stated);
+		rest = stripped;
+	}
+	return { rest, year };
+}
+
 /**
  * Looser identity than normalizeTitleBody, for reconciling an existing entry with a release group: the title
  * body once a trailing "(1979)" / "[1979]" year (1900 to 2099) and a trailing "EP" ("X EP", "X (EP)", "X [EP]",
@@ -136,20 +152,13 @@ const TRAILING_EP_SUFFIX = /(?:\s+[-\u2013\u2014]\s+ep|\s*\(\s*ep\s*\)|\s*\[\s*e
  * would be left of the title. Both sides of a comparison go through it.
  */
 export function reconciliationKey(title: string): string {
-	let rest = stripEditionNoise(title.normalize("NFKD"));
-	for (;;) {
-		const stripped = rest.replace(TRAILING_YEAR_SUFFIX, "").replace(TRAILING_EP_SUFFIX, "").trim();
-		if (stripped === rest || normalizeTitleBody(stripped) === "") break;
-		rest = stripped;
-	}
-	return normalizeTitleBody(rest);
+	return normalizeTitleBody(peelSuffixes(title).rest);
 }
 
-// The year a title ends with, "(1979)" or "[1979]": what a legacy entry states when it has no `year` field.
+// The year a title states in its suffixes, "(1979)" or "[1979]", even before an "EP": what a legacy entry
+// states when it has no `year` field.
 function trailingYearOf(title: string): number | null {
-	const match = TRAILING_YEAR_SUFFIX.exec(stripEditionNoise(title.normalize("NFKD")));
-	const year = match?.[1] ?? match?.[2];
-	return year === undefined ? null : Number(year);
+	return peelSuffixes(title).year;
 }
 
 // MBIDs are UUIDs: case carries no meaning, and a hand-supplied upper-case id must not exclude a whole
@@ -531,27 +540,42 @@ export function mergeDiscography(input: MergeInput): MergeResult {
 	// TRA-629: the same release groups under the looser key. It is only consulted when the exact title finds
 	// nothing, so what posed before keeps posing the same way.
 	const creditedByKey = groupCredited(allCredited, reconciliationKey);
-	// An mbid sits on one entry only: the ones already held, then the ones posed in this run, are not offered
-	// to the looser key (a v3 run may have added "Ladies' Night" next to a legacy "Ladies' Night (1979)").
+	// The looser key never gives an mbid that another title already holds: the ones on existing entries, then the
+	// ones the exact-title pass posed (a v3 run may have added "Ladies' Night" next to a legacy "Ladies' Night
+	// (1979)"). Entries of the very same title are not affected: each of them is posed, none is removed.
 	const heldMbids = new Set(existing.flatMap((e) => (hasMbid(e) ? [(e.mbid ?? "").toLowerCase()] : [])));
+
+	// Two passes, so that the pose does not depend on the order of `existing`: every exact-title pose first, over
+	// all the entries, then the looser ones among what is left.
+	const verdicts: (PoseVerdict | undefined)[] = existing.map(() => undefined);
+	existing.forEach((entry, index) => {
+		if (hasMbid(entry)) return;
+		const group = creditedByTitle.get(normalizeTitleBody(entry.name)) ?? [];
+		if (group.length === 0) return;
+		const verdict = decidePose(entry, group);
+		verdicts[index] = verdict;
+		if (verdict.kind === "pose") heldMbids.add(verdict.match.mbid.toLowerCase());
+	});
+	existing.forEach((entry, index) => {
+		if (hasMbid(entry) || verdicts[index] !== undefined) return;
+		const group = creditedByKey.get(reconciliationKey(entry.name)) ?? [];
+		const verdict = decidePose(
+			entry,
+			group.filter((c) => !heldMbids.has(c.mbid.toLowerCase())),
+			trailingYearOf(entry.name),
+		);
+		verdicts[index] = verdict;
+		if (verdict.kind === "pose") heldMbids.add(verdict.match.mbid.toLowerCase());
+	});
 
 	const posed: MergeResult["posed"] = [];
 	const ambiguous: MergeResult["ambiguous"] = [];
-	const afterPose = existing.map((entry) => {
-		if (hasMbid(entry)) return entry;
-		const exact = creditedByTitle.get(normalizeTitleBody(entry.name)) ?? [];
-		const looser =
-			exact.length > 0
-				? []
-				: (creditedByKey.get(reconciliationKey(entry.name)) ?? []).filter(
-						(c) => !heldMbids.has(c.mbid.toLowerCase()),
-					);
-		const verdict =
-			exact.length > 0 ? decidePose(entry, exact) : decidePose(entry, looser, trailingYearOf(entry.name));
+	const afterPose = existing.map((entry, index) => {
+		const verdict = verdicts[index];
+		if (verdict === undefined) return entry;
 		if (verdict.kind === "ambiguous") ambiguous.push({ slug: entry.slug, reason: verdict.reason });
 		if (verdict.kind !== "pose") return entry;
 		const { edge, filled } = poseOnEntry(entry, verdict.match);
-		heldMbids.add(verdict.match.mbid.toLowerCase());
 		posed.push({ slug: entry.slug, mbid: verdict.match.mbid, filled });
 		return edge;
 	});

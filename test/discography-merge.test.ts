@@ -869,21 +869,38 @@ describe("mergeDiscography — suffix reconciliation (TRA-629)", () => {
 		expect(result.edges.filter((e) => e.mbid === group.mbid)).toHaveLength(1);
 	});
 
-	it("poses one mbid on one entry only when two entries share a key", () => {
-		const exact = entry("Xpander", {}, "Sasha");
-		const suffixed = entry("Xpander EP", {}, "Sasha");
-		const group = release("Xpander", { primaryType: "EP" });
+	describe.each([
+		["the exact twin listed first", false],
+		["the suffixed entry listed first", true],
+	])("one mbid on one entry only, %s", (_label, suffixedFirst) => {
+		it("gives the mbid to the entry with the exact title, nothing to its suffixed twin, adds nothing", () => {
+			const exact = entry("Xpander", {}, "Sasha");
+			const suffixed = entry("Xpander EP", {}, "Sasha");
+			const group = release("Xpander", { primaryType: "EP" });
 
-		const result = merge({
-			existing: [exact, suffixed],
-			candidates: [group],
-			allCredited: [group],
-			policy: { ...policy, artistName: "Sasha" },
+			const result = merge({
+				existing: suffixedFirst ? [suffixed, exact] : [exact, suffixed],
+				candidates: [group],
+				allCredited: [group],
+				policy: { ...policy, artistName: "Sasha" },
+			});
+
+			expect(result.posed.map((p) => [p.slug, p.mbid])).toEqual([[exact.slug, group.mbid]]);
+			expect(result.edges.filter((e) => e.mbid === group.mbid).map((e) => e.slug)).toEqual([exact.slug]);
+			expect(result.edges.find((e) => e.slug === suffixed.slug)?.mbid).toBeUndefined();
+			expect(result.ambiguous).toEqual([]);
+			expect(result.added).toEqual([]);
 		});
+	});
 
-		expect(result.posed.map((p) => p.slug)).toEqual([exact.slug]);
-		expect(result.edges.filter((e) => e.mbid === group.mbid)).toHaveLength(1);
-		expect(result.added).toEqual([]);
+	it("keeps the year guard when the title states its year before an EP suffix", () => {
+		const existingEntry = entry("Greatest Hits (1992) EP");
+		const group = release("Greatest Hits", { primaryType: "EP", firstReleaseDate: "2005-06-01" });
+
+		const result = merge({ existing: [existingEntry], candidates: [group], allCredited: [group] });
+
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([{ slug: existingEntry.slug, reason: "year-mismatch" }]);
 	});
 
 	it("does not tie 'Deep' to 'De', nor '1979' to a release group named otherwise", () => {
