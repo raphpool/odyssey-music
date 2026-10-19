@@ -8,8 +8,12 @@
  * Album"), and 16 lists stuck at the old cap of 80 where singles drowned the albums (A$AP Rocky: 5 albums,
  * 75 singles).
  */
-import { makeScopedSlug } from "./slug.js";
-import type { EdgeRef } from "./types.js";
+import { VARIOUS_ARTISTS_MBID } from "./musicbrainz.js";
+import { makeScopedSlug, normalizeTitleBody } from "./slug.js";
+import type { EdgeRef, Slug } from "./types.js";
+
+// Re-exported so callers keep one import site for the policy; the constant itself lives with the MusicBrainz client.
+export { VARIOUS_ARTISTS_MBID };
 
 export interface ReleaseGroupCandidate {
 	mbid: string;
@@ -27,7 +31,6 @@ export interface DiscographyPolicy {
 }
 
 export const DEFAULT_DISCOGRAPHY_CAP = 40;
-export const VARIOUS_ARTISTS_MBID = "89ad4ac3-39f7-470e-963a-56509c546377";
 
 export type ExclusionReason =
 	| "secondary-type"
@@ -254,4 +257,189 @@ export function orderDiscography(edges: readonly EdgeRef[]): EdgeRef[] {
 		return a.name < b.name ? -1 : 1;
 	});
 	return [...dated, ...undated];
+}
+
+export interface MergeInput {
+	existing: readonly EdgeRef[]; // the artist's current discography
+	candidates: readonly ReleaseGroupCandidate[]; // selectReleases(...).kept: what may be added
+	// Every release group first-credited to the artist, any type: what an mbid may be posed from.
+	allCredited: readonly ReleaseGroupCandidate[];
+	policy: DiscographyPolicy;
+	projectIndex: { byMbid: ReadonlyMap<string, Slug>; resolveSlug: (slug: Slug) => Slug };
+}
+
+export interface MergeResult {
+	edges: EdgeRef[];
+	changed: boolean;
+	posed: { slug: Slug; mbid: string; filled: ("year" | "releaseType")[] }[];
+	added: {
+		slug: Slug;
+		mbid: string;
+		title: string;
+		year?: string;
+		releaseType: "album" | "ep" | "single";
+		nearDuplicateOf?: Slug;
+	}[];
+	ambiguous: { slug: Slug; reason: "multiple" | "type" | "year-mismatch" }[];
+	capReached: boolean;
+}
+
+// A hand-written year may be off by this much from MusicBrainz's first release date (reissue, delayed release).
+const MAX_YEAR_DRIFT = 1;
+
+function yearOf(value: string | undefined): number | null {
+	const match = /^\d{4}/.exec(value ?? "");
+	return match === null ? null : Number(match[0]);
+}
+
+function additionRank(c: ReleaseGroupCandidate): number {
+	const rank = typeRank(c);
+	return rank < 0 ? KEPT_PRIMARY_TYPES.length : rank;
+}
+
+function hasMbid(edge: EdgeRef): boolean {
+	return edge.mbid !== undefined && edge.mbid !== "";
+}
+
+// Word-boundary prefix on normalized bodies: "sine-of-the-dub" opens "sine-of-the-dub-stalker" but not
+// "sine-of-the-dubstep". An empty body (title with no Latin letter or digit) opens nothing.
+function opensWith(longer: string, shorter: string): boolean {
+	return shorter !== "" && longer.startsWith(`${shorter}-`);
+}
+
+type PoseVerdict =
+	| { kind: "none" }
+	| { kind: "ambiguous"; reason: "multiple" | "type" | "year-mismatch" }
+	| { kind: "pose"; match: ReleaseGroupCandidate };
+
+function decidePose(entry: EdgeRef, matches: readonly ReleaseGroupCandidate[]): PoseVerdict {
+	const [first] = matches;
+	if (first === undefined) return { kind: "none" };
+	let chosen: ReleaseGroupCandidate | undefined = first;
+	if (matches.length > 1) {
+		if (entry.releaseType === undefined) {
+			// An album must not take its single's mbid (TRA-560): different primary types are not guessed between.
+			const distinctTypes = new Set(matches.map((m) => m.primaryType));
+			return { kind: "ambiguous", reason: distinctTypes.size > 1 ? "type" : "multiple" };
+		}
+		const ofType = matches.filter((m) => m.primaryType.toLowerCase() === entry.releaseType);
+		chosen = ofType.length === 1 ? ofType[0] : undefined;
+		if (chosen === undefined) return { kind: "ambiguous", reason: "multiple" };
+	}
+	const entryYear = yearOf(entry.year);
+	const matchYear = yearOf(chosen.firstReleaseDate);
+	if (entryYear !== null && matchYear !== null && Math.abs(entryYear - matchYear) > MAX_YEAR_DRIFT) {
+		return { kind: "ambiguous", reason: "year-mismatch" };
+	}
+	return { kind: "pose", match: chosen };
+}
+
+// A copy of the entry with the mbid set, and year / releaseType completed only where they were absent.
+function poseOnEntry(
+	entry: EdgeRef,
+	match: ReleaseGroupCandidate,
+): { edge: EdgeRef; filled: ("year" | "releaseType")[] } {
+	const edge: EdgeRef = { ...entry, mbid: match.mbid };
+	const filled: ("year" | "releaseType")[] = [];
+	const year = match.firstReleaseDate.slice(0, 4);
+	if ((entry.year === undefined || entry.year === "") && year !== "") {
+		edge.year = year;
+		filled.push("year");
+	}
+	const releaseType = match.primaryType.toLowerCase();
+	if (
+		entry.releaseType === undefined &&
+		(releaseType === "album" || releaseType === "ep" || releaseType === "single")
+	) {
+		edge.releaseType = releaseType;
+		filled.push("releaseType");
+	}
+	return { edge, filled };
+}
+
+/**
+ * Pure merge of MusicBrainz release groups into an artist's existing discography (graph-integrity plan,
+ * part 8, 8-D3). It adds and poses, it never removes: an existing entry keeps its `name`, `slug` and
+ * `artist` and only gains an `mbid` (exact normalized-title match, see decidePose) plus a `year` /
+ * `releaseType` it lacked. Release groups missing from the list are appended up to `policy.cap`, as the
+ * very edge `toDiscographyEdge` builds; only the slug is replaced when a project node already exists for
+ * the mbid (or a redirect leads to one). A candidate whose title extends, or is extended by, that of an
+ * entry still without mbid is added anyway but flagged `nearDuplicateOf`: we measure, we do not reconcile.
+ * Candidates without an mbid or outside Album / EP / Single are not added. An untouched list comes back
+ * as the same array, with `changed: false`.
+ */
+export function mergeDiscography(input: MergeInput): MergeResult {
+	const { existing, candidates, allCredited, policy, projectIndex } = input;
+
+	const creditedByTitle = new Map<string, ReleaseGroupCandidate[]>();
+	for (const credited of allCredited) {
+		const body = normalizeTitleBody(credited.title);
+		if (body === "") continue;
+		const group = creditedByTitle.get(body);
+		if (group === undefined) creditedByTitle.set(body, [credited]);
+		else if (!group.some((other) => sameMbid(other.mbid, credited.mbid))) group.push(credited);
+	}
+
+	const posed: MergeResult["posed"] = [];
+	const ambiguous: MergeResult["ambiguous"] = [];
+	const afterPose = existing.map((entry) => {
+		if (hasMbid(entry)) return entry;
+		const verdict = decidePose(entry, creditedByTitle.get(normalizeTitleBody(entry.name)) ?? []);
+		if (verdict.kind === "ambiguous") ambiguous.push({ slug: entry.slug, reason: verdict.reason });
+		if (verdict.kind !== "pose") return entry;
+		const { edge, filled } = poseOnEntry(entry, verdict.match);
+		posed.push({ slug: entry.slug, mbid: verdict.match.mbid, filled });
+		return edge;
+	});
+
+	const takenMbids = new Set(afterPose.flatMap((e) => (e.mbid ? [e.mbid.toLowerCase()] : [])));
+	const takenBodies = new Set(existing.map((e) => normalizeTitleBody(e.name)).filter((body) => body !== ""));
+	const takenSlugs = new Set<Slug>(existing.map((e) => e.slug));
+	const unmatched = afterPose
+		.filter((e) => !hasMbid(e))
+		.map((e) => ({ slug: e.slug, body: normalizeTitleBody(e.name) }));
+
+	const additions: EdgeRef[] = [];
+	const added: MergeResult["added"] = [];
+	let capReached = false;
+	// selectReleases(...).kept comes back newest first across types, which would let recent singles use up the
+	// last slots before older albums (the A$AP Rocky failure the policy exists for): albums, then EPs, then
+	// singles, keeping the given order within a type (the sort is stable).
+	const byType = [...candidates].sort((a, b) => additionRank(a) - additionRank(b));
+	for (const candidate of byType) {
+		if (candidate.mbid === "" || takenMbids.has(candidate.mbid.toLowerCase())) continue;
+		const body = normalizeTitleBody(candidate.title);
+		if (takenBodies.has(body)) continue;
+		const base = toDiscographyEdge(candidate, policy);
+		if (base === null || base.releaseType === undefined) continue;
+		const slug =
+			projectIndex.byMbid.get(candidate.mbid) ??
+			projectIndex.byMbid.get(candidate.mbid.toLowerCase()) ??
+			projectIndex.resolveSlug(base.slug);
+		// An album and a single of the same title are one project node: two entries must never share a slug.
+		if (takenSlugs.has(slug)) continue;
+		if (existing.length + additions.length >= policy.cap) {
+			capReached = true;
+			break;
+		}
+		additions.push({ ...base, slug });
+		takenMbids.add(candidate.mbid.toLowerCase());
+		takenSlugs.add(slug);
+		if (body !== "") takenBodies.add(body);
+		const near = unmatched.find((u) => opensWith(body, u.body) || opensWith(u.body, body));
+		added.push({
+			slug,
+			mbid: candidate.mbid,
+			title: base.name,
+			...(base.year === undefined ? {} : { year: base.year }),
+			releaseType: base.releaseType,
+			...(near === undefined ? {} : { nearDuplicateOf: near.slug }),
+		});
+	}
+
+	if (posed.length === 0 && added.length === 0) {
+		return { edges: existing as EdgeRef[], changed: false, posed, added, ambiguous, capReached };
+	}
+	const edges = orderDiscography([...afterPose, ...additions]);
+	return { edges, changed: true, posed, added, ambiguous, capReached };
 }
