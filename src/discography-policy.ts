@@ -556,17 +556,38 @@ export function mergeDiscography(input: MergeInput): MergeResult {
 		verdicts[index] = verdict;
 		if (verdict.kind === "pose") heldMbids.add(verdict.match.mbid.toLowerCase());
 	});
+
+	// The looser pass judges each entry on its own, against the whole group of release groups sharing its key,
+	// held mbids included: removing a held one first would turn "two release groups" into a confident pose on
+	// the other (TRA-629, "Ladies' Night (1979)" next to a twin holding the album and an "Ladies' Night EP").
+	// More than one release group: no pose. Exactly one: posed with the usual guards, unless its mbid is held,
+	// in which case the entry is left as it is.
+	const looserVerdicts = new Map<number, PoseVerdict>();
 	existing.forEach((entry, index) => {
 		if (hasMbid(entry) || verdicts[index] !== undefined) return;
 		const group = creditedByKey.get(reconciliationKey(entry.name)) ?? [];
-		const verdict = decidePose(
-			entry,
-			group.filter((c) => !heldMbids.has(c.mbid.toLowerCase())),
-			trailingYearOf(entry.name),
-		);
-		verdicts[index] = verdict;
-		if (verdict.kind === "pose") heldMbids.add(verdict.match.mbid.toLowerCase());
+		const [only] = group;
+		if (group.length > 1) {
+			const distinctTypes = new Set(group.map((c) => c.primaryType));
+			looserVerdicts.set(index, { kind: "ambiguous", reason: distinctTypes.size > 1 ? "type" : "multiple" });
+		} else if (only === undefined || heldMbids.has(only.mbid.toLowerCase())) {
+			looserVerdicts.set(index, { kind: "none" });
+		} else {
+			looserVerdicts.set(index, decidePose(entry, group, trailingYearOf(entry.name)));
+		}
 	});
+	// Two entries that the looser key sends to the same release group have no better claim than each other:
+	// neither is posed, both are reported, whatever their order in `existing`.
+	const claims = new Map<string, number>();
+	for (const verdict of looserVerdicts.values()) {
+		if (verdict.kind !== "pose") continue;
+		const mbid = verdict.match.mbid.toLowerCase();
+		claims.set(mbid, (claims.get(mbid) ?? 0) + 1);
+	}
+	for (const [index, verdict] of looserVerdicts) {
+		const contested = verdict.kind === "pose" && (claims.get(verdict.match.mbid.toLowerCase()) ?? 0) > 1;
+		verdicts[index] = contested ? { kind: "ambiguous", reason: "multiple" } : verdict;
+	}
 
 	const posed: MergeResult["posed"] = [];
 	const ambiguous: MergeResult["ambiguous"] = [];

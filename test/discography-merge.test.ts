@@ -893,6 +893,118 @@ describe("mergeDiscography — suffix reconciliation (TRA-629)", () => {
 		});
 	});
 
+	it("does not pose the EP on a legacy entry when its twin already holds the album (two release groups share the key)", () => {
+		const legacy = entry("Ladies' Night (1979)", {}, "Kool and the Gang");
+		const album = release("Ladies' Night", { firstReleaseDate: "1979-05-01" });
+		const ep = release("Ladies' Night EP", { primaryType: "EP", firstReleaseDate: "1979-06-01" });
+		const twin = entry("Ladies' Night", { mbid: album.mbid, year: "1979" }, "Kool and the Gang");
+
+		const result = merge({
+			existing: [twin, legacy],
+			candidates: [album, ep],
+			allCredited: [album, ep],
+			policy: kool,
+		});
+
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([{ slug: legacy.slug, reason: "type" }]);
+		expect(result.added).toEqual([]);
+		expect(result.edges.find((e) => e.slug === legacy.slug)?.mbid).toBeUndefined();
+		expect(result.edges.find((e) => e.slug === legacy.slug)?.releaseType).toBeUndefined();
+	});
+
+	it("leaves a legacy entry untouched when the only release group under its key is held by its twin", () => {
+		const legacy = entry("Ladies' Night (1979)", {}, "Kool and the Gang");
+		const album = release("Ladies' Night", { firstReleaseDate: "1979-05-01" });
+		const twin = entry("Ladies' Night", { mbid: album.mbid }, "Kool and the Gang");
+
+		const result = merge({
+			existing: [legacy, twin],
+			candidates: [album],
+			allCredited: [album],
+			policy: kool,
+		});
+
+		expect(result.changed).toBe(false);
+		expect(result.ambiguous).toEqual([]);
+	});
+
+	describe.each([
+		["'Foo EP' first", false],
+		["'Foo (1979)' first", true],
+	])("two suffixed entries claiming the same release group, %s", (_label, reversed) => {
+		it("poses neither and reports both, whatever their order", () => {
+			const withEp = entry("Foo EP");
+			const withYear = entry("Foo (1979)");
+			const group = release("Foo", { primaryType: "EP", firstReleaseDate: "1979-01-01" });
+
+			const result = merge({
+				existing: reversed ? [withYear, withEp] : [withEp, withYear],
+				candidates: [group],
+				allCredited: [group],
+			});
+
+			expect(result.posed).toEqual([]);
+			expect(result.edges.filter((e) => e.mbid !== undefined)).toEqual([]);
+			expect(result.ambiguous.map((a) => [a.slug, a.reason]).sort()).toEqual(
+				[
+					[withEp.slug, "multiple"],
+					[withYear.slug, "multiple"],
+				].sort(),
+			);
+			expect(result.added).toEqual([]);
+		});
+	});
+
+	it("gives the same result whatever the order of the existing entries", () => {
+		const exact = entry("Xpander", {}, "Sasha");
+		const suffixed = entry("Xpander EP", {}, "Sasha");
+		const plain = entry("Ladies' Night (1979)", {}, "Sasha");
+		const withEp = entry("Foo EP", {}, "Sasha");
+		const withYear = entry("Foo (1979)", {}, "Sasha");
+		const settled = entry("Discovery", { mbid: mbidOf(900) }, "Sasha");
+		const xpander = release("Xpander", { primaryType: "EP" });
+		const night = release("Ladies' Night", { firstReleaseDate: "1979-05-01" });
+		const foo = release("Foo", { primaryType: "EP", firstReleaseDate: "1979-01-01" });
+		const extra = release("Brand New", { firstReleaseDate: "2020-01-01" });
+		const all = [xpander, night, foo, extra];
+		const entries = [exact, suffixed, plain, withEp, withYear, settled];
+
+		const summarize = (existing: EdgeRef[]) => {
+			const result = merge({
+				existing,
+				candidates: all,
+				allCredited: all,
+				policy: { ...policy, artistName: "Sasha" },
+			});
+			return JSON.stringify({
+				edges: result.edges
+					.map((e) => [e.slug, e.mbid ?? null, e.year ?? null, e.releaseType ?? null])
+					.sort(),
+				posed: result.posed.map((p) => [p.slug, p.mbid, [...p.filled].sort()]).sort(),
+				ambiguous: result.ambiguous.map((a) => [a.slug, a.reason]).sort(),
+				added: result.added.map((a) => [a.slug, a.mbid, a.nearDuplicateOf ?? null]).sort(),
+				capReached: result.capReached,
+			});
+		};
+
+		const permutations = (items: EdgeRef[]): EdgeRef[][] =>
+			items.length <= 1
+				? [items]
+				: items.flatMap((item, i) =>
+						permutations([...items.slice(0, i), ...items.slice(i + 1)]).map((rest) => [item, ...rest]),
+					);
+
+		const reference = summarize(entries);
+		// Sanity: the case is a real mix of poses, ambiguities and an addition, not an empty comparison.
+		expect(JSON.parse(reference).posed.length).toBeGreaterThan(0);
+		expect(JSON.parse(reference).ambiguous.length).toBeGreaterThan(0);
+		expect(JSON.parse(reference).added.length).toBeGreaterThan(0);
+		for (const order of permutations(entries)) {
+			expect(summarize(order)).toBe(reference);
+		}
+	});
+
 	it("keeps the year guard when the title states its year before an EP suffix", () => {
 		const existingEntry = entry("Greatest Hits (1992) EP");
 		const group = release("Greatest Hits", { primaryType: "EP", firstReleaseDate: "2005-06-01" });
