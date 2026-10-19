@@ -129,20 +129,30 @@ export function isNonCanonicalReleaseTitle(title: string): boolean {
 const TRAILING_YEAR_SUFFIX = /\s*(?:\(\s*((?:19|20)\d{2})\s*\)|\[\s*((?:19|20)\d{2})\s*\])$/u;
 const TRAILING_EP_SUFFIX = /(?:\s+[-\u2013\u2014]\s+ep|\s*\(\s*ep\s*\)|\s*\[\s*ep\s*\]|\s+ep)$/iu;
 
-// The title with its trailing year / EP suffixes peeled off, in any order and as many times as they come, and
-// the year those suffixes stated (the first one met). A suffix is never peeled if nothing would be left.
-function peelSuffixes(title: string): { rest: string; year: number | null } {
+// The title with its trailing year / EP suffixes peeled off, in any order and as many times as they come; the
+// last year written among them; and whether an "EP" was peeled. Each suffix is peeled on its own, and never
+// if nothing would be left of the title: "(EP) (1979)" and "EP (1979)" both keep "EP".
+function peelSuffixes(title: string): { rest: string; year: number | null; ep: boolean } {
 	let rest = stripEditionNoise(title.normalize("NFKD"));
 	let year: number | null = null;
+	let ep = false;
+	const peel = (suffix: RegExp): RegExpExecArray | null => {
+		const match = suffix.exec(rest);
+		if (match === null) return null;
+		const left = rest.slice(0, match.index).trim();
+		if (normalizeTitleBody(left) === "") return null;
+		rest = left;
+		return match;
+	};
 	for (;;) {
-		const yearMatch = TRAILING_YEAR_SUFFIX.exec(rest);
-		const stripped = rest.replace(TRAILING_YEAR_SUFFIX, "").replace(TRAILING_EP_SUFFIX, "").trim();
-		if (stripped === rest || normalizeTitleBody(stripped) === "") break;
+		const before = rest;
+		const yearMatch = peel(TRAILING_YEAR_SUFFIX);
 		const stated = yearMatch?.[1] ?? yearMatch?.[2];
 		if (year === null && stated !== undefined) year = Number(stated);
-		rest = stripped;
+		if (peel(TRAILING_EP_SUFFIX) !== null) ep = true;
+		if (rest === before) break;
 	}
-	return { rest, year };
+	return { rest, year, ep };
 }
 
 /**
@@ -153,12 +163,6 @@ function peelSuffixes(title: string): { rest: string; year: number | null } {
  */
 export function reconciliationKey(title: string): string {
 	return normalizeTitleBody(peelSuffixes(title).rest);
-}
-
-// The year a title states in its suffixes, "(1979)" or "[1979]", even before an "EP": what a legacy entry
-// states when it has no `year` field.
-function trailingYearOf(title: string): number | null {
-	return peelSuffixes(title).year;
 }
 
 // MBIDs are UUIDs: case carries no meaning, and a hand-supplied upper-case id must not exclude a whole
@@ -557,24 +561,23 @@ export function mergeDiscography(input: MergeInput): MergeResult {
 		if (verdict.kind === "pose") heldMbids.add(verdict.match.mbid.toLowerCase());
 	});
 
-	// The looser pass judges each entry on its own, against the whole group of release groups sharing its key,
-	// held mbids included: removing a held one first would turn "two release groups" into a confident pose on
-	// the other (TRA-629, "Ladies' Night (1979)" next to a twin holding the album and an "Ladies' Night EP").
-	// More than one release group: no pose. Exactly one: posed with the usual guards, unless its mbid is held,
-	// in which case the entry is left as it is.
+	// The looser pass judges each entry on its own, with the very resolution of the exact pass (TRA-625 / 628:
+	// one album admitted against singles and EPs, Live and Compilation ignored), against the whole group of
+	// release groups sharing its key, held mbids included: removing a held one first would turn "two release
+	// groups" into a confident pose on the other (TRA-629, "Ladies' Night (1979)" next to a twin holding the
+	// album and a "Ladies' Night EP"). A pose on a release group whose mbid is held leaves the entry as it is.
+	// An untyped entry whose title ended with "EP" is judged as an EP (the suffix is its type), so that
+	// "Foundations EP" takes the EP and never the album or the single of the same title; it is not written on it.
 	const looserVerdicts = new Map<number, PoseVerdict>();
 	existing.forEach((entry, index) => {
 		if (hasMbid(entry) || verdicts[index] !== undefined) return;
-		const group = creditedByKey.get(reconciliationKey(entry.name)) ?? [];
-		const [only] = group;
-		if (group.length > 1) {
-			const distinctTypes = new Set(group.map((c) => c.primaryType));
-			looserVerdicts.set(index, { kind: "ambiguous", reason: distinctTypes.size > 1 ? "type" : "multiple" });
-		} else if (only === undefined || heldMbids.has(only.mbid.toLowerCase())) {
-			looserVerdicts.set(index, { kind: "none" });
-		} else {
-			looserVerdicts.set(index, decidePose(entry, group, trailingYearOf(entry.name)));
-		}
+		const peeled = peelSuffixes(entry.name);
+		const group = creditedByKey.get(normalizeTitleBody(peeled.rest)) ?? [];
+		const judged: EdgeRef =
+			peeled.ep && entry.releaseType === undefined ? { ...entry, releaseType: "ep" } : entry;
+		const verdict = decidePose(judged, group, peeled.year);
+		const held = verdict.kind === "pose" && heldMbids.has(verdict.match.mbid.toLowerCase());
+		looserVerdicts.set(index, held ? { kind: "none" } : verdict);
 	});
 	// Two entries that the looser key sends to the same release group have no better claim than each other:
 	// neither is posed, both are reported, whatever their order in `existing`.
@@ -607,10 +610,15 @@ export function mergeDiscography(input: MergeInput): MergeResult {
 	const unmatched = afterPose
 		.filter((e) => !hasMbid(e))
 		.map((e) => ({ slug: e.slug, body: normalizeTitleBody(e.name) }));
-	// An entry still without mbid after the pose is either ambiguous or has no release group: a release group
-	// that only its suffix tells apart from it is not added next to it (TRA-629). An entry that holds an mbid
-	// is settled, and "Mirage EP" next to a posed "Mirage" is another release group.
-	const takenKeys = new Set(afterPose.filter((e) => !hasMbid(e)).map((e) => reconciliationKey(e.name)));
+	// An entry reported ambiguous is not settled: a release group that only its suffix tells apart from it is not
+	// added next to it, the twin would be permanent (TRA-629). Every other entry is settled, posed or not: one
+	// whose mbid is held by its twin is the twin's duplicate, and "Mirage EP" next to a posed "Mirage" is
+	// another release group.
+	const takenKeys = new Set(
+		afterPose.flatMap((e, index) =>
+			verdicts[index]?.kind === "ambiguous" ? [reconciliationKey(e.name)] : [],
+		),
+	);
 	takenKeys.delete("");
 
 	const additions: EdgeRef[] = [];

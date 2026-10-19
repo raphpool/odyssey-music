@@ -714,6 +714,9 @@ describe("reconciliationKey (TRA-629)", () => {
 		expect(reconciliationKey("Deep")).toBe("deep");
 		expect(reconciliationKey("Sleep")).toBe("sleep");
 		expect(reconciliationKey("EP")).toBe("ep");
+		expect(reconciliationKey("(EP) (1979)")).toBe("ep");
+		expect(reconciliationKey("EP (1979)")).toBe("ep");
+		expect(reconciliationKey("(1979) (EP)")).toBe("1979");
 		expect(reconciliationKey("Foo-EP")).toBe("foo-ep");
 	});
 });
@@ -893,7 +896,7 @@ describe("mergeDiscography — suffix reconciliation (TRA-629)", () => {
 		});
 	});
 
-	it("does not pose the EP on a legacy entry when its twin already holds the album (two release groups share the key)", () => {
+	it("does not pose the EP on a legacy entry when its twin already holds the album, and adds the EP on its own", () => {
 		const legacy = entry("Ladies' Night (1979)", {}, "Kool and the Gang");
 		const album = release("Ladies' Night", { firstReleaseDate: "1979-05-01" });
 		const ep = release("Ladies' Night EP", { primaryType: "EP", firstReleaseDate: "1979-06-01" });
@@ -906,11 +909,13 @@ describe("mergeDiscography — suffix reconciliation (TRA-629)", () => {
 			policy: kool,
 		});
 
+		// The album is the entry's work, and the twin holds it: the entry stays as it is. The EP is a release
+		// group of its own, never the entry's mbid.
 		expect(result.posed).toEqual([]);
-		expect(result.ambiguous).toEqual([{ slug: legacy.slug, reason: "type" }]);
-		expect(result.added).toEqual([]);
+		expect(result.ambiguous).toEqual([]);
 		expect(result.edges.find((e) => e.slug === legacy.slug)?.mbid).toBeUndefined();
 		expect(result.edges.find((e) => e.slug === legacy.slug)?.releaseType).toBeUndefined();
+		expect(result.added.map((a) => a.mbid)).toEqual([ep.mbid]);
 	});
 
 	it("leaves a legacy entry untouched when the only release group under its key is held by its twin", () => {
@@ -1031,22 +1036,188 @@ describe("mergeDiscography — suffix reconciliation (TRA-629)", () => {
 		const existingEntry = entry("Sine of the Dub", {}, "Kode9");
 		const coupling = release("Sine of the Dub / Stalker", { primaryType: "Single" });
 		const subtitle = release("Sine of the Dub (Remastered Dub Plates)", { primaryType: "Single" });
-		const sameWork = release("Sine of the Dub (2010)", { primaryType: "Single" });
 
 		const result = merge({
 			existing: [existingEntry],
-			candidates: [coupling, subtitle, sameWork],
+			candidates: [coupling, subtitle],
+			allCredited: [coupling, subtitle],
 			policy: { ...policy, artistName: "Kode9" },
 		});
 
-		// The two titles that only extend the entry's are still added and flagged; the one that is the entry
-		// plus a year is the entry itself, not a candidate for addition.
+		// Neither title is the entry's up to a year or EP suffix: both are added and flagged.
+		expect(result.posed).toEqual([]);
 		expect(result.added.map((a) => [a.title, a.nearDuplicateOf])).toEqual(
 			expect.arrayContaining([
 				["Sine of the Dub / Stalker", existingEntry.slug],
 				["Sine of the Dub (Remastered Dub Plates)", existingEntry.slug],
 			]),
 		);
-		expect(result.added.map((a) => a.title)).not.toContain("Sine of the Dub (2010)");
+		expect(result.added).toHaveLength(2);
+	});
+
+	describe("on release groups as MusicBrainz returns them (read 2026-10-19)", () => {
+		// Trimmed copies of what `fetchArtistDiscographyMb` returned for these artists: the homonymous singles,
+		// the Live / Compilation albums and the multi-artist singles are there, which the dry-run manifest does not show.
+		const koolCredit = [{ mbid: ARTIST_MBID, name: "Kool & the Gang" }];
+		const real = (
+			title: string,
+			mbid: string,
+			firstReleaseDate: string,
+			primaryType: string,
+			secondaryTypes: string[] = [],
+			ratingVotes = 0,
+			artistCredits = koolCredit,
+		): ReleaseGroupCandidate => ({
+			mbid,
+			title,
+			firstReleaseDate,
+			primaryType,
+			secondaryTypes,
+			artistCredits,
+			ratingVotes,
+		});
+		const ladiesNight = [
+			real("Ladies\u2019 Night", "5d3fb998-0857-37d5-b211-e95e646c38d5", "1979-09-06", "Album", [], 2),
+			real("Ladies Night", "2138a736-ba8c-40ea-8221-f669b03dfe32", "1979", "Single", [], 1),
+			real("Ladies Night", "68cabb06-70bb-476c-8811-6056239e8bea", "2003-12-15", "Single", [], 0, [
+				...koolCredit,
+				{ mbid: "00000000-0000-4000-8000-0000000000a1", name: "Atomic Kitten" },
+			]),
+			real("Ladies Night", "3a26f2f5-973e-4106-8202-ffc1ff8ea3e4", "2004-04-20", "Single", [], 0, [
+				...koolCredit,
+				{ mbid: "00000000-0000-4000-8000-0000000000a2", name: "Sean Paul" },
+			]),
+			real("Ladies Night", "36fee049-018d-4413-b929-937567c14e7e", "2004", "Album", ["Compilation"]),
+			real("Ladies\u2019 Night", "c76be46d-f15b-4fad-82dd-3e06dc49854e", "", "Album", ["Compilation"]),
+		];
+		const koolRg = [
+			real("Kool and the Gang", "0931b359-fc39-33b2-b52e-a9aaf103e33a", "1969", "Album", [], 1),
+			real(
+				"Kool & the Gang",
+				"97f8d5f3-324b-40a7-8e9d-d38482f7cef7",
+				"2007",
+				"Album",
+				["Compilation", "Live"],
+				1,
+			),
+			real("Kool & The Gang", "f01659dd-dda1-4918-a2b5-e9d95feffabf", "1995", "Album", [
+				"Compilation",
+				"Live",
+			]),
+			real("Kool & the Gang", "9df5ffc6-0141-4579-8b23-7cc124cb79cf", "1997-03-04", "Album", ["Compilation"]),
+			real("Kool & The Gang", "b37ea5a1-eee0-469e-9e9d-dc79abae21db", "2001", "Album", ["Compilation"]),
+			real("Kool and the Gang", "967c2912-e19e-40d4-9b98-82ab9ddc20af", "2012", "Album", ["Compilation"]),
+		];
+		const emergency = [
+			real("Emergency", "1e650dc3-191b-3816-a8ce-ef62a401a096", "1984-11-15", "Album", [], 2),
+			real("Emergency", "5c447f52-6c2d-4c13-818d-3e8220c3bd22", "1984", "Single", [], 1),
+		];
+		const mitisCredit = [{ mbid: ARTIST_MBID, name: "MitiS" }];
+		const foundations = [
+			real("Foundations", "194a366b-28a8-4ce3-ad9b-987132d001f7", "2016-03-18", "EP", [], 0, mitisCredit),
+			real("Foundations", "91b28708-6c03-4254-bf73-7b01253bfff2", "2016-02-24", "Single", [], 0, [
+				...mitisCredit,
+				{ mbid: "00000000-0000-4000-8000-0000000000a3", name: "Adara" },
+			]),
+		];
+		const dyingForIt = [
+			real("Dying for It", "8c6cecaa-4b0f-3ca8-8bb0-f360fc9a2800", "1988", "EP", [], 0, [
+				{ mbid: ARTIST_MBID, name: "The Vaselines" },
+			]),
+			real("Dying for It", "2ca8749a-0b15-3775-984f-3fe4b9e78d8d", "1988", "Single", [], 0, [
+				{ mbid: ARTIST_MBID, name: "The Vaselines" },
+			]),
+		];
+
+		it("poses 'Ladies' Night (1979)' on the 1979 album, not left ambiguous by its homonymous singles and compilations", () => {
+			const existingEntry = entry("Ladies' Night (1979)", {}, "Kool and the Gang");
+
+			const result = merge({
+				existing: [existingEntry],
+				// What the pipeline would offer for addition: the album, its same-titled single dropped by slug.
+				candidates: selectReleases(ladiesNight, kool).kept,
+				allCredited: ladiesNight,
+				policy: kool,
+			});
+
+			expect(result.posed).toEqual([
+				{
+					slug: existingEntry.slug,
+					mbid: "5d3fb998-0857-37d5-b211-e95e646c38d5",
+					filled: ["year", "releaseType"],
+				},
+			]);
+			expect(result.ambiguous).toEqual([]);
+			expect(result.added).toEqual([]);
+		});
+
+		it("poses 'Kool and the Gang (1969)' on the 1969 album among five compilations", () => {
+			const existingEntry = entry("Kool and the Gang (1969)", {}, "Kool and the Gang");
+
+			const result = merge({ existing: [existingEntry], allCredited: koolRg, policy: kool });
+
+			expect(result.posed.map((p) => p.mbid)).toEqual(["0931b359-fc39-33b2-b52e-a9aaf103e33a"]);
+			expect(result.ambiguous).toEqual([]);
+		});
+
+		it("poses 'Emergency (1984)' on the album, not its single", () => {
+			const existingEntry = entry("Emergency (1984)", {}, "Kool and the Gang");
+
+			const result = merge({ existing: [existingEntry], allCredited: emergency, policy: kool });
+
+			expect(result.posed.map((p) => p.mbid)).toEqual(["1e650dc3-191b-3816-a8ce-ef62a401a096"]);
+			expect(result.ambiguous).toEqual([]);
+		});
+
+		it("poses 'Foundations EP' on the EP, not the single of the same title", () => {
+			const existingEntry = entry("Foundations EP", {}, "MitiS");
+
+			const result = merge({
+				existing: [existingEntry],
+				allCredited: foundations,
+				policy: { ...policy, artistName: "MitiS" },
+			});
+
+			expect(result.posed.map((p) => p.mbid)).toEqual(["194a366b-28a8-4ce3-ad9b-987132d001f7"]);
+			expect(result.ambiguous).toEqual([]);
+		});
+
+		it("poses 'Dying for It EP' on the EP, not the single of the same title", () => {
+			const existingEntry = entry("Dying for It EP", {}, "The Vaselines");
+
+			const result = merge({
+				existing: [existingEntry],
+				allCredited: dyingForIt,
+				policy: { ...policy, artistName: "The Vaselines" },
+			});
+
+			expect(result.posed.map((p) => p.mbid)).toEqual(["8c6cecaa-4b0f-3ca8-8bb0-f360fc9a2800"]);
+			expect(result.ambiguous).toEqual([]);
+		});
+	});
+
+	it("does not give the album 'Foo' to an untyped entry that was written 'Foo - EP'", () => {
+		const existingEntry = entry("Foo - EP");
+		const album = release("Foo", { primaryType: "Album" });
+
+		const result = merge({ existing: [existingEntry], candidates: [album], allCredited: [album] });
+
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([{ slug: existingEntry.slug, reason: "type" }]);
+		expect(result.added).toEqual([]);
+	});
+
+	it("gives an untyped 'Foo EP' the EP 'Foo' and not the album of the same title", () => {
+		const existingEntry = entry("Foo EP");
+		const album = release("Foo", { primaryType: "Album", firstReleaseDate: "2010-01-01" });
+		const ep = release("Foo", { primaryType: "EP", firstReleaseDate: "2010-01-01" });
+
+		const result = merge({ existing: [existingEntry], candidates: [album, ep], allCredited: [album, ep] });
+
+		expect(result.posed.map((p) => p.mbid)).toEqual([ep.mbid]);
+		expect(result.edges.find((e) => e.slug === existingEntry.slug)).toMatchObject({
+			mbid: ep.mbid,
+			releaseType: "ep",
+		});
 	});
 });
