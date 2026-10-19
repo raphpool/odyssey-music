@@ -1,0 +1,459 @@
+import { describe, expect, it } from "vitest";
+import {
+	DEFAULT_DISCOGRAPHY_CAP,
+	type DiscographyPolicy,
+	type MergeInput,
+	mergeDiscography,
+	type ReleaseGroupCandidate,
+	toDiscographyEdge,
+} from "../src/discography-policy.js";
+import { makeScopedSlug } from "../src/slug.js";
+import type { EdgeRef, Slug } from "../src/types.js";
+
+const ARTIST_MBID = "11111111-1111-4111-8111-111111111111";
+
+const policy: DiscographyPolicy = {
+	artistMbid: ARTIST_MBID,
+	artistName: "Daft Punk",
+	cap: DEFAULT_DISCOGRAPHY_CAP,
+};
+
+let counter = 0;
+function mbidOf(n: number): string {
+	return `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
+}
+
+function release(title: string, overrides: Partial<ReleaseGroupCandidate> = {}): ReleaseGroupCandidate {
+	counter += 1;
+	return {
+		mbid: mbidOf(counter),
+		title,
+		firstReleaseDate: "2001-03-12",
+		primaryType: "Album",
+		secondaryTypes: [],
+		artistCredits: [{ mbid: ARTIST_MBID, name: "Daft Punk" }],
+		...overrides,
+	};
+}
+
+function slugFor(title: string, artist = "Daft Punk"): Slug {
+	const slug = makeScopedSlug("project", title, artist);
+	if (!slug.ok) throw new Error(`no slug for ${title}`);
+	return slug.slug;
+}
+
+function entry(name: string, extra: Partial<EdgeRef> = {}, artist = "Daft Punk"): EdgeRef {
+	return { slug: slugFor(name, artist), type: "project", name, artist, ...extra };
+}
+
+function merge(overrides: Partial<MergeInput> = {}): ReturnType<typeof mergeDiscography> {
+	return mergeDiscography({
+		existing: [],
+		candidates: [],
+		allCredited: [],
+		policy,
+		projectIndex: { byMbid: new Map(), resolveSlug: (slug) => slug },
+		...overrides,
+	});
+}
+
+describe("mergeDiscography — pose", () => {
+	it("poses the mbid on a unique title, including a release group only present in allCredited", () => {
+		const plain = release("Discovery");
+		const live = release("Live at the BBC", { secondaryTypes: ["Live"] });
+		const existing = [entry("Discovery"), entry("Live at the BBC")];
+
+		const result = merge({ existing, allCredited: [plain, live] });
+
+		expect(result.changed).toBe(true);
+		expect(result.edges.map((e) => [e.name, e.mbid])).toEqual(
+			expect.arrayContaining([
+				["Discovery", plain.mbid],
+				["Live at the BBC", live.mbid],
+			]),
+		);
+		expect(result.posed.map((p) => p.mbid).sort()).toEqual([plain.mbid, live.mbid].sort());
+		expect(result.added).toEqual([]);
+	});
+
+	it("matches titles through normalizeTitleBody (edition noise, case)", () => {
+		const album = release("Kid A");
+		const result = merge({ existing: [entry("kid a (Deluxe Edition)")], allCredited: [album] });
+		expect(result.posed).toHaveLength(1);
+		expect(result.posed[0]?.mbid).toBe(album.mbid);
+	});
+
+	it("reports an Album and a Single sharing a title as ambiguous/type when the entry has no releaseType", () => {
+		const album = release("Imagine", { primaryType: "Album" });
+		const single = release("Imagine", { primaryType: "Single" });
+		const existing = [entry("Imagine")];
+
+		const result = merge({ existing, allCredited: [album, single] });
+
+		expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "type" }]);
+		expect(result.posed).toEqual([]);
+		expect(result.changed).toBe(false);
+		expect(result.edges).toBe(existing);
+	});
+
+	it("poses the Album mbid when the entry says releaseType album", () => {
+		const album = release("Imagine", { primaryType: "Album" });
+		const single = release("Imagine", { primaryType: "Single" });
+
+		const result = merge({
+			existing: [entry("Imagine", { releaseType: "album" })],
+			allCredited: [single, album],
+		});
+
+		expect(result.edges[0]?.mbid).toBe(album.mbid);
+		expect(result.ambiguous).toEqual([]);
+	});
+
+	it("refuses a single candidate whose primary type differs from the entry's releaseType", () => {
+		const single = release("X", { primaryType: "Single" });
+		const existing = [entry("X", { releaseType: "album" })];
+
+		const result = merge({ existing, allCredited: [single] });
+
+		expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "type" }]);
+		expect(result.posed).toEqual([]);
+		expect(result.changed).toBe(false);
+		expect(result.edges).toBe(existing);
+	});
+
+	it("poses a single candidate on an entry without releaseType and completes the releaseType", () => {
+		const single = release("X", { primaryType: "Single" });
+
+		const result = merge({ existing: [entry("X")], allCredited: [single] });
+
+		expect(result.ambiguous).toEqual([]);
+		expect(result.posed[0]?.filled).toContain("releaseType");
+		expect(result.edges[0]).toMatchObject({ mbid: single.mbid, releaseType: "single" });
+	});
+
+	it("reports several candidates of the same type as ambiguous/multiple", () => {
+		const first = release("Homework", { firstReleaseDate: "1997-01-20" });
+		const second = release("Homework", { firstReleaseDate: "1997-03-17" });
+		const existing = [entry("Homework")];
+
+		const result = merge({ existing, allCredited: [first, second] });
+
+		expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "multiple" }]);
+		expect(result.edges).toBe(existing);
+	});
+
+	it("reports ambiguous/multiple when the releaseType filter leaves nothing", () => {
+		const album = release("Imagine", { primaryType: "Album" });
+		const single = release("Imagine", { primaryType: "Single" });
+		const existing = [entry("Imagine", { releaseType: "ep" })];
+
+		const result = merge({ existing, allCredited: [album, single] });
+
+		expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "multiple" }]);
+	});
+
+	it("refuses a year more than one year away, and accepts one year away", () => {
+		const candidate = release("Imagine", { firstReleaseDate: "1975-06-01" });
+
+		const far = merge({ existing: [entry("Imagine", { year: "1968" })], allCredited: [candidate] });
+		expect(far.ambiguous).toEqual([{ slug: slugFor("Imagine"), reason: "year-mismatch" }]);
+		expect(far.posed).toEqual([]);
+		expect(far.changed).toBe(false);
+
+		const near = merge({ existing: [entry("Imagine", { year: "1976" })], allCredited: [candidate] });
+		expect(near.ambiguous).toEqual([]);
+		expect(near.edges[0]?.mbid).toBe(candidate.mbid);
+	});
+
+	it("fills year and releaseType only when absent, and lists them in filled", () => {
+		const candidate = release("Discovery", { firstReleaseDate: "2001-03-12", primaryType: "Album" });
+
+		const bare = merge({ existing: [entry("Discovery")], allCredited: [candidate] });
+		expect(bare.posed[0]?.filled).toEqual(["year", "releaseType"]);
+		expect(bare.edges[0]).toMatchObject({ year: "2001", releaseType: "album", mbid: candidate.mbid });
+
+		const complete = merge({
+			existing: [entry("Discovery", { year: "2002", releaseType: "album" })],
+			allCredited: [candidate],
+		});
+		expect(complete.posed[0]?.filled).toEqual([]);
+		expect(complete.edges[0]).toMatchObject({ year: "2002", releaseType: "album", mbid: candidate.mbid });
+	});
+
+	it("never changes name, slug or artist of a posed entry, and does not mutate the input", () => {
+		const candidate = release("Discovery");
+		const original = entry("DISCOVERY (Deluxe Edition)");
+		const snapshot = structuredClone(original);
+		const existing = Object.freeze([Object.freeze(original)]);
+
+		const result = merge({ existing, allCredited: [candidate] });
+
+		expect(original).toEqual(snapshot);
+		expect(result.edges[0]).toMatchObject({
+			name: snapshot.name,
+			slug: snapshot.slug,
+			artist: snapshot.artist,
+		});
+		expect(result.edges[0]).not.toBe(original);
+	});
+
+	it("leaves entries that already carry an mbid alone", () => {
+		const candidate = release("Discovery");
+		const existing = [entry("Discovery", { mbid: "99999999-9999-4999-8999-999999999999" })];
+		const result = merge({ existing, allCredited: [candidate] });
+		expect(result.changed).toBe(false);
+		expect(result.edges).toBe(existing);
+	});
+
+	it("poses every duplicate of the same title and removes none", () => {
+		const candidate = release("Birth of the Cool", { firstReleaseDate: "1957-02-01" });
+		const first = entry("Birth of the Cool", { year: "1957" });
+		const second = { ...entry("Birth of the Cool"), slug: "project:birth-of-the-cool--daft-punk-2" as Slug };
+
+		const result = merge({ existing: [first, second], allCredited: [candidate] });
+
+		expect(result.edges).toHaveLength(2);
+		expect(result.edges.map((e) => e.mbid)).toEqual([candidate.mbid, candidate.mbid]);
+		expect(result.posed).toHaveLength(2);
+	});
+
+	it("does not match an empty normalized title against anything", () => {
+		const candidate = release("日本語");
+		const existing: EdgeRef[] = [
+			{ slug: "project:nihongo--daft-punk" as Slug, type: "project", name: "日本語", artist: "Daft Punk" },
+		];
+		const result = merge({ existing, allCredited: [candidate] });
+		expect(result.changed).toBe(false);
+		expect(result.edges).toBe(existing);
+	});
+});
+
+describe("mergeDiscography — additions", () => {
+	it("attaches an addition to the project node found by mbid", () => {
+		const discovery = release("Discovery");
+		const existingSlug = "project:discovery--daft-punk-fr" as Slug;
+
+		const result = merge({
+			candidates: [discovery],
+			projectIndex: {
+				byMbid: new Map([[discovery.mbid, existingSlug]]),
+				resolveSlug: () => "project:wrong" as Slug,
+			},
+		});
+
+		expect(result.added).toEqual([
+			{ slug: existingSlug, mbid: discovery.mbid, title: "Discovery", year: "2001", releaseType: "album" },
+		]);
+		expect(result.edges).toEqual([
+			{ ...toDiscographyEdge(discovery, policy), slug: existingSlug } as EdgeRef,
+		]);
+	});
+
+	it("falls back to resolveSlug, then to the scoped slug", () => {
+		const homework = release("Homework", { firstReleaseDate: "1997-01-20" });
+		const redirected = merge({
+			candidates: [homework],
+			projectIndex: {
+				byMbid: new Map(),
+				resolveSlug: (slug) =>
+					slug === slugFor("Homework") ? ("project:homework--daft-punk-v2" as Slug) : slug,
+			},
+		});
+		expect(redirected.added[0]?.slug).toBe("project:homework--daft-punk-v2");
+
+		const scoped = merge({ candidates: [homework] });
+		expect(scoped.added[0]?.slug).toBe(slugFor("Homework"));
+	});
+
+	it("adds an edge with exactly the shape of toDiscographyEdge", () => {
+		const candidate = release("Alive 2007", { firstReleaseDate: "2007-11-19", primaryType: "Album" });
+		const result = merge({ candidates: [candidate] });
+		expect(result.edges).toEqual([toDiscographyEdge(candidate, policy)]);
+		expect(result.edges[0]?.artist).toBe("Daft Punk");
+	});
+
+	it("ignores a candidate for which no scoped slug can be built", () => {
+		const unusable = release("日本語");
+		const result = merge({ candidates: [unusable] });
+		expect(result.added).toEqual([]);
+		expect(result.changed).toBe(false);
+	});
+
+	it("does not add a candidate whose mbid or normalized title is already in the list", () => {
+		const known = release("Discovery");
+		const sameTitle = release("Homework");
+		const existing = [
+			entry("Discovery", { mbid: known.mbid }),
+			entry("Homework", { mbid: "99999999-9999-4999-8999-999999999999" }),
+		];
+		const result = merge({ existing, candidates: [known, sameTitle] });
+		expect(result.added).toEqual([]);
+		expect(result.edges).toBe(existing);
+	});
+
+	it("does not add a candidate whose mbid was just posed on an entry", () => {
+		const album = release("Discovery");
+		const result = merge({ existing: [entry("Discovery")], candidates: [album], allCredited: [album] });
+		expect(result.added).toEqual([]);
+		expect(result.edges).toHaveLength(1);
+	});
+
+	it("never produces two entries with the same slug for an album and a single of the same title", () => {
+		const album = release("Black Sun", { primaryType: "Album", firstReleaseDate: "2011-01-01" });
+		const single = release("Black Sun", { primaryType: "Single", firstReleaseDate: "2010-01-01" });
+
+		const result = merge({ candidates: [album, single] });
+
+		expect(result.added).toHaveLength(1);
+		expect(result.added[0]?.mbid).toBe(album.mbid);
+		expect(new Set(result.edges.map((e) => e.slug)).size).toBe(result.edges.length);
+	});
+
+	it("produces one entry when two candidates resolve to the same project node", () => {
+		const first = release("Discovery");
+		const second = release("Discovery (Japan)", { firstReleaseDate: "2001-04-01" });
+		const shared = "project:discovery--daft-punk-fr" as Slug;
+		const result = merge({
+			candidates: [first, second],
+			projectIndex: {
+				byMbid: new Map([
+					[first.mbid, shared],
+					[second.mbid, shared],
+				]),
+				resolveSlug: (slug) => slug,
+			},
+		});
+		expect(result.added.map((a) => a.mbid)).toEqual([first.mbid]);
+	});
+
+	it("adds nothing to a list already at the cap and flags capReached", () => {
+		const existing = Array.from({ length: 40 }, (_, i) => entry(`Existing ${i}`, { mbid: mbidOf(1000 + i) }));
+		const result = merge({ existing, candidates: [release("Brand New")] });
+		expect(result.added).toEqual([]);
+		expect(result.capReached).toBe(true);
+		expect(result.changed).toBe(false);
+		expect(result.edges).toBe(existing);
+	});
+
+	it("fills a list of 38 up to the cap with 5 candidates, in candidate order", () => {
+		const existing = Array.from({ length: 38 }, (_, i) => entry(`Existing ${i}`, { mbid: mbidOf(1000 + i) }));
+		const candidates = ["Alpha", "Bravo", "Charlie", "Delta", "Echo"].map((t) => release(t));
+
+		const result = merge({ existing, candidates });
+
+		expect(result.added.map((a) => a.title)).toEqual(["Alpha", "Bravo"]);
+		expect(result.edges).toHaveLength(40);
+		expect(result.capReached).toBe(true);
+	});
+
+	it("spends the last slots on albums before singles, whatever order the candidates come in", () => {
+		const existing = Array.from({ length: 38 }, (_, i) => entry(`Existing ${i}`, { mbid: mbidOf(1000 + i) }));
+		const newestFirst = [
+			release("Single A", { primaryType: "Single", firstReleaseDate: "2020-01-01" }),
+			release("Single B", { primaryType: "Single", firstReleaseDate: "2019-01-01" }),
+			release("Old Album", { primaryType: "Album", firstReleaseDate: "2005-01-01" }),
+			release("Old Album 2", { primaryType: "Album", firstReleaseDate: "2003-01-01" }),
+		];
+
+		const result = merge({ existing, candidates: newestFirst });
+
+		expect(result.added.map((a) => a.title)).toEqual(["Old Album", "Old Album 2"]);
+		expect(result.capReached).toBe(true);
+	});
+
+	it("does not count the same release group twice when its mbid differs only by case", () => {
+		const lower = release("Discovery");
+		const upper = { ...lower, mbid: lower.mbid.toUpperCase() };
+		const result = merge({ existing: [entry("Discovery")], allCredited: [lower, upper] });
+		expect(result.ambiguous).toEqual([]);
+		expect(result.posed).toHaveLength(1);
+	});
+
+	it("does not flag capReached when every candidate fits", () => {
+		const result = merge({ candidates: [release("Alpha"), release("Bravo")] });
+		expect(result.added).toHaveLength(2);
+		expect(result.capReached).toBe(false);
+	});
+
+	it("does not flag capReached for candidates that were skipped for another reason", () => {
+		const existing = Array.from({ length: 40 }, (_, i) => entry(`Existing ${i}`, { mbid: mbidOf(1000 + i) }));
+		const result = merge({ existing, candidates: [release("Existing 3")] });
+		expect(result.capReached).toBe(false);
+	});
+});
+
+describe("mergeDiscography — near duplicates", () => {
+	const kode9 = { ...policy, artistName: "Kode9" };
+
+	it("adds 'Sine of the Dub / Stalker' next to an unmatched 'Sine of the Dub' and flags it", () => {
+		const existingEntry = entry("Sine of the Dub", {}, "Kode9");
+		const candidate = release("Sine of the Dub / Stalker", {
+			primaryType: "Single",
+			firstReleaseDate: "2010-05-03",
+		});
+
+		const result = merge({ existing: [existingEntry], candidates: [candidate], policy: kode9 });
+
+		expect(existingEntry.slug).toBe("project:sine-of-the-dub--kode9");
+		expect(result.added).toHaveLength(1);
+		expect(result.added[0]).toMatchObject({
+			mbid: candidate.mbid,
+			title: "Sine of the Dub / Stalker",
+			nearDuplicateOf: "project:sine-of-the-dub--kode9",
+		});
+		expect(result.edges).toHaveLength(2);
+	});
+
+	it("flags the reverse case: the existing title extends the candidate's", () => {
+		const existingEntry = entry("Sine of the Dub / Stalker", {}, "Kode9");
+		const candidate = release("Sine of the Dub", { primaryType: "Single" });
+		const result = merge({ existing: [existingEntry], candidates: [candidate], policy: kode9 });
+		// Same normalized prefix: added anyway, flagged against the existing entry.
+		expect(result.added[0]?.nearDuplicateOf).toBe(existingEntry.slug);
+	});
+
+	it("does not flag against an entry that already has an mbid, nor on a partial word", () => {
+		const withMbid = entry("Sine of the Dub", { mbid: "99999999-9999-4999-8999-999999999999" }, "Kode9");
+		const partialWord = entry("Sin", {}, "Kode9");
+		const candidate = release("Sines of Time", { primaryType: "Single" });
+		const stalker = release("Sine of the Dub / Stalker", { primaryType: "Single" });
+
+		const result = merge({
+			existing: [withMbid, partialWord],
+			candidates: [candidate, stalker],
+			policy: kode9,
+		});
+
+		const byTitle = new Map(result.added.map((a) => [a.title, a]));
+		expect(byTitle.get("Sines of Time")?.nearDuplicateOf).toBeUndefined();
+		expect(byTitle.get("Sine of the Dub / Stalker")?.nearDuplicateOf).toBeUndefined();
+	});
+});
+
+describe("mergeDiscography — result shape", () => {
+	it("returns the very same list when there is nothing to pose or add", () => {
+		const existing = [entry("Discovery", { mbid: mbidOf(5) }), entry("Homework")];
+		const result = merge({ existing, candidates: [], allCredited: [] });
+		expect(result.changed).toBe(false);
+		expect(result.edges).toBe(existing);
+		expect(result.posed).toEqual([]);
+		expect(result.added).toEqual([]);
+		expect(result.ambiguous).toEqual([]);
+		expect(result.capReached).toBe(false);
+	});
+
+	it("sorts newest year first with undated entries last", () => {
+		const existing = [entry("Undated"), entry("Old", { year: "1997" })];
+		const recent = release("Recent", { firstReleaseDate: "2013-05-17" });
+		const middle = release("Middle", { firstReleaseDate: "2005-01-01" });
+		const posedOne = release("Undated2", { firstReleaseDate: "" });
+
+		const result = merge({
+			existing: [...existing, entry("Undated2")],
+			candidates: [middle, recent],
+			allCredited: [posedOne],
+		});
+
+		expect(result.edges.map((e) => e.name)).toEqual(["Recent", "Middle", "Old", "Undated", "Undated2"]);
+	});
+});
