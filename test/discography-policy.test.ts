@@ -32,6 +32,7 @@ function release(overrides: Partial<ReleaseGroupCandidate> = {}): ReleaseGroupCa
 		primaryType: "Album",
 		secondaryTypes: [],
 		artistCredits: [{ mbid: ARTIST_MBID, name: "Daft Punk" }],
+		ratingVotes: 0,
 		...overrides,
 	};
 }
@@ -180,7 +181,7 @@ describe("selectReleases", () => {
 		);
 	}
 
-	it("keeps 5 albums and the 35 most recent of 90 singles, ordered by year descending", () => {
+	it("keeps 5 albums and the 35 oldest of 90 singles at equal votes, ordered by year descending", () => {
 		const albums = many(5, "Album", 1990);
 		const singles = many(90, "Single", 1920);
 		const { kept } = selectReleases([...singles, ...albums], policy);
@@ -189,7 +190,7 @@ describe("selectReleases", () => {
 		const keptSingles = kept.filter((c) => c.primaryType === "Single");
 		expect(keptSingles.map((c) => c.title)).toEqual(
 			singles
-				.slice(-35)
+				.slice(0, 35)
 				.reverse()
 				.map((c) => c.title),
 		);
@@ -197,15 +198,86 @@ describe("selectReleases", () => {
 		expect(dates).toEqual([...dates].sort().reverse());
 	});
 
-	it("keeps the 40 most recent of 45 albums and no single", () => {
+	it("keeps the 40 oldest of 45 albums at equal votes and no single", () => {
 		const albums = many(45, "Album", 1970);
 		const { kept } = selectReleases([...many(10, "Single", 2000), ...albums], policy);
 		expect(kept.map((c) => c.title)).toEqual(
 			albums
-				.slice(-40)
+				.slice(0, 40)
 				.reverse()
 				.map((c) => c.title),
 		);
+	});
+
+	it("keeps the candidate with the most votes first, the oldest among equal votes (TRA-625)", () => {
+		const popular = release({ title: "Popular", firstReleaseDate: "2020-01-01", ratingVotes: 9 });
+		const oldA = release({ title: "Old A", firstReleaseDate: "1960-01-01", ratingVotes: 3 });
+		const oldB = release({ title: "Old B", firstReleaseDate: "1961-01-01", ratingVotes: 3 });
+		const newer = release({ title: "Newer", firstReleaseDate: "1999-01-01", ratingVotes: 3 });
+		const unknownDate = release({ title: "Unknown date", firstReleaseDate: "", ratingVotes: 3 });
+		const small = { ...policy, cap: 3 };
+		const { kept } = selectReleases([unknownDate, newer, oldB, oldA, popular], small);
+		expect(kept.map((c) => c.title).sort()).toEqual(["Old A", "Old B", "Popular"]);
+		// Votes tie, same date: title then mbid decide, whatever the input order.
+		const twinB = release({ title: "Twin B", firstReleaseDate: "1970-01-01", ratingVotes: 1 });
+		const twinA = release({ title: "Twin A", firstReleaseDate: "1970-01-01", ratingVotes: 1 });
+		const one = { ...policy, cap: 1 };
+		expect(selectReleases([twinB, twinA], one).kept.map((c) => c.title)).toEqual(["Twin A"]);
+		expect(selectReleases([twinA, twinB], one).kept.map((c) => c.title)).toEqual(["Twin A"]);
+	});
+
+	it("Beatles: the 13 voted canonical albums all survive 60 newer albums with no vote", () => {
+		const canon = [
+			["Please Please Me", "1963-03-22", 50],
+			["With the Beatles", "1963-11-22", 30],
+			["A Hard Day's Night", "1964-07-10", 40],
+			["Beatles for Sale", "1964-12-04", 20],
+			["Help!", "1965-08-06", 35],
+			["Rubber Soul", "1965-12-03", 56],
+			["Revolver", "1966-08-05", 61],
+			["Sgt. Pepper's Lonely Hearts Club Band", "1967-06-01", 73],
+			["Magical Mystery Tour", "1967-11-27", 25],
+			["The Beatles", "1968-11-22", 60],
+			["Yellow Submarine", "1969-01-13", 15],
+			["Abbey Road", "1969-09-26", 71],
+			["Let It Be", "1970-05-08", 43],
+		] as const;
+		const canonical = canon.map(([title, date, votes]) =>
+			release({ title, firstReleaseDate: date, ratingVotes: votes }),
+		);
+		const archives = Array.from({ length: 60 }, (_, i) =>
+			release({ title: `Lost Tapes ${i}`, firstReleaseDate: `${1990 + (i % 30)}-0${1 + (i % 9)}-01` }),
+		);
+		const { kept } = selectReleases([...archives, ...canonical], policy);
+		expect(kept).toHaveLength(40);
+		const keptTitles = new Set(kept.map((c) => c.title));
+		for (const c of canonical) expect(keptTitles.has(c.title)).toBe(true);
+		expect(keptTitles.has("Abbey Road")).toBe(true);
+		// Display order is unchanged: newest first, whatever got the places.
+		const dates = kept.map((c) => c.firstReleaseDate);
+		expect(dates).toEqual([...dates].sort().reverse());
+	});
+
+	it("Lennon: Lost Lennon Tapes at 0 votes come after Imagine and Plastic Ono Band", () => {
+		const imagine = release({ title: "Imagine", firstReleaseDate: "1971-09-09", ratingVotes: 40 });
+		const plastic = release({
+			title: "John Lennon/Plastic Ono Band",
+			firstReleaseDate: "1970-12-11",
+			ratingVotes: 28,
+		});
+		const tapes = Array.from({ length: 25 }, (_, i) =>
+			release({ title: `The Lost Lennon Tapes, Volume ${i + 1}`, firstReleaseDate: `${1992 + i}-01-01` }),
+		);
+		const { kept } = selectReleases([...tapes, imagine, plastic], { ...policy, cap: 5 });
+		const titles = kept.map((c) => c.title);
+		expect(titles).toContain("Imagine");
+		expect(titles).toContain("John Lennon/Plastic Ono Band");
+		// The 3 other places go to the oldest tapes, not the newest.
+		expect(titles.filter((t) => t.startsWith("The Lost Lennon Tapes"))).toEqual([
+			"The Lost Lennon Tapes, Volume 3",
+			"The Lost Lennon Tapes, Volume 2",
+			"The Lost Lennon Tapes, Volume 1",
+		]);
 	});
 
 	it("fills with 3 albums, 2 EPs then 35 singles out of 100", () => {

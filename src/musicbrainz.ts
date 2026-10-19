@@ -557,11 +557,20 @@ export interface MbReleaseGroupSummary {
 	secondaryTypes: string[];
 	/** Credited artists in MusicBrainz order (the first one is the primary credit). */
 	artistCredits: MbCredit[];
+	/** `rating["votes-count"]` (browsed with `inc=ratings`); 0 when absent or invalid (TRA-625). */
+	ratingVotes: number;
 }
 
 interface RgPage {
 	total: number;
 	groups: MbReleaseGroupSummary[];
+}
+
+// MusicBrainz's `rating["votes-count"]` is third-party data: anything but a positive safe integer is 0.
+function parseRatingVotes(rating: unknown): number {
+	if (!isRecord(rating)) return 0;
+	const votes = rating["votes-count"];
+	return typeof votes === "number" && Number.isSafeInteger(votes) && votes > 0 ? votes : 0;
 }
 
 /**
@@ -584,6 +593,7 @@ function parseRgPage(body: unknown): RgPage | null {
 				? secondary.filter((t): t is string => typeof t === "string")
 				: [],
 			artistCredits: toCredits(raw["artist-credit"]),
+			ratingVotes: parseRatingVotes(raw.rating),
 		});
 	}
 	const count = body["release-group-count"];
@@ -620,7 +630,7 @@ export async function fetchArtistDiscographyMb(
 				type,
 				limit: String(limit),
 				offset: String(offset),
-				inc: "artist-credits",
+				inc: "artist-credits+ratings",
 			},
 			fetch,
 			priority,
