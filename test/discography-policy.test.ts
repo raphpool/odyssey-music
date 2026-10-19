@@ -4,6 +4,7 @@ import {
 	DEFAULT_DISCOGRAPHY_CAP,
 	type DiscographyPolicy,
 	isNonCanonicalReleaseTitle,
+	MIN_VOTED_FOR_UNRATED_CUT,
 	orderDiscography,
 	type ReleaseGroupCandidate,
 	selectReleases,
@@ -20,6 +21,7 @@ const policy: DiscographyPolicy = {
 	artistMbid: ARTIST_MBID,
 	artistName: "Daft Punk",
 	cap: DEFAULT_DISCOGRAPHY_CAP,
+	currentYear: 2026,
 };
 
 let counter = 0;
@@ -100,7 +102,12 @@ describe("isNonCanonicalReleaseTitle", () => {
 });
 
 describe("classifyRelease", () => {
-	const kode9: DiscographyPolicy = { artistMbid: ARTIST_MBID, artistName: "Kode9", cap: 40 };
+	const kode9: DiscographyPolicy = {
+		artistMbid: ARTIST_MBID,
+		artistName: "Kode9",
+		cap: 40,
+		currentYear: 2026,
+	};
 	const kode9Credit = { mbid: ARTIST_MBID, name: "Kode9" };
 	const spaceape = { mbid: OTHER_MBID, name: "Spaceape" };
 
@@ -282,7 +289,8 @@ describe("selectReleases", () => {
 		expect(selectReleases([twinA, twinB], one).kept.map((c) => c.title)).toEqual(["Twin A"]);
 	});
 
-	it("Beatles: the 13 voted canonical albums all survive 60 newer albums with no vote", () => {
+	// TRA-628: with 13 voted (>= MIN_VOTED_FOR_UNRATED_CUT) the 60 unvoted ones no longer fill the 27 free places.
+	it("Beatles: the 13 voted canonical albums all survive 60 newer albums with no vote, which are cut", () => {
 		const canon = [
 			["Please Please Me", "1963-03-22", 50],
 			["With the Beatles", "1963-11-22", 30],
@@ -304,8 +312,9 @@ describe("selectReleases", () => {
 		const archives = Array.from({ length: 60 }, (_, i) =>
 			release({ title: `Lost Tapes ${i}`, firstReleaseDate: `${1990 + (i % 30)}-0${1 + (i % 9)}-01` }),
 		);
-		const { kept } = selectReleases([...archives, ...canonical], policy);
-		expect(kept).toHaveLength(40);
+		const { kept, excluded } = selectReleases([...archives, ...canonical], policy);
+		expect(kept).toHaveLength(13);
+		expect(excluded).toHaveLength(60);
 		const keptTitles = new Set(kept.map((c) => c.title));
 		for (const c of canonical) expect(keptTitles.has(c.title)).toBe(true);
 		expect(keptTitles.has("Abbey Road")).toBe(true);
@@ -451,6 +460,105 @@ describe("selectReleases", () => {
 			{ mbid: remix.mbid, title: remix.title, reason: "non-canonical" },
 			{ mbid: compilation.mbid, title: compilation.title, reason: "secondary-type" },
 		]);
+	});
+
+	describe("unrated cut (TRA-628)", () => {
+		// Distinct titles and years, so nothing collapses as a duplicate.
+		function voted(count: number, firstYear: number): ReleaseGroupCandidate[] {
+			return Array.from({ length: count }, (_, i) =>
+				release({
+					title: `Voted ${i}`,
+					firstReleaseDate: `${firstYear + i}-01-01`,
+					ratingVotes: 20 - i,
+				}),
+			);
+		}
+		function unvoted(count: number, firstYear: number, prefix = "Archive"): ReleaseGroupCandidate[] {
+			return Array.from({ length: count }, (_, i) =>
+				release({ title: `${prefix} ${i}`, firstReleaseDate: `${firstYear + (i % 18)}-01-01` }),
+			);
+		}
+
+		it("Lennon: 14 voted and 55 unvoted from 1988 to 2005 -> the 55 are excluded as unrated, the 14 kept", () => {
+			const rated = voted(14, 1970);
+			const bootlegs = unvoted(55, 1988);
+			const { kept, excluded } = selectReleases([...bootlegs, ...rated], policy);
+			expect(kept.map((c) => c.mbid).sort()).toEqual(rated.map((c) => c.mbid).sort());
+			expect(excluded).toHaveLength(55);
+			expect(excluded.every((e) => e.reason === "unrated")).toBe(true);
+			expect(new Set(excluded.map((e) => e.mbid))).toEqual(new Set(bootlegs.map((c) => c.mbid)));
+		});
+
+		it("Kode9: 24 candidates, none voted -> nothing is cut", () => {
+			const all = unvoted(24, 1995, "Release");
+			const { kept, excluded } = selectReleases(all, policy);
+			expect(kept).toHaveLength(24);
+			expect(excluded).toEqual([]);
+		});
+
+		it("cuts from exactly MIN_VOTED_FOR_UNRATED_CUT voted, not from one fewer", () => {
+			expect(MIN_VOTED_FOR_UNRATED_CUT).toBe(10);
+			const stray = release({ title: "Stray", firstReleaseDate: "1999-01-01" });
+			const atThreshold = selectReleases([stray, ...voted(10, 1970)], policy);
+			expect(atThreshold.kept).toHaveLength(10);
+			expect(atThreshold.excluded).toEqual([{ mbid: stray.mbid, title: "Stray", reason: "unrated" }]);
+			const below = selectReleases([stray, ...voted(9, 1970)], policy);
+			expect(below.kept).toHaveLength(10);
+			expect(below.excluded).toEqual([]);
+		});
+
+		it("counts the voted after dedupe: an album and a single of one title count once", () => {
+			const rated = voted(9, 1970);
+			const album = release({
+				title: "Twice",
+				primaryType: "Album",
+				firstReleaseDate: "1990-01-01",
+				ratingVotes: 5,
+			});
+			const single = release({
+				title: "Twice",
+				primaryType: "Single",
+				firstReleaseDate: "1989-01-01",
+				ratingVotes: 3,
+			});
+			const stray = release({ title: "Stray", firstReleaseDate: "1999-01-01" });
+			// 9 + "Twice" = 10 distinct voted: the cut applies.
+			expect(selectReleases([stray, album, single, ...rated], policy).excluded).toHaveLength(1);
+			// 8 + "Twice" = 9 distinct voted (10 voted before dedupe would have cut): nothing is cut.
+			expect(selectReleases([stray, album, single, ...rated.slice(1)], policy).excluded).toEqual([]);
+		});
+
+		it("spares a release from last year or this year, 12 voted around it", () => {
+			const rated = voted(12, 1970);
+			const thisYear = release({ title: "This year", firstReleaseDate: "2026-02-01" });
+			const lastYear = release({ title: "Last year", firstReleaseDate: "2025-01-01" });
+			const twoYearsAgo = release({ title: "Two years ago", firstReleaseDate: "2024-12-31" });
+			const undated = release({ title: "Undated", firstReleaseDate: "" });
+			const { kept, excluded } = selectReleases([...rated, thisYear, lastYear, twoYearsAgo, undated], policy);
+			expect(kept.map((c) => c.title)).toEqual(expect.arrayContaining(["This year", "Last year"]));
+			expect(excluded.map((e) => [e.title, e.reason]).sort()).toEqual([
+				["Two years ago", "unrated"],
+				["Undated", "unrated"],
+			]);
+		});
+
+		it("takes currentYear from the policy, not from the clock", () => {
+			const rated = voted(12, 1970);
+			const album2025 = release({ title: "Recent", firstReleaseDate: "2025-01-01" });
+			expect(selectReleases([...rated, album2025], { ...policy, currentYear: 2026 }).excluded).toEqual([]);
+			expect(selectReleases([...rated, album2025], { ...policy, currentYear: 2030 }).excluded).toEqual([
+				{ mbid: album2025.mbid, title: "Recent", reason: "unrated" },
+			]);
+		});
+
+		it("does not let a policy rejection count as voted or as unrated", () => {
+			const rated = voted(9, 1970);
+			const liveVoted = release({ title: "Live", secondaryTypes: ["Live"], ratingVotes: 50 });
+			const stray = release({ title: "Stray", firstReleaseDate: "1999-01-01" });
+			const { excluded } = selectReleases([stray, liveVoted, ...rated], policy);
+			// The Live album is rejected first, so only 9 voted remain: no unrated cut.
+			expect(excluded).toEqual([{ mbid: liveVoted.mbid, title: "Live", reason: "secondary-type" }]);
+		});
 	});
 });
 

@@ -1912,6 +1912,32 @@ describe("artist discography from MusicBrainz, shared policy (TRA-615)", () => {
 	);
 
 	it(
+		"drops the unvoted releases once the artist has 10 voted ones, and passes the current year so a recent one stays (TRA-628)",
+		async () => {
+			const currentYear = new Date().getFullYear();
+			const rated = Array.from({ length: 12 }, (_, i) =>
+				release(`Voted ${String(i + 1).padStart(2, "0")}`, `${1970 + i}-01-01`, { ratingVotes: 30 - i }),
+			);
+			const bootlegs = Array.from({ length: 20 }, (_, i) =>
+				release(`Tape ${String(i + 1).padStart(2, "0")}`, `${1988 + (i % 18)}-01-01`),
+			);
+			const fresh = release("Fresh", `${currentYear - 1}-06-01`);
+
+			const { artist, lines } = await runWith({
+				releases: [...bootlegs, fresh, ...rated],
+				unavailable: false,
+			});
+
+			const names = artist.discography.map((e) => e.name);
+			expect(names).toHaveLength(13);
+			expect(names).toContain("Fresh");
+			expect(names.filter((n) => n.startsWith("Tape"))).toEqual([]);
+			expect(lines.some((l) => l.includes("20 excluded: unrated 20"))).toBe(true);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
 		"keeps the bare slugs, artist stamped, when ODYSSEY_SCOPED_RELEASE_SLUGS is off",
 		async () => {
 			vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "false");

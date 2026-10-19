@@ -29,16 +29,26 @@ export interface DiscographyPolicy {
 	artistMbid: string;
 	artistName: string;
 	cap: number;
+	// Calendar year "now", given by the caller (never read from the clock here, so tests and migrations stay
+	// deterministic). Only the unrated cut uses it: a release of this year or last has had no time to be voted.
+	currentYear: number;
 }
 
 export const DEFAULT_DISCOGRAPHY_CAP = 40;
+
+// TRA-628 (measured 2026-10-19 on MusicBrainz): John Lennon has 69 eligible release groups, 14 voted and 55
+// not (The Lost Lennon Tapes, Archives, outtakes), and the cap used to fill with the oldest of them. From this
+// many voted candidates on, an unvoted one no longer qualifies. Below it nothing is cut: Kode9 has 24 eligible
+// and 0 voted, and cutting there would leave him no discography at all.
+export const MIN_VOTED_FOR_UNRATED_CUT = 10;
 
 export type ExclusionReason =
 	| "secondary-type"
 	| "primary-type"
 	| "credit"
 	| "various-artists"
-	| "non-canonical";
+	| "non-canonical"
+	| "unrated";
 
 type KeptPrimaryType = "Album" | "EP" | "Single";
 
@@ -223,12 +233,20 @@ function dedupeBySlug(eligible: ReleaseGroupCandidate[], policy: DiscographyPoli
 	return [...bySlug.values(), ...unslugged];
 }
 
+// Released last year or this year: exempt from the unrated cut. An unknown date ("") is not recent.
+function isRecentRelease(c: ReleaseGroupCandidate, policy: DiscographyPolicy): boolean {
+	const year = yearOf(c.firstReleaseDate);
+	return year !== null && year >= policy.currentYear - 1;
+}
+
 /**
  * Filters with classifyRelease, collapses release groups that share a project slug, then applies the cap
  * in `byCapPriority` order: voted before unvoted, then album / EP / single, then most votes, then oldest.
- * Duplicates are collapsed before the cap so they never use up room. `kept` comes back ordered newest first
- * across types (the display order, unchanged by the priority). `excluded` lists policy rejections only;
- * candidates dropped by the cap are not reported (the cap is not an ExclusionReason).
+ * Duplicates are collapsed before the cap so they never use up room. With at least MIN_VOTED_FOR_UNRATED_CUT
+ * voted candidates left, the unvoted ones are excluded as `unrated` before the cap, except those released
+ * from `currentYear - 1` on (TRA-628). `kept` comes back ordered newest first across types (the display
+ * order, unchanged by the priority). `excluded` lists policy rejections only; candidates dropped by the cap
+ * are not reported (the cap is not an ExclusionReason).
  */
 export function selectReleases(
 	candidates: readonly ReleaseGroupCandidate[],
@@ -246,7 +264,17 @@ export function selectReleases(
 	}
 
 	const distinct = dedupeBySlug(eligible, policy);
-	const kept = [...distinct].sort(byCapPriority).slice(0, Math.max(0, policy.cap));
+	const votedCount = distinct.filter((c) => c.ratingVotes > 0).length;
+	const cutUnrated = votedCount >= MIN_VOTED_FOR_UNRATED_CUT;
+	const rated: ReleaseGroupCandidate[] = [];
+	for (const candidate of distinct) {
+		if (cutUnrated && candidate.ratingVotes <= 0 && !isRecentRelease(candidate, policy)) {
+			excluded.push({ mbid: candidate.mbid, title: candidate.title, reason: "unrated" });
+		} else {
+			rated.push(candidate);
+		}
+	}
+	const kept = rated.sort(byCapPriority).slice(0, Math.max(0, policy.cap));
 	return { kept: kept.sort(byNewestFirst), excluded };
 }
 
@@ -357,19 +385,17 @@ function decidePose(entry: EdgeRef, matches: readonly ReleaseGroupCandidate[]): 
 			// between. One exception (TRA-625, "Giant Steps", "Imagine": MusicBrainz has the album and a
 			// single of the same title): exactly one album against only singles / EPs is the album, since an
 			// entry that states no type is the work, not its single. releaseType is then completed by poseOnEntry.
-			// The album must carry no secondary type but the admitted ones (Soundtrack, Mixtape/Street): a lone
-			// Live / Compilation "Hurt" next to a single "Hurt" is not the entry's work, identity comes first.
-			const albums = matches.filter((m) => m.primaryType === "Album");
-			const onlySinglesOrEps = matches.every(
+			// Only the groups that classifyRelease would not reject on their secondary types compete (TRA-628,
+			// measured 2026-10-19: "Blue Train" and "Imagine" stayed ambiguous because of a Live / Compilation
+			// album of the same title). Those Live / Compilation ones are not the entry's work and are ignored;
+			// a lone Live "Hurt" next to a single "Hurt" then leaves no album to pose, identity comes first.
+			const competitors = matches.filter(hasOnlyAdmittedSecondaryTypes);
+			const albums = competitors.filter((m) => m.primaryType === "Album");
+			const onlySinglesOrEps = competitors.every(
 				(m) => m.primaryType === "Album" || m.primaryType === "Single" || m.primaryType === "EP",
 			);
 			const [onlyAlbum] = albums;
-			if (
-				albums.length === 1 &&
-				onlyAlbum !== undefined &&
-				hasOnlyAdmittedSecondaryTypes(onlyAlbum) &&
-				onlySinglesOrEps
-			) {
+			if (albums.length === 1 && onlyAlbum !== undefined && onlySinglesOrEps) {
 				chosen = onlyAlbum;
 			} else {
 				const distinctTypes = new Set(matches.map((m) => m.primaryType));
