@@ -116,6 +116,17 @@ describe("mergeDiscography — pose", () => {
 		expect(result.edges).toBe(existing);
 	});
 
+	it("does not pose a lone Live or Compilation album against a single of the same title", () => {
+		const single = release("Hurt", { primaryType: "Single" });
+		const existing = [entry("Hurt")];
+		for (const secondary of ["Live", "Compilation"]) {
+			const album = release("Hurt", { primaryType: "Album", secondaryTypes: [secondary] });
+			const result = merge({ existing, allCredited: [album, single] });
+			expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "type" }]);
+			expect(result.posed).toEqual([]);
+		}
+	});
+
 	it("keeps two albums of the same title ambiguous/multiple", () => {
 		const albumA = release("Mind Games", { primaryType: "Album" });
 		const albumB = release("Mind Games", { primaryType: "Album" });

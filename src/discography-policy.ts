@@ -342,11 +342,13 @@ function decidePose(entry: EdgeRef, matches: readonly ReleaseGroupCandidate[]): 
 			// between. One exception (TRA-625, "Giant Steps", "Imagine": MusicBrainz has the album and a
 			// single of the same title): exactly one album against only singles / EPs is the album, since an
 			// entry that states no type is the work, not its single. releaseType is then completed by poseOnEntry.
+			// The album must carry no secondary type: a lone Live / Compilation "Hurt" next to a single "Hurt"
+			// is not the entry's work, and identity comes first.
 			const albums = matches.filter((m) => m.primaryType === "Album");
 			const onlySinglesOrEps = matches.every(
 				(m) => m.primaryType === "Album" || m.primaryType === "Single" || m.primaryType === "EP",
 			);
-			if (albums.length === 1 && onlySinglesOrEps) {
+			if (albums.length === 1 && albums[0]?.secondaryTypes.length === 0 && onlySinglesOrEps) {
 				chosen = albums[0];
 			} else {
 				const distinctTypes = new Set(matches.map((m) => m.primaryType));
