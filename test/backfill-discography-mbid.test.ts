@@ -40,6 +40,7 @@ interface Rg {
 	type: "Album" | "EP" | "Single";
 	date?: string;
 	secondary?: string[];
+	votes?: number;
 	credits: { id: string; name: string }[];
 }
 const rg = (
@@ -61,6 +62,7 @@ const page = (groups: Rg[]): Response =>
 				"primary-type": g.type,
 				"secondary-types": g.secondary ?? [],
 				"first-release-date": g.date ?? "",
+				rating: { "votes-count": g.votes ?? 0 },
 				"artist-credit": g.credits.map((c) => ({ name: c.name, artist: { id: c.id, name: c.name } })),
 			})),
 		}),
@@ -802,6 +804,25 @@ describe("near duplicates", () => {
 			{ added: "project:sine-of-the-dub--kode9", existing: "project:sine-of-the-dub-stalker--kode9" },
 		]);
 		expect(manifest.totals.nearDuplicate).toBe(1);
+	});
+});
+
+describe("the cap order (TRA-625)", () => {
+	it("keeps the voted classic of 1969 over the unvoted records of 2020 when the list is full", async () => {
+		const w = world();
+		const id = mb(7400);
+		const recent = Array.from({ length: 45 }, (_, i) =>
+			rg(600 + i, `Archive ${i}`, "Album", `${2020 + (i % 3)}-01-01`, [{ id, name: "F01" }]),
+		);
+		const classic = { ...rg(700, "Abbey Roadish", "Album", "1969-09-26", [{ id, name: "F01" }]), votes: 12 };
+		w.byArtist.set(id, [...recent, classic]);
+		await put(artistNode("f01", "F01", { mbid: id }));
+
+		await runBackfill(options(w, { apply: true }));
+
+		const list = (await readNode("artist:f01")).discography as { name: string }[];
+		expect(list).toHaveLength(40);
+		expect(list.map((e) => e.name)).toContain("Abbey Roadish");
 	});
 });
 

@@ -36,8 +36,10 @@ export const DEFAULT_DISCOGRAPHY_CAP = 40;
 /**
  * Bump it whenever the selection or the merge rules change what they decide for the same MusicBrainz answers
  * (TRA-618): the discography backfill's `--resume` carries a decision only if it was made under this version.
+ * 2026-10-19: 2, the policy changed with TRA-625 (Soundtrack and Mixtape/Street admitted, cap order by MusicBrainz
+ * votes, an untyped entry facing one album and singles gets the album): a manifest of version 1 is not replayed.
  */
-export const DISCOGRAPHY_POLICY_VERSION = 1;
+export const DISCOGRAPHY_POLICY_VERSION = 2;
 
 export type ExclusionReason =
 	| "secondary-type"
