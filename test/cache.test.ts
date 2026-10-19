@@ -682,6 +682,83 @@ describe("NodeCache — cross-type reverse edges (TRA-454)", () => {
 		]);
 	});
 
+	// TRA-623: a project's own mbid rides along on the reverse edge it emits on its credited artist, like a
+	// genre's qid (TRA-18). Without it the edge counted as "discography without mbid" (TRA-616 ratchet) and
+	// relied on title matching for its cover, although the project node already knew its MusicBrainz id.
+	describe("project mbid on the reverse edge (TRA-623)", () => {
+		const projectMbid = "5b4f8a1e-6c1d-4c47-9c2e-0d3a7f5b9e21";
+		const trackMbid = "0a9c2f77-3d58-4e0b-8a61-b7e4c1d2f390";
+
+		it("stamps the project's mbid on artist.discography when the artist is cached", async () => {
+			await crossCache.write(artist({ slug: "artist:aphex-twin", name: "Aphex Twin" }));
+			await crossCache.write(
+				project({ slug: "project:x", name: "X", mbid: projectMbid, artists: [aphexRef] }),
+			);
+
+			const aphex = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
+			expect(aphex.discography).toEqual([
+				{ slug: "project:x", type: "project", name: "X", mbid: projectMbid },
+			]);
+		});
+
+		it("leaves the edge unchanged, without an mbid key, when the project has none", async () => {
+			await crossCache.write(artist({ slug: "artist:aphex-twin", name: "Aphex Twin" }));
+			await crossCache.write(project({ slug: "project:x", name: "X", artists: [aphexRef] }));
+
+			const aphex = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
+			expect(aphex.discography).toEqual([{ slug: "project:x", type: "project", name: "X" }]);
+			expect(aphex.discography[0] && "mbid" in aphex.discography[0]).toBe(false);
+		});
+
+		it("queues the mbid in pending-reverses.json for an absent artist and keeps it on application", async () => {
+			await crossCache.write(
+				project({ slug: "project:x", name: "X", mbid: projectMbid, artists: [aphexRef] }),
+			);
+
+			const pending = await readPending();
+			expect(pending["artist:aphex-twin"]).toEqual([
+				{
+					field: "discography",
+					cardinality: "list",
+					edge: { slug: "project:x", type: "project", name: "X", mbid: projectMbid },
+				},
+			]);
+
+			await crossCache.write(artist({ slug: "artist:aphex-twin", name: "Aphex Twin" }));
+			const aphex = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
+			expect(aphex.discography).toEqual([
+				{ slug: "project:x", type: "project", name: "X", mbid: projectMbid },
+			]);
+		});
+
+		it("stays on the artist side: project.label -> label.notable_releases carries no mbid", async () => {
+			await crossCache.write(label({ slug: "label:warp", name: "Warp" }));
+			await crossCache.write(project({ slug: "project:x", name: "X", mbid: projectMbid, label: warpRef }));
+
+			const warp = (await crossCache.get("label:warp")) as LabelNode;
+			expect(warp.notable_releases).toEqual([{ slug: "project:x", type: "project", name: "X" }]);
+		});
+
+		it("does not propagate the mbid of any other source (track.artists, artist.labels)", async () => {
+			await crossCache.write(artist({ slug: "artist:aphex-twin", name: "Aphex Twin" }));
+			await crossCache.write(label({ slug: "label:warp", name: "Warp" }));
+			await crossCache.write(track({ slug: "track:x", name: "X", mbid: trackMbid, artists: [aphexRef] }));
+			await crossCache.write(
+				artist({
+					slug: "artist:squarepusher",
+					name: "Squarepusher",
+					mbid: "9d1e3b52-7a40-4f86-b3c5-2e8f6a0d4c17",
+					labels: [warpRef],
+				}),
+			);
+
+			const aphex = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
+			expect(aphex.notable_tracks).toEqual([{ slug: "track:x", type: "track", name: "X" }]);
+			const warp = (await crossCache.get("label:warp")) as LabelNode;
+			expect(warp.roster).toEqual([{ slug: "artist:squarepusher", type: "artist", name: "Squarepusher" }]);
+		});
+	});
+
 	it("does not add an artist to the credits of a namesake's work from its discography or notable tracks", async () => {
 		await crossCache.write(project({ slug: "project:fitna", name: "Fitna", artists: [akumaRef] }));
 		await crossCache.write(track({ slug: "track:fitna-song", name: "Fitna", artists: [akumaRef] }));

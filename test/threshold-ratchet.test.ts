@@ -100,6 +100,17 @@ describe("compareThresholds node-growth valve (TRA-498)", () => {
 		expect(compareThresholds(single(10), single(12), genres)).toHaveLength(1);
 	});
 
+	it("absorbs N added artists on the discography metrics, and refuses N+1 (TRA-616)", () => {
+		for (const metric of ["artist-discography-under-3", "artist-discography-without-mbid"]) {
+			const base = { [metric]: 196 };
+			expect(compareThresholds(base, { [metric]: 196 + 3 }, growth(578, 581))).toEqual([]);
+			const violations = compareThresholds(base, { [metric]: 196 + 4 }, growth(578, 581));
+			expect(violations).toEqual([`${metric}: 196 → 200 (increase)`]);
+			// No artist added: any rise stays refused (a degradation of existing artists).
+			expect(compareThresholds(base, { [metric]: 197 }, growth(578, 578))).toHaveLength(1);
+		}
+	});
+
 	it("keeps correctness metrics strict however many nodes were added", () => {
 		const g = growth(581, 700);
 		expect(compareThresholds({ "self-edges": 13 }, { "self-edges": 14 }, g)).toEqual([

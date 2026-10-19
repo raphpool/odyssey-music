@@ -555,23 +555,52 @@ export interface MbReleaseGroupSummary {
 	firstReleaseDate: string;
 	primaryType: string;
 	secondaryTypes: string[];
+	/** Credited artists in MusicBrainz order (the first one is the primary credit). */
+	artistCredits: MbCredit[];
 }
 
+interface RgPage {
+	total: number;
+	groups: MbReleaseGroupSummary[];
+}
+
+/**
+ * One page of an untrusted `/release-group` browse. An entry without a string `id` or `title` is
+ * skipped on its own (the rest of the page stays usable); a body without a `release-groups` array
+ * is no page at all.
+ */
+function parseRgPage(body: unknown): RgPage | null {
+	if (!isRecord(body) || !Array.isArray(body["release-groups"])) return null;
+	const groups: MbReleaseGroupSummary[] = [];
+	for (const raw of body["release-groups"]) {
+		if (!isRecord(raw) || typeof raw.id !== "string" || typeof raw.title !== "string") continue;
+		const secondary = raw["secondary-types"];
+		groups.push({
+			mbid: raw.id,
+			title: raw.title,
+			firstReleaseDate: typeof raw["first-release-date"] === "string" ? raw["first-release-date"] : "",
+			primaryType: typeof raw["primary-type"] === "string" ? raw["primary-type"] : "",
+			secondaryTypes: Array.isArray(secondary)
+				? secondary.filter((t): t is string => typeof t === "string")
+				: [],
+			artistCredits: toCredits(raw["artist-credit"]),
+		});
+	}
+	const count = body["release-group-count"];
+	return { total: typeof count === "number" ? count : groups.length, groups };
+}
+
+/**
+ * Release-groups of an artist, newest first. `unavailable` is true as soon as one page of any type
+ * came back without an answer (after mbFetch's retries): `releases` then holds what was read, but
+ * an empty or short list must not be taken for "nothing on MusicBrainz" (TRA-614, decision 8-D2).
+ */
 export async function fetchArtistDiscographyMb(
 	artistMbid: string,
-	opts: { limit?: number } = {},
-): Promise<MbReleaseGroupSummary[]> {
+	opts: { limit?: number; priority?: MbPriority } = {},
+): Promise<{ releases: MbReleaseGroupSummary[]; unavailable: boolean }> {
 	const limit = opts.limit ?? 100;
-	interface RGResp {
-		"release-group-count"?: number;
-		"release-groups"?: {
-			id: string;
-			title: string;
-			"first-release-date"?: string;
-			"primary-type"?: string;
-			"secondary-types"?: string[];
-		}[];
-	}
+	const priority = opts.priority ?? "interactive";
 	// Raph 2026-05-24: pull Albums + EPs + Singles. MB browse caps at 100 per call and
 	// returns release-groups in id (UUID) order, so for prolific artists (Stones: 318
 	// singles incl. "In the Stars" 2026-05-05) a single call misses the most recent
@@ -581,31 +610,35 @@ export async function fetchArtistDiscographyMb(
 	// date sort downstream in pipeline.ts.
 	const TYPES = ["album", "ep", "single"] as const;
 	const MAX_PAGES = 4; // 4 × 100 = up to 400 RGs per type — covers Stones-scale catalogs
-	async function fetchTypePaged(t: string): Promise<RGResp["release-groups"]> {
-		const first = await mbFetch<RGResp>(`/release-group`, {
-			artist: artistMbid,
-			type: t,
-			limit: String(limit),
-			offset: "0",
-		}).catch(() => null);
+	let unavailable = false;
+	// null = no usable answer: mbFetch gave up, or the body is not a release-group page at all.
+	async function fetchPage(type: string, offset: number): Promise<RgPage | null> {
+		const body = await mbFetch<unknown>(
+			`/release-group`,
+			{
+				artist: artistMbid,
+				type,
+				limit: String(limit),
+				offset: String(offset),
+				inc: "artist-credits",
+			},
+			fetch,
+			priority,
+		).catch(() => null);
+		const page = parseRgPage(body);
+		if (!page) unavailable = true;
+		return page;
+	}
+	async function fetchTypePaged(type: string): Promise<MbReleaseGroupSummary[]> {
+		const first = await fetchPage(type, 0);
 		if (!first) return [];
-		const all = [...(first["release-groups"] ?? [])];
-		const total = first["release-group-count"] ?? all.length;
-		if (total > limit && limit > 0) {
-			const pages = Math.min(MAX_PAGES, Math.ceil(total / limit));
+		const all = [...first.groups];
+		if (first.total > limit && limit > 0) {
+			const pages = Math.min(MAX_PAGES, Math.ceil(first.total / limit));
 			const more = await Promise.all(
-				Array.from({ length: pages - 1 }, (_, i) =>
-					mbFetch<RGResp>(`/release-group`, {
-						artist: artistMbid,
-						type: t,
-						limit: String(limit),
-						offset: String(limit * (i + 1)),
-					}).catch(() => null),
-				),
+				Array.from({ length: pages - 1 }, (_, i) => fetchPage(type, limit * (i + 1))),
 			);
-			for (const page of more) {
-				if (page?.["release-groups"]) all.push(...page["release-groups"]);
-			}
+			for (const page of more) if (page) all.push(...page.groups);
 		}
 		return all;
 	}
@@ -613,22 +646,15 @@ export async function fetchArtistDiscographyMb(
 	const merged: MbReleaseGroupSummary[] = [];
 	const seen = new Set<string>();
 	for (const list of perType) {
-		if (!list) continue;
 		for (const g of list) {
-			if (seen.has(g.id)) continue;
-			seen.add(g.id);
-			merged.push({
-				mbid: g.id,
-				title: g.title,
-				firstReleaseDate: g["first-release-date"] ?? "",
-				primaryType: g["primary-type"] ?? "",
-				secondaryTypes: g["secondary-types"] ?? [],
-			});
+			if (seen.has(g.mbid)) continue;
+			seen.add(g.mbid);
+			merged.push(g);
 		}
 	}
 	// Newest first.
 	merged.sort((a, b) => (b.firstReleaseDate || "").localeCompare(a.firstReleaseDate || ""));
-	return merged;
+	return { releases: merged, unavailable };
 }
 
 /** Resolve an artist name to its MBID via MB search. Returns the best match or null. */
