@@ -1,6 +1,8 @@
 # Onboarding iOS : un seul écran « Genres et sous-genres » en accordéon
 
-Plan de la phase `plan` du process de livraison, écrit le 2026-10-18 sur le brief de Raphael. Il
+Plan de la phase `plan` du process de livraison, écrit le 2026-10-18 sur le brief de Raphael, validé par
+Raphael le 2026-10-19 avec les recommandations par défaut (voir « Questions tranchées au gate »). Projet
+Linear : P-TRA-7 (https://linear.app/workspaceperso/project/onboarding-ios-accordeon-f278bce16ad5). Il
 succède à [`ios-onboarding-taxonomy.md`](ios-onboarding-taxonomy.md) (TRA-511 → TRA-519, livré) et
 remplace, pour l'onboarding, sa décision D3 et son arbitrage Q1 (« une famille sans sous-genre coché
 vaut toute la famille ») : cette règle n'a plus d'écran pour l'exprimer. Les écrans J.2 et J.3 du plan
@@ -148,7 +150,9 @@ Rejeté :
   couleurs `OnboardingChoiceColors.resolve(isSelected:)` (déjà testées contre les variantes Figma
   `175:21`/`175:24` : pas de fond / bordure `colorBorderContrast` / texte primaire ; sélectionné :
   fond `colorBackgroundElevated`, bordure et texte `colorSelectionContent`). Un glyphe optionnel à
-  droite (gap 8 pt) sert au chip « tout sélectionner ». Il remplace `SubgenreRow` **et** `SelectAllChip`
+  droite (gap 8 pt, 16 pt) sert au chip « Tous » : SF Symbol `arrow.down.right` (nouveau
+  `Track1Icon.Glyph.arrowDownRight`), le même dans les deux états, seules les couleurs changent (Q1,
+  tranchée le 2026-10-19). Il remplace `SubgenreRow` **et** `SelectAllChip`
   (radius 0, 44 pt, `monoItem` 18 pt : une autre forme).
 - `GenreAccordionCard` : fond `colorSurfaceDefault` dépliée / `colorBackgroundElevated` repliée (lu dans
   `243:1609` et `243:1675`), rayon `radius20`, padding 24 pt à gauche, 16 pt à droite, 11 pt vertical ;
@@ -206,15 +210,15 @@ worktrees simultanés.
 
 | # | Tâche | Tier | Pts | Dépend de |
 |---|---|---|---|---|
-| 1.1 | Core · `OnboardingCopy.subgenreCount` et `selectedCount` | tier/1 | 1 | — ∥ |
-| 1.2 | Core · `GenreSelectionModel` : sélection, compteurs, CTA, brouillon, restauration v2 | tier/2 | 3 | — ∥ 1.1, 1.4, 2.x |
-| 1.3 | Core · `GenreSelectionModel` : restauration d'un profil v1 | tier/2 | 2 | 1.2 |
-| 1.4 | Doc · publier ce plan et poser les renvois | tier/1 | 1 | — ∥ |
-| 2.1 | DS · `SubgenreChip`, `GenreAccordionCard`, `Track1Motion.spring` | tier/1 | 3 | — ∥ Partie 1 |
-| 2.2 | App · déplacer le suivi de défilement dans `OnboardingScrollTick.swift` | tier/1 | 1 | — ∥ |
-| 3.1 | App · basculer `GenresStepView` en accordéon, une étape, parcours UI adaptés | tier/2 | 5 | 1.1, 1.3, 2.1, 2.2 |
-| 3.2 | Tests UI · scénarios propres à l'accordéon | tier/1 | 2 | 3.1 |
-| 3.3 | Nettoyage · supprimer l'ancien modèle, les anciens composants et textes | tier/2 | 2 | 3.1 |
+| 1.1 | TRA-631 · Core · `OnboardingCopy.subgenreCount` et `selectedCount` | tier/1 | 1 | — ∥ |
+| 1.2 | TRA-634 · Core · `GenreSelectionModel` : sélection, compteurs, CTA, brouillon, restauration v2 | tier/2 | 3 | — ∥ 1.1, 1.4, 2.x |
+| 1.3 | TRA-638 · Core · `GenreSelectionModel` : restauration d'un profil v1 | tier/2 | 2 | 1.2 |
+| 1.4 | TRA-635 · Doc · publier ce plan et poser les renvois | tier/1 | 1 | — ∥ |
+| 2.1 | TRA-636 · DS · `SubgenreChip`, `GenreAccordionCard`, `Track1Motion.spring`, glyphe `arrowDownRight` | tier/1 | 3 | — ∥ Partie 1 |
+| 2.2 | TRA-637 · App · déplacer le suivi de défilement dans `OnboardingScrollTick.swift` | tier/1 | 1 | — ∥ |
+| 3.1 | TRA-639 · App · basculer `GenresStepView` en accordéon, une étape, parcours UI adaptés | tier/2 | 5 | 1.1, 1.3, 2.1, 2.2 |
+| 3.2 | TRA-640 · Tests UI · scénarios propres à l'accordéon | tier/1 | 2 | 3.1 |
+| 3.3 | TRA-641 · Nettoyage · supprimer l'ancien modèle, les anciens composants et textes | tier/2 | 2 | 3.1 |
 
 Total : 20 points. Chaque PR laisse `swift test` et `ios-check` verts : la Partie 1 n'ajoute que des
 types Core inutilisés par l'app ; la Partie 2 n'ajoute que des composants non branchés ; 3.1 bascule ;
@@ -227,7 +231,7 @@ pas encore. Boucle locale : `swift test --package-path ios/Track1Core`.
 
 #### 1.1 — Core · `OnboardingCopy.subgenreCount(_:)` et `selectedCount(_:)`
 
-- [ ] TRA-? Ajouter les deux formes de compte de l'en-tête de carte
+- [ ] TRA-631 Ajouter les deux formes de compte de l'en-tête de carte
 
 Fichiers :
 - `ios/Track1Core/Sources/Track1Core/Features/Onboarding/OnboardingCopy.swift` — deux fonctions ajoutées
@@ -252,7 +256,7 @@ Tests attendus : unitaires, un par forme et par cas limite (au moins 6).
 
 #### 1.2 — Core · `GenreSelectionModel` : sélection, compteurs, CTA, brouillon, restauration v2
 
-- [ ] TRA-? Modèle de sélection à un seul niveau pour l'écran accordéon
+- [ ] TRA-634 Modèle de sélection à un seul niveau pour l'écran accordéon
 
 Nouveau type à côté de `GenreOnboardingModel`, qui ne change pas. Diff attendu ~450 lignes dont ~320 de
 tests : au-dessus de 300, accepté parce que les cas sont portés un à un depuis
@@ -341,7 +345,7 @@ Tests attendus : unitaires (les critères ci-dessus, cas nominal, limites, incon
 
 #### 1.3 — Core · `GenreSelectionModel` : restauration d'un profil v1
 
-- [ ] TRA-? Reconstruire la sélection d'un profil `selection == nil` depuis ses `genre_ids`
+- [ ] TRA-638 Reconstruire la sélection d'un profil `selection == nil` depuis ses `genre_ids`
 
 Fichiers :
 - `ios/Track1Core/Sources/Track1Core/Features/Onboarding/GenreSelectionModel.swift` — chemin
@@ -375,7 +379,7 @@ Critères d'acceptation :
 
 #### 1.4 — Doc · publier ce plan et poser les renvois
 
-- [ ] TRA-? Publier `docs/plans/ios-onboarding-accordion.md` et renvoyer D3/Q1 et J.2/J.3 vers lui
+- [ ] TRA-635 Publier `docs/plans/ios-onboarding-accordion.md` et renvoyer D3/Q1 et J.2/J.3 vers lui
 
 Fichiers :
 - `docs/plans/ios-onboarding-accordion.md` — ce plan, tel que validé.
@@ -396,9 +400,9 @@ Incrément livrable seul : des composants du design system et un fichier déplac
 `ios-check`, que l'écran actuel n'utilise pas encore. Le lint `swift-format` ne signale pas un type non
 référencé.
 
-#### 2.1 — DS · `SubgenreChip`, `GenreAccordionCard`, `Track1Motion.spring`
+#### 2.1 — DS · `SubgenreChip`, `GenreAccordionCard`, `Track1Motion.spring` et le glyphe `arrowDownRight`
 
-- [ ] TRA-? Composants de l'écran accordéon
+- [ ] TRA-636 Composants de l'écran accordéon
 
 Fichiers :
 - `ios/Track1/DesignSystem/Components/Onboarding/SubgenreChip.swift` — nouveau (pbxproj
@@ -408,6 +412,10 @@ Fichiers :
   groupe et phase).
 - `ios/Track1/DesignSystem/Track1Tokens.swift` — `Track1Motion.spring(reduceMotion:)` à côté de
   `animation(_:emphasized:reduceMotion:)` (l.202).
+- `ios/Track1/DesignSystem/Components/Core/Track1Icon.swift` — `Glyph.arrowDownRight` →
+  `"arrow.down.right"`, en fin d'énumération (Q1).
+- `ios/Track1Tests/DesignSystem/Track1IconTests.swift` — la liste `symbols` (l.9) gagne
+  `(.arrowDownRight, "arrow.down.right")` ; les deux tests existants couvrent le glyphe.
 - `ios/Track1Tests/DesignSystem/OnboardingComponentsTests.swift` — tests ajoutés (les tests existants de
   `SubgenreRow` et `SelectAllChip` restent jusqu'à 3.3).
 - `ios/Track1Tests/DesignSystem/Track1TokensTests.swift` — un test pour `spring`.
@@ -418,6 +426,7 @@ Contrat :
 ```
 struct SubgenreChip: View {
   static func identifier(for id: String) -> String            // "subgenre-chip-<id>" ; posé par l'écran, pas par le chip
+  static let glyphSize: CGFloat = 16                           // le glyphe tient dans la ligne du libellé, la pilule reste à 36 pt
   init(title: String, glyph: Track1Icon.Glyph? = nil, isSelected: Bool, action: @escaping () -> Void)
 }
 struct GenreAccordionCard<Content: View>: View {
@@ -458,6 +467,8 @@ Critères d'acceptation :
 - [ ] `accessibilityLabel("Hip-hop", 13, 0) == "Hip-hop, 13 sous-genres"` ;
       `("Jazz", 13, 4) == "Jazz, 13 sous-genres, 4 sélectionnés"` ; `("Rock", 1, 1) == "Rock, 1 sous-genre, 1 sélectionné"`.
 - [ ] `Track1Motion.spring(reduceMotion: true) == nil` ; `spring(reduceMotion: false) != nil`.
+- [ ] `Track1Icon.Glyph.arrowDownRight.systemName == "arrow.down.right"` et le symbole existe sur le
+      système (tests existants de `Track1IconTests`, liste `symbols` complétée).
 - [ ] `ios-check` vert (lint `swift-format`, build, `Track1Tests`).
 
 Tests attendus : XCTest dans `OnboardingComponentsTests` (identifiants, style, label) et
@@ -469,7 +480,7 @@ tests existantes de `SubgenreRow` et `SelectAllChip` ne bougent pas ici.
 
 #### 2.2 — App · déplacer le suivi de défilement dans `OnboardingScrollTick.swift`
 
-- [ ] TRA-? Sortir `ScrollTracker` et ses clés de préférence de `SubgenresStepView.swift`
+- [ ] TRA-637 Sortir `ScrollTracker` et ses clés de préférence de `SubgenresStepView.swift`
 
 Déplacement pur, aucun comportement ne change.
 
@@ -495,7 +506,7 @@ Tests attendus : aucun nouveau (la règle pure est `ScrollTickDetectorTests`, Co
 
 #### 3.1 — App · basculer `GenresStepView` en accordéon, une étape, parcours UI adaptés
 
-- [ ] TRA-? L'écran 1.2 devient l'accordéon « Genres et sous-genres » et termine le flux
+- [ ] TRA-639 L'écran 1.2 devient l'accordéon « Genres et sous-genres » et termine le flux
 
 Compilée et testée par `ios-check` seulement. Mergée après 1.1, 1.3, 2.1, 2.2. Diff attendu
 ~+260 / −330 (la suppression de `SubgenresStepView.swift` compte pour 208).
@@ -505,11 +516,11 @@ Fichiers :
   inchangé (« Sélectionne tes genres » `title1`, sous-titre `bodyMedium`, `AmbientGlow(.ember)`,
   `GenresStepLayout.contentInset` 24 pt) ; puis la liste de cartes (`VStack`, 20 cartes au plus)
   avec 16 pt d'inset horizontal, 12 pt vertical, 4 pt entre cartes ; une `GenreAccordionCard` par
-  `model.familyChoices`, contenu : `SubgenreChip("Tous", glyph: isAll ? .check : .chevronDown, …)`
-  (libellé et glyphe selon Q1 du gate) avec `.accessibilityIdentifier("select-all-<clé>")`, puis
+  `model.familyChoices`, contenu : `SubgenreChip(title: "Tous", glyph: .arrowDownRight, …)` (Q1
+  tranchée : même glyphe dans les deux états) avec `.accessibilityIdentifier("select-all-<clé>")`, puis
   `ChipFlowLayout(spacing: Track1Tokens.spacing8)` de `SubgenreChip` par `model.subgenres(of:)` avec
   `.accessibilityIdentifier(SubgenreChip.identifier(for:))` ; `@State private var expanded = Set<String>()`
-  (toutes repliées à l'arrivée ; `String?` si Q2 retient « une seule ») ; dépliage dans
+  (toutes repliées à l'arrivée ; plusieurs ouvertes à la fois, Q2 tranchée) ; dépliage dans
   `withAnimation(Track1Motion.spring(reduceMotion:))` avec `@Environment(\.accessibilityReduceMotion)` ;
   barre `BottomActionBar(title: model.ctaTitle, isEnabled: model.canContinue, counter:
   OnboardingCopy.counter(model.selectedSubgenreCount), identifier: continueIdentifier)` en
@@ -592,7 +603,7 @@ il repart replié après un retour à Welcome, c'est voulu (D4). Les lookups par
 
 #### 3.2 — Tests UI · scénarios propres à l'accordéon
 
-- [ ] TRA-? Couvrir « Tous » dans les deux sens, les compteurs d'en-tête, la sélection conservée repliée, plusieurs cartes ouvertes
+- [ ] TRA-640 Couvrir « Tous » dans les deux sens, les compteurs d'en-tête, la sélection conservée repliée, plusieurs cartes ouvertes
 
 Fichiers :
 - `ios/Track1UITests/ProfileFlowTests.swift` — deux parcours ajoutés (fixture `taxonomyCatalog` de 3.1,
@@ -604,8 +615,7 @@ Critères d'acceptation (un parcours pour les deux premiers points, un pour les 
       tout : plus de « (… sélectionné » dans la carte, compteur « Total : 0 genre », CTA désactivé ;
       cocher les deux chips un par un remet `select-all-family-0` en `isSelected`.
 - [ ] Cocher `subgenre-chip-local:genre-0a` seul montre « (1 sélectionné) » (singulier).
-- [ ] Ouvrir `family-0` puis `family-1` : les chips des deux cartes sont visibles en même temps
-      (si Q2 retient « une seule », ouvrir la seconde replie la première : adapter l'assertion).
+- [ ] Ouvrir `family-0` puis `family-1` : les chips des deux cartes sont visibles en même temps (Q2).
 - [ ] Replier `family-0` après y avoir coché 0a : le chip disparaît, l'en-tête garde « (1 sélectionné) »
       et « 2 sous-genres », le compteur ne change pas ; rouvrir montre 0a encore coché.
 - [ ] `ios-check` vert.
@@ -614,7 +624,7 @@ Tests attendus : XCUITest (2 parcours). Tier/1 : tests seulement.
 
 #### 3.3 — Nettoyage · supprimer l'ancien modèle, les anciens composants et textes
 
-- [ ] TRA-? Retirer `GenreOnboardingModel`, `SubgenreRow`, `SelectAllChip`, `wholeFamilyHint`
+- [ ] TRA-641 Retirer `GenreOnboardingModel`, `SubgenreRow`, `SelectAllChip`, `wholeFamilyHint`
 
 Mergée après 3.1. Diff presque uniquement en suppressions (~−900).
 
@@ -657,7 +667,9 @@ Tests attendus : aucun nouveau ; suppressions couvertes par les tests restants.
   `selection.genres` se remplit, `genre_ids` ne change pas, le résumé des réglages gagne « · N
   sous-genres ». Garde-fou : normalisation à l'édition seulement, jamais à la lecture ; critère de 1.2
   qui compare `makeDraft().genreIDs` à l'ancien modèle sur le même profil. Population : l'iPhone de
-  Raphael.
+  Raphael. Nuance (Raphael, 2026-10-19) : avec la forme explicite, un sous-genre ajouté plus tard à la
+  taxonomie n'est plus pré-coché à l'édition suivante, alors qu'il l'était avec l'ancienne forme
+  « famille seule » ; écart accepté.
 - **R2 — La restauration v1 n'applique plus la restriction « famille + sous-genre → sous-genre »**
   (ancien D6, Q4) : `genre:rock` + `genre:progressive-rock` donnent tout Rock. C'est l'union, comme le
   web ; le cas « famille seule » n'étant plus exprimable, la restriction n'a plus de contrepartie à
@@ -684,9 +696,9 @@ Tests attendus : aucun nouveau ; suppressions couvertes par les tests restants.
   l'adaptation de `ProfileFlowTests` dans une PR tier/1 qui suit **immédiatement** (CI UI rouge entre
   les deux, à éviter) ; préférer tenir le budget en ne touchant les parcours que là où un identifiant
   change.
-- **R9 — Le libellé du chip « tout sélectionner » et le nombre de cartes ouvertes dépendent du gate**
-  (Q1, Q2) : les deux sont des lignes isolées de 3.1 et 3.2 (`title:`/`glyph:` du chip ; type de
-  `expanded`) et sont posés dans les tickets après la réponse.
+- **R9 — Le libellé du chip « tout sélectionner » et le nombre de cartes ouvertes dépendaient du gate**
+  (Q1, Q2) : tranchés le 2026-10-19 (« Tous » + `arrow.down.right` ; plusieurs cartes) et posés dans
+  TRA-636, TRA-639 et TRA-640.
 
 ## Critères de sortie
 
@@ -710,7 +722,23 @@ Tests attendus : aucun nouveau ; suppressions couvertes par les tests restants.
   `ios/Track1Core/Sources/Track1Core/Analytics/`, `web/`, `src/`, `cache/`, `data/` n'est modifié.
 - Les renvois de 1.4 sont en place.
 
-## Points à trancher au gate
+## Questions tranchées au gate (2026-10-19)
+
+Raphael a validé le plan le 2026-10-19 avec les recommandations par défaut, et une précision sur Q1 :
+
+- **Q1 → tranché :** chip « Tous » (libellé inchangé) + icône SF Symbol `arrow.down.right` (flèche en
+  biais vers le bas) à la place de l'emoji « ⤵ » de la maquette ; pas de ChevronDown ni de Check. L'état
+  Selected garde la même icône, seules les couleurs changent, comme les autres chips. Raphael met la
+  maquette Figma à jour. Nouveau glyphe `Track1Icon.Glyph.arrowDownRight` (TRA-636).
+- **Q2 → tranché :** plusieurs cartes dépliées en même temps (`Set<String>`).
+- **Q3 → tranché :** CTA « Continuer » au premier lancement ; il termine le flux tant que 1.5 n'existe pas.
+- **Q4 → tranché :** l'édition depuis l'onglet Genres suit le nouvel écran.
+- **Q5 → tranché :** normalisation « famille seule » → tous ses sous-genres à l'édition, union pour les
+  v1 ; nuance ajoutée à R1 (sous-genre ajouté plus tard à la taxonomie non pré-coché ; écart accepté).
+- **Q6 → tranché :** accent = token existant `colorSelectionContent` (`#BC7722`).
+- **Q7 → tranché :** le tick de défilement compte les cartes.
+
+Les options telles qu'elles ont été soumises au gate :
 
 - **Q1 — Libellé du chip « tout sélectionner ».** (a) « Tous » + glyphe ChevronDown, Check une fois tout
   coché (l'actuel `SelectAllChip`, variantes Figma `175:39`/`175:43`, repris dans `SubgenreChip` avec
