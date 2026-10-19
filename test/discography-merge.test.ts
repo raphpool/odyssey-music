@@ -109,6 +109,28 @@ describe("mergeDiscography — pose", () => {
 		expect(result.ambiguous).toEqual([]);
 	});
 
+	it("refuses a single candidate whose primary type differs from the entry's releaseType", () => {
+		const single = release("X", { primaryType: "Single" });
+		const existing = [entry("X", { releaseType: "album" })];
+
+		const result = merge({ existing, allCredited: [single] });
+
+		expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "type" }]);
+		expect(result.posed).toEqual([]);
+		expect(result.changed).toBe(false);
+		expect(result.edges).toBe(existing);
+	});
+
+	it("poses a single candidate on an entry without releaseType and completes the releaseType", () => {
+		const single = release("X", { primaryType: "Single" });
+
+		const result = merge({ existing: [entry("X")], allCredited: [single] });
+
+		expect(result.ambiguous).toEqual([]);
+		expect(result.posed[0]?.filled).toContain("releaseType");
+		expect(result.edges[0]).toMatchObject({ mbid: single.mbid, releaseType: "single" });
+	});
+
 	it("reports several candidates of the same type as ambiguous/multiple", () => {
 		const first = release("Homework", { firstReleaseDate: "1997-01-20" });
 		const second = release("Homework", { firstReleaseDate: "1997-03-17" });

@@ -326,6 +326,11 @@ function decidePose(entry: EdgeRef, matches: readonly ReleaseGroupCandidate[]): 
 		chosen = ofType.length === 1 ? ofType[0] : undefined;
 		if (chosen === undefined) return { kind: "ambiguous", reason: "multiple" };
 	}
+	// A single match is not enough when the entry already states its type: an "album" must not take its
+	// single's mbid (TRA-560, identity first).
+	if (entry.releaseType !== undefined && chosen.primaryType.toLowerCase() !== entry.releaseType) {
+		return { kind: "ambiguous", reason: "type" };
+	}
 	const entryYear = yearOf(entry.year);
 	const matchYear = yearOf(chosen.firstReleaseDate);
 	if (entryYear !== null && matchYear !== null && Math.abs(entryYear - matchYear) > MAX_YEAR_DRIFT) {
