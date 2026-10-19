@@ -46,6 +46,9 @@ export const INFORMATIVE_METRICS: ReadonlySet<string> = new Set([
 	"dangling-edges",
 	"edge-name-drift",
 	"pending-reverse-targets-existing",
+	// Counted per edge, so no per-artist allowance can cover it; the ratcheted twin is
+	// artist-discography-without-mbid (TRA-616, amends 8-D6).
+	"discography-edge-without-mbid",
 ]);
 
 /**
@@ -61,6 +64,10 @@ const COVERAGE_METRICS: ReadonlyMap<string, NodeType | null> = new Map([
 	["missing-similar-artists", "artist"],
 	["missing-landmark-project", "artist"],
 	["missing-reference-track", "artist"],
+	// An added artist contributes at most 1 to each (TRA-616): a Gemini list has no mbid, a MusicBrainz
+	// list can keep fewer than 3 release groups, and neither can be fixed on the data side.
+	["artist-discography-under-3", "artist"],
+	["artist-discography-without-mbid", "artist"],
 ]);
 
 /** The node type whose growth may absorb a rise of this metric (or metric key), `null` for strict metrics. */
@@ -195,6 +202,9 @@ export function auditNodes(
 		"dangling-edges",
 		"edge-name-drift",
 		"pending-reverse-targets-existing",
+		"discography-edge-without-mbid",
+		"artist-discography-under-3",
+		"artist-discography-without-mbid",
 	]) {
 		c.scalar(m);
 	}
@@ -251,6 +261,20 @@ export function auditNodes(
 			if (edgesOf(node, "similar_artists").length === 0) c.hit("missing-similar-artists", slug);
 			if (edgesOf(node, "landmark_project").length === 0) c.hit("missing-landmark-project", slug);
 			if (edgesOf(node, "reference_track").length === 0) c.hit("missing-reference-track", slug);
+			// Discography quality (TRA-616): an edge without an MBID could not be tied to a MusicBrainz release
+			// group, and a short discography is often a truncated lookup. The per-edge count is informative
+			// (one artist adds up to 10 edges); the ratcheted twin counts artists with at least one such edge.
+			// Raw entries are counted on purpose (the ticket's contract), not through edgesOf.
+			const discography = Array.isArray(node.discography) ? node.discography : [];
+			let withoutMbid = 0;
+			for (const entry of discography) {
+				if (!(isRecord(entry) && hasText(entry.mbid))) {
+					c.hit("discography-edge-without-mbid", slug);
+					withoutMbid += 1;
+				}
+			}
+			if (withoutMbid > 0) c.hit("artist-discography-without-mbid", slug);
+			if (discography.length < 3) c.hit("artist-discography-under-3", slug);
 			for (const field of RELEASE_LINK_FIELDS) {
 				for (const edge of edgesOf(node, field)) {
 					const target = nodes.get(edge.slug);

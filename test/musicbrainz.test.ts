@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { musicBrainzConfig } from "../src/config.js";
 import {
+	fetchArtistDiscographyMb,
 	fetchArtistEntityMb,
 	fetchArtistMembershipsMb,
 	fetchEntityGenresMb,
@@ -2740,5 +2741,238 @@ describe("work resolvers: a homonym's work of the same title is never the answer
 			],
 		});
 		expect((await resolveRecordingDetailed("Around the World", "DAFT PUNK")).identity?.mbid).toBe(DAFT_REC);
+	});
+});
+
+// TRA-614 (plan 8-D2): the discography reads the artist credits and says when a page got no answer.
+describe("fetchArtistDiscographyMb: credits and unavailability", () => {
+	const KODE9 = "aaaaaaaa-6666-4666-8666-000000000001";
+	const SPACEAPE = "aaaaaaaa-6666-4666-8666-000000000002";
+	// mbFetch memoizes successful answers by URL for the whole file: every case browses an artist of its own.
+	let nextArtist = 0;
+	const freshArtist = () => `bbbbbbbb-6666-4666-8666-${String(++nextArtist).padStart(12, "0")}`;
+	const rgId = (n: number) => `cccccccc-6666-4666-8666-${String(n).padStart(12, "0")}`;
+	const credit = (mbid: string, name: string) => ({ name, artist: { id: mbid, name } });
+	const rg = (n: number, extra: Record<string, unknown> = {}) => ({
+		id: rgId(n),
+		title: `Record ${n}`,
+		"primary-type": "Album",
+		"first-release-date": "2010-01-01",
+		...extra,
+	});
+
+	interface Browse {
+		type: string;
+		offset: number;
+		url: URL;
+	}
+	/** Answers every browse page with `answer(browse)`; returns the browses seen, in request order. */
+	function stubBrowse(answer: (browse: Browse) => Response): Browse[] {
+		const seen: Browse[] = [];
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async (input: URL) => {
+				const browse = {
+					type: input.searchParams.get("type") ?? "",
+					offset: Number(input.searchParams.get("offset")),
+					url: input,
+				};
+				seen.push(browse);
+				return answer(browse);
+			}),
+		);
+		return seen;
+	}
+	const page = (groups: unknown[], count = groups.length) =>
+		jsonResponse({ "release-group-count": count, "release-groups": groups });
+
+	it("asks every page for the artist credits of the artist, for album, ep and single", async () => {
+		const artist = freshArtist();
+		const seen = stubBrowse(() => page([]));
+
+		const result = await fetchArtistDiscographyMb(artist);
+
+		expect(result).toEqual({ releases: [], unavailable: false });
+		expect(seen.map((b) => b.type).sort()).toEqual(["album", "ep", "single"]);
+		for (const { url } of seen) {
+			expect(url.pathname).toBe("/ws/2/release-group");
+			expect(url.searchParams.get("artist")).toBe(artist);
+			expect(url.searchParams.get("inc")).toBe("artist-credits");
+		}
+	});
+
+	it("reads three pages (offsets 0, 100, 200) for a total of 250, and never more than four", async () => {
+		const albums = stubBrowse(({ type }) =>
+			page(type === "album" ? [rg(1)] : [], type === "album" ? 250 : 0),
+		);
+		await fetchArtistDiscographyMb(freshArtist());
+		expect(albums.filter((b) => b.type === "album").map((b) => b.offset)).toEqual([0, 100, 200]);
+
+		const huge = stubBrowse(({ type }) =>
+			page(type === "single" ? [rg(2)] : [], type === "single" ? 5_000 : 0),
+		);
+		await fetchArtistDiscographyMb(freshArtist());
+		expect(huge.filter((b) => b.type === "single").map((b) => b.offset)).toEqual([0, 100, 200, 300]);
+	});
+
+	it("keeps the credits in MusicBrainz order, with the other fields of the release group", async () => {
+		stubBrowse(({ type }) =>
+			page(
+				type === "album"
+					? [
+							rg(1, {
+								title: "Memories of the Future",
+								"secondary-types": ["Live"],
+								"artist-credit": [credit(KODE9, "Kode9"), credit(SPACEAPE, "The Spaceape")],
+							}),
+						]
+					: [],
+			),
+		);
+
+		const { releases } = await fetchArtistDiscographyMb(freshArtist());
+
+		expect(releases).toEqual([
+			{
+				mbid: rgId(1),
+				title: "Memories of the Future",
+				firstReleaseDate: "2010-01-01",
+				primaryType: "Album",
+				secondaryTypes: ["Live"],
+				artistCredits: [
+					{ mbid: KODE9, name: "Kode9" },
+					{ mbid: SPACEAPE, name: "The Spaceape" },
+				],
+			},
+		]);
+	});
+
+	it("falls back to empty fields when the optional ones are absent", async () => {
+		stubBrowse(({ type }) => page(type === "ep" ? [{ id: rgId(3), title: "Bare" }] : []));
+
+		const { releases, unavailable } = await fetchArtistDiscographyMb(freshArtist());
+
+		expect(unavailable).toBe(false);
+		expect(releases).toEqual([
+			{
+				mbid: rgId(3),
+				title: "Bare",
+				firstReleaseDate: "",
+				primaryType: "",
+				secondaryTypes: [],
+				artistCredits: [],
+			},
+		]);
+	});
+
+	it("skips an entry without an id or a title, and a credit without an artist id, without throwing", async () => {
+		stubBrowse(({ type }) =>
+			page(
+				type === "album"
+					? [
+							{ title: "No id" },
+							{ id: 42, title: "Numeric id" },
+							{ id: rgId(4) },
+							null,
+							rg(5, {
+								"artist-credit": [
+									{ name: "Nobody" },
+									{ name: "Nobody", artist: { name: "Still nobody" } },
+									credit(KODE9, "Kode9"),
+								],
+							}),
+						]
+					: [],
+			),
+		);
+
+		const { releases, unavailable } = await fetchArtistDiscographyMb(freshArtist());
+
+		expect(unavailable).toBe(false);
+		expect(releases.map((r) => r.mbid)).toEqual([rgId(5)]);
+		expect(releases[0]?.artistCredits).toEqual([{ mbid: KODE9, name: "Kode9" }]);
+	});
+
+	it("dedupes by mbid across types and sorts newest first", async () => {
+		stubBrowse(({ type }) =>
+			page(
+				type === "album"
+					? [rg(6, { "first-release-date": "2001-01-01" }), rg(7, { "first-release-date": "2020-05-05" })]
+					: type === "ep"
+						? [rg(6, { "first-release-date": "2001-01-01" })]
+						: [],
+			),
+		);
+
+		const { releases } = await fetchArtistDiscographyMb(freshArtist());
+
+		expect(releases.map((r) => r.mbid)).toEqual([rgId(7), rgId(6)]);
+	});
+
+	it("flags a persistent 503 on a later page and keeps the pages that were read", async () => {
+		vi.stubEnv("MB_MAX_ATTEMPTS", "1");
+		stubBrowse(({ type, offset }) => {
+			if (type === "album" && offset === 100) return failedResponse(503);
+			return page(type === "album" ? [rg(offset === 0 ? 8 : 9)] : [], type === "album" ? 250 : 0);
+		});
+
+		const { releases, unavailable } = await fetchArtistDiscographyMb(freshArtist());
+
+		expect(unavailable).toBe(true);
+		expect(releases.map((r) => r.mbid).sort()).toEqual([rgId(8), rgId(9)].sort());
+	});
+
+	it("flags a first page that never answers, whatever the type", async () => {
+		vi.stubEnv("MB_MAX_ATTEMPTS", "1");
+		stubBrowse(({ type }) => (type === "single" ? failedResponse(503) : page(type === "ep" ? [rg(10)] : [])));
+
+		const { releases, unavailable } = await fetchArtistDiscographyMb(freshArtist());
+
+		expect(unavailable).toBe(true);
+		expect(releases.map((r) => r.mbid)).toEqual([rgId(10)]);
+	});
+
+	it("flags an answer that is not a release-group page, rather than reading it as an empty catalog", async () => {
+		stubBrowse(() => jsonResponse({ error: "Your requests are being rate limited" }));
+
+		expect(await fetchArtistDiscographyMb(freshArtist())).toEqual({ releases: [], unavailable: true });
+	});
+
+	describe("priority", () => {
+		const genres = (tag: string) => fetchEntityGenresMb("artist", `${tag}000000-0000-0000-0000-000000000000`);
+
+		/** Kind of the requests in the order they leave, when an interactive one arrives after the browse. */
+		async function requestOrder(date: string, opts?: { priority: "background" }): Promise<string[]> {
+			musicBrainzConfig.minIntervalMs = 1_000;
+			vi.useFakeTimers();
+			vi.setSystemTime(new Date(`${date}T00:00:00.000Z`));
+			const order: string[] = [];
+			vi.stubGlobal(
+				"fetch",
+				vi.fn(async (input: URL) => {
+					const browse = input.pathname.includes("release-group");
+					order.push(browse ? "browse" : "genres");
+					return jsonResponse(browse ? { "release-groups": [] } : { genres: [] });
+				}),
+			);
+			const pending: Promise<unknown>[] = [genres("d1"), genres("d2")];
+			pending.push(fetchArtistDiscographyMb(freshArtist(), opts));
+			await vi.advanceTimersByTimeAsync(500);
+			pending.push(genres("d3"));
+			await vi.advanceTimersByTimeAsync(10_000);
+			await Promise.all(pending);
+			return order;
+		}
+
+		it("yields to interactive requests when it is background", async () => {
+			const order = await requestOrder("2050-01-01", { priority: "background" });
+			expect(order.slice(0, 3)).toEqual(["genres", "genres", "genres"]);
+			expect(order.filter((o) => o === "browse")).toHaveLength(3);
+		});
+
+		it("is interactive by default: the browse keeps its place in the FIFO", async () => {
+			const order = await requestOrder("2051-01-01");
+			expect(order).toEqual(["genres", "genres", "browse", "browse", "browse", "genres"]);
+		});
 	});
 });
