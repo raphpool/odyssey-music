@@ -5,8 +5,8 @@
  * instead of holding the dump locally. Trade-off: +150-250ms latency per autocomplete vs zero
  * memory/disk footprint on the droplet (vs ~2.5 GB SQLite that this used to load).
  *
- * Rate limit etiquette: MB asks for a User-Agent identifying the app and contact email so they
- * can throttle us specifically rather than blanket-banning the IP. The autocomplete debounce
+ * Rate limit etiquette: MB asks for a User-Agent identifying the app and a contact (a URL is enough, no
+ * e-mail) so they can throttle us specifically rather than blanket-banning the IP. The autocomplete debounce
  * (150ms) plus the natural typing cadence keeps us well under the published 50 req/s ceiling
  * for properly-UA'd clients.
  */
