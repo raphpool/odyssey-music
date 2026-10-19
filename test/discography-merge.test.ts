@@ -5,6 +5,7 @@ import {
 	type MergeInput,
 	mergeDiscography,
 	type ReleaseGroupCandidate,
+	selectReleases,
 	toDiscographyEdge,
 } from "../src/discography-policy.js";
 import { makeScopedSlug } from "../src/slug.js";
@@ -16,6 +17,7 @@ const policy: DiscographyPolicy = {
 	artistMbid: ARTIST_MBID,
 	artistName: "Daft Punk",
 	cap: DEFAULT_DISCOGRAPHY_CAP,
+	currentYear: 2026,
 };
 
 let counter = 0;
@@ -143,6 +145,97 @@ describe("mergeDiscography — pose", () => {
 		}
 	});
 
+	// TRA-628, measured 2026-10-19 on MusicBrainz: the Live / Compilation albums of the same title are not
+	// competitors, so the studio album is posed.
+	it.each([
+		{
+			title: "Blue Train",
+			groups: [
+				{ primaryType: "Album", firstReleaseDate: "1958-01-01", ratingVotes: 8 },
+				{ primaryType: "Album", firstReleaseDate: "2004-01-01", secondaryTypes: ["Compilation", "Live"] },
+				{ primaryType: "Single", firstReleaseDate: "1957-01-01" },
+			],
+		},
+		{
+			title: "My Favorite Things",
+			groups: [
+				{ primaryType: "Album", firstReleaseDate: "1961-01-01", ratingVotes: 5 },
+				{ primaryType: "Album", firstReleaseDate: "2002-01-01", secondaryTypes: ["Compilation", "Live"] },
+				{ primaryType: "Album", firstReleaseDate: "2011-01-01", secondaryTypes: ["Compilation", "Live"] },
+				{ primaryType: "Album", firstReleaseDate: "2016-01-01", secondaryTypes: ["Compilation", "Live"] },
+				{ primaryType: "Single", firstReleaseDate: "1961-01-01" },
+			],
+		},
+		{
+			title: "Imagine",
+			groups: [
+				{ primaryType: "Album", firstReleaseDate: "1971-01-01", ratingVotes: 17 },
+				{ primaryType: "Album", firstReleaseDate: "1993-01-01", secondaryTypes: ["Live"] },
+				{ primaryType: "Single", firstReleaseDate: "1971-01-01" },
+				{ primaryType: "EP", firstReleaseDate: "2021-01-01", secondaryTypes: ["Compilation"] },
+			],
+		},
+	])(
+		"$title: poses the studio album despite Live / Compilation albums of the same title",
+		({ title, groups }) => {
+			const credited = groups.map((g) => release(title, g));
+			const [studio] = credited;
+			const existing = [entry(title)];
+
+			const result = merge({ existing, allCredited: credited });
+
+			expect(result.ambiguous).toEqual([]);
+			expect(result.posed).toEqual([
+				{ slug: existing[0]?.slug, mbid: studio?.mbid, filled: ["year", "releaseType"] },
+			]);
+			expect(result.edges[0]).toMatchObject({ mbid: studio?.mbid, releaseType: "album" });
+		},
+	);
+
+	it("keeps two studio albums of one title ambiguous even with a Live album and a single around", () => {
+		const albumA = release("Imagine", { firstReleaseDate: "1971-01-01" });
+		const albumB = release("Imagine", { firstReleaseDate: "1972-01-01" });
+		const live = release("Imagine", { firstReleaseDate: "1993-01-01", secondaryTypes: ["Live"] });
+		const single = release("Imagine", { primaryType: "Single", firstReleaseDate: "1971-01-01" });
+		const existing = [entry("Imagine")];
+
+		const result = merge({ existing, allCredited: [albumA, live, albumB, single] });
+
+		expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "type" }]);
+		expect(result.posed).toEqual([]);
+	});
+
+	it("counts a Soundtrack or Mixtape/Street album as a competitor, but not a Soundtrack + Live one", () => {
+		const plain = release("Help!", { firstReleaseDate: "1965-01-01" });
+		const soundtrack = release("Help!", { firstReleaseDate: "1965-08-06", secondaryTypes: ["Soundtrack"] });
+		const soundtrackLive = release("Help!", {
+			firstReleaseDate: "1990-01-01",
+			secondaryTypes: ["Soundtrack", "Live"],
+		});
+		const single = release("Help!", { primaryType: "Single", firstReleaseDate: "1965-01-01" });
+		const existing = [entry("Help!")];
+
+		const two = merge({ existing, allCredited: [plain, soundtrack, single] });
+		expect(two.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "type" }]);
+		expect(two.posed).toEqual([]);
+
+		const one = merge({ existing, allCredited: [soundtrack, soundtrackLive, single] });
+		expect(one.ambiguous).toEqual([]);
+		expect(one.posed.map((p) => p.mbid)).toEqual([soundtrack.mbid]);
+	});
+
+	it("leaves an entry that states its releaseType unchanged by the Live / Compilation homonyms", () => {
+		const album = release("Blue Train", { firstReleaseDate: "1958-01-01" });
+		const live = release("Blue Train", { firstReleaseDate: "2004-01-01", secondaryTypes: ["Live"] });
+		const existing = [entry("Blue Train", { releaseType: "album" })];
+
+		// Two albums share the title and the entry states "album": still not guessed.
+		const result = merge({ existing, allCredited: [album, live] });
+
+		expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "multiple" }]);
+		expect(result.posed).toEqual([]);
+	});
+
 	it("keeps two albums of the same title ambiguous/multiple", () => {
 		const albumA = release("Mind Games", { primaryType: "Album" });
 		const albumB = release("Mind Games", { primaryType: "Album" });
@@ -213,6 +306,22 @@ describe("mergeDiscography — pose", () => {
 		expect(result.ambiguous).toEqual([]);
 		expect(result.posed[0]?.filled).toContain("releaseType");
 		expect(result.edges[0]).toMatchObject({ mbid: single.mbid, releaseType: "single" });
+	});
+
+	it("still poses an mbid from an unvoted release group that the unrated cut keeps out of the candidates (TRA-628)", () => {
+		const rated = Array.from({ length: 12 }, (_, i) =>
+			release(`Voted ${i}`, { firstReleaseDate: `${1970 + i}-01-01`, ratingVotes: 10 }),
+		);
+		const tapes = release("The Lost Lennon Tapes, Vol. 1", { firstReleaseDate: "1988-01-01" });
+		const existing = [entry("The Lost Lennon Tapes, Vol. 1")];
+
+		const { kept, excluded } = selectReleases([...rated, tapes], policy);
+		expect(excluded.map((e) => e.reason)).toEqual(["unrated"]);
+
+		const result = merge({ existing, candidates: kept, allCredited: [...rated, tapes] });
+
+		expect(result.posed.map((p) => p.mbid)).toEqual([tapes.mbid]);
+		expect(result.added.map((a) => a.mbid)).not.toContain(tapes.mbid);
 	});
 
 	it("reports several candidates of the same type as ambiguous/multiple", () => {

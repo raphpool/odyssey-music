@@ -114,6 +114,7 @@ const EXCLUSION_REASONS: readonly ExclusionReason[] = [
 	"various-artists",
 	"non-canonical",
 	"primary-type",
+	"unrated",
 ];
 
 export interface ArtistEntry {
@@ -174,6 +175,11 @@ export interface BackfillOptions {
 	/** Where `identity-exclusions.json` and the redirect tables are read; the repo's data/ when absent. */
 	dataDir?: string | undefined;
 	resume?: boolean;
+	/**
+	 * The calendar year "now" for the policy's unrated cut (a release of this year or last is never cut for lack
+	 * of votes). Injected, never read from the clock here: the CLI gives `new Date().getFullYear()`.
+	 */
+	currentYear: number;
 	/** Only these artists are read and processed. */
 	only?: readonly Slug[] | undefined;
 	/** The network boundary, injected by the tests. Default: the global fetch. */
@@ -427,7 +433,8 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 			continue;
 		}
 		const artist = parsed.data;
-		const identity = `policy ${DISCOGRAPHY_POLICY_VERSION}|${mbid}|${artist.name}|${artist.artist_kind ?? ""}`;
+		// The year is part of it: the unrated cut spares recent releases, so a resume after 1 January decides again.
+		const identity = `policy ${DISCOGRAPHY_POLICY_VERSION}|year ${options.currentYear}|${mbid}|${artist.name}|${artist.artist_kind ?? ""}`;
 		const current = fingerprintOf(identity, rawEdges);
 		// Before the cap: an artist that reached the cap DURING the run (every entry now has its mbid) would
 		// otherwise be re-read as a plain `cap` skip and lose the decision the manifest recorded for it.
@@ -473,6 +480,7 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 			artistMbid: mbid,
 			artistName: pickScopeArtistName([artist.name]) ?? artist.name,
 			cap: DEFAULT_DISCOGRAPHY_CAP,
+			currentYear: options.currentYear,
 		};
 		const selection = selectReleases(releases, policy);
 		const excluded = Object.fromEntries(EXCLUSION_REASONS.map((r) => [r, 0])) as Record<
@@ -688,6 +696,7 @@ async function main(): Promise<void> {
 		dataDir: args.dataDir,
 		resume: args.resume,
 		only: args.only,
+		currentYear: new Date().getFullYear(),
 		log: (line) => process.stdout.write(`${line}\n`),
 	});
 	if (result.exitCode !== 2) console.log(formatSummary(result, args.apply, args.manifestPath));

@@ -1312,6 +1312,9 @@ async function enrichNode(
 							pickScopeArtistName([typeof obj.name === "string" ? obj.name : undefined, input.name]) ??
 							input.name,
 						cap: DEFAULT_DISCOGRAPHY_CAP,
+						// The policy never reads the clock itself (TRA-628): the unrated cut spares the releases
+						// of this year and last, which have not had time to collect votes.
+						currentYear: new Date().getFullYear(),
 					};
 					const { kept, excluded } = selectReleases(releases, policy);
 					// When nothing can be scoped the draft's own (already scoped) list is kept.

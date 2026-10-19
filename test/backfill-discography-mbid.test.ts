@@ -159,7 +159,15 @@ async function snapshot(): Promise<Record<string, string>> {
 }
 
 function options(w: World, extra: Partial<BackfillOptions> = {}): BackfillOptions {
-	return { cacheDir: dir, apply: false, manifestPath: manifestFile(), dataDir, fetch: mbFetch(w), ...extra };
+	return {
+		cacheDir: dir,
+		apply: false,
+		manifestPath: manifestFile(),
+		dataDir,
+		fetch: mbFetch(w),
+		currentYear: 2026,
+		...extra,
+	};
 }
 
 const kode9Credit = { id: KODE9, name: "Kode9" };
@@ -352,6 +360,7 @@ describe("--apply", () => {
 			"various-artists": 1,
 			"non-canonical": 1,
 			"primary-type": 0,
+			unrated: 0,
 		});
 		expect(manifest.totals.excluded["various-artists"]).toBe(1);
 	});
@@ -804,6 +813,54 @@ describe("near duplicates", () => {
 			{ added: "project:sine-of-the-dub--kode9", existing: "project:sine-of-the-dub-stalker--kode9" },
 		]);
 		expect(manifest.totals.nearDuplicate).toBe(1);
+	});
+});
+
+describe("the year handed to the policy (TRA-628)", () => {
+	// 10 voted albums switch the unrated cut on: from then on an unvoted release is kept only if it is recent.
+	async function putVotedArtist(w: World): Promise<string> {
+		const id = mb(7500);
+		const voted = Array.from({ length: 10 }, (_, i) => ({
+			...rg(800 + i, `Voted ${i}`, "Album", `${1990 + i}-01-01`, [{ id, name: "G01" }]),
+			votes: 3,
+		}));
+		w.byArtist.set(id, [
+			...voted,
+			rg(850, "Recent Unvoted", "Album", "2025-03-01", [{ id, name: "G01" }]),
+			rg(851, "Old Unvoted", "Album", "2010-03-01", [{ id, name: "G01" }]),
+		]);
+		await put(artistNode("g01", "G01", { mbid: id }));
+		return id;
+	}
+
+	it("uses the injected year: a release of last year is spared, an old unvoted one is cut", async () => {
+		const w = world();
+		await putVotedArtist(w);
+
+		await runBackfill(options(w, { currentYear: 2026 }));
+		let entry = entryOf(await readManifest(), "artist:g01");
+		expect(entry.added?.map((a) => a.title)).toContain("Recent Unvoted");
+		expect(entry.added?.map((a) => a.title)).not.toContain("Old Unvoted");
+		expect(entry.excluded?.unrated).toBe(1);
+
+		// Fifteen years on, the same answers: neither is recent any more.
+		await runBackfill(options(w, { currentYear: 2040 }));
+		entry = entryOf(await readManifest(), "artist:g01");
+		expect(entry.added?.map((a) => a.title)).not.toContain("Recent Unvoted");
+		expect(entry.excluded?.unrated).toBe(2);
+	});
+
+	it("does not replay a resume made under another year", async () => {
+		const w = world();
+		const id = await putVotedArtist(w);
+		await runBackfill(options(w, { apply: true, currentYear: 2026 }));
+
+		w.requests.length = 0;
+		await runBackfill(options(w, { apply: true, resume: true, currentYear: 2026 }));
+		expect(w.requests).toEqual([]);
+
+		await runBackfill(options(w, { apply: true, resume: true, currentYear: 2027 }));
+		expect(new Set(w.requests.map((r) => r.artist))).toEqual(new Set([id]));
 	});
 });
 
