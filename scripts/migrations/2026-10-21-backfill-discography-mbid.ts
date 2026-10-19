@@ -17,10 +17,20 @@
  * `identity-exclusions.json`, read from --data-dir, else the repo's data/: a refused or unreadable list
  * stops the run); `cap` (already at the cap and every entry has its mbid: nothing to pose or add, no request);
  * `unavailable` (MusicBrainz did not answer for at least one page: an empty or short list is not "nothing on
- * MusicBrainz", nothing is written, the next run retries it); `name-mismatch` (identity guard without any
- * further request: no release group first-credited to the MBID carries the node's name, nor, for a group,
- * does any of its credits; the stored MBID may belong to someone else). An artist whose MBID answers with no
+ * MusicBrainz", nothing is written, the next run retries it); `name-mismatch` (identity guard: no release group
+ * first-credited to the MBID carries the node's name, nor, for a group, does any of its credits, AND the
+ * artist's own names on MusicBrainz do not either; the stored MBID may belong to someone else). An artist whose MBID answers with no
  * release group credited to it has nothing to compare and nothing to merge: it is processed, unchanged.
+ *
+ * IDENTITY GUARD (TRA-630, 2026-10-19). The credits alone refused 20 artists that were all the right one,
+ * because MusicBrainz credits them in their native script (坂本龍一, 久石譲, አስታቄ...) or in a variant
+ * ("Atom™", "Schönberg", "Tronikhouse"). When the credits do not name the node, ONE more request,
+ * `/artist/<mbid>?inc=aliases`, reads the names of the artist itself; the node is accepted when its name equals
+ * the artist's name, sort-name, or an alias' name or sort-name (`identity: "alias"` in the manifest; a node
+ * the credits name is `"credit"`). A "Last, First" sort-name is also compared as "First Last". Names are
+ * compared by `identityKey` with spaces and punctuation dropped, and with ™ / ® both folded ("Atom TM" =
+ * "Atom™") and removed. A failed request is `unavailable`, never an acceptance by default. Artists the credits
+ * accept cost no extra request.
  * `refused` is separate: a node that does not validate against the schema (before or after the merge), or a
  * file that cannot be read. It is counted, never rewritten, and makes the run exit 1, like `unavailable`.
  *
@@ -38,7 +48,8 @@
  * a second late) spends part of its timeout waiting. In a degraded MusicBrainz that turns into `unavailable`
  * (nothing written, retried by the next run), never into a wrong write. `runBackfill` patches two process-wide
  * globals while it runs, so it is not re-entrant. About two thousand
- * requests for the repository. No header is added to the client's own (its User-Agent comes from config).
+ * requests for the repository, plus one per artist whose credits fail the identity guard (20 of them in the
+ * 2026-10-19 measure). No header is added to the client's own (its User-Agent comes from config).
  *
  * Manifest (--manifest, default out/discography-mbid.json): deterministic, sorted by slug, no timestamp, no
  * path, no mode: the same cache and the same answers give the same bytes in a dry-run, in an apply and in a
@@ -84,7 +95,7 @@ import {
 	selectReleases,
 } from "../../src/discography-policy.js";
 import { resolveReadSlug } from "../../src/genre-registry.js";
-import { fetchArtistDiscographyMb } from "../../src/musicbrainz.js";
+import { fetchArtistDiscographyMb, fetchArtistNamesMb } from "../../src/musicbrainz.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
 import { normalizeSlugBody, pickScopeArtistName, scopeMatchesArtist } from "../../src/slug.js";
 import type { EdgeRef, Slug } from "../../src/types.js";
@@ -119,6 +130,10 @@ const EXCLUSION_REASONS: readonly ExclusionReason[] = [
 
 export interface ArtistEntry {
 	mbid?: string;
+	/** Why the identity guard accepted the node: a credit named it, or one of the artist's own names did. */
+	identity?: "credit" | "alias";
+	/** On a `name-mismatch`: the artist's own names were read too (what --resume needs to trust the skip). */
+	aliasesChecked?: true;
 	/** Entries of the discography before and after the merge (equal when skipped, refused or unchanged). */
 	before: number;
 	after: number;
@@ -154,6 +169,8 @@ export interface DiscographyManifest {
 		nearDuplicate: number;
 		refused: number;
 		skipped: Record<SkipReason, number>;
+		/** Processed artists by the way the identity guard accepted them (none when nothing was credited to it). */
+		identity: { credit: number; alias: number };
 		excluded: Record<ExclusionReason, number>;
 		/** Discography edges over every artist of the run, and the share that carries an mbid. */
 		edges: {
@@ -252,6 +269,43 @@ function creditsNameTheNode(
 	return false;
 }
 
+/**
+ * Compared names: no space, no punctuation, so "Atom TM" = "Atom™" and "Tronik House" = "Tronikhouse". Marks stay
+ * (\p{M}): they carry the vowels of the Indic scripts, dropping them would merge unrelated names.
+ */
+const squash = (text: string): string => text.replace(/[^\p{L}\p{N}\p{M}]+/gu, "");
+
+/** A letter outside the Latin script: a name holding one is not reduced to its Latin part by the slug body. */
+const NON_LATIN_LETTER = /(?![\p{Script=Latin}])\p{L}/u;
+
+/**
+ * What a name is compared by in the alias check: `identityKey` squashed, once with ™ folded to "TM" (what NFKD
+ * does) and once with ™ and ® removed. A name that mixes scripts ("Hikaru 宇多田") is compared whole, since the
+ * slug body would keep only its Latin letters and match any "Hikaru". An empty key never matches ("!!!" is not
+ * "???").
+ */
+function nameKeys(name: string): string[] {
+	const fold = (text: string): string =>
+		squash(NON_LATIN_LETTER.test(text) ? text.normalize("NFKC").toLowerCase() : identityKey(text));
+	return [fold(name), fold(name.replace(/[™®]/gu, ""))].filter((key) => key !== "");
+}
+
+/** "Sakamoto, Ryuichi" also reads "Ryuichi Sakamoto". Only a single comma is a "Last, First" form. */
+function withInvertedForm(name: string): string[] {
+	const parts = name.split(",");
+	const [last, first] = parts;
+	if (parts.length !== 2 || last === undefined || first === undefined) return [name];
+	return [name, `${first.trim()} ${last.trim()}`];
+}
+
+/** True when the node's name is one of the names MusicBrainz holds for the artist (see IDENTITY GUARD). */
+function namesAreTheNode(nodeName: string, musicBrainzNames: readonly string[]): boolean {
+	const target = new Set(nameKeys(nodeName));
+	return musicBrainzNames.some((name) =>
+		withInvertedForm(name).some((form) => nameKeys(form).some((key) => target.has(key))),
+	);
+}
+
 // --- --resume ---
 
 async function readPriorEntries(path: string): Promise<Map<string, ArtistEntry>> {
@@ -268,9 +322,10 @@ async function readPriorEntries(path: string): Promise<Map<string, ArtistEntry>>
 		if (typeof entry.fingerprint.before !== "string" || typeof entry.fingerprint.after !== "string") continue;
 		const numbers = [entry.before, entry.after, entry.withMbidBefore, entry.withMbidAfter];
 		if (!numbers.every((n) => typeof n === "number")) continue;
-		// Only a decision is settled: a skip is carried only when it was a name-mismatch (one request spent).
+		// Only a decision is settled: a skip is carried only when it was a name-mismatch (requests spent) that
+		// read the artist's own names too: one decided before TRA-630 may be a script or spelling variant.
 		const decided =
-			entry.skipped === "name-mismatch" ||
+			(entry.skipped === "name-mismatch" && entry.aliasesChecked === true) ||
 			(entry.skipped === undefined &&
 				entry.refused === undefined &&
 				Array.isArray(entry.posed) &&
@@ -471,10 +526,25 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 			return first !== undefined && sameMbid(first.mbid, mbid);
 		});
 		const fingerprint = { before: current, after: current };
-		if (allCredited.length > 0 && !creditsNameTheNode(artist, allCredited)) {
-			entries.set(slug, { mbid, ...counts, skipped: "name-mismatch", fingerprint });
-			continue;
+		let identityBy: ArtistEntry["identity"];
+		if (allCredited.length > 0) {
+			identityBy = "credit";
+			if (!creditsNameTheNode(artist, allCredited)) {
+				// The one extra request of this artist (TRA-630): the credits may be in another script or spelling.
+				const names = await fetchArtistNamesMb(mbid, { priority: "background" });
+				if (names === null) {
+					unavailableCount++;
+					skip("unavailable");
+					continue;
+				}
+				if (!namesAreTheNode(artist.name, names)) {
+					entries.set(slug, { mbid, ...counts, skipped: "name-mismatch", aliasesChecked: true, fingerprint });
+					continue;
+				}
+				identityBy = "alias";
+			}
 		}
+		const identityField = identityBy === undefined ? {} : { identity: identityBy };
 
 		const policy = {
 			artistMbid: mbid,
@@ -514,7 +584,7 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 		};
 
 		if (!merge.changed) {
-			entries.set(slug, { mbid, ...counts, ...decision, fingerprint });
+			entries.set(slug, { mbid, ...identityField, ...counts, ...decision, fingerprint });
 			continue;
 		}
 		// The node as read with `discography` replaced (key order and every other field as they were), and only
@@ -527,6 +597,7 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 		}
 		entries.set(slug, {
 			mbid,
+			...identityField,
 			before: counts.before,
 			after: merge.edges.length,
 			withMbidBefore: counts.withMbidBefore,
@@ -562,6 +633,7 @@ function buildManifest(entries: ReadonlyMap<string, ArtistEntry>): DiscographyMa
 		nearDuplicate: 0,
 		refused: 0,
 		skipped,
+		identity: { credit: 0, alias: 0 },
 		excluded,
 		edges: {
 			before: 0,
@@ -585,6 +657,7 @@ function buildManifest(entries: ReadonlyMap<string, ArtistEntry>): DiscographyMa
 		if (entry.skipped !== undefined) skipped[entry.skipped]++;
 		if (entry.posed === undefined || entry.added === undefined) continue;
 		totals.processed++;
+		if (entry.identity !== undefined) totals.identity[entry.identity]++;
 		if (entry.posed.length > 0 || entry.added.length > 0) totals.written++;
 		totals.posed += entry.posed.length;
 		totals.added += entry.added.length;
@@ -606,6 +679,7 @@ export function formatSummary(result: BackfillResult, apply: boolean, manifestPa
 		`${t.artists} artist(s): ${t.processed} processed, ${t.refused} refused, skipped ${SKIP_REASONS.map(
 			(r) => `${r} ${t.skipped[r]}`,
 		).join(", ")}`,
+		`identity guard: ${t.identity.credit} accepted by a credit, ${t.identity.alias} by a name of the artist on MusicBrainz`,
 		`${t.posed} mbid posed, ${t.added} entr${t.added === 1 ? "y" : "ies"} added, ${t.ambiguous} ambiguous, ${t.nearDuplicate} near duplicate(s)`,
 		`edges with an mbid: ${t.edges.withMbidBefore}/${t.edges.before} (${percent(t.edges.mbidShareBefore)}) -> ${t.edges.withMbidAfter}/${t.edges.after} (${percent(t.edges.mbidShareAfter)})`,
 		`excluded by the policy: ${EXCLUSION_REASONS.map((r) => `${r} ${t.excluded[r]}`).join(", ")}`,

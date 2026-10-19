@@ -924,6 +924,41 @@ export async function fetchArtistEntityMb(artistMbid: string): Promise<MbArtistE
 }
 
 /**
+ * Every name MusicBrainz holds for an artist: its `name`, its `sort-name` and each alias with its own
+ * `sort-name` (TRA-630). One request (`/artist/<mbid>?inc=aliases`) through the shared queue. Untrusted data:
+ * only non-blank strings are kept, nothing else of the answer is read. Null when there is no usable answer
+ * (mbid that is not one, request failed after the retries, body that is not an artist): the caller must not
+ * take that for "the artist has no other name".
+ */
+export async function fetchArtistNamesMb(
+	artistMbid: string,
+	opts: { priority?: MbPriority } = {},
+): Promise<string[] | null> {
+	if (!isMbid(artistMbid)) return null;
+	const data = await mbFetch<unknown>(
+		`/artist/${artistMbid}`,
+		{ inc: "aliases" },
+		fetch,
+		opts.priority ?? "interactive",
+	).catch(() => null);
+	if (!isRecord(data) || typeof data.name !== "string" || data.name.trim() === "") return null;
+	const names: string[] = [];
+	const keep = (value: unknown): void => {
+		if (typeof value === "string" && value.trim() !== "") names.push(value);
+	};
+	keep(data.name);
+	keep(data["sort-name"]);
+	if (Array.isArray(data.aliases)) {
+		for (const alias of data.aliases) {
+			if (!isRecord(alias)) continue;
+			keep(alias.name);
+			keep(alias["sort-name"]);
+		}
+	}
+	return names;
+}
+
+/**
  * Browse artists released on a label and release-groups under that label.
  * /artist?label= and /release-group?label= each paginate at limit=100.
  */
