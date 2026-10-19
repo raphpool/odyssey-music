@@ -2786,7 +2786,7 @@ describe("fetchArtistDiscographyMb: credits and unavailability", () => {
 	const page = (groups: unknown[], count = groups.length) =>
 		jsonResponse({ "release-group-count": count, "release-groups": groups });
 
-	it("asks every page for the artist credits of the artist, for album, ep and single", async () => {
+	it("asks every page for the artist credits and the ratings of the artist, for album, ep and single", async () => {
 		const artist = freshArtist();
 		const seen = stubBrowse(() => page([]));
 
@@ -2797,7 +2797,7 @@ describe("fetchArtistDiscographyMb: credits and unavailability", () => {
 		for (const { url } of seen) {
 			expect(url.pathname).toBe("/ws/2/release-group");
 			expect(url.searchParams.get("artist")).toBe(artist);
-			expect(url.searchParams.get("inc")).toBe("artist-credits");
+			expect(url.searchParams.get("inc")).toBe("artist-credits+ratings");
 		}
 	});
 
@@ -2824,6 +2824,7 @@ describe("fetchArtistDiscographyMb: credits and unavailability", () => {
 								title: "Memories of the Future",
 								"secondary-types": ["Live"],
 								"artist-credit": [credit(KODE9, "Kode9"), credit(SPACEAPE, "The Spaceape")],
+								rating: { "votes-count": 12, value: 4.2 },
 							}),
 						]
 					: [],
@@ -2843,8 +2844,35 @@ describe("fetchArtistDiscographyMb: credits and unavailability", () => {
 					{ mbid: KODE9, name: "Kode9" },
 					{ mbid: SPACEAPE, name: "The Spaceape" },
 				],
+				ratingVotes: 12,
 			},
 		]);
+	});
+
+	it("reads rating votes-count as ratingVotes; an absent or invalid value is 0 (TRA-625)", async () => {
+		const bad: [string, unknown][] = [
+			["no rating", undefined],
+			["null rating", null],
+			["rating without votes-count", { value: null }],
+			["string votes", { "votes-count": "73" }],
+			["negative votes", { "votes-count": -4 }],
+			["fractional votes", { "votes-count": 2.5 }],
+			["unsafe integer votes", { "votes-count": Number.MAX_VALUE }],
+			["array rating", [73]],
+		];
+		const groups = [
+			rg(10, { rating: { "votes-count": 73, value: 4.5 } }),
+			...bad.map(([, rating], i) => rg(11 + i, rating === undefined ? {} : { rating })),
+		];
+		stubBrowse(({ type }) => page(type === "album" ? groups : []));
+
+		const { releases } = await fetchArtistDiscographyMb(freshArtist());
+
+		const votes = new Map(releases.map((r) => [r.mbid, r.ratingVotes]));
+		expect(votes.get(rgId(10))).toBe(73);
+		for (const [i, [label]] of bad.entries()) {
+			expect(votes.get(rgId(11 + i)), label).toBe(0);
+		}
 	});
 
 	it("falls back to empty fields when the optional ones are absent", async () => {
@@ -2861,6 +2889,7 @@ describe("fetchArtistDiscographyMb: credits and unavailability", () => {
 				primaryType: "",
 				secondaryTypes: [],
 				artistCredits: [],
+				ratingVotes: 0,
 			},
 		]);
 	});

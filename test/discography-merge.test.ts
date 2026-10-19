@@ -32,6 +32,7 @@ function release(title: string, overrides: Partial<ReleaseGroupCandidate> = {}):
 		primaryType: "Album",
 		secondaryTypes: [],
 		artistCredits: [{ mbid: ARTIST_MBID, name: "Daft Punk" }],
+		ratingVotes: 0,
 		...overrides,
 	};
 }
@@ -83,17 +84,100 @@ describe("mergeDiscography — pose", () => {
 		expect(result.posed[0]?.mbid).toBe(album.mbid);
 	});
 
-	it("reports an Album and a Single sharing a title as ambiguous/type when the entry has no releaseType", () => {
-		const album = release("Imagine", { primaryType: "Album" });
-		const single = release("Imagine", { primaryType: "Single" });
+	it("Giant Steps: poses the album, not the single, on an entry without releaseType and completes it", () => {
+		const album = release("Giant Steps", { primaryType: "Album", firstReleaseDate: "1960-01-01" });
+		const single = release("Giant Steps", { primaryType: "Single", firstReleaseDate: "1959-01-01" });
+		const ep = release("Giant Steps", { primaryType: "EP", firstReleaseDate: "1959-06-01" });
+		const existing = [entry("Giant Steps", { year: "1960" })];
+
+		for (const allCredited of [
+			[album, single],
+			[single, album],
+			[single, ep, album],
+		]) {
+			const result = merge({ existing, allCredited });
+			expect(result.ambiguous).toEqual([]);
+			expect(result.posed).toEqual([{ slug: existing[0]?.slug, mbid: album.mbid, filled: ["releaseType"] }]);
+			expect(result.edges[0]).toMatchObject({ mbid: album.mbid, releaseType: "album", year: "1960" });
+		}
+	});
+
+	it("Help!: poses the Album + Soundtrack over its EP, an exact-title pose stays open to every type", () => {
+		const album = release("Help!", { primaryType: "Album", secondaryTypes: ["Soundtrack"] });
+		const ep = release("Help!", { primaryType: "EP" });
+		const live = release("Live at the BBC", { secondaryTypes: ["Live", "Soundtrack"] });
+		const existing = [entry("Help!"), entry("Live at the BBC")];
+
+		const result = merge({ existing, allCredited: [ep, album, live] });
+
+		expect(result.ambiguous).toEqual([]);
+		expect(result.edges.find((e) => e.name === "Help!")).toMatchObject({
+			mbid: album.mbid,
+			releaseType: "album",
+		});
+		expect(result.edges.find((e) => e.name === "Live at the BBC")?.mbid).toBe(live.mbid);
+	});
+
+	it("keeps an Album and a Single sharing a title ambiguous/type when the album is not the only one", () => {
+		const albumA = release("Imagine", { primaryType: "Album", firstReleaseDate: "1971-01-01" });
+		const albumB = release("Imagine", { primaryType: "Album", firstReleaseDate: "1972-01-01" });
+		const single = release("Imagine", { primaryType: "Single", firstReleaseDate: "1971-01-01" });
 		const existing = [entry("Imagine")];
 
-		const result = merge({ existing, allCredited: [album, single] });
+		const result = merge({ existing, allCredited: [albumA, albumB, single] });
 
 		expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "type" }]);
 		expect(result.posed).toEqual([]);
 		expect(result.changed).toBe(false);
 		expect(result.edges).toBe(existing);
+	});
+
+	it("does not pose a lone Live or Compilation album against a single of the same title", () => {
+		const single = release("Hurt", { primaryType: "Single" });
+		const existing = [entry("Hurt")];
+		for (const secondary of ["Live", "Compilation"]) {
+			const album = release("Hurt", { primaryType: "Album", secondaryTypes: [secondary] });
+			const result = merge({ existing, allCredited: [album, single] });
+			expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "type" }]);
+			expect(result.posed).toEqual([]);
+		}
+	});
+
+	it("keeps two albums of the same title ambiguous/multiple", () => {
+		const albumA = release("Mind Games", { primaryType: "Album" });
+		const albumB = release("Mind Games", { primaryType: "Album" });
+		const existing = [entry("Mind Games")];
+
+		const result = merge({ existing, allCredited: [albumA, albumB] });
+
+		expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "multiple" }]);
+		expect(result.posed).toEqual([]);
+	});
+
+	it("does not guess the album when another primary type shares the title", () => {
+		const album = release("Blue Train", { primaryType: "Album" });
+		const other = release("Blue Train", { primaryType: "Broadcast" });
+		const existing = [entry("Blue Train")];
+
+		const result = merge({ existing, allCredited: [album, other] });
+
+		expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "type" }]);
+		expect(result.posed).toEqual([]);
+	});
+
+	it("keeps the type guard when the entry states a releaseType: a single entry never takes the album", () => {
+		const album = release("Imagine", { primaryType: "Album" });
+		const single = release("Imagine", { primaryType: "Single" });
+		const existing = [entry("Imagine", { releaseType: "single" })];
+
+		const result = merge({ existing, allCredited: [album, single] });
+
+		expect(result.edges[0]?.mbid).toBe(single.mbid);
+		expect(result.ambiguous).toEqual([]);
+		// Album-only match for an entry that says "single": still refused.
+		const refused = merge({ existing, allCredited: [album] });
+		expect(refused.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "type" }]);
+		expect(refused.posed).toEqual([]);
 	});
 
 	it("poses the Album mbid when the entry says releaseType album", () => {
@@ -357,7 +441,39 @@ describe("mergeDiscography — additions", () => {
 
 		const result = merge({ existing, candidates: newestFirst });
 
-		expect(result.added.map((a) => a.title)).toEqual(["Old Album", "Old Album 2"]);
+		// Same votes: the older album takes the first free place.
+		expect(result.added.map((a) => a.title)).toEqual(["Old Album 2", "Old Album"]);
+		expect(result.capReached).toBe(true);
+	});
+
+	it("spends the last slots on a voted single before an unvoted album (TRA-625)", () => {
+		const existing = Array.from({ length: 38 }, (_, i) => entry(`Existing ${i}`, { mbid: mbidOf(1000 + i) }));
+		const candidates = [
+			release("Bootleg", { firstReleaseDate: "1990-01-01" }),
+			release("Archive", { firstReleaseDate: "1991-01-01" }),
+			release("Hey Jude", { primaryType: "Single", firstReleaseDate: "1968-08-26", ratingVotes: 30 }),
+			release("Paperback Writer", { primaryType: "Single", firstReleaseDate: "1966-06-10", ratingVotes: 12 }),
+		];
+
+		const result = merge({ existing, candidates });
+
+		expect(result.added.map((a) => a.title)).toEqual(["Hey Jude", "Paperback Writer"]);
+		expect(result.capReached).toBe(true);
+	});
+
+	it("gives the last slots to the most voted albums, not to the newest ones (TRA-625)", () => {
+		const existing = Array.from({ length: 38 }, (_, i) => entry(`Existing ${i}`, { mbid: mbidOf(1000 + i) }));
+		// `kept` arrives newest first: the two bootlegs would fill the places in that order.
+		const candidates = [
+			release("Bootleg 2023", { firstReleaseDate: "2023-01-01" }),
+			release("Bootleg 2015", { firstReleaseDate: "2015-01-01" }),
+			release("Abbey Road", { firstReleaseDate: "1969-09-26", ratingVotes: 71 }),
+			release("Let It Be", { firstReleaseDate: "1970-05-08", ratingVotes: 43 }),
+		];
+
+		const result = merge({ existing, candidates });
+
+		expect(result.added.map((a) => a.title)).toEqual(["Abbey Road", "Let It Be"]);
 		expect(result.capReached).toBe(true);
 	});
 

@@ -10,6 +10,7 @@ import type { PipelineDeps, PipelineInput } from "../src/pipeline.js";
 import type { ArtistNode, GenreNode, LabelNode, ProjectNode, Slug, TrackNode } from "../src/types.js";
 import {
 	artistDraftFixture,
+	DEFAULT_ARTIST_MBID,
 	FIXTURE_WIKI_URL,
 	genreDraftFixture,
 	installPipelineMocks,
@@ -259,7 +260,8 @@ describe("scoped work edges (TRA-462)", () => {
 						firstReleaseDate: "2010-01-01",
 						primaryType: "Album",
 						secondaryTypes: [],
-						artistCredits: [],
+						artistCredits: [{ mbid: DEFAULT_ARTIST_MBID, name: "Rohff" }],
+						ratingVotes: 0,
 					},
 				],
 				unavailable: false,
@@ -417,7 +419,8 @@ describe("scoped work edges, flag off (TRA-509)", () => {
 						firstReleaseDate: "2010-01-01",
 						primaryType: "Album",
 						secondaryTypes: [],
-						artistCredits: [],
+						artistCredits: [{ mbid: DEFAULT_ARTIST_MBID, name: "Rohff" }],
+						ratingVotes: 0,
 					},
 				],
 				unavailable: false,
@@ -963,7 +966,8 @@ describe("MB identity at enrichment (TRA-473)", () => {
 							firstReleaseDate: "1997-06-01",
 							primaryType: "Album",
 							secondaryTypes: [],
-							artistCredits: [],
+							artistCredits: [{ mbid: RONI_MBID, name: "Roni Size" }],
+							ratingVotes: 0,
 						},
 					],
 					unavailable: false,
@@ -1730,7 +1734,8 @@ describe.each([
 				firstReleaseDate: date,
 				primaryType: "Album" as const,
 				secondaryTypes: [],
-				artistCredits: [],
+				artistCredits: [{ mbid: DEFAULT_ARTIST_MBID, name: "Fixture Artist" }],
+				ratingVotes: 0,
 			});
 			const releases = [
 				mbRelease("Old Record", "2001-01-01", "11111111-2222-3333-4444-555555555501"),
@@ -1767,6 +1772,233 @@ describe.each([
 			const on = (await runPipeline({ type: "artist", name: "Fixture Artist" }, DEPS)).node as ArtistNode;
 			expect(on.landmark_project?.slug).toBe(slug("project", "old-record"));
 			expect(on.landmark_project?.mbid).toBe("11111111-2222-3333-4444-555555555501");
+		},
+		TIMEOUT_MS,
+	);
+});
+
+// TRA-615: the artist's MusicBrainz discography replaces the LLM list through the shared policy
+// (src/discography-policy.ts, cap 40); an outage or an empty answer keeps the LLM list.
+describe("artist discography from MusicBrainz, shared policy (TRA-615)", () => {
+	const OTHER_MBID = "99999999-8888-7777-6666-555555555555";
+	const VARIOUS_ARTISTS = "89ad4ac3-39f7-470e-963a-56509c546377";
+	const OWN_CREDIT = [{ mbid: DEFAULT_ARTIST_MBID, name: "Fixture Artist" }];
+
+	let counter = 0;
+	beforeEach(() => {
+		vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "true");
+		counter = 0;
+	});
+	afterEach(() => {
+		vi.unstubAllEnvs();
+	});
+
+	const release = (
+		title: string,
+		date: string,
+		over: Partial<{
+			primaryType: string;
+			secondaryTypes: string[];
+			artistCredits: { mbid: string; name: string }[];
+			ratingVotes: number;
+		}> = {},
+	) => ({
+		mbid: `00000000-0000-4000-8000-${String(++counter).padStart(12, "0")}`,
+		title,
+		firstReleaseDate: date,
+		primaryType: "Album",
+		secondaryTypes: [] as string[],
+		artistCredits: OWN_CREDIT,
+		ratingVotes: 0,
+		...over,
+	});
+
+	/** Runs the artist pipeline with MusicBrainz answering `answer`; returns the node and the log lines. */
+	async function runWith(
+		answer: { releases: ReturnType<typeof release>[]; unavailable: boolean },
+		draft: Record<string, unknown> = artistDraftFixture(),
+	) {
+		installPipelineMocks({ draft });
+		const { fetchArtistDiscographyMb } = await import("../src/musicbrainz.js");
+		vi.mocked(fetchArtistDiscographyMb).mockImplementation(async () => answer);
+		const runPipeline = await loadRunPipeline();
+		const lines: string[] = [];
+		const result = await runPipeline(
+			{ type: "artist", name: "Fixture Artist" },
+			{ ...DEPS, logger: (line) => lines.push(line) },
+		);
+		return { artist: result.node as ArtistNode, lines };
+	}
+
+	it(
+		"keeps 40 entries, every album, none of the parasite releases, newest year first",
+		async () => {
+			const albums = [1, 2, 3, 4, 5].map((n) => release(`Album ${n}`, `${1989 + n}-01-01`));
+			const singles = Array.from({ length: 90 }, (_, i) =>
+				release(`Single ${String(i + 1).padStart(2, "0")}`, `${2000 + Math.floor(i / 5)}-01-01`, {
+					primaryType: "Single",
+				}),
+			);
+			const secondCredit = release("Guest Spot", "2025-01-01", {
+				primaryType: "Single",
+				artistCredits: [
+					{ mbid: OTHER_MBID, name: "Someone Else" },
+					{ mbid: DEFAULT_ARTIST_MBID, name: "Fixture Artist" },
+				],
+			});
+			const compilation = release("Various Hits", "2025-01-01", {
+				secondaryTypes: ["Compilation"],
+				artistCredits: [{ mbid: VARIOUS_ARTISTS, name: "Various Artists" }],
+			});
+			const clubMix = release("Single 01 (Club Mix)", "2025-01-01", { primaryType: "Single" });
+
+			const { artist, lines } = await runWith({
+				releases: [...singles, secondCredit, compilation, clubMix, ...albums],
+				unavailable: false,
+			});
+
+			const names = artist.discography.map((e) => e.name);
+			expect(artist.discography).toHaveLength(40);
+			for (const n of [1, 2, 3, 4, 5]) expect(names).toContain(`Album ${n}`);
+			expect(names).not.toContain("Guest Spot");
+			expect(names).not.toContain("Various Hits");
+			expect(names).not.toContain("Single 01 (Club Mix)");
+			const years = artist.discography.map((e) => Number(e.year));
+			expect(years).toEqual([...years].sort((a, b) => b - a));
+			for (const edge of artist.discography) {
+				expect(edge.mbid).toMatch(/^00000000-0000-4000-8000-/);
+				expect(edge.year).toMatch(/^\d{4}$/);
+				expect(["album", "single"]).toContain(edge.releaseType);
+				expect(edge.slug).toBe(`project:${edge.name.toLowerCase().replace(/\s+/g, "-")}--fixture-artist`);
+				expect(edge.artist).toBe("Fixture Artist");
+			}
+			expect(artist.discography.find((e) => e.name === "Album 1")).toEqual({
+				slug: "project:album-1--fixture-artist",
+				type: "project",
+				name: "Album 1",
+				artist: "Fixture Artist",
+				mbid: expect.stringMatching(/^00000000-0000-4000-8000-/),
+				year: "1990",
+				releaseType: "album",
+			});
+			expect(lines).toContain(
+				"[pipeline] artist discography overridden with 40 MB releases (5 album, 0 ep, 35 single; 3 excluded: credit 1, secondary-type 1, non-canonical 1)",
+			);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"gives the 40 places to the most voted albums, not to the newest ones, and still shows newest first (TRA-625)",
+		async () => {
+			const canon = [
+				release("Abbey Road", "1969-09-26", { ratingVotes: 71 }),
+				release("Revolver", "1966-08-05", { ratingVotes: 61 }),
+				release("Let It Be", "1970-05-08", { ratingVotes: 43 }),
+			];
+			const archives = Array.from({ length: 60 }, (_, i) =>
+				release(`Archive ${String(i + 1).padStart(2, "0")}`, `${1995 + Math.floor(i / 3)}-01-01`),
+			);
+
+			const { artist } = await runWith({ releases: [...archives, ...canon], unavailable: false });
+
+			const names = artist.discography.map((e) => e.name);
+			expect(artist.discography).toHaveLength(40);
+			for (const title of ["Abbey Road", "Revolver", "Let It Be"]) expect(names).toContain(title);
+			const years = artist.discography.map((e) => Number(e.year));
+			expect(years).toEqual([...years].sort((a, b) => b - a));
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"keeps the bare slugs, artist stamped, when ODYSSEY_SCOPED_RELEASE_SLUGS is off",
+		async () => {
+			vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "false");
+			const { artist } = await runWith({
+				releases: [
+					release("Album 1", "1990-01-01"),
+					release("Album 1 (Radio Edit)", "2020-01-01", { primaryType: "Single" }),
+					release("Other Folks", "2021-01-01", {
+						artistCredits: [{ mbid: OTHER_MBID, name: "Someone Else" }],
+					}),
+				],
+				unavailable: false,
+			});
+
+			expect(artist.discography).toEqual([
+				{
+					slug: "project:album-1",
+					type: "project",
+					name: "Album 1",
+					artist: "Fixture Artist",
+					mbid: expect.any(String),
+					year: "1990",
+					releaseType: "album",
+				},
+			]);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"keeps the LLM list untouched, and says so, when MusicBrainz is unavailable",
+		async () => {
+			const baseline = (await runWith({ releases: [], unavailable: false })).artist.discography;
+			const { artist, lines } = await runWith({
+				releases: [release("Partial Page", "2024-01-01")],
+				unavailable: true,
+			});
+
+			expect(artist.discography).toEqual(baseline);
+			expect(artist.discography.map((e) => e.name)).toEqual(["Fixture Album", "Fixture EP"]);
+			expect(lines).toContain("[pipeline] MB discography unavailable, LLM list kept");
+			expect(lines.some((l) => l.includes("overridden"))).toBe(false);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"keeps the LLM list when MusicBrainz answers with no release",
+		async () => {
+			const { artist, lines } = await runWith({ releases: [], unavailable: false });
+
+			expect(artist.discography.map((e) => e.name)).toEqual(["Fixture Album", "Fixture EP"]);
+			expect(lines.some((l) => l.includes("overridden"))).toBe(false);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"keeps the LLM list when the policy rejects every MusicBrainz release",
+		async () => {
+			const { artist, lines } = await runWith({
+				releases: [release("Hit (Club Mix)", "2024-01-01", { primaryType: "Single" })],
+				unavailable: false,
+			});
+
+			expect(artist.discography.map((e) => e.name)).toEqual(["Fixture Album", "Fixture EP"]);
+			expect(lines.some((l) => l.includes("empty after policy (1 excluded: non-canonical 1)"))).toBe(true);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"replaces a landmark_project missing from the new list with its first entry",
+		async () => {
+			const { artist, lines } = await runWith(
+				{
+					releases: [release("Old Record", "2001-01-01"), release("Newest Record", "2024-01-01")],
+					unavailable: false,
+				},
+				artistDraftFixture({
+					landmark_project: { type: "project", name: "Fixture Album", artist: "Fixture Artist" },
+				}),
+			);
+
+			expect(artist.discography.map((e) => e.name)).toEqual(["Newest Record", "Old Record"]);
+			expect(artist.landmark_project?.slug).toBe(artist.discography[0]?.slug);
+			expect(lines.some((l) => l.includes("landmark_project not in discography"))).toBe(true);
 		},
 		TIMEOUT_MS,
 	);
