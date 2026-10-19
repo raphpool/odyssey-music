@@ -214,7 +214,7 @@ worktrees simultanés.
 | 1.2 | TRA-634 · Core · `GenreSelectionModel` : sélection, compteurs, CTA, brouillon, restauration v2 | tier/2 | 3 | — ∥ 1.1, 1.4, 2.x |
 | 1.3 | TRA-638 · Core · `GenreSelectionModel` : restauration d'un profil v1 | tier/2 | 2 | 1.2 |
 | 1.4 | TRA-635 · Doc · publier ce plan et poser les renvois | tier/1 | 1 | — ∥ |
-| 2.1 | TRA-636 · DS · `SubgenreChip`, `GenreAccordionCard`, `Track1Motion.spring`, glyphe `arrowDownRight` | tier/1 | 3 | — ∥ Partie 1 |
+| 2.1 | TRA-636 · DS · `SubgenreChip`, `GenreAccordionCard`, `Track1Motion.spring`, glyphe `arrowDownRight` | tier/1 | 3 | 1.1 |
 | 2.2 | TRA-637 · App · déplacer le suivi de défilement dans `OnboardingScrollTick.swift` | tier/1 | 1 | — ∥ |
 | 3.1 | TRA-639 · App · basculer `GenresStepView` en accordéon, une étape, parcours UI adaptés | tier/2 | 5 | 1.1, 1.3, 2.1, 2.2 |
 | 3.2 | TRA-640 · Tests UI · scénarios propres à l'accordéon | tier/1 | 2 | 3.1 |
@@ -404,6 +404,9 @@ référencé.
 
 - [ ] TRA-636 Composants de l'écran accordéon
 
+Dépend de 1.1 (TRA-631), qui fournit `OnboardingCopy.subgenreCount` et `selectedCount`, repris par
+`GenreAccordionCard.accessibilityLabel`.
+
 Fichiers :
 - `ios/Track1/DesignSystem/Components/Onboarding/SubgenreChip.swift` — nouveau (pbxproj
   `F1…0410`/`B1…0410`, groupe `A30000000000000000000229 /* Onboarding */`, phase Sources
@@ -500,7 +503,7 @@ Critères d'acceptation :
       déclaration.
 - [ ] `ios-check` vert ; `ProfileFlowTests` (8 parcours) inchangés et verts.
 
-Tests attendus : aucun nouveau (la règle pure est `ScrollTickDetectorTests`, Core, 6 tests, inchangée).
+Tests attendus : aucun nouveau (la règle pure est `ScrollTickDetectorTests`, Core, 8 tests, inchangée).
 
 ### Partie 3 — App : la bascule, les parcours, le nettoyage
 
@@ -714,7 +717,8 @@ Tests attendus : aucun nouveau ; suppressions couvertes par les tests restants.
   qu'il n'est pas réenregistré, les mêmes `genre_ids` qu'avant.
 - L'édition depuis l'onglet Genres passe par le même écran et se termine sur « Enregistrer » ; les tuiles
   de l'onglet montrent les familles dérivées.
-- `swift test` vert avec un nombre de tests ≥ celui d'avant ce projet ; `ios-check` vert avec les 8
+- `swift test` vert ; le nombre de tests du package est ≥ celui d'avant ce projet moins les tests de
+  l'ancien modèle supprimés en 3.3 ; `ios-check` vert avec les 8
   parcours adaptés et les 2 nouveaux ; `npm run check` vert.
 - `grep -rn "GenreOnboardingModel\|SubgenresStepView\|SubgenreRow\b\|SelectAllChip\|wholeFamilyHint" ios/`
   ne renvoie rien.

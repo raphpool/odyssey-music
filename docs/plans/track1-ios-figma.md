@@ -1471,7 +1471,7 @@ Incrément visible (J.4) : le premier lancement suit les écrans 1.1 → 1.2 →
   `OnboardingContractTests` (XCTest).
 
 #### J.2 — Écrans 1.1 Welcome et 1.2 Genres
-Écrans remplacés le 2026-10-18 par `docs/plans/ios-onboarding-accordion.md`.
+Écran 1.2 remplacé par `docs/plans/ios-onboarding-accordion.md`.
 
 - **Parent :** ONB · **Tier :** tier/2 · **Diff :** ~330 lignes, 5 fichiers · **Dépend de :** J.1,
   C.1, D.1, D.2, Q1, Q2 · **Parallélisable :** oui · **pbxproj :** `0360–036F`.
