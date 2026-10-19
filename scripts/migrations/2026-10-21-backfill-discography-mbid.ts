@@ -33,7 +33,11 @@
  *
  * Pace: ONE MusicBrainz request at a time, at the pace `mbFetch` enforces (1 request per second, shared
  * queue, `background` priority). `fetchArtistDiscographyMb` starts its three types together; the queue spaces
- * them and the fetch handed to it is serialized here, so two requests are never in flight. About two thousand
+ * them and the fetch handed to it is serialized here, so two requests are never in flight. Known trade-off:
+ * the client arms its abort timer before the fetch is called, so a request held behind a slow one (more than
+ * a second late) spends part of its timeout waiting. In a degraded MusicBrainz that turns into `unavailable`
+ * (nothing written, retried by the next run), never into a wrong write. `runBackfill` patches two process-wide
+ * globals while it runs, so it is not re-entrant. About two thousand
  * requests for the repository. No header is added to the client's own (its User-Agent comes from config).
  *
  * Manifest (--manifest, default out/discography-mbid.json): deterministic, sorted by slug, no timestamp, no
@@ -187,9 +191,14 @@ const hasMbid = (edge: unknown): boolean =>
 
 const countWithMbid = (edges: readonly unknown[]): number => edges.filter(hasMbid).length;
 
-function fingerprintOf(edges: readonly unknown[]): string {
+// The identity (MBID, name, kind) is part of it: a decision carried by --resume is about THIS artist as the
+// identity guard saw it, so a corrected MBID or a renamed node is decided again even if its list is the same.
+function fingerprintOf(identity: string, edges: readonly unknown[]): string {
 	const pairs = edges.map((e) => (isRecord(e) ? [e.slug, e.mbid ?? null] : null));
-	return createHash("sha256").update(JSON.stringify(pairs)).digest("hex").slice(0, 16);
+	return createHash("sha256")
+		.update(JSON.stringify([identity, pairs]))
+		.digest("hex")
+		.slice(0, 16);
 }
 
 const sameMbid = (a: string, b: string): boolean => a.toLowerCase() === b.toLowerCase();
@@ -334,14 +343,16 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 
 	let writtenFiles = 0;
 	let pending: PendingWrite[] = [];
-	const writeManifest = async (): Promise<void> => {
+	// A checkpoint keeps the decisions of the previous manifest for the artists not reached yet: it overwrites the
+	// very file --resume reads, and a crash must not lose what that run had settled. The last write is this run's.
+	const writeManifest = async (final: boolean): Promise<void> => {
 		await mkdir(dirname(manifestPath), { recursive: true });
-		await atomicWriteJson(manifestPath, buildManifest(entries));
+		await atomicWriteJson(manifestPath, buildManifest(final ? entries : new Map([...prior, ...entries])));
 	};
 	// The checkpoint comes first: a crash between it and the writes leaves nodes the manifest already decided
 	// and does not know to be written, which --resume then processes again (an apply needs `after` on disk).
-	const checkpoint = async (): Promise<void> => {
-		await writeManifest();
+	const checkpoint = async (final: boolean): Promise<void> => {
+		await writeManifest(final);
 		if (apply) {
 			for (const { path, next } of pending) {
 				await atomicWriteJson(path, next);
@@ -382,7 +393,7 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 			continue;
 		}
 		const parsed = nodePayloadSchema.safeParse(raw);
-		if (!parsed.success || parsed.data.type !== "artist" || !Array.isArray(raw.discography)) {
+		if (!parsed.success || parsed.data.type !== "artist") {
 			refuse("invalid-node");
 			continue;
 		}
@@ -391,7 +402,8 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 			skip("cap");
 			continue;
 		}
-		const current = fingerprintOf(rawEdges);
+		const identity = `${mbid}|${artist.name}|${artist.artist_kind ?? ""}`;
+		const current = fingerprintOf(identity, rawEdges);
 		const decided = prior.get(slug);
 		if (
 			decided?.fingerprint !== undefined &&
@@ -407,7 +419,7 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 		if (++sinceCheckpoint >= CHECKPOINT_EVERY) {
 			sinceCheckpoint = 0;
 			// The entry of this artist is not in yet: it lands in the next checkpoint with the others.
-			await checkpoint();
+			await checkpoint(false);
 		}
 		if (unavailable) {
 			skip("unavailable");
@@ -472,12 +484,12 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 			withMbidBefore: counts.withMbidBefore,
 			withMbidAfter: countWithMbid(merge.edges),
 			...decision,
-			fingerprint: { before: current, after: fingerprintOf(merge.edges) },
+			fingerprint: { before: current, after: fingerprintOf(identity, merge.edges) },
 		});
 		pending.push({ path, next });
 	}
 
-	await checkpoint();
+	await checkpoint(true);
 	const manifest = buildManifest(entries);
 	const failed = Object.values(manifest.artists).some(
 		(e) => e.refused !== undefined || e.skipped === "unavailable",

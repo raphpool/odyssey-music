@@ -596,6 +596,49 @@ describe("--resume", () => {
 		expect(midRun).toBeGreaterThanOrEqual(24);
 		expect(Object.keys((await readManifest()).artists)).toHaveLength(26);
 	});
+
+	it("keeps the previous decisions of the artists not reached yet in a checkpoint of a resumed run", async () => {
+		const w = world();
+		for (let i = 1; i <= 26; i++) {
+			const n = String(i).padStart(2, "0");
+			const id = mb(5100 + i);
+			await put(artistNode(`c${n}`, `C${n}`, { mbid: id }));
+			w.byArtist.set(id, [rg(150 + i, `Record ${n}`, "Album", "2020-01-01", [{ id, name: `C${n}` }])]);
+		}
+		// The dry-run decides everything and writes nothing: the apply that resumes from it must redo every artist.
+		await runBackfill(options(w));
+		let midRun = 0;
+		w.onRequest = (artist) => {
+			if (artist === mb(5126) && midRun === 0) {
+				midRun = Object.keys(JSON.parse(readFileSyncOrEmpty(manifestFile())).artists ?? {}).length;
+			}
+		};
+		await runBackfill(options(w, { apply: true, resume: true }));
+		expect(midRun).toBe(26);
+	});
+
+	it("decides an artist again when its identity changed, even if its list did not", async () => {
+		const w = world();
+		kode9World(w);
+		await putKode9();
+		await runBackfill(options(w, { apply: true }));
+		const node = await readNode("artist:kode9");
+		const corrected = mb(9);
+		await writeFile(
+			pathOf("artist:kode9"),
+			`${JSON.stringify({ ...node, mbid: corrected }, null, 2)}\n`,
+			"utf8",
+		);
+		w.byArtist.set(corrected, [
+			rg(90, "Another Record", "Album", "2020-01-01", [{ id: corrected, name: "Kode9" }]),
+		]);
+		w.requests.length = 0;
+
+		await runBackfill(options(w, { apply: true, resume: true }));
+
+		expect(new Set(w.requests.map((r) => r.artist))).toEqual(new Set([corrected]));
+		expect(entryOf(await readManifest(), "artist:kode9").mbid).toBe(corrected);
+	});
 });
 
 describe("one MusicBrainz request at a time", () => {
