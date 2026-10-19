@@ -1600,7 +1600,7 @@ export type MbCompilationCover =
 	| { kind: "ambiguous" }
 	| { kind: "unavailable" };
 
-const VARIOUS_ARTISTS_MBID = "89ad4ac3-39f7-470e-963a-56509c546377";
+export const VARIOUS_ARTISTS_MBID = "89ad4ac3-39f7-470e-963a-56509c546377";
 
 /** Secondary types of an untrusted release-group object, lowercased; anything that is not a string is dropped. */
 function secondaryTypesOf(group: Record<string, unknown>): string[] {
