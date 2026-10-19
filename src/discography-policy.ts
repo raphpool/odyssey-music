@@ -164,6 +164,11 @@ function byNewestFirst(a: ReleaseGroupCandidate, b: ReleaseGroupCandidate): numb
 	return a.mbid < b.mbid ? -1 : 1;
 }
 
+// The one place that says what "voted" means: the cap's priority and the unrated cut must agree on it.
+function isVoted(c: ReleaseGroupCandidate): boolean {
+	return c.ratingVotes > 0;
+}
+
 // Who gets the room when there are more candidates than places (TRA-625). In order:
 //  (a) voted (ratingVotes > 0) before unvoted, whatever the type: a voted single ("Hey Jude") beats an
 //      unmarked bootleg album;
@@ -177,8 +182,8 @@ function byNewestFirst(a: ReleaseGroupCandidate, b: ReleaseGroupCandidate): numb
 // with no vote at all falls to (b) then (d): albums first, oldest to newest. An unknown date ("") sorts
 // last among equals.
 function byCapPriority(a: ReleaseGroupCandidate, b: ReleaseGroupCandidate): number {
-	const votedA = a.ratingVotes > 0;
-	if (votedA !== b.ratingVotes > 0) return votedA ? -1 : 1;
+	const votedA = isVoted(a);
+	if (votedA !== isVoted(b)) return votedA ? -1 : 1;
 	if (additionRank(a) !== additionRank(b)) return additionRank(a) - additionRank(b);
 	if (a.ratingVotes !== b.ratingVotes) return b.ratingVotes - a.ratingVotes;
 	if (a.firstReleaseDate !== b.firstReleaseDate) {
@@ -264,11 +269,11 @@ export function selectReleases(
 	}
 
 	const distinct = dedupeBySlug(eligible, policy);
-	const votedCount = distinct.filter((c) => c.ratingVotes > 0).length;
+	const votedCount = distinct.filter(isVoted).length;
 	const cutUnrated = votedCount >= MIN_VOTED_FOR_UNRATED_CUT;
 	const rated: ReleaseGroupCandidate[] = [];
 	for (const candidate of distinct) {
-		if (cutUnrated && candidate.ratingVotes <= 0 && !isRecentRelease(candidate, policy)) {
+		if (cutUnrated && !isVoted(candidate) && !isRecentRelease(candidate, policy)) {
 			excluded.push({ mbid: candidate.mbid, title: candidate.title, reason: "unrated" });
 		} else {
 			rated.push(candidate);
