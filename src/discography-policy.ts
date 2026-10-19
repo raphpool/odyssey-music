@@ -9,7 +9,7 @@
  * 75 singles).
  */
 import { VARIOUS_ARTISTS_MBID } from "./musicbrainz.js";
-import { makeScopedSlug, normalizeTitleBody } from "./slug.js";
+import { makeScopedSlug, normalizeTitleBody, stripEditionNoise } from "./slug.js";
 import type { EdgeRef, Slug } from "./types.js";
 
 // Re-exported so callers keep one import site for the policy; the constant itself lives with the MusicBrainz client.
@@ -44,8 +44,11 @@ export const DEFAULT_DISCOGRAPHY_CAP = 40;
  * 2026-10-19: 3, the policy changed with TRA-628 (unvoted release groups cut once an artist has
  * MIN_VOTED_FOR_UNRATED_CUT voted ones, except recent releases; an album is posed ignoring its Live / Compilation
  * namesakes): a manifest of version 2 is not replayed.
+ * 2026-10-19: 4, the policy changed with TRA-629 (an entry that differs from a release group only by a trailing
+ * "(1979)" / "[1979]" year or an "EP" suffix is posed its mbid instead of getting a twin added): a manifest of
+ * version 3 is not replayed.
  */
-export const DISCOGRAPHY_POLICY_VERSION = 3;
+export const DISCOGRAPHY_POLICY_VERSION = 4;
 
 // TRA-628 (measured 2026-10-19 on MusicBrainz): John Lennon has 69 eligible release groups, 14 voted and 55
 // not (The Lost Lennon Tapes, Archives, outtakes), and the cap used to fill with the oldest of them. From this
@@ -116,6 +119,37 @@ export function isNonCanonicalReleaseTitle(title: string): boolean {
 	if (bracket !== undefined && isVariantQualifier(bracket)) return true;
 	const dashSuffix = TRAILING_DASH_SUFFIX.exec(normalized)?.[1];
 	return dashSuffix !== undefined && isVariantQualifier(dashSuffix);
+}
+
+// TRA-629 (measured 2026-10-19, full dry-run of the backfill): about 30 of the 50 near duplicates were the same
+// work under a different suffix ("Ladies' Night (1979)" vs "Ladies' Night", "Xpander EP" vs "Xpander"). The
+// backfill never removes anything, so the twin it added next to such an entry would be permanent.
+// A year needs its brackets, so a title that is a year ("1979") keeps it; "EP" needs a space, a dash or a
+// bracket before it, so "Deep" and "EPic" are untouched.
+const TRAILING_YEAR_SUFFIX = /\s*(?:\(\s*((?:19|20)\d{2})\s*\)|\[\s*((?:19|20)\d{2})\s*\])$/u;
+const TRAILING_EP_SUFFIX = /(?:\s+[-\u2013\u2014]\s+ep|\s*\(\s*ep\s*\)|\s*\[\s*ep\s*\]|\s+ep)$/iu;
+
+/**
+ * Looser identity than normalizeTitleBody, for reconciling an existing entry with a release group: the title
+ * body once a trailing "(1979)" / "[1979]" year (1900 to 2099) and a trailing "EP" ("X EP", "X (EP)", "X [EP]",
+ * "X - EP") are removed, in any order and as many times as they come. A suffix is never removed if nothing
+ * would be left of the title. Both sides of a comparison go through it.
+ */
+export function reconciliationKey(title: string): string {
+	let rest = stripEditionNoise(title.normalize("NFKD"));
+	for (;;) {
+		const stripped = rest.replace(TRAILING_YEAR_SUFFIX, "").replace(TRAILING_EP_SUFFIX, "").trim();
+		if (stripped === rest || normalizeTitleBody(stripped) === "") break;
+		rest = stripped;
+	}
+	return normalizeTitleBody(rest);
+}
+
+// The year a title ends with, "(1979)" or "[1979]": what a legacy entry states when it has no `year` field.
+function trailingYearOf(title: string): number | null {
+	const match = TRAILING_YEAR_SUFFIX.exec(stripEditionNoise(title.normalize("NFKD")));
+	const year = match?.[1] ?? match?.[2];
+	return year === undefined ? null : Number(year);
 }
 
 // MBIDs are UUIDs: case carries no meaning, and a hand-supplied upper-case id must not exclude a whole
@@ -391,7 +425,11 @@ type PoseVerdict =
 	| { kind: "ambiguous"; reason: "multiple" | "type" | "year-mismatch" }
 	| { kind: "pose"; match: ReleaseGroupCandidate };
 
-function decidePose(entry: EdgeRef, matches: readonly ReleaseGroupCandidate[]): PoseVerdict {
+function decidePose(
+	entry: EdgeRef,
+	matches: readonly ReleaseGroupCandidate[],
+	titleYear: number | null = null,
+): PoseVerdict {
 	const [first] = matches;
 	if (first === undefined) return { kind: "none" };
 	let chosen: ReleaseGroupCandidate | undefined = first;
@@ -428,7 +466,7 @@ function decidePose(entry: EdgeRef, matches: readonly ReleaseGroupCandidate[]): 
 	if (entry.releaseType !== undefined && chosen.primaryType.toLowerCase() !== entry.releaseType) {
 		return { kind: "ambiguous", reason: "type" };
 	}
-	const entryYear = yearOf(entry.year);
+	const entryYear = yearOf(entry.year) ?? titleYear;
 	const matchYear = yearOf(chosen.firstReleaseDate);
 	if (entryYear !== null && matchYear !== null && Math.abs(entryYear - matchYear) > MAX_YEAR_DRIFT) {
 		return { kind: "ambiguous", reason: "year-mismatch" };
@@ -459,11 +497,27 @@ function poseOnEntry(
 	return { edge, filled };
 }
 
+// Release groups by identity key, one per mbid in a group; a title with an empty key is left out.
+function groupCredited(
+	credited: readonly ReleaseGroupCandidate[],
+	keyOf: (title: string) => string,
+): Map<string, ReleaseGroupCandidate[]> {
+	const groups = new Map<string, ReleaseGroupCandidate[]>();
+	for (const candidate of credited) {
+		const key = keyOf(candidate.title);
+		if (key === "") continue;
+		const group = groups.get(key);
+		if (group === undefined) groups.set(key, [candidate]);
+		else if (!group.some((other) => sameMbid(other.mbid, candidate.mbid))) group.push(candidate);
+	}
+	return groups;
+}
+
 /**
  * Pure merge of MusicBrainz release groups into an artist's existing discography (graph-integrity plan,
  * part 8, 8-D3). It adds and poses, it never removes: an existing entry keeps its `name`, `slug` and
- * `artist` and only gains an `mbid` (exact normalized-title match, see decidePose) plus a `year` /
- * `releaseType` it lacked. Release groups missing from the list are appended up to `policy.cap`, as the
+ * `artist` and only gains an `mbid` (exact normalized-title match, else the same title up to a trailing year or
+ * "EP", see reconciliationKey and decidePose) plus a `year` / `releaseType` it lacked. Release groups missing from the list are appended up to `policy.cap`, as the
  * very edge `toDiscographyEdge` builds; only the slug is replaced when a project node already exists for
  * the mbid (or a redirect leads to one). A candidate whose title extends, or is extended by, that of an
  * entry still without mbid is added anyway but flagged `nearDuplicateOf`: we measure, we do not reconcile.
@@ -473,23 +527,31 @@ function poseOnEntry(
 export function mergeDiscography(input: MergeInput): MergeResult {
 	const { existing, candidates, allCredited, policy, projectIndex } = input;
 
-	const creditedByTitle = new Map<string, ReleaseGroupCandidate[]>();
-	for (const credited of allCredited) {
-		const body = normalizeTitleBody(credited.title);
-		if (body === "") continue;
-		const group = creditedByTitle.get(body);
-		if (group === undefined) creditedByTitle.set(body, [credited]);
-		else if (!group.some((other) => sameMbid(other.mbid, credited.mbid))) group.push(credited);
-	}
+	const creditedByTitle = groupCredited(allCredited, normalizeTitleBody);
+	// TRA-629: the same release groups under the looser key. It is only consulted when the exact title finds
+	// nothing, so what posed before keeps posing the same way.
+	const creditedByKey = groupCredited(allCredited, reconciliationKey);
+	// An mbid sits on one entry only: the ones already held, then the ones posed in this run, are not offered
+	// to the looser key (a v3 run may have added "Ladies' Night" next to a legacy "Ladies' Night (1979)").
+	const heldMbids = new Set(existing.flatMap((e) => (hasMbid(e) ? [(e.mbid ?? "").toLowerCase()] : [])));
 
 	const posed: MergeResult["posed"] = [];
 	const ambiguous: MergeResult["ambiguous"] = [];
 	const afterPose = existing.map((entry) => {
 		if (hasMbid(entry)) return entry;
-		const verdict = decidePose(entry, creditedByTitle.get(normalizeTitleBody(entry.name)) ?? []);
+		const exact = creditedByTitle.get(normalizeTitleBody(entry.name)) ?? [];
+		const looser =
+			exact.length > 0
+				? []
+				: (creditedByKey.get(reconciliationKey(entry.name)) ?? []).filter(
+						(c) => !heldMbids.has(c.mbid.toLowerCase()),
+					);
+		const verdict =
+			exact.length > 0 ? decidePose(entry, exact) : decidePose(entry, looser, trailingYearOf(entry.name));
 		if (verdict.kind === "ambiguous") ambiguous.push({ slug: entry.slug, reason: verdict.reason });
 		if (verdict.kind !== "pose") return entry;
 		const { edge, filled } = poseOnEntry(entry, verdict.match);
+		heldMbids.add(verdict.match.mbid.toLowerCase());
 		posed.push({ slug: entry.slug, mbid: verdict.match.mbid, filled });
 		return edge;
 	});
@@ -500,6 +562,11 @@ export function mergeDiscography(input: MergeInput): MergeResult {
 	const unmatched = afterPose
 		.filter((e) => !hasMbid(e))
 		.map((e) => ({ slug: e.slug, body: normalizeTitleBody(e.name) }));
+	// An entry still without mbid after the pose is either ambiguous or has no release group: a release group
+	// that only its suffix tells apart from it is not added next to it (TRA-629). An entry that holds an mbid
+	// is settled, and "Mirage EP" next to a posed "Mirage" is another release group.
+	const takenKeys = new Set(afterPose.filter((e) => !hasMbid(e)).map((e) => reconciliationKey(e.name)));
+	takenKeys.delete("");
 
 	const additions: EdgeRef[] = [];
 	const added: MergeResult["added"] = [];
@@ -513,6 +580,7 @@ export function mergeDiscography(input: MergeInput): MergeResult {
 		if (candidate.mbid === "" || takenMbids.has(candidate.mbid.toLowerCase())) continue;
 		const body = normalizeTitleBody(candidate.title);
 		if (takenBodies.has(body)) continue;
+		if (takenKeys.has(reconciliationKey(candidate.title))) continue;
 		const base = toDiscographyEdge(candidate, policy);
 		if (base === null || base.releaseType === undefined) continue;
 		const slug =
