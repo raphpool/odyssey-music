@@ -389,6 +389,68 @@ describe("--apply", () => {
 		expect(list.find((e) => e.name === "Black Sun")?.slug).toBe("project:black-sun-2015--kode9");
 		expect(list.find((e) => e.name === "Nothing")?.slug).toBe("project:nothing-ep--kode9");
 	});
+
+	it("does not follow a redirect to a work scoped on another artist", async () => {
+		const w = world();
+		const twin = mb(11);
+		w.byArtist.set(twin, [
+			rg(70, "Human After All", "Album", "2011-01-01", [{ id: twin, name: "Twin Atlantic" }]),
+		]);
+		await put(artistNode("twin-atlantic", "Twin Atlantic", { mbid: twin }));
+		// Daft Punk's node was renamed: the table sends the Twin Atlantic spelling of the slug to Daft Punk's work.
+		await put(projectNode("human-after-all--daft-punk", "Human After All"));
+		await writeFile(
+			join(dataDir, "slug-redirects.json"),
+			JSON.stringify({
+				redirects: { "project:human-after-all--twin-atlantic": "project:human-after-all--daft-punk" },
+			}),
+			"utf8",
+		);
+
+		await runBackfill(options(w, { apply: true }));
+
+		const list = (await readNode("artist:twin-atlantic")).discography as { slug: string }[];
+		expect(list.map((e) => e.slug)).toEqual(["project:human-after-all--twin-atlantic"]);
+	});
+});
+
+describe("exit code", () => {
+	async function putMany(w: World, count: number, down: number[]): Promise<void> {
+		for (let i = 1; i <= count; i++) {
+			const n = String(i).padStart(2, "0");
+			const id = mb(7200 + i);
+			await put(artistNode(`e${n}`, `E${n}`, { mbid: id }));
+			w.byArtist.set(
+				id,
+				down.includes(i)
+					? "down"
+					: [rg(250 + i, `Record ${n}`, "Album", "2020-01-01", [{ id, name: `E${n}` }])],
+			);
+		}
+	}
+
+	it("is 0 when only a few artists are unavailable, which the manifest lists and the summary counts", async () => {
+		const w = world();
+		await putMany(w, 10, [3]);
+		const result = await runBackfill(options(w, { apply: true }));
+		expect(result.exitCode).toBe(0);
+		expect(result.requests).toEqual({ asked: 10, unavailable: 1 });
+		expect(entryOf(await readManifest(), "artist:e03").skipped).toBe("unavailable");
+		expect(formatSummary(result, true, "m.json")).toContain("1 of 10 artist(s) unavailable");
+		expect((await readNode("artist:e03")).discography).toEqual([]);
+	});
+
+	it("passes at exactly the rate and fails above it", async () => {
+		const exact = world();
+		await putMany(exact, 10, [3, 4]);
+		expect((await runBackfill(options(exact))).exitCode).toBe(0);
+
+		const above = world();
+		await putMany(above, 10, [3, 4, 5]);
+		const result = await runBackfill(options(above));
+		expect(result.exitCode).toBe(1);
+		expect(formatSummary(result, false, "m.json")).toContain("the service is down");
+	});
 });
 
 describe("skipped artists", () => {
@@ -638,6 +700,80 @@ describe("--resume", () => {
 
 		expect(new Set(w.requests.map((r) => r.artist))).toEqual(new Set([corrected]));
 		expect(entryOf(await readManifest(), "artist:kode9").mbid).toBe(corrected);
+	});
+
+	it("gives the manifest of a run in one go after a cut, even for an artist that reached the cap during the run", async () => {
+		const w = world();
+		// d01 holds 39 entries, all with their mbid: the run adds the 40th, and from then on it is at the cap.
+		const d01 = mb(7301);
+		const oldWorks = Array.from({ length: 39 }, (_, i) =>
+			rg(400 + i, `Old ${i}`, "Album", "2000-01-01", [{ id: d01, name: "D01" }]),
+		);
+		await put(
+			artistNode("d01", "D01", {
+				mbid: d01,
+				discography: oldWorks.map((g) =>
+					edge("project", `${g.title.toLowerCase().replace(" ", "-")}--d01`, g.title, {
+						artist: "D01",
+						mbid: g.id,
+						year: "2000",
+						releaseType: "album",
+					}),
+				),
+			}),
+		);
+		w.byArtist.set(d01, [...oldWorks, rg(500, "New One", "Album", "2021-01-01", [{ id: d01, name: "D01" }])]);
+		await putKode9();
+		kode9World(w);
+		await putDaftPunk();
+		daftWorld(w);
+
+		// The reference: one go, dry-run (same bytes as an apply).
+		await runBackfill(options(w, { manifestPath: manifestFile("one-go.json") }));
+		// The cut: only the first two artists were decided and written, then the rest is resumed.
+		await runBackfill(
+			options(w, {
+				apply: true,
+				only: ["artist:d01", "artist:daft-punk"] as Slug[],
+				manifestPath: manifestFile("cut.json"),
+			}),
+		);
+		const cut = await readManifest(manifestFile("cut.json"));
+		expect(entryOf(cut, "artist:d01").after).toBe(40);
+		w.requests.length = 0;
+		await runBackfill(options(w, { apply: true, resume: true, manifestPath: manifestFile("cut.json") }));
+
+		// d01 and Daft Punk were carried (not asked again), and the manifest is the one of the run in one go.
+		expect(new Set(w.requests.map((r) => r.artist))).toEqual(new Set([KODE9]));
+		expect(await readFile(manifestFile("cut.json"), "utf8")).toBe(
+			await readFile(manifestFile("one-go.json"), "utf8"),
+		);
+		expect(entryOf(await readManifest(manifestFile("cut.json")), "artist:d01").skipped).toBeUndefined();
+	});
+
+	it("does not replay a manifest written under another policy version", async () => {
+		const w = world();
+		kode9World(w);
+		await putKode9();
+		await runBackfill(options(w, { apply: true }));
+		w.requests.length = 0;
+
+		// Same cache, same answers, same manifest, but the policy says it decides differently now.
+		vi.resetModules();
+		vi.doMock("../src/discography-policy.js", async (importOriginal) => ({
+			...(await importOriginal<typeof import("../src/discography-policy.js")>()),
+			DISCOGRAPHY_POLICY_VERSION: 99,
+		}));
+		try {
+			const next = await import("../scripts/migrations/2026-10-21-backfill-discography-mbid.js");
+			(await import("../src/config.js")).musicBrainzConfig.minIntervalMs = 0;
+			await next.runBackfill(options(w, { apply: true, resume: true }));
+		} finally {
+			vi.doUnmock("../src/discography-policy.js");
+			vi.resetModules();
+		}
+
+		expect(new Set(w.requests.map((r) => r.artist))).toEqual(new Set([KODE9]));
 	});
 });
 

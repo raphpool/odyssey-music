@@ -32,6 +32,12 @@ export interface DiscographyPolicy {
 
 export const DEFAULT_DISCOGRAPHY_CAP = 40;
 
+/**
+ * Bump it whenever the selection or the merge rules change what they decide for the same MusicBrainz answers
+ * (TRA-618): the discography backfill's `--resume` carries a decision only if it was made under this version.
+ */
+export const DISCOGRAPHY_POLICY_VERSION = 1;
+
 export type ExclusionReason =
 	| "secondary-type"
 	| "primary-type"

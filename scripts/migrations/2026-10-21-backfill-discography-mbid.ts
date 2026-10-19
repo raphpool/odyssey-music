@@ -58,7 +58,10 @@
  * of the cache is a usage error); it rewrites the manifest with those artists only, so give it its own
  * --manifest.
  *
- * Exit codes: 0; 1 when at least one artist is `unavailable` or `refused`; 2 on a usage error.
+ * Exit codes: 0; 1 when at least one artist is `refused`, or when more than MAX_UNAVAILABLE_RATE of the artists
+ * asked about are `unavailable` (fewer stay listed in the manifest and counted by the summary, exit 0: the
+ * dispatcher's decision of 2026-10-19, amending the ticket, because the channel does not pass --resume and one
+ * flaky answer in two thousand must not refuse its run); 2 on a usage error.
  *
  * Migration channel (deploy/sync-genre-cache.sh): `--apply`, `--manifest` and `--data-dir` are the flags it
  * passes; nothing here is specific to it.
@@ -73,6 +76,7 @@ import { pathToFileURL } from "node:url";
 import { atomicWriteJson, NodeCache } from "../../src/cache.js";
 import {
 	DEFAULT_DISCOGRAPHY_CAP,
+	DISCOGRAPHY_POLICY_VERSION,
 	type ExclusionReason,
 	type MergeResult,
 	mergeDiscography,
@@ -82,7 +86,7 @@ import {
 import { resolveReadSlug } from "../../src/genre-registry.js";
 import { fetchArtistDiscographyMb } from "../../src/musicbrainz.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
-import { normalizeSlugBody, pickScopeArtistName } from "../../src/slug.js";
+import { normalizeSlugBody, pickScopeArtistName, scopeMatchesArtist } from "../../src/slug.js";
 import type { EdgeRef, Slug } from "../../src/types.js";
 import {
 	defaultDataDir,
@@ -177,12 +181,31 @@ export interface BackfillOptions {
 	log?: (line: string) => void;
 }
 
+/**
+ * The share of the artists MusicBrainz was asked about that may end `unavailable` before the run exits 1 (model:
+ * MAX_UNAVAILABLE_RATE of the similar-artists backfill). A few failures in two thousand requests are noise: they are
+ * listed in the manifest, nothing is written for them, and a --resume run retries them. More than a fifth means
+ * MusicBrainz is down, and a run that ships what is left would not be what the preview showed. Strictly greater
+ * than: 20 % exactly passes. Computed over the artists of THIS run that made a request.
+ */
+export const MAX_UNAVAILABLE_RATE = 0.2;
+
 export interface BackfillResult {
 	manifest: DiscographyManifest;
 	/** Node files really written (always 0 without --apply). */
 	written: number;
+	/** Artists of this run MusicBrainz was asked about, and those that ended `unavailable`. */
+	requests: { asked: number; unavailable: number };
 	exitCode: 0 | 1 | 2;
 }
+
+/** A refusal always fails the run; unavailable artists do only past MAX_UNAVAILABLE_RATE. */
+function failedRun(manifest: DiscographyManifest, requests: BackfillResult["requests"]): boolean {
+	return manifest.totals.refused > 0 || isOutage(requests);
+}
+
+const isOutage = (requests: BackfillResult["requests"]): boolean =>
+	requests.asked > 0 && requests.unavailable / requests.asked > MAX_UNAVAILABLE_RATE;
 
 const compareSlugs = (a: string, b: string): number => (a < b ? -1 : a > b ? 1 : 0);
 
@@ -306,7 +329,12 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 		const unknown = [...only].filter((slug) => !known.has(slug)).sort(compareSlugs);
 		if (unknown.length > 0) {
 			log(`--only: not an artist of the cache: ${unknown.join(", ")}`);
-			return { manifest: buildManifest(new Map()), written: 0, exitCode: 2 };
+			return {
+				manifest: buildManifest(new Map()),
+				written: 0,
+				requests: { asked: 0, unavailable: 0 },
+				exitCode: 2,
+			};
 		}
 	}
 
@@ -333,7 +361,6 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 	for (const key of redirects.keys()) {
 		if (key.startsWith("project:")) resolved.set(key, await resolveReadSlug(key, redirects, cache));
 	}
-	const projectIndex = { byMbid, resolveSlug: (slug: Slug): Slug => resolved.get(slug) ?? slug };
 
 	const prior = options.resume ? await readPriorEntries(manifestPath) : new Map<string, ArtistEntry>();
 	const entries = new Map<string, ArtistEntry>();
@@ -368,6 +395,8 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 	);
 
 	let sinceCheckpoint = 0;
+	let asked = 0;
+	let unavailableCount = 0;
 	for (const { slug, path, node: raw } of artistFiles) {
 		const rawEdges = Array.isArray(raw.discography) ? (raw.discography as unknown[]) : [];
 		const counts = {
@@ -398,12 +427,10 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 			continue;
 		}
 		const artist = parsed.data;
-		if (counts.before >= DEFAULT_DISCOGRAPHY_CAP && counts.withMbidBefore === counts.before) {
-			skip("cap");
-			continue;
-		}
-		const identity = `${mbid}|${artist.name}|${artist.artist_kind ?? ""}`;
+		const identity = `policy ${DISCOGRAPHY_POLICY_VERSION}|${mbid}|${artist.name}|${artist.artist_kind ?? ""}`;
 		const current = fingerprintOf(identity, rawEdges);
+		// Before the cap: an artist that reached the cap DURING the run (every entry now has its mbid) would
+		// otherwise be re-read as a plain `cap` skip and lose the decision the manifest recorded for it.
 		const decided = prior.get(slug);
 		if (
 			decided?.fingerprint !== undefined &&
@@ -414,8 +441,14 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 			entries.set(slug, decided);
 			continue;
 		}
+		if (counts.before >= DEFAULT_DISCOGRAPHY_CAP && counts.withMbidBefore === counts.before) {
+			skip("cap");
+			continue;
+		}
 
 		const { releases, unavailable } = await fetchArtistDiscographyMb(mbid, { priority: "background" });
+		asked++;
+		if (unavailable) unavailableCount++;
 		if (++sinceCheckpoint >= CHECKPOINT_EVERY) {
 			sinceCheckpoint = 0;
 			// The entry of this artist is not in yet: it lands in the next checkpoint with the others.
@@ -447,12 +480,19 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 			number
 		>;
 		for (const { reason } of selection.excluded) excluded[reason]++;
+		// A redirect is followed only to a work scoped on THIS artist: `project:human-after-all--twin-atlantic`
+		// redirecting to `--daft-punk` (a rename of that other artist's node) must not hand Twin Atlantic's
+		// release somebody else's page. The mbid match stays unconditional: it is an identity, not a name.
+		const resolveSlug = (target: Slug): Slug => {
+			const followed = resolved.get(target);
+			return followed !== undefined && scopeMatchesArtist(followed, policy.artistName) ? followed : target;
+		};
 		const merge = mergeDiscography({
 			existing: rawEdges as EdgeRef[],
 			candidates: selection.kept,
 			allCredited,
 			policy,
-			projectIndex,
+			projectIndex: { byMbid, resolveSlug },
 		});
 		const decision = {
 			posed: merge.posed,
@@ -491,10 +531,8 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 
 	await checkpoint(true);
 	const manifest = buildManifest(entries);
-	const failed = Object.values(manifest.artists).some(
-		(e) => e.refused !== undefined || e.skipped === "unavailable",
-	);
-	return { manifest, written: writtenFiles, exitCode: failed ? 1 : 0 };
+	const requests = { asked, unavailable: unavailableCount };
+	return { manifest, written: writtenFiles, requests, exitCode: failedRun(manifest, requests) ? 1 : 0 };
 }
 
 const share = (part: number, whole: number): number =>
@@ -563,6 +601,12 @@ export function formatSummary(result: BackfillResult, apply: boolean, manifestPa
 		`${t.posed} mbid posed, ${t.added} entr${t.added === 1 ? "y" : "ies"} added, ${t.ambiguous} ambiguous, ${t.nearDuplicate} near duplicate(s)`,
 		`edges with an mbid: ${t.edges.withMbidBefore}/${t.edges.before} (${percent(t.edges.mbidShareBefore)}) -> ${t.edges.withMbidAfter}/${t.edges.after} (${percent(t.edges.mbidShareAfter)})`,
 		`excluded by the policy: ${EXCLUSION_REASONS.map((r) => `${r} ${t.excluded[r]}`).join(", ")}`,
+		`${result.requests.unavailable} of ${result.requests.asked} artist(s) unavailable on MusicBrainz` +
+			(isOutage(result.requests)
+				? ` (more than ${MAX_UNAVAILABLE_RATE * 100} %: the service is down, re-run with --resume)`
+				: result.requests.unavailable > 0
+					? " (nothing written for them, a --resume run retries them)"
+					: ""),
 		apply
 			? `${written} node file(s) written`
 			: `dry-run: no node file written (${t.written} would be written)`,
