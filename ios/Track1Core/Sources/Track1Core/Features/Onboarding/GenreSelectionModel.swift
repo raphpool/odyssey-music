@@ -29,7 +29,8 @@ public final class GenreSelectionModel {
 	/// This is also the path that rebuilds the state from an existing profile (`editing`, used by the edit
 	/// flow). A stored selection is a fixed point of `restore`, so a profile created by this flow reloads
 	/// unchanged. A profile without a selection (written before the editorial taxonomy) restores an empty
-	/// selection for now, and so does a draft without one: it is not a profile.
+	/// selection for now: rebuilding it from its v1 slugs is a separate ticket. A draft without a selection
+	/// is not a profile, so it defers to the selection of `editing`, if any.
 	public init(taxonomy: EditorialGenreTaxonomy, editing: Profile? = nil, draft: ProfileDraft? = nil) {
 		self.taxonomy = taxonomy
 		self.editing = editing
