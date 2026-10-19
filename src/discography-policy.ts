@@ -36,6 +36,17 @@ export interface DiscographyPolicy {
 
 export const DEFAULT_DISCOGRAPHY_CAP = 40;
 
+/**
+ * Bump it whenever the selection or the merge rules change what they decide for the same MusicBrainz answers
+ * (TRA-618): the discography backfill's `--resume` carries a decision only if it was made under this version.
+ * 2026-10-19: 2, the policy changed with TRA-625 (Soundtrack and Mixtape/Street admitted, cap order by MusicBrainz
+ * votes, an untyped entry facing one album and singles gets the album): a manifest of version 1 is not replayed.
+ * 2026-10-19: 3, the policy changed with TRA-628 (unvoted release groups cut once an artist has
+ * MIN_VOTED_FOR_UNRATED_CUT voted ones, except recent releases; an album is posed ignoring its Live / Compilation
+ * namesakes): a manifest of version 2 is not replayed.
+ */
+export const DISCOGRAPHY_POLICY_VERSION = 3;
+
 // TRA-628 (measured 2026-10-19 on MusicBrainz): John Lennon has 69 eligible release groups, 14 voted and 55
 // not (The Lost Lennon Tapes, Archives, outtakes), and the cap used to fill with the oldest of them. From this
 // many voted candidates on, an unvoted one no longer qualifies. Below it nothing is cut: Kode9 has 24 eligible
