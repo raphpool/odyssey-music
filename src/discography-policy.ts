@@ -566,16 +566,23 @@ export function mergeDiscography(input: MergeInput): MergeResult {
 	// release groups sharing its key, held mbids included: removing a held one first would turn "two release
 	// groups" into a confident pose on the other (TRA-629, "Ladies' Night (1979)" next to a twin holding the
 	// album and a "Ladies' Night EP"). A pose on a release group whose mbid is held leaves the entry as it is.
-	// An untyped entry whose title ended with "EP" is judged as an EP (the suffix is its type), so that
-	// "Foundations EP" takes the EP and never the album or the single of the same title; it is not written on it.
+	// An entry whose title ended with "EP" (the suffix the key removed) can only be an EP: its candidates are the
+	// admitted EPs of the group (Live / Compilation ones are not its work, TRA-628), and never the album or the
+	// single of the same title. One is posed, several are `multiple`, none leaves the entry as it is. No
+	// releaseType is forced on the entry: the typed branch of decidePose does not filter secondary types.
 	const looserVerdicts = new Map<number, PoseVerdict>();
 	existing.forEach((entry, index) => {
 		if (hasMbid(entry) || verdicts[index] !== undefined) return;
 		const peeled = peelSuffixes(entry.name);
 		const group = creditedByKey.get(normalizeTitleBody(peeled.rest)) ?? [];
-		const judged: EdgeRef =
-			peeled.ep && entry.releaseType === undefined ? { ...entry, releaseType: "ep" } : entry;
-		const verdict = decidePose(judged, group, peeled.year);
+		let verdict: PoseVerdict;
+		if (peeled.ep) {
+			const eps = group.filter((c) => c.primaryType === "EP" && hasOnlyAdmittedSecondaryTypes(c));
+			verdict =
+				eps.length > 1 ? { kind: "ambiguous", reason: "multiple" } : decidePose(entry, eps, peeled.year);
+		} else {
+			verdict = decidePose(entry, group, peeled.year);
+		}
 		const held = verdict.kind === "pose" && heldMbids.has(verdict.match.mbid.toLowerCase());
 		looserVerdicts.set(index, held ? { kind: "none" } : verdict);
 	});

@@ -1196,15 +1196,92 @@ describe("mergeDiscography — suffix reconciliation (TRA-629)", () => {
 		});
 	});
 
-	it("does not give the album 'Foo' to an untyped entry that was written 'Foo - EP'", () => {
+	it("never gives the album 'Foo' to an entry that was written 'Foo - EP': the entry is left alone, the album is its own release group", () => {
 		const existingEntry = entry("Foo - EP");
 		const album = release("Foo", { primaryType: "Album" });
 
 		const result = merge({ existing: [existingEntry], candidates: [album], allCredited: [album] });
 
 		expect(result.posed).toEqual([]);
-		expect(result.ambiguous).toEqual([{ slug: existingEntry.slug, reason: "type" }]);
+		expect(result.ambiguous).toEqual([]);
+		expect(result.edges.find((e) => e.slug === existingEntry.slug)?.mbid).toBeUndefined();
+		expect(result.added.map((a) => [a.mbid, a.releaseType])).toEqual([[album.mbid, "album"]]);
+	});
+
+	it("does not pose the Compilation EP 'Hurt' on 'Hurt EP' when the group also has the album", () => {
+		const existingEntry = entry("Hurt EP", {}, "Johnny Cash");
+		const album = release("Hurt", { primaryType: "Album", firstReleaseDate: "2002-11-05" });
+		const compilationEp = release("Hurt", {
+			primaryType: "EP",
+			secondaryTypes: ["Compilation"],
+			firstReleaseDate: "2003-01-01",
+		});
+
+		const result = merge({
+			existing: [existingEntry],
+			candidates: [album],
+			allCredited: [album, compilationEp],
+			policy: { ...policy, artistName: "Johnny Cash" },
+		});
+
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([]);
+		expect(result.edges.some((e) => e.mbid === compilationEp.mbid)).toBe(false);
+		expect(result.edges.find((e) => e.slug === existingEntry.slug)?.mbid).toBeUndefined();
+		expect(result.added.map((a) => a.mbid)).toEqual([album.mbid]);
+	});
+
+	it("leaves 'Hurt EP' alone when the EP of that title is only a Live one", () => {
+		const existingEntry = entry("Hurt EP");
+		const liveEp = release("Hurt", { primaryType: "EP", secondaryTypes: ["Live"] });
+
+		const result = merge({ existing: [existingEntry], allCredited: [liveEp] });
+
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([]);
+		expect(result.changed).toBe(false);
+	});
+
+	it("poses the admitted EP on 'Foo EP' when the group also has an album and a Compilation EP", () => {
+		const existingEntry = entry("Foo EP");
+		const album = release("Foo", { primaryType: "Album", firstReleaseDate: "2010-01-01" });
+		const ep = release("Foo", { primaryType: "EP", firstReleaseDate: "2010-01-01" });
+		const compilationEp = release("Foo", { primaryType: "EP", secondaryTypes: ["Compilation"] });
+
+		const result = merge({
+			existing: [existingEntry],
+			candidates: [album, ep],
+			allCredited: [album, ep, compilationEp],
+		});
+
+		expect(result.posed.map((p) => p.mbid)).toEqual([ep.mbid]);
+	});
+
+	it("reports 'Foo EP' as multiple when two admitted EPs share the title", () => {
+		const existingEntry = entry("Foo EP");
+		const first = release("Foo", { primaryType: "EP", firstReleaseDate: "2010-01-01" });
+		const second = release("Foo", { primaryType: "EP", firstReleaseDate: "2011-01-01" });
+
+		const result = merge({
+			existing: [existingEntry],
+			candidates: [first, second],
+			allCredited: [first, second],
+		});
+
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([{ slug: existingEntry.slug, reason: "multiple" }]);
 		expect(result.added).toEqual([]);
+	});
+
+	it("leaves 'Foo EP' as it is when the only admitted EP of that title is held by its twin", () => {
+		const existingEntry = entry("Foo EP");
+		const ep = release("Foo", { primaryType: "EP" });
+		const twin = entry("Foo", { mbid: ep.mbid, releaseType: "ep" });
+
+		const result = merge({ existing: [existingEntry, twin], candidates: [ep], allCredited: [ep] });
+
+		expect(result.changed).toBe(false);
+		expect(result.ambiguous).toEqual([]);
 	});
 
 	it("gives an untyped 'Foo EP' the EP 'Foo' and not the album of the same title", () => {
