@@ -225,17 +225,81 @@ describe("mergeDiscography — pose", () => {
 		expect(one.posed.map((p) => p.mbid)).toEqual([soundtrack.mbid]);
 	});
 
-	it("leaves an entry that states its releaseType unchanged by the Live / Compilation homonyms", () => {
+	it("ignores the Live / Compilation homonyms of an entry that states its releaseType and poses the studio album", () => {
 		const album = release("Blue Train", { firstReleaseDate: "1958-01-01" });
 		const live = release("Blue Train", { firstReleaseDate: "2004-01-01", secondaryTypes: ["Live"] });
 		const existing = [entry("Blue Train", { releaseType: "album" })];
 
-		// Two albums share the title and the entry states "album": still not guessed.
+		// Same rule as for an entry without type (TRA-628): the Live album is not the entry's work.
 		const result = merge({ existing, allCredited: [album, live] });
+
+		expect(result.ambiguous).toEqual([]);
+		expect(result.posed.map((p) => p.mbid)).toEqual([album.mbid]);
+	});
+
+	it("keeps two studio albums of the same title ambiguous for an entry that states 'album'", () => {
+		const first = release("Blue Train", { firstReleaseDate: "1958-01-01" });
+		const second = release("Blue Train", { firstReleaseDate: "1959-01-01" });
+		const live = release("Blue Train", { firstReleaseDate: "2004-01-01", secondaryTypes: ["Live"] });
+		const existing = [entry("Blue Train", { releaseType: "album" })];
+
+		const result = merge({ existing, allCredited: [first, second, live] });
 
 		expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "multiple" }]);
 		expect(result.posed).toEqual([]);
 	});
+
+	describe.each([
+		["exact title", "Hurt", "Hurt"],
+		["looser key", "Hurt (2002)", "Hurt"],
+	])(
+		"an entry that states its type never takes a Live / Compilation release group (%s)",
+		(_label, entryName, rgTitle) => {
+			it("typed 'ep' next to the album and a Compilation EP: no pose", () => {
+				const existingEntry = entry(entryName, { releaseType: "ep" });
+				const album = release(rgTitle, { primaryType: "Album", firstReleaseDate: "2002-11-05" });
+				const compilationEp = release(rgTitle, {
+					primaryType: "EP",
+					secondaryTypes: ["Compilation"],
+					firstReleaseDate: "2002-12-01",
+				});
+
+				const result = merge({ existing: [existingEntry], allCredited: [album, compilationEp] });
+
+				expect(result.posed).toEqual([]);
+				expect(result.edges.some((e) => e.mbid === compilationEp.mbid)).toBe(false);
+			});
+
+			it("typed 'album' next to a single and a Compilation album: no pose", () => {
+				const existingEntry = entry(entryName, { releaseType: "album" });
+				const single = release(rgTitle, { primaryType: "Single", firstReleaseDate: "2002-11-05" });
+				const compilationAlbum = release(rgTitle, {
+					primaryType: "Album",
+					secondaryTypes: ["Compilation"],
+					firstReleaseDate: "2002-12-01",
+				});
+
+				const result = merge({ existing: [existingEntry], allCredited: [single, compilationAlbum] });
+
+				expect(result.posed).toEqual([]);
+				expect(result.edges.some((e) => e.mbid === compilationAlbum.mbid)).toBe(false);
+			});
+
+			it("typed 'album' next to the studio album and a Compilation album: the studio album", () => {
+				const existingEntry = entry(entryName, { releaseType: "album" });
+				const album = release(rgTitle, { primaryType: "Album", firstReleaseDate: "2002-11-05" });
+				const compilationAlbum = release(rgTitle, {
+					primaryType: "Album",
+					secondaryTypes: ["Compilation"],
+					firstReleaseDate: "2002-12-01",
+				});
+
+				const result = merge({ existing: [existingEntry], allCredited: [album, compilationAlbum] });
+
+				expect(result.posed.map((p) => p.mbid)).toEqual([album.mbid]);
+			});
+		},
+	);
 
 	it("keeps two albums of the same title ambiguous/multiple", () => {
 		const albumA = release("Mind Games", { primaryType: "Album" });

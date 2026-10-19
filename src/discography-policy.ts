@@ -469,7 +469,13 @@ function decidePose(
 				return { kind: "ambiguous", reason: distinctTypes.size > 1 ? "type" : "multiple" };
 			}
 		} else {
-			const ofType = matches.filter((m) => m.primaryType.toLowerCase() === entry.releaseType);
+			// An entry that states its type competes only with the release groups of that type that are its work:
+			// a Live / Compilation one of the same title and type is not (TRA-629, "Hurt" typed EP next to the
+			// album and a Compilation EP would have taken the compilation, for good).
+			const statedType = matches.filter((m) => m.primaryType.toLowerCase() === entry.releaseType);
+			const ofType = statedType.filter(hasOnlyAdmittedSecondaryTypes);
+			// Every release group of the stated type is a Live / Compilation one: nothing is the entry's work.
+			if (ofType.length === 0 && statedType.length > 0) return { kind: "none" };
 			chosen = ofType.length === 1 ? ofType[0] : undefined;
 		}
 		if (chosen === undefined) return { kind: "ambiguous", reason: "multiple" };
