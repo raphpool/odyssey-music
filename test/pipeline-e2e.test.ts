@@ -261,6 +261,7 @@ describe("scoped work edges (TRA-462)", () => {
 						primaryType: "Album",
 						secondaryTypes: [],
 						artistCredits: [{ mbid: DEFAULT_ARTIST_MBID, name: "Rohff" }],
+						ratingVotes: 0,
 					},
 				],
 				unavailable: false,
@@ -419,6 +420,7 @@ describe("scoped work edges, flag off (TRA-509)", () => {
 						primaryType: "Album",
 						secondaryTypes: [],
 						artistCredits: [{ mbid: DEFAULT_ARTIST_MBID, name: "Rohff" }],
+						ratingVotes: 0,
 					},
 				],
 				unavailable: false,
@@ -965,6 +967,7 @@ describe("MB identity at enrichment (TRA-473)", () => {
 							primaryType: "Album",
 							secondaryTypes: [],
 							artistCredits: [{ mbid: RONI_MBID, name: "Roni Size" }],
+							ratingVotes: 0,
 						},
 					],
 					unavailable: false,
@@ -1732,6 +1735,7 @@ describe.each([
 				primaryType: "Album" as const,
 				secondaryTypes: [],
 				artistCredits: [{ mbid: DEFAULT_ARTIST_MBID, name: "Fixture Artist" }],
+				ratingVotes: 0,
 			});
 			const releases = [
 				mbRelease("Old Record", "2001-01-01", "11111111-2222-3333-4444-555555555501"),
@@ -1796,6 +1800,7 @@ describe("artist discography from MusicBrainz, shared policy (TRA-615)", () => {
 			primaryType: string;
 			secondaryTypes: string[];
 			artistCredits: { mbid: string; name: string }[];
+			ratingVotes: number;
 		}> = {},
 	) => ({
 		mbid: `00000000-0000-4000-8000-${String(++counter).padStart(12, "0")}`,
@@ -1804,6 +1809,7 @@ describe("artist discography from MusicBrainz, shared policy (TRA-615)", () => {
 		primaryType: "Album",
 		secondaryTypes: [] as string[],
 		artistCredits: OWN_CREDIT,
+		ratingVotes: 0,
 		...over,
 	});
 
@@ -1878,6 +1884,29 @@ describe("artist discography from MusicBrainz, shared policy (TRA-615)", () => {
 			expect(lines).toContain(
 				"[pipeline] artist discography overridden with 40 MB releases (5 album, 0 ep, 35 single; 3 excluded: credit 1, secondary-type 1, non-canonical 1)",
 			);
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"gives the 40 places to the most voted albums, not to the newest ones, and still shows newest first (TRA-625)",
+		async () => {
+			const canon = [
+				release("Abbey Road", "1969-09-26", { ratingVotes: 71 }),
+				release("Revolver", "1966-08-05", { ratingVotes: 61 }),
+				release("Let It Be", "1970-05-08", { ratingVotes: 43 }),
+			];
+			const archives = Array.from({ length: 60 }, (_, i) =>
+				release(`Archive ${String(i + 1).padStart(2, "0")}`, `${1995 + Math.floor(i / 3)}-01-01`),
+			);
+
+			const { artist } = await runWith({ releases: [...archives, ...canon], unavailable: false });
+
+			const names = artist.discography.map((e) => e.name);
+			expect(artist.discography).toHaveLength(40);
+			for (const title of ["Abbey Road", "Revolver", "Let It Be"]) expect(names).toContain(title);
+			const years = artist.discography.map((e) => Number(e.year));
+			expect(years).toEqual([...years].sort((a, b) => b - a));
 		},
 		TIMEOUT_MS,
 	);
