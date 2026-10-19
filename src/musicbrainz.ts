@@ -951,6 +951,9 @@ export async function fetchArtistNamesMb(
 	if (Array.isArray(data.aliases)) {
 		for (const alias of data.aliases) {
 			if (!isRecord(alias)) continue;
+			// "Search hint" aliases are MusicBrainz's own search aids ("R.S." for Sakamoto, "Hawk" and
+			// "John Hawkins" for H.A.W.K.): too generic to tell artists apart, never a name of the artist.
+			if (typeof alias.type === "string" && alias.type.trim().toLowerCase() === "search hint") continue;
 			keep(alias.name);
 			keep(alias["sort-name"]);
 		}

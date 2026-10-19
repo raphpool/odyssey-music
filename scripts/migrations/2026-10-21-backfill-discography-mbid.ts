@@ -27,10 +27,11 @@
  * ("Atom™", "Schönberg", "Tronikhouse"). When the credits do not name the node, ONE more request,
  * `/artist/<mbid>?inc=aliases`, reads the names of the artist itself; the node is accepted when its name equals
  * the artist's name, sort-name, or an alias' name or sort-name (`identity: "alias"` in the manifest; a node
- * the credits name is `"credit"`). A "Last, First" sort-name is also compared as "First Last". Names are
- * compared by `identityKey` with spaces and punctuation dropped, and with ™ / ® both folded ("Atom TM" =
- * "Atom™") and removed. A failed request is `unavailable`, never an acceptance by default. Artists the credits
- * accept cost no extra request.
+ * the credits name is `"credit"`). `Search hint` aliases are ignored: generic search aids ("R.S.", "Hawk"),
+ * not names. A "Last, First" sort-name is also compared as "First Last". Names are compared by `identityKey`:
+ * spaces, apostrophes, hyphens and ™ / ® dropped (™ both folded and removed: "Atom TM" = "Atom™"), dots KEPT
+ * ("H.A.W.K." is not "Hawk"). A failed request is `unavailable`, never an acceptance by default. Artists the
+ * credits accept cost no extra request. The dot rule also applies to the credits (same `identityKey`).
  * `refused` is separate: a node that does not validate against the schema (before or after the merge), or a
  * file that cannot be read. It is counted, never rewritten, and makes the run exit 1, like `unavailable`.
  *
@@ -249,9 +250,30 @@ function fingerprintOf(identity: string, edges: readonly unknown[]): string {
 
 const sameMbid = (a: string, b: string): boolean => a.toLowerCase() === b.toLowerCase();
 
-/** A name as the identity guard compares it: its slug body, or the folded name when it has no Latin letter. */
+/** A letter outside the Latin script: a name holding one is not reduced to its Latin part by the slug body. */
+const NON_LATIN_LETTER = /(?![\p{Script=Latin}])\p{L}/u;
+
+/** What a name is compared without: spaces, apostrophes, hyphens and dashes (TRA-630, 2026-10-19). */
+const DROPPED_IN_KEY = /[\s'’\-‐‑–]+/gu;
+
+/**
+ * A name as the identity guard compares it: its slug body (case, diacritics and transliteration as the slugs have
+ * them; spaces, hyphens, apostrophes and ™ / ® gone, "Atom TM" = "Atom™"), or the folded name for a part that has
+ * no Latin letter. DOTS STAY (TRA-630): "H.A.W.K." is not "Hawk", "M.I.A." is not "Mia". Each part between dots
+ * is folded on its own, so a dot is never swallowed by the slug body. A name that mixes scripts ("Hikaru 宇多田")
+ * is compared whole: the slug body would keep only its Latin letters and match any "Hikaru".
+ */
 const identityKey = (name: string): string =>
-	normalizeSlugBody(name) || name.normalize("NFKC").trim().toLowerCase();
+	name
+		.split(".")
+		.map((part) => {
+			const folded = part.normalize("NFKC").toLowerCase();
+			return (NON_LATIN_LETTER.test(part) ? folded : normalizeSlugBody(part) || folded).replace(
+				DROPPED_IN_KEY,
+				"",
+			);
+		})
+		.join(".");
 
 /**
  * The identity guard (8-D3). `credited` is every release group first-credited to the artist's MBID. The node
@@ -270,24 +292,13 @@ function creditsNameTheNode(
 }
 
 /**
- * Compared names: no space, no punctuation, so "Atom TM" = "Atom™" and "Tronik House" = "Tronikhouse". Marks stay
- * (\p{M}): they carry the vowels of the Indic scripts, dropping them would merge unrelated names.
- */
-const squash = (text: string): string => text.replace(/[^\p{L}\p{N}\p{M}]+/gu, "");
-
-/** A letter outside the Latin script: a name holding one is not reduced to its Latin part by the slug body. */
-const NON_LATIN_LETTER = /(?![\p{Script=Latin}])\p{L}/u;
-
-/**
- * What a name is compared by in the alias check: `identityKey` squashed, once with ™ folded to "TM" (what NFKD
- * does) and once with ™ and ® removed. A name that mixes scripts ("Hikaru 宇多田") is compared whole, since the
- * slug body would keep only its Latin letters and match any "Hikaru". An empty key never matches ("!!!" is not
- * "???").
+ * What a name is compared by in the alias check: `identityKey`, once with ™ folded to "TM" (what NFKD does) and
+ * once with ™ and ® removed. A key without a letter or a digit never matches ("!!!" is not "???").
  */
 function nameKeys(name: string): string[] {
-	const fold = (text: string): string =>
-		squash(NON_LATIN_LETTER.test(text) ? text.normalize("NFKC").toLowerCase() : identityKey(text));
-	return [fold(name), fold(name.replace(/[™®]/gu, ""))].filter((key) => key !== "");
+	return [identityKey(name), identityKey(name.replace(/[™®]/gu, ""))].filter((key) =>
+		/[\p{L}\p{N}]/u.test(key),
+	);
 }
 
 /** "Sakamoto, Ryuichi" also reads "Ryuichi Sakamoto". Only a single comma is a "Last, First" form. */

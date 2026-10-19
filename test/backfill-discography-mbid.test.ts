@@ -73,7 +73,7 @@ const page = (groups: Rg[]): Response =>
 interface Names {
 	name: string;
 	sortName?: string;
-	aliases?: { name: string; sortName?: string }[];
+	aliases?: { name: string; sortName?: string; type?: string }[];
 }
 const namesBody = (n: Names): Response =>
 	new Response(
@@ -81,7 +81,11 @@ const namesBody = (n: Names): Response =>
 			id: "ignored",
 			name: n.name,
 			"sort-name": n.sortName ?? n.name,
-			aliases: (n.aliases ?? []).map((a) => ({ name: a.name, "sort-name": a.sortName ?? a.name })),
+			aliases: (n.aliases ?? []).map((a) => ({
+				name: a.name,
+				"sort-name": a.sortName ?? a.name,
+				type: a.type ?? "Artist name",
+			})),
 		}),
 		{ status: 200, headers: { "Content-Type": "application/json" } },
 	);
@@ -631,10 +635,23 @@ describe("the identity guard reads the artist's own names (TRA-630)", () => {
 	it('accepts "Atom TM" against the MusicBrainz name "Atom™"', async () => {
 		const w = world();
 		await putArtist("atom-tm", "Atom TM", ATOM);
-		w.byArtist.set(ATOM, credited(ATOM, "Atom™", 41));
+		w.byArtist.set(ATOM, credited(ATOM, "Uwe Schmidt", 41));
 		w.names.set(ATOM, { name: "Atom™" });
 		await runBackfill(options(w));
 		expect(entryOf(await readManifest(), "artist:atom-tm").identity).toBe("alias");
+	});
+
+	it("takes the credits' own Atom™ and Tronikhouse for the nodes Atom TM and Tronik House, with no extra request", async () => {
+		const w = world();
+		await putArtist("atom-tm", "Atom TM", ATOM);
+		w.byArtist.set(ATOM, credited(ATOM, "Atom™", 41));
+		await putArtist("tronik-house", "Tronik House", SMITH);
+		w.byArtist.set(SMITH, credited(SMITH, "Tronikhouse", 53));
+		await runBackfill(options(w));
+		const manifest = await readManifest();
+		expect(entryOf(manifest, "artist:atom-tm").identity).toBe("credit");
+		expect(entryOf(manifest, "artist:tronik-house").identity).toBe("credit");
+		expect(w.aliasRequests).toEqual([]);
 	});
 
 	// The Latin spellings the credits' own normalization does not fold (it folds accents, not "oe" or a
@@ -645,7 +662,7 @@ describe("the identity guard reads the artist's own names (TRA-630)", () => {
 			"Arnold Sch\u00f6nberg",
 			{ name: "Arnold Sch\u00f6nberg", aliases: [{ name: "Arnold Schoenberg" }] },
 		],
-		["Tronik House", "Tronikhouse", { name: "Tronikhouse" }],
+		["Tronik House", "Tronik Haus Project", { name: "Tronikhouse" }],
 		["Junko Ohashi", "\u5927\u6a4b\u7d14\u5b50", { name: "Junko \u014chashi" }],
 		["Mike Golding", "Michael Golding", { name: "Michael Golding", aliases: [{ name: "Mike Golding" }] }],
 		["Atom", "Atom\u2122", { name: "Atom\u2122" }],
@@ -685,6 +702,74 @@ describe("the identity guard reads the artist's own names (TRA-630)", () => {
 		expect(entryOf(manifest, "artist:bangs").skipped).toBe("name-mismatch");
 		expect(result.written).toBe(0);
 		expect((await readNode("artist:john-smith")).discography).toEqual([]);
+	});
+
+	it("ignores the 'Search hint' aliases, whatever their case: too generic to name the artist", async () => {
+		const w = world();
+		// H.A.W.K. has the search hints "Hawk" and "John Hawkins" (measured 2026-10-19); a node named so is not him.
+		await putArtist("hint-one", "John Hawkins", SMITH);
+		w.byArtist.set(SMITH, credited(SMITH, "H.A.W.K.", 47));
+		w.names.set(SMITH, {
+			name: "H.A.W.K.",
+			aliases: [{ name: "John Hawkins", type: "Search hint" }],
+		});
+		await putArtist("hint-two", "Hawk", OTHER);
+		w.byArtist.set(OTHER, credited(OTHER, "H.A.W.K.", 48));
+		w.names.set(OTHER, { name: "H.A.W.K.", aliases: [{ name: "Hawk", type: "search HINT" }] });
+		// The same alias with another type is a name of the artist.
+		await putArtist("not-a-hint", "Big Hawk", ATOM);
+		w.byArtist.set(ATOM, credited(ATOM, "H.A.W.K.", 49));
+		w.names.set(ATOM, { name: "H.A.W.K.", aliases: [{ name: "Big Hawk", type: "Artist name" }] });
+
+		await runBackfill(options(w));
+
+		const manifest = await readManifest();
+		expect(entryOf(manifest, "artist:hint-one").skipped).toBe("name-mismatch");
+		expect(entryOf(manifest, "artist:hint-two").skipped).toBe("name-mismatch");
+		expect(entryOf(manifest, "artist:not-a-hint").identity).toBe("alias");
+	});
+
+	it("accepts a node on the sort-name of an alias alone, name and sort-name of the artist being other", async () => {
+		const w = world();
+		await putArtist("haruomi-hosono", "Haruomi Hosono", SAKAMOTO);
+		w.byArtist.set(SAKAMOTO, credited(SAKAMOTO, "細野晴臣", 50));
+		w.names.set(SAKAMOTO, {
+			name: "細野晴臣",
+			sortName: "細野晴臣",
+			aliases: [{ name: "細野 晴臣", sortName: "Hosono, Haruomi" }],
+		});
+		await runBackfill(options(w));
+		expect(entryOf(await readManifest(), "artist:haruomi-hosono").identity).toBe("alias");
+	});
+
+	// Dots stay in the key (TRA-630): an initialism is not the word its letters spell, in either direction.
+	it.each([
+		["H.A.W.K.", "Hawk"],
+		["Hawk", "H.A.W.K."],
+		["M.I.A.", "Mia"],
+		["Mia", "M.I.A."],
+	])("does not take the node %s for the artist named %s", async (node, name) => {
+		const w = world();
+		await putArtist("subject", node, SMITH);
+		w.byArtist.set(SMITH, credited(SMITH, "Someone Else", 51));
+		w.names.set(SMITH, { name });
+		await runBackfill(options(w));
+		expect(entryOf(await readManifest(), "artist:subject").skipped).toBe("name-mismatch");
+	});
+
+	it.each([
+		["H.A.W.K.", "H. A. W. K."],
+		["Guns N' Roses", "Guns N’ Roses"],
+		["Jay-Z", "Jay‐Z"],
+		["Atom TM", "Atom™"],
+		["Tronik House", "Tronikhouse"],
+	])("still takes the node %s for the artist named %s", async (node, name) => {
+		const w = world();
+		await putArtist("subject", node, SMITH);
+		w.byArtist.set(SMITH, credited(SMITH, "Someone Else", 52));
+		w.names.set(SMITH, { name });
+		await runBackfill(options(w));
+		expect(entryOf(await readManifest(), "artist:subject").identity).toBe("alias");
 	});
 
 	it("compares a name that mixes scripts whole, and inverts a sort-name only around a single comma", async () => {
