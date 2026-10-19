@@ -106,6 +106,11 @@ vi.mock("@google/genai", () => ({
 }));
 
 vi.mock("../../src/musicbrainz.js", () => ({
+	// src/discography-policy.ts reads VARIOUS_ARTISTS_MBID from this module (TRA-617). A factory mock that
+	// omits it makes vitest throw on access; enrichNode swallows the throw ("MB discography enrich skipped")
+	// and the LLM list silently wins over the MusicBrainz one. Kept as a literal, not importOriginal: loading
+	// the real module here would read config before this file stubs GEMINI_API_KEY.
+	VARIOUS_ARTISTS_MBID: "89ad4ac3-39f7-470e-963a-56509c546377",
 	resolveArtistDetailed: vi.fn(unexpectedCall("resolveArtistDetailed")),
 	fetchArtistDiscographyMb: vi.fn(unexpectedCall("fetchArtistDiscographyMb")),
 	fetchArtistEntityMb: vi.fn(unexpectedCall("fetchArtistEntityMb")),
