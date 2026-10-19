@@ -27,7 +27,7 @@ vi.mock("../src/musicbrainz.js", () => ({
 		path: "name",
 		unavailable: false,
 	})),
-	fetchArtistDiscographyMb: vi.fn(async () => []),
+	fetchArtistDiscographyMb: vi.fn(async () => ({ releases: [], unavailable: false })),
 	fetchEntityGenresMb: vi.fn(async () => [{ name: "techno" }, { name: "not-a-real-genre-xyz" }]),
 }));
 

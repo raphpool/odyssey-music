@@ -22,6 +22,14 @@ import { fileURLToPath } from "node:url";
 import { GoogleGenAI, Type as GType, type Schema } from "@google/genai";
 import { z } from "zod";
 import { pipelineConfig, pricingConfig, scopedReleaseSlugsEnabled } from "./config.js";
+import {
+	DEFAULT_DISCOGRAPHY_CAP,
+	type DiscographyPolicy,
+	orderDiscography,
+	type ReleaseGroupCandidate,
+	selectReleases,
+	toDiscographyEdge,
+} from "./discography-policy.js";
 import { normalizeEditorialText } from "./editorial-text.js";
 import { type GenreResolver, loadGenreResolver } from "./genre-identity.js";
 import type { GenreRegistry } from "./genre-registry.js";
@@ -1284,55 +1292,46 @@ async function enrichNode(
 					const obj = node as Record<string, unknown>;
 					obj.genres = mbGenreEdges(genres, genreResolver);
 				}
-				const { releases } = await fetchArtistDiscographyMb(mbid, { limit: 100 });
-				// Keep Album/EP/Single primary types, drop anything with secondary types
-				// (Live, Compilation, Soundtrack, Remix, …). Raph 2026-05-24: include EPs and
-				// singles in the discography chip list, not just LPs. "In the Stars" (Stones,
-				// 2026) ships as Single on MB so it was previously filtered out.
-				const PRIMARY_OK = new Set(["Album", "EP", "Single"]);
-				const clean = releases.filter((r) => PRIMARY_OK.has(r.primaryType) && r.secondaryTypes.length === 0);
-				if (clean.length > 0) {
-					// Keep ALL studio albums, then top up with newest EPs/singles up to 80.
-					// For canon artists (Stones: ~30 LPs) we keep every album AND get recent
-					// EPs/singles like "Sweet Sounds of Heaven" alongside.
-					const albums = clean.filter((r) => r.primaryType === "Album");
-					const eps = clean.filter((r) => r.primaryType === "EP");
-					const singles = clean.filter((r) => r.primaryType === "Single");
-					const TARGET = 80;
-					const epSingleSlots = Math.max(0, TARGET - albums.length);
-					const epSingleBudget = [...eps, ...singles]
-						.sort((a, b) => (b.firstReleaseDate || "").localeCompare(a.firstReleaseDate || ""))
-						.slice(0, epSingleSlots);
-					const merged = [...albums, ...epSingleBudget].sort((a, b) =>
-						(b.firstReleaseDate || "").localeCompare(a.firstReleaseDate || ""),
-					);
+				const { releases, unavailable } = await fetchArtistDiscographyMb(mbid, { limit: 100 });
+				// 2026-10-18: this block used to keep every Album/EP/Single without a secondary type, topped up
+				// to 80, with no look at the credits or the title. Remix singles ("Control Your Body (Hardwell
+				// edit)") and other artists' releases entered the cache, and singles drowned the albums
+				// (A$AP Rocky: 5 albums, 75 singles). MusicBrainz still replaces the LLM list (no merge), but
+				// through the shared policy (src/discography-policy.ts, plan graph-integrity part 8, 8-D5): cap 40.
+				// A MusicBrainz outage keeps the LLM list, even when some pages came back.
+				if (unavailable) {
+					log("[pipeline] MB discography unavailable, LLM list kept");
+				} else {
 					const obj = node as Record<string, unknown>;
 					// Scoped by the artist node's own name (every release here is this artist's, and the cache
 					// files the artist under it). Unscoped slugs would split a work in two. A name with no
 					// Latin letter yields to the requested one.
-					const artistName =
-						pickScopeArtistName([typeof obj.name === "string" ? obj.name : undefined, input.name]) ??
-						input.name;
+					const policy: DiscographyPolicy = {
+						artistMbid: mbid,
+						artistName:
+							pickScopeArtistName([typeof obj.name === "string" ? obj.name : undefined, input.name]) ??
+							input.name,
+						cap: DEFAULT_DISCOGRAPHY_CAP,
+					};
+					const { kept, excluded } = selectReleases(releases, policy);
 					// When nothing can be scoped the draft's own (already scoped) list is kept.
-					const discography = merged.flatMap((r) => {
-						const edge = scopedWorkEdge(
-							"project",
-							r.title,
-							artistName,
-							{
-								mbid: r.mbid,
-								year: (r.firstReleaseDate || "").slice(0, 4) || undefined,
-								releaseType: r.primaryType.toLowerCase() as "album" | "ep" | "single",
-							},
-							`${String(obj.slug)}.discography`,
-							log,
-						);
-						return edge ? [edge] : [];
-					});
-					if (discography.length > 0) obj.discography = discography;
-					log(
-						`[pipeline] artist discography overridden with ${merged.length} MB releases (${albums.length} album, ${epSingleBudget.length} ep+single, out of ${clean.length} clean)`,
+					const discography = orderDiscography(
+						kept.flatMap((r) => {
+							const edge = mbDiscographyEdge(r, policy, `${String(obj.slug)}.discography`, log);
+							return edge ? [edge] : [];
+						}),
 					);
+					if (discography.length > 0) {
+						obj.discography = discography;
+						const countOf = (type: string) => discography.filter((e) => e.releaseType === type).length;
+						log(
+							`[pipeline] artist discography overridden with ${discography.length} MB releases (${countOf("album")} album, ${countOf("ep")} ep, ${countOf("single")} single; ${describeExclusions(excluded)})`,
+						);
+					} else if (releases.length > 0) {
+						log(
+							`[pipeline] MB discography empty after policy (${describeExclusions(excluded)}), LLM list kept`,
+						);
+					}
 				}
 			}
 		} catch (e) {
@@ -2021,6 +2020,46 @@ function firstArtistName(draft: Record<string, unknown>): string | undefined {
 	if (!first || typeof first !== "object") return undefined;
 	const name = (first as { name?: unknown }).name;
 	return typeof name === "string" && name.trim() ? name.trim() : undefined;
+}
+
+/**
+ * The edge for one release group kept by the discography policy. Flag on: the policy's own
+ * toDiscographyEdge (same shape as scopedWorkEdge, `artist` included); an unscopable release is dropped
+ * with the usual log, never the node. Flag off (TRA-509): the bare slug main emits and nothing dropped,
+ * which is what scopedWorkEdge does in that mode.
+ */
+function mbDiscographyEdge(
+	release: ReleaseGroupCandidate,
+	policy: DiscographyPolicy,
+	where: string,
+	log: PipelineLog,
+): EdgeRef | null {
+	if (!scopedReleaseSlugsEnabled()) {
+		return scopedWorkEdge(
+			"project",
+			release.title,
+			policy.artistName,
+			{
+				mbid: release.mbid,
+				year: release.firstReleaseDate.slice(0, 4) || undefined,
+				releaseType: release.primaryType.toLowerCase() as "album" | "ep" | "single",
+			},
+			where,
+			log,
+		);
+	}
+	const edge = toDiscographyEdge(release, policy);
+	if (!edge) log(`[pipeline] edge dropped: no scoped slug (${where} -> project "${release.title.trim()}")`);
+	return edge;
+}
+
+/** "N excluded" plus the per-reason counts, e.g. "3 excluded: credit 2, non-canonical 1". */
+function describeExclusions(excluded: readonly { reason: string }[]): string {
+	if (excluded.length === 0) return "0 excluded";
+	const counts = new Map<string, number>();
+	for (const { reason } of excluded) counts.set(reason, (counts.get(reason) ?? 0) + 1);
+	const detail = [...counts].map(([reason, n]) => `${reason} ${n}`).join(", ");
+	return `${excluded.length} excluded: ${detail}`;
 }
 
 /**
