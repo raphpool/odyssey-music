@@ -102,6 +102,22 @@ describe("mergeDiscography — pose", () => {
 		}
 	});
 
+	it("Help!: poses the Album + Soundtrack over its EP, an exact-title pose stays open to every type", () => {
+		const album = release("Help!", { primaryType: "Album", secondaryTypes: ["Soundtrack"] });
+		const ep = release("Help!", { primaryType: "EP" });
+		const live = release("Live at the BBC", { secondaryTypes: ["Live", "Soundtrack"] });
+		const existing = [entry("Help!"), entry("Live at the BBC")];
+
+		const result = merge({ existing, allCredited: [ep, album, live] });
+
+		expect(result.ambiguous).toEqual([]);
+		expect(result.edges.find((e) => e.name === "Help!")).toMatchObject({
+			mbid: album.mbid,
+			releaseType: "album",
+		});
+		expect(result.edges.find((e) => e.name === "Live at the BBC")?.mbid).toBe(live.mbid);
+	});
+
 	it("keeps an Album and a Single sharing a title ambiguous/type when the album is not the only one", () => {
 		const albumA = release("Imagine", { primaryType: "Album", firstReleaseDate: "1971-01-01" });
 		const albumB = release("Imagine", { primaryType: "Album", firstReleaseDate: "1972-01-01" });
@@ -427,6 +443,21 @@ describe("mergeDiscography — additions", () => {
 
 		// Same votes: the older album takes the first free place.
 		expect(result.added.map((a) => a.title)).toEqual(["Old Album 2", "Old Album"]);
+		expect(result.capReached).toBe(true);
+	});
+
+	it("spends the last slots on a voted single before an unvoted album (TRA-625)", () => {
+		const existing = Array.from({ length: 38 }, (_, i) => entry(`Existing ${i}`, { mbid: mbidOf(1000 + i) }));
+		const candidates = [
+			release("Bootleg", { firstReleaseDate: "1990-01-01" }),
+			release("Archive", { firstReleaseDate: "1991-01-01" }),
+			release("Hey Jude", { primaryType: "Single", firstReleaseDate: "1968-08-26", ratingVotes: 30 }),
+			release("Paperback Writer", { primaryType: "Single", firstReleaseDate: "1966-06-10", ratingVotes: 12 }),
+		];
+
+		const result = merge({ existing, candidates });
+
+		expect(result.added.map((a) => a.title)).toEqual(["Hey Jude", "Paperback Writer"]);
 		expect(result.capReached).toBe(true);
 	});
 

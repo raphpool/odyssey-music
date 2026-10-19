@@ -103,6 +103,17 @@ function sameMbid(a: string, b: string): boolean {
 	return a.toLowerCase() === b.toLowerCase();
 }
 
+// Secondary types that still name the artist's own work (TRA-625, measured 2026-10-19 on The Beatles: Help!,
+// A Hard Day's Night, Magical Mystery Tour and Yellow Submarine are "Album + Soundtrack"; "So Far Gone" is
+// "Mixtape/Street"). Every other one (Compilation, Live, Remix, DJ-mix, Demo, Spokenword, Interview,
+// Audiobook, Audio drama, Field recording) is a repackaging or not music, and one of them anywhere in the
+// list excludes the release group: "Soundtrack + Live" stays out.
+const ADMITTED_SECONDARY_TYPES: ReadonlySet<string> = new Set(["Soundtrack", "Mixtape/Street"]);
+
+function hasOnlyAdmittedSecondaryTypes(c: ReleaseGroupCandidate): boolean {
+	return c.secondaryTypes.every((type) => ADMITTED_SECONDARY_TYPES.has(type));
+}
+
 function isKeptPrimaryType(type: string): type is KeptPrimaryType {
 	return (KEPT_PRIMARY_TYPES as readonly string[]).includes(type);
 }
@@ -117,7 +128,7 @@ export function classifyRelease(
 	policy: DiscographyPolicy,
 ): { ok: true } | { ok: false; reason: ExclusionReason } {
 	if (!isKeptPrimaryType(c.primaryType)) return { ok: false, reason: "primary-type" };
-	if (c.secondaryTypes.length > 0) return { ok: false, reason: "secondary-type" };
+	if (!hasOnlyAdmittedSecondaryTypes(c)) return { ok: false, reason: "secondary-type" };
 	if (c.artistCredits.some((credit) => sameMbid(credit.mbid, VARIOUS_ARTISTS_MBID))) {
 		return { ok: false, reason: "various-artists" };
 	}
@@ -143,12 +154,22 @@ function byNewestFirst(a: ReleaseGroupCandidate, b: ReleaseGroupCandidate): numb
 	return a.mbid < b.mbid ? -1 : 1;
 }
 
-// Who gets the room when a type has more candidates than places (TRA-625): most MusicBrainz votes first,
-// then the oldest, then title and mbid for determinism. Why votes: "newest first" gave Beatles' 40 album
-// places to unmarked bootlegs and posthumous archives (0 votes) and cut Abbey Road, Revolver, Let It Be;
-// oldest first would put the 1964 US editions before Abbey Road. Votes rank the canon (Abbey Road 71,
-// Revolver 61, Let It Be 43; pirates 0). An unknown date ("") sorts last among equals.
+// Who gets the room when there are more candidates than places (TRA-625). In order:
+//  (a) voted (ratingVotes > 0) before unvoted, whatever the type: a voted single ("Hey Jude") beats an
+//      unmarked bootleg album;
+//  (b) album, then EP, then single;
+//  (c) votes descending;
+//  (d) the oldest first;
+//  (e) title, then mbid, for determinism.
+// Why votes: "newest first" gave Beatles' 40 album places to unmarked bootlegs and posthumous archives
+// (0 votes) and cut Abbey Road, Revolver, Let It Be; oldest first alone would put the 1964 US editions
+// before Abbey Road. Votes rank the canon (Abbey Road 71, Revolver 61, Let It Be 43; pirates 0). An artist
+// with no vote at all falls to (b) then (d): albums first, oldest to newest. An unknown date ("") sorts
+// last among equals.
 function byCapPriority(a: ReleaseGroupCandidate, b: ReleaseGroupCandidate): number {
+	const votedA = a.ratingVotes > 0;
+	if (votedA !== b.ratingVotes > 0) return votedA ? -1 : 1;
+	if (additionRank(a) !== additionRank(b)) return additionRank(a) - additionRank(b);
 	if (a.ratingVotes !== b.ratingVotes) return b.ratingVotes - a.ratingVotes;
 	if (a.firstReleaseDate !== b.firstReleaseDate) {
 		if (a.firstReleaseDate === "") return 1;
@@ -203,8 +224,8 @@ function dedupeBySlug(eligible: ReleaseGroupCandidate[], policy: DiscographyPoli
 }
 
 /**
- * Filters with classifyRelease, collapses release groups that share a project slug, then applies the cap:
- * all albums first, then EPs, then singles; within a type, by `byCapPriority` (most votes, then oldest).
+ * Filters with classifyRelease, collapses release groups that share a project slug, then applies the cap
+ * in `byCapPriority` order: voted before unvoted, then album / EP / single, then most votes, then oldest.
  * Duplicates are collapsed before the cap so they never use up room. `kept` comes back ordered newest first
  * across types (the display order, unchanged by the priority). `excluded` lists policy rejections only;
  * candidates dropped by the cap are not reported (the cap is not an ExclusionReason).
@@ -225,13 +246,7 @@ export function selectReleases(
 	}
 
 	const distinct = dedupeBySlug(eligible, policy);
-	const kept: ReleaseGroupCandidate[] = [];
-	for (const primaryType of KEPT_PRIMARY_TYPES) {
-		const room = policy.cap - kept.length;
-		if (room <= 0) break;
-		const ofType = distinct.filter((c) => c.primaryType === primaryType).sort(byCapPriority);
-		kept.push(...ofType.slice(0, room));
-	}
+	const kept = [...distinct].sort(byCapPriority).slice(0, Math.max(0, policy.cap));
 	return { kept: kept.sort(byNewestFirst), excluded };
 }
 
@@ -342,14 +357,20 @@ function decidePose(entry: EdgeRef, matches: readonly ReleaseGroupCandidate[]): 
 			// between. One exception (TRA-625, "Giant Steps", "Imagine": MusicBrainz has the album and a
 			// single of the same title): exactly one album against only singles / EPs is the album, since an
 			// entry that states no type is the work, not its single. releaseType is then completed by poseOnEntry.
-			// The album must carry no secondary type: a lone Live / Compilation "Hurt" next to a single "Hurt"
-			// is not the entry's work, and identity comes first.
+			// The album must carry no secondary type but the admitted ones (Soundtrack, Mixtape/Street): a lone
+			// Live / Compilation "Hurt" next to a single "Hurt" is not the entry's work, identity comes first.
 			const albums = matches.filter((m) => m.primaryType === "Album");
 			const onlySinglesOrEps = matches.every(
 				(m) => m.primaryType === "Album" || m.primaryType === "Single" || m.primaryType === "EP",
 			);
-			if (albums.length === 1 && albums[0]?.secondaryTypes.length === 0 && onlySinglesOrEps) {
-				chosen = albums[0];
+			const [onlyAlbum] = albums;
+			if (
+				albums.length === 1 &&
+				onlyAlbum !== undefined &&
+				hasOnlyAdmittedSecondaryTypes(onlyAlbum) &&
+				onlySinglesOrEps
+			) {
+				chosen = onlyAlbum;
 			} else {
 				const distinctTypes = new Set(matches.map((m) => m.primaryType));
 				return { kind: "ambiguous", reason: distinctTypes.size > 1 ? "type" : "multiple" };
@@ -441,12 +462,12 @@ export function mergeDiscography(input: MergeInput): MergeResult {
 	const additions: EdgeRef[] = [];
 	const added: MergeResult["added"] = [];
 	let capReached = false;
-	// selectReleases(...).kept comes back newest first across types, which would let recent singles use up the
-	// last slots before older albums (the A$AP Rocky failure the policy exists for): albums, then EPs, then
-	// singles; within a type the cap priority of selectReleases (votes, then oldest), since `kept` is in display
-	// order and a plain cut there would hand the last slots back to the newest bootlegs (TRA-625).
-	const byType = [...candidates].sort((a, b) => additionRank(a) - additionRank(b) || byCapPriority(a, b));
-	for (const candidate of byType) {
+	// selectReleases(...).kept comes back newest first across types, which would let recent singles and
+	// bootlegs use up the last slots before older albums (the A$AP Rocky failure the policy exists for): the
+	// additions take the same priority as the cap of selectReleases (voted first, then album / EP / single,
+	// votes, oldest), the sort is deterministic (TRA-625).
+	const byPriority = [...candidates].sort(byCapPriority);
+	for (const candidate of byPriority) {
 		if (candidate.mbid === "" || takenMbids.has(candidate.mbid.toLowerCase())) continue;
 		const body = normalizeTitleBody(candidate.title);
 		if (takenBodies.has(body)) continue;

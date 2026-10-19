@@ -143,11 +143,67 @@ describe("classifyRelease", () => {
 		});
 	});
 
-	it("rejects any secondary type", () => {
+	it("rejects a secondary type that is not admitted", () => {
 		expect(classifyRelease(release({ secondaryTypes: ["Compilation"] }), policy)).toEqual({
 			ok: false,
 			reason: "secondary-type",
 		});
+	});
+
+	it("Help!: keeps an Album + Soundtrack (TRA-625)", () => {
+		const help = release({ title: "Help!", secondaryTypes: ["Soundtrack"] });
+		expect(classifyRelease(help, policy)).toEqual({ ok: true });
+	});
+
+	it("So Far Gone: keeps a Mixtape/Street", () => {
+		const mixtape = release({ title: "So Far Gone", secondaryTypes: ["Mixtape/Street"] });
+		expect(classifyRelease(mixtape, policy)).toEqual({ ok: true });
+	});
+
+	it("Live at the BBC: excludes a Live album", () => {
+		const live = release({ title: "Live at the BBC", secondaryTypes: ["Live"] });
+		expect(classifyRelease(live, policy)).toEqual({ ok: false, reason: "secondary-type" });
+	});
+
+	it("1: excludes a Compilation", () => {
+		const one = release({ title: "1", secondaryTypes: ["Compilation"] });
+		expect(classifyRelease(one, policy)).toEqual({ ok: false, reason: "secondary-type" });
+	});
+
+	it("excludes Soundtrack + Live: one non-admitted type anywhere is enough", () => {
+		for (const secondaryTypes of [
+			["Soundtrack", "Live"],
+			["Live", "Soundtrack"],
+			["Mixtape/Street", "Compilation"],
+		]) {
+			expect(classifyRelease(release({ secondaryTypes }), policy)).toEqual({
+				ok: false,
+				reason: "secondary-type",
+			});
+		}
+	});
+
+	it.each([
+		"Compilation",
+		"Live",
+		"Remix",
+		"DJ-mix",
+		"Demo",
+		"Spokenword",
+		"Interview",
+		"Audiobook",
+		"Audio drama",
+		"Field recording",
+	])("excludes %s alone", (type) => {
+		expect(classifyRelease(release({ secondaryTypes: [type] }), policy)).toEqual({
+			ok: false,
+			reason: "secondary-type",
+		});
+	});
+
+	it("admits Soundtrack + Mixtape/Street together", () => {
+		const both = release({ secondaryTypes: ["Soundtrack", "Mixtape/Street"] });
+		expect(classifyRelease(both, policy)).toEqual({ ok: true });
 	});
 
 	it("rejects a primary type outside Album / EP / Single", () => {
@@ -256,6 +312,61 @@ describe("selectReleases", () => {
 		// Display order is unchanged: newest first, whatever got the places.
 		const dates = kept.map((c) => c.firstReleaseDate);
 		expect(dates).toEqual([...dates].sort().reverse());
+	});
+
+	it("Beatles: 19 voted albums and 30 voted singles go before 60 unvoted albums, cap 40", () => {
+		const votedAlbums = Array.from({ length: 19 }, (_, i) =>
+			release({ title: `Canon ${i}`, firstReleaseDate: `${1963 + (i % 8)}-01-01`, ratingVotes: 20 + i }),
+		);
+		const votedSingles = Array.from({ length: 30 }, (_, i) =>
+			release({
+				title: `Hit ${String(i).padStart(2, "0")}`,
+				primaryType: "Single",
+				firstReleaseDate: `${1962 + (i % 9)}-01-01`,
+				ratingVotes: 1 + i,
+			}),
+		);
+		const archives = Array.from({ length: 60 }, (_, i) =>
+			release({ title: `Archive ${i}`, firstReleaseDate: `${1985 + (i % 30)}-01-01` }),
+		);
+		const { kept } = selectReleases([...archives, ...votedSingles, ...votedAlbums], policy);
+		expect(kept).toHaveLength(40);
+		expect(kept.filter((c) => c.ratingVotes === 0)).toEqual([]);
+		expect(kept.filter((c) => c.primaryType === "Album")).toHaveLength(19);
+		// Among the voted singles, the 21 most voted take the remaining places.
+		const keptSingles = kept.filter((c) => c.primaryType === "Single").map((c) => c.ratingVotes);
+		expect(keptSingles.sort((a, b) => a - b)).toEqual(Array.from({ length: 21 }, (_, i) => 10 + i));
+	});
+
+	it("keeps a voted single before an unvoted album, an album before an EP before a single at equal votes", () => {
+		const hey = release({ title: "Hey Jude", primaryType: "Single", ratingVotes: 12 });
+		const bootleg = release({ title: "Bootleg", ratingVotes: 0 });
+		const ep = release({ title: "Long Tall Sally", primaryType: "EP", ratingVotes: 12 });
+		const album = release({ title: "Album", ratingVotes: 12 });
+		expect(selectReleases([bootleg, hey], { ...policy, cap: 1 }).kept).toEqual([hey]);
+		const order = selectReleases([hey, ep, album], { ...policy, cap: 2 }).kept.map((c) => c.title);
+		expect(order.sort()).toEqual(["Album", "Long Tall Sally"]);
+	});
+
+	it("small artist with no vote at all: albums first, oldest to newest, then EPs, then singles", () => {
+		const albums = many(30, "Album", 1980);
+		const eps = many(5, "EP", 1990);
+		const singles = many(30, "Single", 1970);
+		const { kept } = selectReleases([...singles, ...eps, ...albums], policy);
+		expect(kept).toHaveLength(40);
+		expect(kept.filter((c) => c.primaryType === "Album")).toHaveLength(30);
+		expect(kept.filter((c) => c.primaryType === "EP")).toHaveLength(5);
+		expect(
+			kept
+				.filter((c) => c.primaryType === "Single")
+				.map((c) => c.title)
+				.sort(),
+		).toEqual(
+			singles
+				.slice(0, 5)
+				.map((c) => c.title)
+				.sort(),
+		);
 	});
 
 	it("Lennon: Lost Lennon Tapes at 0 votes come after Imagine and Plastic Ono Band", () => {
