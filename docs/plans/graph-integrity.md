@@ -1183,3 +1183,44 @@ restent intactes, aucune migration de retrait ; (2) confirmé, MusicBrainz rempl
 génération ; (3) confirmé, `year` et `releaseType` sont complétés quand ils manquent. Risque ajouté par
 le dispatcher : quasi-doublons à l'ajout, compteur `near-duplicate` dans le manifeste (8.6) et colonne
 dans le tableau des témoins (8.8).
+
+### Amendements en cours de livraison (2026-10-19)
+
+Ces décisions ont été prises au fil des reviews et des mesures à blanc réelles. Elles priment sur le texte
+de 8-D1, 8-D6 et 8.4 ci-dessus.
+
+- **8-D6 / 8.4 (#541, review profonde) : deux métriques strictes auraient bloqué toute PR de données**
+  qui ajoute un artiste, liste Gemini sans mbid ou liste MusicBrainz de moins de 3 entrées. Désormais :
+  - `artist-discography-under-3` (196) est une métrique de couverture `"artist"` ;
+  - nouvelle métrique `artist-discography-without-mbid` (339, par artiste), de couverture `"artist"` ;
+  - `discography-edge-without-mbid` (1 214) devient informative.
+
+  Suivi TRA-623 (#545) : l'arête inverse projet → artiste porte le mbid du projet.
+- **8-D1, priorité sous le plafond** (TRA-625, #549). La mesure à blanc de TRA-618 a montré que « les
+  plus récents d'abord » remplit les 40 places des Beatles de pirates et coupe Abbey Road. La priorité
+  devient :
+  1. voté avant non voté (`inc=ratings`, `ratingVotes`) ;
+  2. album, puis EP, puis single ;
+  3. votes décroissants ;
+  4. le plus ancien d'abord ;
+  5. titre, puis mbid.
+
+  Les types secondaires `Soundtrack` et `Mixtape/Street` sont admis (Help!, A Hard Day's Night ; ex-TRA-627).
+  L'ordre affiché reste par année décroissante.
+- **8-D1, coupe des non votés** (TRA-628, #550). Si l'artiste a au moins 10 candidats votés, les non votés
+  sont exclus (`unrated`), sauf les sorties de l'année précédente ou plus récentes (`currentYear`).
+  Cela retire 55 Lost Lennon Tapes et Archives ; Kode9, à 0 vote, n'est pas touché.
+- **8-D3, pose** (TRA-625 et TRA-628). Une entrée sans type face à un seul album admis, accompagné de
+  singles, EP ou homonymes Live/Compilation, reçoit l'album (Giant Steps, Blue Train, Imagine). Une entrée
+  typée garde la garde de type de TRA-617.
+- **8.6 (#548, review profonde)** :
+  - la sortie vaut 1 seulement sur refus ou au-delà de 20 % d'`unavailable` ;
+  - un ajout ne suit une redirection que si la cible est scopée sur l'artiste ;
+  - `DISCOGRAPHY_POLICY_VERSION` (3) et `currentYear` entrent dans l'empreinte de reprise.
+- **8.10 (TRA-622)** : la mesure prod « avant » est faite en HTTP sur les 10 témoins, 64 pochettes sur
+  86 arêtes (74,4 %). Une mesure hors ligne de prod demanderait un accès SSH, qui ne passe que par la CI.
+- **Mesure à blanc finale** (TRA-618, politique v3, MusicBrainz réel) :
+  - témoins du dépôt : part d'arêtes avec mbid de 56,6 % à 95,1 % ;
+  - Kode9 : 2 → 26 entrées, dont Memories of the Future, Black Sun et Nothing ;
+  - réserves connues : quelques albums tardifs peu votés de Coltrane coupés, et les albums crédités
+    « The Mothers of Invention » absents chez Zappa (non-but).
