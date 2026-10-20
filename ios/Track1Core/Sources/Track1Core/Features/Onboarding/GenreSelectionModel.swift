@@ -18,8 +18,8 @@ public final class GenreSelectionModel {
 	private let flowID: UUID
 	private let onboardingStartedRecorded: Bool
 
-	/// The v1 slugs with no editorial equivalent. Always empty here: restoring a v1 profile is a separate
-	/// ticket (1.3), which fills it. It stays a plain value: showing it is not this model's job.
+	/// The v1 slugs with no editorial equivalent, in stored order, once each. Empty unless a v1 profile
+	/// (no selection) is restored. It stays a plain value: showing it is not this model's job.
 	public let droppedGenreIDs: [NodeIdentity]
 
 	/// `draft` is the one the `ProfileStore` already holds for this flow. It carries the `flow_id` shared with
@@ -28,9 +28,9 @@ public final class GenreSelectionModel {
 	///
 	/// This is also the path that rebuilds the state from an existing profile (`editing`, used by the edit
 	/// flow). A stored selection is a fixed point of `restore`, so a profile created by this flow reloads
-	/// unchanged. A profile without a selection (written before the editorial taxonomy) restores an empty
-	/// selection for now: rebuilding it from its v1 slugs is a separate ticket. A draft without a selection
-	/// is not a profile, so it defers to the selection of `editing`, if any.
+	/// unchanged. A profile without a selection (written before the editorial taxonomy) is rebuilt from its
+	/// v1 slugs by `restoreLegacy`. A draft without a selection is not a profile, so it defers to `editing`:
+	/// its selection if any, its v1 slugs otherwise.
 	public init(taxonomy: EditorialGenreTaxonomy, editing: Profile? = nil, draft: ProfileDraft? = nil) {
 		self.taxonomy = taxonomy
 		self.editing = editing
@@ -38,10 +38,15 @@ public final class GenreSelectionModel {
 		onboardingStartedRecorded = draft?.onboardingStartedRecorded ?? false
 		if let stored = draft?.selection ?? editing?.selection {
 			selectedGenres = Self.restore(stored, in: taxonomy)
+			droppedGenreIDs = []
+		} else if let editing {
+			let legacy = Self.restoreLegacy(editing.genreIDs, in: taxonomy)
+			selectedGenres = legacy.genres
+			droppedGenreIDs = legacy.dropped
 		} else {
 			selectedGenres = []
+			droppedGenreIDs = []
 		}
-		droppedGenreIDs = []
 	}
 
 	/// Rules, applied to the stored selection. What the taxonomy cannot show any more is discarded in silence:
@@ -61,6 +66,33 @@ public final class GenreSelectionModel {
 			genres.append(contentsOf: visible)
 		}
 		return genres
+	}
+
+	/// Rebuilds the ticked genres from the `genre:*` slugs of a v1 profile, in stored order, through the
+	/// table the web migration also uses. For each slug, `ids` are the editorial genres the taxonomy maps it
+	/// to, already filtered to the visible ones:
+	/// 1. No `ids`: the slug is dropped (once), and nothing else changes.
+	/// 2. Otherwise each id is ticked, in order, if it is not ticked yet.
+	/// The union is kept on purpose (plan D2, decided 2026-10-19): `genre:rock` next to
+	/// `genre:progressive-rock` ticks the whole Rock card, as the web does. The old model narrowed that to
+	/// the subgenre and singled out "the ids are exactly one family"; here a family is not a state, so
+	/// ticking all its ids already is the family, and neither rule is needed. Nothing is written until the
+	/// person saves.
+	private static func restoreLegacy(
+		_ slugs: [NodeIdentity],
+		in taxonomy: EditorialGenreTaxonomy
+	) -> (genres: [String], dropped: [NodeIdentity]) {
+		var genres = [String]()
+		var dropped = [NodeIdentity]()
+		for slug in slugs {
+			let ids = taxonomy.legacyGenreIDs(for: slug)
+			guard !ids.isEmpty else {
+				if !dropped.contains(slug) { dropped.append(slug) }
+				continue
+			}
+			for id in ids where !genres.contains(id) { genres.append(id) }
+		}
+		return (genres, dropped)
 	}
 
 	/// The cards of the screen, in display order. The model hands them out so the screen never holds the
