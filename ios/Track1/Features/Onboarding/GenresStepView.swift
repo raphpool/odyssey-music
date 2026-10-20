@@ -139,6 +139,7 @@ struct GenresStepView: View {
 			subgenreCount: model.subgenres(of: family.id).count,
 			selectedCount: model.selectedCount(of: family.id),
 			isExpanded: expanded.contains(family.id),
+			identifier: GenreAccordionCard<EmptyView>.identifier(for: family.id),
 			onToggle: {
 				withAnimation(Track1Motion.spring(reduceMotion: reduceMotion)) {
 					toggleExpansion(of: family.id)
@@ -147,7 +148,6 @@ struct GenresStepView: View {
 		) {
 			chips(of: family)
 		}
-		.accessibilityIdentifier(GenreAccordionCard<EmptyView>.identifier(for: family.id))
 		// One tick per card passing under the bar, not per chip (plan D5): the chips of an open card are a
 		// flow layout, not a list.
 		.background { RowEdgeReader(id: family.id, space: Space.content) }
