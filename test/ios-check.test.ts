@@ -280,6 +280,9 @@ type CheckScriptOptions = {
 	// Output of the faked `xcrun simctl listapps`.
 	apps?: string;
 	env?: Record<string, string>;
+	// Puts a `node` first in PATH that runs this shell snippet when check.sh starts the contract harness, then runs
+	// the real node: `sleep 6` is a cold tsx start on a loaded machine, `exit 3` a harness that crashes at boot.
+	harnessStartPrelude?: string;
 	// Runs before the script, to seed the persistent derived-data cache.
 	beforeRun?: (paths: CheckScriptPaths) => Promise<void>;
 };
@@ -416,6 +419,17 @@ if [[ "$*" == *"__track1_contract_report"* ]]; then
 fi
 `,
 		);
+		if (options.harnessStartPrelude !== undefined) {
+			// Only the harness start (the one call with --ready-file) is affected; the other node calls of check.sh are not.
+			await writeTool(
+				directory,
+				"node",
+				`#!/bin/sh
+case "$*" in *--ready-file*) ${options.harnessStartPrelude} ;; esac
+exec "${process.execPath}" "$@"
+`,
+			);
+		}
 		const swiftCallsPath = join(directory, "swift-calls");
 		const swiftPidsPath = join(directory, "swift-pids");
 		const timelinePath = join(directory, "timeline");
@@ -1408,6 +1422,31 @@ describe.sequential("Track1 package tests before the simulator", () => {
 		expect(run.swiftSurvivors).toEqual([]);
 		expect(run.calls).toBe("");
 		expect(run.cacheEntries.filter((entry) => entry.endsWith(".lock"))).toEqual([]);
+	});
+
+	// 2026-10-19 (TRA-643): on a loaded Mac the cold start of tsx took longer than the 5 s that check.sh waited for
+	// the ready file, so ios-check failed with "did not publish its XCTest base URL" on a diff that touched no TS.
+	it("waits for a slow harness start, 6 s here, instead of giving up after 5 s", async () => {
+		const run = await runCheckScript(undefined, { harnessStartPrelude: "sleep 6" });
+
+		const output = `${run.result.stdout}\n${run.result.stderr}`;
+		expect(output).not.toContain("did not publish its XCTest base URL");
+		// The harness is started in the simulator-boot step. The assertion stops there on purpose: the steps after it
+		// need a real Xcode, and the other tests of this file already check that a whole run succeeds.
+		expect(output).toMatch(/\[check\] simulator-boot: \d+s\n/);
+		expect(run.elapsedMilliseconds).toBeGreaterThanOrEqual(6_000);
+	});
+
+	it("fails at once when the harness dies before it publishes its URL, without waiting for the budget", async () => {
+		const run = await runCheckScript(undefined, {
+			harnessStartPrelude: "echo 'harness crashed at boot' >&2; exit 3",
+		});
+
+		expect(run.result.status).not.toBe(0);
+		expect(run.result.stderr).toContain("harness crashed at boot");
+		expect(run.result.stderr).not.toContain("did not publish its XCTest base URL");
+		// The wait is 30 s; a harness that is already dead must not use any of it.
+		expect(run.elapsedMilliseconds).toBeLessThan(15_000);
 	});
 
 	it("rejects a timeout that is not a number of seconds, before running anything", async () => {

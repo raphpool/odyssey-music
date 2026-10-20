@@ -9,7 +9,7 @@
  * 75 singles).
  */
 import { VARIOUS_ARTISTS_MBID } from "./musicbrainz.js";
-import { makeScopedSlug, normalizeTitleBody } from "./slug.js";
+import { makeScopedSlug, normalizeTitleBody, stripEditionNoise } from "./slug.js";
 import type { EdgeRef, Slug } from "./types.js";
 
 // Re-exported so callers keep one import site for the policy; the constant itself lives with the MusicBrainz client.
@@ -44,8 +44,17 @@ export const DEFAULT_DISCOGRAPHY_CAP = 40;
  * 2026-10-19: 3, the policy changed with TRA-628 (unvoted release groups cut once an artist has
  * MIN_VOTED_FOR_UNRATED_CUT voted ones, except recent releases; an album is posed ignoring its Live / Compilation
  * namesakes): a manifest of version 2 is not replayed.
+ * 2026-10-19: 4, the policy changed with TRA-629 (an entry that differs from a release group only by a trailing
+ * "(1979)" / "[1979]" year or an "EP" suffix is posed its mbid instead of getting a twin added): a manifest of
+ * version 3 is not replayed.
+ * 2026-10-20: 5, the policy changed with TRA-647 (an entry with neither releaseType nor year is no longer posed
+ * the mbid of a lone same-title release group when its project node holds another mbid, nor when the artist has
+ * MIN_VOTED_FOR_UNRATED_CUT voted release groups and that one has no vote and is not recent; the cache PR #562 had
+ * posed 5 reference entries with the identity of a minor single or a reissue; and an mbid is only posed from a
+ * release group that passes the credit rule of classifyRelease, Ellington's "Black, Brown and Beige" having
+ * taken a 2013 recording credited to three artists): a manifest of version 4 is not replayed.
  */
-export const DISCOGRAPHY_POLICY_VERSION = 3;
+export const DISCOGRAPHY_POLICY_VERSION = 5;
 
 // TRA-628 (measured 2026-10-19 on MusicBrainz): John Lennon has 69 eligible release groups, 14 voted and 55
 // not (The Lost Lennon Tapes, Archives, outtakes), and the cap used to fill with the oldest of them. From this
@@ -118,6 +127,50 @@ export function isNonCanonicalReleaseTitle(title: string): boolean {
 	return dashSuffix !== undefined && isVariantQualifier(dashSuffix);
 }
 
+// TRA-629 (measured 2026-10-19, full dry-run of the backfill): about 30 of the 50 near duplicates were the same
+// work under a different suffix ("Ladies' Night (1979)" vs "Ladies' Night", "Xpander EP" vs "Xpander"). The
+// backfill never removes anything, so the twin it added next to such an entry would be permanent.
+// A year needs its brackets, so a title that is a year ("1979") keeps it; "EP" needs a space, a dash or a
+// bracket before it, so "Deep" and "EPic" are untouched.
+const TRAILING_YEAR_SUFFIX = /\s*(?:\(\s*((?:19|20)\d{2})\s*\)|\[\s*((?:19|20)\d{2})\s*\])$/u;
+const TRAILING_EP_SUFFIX = /(?:\s+[-\u2013\u2014]\s+ep|\s*\(\s*ep\s*\)|\s*\[\s*ep\s*\]|\s+ep)$/iu;
+
+// The title with its trailing year / EP suffixes peeled off, in any order and as many times as they come; the
+// last year written among them; and whether an "EP" was peeled. Each suffix is peeled on its own, and never
+// if nothing would be left of the title: "(EP) (1979)" and "EP (1979)" both keep "EP".
+function peelSuffixes(title: string): { rest: string; year: number | null; ep: boolean } {
+	let rest = stripEditionNoise(title.normalize("NFKD"));
+	let year: number | null = null;
+	let ep = false;
+	const peel = (suffix: RegExp): RegExpExecArray | null => {
+		const match = suffix.exec(rest);
+		if (match === null) return null;
+		const left = rest.slice(0, match.index).trim();
+		if (normalizeTitleBody(left) === "") return null;
+		rest = left;
+		return match;
+	};
+	for (;;) {
+		const before = rest;
+		const yearMatch = peel(TRAILING_YEAR_SUFFIX);
+		const stated = yearMatch?.[1] ?? yearMatch?.[2];
+		if (year === null && stated !== undefined) year = Number(stated);
+		if (peel(TRAILING_EP_SUFFIX) !== null) ep = true;
+		if (rest === before) break;
+	}
+	return { rest, year, ep };
+}
+
+/**
+ * Looser identity than normalizeTitleBody, for reconciling an existing entry with a release group: the title
+ * body once a trailing "(1979)" / "[1979]" year (1900 to 2099) and a trailing "EP" ("X EP", "X (EP)", "X [EP]",
+ * "X - EP") are removed, in any order and as many times as they come. A suffix is never removed if nothing
+ * would be left of the title. Both sides of a comparison go through it.
+ */
+export function reconciliationKey(title: string): string {
+	return normalizeTitleBody(peelSuffixes(title).rest);
+}
+
 // MBIDs are UUIDs: case carries no meaning, and a hand-supplied upper-case id must not exclude a whole
 // discography as a "credit" mismatch.
 function sameMbid(a: string, b: string): boolean {
@@ -139,6 +192,19 @@ function isKeptPrimaryType(type: string): type is KeptPrimaryType {
 	return (KEPT_PRIMARY_TYPES as readonly string[]).includes(type);
 }
 
+// The credit rule alone: the artist heads the release (first credit), it has at most MAX_CREDITS credits, and
+// Various Artists is not one of them. Various Artists is told apart from a plain "credit" mismatch, which is what
+// the exclusion log is read for.
+function creditVerdict(
+	c: ReleaseGroupCandidate,
+	policy: DiscographyPolicy,
+): "various-artists" | "credit" | null {
+	if (c.artistCredits.some((credit) => sameMbid(credit.mbid, VARIOUS_ARTISTS_MBID))) return "various-artists";
+	const firstCredit = c.artistCredits[0];
+	if (firstCredit === undefined || !sameMbid(firstCredit.mbid, policy.artistMbid)) return "credit";
+	return c.artistCredits.length > MAX_CREDITS ? "credit" : null;
+}
+
 /**
  * Checks run in a fixed order and the first failure wins. Various Artists is checked before the credit
  * position: a "Various Artists" release is reported as such rather than as a plain "credit" mismatch,
@@ -150,14 +216,8 @@ export function classifyRelease(
 ): { ok: true } | { ok: false; reason: ExclusionReason } {
 	if (!isKeptPrimaryType(c.primaryType)) return { ok: false, reason: "primary-type" };
 	if (!hasOnlyAdmittedSecondaryTypes(c)) return { ok: false, reason: "secondary-type" };
-	if (c.artistCredits.some((credit) => sameMbid(credit.mbid, VARIOUS_ARTISTS_MBID))) {
-		return { ok: false, reason: "various-artists" };
-	}
-	const firstCredit = c.artistCredits[0];
-	if (firstCredit === undefined || !sameMbid(firstCredit.mbid, policy.artistMbid)) {
-		return { ok: false, reason: "credit" };
-	}
-	if (c.artistCredits.length > MAX_CREDITS) return { ok: false, reason: "credit" };
+	const credit = creditVerdict(c, policy);
+	if (credit !== null) return { ok: false, reason: credit };
 	if (isNonCanonicalReleaseTitle(c.title)) return { ok: false, reason: "non-canonical" };
 	return { ok: true };
 }
@@ -344,8 +404,22 @@ export interface MergeInput {
 	// Every release group first-credited to the artist, any type: what an mbid may be posed from.
 	allCredited: readonly ReleaseGroupCandidate[];
 	policy: DiscographyPolicy;
-	projectIndex: { byMbid: ReadonlyMap<string, Slug>; resolveSlug: (slug: Slug) => Slug };
+	projectIndex: {
+		byMbid: ReadonlyMap<string, Slug>;
+		// The mbid a project node holds, by node slug (nodes without an mbid are absent). Read under the slug
+		// `resolveSlug` gives for the entry (TRA-647).
+		mbidBySlug: ReadonlyMap<Slug, string>;
+		resolveSlug: (slug: Slug) => Slug;
+	};
 }
+
+export type AmbiguousReason =
+	| "multiple"
+	| "type"
+	| "year-mismatch"
+	| "node-conflict"
+	| "unrated-pose"
+	| "credit";
 
 export interface MergeResult {
 	edges: EdgeRef[];
@@ -359,7 +433,7 @@ export interface MergeResult {
 		releaseType: "album" | "ep" | "single";
 		nearDuplicateOf?: Slug;
 	}[];
-	ambiguous: { slug: Slug; reason: "multiple" | "type" | "year-mismatch" }[];
+	ambiguous: { slug: Slug; reason: AmbiguousReason }[];
 	capReached: boolean;
 }
 
@@ -388,10 +462,14 @@ function opensWith(longer: string, shorter: string): boolean {
 
 type PoseVerdict =
 	| { kind: "none" }
-	| { kind: "ambiguous"; reason: "multiple" | "type" | "year-mismatch" }
+	| { kind: "ambiguous"; reason: AmbiguousReason }
 	| { kind: "pose"; match: ReleaseGroupCandidate };
 
-function decidePose(entry: EdgeRef, matches: readonly ReleaseGroupCandidate[]): PoseVerdict {
+function decidePose(
+	entry: EdgeRef,
+	matches: readonly ReleaseGroupCandidate[],
+	titleYear: number | null = null,
+): PoseVerdict {
 	const [first] = matches;
 	if (first === undefined) return { kind: "none" };
 	let chosen: ReleaseGroupCandidate | undefined = first;
@@ -418,7 +496,13 @@ function decidePose(entry: EdgeRef, matches: readonly ReleaseGroupCandidate[]): 
 				return { kind: "ambiguous", reason: distinctTypes.size > 1 ? "type" : "multiple" };
 			}
 		} else {
-			const ofType = matches.filter((m) => m.primaryType.toLowerCase() === entry.releaseType);
+			// An entry that states its type competes only with the release groups of that type that are its work:
+			// a Live / Compilation one of the same title and type is not (TRA-629, "Hurt" typed EP next to the
+			// album and a Compilation EP would have taken the compilation, for good).
+			const statedType = matches.filter((m) => m.primaryType.toLowerCase() === entry.releaseType);
+			const ofType = statedType.filter(hasOnlyAdmittedSecondaryTypes);
+			// Every release group of the stated type is a Live / Compilation one: nothing is the entry's work.
+			if (ofType.length === 0 && statedType.length > 0) return { kind: "none" };
 			chosen = ofType.length === 1 ? ofType[0] : undefined;
 		}
 		if (chosen === undefined) return { kind: "ambiguous", reason: "multiple" };
@@ -428,12 +512,74 @@ function decidePose(entry: EdgeRef, matches: readonly ReleaseGroupCandidate[]): 
 	if (entry.releaseType !== undefined && chosen.primaryType.toLowerCase() !== entry.releaseType) {
 		return { kind: "ambiguous", reason: "type" };
 	}
-	const entryYear = yearOf(entry.year);
+	const entryYear = yearOf(entry.year) ?? titleYear;
 	const matchYear = yearOf(chosen.firstReleaseDate);
 	if (entryYear !== null && matchYear !== null && Math.abs(entryYear - matchYear) > MAX_YEAR_DRIFT) {
 		return { kind: "ambiguous", reason: "year-mismatch" };
 	}
 	return { kind: "pose", match: chosen };
+}
+
+// What the cautious pose of TRA-647 reads besides the entry and its candidates.
+interface PoseCaution {
+	// The mbid held by the entry's project node, if it has one.
+	nodeMbidOf: (entry: EdgeRef) => string | undefined;
+	// The artist has MIN_VOTED_FOR_UNRATED_CUT voted release groups: the same count as the unrated cut.
+	ratedArtist: boolean;
+	policy: DiscographyPolicy;
+}
+
+/**
+ * decidePose, with the guards of TRA-647 (measured 2026-10-20 on the cache of PR #562: 804 of 809 poses were of
+ * an entry with neither type nor year, and 5 of them took a minor release of the exact title: Kraftwerk
+ * "Trans-Europe Express" a 1999 promo single, Zappa "Joe's Garage" the single while the album is "Joe's Garage Act
+ * I", Sakamoto "Vrioon" the 2022 reissue, against the mbid its node already held). In this order:
+ *  1. an entry without year whose project node holds an mbid: it is the identity. It is posed if it is among the
+ *     candidates, even where several compete (an entry that states a type still may not take another type);
+ *     otherwise nothing is posed, `node-conflict`;
+ *  2. otherwise decidePose decides, on the whole group, with its resolution of several release groups;
+ *  3. whatever was decided, the release group to pose must pass the credit rule of classifyRelease (the artist
+ *     heads it, at most two credits, not Various Artists), else nothing is posed, `credit`. It is checked on the
+ *     one the decision picked, never on the group beforehand: removing a candidate first would turn "two
+ *     recordings" into a confident pose on the other, or an album into its single (TRA-560). Ellington's "Black,
+ *     Brown and Beige" took a 2013 recording credited to three artists;
+ *  4. an entry with neither year nor type, an artist with MIN_VOTED_FOR_UNRATED_CUT voted release groups, and a
+ *     release group with no vote that is not recent: nothing is posed, `unrated-pose`. A minor release rarely has
+ *     votes where the real album has them; below the threshold (Kode9, 4hero) nobody has votes and it stays out.
+ * A year or a type on the entry (or a year in its title) keeps the guards of decidePose for 1 and 4.
+ */
+function decideCautiously(
+	entry: EdgeRef,
+	matches: readonly ReleaseGroupCandidate[],
+	titleYear: number | null,
+	caution: PoseCaution,
+): PoseVerdict {
+	const hasYear = yearOf(entry.year) !== null || titleYear !== null;
+	const unstated = entry.releaseType === undefined && !hasYear;
+	const nodeMbid = !hasYear && matches.length > 0 ? caution.nodeMbidOf(entry) : undefined;
+	let verdict: PoseVerdict;
+	if (nodeMbid !== undefined) {
+		const held = matches.find((m) => sameMbid(m.mbid, nodeMbid));
+		if (held === undefined) return { kind: "ambiguous", reason: "node-conflict" };
+		verdict =
+			entry.releaseType !== undefined && held.primaryType.toLowerCase() !== entry.releaseType
+				? { kind: "ambiguous", reason: "type" }
+				: { kind: "pose", match: held };
+	} else {
+		verdict = decidePose(entry, matches, titleYear);
+	}
+	if (verdict.kind !== "pose") return verdict;
+	if (creditVerdict(verdict.match, caution.policy) !== null) return { kind: "ambiguous", reason: "credit" };
+	if (
+		nodeMbid === undefined &&
+		unstated &&
+		caution.ratedArtist &&
+		!isVoted(verdict.match) &&
+		!isRecentRelease(verdict.match, caution.policy)
+	) {
+		return { kind: "ambiguous", reason: "unrated-pose" };
+	}
+	return verdict;
 }
 
 // A copy of the entry with the mbid set, and year / releaseType completed only where they were absent.
@@ -459,13 +605,30 @@ function poseOnEntry(
 	return { edge, filled };
 }
 
+// Release groups by identity key, one per mbid in a group; a title with an empty key is left out.
+function groupCredited(
+	credited: readonly ReleaseGroupCandidate[],
+	keyOf: (title: string) => string,
+): Map<string, ReleaseGroupCandidate[]> {
+	const groups = new Map<string, ReleaseGroupCandidate[]>();
+	for (const candidate of credited) {
+		const key = keyOf(candidate.title);
+		if (key === "") continue;
+		const group = groups.get(key);
+		if (group === undefined) groups.set(key, [candidate]);
+		else if (!group.some((other) => sameMbid(other.mbid, candidate.mbid))) group.push(candidate);
+	}
+	return groups;
+}
+
 /**
  * Pure merge of MusicBrainz release groups into an artist's existing discography (graph-integrity plan,
  * part 8, 8-D3). It adds and poses, it never removes: an existing entry keeps its `name`, `slug` and
- * `artist` and only gains an `mbid` (exact normalized-title match, see decidePose) plus a `year` /
- * `releaseType` it lacked. Release groups missing from the list are appended up to `policy.cap`, as the
- * very edge `toDiscographyEdge` builds; only the slug is replaced when a project node already exists for
- * the mbid (or a redirect leads to one). A candidate whose title extends, or is extended by, that of an
+ * `artist` and only gains an `mbid` (exact normalized-title match, else the same title up to a trailing year or
+ * "EP", see reconciliationKey and decidePose) plus a `year` / `releaseType` it lacked. An entry that states
+ * neither a year nor a releaseType is posed more carefully (decideCautiously, TRA-647). Release groups missing
+ * from the list are appended up to `policy.cap`, as the very edge `toDiscographyEdge` builds; only the slug
+ * is replaced when a project node already exists for the mbid (or a redirect leads to one). A candidate whose title extends, or is extended by, that of an
  * entry still without mbid is added anyway but flagged `nearDuplicateOf`: we measure, we do not reconcile.
  * Candidates without an mbid or outside Album / EP / Single are not added. An untouched list comes back
  * as the same array, with `changed: false`.
@@ -473,20 +636,79 @@ function poseOnEntry(
 export function mergeDiscography(input: MergeInput): MergeResult {
 	const { existing, candidates, allCredited, policy, projectIndex } = input;
 
-	const creditedByTitle = new Map<string, ReleaseGroupCandidate[]>();
-	for (const credited of allCredited) {
-		const body = normalizeTitleBody(credited.title);
-		if (body === "") continue;
-		const group = creditedByTitle.get(body);
-		if (group === undefined) creditedByTitle.set(body, [credited]);
-		else if (!group.some((other) => sameMbid(other.mbid, credited.mbid))) group.push(credited);
+	const creditedByTitle = groupCredited(allCredited, normalizeTitleBody);
+	// TRA-629: the same release groups under the looser key. It is only consulted when the exact title finds
+	// nothing, so what posed before keeps posing the same way.
+	const creditedByKey = groupCredited(allCredited, reconciliationKey);
+	// The looser key never gives an mbid that another title already holds: the ones on existing entries, then the
+	// ones the exact-title pass posed (a v3 run may have added "Ladies' Night" next to a legacy "Ladies' Night
+	// (1979)"). Entries of the very same title are not affected: each of them is posed, none is removed.
+	const heldMbids = new Set(existing.flatMap((e) => (hasMbid(e) ? [(e.mbid ?? "").toLowerCase()] : [])));
+	const caution: PoseCaution = {
+		nodeMbidOf: (entry) => {
+			const mbid = projectIndex.mbidBySlug.get(projectIndex.resolveSlug(entry.slug));
+			return mbid === undefined || mbid === "" ? undefined : mbid;
+		},
+		// Counted on `candidates`, the kept list of selectReleases, whose cut counts the very same voted release groups.
+		ratedArtist:
+			new Set(candidates.filter(isVoted).map((c) => c.mbid.toLowerCase())).size >= MIN_VOTED_FOR_UNRATED_CUT,
+		policy,
+	};
+
+	// Two passes, so that the pose does not depend on the order of `existing`: every exact-title pose first, over
+	// all the entries, then the looser ones among what is left.
+	const verdicts: (PoseVerdict | undefined)[] = existing.map(() => undefined);
+	existing.forEach((entry, index) => {
+		if (hasMbid(entry)) return;
+		const group = creditedByTitle.get(normalizeTitleBody(entry.name)) ?? [];
+		if (group.length === 0) return;
+		const verdict = decideCautiously(entry, group, null, caution);
+		verdicts[index] = verdict;
+		if (verdict.kind === "pose") heldMbids.add(verdict.match.mbid.toLowerCase());
+	});
+
+	// The looser pass judges each entry on its own, with the very resolution of the exact pass (TRA-625 / 628:
+	// one album admitted against singles and EPs, Live and Compilation ignored), against the whole group of
+	// release groups sharing its key, held mbids included: removing a held one first would turn "two release
+	// groups" into a confident pose on the other (TRA-629, "Ladies' Night (1979)" next to a twin holding the
+	// album and a "Ladies' Night EP"). A pose on a release group whose mbid is held leaves the entry as it is.
+	// An entry whose title ended with "EP" (the suffix the key removed) can only be an EP: its candidates are the
+	// admitted EPs of the group (Live / Compilation ones are not its work, TRA-628), and never the album or the
+	// single of the same title. One is posed, several are `multiple`, none leaves the entry as it is. No
+	// releaseType is forced on the entry: the typed branch of decidePose does not filter secondary types.
+	const looserVerdicts = new Map<number, PoseVerdict>();
+	existing.forEach((entry, index) => {
+		if (hasMbid(entry) || verdicts[index] !== undefined) return;
+		const peeled = peelSuffixes(entry.name);
+		const group = creditedByKey.get(normalizeTitleBody(peeled.rest)) ?? [];
+		let verdict: PoseVerdict;
+		if (peeled.ep) {
+			const eps = group.filter((c) => c.primaryType === "EP" && hasOnlyAdmittedSecondaryTypes(c));
+			verdict = decideCautiously(entry, eps, peeled.year, caution);
+		} else {
+			verdict = decideCautiously(entry, group, peeled.year, caution);
+		}
+		const held = verdict.kind === "pose" && heldMbids.has(verdict.match.mbid.toLowerCase());
+		looserVerdicts.set(index, held ? { kind: "none" } : verdict);
+	});
+	// Two entries that the looser key sends to the same release group have no better claim than each other:
+	// neither is posed, both are reported, whatever their order in `existing`.
+	const claims = new Map<string, number>();
+	for (const verdict of looserVerdicts.values()) {
+		if (verdict.kind !== "pose") continue;
+		const mbid = verdict.match.mbid.toLowerCase();
+		claims.set(mbid, (claims.get(mbid) ?? 0) + 1);
+	}
+	for (const [index, verdict] of looserVerdicts) {
+		const contested = verdict.kind === "pose" && (claims.get(verdict.match.mbid.toLowerCase()) ?? 0) > 1;
+		verdicts[index] = contested ? { kind: "ambiguous", reason: "multiple" } : verdict;
 	}
 
 	const posed: MergeResult["posed"] = [];
 	const ambiguous: MergeResult["ambiguous"] = [];
-	const afterPose = existing.map((entry) => {
-		if (hasMbid(entry)) return entry;
-		const verdict = decidePose(entry, creditedByTitle.get(normalizeTitleBody(entry.name)) ?? []);
+	const afterPose = existing.map((entry, index) => {
+		const verdict = verdicts[index];
+		if (verdict === undefined) return entry;
 		if (verdict.kind === "ambiguous") ambiguous.push({ slug: entry.slug, reason: verdict.reason });
 		if (verdict.kind !== "pose") return entry;
 		const { edge, filled } = poseOnEntry(entry, verdict.match);
@@ -500,6 +722,16 @@ export function mergeDiscography(input: MergeInput): MergeResult {
 	const unmatched = afterPose
 		.filter((e) => !hasMbid(e))
 		.map((e) => ({ slug: e.slug, body: normalizeTitleBody(e.name) }));
+	// An entry reported ambiguous is not settled: a release group that only its suffix tells apart from it is not
+	// added next to it, the twin would be permanent (TRA-629). Every other entry is settled, posed or not: one
+	// whose mbid is held by its twin is the twin's duplicate, and "Mirage EP" next to a posed "Mirage" is
+	// another release group.
+	const takenKeys = new Set(
+		afterPose.flatMap((e, index) =>
+			verdicts[index]?.kind === "ambiguous" ? [reconciliationKey(e.name)] : [],
+		),
+	);
+	takenKeys.delete("");
 
 	const additions: EdgeRef[] = [];
 	const added: MergeResult["added"] = [];
@@ -513,6 +745,7 @@ export function mergeDiscography(input: MergeInput): MergeResult {
 		if (candidate.mbid === "" || takenMbids.has(candidate.mbid.toLowerCase())) continue;
 		const body = normalizeTitleBody(candidate.title);
 		if (takenBodies.has(body)) continue;
+		if (takenKeys.has(reconciliationKey(candidate.title))) continue;
 		const base = toDiscographyEdge(candidate, policy);
 		if (base === null || base.releaseType === undefined) continue;
 		const slug =
