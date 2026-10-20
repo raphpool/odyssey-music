@@ -8,6 +8,7 @@ import {
 	reconciliationKey,
 	selectReleases,
 	toDiscographyEdge,
+	VARIOUS_ARTISTS_MBID,
 } from "../src/discography-policy.js";
 import { makeScopedSlug } from "../src/slug.js";
 import type { EdgeRef, Slug } from "../src/types.js";
@@ -56,7 +57,7 @@ function merge(overrides: Partial<MergeInput> = {}): ReturnType<typeof mergeDisc
 		candidates: [],
 		allCredited: [],
 		policy,
-		projectIndex: { byMbid: new Map(), resolveSlug: (slug) => slug },
+		projectIndex: { byMbid: new Map(), mbidBySlug: new Map(), resolveSlug: (slug) => slug },
 		...overrides,
 	});
 }
@@ -378,7 +379,8 @@ describe("mergeDiscography — pose", () => {
 			release(`Voted ${i}`, { firstReleaseDate: `${1970 + i}-01-01`, ratingVotes: 10 }),
 		);
 		const tapes = release("The Lost Lennon Tapes, Vol. 1", { firstReleaseDate: "1988-01-01" });
-		const existing = [entry("The Lost Lennon Tapes, Vol. 1")];
+		// With a year: an entry without one is held back from an unvoted release group by TRA-647.
+		const existing = [entry("The Lost Lennon Tapes, Vol. 1", { year: "1988" })];
 
 		const { kept, excluded } = selectReleases([...rated, tapes], policy);
 		expect(excluded.map((e) => e.reason)).toEqual(["unrated"]);
@@ -495,6 +497,7 @@ describe("mergeDiscography — additions", () => {
 			candidates: [discovery],
 			projectIndex: {
 				byMbid: new Map([[discovery.mbid, existingSlug]]),
+				mbidBySlug: new Map(),
 				resolveSlug: () => "project:wrong" as Slug,
 			},
 		});
@@ -513,6 +516,7 @@ describe("mergeDiscography — additions", () => {
 			candidates: [homework],
 			projectIndex: {
 				byMbid: new Map(),
+				mbidBySlug: new Map(),
 				resolveSlug: (slug) =>
 					slug === slugFor("Homework") ? ("project:homework--daft-punk-v2" as Slug) : slug,
 			},
@@ -578,6 +582,7 @@ describe("mergeDiscography — additions", () => {
 					[first.mbid, shared],
 					[second.mbid, shared],
 				]),
+				mbidBySlug: new Map(),
 				resolveSlug: (slug) => slug,
 			},
 		});
@@ -1360,5 +1365,511 @@ describe("mergeDiscography — suffix reconciliation (TRA-629)", () => {
 			mbid: ep.mbid,
 			releaseType: "ep",
 		});
+	});
+});
+
+// TRA-647 (review of the cache PR #562, 2026-10-20): 5 reference entries were posed with the identity of another
+// release group. An entry with neither releaseType nor year gave its mbid to the lone same-title release group,
+// and a minor release (a promo single, a 2013 orchestral recording, a 2019 single with a guest) carries the exact
+// title while the real album has a longer one ("Joe's Garage Act I").
+describe("mergeDiscography — cautious pose without a year (TRA-647)", () => {
+	const zappa: DiscographyPolicy = { ...policy, artistName: "Frank Zappa" };
+	const zappaEntry = (name: string, extra: Partial<EdgeRef> = {}): EdgeRef =>
+		entry(name, extra, "Frank Zappa");
+
+	// Voted studio albums: what makes an artist "rated" (MIN_VOTED_FOR_UNRATED_CUT = 10).
+	const votedAlbums = (count: number): ReleaseGroupCandidate[] =>
+		Array.from({ length: count }, (_, i) =>
+			release(`Studio Album ${i}`, { firstReleaseDate: `${1966 + i}-01-01`, ratingVotes: 20 + i }),
+		);
+
+	// The same albums as entries that already hold their mbid, so that what is added is only what the case adds.
+	const settledEntries = (albums: ReleaseGroupCandidate[], artist: string): EdgeRef[] =>
+		albums.map((a) =>
+			entry(a.title, { mbid: a.mbid, year: a.firstReleaseDate.slice(0, 4), releaseType: "album" }, artist),
+		);
+
+	// What the migration does: `candidates` is selectReleases' kept list, `allCredited` is every release group.
+	function mergeFor(
+		artistPolicy: DiscographyPolicy,
+		existing: EdgeRef[],
+		allCredited: ReleaseGroupCandidate[],
+		extra: Partial<MergeInput> = {},
+	): ReturnType<typeof mergeDiscography> {
+		const { kept } = selectReleases(allCredited, artistPolicy);
+		return merge({ existing, candidates: kept, allCredited, policy: artistPolicy, ...extra });
+	}
+
+	describe("an artist with 10 voted release groups or more", () => {
+		it.each([
+			["Joe's Garage", "Frank Zappa", { primaryType: "Single", firstReleaseDate: "1979-09-07" }],
+			["Trans-Europe Express", "Kraftwerk", { primaryType: "Single", firstReleaseDate: "1999-01-01" }],
+			["Black, Brown and Beige", "Duke Ellington", { primaryType: "Album", firstReleaseDate: "2013-06-04" }],
+			[
+				"Merry Christmas, Mr. Lawrence",
+				"Ryuichi Sakamoto",
+				{ primaryType: "Single", firstReleaseDate: "2019-11-22" },
+			],
+		] satisfies [string, string, Partial<ReleaseGroupCandidate>][])(
+			"does not pose the unvoted %s, reports it unrated-pose and adds nothing",
+			(title, artist, fixture) => {
+				const artistPolicy = { ...policy, artistName: artist };
+				const minor = release(title, { ratingVotes: 0, ...fixture });
+				const voted = votedAlbums(10);
+				const held = entry(title, {}, artist);
+				const existing = [...settledEntries(voted, artist), held];
+
+				const result = mergeFor(artistPolicy, existing, [...voted, minor]);
+
+				expect(result.posed).toEqual([]);
+				expect(result.added).toEqual([]);
+				expect(result.ambiguous).toEqual([{ slug: held.slug, reason: "unrated-pose" }]);
+				expect(result.changed).toBe(false);
+				expect(result.edges).toBe(existing);
+			},
+		);
+
+		it("still poses a voted album: 'Imagine' (17 votes) next to its unvoted single", () => {
+			const album = release("Imagine", { firstReleaseDate: "1971-09-09", ratingVotes: 17 });
+			const single = release("Imagine", { primaryType: "Single", firstReleaseDate: "1971-10-11" });
+			const existing = [entry("Imagine", {}, "John Lennon")];
+
+			const result = mergeFor({ ...policy, artistName: "John Lennon" }, existing, [
+				...votedAlbums(10),
+				album,
+				single,
+			]);
+
+			expect(result.ambiguous).toEqual([]);
+			expect(result.posed).toEqual([
+				{ slug: existing[0]?.slug, mbid: album.mbid, filled: ["year", "releaseType"] },
+			]);
+		});
+
+		it("holds the entry when the album it would take is the unvoted one, whatever its voted single says", () => {
+			const album = release("Joe's Garage", { firstReleaseDate: "1979-09-07", ratingVotes: 0 });
+			const single = release("Joe's Garage", {
+				primaryType: "Single",
+				firstReleaseDate: "1979-09-07",
+				ratingVotes: 4,
+			});
+			const existing = [zappaEntry("Joe's Garage")];
+
+			const result = mergeFor(zappa, existing, [...votedAlbums(10), album, single]);
+
+			expect(result.posed).toEqual([]);
+			expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "unrated-pose" }]);
+		});
+
+		it("spares a release of last year or this year, which has had no time to be voted", () => {
+			const lastYear = release("Fresh", { firstReleaseDate: "2025-03-01" });
+			const twoYearsAgo = release("Stale", { firstReleaseDate: "2024-12-31" });
+			const undated = release("Timeless", { firstReleaseDate: "" });
+			const existing = [zappaEntry("Fresh"), zappaEntry("Stale"), zappaEntry("Timeless")];
+
+			const result = mergeFor(zappa, existing, [...votedAlbums(10), lastYear, twoYearsAgo, undated]);
+
+			expect(result.posed.map((p) => p.mbid)).toEqual([lastYear.mbid]);
+			expect(result.ambiguous.map((a) => [a.slug, a.reason]).sort()).toEqual(
+				[
+					[existing[1]?.slug, "unrated-pose"],
+					[existing[2]?.slug, "unrated-pose"],
+				].sort(),
+			);
+		});
+
+		it("holds the looser pass too: an untyped 'Xpander EP' does not take an unvoted EP", () => {
+			const ep = release("Xpander", { primaryType: "EP", firstReleaseDate: "1996-01-01" });
+			const voted = votedAlbums(10);
+			const held = zappaEntry("Xpander EP");
+
+			const result = mergeFor(zappa, [...settledEntries(voted, "Frank Zappa"), held], [...voted, ep]);
+
+			expect(result.posed).toEqual([]);
+			expect(result.added).toEqual([]);
+			expect(result.ambiguous).toEqual([{ slug: held.slug, reason: "unrated-pose" }]);
+		});
+
+		it("keeps the usual guards for an entry that states a year, a type, or a year in its title", () => {
+			const single = release("Joe's Garage", { primaryType: "Single", firstReleaseDate: "1979-09-07" });
+			const night = release("Ladies' Night", { firstReleaseDate: "1979-05-01" });
+			const base = votedAlbums(10);
+
+			const withYear = mergeFor(zappa, [zappaEntry("Joe's Garage", { year: "1979" })], [...base, single]);
+			expect(withYear.posed.map((p) => p.mbid)).toEqual([single.mbid]);
+
+			const withType = mergeFor(
+				zappa,
+				[zappaEntry("Joe's Garage", { releaseType: "single" })],
+				[...base, single],
+			);
+			expect(withType.posed.map((p) => p.mbid)).toEqual([single.mbid]);
+
+			const withTitleYear = mergeFor(zappa, [zappaEntry("Ladies' Night (1979)")], [...base, night]);
+			expect(withTitleYear.posed.map((p) => p.mbid)).toEqual([night.mbid]);
+		});
+	});
+
+	describe("an artist with fewer than 10 voted release groups", () => {
+		it("poses 'Memories of the Future' for Kode9, who has none voted, as before", () => {
+			const memories = release("Memories of the Future", { firstReleaseDate: "2006-05-08" });
+			const others = Array.from({ length: 23 }, (_, i) =>
+				release(`Kode9 Record ${i}`, { primaryType: "EP" }),
+			);
+			const existing = [entry("Memories of the Future", {}, "Kode9")];
+
+			const result = mergeFor({ ...policy, artistName: "Kode9" }, existing, [memories, ...others]);
+
+			expect(result.ambiguous).toEqual([]);
+			expect(result.posed.map((p) => p.mbid)).toEqual([memories.mbid]);
+		});
+
+		it("counts the threshold exactly: 9 voted poses, 10 voted holds", () => {
+			const single = release("Joe's Garage", { primaryType: "Single", firstReleaseDate: "1979-09-07" });
+			const existing = [zappaEntry("Joe's Garage")];
+
+			const nine = mergeFor(zappa, existing, [...votedAlbums(9), single]);
+			expect(nine.posed.map((p) => p.mbid)).toEqual([single.mbid]);
+
+			const ten = mergeFor(zappa, existing, [...votedAlbums(10), single]);
+			expect(ten.posed).toEqual([]);
+		});
+	});
+
+	// Measured 2026-10-20 on Duke Ellington (2 voted release groups of 82, so the rated-artist rule stays out): the
+	// 2013 "Black, Brown, and Beige" is credited to him first but to more than two artists, and the pose took it.
+	// A release group the artist does not head is somebody else's work: its mbid is never the entry's identity.
+	describe("a release group the credit rule of classifyRelease rejects", () => {
+		const ellington: DiscographyPolicy = { ...policy, artistName: "Duke Ellington" };
+		const BUFFALO = { mbid: "cccccccc-cccc-4ccc-8ccc-cccccccccccc", name: "Buffalo Philharmonic Orchestra" };
+		const ELLINGTON = { mbid: ARTIST_MBID, name: "Duke Ellington" };
+		const third = (n: number) => ({ mbid: mbidOf(900 + n), name: `Guest ${n}` });
+		const bbb = entry("Black, Brown and Beige", {}, "Duke Ellington");
+
+		it.each([
+			["the artist is not the first credit", [BUFFALO, ELLINGTON]],
+			["the release has more than two credits", [ELLINGTON, third(1), third(2)]],
+			[
+				"the release is credited to Various Artists",
+				[ELLINGTON, { mbid: VARIOUS_ARTISTS_MBID, name: "Various Artists" }],
+			],
+		])("is not posed, nor added, and is reported `credit`, when %s", (_label, artistCredits) => {
+			const found = release("Black, Brown and Beige", { firstReleaseDate: "2013-02-26", artistCredits });
+			const { kept } = selectReleases([found], ellington);
+
+			const result = merge({ existing: [bbb], candidates: kept, allCredited: [found], policy: ellington });
+
+			expect(result.posed).toEqual([]);
+			expect(result.added).toEqual([]);
+			expect(result.ambiguous).toEqual([{ slug: bbb.slug, reason: "credit" }]);
+			expect(result.changed).toBe(false);
+		});
+
+		it("is not added either when a caller hands it over as a candidate", () => {
+			const found = release("Black, Brown and Beige", { artistCredits: [BUFFALO, ELLINGTON] });
+			const result = merge({ existing: [bbb], candidates: [found], allCredited: [found], policy: ellington });
+			expect(result.posed).toEqual([]);
+			expect(result.added).toEqual([]);
+		});
+
+		it("is not posed on the looser pass either", () => {
+			const found = release("Xpander", {
+				primaryType: "EP",
+				artistCredits: [BUFFALO, ELLINGTON],
+			});
+			const xpander = entry("Xpander EP", {}, "Duke Ellington");
+			const result = merge({ existing: [xpander], allCredited: [found] });
+			expect(result.posed).toEqual([]);
+			expect(result.ambiguous).toEqual([{ slug: xpander.slug, reason: "credit" }]);
+		});
+
+		it("is not posed on an entry that states a year or a type: the credit guard is for every entry", () => {
+			const found = release("Black, Brown and Beige", {
+				firstReleaseDate: "2013-02-26",
+				artistCredits: [ELLINGTON, third(1), third(2)],
+			});
+			for (const extra of [{ year: "2013" }, { releaseType: "album" as const }]) {
+				const stated = entry("Black, Brown and Beige", extra, "Duke Ellington");
+				const result = merge({ existing: [stated], allCredited: [found], policy: ellington });
+				expect(result.posed).toEqual([]);
+				expect(result.ambiguous).toEqual([{ slug: stated.slug, reason: "credit" }]);
+			}
+		});
+
+		// The credit is checked on the release group the decision picks, not before it: filtering first would turn
+		// "two recordings" (multiple) into a confident pose on the other one.
+		it("keeps two recordings of one title ambiguous when only one of them fails the credit rule", () => {
+			const own = release("Black, Brown and Beige", { firstReleaseDate: "1958-01-01" });
+			const other = release("Black, Brown and Beige", {
+				firstReleaseDate: "2013-02-26",
+				artistCredits: [ELLINGTON, third(1), third(2)],
+			});
+			for (const allCredited of [
+				[own, other],
+				[other, own],
+			]) {
+				const result = merge({ existing: [bbb], allCredited, policy: ellington });
+				expect(result.posed).toEqual([]);
+				expect(result.added).toEqual([]);
+				expect(result.ambiguous).toEqual([{ slug: bbb.slug, reason: "multiple" }]);
+			}
+		});
+
+		it("does not fall back on the single when the album of the title fails the credit rule (TRA-560)", () => {
+			const album = release("Black, Brown and Beige", {
+				firstReleaseDate: "1958-01-01",
+				artistCredits: [ELLINGTON, third(1), third(2)],
+			});
+			const single = release("Black, Brown and Beige", {
+				primaryType: "Single",
+				firstReleaseDate: "1958-01-01",
+			});
+			for (const allCredited of [
+				[album, single],
+				[single, album],
+			]) {
+				const result = merge({ existing: [bbb], allCredited, policy: ellington });
+				expect(result.posed).toEqual([]);
+				expect(result.added).toEqual([]);
+				expect(result.ambiguous).toEqual([{ slug: bbb.slug, reason: "credit" }]);
+			}
+		});
+
+		it("poses the artist's own release group when the other one of the title is a single it heads", () => {
+			const album = release("Black, Brown and Beige", { firstReleaseDate: "1958-01-01" });
+			const single = release("Black, Brown and Beige", {
+				primaryType: "Single",
+				firstReleaseDate: "1958-01-01",
+			});
+			const result = merge({ existing: [bbb], allCredited: [single, album], policy: ellington });
+			expect(result.posed.map((p) => p.mbid)).toEqual([album.mbid]);
+		});
+
+		it("still poses an album credited to the artist and one guest, the artist first (Kode9 & The Spaceape)", () => {
+			const album = release("Memories of the Future", {
+				firstReleaseDate: "2006-05-08",
+				artistCredits: [
+					{ mbid: ARTIST_MBID, name: "Kode9" },
+					{ mbid: mbidOf(950), name: "The Spaceape" },
+				],
+			});
+			const result = merge({
+				existing: [entry("Memories of the Future", {}, "Kode9")],
+				allCredited: [album],
+				policy: { ...policy, artistName: "Kode9" },
+			});
+			expect(result.posed.map((p) => p.mbid)).toEqual([album.mbid]);
+		});
+
+		it("keeps posing a Live release group of the artist: only the credit filters more", () => {
+			const live = release("Live at the BBC", { secondaryTypes: ["Live"] });
+			const result = merge({ existing: [entry("Live at the BBC")], allCredited: [live] });
+			expect(result.posed.map((p) => p.mbid)).toEqual([live.mbid]);
+		});
+	});
+
+	describe("a project node that already holds an mbid", () => {
+		const sakamoto: DiscographyPolicy = { ...policy, artistName: "Ryuichi Sakamoto" };
+		const M1 = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa";
+		const vrioon = entry("Vrioon", {}, "Ryuichi Sakamoto");
+		const nodeIndex = (
+			mbid: string | undefined,
+			resolveSlug = (slug: Slug): Slug => slug,
+		): MergeInput["projectIndex"] => ({
+			byMbid: new Map(),
+			mbidBySlug: mbid === undefined ? new Map() : new Map([[resolveSlug(vrioon.slug), mbid]]),
+			resolveSlug,
+		});
+
+		it("does not pose another mbid on the entry, reports node-conflict and adds nothing", () => {
+			const remaster = release("Vrioon", { firstReleaseDate: "2022-04-08" });
+
+			const result = mergeFor(sakamoto, [vrioon], [remaster], { projectIndex: nodeIndex(M1) });
+
+			expect(result.posed).toEqual([]);
+			expect(result.added).toEqual([]);
+			expect(result.ambiguous).toEqual([{ slug: vrioon.slug, reason: "node-conflict" }]);
+			expect(result.changed).toBe(false);
+		});
+
+		it("poses the node's mbid when it is the candidate, and completes year and releaseType", () => {
+			const original = release("Vrioon", { mbid: M1, firstReleaseDate: "2002-01-01" });
+
+			const result = mergeFor(sakamoto, [vrioon], [original], { projectIndex: nodeIndex(M1) });
+
+			expect(result.ambiguous).toEqual([]);
+			expect(result.posed).toEqual([{ slug: vrioon.slug, mbid: M1, filled: ["year", "releaseType"] }]);
+		});
+
+		it("poses the node's mbid among several candidates, which would otherwise be ambiguous", () => {
+			const original = release("Vrioon", { mbid: M1, firstReleaseDate: "2002-01-01" });
+			const remaster = release("Vrioon", { firstReleaseDate: "2022-04-08" });
+
+			const withoutNode = mergeFor(sakamoto, [vrioon], [remaster, original]);
+			expect(withoutNode.ambiguous).toEqual([{ slug: vrioon.slug, reason: "multiple" }]);
+
+			for (const allCredited of [
+				[original, remaster],
+				[remaster, original],
+			]) {
+				const result = mergeFor(sakamoto, [vrioon], allCredited, { projectIndex: nodeIndex(M1) });
+				expect(result.posed.map((p) => p.mbid)).toEqual([M1]);
+				expect(result.ambiguous).toEqual([]);
+			}
+		});
+
+		it("compares mbids whatever their case", () => {
+			const original = release("Vrioon", { mbid: M1, firstReleaseDate: "2002-01-01" });
+			const result = mergeFor(sakamoto, [vrioon], [original], { projectIndex: nodeIndex(M1.toUpperCase()) });
+			expect(result.posed.map((p) => p.mbid)).toEqual([M1]);
+		});
+
+		it("poses the node's mbid even when it is unvoted and the artist is rated: the node is the identity", () => {
+			const original = release("Vrioon", { mbid: M1, firstReleaseDate: "2002-01-01" });
+			const result = mergeFor(sakamoto, [vrioon], [...votedAlbums(10), original], {
+				projectIndex: nodeIndex(M1),
+			});
+			expect(result.posed.map((p) => p.mbid)).toEqual([M1]);
+		});
+
+		it("reads the node under the slug the redirects lead to", () => {
+			const remaster = release("Vrioon", { firstReleaseDate: "2022-04-08" });
+			const moved = "project:vrioon-2002--ryuichi-sakamoto" as Slug;
+			const resolveSlug = (slug: Slug): Slug => (slug === vrioon.slug ? moved : slug);
+
+			const result = mergeFor(sakamoto, [vrioon], [remaster], { projectIndex: nodeIndex(M1, resolveSlug) });
+
+			expect(result.ambiguous).toEqual([{ slug: vrioon.slug, reason: "node-conflict" }]);
+		});
+
+		it("holds the looser pass too: an untyped 'Vrioon EP' does not take another EP", () => {
+			const ep = release("Vrioon", { primaryType: "EP", firstReleaseDate: "2022-04-08" });
+			const epEntry = entry("Vrioon EP", {}, "Ryuichi Sakamoto");
+			const projectIndex: MergeInput["projectIndex"] = {
+				byMbid: new Map(),
+				mbidBySlug: new Map([[epEntry.slug, M1]]),
+				resolveSlug: (slug) => slug,
+			};
+
+			const result = mergeFor(sakamoto, [epEntry], [ep], { projectIndex });
+
+			expect(result.posed).toEqual([]);
+			expect(result.ambiguous).toEqual([{ slug: epEntry.slug, reason: "node-conflict" }]);
+		});
+
+		it("applies to an entry that states a type but no year: the same guard, at no cost", () => {
+			const remaster = release("Vrioon", { firstReleaseDate: "2022-04-08" });
+			const original = release("Vrioon", { mbid: M1, firstReleaseDate: "2002-01-01" });
+			const typed = entry("Vrioon", { releaseType: "album" }, "Ryuichi Sakamoto");
+
+			const conflict = mergeFor(sakamoto, [typed], [remaster], { projectIndex: nodeIndex(M1) });
+			expect(conflict.posed).toEqual([]);
+			expect(conflict.added).toEqual([]);
+			expect(conflict.ambiguous).toEqual([{ slug: typed.slug, reason: "node-conflict" }]);
+
+			const match = mergeFor(sakamoto, [typed], [original], { projectIndex: nodeIndex(M1) });
+			expect(match.posed.map((p) => p.mbid)).toEqual([M1]);
+		});
+
+		it("keeps the type guard on the node's own mbid: an album entry never takes a single", () => {
+			const single = release("Vrioon", { mbid: M1, primaryType: "Single", firstReleaseDate: "2002-01-01" });
+			const typed = entry("Vrioon", { releaseType: "album" }, "Ryuichi Sakamoto");
+
+			const result = mergeFor(sakamoto, [typed], [single], { projectIndex: nodeIndex(M1) });
+
+			expect(result.posed).toEqual([]);
+			expect(result.ambiguous).toEqual([{ slug: typed.slug, reason: "type" }]);
+		});
+
+		it("never poses the node's mbid from a release group the artist does not head", () => {
+			const collaboration = release("Vrioon", {
+				mbid: M1,
+				firstReleaseDate: "2002-01-01",
+				artistCredits: [
+					{ mbid: ARTIST_MBID, name: "Ryuichi Sakamoto" },
+					{ mbid: mbidOf(951), name: "Guest 1" },
+					{ mbid: mbidOf(952), name: "Guest 2" },
+				],
+			});
+
+			const result = mergeFor(sakamoto, [vrioon], [collaboration], { projectIndex: nodeIndex(M1) });
+
+			expect(result.posed).toEqual([]);
+			expect(result.ambiguous).toEqual([{ slug: vrioon.slug, reason: "credit" }]);
+		});
+
+		it("does not apply to a node without mbid, nor to an entry that states a year", () => {
+			const remaster = release("Vrioon", { firstReleaseDate: "2022-04-08" });
+
+			const noNode = mergeFor(sakamoto, [vrioon], [remaster], { projectIndex: nodeIndex(undefined) });
+			expect(noNode.posed.map((p) => p.mbid)).toEqual([remaster.mbid]);
+
+			const dated = entry("Vrioon", { year: "2022" }, "Ryuichi Sakamoto");
+			const withYear = mergeFor(sakamoto, [dated], [remaster], { projectIndex: nodeIndex(M1) });
+			expect(withYear.posed.map((p) => p.mbid)).toEqual([remaster.mbid]);
+
+			const datedAndTyped = entry("Vrioon", { year: "2022", releaseType: "album" }, "Ryuichi Sakamoto");
+			const both = mergeFor(sakamoto, [datedAndTyped], [remaster], { projectIndex: nodeIndex(M1) });
+			expect(both.posed.map((p) => p.mbid)).toEqual([remaster.mbid]);
+		});
+	});
+
+	it("gives the same result whatever the order of the existing entries", () => {
+		const held = zappaEntry("Joe's Garage");
+		const heldEp = zappaEntry("Xpander EP");
+		const conflict = zappaEntry("Vrioon");
+		const matching = zappaEntry("Overnite Sensation");
+		const imagine = zappaEntry("Imagine");
+		const recent = zappaEntry("Fresh");
+		const M1 = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa";
+		const M2 = "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb";
+		const garage = release("Joe's Garage", { primaryType: "Single", firstReleaseDate: "1979-09-07" });
+		const xpander = release("Xpander", { primaryType: "EP", firstReleaseDate: "1996-01-01" });
+		const vrioon = release("Vrioon", { mbid: M2, firstReleaseDate: "2022-04-08" });
+		const overnite = release("Overnite Sensation", { mbid: M1, firstReleaseDate: "1973-09-07" });
+		const imagineAlbum = release("Imagine", { firstReleaseDate: "1971-09-09", ratingVotes: 17 });
+		const fresh = release("Fresh", { firstReleaseDate: "2025-03-01" });
+		const allCredited = [...votedAlbums(10), garage, xpander, vrioon, overnite, imagineAlbum, fresh];
+		const projectIndex: MergeInput["projectIndex"] = {
+			byMbid: new Map(),
+			mbidBySlug: new Map([
+				[conflict.slug, M1],
+				[matching.slug, M1],
+			]),
+			resolveSlug: (slug) => slug,
+		};
+		const entries = [held, heldEp, conflict, matching, imagine, recent];
+
+		const summarize = (existing: EdgeRef[]) => {
+			const result = mergeFor(zappa, existing, allCredited, { projectIndex });
+			return JSON.stringify({
+				edges: result.edges
+					.map((e) => [e.slug, e.mbid ?? null, e.year ?? null, e.releaseType ?? null])
+					.sort(),
+				posed: result.posed.map((p) => [p.slug, p.mbid, [...p.filled].sort()]).sort(),
+				ambiguous: result.ambiguous.map((a) => [a.slug, a.reason]).sort(),
+				added: result.added.map((a) => [a.slug, a.mbid, a.nearDuplicateOf ?? null]).sort(),
+			});
+		};
+		const permutations = (items: EdgeRef[]): EdgeRef[][] =>
+			items.length <= 1
+				? [items]
+				: items.flatMap((item, i) =>
+						permutations([...items.slice(0, i), ...items.slice(i + 1)]).map((rest) => [item, ...rest]),
+					);
+
+		const reference = JSON.parse(summarize(entries));
+		// Sanity: a real mix of poses and of both holds, not an empty comparison.
+		expect(reference.posed.map((p: string[]) => p[0]).sort()).toEqual(
+			[imagine.slug, matching.slug, recent.slug].sort(),
+		);
+		expect(reference.ambiguous.map((a: string[]) => a[1]).sort()).toEqual([
+			"node-conflict",
+			"unrated-pose",
+			"unrated-pose",
+		]);
+		for (const order of permutations(entries)) {
+			expect(JSON.parse(summarize(order))).toEqual(reference);
+		}
 	});
 });
