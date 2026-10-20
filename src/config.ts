@@ -36,10 +36,9 @@ export const streamConfig = {
 
 export const musicBrainzConfig = {
 	baseUrl: envString("MB_BASE_URL", "https://musicbrainz.org/ws/2"),
-	userAgent: envString(
-		"MB_USER_AGENT",
-		"odyssey-music/0.1 (hfontanier@gmail.com; https://dropcliffs.com/labs/odyssey)",
-	),
+	// 2026-10-19 (TRA-626): the default used to carry a personal e-mail address, sent in a header on every
+	// request. MusicBrainz only needs a way to reach the author: a contact URL does that, no personal data.
+	userAgent: envString("MB_USER_AGENT", "odyssey-music/0.1 ( https://dropcliffs.com/labs/odyssey )"),
 	fetchTimeoutMs: envInt("MB_FETCH_TIMEOUT_MS", 4000),
 	cacheTtlMs: envInt("MB_CACHE_TTL_MS", 5 * 60 * 1000),
 	cacheMaxEntries: envInt("MB_CACHE_MAX", 500),
