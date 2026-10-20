@@ -53,3 +53,28 @@ struct SubgenreChip: View {
 		.accessibilityAddTraits(isSelected ? .isSelected : [])
 	}
 }
+
+/// The Default and Selected variants of the chips (`SubgenreChip` draws both the subgenre chips and the
+/// "Tous" chip). Figma named them `Subgenre row` (`175:21`, `175:24`) and `Select-all chip` (`175:39`,
+/// `175:43`), which share them: a 2 pt border, no fill by default, and the selection tokens when selected.
+enum OnboardingChoiceColors {
+	/// `title` is the chip label, `detail` the secondary text color (no chip draws a description since the rows
+	/// went away). Selected draws both in the same selection color.
+	typealias Resolved = (fill: Color, border: Color, title: Color, detail: Color)
+
+	static let borderWidth: CGFloat = 2
+
+	static func resolve(isSelected: Bool) -> Resolved {
+		if isSelected {
+			(
+				Track1Tokens.colorBackgroundElevated, Track1Tokens.colorSelectionBorder,
+				Track1Tokens.colorSelectionContent, Track1Tokens.colorSelectionContent
+			)
+		} else {
+			(
+				Color.clear, Track1Tokens.colorBorderContrast, Track1Tokens.colorTextPrimary,
+				Track1Tokens.colorTextSecondary
+			)
+		}
+	}
+}
