@@ -1224,3 +1224,32 @@ de 8-D1, 8-D6 et 8.4 ci-dessus.
   - Kode9 : 2 → 26 entrées, dont Memories of the Future, Black Sun et Nothing ;
   - réserves connues : quelques albums tardifs peu votés de Coltrane coupés, et les albums crédités
     « The Mothers of Invention » absents chez Zappa (non-but).
+
+### Amendements et bilan (2026-10-20)
+
+- **Politique v4** (TRA-629, #553) : la clé de rapprochement retire les suffixes « (année) » et « EP ». La pose se fait en deux passes : d'abord le titre exact, puis la clé élargie, toujours sur le groupe complet. Une entrée « X EP » ne prend qu'un EP admis. La branche typée écarte les Live et les Compilation. Résultat : 20 vrais doublons (Kool and the Gang, Armin van Buuren…) reçoivent leur mbid au lieu d'être ajoutés une seconde fois. Il a fallu trois blocages de la review IA et trois reviews profondes.
+- **Garde d'identité par alias** (TRA-630, #554) : `name-mismatch` accepte aussi le nom, le sort-name et les alias MusicBrainz, sauf les « Search hint ». La normalisation garde les points (H.A.W.K. ≠ Hawk). Les 20 faux positifs (Sakamoto, Hisaishi, Mulatu Astatke…) sont acceptés, sans aucun homonyme.
+- **Politique v5** (TRA-647, #564), après la review produit de la PR de cache, qui avait trouvé 5 identités fausses : Trans-Europe Express, Joe's Garage, Merry Christmas Mr. Lawrence, Vrioon, Black Brown and Beige. Une entrée sans type ni année ne reçoit plus de mbid dans trois cas :
+  - un candidat non voté chez un artiste qui en a au moins 10 votés (`unrated-pose`) ;
+  - un mbid qui contredit le nœud projet (`node-conflict`) ;
+  - un release group dont l'artiste n'est pas le crédit principal (`credit`, jugé sur le release group retenu, pas avant la décision).
+
+  Le compromis est acté par le dispatcher : une pose fausse est définitive, une pose manquée se rattrape. On perd environ 25 poses correctes et on évite environ 8 fausses. TRA-649 doit les récupérer.
+- **User-Agent MusicBrainz** sans adresse e-mail (TRA-626, #559). Le test du canal (TRA-619, #552) passe le vrai `deploy/sync-genre-cache.sh`.
+- **Run dépôt** (TRA-620, #562, politique v5) :
+  - 365 fiches artistes réécrites ; 778 mbid posés et 6 715 œuvres ajoutées ; aucune entrée perdue ;
+  - arêtes avec mbid de 79,3 % à **96,5 %** ;
+  - artistes avec mbid à moins de 3 entrées : de 164 à 37 ; les autres n'ont presque aucun release group sur MusicBrainz (Larry Levan, Ron Hardy…) ;
+  - plafonds `artist-discography-under-3` de 196 à 69 et `artist-discography-without-mbid` de 339 à 181.
+- **Run prod** (TRA-621, runs 39419311014 en preview et 39424381680 en apply) :
+  - union dépôt ∪ prod : 38 nœuds prod-only écrits, 73 mbid posés et 475 œuvres ajoutées ; aucune suppression, aucun renommage ;
+  - arêtes avec mbid de 95,6 % à 96,3 % ;
+  - **Kode9 : de 2 à 26 œuvres, dont 24 avec mbid**. Memories of the Future, Black Sun, Nothing, Escapology et Astro-Darien ont leur pochette dès le premier appel, depuis le Cover Art Archive par mbid ;
+  - pochettes des 10 témoins : 74,4 % avant (64 sur 86) et **90,1 %** juste après l'apply (246 sur 273). La mesure de référence est à faire à +24 h.
+- **Suites** :
+  - TRA-649 : rattraper les poses perdues en v5 ;
+  - TRA-633 : environ 33 doublons restants (sous-titres, traductions, translittérations) et 28 slugs dégénérés sur des titres non latins ;
+  - TRA-624 : enrichir les arêtes inverses existantes ;
+  - TRA-632 : harnais des tests de canal ;
+  - TRA-642 : `ios-check` instable sous charge ;
+  - le canal ne rejoue pas le manifeste de cette migration à l'apply (deux passes MusicBrainz dans le même job de 120 min), à traiter si un run dépasse.
