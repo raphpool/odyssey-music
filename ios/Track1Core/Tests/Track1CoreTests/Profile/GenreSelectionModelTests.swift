@@ -304,7 +304,8 @@ final class GenreSelectionModelTests: XCTestCase {
 		XCTAssertEqual(model.selectedGenres, [])
 		XCTAssertFalse(model.canContinue)
 		XCTAssertNil(model.makeDraft().selection)
-		XCTAssertEqual(model.droppedGenreIDs, [])
+		// This taxonomy serves no legacy table, so the v1 slug has no editorial equivalent: it is dropped.
+		XCTAssertEqual(model.droppedGenreIDs, [try slug("genre:trap")])
 	}
 
 	func testTheResumedDraftWinsOverTheProfileBeingEdited() throws {
