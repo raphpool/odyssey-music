@@ -170,6 +170,12 @@ final class Track1TokensTests: XCTestCase {
 		}
 	}
 
+	func testSpringIsDroppedUnderReduceMotion() {
+		XCTAssertNil(Track1Motion.spring(reduceMotion: true))
+		XCTAssertNotNil(Track1Motion.spring(reduceMotion: false))
+		XCTAssertEqual(Track1Motion.spring(reduceMotion: false), .spring(duration: 0.35, bounce: 0.2))
+	}
+
 	func testAnimationUsesTheDurationAndTheCurveOfTheToken() {
 		for motion in Track1Motion.allCases {
 			XCTAssertEqual(

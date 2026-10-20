@@ -4,9 +4,10 @@ import SwiftUI
 /// (the doc's CODE line). A glyph is chosen by meaning; its color comes from a `Tone`, never from a variant
 /// per color. The icon is decorative: the control that wraps it carries the accessibility label.
 struct Track1Icon: View {
-	/// Declaration order is the order of the Figma Icon frame and of its doc.
+	/// Declaration order is the order of the Figma Icon frame and of its doc. `arrowDownRight` comes last: it
+	/// is the icon added to the Figma frame after the others, for the "Tous" chip (TRA-636).
 	enum Glyph: CaseIterable {
-		case check, chevronDown, chevronRight, close, home, more, musicNote, play, search
+		case check, chevronDown, chevronRight, close, home, more, musicNote, play, search, arrowDownRight
 
 		var systemName: String {
 			switch self {
@@ -19,6 +20,7 @@ struct Track1Icon: View {
 			case .musicNote: "music.note"
 			case .play: "play.fill"
 			case .search: "magnifyingglass"
+			case .arrowDownRight: "arrow.down.right"
 			}
 		}
 	}
