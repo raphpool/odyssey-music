@@ -5,6 +5,7 @@ import {
 	type MergeInput,
 	mergeDiscography,
 	type ReleaseGroupCandidate,
+	reconciliationKey,
 	selectReleases,
 	toDiscographyEdge,
 } from "../src/discography-policy.js";
@@ -224,17 +225,81 @@ describe("mergeDiscography — pose", () => {
 		expect(one.posed.map((p) => p.mbid)).toEqual([soundtrack.mbid]);
 	});
 
-	it("leaves an entry that states its releaseType unchanged by the Live / Compilation homonyms", () => {
+	it("ignores the Live / Compilation homonyms of an entry that states its releaseType and poses the studio album", () => {
 		const album = release("Blue Train", { firstReleaseDate: "1958-01-01" });
 		const live = release("Blue Train", { firstReleaseDate: "2004-01-01", secondaryTypes: ["Live"] });
 		const existing = [entry("Blue Train", { releaseType: "album" })];
 
-		// Two albums share the title and the entry states "album": still not guessed.
+		// Same rule as for an entry without type (TRA-628): the Live album is not the entry's work.
 		const result = merge({ existing, allCredited: [album, live] });
+
+		expect(result.ambiguous).toEqual([]);
+		expect(result.posed.map((p) => p.mbid)).toEqual([album.mbid]);
+	});
+
+	it("keeps two studio albums of the same title ambiguous for an entry that states 'album'", () => {
+		const first = release("Blue Train", { firstReleaseDate: "1958-01-01" });
+		const second = release("Blue Train", { firstReleaseDate: "1959-01-01" });
+		const live = release("Blue Train", { firstReleaseDate: "2004-01-01", secondaryTypes: ["Live"] });
+		const existing = [entry("Blue Train", { releaseType: "album" })];
+
+		const result = merge({ existing, allCredited: [first, second, live] });
 
 		expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "multiple" }]);
 		expect(result.posed).toEqual([]);
 	});
+
+	describe.each([
+		["exact title", "Hurt", "Hurt"],
+		["looser key", "Hurt (2002)", "Hurt"],
+	])(
+		"an entry that states its type never takes a Live / Compilation release group (%s)",
+		(_label, entryName, rgTitle) => {
+			it("typed 'ep' next to the album and a Compilation EP: no pose", () => {
+				const existingEntry = entry(entryName, { releaseType: "ep" });
+				const album = release(rgTitle, { primaryType: "Album", firstReleaseDate: "2002-11-05" });
+				const compilationEp = release(rgTitle, {
+					primaryType: "EP",
+					secondaryTypes: ["Compilation"],
+					firstReleaseDate: "2002-12-01",
+				});
+
+				const result = merge({ existing: [existingEntry], allCredited: [album, compilationEp] });
+
+				expect(result.posed).toEqual([]);
+				expect(result.edges.some((e) => e.mbid === compilationEp.mbid)).toBe(false);
+			});
+
+			it("typed 'album' next to a single and a Compilation album: no pose", () => {
+				const existingEntry = entry(entryName, { releaseType: "album" });
+				const single = release(rgTitle, { primaryType: "Single", firstReleaseDate: "2002-11-05" });
+				const compilationAlbum = release(rgTitle, {
+					primaryType: "Album",
+					secondaryTypes: ["Compilation"],
+					firstReleaseDate: "2002-12-01",
+				});
+
+				const result = merge({ existing: [existingEntry], allCredited: [single, compilationAlbum] });
+
+				expect(result.posed).toEqual([]);
+				expect(result.edges.some((e) => e.mbid === compilationAlbum.mbid)).toBe(false);
+			});
+
+			it("typed 'album' next to the studio album and a Compilation album: the studio album", () => {
+				const existingEntry = entry(entryName, { releaseType: "album" });
+				const album = release(rgTitle, { primaryType: "Album", firstReleaseDate: "2002-11-05" });
+				const compilationAlbum = release(rgTitle, {
+					primaryType: "Album",
+					secondaryTypes: ["Compilation"],
+					firstReleaseDate: "2002-12-01",
+				});
+
+				const result = merge({ existing: [existingEntry], allCredited: [album, compilationAlbum] });
+
+				expect(result.posed.map((p) => p.mbid)).toEqual([album.mbid]);
+			});
+		},
+	);
 
 	it("keeps two albums of the same title ambiguous/multiple", () => {
 		const albumA = release("Mind Games", { primaryType: "Album" });
@@ -680,5 +745,620 @@ describe("mergeDiscography — result shape", () => {
 		});
 
 		expect(result.edges.map((e) => e.name)).toEqual(["Recent", "Middle", "Old", "Undated", "Undated2"]);
+	});
+});
+
+describe("reconciliationKey (TRA-629)", () => {
+	it("drops a trailing year in parentheses or brackets, 1900 to 2099 only", () => {
+		expect(reconciliationKey("Ladies' Night (1979)")).toBe(reconciliationKey("Ladies' Night"));
+		expect(reconciliationKey("Ladies' Night [1979]")).toBe(reconciliationKey("Ladies' Night"));
+		expect(reconciliationKey("Foo (2099)")).toBe("foo");
+		expect(reconciliationKey("Foo (1899)")).not.toBe("foo");
+		expect(reconciliationKey("Foo (2100)")).not.toBe("foo");
+		expect(reconciliationKey("Foo (1979) Live")).not.toBe("foo");
+		expect(reconciliationKey("Foo (1979]")).not.toBe("foo");
+		expect(reconciliationKey("Foo [EP)")).not.toBe("foo");
+	});
+
+	it("drops a trailing EP in each written form", () => {
+		for (const title of ["Xpander EP", "Xpander (EP)", "Xpander [EP]", "Xpander - EP", "Xpander \u2013 EP"]) {
+			expect(reconciliationKey(title)).toBe("xpander");
+		}
+	});
+
+	it("chains the two, in either order", () => {
+		expect(reconciliationKey("Xpander EP (1996)")).toBe("xpander");
+		expect(reconciliationKey("Xpander (1996) EP")).toBe("xpander");
+	});
+
+	it("does not truncate a bare year, nor a word that merely ends or starts with EP", () => {
+		expect(reconciliationKey("1979")).toBe("1979");
+		expect(reconciliationKey("(1979)")).toBe("1979");
+		expect(reconciliationKey("EPic")).toBe("epic");
+		expect(reconciliationKey("Deep")).toBe("deep");
+		expect(reconciliationKey("Sleep")).toBe("sleep");
+		expect(reconciliationKey("EP")).toBe("ep");
+		expect(reconciliationKey("(EP) (1979)")).toBe("ep");
+		expect(reconciliationKey("EP (1979)")).toBe("ep");
+		expect(reconciliationKey("(1979) (EP)")).toBe("1979");
+		expect(reconciliationKey("Foo-EP")).toBe("foo-ep");
+	});
+});
+
+describe("mergeDiscography — suffix reconciliation (TRA-629)", () => {
+	const kool = { ...policy, artistName: "Kool and the Gang" };
+
+	it("poses the mbid on 'Ladies' Night (1979)' and adds nothing, name and slug untouched", () => {
+		const existingEntry = entry("Ladies' Night (1979)", {}, "Kool and the Gang");
+		const group = release("Ladies' Night", { firstReleaseDate: "1979-05-01" });
+
+		const result = merge({
+			existing: [existingEntry],
+			candidates: [group],
+			allCredited: [group],
+			policy: kool,
+		});
+
+		expect(result.added).toEqual([]);
+		expect(result.posed).toEqual([
+			{ slug: existingEntry.slug, mbid: group.mbid, filled: ["year", "releaseType"] },
+		]);
+		expect(result.edges).toHaveLength(1);
+		expect(result.edges[0]).toMatchObject({
+			name: "Ladies' Night (1979)",
+			slug: existingEntry.slug,
+			mbid: group.mbid,
+		});
+	});
+
+	it("poses 'Xpander EP' on the EP 'Xpander'", () => {
+		const existingEntry = entry("Xpander EP", {}, "Sasha");
+		const group = release("Xpander", { primaryType: "EP", firstReleaseDate: "1996-01-01" });
+
+		const result = merge({
+			existing: [existingEntry],
+			candidates: [group],
+			allCredited: [group],
+			policy: { ...policy, artistName: "Sasha" },
+		});
+
+		expect(result.added).toEqual([]);
+		expect(result.posed.map((p) => p.mbid)).toEqual([group.mbid]);
+		expect(result.edges[0]).toMatchObject({ name: "Xpander EP", slug: existingEntry.slug });
+	});
+
+	it("poses 'Kool and the Gang (1969)' on the self-titled album", () => {
+		const existingEntry = entry("Kool and the Gang (1969)", {}, "Kool and the Gang");
+		const group = release("Kool & the Gang", { firstReleaseDate: "1969-01-01" });
+
+		const result = merge({
+			existing: [existingEntry],
+			candidates: [group],
+			allCredited: [group],
+			policy: kool,
+		});
+
+		expect(result.added).toEqual([]);
+		expect(result.posed.map((p) => p.mbid)).toEqual([group.mbid]);
+	});
+
+	it("reconciles from the other side too: the release group carries the suffix", () => {
+		const existingEntry = entry("Shivers", {}, "Armin van Buuren");
+		const group = release("Shivers (2014)", { firstReleaseDate: "2014-03-01" });
+
+		const result = merge({ existing: [existingEntry], candidates: [group], allCredited: [group] });
+
+		expect(result.added).toEqual([]);
+		expect(result.posed.map((p) => p.mbid)).toEqual([group.mbid]);
+	});
+
+	it("keeps the usual guards: a year more than one apart is ambiguous, not posed", () => {
+		const existingEntry = entry("Ladies' Night (1979)", { year: "1979" }, "Kool and the Gang");
+		const group = release("Ladies' Night", { firstReleaseDate: "2005-01-01" });
+
+		const result = merge({
+			existing: [existingEntry],
+			candidates: [group],
+			allCredited: [group],
+			policy: kool,
+		});
+
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([{ slug: existingEntry.slug, reason: "year-mismatch" }]);
+		expect(result.added).toEqual([]);
+	});
+
+	it("keeps the type guard: an entry typed album does not take the EP", () => {
+		const existingEntry = entry("Xpander EP", { releaseType: "album" }, "Sasha");
+		const group = release("Xpander", { primaryType: "EP" });
+
+		const result = merge({ existing: [existingEntry], candidates: [group], allCredited: [group] });
+
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([{ slug: existingEntry.slug, reason: "type" }]);
+		expect(result.added).toEqual([]);
+	});
+
+	it("flags 'multiple' and adds neither candidate when the key finds two release groups", () => {
+		const existingEntry = entry("Imagine (2005)");
+		const first = release("Imagine");
+		const second = release("Imagine [2010]");
+
+		const result = merge({
+			existing: [existingEntry],
+			candidates: [first, second],
+			allCredited: [first, second],
+		});
+
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([{ slug: existingEntry.slug, reason: "multiple" }]);
+		expect(result.added).toEqual([]);
+		expect(result.changed).toBe(false);
+	});
+
+	it("still poses on the exact title first: a key twin does not make it ambiguous", () => {
+		const existingEntry = entry("Mirage");
+		const album = release("Mirage");
+		const ep = release("Mirage EP", { primaryType: "EP" });
+
+		const result = merge({ existing: [existingEntry], candidates: [album, ep], allCredited: [album, ep] });
+
+		expect(result.posed.map((p) => p.mbid)).toEqual([album.mbid]);
+		// "Mirage EP" is a different release group from the posed "Mirage": it is still added.
+		expect(result.added.map((a) => a.title)).toEqual(["Mirage EP"]);
+	});
+
+	it("uses the year written in the title as the entry's year when it has no year field", () => {
+		const existingEntry = entry("Greatest Hits (1992)");
+		const group = release("Greatest Hits", { firstReleaseDate: "2005-06-01" });
+
+		const result = merge({ existing: [existingEntry], candidates: [group], allCredited: [group] });
+
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([{ slug: existingEntry.slug, reason: "year-mismatch" }]);
+		expect(result.added).toEqual([]);
+	});
+
+	it("never poses an mbid an entry already holds: a twin added by an earlier run keeps the legacy apart", () => {
+		const legacy = entry("Ladies' Night (1979)", {}, "Kool and the Gang");
+		const group = release("Ladies' Night", { firstReleaseDate: "1979-05-01" });
+		const twin = entry("Ladies' Night", { mbid: group.mbid, year: "1979" }, "Kool and the Gang");
+
+		const result = merge({
+			existing: [legacy, twin],
+			candidates: [group],
+			allCredited: [group],
+			policy: kool,
+		});
+
+		expect(result.posed).toEqual([]);
+		expect(result.added).toEqual([]);
+		expect(result.edges.filter((e) => e.mbid === group.mbid)).toHaveLength(1);
+	});
+
+	describe.each([
+		["the exact twin listed first", false],
+		["the suffixed entry listed first", true],
+	])("one mbid on one entry only, %s", (_label, suffixedFirst) => {
+		it("gives the mbid to the entry with the exact title, nothing to its suffixed twin, adds nothing", () => {
+			const exact = entry("Xpander", {}, "Sasha");
+			const suffixed = entry("Xpander EP", {}, "Sasha");
+			const group = release("Xpander", { primaryType: "EP" });
+
+			const result = merge({
+				existing: suffixedFirst ? [suffixed, exact] : [exact, suffixed],
+				candidates: [group],
+				allCredited: [group],
+				policy: { ...policy, artistName: "Sasha" },
+			});
+
+			expect(result.posed.map((p) => [p.slug, p.mbid])).toEqual([[exact.slug, group.mbid]]);
+			expect(result.edges.filter((e) => e.mbid === group.mbid).map((e) => e.slug)).toEqual([exact.slug]);
+			expect(result.edges.find((e) => e.slug === suffixed.slug)?.mbid).toBeUndefined();
+			expect(result.ambiguous).toEqual([]);
+			expect(result.added).toEqual([]);
+		});
+	});
+
+	it("does not pose the EP on a legacy entry when its twin already holds the album, and adds the EP on its own", () => {
+		const legacy = entry("Ladies' Night (1979)", {}, "Kool and the Gang");
+		const album = release("Ladies' Night", { firstReleaseDate: "1979-05-01" });
+		const ep = release("Ladies' Night EP", { primaryType: "EP", firstReleaseDate: "1979-06-01" });
+		const twin = entry("Ladies' Night", { mbid: album.mbid, year: "1979" }, "Kool and the Gang");
+
+		const result = merge({
+			existing: [twin, legacy],
+			candidates: [album, ep],
+			allCredited: [album, ep],
+			policy: kool,
+		});
+
+		// The album is the entry's work, and the twin holds it: the entry stays as it is. The EP is a release
+		// group of its own, never the entry's mbid.
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([]);
+		expect(result.edges.find((e) => e.slug === legacy.slug)?.mbid).toBeUndefined();
+		expect(result.edges.find((e) => e.slug === legacy.slug)?.releaseType).toBeUndefined();
+		expect(result.added.map((a) => a.mbid)).toEqual([ep.mbid]);
+	});
+
+	it("leaves a legacy entry untouched when the only release group under its key is held by its twin", () => {
+		const legacy = entry("Ladies' Night (1979)", {}, "Kool and the Gang");
+		const album = release("Ladies' Night", { firstReleaseDate: "1979-05-01" });
+		const twin = entry("Ladies' Night", { mbid: album.mbid }, "Kool and the Gang");
+
+		const result = merge({
+			existing: [legacy, twin],
+			candidates: [album],
+			allCredited: [album],
+			policy: kool,
+		});
+
+		expect(result.changed).toBe(false);
+		expect(result.ambiguous).toEqual([]);
+	});
+
+	describe.each([
+		["'Foo EP' first", false],
+		["'Foo (1979)' first", true],
+	])("two suffixed entries claiming the same release group, %s", (_label, reversed) => {
+		it("poses neither and reports both, whatever their order", () => {
+			const withEp = entry("Foo EP");
+			const withYear = entry("Foo (1979)");
+			const group = release("Foo", { primaryType: "EP", firstReleaseDate: "1979-01-01" });
+
+			const result = merge({
+				existing: reversed ? [withYear, withEp] : [withEp, withYear],
+				candidates: [group],
+				allCredited: [group],
+			});
+
+			expect(result.posed).toEqual([]);
+			expect(result.edges.filter((e) => e.mbid !== undefined)).toEqual([]);
+			expect(result.ambiguous.map((a) => [a.slug, a.reason]).sort()).toEqual(
+				[
+					[withEp.slug, "multiple"],
+					[withYear.slug, "multiple"],
+				].sort(),
+			);
+			expect(result.added).toEqual([]);
+		});
+	});
+
+	it("gives the same result whatever the order of the existing entries", () => {
+		const exact = entry("Xpander", {}, "Sasha");
+		const suffixed = entry("Xpander EP", {}, "Sasha");
+		const plain = entry("Ladies' Night (1979)", {}, "Sasha");
+		const withEp = entry("Foo EP", {}, "Sasha");
+		const withYear = entry("Foo (1979)", {}, "Sasha");
+		const settled = entry("Discovery", { mbid: mbidOf(900) }, "Sasha");
+		const xpander = release("Xpander", { primaryType: "EP" });
+		const night = release("Ladies' Night", { firstReleaseDate: "1979-05-01" });
+		const foo = release("Foo", { primaryType: "EP", firstReleaseDate: "1979-01-01" });
+		const extra = release("Brand New", { firstReleaseDate: "2020-01-01" });
+		const all = [xpander, night, foo, extra];
+		const entries = [exact, suffixed, plain, withEp, withYear, settled];
+
+		const summarize = (existing: EdgeRef[]) => {
+			const result = merge({
+				existing,
+				candidates: all,
+				allCredited: all,
+				policy: { ...policy, artistName: "Sasha" },
+			});
+			return JSON.stringify({
+				edges: result.edges
+					.map((e) => [e.slug, e.mbid ?? null, e.year ?? null, e.releaseType ?? null])
+					.sort(),
+				posed: result.posed.map((p) => [p.slug, p.mbid, [...p.filled].sort()]).sort(),
+				ambiguous: result.ambiguous.map((a) => [a.slug, a.reason]).sort(),
+				added: result.added.map((a) => [a.slug, a.mbid, a.nearDuplicateOf ?? null]).sort(),
+				capReached: result.capReached,
+			});
+		};
+
+		const permutations = (items: EdgeRef[]): EdgeRef[][] =>
+			items.length <= 1
+				? [items]
+				: items.flatMap((item, i) =>
+						permutations([...items.slice(0, i), ...items.slice(i + 1)]).map((rest) => [item, ...rest]),
+					);
+
+		const reference = summarize(entries);
+		// Sanity: the case is a real mix of poses, ambiguities and an addition, not an empty comparison.
+		expect(JSON.parse(reference).posed.length).toBeGreaterThan(0);
+		expect(JSON.parse(reference).ambiguous.length).toBeGreaterThan(0);
+		expect(JSON.parse(reference).added.length).toBeGreaterThan(0);
+		for (const order of permutations(entries)) {
+			expect(summarize(order)).toBe(reference);
+		}
+	});
+
+	it("keeps the year guard when the title states its year before an EP suffix", () => {
+		const existingEntry = entry("Greatest Hits (1992) EP");
+		const group = release("Greatest Hits", { primaryType: "EP", firstReleaseDate: "2005-06-01" });
+
+		const result = merge({ existing: [existingEntry], candidates: [group], allCredited: [group] });
+
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([{ slug: existingEntry.slug, reason: "year-mismatch" }]);
+	});
+
+	it("does not tie 'Deep' to 'De', nor '1979' to a release group named otherwise", () => {
+		const deep = entry("Deep");
+		const year = entry("1979");
+		const de = release("De");
+		const other = release("1979 (Live)", { secondaryTypes: ["Live"] });
+
+		const result = merge({ existing: [deep, year], candidates: [], allCredited: [de, other] });
+
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([]);
+	});
+
+	it("keeps counting the other near duplicates, subtitles and couplings", () => {
+		const existingEntry = entry("Sine of the Dub", {}, "Kode9");
+		const coupling = release("Sine of the Dub / Stalker", { primaryType: "Single" });
+		const subtitle = release("Sine of the Dub (Remastered Dub Plates)", { primaryType: "Single" });
+
+		const result = merge({
+			existing: [existingEntry],
+			candidates: [coupling, subtitle],
+			allCredited: [coupling, subtitle],
+			policy: { ...policy, artistName: "Kode9" },
+		});
+
+		// Neither title is the entry's up to a year or EP suffix: both are added and flagged.
+		expect(result.posed).toEqual([]);
+		expect(result.added.map((a) => [a.title, a.nearDuplicateOf])).toEqual(
+			expect.arrayContaining([
+				["Sine of the Dub / Stalker", existingEntry.slug],
+				["Sine of the Dub (Remastered Dub Plates)", existingEntry.slug],
+			]),
+		);
+		expect(result.added).toHaveLength(2);
+	});
+
+	describe("on release groups as MusicBrainz returns them (read 2026-10-19)", () => {
+		// Trimmed copies of what `fetchArtistDiscographyMb` returned for these artists: the homonymous singles,
+		// the Live / Compilation albums and the multi-artist singles are there, which the dry-run manifest does not show.
+		const koolCredit = [{ mbid: ARTIST_MBID, name: "Kool & the Gang" }];
+		const real = (
+			title: string,
+			mbid: string,
+			firstReleaseDate: string,
+			primaryType: string,
+			secondaryTypes: string[] = [],
+			ratingVotes = 0,
+			artistCredits = koolCredit,
+		): ReleaseGroupCandidate => ({
+			mbid,
+			title,
+			firstReleaseDate,
+			primaryType,
+			secondaryTypes,
+			artistCredits,
+			ratingVotes,
+		});
+		const ladiesNight = [
+			real("Ladies\u2019 Night", "5d3fb998-0857-37d5-b211-e95e646c38d5", "1979-09-06", "Album", [], 2),
+			real("Ladies Night", "2138a736-ba8c-40ea-8221-f669b03dfe32", "1979", "Single", [], 1),
+			real("Ladies Night", "68cabb06-70bb-476c-8811-6056239e8bea", "2003-12-15", "Single", [], 0, [
+				...koolCredit,
+				{ mbid: "00000000-0000-4000-8000-0000000000a1", name: "Atomic Kitten" },
+			]),
+			real("Ladies Night", "3a26f2f5-973e-4106-8202-ffc1ff8ea3e4", "2004-04-20", "Single", [], 0, [
+				...koolCredit,
+				{ mbid: "00000000-0000-4000-8000-0000000000a2", name: "Sean Paul" },
+			]),
+			real("Ladies Night", "36fee049-018d-4413-b929-937567c14e7e", "2004", "Album", ["Compilation"]),
+			real("Ladies\u2019 Night", "c76be46d-f15b-4fad-82dd-3e06dc49854e", "", "Album", ["Compilation"]),
+		];
+		const koolRg = [
+			real("Kool and the Gang", "0931b359-fc39-33b2-b52e-a9aaf103e33a", "1969", "Album", [], 1),
+			real(
+				"Kool & the Gang",
+				"97f8d5f3-324b-40a7-8e9d-d38482f7cef7",
+				"2007",
+				"Album",
+				["Compilation", "Live"],
+				1,
+			),
+			real("Kool & The Gang", "f01659dd-dda1-4918-a2b5-e9d95feffabf", "1995", "Album", [
+				"Compilation",
+				"Live",
+			]),
+			real("Kool & the Gang", "9df5ffc6-0141-4579-8b23-7cc124cb79cf", "1997-03-04", "Album", ["Compilation"]),
+			real("Kool & The Gang", "b37ea5a1-eee0-469e-9e9d-dc79abae21db", "2001", "Album", ["Compilation"]),
+			real("Kool and the Gang", "967c2912-e19e-40d4-9b98-82ab9ddc20af", "2012", "Album", ["Compilation"]),
+		];
+		const emergency = [
+			real("Emergency", "1e650dc3-191b-3816-a8ce-ef62a401a096", "1984-11-15", "Album", [], 2),
+			real("Emergency", "5c447f52-6c2d-4c13-818d-3e8220c3bd22", "1984", "Single", [], 1),
+		];
+		const mitisCredit = [{ mbid: ARTIST_MBID, name: "MitiS" }];
+		const foundations = [
+			real("Foundations", "194a366b-28a8-4ce3-ad9b-987132d001f7", "2016-03-18", "EP", [], 0, mitisCredit),
+			real("Foundations", "91b28708-6c03-4254-bf73-7b01253bfff2", "2016-02-24", "Single", [], 0, [
+				...mitisCredit,
+				{ mbid: "00000000-0000-4000-8000-0000000000a3", name: "Adara" },
+			]),
+		];
+		const dyingForIt = [
+			real("Dying for It", "8c6cecaa-4b0f-3ca8-8bb0-f360fc9a2800", "1988", "EP", [], 0, [
+				{ mbid: ARTIST_MBID, name: "The Vaselines" },
+			]),
+			real("Dying for It", "2ca8749a-0b15-3775-984f-3fe4b9e78d8d", "1988", "Single", [], 0, [
+				{ mbid: ARTIST_MBID, name: "The Vaselines" },
+			]),
+		];
+
+		it("poses 'Ladies' Night (1979)' on the 1979 album, not left ambiguous by its homonymous singles and compilations", () => {
+			const existingEntry = entry("Ladies' Night (1979)", {}, "Kool and the Gang");
+
+			const result = merge({
+				existing: [existingEntry],
+				// What the pipeline would offer for addition: the album, its same-titled single dropped by slug.
+				candidates: selectReleases(ladiesNight, kool).kept,
+				allCredited: ladiesNight,
+				policy: kool,
+			});
+
+			expect(result.posed).toEqual([
+				{
+					slug: existingEntry.slug,
+					mbid: "5d3fb998-0857-37d5-b211-e95e646c38d5",
+					filled: ["year", "releaseType"],
+				},
+			]);
+			expect(result.ambiguous).toEqual([]);
+			expect(result.added).toEqual([]);
+		});
+
+		it("poses 'Kool and the Gang (1969)' on the 1969 album among five compilations", () => {
+			const existingEntry = entry("Kool and the Gang (1969)", {}, "Kool and the Gang");
+
+			const result = merge({ existing: [existingEntry], allCredited: koolRg, policy: kool });
+
+			expect(result.posed.map((p) => p.mbid)).toEqual(["0931b359-fc39-33b2-b52e-a9aaf103e33a"]);
+			expect(result.ambiguous).toEqual([]);
+		});
+
+		it("poses 'Emergency (1984)' on the album, not its single", () => {
+			const existingEntry = entry("Emergency (1984)", {}, "Kool and the Gang");
+
+			const result = merge({ existing: [existingEntry], allCredited: emergency, policy: kool });
+
+			expect(result.posed.map((p) => p.mbid)).toEqual(["1e650dc3-191b-3816-a8ce-ef62a401a096"]);
+			expect(result.ambiguous).toEqual([]);
+		});
+
+		it("poses 'Foundations EP' on the EP, not the single of the same title", () => {
+			const existingEntry = entry("Foundations EP", {}, "MitiS");
+
+			const result = merge({
+				existing: [existingEntry],
+				allCredited: foundations,
+				policy: { ...policy, artistName: "MitiS" },
+			});
+
+			expect(result.posed.map((p) => p.mbid)).toEqual(["194a366b-28a8-4ce3-ad9b-987132d001f7"]);
+			expect(result.ambiguous).toEqual([]);
+		});
+
+		it("poses 'Dying for It EP' on the EP, not the single of the same title", () => {
+			const existingEntry = entry("Dying for It EP", {}, "The Vaselines");
+
+			const result = merge({
+				existing: [existingEntry],
+				allCredited: dyingForIt,
+				policy: { ...policy, artistName: "The Vaselines" },
+			});
+
+			expect(result.posed.map((p) => p.mbid)).toEqual(["8c6cecaa-4b0f-3ca8-8bb0-f360fc9a2800"]);
+			expect(result.ambiguous).toEqual([]);
+		});
+	});
+
+	it("never gives the album 'Foo' to an entry that was written 'Foo - EP': the entry is left alone, the album is its own release group", () => {
+		const existingEntry = entry("Foo - EP");
+		const album = release("Foo", { primaryType: "Album" });
+
+		const result = merge({ existing: [existingEntry], candidates: [album], allCredited: [album] });
+
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([]);
+		expect(result.edges.find((e) => e.slug === existingEntry.slug)?.mbid).toBeUndefined();
+		expect(result.added.map((a) => [a.mbid, a.releaseType])).toEqual([[album.mbid, "album"]]);
+	});
+
+	it("does not pose the Compilation EP 'Hurt' on 'Hurt EP' when the group also has the album", () => {
+		const existingEntry = entry("Hurt EP", {}, "Johnny Cash");
+		const album = release("Hurt", { primaryType: "Album", firstReleaseDate: "2002-11-05" });
+		const compilationEp = release("Hurt", {
+			primaryType: "EP",
+			secondaryTypes: ["Compilation"],
+			firstReleaseDate: "2003-01-01",
+		});
+
+		const result = merge({
+			existing: [existingEntry],
+			candidates: [album],
+			allCredited: [album, compilationEp],
+			policy: { ...policy, artistName: "Johnny Cash" },
+		});
+
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([]);
+		expect(result.edges.some((e) => e.mbid === compilationEp.mbid)).toBe(false);
+		expect(result.edges.find((e) => e.slug === existingEntry.slug)?.mbid).toBeUndefined();
+		expect(result.added.map((a) => a.mbid)).toEqual([album.mbid]);
+	});
+
+	it("leaves 'Hurt EP' alone when the EP of that title is only a Live one", () => {
+		const existingEntry = entry("Hurt EP");
+		const liveEp = release("Hurt", { primaryType: "EP", secondaryTypes: ["Live"] });
+
+		const result = merge({ existing: [existingEntry], allCredited: [liveEp] });
+
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([]);
+		expect(result.changed).toBe(false);
+	});
+
+	it("poses the admitted EP on 'Foo EP' when the group also has an album and a Compilation EP", () => {
+		const existingEntry = entry("Foo EP");
+		const album = release("Foo", { primaryType: "Album", firstReleaseDate: "2010-01-01" });
+		const ep = release("Foo", { primaryType: "EP", firstReleaseDate: "2010-01-01" });
+		const compilationEp = release("Foo", { primaryType: "EP", secondaryTypes: ["Compilation"] });
+
+		const result = merge({
+			existing: [existingEntry],
+			candidates: [album, ep],
+			allCredited: [album, ep, compilationEp],
+		});
+
+		expect(result.posed.map((p) => p.mbid)).toEqual([ep.mbid]);
+	});
+
+	it("reports 'Foo EP' as multiple when two admitted EPs share the title", () => {
+		const existingEntry = entry("Foo EP");
+		const first = release("Foo", { primaryType: "EP", firstReleaseDate: "2010-01-01" });
+		const second = release("Foo", { primaryType: "EP", firstReleaseDate: "2011-01-01" });
+
+		const result = merge({
+			existing: [existingEntry],
+			candidates: [first, second],
+			allCredited: [first, second],
+		});
+
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([{ slug: existingEntry.slug, reason: "multiple" }]);
+		expect(result.added).toEqual([]);
+	});
+
+	it("leaves 'Foo EP' as it is when the only admitted EP of that title is held by its twin", () => {
+		const existingEntry = entry("Foo EP");
+		const ep = release("Foo", { primaryType: "EP" });
+		const twin = entry("Foo", { mbid: ep.mbid, releaseType: "ep" });
+
+		const result = merge({ existing: [existingEntry, twin], candidates: [ep], allCredited: [ep] });
+
+		expect(result.changed).toBe(false);
+		expect(result.ambiguous).toEqual([]);
+	});
+
+	it("gives an untyped 'Foo EP' the EP 'Foo' and not the album of the same title", () => {
+		const existingEntry = entry("Foo EP");
+		const album = release("Foo", { primaryType: "Album", firstReleaseDate: "2010-01-01" });
+		const ep = release("Foo", { primaryType: "EP", firstReleaseDate: "2010-01-01" });
+
+		const result = merge({ existing: [existingEntry], candidates: [album, ep], allCredited: [album, ep] });
+
+		expect(result.posed.map((p) => p.mbid)).toEqual([ep.mbid]);
+		expect(result.edges.find((e) => e.slug === existingEntry.slug)).toMatchObject({
+			mbid: ep.mbid,
+			releaseType: "ep",
+		});
 	});
 });
