@@ -41,4 +41,38 @@ final class OnboardingCopyTests: XCTestCase {
 	func testTheHelpLineTellsThatAnEmptyListIsTheWholeFamily() {
 		XCTAssertEqual(OnboardingCopy.wholeFamilyHint, "Sans sous-genre coché, toute la famille compte.")
 	}
+
+	func testTheSubgenreCountIsSingularForZero() {
+		XCTAssertEqual(OnboardingCopy.subgenreCount(0), "0 sous-genre")
+	}
+
+	func testTheSubgenreCountIsSingularForOne() {
+		XCTAssertEqual(OnboardingCopy.subgenreCount(1), "1 sous-genre")
+	}
+
+	func testTheSubgenreCountIsPluralFromTwo() {
+		XCTAssertEqual(OnboardingCopy.subgenreCount(2), "2 sous-genres")
+		XCTAssertEqual(OnboardingCopy.subgenreCount(13), "13 sous-genres")
+	}
+
+	func testANegativeSubgenreCountReadsAsZero() {
+		XCTAssertEqual(OnboardingCopy.subgenreCount(-1), "0 sous-genre")
+	}
+
+	func testTheSelectedCountIsSingularForZero() {
+		XCTAssertEqual(OnboardingCopy.selectedCount(0), "(0 sélectionné)")
+	}
+
+	func testTheSelectedCountIsSingularForOne() {
+		XCTAssertEqual(OnboardingCopy.selectedCount(1), "(1 sélectionné)")
+	}
+
+	func testTheSelectedCountIsPluralFromTwo() {
+		XCTAssertEqual(OnboardingCopy.selectedCount(2), "(2 sélectionnés)")
+		XCTAssertEqual(OnboardingCopy.selectedCount(4), "(4 sélectionnés)")
+	}
+
+	func testANegativeSelectedCountReadsAsZero() {
+		XCTAssertEqual(OnboardingCopy.selectedCount(-2), "(0 sélectionné)")
+	}
 }
