@@ -1404,7 +1404,6 @@ describe("mergeDiscography — cautious pose without a year (TRA-647)", () => {
 		it.each([
 			["Joe's Garage", "Frank Zappa", { primaryType: "Single", firstReleaseDate: "1979-09-07" }],
 			["Trans-Europe Express", "Kraftwerk", { primaryType: "Single", firstReleaseDate: "1999-01-01" }],
-			["Black, Brown and Beige", "Duke Ellington", { primaryType: "Album", firstReleaseDate: "2013-06-04" }],
 			[
 				"Merry Christmas, Mr. Lawrence",
 				"Ryuichi Sakamoto",
@@ -1462,9 +1461,10 @@ describe("mergeDiscography — cautious pose without a year (TRA-647)", () => {
 		});
 
 		it("spares a release of last year or this year, which has had no time to be voted", () => {
-			const lastYear = release("Fresh", { firstReleaseDate: "2025-03-01" });
-			const twoYearsAgo = release("Stale", { firstReleaseDate: "2024-12-31" });
-			const undated = release("Timeless", { firstReleaseDate: "" });
+			// Singles: since TRA-649 an unvoted plain album is posed whatever its age.
+			const lastYear = release("Fresh", { primaryType: "Single", firstReleaseDate: "2025-03-01" });
+			const twoYearsAgo = release("Stale", { primaryType: "Single", firstReleaseDate: "2024-12-31" });
+			const undated = release("Timeless", { primaryType: "Single", firstReleaseDate: "" });
 			const existing = [zappaEntry("Fresh"), zappaEntry("Stale"), zappaEntry("Timeless")];
 
 			const result = mergeFor(zappa, existing, [...votedAlbums(10), lastYear, twoYearsAgo, undated]);
@@ -1871,5 +1871,158 @@ describe("mergeDiscography — cautious pose without a year (TRA-647)", () => {
 		for (const order of permutations(entries)) {
 			expect(JSON.parse(summarize(order))).toEqual(reference);
 		}
+	});
+
+	// TRA-649 (2026-10-20): replayed on MusicBrainz, 20 of the 33 entries v5 held back were the right release group.
+	// Real answers are in test/discography-policy-v6.test.ts; these cases pin the two rules on their edges.
+	describe("what v6 poses that v5 held (TRA-649)", () => {
+		const unvoted = (title: string, overrides: Partial<ReleaseGroupCandidate> = {}): ReleaseGroupCandidate =>
+			release(title, { firstReleaseDate: "2010-11-22", ratingVotes: 0, ...overrides });
+		const guest = (n: number) => ({ mbid: mbidOf(960 + n), name: `Guest ${n}` });
+		const HEAD = { mbid: ARTIST_MBID, name: "Frank Zappa" };
+
+		describe("an unvoted release group, an artist with 10 voted release groups", () => {
+			it("poses a plain album, which v5 held (an unvoted 'Lunatic' next to the voted albums)", () => {
+				const album = unvoted("Lunatic");
+				const existing = [zappaEntry("Lunatic")];
+
+				const result = mergeFor(zappa, existing, [...votedAlbums(10), album]);
+
+				expect(result.ambiguous).toEqual([]);
+				expect(result.posed).toEqual([
+					{ slug: existing[0]?.slug, mbid: album.mbid, filled: ["year", "releaseType"] },
+				]);
+			});
+
+			it("poses an album with a Live or Soundtrack secondary type: 'The London Chuck Berry Sessions'", () => {
+				for (const secondaryTypes of [["Live"], ["Soundtrack"], ["Live", "Soundtrack"]]) {
+					const album = unvoted("Sessions", { secondaryTypes });
+					const result = mergeFor(zappa, [zappaEntry("Sessions")], [...votedAlbums(10), album]);
+					expect(result.posed.map((p) => p.mbid)).toEqual([album.mbid]);
+				}
+			});
+
+			it.each([
+				["a Compilation", { secondaryTypes: ["Compilation"] }, "Free Jazz"],
+				["a Demo", { secondaryTypes: ["Demo"] }, "Free Jazz"],
+				["a Remix", { secondaryTypes: ["Remix"] }, "Free Jazz"],
+				["a single", { primaryType: "Single" }, "Free Jazz"],
+				["an EP", { primaryType: "EP" }, "Free Jazz"],
+				["an album titled like a best-of", {}, "His Greatest Hits"],
+				["an album titled like a remix album", {}, "The Remix Album"],
+			] satisfies [string, Partial<ReleaseGroupCandidate>, string][])(
+				"holds %s, `unrated-pose`",
+				(_label, overrides, title) => {
+					const found = unvoted(title, overrides);
+					const existing = [zappaEntry(title)];
+
+					const result = mergeFor(zappa, existing, [...votedAlbums(10), found]);
+
+					expect(result.posed).toEqual([]);
+					expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "unrated-pose" }]);
+				},
+			);
+
+			it("holds an unvoted album when another release group of the title has a vote", () => {
+				const album = unvoted("Joe's Garage", { firstReleaseDate: "1979-09-07" });
+				const single = unvoted("Joe's Garage", {
+					primaryType: "Single",
+					firstReleaseDate: "1979-09-07",
+					ratingVotes: 4,
+				});
+				const existing = [zappaEntry("Joe's Garage")];
+
+				const result = mergeFor(zappa, existing, [...votedAlbums(10), album, single]);
+
+				expect(result.posed).toEqual([]);
+				expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "unrated-pose" }]);
+			});
+
+			it("does not pose an album that fails the credit rule, voted or not (the plain album is no credit pass)", () => {
+				const notFirst = unvoted("Lunatic", { artistCredits: [guest(1), HEAD] });
+				const result = mergeFor(zappa, [zappaEntry("Lunatic")], [...votedAlbums(10), notFirst]);
+				expect(result.posed).toEqual([]);
+				expect(result.ambiguous.map((a) => a.reason)).toEqual(["credit"]);
+			});
+		});
+
+		describe("a release group the artist heads with more than two credits", () => {
+			const credits = [HEAD, guest(1), guest(2)];
+			const existing = [zappaEntry("Dil Padosi Hai")];
+
+			it("is posed when it has a vote, one is enough", () => {
+				const found = release("Dil Padosi Hai", { artistCredits: credits, ratingVotes: 1 });
+				const result = mergeFor(zappa, existing, [found]);
+				expect(result.ambiguous).toEqual([]);
+				expect(result.posed.map((p) => p.mbid)).toEqual([found.mbid]);
+			});
+
+			it("is held without a vote, the entry stating nothing: `credit`", () => {
+				const found = release("Dil Padosi Hai", { artistCredits: credits });
+				const result = mergeFor(zappa, existing, [found]);
+				expect(result.posed).toEqual([]);
+				expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "credit" }]);
+			});
+
+			it("is posed when the entry states the very year and type of the release group", () => {
+				const found = release("Annihilation", {
+					primaryType: "Single",
+					firstReleaseDate: "2025-10-31",
+					artistCredits: credits,
+				});
+				const stated = zappaEntry("Annihilation", { year: "2025", releaseType: "single" });
+				const result = mergeFor(zappa, [stated], [found]);
+				expect(result.ambiguous).toEqual([]);
+				expect(result.posed.map((p) => p.mbid)).toEqual([found.mbid]);
+			});
+
+			it.each([
+				["a year alone", { year: "2025" }],
+				["a type alone", { releaseType: "single" as const }],
+				[
+					"another year (within the drift decidePose allows)",
+					{ year: "2024", releaseType: "single" as const },
+				],
+			])("is held when the entry states %s", (_label, extra) => {
+				const found = release("Annihilation", {
+					primaryType: "Single",
+					firstReleaseDate: "2025-10-31",
+					artistCredits: credits,
+				});
+				const stated = zappaEntry("Annihilation", extra);
+				const result = mergeFor(zappa, [stated], [found]);
+				expect(result.posed).toEqual([]);
+				expect(result.ambiguous).toEqual([{ slug: stated.slug, reason: "credit" }]);
+			});
+
+			it("is never posed when the artist does not head it, whatever the votes and the entry say", () => {
+				const found = release("Dil Padosi Hai", {
+					primaryType: "Single",
+					firstReleaseDate: "2025-10-31",
+					artistCredits: [guest(1), HEAD, guest(2)],
+					ratingVotes: 9,
+				});
+				const stated = zappaEntry("Dil Padosi Hai", { year: "2025", releaseType: "single" });
+				const result = mergeFor(zappa, [stated], [found]);
+				expect(result.posed).toEqual([]);
+				expect(result.ambiguous).toEqual([{ slug: stated.slug, reason: "credit" }]);
+			});
+
+			it("is never posed when Various Artists is one of the credits, even voted", () => {
+				const found = release("Dil Padosi Hai", {
+					artistCredits: [HEAD, { mbid: VARIOUS_ARTISTS_MBID, name: "Various Artists" }],
+					ratingVotes: 9,
+				});
+				const result = mergeFor(zappa, existing, [found]);
+				expect(result.posed).toEqual([]);
+				expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "credit" }]);
+			});
+
+			it("does not change what is added: a voted release group with three credits is still not a candidate", () => {
+				const found = release("Dil Padosi Hai", { artistCredits: credits, ratingVotes: 9 });
+				const { kept } = selectReleases([found], zappa);
+				expect(kept).toEqual([]);
+			});
+		});
 	});
 });

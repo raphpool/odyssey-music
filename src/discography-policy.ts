@@ -53,8 +53,14 @@ export const DEFAULT_DISCOGRAPHY_CAP = 40;
  * posed 5 reference entries with the identity of a minor single or a reissue; and an mbid is only posed from a
  * release group that passes the credit rule of classifyRelease, Ellington's "Black, Brown and Beige" having
  * taken a 2013 recording credited to three artists): a manifest of version 4 is not replayed.
+ * 2026-10-20: 6, the policy changed with TRA-649 (v5 held back 33 entries on prudence, replayed on MusicBrainz the
+ * same day: 20 were right and are now posed, 13 stay out; the symptom was Booba's "Lunatic" and "Futur", Blackpink's
+ * "Born Pink" or Lennon's "Some Time in New York City" left without mbid, a twin then missing from the artist's list.
+ * An unvoted release group is posed when it is a plain album, the credit rule lets a release group that the artist
+ * heads through when it is voted or when the entry states its very year and type): a manifest of version 5 is not
+ * replayed, since an entry it left ambiguous is decided again.
  */
-export const DISCOGRAPHY_POLICY_VERSION = 5;
+export const DISCOGRAPHY_POLICY_VERSION = 6;
 
 // TRA-628 (measured 2026-10-19 on MusicBrainz): John Lennon has 69 eligible release groups, 14 voted and 55
 // not (The Lost Lennon Tapes, Archives, outtakes), and the cap used to fill with the oldest of them. From this
@@ -529,23 +535,62 @@ interface PoseCaution {
 	policy: DiscographyPolicy;
 }
 
+// An album as the artist released it: an Album whose only secondary types are the admitted ones or Live, with a
+// title that names no best-of, remix or sampler (TRA-649). A Compilation, a "Greatest Hits" or a lone single / EP
+// often borrows the title of the real album; a Live album of that exact title is that album (Chuck Berry's "The
+// London Chuck Berry Sessions" is half studio, half live).
+function isPlainAlbum(c: ReleaseGroupCandidate): boolean {
+	return (
+		c.primaryType === "Album" &&
+		c.secondaryTypes.every((type) => type === "Live" || ADMITTED_SECONDARY_TYPES.has(type)) &&
+		!isNonCanonicalReleaseTitle(c.title)
+	);
+}
+
+// The credit rule, as it applies to a pose on an existing entry (TRA-649). The artist must head the release and
+// Various Artists is never one of its credits: nothing relaxes that. A third-party recording of the artist's work
+// ("Black, Brown, and Beige" by an orchestra, with Ellington first) fails it by its number of credits, as do
+// Asha Bhosle's "Dil Padosi Hai" (with its composer and lyricist), Lennon's "Some Time in New York City" (with
+// Yoko Ono and the Plastic Ono Band) and Getz / Gilberto, which are the artist's own. What tells them apart is a
+// vote, which MusicBrainz users give to known releases (1 to 6 here, 0 for the recordings), or the entry itself
+// stating the very year and type of the release group (an "Annihilatiøn", 2025, single, with two guests).
+function creditBlocksPose(entry: EdgeRef, match: ReleaseGroupCandidate, policy: DiscographyPolicy): boolean {
+	const verdict = creditVerdict(match, policy);
+	if (verdict === null) return false;
+	const first = match.artistCredits[0];
+	if (verdict === "various-artists" || first === undefined || !sameMbid(first.mbid, policy.artistMbid))
+		return true;
+	if (isVoted(match)) return false;
+	const year = yearOf(entry.year);
+	return !(
+		year !== null &&
+		year === yearOf(match.firstReleaseDate) &&
+		entry.releaseType === match.primaryType.toLowerCase()
+	);
+}
+
 /**
  * decidePose, with the guards of TRA-647 (measured 2026-10-20 on the cache of PR #562: 804 of 809 poses were of
  * an entry with neither type nor year, and 5 of them took a minor release of the exact title: Kraftwerk
  * "Trans-Europe Express" a 1999 promo single, Zappa "Joe's Garage" the single while the album is "Joe's Garage Act
- * I", Sakamoto "Vrioon" the 2022 reissue, against the mbid its node already held). In this order:
+ * I", Sakamoto "Vrioon" the 2022 reissue, against the mbid its node already held), loosened by TRA-649 (the same
+ * guards held back 33 entries; replayed on MusicBrainz, 20 of them were the right release group). In this order:
  *  1. an entry without year whose project node holds an mbid: it is the identity. It is posed if it is among the
  *     candidates, even where several compete (an entry that states a type still may not take another type);
  *     otherwise nothing is posed, `node-conflict`;
  *  2. otherwise decidePose decides, on the whole group, with its resolution of several release groups;
  *  3. whatever was decided, the release group to pose must pass the credit rule of classifyRelease (the artist
- *     heads it, at most two credits, not Various Artists), else nothing is posed, `credit`. It is checked on the
- *     one the decision picked, never on the group beforehand: removing a candidate first would turn "two
- *     recordings" into a confident pose on the other, or an album into its single (TRA-560). Ellington's "Black,
- *     Brown and Beige" took a 2013 recording credited to three artists;
+ *     heads it, at most two credits, not Various Artists), else nothing is posed, `credit`; except that a release
+ *     group the artist heads with more credits is let through when it is voted or when the entry states its year
+ *     and type (creditBlocksPose). It is checked on the one the decision picked, never on the group beforehand:
+ *     removing a candidate first would turn "two recordings" into a confident pose on the other, or an album into
+ *     its single (TRA-560). Ellington's "Black, Brown and Beige" took a 2013 recording credited to three artists;
  *  4. an entry with neither year nor type, an artist with MIN_VOTED_FOR_UNRATED_CUT voted release groups, and a
- *     release group with no vote that is not recent: nothing is posed, `unrated-pose`. A minor release rarely has
- *     votes where the real album has them; below the threshold (Kode9, 4hero) nobody has votes and it stays out.
+ *     release group with no vote that is not recent: nothing is posed, `unrated-pose`, unless it is a plain album
+ *     (isPlainAlbum) and no other release group of the title has a vote. The five false identities were a single,
+ *     a reissue and a recording, never an unvoted album of the artist's own; a lone single or EP, a compilation
+ *     or a "Greatest Hits" of the title, or an album whose title has votes elsewhere, stays out. Below the
+ *     threshold (Kode9, 4hero) nobody has votes and it is posed as before.
  * A year or a type on the entry (or a year in its title) keeps the guards of decidePose for 1 and 4.
  */
 function decideCautiously(
@@ -569,13 +614,15 @@ function decideCautiously(
 		verdict = decidePose(entry, matches, titleYear);
 	}
 	if (verdict.kind !== "pose") return verdict;
-	if (creditVerdict(verdict.match, caution.policy) !== null) return { kind: "ambiguous", reason: "credit" };
+	const chosen = verdict.match;
+	if (creditBlocksPose(entry, chosen, caution.policy)) return { kind: "ambiguous", reason: "credit" };
 	if (
 		nodeMbid === undefined &&
 		unstated &&
 		caution.ratedArtist &&
-		!isVoted(verdict.match) &&
-		!isRecentRelease(verdict.match, caution.policy)
+		!isVoted(chosen) &&
+		!isRecentRelease(chosen, caution.policy) &&
+		!(isPlainAlbum(chosen) && !matches.some((m) => m !== chosen && isVoted(m)))
 	) {
 		return { kind: "ambiguous", reason: "unrated-pose" };
 	}
