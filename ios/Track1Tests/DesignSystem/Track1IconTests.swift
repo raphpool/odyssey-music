@@ -16,10 +16,11 @@ final class Track1IconTests: XCTestCase {
 		(.musicNote, "music.note"),
 		(.play, "play.fill"),
 		(.search, "magnifyingglass"),
+		(.arrowDownRight, "arrow.down.right"),
 	]
 
 	func testEveryGlyphIsItsSFSymbol() {
-		XCTAssertEqual(symbols.count, 9)
+		XCTAssertEqual(symbols.count, 10)
 		XCTAssertEqual(Track1Icon.Glyph.allCases, symbols.map(\.glyph))
 		for (glyph, name) in symbols {
 			XCTAssertEqual(glyph.systemName, name, "\(glyph)")

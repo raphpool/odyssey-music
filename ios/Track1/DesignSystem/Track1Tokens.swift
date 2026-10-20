@@ -203,4 +203,11 @@ enum Track1Motion: CaseIterable, Sendable {
 		guard !reduceMotion else { return nil }
 		return .timingCurve(0.2, 0, 0, emphasized ? 1.2 : 1, duration: motion.duration)
 	}
+
+	/// Unfolding of an accordion card (TRA-636): the screen wraps its toggle in `withAnimation` with this.
+	/// `nil` under Reduce Motion, like `animation`.
+	static func spring(reduceMotion: Bool) -> Animation? {
+		guard !reduceMotion else { return nil }
+		return .spring(duration: 0.35, bounce: 0.2)
+	}
 }
