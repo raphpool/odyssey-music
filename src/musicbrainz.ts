@@ -5,8 +5,8 @@
  * instead of holding the dump locally. Trade-off: +150-250ms latency per autocomplete vs zero
  * memory/disk footprint on the droplet (vs ~2.5 GB SQLite that this used to load).
  *
- * Rate limit etiquette: MB asks for a User-Agent identifying the app and contact email so they
- * can throttle us specifically rather than blanket-banning the IP. The autocomplete debounce
+ * Rate limit etiquette: MB asks for a User-Agent identifying the app and a contact (a URL is enough, no
+ * e-mail) so they can throttle us specifically rather than blanket-banning the IP. The autocomplete debounce
  * (150ms) plus the natural typing cadence keeps us well under the published 50 req/s ceiling
  * for properly-UA'd clients.
  */
@@ -921,6 +921,44 @@ export async function fetchArtistEntityMb(artistMbid: string): Promise<MbArtistE
 		disambiguation: data.disambiguation ?? null,
 		kind: artistKind(data.type),
 	};
+}
+
+/**
+ * Every name MusicBrainz holds for an artist: its `name`, its `sort-name` and each alias with its own
+ * `sort-name` (TRA-630). One request (`/artist/<mbid>?inc=aliases`) through the shared queue. Untrusted data:
+ * only non-blank strings are kept, nothing else of the answer is read. Null when there is no usable answer
+ * (mbid that is not one, request failed after the retries, body that is not an artist): the caller must not
+ * take that for "the artist has no other name".
+ */
+export async function fetchArtistNamesMb(
+	artistMbid: string,
+	opts: { priority?: MbPriority } = {},
+): Promise<string[] | null> {
+	if (!isMbid(artistMbid)) return null;
+	const data = await mbFetch<unknown>(
+		`/artist/${artistMbid}`,
+		{ inc: "aliases" },
+		fetch,
+		opts.priority ?? "interactive",
+	).catch(() => null);
+	if (!isRecord(data) || typeof data.name !== "string" || data.name.trim() === "") return null;
+	const names: string[] = [];
+	const keep = (value: unknown): void => {
+		if (typeof value === "string" && value.trim() !== "") names.push(value);
+	};
+	keep(data.name);
+	keep(data["sort-name"]);
+	if (Array.isArray(data.aliases)) {
+		for (const alias of data.aliases) {
+			if (!isRecord(alias)) continue;
+			// "Search hint" aliases are MusicBrainz's own search aids ("R.S." for Sakamoto, "Hawk" and
+			// "John Hawkins" for H.A.W.K.): too generic to tell artists apart, never a name of the artist.
+			if (typeof alias.type === "string" && alias.type.trim().toLowerCase() === "search hint") continue;
+			keep(alias.name);
+			keep(alias["sort-name"]);
+		}
+	}
+	return names;
 }
 
 /**
