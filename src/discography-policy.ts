@@ -191,6 +191,19 @@ function isKeptPrimaryType(type: string): type is KeptPrimaryType {
 	return (KEPT_PRIMARY_TYPES as readonly string[]).includes(type);
 }
 
+// The credit rule alone: the artist heads the release (first credit), it has at most MAX_CREDITS credits, and
+// Various Artists is not one of them. Various Artists is told apart from a plain "credit" mismatch, which is what
+// the exclusion log is read for.
+function creditVerdict(
+	c: ReleaseGroupCandidate,
+	policy: DiscographyPolicy,
+): "various-artists" | "credit" | null {
+	if (c.artistCredits.some((credit) => sameMbid(credit.mbid, VARIOUS_ARTISTS_MBID))) return "various-artists";
+	const firstCredit = c.artistCredits[0];
+	if (firstCredit === undefined || !sameMbid(firstCredit.mbid, policy.artistMbid)) return "credit";
+	return c.artistCredits.length > MAX_CREDITS ? "credit" : null;
+}
+
 /**
  * Checks run in a fixed order and the first failure wins. Various Artists is checked before the credit
  * position: a "Various Artists" release is reported as such rather than as a plain "credit" mismatch,
@@ -202,14 +215,8 @@ export function classifyRelease(
 ): { ok: true } | { ok: false; reason: ExclusionReason } {
 	if (!isKeptPrimaryType(c.primaryType)) return { ok: false, reason: "primary-type" };
 	if (!hasOnlyAdmittedSecondaryTypes(c)) return { ok: false, reason: "secondary-type" };
-	if (c.artistCredits.some((credit) => sameMbid(credit.mbid, VARIOUS_ARTISTS_MBID))) {
-		return { ok: false, reason: "various-artists" };
-	}
-	const firstCredit = c.artistCredits[0];
-	if (firstCredit === undefined || !sameMbid(firstCredit.mbid, policy.artistMbid)) {
-		return { ok: false, reason: "credit" };
-	}
-	if (c.artistCredits.length > MAX_CREDITS) return { ok: false, reason: "credit" };
+	const credit = creditVerdict(c, policy);
+	if (credit !== null) return { ok: false, reason: credit };
 	if (isNonCanonicalReleaseTitle(c.title)) return { ok: false, reason: "non-canonical" };
 	return { ok: true };
 }
@@ -394,6 +401,7 @@ export interface MergeInput {
 	existing: readonly EdgeRef[]; // the artist's current discography
 	candidates: readonly ReleaseGroupCandidate[]; // selectReleases(...).kept: what may be added
 	// Every release group first-credited to the artist, any type: what an mbid may be posed from.
+	// An mbid may only be posed from one that passes the credit rule of classifyRelease (TRA-647).
 	allCredited: readonly ReleaseGroupCandidate[];
 	policy: DiscographyPolicy;
 	projectIndex: {
@@ -607,7 +615,12 @@ function groupCredited(
  * as the same array, with `changed: false`.
  */
 export function mergeDiscography(input: MergeInput): MergeResult {
-	const { existing, candidates, allCredited, policy, projectIndex } = input;
+	const { existing, candidates, policy, projectIndex } = input;
+	// TRA-647 (measured 2026-10-20: Ellington's "Black, Brown and Beige" took the mbid of a 2013 recording credited to
+	// three artists): a release group the artist does not head is somebody else's work, whatever its title, and its
+	// mbid never becomes the identity of an entry. Only the credit filters here: the secondary types keep the
+	// treatment they have in decidePose (a Live release group is still posed on its entry).
+	const allCredited = input.allCredited.filter((c) => creditVerdict(c, policy) === null);
 
 	const creditedByTitle = groupCredited(allCredited, normalizeTitleBody);
 	// TRA-629: the same release groups under the looser key. It is only consulted when the exact title finds

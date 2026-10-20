@@ -8,6 +8,7 @@ import {
 	reconciliationKey,
 	selectReleases,
 	toDiscographyEdge,
+	VARIOUS_ARTISTS_MBID,
 } from "../src/discography-policy.js";
 import { makeScopedSlug } from "../src/slug.js";
 import type { EdgeRef, Slug } from "../src/types.js";
@@ -1532,6 +1533,89 @@ describe("mergeDiscography — cautious pose without a year (TRA-647)", () => {
 
 			const ten = mergeFor(zappa, existing, [...votedAlbums(10), single]);
 			expect(ten.posed).toEqual([]);
+		});
+	});
+
+	// Measured 2026-10-20 on Duke Ellington (2 voted release groups of 82, so the rated-artist rule stays out): the
+	// 2013 "Black, Brown, and Beige" is credited to him first but to more than two artists, and the pose took it.
+	// A release group the artist does not head is somebody else's work: its mbid is never the entry's identity.
+	describe("a release group the credit rule of classifyRelease rejects", () => {
+		const ellington: DiscographyPolicy = { ...policy, artistName: "Duke Ellington" };
+		const BUFFALO = { mbid: "cccccccc-cccc-4ccc-8ccc-cccccccccccc", name: "Buffalo Philharmonic Orchestra" };
+		const ELLINGTON = { mbid: ARTIST_MBID, name: "Duke Ellington" };
+		const third = (n: number) => ({ mbid: mbidOf(900 + n), name: `Guest ${n}` });
+		const bbb = entry("Black, Brown and Beige", {}, "Duke Ellington");
+
+		it.each([
+			["the artist is not the first credit", [BUFFALO, ELLINGTON]],
+			["the release has more than two credits", [ELLINGTON, third(1), third(2)]],
+			[
+				"the release is credited to Various Artists",
+				[ELLINGTON, { mbid: VARIOUS_ARTISTS_MBID, name: "Various Artists" }],
+			],
+		])("is not posed, nor added, when %s", (_label, artistCredits) => {
+			const found = release("Black, Brown and Beige", { firstReleaseDate: "2013-02-26", artistCredits });
+			const { kept } = selectReleases([found], ellington);
+
+			const result = merge({ existing: [bbb], candidates: kept, allCredited: [found], policy: ellington });
+
+			expect(result.posed).toEqual([]);
+			expect(result.added).toEqual([]);
+			expect(result.changed).toBe(false);
+		});
+
+		it("is not added either when a caller hands it over as a candidate", () => {
+			const found = release("Black, Brown and Beige", { artistCredits: [BUFFALO, ELLINGTON] });
+			const result = merge({ existing: [bbb], candidates: [found], allCredited: [found], policy: ellington });
+			expect(result.posed).toEqual([]);
+			expect(result.added).toEqual([]);
+		});
+
+		it("is not posed on the looser pass either", () => {
+			const found = release("Xpander", {
+				primaryType: "EP",
+				artistCredits: [BUFFALO, ELLINGTON],
+			});
+			const result = merge({ existing: [entry("Xpander EP", {}, "Duke Ellington")], allCredited: [found] });
+			expect(result.posed).toEqual([]);
+		});
+
+		it("does not take the place of the artist's own release group of that title", () => {
+			const own = release("Black, Brown and Beige", { firstReleaseDate: "1958-01-01" });
+			const other = release("Black, Brown and Beige", {
+				firstReleaseDate: "2013-02-26",
+				artistCredits: [ELLINGTON, third(1), third(2)],
+			});
+			for (const allCredited of [
+				[own, other],
+				[other, own],
+			]) {
+				const result = merge({ existing: [bbb], allCredited, policy: ellington });
+				expect(result.ambiguous).toEqual([]);
+				expect(result.posed.map((p) => p.mbid)).toEqual([own.mbid]);
+			}
+		});
+
+		it("still poses an album credited to the artist and one guest, the artist first (Kode9 & The Spaceape)", () => {
+			const album = release("Memories of the Future", {
+				firstReleaseDate: "2006-05-08",
+				artistCredits: [
+					{ mbid: ARTIST_MBID, name: "Kode9" },
+					{ mbid: mbidOf(950), name: "The Spaceape" },
+				],
+			});
+			const result = merge({
+				existing: [entry("Memories of the Future", {}, "Kode9")],
+				allCredited: [album],
+				policy: { ...policy, artistName: "Kode9" },
+			});
+			expect(result.posed.map((p) => p.mbid)).toEqual([album.mbid]);
+		});
+
+		it("keeps posing a Live release group of the artist: only the credit filters more", () => {
+			const live = release("Live at the BBC", { secondaryTypes: ["Live"] });
+			const result = merge({ existing: [entry("Live at the BBC")], allCredited: [live] });
+			expect(result.posed.map((p) => p.mbid)).toEqual([live.mbid]);
 		});
 	});
 
