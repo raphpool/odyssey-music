@@ -50,8 +50,9 @@ export const DEFAULT_DISCOGRAPHY_CAP = 40;
  * 2026-10-20: 5, the policy changed with TRA-647 (an entry with neither releaseType nor year is no longer posed
  * the mbid of a lone same-title release group when its project node holds another mbid, nor when the artist has
  * MIN_VOTED_FOR_UNRATED_CUT voted release groups and that one has no vote and is not recent; the cache PR #562 had
- * posed 5 reference entries with the identity of a minor single or a reissue): a manifest of version 4 is not
- * replayed.
+ * posed 5 reference entries with the identity of a minor single or a reissue; and an mbid is only posed from a
+ * release group that passes the credit rule of classifyRelease, Ellington's "Black, Brown and Beige" having
+ * taken a 2013 recording credited to three artists): a manifest of version 4 is not replayed.
  */
 export const DISCOGRAPHY_POLICY_VERSION = 5;
 
