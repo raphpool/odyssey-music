@@ -40,6 +40,348 @@
   ],
   "discography": [
     {
+      "slug": "project:one-o-clock-jump--duke-ellington",
+      "type": "project",
+      "name": "One O'Clock Jump",
+      "artist": "Duke Ellington",
+      "mbid": "76af1eb8-a68d-48a5-84dc-68b5668afcdb",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jazz-tribune-no-69-indispensable--duke-ellington",
+      "type": "project",
+      "name": "Jazz Tribune No.69: Indispensable",
+      "artist": "Duke Ellington",
+      "mbid": "ab5452cb-b559-4426-bbf2-309cbf866ff3",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:my-people--duke-ellington",
+      "type": "project",
+      "name": "My People",
+      "artist": "Duke Ellington",
+      "mbid": "9d096210-fafa-4ae4-b928-4eafe4f555e5",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-intimate-ellington--duke-ellington",
+      "type": "project",
+      "name": "The Intimate Ellington",
+      "artist": "Duke Ellington",
+      "mbid": "18b7bee0-7539-4ba6-ae01-bdff95100fe8",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:happy-reunion--duke-ellington",
+      "type": "project",
+      "name": "Happy Reunion",
+      "artist": "Duke Ellington",
+      "mbid": "c4709ac7-91f6-4335-9b06-82304fd63a5b",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:up-in-duke-s-workshop--duke-ellington",
+      "type": "project",
+      "name": "Up In Duke's Workshop",
+      "artist": "Duke Ellington",
+      "mbid": "2df15f20-10e1-4724-92f4-4427f14a75c5",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:take-the-holiday-train--duke-ellington",
+      "type": "project",
+      "name": "Take the Holiday Train",
+      "artist": "Duke Ellington",
+      "mbid": "3abb8463-f84b-4513-b0fd-5841cff068fb",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:braggin-in-brass-the-immortal-1938-year--duke-ellington",
+      "type": "project",
+      "name": "Braggin' in Brass: The Immortal 1938 Year",
+      "artist": "Duke Ellington",
+      "mbid": "5477c828-4fd8-4710-90dd-f243fd79794e",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:four-symphonic-works-by-duke-ellington--duke-ellington",
+      "type": "project",
+      "name": "Four Symphonic Works by Duke Ellington",
+      "artist": "Duke Ellington",
+      "mbid": "7cd30504-c66b-3195-abb8-fd7da4563d86",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:new-mood-indigo--duke-ellington",
+      "type": "project",
+      "name": "New Mood Indigo",
+      "artist": "Duke Ellington",
+      "mbid": "b94d3985-64da-4025-99bb-c87e345e0e51",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:all-star-road-band-volume-2--duke-ellington",
+      "type": "project",
+      "name": "All Star Road Band - Volume 2",
+      "artist": "Duke Ellington",
+      "mbid": "ed20696d-5b6e-4d40-8bca-3f29e7422602",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:echoes-of-harlem--duke-ellington",
+      "type": "project",
+      "name": "Echoes of Harlem",
+      "artist": "Duke Ellington",
+      "mbid": "2228d8bf-d5b6-4962-a6f6-75e8783db1c0",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-feeling-of-jazz--duke-ellington",
+      "type": "project",
+      "name": "The Feeling of Jazz",
+      "artist": "Duke Ellington",
+      "mbid": "927619a7-d6de-4fc9-af26-38ea2b776bf0",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jump-for-joy--duke-ellington",
+      "type": "project",
+      "name": "Jump For Joy",
+      "artist": "Duke Ellington",
+      "mbid": "f52afee0-e1d3-462f-ae8a-d016908a2604",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:it-don-t-mean-a-thing-if-it-ain-t-got-that-swing--duke-ellington",
+      "type": "project",
+      "name": "It Don’t Mean a Thing If It Ain’t Got That Swing",
+      "artist": "Duke Ellington",
+      "mbid": "de2dafb3-9958-4c8f-8158-3b185059c311",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-girl-s-suite-and-the-perfume-suite--duke-ellington",
+      "type": "project",
+      "name": "The Girl's Suite and The Perfume Suite",
+      "artist": "Duke Ellington",
+      "mbid": "a89c0397-9073-4086-9a21-5e6c69794086",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unknown-session--duke-ellington",
+      "type": "project",
+      "name": "Unknown Session",
+      "artist": "Duke Ellington",
+      "mbid": "fb9e9ff4-d496-43d4-817f-f1fa50833a71",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:duke-ellington-s-jazz-violin-session--duke-ellington",
+      "type": "project",
+      "name": "Duke Ellington's Jazz Violin Session",
+      "artist": "Duke Ellington",
+      "mbid": "d5e0ea91-d566-4b8b-9eba-0db0f78c202f",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:this-one-s-for-blanton--duke-ellington",
+      "type": "project",
+      "name": "This One's for Blanton!",
+      "artist": "Duke Ellington",
+      "mbid": "d149dfa4-e212-35cc-b915-23ea036a6439",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:duke-s-big-4--duke-ellington",
+      "type": "project",
+      "name": "Duke's Big 4",
+      "artist": "Duke Ellington",
+      "mbid": "2d201a53-e917-3746-a4e2-023764cbe3fa",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:new-orleans-suite--duke-ellington",
+      "type": "project",
+      "name": "New Orleans Suite",
+      "artist": "Duke Ellington",
+      "mbid": "2a9d2a63-2026-3cdc-9541-84a8cf554642",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-far-east-suite--duke-ellington",
+      "type": "project",
+      "name": "The Far East Suite",
+      "artist": "Duke Ellington",
+      "mbid": "c5176862-2fc7-4410-ba2b-46a6c440ede3",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:concert-of-sacred-music--duke-ellington",
+      "type": "project",
+      "name": "Concert of Sacred Music",
+      "artist": "Duke Ellington",
+      "mbid": "e9bbdc99-637b-4ad0-af66-83f791bf0ad9",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:duke-ellington-and-john-coltrane--duke-ellington",
+      "type": "project",
+      "name": "Duke Ellington & John Coltrane",
+      "artist": "Duke Ellington",
+      "mbid": "4f64c4fc-1de9-3b28-970c-e86f78c631be",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:duke-ellington-meets-coleman-hawkins--duke-ellington",
+      "type": "project",
+      "name": "Duke Ellington Meets Coleman Hawkins",
+      "artist": "Duke Ellington",
+      "mbid": "0bbc462f-554b-3cc3-b4c5-a78c6a313d5a",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-early-duke-ellington--duke-ellington",
+      "type": "project",
+      "name": "The Early Duke Ellington",
+      "artist": "Duke Ellington",
+      "mbid": "317998ff-0f2a-4ae4-ad9b-6b96bc49413b",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:first-time-the-count-meets-the-duke--duke-ellington",
+      "type": "project",
+      "name": "First Time! The Count Meets the Duke",
+      "artist": "Duke Ellington",
+      "mbid": "65890654-7523-33e0-a825-2bf9fe8efe41",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:piano-in-the-foreground--duke-ellington",
+      "type": "project",
+      "name": "Piano in the Foreground",
+      "artist": "Duke Ellington",
+      "mbid": "c67ec5b5-0a13-36fa-878f-2209b5fcc29b",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blues-in-orbit--duke-ellington",
+      "type": "project",
+      "name": "Blues in Orbit",
+      "artist": "Duke Ellington",
+      "mbid": "9032cfdc-4a1a-4364-b43f-ec26a1e7f272",
+      "year": "1960",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dance-air-force-date-1960--duke-ellington",
+      "type": "project",
+      "name": "Dance Air Force Date 1960",
+      "artist": "Duke Ellington",
+      "mbid": "46d402fc-44f4-40ea-af53-2c5f1fb299ad",
+      "year": "1960",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:back-to-back-duke-ellington-and-johnny-hodges-play-the-blues--duke-ellington",
+      "type": "project",
+      "name": "Back to Back: Duke Ellington and Johnny Hodges Play the Blues",
+      "artist": "Duke Ellington",
+      "mbid": "86ba50d8-ff17-3b8e-94a8-08e02e6926fa",
+      "year": "1959",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:side-by-side--duke-ellington",
+      "type": "project",
+      "name": "Side by Side",
+      "artist": "Duke Ellington",
+      "mbid": "f8d5a1fd-04c9-338c-b1a4-811e3b65f684",
+      "year": "1959",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:at-newport--duke-ellington",
+      "type": "project",
+      "name": "At Newport",
+      "artist": "Duke Ellington",
+      "mbid": "620dd228-71ac-4c58-9e96-adc0edb48105",
+      "year": "1956",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-duke-plays-ellington--duke-ellington",
+      "type": "project",
+      "name": "The Duke Plays Ellington",
+      "artist": "Duke Ellington",
+      "mbid": "a1915c4f-211c-449f-8714-a13754c480e0",
+      "year": "1954",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:piano-reflections--duke-ellington",
+      "type": "project",
+      "name": "Piano Reflections",
+      "artist": "Duke Ellington",
+      "mbid": "5a1e1c50-e710-4e8c-8214-ea3f342705c8",
+      "year": "1953",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:black-brown-and-beige-a-duke-ellington-tone-parallel-to-the-american-negro--duke-ellington",
+      "type": "project",
+      "name": "Black Brown and Beige: A Duke Ellington Tone Parallel to the American Negro",
+      "artist": "Duke Ellington",
+      "mbid": "e510fa7e-9deb-4061-b3be-f958109926a6",
+      "year": "1946",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-night-stand--duke-ellington",
+      "type": "project",
+      "name": "One Night Stand",
+      "artist": "Duke Ellington",
+      "mbid": "ce4d0379-ee9c-47a2-ad54-c36acff58619",
+      "year": "1945",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-duke--duke-ellington",
+      "type": "project",
+      "name": "The Duke",
+      "artist": "Duke Ellington",
+      "mbid": "783a784f-8b61-4437-8ef4-617bbde86e89",
+      "year": "1940",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:black-brown-and-beige",
       "type": "project",
       "name": "Black, Brown and Beige"

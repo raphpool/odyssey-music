@@ -82,19 +82,358 @@
   ],
   "discography": [
     {
-      "slug": "project:getz-gilberto",
+      "slug": "project:jazz-round-midnight-bossa-nova--stan-getz",
       "type": "project",
-      "name": "Getz/Gilberto"
+      "name": "Jazz 'Round Midnight: Bossa Nova",
+      "artist": "Stan Getz",
+      "mbid": "e0501822-794d-46fa-a662-3eee1b0befa7",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-concert--stan-getz",
+      "type": "project",
+      "name": "In Concert",
+      "artist": "Stan Getz",
+      "mbid": "11f11bb7-a522-44cd-b14b-5d6985139196",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stan-meets-chet--stan-getz",
+      "type": "project",
+      "name": "Stan Meets Chet",
+      "artist": "Stan Getz",
+      "mbid": "fde379be-d9fc-3202-bde5-9843b1c48395",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blue-skies--stan-getz",
+      "type": "project",
+      "name": "Blue Skies",
+      "artist": "Stan Getz",
+      "mbid": "026081d3-3a42-3fb6-bc2f-d89238f2bf7c",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nobody-else-but-me--stan-getz",
+      "type": "project",
+      "name": "Nobody Else But Me",
+      "artist": "Stan Getz",
+      "mbid": "47bb1bdb-f9ff-41f8-9870-9a07e5a7de2f",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-peacocks--stan-getz",
+      "type": "project",
+      "name": "The Peacocks",
+      "artist": "Stan Getz",
+      "mbid": "3bc8f9f3-d350-4706-b17d-e4a073c5ea7b",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nature-boy--stan-getz",
+      "type": "project",
+      "name": "Nature Boy",
+      "artist": "Stan Getz",
+      "mbid": "67cf4cd6-fd4d-3617-932a-df12386e1c9d",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:double-exposure--stan-getz",
+      "type": "project",
+      "name": "Double Exposure",
+      "artist": "Stan Getz",
+      "mbid": "ef0e60ab-9201-334f-a2cc-f710fdf790ac",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:prezervation--stan-getz",
+      "type": "project",
+      "name": "Prezervation",
+      "artist": "Stan Getz",
+      "mbid": "99b6e864-bf31-3dbc-820a-fdb525340aa6",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:spring-is-here--stan-getz",
+      "type": "project",
+      "name": "Spring Is Here",
+      "artist": "Stan Getz",
+      "mbid": "a52b251e-2fc4-4752-a04c-bba936148deb",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:getz-meets-mulligan-in-hi-fi--stan-getz",
+      "type": "project",
+      "name": "Getz Meets Mulligan in Hi‐Fi",
+      "artist": "Stan Getz",
+      "mbid": "ef9436cc-418f-3ddd-ba9a-8eaed486bdff",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:opus-de-bop--stan-getz",
+      "type": "project",
+      "name": "Opus de Bop",
+      "artist": "Stan Getz",
+      "mbid": "1fad05f0-1800-4acc-8601-e91fcd97826c",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scandinavian-days--stan-getz",
+      "type": "project",
+      "name": "Scandinavian Days",
+      "artist": "Stan Getz",
+      "mbid": "633aafe4-c66a-4d50-bac5-0c873f0b64d6",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:apasionado--stan-getz",
+      "type": "project",
+      "name": "Apasionado",
+      "artist": "Stan Getz",
+      "mbid": "4e39cd6f-aa0d-3f20-b7b0-7d662c90a240",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:at-storyville-volumes-1-and-2--stan-getz",
+      "type": "project",
+      "name": "At Storyville, Volumes 1 & 2",
+      "artist": "Stan Getz",
+      "mbid": "4a1c4b39-671b-3c35-b90b-212caa3a428b",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:billy-highstreet-samba--stan-getz",
+      "type": "project",
+      "name": "Billy Highstreet Samba",
+      "artist": "Stan Getz",
+      "mbid": "6287db99-1966-3716-9e67-b2bc8632c978",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stan-getz-with-cal-tjader--stan-getz",
+      "type": "project",
+      "name": "Stan Getz With Cal Tjader",
+      "artist": "Stan Getz",
+      "mbid": "79ddb991-aa2d-4bda-89d7-d630f79987db",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stan-getz-meets-joao-and-astrud-gilberto--stan-getz",
+      "type": "project",
+      "name": "Stan Getz meets João & Astrud Gilberto",
+      "artist": "Stan Getz",
+      "mbid": "18948a3c-7cab-3cf9-9772-58eeb53be422",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stan-getz-plays--stan-getz",
+      "type": "project",
+      "name": "Stan Getz Plays",
+      "artist": "Stan Getz",
+      "mbid": "78da0d87-067d-318f-acfd-49a2430dd982",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-lyrical-stan-getz--stan-getz",
+      "type": "project",
+      "name": "The Lyrical Stan Getz",
+      "artist": "Stan Getz",
+      "mbid": "9da01a36-28a9-3103-a9a9-379d02dc991f",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-sound-of-jazz--stan-getz",
+      "type": "project",
+      "name": "The Sound of Jazz",
+      "artist": "Stan Getz",
+      "mbid": "4679eef9-02e6-454f-afbe-5cfe91cb8155",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:voyage--stan-getz",
+      "type": "project",
+      "name": "Voyage",
+      "artist": "Stan Getz",
+      "mbid": "cf9208fb-3ed6-36cd-8f08-6cb934bde67a",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:children-of-the-world--stan-getz",
+      "type": "project",
+      "name": "Children of the World",
+      "artist": "Stan Getz",
+      "mbid": "145d5503-4e36-4c01-b305-3e1507c28135",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:captain-marvel--stan-getz",
+      "type": "project",
+      "name": "Captain Marvel",
+      "artist": "Stan Getz",
+      "mbid": "ab9e915f-0f54-3bff-b04b-c6e5ee435c15",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stan-getz-and-bill-evans--stan-getz",
+      "type": "project",
+      "name": "Stan Getz & Bill Evans",
+      "artist": "Stan Getz",
+      "mbid": "1e435c68-d824-3ca2-8498-6d0eacdb6c36",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sweet-rain--stan-getz",
+      "type": "project",
+      "name": "Sweet Rain",
+      "artist": "Stan Getz",
+      "mbid": "933f5f56-71f8-34f2-bc2d-2188c6a0af2e",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:voices--stan-getz",
+      "type": "project",
+      "name": "Voices",
+      "artist": "Stan Getz",
+      "mbid": "1e2b9997-3401-49fc-bcfa-da8ff3d7d233",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:interpretations--stan-getz",
+      "type": "project",
+      "name": "Interpretations",
+      "artist": "Stan Getz",
+      "mbid": "5e715557-797e-4ea3-a341-03c7e494659a",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stan-getz-with-guest-artist-laurindo-almeida--stan-getz",
+      "type": "project",
+      "name": "Stan Getz With Guest Artist Laurindo Almeida",
+      "artist": "Stan Getz",
+      "mbid": "1162f5d2-e4c6-38bd-a438-202f8fed0060",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:big-band-bossa-nova--stan-getz",
+      "type": "project",
+      "name": "Big Band Bossa Nova",
+      "artist": "Stan Getz",
+      "mbid": "f58a0384-8e31-3645-85d8-7889cca2ad64",
+      "year": "1962",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jazz-samba--stan-getz",
+      "type": "project",
+      "name": "Jazz Samba",
+      "artist": "Stan Getz",
+      "mbid": "ba062f3e-1d0c-37f2-b9f3-5a8e20c5ad45",
+      "year": "1962",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cool-velvet--stan-getz",
+      "type": "project",
+      "name": "Cool Velvet",
+      "artist": "Stan Getz",
+      "mbid": "3c72d2a7-df2c-4adb-83e4-2a063de2e90d",
+      "year": "1961",
+      "releaseType": "album"
     },
     {
       "slug": "project:focus",
       "type": "project",
-      "name": "Focus"
+      "name": "Focus",
+      "mbid": "e60ac23f-7b63-3015-8b23-cf16c6ca6725",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:recorded-fall-1961--stan-getz",
+      "type": "project",
+      "name": "Recorded Fall 1961",
+      "artist": "Stan Getz",
+      "mbid": "4fe4db60-7562-35c4-a180-b26aac3b3def",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stan-getz-quartets--stan-getz",
+      "type": "project",
+      "name": "Stan Getz Quartets",
+      "artist": "Stan Getz",
+      "mbid": "22b99701-a9ed-3af2-97e1-c43b0ec0348d",
+      "year": "1959",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stan-getz-and-the-oscar-peterson-trio--stan-getz",
+      "type": "project",
+      "name": "Stan Getz and The Oscar Peterson Trio",
+      "artist": "Stan Getz",
+      "mbid": "dd46e67f-6a0f-3a16-9455-ed3d614de89a",
+      "year": "1957",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-brothers--stan-getz",
+      "type": "project",
+      "name": "The Brothers",
+      "artist": "Stan Getz",
+      "mbid": "b4208863-6c33-3ff9-993e-0f0aeef988bf",
+      "year": "1956",
+      "releaseType": "album"
     },
     {
       "slug": "project:west-coast-jazz",
       "type": "project",
-      "name": "West Coast Jazz"
+      "name": "West Coast Jazz",
+      "mbid": "2ccb004f-be72-3f89-aa04-be38e9d92906",
+      "year": "1955",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:split-kick--stan-getz",
+      "type": "project",
+      "name": "Split Kick",
+      "artist": "Stan Getz",
+      "mbid": "492ffa75-8d67-48ff-8805-306a96ca1e0b",
+      "year": "1954",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:getz-gilberto",
+      "type": "project",
+      "name": "Getz/Gilberto"
     }
   ],
   "notable_tracks": [

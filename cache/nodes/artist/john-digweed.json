@@ -56,6 +56,51 @@
   ],
   "discography": [
     {
+      "slug": "project:30-northeast--john-digweed",
+      "type": "project",
+      "name": "30 Northeast",
+      "artist": "John Digweed",
+      "mbid": "ebe55f07-0fe0-4697-9b88-09fd0f2a741f",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bilder--john-digweed",
+      "type": "project",
+      "name": "Bilder",
+      "artist": "John Digweed",
+      "mbid": "648c99d9-32f7-4257-8706-4902a8f06d8e",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:gridlock--john-digweed",
+      "type": "project",
+      "name": "Gridlock",
+      "artist": "John Digweed",
+      "mbid": "b5412ecf-30b9-4cab-9d3a-e1fd1a0998eb",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:warung-beach--john-digweed",
+      "type": "project",
+      "name": "Warung Beach",
+      "artist": "John Digweed",
+      "mbid": "16c86d5c-94e0-330e-a551-874722af1ff6",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stark-raving-mad--john-digweed",
+      "type": "project",
+      "name": "Stark Raving Mad",
+      "artist": "John Digweed",
+      "mbid": "7f14dc6b-5013-3d8d-b55e-75866c6d87ed",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:renaissance-the-mix-collection--sasha-and-john-digweed",
       "type": "project",
       "name": "Renaissance: The Mix Collection"

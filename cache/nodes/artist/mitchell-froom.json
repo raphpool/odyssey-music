@@ -53,14 +53,38 @@
   ],
   "discography": [
     {
-      "slug": "project:dopamine",
-      "type": "project",
-      "name": "Dopamine"
-    },
-    {
       "slug": "project:a-thousand-days",
       "type": "project",
-      "name": "A Thousand Days"
+      "name": "A Thousand Days",
+      "mbid": "fe0bbb52-2f72-468a-9c7c-ce3e06fd6a73",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dopamine",
+      "type": "project",
+      "name": "Dopamine",
+      "mbid": "58845e37-6ec8-39e7-973c-ab630ddbc087",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:slam-dance-original-motion-picture-soundtrack--mitchell-froom",
+      "type": "project",
+      "name": "Slam Dance (Original Motion Picture Soundtrack)",
+      "artist": "Mitchell Froom",
+      "mbid": "0fe168db-be18-4f71-b266-137481ed0f01",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-key-of-cool--mitchell-froom",
+      "type": "project",
+      "name": "The Key of Cool",
+      "artist": "Mitchell Froom",
+      "mbid": "3c6d90d5-fc62-44b3-aa7c-2fa38cabdd78",
+      "year": "1984",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

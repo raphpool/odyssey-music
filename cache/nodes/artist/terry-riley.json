@@ -56,14 +56,215 @@
   ],
   "discography": [
     {
-      "slug": "project:in-c--terry-riley",
+      "slug": "project:organum-for-stefano--terry-riley",
       "type": "project",
-      "name": "In C"
+      "name": "Organum for Stefano",
+      "artist": "Terry Riley",
+      "mbid": "f59a06fe-3408-466e-ad1c-edad21e0b18a",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:archangels--terry-riley",
+      "type": "project",
+      "name": "Archangels",
+      "artist": "Terry Riley",
+      "mbid": "9bef9e3c-4f18-4ebe-a33c-96b6ec68a42f",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sun-rings--terry-riley",
+      "type": "project",
+      "name": "Sun Rings",
+      "artist": "Terry Riley",
+      "mbid": "afcb17b2-dcf0-4a46-b4fa-4c18cd06849d",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-lion-s-throne--terry-riley",
+      "type": "project",
+      "name": "The Lion's Throne",
+      "artist": "Terry Riley",
+      "mbid": "b1b303a7-1126-470e-94c9-f2b912208527",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:africa-express-presents-terry-riley-s-in-c-mali--terry-riley",
+      "type": "project",
+      "name": "Africa Express Presents… Terry Riley’s In C Mali",
+      "artist": "Terry Riley",
+      "mbid": "17c3bffd-b509-4779-a54b-570d0c6e9108",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:zofo-plays-terry-riley--terry-riley",
+      "type": "project",
+      "name": "ZOFO Plays Terry Riley",
+      "artist": "Terry Riley",
+      "mbid": "1297aab7-d80d-4d51-b4c8-6bf5e4b4be9a",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aleph--terry-riley",
+      "type": "project",
+      "name": "Aleph",
+      "artist": "Terry Riley",
+      "mbid": "f94a0e09-52e0-487f-97f8-3fe91b888a85",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:autodreamographical-tales--terry-riley",
+      "type": "project",
+      "name": "Autodreamographical Tales",
+      "artist": "Terry Riley",
+      "mbid": "b2a99a6d-199e-4a84-b6cf-9e06eb5edbe5",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:persian-surgery-dervishes--terry-riley",
+      "type": "project",
+      "name": "Persian Surgery Dervishes",
+      "artist": "Terry Riley",
+      "mbid": "9bfa6f03-777c-4962-887d-4a4a104fad12",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:assassin-reverie--terry-riley",
+      "type": "project",
+      "name": "Assassin Reverie",
+      "artist": "Terry Riley",
+      "mbid": "e9a58c22-88e0-394d-9439-aa4065adfb2f",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:atlantis-nath--terry-riley",
+      "type": "project",
+      "name": "Atlantis Nath",
+      "artist": "Terry Riley",
+      "mbid": "722e40b2-bfe1-322e-916b-3f7c1f1ef908",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:requiem-for-adam-philosopher-s-hand--terry-riley",
+      "type": "project",
+      "name": "Requiem for Adam / Philosopher's Hand",
+      "artist": "Terry Riley",
+      "mbid": "fdf5b117-e759-3e3d-b864-c2020dad1838",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-for-the-gift--terry-riley",
+      "type": "project",
+      "name": "Music for the Gift",
+      "artist": "Terry Riley",
+      "mbid": "3737f2d9-7fbc-3984-8db3-ce55d4aad38d",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-re-nogood--terry-riley",
+      "type": "project",
+      "name": "You’re Nogood",
+      "artist": "Terry Riley",
+      "mbid": "e27c2355-4df1-3714-a61b-3877bd168291",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-book-of-abbeyozzud--terry-riley",
+      "type": "project",
+      "name": "The Book of Abbeyozzud",
+      "artist": "Terry Riley",
+      "mbid": "f388e546-5623-3a9b-ae63-a668d3c47a4a",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lazy-afternoon-among-the-crocodiles--terry-riley",
+      "type": "project",
+      "name": "Lazy Afternoon Among the Crocodiles",
+      "artist": "Terry Riley",
+      "mbid": "5dc2a9ee-356c-33d3-96c8-1049907ae66e",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chanting-the-light-of-foresight--terry-riley",
+      "type": "project",
+      "name": "Chanting the Light of Foresight",
+      "artist": "Terry Riley",
+      "mbid": "d2295a92-f85c-3f43-b54f-0f868585ec30",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:intuitive-leaps--terry-riley",
+      "type": "project",
+      "name": "Intuitive Leaps",
+      "artist": "Terry Riley",
+      "mbid": "30101c83-efa8-461a-b110-ca7234ca205d",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-harp-of-new-albion--terry-riley",
+      "type": "project",
+      "name": "The Harp of New Albion",
+      "artist": "Terry Riley",
+      "mbid": "9514d52c-863d-3bf3-8fc9-7d2c94ac50d8",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:salome-dances-for-peace--terry-riley",
+      "type": "project",
+      "name": "Salome Dances for Peace",
+      "artist": "Terry Riley",
+      "mbid": "0068209c-fb0a-3e8d-8dbf-3e6a1689f95c",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cadenza-on-the-night-plain--terry-riley",
+      "type": "project",
+      "name": "Cadenza on the Night Plain",
+      "artist": "Terry Riley",
+      "mbid": "e6d124b8-0861-36a9-83cd-5eb4522abac4",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shri-camel--terry-riley",
+      "type": "project",
+      "name": "Shri Camel",
+      "artist": "Terry Riley",
+      "mbid": "caf5d71f-cdef-3e3b-aae4-e59a984f4c97",
+      "year": "1980",
+      "releaseType": "album"
     },
     {
       "slug": "project:a-rainbow-in-curved-air",
       "type": "project",
-      "name": "A Rainbow in Curved Air"
+      "name": "A Rainbow in Curved Air",
+      "mbid": "3db7b171-5aa1-326c-82cd-08e9b0d74ab6",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-c--terry-riley",
+      "type": "project",
+      "name": "In C"
     },
     {
       "slug": "project:poppy-nogood-and-the-phantom-band",

@@ -51,29 +51,89 @@
   ],
   "discography": [
     {
-      "slug": "project:neu",
+      "slug": "project:crazy-euphoria--neu",
       "type": "project",
-      "name": "Neu!"
+      "name": "Crazy / Euphoria",
+      "artist": "Neu!",
+      "mbid": "5395dfb8-6b71-4055-826e-010ea8cb260c",
+      "year": "2010",
+      "releaseType": "single"
     },
     {
-      "slug": "project:neu-2",
+      "slug": "project:neu-72-non-public-test--neu",
       "type": "project",
-      "name": "Neu! 2"
-    },
-    {
-      "slug": "project:neu-75--neu",
-      "type": "project",
-      "name": "Neu! '75"
-    },
-    {
-      "slug": "project:neu-4",
-      "type": "project",
-      "name": "Neu! 4"
+      "name": "Neu! '72 Non-Public Test",
+      "artist": "Neu!",
+      "mbid": "094ed90c-8ae1-46e8-a567-db0e36f629d9",
+      "year": "2010",
+      "releaseType": "ep"
     },
     {
       "slug": "project:neu-86",
       "type": "project",
-      "name": "Neu! '86"
+      "name": "Neu! '86",
+      "mbid": "461cd301-9a9b-47f1-a3b0-4bff86a84da3",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:neu-4",
+      "type": "project",
+      "name": "Neu! 4",
+      "mbid": "00b1fc46-1588-3022-acc5-a36b2342f123",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:isi-after-eight--neu",
+      "type": "project",
+      "name": "Isi / After Eight",
+      "artist": "Neu!",
+      "mbid": "885edcba-edde-4ea8-932d-6c24789dd6ac",
+      "year": "1975",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:neu-75--neu",
+      "type": "project",
+      "name": "Neu! '75",
+      "mbid": "34ec11b1-07d4-3a25-a5bf-d43097a91f35",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hallogallo--neu",
+      "type": "project",
+      "name": "Hallogallo",
+      "artist": "Neu!",
+      "mbid": "24f46b38-9fbb-43ec-9f31-c37b6453f4cd",
+      "year": "1973",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:neu-2",
+      "type": "project",
+      "name": "Neu! 2",
+      "mbid": "9ea01d83-e7e9-3445-a1bc-e231ebec635b",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:neu",
+      "type": "project",
+      "name": "Neu!",
+      "mbid": "00b3e683-47fa-3302-add0-4c0cecc5224e",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:super-neuschnee--neu",
+      "type": "project",
+      "name": "Super / Neuschnee",
+      "artist": "Neu!",
+      "mbid": "1a350386-8d0f-4720-9290-94c0343c4c59",
+      "year": "1972",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

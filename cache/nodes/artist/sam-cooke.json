@@ -66,29 +66,352 @@
   "labels": [],
   "discography": [
     {
+      "slug": "project:a-valentine-for-you--sam-cooke",
+      "type": "project",
+      "name": "A Valentine for You",
+      "artist": "Sam Cooke",
+      "mbid": "ffff354d-08f2-4ae4-aabd-a45bb7221e9e",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:a-change-is-gonna-come--sam-cooke",
+      "type": "project",
+      "name": "A Change Is Gonna Come",
+      "artist": "Sam Cooke",
+      "mbid": "f0486eca-8901-46fd-9933-6f4f666140cf",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:for-sentimental-reasons--sam-cooke",
+      "type": "project",
+      "name": "For Sentimental Reasons",
+      "artist": "Sam Cooke",
+      "mbid": "4b27c025-4097-4e64-8f61-68838ec00587",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shake--sam-cooke",
+      "type": "project",
+      "name": "Shake",
+      "artist": "Sam Cooke",
+      "mbid": "7ffb99b3-4944-3a57-bf85-fd62236e42f7",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:try-a-little-love--sam-cooke",
+      "type": "project",
+      "name": "Try a Little Love",
+      "artist": "Sam Cooke",
+      "mbid": "24525c7f-16f2-4960-885b-d401bd310f17",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ain-t-that-good-news",
+      "type": "project",
+      "name": "Ain't That Good News",
+      "mbid": "9e46abfc-1267-350f-b2d3-600ec3fc7d85",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mr-soul--sam-cooke",
+      "type": "project",
+      "name": "Mr. Soul",
+      "artist": "Sam Cooke",
+      "mbid": "d66a656c-4660-365a-abcb-268770dd1af3",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:night-beat",
+      "type": "project",
+      "name": "Night Beat",
+      "mbid": "153b2ad5-97f7-3bab-91f7-259de916295f",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:twistin-the-night-away",
+      "type": "project",
+      "name": "Twistin' the Night Away",
+      "mbid": "01e2b8b1-1c42-3218-9ed1-6f7947a3addb",
+      "year": "1962",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:my-kind-of-blues--sam-cooke",
+      "type": "project",
+      "name": "My Kind of Blues",
+      "artist": "Sam Cooke",
+      "mbid": "ad4a090b-8ed5-420d-97f2-47e92bead5be",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sam-s-songs--sam-cooke",
+      "type": "project",
+      "name": "Sam’s Songs",
+      "artist": "Sam Cooke",
+      "mbid": "c62093fd-7b05-415f-89ee-bb46f1ff60c6",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:swing-low--sam-cooke",
+      "type": "project",
+      "name": "Swing Low",
+      "artist": "Sam Cooke",
+      "mbid": "82111547-15f2-4b53-a3f4-d1a8b48af507",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cooke-s-tour",
+      "type": "project",
+      "name": "Cooke's Tour",
+      "mbid": "62192474-c19b-4f83-9000-1f06327291a3",
+      "year": "1960",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hits-of-the-50-s--sam-cooke",
+      "type": "project",
+      "name": "Hits of the 50’s",
+      "artist": "Sam Cooke",
+      "mbid": "455e308f-0af4-4962-bb26-e19a27ee7899",
+      "year": "1960",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mary-mary-lou--sam-cooke",
+      "type": "project",
+      "name": "Mary, Mary Lou",
+      "artist": "Sam Cooke",
+      "mbid": "529045ca-892a-4762-b91a-895c01dbacc0",
+      "year": "1960",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:teenage-sonata--sam-cooke",
+      "type": "project",
+      "name": "Teenage Sonata",
+      "artist": "Sam Cooke",
+      "mbid": "2f867318-ea2d-48f9-9c13-76cc7cf5509c",
+      "year": "1960",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-understand-me--sam-cooke",
+      "type": "project",
+      "name": "You Understand Me",
+      "artist": "Sam Cooke",
+      "mbid": "243bc5e0-659d-444f-b704-7838b46573c9",
+      "year": "1960",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:t-aint-nobody-s-bizness-if-i-do-no-one-can-ever-take-your-place--sam-cooke",
+      "type": "project",
+      "name": "’T Aint Nobody’s Bizness (If I Do) / No One (Can Ever Take Your Place)",
+      "artist": "Sam Cooke",
+      "mbid": "95b5cb70-6b27-46b3-8bf4-9b2c023b5537",
+      "year": "1960",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:everybody-likes-to-cha-cha-cha--sam-cooke",
+      "type": "project",
+      "name": "Everybody Likes to Cha Cha Cha",
+      "artist": "Sam Cooke",
+      "mbid": "ae1df23a-d6b8-4cba-b27f-c31a3377d625",
+      "year": "1959",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:happy-in-love--sam-cooke",
+      "type": "project",
+      "name": "Happy in Love",
+      "artist": "Sam Cooke",
+      "mbid": "7982394a-0ee1-40ca-9f18-7711517cb688",
+      "year": "1959",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:only-sixteen--sam-cooke",
+      "type": "project",
+      "name": "Only Sixteen",
+      "artist": "Sam Cooke",
+      "mbid": "5c8d8faf-6dab-307b-8970-da4f43e15005",
+      "year": "1959",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:summertime-part-1--sam-cooke",
+      "type": "project",
+      "name": "Summertime, Part 1",
+      "artist": "Sam Cooke",
+      "mbid": "2d1dee71-5b98-43ba-8702-6f5b62d48011",
+      "year": "1959",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:there-i-ve-said-it-again--sam-cooke",
+      "type": "project",
+      "name": "There, I’ve Said It Again",
+      "artist": "Sam Cooke",
+      "mbid": "1a4ea10b-b29a-4d84-b2d4-dc8278fa2df3",
+      "year": "1959",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tribute-to-the-lady--sam-cooke",
+      "type": "project",
+      "name": "Tribute to the Lady",
+      "artist": "Sam Cooke",
+      "mbid": "901fe148-fe66-33b1-8543-a41db2424da1",
+      "year": "1959",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blue-moon-love-you-most-of-all--sam-cooke",
+      "type": "project",
+      "name": "Blue Moon / Love You Most of All",
+      "artist": "Sam Cooke",
+      "mbid": "a23ee777-bbd6-4473-b051-a02b7164f2c1",
+      "year": "1958",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:encore--sam-cooke",
+      "type": "project",
+      "name": "Encore",
+      "artist": "Sam Cooke",
+      "mbid": "c304f2f4-4ca3-437d-b9c7-592cb77835aa",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:songs-by-sam-cooke--sam-cooke",
+      "type": "project",
+      "name": "Songs by Sam Cooke",
+      "artist": "Sam Cooke",
+      "mbid": "8c28a0f3-5264-4de0-bb01-e15263bd01ce",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stealing-kisses-all-of-my-life--sam-cooke",
+      "type": "project",
+      "name": "Stealing Kisses / All of My Life",
+      "artist": "Sam Cooke",
+      "mbid": "1478ee25-c2fb-41c6-a976-c3be48c6a2fa",
+      "year": "1958",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:that-s-all-i-need-to-know--sam-cooke",
+      "type": "project",
+      "name": "That’s All I Need to Know",
+      "artist": "Sam Cooke",
+      "mbid": "ececeda9-ef8b-4d19-a047-0b713ba2a7f9",
+      "year": "1958",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:win-your-love-for-me-love-song-from-houseboat-almost-in-your-arms--sam-cooke",
+      "type": "project",
+      "name": "Win Your Love for Me / Love Song From “Houseboat” (Almost in Your Arms)",
+      "artist": "Sam Cooke",
+      "mbid": "3d6eba4a-1247-40c4-99b9-70554c4b1a70",
+      "year": "1958",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-were-made-for-me--sam-cooke",
+      "type": "project",
+      "name": "You Were Made for Me",
+      "artist": "Sam Cooke",
+      "mbid": "327106a3-6d51-47cf-9fc6-dc2c3f3d770b",
+      "year": "1958",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:for-sentimental-reasons-desire-me--sam-cooke",
+      "type": "project",
+      "name": "For Sentimental Reasons / Desire Me",
+      "artist": "Sam Cooke",
+      "mbid": "5b889171-aee9-4e76-a210-110f90f91d9e",
+      "year": "1957",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-ll-come-running-back-to-you--sam-cooke",
+      "type": "project",
+      "name": "I’ll Come Running Back to You",
+      "artist": "Sam Cooke",
+      "mbid": "d08e56f1-cf50-377c-a4c6-cf0f36d5983a",
+      "year": "1957",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lovable--sam-cooke",
+      "type": "project",
+      "name": "Lovable",
+      "artist": "Sam Cooke",
+      "mbid": "7d82f019-a79c-4fed-85d4-2b5479cb6e72",
+      "year": "1957",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:summertime-you-send-me--sam-cooke",
+      "type": "project",
+      "name": "Summertime / You Send Me",
+      "artist": "Sam Cooke",
+      "mbid": "cbca258b-344a-3ba5-b068-5bd3b9d5e16f",
+      "year": "1957",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:you-send-me",
       "type": "project",
       "name": "You Send Me"
     },
     {
-      "slug": "project:cooke-s-tour",
+      "slug": "project:the-essential-sam-cooke-collection-1--sam-cooke",
       "type": "project",
-      "name": "Cooke's Tour"
+      "name": "The Essential Sam Cooke Collection 1",
+      "artist": "Sam Cooke",
+      "mbid": "b0841988-18a9-4414-add3-366953156588",
+      "releaseType": "album"
     },
     {
-      "slug": "project:twistin-the-night-away",
+      "slug": "project:the-essential-sam-cooke-collection-2--sam-cooke",
       "type": "project",
-      "name": "Twistin' the Night Away"
+      "name": "The Essential Sam Cooke Collection 2",
+      "artist": "Sam Cooke",
+      "mbid": "180047f0-9ea0-4f9f-99cb-deea90069e1d",
+      "releaseType": "album"
     },
     {
-      "slug": "project:night-beat",
+      "slug": "project:the-essential-sam-cooke-collection-3--sam-cooke",
       "type": "project",
-      "name": "Night Beat"
+      "name": "The Essential Sam Cooke Collection 3",
+      "artist": "Sam Cooke",
+      "mbid": "edeb396d-3072-4e99-80ec-9e6e128bfa32",
+      "releaseType": "album"
     },
     {
-      "slug": "project:ain-t-that-good-news",
+      "slug": "project:the-essential-sam-cooke-collection-4--sam-cooke",
       "type": "project",
-      "name": "Ain't That Good News"
+      "name": "The Essential Sam Cooke Collection 4",
+      "artist": "Sam Cooke",
+      "mbid": "7f71720b-c0c4-43d2-ae8c-b731b164349e",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

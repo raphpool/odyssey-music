@@ -60,24 +60,312 @@
   ],
   "discography": [
     {
-      "slug": "project:pia",
+      "slug": "project:music-for-3--masakatsu-takagi",
       "type": "project",
-      "name": "Pia"
+      "name": "Music for 3",
+      "artist": "Masakatsu Takagi",
+      "mbid": "cd4b7a19-726d-482c-b0ef-adae68c13eaa",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:notes-1--masakatsu-takagi",
+      "type": "project",
+      "name": "Notes 1",
+      "artist": "Masakatsu Takagi",
+      "mbid": "d2561c98-1a3d-431c-addf-7b8f9645225d",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:notes-3--masakatsu-takagi",
+      "type": "project",
+      "name": "Notes 3",
+      "artist": "Masakatsu Takagi",
+      "mbid": "f7a7cee1-e852-4f4c-9fc7-304b1dd9481f",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:notes-6--masakatsu-takagi",
+      "type": "project",
+      "name": "Notes 6",
+      "artist": "Masakatsu Takagi",
+      "mbid": "e0d77500-790d-4dd1-93e7-011bb320248e",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:notes-7--masakatsu-takagi",
+      "type": "project",
+      "name": "Notes 7",
+      "artist": "Masakatsu Takagi",
+      "mbid": "58b93ccd-281b-4afe-8dd2-5473d6000517",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:notes-8--masakatsu-takagi",
+      "type": "project",
+      "name": "Notes 8",
+      "artist": "Masakatsu Takagi",
+      "mbid": "8f132875-0771-4533-a90b-87b4a2df3a6d",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-journey-vol-2--masakatsu-takagi",
+      "type": "project",
+      "name": "スタジオ地図 Music Journey Vol. 2 - 高木正勝 うたの時間",
+      "artist": "Masakatsu Takagi",
+      "mbid": "06992e88-1971-4eeb-8b91-69145381281c",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:marginalia-v--masakatsu-takagi",
+      "type": "project",
+      "name": "Marginalia V",
+      "artist": "Masakatsu Takagi",
+      "mbid": "2f936df6-4815-44c5-96e8-20fdb820a45f",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:marginalia-iii--masakatsu-takagi",
+      "type": "project",
+      "name": "Marginalia III",
+      "artist": "Masakatsu Takagi",
+      "mbid": "b60dba7d-5cc7-447f-8591-53d63b114a2b",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:marginalia-iv--masakatsu-takagi",
+      "type": "project",
+      "name": "Marginalia IV",
+      "artist": "Masakatsu Takagi",
+      "mbid": "73a211b2-e609-40db-9210-61c462dcb7a2",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:marginalia-misc-1--masakatsu-takagi",
+      "type": "project",
+      "name": "Marginalia Misc.1",
+      "artist": "Masakatsu Takagi",
+      "mbid": "7e624ef2-5f24-48ae-bf84-c7d41a63a32e",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:marginalia-misc-2--masakatsu-takagi",
+      "type": "project",
+      "name": "Marginalia Misc.2",
+      "artist": "Masakatsu Takagi",
+      "mbid": "2a37eeb2-ccc5-4053-b491-ee3898f21f12",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:marginalia-76--masakatsu-takagi",
+      "type": "project",
+      "name": "Marginalia #76",
+      "artist": "Masakatsu Takagi",
+      "mbid": "f1fd2989-8a33-43b3-82d4-2c4334e00593",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:marginalia-77--masakatsu-takagi",
+      "type": "project",
+      "name": "Marginalia #77",
+      "artist": "Masakatsu Takagi",
+      "mbid": "230dc2f1-9bef-48cb-a729-6ffea403e517",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:marginalia-78--masakatsu-takagi",
+      "type": "project",
+      "name": "Marginalia #78",
+      "artist": "Masakatsu Takagi",
+      "mbid": "ef2e2c6e-02b8-4abf-8512-eafc80c4194f",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:marginalia-79--masakatsu-takagi",
+      "type": "project",
+      "name": "Marginalia #79",
+      "artist": "Masakatsu Takagi",
+      "mbid": "c7a29e3a-d246-4643-929f-62e71f00c60c",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:marginalia-80--masakatsu-takagi",
+      "type": "project",
+      "name": "Marginalia #80",
+      "artist": "Masakatsu Takagi",
+      "mbid": "0ad8a613-9998-41d3-940b-965f572088b7",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:marginalia-81--masakatsu-takagi",
+      "type": "project",
+      "name": "Marginalia #81",
+      "artist": "Masakatsu Takagi",
+      "mbid": "d9a500ba-b3ff-4187-b474-2eb956872d0d",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:marginalia-82--masakatsu-takagi",
+      "type": "project",
+      "name": "Marginalia #82",
+      "artist": "Masakatsu Takagi",
+      "mbid": "5d7cded3-1187-4c26-9115-9fff1a04c33e",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:marginalia-ii--masakatsu-takagi",
+      "type": "project",
+      "name": "Marginalia II",
+      "artist": "Masakatsu Takagi",
+      "mbid": "808db058-0d65-4b01-8fc0-5b763464e297",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:marginalia",
+      "type": "project",
+      "name": "Marginalia",
+      "mbid": "9d75b508-4c53-4658-9bfd-3c0560af1951",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-kingdom-of-dreams-and-madness-original-soundtrack--masakatsu-takagi",
+      "type": "project",
+      "name": "The Kingdom of Dreams and Madness (Original Soundtrack)",
+      "artist": "Masakatsu Takagi",
+      "mbid": "3d08473c-a780-4c7c-a739-0cdf7b829d1d",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-for--masakatsu-takagi",
+      "type": "project",
+      "name": "Music For",
+      "artist": "Masakatsu Takagi",
+      "mbid": "0ab0132d-805c-48d0-a9bc-9f9f0ad11d76",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tai-rei-tei-rio--masakatsu-takagi",
+      "type": "project",
+      "name": "Tai Rei Tei Rio",
+      "artist": "Masakatsu Takagi",
+      "mbid": "03256add-c3cf-4f21-8c8b-9fbd10fd23b4",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:private-public--masakatsu-takagi",
+      "type": "project",
+      "name": "Private/Public",
+      "artist": "Masakatsu Takagi",
+      "mbid": "362432d1-efb8-39ff-84ad-a4f9a19ba730",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:air-s-note--masakatsu-takagi",
+      "type": "project",
+      "name": "Air's Note",
+      "artist": "Masakatsu Takagi",
+      "mbid": "31c699bc-1e95-3d00-86a6-a3404933a710",
+      "year": "2006",
+      "releaseType": "album"
     },
     {
       "slug": "project:coieda",
       "type": "project",
-      "name": "Coieda"
+      "name": "Coieda",
+      "mbid": "dc7736ea-2654-3875-b1ac-ec16f633cba6",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:eating-2--masakatsu-takagi",
+      "type": "project",
+      "name": "Eating 2",
+      "artist": "Masakatsu Takagi",
+      "mbid": "cd5bf5d0-87d1-3f84-bc47-8d14446393e2",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rehome--masakatsu-takagi",
+      "type": "project",
+      "name": "Rehome",
+      "artist": "Masakatsu Takagi",
+      "mbid": "93e81ae5-24f3-3fd5-a379-fc9b6d7ec089",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sail--masakatsu-takagi",
+      "type": "project",
+      "name": "Sail",
+      "artist": "Masakatsu Takagi",
+      "mbid": "6eb70fd5-95b5-3c0d-b12f-d7eb9ce33e44",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:eating--masakatsu-takagi",
+      "type": "project",
+      "name": "Eating",
+      "artist": "Masakatsu Takagi",
+      "mbid": "95dd1430-a414-3699-9ae5-4c6d97c1ff43",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:journal-for-people--masakatsu-takagi",
+      "type": "project",
+      "name": "Journal for People",
+      "artist": "Masakatsu Takagi",
+      "mbid": "c802d300-c0a3-3046-b876-d8a1a3380b8e",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:opus-pia--masakatsu-takagi",
+      "type": "project",
+      "name": "Opus Pia",
+      "artist": "Masakatsu Takagi",
+      "mbid": "b5a5dbbe-f7d9-32c2-b7c2-4fa739fba814",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pia",
+      "type": "project",
+      "name": "Pia",
+      "mbid": "2412fc7d-733c-3cf6-9fbe-bfa5ed8c2343",
+      "year": "2001",
+      "releaseType": "album"
     },
     {
       "slug": "project:wolf-children",
       "type": "project",
       "name": "Wolf Children [Original Motion Picture Soundtrack]"
-    },
-    {
-      "slug": "project:marginalia",
-      "type": "project",
-      "name": "Marginalia"
     }
   ],
   "notable_tracks": [

@@ -54,19 +54,361 @@
   ],
   "discography": [
     {
-      "slug": "project:spectrum-suite--steven-halpern",
+      "slug": "project:divine-intervention--steven-halpern",
       "type": "project",
-      "name": "Spectrum Suite"
+      "name": "Divine Intervention",
+      "artist": "Steven Halpern",
+      "mbid": "06ba372b-8a99-4da2-b6e8-29f41d61cd6d",
+      "year": "1998",
+      "releaseType": "album"
     },
     {
-      "slug": "project:starborn-suite--steven-halpern",
+      "slug": "project:the-sacred-chorde--steven-halpern",
       "type": "project",
-      "name": "Starborn Suite"
+      "name": "The Sacred Chorde",
+      "artist": "Steven Halpern",
+      "mbid": "07475256-8fff-4a2c-9c02-906c0317cbb7",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:attracting-prosperity--steven-halpern",
+      "type": "project",
+      "name": "Attracting Prosperity",
+      "artist": "Steven Halpern",
+      "mbid": "1ffa7af4-c65f-4936-9f4b-1afe3d3317f0",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:legacy--steven-halpern",
+      "type": "project",
+      "name": "Legacy",
+      "artist": "Steven Halpern",
+      "mbid": "7f09a3ca-1db7-458c-be56-524e2570f504",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-for-lovers-vol-1--steven-halpern",
+      "type": "project",
+      "name": "Music for Lovers, Vol. 1",
+      "artist": "Steven Halpern",
+      "mbid": "dd563261-1980-4389-87ae-357560c3c355",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:workstation-wellness--steven-halpern",
+      "type": "project",
+      "name": "Workstation Wellness",
+      "artist": "Steven Halpern",
+      "mbid": "967f813b-f65a-43cb-8cf1-5f67a6c9f2b2",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:afro-desia--steven-halpern",
+      "type": "project",
+      "name": "Afro-Desia",
+      "artist": "Steven Halpern",
+      "mbid": "ec59675b-f25f-3bde-b7fb-a98db2dd1cab",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-the-key-of-healing--steven-halpern",
+      "type": "project",
+      "name": "In the Key of Healing",
+      "artist": "Steven Halpern",
+      "mbid": "840aa704-8558-3907-b1c3-33875d65039b",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-for-your-pc--steven-halpern",
+      "type": "project",
+      "name": "Music for Your PC",
+      "artist": "Steven Halpern",
+      "mbid": "03c3d3aa-2073-3428-8bd0-f46075baa925",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trance-zendance--steven-halpern",
+      "type": "project",
+      "name": "Trance-Zendance",
+      "artist": "Steven Halpern",
+      "mbid": "f537f42c-575e-346b-ab6c-a2843bf0077d",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:accelerating-self-healing--steven-halpern",
+      "type": "project",
+      "name": "Accelerating Self-Healing",
+      "artist": "Steven Halpern",
+      "mbid": "eee540e5-73ad-4324-a610-e10469a99403",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aprendizaje-acelerado--steven-halpern",
+      "type": "project",
+      "name": "Aprendizaje acelerado",
+      "artist": "Steven Halpern",
+      "mbid": "df79f3b5-89f9-49fc-ab8c-bdf09a615350",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:enhancing-success--steven-halpern",
+      "type": "project",
+      "name": "Enhancing Success",
+      "artist": "Steven Halpern",
+      "mbid": "2183c32b-b5e7-37e6-8aa3-f8628b6d8016",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:inner-peace--steven-halpern",
+      "type": "project",
+      "name": "Inner Peace",
+      "artist": "Steven Halpern",
+      "mbid": "f2428ed3-db12-3aff-ab91-14fa84f69037",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jonah-s-journey--steven-halpern",
+      "type": "project",
+      "name": "Jonah's Journey",
+      "artist": "Steven Halpern",
+      "mbid": "55a89f2a-882c-3d5a-aa65-7aaa563c6211",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lullaby-suite--steven-halpern",
+      "type": "project",
+      "name": "Lullaby Suite",
+      "artist": "Steven Halpern",
+      "mbid": "467f4a5b-73da-4600-8f44-0243d5bed132",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:radiance-love-songs-without-words--steven-halpern",
+      "type": "project",
+      "name": "Radiance: Love Songs without Words",
+      "artist": "Steven Halpern",
+      "mbid": "2ef0d7dd-de63-4707-8ea7-37e0ededb856",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:radiant-health-and-well-being--steven-halpern",
+      "type": "project",
+      "name": "Radiant Health & Well-being",
+      "artist": "Steven Halpern",
+      "mbid": "da43eb19-fb53-4abf-adb9-2a8362075069",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sleep-soundly--steven-halpern",
+      "type": "project",
+      "name": "Sleep Soundly",
+      "artist": "Steven Halpern",
+      "mbid": "88dbda72-ae96-4def-8f4f-bed663d789f0",
+      "year": "1994",
+      "releaseType": "album"
     },
     {
       "slug": "project:eastern-peace",
       "type": "project",
-      "name": "Eastern Peace"
+      "name": "Eastern Peace",
+      "mbid": "fd90505d-18a1-4f76-bd7a-730a959ba2af",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:recollections--steven-halpern",
+      "type": "project",
+      "name": "Recollections",
+      "artist": "Steven Halpern",
+      "mbid": "311f2f3e-596d-30f2-882d-3cf51dc93804",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:higher-ground--steven-halpern",
+      "type": "project",
+      "name": "Higher Ground",
+      "artist": "Steven Halpern",
+      "mbid": "567ce17b-4457-3b46-a1ea-fa4f31a0319c",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:accelerating-learning-beautiful-music-plus-subliminal-suggestions--steven-halpern",
+      "type": "project",
+      "name": "Accelerating Learning-Beautiful Music Plus Subliminal Suggestions",
+      "artist": "Steven Halpern",
+      "mbid": "d3280d93-5175-35d9-a3c9-cf9650edaa05",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:effortless-relaxation--steven-halpern",
+      "type": "project",
+      "name": "Effortless Relaxation",
+      "artist": "Steven Halpern",
+      "mbid": "831775d2-a910-3dfc-8a72-20c05a7ab15b",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-for-accelerated-learning--steven-halpern",
+      "type": "project",
+      "name": "Music for Accelerated Learning",
+      "artist": "Steven Halpern",
+      "mbid": "ebb7b35b-4f4a-34a0-813c-17ca4a4e6491",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nurturing-your-inner-child--steven-halpern",
+      "type": "project",
+      "name": "Nurturing Your Inner Child",
+      "artist": "Steven Halpern",
+      "mbid": "548d0c7b-5092-40aa-a104-f8303791595b",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:islands-in-time--steven-halpern",
+      "type": "project",
+      "name": "Islands in Time",
+      "artist": "Steven Halpern",
+      "mbid": "31928ba8-7da4-4cf6-8aa3-04b229e0c454",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:crystal-suite--steven-halpern",
+      "type": "project",
+      "name": "Crystal Suite",
+      "artist": "Steven Halpern",
+      "mbid": "48d51f1d-c85c-3a25-a100-5da83b15adcb",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:threshold--steven-halpern",
+      "type": "project",
+      "name": "Threshold",
+      "artist": "Steven Halpern",
+      "mbid": "2b9483bb-9185-473d-9899-700813e6afd5",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:study-suite--steven-halpern",
+      "type": "project",
+      "name": "Study Suite",
+      "artist": "Steven Halpern",
+      "mbid": "309e0dd3-e069-4edc-8d69-1b9875594460",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:corridors-of-time--steven-halpern",
+      "type": "project",
+      "name": "Corridors of Time",
+      "artist": "Steven Halpern",
+      "mbid": "31af77c8-5634-4aeb-be49-afc6075d6bf6",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dawn--steven-halpern",
+      "type": "project",
+      "name": "Dawn",
+      "artist": "Steven Halpern",
+      "mbid": "c9319432-c2fa-3064-bc92-328db6eba883",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:eventide--steven-halpern",
+      "type": "project",
+      "name": "Eventide",
+      "artist": "Steven Halpern",
+      "mbid": "41c7ff28-3d4f-469d-bc40-5c589924ab19",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rings-of-saturn--steven-halpern",
+      "type": "project",
+      "name": "Rings of Saturn",
+      "artist": "Steven Halpern",
+      "mbid": "28855bd6-d220-42c4-9d29-e8c2206a8bdf",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:comfort-zone--steven-halpern",
+      "type": "project",
+      "name": "Comfort Zone",
+      "artist": "Steven Halpern",
+      "mbid": "20dc12c8-3c47-4fdc-8d40-dafe88452942",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ancient-echoes--steven-halpern",
+      "type": "project",
+      "name": "Ancient Echoes",
+      "artist": "Steven Halpern",
+      "mbid": "d568cf50-bca9-3d50-83ab-4255994dd768",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:starborn-suite--steven-halpern",
+      "type": "project",
+      "name": "Starborn Suite",
+      "mbid": "4e7c8c23-c6dc-4898-b5d8-ee0b71b3da08",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-a-cosmic-attunement--steven-halpern",
+      "type": "project",
+      "name": "\"I\": A Cosmic Attunement",
+      "artist": "Steven Halpern",
+      "mbid": "e24870d6-e4e8-402a-bd7c-d07bdb2de5b0",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:spectrum-suite--steven-halpern",
+      "type": "project",
+      "name": "Spectrum Suite",
+      "mbid": "596a221f-9d22-3bfc-9afb-293f834c72b0",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:christening-for-listening-a-soundtrack-for-every-body--steven-halpern",
+      "type": "project",
+      "name": "Christening For Listening (A Soundtrack For Every Body)",
+      "artist": "Steven Halpern",
+      "mbid": "5b2d588a-438a-4e11-9c87-7b405b3397bf",
+      "year": "1975",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [],

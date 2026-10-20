@@ -53,24 +53,63 @@
   ],
   "discography": [
     {
-      "slug": "project:music-from-the-penguin-cafe",
+      "slug": "project:oskar-und-leni--penguin-cafe-orchestra",
       "type": "project",
-      "name": "Music from the Penguin Cafe"
-    },
-    {
-      "slug": "project:penguin-cafe-orchestra",
-      "type": "project",
-      "name": "Penguin Cafe Orchestra"
-    },
-    {
-      "slug": "project:broadcasting-from-home",
-      "type": "project",
-      "name": "Broadcasting From Home"
+      "name": "Oskar und Leni",
+      "artist": "Penguin Cafe Orchestra",
+      "mbid": "9c356e1d-2073-3b21-99dd-fca2f9230aa0",
+      "year": "1999",
+      "releaseType": "album"
     },
     {
       "slug": "project:union-cafe",
       "type": "project",
-      "name": "Union Cafe"
+      "name": "Union Cafe",
+      "mbid": "e50a3774-f070-3c6b-9ec5-a75488801dc9",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:signs-of-life--penguin-cafe-orchestra",
+      "type": "project",
+      "name": "Signs of Life",
+      "artist": "Penguin Cafe Orchestra",
+      "mbid": "77d8f656-f560-30e0-bd04-be2a04156a0f",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:broadcasting-from-home",
+      "type": "project",
+      "name": "Broadcasting From Home",
+      "mbid": "861651cf-7068-3838-97a1-dad000640931",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-penguin-cafe-orchestra-mini-album--penguin-cafe-orchestra",
+      "type": "project",
+      "name": "The Penguin Cafe Orchestra Mini Album",
+      "artist": "Penguin Cafe Orchestra",
+      "mbid": "46a22133-d0eb-36e7-b710-fa6fec9e9ea5",
+      "year": "1983",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:penguin-cafe-orchestra",
+      "type": "project",
+      "name": "Penguin Cafe Orchestra",
+      "mbid": "e2af1866-52df-3716-b51c-f18b90996748",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-from-the-penguin-cafe",
+      "type": "project",
+      "name": "Music from the Penguin Cafe",
+      "mbid": "d4ae4d1a-2fc6-3996-9d72-db5724280237",
+      "year": "1976",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

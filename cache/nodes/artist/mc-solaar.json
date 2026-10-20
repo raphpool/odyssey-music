@@ -53,14 +53,362 @@
   ],
   "discography": [
     {
-      "slug": "project:mc-solaar",
+      "slug": "project:ils-dansent--mc-solaar",
       "type": "project",
-      "name": "MC Solaar"
+      "name": "Ils dansent",
+      "artist": "MC Solaar",
+      "mbid": "1223c4ef-c700-427c-936d-1536f89d955d",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pierre-feuille--mc-solaar",
+      "type": "project",
+      "name": "Pierre-feuille",
+      "artist": "MC Solaar",
+      "mbid": "37c9c3c8-2b60-4e3d-a88d-5ca8bdd31336",
+      "year": "2024",
+      "releaseType": "single"
     },
     {
       "slug": "project:triptyque-balade-astrale",
       "type": "project",
-      "name": "Triptyque : Balade astrale"
+      "name": "Triptyque : Balade astrale",
+      "mbid": "57dd8aac-fd17-4e37-9bd5-d2ae0591e4fe",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:triptyque-lueurs-celestes--mc-solaar",
+      "type": "project",
+      "name": "Triptyque : Lueurs célestes",
+      "artist": "MC Solaar",
+      "mbid": "4c68ae88-d8fd-412b-ba26-22322423fe85",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:triptyque-eclats-cosmiques--mc-solaar",
+      "type": "project",
+      "name": "Triptyque : Éclats cosmiques",
+      "artist": "MC Solaar",
+      "mbid": "b502253f-9372-45d4-aed3-e90ea88432dc",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tout-se-transforme-bande-originale-du-film-transformers-rise-of-the-beasts--mc-solaar",
+      "type": "project",
+      "name": "TOUT SE TRANSFORME. (Bande originale du film « Transformers : Rise of the Beasts »)",
+      "artist": "MC Solaar",
+      "mbid": "7673f878-e388-4b15-891d-facadce2edaa",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:geopoetique--mc-solaar",
+      "type": "project",
+      "name": "Géopoétique",
+      "artist": "MC Solaar",
+      "mbid": "677890b5-cdc7-461a-baf4-0c049f17c2b0",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sonotone--mc-solaar",
+      "type": "project",
+      "name": "Sonotone",
+      "artist": "MC Solaar",
+      "mbid": "65de9d22-f23a-4430-a47d-d9f34329d038",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chapitre-7-inedit--mc-solaar",
+      "type": "project",
+      "name": "Chapître 7 Inédit",
+      "artist": "MC Solaar",
+      "mbid": "16576d82-80bc-4cf6-89ec-a8168a53f635",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:marche-ou-reve--mc-solaar",
+      "type": "project",
+      "name": "Marche ou rêve",
+      "artist": "MC Solaar",
+      "mbid": "ce780705-0073-41b5-a944-5102bcc65a87",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:solaar-pleure-part-2--mc-solaar",
+      "type": "project",
+      "name": "Solaar pleure, Part. 2",
+      "artist": "MC Solaar",
+      "mbid": "7de6a9f9-572c-492b-986b-fb38f497567a",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-belle-et-le-bad-boy--mc-solaar",
+      "type": "project",
+      "name": "La Belle et le bad boy",
+      "artist": "MC Solaar",
+      "mbid": "ce268b10-c861-41a1-b57e-cf357faae7d7",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:le-rabbi-muffin--mc-solaar",
+      "type": "project",
+      "name": "Le Rabbi muffin",
+      "artist": "MC Solaar",
+      "mbid": "70b74679-d50a-40ee-8944-60d36687f9d9",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chapitre-7--mc-solaar",
+      "type": "project",
+      "name": "Chapitre 7",
+      "artist": "MC Solaar",
+      "mbid": "6991bf74-fa49-301b-aa21-e2347f7ca7ff",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:clic-clic-da-vinci-claude--mc-solaar",
+      "type": "project",
+      "name": "Clic Clic / Da Vinci Claude",
+      "artist": "MC Solaar",
+      "mbid": "6c2fda54-7f48-4e03-84d0-1b27182c63fa",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:da-vinci-claude--mc-solaar",
+      "type": "project",
+      "name": "Da Vinci Claude",
+      "artist": "MC Solaar",
+      "mbid": "60d08746-1ac4-41e1-91a0-90f45f42f9e2",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:au-pays-de-gandhi--mc-solaar",
+      "type": "project",
+      "name": "Au pays de Gandhi",
+      "artist": "MC Solaar",
+      "mbid": "2d679991-51a0-42b2-85ff-846e3c642244",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mach-6--mc-solaar",
+      "type": "project",
+      "name": "Mach 6",
+      "artist": "MC Solaar",
+      "mbid": "19b88649-46be-35b2-9ea5-70d66162f801",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:inch-allah--mc-solaar",
+      "type": "project",
+      "name": "Inch’Allah",
+      "artist": "MC Solaar",
+      "mbid": "c0587ed5-5e60-381b-895a-d20d7d69c0bf",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:rmi--mc-solaar",
+      "type": "project",
+      "name": "RMI",
+      "artist": "MC Solaar",
+      "mbid": "bbecf676-2ace-478e-8e25-7e3b702fd69c",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cinquieme-as--mc-solaar",
+      "type": "project",
+      "name": "Cinquième as",
+      "artist": "MC Solaar",
+      "mbid": "41a60f8d-ba83-3fcb-b390-5265188bb552",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hasta-la-vista--mc-solaar",
+      "type": "project",
+      "name": "Hasta la vista",
+      "artist": "MC Solaar",
+      "mbid": "4d1444bd-84b2-37ec-8a94-456bdbf12e92",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-la-la-la--mc-solaar",
+      "type": "project",
+      "name": "La la la, la",
+      "artist": "MC Solaar",
+      "mbid": "7c9ff308-79d0-44ba-a147-1fb32b44ee02",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:solaar-pleure--mc-solaar",
+      "type": "project",
+      "name": "Solaar pleure",
+      "artist": "MC Solaar",
+      "mbid": "5ee2426b-3985-47ab-ba84-98c65d47ae92",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:galaktika--mc-solaar",
+      "type": "project",
+      "name": "Galaktika",
+      "artist": "MC Solaar",
+      "mbid": "178c030e-9c52-42c2-ad1f-ffd3d966cda1",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-5eme-saison--mc-solaar",
+      "type": "project",
+      "name": "La 5ème Saison",
+      "artist": "MC Solaar",
+      "mbid": "0da904ee-797f-4703-a73e-d1ed904294ee",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mc-solaar",
+      "type": "project",
+      "name": "MC Solaar",
+      "mbid": "2745863f-387e-3037-bcef-a49e0ee871e8",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gangster-moderne--mc-solaar",
+      "type": "project",
+      "name": "Gangster moderne",
+      "artist": "MC Solaar",
+      "mbid": "2d62d268-19d5-4b4a-938f-e76832650fd2",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:les-temps-changent--mc-solaar",
+      "type": "project",
+      "name": "Les temps changent",
+      "artist": "MC Solaar",
+      "mbid": "c60698e5-0b83-4254-950e-c76f29ca1fb0",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:paradisiaque--mc-solaar",
+      "type": "project",
+      "name": "Paradisiaque",
+      "artist": "MC Solaar",
+      "mbid": "ae7c37da-dd33-3907-9037-59998f2013b4",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-concubine-de-l-hemoglobine--mc-solaar",
+      "type": "project",
+      "name": "La Concubine de l'hémoglobine",
+      "artist": "MC Solaar",
+      "mbid": "6551e8df-3b78-41ea-ac85-a4413289ac99",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:obsolete--mc-solaar",
+      "type": "project",
+      "name": "Obsolète",
+      "artist": "MC Solaar",
+      "mbid": "a8430c41-51e6-3fc6-88e1-dea8e5c1b6d5",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:prose-combat--mc-solaar",
+      "type": "project",
+      "name": "Prose Combat",
+      "artist": "MC Solaar",
+      "mbid": "b199910b-0f90-3c88-b523-d6852b7612d3",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:solaar-power-ep--mc-solaar",
+      "type": "project",
+      "name": "Solaar Power EP",
+      "artist": "MC Solaar",
+      "mbid": "c0480d87-e681-42d4-9036-c0071288bc5c",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sequelles--mc-solaar",
+      "type": "project",
+      "name": "Séquelles",
+      "artist": "MC Solaar",
+      "mbid": "91797c3b-eca6-4db1-a6cd-00dd5004c151",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nouveau-western--mc-solaar",
+      "type": "project",
+      "name": "Nouveau Western",
+      "artist": "MC Solaar",
+      "mbid": "8b64d484-50e4-31a1-85b5-9715d56e15e1",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:caroline--mc-solaar",
+      "type": "project",
+      "name": "Caroline",
+      "artist": "MC Solaar",
+      "mbid": "088a1a54-0b59-46a5-b7a3-7e79d4a27859",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bouge-de-la--mc-solaar",
+      "type": "project",
+      "name": "Bouge de là",
+      "artist": "MC Solaar",
+      "mbid": "fa298ef8-0ac0-43e5-85b2-d152b19f3113",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:qui-seme-le-vent-recolte-le-tempo--mc-solaar",
+      "type": "project",
+      "name": "Qui sème le vent récolte le tempo",
+      "artist": "MC Solaar",
+      "mbid": "424d0675-f87c-3937-bc38-6b29810d1152",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:victime-de-la-mode--mc-solaar",
+      "type": "project",
+      "name": "Victime de la mode",
+      "artist": "MC Solaar",
+      "mbid": "743f5903-47d6-451b-b829-24361ad6b329",
+      "year": "1991",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

@@ -71,19 +71,133 @@
   ],
   "discography": [
     {
+      "slug": "project:little-richard-meets-masayoshi-takanaka--little-richard",
+      "type": "project",
+      "name": "Little Richard Meets Masayoshi Takanaka",
+      "artist": "Little Richard",
+      "mbid": "0d5a941c-2ee4-47ab-ae78-dc0d23e0806b",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lifetime-friend--little-richard",
+      "type": "project",
+      "name": "Lifetime Friend",
+      "artist": "Little Richard",
+      "mbid": "530b61aa-e5e3-4d74-ab49-768a840431c0",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:20-super-hits--little-richard",
+      "type": "project",
+      "name": "20 Super Hits",
+      "artist": "Little Richard",
+      "mbid": "9e14918b-5dfb-40bb-bdb4-b26188468cf8",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-second-coming--little-richard",
+      "type": "project",
+      "name": "The Second Coming",
+      "artist": "Little Richard",
+      "mbid": "335263d4-f9a2-4646-add2-73e070114f02",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:king-of-rock-and-roll--little-richard",
+      "type": "project",
+      "name": "King of Rock and Roll",
+      "artist": "Little Richard",
+      "mbid": "b46e657e-1c9d-41f3-9fd9-1b9b77a03b0a",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:well-alright--little-richard",
+      "type": "project",
+      "name": "Well Alright!",
+      "artist": "Little Richard",
+      "mbid": "ac86db3f-5aea-4e42-a851-d75769faa4d4",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-rill-thing--little-richard",
+      "type": "project",
+      "name": "The Rill Thing",
+      "artist": "Little Richard",
+      "mbid": "81698e85-2e87-379f-b7fa-6474672d1f45",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-explosive-little-richard--little-richard",
+      "type": "project",
+      "name": "The Explosive Little Richard",
+      "artist": "Little Richard",
+      "mbid": "80e16e42-74db-4bfe-a2cd-fcf1959e5d15",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-wild-and-frantic-little-richard",
+      "type": "project",
+      "name": "The Wild and Frantic Little Richard",
+      "mbid": "d9021c1f-cad0-4fbe-939e-4e95ae8c4b06",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-fabulous-little-richard--little-richard",
+      "type": "project",
+      "name": "The Fabulous Little Richard",
+      "artist": "Little Richard",
+      "mbid": "ffb3431c-655e-4a1d-96dd-39365ac656d4",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:here-s-little-richard",
       "type": "project",
-      "name": "Here's Little Richard"
+      "name": "Here's Little Richard",
+      "mbid": "a987042b-4fe0-35bb-9cca-7ff44b1ff5b4",
+      "year": "1957",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:long-tall-sally-tutti-frutti--little-richard",
+      "type": "project",
+      "name": "Long Tall Sally / Tutti Frutti",
+      "artist": "Little Richard",
+      "mbid": "2302eeeb-a655-43c7-b494-21ffd72bbe7a",
+      "year": "1957",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lucille-send-me-some-lovin--little-richard",
+      "type": "project",
+      "name": "Lucille / Send Me Some Lovin’",
+      "artist": "Little Richard",
+      "mbid": "914f8d97-423f-3e3b-8f90-7c44e98b56ab",
+      "year": "1957",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tutti-frutti-i-m-just-a-lonely-guy--little-richard",
+      "type": "project",
+      "name": "Tutti Frutti / I'm Just a Lonely Guy",
+      "artist": "Little Richard",
+      "mbid": "b3c6d247-b4f2-3ff4-9b94-bbedebc7f94d",
+      "year": "1955",
+      "releaseType": "single"
     },
     {
       "slug": "project:little-richard",
       "type": "project",
       "name": "Little Richard"
-    },
-    {
-      "slug": "project:the-wild-and-frantic-little-richard",
-      "type": "project",
-      "name": "The Wild and Frantic Little Richard"
     },
     {
       "slug": "project:mr-big",

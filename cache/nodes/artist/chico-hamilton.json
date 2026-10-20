@@ -67,6 +67,284 @@
   ],
   "discography": [
     {
+      "slug": "project:chico-hamilton-and-the-players--chico-hamilton",
+      "type": "project",
+      "name": "Chico Hamilton and the Players",
+      "artist": "Chico Hamilton",
+      "mbid": "afccf86d-e439-4642-8943-3cdc8fa2d5d8",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:el-chico-the-further-adventures-of-el-chico--chico-hamilton",
+      "type": "project",
+      "name": "El Chico / The Further Adventures of El Chico",
+      "artist": "Chico Hamilton",
+      "mbid": "a240e8c8-3f8f-473b-9853-a00db80ae09f",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:twelve-tones-of-love--chico-hamilton",
+      "type": "project",
+      "name": "Twelve Tones of Love",
+      "artist": "Chico Hamilton",
+      "mbid": "3cd9fbe7-4082-456a-922a-8659d215c190",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:it-s-about-time--chico-hamilton",
+      "type": "project",
+      "name": "It's About Time!",
+      "artist": "Chico Hamilton",
+      "mbid": "d4ff768c-4a5f-4cec-9bc6-6c9a1259b250",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-chico-hamilton-trio--chico-hamilton",
+      "type": "project",
+      "name": "The Chico Hamilton Trio",
+      "artist": "Chico Hamilton",
+      "mbid": "d8cf8893-8e40-37ec-81c4-f4e3e999cd70",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:6th-avenue-romp--chico-hamilton",
+      "type": "project",
+      "name": "6th Avenue Romp",
+      "artist": "Chico Hamilton",
+      "mbid": "045ab8fe-2cd4-4fa3-85cf-661edbd755a6",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:heritage--chico-hamilton",
+      "type": "project",
+      "name": "Heritage",
+      "artist": "Chico Hamilton",
+      "mbid": "4111708f-f55d-49ea-812f-bc771e834458",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:believe--chico-hamilton",
+      "type": "project",
+      "name": "Believe",
+      "artist": "Chico Hamilton",
+      "mbid": "58e180aa-a06e-4b93-818d-29968f16dee7",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:juniflip--chico-hamilton",
+      "type": "project",
+      "name": "Juniflip",
+      "artist": "Chico Hamilton",
+      "mbid": "71091955-df89-40e8-8a71-0f0cbb242de3",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:thoughts-of--chico-hamilton",
+      "type": "project",
+      "name": "Thoughts of...",
+      "artist": "Chico Hamilton",
+      "mbid": "a0b81b7b-f47b-3b9c-a309-7bab2c491711",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:foreststorn--chico-hamilton",
+      "type": "project",
+      "name": "Foreststorn",
+      "artist": "Chico Hamilton",
+      "mbid": "e6e7ccb4-7239-40a9-9ada-11af3b2c6874",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:timely--chico-hamilton",
+      "type": "project",
+      "name": "Timely",
+      "artist": "Chico Hamilton",
+      "mbid": "1c40f4bb-42e2-4b61-ab9e-08a19579dc90",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dancing-to-a-different-drummer--chico-hamilton",
+      "type": "project",
+      "name": "Dancing to a Different Drummer",
+      "artist": "Chico Hamilton",
+      "mbid": "9f4f35c5-2396-49b6-a42e-39f1fc4c2a4d",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trio--chico-hamilton",
+      "type": "project",
+      "name": "Trio!",
+      "artist": "Chico Hamilton",
+      "mbid": "dd6bcb86-97d7-4ffe-b95b-239b66db1ad7",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:my-panamanian-friend--chico-hamilton",
+      "type": "project",
+      "name": "My Panamanian Friend",
+      "artist": "Chico Hamilton",
+      "mbid": "de3ece52-13d0-47c3-bb27-06ff49b57c59",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nomad--chico-hamilton",
+      "type": "project",
+      "name": "Nomad",
+      "artist": "Chico Hamilton",
+      "mbid": "8224f006-762e-498a-88e1-427addff32e7",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:peregrinations--chico-hamilton",
+      "type": "project",
+      "name": "Peregrinations",
+      "artist": "Chico Hamilton",
+      "mbid": "d47e74c0-ee09-46cf-8eb7-002530313548",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-master--chico-hamilton",
+      "type": "project",
+      "name": "The Master",
+      "artist": "Chico Hamilton",
+      "mbid": "6a8474b4-b418-3c21-9d49-ad6abff2e99e",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:el-exigente-the-demanding-one--chico-hamilton",
+      "type": "project",
+      "name": "El Exigente, The Demanding One",
+      "artist": "Chico Hamilton",
+      "mbid": "0af9efc3-6c61-4126-99ee-3212a06a20eb",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-head-hunters--chico-hamilton",
+      "type": "project",
+      "name": "The Head Hunters",
+      "artist": "Chico Hamilton",
+      "mbid": "282b137e-482b-48b4-843e-cf29c8e8ab8d",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-gamut--chico-hamilton",
+      "type": "project",
+      "name": "The Gamut",
+      "artist": "Chico Hamilton",
+      "mbid": "dd330aa8-0036-48bf-8165-16198ba61c9f",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:el-chico--chico-hamilton",
+      "type": "project",
+      "name": "El Chico",
+      "artist": "Chico Hamilton",
+      "mbid": "3217ddd7-2435-3643-a9b1-e763e12d8f3c",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:further-adventures-of-el-chico--chico-hamilton",
+      "type": "project",
+      "name": "Further Adventures of El Chico",
+      "artist": "Chico Hamilton",
+      "mbid": "72a72411-c221-346d-8b9d-fb5ea448b7ae",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-dealer--chico-hamilton",
+      "type": "project",
+      "name": "The Dealer",
+      "artist": "Chico Hamilton",
+      "mbid": "ff52251a-88db-358b-a156-12ff8693086c",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chic-chic-chico--chico-hamilton",
+      "type": "project",
+      "name": "Chic* Chic Chico",
+      "artist": "Chico Hamilton",
+      "mbid": "ccbe2184-c90b-373f-89d8-78ba0bcf5498",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:man-from-two-worlds--chico-hamilton",
+      "type": "project",
+      "name": "Man From Two Worlds",
+      "artist": "Chico Hamilton",
+      "mbid": "02f327aa-c5b2-3159-bc4b-cdc65e4a9666",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chico-hamilton-with-paul-horn--chico-hamilton",
+      "type": "project",
+      "name": "Chico Hamilton with Paul Horn",
+      "artist": "Chico Hamilton",
+      "mbid": "b1775871-f54e-4e39-b313-7c68381aec27",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:passin-thru",
+      "type": "project",
+      "name": "Passin' Thru",
+      "mbid": "6941b021-e378-3c55-ab8b-7d68b5c31511",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-great-chico-hamilton-featuring-paul-horn--chico-hamilton",
+      "type": "project",
+      "name": "The Great Chico Hamilton featuring Paul Horn",
+      "artist": "Chico Hamilton",
+      "mbid": "c75f35e6-2e46-4ab1-a200-064d8b80ed07",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:drumfusion--chico-hamilton",
+      "type": "project",
+      "name": "Drumfusion",
+      "artist": "Chico Hamilton",
+      "mbid": "47aea34f-75ad-45f0-be1a-231d3847d982",
+      "year": "1962",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:introducing-freddie-gambrell--chico-hamilton",
+      "type": "project",
+      "name": "Introducing Freddie Gambrell",
+      "artist": "Chico Hamilton",
+      "mbid": "4332f33a-b8b8-4fd0-bc92-5c75bfaaa91e",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:chico-hamilton-trio",
       "type": "project",
       "name": "Chico Hamilton Trio"
@@ -80,11 +358,6 @@
       "slug": "project:gongs-east",
       "type": "project",
       "name": "Gongs East!"
-    },
-    {
-      "slug": "project:passin-thru",
-      "type": "project",
-      "name": "Passin' Thru"
     }
   ],
   "notable_tracks": [],

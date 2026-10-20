@@ -58,19 +58,253 @@
   ],
   "discography": [
     {
-      "slug": "project:mud-rufage",
+      "slug": "project:jump-start--loefah",
       "type": "project",
-      "name": "Mud / Rufage"
+      "name": "Jump Start",
+      "artist": "Loefah",
+      "mbid": "0bc38805-4e5b-429a-9413-bb171dbfe046",
+      "year": "2024",
+      "releaseType": "single"
     },
     {
-      "slug": "project:disko-rekah-all-of-a-sudden",
+      "slug": "project:brando--loefah",
       "type": "project",
-      "name": "Disko Rekah / All of a Sudden"
+      "name": "Brando",
+      "artist": "Loefah",
+      "mbid": "84af33dd-8f81-45b2-acf0-3a9d7376fa36",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:candy--loefah",
+      "type": "project",
+      "name": "Candy",
+      "artist": "Loefah",
+      "mbid": "f76d4ef8-ffcc-4be1-a69a-f2b5fdf582d7",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dogbite--loefah",
+      "type": "project",
+      "name": "Dogbite",
+      "artist": "Loefah",
+      "mbid": "1b7f6877-6f9d-4b11-b217-4d6a061a004e",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mud--loefah",
+      "type": "project",
+      "name": "Mud",
+      "artist": "Loefah",
+      "mbid": "702dbf65-1806-49ab-b57d-fb81468c09eb",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:natural-charge-crack-bong-loefah-rmx--loefah",
+      "type": "project",
+      "name": "Natural Charge / Crack Bong (Loefah rmx)",
+      "artist": "Loefah",
+      "mbid": "e637b207-8cf0-4448-985f-7915ec1f1c44",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:root--loefah",
+      "type": "project",
+      "name": "Root",
+      "artist": "Loefah",
+      "mbid": "17c9ac52-568a-490b-b19f-35fd0a78ccda",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ruffage--loefah",
+      "type": "project",
+      "name": "Ruffage",
+      "artist": "Loefah",
+      "mbid": "9ef7aba5-781c-4e47-91f7-bc1a5ae77837",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-goat-stare--loefah",
+      "type": "project",
+      "name": "The Goat Stare",
+      "artist": "Loefah",
+      "mbid": "f819d2f1-6e81-4b4d-970b-0d2e7159f254",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:midnight--loefah",
+      "type": "project",
+      "name": "midnight",
+      "artist": "Loefah",
+      "mbid": "a96945ac-d9cb-4fff-a5b4-2cbd8a1c280e",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:woman--loefah",
+      "type": "project",
+      "name": "woman",
+      "artist": "Loefah",
+      "mbid": "67efceb5-ab3b-4b26-88f4-ab75bb102e74",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ginnocchio--loefah",
+      "type": "project",
+      "name": "Ginnocchio",
+      "artist": "Loefah",
+      "mbid": "cb28a0fe-be60-4343-b9a7-799df3b06d9f",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:horror-show--loefah",
+      "type": "project",
+      "name": "Horror Show",
+      "artist": "Loefah",
+      "mbid": "1f1ca9b7-fc40-4658-9451-aad2fa5b779c",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-literally-hate-your-face-so-much--loefah",
+      "type": "project",
+      "name": "I LITERALLY HATE YOUR FACE SO MUCH",
+      "artist": "Loefah",
+      "mbid": "90be80e8-5342-4131-adc5-58e97c05d48a",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-g--loefah",
+      "type": "project",
+      "name": "My G",
+      "artist": "Loefah",
+      "mbid": "0dc25549-e65a-42d1-9e7b-3605933c54ad",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:woman-midnight--loefah",
+      "type": "project",
+      "name": "Woman / Midnight",
+      "artist": "Loefah",
+      "mbid": "1af056d7-b6df-494a-a6ab-4a9df5a33239",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:veal--loefah",
+      "type": "project",
+      "name": "Veal",
+      "artist": "Loefah",
+      "mbid": "0ac09c32-ddc5-49b0-8781-61450360220c",
+      "year": "2013",
+      "releaseType": "single"
     },
     {
       "slug": "project:western",
       "type": "project",
-      "name": "Western (Did a Skank)"
+      "name": "Western (Did a Skank)",
+      "mbid": "4a3b9e47-a80b-4adf-abde-d2aac9083b04",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:just-a-beat--loefah",
+      "type": "project",
+      "name": "Just a Beat",
+      "artist": "Loefah",
+      "mbid": "d1d0d6f1-6450-4a81-a528-061c81d840ea",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:yours--loefah",
+      "type": "project",
+      "name": "Yours",
+      "artist": "Loefah",
+      "mbid": "03d15472-69e9-4bd3-999a-1b23e4e57858",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:disko-rekah-all-of-a-sudden",
+      "type": "project",
+      "name": "Disko Rekah / All of a Sudden",
+      "mbid": "38bb0400-60e3-3ec8-b560-5ce33bd39361",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sukkah-warrior-stance--loefah",
+      "type": "project",
+      "name": "Sukkah / Warrior Stance",
+      "artist": "Loefah",
+      "mbid": "f8a147fc-2bf9-4afe-a869-cceb7d317f3a",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mud-rufage",
+      "type": "project",
+      "name": "Mud / Rufage",
+      "mbid": "8698f037-9820-3a38-bc28-e7e780c9ca8a",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:system-molten--loefah",
+      "type": "project",
+      "name": "System / Molten",
+      "artist": "Loefah",
+      "mbid": "7654fa4d-84ee-3e7c-9891-aa49a9ea2c52",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:voodoo--loefah",
+      "type": "project",
+      "name": "Voodoo",
+      "artist": "Loefah",
+      "mbid": "c70dc50a-8ced-4900-8fd8-192643fa6fb4",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:28g-fearless--loefah",
+      "type": "project",
+      "name": "28g / Fearless",
+      "artist": "Loefah",
+      "mbid": "db7e53ec-a9e8-3adb-bebc-c03965c17ad2",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:root-the-goat-stare--loefah",
+      "type": "project",
+      "name": "Root / The Goat Stare",
+      "artist": "Loefah",
+      "mbid": "8b35a4d4-6c3c-3cd7-a35f-4de9d5ab1ac1",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jungle-infiltrator--loefah",
+      "type": "project",
+      "name": "Jungle Infiltrator",
+      "artist": "Loefah",
+      "mbid": "2dde19b7-1670-38e1-a2a6-eb69301815b7",
+      "year": "2004",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

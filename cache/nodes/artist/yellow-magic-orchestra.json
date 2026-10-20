@@ -58,7 +58,143 @@
       "name": "A&M Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:rydeen--yellow-magic-orchestra",
+      "type": "project",
+      "name": "Rydeen",
+      "artist": "Yellow Magic Orchestra",
+      "mbid": "c79b3b35-a992-4b0e-ab71-aad32b75b8d1",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:be-a-superman--yellow-magic-orchestra",
+      "type": "project",
+      "name": "Be a Superman",
+      "artist": "Yellow Magic Orchestra",
+      "mbid": "57154272-f634-4533-a8f7-a734a59af3b4",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:technodon--yellow-magic-orchestra",
+      "type": "project",
+      "name": "Technodon",
+      "artist": "Yellow Magic Orchestra",
+      "mbid": "0f41dd55-6579-3c4d-9c28-9a0fc3e420bf",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ymo-versus-the-human-league--yellow-magic-orchestra",
+      "type": "project",
+      "name": "YMO Versus The Human League",
+      "artist": "Yellow Magic Orchestra",
+      "mbid": "d423636e-9ac7-4aa4-81ff-ee79ffbc39b4",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:space-invaders--yellow-magic-orchestra",
+      "type": "project",
+      "name": "Space Invaders",
+      "artist": "Yellow Magic Orchestra",
+      "mbid": "ccd5b3da-a5a0-4a71-8628-cb2b4823d733",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ymo-mega-mix--yellow-magic-orchestra",
+      "type": "project",
+      "name": "YMO MEGA MIX",
+      "artist": "Yellow Magic Orchestra",
+      "mbid": "74dece30-e69d-4a93-9936-3bd0d6e1a514",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:naughty-boys--yellow-magic-orchestra",
+      "type": "project",
+      "name": "Naughty Boys",
+      "artist": "Yellow Magic Orchestra",
+      "mbid": "4ddce1b8-0fe7-3724-80f4-48d98bc6b36a",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:service--yellow-magic-orchestra",
+      "type": "project",
+      "name": "Service",
+      "artist": "Yellow Magic Orchestra",
+      "mbid": "764693a6-5ff5-342e-a615-90989bf5e0ba",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bgm--yellow-magic-orchestra",
+      "type": "project",
+      "name": "BGM",
+      "artist": "Yellow Magic Orchestra",
+      "mbid": "c07fe3c7-aeed-32c9-8954-fab33ef78f27",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:technodelic--yellow-magic-orchestra",
+      "type": "project",
+      "name": "Technodelic",
+      "artist": "Yellow Magic Orchestra",
+      "mbid": "b09b52a0-65a2-45f0-af7b-03adf968f689",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nice-age--yellow-magic-orchestra",
+      "type": "project",
+      "name": "Nice Age",
+      "artist": "Yellow Magic Orchestra",
+      "mbid": "6089f9cb-080b-43d9-afd4-cb3abfb310a2",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:computer-game-theme-from-the-circus--yellow-magic-orchestra",
+      "type": "project",
+      "name": "Computer Game “Theme From The Circus”",
+      "artist": "Yellow Magic Orchestra",
+      "mbid": "8fe1fdb8-56e9-400b-89a3-c88a8582efe8",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:computer-game-theme-from-the-invader-firecracker-technopolis--yellow-magic-orchestra",
+      "type": "project",
+      "name": "Computer Game “Theme From The Invader” / Firecracker / Technopolis",
+      "artist": "Yellow Magic Orchestra",
+      "mbid": "88ba9ecc-413b-48ed-9fd6-52bac05e173f",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:solid-state-survivor--yellow-magic-orchestra",
+      "type": "project",
+      "name": "Solid State Survivor",
+      "artist": "Yellow Magic Orchestra",
+      "mbid": "0b232453-8666-361f-b1db-2578fc4a9f97",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yellow-magic-orchestra--yellow-magic-orchestra",
+      "type": "project",
+      "name": "Yellow Magic Orchestra",
+      "artist": "Yellow Magic Orchestra",
+      "mbid": "e92c42f1-acc8-3ad9-8a6c-8d1593f3a9a3",
+      "year": "1978",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:technopolis",

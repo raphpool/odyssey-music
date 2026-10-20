@@ -50,14 +50,362 @@
   ],
   "discography": [
     {
-      "slug": "project:alcachofa--ricardo-villalobos",
+      "slug": "project:microgestures--ricardo-villalobos",
       "type": "project",
-      "name": "Alcachofa"
+      "name": "Microgestures",
+      "artist": "Ricardo Villalobos",
+      "mbid": "2c7be314-4844-4ed2-b915-da0ac09a17c2",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:empirical-house-lp--ricardo-villalobos",
+      "type": "project",
+      "name": "Empirical House LP",
+      "artist": "Ricardo Villalobos",
+      "mbid": "49aa6121-a9b9-49fd-be19-d042e6ec806e",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:who-are-we-ep--ricardo-villalobos",
+      "type": "project",
+      "name": "Who Are We ? EP",
+      "artist": "Ricardo Villalobos",
+      "mbid": "5345574b-3726-454a-b5d8-0a8e79e05e93",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ambiq-remixed--ricardo-villalobos",
+      "type": "project",
+      "name": "ambiq remixed",
+      "artist": "Ricardo Villalobos",
+      "mbid": "3e2befe0-d709-46a4-8e7b-b46112a07ae8",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:voodog--ricardo-villalobos",
+      "type": "project",
+      "name": "Voodog",
+      "artist": "Ricardo Villalobos",
+      "mbid": "c5656b3b-a9ff-4cd9-a60f-aab0da038191",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:veric-ep--ricardo-villalobos",
+      "type": "project",
+      "name": "Veric EP",
+      "artist": "Ricardo Villalobos",
+      "mbid": "7569e6ba-78e2-4e48-b156-8eeb5a0125a0",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:any-ideas--ricardo-villalobos",
+      "type": "project",
+      "name": "Any Ideas",
+      "artist": "Ricardo Villalobos",
+      "mbid": "ddfeb138-01cb-447f-9099-42152142d659",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:baby-ep--ricardo-villalobos",
+      "type": "project",
+      "name": "Baby EP",
+      "artist": "Ricardo Villalobos",
+      "mbid": "5ab74329-ebf3-4b9c-9f88-3a6ec3cd4343",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dependent-and-happy-four--ricardo-villalobos",
+      "type": "project",
+      "name": "Dependent And Happy - Four",
+      "artist": "Ricardo Villalobos",
+      "mbid": "7df1e0c9-e94c-4080-ac86-1d77a86b56a8",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dependent-and-happy-one--ricardo-villalobos",
+      "type": "project",
+      "name": "Dependent And Happy - One",
+      "artist": "Ricardo Villalobos",
+      "mbid": "a7f6e50a-29ec-488c-87c8-fe1bcfa8a3b5",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dependent-and-happy-three--ricardo-villalobos",
+      "type": "project",
+      "name": "Dependent And Happy - Three",
+      "artist": "Ricardo Villalobos",
+      "mbid": "f66a44f5-a244-4007-8a6e-ba1dc7dec89d",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dependent-and-happy-two--ricardo-villalobos",
+      "type": "project",
+      "name": "Dependent And Happy - Two",
+      "artist": "Ricardo Villalobos",
+      "mbid": "0f26cd1f-5bea-49ff-8292-3c01cc06f4b9",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dependent-and-happy--ricardo-villalobos",
+      "type": "project",
+      "name": "Dependent and Happy",
+      "artist": "Ricardo Villalobos",
+      "mbid": "674b3cdf-88ee-4a72-bf58-69d6233e0735",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:re-ecm--ricardo-villalobos",
+      "type": "project",
+      "name": "Re: ECM",
+      "artist": "Ricardo Villalobos",
+      "mbid": "5065c3b3-0c02-4769-8b74-2681ce6cf398",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:driving-nowhere--ricardo-villalobos",
+      "type": "project",
+      "name": "Driving Nowhere",
+      "artist": "Ricardo Villalobos",
+      "mbid": "0ecc10eb-c8f0-4b2a-a66c-70f931b3f9ca",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:enfants--ricardo-villalobos",
+      "type": "project",
+      "name": "Enfants",
+      "artist": "Ricardo Villalobos",
+      "mbid": "8cd39de1-6696-39b2-b942-8cd6bff40df1",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mellow-dee-sunday-prayer--ricardo-villalobos",
+      "type": "project",
+      "name": "Mellow Dee / Sunday Prayer",
+      "artist": "Ricardo Villalobos",
+      "mbid": "173aaf15-0669-47a0-88e3-2d9c17f9e308",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:vasco--ricardo-villalobos",
+      "type": "project",
+      "name": "Vasco",
+      "artist": "Ricardo Villalobos",
+      "mbid": "e3ef4898-0c45-3dfa-a5da-755264d53359",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vasco-ep-part-1--ricardo-villalobos",
+      "type": "project",
+      "name": "Vasco EP, Part 1",
+      "artist": "Ricardo Villalobos",
+      "mbid": "484c9ae9-9443-34d6-b02a-631fb52086d1",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:vasco-ep-part-2--ricardo-villalobos",
+      "type": "project",
+      "name": "Vasco EP, Part 2",
+      "artist": "Ricardo Villalobos",
+      "mbid": "15893a60-e303-4bc2-a744-8d99af060567",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sei-es-drum--ricardo-villalobos",
+      "type": "project",
+      "name": "Sei Es Drum",
+      "artist": "Ricardo Villalobos",
+      "mbid": "1e5d4583-2674-3d24-aa59-1dbd151db01d",
+      "year": "2007",
+      "releaseType": "album"
     },
     {
       "slug": "project:fizheuer-zieheuer--ricardo-villalobos",
       "type": "project",
-      "name": "Fizheuer Zieheuer"
+      "name": "Fizheuer Zieheuer",
+      "mbid": "1a3986de-abc7-393c-ab2b-cb70bde46d75",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:que-belle-epoque-2006--ricardo-villalobos",
+      "type": "project",
+      "name": "Que Belle Epoque 2006",
+      "artist": "Ricardo Villalobos",
+      "mbid": "f4a5fdcb-749c-3ef1-bd3b-2803679fab6c",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:silverbird-casino-ep1--ricardo-villalobos",
+      "type": "project",
+      "name": "Silverbird Casino EP1",
+      "artist": "Ricardo Villalobos",
+      "mbid": "87e0a7b1-bf12-3df8-a531-6f934f8d1f4d",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:what-s-wrong-my-friends--ricardo-villalobos",
+      "type": "project",
+      "name": "What's Wrong My Friends?",
+      "artist": "Ricardo Villalobos",
+      "mbid": "16c8f3e3-1224-37bc-b813-873136efef10",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:achso--ricardo-villalobos",
+      "type": "project",
+      "name": "AchSo",
+      "artist": "Ricardo Villalobos",
+      "mbid": "dcf10668-fc98-36da-8fa3-95720236f790",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:chromosul--ricardo-villalobos",
+      "type": "project",
+      "name": "Chromosul",
+      "artist": "Ricardo Villalobos",
+      "mbid": "18d427ab-0368-3473-85e5-e19db7c3c2fb",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:for-disco-only-2--ricardo-villalobos",
+      "type": "project",
+      "name": "For Disco Only 2",
+      "artist": "Ricardo Villalobos",
+      "mbid": "6b02180e-ed86-315b-979c-e3fceb431977",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:something-bad-you-wanna-start--ricardo-villalobos",
+      "type": "project",
+      "name": "Something Bad / You Wanna Start?",
+      "artist": "Ricardo Villalobos",
+      "mbid": "89b8d5e5-b483-3682-bbfa-dbff87c8cccf",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-au-harem-d-archimede--ricardo-villalobos",
+      "type": "project",
+      "name": "Thé au harem d'Archimède",
+      "artist": "Ricardo Villalobos",
+      "mbid": "f2ec47ac-b7e4-355a-b582-cd24920319bb",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:alcachofa--ricardo-villalobos",
+      "type": "project",
+      "name": "Alcachofa",
+      "mbid": "44f4da95-17d4-3f3e-92a6-2684fc889135",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:alcachofa-tools--ricardo-villalobos",
+      "type": "project",
+      "name": "Alcachofa Tools",
+      "artist": "Ricardo Villalobos",
+      "mbid": "01e09946-630d-34ce-abb0-793da185fdb0",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:halma--ricardo-villalobos",
+      "type": "project",
+      "name": "Halma",
+      "artist": "Ricardo Villalobos",
+      "mbid": "de45d9ea-2c7c-3ff2-8468-553c3631c7fd",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ibiza-99--ricardo-villalobos",
+      "type": "project",
+      "name": "Ibiza 99",
+      "artist": "Ricardo Villalobos",
+      "mbid": "dc7e6c34-b784-343b-b8e3-cc419798db5a",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:luna--ricardo-villalobos",
+      "type": "project",
+      "name": "Luna",
+      "artist": "Ricardo Villalobos",
+      "mbid": "a3f19abf-55e5-3a5e-af99-3903eca719fe",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:que-bel-epoque--ricardo-villalobos",
+      "type": "project",
+      "name": "Que Bel Epoque",
+      "artist": "Ricardo Villalobos",
+      "mbid": "e9023ae9-042e-331c-a706-8b8762bf28dc",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:808-the-bassqueen--ricardo-villalobos",
+      "type": "project",
+      "name": "808 the Bassqueen",
+      "artist": "Ricardo Villalobos",
+      "mbid": "d7bc4d20-a8e5-3892-b783-2547593ae6d5",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:frank-mueller-melodram--ricardo-villalobos",
+      "type": "project",
+      "name": "Frank Mueller Melodram",
+      "artist": "Ricardo Villalobos",
+      "mbid": "fd368736-d78f-3cb1-93eb-dc1775e1c6ba",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pino-jet-explosion--ricardo-villalobos",
+      "type": "project",
+      "name": "Pino Jet Explosion",
+      "artist": "Ricardo Villalobos",
+      "mbid": "75524eb2-7e6e-3301-87a8-4f6ffef49c25",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:n-dra--ricardo-villalobos",
+      "type": "project",
+      "name": "N-DRA",
+      "artist": "Ricardo Villalobos",
+      "mbid": "22f7ffd7-271b-3d3c-980b-b3e9109a818d",
+      "year": "1996",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

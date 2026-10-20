@@ -79,30 +79,315 @@
   ],
   "discography": [
     {
-      "slug": "project:irrlicht",
+      "slug": "project:101-milky-way--klaus-schulze",
       "type": "project",
-      "name": "Irrlicht"
+      "name": "101, Milky Way",
+      "artist": "Klaus Schulze",
+      "mbid": "753fd023-579d-4b1a-a694-de17fa9962fc",
+      "year": "2024",
+      "releaseType": "album"
     },
     {
-      "slug": "project:timewind",
+      "slug": "project:deus-arrakis--klaus-schulze",
       "type": "project",
-      "name": "Timewind"
+      "name": "Deus Arrakis",
+      "artist": "Klaus Schulze",
+      "mbid": "c47d51f4-651c-4158-937f-04314af38a61",
+      "year": "2022",
+      "releaseType": "album"
     },
     {
-      "slug": "project:moondawn--klaus-schulze",
+      "slug": "project:next-of-kin-music-from-the-motion-picture-soundtrack--klaus-schulze",
       "type": "project",
-      "name": "Moondawn"
+      "name": "Next of Kin: Music From the Motion Picture Soundtrack",
+      "artist": "Klaus Schulze",
+      "mbid": "26a200dc-22d3-4de6-a70f-a805c72de8cd",
+      "year": "2019",
+      "releaseType": "album"
     },
     {
-      "slug": "project:x",
+      "slug": "project:silhouettes--klaus-schulze",
       "type": "project",
-      "name": "X"
+      "name": "Silhouettes",
+      "artist": "Klaus Schulze",
+      "mbid": "02c6cc6f-7799-4813-b219-662ea51d43a6",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shadowlands--klaus-schulze",
+      "type": "project",
+      "name": "Shadowlands",
+      "artist": "Klaus Schulze",
+      "mbid": "3f3b7c93-b87d-4c99-94d6-b2c27234f47d",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-schulze-schickert-session--klaus-schulze",
+      "type": "project",
+      "name": "The Schulze‐Schickert Session",
+      "artist": "Klaus Schulze",
+      "mbid": "550d288e-3d4b-4ce1-8e07-e2d7ee8ce7b7",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:farscape--klaus-schulze",
+      "type": "project",
+      "name": "Farscape",
+      "artist": "Klaus Schulze",
+      "mbid": "9d22e9f8-2444-345f-8e8a-24e6ac747c67",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kontinuum--klaus-schulze",
+      "type": "project",
+      "name": "Kontinuum",
+      "artist": "Klaus Schulze",
+      "mbid": "eb13b542-426a-3db6-8fa8-c7152f871079",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:moonlake--klaus-schulze",
+      "type": "project",
+      "name": "Moonlake",
+      "artist": "Klaus Schulze",
+      "mbid": "9b67263c-b000-3cde-9cc2-69c6c3beaf35",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:contemporary-works-ii--klaus-schulze",
+      "type": "project",
+      "name": "Contemporary Works II",
+      "artist": "Klaus Schulze",
+      "mbid": "025e07a1-b5c1-3d7e-99bc-0789b5bc6694",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:contemporary-works-i--klaus-schulze",
+      "type": "project",
+      "name": "Contemporary Works I",
+      "artist": "Klaus Schulze",
+      "mbid": "1612521e-956b-340d-a58c-ad5c6093437d",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:are-you-sequenced--klaus-schulze",
+      "type": "project",
+      "name": "Are You Sequenced?",
+      "artist": "Klaus Schulze",
+      "mbid": "96cf9ee2-1085-3e76-8ec2-2bcbd76f9393",
+      "year": "1996",
+      "releaseType": "album"
     },
     {
       "slug": "project:in-blue--klaus-schulze",
       "type": "project",
       "name": "In Blue",
-      "artist": "Klaus Schulze"
+      "artist": "Klaus Schulze",
+      "mbid": "7ad2eb62-7980-38be-a8c5-d07e7f014f51",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:klaus-schulze-goes-classic--klaus-schulze",
+      "type": "project",
+      "name": "Klaus Schulze Goes Classic",
+      "artist": "Klaus Schulze",
+      "mbid": "26814864-0aa0-3b17-a511-1d2244ea9f41",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:totentag--klaus-schulze",
+      "type": "project",
+      "name": "Totentag",
+      "artist": "Klaus Schulze",
+      "mbid": "3ba8a00a-1d91-3e66-b5bf-534efe63d5f5",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beyond-recall--klaus-schulze",
+      "type": "project",
+      "name": "Beyond Recall",
+      "artist": "Klaus Schulze",
+      "mbid": "2f53e263-fd8f-3c01-9b51-19e35b6f7916",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:miditerranean-pads--klaus-schulze",
+      "type": "project",
+      "name": "Miditerranean Pads",
+      "artist": "Klaus Schulze",
+      "mbid": "fb0d8448-8337-3943-b436-97a17f7ace13",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:en-trance--klaus-schulze",
+      "type": "project",
+      "name": "En=Trance",
+      "artist": "Klaus Schulze",
+      "mbid": "10df53fd-e881-3ee2-9e44-26373c504d44",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:babel--klaus-schulze",
+      "type": "project",
+      "name": "Babel",
+      "artist": "Klaus Schulze",
+      "mbid": "68f68c72-7714-3a5c-b463-e8106b39ab5c",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dreams--klaus-schulze",
+      "type": "project",
+      "name": "Dreams",
+      "artist": "Klaus Schulze",
+      "mbid": "11619500-88be-3875-8102-c7f9d4820c6e",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:inter-face--klaus-schulze",
+      "type": "project",
+      "name": "Inter*Face",
+      "artist": "Klaus Schulze",
+      "mbid": "9fa08de6-4623-3068-95e8-d650aab1850b",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:angst--klaus-schulze",
+      "type": "project",
+      "name": "Angst",
+      "artist": "Klaus Schulze",
+      "mbid": "54301d00-314c-3995-acda-494e42d64d9d",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:audentity--klaus-schulze",
+      "type": "project",
+      "name": "Audentity",
+      "artist": "Klaus Schulze",
+      "mbid": "1873ad76-b43a-33da-a88f-9a6bcc4c53c8",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trancefer--klaus-schulze",
+      "type": "project",
+      "name": "Trancefer",
+      "artist": "Klaus Schulze",
+      "mbid": "4c3612e9-6c29-3f92-89d5-890e55442e35",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dig-it--klaus-schulze",
+      "type": "project",
+      "name": "Dig It",
+      "artist": "Klaus Schulze",
+      "mbid": "6ac14fe3-1e5c-3c82-9fb6-3c5ddd6df869",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dune--klaus-schulze",
+      "type": "project",
+      "name": "Dune",
+      "artist": "Klaus Schulze",
+      "mbid": "e4fa7b83-d14a-3093-a17f-ea46ad308cd8",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:x",
+      "type": "project",
+      "name": "X",
+      "mbid": "07e21952-9bdf-38d3-a400-5759cf1f7582",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:body-love--klaus-schulze",
+      "type": "project",
+      "name": "Body Love",
+      "artist": "Klaus Schulze",
+      "mbid": "fb8fc15b-9b80-36ee-9e04-415a3fd990a5",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mirage--klaus-schulze",
+      "type": "project",
+      "name": "Mirage",
+      "artist": "Klaus Schulze",
+      "mbid": "460c7232-38c7-3404-abf3-8e7adba91df2",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:moondawn--klaus-schulze",
+      "type": "project",
+      "name": "Moondawn",
+      "mbid": "59691950-e09d-358d-baca-625c284ff1c1",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:picture-music--klaus-schulze",
+      "type": "project",
+      "name": "Picture Music",
+      "artist": "Klaus Schulze",
+      "mbid": "68c45520-a7dd-31a8-b02e-fe355fce491d",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:timewind",
+      "type": "project",
+      "name": "Timewind",
+      "mbid": "067213bb-4cfd-3376-8087-f9b4e389d154",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blackdance--klaus-schulze",
+      "type": "project",
+      "name": "Blackdance",
+      "artist": "Klaus Schulze",
+      "mbid": "4d51625e-a291-3d19-9c11-56c9aefa696f",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cyborg--klaus-schulze",
+      "type": "project",
+      "name": "Cyborg",
+      "artist": "Klaus Schulze",
+      "mbid": "d768c878-9428-36d7-9dcf-1944cd02411c",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:irrlicht",
+      "type": "project",
+      "name": "Irrlicht",
+      "mbid": "665dc0f3-0ac4-3a08-8e51-2d3b734ae45b",
+      "year": "1972",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

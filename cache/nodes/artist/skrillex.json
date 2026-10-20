@@ -57,7 +57,269 @@
       "name": "Atlantic Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:duro--skrillex",
+      "type": "project",
+      "name": "Duro",
+      "artist": "Skrillex",
+      "mbid": "d9cf92f9-96ef-4ee1-8c5f-cbedb94e590e",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kora--skrillex",
+      "type": "project",
+      "name": "Kora",
+      "artist": "Skrillex",
+      "mbid": "40fb5f9a-4f80-499a-a660-e71e982fd6ae",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:soma--skrillex",
+      "type": "project",
+      "name": "SOMA",
+      "artist": "Skrillex",
+      "mbid": "88c5c028-0a80-401f-9340-562c70992140",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yo-yan--skrillex",
+      "type": "project",
+      "name": "Yo Yan",
+      "artist": "Skrillex",
+      "mbid": "96a2b15d-b48b-4cd5-bc76-5de685fbb26c",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:animals-beat--skrillex",
+      "type": "project",
+      "name": "ANIMALS BEAT",
+      "artist": "Skrillex",
+      "mbid": "fd16e218-a17d-4e1a-b31e-1a951938e177",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:azasu--skrillex",
+      "type": "project",
+      "name": "AZASU",
+      "artist": "Skrillex",
+      "mbid": "fc2edbdd-5b35-4c44-8965-52e54ba5892b",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:baby-royal--skrillex",
+      "type": "project",
+      "name": "BABY ROYAL",
+      "artist": "Skrillex",
+      "mbid": "7e0c343d-bff5-4391-83d1-04cb729377ee",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:biggy-bap--skrillex",
+      "type": "project",
+      "name": "BIGGY BAP",
+      "artist": "Skrillex",
+      "mbid": "5caf61a8-14f7-41c4-a63e-ffb65b4ff19c",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:booster--skrillex",
+      "type": "project",
+      "name": "BOOSTER",
+      "artist": "Skrillex",
+      "mbid": "96e678e9-550c-4f7c-bd9a-c29c49e45d84",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dnb-ting--skrillex",
+      "type": "project",
+      "name": "DNB TING",
+      "artist": "Skrillex",
+      "mbid": "07f0251c-68cc-4826-920b-4e0bd0a05c9b",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:druids--skrillex",
+      "type": "project",
+      "name": "DRUIDS",
+      "artist": "Skrillex",
+      "mbid": "13fd6df4-2a30-4225-94c9-d7a82b7cd56b",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fuze--skrillex",
+      "type": "project",
+      "name": "Fuze",
+      "artist": "Skrillex",
+      "mbid": "8da769ef-7f28-4b72-b03d-8ac3784a658c",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gulab-xx--skrillex",
+      "type": "project",
+      "name": "GULAB XX",
+      "artist": "Skrillex",
+      "mbid": "1974d6fb-a200-4bb4-80fb-013793d4dc7f",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:look-at-you--skrillex",
+      "type": "project",
+      "name": "LOOK AT YOU",
+      "artist": "Skrillex",
+      "mbid": "a81dd40a-1a4b-4c5a-9ca6-b651c7681b2e",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:look-over-at-that--skrillex",
+      "type": "project",
+      "name": "Look Over at That",
+      "artist": "Skrillex",
+      "mbid": "1a55ac88-ed70-45e6-9ad2-3bfa30fe1ff8",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:recovery--skrillex",
+      "type": "project",
+      "name": "RECOVERY",
+      "artist": "Skrillex",
+      "mbid": "b5017683-0d51-420d-aa55-ea5119d17411",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spitfire--skrillex",
+      "type": "project",
+      "name": "SPITFIRE",
+      "artist": "Skrillex",
+      "mbid": "d35cdc45-d34e-42f0-91cb-52ebf1a402c6",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ultra-intro--skrillex",
+      "type": "project",
+      "name": "ULTRA INTRO",
+      "artist": "Skrillex",
+      "mbid": "a975ca90-3898-446f-b336-3430e957deb9",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hit-me-where-it-hurts-x--skrillex",
+      "type": "project",
+      "name": "hit me where it hurts x",
+      "artist": "Skrillex",
+      "mbid": "f4598140-c3ed-4614-900a-47770c414ac6",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:don-t-get-too-close--skrillex",
+      "type": "project",
+      "name": "Don’t Get Too Close",
+      "artist": "Skrillex",
+      "mbid": "25e1142d-e149-4af5-bfcb-cee5b984bd86",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:quest-for-fire--skrillex",
+      "type": "project",
+      "name": "Quest for Fire",
+      "artist": "Skrillex",
+      "mbid": "fa601528-2970-436a-8b57-6f6e05205964",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:recess--skrillex",
+      "type": "project",
+      "name": "Recess",
+      "artist": "Skrillex",
+      "mbid": "c2142471-c85b-4433-849c-839aafc8e3a4",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:leaving-ep--skrillex",
+      "type": "project",
+      "name": "Leaving EP",
+      "artist": "Skrillex",
+      "mbid": "ed694dd0-d861-4bad-98d6-ecb124fd2ed3",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:make-it-bun-dem--skrillex",
+      "type": "project",
+      "name": "Make It Bun Dem",
+      "artist": "Skrillex",
+      "mbid": "090cc78c-ce6c-4566-997b-5f0a5b5312ee",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bangarang--skrillex",
+      "type": "project",
+      "name": "Bangarang",
+      "artist": "Skrillex",
+      "mbid": "ae4518bb-7bbd-4ef5-b44c-fcf2d3f24694",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:more-monsters-and-sprites--skrillex",
+      "type": "project",
+      "name": "More Monsters and Sprites",
+      "artist": "Skrillex",
+      "mbid": "0656a733-eeb4-4a17-afb7-e41634bb82ea",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:my-name-is-skrillex--skrillex",
+      "type": "project",
+      "name": "My Name Is Skrillex",
+      "artist": "Skrillex",
+      "mbid": "71c9f3bb-c8eb-4f24-b760-f1b3fee1fac0",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:scary-monsters-and-nice-sprites--skrillex",
+      "type": "project",
+      "name": "Scary Monsters and Nice Sprites",
+      "artist": "Skrillex",
+      "mbid": "00fadf59-fe44-4585-8361-7e420673fbed",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:weekends--skrillex",
+      "type": "project",
+      "name": "Weekends!!!",
+      "artist": "Skrillex",
+      "mbid": "8f3c366f-6071-4011-a373-0850cc67993b",
+      "year": "2010",
+      "releaseType": "single"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:scary-monsters-and-nice-sprites",

@@ -105,18 +105,18 @@
       "releaseType": "ep"
     },
     {
-      "slug": "project:year-of-the-snitch",
-      "type": "project",
-      "name": "Year of the Snitch",
-      "mbid": "80172a28-bd94-4c89-b0a4-343fb0f9f6c2",
-      "year": "2018",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:fashion-leaks-the-lost-tapes",
       "type": "project",
       "name": "Fashion Leaks - The Lost Tapes",
       "mbid": "beb4582f-43c5-474a-ba1a-1c5a016d1d0f",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:year-of-the-snitch",
+      "type": "project",
+      "name": "Year of the Snitch",
+      "mbid": "80172a28-bd94-4c89-b0a4-343fb0f9f6c2",
       "year": "2018",
       "releaseType": "album"
     },
@@ -126,6 +126,15 @@
       "name": "Bottomless Pit",
       "mbid": "dd2012b3-3a21-4150-aff1-fcff86b409c9",
       "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fashion-week--death-grips",
+      "type": "project",
+      "name": "Fashion Week",
+      "artist": "Death Grips",
+      "mbid": "a8ea0702-c21a-4cc7-b1cb-83da70007964",
+      "year": "2015",
       "releaseType": "album"
     },
     {
@@ -175,6 +184,24 @@
       "mbid": "d5d08921-9397-49f6-a881-03788bb8daba",
       "year": "2011",
       "releaseType": "ep"
+    },
+    {
+      "slug": "project:exmilitary--death-grips",
+      "type": "project",
+      "name": "Exmilitary",
+      "artist": "Death Grips",
+      "mbid": "f1f6c7e2-7848-4554-b36c-2190e1d6bfb0",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:live-from-death-valley--death-grips",
+      "type": "project",
+      "name": "Live From Death Valley",
+      "artist": "Death Grips",
+      "mbid": "50f4719b-636b-437a-89bb-22deead218ed",
+      "year": "2011",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

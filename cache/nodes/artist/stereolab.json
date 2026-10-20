@@ -74,29 +74,188 @@
   ],
   "discography": [
     {
-      "slug": "project:peng",
+      "slug": "project:aerial-troubles--stereolab",
       "type": "project",
-      "name": "Peng!"
+      "name": "Aerial Troubles",
+      "artist": "Stereolab",
+      "mbid": "38c64333-3ede-4735-8118-5d97dcaf60a0",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:transient-random-noise-bursts-with-announcements--stereolab",
+      "slug": "project:cloud-land-flashes-in-the-afternoon--stereolab",
       "type": "project",
-      "name": "Transient Random-Noise Bursts with Announcements"
+      "name": "Cloud Land / Flashes in the Afternoon",
+      "artist": "Stereolab",
+      "mbid": "ed110abe-3ea8-47c2-bf5a-23e99cb040e7",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:mars-audiac-quintet",
+      "slug": "project:fed-up-with-your-job-constant-and-uniform-movement-unknown--stereolab",
       "type": "project",
-      "name": "Mars Audiac Quintet"
+      "name": "Fed Up With Your Job / Constant And Uniform Movement Unknown",
+      "artist": "Stereolab",
+      "mbid": "c3193bb9-dd8a-4b72-85f9-4ae5427f594a",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:emperor-tomato-ketchup",
+      "slug": "project:instant-holograms-on-metal-film--stereolab",
       "type": "project",
-      "name": "Emperor Tomato Ketchup"
+      "name": "Instant Holograms on Metal Film",
+      "artist": "Stereolab",
+      "mbid": "446fc616-c4db-46ce-8d4c-e4efc019b3f8",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:melodie-is-a-wound--stereolab",
+      "type": "project",
+      "name": "Melodie Is a Wound",
+      "artist": "Stereolab",
+      "mbid": "09ea7d8b-4884-466a-8d50-0d9d30ecfe35",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:transmuted-matter--stereolab",
+      "type": "project",
+      "name": "Transmuted Matter",
+      "artist": "Stereolab",
+      "mbid": "29efd977-2c65-48e6-9dc9-d6b406857b28",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:not-music--stereolab",
+      "type": "project",
+      "name": "Not Music",
+      "artist": "Stereolab",
+      "mbid": "cb8f2e1a-9351-4057-8d44-26296b47f100",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chemical-chords--stereolab",
+      "type": "project",
+      "name": "Chemical Chords",
+      "artist": "Stereolab",
+      "mbid": "cd0e2223-71ef-3871-a5e9-3b46099f2545",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:eaten-horizons-or-the-electrocution-of-rock--stereolab",
+      "type": "project",
+      "name": "Eaten Horizons or the Electrocution of Rock",
+      "artist": "Stereolab",
+      "mbid": "68f17a84-c358-4898-a46b-d2c640f74c87",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:margerine-eclipse--stereolab",
+      "type": "project",
+      "name": "Margerine Eclipse",
+      "artist": "Stereolab",
+      "mbid": "d0d3fd41-d089-3862-9e29-9bfad57ea6cf",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sound-dust--stereolab",
+      "type": "project",
+      "name": "Sound‐Dust",
+      "artist": "Stereolab",
+      "mbid": "d2131de7-6bbb-3c55-ae93-f635c0933e73",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cobra-and-phases-group-play-voltage-in-the-milky-night--stereolab",
+      "type": "project",
+      "name": "Cobra and Phases Group Play Voltage in the Milky Night",
+      "artist": "Stereolab",
+      "mbid": "48834f45-dfb1-3e67-b456-1b233e3380c4",
+      "year": "1999",
+      "releaseType": "album"
     },
     {
       "slug": "project:dots-and-loops--stereolab",
       "type": "project",
-      "name": "Dots and Loops"
+      "name": "Dots and Loops",
+      "mbid": "dcc1e5d0-c35f-3e4a-b0d2-b53b23eb906f",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cybele-s-reverie--stereolab",
+      "type": "project",
+      "name": "Cybele’s Reverie",
+      "artist": "Stereolab",
+      "mbid": "73c5c3e2-5ddc-3a21-83c2-e47ac4f59461",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:emperor-tomato-ketchup",
+      "type": "project",
+      "name": "Emperor Tomato Ketchup",
+      "mbid": "1c51069d-4c59-4ddf-bd12-dacefada37c3",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mars-audiac-quintet",
+      "type": "project",
+      "name": "Mars Audiac Quintet",
+      "mbid": "352b5875-2084-3b25-8663-6741efee6b34",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wow-and-flutter--stereolab",
+      "type": "project",
+      "name": "Wow and Flutter",
+      "artist": "Stereolab",
+      "mbid": "3ae1848f-21ff-3619-881c-677956f377db",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:jenny-ondioline--stereolab",
+      "type": "project",
+      "name": "Jenny Ondioline",
+      "artist": "Stereolab",
+      "mbid": "c1d727a6-0608-34c4-86cf-3ea3fe0479ad",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-groop-played-space-age-batchelor-pad-music--stereolab",
+      "type": "project",
+      "name": "The Groop Played “Space Age Batchelor Pad Music”",
+      "artist": "Stereolab",
+      "mbid": "9dd4e94a-5ebf-3e9a-9b80-9f84e4b4ec1c",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:transient-random-noise-bursts-with-announcements--stereolab",
+      "type": "project",
+      "name": "Transient Random-Noise Bursts with Announcements",
+      "mbid": "9cb80efb-6b1a-3d7b-aff8-86f051737d91",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:peng",
+      "type": "project",
+      "name": "Peng!",
+      "mbid": "8f372b65-a289-33ee-9a2e-bed903e83a46",
+      "year": "1992",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

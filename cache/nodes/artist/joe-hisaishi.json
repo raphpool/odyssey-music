@@ -64,7 +64,116 @@
       "name": "Polydor Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:ark--joe-hisaishi",
+      "type": "project",
+      "name": "Ark",
+      "artist": "Joe Hisaishi",
+      "mbid": "2ac80cb5-eecf-4361-9412-52db37b09977",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ask-me-why-ii--joe-hisaishi",
+      "type": "project",
+      "name": "Ask Me Why (II)",
+      "artist": "Joe Hisaishi",
+      "mbid": "1d079e3d-8158-4994-935b-e64838317ab4",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-boy-and-the-heron-symphonic-suite-for-piano-and-orchestra--joe-hisaishi",
+      "type": "project",
+      "name": "The Boy and the Heron: Symphonic Suite for Piano and Orchestra",
+      "artist": "Joe Hisaishi",
+      "mbid": "a861d747-3c9b-4786-a114-e4f45850c220",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-big-bold-beautiful-journey-original-motion-picture-soundtrack--joe-hisaishi",
+      "type": "project",
+      "name": "A Big Bold Beautiful Journey: Original Motion Picture Soundtrack",
+      "artist": "Joe Hisaishi",
+      "mbid": "bec518e1-f7ff-4fc8-831d-8203e3338ace",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-end-of-the-world-version-for-soprano-iii-d-e-a-d--joe-hisaishi",
+      "type": "project",
+      "name": "The End of the World (Version for Soprano): Ⅲ. D.e.a.d",
+      "artist": "Joe Hisaishi",
+      "mbid": "c0a44acb-63b4-459e-a694-51252e8cd1f2",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ii--joe-hisaishi",
+      "type": "project",
+      "name": "二ノ国II レヴァナントキングダム オリジナルサウンドトラック",
+      "artist": "Joe Hisaishi",
+      "mbid": "c350bba6-0791-4a19-ac94-47646ed39e72",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:welcome-to-dongmakgol-original-sound-track--joe-hisaishi",
+      "type": "project",
+      "name": "Welcome To Dongmakgol (Original Sound Track)",
+      "artist": "Joe Hisaishi",
+      "mbid": "e26730a3-edca-465c-8520-b25117b0aa8c",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hana-bi--joe-hisaishi",
+      "type": "project",
+      "name": "HANA‐BI",
+      "artist": "Joe Hisaishi",
+      "mbid": "921d5dcb-36e2-3bb0-9036-be6a64abfe94",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sonatine--joe-hisaishi",
+      "type": "project",
+      "name": "Sonatine",
+      "artist": "Joe Hisaishi",
+      "mbid": "388b3cf7-0b32-30f4-a298-325fda6e649f",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-scene-at-the-sea--joe-hisaishi",
+      "type": "project",
+      "name": "A Scene at the Sea",
+      "artist": "Joe Hisaishi",
+      "mbid": "dc1e64df-ae52-32b7-b3f2-de665bd913b1",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:curved-music--joe-hisaishi",
+      "type": "project",
+      "name": "Curved Music",
+      "artist": "Joe Hisaishi",
+      "mbid": "ed34706b-be69-3fd8-bc85-f07a9ab99e3a",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bet-city--joe-hisaishi",
+      "type": "project",
+      "name": "α-Bet-City",
+      "artist": "Joe Hisaishi",
+      "mbid": "5d47d2a9-e52d-43c1-a43f-7d7e8ac8c989",
+      "year": "1985",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:one-summer-s-day",

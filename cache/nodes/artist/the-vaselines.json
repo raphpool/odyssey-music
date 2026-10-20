@@ -65,29 +65,53 @@
   ],
   "discography": [
     {
-      "slug": "project:dum-dum",
+      "slug": "project:hide-tide-low-tide--the-vaselines",
       "type": "project",
-      "name": "Dum-Dum"
-    },
-    {
-      "slug": "project:sex-with-an-x",
-      "type": "project",
-      "name": "Sex with an X"
+      "name": "Hide Tide Low Tide",
+      "artist": "The Vaselines",
+      "mbid": "cab7402e-3386-46ef-a599-0273c1d6ddcd",
+      "year": "2014",
+      "releaseType": "single"
     },
     {
       "slug": "project:v-for-vaselines",
       "type": "project",
-      "name": "V for Vaselines"
+      "name": "V for Vaselines",
+      "mbid": "2a7a5895-b776-4a17-ba25-6c1daf81af6c",
+      "year": "2014",
+      "releaseType": "album"
     },
     {
-      "slug": "project:son-of-a-gun-ep",
+      "slug": "project:sex-with-an-x",
       "type": "project",
-      "name": "Son of a Gun EP"
+      "name": "Sex with an X",
+      "mbid": "fc24cde1-1868-4898-bca7-7e5c9d2709b1",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dum-dum",
+      "type": "project",
+      "name": "Dum-Dum",
+      "mbid": "7af7764c-38d2-39b2-8f25-45ade046e0f3",
+      "year": "1989",
+      "releaseType": "album"
     },
     {
       "slug": "project:dying-for-it-ep",
       "type": "project",
-      "name": "Dying for It EP"
+      "name": "Dying for It EP",
+      "mbid": "8c6cecaa-4b0f-3ca8-8bb0-f360fc9a2800",
+      "year": "1988",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:son-of-a-gun-ep",
+      "type": "project",
+      "name": "Son of a Gun EP",
+      "mbid": "24d7f27b-0cd3-37d7-8913-ed7bde140e43",
+      "year": "1987",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

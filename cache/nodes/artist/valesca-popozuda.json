@@ -45,14 +45,6 @@
   ],
   "discography": [
     {
-      "slug": "project:segredinho",
-      "type": "project",
-      "name": "Segredinho",
-      "mbid": "4b2c622e-0d1a-4562-97ba-14901eda9dba",
-      "year": "2025",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:bota-esse-caralho-aqui",
       "type": "project",
       "name": "Bota Esse Caralho Aqui",
@@ -69,12 +61,21 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:de-volta-pra-gaiola-amor-de-verdade-e-amor",
+      "slug": "project:segredinho",
       "type": "project",
-      "name": "De Volta Pra Gaiola: Amor de Verdade e Amor",
-      "mbid": "b38186b1-02ea-4f29-83a3-913514b20d10",
+      "name": "Segredinho",
+      "mbid": "4b2c622e-0d1a-4562-97ba-14901eda9dba",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:agora-virei-puta--valesca-popozuda",
+      "type": "project",
+      "name": "Agora virei puta",
+      "artist": "Valesca Popozuda",
+      "mbid": "1d2bacc2-420b-4d17-ba02-dfba8747d18a",
       "year": "2024",
-      "releaseType": "album"
+      "releaseType": "ep"
     },
     {
       "slug": "project:de-volta-pra-gaiola-amor-de-verdade",
@@ -85,11 +86,27 @@
       "releaseType": "ep"
     },
     {
+      "slug": "project:de-volta-pra-gaiola-amor-de-verdade-e-amor",
+      "type": "project",
+      "name": "De Volta Pra Gaiola: Amor de Verdade e Amor",
+      "mbid": "b38186b1-02ea-4f29-83a3-913514b20d10",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:xerecao-no-chao",
       "type": "project",
       "name": "Xerecão no Chão",
       "mbid": "c475aa64-c610-40f8-b112-5dffd0698e58",
       "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:encapa-o-boneco",
+      "type": "project",
+      "name": "Encapa o Boneco",
+      "mbid": "5ca46a50-3f2c-48b6-9660-9cb3ce593551",
+      "year": "2023",
       "releaseType": "single"
     },
     {
@@ -105,14 +122,6 @@
       "type": "project",
       "name": "Mó Negoção",
       "mbid": "8484151b-e136-488e-a783-b5be483fad71",
-      "year": "2023",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:encapa-o-boneco",
-      "type": "project",
-      "name": "Encapa o Boneco",
-      "mbid": "5ca46a50-3f2c-48b6-9660-9cb3ce593551",
       "year": "2023",
       "releaseType": "single"
     },
@@ -133,18 +142,18 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:entrega-tudo",
+      "slug": "project:calma-calma",
       "type": "project",
-      "name": "Entrega Tudo",
-      "mbid": "57a78337-560a-4b1f-bb04-8a5d20ee8b03",
+      "name": "Calma Calma",
+      "mbid": "c127473b-f85f-457f-ac91-56078980dc8b",
       "year": "2022",
       "releaseType": "single"
     },
     {
-      "slug": "project:quem-manda-deu-baile",
+      "slug": "project:entrega-tudo",
       "type": "project",
-      "name": "Quem Manda - Deu Baile",
-      "mbid": "453450a4-74cb-40f7-8ecb-1fd6e5326f14",
+      "name": "Entrega Tudo",
+      "mbid": "57a78337-560a-4b1f-bb04-8a5d20ee8b03",
       "year": "2022",
       "releaseType": "single"
     },
@@ -165,10 +174,10 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:calma-calma",
+      "slug": "project:quem-manda-deu-baile",
       "type": "project",
-      "name": "Calma Calma",
-      "mbid": "c127473b-f85f-457f-ac91-56078980dc8b",
+      "name": "Quem Manda - Deu Baile",
+      "mbid": "453450a4-74cb-40f7-8ecb-1fd6e5326f14",
       "year": "2022",
       "releaseType": "single"
     },
@@ -197,12 +206,12 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:furduncinho",
+      "slug": "project:de-volta-pra-gaiola",
       "type": "project",
-      "name": "Furduncinho",
-      "mbid": "93490450-388b-455e-9468-5e11ac9e227b",
+      "name": "De volta pra Gaiola",
+      "mbid": "1b44a5a2-64e2-456b-94b3-e95cf63f1352",
       "year": "2019",
-      "releaseType": "single"
+      "releaseType": "ep"
     },
     {
       "slug": "project:fada-madrinha",
@@ -213,12 +222,12 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:de-volta-pra-gaiola",
+      "slug": "project:furduncinho",
       "type": "project",
-      "name": "De volta pra Gaiola",
-      "mbid": "1b44a5a2-64e2-456b-94b3-e95cf63f1352",
+      "name": "Furduncinho",
+      "mbid": "93490450-388b-455e-9468-5e11ac9e227b",
       "year": "2019",
-      "releaseType": "ep"
+      "releaseType": "single"
     },
     {
       "slug": "project:meu-ex",
@@ -229,34 +238,10 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:meu-ex",
-      "type": "project",
-      "name": "Meu Ex",
-      "mbid": "33c95109-8841-4346-8ee8-c85a598573d8",
-      "year": "2018",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:voltei",
-      "type": "project",
-      "name": "Voltei",
-      "mbid": "7cb5ebc8-fefa-4f75-a803-72ae00d14e5c",
-      "year": "2018",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:de-levin",
       "type": "project",
       "name": "De levin",
       "mbid": "365760a3-b124-4d93-8533-3901f4ba4109",
-      "year": "2018",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:quero-te-dar",
-      "type": "project",
-      "name": "Quero Te Dar",
-      "mbid": "d0b26255-465a-4f53-90c4-748d428e4e81",
       "year": "2018",
       "releaseType": "single"
     },
@@ -269,11 +254,27 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:to-solteira-de-novo",
+      "slug": "project:meu-ex",
       "type": "project",
-      "name": "Tô Solteira de Novo",
-      "mbid": "0c2013fc-9699-4b59-9af5-19632c2c24e8",
-      "year": "2017",
+      "name": "Meu Ex",
+      "mbid": "33c95109-8841-4346-8ee8-c85a598573d8",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:quero-te-dar",
+      "type": "project",
+      "name": "Quero Te Dar",
+      "mbid": "d0b26255-465a-4f53-90c4-748d428e4e81",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:voltei",
+      "type": "project",
+      "name": "Voltei",
+      "mbid": "7cb5ebc8-fefa-4f75-a803-72ae00d14e5c",
+      "year": "2018",
       "releaseType": "single"
     },
     {
@@ -285,11 +286,11 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:viado",
+      "slug": "project:to-solteira-de-novo",
       "type": "project",
-      "name": "Viado",
-      "mbid": "f4f625fa-4031-424a-98df-b5cc223b79bb",
-      "year": "2016",
+      "name": "Tô Solteira de Novo",
+      "mbid": "0c2013fc-9699-4b59-9af5-19632c2c24e8",
+      "year": "2017",
       "releaseType": "single"
     },
     {
@@ -297,6 +298,14 @@
       "type": "project",
       "name": "Boy magia",
       "mbid": "14e0d87b-c930-4193-9995-6ac6bb34d618",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:viado",
+      "type": "project",
+      "name": "Viado",
+      "mbid": "f4f625fa-4031-424a-98df-b5cc223b79bb",
       "year": "2016",
       "releaseType": "single"
     },
@@ -309,18 +318,18 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:valesca-popozuda",
-      "type": "project",
-      "name": "Valesca Popozuda",
-      "mbid": "a84888c6-3273-4c24-8bde-ae0b5aec9631",
-      "year": "2014",
-      "releaseType": "ep"
-    },
-    {
       "slug": "project:eu-sou-a-diva-que-voce-quer-copiar",
       "type": "project",
       "name": "Eu sou a diva que você quer copiar",
       "mbid": "343dc535-100b-4706-8214-c94d12919ead",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:me-ama",
+      "type": "project",
+      "name": "Me ama (Mama)",
+      "mbid": "5d5a5e19-18cc-4593-876c-d6907e8aebd2",
       "year": "2014",
       "releaseType": "single"
     },
@@ -333,12 +342,12 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:me-ama",
+      "slug": "project:valesca-popozuda",
       "type": "project",
-      "name": "Me ama (Mama)",
-      "mbid": "5d5a5e19-18cc-4593-876c-d6907e8aebd2",
+      "name": "Valesca Popozuda",
+      "mbid": "a84888c6-3273-4c24-8bde-ae0b5aec9631",
       "year": "2014",
-      "releaseType": "single"
+      "releaseType": "ep"
     },
     {
       "slug": "project:valesca-popozuda",

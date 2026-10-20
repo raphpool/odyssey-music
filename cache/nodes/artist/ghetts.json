@@ -38,14 +38,254 @@
   "labels": [],
   "discography": [
     {
-      "slug": "project:2000-and-life",
+      "slug": "project:double-standards--ghetts",
       "type": "project",
-      "name": "2000 & Life"
+      "name": "Double Standards",
+      "artist": "Ghetts",
+      "mbid": "f0309605-9d00-497c-8c26-beda77526a12",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:forbidden-frequencies--ghetts",
+      "type": "project",
+      "name": "Forbidden Frequencies",
+      "artist": "Ghetts",
+      "mbid": "18e9378d-fd15-4ed9-b690-67da3720f1fe",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:on-purpose-with-purpose--ghetts",
+      "type": "project",
+      "name": "On Purpose, With Purpose",
+      "artist": "Ghetts",
+      "mbid": "e8c05939-a090-403a-9e35-f04731820e19",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tumbi--ghetts",
+      "type": "project",
+      "name": "Tumbi",
+      "artist": "Ghetts",
+      "mbid": "a56dd5f1-9eda-4eb6-9221-8a1c657bd23c",
+      "year": "2024",
+      "releaseType": "single"
     },
     {
       "slug": "project:conflict-of-interest",
       "type": "project",
-      "name": "Conflict Of Interest"
+      "name": "Conflict Of Interest",
+      "mbid": "aa0b4503-8225-40cc-b638-65656ceed7f6",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:skengman--ghetts",
+      "type": "project",
+      "name": "Skengman",
+      "artist": "Ghetts",
+      "mbid": "02222505-5038-4028-b5b2-b588cd8d2253",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sonya--ghetts",
+      "type": "project",
+      "name": "Sonya",
+      "artist": "Ghetts",
+      "mbid": "9d572ca4-5ab5-463c-a8fe-924725e9ef47",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ic3--ghetts",
+      "type": "project",
+      "name": "IC3",
+      "artist": "Ghetts",
+      "mbid": "5c2796cb-3400-4210-81d5-ca31d43ac8b4",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:proud-family--ghetts",
+      "type": "project",
+      "name": "Proud Family",
+      "artist": "Ghetts",
+      "mbid": "75231ed5-ada5-49b2-bfc1-49529cf1db5c",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ghetto-gospel-the-new-testament--ghetts",
+      "type": "project",
+      "name": "Ghetto Gospel: The New Testament",
+      "artist": "Ghetts",
+      "mbid": "fc35f1a0-cbd5-411c-b650-cfaf03347a29",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:know-my-ting--ghetts",
+      "type": "project",
+      "name": "Know My Ting",
+      "artist": "Ghetts",
+      "mbid": "ca54b309-7279-4c73-839d-0e6bdb3d308b",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:momentum-2-the-return-of-ghetto--ghetts",
+      "type": "project",
+      "name": "Momentum 2 (The Return of Ghetto)",
+      "artist": "Ghetts",
+      "mbid": "994239a2-6768-4d39-ab5a-23372f7c2fac",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:peng-tings--ghetts",
+      "type": "project",
+      "name": "Peng Tings",
+      "artist": "Ghetts",
+      "mbid": "f2bf80e5-6f52-4091-8c95-e1db86aa3298",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:653--ghetts",
+      "type": "project",
+      "name": "653",
+      "artist": "Ghetts",
+      "mbid": "1ba15965-6d7b-4d24-879c-ff59663dae08",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:fire-burning--ghetts",
+      "type": "project",
+      "name": "Fire Burning",
+      "artist": "Ghetts",
+      "mbid": "0d77de56-93b8-42b4-852c-a4c20ce864fd",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:rebel-with-a-cause--ghetts",
+      "type": "project",
+      "name": "Rebel With a Cause",
+      "artist": "Ghetts",
+      "mbid": "8282f78d-42f4-4d8e-bd48-d31b31e82763",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:party-animal--ghetts",
+      "type": "project",
+      "name": "Party Animal",
+      "artist": "Ghetts",
+      "mbid": "3b06bccf-9277-4333-bf3a-9dd3b0829033",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-cypher--ghetts",
+      "type": "project",
+      "name": "The Cypher",
+      "artist": "Ghetts",
+      "mbid": "131ad0ec-d79f-46b8-9e0c-7332a1016fe0",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:victim--ghetts",
+      "type": "project",
+      "name": "Victim",
+      "artist": "Ghetts",
+      "mbid": "1e9c5905-9988-41bd-afe9-b05b0e6eb0ff",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:first-class--ghetts",
+      "type": "project",
+      "name": "First Class",
+      "artist": "Ghetts",
+      "mbid": "743c3254-bb5d-4c32-be52-f8be1af435af",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:on-a-level--ghetts",
+      "type": "project",
+      "name": "On a Level",
+      "artist": "Ghetts",
+      "mbid": "5cc5102b-06fe-4e66-a66b-0e0d917c9482",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:whos-on-the-panel--ghetts",
+      "type": "project",
+      "name": "Whos on the Panel",
+      "artist": "Ghetts",
+      "mbid": "808d5f82-4f23-4f24-84f5-4c506ee61936",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:merry-christmas-ep--ghetts",
+      "type": "project",
+      "name": "Merry Christmas EP",
+      "artist": "Ghetts",
+      "mbid": "18bb06d1-424c-4a65-ab06-ba0a6bcc1ffc",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-calm-before-the-storm--ghetts",
+      "type": "project",
+      "name": "The Calm Before the Storm",
+      "artist": "Ghetts",
+      "mbid": "ed3a0bc6-04e5-4df3-b0ad-ac75998d6c57",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sing-4-me--ghetts",
+      "type": "project",
+      "name": "Sing 4 Me",
+      "artist": "Ghetts",
+      "mbid": "dd6e33a0-dfbe-4eac-80e1-995c993ced63",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:freedom-of-speech--ghetts",
+      "type": "project",
+      "name": "Freedom of Speech",
+      "artist": "Ghetts",
+      "mbid": "92931e79-7e35-3acf-b276-4bdb28d8d871",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ghetto-gospel--ghetts",
+      "type": "project",
+      "name": "Ghetto Gospel",
+      "artist": "Ghetts",
+      "mbid": "cfe20b61-de75-3d98-b991-6212bbc67e43",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:2000-and-life",
+      "type": "project",
+      "name": "2000 & Life",
+      "mbid": "8a7f3c54-e23e-4196-856a-1018fb6bd303",
+      "year": "2005",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

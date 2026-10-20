@@ -28,7 +28,53 @@
     }
   ],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:jack-your-body-s-and-s-reloaded--steve-silk-hurley",
+      "type": "project",
+      "name": "Jack Your Body (S&S Reloaded)",
+      "artist": "Steve \"Silk\" Hurley",
+      "mbid": "a5d2a449-cf22-416c-9e2d-4e0dc3abb70a",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jack-your-body--steve-silk-hurley",
+      "type": "project",
+      "name": "Jack Your Body",
+      "artist": "Steve \"Silk\" Hurley",
+      "mbid": "d6cf8bb4-4712-46d2-8c45-62e383e5201f",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:melody--steve-silk-hurley",
+      "type": "project",
+      "name": "Melody",
+      "artist": "Steve \"Silk\" Hurley",
+      "mbid": "e72d4ee6-e2a3-31bc-950d-7d7a86f84222",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:work-it-out--steve-silk-hurley",
+      "type": "project",
+      "name": "Work It Out",
+      "artist": "Steve \"Silk\" Hurley",
+      "mbid": "c0428b85-f58c-4cfa-a256-fc28b02a153f",
+      "year": "1989",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:work-it-out-compilation--steve-silk-hurley",
+      "type": "project",
+      "name": "Work It Out Compilation",
+      "artist": "Steve \"Silk\" Hurley",
+      "mbid": "26f69eb3-bb1a-4924-bea0-dd2a3abaa687",
+      "year": "1989",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:jack-your-body--steve-silk-hurley",

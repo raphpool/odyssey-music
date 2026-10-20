@@ -55,7 +55,10 @@
     {
       "slug": "project:live-at-the-paradise-garage",
       "type": "project",
-      "name": "Live at the Paradise Garage"
+      "name": "Live at the Paradise Garage",
+      "mbid": "9c10064e-5566-3408-b93e-0552e3c12118",
+      "year": "2000",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [],

@@ -55,19 +55,181 @@
   ],
   "discography": [
     {
-      "slug": "project:chic",
+      "slug": "project:chic-ism--chic",
       "type": "project",
-      "name": "Chic"
+      "name": "Chic-ism",
+      "artist": "Chic",
+      "mbid": "426514e0-1fb6-3cbc-b65f-3b4869b275fc",
+      "year": "1992",
+      "releaseType": "album"
     },
     {
-      "slug": "project:c-est-chic--chic",
+      "slug": "project:your-love--chic",
       "type": "project",
-      "name": "C'est Chic"
+      "name": "Your Love",
+      "artist": "Chic",
+      "mbid": "cbadccf8-7c9e-4322-82a6-6c88c6ed7454",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:megachic--chic",
+      "type": "project",
+      "name": "Megachic",
+      "artist": "Chic",
+      "mbid": "a755edab-a5eb-47cb-9f41-e0943417c683",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jack-le-freak--chic",
+      "type": "project",
+      "name": "Jack Le Freak",
+      "artist": "Chic",
+      "mbid": "4fe3809d-5578-45f3-a499-8245463e9f6d",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:believer--chic",
+      "type": "project",
+      "name": "Believer",
+      "artist": "Chic",
+      "mbid": "e9c0ddf4-4d4b-3b32-9643-299b0ed2f724",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-are-beautiful--chic",
+      "type": "project",
+      "name": "You Are Beautiful",
+      "artist": "Chic",
+      "mbid": "be15b2a9-00b9-4e71-ab22-5fddcfd0fbfd",
+      "year": "1983",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:soup-for-one--chic",
+      "type": "project",
+      "name": "Soup for One",
+      "artist": "Chic",
+      "mbid": "fd717b2a-281d-38b3-b09e-4d6ebbde2bde",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tongue-in-chic--chic",
+      "type": "project",
+      "name": "Tongue in Chic",
+      "artist": "Chic",
+      "mbid": "02f163fa-1d07-3c52-97b2-48d78e774503",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:take-it-off--chic",
+      "type": "project",
+      "name": "Take It Off",
+      "artist": "Chic",
+      "mbid": "94778fd2-1974-3817-a49d-91f48d595fa3",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:real-people--chic",
+      "type": "project",
+      "name": "Real People",
+      "artist": "Chic",
+      "mbid": "d7e46741-7469-3d4b-953d-e236f09876d5",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:everybody-dance-dance-dance-dance-yowsah-yowsah-yowsah--chic",
+      "type": "project",
+      "name": "Everybody Dance / Dance, Dance, Dance (Yowsah, Yowsah, Yowsah)",
+      "artist": "Chic",
+      "mbid": "a5304efe-6702-3d4f-b8b0-9192999eb32c",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:good-times--chic",
+      "type": "project",
+      "name": "Good Times",
+      "artist": "Chic",
+      "mbid": "e32ef794-28df-4d70-b1ff-bd61f6dd2505",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-feet-keep-dancing--chic",
+      "type": "project",
+      "name": "My Feet Keep Dancing",
+      "artist": "Chic",
+      "mbid": "6af80e3c-6d45-4a55-9b8c-5c6657f43da4",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-forbidden-lover--chic",
+      "type": "project",
+      "name": "My Forbidden Lover",
+      "artist": "Chic",
+      "mbid": "ef2a2a49-6e44-3bda-88e9-b75cbca2fd32",
+      "year": "1979",
+      "releaseType": "single"
     },
     {
       "slug": "project:risque",
       "type": "project",
-      "name": "Risqué"
+      "name": "Risqué",
+      "mbid": "baa74317-3f23-3f0b-a996-c68f52c61f13",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:c-est-chic--chic",
+      "type": "project",
+      "name": "C'est Chic",
+      "mbid": "db46b19c-0e97-30de-ba53-7e823104d14a",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-want-your-love--chic",
+      "type": "project",
+      "name": "I Want Your Love",
+      "artist": "Chic",
+      "mbid": "64310585-7ca3-418d-8123-4caee2779124",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:le-freak-savoir-faire--chic",
+      "type": "project",
+      "name": "Le Freak / Savoir Faire",
+      "artist": "Chic",
+      "mbid": "f737db4d-5407-3ab7-ae3d-5a157fb8732d",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chic",
+      "type": "project",
+      "name": "Chic",
+      "mbid": "20cd3201-dfc4-330b-8d43-0cf3b652c960",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dance-dance-dance-yowsah-yowsah-yowsah--chic",
+      "type": "project",
+      "name": "Dance, Dance, Dance (Yowsah, Yowsah, Yowsah)",
+      "artist": "Chic",
+      "mbid": "08d8c42e-d534-44ae-ba08-aba7b2538a06",
+      "year": "1977",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

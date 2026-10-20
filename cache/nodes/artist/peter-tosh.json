@@ -80,24 +80,99 @@
   ],
   "discography": [
     {
-      "slug": "project:legalize-it",
+      "slug": "project:no-nuclear-war--peter-tosh",
       "type": "project",
-      "name": "Legalize It"
-    },
-    {
-      "slug": "project:equal-rights",
-      "type": "project",
-      "name": "Equal Rights"
-    },
-    {
-      "slug": "project:bush-doctor",
-      "type": "project",
-      "name": "Bush Doctor"
+      "name": "No Nuclear War",
+      "artist": "Peter Tosh",
+      "mbid": "90d25328-68fe-383d-af99-3cb64721caf0",
+      "year": "1987",
+      "releaseType": "album"
     },
     {
       "slug": "project:mama-africa",
       "type": "project",
-      "name": "Mama Africa"
+      "name": "Mama Africa",
+      "mbid": "f463bc86-e66e-36de-a576-657927392f22",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wanted-dread-and-alive--peter-tosh",
+      "type": "project",
+      "name": "Wanted Dread & Alive",
+      "artist": "Peter Tosh",
+      "mbid": "0802c02d-bb53-3da5-a80a-38bc02da8198",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mystic-man--peter-tosh",
+      "type": "project",
+      "name": "Mystic Man",
+      "artist": "Peter Tosh",
+      "mbid": "ba44cd3b-4f20-3b88-9e80-b88250756ccf",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-gotta-walk-don-t-look-back--peter-tosh",
+      "type": "project",
+      "name": "(You Gotta Walk) Don't Look Back",
+      "artist": "Peter Tosh",
+      "mbid": "5d3a4fc8-f49e-4802-a0a1-0aeece34393b",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bush-doctor",
+      "type": "project",
+      "name": "Bush Doctor",
+      "mbid": "8bb0a3e8-3f24-36c1-b968-c226be6736c8",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:equal-rights",
+      "type": "project",
+      "name": "Equal Rights",
+      "mbid": "3c46302b-426f-3fce-a6ad-b7f76fee40f4",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:can-t-blame-the-youth-hammer--peter-tosh",
+      "type": "project",
+      "name": "Can’t Blame the Youth / Hammer",
+      "artist": "Peter Tosh",
+      "mbid": "b7fdce25-d671-4622-8bc4-a3397ab6ce43",
+      "year": "1976",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:legalize-it",
+      "type": "project",
+      "name": "Legalize It",
+      "mbid": "3f4929bc-c88d-3f41-910b-5c1c308da8f2",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:can-t-blame-the-youth--peter-tosh",
+      "type": "project",
+      "name": "Can't Blame the Youth",
+      "artist": "Peter Tosh",
+      "mbid": "d63a63db-8668-3e05-ab33-7c8e929e14bc",
+      "year": "1972",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-can-t-fool-me-again--peter-tosh",
+      "type": "project",
+      "name": "You Can’t Fool Me Again",
+      "artist": "Peter Tosh",
+      "mbid": "4b52a56f-c8d7-4e1f-832f-db3b19cc7f16",
+      "year": "1969",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

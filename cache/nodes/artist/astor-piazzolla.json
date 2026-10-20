@@ -48,6 +48,320 @@
   ],
   "discography": [
     {
+      "slug": "project:la-historia-del-tango-volume-1-la-guardia-vieja--astor-piazzolla",
+      "type": "project",
+      "name": "La Historia del Tango, Volume 1: La Guardia Vieja",
+      "artist": "Astor Piazzolla",
+      "mbid": "e2294290-b8cc-35f5-abc9-f49129fd3c81",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:el-porteno--astor-piazzolla",
+      "type": "project",
+      "name": "El porteño",
+      "artist": "Astor Piazzolla",
+      "mbid": "bc7fe446-48a5-353a-aadd-69191c1ace6b",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:astor-piazzolla-original-film-soundtracks-volume-ii-armaguedon--astor-piazzolla",
+      "type": "project",
+      "name": "Astor piazzolla original film soundtracks, Volume II: Armaguedon",
+      "artist": "Astor Piazzolla",
+      "mbid": "39cd89ea-06fc-4d90-954e-7ce759649997",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:piazzollando--astor-piazzolla",
+      "type": "project",
+      "name": "Piazzollando",
+      "artist": "Astor Piazzolla",
+      "mbid": "2f4cbd9c-1e86-47a5-8f81-14141cd14d8e",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rain-over-santiago--astor-piazzolla",
+      "type": "project",
+      "name": "Rain Over Santiago",
+      "artist": "Astor Piazzolla",
+      "mbid": "def5440a-1cad-457a-acaa-50a422ceade6",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:adios-nonino--astor-piazzolla",
+      "type": "project",
+      "name": "Adiós Nonino",
+      "artist": "Astor Piazzolla",
+      "mbid": "e9fef4d4-3a32-3fef-bb5b-54cbc2099419",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chador--astor-piazzolla",
+      "type": "project",
+      "name": "Chador",
+      "artist": "Astor Piazzolla",
+      "mbid": "098942d1-7d12-4a63-8ae0-5676c221c34e",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:five-tango-sensations",
+      "type": "project",
+      "name": "Five Tango Sensations",
+      "mbid": "e7f52a96-8b34-38eb-ab85-f0dddb34db17",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:piazzolliana--astor-piazzolla",
+      "type": "project",
+      "name": "Piazzolliana",
+      "artist": "Astor Piazzolla",
+      "mbid": "2d55c09c-5521-4d30-bbe2-726a4c8eb0ee",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:famille-d-artistes--astor-piazzolla",
+      "type": "project",
+      "name": "Famille d'artistes",
+      "artist": "Astor Piazzolla",
+      "mbid": "304ae47d-d3d9-4ea1-9246-32783f023cc2",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-camorra-la-soledad-de-la-provocacion-apasionada--astor-piazzolla",
+      "type": "project",
+      "name": "La Camorra: La soledad de la provocación apasionada",
+      "artist": "Astor Piazzolla",
+      "mbid": "c272d1b4-93f6-38fc-bb85-ed51b1f84c36",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:astor-piazzolla-et-compagnie--astor-piazzolla",
+      "type": "project",
+      "name": "Astor Piazzolla et Compagnie",
+      "artist": "Astor Piazzolla",
+      "mbid": "11aa8525-6e1f-4614-af6f-35d39d84944f",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sur--astor-piazzolla",
+      "type": "project",
+      "name": "Sur",
+      "artist": "Astor Piazzolla",
+      "mbid": "1efd3e0c-4ada-3618-9fe0-257ddf30ac56",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-rough-dancer-and-the-cyclical-night-tango-apasionado--astor-piazzolla",
+      "type": "project",
+      "name": "The Rough Dancer and the Cyclical Night (Tango apasionado)",
+      "artist": "Astor Piazzolla",
+      "mbid": "40732afa-e782-300b-a42e-c5b8f0942f24",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tangos-l-exil-de-gardel--astor-piazzolla",
+      "type": "project",
+      "name": "Tangos: L’Exil de Gardel",
+      "artist": "Astor Piazzolla",
+      "mbid": "dde35450-3477-3d84-9670-74aa65aab809",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:henri-iv--astor-piazzolla",
+      "type": "project",
+      "name": "Henri IV",
+      "artist": "Astor Piazzolla",
+      "mbid": "75ce685f-463e-4d07-82f2-d60e511a16a7",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:henri-iv-le-roi-fou-enrico-iv-bande-originale-du-film--astor-piazzolla",
+      "type": "project",
+      "name": "Henri IV Le Roi Fou / Enrico IV (Bande Originale Du Film)",
+      "artist": "Astor Piazzolla",
+      "mbid": "9d9b900b-f622-4ca9-93e1-2dff8cadfcf1",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:oblivion--astor-piazzolla",
+      "type": "project",
+      "name": "Oblivion",
+      "artist": "Astor Piazzolla",
+      "mbid": "2c3d5fc6-0435-34b6-bff4-ec56911c475e",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:volver--astor-piazzolla",
+      "type": "project",
+      "name": "Volver",
+      "artist": "Astor Piazzolla",
+      "mbid": "6f7dbb95-c039-4307-a26d-ae863071c415",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:muralla-china--astor-piazzolla",
+      "type": "project",
+      "name": "Muralla china",
+      "artist": "Astor Piazzolla",
+      "mbid": "b836f572-dc0d-492f-8d52-ff32b0cf4f5a",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:biyuya--astor-piazzolla",
+      "type": "project",
+      "name": "Biyuya",
+      "artist": "Astor Piazzolla",
+      "mbid": "97d613a7-4e09-466f-94c0-ed0735696b8a",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:persecuta--astor-piazzolla",
+      "type": "project",
+      "name": "Persecuta",
+      "artist": "Astor Piazzolla",
+      "mbid": "ecff5a0a-4fe5-38ad-8d85-1c7e26865d9a",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:viaje-de-bodas--astor-piazzolla",
+      "type": "project",
+      "name": "Viaje de bodas",
+      "artist": "Astor Piazzolla",
+      "mbid": "5804802d-027c-4c58-860f-28578c009b37",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-historia-del-tango-volume-2-la-epoca-romantica--astor-piazzolla",
+      "type": "project",
+      "name": "La historia del tango, volume 2: La epoca romántica",
+      "artist": "Astor Piazzolla",
+      "mbid": "a489055f-cdc6-3257-9801-5f18c2dcfab1",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:suite-troileana-lumiere--astor-piazzolla",
+      "type": "project",
+      "name": "Suite Troileana / Lumière",
+      "artist": "Astor Piazzolla",
+      "mbid": "ce1032e4-f716-334f-8fd8-29c19e81ffbe",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:il-pleut-sur-santiago--astor-piazzolla",
+      "type": "project",
+      "name": "Il pleut sur Santiago",
+      "artist": "Astor Piazzolla",
+      "mbid": "5edfbae4-075b-332d-8eb7-466284d82d75",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:balada-para-un-loco--astor-piazzolla",
+      "type": "project",
+      "name": "Balada para un loco",
+      "artist": "Astor Piazzolla",
+      "mbid": "7643c594-1d8a-43f2-8027-a415f354604c",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:concierto-para-quinteto--astor-piazzolla",
+      "type": "project",
+      "name": "Concierto para quinteto",
+      "artist": "Astor Piazzolla",
+      "mbid": "b238e806-c468-357b-b7e6-2d82dca8eb4a",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:en-persona--astor-piazzolla",
+      "type": "project",
+      "name": "En persona",
+      "artist": "Astor Piazzolla",
+      "mbid": "34278798-1eed-40ac-8e56-d819a3d6f0a6",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-bicicleta-blanca--astor-piazzolla",
+      "type": "project",
+      "name": "La bicicleta blanca",
+      "artist": "Astor Piazzolla",
+      "mbid": "c96617cb-bb6b-4ba4-b2d8-7dae189d8782",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ion-studios--astor-piazzolla",
+      "type": "project",
+      "name": "ION Studios",
+      "artist": "Astor Piazzolla",
+      "mbid": "9384d832-9fa8-426d-85af-52c82340e4c8",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:20-anos-de-vanguardia-con-sus-conjuntos--astor-piazzolla",
+      "type": "project",
+      "name": "20 años de vanguardia con sus conjuntos",
+      "artist": "Astor Piazzolla",
+      "mbid": "9915d297-6373-431f-ae04-12fefd47fc82",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:take-me-dancing-the-latin-rhythms-of-astor-piazzolla-and-his-quintet--astor-piazzolla",
+      "type": "project",
+      "name": "Take Me Dancing! The Latin Rhythms of Astor Piazzolla & His Quintet",
+      "artist": "Astor Piazzolla",
+      "mbid": "74aa3f0a-8ae8-45e2-8dd3-c27ff8993684",
+      "year": "1959",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tango-en-hi-fi--astor-piazzolla",
+      "type": "project",
+      "name": "Tango en Hi-Fi",
+      "artist": "Astor Piazzolla",
+      "mbid": "297a2c78-1b19-4579-8e8e-3c32e522bcb2",
+      "year": "1959",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lo-que-vendra--astor-piazzolla",
+      "type": "project",
+      "name": "Lo que vendrá",
+      "artist": "Astor Piazzolla",
+      "mbid": "74c26133-fae0-4358-9063-c5488e04a43f",
+      "year": "1957",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:libertango",
       "type": "project",
       "name": "Libertango"
@@ -66,11 +380,6 @@
       "slug": "project:la-camorra",
       "type": "project",
       "name": "La Camorra"
-    },
-    {
-      "slug": "project:five-tango-sensations",
-      "type": "project",
-      "name": "Five Tango Sensations"
     },
     {
       "slug": "project:maria-de-buenos-aires",

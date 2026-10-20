@@ -43,6 +43,87 @@
   "labels": [],
   "discography": [
     {
+      "slug": "project:mugenkai--hozan-yamamoto",
+      "type": "project",
+      "name": "Mugenkai",
+      "artist": "Hōzan Yamamoto",
+      "mbid": "ba4cc9e5-87ca-492e-8a6f-c159cb4c9934",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:masters-of-zen-shakuhashi-and-organ--hozan-yamamoto",
+      "type": "project",
+      "name": "Masters Of Zen - Shakuhashi And Organ",
+      "artist": "Hōzan Yamamoto",
+      "mbid": "97fa8b07-a87c-4934-91d4-c93f27638ae6",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shakuhachi--hozan-yamamoto",
+      "type": "project",
+      "name": "Shakuhachi",
+      "artist": "Hōzan Yamamoto",
+      "mbid": "9821eb86-a499-401d-8b9f-0e005aa319ca",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:otono--hozan-yamamoto",
+      "type": "project",
+      "name": "Otoño",
+      "artist": "Hōzan Yamamoto",
+      "mbid": "c0608071-b1b9-4806-8528-eb9b7f939ee8",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kyorai--hozan-yamamoto",
+      "type": "project",
+      "name": "去来 Kyorai",
+      "artist": "Hōzan Yamamoto",
+      "mbid": "2037b148-d2d8-450b-87df-03df317db1b3",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beautiful-bamboo-flute--hozan-yamamoto",
+      "type": "project",
+      "name": "Beautiful Bamboo‐Flute",
+      "artist": "Hōzan Yamamoto",
+      "mbid": "8234b18b-ae49-4ad8-aef0-198e2a7bdd69",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shakuhachi-and-bossa-nova-vol-2--hozan-yamamoto",
+      "type": "project",
+      "name": "Shakuhachi And Bossa Nova Vol.2",
+      "artist": "Hōzan Yamamoto",
+      "mbid": "fccd0dd2-2eb5-45b7-a655-43b46d3799b6",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:silver-world--hozan-yamamoto",
+      "type": "project",
+      "name": "銀界 (Silver World)",
+      "artist": "Hōzan Yamamoto",
+      "mbid": "c5212a0f-2394-4df0-b31b-c9bf7356de2a",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shakuhachi-and-bossa-nova--hozan-yamamoto",
+      "type": "project",
+      "name": "Shakuhachi & Bossa Nova",
+      "artist": "Hōzan Yamamoto",
+      "mbid": "c11da6d8-0f28-4298-9e79-102f4d12d742",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:music-for-zen-meditation--tony-scott",
       "type": "project",
       "name": "Music for Zen Meditation"

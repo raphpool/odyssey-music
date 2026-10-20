@@ -54,30 +54,252 @@
   ],
   "discography": [
     {
-      "slug": "project:circus-town",
+      "slug": "project:island-move-on--tatsuro-yamashita",
       "type": "project",
-      "name": "Circus Town"
+      "name": "オノマトペISLAND / MOVE ON",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "9c89fc2e-f88b-46df-be5e-fdf02c8d4b4c",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:softly--tatsuro-yamashita",
+      "type": "project",
+      "name": "Softly",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "f4b44675-0f6c-471a-a671-ce1c2d03a7e7",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:season-s-greetings-20th-anniversary-edition--tatsuro-yamashita",
+      "type": "project",
+      "name": "Season's Greetings (20th Anniversary Edition)",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "bdc90332-cfc6-4373-b10e-e77b49a693e0",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ray-of-hope--tatsuro-yamashita",
+      "type": "project",
+      "name": "Ray Of Hope",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "1e541ebc-8e20-4581-a6b1-38584f754a9e",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sonorite--tatsuro-yamashita",
+      "type": "project",
+      "name": "SONORITE",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "a8444fed-5285-4427-813c-f8d922228b6d",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:loveland-island-your-eyes--tatsuro-yamashita",
+      "type": "project",
+      "name": "Loveland, Island / Your Eyes",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "8eafb0c7-f383-4cbc-a2ff-875f361389f9",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:on-the-street-corner-3--tatsuro-yamashita",
+      "type": "project",
+      "name": "ON THE STREET CORNER 3",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "4c890317-4b72-4995-bcac-79513f762e38",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cozy--tatsuro-yamashita",
+      "type": "project",
+      "name": "COZY",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "d9830dbe-9af6-399b-9c06-a6ed50d4a8b5",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stand-in-the-light--tatsuro-yamashita",
+      "type": "project",
+      "name": "愛の灯〜STAND IN THE LIGHT",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "d6eac9d7-b21a-43d0-8d1d-435d91e92cd2",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:down-town--tatsuro-yamashita",
+      "type": "project",
+      "name": "パレード / Down Town",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "5e739bac-8c28-4bb5-ad9d-042437d10a19",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:season-s-greetings--tatsuro-yamashita",
+      "type": "project",
+      "name": "Season's Greetings",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "562ab04d-7160-34b3-a026-7a330412fe54",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:artisan",
+      "type": "project",
+      "name": "Artisan",
+      "mbid": "574bfc9e-9efe-30f4-a1db-c74731ddba2f",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:endless-game--tatsuro-yamashita",
+      "type": "project",
+      "name": "Endless Game",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "43754992-1976-41d5-9107-77c42329d17c",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:get-back-in-love--tatsuro-yamashita",
+      "type": "project",
+      "name": "Get Back In Love",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "e6831812-4d75-4ed6-ae30-b7a0e500dea7",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:on-the-street-corner-2--tatsuro-yamashita",
+      "type": "project",
+      "name": "ON THE STREET CORNER 2",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "0cc37ab2-1a79-40de-8694-a5e639a05741",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pocket-music--tatsuro-yamashita",
+      "type": "project",
+      "name": "POCKET MUSIC",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "0ebb8c9d-ae7f-49da-8f8f-98e758bbec1d",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:big-wave--tatsuro-yamashita",
+      "type": "project",
+      "name": "Big Wave",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "646b0788-df08-4935-887c-edf5cb976840",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:christmas-eve--tatsuro-yamashita",
+      "type": "project",
+      "name": "Christmas Eve",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "f3db16bf-ab2f-3422-805b-dde98738f6b5",
+      "year": "1983",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:melodies",
+      "type": "project",
+      "name": "Melodies",
+      "mbid": "e8d2f9e5-9bfe-45e9-bb39-69009bd1ac34",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:darlin--tatsuro-yamashita",
+      "type": "project",
+      "name": "高気圧ガール／DARLIN'",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "8304eed6-fba9-4646-9aaf-d5b0dfcbcf02",
+      "year": "1983",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:for-you",
+      "type": "project",
+      "name": "For You",
+      "mbid": "1bc1ba12-6114-3ef9-89e6-3f4c8f5e0bb3",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:on-the-street-corner-1--tatsuro-yamashita",
+      "type": "project",
+      "name": "ON THE STREET CORNER 1",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "5703d2cb-7104-4f4e-8238-a84b9237df1e",
+      "year": "1980",
+      "releaseType": "album"
     },
     {
       "slug": "project:ride-on-time--tatsuro-yamashita",
       "type": "project",
       "name": "Ride on Time",
-      "artist": "Tatsurō Yamashita"
+      "artist": "Tatsurō Yamashita",
+      "mbid": "74d1b9bc-552c-4b20-ac4d-7ecdb68ea9c3",
+      "year": "1980",
+      "releaseType": "album"
     },
     {
-      "slug": "project:for-you",
+      "slug": "project:moonglow--tatsuro-yamashita",
       "type": "project",
-      "name": "For You"
+      "name": "MOONGLOW",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "30992faa-082d-4e4b-b105-8f18f90c33e8",
+      "year": "1979",
+      "releaseType": "album"
     },
     {
-      "slug": "project:melodies",
+      "slug": "project:go-ahead--tatsuro-yamashita",
       "type": "project",
-      "name": "Melodies"
+      "name": "GO AHEAD!",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "d8973c75-450b-4f47-8300-deec90f4bc6e",
+      "year": "1978",
+      "releaseType": "album"
     },
     {
-      "slug": "project:artisan",
+      "slug": "project:spacy--tatsuro-yamashita",
       "type": "project",
-      "name": "Artisan"
+      "name": "SPACY",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "60412b41-65af-4aa8-8838-15c6b57c45fc",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:circus-town",
+      "type": "project",
+      "name": "Circus Town",
+      "mbid": "14f0ae76-256a-4c19-adae-245958d47f27",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:add-some-music-to-your-day--tatsuro-yamashita",
+      "type": "project",
+      "name": "Add Some Music To Your Day",
+      "artist": "Tatsurō Yamashita",
+      "mbid": "89d8cbb4-374c-47f9-bd5f-63a319221186",
+      "year": "1972",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

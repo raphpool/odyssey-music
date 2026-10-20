@@ -32,14 +32,74 @@
   "labels": [],
   "discography": [
     {
-      "slug": "project:a-little-bit-of-luck",
+      "slug": "project:irie--dj-luck-and-mc-neat",
       "type": "project",
-      "name": "A Little Bit of Luck"
+      "name": "Irie",
+      "artist": "DJ Luck & MC Neat",
+      "mbid": "11fcbf59-a7f1-44dd-88a5-df7d8f520b0d",
+      "year": "2002",
+      "releaseType": "single"
     },
     {
       "slug": "project:it-s-all-good",
       "type": "project",
-      "name": "It's All Good"
+      "name": "It's All Good",
+      "mbid": "1bc6f8f7-fc5d-4edf-b5f3-1cf9ec8daa87",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ska-dis--dj-luck-and-mc-neat",
+      "type": "project",
+      "name": "Ska Dis",
+      "artist": "DJ Luck & MC Neat",
+      "mbid": "d30b5781-35a5-4d3c-a046-2c2c2e8fe3f9",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:i-m-all-about-you--dj-luck-and-mc-neat",
+      "type": "project",
+      "name": "I'm All About You",
+      "artist": "DJ Luck & MC Neat",
+      "mbid": "9150817d-ce41-49d8-a625-82a4172e190d",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:piano-loco--dj-luck-and-mc-neat",
+      "type": "project",
+      "name": "Piano Loco",
+      "artist": "DJ Luck & MC Neat",
+      "mbid": "a8c44e3b-a8fb-3d36-ad0d-3a36f82c6301",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ain-t-no-stoppin-us--dj-luck-and-mc-neat",
+      "type": "project",
+      "name": "Ain't No Stoppin Us",
+      "artist": "DJ Luck & MC Neat",
+      "mbid": "164cbdb0-1984-3634-99c9-9dc146cad065",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:masterblaster-2000--dj-luck-and-mc-neat",
+      "type": "project",
+      "name": "Masterblaster 2000",
+      "artist": "DJ Luck & MC Neat",
+      "mbid": "3d5a7f18-a3d3-41dd-9087-2f3a75f99e10",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-little-bit-of-luck",
+      "type": "project",
+      "name": "A Little Bit of Luck",
+      "mbid": "734bf4c2-4111-3298-9ff1-b3e1b2e8365a",
+      "year": "1999",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

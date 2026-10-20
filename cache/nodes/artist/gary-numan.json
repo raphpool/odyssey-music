@@ -71,19 +71,187 @@
   ],
   "discography": [
     {
+      "slug": "project:i-m-an-agent-remind-me-to-smile--gary-numan",
+      "type": "project",
+      "name": "I’m an Agent / Remind Me to Smile",
+      "artist": "Gary Numan",
+      "mbid": "0822ad70-89be-40d5-b7cc-bf5721a9639d",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:like-a-b-film--gary-numan",
+      "type": "project",
+      "name": "Like a B‐Film",
+      "artist": "Gary Numan",
+      "mbid": "82d36157-d820-426e-8c64-37677938f44e",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:savage-songs-from-a-broken-world--gary-numan",
+      "type": "project",
+      "name": "Savage: Songs From a Broken World",
+      "artist": "Gary Numan",
+      "mbid": "e98b92d7-4c39-4c9d-9e14-c179717017b5",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:splinter-songs-from-a-broken-mind--gary-numan",
+      "type": "project",
+      "name": "Splinter: Songs From a Broken Mind",
+      "artist": "Gary Numan",
+      "mbid": "0a6f95a5-94d1-4faa-8213-88a965ad2b78",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dead-son-rising--gary-numan",
+      "type": "project",
+      "name": "Dead Son Rising",
+      "artist": "Gary Numan",
+      "mbid": "f9217544-8c3d-4c89-9ae9-520d9f7fd753",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jagged--gary-numan",
+      "type": "project",
+      "name": "Jagged",
+      "artist": "Gary Numan",
+      "mbid": "12d60ac1-59a9-3572-9c80-98eba5b345fe",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pure--gary-numan",
+      "type": "project",
+      "name": "Pure",
+      "artist": "Gary Numan",
+      "mbid": "322f5036-2616-3ff2-b388-0522825711b7",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:exile--gary-numan",
+      "type": "project",
+      "name": "Exile",
+      "artist": "Gary Numan",
+      "mbid": "67327c06-3388-3c9a-8eca-036b6e0ef372",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sacrifice--gary-numan",
+      "type": "project",
+      "name": "Sacrifice",
+      "artist": "Gary Numan",
+      "mbid": "f96373ba-bbc1-3e0e-b4f5-910edaa84e0f",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:machine-soul--gary-numan",
+      "type": "project",
+      "name": "Machine + Soul",
+      "artist": "Gary Numan",
+      "mbid": "db3bcf01-6538-3df4-90b7-c608d55d2b8f",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:outland--gary-numan",
+      "type": "project",
+      "name": "Outland",
+      "artist": "Gary Numan",
+      "mbid": "41df0fd7-5bed-3ddb-833f-5cd3ec56a635",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:metal-rhythm--gary-numan",
+      "type": "project",
+      "name": "Metal Rhythm",
+      "artist": "Gary Numan",
+      "mbid": "f3d1df5d-522e-383c-945f-c8abec66ec3c",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:strange-charm--gary-numan",
+      "type": "project",
+      "name": "Strange Charm",
+      "artist": "Gary Numan",
+      "mbid": "0648aedd-3d59-3d9e-9868-db6d3623fb76",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-fury--gary-numan",
+      "type": "project",
+      "name": "The Fury",
+      "artist": "Gary Numan",
+      "mbid": "0d7c2366-0c3e-3400-a39c-d3940a0b2559",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:berserker--gary-numan",
+      "type": "project",
+      "name": "Berserker",
+      "artist": "Gary Numan",
+      "mbid": "92c486ab-6d47-3e7f-bd66-994cd5552b3f",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:warriors--gary-numan",
+      "type": "project",
+      "name": "Warriors",
+      "artist": "Gary Numan",
+      "mbid": "441b18f3-eeec-3670-ab2e-1d2acff4dd1f",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-assassin--gary-numan",
+      "type": "project",
+      "name": "I, Assassin",
+      "artist": "Gary Numan",
+      "mbid": "ebcedc4a-e640-3b1e-a14a-78928e6eee5a",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dance--gary-numan",
+      "type": "project",
+      "name": "Dance",
+      "artist": "Gary Numan",
+      "mbid": "0f81f5f3-540a-37a0-95ec-010a0e8288dc",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:telekon",
+      "type": "project",
+      "name": "Telekon",
+      "mbid": "71672090-e958-332d-b2f1-da9dc4aa373c",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:the-pleasure-principle",
       "type": "project",
-      "name": "The Pleasure Principle"
+      "name": "The Pleasure Principle",
+      "mbid": "2ba66802-18a7-3bf4-958c-db871a6e7f34",
+      "year": "1979",
+      "releaseType": "album"
     },
     {
       "slug": "project:replicas",
       "type": "project",
       "name": "Replicas"
-    },
-    {
-      "slug": "project:telekon",
-      "type": "project",
-      "name": "Telekon"
     },
     {
       "slug": "project:the-savage",

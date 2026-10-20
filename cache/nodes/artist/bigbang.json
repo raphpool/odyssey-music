@@ -43,24 +43,276 @@
   ],
   "discography": [
     {
-      "slug": "project:bigbang-vol-1",
+      "slug": "project:biiig--bigbang",
       "type": "project",
-      "name": "BigBang Vol. 1"
+      "name": "BiiiG",
+      "artist": "BIGBANG",
+      "mbid": "a4e9fa00-1cf1-4ce3-a48f-ee511cc9be99",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:remember",
+      "slug": "project:still-life--bigbang",
       "type": "project",
-      "name": "Remember"
-    },
-    {
-      "slug": "project:alive",
-      "type": "project",
-      "name": "Alive"
+      "name": "봄여름가을겨울 (Still Life)",
+      "artist": "BIGBANG",
+      "mbid": "e37f3c1e-765a-4cd3-9003-661d1a779c3e",
+      "year": "2022",
+      "releaseType": "single"
     },
     {
       "slug": "project:made",
       "type": "project",
-      "name": "Made"
+      "name": "Made",
+      "mbid": "0d521add-b704-4801-8b5f-31b6b8687ccc",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a--bigbang",
+      "type": "project",
+      "name": "A",
+      "artist": "BIGBANG",
+      "mbid": "57cb2968-6c3b-4884-884b-29e232976881",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:d--bigbang",
+      "type": "project",
+      "name": "D",
+      "artist": "BIGBANG",
+      "mbid": "f15980b1-6d3a-44ea-9c46-31cd9b92cd6d",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:e--bigbang",
+      "type": "project",
+      "name": "E",
+      "artist": "BIGBANG",
+      "mbid": "2b7607ee-55e8-431d-a49a-bc4213e1e56d",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:m--bigbang",
+      "type": "project",
+      "name": "M",
+      "artist": "BIGBANG",
+      "mbid": "c008330a-d684-4d00-b719-7b4f38ade6af",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:alive",
+      "type": "project",
+      "name": "Alive",
+      "mbid": "2bc3a9e5-3332-4bd9-90f7-22d46c081284",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bigbang2--bigbang",
+      "type": "project",
+      "name": "BIGBANG2",
+      "artist": "BIGBANG",
+      "mbid": "95b530b7-17c8-4b37-adfd-b622fe568423",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tonight--bigbang",
+      "type": "project",
+      "name": "Tonight",
+      "artist": "BIGBANG",
+      "mbid": "2098162e-73b3-4d3b-a676-e09f1b2abf49",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:beautiful-hangover--bigbang",
+      "type": "project",
+      "name": "BEAUTIFUL HANGOVER",
+      "artist": "BIGBANG",
+      "mbid": "85b96a44-b5e6-41ca-8645-65e0dcd0bdd2",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lollipop-pt-2--bigbang",
+      "type": "project",
+      "name": "Lollipop, Pt. 2",
+      "artist": "BIGBANG",
+      "mbid": "9c324ade-cd67-4b8b-b4ed-eaedb1d09530",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tell-me-goodbye--bigbang",
+      "type": "project",
+      "name": "Tell Me Goodbye",
+      "artist": "BIGBANG",
+      "mbid": "e8f5ddb9-8f74-4450-865f-1b253d238517",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bigbang--bigbang",
+      "type": "project",
+      "name": "BIGBANG",
+      "artist": "BIGBANG",
+      "mbid": "56311e1d-0de0-4671-978e-b69849f17f55",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hallelujah--bigbang",
+      "type": "project",
+      "name": "Hallelujah",
+      "artist": "BIGBANG",
+      "mbid": "fa13c25d-24a3-48c3-b2e3-df8e0101b6e4",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lollipop--bigbang",
+      "type": "project",
+      "name": "Lollipop",
+      "artist": "BIGBANG",
+      "mbid": "aad244a5-3288-4596-b285-a9d76349b766",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-heaven--bigbang",
+      "type": "project",
+      "name": "MY HEAVEN",
+      "artist": "BIGBANG",
+      "mbid": "d5d67251-45e3-4d73-861b-5eb143996f3f",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:so-fresh-so-cool--bigbang",
+      "type": "project",
+      "name": "So Fresh, So Cool",
+      "artist": "BIGBANG",
+      "mbid": "2a3d6ecc-50d5-48f2-87f8-bff574956ae7",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:go--bigbang",
+      "type": "project",
+      "name": "ガラガラ GO!!",
+      "artist": "BIGBANG",
+      "mbid": "a15a3d9f-f7d3-4d62-88c2-713b462cd314",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:for-the-world--bigbang",
+      "type": "project",
+      "name": "For The World",
+      "artist": "BIGBANG",
+      "mbid": "3302a666-f8a0-3805-ab0d-dde39030b6df",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:number-1--bigbang",
+      "type": "project",
+      "name": "NUMBER 1",
+      "artist": "BIGBANG",
+      "mbid": "5aa45ddb-c648-4ed0-8cfb-291d98e59e02",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:remember",
+      "type": "project",
+      "name": "Remember",
+      "mbid": "fce278dc-f1e5-390c-884e-c5d396c44bb2",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stand-up--bigbang",
+      "type": "project",
+      "name": "Stand Up",
+      "artist": "BIGBANG",
+      "mbid": "f93a6623-76ae-4d82-85a4-6e4eaeda7380",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stylish-the-fila--bigbang",
+      "type": "project",
+      "name": "Stylish (The FILA)",
+      "artist": "BIGBANG",
+      "mbid": "6c8dd4fa-0fdb-43b6-bebe-6de3998b2201",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:with-u--bigbang",
+      "type": "project",
+      "name": "WITH U",
+      "artist": "BIGBANG",
+      "mbid": "e92353d0-a5ae-41f3-aa39-427ebce8f8cf",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:always--bigbang",
+      "type": "project",
+      "name": "ALWAYS",
+      "artist": "BIGBANG",
+      "mbid": "6b2998cf-4c8b-360a-8ca8-6af57fab1f5f",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hot-issue--bigbang",
+      "type": "project",
+      "name": "Hot Issue",
+      "artist": "BIGBANG",
+      "mbid": "8ff53c71-c402-49fb-9273-0de6a02e1090",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:b-i-g-b-a-n-g-03--bigbang",
+      "type": "project",
+      "name": "B I G B A N G 03",
+      "artist": "BIGBANG",
+      "mbid": "42c8d905-c626-3362-bb68-29f882e7fa9d",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bigbang-is-v-i-p--bigbang",
+      "type": "project",
+      "name": "BIGBANG Is V.I.P",
+      "artist": "BIGBANG",
+      "mbid": "df90223d-878a-37a5-b100-b84feebd552e",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bigbang-vol-1-since-2007--bigbang",
+      "type": "project",
+      "name": "BIGBANG VOL.1 SINCE 2007",
+      "artist": "BIGBANG",
+      "mbid": "b4eee91a-479f-4c7e-aac4-f84e78d6238c",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bigbang-vol-1",
+      "type": "project",
+      "name": "BigBang Vol. 1"
     }
   ],
   "notable_tracks": [

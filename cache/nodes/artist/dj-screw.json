@@ -50,18 +50,18 @@
   ],
   "discography": [
     {
-      "slug": "project:diary-of-the-originator-chapter-366",
-      "type": "project",
-      "name": "Diary of the Originator: Chapter 366 (Flow '96)",
-      "mbid": "051aee89-b636-40eb-a541-5f9b1e959b72",
-      "year": "2025",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:diary-of-the-originator-chapter-365-home-sweet-home-95-3rd-ward-freestyle-94",
       "type": "project",
       "name": "Diary of the Originator, Chapter 365: Home Sweet Home '95/3rd Ward Freestyle '94",
       "mbid": "69ebb05f-f260-4ac7-b9a4-2b4534d54e7c",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:diary-of-the-originator-chapter-366",
+      "type": "project",
+      "name": "Diary of the Originator: Chapter 366 (Flow '96)",
+      "mbid": "051aee89-b636-40eb-a541-5f9b1e959b72",
       "year": "2025",
       "releaseType": "album"
     },
@@ -170,14 +170,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:playaz-nite",
-      "type": "project",
-      "name": "Playaz Nite",
-      "mbid": "df3dd98f-7e16-4ba4-bca4-6653279c0792",
-      "year": "2005",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:11-16-00",
       "type": "project",
       "name": "11 • 16 • 00",
@@ -186,10 +178,18 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:diary-of-the-originator-chapter-356",
+      "slug": "project:playaz-nite",
       "type": "project",
-      "name": "Diary of the Originator: Chapter 356 (It takes a Bankroll '95)",
-      "mbid": "4fcf882d-b881-44fe-b9b5-0df6c9160bfa",
+      "name": "Playaz Nite",
+      "mbid": "df3dd98f-7e16-4ba4-bca4-6653279c0792",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:diary-of-the-originator-chapter-353",
+      "type": "project",
+      "name": "Diary of the Originator: Chapter 353 (Baytown '94)",
+      "mbid": "b2660bb0-1653-4cc7-98e5-e27386956ccc",
       "year": "2004",
       "releaseType": "album"
     },
@@ -202,10 +202,10 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:diary-of-the-originator-chapter-353",
+      "slug": "project:diary-of-the-originator-chapter-356",
       "type": "project",
-      "name": "Diary of the Originator: Chapter 353 (Baytown '94)",
-      "mbid": "b2660bb0-1653-4cc7-98e5-e27386956ccc",
+      "name": "Diary of the Originator: Chapter 356 (It takes a Bankroll '95)",
+      "mbid": "4fcf882d-b881-44fe-b9b5-0df6c9160bfa",
       "year": "2004",
       "releaseType": "album"
     },
@@ -222,6 +222,15 @@
       "type": "project",
       "name": "Sentimental Value",
       "mbid": "af17deb0-e38f-3c0c-81e9-9a599aa2aff7",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soldiers-united-for-cash-soundtrack--dj-screw",
+      "type": "project",
+      "name": "Soldiers United for Cash Soundtrack",
+      "artist": "DJ Screw",
+      "mbid": "3c170b09-3cf5-3a77-b1ea-80a3b58bc47c",
       "year": "2002",
       "releaseType": "album"
     },

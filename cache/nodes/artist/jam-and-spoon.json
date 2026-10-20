@@ -39,19 +39,163 @@
   "labels": [],
   "discography": [
     {
-      "slug": "project:tripomatic-fairytales-2001",
+      "slug": "project:follow-me--jam-and-spoon",
       "type": "project",
-      "name": "Tripomatic Fairytales 2001"
+      "name": "Follow Me",
+      "artist": "Jam & Spoon",
+      "mbid": "fea7f5a3-daba-4493-869a-5b545164ea99",
+      "year": "2009",
+      "releaseType": "single"
     },
     {
-      "slug": "project:tripomatic-fairytales-2002",
+      "slug": "project:butterfly-sign--jam-and-spoon",
       "type": "project",
-      "name": "Tripomatic Fairytales 2002"
+      "name": "Butterfly Sign",
+      "artist": "Jam & Spoon",
+      "mbid": "735f481d-e704-4e96-8926-3a85c24411e9",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:set-me-free-empty-rooms--jam-and-spoon",
+      "type": "project",
+      "name": "Set Me Free (Empty Rooms)",
+      "artist": "Jam & Spoon",
+      "mbid": "900f38b5-c49c-3015-a100-e35cf5390fb4",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cynical-heart--jam-and-spoon",
+      "type": "project",
+      "name": "Cynical Heart",
+      "artist": "Jam & Spoon",
+      "mbid": "30d7ed7b-2ecd-4463-a0f7-5ab37a5363d2",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tripomatic-fairytales-3003--jam-and-spoon",
+      "type": "project",
+      "name": "Tripomatic Fairytales 3003",
+      "artist": "Jam & Spoon",
+      "mbid": "047e355a-3562-3514-97a0-16a1b8e84c68",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:be-angeled--jam-and-spoon",
+      "type": "project",
+      "name": "Be.Angeled",
+      "artist": "Jam & Spoon",
+      "mbid": "54fe22e5-94fb-3fc9-9a16-fcd31865fd18",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-call-it-love--jam-and-spoon",
+      "type": "project",
+      "name": "Don’t Call It Love",
+      "artist": "Jam & Spoon",
+      "mbid": "8f7f7e1f-08b8-3f40-8901-131792f31c73",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stella-1999-1992-how-stella-got-her-groove-back--jam-and-spoon",
+      "type": "project",
+      "name": "Stella 1999-1992: How Stella Got Her Groove Back",
+      "artist": "Jam & Spoon",
+      "mbid": "d2f43c0b-73a0-31d9-a561-77e76f5230fd",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:el-baile--jam-and-spoon",
+      "type": "project",
+      "name": "El Baile",
+      "artist": "Jam & Spoon",
+      "mbid": "10e1da49-83a8-3f92-a4c3-15ed9a7ae4cf",
+      "year": "1997",
+      "releaseType": "single"
     },
     {
       "slug": "project:kaleidoscope",
       "type": "project",
-      "name": "Kaleidoscope"
+      "name": "Kaleidoscope",
+      "mbid": "4a33450a-f6c5-331c-96ef-f1f4ec19c073",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kaleidoscope-skies--jam-and-spoon",
+      "type": "project",
+      "name": "Kaleidoscope Skies",
+      "artist": "Jam & Spoon",
+      "mbid": "156482e6-e6d4-4156-bb78-5f5f36f511df",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:angel-ladadi-o-heyo--jam-and-spoon",
+      "type": "project",
+      "name": "Angel (Ladadi O-Heyo)",
+      "artist": "Jam & Spoon",
+      "mbid": "81e5f230-c282-3b34-b0f8-b89517650c70",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:find-me-odyssey-to-anyoona--jam-and-spoon",
+      "type": "project",
+      "name": "Find Me (Odyssey to Anyoona)",
+      "artist": "Jam & Spoon",
+      "mbid": "08a0cff8-6173-3452-9385-f144113ed931",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:right-in-the-night-fall-in-love-with-music--jam-and-spoon",
+      "type": "project",
+      "name": "Right in the Night (Fall in Love with Music)",
+      "artist": "Jam & Spoon",
+      "mbid": "f4bcf1de-20af-4e41-86a8-f02e7ae68a6a",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tripomatic-fairytales-2001",
+      "type": "project",
+      "name": "Tripomatic Fairytales 2001",
+      "mbid": "1ed90ea1-1194-3908-9dcc-7158988f21a2",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tripomatic-fairytales-2002",
+      "type": "project",
+      "name": "Tripomatic Fairytales 2002",
+      "mbid": "aa96f4e8-985f-3808-ae77-a11473d3e362",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tales-from-a-danceographic-ocean--jam-and-spoon",
+      "type": "project",
+      "name": "Tales From a Danceographic Ocean",
+      "artist": "Jam & Spoon",
+      "mbid": "e8921782-eefd-3f96-b332-db09facc7aa6",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-complete-stella--jam-and-spoon",
+      "type": "project",
+      "name": "The Complete Stella",
+      "artist": "Jam & Spoon",
+      "mbid": "3f76d26f-afbf-3cf7-8dcc-65e78e9efb29",
+      "year": "1992",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

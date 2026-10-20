@@ -59,7 +59,242 @@
       "name": "Inspected Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:unrequited--sorrow",
+      "type": "project",
+      "name": "Unrequited",
+      "artist": "Sorrow",
+      "mbid": "ba41b156-f9ff-417b-bda0-b124f604ade9",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:all-is-silent--sorrow",
+      "type": "project",
+      "name": "All Is Silent",
+      "artist": "Sorrow",
+      "mbid": "e9743e9a-89f4-48f8-b895-75d3f9fde70f",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dark-zone--sorrow",
+      "type": "project",
+      "name": "Dark Zone",
+      "artist": "Sorrow",
+      "mbid": "e449f8d3-17e9-47a4-aef9-a3fdccea55a4",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:come-over--sorrow",
+      "type": "project",
+      "name": "Come Over",
+      "artist": "Sorrow",
+      "mbid": "8aa8614a-9451-4ab9-989a-058a59234643",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mourner-vip-voynich--sorrow",
+      "type": "project",
+      "name": "Mourner VIP / Voynich",
+      "artist": "Sorrow",
+      "mbid": "7503fe09-63cd-4259-95e8-5dc4c1d7557e",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:carpe-noctem--sorrow",
+      "type": "project",
+      "name": "Carpe Noctem",
+      "artist": "Sorrow",
+      "mbid": "529220b5-f590-4cd6-a640-76b66d6ebb92",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:draguta--sorrow",
+      "type": "project",
+      "name": "Draguta",
+      "artist": "Sorrow",
+      "mbid": "6e484001-031c-4bf4-b635-450fb8129056",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:phantom--sorrow",
+      "type": "project",
+      "name": "Phantom",
+      "artist": "Sorrow",
+      "mbid": "d1a5fa3c-4f3a-41a2-89cd-57e9788eaa08",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-twelve--sorrow",
+      "type": "project",
+      "name": "The Twelve",
+      "artist": "Sorrow",
+      "mbid": "9f4a29c6-5603-4a6a-9551-ca91db1640fa",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:arisen--sorrow",
+      "type": "project",
+      "name": "Arisen",
+      "artist": "Sorrow",
+      "mbid": "2c8f4e32-c60d-43df-9df7-dc903c1aad7e",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:brawler-ep--sorrow",
+      "type": "project",
+      "name": "Brawler EP",
+      "artist": "Sorrow",
+      "mbid": "bd7f7611-f705-4613-8404-083d7fc9e723",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sorrow-archives--sorrow",
+      "type": "project",
+      "name": "Sorrow Archives",
+      "artist": "Sorrow",
+      "mbid": "675359c4-bef5-4382-af29-54eaea4039f0",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:qualm-iscariot--sorrow",
+      "type": "project",
+      "name": "Qualm / Iscariot",
+      "artist": "Sorrow",
+      "mbid": "b0d808ee-187d-45c9-b25b-7543f4a70bde",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:search-of-the-miraculous--sorrow",
+      "type": "project",
+      "name": "Search of the Miraculous",
+      "artist": "Sorrow",
+      "mbid": "63aa57d5-24ee-47c0-928d-0ebacfd20440",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hieroglyphics-ep--sorrow",
+      "type": "project",
+      "name": "Hieroglyphics EP",
+      "artist": "Sorrow",
+      "mbid": "e824faad-9ce2-449b-abdd-95bc149d5152",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:s-t--sorrow",
+      "type": "project",
+      "name": "S/T",
+      "artist": "Sorrow",
+      "mbid": "987394bf-8cc5-4f09-9b8c-caf5c678659e",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:1-1-aether--sorrow",
+      "type": "project",
+      "name": "1+1 / Aether",
+      "artist": "Sorrow",
+      "mbid": "a0a04ae8-e6cb-4ccd-8a87-7bcf36dbfa2c",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dreamstone--sorrow",
+      "type": "project",
+      "name": "Dreamstone",
+      "artist": "Sorrow",
+      "mbid": "faa42e9b-2c44-4a43-9274-e7869a693026",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:warring-e-p--sorrow",
+      "type": "project",
+      "name": "Warring E.P.",
+      "artist": "Sorrow",
+      "mbid": "ff5f42f8-d17c-4454-a034-7c7316191f0d",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:21-12-2012--sorrow",
+      "type": "project",
+      "name": "21.12.2012",
+      "artist": "Sorrow",
+      "mbid": "e818e160-a68c-4a13-a5af-e151cd9e459a",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:art-is-dead--sorrow",
+      "type": "project",
+      "name": "Art Is Dead",
+      "artist": "Sorrow",
+      "mbid": "80cebf49-dff8-44f9-8899-0797dc975aa7",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:shinigami--sorrow",
+      "type": "project",
+      "name": "Shinigami",
+      "artist": "Sorrow",
+      "mbid": "e0848697-2aa2-4088-8e0d-09e37897354c",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sleepless-nights--sorrow",
+      "type": "project",
+      "name": "Sleepless Nights",
+      "artist": "Sorrow",
+      "mbid": "6a441f54-aceb-453b-81d1-a27e1f2ddaab",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:broken-moments--sorrow",
+      "type": "project",
+      "name": "Broken Moments",
+      "artist": "Sorrow",
+      "mbid": "24766bde-3241-4a30-8232-5c604a94fbbe",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:existence-ep--sorrow",
+      "type": "project",
+      "name": "Existence EP",
+      "artist": "Sorrow",
+      "mbid": "ca3fc7e0-71ad-404b-9da4-f26b4457d92c",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:summer-of-love-ep--sorrow",
+      "type": "project",
+      "name": "Summer of Love EP",
+      "artist": "Sorrow",
+      "mbid": "e5f35d7c-8717-49ce-be91-8a1951ca7a63",
+      "year": "2011",
+      "releaseType": "ep"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],

@@ -63,7 +63,332 @@
       "name": "Planet Mu"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:slam-zone--ceephax-acid-crew",
+      "type": "project",
+      "name": "Slam Zone",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "739febdf-e433-4e05-b1b1-efd8cd52a1ef",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:baddow-moods--ceephax-acid-crew",
+      "type": "project",
+      "name": "Baddow Moods",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "e149c9e2-d1ef-4db3-96fa-a65f0a5f2f47",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:box-steady--ceephax-acid-crew",
+      "type": "project",
+      "name": "Box Steady",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "99bc50ea-631e-4a50-968f-a58f9af73610",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:acid-cask-ii-sinistor--ceephax-acid-crew",
+      "type": "project",
+      "name": "Acid Cask II: Sinistor",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "004b4797-1e07-455c-9cc0-51ff396a502d",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:acid-cask-trilogy--ceephax-acid-crew",
+      "type": "project",
+      "name": "Acid Cask Trilogy",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "c346eba9-5286-4f55-8bb8-4b380670eedc",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:acid-cask-i-pandemonium--ceephax-acid-crew",
+      "type": "project",
+      "name": "Acid Cask I: Pandemonium",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "c81e9c7b-cabc-4012-9d16-550c5c0c3a2a",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:camelot-arcade--ceephax-acid-crew",
+      "type": "project",
+      "name": "Camelot Arcade",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "03c61f35-59ad-439c-9266-925b2b676859",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fossil-funk--ceephax-acid-crew",
+      "type": "project",
+      "name": "Fossil Funk",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "d226ce62-4a4b-496d-8dbf-2a7d494d869d",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:acid-fourniture--ceephax-acid-crew",
+      "type": "project",
+      "name": "Acid Fourniture",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "41a2fc9f-6593-43d7-990c-cd7bf2eac57e",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:byron-s-ballads--ceephax-acid-crew",
+      "type": "project",
+      "name": "Byron's Ballads",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "9006f8dc-7ab2-4744-973b-ea22e9791071",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:charismatic-integrity-slam--ceephax-acid-crew",
+      "type": "project",
+      "name": "Charismatic Integrity Slam",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "200e9f6d-afb1-40d8-b46f-d7641d11b163",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:cro-magnox--ceephax-acid-crew",
+      "type": "project",
+      "name": "Cro Magnox",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "8ef2fd16-ea94-4d11-afc9-7ef6a527a611",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:world-dissolver-ep--ceephax-acid-crew",
+      "type": "project",
+      "name": "World Dissolver EP",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "a6c30e19-23d7-49de-ad91-d0caa2230ae6",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:biocarbon-amalgamate--ceephax-acid-crew",
+      "type": "project",
+      "name": "Biocarbon Amalgamate",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "45d8d927-d756-4eff-a852-0c7c9905b9f6",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:capsule-in-space-mediterranean-acid--ceephax-acid-crew",
+      "type": "project",
+      "name": "Capsule in Space/Mediterranean Acid",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "66072419-dd96-430d-8d7a-fcf1a03e778c",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:funbox01--ceephax-acid-crew",
+      "type": "project",
+      "name": "FUNBOX01",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "7be23a54-4c07-46cb-ad1f-5701ee1ce0c3",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-unstoppable-phax-machine--ceephax-acid-crew",
+      "type": "project",
+      "name": "The Unstoppable Phax Machine",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "30366c3d-f446-4694-a179-6f152b8844fb",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:psychtapolis--ceephax-acid-crew",
+      "type": "project",
+      "name": "Psychtapolis",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "2add556d-b8e2-4cd3-963f-40e7186b469b",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:united-acid-emirates--ceephax-acid-crew",
+      "type": "project",
+      "name": "United Acid Emirates",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "0cd83d2b-6eda-4264-9399-190fb3fd949d",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ceeland--ceephax-acid-crew",
+      "type": "project",
+      "name": "Ceeland",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "6a0187f0-d3ad-4731-adc0-e46e972080dd",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wild-westie-romantic-gestures--ceephax-acid-crew",
+      "type": "project",
+      "name": "Wild Westie / Romantic Gestures",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "f88b5ff3-7e0f-4f7b-9bf5-da5960cf3d15",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:eurostar-acid--ceephax-acid-crew",
+      "type": "project",
+      "name": "Eurostar Acid",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "fc00a2a4-53b2-311b-9e17-06a688cfdb33",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:megalift-ep--ceephax-acid-crew",
+      "type": "project",
+      "name": "Megalift EP",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "7bb8c501-1dd6-3398-985b-b880709f0dbb",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:volume-1--ceephax-acid-crew",
+      "type": "project",
+      "name": "Volume 1",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "15055ec7-bb47-3c23-af53-fd9aa1023011",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:volume-2--ceephax-acid-crew",
+      "type": "project",
+      "name": "Volume 2",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "9d9da518-4275-35d6-b94f-06329597c45f",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ceerial-port--ceephax-acid-crew",
+      "type": "project",
+      "name": "Ceerial Port",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "09aa4417-f550-3819-91b7-ba614e80beed",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hardcore-esplanade--ceephax-acid-crew",
+      "type": "project",
+      "name": "Hardcore Esplanade",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "c59625c1-cabd-34aa-97b4-a3eeef7d6e80",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hardcore-wick--ceephax-acid-crew",
+      "type": "project",
+      "name": "Hardcore Wick",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "ee258b4d-6bf7-355c-9992-e4e49ada2878",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acid-legacy-ep--ceephax-acid-crew",
+      "type": "project",
+      "name": "Acid Legacy EP",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "a275520b-5c87-3d82-83da-8a37fd7dca71",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ceephax-acid-crew--ceephax-acid-crew",
+      "type": "project",
+      "name": "Ceephax Acid Crew",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "11932994-af83-3771-adcb-3e0bd8525635",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:exidy-tours--ceephax-acid-crew",
+      "type": "project",
+      "name": "Exidy Tours",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "d46eb9d8-e452-37f3-afb9-287b677c0968",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:acid-quakers-1000--ceephax-acid-crew",
+      "type": "project",
+      "name": "Acid Quakers 1000",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "4fe025ae-89db-3e44-a7c4-be7651f663b9",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:drive-time--ceephax-acid-crew",
+      "type": "project",
+      "name": "Drive Time",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "657a145d-72d3-32fc-b159-32fd3c1dcd3b",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:untitled--ceephax-acid-crew",
+      "type": "project",
+      "name": "[untitled]",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "66daf34c-b28e-3ad4-8d9e-cd50cf29762f",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bainted-smile-ep--ceephax-acid-crew",
+      "type": "project",
+      "name": "Bainted Smile EP",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "ac8160b4-5ab1-31e3-b203-14ad4666c3d0",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:radiotin-ep--ceephax-acid-crew",
+      "type": "project",
+      "name": "Radiotin EP",
+      "artist": "Ceephax Acid Crew",
+      "mbid": "eb73e4fe-0518-3da9-a355-c6c866071663",
+      "year": "1998",
+      "releaseType": "ep"
+    }
+  ],
   "notable_tracks": [],
   "influences": [
     {

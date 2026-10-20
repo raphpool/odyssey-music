@@ -72,6 +72,168 @@
   ],
   "discography": [
     {
+      "slug": "project:best-of-lata-mangeshkar--lata-mangeshkar",
+      "type": "project",
+      "name": "Best Of Lata Mangeshkar",
+      "artist": "Lata Mangeshkar",
+      "mbid": "1156fe56-29f6-46f9-aaa7-ab301b03d7b8",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aurat--lata-mangeshkar",
+      "type": "project",
+      "name": "Aurat",
+      "artist": "Lata Mangeshkar",
+      "mbid": "b024b517-0c7e-4a13-87a1-a9cd7db5bf05",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:adaa--lata-mangeshkar",
+      "type": "project",
+      "name": "Adaa",
+      "artist": "Lata Mangeshkar",
+      "mbid": "813239a4-2a32-4f9b-b436-dc6b2cf1ba94",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:alaoukik-gaani--lata-mangeshkar",
+      "type": "project",
+      "name": "Alaoukik Gaani",
+      "artist": "Lata Mangeshkar",
+      "mbid": "e7ba340f-8aba-4fd5-bc02-1c167bd6ea32",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:timeless--lata-mangeshkar",
+      "type": "project",
+      "name": "Timeless",
+      "artist": "Lata Mangeshkar",
+      "mbid": "d32d7224-4a73-4615-9ed1-1f1d59aa2fb7",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:maestros-masters-of-melody-disc-1--lata-mangeshkar",
+      "type": "project",
+      "name": "Maestros - Masters of Melody Disc 1",
+      "artist": "Lata Mangeshkar",
+      "mbid": "869ee410-7f31-3eb8-8492-127bf0134972",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soft-instrumentals--lata-mangeshkar",
+      "type": "project",
+      "name": "Soft Instrumentals",
+      "artist": "Lata Mangeshkar",
+      "mbid": "e123ccde-a703-3fee-83d0-b3594b79a928",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mata--lata-mangeshkar",
+      "type": "project",
+      "name": "Mata",
+      "artist": "Lata Mangeshkar",
+      "mbid": "01701437-687f-3fe1-9d9a-61259acdf1d8",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-songs--lata-mangeshkar",
+      "type": "project",
+      "name": "Love Songs",
+      "artist": "Lata Mangeshkar",
+      "mbid": "40ced75b-cb8b-33ef-b856-524c0b7d3e70",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ram-ratan-dhan-payo--lata-mangeshkar",
+      "type": "project",
+      "name": "Ram Ratan Dhan Payo",
+      "artist": "Lata Mangeshkar",
+      "mbid": "f67d9d0b-3730-3fe5-a574-e6948d6773a4",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lata-mangeshkar-recites-bhagwad-geeta-chapters-9-and-12--lata-mangeshkar",
+      "type": "project",
+      "name": "Lata Mangeshkar Recites Bhagwad Geeta Chapters 9 & 12",
+      "artist": "Lata Mangeshkar",
+      "mbid": "47194004-9b50-4195-b090-55caeeadde0a",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tambadi-mati--lata-mangeshkar",
+      "type": "project",
+      "name": "Tambadi Mati",
+      "artist": "Lata Mangeshkar",
+      "mbid": "2dd0d1b3-a5a9-4042-b3c1-acc2805f9250",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gujarati-geeto--lata-mangeshkar",
+      "type": "project",
+      "name": "Gujarati Geeto",
+      "artist": "Lata Mangeshkar",
+      "mbid": "af5153dd-6323-4020-a35f-fdadfd0204d6",
+      "year": "1968",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:meera-bhajans--lata-mangeshkar",
+      "type": "project",
+      "name": "Meera Bhajans",
+      "artist": "Lata Mangeshkar",
+      "mbid": "9edd2eab-3aed-4639-82ef-285d3eaf9085",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sadhi-mansa--lata-mangeshkar",
+      "type": "project",
+      "name": "Sadhi Mansa",
+      "artist": "Lata Mangeshkar",
+      "mbid": "afe817cb-a0ab-4f22-9f78-79e35124701a",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:maratha-tituka-melvava--lata-mangeshkar",
+      "type": "project",
+      "name": "Maratha Tituka Melvava",
+      "artist": "Lata Mangeshkar",
+      "mbid": "7677966c-5933-41d5-94be-5e1b5224183c",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dnyaneshwar-mauli--lata-mangeshkar",
+      "type": "project",
+      "name": "Dnyaneshwar Mauli",
+      "artist": "Lata Mangeshkar",
+      "mbid": "55d94ddc-f425-43a8-9c2c-ec444acd8449",
+      "year": "1961",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dil-lootne-wale-jadugar--lata-mangeshkar",
+      "type": "project",
+      "name": "Dil Lootne Wale Jadugar",
+      "artist": "Lata Mangeshkar",
+      "mbid": "23d75297-7fa9-4e45-b9b4-99c183a2612e",
+      "year": "1959",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:mahal",
       "type": "project",
       "name": "Mahal"
@@ -95,6 +257,30 @@
       "slug": "project:pakeezah",
       "type": "project",
       "name": "Pakeezah"
+    },
+    {
+      "slug": "project:mohityanchi-manjula--lata-mangeshkar",
+      "type": "project",
+      "name": "Mohityanchi Manjula",
+      "artist": "Lata Mangeshkar",
+      "mbid": "3717d671-89dc-4b08-915a-3972541371fd",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chhanu-chhapnu-gujarati-geeto--lata-mangeshkar",
+      "type": "project",
+      "name": "Chhanu Chhapnu Gujarati Geeto",
+      "artist": "Lata Mangeshkar",
+      "mbid": "e8bdc311-a945-4ea6-9894-fe090db46f1e",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gujarati-hits-of-lata-mangeshkar--lata-mangeshkar",
+      "type": "project",
+      "name": "Gujarati Hits of Lata Mangeshkar",
+      "artist": "Lata Mangeshkar",
+      "mbid": "d874a204-5840-4abb-bde2-a649e089c639",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

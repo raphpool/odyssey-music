@@ -52,7 +52,260 @@
       "name": "M_nus"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:consumed-in-key--plastikman",
+      "type": "project",
+      "name": "Consumed in Key",
+      "artist": "Plastikman",
+      "mbid": "7404bddc-dedf-45d8-aac0-ab4cdcccf209",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:inxtro--plastikman",
+      "type": "project",
+      "name": "Inxtro",
+      "artist": "Plastikman",
+      "mbid": "31b8b8a8-9d24-49db-af71-3fe7ea744d1a",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:narkosis-spektre--plastikman",
+      "type": "project",
+      "name": "Narkosis+Spektre",
+      "artist": "Plastikman",
+      "mbid": "dfb3fa69-4293-4d81-b8f6-723e05d76752",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sin-thetik--plastikman",
+      "type": "project",
+      "name": "Sin Thetik",
+      "artist": "Plastikman",
+      "mbid": "6adb8437-2279-4a92-ab7d-bbebd37f16b0",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:slinky--plastikman",
+      "type": "project",
+      "name": "Slinky",
+      "artist": "Plastikman",
+      "mbid": "b91c8c5b-bb98-45d2-a5a5-77387f1b5686",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nostalgik-3--plastikman",
+      "type": "project",
+      "name": "Nostalgik.3",
+      "artist": "Plastikman",
+      "mbid": "30e96a4a-1d52-3d4e-98d7-8cf88c7b2cf7",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:spastik-2006--plastikman",
+      "type": "project",
+      "name": "Spastik 2006",
+      "artist": "Plastikman",
+      "mbid": "651788a6-d089-3b6c-a98c-5f5a6f9b1ebd",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nostalgik-2--plastikman",
+      "type": "project",
+      "name": "Nostalgik.2",
+      "artist": "Plastikman",
+      "mbid": "e5cc133d-c483-33e0-87c6-e8deb490b67b",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:i-don-t-know--plastikman",
+      "type": "project",
+      "name": "I Don't Know",
+      "artist": "Plastikman",
+      "mbid": "577fbe41-a076-3036-b811-ee206819a5f4",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nostalgik-1--plastikman",
+      "type": "project",
+      "name": "Nostalgik.1",
+      "artist": "Plastikman",
+      "mbid": "aaaf4d68-d7fa-3776-ad07-30f9e69a81b0",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:closer--plastikman",
+      "type": "project",
+      "name": "Closer",
+      "artist": "Plastikman",
+      "mbid": "7ef5cffc-9f43-3754-988c-59602f44653b",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:disconnect--plastikman",
+      "type": "project",
+      "name": "Disconnect",
+      "artist": "Plastikman",
+      "mbid": "9d90c67f-b627-3d6f-9ff8-2fb320ab0df8",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:kontakt--plastikman",
+      "type": "project",
+      "name": "Kontakt",
+      "artist": "Plastikman",
+      "mbid": "cd8a977a-d86a-3922-8a53-fde4f74b5d4d",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pk--plastikman",
+      "type": "project",
+      "name": "PK",
+      "artist": "Plastikman",
+      "mbid": "74849af5-737f-3d1e-84ff-05d3cad3c75a",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:artifakts-bc--plastikman",
+      "type": "project",
+      "name": "Artifakts (BC)",
+      "artist": "Plastikman",
+      "mbid": "183c17cf-d05e-3dc3-b086-b3c2b9604daf",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:consumed--plastikman",
+      "type": "project",
+      "name": "Consumed",
+      "artist": "Plastikman",
+      "mbid": "41832ecd-1029-3854-ba78-654202508fe7",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hypokondriak-afrika--plastikman",
+      "type": "project",
+      "name": "Hypokondriak / Afrika",
+      "artist": "Plastikman",
+      "mbid": "4ebde5ab-bdf7-3f0b-8fe2-c41a771e22c2",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:recycled-plastik-ep--plastikman",
+      "type": "project",
+      "name": "Recycled Plastik EP",
+      "artist": "Plastikman",
+      "mbid": "47356df5-73ff-4d46-ad20-9f156c15e2fe",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sickness--plastikman",
+      "type": "project",
+      "name": "Sickness",
+      "artist": "Plastikman",
+      "mbid": "c760a615-6866-3e6e-8579-d8a9d79ba548",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:plastikprodukt-member-cd--plastikman",
+      "type": "project",
+      "name": "Plastikprodukt Member CD",
+      "artist": "Plastikman",
+      "mbid": "ae833171-1d2d-3b61-821a-525fe0106422",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:kiropraktor-oldskool--plastikman",
+      "type": "project",
+      "name": "Kiropraktor / Oldskool",
+      "artist": "Plastikman",
+      "mbid": "19cc4912-b494-496a-a497-59193f76d7d0",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:musik--plastikman",
+      "type": "project",
+      "name": "Musik",
+      "artist": "Plastikman",
+      "mbid": "3d5cf880-8e92-3e2a-9598-34bc28fb618c",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:plastique--plastikman",
+      "type": "project",
+      "name": "Plastique",
+      "artist": "Plastikman",
+      "mbid": "d3618ac6-bcef-30c2-b3ba-63e0beaf9aeb",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:recycled-plastik--plastikman",
+      "type": "project",
+      "name": "Recycled Plastik",
+      "artist": "Plastikman",
+      "mbid": "d6d046f9-b7e3-384d-9c39-2d3c79afee5e",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:spaz--plastikman",
+      "type": "project",
+      "name": "Spaz",
+      "artist": "Plastikman",
+      "mbid": "21f6432e-0e07-321c-9aa8-a819260ad1b0",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:krakpot--plastikman",
+      "type": "project",
+      "name": "Krakpot",
+      "artist": "Plastikman",
+      "mbid": "8f27e631-9aef-3fed-bb22-a7697a848e2f",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sheet-one--plastikman",
+      "type": "project",
+      "name": "Sheet One",
+      "artist": "Plastikman",
+      "mbid": "b91a151c-349e-3337-86b9-1090c0e3a288",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:spastik--plastikman",
+      "type": "project",
+      "name": "Spastik",
+      "artist": "Plastikman",
+      "mbid": "c9e82286-d383-3ece-a598-8b157e38b53d",
+      "year": "1993",
+      "releaseType": "ep"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],

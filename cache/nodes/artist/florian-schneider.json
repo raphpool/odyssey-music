@@ -57,7 +57,17 @@
     }
   ],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:stop-plastic-pollution--florian-schneider",
+      "type": "project",
+      "name": "Stop Plastic Pollution",
+      "artist": "Florian Schneider",
+      "mbid": "497e8e6b-0da1-4ba1-ade1-62e9fa36dabc",
+      "year": "2015",
+      "releaseType": "single"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],

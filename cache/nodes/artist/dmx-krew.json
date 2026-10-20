@@ -49,19 +49,361 @@
   ],
   "discography": [
     {
-      "slug": "project:sound-of-the-street--dmx-krew",
+      "slug": "project:no-way-to-control-it--dmx-krew",
       "type": "project",
-      "name": "Sound of the Street"
+      "name": "No Way To Control It",
+      "artist": "DMX Krew",
+      "mbid": "80f55961-d022-49f8-a7ee-caf4e0399c90",
+      "year": "2026",
+      "releaseType": "album"
     },
     {
-      "slug": "project:nu-romantix--dmx-krew",
+      "slug": "project:spiral-dance--dmx-krew",
       "type": "project",
-      "name": "Nu Romantix"
+      "name": "Spiral Dance",
+      "artist": "DMX Krew",
+      "mbid": "608429b9-7e13-49f4-b5b8-e55aa636760b",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unlikely-seeming--dmx-krew",
+      "type": "project",
+      "name": "Unlikely Seeming",
+      "artist": "DMX Krew",
+      "mbid": "63847f19-0f20-49fd-8ccd-31244955efa0",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:whispers-of-an-ancient-world-iii--dmx-krew",
+      "type": "project",
+      "name": "Whispers Of An Ancient World III",
+      "artist": "DMX Krew",
+      "mbid": "c0635db0-3c48-46a4-a812-43ab7d29c0da",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cold-war--dmx-krew",
+      "type": "project",
+      "name": "Cold War",
+      "artist": "DMX Krew",
+      "mbid": "5242072f-bcb5-4e83-9f80-8a89e2b2ede2",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:party-life--dmx-krew",
+      "type": "project",
+      "name": "Party Life",
+      "artist": "DMX Krew",
+      "mbid": "f9cd4eb5-8418-4309-81e0-51f635ffc36b",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:loose-gears--dmx-krew",
+      "type": "project",
+      "name": "Loose Gears",
+      "artist": "DMX Krew",
+      "mbid": "5d6349bc-f171-4ef1-af21-52a03933e3ba",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ghost-bubbles--dmx-krew",
+      "type": "project",
+      "name": "Ghost Bubbles",
+      "artist": "DMX Krew",
+      "mbid": "ef3bd316-592a-41b1-b6a4-072c0f303911",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wave-funk-volume-3--dmx-krew",
+      "type": "project",
+      "name": "Wave Funk Volume 3",
+      "artist": "DMX Krew",
+      "mbid": "beffdd44-5350-442d-94a5-a14879557b4a",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:glad-to-be-sad--dmx-krew",
+      "type": "project",
+      "name": "Glad to Be Sad",
+      "artist": "DMX Krew",
+      "mbid": "54cbd3b2-254d-4c40-87fb-781c172e76be",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:libertine-12--dmx-krew",
+      "type": "project",
+      "name": "Libertine 12",
+      "artist": "DMX Krew",
+      "mbid": "1fdc6497-95b2-4cc7-91d0-acc64a79d0ee",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:strange-directions--dmx-krew",
+      "type": "project",
+      "name": "Strange Directions",
+      "artist": "DMX Krew",
+      "mbid": "6ada7609-03f4-432f-818b-7b5ffd4c23bb",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:escape-mcp--dmx-krew",
+      "type": "project",
+      "name": "Escape-MCP",
+      "artist": "DMX Krew",
+      "mbid": "fded051d-845a-4185-afa9-5f9f431a8006",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-new-age-travellers--dmx-krew",
+      "type": "project",
+      "name": "The New Age Travellers",
+      "artist": "DMX Krew",
+      "mbid": "a714eab3-3013-4e0c-bf47-c2eff9e49715",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-exist--dmx-krew",
+      "type": "project",
+      "name": "You Exist",
+      "artist": "DMX Krew",
+      "mbid": "2cce7892-4d53-4b4c-adbd-277aa299352c",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:there-is-no-enduring-self--dmx-krew",
+      "type": "project",
+      "name": "There Is No Enduring Self",
+      "artist": "DMX Krew",
+      "mbid": "bcdceee0-5a3f-49fa-91ca-15cb01473361",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:100-tears--dmx-krew",
+      "type": "project",
+      "name": "100 Tears",
+      "artist": "DMX Krew",
+      "mbid": "648428e2-a8b1-4cca-8383-943e7a3a585f",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mini-lp--dmx-krew",
+      "type": "project",
+      "name": "Mini LP",
+      "artist": "DMX Krew",
+      "mbid": "c5d91a46-db34-4092-ac2e-5e49c27151f0",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:reith-trax--dmx-krew",
+      "type": "project",
+      "name": "Reith Trax",
+      "artist": "DMX Krew",
+      "mbid": "846f8b0b-1728-4df5-ad8e-8ffca1b26139",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shape-shifting-shaman--dmx-krew",
+      "type": "project",
+      "name": "Shape Shifting Shaman",
+      "artist": "DMX Krew",
+      "mbid": "1d4207bd-0b00-424e-9cf6-1555c6e62df2",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:standing-stones--dmx-krew",
+      "type": "project",
+      "name": "Standing Stones",
+      "artist": "DMX Krew",
+      "mbid": "06a03b4c-1361-4b99-a6c5-7bee9685c309",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cities-in-flight--dmx-krew",
+      "type": "project",
+      "name": "Cities in Flight",
+      "artist": "DMX Krew",
+      "mbid": "3e8116cf-bf9e-43c1-8846-25a98dbea367",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-march-to-the-stars--dmx-krew",
+      "type": "project",
+      "name": "The March to the Stars",
+      "artist": "DMX Krew",
+      "mbid": "05ee29bb-1bf2-4216-a447-85302e50dc0c",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wave-funk--dmx-krew",
+      "type": "project",
+      "name": "Wave Funk",
+      "artist": "DMX Krew",
+      "mbid": "da701bb7-422a-46a8-92df-372cae147cd4",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kiss-goodbye--dmx-krew",
+      "type": "project",
+      "name": "Kiss Goodbye",
+      "artist": "DMX Krew",
+      "mbid": "5cc67bf9-0ad7-3abd-92b7-0b7c4fe8640d",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-collapse-of-the-wave-function-volume-4-many-worlds--dmx-krew",
+      "type": "project",
+      "name": "The Collapse of the Wave Function, Volume 4: Many Worlds",
+      "artist": "DMX Krew",
+      "mbid": "ce8cd0fc-5893-3821-b9ac-6c00838785f7",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-collapse-of-the-wave-function-volume-5-the-transactional-interpretation--dmx-krew",
+      "type": "project",
+      "name": "The Collapse of the Wave Function, Volume 5: The Transactional Interpretation",
+      "artist": "DMX Krew",
+      "mbid": "166bf9ff-c147-37a9-bb5f-5155dd825e5e",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-collapse-of-the-wave-function--dmx-krew",
+      "type": "project",
+      "name": "The Collapse of the Wave Function",
+      "artist": "DMX Krew",
+      "mbid": "71ef47ee-3941-3908-8a8a-b87ffe9b51b5",
+      "year": "2004",
+      "releaseType": "album"
     },
     {
       "slug": "project:we-are-dmx",
       "type": "project",
-      "name": "We are DMX"
+      "name": "We are DMX",
+      "mbid": "92f779a0-2f66-3b49-8f20-1ff0fcf0b4e1",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:17-ways-to-break-my-heart--dmx-krew",
+      "type": "project",
+      "name": "17 Ways to Break My Heart",
+      "artist": "DMX Krew",
+      "mbid": "a74534db-f1c3-3a68-8432-c62e837b3a68",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:adrenalin-flow--dmx-krew",
+      "type": "project",
+      "name": "Adrenalin Flow",
+      "artist": "DMX Krew",
+      "mbid": "4332e5ac-1085-363b-9701-9c9bfc02ab26",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:nu-romantix--dmx-krew",
+      "type": "project",
+      "name": "Nu Romantix",
+      "mbid": "e716e3c6-c77b-3cc2-ad3c-ada8ec07a3cd",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:party-beats--dmx-krew",
+      "type": "project",
+      "name": "Party Beats",
+      "artist": "DMX Krew",
+      "mbid": "47a56100-e9f4-3f96-86ff-eb65accf85f3",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:showroom-dummies--dmx-krew",
+      "type": "project",
+      "name": "Showroom Dummies",
+      "artist": "DMX Krew",
+      "mbid": "761d4d0c-68d6-3bf0-ac62-3cf8a94d7838",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dmx-bass-rock-your-body--dmx-krew",
+      "type": "project",
+      "name": "DMX Bass / Rock Your Body",
+      "artist": "DMX Krew",
+      "mbid": "95bd9637-a1d4-34c4-ab5e-b7980c02c34c",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ffressshh--dmx-krew",
+      "type": "project",
+      "name": "Ffressshh!",
+      "artist": "DMX Krew",
+      "mbid": "5b2134d9-d3e5-30f9-9fd0-5f975067175c",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-can-t-hide-your-love--dmx-krew",
+      "type": "project",
+      "name": "You Can't Hide Your Love",
+      "artist": "DMX Krew",
+      "mbid": "58d0487d-e762-389c-8168-b8ea7dfb57ab",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:cold-rockin-with-the-krew--dmx-krew",
+      "type": "project",
+      "name": "Cold Rockin' With the Krew",
+      "artist": "DMX Krew",
+      "mbid": "0fb8ce30-f605-30a0-9acf-70c37e52ad6c",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sound-of-the-street--dmx-krew",
+      "type": "project",
+      "name": "Sound of the Street",
+      "mbid": "c95bc61d-4403-3e14-9dc8-ca73851c1f36",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:got-you-on-my-mind--dmx-krew",
+      "type": "project",
+      "name": "Got You on My Mind",
+      "artist": "DMX Krew",
+      "mbid": "0cbade77-5a5f-3aa7-a2ce-0315676fa4df",
+      "year": "1994",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

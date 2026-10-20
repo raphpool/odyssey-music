@@ -61,10 +61,355 @@
   ],
   "discography": [
     {
+      "slug": "project:toy-e-p--david-bowie",
+      "type": "project",
+      "name": "Toy E.P.",
+      "artist": "David Bowie",
+      "mbid": "63bf4551-9d54-410e-8f83-782375510139",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-width-of-a-circle--david-bowie",
+      "type": "project",
+      "name": "The Width of a Circle",
+      "artist": "David Bowie",
+      "mbid": "cb799594-9d4c-4a20-8678-2d1405d15c92",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:no-plan--david-bowie",
+      "type": "project",
+      "name": "No Plan",
+      "artist": "David Bowie",
+      "mbid": "ed4cdc71-3348-4b77-a771-3f0a8b5be45b",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:lazarus--david-bowie",
+      "type": "project",
+      "name": "Lazarus",
+      "artist": "David Bowie",
+      "mbid": "a584ad5d-3f35-45a4-b4c9-ce9302bd2f28",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-next-day--david-bowie",
+      "type": "project",
+      "name": "The Next Day",
+      "artist": "David Bowie",
+      "mbid": "c20be759-d767-4a7c-96c5-7a870ebc3a30",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:toy--david-bowie",
+      "type": "project",
+      "name": "Toy",
+      "artist": "David Bowie",
+      "mbid": "84cf1d46-2e8c-430e-8361-f04ebf87f20d",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:reality--david-bowie",
+      "type": "project",
+      "name": "Reality",
+      "artist": "David Bowie",
+      "mbid": "0f9d1be4-e975-39e9-a5ee-867c87824f42",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:heathen--david-bowie",
+      "type": "project",
+      "name": "Heathen",
+      "artist": "David Bowie",
+      "mbid": "fed49206-4869-307d-9bfa-08109424cb73",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:seven--david-bowie",
+      "type": "project",
+      "name": "Seven",
+      "artist": "David Bowie",
+      "mbid": "5ffd880f-8952-3fd1-bf0f-92255fe28c4c",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hours--david-bowie",
+      "type": "project",
+      "name": "‘hours…’",
+      "artist": "David Bowie",
+      "mbid": "e8a94ea7-8466-389e-830a-d356801ca68c",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:earthling--david-bowie",
+      "type": "project",
+      "name": "Earthling",
+      "artist": "David Bowie",
+      "mbid": "9a723e6e-2ede-371b-88bf-396cc362d77b",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:earthling-in-the-city--david-bowie",
+      "type": "project",
+      "name": "Earthling in the City",
+      "artist": "David Bowie",
+      "mbid": "ada10701-74ac-3586-a4d9-20151cb6f8b4",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:1-outside-the-nathan-adler-diaries-a-hyper-cycle--david-bowie",
+      "type": "project",
+      "name": "1.Outside: The Nathan Adler Diaries: A Hyper Cycle",
+      "artist": "David Bowie",
+      "mbid": "f05647bf-86a7-3e6e-872a-20eb465be0a5",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:black-tie-white-noise--david-bowie",
+      "type": "project",
+      "name": "Black Tie White Noise",
+      "artist": "David Bowie",
+      "mbid": "f5cc15ea-67a8-3c6b-9887-d45ae13a3156",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-buddha-of-suburbia--david-bowie",
+      "type": "project",
+      "name": "The Buddha of Suburbia",
+      "artist": "David Bowie",
+      "mbid": "9448df51-2f58-37cb-b4b7-885da1c7042d",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:never-let-me-down--david-bowie",
+      "type": "project",
+      "name": "Never Let Me Down",
+      "artist": "David Bowie",
+      "mbid": "28f8a0f8-0eb9-35a2-b6cd-d5be21e4428c",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:labyrinth-from-the-original-soundtrack-of-the-jim-henson-film--david-bowie",
+      "type": "project",
+      "name": "Labyrinth: From the Original Soundtrack of the Jim Henson Film",
+      "artist": "David Bowie",
+      "mbid": "88704038-369a-32cf-aff2-82d3eeeb01e5",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tonight--david-bowie",
+      "type": "project",
+      "name": "Tonight",
+      "artist": "David Bowie",
+      "mbid": "2d0af79a-cb12-32e3-9cae-21696b910d53",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:let-s-dance--david-bowie",
+      "type": "project",
+      "name": "Let’s Dance",
+      "artist": "David Bowie",
+      "mbid": "75c2bddf-1799-3eda-b6b3-a0cf5189d8ed",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:modern-love--david-bowie",
+      "type": "project",
+      "name": "Modern Love",
+      "artist": "David Bowie",
+      "mbid": "6ce1ffbb-7347-3821-b2f8-18322010ad3e",
+      "year": "1983",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:in-bertolt-brecht-s-baal--david-bowie",
+      "type": "project",
+      "name": "In Bertolt Brecht’s Baal",
+      "artist": "David Bowie",
+      "mbid": "70750747-90e6-3ed4-ac0d-bfc924c9a880",
+      "year": "1982",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:christiane-f-wir-kinder-vom-bahnhof-zoo--david-bowie",
+      "type": "project",
+      "name": "Christiane F.: Wir Kinder vom Bahnhof Zoo",
+      "artist": "David Bowie",
+      "mbid": "33f316fc-2c26-330f-b542-8ba9c48f8022",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scary-monsters-and-super-creeps--david-bowie",
+      "type": "project",
+      "name": "Scary Monsters… and Super Creeps",
+      "artist": "David Bowie",
+      "mbid": "bb13cb45-254c-3a61-89a5-15d22a97e6d6",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lodger--david-bowie",
+      "type": "project",
+      "name": "Lodger",
+      "artist": "David Bowie",
+      "mbid": "d6dd84a2-1a62-378c-b6c9-86a8b2211634",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:low--david-bowie",
+      "type": "project",
+      "name": "Low",
+      "artist": "David Bowie",
+      "mbid": "f6a51281-56c4-3538-b915-65a9d4eb29b5",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:heroes--david-bowie",
+      "type": "project",
+      "name": "“Heroes”",
+      "artist": "David Bowie",
+      "mbid": "1f5ef8d3-10ca-30eb-b41e-85b16987d412",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:station-to-station--david-bowie",
+      "type": "project",
+      "name": "Station to Station",
+      "artist": "David Bowie",
+      "mbid": "686cdbd1-b400-32d8-8cb8-9317a2e41a58",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fame--david-bowie",
+      "type": "project",
+      "name": "Fame",
+      "artist": "David Bowie",
+      "mbid": "b6dc42e4-9596-4b21-a417-f9dc715906b4",
+      "year": "1975",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:golden-years--david-bowie",
+      "type": "project",
+      "name": "Golden Years",
+      "artist": "David Bowie",
+      "mbid": "9fa0625f-d9e2-4e58-93ef-6002013fe731",
+      "year": "1975",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:young-americans--david-bowie",
+      "type": "project",
+      "name": "Young Americans",
+      "artist": "David Bowie",
+      "mbid": "8c2a0eae-1359-3577-9127-e3d862acc2a2",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:diamond-dogs--david-bowie",
+      "type": "project",
+      "name": "Diamond Dogs",
+      "artist": "David Bowie",
+      "mbid": "0dc4835d-b21a-3612-bac6-ab1e782a1396",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aladdin-sane--david-bowie",
+      "type": "project",
+      "name": "Aladdin Sane",
+      "artist": "David Bowie",
+      "mbid": "50f8710f-3ae6-319b-85a7-afe783f13449",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pin-ups--david-bowie",
+      "type": "project",
+      "name": "Pin Ups",
+      "artist": "David Bowie",
+      "mbid": "8b7bd1c2-be07-3083-989a-714f219f1ff8",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:starman-suffragette-city--david-bowie",
+      "type": "project",
+      "name": "Starman / Suffragette City",
+      "artist": "David Bowie",
+      "mbid": "e6ba94c9-9d37-44fa-905d-4b217f216726",
+      "year": "1972",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:the-rise-and-fall-of-ziggy-stardust-and-the-spiders-from-mars--david-bowie",
       "type": "project",
       "name": "The Rise and Fall of Ziggy Stardust and the Spiders from Mars",
-      "artist": "David Bowie"
+      "artist": "David Bowie",
+      "mbid": "6c9ae3dd-32ad-472c-96be-69d0a3536261",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hunky-dory--david-bowie",
+      "type": "project",
+      "name": "Hunky Dory",
+      "artist": "David Bowie",
+      "mbid": "743b0b2e-a23a-3182-950e-232f8cb0dfb7",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-man-who-sold-the-world--david-bowie",
+      "type": "project",
+      "name": "The Man Who Sold the World",
+      "artist": "David Bowie",
+      "mbid": "2536a41d-fde9-35d5-a6c6-cd4d94ffd916",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:david-bowie--david-bowie",
+      "type": "project",
+      "name": "David Bowie",
+      "artist": "David Bowie",
+      "mbid": "5db40351-97ed-36a8-88e2-a21a2603cae1",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:can-t-help-thinking-about-me-and-i-say-to-myself--david-bowie",
+      "type": "project",
+      "name": "Can’t Help Thinking About Me / And I Say to Myself",
+      "artist": "David Bowie",
+      "mbid": "fbe6b6b9-0df2-3b2e-a76a-cf6a6a81c758",
+      "year": "1966",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

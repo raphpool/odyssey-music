@@ -52,6 +52,132 @@
   ],
   "discography": [
     {
+      "slug": "project:25-years-of-metalheadz-part-9--doc-scott",
+      "type": "project",
+      "name": "25 Years of Metalheadz - Part 9",
+      "artist": "Doc Scott",
+      "mbid": "234873fc-3602-4dbe-9617-2986a98950b0",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:vip-drumz-ghosts-of-my-life--doc-scott",
+      "type": "project",
+      "name": "VIP Drumz / Ghosts of My Life (2017 Remaster)",
+      "artist": "Doc Scott",
+      "mbid": "652c531d-3b9b-4913-ac01-e4be273fe761",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:end-of-the-beginning-ep--doc-scott",
+      "type": "project",
+      "name": "End of the Beginning EP",
+      "artist": "Doc Scott",
+      "mbid": "f0d9a3d8-c0a1-4066-a4c4-e58545fa4839",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tokyo-dawn-cosmic-interlude--doc-scott",
+      "type": "project",
+      "name": "Tokyo Dawn / Cosmic Interlude",
+      "artist": "Doc Scott",
+      "mbid": "c3e636e9-3451-3e0b-b715-2f99d5a07bb5",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tokyo-dawn--doc-scott",
+      "type": "project",
+      "name": "Tokyo Dawn",
+      "artist": "Doc Scott",
+      "mbid": "e59371e4-8c94-46d4-8688-eebce3dd9fef",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vip-drumz-vip-riders-ghost-the-origin--doc-scott",
+      "type": "project",
+      "name": "VIP Drumz / VIP Riders Ghost (The Origin)",
+      "artist": "Doc Scott",
+      "mbid": "a0421c95-5cd7-4e6b-9578-6b9ac6baf61c",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:far-away-fourteen-flavours-of-funk-it-s-yours--doc-scott",
+      "type": "project",
+      "name": "Far Away (Fourteen Flavours of Funk) / It's Yours",
+      "artist": "Doc Scott",
+      "mbid": "f30849ff-f7c1-3872-9856-9fdae79b3d69",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:last-action-hero-ep--doc-scott",
+      "type": "project",
+      "name": "Last Action Hero EP",
+      "artist": "Doc Scott",
+      "mbid": "d77fe36c-f352-4204-8017-b016e6f74444",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:unreleased-metal--doc-scott",
+      "type": "project",
+      "name": "Unreleased Metal",
+      "artist": "Doc Scott",
+      "mbid": "264d7226-a340-3919-ace6-cbcfbce5f8be",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:deranged--doc-scott",
+      "type": "project",
+      "name": "Deranged",
+      "artist": "Doc Scott",
+      "mbid": "87607d8a-27a7-30a0-a670-d805a1a3d46e",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:v-i-p-drumz-deranged-part-ii--doc-scott",
+      "type": "project",
+      "name": "V.I.P. Drumz / Deranged (Part II)",
+      "artist": "Doc Scott",
+      "mbid": "25cf12e0-ed86-4c3c-836a-26d4fb720723",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:as-nasty-as-i-wanna-be--doc-scott",
+      "type": "project",
+      "name": "As Nasty as I Wanna Be",
+      "artist": "Doc Scott",
+      "mbid": "da2d09ff-5219-443e-9af5-85ef2e0bda7c",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-n-h-s-e-p-vol-2-the-second-chapter--doc-scott",
+      "type": "project",
+      "name": "The N.H.S E.P. Vol 2 - The Second Chapter",
+      "artist": "Doc Scott",
+      "mbid": "4469ac2c-cca6-4b3c-ae92-dd69b673f086",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-n-h-s-ep--doc-scott",
+      "type": "project",
+      "name": "The N.H.S EP",
+      "artist": "Doc Scott",
+      "mbid": "1d1c8fe4-b970-4c61-ad97-65abb1e8f485",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:nhs-ep-surgery",
       "type": "project",
       "name": "NHS EP - Surgery"

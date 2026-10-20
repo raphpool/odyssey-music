@@ -53,19 +53,361 @@
   ],
   "discography": [
     {
-      "slug": "project:the-joshua-tree--u2",
+      "slug": "project:days-of-ash-ep--u2",
       "type": "project",
-      "name": "The Joshua Tree"
+      "name": "Days of Ash EP",
+      "artist": "U2",
+      "mbid": "18b82e5d-33b0-4baf-bb87-75c82db6d697",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:easter-lily-ep--u2",
+      "type": "project",
+      "name": "Easter Lily EP",
+      "artist": "U2",
+      "mbid": "c0520470-f9f4-4e14-a76a-4f1bfbb883bd",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:songs-of-surrender--u2",
+      "type": "project",
+      "name": "Songs of Surrender",
+      "artist": "U2",
+      "mbid": "f8d10640-6e3a-49df-9786-1f741d672ce0",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:songs-of-experience--u2",
+      "type": "project",
+      "name": "Songs of Experience",
+      "artist": "U2",
+      "mbid": "e60cff6f-8ff9-44d1-a031-c5bd3cbb2dbe",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:songs-of-innocence--u2",
+      "type": "project",
+      "name": "Songs of Innocence",
+      "artist": "U2",
+      "mbid": "e3f3f2c0-6fa8-4098-8aad-d82209c34973",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-line-on-the-horizon--u2",
+      "type": "project",
+      "name": "No Line on the Horizon",
+      "artist": "U2",
+      "mbid": "acaa5e04-685c-3e47-af62-1cd3012008b6",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:how-to-dismantle-an-atomic-bomb--u2",
+      "type": "project",
+      "name": "How to Dismantle an Atomic Bomb",
+      "artist": "U2",
+      "mbid": "3ab33753-c16f-3e44-ae67-2fba4fd0e823",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sometimes-you-can-t-make-it-on-your-own--u2",
+      "type": "project",
+      "name": "Sometimes You Can’t Make It on Your Own",
+      "artist": "U2",
+      "mbid": "cf605470-c6be-3870-812b-f9aeda9f3a75",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vertigo--u2",
+      "type": "project",
+      "name": "Vertigo",
+      "artist": "U2",
+      "mbid": "26019834-8cd2-341c-a1e9-a0409eccbc10",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-that-you-can-t-leave-behind--u2",
+      "type": "project",
+      "name": "All That You Can’t Leave Behind",
+      "artist": "U2",
+      "mbid": "88c59b55-200d-3ac1-beff-8eb99830807e",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beautiful-day--u2",
+      "type": "project",
+      "name": "Beautiful Day",
+      "artist": "U2",
+      "mbid": "b5e845f9-cd59-340d-afb8-ca07bb43652f",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stuck-in-a-moment-you-can-t-get-out-of--u2",
+      "type": "project",
+      "name": "Stuck in a Moment You Can’t Get Out Of",
+      "artist": "U2",
+      "mbid": "c001531e-df4a-3632-aaf3-c5fbb8512285",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:discotheque--u2",
+      "type": "project",
+      "name": "Discothèque",
+      "artist": "U2",
+      "mbid": "dfae8e56-f43a-43ea-9544-709b46bb1480",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pop--u2",
+      "type": "project",
+      "name": "Pop",
+      "artist": "U2",
+      "mbid": "5eca5ea6-841b-3835-b368-94fb71d8f932",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:zooropa--u2",
+      "type": "project",
+      "name": "Zooropa",
+      "artist": "U2",
+      "mbid": "7c705df7-46e7-3c27-9693-72b3ea559c48",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:even-better-than-the-real-thing--u2",
+      "type": "project",
+      "name": "Even Better Than the Real Thing",
+      "artist": "U2",
+      "mbid": "ddda4bd5-5841-3082-80f2-f32096cd0d43",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:who-s-gonna-ride-your-wild-horses--u2",
+      "type": "project",
+      "name": "Who’s Gonna Ride Your Wild Horses",
+      "artist": "U2",
+      "mbid": "48710672-2591-30bd-8c2e-86b15c51cebc",
+      "year": "1992",
+      "releaseType": "single"
     },
     {
       "slug": "project:achtung-baby",
       "type": "project",
-      "name": "Achtung Baby"
+      "name": "Achtung Baby",
+      "mbid": "744c7a1b-ac79-35c4-bd92-7e2c6a24c8d8",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:all-i-want-is-you--u2",
+      "type": "project",
+      "name": "All I Want Is You",
+      "artist": "U2",
+      "mbid": "36fd3f7e-2461-3809-9d2a-b9a12b96bb82",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:angel-of-harlem--u2",
+      "type": "project",
+      "name": "Angel of Harlem",
+      "artist": "U2",
+      "mbid": "ad7eaa00-60c8-3b9e-a72c-95f4cc7dc99f",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rattle-and-hum--u2",
+      "type": "project",
+      "name": "Rattle and Hum",
+      "artist": "U2",
+      "mbid": "bf965ead-7c91-3a9b-93c8-cf941242ee65",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-still-haven-t-found-what-i-m-looking-for--u2",
+      "type": "project",
+      "name": "I Still Haven’t Found What I’m Looking For",
+      "artist": "U2",
+      "mbid": "a83637bf-01e9-32b8-8b3d-12dd39ec5cf6",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-joshua-tree--u2",
+      "type": "project",
+      "name": "The Joshua Tree",
+      "mbid": "6f3e9fa6-be7a-3de8-a2b2-2072ece8a54d",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:where-the-streets-have-no-name--u2",
+      "type": "project",
+      "name": "Where the Streets Have No Name",
+      "artist": "U2",
+      "mbid": "4d6c253b-d2ee-32c2-a8c8-299ac349856f",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:with-or-without-you--u2",
+      "type": "project",
+      "name": "With or Without You",
+      "artist": "U2",
+      "mbid": "fdb0e02d-d12a-38d5-9970-10a7f0fc9f5c",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wide-awake-in-america--u2",
+      "type": "project",
+      "name": "Wide Awake in America",
+      "artist": "U2",
+      "mbid": "a40f53ce-a99f-3adf-9e33-8d387e5d58df",
+      "year": "1985",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pride-in-the-name-of-love--u2",
+      "type": "project",
+      "name": "Pride (In the Name of Love)",
+      "artist": "U2",
+      "mbid": "75605a44-37f1-3234-b1f3-78fc200706c3",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-unforgettable-fire--u2",
+      "type": "project",
+      "name": "The Unforgettable Fire",
+      "artist": "U2",
+      "mbid": "c84d00f4-afd3-3184-be62-6ae5f135aa38",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:new-year-s-day--u2",
+      "type": "project",
+      "name": "New Year’s Day",
+      "artist": "U2",
+      "mbid": "7bf5193d-182a-3ee0-8e8e-61b671ac209d",
+      "year": "1983",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sunday-bloody-sunday--u2",
+      "type": "project",
+      "name": "Sunday Bloody Sunday",
+      "artist": "U2",
+      "mbid": "233b8b10-3d6c-36af-b652-4b268b1d02f1",
+      "year": "1983",
+      "releaseType": "single"
     },
     {
       "slug": "project:war",
       "type": "project",
-      "name": "War"
+      "name": "War",
+      "mbid": "c6b36664-7e60-3b3e-a24d-d096c67a11e9",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-celebration--u2",
+      "type": "project",
+      "name": "A Celebration",
+      "artist": "U2",
+      "mbid": "702b446a-cbd5-3621-8cd5-f70fdd1a82ba",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fire--u2",
+      "type": "project",
+      "name": "Fire",
+      "artist": "U2",
+      "mbid": "cb4fc61e-0ab6-3019-817a-ced84ec15d13",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gloria--u2",
+      "type": "project",
+      "name": "Gloria",
+      "artist": "U2",
+      "mbid": "81c13bde-0c9e-37b2-bc0a-b9d05bfa4ed4",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:october--u2",
+      "type": "project",
+      "name": "October",
+      "artist": "U2",
+      "mbid": "87febb2c-e117-3a0d-a7f6-8fd9a6421af1",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:11-o-clock-tick-tock--u2",
+      "type": "project",
+      "name": "11 O’Clock Tick Tock",
+      "artist": "U2",
+      "mbid": "94ba5536-9076-3b35-9a8a-d5806c0393a8",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-day-without-me--u2",
+      "type": "project",
+      "name": "A Day Without Me",
+      "artist": "U2",
+      "mbid": "671c0bdc-8e27-3f74-a676-01c260820681",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:boy--u2",
+      "type": "project",
+      "name": "Boy",
+      "artist": "U2",
+      "mbid": "53b0d89e-f856-3015-a3a6-a70e1e935fd6",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-will-follow--u2",
+      "type": "project",
+      "name": "I Will Follow",
+      "artist": "U2",
+      "mbid": "b4604422-ec1f-3943-900c-eb5aad3d8f28",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:three--u2",
+      "type": "project",
+      "name": "Three",
+      "artist": "U2",
+      "mbid": "5a824915-94b5-38c0-b1d0-65a31518423d",
+      "year": "1979",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

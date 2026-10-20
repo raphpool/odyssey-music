@@ -75,19 +75,118 @@
   ],
   "discography": [
     {
-      "slug": "project:q-are-we-not-men-a-we-are-devo",
+      "slug": "project:don-t-roof-rack-me-bro-seamus-unleashed--devo",
       "type": "project",
-      "name": "Q: Are We Not Men? A: We Are DEVO!"
+      "name": "Don't Roof Rack Me, Bro! (Seamus Unleashed)",
+      "artist": "Devo",
+      "mbid": "cc51e5f5-ed28-44e9-bf2b-b68f5b72570b",
+      "year": "2012",
+      "releaseType": "single"
     },
     {
-      "slug": "project:freedom-of-choice",
+      "slug": "project:monsterman--devo",
       "type": "project",
-      "name": "Freedom of Choice"
+      "name": "Monsterman",
+      "artist": "Devo",
+      "mbid": "4bd698b7-9b08-447e-9c49-ca982016d1fc",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:something-for-everybody--devo",
+      "type": "project",
+      "name": "Something for Everybody",
+      "artist": "Devo",
+      "mbid": "1ca7b25c-dd1b-4dff-a3f3-cfacece12c52",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:smooth-noodle-maps--devo",
+      "type": "project",
+      "name": "Smooth Noodle Maps",
+      "artist": "Devo",
+      "mbid": "2d6f4f42-1629-3210-98a5-0d98f5d7568f",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:total-devo--devo",
+      "type": "project",
+      "name": "Total Devo",
+      "artist": "Devo",
+      "mbid": "cbdc5f8e-0307-3244-a399-e0ba29d2195a",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shout--devo",
+      "type": "project",
+      "name": "Shout",
+      "artist": "Devo",
+      "mbid": "0e4bf223-8cfe-3206-b78e-a4a814d8a85f",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:oh-no-it-s-devo--devo",
+      "type": "project",
+      "name": "Oh, No! It’s DEVO",
+      "artist": "Devo",
+      "mbid": "d81cf3ca-b402-32c1-9add-134a6f5a5e94",
+      "year": "1982",
+      "releaseType": "album"
     },
     {
       "slug": "project:new-traditionalists",
       "type": "project",
-      "name": "New Traditionalists"
+      "name": "New Traditionalists",
+      "mbid": "04103c21-91d1-3172-95e2-b80544e238b3",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:freedom-of-choice",
+      "type": "project",
+      "name": "Freedom of Choice",
+      "mbid": "bb889709-d775-3cb1-84c2-1daf4884e165",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:duty-now-for-the-future--devo",
+      "type": "project",
+      "name": "Duty Now for the Future",
+      "artist": "Devo",
+      "mbid": "ae44cba8-7d73-3814-9dd4-fc30e1b6fb9c",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:b-stiff--devo",
+      "type": "project",
+      "name": "B Stiff",
+      "artist": "Devo",
+      "mbid": "effdbb01-c094-3b7f-8692-9ef587d380b5",
+      "year": "1978",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mechanical-man--devo",
+      "type": "project",
+      "name": "Mechanical Man",
+      "artist": "Devo",
+      "mbid": "a408ff13-c2ce-444d-b208-2fa8ae289654",
+      "year": "1978",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:q-are-we-not-men-a-we-are-devo",
+      "type": "project",
+      "name": "Q: Are We Not Men? A: We Are DEVO!",
+      "mbid": "60a754f9-50e1-346a-97db-925a1e2ad7e0",
+      "year": "1978",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

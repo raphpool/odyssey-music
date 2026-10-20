@@ -34,29 +34,245 @@
   "labels": [],
   "discography": [
     {
+      "slug": "project:sound-grammar",
+      "type": "project",
+      "name": "Sound Grammar",
+      "mbid": "76bf31a7-88de-3cec-923c-3080e2fda280",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sound-museum-hidden-man--ornette-coleman",
+      "type": "project",
+      "name": "Sound Museum: Hidden Man",
+      "artist": "Ornette Coleman",
+      "mbid": "0be8e938-a292-4b4f-855e-8612cfbeac5c",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tone-dialing--ornette-coleman",
+      "type": "project",
+      "name": "Tone Dialing",
+      "artist": "Ornette Coleman",
+      "mbid": "5a3b38e2-a647-3cf5-8f9c-2a6904592085",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-paris-concert-65--ornette-coleman",
+      "type": "project",
+      "name": "The Paris Concert ’65",
+      "artist": "Ornette Coleman",
+      "mbid": "e9e2d5cf-f2ee-47dc-bf84-7484c18216f0",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:virgin-beauty--ornette-coleman",
+      "type": "project",
+      "name": "Virgin Beauty",
+      "artist": "Ornette Coleman",
+      "mbid": "cd5cc884-65de-3748-a710-c58d66573bfa",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-all-languages--ornette-coleman",
+      "type": "project",
+      "name": "In All Languages",
+      "artist": "Ornette Coleman",
+      "mbid": "80c47805-5836-35cc-8c21-ee5952fc003a",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:broken-shadows--ornette-coleman",
+      "type": "project",
+      "name": "Broken Shadows",
+      "artist": "Ornette Coleman",
+      "mbid": "d360aebd-f2c5-3cbf-9d9e-1558b0b99347",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:of-human-feelings--ornette-coleman",
+      "type": "project",
+      "name": "Of Human Feelings",
+      "artist": "Ornette Coleman",
+      "mbid": "b58382ab-0c90-3a0a-b034-1db3759ae403",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soapsuds-soapsuds--ornette-coleman",
+      "type": "project",
+      "name": "Soapsuds, Soapsuds",
+      "artist": "Ornette Coleman",
+      "mbid": "2cfdeb04-5915-39ae-bfa6-88d0e06eae35",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:who-s-crazy-1-la-clef-des-champs-1--ornette-coleman",
+      "type": "project",
+      "name": "Who’s Crazy? 1 – La Clef des champs 1",
+      "artist": "Ornette Coleman",
+      "mbid": "9c948107-28cb-4e12-8416-93e508516672",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:body-meta--ornette-coleman",
+      "type": "project",
+      "name": "Body Meta",
+      "artist": "Ornette Coleman",
+      "mbid": "e8970f6e-2805-3512-83ae-2af52a3cf00a",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dancing-in-your-head--ornette-coleman",
+      "type": "project",
+      "name": "Dancing in Your Head",
+      "artist": "Ornette Coleman",
+      "mbid": "6711dd61-dbe2-3f1f-b343-81aed6d37386",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:to-whom-who-keeps-a-record--ornette-coleman",
+      "type": "project",
+      "name": "To Whom Who Keeps a Record",
+      "artist": "Ornette Coleman",
+      "mbid": "3906ab5e-caed-3133-8c00-fbf1c4fb42d3",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:science-fiction--ornette-coleman",
+      "type": "project",
+      "name": "Science Fiction",
+      "artist": "Ornette Coleman",
+      "mbid": "1f5ce9a4-6186-34d3-9424-475d7952a222",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:skies-of-america",
+      "type": "project",
+      "name": "Skies of America",
+      "mbid": "2b6bc6aa-5305-36a8-b063-a6bd5049ca6f",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-call--ornette-coleman",
+      "type": "project",
+      "name": "Love Call",
+      "artist": "Ornette Coleman",
+      "mbid": "4173bc01-68cf-3fc8-9e6f-c7674eabd13e",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:twins--ornette-coleman",
+      "type": "project",
+      "name": "Twins",
+      "artist": "Ornette Coleman",
+      "mbid": "cdccc316-5c41-3bc4-94b8-4f096bbde36c",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-art-of-the-improvisers--ornette-coleman",
+      "type": "project",
+      "name": "The Art of the Improvisers",
+      "artist": "Ornette Coleman",
+      "mbid": "e9832794-bb6d-3029-9c7c-93c9a6c71f06",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:new-york-is-now--ornette-coleman",
+      "type": "project",
+      "name": "New York Is Now!",
+      "artist": "Ornette Coleman",
+      "mbid": "31a29991-73c3-3832-9f3c-805db5c8c0ae",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chappaqua-suite--ornette-coleman",
+      "type": "project",
+      "name": "Chappaqua Suite",
+      "artist": "Ornette Coleman",
+      "mbid": "9795bef8-88a7-401a-8c91-b8f93fbe355c",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-empty-foxhole--ornette-coleman",
+      "type": "project",
+      "name": "The Empty Foxhole",
+      "artist": "Ornette Coleman",
+      "mbid": "cafc84d2-de58-3b5e-8cf0-d5de8d5eb8a3",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ornette-on-tenor--ornette-coleman",
+      "type": "project",
+      "name": "Ornette on Tenor",
+      "artist": "Ornette Coleman",
+      "mbid": "f5fcde81-ac04-35e8-89b8-3f825570aa2d",
+      "year": "1962",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:change-of-the-century--ornette-coleman",
+      "type": "project",
+      "name": "Change of the Century",
+      "artist": "Ornette Coleman",
+      "mbid": "a42656d2-87f7-31a3-99ca-b7ba7250255c",
+      "year": "1960",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-shape-of-jazz-to-come",
+      "type": "project",
+      "name": "The Shape of Jazz to Come",
+      "mbid": "5879cfca-e1d0-3ef4-8014-3b284832ed18",
+      "year": "1959",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tomorrow-is-the-question-the-new-music-of-ornette-coleman--ornette-coleman",
+      "type": "project",
+      "name": "Tomorrow Is the Question! The New Music of Ornette Coleman!",
+      "artist": "Ornette Coleman",
+      "mbid": "97d0eec5-13fb-3c1d-88e1-bc30cc8cf5d0",
+      "year": "1959",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:something-else-the-music-of-ornette-coleman--ornette-coleman",
+      "type": "project",
+      "name": "Something Else!!!! The Music of Ornette Coleman",
+      "artist": "Ornette Coleman",
+      "mbid": "d47a1752-401e-3816-9bad-eddee69dfdb5",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:something-else",
       "type": "project",
       "name": "Something Else!!!!"
     },
     {
-      "slug": "project:the-shape-of-jazz-to-come",
-      "type": "project",
-      "name": "The Shape of Jazz to Come"
-    },
-    {
       "slug": "project:free-jazz",
       "type": "project",
       "name": "Free Jazz"
-    },
-    {
-      "slug": "project:skies-of-america",
-      "type": "project",
-      "name": "Skies of America"
-    },
-    {
-      "slug": "project:sound-grammar",
-      "type": "project",
-      "name": "Sound Grammar"
     }
   ],
   "notable_tracks": [

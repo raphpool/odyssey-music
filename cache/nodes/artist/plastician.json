@@ -54,10 +54,202 @@
   ],
   "discography": [
     {
+      "slug": "project:pattern--plastician",
+      "type": "project",
+      "name": "Pattern",
+      "artist": "Plastician",
+      "mbid": "3be6a6a8-1a69-4b29-be6c-efe306334cb0",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:infinite-content-loop--plastician",
+      "type": "project",
+      "name": "Infinite Content Loop",
+      "artist": "Plastician",
+      "mbid": "0632ae5d-b3c2-4c7f-8c8a-755c45b5fa22",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:eras-end--plastician",
+      "type": "project",
+      "name": "Eras End",
+      "artist": "Plastician",
+      "mbid": "b5201d89-a019-480d-bb0d-c7dca0b0e779",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:speed-demon--plastician",
+      "type": "project",
+      "name": "Speed Demon",
+      "artist": "Plastician",
+      "mbid": "a2abba0d-00b5-4301-9c7b-14a498aa5b47",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bring-dat--plastician",
+      "type": "project",
+      "name": "Bring Dat",
+      "artist": "Plastician",
+      "mbid": "a4734b92-01c8-45bc-ad82-9f3c7ec66c63",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dreading--plastician",
+      "type": "project",
+      "name": "Dreading",
+      "artist": "Plastician",
+      "mbid": "5be2b247-2c89-438e-9d0e-a548ed103b76",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:deep-in-the-drives--plastician",
+      "type": "project",
+      "name": "Deep In The Drives",
+      "artist": "Plastician",
+      "mbid": "7be77da5-42ac-4f58-a31b-6f56fe2394a4",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:enight-revisited--plastician",
+      "type": "project",
+      "name": "eNight Revisited",
+      "artist": "Plastician",
+      "mbid": "d09de018-ce03-4d99-b227-1e1ee8ed3413",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:anyway--plastician",
+      "type": "project",
+      "name": "Anyway",
+      "artist": "Plastician",
+      "mbid": "0dd38350-aa56-4b00-a6a2-41b8d8d27025",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:overdue--plastician",
+      "type": "project",
+      "name": "Overdue",
+      "artist": "Plastician",
+      "mbid": "41cb7c83-307a-43d2-8c17-5af382465673",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:luxurious--plastician",
+      "type": "project",
+      "name": "Luxurious",
+      "artist": "Plastician",
+      "mbid": "68585e44-02e8-4aa9-ad18-95a03d8a0298",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lightning-bolt--plastician",
+      "type": "project",
+      "name": "Lightning Bolt",
+      "artist": "Plastician",
+      "mbid": "a470f821-44e5-4807-9a25-fc26b5988634",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:plasticman-remastered--plastician",
+      "type": "project",
+      "name": "Plasticman Remastered (Deluxe Edition)",
+      "artist": "Plastician",
+      "mbid": "9f8467f2-fa5a-4c7c-86ce-e2749db7d1c5",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:start-select-reset-ep--plastician",
+      "type": "project",
+      "name": "Start, Select, Reset EP",
+      "artist": "Plastician",
+      "mbid": "a261e706-d6f8-4214-af27-b83d7ea3e988",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:21st-data-001--plastician",
+      "type": "project",
+      "name": "21st Data 001",
+      "artist": "Plastician",
+      "mbid": "dbd43e7b-7428-446a-93e5-6fd5316948e9",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:21st-data-002--plastician",
+      "type": "project",
+      "name": "21st Data 002",
+      "artist": "Plastician",
+      "mbid": "7bb7f2ea-b1a3-40ec-8ba8-f543764658ec",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:21st-data-003--plastician",
+      "type": "project",
+      "name": "21st Data 003",
+      "artist": "Plastician",
+      "mbid": "27185a70-1b07-4cc2-a69e-0ad49ddc07e5",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:beg-to-differ--plastician",
       "type": "project",
       "name": "Beg to Differ",
-      "artist": "Plastician"
+      "artist": "Plastician",
+      "mbid": "7988d4f4-648d-3597-996c-a04403f6a3a2",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gotcha-the-rush--plastician",
+      "type": "project",
+      "name": "Gotcha / The Rush",
+      "artist": "Plastician",
+      "mbid": "ad411148-001d-3036-95dc-e245da58ce45",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:value-beats-e-p--plastician",
+      "type": "project",
+      "name": "Value Beats E.P.",
+      "artist": "Plastician",
+      "mbid": "58c0cf28-228f-421c-9c3a-73d146d3630b",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:cha-ep--plastician",
+      "type": "project",
+      "name": "Cha EP",
+      "artist": "Plastician",
+      "mbid": "c51fb761-9c5d-4648-b3d5-c1f041fdaed3",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pump-up-the-jam-white-gloves--plastician",
+      "type": "project",
+      "name": "Pump Up The Jam / White Gloves",
+      "artist": "Plastician",
+      "mbid": "3c89f50d-0e83-4ec8-b0c8-878d7604f2fa",
+      "year": "2003",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

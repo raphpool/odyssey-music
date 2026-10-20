@@ -71,29 +71,359 @@
   ],
   "discography": [
     {
-      "slug": "project:animal-magic",
+      "slug": "project:always-on-your-side--bonobo",
       "type": "project",
-      "name": "Animal Magic"
+      "name": "Always on Your Side",
+      "artist": "Bonobo",
+      "mbid": "54c4695f-2d5f-4e0b-8466-d0339104fe25",
+      "year": "2026",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:black-sands",
+      "slug": "project:distance-in-static--bonobo",
       "type": "project",
-      "name": "Black Sands"
+      "name": "Distance in Static",
+      "artist": "Bonobo",
+      "mbid": "76f912d8-c091-4d02-9d4d-f9aed273e2fb",
+      "year": "2026",
+      "releaseType": "album"
     },
     {
-      "slug": "project:the-north-borders",
+      "slug": "project:lazarus-adult-swim-original-series-soundtrack--bonobo",
       "type": "project",
-      "name": "The North Borders"
-    },
-    {
-      "slug": "project:migration",
-      "type": "project",
-      "name": "Migration"
+      "name": "Lazarus (Adult Swim Original Series Soundtrack)",
+      "artist": "Bonobo",
+      "mbid": "de0ecd39-56d5-4fa4-8f57-e8b2298f4dae",
+      "year": "2025",
+      "releaseType": "album"
     },
     {
       "slug": "project:fragments--bonobo",
       "type": "project",
-      "name": "Fragments"
+      "name": "Fragments",
+      "mbid": "c0b8d15f-baed-499c-80d3-037325756e9c",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:brighton-tapes--bonobo",
+      "type": "project",
+      "name": "Brighton Tapes",
+      "artist": "Bonobo",
+      "mbid": "880f51a8-d6e0-44c1-b92e-fabf749ee180",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rosewood--bonobo",
+      "type": "project",
+      "name": "Rosewood",
+      "artist": "Bonobo",
+      "mbid": "05f5a7d4-f2cb-47b1-b013-c4786ddda0bd",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tides--bonobo",
+      "type": "project",
+      "name": "Tides",
+      "artist": "Bonobo",
+      "mbid": "a27c83d8-9b1b-40ee-8920-4dd5bc9aabb8",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heartbreak--bonobo",
+      "type": "project",
+      "name": "Heartbreak",
+      "artist": "Bonobo",
+      "mbid": "7b273aa7-6519-451d-a347-895197edc11c",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heartbreak-6000-ft--bonobo",
+      "type": "project",
+      "name": "Heartbreak / 6000 Ft.",
+      "artist": "Bonobo",
+      "mbid": "d35261e9-d747-4d37-b1ee-2ca153e9bec8",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ibrik--bonobo",
+      "type": "project",
+      "name": "Ibrik",
+      "artist": "Bonobo",
+      "mbid": "f41d04b9-364c-4d68-a1ff-dcf4fc46f052",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:linked--bonobo",
+      "type": "project",
+      "name": "Linked",
+      "artist": "Bonobo",
+      "mbid": "3666df48-7ca4-4c59-95b6-7800f6424913",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bambro-koyo-ganda--bonobo",
+      "type": "project",
+      "name": "Bambro Koyo Ganda",
+      "artist": "Bonobo",
+      "mbid": "f3fd9428-04f5-4bf8-910f-be7a730a1c9c",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:migration",
+      "type": "project",
+      "name": "Migration",
+      "mbid": "d9a5aa9a-6e35-47b1-b74e-b83cb5b3beed",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-reason--bonobo",
+      "type": "project",
+      "name": "No Reason",
+      "artist": "Bonobo",
+      "mbid": "6b7b060a-1af4-4618-b048-ed3643ceb495",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:break-apart--bonobo",
+      "type": "project",
+      "name": "Break Apart",
+      "artist": "Bonobo",
+      "mbid": "e8597380-3c7d-46d9-99ae-bcfe3fa56721",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kerala--bonobo",
+      "type": "project",
+      "name": "Kerala",
+      "artist": "Bonobo",
+      "mbid": "640d8043-d8ec-476d-b821-a88bedf8dc78",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:flashlight--bonobo",
+      "type": "project",
+      "name": "Flashlight",
+      "artist": "Bonobo",
+      "mbid": "d12ffa08-5935-47a3-8b7c-c2d8d8c0db15",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:flashlight-ep--bonobo",
+      "type": "project",
+      "name": "Flashlight EP",
+      "artist": "Bonobo",
+      "mbid": "ee03553d-760d-4d83-a73d-ce4d57ef1ebb",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:get-thy-bearings--bonobo",
+      "type": "project",
+      "name": "Get Thy Bearings",
+      "artist": "Bonobo",
+      "mbid": "13710363-a4e5-4982-9888-8467d4594667",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ten-tigers--bonobo",
+      "type": "project",
+      "name": "Ten Tigers",
+      "artist": "Bonobo",
+      "mbid": "71307640-550f-4806-bddc-7135be87f227",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cirrus--bonobo",
+      "type": "project",
+      "name": "Cirrus",
+      "artist": "Bonobo",
+      "mbid": "6e99a267-2c54-4e16-ba09-a5bfaa0150a9",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:first-fires--bonobo",
+      "type": "project",
+      "name": "First Fires",
+      "artist": "Bonobo",
+      "mbid": "dbcd2267-add6-491c-9546-c318c38ff765",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-north-borders",
+      "type": "project",
+      "name": "The North Borders",
+      "mbid": "6d2829f3-ced8-4f40-96de-ac30bff212f4",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kiara--bonobo",
+      "type": "project",
+      "name": "Kiara",
+      "artist": "Bonobo",
+      "mbid": "f95b5401-afa6-413e-adec-1ab1de80724a",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:black-sands",
+      "type": "project",
+      "name": "Black Sands",
+      "mbid": "f382cd44-9195-46ce-9362-dadbe16cefe9",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:eyesdown--bonobo",
+      "type": "project",
+      "name": "Eyesdown",
+      "artist": "Bonobo",
+      "mbid": "1e90d1fb-2231-4c9e-9c10-df9de272e0ae",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ghost-ship--bonobo",
+      "type": "project",
+      "name": "Ghost Ship",
+      "artist": "Bonobo",
+      "mbid": "be3751f6-4890-466b-b376-4458e1c43ffe",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stay-the-same--bonobo",
+      "type": "project",
+      "name": "Stay the Same",
+      "artist": "Bonobo",
+      "mbid": "24118853-ceb1-4a7a-8a29-55c070f99ab1",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-keeper--bonobo",
+      "type": "project",
+      "name": "The Keeper",
+      "artist": "Bonobo",
+      "mbid": "532a02d0-05fa-4ab5-a857-3f3db05d7129",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:days-to-come--bonobo",
+      "type": "project",
+      "name": "Days to Come",
+      "artist": "Bonobo",
+      "mbid": "32f2a529-448a-3868-963d-7b42b003b9cd",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nightlite--bonobo",
+      "type": "project",
+      "name": "Nightlite",
+      "artist": "Bonobo",
+      "mbid": "13c42fd6-884a-3fd2-89a7-c9d73e5f19b8",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dial-m-for-monkey--bonobo",
+      "type": "project",
+      "name": "Dial ‘M’ for Monkey",
+      "artist": "Bonobo",
+      "mbid": "6edbf73e-6078-3679-a4b9-280a13cf55a8",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:flutter--bonobo",
+      "type": "project",
+      "name": "Flutter",
+      "artist": "Bonobo",
+      "mbid": "c17b29d3-0885-3150-8b8c-bef79c935f90",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pick-up--bonobo",
+      "type": "project",
+      "name": "Pick Up",
+      "artist": "Bonobo",
+      "mbid": "d5ef065c-4d06-3267-9270-4d3f40d8ab7b",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kota--bonobo",
+      "type": "project",
+      "name": "Kota",
+      "artist": "Bonobo",
+      "mbid": "6e2a122f-f8da-3ac9-9b73-3941ea951e72",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-shark--bonobo",
+      "type": "project",
+      "name": "The Shark",
+      "artist": "Bonobo",
+      "mbid": "035506b1-5e2f-3553-9c17-482145b77304",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:animal-magic",
+      "type": "project",
+      "name": "Animal Magic",
+      "mbid": "72a7d9d5-7fcd-3b37-ae56-4ef1d5abb2f3",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scuba-ep--bonobo",
+      "type": "project",
+      "name": "Scuba EP",
+      "artist": "Bonobo",
+      "mbid": "2f7e754f-a292-339a-81cd-b107d5bbae00",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:silver--bonobo",
+      "type": "project",
+      "name": "Silver",
+      "artist": "Bonobo",
+      "mbid": "e955315b-463d-39c5-888b-ef95d63f063c",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:terrapin--bonobo",
+      "type": "project",
+      "name": "Terrapin",
+      "artist": "Bonobo",
+      "mbid": "f3586b54-2a40-32ec-bd69-556eacad4bd0",
+      "year": "2000",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

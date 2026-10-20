@@ -76,34 +76,133 @@
   ],
   "discography": [
     {
-      "slug": "project:i-created-disco",
+      "slug": "project:release-the-pressure--calvin-harris",
       "type": "project",
-      "name": "I Created Disco"
+      "name": "Release the Pressure",
+      "artist": "Calvin Harris",
+      "mbid": "c5bd9742-a8e7-4fe4-9416-b351b01183f3",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:ready-for-the-weekend",
+      "slug": "project:satisfy--calvin-harris",
       "type": "project",
-      "name": "Ready for the Weekend"
+      "name": "Satisfy",
+      "artist": "Calvin Harris",
+      "mbid": "dd0fb6e2-635b-4409-89d7-fbdadc071e39",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:18-months",
+      "slug": "project:blessings--calvin-harris",
       "type": "project",
-      "name": "18 Months"
+      "name": "Blessings",
+      "artist": "Calvin Harris",
+      "mbid": "cb6e6dd3-2e74-4c86-a427-daa5753bac8a",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:motion",
+      "slug": "project:ocean--calvin-harris",
       "type": "project",
-      "name": "Motion"
+      "name": "Ocean",
+      "artist": "Calvin Harris",
+      "mbid": "52427560-9247-47a8-8a3c-ba738161ccb1",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:funk-wav-bounces-vol-1",
+      "slug": "project:smoke-the-pain-away--calvin-harris",
       "type": "project",
-      "name": "Funk Wav Bounces, Vol. 1"
+      "name": "SMOKE THE PAIN AWAY",
+      "artist": "Calvin Harris",
+      "mbid": "ea693d88-4478-441e-b4e5-166762391727",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
       "slug": "project:funk-wav-bounces-vol-2",
       "type": "project",
-      "name": "Funk Wav Bounces, Vol. 2"
+      "name": "Funk Wav Bounces, Vol. 2",
+      "mbid": "f7e3fac4-f599-4257-b9e3-b51b316c74bb",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:over-now--calvin-harris",
+      "type": "project",
+      "name": "Over Now",
+      "artist": "Calvin Harris",
+      "mbid": "900c297e-0d72-461f-bada-b8993c929b7b",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-kiss--calvin-harris",
+      "type": "project",
+      "name": "One Kiss",
+      "artist": "Calvin Harris",
+      "mbid": "83a4bd1f-b5c3-4604-9132-38c1d1d75583",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:funk-wav-bounces-vol-1",
+      "type": "project",
+      "name": "Funk Wav Bounces, Vol. 1",
+      "mbid": "654730cb-92d6-41ed-b298-ae890899e543",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:this-is-what-you-came-for--calvin-harris",
+      "type": "project",
+      "name": "This Is What You Came For",
+      "artist": "Calvin Harris",
+      "mbid": "41e9758f-d99d-48d9-be99-4cd1bed84768",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:motion",
+      "type": "project",
+      "name": "Motion",
+      "mbid": "8b2d4efb-3f3f-4d6e-83f0-dc9d8ad8d8bb",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:18-months",
+      "type": "project",
+      "name": "18 Months",
+      "mbid": "98432828-5764-4892-9e3f-9c674cf70acb",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ready-for-the-weekend",
+      "type": "project",
+      "name": "Ready for the Weekend",
+      "mbid": "27250bea-74ea-4b13-9f62-2b7a6e605acc",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-created-disco",
+      "type": "project",
+      "name": "I Created Disco",
+      "mbid": "cb619ac1-84bc-32eb-a8b7-cb143edc432f",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:acceptable-in-the-80s--calvin-harris",
+      "type": "project",
+      "name": "Acceptable in the 80s",
+      "artist": "Calvin Harris",
+      "mbid": "6887ea4d-38ee-3935-b4ab-db880c996dd1",
+      "year": "2006",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

@@ -41,19 +41,25 @@
   ],
   "discography": [
     {
+      "slug": "project:spark-plug",
+      "type": "project",
+      "name": "Spark Plug",
+      "mbid": "42198635-7654-4853-8eb4-d04d941d9bb9",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:the-savage-and-beyond",
       "type": "project",
-      "name": "The Savage And Beyond"
+      "name": "The Savage And Beyond",
+      "mbid": "e366cbe7-9e43-32e3-8741-693c95a4acdf",
+      "year": "1991",
+      "releaseType": "ep"
     },
     {
       "slug": "project:straight-outta-hell",
       "type": "project",
       "name": "Straight Outta Hell"
-    },
-    {
-      "slug": "project:spark-plug",
-      "type": "project",
-      "name": "Spark Plug"
     }
   ],
   "notable_tracks": [

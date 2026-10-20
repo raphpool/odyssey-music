@@ -50,29 +50,350 @@
   ],
   "discography": [
     {
-      "slug": "project:2-cool-4-skool",
+      "slug": "project:arirang--bts",
       "type": "project",
-      "name": "2 Cool 4 Skool"
+      "name": "ARIRANG",
+      "artist": "BTS",
+      "mbid": "21159e3f-172e-43f6-aa7d-8e06a81fea49",
+      "year": "2026",
+      "releaseType": "album"
     },
     {
-      "slug": "project:dark-and-wild",
+      "slug": "project:the-planet--bts",
       "type": "project",
-      "name": "Dark & Wild"
+      "name": "The Planet",
+      "artist": "BTS",
+      "mbid": "4b423cb1-6da1-476c-a335-6d5f0777af8a",
+      "year": "2023",
+      "releaseType": "single"
     },
     {
-      "slug": "project:wings",
+      "slug": "project:yet-to-come-the-most-beautiful-moment--bts",
       "type": "project",
-      "name": "Wings"
+      "name": "Yet to Come (The Most Beautiful Moment)",
+      "artist": "BTS",
+      "mbid": "42fa0b58-afe2-48b9-91f8-2b22c0561d69",
+      "year": "2022",
+      "releaseType": "single"
     },
     {
-      "slug": "project:love-yourself-tear",
+      "slug": "project:butter--bts",
       "type": "project",
-      "name": "Love Yourself: Tear"
+      "name": "Butter",
+      "artist": "BTS",
+      "mbid": "fe9200d2-6a79-4b3f-8f64-e54865342823",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:film-out--bts",
+      "type": "project",
+      "name": "Film out",
+      "artist": "BTS",
+      "mbid": "453545fb-0430-4c03-b76b-a42fc3521a29",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:permission-to-dance--bts",
+      "type": "project",
+      "name": "Permission to Dance",
+      "artist": "BTS",
+      "mbid": "609147d2-e3d8-4434-863f-ccf7ed0c506e",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:be--bts",
+      "type": "project",
+      "name": "BE",
+      "artist": "BTS",
+      "mbid": "7917fe48-906d-464f-9909-0e4d18d59192",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:black-swan--bts",
+      "type": "project",
+      "name": "Black Swan",
+      "artist": "BTS",
+      "mbid": "09dbd42c-f614-410c-a204-e5d422ddd456",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dynamite--bts",
+      "type": "project",
+      "name": "Dynamite",
+      "artist": "BTS",
+      "mbid": "d0d03eaa-d880-4c12-b3ae-3013e327ed90",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:map-of-the-soul-7-the-journey--bts",
+      "type": "project",
+      "name": "MAP OF THE SOUL : 7 〜 THE JOURNEY 〜",
+      "artist": "BTS",
+      "mbid": "3a91498a-4e50-4a77-93e2-a7b599b9739e",
+      "year": "2020",
+      "releaseType": "album"
     },
     {
       "slug": "project:map-of-the-soul-7",
       "type": "project",
-      "name": "Map of the Soul: 7"
+      "name": "Map of the Soul: 7",
+      "mbid": "728f288b-eb1c-4ce1-98a1-d4124c897aaf",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stay-gold--bts",
+      "type": "project",
+      "name": "Stay Gold",
+      "artist": "BTS",
+      "mbid": "44a43233-3a08-4620-998b-b987434e3874",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-brand-new-day--bts",
+      "type": "project",
+      "name": "A Brand New Day",
+      "artist": "BTS",
+      "mbid": "09abc223-634c-41aa-b26f-b5d0860e4a40",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bts-world-original-soundtrack--bts",
+      "type": "project",
+      "name": "BTS WORLD: Original Soundtrack",
+      "artist": "BTS",
+      "mbid": "f26a2441-41a4-401f-940b-50de9261f8b3",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dream-glow-bts-world-ost-part-1--bts",
+      "type": "project",
+      "name": "Dream Glow (BTS WORLD OST Part.1)",
+      "artist": "BTS",
+      "mbid": "53ef1ca6-361d-405e-9d6c-ced92c81eefa",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lights-boy-with-luv--bts",
+      "type": "project",
+      "name": "Lights / Boy With Luv",
+      "artist": "BTS",
+      "mbid": "01f75e25-5401-4001-a90a-685d6e5a1516",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:map-of-the-soul-persona--bts",
+      "type": "project",
+      "name": "MAP OF THE SOUL : PERSONA",
+      "artist": "BTS",
+      "mbid": "1bd22a9f-54d2-46bf-9d3a-3c7056299a90",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:make-it-right--bts",
+      "type": "project",
+      "name": "Make It Right",
+      "artist": "BTS",
+      "mbid": "f01f5615-a28c-4957-a642-3f5e87601d2b",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:face-yourself--bts",
+      "type": "project",
+      "name": "FACE YOURSELF",
+      "artist": "BTS",
+      "mbid": "a3ed68fc-eb06-4c18-a61f-beb9f955337e",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fake-love-airplane-pt-2--bts",
+      "type": "project",
+      "name": "FAKE LOVE / Airplane pt.2",
+      "artist": "BTS",
+      "mbid": "d0b665ef-1e8f-439b-bc5d-adb359558618",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-yourself-tear",
+      "type": "project",
+      "name": "Love Yourself: Tear",
+      "mbid": "bdc4aa4d-bfba-4ef1-b3b6-ffc68055877e",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:come-back-home--bts",
+      "type": "project",
+      "name": "Come Back Home",
+      "artist": "BTS",
+      "mbid": "44a8e974-971e-4fd3-8515-9e12cef6ea5a",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-yourself-her--bts",
+      "type": "project",
+      "name": "LOVE YOURSELF 承 ‘Her’",
+      "artist": "BTS",
+      "mbid": "ee28c781-09a9-419b-9db5-f3ddf8fe8adb",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mic-drop-dna-crystal-snow--bts",
+      "type": "project",
+      "name": "MIC Drop / DNA / Crystal Snow",
+      "artist": "BTS",
+      "mbid": "628c6541-3c8a-4317-becb-a9b0ed1fc3e2",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:run--bts",
+      "type": "project",
+      "name": "RUN",
+      "artist": "BTS",
+      "mbid": "4fea59d3-678c-492a-84fe-518821c51f91",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wings",
+      "type": "project",
+      "name": "Wings",
+      "mbid": "ddbf733c-1182-42a2-9bae-059afcbc3b93",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:youth--bts",
+      "type": "project",
+      "name": "YOUTH",
+      "artist": "BTS",
+      "mbid": "7b70f452-a540-4fc8-933e-3b1d6800e290",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:for-you--bts",
+      "type": "project",
+      "name": "FOR YOU",
+      "artist": "BTS",
+      "mbid": "84418d5d-dccd-4d48-9352-7e3375ee4411",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-need-u--bts",
+      "type": "project",
+      "name": "I NEED U",
+      "artist": "BTS",
+      "mbid": "114ae7ec-eaad-416a-9ea1-9da4e2e497ca",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pt-1--bts",
+      "type": "project",
+      "name": "화양연화 pt.1",
+      "artist": "BTS",
+      "mbid": "9da1f278-4c74-49df-bc1a-f0f68747cfaa",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pt-2--bts",
+      "type": "project",
+      "name": "화양연화 pt.2",
+      "artist": "BTS",
+      "mbid": "c1df4acf-cd59-4b44-be2c-0b2df5de7c96",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:boy-in-luv--bts",
+      "type": "project",
+      "name": "BOY IN LUV",
+      "artist": "BTS",
+      "mbid": "10619527-41a4-4a80-9fb1-db226a592896",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:danger--bts",
+      "type": "project",
+      "name": "Danger",
+      "artist": "BTS",
+      "mbid": "1b1ef55e-7ee7-49dc-9ad2-f7bc516455e6",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dark-and-wild",
+      "type": "project",
+      "name": "Dark & Wild",
+      "mbid": "ea958ad6-4519-44f8-8c7c-18b3f16218f4",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-more-dream--bts",
+      "type": "project",
+      "name": "NO MORE DREAM",
+      "artist": "BTS",
+      "mbid": "edd197b8-4c40-4c82-bd86-602730ba7fce",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:skool-luv-affair--bts",
+      "type": "project",
+      "name": "Skool Luv Affair",
+      "artist": "BTS",
+      "mbid": "28a34ea0-4198-4f0e-be85-34a130814db6",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:wake-up--bts",
+      "type": "project",
+      "name": "WAKE UP",
+      "artist": "BTS",
+      "mbid": "75ec671d-bd15-4bfa-baeb-f6054d2202db",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:2-cool-4-skool",
+      "type": "project",
+      "name": "2 Cool 4 Skool",
+      "mbid": "c7800324-d78e-445b-a042-0556b6f008da",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:o-rul8-2--bts",
+      "type": "project",
+      "name": "O!RUL8,2?",
+      "artist": "BTS",
+      "mbid": "7a3f8a64-30f8-4914-b6eb-11f760c5cc17",
+      "year": "2013",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

@@ -51,25 +51,298 @@
   ],
   "discography": [
     {
-      "slug": "project:something-anything",
+      "slug": "project:white-knight--todd-rundgren",
       "type": "project",
-      "name": "Something/Anything?"
+      "name": "White Knight",
+      "artist": "Todd Rundgren",
+      "mbid": "1d74ddd8-cedd-4fea-b047-582efc32fa29",
+      "year": "2017",
+      "releaseType": "album"
     },
     {
-      "slug": "project:a-wizard-a-true-star",
+      "slug": "project:global--todd-rundgren",
       "type": "project",
-      "name": "A Wizard, a True Star"
+      "name": "Global",
+      "artist": "Todd Rundgren",
+      "mbid": "9a3e1ef8-8828-417f-ac21-3fb0d31bae82",
+      "year": "2015",
+      "releaseType": "album"
     },
     {
-      "slug": "project:hermit-of-mink-hollow",
+      "slug": "project:state--todd-rundgren",
       "type": "project",
-      "name": "Hermit of Mink Hollow"
+      "name": "State",
+      "artist": "Todd Rundgren",
+      "mbid": "bf4b0591-431d-4a75-9bf9-c15f405cff82",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:todd-rundgren-s-johnson--todd-rundgren",
+      "type": "project",
+      "name": "Todd Rundgren’s Johnson",
+      "artist": "Todd Rundgren",
+      "mbid": "afc8c78e-cd35-404d-b525-7f249d329e82",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:re-production--todd-rundgren",
+      "type": "project",
+      "name": "[Re]Production",
+      "artist": "Todd Rundgren",
+      "mbid": "a1454c49-2a64-4c32-b57b-d109aaa0b2e0",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:arena--todd-rundgren",
+      "type": "project",
+      "name": "Arena",
+      "artist": "Todd Rundgren",
+      "mbid": "7853d8ba-c3f2-3123-a186-a4ce6ad48c31",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:liars--todd-rundgren",
+      "type": "project",
+      "name": "Liars",
+      "artist": "Todd Rundgren",
+      "mbid": "a6b84293-1cee-320e-a70d-927096c33637",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:with-a-little-help-from-my-friends--todd-rundgren",
+      "type": "project",
+      "name": "With a Little Help From My Friends",
+      "artist": "Todd Rundgren",
+      "mbid": "324a5f7b-ab4b-4fce-ad4f-93f609e57d5c",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:todd-rundgren--todd-rundgren",
+      "type": "project",
+      "name": "Todd Rundgren",
+      "artist": "Todd Rundgren",
+      "mbid": "46cde4f9-0d7f-317d-b638-cf00fa261b7c",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:demos-and-lost-albums--todd-rundgren",
+      "type": "project",
+      "name": "Demos And Lost Albums",
+      "artist": "Todd Rundgren",
+      "mbid": "a54fedc2-645d-31ed-8c73-03f02e64f453",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-long-year--todd-rundgren",
+      "type": "project",
+      "name": "One Long Year",
+      "artist": "Todd Rundgren",
+      "mbid": "2bb716a6-d288-35f5-902f-9ca4d1c95021",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:live-in-chicago-91--todd-rundgren",
+      "type": "project",
+      "name": "Live in Chicago '91",
+      "artist": "Todd Rundgren",
+      "mbid": "7f7067f8-6380-448c-aa79-926f6ae416ba",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trtv-volume-2--todd-rundgren",
+      "type": "project",
+      "name": "TRTV, Volume 2",
+      "artist": "Todd Rundgren",
+      "mbid": "e8c8f78c-3952-3df3-9d86-4ceb16cda7e2",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-is-the-answer--todd-rundgren",
+      "type": "project",
+      "name": "Love Is the Answer",
+      "artist": "Todd Rundgren",
+      "mbid": "9bae2d3a-43be-4ff9-a851-a602c697c18e",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:somewhere-anywhere--todd-rundgren",
+      "type": "project",
+      "name": "Somewhere / Anywhere",
+      "artist": "Todd Rundgren",
+      "mbid": "e9d17cb5-8fa7-4ef3-bf9b-e5b776d1d27a",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trtv-volume-1--todd-rundgren",
+      "type": "project",
+      "name": "TRTV, Volume 1",
+      "artist": "Todd Rundgren",
+      "mbid": "03075a48-9316-3425-b1fb-391351e9f26b",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:up-against-it--todd-rundgren",
+      "type": "project",
+      "name": "Up Against It",
+      "artist": "Todd Rundgren",
+      "mbid": "9d824f5d-fda8-3422-b25d-c48ab8476e5d",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:with-a-twist--todd-rundgren",
+      "type": "project",
+      "name": "With a Twist...",
+      "artist": "Todd Rundgren",
+      "mbid": "f1756784-6ca3-33b8-80f1-82b6cf7f4e12",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-individualist--todd-rundgren",
+      "type": "project",
+      "name": "The Individualist",
+      "artist": "Todd Rundgren",
+      "mbid": "24b0cf06-1227-3f83-97cf-e339ccab2948",
+      "year": "1995",
+      "releaseType": "album"
     },
     {
       "slug": "project:no-world-order--todd-rundgren",
       "type": "project",
       "name": "No World Order",
-      "artist": "Todd Rundgren"
+      "artist": "Todd Rundgren",
+      "mbid": "90212abc-c235-3c9c-9c72-259ec9d5a1a8",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:2nd-wind--todd-rundgren",
+      "type": "project",
+      "name": "2nd Wind",
+      "artist": "Todd Rundgren",
+      "mbid": "9c367c6c-5e41-31b5-96c9-bc4559eb5489",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nearly-human--todd-rundgren",
+      "type": "project",
+      "name": "Nearly Human",
+      "artist": "Todd Rundgren",
+      "mbid": "316192cb-d197-3789-806b-3d8ba765a58e",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-cappella--todd-rundgren",
+      "type": "project",
+      "name": "A Cappella",
+      "artist": "Todd Rundgren",
+      "mbid": "c579af59-6233-3551-83a5-e29a815c4ede",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-ever-popular-tortured-artist-effect--todd-rundgren",
+      "type": "project",
+      "name": "The Ever Popular Tortured Artist Effect",
+      "artist": "Todd Rundgren",
+      "mbid": "75c36160-a7ad-3b22-bff2-dc471cf22dd0",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:healing--todd-rundgren",
+      "type": "project",
+      "name": "Healing",
+      "artist": "Todd Rundgren",
+      "mbid": "19e80858-1d6f-3afc-98f1-c02b089b9237",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hermit-of-mink-hollow",
+      "type": "project",
+      "name": "Hermit of Mink Hollow",
+      "mbid": "3ef79af5-6886-34d4-b087-73f524167276",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:faithful--todd-rundgren",
+      "type": "project",
+      "name": "Faithful",
+      "artist": "Todd Rundgren",
+      "mbid": "4088979f-019f-3dd5-b0e6-80de2d0dad90",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:initiation--todd-rundgren",
+      "type": "project",
+      "name": "Initiation",
+      "artist": "Todd Rundgren",
+      "mbid": "1f7bc464-2ea4-342e-8447-3c92a0df5494",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:todd--todd-rundgren",
+      "type": "project",
+      "name": "Todd",
+      "artist": "Todd Rundgren",
+      "mbid": "f9ad043f-a650-3c97-8a3e-54a6b56f1d5f",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-wizard-a-true-star",
+      "type": "project",
+      "name": "A Wizard, a True Star",
+      "mbid": "d6263c37-09b4-35f3-80db-3ffff1cf4252",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:something-anything",
+      "type": "project",
+      "name": "Something/Anything?",
+      "mbid": "edbaf38a-ba3c-3d21-981c-879fe4ac6c76",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:runt-the-ballad-of-todd-rundgren--todd-rundgren",
+      "type": "project",
+      "name": "Runt: The Ballad of Todd Rundgren",
+      "artist": "Todd Rundgren",
+      "mbid": "a6d32a5b-5685-42df-b2c2-bcb4e6c5cf34",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:runt--todd-rundgren",
+      "type": "project",
+      "name": "Runt",
+      "artist": "Todd Rundgren",
+      "mbid": "58aa3914-4a70-3c54-acaf-1852eba13aa5",
+      "year": "1970",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

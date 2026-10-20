@@ -53,9 +53,192 @@
   ],
   "discography": [
     {
+      "slug": "project:can-you-feel-it--larry-heard",
+      "type": "project",
+      "name": "Can You Feel It",
+      "artist": "Larry Heard",
+      "mbid": "a18c7269-fc6e-4beb-98be-a49ed7ffe8d2",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:virtual-emotion--larry-heard",
+      "type": "project",
+      "name": "Virtual Emotion",
+      "artist": "Larry Heard",
+      "mbid": "1e13a462-5212-43d2-8ff0-837157751a7e",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:25-years-from-alpha--larry-heard",
+      "type": "project",
+      "name": "25 Years From Alpha",
+      "artist": "Larry Heard",
+      "mbid": "c6049aef-8697-4868-8a81-4208c632048b",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:balance-three-o-three--larry-heard",
+      "type": "project",
+      "name": "Balance / Three O' Three",
+      "artist": "Larry Heard",
+      "mbid": "436b6764-e0d8-32c0-a809-132e84aa6d39",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-rock-me-the-sun-can-t-compare--larry-heard",
+      "type": "project",
+      "name": "You Rock Me / The Sun Can't Compare",
+      "artist": "Larry Heard",
+      "mbid": "a49808ac-8d2e-47f7-b988-4d6be5b065cb",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:soundtrack-from-the-duality-double-play--larry-heard",
+      "type": "project",
+      "name": "Soundtrack From the Duality Double-Play",
+      "artist": "Larry Heard",
+      "mbid": "74c5c9a3-1b55-4f1b-a572-6d1c5cd7a573",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:where-life-begins--larry-heard",
+      "type": "project",
+      "name": "Where Life Begins",
+      "artist": "Larry Heard",
+      "mbid": "75402ee5-4fc6-3fdb-93d5-26a5d838bf3a",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:direct-drive-time-machine--larry-heard",
+      "type": "project",
+      "name": "Direct Drive / Time Machine",
+      "artist": "Larry Heard",
+      "mbid": "7b579193-f079-3c47-959d-6ae4b77d077d",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-s-arrival--larry-heard",
+      "type": "project",
+      "name": "Love’s Arrival",
+      "artist": "Larry Heard",
+      "mbid": "033413f4-b9f8-3b9c-a6c1-fdd33fe18ace",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:can-you-feel-it-trax-classics--larry-heard",
+      "type": "project",
+      "name": "Can You Feel It - Trax Classics",
+      "artist": "Larry Heard",
+      "mbid": "67190737-1453-4de3-a427-4b706c2751cb",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dance-2000-the-chicago-connection--larry-heard",
+      "type": "project",
+      "name": "Dance 2000: The Chicago Connection",
+      "artist": "Larry Heard",
+      "mbid": "0c92d5e5-e1aa-3263-86dc-d8060e09671e",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:genesis--larry-heard",
+      "type": "project",
+      "name": "Genesis",
+      "artist": "Larry Heard",
+      "mbid": "f4daf519-c6c7-3ee2-8219-ebc3f8849ffa",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dance-2000-part-2--larry-heard",
+      "type": "project",
+      "name": "Dance 2000, Part 2",
+      "artist": "Larry Heard",
+      "mbid": "38c6e57c-2cdf-436c-a7e7-2d5f9beed8e1",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dance-2000-the-glasgow-connection--larry-heard",
+      "type": "project",
+      "name": "Dance 2000: The Glasgow Connection",
+      "artist": "Larry Heard",
+      "mbid": "f1981626-4f4d-3c62-9916-983dcc059963",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ice-castles--larry-heard",
+      "type": "project",
+      "name": "Ice Castles",
+      "artist": "Larry Heard",
+      "mbid": "842a1115-ed67-4539-84f3-14eff45d96d9",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dance-2000--larry-heard",
+      "type": "project",
+      "name": "Dance 2000",
+      "artist": "Larry Heard",
+      "mbid": "6d914e57-c3e3-31d5-8cb3-ff7520b37e07",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-calm-and-chaos-ep--larry-heard",
+      "type": "project",
+      "name": "The Calm & Chaos EP",
+      "artist": "Larry Heard",
+      "mbid": "def5a4b9-71a6-3029-8140-3c6a892a0a98",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:alien--larry-heard",
+      "type": "project",
+      "name": "Alien",
+      "artist": "Larry Heard",
+      "mbid": "44bd9df0-cb79-3d09-8cb8-bcf4b20ab048",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sceneries-not-songs-volume-tu--larry-heard",
+      "type": "project",
+      "name": "Sceneries Not Songs, Volume Tu",
+      "artist": "Larry Heard",
+      "mbid": "71bac151-c449-3236-a9e5-9b4cb4b78fb1",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:black-oceans--larry-heard",
+      "type": "project",
+      "name": "Black Oceans",
+      "artist": "Larry Heard",
+      "mbid": "7004d8b1-0efc-47a0-bad5-a3d8582cb0e2",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:sceneries-not-songs-volume-one",
       "type": "project",
-      "name": "Sceneries Not Songs Volume One"
+      "name": "Sceneries Not Songs Volume One",
+      "mbid": "24175d5f-adf5-463d-b39f-c534bafbd9f0",
+      "year": "1994",
+      "releaseType": "album"
     },
     {
       "slug": "project:cerebral-hemispheres",

@@ -44,9 +44,102 @@
   ],
   "discography": [
     {
+      "slug": "project:country-boy-goes-dub--paperclip-people",
+      "type": "project",
+      "name": "Country Boy Goes Dub",
+      "artist": "Paperclip People",
+      "mbid": "986f718a-5bb2-4038-8ed9-be088252795e",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:4-my-peeps--paperclip-people",
+      "type": "project",
+      "name": "4 My Peeps",
+      "artist": "Paperclip People",
+      "mbid": "d5f1ef89-3985-4fa4-88d2-4b55c88ee8a5",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:clear-and-present-tweakityourself--paperclip-people",
+      "type": "project",
+      "name": "Clear and Present / Tweakityourself",
+      "artist": "Paperclip People",
+      "mbid": "62a8a2d4-b095-3622-8d71-a221aace72d9",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:4-my-peepz--paperclip-people",
+      "type": "project",
+      "name": "4 My Peepz",
+      "artist": "Paperclip People",
+      "mbid": "38ac6351-1b4b-3e86-b46e-34ab54d49745",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:floor--paperclip-people",
+      "type": "project",
+      "name": "Floor",
+      "artist": "Paperclip People",
+      "mbid": "74b6e3cb-cb6b-3287-b5ea-3ddbe2749fb4",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:steam--paperclip-people",
+      "type": "project",
+      "name": "Steam",
+      "artist": "Paperclip People",
+      "mbid": "2fd17f23-936a-38c1-9511-add6f353bd3b",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-floor-ep--paperclip-people",
+      "type": "project",
+      "name": "The Floor EP",
+      "artist": "Paperclip People",
+      "mbid": "bf52563d-1fa4-34ae-b435-ceb86d2b3304",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:the-secret-tapes-of-dr-eich",
       "type": "project",
-      "name": "The Secret Tapes Of Dr. Eich"
+      "name": "The Secret Tapes Of Dr. Eich",
+      "mbid": "dfcc2b1a-e247-3b58-adaf-686e0c21ea3e",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:throw--paperclip-people",
+      "type": "project",
+      "name": "Throw",
+      "artist": "Paperclip People",
+      "mbid": "34e07a1a-7129-38d9-be53-f567484d6e3f",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:oscillator--paperclip-people",
+      "type": "project",
+      "name": "Oscillator",
+      "artist": "Paperclip People",
+      "mbid": "dc9d9e8a-76ca-300a-a797-ccdb98792ba7",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:oscillator-electronic-flirtation-device--paperclip-people",
+      "type": "project",
+      "name": "Oscillator (Electronic Flirtation Device)",
+      "artist": "Paperclip People",
+      "mbid": "be60e542-9f1c-3bb9-9645-07c96e0050f3",
+      "year": "1991",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

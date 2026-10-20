@@ -62,7 +62,368 @@
       "name": "Island Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:friendly-fire--skepta",
+      "type": "project",
+      "name": "Friendly Fire",
+      "artist": "Skepta",
+      "mbid": "2779032d-c260-44ff-817a-d23ecbb9f6dd",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:junior-s-law--skepta",
+      "type": "project",
+      "name": "JUNIOR'S LAW",
+      "artist": "Skepta",
+      "mbid": "1c969f14-e7cc-4d5d-912f-114d6d7737e0",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:skepta-fred--skepta",
+      "type": "project",
+      "name": "Skepta .. Fred",
+      "artist": "Skepta",
+      "mbid": "74b8b2ca-8431-4ff2-af68-0a45370c144e",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:alpha-omega--skepta",
+      "type": "project",
+      "name": "Alpha Omega",
+      "artist": "Skepta",
+      "mbid": "4da7e0ef-0586-4728-a267-2d2a1d00a59e",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gas-me-up-diligent--skepta",
+      "type": "project",
+      "name": "Gas Me Up (Diligent)",
+      "artist": "Skepta",
+      "mbid": "c1aec55a-b3aa-4e71-9bb4-487f4c9c2c93",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tony-montana--skepta",
+      "type": "project",
+      "name": "Tony Montana",
+      "artist": "Skepta",
+      "mbid": "7b1b86ef-abcb-4f62-964d-fd91219c8c19",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:why-lie--skepta",
+      "type": "project",
+      "name": "Why Lie?",
+      "artist": "Skepta",
+      "mbid": "7b732bad-34a5-42b4-a3e8-62d0fa2086c0",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:can-t-play-myself-a-tribute-to-amy--skepta",
+      "type": "project",
+      "name": "Can’t Play Myself (A Tribute to Amy)",
+      "artist": "Skepta",
+      "mbid": "3fbd2ce5-737b-4afe-ba35-c663298af0af",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-in--skepta",
+      "type": "project",
+      "name": "All In",
+      "artist": "Skepta",
+      "mbid": "a9d8e436-2ddf-4710-8bbc-d8a63acc2a38",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ignorance-is-bliss--skepta",
+      "type": "project",
+      "name": "Ignorance is Bliss",
+      "artist": "Skepta",
+      "mbid": "111e426a-3b75-4f8f-9292-a7cbe14c3073",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wish-you-were-here--skepta",
+      "type": "project",
+      "name": "Wish You Were Here",
+      "artist": "Skepta",
+      "mbid": "93b9b6fd-d257-48f2-bb57-683bdf57a9d9",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:energy-stay-far-away--skepta",
+      "type": "project",
+      "name": "Energy (Stay Far Away)",
+      "artist": "Skepta",
+      "mbid": "396d99a5-7133-45da-8abb-84e539961840",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hypocrisy--skepta",
+      "type": "project",
+      "name": "Hypocrisy",
+      "artist": "Skepta",
+      "mbid": "2f9f18da-d64b-4fa9-be91-fe96af3d8a84",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-security--skepta",
+      "type": "project",
+      "name": "No Security",
+      "artist": "Skepta",
+      "mbid": "d47fcf01-b482-4255-914a-317b441ca9ec",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vicious--skepta",
+      "type": "project",
+      "name": "Vicious",
+      "artist": "Skepta",
+      "mbid": "b7c726e4-14c5-4fcc-a83a-a18a408acde6",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:konnichiwa--skepta",
+      "type": "project",
+      "name": "Konnichiwa",
+      "artist": "Skepta",
+      "mbid": "7f10475f-794c-4612-9f9c-71446a5c3fdf",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shutdown--skepta",
+      "type": "project",
+      "name": "Shutdown",
+      "artist": "Skepta",
+      "mbid": "a0cd5487-01b0-4169-b986-a5357a11d75e",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:that-s-not-me--skepta",
+      "type": "project",
+      "name": "That’s Not Me",
+      "artist": "Skepta",
+      "mbid": "aa67a5de-7688-440b-a3db-acce8e15a07c",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lay-her-down--skepta",
+      "type": "project",
+      "name": "Lay Her Down",
+      "artist": "Skepta",
+      "mbid": "34a57d07-b644-4715-9697-2a4b852e9a40",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blacklisted--skepta",
+      "type": "project",
+      "name": "Blacklisted",
+      "artist": "Skepta",
+      "mbid": "08fd1280-4e5d-40d2-94cf-b582903ad3ab",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hold-on--skepta",
+      "type": "project",
+      "name": "Hold On",
+      "artist": "Skepta",
+      "mbid": "936316d9-b05f-43c5-bd20-339dad34a1c3",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:make-peace-not-war--skepta",
+      "type": "project",
+      "name": "Make Peace Not War",
+      "artist": "Skepta",
+      "mbid": "96994088-28fe-41da-bb92-98f55b9e5fb8",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:punch-his-face--skepta",
+      "type": "project",
+      "name": "Punch His Face",
+      "artist": "Skepta",
+      "mbid": "b6a7fa77-e804-45a4-ac4a-33e8421d96e6",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:doin-it-again--skepta",
+      "type": "project",
+      "name": "Doin’ It Again",
+      "artist": "Skepta",
+      "mbid": "9b834c7c-d1c1-40fb-86af-a20cf340eb27",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bad-boy--skepta",
+      "type": "project",
+      "name": "Bad Boy",
+      "artist": "Skepta",
+      "mbid": "ec377161-53d7-4ce2-a362-fb1e5568bb5d",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:been-there-done-that--skepta",
+      "type": "project",
+      "name": "Been There Done That",
+      "artist": "Skepta",
+      "mbid": "168b756f-2082-403e-9263-978132dca7a8",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cross-my-heart--skepta",
+      "type": "project",
+      "name": "Cross My Heart",
+      "artist": "Skepta",
+      "mbid": "c6c9a1c6-144c-4f82-8ffe-f47fad16bc47",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rescue-me--skepta",
+      "type": "project",
+      "name": "Rescue Me",
+      "artist": "Skepta",
+      "mbid": "5638c15e-d817-4f91-b2af-f6e3ea185061",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:so-alive--skepta",
+      "type": "project",
+      "name": "So Alive",
+      "artist": "Skepta",
+      "mbid": "1d3f260a-64b0-4b3c-b3a8-f137d993c003",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:microphone-champion--skepta",
+      "type": "project",
+      "name": "Microphone Champion",
+      "artist": "Skepta",
+      "mbid": "e165e07c-d387-49b2-b3bc-9ab0dd9b431b",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sunglasses-at-night--skepta",
+      "type": "project",
+      "name": "Sunglasses At Night",
+      "artist": "Skepta",
+      "mbid": "069f9862-23f8-489d-b395-0bd8dacb586d",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rolex-sweep--skepta",
+      "type": "project",
+      "name": "Rolex Sweep",
+      "artist": "Skepta",
+      "mbid": "df7b4929-96e7-4326-9d60-d77ed2c257f4",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stageshow-ep--skepta",
+      "type": "project",
+      "name": "Stageshow EP",
+      "artist": "Skepta",
+      "mbid": "57c1cd11-884a-3171-aaed-2999e2833f47",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:duppy--skepta",
+      "type": "project",
+      "name": "Duppy",
+      "artist": "Skepta",
+      "mbid": "8159e20f-344e-34b4-bda9-6b69f00fb27b",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:joseph-junior-adenuga--skepta",
+      "type": "project",
+      "name": "Joseph Junior Adenuga",
+      "artist": "Skepta",
+      "mbid": "2b0b1e26-079c-40d0-b453-20e21b18f9d3",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stupid-ep--skepta",
+      "type": "project",
+      "name": "Stupid EP",
+      "artist": "Skepta",
+      "mbid": "f80eda64-787c-3adf-a34e-89078892346a",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:private-caller--skepta",
+      "type": "project",
+      "name": "Private Caller",
+      "artist": "Skepta",
+      "mbid": "7ad874d6-3ea3-4299-b70d-784bf0e4c3f9",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:thuggish-ep--skepta",
+      "type": "project",
+      "name": "Thuggish EP",
+      "artist": "Skepta",
+      "mbid": "35fc7684-d582-4f6a-8d8c-e9eb79b84354",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:meridian-walk--skepta",
+      "type": "project",
+      "name": "Meridian Walk",
+      "artist": "Skepta",
+      "mbid": "ed7bc6f5-e458-48dd-9e60-38bad3af7433",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gun-shot-riddim-pulse-eskimo-tweet-riddim-the-bird-tune--skepta",
+      "type": "project",
+      "name": "Gun Shot Riddim (Pulse Eskimo) / Tweet Riddim (The Bird Tune)",
+      "artist": "Skepta",
+      "mbid": "bf961c22-0231-4404-b2f7-890e5b654a73",
+      "year": "2002",
+      "releaseType": "single"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:shutdown",

@@ -77,20 +77,20 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:it-beckons-us-all",
-      "type": "project",
-      "name": "It Beckons Us All",
-      "mbid": "fe629a38-a88e-4e15-b426-ef858419a0b4",
-      "year": "2024",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:black-dawn-affiliation",
       "type": "project",
       "name": "Black Dawn Affiliation",
       "mbid": "1d6ac07d-c140-4a7b-9045-e5801ba1433b",
       "year": "2024",
       "releaseType": "single"
+    },
+    {
+      "slug": "project:it-beckons-us-all",
+      "type": "project",
+      "name": "It Beckons Us All",
+      "mbid": "fe629a38-a88e-4e15-b426-ef858419a0b4",
+      "year": "2024",
+      "releaseType": "album"
     },
     {
       "slug": "project:goatlord-original",
@@ -234,7 +234,8 @@
       "name": "Under beskyttelse av mørke",
       "year": "2005",
       "releaseType": "ep",
-      "artist": "Darkthrone"
+      "artist": "Darkthrone",
+      "mbid": "b0ee8e0b-6d42-3dba-900b-c3da3b3f0296"
     },
     {
       "slug": "project:sardonic-wrath",
@@ -245,20 +246,20 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:hate-them",
-      "type": "project",
-      "name": "Hate Them",
-      "mbid": "ef2f78b9-5925-3b0a-8a78-3060c476a15b",
-      "year": "2003",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:crossing-the-triangle-of-flames",
       "type": "project",
       "name": "Crossing the Triangle of Flames",
       "mbid": "8a64f937-8000-30a1-8056-2c50b12de1aa",
       "year": "2003",
       "releaseType": "ep"
+    },
+    {
+      "slug": "project:hate-them",
+      "type": "project",
+      "name": "Hate Them",
+      "mbid": "ef2f78b9-5925-3b0a-8a78-3060c476a15b",
+      "year": "2003",
+      "releaseType": "album"
     },
     {
       "slug": "project:plaguewielder",

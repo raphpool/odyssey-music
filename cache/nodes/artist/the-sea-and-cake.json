@@ -54,59 +54,128 @@
   ],
   "discography": [
     {
-      "slug": "project:the-sea-and-cake",
+      "slug": "project:any-day",
       "type": "project",
-      "name": "The Sea and Cake"
-    },
-    {
-      "slug": "project:nassau",
-      "type": "project",
-      "name": "Nassau"
-    },
-    {
-      "slug": "project:the-biz",
-      "type": "project",
-      "name": "The Biz"
-    },
-    {
-      "slug": "project:the-fawn--the-sea-and-cake",
-      "type": "project",
-      "name": "The Fawn"
-    },
-    {
-      "slug": "project:oui",
-      "type": "project",
-      "name": "Oui"
-    },
-    {
-      "slug": "project:one-bedroom",
-      "type": "project",
-      "name": "One Bedroom"
-    },
-    {
-      "slug": "project:everybody",
-      "type": "project",
-      "name": "Everybody"
-    },
-    {
-      "slug": "project:car-alarm",
-      "type": "project",
-      "name": "Car Alarm"
-    },
-    {
-      "slug": "project:the-moonlight-butterfly",
-      "type": "project",
-      "name": "The Moonlight Butterfly"
+      "name": "Any Day",
+      "mbid": "eda511e6-52f8-4b0c-9625-993a0cafd9fe",
+      "year": "2018",
+      "releaseType": "album"
     },
     {
       "slug": "project:runner",
       "type": "project",
-      "name": "Runner"
+      "name": "Runner",
+      "mbid": "6e334b2f-aef7-4552-8c4d-95ae322733cb",
+      "year": "2012",
+      "releaseType": "album"
     },
     {
-      "slug": "project:any-day",
+      "slug": "project:the-moonlight-butterfly",
       "type": "project",
-      "name": "Any Day"
+      "name": "The Moonlight Butterfly",
+      "mbid": "50ebb9c6-e3fb-4f7a-8cbd-4bb810be99d4",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:car-alarm",
+      "type": "project",
+      "name": "Car Alarm",
+      "mbid": "3ddca465-1793-3f83-a9b3-89d581adeaa4",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:everybody",
+      "type": "project",
+      "name": "Everybody",
+      "mbid": "176243a1-b1fc-3265-9c5b-77b3ee3cbf02",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:glass--the-sea-and-cake",
+      "type": "project",
+      "name": "Glass",
+      "artist": "The Sea and Cake",
+      "mbid": "255a7827-c00b-3560-83b3-9b042f506b9f",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:one-bedroom",
+      "type": "project",
+      "name": "One Bedroom",
+      "mbid": "73781f5d-457e-3053-bbb8-9b921932314f",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-sea-and-cake-califone--the-sea-and-cake",
+      "type": "project",
+      "name": "The Sea and Cake / Califone",
+      "artist": "The Sea and Cake",
+      "mbid": "aa93b5b7-a852-3ad0-ada0-46a6207d557d",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:oui",
+      "type": "project",
+      "name": "Oui",
+      "mbid": "3bca8854-8de4-3164-be57-1e83bf18bbb9",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-fawn--the-sea-and-cake",
+      "type": "project",
+      "name": "The Fawn",
+      "mbid": "2d4a7027-3bd2-30b4-b39d-ab78b6da14f0",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:two-gentlemen--the-sea-and-cake",
+      "type": "project",
+      "name": "Two Gentlemen",
+      "artist": "The Sea and Cake",
+      "mbid": "e641580e-e26b-3976-8d9f-f956d3ed1f87",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:glad-you-re-right--the-sea-and-cake",
+      "type": "project",
+      "name": "Glad You're Right",
+      "artist": "The Sea and Cake",
+      "mbid": "ea67c86b-1546-4a95-8670-5432483c1568",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nassau",
+      "type": "project",
+      "name": "Nassau",
+      "mbid": "fda762b2-7792-3d7b-95cd-e810e3ca44c5",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-biz",
+      "type": "project",
+      "name": "The Biz",
+      "mbid": "98e99583-b9f8-30a7-8221-dbe81904fe5b",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-sea-and-cake",
+      "type": "project",
+      "name": "The Sea and Cake",
+      "mbid": "acdc3b28-345e-3a99-a542-d55446fd5f6d",
+      "year": "1994",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

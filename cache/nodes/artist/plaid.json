@@ -72,27 +72,105 @@
     {
       "slug": "project:feorm-falorx",
       "type": "project",
-      "name": "Feorm Falorx"
+      "name": "Feorm Falorx",
+      "mbid": "62a00165-6e7a-47b0-8272-431ac5ca6c36",
+      "year": "2022",
+      "releaseType": "album"
     },
     {
       "slug": "project:polymer",
       "type": "project",
-      "name": "Polymer"
+      "name": "Polymer",
+      "mbid": "1c0096fa-3717-4097-834d-2f67dd16f7fb",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-digging-remedy--plaid",
+      "type": "project",
+      "name": "The Digging Remedy",
+      "artist": "Plaid",
+      "mbid": "b27866b9-143d-4335-9a1a-0c26671b13bb",
+      "year": "2016",
+      "releaseType": "album"
     },
     {
       "slug": "project:reachy-prints",
       "type": "project",
-      "name": "Reachy Prints"
+      "name": "Reachy Prints",
+      "mbid": "e309277b-5fb0-4902-9647-fab09a9acbe4",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scintilli--plaid",
+      "type": "project",
+      "name": "Scintilli",
+      "artist": "Plaid",
+      "mbid": "858bd3ad-e1df-42f7-94cc-ae072ea57a2c",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:greedy-baby--plaid",
+      "type": "project",
+      "name": "Greedy Baby",
+      "artist": "Plaid",
+      "mbid": "8a4d4dcd-bbdf-35b8-8d6d-2325472b231d",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:spokes--plaid",
+      "type": "project",
+      "name": "Spokes",
+      "artist": "Plaid",
+      "mbid": "692348d9-1641-31ec-902d-53e3abd44171",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:p-brane-ep--plaid",
+      "type": "project",
+      "name": "P-Brane EP",
+      "artist": "Plaid",
+      "mbid": "05e3b3cf-8b66-3879-8ce8-6245c118eb25",
+      "year": "2002",
+      "releaseType": "ep"
     },
     {
       "slug": "project:double-figure",
       "type": "project",
-      "name": "Double Figure"
+      "name": "Double Figure",
+      "mbid": "0cc7924b-88f4-30a1-8587-7d1eff230407",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:peel-session--plaid",
+      "type": "project",
+      "name": "Peel Session",
+      "artist": "Plaid",
+      "mbid": "f060a8c2-7b3d-3db1-948a-4bdbba715ef6",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:rest-proof-clockwork--plaid",
+      "type": "project",
+      "name": "Rest Proof Clockwork",
+      "artist": "Plaid",
+      "mbid": "e74b26df-4f40-35fc-b085-f00cc5035fdc",
+      "year": "1999",
+      "releaseType": "album"
     },
     {
       "slug": "project:not-for-threes",
       "type": "project",
-      "name": "Not For Threes"
+      "name": "Not For Threes",
+      "mbid": "5e3d67d7-4c25-373f-aa1b-48c1f43b6bf6",
+      "year": "1997",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

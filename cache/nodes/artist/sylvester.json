@@ -62,7 +62,251 @@
       "name": "Megatone"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:dance-disco-heat-louie-vega-re-touch--sylvester",
+      "type": "project",
+      "name": "Dance (Disco Heat) [Louie Vega Re‐Touch]",
+      "artist": "Sylvester",
+      "mbid": "2c9002b7-e8b7-4c0d-b590-52fa62ce64e6",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-make-me-feel-mighty-real-radio-single--sylvester",
+      "type": "project",
+      "name": "You Make Me Feel (Mighty Real) (Radio Single)",
+      "artist": "Sylvester",
+      "mbid": "39226608-4ef2-43c8-8b4d-d884a6589d7e",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dance-disco-heat--sylvester",
+      "type": "project",
+      "name": "Dance (Disco Heat)",
+      "artist": "Sylvester",
+      "mbid": "5b99d221-e87a-4615-a7f3-2f6582bf4c04",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sooner-or-later--sylvester",
+      "type": "project",
+      "name": "Sooner Or Later",
+      "artist": "Sylvester",
+      "mbid": "81ca4c9d-14ed-4a92-a7b9-d48aadeea0de",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:living-for-the-city--sylvester",
+      "type": "project",
+      "name": "Living for the City",
+      "artist": "Sylvester",
+      "mbid": "d79233ba-bdf3-4c55-b808-7b8f6d7bfa6f",
+      "year": "1986",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mutual-attraction--sylvester",
+      "type": "project",
+      "name": "Mutual Attraction",
+      "artist": "Sylvester",
+      "mbid": "fdf581ca-e1b6-4e26-a98f-c6d17ac864c0",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:someone-like-you--sylvester",
+      "type": "project",
+      "name": "Someone Like You",
+      "artist": "Sylvester",
+      "mbid": "100972ea-0850-4835-aadb-c3f056722cb4",
+      "year": "1986",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:m-1015--sylvester",
+      "type": "project",
+      "name": "M-1015",
+      "artist": "Sylvester",
+      "mbid": "453b65a7-2af2-3dc6-b529-489342773432",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:menergy--sylvester",
+      "type": "project",
+      "name": "Menergy",
+      "artist": "Sylvester",
+      "mbid": "2b888f04-2b9e-4755-aedb-f2ea544e1ae1",
+      "year": "1984",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:rock-the-box--sylvester",
+      "type": "project",
+      "name": "Rock the Box",
+      "artist": "Sylvester",
+      "mbid": "97b46182-8afa-4b3d-bb9c-646cb86144d6",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:too-late--sylvester",
+      "type": "project",
+      "name": "Too Late",
+      "artist": "Sylvester",
+      "mbid": "323e34ab-1c47-4e04-b502-91f21ae3ac12",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:band-of-gold--sylvester",
+      "type": "project",
+      "name": "Band Of Gold",
+      "artist": "Sylvester",
+      "mbid": "55e76b45-b0d4-4b60-b1aa-8a464dd17434",
+      "year": "1983",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:call-me--sylvester",
+      "type": "project",
+      "name": "Call Me",
+      "artist": "Sylvester",
+      "mbid": "383d1a77-127e-379d-96b0-ce4ddf66fb9d",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:do-you-wanna-funk-mind-warp--sylvester",
+      "type": "project",
+      "name": "Do You Wanna Funk / Mind Warp",
+      "artist": "Sylvester",
+      "mbid": "91e6e900-f1bf-47a5-9a8e-eda3f643c889",
+      "year": "1983",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-stop-hard-up--sylvester",
+      "type": "project",
+      "name": "Don't Stop / Hard Up",
+      "artist": "Sylvester",
+      "mbid": "bb1005c7-d826-4b42-80d8-96e55145a81e",
+      "year": "1983",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-i-need--sylvester",
+      "type": "project",
+      "name": "All I Need",
+      "artist": "Sylvester",
+      "mbid": "8a8e17e5-af96-3cfa-ac89-5a2e628518d9",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:be-with-you--sylvester",
+      "type": "project",
+      "name": "Be With You",
+      "artist": "Sylvester",
+      "mbid": "78ce99b8-4af0-486f-9cd1-f5b08c8d6654",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:too-hot-to-sleep--sylvester",
+      "type": "project",
+      "name": "Too Hot to Sleep",
+      "artist": "Sylvester",
+      "mbid": "33f84ebf-4017-4736-b94a-aeb34b349561",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sell-my-soul--sylvester",
+      "type": "project",
+      "name": "Sell My Soul",
+      "artist": "Sylvester",
+      "mbid": "8dc95c3f-fa4d-31e4-868e-6bd7f9b229bd",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:can-t-stop-dancing--sylvester",
+      "type": "project",
+      "name": "Can’t Stop Dancing",
+      "artist": "Sylvester",
+      "mbid": "0ac0716e-9555-4931-b616-2ea1cce32e39",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-who-have-nothing--sylvester",
+      "type": "project",
+      "name": "I Who Have Nothing",
+      "artist": "Sylvester",
+      "mbid": "1534c7fa-426f-44c7-94d8-a2c3a6b7ef9c",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stars--sylvester",
+      "type": "project",
+      "name": "Stars",
+      "artist": "Sylvester",
+      "mbid": "fa2d8074-fb31-4e87-92c1-9d4b4fb173b2",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dance-disco-heat-you-make-me-feel-mighty-real--sylvester",
+      "type": "project",
+      "name": "Dance (Disco Heat) / You Make Me Feel (Mighty Real)",
+      "artist": "Sylvester",
+      "mbid": "a198cd13-8cef-4892-9156-dd8c89f99de8",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:step-ii--sylvester",
+      "type": "project",
+      "name": "Step II",
+      "artist": "Sylvester",
+      "mbid": "a11dd6e8-d308-35c1-b248-81a2832d8ad6",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-make-me-feel-mighty-real--sylvester",
+      "type": "project",
+      "name": "You Make Me Feel (Mighty Real)",
+      "artist": "Sylvester",
+      "mbid": "c4689413-2d7d-41f4-8cc4-1b4f66410861",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:over-and-over-down-down-down--sylvester",
+      "type": "project",
+      "name": "Over and Over / Down, Down, Down",
+      "artist": "Sylvester",
+      "mbid": "a4a4d1b8-9a7e-49f5-8b44-ef6570250fe5",
+      "year": "1977",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sylvester--sylvester",
+      "type": "project",
+      "name": "Sylvester",
+      "artist": "Sylvester",
+      "mbid": "4f33a417-48d3-4e1b-b5d7-f0e69bf85729",
+      "year": "1977",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],

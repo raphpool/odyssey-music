@@ -54,30 +54,207 @@
   ],
   "discography": [
     {
-      "slug": "project:shred",
+      "slug": "project:3xtra--skee-mask",
       "type": "project",
-      "name": "Shred"
+      "name": "3xtra",
+      "artist": "Skee Mask",
+      "mbid": "edb3291c-9d15-436b-b151-0968f1f89838",
+      "year": "2026",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:compro--skee-mask",
+      "slug": "project:final-circle--skee-mask",
       "type": "project",
-      "name": "Compro"
+      "name": "Final Circle",
+      "artist": "Skee Mask",
+      "mbid": "ed060239-08f8-4be1-babc-70fb1feaeda2",
+      "year": "2026",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:pool",
+      "slug": "project:iss012--skee-mask",
       "type": "project",
-      "name": "Pool"
+      "name": "ISS012",
+      "artist": "Skee Mask",
+      "mbid": "265a2b3e-e9b3-400c-89ef-bde8afdf01b1",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stressmanagement--skee-mask",
+      "type": "project",
+      "name": "Stressmanagement",
+      "artist": "Skee Mask",
+      "mbid": "64d06cd8-fa77-40f9-96a7-6f204b3af49a",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:two-long-ago--skee-mask",
+      "type": "project",
+      "name": "Two Long Ago",
+      "artist": "Skee Mask",
+      "mbid": "8eff5df0-9fa1-4091-a951-845d208bfeef",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:iss010--skee-mask",
+      "type": "project",
+      "name": "ISS010",
+      "artist": "Skee Mask",
+      "mbid": "552cae19-d809-43f9-9cbc-c00191e38cac",
+      "year": "2024",
+      "releaseType": "ep"
     },
     {
       "slug": "project:resort",
       "type": "project",
-      "name": "Resort"
+      "name": "Resort",
+      "mbid": "4e1e72ae-9c2b-4a3a-a770-cfef3b257314",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:iss009--skee-mask",
+      "type": "project",
+      "name": "ISS009",
+      "artist": "Skee Mask",
+      "mbid": "de553413-33d0-4e5f-beed-c56c176ba4ed",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:skee-mask-and-mjk-present-patchworks-vol-1--skee-mask",
+      "type": "project",
+      "name": "Skee Mask & MJK present: Patchworks, Vol.1",
+      "artist": "Skee Mask",
+      "mbid": "36a0e925-42a6-4a8d-9609-2acc44edeeec",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:iss007--skee-mask",
+      "type": "project",
+      "name": "ISS007",
+      "artist": "Skee Mask",
+      "mbid": "c401ccd2-b27e-4f96-ad9c-3414c676cc0f",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:iss008--skee-mask",
+      "type": "project",
+      "name": "ISS008",
+      "artist": "Skee Mask",
+      "mbid": "a2255c7a-c601-4035-92eb-479e7dad4807",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pool",
+      "type": "project",
+      "name": "Pool",
+      "mbid": "9f0e43f9-dd8d-494b-9c37-7f3629e3be6c",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:iss005--skee-mask",
+      "type": "project",
+      "name": "ISS005",
+      "artist": "Skee Mask",
+      "mbid": "7a92ecd8-c7ec-476c-9149-d47ac5766323",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:iss006--skee-mask",
+      "type": "project",
+      "name": "ISS006",
+      "artist": "Skee Mask",
+      "mbid": "c754b4f1-26c1-45af-9948-f979615f11e7",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:808bb--skee-mask",
+      "type": "project",
+      "name": "808BB",
+      "artist": "Skee Mask",
+      "mbid": "5c006439-e83a-4c8f-866c-c089025d02fa",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:iss004--skee-mask",
+      "type": "project",
+      "name": "ISS004",
+      "artist": "Skee Mask",
+      "mbid": "0bfa7436-5f0a-49fd-87f6-40feef55f2bf",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:compro--skee-mask",
+      "type": "project",
+      "name": "Compro",
+      "mbid": "557fddc8-dc5e-4d06-a284-1b3bdab41374",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:2012--skee-mask",
+      "type": "project",
+      "name": "2012",
+      "artist": "Skee Mask",
+      "mbid": "de8bd790-c9a1-46d8-8347-bb79ba1a63f9",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:iss002--skee-mask",
+      "type": "project",
+      "name": "ISS002",
+      "artist": "Skee Mask",
+      "mbid": "746a41a8-53a8-4732-84a3-ca66a7258d57",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:shred",
+      "type": "project",
+      "name": "Shred",
+      "mbid": "5cf5be34-1bd9-4283-97dd-ed0b2ae41b3a",
+      "year": "2016",
+      "releaseType": "album"
     },
     {
       "slug": "project:shred--skee-mask",
       "type": "project",
       "name": "Shred",
-      "artist": "Skee Mask"
+      "artist": "Skee Mask",
+      "mbid": "5cf5be34-1bd9-4283-97dd-ed0b2ae41b3a",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:junt--skee-mask",
+      "type": "project",
+      "name": "Junt",
+      "artist": "Skee Mask",
+      "mbid": "18c833ef-508c-4ac7-b3fc-78c305da3d57",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:serum--skee-mask",
+      "type": "project",
+      "name": "Serum",
+      "artist": "Skee Mask",
+      "mbid": "e5e86475-6999-45a1-a39d-c0d76483ebd0",
+      "year": "2014",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

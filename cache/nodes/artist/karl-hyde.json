@@ -52,7 +52,35 @@
       "name": "Universal Music Group"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:fatherland--karl-hyde",
+      "type": "project",
+      "name": "Fatherland",
+      "artist": "Karl Hyde",
+      "mbid": "cdfcb098-f905-4c12-b49b-d0cc2b972e93",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:edgeland--karl-hyde",
+      "type": "project",
+      "name": "Edgeland",
+      "artist": "Karl Hyde",
+      "mbid": "cac14078-ceb7-455f-9d63-a4a534683387",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-boy-with-the-jigsaw-puzzle-fingers--karl-hyde",
+      "type": "project",
+      "name": "The Boy with the Jigsaw Puzzle Fingers",
+      "artist": "Karl Hyde",
+      "mbid": "d2faa7c2-c8a5-4f72-be43-02198fe50412",
+      "year": "2013",
+      "releaseType": "single"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:born-slippy-nuxx--underworld",

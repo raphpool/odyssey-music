@@ -61,14 +61,362 @@
   "labels": [],
   "discography": [
     {
+      "slug": "project:ray-sings-basie-swings--ray-charles",
+      "type": "project",
+      "name": "Ray Sings, Basie Swings",
+      "artist": "Ray Charles",
+      "mbid": "e3bf32b2-797d-356d-a300-ec771a3389a7",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:genius-loves-company--ray-charles",
+      "type": "project",
+      "name": "Genius Loves Company",
+      "artist": "Ray Charles",
+      "mbid": "775273bc-8a5b-3de7-8eb5-6c1ab4de8b68",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:friendship--ray-charles",
+      "type": "project",
+      "name": "Friendship",
+      "artist": "Ray Charles",
+      "mbid": "d68e5847-f9e4-3d29-ade6-95fa991375ee",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-and-peace--ray-charles",
+      "type": "project",
+      "name": "Love & Peace",
+      "artist": "Ray Charles",
+      "mbid": "75639b86-06e7-46e3-afb9-4b7d78be1902",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:true-to-life--ray-charles",
+      "type": "project",
+      "name": "True to Life",
+      "artist": "Ray Charles",
+      "mbid": "bd094690-b2f3-3b74-a080-5f5c6c6dd6cd",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:my-kind-of-jazz-part-3--ray-charles",
+      "type": "project",
+      "name": "My Kind of Jazz, Part 3",
+      "artist": "Ray Charles",
+      "mbid": "fb10e036-55de-4c24-8458-8fda7be0ab3d",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:renaissance--ray-charles",
+      "type": "project",
+      "name": "Renaissance",
+      "artist": "Ray Charles",
+      "mbid": "cfcdb398-0a4c-4f89-8f11-485d50dad6f1",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:come-live-with-me--ray-charles",
+      "type": "project",
+      "name": "Come Live With Me",
+      "artist": "Ray Charles",
+      "mbid": "5257af18-f9ec-4db2-a81a-a2d72eda3ffb",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-message-from-the-people--ray-charles",
+      "type": "project",
+      "name": "A Message From the People",
+      "artist": "Ray Charles",
+      "mbid": "086fc879-5614-48cf-b8ab-d6b1f1422a8a",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jazz-number-ii--ray-charles",
+      "type": "project",
+      "name": "Jazz Number II",
+      "artist": "Ray Charles",
+      "mbid": "c16efee5-4a96-4d07-ba53-25ab5a56c473",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:through-the-eyes-of-love--ray-charles",
+      "type": "project",
+      "name": "Through the Eyes of Love",
+      "artist": "Ray Charles",
+      "mbid": "50712f35-767d-4c59-b43a-e0ccc0b6dcd8",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:volcanic-action-of-my-soul--ray-charles",
+      "type": "project",
+      "name": "Volcanic Action of My Soul",
+      "artist": "Ray Charles",
+      "mbid": "07da0fba-3204-4481-82ab-4881a08a7755",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-country-style--ray-charles",
+      "type": "project",
+      "name": "Love Country Style",
+      "artist": "Ray Charles",
+      "mbid": "2b60f116-6a06-4c7a-a116-cfefe226ef0e",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:my-kind-of-jazz--ray-charles",
+      "type": "project",
+      "name": "My Kind of Jazz",
+      "artist": "Ray Charles",
+      "mbid": "0ff401cd-2e1d-4b32-8ee3-1804f1f471af",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:doing-his-thing--ray-charles",
+      "type": "project",
+      "name": "Doing His Thing",
+      "artist": "Ray Charles",
+      "mbid": "166e5f1a-614b-4b39-b665-44a5e2288ac7",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-m-all-yours-baby--ray-charles",
+      "type": "project",
+      "name": "I’m All Yours Baby!",
+      "artist": "Ray Charles",
+      "mbid": "0d506f1e-8376-4a0c-821a-87e16545ae50",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-portrait-of-ray--ray-charles",
+      "type": "project",
+      "name": "A Portrait of Ray",
+      "artist": "Ray Charles",
+      "mbid": "cb0c88c7-031c-3f54-81cf-3a2202c3c37e",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:invites-you-to-listen--ray-charles",
+      "type": "project",
+      "name": "Invites You to Listen",
+      "artist": "Ray Charles",
+      "mbid": "425cdbe0-d8bd-48a7-99a7-7c244df4a336",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:crying-time--ray-charles",
+      "type": "project",
+      "name": "Crying Time",
+      "artist": "Ray Charles",
+      "mbid": "8982e517-0231-3ada-85da-1b3d735b4472",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ray-s-moods--ray-charles",
+      "type": "project",
+      "name": "Ray’s Moods",
+      "artist": "Ray Charles",
+      "mbid": "7a0ae78c-2869-43a6-bb58-d45df41d4782",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-sensational-ray-charles--ray-charles",
+      "type": "project",
+      "name": "The Sensational Ray Charles",
+      "artist": "Ray Charles",
+      "mbid": "37adec1a-23a6-4002-b50e-abc8010229d6",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:together-again--ray-charles",
+      "type": "project",
+      "name": "Together Again",
+      "artist": "Ray Charles",
+      "mbid": "99310b7f-1844-466c-9ab0-32ba626adc24",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:have-a-smile-with-me--ray-charles",
+      "type": "project",
+      "name": "Have a Smile With Me",
+      "artist": "Ray Charles",
+      "mbid": "6d66cee3-041b-44ef-bb9b-a6791df27fa6",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sweet-and-sour-tears--ray-charles",
+      "type": "project",
+      "name": "Sweet & Sour Tears",
+      "artist": "Ray Charles",
+      "mbid": "db0542ea-c2a9-37bd-a07d-9ce7c720fdbe",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ingredients-in-a-recipe-for-soul--ray-charles",
+      "type": "project",
+      "name": "Ingredients in a Recipe for Soul",
+      "artist": "Ray Charles",
+      "mbid": "ec24a54b-9d6b-3bea-b996-ecf010cf3ba6",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:modern-sounds-in-country-and-western-music",
       "type": "project",
-      "name": "Modern Sounds in Country and Western Music"
+      "name": "Modern Sounds in Country and Western Music",
+      "mbid": "38671d62-32bd-399d-abbd-0f685c2fd4a3",
+      "year": "1962",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:modern-sounds-in-country-and-western-music-volume-2--ray-charles",
+      "type": "project",
+      "name": "Modern Sounds in Country and Western Music, Volume 2",
+      "artist": "Ray Charles",
+      "mbid": "9eb4aa79-d407-3201-869a-76202cc6b149",
+      "year": "1962",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ray-charles--ray-charles",
+      "type": "project",
+      "name": "Ray Charles",
+      "artist": "Ray Charles",
+      "mbid": "7170a9c8-2e46-4433-bab6-8bf0b3868555",
+      "year": "1962",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dedicated-to-you--ray-charles",
+      "type": "project",
+      "name": "Dedicated to You",
+      "artist": "Ray Charles",
+      "mbid": "9e6a6ed2-4bf5-4dad-a136-4c26c458c0a6",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:genius-soul-jazz--ray-charles",
+      "type": "project",
+      "name": "Genius + Soul = Jazz",
+      "artist": "Ray Charles",
+      "mbid": "689780c3-34fa-31b6-9c0b-e9de074b2095",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ray-charles-and-betty-carter--ray-charles",
+      "type": "project",
+      "name": "Ray Charles and Betty Carter",
+      "artist": "Ray Charles",
+      "mbid": "ab1edb5e-fae3-37af-9d05-08341bb1d0f0",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soul-meeting--ray-charles",
+      "type": "project",
+      "name": "Soul Meeting",
+      "artist": "Ray Charles",
+      "mbid": "eeccd604-f9ad-4325-adcd-bc804b67da4f",
+      "year": "1961",
+      "releaseType": "album"
     },
     {
       "slug": "project:the-genius-after-hours",
       "type": "project",
-      "name": "The Genius After Hours"
+      "name": "The Genius After Hours",
+      "mbid": "a415bb89-82d8-36c2-9dd0-80c9b9125083",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-genius-sings-the-blues--ray-charles",
+      "type": "project",
+      "name": "The Genius Sings the Blues",
+      "artist": "Ray Charles",
+      "mbid": "8c064841-7cbf-3d7e-b992-0f43dced71c9",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fathead--ray-charles",
+      "type": "project",
+      "name": "Fathead",
+      "artist": "Ray Charles",
+      "mbid": "49ed4a93-7b3d-401e-b923-a94069019544",
+      "year": "1960",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-genius-hits-the-road--ray-charles",
+      "type": "project",
+      "name": "The Genius Hits the Road",
+      "artist": "Ray Charles",
+      "mbid": "04f9ff75-abce-3a33-b87b-75e56c5e6b6c",
+      "year": "1960",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-genius-of-ray-charles--ray-charles",
+      "type": "project",
+      "name": "The Genius of Ray Charles",
+      "artist": "Ray Charles",
+      "mbid": "26ea6822-538d-3781-ac19-fd3575aa2688",
+      "year": "1959",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:what-d-i-say--ray-charles",
+      "type": "project",
+      "name": "What’d I Say",
+      "artist": "Ray Charles",
+      "mbid": "c0f52e1b-d9f7-30e9-bf6a-c408c922640a",
+      "year": "1959",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yes-indeed--ray-charles",
+      "type": "project",
+      "name": "Yes Indeed!",
+      "artist": "Ray Charles",
+      "mbid": "0cada89a-2d97-383a-9515-e1277d0ba9ac",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-great-ray-charles--ray-charles",
+      "type": "project",
+      "name": "The Great Ray Charles",
+      "artist": "Ray Charles",
+      "mbid": "479f5586-de34-4129-a37d-abd669d9419b",
+      "year": "1957",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

@@ -35,7 +35,89 @@
     }
   ],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:die-losung--amon-duul",
+      "type": "project",
+      "name": "Die Lösung",
+      "artist": "Amon Düül",
+      "mbid": "aa9469ca-ba23-3eb6-af3e-76a1fa21e6e6",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fool-moon--amon-duul",
+      "type": "project",
+      "name": "Fool Moon",
+      "artist": "Amon Düül",
+      "mbid": "b1670103-8328-3485-8328-f08b5719e156",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:experimente--amon-duul",
+      "type": "project",
+      "name": "Experimente",
+      "artist": "Amon Düül",
+      "mbid": "79533357-ef56-3075-b1fc-91dfe4506d86",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:meetings-with-menmachines-inglorious-heroes-of-the-past--amon-duul",
+      "type": "project",
+      "name": "Meetings With Menmachines Inglorious Heroes of the Past...",
+      "artist": "Amon Düül",
+      "mbid": "cef96762-b0b3-4a74-a029-822c758cf42d",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:disaster-luud-noma--amon-duul",
+      "type": "project",
+      "name": "Disaster / Lüüd Noma",
+      "artist": "Amon Düül",
+      "mbid": "0ab37684-d90f-4d54-b867-4f990492866a",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:eternal-flow--amon-duul",
+      "type": "project",
+      "name": "Eternal Flow",
+      "artist": "Amon Düül",
+      "mbid": "a9c09fce-293b-421a-b2f6-e4398e83c4c5",
+      "year": "1970",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:paradieswarts-duul--amon-duul",
+      "type": "project",
+      "name": "Paradieswärts Düül",
+      "artist": "Amon Düül",
+      "mbid": "fa69d109-fbd0-3be2-9c91-7e6625db2799",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:collapsing-singvogel-ruckwarts-and-co--amon-duul",
+      "type": "project",
+      "name": "Collapsing - Singvögel Rückwärts & Co.",
+      "artist": "Amon Düül",
+      "mbid": "4a1ed5bc-5983-3bb7-8a75-bdffe75db581",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:psychedelic-underground--amon-duul",
+      "type": "project",
+      "name": "Psychedelic Underground",
+      "artist": "Amon Düül",
+      "mbid": "2a50767b-d1b3-386f-8f79-186cbb98bb9e",
+      "year": "1969",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],

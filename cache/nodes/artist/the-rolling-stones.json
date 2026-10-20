@@ -35,7 +35,368 @@
     }
   ],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:foreign-tongues--the-rolling-stones",
+      "type": "project",
+      "name": "Foreign Tongues",
+      "artist": "The Rolling Stones",
+      "mbid": "f7356dbc-c12d-4391-b804-cc4d8ff7c5be",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hackney-diamonds--the-rolling-stones",
+      "type": "project",
+      "name": "Hackney Diamonds",
+      "artist": "The Rolling Stones",
+      "mbid": "26b9191a-d4e5-4c92-a3c5-6749a5ac83a2",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blue-and-lonesome--the-rolling-stones",
+      "type": "project",
+      "name": "Blue & Lonesome",
+      "artist": "The Rolling Stones",
+      "mbid": "ab9b8aa8-d2bc-42cd-a36b-842f61de55f3",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-bigger-bang--the-rolling-stones",
+      "type": "project",
+      "name": "A Bigger Bang",
+      "artist": "The Rolling Stones",
+      "mbid": "6d1a87c3-9e11-36d8-8c41-3e11b974fde7",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bridges-to-babylon--the-rolling-stones",
+      "type": "project",
+      "name": "Bridges to Babylon",
+      "artist": "The Rolling Stones",
+      "mbid": "d7ef7347-c582-3109-a54a-9bc6cde8ee45",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:voodoo-lounge--the-rolling-stones",
+      "type": "project",
+      "name": "Voodoo Lounge",
+      "artist": "The Rolling Stones",
+      "mbid": "7645ef59-6d8c-37fe-8467-d566d3cf5926",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:another-side-of-steel-wheels--the-rolling-stones",
+      "type": "project",
+      "name": "Another Side of Steel Wheels",
+      "artist": "The Rolling Stones",
+      "mbid": "84a6d477-767a-35fa-9d89-0e1b51dd4859",
+      "year": "1990",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:steel-wheels--the-rolling-stones",
+      "type": "project",
+      "name": "Steel Wheels",
+      "artist": "The Rolling Stones",
+      "mbid": "ef78739b-ea31-32e2-a927-58fe228c7354",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dirty-work--the-rolling-stones",
+      "type": "project",
+      "name": "Dirty Work",
+      "artist": "The Rolling Stones",
+      "mbid": "fb2dc90c-9f8a-3fa3-b9bc-2001dbe6a561",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:undercover--the-rolling-stones",
+      "type": "project",
+      "name": "Undercover",
+      "artist": "The Rolling Stones",
+      "mbid": "515d36a9-a39a-35d8-a522-7f5670fe558e",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tattoo-you--the-rolling-stones",
+      "type": "project",
+      "name": "Tattoo You",
+      "artist": "The Rolling Stones",
+      "mbid": "fdbc4f51-817d-33ab-af9f-4bcc22286932",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:emotional-rescue--the-rolling-stones",
+      "type": "project",
+      "name": "Emotional Rescue",
+      "artist": "The Rolling Stones",
+      "mbid": "0c977adb-6dd3-330c-9acb-a40d2104a539",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:some-girls--the-rolling-stones",
+      "type": "project",
+      "name": "Some Girls",
+      "artist": "The Rolling Stones",
+      "mbid": "b44bc358-a28f-3a1f-b07e-604910f12d37",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:black-and-blue--the-rolling-stones",
+      "type": "project",
+      "name": "Black and Blue",
+      "artist": "The Rolling Stones",
+      "mbid": "b13da40b-fb15-382e-b305-b65ced849782",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:it-s-only-rock-n-roll--the-rolling-stones",
+      "type": "project",
+      "name": "It’s Only Rock ’n Roll",
+      "artist": "The Rolling Stones",
+      "mbid": "cc0ef7ba-01f1-3faf-8238-b63369ff5d2b",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:goats-head-soup--the-rolling-stones",
+      "type": "project",
+      "name": "Goats Head Soup",
+      "artist": "The Rolling Stones",
+      "mbid": "e82ba8db-3712-3de0-bbe5-0311b89db7e2",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:exile-on-main-st--the-rolling-stones",
+      "type": "project",
+      "name": "Exile on Main St.",
+      "artist": "The Rolling Stones",
+      "mbid": "4838a3c9-fd2b-30a5-83eb-e32545b5d7fc",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sticky-fingers--the-rolling-stones",
+      "type": "project",
+      "name": "Sticky Fingers",
+      "artist": "The Rolling Stones",
+      "mbid": "4a4213d0-f224-3d51-bcca-476f61162681",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:let-it-bleed--the-rolling-stones",
+      "type": "project",
+      "name": "Let It Bleed",
+      "artist": "The Rolling Stones",
+      "mbid": "784c0edd-0f37-33a2-9ca5-dff87b4f999c",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beggars-banquet--the-rolling-stones",
+      "type": "project",
+      "name": "Beggars Banquet",
+      "artist": "The Rolling Stones",
+      "mbid": "6e672bbd-7c7f-32f8-8335-c603be99d13b",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jumpin-jack-flash-child-of-the-moon--the-rolling-stones",
+      "type": "project",
+      "name": "Jumpin’ Jack Flash / Child of the Moon",
+      "artist": "The Rolling Stones",
+      "mbid": "800eb349-8565-30dc-b442-dcdeec7b99f7",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:street-fighting-man-no-expectations--the-rolling-stones",
+      "type": "project",
+      "name": "Street Fighting Man / No Expectations",
+      "artist": "The Rolling Stones",
+      "mbid": "012c9d44-680f-31e7-a0e1-e258c4e60397",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:between-the-buttons--the-rolling-stones",
+      "type": "project",
+      "name": "Between the Buttons",
+      "artist": "The Rolling Stones",
+      "mbid": "72a77b05-0006-3838-a378-c56b65abc733",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:she-s-a-rainbow-2000-light-years-from-home--the-rolling-stones",
+      "type": "project",
+      "name": "She’s a Rainbow / 2000 Light Years From Home",
+      "artist": "The Rolling Stones",
+      "mbid": "e06bec1b-99e1-4d46-b4be-5774786ff2bf",
+      "year": "1967",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:their-satanic-majesties-request--the-rolling-stones",
+      "type": "project",
+      "name": "Their Satanic Majesties Request",
+      "artist": "The Rolling Stones",
+      "mbid": "40a087e8-908a-334d-b520-88a820deb09d",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:19th-nervous-breakdown-as-tears-go-by--the-rolling-stones",
+      "type": "project",
+      "name": "19th Nervous Breakdown / As Tears Go By",
+      "artist": "The Rolling Stones",
+      "mbid": "1a8512a6-f8ea-34f3-88f8-be4d42aa85cc",
+      "year": "1966",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:aftermath--the-rolling-stones",
+      "type": "project",
+      "name": "Aftermath",
+      "artist": "The Rolling Stones",
+      "mbid": "26987c39-5914-483b-a897-d43ce6aad9b1",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:paint-it-black-long-long-while--the-rolling-stones",
+      "type": "project",
+      "name": "Paint It Black / Long Long While",
+      "artist": "The Rolling Stones",
+      "mbid": "7b0b86e4-0104-3c2f-80c1-233ca36a6fc4",
+      "year": "1966",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:december-s-children-and-everybody-s--the-rolling-stones",
+      "type": "project",
+      "name": "December’s Children (and Everybody’s)",
+      "artist": "The Rolling Stones",
+      "mbid": "6f3adeb5-9955-3613-b51a-45e407ca8de5",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:get-off-of-my-cloud-i-m-free--the-rolling-stones",
+      "type": "project",
+      "name": "Get Off of My Cloud / I'm Free",
+      "artist": "The Rolling Stones",
+      "mbid": "cbebf078-af79-377e-9e5c-d7a04ad92e56",
+      "year": "1965",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:out-of-our-heads--the-rolling-stones",
+      "type": "project",
+      "name": "Out of Our Heads",
+      "artist": "The Rolling Stones",
+      "mbid": "3be81f5e-9bdd-303a-b9bf-f8eb2059ef9f",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-last-time-play-with-fire--the-rolling-stones",
+      "type": "project",
+      "name": "The Last Time / Play With Fire",
+      "artist": "The Rolling Stones",
+      "mbid": "65f88dd0-d6ab-36b5-b968-f9263b490920",
+      "year": "1965",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-rolling-stones-no-2--the-rolling-stones",
+      "type": "project",
+      "name": "The Rolling Stones No. 2",
+      "artist": "The Rolling Stones",
+      "mbid": "66b53bd6-043b-3635-8d9d-02aa71bc0af8",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-rolling-stones-now--the-rolling-stones",
+      "type": "project",
+      "name": "The Rolling Stones, Now!",
+      "artist": "The Rolling Stones",
+      "mbid": "367b4517-4cb1-3834-8132-e980ddb65162",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:12-5--the-rolling-stones",
+      "type": "project",
+      "name": "12 × 5",
+      "artist": "The Rolling Stones",
+      "mbid": "703eab6c-056e-3d6d-95d9-991e01f5ca57",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:england-s-newest-hit-makers--the-rolling-stones",
+      "type": "project",
+      "name": "England’s Newest Hit Makers",
+      "artist": "The Rolling Stones",
+      "mbid": "919b8534-f40f-3a07-be48-0a9095ab5ada",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-rolling-stones--the-rolling-stones",
+      "type": "project",
+      "name": "The Rolling Stones",
+      "artist": "The Rolling Stones",
+      "mbid": "9c15a668-515e-3472-9701-13d8ef107c8c",
+      "year": "1964",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:come-on-i-want-to-be-loved--the-rolling-stones",
+      "type": "project",
+      "name": "Come On / I Want to Be Loved",
+      "artist": "The Rolling Stones",
+      "mbid": "06c21a13-8a80-3614-97c0-8138a528c225",
+      "year": "1963",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-wanna-be-your-man-stoned--the-rolling-stones",
+      "type": "project",
+      "name": "I Wanna Be Your Man / Stoned",
+      "artist": "The Rolling Stones",
+      "mbid": "ca24495d-8fe7-3d21-b75f-a3343710f071",
+      "year": "1963",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:poison-ivy-fortune-teller--the-rolling-stones",
+      "type": "project",
+      "name": "Poison Ivy / Fortune Teller",
+      "artist": "The Rolling Stones",
+      "mbid": "fc2ce92a-37d0-3f14-b80c-f22ca740213c",
+      "year": "1963",
+      "releaseType": "single"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:i-can-t-get-no-satisfaction",

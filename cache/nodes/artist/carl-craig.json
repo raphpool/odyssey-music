@@ -60,24 +60,170 @@
   ],
   "discography": [
     {
-      "slug": "project:landcruising--carl-craig",
+      "slug": "project:meditations--carl-craig",
       "type": "project",
-      "name": "Landcruising"
+      "name": "Meditations",
+      "artist": "Carl Craig",
+      "mbid": "3e1610e7-fd35-4aaa-8125-cdfd744a5101",
+      "year": "2026",
+      "releaseType": "album"
     },
     {
-      "slug": "project:more-songs-about-food-and-revolutionary-art--carl-craig",
+      "slug": "project:attenuator--carl-craig",
       "type": "project",
-      "name": "More Songs About Food and Revolutionary Art"
+      "name": "Attenuator",
+      "artist": "Carl Craig",
+      "mbid": "e8e97eaf-ccfa-4546-9b94-c06b056d5074",
+      "year": "2020",
+      "releaseType": "single"
     },
     {
-      "slug": "project:recomposed",
+      "slug": "project:sandstorms--carl-craig",
       "type": "project",
-      "name": "Recomposed"
+      "name": "Sandstorms",
+      "artist": "Carl Craig",
+      "mbid": "63bd9f52-7dc8-4007-95da-6b8158ce78c8",
+      "year": "2017",
+      "releaseType": "ep"
     },
     {
       "slug": "project:unity",
       "type": "project",
-      "name": "Unity"
+      "name": "Unity",
+      "mbid": "d2a92764-9757-4a11-9c2b-42135e27b5c3",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:recomposed-new-mixes-by-ricardo-villalobos-and-carl-craig--carl-craig",
+      "type": "project",
+      "name": "ReComposed: New Mixes by Ricardo Villalobos & Carl Craig",
+      "artist": "Carl Craig",
+      "mbid": "e66c0ec6-5784-444f-b606-d9512356c04f",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:recomposed",
+      "type": "project",
+      "name": "Recomposed",
+      "mbid": "2d9da019-b678-345d-b105-0e999467a72e",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sorry-carl-but-we-needed-the-beats--carl-craig",
+      "type": "project",
+      "name": "Sorry Carl But We Needed The Beats",
+      "artist": "Carl Craig",
+      "mbid": "33b3c4d0-2b47-45e1-a033-1628648ae7ca",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:darkness-angel--carl-craig",
+      "type": "project",
+      "name": "Darkness / Angel",
+      "artist": "Carl Craig",
+      "mbid": "a8af06df-ba4e-439b-a1f9-342f2f0dc443",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sparkle--carl-craig",
+      "type": "project",
+      "name": "Sparkle",
+      "artist": "Carl Craig",
+      "mbid": "b5115511-5dde-4239-8052-df1b89d4973e",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-album-formerly-known-as--carl-craig",
+      "type": "project",
+      "name": "The Album Formerly Known As...",
+      "artist": "Carl Craig",
+      "mbid": "203d2783-842f-3cf1-ab35-03eb5378d70d",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:just-another-day--carl-craig",
+      "type": "project",
+      "name": "Just Another Day",
+      "artist": "Carl Craig",
+      "mbid": "da468f9a-d42f-3206-9cfd-3d938fdeddfd",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:a-wonderful-life-as-time-goes-by--carl-craig",
+      "type": "project",
+      "name": "A Wonderful Life / As Time Goes By",
+      "artist": "Carl Craig",
+      "mbid": "00b10577-15d5-3c91-824d-3a6ad4f819ff",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-climax--carl-craig",
+      "type": "project",
+      "name": "The Climax",
+      "artist": "Carl Craig",
+      "mbid": "df5ae466-ffbe-33ad-af9b-2583ba8d0713",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:more-songs-about-food-and-revolutionary-art--carl-craig",
+      "type": "project",
+      "name": "More Songs About Food and Revolutionary Art",
+      "mbid": "d89d0fd9-5860-3492-8240-cfe6d6934b90",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:landcruising--carl-craig",
+      "type": "project",
+      "name": "Landcruising",
+      "mbid": "83b13f16-3c7c-3c74-a8cb-9816045298c1",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:science-fiction--carl-craig",
+      "type": "project",
+      "name": "Science Fiction",
+      "artist": "Carl Craig",
+      "mbid": "1a138fe9-820a-3371-be7f-ff1a7e3c1a0c",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-climax-clear-and-present--carl-craig",
+      "type": "project",
+      "name": "The Climax / Clear & Present",
+      "artist": "Carl Craig",
+      "mbid": "143780fd-5050-400d-b506-b040116e09b9",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:no-more-words-ep--carl-craig",
+      "type": "project",
+      "name": "No More Words EP",
+      "artist": "Carl Craig",
+      "mbid": "30e22011-f207-3bac-8f15-b885cd2497fa",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:undisputable-melodica--carl-craig",
+      "type": "project",
+      "name": "Undisputable / Melodica",
+      "artist": "Carl Craig",
+      "mbid": "f7dd1963-9605-3cee-8432-548137dc857a",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

@@ -97,24 +97,207 @@
   ],
   "discography": [
     {
-      "slug": "project:giant-steps",
+      "slug": "project:blue-world--john-coltrane",
       "type": "project",
-      "name": "Giant Steps"
+      "name": "Blue World",
+      "artist": "John Coltrane",
+      "mbid": "70b3a518-4766-4b77-9cb9-1b5b10ec0bb9",
+      "year": "2019",
+      "releaseType": "album"
     },
     {
-      "slug": "project:my-favorite-things",
+      "slug": "project:both-directions-at-once-the-lost-album--john-coltrane",
       "type": "project",
-      "name": "My Favorite Things"
+      "name": "Both Directions at Once: The Lost Album",
+      "artist": "John Coltrane",
+      "mbid": "2d7b07d9-9cf4-4ef1-8033-668bd98e9da1",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stellar-regions--john-coltrane",
+      "type": "project",
+      "name": "Stellar Regions",
+      "artist": "John Coltrane",
+      "mbid": "ddba8e8c-078f-3c39-8201-44618dc2942e",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:first-meditations-for-quartet--john-coltrane",
+      "type": "project",
+      "name": "First Meditations (For Quartet)",
+      "artist": "John Coltrane",
+      "mbid": "421d9819-70be-3d0c-83be-4f95ea9ef5ea",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:expression--john-coltrane",
+      "type": "project",
+      "name": "Expression",
+      "artist": "John Coltrane",
+      "mbid": "d3853000-fd91-3b3d-a8bf-9659298be1e4",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:om--john-coltrane",
+      "type": "project",
+      "name": "Om",
+      "artist": "John Coltrane",
+      "mbid": "b620b05d-d868-3dcd-8846-cbbdd3fba0b2",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:meditations--john-coltrane",
+      "type": "project",
+      "name": "Meditations",
+      "artist": "John Coltrane",
+      "mbid": "550090da-a050-3e18-9ace-af7d07089d7b",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-avant-garde--john-coltrane",
+      "type": "project",
+      "name": "The Avant-Garde",
+      "artist": "John Coltrane",
+      "mbid": "1d44a728-f55e-363d-ad8e-e6837c191a38",
+      "year": "1966",
+      "releaseType": "album"
     },
     {
       "slug": "project:a-love-supreme",
       "type": "project",
-      "name": "A Love Supreme"
+      "name": "A Love Supreme",
+      "mbid": "77cf47ba-58cd-3f3d-a5f9-79bf89860421",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ascension--john-coltrane",
+      "type": "project",
+      "name": "Ascension",
+      "artist": "John Coltrane",
+      "mbid": "bc126e06-2f61-300c-afe5-e2fe7b10021f",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:coltrane-s-sound--john-coltrane",
+      "type": "project",
+      "name": "Coltrane’s Sound",
+      "artist": "John Coltrane",
+      "mbid": "e140c5c0-08fb-3229-8f45-eb7209e3ae62",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dakar--john-coltrane",
+      "type": "project",
+      "name": "Dakar",
+      "artist": "John Coltrane",
+      "mbid": "d896901e-1e17-3b97-829f-79bc92ddb832",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:impressions--john-coltrane",
+      "type": "project",
+      "name": "Impressions",
+      "artist": "John Coltrane",
+      "mbid": "a43136ba-aeb3-35bf-a4f5-d7c7ada39a1d",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:john-coltrane-and-johnny-hartman--john-coltrane",
+      "type": "project",
+      "name": "John Coltrane and Johnny Hartman",
+      "artist": "John Coltrane",
+      "mbid": "6324bb2f-8ff2-31f1-990d-cc6afc2d6614",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:coltrane-plays-the-blues--john-coltrane",
+      "type": "project",
+      "name": "Coltrane Plays the Blues",
+      "artist": "John Coltrane",
+      "mbid": "f9aab952-b2c7-3f31-ad82-5cab900e834b",
+      "year": "1962",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lush-life--john-coltrane",
+      "type": "project",
+      "name": "Lush Life",
+      "artist": "John Coltrane",
+      "mbid": "711ef782-d201-345e-916c-1d1b15f06e24",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:my-favorite-things",
+      "type": "project",
+      "name": "My Favorite Things",
+      "mbid": "b60cdf20-74b7-3bed-b233-0f4818235895",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ole-coltrane--john-coltrane",
+      "type": "project",
+      "name": "Olé Coltrane",
+      "artist": "John Coltrane",
+      "mbid": "9ba035a7-3f7c-3d96-9e07-0e0d45af41af",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:giant-steps",
+      "type": "project",
+      "name": "Giant Steps",
+      "mbid": "2cdca11d-3e45-3152-93e5-4d2a4ddb1bc6",
+      "year": "1960",
+      "releaseType": "album"
     },
     {
       "slug": "project:blue-train",
       "type": "project",
-      "name": "Blue Train"
+      "name": "Blue Train",
+      "mbid": "12349ce8-2087-3d16-93da-70cd65621774",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:john-coltrane-with-the-red-garland-trio--john-coltrane",
+      "type": "project",
+      "name": "John Coltrane with the Red Garland Trio",
+      "artist": "John Coltrane",
+      "mbid": "cb6ef28b-5ba3-33b2-ac1b-76261a088794",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soultrane--john-coltrane",
+      "type": "project",
+      "name": "Soultrane",
+      "artist": "John Coltrane",
+      "mbid": "f8718b6e-ba89-3341-8f87-a7ac479dbf3f",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:coltrane--john-coltrane",
+      "type": "project",
+      "name": "Coltrane",
+      "artist": "John Coltrane",
+      "mbid": "a801b39f-b75b-3131-8d42-141bf3c694dd",
+      "year": "1957",
+      "releaseType": "album"
     },
     {
       "slug": "project:kind-of-blue--miles-davis",

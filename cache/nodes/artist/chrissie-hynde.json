@@ -58,7 +58,71 @@
       "name": "Rhino Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:duets-special--chrissie-hynde",
+      "type": "project",
+      "name": "Duets Special",
+      "artist": "Chrissie Hynde",
+      "mbid": "f372e0ed-cf5c-4ce9-a312-6ed00cd6d0df",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:me-and-mrs-jones--chrissie-hynde",
+      "type": "project",
+      "name": "Me & Mrs Jones",
+      "artist": "Chrissie Hynde",
+      "mbid": "e1f341a1-ea88-463b-9de0-a97e99923b54",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:standing-in-the-doorway-chrissie-hynde-sings-bob-dylan--chrissie-hynde",
+      "type": "project",
+      "name": "Standing in the Doorway: Chrissie Hynde Sings Bob Dylan",
+      "artist": "Chrissie Hynde",
+      "mbid": "f20efbbe-7f1c-46c3-b941-9889e89a4e2b",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:valve-bone-woe--chrissie-hynde",
+      "type": "project",
+      "name": "Valve Bone Woe",
+      "artist": "Chrissie Hynde",
+      "mbid": "19d05847-8361-4936-9862-2bfcb745d87f",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:2000-miles-stockholm-2014-version--chrissie-hynde",
+      "type": "project",
+      "name": "2000 Miles (Stockholm 2014 Version)",
+      "artist": "Chrissie Hynde",
+      "mbid": "a44cd9b2-2784-409e-a5e8-cd074206eede",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:let-it-be--chrissie-hynde",
+      "type": "project",
+      "name": "Let It Be",
+      "artist": "Chrissie Hynde",
+      "mbid": "7f385fe1-10c5-46f2-b159-c5af8669dff3",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stockholm--chrissie-hynde",
+      "type": "project",
+      "name": "Stockholm",
+      "artist": "Chrissie Hynde",
+      "mbid": "111f1284-99e3-45e3-b773-484ea6629817",
+      "year": "2014",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:spiritual-high--moodswings",

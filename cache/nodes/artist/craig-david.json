@@ -53,14 +53,362 @@
   ],
   "discography": [
     {
-      "slug": "project:born-to-do-it",
+      "slug": "project:commitment--craig-david",
       "type": "project",
-      "name": "Born to Do It"
+      "name": "Commitment",
+      "artist": "Craig David",
+      "mbid": "7d79ba77-f133-4002-b8c7-2b40e6afb667",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:22--craig-david",
+      "type": "project",
+      "name": "22",
+      "artist": "Craig David",
+      "mbid": "b7bb870e-d9ad-4ede-a804-90d4213a020e",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:apple-music-home-session-craig-david--craig-david",
+      "type": "project",
+      "name": "Apple Music Home Session: Craig David",
+      "artist": "Craig David",
+      "mbid": "5d2a8080-6cfc-45b3-bdcf-9c6de82ff557",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:who-you-are--craig-david",
+      "type": "project",
+      "name": "Who You Are",
+      "artist": "Craig David",
+      "mbid": "f10238de-6e43-439e-8ab6-25ce714bdd40",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:do-you-miss-me-much--craig-david",
+      "type": "project",
+      "name": "Do You Miss Me Much",
+      "artist": "Craig David",
+      "mbid": "a32f2ea6-61ac-482f-abe9-5668433fa0d6",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:when-you-know-what-love-is--craig-david",
+      "type": "project",
+      "name": "When You Know What Love Is",
+      "artist": "Craig David",
+      "mbid": "a663226f-8dd0-467d-a36e-c9c5bfcce4e8",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:magic--craig-david",
+      "type": "project",
+      "name": "Magic",
+      "artist": "Craig David",
+      "mbid": "19803ee7-6090-46e0-b005-db5e11f3a048",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-time-is-now--craig-david",
+      "type": "project",
+      "name": "The Time Is Now",
+      "artist": "Craig David",
+      "mbid": "fdb42147-461d-45e9-b55c-529649cda9df",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:heartline--craig-david",
+      "type": "project",
+      "name": "Heartline",
+      "artist": "Craig David",
+      "mbid": "46f1ca1b-78d1-40bb-9497-9e30c0f046ee",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-know-you--craig-david",
+      "type": "project",
+      "name": "I Know You",
+      "artist": "Craig David",
+      "mbid": "009245f0-27f3-4861-95d2-db2a18aee734",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-know-you-tribute-to-craig-david-and-bastille--craig-david",
+      "type": "project",
+      "name": "I Know You - Tribute to Craig David and Bastille",
+      "artist": "Craig David",
+      "mbid": "3da50a3f-77f2-400f-8f35-70941f66bdff",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ain-t-giving-up--craig-david",
+      "type": "project",
+      "name": "Ain't Giving Up",
+      "artist": "Craig David",
+      "mbid": "ed9c200f-47be-40d6-b38b-4d812d84146a",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-we-needed--craig-david",
+      "type": "project",
+      "name": "All We Needed",
+      "artist": "Craig David",
+      "mbid": "59269847-17d3-44d5-a96a-9ced18268bbc",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:following-my-intuition--craig-david",
+      "type": "project",
+      "name": "Following My Intuition",
+      "artist": "Craig David",
+      "mbid": "844537bb-5db8-4b66-bb09-21d584d54c77",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-more-time--craig-david",
+      "type": "project",
+      "name": "One More Time",
+      "artist": "Craig David",
+      "mbid": "bfa3b213-a8d2-4957-8df2-6bbc1172fd39",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spotify-sessions--craig-david",
+      "type": "project",
+      "name": "Spotify Sessions",
+      "artist": "Craig David",
+      "mbid": "bffd6191-773f-485c-a1ba-4f7b8aca6058",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:when-the-bassline-drops--craig-david",
+      "type": "project",
+      "name": "When the Bassline Drops",
+      "artist": "Craig David",
+      "mbid": "a41f5d72-0727-4684-a827-2619b1a58ffa",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-more-lie-standing-in-the-shadows--craig-david",
+      "type": "project",
+      "name": "One More Lie (Standing In The Shadows)",
+      "artist": "Craig David",
+      "mbid": "8f9337cc-fc67-4a73-88ca-c8b2c3a18478",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:signed-sealed-delivered--craig-david",
+      "type": "project",
+      "name": "Signed Sealed Delivered",
+      "artist": "Craig David",
+      "mbid": "a3855bb8-501c-41fb-b78a-afba90b78571",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:are-you-up-for-this--craig-david",
+      "type": "project",
+      "name": "Are You Up for This",
+      "artist": "Craig David",
+      "mbid": "bef04dd0-22e6-4240-8c4e-aab28a3f1942",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:insomnia--craig-david",
+      "type": "project",
+      "name": "Insomnia",
+      "artist": "Craig David",
+      "mbid": "ec3f9ae7-429d-4cd1-9dbd-b040bf7982e3",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:officially-yours--craig-david",
+      "type": "project",
+      "name": "Officially Yours",
+      "artist": "Craig David",
+      "mbid": "ed9d4cfe-a5af-43d5-a359-9ef0ba6a245a",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:walking-away-french-version--craig-david",
+      "type": "project",
+      "name": "Walking Away (French version)",
+      "artist": "Craig David",
+      "mbid": "60b13a3e-fe09-46c8-98a7-6a1cb7b2bc07",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hot-stuff--craig-david",
+      "type": "project",
+      "name": "Hot Stuff",
+      "artist": "Craig David",
+      "mbid": "8e7ffb84-d47a-4bf3-a0a0-dc76792f40bf",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hot-stuff-vs-world-hold-on--craig-david",
+      "type": "project",
+      "name": "Hot Stuff vs. World Hold On",
+      "artist": "Craig David",
+      "mbid": "98ecb633-a656-3d30-a70e-a66f6803b0dd",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trust-me--craig-david",
+      "type": "project",
+      "name": "Trust Me",
+      "artist": "Craig David",
+      "mbid": "5ce7e3ae-c9d0-3451-8a44-e394765c8172",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:all-the-way--craig-david",
+      "type": "project",
+      "name": "All the Way",
+      "artist": "Craig David",
+      "mbid": "c3c670be-9b4d-31d4-90e0-1755db3fabbc",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-love-you-no-more--craig-david",
+      "type": "project",
+      "name": "Don't love you no more",
+      "artist": "Craig David",
+      "mbid": "3a126278-4e72-4200-8028-40a4c6cf1700",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-story-goes--craig-david",
+      "type": "project",
+      "name": "The Story Goes…",
+      "artist": "Craig David",
+      "mbid": "4a05d75e-c2b7-3859-b5cf-6b811efa05af",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hidden-agenda--craig-david",
+      "type": "project",
+      "name": "Hidden Agenda",
+      "artist": "Craig David",
+      "mbid": "cc8acc22-9ee7-4e6f-aec7-0b0c68be9287",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rise-and-fall--craig-david",
+      "type": "project",
+      "name": "Rise & Fall",
+      "artist": "Craig David",
+      "mbid": "b35db60b-e553-38ca-a63c-dd7c73a6de0e",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spanish--craig-david",
+      "type": "project",
+      "name": "Spanish",
+      "artist": "Craig David",
+      "mbid": "8668aef5-1eff-4aa0-ab0a-e2e0ea88f8f3",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:world-filled-with-love--craig-david",
+      "type": "project",
+      "name": "World Filled With Love",
+      "artist": "Craig David",
+      "mbid": "255287e3-7a0f-4989-98db-6d0ab67294ef",
+      "year": "2003",
+      "releaseType": "single"
     },
     {
       "slug": "project:slicker-than-your-average",
       "type": "project",
-      "name": "Slicker Than Your Average"
+      "name": "Slicker Than Your Average",
+      "mbid": "385fc75f-fc81-358d-a1e6-960d3ec9ae7e",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:what-s-your-flava--craig-david",
+      "type": "project",
+      "name": "What’s Your Flava?",
+      "artist": "Craig David",
+      "mbid": "a8345bdb-a25f-422f-aeeb-c3ce1eb0402f",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rendezvous--craig-david",
+      "type": "project",
+      "name": "Rendezvous",
+      "artist": "Craig David",
+      "mbid": "4b2786e7-70e3-3485-ba08-ca35f9ca7610",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:7-days--craig-david",
+      "type": "project",
+      "name": "7 Days",
+      "artist": "Craig David",
+      "mbid": "81375e0a-0433-3a73-b54a-2a4e351bc125",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:born-to-do-it",
+      "type": "project",
+      "name": "Born to Do It",
+      "mbid": "fb75c2e9-df5a-3e86-b702-25318ce6e2b1",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fill-me-in--craig-david",
+      "type": "project",
+      "name": "Fill Me In",
+      "artist": "Craig David",
+      "mbid": "28f5319f-ed04-3b1b-a88c-2f827abff7a3",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:walking-away--craig-david",
+      "type": "project",
+      "name": "Walking Away",
+      "artist": "Craig David",
+      "mbid": "abd9bfb5-cffb-3bb1-83ba-6b5eb31aeb40",
+      "year": "2000",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

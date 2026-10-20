@@ -53,10 +53,49 @@
   ],
   "discography": [
     {
+      "slug": "project:uncontrollable-thoughts--anushka-chkheidze",
+      "type": "project",
+      "name": "Uncontrollable Thoughts",
+      "artist": "Anushka Chkheidze",
+      "mbid": "5fd928b0-4a3b-4445-b83a-2f5bf8dfb9e5",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:clean-clear-white--anushka-chkheidze",
+      "type": "project",
+      "name": "Clean Clear White",
+      "artist": "Anushka Chkheidze",
+      "mbid": "3ef6545f-4207-4d53-9aa3-b310b17a3def",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:lost-luggage--anushka-chkheidze",
       "type": "project",
       "name": "Lost Luggage",
-      "artist": "Anushka Chkheidze"
+      "artist": "Anushka Chkheidze",
+      "mbid": "dd2fb96c-4b2f-41a9-aabe-1a4471726c82",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:theatre-extracts--anushka-chkheidze",
+      "type": "project",
+      "name": "Theatre Extracts",
+      "artist": "Anushka Chkheidze",
+      "mbid": "e005e3dc-e25e-4658-97fa-c36beb38ca65",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:halfie--anushka-chkheidze",
+      "type": "project",
+      "name": "Halfie",
+      "artist": "Anushka Chkheidze",
+      "mbid": "309333eb-bd66-4cfd-870f-a1e2ebd2feba",
+      "year": "2020",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

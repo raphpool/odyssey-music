@@ -57,29 +57,296 @@
   ],
   "discography": [
     {
-      "slug": "project:songs-about-my-cats--venetian-snares",
+      "slug": "project:drums--venetian-snares",
       "type": "project",
-      "name": "Songs About My Cats"
+      "name": "Drums",
+      "artist": "Venetian Snares",
+      "mbid": "ae1c5f07-e710-4ad3-819e-b7f7313df9d3",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:rossz-csillag-alatt-szuletett",
+      "slug": "project:she-began-to-cry-tears-of-blood-which-became-little-brick-houses-when-they-hit-the-ground--venetian-snares",
       "type": "project",
-      "name": "Rossz Csillag Alatt Született"
+      "name": "She Began to Cry Tears of Blood Which Became Little Brick Houses When They Hit the Ground",
+      "artist": "Venetian Snares",
+      "mbid": "cd04eede-d001-404f-aca4-78338fead519",
+      "year": "2018",
+      "releaseType": "album"
     },
     {
-      "slug": "project:huge-chrome-cylinder-box-unfolding",
+      "slug": "project:venetian-snares-daniel-lanois--venetian-snares",
       "type": "project",
-      "name": "Huge Chrome Cylinder Box Unfolding"
+      "name": "Venetian Snares × Daniel Lanois",
+      "artist": "Venetian Snares",
+      "mbid": "de3083e2-6d24-4b5a-883f-0bf693db5221",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:traditional-synthesizer-music--venetian-snares",
+      "type": "project",
+      "name": "Traditional Synthesizer Music",
+      "artist": "Venetian Snares",
+      "mbid": "15480b41-5326-4090-a611-da8c29b355a4",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:thank-you-for-your-consideration--venetian-snares",
+      "type": "project",
+      "name": "Thank You for Your Consideration",
+      "artist": "Venetian Snares",
+      "mbid": "526b83f6-178d-46e4-8a32-1b1ac7a854a0",
+      "year": "2015",
+      "releaseType": "album"
     },
     {
       "slug": "project:my-love-is-a-bulldozer",
       "type": "project",
-      "name": "My Love Is a Bulldozer"
+      "name": "My Love Is a Bulldozer",
+      "mbid": "a92348ac-cfa3-4348-a137-be271fb82ca9",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:my-so-called-life--venetian-snares",
+      "type": "project",
+      "name": "My So-Called Life",
+      "artist": "Venetian Snares",
+      "mbid": "e719fcb0-2e68-4967-8406-eeb9fbfd6497",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:filth--venetian-snares",
+      "type": "project",
+      "name": "Filth",
+      "artist": "Venetian Snares",
+      "mbid": "62c13896-bbdd-324a-8dde-2f8e083f9b28",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:detrimentalist--venetian-snares",
+      "type": "project",
+      "name": "Detrimentalist",
+      "artist": "Venetian Snares",
+      "mbid": "374f85c4-7fcf-3351-82a8-dfab90bc6969",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:my-downfall-original-soundtrack--venetian-snares",
+      "type": "project",
+      "name": "My Downfall (Original Soundtrack)",
+      "artist": "Venetian Snares",
+      "mbid": "799557ce-369c-35d9-a416-986308d4fd49",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pink-green--venetian-snares",
+      "type": "project",
+      "name": "Pink + Green",
+      "artist": "Venetian Snares",
+      "mbid": "46c22d2e-fdac-32bc-8a89-3f13e52ec2ed",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sabbath-dubs--venetian-snares",
+      "type": "project",
+      "name": "Sabbath Dubs",
+      "artist": "Venetian Snares",
+      "mbid": "5207b140-1191-3ef0-830f-e3361dff316b",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cavalcade-of-glee-and-dadaist-happy-hardcore-pom-poms--venetian-snares",
+      "type": "project",
+      "name": "Cavalcade of Glee and Dadaist Happy Hardcore Pom Poms",
+      "artist": "Venetian Snares",
+      "mbid": "844b941f-3bd5-317e-b931-f5711e36d6f4",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:meathole--venetian-snares",
+      "type": "project",
+      "name": "Meathole",
+      "artist": "Venetian Snares",
+      "mbid": "14e00f96-14d5-365e-b820-33fe8a10edb8",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rossz-csillag-alatt-szuletett",
+      "type": "project",
+      "name": "Rossz Csillag Alatt Született",
+      "mbid": "e01c7844-8189-38a3-8a45-af2bcf480531",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:winnipeg-is-a-frozen-shithole--venetian-snares",
+      "type": "project",
+      "name": "Winnipeg Is a Frozen Shithole",
+      "artist": "Venetian Snares",
+      "mbid": "43be4e67-83fe-3a3a-ab2d-53be805c28c3",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:huge-chrome-cylinder-box-unfolding",
+      "type": "project",
+      "name": "Huge Chrome Cylinder Box Unfolding",
+      "mbid": "f28782b1-faba-3b5f-ba7c-63a078ceb10a",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:find-candace--venetian-snares",
+      "type": "project",
+      "name": "Find Candace",
+      "artist": "Venetian Snares",
+      "mbid": "f9156314-4bb7-357c-8469-c00242d496cb",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-chocolate-wheelchair-album--venetian-snares",
+      "type": "project",
+      "name": "The Chocolate Wheelchair Album",
+      "artist": "Venetian Snares",
+      "mbid": "ef35b1f7-3e8a-3bc1-a63b-da9486323e7e",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:2370894--venetian-snares",
+      "type": "project",
+      "name": "2370894",
+      "artist": "Venetian Snares",
+      "mbid": "021d8ffb-4788-363b-82a5-250f29169e30",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-giant-alien-force-more-violent-and-sick-than-anything-you-can-imagine--venetian-snares",
+      "type": "project",
+      "name": "A Giant Alien Force More Violent & Sick Than Anything You Can Imagine",
+      "artist": "Venetian Snares",
+      "mbid": "6833c915-75f2-3e10-af85-191b0cd0b3cd",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:higgins-ultra-low-track-glue-funk-hits-1972-2006--venetian-snares",
+      "type": "project",
+      "name": "Higgins Ultra Low Track Glue Funk Hits 1972–2006",
+      "artist": "Venetian Snares",
+      "mbid": "83e7f249-3459-3fbe-bc6a-a56521f60307",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:winter-in-the-belly-of-a-snake--venetian-snares",
+      "type": "project",
+      "name": "Winter in the Belly of a Snake",
+      "artist": "Venetian Snares",
+      "mbid": "463ebf9f-2b6a-3e7b-b4d5-bc428032b2f5",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:doll-doll-doll--venetian-snares",
+      "type": "project",
+      "name": "Doll Doll Doll",
+      "artist": "Venetian Snares",
+      "mbid": "f31def71-5905-34e7-8703-8ddda8026bd7",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:making-orange-things--venetian-snares",
+      "type": "project",
+      "name": "Making Orange Things",
+      "artist": "Venetian Snares",
+      "mbid": "2d907098-096a-3e49-beb0-8e07661bd1cb",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shitfuckers--venetian-snares",
+      "type": "project",
+      "name": "Shitfuckers!!!",
+      "artist": "Venetian Snares",
+      "mbid": "0e773659-2062-33b0-948a-ba150d805fd2",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:songs-about-my-cats--venetian-snares",
+      "type": "project",
+      "name": "Songs About My Cats",
+      "mbid": "5e26c8a8-0b74-327d-a596-8d3324a010eb",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:untitled--venetian-snares",
+      "type": "project",
+      "name": "[untitled]",
+      "artist": "Venetian Snares",
+      "mbid": "bfe5b04c-2eae-3370-b9d4-f2710c860b6d",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:7sevens-med--venetian-snares",
+      "type": "project",
+      "name": "7sevens.med",
+      "artist": "Venetian Snares",
+      "mbid": "3d669ebb-bc7b-35b6-978f-cc465d9b7064",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:salt--venetian-snares",
+      "type": "project",
+      "name": "Salt",
+      "artist": "Venetian Snares",
+      "mbid": "cff9289f-bf39-39d8-b7bd-d6cd9c93b93b",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:printf-shiver-in-eternal-darkness-n--venetian-snares",
+      "type": "project",
+      "name": "printf(\"shiver in eternal darkness/n\");",
+      "artist": "Venetian Snares",
+      "mbid": "51f03e81-4a3d-30da-93f8-94b01f0e5a2c",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fuck-canada-fuck-america--venetian-snares",
+      "type": "project",
+      "name": "Fuck Canada // Fuck America",
+      "artist": "Venetian Snares",
+      "mbid": "a8bf9881-4d8e-3929-b4a9-d84487a68980",
+      "year": "1999",
+      "releaseType": "album"
     },
     {
       "slug": "project:greg-hates-car-culture",
       "type": "project",
-      "name": "Greg Hates Car Culture"
+      "name": "Greg Hates Car Culture",
+      "mbid": "05d689ef-82d0-3052-87a7-d227cacea7ea",
+      "year": "1999",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

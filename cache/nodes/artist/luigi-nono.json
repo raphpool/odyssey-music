@@ -48,6 +48,195 @@
   ],
   "discography": [
     {
+      "slug": "project:edizione-delle-opere-vol-1-risonanze-erranti--luigi-nono",
+      "type": "project",
+      "name": "Edizione Delle Opere Vol.1: Risonanze Erranti",
+      "artist": "Luigi Nono",
+      "mbid": "d7a6537a-c7af-4217-9994-9cdaa4331a1a",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:musica-manifesto-numero-1-non-consumiamo-marx--luigi-nono",
+      "type": "project",
+      "name": "Musica-Manifesto Numero 1 / Non Consumiamo Marx",
+      "artist": "Luigi Nono",
+      "mbid": "9b708610-9cbe-4334-979c-988abf915c2f",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:risonanze-erranti-post-prae-ludium-per-donau--luigi-nono",
+      "type": "project",
+      "name": "Risonanze Erranti / Post-prae-ludium Per Donau",
+      "artist": "Luigi Nono",
+      "mbid": "e00d7f39-33f9-4bf7-ad60-1316d5ca49d7",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:guai-ai-gelidi-mostri-quando-stanno-morendo-diario-polacco-n-2--luigi-nono",
+      "type": "project",
+      "name": "Guai ai gelidi mostri / Quando stanno morendo. Diario polacco n. 2",
+      "artist": "Luigi Nono",
+      "mbid": "d0772f08-9fde-46a5-aa88-6ca05d08c421",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:prometeo-tragedia-dell-ascolto--luigi-nono",
+      "type": "project",
+      "name": "Prometeo, Tragedia dell'ascolto",
+      "artist": "Luigi Nono",
+      "mbid": "c80bbec6-53cc-4365-b9f5-745203205a6c",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:20-jahre-inventionen-v--luigi-nono",
+      "type": "project",
+      "name": "20 Jahre Inventionen V",
+      "artist": "Luigi Nono",
+      "mbid": "fc439098-60a8-4bfd-8d7d-37e0af4b1620",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:composizione-per-orchestra-n-1-der-rote-mantel--luigi-nono",
+      "type": "project",
+      "name": "Composizione per Orchestra n. 1 / Der rote mantel",
+      "artist": "Luigi Nono",
+      "mbid": "8c0b4bb5-66de-4377-af8a-83143673e88d",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:al-gran-sole-carico-d-amore-staatsoper-stuttgart-feat-conductor-lothar-zagrosek--luigi-nono",
+      "type": "project",
+      "name": "Al gran sole carico d'amore (Staatsoper Stuttgart feat. conductor: Lothar Zagrosek)",
+      "artist": "Luigi Nono",
+      "mbid": "8658a03a-d8a7-3853-b14e-3027ebb1a9b3",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:variazioni-canoniche-varianti-no-hay-caminos-hay-que-caminar-incontri-basel-symphony-orchestra-feat-conductor-mario-venzago-violin-mark-kaplan--luigi-nono",
+      "type": "project",
+      "name": "Variazioni Canoniche / Varianti / No Hay Caminos, Hay Que Caminar / Incontri (Basel Symphony Orchestra feat conductor: Mario Venzago, violin: Mark Kaplan)",
+      "artist": "Luigi Nono",
+      "mbid": "474a06e4-5114-4897-8b4d-5fd7958222f1",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:polifonica-monodia-ritmica-canti-per-13-canciones-a-guiomar-hay-que-caminar-sonando--luigi-nono",
+      "type": "project",
+      "name": "Polifonica - Monodia - Ritmica / Canti per 13 / Canciones a Guiomar / \"Hay que caminar\" soñando",
+      "artist": "Luigi Nono",
+      "mbid": "f431a73a-d05d-4aa7-b69c-fdd13735b726",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:luigi-nono-3-guai-ai-gelidi-mostri-omaggio-a-gyorgy-kurtag--luigi-nono",
+      "type": "project",
+      "name": "Luigi Nono 3: Guai ai gelidi mostri / Omaggio a György Kurtág",
+      "artist": "Luigi Nono",
+      "mbid": "27e8caf7-dbe7-37bb-a12c-e07d4b111b1f",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:prometeo--luigi-nono",
+      "type": "project",
+      "name": "Prometeo",
+      "artist": "Luigi Nono",
+      "mbid": "72504573-2d9f-4f7e-8d12-ced0e1ce4568",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:como-una-ola-de-fuerza-y-luz-epitaffio-1-and-3--luigi-nono",
+      "type": "project",
+      "name": "Como una ola de fuerza y luz / Epitaffio 1 & 3",
+      "artist": "Luigi Nono",
+      "mbid": "be79d5f5-7e41-422e-9807-9b6176a37032",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:das-atmende-klarsein-sofferte-onde-serene-con-luigi-dallapiccola-zeitfluss-93--luigi-nono",
+      "type": "project",
+      "name": "Das Atmende Klarsein / ...Sofferte Onde Serene... / Con Luigi Dallapiccola (Zeitfluß 93)",
+      "artist": "Luigi Nono",
+      "mbid": "5c274f72-6558-310d-919c-d745ff056979",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-lontananza-nostalgica-utopica-futura--luigi-nono",
+      "type": "project",
+      "name": "La Lontananza Nostalgica Utopica Futura",
+      "artist": "Luigi Nono",
+      "mbid": "9ef45351-d114-31ee-9786-049d1d3ec60a",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:variazioni-canoniche-a-carlo-scarpa-architetto-no-hay-caminos-hay-que-caminar-sinfonieorchester-des-sudwestfunks-feat-conductor-michael-gielen--luigi-nono",
+      "type": "project",
+      "name": "Variazioni canoniche / A Carlo Scarpa, architetto / No hay caminos, hay que caminar .. (Sinfonieorchester des Südwestfunks feat. conductor: Michael Gielen)",
+      "artist": "Luigi Nono",
+      "mbid": "a949073a-ff81-3af3-8323-697b2267cf30",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fragmente-hay-que-caminar--luigi-nono",
+      "type": "project",
+      "name": "Fragmente / Hay que caminar",
+      "artist": "Luigi Nono",
+      "mbid": "db94cf9f-7f36-4eff-8fc0-21c8d3e7d7fa",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:quando-stanno-morendo-diario-polacco-2-a-pierre-dell-azzurro-silenzio-inquietum-post-prae-ludium-per-donau--luigi-nono",
+      "type": "project",
+      "name": "Quando stanno morendo, Diario Polacco 2° / A Pierre. Dell'azzurro silenzio, inquietum / Post-prae-ludium per Donau",
+      "artist": "Luigi Nono",
+      "mbid": "a1707c6b-dbf4-4d6a-b458-d407c4ed8a09",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:canti-di-vita-e-d-amore-per-bastiana-omaggio-a-vedova--luigi-nono",
+      "type": "project",
+      "name": "Canti di vita e d’amore / Per Bastiana / Omaggio a Vedova",
+      "artist": "Luigi Nono",
+      "mbid": "727bbe4b-2538-40df-93b4-946f5809569f",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:un-volto-e-del-mare-non-consumiamo-marx--luigi-nono",
+      "type": "project",
+      "name": "Un volto, e del mare / Non consumiamo Marx",
+      "artist": "Luigi Nono",
+      "mbid": "33f7cfef-7012-33e5-a0ad-14e99ef49580",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-fabbrica-illuminata-ha-venido-canciones-para-silvia-ricorda-cosa-ti-hanno-fatto-in-auschwitz--luigi-nono",
+      "type": "project",
+      "name": "La fabbrica illuminata / Ha venido, canciones para Silvia / Ricorda cosa ti hanno fatto in Auschwitz",
+      "artist": "Luigi Nono",
+      "mbid": "32fb73ae-c202-4c60-b634-b816d105afaf",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:intolleranza-1960",
       "type": "project",
       "name": "Intolleranza 1960"

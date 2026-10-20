@@ -58,20 +58,358 @@
   ],
   "discography": [
     {
-      "slug": "project:the-beatles",
-      "type": "project",
-      "name": "The Beatles"
-    },
-    {
       "slug": "project:live-at-the-bbc--the-beatles",
       "type": "project",
-      "name": "Live at the BBC"
+      "name": "Live at the BBC",
+      "mbid": "867e16bf-0405-38ce-a9ec-fa44d0d3fa33",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-decca-tapes--the-beatles",
+      "type": "project",
+      "name": "The Decca Tapes",
+      "artist": "The Beatles",
+      "mbid": "6450da9d-9456-4ff8-aa6c-6861266faaa8",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:let-it-be--the-beatles",
+      "type": "project",
+      "name": "Let It Be",
+      "artist": "The Beatles",
+      "mbid": "bff544a7-56e0-3ed6-9e0f-3b676cca9111",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:abbey-road--the-beatles",
+      "type": "project",
+      "name": "Abbey Road",
+      "artist": "The Beatles",
+      "mbid": "9162580e-5df4-32de-80cc-f45a8d8a9b1d",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yellow-submarine--the-beatles",
+      "type": "project",
+      "name": "Yellow Submarine",
+      "artist": "The Beatles",
+      "mbid": "8d5f4b07-7e2e-4ffa-ac90-e4772c4d8525",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hey-jude-revolution--the-beatles",
+      "type": "project",
+      "name": "Hey Jude / Revolution",
+      "artist": "The Beatles",
+      "mbid": "4d507176-894b-34eb-b3c5-1079550831fc",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ob-la-di-ob-la-da--the-beatles",
+      "type": "project",
+      "name": "Ob-La-Di, Ob-La-Da",
+      "artist": "The Beatles",
+      "mbid": "6bee41d2-79ce-352c-989f-cda323ccbc4c",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hello-goodbye-i-am-the-walrus--the-beatles",
+      "type": "project",
+      "name": "Hello, Goodbye / I Am the Walrus",
+      "artist": "The Beatles",
+      "mbid": "7bc4ebce-1981-3258-bca9-f1ece80f1fae",
+      "year": "1967",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:magical-mystery-tour--the-beatles",
+      "type": "project",
+      "name": "Magical Mystery Tour",
+      "artist": "The Beatles",
+      "mbid": "6e514645-fbee-34ac-97e0-c2120a4a5644",
+      "year": "1967",
+      "releaseType": "album"
     },
     {
       "slug": "project:sgt-pepper-s-lonely-hearts-club-band--the-beatles",
       "type": "project",
       "name": "Sgt. Pepper's Lonely Hearts Club Band",
-      "artist": "The Beatles"
+      "artist": "The Beatles",
+      "mbid": "9f7a4c28-8fa2-3113-929c-c47a9f7982c3",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:revolver--the-beatles",
+      "type": "project",
+      "name": "Revolver",
+      "artist": "The Beatles",
+      "mbid": "72d15666-99a7-321e-b1f3-a3f8c09dff9f",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yesterday-and-today--the-beatles",
+      "type": "project",
+      "name": "Yesterday and Today",
+      "artist": "The Beatles",
+      "mbid": "0a4d1024-3463-3c74-8500-ea011bd5d523",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beatles-vi--the-beatles",
+      "type": "project",
+      "name": "Beatles VI",
+      "artist": "The Beatles",
+      "mbid": "3d402374-9538-3c09-8566-2850fa3fce3f",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:help--the-beatles",
+      "type": "project",
+      "name": "Help!",
+      "artist": "The Beatles",
+      "mbid": "0d44e1cb-c6e0-3453-8b68-4d2082f05421",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:help-i-m-down--the-beatles",
+      "type": "project",
+      "name": "Help! / I’m Down",
+      "artist": "The Beatles",
+      "mbid": "3e953cf0-3b12-32e5-a9aa-d46c067bb567",
+      "year": "1965",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rubber-soul--the-beatles",
+      "type": "project",
+      "name": "Rubber Soul",
+      "artist": "The Beatles",
+      "mbid": "dca03435-8adb-30a5-ba82-5a162267ff38",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ticket-to-ride-yes-it-is--the-beatles",
+      "type": "project",
+      "name": "Ticket to Ride / Yes It Is",
+      "artist": "The Beatles",
+      "mbid": "c15481c1-77d2-39c8-ab12-3387040e1909",
+      "year": "1965",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:yesterday-act-naturally--the-beatles",
+      "type": "project",
+      "name": "Yesterday / Act Naturally",
+      "artist": "The Beatles",
+      "mbid": "69fe677b-e23b-3d10-9318-558074639923",
+      "year": "1965",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-hard-day-s-night--the-beatles",
+      "type": "project",
+      "name": "A Hard Day’s Night",
+      "artist": "The Beatles",
+      "mbid": "06281c4d-112d-33b0-a25b-df63b420eae7",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:all-my-loving--the-beatles",
+      "type": "project",
+      "name": "All My Loving",
+      "artist": "The Beatles",
+      "mbid": "7fa5ac15-a412-3164-9118-e1a7505893e2",
+      "year": "1964",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:beatles-for-sale--the-beatles",
+      "type": "project",
+      "name": "Beatles for Sale",
+      "artist": "The Beatles",
+      "mbid": "f50a3b6f-27f0-3832-bd3f-3568dc557d95",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beatles-65--the-beatles",
+      "type": "project",
+      "name": "Beatles ’65",
+      "artist": "The Beatles",
+      "mbid": "2d111aea-50f8-33cc-ab63-780bc57068c0",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:introducing-the-beatles--the-beatles",
+      "type": "project",
+      "name": "Introducing… The Beatles",
+      "artist": "The Beatles",
+      "mbid": "653895d1-b592-3758-8bb1-8b9ba2bd6cb0",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:long-tall-sally--the-beatles",
+      "type": "project",
+      "name": "Long Tall Sally",
+      "artist": "The Beatles",
+      "mbid": "71a5291c-de9f-334f-a62e-e91d261c4256",
+      "year": "1964",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:meet-the-beatles--the-beatles",
+      "type": "project",
+      "name": "Meet The Beatles!",
+      "artist": "The Beatles",
+      "mbid": "c2c696fc-6beb-3dfb-bb15-7bb021ebeb5d",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:please-please-me-from-me-to-you--the-beatles",
+      "type": "project",
+      "name": "Please Please Me / From Me to You",
+      "artist": "The Beatles",
+      "mbid": "ecb0193d-130a-30e5-a544-8a77166dc574",
+      "year": "1964",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:something-new--the-beatles",
+      "type": "project",
+      "name": "Something New",
+      "artist": "The Beatles",
+      "mbid": "451e7aa4-a782-3979-9aa0-98c03a246fe9",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-beatles-long-tall-sally--the-beatles",
+      "type": "project",
+      "name": "The Beatles’ Long Tall Sally",
+      "artist": "The Beatles",
+      "mbid": "d0c93a59-fc4d-3d76-ac38-9c1d11071802",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-beatles-second-album--the-beatles",
+      "type": "project",
+      "name": "The Beatles’ Second Album",
+      "artist": "The Beatles",
+      "mbid": "387bc6cc-ac60-365f-819b-fbc78c486065",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:twist-and-shout--the-beatles",
+      "type": "project",
+      "name": "Twist and Shout",
+      "artist": "The Beatles",
+      "mbid": "31770e0a-e537-376d-a7c0-48e507f3105e",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-want-to-hold-your-hand-this-boy--the-beatles",
+      "type": "project",
+      "name": "I Want to Hold Your Hand / This Boy",
+      "artist": "The Beatles",
+      "mbid": "feae685b-cf45-319e-9286-8f4571cf2d0f",
+      "year": "1963",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-1--the-beatles",
+      "type": "project",
+      "name": "No. 1",
+      "artist": "The Beatles",
+      "mbid": "89ad288e-8864-3a96-b354-b69953de387c",
+      "year": "1963",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:please-please-me--the-beatles",
+      "type": "project",
+      "name": "Please Please Me",
+      "artist": "The Beatles",
+      "mbid": "de208292-8db5-3aed-a14a-b37a84d8c521",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:please-please-me-ask-me-why--the-beatles",
+      "type": "project",
+      "name": "Please Please Me / Ask Me Why",
+      "artist": "The Beatles",
+      "mbid": "7b1cac6e-dc17-427f-9c3a-a29a5e2b363c",
+      "year": "1963",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:she-loves-you-i-ll-get-you--the-beatles",
+      "type": "project",
+      "name": "She Loves You / I’ll Get You",
+      "artist": "The Beatles",
+      "mbid": "1d0c4220-1130-3ef3-a7ea-11d4d4fbadf2",
+      "year": "1963",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-beatles-hits--the-beatles",
+      "type": "project",
+      "name": "The Beatles’ Hits",
+      "artist": "The Beatles",
+      "mbid": "794a5fcd-4098-3519-b4b6-e66707f4cbc3",
+      "year": "1963",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:with-the-beatles--the-beatles",
+      "type": "project",
+      "name": "With The Beatles",
+      "artist": "The Beatles",
+      "mbid": "a63dc65f-09f2-359b-a10e-648f00ecd96c",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-me-do-p-s-i-love-you--the-beatles",
+      "type": "project",
+      "name": "Love Me Do / P.S. I Love You",
+      "artist": "The Beatles",
+      "mbid": "5db85281-934d-36e5-865c-1922ad82a948",
+      "year": "1962",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-beatles",
+      "type": "project",
+      "name": "The Beatles"
+    },
+    {
+      "slug": "project:come-together--the-beatles",
+      "type": "project",
+      "name": "Come Together",
+      "artist": "The Beatles",
+      "mbid": "f1826c87-edab-4cd9-be3c-d753b695c0fd",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

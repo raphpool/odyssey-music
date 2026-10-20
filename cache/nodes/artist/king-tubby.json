@@ -57,7 +57,368 @@
       "name": "Taurus"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:horace-andy-meets-linval-thompson-dub-station-platinum-edition--king-tubby",
+      "type": "project",
+      "name": "Horace Andy Meets Linval Thompson @ Dub Station (Platinum Edition)",
+      "artist": "King Tubby",
+      "mbid": "7edc2a32-51b4-4406-b682-ec4ddff0158d",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-man-and-his-music--king-tubby",
+      "type": "project",
+      "name": "The Man and his Music",
+      "artist": "King Tubby",
+      "mbid": "bd6ca794-371e-4fc3-9912-dc5c9ced611b",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:first-prophet-of-dub--king-tubby",
+      "type": "project",
+      "name": "First Prophet Of Dub",
+      "artist": "King Tubby",
+      "mbid": "81b792cf-1ae6-4454-8ded-e3327e7953fc",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:harry-mudie-meet-king-tubby-s-in-dub-conference-volume-1--king-tubby",
+      "type": "project",
+      "name": "Harry Mudie Meet King Tubby's in Dub Conference, Volume 1",
+      "artist": "King Tubby",
+      "mbid": "416eaa79-a0b2-301f-b55a-8221c4cdd29b",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-a-tenement-yard--king-tubby",
+      "type": "project",
+      "name": "In a Tenement Yard",
+      "artist": "King Tubby",
+      "mbid": "cfa9766a-1e95-43df-a4e3-ddcec91ce8ed",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fatman-presents-first-second-and-third-generation-of-dub--king-tubby",
+      "type": "project",
+      "name": "Fatman Presents First, Second and Third Generation of Dub",
+      "artist": "King Tubby",
+      "mbid": "3efc3736-e691-4a0f-abf0-a49f0829bdce",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:upset-the-upsetter--king-tubby",
+      "type": "project",
+      "name": "Upset The Upsetter",
+      "artist": "King Tubby",
+      "mbid": "a10f5ba6-1f29-4387-bb8f-813c48d1c0a1",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-dub-organiser--king-tubby",
+      "type": "project",
+      "name": "The Dub Organiser",
+      "artist": "King Tubby",
+      "mbid": "1d108759-51aa-3e8b-8ae0-b7b94608859d",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:foundation-of-dub--king-tubby",
+      "type": "project",
+      "name": "Foundation of Dub",
+      "artist": "King Tubby",
+      "mbid": "ebda5946-338f-370a-a320-6e0259a914c3",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-the-palace-of-dub-essential-smokin-dub-classics--king-tubby",
+      "type": "project",
+      "name": "From the Palace of Dub: Essential Smokin' Dub Classics",
+      "artist": "King Tubby",
+      "mbid": "2f6e0f96-53f9-32bb-aeb5-eef3980957d7",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-am-the-king--king-tubby",
+      "type": "project",
+      "name": "I Am the King",
+      "artist": "King Tubby",
+      "mbid": "95018b1c-0345-354b-a494-88866540a8df",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fatman-tapes-ii--king-tubby",
+      "type": "project",
+      "name": "Fatman Tapes II",
+      "artist": "King Tubby",
+      "mbid": "c73f2d32-d0c9-3edc-9979-8ac94528b9f8",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-black-foundation-in-dub--king-tubby",
+      "type": "project",
+      "name": "The Black Foundation in Dub",
+      "artist": "King Tubby",
+      "mbid": "346c4142-a82c-3191-95a2-d4d62fc65abf",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:original-king-key-dub--king-tubby",
+      "type": "project",
+      "name": "Original King Key Dub",
+      "artist": "King Tubby",
+      "mbid": "36bc398a-c4c4-4e31-ba02-ec14d8ea72e8",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:roots-of-dub--king-tubby",
+      "type": "project",
+      "name": "Roots of Dub",
+      "artist": "King Tubby",
+      "mbid": "e6e0748c-55e8-491b-bab3-4aa1a9c9f420",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-dub-master-volume-1--king-tubby",
+      "type": "project",
+      "name": "The Dub Master, Volume 1",
+      "artist": "King Tubby",
+      "mbid": "fa09ba4d-b5d7-353b-b78b-e496fc911222",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-fatman-tapes--king-tubby",
+      "type": "project",
+      "name": "The Fatman Tapes",
+      "artist": "King Tubby",
+      "mbid": "864e6883-6b68-3ea6-a637-ebddfdcd764a",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-sound-of-channel-one-king-tubby-connection--king-tubby",
+      "type": "project",
+      "name": "The Sound of Channel One: King Tubby Connection",
+      "artist": "King Tubby",
+      "mbid": "904478ce-7a68-3986-bdd3-e3d4f6cc7b27",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dub-hits-from-studio-one--king-tubby",
+      "type": "project",
+      "name": "Dub Hits From Studio One",
+      "artist": "King Tubby",
+      "mbid": "368c57e0-880f-3682-b2b2-9c44f6eb41e6",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dub-from-the-roots--king-tubby",
+      "type": "project",
+      "name": "Dub From the Roots",
+      "artist": "King Tubby",
+      "mbid": "1dd2a516-c3fd-30e7-b226-c34ce4d82d56",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:king-tubby-s-meets-scientist-at-dub-station--king-tubby",
+      "type": "project",
+      "name": "King Tubby's Meets Scientist at Dub Station",
+      "artist": "King Tubby",
+      "mbid": "85f3327e-58d9-3119-98d3-b7bb1c09d0a0",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:king-tubby-s-meets-scientist-in-a-world-of-dub--king-tubby",
+      "type": "project",
+      "name": "King Tubby’s Meets Scientist in a World of Dub",
+      "artist": "King Tubby",
+      "mbid": "91188dc4-fed3-4088-a2a9-ecfa0bc8b585",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:king-tubby-s-studio-vs-channel-one-in-dub--king-tubby",
+      "type": "project",
+      "name": "King Tubby's Studio Vs Channel One In Dub",
+      "artist": "King Tubby",
+      "mbid": "4d1cebed-5b15-4378-8b10-97fcfade1c6e",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:laser-rock--king-tubby",
+      "type": "project",
+      "name": "Laser Rock",
+      "artist": "King Tubby",
+      "mbid": "ce825cc9-c5ba-4499-a18d-2f07154341e8",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:roots-dub--king-tubby",
+      "type": "project",
+      "name": "Roots Dub",
+      "artist": "King Tubby",
+      "mbid": "ed8b655e-4573-412f-ad7c-ec409eba3504",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unleashed-dub-volume-1-from-king-tubby-s-studio--king-tubby",
+      "type": "project",
+      "name": "Unleashed Dub Volume 1 From King Tubby's Studio",
+      "artist": "King Tubby",
+      "mbid": "9318efb7-540f-4064-994f-43e7f344897b",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:controls--king-tubby",
+      "type": "project",
+      "name": "Controls",
+      "artist": "King Tubby",
+      "mbid": "8f8cbe88-f611-3cb5-a444-1240d4e841b5",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sensi-dub-vol-3--king-tubby",
+      "type": "project",
+      "name": "Sensi Dub Vol. 3",
+      "artist": "King Tubby",
+      "mbid": "2ed144e7-b44c-498f-b9c4-1e8d83626c39",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tribute-to-king-tubby-s-the-original-dub-master-sound-clash-dub-plate-style-part-ii--king-tubby",
+      "type": "project",
+      "name": "Tribute To King Tubby's The Original Dub Master, Sound Clash, Dub Plate Style, Part II",
+      "artist": "King Tubby",
+      "mbid": "3004416c-7a51-4ae8-80a1-ae40c87332a4",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:two-big-bull-in-a-one-pen-dubwise--king-tubby",
+      "type": "project",
+      "name": "Two Big Bull in a One Pen Dubwise",
+      "artist": "King Tubby",
+      "mbid": "70794a19-1697-42b5-ba14-a2fff9e810ee",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:his-majesty-s-dub-with-prince-jammy--king-tubby",
+      "type": "project",
+      "name": "His Majesty’s Dub with Prince Jammy",
+      "artist": "King Tubby",
+      "mbid": "50d8ef1c-6b30-3a33-9358-c350ed458276",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:king-tubby-the-dub-master-with-the-waterhouse-possie--king-tubby",
+      "type": "project",
+      "name": "King Tubby The Dub Master With The Waterhouse Possie",
+      "artist": "King Tubby",
+      "mbid": "91645487-7897-4971-815e-1d90e945074c",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:majestic-dub--king-tubby",
+      "type": "project",
+      "name": "Majestic Dub",
+      "artist": "King Tubby",
+      "mbid": "6fc8dab9-169d-48c3-b2f4-223ba5ca38ea",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dubbing-in-the-back-yard--king-tubby",
+      "type": "project",
+      "name": "Dubbing in the Back Yard",
+      "artist": "King Tubby",
+      "mbid": "34f97837-4187-4cea-b257-37385b6eeb18",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:time-to-remember-vol-1--king-tubby",
+      "type": "project",
+      "name": "Time To Remember (Vol.1)",
+      "artist": "King Tubby",
+      "mbid": "beb9e7a8-e112-4c41-8a44-4affda638f33",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dangerous-dub--king-tubby",
+      "type": "project",
+      "name": "Dangerous Dub",
+      "artist": "King Tubby",
+      "mbid": "2d599ca4-d621-3ba6-ac64-be4a276de3a8",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:king-at-the-control--king-tubby",
+      "type": "project",
+      "name": "King at the Control",
+      "artist": "King Tubby",
+      "mbid": "5ba635a4-3e71-429e-9e9f-92362c251aa4",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:upset-the-upsetters--king-tubby",
+      "type": "project",
+      "name": "Upset the Upsetters",
+      "artist": "King Tubby",
+      "mbid": "43568af5-9957-4b14-b20c-a8421e9f37c3",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shalom-dub--king-tubby",
+      "type": "project",
+      "name": "Shalom Dub",
+      "artist": "King Tubby",
+      "mbid": "11038854-aad0-3053-8d46-79783efac4ec",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-roots-of-dub--king-tubby",
+      "type": "project",
+      "name": "The Roots of Dub",
+      "artist": "King Tubby",
+      "mbid": "807ce802-0266-32f2-b978-b3ad76fdd903",
+      "year": "1975",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:king-tubby-meets-rockers-uptown",

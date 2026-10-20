@@ -58,24 +58,90 @@
   "labels": [],
   "discography": [
     {
-      "slug": "project:biokinetics--porter-ricks",
+      "slug": "project:anguilla-electrica",
       "type": "project",
-      "name": "Biokinetics"
+      "name": "Anguilla Electrica",
+      "mbid": "c8524a0a-72cf-4352-a326-fa78216a4239",
+      "year": "2017",
+      "releaseType": "album"
     },
     {
-      "slug": "project:porter-ricks",
+      "slug": "project:shadow-boat-ep--porter-ricks",
       "type": "project",
-      "name": "Porter Ricks"
+      "name": "Shadow Boat EP",
+      "artist": "Porter Ricks",
+      "mbid": "45a1ff69-e99a-487a-8598-2fc418017a70",
+      "year": "2016",
+      "releaseType": "ep"
     },
     {
       "slug": "project:symbiotics",
       "type": "project",
-      "name": "Symbiotics"
+      "name": "Symbiotics",
+      "mbid": "98334ec9-fa12-3592-b2a5-4dceee601873",
+      "year": "1999",
+      "releaseType": "album"
     },
     {
-      "slug": "project:anguilla-electrica",
+      "slug": "project:explore--porter-ricks",
       "type": "project",
-      "name": "Anguilla Electrica"
+      "name": "Explore",
+      "artist": "Porter Ricks",
+      "mbid": "3ad1effe-18e5-3c39-b848-16a38731fc97",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:porter-ricks",
+      "type": "project",
+      "name": "Porter Ricks",
+      "mbid": "8df9c475-ed3e-34ed-99f3-64c92d3e123e",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vol-2--porter-ricks",
+      "type": "project",
+      "name": "Vol 2",
+      "artist": "Porter Ricks",
+      "mbid": "0d0ed891-3671-4bb6-a12a-a028ac3e7940",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:biokinetics--porter-ricks",
+      "type": "project",
+      "name": "Biokinetics",
+      "mbid": "f1b74973-9fbe-38e7-a10a-5c2f80fd43f4",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nautical-dub-tidal-mix-port-gentil--porter-ricks",
+      "type": "project",
+      "name": "Nautical Dub (Tidal mix) / Port Gentil",
+      "artist": "Porter Ricks",
+      "mbid": "acc1bdf4-8733-3fa8-99ac-42a5c564e623",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:port-of-nuba-nautical-nuba--porter-ricks",
+      "type": "project",
+      "name": "Port of Nuba / Nautical Nuba",
+      "artist": "Porter Ricks",
+      "mbid": "79339558-b2d1-3a98-bc0e-cc84e8b36205",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:port-of-transition-port-of-call--porter-ricks",
+      "type": "project",
+      "name": "Port of Transition / Port of Call",
+      "artist": "Porter Ricks",
+      "mbid": "564cb9f5-7364-35f5-aacf-c5bd50661fef",
+      "year": "1996",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

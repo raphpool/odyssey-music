@@ -70,25 +70,217 @@
   ],
   "discography": [
     {
-      "slug": "project:transformer",
+      "slug": "project:lulu--lou-reed",
       "type": "project",
-      "name": "Transformer"
+      "name": "Lulu",
+      "artist": "Lou Reed",
+      "mbid": "38d1077e-c270-49a8-92ca-87e7eb8d9fe4",
+      "year": "2011",
+      "releaseType": "album"
     },
     {
-      "slug": "project:berlin",
+      "slug": "project:the-view--lou-reed",
       "type": "project",
-      "name": "Berlin"
+      "name": "The View",
+      "artist": "Lou Reed",
+      "mbid": "b32bb568-8773-4a7a-b11e-51032e22ab0f",
+      "year": "2011",
+      "releaseType": "single"
     },
     {
-      "slug": "project:new-york",
+      "slug": "project:hudson-river-wind-meditations--lou-reed",
       "type": "project",
-      "name": "New York"
+      "name": "Hudson River Wind Meditations",
+      "artist": "Lou Reed",
+      "mbid": "8a317972-c157-3584-b44a-cd2cb138c14e",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-raven--lou-reed",
+      "type": "project",
+      "name": "The Raven",
+      "artist": "Lou Reed",
+      "mbid": "e288b7b4-1e64-32ca-b7ad-494e9b294415",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ecstasy--lou-reed",
+      "type": "project",
+      "name": "Ecstasy",
+      "artist": "Lou Reed",
+      "mbid": "001c2db4-68d0-34ba-80e0-992628859eba",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:set-the-twilight-reeling--lou-reed",
+      "type": "project",
+      "name": "Set the Twilight Reeling",
+      "artist": "Lou Reed",
+      "mbid": "6e8ee4ff-ba4d-346d-b289-5b630c8c9ae4",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:magic-and-loss--lou-reed",
+      "type": "project",
+      "name": "Magic and Loss",
+      "artist": "Lou Reed",
+      "mbid": "dc2c5ff6-b0a1-3fbf-8c70-91619cd59304",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nobody-but-me--lou-reed",
+      "type": "project",
+      "name": "Nobody But Me",
+      "artist": "Lou Reed",
+      "mbid": "26b1073e-710d-4100-8f9f-480719c1f70d",
+      "year": "1990",
+      "releaseType": "single"
     },
     {
       "slug": "project:songs-for-drella--lou-reed",
       "type": "project",
       "name": "Songs for Drella",
-      "artist": "Lou Reed"
+      "artist": "Lou Reed",
+      "mbid": "97d100a8-e42c-38ff-8ae5-eb31331fd82b",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:new-york",
+      "type": "project",
+      "name": "New York",
+      "mbid": "bf543d9f-f0de-3f46-87b4-f9cddf58806b",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mistrial--lou-reed",
+      "type": "project",
+      "name": "Mistrial",
+      "artist": "Lou Reed",
+      "mbid": "b8c43339-0001-3889-875c-aa9b314f6687",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:new-sensations--lou-reed",
+      "type": "project",
+      "name": "New Sensations",
+      "artist": "Lou Reed",
+      "mbid": "63174695-db15-33e7-babc-c98e590a5e2d",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:legendary-hearts--lou-reed",
+      "type": "project",
+      "name": "Legendary Hearts",
+      "artist": "Lou Reed",
+      "mbid": "752ba621-0a8a-3ee0-ae10-5850d3f5c631",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-blue-mask--lou-reed",
+      "type": "project",
+      "name": "The Blue Mask",
+      "artist": "Lou Reed",
+      "mbid": "99f7c49e-cc46-3f29-95f1-93008fd9307e",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:growing-up-in-public--lou-reed",
+      "type": "project",
+      "name": "Growing Up in Public",
+      "artist": "Lou Reed",
+      "mbid": "21405612-346a-395a-8684-2bccfcf9b88e",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-bells--lou-reed",
+      "type": "project",
+      "name": "The Bells",
+      "artist": "Lou Reed",
+      "mbid": "aa1d5332-25d3-32e5-99e1-f52f5421cd45",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:street-hassle--lou-reed",
+      "type": "project",
+      "name": "Street Hassle",
+      "artist": "Lou Reed",
+      "mbid": "eee74a21-7c13-35fb-93a1-5ccca994383e",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rock-and-roll-heart--lou-reed",
+      "type": "project",
+      "name": "Rock and Roll Heart",
+      "artist": "Lou Reed",
+      "mbid": "79dbe4c9-5ebb-303a-86b9-64d214c5600c",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:coney-island-baby--lou-reed",
+      "type": "project",
+      "name": "Coney Island Baby",
+      "artist": "Lou Reed",
+      "mbid": "c517ee05-356e-3944-b13f-8d505a4012cb",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:metal-machine-music--lou-reed",
+      "type": "project",
+      "name": "Metal Machine Music",
+      "artist": "Lou Reed",
+      "mbid": "865bba17-7198-369f-ac67-d9cd71f74683",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sally-can-t-dance--lou-reed",
+      "type": "project",
+      "name": "Sally Can’t Dance",
+      "artist": "Lou Reed",
+      "mbid": "e4ba363a-c837-3a09-8838-23c3d84e1bf9",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:berlin",
+      "type": "project",
+      "name": "Berlin",
+      "mbid": "c6190069-644f-3b41-92aa-1e771e451036",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lou-reed--lou-reed",
+      "type": "project",
+      "name": "Lou Reed",
+      "artist": "Lou Reed",
+      "mbid": "9ee88042-a19e-36dd-8123-0c99f6349d3b",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:transformer",
+      "type": "project",
+      "name": "Transformer",
+      "mbid": "6c8345df-f822-33af-b64a-eff2e46941b9",
+      "year": "1972",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

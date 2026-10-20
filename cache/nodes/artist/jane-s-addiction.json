@@ -74,7 +74,179 @@
       "name": "Capitol Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:imminent-redemption--jane-s-addiction",
+      "type": "project",
+      "name": "Imminent Redemption",
+      "artist": "Jane's Addiction",
+      "mbid": "9121ff83-c0b2-4625-88bd-bf139b039683",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:true-love--jane-s-addiction",
+      "type": "project",
+      "name": "True Love",
+      "artist": "Jane's Addiction",
+      "mbid": "99c79388-5903-4e27-8b51-6c75e66da0ea",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:irresistible-force--jane-s-addiction",
+      "type": "project",
+      "name": "Irresistible Force",
+      "artist": "Jane's Addiction",
+      "mbid": "5972310e-55ef-4ee0-ab58-58ad2d5d9965",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-great-escape-artist--jane-s-addiction",
+      "type": "project",
+      "name": "The Great Escape Artist",
+      "artist": "Jane's Addiction",
+      "mbid": "2211e45f-d0e9-418e-bd19-3dcf604ff9d7",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:just-because--jane-s-addiction",
+      "type": "project",
+      "name": "Just Because",
+      "artist": "Jane's Addiction",
+      "mbid": "ac718aaa-1a0b-3243-af24-e94f8799e84d",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:strays--jane-s-addiction",
+      "type": "project",
+      "name": "Strays",
+      "artist": "Jane's Addiction",
+      "mbid": "bccb3052-3941-349e-85db-0ef6a38b2ed7",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:true-nature--jane-s-addiction",
+      "type": "project",
+      "name": "True Nature",
+      "artist": "Jane's Addiction",
+      "mbid": "483586db-c7d8-4871-85f7-745c6a331858",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:talk--jane-s-addiction",
+      "type": "project",
+      "name": "Talk",
+      "artist": "Jane's Addiction",
+      "mbid": "2000ac93-25a4-4897-b07e-2f5d2a7f2272",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:so-what--jane-s-addiction",
+      "type": "project",
+      "name": "So What!",
+      "artist": "Jane's Addiction",
+      "mbid": "68283624-a34c-3603-a16d-e099db5f9ed7",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pigs-in-zen--jane-s-addiction",
+      "type": "project",
+      "name": "Pigs In Zen",
+      "artist": "Jane's Addiction",
+      "mbid": "a05adea2-3697-44ee-b32b-988e741059a1",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:classic-girl--jane-s-addiction",
+      "type": "project",
+      "name": "Classic Girl",
+      "artist": "Jane's Addiction",
+      "mbid": "3a61d1b4-d3dd-338e-9095-6daca0972a4f",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:been-caught-stealing--jane-s-addiction",
+      "type": "project",
+      "name": "Been Caught Stealing",
+      "artist": "Jane's Addiction",
+      "mbid": "dc8e8195-e469-3307-9cde-97142806789c",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ritual-de-lo-habitual--jane-s-addiction",
+      "type": "project",
+      "name": "Ritual de lo habitual",
+      "artist": "Jane's Addiction",
+      "mbid": "baeba3f5-a5aa-3e6e-944f-cca5374192e4",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stop--jane-s-addiction",
+      "type": "project",
+      "name": "Stop!",
+      "artist": "Jane's Addiction",
+      "mbid": "bb6ce048-ab27-47e1-8c94-d120bd813b9f",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:three-days--jane-s-addiction",
+      "type": "project",
+      "name": "Three Days",
+      "artist": "Jane's Addiction",
+      "mbid": "7b0c089c-7737-4140-98ab-291661f46922",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-shocking-e-p--jane-s-addiction",
+      "type": "project",
+      "name": "The Shocking E.P.",
+      "artist": "Jane's Addiction",
+      "mbid": "4c36da3f-cbd6-4dab-859e-f06860d7c891",
+      "year": "1989",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:had-a-dad--jane-s-addiction",
+      "type": "project",
+      "name": "Had A Dad",
+      "artist": "Jane's Addiction",
+      "mbid": "ef51eda4-cca4-451b-a7d8-2b3f1f5e56a7",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mountain-song--jane-s-addiction",
+      "type": "project",
+      "name": "Mountain Song",
+      "artist": "Jane's Addiction",
+      "mbid": "62cbf0b6-0ed7-4c15-b930-1e583e081c58",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nothing-s-shocking--jane-s-addiction",
+      "type": "project",
+      "name": "Nothing’s Shocking",
+      "artist": "Jane's Addiction",
+      "mbid": "97b7e291-8714-3e54-ac24-480be535ee8d",
+      "year": "1988",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:jane-says",

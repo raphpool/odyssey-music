@@ -67,34 +67,139 @@
   ],
   "discography": [
     {
-      "slug": "project:these-foolish-things",
+      "slug": "project:florist--bryan-ferry",
       "type": "project",
-      "name": "These Foolish Things"
+      "name": "Florist",
+      "artist": "Bryan Ferry",
+      "mbid": "232e2272-f11d-4dc9-8cec-587a75370889",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:another-time-another-place",
+      "slug": "project:loose-talk--bryan-ferry",
       "type": "project",
-      "name": "Another Time, Another Place"
+      "name": "Loose Talk",
+      "artist": "Bryan Ferry",
+      "mbid": "788c44d2-4338-41b5-84f6-64abf1c050e9",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:orchestra--bryan-ferry",
+      "type": "project",
+      "name": "Orchestra",
+      "artist": "Bryan Ferry",
+      "mbid": "fa06029a-3810-4514-a145-fe8d28ce3f03",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dylanesque",
+      "type": "project",
+      "name": "Dylanesque",
+      "mbid": "e7bae303-1d3a-3309-ad79-718f15e52199",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:frantic--bryan-ferry",
+      "type": "project",
+      "name": "Frantic",
+      "artist": "Bryan Ferry",
+      "mbid": "be5c4f6a-34c1-3d10-8177-04b5974c3b19",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:as-time-goes-by--bryan-ferry",
+      "type": "project",
+      "name": "As Time Goes By",
+      "artist": "Bryan Ferry",
+      "mbid": "ac531fb7-13ef-3f9f-afae-fe0c47bd9a42",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mamouna--bryan-ferry",
+      "type": "project",
+      "name": "Mamouna",
+      "artist": "Bryan Ferry",
+      "mbid": "54c7b4df-404a-3de3-ac1d-00884d6cfc17",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:taxi",
+      "type": "project",
+      "name": "Taxi",
+      "mbid": "610b0c51-9900-37d1-a1d6-9599c860728f",
+      "year": "1993",
+      "releaseType": "album"
     },
     {
       "slug": "project:boys-and-girls",
       "type": "project",
-      "name": "Boys and Girls"
+      "name": "Boys and Girls",
+      "mbid": "6f02ccf9-3f8e-309b-bb32-4491b61c553f",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:slave-to-love--bryan-ferry",
+      "type": "project",
+      "name": "Slave to Love",
+      "artist": "Bryan Ferry",
+      "mbid": "1de009f0-526d-3ef9-bf5c-6a40093e0a8a",
+      "year": "1985",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-bride-stripped-bare--bryan-ferry",
+      "type": "project",
+      "name": "The Bride Stripped Bare",
+      "artist": "Bryan Ferry",
+      "mbid": "ae0154a0-ff48-3946-9b9d-c1c9071f992a",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-your-mind--bryan-ferry",
+      "type": "project",
+      "name": "In Your Mind",
+      "artist": "Bryan Ferry",
+      "mbid": "7cbb6d2d-5428-3e62-b75e-b33dc3701bc7",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:let-s-stick-together--bryan-ferry",
+      "type": "project",
+      "name": "Let’s Stick Together",
+      "artist": "Bryan Ferry",
+      "mbid": "a384da3a-77f7-3268-9297-15ed4e241eb3",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:another-time-another-place",
+      "type": "project",
+      "name": "Another Time, Another Place",
+      "mbid": "ff008632-be1a-380b-8904-df29103faa52",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:these-foolish-things",
+      "type": "project",
+      "name": "These Foolish Things",
+      "mbid": "a774bcb1-682e-35ab-aac4-47a28534626c",
+      "year": "1973",
+      "releaseType": "album"
     },
     {
       "slug": "project:bete-noire",
       "type": "project",
       "name": "Bête Noire"
-    },
-    {
-      "slug": "project:taxi",
-      "type": "project",
-      "name": "Taxi"
-    },
-    {
-      "slug": "project:dylanesque",
-      "type": "project",
-      "name": "Dylanesque"
     }
   ],
   "notable_tracks": [

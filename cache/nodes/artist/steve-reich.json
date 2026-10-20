@@ -27,6 +27,348 @@
   "labels": [],
   "discography": [
     {
+      "slug": "project:pulse-quartet--steve-reich",
+      "type": "project",
+      "name": "Pulse / Quartet",
+      "artist": "Steve Reich",
+      "mbid": "11f94fa5-8dc5-4094-bebb-da1f60779bb7",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:clapping-music-music-for-pieces-of-wood-sextet--steve-reich",
+      "type": "project",
+      "name": "Clapping Music / Music for Pieces of Wood / Sextet",
+      "artist": "Steve Reich",
+      "mbid": "6822f342-953e-47db-a77c-52cd3fec73cf",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:six-pianos-keyboard-study-1--steve-reich",
+      "type": "project",
+      "name": "Six Pianos / Keyboard Study # 1",
+      "artist": "Steve Reich",
+      "mbid": "ca668947-b4ca-4005-9371-4c0de23b754f",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:steve-reich--steve-reich",
+      "type": "project",
+      "name": "Steve Reich",
+      "artist": "Steve Reich",
+      "mbid": "20708cc5-1ade-4171-b5fa-e0d181e2896c",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wtc-9-11-different-trains--steve-reich",
+      "type": "project",
+      "name": "WTC 9/11 / Different Trains",
+      "artist": "Steve Reich",
+      "mbid": "4082bf13-22b4-47ca-ab85-f00766a79f1a",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:four-organs-phase-patterns-pendulum-music--steve-reich",
+      "type": "project",
+      "name": "Four Organs / Phase Patterns / Pendulum Music",
+      "artist": "Steve Reich",
+      "mbid": "fa519409-e287-4fad-8b3f-084850f358a7",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:radio-rewrite--steve-reich",
+      "type": "project",
+      "name": "Radio Rewrite",
+      "artist": "Steve Reich",
+      "mbid": "5524cb51-19bf-4332-9af4-59f9ef77a003",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:steve-reich-electric-counterpoint--steve-reich",
+      "type": "project",
+      "name": "Steve Reich: Electric Counterpoint",
+      "artist": "Steve Reich",
+      "mbid": "04b0804c-c6f8-462f-b920-26ba05c10818",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:different-trains-piano-counterpoint-triple-quartet--steve-reich",
+      "type": "project",
+      "name": "Different Trains / Piano Counterpoint / Triple Quartet",
+      "artist": "Steve Reich",
+      "mbid": "a8424a2f-696e-4bb7-814d-0d56d5b56256",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kuniko-plays-reich--steve-reich",
+      "type": "project",
+      "name": "Kuniko Plays Reich",
+      "artist": "Steve Reich",
+      "mbid": "5b59cffc-1363-49b7-a094-905d70b7aaa1",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wtc-9-11-mallet-quartet-dance-patterns--steve-reich",
+      "type": "project",
+      "name": "WTC 9/11 / Mallet Quartet / Dance Patterns",
+      "artist": "Steve Reich",
+      "mbid": "88135e9f-f64a-429d-9661-386e5011b91e",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:american-classics-minimalism--steve-reich",
+      "type": "project",
+      "name": "American Classics: Minimalism",
+      "artist": "Steve Reich",
+      "mbid": "b9b406ad-ed31-3a2f-b8b4-207f72ec0565",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:daniel-variations--steve-reich",
+      "type": "project",
+      "name": "Daniel Variations",
+      "artist": "Steve Reich",
+      "mbid": "2959f9aa-63e0-3750-bbb5-e86b4263bc07",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:reich-at-the-roxy--steve-reich",
+      "type": "project",
+      "name": "Reich at the Roxy",
+      "artist": "Steve Reich",
+      "mbid": "e4799f9d-052b-4d9b-8448-a2e053fda9e3",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soundscapes--steve-reich",
+      "type": "project",
+      "name": "Soundscapes",
+      "artist": "Steve Reich",
+      "mbid": "f1abd44d-0189-4fe0-93e4-117fb6af400a",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:different-trains--steve-reich",
+      "type": "project",
+      "name": "Different Trains",
+      "artist": "Steve Reich",
+      "mbid": "d0473de0-df8f-3f2a-92b1-48d8cd4feec7",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-are-variations-cello-counterpoint--steve-reich",
+      "type": "project",
+      "name": "You Are (variations) / Cello Counterpoint",
+      "artist": "Steve Reich",
+      "mbid": "15451d56-34aa-3840-8e63-e2af9a3256c1",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:city-life-new-york-counterpoint-eight-lines-violin-phase--steve-reich",
+      "type": "project",
+      "name": "City Life / New York Counterpoint / Eight Lines / Violin Phase",
+      "artist": "Steve Reich",
+      "mbid": "60210694-028a-3c8f-af89-02a4ebc0b81f",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:three-tales--steve-reich",
+      "type": "project",
+      "name": "Three Tales",
+      "artist": "Steve Reich",
+      "mbid": "3ec58046-5dc6-3d0e-b921-6ea5dc81ca67",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:variations--steve-reich",
+      "type": "project",
+      "name": "Variations",
+      "artist": "Steve Reich",
+      "mbid": "a5aaa566-6b47-3db4-9de1-b3b48eb639c2",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:triple-quartet--steve-reich",
+      "type": "project",
+      "name": "Triple Quartet",
+      "artist": "Steve Reich",
+      "mbid": "0ce579b8-c3c1-32c5-b3e2-17d40fe0d5e8",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:new-york-counterpoint-eight-lines-four-organs--steve-reich",
+      "type": "project",
+      "name": "New York Counterpoint / Eight Lines / Four Organs",
+      "artist": "Steve Reich",
+      "mbid": "47e633b3-d902-3cf5-a158-5f9442a63516",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:exclusive-selection--steve-reich",
+      "type": "project",
+      "name": "Exclusive Selection",
+      "artist": "Steve Reich",
+      "mbid": "ed857dea-587e-420f-9834-9a47aded0b51",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:phase-patterns-pendulum-music-piano-phase-four-organs--steve-reich",
+      "type": "project",
+      "name": "Phase Patterns / Pendulum Music / Piano Phase / Four Organs",
+      "artist": "Steve Reich",
+      "mbid": "7a4c9098-e32a-328b-9eb1-cf84779a4859",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:city-life-proverb--steve-reich",
+      "type": "project",
+      "name": "City Life / Proverb",
+      "artist": "Steve Reich",
+      "mbid": "d6d257fa-83c2-3da3-9b2e-1b469e8dac77",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-cave--steve-reich",
+      "type": "project",
+      "name": "The Cave",
+      "artist": "Steve Reich",
+      "mbid": "6b202eda-df9c-3c4f-b4d9-bafb7d4c4ac3",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tehillim-three-movements--steve-reich",
+      "type": "project",
+      "name": "Tehillim / Three Movements",
+      "artist": "Steve Reich",
+      "mbid": "f121a378-5d0a-38db-b429-461e1d6c0bd4",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:another-look-at-counterpoint--steve-reich",
+      "type": "project",
+      "name": "Another Look at Counterpoint",
+      "artist": "Steve Reich",
+      "mbid": "5b49facd-f738-3c32-8bc0-ecb8d6f1ed15",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:six-pianos-variations-music-for-mallet-instruments--steve-reich",
+      "type": "project",
+      "name": "Six Pianos / Variations / Music for Mallet Instruments",
+      "artist": "Steve Reich",
+      "mbid": "a806e37a-2516-3f34-add4-300bc896f58f",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-for-mallet-instruments--steve-reich",
+      "type": "project",
+      "name": "Music for Mallet Instruments",
+      "artist": "Steve Reich",
+      "mbid": "d431c99c-9892-4830-be91-603e03283270",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:early-works--steve-reich",
+      "type": "project",
+      "name": "Early Works",
+      "artist": "Steve Reich",
+      "mbid": "f959e0ad-2a0f-3b25-bfda-f3a9e5b057ef",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sextet-six-marimbas--steve-reich",
+      "type": "project",
+      "name": "Sextet / Six Marimbas",
+      "artist": "Steve Reich",
+      "mbid": "2f576031-e06a-3555-9c8f-497d0d9d9c7f",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-desert-music--steve-reich",
+      "type": "project",
+      "name": "The Desert Music",
+      "artist": "Steve Reich",
+      "mbid": "74dab98d-fc5d-3cd4-8f98-87e03237fd50",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tehillim--steve-reich",
+      "type": "project",
+      "name": "Tehillim",
+      "artist": "Steve Reich",
+      "mbid": "be4adffa-7f20-3311-90cd-e0f87c6e2edf",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:octet-music-for-a-large-ensemble-violin-phase--steve-reich",
+      "type": "project",
+      "name": "Octet / Music for a Large Ensemble / Violin Phase",
+      "artist": "Steve Reich",
+      "mbid": "9f300ebb-4123-379c-8728-7bc074fc0e66",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:drumming-six-pianos-music-for-mallet-instruments-voices-and-organ--steve-reich",
+      "type": "project",
+      "name": "Drumming / Six Pianos / Music for Mallet Instruments, Voices and Organ",
+      "artist": "Steve Reich",
+      "mbid": "a88a5541-a3db-3fa1-b185-15e55f3dc8ad",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:four-organs-phase-patterns--steve-reich",
+      "type": "project",
+      "name": "Four Organs / Phase Patterns",
+      "artist": "Steve Reich",
+      "mbid": "d799129c-8ef0-35d3-a275-24f19744ba3d",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:live-electric-music--steve-reich",
+      "type": "project",
+      "name": "Live / Electric Music",
+      "artist": "Steve Reich",
+      "mbid": "edca2bc5-80fb-3835-b20f-9cb14ef694c9",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:music-for-18-musicians--steve-reich",
       "type": "project",
       "name": "Music for 18 Musicians"

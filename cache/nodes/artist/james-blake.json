@@ -71,24 +71,180 @@
   ],
   "discography": [
     {
-      "slug": "project:james-blake--james-blake",
+      "slug": "project:death-of-love--james-blake",
       "type": "project",
-      "name": "James Blake"
+      "name": "Death of Love",
+      "artist": "James Blake",
+      "mbid": "12ad825e-eeab-4bcc-afb0-b4f362170ff6",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:overgrown",
+      "slug": "project:doesn-t-just-happen--james-blake",
       "type": "project",
-      "name": "Overgrown"
+      "name": "Doesn’t Just Happen",
+      "artist": "James Blake",
+      "mbid": "88fef988-f4dc-4b18-8caa-ecf3bd39c989",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:the-colour-in-anything",
+      "slug": "project:i-had-a-dream-she-took-my-hand--james-blake",
       "type": "project",
-      "name": "The Colour in Anything"
+      "name": "I Had a Dream She Took My Hand",
+      "artist": "James Blake",
+      "mbid": "8768b4e4-1725-4fd4-9a16-2dd2ae6e619e",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trying-times--james-blake",
+      "type": "project",
+      "name": "Trying Times",
+      "artist": "James Blake",
+      "mbid": "7e425ff2-c85a-4316-b015-d1546aadc186",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:friends-that-break-your-heart--james-blake",
+      "type": "project",
+      "name": "Friends That Break Your Heart",
+      "artist": "James Blake",
+      "mbid": "dddf4559-2271-4fb7-90ba-8ae7b4a61af3",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-re-too-precious--james-blake",
+      "type": "project",
+      "name": "You’re Too Precious",
+      "artist": "James Blake",
+      "mbid": "027613d6-23b0-47e8-beb6-464140307cc4",
+      "year": "2020",
+      "releaseType": "single"
     },
     {
       "slug": "project:assume-form",
       "type": "project",
-      "name": "Assume Form"
+      "name": "Assume Form",
+      "mbid": "8fceea87-5273-408b-a2f3-723d9b64800a",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-colour-in-anything",
+      "type": "project",
+      "name": "The Colour in Anything",
+      "mbid": "bd166f52-cc11-4554-8045-ada94e6b2911",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:overgrown",
+      "type": "project",
+      "name": "Overgrown",
+      "mbid": "b9a4e9ad-400c-4219-ae45-519c2d8167f7",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:retrograde--james-blake",
+      "type": "project",
+      "name": "Retrograde",
+      "artist": "James Blake",
+      "mbid": "6506aba9-286e-4866-9cd3-919024f10682",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:voyeur-and-holy-ghost--james-blake",
+      "type": "project",
+      "name": "Voyeur / And Holy Ghost",
+      "artist": "James Blake",
+      "mbid": "b7a6f58c-e12a-4335-a51a-1504fe197ce9",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:enough-thunder--james-blake",
+      "type": "project",
+      "name": "Enough Thunder",
+      "artist": "James Blake",
+      "mbid": "881adabe-38e6-4578-bccc-ad563edace8b",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:fall-creek-boys-choir--james-blake",
+      "type": "project",
+      "name": "Fall Creek Boys Choir",
+      "artist": "James Blake",
+      "mbid": "ded6096d-13cd-4548-9bf0-414b650103c3",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:james-blake--james-blake",
+      "type": "project",
+      "name": "James Blake",
+      "mbid": "e2c51226-996b-4f7c-9bdf-d52d63c46a26",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lindisfarne-unluck--james-blake",
+      "type": "project",
+      "name": "Lindisfarne / Unluck",
+      "artist": "James Blake",
+      "mbid": "21233c85-44f3-4f5c-bb06-866a15d8437f",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-what-happened-here--james-blake",
+      "type": "project",
+      "name": "Love What Happened Here",
+      "artist": "James Blake",
+      "mbid": "e7105591-2b42-4fba-b5fc-fc2f6beea485",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-wilhelm-scream--james-blake",
+      "type": "project",
+      "name": "The Wilhelm Scream",
+      "artist": "James Blake",
+      "mbid": "bd7d0367-0cf1-4ad0-b554-0478f5a90e16",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cmyk--james-blake",
+      "type": "project",
+      "name": "CMYK",
+      "artist": "James Blake",
+      "mbid": "d1e7694e-ccc6-4a9f-96d8-cd74c85e6080",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:klavierwerke-ep--james-blake",
+      "type": "project",
+      "name": "Klavierwerke EP",
+      "artist": "James Blake",
+      "mbid": "a59f66ca-1c0a-4944-8a8f-41bf46bb98df",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:air-and-lack-thereof--james-blake",
+      "type": "project",
+      "name": "Air & Lack Thereof",
+      "artist": "James Blake",
+      "mbid": "f78c72ad-7575-4d70-aa62-1a3d9b405f7e",
+      "year": "2009",
+      "releaseType": "single"
     },
     {
       "slug": "project:playing-robots-into-heaven",

@@ -86,19 +86,163 @@
   ],
   "discography": [
     {
-      "slug": "project:exit-planet-dust",
+      "slug": "project:go-live-from-glastonbury--the-chemical-brothers",
       "type": "project",
-      "name": "Exit Planet Dust"
+      "name": "Go (Live from Glastonbury)",
+      "artist": "The Chemical Brothers",
+      "mbid": "9288f687-9dce-401f-bd57-82392a509583",
+      "year": "2026",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:dig-your-own-hole",
+      "slug": "project:for-that-beautiful-feeling--the-chemical-brothers",
       "type": "project",
-      "name": "Dig Your Own Hole"
+      "name": "For That Beautiful Feeling",
+      "artist": "The Chemical Brothers",
+      "mbid": "0eb13d65-b2a3-4b1b-9a2e-da61d6ba55e5",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-geography--the-chemical-brothers",
+      "type": "project",
+      "name": "No Geography",
+      "artist": "The Chemical Brothers",
+      "mbid": "137d0c73-1cfb-4c9e-a5ac-a7eb9dc53cea",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:born-in-the-echoes--the-chemical-brothers",
+      "type": "project",
+      "name": "Born in the Echoes",
+      "artist": "The Chemical Brothers",
+      "mbid": "c151db01-86d7-4190-8ee0-709dbc7d2f51",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hanna-original-motion-picture-soundtrack--the-chemical-brothers",
+      "type": "project",
+      "name": "Hanna (Original Motion Picture Soundtrack)",
+      "artist": "The Chemical Brothers",
+      "mbid": "cb7032aa-bdc9-4dbc-ab9c-a808b2225da1",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:further--the-chemical-brothers",
+      "type": "project",
+      "name": "Further",
+      "artist": "The Chemical Brothers",
+      "mbid": "8d3659b5-e2b0-4651-906e-721630ca649c",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:we-are-the-night--the-chemical-brothers",
+      "type": "project",
+      "name": "We Are the Night",
+      "artist": "The Chemical Brothers",
+      "mbid": "5e0c6af6-3be2-3bd9-aa63-d2daff6537bf",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:galvanize--the-chemical-brothers",
+      "type": "project",
+      "name": "Galvanize",
+      "artist": "The Chemical Brothers",
+      "mbid": "6dd71d5e-847f-3288-b244-e20918317d7c",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:push-the-button--the-chemical-brothers",
+      "type": "project",
+      "name": "Push the Button",
+      "artist": "The Chemical Brothers",
+      "mbid": "5acf62a9-00e8-3896-abeb-4598abad7e8b",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:american-ep--the-chemical-brothers",
+      "type": "project",
+      "name": "American EP",
+      "artist": "The Chemical Brothers",
+      "mbid": "f7e2d7f0-206f-3969-b0e2-49e9c5038612",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:come-with-us--the-chemical-brothers",
+      "type": "project",
+      "name": "Come With Us",
+      "artist": "The Chemical Brothers",
+      "mbid": "77a274d0-ab11-304f-85c4-991838dffdfb",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:star-guitar--the-chemical-brothers",
+      "type": "project",
+      "name": "Star Guitar",
+      "artist": "The Chemical Brothers",
+      "mbid": "8cdb31c4-2215-3c0f-b61c-fee2d40326e2",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:it-began-in-afrika--the-chemical-brothers",
+      "type": "project",
+      "name": "It Began in Afrika",
+      "artist": "The Chemical Brothers",
+      "mbid": "64b854ef-e886-3a01-a953-bdebe68b750f",
+      "year": "2001",
+      "releaseType": "single"
     },
     {
       "slug": "project:surrender",
       "type": "project",
-      "name": "Surrender"
+      "name": "Surrender",
+      "mbid": "22ca85ec-ee39-3895-aef9-dee5d5c2f4d6",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dig-your-own-hole",
+      "type": "project",
+      "name": "Dig Your Own Hole",
+      "mbid": "69f4aa7f-d760-3890-bd2a-902fb9abe40b",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:exit-planet-dust",
+      "type": "project",
+      "name": "Exit Planet Dust",
+      "mbid": "8fffd616-de95-3597-b1f2-211666cfc2dd",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:leave-home--the-chemical-brothers",
+      "type": "project",
+      "name": "Leave Home",
+      "artist": "The Chemical Brothers",
+      "mbid": "794d4d43-8952-31c6-97fd-741603f8deef",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:loops-of-fury--the-chemical-brothers",
+      "type": "project",
+      "name": "Loops of Fury",
+      "artist": "The Chemical Brothers",
+      "mbid": "b673c2a9-bba0-37ee-8bdc-07386f12541c",
+      "year": "1995",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

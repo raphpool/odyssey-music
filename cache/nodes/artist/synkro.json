@@ -70,24 +70,360 @@
   ],
   "discography": [
     {
-      "slug": "project:acceptance",
+      "slug": "project:north-star--synkro",
       "type": "project",
-      "name": "Acceptance"
+      "name": "North Star",
+      "artist": "Synkro",
+      "mbid": "57eaa568-0aff-471a-8877-a0c412eb3108",
+      "year": "2026",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:changes",
+      "slug": "project:kings-chamber--synkro",
       "type": "project",
-      "name": "Changes"
+      "name": "Kings Chamber",
+      "artist": "Synkro",
+      "mbid": "54185165-c5d7-48b7-9866-3c7b4de15ca5",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:emerald--synkro",
+      "type": "project",
+      "name": "Emerald",
+      "artist": "Synkro",
+      "mbid": "c5d7a87f-3ea0-4337-81d4-411fcd1b6279",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:information--synkro",
+      "type": "project",
+      "name": "Information",
+      "artist": "Synkro",
+      "mbid": "ba99936a-4b99-49a3-a25e-1504203af13d",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:empty-faces--synkro",
+      "type": "project",
+      "name": "Empty Faces",
+      "artist": "Synkro",
+      "mbid": "30a2a111-9035-4982-aa7a-64df8d7a1600",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:synkro-x-deep-heads--synkro",
+      "type": "project",
+      "name": "Synkro X Deep Heads",
+      "artist": "Synkro",
+      "mbid": "bc0d06b1-0694-4199-be8b-3bf2b8834017",
+      "year": "2021",
+      "releaseType": "album"
     },
     {
       "slug": "project:images",
       "type": "project",
-      "name": "Images"
+      "name": "Images",
+      "mbid": "fbd2e353-708c-4196-9a91-f51409a93680",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gagaku--synkro",
+      "type": "project",
+      "name": "Gagaku",
+      "artist": "Synkro",
+      "mbid": "138dbac3-1d27-4a59-a4e2-7f96174ee900",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:luminous--synkro",
+      "type": "project",
+      "name": "Luminous",
+      "artist": "Synkro",
+      "mbid": "f6741875-b606-4100-93f2-723bce74fda0",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:refractive-index--synkro",
+      "type": "project",
+      "name": "Refractive (Index)",
+      "artist": "Synkro",
+      "mbid": "83eae818-b2c3-4b5a-9230-58b9a8f7c51e",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hand-in-hand--synkro",
+      "type": "project",
+      "name": "Hand in Hand",
+      "artist": "Synkro",
+      "mbid": "b9efe447-c552-4d80-9c85-382adc3a99d4",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:smoke-mountain--synkro",
+      "type": "project",
+      "name": "Smoke Mountain",
+      "artist": "Synkro",
+      "mbid": "85471b99-da30-429d-96be-aae43c0c60bd",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:changes",
+      "type": "project",
+      "name": "Changes",
+      "mbid": "29d88a70-68b1-4c38-a1a9-d315f40b7fc2",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:transient--synkro",
+      "type": "project",
+      "name": "Transient",
+      "artist": "Synkro",
+      "mbid": "f4dec69f-f057-4c0e-98f0-4c0390dde2f1",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:acceptance",
+      "type": "project",
+      "name": "Acceptance",
+      "mbid": "fc2f7b87-23ad-4aa7-9a00-7f469146e9c1",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:lost-here--synkro",
+      "type": "project",
+      "name": "Lost Here",
+      "artist": "Synkro",
+      "mbid": "3a076c56-36de-4473-95b8-1fecaebcf80b",
+      "year": "2013",
+      "releaseType": "ep"
     },
     {
       "slug": "project:broken-promise",
       "type": "project",
-      "name": "Broken Promise"
+      "name": "Broken Promise",
+      "mbid": "cbeed564-ee1e-4396-bdf2-15d70565af31",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:look-at-yourself--synkro",
+      "type": "project",
+      "name": "Look at Yourself",
+      "artist": "Synkro",
+      "mbid": "6b3e218b-ada3-4620-8323-b98082c321d3",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:presence-questions-memory--synkro",
+      "type": "project",
+      "name": "Presence, Questions, Memory",
+      "artist": "Synkro",
+      "mbid": "3e3068b5-9481-4ff7-a4c9-8251ead3368c",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stop-and-think-ep--synkro",
+      "type": "project",
+      "name": "Stop & Think EP",
+      "artist": "Synkro",
+      "mbid": "b9dce154-e99f-4118-8ed4-ddf3803058b4",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:back-then-serenade--synkro",
+      "type": "project",
+      "name": "Back Then / Serenade",
+      "artist": "Synkro",
+      "mbid": "17c56932-49b1-4194-9a58-66ab27cae55d",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:letting-go--synkro",
+      "type": "project",
+      "name": "Letting Go",
+      "artist": "Synkro",
+      "mbid": "a54e6704-a8e9-469b-90b3-d5ac1dcc6f2a",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:reservoir-just-say--synkro",
+      "type": "project",
+      "name": "Reservoir / Just Say",
+      "artist": "Synkro",
+      "mbid": "80ea64fe-38a0-4d31-9d94-5fc9864b1287",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:angels--synkro",
+      "type": "project",
+      "name": "Angels",
+      "artist": "Synkro",
+      "mbid": "d5cceb10-6e4b-482c-ad9a-52eb9e6d5803",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:autumn--synkro",
+      "type": "project",
+      "name": "Autumn",
+      "artist": "Synkro",
+      "mbid": "27712aaf-debc-4231-901b-9a45c6fd9bb5",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:everyday-tell-me--synkro",
+      "type": "project",
+      "name": "Everyday / Tell Me",
+      "artist": "Synkro",
+      "mbid": "53d35c2f-4c8d-488e-8b27-55b0a4c26a17",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:if-only--synkro",
+      "type": "project",
+      "name": "If Only",
+      "artist": "Synkro",
+      "mbid": "d0373719-d974-44ce-9ae5-da09d8422017",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:inhale--synkro",
+      "type": "project",
+      "name": "Inhale",
+      "artist": "Synkro",
+      "mbid": "33b31c45-dc69-4229-adae-a82f83830238",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:lost-for-words--synkro",
+      "type": "project",
+      "name": "Lost for Words",
+      "artist": "Synkro",
+      "mbid": "011e5d14-38a5-471c-a524-2be805e2c14b",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:music-makers--synkro",
+      "type": "project",
+      "name": "Music Makers",
+      "artist": "Synkro",
+      "mbid": "3334204e-86b6-30b9-9b2a-59d667080e97",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rudebwoy-hornz--synkro",
+      "type": "project",
+      "name": "Rudebwoy / Hornz",
+      "artist": "Synkro",
+      "mbid": "bf7e733c-f645-4adc-ad86-441bae5b0dc2",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:turning--synkro",
+      "type": "project",
+      "name": "Turning",
+      "artist": "Synkro",
+      "mbid": "c9a99268-e026-4bc0-856f-3bd6cfea4b66",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:attack-jah-love--synkro",
+      "type": "project",
+      "name": "Attack / Jah Love",
+      "artist": "Synkro",
+      "mbid": "d68a0c78-7b42-48d8-9be9-119dde81274f",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:closer--synkro",
+      "type": "project",
+      "name": "Closer",
+      "artist": "Synkro",
+      "mbid": "22f52d1c-dd09-4f7b-b895-56079dc681fc",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:don-t-know--synkro",
+      "type": "project",
+      "name": "Don't Know",
+      "artist": "Synkro",
+      "mbid": "42858bdd-a272-4349-9a6f-218c15a49586",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:everybody-knows--synkro",
+      "type": "project",
+      "name": "Everybody Knows",
+      "artist": "Synkro",
+      "mbid": "359bde28-6c54-40fc-bf7e-0d7113a20b8a",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hold-tight--synkro",
+      "type": "project",
+      "name": "Hold Tight",
+      "artist": "Synkro",
+      "mbid": "a70d488f-ce22-4ee2-bf28-013adf2ddaa4",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:king-of-kings-these-times--synkro",
+      "type": "project",
+      "name": "King of Kings / These Times",
+      "artist": "Synkro",
+      "mbid": "dce374e0-77ec-414b-ae60-4761715e2d0c",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lost-love--synkro",
+      "type": "project",
+      "name": "Lost Love",
+      "artist": "Synkro",
+      "mbid": "4d3b2b57-c9af-4c24-9f0b-15738bc1775b",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dr-tuesday--synkro",
+      "type": "project",
+      "name": "Dr. Tuesday",
+      "artist": "Synkro",
+      "mbid": "5e2d1a1b-999c-4217-9551-b18588490eb2",
+      "year": "2007",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

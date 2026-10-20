@@ -62,24 +62,108 @@
   ],
   "discography": [
     {
-      "slug": "project:earth-2-special-low-frequency-version",
+      "slug": "project:geometry-of-murder-extra-capsular-extraction-inversions--earth",
       "type": "project",
-      "name": "Earth 2 - Special Low Frequency Version"
+      "name": "Geometry of Murder: Extra Capsular Extraction Inversions",
+      "artist": "Earth",
+      "mbid": "f5937170-b561-4479-bff9-5a488e4d3c28",
+      "year": "2026",
+      "releaseType": "album"
     },
     {
-      "slug": "project:hex-or-printing-in-the-infernal-method",
+      "slug": "project:full-upon-her-burning-lips--earth",
       "type": "project",
-      "name": "Hex; or Printing in the Infernal Method"
+      "name": "Full Upon Her Burning Lips",
+      "artist": "Earth",
+      "mbid": "07d39c5a-590b-46ae-9149-5f1b47755381",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:primitive-and-deadly--earth",
+      "type": "project",
+      "name": "Primitive and Deadly",
+      "artist": "Earth",
+      "mbid": "d288cd03-4572-40fc-993a-ce20507bd366",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:angels-of-darkness-demons-of-light-ii--earth",
+      "type": "project",
+      "name": "Angels of Darkness, Demons of Light II",
+      "artist": "Earth",
+      "mbid": "b7c0becd-4019-46c5-b5e5-4a73c4fe0e9f",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:angels-of-darkness-demons-of-light-i--earth",
+      "type": "project",
+      "name": "Angels of Darkness, Demons of Light I",
+      "artist": "Earth",
+      "mbid": "e4596e6c-810b-4278-9f5c-15f463b1ba3b",
+      "year": "2011",
+      "releaseType": "album"
     },
     {
       "slug": "project:the-bees-made-honey-in-the-lion-s-skull",
       "type": "project",
-      "name": "The Bees Made Honey in the Lion's Skull"
+      "name": "The Bees Made Honey in the Lion's Skull",
+      "mbid": "229f1ff5-e887-3052-8390-9fda436bb309",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hibernaculum--earth",
+      "type": "project",
+      "name": "Hibernaculum",
+      "artist": "Earth",
+      "mbid": "4ed3952f-2e39-39c9-b321-56ddcd59c1b3",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hex-or-printing-in-the-infernal-method",
+      "type": "project",
+      "name": "Hex; or Printing in the Infernal Method",
+      "mbid": "82343fc7-9b2c-35e8-a992-b35058dfab27",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:divine-and-bright--earth",
+      "type": "project",
+      "name": "Divine and Bright",
+      "artist": "Earth",
+      "mbid": "695b90f7-cf91-3a0e-bbb1-b1bf321b7984",
+      "year": "2003",
+      "releaseType": "single"
     },
     {
       "slug": "project:pentastar-in-the-style-of-demons",
       "type": "project",
-      "name": "Pentastar: In the Style of Demons"
+      "name": "Pentastar: In the Style of Demons",
+      "mbid": "e70eeea6-7bff-351c-ad8b-5cc3c971cad3",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:phase-3-thrones-and-dominions--earth",
+      "type": "project",
+      "name": "Phase 3: Thrones and Dominions",
+      "artist": "Earth",
+      "mbid": "23ccd816-ae0a-3873-9fd4-4a3f89429c60",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:earth-2-special-low-frequency-version",
+      "type": "project",
+      "name": "Earth 2 - Special Low Frequency Version",
+      "mbid": "98cb9c21-38dc-3592-b201-6eefb452068e",
+      "year": "1993",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

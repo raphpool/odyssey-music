@@ -81,34 +81,268 @@
   ],
   "discography": [
     {
-      "slug": "project:hotel-paral-lel",
+      "slug": "project:the-last-days-of-may--fennesz",
       "type": "project",
-      "name": "Hotel Paral.lel"
+      "name": "The Last Days of May",
+      "artist": "Fennesz",
+      "mbid": "0700bcb7-7618-4884-9a81-077b7ba7d08e",
+      "year": "2025",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:endless-summer",
+      "slug": "project:mosaic--fennesz",
       "type": "project",
-      "name": "Endless Summer"
+      "name": "Mosaic",
+      "artist": "Fennesz",
+      "mbid": "f88077b5-1903-4376-bf3f-0101c1334c9c",
+      "year": "2024",
+      "releaseType": "album"
     },
     {
-      "slug": "project:venice",
+      "slug": "project:sognato-di-domani--fennesz",
       "type": "project",
-      "name": "Venice"
+      "name": "Sognato di domani",
+      "artist": "Fennesz",
+      "mbid": "e2290434-2138-49d1-a07f-5f86e7efa1fa",
+      "year": "2024",
+      "releaseType": "single"
     },
     {
-      "slug": "project:black-sea",
+      "slug": "project:per-aspera-ad-astra--fennesz",
       "type": "project",
-      "name": "Black Sea"
-    },
-    {
-      "slug": "project:becs",
-      "type": "project",
-      "name": "Bécs"
+      "name": "Per Aspera (ad Astra)",
+      "artist": "Fennesz",
+      "mbid": "ba47534f-d38e-4f1f-8174-a241725a1eba",
+      "year": "2020",
+      "releaseType": "single"
     },
     {
       "slug": "project:agora",
       "type": "project",
-      "name": "Agora"
+      "name": "Agora",
+      "mbid": "9e6a1d70-2b15-44f2-bb95-01b92a4e3e57",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:umbrella--fennesz",
+      "type": "project",
+      "name": "Umbrella",
+      "artist": "Fennesz",
+      "mbid": "52eed700-fce2-44d3-8ebc-4c51da539130",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:station-one--fennesz",
+      "type": "project",
+      "name": "Station One",
+      "artist": "Fennesz",
+      "mbid": "8236ad19-bf45-4158-8d28-291b5c12e13b",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:it-s-hard-for-me-to-say-i-m-sorry--fennesz",
+      "type": "project",
+      "name": "It’s Hard for Me to Say I’m Sorry",
+      "artist": "Fennesz",
+      "mbid": "421969db-0492-430e-a8d2-3ef8fce42d01",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:becs",
+      "type": "project",
+      "name": "Bécs",
+      "mbid": "2e93841b-b126-4167-bc26-647f621bfcf7",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:17-02-12--fennesz",
+      "type": "project",
+      "name": "17.02.12",
+      "artist": "Fennesz",
+      "mbid": "18bea015-3998-4c8c-ac63-1ecb4493ce48",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aun-the-beginning-and-the-end-of-all-things--fennesz",
+      "type": "project",
+      "name": "AUN – The Beginning and the End of All Things",
+      "artist": "Fennesz",
+      "mbid": "80451f24-6374-46ed-ac5c-b03e1ae4d57c",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:on-invisible-pause--fennesz",
+      "type": "project",
+      "name": "On Invisible Pause",
+      "artist": "Fennesz",
+      "mbid": "9242bd7e-e3f6-4db8-ae25-20e9b38da6ab",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:flumina--fennesz",
+      "type": "project",
+      "name": "Flumina",
+      "artist": "Fennesz",
+      "mbid": "0252e1d1-ccdc-4ebf-a49b-7139fba0f0f3",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:seven-stars--fennesz",
+      "type": "project",
+      "name": "Seven Stars",
+      "artist": "Fennesz",
+      "mbid": "328b58e2-7ab2-4c2c-86c4-1b8813f840ea",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:black-sea",
+      "type": "project",
+      "name": "Black Sea",
+      "mbid": "6f2fea85-3d03-33ee-81ad-ab02d60c5e36",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:june--fennesz",
+      "type": "project",
+      "name": "June",
+      "artist": "Fennesz",
+      "mbid": "0c33a124-edb3-394b-a911-797774455ad3",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:saffron-revolution--fennesz",
+      "type": "project",
+      "name": "Saffron Revolution",
+      "artist": "Fennesz",
+      "mbid": "1a49022c-99c0-4555-ad26-09ff9d74b2b8",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:transition--fennesz",
+      "type": "project",
+      "name": "Transition",
+      "artist": "Fennesz",
+      "mbid": "88c33d1c-5a0f-30da-8de5-de2f73e7e5d8",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cendre--fennesz",
+      "type": "project",
+      "name": "Cendre",
+      "artist": "Fennesz",
+      "mbid": "07b10a19-9df0-37ef-97ee-ab76ab141f20",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:on-a-desolate-shore-a-shadow-passes-by--fennesz",
+      "type": "project",
+      "name": "On a Desolate Shore a Shadow Passes By",
+      "artist": "Fennesz",
+      "mbid": "8138112e-8612-327d-b68b-b79bd82498df",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:venice",
+      "type": "project",
+      "name": "Venice",
+      "mbid": "86fa7d3b-987b-3fbe-8dfc-f79932b0ed0b",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fatcat-split-series-15--fennesz",
+      "type": "project",
+      "name": "FatCat Split Series #15",
+      "artist": "Fennesz",
+      "mbid": "486d7143-4523-3f07-9f93-d6aae709036d",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:7-10-12-ep--fennesz",
+      "type": "project",
+      "name": "7″ / 10″ / 12″ EP",
+      "artist": "Fennesz",
+      "mbid": "36ac8857-c7e6-36e7-a2bc-85718505eb68",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:endless-summer",
+      "type": "project",
+      "name": "Endless Summer",
+      "mbid": "18a6ec4a-8ea4-3af6-ad6a-fb0d8f5ede94",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:plus-forty-seven-degrees-56-37-minus-sixteen-degrees-51-08--fennesz",
+      "type": "project",
+      "name": "Plus Forty Seven Degrees 56′ 37″ Minus Sixteen Degrees 51′ 08″",
+      "artist": "Fennesz",
+      "mbid": "1d59494d-3099-3c73-b388-6eba8d2c9340",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:il-libro-mio-recherchen-zum-manierismus--fennesz",
+      "type": "project",
+      "name": "Il Libro Mio: Recherchen Zum Manierismus",
+      "artist": "Fennesz",
+      "mbid": "1ba94ebc-6986-3005-a50d-c4b56990db8e",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:plays--fennesz",
+      "type": "project",
+      "name": "Plays",
+      "artist": "Fennesz",
+      "mbid": "030b187d-4960-3e51-8e15-9deee9e69e77",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hotel-paral-lel",
+      "type": "project",
+      "name": "Hotel Paral.lel",
+      "mbid": "a7badbb1-d8f1-3189-a17a-5c9f46bb0b08",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:5-6--fennesz",
+      "type": "project",
+      "name": "5 / 6",
+      "artist": "Fennesz",
+      "mbid": "6b296603-3ff9-3ae0-91d0-54262f8a65cc",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:instrument--fennesz",
+      "type": "project",
+      "name": "Instrument",
+      "artist": "Fennesz",
+      "mbid": "4f9a467d-cfad-3651-a81c-7eb28393d28d",
+      "year": "1995",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

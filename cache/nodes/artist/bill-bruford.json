@@ -47,7 +47,44 @@
     }
   ],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:in-two-minds--bill-bruford",
+      "type": "project",
+      "name": "In Two Minds",
+      "artist": "Bill Bruford",
+      "mbid": "1560eed8-0f93-4ad5-a4bb-7ba421c1adef",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:earthworks-underground-orchestra--bill-bruford",
+      "type": "project",
+      "name": "Earthworks Underground Orchestra",
+      "artist": "Bill Bruford",
+      "mbid": "f2bdc76f-587a-472d-8286-b2b9a913e67a",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:every-step-a-dance-every-word-a-song--bill-bruford",
+      "type": "project",
+      "name": "Every Step a Dance, Every Word a Song",
+      "artist": "Bill Bruford",
+      "mbid": "6c684c02-2942-4850-88c5-e37a841e7af1",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:master-strokes--bill-bruford",
+      "type": "project",
+      "name": "Master Strokes",
+      "artist": "Bill Bruford",
+      "mbid": "0444b6d4-3624-4624-a224-3009f8d50c74",
+      "year": "1986",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:feels-good-to-me",

@@ -139,18 +139,18 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:um-pouco-de-ilusao",
-      "type": "project",
-      "name": "Um pouco de ilusão",
-      "mbid": "58c22e1c-e2f3-3e6c-b48b-18910f9727ba",
-      "year": "1980",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:a-arca-de-noe",
       "type": "project",
       "name": "A arca de Noé",
       "mbid": "98b19346-b1e3-3b77-872c-4ec9f4f28e69",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:um-pouco-de-ilusao",
+      "type": "project",
+      "name": "Um pouco de ilusão",
+      "mbid": "58c22e1c-e2f3-3e6c-b48b-18910f9727ba",
       "year": "1980",
       "releaseType": "album"
     },
@@ -171,14 +171,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:vinicius-toquinho",
-      "type": "project",
-      "name": "Vinicius / Toquinho",
-      "mbid": "25030844-19ec-42bf-8f3a-e225605539e7",
-      "year": "1975",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:o-poeta-e-o-violao",
       "type": "project",
       "name": "O poeta e o violão",
@@ -187,11 +179,11 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:sarava-vinicius",
+      "slug": "project:vinicius-toquinho",
       "type": "project",
-      "name": "Saravá Vinicius!",
-      "mbid": "167ef1de-c37a-3f63-9f99-a08856050ae0",
-      "year": "1974",
+      "name": "Vinicius / Toquinho",
+      "mbid": "25030844-19ec-42bf-8f3a-e225605539e7",
+      "year": "1975",
       "releaseType": "album"
     },
     {
@@ -199,6 +191,14 @@
       "type": "project",
       "name": "Fogo Sobre Terra",
       "mbid": "8de25f37-0d5c-3551-90db-7468fe458cb9",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sarava-vinicius",
+      "type": "project",
+      "name": "Saravá Vinicius!",
+      "mbid": "167ef1de-c37a-3f63-9f99-a08856050ae0",
       "year": "1974",
       "releaseType": "album"
     },
@@ -219,6 +219,40 @@
       "releaseType": "album"
     },
     {
+      "slug": "project:eu-sei-que-vou-te-amar",
+      "type": "project",
+      "name": "Eu sei que vou te amar…",
+      "mbid": "b1ebd401-0930-46d2-b61a-87f6e4f3e5b0",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jesus-cristo-superstar--vinicius-de-moraes",
+      "type": "project",
+      "name": "Jesus Cristo Superstar",
+      "artist": "Vinicius de Moraes",
+      "mbid": "642bca28-07ad-3808-b9f9-4e8ec794be72",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:l-arca",
+      "type": "project",
+      "name": "L'arca",
+      "mbid": "fcfa76e6-b808-40a9-8018-0dd6c5ae2c3e",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nossa-filha-gabriela--vinicius-de-moraes",
+      "type": "project",
+      "name": "Nossa Filha Gabriela",
+      "artist": "Vinicius de Moraes",
+      "mbid": "d13a0c52-10a0-379e-b112-831ee7189631",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:sao-demais-os-perigos-desta-vida",
       "type": "project",
       "name": "São demais os perigos desta vida...",
@@ -231,22 +265,6 @@
       "type": "project",
       "name": "Toquinho e Vinicius",
       "mbid": "7cded536-6479-33b1-a707-6c6b7bdb4208",
-      "year": "1972",
-      "releaseType": "album"
-    },
-    {
-      "slug": "project:eu-sei-que-vou-te-amar",
-      "type": "project",
-      "name": "Eu sei que vou te amar…",
-      "mbid": "b1ebd401-0930-46d2-b61a-87f6e4f3e5b0",
-      "year": "1972",
-      "releaseType": "album"
-    },
-    {
-      "slug": "project:l-arca",
-      "type": "project",
-      "name": "L'arca",
-      "mbid": "fcfa76e6-b808-40a9-8018-0dd6c5ae2c3e",
       "year": "1972",
       "releaseType": "album"
     },
@@ -307,20 +325,20 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:agua-de-beber-lamento-no-morro",
-      "type": "project",
-      "name": "Água de beber / Lamento no morro",
-      "mbid": "3fa9652c-b39c-301f-86a8-8c89ebbd4037",
-      "year": "1961",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:brasilia-sinfonia-da-alvorada",
       "type": "project",
       "name": "Brasília: Sinfonia da Alvorada",
       "mbid": "ef8b88e0-8ef1-428a-baa1-9a8a5b5b42cc",
       "year": "1961",
       "releaseType": "album"
+    },
+    {
+      "slug": "project:agua-de-beber-lamento-no-morro",
+      "type": "project",
+      "name": "Água de beber / Lamento no morro",
+      "mbid": "3fa9652c-b39c-301f-86a8-8c89ebbd4037",
+      "year": "1961",
+      "releaseType": "single"
     },
     {
       "slug": "project:convite-para-ouvir",

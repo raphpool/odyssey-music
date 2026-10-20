@@ -45,14 +45,353 @@
   ],
   "discography": [
     {
-      "slug": "project:quality",
+      "slug": "project:the-confidence-of-knowing--talib-kweli",
       "type": "project",
-      "name": "Quality"
+      "name": "The Confidence of Knowing",
+      "artist": "Talib Kweli",
+      "mbid": "3a8cf7b2-3301-47cf-b2d5-eac743229800",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:holy-daze--talib-kweli",
+      "type": "project",
+      "name": "Holy Daze",
+      "artist": "Talib Kweli",
+      "mbid": "68c18576-057c-4cd9-93c7-22bf72a0adba",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:liberation-2--talib-kweli",
+      "type": "project",
+      "name": "Liberation 2",
+      "artist": "Talib Kweli",
+      "mbid": "338b4b50-9c83-4468-a22b-c15313593c46",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:liberation-2-instrumentals--talib-kweli",
+      "type": "project",
+      "name": "Liberation 2 Instrumentals",
+      "artist": "Talib Kweli",
+      "mbid": "ecc91ebc-205c-4172-a014-8e7f035b1c97",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:black-star-nyc--talib-kweli",
+      "type": "project",
+      "name": "Black Star NYC",
+      "artist": "Talib Kweli",
+      "mbid": "abde24f0-db06-4257-9307-1207bc29a1b4",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blackstar--talib-kweli",
+      "type": "project",
+      "name": "Blackstar",
+      "artist": "Talib Kweli",
+      "mbid": "f01e8527-d236-4a7d-8d15-d054fc9f3db7",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:last-ones--talib-kweli",
+      "type": "project",
+      "name": "Last Ones",
+      "artist": "Talib Kweli",
+      "mbid": "cac9bc37-76da-4799-bedb-647dfa8db1d5",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:radio-silence--talib-kweli",
+      "type": "project",
+      "name": "Radio Silence",
+      "artist": "Talib Kweli",
+      "mbid": "555c91cf-791b-43cd-8079-a9f5677c0639",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-seven--talib-kweli",
+      "type": "project",
+      "name": "The Seven",
+      "artist": "Talib Kweli",
+      "mbid": "1c62574e-2ad1-480d-b47c-ec555d74b7d8",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:fuck-the-money--talib-kweli",
+      "type": "project",
+      "name": "Fuck the Money",
+      "artist": "Talib Kweli",
+      "mbid": "84e41913-7c1b-4222-82ed-1ddc940bca2f",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:indie-500--talib-kweli",
+      "type": "project",
+      "name": "Indie 500",
+      "artist": "Talib Kweli",
+      "mbid": "6c250057-90e6-43d4-a2de-6a87de5a5541",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gravitas--talib-kweli",
+      "type": "project",
+      "name": "Gravitas",
+      "artist": "Talib Kweli",
+      "mbid": "fa0f39b4-0776-4b78-9f2b-fa32841d12d5",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:art-imitates-life--talib-kweli",
+      "type": "project",
+      "name": "Art Imitates Life",
+      "artist": "Talib Kweli",
+      "mbid": "33a4ab1f-9361-4fac-8bdd-cd10c1dd6b77",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:prisoner-of-conscious--talib-kweli",
+      "type": "project",
+      "name": "Prisoner of Conscious",
+      "artist": "Talib Kweli",
+      "mbid": "e6534429-263e-4fe4-91ba-38cb4d207c94",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:attack-the-block--talib-kweli",
+      "type": "project",
+      "name": "Attack the Block",
+      "artist": "Talib Kweli",
+      "mbid": "6c6432e2-3563-4f38-a1af-cd6b1431a4e8",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:we-run-this-volume-7--talib-kweli",
+      "type": "project",
+      "name": "We Run This, Volume 7",
+      "artist": "Talib Kweli",
+      "mbid": "48c2ca02-d08b-4540-9e67-3461a4008f88",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:distractions--talib-kweli",
+      "type": "project",
+      "name": "Distractions",
+      "artist": "Talib Kweli",
+      "mbid": "89b906ca-4bf7-49e5-ba67-021a3fed0c22",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gutter-rainbows--talib-kweli",
+      "type": "project",
+      "name": "Gutter Rainbows",
+      "artist": "Talib Kweli",
+      "mbid": "b7e54d63-2c61-4796-bfbf-06f241454f6a",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:year-of-the-blacksmith-the-community-mixtape--talib-kweli",
+      "type": "project",
+      "name": "Year of the Blacksmith: The Community Mixtape",
+      "artist": "Talib Kweli",
+      "mbid": "beb13977-f21c-4764-8c7e-1a86de18ea2c",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cold-rain--talib-kweli",
+      "type": "project",
+      "name": "Cold Rain",
+      "artist": "Talib Kweli",
+      "mbid": "9ff6188c-bc64-4fea-a681-1b7b0bd86bee",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:early-mourning-signs--talib-kweli",
+      "type": "project",
+      "name": "Early Mourning Signs",
+      "artist": "Talib Kweli",
+      "mbid": "baaeb3e0-488e-4aa6-a97c-8af2c83d95ad",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-mceo-mixtape--talib-kweli",
+      "type": "project",
+      "name": "The MCEO Mixtape",
+      "artist": "Talib Kweli",
+      "mbid": "a9f94a1b-1e76-382e-81b0-5dd3aa5d2162",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:eardrum--talib-kweli",
+      "type": "project",
+      "name": "Eardrum",
+      "artist": "Talib Kweli",
+      "mbid": "822f5ec1-3490-3dac-8475-9f66b6693a3b",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:get-familiar--talib-kweli",
+      "type": "project",
+      "name": "Get Familiar",
+      "artist": "Talib Kweli",
+      "mbid": "11dd05b7-951b-46c3-9f29-9a5bc6993df3",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hot-thing--talib-kweli",
+      "type": "project",
+      "name": "Hot Thing",
+      "artist": "Talib Kweli",
+      "mbid": "41f30c25-0fe1-468f-bb1a-d0f3b2474e0f",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hot-thing-say-something--talib-kweli",
+      "type": "project",
+      "name": "Hot Thing / Say Something",
+      "artist": "Talib Kweli",
+      "mbid": "212ce675-f84e-3c2b-823c-3ed1e1ced1fc",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:say-something--talib-kweli",
+      "type": "project",
+      "name": "Say Something",
+      "artist": "Talib Kweli",
+      "mbid": "3ed6b255-fb75-4845-aa65-0de58a732554",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:soon-the-new-day--talib-kweli",
+      "type": "project",
+      "name": "Soon The New Day",
+      "artist": "Talib Kweli",
+      "mbid": "531ca196-0699-461e-9bb0-a3b5e1a04374",
+      "year": "2007",
+      "releaseType": "single"
     },
     {
       "slug": "project:liberation",
       "type": "project",
-      "name": "Liberation"
+      "name": "Liberation",
+      "mbid": "b1f29a11-2c78-3dc4-ac93-7cd1af577854",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:right-about-now-the-official-sucka-free-mix-cd--talib-kweli",
+      "type": "project",
+      "name": "Right About Now: The Official Sucka Free Mix CD",
+      "artist": "Talib Kweli",
+      "mbid": "b9692c14-db7e-330f-bf78-9580d3c108a5",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-beautiful-mixtape-volume-2--talib-kweli",
+      "type": "project",
+      "name": "The Beautiful Mixtape, Volume 2",
+      "artist": "Talib Kweli",
+      "mbid": "8c4b669b-0e04-3265-9837-64458b1d7bf5",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-try--talib-kweli",
+      "type": "project",
+      "name": "I Try",
+      "artist": "Talib Kweli",
+      "mbid": "aad8d65a-cccf-4a52-83fb-c6cd61f6a449",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-beautiful-mix-cd--talib-kweli",
+      "type": "project",
+      "name": "The Beautiful Mix CD",
+      "artist": "Talib Kweli",
+      "mbid": "eb519123-8ee1-35f5-90ed-d3bb3579027e",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-beautiful-struggle--talib-kweli",
+      "type": "project",
+      "name": "The Beautiful Struggle",
+      "artist": "Talib Kweli",
+      "mbid": "bb4c5691-d5bb-353b-8631-3bf67c39fb9d",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:freestyle-exclusives--talib-kweli",
+      "type": "project",
+      "name": "Freestyle Exclusives",
+      "artist": "Talib Kweli",
+      "mbid": "ba708b8f-e74b-4787-b046-5bb8d458f859",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:get-by--talib-kweli",
+      "type": "project",
+      "name": "Get By",
+      "artist": "Talib Kweli",
+      "mbid": "bbb5a24e-5b4d-3dee-91c0-61ff0d1c9d02",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:quality",
+      "type": "project",
+      "name": "Quality",
+      "mbid": "036299a6-1fcb-3c46-80d7-b41869ba75b8",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:5th-power-presents-talib-kweli-featuring-million--talib-kweli",
+      "type": "project",
+      "name": "5th Power Presents: Talib Kweli featuring Million",
+      "artist": "Talib Kweli",
+      "mbid": "968a3f12-1413-41d4-91f7-d86f4d6e67c4",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:scandalous--talib-kweli",
+      "type": "project",
+      "name": "Scandalous",
+      "artist": "Talib Kweli",
+      "mbid": "a99c6b70-7aab-4778-a8f9-e7ac7a478cab",
+      "year": "1997",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

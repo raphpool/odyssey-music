@@ -40,9 +40,64 @@
   ],
   "discography": [
     {
+      "slug": "project:yene-mircha",
+      "type": "project",
+      "name": "Yene Mircha",
+      "mbid": "2f94d871-3757-4759-810d-825a6d93e714",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lala-belu",
+      "type": "project",
+      "name": "Lala Belu",
+      "mbid": "472ec5ab-c679-430b-9d7f-a6685ac20d77",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yegle-nesha-hailu--hailu-mergia",
+      "type": "project",
+      "name": "Yegle Nesha / Hailu",
+      "artist": "Hailu Mergia",
+      "mbid": "c5de8f39-ba49-48e7-8332-1bf8cd08f432",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:yewedeke-abeba--hailu-mergia",
+      "type": "project",
+      "name": "Yewedeke Abeba",
+      "artist": "Hailu Mergia",
+      "mbid": "8cab4f6a-3dcc-45ba-bae6-c97bf5d3ef5c",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hailu-mergia-and-his-classical-instrument-shemonmuanaye--hailu-mergia",
+      "type": "project",
+      "name": "Hailu Mergia & His Classical Instrument: Shemonmuanaye",
+      "artist": "Hailu Mergia",
+      "mbid": "fa3aba8d-cf8e-4030-8fc3-1e992d63d93e",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:tche-belew",
       "type": "project",
-      "name": "Tche Belew"
+      "name": "Tche Belew",
+      "mbid": "476129d6-1d7b-4103-8159-8894e2097d52",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tezeta--hailu-mergia",
+      "type": "project",
+      "name": "Tezeta",
+      "artist": "Hailu Mergia",
+      "mbid": "e5130e68-e7d0-4ba6-b217-21e89138c7c4",
+      "year": "1976",
+      "releaseType": "album"
     },
     {
       "slug": "project:wede-harer-guzo",
@@ -55,14 +110,20 @@
       "name": "Hailu Mergia & His Classical Instrument"
     },
     {
-      "slug": "project:lala-belu",
+      "slug": "project:amharic-songs-by-instrumental-only--hailu-mergia",
       "type": "project",
-      "name": "Lala Belu"
+      "name": "Amharic Songs By Instrumental Only",
+      "artist": "Hailu Mergia",
+      "mbid": "ed5899fc-a64a-41b6-a72c-90dd08c2e050",
+      "releaseType": "album"
     },
     {
-      "slug": "project:yene-mircha",
+      "slug": "project:instrumental-music--hailu-mergia",
       "type": "project",
-      "name": "Yene Mircha"
+      "name": "Instrumental Music",
+      "artist": "Hailu Mergia",
+      "mbid": "52db37b5-97e6-4ccf-8cdf-07d6b19c81c1",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

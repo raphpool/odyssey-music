@@ -40,15 +40,107 @@
   ],
   "discography": [
     {
+      "slug": "project:bigger-black-car--1-2-3",
+      "type": "project",
+      "name": "Bigger Black Car",
+      "artist": "1,2,3",
+      "mbid": "cd21ed0f-590f-432c-acdc-281bc464e4ec",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:big-weather--1-2-3",
+      "type": "project",
+      "name": "Big Weather",
+      "artist": "1,2,3",
+      "mbid": "4f24a139-5793-45b9-bf08-ae3ce70b558b",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:darkly-through-the-valley--1-2-3",
+      "type": "project",
+      "name": "Darkly Through the Valley",
+      "artist": "1,2,3",
+      "mbid": "bbb7e13d-a98d-4c13-95c5-90a2b4cec71d",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:when-the-levee-broke-at-the-county-fair--1-2-3",
+      "type": "project",
+      "name": "When the Levee Broke at the County Fair",
+      "artist": "1,2,3",
+      "mbid": "53844c07-1ded-489a-92a4-afb4d6a8a8da",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dreamland-part-1-for-daisy--1-2-3",
+      "type": "project",
+      "name": "Dreamland, Part 1 (For Daisy)",
+      "artist": "1,2,3",
+      "mbid": "ee2892f5-ff8c-49a4-9511-b550159f1216",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:misfits-ep--1-2-3",
+      "type": "project",
+      "name": "Misfits EP",
+      "artist": "1,2,3",
+      "mbid": "76444b88-b26a-4910-936e-77efb68346bc",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:new-heaven--1-2-3",
       "type": "project",
       "name": "New Heaven",
-      "artist": "1,2,3"
+      "artist": "1,2,3",
+      "mbid": "5c7586b9-66ca-4da4-9bc2-77f4e762976f",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scared-but-not-that-scared--1-2-3",
+      "type": "project",
+      "name": "Scared, But Not That Scared",
+      "artist": "1,2,3",
+      "mbid": "653df462-94f6-4ee4-881f-f72cd730927d",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:confetti-can-t-bribe-god--1-2-3",
+      "type": "project",
+      "name": "Confetti / Can't Bribe God",
+      "artist": "1,2,3",
+      "mbid": "8122e570-2da4-4138-b449-529253100049",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:little-cure--1-2-3",
+      "type": "project",
+      "name": "Little Cure",
+      "artist": "1,2,3",
+      "mbid": "e2f22c49-d56f-4f00-a84d-91a6560313a5",
+      "year": "2010",
+      "releaseType": "single"
     },
     {
       "slug": "project:confetti",
       "type": "project",
       "name": "Confetti"
+    },
+    {
+      "slug": "project:the-chess-club-ep--1-2-3",
+      "type": "project",
+      "name": "The Chess Club EP",
+      "artist": "1,2,3",
+      "mbid": "24a15aac-e5ca-4ac2-946d-3c3d2e42331e",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

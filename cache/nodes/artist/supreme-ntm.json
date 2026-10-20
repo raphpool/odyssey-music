@@ -34,14 +34,181 @@
   ],
   "discography": [
     {
-      "slug": "project:supreme-ntm",
-      "type": "project",
-      "name": "Suprême NTM"
-    },
-    {
       "slug": "project:anthologie",
       "type": "project",
-      "name": "Anthologie"
+      "name": "Anthologie",
+      "mbid": "fb6d24e5-3f76-437f-b286-ae9811184d8c",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sur-le-drapeau-extrait-du-projet-93-empire--supreme-ntm",
+      "type": "project",
+      "name": "Sur le drapeau (Extrait du projet 93 Empire)",
+      "artist": "Suprême NTM",
+      "mbid": "8a945414-e4a5-4654-8c33-4f7bc9fac667",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:le-clash-boss-vs-iv-my-people--supreme-ntm",
+      "type": "project",
+      "name": "Le Clash : BOSS vs IV My People",
+      "artist": "Suprême NTM",
+      "mbid": "3a3d2e73-258e-40bb-a7ac-f5dfc23bb3fe",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pass-pass-le-oinj--supreme-ntm",
+      "type": "project",
+      "name": "Pass pass le oinj",
+      "artist": "Suprême NTM",
+      "mbid": "d82bcd18-e8b1-4bff-a0f0-8f84afd8b460",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:qu-est-ce-qu-on-attend--supreme-ntm",
+      "type": "project",
+      "name": "Qu’est-ce qu’on attend",
+      "artist": "Suprême NTM",
+      "mbid": "0fa89894-74ea-4b1e-9e92-9edbf23e7ff6",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pose-ton-gun-on-est-encore-la-part-ii--supreme-ntm",
+      "type": "project",
+      "name": "Pose ton gun / On est encore là (Part II)",
+      "artist": "Suprême NTM",
+      "mbid": "edc85b33-daf9-4b33-9698-00eaceeaa443",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:that-s-my-people--supreme-ntm",
+      "type": "project",
+      "name": "That’s My People",
+      "artist": "Suprême NTM",
+      "mbid": "c75bb3bd-30bd-4180-8e46-10c4c0dd7bb8",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ma-benz--supreme-ntm",
+      "type": "project",
+      "name": "Ma Benz",
+      "artist": "Suprême NTM",
+      "mbid": "31b84322-2712-3e2b-9309-01428474a0e4",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:seine-saint-denis-style-laisse-pas-trainer-ton-fils--supreme-ntm",
+      "type": "project",
+      "name": "Seine Saint-Denis Style / Laisse Pas Trainer Ton Fils",
+      "artist": "Suprême NTM",
+      "mbid": "4578db59-2376-48e6-b924-84b4170e1294",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:supreme-ntm",
+      "type": "project",
+      "name": "Suprême NTM",
+      "mbid": "8935869b-8925-35a2-8f3c-2872cfb8f125",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:come-again-2-le-retour--supreme-ntm",
+      "type": "project",
+      "name": "Come Again 2 : Le Retour",
+      "artist": "Suprême NTM",
+      "mbid": "9a1bc2de-0ebb-4a15-a9f7-3667c8c826ee",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-fievre--supreme-ntm",
+      "type": "project",
+      "name": "La Fièvre",
+      "artist": "Suprême NTM",
+      "mbid": "0cbb5830-5389-300b-b17b-4113f8b443af",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:paris-sous-les-bombes--supreme-ntm",
+      "type": "project",
+      "name": "Paris sous les bombes",
+      "artist": "Suprême NTM",
+      "mbid": "3a99d115-ee73-39f6-adac-bae653792190",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tout-n-est-pas-si-facile--supreme-ntm",
+      "type": "project",
+      "name": "Tout n'est pas si facile",
+      "artist": "Suprême NTM",
+      "mbid": "c040c36c-ee79-3f56-91e6-55699947b83d",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:1993-j-appuie-sur-la-gachette--supreme-ntm",
+      "type": "project",
+      "name": "1993... J'appuie sur la gâchette",
+      "artist": "Suprême NTM",
+      "mbid": "b449b65e-c5f4-33cc-92da-493398dcaf6b",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:j-appuie-sur-la-gachette--supreme-ntm",
+      "type": "project",
+      "name": "J'appuie sur la gâchette...",
+      "artist": "Suprême NTM",
+      "mbid": "9c1bf5e1-ee83-46fa-bd17-db8a47480ef1",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:boogie-man--supreme-ntm",
+      "type": "project",
+      "name": "Boogie Man",
+      "artist": "Suprême NTM",
+      "mbid": "f9d71f85-1b48-3d84-8c85-220efbe2764a",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:authentik--supreme-ntm",
+      "type": "project",
+      "name": "Authentik",
+      "artist": "Suprême NTM",
+      "mbid": "019254fa-55aa-3c0e-bf8f-ad5ef48db747",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:le-monde-de-demain--supreme-ntm",
+      "type": "project",
+      "name": "Le Monde de demain",
+      "artist": "Suprême NTM",
+      "mbid": "c3de18ac-f1eb-48e0-a0b8-40176f553f6a",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:live-zenith-95--supreme-ntm",
+      "type": "project",
+      "name": "LIVE ZENITH 95",
+      "artist": "Suprême NTM",
+      "mbid": "32e8d27a-4511-44c2-a9f7-f66104b51737",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

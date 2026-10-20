@@ -74,6 +74,347 @@
   ],
   "discography": [
     {
+      "slug": "project:mullenium--gerry-mulligan",
+      "type": "project",
+      "name": "Mullenium",
+      "artist": "Gerry Mulligan",
+      "mbid": "a8d926e2-d92e-3a1d-a28a-d087cc3ca899",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-complete-gerry-mulligan-meets-ben-webster-sessions--gerry-mulligan",
+      "type": "project",
+      "name": "The Complete Gerry Mulligan Meets Ben Webster Sessions",
+      "artist": "Gerry Mulligan",
+      "mbid": "d636a92b-cfbf-3d01-8b91-ed7fd437b08e",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-gerry-mulligan-songbook--gerry-mulligan",
+      "type": "project",
+      "name": "The Gerry Mulligan Songbook",
+      "artist": "Gerry Mulligan",
+      "mbid": "57bcfd47-4c7a-3505-be0a-3742638f184f",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:walkin-shoes--gerry-mulligan",
+      "type": "project",
+      "name": "Walkin' Shoes",
+      "artist": "Gerry Mulligan",
+      "mbid": "4d825f7f-d467-431b-b12c-bb1742028e46",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gerry-mulligan-quartet-and-chubby-jackson-big-band--gerry-mulligan",
+      "type": "project",
+      "name": "Gerry Mulligan Quartet & Chubby Jackson Big Band",
+      "artist": "Gerry Mulligan",
+      "mbid": "f3ae459f-99cb-38c0-9124-337cf8618c42",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:paraiso--gerry-mulligan",
+      "type": "project",
+      "name": "Paraiso",
+      "artist": "Gerry Mulligan",
+      "mbid": "fb3da307-47dc-3c03-a3c8-91648d2d2f53",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:compact-jazz-gerry-mulligan--gerry-mulligan",
+      "type": "project",
+      "name": "Compact Jazz: Gerry Mulligan",
+      "artist": "Gerry Mulligan",
+      "mbid": "0ad815e3-1c39-3bb6-8211-9d800bf0be71",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:re-birth-of-the-cool--gerry-mulligan",
+      "type": "project",
+      "name": "Re-Birth of the Cool",
+      "artist": "Gerry Mulligan",
+      "mbid": "7488f53d-c835-3716-9aee-8502637ca95a",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:walk-on-the-water--gerry-mulligan",
+      "type": "project",
+      "name": "Walk on the Water",
+      "artist": "Gerry Mulligan",
+      "mbid": "ef004589-b2fe-3b82-8b94-753652e0a9a7",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gitanes-jazz-gerry-mulligan--gerry-mulligan",
+      "type": "project",
+      "name": "Gitanes Jazz: Gerry Mulligan",
+      "artist": "Gerry Mulligan",
+      "mbid": "987882c0-c05b-49ea-9292-0fe62b658d81",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:saxophone-dreams--gerry-mulligan",
+      "type": "project",
+      "name": "Saxophone Dreams",
+      "artist": "Gerry Mulligan",
+      "mbid": "6a0f1e4b-cf62-3cdc-b276-a2af34f19c27",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lonesome-boulevard--gerry-mulligan",
+      "type": "project",
+      "name": "Lonesome Boulevard",
+      "artist": "Gerry Mulligan",
+      "mbid": "9403891f-1fa2-40a3-9be1-9af66b97d5d3",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mulligan-plays-mulligan--gerry-mulligan",
+      "type": "project",
+      "name": "Mulligan Plays Mulligan",
+      "artist": "Gerry Mulligan",
+      "mbid": "932ca6bf-95e3-36ae-9c4d-bfdb38fa388f",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lionel-hampton-presents-gerry-mulligan--gerry-mulligan",
+      "type": "project",
+      "name": "Lionel Hampton Presents Gerry Mulligan",
+      "artist": "Gerry Mulligan",
+      "mbid": "3b9cd123-7cd8-4477-8e5c-d02d2e4cb8c8",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:1974--gerry-mulligan",
+      "type": "project",
+      "name": "1974",
+      "artist": "Gerry Mulligan",
+      "mbid": "80a7d129-149e-3d3d-a175-7c8744011444",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soft-lights-and-sweet-music--gerry-mulligan",
+      "type": "project",
+      "name": "Soft Lights and Sweet Music",
+      "artist": "Gerry Mulligan",
+      "mbid": "83a1713c-4339-3400-a940-839d559b9596",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mulligan--gerry-mulligan",
+      "type": "project",
+      "name": "Mulligan",
+      "artist": "Gerry Mulligan",
+      "mbid": "fefe87dc-cd6e-3c24-8760-c6900cf7dbc3",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mainstream-of-jazz--gerry-mulligan",
+      "type": "project",
+      "name": "Mainstream of Jazz",
+      "artist": "Gerry Mulligan",
+      "mbid": "84916ff1-f2d7-3ae9-a416-5c74e052bcad",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:little-big-horn--gerry-mulligan",
+      "type": "project",
+      "name": "Little Big Horn",
+      "artist": "Gerry Mulligan",
+      "mbid": "7833dd5f-c6d9-4c94-93ab-67d69ffafc7d",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gerry-mulligan-meets-johnny-hodges--gerry-mulligan",
+      "type": "project",
+      "name": "Gerry Mulligan Meets Johnny Hodges",
+      "artist": "Gerry Mulligan",
+      "mbid": "f937b505-332a-39e7-a525-92f370c8b439",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-minaccia-colonna-sonora-originale-del-film--gerry-mulligan",
+      "type": "project",
+      "name": "La minaccia (Colonna sonora originale del film)",
+      "artist": "Gerry Mulligan",
+      "mbid": "ccacaea8-1ef4-4862-9d56-4d379a32e346",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-arranger--gerry-mulligan",
+      "type": "project",
+      "name": "The Arranger",
+      "artist": "Gerry Mulligan",
+      "mbid": "ee40673d-2058-4bd3-b036-e54cd55081cb",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gerry-mulligan-meets-enrico-intra--gerry-mulligan",
+      "type": "project",
+      "name": "Gerry Mulligan Meets Enrico Intra",
+      "artist": "Gerry Mulligan",
+      "mbid": "f0904f8b-fd80-3592-8ca0-0214cddd62c4",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:summit-reunion-cumbre--gerry-mulligan",
+      "type": "project",
+      "name": "Summit (Reunión cumbre)",
+      "artist": "Gerry Mulligan",
+      "mbid": "1a284a4e-e9ec-3f95-83c2-b41f50f06fe5",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-age-of-steam--gerry-mulligan",
+      "type": "project",
+      "name": "The Age of Steam",
+      "artist": "Gerry Mulligan",
+      "mbid": "6412f04b-0cde-46c5-81e0-066e6b18cb57",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:feelin-good--gerry-mulligan",
+      "type": "project",
+      "name": "Feelin' Good",
+      "artist": "Gerry Mulligan",
+      "mbid": "d4001bf2-1674-4c10-a715-d039f9921ccb",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:if-you-can-t-beat-em-join-em--gerry-mulligan",
+      "type": "project",
+      "name": "If You Can't Beat 'Em, Join 'Em!",
+      "artist": "Gerry Mulligan",
+      "mbid": "7d6fa1f3-33c6-42c9-9c08-758107e1ab23",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:butterfly-with-hiccups--gerry-mulligan",
+      "type": "project",
+      "name": "Butterfly With Hiccups",
+      "artist": "Gerry Mulligan",
+      "mbid": "c4fb2770-4bd7-437b-a057-e7ae3c372929",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:63-the-concert-jazz-band--gerry-mulligan",
+      "type": "project",
+      "name": "'63: The Concert Jazz Band",
+      "artist": "Gerry Mulligan",
+      "mbid": "a48940d5-8884-32fb-9e27-d0d2acc331f2",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gerry-mulligan-and-annie-ross--gerry-mulligan",
+      "type": "project",
+      "name": "Gerry Mulligan and Annie Ross",
+      "artist": "Gerry Mulligan",
+      "mbid": "4889160b-4cd0-4984-8e56-4b95f245eb76",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jeru--gerry-mulligan",
+      "type": "project",
+      "name": "Jeru",
+      "artist": "Gerry Mulligan",
+      "mbid": "7ae18218-7b60-3477-9951-bbd37aa2bf31",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:night-lights",
+      "type": "project",
+      "name": "Night Lights",
+      "mbid": "5925a825-8e0e-3f35-a238-8f77db7229dd",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-concert-jazz-band--gerry-mulligan",
+      "type": "project",
+      "name": "The Concert Jazz Band",
+      "artist": "Gerry Mulligan",
+      "mbid": "9e5fa2bc-1f90-4651-8509-e1b6c2be899f",
+      "year": "1960",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gerry-mulligan-meets-ben-webster--gerry-mulligan",
+      "type": "project",
+      "name": "Gerry Mulligan Meets Ben Webster",
+      "artist": "Gerry Mulligan",
+      "mbid": "f54b28b8-d4ad-33da-a292-fb0d711e0327",
+      "year": "1959",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-profile-of-gerry-mulligan--gerry-mulligan",
+      "type": "project",
+      "name": "A Profile of Gerry Mulligan",
+      "artist": "Gerry Mulligan",
+      "mbid": "5cc92a3e-d30e-4814-a8c3-eb7e777633ee",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:reunion-with-chet-baker-and-the-gerry-mulligan-quartet--gerry-mulligan",
+      "type": "project",
+      "name": "Reunion With Chet Baker and the Gerry Mulligan Quartet",
+      "artist": "Gerry Mulligan",
+      "mbid": "8eb25e7b-4a48-3e1b-a92a-34e8b6833863",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-jazz-combo-from-i-want-to-live--gerry-mulligan",
+      "type": "project",
+      "name": "The Jazz Combo From \"I Want To Live!\"",
+      "artist": "Gerry Mulligan",
+      "mbid": "9d8cfad0-6257-4d4b-8863-0594cec14454",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:play-phil-sunkel-s-jazz-concerto-grosso--gerry-mulligan",
+      "type": "project",
+      "name": "Play Phil Sunkel's Jazz Concerto Grosso",
+      "artist": "Gerry Mulligan",
+      "mbid": "7f137cc8-2b10-4cb6-b612-a5f8d9437362",
+      "year": "1957",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:gerry-mulligan-quartet",
       "type": "project",
       "name": "Gerry Mulligan Quartet"
@@ -82,11 +423,6 @@
       "slug": "project:birth-of-the-cool",
       "type": "project",
       "name": "Birth of the Cool"
-    },
-    {
-      "slug": "project:night-lights",
-      "type": "project",
-      "name": "Night Lights"
     }
   ],
   "notable_tracks": [
