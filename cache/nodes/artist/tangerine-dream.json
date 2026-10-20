@@ -50,37 +50,316 @@
   ],
   "discography": [
     {
-      "slug": "project:phaedra--tangerine-dream",
+      "slug": "project:night-trains-and-cityscapes--tangerine-dream",
       "type": "project",
-      "name": "Phaedra"
+      "name": "Night Trains & Cityscapes",
+      "artist": "Tangerine Dream",
+      "mbid": "8b3f89d7-8103-4949-b135-f15f73db5e7c",
+      "year": "2026",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:rubycon--tangerine-dream",
+      "slug": "project:raum--tangerine-dream",
       "type": "project",
-      "name": "Rubycon"
+      "name": "Raum",
+      "artist": "Tangerine Dream",
+      "mbid": "064d4431-fe1d-4a79-a32a-f1ef15f1c137",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gta5-the-cinematographic-score--tangerine-dream",
+      "type": "project",
+      "name": "GTA5: The Cinematographic Score",
+      "artist": "Tangerine Dream",
+      "mbid": "e2e7b6c0-334f-407c-bf00-104e66b66bf8",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mona-da-vinci--tangerine-dream",
+      "type": "project",
+      "name": "Mona da Vinci",
+      "artist": "Tangerine Dream",
+      "mbid": "badfc2be-9a18-4ca0-863b-0d1d72750f4f",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-gate-of-saturn--tangerine-dream",
+      "type": "project",
+      "name": "The Gate of Saturn",
+      "artist": "Tangerine Dream",
+      "mbid": "79a26622-c53b-47ed-b154-aec70fc0d67b",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:what-a-blast-architecture-in-motion--tangerine-dream",
+      "type": "project",
+      "name": "What a Blast: Architecture in Motion",
+      "artist": "Tangerine Dream",
+      "mbid": "b6d7e942-a775-3081-a4b5-391ad2b001bb",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-hollywood-years-volume-2--tangerine-dream",
+      "type": "project",
+      "name": "The Hollywood Years, Volume 2",
+      "artist": "Tangerine Dream",
+      "mbid": "e33daaea-4a8e-3022-a889-22b98f990384",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:goblins-club--tangerine-dream",
+      "type": "project",
+      "name": "Goblins’ Club",
+      "artist": "Tangerine Dream",
+      "mbid": "51434c83-4021-317f-835d-d3a3cdc75f59",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tyranny-of-beauty--tangerine-dream",
+      "type": "project",
+      "name": "Tyranny of Beauty",
+      "artist": "Tangerine Dream",
+      "mbid": "d97bd0c9-3a74-3783-bfa7-5e4c2fe0bf4a",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:turn-of-the-tides--tangerine-dream",
+      "type": "project",
+      "name": "Turn of the Tides",
+      "artist": "Tangerine Dream",
+      "mbid": "8f23d6fb-01d6-3b65-98c0-16d74b57bc9c",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:quinoa--tangerine-dream",
+      "type": "project",
+      "name": "Quinoa",
+      "artist": "Tangerine Dream",
+      "mbid": "c8c8586f-064b-38de-9562-1ba4a16b48b2",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rockoon--tangerine-dream",
+      "type": "project",
+      "name": "Rockoon",
+      "artist": "Tangerine Dream",
+      "mbid": "b340c4ce-40c3-3d04-9056-c7b767e3bfc3",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:melrose--tangerine-dream",
+      "type": "project",
+      "name": "Melrose",
+      "artist": "Tangerine Dream",
+      "mbid": "7db8dfb2-c42d-3706-86cf-b76ad80b17b9",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lily-on-the-beach--tangerine-dream",
+      "type": "project",
+      "name": "Lily on the Beach",
+      "artist": "Tangerine Dream",
+      "mbid": "50824dfc-dd80-3954-a64f-84496b0f6eee",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:optical-race--tangerine-dream",
+      "type": "project",
+      "name": "Optical Race",
+      "artist": "Tangerine Dream",
+      "mbid": "1cf6c37c-93f3-33cf-8332-673b49ef739c",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tyger--tangerine-dream",
+      "type": "project",
+      "name": "Tyger",
+      "artist": "Tangerine Dream",
+      "mbid": "bcc0d1bd-68d8-3d71-a76e-8313f091002d",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:green-desert--tangerine-dream",
+      "type": "project",
+      "name": "Green Desert",
+      "artist": "Tangerine Dream",
+      "mbid": "698759a2-f716-3a83-8fca-6fb142d12d5e",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:legend-music-from-the-motion-picture-soundtrack--tangerine-dream",
+      "type": "project",
+      "name": "Legend: Music From the Motion Picture Soundtrack",
+      "artist": "Tangerine Dream",
+      "mbid": "6b684482-96dc-324a-a1d5-d78deb58f41e",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:underwater-sunlight--tangerine-dream",
+      "type": "project",
+      "name": "Underwater Sunlight",
+      "artist": "Tangerine Dream",
+      "mbid": "51ec4604-96ee-31f2-aa41-d8cd3f05cad8",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:le-parc--tangerine-dream",
+      "type": "project",
+      "name": "Le Parc",
+      "artist": "Tangerine Dream",
+      "mbid": "fe589698-78ef-37e4-95c3-ee2d331bc970",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hyperborea--tangerine-dream",
+      "type": "project",
+      "name": "Hyperborea",
+      "artist": "Tangerine Dream",
+      "mbid": "16dfb4c9-0ec2-3e36-bd6c-bf898a09db5f",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:white-eagle--tangerine-dream",
+      "type": "project",
+      "name": "White Eagle",
+      "artist": "Tangerine Dream",
+      "mbid": "c444c39e-c733-3000-9e12-9c37bd78cea1",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:exit--tangerine-dream",
+      "type": "project",
+      "name": "Exit",
+      "artist": "Tangerine Dream",
+      "mbid": "77dbe266-1be4-3908-b373-4a57213e0081",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:thief--tangerine-dream",
+      "type": "project",
+      "name": "Thief",
+      "artist": "Tangerine Dream",
+      "mbid": "747e52af-5d7d-3dcb-9e26-8b5b1b49c1c1",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tangram--tangerine-dream",
+      "type": "project",
+      "name": "Tangram",
+      "artist": "Tangerine Dream",
+      "mbid": "974e867f-42b0-3a0f-a13d-1b449f701031",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:force-majeure--tangerine-dream",
+      "type": "project",
+      "name": "Force Majeure",
+      "artist": "Tangerine Dream",
+      "mbid": "0dd53ff5-9b08-321c-b6c7-485e9fd0e25c",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cyclone--tangerine-dream",
+      "type": "project",
+      "name": "Cyclone",
+      "artist": "Tangerine Dream",
+      "mbid": "ab4de2f1-dfb9-3e6b-8e7b-c023a661f788",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sorcerer--tangerine-dream",
+      "type": "project",
+      "name": "Sorcerer",
+      "artist": "Tangerine Dream",
+      "mbid": "ef37d57f-b38f-3d01-917e-6f38e10ca575",
+      "year": "1977",
+      "releaseType": "album"
     },
     {
       "slug": "project:stratosfear--tangerine-dream",
       "type": "project",
-      "name": "Stratosfear"
+      "name": "Stratosfear",
+      "mbid": "542bb617-2848-33be-89bf-e8d3561f0fa4",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rubycon--tangerine-dream",
+      "type": "project",
+      "name": "Rubycon",
+      "mbid": "96c98370-1390-33ec-9bc6-ed15e16c3e25",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:phaedra--tangerine-dream",
+      "type": "project",
+      "name": "Phaedra",
+      "mbid": "866c88fa-a18b-3739-9814-2ad215e5e11a",
+      "year": "1974",
+      "releaseType": "album"
     },
     {
       "slug": "project:atem--tangerine-dream",
       "type": "project",
       "name": "Atem",
-      "artist": "Tangerine Dream"
-    },
-    {
-      "slug": "project:electronic-meditation--tangerine-dream",
-      "type": "project",
-      "name": "Electronic Meditation",
-      "artist": "Tangerine Dream"
+      "artist": "Tangerine Dream",
+      "mbid": "d6a077da-25fe-3ee0-8433-5d997cbc7247",
+      "year": "1973",
+      "releaseType": "album"
     },
     {
       "slug": "project:zeit--tangerine-dream",
       "type": "project",
       "name": "Zeit",
-      "artist": "Tangerine Dream"
+      "artist": "Tangerine Dream",
+      "mbid": "5347b60f-d4a7-3e2f-831a-d5b86d06f8da",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:alpha-centauri--tangerine-dream",
+      "type": "project",
+      "name": "Alpha Centauri",
+      "artist": "Tangerine Dream",
+      "mbid": "5ecd0499-49a8-3a13-970c-94cda36e523f",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:electronic-meditation--tangerine-dream",
+      "type": "project",
+      "name": "Electronic Meditation",
+      "artist": "Tangerine Dream",
+      "mbid": "a7305321-d4e8-3a81-be61-665dc3bb1dbf",
+      "year": "1970",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

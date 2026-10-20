@@ -52,14 +52,26 @@
   ],
   "discography": [
     {
-      "slug": "project:polyester",
+      "slug": "project:standards--lisa-carbon",
       "type": "project",
-      "name": "Polyester"
+      "name": "Standards",
+      "artist": "Lisa Carbon",
+      "mbid": "0927c813-aa54-3de7-9c21-0ec36f70f6b0",
+      "year": "2003",
+      "releaseType": "album"
     },
     {
       "slug": "project:trio-de-janeiro",
       "type": "project",
-      "name": "Trio De Janeiro"
+      "name": "Trio De Janeiro",
+      "mbid": "c0a49194-77da-3b75-aec2-8efacbec9800",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:polyester",
+      "type": "project",
+      "name": "Polyester"
     },
     {
       "slug": "project:polyester--lisa-carbon",

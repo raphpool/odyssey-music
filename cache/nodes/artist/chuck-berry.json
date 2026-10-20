@@ -44,14 +44,179 @@
   ],
   "discography": [
     {
+      "slug": "project:rockit",
+      "type": "project",
+      "name": "Rockit",
+      "mbid": "cb07761a-cbf3-307e-a9da-5252a10c8321",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bio--chuck-berry",
+      "type": "project",
+      "name": "Bio",
+      "artist": "Chuck Berry",
+      "mbid": "4247cefb-737f-4576-826d-8e5a30021714",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:san-francisco-dues--chuck-berry",
+      "type": "project",
+      "name": "San Francisco Dues",
+      "artist": "Chuck Berry",
+      "mbid": "e45a90bf-5ec2-4612-a028-21c752816de6",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:back-home--chuck-berry",
+      "type": "project",
+      "name": "Back Home",
+      "artist": "Chuck Berry",
+      "mbid": "c6bc8069-f2e5-4093-99bb-b5abc210ebe4",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:concerto-in-b-goode--chuck-berry",
+      "type": "project",
+      "name": "Concerto in “B Goode”",
+      "artist": "Chuck Berry",
+      "mbid": "a8b595a3-3127-36c4-9fad-bc52c1b99584",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-st-louie-to-frisco--chuck-berry",
+      "type": "project",
+      "name": "From St. Louie to Frisco",
+      "artist": "Chuck Berry",
+      "mbid": "161253d0-46f8-4e8c-bb38-3595e69c0fd1",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chuck-berry-in-memphis--chuck-berry",
+      "type": "project",
+      "name": "Chuck Berry in Memphis",
+      "artist": "Chuck Berry",
+      "mbid": "30ec35a1-93d8-4955-8846-83ebd5273c20",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chuck-berry-s-golden-hits--chuck-berry",
+      "type": "project",
+      "name": "Chuck Berry’s Golden Hits",
+      "artist": "Chuck Berry",
+      "mbid": "36140c41-c240-3bdd-85b0-44f0b7384aac",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chuck-berry-in-london--chuck-berry",
+      "type": "project",
+      "name": "Chuck Berry in London",
+      "artist": "Chuck Berry",
+      "mbid": "6461234b-fad7-4414-a906-8e81c057d384",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fresh-berry-s--chuck-berry",
+      "type": "project",
+      "name": "Fresh Berry’s",
+      "artist": "Chuck Berry",
+      "mbid": "a31a00f8-4ff3-49a6-9b52-aeaefab96664",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:st-louis-to-liverpool--chuck-berry",
+      "type": "project",
+      "name": "St. Louis to Liverpool",
+      "artist": "Chuck Berry",
+      "mbid": "12fe4954-04d0-3b95-b961-b0dbd3518ac6",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:two-great-guitars--chuck-berry",
+      "type": "project",
+      "name": "Two Great Guitars",
+      "artist": "Chuck Berry",
+      "mbid": "68e37d0a-da3a-4804-bc04-b1baca7607f7",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:new-juke-box-hits--chuck-berry",
+      "type": "project",
+      "name": "New Juke Box Hits",
+      "artist": "Chuck Berry",
+      "mbid": "dade40cf-4107-35b4-b1b2-a908909cfba8",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rockin-at-the-hops--chuck-berry",
+      "type": "project",
+      "name": "Rockin’ at the Hops",
+      "artist": "Chuck Berry",
+      "mbid": "21cf4a07-223b-34af-920b-a79c28a1f74e",
+      "year": "1960",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chuck-berry-is-on-top--chuck-berry",
+      "type": "project",
+      "name": "Chuck Berry Is on Top",
+      "artist": "Chuck Berry",
+      "mbid": "15a8abc8-5b8d-3152-83b0-f5d791fbfd79",
+      "year": "1959",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:johnny-b-goode-around-and-around--chuck-berry",
+      "type": "project",
+      "name": "Johnny B. Goode / Around and Around",
+      "artist": "Chuck Berry",
+      "mbid": "2bd14985-4be9-3e31-936f-70d71ea515fc",
+      "year": "1958",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-dozen-berrys--chuck-berry",
+      "type": "project",
+      "name": "One Dozen Berrys",
+      "artist": "Chuck Berry",
+      "mbid": "9fe02f36-1afd-34b5-bc01-752c614371b4",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:after-school-session--chuck-berry",
+      "type": "project",
+      "name": "After School Session",
+      "artist": "Chuck Berry",
+      "mbid": "5afd7290-cd77-3a52-afac-01043240db5a",
+      "year": "1957",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rock-and-roll-music-blue-feeling--chuck-berry",
+      "type": "project",
+      "name": "Rock & Roll Music / Blue Feeling",
+      "artist": "Chuck Berry",
+      "mbid": "e321c651-5f43-40c6-a508-55f4a39e32a8",
+      "year": "1957",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:the-london-chuck-berry-sessions",
       "type": "project",
       "name": "The London Chuck Berry Sessions"
-    },
-    {
-      "slug": "project:rockit",
-      "type": "project",
-      "name": "Rockit"
     },
     {
       "slug": "project:chuck",

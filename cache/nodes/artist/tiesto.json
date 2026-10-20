@@ -54,19 +54,276 @@
   ],
   "discography": [
     {
+      "slug": "project:beautiful-places--tiesto",
+      "type": "project",
+      "name": "Beautiful Places",
+      "artist": "Tiësto",
+      "mbid": "da02be2e-00bf-4a59-a9b9-d75e88d9d48e",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-lose-your-head--tiesto",
+      "type": "project",
+      "name": "Don't Lose Your Head",
+      "artist": "Tiësto",
+      "mbid": "53aed3e3-2533-4bef-9c38-c604ee22f67e",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:echo-sax-finale--tiesto",
+      "type": "project",
+      "name": "Echo Sax Finale",
+      "artist": "Tiësto",
+      "mbid": "26ec89f6-79e7-4d64-9d85-2c38f802097c",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-right--tiesto",
+      "type": "project",
+      "name": "All Right",
+      "artist": "Tiësto",
+      "mbid": "9007c1b7-5dd7-49a2-bf8f-3018a5166199",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bring-me-to-life--tiesto",
+      "type": "project",
+      "name": "Bring Me to Life",
+      "artist": "Tiësto",
+      "mbid": "80b963f2-0f7a-4614-b6e3-39dd58a910e9",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cool-n-calm-ep--tiesto",
+      "type": "project",
+      "name": "Cool 'n Calm EP",
+      "artist": "Tiësto",
+      "mbid": "f46988da-4805-4504-97d7-70f5e3edab17",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:everlight--tiesto",
+      "type": "project",
+      "name": "Everlight",
+      "artist": "Tiësto",
+      "mbid": "7b7ef234-2e53-49a9-a664-628f1082c7cb",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:flex--tiesto",
+      "type": "project",
+      "name": "Flex",
+      "artist": "Tiësto",
+      "mbid": "de6975b7-adaa-479f-9474-93dcd95e28db",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-follow-rivers--tiesto",
+      "type": "project",
+      "name": "I Follow Rivers",
+      "artist": "Tiësto",
+      "mbid": "e2d2b6a4-1be2-4d3f-a0fb-bc8804a217eb",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:omg-from-f1-the-movie--tiesto",
+      "type": "project",
+      "name": "OMG! (From F1® The Movie)",
+      "artist": "Tiësto",
+      "mbid": "2c80b37c-bd6e-4ac4-97b3-060ded735a59",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:prismatic-pack-one--tiesto",
+      "type": "project",
+      "name": "Prismatic: Pack One",
+      "artist": "Tiësto",
+      "mbid": "ed609104-b676-465e-9181-81d55f5324c6",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:rvn-raven--tiesto",
+      "type": "project",
+      "name": "RVN (Raven)",
+      "artist": "Tiësto",
+      "mbid": "995eaeb4-dd74-430f-b033-5bb3df3001c6",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shadows--tiesto",
+      "type": "project",
+      "name": "Shadows",
+      "artist": "Tiësto",
+      "mbid": "c7284ad2-5be2-4ab2-ad96-e39290adc4de",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:drive",
+      "type": "project",
+      "name": "Drive",
+      "mbid": "ac2097a2-437d-4e36-9443-992a1b1dcf3b",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hot-in-it--tiesto",
+      "type": "project",
+      "name": "Hot in It",
+      "artist": "Tiësto",
+      "mbid": "0a873569-cdc2-4790-85d5-21b7e598c7e2",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-be-shy--tiesto",
+      "type": "project",
+      "name": "Don’t Be Shy",
+      "artist": "Tiësto",
+      "mbid": "c9acb09b-f776-4805-8e6c-e4a80c13137e",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-motto--tiesto",
+      "type": "project",
+      "name": "The Motto",
+      "artist": "Tiësto",
+      "mbid": "c14c531e-1dbb-422e-85fc-c56143ba30af",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:summer-nights--tiesto",
+      "type": "project",
+      "name": "Summer Nights",
+      "artist": "Tiësto",
+      "mbid": "b61e6c71-4909-4ce5-81af-e7bf947289ac",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kaleidoscope--tiesto",
+      "type": "project",
+      "name": "Kaleidoscope",
+      "artist": "Tiësto",
+      "mbid": "1e75a02e-7fc4-4bae-aa6a-cc865e578c6e",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:louder-than-boom--tiesto",
+      "type": "project",
+      "name": "Louder Than Boom",
+      "artist": "Tiësto",
+      "mbid": "3a33a438-dcde-4518-b96f-e0be290affba",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:break-my-fall--tiesto",
+      "type": "project",
+      "name": "Break My Fall",
+      "artist": "Tiësto",
+      "mbid": "000f4fef-c3c3-31b8-8bc2-69b302e8d407",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:elements-of-life--tiesto",
+      "type": "project",
+      "name": "Elements of Life",
+      "artist": "Tiësto",
+      "mbid": "fc6fd3c8-ba1a-383c-879a-16f1d067ce9a",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:just-be--tiesto",
+      "type": "project",
+      "name": "Just Be",
+      "artist": "Tiësto",
+      "mbid": "71291477-8764-4c4d-9963-709d4a009313",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-comes-again--tiesto",
+      "type": "project",
+      "name": "Love Comes Again",
+      "artist": "Tiësto",
+      "mbid": "f68f69e3-4843-3249-a8fd-ec0783c282a8",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:in-my-memory--tiesto",
+      "type": "project",
+      "name": "In My Memory",
+      "artist": "Tiësto",
+      "mbid": "8e3f9a94-7ccf-3091-98ab-e7d84181ccf8",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-search-of-sunrise",
+      "type": "project",
+      "name": "In Search of Sunrise",
+      "mbid": "67e44163-b714-3a2e-973a-1d997acd08b0",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sparkles--tiesto",
+      "type": "project",
+      "name": "Sparkles",
+      "artist": "Tiësto",
+      "mbid": "7c68052e-4e55-348c-81cf-630ab522d589",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:theme-from-norefjell--tiesto",
+      "type": "project",
+      "name": "Theme From Norefjell",
+      "artist": "Tiësto",
+      "mbid": "592ba10f-bceb-3bca-bee8-7a4e4300ef98",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-tube--tiesto",
+      "type": "project",
+      "name": "The Tube",
+      "artist": "Tiësto",
+      "mbid": "dc8d1b36-3905-3d3f-97c3-2a09588c8671",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:magik",
       "type": "project",
       "name": "Magik"
     },
     {
-      "slug": "project:in-search-of-sunrise",
+      "slug": "project:rinktine--tiesto",
       "type": "project",
-      "name": "In Search of Sunrise"
-    },
-    {
-      "slug": "project:drive",
-      "type": "project",
-      "name": "Drive"
+      "name": "Rinktine",
+      "artist": "Tiësto",
+      "mbid": "d9d57566-a7e6-3a91-901b-da7f330ccdc8",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

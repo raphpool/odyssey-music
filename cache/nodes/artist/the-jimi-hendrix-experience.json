@@ -48,19 +48,199 @@
   "labels": [],
   "discography": [
     {
-      "slug": "project:are-you-experienced--the-jimi-hendrix-experience",
+      "slug": "project:come-on-let-the-good-times-roll--the-jimi-hendrix-experience",
       "type": "project",
-      "name": "Are You Experienced"
+      "name": "Come On (Let the Good Times Roll)",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "2e2a383f-7746-49b5-8690-375fd3d5939d",
+      "year": "2012",
+      "releaseType": "single"
     },
     {
-      "slug": "project:axis-bold-as-love--the-jimi-hendrix-experience",
+      "slug": "project:fire--the-jimi-hendrix-experience",
       "type": "project",
-      "name": "Axis: Bold as Love"
+      "name": "Fire",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "af11ce24-6864-4f3d-9d2d-6fc42f2c3065",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:like-a-rolling-stone--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Like a Rolling Stone",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "8d901504-7ebc-44a6-bbd8-78f71f97b198",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:original-soundtrack-to-the-motion-picture-experience--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Original Soundtrack to the Motion Picture “Experience”",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "8c36bc79-6db8-402b-87ca-065764098f35",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:day-tripper--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Day Tripper",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "6161ec62-7d06-36f4-9d5e-b3976e261b0d",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:experience--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Experience",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "862f7693-1f8c-4d71-bf21-e8b31d79a487",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:angel--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Angel",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "6e8e2a4d-d0c4-450c-bdd3-866219fd6fdb",
+      "year": "1971",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:voodoo-chile--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Voodoo Chile",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "cbab0d4b-0d54-41cf-a9ab-af6ffb4745e9",
+      "year": "1970",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-along-the-watchtower--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "All Along the Watchtower",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "70517b92-0975-3fd1-8ec4-6a806c85c2bc",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:crosstown-traffic--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Crosstown Traffic",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "3c08d89b-1ed3-461d-baf8-c3cfb409dd25",
+      "year": "1968",
+      "releaseType": "single"
     },
     {
       "slug": "project:electric-ladyland--the-jimi-hendrix-experience",
       "type": "project",
-      "name": "Electric Ladyland"
+      "name": "Electric Ladyland",
+      "mbid": "47ba2d59-5544-34a4-b108-dc08c0956298",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:purple-haze-foxy-lady--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Purple Haze / Foxy Lady",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "d7107fd7-8e5b-4a8c-8396-f7e29078237e",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:up-from-the-skies-one-rainy-wish--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Up From the Skies / One Rainy Wish",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "1c57a278-c4d3-46e8-9dad-d23747102dec",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:are-you-experienced--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Are You Experienced",
+      "mbid": "da40e720-2097-3730-8a7f-0c2ddbff4a96",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:axis-bold-as-love--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Axis: Bold as Love",
+      "mbid": "d0b1e21e-cef6-4575-8d92-1afea1894ca3",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:burning-of-the-midnight-lamp--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Burning of the Midnight Lamp",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "40e78e60-4481-46b0-bfa6-61a529bea0b3",
+      "year": "1967",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:foxy-lady-bold-as-love--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Foxy Lady / Bold as Love",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "8b86cea0-b44b-4126-8d14-f9dd392e151f",
+      "year": "1967",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:foxy-lady-manic-depression--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Foxy Lady / Manic Depression",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "496ef672-7d55-4076-b1bc-6639225da1a9",
+      "year": "1967",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hey-joe-51st-anniversary--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Hey Joe / 51st Anniversary",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "fd2dd456-4cf4-4f77-b901-9859ed34c124",
+      "year": "1967",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:purple-haze-51st-anniversary--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Purple Haze / 51st Anniversary",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "43f3a0bf-381d-3084-aefc-b18d641c3e9e",
+      "year": "1967",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-wind-cries-mary--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "The Wind Cries Mary",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "92653515-296b-4558-b20e-306becebd99d",
+      "year": "1967",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hey-joe-stone-free--the-jimi-hendrix-experience",
+      "type": "project",
+      "name": "Hey Joe / Stone Free",
+      "artist": "The Jimi Hendrix Experience",
+      "mbid": "d8e536c5-2e40-3980-ac87-ea57bb6be96c",
+      "year": "1966",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

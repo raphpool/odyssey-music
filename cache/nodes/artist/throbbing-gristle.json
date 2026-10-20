@@ -47,7 +47,296 @@
       "name": "Industrial Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:scabs-and-saws--throbbing-gristle",
+      "type": "project",
+      "name": "Scabs & Saws",
+      "artist": "Throbbing Gristle",
+      "mbid": "745ed6ad-b1a9-461c-b61c-510ecb050bc0",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tg-berlin--throbbing-gristle",
+      "type": "project",
+      "name": "TG Berlin",
+      "artist": "Throbbing Gristle",
+      "mbid": "b1fb427d-7d84-4251-ba1c-9041ecb825ae",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-last-tg-single--throbbing-gristle",
+      "type": "project",
+      "name": "The Last TG Single",
+      "artist": "Throbbing Gristle",
+      "mbid": "d21f2743-5107-4b51-98cc-97339612ae9a",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wotwududo-trumpet-herald--throbbing-gristle",
+      "type": "project",
+      "name": "Wotwududo / Trumpet Herald",
+      "artist": "Throbbing Gristle",
+      "mbid": "5b679f2f-f9f5-4113-8d29-619ba1ab2ffe",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:thirty-second-annual-report--throbbing-gristle",
+      "type": "project",
+      "name": "Thirty-Second Annual Report",
+      "artist": "Throbbing Gristle",
+      "mbid": "9b8ce50a-1a60-4512-841a-aac6a7d2bc60",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-third-mind-movements--throbbing-gristle",
+      "type": "project",
+      "name": "The Third Mind Movements",
+      "artist": "Throbbing Gristle",
+      "mbid": "7bf36f9a-f4b6-37dd-9c74-831bb8461fc7",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:part-two-the-endless-not--throbbing-gristle",
+      "type": "project",
+      "name": "Part Two: The Endless Not",
+      "artist": "Throbbing Gristle",
+      "mbid": "cde7cc74-d495-3ff5-a916-91c329a7c00b",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:untitled--throbbing-gristle",
+      "type": "project",
+      "name": "[untitled]",
+      "artist": "Throbbing Gristle",
+      "mbid": "90d2c40b-50d2-4d31-b2c0-16393ad88222",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tg-now--throbbing-gristle",
+      "type": "project",
+      "name": "TG Now",
+      "artist": "Throbbing Gristle",
+      "mbid": "c9041e82-d2f5-31d3-ad9e-4aae8267fb9b",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kreeme-horn--throbbing-gristle",
+      "type": "project",
+      "name": "Kreeme Horn",
+      "artist": "Throbbing Gristle",
+      "mbid": "6b418985-47de-30a4-913b-0abaec394437",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:giftgas--throbbing-gristle",
+      "type": "project",
+      "name": "Giftgas",
+      "artist": "Throbbing Gristle",
+      "mbid": "ea513f18-184e-335f-a95b-23af5af74672",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:funk-beyond-jazz--throbbing-gristle",
+      "type": "project",
+      "name": "Funk Beyond Jazz",
+      "artist": "Throbbing Gristle",
+      "mbid": "ea0bc75d-00e9-4f25-98d9-1b3cd30da04a",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:grief--throbbing-gristle",
+      "type": "project",
+      "name": "Grief",
+      "artist": "Throbbing Gristle",
+      "mbid": "5e8f01b2-d483-3e5a-8840-69f942b094ea",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-first-annual-report-of-throbbing-gristle--throbbing-gristle",
+      "type": "project",
+      "name": "The First Annual Report of Throbbing Gristle",
+      "artist": "Throbbing Gristle",
+      "mbid": "91c84632-7b21-3a6c-b312-8bd6c995b1f9",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cd1--throbbing-gristle",
+      "type": "project",
+      "name": "CD1",
+      "artist": "Throbbing Gristle",
+      "mbid": "6878c003-846f-3310-a2c1-7d93e7ef5cbf",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-the-shadow-of-the-sun--throbbing-gristle",
+      "type": "project",
+      "name": "In the Shadow of the Sun",
+      "artist": "Throbbing Gristle",
+      "mbid": "b8924725-ac01-3031-a7d0-2e22df6fdaae",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:journey-through-a-body--throbbing-gristle",
+      "type": "project",
+      "name": "Journey Through a Body",
+      "artist": "Throbbing Gristle",
+      "mbid": "0b1b6487-a116-3970-9e90-6c71844e5e03",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:2nd-annual-report--throbbing-gristle",
+      "type": "project",
+      "name": "2nd Annual Report",
+      "artist": "Throbbing Gristle",
+      "mbid": "3ec05c58-e4be-4aec-a9f7-b976087623c4",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:discipline--throbbing-gristle",
+      "type": "project",
+      "name": "Discipline",
+      "artist": "Throbbing Gristle",
+      "mbid": "1552dfb5-2d95-3d27-97ff-62d79bc6ee46",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fuhrer-der-menschheit--throbbing-gristle",
+      "type": "project",
+      "name": "Führer Der Menschheit",
+      "artist": "Throbbing Gristle",
+      "mbid": "01cc940e-6a6a-4759-a60d-ca48e3f63f88",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:adrenaline-distant-dreams-part-two--throbbing-gristle",
+      "type": "project",
+      "name": "Adrenaline / Distant Dreams, Part Two",
+      "artist": "Throbbing Gristle",
+      "mbid": "f2f673aa-6f5c-40b4-a723-86203eea99f3",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:assume-power-focus--throbbing-gristle",
+      "type": "project",
+      "name": "Assume Power Focus",
+      "artist": "Throbbing Gristle",
+      "mbid": "92e9246c-a754-3783-8f2b-6491f2260582",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:heathen-earth-the-live-sound-of-tg--throbbing-gristle",
+      "type": "project",
+      "name": "Heathen Earth: The Live Sound of TG",
+      "artist": "Throbbing Gristle",
+      "mbid": "9ab97855-ccda-3ca4-b216-416ca5542bb9",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:subhuman-something-came-over-me--throbbing-gristle",
+      "type": "project",
+      "name": "Subhuman / Something Came Over Me",
+      "artist": "Throbbing Gristle",
+      "mbid": "7a9dd0b0-571d-41f5-9945-b89c165addf4",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:20-jazz-funk-greats--throbbing-gristle",
+      "type": "project",
+      "name": "20 Jazz Funk Greats",
+      "artist": "Throbbing Gristle",
+      "mbid": "4f1038db-a822-3111-8b3e-0a13beaa027e",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pastimes-industrial-muzac--throbbing-gristle",
+      "type": "project",
+      "name": "Pastimes / Industrial Muzac",
+      "artist": "Throbbing Gristle",
+      "mbid": "88f037a9-149a-462e-ba26-852ebb328810",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:we-hate-you-little-girls-five-knuckle-shuffle--throbbing-gristle",
+      "type": "project",
+      "name": "We Hate You (Little Girls) / Five Knuckle Shuffle",
+      "artist": "Throbbing Gristle",
+      "mbid": "54eea42b-d02d-4b91-b07d-0a9905a637e1",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:d-o-a-the-third-and-final-report--throbbing-gristle",
+      "type": "project",
+      "name": "D.o.A. The Third and Final Report",
+      "artist": "Throbbing Gristle",
+      "mbid": "a1b3bae2-0081-3266-a349-1297f50a3c78",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:united-zyklon-b-zombie--throbbing-gristle",
+      "type": "project",
+      "name": "United / Zyklon B Zombie",
+      "artist": "Throbbing Gristle",
+      "mbid": "45716451-ef91-4b8c-9a02-daaa20a5cb54",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-second-annual-report--throbbing-gristle",
+      "type": "project",
+      "name": "The Second Annual Report",
+      "artist": "Throbbing Gristle",
+      "mbid": "8fa02d3d-b367-3981-84a7-59be346659e6",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:best-of-volume-i--throbbing-gristle",
+      "type": "project",
+      "name": "Best Of.... Volume I",
+      "artist": "Throbbing Gristle",
+      "mbid": "0ba8df45-cc11-44ed-8532-ff3123f1f80d",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:best-of-volume-ii--throbbing-gristle",
+      "type": "project",
+      "name": "Best Of…. Volume II",
+      "artist": "Throbbing Gristle",
+      "mbid": "24f09f6f-fd54-4823-be42-ecc1adec5a63",
+      "year": "1976",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:united",

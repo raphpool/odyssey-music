@@ -61,19 +61,307 @@
   ],
   "discography": [
     {
-      "slug": "project:vulvaland",
+      "slug": "project:herzog-sessions--mouse-on-mars",
       "type": "project",
-      "name": "Vulvaland"
+      "name": "Herzog Sessions",
+      "artist": "Mouse on Mars",
+      "mbid": "5864c917-a5bc-478a-801f-dd4bc19b5878",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:3d-ls--mouse-on-mars",
+      "type": "project",
+      "name": "3D-LS",
+      "artist": "Mouse on Mars",
+      "mbid": "8ac91ff3-a2ff-41e4-b684-60f8c76555fa",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:bilk--mouse-on-mars",
+      "type": "project",
+      "name": "Bilk",
+      "artist": "Mouse on Mars",
+      "mbid": "2774556f-a97b-4232-b9b8-579be636f09a",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:spatial-jitter--mouse-on-mars",
+      "type": "project",
+      "name": "Spatial Jitter",
+      "artist": "Mouse on Mars",
+      "mbid": "83ba417b-2bc9-425a-adeb-6bb8b5a9a2eb",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aai--mouse-on-mars",
+      "type": "project",
+      "name": "AAI",
+      "artist": "Mouse on Mars",
+      "mbid": "edbb16da-5744-413a-bfa4-9689b58d3003",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dimensional-people--mouse-on-mars",
+      "type": "project",
+      "name": "Dimensional People",
+      "artist": "Mouse on Mars",
+      "mbid": "c7a67539-3a97-410e-9903-88e0fcce75de",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:synaptics--mouse-on-mars",
+      "type": "project",
+      "name": "Synaptics",
+      "artist": "Mouse on Mars",
+      "mbid": "ea924eb2-8704-49ce-9a3e-af9ec641c3b5",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:lichter--mouse-on-mars",
+      "type": "project",
+      "name": "Lichter",
+      "artist": "Mouse on Mars",
+      "mbid": "6b51f8b3-668d-4add-a14e-e776e8305dd7",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spezmodia--mouse-on-mars",
+      "type": "project",
+      "name": "Spezmodia",
+      "artist": "Mouse on Mars",
+      "mbid": "578e7eba-9f7d-4309-8f6c-bd62474cfb44",
+      "year": "2014",
+      "releaseType": "ep"
     },
     {
       "slug": "project:parastrophics--mouse-on-mars",
       "type": "project",
-      "name": "Parastrophics"
+      "name": "Parastrophics",
+      "mbid": "284374fb-ac15-4ec0-b556-7cec96b31229",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:they-know-your-name--mouse-on-mars",
+      "type": "project",
+      "name": "They Know Your Name",
+      "artist": "Mouse on Mars",
+      "mbid": "5ff2e5f1-86b1-4957-b8ae-6997e58d489a",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wow--mouse-on-mars",
+      "type": "project",
+      "name": "WOW",
+      "artist": "Mouse on Mars",
+      "mbid": "e220028d-0f67-4d33-9e37-eeb8ab1b93f6",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:die-abschaffung-der-arten--mouse-on-mars",
+      "type": "project",
+      "name": "Die Abschaffung Der Arten",
+      "artist": "Mouse on Mars",
+      "mbid": "7333feee-09d0-417c-a8d2-39b1e55eaaa1",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:varcharz--mouse-on-mars",
+      "type": "project",
+      "name": "Varcharz",
+      "artist": "Mouse on Mars",
+      "mbid": "9635e3da-1985-3d05-90dd-a4d84a00ac26",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:9-sound-models-of-37-imaginative-mappings--mouse-on-mars",
+      "type": "project",
+      "name": "9 Sound Models of 37 Imaginative Mappings",
+      "artist": "Mouse on Mars",
+      "mbid": "8b0a7a71-e52a-4603-a55a-5c87b3200190",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:radical-connector--mouse-on-mars",
+      "type": "project",
+      "name": "Radical Connector",
+      "artist": "Mouse on Mars",
+      "mbid": "a5398b47-e428-38ba-9215-44536d4e8f2e",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wipe-that-sound--mouse-on-mars",
+      "type": "project",
+      "name": "Wipe That Sound",
+      "artist": "Mouse on Mars",
+      "mbid": "75493aa6-9778-31af-9bd6-782e66af4ddf",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:actionist-respoke--mouse-on-mars",
+      "type": "project",
+      "name": "Actionist Respoke",
+      "artist": "Mouse on Mars",
+      "mbid": "21a67a59-6e26-378d-8d9b-8ce557206f04",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:agit-itter-it-it--mouse-on-mars",
+      "type": "project",
+      "name": "Agit Itter It It",
+      "artist": "Mouse on Mars",
+      "mbid": "55949a6c-40ed-37e4-9673-15f20fec02ce",
+      "year": "2001",
+      "releaseType": "ep"
     },
     {
       "slug": "project:idiology",
       "type": "project",
-      "name": "Idiology"
+      "name": "Idiology",
+      "mbid": "cf5444c6-9b66-315e-9e68-2c634ededb89",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:diskdusk--mouse-on-mars",
+      "type": "project",
+      "name": "Diskdusk",
+      "artist": "Mouse on Mars",
+      "mbid": "13652e77-cedd-3832-aeb9-96249f0a4c03",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:distroia--mouse-on-mars",
+      "type": "project",
+      "name": "Distroia",
+      "artist": "Mouse on Mars",
+      "mbid": "389047da-3570-3ecc-92e0-3701bb79fb2c",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:niun-niggung--mouse-on-mars",
+      "type": "project",
+      "name": "Niun Niggung",
+      "artist": "Mouse on Mars",
+      "mbid": "96b033e7-c172-3bbc-ae3e-15ff1b35a96e",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pickly-dred-rhizzoms--mouse-on-mars",
+      "type": "project",
+      "name": "Pickly Dred Rhizzoms",
+      "artist": "Mouse on Mars",
+      "mbid": "cdd9efdf-f5e9-34a9-9666-7dc56069dc22",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:glam--mouse-on-mars",
+      "type": "project",
+      "name": "Glam",
+      "artist": "Mouse on Mars",
+      "mbid": "898bbae1-99d2-38ce-aa9a-3ce64bb70271",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:autoditacker--mouse-on-mars",
+      "type": "project",
+      "name": "Autoditacker",
+      "artist": "Mouse on Mars",
+      "mbid": "d42276e2-333d-3db5-bbc7-2c27f5f5a6e9",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cache-coeur-naif--mouse-on-mars",
+      "type": "project",
+      "name": "Cache cœur naïf",
+      "artist": "Mouse on Mars",
+      "mbid": "4ca115c4-358d-3d72-86cd-45c86481c3dd",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:instrumentals--mouse-on-mars",
+      "type": "project",
+      "name": "Instrumentals",
+      "artist": "Mouse on Mars",
+      "mbid": "536e62e4-fb4a-3b99-9115-0f5bca12f9ec",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:twift--mouse-on-mars",
+      "type": "project",
+      "name": "Twift",
+      "artist": "Mouse on Mars",
+      "mbid": "0713a27f-4f18-3e33-a5cf-74a6345e32df",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bib--mouse-on-mars",
+      "type": "project",
+      "name": "Bib",
+      "artist": "Mouse on Mars",
+      "mbid": "303bb6a0-ed55-34cb-81ca-3de724d5bc92",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:iaora-tahiti--mouse-on-mars",
+      "type": "project",
+      "name": "Iaora Tahiti",
+      "artist": "Mouse on Mars",
+      "mbid": "bf0b37f8-5cd2-3cb3-ac96-36f35f60f91c",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:saturday-night-worldcup-fieber--mouse-on-mars",
+      "type": "project",
+      "name": "Saturday Night Worldcup Fieber",
+      "artist": "Mouse on Mars",
+      "mbid": "2f8842ce-940c-3448-9933-d59e58c51425",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:frosch--mouse-on-mars",
+      "type": "project",
+      "name": "Frosch",
+      "artist": "Mouse on Mars",
+      "mbid": "1217eac6-dcb4-3655-a295-a46aa6d7f231",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vulvaland",
+      "type": "project",
+      "name": "Vulvaland",
+      "mbid": "9ca304cc-c55b-3705-8f19-ef4252a57403",
+      "year": "1994",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

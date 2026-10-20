@@ -6,8 +6,8 @@ import Track1Core
 /// subgenre chips) shows below it when expanded. The card keeps no state and animates nothing itself: the
 /// screen owns `isExpanded` and wraps `onToggle` in `withAnimation(Track1Motion.spring(reduceMotion:))`.
 struct GenreAccordionCard<Content: View>: View {
-	/// `genre-card-<key>`, the family key: the card does not know its key, the screen sets this on it and the
-	/// header button carries it.
+	/// `genre-card-<key>`, the family key: the card does not know its key, the screen passes this to `init` and
+	/// the header button carries it.
 	static func identifier(for family: String) -> String {
 		"genre-card-\(family)"
 	}
@@ -34,18 +34,20 @@ struct GenreAccordionCard<Content: View>: View {
 	private let subgenreCount: Int
 	private let selectedCount: Int
 	private let isExpanded: Bool
+	private let identifier: String
 	private let onToggle: () -> Void
 	private let content: Content
 	@State private var taps = 0
 
 	init(
-		title: String, subgenreCount: Int, selectedCount: Int, isExpanded: Bool, onToggle: @escaping () -> Void,
-		@ViewBuilder content: () -> Content
+		title: String, subgenreCount: Int, selectedCount: Int, isExpanded: Bool, identifier: String,
+		onToggle: @escaping () -> Void, @ViewBuilder content: () -> Content
 	) {
 		self.title = title
 		self.subgenreCount = subgenreCount
 		self.selectedCount = selectedCount
 		self.isExpanded = isExpanded
+		self.identifier = identifier
 		self.onToggle = onToggle
 		self.content = content()
 	}
@@ -101,6 +103,9 @@ struct GenreAccordionCard<Content: View>: View {
 		.sensoryFeedback(.selection, trigger: taps)
 		.accessibilityLabel(Text(verbatim: spokenLabel))
 		.accessibilityValue(isExpanded ? "déplié" : "replié")
+		// 2026-10-20 (TRA-639): on the button, not on the card. Set on the card, SwiftUI hands the identifier
+		// down to every element inside it, the open card's chips included, which then lose their own.
+		.accessibilityIdentifier(identifier)
 	}
 }
 

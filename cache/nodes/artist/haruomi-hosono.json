@@ -88,19 +88,304 @@
   ],
   "discography": [
     {
+      "slug": "project:yours-sincerely--haruomi-hosono",
+      "type": "project",
+      "name": "Yours Sincerely",
+      "artist": "Haruomi Hosono",
+      "mbid": "bd0bc887-4e29-4559-a607-d5d245ab328e",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:boku-wa-chotto--haruomi-hosono",
+      "type": "project",
+      "name": "Boku Wa Chotto",
+      "artist": "Haruomi Hosono",
+      "mbid": "5365b798-cfe2-4556-be6a-2d257ef2f6d9",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:turquois--haruomi-hosono",
+      "type": "project",
+      "name": "Turquois",
+      "artist": "Haruomi Hosono",
+      "mbid": "01fd1645-379e-4782-9fe3-de7712382d10",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:undercurrent--haruomi-hosono",
+      "type": "project",
+      "name": "Undercurrent",
+      "artist": "Haruomi Hosono",
+      "mbid": "7453cdbd-67a4-4cfb-b19e-3518b7f9dd3f",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:watering-a-flower--haruomi-hosono",
+      "type": "project",
+      "name": "Watering a Flower",
+      "artist": "Haruomi Hosono",
+      "mbid": "fb8f52df-b7fe-450a-a913-f07bc1b39605",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hochono-house--haruomi-hosono",
+      "type": "project",
+      "name": "Hochono House",
+      "artist": "Haruomi Hosono",
+      "mbid": "c0fa517f-030b-4ec6-9759-196fcdb88e7e",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:manbiki-kazoku-shoplifters--haruomi-hosono",
+      "type": "project",
+      "name": "Manbiki Kazoku (Shoplifters)",
+      "artist": "Haruomi Hosono",
+      "mbid": "4760dfd6-c2f4-4b06-b7a7-b7459ff0c0ec",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vu-ja-de--haruomi-hosono",
+      "type": "project",
+      "name": "Vu Jà Dé",
+      "artist": "Haruomi Hosono",
+      "mbid": "f479f35e-2bea-4c83-8666-e1298a40856b",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mohican--haruomi-hosono",
+      "type": "project",
+      "name": "MOHICAN",
+      "artist": "Haruomi Hosono",
+      "mbid": "43cbbd4b-5b02-47cf-a22c-08bbf8a9bebf",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heavenly-music--haruomi-hosono",
+      "type": "project",
+      "name": "Heavenly Music",
+      "artist": "Haruomi Hosono",
+      "mbid": "97c6ef4a-75b0-44fb-acfd-9025d02948a4",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hosonova--haruomi-hosono",
+      "type": "project",
+      "name": "HoSoNoVa",
+      "artist": "Haruomi Hosono",
+      "mbid": "eb7bd10f-0220-41d0-9be3-e9b4cfb75294",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gou-gou-datte-neko-de-aru--haruomi-hosono",
+      "type": "project",
+      "name": "Gou-Gou Datte Neko de Aru",
+      "artist": "Haruomi Hosono",
+      "mbid": "0f26ab17-71b6-4e0f-bb06-0cc085d454bf",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:flying-saucer-1947--haruomi-hosono",
+      "type": "project",
+      "name": "Flying Saucer 1947",
+      "artist": "Haruomi Hosono",
+      "mbid": "957ea673-d63d-4dea-8083-5e4c4ebf37c2",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:haruomi-hosono-presents-making-of-non-standard-music--haruomi-hosono",
+      "type": "project",
+      "name": "Haruomi Hosono Presents Making of Non-Standard Music",
+      "artist": "Haruomi Hosono",
+      "mbid": "bea77774-aa73-40a9-8ea2-f1351fcb32fb",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:lattice-200ec7--haruomi-hosono",
+      "type": "project",
+      "name": "LATTICE 200EC7",
+      "artist": "Haruomi Hosono",
+      "mbid": "3ee515e2-d05d-4efb-9b5f-095afc0a77d3",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:interpieces-organization--haruomi-hosono",
+      "type": "project",
+      "name": "Interpieces Organization",
+      "artist": "Haruomi Hosono",
+      "mbid": "849b8163-da3c-33a1-8103-d958c033191a",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:good-sport--haruomi-hosono",
+      "type": "project",
+      "name": "GOOD SPORT",
+      "artist": "Haruomi Hosono",
+      "mbid": "f11c508f-9d25-45ef-a8e1-68c9e3bb34c6",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:n-d-e--haruomi-hosono",
+      "type": "project",
+      "name": "N.D.E",
+      "artist": "Haruomi Hosono",
+      "mbid": "699987db-9380-3ecb-b44f-9b000bed8208",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:naga-music-for-monsoon--haruomi-hosono",
+      "type": "project",
+      "name": "Naga (Music For Monsoon)",
+      "artist": "Haruomi Hosono",
+      "mbid": "0ca8d468-c4d1-4ad1-a8b4-61fce4c6b73e",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:medicine-compilation-from-the-quiet-lodge--haruomi-hosono",
+      "type": "project",
+      "name": "MEDICINE COMPILATION from the Quiet Lodge",
+      "artist": "Haruomi Hosono",
+      "mbid": "33326373-e9f6-3e2e-954b-9508d875a404",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:omni-sight-seeing--haruomi-hosono",
+      "type": "project",
+      "name": "omni Sight Seeing",
+      "artist": "Haruomi Hosono",
+      "mbid": "05c49f1c-4dac-3961-8b95-f075007cc3c4",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:best-instrumental-music-of-hosono-haruomi-calm--haruomi-hosono",
+      "type": "project",
+      "name": "Best Instrumental Music Of Hosono Haruomi \"calm\"",
+      "artist": "Haruomi Hosono",
+      "mbid": "6910f4d8-38b2-43a6-8fe8-92f00b3a1a15",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:coincidental-music--haruomi-hosono",
+      "type": "project",
+      "name": "Coincidental Music",
+      "artist": "Haruomi Hosono",
+      "mbid": "34429781-5722-36e1-a70e-ec68135f1bb3",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mercuric-dance--haruomi-hosono",
+      "type": "project",
+      "name": "Mercuric Dance",
+      "artist": "Haruomi Hosono",
+      "mbid": "41e97c31-b44a-49df-a615-336d03ae1e61",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nokto-de-la-galaksia-fervojo--haruomi-hosono",
+      "type": "project",
+      "name": "Nokto de la galaksia fervojo",
+      "artist": "Haruomi Hosono",
+      "mbid": "a1f54389-6917-44d9-ba1c-6489cb4e9ed4",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:paradise-view--haruomi-hosono",
+      "type": "project",
+      "name": "Paradise View",
+      "artist": "Haruomi Hosono",
+      "mbid": "96f06379-1d95-4795-a59e-cc1b4ecbbe66",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-endless-talking--haruomi-hosono",
+      "type": "project",
+      "name": "The Endless Talking",
+      "artist": "Haruomi Hosono",
+      "mbid": "b79a1b23-c118-48de-9863-d28fb9b61935",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:s-f-x--haruomi-hosono",
+      "type": "project",
+      "name": "S ▪ F ▪ X",
+      "artist": "Haruomi Hosono",
+      "mbid": "b2ea8f56-7c70-410c-8b86-66e501ab312e",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:super-xevious--haruomi-hosono",
+      "type": "project",
+      "name": "Super Xevious",
+      "artist": "Haruomi Hosono",
+      "mbid": "c2201f17-453d-4865-b1f4-89e90584bfd3",
+      "year": "1984",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:philharmony--haruomi-hosono",
+      "type": "project",
+      "name": "PHILHARMONY",
+      "artist": "Haruomi Hosono",
+      "mbid": "71bbee42-eacb-4a57-ae7c-7b2d829ebcff",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cochin-moon",
+      "type": "project",
+      "name": "Cochin Moon",
+      "mbid": "8dbf0db5-0843-3ac8-b148-c3e69aabac36",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tropical-dandy--haruomi-hosono",
+      "type": "project",
+      "name": "TROPICAL DANDY",
+      "artist": "Haruomi Hosono",
+      "mbid": "2b804c2b-04de-425d-8088-a8c4b0ec1806",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:hosono-house",
       "type": "project",
-      "name": "Hosono House"
+      "name": "Hosono House",
+      "mbid": "1b26af73-11ba-407b-95c2-1a0b3c09b9ea",
+      "year": "1973",
+      "releaseType": "album"
     },
     {
       "slug": "project:paraiso",
       "type": "project",
       "name": "Paraiso"
-    },
-    {
-      "slug": "project:cochin-moon",
-      "type": "project",
-      "name": "Cochin Moon"
     }
   ],
   "notable_tracks": [

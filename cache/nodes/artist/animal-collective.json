@@ -63,29 +63,251 @@
   ],
   "discography": [
     {
-      "slug": "project:merriweather-post-pavilion",
+      "slug": "project:grass-demo--animal-collective",
       "type": "project",
-      "name": "Merriweather Post Pavilion"
+      "name": "Grass (demo)",
+      "artist": "Animal Collective",
+      "mbid": "f051475a-eb1c-4550-9c66-75e33fbeb4cd",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:sung-tongs",
+      "slug": "project:jetty--animal-collective",
       "type": "project",
-      "name": "Sung Tongs"
+      "name": "Jetty",
+      "artist": "Animal Collective",
+      "mbid": "16d0ac60-1dfd-4c6a-a13f-79e115584706",
+      "year": "2025",
+      "releaseType": "album"
     },
     {
-      "slug": "project:strawberry-jam",
+      "slug": "project:love-on-the-big-screen--animal-collective",
       "type": "project",
-      "name": "Strawberry Jam"
+      "name": "Love On the Big Screen",
+      "artist": "Animal Collective",
+      "mbid": "c8ec64a2-6a33-46ae-9f52-fcc1157c18b7",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:feels",
+      "slug": "project:love-on-the-big-screen-buddies-on-the-blackboard--animal-collective",
       "type": "project",
-      "name": "Feels"
+      "name": "Love On the Big Screen / Buddies On the Blackboard",
+      "artist": "Animal Collective",
+      "mbid": "53c4fd8b-067a-43ca-a4db-3bb1f4015127",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-night-at-mr-raindrop-s-holistic-pharmacy--animal-collective",
+      "type": "project",
+      "name": "A Night at Mr. Raindrop's Holistic Pharmacy",
+      "artist": "Animal Collective",
+      "mbid": "aca900ab-b28f-4783-86dc-6888198126c8",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:isn-t-it-now--animal-collective",
+      "type": "project",
+      "name": "Isn't It Now?",
+      "artist": "Animal Collective",
+      "mbid": "15a71c62-eb99-47c4-a90a-4358b80b896f",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-inspection-original-motion-picture-soundtrack--animal-collective",
+      "type": "project",
+      "name": "The Inspection: Original Motion Picture Soundtrack",
+      "artist": "Animal Collective",
+      "mbid": "18344175-2ead-417c-b83b-2b290b288025",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:time-skiffs--animal-collective",
+      "type": "project",
+      "name": "Time Skiffs",
+      "artist": "Animal Collective",
+      "mbid": "ee936249-9671-44c3-a446-1776150d781e",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:crestone-original-motion-picture-score--animal-collective",
+      "type": "project",
+      "name": "Crestone: Original Motion Picture Score",
+      "artist": "Animal Collective",
+      "mbid": "8cd2ace5-073b-4ac8-8ceb-279c4094346d",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bridge-to-quiet--animal-collective",
+      "type": "project",
+      "name": "Bridge to Quiet",
+      "artist": "Animal Collective",
+      "mbid": "88f285a4-e2bb-4c20-95d5-6ec3c8dedd5b",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tangerine-reef--animal-collective",
+      "type": "project",
+      "name": "Tangerine Reef",
+      "artist": "Animal Collective",
+      "mbid": "de86e034-bdd5-4cc3-8dc4-0f716c1deae3",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-painters--animal-collective",
+      "type": "project",
+      "name": "The Painters",
+      "artist": "Animal Collective",
+      "mbid": "02d1c552-6e39-4cbe-8c6d-ae8646b025f2",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:painting-with--animal-collective",
+      "type": "project",
+      "name": "Painting With",
+      "artist": "Animal Collective",
+      "mbid": "1988499c-4dda-4e63-b952-0afd4e502842",
+      "year": "2016",
+      "releaseType": "album"
     },
     {
       "slug": "project:centipede-hz",
       "type": "project",
-      "name": "Centipede Hz"
+      "name": "Centipede Hz",
+      "mbid": "90e00c26-8d55-4378-8576-f1bd1199ce91",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:keep-animal-collective--animal-collective",
+      "type": "project",
+      "name": "Keep + Animal Collective",
+      "artist": "Animal Collective",
+      "mbid": "a9100763-949a-4df6-bb36-d84c1d7d6255",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:oddsac--animal-collective",
+      "type": "project",
+      "name": "ODDSAC",
+      "artist": "Animal Collective",
+      "mbid": "43775623-b23f-4259-a471-124ec195590d",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fall-be-kind--animal-collective",
+      "type": "project",
+      "name": "Fall Be Kind",
+      "artist": "Animal Collective",
+      "mbid": "57f5f41f-a442-4b82-83f0-99bf5f3e7504",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:merriweather-post-pavilion",
+      "type": "project",
+      "name": "Merriweather Post Pavilion",
+      "mbid": "b059890c-d415-3e65-aaed-52c810565922",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:summertime-clothes--animal-collective",
+      "type": "project",
+      "name": "Summertime Clothes",
+      "artist": "Animal Collective",
+      "mbid": "145d7d0d-c2cd-43d7-90fc-54cce6713c9b",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:water-curses--animal-collective",
+      "type": "project",
+      "name": "Water Curses",
+      "artist": "Animal Collective",
+      "mbid": "d0fe3387-6277-3180-921c-954779f431a8",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:fireworks--animal-collective",
+      "type": "project",
+      "name": "Fireworks",
+      "artist": "Animal Collective",
+      "mbid": "fc6f7fbf-2534-3030-9808-dc021cb21639",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:strawberry-jam",
+      "type": "project",
+      "name": "Strawberry Jam",
+      "mbid": "89e4f726-2b6f-3f15-992e-b52105f53899",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:people--animal-collective",
+      "type": "project",
+      "name": "People",
+      "artist": "Animal Collective",
+      "mbid": "8555e068-8c08-3621-af50-a56d9e585532",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:feels",
+      "type": "project",
+      "name": "Feels",
+      "mbid": "5438d2fd-1499-3daa-9f85-091a497d270b",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:grass--animal-collective",
+      "type": "project",
+      "name": "Grass",
+      "artist": "Animal Collective",
+      "mbid": "41d2ce4b-1442-322e-a94d-6fc994ec8be9",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:prospect-hummer--animal-collective",
+      "type": "project",
+      "name": "Prospect Hummer",
+      "artist": "Animal Collective",
+      "mbid": "efea71d0-16bb-3fa0-b116-36c9295861f7",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sung-tongs",
+      "type": "project",
+      "name": "Sung Tongs",
+      "mbid": "264f585d-9a28-37b7-88b3-d8e090b4d2e7",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:here-comes-the-indian--animal-collective",
+      "type": "project",
+      "name": "Here Comes the Indian",
+      "artist": "Animal Collective",
+      "mbid": "6503c3f9-5725-3e3f-9587-c74dbe0c6bee",
+      "year": "2003",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

@@ -55,14 +55,362 @@
   ],
   "discography": [
     {
-      "slug": "project:jungle-revolution",
+      "slug": "project:katch-a-fyah-ep--congo-natty",
       "type": "project",
-      "name": "Jungle Revolution"
+      "name": "Katch A Fyah EP",
+      "artist": "Congo Natty",
+      "mbid": "0a6bc2ce-350b-427d-843d-3f1e3123cf34",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ancestorz-rootz-of-jungle--congo-natty",
+      "type": "project",
+      "name": "Ancestorz (Rootz of Jungle)",
+      "artist": "Congo Natty",
+      "mbid": "6693a2bc-1d19-44f2-b5ea-61dfd0d18553",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:congo-natty-presents-nu-jungle-vol-1--congo-natty",
+      "type": "project",
+      "name": "Congo Natty Presents: Nu Jungle, Vol. 1",
+      "artist": "Congo Natty",
+      "mbid": "d0cbc1e1-a545-4dd9-9582-2e039fc5cdfb",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:congo-natty-meetz-fikir-amlak--congo-natty",
+      "type": "project",
+      "name": "Congo Natty Meetz Fikir Amlak",
+      "artist": "Congo Natty",
+      "mbid": "444e958b-8b7c-49a6-94c7-5a5470f3f1fd",
+      "year": "2020",
+      "releaseType": "album"
     },
     {
       "slug": "project:jungle-revolution-in-dub",
       "type": "project",
-      "name": "Jungle Revolution in Dub"
+      "name": "Jungle Revolution in Dub",
+      "mbid": "f4541de8-219c-4ca4-9c55-6fcfc65216ca",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:this-is-jungle--congo-natty",
+      "type": "project",
+      "name": "This Is Jungle",
+      "artist": "Congo Natty",
+      "mbid": "1ba68d5e-0b4c-4c31-805a-027b269034a6",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:get-ready-vip--congo-natty",
+      "type": "project",
+      "name": "Get Ready VIP",
+      "artist": "Congo Natty",
+      "mbid": "043f88e0-3c69-4cbe-b47b-4136f1c85338",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:jungle-revolution",
+      "type": "project",
+      "name": "Jungle Revolution",
+      "mbid": "f36b01b8-5bd8-4081-927d-7f35762a45a6",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blade-runner--congo-natty",
+      "type": "project",
+      "name": "Blade Runner",
+      "artist": "Congo Natty",
+      "mbid": "83d3b180-73d1-36e0-809a-f0d8eaad1153",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:brother-malcolm-malachi--congo-natty",
+      "type": "project",
+      "name": "Brother Malcolm (Malachi)",
+      "artist": "Congo Natty",
+      "mbid": "36d42c14-08f1-4b12-8e3e-19925e9aaee7",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:congo-man--congo-natty",
+      "type": "project",
+      "name": "Congo Man",
+      "artist": "Congo Natty",
+      "mbid": "73f38647-3610-4d18-9737-ee89242e9a4f",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:free-jah-spirit--congo-natty",
+      "type": "project",
+      "name": "Free Jah Spirit",
+      "artist": "Congo Natty",
+      "mbid": "8c03bf50-2871-4b93-bc15-d1ae8a184cb5",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:marcus-mosiah-garvey--congo-natty",
+      "type": "project",
+      "name": "Marcus Mosiah Garvey",
+      "artist": "Congo Natty",
+      "mbid": "bced54bf-35c7-4bea-8fd9-349d79666615",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ras-marcus-mosiah-garvey--congo-natty",
+      "type": "project",
+      "name": "Ras Marcus Mosiah Garvey",
+      "artist": "Congo Natty",
+      "mbid": "50d9bceb-44e7-40fe-a1c0-5b8d4521544b",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rastafari-rebel--congo-natty",
+      "type": "project",
+      "name": "Rastafari Rebel",
+      "artist": "Congo Natty",
+      "mbid": "760a9227-0878-4935-97d5-43fab61bd41e",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ark-of-the-covenant--congo-natty",
+      "type": "project",
+      "name": "Ark of the Covenant",
+      "artist": "Congo Natty",
+      "mbid": "71bbf4c4-d2e1-4f2f-b1ea-9475aad05e6c",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:giving-jah-the-glory-lp--congo-natty",
+      "type": "project",
+      "name": "Giving Jah the Glory LP",
+      "artist": "Congo Natty",
+      "mbid": "44550b3c-61ed-45be-b8f2-c8f2ca49b666",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jungle-warrior--congo-natty",
+      "type": "project",
+      "name": "Jungle Warrior",
+      "artist": "Congo Natty",
+      "mbid": "4fc38329-ae97-4870-9e42-0287418b8d6f",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lion-in-the-jungle--congo-natty",
+      "type": "project",
+      "name": "Lion in the Jungle",
+      "artist": "Congo Natty",
+      "mbid": "1813d07c-8467-33d7-a79f-13d3d1582a8c",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:marcus-garvey--congo-natty",
+      "type": "project",
+      "name": "Marcus Garvey",
+      "artist": "Congo Natty",
+      "mbid": "cee9200d-5869-44ed-a3cb-52153c33d0ad",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:original-sess-yes-selector--congo-natty",
+      "type": "project",
+      "name": "Original Sess / Yes Selector",
+      "artist": "Congo Natty",
+      "mbid": "36391d3f-56d0-429d-aa09-c59c3658237f",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ras-yosief--congo-natty",
+      "type": "project",
+      "name": "Ras Yosief",
+      "artist": "Congo Natty",
+      "mbid": "a6362295-3345-40b5-aa15-76f187aeaa72",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stevie-hyper-d-tribute--congo-natty",
+      "type": "project",
+      "name": "Stevie Hyper D Tribute",
+      "artist": "Congo Natty",
+      "mbid": "bc821ca2-f457-4331-a4b4-d931edf56248",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:armed-and-dangerous-ep--congo-natty",
+      "type": "project",
+      "name": "Armed & Dangerous EP",
+      "artist": "Congo Natty",
+      "mbid": "fec5f998-71ec-4a82-b0aa-5d138015e7ee",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:bless-prince-yosief-power-of-the-trinity--congo-natty",
+      "type": "project",
+      "name": "Bless Prince Yosief / Power of the Trinity",
+      "artist": "Congo Natty",
+      "mbid": "ceacadc9-94b0-4ed7-a1fa-5d046a652ecc",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tribute-to-haile-selassie-i-king-of-kings--congo-natty",
+      "type": "project",
+      "name": "Tribute to Haile Selassie I, King of Kings",
+      "artist": "Congo Natty",
+      "mbid": "7f21b7aa-9dce-3cb4-82a8-f25d98772bdd",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:joseph-zion--congo-natty",
+      "type": "project",
+      "name": "Joseph / Zion",
+      "artist": "Congo Natty",
+      "mbid": "77e5e023-f197-4780-9b5d-2f46ec2b47ee",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jungle-for-ever-red-alert--congo-natty",
+      "type": "project",
+      "name": "Jungle for Ever / Red Alert",
+      "artist": "Congo Natty",
+      "mbid": "141748e6-d6a8-31ea-a243-da10ed821f61",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-sell-out--congo-natty",
+      "type": "project",
+      "name": "No Sell Out",
+      "artist": "Congo Natty",
+      "mbid": "55bde0bb-fef1-41ae-b3cb-a6e945900bb4",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:original-jungalist--congo-natty",
+      "type": "project",
+      "name": "Original Jungalist",
+      "artist": "Congo Natty",
+      "mbid": "4ae680b8-a120-442a-a75d-a17ef46ddea3",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:peace--congo-natty",
+      "type": "project",
+      "name": "Peace",
+      "artist": "Congo Natty",
+      "mbid": "00cb172e-7c3a-4691-852c-f85eae5edb32",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:princess-lydia-ep--congo-natty",
+      "type": "project",
+      "name": "Princess Lydia EP",
+      "artist": "Congo Natty",
+      "mbid": "b0ed23ff-6216-4bff-9f9f-45df5746eda0",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ras-project-inah-sound--congo-natty",
+      "type": "project",
+      "name": "Ras Project / Inah Sound",
+      "artist": "Congo Natty",
+      "mbid": "69a98a61-8134-4242-b64b-4b5742afb5ca",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ras-tena-make-a-joyful-noise--congo-natty",
+      "type": "project",
+      "name": "Ras Tena / Make A Joyful Noise",
+      "artist": "Congo Natty",
+      "mbid": "93211a39-906d-4638-9b0c-f8282fec4585",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:starliner--congo-natty",
+      "type": "project",
+      "name": "Starliner",
+      "artist": "Congo Natty",
+      "mbid": "dc113b77-fc1b-4933-a331-8d1b996359e6",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-congo-natty-ep--congo-natty",
+      "type": "project",
+      "name": "The Congo Natty EP",
+      "artist": "Congo Natty",
+      "mbid": "f0323c11-f380-4d2a-b1ea-6a590504c769",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:lion-did-crown-move-move--congo-natty",
+      "type": "project",
+      "name": "Lion Did Crown / Move, Move",
+      "artist": "Congo Natty",
+      "mbid": "0e77f261-93bc-3e73-b97e-2f27ba16135f",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lose-your-soul-rebel-music--congo-natty",
+      "type": "project",
+      "name": "Lose Your Soul / Rebel Music",
+      "artist": "Congo Natty",
+      "mbid": "6267072b-1b58-3daf-b3d6-467a98cc5ce1",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:seven-seas-ghetto-life--congo-natty",
+      "type": "project",
+      "name": "Seven Seas / Ghetto Life",
+      "artist": "Congo Natty",
+      "mbid": "dbd321f8-37b8-3396-8383-7e867f48bb9e",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rastaman-blessed--congo-natty",
+      "type": "project",
+      "name": "Rastaman / Blessed",
+      "artist": "Congo Natty",
+      "mbid": "a82543d7-8a5b-4b64-b756-e314227424a9",
+      "year": "1996",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

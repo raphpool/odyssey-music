@@ -53,19 +53,37 @@
   ],
   "discography": [
     {
-      "slug": "project:init-ding--microstoria",
+      "slug": "project:improvisers--microstoria",
       "type": "project",
-      "name": "init ding"
-    },
-    {
-      "slug": "project:snd--microstoria",
-      "type": "project",
-      "name": "_snd"
+      "name": "Improvisers",
+      "artist": "Microstoria",
+      "mbid": "2a6fa7f4-334c-33ce-a209-0f5e6c7d9588",
+      "year": "2000",
+      "releaseType": "album"
     },
     {
       "slug": "project:model-3-step-2",
       "type": "project",
-      "name": "Model 3, Step 2"
+      "name": "Model 3, Step 2",
+      "mbid": "e7496bce-c094-3e3f-bf1a-b5a0fcb1ca5d",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:snd--microstoria",
+      "type": "project",
+      "name": "_snd",
+      "mbid": "16113489-d4a6-365c-a09c-64be4fe4e365",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:init-ding--microstoria",
+      "type": "project",
+      "name": "init ding",
+      "mbid": "f3a78644-a5df-333e-9df4-77d399329fcd",
+      "year": "1995",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [],

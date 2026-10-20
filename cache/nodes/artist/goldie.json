@@ -55,7 +55,215 @@
       "name": "Reinforced Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:jungle-daze--goldie",
+      "type": "project",
+      "name": "Jungle Daze",
+      "artist": "Goldie",
+      "mbid": "dd6cec47-e6fb-469a-a39e-1dff9f988584",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:30-years-of-metalheadz-vip-pt-2--goldie",
+      "type": "project",
+      "name": "30 Years of Metalheadz VIP - Pt. 2",
+      "artist": "Goldie",
+      "mbid": "aa4fcb98-7399-4fd0-9e7c-18d3baab0cc0",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:alpha-omega--goldie",
+      "type": "project",
+      "name": "Alpha Omega",
+      "artist": "Goldie",
+      "mbid": "72eb5253-8a83-47e7-b001-c84e85e79144",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:25-years-of-metalheadz-part-7--goldie",
+      "type": "project",
+      "name": "25 Years of Metalheadz - Part 7",
+      "artist": "Goldie",
+      "mbid": "d563bf68-542a-48a8-94bd-9eaf4120e080",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:saint-darkie-official-jah-roller--goldie",
+      "type": "project",
+      "name": "Saint Darkie / Official Jah Roller",
+      "artist": "Goldie",
+      "mbid": "be8b6dda-0895-401f-b8ec-b5e7bba73f2d",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-adore-you--goldie",
+      "type": "project",
+      "name": "I Adore You",
+      "artist": "Goldie",
+      "mbid": "910da5e0-1867-4a92-8613-70ea473502cd",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-journey-man--goldie",
+      "type": "project",
+      "name": "The Journey Man",
+      "artist": "Goldie",
+      "mbid": "b9f9172e-3b07-4dd7-85d2-21ce2a6d96f1",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:upstart--goldie",
+      "type": "project",
+      "name": "Upstart",
+      "artist": "Goldie",
+      "mbid": "d561099b-f0c7-44fb-856b-88e92bc3b5ba",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:freedom--goldie",
+      "type": "project",
+      "name": "Freedom",
+      "artist": "Goldie",
+      "mbid": "5f35206a-2494-4392-924e-9f013e346b56",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:we-are-the-core--goldie",
+      "type": "project",
+      "name": "We Are the Core",
+      "artist": "Goldie",
+      "mbid": "db461c39-6edd-4271-9180-f4e58376ff92",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:envious-justified--goldie",
+      "type": "project",
+      "name": "Envious / Justified",
+      "artist": "Goldie",
+      "mbid": "fc83535f-62fc-40b9-ac64-9a5f6eb82dc9",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sine-tempus-the-soundtrack--goldie",
+      "type": "project",
+      "name": "Sine Tempus: The Soundtrack",
+      "artist": "Goldie",
+      "mbid": "f2998251-42c3-3eb9-94d1-82d9843e5045",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:say-you-love-me--goldie",
+      "type": "project",
+      "name": "Say You Love Me",
+      "artist": "Goldie",
+      "mbid": "3d8def19-27f6-41bd-bdb2-8d5979e7a8b1",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shinning-down-x-plane--goldie",
+      "type": "project",
+      "name": "Shinning Down / X Plane",
+      "artist": "Goldie",
+      "mbid": "92da71f1-ab63-4081-9fbc-d8d35ff0157b",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:believe--goldie",
+      "type": "project",
+      "name": "Believe",
+      "artist": "Goldie",
+      "mbid": "d25eaf1f-d2e8-3a5e-b1c2-9659b4fa1b07",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ring-of-saturn--goldie",
+      "type": "project",
+      "name": "Ring of Saturn",
+      "artist": "Goldie",
+      "mbid": "77f2c841-62fa-3bfe-906a-e90df45e243e",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:saturnz-return--goldie",
+      "type": "project",
+      "name": "Saturnz Return",
+      "artist": "Goldie",
+      "mbid": "a0b080ed-ab8a-3a08-821a-41aa71cd8447",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:temper-temper--goldie",
+      "type": "project",
+      "name": "Temper Temper",
+      "artist": "Goldie",
+      "mbid": "b5f4e07a-791b-3b0b-ab8b-8644aeefb7be",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:digital--goldie",
+      "type": "project",
+      "name": "Digital",
+      "artist": "Goldie",
+      "mbid": "f63f24aa-fc37-35ba-845d-63e8e3d89c32",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:state-of-mind--goldie",
+      "type": "project",
+      "name": "State of Mind",
+      "artist": "Goldie",
+      "mbid": "7a2a5b4d-9503-48e4-80ef-01c7590328a3",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:angel--goldie",
+      "type": "project",
+      "name": "Angel",
+      "artist": "Goldie",
+      "mbid": "db90e006-b73d-371b-a717-88e229572f8d",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:inner-city-life--goldie",
+      "type": "project",
+      "name": "Inner City Life",
+      "artist": "Goldie",
+      "mbid": "beea89bc-b954-3394-b2fc-ff95488fffdc",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:timeless--goldie",
+      "type": "project",
+      "name": "Timeless",
+      "artist": "Goldie",
+      "mbid": "7a752bd0-8ef8-3811-96c9-5cf53535152e",
+      "year": "1995",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:inner-city-life",

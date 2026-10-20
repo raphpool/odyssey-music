@@ -58,7 +58,224 @@
       "name": "Tuff Gong"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:is-this-love--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Is This Love",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "fd7ce953-a366-4701-a664-1037c705d01a",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-shot-the-sheriff--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "I Shot The Sheriff",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "7d0e0dbd-2153-4d88-9cbe-04769afda803",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-know-a-place--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "I Know a Place",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "e54d5dde-99d6-4816-81a3-51cb8a70a3d9",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blackman-redemption-7--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Blackman Redemption 7''",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "fe11001a-380a-487c-9f48-b7e11efdec06",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:keep-on-moving--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Keep On Moving",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "d4ddda06-24a6-44a7-b540-d51b313a062d",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:iron-lion-zion--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Iron Lion Zion",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "42e82338-a003-38f1-a07c-cddb1d72fe87",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:confrontation--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Confrontation",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "e20b6b85-f911-31f2-933b-391f2d10dcb3",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trench-town--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Trench Town",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "cb7b2ba9-3508-4412-bccb-58461b4bed27",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bad-card--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Bad Card",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "935c1d6b-fc38-4030-9581-abff26ecfe93",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:could-you-be-loved--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Could You Be Loved",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "1c132971-97eb-46f1-874b-d2aebfa6bd05",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:uprising--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Uprising",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "6dd29c00-7539-319d-98e0-b2f07e861497",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:survival--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Survival",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "549f63a0-10ba-3350-92b6-6b176606aeaa",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kaya--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Kaya",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "da0fbebe-0cef-344e-a0de-c9412ae0eb1a",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:exodus--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Exodus",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "c5650313-60f3-34d3-92e4-300545133792",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:is-this-love-crisis--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Is This Love / Crisis",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "baae5fa2-7722-4b51-9fc5-0ceeffca8a06",
+      "year": "1977",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:three-little-birds--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Three Little Birds",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "8369c54f-a335-448f-ab73-a0757b888150",
+      "year": "1977",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:waiting-in-vain--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Waiting In Vain",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "5e997ede-ab97-4d6a-bfdf-ff50ae664c9b",
+      "year": "1977",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jah-live--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Jah Live",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "0f397e55-90e8-4256-8de6-a447a18fe094",
+      "year": "1976",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rastaman-vibration--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Rastaman Vibration",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "9e64450d-608d-3d85-b881-9b1de24f9195",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-woman-no-cry-live-at-the-lyceum-london--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "No Woman, No Cry (live at the Lyceum, London)",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "c82c33b7-64c9-4987-b1f4-1b467680e35e",
+      "year": "1975",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:natty-dread--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Natty Dread",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "e776533c-4132-3b63-bfaa-94fe901951b5",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soul-revolution-part-ii--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Soul Revolution Part II",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "e664129e-53ba-3866-839c-129465368b70",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soul-revolution-part-ii-dub--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Soul Revolution Part II Dub",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "58c74d55-ca15-4eff-9636-8450d41a53c4",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soul-rebels--bob-marley-and-the-wailers",
+      "type": "project",
+      "name": "Soul Rebels",
+      "artist": "Bob Marley & The Wailers",
+      "mbid": "58637e09-dec9-4023-80ff-734da967301c",
+      "year": "1970",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:simmer-down",

@@ -48,19 +48,226 @@
   ],
   "discography": [
     {
-      "slug": "project:changes",
+      "slug": "project:silence-and-space--r-carlos-nakai",
       "type": "project",
-      "name": "Changes"
+      "name": "Silence and Space",
+      "artist": "R. Carlos Nakai",
+      "mbid": "de8afb01-7ad2-4dfd-9513-1cc1c3e8ccf0",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nocturne--r-carlos-nakai",
+      "type": "project",
+      "name": "Nocturne",
+      "artist": "R. Carlos Nakai",
+      "mbid": "126debd9-7f4e-4aa2-9afa-06541725ac6c",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:awakening-the-fire--r-carlos-nakai",
+      "type": "project",
+      "name": "Awakening the Fire",
+      "artist": "R. Carlos Nakai",
+      "mbid": "0516e9a3-095d-4154-881f-33ac1a50f0d3",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:talisman--r-carlos-nakai",
+      "type": "project",
+      "name": "Talisman",
+      "artist": "R. Carlos Nakai",
+      "mbid": "d127a814-8532-43e9-9f62-bd83c80a269a",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:voyagers--r-carlos-nakai",
+      "type": "project",
+      "name": "Voyagers",
+      "artist": "R. Carlos Nakai",
+      "mbid": "d7bb9457-542e-446e-8e69-32f8b78128ac",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:reconnections--r-carlos-nakai",
+      "type": "project",
+      "name": "Reconnections",
+      "artist": "R. Carlos Nakai",
+      "mbid": "6163bf24-f597-4a49-b87c-da5ef2699402",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:our-beloved-land--r-carlos-nakai",
+      "type": "project",
+      "name": "Our Beloved Land",
+      "artist": "R. Carlos Nakai",
+      "mbid": "5b4375ee-28cb-4314-8991-71474274d130",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sanctuary--r-carlos-nakai",
+      "type": "project",
+      "name": "Sanctuary",
+      "artist": "R. Carlos Nakai",
+      "mbid": "8665721c-6b59-3ecb-9874-9e29a3b077ed",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fourth-world--r-carlos-nakai",
+      "type": "project",
+      "name": "Fourth World",
+      "artist": "R. Carlos Nakai",
+      "mbid": "8f708ac5-d9c8-3ea2-bbae-02ec7eddba22",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:edge-of-the-century--r-carlos-nakai",
+      "type": "project",
+      "name": "Edge of the Century",
+      "artist": "R. Carlos Nakai",
+      "mbid": "b876b468-99af-4bd0-a323-1e51f1630c8d",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:enter-tribal--r-carlos-nakai",
+      "type": "project",
+      "name": "Enter >> Tribal",
+      "artist": "R. Carlos Nakai",
+      "mbid": "8492b99b-8790-387d-ab12-d220bb147031",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:inner-voices--r-carlos-nakai",
+      "type": "project",
+      "name": "Inner Voices",
+      "artist": "R. Carlos Nakai",
+      "mbid": "68f4b84a-e5bb-3d8f-b604-211897bf1de8",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mythic-dreamer--r-carlos-nakai",
+      "type": "project",
+      "name": "Mythic Dreamer",
+      "artist": "R. Carlos Nakai",
+      "mbid": "d6bd45b8-3dd7-3536-9613-25dbe0858352",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:island-of-bows--r-carlos-nakai",
+      "type": "project",
+      "name": "Island of Bows",
+      "artist": "R. Carlos Nakai",
+      "mbid": "c490c6a3-ab96-33db-b249-be83c0704585",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cycles--r-carlos-nakai",
+      "type": "project",
+      "name": "Cycles",
+      "artist": "R. Carlos Nakai",
+      "mbid": "2afb131e-4032-3c92-83e2-567e3715eb36",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ancestral-voices--r-carlos-nakai",
+      "type": "project",
+      "name": "Ancestral Voices",
+      "artist": "R. Carlos Nakai",
+      "mbid": "ed813ee5-db21-3009-9077-50f1c509cde0",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:emergence--r-carlos-nakai",
+      "type": "project",
+      "name": "Emergence",
+      "artist": "R. Carlos Nakai",
+      "mbid": "97822948-742b-3483-b6a6-78b2ba028ff0",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:desert-dance--r-carlos-nakai",
+      "type": "project",
+      "name": "Desert Dance",
+      "artist": "R. Carlos Nakai",
+      "mbid": "9e3167c5-3709-39df-8d88-6efa15113f49",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:winter-dreams--r-carlos-nakai",
+      "type": "project",
+      "name": "Winter Dreams",
+      "artist": "R. Carlos Nakai",
+      "mbid": "b67af739-da10-3e83-a7e7-4a06fe9c6fc6",
+      "year": "1990",
+      "releaseType": "album"
     },
     {
       "slug": "project:canyon-trilogy",
       "type": "project",
-      "name": "Canyon Trilogy"
+      "name": "Canyon Trilogy",
+      "mbid": "e7a10e65-e4e5-3bc5-8b4b-4debb504dada",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:carry-the-gift--r-carlos-nakai",
+      "type": "project",
+      "name": "Carry the Gift",
+      "artist": "R. Carlos Nakai",
+      "mbid": "dbc3fcee-f4a3-339e-964f-e21d53d79f82",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sundance-season--r-carlos-nakai",
+      "type": "project",
+      "name": "Sundance Season",
+      "artist": "R. Carlos Nakai",
+      "mbid": "adb92c61-daeb-3955-925a-ccb267689ccd",
+      "year": "1988",
+      "releaseType": "album"
     },
     {
       "slug": "project:earth-spirit",
       "type": "project",
-      "name": "Earth Spirit"
+      "name": "Earth Spirit",
+      "mbid": "1184326a-9498-3286-9472-4ca5b5d17602",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:journeys--r-carlos-nakai",
+      "type": "project",
+      "name": "Journeys",
+      "artist": "R. Carlos Nakai",
+      "mbid": "7b9463bc-cc9f-4dd3-877d-96ebf01e5117",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:changes",
+      "type": "project",
+      "name": "Changes",
+      "mbid": "11afb632-5c29-4b5c-8678-30fbcec2cfaa",
+      "year": "1982",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

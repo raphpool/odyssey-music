@@ -50,19 +50,136 @@
   ],
   "discography": [
     {
-      "slug": "project:bleach",
+      "slug": "project:you-know-you-re-right--nirvana",
       "type": "project",
-      "name": "Bleach"
+      "name": "You Know You’re Right",
+      "artist": "Nirvana",
+      "mbid": "662a72ec-ac43-4bf5-8797-8c60b1275988",
+      "year": "2002",
+      "releaseType": "single"
     },
     {
-      "slug": "project:nevermind--nirvana",
+      "slug": "project:pennyroyal-tea--nirvana",
       "type": "project",
-      "name": "Nevermind"
+      "name": "Pennyroyal Tea",
+      "artist": "Nirvana",
+      "mbid": "625fae47-5587-3fda-bbb2-88c5f7a1f8a0",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-apologies-rape-me-mv--nirvana",
+      "type": "project",
+      "name": "All Apologies / Rape Me / MV",
+      "artist": "Nirvana",
+      "mbid": "fa084605-3ba8-3409-adea-5b5a766382e9",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heart-shaped-box--nirvana",
+      "type": "project",
+      "name": "Heart‐Shaped Box",
+      "artist": "Nirvana",
+      "mbid": "57447544-1ec9-3af5-83fe-f90a6902e078",
+      "year": "1993",
+      "releaseType": "single"
     },
     {
       "slug": "project:in-utero",
       "type": "project",
-      "name": "In Utero"
+      "name": "In Utero",
+      "mbid": "2a0981fb-9593-3019-864b-ce934d97a16e",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:come-as-you-are--nirvana",
+      "type": "project",
+      "name": "Come as You Are",
+      "artist": "Nirvana",
+      "mbid": "6970c348-86ce-3902-bee3-d2ebabc2643d",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hormoaning--nirvana",
+      "type": "project",
+      "name": "Hormoaning",
+      "artist": "Nirvana",
+      "mbid": "4fcc5ec2-d177-396b-b810-9439031b3c3a",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:in-bloom--nirvana",
+      "type": "project",
+      "name": "In Bloom",
+      "artist": "Nirvana",
+      "mbid": "5d8050da-e5c9-3a1b-9e39-0a73620218c0",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lithium--nirvana",
+      "type": "project",
+      "name": "Lithium",
+      "artist": "Nirvana",
+      "mbid": "be95ba52-8a66-3769-82ad-b5024e993ad7",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nevermind--nirvana",
+      "type": "project",
+      "name": "Nevermind",
+      "mbid": "1b022e01-4da6-387b-8658-8678046e4cef",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:smells-like-teen-spirit--nirvana",
+      "type": "project",
+      "name": "Smells Like Teen Spirit",
+      "artist": "Nirvana",
+      "mbid": "03345972-d2f8-36bb-b49a-03a9ceccb7a7",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sliver--nirvana",
+      "type": "project",
+      "name": "Sliver",
+      "artist": "Nirvana",
+      "mbid": "c01d417b-0e34-3723-9ebe-87de4620080c",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bleach",
+      "type": "project",
+      "name": "Bleach",
+      "mbid": "f1afec0b-26dd-3db5-9aa1-c91229a74a24",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blew--nirvana",
+      "type": "project",
+      "name": "Blew",
+      "artist": "Nirvana",
+      "mbid": "f4704ade-d0d8-3015-a9f9-a4972df288fc",
+      "year": "1989",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:love-buzz--nirvana",
+      "type": "project",
+      "name": "Love Buzz",
+      "artist": "Nirvana",
+      "mbid": "04f53329-d0d0-3b0d-856a-1e2cbcde0e69",
+      "year": "1988",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

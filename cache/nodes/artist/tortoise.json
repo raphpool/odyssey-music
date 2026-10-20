@@ -60,44 +60,221 @@
   "labels": [],
   "discography": [
     {
-      "slug": "project:tortoise",
+      "slug": "project:layered-presence--tortoise",
       "type": "project",
-      "name": "Tortoise"
+      "name": "Layered Presence",
+      "artist": "Tortoise",
+      "mbid": "9b44dadd-2f97-4f8a-b47c-3efadf9fe776",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:millions-now-living-will-never-die",
+      "slug": "project:oganesson--tortoise",
       "type": "project",
-      "name": "Millions Now Living Will Never Die"
-    },
-    {
-      "slug": "project:tnt",
-      "type": "project",
-      "name": "TNT"
-    },
-    {
-      "slug": "project:standards",
-      "type": "project",
-      "name": "Standards"
-    },
-    {
-      "slug": "project:it-s-all-around-you",
-      "type": "project",
-      "name": "It's All Around You"
-    },
-    {
-      "slug": "project:beacons-of-ancestorship",
-      "type": "project",
-      "name": "Beacons of Ancestorship"
-    },
-    {
-      "slug": "project:the-catastrophist",
-      "type": "project",
-      "name": "The Catastrophist"
+      "name": "Oganesson",
+      "artist": "Tortoise",
+      "mbid": "8e622a54-c042-4adb-b08b-303544975a36",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
       "slug": "project:touch",
       "type": "project",
-      "name": "Touch"
+      "name": "Touch",
+      "mbid": "72a3632f-0466-4ce9-bc64-0ee5aff91d4a",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shake-hands-with-danger--tortoise",
+      "type": "project",
+      "name": "Shake Hands With Danger",
+      "artist": "Tortoise",
+      "mbid": "d4aeda23-3711-473c-9ee0-cf3e59599ebe",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-catastrophist",
+      "type": "project",
+      "name": "The Catastrophist",
+      "mbid": "8fb0ead2-26c3-41d1-8dbc-0cde7cef6d52",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hot-coffee--tortoise",
+      "type": "project",
+      "name": "Hot Coffee",
+      "artist": "Tortoise",
+      "mbid": "a2b75415-fad1-49d5-92ed-e3d35974e29b",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gonna-be--tortoise",
+      "type": "project",
+      "name": "Gonna Be",
+      "artist": "Tortoise",
+      "mbid": "2411eadb-2943-4fcd-b097-26e8f5e16912",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:why-waste-time--tortoise",
+      "type": "project",
+      "name": "Why Waste Time?",
+      "artist": "Tortoise",
+      "mbid": "8cab1c1c-7215-420e-b2f9-adf9904c5f1b",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:beacons-of-ancestorship",
+      "type": "project",
+      "name": "Beacons of Ancestorship",
+      "mbid": "96e8e1f0-5fcf-3ce4-a81a-dcd0812a900d",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-brave-and-the-bold--tortoise",
+      "type": "project",
+      "name": "The Brave and the Bold",
+      "artist": "Tortoise",
+      "mbid": "5ebf0a5a-697f-3e62-a361-c43e5f18480f",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:it-s-all-around-you",
+      "type": "project",
+      "name": "It's All Around You",
+      "mbid": "a645670a-70e6-3ba3-acc9-7d46878668f1",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gently-cupping-the-chin-of-the-ape--tortoise",
+      "type": "project",
+      "name": "Gently Cupping the Chin of the Ape",
+      "artist": "Tortoise",
+      "mbid": "98b8a98a-5231-397c-aec5-4f65331a1534",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:standards",
+      "type": "project",
+      "name": "Standards",
+      "mbid": "98193de1-283d-37c5-8df4-c765561450f2",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-the-fishtank-volume-5--tortoise",
+      "type": "project",
+      "name": "In the Fishtank, Volume 5",
+      "artist": "Tortoise",
+      "mbid": "e9b89622-1f6b-3919-8353-de8dfe5230fa",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:derrick-carter-vs-tortoise--tortoise",
+      "type": "project",
+      "name": "Derrick Carter vs. Tortoise",
+      "artist": "Tortoise",
+      "mbid": "f0d3dc8d-16d6-4b38-80c1-1e0cc7433743",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tnt",
+      "type": "project",
+      "name": "TNT",
+      "mbid": "45f5f27c-9f31-32bd-bff3-1a89d53549ec",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tour-1998--tortoise",
+      "type": "project",
+      "name": "Tour 1998",
+      "artist": "Tortoise",
+      "mbid": "af736fdb-9441-3f14-9135-0db543a73ceb",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:djed--tortoise",
+      "type": "project",
+      "name": "Djed",
+      "artist": "Tortoise",
+      "mbid": "d0c50309-00d6-40fe-bc70-c6fb84bc0302",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:millions-now-living-will-never-die",
+      "type": "project",
+      "name": "Millions Now Living Will Never Die",
+      "mbid": "7bb7debb-bdcf-3991-aa19-2937a1ad4fa9",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vaus-speedy-car--tortoise",
+      "type": "project",
+      "name": "Vaus / Speedy Car",
+      "artist": "Tortoise",
+      "mbid": "7f25f147-0f3d-3ca6-8efd-3d53db6a7f00",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gamera--tortoise",
+      "type": "project",
+      "name": "Gamera",
+      "artist": "Tortoise",
+      "mbid": "d13d6c0d-6c9e-3052-bcf9-a8499bf9d5ea",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:why-we-fight--tortoise",
+      "type": "project",
+      "name": "Why We Fight",
+      "artist": "Tortoise",
+      "mbid": "cf03c656-d49d-332b-a574-6fd59ebf1cc5",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tortoise",
+      "type": "project",
+      "name": "Tortoise",
+      "mbid": "edb5b115-663c-3b62-a1f0-b44362a9b979",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lonesome-sound--tortoise",
+      "type": "project",
+      "name": "Lonesome Sound",
+      "artist": "Tortoise",
+      "mbid": "61cb657e-7e22-3fa3-8607-3e2eaa7676ae",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mosquito--tortoise",
+      "type": "project",
+      "name": "Mosquito",
+      "artist": "Tortoise",
+      "mbid": "3ea416a6-87b1-3c29-a3c7-a1346fa059f0",
+      "year": "1993",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

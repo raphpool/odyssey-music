@@ -59,6 +59,339 @@
   "labels": [],
   "discography": [
     {
+      "slug": "project:sechs-kleine-klavierstucke-op-19--arnold-schoenberg",
+      "type": "project",
+      "name": "Sechs kleine Klavierstücke, op. 19",
+      "artist": "Arnold Schoenberg",
+      "mbid": "e1d1a3c2-da79-48a1-9074-902a255b8af7",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:l-oeuvre-pour-piano--arnold-schoenberg",
+      "type": "project",
+      "name": "L'Œuvre pour piano",
+      "artist": "Arnold Schoenberg",
+      "mbid": "cc69d7ca-b5be-42c5-8d7c-febb27fea94f",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:verklarte-nacht-string-quartet-no-1-four-canons--arnold-schoenberg",
+      "type": "project",
+      "name": "Verklärte Nacht / String Quartet No. 1 / Four Canons",
+      "artist": "Arnold Schoenberg",
+      "mbid": "1fa748cf-1cba-49de-8674-4bddad7f9cfb",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:serenade-for-septet-and-baritone-voice-op-24--arnold-schoenberg",
+      "type": "project",
+      "name": "Serenade for Septet and Baritone Voice, op. 24",
+      "artist": "Arnold Schoenberg",
+      "mbid": "160f6422-3143-4448-bb6d-71a57d5c489e",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-complete-string-quartets-vol-1-the-original-1951-1952-columbia-masterworks-recordings--arnold-schoenberg",
+      "type": "project",
+      "name": "The Complete String Quartets, Vol. 1 - The Original 1951-1952 Columbia Masterworks Recordings",
+      "artist": "Arnold Schoenberg",
+      "mbid": "453b3ba4-e03c-4f15-aed2-59c1a9a2cf55",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-complete-string-quartets-volume-2-the-original-1951-1952-columbia-masterworks-recordings--arnold-schoenberg",
+      "type": "project",
+      "name": "The Complete String Quartets, Volume 2: The Original 1951-1952 Columbia Masterworks Recordings",
+      "artist": "Arnold Schoenberg",
+      "mbid": "c770cd99-e606-4642-95ed-dd32c5ba0971",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-viennese-school-teachers-and-followers-arnold-schonberg-2-berlin-los-angeles-followers--arnold-schoenberg",
+      "type": "project",
+      "name": "The Viennese School: Teachers & Followers: Arnold Schönberg 2: Berlin / Los Angeles Followers",
+      "artist": "Arnold Schoenberg",
+      "mbid": "62cd82e7-096a-4449-b782-75c885cf48ee",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:complete-string-quartets--arnold-schoenberg",
+      "type": "project",
+      "name": "Complete String Quartets",
+      "artist": "Arnold Schoenberg",
+      "mbid": "b6d3690a-998f-45f9-a6d5-b135211e76af",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-music-of-arnold-schonberg--arnold-schoenberg",
+      "type": "project",
+      "name": "The Music of Arnold Schönberg",
+      "artist": "Arnold Schoenberg",
+      "mbid": "60f8496e-dac6-3c41-9989-e71492fdd670",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gurrelieder--arnold-schoenberg",
+      "type": "project",
+      "name": "Gurrelieder",
+      "artist": "Arnold Schoenberg",
+      "mbid": "b6b2a418-bc03-4fe8-9f67-19773d615dd5",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:verklarte-nacht-2-kammersinfonie--arnold-schoenberg",
+      "type": "project",
+      "name": "Verklärte Nacht / 2. Kammersinfonie",
+      "artist": "Arnold Schoenberg",
+      "mbid": "6121f401-b2dd-4a04-a3c3-9fd28334b639",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:complete-works-for-strings--arnold-schoenberg",
+      "type": "project",
+      "name": "Complete Works for Strings",
+      "artist": "Arnold Schoenberg",
+      "mbid": "936578c3-1ec5-35ef-9932-a37e27dd4a77",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:complete-piano-music--arnold-schoenberg",
+      "type": "project",
+      "name": "Complete Piano Music",
+      "artist": "Arnold Schoenberg",
+      "mbid": "cb725058-f1e6-45d1-8565-0d2fd81979ee",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:funf-orchesterstucke-op-16-konzert-fur-violoncello-und-orchester-d-dur-moderner-psalm-variationen-fur-orchester-op-31--arnold-schoenberg",
+      "type": "project",
+      "name": "Fünf Orchesterstücke op. 16 / Konzert für Violoncello und Orchester D-Dur / Moderner Psalm / Variationen für Orchester op. 31",
+      "artist": "Arnold Schoenberg",
+      "mbid": "c2f76eef-6961-462a-a57c-c8de9a64b9fe",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:five-pieces-op-16-chamber-symphonies--arnold-schoenberg",
+      "type": "project",
+      "name": "Five Pieces, Op. 16, Chamber Symphonies",
+      "artist": "Arnold Schoenberg",
+      "mbid": "1098ab22-cb23-4054-b553-4429f6a21f19",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:string-quartet-no-3-op-30-verklarte-nacht-op-4-string-sextet--arnold-schoenberg",
+      "type": "project",
+      "name": "String Quartet no. 3, op. 30 / Verklärte Nacht, op. 4 (String Sextet)",
+      "artist": "Arnold Schoenberg",
+      "mbid": "53dc34a1-d771-4a5e-adf5-c5e90d24d8e3",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:verklarte-nacht-chamber-symphony-variations--arnold-schoenberg",
+      "type": "project",
+      "name": "Verklärte Nacht / Chamber Symphony / Variations",
+      "artist": "Arnold Schoenberg",
+      "mbid": "ff27c8e6-a49e-43a0-ade2-e64a7ce417b0",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:samtliche-werke-fur-klavier-zu-zwei-handen--arnold-schoenberg",
+      "type": "project",
+      "name": "Sämtliche Werke für Klavier zu Zwei Händen",
+      "artist": "Arnold Schoenberg",
+      "mbid": "20df3459-d3f7-4bd6-977f-5f579ac76f59",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-early-tonal-years-1894-1907--arnold-schoenberg",
+      "type": "project",
+      "name": "The Early Tonal Years (1894-1907)",
+      "artist": "Arnold Schoenberg",
+      "mbid": "32189533-f9f0-4e24-926c-a5c39894fb1c",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-glenn-gould-edition-arnold-schoenberg-pierrot-lunaire-piano-concerto-etc--arnold-schoenberg",
+      "type": "project",
+      "name": "The Glenn Gould Edition: Arnold Schoenberg: Pierrot Lunaire, Piano Concerto, etc.",
+      "artist": "Arnold Schoenberg",
+      "mbid": "cd3785ed-ac7f-3563-acab-0178435970af",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:moses-und-aron-chamber-symphony-no-2--arnold-schoenberg",
+      "type": "project",
+      "name": "Moses und Aron / Chamber Symphony no. 2",
+      "artist": "Arnold Schoenberg",
+      "mbid": "921624da-7446-4837-b5f4-659b2b195483",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pierrot-lunaire-lied-der-waldtaube-erwartung--arnold-schoenberg",
+      "type": "project",
+      "name": "Pierrot Lunaire / Lied der Waldtaube / Erwartung",
+      "artist": "Arnold Schoenberg",
+      "mbid": "0d6ce753-5af8-3029-95f7-09f7ffd3b721",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:string-quartets-nos-1-4--arnold-schoenberg",
+      "type": "project",
+      "name": "String Quartets nos. 1-4",
+      "artist": "Arnold Schoenberg",
+      "mbid": "b8f2e089-63f0-43ff-89cc-a854fd90e73d",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:quatuor-a-cordes-no-1-en-re-mineur-op-7--arnold-schoenberg",
+      "type": "project",
+      "name": "Quatuor a cordes no. 1 en ré mineur, op. 7",
+      "artist": "Arnold Schoenberg",
+      "mbid": "7ca7b492-d2e5-46a8-9a3e-6d5c47186f63",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:schonberg-piano-works-complete--arnold-schoenberg",
+      "type": "project",
+      "name": "Schonberg Piano Works Complete",
+      "artist": "Arnold Schoenberg",
+      "mbid": "bf3b393f-f357-4ce4-89ce-797ebbb896db",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:verklarte-nacht-kammersymphonien--arnold-schoenberg",
+      "type": "project",
+      "name": "Verklärte Nacht / Kammersymphonien",
+      "artist": "Arnold Schoenberg",
+      "mbid": "9b072623-99ad-3fb3-9b2b-efc568fa831f",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-nuit-transfiguree--arnold-schoenberg",
+      "type": "project",
+      "name": "La Nuit Transfigurée",
+      "artist": "Arnold Schoenberg",
+      "mbid": "0a8f5333-d162-3475-8b32-568cf00977f1",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:l-ecole-de-vienne-vol-2-les-transcriptions-de-schonberg--arnold-schoenberg",
+      "type": "project",
+      "name": "L’Ecole de Vienne, Vol. 2: Les Transcriptions de Schönberg",
+      "artist": "Arnold Schoenberg",
+      "mbid": "faeb5da5-42a9-4cc2-873f-e775a6de7581",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:piano-music--arnold-schoenberg",
+      "type": "project",
+      "name": "Piano Music",
+      "artist": "Arnold Schoenberg",
+      "mbid": "378a8a2c-a88f-35c8-8217-9b9bf057d377",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:schoenberg-cabaret-songs-berg-lieder-webern-seven-early-songs--arnold-schoenberg",
+      "type": "project",
+      "name": "Schoenberg: Cabaret Songs / Berg: Lieder / Webern: Seven Early Songs",
+      "artist": "Arnold Schoenberg",
+      "mbid": "367aa87a-bd1d-462f-9c69-84842af63427",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:verklarte-nacht-streichtrio-op-45-phantasy-fur-violine-und-klavier-op-47--arnold-schoenberg",
+      "type": "project",
+      "name": "Verklärte Nacht / Streichtrio op. 45 / Phantasy für Violine und Klavier op. 47",
+      "artist": "Arnold Schoenberg",
+      "mbid": "a694eb75-0d60-3f46-ab70-645fad8c8c67",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:die-streichquartette--arnold-schoenberg",
+      "type": "project",
+      "name": "Die Streichquartette",
+      "artist": "Arnold Schoenberg",
+      "mbid": "2238222b-4232-4858-a182-8747d7c1a474",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:schoenberg-quintet-op-26-new-vienna-octet-vienna-wind-soloists-complete-decca-recordings-vol-9--arnold-schoenberg",
+      "type": "project",
+      "name": "Schoenberg: Quintet, Op. 26 (New Vienna Octet; Vienna Wind Soloists — Complete Decca Recordings Vol. 9)",
+      "artist": "Arnold Schoenberg",
+      "mbid": "60357f0c-fbb5-441e-82fc-c13c2228b062",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:das-klavierwerk--arnold-schoenberg",
+      "type": "project",
+      "name": "Das Klavierwerk",
+      "artist": "Arnold Schoenberg",
+      "mbid": "ad78e71e-e4d3-40d8-8110-76d2126d4736",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:integrale-de-l-oeuvre-pour-piano--arnold-schoenberg",
+      "type": "project",
+      "name": "Intégrale de l’œuvre pour piano",
+      "artist": "Arnold Schoenberg",
+      "mbid": "e9766984-409d-4a96-bff1-b787208e4685",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-music-of-arnold-schoenberg-vol-4-the-complete-music-for-solo-piano-songs-for-voice-and-piano--arnold-schoenberg",
+      "type": "project",
+      "name": "The Music of Arnold Schoenberg, Vol. 4: The Complete Music for Solo Piano / Songs for Voice & Piano",
+      "artist": "Arnold Schoenberg",
+      "mbid": "86166a02-2798-4970-a230-7a2c7096e82b",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pierrot-lunaire-op-21--arnold-schoenberg",
+      "type": "project",
+      "name": "Pierrot lunaire, op. 21",
+      "artist": "Arnold Schoenberg",
+      "mbid": "1ad8e1dc-3591-4f48-84d9-3ac972cc30a6",
+      "year": "1955",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:verklarte-nacht",
       "type": "project",
       "name": "Verklärte Nacht"

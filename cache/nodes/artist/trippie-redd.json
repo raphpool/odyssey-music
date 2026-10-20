@@ -57,29 +57,350 @@
   ],
   "discography": [
     {
-      "slug": "project:a-love-letter-to-you",
+      "slug": "project:nda--trippie-redd",
       "type": "project",
-      "name": "A Love Letter to You"
+      "name": "NDA",
+      "artist": "Trippie Redd",
+      "mbid": "b65521c2-e69d-401e-9a6b-b970622b47fc",
+      "year": "2026",
+      "releaseType": "album"
     },
     {
-      "slug": "project:life-s-a-trip",
+      "slug": "project:a-love-letter-to-you-5--trippie-redd",
       "type": "project",
-      "name": "Life's a Trip"
+      "name": "A Love Letter to You 5",
+      "artist": "Trippie Redd",
+      "mbid": "34b3b251-f9f8-475f-9300-4a538752b158",
+      "year": "2023",
+      "releaseType": "album"
     },
     {
-      "slug": "project:pegasus",
+      "slug": "project:mansion-musik-apple-music--trippie-redd",
       "type": "project",
-      "name": "Pegasus"
+      "name": "MANSION MUSIK (Apple Music)",
+      "artist": "Trippie Redd",
+      "mbid": "b11f1a81-d1be-4cf5-b21d-83c514376802",
+      "year": "2023",
+      "releaseType": "album"
     },
     {
-      "slug": "project:trip-at-knight",
+      "slug": "project:muscles--trippie-redd",
       "type": "project",
-      "name": "Trip at Knight"
+      "name": "MUSCLES",
+      "artist": "Trippie Redd",
+      "mbid": "9c8d6902-b89e-4c5f-8238-fdd54f7d89ea",
+      "year": "2023",
+      "releaseType": "single"
     },
     {
       "slug": "project:mansion-musik",
       "type": "project",
-      "name": "Mansion Musik"
+      "name": "Mansion Musik",
+      "mbid": "d8fb263c-f227-4efc-9cba-b3425263d7e7",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:saint-michael--trippie-redd",
+      "type": "project",
+      "name": "Saint Michael",
+      "artist": "Trippie Redd",
+      "mbid": "a988258f-3cd7-494a-b51f-f4fb264694e4",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:saint-michael-v2--trippie-redd",
+      "type": "project",
+      "name": "Saint Michael V2",
+      "artist": "Trippie Redd",
+      "mbid": "89f6fe71-14d3-4d1d-9d63-89271fc5aa4c",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-leak-1--trippie-redd",
+      "type": "project",
+      "name": "THE LEAK 1",
+      "artist": "Trippie Redd",
+      "mbid": "1b5a9889-0471-48f9-92ea-205663b8aa1d",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:holy-smokes--trippie-redd",
+      "type": "project",
+      "name": "Holy Smokes",
+      "artist": "Trippie Redd",
+      "mbid": "7659cacb-6703-4513-bc04-f54cebec6076",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trip-at-knight",
+      "type": "project",
+      "name": "Trip at Knight",
+      "mbid": "f2db87a1-daa2-48a5-8de0-277db56865c1",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:h-is-d-d--trippie-redd",
+      "type": "project",
+      "name": "hα†ε ïš dεαd",
+      "artist": "Trippie Redd",
+      "mbid": "83a30093-ba03-4ce5-9187-481e0d52326d",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pegasus",
+      "type": "project",
+      "name": "Pegasus",
+      "mbid": "534d5750-67f9-45bd-ba74-8b199d68db30",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:spooky-sounds--trippie-redd",
+      "type": "project",
+      "name": "Spooky Sounds",
+      "artist": "Trippie Redd",
+      "mbid": "d7a40469-c383-440f-8f12-d6565b2cd135",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:a-love-letter-to-you-4--trippie-redd",
+      "type": "project",
+      "name": "A Love Letter to You 4",
+      "artist": "Trippie Redd",
+      "mbid": "f08edbe3-e374-44ed-b1a8-7ebd54b28b21",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-me-more--trippie-redd",
+      "type": "project",
+      "name": "Love Me More",
+      "artist": "Trippie Redd",
+      "mbid": "66dfff86-5dc9-4eef-a681-bd0108e69666",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mm--trippie-redd",
+      "type": "project",
+      "name": "MM",
+      "artist": "Trippie Redd",
+      "mbid": "8729e47e-d426-4955-a123-28f7a46c3478",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:old-self--trippie-redd",
+      "type": "project",
+      "name": "Old Self",
+      "artist": "Trippie Redd",
+      "mbid": "6e2ce4fd-0981-4860-ae82-d48260e162ea",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:under-enemy-arms--trippie-redd",
+      "type": "project",
+      "name": "Under Enemy Arms",
+      "artist": "Trippie Redd",
+      "mbid": "7fc86c1c-34fa-4017-a32f-cfa924c9cd76",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-love-letter-to-you-3--trippie-redd",
+      "type": "project",
+      "name": "A Love Letter to You 3",
+      "artist": "Trippie Redd",
+      "mbid": "3c61d1e6-eb65-4a45-89c2-71fbd0afa3f2",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:black-magic--trippie-redd",
+      "type": "project",
+      "name": "Black Magic",
+      "artist": "Trippie Redd",
+      "mbid": "3b7d9522-5d48-442a-9a5d-5e4573f966b3",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:how-you-feel--trippie-redd",
+      "type": "project",
+      "name": "How You Feel",
+      "artist": "Trippie Redd",
+      "mbid": "333ea10a-f733-415b-adf6-0b3497f9287c",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:life-s-a-trip",
+      "type": "project",
+      "name": "Life's a Trip",
+      "mbid": "684f0121-d805-482a-abe4-fd8c4d9df23c",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:me-likey--trippie-redd",
+      "type": "project",
+      "name": "Me Likey",
+      "artist": "Trippie Redd",
+      "mbid": "a70ef897-6559-48f9-b7bf-927775682306",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tr666-1400-800--trippie-redd",
+      "type": "project",
+      "name": "TR666+!$ 1400/800",
+      "artist": "Trippie Redd",
+      "mbid": "47105826-b9fa-4900-92d5-bbbd6db7afb9",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:taking-a-walk--trippie-redd",
+      "type": "project",
+      "name": "Taking A Walk",
+      "artist": "Trippie Redd",
+      "mbid": "e5cdb784-7b39-4e29-8d7b-6b69f2436527",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:topanga--trippie-redd",
+      "type": "project",
+      "name": "Topanga",
+      "artist": "Trippie Redd",
+      "mbid": "69c6cfc1-6778-4939-b7fd-7f23c2f8ecbe",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:uka-uka--trippie-redd",
+      "type": "project",
+      "name": "UKA UKA",
+      "artist": "Trippie Redd",
+      "mbid": "9d55adf2-6a60-40b1-ae48-1bbacd484a85",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-love-letter-to-you",
+      "type": "project",
+      "name": "A Love Letter to You",
+      "mbid": "e1e357a7-d536-44dc-b18b-979ad6c1422f",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-love-letter-to-you-2--trippie-redd",
+      "type": "project",
+      "name": "A Love Letter to You 2",
+      "artist": "Trippie Redd",
+      "mbid": "90100c22-a672-4602-a966-2f465a8d4928",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:angels-and-demons--trippie-redd",
+      "type": "project",
+      "name": "Angels & Demons",
+      "artist": "Trippie Redd",
+      "mbid": "93c88a6f-b1af-44e9-8ccf-84479fba83ed",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:bust-down--trippie-redd",
+      "type": "project",
+      "name": "Bust Down",
+      "artist": "Trippie Redd",
+      "mbid": "47ddeb18-c470-47b3-9e0e-4ad57a502dc1",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chair-falling--trippie-redd",
+      "type": "project",
+      "name": "Chair Falling",
+      "artist": "Trippie Redd",
+      "mbid": "51f5b69d-c318-4a9b-902c-314c7352b413",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dark-knight-dummo--trippie-redd",
+      "type": "project",
+      "name": "Dark Knight Dummo",
+      "artist": "Trippie Redd",
+      "mbid": "84e570ba-c59c-4cff-b99f-f30013c37a1b",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:in-too-deep--trippie-redd",
+      "type": "project",
+      "name": "In Too Deep",
+      "artist": "Trippie Redd",
+      "mbid": "8811779b-3910-480c-ba04-1376f709bb0f",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tr666--trippie-redd",
+      "type": "project",
+      "name": "TR666",
+      "artist": "Trippie Redd",
+      "mbid": "798ebfed-9a29-454b-89c9-c6886844e9bc",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:white-room-project--trippie-redd",
+      "type": "project",
+      "name": "White Room Project",
+      "artist": "Trippie Redd",
+      "mbid": "4160e7c5-77dd-43a2-9720-f4c09a727aab",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:awakening-my-innerbeast--trippie-redd",
+      "type": "project",
+      "name": "\"Awakening my InnerBeast\"",
+      "artist": "Trippie Redd",
+      "mbid": "7ca30525-4a77-4cbf-8eba-505ca74182e6",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:beast-mode--trippie-redd",
+      "type": "project",
+      "name": "Beast Mode ++++",
+      "artist": "Trippie Redd",
+      "mbid": "e0d29a24-e62e-4451-a361-de779d6c8af7",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:rock-the-world-trippie-xxxxx--trippie-redd",
+      "type": "project",
+      "name": "Rock the World Trippie (xxxxx)",
+      "artist": "Trippie Redd",
+      "mbid": "41df3812-b1a1-4e0a-90c5-22b57358e775",
+      "year": "2016",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

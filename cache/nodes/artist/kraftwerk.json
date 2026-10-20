@@ -50,9 +50,120 @@
   ],
   "discography": [
     {
+      "slug": "project:tour-de-france-soundtracks--kraftwerk",
+      "type": "project",
+      "name": "Tour de France Soundtracks",
+      "artist": "Kraftwerk",
+      "mbid": "e963cb1e-ec72-303d-9a3f-9fcb89188436",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:electric-cafe--kraftwerk",
+      "type": "project",
+      "name": "Electric Cafe",
+      "artist": "Kraftwerk",
+      "mbid": "2b04bde9-1bbc-3f6b-b67d-24ad473d8912",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:computerwelt--kraftwerk",
+      "type": "project",
+      "name": "Computerwelt",
+      "artist": "Kraftwerk",
+      "mbid": "2e58b620-cf80-3b07-a5bc-edabd69ba285",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:das-model--kraftwerk",
+      "type": "project",
+      "name": "Das Model",
+      "artist": "Kraftwerk",
+      "mbid": "5ee2c8fa-3b5f-3456-a421-7e2d4838186d",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:die-mensch-maschine--kraftwerk",
+      "type": "project",
+      "name": "Die Mensch·Maschine",
+      "artist": "Kraftwerk",
+      "mbid": "d147e89b-90ca-35b6-9f7b-3e34b8edf63f",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:die-roboter--kraftwerk",
+      "type": "project",
+      "name": "Die Roboter",
+      "artist": "Kraftwerk",
+      "mbid": "d6407db3-6381-3b0a-bb86-c9133c389c39",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:showroom-dummies--kraftwerk",
+      "type": "project",
+      "name": "Showroom Dummies",
+      "artist": "Kraftwerk",
+      "mbid": "f7b596dc-7a34-3901-9184-4e5ac407bb46",
+      "year": "1977",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trans-europa-express--kraftwerk",
+      "type": "project",
+      "name": "Trans Europa Express",
+      "artist": "Kraftwerk",
+      "mbid": "33101a28-ae05-3a69-873c-684e336fe2df",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:radio-aktivitat--kraftwerk",
+      "type": "project",
+      "name": "Radio‐Aktivität",
+      "artist": "Kraftwerk",
+      "mbid": "104cc34f-b4f9-3fb1-b2a0-fce32b36ec1f",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:autobahn--kraftwerk",
       "type": "project",
-      "name": "Autobahn"
+      "name": "Autobahn",
+      "mbid": "f73729e8-4501-3088-aa20-44945296036e",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ralf-and-florian--kraftwerk",
+      "type": "project",
+      "name": "Ralf & Florian",
+      "artist": "Kraftwerk",
+      "mbid": "6d2f3c22-7f2f-3076-9005-96c6540616f7",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kraftwerk-2--kraftwerk",
+      "type": "project",
+      "name": "Kraftwerk 2",
+      "artist": "Kraftwerk",
+      "mbid": "b44d78cc-41d7-3f84-b397-4b135a3f7d9d",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kraftwerk--kraftwerk",
+      "type": "project",
+      "name": "Kraftwerk",
+      "artist": "Kraftwerk",
+      "mbid": "47e62190-67b6-3d37-951c-43eb14894b3e",
+      "year": "1970",
+      "releaseType": "album"
     },
     {
       "slug": "project:trans-europe-express",

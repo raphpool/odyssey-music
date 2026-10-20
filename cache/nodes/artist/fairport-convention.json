@@ -46,10 +46,94 @@
   "labels": [],
   "discography": [
     {
+      "slug": "project:the-wood-and-the-wire--fairport-convention",
+      "type": "project",
+      "name": "The Wood and the Wire",
+      "artist": "Fairport Convention",
+      "mbid": "1f3034e0-2b7a-353f-b176-6f19d575b96a",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tipplers-tales--fairport-convention",
+      "type": "project",
+      "name": "Tipplers Tales",
+      "artist": "Fairport Convention",
+      "mbid": "2694fc8c-7ae7-327f-aa5d-6f8af4828f59",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nine--fairport-convention",
+      "type": "project",
+      "name": "Nine",
+      "artist": "Fairport Convention",
+      "mbid": "28f36e0d-2adc-3eb9-b010-8f5eee1b0ea1",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:angel-delight--fairport-convention",
+      "type": "project",
+      "name": "Angel Delight",
+      "artist": "Fairport Convention",
+      "mbid": "da375e02-43d9-3381-8d41-3fea9e53a233",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:babbacombe-lee--fairport-convention",
+      "type": "project",
+      "name": "“Babbacombe” Lee",
+      "artist": "Fairport Convention",
+      "mbid": "3956a31b-5cde-34f0-ba5a-789e8c58d956",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:full-house--fairport-convention",
+      "type": "project",
+      "name": "Full House",
+      "artist": "Fairport Convention",
+      "mbid": "1fc6511b-e2ed-3bc5-9fff-b36464f38f73",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:liege-and-lief--fairport-convention",
       "type": "project",
       "name": "Liege & Lief",
-      "artist": "Fairport Convention"
+      "artist": "Fairport Convention",
+      "mbid": "3a6b89d1-ae82-3710-8e71-765405aa8a78",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unhalfbricking--fairport-convention",
+      "type": "project",
+      "name": "Unhalfbricking",
+      "artist": "Fairport Convention",
+      "mbid": "a0a9d6a6-c3fe-367a-bc8c-449285c6c473",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:what-we-did-on-our-holidays--fairport-convention",
+      "type": "project",
+      "name": "What We Did on Our Holidays",
+      "artist": "Fairport Convention",
+      "mbid": "9dd78f1e-eeb1-317b-b299-4edfa49fe2b8",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fairport-convention--fairport-convention",
+      "type": "project",
+      "name": "Fairport Convention",
+      "artist": "Fairport Convention",
+      "mbid": "a007a216-f61f-3f41-8c11-1803c3c89cfc",
+      "year": "1968",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

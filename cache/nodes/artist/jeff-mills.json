@@ -55,14 +55,350 @@
   ],
   "discography": [
     {
-      "slug": "project:waveform-transmission-vol-1",
+      "slug": "project:moon-the-area-of-influence--jeff-mills",
       "type": "project",
-      "name": "Waveform Transmission, Vol. 1"
+      "name": "Moon - The Area of Influence",
+      "artist": "Jeff Mills",
+      "mbid": "90d50613-eb20-4820-b21b-0e7d6b59a859",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-trip-to-the-moon--jeff-mills",
+      "type": "project",
+      "name": "A Trip to the Moon",
+      "artist": "Jeff Mills",
+      "mbid": "6d8e89f4-34fc-4fbc-9072-9947c609d433",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:and-then-there-was-light--jeff-mills",
+      "type": "project",
+      "name": "And Then There Was Light",
+      "artist": "Jeff Mills",
+      "mbid": "7b855892-220a-40fd-ba15-ccb3b379b15b",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:planets--jeff-mills",
+      "type": "project",
+      "name": "Planets",
+      "artist": "Jeff Mills",
+      "mbid": "a5f467c9-e729-4de8-b0ee-0eef2ffee851",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:free-fall-galaxy--jeff-mills",
+      "type": "project",
+      "name": "Free Fall Galaxy",
+      "artist": "Jeff Mills",
+      "mbid": "6cff5196-e5eb-4649-9f52-e95166c5039d",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:proxima-centauri--jeff-mills",
+      "type": "project",
+      "name": "Proxima Centauri",
+      "artist": "Jeff Mills",
+      "mbid": "44a93b6c-fca2-45aa-b356-d575d53ad6ae",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:woman-in-the-moon--jeff-mills",
+      "type": "project",
+      "name": "Woman in the Moon",
+      "artist": "Jeff Mills",
+      "mbid": "8318e903-6f72-48cb-8923-7ec54e621029",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:and-what-about-the-truth--jeff-mills",
+      "type": "project",
+      "name": "And What About The Truth",
+      "artist": "Jeff Mills",
+      "mbid": "4fe7ab93-7176-48b7-ad58-6a462299c2ea",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chronicles-of-possible-worlds--jeff-mills",
+      "type": "project",
+      "name": "Chronicles of Possible Worlds",
+      "artist": "Jeff Mills",
+      "mbid": "fc281f1c-ae44-4596-a5f5-1d388e869f13",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:emerging-crystal-universe--jeff-mills",
+      "type": "project",
+      "name": "Emerging Crystal Universe",
+      "artist": "Jeff Mills",
+      "mbid": "6c57db5b-e356-4c9c-82d9-b9dd8e47c6ea",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:man-from-tomorrow--jeff-mills",
+      "type": "project",
+      "name": "Man From Tomorrow",
+      "artist": "Jeff Mills",
+      "mbid": "cb87ea29-eb9e-4738-9f8f-f5670b01431c",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-jungle-planet--jeff-mills",
+      "type": "project",
+      "name": "The Jungle Planet",
+      "artist": "Jeff Mills",
+      "mbid": "1a4cbdcd-3851-4483-a8cd-e05012ea05d5",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:where-light-ends--jeff-mills",
+      "type": "project",
+      "name": "Where Light Ends",
+      "artist": "Jeff Mills",
+      "mbid": "053a14a8-535d-4e74-9b4d-c4d1528e5755",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-messenger--jeff-mills",
+      "type": "project",
+      "name": "The Messenger",
+      "artist": "Jeff Mills",
+      "mbid": "88a7d13e-7162-44e0-938c-9e185392d6ed",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:2087--jeff-mills",
+      "type": "project",
+      "name": "2087",
+      "artist": "Jeff Mills",
+      "mbid": "652a47c2-782e-42d8-8288-bd8f960cc540",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fantastic-voyage--jeff-mills",
+      "type": "project",
+      "name": "Fantastic Voyage",
+      "artist": "Jeff Mills",
+      "mbid": "911fda1f-cd95-4c36-9d6e-3557d595f32e",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-power--jeff-mills",
+      "type": "project",
+      "name": "The Power",
+      "artist": "Jeff Mills",
+      "mbid": "a526ad56-8846-43f3-8ae4-e569e172579a",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-drummer-26--jeff-mills",
+      "type": "project",
+      "name": "The Drummer 26",
+      "artist": "Jeff Mills",
+      "mbid": "a0e9a593-cdff-4e6e-953a-d8888e1ef067",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-occurrence--jeff-mills",
+      "type": "project",
+      "name": "The Occurrence",
+      "artist": "Jeff Mills",
+      "mbid": "76023107-eb82-4c21-a5aa-38f0f32d7147",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gamma-player-volume-2--jeff-mills",
+      "type": "project",
+      "name": "Gamma Player, Volume 2",
+      "artist": "Jeff Mills",
+      "mbid": "4ef87eb5-394d-434b-bd84-74ff1a90510b",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:niteroi--jeff-mills",
+      "type": "project",
+      "name": "Niteroi",
+      "artist": "Jeff Mills",
+      "mbid": "6371690f-2672-4a21-a31e-1129aa012e64",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sleeper-wakes--jeff-mills",
+      "type": "project",
+      "name": "Sleeper Wakes",
+      "artist": "Jeff Mills",
+      "mbid": "ad1a2a6f-f04e-46a5-b933-a5b0b5a84769",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:alpha-centauri--jeff-mills",
+      "type": "project",
+      "name": "Alpha Centauri",
+      "artist": "Jeff Mills",
+      "mbid": "07e803f8-b2d3-4449-83a2-2791c0c60cf7",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-man-spaceship--jeff-mills",
+      "type": "project",
+      "name": "One Man Spaceship",
+      "artist": "Jeff Mills",
+      "mbid": "e67b2e9a-43f0-325a-93d2-7a090690b848",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-the-21st-part-2--jeff-mills",
+      "type": "project",
+      "name": "From the 21st, Part 2",
+      "artist": "Jeff Mills",
+      "mbid": "1cda836c-c796-4a97-a316-422573d6f408",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-tomorrow-time-forgot--jeff-mills",
+      "type": "project",
+      "name": "The Tomorrow Time Forgot",
+      "artist": "Jeff Mills",
+      "mbid": "341e1b59-9a52-4035-b957-c7b6076b2df5",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:three-ages--jeff-mills",
+      "type": "project",
+      "name": "Three Ages",
+      "artist": "Jeff Mills",
+      "mbid": "fdf9d6be-4ca9-3f98-8214-b517150be71f",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:medium--jeff-mills",
+      "type": "project",
+      "name": "Medium",
+      "artist": "Jeff Mills",
+      "mbid": "43c93967-1762-40aa-8606-3bac318e2d05",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:actual--jeff-mills",
+      "type": "project",
+      "name": "Actual",
+      "artist": "Jeff Mills",
+      "mbid": "415a25b7-eb79-357a-a36d-efcc3fdf0b7c",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:at-first-sight--jeff-mills",
+      "type": "project",
+      "name": "At First Sight",
+      "artist": "Jeff Mills",
+      "mbid": "cac1c40a-0644-3da0-baef-8b30e59f0c33",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:time-machine--jeff-mills",
+      "type": "project",
+      "name": "Time Machine",
+      "artist": "Jeff Mills",
+      "mbid": "1ff4f6fa-c085-36d4-b465-174f183b5e2a",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:conquest--jeff-mills",
+      "type": "project",
+      "name": "Conquest",
+      "artist": "Jeff Mills",
+      "mbid": "62a9decb-e4c0-4e0a-a45e-c3f6dce144f0",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:metropolis--jeff-mills",
+      "type": "project",
+      "name": "Metropolis",
+      "artist": "Jeff Mills",
+      "mbid": "59c0de0d-4f69-3263-8b13-85ca3501f28c",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-the-21st--jeff-mills",
+      "type": "project",
+      "name": "From the 21st",
+      "artist": "Jeff Mills",
+      "mbid": "3224456c-6766-3485-9c74-6ed8c29d004c",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:confidentials-5-8--jeff-mills",
+      "type": "project",
+      "name": "Confidentials 5-8",
+      "artist": "Jeff Mills",
+      "mbid": "1e513d4f-ee7c-4c9e-9c14-be9bda35b525",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cycle-30--jeff-mills",
+      "type": "project",
+      "name": "Cycle 30",
+      "artist": "Jeff Mills",
+      "mbid": "1d369fe8-1bda-3092-b0d9-47b39a43d711",
+      "year": "1994",
+      "releaseType": "album"
     },
     {
       "slug": "project:waveform-transmission-vol-3--jeff-mills",
       "type": "project",
-      "name": "Waveform Transmission, Vol. 3"
+      "name": "Waveform Transmission, Vol. 3",
+      "mbid": "809ee3b5-07f5-3f2b-bdfc-f9c5b0a881c5",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:waveform-transmission-volume-1--jeff-mills",
+      "type": "project",
+      "name": "Waveform Transmission, Volume 1",
+      "artist": "Jeff Mills",
+      "mbid": "b23eb64a-51aa-3d95-8c44-bc78af7b0457",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:waveform-transmission-vol-1",
+      "type": "project",
+      "name": "Waveform Transmission, Vol. 1"
     },
     {
       "slug": "project:every-dog-has-its-day",

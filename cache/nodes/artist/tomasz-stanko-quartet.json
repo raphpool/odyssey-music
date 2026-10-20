@@ -50,24 +50,45 @@
   ],
   "discography": [
     {
-      "slug": "project:soul-of-things--tomasz-stanko-quartet",
+      "slug": "project:september-night",
       "type": "project",
-      "name": "Soul of Things"
-    },
-    {
-      "slug": "project:suspended-night",
-      "type": "project",
-      "name": "Suspended Night"
+      "name": "September Night",
+      "mbid": "98300459-8ea1-4c71-acff-bcc311d07e40",
+      "year": "2024",
+      "releaseType": "album"
     },
     {
       "slug": "project:lontano",
       "type": "project",
-      "name": "Lontano"
+      "name": "Lontano",
+      "mbid": "8b9d32e4-37ed-3d2f-8f8e-df4af02f110d",
+      "year": "2006",
+      "releaseType": "album"
     },
     {
-      "slug": "project:september-night",
+      "slug": "project:suspended-night",
       "type": "project",
-      "name": "September Night"
+      "name": "Suspended Night",
+      "mbid": "2089c115-8979-3dbd-84a4-902a5b13b668",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soul-of-things--tomasz-stanko-quartet",
+      "type": "project",
+      "name": "Soul of Things",
+      "mbid": "7e23e62d-d6e1-39f4-8fbb-b4e3f882e8e8",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:matka-joanna--tomasz-stanko-quartet",
+      "type": "project",
+      "name": "Matka Joanna",
+      "artist": "Tomasz Stańko Quartet",
+      "mbid": "3953638d-9317-3442-8a02-b1c532c3abf0",
+      "year": "1995",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

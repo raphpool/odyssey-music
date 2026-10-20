@@ -34,24 +34,184 @@
   ],
   "discography": [
     {
+      "slug": "project:blanco-nemesis--booba",
+      "type": "project",
+      "name": "Blanco nemesis",
+      "artist": "Booba",
+      "mbid": "e7841eea-9e81-4be5-830b-68ae7e643e96",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dolce-camara-solo--booba",
+      "type": "project",
+      "name": "Dolce Camara (solo)",
+      "artist": "Booba",
+      "mbid": "4df76640-945d-485a-8cea-cc6f68167c28",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:seychelles--booba",
+      "type": "project",
+      "name": "Seychelles",
+      "artist": "Booba",
+      "mbid": "aeb4311f-0e80-4777-b60c-de0bad5baf8e",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:autoroute-du-soleil--booba",
+      "type": "project",
+      "name": "Autoroute du Soleil",
+      "artist": "Booba",
+      "mbid": "1f84c40b-e08c-4b88-aae5-0feb755ee28e",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dd--booba",
+      "type": "project",
+      "name": "DD",
+      "artist": "Booba",
+      "mbid": "a02afb84-81b2-41b4-a80d-f8fc367c7d7c",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ici-c-est-paris--booba",
+      "type": "project",
+      "name": "Ici C'est Paris",
+      "artist": "Booba",
+      "mbid": "2977e1ec-54c2-4332-b966-9c91a7732711",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:magic--booba",
+      "type": "project",
+      "name": "Magic",
+      "artist": "Booba",
+      "mbid": "d8369096-5478-48f0-8c5c-7328674317b3",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nwar-mentality--booba",
+      "type": "project",
+      "name": "Nwar Mentality",
+      "artist": "Booba",
+      "mbid": "b5b80a59-8efe-4e62-ba0c-052d5e29f032",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ororo--booba",
+      "type": "project",
+      "name": "Ororo",
+      "artist": "Booba",
+      "mbid": "29b1e579-49ef-4a87-bd3a-fea58ac5f5c4",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ad-vitam-aeternam--booba",
+      "type": "project",
+      "name": "AD VITAM ÆTERNAM",
+      "artist": "Booba",
+      "mbid": "a6053005-49d4-43b3-823c-bbee710efe93",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:geronimo--booba",
+      "type": "project",
+      "name": "Geronimo",
+      "artist": "Booba",
+      "mbid": "1a723c13-ec8b-478f-aad3-02fb7a5ab192",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:leo-messi--booba",
+      "type": "project",
+      "name": "Leo Messi",
+      "artist": "Booba",
+      "mbid": "2bd85c57-cd9f-4ca9-9a65-0c0a55f3b26e",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trone",
+      "type": "project",
+      "name": "Trône",
+      "mbid": "3e472e7e-a706-478a-a8dd-25dbec5186d3",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nero-nemesis",
+      "type": "project",
+      "name": "Nero Nemesis",
+      "mbid": "00e2061c-4f59-4e1a-8243-c57f81809629",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:oklm--booba",
+      "type": "project",
+      "name": "OKLM",
+      "artist": "Booba",
+      "mbid": "ed7d2743-bf46-4de9-a888-b69b7f0342a7",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:caramel--booba",
+      "type": "project",
+      "name": "Caramel",
+      "artist": "Booba",
+      "mbid": "cafc5dea-77a3-4c51-8194-db38aecf5476",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:paradis--booba",
+      "type": "project",
+      "name": "Paradis",
+      "artist": "Booba",
+      "mbid": "2fca7ece-3139-4d82-8dd8-0e2965f1fb62",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:0-9",
+      "type": "project",
+      "name": "0.9",
+      "mbid": "1f6a9089-3515-3bc3-b18c-560c0e6e2de3",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ouest-side--booba",
+      "type": "project",
+      "name": "Ouest Side",
+      "mbid": "ae4cb316-65dd-3115-92ac-22a34af33bfe",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:temps-mort--booba",
       "type": "project",
-      "name": "Temps mort"
+      "name": "Temps mort",
+      "mbid": "1bd0767d-756b-3023-bf84-ca475fea487a",
+      "year": "2002",
+      "releaseType": "album"
     },
     {
       "slug": "project:pantheon",
       "type": "project",
       "name": "Panthéon"
-    },
-    {
-      "slug": "project:ouest-side--booba",
-      "type": "project",
-      "name": "Ouest Side"
-    },
-    {
-      "slug": "project:0-9",
-      "type": "project",
-      "name": "0.9"
     },
     {
       "slug": "project:lunatic",
@@ -67,16 +227,6 @@
       "slug": "project:d-u-c",
       "type": "project",
       "name": "D.U.C"
-    },
-    {
-      "slug": "project:nero-nemesis",
-      "type": "project",
-      "name": "Nero Nemesis"
-    },
-    {
-      "slug": "project:trone",
-      "type": "project",
-      "name": "Trône"
     },
     {
       "slug": "project:ultra--booba",

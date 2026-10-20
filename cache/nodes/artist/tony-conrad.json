@@ -46,10 +46,85 @@
   ],
   "discography": [
     {
+      "slug": "project:untitled-solo-for-the-building-of-a-museum--tony-conrad",
+      "type": "project",
+      "name": "Untitled (Solo for the Building of a Museum)",
+      "artist": "Tony Conrad",
+      "mbid": "72d550b2-5832-4bd0-bea7-1c86ad417d97",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:taking-issue--tony-conrad",
+      "type": "project",
+      "name": "Taking Issue",
+      "artist": "Tony Conrad",
+      "mbid": "c2be9ddb-ad09-4516-899f-c28d54fa64fe",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:joan-of-arc--tony-conrad",
+      "type": "project",
+      "name": "Joan of Arc",
+      "artist": "Tony Conrad",
+      "mbid": "ec8ea004-87ab-411e-952a-d7c0dbd3c7d6",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fantastic-glissando--tony-conrad",
+      "type": "project",
+      "name": "Fantastic Glissando",
+      "artist": "Tony Conrad",
+      "mbid": "1f2306e6-4587-36b6-a456-b8e8d1e4f151",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:let-s-trade-pants--tony-conrad",
+      "type": "project",
+      "name": "Let's Trade Pants",
+      "artist": "Tony Conrad",
+      "mbid": "fdc7a493-9eb5-4c95-a727-5924f3054142",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:early-minimalism-volume-one--tony-conrad",
+      "type": "project",
+      "name": "Early Minimalism, Volume One",
+      "artist": "Tony Conrad",
+      "mbid": "f58a26e0-b1ef-36e5-8069-7138da9c2370",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:four-violins--tony-conrad",
       "type": "project",
       "name": "Four Violins",
-      "artist": "Tony Conrad"
+      "artist": "Tony Conrad",
+      "mbid": "76fbbda8-9e42-4dcc-bbd5-f33cc96857e5",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:slapping-pythagoras--tony-conrad",
+      "type": "project",
+      "name": "Slapping Pythagoras",
+      "artist": "Tony Conrad",
+      "mbid": "5ca126d3-cf37-34ad-a598-30ea4683a321",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:outside-the-dream-syndicate--tony-conrad",
+      "type": "project",
+      "name": "Outside the Dream Syndicate",
+      "artist": "Tony Conrad",
+      "mbid": "b04ef457-0584-42ef-b2fa-374bba9d3726",
+      "year": "1973",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

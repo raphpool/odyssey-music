@@ -73,6 +73,15 @@
       "releaseType": "single"
     },
     {
+      "slug": "project:disconnect-me--kai-tracid",
+      "type": "project",
+      "name": "Disconnect Me",
+      "artist": "Kai Tracid",
+      "mbid": "f79a085a-7e55-4ebe-8ebf-038a6aa70c8e",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:tracid",
       "type": "project",
       "name": "Tracid",
@@ -129,18 +138,18 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:freedom-of-expression",
-      "type": "project",
-      "name": "Freedom Of Expression (Dark Acid mix)",
-      "mbid": "f2acdfc6-8dd4-4fb0-ba9d-5d7603785eaf",
-      "year": "2020",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:dt64",
       "type": "project",
       "name": "DT64",
       "mbid": "74286d49-08d0-4152-aa7f-3fc431d0d81b",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:freedom-of-expression",
+      "type": "project",
+      "name": "Freedom Of Expression (Dark Acid mix)",
+      "mbid": "f2acdfc6-8dd4-4fb0-ba9d-5d7603785eaf",
       "year": "2020",
       "releaseType": "single"
     },
@@ -193,18 +202,18 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:nobita-aktionsradius",
-      "type": "project",
-      "name": "Nobita / Aktionsradius",
-      "mbid": "92c4ce64-8b66-4884-9499-76f8be786d5e",
-      "year": "2005",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:kapt-n-timewarp",
       "type": "project",
       "name": "Käpt'n / Timewarp",
       "mbid": "43ddaf01-7f42-4381-87f0-280d440d3e67",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nobita-aktionsradius",
+      "type": "project",
+      "name": "Nobita / Aktionsradius",
+      "mbid": "92c4ce64-8b66-4884-9499-76f8be786d5e",
       "year": "2005",
       "releaseType": "single"
     },
@@ -313,18 +322,18 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:liquid-skies",
-      "type": "project",
-      "name": "Liquid Skies",
-      "mbid": "f6822fb9-6b1b-3934-b81d-3e0ebb91a5ea",
-      "year": "1998",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:dance-for-eternity",
       "type": "project",
       "name": "Dance for Eternity",
       "mbid": "9f651ec9-9706-3cb3-8957-184a9618236f",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:liquid-skies",
+      "type": "project",
+      "name": "Liquid Skies",
+      "mbid": "f6822fb9-6b1b-3934-b81d-3e0ebb91a5ea",
       "year": "1998",
       "releaseType": "single"
     },

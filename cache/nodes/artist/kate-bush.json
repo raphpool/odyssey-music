@@ -55,49 +55,193 @@
   ],
   "discography": [
     {
-      "slug": "project:the-kick-inside",
+      "slug": "project:50-words-for-snow",
       "type": "project",
-      "name": "The Kick Inside"
-    },
-    {
-      "slug": "project:lionheart",
-      "type": "project",
-      "name": "Lionheart"
-    },
-    {
-      "slug": "project:never-for-ever",
-      "type": "project",
-      "name": "Never for Ever"
-    },
-    {
-      "slug": "project:the-dreaming",
-      "type": "project",
-      "name": "The Dreaming"
-    },
-    {
-      "slug": "project:hounds-of-love",
-      "type": "project",
-      "name": "Hounds of Love"
-    },
-    {
-      "slug": "project:the-sensual-world",
-      "type": "project",
-      "name": "The Sensual World"
-    },
-    {
-      "slug": "project:the-red-shoes",
-      "type": "project",
-      "name": "The Red Shoes"
+      "name": "50 Words for Snow",
+      "mbid": "2eefe885-f050-426d-93f0-29c5eb8b4f9a",
+      "year": "2011",
+      "releaseType": "album"
     },
     {
       "slug": "project:aerial",
       "type": "project",
-      "name": "Aerial"
+      "name": "Aerial",
+      "mbid": "6169f5bc-b5ff-3348-b806-1b0f2a414217",
+      "year": "2005",
+      "releaseType": "album"
     },
     {
-      "slug": "project:50-words-for-snow",
+      "slug": "project:king-of-the-mountain--kate-bush",
       "type": "project",
-      "name": "50 Words for Snow"
+      "name": "King of the Mountain",
+      "artist": "Kate Bush",
+      "mbid": "fbf86737-02a4-304f-8554-6896e8619d77",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-man-i-love--kate-bush",
+      "type": "project",
+      "name": "The Man I Love",
+      "artist": "Kate Bush",
+      "mbid": "eb31bb18-33f8-31b1-9839-d4412fc19605",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:eat-the-music--kate-bush",
+      "type": "project",
+      "name": "Eat the Music",
+      "artist": "Kate Bush",
+      "mbid": "ae5a1362-8a09-3587-9a00-0c154b68ddc6",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:moments-of-pleasure--kate-bush",
+      "type": "project",
+      "name": "Moments of Pleasure",
+      "artist": "Kate Bush",
+      "mbid": "fee40a18-48c8-4fbf-a29f-82f643254617",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-red-shoes",
+      "type": "project",
+      "name": "The Red Shoes",
+      "mbid": "de560c24-95c1-3b5b-b76f-0a0730b18134",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rocket-man-candle-in-the-wind--kate-bush",
+      "type": "project",
+      "name": "Rocket Man / Candle in the Wind",
+      "artist": "Kate Bush",
+      "mbid": "7dbd3bb0-b0f0-3a31-af41-ae2ad03c25be",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-and-anger--kate-bush",
+      "type": "project",
+      "name": "Love and Anger",
+      "artist": "Kate Bush",
+      "mbid": "aab6ac99-a8f6-37aa-ad93-f2e5c275d85e",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-sensual-world",
+      "type": "project",
+      "name": "The Sensual World",
+      "mbid": "ad555095-b0a6-42c8-87aa-8ba035d20e12",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:this-woman-s-work--kate-bush",
+      "type": "project",
+      "name": "This Woman’s Work",
+      "artist": "Kate Bush",
+      "mbid": "a381b456-b7c2-3dba-8561-7ce933c39fe6",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:experiment-iv--kate-bush",
+      "type": "project",
+      "name": "Experiment IV",
+      "artist": "Kate Bush",
+      "mbid": "87393e04-1b68-3d19-b615-f8156744e816",
+      "year": "1986",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hounds-of-love",
+      "type": "project",
+      "name": "Hounds of Love",
+      "mbid": "017f2a37-a78f-3578-9611-fa40408e5d90",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:running-up-that-hill--kate-bush",
+      "type": "project",
+      "name": "Running Up That Hill",
+      "artist": "Kate Bush",
+      "mbid": "9db57744-5086-3110-b7c0-2bc1edd19b15",
+      "year": "1985",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-dreaming",
+      "type": "project",
+      "name": "The Dreaming",
+      "mbid": "d28777fc-f135-3394-a033-eafb9ebcffb4",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:babooshka--kate-bush",
+      "type": "project",
+      "name": "Babooshka",
+      "artist": "Kate Bush",
+      "mbid": "09f50b84-8630-303a-99f7-f82483feea0a",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:never-for-ever",
+      "type": "project",
+      "name": "Never for Ever",
+      "mbid": "b3c5541a-e1d0-354f-b6c8-565c37dde332",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wow--kate-bush",
+      "type": "project",
+      "name": "Wow",
+      "artist": "Kate Bush",
+      "mbid": "dca4b12d-a678-4610-8ffb-3b1db32473c1",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lionheart",
+      "type": "project",
+      "name": "Lionheart",
+      "mbid": "ab47675f-548d-3703-8689-28e5b5150bac",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-kick-inside",
+      "type": "project",
+      "name": "The Kick Inside",
+      "mbid": "e8f3a858-20f8-3798-80ac-65264afa4672",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-man-with-the-child-in-his-eyes--kate-bush",
+      "type": "project",
+      "name": "The Man With the Child in His Eyes",
+      "artist": "Kate Bush",
+      "mbid": "e74019db-fa90-4db0-8411-e31365f0f5bf",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wuthering-heights--kate-bush",
+      "type": "project",
+      "name": "Wuthering Heights",
+      "artist": "Kate Bush",
+      "mbid": "c5f46f6e-078d-379c-8de1-4fdb52a85f1d",
+      "year": "1978",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

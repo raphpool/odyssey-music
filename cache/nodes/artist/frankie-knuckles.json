@@ -67,14 +67,236 @@
   ],
   "discography": [
     {
-      "slug": "project:beyond-the-mix--frankie-knuckles",
+      "slug": "project:the-whistle-song-re-directed--frankie-knuckles",
       "type": "project",
-      "name": "Beyond the Mix"
+      "name": "The Whistle Song (Re-Directed)",
+      "artist": "Frankie Knuckles",
+      "mbid": "f794428a-c98e-4d49-b905-289818cf23a2",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:j-jack-to-the-lost-chicago-reels--frankie-knuckles",
+      "type": "project",
+      "name": "J (Jack To The Lost Chicago Reels)",
+      "artist": "Frankie Knuckles",
+      "mbid": "6fc932fa-0e19-48d8-a4b8-4dd7be03da4a",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:four-most-cuts-presents-frankie-knuckles-vs-mr-fingers--frankie-knuckles",
+      "type": "project",
+      "name": "Four Most Cuts Presents – Frankie Knuckles Vs. Mr Fingers",
+      "artist": "Frankie Knuckles",
+      "mbid": "30bffe0f-4091-4895-be51-387b1c8e1f25",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dubj-s-d-light-a-remixed-reality--frankie-knuckles",
+      "type": "project",
+      "name": "Dubj's D'Light (A remixed Reality)",
+      "artist": "Frankie Knuckles",
+      "mbid": "209dd8ea-9620-458e-94dc-6346b70f8e75",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gimme-gimme-disco-shimmy--frankie-knuckles",
+      "type": "project",
+      "name": "Gimme Gimme (Disco Shimmy)",
+      "artist": "Frankie Knuckles",
+      "mbid": "a11ffb03-2761-4c8b-9eed-f4d91f28ade9",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gimme-gimme-disco-shimmy-the-whistle-song-revisited--frankie-knuckles",
+      "type": "project",
+      "name": "Gimme Gimme (Disco Shimmy) / The Whistle Song Revisited",
+      "artist": "Frankie Knuckles",
+      "mbid": "a1b0b6f3-3f0a-47d7-8dfb-3ecfab0685d8",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-new-reality--frankie-knuckles",
+      "type": "project",
+      "name": "A New Reality",
+      "artist": "Frankie Knuckles",
+      "mbid": "683b4cc0-80c9-3450-b141-f132a3178d7e",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bac-n-da-day--frankie-knuckles",
+      "type": "project",
+      "name": "Bac n da Day",
+      "artist": "Frankie Knuckles",
+      "mbid": "8fb2eba1-781a-3e25-b3f1-bad9ae09f14c",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:matter-of-time--frankie-knuckles",
+      "type": "project",
+      "name": "Matter Of Time",
+      "artist": "Frankie Knuckles",
+      "mbid": "f6eb1714-a9a0-4e92-9534-26dc38e82637",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:your-love--frankie-knuckles",
+      "type": "project",
+      "name": "Your Love",
+      "artist": "Frankie Knuckles",
+      "mbid": "f80e9e48-e51b-4a42-b3ef-cd0c9f35d62f",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:love-can-change-it-walkin--frankie-knuckles",
+      "type": "project",
+      "name": "Love Can Change It / Walkin'",
+      "artist": "Frankie Knuckles",
+      "mbid": "35817b52-d232-490f-98db-74539a48036f",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:passion-and-pain--frankie-knuckles",
+      "type": "project",
+      "name": "Passion And Pain",
+      "artist": "Frankie Knuckles",
+      "mbid": "ac6f1836-6954-412f-a7e2-eb3f35ea4308",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:too-many-fish--frankie-knuckles",
+      "type": "project",
+      "name": "Too Many Fish",
+      "artist": "Frankie Knuckles",
+      "mbid": "58446cb3-eeae-317d-8341-1fbedf0e6e8f",
+      "year": "1995",
+      "releaseType": "single"
     },
     {
       "slug": "project:welcome-to-the-real-world--frankie-knuckles",
       "type": "project",
-      "name": "Welcome to the Real World"
+      "name": "Welcome to the Real World",
+      "mbid": "88c9be0e-a7c6-3583-beeb-5fcde2857b70",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:whadda-u-want-from-me--frankie-knuckles",
+      "type": "project",
+      "name": "Whadda U Want (From Me)",
+      "artist": "Frankie Knuckles",
+      "mbid": "f28ad790-6964-3fac-94f3-5ae204373ada",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rain-falls-workout--frankie-knuckles",
+      "type": "project",
+      "name": "Rain Falls / Workout",
+      "artist": "Frankie Knuckles",
+      "mbid": "107e6033-9612-4e48-96b3-1ae1e1021f2d",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:workout--frankie-knuckles",
+      "type": "project",
+      "name": "Workout",
+      "artist": "Frankie Knuckles",
+      "mbid": "99df29bd-d324-451c-a957-98665681836f",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:beyond-the-mix--frankie-knuckles",
+      "type": "project",
+      "name": "Beyond the Mix",
+      "mbid": "2c9e6f87-92af-3b38-a7d2-50c590c47eb1",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:it-s-hard-sometime--frankie-knuckles",
+      "type": "project",
+      "name": "It's Hard Sometime",
+      "artist": "Frankie Knuckles",
+      "mbid": "2fa6ad68-ad89-48f2-bfac-2ed8a525d1de",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rain-falls--frankie-knuckles",
+      "type": "project",
+      "name": "Rain Falls",
+      "artist": "Frankie Knuckles",
+      "mbid": "664165e7-a8b5-4fd2-8efc-a9d73a84a4ac",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-whistle-song--frankie-knuckles",
+      "type": "project",
+      "name": "The Whistle Song",
+      "artist": "Frankie Knuckles",
+      "mbid": "b6f776d4-fb9b-4b86-9edd-eae082c8b126",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tears--frankie-knuckles",
+      "type": "project",
+      "name": "Tears",
+      "artist": "Frankie Knuckles",
+      "mbid": "58b4da8a-c553-3b9c-a688-e0e31fc28b20",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:baby-wants-to-ride-your-love--frankie-knuckles",
+      "type": "project",
+      "name": "Baby Wants to Ride / Your Love",
+      "artist": "Frankie Knuckles",
+      "mbid": "99429a95-157f-3307-b414-d7cd5c63df20",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:it-s-a-cold-world--frankie-knuckles",
+      "type": "project",
+      "name": "It's a Cold World",
+      "artist": "Frankie Knuckles",
+      "mbid": "98d2c897-7355-4393-8016-2549e08caa0e",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:only-the-strong-survive--frankie-knuckles",
+      "type": "project",
+      "name": "Only the Strong Survive",
+      "artist": "Frankie Knuckles",
+      "mbid": "b47fed3e-5eeb-47eb-9bfb-d4b7c801a89d",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ultimate-production--frankie-knuckles",
+      "type": "project",
+      "name": "Ultimate Production",
+      "artist": "Frankie Knuckles",
+      "mbid": "2e81f980-6dcf-36c3-b5c2-5a5c9938a36d",
+      "year": "1987",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

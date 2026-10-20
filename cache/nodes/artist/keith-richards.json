@@ -44,19 +44,91 @@
   ],
   "discography": [
     {
-      "slug": "project:talk-is-cheap",
+      "slug": "project:bright-lights-big-city--keith-richards",
       "type": "project",
-      "name": "Talk Is Cheap"
+      "name": "Bright Lights, Big City",
+      "artist": "Keith Richards",
+      "mbid": "daab1a66-c3d0-4d5a-8332-007bbbbaf65f",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:main-offender",
+      "slug": "project:ballads--keith-richards",
       "type": "project",
-      "name": "Main Offender"
+      "name": "Ballads",
+      "artist": "Keith Richards",
+      "mbid": "cfff83b2-5b00-4aaa-a6f1-c7f2cbe44f91",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:blues--keith-richards",
+      "type": "project",
+      "name": "Blues",
+      "artist": "Keith Richards",
+      "mbid": "bbe358cb-d7e6-4c61-91fb-116d1c46fd8d",
+      "year": "2021",
+      "releaseType": "ep"
     },
     {
       "slug": "project:crosseyed-heart",
       "type": "project",
-      "name": "Crosseyed Heart"
+      "name": "Crosseyed Heart",
+      "mbid": "2634b7cc-ae87-4354-9817-04ec66dd3d0f",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trouble--keith-richards",
+      "type": "project",
+      "name": "Trouble",
+      "artist": "Keith Richards",
+      "mbid": "44b17708-7e02-4cfe-9f08-7c14d20b5b4c",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:eileen--keith-richards",
+      "type": "project",
+      "name": "Eileen",
+      "artist": "Keith Richards",
+      "mbid": "d7d136fa-aef8-43f0-b450-dacb42f1e551",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:main-offender",
+      "type": "project",
+      "name": "Main Offender",
+      "mbid": "5883d517-ae7c-31ee-a465-68e6ff866c46",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wicked-as-it-seems--keith-richards",
+      "type": "project",
+      "name": "Wicked as It Seems",
+      "artist": "Keith Richards",
+      "mbid": "628b9baf-918e-3bb7-bfe0-158d7db0bad4",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:talk-is-cheap",
+      "type": "project",
+      "name": "Talk Is Cheap",
+      "mbid": "5da03e1b-1d7f-323d-b3a0-329547a6c88a",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:run-rudolph-run--keith-richards",
+      "type": "project",
+      "name": "Run Rudolph Run",
+      "artist": "Keith Richards",
+      "mbid": "0d09fe3e-c913-44eb-a24e-10706eb59604",
+      "year": "1978",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

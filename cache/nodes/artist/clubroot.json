@@ -50,7 +50,98 @@
       "name": "Lo Dubs"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:surface-tension-i--clubroot",
+      "type": "project",
+      "name": "Surface Tension: I",
+      "artist": "Clubroot",
+      "mbid": "91630e5a-c772-4964-b3ff-710b72b80561",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:surface-tension-ii--clubroot",
+      "type": "project",
+      "name": "Surface Tension: II",
+      "artist": "Clubroot",
+      "mbid": "a83ca23a-e87b-4fa4-87f2-430e689f9adb",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:surface-tension-iii--clubroot",
+      "type": "project",
+      "name": "Surface Tension: III",
+      "artist": "Clubroot",
+      "mbid": "ffffe33b-0264-4d5b-8d52-bc24075ed0f9",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:surface-tension-iv--clubroot",
+      "type": "project",
+      "name": "Surface Tension: IV",
+      "artist": "Clubroot",
+      "mbid": "0fe5e558-41fc-4e3e-9c39-c4d5ecd7aa45",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:iii-mmxii--clubroot",
+      "type": "project",
+      "name": "III: MMXII",
+      "artist": "Clubroot",
+      "mbid": "1615d5f6-1e88-4362-bfc8-bac9391286df",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scars-hellion--clubroot",
+      "type": "project",
+      "name": "Scars / Hellion",
+      "artist": "Clubroot",
+      "mbid": "adbc71af-5ed6-41fb-adbe-08ae95c95c8b",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:summons-ep--clubroot",
+      "type": "project",
+      "name": "Summons EP",
+      "artist": "Clubroot",
+      "mbid": "51de03a3-c91d-4608-b576-8320cdf834c5",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ii-mmx--clubroot",
+      "type": "project",
+      "name": "II: MMX",
+      "artist": "Clubroot",
+      "mbid": "863820e3-0e0f-4b4b-aee7-d8663e8dc809",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:solar-flares-ep--clubroot",
+      "type": "project",
+      "name": "Solar Flares EP",
+      "artist": "Clubroot",
+      "mbid": "27c0755f-fe6a-4915-91ae-80790f835b20",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:clubroot--clubroot",
+      "type": "project",
+      "name": "Clubroot",
+      "artist": "Clubroot",
+      "mbid": "61d2f762-a395-4a27-ab76-37afd55838a5",
+      "year": "2009",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],

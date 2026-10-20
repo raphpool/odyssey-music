@@ -61,24 +61,296 @@
   ],
   "discography": [
     {
-      "slug": "project:songs-of-pain",
+      "slug": "project:all-good-children-got-to-die--daniel-johnston",
       "type": "project",
-      "name": "Songs of Pain"
+      "name": "All Good Children Got To Die",
+      "artist": "Daniel Johnston",
+      "mbid": "e58fe23c-78a1-48a0-aee0-74c8d8d19f3c",
+      "year": "2024",
+      "releaseType": "single"
     },
     {
-      "slug": "project:hi-how-are-you",
+      "slug": "project:lost-recordings-iv-1980-1983--daniel-johnston",
       "type": "project",
-      "name": "Hi, How Are You"
+      "name": "Lost Recordings IV (1980-1983)",
+      "artist": "Daniel Johnston",
+      "mbid": "d53e5999-c239-41dc-a758-494127432f6f",
+      "year": "2024",
+      "releaseType": "album"
     },
     {
-      "slug": "project:yip-jump-music",
+      "slug": "project:lost-recordings-v-1980-1983--daniel-johnston",
       "type": "project",
-      "name": "Yip/Jump Music"
+      "name": "Lost Recordings V (1980-1983)",
+      "artist": "Daniel Johnston",
+      "mbid": "47547e4f-7cac-4b51-85cc-6a90236e2c2d",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mountain-top--daniel-johnston",
+      "type": "project",
+      "name": "Mountain Top",
+      "artist": "Daniel Johnston",
+      "mbid": "929cc530-ccc0-4065-9c64-ca00823356b5",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sinning-is-easy--daniel-johnston",
+      "type": "project",
+      "name": "Sinning Is Easy",
+      "artist": "Daniel Johnston",
+      "mbid": "3a5575dc-bbf5-4d39-bdf7-9f4a7e55e571",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:flower--daniel-johnston",
+      "type": "project",
+      "name": "Flower",
+      "artist": "Daniel Johnston",
+      "mbid": "442ff4d1-d545-424a-99a8-b44cca9585f1",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:space-ducks--daniel-johnston",
+      "type": "project",
+      "name": "Space Ducks",
+      "artist": "Daniel Johnston",
+      "mbid": "7374b350-baec-4a13-b316-0cc3e612a717",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beam-me-up--daniel-johnston",
+      "type": "project",
+      "name": "Beam Me Up!",
+      "artist": "Daniel Johnston",
+      "mbid": "a4ef49ea-8be2-44af-935f-30b250402784",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:is-and-always-was--daniel-johnston",
+      "type": "project",
+      "name": "Is and Always Was",
+      "artist": "Daniel Johnston",
+      "mbid": "29c6f5bd-10ec-4304-80e8-5968df100e89",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lost-and-found--daniel-johnston",
+      "type": "project",
+      "name": "Lost and Found",
+      "artist": "Daniel Johnston",
+      "mbid": "02320787-72e5-33b9-9f83-6d9af5c9c734",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-late-great-daniel-johnston-discovered-covered--daniel-johnston",
+      "type": "project",
+      "name": "The Late Great Daniel Johnston: Discovered Covered",
+      "artist": "Daniel Johnston",
+      "mbid": "e8dff7fe-0ef4-3f6d-950e-66ca0393f5c5",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fear-yourself--daniel-johnston",
+      "type": "project",
+      "name": "Fear Yourself",
+      "artist": "Daniel Johnston",
+      "mbid": "8ee9543c-7259-3aff-868e-9e6c7f18412d",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rejected-unknown--daniel-johnston",
+      "type": "project",
+      "name": "Rejected Unknown",
+      "artist": "Daniel Johnston",
+      "mbid": "73f128aa-5fe1-3b06-ba40-df9447fa1b82",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dream-scream--daniel-johnston",
+      "type": "project",
+      "name": "Dream Scream",
+      "artist": "Daniel Johnston",
+      "mbid": "1291cd3a-9a1a-3477-96ac-50f3c496123e",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fun--daniel-johnston",
+      "type": "project",
+      "name": "Fun",
+      "artist": "Daniel Johnston",
+      "mbid": "950819e9-796d-307d-b28f-4c0926616ce0",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:happy-time--daniel-johnston",
+      "type": "project",
+      "name": "Happy Time",
+      "artist": "Daniel Johnston",
+      "mbid": "d107d7cd-9cb7-42e5-ac3b-db1bbb5cd4ba",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:laurie--daniel-johnston",
+      "type": "project",
+      "name": "Laurie",
+      "artist": "Daniel Johnston",
+      "mbid": "32b93e21-f1af-38cc-bee3-6882a646f546",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:artistic-vice--daniel-johnston",
+      "type": "project",
+      "name": "Artistic Vice",
+      "artist": "Daniel Johnston",
+      "mbid": "1a24488b-5d3d-35b4-9e4d-edd370d6dd0a",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:big-bad-world--daniel-johnston",
+      "type": "project",
+      "name": "Big Bad World",
+      "artist": "Daniel Johnston",
+      "mbid": "e72158b4-e7e7-4306-96da-5c9237745f1a",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:big-big-world--daniel-johnston",
+      "type": "project",
+      "name": "Big Big World",
+      "artist": "Daniel Johnston",
+      "mbid": "01cf285a-5ed2-420a-a7f0-8c8e5b954bb1",
+      "year": "1991",
+      "releaseType": "ep"
     },
     {
       "slug": "project:1990",
       "type": "project",
-      "name": "1990"
+      "name": "1990",
+      "mbid": "25f9aed6-1efa-3eb4-ab8a-0641bf5426b6",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:speeding-motorcycle--daniel-johnston",
+      "type": "project",
+      "name": "Speeding Motorcycle!",
+      "artist": "Daniel Johnston",
+      "mbid": "c68ad049-c4f3-45f7-b29f-c72ae988b99c",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:merry-christmas--daniel-johnston",
+      "type": "project",
+      "name": "Merry Christmas",
+      "artist": "Daniel Johnston",
+      "mbid": "03344e46-de22-4998-89e3-766d0fdfefbe",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:retired-boxer--daniel-johnston",
+      "type": "project",
+      "name": "Retired Boxer",
+      "artist": "Daniel Johnston",
+      "mbid": "c83a3f09-c7aa-3c67-bb30-4bc6c579634b",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:continued-story--daniel-johnston",
+      "type": "project",
+      "name": "Continued Story",
+      "artist": "Daniel Johnston",
+      "mbid": "eb3fc662-a353-3e97-a303-e3f0ce344d0d",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:respect--daniel-johnston",
+      "type": "project",
+      "name": "Respect",
+      "artist": "Daniel Johnston",
+      "mbid": "aa1be97c-1708-32f1-a239-f2f4d4425519",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hi-how-are-you",
+      "type": "project",
+      "name": "Hi, How Are You",
+      "mbid": "22a18813-ca1b-3458-9e9f-a147d8ac5314",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:more-songs-of-pain--daniel-johnston",
+      "type": "project",
+      "name": "More Songs of Pain",
+      "artist": "Daniel Johnston",
+      "mbid": "de4ccb63-3479-3a50-be69-fc9dd9cd07eb",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yip-jump-music",
+      "type": "project",
+      "name": "Yip/Jump Music",
+      "mbid": "181f6d76-f578-3022-966f-554d4ece60a3",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:don-t-be-scared--daniel-johnston",
+      "type": "project",
+      "name": "Don’t Be Scared",
+      "artist": "Daniel Johnston",
+      "mbid": "1019aace-5b17-333d-9d81-1f82f1bbff34",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-what-of-whom--daniel-johnston",
+      "type": "project",
+      "name": "The What of Whom",
+      "artist": "Daniel Johnston",
+      "mbid": "697e46b7-86bf-3700-a93d-1eab391b781e",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:songs-of-pain",
+      "type": "project",
+      "name": "Songs of Pain",
+      "mbid": "b54c8cb3-b753-3564-b0a8-4dca1b946d00",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:1979-tapes--daniel-johnston",
+      "type": "project",
+      "name": "1979 Tapes",
+      "artist": "Daniel Johnston",
+      "mbid": "f062d4ab-c5cd-49d4-8a49-77e2aa8fcc54",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

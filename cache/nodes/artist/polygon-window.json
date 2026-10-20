@@ -51,14 +51,29 @@
   ],
   "discography": [
     {
-      "slug": "project:surfing-on-sine-waves--polygon-window",
+      "slug": "project:portreath-harbour--polygon-window",
       "type": "project",
-      "name": "Surfing on Sine Waves"
+      "name": "Portreath Harbour",
+      "artist": "Polygon Window",
+      "mbid": "713cc25c-a2cd-4ac7-b6c8-6829186bb6d5",
+      "year": "2001",
+      "releaseType": "single"
     },
     {
       "slug": "project:quoth",
       "type": "project",
-      "name": "Quoth"
+      "name": "Quoth",
+      "mbid": "b73d9ad1-16c6-3312-9a98-58b24acc01bf",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:surfing-on-sine-waves--polygon-window",
+      "type": "project",
+      "name": "Surfing on Sine Waves",
+      "mbid": "0afb7bd6-33a9-3a01-8765-f1de0a1f0972",
+      "year": "1992",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

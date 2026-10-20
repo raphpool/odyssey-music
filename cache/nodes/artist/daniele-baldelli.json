@@ -131,10 +131,26 @@
       "releaseType": "ep"
     },
     {
+      "slug": "project:cosmic-drag",
+      "type": "project",
+      "name": "Cosmic Drag",
+      "mbid": "b61bd5cc-a3d6-432f-af18-71a315dd0e3a",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:cosmic-temple-chapter-1",
       "type": "project",
       "name": "Cosmic Temple / Chapter 1",
       "mbid": "e1c98c75-1f50-466a-ab0a-2a8ff45cdb58",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:kachiri-remix-ep",
+      "type": "project",
+      "name": "Kachiri Remix EP",
+      "mbid": "468d8ba0-9fce-41a9-bd5b-348fd3c09b36",
       "year": "2015",
       "releaseType": "ep"
     },
@@ -153,22 +169,6 @@
       "mbid": "add8b800-5c39-4cd3-ad75-ad6a5f4ed437",
       "year": "2015",
       "releaseType": "ep"
-    },
-    {
-      "slug": "project:kachiri-remix-ep",
-      "type": "project",
-      "name": "Kachiri Remix EP",
-      "mbid": "468d8ba0-9fce-41a9-bd5b-348fd3c09b36",
-      "year": "2015",
-      "releaseType": "ep"
-    },
-    {
-      "slug": "project:cosmic-drag",
-      "type": "project",
-      "name": "Cosmic Drag",
-      "mbid": "b61bd5cc-a3d6-432f-af18-71a315dd0e3a",
-      "year": "2015",
-      "releaseType": "album"
     },
     {
       "slug": "project:back-to-my-funky-side-the-remix",
@@ -203,6 +203,15 @@
       "releaseType": "album"
     },
     {
+      "slug": "project:cosmic-the-original--daniele-baldelli",
+      "type": "project",
+      "name": "Cosmic - The Original",
+      "artist": "Daniele Baldelli",
+      "mbid": "4ed0eaba-4a0a-4823-849b-551daa838da6",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:cosmic-sound",
       "type": "project",
       "name": "Cosmic Sound",
@@ -225,12 +234,6 @@
       "mbid": "ce1a142e-b4af-466a-9f9a-30619f001609",
       "year": "2005",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:cosmic-the-original--daniele-baldelli",
-      "type": "project",
-      "name": "Cosmic - The Original",
-      "artist": "Daniele Baldelli"
     }
   ],
   "notable_tracks": [

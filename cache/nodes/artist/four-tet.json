@@ -61,29 +61,125 @@
   ],
   "discography": [
     {
-      "slug": "project:dialogue",
+      "slug": "project:human-voice--four-tet",
       "type": "project",
-      "name": "Dialogue"
+      "name": "Human Voice",
+      "artist": "Four Tet",
+      "mbid": "b90d9945-f830-4ea4-81aa-8e8ead2d7591",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:pause",
+      "slug": "project:into-dust-still-falling--four-tet",
       "type": "project",
-      "name": "Pause"
+      "name": "Into Dust (Still Falling)",
+      "artist": "Four Tet",
+      "mbid": "21fdb991-c927-4549-892b-c0d170073c22",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:rounds",
+      "slug": "project:three--four-tet",
       "type": "project",
-      "name": "Rounds"
+      "name": "Three",
+      "artist": "Four Tet",
+      "mbid": "364c7a46-1812-4a2b-b979-a6c6c992cef8",
+      "year": "2024",
+      "releaseType": "album"
     },
     {
-      "slug": "project:everything-ecstatic",
+      "slug": "project:parallel--four-tet",
       "type": "project",
-      "name": "Everything Ecstatic"
+      "name": "Parallel",
+      "artist": "Four Tet",
+      "mbid": "a217b855-1969-4256-8764-b5b31e01e75f",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sixteen-oceans--four-tet",
+      "type": "project",
+      "name": "Sixteen Oceans",
+      "artist": "Four Tet",
+      "mbid": "513341f3-3daf-46df-b469-b5eea02dc28b",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:new-energy--four-tet",
+      "type": "project",
+      "name": "New Energy",
+      "artist": "Four Tet",
+      "mbid": "065cf7e0-83b8-4946-96d4-f2346df3fcbb",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:planet--four-tet",
+      "type": "project",
+      "name": "Planet",
+      "artist": "Four Tet",
+      "mbid": "18c8080e-d143-4a8e-9a18-73775de26648",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:two-thousand-and-seventeen--four-tet",
+      "type": "project",
+      "name": "Two Thousand and Seventeen",
+      "artist": "Four Tet",
+      "mbid": "bd230670-3aaf-47e9-afc1-46e572c9e21e",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pink--four-tet",
+      "type": "project",
+      "name": "Pink",
+      "artist": "Four Tet",
+      "mbid": "1e45e210-9a70-4459-8252-189be2df4bfd",
+      "year": "2012",
+      "releaseType": "album"
     },
     {
       "slug": "project:there-is-love-in-you",
       "type": "project",
-      "name": "There Is Love in You"
+      "name": "There Is Love in You",
+      "mbid": "36e5c63b-be92-4717-acfe-a70e58e448c8",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:everything-ecstatic",
+      "type": "project",
+      "name": "Everything Ecstatic",
+      "mbid": "3aff613c-6510-3868-9a80-36ec7f542981",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rounds",
+      "type": "project",
+      "name": "Rounds",
+      "mbid": "cf688036-4ffa-36f5-ab81-9c7efecf63cd",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pause",
+      "type": "project",
+      "name": "Pause",
+      "mbid": "99ab4330-20f8-3b30-8bee-856f034d9418",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dialogue",
+      "type": "project",
+      "name": "Dialogue",
+      "mbid": "24d31ece-37c0-3495-be36-b3e98da2eb67",
+      "year": "1999",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

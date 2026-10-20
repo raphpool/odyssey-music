@@ -44,44 +44,194 @@
   ],
   "discography": [
     {
-      "slug": "project:beginning",
+      "slug": "project:precious-days--mariya-takeuchi",
       "type": "project",
-      "name": "Beginning"
-    },
-    {
-      "slug": "project:love-songs",
-      "type": "project",
-      "name": "Love Songs"
-    },
-    {
-      "slug": "project:variety",
-      "type": "project",
-      "name": "Variety"
-    },
-    {
-      "slug": "project:request",
-      "type": "project",
-      "name": "Request"
-    },
-    {
-      "slug": "project:quiet-life",
-      "type": "project",
-      "name": "Quiet Life"
-    },
-    {
-      "slug": "project:impressions",
-      "type": "project",
-      "name": "Impressions"
-    },
-    {
-      "slug": "project:denim",
-      "type": "project",
-      "name": "Denim"
+      "name": "Precious Days",
+      "artist": "Mariya Takeuchi",
+      "mbid": "9cb14aba-afa8-430f-afc4-f25c27aa640f",
+      "year": "2024",
+      "releaseType": "album"
     },
     {
       "slug": "project:trad",
       "type": "project",
-      "name": "Trad"
+      "name": "Trad",
+      "mbid": "7dff3fe0-2372-4a52-935d-0335672eeda0",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dear-angie--mariya-takeuchi",
+      "type": "project",
+      "name": "Dear Angie 〜あなたは負けない / それぞれの夜",
+      "artist": "Mariya Takeuchi",
+      "mbid": "f88d48c1-7ca9-42c3-82ae-ab3ef3a5470f",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:your-wedding-day--mariya-takeuchi",
+      "type": "project",
+      "name": "幸せのものさし / うれしくてさみしい日 (Your Wedding Day)",
+      "artist": "Mariya Takeuchi",
+      "mbid": "eef86bee-eac4-4cbc-bf75-357a78c7782b",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:denim",
+      "type": "project",
+      "name": "Denim",
+      "mbid": "461895ca-eabd-3b36-a9c3-9dadb5e6434a",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:long-time-favorites--mariya-takeuchi",
+      "type": "project",
+      "name": "Long Time Favorites",
+      "artist": "Mariya Takeuchi",
+      "mbid": "d9dc866c-f58a-3955-88c3-ff7ca6297e69",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bon-appetit--mariya-takeuchi",
+      "type": "project",
+      "name": "Bon Appetit!",
+      "artist": "Mariya Takeuchi",
+      "mbid": "e950a66e-d8fd-4738-b69d-3a7871381a55",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hearty-party--mariya-takeuchi",
+      "type": "project",
+      "name": "今夜はHearty Party",
+      "artist": "Mariya Takeuchi",
+      "mbid": "05b934dc-9f2d-4cea-a040-5587cc6dc8e2",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:impressions",
+      "type": "project",
+      "name": "Impressions",
+      "mbid": "46b24ab3-e9c6-3cda-8dd6-f170ca168832",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:quiet-life",
+      "type": "project",
+      "name": "Quiet Life",
+      "mbid": "5e6620e5-af49-4173-9a5b-40fc4e05be97",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hey-baby--mariya-takeuchi",
+      "type": "project",
+      "name": "シングル・アゲイン／Hey! Baby",
+      "artist": "Mariya Takeuchi",
+      "mbid": "08601758-91a9-410b-b1f2-6f2ab9a11c9b",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:request",
+      "type": "project",
+      "name": "Request",
+      "mbid": "0ceca951-9ff0-3997-9439-45ab32447655",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:plastic-love--mariya-takeuchi",
+      "type": "project",
+      "name": "Plastic Love",
+      "artist": "Mariya Takeuchi",
+      "mbid": "d08965cf-708a-44b8-8318-3f09345d8b5d",
+      "year": "1985",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:variety",
+      "type": "project",
+      "name": "Variety",
+      "mbid": "956911dd-1831-457d-a57d-f5feb507baad",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:portrait--mariya-takeuchi",
+      "type": "project",
+      "name": "Portrait",
+      "artist": "Mariya Takeuchi",
+      "mbid": "67df252e-91a4-4302-bab4-edba83fa7130",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-songs",
+      "type": "project",
+      "name": "Love Songs",
+      "mbid": "46348267-129f-4fa7-ac81-c2433de26e1c",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:miss-m--mariya-takeuchi",
+      "type": "project",
+      "name": "Miss M",
+      "artist": "Mariya Takeuchi",
+      "mbid": "2dcd5b90-0ee6-448f-ba8f-29422a7b028f",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sweetest-music--mariya-takeuchi",
+      "type": "project",
+      "name": "Sweetest Music",
+      "artist": "Mariya Takeuchi",
+      "mbid": "ffa31020-0763-4eac-bf27-eba7c4a5a10a",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:september--mariya-takeuchi",
+      "type": "project",
+      "name": "September",
+      "artist": "Mariya Takeuchi",
+      "mbid": "c39e9051-ac13-4a1a-8afc-11b0820d6d25",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:university-street--mariya-takeuchi",
+      "type": "project",
+      "name": "University Street",
+      "artist": "Mariya Takeuchi",
+      "mbid": "0421b19d-c434-438c-8c54-5d3f576291b0",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beginning",
+      "type": "project",
+      "name": "Beginning",
+      "mbid": "910a4817-fb47-4fb8-b98b-84d0c44c89c1",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:8--mariya-takeuchi",
+      "type": "project",
+      "name": "ハリウッド・カフェ / 8分音符の詩",
+      "artist": "Mariya Takeuchi",
+      "mbid": "08df4856-8c88-4005-8533-49d171c31b7d",
+      "year": "1978",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

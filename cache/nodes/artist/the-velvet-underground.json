@@ -60,29 +60,233 @@
   ],
   "discography": [
     {
-      "slug": "project:the-velvet-underground-and-nico--the-velvet-underground",
+      "slug": "project:the-complete-matrix-tapes--the-velvet-underground",
       "type": "project",
-      "name": "The Velvet Underground & Nico"
+      "name": "The Complete Matrix Tapes",
+      "artist": "The Velvet Underground",
+      "mbid": "5d5e464c-05d1-4767-87d6-e8e38335893c",
+      "year": "2019",
+      "releaseType": "album"
     },
     {
-      "slug": "project:white-light-white-heat",
+      "slug": "project:transmission-impossible--the-velvet-underground",
       "type": "project",
-      "name": "White Light/White Heat"
+      "name": "Transmission Impossible",
+      "artist": "The Velvet Underground",
+      "mbid": "3a553e49-8933-44df-8f7c-d81d452e7d85",
+      "year": "2018",
+      "releaseType": "album"
     },
     {
-      "slug": "project:the-velvet-underground",
+      "slug": "project:rock-and-roll-mono--the-velvet-underground",
       "type": "project",
-      "name": "The Velvet Underground"
+      "name": "Rock & Roll (mono)",
+      "artist": "The Velvet Underground",
+      "mbid": "b97eead1-5ae5-47fc-a10d-602bf12995d4",
+      "year": "2015",
+      "releaseType": "single"
     },
     {
-      "slug": "project:loaded",
+      "slug": "project:chelsea-girls--the-velvet-underground",
       "type": "project",
-      "name": "Loaded"
+      "name": "Chelsea Girls",
+      "artist": "The Velvet Underground",
+      "mbid": "b13f0f71-09da-4897-8edc-5711439a8f48",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-inevitable-world-of-the-velvet-underground--the-velvet-underground",
+      "type": "project",
+      "name": "The Inevitable World of The Velvet Underground",
+      "artist": "The Velvet Underground",
+      "mbid": "79555128-e080-428e-8966-a8499d0719f5",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:foggy-notion-i-can-t-stand-it--the-velvet-underground",
+      "type": "project",
+      "name": "Foggy Notion / I Can't Stand It",
+      "artist": "The Velvet Underground",
+      "mbid": "9b47c8c2-7873-4f35-b7e5-38c6e7254188",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dispatches-from-the-dream-factory--the-velvet-underground",
+      "type": "project",
+      "name": "Dispatches From the Dream Factory",
+      "artist": "The Velvet Underground",
+      "mbid": "9b3c626f-4343-4144-8d18-f6798806f0c7",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-playhouse-1993-sbd--the-velvet-underground",
+      "type": "project",
+      "name": "The Playhouse 1993 SBD",
+      "artist": "The Velvet Underground",
+      "mbid": "ef56e44f-fa5a-44b3-82bb-16f72fc6e4c4",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:at-the-andy-warhol-museum--the-velvet-underground",
+      "type": "project",
+      "name": "At the Andy Warhol Museum",
+      "artist": "The Velvet Underground",
+      "mbid": "fa5dcd65-cfe3-4143-8cf8-5c02e4489ca5",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:all-tomorrow-s-parties-remembering-the-velvet-underground--the-velvet-underground",
+      "type": "project",
+      "name": "All Tomorrow’s Parties (Remembering The Velvet Underground)",
+      "artist": "The Velvet Underground",
+      "mbid": "da3530ba-895c-4d5e-ae83-a79587a82c4c",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-cave-1968-problems-in-urban-living--the-velvet-underground",
+      "type": "project",
+      "name": "La Cave 1968 (Problems in Urban Living)",
+      "artist": "The Velvet Underground",
+      "mbid": "e29c4c8b-0b11-421d-ab69-6f78ee84d877",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-great-banana--the-velvet-underground",
+      "type": "project",
+      "name": "The Great Banana",
+      "artist": "The Velvet Underground",
+      "mbid": "1a3e7766-8e55-4d6d-b591-b9a752230d26",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:even-more-vengeance--the-velvet-underground",
+      "type": "project",
+      "name": "Even More Vengeance",
+      "artist": "The Velvet Underground",
+      "mbid": "22043f04-d13a-4617-9799-990c292d094f",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sweet-jane--the-velvet-underground",
+      "type": "project",
+      "name": "Sweet Jane",
+      "artist": "The Velvet Underground",
+      "mbid": "d248cbf4-4b56-4c01-a2f4-33876e97f86e",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:andy-warhol--the-velvet-underground",
+      "type": "project",
+      "name": "Andy Warhol",
+      "artist": "The Velvet Underground",
+      "mbid": "8ee45942-fb99-37cd-947d-f4a28dd938a3",
+      "year": "1990",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:evil-mothers-rare-velvets--the-velvet-underground",
+      "type": "project",
+      "name": "Evil Mothers (Rare Velvets)",
+      "artist": "The Velvet Underground",
+      "mbid": "9120a855-fae1-4951-8429-37ee2e4d08a8",
+      "year": "1974",
+      "releaseType": "album"
     },
     {
       "slug": "project:squeeze",
       "type": "project",
-      "name": "Squeeze"
+      "name": "Squeeze",
+      "mbid": "d1952e89-80fa-3746-a3c8-dd10f855f832",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sweet-jane-rock-and-roll--the-velvet-underground",
+      "type": "project",
+      "name": "Sweet Jane / Rock And Roll",
+      "artist": "The Velvet Underground",
+      "mbid": "f5a202e7-94e1-41a9-a853-671c005ed470",
+      "year": "1971",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:who-loves-the-sun--the-velvet-underground",
+      "type": "project",
+      "name": "Who Loves The Sun",
+      "artist": "The Velvet Underground",
+      "mbid": "4e4dd311-d834-4b7b-9f0f-c842ff21657e",
+      "year": "1971",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:loaded",
+      "type": "project",
+      "name": "Loaded",
+      "mbid": "4be9d91f-6ed7-34b8-aa5e-45be79819273",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-velvet-underground",
+      "type": "project",
+      "name": "The Velvet Underground",
+      "mbid": "a616dcf5-7a1f-3afe-a53b-27281c2bf75e",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:what-goes-on--the-velvet-underground",
+      "type": "project",
+      "name": "What Goes On",
+      "artist": "The Velvet Underground",
+      "mbid": "b48bca5a-775c-406c-868e-f75a197e437f",
+      "year": "1969",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:white-light-white-heat",
+      "type": "project",
+      "name": "White Light/White Heat",
+      "mbid": "fc0885e0-0284-3f9d-81ee-17c5e7196346",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-velvet-underground-and-nico--the-velvet-underground",
+      "type": "project",
+      "name": "The Velvet Underground & Nico",
+      "mbid": "5cbd9d7b-597a-3c5e-bfd1-c2b364215560",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:all-tomorrow-s-parties-i-ll-be-your-mirror--the-velvet-underground",
+      "type": "project",
+      "name": "All Tomorrow’s Parties / I’ll Be Your Mirror",
+      "artist": "The Velvet Underground",
+      "mbid": "65323b00-e2b6-37e0-bebc-b6b4033780ab",
+      "year": "1966",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sunday-morning-femme-fatale--the-velvet-underground",
+      "type": "project",
+      "name": "Sunday Morning / Femme Fatale",
+      "artist": "The Velvet Underground",
+      "mbid": "a391b4bb-eee7-3eb1-b225-6ee901eb47f7",
+      "year": "1966",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

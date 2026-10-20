@@ -58,11 +58,12 @@
   ],
   "discography": [
     {
-      "slug": "project:i-got-the-music-aka-i-got-it",
+      "slug": "project:shine-on-in-love--49ers",
       "type": "project",
-      "name": "I Got the Music aka I Got It",
-      "mbid": "23121500-b995-4c69-a39c-c656f8b9cb36",
-      "year": "1997",
+      "name": "Shine On In Love",
+      "artist": "49ers",
+      "mbid": "803d0c8e-1320-4cd9-8063-33f4a6f91581",
+      "year": "2013",
       "releaseType": "single"
     },
     {
@@ -70,6 +71,14 @@
       "type": "project",
       "name": "Baby, I'm Yours",
       "mbid": "2d020960-3bb9-3402-8ddc-29c40359c032",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-got-the-music-aka-i-got-it",
+      "type": "project",
+      "name": "I Got the Music aka I Got It",
+      "mbid": "23121500-b995-4c69-a39c-c656f8b9cb36",
       "year": "1997",
       "releaseType": "single"
     },
@@ -114,6 +123,14 @@
       "releaseType": "single"
     },
     {
+      "slug": "project:got-to-be-free",
+      "type": "project",
+      "name": "Got To Be Free",
+      "mbid": "e19571bd-0fb3-444f-bb47-d517d3e2075b",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:move-your-feet",
       "type": "project",
       "name": "Move Your Feet",
@@ -138,22 +155,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:got-to-be-free",
-      "type": "project",
-      "name": "Got To Be Free",
-      "mbid": "e19571bd-0fb3-444f-bb47-d517d3e2075b",
-      "year": "1992",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:the-remixes",
-      "type": "project",
-      "name": "The Remixes",
-      "mbid": "72f485ba-9c68-4ff5-b35a-a1fc3619ab33",
-      "year": "1991",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:the-remix-album",
       "type": "project",
       "name": "The Remix Album",
@@ -162,12 +163,12 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:girl-to-girl",
+      "slug": "project:the-remixes",
       "type": "project",
-      "name": "Girl to Girl",
-      "mbid": "007af7d1-3b31-4090-acae-8bcfdca4d578",
-      "year": "1990",
-      "releaseType": "single"
+      "name": "The Remixes",
+      "mbid": "72f485ba-9c68-4ff5-b35a-a1fc3619ab33",
+      "year": "1991",
+      "releaseType": "album"
     },
     {
       "slug": "project:49ers",
@@ -186,6 +187,22 @@
       "releaseType": "single"
     },
     {
+      "slug": "project:don-t-you-love-me",
+      "type": "project",
+      "name": "Don't You Love Me",
+      "mbid": "cfa26821-c04c-3492-9daf-901ce91bf74c",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:girl-to-girl",
+      "type": "project",
+      "name": "Girl to Girl",
+      "mbid": "007af7d1-3b31-4090-acae-8bcfdca4d578",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:how-longer",
       "type": "project",
       "name": "How Longer",
@@ -198,14 +215,6 @@
       "type": "project",
       "name": "I Need You",
       "mbid": "968cbbb4-f053-4fba-ad56-1df7f3dbc250",
-      "year": "1990",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:don-t-you-love-me",
-      "type": "project",
-      "name": "Don't You Love Me",
-      "mbid": "cfa26821-c04c-3492-9daf-901ce91bf74c",
       "year": "1990",
       "releaseType": "single"
     },

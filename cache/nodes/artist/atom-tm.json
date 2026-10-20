@@ -57,14 +57,353 @@
   ],
   "discography": [
     {
+      "slug": "project:non-plus-ultra-eins--atom-tm",
+      "type": "project",
+      "name": "Non Plus Ultra Eins",
+      "artist": "Atom TM",
+      "mbid": "75a82b70-4b59-42e2-9e62-79221e2a52b6",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:non-plus-ultra-zwei--atom-tm",
+      "type": "project",
+      "name": "Non Plus Ultra Zwei",
+      "artist": "Atom TM",
+      "mbid": "ed1aa3de-dc90-4b00-ae87-d958c669ea9c",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:die-seiner--atom-tm",
+      "type": "project",
+      "name": "Die Seiner",
+      "artist": "Atom TM",
+      "mbid": "6637e9e7-4f19-4978-b7ca-4f2bf5044140",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jet-chamber-i-v--atom-tm",
+      "type": "project",
+      "name": "Jet Chamber I-V",
+      "artist": "Atom TM",
+      "mbid": "1a79a309-7a0b-4d8f-a46c-19493772f213",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soft-opening--atom-tm",
+      "type": "project",
+      "name": "Soft Opening",
+      "artist": "Atom TM",
+      "mbid": "fd18039e-8bf1-452a-beb7-c7c8fb6e72bb",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:texturen-iv--atom-tm",
+      "type": "project",
+      "name": "Texturen IV",
+      "artist": "Atom TM",
+      "mbid": "717c4373-6aff-485b-838a-7f055a31f1c3",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:texturen-v--atom-tm",
+      "type": "project",
+      "name": "Texturen V",
+      "artist": "Atom TM",
+      "mbid": "f0f0dadd-406b-4a40-9668-620e2173c380",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wavetables-12023--atom-tm",
+      "type": "project",
+      "name": "Wavetables 12023",
+      "artist": "Atom TM",
+      "mbid": "407116a7-975d-44e2-a126-56e273b8f890",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:golden-real--atom-tm",
+      "type": "project",
+      "name": "Golden Real",
+      "artist": "Atom TM",
+      "mbid": "125d6a2c-a82e-4254-9297-2c81c91180ce",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kissing-the-black--atom-tm",
+      "type": "project",
+      "name": "Kissing the Black",
+      "artist": "Atom TM",
+      "mbid": "d28feea5-603d-423e-a29c-a0b6c901a187",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:neuer-mensch--atom-tm",
+      "type": "project",
+      "name": "Neuer Mensch",
+      "artist": "Atom TM",
+      "mbid": "8fe102db-5193-4624-9a67-3f9ea44cc8fe",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:six-mantras--atom-tm",
+      "type": "project",
+      "name": "Six Mantras",
+      "artist": "Atom TM",
+      "mbid": "dbdfc3d7-8997-476e-8a55-634efc114865",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-quantum-pleasure-traveller-original-soundtrack--atom-tm",
+      "type": "project",
+      "name": "The Quantum Pleasure Traveller (Original Soundtrack)",
+      "artist": "Atom TM",
+      "mbid": "d119da0f-3830-410b-bd84-60fea05655c1",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:uber-alles--atom-tm",
+      "type": "project",
+      "name": "Über Alles",
+      "artist": "Atom TM",
+      "mbid": "55d9d612-2b0d-4e1a-841a-f3635560c674",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:r3v--atom-tm",
+      "type": "project",
+      "name": "R3V",
+      "artist": "Atom TM",
+      "mbid": "44fa2d87-ace3-4f6c-ae4d-3290669894a1",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sex-tape--atom-tm",
+      "type": "project",
+      "name": "Sex Tape",
+      "artist": "Atom TM",
+      "mbid": "08dd7b72-6beb-4ee0-8c6b-d2071286271e",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:this-is-not-house--atom-tm",
+      "type": "project",
+      "name": "This is Not House",
+      "artist": "Atom TM",
+      "mbid": "640e346d-87a6-497e-b00b-6c56e3834d42",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:3--atom-tm",
+      "type": "project",
+      "name": "<3",
+      "artist": "Atom TM",
+      "mbid": "b63c1f15-4db5-40b8-a68e-dd5818eb26b3",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stal--atom-tm",
+      "type": "project",
+      "name": "STAL",
+      "artist": "Atom TM",
+      "mbid": "63432ab8-8075-4d56-8045-d288119cd12c",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lassigue-bendthaus-cloned-singles--atom-tm",
+      "type": "project",
+      "name": "Lassigue Bendthaus/Cloned (+ Singles)",
+      "artist": "Atom TM",
+      "mbid": "59184b9d-535e-4a51-aeea-1877753f8276",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:texturen-iii--atom-tm",
+      "type": "project",
+      "name": "Texturen III",
+      "artist": "Atom TM",
+      "mbid": "921b5186-fcf5-4b4e-b04c-e09e30257f6a",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:los-negritos-speed-merengue-mega-mix-2005--atom-tm",
+      "type": "project",
+      "name": "Los Negritos/Speed-Merengue Mega-Mix 2005",
+      "artist": "Atom TM",
+      "mbid": "a14dcac8-dd70-491a-9e39-9fd17636f5ca",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:texturen-ii--atom-tm",
+      "type": "project",
+      "name": "Texturen II",
+      "artist": "Atom TM",
+      "mbid": "4ca71d53-1631-492d-b210-4e7d71bb4441",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:texturen-i--atom-tm",
+      "type": "project",
+      "name": "Texturen I",
+      "artist": "Atom TM",
+      "mbid": "ec4b2785-bc13-42a8-a360-ff96bc80485e",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bauteile--atom-tm",
+      "type": "project",
+      "name": "Bauteile",
+      "artist": "Atom TM",
+      "mbid": "c6cba763-eb27-456b-9252-037e71fd7e9b",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:hd",
       "type": "project",
-      "name": "HD"
+      "name": "HD",
+      "mbid": "9409fb1b-1e1f-4453-84ed-28877ffae81e",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cold-memories--atom-tm",
+      "type": "project",
+      "name": "Cold Memories",
+      "artist": "Atom TM",
+      "mbid": "337ca2be-39a2-46f5-846a-44243ced4e23",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:grand-blue--atom-tm",
+      "type": "project",
+      "name": "Grand Blue",
+      "artist": "Atom TM",
+      "mbid": "7482e035-8ce4-4e91-a585-b60167188a7c",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:winterreise--atom-tm",
+      "type": "project",
+      "name": "Winterreise",
+      "artist": "Atom TM",
+      "mbid": "25d5f3fa-8030-4827-877f-62d3805bccc5",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:atomtm-programmiert-den-scheiss-aus-sich-raus-eine-popularwissenschaftliche-stuckesammlung--atom-tm",
+      "type": "project",
+      "name": "Atom™ programmiert den Scheiß aus sich raus. Eine populärwissenschaftliche Stückesammlung",
+      "artist": "Atom TM",
+      "mbid": "12cec595-4639-48ea-a492-bef97f5bd61a",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:1i3835tra3um3--atom-tm",
+      "type": "project",
+      "name": "1i3835tra3um3",
+      "artist": "Atom TM",
+      "mbid": "9dfcdda0-e912-42f6-950a-63b02f450027",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:alien-symphony--atom-tm",
+      "type": "project",
+      "name": "Alien Symphony",
+      "artist": "Atom TM",
+      "mbid": "e9bd02ff-ce34-4277-ab30-3d091c08244a",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-is-better-than-pussy--atom-tm",
+      "type": "project",
+      "name": "Music Is Better Than Pussy",
+      "artist": "Atom TM",
+      "mbid": "d8438e11-4fd9-4c4a-a9ed-8fe8f9586f7d",
+      "year": "2010",
+      "releaseType": "album"
     },
     {
       "slug": "project:liedgut",
       "type": "project",
-      "name": "Liedgut"
+      "name": "Liedgut",
+      "mbid": "1dfe9b82-a0b0-3039-8619-b1dfe39dcf53",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:muster--atom-tm",
+      "type": "project",
+      "name": "Muster",
+      "artist": "Atom TM",
+      "mbid": "db147c2e-64c1-4b28-b264-5544047904f9",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:son-of-a-glitch--atom-tm",
+      "type": "project",
+      "name": "Son of a Glitch",
+      "artist": "Atom TM",
+      "mbid": "8ecaafe6-1d61-39bb-ab48-3a37b0a373e1",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:xxx--atom-tm",
+      "type": "project",
+      "name": "XXX",
+      "artist": "Atom TM",
+      "mbid": "d5ac9db6-8f16-3588-ab77-4419bc2589d7",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lassigue-bendthaus-render--atom-tm",
+      "type": "project",
+      "name": "Lassigue Bendthaus / Render",
+      "artist": "Atom TM",
+      "mbid": "25e4e8a5-2cd7-41dc-8dbf-2654e77ecbfb",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lassigue-bendthaus-matter-23rd-anniversary-edition--atom-tm",
+      "type": "project",
+      "name": "Lassigue Bendthaus/Matter (23rd Anniversary Edition)",
+      "artist": "Atom TM",
+      "mbid": "8f28e9e3-0b46-40b9-9269-7f8122e8aedd",
+      "year": "1991",
+      "releaseType": "album"
     },
     {
       "slug": "project:pop-artificielle",

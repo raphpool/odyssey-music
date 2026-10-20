@@ -43,6 +43,276 @@
   "labels": [],
   "discography": [
     {
+      "slug": "project:un-monde-lacere--pierre-henry",
+      "type": "project",
+      "name": "Un monde lacéré",
+      "artist": "Pierre Henry",
+      "mbid": "21f9ac65-0f7b-4ea1-aff2-99bf8d271ca3",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:carnet-de-venise--pierre-henry",
+      "type": "project",
+      "name": "Carnet de Venise",
+      "artist": "Pierre Henry",
+      "mbid": "a6baefac-d270-4973-849e-6ca834544a9e",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:continuo-capriccio--pierre-henry",
+      "type": "project",
+      "name": "Continuo / Capriccio",
+      "artist": "Pierre Henry",
+      "mbid": "a5b6ef2c-4e82-429b-97f9-7a2fad402dc6",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:orphee-ballet--pierre-henry",
+      "type": "project",
+      "name": "Orphée Ballet",
+      "artist": "Pierre Henry",
+      "mbid": "bb71b0b1-4cde-4f24-b49e-2c25152cf05c",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:deux-coups-de-sonnette--pierre-henry",
+      "type": "project",
+      "name": "Deux coups de sonnette",
+      "artist": "Pierre Henry",
+      "mbid": "c3f5ad3b-9c62-4c27-ae37-4f39a4f372f1",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:voyage-initiatique--pierre-henry",
+      "type": "project",
+      "name": "Voyage initiatique",
+      "artist": "Pierre Henry",
+      "mbid": "7b9bd7ac-bdbb-4b56-ac6d-9cc3de8b9e4c",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dracula--pierre-henry",
+      "type": "project",
+      "name": "Dracula",
+      "artist": "Pierre Henry",
+      "mbid": "4d95612e-cb9e-4fe3-a6a0-842161002439",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:labyrinthe--pierre-henry",
+      "type": "project",
+      "name": "Labyrinthe !",
+      "artist": "Pierre Henry",
+      "mbid": "e12d7d96-1ae5-4cdc-9826-ad2af96af3e3",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:apparitions-concertees--pierre-henry",
+      "type": "project",
+      "name": "Apparitions Concertées",
+      "artist": "Pierre Henry",
+      "mbid": "0e2ee8f3-0c25-4793-a4de-5d75eaf74aa9",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:interieur-exterieur--pierre-henry",
+      "type": "project",
+      "name": "Intérieur / Extérieur",
+      "artist": "Pierre Henry",
+      "mbid": "c3d2a75e-f3d8-3673-ba0a-a4f7683fa9ec",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:psyche-rock--pierre-henry",
+      "type": "project",
+      "name": "Psyché Rock",
+      "artist": "Pierre Henry",
+      "mbid": "144c7724-6587-42a7-90c2-36e4d43104e5",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fragments-pour-artaud-prismes--pierre-henry",
+      "type": "project",
+      "name": "Fragments pour Artaud / Prismes",
+      "artist": "Pierre Henry",
+      "mbid": "12db7d6e-285a-4264-9050-ffdd5d4a7e4e",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:apocalypse-de-jean--pierre-henry",
+      "type": "project",
+      "name": "Apocalypse de Jean",
+      "artist": "Pierre Henry",
+      "mbid": "67cab0f9-b5f7-4ded-8afc-d7e50183cc89",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:l-homme-a-la-camera--pierre-henry",
+      "type": "project",
+      "name": "L'Homme À La Caméra",
+      "artist": "Pierre Henry",
+      "mbid": "d9aaccb2-ded5-437c-ad62-04feaaff24b8",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-ville-die-stadt--pierre-henry",
+      "type": "project",
+      "name": "La Ville. Die Stadt",
+      "artist": "Pierre Henry",
+      "mbid": "9c3abcb9-565b-3b7b-8cde-d130f07e516c",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:le-livre-des-morts-egyptien--pierre-henry",
+      "type": "project",
+      "name": "Le Livre des morts égyptien",
+      "artist": "Pierre Henry",
+      "mbid": "60cda6a0-7713-4e57-8a2c-d83c8fe5641f",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-dixieme-symphonie-de-beethoven--pierre-henry",
+      "type": "project",
+      "name": "La Dixième Symphonie de Beethoven",
+      "artist": "Pierre Henry",
+      "mbid": "c3ca4f3d-bf94-4004-b185-6e815a9e760f",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:messe-pour-le-temps-present-le-voyage-michel-colombier--pierre-henry",
+      "type": "project",
+      "name": "Messe pour le temps présent / Le Voyage (Michel Colombier)",
+      "artist": "Pierre Henry",
+      "mbid": "8c5c25b8-3419-30bf-afd1-693679aded1d",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:paradise-lost--pierre-henry",
+      "type": "project",
+      "name": "Paradise Lost",
+      "artist": "Pierre Henry",
+      "mbid": "71c15bac-d79a-43cd-b54d-fb4a25aae714",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:futuristie--pierre-henry",
+      "type": "project",
+      "name": "Futuristie",
+      "artist": "Pierre Henry",
+      "mbid": "6d877f8b-5225-3ce6-9ce5-2368e5f6afaa",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dieu--pierre-henry",
+      "type": "project",
+      "name": "Dieu",
+      "artist": "Pierre Henry",
+      "mbid": "9b3ce250-9246-4119-967d-d4f4721a9a3a",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:le-microphone-bien-tempere--pierre-henry",
+      "type": "project",
+      "name": "Le microphone bien tempéré",
+      "artist": "Pierre Henry",
+      "mbid": "ceee9b6d-4337-4342-8d49-34f5e26b3a3f",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cortical-art-iii--pierre-henry",
+      "type": "project",
+      "name": "Cortical Art III",
+      "artist": "Pierre Henry",
+      "mbid": "3180d1de-1b7e-3858-9bb9-35148bfe44fb",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:machine-danse--pierre-henry",
+      "type": "project",
+      "name": "Machine danse",
+      "artist": "Pierre Henry",
+      "mbid": "b63f85a0-f9d0-4f97-a0e3-efef16ddbd27",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:prismes--pierre-henry",
+      "type": "project",
+      "name": "Prismes",
+      "artist": "Pierre Henry",
+      "mbid": "00f6be6e-1df7-40b0-9924-5fbb92bad42c",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:messe-de-liverpool--pierre-henry",
+      "type": "project",
+      "name": "Messe de Liverpool",
+      "artist": "Pierre Henry",
+      "mbid": "b139269c-87b4-4216-903a-9821241d852c",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:voile-d-orphee-i-et-ii-entite-spirale--pierre-henry",
+      "type": "project",
+      "name": "Voile D'Orphée I Et II / Entité / Spirale",
+      "artist": "Pierre Henry",
+      "mbid": "60d027bd-20db-4c64-a00b-889b20349f12",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:le-voyage--pierre-henry",
+      "type": "project",
+      "name": "Le Voyage",
+      "artist": "Pierre Henry",
+      "mbid": "e70483ca-c7b6-330e-86b8-8e35673bc1fc",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:messe-pour-le-temps-present-et-musiques-concretes--pierre-henry",
+      "type": "project",
+      "name": "Messe pour le temps présent et musiques concrètes",
+      "artist": "Pierre Henry",
+      "mbid": "6ceec8e6-3cbb-3802-b64c-7af05ac38965",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:malefices--pierre-henry",
+      "type": "project",
+      "name": "Maléfices",
+      "artist": "Pierre Henry",
+      "mbid": "c9a93a46-755b-4228-863e-a99ba215c904",
+      "year": "1962",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:symphonie-pour-un-homme-seul",
       "type": "project",
       "name": "Symphonie pour un homme seul"

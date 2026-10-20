@@ -66,19 +66,181 @@
   ],
   "discography": [
     {
-      "slug": "project:diamond-life",
+      "slug": "project:babyfather--sade",
       "type": "project",
-      "name": "Diamond Life"
+      "name": "Babyfather",
+      "artist": "Sade",
+      "mbid": "ca5b6ba2-8dea-4d0c-9c99-4fb5df0fe8f6",
+      "year": "2010",
+      "releaseType": "single"
     },
     {
-      "slug": "project:promise",
+      "slug": "project:soldier-of-love--sade",
       "type": "project",
-      "name": "Promise"
+      "name": "Soldier of Love",
+      "artist": "Sade",
+      "mbid": "cae97363-d79e-4529-b6a8-11a56742ed14",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:king-of-sorrow--sade",
+      "type": "project",
+      "name": "King of Sorrow",
+      "artist": "Sade",
+      "mbid": "4fe3289e-2417-3bef-8537-cc71ab22d707",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:by-your-side--sade",
+      "type": "project",
+      "name": "By Your Side",
+      "artist": "Sade",
+      "mbid": "6d0e7ef9-9ee9-35ed-8d32-8124d1315c7d",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lovers-rock--sade",
+      "type": "project",
+      "name": "Lovers Rock",
+      "artist": "Sade",
+      "mbid": "d4ec7e03-61fa-3aec-8f3c-fbcda6d3c552",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:feel-no-pain--sade",
+      "type": "project",
+      "name": "Feel No Pain",
+      "artist": "Sade",
+      "mbid": "38f721e2-cd8b-3272-91b8-6e70e152406d",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kiss-of-life--sade",
+      "type": "project",
+      "name": "Kiss of Life",
+      "artist": "Sade",
+      "mbid": "10a1a1b2-2e93-323d-8deb-97cdd1cb7671",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-deluxe--sade",
+      "type": "project",
+      "name": "Love Deluxe",
+      "artist": "Sade",
+      "mbid": "e4a67add-6aab-390c-bb82-53939fb9cd0a",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-ordinary-love--sade",
+      "type": "project",
+      "name": "No Ordinary Love",
+      "artist": "Sade",
+      "mbid": "4292b345-a5ab-39d6-bed1-98d55d899505",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:paradise--sade",
+      "type": "project",
+      "name": "Paradise",
+      "artist": "Sade",
+      "mbid": "eaced1cd-0375-4774-9da3-87d6a9869f3d",
+      "year": "1988",
+      "releaseType": "single"
     },
     {
       "slug": "project:stronger-than-pride",
       "type": "project",
-      "name": "Stronger Than Pride"
+      "name": "Stronger Than Pride",
+      "mbid": "ea64beae-333e-37fd-84c4-26a5d6dab17d",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:is-it-a-crime--sade",
+      "type": "project",
+      "name": "Is It A Crime",
+      "artist": "Sade",
+      "mbid": "2e283e77-e30c-4f27-82f2-376dfd48e789",
+      "year": "1985",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:never-as-good-as-the-first-time--sade",
+      "type": "project",
+      "name": "Never as Good as the First Time",
+      "artist": "Sade",
+      "mbid": "a2e43dfd-ce60-4c96-8279-a7af78e85205",
+      "year": "1985",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:promise",
+      "type": "project",
+      "name": "Promise",
+      "mbid": "d49bd610-a10e-3f14-8bd0-0121f7f20a4d",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:smooth-operator-us-12-promo--sade",
+      "type": "project",
+      "name": "Smooth Operator (US 12\" Promo)",
+      "artist": "Sade",
+      "mbid": "391607ed-3d77-47f8-b840-f05bd69c3a9b",
+      "year": "1985",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-sweetest-taboo--sade",
+      "type": "project",
+      "name": "The Sweetest Taboo",
+      "artist": "Sade",
+      "mbid": "11f01c89-e9be-43e2-a01a-d6ddc6cdc0d5",
+      "year": "1985",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:diamond-life",
+      "type": "project",
+      "name": "Diamond Life",
+      "mbid": "af2a0c41-e612-3232-949d-bdca340c407c",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hang-on-to-your-love-12-version--sade",
+      "type": "project",
+      "name": "Hang On to Your Love (12″ version)",
+      "artist": "Sade",
+      "mbid": "7c3768fe-66cd-47bd-a173-ff34d6de40b9",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:smooth-operator--sade",
+      "type": "project",
+      "name": "Smooth Operator",
+      "artist": "Sade",
+      "mbid": "118da644-3ebc-4e89-a1c8-a1807c31162d",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:your-love-is-king--sade",
+      "type": "project",
+      "name": "Your Love Is King",
+      "artist": "Sade",
+      "mbid": "09c766a0-8f13-4745-8840-6d3a6a5ee09c",
+      "year": "1984",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

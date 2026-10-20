@@ -70,19 +70,217 @@
   ],
   "discography": [
     {
-      "slug": "project:blue-lines",
+      "slug": "project:boots-on-the-ground--massive-attack",
       "type": "project",
-      "name": "Blue Lines"
+      "name": "Boots on the Ground",
+      "artist": "Massive Attack",
+      "mbid": "5c6d2e4d-149f-4752-8905-01b8ace7e77c",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:protection",
+      "slug": "project:eutopia--massive-attack",
       "type": "project",
-      "name": "Protection"
+      "name": "Eutopia",
+      "artist": "Massive Attack",
+      "mbid": "56e09618-0d6d-4c03-956a-ca5704e58ed7",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ritual-spirit--massive-attack",
+      "type": "project",
+      "name": "Ritual Spirit",
+      "artist": "Massive Attack",
+      "mbid": "ab94293e-1c6d-4c32-86a7-0da10d92f14b",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-spoils--massive-attack",
+      "type": "project",
+      "name": "The Spoils",
+      "artist": "Massive Attack",
+      "mbid": "a7001b2f-03d8-4eba-aca9-859fd39b0e30",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:atlas-air--massive-attack",
+      "type": "project",
+      "name": "Atlas Air",
+      "artist": "Massive Attack",
+      "mbid": "7f922b02-62e4-4bec-94a0-db2cf51e4f50",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:heligoland--massive-attack",
+      "type": "project",
+      "name": "Heligoland",
+      "artist": "Massive Attack",
+      "mbid": "29a4c71c-2e7a-40e3-81d7-7960e8ec1bb1",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:splitting-the-atom--massive-attack",
+      "type": "project",
+      "name": "Splitting the Atom",
+      "artist": "Massive Attack",
+      "mbid": "a9c49b2b-327e-4156-bd4c-a852ba994563",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:live-with-me--massive-attack",
+      "type": "project",
+      "name": "Live With Me",
+      "artist": "Massive Attack",
+      "mbid": "8ae0b824-d8a1-35e2-b8ad-bb84f5226d24",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:danny-the-dog--massive-attack",
+      "type": "project",
+      "name": "Danny the Dog",
+      "artist": "Massive Attack",
+      "mbid": "b685a485-aac5-344f-b545-5ed6de810649",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:100th-window--massive-attack",
+      "type": "project",
+      "name": "100th Window",
+      "artist": "Massive Attack",
+      "mbid": "d9c12c5f-8ad8-334a-a238-fad5a91af242",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:inertia-creeps--massive-attack",
+      "type": "project",
+      "name": "Inertia Creeps",
+      "artist": "Massive Attack",
+      "mbid": "2fa54e58-7647-4dcc-8a95-87ca8774abf8",
+      "year": "1998",
+      "releaseType": "single"
     },
     {
       "slug": "project:mezzanine",
       "type": "project",
-      "name": "Mezzanine"
+      "name": "Mezzanine",
+      "mbid": "6f9f6899-c0d3-311d-ae87-a10ae6bc53a9",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:teardrop--massive-attack",
+      "type": "project",
+      "name": "Teardrop",
+      "artist": "Massive Attack",
+      "mbid": "216dbacc-d807-35fe-aa51-3c97c0547e1d",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:risingson--massive-attack",
+      "type": "project",
+      "name": "Risingson",
+      "artist": "Massive Attack",
+      "mbid": "e429f736-584e-318b-a374-1aa035bbd289",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:karmacoma--massive-attack",
+      "type": "project",
+      "name": "Karmacoma",
+      "artist": "Massive Attack",
+      "mbid": "83cd8284-49b5-307c-bcad-96781813ec2b",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:protection",
+      "type": "project",
+      "name": "Protection",
+      "mbid": "ded46e46-788d-3c1f-b21b-9f5e9c37b1bc",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sly--massive-attack",
+      "type": "project",
+      "name": "Sly",
+      "artist": "Massive Attack",
+      "mbid": "53731bf0-40a9-3fc4-80b3-fc0a51481fa0",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hymn-of-the-big-wheel--massive-attack",
+      "type": "project",
+      "name": "Hymn of the Big Wheel",
+      "artist": "Massive Attack",
+      "mbid": "a923f4ce-a75f-39d8-9da5-5e48c0eadef2",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:massive-attack-ep--massive-attack",
+      "type": "project",
+      "name": "Massive Attack EP",
+      "artist": "Massive Attack",
+      "mbid": "5418a529-4614-3ba0-8655-c3ab897a430d",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:blue-lines",
+      "type": "project",
+      "name": "Blue Lines",
+      "mbid": "8b6f133a-2fdf-3cc2-b84d-1c889adc0939",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:safe-from-harm--massive-attack",
+      "type": "project",
+      "name": "Safe From Harm",
+      "artist": "Massive Attack",
+      "mbid": "91febbfe-7e13-3694-a14e-523d09993091",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:unfinished-sympathy--massive-attack",
+      "type": "project",
+      "name": "Unfinished Sympathy",
+      "artist": "Massive Attack",
+      "mbid": "3a73f54b-2bc7-3505-8b3b-afede6571397",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:daydreaming--massive-attack",
+      "type": "project",
+      "name": "Daydreaming",
+      "artist": "Massive Attack",
+      "mbid": "9dd87f8b-6558-3f1a-a2bb-5d3b6ca40773",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:any-love--massive-attack",
+      "type": "project",
+      "name": "Any Love",
+      "artist": "Massive Attack",
+      "mbid": "9e763794-a210-4edf-8c4d-03a57d989342",
+      "year": "1988",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

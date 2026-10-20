@@ -73,6 +73,293 @@
   ],
   "discography": [
     {
+      "slug": "project:the-fire-and-the-flight--charlie-parker",
+      "type": "project",
+      "name": "The Fire and the Flight",
+      "artist": "Charlie Parker",
+      "mbid": "add6d9d5-e613-44d2-98df-ae985f043954",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:radio-bird--charlie-parker",
+      "type": "project",
+      "name": "Radio Bird",
+      "artist": "Charlie Parker",
+      "mbid": "3ea767c6-8fe3-4e00-8736-f7b8714f1740",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:at-cafe-society--charlie-parker",
+      "type": "project",
+      "name": "At Café Society",
+      "artist": "Charlie Parker",
+      "mbid": "f053cd50-bc1a-42c2-9e05-95457569d5c4",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:complete-recordings--charlie-parker",
+      "type": "project",
+      "name": "Complete Recordings",
+      "artist": "Charlie Parker",
+      "mbid": "4b4807bc-f07c-4594-af56-71594b06a277",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:now-s-the-time--charlie-parker",
+      "type": "project",
+      "name": "Now's The Time",
+      "artist": "Charlie Parker",
+      "mbid": "cd78c4a2-85ae-48b0-89cd-a347d3393c66",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:plays-cole-porter--charlie-parker",
+      "type": "project",
+      "name": "Plays Cole Porter",
+      "artist": "Charlie Parker",
+      "mbid": "575ea0a4-d364-43d3-b4b4-1e23c2653ff0",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-savoy-10-inch-lp-collection",
+      "type": "project",
+      "name": "The Savoy 10-inch LP Collection",
+      "mbid": "f70bef7c-f8ad-4bf7-9d24-d761447ba2ab",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:night-in-tunisia--charlie-parker",
+      "type": "project",
+      "name": "Night in Tunisia",
+      "artist": "Charlie Parker",
+      "mbid": "7f947d74-b2b0-4440-8120-abfa7a468107",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bird-s-nest--charlie-parker",
+      "type": "project",
+      "name": "Bird's Nest",
+      "artist": "Charlie Parker",
+      "mbid": "daf961c2-aa31-4a5c-993a-6dd90226388f",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bird-on-the-wing--charlie-parker",
+      "type": "project",
+      "name": "Bird on the Wing",
+      "artist": "Charlie Parker",
+      "mbid": "ccace884-636b-39f8-993c-3ad0a8264efc",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:an-evening-at-home-with-the-bird--charlie-parker",
+      "type": "project",
+      "name": "An Evening at Home With the Bird",
+      "artist": "Charlie Parker",
+      "mbid": "6bcf15a5-0c8f-334b-bb3a-a86a448fb178",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bird-s-night--charlie-parker",
+      "type": "project",
+      "name": "Bird’s Night",
+      "artist": "Charlie Parker",
+      "mbid": "b9636102-5eeb-4122-b3a6-2d809da0fb2f",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jam-session--charlie-parker",
+      "type": "project",
+      "name": "Jam Session",
+      "artist": "Charlie Parker",
+      "mbid": "25a15425-3af4-3482-85e8-5b48bebd03b6",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:charlie-parker-in-sweden-1950--charlie-parker",
+      "type": "project",
+      "name": "Charlie Parker in Sweden 1950",
+      "artist": "Charlie Parker",
+      "mbid": "5b528e97-545b-432f-b225-37aafd536c45",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fragments--charlie-parker",
+      "type": "project",
+      "name": "Fragments",
+      "artist": "Charlie Parker",
+      "mbid": "e48a8516-6769-45fe-bf3c-13d12d5d5ef3",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:royal-roost-bop--charlie-parker",
+      "type": "project",
+      "name": "Royal Roost Bop",
+      "artist": "Charlie Parker",
+      "mbid": "742ed2f3-a257-4cbf-bbb2-c725c8ee90f4",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:once-there-was-bird--charlie-parker",
+      "type": "project",
+      "name": "Once There Was Bird",
+      "artist": "Charlie Parker",
+      "mbid": "9b2716f1-e7d2-4240-a262-9e7332dcd213",
+      "year": "1962",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:an-historical-meeting-at-the-summit--charlie-parker",
+      "type": "project",
+      "name": "An Historical Meeting At The Summit",
+      "artist": "Charlie Parker",
+      "mbid": "a8ebec02-a727-430e-8b7b-eac5c3138dd8",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-happy-bird--charlie-parker",
+      "type": "project",
+      "name": "The Happy \"Bird\"",
+      "artist": "Charlie Parker",
+      "mbid": "3efae46d-2851-4efe-a65f-1ce2bc522a1c",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:plays-cole-porter-the-genius-of-charlie-parker-5--charlie-parker",
+      "type": "project",
+      "name": "Plays Cole Porter - The Genius of Charlie Parker #5",
+      "artist": "Charlie Parker",
+      "mbid": "80c1c261-5e9b-4c30-a10b-b15327ed9a6e",
+      "year": "1957",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-charlie-parker-story--charlie-parker",
+      "type": "project",
+      "name": "The Charlie Parker Story",
+      "artist": "Charlie Parker",
+      "mbid": "9186abe8-6467-4ac3-88d5-fafad14df2d2",
+      "year": "1956",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:charlie-parker-memorial-vol-1--charlie-parker",
+      "type": "project",
+      "name": "Charlie Parker Memorial Vol. 1",
+      "artist": "Charlie Parker",
+      "mbid": "9ef52823-2b69-4c0f-a0a9-4ae49b30e789",
+      "year": "1955",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:charlie-parker-plays--charlie-parker",
+      "type": "project",
+      "name": "Charlie Parker Plays",
+      "artist": "Charlie Parker",
+      "mbid": "e8e9e803-fe99-4588-a043-486f5b44f885",
+      "year": "1955",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:charlie-parker--charlie-parker",
+      "type": "project",
+      "name": "Charlie Parker",
+      "artist": "Charlie Parker",
+      "mbid": "a6f4e373-a93b-4f0f-ac8e-d9b84327e7d5",
+      "year": "1954",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:new-sounds-in-modern-music-volume-3--charlie-parker",
+      "type": "project",
+      "name": "New Sounds In Modern Music, Volume 3",
+      "artist": "Charlie Parker",
+      "mbid": "4cd32900-2b78-4aca-9102-476f42a7e0a1",
+      "year": "1952",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:new-sounds-in-modern-music-volume-4--charlie-parker",
+      "type": "project",
+      "name": "New Sounds In Modern Music, Volume 4",
+      "artist": "Charlie Parker",
+      "mbid": "3e98051c-b6f2-4535-9efd-2ced301004ca",
+      "year": "1952",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:south-of-the-border--charlie-parker",
+      "type": "project",
+      "name": "South of the Border",
+      "artist": "Charlie Parker",
+      "mbid": "d3af9d64-afb5-481a-8e74-5c63a323f62c",
+      "year": "1952",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:new-sounds-in-modern-music-volume-2--charlie-parker",
+      "type": "project",
+      "name": "New Sounds In Modern Music, Volume 2",
+      "artist": "Charlie Parker",
+      "mbid": "33cae448-ce43-403e-8b80-0270646fb525",
+      "year": "1951",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:new-sounds-in-modern-music-vol-3--charlie-parker",
+      "type": "project",
+      "name": "New Sounds in Modern Music, Vol. 3",
+      "artist": "Charlie Parker",
+      "mbid": "191fab0b-bf6f-46e2-80d6-16798218c2bb",
+      "year": "1951",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:charlie-parker-sextet--charlie-parker",
+      "type": "project",
+      "name": "Charlie Parker Sextet",
+      "artist": "Charlie Parker",
+      "mbid": "522fa0de-52b7-40b3-86c8-e3cc6b272c9c",
+      "year": "1950",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:new-sounds-in-modern-music-vol-1--charlie-parker",
+      "type": "project",
+      "name": "New Sounds In Modern Music, Vol. 1",
+      "artist": "Charlie Parker",
+      "mbid": "05dfc3ad-5fac-4caf-a7f5-5fd0bff3deac",
+      "year": "1950",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:new-sounds-in-modern-music-vol-2--charlie-parker",
+      "type": "project",
+      "name": "New Sounds in Modern Music, Vol. 2",
+      "artist": "Charlie Parker",
+      "mbid": "db2805fc-9bbc-4a26-821b-1ceee96d2447",
+      "year": "1950",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:bird-and-diz",
       "type": "project",
       "name": "Bird and Diz"
@@ -83,9 +370,52 @@
       "name": "Charlie Parker with Strings"
     },
     {
-      "slug": "project:the-savoy-10-inch-lp-collection",
+      "slug": "project:round-midnight--charlie-parker",
       "type": "project",
-      "name": "The Savoy 10-inch LP Collection"
+      "name": "'Round Midnight",
+      "artist": "Charlie Parker",
+      "mbid": "aad410c6-929a-4d18-98ac-b24c61022c89",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bird-takes-off--charlie-parker",
+      "type": "project",
+      "name": "Bird Takes Off",
+      "artist": "Charlie Parker",
+      "mbid": "5b34ceb5-10fa-4dd6-b0e2-b0637a311fca",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:charlie-parker-direct-source--charlie-parker",
+      "type": "project",
+      "name": "Charlie Parker [Direct Source]",
+      "artist": "Charlie Parker",
+      "mbid": "980fee47-4fb8-491b-8c91-ffc4a621a4c8",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dial-masters-and-roost-sessions--charlie-parker",
+      "type": "project",
+      "name": "Dial Masters & Roost Sessions",
+      "artist": "Charlie Parker",
+      "mbid": "148144d6-2987-4e27-9da4-8dafc523a524",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gold-collection-deja-vu--charlie-parker",
+      "type": "project",
+      "name": "Gold Collection [Deja Vu]",
+      "artist": "Charlie Parker",
+      "mbid": "77b4f9cb-debd-4675-8e15-ea0598bdc6d4",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:small-group-sessions-2--charlie-parker",
+      "type": "project",
+      "name": "Small Group Sessions 2",
+      "artist": "Charlie Parker",
+      "mbid": "29a104ac-09a3-4222-88f8-900283e23b81",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

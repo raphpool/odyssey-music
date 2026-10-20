@@ -49,14 +49,20 @@
   ],
   "discography": [
     {
-      "slug": "project:rushup-edge--the-tuss",
-      "type": "project",
-      "name": "Rushup Edge"
-    },
-    {
       "slug": "project:confederation-trough",
       "type": "project",
-      "name": "Confederation Trough"
+      "name": "Confederation Trough",
+      "mbid": "067d73e7-8383-33fb-b20c-cc8c5d6b749c",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:rushup-edge--the-tuss",
+      "type": "project",
+      "name": "Rushup Edge",
+      "mbid": "8af1251f-ce01-3baf-b960-93c00e7baf45",
+      "year": "2007",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

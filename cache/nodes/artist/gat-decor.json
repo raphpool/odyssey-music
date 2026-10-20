@@ -35,7 +35,26 @@
     }
   ],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:barefoot-in-the-head--gat-decor",
+      "type": "project",
+      "name": "Barefoot in the Head",
+      "artist": "Gat Decor",
+      "mbid": "df0cc15c-16dd-4e37-a717-3424e2aabbea",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:passion--gat-decor",
+      "type": "project",
+      "name": "Passion",
+      "artist": "Gat Decor",
+      "mbid": "96f8e761-91b4-3bf1-bdef-f1b998d92fde",
+      "year": "1992",
+      "releaseType": "single"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:passion--gat-decor",

@@ -76,10 +76,139 @@
   ],
   "discography": [
     {
+      "slug": "project:aretha-franklin-sings-the-great-diva-classics--aretha-franklin",
+      "type": "project",
+      "name": "Aretha Franklin Sings the Great Diva Classics",
+      "artist": "Aretha Franklin",
+      "mbid": "6be61306-3361-4679-848b-7e3a37d8caa7",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-rose-is-still-a-rose--aretha-franklin",
+      "type": "project",
+      "name": "A Rose Is Still a Rose",
+      "artist": "Aretha Franklin",
+      "mbid": "043bdb62-67dc-3545-b0cf-a3aafd426770",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:who-s-zoomin-who--aretha-franklin",
+      "type": "project",
+      "name": "Who’s Zoomin’ Who?",
+      "artist": "Aretha Franklin",
+      "mbid": "d583dbf9-5cb5-388a-9ef0-ace0af20318b",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jump-to-it--aretha-franklin",
+      "type": "project",
+      "name": "Jump to It",
+      "artist": "Aretha Franklin",
+      "mbid": "e3ac9cd0-11fb-3267-b7f7-20728a9c2e2d",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:young-gifted-and-black--aretha-franklin",
+      "type": "project",
+      "name": "Young, Gifted and Black",
+      "artist": "Aretha Franklin",
+      "mbid": "f62ec525-7158-37c1-8535-6eaac62435b3",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:spirit-in-the-dark--aretha-franklin",
+      "type": "project",
+      "name": "Spirit in the Dark",
+      "artist": "Aretha Franklin",
+      "mbid": "d4596b8b-ffa2-32ca-968b-f489883db646",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:this-girl-s-in-love-with-you--aretha-franklin",
+      "type": "project",
+      "name": "This Girl’s in Love With You",
+      "artist": "Aretha Franklin",
+      "mbid": "e812c2f3-fb94-3454-afb6-7c3dd8c31262",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aretha-now--aretha-franklin",
+      "type": "project",
+      "name": "Aretha Now",
+      "artist": "Aretha Franklin",
+      "mbid": "b26d1ec6-2500-3ecf-9528-7bc5a360efbe",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lady-soul--aretha-franklin",
+      "type": "project",
+      "name": "Lady Soul",
+      "artist": "Aretha Franklin",
+      "mbid": "05571372-5b11-39b7-89c5-1c02589a27c8",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-house-that-jack-built-i-say-a-little-prayer--aretha-franklin",
+      "type": "project",
+      "name": "The House That Jack Built / I Say a Little Prayer",
+      "artist": "Aretha Franklin",
+      "mbid": "a2eba0b4-3748-4414-b2dd-c025faa0283c",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:think--aretha-franklin",
+      "type": "project",
+      "name": "Think",
+      "artist": "Aretha Franklin",
+      "mbid": "571f1388-033a-41da-8243-225bce16d4aa",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-make-me-feel-like-a-natural-woman-baby-baby-baby--aretha-franklin",
+      "type": "project",
+      "name": "(You Make Me Feel Like) A Natural Woman / Baby, Baby, Baby",
+      "artist": "Aretha Franklin",
+      "mbid": "514f189c-e9fd-3ddb-b894-7ebd43034742",
+      "year": "1967",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chain-of-fools-prove-it--aretha-franklin",
+      "type": "project",
+      "name": "Chain of Fools / Prove It",
+      "artist": "Aretha Franklin",
+      "mbid": "e6161d35-1fed-4b5a-8917-6ce1e4d7620b",
+      "year": "1967",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:i-never-loved-a-man-the-way-i-love-you--aretha-franklin",
       "type": "project",
       "name": "I Never Loved a Man the Way I Love You",
-      "artist": "Aretha Franklin"
+      "artist": "Aretha Franklin",
+      "mbid": "7d8f07a7-4c64-3afb-8daf-8f1d4df89a78",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-electrifying-aretha-franklin--aretha-franklin",
+      "type": "project",
+      "name": "The Electrifying Aretha Franklin",
+      "artist": "Aretha Franklin",
+      "mbid": "be5819f2-ea8c-37ae-b08f-141e377e48b0",
+      "year": "1962",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [],

@@ -55,19 +55,118 @@
   ],
   "discography": [
     {
-      "slug": "project:cosmogramma--flying-lotus",
+      "slug": "project:big-mama--flying-lotus",
       "type": "project",
-      "name": "Cosmogramma"
+      "name": "Big Mama",
+      "artist": "Flying Lotus",
+      "mbid": "adca206c-a43d-4ff7-8a28-98a9e61ced63",
+      "year": "2026",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:you-re-dead--flying-lotus",
+      "slug": "project:ash-original-motion-picture-soundtrack--flying-lotus",
       "type": "project",
-      "name": "You're Dead!"
+      "name": "ASH (Original Motion Picture Soundtrack)",
+      "artist": "Flying Lotus",
+      "mbid": "dd3d3caa-938d-406c-ad4f-7ccfb123ee34",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:oxygene-from-ash-soundtrack--flying-lotus",
+      "type": "project",
+      "name": "OXYGENE (from \"ASH\" Soundtrack)",
+      "artist": "Flying Lotus",
+      "mbid": "7d30ea6a-04bb-4fd3-9b7a-bf6d521cba57",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
       "slug": "project:flamagra--flying-lotus",
       "type": "project",
-      "name": "Flamagra"
+      "name": "Flamagra",
+      "mbid": "23a0d4ce-5421-4f35-afc4-49983c430edb",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-re-dead--flying-lotus",
+      "type": "project",
+      "name": "You're Dead!",
+      "mbid": "a1d4a471-bae9-4d0c-82d5-751ce37a5793",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:until-the-quiet-comes--flying-lotus",
+      "type": "project",
+      "name": "Until the Quiet Comes",
+      "artist": "Flying Lotus",
+      "mbid": "eb9e0983-2478-4494-a8e2-e4117c2ba40f",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cosmogramma--flying-lotus",
+      "type": "project",
+      "name": "Cosmogramma",
+      "mbid": "ddae2c76-1433-4a9a-be05-3447bda75eee",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:l-a-ep-1-x-3--flying-lotus",
+      "type": "project",
+      "name": "L.A. EP 1 X 3",
+      "artist": "Flying Lotus",
+      "mbid": "b6720434-f4c3-3233-b76f-fc9c85108a5e",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:l-a-ep-2-x-3--flying-lotus",
+      "type": "project",
+      "name": "L.A. EP 2 X 3",
+      "artist": "Flying Lotus",
+      "mbid": "4bb751b2-d809-34a2-8472-4c1faec4419a",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:los-angeles--flying-lotus",
+      "type": "project",
+      "name": "Los Angeles",
+      "artist": "Flying Lotus",
+      "mbid": "83b3e9f2-0080-3d98-b75f-afc09e834118",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:robo-tussin--flying-lotus",
+      "type": "project",
+      "name": "Robo Tussin",
+      "artist": "Flying Lotus",
+      "mbid": "ade74b73-f59e-4622-b5db-906c03d34757",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:reset--flying-lotus",
+      "type": "project",
+      "name": "Reset",
+      "artist": "Flying Lotus",
+      "mbid": "a73d9d55-0102-3b6b-a3df-ae60c4827164",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:1983--flying-lotus",
+      "type": "project",
+      "name": "1983",
+      "artist": "Flying Lotus",
+      "mbid": "938aeb97-a440-30fc-97d2-d9bf4f7f42a3",
+      "year": "2006",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

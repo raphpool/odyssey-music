@@ -54,9 +54,21 @@
   ],
   "discography": [
     {
+      "slug": "project:a-message-for-you--eriko-toyoda",
+      "type": "project",
+      "name": "拝啓 / A Message for You",
+      "artist": "Eriko Toyoda",
+      "mbid": "0e6e5583-121f-4300-a042-4edefad60a52",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:have-you-smiled-today",
       "type": "project",
-      "name": "Have You Smiled Today?"
+      "name": "Have You Smiled Today?",
+      "mbid": "fea64d35-b99e-4e62-b7f1-16524b2a59c9",
+      "year": "2011",
+      "releaseType": "album"
     },
     {
       "slug": "project:small-talk",

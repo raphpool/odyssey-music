@@ -64,19 +64,188 @@
   ],
   "discography": [
     {
-      "slug": "project:exile-in-guyville--liz-phair",
+      "slug": "project:miss-lucy--liz-phair",
       "type": "project",
-      "name": "Exile in Guyville"
+      "name": "Miss Lucy",
+      "artist": "Liz Phair",
+      "mbid": "37a8047b-325f-4ce3-99e5-3a2f22b38680",
+      "year": "2023",
+      "releaseType": "single"
     },
     {
-      "slug": "project:whip-smart",
+      "slug": "project:hey-lou--liz-phair",
       "type": "project",
-      "name": "Whip-Smart"
+      "name": "Hey Lou",
+      "artist": "Liz Phair",
+      "mbid": "772dec2e-5e83-4d5b-aa7b-a203dc3824d6",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:soberish--liz-phair",
+      "type": "project",
+      "name": "Soberish",
+      "artist": "Liz Phair",
+      "mbid": "3fe94775-7cac-4dad-95ee-260e73f8548a",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:spanish-doors--liz-phair",
+      "type": "project",
+      "name": "Spanish Doors",
+      "artist": "Liz Phair",
+      "mbid": "63fbca2a-fffc-4553-8e81-17e37f750f1d",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:good-side--liz-phair",
+      "type": "project",
+      "name": "Good Side",
+      "artist": "Liz Phair",
+      "mbid": "23f97c01-6ee7-41cc-9aca-1ee46c990a42",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ho-ho-ho--liz-phair",
+      "type": "project",
+      "name": "Ho Ho Ho",
+      "artist": "Liz Phair",
+      "mbid": "c196426c-0d1f-41c4-9523-50e7b4bad451",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:funstyle--liz-phair",
+      "type": "project",
+      "name": "Funstyle",
+      "artist": "Liz Phair",
+      "mbid": "82319d66-7008-4d5f-80e0-f097cc37b61c",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:everything-to-me--liz-phair",
+      "type": "project",
+      "name": "Everything to Me",
+      "artist": "Liz Phair",
+      "mbid": "b9c0b391-5733-4262-bc5e-7226ff318c6e",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:somebody-s-miracle--liz-phair",
+      "type": "project",
+      "name": "Somebody’s Miracle",
+      "artist": "Liz Phair",
+      "mbid": "70ae7c32-6c06-3cff-b682-799edbabe826",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:come-and-get-it--liz-phair",
+      "type": "project",
+      "name": "Come and Get It",
+      "artist": "Liz Phair",
+      "mbid": "eab122f7-f1f3-41f5-91fe-2a33f91673f4",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:liz-phair--liz-phair",
+      "type": "project",
+      "name": "Liz Phair",
+      "artist": "Liz Phair",
+      "mbid": "6434e1a7-f798-3349-ae53-8de27f9f223f",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:why-can-t-i--liz-phair",
+      "type": "project",
+      "name": "Why Can’t I?",
+      "artist": "Liz Phair",
+      "mbid": "c5487743-1c1b-4b82-a4dd-daff2b0a3b93",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:polyester-bride--liz-phair",
+      "type": "project",
+      "name": "Polyester Bride",
+      "artist": "Liz Phair",
+      "mbid": "ac31dad2-6e6e-45ec-a899-1140438dbba7",
+      "year": "1998",
+      "releaseType": "single"
     },
     {
       "slug": "project:whitechocolatespaceegg",
       "type": "project",
-      "name": "Whitechocolatespaceegg"
+      "name": "Whitechocolatespaceegg",
+      "mbid": "fbce2832-8614-346b-9e72-236827a22dd5",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:juvenilia--liz-phair",
+      "type": "project",
+      "name": "Juvenilia",
+      "artist": "Liz Phair",
+      "mbid": "fb252d3a-57dc-310d-bdcd-db43516f896b",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:supernova--liz-phair",
+      "type": "project",
+      "name": "Supernova",
+      "artist": "Liz Phair",
+      "mbid": "f18750df-3844-3083-8871-ed412556438a",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:whip-smart",
+      "type": "project",
+      "name": "Whip-Smart",
+      "mbid": "a5d5a8db-333e-3db4-9261-dd2815688489",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:carnivore--liz-phair",
+      "type": "project",
+      "name": "Carnivore",
+      "artist": "Liz Phair",
+      "mbid": "e6a55ce8-5f98-48b7-b94c-c91730a79dde",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:exile-in-guyville--liz-phair",
+      "type": "project",
+      "name": "Exile in Guyville",
+      "mbid": "c186db82-9988-367e-8486-2e38e9b6c8db",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rare-phair--liz-phair",
+      "type": "project",
+      "name": "Rare Phair",
+      "artist": "Liz Phair",
+      "mbid": "8c661c6a-6c13-3408-b8a7-345619c035b4",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:whitechocolatespaceegg-sessions--liz-phair",
+      "type": "project",
+      "name": "whitechocolatespaceegg sessions",
+      "artist": "Liz Phair",
+      "mbid": "b1a34244-e6cf-34ad-bbea-38bc80a90a85",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

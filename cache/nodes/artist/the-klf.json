@@ -51,14 +51,361 @@
   ],
   "discography": [
     {
-      "slug": "project:chill-out--the-klf",
+      "slug": "project:come-down-dawn--the-klf",
       "type": "project",
-      "name": "Chill Out"
+      "name": "Come Down Dawn",
+      "artist": "The KLF",
+      "mbid": "2ec08cb1-19cb-41c1-9d7d-18a8ac9cd865",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lost-trance-1--the-klf",
+      "type": "project",
+      "name": "Lost Trance 1",
+      "artist": "The KLF",
+      "mbid": "cb59bcee-7b4d-4a26-8cfb-5dca3a9c1ee9",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lost-trance-2--the-klf",
+      "type": "project",
+      "name": "Lost Trance 2",
+      "artist": "The KLF",
+      "mbid": "35a76177-4a8e-41e3-a096-c0ecfc7c7729",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lost-at-trancentral--the-klf",
+      "type": "project",
+      "name": "Lost at Trancentral",
+      "artist": "The KLF",
+      "mbid": "23374d29-5571-4645-bc98-20d7d90a42c8",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:this-is-not-what-space-is-about--the-klf",
+      "type": "project",
+      "name": "This Is Not What Space Is About",
+      "artist": "The KLF",
+      "mbid": "7f19cb62-88d0-4054-ac59-1066798d22ff",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:3-a-m-eternal-london-by-night-all-the-way-round--the-klf",
+      "type": "project",
+      "name": "3 A.M. Eternal (London by Night All the Way Round)",
+      "artist": "The KLF",
+      "mbid": "e3b32207-9e59-4379-88a9-e18068d1abc6",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:recovered-and-remastered-ep-4--the-klf",
+      "type": "project",
+      "name": "Recovered and Remastered EP -4",
+      "artist": "The KLF",
+      "mbid": "75d9ca8f-f14d-4ed4-81e8-07b293cd5cc8",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:build-a-fire--the-klf",
+      "type": "project",
+      "name": "Build a Fire",
+      "artist": "The KLF",
+      "mbid": "2aa633db-83f2-46d8-a69d-b6ba6a23565f",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:2023--the-klf",
+      "type": "project",
+      "name": "2023",
+      "artist": "The KLF",
+      "mbid": "797ddba5-03aa-47be-80f4-0134a694d3c3",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:made-3-a-m-coming-down-off-e--the-klf",
+      "type": "project",
+      "name": "Made @ 3 A.M. Coming Down Off E",
+      "artist": "The KLF",
+      "mbid": "82f11dcb-9604-4a9a-9e26-06462e628b0b",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:k-the-millennium--the-klf",
+      "type": "project",
+      "name": "***k the Millennium",
+      "artist": "The KLF",
+      "mbid": "0f166ede-fd1b-32f2-9759-1b8b69dd451e",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-white-room-original-motion-picture-soundtrack--the-klf",
+      "type": "project",
+      "name": "The White Room Original Motion Picture Soundtrack",
+      "artist": "The KLF",
+      "mbid": "b0b795a9-3533-3a93-9f32-21ab14475c5d",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:k-cera-cera-war-is-over-if-you-want-it--the-klf",
+      "type": "project",
+      "name": "K. Cera Cera (War Is Over If You Want It)",
+      "artist": "The KLF",
+      "mbid": "041eb6d4-eb8b-3894-aedd-fe5236df5c38",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:3-a-m-eternal-christmas-top-of-the-pops-1991--the-klf",
+      "type": "project",
+      "name": "3 A.M. Eternal (Christmas Top of the Pops 1991)",
+      "artist": "The KLF",
+      "mbid": "8579da04-807f-4010-9519-5b25db317d25",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:america-what-time-is-love--the-klf",
+      "type": "project",
+      "name": "America: What Time Is Love?",
+      "artist": "The KLF",
+      "mbid": "8357d2a6-1ce1-3d56-a16c-5e772223e856",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:january-what-time-is-love--the-klf",
+      "type": "project",
+      "name": "January: What Time Is Love?",
+      "artist": "The KLF",
+      "mbid": "4ffb96cc-653c-34ed-b6ca-f6e2380819aa",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:justified-and-ancient--the-klf",
+      "type": "project",
+      "name": "Justified & Ancient",
+      "artist": "The KLF",
+      "mbid": "4ae8902c-08ee-324a-b75d-613a53addcec",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:last-train-to-trancentral-work--the-klf",
+      "type": "project",
+      "name": "Last Train To Trancentral / Work",
+      "artist": "The KLF",
+      "mbid": "45cdf54c-6216-48e7-ba4e-a0a37db1af22",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:make-it-rain-no-more-tears--the-klf",
+      "type": "project",
+      "name": "Make It Rain / No More Tears",
+      "artist": "The KLF",
+      "mbid": "339f65d1-905b-46f2-b05a-ebe144c5b301",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-more-tears--the-klf",
+      "type": "project",
+      "name": "No More Tears",
+      "artist": "The KLF",
+      "mbid": "82001109-32da-45ae-9400-0e6a63cc9d88",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-dogg-bite-mix--the-klf",
+      "type": "project",
+      "name": "The Dogg Bite Mix",
+      "artist": "The KLF",
+      "mbid": "fb6a571d-529b-3403-b6fb-e959c8b06dd6",
+      "year": "1991",
+      "releaseType": "single"
     },
     {
       "slug": "project:the-white-room",
       "type": "project",
-      "name": "The White Room"
+      "name": "The White Room",
+      "mbid": "30e20b6b-778b-3d6a-aa72-3f821a8dd538",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chill-out--the-klf",
+      "type": "project",
+      "name": "Chill Out",
+      "mbid": "a415fc9b-1516-303e-b354-fc3a5b269f1b",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:it-s-grim-up-north--the-klf",
+      "type": "project",
+      "name": "It's Grim Up North",
+      "artist": "The KLF",
+      "mbid": "71313cea-0072-3ef7-b38a-67b8894bc592",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:madrugada-eterna--the-klf",
+      "type": "project",
+      "name": "Madrugada eterna",
+      "artist": "The KLF",
+      "mbid": "0a17e226-d834-3f17-b2f1-48773641b6a5",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:3-a-m-eternal--the-klf",
+      "type": "project",
+      "name": "3 A.M. Eternal",
+      "artist": "The KLF",
+      "mbid": "40a131d4-feb0-3789-8d64-ec09ffbe61e8",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kylie-said-to-jason--the-klf",
+      "type": "project",
+      "name": "Kylie Said to Jason",
+      "artist": "The KLF",
+      "mbid": "0988b4e5-2750-3972-bec8-e1c1377d5209",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:last-train-to-trancentral--the-klf",
+      "type": "project",
+      "name": "Last Train to Trancentral",
+      "artist": "The KLF",
+      "mbid": "c5ffd170-bb52-39f2-b815-21bb44d503ad",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:burn-the-bastards--the-klf",
+      "type": "project",
+      "name": "Burn the Bastards",
+      "artist": "The KLF",
+      "mbid": "c327cdbd-fc56-3825-971c-42d384ee88ae",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:burn-the-beat--the-klf",
+      "type": "project",
+      "name": "Burn the Beat",
+      "artist": "The KLF",
+      "mbid": "2548743b-1cfe-34bf-9cce-8ce6c6fa2c3d",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:doctorin-the-tardis--the-klf",
+      "type": "project",
+      "name": "Doctorin’ the Tardis",
+      "artist": "The KLF",
+      "mbid": "cca01b57-58cb-3cce-92aa-be1ec33d6da8",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-trance--the-klf",
+      "type": "project",
+      "name": "Love Trance",
+      "artist": "The KLF",
+      "mbid": "42fe1f03-a406-3154-910a-a6e015ac9519",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-time-is-love--the-klf",
+      "type": "project",
+      "name": "What Time Is Love?",
+      "artist": "The KLF",
+      "mbid": "3889dbe1-2db4-31a5-9e2c-76774e54c852",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:who-killed-the-jams--the-klf",
+      "type": "project",
+      "name": "Who Killed The JAMS?",
+      "artist": "The KLF",
+      "mbid": "93b04b69-0c92-3db3-a0b3-4a1ecffd6472",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:1987-what-the-fuck-is-going-on--the-klf",
+      "type": "project",
+      "name": "1987 (What the Fuck Is Going On?)",
+      "artist": "The KLF",
+      "mbid": "ccb850be-2bef-361c-98b2-66851bb829ea",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:all-you-need-is-love--the-klf",
+      "type": "project",
+      "name": "All You Need Is Love",
+      "artist": "The KLF",
+      "mbid": "a3c2b444-6a4c-3718-b9dd-0df73d0f3a3d",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:down-town--the-klf",
+      "type": "project",
+      "name": "Down Town",
+      "artist": "The KLF",
+      "mbid": "69a017c5-a27d-3ff6-8c9f-bf7640b94a4d",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-jams-45-edits--the-klf",
+      "type": "project",
+      "name": "The JAMS 45 Edits",
+      "artist": "The KLF",
+      "mbid": "aa287c4c-a67a-393e-a169-3f7c143b2e0a",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:whitney-joins-the-jams--the-klf",
+      "type": "project",
+      "name": "Whitney Joins The JAMs",
+      "artist": "The KLF",
+      "mbid": "37282abc-a796-3b7e-9e52-00958fe1230a",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-black-room--the-klf",
+      "type": "project",
+      "name": "The Black Room",
+      "artist": "The KLF",
+      "mbid": "7ac62118-f30a-3bd4-bb2e-1fd1e9634c68",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

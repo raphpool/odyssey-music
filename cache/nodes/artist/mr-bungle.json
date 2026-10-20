@@ -40,7 +40,98 @@
   "editorial_bio": "Mr.",
   "genres": [],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:eracist--mr-bungle",
+      "type": "project",
+      "name": "Eracist",
+      "artist": "Mr. Bungle",
+      "mbid": "88371b7d-22b9-4977-9b72-9df23ec6e0ea",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:raping-your-mind--mr-bungle",
+      "type": "project",
+      "name": "Raping Your Mind",
+      "artist": "Mr. Bungle",
+      "mbid": "ef252222-c144-454d-9cdd-f7f989770038",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sudden-death--mr-bungle",
+      "type": "project",
+      "name": "Sudden Death",
+      "artist": "Mr. Bungle",
+      "mbid": "d728c125-06b4-4f7b-a827-cf50e1ace32a",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-raging-wrath-of-the-easter-bunny-demo--mr-bungle",
+      "type": "project",
+      "name": "The Raging Wrath of the Easter Bunny Demo",
+      "artist": "Mr. Bungle",
+      "mbid": "a30d70f7-a42f-4370-a0f5-bdb566a033f8",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:usa--mr-bungle",
+      "type": "project",
+      "name": "USA",
+      "artist": "Mr. Bungle",
+      "mbid": "67297ca9-7aa1-4352-95c9-b5f750793dc6",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:california--mr-bungle",
+      "type": "project",
+      "name": "California",
+      "artist": "Mr. Bungle",
+      "mbid": "68445df6-13b2-360b-b43f-7b286e506c7c",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:disco-volante--mr-bungle",
+      "type": "project",
+      "name": "Disco Volante",
+      "artist": "Mr. Bungle",
+      "mbid": "93958da7-e728-3761-b28a-d6e0e89580ec",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:uremia--mr-bungle",
+      "type": "project",
+      "name": "Uremia",
+      "artist": "Mr. Bungle",
+      "mbid": "392977d5-15a4-42f0-b508-514e7003e16a",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mr-bungle--mr-bungle",
+      "type": "project",
+      "name": "Mr. Bungle",
+      "artist": "Mr. Bungle",
+      "mbid": "8033ef41-a96d-30e0-8e98-f2e17f59db5f",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:quote-unquote--mr-bungle",
+      "type": "project",
+      "name": "Quote Unquote",
+      "artist": "Mr. Bungle",
+      "mbid": "6c586527-aa93-4f60-88b1-82aecf5ba631",
+      "year": "1991",
+      "releaseType": "single"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],

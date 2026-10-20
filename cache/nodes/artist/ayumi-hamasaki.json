@@ -39,49 +39,316 @@
   ],
   "discography": [
     {
-      "slug": "project:a-song-for-xx",
+      "slug": "project:mimosa--ayumi-hamasaki",
       "type": "project",
-      "name": "A Song for XX"
+      "name": "mimosa",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "7da4e962-e489-4f19-a155-d36d59f9a3d2",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:duty",
+      "slug": "project:dreamed-a-dream--ayumi-hamasaki",
       "type": "project",
-      "name": "Duty"
+      "name": "Dreamed a Dream",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "ca8a7180-b253-44a0-96cb-36a44516384d",
+      "year": "2020",
+      "releaseType": "single"
     },
     {
-      "slug": "project:loveppears",
+      "slug": "project:m-a-de-in-japan--ayumi-hamasaki",
       "type": "project",
-      "name": "Loveppears"
+      "name": "M(A)DE IN JAPAN",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "05d3db93-f127-498c-a223-7490d49c86b0",
+      "year": "2016",
+      "releaseType": "album"
     },
     {
-      "slug": "project:i-am",
+      "slug": "project:we-are-the-queens--ayumi-hamasaki",
       "type": "project",
-      "name": "I Am..."
+      "name": "We are the QUEENS",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "6a2d0914-b99f-4f55-ac4b-89925fc3440f",
+      "year": "2016",
+      "releaseType": "single"
     },
     {
-      "slug": "project:rainbow",
+      "slug": "project:sixxxxxx--ayumi-hamasaki",
       "type": "project",
-      "name": "Rainbow"
+      "name": "sixxxxxx",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "042d5f4e-8425-471c-845a-c36e3b3309a6",
+      "year": "2015",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:my-story",
+      "slug": "project:zutto-last-minute-walk--ayumi-hamasaki",
       "type": "project",
-      "name": "My Story"
+      "name": "Zutto… / Last minute / Walk",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "82d4efae-f7f7-4b35-8f34-352d761fd603",
+      "year": "2014",
+      "releaseType": "single"
     },
     {
-      "slug": "project:guilty",
+      "slug": "project:love-again--ayumi-hamasaki",
       "type": "project",
-      "name": "Guilty"
+      "name": "LOVE again",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "a627aba9-0b90-4097-b2c8-e0b0a26a5367",
+      "year": "2013",
+      "releaseType": "album"
     },
     {
-      "slug": "project:next-level",
+      "slug": "project:love--ayumi-hamasaki",
       "type": "project",
-      "name": "Next Level"
+      "name": "LOVE",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "d834610e-9c03-443b-8ccb-1f33668fed52",
+      "year": "2012",
+      "releaseType": "ep"
     },
     {
       "slug": "project:party-queen",
       "type": "project",
-      "name": "Party Queen"
+      "name": "Party Queen",
+      "mbid": "1a7a99b0-7105-4108-ae17-5e545e3b9a0d",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:again--ayumi-hamasaki",
+      "type": "project",
+      "name": "again",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "b1354872-92ac-4f6a-9f10-c103123d574c",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:five--ayumi-hamasaki",
+      "type": "project",
+      "name": "FIVE",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "f068a847-dc7f-4108-bcb7-77f8c49b69d2",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-songs--ayumi-hamasaki",
+      "type": "project",
+      "name": "Love songs",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "0bf64659-50bd-47db-85c5-8fc96899847f",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:moon-blossom--ayumi-hamasaki",
+      "type": "project",
+      "name": "MOON / blossom",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "f80da0e5-bf15-46a1-ac2d-6ea5451f3fe8",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rock-n-roll-circus--ayumi-hamasaki",
+      "type": "project",
+      "name": "Rock’n’Roll Circus",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "658197dc-295e-4de7-adab-713c12374bb4",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:next-level",
+      "type": "project",
+      "name": "Next Level",
+      "mbid": "8e40d093-ddb2-322c-96e4-be462ec4781c",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rule-sparkle--ayumi-hamasaki",
+      "type": "project",
+      "name": "Rule / Sparkle",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "8963056d-7836-4533-8938-95da90efd884",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:days-green--ayumi-hamasaki",
+      "type": "project",
+      "name": "Days/GREEN",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "0ae5098b-20e1-3986-89c9-cfef471faecb",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:guilty",
+      "type": "project",
+      "name": "Guilty",
+      "mbid": "a24b97ad-7e1e-395f-a2b9-17ce41e0279d",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:glitter-fated--ayumi-hamasaki",
+      "type": "project",
+      "name": "glitter / fated",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "0a8224aa-61f7-305a-ba73-a5b6258c8427",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:miss-understood--ayumi-hamasaki",
+      "type": "project",
+      "name": "(miss)understood",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "57147671-5995-3f48-a428-c305ca9c7e39",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:secret--ayumi-hamasaki",
+      "type": "project",
+      "name": "Secret",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "2f1969a3-0b8d-3ade-a2f0-4535a5abc7a2",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:startin-born-to-be--ayumi-hamasaki",
+      "type": "project",
+      "name": "Startin’ / Born To Be…",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "356fd3de-c939-3d55-af36-f7107ab84683",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heaven--ayumi-hamasaki",
+      "type": "project",
+      "name": "HEAVEN",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "9cfa3af4-c5ad-3bf4-9d71-ef0b8e04c587",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-story",
+      "type": "project",
+      "name": "My Story",
+      "mbid": "fbbb50eb-2d47-342c-bd97-a635951f382d",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:memorial-address--ayumi-hamasaki",
+      "type": "project",
+      "name": "Memorial address",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "16fa82b9-c880-3acf-8a37-fd4a017c8be4",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:connected--ayumi-hamasaki",
+      "type": "project",
+      "name": "Connected",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "e1901b7e-4adb-417e-8201-a5086d3cef6d",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:h--ayumi-hamasaki",
+      "type": "project",
+      "name": "H",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "d3b067e2-7368-3597-94c3-aebe11722088",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-am",
+      "type": "project",
+      "name": "I Am...",
+      "mbid": "f85a5ac6-c8bb-3026-b7cc-7657bf909c61",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rainbow",
+      "type": "project",
+      "name": "Rainbow",
+      "mbid": "0b82802e-3fcd-3d8a-af9c-a658c360cdae",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:duty",
+      "type": "project",
+      "name": "Duty",
+      "mbid": "bed5b048-77e0-3e1f-be2a-b34aa418b09f",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:seasons--ayumi-hamasaki",
+      "type": "project",
+      "name": "SEASONS",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "aa7e5533-c457-305b-9188-d5657d92828b",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:surreal--ayumi-hamasaki",
+      "type": "project",
+      "name": "SURREAL",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "d0ac81f7-dcd3-3858-91a9-dce8abca52fd",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vogue--ayumi-hamasaki",
+      "type": "project",
+      "name": "vogue",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "a1ba5aff-024f-3e2e-a770-e977e9282df8",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-song-for--ayumi-hamasaki",
+      "type": "project",
+      "name": "A Song for ××",
+      "artist": "Ayumi Hamasaki",
+      "mbid": "a662197c-7d65-3f5b-b6a0-e59de1ae2364",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:loveppears",
+      "type": "project",
+      "name": "Loveppears",
+      "mbid": "6d12df35-f81f-328f-b343-978938b2a3f4",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-song-for-xx",
+      "type": "project",
+      "name": "A Song for XX"
     },
     {
       "slug": "project:made-in-japan",

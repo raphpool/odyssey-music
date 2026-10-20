@@ -52,9 +52,84 @@
   "labels": [],
   "discography": [
     {
+      "slug": "project:think-about-me--artful-dodger",
+      "type": "project",
+      "name": "Think About Me",
+      "artist": "Artful Dodger",
+      "mbid": "627cccc4-04a7-3f62-9008-358e67ce152f",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:twentyfourseven--artful-dodger",
+      "type": "project",
+      "name": "Twentyfourseven",
+      "artist": "Artful Dodger",
+      "mbid": "f38fe201-963d-344a-a397-8334d80e60b3",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:it-s-all-about-the-stragglers",
       "type": "project",
-      "name": "It's All About the Stragglers"
+      "name": "It's All About the Stragglers",
+      "mbid": "6527c2fc-5b3e-3103-8a8e-3950efe28712",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:please-don-t-turn-me-on--artful-dodger",
+      "type": "project",
+      "name": "Please Don't Turn Me On",
+      "artist": "Artful Dodger",
+      "mbid": "5529e16e-e090-30b2-af8b-815d9620c2b4",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:movin-too-fast--artful-dodger",
+      "type": "project",
+      "name": "Movin Too Fast",
+      "artist": "Artful Dodger",
+      "mbid": "832764ce-8e98-33ea-ac51-31a387fd299a",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:re-rewind-the-crowd-say-bo-selecta--artful-dodger",
+      "type": "project",
+      "name": "Re-Rewind the Crowd Say Bo Selecta",
+      "artist": "Artful Dodger",
+      "mbid": "1d07a512-3669-458c-80fd-6935506c1804",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rewind--artful-dodger",
+      "type": "project",
+      "name": "Rewind",
+      "artist": "Artful Dodger",
+      "mbid": "774cd058-1922-4076-a94b-53816f86e332",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:something--artful-dodger",
+      "type": "project",
+      "name": "Something",
+      "artist": "Artful Dodger",
+      "mbid": "6c492b50-1703-4c4e-ad39-96bf3d2435ad",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:what-ya-gonna-do--artful-dodger",
+      "type": "project",
+      "name": "What Ya Gonna Do",
+      "artist": "Artful Dodger",
+      "mbid": "d58a55df-95a8-4a2c-9f67-286a0ae6c52c",
+      "year": "1998",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

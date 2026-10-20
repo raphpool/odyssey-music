@@ -55,9 +55,255 @@
   ],
   "discography": [
     {
+      "slug": "project:alive-and-kickin--fats-domino",
+      "type": "project",
+      "name": "Alive and Kickin’",
+      "artist": "Fats Domino",
+      "mbid": "f55197ff-a116-3a7e-88e9-193c9a8b783b",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:christmas-is-a-special-day--fats-domino",
+      "type": "project",
+      "name": "Christmas Is a Special Day",
+      "artist": "Fats Domino",
+      "mbid": "a0e345d7-0804-3682-a22c-bb06307e998d",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sleeping-on-the-job--fats-domino",
+      "type": "project",
+      "name": "Sleeping on the Job",
+      "artist": "Fats Domino",
+      "mbid": "d5eee898-def6-38f9-b447-f0dba333176b",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fats--fats-domino",
+      "type": "project",
+      "name": "Fats",
+      "artist": "Fats Domino",
+      "mbid": "13fcaa2b-f5f1-4dc4-a539-cc55ef5d548a",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fats-is-back--fats-domino",
+      "type": "project",
+      "name": "Fats Is Back",
+      "artist": "Fats Domino",
+      "mbid": "e31a9158-db8c-3cbc-b76d-0c659dbfc8e3",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:fats-domino-65",
       "type": "project",
-      "name": "Fats Domino '65"
+      "name": "Fats Domino '65",
+      "mbid": "5453608d-ad46-4953-87c6-7dd9dc7c2ab5",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:getaway-with-fats-domino--fats-domino",
+      "type": "project",
+      "name": "Getaway With Fats Domino",
+      "artist": "Fats Domino",
+      "mbid": "340bbae3-6d4a-4898-91b2-6e99004fa24a",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fats-on-fire--fats-domino",
+      "type": "project",
+      "name": "Fats on Fire",
+      "artist": "Fats Domino",
+      "mbid": "cff31f64-7344-44d1-90b3-6b4666e096cd",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:here-comes-fats-domino--fats-domino",
+      "type": "project",
+      "name": "Here Comes... Fats Domino",
+      "artist": "Fats Domino",
+      "mbid": "3dc4198c-1da5-382e-b342-0a8926fa6d3d",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:here-he-comes-again--fats-domino",
+      "type": "project",
+      "name": "Here He Comes Again!",
+      "artist": "Fats Domino",
+      "mbid": "4597b75e-e4b0-4c92-91da-cac75848879d",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:let-s-dance-with-domino--fats-domino",
+      "type": "project",
+      "name": "Let’s Dance With Domino",
+      "artist": "Fats Domino",
+      "mbid": "46767cf1-0a8a-4a5a-9725-f68cf5cd397a",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:walking-to-new-orleans--fats-domino",
+      "type": "project",
+      "name": "Walking to New Orleans",
+      "artist": "Fats Domino",
+      "mbid": "91d47385-068e-4188-a084-a8b0d2af2b10",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:just-domino--fats-domino",
+      "type": "project",
+      "name": "Just Domino",
+      "artist": "Fats Domino",
+      "mbid": "9f564319-6edd-4155-bbca-6d15bd2d2aa4",
+      "year": "1962",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:twistin-the-stomp--fats-domino",
+      "type": "project",
+      "name": "Twistin’ the Stomp",
+      "artist": "Fats Domino",
+      "mbid": "5c14093c-8463-4fe2-8c1a-7879edda43a0",
+      "year": "1962",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-miss-you-so--fats-domino",
+      "type": "project",
+      "name": "I Miss You So",
+      "artist": "Fats Domino",
+      "mbid": "3393d795-c804-4b35-8b90-3ebb18dad69f",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:let-the-four-winds-blow--fats-domino",
+      "type": "project",
+      "name": "Let the Four Winds Blow",
+      "artist": "Fats Domino",
+      "mbid": "14c27903-19d0-34be-9219-23e41bd2e247",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:what-a-party--fats-domino",
+      "type": "project",
+      "name": "What a Party!",
+      "artist": "Fats Domino",
+      "mbid": "c8e33460-e30d-4938-8c69-c4aa796c4ed0",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-lot-of-dominos--fats-domino",
+      "type": "project",
+      "name": "...A Lot of Dominos!",
+      "artist": "Fats Domino",
+      "mbid": "6fc1dd4d-c384-328b-8187-beed623c9815",
+      "year": "1960",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fats-domino-sings-million-record-hits--fats-domino",
+      "type": "project",
+      "name": "Fats Domino Sings Million Record Hits",
+      "artist": "Fats Domino",
+      "mbid": "daa19218-c7ba-44b3-8315-8ba8ad2043f4",
+      "year": "1960",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:let-s-play-fats-domino--fats-domino",
+      "type": "project",
+      "name": "Let’s Play Fats Domino",
+      "artist": "Fats Domino",
+      "mbid": "58d1fddb-365b-3376-bb8b-b842db130af4",
+      "year": "1959",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-fabulous-mr-d--fats-domino",
+      "type": "project",
+      "name": "The Fabulous \"Mr. D\"",
+      "artist": "Fats Domino",
+      "mbid": "2fa8c792-da16-3ce1-87d9-742226105240",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:here-stands-fats-domino--fats-domino",
+      "type": "project",
+      "name": "Here Stands Fats Domino",
+      "artist": "Fats Domino",
+      "mbid": "6a39b421-325b-3009-85fb-446852b458f6",
+      "year": "1957",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:this-is-fats--fats-domino",
+      "type": "project",
+      "name": "This Is Fats",
+      "artist": "Fats Domino",
+      "mbid": "0a04a674-ba41-3e18-9912-8f228f43e07b",
+      "year": "1957",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blueberry-hill-honey-chile--fats-domino",
+      "type": "project",
+      "name": "Blueberry Hill / Honey Chile",
+      "artist": "Fats Domino",
+      "mbid": "ffa0f17c-5615-4407-80a0-f6598d28ca2a",
+      "year": "1956",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fats-domino-rock-and-rollin--fats-domino",
+      "type": "project",
+      "name": "Fats Domino Rock and Rollin’",
+      "artist": "Fats Domino",
+      "mbid": "34cae69b-a58d-3328-8490-0065e670fef2",
+      "year": "1956",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rock-and-rollin-with-fats-domino--fats-domino",
+      "type": "project",
+      "name": "Rock and Rollin’ With Fats Domino",
+      "artist": "Fats Domino",
+      "mbid": "ddf22e64-127d-32b2-86bb-65bbc9bb34f7",
+      "year": "1956",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:this-is-fats-domino--fats-domino",
+      "type": "project",
+      "name": "This Is Fats Domino!",
+      "artist": "Fats Domino",
+      "mbid": "a3d5e53b-9b31-3014-a9c7-b6bfacc7cad3",
+      "year": "1956",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:all-by-myself-troubles-of-my-own--fats-domino",
+      "type": "project",
+      "name": "All by Myself / Troubles of My Own",
+      "artist": "Fats Domino",
+      "mbid": "e8b3e269-45bf-4ca1-ac20-da5d0fc66b9d",
+      "year": "1955",
+      "releaseType": "single"
     },
     {
       "slug": "project:in-concert",

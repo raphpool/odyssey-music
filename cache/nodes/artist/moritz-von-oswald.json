@@ -50,7 +50,35 @@
       "name": "Chain Reaction"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:infinito--moritz-von-oswald",
+      "type": "project",
+      "name": "Infinito",
+      "artist": "Moritz von Oswald",
+      "mbid": "21e9a9d3-d213-42ac-bf9c-904152b3abd8",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:silencio--moritz-von-oswald",
+      "type": "project",
+      "name": "Silencio",
+      "artist": "Moritz von Oswald",
+      "mbid": "62084a60-c9e4-4c91-a675-6381730ea7aa",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:moritz-von-oswald-and-ordo-sakhna--moritz-von-oswald",
+      "type": "project",
+      "name": "Moritz Von Oswald & Ordo Sakhna",
+      "artist": "Moritz von Oswald",
+      "mbid": "5ae86891-84ab-4ed8-a437-b9cb8334b5ff",
+      "year": "2017",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:quadrant-dub",

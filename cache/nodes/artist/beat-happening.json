@@ -76,7 +76,143 @@
       "name": "Domino Recording Company"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:stars-align--beat-happening",
+      "type": "project",
+      "name": "Stars Align",
+      "artist": "Beat Happening",
+      "mbid": "50ff61f6-aced-4c6b-b9da-60eef92872bf",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:angel-gone--beat-happening",
+      "type": "project",
+      "name": "Angel Gone",
+      "artist": "Beat Happening",
+      "mbid": "f0a00b3b-6d4f-37bf-a80d-35f90eca4ca2",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-turn-me-on--beat-happening",
+      "type": "project",
+      "name": "You Turn Me On",
+      "artist": "Beat Happening",
+      "mbid": "2f70b4ff-9f35-3aea-8f88-182db97eb6f2",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dreamy--beat-happening",
+      "type": "project",
+      "name": "Dreamy",
+      "artist": "Beat Happening",
+      "mbid": "973aa5b4-164c-37e3-b055-7f37a5d15569",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sea-hunt-knock-on-any-door--beat-happening",
+      "type": "project",
+      "name": "Sea Hunt / Knock on Any Door",
+      "artist": "Beat Happening",
+      "mbid": "283e4a03-6736-4c17-a8e1-abc7db33062f",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nancy-sin-dreamy--beat-happening",
+      "type": "project",
+      "name": "Nancy Sin / Dreamy",
+      "artist": "Beat Happening",
+      "mbid": "8a1f05ea-2288-48c0-b6b9-377d8d7bea55",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:red-head-walking-secret-picnic-spot--beat-happening",
+      "type": "project",
+      "name": "Red Head Walking / Secret Picnic Spot",
+      "artist": "Beat Happening",
+      "mbid": "5fd6d41f-8f01-4fb1-86d1-3799430c9b89",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:black-candy--beat-happening",
+      "type": "project",
+      "name": "Black Candy",
+      "artist": "Beat Happening",
+      "mbid": "09d16476-26d3-34e0-81bf-624cbb859407",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beat-happening-screaming-trees--beat-happening",
+      "type": "project",
+      "name": "Beat Happening / Screaming Trees",
+      "artist": "Beat Happening",
+      "mbid": "f3fd4463-f6fe-3106-97a6-56f313058fe7",
+      "year": "1988",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:crashing-through--beat-happening",
+      "type": "project",
+      "name": "Crashing Through",
+      "artist": "Beat Happening",
+      "mbid": "1e0493e8-42fc-4be8-a879-44cf4e6d947d",
+      "year": "1988",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:jamboree--beat-happening",
+      "type": "project",
+      "name": "Jamboree",
+      "artist": "Beat Happening",
+      "mbid": "f04c29d6-d502-3b62-a29f-ec54c094a202",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:look-around--beat-happening",
+      "type": "project",
+      "name": "Look Around",
+      "artist": "Beat Happening",
+      "mbid": "4b458278-f10c-4371-8772-c90aab3fb4e6",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beat-happening--beat-happening",
+      "type": "project",
+      "name": "Beat Happening",
+      "artist": "Beat Happening",
+      "mbid": "24f4578d-856d-3d84-804e-abff91ce3ac8",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:our-secret-what-s-important--beat-happening",
+      "type": "project",
+      "name": "Our Secret / What’s Important",
+      "artist": "Beat Happening",
+      "mbid": "00cbf76d-7d8b-47c0-887c-582561fa4ec9",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:three-tea-breakfast--beat-happening",
+      "type": "project",
+      "name": "Three Tea Breakfast",
+      "artist": "Beat Happening",
+      "mbid": "baaf8b48-bb1f-3c2d-9e8b-8b78e390c70e",
+      "year": "1984",
+      "releaseType": "ep"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:bad-seeds",

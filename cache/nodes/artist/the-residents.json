@@ -51,19 +51,253 @@
   ],
   "discography": [
     {
-      "slug": "project:meet-the-residents",
+      "slug": "project:randy-chuck-and-bob-in-the-studio--the-residents",
       "type": "project",
-      "name": "Meet the Residents"
+      "name": "Randy, Chuck & Bob in the Studio",
+      "artist": "The Residents",
+      "mbid": "350be25f-ae2b-4cd3-9156-2cd2009c7cfd",
+      "year": "2026",
+      "releaseType": "album"
     },
     {
-      "slug": "project:the-third-reich-n-roll",
+      "slug": "project:doctor-dark--the-residents",
       "type": "project",
-      "name": "The Third Reich 'n Roll"
+      "name": "Doctor Dark",
+      "artist": "The Residents",
+      "mbid": "9cc2e212-a622-4fa6-bdd5-1e661be3c883",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-w-b-album--the-residents",
+      "type": "project",
+      "name": "The W***** B*** Album",
+      "artist": "The Residents",
+      "mbid": "f0a60e35-1693-3352-a70d-cc4126156ae8",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:theory-of-obscurity-soundtrack--the-residents",
+      "type": "project",
+      "name": "Theory of Obscurity Soundtrack",
+      "artist": "The Residents",
+      "mbid": "01f139c5-ce11-4141-8bb0-85f76b745329",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wormwood-curious-stories-from-the-bible--the-residents",
+      "type": "project",
+      "name": "Wormwood: Curious Stories From the Bible",
+      "artist": "The Residents",
+      "mbid": "6de44ad9-8fc2-393a-9417-378587012d95",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:have-a-bad-day--the-residents",
+      "type": "project",
+      "name": "Have a Bad Day",
+      "artist": "The Residents",
+      "mbid": "49eaebbe-f7cf-332f-bf3a-deb6a1c4ec2a",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gingerbread-man--the-residents",
+      "type": "project",
+      "name": "Gingerbread Man",
+      "artist": "The Residents",
+      "mbid": "23568e79-ea37-3f3d-9932-5352e661a2b6",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:our-finest-flowers--the-residents",
+      "type": "project",
+      "name": "Our Finest Flowers",
+      "artist": "The Residents",
+      "mbid": "a2c6476a-b51a-30e6-851b-8e2abfdf035f",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:freak-show--the-residents",
+      "type": "project",
+      "name": "Freak Show",
+      "artist": "The Residents",
+      "mbid": "1c346526-e265-37d3-a6d5-21a6541e42d6",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stranger-than-supper--the-residents",
+      "type": "project",
+      "name": "Stranger Than Supper",
+      "artist": "The Residents",
+      "mbid": "82bc8524-b0c7-3ae9-8720-4c252964c2d6",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-king-and-eye--the-residents",
+      "type": "project",
+      "name": "The King and Eye",
+      "artist": "The Residents",
+      "mbid": "877f0748-f4d1-3b6b-b882-3802e8bbbcc4",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:god-in-three-persons--the-residents",
+      "type": "project",
+      "name": "God in Three Persons",
+      "artist": "The Residents",
+      "mbid": "c63997b3-28de-3abf-9fa0-04208f12dc31",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-snakey-wake--the-residents",
+      "type": "project",
+      "name": "The Snakey Wake",
+      "artist": "The Residents",
+      "mbid": "6010f4c8-562a-3b02-a732-5910c5214b47",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stars-and-hank-forever-the-american-composer-s-series-volume-ii--the-residents",
+      "type": "project",
+      "name": "Stars & Hank Forever! The American Composer’s Series, Volume II",
+      "artist": "The Residents",
+      "mbid": "60602421-27f0-32c7-87df-f81f188b02ee",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-big-bubble--the-residents",
+      "type": "project",
+      "name": "The Big Bubble",
+      "artist": "The Residents",
+      "mbid": "e480a976-bacf-3e6c-bd41-e7ca668d0634",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:george-and-james-american-composer-series-volume-1--the-residents",
+      "type": "project",
+      "name": "George & James: American Composer Series, Volume 1",
+      "artist": "The Residents",
+      "mbid": "4d28bbd1-61c2-3795-8630-44a3895b12a9",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:residue-of-the-residents--the-residents",
+      "type": "project",
+      "name": "Residue of the Residents",
+      "artist": "The Residents",
+      "mbid": "cdc9ec9c-4558-3f95-bcb4-f855cc4c0711",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:title-in-limbo--the-residents",
+      "type": "project",
+      "name": "Title in Limbo",
+      "artist": "The Residents",
+      "mbid": "0fe73658-a35d-4be1-b3bc-28cd367c49d3",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-tunes-of-two-cities--the-residents",
+      "type": "project",
+      "name": "The Tunes of Two Cities",
+      "artist": "The Residents",
+      "mbid": "6e347167-802a-3015-a1c0-33b11120e658",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mark-of-the-mole--the-residents",
+      "type": "project",
+      "name": "Mark of the Mole",
+      "artist": "The Residents",
+      "mbid": "00f4f06f-7eb1-3c6a-b385-6ad2f62cfa9d",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:commercial-album--the-residents",
+      "type": "project",
+      "name": "Commercial Album",
+      "artist": "The Residents",
+      "mbid": "b9f86b5f-d37a-371d-a2cb-6e88fd1e8926",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:eskimo--the-residents",
+      "type": "project",
+      "name": "Eskimo",
+      "artist": "The Residents",
+      "mbid": "243fe278-3ad3-3f7e-af97-0be63c2f7d9e",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:duck-stab-buster-and-glen--the-residents",
+      "type": "project",
+      "name": "Duck Stab / Buster & Glen",
+      "artist": "The Residents",
+      "mbid": "e11c5bd2-59c3-3cb2-a1e8-c1024d9c98a1",
+      "year": "1978",
+      "releaseType": "album"
     },
     {
       "slug": "project:not-available",
       "type": "project",
-      "name": "Not Available"
+      "name": "Not Available",
+      "mbid": "9dc2fe18-e3d2-3cf9-9a81-1e13ff596887",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fingerprince--the-residents",
+      "type": "project",
+      "name": "Fingerprince",
+      "artist": "The Residents",
+      "mbid": "081be8c0-70ad-3310-b62b-082c2d0b30bd",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-third-reich-n-roll",
+      "type": "project",
+      "name": "The Third Reich 'n Roll",
+      "mbid": "fd052217-bd6c-3b06-889a-322cf5f6c054",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:meet-the-residents",
+      "type": "project",
+      "name": "Meet the Residents",
+      "mbid": "bbddde77-1996-3bab-9ea3-247fd59da127",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:santa-dog--the-residents",
+      "type": "project",
+      "name": "Santa Dog",
+      "artist": "The Residents",
+      "mbid": "8670778c-b553-30a2-b9a8-4ff65896cc25",
+      "year": "1972",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

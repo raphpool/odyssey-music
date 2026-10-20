@@ -61,14 +61,191 @@
   ],
   "discography": [
     {
-      "slug": "project:paris-1919",
+      "slug": "project:poptical-illusion--john-cale",
       "type": "project",
-      "name": "Paris 1919"
+      "name": "POPtical Illusion",
+      "artist": "John Cale",
+      "mbid": "ef7285b6-7667-40f9-9a89-ed4adac0755d",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mercy--john-cale",
+      "type": "project",
+      "name": "MERCY",
+      "artist": "John Cale",
+      "mbid": "39cb5b59-a89f-4452-88d4-4674dbb8427d",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:night-crawling--john-cale",
+      "type": "project",
+      "name": "Night Crawling",
+      "artist": "John Cale",
+      "mbid": "097abc4c-9a21-4b06-bf7a-2d3b4ae87c3b",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lazy-day--john-cale",
+      "type": "project",
+      "name": "Lazy Day",
+      "artist": "John Cale",
+      "mbid": "60260bc4-9fec-4c34-befc-32921407219e",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hobosapiens--john-cale",
+      "type": "project",
+      "name": "HoboSapiens",
+      "artist": "John Cale",
+      "mbid": "6dd9794c-d4be-3d34-80f2-1d8b540c187f",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sun-blindness-music-new-york-in-the-1960-s-volume-1--john-cale",
+      "type": "project",
+      "name": "Sun Blindness Music: New York in the 1960's, Volume 1",
+      "artist": "John Cale",
+      "mbid": "d69bb278-b343-3c08-abf5-429c8b3236db",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:walking-on-locusts--john-cale",
+      "type": "project",
+      "name": "Walking on Locusts",
+      "artist": "John Cale",
+      "mbid": "44f155f8-0411-3c57-b2b8-800f77f85587",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:last-day-on-earth--john-cale",
+      "type": "project",
+      "name": "Last Day on Earth",
+      "artist": "John Cale",
+      "mbid": "51be32a5-5fe2-336e-bddd-cddf2c45ce50",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hallelujah--john-cale",
+      "type": "project",
+      "name": "Hallelujah",
+      "artist": "John Cale",
+      "mbid": "a9d7ae73-a71a-48ff-baa3-83832fee93c5",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:words-for-the-dying--john-cale",
+      "type": "project",
+      "name": "Words for the Dying",
+      "artist": "John Cale",
+      "mbid": "7dff2e83-306e-3379-b586-2b2cc8eebd2a",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:artificial-intelligence--john-cale",
+      "type": "project",
+      "name": "Artificial Intelligence",
+      "artist": "John Cale",
+      "mbid": "7f8d8939-74fb-310e-a043-5bd06ccabde0",
+      "year": "1985",
+      "releaseType": "album"
     },
     {
       "slug": "project:music-for-a-new-society--john-cale",
       "type": "project",
-      "name": "Music for a New Society"
+      "name": "Music for a New Society",
+      "mbid": "47c1fff3-132b-3a5d-bc48-29ed40546a6e",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:honi-soit--john-cale",
+      "type": "project",
+      "name": "Honi Soit",
+      "artist": "John Cale",
+      "mbid": "0741810c-4d4c-3c2c-a510-a9543a8a0e2b",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:animal-justice--john-cale",
+      "type": "project",
+      "name": "Animal Justice",
+      "artist": "John Cale",
+      "mbid": "214ac456-1b20-405e-bedd-0df1f3fbfed8",
+      "year": "1977",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:helen-of-troy--john-cale",
+      "type": "project",
+      "name": "Helen of Troy",
+      "artist": "John Cale",
+      "mbid": "204e0d8a-9ff3-397d-a1f7-8757d1000675",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:slow-dazzle--john-cale",
+      "type": "project",
+      "name": "Slow Dazzle",
+      "artist": "John Cale",
+      "mbid": "b08d03de-0240-3528-bd2e-9ca54ed80aed",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fear--john-cale",
+      "type": "project",
+      "name": "Fear",
+      "artist": "John Cale",
+      "mbid": "30cce410-924e-30ba-834a-9174ea63a486",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:paris-1919",
+      "type": "project",
+      "name": "Paris 1919",
+      "mbid": "56da088f-9d69-3af4-aeac-55649e19bffe",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-academy-in-peril--john-cale",
+      "type": "project",
+      "name": "The Academy in Peril",
+      "artist": "John Cale",
+      "mbid": "d483c8fd-91c3-3eae-b1cc-6c4b81833712",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:church-of-anthrax--john-cale",
+      "type": "project",
+      "name": "Church of Anthrax",
+      "artist": "John Cale",
+      "mbid": "744b2496-68d4-3256-bf04-6ab548c46767",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vintage-violence--john-cale",
+      "type": "project",
+      "name": "Vintage Violence",
+      "artist": "John Cale",
+      "mbid": "8bb3f34e-6f4e-3967-a758-929e237f0416",
+      "year": "1970",
+      "releaseType": "album"
     },
     {
       "slug": "project:songs-for-drella--lou-reed",

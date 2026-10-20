@@ -44,9 +44,120 @@
   "labels": [],
   "discography": [
     {
+      "slug": "project:harry-partch-the-bewitched-taylor-brook-block--harry-partch",
+      "type": "project",
+      "name": "Harry Partch: The Bewitched / Taylor Brook: Block",
+      "artist": "Harry Partch",
+      "mbid": "b8f18647-36a5-410c-a568-bd6f2d81a96d",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sonata-dementia--harry-partch",
+      "type": "project",
+      "name": "Sonata Dementia",
+      "artist": "Harry Partch",
+      "mbid": "445e93dd-1093-450d-9a95-faa9d3fcff19",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bitter-music--harry-partch",
+      "type": "project",
+      "name": "Bitter Music",
+      "artist": "Harry Partch",
+      "mbid": "4cac46d7-0e66-4406-a414-6a2435db7e55",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-instruments-of-harry-partch--harry-partch",
+      "type": "project",
+      "name": "The Instruments of Harry Partch",
+      "artist": "Harry Partch",
+      "mbid": "b0134293-a466-43d8-a700-d5dea1793c76",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:the-wayward",
       "type": "project",
-      "name": "The Wayward"
+      "name": "The Wayward",
+      "mbid": "f40185f0-2b54-3942-902d-6f54f01075d7",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:enclosure-5--harry-partch",
+      "type": "project",
+      "name": "Enclosure 5",
+      "artist": "Harry Partch",
+      "mbid": "4a39eb3d-8137-30f0-b862-37cee3ad8ce3",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-bewitched-members-of-the-university-of-illinois-musical-ensemble-feat-conductor-john-garvey--harry-partch",
+      "type": "project",
+      "name": "The Bewitched (Members of the University of Illinois Musical Ensemble feat. conductor: John Garvey)",
+      "artist": "Harry Partch",
+      "mbid": "6a36d0ff-dd2d-3e83-be86-087ee6aa686e",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:17-lyrics-of-li-po--harry-partch",
+      "type": "project",
+      "name": "17 Lyrics of Li Po",
+      "artist": "Harry Partch",
+      "mbid": "bb19c4c7-004b-3923-ac0c-16035ce0d652",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-music-of-john-cage-and-harry-partch--harry-partch",
+      "type": "project",
+      "name": "The Music of John Cage and Harry Partch",
+      "artist": "Harry Partch",
+      "mbid": "28c1ff71-8085-4fd4-8358-43d54a291c9e",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-world-of-harry-partch--harry-partch",
+      "type": "project",
+      "name": "The World of Harry Partch",
+      "artist": "Harry Partch",
+      "mbid": "9a04844e-8ee0-42e7-bbcd-7b0970750392",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:and-on-the-seventh-day-petals-fell-in-petaluma--harry-partch",
+      "type": "project",
+      "name": "And on the Seventh Day Petals Fell in Petaluma",
+      "artist": "Harry Partch",
+      "mbid": "11647de0-fdfa-47aa-9576-d5a0fc195bb6",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:plectra-and-percussion-dances--harry-partch",
+      "type": "project",
+      "name": "Plectra and Percussion Dances",
+      "artist": "Harry Partch",
+      "mbid": "0aff6627-e68e-4e92-96bc-bc561bfed37b",
+      "year": "1953",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:u-s-highball--harry-partch",
+      "type": "project",
+      "name": "U.S. Highball",
+      "artist": "Harry Partch",
+      "mbid": "e301ae9d-97e0-4674-bcea-493cc817095f",
+      "year": "1946",
+      "releaseType": "album"
     },
     {
       "slug": "project:delusion-of-the-fury--harry-partch",

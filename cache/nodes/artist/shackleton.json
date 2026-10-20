@@ -43,14 +43,308 @@
   ],
   "discography": [
     {
+      "slug": "project:euphoria-bound--shackleton",
+      "type": "project",
+      "name": "Euphoria Bound",
+      "artist": "Shackleton",
+      "mbid": "7db49d1b-27bf-4714-9e06-1b798268cb86",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jinxed-by-being--shackleton",
+      "type": "project",
+      "name": "Jinxed by Being",
+      "artist": "Shackleton",
+      "mbid": "89103db8-6de0-475a-9d66-591d06cef3b2",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-ocean-lies-between-us--shackleton",
+      "type": "project",
+      "name": "The Ocean Lies Between Us",
+      "artist": "Shackleton",
+      "mbid": "7ca2ed50-dddc-4006-bdb0-2fab6f7c2ea7",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-scandal-of-time--shackleton",
+      "type": "project",
+      "name": "The Scandal of Time",
+      "artist": "Shackleton",
+      "mbid": "2a0d21b3-0baa-4d99-949b-fed24857a157",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-majestic-yes--shackleton",
+      "type": "project",
+      "name": "The Majestic Yes",
+      "artist": "Shackleton",
+      "mbid": "e0fd17d4-29e2-4ddd-a81b-ff48b664b317",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:departing-like-rivers--shackleton",
+      "type": "project",
+      "name": "Departing Like Rivers",
+      "artist": "Shackleton",
+      "mbid": "78e560c8-c901-4b63-9ef1-86438d8f0bec",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:primal-drones--shackleton",
+      "type": "project",
+      "name": "Primal Drones",
+      "artist": "Shackleton",
+      "mbid": "c85f3cb2-9446-41b2-9683-505c470c6d86",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:primal-forms--shackleton",
+      "type": "project",
+      "name": "Primal Forms",
+      "artist": "Shackleton",
+      "mbid": "de479857-d877-46da-a251-00c0665a8cd7",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:furnace-of-guts-wakefulness-and-obsession--shackleton",
+      "type": "project",
+      "name": "Furnace of Guts / Wakefulness and Obsession",
+      "artist": "Shackleton",
+      "mbid": "3aee7c3e-46d8-434f-af98-715b375f53b6",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:behind-the-glass--shackleton",
+      "type": "project",
+      "name": "Behind the Glass",
+      "artist": "Shackleton",
+      "mbid": "dfa01e3c-6dc3-4847-a7c6-dc9f93fd9af9",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sferic-ghost-transmits--shackleton",
+      "type": "project",
+      "name": "Sferic Ghost Transmits",
+      "artist": "Shackleton",
+      "mbid": "6734bdf5-dc5e-4c4a-b151-df4d06f980ab",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:devotional-songs--shackleton",
+      "type": "project",
+      "name": "Devotional Songs",
+      "artist": "Shackleton",
+      "mbid": "49796708-0a22-480f-b663-784babd623d2",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:archive-series-1--shackleton",
+      "type": "project",
+      "name": "Archive Series: #1",
+      "artist": "Shackleton",
+      "mbid": "e3e03279-b30f-45b7-b485-b1d759ff0d44",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:deliverance-series-no-3--shackleton",
+      "type": "project",
+      "name": "Deliverance Series No. 3",
+      "artist": "Shackleton",
+      "mbid": "6be766b7-07df-4ae4-bf08-b9b60f48f28f",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:deliverance-series-no-1--shackleton",
+      "type": "project",
+      "name": "Deliverance Series No. 1",
+      "artist": "Shackleton",
+      "mbid": "f4086d58-0d18-4dc5-a308-fb32fb5a3366",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:deliverance-series-no-2--shackleton",
+      "type": "project",
+      "name": "Deliverance Series No. 2",
+      "artist": "Shackleton",
+      "mbid": "f851c038-4abd-4614-a38b-5a76665561f3",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:freezing-opening-thawing--shackleton",
+      "type": "project",
+      "name": "Freezing Opening Thawing",
+      "artist": "Shackleton",
+      "mbid": "357ecef8-ebd5-49ec-af77-e8e9b14cd185",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:music-for-the-quiet-hour-the-drawbar-organ-eps",
       "type": "project",
-      "name": "Music For The Quiet Hour / The Drawbar Organ EPs"
+      "name": "Music For The Quiet Hour / The Drawbar Organ EPs",
+      "mbid": "51677f2f-d28d-45eb-8772-49953579e5b3",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-for-the-quiet-hour--shackleton",
+      "type": "project",
+      "name": "Music for the Quiet Hour",
+      "artist": "Shackleton",
+      "mbid": "d9b739a6-43aa-485d-9183-95b2f35b3fbe",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:deadman--shackleton",
+      "type": "project",
+      "name": "Deadman",
+      "artist": "Shackleton",
+      "mbid": "707b8a61-6c9c-470e-af9d-288de1332e10",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fireworks--shackleton",
+      "type": "project",
+      "name": "Fireworks",
+      "artist": "Shackleton",
+      "mbid": "0b565f25-e96a-46de-8f22-06b0813fbf16",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:man-on-a-string-part-1-and-2-bastard-spirit--shackleton",
+      "type": "project",
+      "name": "Man on a String, Part 1 and 2 / Bastard Spirit",
+      "artist": "Shackleton",
+      "mbid": "d837aa84-09a2-448b-a0c4-5e07c9674e1d",
+      "year": "2010",
+      "releaseType": "ep"
     },
     {
       "slug": "project:three-eps",
       "type": "project",
-      "name": "Three EPs"
+      "name": "Three EPs",
+      "mbid": "440c6216-fe5f-4d2c-a2d7-74090466c911",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:death-is-not-final--shackleton",
+      "type": "project",
+      "name": "Death Is Not Final",
+      "artist": "Shackleton",
+      "mbid": "ee599050-6370-3318-923a-23b2d5f872f6",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:el-din-part-one-olde-wobbly--shackleton",
+      "type": "project",
+      "name": "El Din (Part One) / Olde Wobbly",
+      "artist": "Shackleton",
+      "mbid": "d7d16edc-af05-4efb-b94e-e06a34115ab2",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:soundboy-s-suicide-note--shackleton",
+      "type": "project",
+      "name": "Soundboy's Suicide Note",
+      "artist": "Shackleton",
+      "mbid": "5b4864c6-2895-3cb5-86b2-9aeef27bfc53",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:in-the-next-world-hollow--shackleton",
+      "type": "project",
+      "name": "In the Next World / Hollow",
+      "artist": "Shackleton",
+      "mbid": "e4868a9a-e78e-38e5-a114-9f54490ec129",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:next-to-nothing--shackleton",
+      "type": "project",
+      "name": "Next To Nothing",
+      "artist": "Shackleton",
+      "mbid": "7dfcc895-0ce1-4319-a90c-5695a5d84002",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:i-want-to-eat-you-hummdrumm--shackleton",
+      "type": "project",
+      "name": "I Want to Eat You / Hummdrumm",
+      "artist": "Shackleton",
+      "mbid": "d11574c3-8cbe-396c-ac30-3c45da5aedaa",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:majestic-visions-cheat-i-girder--shackleton",
+      "type": "project",
+      "name": "Majestic Visions / Cheat I / Girder",
+      "artist": "Shackleton",
+      "mbid": "04cf6070-9945-38d1-8084-72b71ca1ebee",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:massacre-new-dawn--shackleton",
+      "type": "project",
+      "name": "Massacre / New Dawn",
+      "artist": "Shackleton",
+      "mbid": "2e2230da-22c9-4134-8b76-6406e4b480b4",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:soundboy-s-bones-get-buried-in-the-dirt-volume-1--shackleton",
+      "type": "project",
+      "name": "Soundboy's Bones Get Buried in the Dirt, Volume 1",
+      "artist": "Shackleton",
+      "mbid": "d5b1cdc2-e871-3a43-94d9-38177530ca4a",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:soundboy-s-nuts-get-ground-up-proper-e-p--shackleton",
+      "type": "project",
+      "name": "Soundboy’s Nuts Get Ground Up Proper E.P.",
+      "artist": "Shackleton",
+      "mbid": "421435c5-c7f7-35d5-bcc1-938c37597649",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stalker--shackleton",
+      "type": "project",
+      "name": "Stalker",
+      "artist": "Shackleton",
+      "mbid": "8e0fd195-fe8f-330e-a199-5133f2b25813",
+      "year": "2004",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

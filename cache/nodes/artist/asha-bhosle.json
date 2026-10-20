@@ -53,6 +53,150 @@
   ],
   "discography": [
     {
+      "slug": "project:jivlaga-kadhi-re-from-swargandharva-sudhir-phadke--asha-bhosle",
+      "type": "project",
+      "name": "Jivlaga Kadhi Re (From \"Swargandharva Sudhir Phadke\")",
+      "artist": "Asha Bhosle",
+      "mbid": "3f2eba21-6623-432a-ad5e-0472db7cff3d",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:masterworks--asha-bhosle",
+      "type": "project",
+      "name": "MasterWorks",
+      "artist": "Asha Bhosle",
+      "mbid": "46099e05-8dc8-4362-ae9d-c04703701a17",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:raatne-baandhi-chhe-baahuthi--asha-bhosle",
+      "type": "project",
+      "name": "Raatne Baandhi Chhe Baahuthi",
+      "artist": "Asha Bhosle",
+      "mbid": "2bf0d5df-4f98-4325-9356-0dfceac56c29",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:talima-kanku-veray--asha-bhosle",
+      "type": "project",
+      "name": "Talima Kanku Veray",
+      "artist": "Asha Bhosle",
+      "mbid": "8aac69ab-9ac9-44d9-8a4a-2be4fda31f2d",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:naina-lagai-ke--asha-bhosle",
+      "type": "project",
+      "name": "Naina Lagai Ke",
+      "artist": "Asha Bhosle",
+      "mbid": "59739dce-cdef-4d4d-940e-c9f08b3e3af6",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mone-rekho--asha-bhosle",
+      "type": "project",
+      "name": "Mone Rekho",
+      "artist": "Asha Bhosle",
+      "mbid": "484b7345-289e-4dc6-ac00-4ca1f00a9f59",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-brand-new-album--asha-bhosle",
+      "type": "project",
+      "name": "A Brand New Album",
+      "artist": "Asha Bhosle",
+      "mbid": "e89de435-ebe1-4403-b6de-2a862c31609f",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aap-ki-asha--asha-bhosle",
+      "type": "project",
+      "name": "Aap Ki Asha",
+      "artist": "Asha Bhosle",
+      "mbid": "d9f3537b-5064-4d61-a941-e01a617dca09",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mogara-phulala--asha-bhosle",
+      "type": "project",
+      "name": "Mogara Phulala",
+      "artist": "Asha Bhosle",
+      "mbid": "606dce4d-04f2-497c-b88f-444491d80583",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:songs-of-my-soul-volume-1--asha-bhosle",
+      "type": "project",
+      "name": "Songs of My Soul, Volume 1",
+      "artist": "Asha Bhosle",
+      "mbid": "6c64bc13-e10c-3850-bf95-ab6f349c9b1e",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:songs-of-my-soul-volume-2--asha-bhosle",
+      "type": "project",
+      "name": "Songs of My Soul, Volume 2",
+      "artist": "Asha Bhosle",
+      "mbid": "0df39b82-1d23-3bf0-860a-7e39580b3295",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yere-ghana--asha-bhosle",
+      "type": "project",
+      "name": "Yere Ghana",
+      "artist": "Asha Bhosle",
+      "mbid": "cfa1b674-f09d-4849-87c4-ef094a60339d",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jaanam-samjha-karo--asha-bhosle",
+      "type": "project",
+      "name": "Jaanam Samjha Karo",
+      "artist": "Asha Bhosle",
+      "mbid": "05288b43-2868-40d4-99bb-121351e65c9b",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aawaz-chandnyache--asha-bhosle",
+      "type": "project",
+      "name": "Aawaz Chandnyache",
+      "artist": "Asha Bhosle",
+      "mbid": "a7bc9667-f475-3431-85f9-2d2982ede2dd",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rahul-and-i-personal-memories--asha-bhosle",
+      "type": "project",
+      "name": "Rahul & I (Personal Memories)",
+      "artist": "Asha Bhosle",
+      "mbid": "1eb1efd2-8777-431e-b5c9-a03d844eadbb",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pran-jaye-par-vachan-na-jaye--asha-bhosle",
+      "type": "project",
+      "name": "Pran Jaye Par Vachan Na Jaye",
+      "artist": "Asha Bhosle",
+      "mbid": "f663a159-3486-469e-aee7-bfa8245c437b",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:dil-padosi-hai",
       "type": "project",
       "name": "Dil Padosi Hai"
@@ -71,6 +215,22 @@
       "slug": "project:82",
       "type": "project",
       "name": "82"
+    },
+    {
+      "slug": "project:generations--asha-bhosle",
+      "type": "project",
+      "name": "Generations",
+      "artist": "Asha Bhosle",
+      "mbid": "b170db29-ce01-45e6-a8fc-485e33bf1d9d",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gujarati-folk--asha-bhosle",
+      "type": "project",
+      "name": "Gujarati Folk",
+      "artist": "Asha Bhosle",
+      "mbid": "e183e6d9-5c83-46f0-8dae-320ae7f7612b",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

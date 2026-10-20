@@ -64,19 +64,217 @@
   ],
   "discography": [
     {
-      "slug": "project:incredibad",
+      "slug": "project:here-i-go--the-lonely-island",
       "type": "project",
-      "name": "Incredibad"
+      "name": "Here I Go",
+      "artist": "The Lonely Island",
+      "mbid": "4c2afaad-39a6-4e11-a0e8-af5f16a04ca3",
+      "year": "2024",
+      "releaseType": "single"
     },
     {
-      "slug": "project:turtleneck-and-chain",
+      "slug": "project:sushi-glory-hole--the-lonely-island",
       "type": "project",
-      "name": "Turtleneck & Chain"
+      "name": "Sushi Glory Hole",
+      "artist": "The Lonely Island",
+      "mbid": "d80e61ce-ce4f-457b-ba16-47bfb1790382",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-unauthorized-bash-brothers-experience--the-lonely-island",
+      "type": "project",
+      "name": "The Unauthorized Bash Brothers Experience",
+      "artist": "The Lonely Island",
+      "mbid": "a792462c-c76d-43b3-a62d-a29ac2ff055a",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:natalie-s-rap-2-0--the-lonely-island",
+      "type": "project",
+      "name": "Natalie’s Rap 2.0",
+      "artist": "The Lonely Island",
+      "mbid": "a461c6ec-4cf8-46dd-bf10-81f67d832d4f",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:popstar-never-stop-never-stopping-official-soundtrack--the-lonely-island",
+      "type": "project",
+      "name": "Popstar: Never Stop Never Stopping: Official Soundtrack",
+      "artist": "The Lonely Island",
+      "mbid": "e7156518-00c6-4077-9ea0-6ef14549c344",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:diaper-money--the-lonely-island",
+      "type": "project",
+      "name": "Diaper Money",
+      "artist": "The Lonely Island",
+      "mbid": "8a43dd18-9700-465c-9538-9db66a12eccc",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:go-kindergarten--the-lonely-island",
+      "type": "project",
+      "name": "Go Kindergarten",
+      "artist": "The Lonely Island",
+      "mbid": "df442d3b-6421-42b9-b3c4-3b3287394a5f",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-f-d-my-aunt--the-lonely-island",
+      "type": "project",
+      "name": "I F****d My Aunt",
+      "artist": "The Lonely Island",
+      "mbid": "ddd0c1bb-76f0-4a80-b52a-6bbad457ee82",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:semicolon--the-lonely-island",
+      "type": "project",
+      "name": "Semicolon",
+      "artist": "The Lonely Island",
+      "mbid": "6dbed7d3-3105-4bd2-9c51-6f83402694d6",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spell-it-out--the-lonely-island",
+      "type": "project",
+      "name": "Spell It Out",
+      "artist": "The Lonely Island",
+      "mbid": "a294cc4b-26ff-4f06-bb31-a79b836a2ce7",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spring-break-anthem--the-lonely-island",
+      "type": "project",
+      "name": "Spring Break Anthem",
+      "artist": "The Lonely Island",
+      "mbid": "59702dd0-92b1-4f38-96e7-492152997e7b",
+      "year": "2013",
+      "releaseType": "single"
     },
     {
       "slug": "project:the-wack-album",
       "type": "project",
-      "name": "The Wack Album"
+      "name": "The Wack Album",
+      "mbid": "b45c498e-05a9-453f-a89a-09ba8995e9d6",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jack-sparrow--the-lonely-island",
+      "type": "project",
+      "name": "Jack Sparrow",
+      "artist": "The Lonely Island",
+      "mbid": "e4575c68-0f6e-4f71-9076-d663a1b08fdd",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:motherlover--the-lonely-island",
+      "type": "project",
+      "name": "Motherlover",
+      "artist": "The Lonely Island",
+      "mbid": "0b12b53c-b21c-40d1-a9ed-db8df474925f",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-creep--the-lonely-island",
+      "type": "project",
+      "name": "The Creep",
+      "artist": "The Lonely Island",
+      "mbid": "4ab228a1-6bd2-4dce-9421-44d29030aa7f",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:turtleneck-and-chain",
+      "type": "project",
+      "name": "Turtleneck & Chain",
+      "mbid": "f85e2a77-d251-4a39-9b5c-b7b7b9ccdb89",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:we-ll-kill-u--the-lonely-island",
+      "type": "project",
+      "name": "We'll Kill U",
+      "artist": "The Lonely Island",
+      "mbid": "7f3eedf3-0e12-4913-aad5-ff2dc77f7588",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:we-re-back--the-lonely-island",
+      "type": "project",
+      "name": "We're Back!",
+      "artist": "The Lonely Island",
+      "mbid": "06efab3d-7220-4d80-a296-3f3b94482cde",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-just-had-sex--the-lonely-island",
+      "type": "project",
+      "name": "I Just Had Sex",
+      "artist": "The Lonely Island",
+      "mbid": "9ba473e2-202c-4092-b67e-f7c8f8153ec7",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-m-on-a-boat--the-lonely-island",
+      "type": "project",
+      "name": "I'm on a Boat",
+      "artist": "The Lonely Island",
+      "mbid": "3eac436a-3617-49d7-9a0a-fe45fd4979ce",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:incredibad",
+      "type": "project",
+      "name": "Incredibad",
+      "mbid": "ee979dde-aba0-368f-9d9c-82d9f948befc",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jizz-in-my-pants--the-lonely-island",
+      "type": "project",
+      "name": "Jizz in My Pants",
+      "artist": "The Lonely Island",
+      "mbid": "6db6ba42-1aa6-3f12-996c-fc163ec24101",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dick-in-a-box--the-lonely-island",
+      "type": "project",
+      "name": "Dick in a Box",
+      "artist": "The Lonely Island",
+      "mbid": "cea1a733-8866-4750-a3aa-bf71cff3b8cd",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cocaine--the-lonely-island",
+      "type": "project",
+      "name": "Cocaine",
+      "artist": "The Lonely Island",
+      "mbid": "0c787806-217b-44c2-bfdb-411e0170269f",
+      "year": "2004",
+      "releaseType": "single"
     },
     {
       "slug": "project:popstar-never-stop-never-stopping",

@@ -67,6 +67,30 @@
   ],
   "discography": [
     {
+      "slug": "project:change-the-channel",
+      "type": "project",
+      "name": "Change the Channel",
+      "mbid": "70eccaa9-ad38-46cc-a343-77d15b3b3806",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dead-channel-sky",
+      "type": "project",
+      "name": "Dead Channel Sky",
+      "mbid": "dc8005ec-e1ef-44fb-a1d6-ccb5083bc132",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dominator",
+      "type": "project",
+      "name": "Dominator",
+      "mbid": "eab8df13-9378-439b-bdfb-52fb93c6bfed",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:forever-war",
       "type": "project",
       "name": "Forever War",
@@ -83,34 +107,10 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:dominator",
-      "type": "project",
-      "name": "Dominator",
-      "mbid": "eab8df13-9378-439b-bdfb-52fb93c6bfed",
-      "year": "2025",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:dead-channel-sky",
-      "type": "project",
-      "name": "Dead Channel Sky",
-      "mbid": "dc8005ec-e1ef-44fb-a1d6-ccb5083bc132",
-      "year": "2025",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:welcome-home-warrior",
       "type": "project",
       "name": "Welcome Home Warrior",
       "mbid": "71735dfa-226d-462e-ac11-e248ab2bff94",
-      "year": "2025",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:change-the-channel",
-      "type": "project",
-      "name": "Change the Channel",
-      "mbid": "70eccaa9-ad38-46cc-a343-77d15b3b3806",
       "year": "2025",
       "releaseType": "single"
     },
@@ -155,12 +155,12 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:visions-of-bodies-being-burned",
+      "slug": "project:chapter-319",
       "type": "project",
-      "name": "Visions of Bodies Being Burned",
-      "mbid": "8e5a1df1-2cb8-4a7e-985c-f78919c2c9b2",
+      "name": "Chapter 319",
+      "mbid": "ff3dbd4d-c1d5-4364-a60d-bd958715e8b9",
       "year": "2020",
-      "releaseType": "album"
+      "releaseType": "single"
     },
     {
       "slug": "project:say-the-name",
@@ -171,19 +171,11 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:chapter-319",
+      "slug": "project:visions-of-bodies-being-burned",
       "type": "project",
-      "name": "Chapter 319",
-      "mbid": "ff3dbd4d-c1d5-4364-a60d-bd958715e8b9",
+      "name": "Visions of Bodies Being Burned",
+      "mbid": "8e5a1df1-2cb8-4a7e-985c-f78919c2c9b2",
       "year": "2020",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:there-existed-an-addiction-to-blood",
-      "type": "project",
-      "name": "There Existed an Addiction to Blood",
-      "mbid": "16af6d23-9d40-49a6-952b-5631d4ec7981",
-      "year": "2019",
       "releaseType": "album"
     },
     {
@@ -203,18 +195,26 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:stab-him-in-the-throat",
+      "slug": "project:there-existed-an-addiction-to-blood",
       "type": "project",
-      "name": "Stab Him in the Throat",
-      "mbid": "4d4dd3c8-8d33-4aa7-87d5-559170c585fa",
-      "year": "2018",
-      "releaseType": "single"
+      "name": "There Existed an Addiction to Blood",
+      "mbid": "16af6d23-9d40-49a6-952b-5631d4ec7981",
+      "year": "2019",
+      "releaseType": "album"
     },
     {
       "slug": "project:escalator-teeth-on-and-on-club-down",
       "type": "project",
       "name": "Escalator Teeth/On and On / Club Down",
       "mbid": "0a9dde19-5a1a-4a66-a8d0-02ea58f245ec",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stab-him-in-the-throat",
+      "type": "project",
+      "name": "Stab Him in the Throat",
+      "mbid": "4d4dd3c8-8d33-4aa7-87d5-559170c585fa",
       "year": "2018",
       "releaseType": "single"
     },
@@ -251,12 +251,12 @@
       "releaseType": "ep"
     },
     {
-      "slug": "project:something-they-don-t-know-b-w-mouth",
+      "slug": "project:clppng",
       "type": "project",
-      "name": "Something They Don’t Know b/w Mouth",
-      "mbid": "21e1ed37-24e0-4bd1-a053-3f7cf2cafc2c",
+      "name": "CLPPNG",
+      "mbid": "13339a16-754a-464b-ae86-592314d80561",
       "year": "2014",
-      "releaseType": "single"
+      "releaseType": "album"
     },
     {
       "slug": "project:ends",
@@ -267,12 +267,12 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:clppng",
+      "slug": "project:something-they-don-t-know-b-w-mouth",
       "type": "project",
-      "name": "CLPPNG",
-      "mbid": "13339a16-754a-464b-ae86-592314d80561",
+      "name": "Something They Don’t Know b/w Mouth",
+      "mbid": "21e1ed37-24e0-4bd1-a053-3f7cf2cafc2c",
       "year": "2014",
-      "releaseType": "album"
+      "releaseType": "single"
     },
     {
       "slug": "project:chain-jump",
@@ -281,6 +281,15 @@
       "mbid": "664af790-9ccd-41b8-894c-6bc9c3da4fbb",
       "year": "2013",
       "releaseType": "single"
+    },
+    {
+      "slug": "project:midcity--clipping",
+      "type": "project",
+      "name": "midcity",
+      "artist": "clipping.",
+      "mbid": "1b383f85-0257-4640-b338-fb823bf94be0",
+      "year": "2013",
+      "releaseType": "album"
     },
     {
       "slug": "project:face",

@@ -64,9 +64,354 @@
   ],
   "discography": [
     {
+      "slug": "project:cylobian-summer--cylob",
+      "type": "project",
+      "name": "Cylobian Summer",
+      "artist": "Cylob",
+      "mbid": "7d120a0b-30e1-450a-8eaf-77388f866921",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-dystopia--cylob",
+      "type": "project",
+      "name": "In Dystopia",
+      "artist": "Cylob",
+      "mbid": "a7a50044-2a09-48a6-8193-1d6806b32813",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:show-us-another-world-is-possible--cylob",
+      "type": "project",
+      "name": "Show Us Another World Is Possible",
+      "artist": "Cylob",
+      "mbid": "661fdb3c-2352-4bc3-ac5a-f00fb0fb2f1a",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:i-will-cross-any-bridge--cylob",
+      "type": "project",
+      "name": "I Will Cross Any Bridge",
+      "artist": "Cylob",
+      "mbid": "b65e96c3-973f-4126-9cfe-ad39cbcfcb37",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:placeholder--cylob",
+      "type": "project",
+      "name": "PLACEHOLDER",
+      "artist": "Cylob",
+      "mbid": "23b4b3b0-68ac-4c95-aacf-2fcc51c28dde",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tomorrow-foolish-logic--cylob",
+      "type": "project",
+      "name": "Tomorrow Foolish Logic",
+      "artist": "Cylob",
+      "mbid": "82db732a-1b09-4776-be03-fe4c1cfdb205",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:54-minute-mirage--cylob",
+      "type": "project",
+      "name": "54 Minute Mirage",
+      "artist": "Cylob",
+      "mbid": "649d7d5d-6223-46d3-ad93-b6b3c948f50e",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bleh--cylob",
+      "type": "project",
+      "name": "Bleh",
+      "artist": "Cylob",
+      "mbid": "0da3ac8f-df82-47fe-ab32-a03eef90ef2f",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bongo-beats-w-acid--cylob",
+      "type": "project",
+      "name": "Bongo Beats W Acid",
+      "artist": "Cylob",
+      "mbid": "2a994787-2e48-4d0e-8fea-156da39de7c5",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:far--cylob",
+      "type": "project",
+      "name": "FAR",
+      "artist": "Cylob",
+      "mbid": "9a3c6ec3-cbf6-46d6-a33d-9371071eaaa4",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:inpart-redux--cylob",
+      "type": "project",
+      "name": "Inpart Redux",
+      "artist": "Cylob",
+      "mbid": "725352f1-e2c4-4cad-91af-d762fdf00cab",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:isolation-chords--cylob",
+      "type": "project",
+      "name": "Isolation Chords",
+      "artist": "Cylob",
+      "mbid": "320891a2-a04d-4764-a3e6-795fe215455d",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-less-pitch--cylob",
+      "type": "project",
+      "name": "One Less Pitch",
+      "artist": "Cylob",
+      "mbid": "dc6f5773-289e-4f67-a518-d3662c1775e5",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rising-up--cylob",
+      "type": "project",
+      "name": "Rising Up",
+      "artist": "Cylob",
+      "mbid": "9ea5b77e-2f2b-4a3b-a8c0-39cd1c603667",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:volontaria-tedesca--cylob",
+      "type": "project",
+      "name": "Volontaria tedesca",
+      "artist": "Cylob",
+      "mbid": "0ba87232-983a-4e20-aebb-430ad413d067",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:inflatable-hope--cylob",
+      "type": "project",
+      "name": "Inflatable Hope",
+      "artist": "Cylob",
+      "mbid": "e7e30219-c15d-446f-a55b-f63a0ea1cb00",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-quantum-loonyverse--cylob",
+      "type": "project",
+      "name": "The Quantum Loonyverse",
+      "artist": "Cylob",
+      "mbid": "f86f7a2d-49c0-430a-b24c-597b6036621a",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trojan-tracks--cylob",
+      "type": "project",
+      "name": "Trojan Tracks",
+      "artist": "Cylob",
+      "mbid": "9bb86a55-fccc-47b0-a8ec-9fc06a52d3fa",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pepper-spray--cylob",
+      "type": "project",
+      "name": "Pepper Spray",
+      "artist": "Cylob",
+      "mbid": "3b4d7d44-c551-4c01-9ae5-69fcee91ac2d",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:alpine-acid--cylob",
+      "type": "project",
+      "name": "Alpine Acid",
+      "artist": "Cylob",
+      "mbid": "79f3f115-fd24-4d2f-a315-796fe9bbf49c",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:late-in-the-day--cylob",
+      "type": "project",
+      "name": "Late in the Day",
+      "artist": "Cylob",
+      "mbid": "162e0b34-5e92-3c26-be83-e5b5eb1d2706",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:bounds-green--cylob",
+      "type": "project",
+      "name": "Bounds Green",
+      "artist": "Cylob",
+      "mbid": "61fa6987-9b06-316a-9652-1d73266cf71f",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:formant-potaton--cylob",
+      "type": "project",
+      "name": "Formant Potaton",
+      "artist": "Cylob",
+      "mbid": "a02a0c45-36c4-3ef7-bb70-eb887a5330dc",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rock-the-trojan-fader--cylob",
+      "type": "project",
+      "name": "Rock the Trojan Fader",
+      "artist": "Cylob",
+      "mbid": "1cd4ed72-fb3c-39f7-b463-60faa0a2c58b",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trojan-fader-style--cylob",
+      "type": "project",
+      "name": "Trojan Fader Style",
+      "artist": "Cylob",
+      "mbid": "5ed8c2a9-d01a-34c6-8272-63a2bf858a69",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cylob-music-system-volume-01--cylob",
+      "type": "project",
+      "name": "Cylob Music System, Volume 01",
+      "artist": "Cylob",
+      "mbid": "587c869f-1d16-37c7-b6ce-87c4457a7dd9",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:cylob-music-system-volume-02--cylob",
+      "type": "project",
+      "name": "Cylob Music System, Volume 02",
+      "artist": "Cylob",
+      "mbid": "9c21f2b8-23d1-3d0c-9377-6df216e7d0a8",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:spider-report--cylob",
+      "type": "project",
+      "name": "Spider Report",
+      "artist": "Cylob",
+      "mbid": "22f520a9-e06c-488a-852f-f6dd50d37126",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:cut-the-midrange-drop-the-bass--cylob",
+      "type": "project",
+      "name": "Cut the Midrange Drop the Bass",
+      "artist": "Cylob",
+      "mbid": "87b4c739-000b-332e-a970-0b7497b9ac56",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mood-bells--cylob",
+      "type": "project",
+      "name": "Mood Bells",
+      "artist": "Cylob",
+      "mbid": "fb9514be-44aa-3de6-896f-3d75a9ff1e17",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:living-in-the-1980s--cylob",
+      "type": "project",
+      "name": "Living in the 1980s",
+      "artist": "Cylob",
+      "mbid": "b9900444-747f-3e7b-a120-c24228022f63",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lobster-tracks--cylob",
+      "type": "project",
+      "name": "Lobster Tracks",
+      "artist": "Cylob",
+      "mbid": "83c6e3af-fe10-35b8-91a7-9a2e6172ebbd",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:are-we-not-men-who-live-and-die--cylob",
+      "type": "project",
+      "name": "Are We Not Men Who Live and Die",
+      "artist": "Cylob",
+      "mbid": "9941abb2-f8d1-325a-9add-552d067b0f76",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rewind--cylob",
+      "type": "project",
+      "name": "Rewind!",
+      "artist": "Cylob",
+      "mbid": "379f73b7-bd52-3bd6-bab8-7a9951e5f62f",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cylobs-latest-effort--cylob",
+      "type": "project",
+      "name": "Cylobs Latest Effort",
+      "artist": "Cylob",
+      "mbid": "b5213574-bedf-3a94-9b15-6b45b8b4e2c0",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:diof-97--cylob",
+      "type": "project",
+      "name": "Diof 97",
+      "artist": "Cylob",
+      "mbid": "a05cbf21-cb5f-34db-a0cc-d1045f2edc0e",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:cylobian-sunset--cylob",
       "type": "project",
-      "name": "Cylobian Sunset"
+      "name": "Cylobian Sunset",
+      "mbid": "321978a4-4c80-3936-a50e-5439d2a0322c",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:loops-and-breaks--cylob",
+      "type": "project",
+      "name": "Loops & Breaks",
+      "artist": "Cylob",
+      "mbid": "9dd8729e-7068-3b26-b5f9-c4dc1b8416c9",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:industrial-folk-songs--cylob",
+      "type": "project",
+      "name": "Industrial Folk Songs",
+      "artist": "Cylob",
+      "mbid": "c0297a17-0add-335c-806a-1b301dd264f3",
+      "year": "1993",
+      "releaseType": "ep"
     },
     {
       "slug": "project:a-wrenched-virile-lore--cylob",

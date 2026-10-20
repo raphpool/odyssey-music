@@ -59,7 +59,98 @@
       "name": "Plus 8 Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:keys-strings-tambourines--kenny-larkin",
+      "type": "project",
+      "name": "Keys, Strings, Tambourines",
+      "artist": "Kenny Larkin",
+      "mbid": "7a96a164-20f1-4431-8d9d-6d296e6da361",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-are--kenny-larkin",
+      "type": "project",
+      "name": "You Are...",
+      "artist": "Kenny Larkin",
+      "mbid": "1732f38e-0a2d-489f-abdd-4196e684b702",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-narcissist--kenny-larkin",
+      "type": "project",
+      "name": "The Narcissist",
+      "artist": "Kenny Larkin",
+      "mbid": "b2d4f0e8-8a36-39a4-aaf3-76ec61d53126",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:loop-2--kenny-larkin",
+      "type": "project",
+      "name": "Loop 2",
+      "artist": "Kenny Larkin",
+      "mbid": "1132c4dc-a0b3-30a1-94d2-93edb9b349b7",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chasers-the-shit--kenny-larkin",
+      "type": "project",
+      "name": "Chasers / The Shit",
+      "artist": "Kenny Larkin",
+      "mbid": "19d9de79-415e-343d-87c3-969b78208fb7",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:metaphor--kenny-larkin",
+      "type": "project",
+      "name": "Metaphor",
+      "artist": "Kenny Larkin",
+      "mbid": "97736c2b-a2e0-3719-8dd0-9fbc73fca710",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:azimuth--kenny-larkin",
+      "type": "project",
+      "name": "Azimuth",
+      "artist": "Kenny Larkin",
+      "mbid": "d1faea11-035c-3bee-b79b-dffe8dcd39ee",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:catatonic--kenny-larkin",
+      "type": "project",
+      "name": "Catatonic",
+      "artist": "Kenny Larkin",
+      "mbid": "7e3ebc45-e7a0-35d6-b903-9b75f13d9a27",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:integration--kenny-larkin",
+      "type": "project",
+      "name": "Integration",
+      "artist": "Kenny Larkin",
+      "mbid": "d351041b-08d0-4a76-afa4-6900cbfe0d27",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:we-shall-overcome--kenny-larkin",
+      "type": "project",
+      "name": "We Shall Overcome",
+      "artist": "Kenny Larkin",
+      "mbid": "8eeeab8e-4b98-32b2-9763-d478de372a83",
+      "year": "1990",
+      "releaseType": "ep"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:we-shall-overcome",

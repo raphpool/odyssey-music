@@ -73,24 +73,135 @@
   ],
   "discography": [
     {
-      "slug": "project:loop-finding-jazz-records--jan-jelinek",
+      "slug": "project:social-engineering--jan-jelinek",
       "type": "project",
-      "name": "Loop-Finding-Jazz-Records"
+      "name": "Social Engineering",
+      "artist": "Jan Jelinek",
+      "mbid": "547965dc-ca4e-4fec-8963-5f65b59b9fda",
+      "year": "2024",
+      "releaseType": "album"
     },
     {
-      "slug": "project:kosmischer-pitch--jan-jelinek",
+      "slug": "project:seascape-polyptych--jan-jelinek",
       "type": "project",
-      "name": "Kosmischer Pitch"
+      "name": "SEASCAPE - polyptych",
+      "artist": "Jan Jelinek",
+      "mbid": "05d76366-cbe6-4c0e-9bbf-f921f6703bd4",
+      "year": "2023",
+      "releaseType": "album"
     },
     {
-      "slug": "project:tierbeobachtungen",
+      "slug": "project:the-raw-and-the-cooked--jan-jelinek",
       "type": "project",
-      "name": "Tierbeobachtungen"
+      "name": "The Raw and the Cooked",
+      "artist": "Jan Jelinek",
+      "mbid": "c2082334-d223-4aa0-a774-becd67f38935",
+      "year": "2021",
+      "releaseType": "album"
     },
     {
       "slug": "project:zwischen",
       "type": "project",
-      "name": "Zwischen"
+      "name": "Zwischen",
+      "mbid": "615d64e6-5037-4170-be47-6411c19e86aa",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:temple--jan-jelinek",
+      "type": "project",
+      "name": "Temple",
+      "artist": "Jan Jelinek",
+      "mbid": "5a37d930-1a5a-414d-9a19-7f810e5b6235",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:music-for-fragments-music-and-birds--jan-jelinek",
+      "type": "project",
+      "name": "Music For Fragments / Music & Birds",
+      "artist": "Jan Jelinek",
+      "mbid": "b9ebe099-e223-4896-a214-8b406a025b1c",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:primetime--jan-jelinek",
+      "type": "project",
+      "name": "PrimeTime",
+      "artist": "Jan Jelinek",
+      "mbid": "825df790-3e36-419a-b19f-161e30d6dac2",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tierbeobachtungen",
+      "type": "project",
+      "name": "Tierbeobachtungen",
+      "mbid": "fcee0ad0-5afb-3a6a-a608-72fde44fafff",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kosmischer-pitch--jan-jelinek",
+      "type": "project",
+      "name": "Kosmischer Pitch",
+      "mbid": "ac16651f-9144-3c6a-a45f-e038fa9eb022",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-nouvelle-pauvrete--jan-jelinek",
+      "type": "project",
+      "name": "La nouvelle pauvreté",
+      "artist": "Jan Jelinek",
+      "mbid": "c35cc939-9486-3c65-adcf-71719ec648aa",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:avec-the-exposures--jan-jelinek",
+      "type": "project",
+      "name": "Avec the Exposures",
+      "artist": "Jan Jelinek",
+      "mbid": "5135d2cd-5aa0-3785-8577-5fd8f2fde3f6",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ice-compositions--jan-jelinek",
+      "type": "project",
+      "name": "ICE Compositions",
+      "artist": "Jan Jelinek",
+      "mbid": "91c86e79-38b1-3eca-bd31-09daeb56df68",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:if-s-and-s-and-but-s--jan-jelinek",
+      "type": "project",
+      "name": "If's, And's and But's",
+      "artist": "Jan Jelinek",
+      "mbid": "88c74652-1548-4f77-a769-d71bd3ddeddb",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:loop-finding-jazz-records--jan-jelinek",
+      "type": "project",
+      "name": "Loop-Finding-Jazz-Records",
+      "mbid": "54a5531a-95d6-3d52-8b48-9c1cc3f2e943",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tendency--jan-jelinek",
+      "type": "project",
+      "name": "Tendency",
+      "artist": "Jan Jelinek",
+      "mbid": "a75ee66a-d332-32cc-a81d-1bfd60b8704a",
+      "year": "2000",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

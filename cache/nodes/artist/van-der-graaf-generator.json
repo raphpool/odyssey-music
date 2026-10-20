@@ -79,24 +79,135 @@
   ],
   "discography": [
     {
-      "slug": "project:the-least-we-can-do-is-wave-to-each-other",
+      "slug": "project:do-not-disturb--van-der-graaf-generator",
       "type": "project",
-      "name": "The Least We Can Do Is Wave to Each Other"
+      "name": "Do Not Disturb",
+      "artist": "Van der Graaf Generator",
+      "mbid": "37e58091-0bb4-4245-8531-c855f15010fe",
+      "year": "2016",
+      "releaseType": "album"
     },
     {
-      "slug": "project:h-to-he-who-am-the-only-one",
+      "slug": "project:alt--van-der-graaf-generator",
       "type": "project",
-      "name": "H to He, Who Am the Only One"
+      "name": "Alt",
+      "artist": "Van der Graaf Generator",
+      "mbid": "f3830d05-4ba9-4c7d-9ba2-0a9c6d21c380",
+      "year": "2012",
+      "releaseType": "album"
     },
     {
-      "slug": "project:pawn-hearts--van-der-graaf-generator",
+      "slug": "project:a-grounding-in-numbers--van-der-graaf-generator",
       "type": "project",
-      "name": "Pawn Hearts"
+      "name": "A Grounding in Numbers",
+      "artist": "Van der Graaf Generator",
+      "mbid": "87fca477-b2c0-4334-abb7-552adfc6ca90",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:highly-strung-elsewhere--van-der-graaf-generator",
+      "type": "project",
+      "name": "Highly Strung / Elsewhere",
+      "artist": "Van der Graaf Generator",
+      "mbid": "86360709-213b-4d2e-9bbc-c540725e6f61",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trisector--van-der-graaf-generator",
+      "type": "project",
+      "name": "Trisector",
+      "artist": "Van der Graaf Generator",
+      "mbid": "9c81bd0b-939f-3b73-9b66-c152521762a3",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:present--van-der-graaf-generator",
+      "type": "project",
+      "name": "Present",
+      "artist": "Van der Graaf Generator",
+      "mbid": "1c03caac-db4d-324a-80e0-7ad08b4cdab1",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-quiet-zone-the-pleasure-dome--van-der-graaf-generator",
+      "type": "project",
+      "name": "The Quiet Zone / The Pleasure Dome",
+      "artist": "Van der Graaf Generator",
+      "mbid": "4bb9cda8-0742-30ff-ae73-955c6860fc25",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:still-life--van-der-graaf-generator",
+      "type": "project",
+      "name": "Still Life",
+      "artist": "Van der Graaf Generator",
+      "mbid": "6f8fa63e-67e7-3b29-8242-db18704429cd",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wondering--van-der-graaf-generator",
+      "type": "project",
+      "name": "Wondering",
+      "artist": "Van der Graaf Generator",
+      "mbid": "b3540794-4283-4db2-bc4a-4dc10331d0e0",
+      "year": "1976",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:world-record--van-der-graaf-generator",
+      "type": "project",
+      "name": "World Record",
+      "artist": "Van der Graaf Generator",
+      "mbid": "78807746-55c6-3437-835b-a1ae4bd001d5",
+      "year": "1976",
+      "releaseType": "album"
     },
     {
       "slug": "project:godbluff",
       "type": "project",
-      "name": "Godbluff"
+      "name": "Godbluff",
+      "mbid": "ba2d7560-534b-32f2-902b-27ca534df345",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pawn-hearts--van-der-graaf-generator",
+      "type": "project",
+      "name": "Pawn Hearts",
+      "mbid": "d5afa3d7-a3b6-3b95-a812-8416dd292b9b",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:h-to-he-who-am-the-only-one",
+      "type": "project",
+      "name": "H to He, Who Am the Only One",
+      "mbid": "0a306df1-cd51-3342-8fc8-27aa53e6a6e8",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-least-we-can-do-is-wave-to-each-other",
+      "type": "project",
+      "name": "The Least We Can Do Is Wave to Each Other",
+      "mbid": "782fdc0d-f1a7-3e6b-bd91-11eba2a2e4cb",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-aerosol-grey-machine--van-der-graaf-generator",
+      "type": "project",
+      "name": "The Aerosol Grey Machine",
+      "artist": "Van der Graaf Generator",
+      "mbid": "e220a661-fbb5-3f09-9fb2-9f7377471d2a",
+      "year": "1969",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [],

@@ -69,29 +69,116 @@
   ],
   "discography": [
     {
-      "slug": "project:generation-star-wars--alec-empire",
+      "slug": "project:the-golden-foretaste-of-heaven--alec-empire",
       "type": "project",
-      "name": "Generation Star Wars"
-    },
-    {
-      "slug": "project:low-on-ice",
-      "type": "project",
-      "name": "Low on Ice (The Iceland Sessions)"
-    },
-    {
-      "slug": "project:the-destroyer",
-      "type": "project",
-      "name": "The Destroyer"
-    },
-    {
-      "slug": "project:intelligence-and-sacrifice--alec-empire",
-      "type": "project",
-      "name": "Intelligence and Sacrifice"
+      "name": "The Golden Foretaste of Heaven",
+      "artist": "Alec Empire",
+      "mbid": "9d7d9c7b-81fe-3495-9f30-d3def9a880fd",
+      "year": "2007",
+      "releaseType": "album"
     },
     {
       "slug": "project:futurist",
       "type": "project",
-      "name": "Futurist"
+      "name": "Futurist",
+      "mbid": "5415aac1-2930-34d1-bfd1-3bf01c480389",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:intelligence-and-sacrifice--alec-empire",
+      "type": "project",
+      "name": "Intelligence and Sacrifice",
+      "mbid": "b11bfe9d-439d-3c67-aebf-ed4e3380d5fb",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:miss-black-america--alec-empire",
+      "type": "project",
+      "name": "Miss Black America",
+      "artist": "Alec Empire",
+      "mbid": "b796fa11-bce8-3697-8cd4-a2d5c7d3565c",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hypermodern-jazz-2000-5--alec-empire",
+      "type": "project",
+      "name": "Hypermodern Jazz 2000.5",
+      "artist": "Alec Empire",
+      "mbid": "ec29084c-6674-3576-9831-886647ff17b6",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:les-etoiles-des-filles-mortes--alec-empire",
+      "type": "project",
+      "name": "Les etoiles des filles mortes",
+      "artist": "Alec Empire",
+      "mbid": "49291055-27de-3766-9edf-5c0e6d1fd88b",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:low-on-ice",
+      "type": "project",
+      "name": "Low on Ice (The Iceland Sessions)",
+      "mbid": "a10acd66-d615-3b85-a54a-c3e73cf1d387",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-destroyer",
+      "type": "project",
+      "name": "The Destroyer",
+      "mbid": "8e78c6c2-8ee1-3f11-b834-1a4cfd833f3a",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:generation-star-wars--alec-empire",
+      "type": "project",
+      "name": "Generation Star Wars",
+      "mbid": "64d0cab5-4176-3af1-aa2a-9238f544f52e",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bass-terror-ep--alec-empire",
+      "type": "project",
+      "name": "Bass Terror EP",
+      "artist": "Alec Empire",
+      "mbid": "512af408-ad13-392d-ad7a-2a91cffcdca3",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:das-duell--alec-empire",
+      "type": "project",
+      "name": "Das Duell",
+      "artist": "Alec Empire",
+      "mbid": "86070cd5-aea3-43c7-9856-ce162bfce79b",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:suecide-part-1--alec-empire",
+      "type": "project",
+      "name": "suEcide, Part 1",
+      "artist": "Alec Empire",
+      "mbid": "b346b672-1396-34aa-bf8e-37e963be1060",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:suecide-part-2--alec-empire",
+      "type": "project",
+      "name": "suEcide, Part 2",
+      "artist": "Alec Empire",
+      "mbid": "032e1da3-0365-3c45-8f2f-582ca08b3fe9",
+      "year": "1992",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

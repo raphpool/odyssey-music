@@ -53,10 +53,364 @@
   ],
   "discography": [
     {
+      "slug": "project:the-corrs-celebrate-st-patrick-s-day--the-corrs",
+      "type": "project",
+      "name": "The Corrs Celebrate St Patrick’s Day",
+      "artist": "The Corrs",
+      "mbid": "cf13a360-ae09-4304-980c-87838a8b2561",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:little-lies--the-corrs",
+      "type": "project",
+      "name": "Little Lies",
+      "artist": "The Corrs",
+      "mbid": "0e57f441-3dfe-4cc1-9d3a-3836d8ee99f0",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jupiter-calling--the-corrs",
+      "type": "project",
+      "name": "Jupiter Calling",
+      "artist": "The Corrs",
+      "mbid": "39b73afd-babd-4675-aaad-11387f1dadd0",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sos--the-corrs",
+      "type": "project",
+      "name": "SOS",
+      "artist": "The Corrs",
+      "mbid": "3b0fa887-4215-47cf-9449-33235978da32",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:son-of-solomon--the-corrs",
+      "type": "project",
+      "name": "Son of Solomon",
+      "artist": "The Corrs",
+      "mbid": "bac294ea-5678-4656-98fb-c2f1c0e03722",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-do-what-i-like--the-corrs",
+      "type": "project",
+      "name": "I Do What I Like",
+      "artist": "The Corrs",
+      "mbid": "f8583bce-a49a-40f4-beb3-cc94f285a4d0",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bring-on-the-night--the-corrs",
+      "type": "project",
+      "name": "Bring On the Night",
+      "artist": "The Corrs",
+      "mbid": "ca0aa690-eec2-4b8d-8af9-588016d5429b",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:white-light--the-corrs",
+      "type": "project",
+      "name": "White Light",
+      "artist": "The Corrs",
+      "mbid": "972ed9b0-e33b-4a57-8006-ec106e79a843",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:goodbye--the-corrs",
+      "type": "project",
+      "name": "Goodbye",
+      "artist": "The Corrs",
+      "mbid": "5dc61d7a-dca3-4ebf-bf04-a67656bd198e",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heart-like-a-wheel-old-town--the-corrs",
+      "type": "project",
+      "name": "Heart Like a Wheel / Old Town",
+      "artist": "The Corrs",
+      "mbid": "0605c483-29c9-4516-a970-d842892e89d1",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:home--the-corrs",
+      "type": "project",
+      "name": "Home",
+      "artist": "The Corrs",
+      "mbid": "3469e45d-6a0b-358f-8c92-27ef973506bd",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:old-town-buachaill-on-eirne--the-corrs",
+      "type": "project",
+      "name": "Old Town / Buachaill on Eirne",
+      "artist": "The Corrs",
+      "mbid": "baa7658f-cf4d-460c-99e8-4358f8e26696",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:angel--the-corrs",
+      "type": "project",
+      "name": "Angel",
+      "artist": "The Corrs",
+      "mbid": "6c2a26a3-48b5-331a-9f45-d07fac3879a3",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:borrowed-heaven--the-corrs",
+      "type": "project",
+      "name": "Borrowed Heaven",
+      "artist": "The Corrs",
+      "mbid": "707b2be1-9e18-39f2-8b6f-013fbb5163e7",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:long-night--the-corrs",
+      "type": "project",
+      "name": "Long Night",
+      "artist": "The Corrs",
+      "mbid": "0afea7c7-ba20-318f-bec9-0cdc74859f8d",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:summer-sunshine--the-corrs",
+      "type": "project",
+      "name": "Summer Sunshine",
+      "artist": "The Corrs",
+      "mbid": "48d4a25c-8e92-4cda-b4c4-e2578ffdcb53",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-the-love-in-the-world--the-corrs",
+      "type": "project",
+      "name": "All the Love in the World",
+      "artist": "The Corrs",
+      "mbid": "a6bbd342-aba5-4a70-a385-7ebf9206b7ec",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:when-the-stars-go-blue--the-corrs",
+      "type": "project",
+      "name": "When the Stars Go Blue",
+      "artist": "The Corrs",
+      "mbid": "8366ef67-998f-446a-9637-2f27f1f5bb8c",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:give-me-a-reason--the-corrs",
+      "type": "project",
+      "name": "Give Me a Reason",
+      "artist": "The Corrs",
+      "mbid": "3bd5cef3-128f-3ef0-8e6a-b648c56a76dc",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:una-noche--the-corrs",
+      "type": "project",
+      "name": "Una noche",
+      "artist": "The Corrs",
+      "mbid": "c5644b02-5f40-4453-a4ab-29140763a358",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:would-you-be-happier--the-corrs",
+      "type": "project",
+      "name": "Would You Be Happier?",
+      "artist": "The Corrs",
+      "mbid": "22bb0018-d6af-3cef-8d24-617c5cf6321b",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:breathless--the-corrs",
+      "type": "project",
+      "name": "Breathless",
+      "artist": "The Corrs",
+      "mbid": "74ef08a1-0817-3e22-9cef-c52e3057b3a7",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:in-blue--the-corrs",
       "type": "project",
       "name": "In Blue",
-      "artist": "The Corrs"
+      "artist": "The Corrs",
+      "mbid": "4e381965-bdc8-370d-a79f-e9bce2c8fed6",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:irresistible--the-corrs",
+      "type": "project",
+      "name": "Irresistible",
+      "artist": "The Corrs",
+      "mbid": "1125a258-3596-3975-b25c-219812d6a77c",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lifting-me--the-corrs",
+      "type": "project",
+      "name": "Lifting Me",
+      "artist": "The Corrs",
+      "mbid": "c9b47b53-6b0d-3f12-898a-a46a6a925921",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:radio--the-corrs",
+      "type": "project",
+      "name": "Radio",
+      "artist": "The Corrs",
+      "mbid": "a5a24c84-dcd7-3ae6-bfaf-799b33a9f39f",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rainy-day--the-corrs",
+      "type": "project",
+      "name": "Rainy Day",
+      "artist": "The Corrs",
+      "mbid": "8eb0d810-2c10-3e97-b10c-fbee51427db7",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dreams--the-corrs",
+      "type": "project",
+      "name": "Dreams",
+      "artist": "The Corrs",
+      "mbid": "8cf5f17d-276d-3bf6-8770-25f58a156b5a",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-good-for-me--the-corrs",
+      "type": "project",
+      "name": "No Good for Me",
+      "artist": "The Corrs",
+      "mbid": "47dd90b9-bce3-41a1-a222-8705cfc8d7b9",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:so-young--the-corrs",
+      "type": "project",
+      "name": "So Young",
+      "artist": "The Corrs",
+      "mbid": "11d5ff23-77a6-38a5-9565-8727ac8f605d",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-can-i-do--the-corrs",
+      "type": "project",
+      "name": "What Can I Do",
+      "artist": "The Corrs",
+      "mbid": "8121e2d9-0b90-363f-a208-1991ed4bd44e",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:closer--the-corrs",
+      "type": "project",
+      "name": "Closer",
+      "artist": "The Corrs",
+      "mbid": "13b2df1c-e6cd-3ea1-909a-ccf12c9d7999",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-never-loved-you-anyway--the-corrs",
+      "type": "project",
+      "name": "I Never Loved You Anyway",
+      "artist": "The Corrs",
+      "mbid": "1408803c-4dcd-31b7-b2f9-2805a817af98",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-to-love-you-runaway--the-corrs",
+      "type": "project",
+      "name": "Love to Love You / Runaway",
+      "artist": "The Corrs",
+      "mbid": "f20f422d-43b7-30b0-b0d0-86c7a0499e36",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:only-when-i-sleep--the-corrs",
+      "type": "project",
+      "name": "Only When I Sleep",
+      "artist": "The Corrs",
+      "mbid": "2e2572da-3670-3cfc-aa5e-86a903e15d09",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:talk-on-corners--the-corrs",
+      "type": "project",
+      "name": "Talk on Corners",
+      "artist": "The Corrs",
+      "mbid": "bb05b149-249a-3ad3-8db6-7c5610d79d5b",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-right-time--the-corrs",
+      "type": "project",
+      "name": "The Right Time",
+      "artist": "The Corrs",
+      "mbid": "db3bb424-5784-42ff-bcdf-1c54f4f23205",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:love-to-love-you--the-corrs",
+      "type": "project",
+      "name": "Love to Love You",
+      "artist": "The Corrs",
+      "mbid": "de67d1c6-3498-350d-816d-ad4a66e4d738",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:forgiven-not-forgotten--the-corrs",
+      "type": "project",
+      "name": "Forgiven, Not Forgotten",
+      "artist": "The Corrs",
+      "mbid": "593602db-79ce-3d81-9ba2-a933fd5ee4c9",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:runaway--the-corrs",
+      "type": "project",
+      "name": "Runaway",
+      "artist": "The Corrs",
+      "mbid": "7c00e619-901f-3f34-abfc-da5425280b4c",
+      "year": "1995",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

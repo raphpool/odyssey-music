@@ -63,7 +63,215 @@
       "name": "Afro Acid"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:feel-the-spirit-moving-ep--dj-pierre",
+      "type": "project",
+      "name": "Feel The Spirit Moving EP",
+      "artist": "DJ Pierre",
+      "mbid": "8f2000fb-50bd-41d3-96a5-48a7f5f108d6",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:fall--dj-pierre",
+      "type": "project",
+      "name": "Fall",
+      "artist": "DJ Pierre",
+      "mbid": "d2c6beb1-e5bf-41fc-a2a2-be919399e68e",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:master-blaster-ep--dj-pierre",
+      "type": "project",
+      "name": "Master Blaster EP",
+      "artist": "DJ Pierre",
+      "mbid": "e4715343-d9cd-4e23-ab8a-cbfda901b4f7",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:generate-power--dj-pierre",
+      "type": "project",
+      "name": "Generate Power",
+      "artist": "DJ Pierre",
+      "mbid": "58750635-f0d0-4280-84c6-4305370ab592",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:house-music--dj-pierre",
+      "type": "project",
+      "name": "House Music",
+      "artist": "DJ Pierre",
+      "mbid": "957a55d1-f72d-4d19-90fd-ba706679628d",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-and-happiness-2017--dj-pierre",
+      "type": "project",
+      "name": "Love and Happiness 2017",
+      "artist": "DJ Pierre",
+      "mbid": "7b7a7ced-b9ca-421b-b44e-dc0e3149a745",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:musiq--dj-pierre",
+      "type": "project",
+      "name": "MuSiQ",
+      "artist": "DJ Pierre",
+      "mbid": "fa483c30-f76f-4130-b067-2dd877c6c742",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:wild-pitch-the-story--dj-pierre",
+      "type": "project",
+      "name": "Wild Pitch: The Story",
+      "artist": "DJ Pierre",
+      "mbid": "c6f98aca-f8ea-4ed4-ac50-1b2db5ae6b70",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:let-the-music-take-you-higher--dj-pierre",
+      "type": "project",
+      "name": "Let The Music Take You Higher",
+      "artist": "DJ Pierre",
+      "mbid": "8a3850dc-1363-4a1e-92da-39cf6fde02dc",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:house-classics--dj-pierre",
+      "type": "project",
+      "name": "House Classics",
+      "artist": "DJ Pierre",
+      "mbid": "e032a80c-cbd2-4d78-b146-91fbe8de22ff",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:acid-jack-da-groove--dj-pierre",
+      "type": "project",
+      "name": "ACiD / Jack da Groove",
+      "artist": "DJ Pierre",
+      "mbid": "6c7d99a9-1b21-48ea-8708-ee0d7f71ef73",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:strobe-lights-laser-disco--dj-pierre",
+      "type": "project",
+      "name": "Strobe Lights, Laser, Disco",
+      "artist": "DJ Pierre",
+      "mbid": "e69827f6-fce5-4cbe-81b7-ff57d4460e22",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-is-house-muzik--dj-pierre",
+      "type": "project",
+      "name": "What Is House Muzik",
+      "artist": "DJ Pierre",
+      "mbid": "055dbccc-eadc-4cc5-9d31-9b1c8912ed03",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:juke-it-hard-volume-1--dj-pierre",
+      "type": "project",
+      "name": "Juke It Hard, Volume 1",
+      "artist": "DJ Pierre",
+      "mbid": "ff0c524a-62b1-4286-8574-ffa9d45c77d5",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dj-pierre-s-nervous-tracks--dj-pierre",
+      "type": "project",
+      "name": "DJ Pierre’s Nervous Tracks",
+      "artist": "DJ Pierre",
+      "mbid": "0744c84d-2ecd-4f02-96ef-bde3ae67f978",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-countdown-what-you-do--dj-pierre",
+      "type": "project",
+      "name": "The Countdown / What You Do",
+      "artist": "DJ Pierre",
+      "mbid": "e219ad10-0d9e-4c8e-972e-de7ef503d6c0",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:free-for-life-original-mixes--dj-pierre",
+      "type": "project",
+      "name": "Free for Life: Original Mixes",
+      "artist": "DJ Pierre",
+      "mbid": "95afb279-be5e-36b0-9f3f-48c2f128ec79",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jesus-on-my-mind--dj-pierre",
+      "type": "project",
+      "name": "Jesus on My Mind",
+      "artist": "DJ Pierre",
+      "mbid": "9fcaaa8c-bfba-4b38-8d12-589218b46d59",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-believe--dj-pierre",
+      "type": "project",
+      "name": "I Believe",
+      "artist": "DJ Pierre",
+      "mbid": "798334b3-f92c-3227-9aab-cd38667520a6",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:doomsday-atom-bomb--dj-pierre",
+      "type": "project",
+      "name": "Doomsday: Atom Bomb",
+      "artist": "DJ Pierre",
+      "mbid": "1782ac85-ffb2-36fb-9d97-9ca0d28f393c",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:love-trax--dj-pierre",
+      "type": "project",
+      "name": "Love Trax",
+      "artist": "DJ Pierre",
+      "mbid": "c20eb3cd-3bc6-4d47-a411-2fccf0e8272b",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:muzik-muzik-is-life--dj-pierre",
+      "type": "project",
+      "name": "Muzik / Muzik Is Life",
+      "artist": "DJ Pierre",
+      "mbid": "4589c902-f247-4d71-8b5d-9acf0e9d0a38",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:come-and-fly-with-me--dj-pierre",
+      "type": "project",
+      "name": "Come And Fly With Me",
+      "artist": "DJ Pierre",
+      "mbid": "d334cb9a-dbcd-4f53-8cae-54a3de52d2dc",
+      "year": "1990",
+      "releaseType": "single"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],

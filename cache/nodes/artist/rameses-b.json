@@ -56,7 +56,368 @@
       "name": "NoCopyrightSounds"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:remember--rameses-b",
+      "type": "project",
+      "name": "Remember",
+      "artist": "Rameses B",
+      "mbid": "0378b36e-cef9-4991-9d3b-532c363886e3",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:run-with-you--rameses-b",
+      "type": "project",
+      "name": "Run with You",
+      "artist": "Rameses B",
+      "mbid": "b6a996e5-3b87-4c79-9ff3-81862628bcb5",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:event-horizon--rameses-b",
+      "type": "project",
+      "name": "Event Horizon",
+      "artist": "Rameses B",
+      "mbid": "e9994a59-4598-4222-8cc3-fa61f049edd5",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:night-owl--rameses-b",
+      "type": "project",
+      "name": "Night Owl",
+      "artist": "Rameses B",
+      "mbid": "9ea96fd3-e63d-430e-bf6b-b98e036e83b8",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sonder--rameses-b",
+      "type": "project",
+      "name": "Sonder",
+      "artist": "Rameses B",
+      "mbid": "b4d0575e-7af8-4961-9c04-7bcb1f800959",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:space-boy--rameses-b",
+      "type": "project",
+      "name": "Space Boy",
+      "artist": "Rameses B",
+      "mbid": "41d39961-40b1-464b-96fe-528ee3baa142",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:passion-ep--rameses-b",
+      "type": "project",
+      "name": "Passion EP",
+      "artist": "Rameses B",
+      "mbid": "146cd200-2815-40b4-96fd-8ddbbf6bbf49",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:cosmonauts--rameses-b",
+      "type": "project",
+      "name": "Cosmonauts",
+      "artist": "Rameses B",
+      "mbid": "422d2965-424a-4c50-b9c7-594b33daa031",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:eden--rameses-b",
+      "type": "project",
+      "name": "Eden",
+      "artist": "Rameses B",
+      "mbid": "c7d84e21-7603-4626-8fa4-33df329ee735",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:spacewalk-iii-alpha-cen--rameses-b",
+      "type": "project",
+      "name": "Spacewalk III: Alpha Cen",
+      "artist": "Rameses B",
+      "mbid": "77c3d3b7-1336-4604-925a-928252babd3c",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:spacewalk--rameses-b",
+      "type": "project",
+      "name": "Spacewalk",
+      "artist": "Rameses B",
+      "mbid": "9e018a06-1d09-4ef8-8df4-6c1e6a869c52",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:spacewalk-ii-zero-gravity--rameses-b",
+      "type": "project",
+      "name": "Spacewalk II: Zero Gravity",
+      "artist": "Rameses B",
+      "mbid": "99e9f1ce-3c42-4619-bd66-3636adf18e3c",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ether-ep--rameses-b",
+      "type": "project",
+      "name": "Ether EP",
+      "artist": "Rameses B",
+      "mbid": "60ec0817-1daf-4ab1-b794-4768be81cc71",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:freedom-ii--rameses-b",
+      "type": "project",
+      "name": "Freedom II",
+      "artist": "Rameses B",
+      "mbid": "2576e28b-6833-4800-95cd-25efa23b619f",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:limitless--rameses-b",
+      "type": "project",
+      "name": "Limitless",
+      "artist": "Rameses B",
+      "mbid": "c3e23263-8bf9-4253-91da-0ab7dec60d28",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:essence--rameses-b",
+      "type": "project",
+      "name": "Essence",
+      "artist": "Rameses B",
+      "mbid": "6e837939-2c18-4544-a66d-802fa422dc87",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:step-inside--rameses-b",
+      "type": "project",
+      "name": "Step Inside",
+      "artist": "Rameses B",
+      "mbid": "7dbf9ae0-aa31-405c-95b3-c0559e0d27d0",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dream-catcher-ep--rameses-b",
+      "type": "project",
+      "name": "Dream Catcher EP",
+      "artist": "Rameses B",
+      "mbid": "328d6f4b-9118-4173-a8c0-b7e1f071c3f8",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:reborn--rameses-b",
+      "type": "project",
+      "name": "Reborn",
+      "artist": "Rameses B",
+      "mbid": "b9a033ee-294d-422e-a23f-2674053441c0",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:transformations--rameses-b",
+      "type": "project",
+      "name": "Transformations",
+      "artist": "Rameses B",
+      "mbid": "b4736d25-c735-4167-aecb-0580f4a6e135",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:visionary--rameses-b",
+      "type": "project",
+      "name": "Visionary",
+      "artist": "Rameses B",
+      "mbid": "23d647d6-514a-4e31-996c-be3eae9ae567",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:we-love--rameses-b",
+      "type": "project",
+      "name": "We Love",
+      "artist": "Rameses B",
+      "mbid": "6d320d69-33b9-4de2-8728-6abf40f2ec90",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dreaming--rameses-b",
+      "type": "project",
+      "name": "Dreaming",
+      "artist": "Rameses B",
+      "mbid": "5de1de15-e405-4af5-91a0-387b7d349074",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:full-force--rameses-b",
+      "type": "project",
+      "name": "Full Force",
+      "artist": "Rameses B",
+      "mbid": "43521d23-661f-4895-9d1a-16a0d3b52514",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:memoirs--rameses-b",
+      "type": "project",
+      "name": "Memoirs",
+      "artist": "Rameses B",
+      "mbid": "7de97335-c500-4f36-98c8-a45a3200ca12",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pulsefire-ezreal--rameses-b",
+      "type": "project",
+      "name": "Pulsefire Ezreal",
+      "artist": "Rameses B",
+      "mbid": "d35d9aa9-e9f9-4eff-ac14-47fcbbb9f181",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pure--rameses-b",
+      "type": "project",
+      "name": "Pure",
+      "artist": "Rameses B",
+      "mbid": "b2c1d913-3b87-43ee-a753-321ee958a0e3",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:russ--rameses-b",
+      "type": "project",
+      "name": "Russ",
+      "artist": "Rameses B",
+      "mbid": "54d36e53-92a9-4e25-b1f9-c6aaaad7338f",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stones-follow-me--rameses-b",
+      "type": "project",
+      "name": "Stones / Follow Me",
+      "artist": "Rameses B",
+      "mbid": "801a7e19-19a0-4be8-bb54-ee3625c4205f",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:timeless-ep--rameses-b",
+      "type": "project",
+      "name": "Timeless EP",
+      "artist": "Rameses B",
+      "mbid": "5c87eb35-496d-4dd6-af12-6a19417e7891",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:come-and-go--rameses-b",
+      "type": "project",
+      "name": "Come & Go",
+      "artist": "Rameses B",
+      "mbid": "86e46f63-e418-4b25-a140-6fbfcb4e1695",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:drift-away--rameses-b",
+      "type": "project",
+      "name": "Drift Away",
+      "artist": "Rameses B",
+      "mbid": "d8d1baa5-da34-4d17-9ed1-dad353fb5f81",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:freedom--rameses-b",
+      "type": "project",
+      "name": "Freedom",
+      "artist": "Rameses B",
+      "mbid": "a593a6ee-9c79-4808-9df0-2956beaf2f41",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:galactic--rameses-b",
+      "type": "project",
+      "name": "Galactic",
+      "artist": "Rameses B",
+      "mbid": "6bfe4d8d-253b-42f4-a3d5-6e0d86511274",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:game-of-thrones--rameses-b",
+      "type": "project",
+      "name": "Game Of Thrones",
+      "artist": "Rameses B",
+      "mbid": "5e40f573-17bf-407c-b947-6d7fd1d8cf46",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:inspire--rameses-b",
+      "type": "project",
+      "name": "Inspire",
+      "artist": "Rameses B",
+      "mbid": "707c8ae1-cc51-4032-93a2-30781b095ea6",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:open-your-eyes-and-lost-in-me--rameses-b",
+      "type": "project",
+      "name": "Open Your Eyes & Lost in Me",
+      "artist": "Rameses B",
+      "mbid": "7c3b283d-74fe-4c15-9dc0-0c3d697c0f78",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pegasus--rameses-b",
+      "type": "project",
+      "name": "Pegasus",
+      "artist": "Rameses B",
+      "mbid": "8dfcde67-ad70-4622-b649-b43765abe8db",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:observe-and-imitate--rameses-b",
+      "type": "project",
+      "name": "Observe & Imitate",
+      "artist": "Rameses B",
+      "mbid": "727ff81d-bcfe-4270-bdc2-7f0d7db81727",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:revival--rameses-b",
+      "type": "project",
+      "name": "Revival",
+      "artist": "Rameses B",
+      "mbid": "9ef8bf4f-748b-4e37-8050-2e76ad541f1f",
+      "year": "2011",
+      "releaseType": "ep"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:beside-you",

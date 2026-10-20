@@ -50,7 +50,159 @@
       "name": "Tropo Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:shenandoah--alex-de-grassi",
+      "type": "project",
+      "name": "Shenandoah",
+      "artist": "Alex De Grassi",
+      "mbid": "c7092f66-882e-4836-8aa9-228a95c2ee6c",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:as-you-drift-away--alex-de-grassi",
+      "type": "project",
+      "name": "As You Drift Away",
+      "artist": "Alex De Grassi",
+      "mbid": "99fe608d-786e-4ce0-89ad-59757b2cc30c",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:now-and-then--alex-de-grassi",
+      "type": "project",
+      "name": "Now and Then",
+      "artist": "Alex De Grassi",
+      "mbid": "1ffda5a3-1a8f-31f0-a7bf-271666e7794c",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shortwave-postcard--alex-de-grassi",
+      "type": "project",
+      "name": "Shortwave Postcard",
+      "artist": "Alex De Grassi",
+      "mbid": "e8566b2e-4c3f-4918-8e3e-5a1f9600aa69",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bolivian-blues-bar--alex-de-grassi",
+      "type": "project",
+      "name": "Bolivian Blues Bar",
+      "artist": "Alex De Grassi",
+      "mbid": "22db756d-591b-36f9-b3c9-5bb24ff212f0",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-water-garden--alex-de-grassi",
+      "type": "project",
+      "name": "The Water Garden",
+      "artist": "Alex De Grassi",
+      "mbid": "41db8f8b-295f-3420-bb2a-844e0c2d5adb",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beyond-the-night-sky-lullabies-for-guitar--alex-de-grassi",
+      "type": "project",
+      "name": "Beyond the Night Sky (Lullabies for Guitar)",
+      "artist": "Alex De Grassi",
+      "mbid": "153f385f-de62-3eef-8153-7d5a3c17131d",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:woodland-stroll--alex-de-grassi",
+      "type": "project",
+      "name": "Woodland Stroll",
+      "artist": "Alex De Grassi",
+      "mbid": "674de3f6-2289-4360-a7e0-caf1d7fdf170",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-world-s-getting-loud--alex-de-grassi",
+      "type": "project",
+      "name": "The World's Getting Loud",
+      "artist": "Alex De Grassi",
+      "mbid": "c4111c8e-2bd5-3c7b-b33b-b38b3605e951",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:deep-at-night--alex-de-grassi",
+      "type": "project",
+      "name": "Deep at Night",
+      "artist": "Alex De Grassi",
+      "mbid": "37a6d57a-9a0a-3ef4-9a25-9a064056f434",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:slow-circle--alex-de-grassi",
+      "type": "project",
+      "name": "Slow Circle",
+      "artist": "Alex De Grassi",
+      "mbid": "63e51a74-53c0-3b9b-bf4c-4ab15734967c",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:altiplano--alex-de-grassi",
+      "type": "project",
+      "name": "Altiplano",
+      "artist": "Alex De Grassi",
+      "mbid": "b90d62ea-fb25-4af8-b251-dedf764d85d3",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:turning-turning-back--alex-de-grassi",
+      "type": "project",
+      "name": "Turning: Turning Back",
+      "artist": "Alex De Grassi",
+      "mbid": "2ddbcc5f-679a-356c-91ca-4200270f4792",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:southern-exposure--alex-de-grassi",
+      "type": "project",
+      "name": "Southern Exposure",
+      "artist": "Alex De Grassi",
+      "mbid": "d87c9431-cc3e-37e8-9181-5fc69a917c3a",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:clockwork--alex-de-grassi",
+      "type": "project",
+      "name": "Clockwork",
+      "artist": "Alex De Grassi",
+      "mbid": "b81a509b-1c88-326b-8943-868c21e0cd5b",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:alex-de-grassi-s-interpretation-of-james-taylor--alex-de-grassi",
+      "type": "project",
+      "name": "Alex de Grassi's Interpretation of James Taylor",
+      "artist": "Alex De Grassi",
+      "mbid": "16fbb4bd-676f-307b-bd05-95acbefb7555",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:alex-de-grassi-s-interpretation-of-simon-and-garfunkel--alex-de-grassi",
+      "type": "project",
+      "name": "Alex de Grassi's Interpretation of Simon & Garfunkel",
+      "artist": "Alex De Grassi",
+      "mbid": "8fe6f5f7-5442-3ab6-9268-cfaade2267a4",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:turning-turning-back",

@@ -53,7 +53,368 @@
       "name": "Island Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:dub-fire--lee-scratch-perry",
+      "type": "project",
+      "name": "Dub Fire",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "3f7a8e6d-dd99-3a4b-b264-b10592495978",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lee-perry-meets-the-mad-professor--lee-scratch-perry",
+      "type": "project",
+      "name": "Lee Perry Meets The Mad Professor",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "d5f386a4-e0ea-3d92-b343-43a8b786482f",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:produced-and-directed-by-the-upsetter--lee-scratch-perry",
+      "type": "project",
+      "name": "Produced and Directed by The Upsetter",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "9e037486-d11c-3f02-a11c-0706472a8233",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:return-of-wax--lee-scratch-perry",
+      "type": "project",
+      "name": "Return of Wax",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "ce397816-2034-361f-96ca-aebb44e48e8d",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-original-super-ape--lee-scratch-perry",
+      "type": "project",
+      "name": "The Original Super Ape",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "a8ba965f-b79d-3cd9-94ac-0ac40408f56e",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:technomajikal--lee-scratch-perry",
+      "type": "project",
+      "name": "Technomajikal",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "2e359491-8639-31b0-82f5-37b59283f39e",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dub-net-philosophy--lee-scratch-perry",
+      "type": "project",
+      "name": "Dub-Net Philosophy",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "2acd3a6e-36f4-4589-8289-22da43a5362f",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lee-perry-meets-scientist-at-the-blackheart-studio--lee-scratch-perry",
+      "type": "project",
+      "name": "Lee Perry Meets Scientist at the Blackheart Studio",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "07046af7-155b-3627-9609-fae40afaed46",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:voodooism--lee-scratch-perry",
+      "type": "project",
+      "name": "Voodooism",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "2170ef1a-d964-3246-8014-d28a321b0f6d",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:who-put-the-voodoo-pon-reggae--lee-scratch-perry",
+      "type": "project",
+      "name": "Who Put the Voodoo 'pon Reggae?",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "5d3a7215-f440-303a-bb44-a859cf110bc9",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:black-ark-experryments--lee-scratch-perry",
+      "type": "project",
+      "name": "Black Ark Experryments",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "07daea64-1937-3431-b2cb-0546122f1d06",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:experryments-at-the-grass-roots-of-dub--lee-scratch-perry",
+      "type": "project",
+      "name": "Experryments at the Grass Roots of Dub",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "86fa346d-4431-3680-a9b9-df2c51c07ef9",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scatch-the-upsetters-again--lee-scratch-perry",
+      "type": "project",
+      "name": "Scatch the Upsetters Again",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "f73f51d6-a163-4b22-8181-d55497b4c3fd",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:smoking--lee-scratch-perry",
+      "type": "project",
+      "name": "Smoking",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "48348afd-9b62-3f2f-929d-5cbf5b41b08a",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soundzs-from-the-hot-line--lee-scratch-perry",
+      "type": "project",
+      "name": "Soundzs From the Hot Line",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "8b452067-4781-3c50-a2b6-10a28ff32237",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-upsetter-and-the-beat--lee-scratch-perry",
+      "type": "project",
+      "name": "The Upsetter and the Beat",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "2bd19fac-7874-402c-9679-f7831ea53db9",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lord-god-muzick--lee-scratch-perry",
+      "type": "project",
+      "name": "Lord God Muzick",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "f3a593ea-f536-35ea-8c44-77fd04a29c12",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blood-vapour--lee-scratch-perry",
+      "type": "project",
+      "name": "Blood Vapour",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "29508124-61e0-4b12-aa73-f64d80c8ef45",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-the-secret-laboratory--lee-scratch-perry",
+      "type": "project",
+      "name": "From The Secret Laboratory",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "61be1457-8ea8-4f03-a562-b1a5e6e5fcbf",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-satan-s-dub--lee-scratch-perry",
+      "type": "project",
+      "name": "In Satan's Dub",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "d92330db-9863-3d32-8af5-d90329280e8a",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mystic-miracle-star--lee-scratch-perry",
+      "type": "project",
+      "name": "Mystic Miracle Star",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "b5a47d41-dd71-3edb-8358-55e78bdd7856",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mystic-warrior--lee-scratch-perry",
+      "type": "project",
+      "name": "Mystic Warrior",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "a02b2dc9-033b-309b-bf77-c0d9ba34e586",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:satan-kicked-the-bucket--lee-scratch-perry",
+      "type": "project",
+      "name": "Satan Kicked The Bucket",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "a1cf4b16-ac50-40b2-b5dd-a853ffe5597d",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:spiritual-healing--lee-scratch-perry",
+      "type": "project",
+      "name": "Spiritual Healing",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "e8ac403f-2e2c-3f27-af01-d04d54782eb6",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-dub-messenger--lee-scratch-perry",
+      "type": "project",
+      "name": "The Dub Messenger",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "e416c07e-a667-4931-a666-7f4f1811e9d3",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:message-from-yard--lee-scratch-perry",
+      "type": "project",
+      "name": "Message From Yard",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "f53f2923-8c62-3477-a4d4-b00d73386a76",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mystic-warrior-in-dub--lee-scratch-perry",
+      "type": "project",
+      "name": "Mystic Warrior in Dub",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "3eb2ab73-a5bf-461b-96d2-2d0b1e5fb4fd",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:time-boom-x-de-devil-dead--lee-scratch-perry",
+      "type": "project",
+      "name": "Time Boom X De Devil Dead",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "f769e499-0485-3067-aac0-80053779621e",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:battle-of-armagideon-millionaire-liquidator--lee-scratch-perry",
+      "type": "project",
+      "name": "Battle of Armagideon (Millionaire Liquidator)",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "842f7324-5b5d-3a70-ac0c-261f471e295d",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:history-mystery-and-prophesy--lee-scratch-perry",
+      "type": "project",
+      "name": "History, Mystery & Prophesy",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "4f8e31ab-52d2-3670-8199-f45ac69e5b25",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:megaton-dub-2--lee-scratch-perry",
+      "type": "project",
+      "name": "Megaton Dub 2",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "4d1afb69-5261-383e-bd43-e71726119d78",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scratch-and-company-the-upsetters-chapter-one--lee-scratch-perry",
+      "type": "project",
+      "name": "Scratch and Company: The Upsetters, Chapter One",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "620306ae-8657-4a6c-9f98-91ef7b4a1ed1",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-return-of-pipecock-jackxon--lee-scratch-perry",
+      "type": "project",
+      "name": "The Return of Pipecock Jackxon",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "85c27cc5-a526-4b12-affe-8a5b89c56415",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:roast-fish-collie-weed-and-corn-bread--lee-scratch-perry",
+      "type": "project",
+      "name": "Roast Fish Collie Weed & Corn Bread",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "3c0a1d4a-dcfb-36a4-9159-19c5a549445c",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kung-fu-meets-the-dragon--lee-scratch-perry",
+      "type": "project",
+      "name": "Kung Fu Meets the Dragon",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "26be840f-e245-3aeb-a98a-a9dabc5062b5",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:musical-bones--lee-scratch-perry",
+      "type": "project",
+      "name": "Musical Bones",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "05e5ed4a-9610-3ea2-8744-774a7af7f1f3",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:revolution-dub--lee-scratch-perry",
+      "type": "project",
+      "name": "Revolution Dub",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "3fd87a29-6f03-31f0-90f0-28712608577c",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rhythm-shower--lee-scratch-perry",
+      "type": "project",
+      "name": "Rhythm Shower",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "e4faa477-3432-4ce0-b6d0-4481a93cf341",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cloak-and-dagger--lee-scratch-perry",
+      "type": "project",
+      "name": "Cloak & Dagger",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "daec9d93-8fd2-3e73-b571-bca26b1865be",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:africa-s-blood--lee-scratch-perry",
+      "type": "project",
+      "name": "Africa's Blood",
+      "artist": "Lee 'Scratch' Perry",
+      "mbid": "10ee061b-6c97-4192-b1f7-7d699b777bf9",
+      "year": "1971",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:people-funny-boy",

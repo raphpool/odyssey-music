@@ -48,6 +48,51 @@
   ],
   "discography": [
     {
+      "slug": "project:borderland--juan-atkins",
+      "type": "project",
+      "name": "Borderland",
+      "artist": "Juan Atkins",
+      "mbid": "f16967d1-6ae8-4586-aab2-5b1dfc5732ae",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-berlin-sessions--juan-atkins",
+      "type": "project",
+      "name": "The Berlin Sessions",
+      "artist": "Juan Atkins",
+      "mbid": "aafa1151-a507-3ead-8c39-8cee4d80139c",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:back-to-basics-part-1--juan-atkins",
+      "type": "project",
+      "name": "Back to Basics, Part 1",
+      "artist": "Juan Atkins",
+      "mbid": "c742e22e-0823-3037-9eb7-4c5e9aec9605",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:futurepast-ep--juan-atkins",
+      "type": "project",
+      "name": "Futurepast EP",
+      "artist": "Juan Atkins",
+      "mbid": "3f3633d5-2a44-4c0e-a02c-089730c6ee36",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-future-sound-ep--juan-atkins",
+      "type": "project",
+      "name": "The Future Sound EP",
+      "artist": "Juan Atkins",
+      "mbid": "0dd04246-4fad-46f8-a8fb-452394183585",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:enter--juan-atkins",
       "type": "project",
       "name": "Enter",
