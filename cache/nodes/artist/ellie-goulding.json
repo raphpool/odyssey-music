@@ -51,29 +51,359 @@
   ],
   "discography": [
     {
-      "slug": "project:lights",
+      "slug": "project:i-know-too-much--ellie-goulding",
       "type": "project",
-      "name": "Lights"
-    },
-    {
-      "slug": "project:halcyon",
-      "type": "project",
-      "name": "Halcyon"
-    },
-    {
-      "slug": "project:delirium",
-      "type": "project",
-      "name": "Delirium"
-    },
-    {
-      "slug": "project:brightest-blue",
-      "type": "project",
-      "name": "Brightest Blue"
+      "name": "I Know Too Much",
+      "artist": "Ellie Goulding",
+      "mbid": "218f9a69-6915-4b16-94bd-702fdeda8837",
+      "year": "2026",
+      "releaseType": "album"
     },
     {
       "slug": "project:higher-than-heaven",
       "type": "project",
-      "name": "Higher than Heaven"
+      "name": "Higher than Heaven",
+      "mbid": "78234415-e4dd-4cb2-be82-779163dc0bd9",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:brightest-blue",
+      "type": "project",
+      "name": "Brightest Blue",
+      "mbid": "bf7d9159-387d-4c60-8262-d7c018df6833",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:flux--ellie-goulding",
+      "type": "project",
+      "name": "Flux",
+      "artist": "Ellie Goulding",
+      "mbid": "a7541119-2b6e-4819-aac8-b3bbb56e5521",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sixteen--ellie-goulding",
+      "type": "project",
+      "name": "Sixteen",
+      "artist": "Ellie Goulding",
+      "mbid": "86a464dc-1e35-4444-994b-4d2803481c6f",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vincent--ellie-goulding",
+      "type": "project",
+      "name": "Vincent",
+      "artist": "Ellie Goulding",
+      "mbid": "7b1361ee-ce7e-4db6-9798-c4c815614420",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:o-holy-night--ellie-goulding",
+      "type": "project",
+      "name": "O Holy Night",
+      "artist": "Ellie Goulding",
+      "mbid": "8a7871e9-d083-454d-9b3f-bfef47e2c5be",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:just-in-case--ellie-goulding",
+      "type": "project",
+      "name": "Just in Case",
+      "artist": "Ellie Goulding",
+      "mbid": "94793358-bc02-4b43-956e-00610828d64a",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:still-falling-for-you--ellie-goulding",
+      "type": "project",
+      "name": "Still Falling for You",
+      "artist": "Ellie Goulding",
+      "mbid": "ee613e7e-700c-4263-b67a-8eae2f0ec8ce",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:army-ep--ellie-goulding",
+      "type": "project",
+      "name": "Army EP",
+      "artist": "Ellie Goulding",
+      "mbid": "426e958f-dc89-4a99-9cf1-0f59a7a4718a",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:delirium",
+      "type": "project",
+      "name": "Delirium",
+      "mbid": "06d2399d-4b6b-4fff-8570-8fa31c73d9bd",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-me-like-you-do--ellie-goulding",
+      "type": "project",
+      "name": "Love Me Like You Do",
+      "artist": "Ellie Goulding",
+      "mbid": "fdeb2acd-f523-4f86-903c-1f79f60fe4a3",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:on-my-mind--ellie-goulding",
+      "type": "project",
+      "name": "On My Mind",
+      "artist": "Ellie Goulding",
+      "mbid": "c1885f9c-642a-41a3-abfb-c730996a526e",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:something-in-the-way-you-move--ellie-goulding",
+      "type": "project",
+      "name": "Something in the Way You Move",
+      "artist": "Ellie Goulding",
+      "mbid": "f6cf74b9-ab6c-49c8-b88f-fd21ee7eabd4",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:take-me-to-church--ellie-goulding",
+      "type": "project",
+      "name": "Take Me to Church",
+      "artist": "Ellie Goulding",
+      "mbid": "1171691f-0818-46f9-9897-76eef76da342",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-i-want--ellie-goulding",
+      "type": "project",
+      "name": "All I Want",
+      "artist": "Ellie Goulding",
+      "mbid": "14604c1b-db61-489f-9aa0-8331c2617151",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beating-heart--ellie-goulding",
+      "type": "project",
+      "name": "Beating Heart",
+      "artist": "Ellie Goulding",
+      "mbid": "3bd8be14-f69b-46e6-b41e-f84c1f6f4a34",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:goodness-gracious--ellie-goulding",
+      "type": "project",
+      "name": "Goodness Gracious",
+      "artist": "Ellie Goulding",
+      "mbid": "708799df-20ae-41d5-bdbd-011187120fe5",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:life-round-here--ellie-goulding",
+      "type": "project",
+      "name": "Life Round Here",
+      "artist": "Ellie Goulding",
+      "mbid": "34f524b1-3f3f-403a-8e17-5ea008b908df",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:burn--ellie-goulding",
+      "type": "project",
+      "name": "Burn",
+      "artist": "Ellie Goulding",
+      "mbid": "aedd0642-0ef7-4c32-a495-23d318282624",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:how-long-will-i-love-you--ellie-goulding",
+      "type": "project",
+      "name": "How Long Will I Love You",
+      "artist": "Ellie Goulding",
+      "mbid": "7f99ecc4-1fd3-44fc-939c-084f79da6c29",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stay-awake--ellie-goulding",
+      "type": "project",
+      "name": "Stay Awake",
+      "artist": "Ellie Goulding",
+      "mbid": "c5467272-cc33-4d81-84b5-529bfff75f1e",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-my-everything--ellie-goulding",
+      "type": "project",
+      "name": "You My Everything",
+      "artist": "Ellie Goulding",
+      "mbid": "e67d8fc2-d4e7-4f75-adfe-2d58cbac202f",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:anything-could-happen--ellie-goulding",
+      "type": "project",
+      "name": "Anything Could Happen",
+      "artist": "Ellie Goulding",
+      "mbid": "0dfd3b37-9042-48ae-b4c5-b19976f78443",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:explosions--ellie-goulding",
+      "type": "project",
+      "name": "Explosions",
+      "artist": "Ellie Goulding",
+      "mbid": "f03285b5-c00e-4b8d-a2cf-9881caecc601",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:figure-8--ellie-goulding",
+      "type": "project",
+      "name": "Figure 8",
+      "artist": "Ellie Goulding",
+      "mbid": "9c29d790-3c58-4b27-8b2e-6aa585043f3e",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:halcyon",
+      "type": "project",
+      "name": "Halcyon",
+      "mbid": "d1306db5-8c22-410e-b810-66f9b5e20d2a",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hanging-on--ellie-goulding",
+      "type": "project",
+      "name": "Hanging On",
+      "artist": "Ellie Goulding",
+      "mbid": "c488e446-c255-4848-9ae1-02bb696f5fc9",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:high-for-this--ellie-goulding",
+      "type": "project",
+      "name": "High for This",
+      "artist": "Ellie Goulding",
+      "mbid": "a2d92109-2f95-4039-8522-6d4edc8ed0fa",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:be-mine--ellie-goulding",
+      "type": "project",
+      "name": "Be Mine",
+      "artist": "Ellie Goulding",
+      "mbid": "9f29808a-12ed-43b2-b244-18a885a65e90",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:guns-and-horses--ellie-goulding",
+      "type": "project",
+      "name": "Guns and Horses",
+      "artist": "Ellie Goulding",
+      "mbid": "0e52fca3-4df3-4fee-9f7e-4c9ea56c6a81",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lights",
+      "type": "project",
+      "name": "Lights",
+      "mbid": "e665cc07-f57a-4b0d-8e7a-426095aa529f",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:metropolis-session--ellie-goulding",
+      "type": "project",
+      "name": "Metropolis Session",
+      "artist": "Ellie Goulding",
+      "mbid": "5ccdd213-8d0f-4a78-880d-e3924dede7c3",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:run-into-the-light--ellie-goulding",
+      "type": "project",
+      "name": "Run Into the Light",
+      "artist": "Ellie Goulding",
+      "mbid": "5a01f801-57a6-476f-8a2c-8ebe98e18718",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:starry-eyed--ellie-goulding",
+      "type": "project",
+      "name": "Starry Eyed",
+      "artist": "Ellie Goulding",
+      "mbid": "1e992f5e-b6e5-4191-b44f-63604d9f38bc",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:your-song--ellie-goulding",
+      "type": "project",
+      "name": "Your Song",
+      "artist": "Ellie Goulding",
+      "mbid": "49978b1f-da9a-4c2b-9d79-056bdc57292a",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:an-introduction-to-ellie-goulding--ellie-goulding",
+      "type": "project",
+      "name": "An Introduction to Ellie Goulding",
+      "artist": "Ellie Goulding",
+      "mbid": "0d22b1f3-16f4-4936-81d2-562b8ee0a7f5",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-wolves-act-i-and-ii--ellie-goulding",
+      "type": "project",
+      "name": "The Wolves (Act I and II)",
+      "artist": "Ellie Goulding",
+      "mbid": "f774d4ff-eb5f-4719-bf24-fcaedd49c4e7",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-writer--ellie-goulding",
+      "type": "project",
+      "name": "The Writer",
+      "artist": "Ellie Goulding",
+      "mbid": "6c3efc62-be0c-47e1-8301-cfc5cdcb4e79",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:under-the-sheets--ellie-goulding",
+      "type": "project",
+      "name": "Under the Sheets",
+      "artist": "Ellie Goulding",
+      "mbid": "9120d318-8e78-4cb7-910b-d25620f61c0f",
+      "year": "2009",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

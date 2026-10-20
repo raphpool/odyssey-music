@@ -45,9 +45,210 @@
   "labels": [],
   "discography": [
     {
+      "slug": "project:12b-dub-pt-3--satoshi-tomiie",
+      "type": "project",
+      "name": "12B-Dub, Pt. 3",
+      "artist": "Satoshi Tomiie",
+      "mbid": "a35fb35e-60ab-4bb3-b413-3c12881bdf0a",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:indian-summer--satoshi-tomiie",
+      "type": "project",
+      "name": "Indian Summer",
+      "artist": "Satoshi Tomiie",
+      "mbid": "74bb06ea-fd8c-44f7-b4b8-b500d2bd1806",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:delta-dubs--satoshi-tomiie",
+      "type": "project",
+      "name": "Delta Dubs",
+      "artist": "Satoshi Tomiie",
+      "mbid": "72bbf45e-e7b5-43e4-a83f-7983920d07e2",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:12b-dub-pt-1--satoshi-tomiie",
+      "type": "project",
+      "name": "12B-Dub, Pt. 1",
+      "artist": "Satoshi Tomiie",
+      "mbid": "8944e20e-fd28-4c5a-be0b-ceca2ba5a362",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:12b-dub-pt-2--satoshi-tomiie",
+      "type": "project",
+      "name": "12B-Dub, Pt. 2",
+      "artist": "Satoshi Tomiie",
+      "mbid": "734d4057-ac7e-4be2-b5d4-e8e67c1ebe25",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dream-sketches--satoshi-tomiie",
+      "type": "project",
+      "name": "Dream Sketches",
+      "artist": "Satoshi Tomiie",
+      "mbid": "250daf94-db82-4b4b-8619-dcc61cb1b2a5",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:magic-hour--satoshi-tomiie",
+      "type": "project",
+      "name": "Magic Hour",
+      "artist": "Satoshi Tomiie",
+      "mbid": "37ea5c72-fe69-4ecc-8df9-ea96c8001977",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:echos-cosmiques--satoshi-tomiie",
+      "type": "project",
+      "name": "Echos Cosmiques",
+      "artist": "Satoshi Tomiie",
+      "mbid": "0c001362-c932-427c-bbd7-341dff8805a3",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tri-dub--satoshi-tomiie",
+      "type": "project",
+      "name": "Tri-Dub",
+      "artist": "Satoshi Tomiie",
+      "mbid": "aef02fc8-fff2-4fd2-9d8e-966242938b55",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:immersed--satoshi-tomiie",
+      "type": "project",
+      "name": "Immersed",
+      "artist": "Satoshi Tomiie",
+      "mbid": "c73c0eca-9a21-4899-9a9d-83977578b269",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:metropolis--satoshi-tomiie",
+      "type": "project",
+      "name": "Metropolis",
+      "artist": "Satoshi Tomiie",
+      "mbid": "540a4c1f-8b99-4a7c-9d27-7b5516972a5b",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:to-ray--satoshi-tomiie",
+      "type": "project",
+      "name": "To Ray",
+      "artist": "Satoshi Tomiie",
+      "mbid": "0ba70d04-fe2a-479f-8b79-b721fa642142",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:yoyakuza002--satoshi-tomiie",
+      "type": "project",
+      "name": "Yoyakuza002",
+      "artist": "Satoshi Tomiie",
+      "mbid": "1cb7bbdc-3b11-427f-b035-c0737c2f49d1",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:003--satoshi-tomiie",
+      "type": "project",
+      "name": "予約座003",
+      "artist": "Satoshi Tomiie",
+      "mbid": "811f140f-77b0-46b2-9d6d-e9c4b880f98a",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:512-ep--satoshi-tomiie",
+      "type": "project",
+      "name": "512 EP",
+      "artist": "Satoshi Tomiie",
+      "mbid": "e7fdca2d-a2cb-4aeb-8c57-c00db16ddde0",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:new-day--satoshi-tomiie",
+      "type": "project",
+      "name": "New Day",
+      "artist": "Satoshi Tomiie",
+      "mbid": "e8e1bb03-c1a2-4736-bae0-16a848aae885",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-in-traffic--satoshi-tomiie",
+      "type": "project",
+      "name": "Love in Traffic",
+      "artist": "Satoshi Tomiie",
+      "mbid": "d3d0b4a3-8175-48ad-917a-6b5ee40c219c",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:virus--satoshi-tomiie",
+      "type": "project",
+      "name": "Virus",
+      "artist": "Satoshi Tomiie",
+      "mbid": "909486b1-6560-402e-9255-7438c28e090f",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:atari--satoshi-tomiie",
+      "type": "project",
+      "name": "Atari",
+      "artist": "Satoshi Tomiie",
+      "mbid": "f809a6e8-42e5-3615-8e0c-19e49540fa9f",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:full-lick",
       "type": "project",
-      "name": "Full Lick"
+      "name": "Full Lick",
+      "mbid": "2d430164-5962-39d6-8b3a-cb19977eac72",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:up-in-flames--satoshi-tomiie",
+      "type": "project",
+      "name": "Up in Flames",
+      "artist": "Satoshi Tomiie",
+      "mbid": "c0864cbd-9a10-4d34-83f8-c25d5f9f9041",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:come-to-me--satoshi-tomiie",
+      "type": "project",
+      "name": "Come To Me",
+      "artist": "Satoshi Tomiie",
+      "mbid": "1c10fa06-5982-42cb-8861-87746fb20451",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:and-i-loved-you-tears--satoshi-tomiie",
+      "type": "project",
+      "name": "And I Loved You / Tears",
+      "artist": "Satoshi Tomiie",
+      "mbid": "edba96bb-b57f-4912-83a5-6909bea96587",
+      "year": "1990",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

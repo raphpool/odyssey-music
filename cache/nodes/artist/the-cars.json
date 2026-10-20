@@ -66,24 +66,225 @@
   ],
   "discography": [
     {
-      "slug": "project:the-cars",
+      "slug": "project:the-cars-at-live-aid-live-at-john-f-kennedy-stadium-13th-july-1985--the-cars",
       "type": "project",
-      "name": "The Cars"
+      "name": "The Cars at Live Aid (Live at John F. Kennedy Stadium, 13th July 1985)",
+      "artist": "The Cars",
+      "mbid": "75d808c1-214e-412c-bc3a-679aef4b5f3c",
+      "year": "2021",
+      "releaseType": "single"
     },
     {
-      "slug": "project:candy-o",
+      "slug": "project:drive-symphonic-version--the-cars",
       "type": "project",
-      "name": "Candy-O"
+      "name": "Drive (symphonic version)",
+      "artist": "The Cars",
+      "mbid": "31eb82d1-9a5e-430e-b817-c7e384c8eaaa",
+      "year": "2018",
+      "releaseType": "single"
     },
     {
-      "slug": "project:shake-it-up",
+      "slug": "project:move-like-this--the-cars",
       "type": "project",
-      "name": "Shake It Up"
+      "name": "Move Like This",
+      "artist": "The Cars",
+      "mbid": "752631da-6546-4551-ab44-0f77f9c6b13d",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sad-song--the-cars",
+      "type": "project",
+      "name": "Sad Song",
+      "artist": "The Cars",
+      "mbid": "891c49be-d26b-4fe8-81df-77217ee8b159",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:door-to-door--the-cars",
+      "type": "project",
+      "name": "Door to Door",
+      "artist": "The Cars",
+      "mbid": "325fb14f-d971-39c6-a78d-e6cc790164ab",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-are-the-girl--the-cars",
+      "type": "project",
+      "name": "You Are the Girl",
+      "artist": "The Cars",
+      "mbid": "176c8a4e-76eb-4493-877c-2c4dfbf11a47",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-m-not-the-one--the-cars",
+      "type": "project",
+      "name": "I’m Not the One",
+      "artist": "The Cars",
+      "mbid": "0dc6fdf5-f427-48f3-ace4-82935639c4b7",
+      "year": "1985",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tonight-she-comes--the-cars",
+      "type": "project",
+      "name": "Tonight She Comes",
+      "artist": "The Cars",
+      "mbid": "6a0aae98-a45d-4b32-aa1d-df28316c882e",
+      "year": "1985",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:why-can-t-i-have-you-breakaway--the-cars",
+      "type": "project",
+      "name": "Why Can’t I Have You / Breakaway",
+      "artist": "The Cars",
+      "mbid": "19d79b38-6dc1-4e20-99ea-054cf8e849b7",
+      "year": "1985",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:drive--the-cars",
+      "type": "project",
+      "name": "Drive",
+      "artist": "The Cars",
+      "mbid": "831a0de5-208d-47b5-ae70-d86aa9eb70a4",
+      "year": "1984",
+      "releaseType": "single"
     },
     {
       "slug": "project:heartbeat-city",
       "type": "project",
-      "name": "Heartbeat City"
+      "name": "Heartbeat City",
+      "mbid": "d8e2c87d-767c-3a9c-87eb-b344d1228021",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hello-again--the-cars",
+      "type": "project",
+      "name": "Hello Again",
+      "artist": "The Cars",
+      "mbid": "39c85db7-5482-302c-86b9-6dce4f70b821",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:magic-i-refuse--the-cars",
+      "type": "project",
+      "name": "Magic / I Refuse",
+      "artist": "The Cars",
+      "mbid": "2b1d068d-5c28-44b7-8e98-b64663b25543",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:since-you-re-gone--the-cars",
+      "type": "project",
+      "name": "Since You’re Gone",
+      "artist": "The Cars",
+      "mbid": "a7ea505e-6d36-3935-8e99-1610e1d8a853",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shake-it-up",
+      "type": "project",
+      "name": "Shake It Up",
+      "mbid": "a3b93384-c6b9-3350-8e21-06b550897e2f",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:don-t-tell-me-no-don-t-go-to-pieces--the-cars",
+      "type": "project",
+      "name": "Don't Tell Me No / Don't Go To Pieces",
+      "artist": "The Cars",
+      "mbid": "c6b8057f-286f-41cd-99ee-8297879b5ef9",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:panorama--the-cars",
+      "type": "project",
+      "name": "Panorama",
+      "artist": "The Cars",
+      "mbid": "165d6798-b3bb-30ee-bbaf-9538471fb4a0",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:touch-and-go--the-cars",
+      "type": "project",
+      "name": "Touch And Go",
+      "artist": "The Cars",
+      "mbid": "906ecedb-9c83-4a86-978c-5d592d89f5a7",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:candy-o",
+      "type": "project",
+      "name": "Candy-O",
+      "mbid": "a5af2abc-fa10-3b5d-90f0-a64575866ac8",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:it-s-all-i-can-do--the-cars",
+      "type": "project",
+      "name": "It’s All I Can Do",
+      "artist": "The Cars",
+      "mbid": "0aa27251-2bfb-447d-9904-67f440c90281",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:let-s-go--the-cars",
+      "type": "project",
+      "name": "Let's Go",
+      "artist": "The Cars",
+      "mbid": "994164a2-6a40-4812-a986-4b9792e6580e",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:good-times-roll--the-cars",
+      "type": "project",
+      "name": "Good Times Roll",
+      "artist": "The Cars",
+      "mbid": "4cbab7d0-d443-43bd-8739-859d4e9a0c2d",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:just-what-i-needed-i-m-in-touch-with-your-world--the-cars",
+      "type": "project",
+      "name": "Just What I Needed / I’m in Touch With Your World",
+      "artist": "The Cars",
+      "mbid": "f1c324f6-6f86-35f7-84a1-f38389e63ee0",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-best-friend-s-girl--the-cars",
+      "type": "project",
+      "name": "My Best Friend’s Girl",
+      "artist": "The Cars",
+      "mbid": "2e08ae0d-966b-39d8-8388-b0cf7e70affd",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-cars",
+      "type": "project",
+      "name": "The Cars",
+      "mbid": "36172f3d-9b55-37f1-9fd4-0cbd2f3af0ce",
+      "year": "1978",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

@@ -51,14 +51,353 @@
   ],
   "discography": [
     {
-      "slug": "project:everybody-s-talking-nobody-s-listening",
+      "slug": "project:translucent--caspa",
       "type": "project",
-      "name": "Everybody's Talking, Nobody's Listening"
+      "name": "Translucent",
+      "artist": "Caspa",
+      "mbid": "978864ba-09d7-4762-bc9b-8a95fe5aabc7",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:project-x--caspa",
+      "type": "project",
+      "name": "Project X",
+      "artist": "Caspa",
+      "mbid": "31be6180-fbd7-4506-a291-df00cec44f18",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:inner-space--caspa",
+      "type": "project",
+      "name": "Inner Space",
+      "artist": "Caspa",
+      "mbid": "ec382fe8-7d67-495a-bdd1-b1a0483b49cd",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dubs-in-limbo--caspa",
+      "type": "project",
+      "name": "Dubs in Limbo",
+      "artist": "Caspa",
+      "mbid": "7f4e7660-529d-4af2-9238-910c24543b1b",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:full-flow--caspa",
+      "type": "project",
+      "name": "Full Flow",
+      "artist": "Caspa",
+      "mbid": "e1532c8e-743e-4c56-9514-71facd6c75f6",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:system-failure--caspa",
+      "type": "project",
+      "name": "System Failure",
+      "artist": "Caspa",
+      "mbid": "893a5124-b46e-4e95-ac87-92d9531b7788",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:let-s-get-weird--caspa",
+      "type": "project",
+      "name": "Let’s Get Weird",
+      "artist": "Caspa",
+      "mbid": "572f1eb0-aded-4bbf-a3c9-e35cc59fcd3e",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:psychotechnics--caspa",
+      "type": "project",
+      "name": "PSYCHOTECHNICS",
+      "artist": "Caspa",
+      "mbid": "a34f904f-f140-486f-8365-d64c231862de",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ghost-town-ep--caspa",
+      "type": "project",
+      "name": "Ghost Town EP",
+      "artist": "Caspa",
+      "mbid": "8f34037e-deed-486b-8a33-d781172a770d",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:cheese--caspa",
+      "type": "project",
+      "name": "Cheese",
+      "artist": "Caspa",
+      "mbid": "bb7de68e-2396-4625-aa9d-22a174a9e517",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ep-1--caspa",
+      "type": "project",
+      "name": "EP 1",
+      "artist": "Caspa",
+      "mbid": "e7658d61-c5ee-4d57-b9dd-50f2d2e56048",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ep-2--caspa",
+      "type": "project",
+      "name": "EP 2",
+      "artist": "Caspa",
+      "mbid": "acc6920a-6697-4a66-84f2-79500bb32646",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:500--caspa",
+      "type": "project",
+      "name": "500",
+      "artist": "Caspa",
+      "mbid": "e7773655-ffb1-48fe-8b6d-71c4faef7f21",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:500-episode-three--caspa",
+      "type": "project",
+      "name": "500: Episode Three",
+      "artist": "Caspa",
+      "mbid": "5bee7ed8-c49a-4d61-a505-f4236dd58839",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:blouse-an-skirt--caspa",
+      "type": "project",
+      "name": "Blouse an Skirt",
+      "artist": "Caspa",
+      "mbid": "5c262dc9-a530-4982-a57f-cca87f1e9f0f",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:500-episode-one--caspa",
+      "type": "project",
+      "name": "500: Episode One",
+      "artist": "Caspa",
+      "mbid": "59cb7c66-e7a8-45e2-b89f-12b7ebe0e981",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:500-episode-two--caspa",
+      "type": "project",
+      "name": "500: Episode Two",
+      "artist": "Caspa",
+      "mbid": "5f229820-4868-4e56-ae65-09dd44be0e26",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mad-man--caspa",
+      "type": "project",
+      "name": "Mad Man",
+      "artist": "Caspa",
+      "mbid": "4c7ca175-8ea2-49d4-b619-ba110607de48",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:reach-for-the-sky--caspa",
+      "type": "project",
+      "name": "Reach for the Sky",
+      "artist": "Caspa",
+      "mbid": "8297bb0f-5efe-42e5-b4ac-2db1ef4d1255",
+      "year": "2014",
+      "releaseType": "single"
     },
     {
       "slug": "project:alpha-omega",
       "type": "project",
-      "name": "Alpha Omega"
+      "name": "Alpha Omega",
+      "mbid": "51b02f68-c943-4b5c-a996-3d79fd0eaae3",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:setting-sun--caspa",
+      "type": "project",
+      "name": "Setting Sun",
+      "artist": "Caspa",
+      "mbid": "c9ef3b95-ba04-4e61-b8c8-f24db37fbaf8",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:on-it--caspa",
+      "type": "project",
+      "name": "On It",
+      "artist": "Caspa",
+      "mbid": "6320d5ca-cc98-421a-a63c-b770280d5b71",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sell-out-ep--caspa",
+      "type": "project",
+      "name": "Sell Out EP",
+      "artist": "Caspa",
+      "mbid": "a9d1663d-1d0d-4ec4-95ff-3323c6e7c9fe",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:war--caspa",
+      "type": "project",
+      "name": "War",
+      "artist": "Caspa",
+      "mbid": "f482e521-f91b-45e1-aabb-ce0dfe5763e4",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fulham-2-waterloo--caspa",
+      "type": "project",
+      "name": "Fulham 2 Waterloo",
+      "artist": "Caspa",
+      "mbid": "96815267-4c2d-4ee2-97da-a0397a86ae46",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:neck-snappah--caspa",
+      "type": "project",
+      "name": "Neck Snappah",
+      "artist": "Caspa",
+      "mbid": "62c6cde9-a726-4489-b840-3e67d1d31acb",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:not-for-the-playlist--caspa",
+      "type": "project",
+      "name": "Not for the Playlist",
+      "artist": "Caspa",
+      "mbid": "43766040-a967-4f99-b1e6-5512a1912539",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:love-never-dies--caspa",
+      "type": "project",
+      "name": "Love Never Dies",
+      "artist": "Caspa",
+      "mbid": "f77527ff-b76a-448e-b9ee-8e5aaf69300b",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ready-eddy-critical-hit--caspa",
+      "type": "project",
+      "name": "Ready Eddy / Critical Hit",
+      "artist": "Caspa",
+      "mbid": "049993f5-83f8-441a-bc0e-d36d2c87bf37",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:everybody-s-talking-nobody-s-listening",
+      "type": "project",
+      "name": "Everybody's Talking, Nobody's Listening",
+      "mbid": "60830f95-eb92-46b7-a37a-04832173a0db",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:louder-vip-power-shower--caspa",
+      "type": "project",
+      "name": "Louder VIP / Power Shower",
+      "artist": "Caspa",
+      "mbid": "00a9c83a-dc15-4d34-bcc5-6bbacfa3709f",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-takeover-marmite--caspa",
+      "type": "project",
+      "name": "The Takeover / Marmite",
+      "artist": "Caspa",
+      "mbid": "e6d8b1fd-31c9-4c1d-85cd-37956065d9b0",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ave-it-volume-2--caspa",
+      "type": "project",
+      "name": "Ave It: Volume 2",
+      "artist": "Caspa",
+      "mbid": "83fbdfca-1dd0-39fa-96d8-c9508dd9e100",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:bread-get-bun-king-george--caspa",
+      "type": "project",
+      "name": "Bread Get Bun / King George",
+      "artist": "Caspa",
+      "mbid": "cb080495-29be-3259-ab8d-046dbefbb69e",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:floor-dem-my-pet-monster--caspa",
+      "type": "project",
+      "name": "Floor Dem / My Pet Monster",
+      "artist": "Caspa",
+      "mbid": "381344fe-5bda-3f86-a25e-995f3c97aa00",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ave-it-volume-1--caspa",
+      "type": "project",
+      "name": "Ave It: Volume 1",
+      "artist": "Caspa",
+      "mbid": "4971d719-1d79-3130-b91e-70c19c4cfaf6",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:louder-noise-disorganiser--caspa",
+      "type": "project",
+      "name": "Louder / Noise Disorganiser",
+      "artist": "Caspa",
+      "mbid": "391da5c3-d647-3f78-922c-ffac8e24dad4",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cockney-violin-dub-warz--caspa",
+      "type": "project",
+      "name": "Cockney Violin / Dub Warz",
+      "artist": "Caspa",
+      "mbid": "110026ef-9330-30a1-94b3-9b5367a64035",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:for-the-kids-ep--caspa",
+      "type": "project",
+      "name": "For the Kids EP",
+      "artist": "Caspa",
+      "mbid": "7f1dc5cc-212e-3e75-919b-af666d2a1aec",
+      "year": "2006",
+      "releaseType": "ep"
     },
     {
       "slug": "project:fabriclive-37--caspa",

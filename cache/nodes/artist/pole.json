@@ -75,30 +75,162 @@
   ],
   "discography": [
     {
-      "slug": "project:1",
+      "slug": "project:tempus--pole",
       "type": "project",
-      "name": "1"
+      "name": "Tempus",
+      "artist": "Pole",
+      "mbid": "3516cc0b-f38e-421a-977e-9b1e50c9e29c",
+      "year": "2022",
+      "releaseType": "album"
     },
     {
-      "slug": "project:2",
+      "slug": "project:tanzboden--pole",
       "type": "project",
-      "name": "2"
-    },
-    {
-      "slug": "project:3",
-      "type": "project",
-      "name": "3"
+      "name": "Tanzboden",
+      "artist": "Pole",
+      "mbid": "d1cfbf3b-f641-4c8b-9e0b-a754b161a069",
+      "year": "2021",
+      "releaseType": "single"
     },
     {
       "slug": "project:fading",
       "type": "project",
-      "name": "Fading"
+      "name": "Fading",
+      "mbid": "5e46cfd8-4fa7-4a0f-9183-40c6742f2394",
+      "year": "2020",
+      "releaseType": "album"
     },
     {
-      "slug": "project:tempus--pole",
+      "slug": "project:wald--pole",
       "type": "project",
-      "name": "Tempus",
-      "artist": "Pole"
+      "name": "Wald",
+      "artist": "Pole",
+      "mbid": "b267108e-b8d8-4dcd-919e-b6b2d236d7ce",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:waldgeschichten--pole",
+      "type": "project",
+      "name": "Waldgeschichten",
+      "artist": "Pole",
+      "mbid": "4c4e1f22-d4c7-465f-846c-4bcb0d68d909",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:waldgeschichten-2--pole",
+      "type": "project",
+      "name": "Waldgeschichten 2",
+      "artist": "Pole",
+      "mbid": "aff18b03-53d5-49a6-8d00-954441d0d61e",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-road-loose-and-blowsy-plumage--pole",
+      "type": "project",
+      "name": "The Road / Loose and Blowsy Plumage",
+      "artist": "Pole",
+      "mbid": "0b1ec4e7-ec90-49aa-832b-a0e4c188fb63",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:alles-gute--pole",
+      "type": "project",
+      "name": "Alles Gute",
+      "artist": "Pole",
+      "mbid": "48786602-aa04-39da-b8d3-bc6011cb0868",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:steingarten--pole",
+      "type": "project",
+      "name": "Steingarten",
+      "artist": "Pole",
+      "mbid": "d420af1c-4504-3e4d-bcef-90156e595b9b",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:45-45--pole",
+      "type": "project",
+      "name": "45/45",
+      "artist": "Pole",
+      "mbid": "e01b8e2e-6b73-3d64-8cd5-51975c35e1be",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:90-90--pole",
+      "type": "project",
+      "name": "90/90",
+      "artist": "Pole",
+      "mbid": "78df0c62-3750-30c1-b2b6-94edddc9aa2e",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pole--pole",
+      "type": "project",
+      "name": "Pole",
+      "artist": "Pole",
+      "mbid": "63cfe113-e3bb-31b1-a54a-52a6844c9f7d",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:showcase--pole",
+      "type": "project",
+      "name": "Showcase",
+      "artist": "Pole",
+      "mbid": "56d392f6-2b75-3817-b7c5-38036989e252",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:r--pole",
+      "type": "project",
+      "name": "R",
+      "artist": "Pole",
+      "mbid": "0c2756d5-de16-3866-af0f-d7c0b62f3ed7",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:3",
+      "type": "project",
+      "name": "3",
+      "mbid": "0b840e6c-23e8-35af-8f37-78467141dbfe",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:2",
+      "type": "project",
+      "name": "2",
+      "mbid": "b4b76973-bf2b-39dc-9166-9e210976337c",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:1",
+      "type": "project",
+      "name": "1",
+      "mbid": "26f5bc04-190e-39f7-95e0-c1263d128ee1",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:raum-eins-raum-zwei--pole",
+      "type": "project",
+      "name": "Raum Eins / Raum Zwei",
+      "artist": "Pole",
+      "mbid": "8d759a37-71c4-30fe-ae50-de1a05e63987",
+      "year": "1998",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

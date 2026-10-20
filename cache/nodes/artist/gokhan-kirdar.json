@@ -53,24 +53,132 @@
   ],
   "discography": [
     {
-      "slug": "project:vagabond-floating-mine",
-      "type": "project",
-      "name": "Vagabond Floating Mine"
-    },
-    {
-      "slug": "project:trip",
-      "type": "project",
-      "name": "Trip"
-    },
-    {
       "slug": "project:dem-i-oz",
       "type": "project",
-      "name": "Dem i Oz"
+      "name": "Dem i Oz",
+      "mbid": "acc52a7c-e38f-4673-8df7-c20fffcac937",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dayan-kalbim-rmx--gokhan-kirdar",
+      "type": "project",
+      "name": "Dayan Kalbim (RMX)",
+      "artist": "Gökhan Kırdar",
+      "mbid": "3077deaf-5ac1-4114-885e-8f5a3d4533bb",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kurtlar-vadisi-vol-3--gokhan-kirdar",
+      "type": "project",
+      "name": "Kurtlar Vadisi Vol.3",
+      "artist": "Gökhan Kırdar",
+      "mbid": "0a35d5d8-f074-489a-9bc8-9acd62baf5c4",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kurtlar-vadisi-irak--gokhan-kirdar",
+      "type": "project",
+      "name": "Kurtlar Vadisi Irak",
+      "artist": "Gökhan Kırdar",
+      "mbid": "99bb12f8-6590-35b4-812f-08c4e60709a7",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yagmur--gokhan-kirdar",
+      "type": "project",
+      "name": "Yağmur",
+      "artist": "Gökhan Kırdar",
+      "mbid": "625f0ed4-59e5-3c13-bb9d-b26ce132a630",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yagmur-duasi--gokhan-kirdar",
+      "type": "project",
+      "name": "Yağmur Duası",
+      "artist": "Gökhan Kırdar",
+      "mbid": "f099e38c-40fa-393d-94bd-12f1855f6bb0",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ustume-basip-gecme--gokhan-kirdar",
+      "type": "project",
+      "name": "Üstüme Basıp Geçme",
+      "artist": "Gökhan Kırdar",
+      "mbid": "ec837a49-432f-3878-9dc7-8c3848a75e03",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:keyf-pleasure--gokhan-kirdar",
+      "type": "project",
+      "name": "Keyf (Pleasure)",
+      "artist": "Gökhan Kırdar",
+      "mbid": "4965751b-7a79-3c2e-bedb-b1e5ff75368d",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kurtlar-vadisi--gokhan-kirdar",
+      "type": "project",
+      "name": "Kurtlar Vadisi",
+      "artist": "Gökhan Kırdar",
+      "mbid": "0271bb56-c3c1-3127-a9e2-e039ee3eaeb1",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kurtlar-vadisi-volume-2--gokhan-kirdar",
+      "type": "project",
+      "name": "Kurtlar Vadisi, Volume 2",
+      "artist": "Gökhan Kırdar",
+      "mbid": "4fd93107-fa1c-3641-ae13-b5485caeea73",
+      "year": "2004",
+      "releaseType": "album"
     },
     {
       "slug": "project:ethnotronix",
       "type": "project",
-      "name": "Ethnotronix"
+      "name": "Ethnotronix",
+      "mbid": "59c5c9f4-94d3-379e-9607-1a7d5d615031",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trip",
+      "type": "project",
+      "name": "Trip",
+      "mbid": "b7306951-5465-39c5-ba85-3822b4cf1c2a",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tutunamadim--gokhan-kirdar",
+      "type": "project",
+      "name": "Tutunamadım",
+      "artist": "Gökhan Kırdar",
+      "mbid": "64e2c76d-0fa8-4d1a-b9cf-0a17c6f90a49",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:serseri-mayin--gokhan-kirdar",
+      "type": "project",
+      "name": "Serseri Mayın",
+      "artist": "Gökhan Kırdar",
+      "mbid": "7c58424f-f08c-40cb-9863-cfcc90f6c356",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vagabond-floating-mine",
+      "type": "project",
+      "name": "Vagabond Floating Mine"
     }
   ],
   "notable_tracks": [

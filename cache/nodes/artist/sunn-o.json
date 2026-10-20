@@ -40,19 +40,136 @@
   ],
   "discography": [
     {
+      "slug": "project:glory-black--sunn-o",
+      "type": "project",
+      "name": "Glory Black",
+      "artist": "Sunn O)))",
+      "mbid": "ac94ccaa-dd60-427a-982e-917915eb851c",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sunn-o--sunn-o",
+      "type": "project",
+      "name": "Sunn O)))",
+      "artist": "Sunn O)))",
+      "mbid": "fffd5646-c427-4ce5-a94e-671ae766e7fd",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:eternity-s-pillars-b-w-raise-the-chalice-and-reverential--sunn-o",
+      "type": "project",
+      "name": "Eternity’s Pillars b/w Raise the Chalice & Reverential",
+      "artist": "Sunn O)))",
+      "mbid": "7cbb8899-6381-4dac-8e79-b9b2699708be",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:life-metal--sunn-o",
+      "type": "project",
+      "name": "Life Metal",
+      "artist": "Sunn O)))",
+      "mbid": "e481b7eb-39c1-4db2-a1e8-e338e0d565b5",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pyroclasts--sunn-o",
+      "type": "project",
+      "name": "Pyroclasts",
+      "artist": "Sunn O)))",
+      "mbid": "b00cded6-7978-4550-8048-2b3f7d806c7c",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kannon--sunn-o",
+      "type": "project",
+      "name": "Kannon",
+      "artist": "Sunn O)))",
+      "mbid": "ba17fe26-c228-4bba-a756-502e07cac1bc",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:terrestrials--sunn-o",
+      "type": "project",
+      "name": "Terrestrials",
+      "artist": "Sunn O)))",
+      "mbid": "1d69f53c-0960-494d-8e0c-6b95ec83ebf1",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:monoliths-and-dimensions--sunn-o",
       "type": "project",
-      "name": "Monoliths & Dimensions"
+      "name": "Monoliths & Dimensions",
+      "mbid": "2c33e8a0-b2be-3224-8748-92e1d8ea948e",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:altar--sunn-o",
+      "type": "project",
+      "name": "Altar",
+      "artist": "Sunn O)))",
+      "mbid": "5abf53a8-dee9-300b-900d-5572d6aca1c9",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:angel-coma--sunn-o",
+      "type": "project",
+      "name": "Angel Coma",
+      "artist": "Sunn O)))",
+      "mbid": "69adc9da-c8a9-3317-a943-c0eec536b2f6",
+      "year": "2006",
+      "releaseType": "ep"
     },
     {
       "slug": "project:black-one",
       "type": "project",
-      "name": "Black One"
+      "name": "Black One",
+      "mbid": "5cf7cf40-d44c-3393-923e-ad399170d76d",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:white2--sunn-o",
+      "type": "project",
+      "name": "White2",
+      "artist": "Sunn O)))",
+      "mbid": "9da53d52-9eb5-3c51-9062-01ea2a43e050",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:white1--sunn-o",
+      "type": "project",
+      "name": "White1",
+      "artist": "Sunn O)))",
+      "mbid": "8efb1674-ada0-3c3c-940f-8e7344842848",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:3-flight-of-the-behemoth--sunn-o",
+      "type": "project",
+      "name": "3:Flight of the Behemoth",
+      "artist": "Sunn O)))",
+      "mbid": "873e07fd-b2b5-331d-99af-5269d6a7b8dd",
+      "year": "2002",
+      "releaseType": "album"
     },
     {
       "slug": "project:oo-void--sunn-o",
       "type": "project",
-      "name": "ØØ Void"
+      "name": "ØØ Void",
+      "mbid": "acd8cbf0-b441-37e5-9f25-649ecf3ee0f9",
+      "year": "2000",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

@@ -58,6 +58,15 @@
   ],
   "discography": [
     {
+      "slug": "project:reunion-mixtape--digable-planets",
+      "type": "project",
+      "name": "Reunion Mixtape",
+      "artist": "Digable Planets",
+      "mbid": "e7cc5fb2-d89a-4f66-bc46-e8b59c7fdb5a",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:dial-7",
       "type": "project",
       "name": "Dial 7",
@@ -66,12 +75,12 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:blowout-comb",
+      "slug": "project:9th-wonder",
       "type": "project",
-      "name": "Blowout Comb",
-      "mbid": "ee79e536-de20-3af0-9ae8-b529503a8c3e",
+      "name": "9th Wonder",
+      "mbid": "87c3d254-d2f2-396a-89fd-aeb4bc933692",
       "year": "1994",
-      "releaseType": "album"
+      "releaseType": "single"
     },
     {
       "slug": "project:9th-wonder",
@@ -82,12 +91,12 @@
       "releaseType": "ep"
     },
     {
-      "slug": "project:9th-wonder",
+      "slug": "project:blowout-comb",
       "type": "project",
-      "name": "9th Wonder",
-      "mbid": "87c3d254-d2f2-396a-89fd-aeb4bc933692",
+      "name": "Blowout Comb",
+      "mbid": "ee79e536-de20-3af0-9ae8-b529503a8c3e",
       "year": "1994",
-      "releaseType": "single"
+      "releaseType": "album"
     },
     {
       "slug": "project:reachin",

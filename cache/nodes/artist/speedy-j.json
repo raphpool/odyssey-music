@@ -67,6 +67,357 @@
   ],
   "discography": [
     {
+      "slug": "project:808-100-10--speedy-j",
+      "type": "project",
+      "name": "808 100 10",
+      "artist": "Speedy J",
+      "mbid": "9b07ecfd-53e4-4cd2-bcca-a3540f150ec3",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:808-180-30--speedy-j",
+      "type": "project",
+      "name": "808 180 30",
+      "artist": "Speedy J",
+      "mbid": "246e96cf-4151-4b5f-bee1-0f7035290de0",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pedestrian-sketches--speedy-j",
+      "type": "project",
+      "name": "Pedestrian Sketches",
+      "artist": "Speedy J",
+      "mbid": "6f884c1d-3f31-4cf2-b8c7-4397744e07ac",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stoor-1--speedy-j",
+      "type": "project",
+      "name": "STOOR 1",
+      "artist": "Speedy J",
+      "mbid": "a769b520-6509-430f-942d-71ff37026219",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stoor-2--speedy-j",
+      "type": "project",
+      "name": "STOOR 2",
+      "artist": "Speedy J",
+      "mbid": "b479b691-b4bb-4583-9f11-c28a66b93b24",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stoor-soundchecks-1--speedy-j",
+      "type": "project",
+      "name": "STOOR Soundchecks 1",
+      "artist": "Speedy J",
+      "mbid": "8133816e-fbdc-41cc-8622-ceb09783191f",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stoor-soundchecks-2--speedy-j",
+      "type": "project",
+      "name": "STOOR Soundchecks 2",
+      "artist": "Speedy J",
+      "mbid": "4e0e9d7b-037f-4615-9337-24b27f567015",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:transparent--speedy-j",
+      "type": "project",
+      "name": "Transparent",
+      "artist": "Speedy J",
+      "mbid": "091cffdb-4d76-4f16-87f6-62c560f22bda",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:walkman--speedy-j",
+      "type": "project",
+      "name": "Walkman",
+      "artist": "Speedy J",
+      "mbid": "7ab91954-b5fc-4821-9c9c-fe5ac3608a11",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shoegaze--speedy-j",
+      "type": "project",
+      "name": "Shoegaze",
+      "artist": "Speedy J",
+      "mbid": "dcff62af-d768-4525-92c6-6d8e71f6e57a",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:armstrong-pumpkin--speedy-j",
+      "type": "project",
+      "name": "Armstrong / Pumpkin",
+      "artist": "Speedy J",
+      "mbid": "88221e0f-7b63-4ee5-bb28-bee778ca32ca",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trails-ep--speedy-j",
+      "type": "project",
+      "name": "Trails EP",
+      "artist": "Speedy J",
+      "mbid": "dfc24576-8379-4663-9646-18000c7e9f14",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:edlx--speedy-j",
+      "type": "project",
+      "name": "EDLX",
+      "artist": "Speedy J",
+      "mbid": "7f3dbf05-0b51-4c15-962c-60abf07002a8",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sculpture--speedy-j",
+      "type": "project",
+      "name": "Sculpture",
+      "artist": "Speedy J",
+      "mbid": "e8465110-0664-456b-bb31-3d9884832702",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:red-shift--speedy-j",
+      "type": "project",
+      "name": "Red Shift",
+      "artist": "Speedy J",
+      "mbid": "ed4d4099-5b5f-47ee-a356-d154588dfd7f",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:collabs-401--speedy-j",
+      "type": "project",
+      "name": "Collabs 401",
+      "artist": "Speedy J",
+      "mbid": "bfde2c48-0ef5-3544-abba-b3ff602bcdf7",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:collabs-3000-metalism--speedy-j",
+      "type": "project",
+      "name": "Collabs 3000: Metalism",
+      "artist": "Speedy J",
+      "mbid": "fd10aebc-0078-37f1-ad6e-e0c32f4acd3a",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:collabs-301--speedy-j",
+      "type": "project",
+      "name": "Collabs 301",
+      "artist": "Speedy J",
+      "mbid": "317bd785-c17c-30bc-912a-a70481db3fbc",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:collabs-400--speedy-j",
+      "type": "project",
+      "name": "Collabs 400",
+      "artist": "Speedy J",
+      "mbid": "fd4918d0-a7d1-3626-b057-44fa1f58f971",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:collabs-200--speedy-j",
+      "type": "project",
+      "name": "Collabs 200",
+      "artist": "Speedy J",
+      "mbid": "6d0b6975-8d57-3a94-9e9f-02cb5349c94a",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:collabs-300--speedy-j",
+      "type": "project",
+      "name": "Collabs 300",
+      "artist": "Speedy J",
+      "mbid": "075803ad-b6b4-3f22-9c5f-d62046997f05",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:collabs-100--speedy-j",
+      "type": "project",
+      "name": "Collabs 100",
+      "artist": "Speedy J",
+      "mbid": "c36174dd-4cb5-3ee0-bdc6-b1c8dea316ad",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tanga--speedy-j",
+      "type": "project",
+      "name": "Tanga",
+      "artist": "Speedy J",
+      "mbid": "95bce564-3529-30f4-a41b-e973d28f581d",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bugmod--speedy-j",
+      "type": "project",
+      "name": "Bugmod",
+      "artist": "Speedy J",
+      "mbid": "3b707477-3c8a-4e1e-8532-d654e24aa6d0",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:loudboxer--speedy-j",
+      "type": "project",
+      "name": "Loudboxer",
+      "artist": "Speedy J",
+      "mbid": "b7fb0ff2-c82d-3854-8f40-6151d788f234",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:krekc--speedy-j",
+      "type": "project",
+      "name": "Krekc",
+      "artist": "Speedy J",
+      "mbid": "feac8200-1fea-38a3-8852-ef6a3ab1856d",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:a-shocking-hobby--speedy-j",
+      "type": "project",
+      "name": "A Shocking Hobby",
+      "artist": "Speedy J",
+      "mbid": "98eab861-b8ec-33b9-a4af-09651465199f",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ieee-mitten-menu--speedy-j",
+      "type": "project",
+      "name": "IEEE Mitten Menu",
+      "artist": "Speedy J",
+      "mbid": "9e2a6466-0aeb-3976-96fa-30e17a87e700",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ni-go-snix--speedy-j",
+      "type": "project",
+      "name": "Ni Go Snix",
+      "artist": "Speedy J",
+      "mbid": "c2fb0489-91c5-3c85-a05d-f3c89cfb62fc",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:public-energy-no-1--speedy-j",
+      "type": "project",
+      "name": "Public Energy No.1",
+      "artist": "Speedy J",
+      "mbid": "cc52435e-efc7-3d4c-93d0-7a8b6f05525c",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:g-spot--speedy-j",
+      "type": "project",
+      "name": "G Spot.",
+      "artist": "Speedy J",
+      "mbid": "88d68733-20c1-3518-9d0d-dfab72a8498a",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beam-me-up-pepper-live-94--speedy-j",
+      "type": "project",
+      "name": "Beam Me Up! / Pepper / Live '94",
+      "artist": "Speedy J",
+      "mbid": "a60bcf3e-a5e9-44b2-956a-2f6f2065ecb7",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pepper--speedy-j",
+      "type": "project",
+      "name": "Pepper",
+      "artist": "Speedy J",
+      "mbid": "feaf263b-4193-3a0f-bea9-1dadad97dd84",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ginger--speedy-j",
+      "type": "project",
+      "name": "Ginger",
+      "artist": "Speedy J",
+      "mbid": "b9af0a7c-ad41-33f9-ae9f-98a72c50237d",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:face-the-future-ep--speedy-j",
+      "type": "project",
+      "name": "Face the Future EP",
+      "artist": "Speedy J",
+      "mbid": "77376550-3474-4aca-a48a-8473d48970db",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:evolution--speedy-j",
+      "type": "project",
+      "name": "Evolution",
+      "artist": "Speedy J",
+      "mbid": "216a7f73-c226-4d7a-a3e1-9bb5683083e1",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pullover--speedy-j",
+      "type": "project",
+      "name": "Pullover",
+      "artist": "Speedy J",
+      "mbid": "89b1965d-7c32-35b6-a15d-89c4b20ae778",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rise--speedy-j",
+      "type": "project",
+      "name": "Rise",
+      "artist": "Speedy J",
+      "mbid": "353ce328-8e41-3696-8a7b-6c809c4afb9e",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:intercontinental--speedy-j",
+      "type": "project",
+      "name": "Intercontinental",
+      "artist": "Speedy J",
+      "mbid": "ef35155f-24b6-3626-89a4-1804aa6cf49d",
+      "year": "1990",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:artificial-intelligence",
       "type": "project",
       "name": "Artificial Intelligence",

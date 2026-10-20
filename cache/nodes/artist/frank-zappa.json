@@ -67,24 +67,285 @@
   ],
   "discography": [
     {
-      "slug": "project:freak-out",
+      "slug": "project:ruth-is-sleeping--frank-zappa",
       "type": "project",
-      "name": "Freak Out!"
+      "name": "Ruth Is Sleeping",
+      "artist": "Frank Zappa",
+      "mbid": "bb58dc69-6d23-4f34-8f80-eeb2fe73dc0a",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:hot-rats",
+      "slug": "project:dance-me-this--frank-zappa",
       "type": "project",
-      "name": "Hot Rats"
+      "name": "Dance Me This",
+      "artist": "Frank Zappa",
+      "mbid": "09ec3aaf-3139-4561-9e8f-f1c361ceb787",
+      "year": "2015",
+      "releaseType": "album"
     },
     {
-      "slug": "project:apostrophe",
+      "slug": "project:lather--frank-zappa",
       "type": "project",
-      "name": "Apostrophe (')"
+      "name": "Läther",
+      "artist": "Frank Zappa",
+      "mbid": "4ef59d1b-3331-3e80-9728-7fef9c11f631",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:civilization-phaze-iii--frank-zappa",
+      "type": "project",
+      "name": "Civilization Phaze III",
+      "artist": "Frank Zappa",
+      "mbid": "635f42a9-cea7-34c0-b625-6fd0db27141c",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bobby-brown--frank-zappa",
+      "type": "project",
+      "name": "Bobby Brown",
+      "artist": "Frank Zappa",
+      "mbid": "e60ea116-1f4c-3f84-9a72-f13a885ce913",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:peaches-en-regalia--frank-zappa",
+      "type": "project",
+      "name": "Peaches en Regalia",
+      "artist": "Frank Zappa",
+      "mbid": "65df0628-b7fc-361b-bf7d-bfcfecb9bef6",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jazz-from-hell--frank-zappa",
+      "type": "project",
+      "name": "Jazz From Hell",
+      "artist": "Frank Zappa",
+      "mbid": "db261fa2-7a8e-36e5-b94e-4075c6c09944",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:boulez-conducts-zappa-the-perfect-stranger--frank-zappa",
+      "type": "project",
+      "name": "Boulez Conducts Zappa: The Perfect Stranger",
+      "artist": "Frank Zappa",
+      "mbid": "4d19659e-77cf-3071-a4da-7d9cffba5542",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:them-or-us--frank-zappa",
+      "type": "project",
+      "name": "Them or Us",
+      "artist": "Frank Zappa",
+      "mbid": "4c8269c2-2772-311c-bda5-533d5117f8b3",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:thing-fish--frank-zappa",
+      "type": "project",
+      "name": "Thing‐Fish",
+      "artist": "Frank Zappa",
+      "mbid": "f3feabe3-2114-3cd8-af00-973003f6b4fb",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-man-from-utopia--frank-zappa",
+      "type": "project",
+      "name": "The Man From Utopia",
+      "artist": "Frank Zappa",
+      "mbid": "336be18a-4132-3954-9aa3-c722a3e292ce",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ship-arriving-too-late-to-save-a-drowning-witch--frank-zappa",
+      "type": "project",
+      "name": "Ship Arriving Too Late to Save a Drowning Witch",
+      "artist": "Frank Zappa",
+      "mbid": "a3b48199-6534-31fe-ac94-0b739221d323",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:valley-girl--frank-zappa",
+      "type": "project",
+      "name": "Valley Girl",
+      "artist": "Frank Zappa",
+      "mbid": "a69a20c0-f31d-3040-8713-ade150cd7422",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:return-of-the-son-of-shut-up-n-play-yer-guitar--frank-zappa",
+      "type": "project",
+      "name": "Return of the Son of Shut Up ’n Play Yer Guitar",
+      "artist": "Frank Zappa",
+      "mbid": "f721c8fc-786b-483c-84c9-11b6069a40df",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shut-up-n-play-yer-guitar--frank-zappa",
+      "type": "project",
+      "name": "Shut Up ’n Play Yer Guitar",
+      "artist": "Frank Zappa",
+      "mbid": "bfcb35a9-f8c6-3f75-8f53-05943522bf09",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shut-up-n-play-yer-guitar-some-more--frank-zappa",
+      "type": "project",
+      "name": "Shut Up ’n Play Yer Guitar Some More",
+      "artist": "Frank Zappa",
+      "mbid": "85654ae9-b4ed-4090-84a8-e79fdd0eb3af",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-are-what-you-is--frank-zappa",
+      "type": "project",
+      "name": "You Are What You Is",
+      "artist": "Frank Zappa",
+      "mbid": "5cb84f98-6e5b-32bd-bbba-d176ba313092",
+      "year": "1981",
+      "releaseType": "album"
     },
     {
       "slug": "project:joe-s-garage",
       "type": "project",
-      "name": "Joe's Garage"
+      "name": "Joe's Garage",
+      "mbid": "48767842-216a-43a8-8d3f-ce30e91fe139",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:joe-s-garage-act-i--frank-zappa",
+      "type": "project",
+      "name": "Joe’s Garage: Act I",
+      "artist": "Frank Zappa",
+      "mbid": "2cd0a4d2-ec35-35dd-bcae-8310a6fff168",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:joe-s-garage-acts-ii-and-iii--frank-zappa",
+      "type": "project",
+      "name": "Joe’s Garage: Acts II & III",
+      "artist": "Frank Zappa",
+      "mbid": "45ef148d-d8da-3312-8f5e-1386347c85a9",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sheik-yerbouti--frank-zappa",
+      "type": "project",
+      "name": "Sheik Yerbouti",
+      "artist": "Frank Zappa",
+      "mbid": "c2980035-5ee5-30ff-9fbc-657255fbe4fd",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sleep-dirt--frank-zappa",
+      "type": "project",
+      "name": "Sleep Dirt",
+      "artist": "Frank Zappa",
+      "mbid": "816f8907-55f7-36b9-8a66-e83ef7d8613d",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:studio-tan--frank-zappa",
+      "type": "project",
+      "name": "Studio Tan",
+      "artist": "Frank Zappa",
+      "mbid": "abe24cf4-884e-389b-8a1b-cbbad4a09e52",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:zoot-allures--frank-zappa",
+      "type": "project",
+      "name": "Zoot Allures",
+      "artist": "Frank Zappa",
+      "mbid": "eb479aeb-0a29-3ea0-a218-9e780841fc6a",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-size-fits-all--frank-zappa",
+      "type": "project",
+      "name": "One Size Fits All",
+      "artist": "Frank Zappa",
+      "mbid": "19b7d4eb-0fe2-318f-a1f5-242a2e731b4b",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:apostrophe",
+      "type": "project",
+      "name": "Apostrophe (')",
+      "mbid": "2f3aa511-3270-3bb0-9661-0a7ed7e04be0",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:waka-jawaka--frank-zappa",
+      "type": "project",
+      "name": "Waka/Jawaka",
+      "artist": "Frank Zappa",
+      "mbid": "bd5b70bd-8002-38ed-9f53-c0103aa16da2",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:200-motels--frank-zappa",
+      "type": "project",
+      "name": "200 Motels",
+      "artist": "Frank Zappa",
+      "mbid": "d4aa1daa-3398-36c1-9e2f-675faf9c01b0",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chunga-s-revenge--frank-zappa",
+      "type": "project",
+      "name": "Chunga’s Revenge",
+      "artist": "Frank Zappa",
+      "mbid": "9aae3927-b128-316a-9bf4-1995991c79ec",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hot-rats",
+      "type": "project",
+      "name": "Hot Rats",
+      "mbid": "3f974fbd-9db8-3dff-9466-b9ae6fd9146c",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lumpy-gravy--frank-zappa",
+      "type": "project",
+      "name": "Lumpy Gravy",
+      "artist": "Frank Zappa",
+      "mbid": "cbb91270-b1cd-4a7b-ace0-b2eff5f3c918",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:freak-out",
+      "type": "project",
+      "name": "Freak Out!"
     }
   ],
   "notable_tracks": [

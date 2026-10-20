@@ -60,39 +60,132 @@
   ],
   "discography": [
     {
-      "slug": "project:69-love-songs",
+      "slug": "project:quickies",
       "type": "project",
-      "name": "69 Love Songs"
-    },
-    {
-      "slug": "project:i",
-      "type": "project",
-      "name": "i"
-    },
-    {
-      "slug": "project:distortion",
-      "type": "project",
-      "name": "Distortion"
-    },
-    {
-      "slug": "project:realism",
-      "type": "project",
-      "name": "Realism"
-    },
-    {
-      "slug": "project:love-at-the-bottom-of-the-sea",
-      "type": "project",
-      "name": "Love at the Bottom of the Sea"
+      "name": "Quickies",
+      "mbid": "2cb91562-aebc-4ed4-8709-ab45dcbff3c0",
+      "year": "2020",
+      "releaseType": "album"
     },
     {
       "slug": "project:50-song-memoir",
       "type": "project",
-      "name": "50 Song Memoir"
+      "name": "50 Song Memoir",
+      "mbid": "340817fa-49d5-4afb-b947-db4a9e7c9703",
+      "year": "2017",
+      "releaseType": "album"
     },
     {
-      "slug": "project:quickies",
+      "slug": "project:love-at-the-bottom-of-the-sea",
       "type": "project",
-      "name": "Quickies"
+      "name": "Love at the Bottom of the Sea",
+      "mbid": "4e7061e9-9e64-4b74-bcf6-ec2b5041f7bd",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:realism",
+      "type": "project",
+      "name": "Realism",
+      "mbid": "3047bb37-5e57-4d7f-adeb-9e6222f4d34a",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:distortion",
+      "type": "project",
+      "name": "Distortion",
+      "mbid": "269ad9e8-2efb-32fe-a367-f99feaf9ef4c",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i",
+      "type": "project",
+      "name": "i",
+      "mbid": "271793d4-2611-345a-a70d-1c755beeb912",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:69-love-songs",
+      "type": "project",
+      "name": "69 Love Songs",
+      "mbid": "5dfac852-1aed-35b2-93b6-e8f9c93fe521",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-don-t-believe-you--the-magnetic-fields",
+      "type": "project",
+      "name": "I Don’t Believe You",
+      "artist": "The Magnetic Fields",
+      "mbid": "d378993c-c4f7-333f-8253-ef829bf65be2",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:get-lost--the-magnetic-fields",
+      "type": "project",
+      "name": "Get Lost",
+      "artist": "The Magnetic Fields",
+      "mbid": "5912fc58-e625-3959-9ee1-ce359592a44f",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:holiday--the-magnetic-fields",
+      "type": "project",
+      "name": "Holiday",
+      "artist": "The Magnetic Fields",
+      "mbid": "44415c46-1f3d-3371-a756-c8d668958721",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-charm-of-the-highway-strip--the-magnetic-fields",
+      "type": "project",
+      "name": "The Charm of the Highway Strip",
+      "artist": "The Magnetic Fields",
+      "mbid": "a5db12b8-5db8-3d07-b224-b357bfd66b97",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-house-of-tomorrow--the-magnetic-fields",
+      "type": "project",
+      "name": "The House of Tomorrow",
+      "artist": "The Magnetic Fields",
+      "mbid": "959de67c-1714-3831-8986-914155a18456",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-wayward-bus--the-magnetic-fields",
+      "type": "project",
+      "name": "The Wayward Bus",
+      "artist": "The Magnetic Fields",
+      "mbid": "584cc60a-6b47-3dd4-95ee-c3cb3ecb53d8",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:100-000-fireflies--the-magnetic-fields",
+      "type": "project",
+      "name": "100,000 Fireflies",
+      "artist": "The Magnetic Fields",
+      "mbid": "914121c9-8440-4411-808e-be7ba6df8978",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:distant-plastic-trees--the-magnetic-fields",
+      "type": "project",
+      "name": "Distant Plastic Trees",
+      "artist": "The Magnetic Fields",
+      "mbid": "923c5fd8-1626-31c0-b022-ef4d2890b24f",
+      "year": "1991",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

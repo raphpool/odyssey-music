@@ -65,7 +65,269 @@
       "name": "Swamp81"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:bastard--joy-orbison",
+      "type": "project",
+      "name": "bastard",
+      "artist": "Joy Orbison",
+      "mbid": "b06285f2-bb58-486c-81cd-0e3314b2dcc7",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:play-it-again--joy-orbison",
+      "type": "project",
+      "name": "play it again",
+      "artist": "Joy Orbison",
+      "mbid": "b226b972-643f-4fe0-9afe-e5a96ebee279",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:flight-fm--joy-orbison",
+      "type": "project",
+      "name": "flight fm",
+      "artist": "Joy Orbison",
+      "mbid": "6388bdb1-48d3-43bf-af5c-c18c069d8e3e",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:2m3-2u--joy-orbison",
+      "type": "project",
+      "name": "2M3 2U",
+      "artist": "Joy Orbison",
+      "mbid": "c4dd92e3-20c4-453b-8a62-e5d2dc644f4a",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blind-date--joy-orbison",
+      "type": "project",
+      "name": "Blind Date",
+      "artist": "Joy Orbison",
+      "mbid": "e18645dc-5d67-4aa4-afd3-b55de88ec09d",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shiloh-s-revenge--joy-orbison",
+      "type": "project",
+      "name": "Shiloh's Revenge",
+      "artist": "Joy Orbison",
+      "mbid": "3ed5a690-f357-488b-bd16-671b4ecc2069",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pinky-ring-red-velve7--joy-orbison",
+      "type": "project",
+      "name": "pinky ring / red velve7",
+      "artist": "Joy Orbison",
+      "mbid": "7123f3ba-d1d7-4177-8ba3-f59ad6809e39",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:still-slipping-vol-1--joy-orbison",
+      "type": "project",
+      "name": "still slipping vol. 1",
+      "artist": "Joy Orbison",
+      "mbid": "f71ff930-da3d-4984-9a19-79afeba71355",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:50-locked-grooves--joy-orbison",
+      "type": "project",
+      "name": "50 Locked Grooves",
+      "artist": "Joy Orbison",
+      "mbid": "114aeab5-e640-476d-83e7-3acf0cc7de73",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bromley-still-moving--joy-orbison",
+      "type": "project",
+      "name": "Bromley / Still Moving",
+      "artist": "Joy Orbison",
+      "mbid": "6e73aa1a-861b-4c4d-87ae-2cfd793f8ef4",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:slipping--joy-orbison",
+      "type": "project",
+      "name": "Slipping",
+      "artist": "Joy Orbison",
+      "mbid": "ea6310f5-6d39-4cf1-aa82-6172e3fdbaf8",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:81b--joy-orbison",
+      "type": "project",
+      "name": "81b",
+      "artist": "Joy Orbison",
+      "mbid": "fbf73c39-0c5c-49c8-81e2-e4dc86299d25",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:transition-2-systems-align--joy-orbison",
+      "type": "project",
+      "name": "Transition 2 / Systems Align",
+      "artist": "Joy Orbison",
+      "mbid": "7be815c5-32db-4377-95f5-1b764ff906c7",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:off-season-fuerza--joy-orbison",
+      "type": "project",
+      "name": "Off Season / Fuerza",
+      "artist": "Joy Orbison",
+      "mbid": "64cfce41-79c7-4c2c-a32c-a6acb6065327",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:toss-portal--joy-orbison",
+      "type": "project",
+      "name": "Toss Portal",
+      "artist": "Joy Orbison",
+      "mbid": "31c60043-f523-4b35-ba77-09037384ee25",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:severed-seven-cc-more-moan--joy-orbison",
+      "type": "project",
+      "name": "Severed Seven / Cc / More Moan",
+      "artist": "Joy Orbison",
+      "mbid": "185d7cd0-c8dd-48b9-ae2b-ef998e3948ec",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tmtt--joy-orbison",
+      "type": "project",
+      "name": "TMTT",
+      "artist": "Joy Orbison",
+      "mbid": "1f854408-ccd9-4d54-be87-f2bbe71d88f2",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:more-maim-in-here--joy-orbison",
+      "type": "project",
+      "name": "More Maim / In Here",
+      "artist": "Joy Orbison",
+      "mbid": "5e2d8636-a620-4111-86de-09561927be95",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:donell--joy-orbison",
+      "type": "project",
+      "name": "Donell",
+      "artist": "Joy Orbison",
+      "mbid": "7f1c9b4a-bff4-4611-bdea-12c8d1c68100",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:think-and-change-plate-four--joy-orbison",
+      "type": "project",
+      "name": "Think And Change: Plate Four",
+      "artist": "Joy Orbison",
+      "mbid": "e1aacf1c-1cac-4ae5-8654-f5e8aff55746",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dun-dun-prone--joy-orbison",
+      "type": "project",
+      "name": "Dun Dun / Prone",
+      "artist": "Joy Orbison",
+      "mbid": "4394e443-d22a-478e-b329-50756d848fc3",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ellipsis--joy-orbison",
+      "type": "project",
+      "name": "Ellipsis",
+      "artist": "Joy Orbison",
+      "mbid": "55380245-f6c2-4cce-b2d2-45231711b36e",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:froth-mercy--joy-orbison",
+      "type": "project",
+      "name": "Froth / Mercy",
+      "artist": "Joy Orbison",
+      "mbid": "07be2a10-9542-47f9-84d3-4d83dfbcb015",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sicko-cell-knock-knock--joy-orbison",
+      "type": "project",
+      "name": "Sicko Cell / Knock Knock",
+      "artist": "Joy Orbison",
+      "mbid": "6e4d5f8e-3f64-4676-a75b-f2578135fe51",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wade-in-jels--joy-orbison",
+      "type": "project",
+      "name": "Wade In / Jels",
+      "artist": "Joy Orbison",
+      "mbid": "3a1dc84d-bbf7-413b-aaf0-c056c35c31b4",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bb-ladywell--joy-orbison",
+      "type": "project",
+      "name": "BB / Ladywell",
+      "artist": "Joy Orbison",
+      "mbid": "4df4b0dd-1ce8-41ea-aa38-8783143922eb",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-shrew-would-have-cushioned-the-blow-ep--joy-orbison",
+      "type": "project",
+      "name": "The Shrew Would Have Cushioned the Blow EP",
+      "artist": "Joy Orbison",
+      "mbid": "eb33976d-f188-4073-9a34-6ab1de8b16a8",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hyph-mngo--joy-orbison",
+      "type": "project",
+      "name": "Hyph Mngo",
+      "artist": "Joy Orbison",
+      "mbid": "13410dac-9e27-452f-8f0a-7045490f852d",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:j-doe-brkln-clln--joy-orbison",
+      "type": "project",
+      "name": "J.Doe / BRKLN CLLN",
+      "artist": "Joy Orbison",
+      "mbid": "0a3f80a7-e75b-46b6-a641-6e04ebc6db2c",
+      "year": "2009",
+      "releaseType": "single"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:hyph-mngo--joy-orbison",

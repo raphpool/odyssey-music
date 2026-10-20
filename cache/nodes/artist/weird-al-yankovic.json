@@ -45,14 +45,236 @@
   ],
   "discography": [
     {
-      "slug": "project:mandatory-fun--weird-al-yankovic",
+      "slug": "project:polkamania--weird-al-yankovic",
       "type": "project",
-      "name": "Mandatory Fun"
+      "name": "Polkamania!",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "71435d36-d596-484d-b3ae-06d3e45f710a",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:weird-the-al-yankovic-story-original-soundtrack--weird-al-yankovic",
+      "type": "project",
+      "name": "Weird: The Al Yankovic Story: Original Soundtrack",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "ee19b0d2-abec-4317-b81e-35d0686a35ed",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-hamilton-polka--weird-al-yankovic",
+      "type": "project",
+      "name": "The Hamilton Polka",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "ff7119ed-0406-433e-b0f4-dea7899d06c6",
+      "year": "2018",
+      "releaseType": "single"
     },
     {
       "slug": "project:squeeze-box-the-complete-works-of-weird-al-yankovic",
       "type": "project",
-      "name": "Squeeze Box: The Complete Works of “Weird Al” Yankovic"
+      "name": "Squeeze Box: The Complete Works of “Weird Al” Yankovic",
+      "mbid": "dd0e8286-aad6-499e-bf91-382d197d47bc",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mandatory-fun--weird-al-yankovic",
+      "type": "project",
+      "name": "Mandatory Fun",
+      "mbid": "958cacd0-22e9-4e74-8cc8-2a61acce9fbe",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:alpocalypse--weird-al-yankovic",
+      "type": "project",
+      "name": "Alpocalypse",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "2f1b3ee9-bd02-457e-85bf-ac18294b388f",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:don-t-download-this-song--weird-al-yankovic",
+      "type": "project",
+      "name": "Don't Download This Song",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "6ad3b972-f640-405e-9939-0e481a2b6b97",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:straight-outta-lynwood--weird-al-yankovic",
+      "type": "project",
+      "name": "Straight Outta Lynwood",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "2a5630e7-d492-3920-933a-1c3dfd695363",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-re-pitiful--weird-al-yankovic",
+      "type": "project",
+      "name": "You’re Pitiful",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "c178d557-8513-4c4a-8b20-65b93897673f",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:poodle-hat--weird-al-yankovic",
+      "type": "project",
+      "name": "Poodle Hat",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "b89956ff-8ad4-3a21-b8b8-c3c064530855",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:running-with-scissors--weird-al-yankovic",
+      "type": "project",
+      "name": "Running With Scissors",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "55357123-2ebf-3e03-9ee9-cc409f3a793c",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-saga-begins--weird-al-yankovic",
+      "type": "project",
+      "name": "The Saga Begins",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "0a115afc-5578-47ba-aa1a-66d8c0626522",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:amish-paradise--weird-al-yankovic",
+      "type": "project",
+      "name": "Amish Paradise",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "36c87fd6-31f2-34a8-8c1d-87ea09ca0758",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bad-hair-day--weird-al-yankovic",
+      "type": "project",
+      "name": "Bad Hair Day",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "95684193-58dc-3bec-8733-86c544116652",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gump--weird-al-yankovic",
+      "type": "project",
+      "name": "Gump",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "32e86f0f-c4f0-3c9b-abc2-2a2440fa24a9",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spy-hard--weird-al-yankovic",
+      "type": "project",
+      "name": "Spy Hard",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "36a90b71-736c-4d19-94e7-82c7cbc5ca5e",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:headline-news--weird-al-yankovic",
+      "type": "project",
+      "name": "Headline News",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "520b693f-1de2-37be-8bf8-4e32ada7fdb8",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:alapalooza--weird-al-yankovic",
+      "type": "project",
+      "name": "Alapalooza",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "81d69061-43e7-4459-a5ca-e1e819c325c9",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:off-the-deep-end--weird-al-yankovic",
+      "type": "project",
+      "name": "Off the Deep End",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "d080eee2-78ca-3ee4-80c9-95879c707739",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:uhf-original-motion-picture-soundtrack-and-other-stuff--weird-al-yankovic",
+      "type": "project",
+      "name": "UHF: Original Motion Picture Soundtrack and Other Stuff",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "22d45afa-7742-3b8b-a154-c102fe89495c",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:even-worse--weird-al-yankovic",
+      "type": "project",
+      "name": "Even Worse",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "3e0a237a-3b29-3414-a7fc-ce37a9109d4b",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:polka-party--weird-al-yankovic",
+      "type": "project",
+      "name": "Polka Party!",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "7aebe71d-428d-3e80-b882-ce0dc3b39140",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dare-to-be-stupid--weird-al-yankovic",
+      "type": "project",
+      "name": "Dare to Be Stupid",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "b8d5e27c-50bf-32ec-ae39-65cfd63b54df",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-3-d--weird-al-yankovic",
+      "type": "project",
+      "name": "In 3‐D",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "d164b1a6-c4f7-395a-9fca-5e34308ff46e",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:weird-al-yankovic--weird-al-yankovic",
+      "type": "project",
+      "name": "“Weird Al” Yankovic",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "a6f7f069-2e60-3964-b906-68813cb21b17",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:another-one-rides-the-bus--weird-al-yankovic",
+      "type": "project",
+      "name": "Another One Rides the Bus",
+      "artist": "\"Weird Al\" Yankovic",
+      "mbid": "a490c2d9-2ac2-4405-ba64-ee00d7257030",
+      "year": "1981",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

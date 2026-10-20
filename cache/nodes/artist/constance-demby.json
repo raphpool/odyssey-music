@@ -52,9 +52,120 @@
   ],
   "discography": [
     {
+      "slug": "project:novus-magnificat-through-the-stargate-30th-anniversary-edition--constance-demby",
+      "type": "project",
+      "name": "Novus Magnificat: Through the Stargate (30th Anniversary Edition)",
+      "artist": "Constance Demby",
+      "mbid": "a8b0e8ed-2a1a-4118-85e2-9e4036ba89ee",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ambrosial-waves-tidal-pools--constance-demby",
+      "type": "project",
+      "name": "Ambrosial Waves - Tidal Pools",
+      "artist": "Constance Demby",
+      "mbid": "744ccf94-4259-4138-bdc4-25f94cd6259c",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ambrosial-waves-healing-waters--constance-demby",
+      "type": "project",
+      "name": "Ambrosial Waves - Healing Waters",
+      "artist": "Constance Demby",
+      "mbid": "3dc22d3c-1e21-46db-be24-9bea7b20fb3a",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sunborne--constance-demby",
+      "type": "project",
+      "name": "Sunborne",
+      "artist": "Constance Demby",
+      "mbid": "8babdd1e-8e30-44e1-9bf8-e47a1fefc27f",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sonic-immersion--constance-demby",
+      "type": "project",
+      "name": "Sonic Immersion",
+      "artist": "Constance Demby",
+      "mbid": "cb467cdd-f541-44fe-ae08-9321ced44809",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:spirit-trance--constance-demby",
+      "type": "project",
+      "name": "Spirit Trance",
+      "artist": "Constance Demby",
+      "mbid": "bc861e2b-3f2a-36c0-b814-08e712bcab15",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sanctum-sanctuorum--constance-demby",
+      "type": "project",
+      "name": "Sanctum Sanctuorum",
+      "artist": "Constance Demby",
+      "mbid": "2b75c5a5-2669-311c-9a64-6a91e42a08dd",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:attunement-live-in-concert-12-99--constance-demby",
+      "type": "project",
+      "name": "Attunement: Live In Concert, 12/99",
+      "artist": "Constance Demby",
+      "mbid": "66300c89-ca6b-447e-b54d-6b9c92a7c087",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aeterna--constance-demby",
+      "type": "project",
+      "name": "Æterna",
+      "artist": "Constance Demby",
+      "mbid": "31d2f4d1-a70a-3eb7-8258-93e0067a48ac",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:set-free--constance-demby",
+      "type": "project",
+      "name": "Set Free",
+      "artist": "Constance Demby",
+      "mbid": "9790219c-324e-3d26-9f56-8be56c02e874",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:novus-magnificat-through-the-stargate--constance-demby",
+      "type": "project",
+      "name": "Novus Magnificat: Through the Stargate",
+      "artist": "Constance Demby",
+      "mbid": "e639d9ec-5509-313f-82ff-20ab572695da",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:skies-above-skies",
       "type": "project",
-      "name": "Skies Above Skies"
+      "name": "Skies Above Skies",
+      "mbid": "da64691d-3be5-36dc-b755-fc7d48a93b63",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sacred-space-music--constance-demby",
+      "type": "project",
+      "name": "Sacred Space Music",
+      "artist": "Constance Demby",
+      "mbid": "949ba4f4-ddee-38fa-bc83-8c0e37a64edc",
+      "year": "1982",
+      "releaseType": "album"
     },
     {
       "slug": "project:novus-magnificat--constance-demby",

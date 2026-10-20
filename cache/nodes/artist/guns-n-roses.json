@@ -55,24 +55,288 @@
   ],
   "discography": [
     {
-      "slug": "project:appetite-for-destruction--guns-n-roses",
+      "slug": "project:nothin-atlas--guns-n-roses",
       "type": "project",
-      "name": "Appetite for Destruction"
+      "name": "Nothin’ / Atlas = ナッシン/アトラス",
+      "artist": "Guns N' Roses",
+      "mbid": "0cdc0ba6-bdab-4a44-a3f1-41de0a621392",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:g-n-r-lies",
+      "slug": "project:atlas--guns-n-roses",
       "type": "project",
-      "name": "G N' R Lies"
+      "name": "Atlas",
+      "artist": "Guns N' Roses",
+      "mbid": "f23a346a-524b-4dc3-91b6-93bb1c50e700",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nothin--guns-n-roses",
+      "type": "project",
+      "name": "Nothin'",
+      "artist": "Guns N' Roses",
+      "mbid": "d5adb67f-d802-4bb1-9f7d-97a8dfd271f9",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hard-skool--guns-n-roses",
+      "type": "project",
+      "name": "Hard Skool",
+      "artist": "Guns N' Roses",
+      "mbid": "67ec877b-ff16-40c4-9ecb-c0830e555c91",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:absurd--guns-n-roses",
+      "type": "project",
+      "name": "Absurd",
+      "artist": "Guns N' Roses",
+      "mbid": "17afb774-f0c5-4789-b752-0be6483166f6",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shadow-of-your-love--guns-n-roses",
+      "type": "project",
+      "name": "Shadow of Your Love",
+      "artist": "Guns N' Roses",
+      "mbid": "c9f3d5df-9828-4e7d-89d2-cf18057be330",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:better--guns-n-roses",
+      "type": "project",
+      "name": "Better",
+      "artist": "Guns N' Roses",
+      "mbid": "08d5f457-e203-4ea2-b0f8-446b65ce5338",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chinese-democracy--guns-n-roses",
+      "type": "project",
+      "name": "Chinese Democracy",
+      "artist": "Guns N' Roses",
+      "mbid": "cdfb0664-26b5-3475-88f5-dd6ccd4d74ce",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sympathy-for-the-devil--guns-n-roses",
+      "type": "project",
+      "name": "Sympathy for the Devil",
+      "artist": "Guns N' Roses",
+      "mbid": "1df6dc34-e6e2-3bee-9616-535c58bd93e2",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ain-t-it-fun--guns-n-roses",
+      "type": "project",
+      "name": "Ain’t It Fun",
+      "artist": "Guns N' Roses",
+      "mbid": "bf3bc9c0-1e50-3728-a6e1-b2c963645591",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:estranged--guns-n-roses",
+      "type": "project",
+      "name": "Estranged",
+      "artist": "Guns N' Roses",
+      "mbid": "5cfc387b-e185-3632-a17b-e9bd70c1773e",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hair-of-the-dog--guns-n-roses",
+      "type": "project",
+      "name": "Hair of the Dog",
+      "artist": "Guns N' Roses",
+      "mbid": "48f24b2f-4b64-47a7-bece-6672ee82f7e2",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:since-i-don-t-have-you--guns-n-roses",
+      "type": "project",
+      "name": "Since I Don’t Have You",
+      "artist": "Guns N' Roses",
+      "mbid": "59de1426-28c7-3d9b-b997-eb9f69546ce3",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-spaghetti-incident--guns-n-roses",
+      "type": "project",
+      "name": "“The Spaghetti Incident?”",
+      "artist": "Guns N' Roses",
+      "mbid": "7ef05688-558a-36a6-97a8-ff4e6174aae6",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:14-years--guns-n-roses",
+      "type": "project",
+      "name": "14 Years",
+      "artist": "Guns N' Roses",
+      "mbid": "d1a3eb6c-1e59-4158-a056-76ab19b39938",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:civil-war--guns-n-roses",
+      "type": "project",
+      "name": "Civil War",
+      "artist": "Guns N' Roses",
+      "mbid": "211e991d-a3c1-4ba9-b1c5-14644c062e38",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:knockin-on-heaven-s-door--guns-n-roses",
+      "type": "project",
+      "name": "Knockin’ on Heaven’s Door",
+      "artist": "Guns N' Roses",
+      "mbid": "be685c9e-7d59-3018-9790-97885966ff6c",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:november-rain--guns-n-roses",
+      "type": "project",
+      "name": "November Rain",
+      "artist": "Guns N' Roses",
+      "mbid": "dd3165d5-0e84-37eb-9670-d9428ceeb89c",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:yesterdays--guns-n-roses",
+      "type": "project",
+      "name": "Yesterdays",
+      "artist": "Guns N' Roses",
+      "mbid": "e231f89d-c3a3-30f1-9595-86bbf69bfbb6",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-cry--guns-n-roses",
+      "type": "project",
+      "name": "Don’t Cry",
+      "artist": "Guns N' Roses",
+      "mbid": "700983f1-8262-37b4-a6ae-57ee6380049d",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:live-and-let-die--guns-n-roses",
+      "type": "project",
+      "name": "Live and Let Die",
+      "artist": "Guns N' Roses",
+      "mbid": "f57e3cd2-9e36-3767-a2eb-43251055d8fe",
+      "year": "1991",
+      "releaseType": "single"
     },
     {
       "slug": "project:use-your-illusion-i",
       "type": "project",
-      "name": "Use Your Illusion I"
+      "name": "Use Your Illusion I",
+      "mbid": "642b183a-3e59-3cb9-9187-aeeefa0d8818",
+      "year": "1991",
+      "releaseType": "album"
     },
     {
       "slug": "project:use-your-illusion-ii",
       "type": "project",
-      "name": "Use Your Illusion II"
+      "name": "Use Your Illusion II",
+      "mbid": "617c9f00-9488-3a70-a994-9de312541617",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-could-be-mine--guns-n-roses",
+      "type": "project",
+      "name": "You Could Be Mine",
+      "artist": "Guns N' Roses",
+      "mbid": "df40c214-d293-38ac-a65a-20b02091ddec",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nightrain--guns-n-roses",
+      "type": "project",
+      "name": "Nightrain",
+      "artist": "Guns N' Roses",
+      "mbid": "da526dc8-0239-3df0-baa4-c4401673c578",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:g-n-r-lies",
+      "type": "project",
+      "name": "G N' R Lies",
+      "mbid": "b1b42d92-bbd0-349d-b2f8-ee4e6ef1bd9c",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:patience--guns-n-roses",
+      "type": "project",
+      "name": "Patience",
+      "artist": "Guns N' Roses",
+      "mbid": "ff5bff82-6476-3a45-b749-272f4cfcff87",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sweet-child-o-mine--guns-n-roses",
+      "type": "project",
+      "name": "Sweet Child o’ Mine",
+      "artist": "Guns N' Roses",
+      "mbid": "93bffb21-6883-3ca4-9113-7aefa0623326",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sweet-child-o-mine-welcome-to-the-jungle--guns-n-roses",
+      "type": "project",
+      "name": "Sweet Child o’ Mine / Welcome to the Jungle",
+      "artist": "Guns N' Roses",
+      "mbid": "90e754fb-057a-42ab-a400-8587148d515e",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:appetite-for-destruction--guns-n-roses",
+      "type": "project",
+      "name": "Appetite for Destruction",
+      "mbid": "a0b94d0a-210b-4b15-bd1d-93be2196c14a",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:it-s-so-easy--guns-n-roses",
+      "type": "project",
+      "name": "It’s So Easy",
+      "artist": "Guns N' Roses",
+      "mbid": "ed0aaf5f-643d-470e-8dc1-415f703ee4e2",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:welcome-to-the-jungle--guns-n-roses",
+      "type": "project",
+      "name": "Welcome to the Jungle",
+      "artist": "Guns N' Roses",
+      "mbid": "9a4c19e6-e84b-4938-8aa6-655d7df99380",
+      "year": "1987",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

@@ -33,14 +33,263 @@
   ],
   "discography": [
     {
-      "slug": "project:clandestino",
+      "slug": "project:soleil-de-minuit--rim-k",
       "type": "project",
-      "name": "Clandestino"
+      "name": "Soleil de minuit",
+      "artist": "Rim'K",
+      "mbid": "f09ffd98-9e26-44f5-96dc-6e1edd6b4383",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:run--rim-k",
+      "type": "project",
+      "name": "RUN",
+      "artist": "Rim'K",
+      "mbid": "3d57bc72-1735-42a5-88c9-abc9cbf09fad",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:run-evolution--rim-k",
+      "type": "project",
+      "name": "RUN Evolution",
+      "artist": "Rim'K",
+      "mbid": "f81a155b-cfdd-41ad-b28b-c3702563a6dd",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lifat-mat--rim-k",
+      "type": "project",
+      "name": "Lifat Mat",
+      "artist": "Rim'K",
+      "mbid": "c215e686-0f67-46ec-acf1-f837a5f619b7",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:trap-house-demain--rim-k",
+      "type": "project",
+      "name": "Trap House / Demain",
+      "artist": "Rim'K",
+      "mbid": "a348f06c-1375-46e1-a5ff-2271994ea862",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hors-serie--rim-k",
+      "type": "project",
+      "name": "Hors‐Série",
+      "artist": "Rim'K",
+      "mbid": "9d44f073-8436-4e6a-b3fc-be03d00be53a",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:metaverse--rim-k",
+      "type": "project",
+      "name": "Metaverse",
+      "artist": "Rim'K",
+      "mbid": "bc25d84c-5097-49a1-87e5-9ed2c2b886a1",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:drama--rim-k",
+      "type": "project",
+      "name": "Drama",
+      "artist": "Rim'K",
+      "mbid": "c60092b7-8de7-4d3d-92ad-5539c24fe098",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:iceberg--rim-k",
+      "type": "project",
+      "name": "Iceberg",
+      "artist": "Rim'K",
+      "mbid": "d5207eaa-7229-4e9d-a90a-d2a55f7332c4",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:adn--rim-k",
+      "type": "project",
+      "name": "ADN",
+      "artist": "Rim'K",
+      "mbid": "06929631-063f-4231-83a3-41ee27480fac",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:papel--rim-k",
+      "type": "project",
+      "name": "Papel",
+      "artist": "Rim'K",
+      "mbid": "ff182cda-f2d6-48ec-865c-48abb8a6bbf3",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:midnight--rim-k",
+      "type": "project",
+      "name": "Midnight",
+      "artist": "Rim'K",
+      "mbid": "8d5cd5ad-9f89-410e-a16c-8b14dec12562",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:rose-rouge--rim-k",
+      "type": "project",
+      "name": "Rose rouge",
+      "artist": "Rim'K",
+      "mbid": "9b03c1fc-4eea-42a1-8443-b56497cd9aa9",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mutant--rim-k",
+      "type": "project",
+      "name": "Mutant",
+      "artist": "Rim'K",
+      "mbid": "2190df57-d3d0-40a0-b065-18552c41a1a5",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cartel--rim-k",
+      "type": "project",
+      "name": "Cartel",
+      "artist": "Rim'K",
+      "mbid": "95dcd498-fd08-49a3-9b25-f3f810ed9403",
+      "year": "2017",
+      "releaseType": "single"
     },
     {
       "slug": "project:fantome",
       "type": "project",
-      "name": "Fantôme"
+      "name": "Fantôme",
+      "mbid": "4220fc9b-a863-4696-bb14-b9b3443f0e8c",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:monster-tape--rim-k",
+      "type": "project",
+      "name": "Monster Tape",
+      "artist": "Rim'K",
+      "mbid": "3d4160c0-cdf2-4c44-8bf7-b3f35f2f1465",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chef-de-famille--rim-k",
+      "type": "project",
+      "name": "Chef de famille",
+      "artist": "Rim'K",
+      "mbid": "1dfbbb42-2ba7-4131-a48b-ae4bd63d716e",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:classico--rim-k",
+      "type": "project",
+      "name": "Classico",
+      "artist": "Rim'K",
+      "mbid": "34ff8783-9aa7-4dab-a3cd-899cf40050ff",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chez-toi-c-est-chez-mo--rim-k",
+      "type": "project",
+      "name": "Chez toi c'est chez mo",
+      "artist": "Rim'K",
+      "mbid": "dea2e5a8-b9ea-403f-a2f4-43d6871e2b63",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:maghreb-united--rim-k",
+      "type": "project",
+      "name": "Maghreb United",
+      "artist": "Rim'K",
+      "mbid": "b8d40612-6940-4210-8ee9-9599bd2b08d1",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:clandestino",
+      "type": "project",
+      "name": "Clandestino",
+      "mbid": "bd74084b-7634-42e0-aa48-c79a1bf0baa8",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:famille-nombreuse--rim-k",
+      "type": "project",
+      "name": "Famille nombreuse",
+      "artist": "Rim'K",
+      "mbid": "1f265a59-d0d5-3973-a505-171ea087ed52",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:boozille--rim-k",
+      "type": "project",
+      "name": "Boozillé",
+      "artist": "Rim'K",
+      "mbid": "0f0af06b-d17e-4842-af7b-ac169f986313",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:intact--rim-k",
+      "type": "project",
+      "name": "Intact",
+      "artist": "Rim'K",
+      "mbid": "c876d322-044c-431a-8243-fafaf66a5b90",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:l-enfant-du-pays--rim-k",
+      "type": "project",
+      "name": "L’Enfant du pays",
+      "artist": "Rim'K",
+      "mbid": "4ae09062-1f2e-3e15-8c03-6352a5f00d19",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:par-tradition-appelle-moi-le-gros--rim-k",
+      "type": "project",
+      "name": "Par tradition (appelle-moi le gros)",
+      "artist": "Rim'K",
+      "mbid": "06af8ab8-e04c-452f-bb2c-29d9f166b226",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:portrait-le-couloir-de-la-mort--rim-k",
+      "type": "project",
+      "name": "Portrait / Le couloir de la mort",
+      "artist": "Rim'K",
+      "mbid": "5aad357e-d924-4618-998d-1ed694b4515b",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rachid-system--rim-k",
+      "type": "project",
+      "name": "Rachid System",
+      "artist": "Rim'K",
+      "mbid": "3c874262-2e61-421c-8b25-08d1bc4b89ea",
+      "year": "2004",
+      "releaseType": "single"
     },
     {
       "slug": "project:rim-k-presente-maghreb-united",

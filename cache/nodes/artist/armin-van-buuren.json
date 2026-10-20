@@ -75,29 +75,323 @@
   ],
   "discography": [
     {
-      "slug": "project:76",
+      "slug": "project:ayi-giri-dopamine-machine--armin-van-buuren",
       "type": "project",
-      "name": "76 (2003)"
+      "name": "Ayi Giri / Dopamine Machine",
+      "artist": "Armin van Buuren",
+      "mbid": "f8473548-904c-47a7-87d3-fd265b5cd994",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:shivers",
+      "slug": "project:everlasting--armin-van-buuren",
       "type": "project",
-      "name": "Shivers (2005)"
+      "name": "Everlasting",
+      "artist": "Armin van Buuren",
+      "mbid": "a068f133-3f01-4fb5-8cbf-a579cf35cc54",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:imagine",
+      "slug": "project:here-in-my-arms-enjoy-the-silence--armin-van-buuren",
       "type": "project",
-      "name": "Imagine (2008)"
+      "name": "Here in My Arms (Enjoy the Silence)",
+      "artist": "Armin van Buuren",
+      "mbid": "c1b2641a-62c2-4eab-a150-c131c1b1a350",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:mirage",
+      "slug": "project:nirvana--armin-van-buuren",
       "type": "project",
-      "name": "Mirage (2010)"
+      "name": "Nirvana",
+      "artist": "Armin van Buuren",
+      "mbid": "b8039381-e957-40ce-b387-18e50c72a389",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-mercy--armin-van-buuren",
+      "type": "project",
+      "name": "No Mercy",
+      "artist": "Armin van Buuren",
+      "mbid": "2669996f-5618-4a70-b9bc-eb52bc0e8c04",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:serendipity--armin-van-buuren",
+      "type": "project",
+      "name": "Serendipity",
+      "artist": "Armin van Buuren",
+      "mbid": "86c70fd9-04fe-4dc5-b00a-bca88d6a17da",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:she-a-freak--armin-van-buuren",
+      "type": "project",
+      "name": "She a Freak",
+      "artist": "Armin van Buuren",
+      "mbid": "ab275c20-91c1-4ffb-ad78-10a326f0716d",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:starbound--armin-van-buuren",
+      "type": "project",
+      "name": "Starbound",
+      "artist": "Armin van Buuren",
+      "mbid": "2095bd35-d56b-4f7d-96b5-9f8ebe2c2c35",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sun-shines-on-me--armin-van-buuren",
+      "type": "project",
+      "name": "Sun Shines on Me",
+      "artist": "Armin van Buuren",
+      "mbid": "2612e357-c6fb-47af-9346-5ca3197e91ee",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:take-me-home--armin-van-buuren",
+      "type": "project",
+      "name": "Take Me Home",
+      "artist": "Armin van Buuren",
+      "mbid": "f7bc8384-66db-4ce7-a054-150a43e3271c",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vem-comigo--armin-van-buuren",
+      "type": "project",
+      "name": "Vem Comigo",
+      "artist": "Armin van Buuren",
+      "mbid": "a320ea93-a32b-40b5-925f-037efb9a4aad",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-night--armin-van-buuren",
+      "type": "project",
+      "name": "All Night",
+      "artist": "Armin van Buuren",
+      "mbid": "20e8c9c7-1cf5-4af9-997e-a2b818601e43",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bach-to-the-future--armin-van-buuren",
+      "type": "project",
+      "name": "Bach to the Future",
+      "artist": "Armin van Buuren",
+      "mbid": "53ddc580-1b44-461b-b1ff-659e6055f5ad",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:breathe--armin-van-buuren",
+      "type": "project",
+      "name": "Breathe",
+      "artist": "Armin van Buuren",
+      "mbid": "c042cb92-3cfe-48ef-b548-f8ffb4c2ea4c",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dream-a-little-dream--armin-van-buuren",
+      "type": "project",
+      "name": "Dream a Little Dream",
+      "artist": "Armin van Buuren",
+      "mbid": "312eed66-0f75-4ba9-826c-9a68180f775a",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:everything-i-wanted--armin-van-buuren",
+      "type": "project",
+      "name": "Everything I Wanted",
+      "artist": "Armin van Buuren",
+      "mbid": "b58f78e5-dc3f-466c-9730-fd6cb90a96a3",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heavy--armin-van-buuren",
+      "type": "project",
+      "name": "Heavy",
+      "artist": "Armin van Buuren",
+      "mbid": "f91c7cba-6d8e-4098-9c02-a121c8840837",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:house-party--armin-van-buuren",
+      "type": "project",
+      "name": "House Party",
+      "artist": "Armin van Buuren",
+      "mbid": "f7fb77e6-5c65-41cd-9866-6b4c1676adb1",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:let-it-be-for-love--armin-van-buuren",
+      "type": "project",
+      "name": "Let It Be For Love",
+      "artist": "Armin van Buuren",
+      "mbid": "8e1e5214-1e0b-4a4f-8d20-701be2b97f35",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love--armin-van-buuren",
+      "type": "project",
+      "name": "Love",
+      "artist": "Armin van Buuren",
+      "mbid": "2e906318-5d4d-4416-abb9-662ab9c21591",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:piano--armin-van-buuren",
+      "type": "project",
+      "name": "Piano",
+      "artist": "Armin van Buuren",
+      "mbid": "eb090a8a-4d88-4e7e-9299-1d3406a0e189",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:put-your-bassline--armin-van-buuren",
+      "type": "project",
+      "name": "Put Your Bassline",
+      "artist": "Armin van Buuren",
+      "mbid": "6ef6a125-c0eb-4a3d-98e5-9890f54ee135",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:set-me-free--armin-van-buuren",
+      "type": "project",
+      "name": "Set Me Free",
+      "artist": "Armin van Buuren",
+      "mbid": "4def440e-c62f-4612-9193-aee6f2b0ae50",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sonic-samba--armin-van-buuren",
+      "type": "project",
+      "name": "Sonic Samba",
+      "artist": "Armin van Buuren",
+      "mbid": "f8d5b3bf-7a7d-4779-80fa-fa9f5335a8d2",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:balance--armin-van-buuren",
+      "type": "project",
+      "name": "Balance",
+      "artist": "Armin van Buuren",
+      "mbid": "0b5df8ca-0dc6-4189-95e8-f5fc8f7607ee",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unlove-you--armin-van-buuren",
+      "type": "project",
+      "name": "Unlove You",
+      "artist": "Armin van Buuren",
+      "mbid": "b0b16c3f-23f9-400c-9f6b-6e756830bf8e",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:embrace--armin-van-buuren",
+      "type": "project",
+      "name": "Embrace",
+      "artist": "Armin van Buuren",
+      "mbid": "a3d8f9a5-7cac-4db3-aa50-409d91530bd5",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:panta-rhei--armin-van-buuren",
+      "type": "project",
+      "name": "Panta Rhei",
+      "artist": "Armin van Buuren",
+      "mbid": "bec7248d-dee2-4ada-85f5-b329c2c2c724",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ping-pong--armin-van-buuren",
+      "type": "project",
+      "name": "Ping Pong",
+      "artist": "Armin van Buuren",
+      "mbid": "2e0f6075-8664-4448-a9ec-46a14628b742",
+      "year": "2014",
+      "releaseType": "single"
     },
     {
       "slug": "project:intense",
       "type": "project",
-      "name": "Intense (2013)"
+      "name": "Intense (2013)",
+      "mbid": "f62bd790-3682-479e-8d6a-3443081ef9aa",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:youtopia--armin-van-buuren",
+      "type": "project",
+      "name": "Youtopia",
+      "artist": "Armin van Buuren",
+      "mbid": "9529cc54-ddac-4ea3-bb20-41587fce191d",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mirage",
+      "type": "project",
+      "name": "Mirage (2010)",
+      "mbid": "59d9034e-0c66-47f3-93ef-fe8d89472b8c",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:not-giving-up-on-love--armin-van-buuren",
+      "type": "project",
+      "name": "Not Giving Up on Love",
+      "artist": "Armin van Buuren",
+      "mbid": "4e247ed0-839f-407f-af94-f18274f76673",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:imagine",
+      "type": "project",
+      "name": "Imagine (2008)",
+      "mbid": "529aec54-d807-3707-9a76-38178c1bbbd3",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shivers",
+      "type": "project",
+      "name": "Shivers (2005)",
+      "mbid": "1c970471-4d57-3c2b-a71d-2ec51ce93991",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:76",
+      "type": "project",
+      "name": "76 (2003)",
+      "mbid": "b4a2060a-aa07-3d86-a9f2-eb7610555d7d",
+      "year": "2003",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

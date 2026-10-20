@@ -70,19 +70,115 @@
   ],
   "discography": [
     {
+      "slug": "project:east-broadway-run-down--sonny-rollins",
+      "type": "project",
+      "name": "East Broadway Run Down",
+      "artist": "Sonny Rollins",
+      "mbid": "33cedddc-0bf3-3ac9-9221-9ad1c7dfdbc0",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sonny-rollins-on-impulse--sonny-rollins",
+      "type": "project",
+      "name": "Sonny Rollins on impulse!",
+      "artist": "Sonny Rollins",
+      "mbid": "327ae56c-7d56-3cb7-a493-f61164e89a74",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sonny-meets-hawk--sonny-rollins",
+      "type": "project",
+      "name": "Sonny Meets Hawk!",
+      "artist": "Sonny Rollins",
+      "mbid": "2cb9e592-0633-42dc-9e26-ac938730f4b8",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:what-s-new--sonny-rollins",
+      "type": "project",
+      "name": "What’s New?",
+      "artist": "Sonny Rollins",
+      "mbid": "2bf035df-c0f3-3f5b-a5e7-d23dc630eadf",
+      "year": "1962",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sonny-boy--sonny-rollins",
+      "type": "project",
+      "name": "Sonny Boy",
+      "artist": "Sonny Rollins",
+      "mbid": "c2efac0a-23d2-446d-a1cc-531dc8098840",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:newk-s-time--sonny-rollins",
+      "type": "project",
+      "name": "Newk’s Time",
+      "artist": "Sonny Rollins",
+      "mbid": "9ca22d32-f74c-3725-8936-352bcec72073",
+      "year": "1959",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sonny-rollins-and-the-contemporary-leaders--sonny-rollins",
+      "type": "project",
+      "name": "Sonny Rollins and the Contemporary Leaders",
+      "artist": "Sonny Rollins",
+      "mbid": "628c024f-de5f-3f06-8029-0bb75f46d3fa",
+      "year": "1959",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:saxophone-colossus",
       "type": "project",
-      "name": "Saxophone Colossus"
+      "name": "Saxophone Colossus",
+      "mbid": "cf29d6a2-a18a-3bb6-a861-495148baee1f",
+      "year": "1957",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sonny-rollins-volume-1--sonny-rollins",
+      "type": "project",
+      "name": "Sonny Rollins, Volume 1",
+      "artist": "Sonny Rollins",
+      "mbid": "c4407ad0-a0aa-375c-8f98-a0f353a77f76",
+      "year": "1957",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sonny-rollins-volume-2--sonny-rollins",
+      "type": "project",
+      "name": "Sonny Rollins, Volume 2",
+      "artist": "Sonny Rollins",
+      "mbid": "265895b3-7d23-3924-b254-a4ce301bb891",
+      "year": "1957",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:way-out-west--sonny-rollins",
+      "type": "project",
+      "name": "Way Out West",
+      "artist": "Sonny Rollins",
+      "mbid": "2e0a64d0-4788-3951-abac-7c42f53fca6f",
+      "year": "1957",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sonny-rollins-plus-4",
+      "type": "project",
+      "name": "Sonny Rollins Plus 4",
+      "mbid": "dde2147b-0245-3e83-90d4-db667c2d005c",
+      "year": "1956",
+      "releaseType": "album"
     },
     {
       "slug": "project:tenor-madness",
       "type": "project",
       "name": "Tenor Madness"
-    },
-    {
-      "slug": "project:sonny-rollins-plus-4",
-      "type": "project",
-      "name": "Sonny Rollins Plus 4"
     }
   ],
   "notable_tracks": [

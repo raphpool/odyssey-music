@@ -52,7 +52,71 @@
       "name": "Digital Hardcore Recordings"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:fatal-box--hanin-elias",
+      "type": "project",
+      "name": "Fatal Box",
+      "artist": "Hanin Elias",
+      "mbid": "877a9f58-aa3b-45b7-b836-5d7480150753",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:get-it-back--hanin-elias",
+      "type": "project",
+      "name": "Get It Back",
+      "artist": "Hanin Elias",
+      "mbid": "bbadcdb9-1462-4150-a01a-4763e2591c33",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:future-noir--hanin-elias",
+      "type": "project",
+      "name": "Future Noir",
+      "artist": "Hanin Elias",
+      "mbid": "41369c01-b573-3b81-976f-6155d388197d",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-games-no-fun--hanin-elias",
+      "type": "project",
+      "name": "No Games No Fun",
+      "artist": "Hanin Elias",
+      "mbid": "7cced2f1-54a9-38be-be62-506620a2b931",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-flames-1995-1999--hanin-elias",
+      "type": "project",
+      "name": "In Flames (1995-1999)",
+      "artist": "Hanin Elias",
+      "mbid": "dbbf2349-9f96-37af-978e-0645413ce9a3",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-flames-e-p--hanin-elias",
+      "type": "project",
+      "name": "In Flames E.P.",
+      "artist": "Hanin Elias",
+      "mbid": "995aad51-6d50-32a0-bb84-2b76de194c6d",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:show-e-p--hanin-elias",
+      "type": "project",
+      "name": "Show E.P.",
+      "artist": "Hanin Elias",
+      "mbid": "ac6163f0-6512-307a-bc08-84e28c407ab7",
+      "year": "1996",
+      "releaseType": "ep"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:teenage-riot",

@@ -49,10 +49,139 @@
   ],
   "discography": [
     {
+      "slug": "project:backstabber-tailor-s-version--the-dresden-dolls",
+      "type": "project",
+      "name": "Backstabber (Tailor's version)",
+      "artist": "The Dresden Dolls",
+      "mbid": "16d79c6e-0dbb-4ab8-9a96-ce2d43cb4ca3",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:modern-moonlight-tailor-s-version--the-dresden-dolls",
+      "type": "project",
+      "name": "Modern Moonlight (Tailor's version)",
+      "artist": "The Dresden Dolls",
+      "mbid": "a444b29a-750c-4b02-91ba-eefbf5247723",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-m-going-to-go-back-there-someday--the-dresden-dolls",
+      "type": "project",
+      "name": "I'm Going to Go Back There Someday",
+      "artist": "The Dresden Dolls",
+      "mbid": "12307add-667a-43cd-acb7-6116070c7561",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:night-reconnaissance--the-dresden-dolls",
+      "type": "project",
+      "name": "Night Reconnaissance",
+      "artist": "The Dresden Dolls",
+      "mbid": "ca58a941-52e5-41a8-b950-95eaf9e1b487",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:backstabber--the-dresden-dolls",
+      "type": "project",
+      "name": "Backstabber",
+      "artist": "The Dresden Dolls",
+      "mbid": "8b5928fb-ea2b-376e-a0de-3d602796159c",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:selections-from-yes-virginia--the-dresden-dolls",
+      "type": "project",
+      "name": "Selections From Yes, Virginia",
+      "artist": "The Dresden Dolls",
+      "mbid": "f9c39c40-4651-4641-9b47-aafd24881736",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sing--the-dresden-dolls",
+      "type": "project",
+      "name": "Sing",
+      "artist": "The Dresden Dolls",
+      "mbid": "d1f406b6-391a-3e4f-b97a-ef714652a257",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:yes-virginia--the-dresden-dolls",
+      "type": "project",
+      "name": "Yes, Virginia…",
+      "artist": "The Dresden Dolls",
+      "mbid": "a6d83b3d-2446-30fa-a096-5f324648251c",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:girl-anachronism--the-dresden-dolls",
+      "type": "project",
+      "name": "Girl Anachronism",
+      "artist": "The Dresden Dolls",
+      "mbid": "43e06bcb-c132-32ef-85c1-bae3f460af02",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:girl-anachronism-bad-habit--the-dresden-dolls",
+      "type": "project",
+      "name": "Girl Anachronism / Bad Habit",
+      "artist": "The Dresden Dolls",
+      "mbid": "7f87c8b3-6324-301e-acab-25704b4c072a",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:coin-operated-boy--the-dresden-dolls",
+      "type": "project",
+      "name": "Coin‐Operated Boy",
+      "artist": "The Dresden Dolls",
+      "mbid": "3c2898c0-5371-3eee-b1c3-287a1f7eece1",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:war-pigs--the-dresden-dolls",
+      "type": "project",
+      "name": "War Pigs",
+      "artist": "The Dresden Dolls",
+      "mbid": "b9c2cf85-c2c2-47e2-83cc-fcf0c12191d9",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:a-is-for-accident--the-dresden-dolls",
       "type": "project",
       "name": "A Is for Accident",
-      "artist": "The Dresden Dolls"
+      "artist": "The Dresden Dolls",
+      "mbid": "f380b9b4-7b52-3d9c-95e7-5429f75bebc4",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:good-day--the-dresden-dolls",
+      "type": "project",
+      "name": "Good Day",
+      "artist": "The Dresden Dolls",
+      "mbid": "bfc7a4b8-355e-39f6-a19f-8dd6f5a959a4",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-dresden-dolls--the-dresden-dolls",
+      "type": "project",
+      "name": "The Dresden Dolls",
+      "artist": "The Dresden Dolls",
+      "mbid": "b12e6dd0-e13d-3cb7-9b24-b20f11ea1793",
+      "year": "2003",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

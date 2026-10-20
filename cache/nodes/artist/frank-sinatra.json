@@ -75,19 +75,154 @@
   ],
   "discography": [
     {
-      "slug": "project:in-the-wee-small-hours",
+      "slug": "project:duets--frank-sinatra",
       "type": "project",
-      "name": "In the Wee Small Hours"
+      "name": "Duets",
+      "artist": "Frank Sinatra",
+      "mbid": "3eb6914e-0d92-3074-b672-709bed192cff",
+      "year": "1993",
+      "releaseType": "album"
     },
     {
-      "slug": "project:songs-for-swingin-lovers",
+      "slug": "project:new-york-new-york--frank-sinatra",
       "type": "project",
-      "name": "Songs for Swingin' Lovers!"
+      "name": "New York New York",
+      "artist": "Frank Sinatra",
+      "mbid": "e85d4859-41fe-4e78-bbdc-0a9e559f1573",
+      "year": "1986",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ol-blue-eyes-is-back--frank-sinatra",
+      "type": "project",
+      "name": "Ol’ Blue Eyes Is Back",
+      "artist": "Frank Sinatra",
+      "mbid": "d264555d-10a0-3d50-98f9-3c3071b2703f",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:my-way--frank-sinatra",
+      "type": "project",
+      "name": "My Way",
+      "artist": "Frank Sinatra",
+      "mbid": "8d09140c-21e9-31ea-be11-9201f9cce665",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:francis-albert-sinatra-and-antonio-carlos-jobim--frank-sinatra",
+      "type": "project",
+      "name": "Francis Albert Sinatra & Antônio Carlos Jobim",
+      "artist": "Frank Sinatra",
+      "mbid": "943461cc-377c-3f96-9d89-4d3ff5b03d25",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-world-we-knew--frank-sinatra",
+      "type": "project",
+      "name": "The World We Knew",
+      "artist": "Frank Sinatra",
+      "mbid": "44dffb7c-2efe-3631-a2c5-0f32d2c7498b",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:strangers-in-the-night--frank-sinatra",
+      "type": "project",
+      "name": "Strangers in the Night",
+      "artist": "Frank Sinatra",
+      "mbid": "37102462-0941-38c3-9f7f-14188efd0ff1",
+      "year": "1966",
+      "releaseType": "album"
     },
     {
       "slug": "project:september-of-my-years",
       "type": "project",
-      "name": "September of My Years"
+      "name": "September of My Years",
+      "mbid": "f420ae5d-3878-31d8-897b-6971fda20e92",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:frank-sinatra-sings-days-of-wine-and-roses-moon-river-and-other-academy-award-winners--frank-sinatra",
+      "type": "project",
+      "name": "Frank Sinatra Sings Days of Wine and Roses, Moon River and Other Academy Award Winners",
+      "artist": "Frank Sinatra",
+      "mbid": "d39b3db9-81ed-3919-b993-e69cd770df02",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:it-might-as-well-be-swing--frank-sinatra",
+      "type": "project",
+      "name": "It Might as Well Be Swing",
+      "artist": "Frank Sinatra",
+      "mbid": "80c2bb42-0c5e-35ed-8c63-392da06d5983",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:frank-sinatra-sings-for-only-the-lonely--frank-sinatra",
+      "type": "project",
+      "name": "Frank Sinatra Sings for Only the Lonely",
+      "artist": "Frank Sinatra",
+      "mbid": "bf7c7461-fc4d-35f8-a4d6-673473ce3fe6",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-jolly-christmas-from-frank-sinatra--frank-sinatra",
+      "type": "project",
+      "name": "A Jolly Christmas From Frank Sinatra",
+      "artist": "Frank Sinatra",
+      "mbid": "505ccc55-cfcd-3deb-aaef-1fce83eddd53",
+      "year": "1957",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:songs-for-swingin-lovers",
+      "type": "project",
+      "name": "Songs for Swingin' Lovers!",
+      "mbid": "12421e82-3ca1-39c5-bbcf-bba54ba251e5",
+      "year": "1956",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-the-wee-small-hours",
+      "type": "project",
+      "name": "In the Wee Small Hours",
+      "mbid": "5a5d9938-38a9-3f32-b03b-8f14f62b880a",
+      "year": "1955",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:swing-easy--frank-sinatra",
+      "type": "project",
+      "name": "Swing Easy!",
+      "artist": "Frank Sinatra",
+      "mbid": "ced1cbb1-7671-35d2-a9ec-a63d2c9c8390",
+      "year": "1954",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:christmas-songs-by-sinatra--frank-sinatra",
+      "type": "project",
+      "name": "Christmas Songs by Sinatra",
+      "artist": "Frank Sinatra",
+      "mbid": "10fb3238-07c6-30da-80f9-516d33dce786",
+      "year": "1948",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-voice-of-frank-sinatra--frank-sinatra",
+      "type": "project",
+      "name": "The Voice of Frank Sinatra",
+      "artist": "Frank Sinatra",
+      "mbid": "48f05fdb-0a7b-3c7f-b62d-78923d167da7",
+      "year": "1946",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

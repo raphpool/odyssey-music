@@ -56,29 +56,134 @@
   ],
   "discography": [
     {
-      "slug": "project:slanted-and-enchanted--pavement",
+      "slug": "project:pavements--pavement",
       "type": "project",
-      "name": "Slanted and Enchanted"
+      "name": "Pavements",
+      "artist": "Pavement",
+      "mbid": "f507c3a8-651f-4e31-abb9-88395e9faebe",
+      "year": "2025",
+      "releaseType": "album"
     },
     {
-      "slug": "project:crooked-rain-crooked-rain",
+      "slug": "project:major-leagues--pavement",
       "type": "project",
-      "name": "Crooked Rain, Crooked Rain"
+      "name": "Major Leagues",
+      "artist": "Pavement",
+      "mbid": "3da8abe2-3da2-3041-b76b-94b5f4804b8c",
+      "year": "1999",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:wowee-zowee",
+      "slug": "project:spit-on-a-stranger--pavement",
       "type": "project",
-      "name": "Wowee Zowee"
-    },
-    {
-      "slug": "project:brighten-the-corners",
-      "type": "project",
-      "name": "Brighten the Corners"
+      "name": "Spit on a Stranger",
+      "artist": "Pavement",
+      "mbid": "8ee2c5b8-7232-33c0-a70d-e4560517952c",
+      "year": "1999",
+      "releaseType": "ep"
     },
     {
       "slug": "project:terror-twilight",
       "type": "project",
-      "name": "Terror Twilight"
+      "name": "Terror Twilight",
+      "mbid": "bc0512db-46d0-3f21-8eb0-af7718d93709",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:brighten-the-corners",
+      "type": "project",
+      "name": "Brighten the Corners",
+      "mbid": "071af447-389f-360d-aced-1d0ae3e0d5ec",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shady-lane--pavement",
+      "type": "project",
+      "name": "Shady Lane",
+      "artist": "Pavement",
+      "mbid": "a96129d7-95c0-4b12-8263-f981bbb19104",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stereo--pavement",
+      "type": "project",
+      "name": "Stereo",
+      "artist": "Pavement",
+      "mbid": "0af66abf-0da2-4be7-98ce-5864d01d7be2",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:range-life--pavement",
+      "type": "project",
+      "name": "Range Life",
+      "artist": "Pavement",
+      "mbid": "d2596667-edbe-348d-8b7e-82f8460652be",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rattled-by-la-rush--pavement",
+      "type": "project",
+      "name": "Rattled by la Rush",
+      "artist": "Pavement",
+      "mbid": "77973ab5-7068-3f6a-af9b-c26f51f099bb",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wowee-zowee",
+      "type": "project",
+      "name": "Wowee Zowee",
+      "mbid": "fa79988d-62b5-3039-9169-ed0d17d53296",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:crooked-rain-crooked-rain",
+      "type": "project",
+      "name": "Crooked Rain, Crooked Rain",
+      "mbid": "4f348977-6f44-39f9-b243-071927ecc6a4",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cut-your-hair--pavement",
+      "type": "project",
+      "name": "Cut Your Hair",
+      "artist": "Pavement",
+      "mbid": "6b9f4caf-ec9e-34d6-abd5-cae0a1f99b08",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:slanted-and-enchanted--pavement",
+      "type": "project",
+      "name": "Slanted and Enchanted",
+      "mbid": "869f9eac-2a40-3a41-80a3-6bf2297a7cbc",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trigger-cut--pavement",
+      "type": "project",
+      "name": "Trigger Cut",
+      "artist": "Pavement",
+      "mbid": "b457fcad-8f00-330e-8029-904496162be4",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:watery-domestic--pavement",
+      "type": "project",
+      "name": "Watery, Domestic",
+      "artist": "Pavement",
+      "mbid": "3fb4d4da-26ed-37fd-af8d-3a4488f8e166",
+      "year": "1992",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

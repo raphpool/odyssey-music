@@ -62,19 +62,361 @@
   ],
   "discography": [
     {
-      "slug": "project:beginning-to-understand",
+      "slug": "project:nel-and-the-instrument-of-shapes--cristian-vogel",
       "type": "project",
-      "name": "Beginning To Understand"
+      "name": "NEL and The Instrument of Shapes",
+      "artist": "Cristian Vogel",
+      "mbid": "74c8d6a3-3232-4740-9c41-7774cfcf17d4",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:nel-adventures--cristian-vogel",
+      "type": "project",
+      "name": "NEL Adventures",
+      "artist": "Cristian Vogel",
+      "mbid": "258bfd4d-2b7e-4428-9190-d47637462379",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fase-montuno--cristian-vogel",
+      "type": "project",
+      "name": "Fase Montuno",
+      "artist": "Cristian Vogel",
+      "mbid": "ef509667-9865-44be-a1ba-983762fb15be",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:multicore--cristian-vogel",
+      "type": "project",
+      "name": "Multicore",
+      "artist": "Cristian Vogel",
+      "mbid": "9854f2e0-a720-452d-b26b-2c38ed315336",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:1zhuayo--cristian-vogel",
+      "type": "project",
+      "name": "1Zhuayo",
+      "artist": "Cristian Vogel",
+      "mbid": "c112548e-cb41-49e0-973e-b2675fb40696",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-rebirth-of-wonky--cristian-vogel",
+      "type": "project",
+      "name": "The Rebirth of Wonky",
+      "artist": "Cristian Vogel",
+      "mbid": "15fdae74-69d4-4552-832a-0ab75f0dffc7",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:co-exist--cristian-vogel",
+      "type": "project",
+      "name": "Co-Exist",
+      "artist": "Cristian Vogel",
+      "mbid": "e5db4e3e-de9d-4a03-92a5-6b24ba37f951",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mind-control--cristian-vogel",
+      "type": "project",
+      "name": "Mind Control",
+      "artist": "Cristian Vogel",
+      "mbid": "487ab39d-d412-4056-8bcf-98aba7c7e1c7",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-misty-quay--cristian-vogel",
+      "type": "project",
+      "name": "The Misty Quay",
+      "artist": "Cristian Vogel",
+      "mbid": "54ef4344-1a0d-47e6-b0f1-82761c5137eb",
+      "year": "2019",
+      "releaseType": "album"
     },
     {
       "slug": "project:the-assistenz",
       "type": "project",
-      "name": "The Assistenz"
+      "name": "The Assistenz",
+      "mbid": "f047667b-992b-4941-9bf5-f2492af58402",
+      "year": "2016",
+      "releaseType": "album"
     },
     {
       "slug": "project:polyphonic-beings",
       "type": "project",
-      "name": "Polyphonic Beings"
+      "name": "Polyphonic Beings",
+      "mbid": "7c530119-c1ab-4422-a4ca-74465ed522c4",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:eselsbrucke--cristian-vogel",
+      "type": "project",
+      "name": "Eselsbrücke",
+      "artist": "Cristian Vogel",
+      "mbid": "7d110af1-9f4c-4ded-b3c3-4e41ae337c8b",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-inertials--cristian-vogel",
+      "type": "project",
+      "name": "The Inertials",
+      "artist": "Cristian Vogel",
+      "mbid": "670b5d36-7452-453b-a8e8-b90ebf97176e",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:black-swan--cristian-vogel",
+      "type": "project",
+      "name": "Black Swan",
+      "artist": "Cristian Vogel",
+      "mbid": "51fffdf9-3350-4e65-87da-c6c3f6463336",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:time-to-feed-the-alien-e-p--cristian-vogel",
+      "type": "project",
+      "name": "Time to Feed the Alien E.P.",
+      "artist": "Cristian Vogel",
+      "mbid": "bfeb22e8-8cdd-42fd-aa71-158f09ff4e5e",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:crust-cloud-chunks-ep--cristian-vogel",
+      "type": "project",
+      "name": "Crust Cloud Chunks EP",
+      "artist": "Cristian Vogel",
+      "mbid": "41ea4aac-662c-400b-8f3b-a8971e5a35f7",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:endless-process-ep--cristian-vogel",
+      "type": "project",
+      "name": "Endless Process EP",
+      "artist": "Cristian Vogel",
+      "mbid": "71d6b6a2-1de7-4960-b9c2-b3087161771e",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:music-for-the-creations-of-gilles-jobin--cristian-vogel",
+      "type": "project",
+      "name": "Music for the Creations of Gilles Jobin",
+      "artist": "Cristian Vogel",
+      "mbid": "57a654f6-4fa3-357f-8f22-1fb40b1ace3c",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-never-engine--cristian-vogel",
+      "type": "project",
+      "name": "The Never Engine",
+      "artist": "Cristian Vogel",
+      "mbid": "39810fe0-ac60-3200-a9be-70cc4c66e38d",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:station-55--cristian-vogel",
+      "type": "project",
+      "name": "Station 55",
+      "artist": "Cristian Vogel",
+      "mbid": "bb91c8f7-1fac-380a-9de4-378ccd414ead",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dungeon-master--cristian-vogel",
+      "type": "project",
+      "name": "Dungeon Master",
+      "artist": "Cristian Vogel",
+      "mbid": "2948ec50-7f7d-3299-97ae-405b33bb066d",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rescate-137--cristian-vogel",
+      "type": "project",
+      "name": "Rescate 137",
+      "artist": "Cristian Vogel",
+      "mbid": "0fe42313-3625-37a3-9a78-4a7221a1d7eb",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:boom-busine-ep--cristian-vogel",
+      "type": "project",
+      "name": "Boom Busine EP",
+      "artist": "Cristian Vogel",
+      "mbid": "ef2d606e-cea5-4521-8c85-c951a60d35e0",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:busca-invisibles--cristian-vogel",
+      "type": "project",
+      "name": "Busca invisibles",
+      "artist": "Cristian Vogel",
+      "mbid": "5e7e202d-201d-30ad-aeaa-fd5df45c8351",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:syncopate-to-generate--cristian-vogel",
+      "type": "project",
+      "name": "Syncopate to Generate",
+      "artist": "Cristian Vogel",
+      "mbid": "abc6626c-b9be-3366-93f7-909897b20f97",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:two-fat-downloads-88-ep--cristian-vogel",
+      "type": "project",
+      "name": "Two Fat Downloads 88 EP",
+      "artist": "Cristian Vogel",
+      "mbid": "83e190db-e275-3fe7-baaa-578384b70703",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:all-music-has-come-to-an-end--cristian-vogel",
+      "type": "project",
+      "name": "All Music Has Come to an End",
+      "artist": "Cristian Vogel",
+      "mbid": "7ca98019-4ff9-3ae1-9f6e-8456d8c77ea1",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bite-and-scratch--cristian-vogel",
+      "type": "project",
+      "name": "Bite & Scratch",
+      "artist": "Cristian Vogel",
+      "mbid": "92e5b6a3-f77e-39c5-88ae-12611c0b6856",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:body-mapping--cristian-vogel",
+      "type": "project",
+      "name": "Body Mapping",
+      "artist": "Cristian Vogel",
+      "mbid": "bc38352c-c811-307c-86bd-e400655c136a",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:demolish-serious-culture--cristian-vogel",
+      "type": "project",
+      "name": "Demolish Serious Culture",
+      "artist": "Cristian Vogel",
+      "mbid": "852f6b7b-2981-364b-b25e-335d3557ebf5",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:specific-momentific--cristian-vogel",
+      "type": "project",
+      "name": "Specific Momentific",
+      "artist": "Cristian Vogel",
+      "mbid": "a0ca5b0f-2105-3ccb-8d79-d2f4324df90d",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:absolute-time--cristian-vogel",
+      "type": "project",
+      "name": "Absolute Time",
+      "artist": "Cristian Vogel",
+      "mbid": "277a7e8f-5058-3352-abf8-69f872cdcfc5",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:artists-in-charge-of-expert-systems--cristian-vogel",
+      "type": "project",
+      "name": "Artists in Charge of Expert Systems",
+      "artist": "Cristian Vogel",
+      "mbid": "56451c28-5298-413d-8224-d1b98b41ed23",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:conscious-arrays-ep--cristian-vogel",
+      "type": "project",
+      "name": "Conscious Arrays EP",
+      "artist": "Cristian Vogel",
+      "mbid": "2ae7e918-0514-31db-8c22-07474ff56cb5",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:defunkt--cristian-vogel",
+      "type": "project",
+      "name": "Defunkt",
+      "artist": "Cristian Vogel",
+      "mbid": "9c5d4925-1d96-42d6-8911-b36747c1619e",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:beginning-to-understand",
+      "type": "project",
+      "name": "Beginning To Understand",
+      "mbid": "82272757-273f-33f1-8985-575094f7b577",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:infra-ep--cristian-vogel",
+      "type": "project",
+      "name": "Infra EP",
+      "artist": "Cristian Vogel",
+      "mbid": "03886ca2-aab1-4ccd-acec-8956e53fe8e6",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:lambda-ep--cristian-vogel",
+      "type": "project",
+      "name": "Lambda EP",
+      "artist": "Cristian Vogel",
+      "mbid": "040f9b2f-72c8-47c2-8c6d-10aac33f83c9",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:we-equate-machines-with-funkiness-ep--cristian-vogel",
+      "type": "project",
+      "name": "We Equate Machines With Funkiness EP",
+      "artist": "Cristian Vogel",
+      "mbid": "122f073b-f410-3234-90d0-0addeee3e028",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:inevitable-technology--cristian-vogel",
+      "type": "project",
+      "name": "Inevitable Technology",
+      "artist": "Cristian Vogel",
+      "mbid": "5a3fa2ef-398a-4c08-91a8-1327fe0cec15",
+      "year": "1993",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [],

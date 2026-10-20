@@ -55,7 +55,26 @@
       "name": "Trax Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:muzic-box-classics-volume-one--ron-hardy",
+      "type": "project",
+      "name": "Muzic Box Classics, Volume One",
+      "artist": "Ron Hardy",
+      "mbid": "ac7561e8-62a6-4ce3-bd0f-625abb6f07bc",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sensation--ron-hardy",
+      "type": "project",
+      "name": "Sensation",
+      "artist": "Ron Hardy",
+      "mbid": "9526dbbe-bfc8-4958-bd14-270418b21b5b",
+      "year": "1986",
+      "releaseType": "single"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],

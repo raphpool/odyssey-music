@@ -51,7 +51,134 @@
       "name": "Turn U On"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:stranger-tp--horsepower-productions",
+      "type": "project",
+      "name": "Stranger / TP",
+      "artist": "Horsepower Productions",
+      "mbid": "5f2f6082-4e47-4786-9d07-fd93edbc3723",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:crooks-crime-and-corruption--horsepower-productions",
+      "type": "project",
+      "name": "Crooks, Crime & Corruption",
+      "artist": "Horsepower Productions",
+      "mbid": "261bff42-a1d9-4fff-a67c-55db897233db",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:justify-good-ole-dayz--horsepower-productions",
+      "type": "project",
+      "name": "Justify / Good Ole Dayz",
+      "artist": "Horsepower Productions",
+      "mbid": "518d80c5-f7cf-470b-8894-5e913fc58174",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-lost-tapes-e-p--horsepower-productions",
+      "type": "project",
+      "name": "The Lost Tapes E.P.",
+      "artist": "Horsepower Productions",
+      "mbid": "6fc433e4-d084-4367-b4fe-b55985c28999",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:quest-for-the-sonic-bounty--horsepower-productions",
+      "type": "project",
+      "name": "Quest for the Sonic Bounty",
+      "artist": "Horsepower Productions",
+      "mbid": "def960b8-f3f8-489a-a05e-f7c35f81e1ba",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:damn-it-kingstep--horsepower-productions",
+      "type": "project",
+      "name": "Damn It / Kingstep",
+      "artist": "Horsepower Productions",
+      "mbid": "0b310dff-349b-3856-bc3a-d22940e7c5b0",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:to-the-rescue--horsepower-productions",
+      "type": "project",
+      "name": "To the Rescue",
+      "artist": "Horsepower Productions",
+      "mbid": "a7bab3a8-78d9-3fac-8071-91925c434d07",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fist-of-fury-to-the-beat-y-all--horsepower-productions",
+      "type": "project",
+      "name": "Fist of Fury / To the Beat Y'all",
+      "artist": "Horsepower Productions",
+      "mbid": "761b9473-f06c-341a-a016-8062bfbea2df",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:in-fine-style--horsepower-productions",
+      "type": "project",
+      "name": "In Fine Style",
+      "artist": "Horsepower Productions",
+      "mbid": "43b45994-c03e-39ad-8ce2-32ecba6b5ab0",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:smokin-the-swindle--horsepower-productions",
+      "type": "project",
+      "name": "Smokin' / The Swindle",
+      "artist": "Horsepower Productions",
+      "mbid": "4406d4fe-aaed-3baa-9e53-64563954d4fc",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gorgon-sound-triple-7--horsepower-productions",
+      "type": "project",
+      "name": "Gorgon Sound / Triple 7",
+      "artist": "Horsepower Productions",
+      "mbid": "a0ab65c1-58bc-31ac-9d8b-4a46ec568059",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-you-need--horsepower-productions",
+      "type": "project",
+      "name": "One You Need",
+      "artist": "Horsepower Productions",
+      "mbid": "40e514e5-0518-4929-8105-ee83668eb0c5",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vigilante-what-we-do--horsepower-productions",
+      "type": "project",
+      "name": "Vigilante / What We Do",
+      "artist": "Horsepower Productions",
+      "mbid": "a450bea0-bab2-39ba-bc73-fa6f9260cc07",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:when-you-hold-me-let-s-dance--horsepower-productions",
+      "type": "project",
+      "name": "When You Hold Me / Let's Dance",
+      "artist": "Horsepower Productions",
+      "mbid": "6e482cea-7850-33fb-bd6f-dc98d3b05d55",
+      "year": "2000",
+      "releaseType": "single"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:fist-of-fury",

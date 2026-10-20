@@ -56,24 +56,312 @@
   ],
   "discography": [
     {
+      "slug": "project:true-love-ways--buddy-holly",
+      "type": "project",
+      "name": "True Love Ways",
+      "artist": "Buddy Holly",
+      "mbid": "4fe76169-e068-490a-bb60-224f0f480474",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:apartment-demos--buddy-holly",
+      "type": "project",
+      "name": "Apartment Demos",
+      "artist": "Buddy Holly",
+      "mbid": "d9f6b2a0-3dab-4b21-be98-f5b4c6c25ba0",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:purely-buddy-holly--buddy-holly",
+      "type": "project",
+      "name": "Purely … Buddy Holly",
+      "artist": "Buddy Holly",
+      "mbid": "43ba50c9-854a-4f25-82a0-8d15738dbf19",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:buddy-das-musical-live-in-hamburg-1998-hamburg-cast--buddy-holly",
+      "type": "project",
+      "name": "Buddy - Das Musical: Live in Hamburg! (1998 Hamburg cast)",
+      "artist": "Buddy Holly",
+      "mbid": "3f3288c3-c66b-3d3e-bac1-34ca6f0a5fc6",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:countrywise--buddy-holly",
+      "type": "project",
+      "name": "Countrywise",
+      "artist": "Buddy Holly",
+      "mbid": "8611abe4-d523-352c-8eb6-9162f0f50e7e",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:buddy-the-buddy-holly-story--buddy-holly",
+      "type": "project",
+      "name": "Buddy: The Buddy Holly Story",
+      "artist": "Buddy Holly",
+      "mbid": "8a8a881a-cb12-448e-baf4-611acabe655b",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:buddy-holly-in-person-volume-2--buddy-holly",
+      "type": "project",
+      "name": "Buddy Holly “In Person ”, Volume 2",
+      "artist": "Buddy Holly",
+      "mbid": "18c0dfc1-d3bf-43c5-bab8-13536b8e510b",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:giant",
+      "type": "project",
+      "name": "Giant",
+      "mbid": "11a17b9f-08b6-42dc-8639-f7daf8cf2f9f",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-s-made-a-fool-of-you-you-re-the-one--buddy-holly",
+      "type": "project",
+      "name": "Love's Made a Fool of You / You're the One",
+      "artist": "Buddy Holly",
+      "mbid": "dae24288-883e-3b81-b7b0-d71a6f0193d7",
+      "year": "1964",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ready-teddy--buddy-holly",
+      "type": "project",
+      "name": "Ready Teddy",
+      "artist": "Buddy Holly",
+      "mbid": "0c3c65b0-0a7e-4055-abde-774e99fe8e2a",
+      "year": "1964",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:bo-diddley-true-love-ways--buddy-holly",
+      "type": "project",
+      "name": "Bo Diddley / True Love Ways",
+      "artist": "Buddy Holly",
+      "mbid": "b32f3ebb-db9a-3bfa-9487-0b756792f474",
+      "year": "1963",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:brown-eyed-handsome-man-wishing--buddy-holly",
+      "type": "project",
+      "name": "Brown-Eyed Handsome Man / Wishing",
+      "artist": "Buddy Holly",
+      "mbid": "e5155687-6234-39ec-b020-c0f857dff807",
+      "year": "1963",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:peggy-sue-got-married--buddy-holly",
+      "type": "project",
+      "name": "Peggy Sue Got Married",
+      "artist": "Buddy Holly",
+      "mbid": "22181427-4f30-4262-950d-311a3fe6938f",
+      "year": "1962",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:reminiscing-wait-till-the-sun-shines-nellie--buddy-holly",
+      "type": "project",
+      "name": "Reminiscing / Wait Till the Sun Shines Nellie",
+      "artist": "Buddy Holly",
+      "mbid": "de7a6955-5a1d-3c43-8333-c2b902b4f7c6",
+      "year": "1962",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:baby-i-don-t-care-valley-of-tears--buddy-holly",
+      "type": "project",
+      "name": "Baby I Don’t Care / Valley of Tears",
+      "artist": "Buddy Holly",
+      "mbid": "921f1564-4f92-4390-90c4-67036277c7e8",
+      "year": "1961",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-to-do-that-s-what-they-say--buddy-holly",
+      "type": "project",
+      "name": "What to Do / That’s What They Say",
+      "artist": "Buddy Holly",
+      "mbid": "8b08ef59-6c50-3d85-b51b-03d7fb80261a",
+      "year": "1961",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:learning-the-game-that-makes-it-tough--buddy-holly",
+      "type": "project",
+      "name": "Learning the Game / That Makes It Tough",
+      "artist": "Buddy Holly",
+      "mbid": "078e69b0-7862-3780-b1b0-643ef1e27688",
+      "year": "1960",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:true-love-ways-that-makes-it-tough--buddy-holly",
+      "type": "project",
+      "name": "True Love Ways / That Makes It Tough",
+      "artist": "Buddy Holly",
+      "mbid": "cf3d0337-44bc-38c4-8994-9abf071543ef",
+      "year": "1960",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:it-doesn-t-matter-anymore-raining-in-my-heart--buddy-holly",
+      "type": "project",
+      "name": "It Doesn’t Matter Anymore / Raining in My Heart",
+      "artist": "Buddy Holly",
+      "mbid": "89db145f-b6d4-31df-b3a5-ebaf1e78b6f7",
+      "year": "1959",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:peggy-sue-got-married-crying-waiting-hoping--buddy-holly",
+      "type": "project",
+      "name": "Peggy Sue Got Married / Crying, Waiting, Hoping",
+      "artist": "Buddy Holly",
+      "mbid": "6c54b46a-d177-3d48-ac6b-f214b21d7cd3",
+      "year": "1959",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-buddy-holly-story--buddy-holly",
+      "type": "project",
+      "name": "The Buddy Holly Story",
+      "artist": "Buddy Holly",
+      "mbid": "5cf05f06-02b8-4bf4-b8a9-2b0ef1bfe2ef",
+      "year": "1959",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:buddy-holly",
       "type": "project",
-      "name": "Buddy Holly"
+      "name": "Buddy Holly",
+      "mbid": "01522dff-0f0a-4540-a4d3-b9d22b0c12e5",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:early-in-the-morning-now-we-re-one--buddy-holly",
+      "type": "project",
+      "name": "Early in the Morning / Now We’re One",
+      "artist": "Buddy Holly",
+      "mbid": "eddaed5b-a332-3a95-9e28-f1c457431075",
+      "year": "1958",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:girl-on-my-mind-ting-a-ling--buddy-holly",
+      "type": "project",
+      "name": "Girl on My Mind / Ting-A-Ling",
+      "artist": "Buddy Holly",
+      "mbid": "8fecce90-6855-4edf-a0bf-62614bafc997",
+      "year": "1958",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heartbeat-well-all-right--buddy-holly",
+      "type": "project",
+      "name": "Heartbeat / Well... All Right",
+      "artist": "Buddy Holly",
+      "mbid": "df76ff97-358b-36a4-b881-9a37b65b9cf8",
+      "year": "1958",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-m-gonna-love-you-too-listen-to-me--buddy-holly",
+      "type": "project",
+      "name": "I’m Gonna Love You Too / Listen to Me",
+      "artist": "Buddy Holly",
+      "mbid": "f6fbf54a-fd4d-4c37-b92b-aac1fafe0326",
+      "year": "1958",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rave-on-take-your-time--buddy-holly",
+      "type": "project",
+      "name": "Rave On / Take Your Time",
+      "artist": "Buddy Holly",
+      "mbid": "d3e9842c-7218-4618-8194-5a6acf6bb2d7",
+      "year": "1958",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rock-around-with-ollie-vee-midnight-shift--buddy-holly",
+      "type": "project",
+      "name": "Rock Around With Ollie Vee / Midnight Shift",
+      "artist": "Buddy Holly",
+      "mbid": "ad88eac6-0215-4484-ad88-ab449ea995b4",
+      "year": "1958",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:that-ll-be-the-day",
+      "type": "project",
+      "name": "That'll Be the Day",
+      "mbid": "8906f6e8-a8a7-4de8-8a37-ffd0b39f7456",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:peggy-sue-everyday--buddy-holly",
+      "type": "project",
+      "name": "Peggy Sue / Everyday",
+      "artist": "Buddy Holly",
+      "mbid": "42c8651b-b08c-4186-802b-3f4a9b44ecbd",
+      "year": "1957",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:that-ll-be-the-day-rock-around-with-ollie-vee--buddy-holly",
+      "type": "project",
+      "name": "That’ll Be the Day / Rock Around With Ollie Vee",
+      "artist": "Buddy Holly",
+      "mbid": "08eb8d20-7cef-42ca-b80d-1bbf07a8b49a",
+      "year": "1957",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:words-of-love-mailman-bring-me-no-more-blues--buddy-holly",
+      "type": "project",
+      "name": "Words of Love / Mailman, Bring Me No More Blues",
+      "artist": "Buddy Holly",
+      "mbid": "ff8ed2e2-3bea-30ee-b033-2a4d43529963",
+      "year": "1957",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-me-blue-days-black-nights--buddy-holly",
+      "type": "project",
+      "name": "Love Me / Blue Days—Black Nights",
+      "artist": "Buddy Holly",
+      "mbid": "732b7ef6-a81c-4df9-9a93-edf30e90aae8",
+      "year": "1956",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:modern-don-juan-you-are-my-one-desire--buddy-holly",
+      "type": "project",
+      "name": "Modern Don Juan / You Are My One Desire",
+      "artist": "Buddy Holly",
+      "mbid": "01cdde44-b0d3-40b1-9835-5e07b3fa73ce",
+      "year": "1956",
+      "releaseType": "single"
     },
     {
       "slug": "project:the-chirping-crickets",
       "type": "project",
       "name": "The Chirping Crickets"
-    },
-    {
-      "slug": "project:that-ll-be-the-day",
-      "type": "project",
-      "name": "That'll Be the Day"
-    },
-    {
-      "slug": "project:giant",
-      "type": "project",
-      "name": "Giant"
     }
   ],
   "notable_tracks": [

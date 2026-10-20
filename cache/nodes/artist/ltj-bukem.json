@@ -42,7 +42,277 @@
       "name": "Good Looking Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:flip-the-narrative--ltj-bukem",
+      "type": "project",
+      "name": "Flip the Narrative",
+      "artist": "LTJ Bukem",
+      "mbid": "08ab48f3-d07b-4985-8614-5ca620a66ab6",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:moments-11-original-12-version--ltj-bukem",
+      "type": "project",
+      "name": "Moments 11 (original 12\" version)",
+      "artist": "LTJ Bukem",
+      "mbid": "4587548f-df8d-4807-824d-21e4ba86aeb9",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:moments-1-original-12-version--ltj-bukem",
+      "type": "project",
+      "name": "Moments 1 (original 12\" version)",
+      "artist": "LTJ Bukem",
+      "mbid": "065c55bf-7619-453a-9ae8-ebc5627cd818",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:moments-10-original-12-version--ltj-bukem",
+      "type": "project",
+      "name": "Moments 10 (original 12\" version)",
+      "artist": "LTJ Bukem",
+      "mbid": "3c2ba5c9-2b69-40c9-bc6f-a07b50cd219c",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:moments-16-original-12-version--ltj-bukem",
+      "type": "project",
+      "name": "Moments 16 (original 12\" version)",
+      "artist": "LTJ Bukem",
+      "mbid": "8fb8b69e-02f0-4807-8683-d9a60459ed67",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:moments-19-original-12-version--ltj-bukem",
+      "type": "project",
+      "name": "Moments 19 (original 12\" version)",
+      "artist": "LTJ Bukem",
+      "mbid": "692bcdcd-83b7-45ae-b61e-e4a6c22f734b",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:moments-23-original-12-version--ltj-bukem",
+      "type": "project",
+      "name": "Moments 23 (original 12\" version)",
+      "artist": "LTJ Bukem",
+      "mbid": "0b268ec9-1a76-435e-a875-37dfa9630399",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:moments-27-original-12-version--ltj-bukem",
+      "type": "project",
+      "name": "Moments 27 (original 12\" version)",
+      "artist": "LTJ Bukem",
+      "mbid": "1715437f-ef4d-434a-81ce-199482021c40",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:moments-3-original-12-version--ltj-bukem",
+      "type": "project",
+      "name": "Moments 3 (original 12\" version)",
+      "artist": "LTJ Bukem",
+      "mbid": "aec1a85a-6242-43ef-9ede-7e3546929a29",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:moments-35-original-12-version--ltj-bukem",
+      "type": "project",
+      "name": "Moments 35 (original 12\" version)",
+      "artist": "LTJ Bukem",
+      "mbid": "c92162d8-1b66-40ac-97c1-a89180b72888",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:moments-45-original-12-version--ltj-bukem",
+      "type": "project",
+      "name": "Moments 45 (original 12\" version)",
+      "artist": "LTJ Bukem",
+      "mbid": "d07d48df-67f0-452b-8ee2-833057411f84",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:moments-49-original-12-version--ltj-bukem",
+      "type": "project",
+      "name": "Moments 49 (original 12\" version)",
+      "artist": "LTJ Bukem",
+      "mbid": "3f883e6f-2665-4e43-affd-9522332d6f56",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:music-technicolour-rework--ltj-bukem",
+      "type": "project",
+      "name": "Music (Technicolour Rework)",
+      "artist": "LTJ Bukem",
+      "mbid": "57881bb6-8ffd-43a3-a011-09395ba86e52",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bang-the-drums-bookworm-part-1--ltj-bukem",
+      "type": "project",
+      "name": "Bang The Drums / Bookworm Part 1",
+      "artist": "LTJ Bukem",
+      "mbid": "46d19ab0-74ef-4785-ad0b-5f629c702b4b",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:journey-inwards--ltj-bukem",
+      "type": "project",
+      "name": "Journey Inwards",
+      "artist": "LTJ Bukem",
+      "mbid": "8c8ee935-0398-32d1-bd33-81a2afdab5ad",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-enchanted--ltj-bukem",
+      "type": "project",
+      "name": "Music / Enchanted",
+      "artist": "LTJ Bukem",
+      "mbid": "5e9ce5c4-73a1-4fb5-bf3a-18c669cbd77b",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rhodes-to-freedom-watercolours--ltj-bukem",
+      "type": "project",
+      "name": "Rhodes to Freedom / Watercolours",
+      "artist": "LTJ Bukem",
+      "mbid": "aa6f246f-3c32-3531-8be0-63bab597fe57",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sunrain--ltj-bukem",
+      "type": "project",
+      "name": "Sunrain",
+      "artist": "LTJ Bukem",
+      "mbid": "42ebe22f-bf90-3402-8789-f44fb1e328a6",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:suspended-space-ep--ltj-bukem",
+      "type": "project",
+      "name": "Suspended Space EP",
+      "artist": "LTJ Bukem",
+      "mbid": "e5d15a9e-d2e2-3e1f-8327-094bcc32dfff",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mystical-realms--ltj-bukem",
+      "type": "project",
+      "name": "Mystical Realms",
+      "artist": "LTJ Bukem",
+      "mbid": "cc634725-5fc4-3502-b779-e871b704dbe3",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:horizons-ep--ltj-bukem",
+      "type": "project",
+      "name": "Horizons EP",
+      "artist": "LTJ Bukem",
+      "mbid": "6e91e814-1c71-430a-845d-a0f45273e91b",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:music-peshay-rework-jazz-lick--ltj-bukem",
+      "type": "project",
+      "name": "Music (Peshay rework) / Jazz Lick",
+      "artist": "LTJ Bukem",
+      "mbid": "56847548-ac58-3a12-ad25-b3afc714dd46",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:horizons-rain-fall--ltj-bukem",
+      "type": "project",
+      "name": "Horizons / Rain Fall",
+      "artist": "LTJ Bukem",
+      "mbid": "93e134e4-a9f3-32cc-890c-77dedb9f9af4",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:19-5--ltj-bukem",
+      "type": "project",
+      "name": "19.5",
+      "artist": "LTJ Bukem",
+      "mbid": "fb219206-2a9b-3c17-a731-a5e35bc451b6",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:atmospherical-jubilancy--ltj-bukem",
+      "type": "project",
+      "name": "Atmospherical Jubilancy",
+      "artist": "LTJ Bukem",
+      "mbid": "90a7731e-8050-47d0-8c23-2059290b7a30",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:music-happy-raw-enchanted--ltj-bukem",
+      "type": "project",
+      "name": "Music (Happy Raw) / Enchanted",
+      "artist": "LTJ Bukem",
+      "mbid": "494e9b94-71d3-3720-b407-7d6a557f8b3b",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:demon-s-theme-a-couple-of-beats--ltj-bukem",
+      "type": "project",
+      "name": "Demon's Theme / A Couple of Beats",
+      "artist": "LTJ Bukem",
+      "mbid": "d585fe59-3e66-3944-b519-0d0e86dd72c1",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:delitefol--ltj-bukem",
+      "type": "project",
+      "name": "Delitefol",
+      "artist": "LTJ Bukem",
+      "mbid": "645f01cf-bc17-4dfa-bb54-dd32271b5a57",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:logical-progression--ltj-bukem",
+      "type": "project",
+      "name": "Logical Progression",
+      "artist": "LTJ Bukem",
+      "mbid": "25546dd6-1e33-4fea-a299-aae502a2e179",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:atmospherical-jubilancy-all-one-call--ltj-bukem",
+      "type": "project",
+      "name": "Atmospherical Jubilancy / All One Call",
+      "artist": "LTJ Bukem",
+      "mbid": "ca852593-0f2d-4b30-ba9c-0aa36b46ad8a",
+      "releaseType": "single"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:horizons",

@@ -55,9 +55,183 @@
   ],
   "discography": [
     {
+      "slug": "project:extended-versions-2025--giorgio-moroder",
+      "type": "project",
+      "name": "Extended Versions 2025",
+      "artist": "Giorgio Moroder",
+      "mbid": "bf469901-d75b-4cfd-b23a-b77e197d9be2",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:deja-vu",
       "type": "project",
-      "name": "Deja Vu"
+      "name": "Deja Vu",
+      "mbid": "9b47fdd8-bf2b-4fd5-90b1-53bb4326d4e6",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tom-s-diner--giorgio-moroder",
+      "type": "project",
+      "name": "Tom’s Diner",
+      "artist": "Giorgio Moroder",
+      "mbid": "6dbb7420-aeb1-459a-8033-fb9514f30e74",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:forever-dancing--giorgio-moroder",
+      "type": "project",
+      "name": "Forever Dancing",
+      "artist": "Giorgio Moroder",
+      "mbid": "a43bb795-9373-3d14-a0ff-dc845c49b685",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:to-be-number-one--giorgio-moroder",
+      "type": "project",
+      "name": "To Be Number One",
+      "artist": "Giorgio Moroder",
+      "mbid": "8d5ee5a9-c048-4008-987a-e8e7af433479",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mamba--giorgio-moroder",
+      "type": "project",
+      "name": "Mamba",
+      "artist": "Giorgio Moroder",
+      "mbid": "ae3260b9-a0b1-40a2-977f-8c875571c091",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:innovisions--giorgio-moroder",
+      "type": "project",
+      "name": "Innovisions",
+      "artist": "Giorgio Moroder",
+      "mbid": "1ff5b5a5-7a73-346b-bfb1-c2c6e009d7fb",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:solitary-men--giorgio-moroder",
+      "type": "project",
+      "name": "Solitary Men",
+      "artist": "Giorgio Moroder",
+      "mbid": "5f6f0440-f9f2-4a3f-a5ba-ba80144dfeab",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cat-people--giorgio-moroder",
+      "type": "project",
+      "name": "Cat People",
+      "artist": "Giorgio Moroder",
+      "mbid": "55538409-6a4e-3abe-9c7f-dd94151c537d",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:american-gigolo--giorgio-moroder",
+      "type": "project",
+      "name": "American Gigolo",
+      "artist": "Giorgio Moroder",
+      "mbid": "1c38d50b-aa42-3b9d-b54c-e84fe0e061f9",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:e-mc2--giorgio-moroder",
+      "type": "project",
+      "name": "E=MC²",
+      "artist": "Giorgio Moroder",
+      "mbid": "edd692d4-294c-3351-880a-527e4c8686cb",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-s-in-you-love-s-in-me--giorgio-moroder",
+      "type": "project",
+      "name": "Love’s in You, Love’s in Me",
+      "artist": "Giorgio Moroder",
+      "mbid": "463d05e6-b154-3e46-81a7-120af5480b83",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:midnight-express-music-from-the-original-motion-picture-soundtrack--giorgio-moroder",
+      "type": "project",
+      "name": "Midnight Express: Music From the Original Motion Picture Soundtrack",
+      "artist": "Giorgio Moroder",
+      "mbid": "b4d5694a-f832-36bf-9597-3779f113f5fc",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-from-battlestar-galactica--giorgio-moroder",
+      "type": "project",
+      "name": "Music From \"Battlestar Galactica\"",
+      "artist": "Giorgio Moroder",
+      "mbid": "d99c0d8c-ba19-40b0-ba2b-f7762c247b5f",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-chase--giorgio-moroder",
+      "type": "project",
+      "name": "The Chase",
+      "artist": "Giorgio Moroder",
+      "mbid": "ce362ddd-e2c2-3d0a-b524-9ec0a5b47282",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:from-here-to-eternity--giorgio-moroder",
+      "type": "project",
+      "name": "From Here to Eternity",
+      "artist": "Giorgio Moroder",
+      "mbid": "eea2d61e-2106-32b7-8834-6cf0e50eb9ff",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:knights-in-white-satin--giorgio-moroder",
+      "type": "project",
+      "name": "Knights in White Satin",
+      "artist": "Giorgio Moroder",
+      "mbid": "995675df-26c7-38a2-9efa-9d1d7fb9187b",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:giorgio-s-music--giorgio-moroder",
+      "type": "project",
+      "name": "Giorgio's Music",
+      "artist": "Giorgio Moroder",
+      "mbid": "428eaafe-baf1-4e6e-a9f6-6e33e6d9946f",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:son-of-my-father--giorgio-moroder",
+      "type": "project",
+      "name": "Son of My Father",
+      "artist": "Giorgio Moroder",
+      "mbid": "9719f0ef-ff7d-39bf-88be-82e938355f1b",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:that-s-bubble-gum-that-s-giorgio--giorgio-moroder",
+      "type": "project",
+      "name": "That’s Bubble Gum — That’s Giorgio",
+      "artist": "Giorgio Moroder",
+      "mbid": "43a7ef80-5415-417e-8a79-e454796158c3",
+      "year": "1969",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

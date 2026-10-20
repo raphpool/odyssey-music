@@ -59,7 +59,170 @@
       "name": "Domino Recording Company"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:ostrich-churchyard--orange-juice",
+      "type": "project",
+      "name": "Ostrich Churchyard",
+      "artist": "Orange Juice",
+      "mbid": "67953d06-3af7-3c2e-ba09-defa83dd7ff4",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bridge--orange-juice",
+      "type": "project",
+      "name": "Bridge",
+      "artist": "Orange Juice",
+      "mbid": "d3dbc488-cb38-4a88-952d-ac3fcd3ddc45",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lean-period--orange-juice",
+      "type": "project",
+      "name": "Lean Period",
+      "artist": "Orange Juice",
+      "mbid": "4dfbac3a-9e7c-465d-864d-686d47cbf02b",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:texas-fever--orange-juice",
+      "type": "project",
+      "name": "Texas Fever",
+      "artist": "Orange Juice",
+      "mbid": "042ec76d-6bae-3ad6-8385-25817467c24b",
+      "year": "1984",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-orange-juice--orange-juice",
+      "type": "project",
+      "name": "The Orange Juice",
+      "artist": "Orange Juice",
+      "mbid": "b52561f9-a734-37e7-8914-39d99fdff104",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:what-presence--orange-juice",
+      "type": "project",
+      "name": "What Presence?!",
+      "artist": "Orange Juice",
+      "mbid": "124ae25c-da0a-462d-822b-3a191faf2b79",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:flesh-of-my-flesh--orange-juice",
+      "type": "project",
+      "name": "Flesh of My Flesh",
+      "artist": "Orange Juice",
+      "mbid": "03452ecf-b598-4cc8-bd31-93208a6222ea",
+      "year": "1983",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:felicity--orange-juice",
+      "type": "project",
+      "name": "Felicity",
+      "artist": "Orange Juice",
+      "mbid": "108691e4-0ab2-4707-a51d-283f7389f82e",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-can-t-help-myself--orange-juice",
+      "type": "project",
+      "name": "I Can’t Help Myself",
+      "artist": "Orange Juice",
+      "mbid": "8e09a6fc-3f7f-4e55-a3b7-967512298e7f",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rip-it-up--orange-juice",
+      "type": "project",
+      "name": "Rip It Up",
+      "artist": "Orange Juice",
+      "mbid": "b29ee43a-2073-3b7d-add8-ad893be0ecc9",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:two-hearts-together-hokoyo--orange-juice",
+      "type": "project",
+      "name": "Two Hearts Together / Hokoyo",
+      "artist": "Orange Juice",
+      "mbid": "4f75fc5b-2e33-462d-bc63-cef3a8a4ff9e",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-can-t-hide-your-love-forever--orange-juice",
+      "type": "project",
+      "name": "You Can’t Hide Your Love Forever",
+      "artist": "Orange Juice",
+      "mbid": "90159e34-a4dd-3f60-bf57-e832bda67338",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:l-o-v-e-love-intuition-told-me--orange-juice",
+      "type": "project",
+      "name": "L.O.V.E.... Love / Intuition Told Me",
+      "artist": "Orange Juice",
+      "mbid": "74218237-149a-438f-9b0d-98add7130ba6",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:poor-old-soul--orange-juice",
+      "type": "project",
+      "name": "Poor Old Soul",
+      "artist": "Orange Juice",
+      "mbid": "00825ee7-8e61-4b6b-8649-6f4b07d3caaa",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blue-boy-love-sick--orange-juice",
+      "type": "project",
+      "name": "Blue Boy / Love Sick",
+      "artist": "Orange Juice",
+      "mbid": "af643065-70da-4c6a-858e-62a05dbdea76",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:falling-and-laughing--orange-juice",
+      "type": "project",
+      "name": "Falling and Laughing",
+      "artist": "Orange Juice",
+      "mbid": "57ba0fe1-a1ea-4746-9831-5b41dff34160",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:simply-thrilled-honey-breakfast-time--orange-juice",
+      "type": "project",
+      "name": "Simply Thrilled Honey / Breakfast Time",
+      "artist": "Orange Juice",
+      "mbid": "d27f03fc-265b-300b-b3a0-abd1a07ee3fc",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-felicity-flexi-session--orange-juice",
+      "type": "project",
+      "name": "“The Felicity” Flexi Session",
+      "artist": "Orange Juice",
+      "mbid": "87b26ce8-db3c-4321-8276-360bb4fd8c1d",
+      "year": "1979",
+      "releaseType": "ep"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:falling-and-laughing",

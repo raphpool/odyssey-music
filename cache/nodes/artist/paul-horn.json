@@ -54,15 +54,241 @@
   ],
   "discography": [
     {
+      "slug": "project:africa--paul-horn",
+      "type": "project",
+      "name": "Africa",
+      "artist": "Paul Horn",
+      "mbid": "c0909d5b-648b-32ba-998b-76656eaaebcf",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:inside-monument-valley--paul-horn",
+      "type": "project",
+      "name": "Inside Monument Valley",
+      "artist": "Paul Horn",
+      "mbid": "e6575385-433a-4969-9f11-075e80b862c8",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:inside-canyon-de-chelly--paul-horn",
+      "type": "project",
+      "name": "Inside Canyon de Chelly",
+      "artist": "Paul Horn",
+      "mbid": "067b8c01-2c05-3b44-866f-ba87318ca84e",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music--paul-horn",
+      "type": "project",
+      "name": "Music",
+      "artist": "Paul Horn",
+      "mbid": "dbe8da74-5145-397f-92f6-4723b0fdffc2",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-jazz-masters-100-anos-de-swing--paul-horn",
+      "type": "project",
+      "name": "The Jazz Masters - 100 Años De Swing",
+      "artist": "Paul Horn",
+      "mbid": "922cd509-f82b-46a7-bb5b-d85e6a3862a8",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:nomad--paul-horn",
+      "type": "project",
+      "name": "Nomad",
+      "artist": "Paul Horn",
+      "mbid": "a28f1e42-6ea6-30a6-80c5-296afe8d38b2",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:brazilian-images--paul-horn",
+      "type": "project",
+      "name": "Brazilian Images",
+      "artist": "Paul Horn",
+      "mbid": "ecfa8889-a0d0-3298-8b8d-e03621a76729",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:inside-the-taj-mahal-ii--paul-horn",
+      "type": "project",
+      "name": "Inside The Taj Mahal II",
+      "artist": "Paul Horn",
+      "mbid": "a1a7e4c4-d688-330e-be7e-757791f1b386",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-special-edition--paul-horn",
+      "type": "project",
+      "name": "A Special Edition",
+      "artist": "Paul Horn",
+      "mbid": "30a8b9f2-0d8c-35fc-af62-67adf616a116",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-india-and-kashmir--paul-horn",
+      "type": "project",
+      "name": "In India & Kashmir",
+      "artist": "Paul Horn",
+      "mbid": "9600f647-27cb-42c6-805c-270c4a881a1a",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:inside-the-taj-mahal-and-inside-ii--paul-horn",
+      "type": "project",
+      "name": "Inside The Taj Mahal & Inside II",
+      "artist": "Paul Horn",
+      "mbid": "bec9073b-1bd3-3283-8036-ac18c729b40f",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-peace-album--paul-horn",
+      "type": "project",
+      "name": "The Peace Album",
+      "artist": "Paul Horn",
+      "mbid": "d1785660-2c89-3c9c-bf1e-2f98837de474",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:connections--paul-horn",
+      "type": "project",
+      "name": "Connections",
+      "artist": "Paul Horn",
+      "mbid": "b34f482f-e6c0-35f7-86f5-17c4167349e1",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:inside-the-cathedral--paul-horn",
+      "type": "project",
+      "name": "Inside the Cathedral",
+      "artist": "Paul Horn",
+      "mbid": "649b1166-074c-3d2f-a4db-8a40abc25aee",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:china--paul-horn",
+      "type": "project",
+      "name": "China",
+      "artist": "Paul Horn",
+      "mbid": "953fb128-1e99-3524-9782-99c1d0c37d54",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:heart-to-heart--paul-horn",
+      "type": "project",
+      "name": "Heart to Heart",
+      "artist": "Paul Horn",
+      "mbid": "7fba731a-20bb-469c-a17f-bb1dddb8f823",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dream-machine--paul-horn",
+      "type": "project",
+      "name": "Dream Machine",
+      "artist": "Paul Horn",
+      "mbid": "783f4c73-dc35-454c-a5c1-72f7237e1b38",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:inside-the-great-pyramid--paul-horn",
+      "type": "project",
+      "name": "Inside The Great Pyramid",
+      "artist": "Paul Horn",
+      "mbid": "2ff2f3e6-483b-377b-a2de-528defa60ef0",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:visions--paul-horn",
+      "type": "project",
+      "name": "Visions",
+      "artist": "Paul Horn",
+      "mbid": "dbdde217-0b3e-4065-9a9b-c609a1f04a43",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:inside-ii--paul-horn",
+      "type": "project",
+      "name": "Inside II",
+      "artist": "Paul Horn",
+      "mbid": "a5727654-e9c6-4d8e-aceb-8710e5de1a94",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-kashmir-cosmic-consciousness--paul-horn",
+      "type": "project",
+      "name": "In Kashmir - Cosmic Consciousness",
+      "artist": "Paul Horn",
+      "mbid": "7afef712-c5ea-47d4-b681-347cd7c011d0",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:inside--paul-horn",
       "type": "project",
       "name": "Inside",
-      "artist": "Paul Horn"
+      "artist": "Paul Horn",
+      "mbid": "8ff211d5-ec9e-321c-bae8-147c808cf20b",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jazz-suite-on-the-mass-texts--paul-horn",
+      "type": "project",
+      "name": "Jazz Suite on the Mass Texts",
+      "artist": "Paul Horn",
+      "mbid": "1ac8f298-dabc-4c07-a1cc-f0399ede5159",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:impressions-of-cleopatra--paul-horn",
+      "type": "project",
+      "name": "Impressions Of Cleopatra",
+      "artist": "Paul Horn",
+      "mbid": "9abe73b4-c99b-48e3-afb4-f5b919c3708b",
+      "year": "1963",
+      "releaseType": "album"
     },
     {
       "slug": "project:traveler",
       "type": "project",
       "name": "Traveler"
+    },
+    {
+      "slug": "project:monday-monday--paul-horn",
+      "type": "project",
+      "name": "Monday, Monday",
+      "artist": "Paul Horn",
+      "mbid": "9efb486e-39ea-48e6-b2b6-1bf849bbdeff",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:plenty-of-horn--paul-horn",
+      "type": "project",
+      "name": "Plenty of Horn",
+      "artist": "Paul Horn",
+      "mbid": "748cb4e9-542c-4f9f-8691-94869bcddabd",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

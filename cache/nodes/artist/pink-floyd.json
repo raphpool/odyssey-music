@@ -43,24 +43,360 @@
   "labels": [],
   "discography": [
     {
-      "slug": "project:the-piper-at-the-gates-of-dawn--pink-floyd",
+      "slug": "project:hey-hey-rise-up--pink-floyd",
       "type": "project",
-      "name": "The Piper at the Gates of Dawn"
+      "name": "Hey Hey Rise Up",
+      "artist": "Pink Floyd",
+      "mbid": "d2090b8a-17e6-4fd0-a91b-2b460b9c9912",
+      "year": "2022",
+      "releaseType": "single"
     },
     {
-      "slug": "project:the-dark-side-of-the-moon--pink-floyd",
+      "slug": "project:1965-their-first-recordings--pink-floyd",
       "type": "project",
-      "name": "The Dark Side of the Moon"
+      "name": "1965: Their First Recordings",
+      "artist": "Pink Floyd",
+      "mbid": "8cfe1674-1fd4-45d4-ad2d-b30951d07a59",
+      "year": "2015",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:wish-you-were-here--pink-floyd",
+      "slug": "project:the-endless-river--pink-floyd",
       "type": "project",
-      "name": "Wish You Were Here"
+      "name": "The Endless River",
+      "artist": "Pink Floyd",
+      "mbid": "38b4c840-16ce-40fa-b7c0-a354b7c87178",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:high-hopes--pink-floyd",
+      "type": "project",
+      "name": "High Hopes",
+      "artist": "Pink Floyd",
+      "mbid": "32c7ed5f-84b2-3e05-a546-d710b1aeff3c",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:take-it-back--pink-floyd",
+      "type": "project",
+      "name": "Take It Back",
+      "artist": "Pink Floyd",
+      "mbid": "24a99313-6f2d-30d9-b309-f7e05d3edb00",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-division-bell--pink-floyd",
+      "type": "project",
+      "name": "The Division Bell",
+      "artist": "Pink Floyd",
+      "mbid": "90878b63-f639-3c8b-aefb-190bdf3d1790",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tonite-let-s-all-make-love-in-london-plus--pink-floyd",
+      "type": "project",
+      "name": "Tonite Let’s All Make Love in London… Plus",
+      "artist": "Pink Floyd",
+      "mbid": "1ac6af64-25af-3ccb-a913-a7890ae8035c",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:one-slip--pink-floyd",
+      "type": "project",
+      "name": "One Slip",
+      "artist": "Pink Floyd",
+      "mbid": "c4cd60f7-5109-3834-b3b8-9af9cd4e2658",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-momentary-lapse-of-reason--pink-floyd",
+      "type": "project",
+      "name": "A Momentary Lapse of Reason",
+      "artist": "Pink Floyd",
+      "mbid": "4940b8aa-898b-3e60-9992-94e073bab6f6",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:on-the-turning-away--pink-floyd",
+      "type": "project",
+      "name": "On the Turning Away",
+      "artist": "Pink Floyd",
+      "mbid": "dc91e05d-7239-3844-b85e-eb30df1352dc",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-final-cut--pink-floyd",
+      "type": "project",
+      "name": "The Final Cut",
+      "artist": "Pink Floyd",
+      "mbid": "e8b7e7a3-ef56-34a5-bedf-085783c9a076",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:comfortably-numb--pink-floyd",
+      "type": "project",
+      "name": "Comfortably Numb",
+      "artist": "Pink Floyd",
+      "mbid": "26ce0875-e8c8-4cb2-bdaa-36feaa76d3a5",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:another-brick-in-the-wall-part-ii-another-brick-in-the-wall-part-i--pink-floyd",
+      "type": "project",
+      "name": "Another Brick in the Wall (Part II) / Another Brick in the Wall (Part I)",
+      "artist": "Pink Floyd",
+      "mbid": "d15d737e-9b03-47a1-afa5-0eea932a28a8",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:another-brick-in-the-wall-part-ii--pink-floyd",
+      "type": "project",
+      "name": "Another Brick in the Wall, Part II",
+      "artist": "Pink Floyd",
+      "mbid": "d39c40ba-c173-309c-a374-97c0ccdf2a19",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:run-like-hell--pink-floyd",
+      "type": "project",
+      "name": "Run Like Hell",
+      "artist": "Pink Floyd",
+      "mbid": "de9577b5-e9e9-44b1-b8a3-768f9df75aad",
+      "year": "1979",
+      "releaseType": "single"
     },
     {
       "slug": "project:the-wall",
       "type": "project",
-      "name": "The Wall"
+      "name": "The Wall",
+      "mbid": "f2026101-945b-3d05-9ef4-aa718fc3feef",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:free-four-the-gold-it-s-in-the--pink-floyd",
+      "type": "project",
+      "name": "Free Four / The Gold It’s in The…",
+      "artist": "Pink Floyd",
+      "mbid": "88ba333f-831a-4b0a-a80e-6204d516a1c8",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:animals--pink-floyd",
+      "type": "project",
+      "name": "Animals",
+      "artist": "Pink Floyd",
+      "mbid": "20c77fb4-1c9f-33c8-9d7e-c4977f11e847",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:have-a-cigar--pink-floyd",
+      "type": "project",
+      "name": "Have a Cigar",
+      "artist": "Pink Floyd",
+      "mbid": "18e251c9-9fc9-4f22-b1d9-dbc271675208",
+      "year": "1975",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wish-you-were-here--pink-floyd",
+      "type": "project",
+      "name": "Wish You Were Here",
+      "mbid": "1a272023-10d3-38ee-bab3-317b55fcc21d",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:time-us-and-them--pink-floyd",
+      "type": "project",
+      "name": "Time / Us and Them",
+      "artist": "Pink Floyd",
+      "mbid": "c2c2671b-afc9-4b2e-b0c8-0b54116c0933",
+      "year": "1974",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:money--pink-floyd",
+      "type": "project",
+      "name": "Money",
+      "artist": "Pink Floyd",
+      "mbid": "99d8e3fc-0b2d-38a0-812a-f28db849417b",
+      "year": "1973",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-dark-side-of-the-moon--pink-floyd",
+      "type": "project",
+      "name": "The Dark Side of the Moon",
+      "mbid": "f5093c06-23e3-404f-aeaa-40f72885ee3a",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:obscured-by-clouds--pink-floyd",
+      "type": "project",
+      "name": "Obscured by Clouds",
+      "artist": "Pink Floyd",
+      "mbid": "a6f0826e-9b27-3d75-b30c-e5d33235777a",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:meddle--pink-floyd",
+      "type": "project",
+      "name": "Meddle",
+      "artist": "Pink Floyd",
+      "mbid": "4e98c9b4-92f6-3049-b9da-a1088b623672",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-of-these-days-fearless--pink-floyd",
+      "type": "project",
+      "name": "One of These Days / Fearless",
+      "artist": "Pink Floyd",
+      "mbid": "1cf1fe4d-9cb0-39eb-83f3-1f210156d2ab",
+      "year": "1971",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:68--pink-floyd",
+      "type": "project",
+      "name": "に消えるジュリア / サマー’68",
+      "artist": "Pink Floyd",
+      "mbid": "5f2d9719-4abf-4246-9999-120c68d591b7",
+      "year": "1971",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:atom-heart-mother--pink-floyd",
+      "type": "project",
+      "name": "Atom Heart Mother",
+      "artist": "Pink Floyd",
+      "mbid": "e2f503d7-5488-3fe1-b3ac-f236d9f1b44c",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:more--pink-floyd",
+      "type": "project",
+      "name": "More",
+      "artist": "Pink Floyd",
+      "mbid": "43d42d00-46fb-3d9c-9612-03d30fb20307",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-nile-song-main-theme--pink-floyd",
+      "type": "project",
+      "name": "The Nile Song / Main Theme",
+      "artist": "Pink Floyd",
+      "mbid": "50620f1d-557c-4439-a118-6d431e9341ae",
+      "year": "1969",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ummagumma--pink-floyd",
+      "type": "project",
+      "name": "Ummagumma",
+      "artist": "Pink Floyd",
+      "mbid": "b7aa61ae-3572-32c0-8b93-6af78ea83760",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-saucerful-of-secrets--pink-floyd",
+      "type": "project",
+      "name": "A Saucerful of Secrets",
+      "artist": "Pink Floyd",
+      "mbid": "8a9caa40-b7c6-33eb-a13c-6c15f09b1c44",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:it-would-be-so-nice-julia-dream--pink-floyd",
+      "type": "project",
+      "name": "It Would Be So Nice / Julia Dream",
+      "artist": "Pink Floyd",
+      "mbid": "4c7cd1f2-12d7-3486-bcd1-1d95813f270e",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:let-there-be-more-light-remember-a-day--pink-floyd",
+      "type": "project",
+      "name": "Let There Be More Light / Remember a Day",
+      "artist": "Pink Floyd",
+      "mbid": "1f03fbe2-5458-4f3e-88f6-f23eeb3d9594",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:point-me-at-the-sky-careful-with-that-axe-eugene--pink-floyd",
+      "type": "project",
+      "name": "Point Me at the Sky / Careful With That Axe Eugene",
+      "artist": "Pink Floyd",
+      "mbid": "68a5607b-ce07-39d0-a301-014c4ce40d5d",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:apples-and-oranges--pink-floyd",
+      "type": "project",
+      "name": "Apples and Oranges",
+      "artist": "Pink Floyd",
+      "mbid": "a30549ee-5965-3ab3-a5ef-05f1096d77e1",
+      "year": "1967",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:arnold-layne--pink-floyd",
+      "type": "project",
+      "name": "Arnold Layne",
+      "artist": "Pink Floyd",
+      "mbid": "186a9cc6-ac8d-302c-99e6-2d040f0ee0bc",
+      "year": "1967",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:flaming--pink-floyd",
+      "type": "project",
+      "name": "Flaming",
+      "artist": "Pink Floyd",
+      "mbid": "6c2f3922-5437-4f84-9016-5f26a339f886",
+      "year": "1967",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:see-emily-play--pink-floyd",
+      "type": "project",
+      "name": "See Emily Play",
+      "artist": "Pink Floyd",
+      "mbid": "cc4e0ed5-42e0-375b-85c7-2506d3abccf4",
+      "year": "1967",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-piper-at-the-gates-of-dawn--pink-floyd",
+      "type": "project",
+      "name": "The Piper at the Gates of Dawn",
+      "mbid": "6792b6d1-4e65-3c3c-9d20-d08aa1dcfc60",
+      "year": "1967",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

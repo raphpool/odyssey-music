@@ -61,29 +61,359 @@
   ],
   "discography": [
     {
-      "slug": "project:lady-of-the-night",
+      "slug": "project:to-paris-with-love--donna-summer",
       "type": "project",
-      "name": "Lady of the Night"
+      "name": "To Paris With Love",
+      "artist": "Donna Summer",
+      "mbid": "d4aaaa5d-bbd9-400d-84e3-8f23948018e9",
+      "year": "2010",
+      "releaseType": "single"
     },
     {
-      "slug": "project:love-to-love-you-baby",
+      "slug": "project:crayons--donna-summer",
       "type": "project",
-      "name": "Love to Love You Baby"
+      "name": "Crayons",
+      "artist": "Donna Summer",
+      "mbid": "ec23b573-8328-3f08-bd6b-cb7ba14af82e",
+      "year": "2008",
+      "releaseType": "album"
     },
     {
-      "slug": "project:bad-girls",
+      "slug": "project:i-will-go-with-you-con-te-partiro--donna-summer",
       "type": "project",
-      "name": "Bad Girls"
+      "name": "I Will Go With You (Con te partirò)",
+      "artist": "Donna Summer",
+      "mbid": "adcf1b98-e449-381e-9548-abaf1cb88bc5",
+      "year": "1999",
+      "releaseType": "single"
     },
     {
-      "slug": "project:once-upon-a-time",
+      "slug": "project:love-is-the-healer--donna-summer",
       "type": "project",
-      "name": "Once Upon a Time..."
+      "name": "Love Is the Healer",
+      "artist": "Donna Summer",
+      "mbid": "2050da37-e1e1-3c1f-a342-4193ec1318cf",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-m-a-rainbow--donna-summer",
+      "type": "project",
+      "name": "I’m a Rainbow",
+      "artist": "Donna Summer",
+      "mbid": "034b3089-6797-32d9-9e60-97cc72355399",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:christmas-spirit--donna-summer",
+      "type": "project",
+      "name": "Christmas Spirit",
+      "artist": "Donna Summer",
+      "mbid": "51973394-3a11-30d4-b43a-1548715c2b59",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:melody-of-love-wanna-be-loved--donna-summer",
+      "type": "project",
+      "name": "Melody of Love (Wanna Be Loved)",
+      "artist": "Donna Summer",
+      "mbid": "2f350836-e446-3931-9b7c-ba583df75aa7",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-cry-for-me-argentina--donna-summer",
+      "type": "project",
+      "name": "Don’t Cry for Me Argentina",
+      "artist": "Donna Summer",
+      "mbid": "e88e21bf-702c-4b05-8a41-8f78b22ebd05",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:carry-on--donna-summer",
+      "type": "project",
+      "name": "Carry On",
+      "artist": "Donna Summer",
+      "mbid": "c71e28fc-2df8-3dac-9fbd-5d0f57762d0e",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mistaken-identity--donna-summer",
+      "type": "project",
+      "name": "Mistaken Identity",
+      "artist": "Donna Summer",
+      "mbid": "960d4f42-dbc4-3bbb-92c8-598840f7fb12",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:another-place-and-time--donna-summer",
+      "type": "project",
+      "name": "Another Place and Time",
+      "artist": "Donna Summer",
+      "mbid": "481a235d-aa1e-3271-a181-46417ad77c93",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:all-systems-go--donna-summer",
+      "type": "project",
+      "name": "All Systems Go",
+      "artist": "Donna Summer",
+      "mbid": "52b694e5-2f2c-3dc4-9816-a49c5cfb5fad",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cats-without-claws--donna-summer",
+      "type": "project",
+      "name": "Cats Without Claws",
+      "artist": "Donna Summer",
+      "mbid": "2ce117be-a35d-3597-bce3-1763f78c342f",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:summernight--donna-summer",
+      "type": "project",
+      "name": "Summernight",
+      "artist": "Donna Summer",
+      "mbid": "412f123e-b5b6-3339-9f21-51b3eea814a7",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:supernatural-love--donna-summer",
+      "type": "project",
+      "name": "Supernatural Love",
+      "artist": "Donna Summer",
+      "mbid": "2d36919e-d9c4-43a0-9aff-04703c90f8da",
+      "year": "1984",
+      "releaseType": "single"
     },
     {
       "slug": "project:she-works-hard-for-the-money",
       "type": "project",
-      "name": "She Works Hard for the Money"
+      "name": "She Works Hard for the Money",
+      "mbid": "4f39d12f-ca63-3201-a006-31c246851629",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:donna-summer--donna-summer",
+      "type": "project",
+      "name": "Donna Summer",
+      "artist": "Donna Summer",
+      "mbid": "5ce82115-defb-3b6f-9a17-527a0f1e9c71",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-is-in-control-finger-on-the-trigger--donna-summer",
+      "type": "project",
+      "name": "Love Is in Control (Finger on the Trigger)",
+      "artist": "Donna Summer",
+      "mbid": "6662ad7f-33f9-4143-ba9c-b7c0b1085a5d",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:state-of-independence--donna-summer",
+      "type": "project",
+      "name": "State of Independence",
+      "artist": "Donna Summer",
+      "mbid": "a57dd96f-1e59-3e18-99ad-5e03dad168f3",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-woman-in-me--donna-summer",
+      "type": "project",
+      "name": "The Woman in Me",
+      "artist": "Donna Summer",
+      "mbid": "1349ac07-e383-41ed-b2e6-b7bf82d7b365",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-wanderer--donna-summer",
+      "type": "project",
+      "name": "The Wanderer",
+      "artist": "Donna Summer",
+      "mbid": "1a9b11bd-4046-3e39-a68d-1aa655ba83a4",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bad-girls",
+      "type": "project",
+      "name": "Bad Girls",
+      "mbid": "f7568cc7-4c09-3a47-abbc-593e7aaac7d6",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dim-all-the-lights--donna-summer",
+      "type": "project",
+      "name": "Dim All the Lights",
+      "artist": "Donna Summer",
+      "mbid": "4ba5f3db-f5ca-42e2-98a6-efb22109ef36",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hot-stuff--donna-summer",
+      "type": "project",
+      "name": "Hot Stuff",
+      "artist": "Donna Summer",
+      "mbid": "f312446e-bb18-43a3-8af0-2cdbc2f98e19",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-more-tears-enough-is-enough--donna-summer",
+      "type": "project",
+      "name": "No More Tears (Enough Is Enough)",
+      "artist": "Donna Summer",
+      "mbid": "6d5604c2-ede3-470a-8081-0a2e86dabee3",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heaven-knows--donna-summer",
+      "type": "project",
+      "name": "Heaven Knows",
+      "artist": "Donna Summer",
+      "mbid": "6fe419a9-cd42-3b4c-b6df-7caafcda06d3",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:last-dance--donna-summer",
+      "type": "project",
+      "name": "Last Dance",
+      "artist": "Donna Summer",
+      "mbid": "d530f6b9-6ab7-4e67-833a-5bd029af478a",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:macarthur-park--donna-summer",
+      "type": "project",
+      "name": "MacArthur Park",
+      "artist": "Donna Summer",
+      "mbid": "34b310b0-8c50-3850-9a19-464f49289f3c",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:down-deep-inside-theme-from-the-deep--donna-summer",
+      "type": "project",
+      "name": "Down Deep Inside (Theme From The Deep)",
+      "artist": "Donna Summer",
+      "mbid": "b934e41e-ee2c-4968-8e32-1072431765d4",
+      "year": "1977",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-feel-love--donna-summer",
+      "type": "project",
+      "name": "I Feel Love",
+      "artist": "Donna Summer",
+      "mbid": "d5e3b639-dd70-3ad6-847a-2566c96b31af",
+      "year": "1977",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-remember-yesterday--donna-summer",
+      "type": "project",
+      "name": "I Remember Yesterday",
+      "artist": "Donna Summer",
+      "mbid": "ad08974f-1da6-37af-b1b7-3523d892caa9",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:once-upon-a-time",
+      "type": "project",
+      "name": "Once Upon a Time...",
+      "mbid": "eb9235e7-7838-3a3c-90c8-1ca030dff5de",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rumour-has-it--donna-summer",
+      "type": "project",
+      "name": "Rumour Has It",
+      "artist": "Donna Summer",
+      "mbid": "fd19a776-5aeb-4224-aeee-86948fad021b",
+      "year": "1977",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:winter-melody--donna-summer",
+      "type": "project",
+      "name": "Winter Melody",
+      "artist": "Donna Summer",
+      "mbid": "4c6b0601-d130-4fc7-9481-98d0a3daaf81",
+      "year": "1977",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-love-trilogy--donna-summer",
+      "type": "project",
+      "name": "A Love Trilogy",
+      "artist": "Donna Summer",
+      "mbid": "56bd40f9-bfa6-3400-b8d9-512a62c06e86",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:four-seasons-of-love--donna-summer",
+      "type": "project",
+      "name": "Four Seasons of Love",
+      "artist": "Donna Summer",
+      "mbid": "bc3ab434-92d2-32da-b462-04817dfc2e01",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-to-love-you-baby",
+      "type": "project",
+      "name": "Love to Love You Baby",
+      "mbid": "b0866510-7c36-32ed-a03a-f71798ece1ed",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:denver-dream--donna-summer",
+      "type": "project",
+      "name": "Denver Dream",
+      "artist": "Donna Summer",
+      "mbid": "0dbca5c8-da5c-4d7f-824e-826111499baa",
+      "year": "1974",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lady-of-the-night",
+      "type": "project",
+      "name": "Lady of the Night",
+      "mbid": "4a052040-fa9e-38a6-9f0b-40b63e81e15f",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-hostage--donna-summer",
+      "type": "project",
+      "name": "The Hostage",
+      "artist": "Donna Summer",
+      "mbid": "33105b6f-a163-4270-9132-a967523077c3",
+      "year": "1974",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

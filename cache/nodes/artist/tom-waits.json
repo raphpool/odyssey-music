@@ -49,7 +49,188 @@
       "name": "Island Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:the-fly--tom-waits",
+      "type": "project",
+      "name": "The Fly",
+      "artist": "Tom Waits",
+      "mbid": "6cf9958f-4d5d-40c0-ac26-f193689df00d",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bad-as-me--tom-waits",
+      "type": "project",
+      "name": "Bad as Me",
+      "artist": "Tom Waits",
+      "mbid": "956f10e8-0c74-4010-99d3-1b60fb7e88bc",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:real-gone--tom-waits",
+      "type": "project",
+      "name": "Real Gone",
+      "artist": "Tom Waits",
+      "mbid": "576c3356-80fc-3f59-b9b3-c4af2428056a",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:alice--tom-waits",
+      "type": "project",
+      "name": "Alice",
+      "artist": "Tom Waits",
+      "mbid": "e95110a2-d81c-3291-910c-8b80c878f99c",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blood-money--tom-waits",
+      "type": "project",
+      "name": "Blood Money",
+      "artist": "Tom Waits",
+      "mbid": "63377d20-38df-30ae-b1bc-6808b9e05482",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hold-on--tom-waits",
+      "type": "project",
+      "name": "Hold On",
+      "artist": "Tom Waits",
+      "mbid": "df32e857-348b-32bf-849f-1938c652a6f4",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mule-variations--tom-waits",
+      "type": "project",
+      "name": "Mule Variations",
+      "artist": "Tom Waits",
+      "mbid": "be821a7a-4a19-3062-9ca6-8d07a658bc10",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-black-rider--tom-waits",
+      "type": "project",
+      "name": "The Black Rider",
+      "artist": "Tom Waits",
+      "mbid": "3f43452a-9608-31de-874a-68abdb602a71",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bone-machine--tom-waits",
+      "type": "project",
+      "name": "Bone Machine",
+      "artist": "Tom Waits",
+      "mbid": "b65ca7b8-4069-3782-9c4c-b2353cc4bc04",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:night-on-earth--tom-waits",
+      "type": "project",
+      "name": "Night on Earth",
+      "artist": "Tom Waits",
+      "mbid": "3c087369-e6ac-3fc3-aea6-197a17ce44ce",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:franks-wild-years--tom-waits",
+      "type": "project",
+      "name": "Franks Wild Years",
+      "artist": "Tom Waits",
+      "mbid": "0b749ad8-2297-36b4-976b-fc8fc2d719cd",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rain-dogs--tom-waits",
+      "type": "project",
+      "name": "Rain Dogs",
+      "artist": "Tom Waits",
+      "mbid": "fb25a883-2270-3ec4-8c62-85c7ed857e6f",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:swordfishtrombones--tom-waits",
+      "type": "project",
+      "name": "Swordfishtrombones",
+      "artist": "Tom Waits",
+      "mbid": "c791b365-0400-3926-be67-d1d9c71fc37e",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-from-the-heart--tom-waits",
+      "type": "project",
+      "name": "One From the Heart",
+      "artist": "Tom Waits",
+      "mbid": "69393ad0-ada7-39e3-b3ef-97bf4acbff4c",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:heartattack-and-vine--tom-waits",
+      "type": "project",
+      "name": "Heartattack and Vine",
+      "artist": "Tom Waits",
+      "mbid": "6a9906e1-1ab2-37e1-980b-5e4889661089",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blue-valentine--tom-waits",
+      "type": "project",
+      "name": "Blue Valentine",
+      "artist": "Tom Waits",
+      "mbid": "a138f035-a018-3d29-8b90-36b30956fccc",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:foreign-affairs--tom-waits",
+      "type": "project",
+      "name": "Foreign Affairs",
+      "artist": "Tom Waits",
+      "mbid": "272a7377-c944-3ec5-ae75-ccc00a384e3a",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:small-change--tom-waits",
+      "type": "project",
+      "name": "Small Change",
+      "artist": "Tom Waits",
+      "mbid": "74d9eef1-bbc6-3029-8289-a53ef41698f6",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-heart-of-saturday-night--tom-waits",
+      "type": "project",
+      "name": "The Heart of Saturday Night",
+      "artist": "Tom Waits",
+      "mbid": "02e8018b-9dfe-35f4-99a1-6759c8b5f41c",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:closing-time--tom-waits",
+      "type": "project",
+      "name": "Closing Time",
+      "artist": "Tom Waits",
+      "mbid": "35c9a4b0-d4dd-3e6f-87fd-2185519296e2",
+      "year": "1973",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],

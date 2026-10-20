@@ -56,10 +56,121 @@
   ],
   "discography": [
     {
+      "slug": "project:adrenaline--atari-teenage-riot",
+      "type": "project",
+      "name": "Adrenaline",
+      "artist": "Atari Teenage Riot",
+      "mbid": "a0f57e56-c4c5-447f-a7d6-8cb73b05a4d8",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:modern-liars--atari-teenage-riot",
+      "type": "project",
+      "name": "Modern Liars",
+      "artist": "Atari Teenage Riot",
+      "mbid": "f107901e-6708-4330-ac93-674cfdee1dd6",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:reset--atari-teenage-riot",
+      "type": "project",
+      "name": "Reset",
+      "artist": "Atari Teenage Riot",
+      "mbid": "672256f0-c96e-43e6-86d8-95008b87a87f",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blood-in-my-eyes--atari-teenage-riot",
+      "type": "project",
+      "name": "Blood in My Eyes",
+      "artist": "Atari Teenage Riot",
+      "mbid": "f660c59b-9f45-4f48-a52d-7544d9b20916",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:is-this-hyperreal--atari-teenage-riot",
+      "type": "project",
+      "name": "Is This Hyperreal?",
+      "artist": "Atari Teenage Riot",
+      "mbid": "34dfda37-7583-4d54-96b8-0def544168cf",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:activate--atari-teenage-riot",
+      "type": "project",
+      "name": "Activate",
+      "artist": "Atari Teenage Riot",
+      "mbid": "ee9ac9d8-fce3-4376-b03b-c3bfb7fe0a06",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:60-second-wipe-out--atari-teenage-riot",
       "type": "project",
       "name": "60 Second Wipe Out",
-      "artist": "Atari Teenage Riot"
+      "artist": "Atari Teenage Riot",
+      "mbid": "a9596c1c-826c-3845-916b-d3c8adeeb44d",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:paranoid-free-satpal-ram--atari-teenage-riot",
+      "type": "project",
+      "name": "Paranoid / Free Satpal Ram",
+      "artist": "Atari Teenage Riot",
+      "mbid": "e94cbcda-e034-39f9-a60c-17989940a3e6",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sick-to-death-e-p--atari-teenage-riot",
+      "type": "project",
+      "name": "Sick to Death E.P.",
+      "artist": "Atari Teenage Riot",
+      "mbid": "a4644598-bc24-32ea-81eb-47ff39cf085e",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-future-of-war--atari-teenage-riot",
+      "type": "project",
+      "name": "The Future of War",
+      "artist": "Atari Teenage Riot",
+      "mbid": "11df22f5-6511-3aba-8ac0-e150590fbf70",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:1995--atari-teenage-riot",
+      "type": "project",
+      "name": "1995",
+      "artist": "Atari Teenage Riot",
+      "mbid": "0bc5d429-d1d3-33e4-8b3c-1d6a7185ec8e",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:raver-bashing-together-for-never--atari-teenage-riot",
+      "type": "project",
+      "name": "Raver Bashing / Together for Never",
+      "artist": "Atari Teenage Riot",
+      "mbid": "f130d00a-627a-375a-8f7c-065b945efaed",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:atr--atari-teenage-riot",
+      "type": "project",
+      "name": "ATR",
+      "artist": "Atari Teenage Riot",
+      "mbid": "c567432d-f740-3c4a-9beb-3517224c3fac",
+      "year": "1993",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

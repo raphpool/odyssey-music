@@ -65,24 +65,252 @@
   ],
   "discography": [
     {
-      "slug": "project:trilogie-de-la-mort",
+      "slug": "project:syntheses-1971-1974--eliane-radigue",
       "type": "project",
-      "name": "Trilogie de la Mort"
+      "name": "Synthèses (1971-1974)",
+      "artist": "Éliane Radigue",
+      "mbid": "4f7dc20a-2c9e-498b-9235-c6a70dab741f",
+      "year": "2026",
+      "releaseType": "album"
     },
     {
-      "slug": "project:adnos-i-iii",
+      "slug": "project:occam-delta-xv--eliane-radigue",
       "type": "project",
-      "name": "Adnos I-III"
+      "name": "Occam Delta XV",
+      "artist": "Éliane Radigue",
+      "mbid": "0d6ba0ad-7ba7-4293-b6b6-35325ba50f6f",
+      "year": "2023",
+      "releaseType": "album"
     },
     {
-      "slug": "project:songs-of-milarepa",
+      "slug": "project:occam-xxv--eliane-radigue",
       "type": "project",
-      "name": "Songs of Milarepa"
+      "name": "Occam XXV",
+      "artist": "Éliane Radigue",
+      "mbid": "d37a5160-b11e-4b6c-88a4-df826b8377b2",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:occam-ocean-3--eliane-radigue",
+      "type": "project",
+      "name": "Occam Ocean 3",
+      "artist": "Éliane Radigue",
+      "mbid": "996dad66-39af-4905-bebc-d4043bd6fffb",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:occam-ocean-4--eliane-radigue",
+      "type": "project",
+      "name": "Occam Ocean 4",
+      "artist": "Éliane Radigue",
+      "mbid": "cfba7758-77d8-4475-87ac-5845c045b84e",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:occam-ocean-2--eliane-radigue",
+      "type": "project",
+      "name": "Occam Ocean 2",
+      "artist": "Éliane Radigue",
+      "mbid": "17ec354c-a0bf-4496-bf68-54c004ab54fb",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:occam-ocean-1--eliane-radigue",
+      "type": "project",
+      "name": "Occam Ocean 1",
+      "artist": "Éliane Radigue",
+      "mbid": "e836f4f2-b092-458b-9893-3594a3d09c67",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:naldjorlak-i-ii-iii--eliane-radigue",
+      "type": "project",
+      "name": "Naldjorlak I II III",
+      "artist": "Éliane Radigue",
+      "mbid": "a0932730-c567-452f-8ca7-cf3976f8d047",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:opus-17--eliane-radigue",
+      "type": "project",
+      "name": "Opus 17",
+      "artist": "Éliane Radigue",
+      "mbid": "72f170ad-1fa1-479b-a08a-9a7160904c55",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:847--eliane-radigue",
+      "type": "project",
+      "name": "Ψ 847",
+      "artist": "Éliane Radigue",
+      "mbid": "3ee43a31-77d0-4d55-84af-23214772a82d",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:feedback-works-1969-1970--eliane-radigue",
+      "type": "project",
+      "name": "Feedback Works 1969–1970",
+      "artist": "Éliane Radigue",
+      "mbid": "34a4d7ed-c40d-4bbc-b872-c980b87e5a2f",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:transamorem-transmortem--eliane-radigue",
+      "type": "project",
+      "name": "Transamorem – Transmortem",
+      "artist": "Éliane Radigue",
+      "mbid": "97549642-bcea-4d1c-87f4-6f32482ff724",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jouet-electronique-elemental-i--eliane-radigue",
+      "type": "project",
+      "name": "Jouet électronique / Elemental I",
+      "artist": "Éliane Radigue",
+      "mbid": "8cddb0f9-c127-4035-bf60-1ebdfdc6b00f",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:triptych--eliane-radigue",
+      "type": "project",
+      "name": "Triptych",
+      "artist": "Éliane Radigue",
+      "mbid": "34638596-fe3e-4abd-b39e-dea6f6e91171",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:naldjorlak--eliane-radigue",
+      "type": "project",
+      "name": "Naldjorlak",
+      "artist": "Éliane Radigue",
+      "mbid": "392dde14-947e-4a61-aa24-6692186968b5",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chry-ptus--eliane-radigue",
+      "type": "project",
+      "name": "Chry‐ptus",
+      "artist": "Éliane Radigue",
+      "mbid": "b1561a3e-3178-4f04-b62a-9fc188255668",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:elemental-ii--eliane-radigue",
+      "type": "project",
+      "name": "Elemental II",
+      "artist": "Éliane Radigue",
+      "mbid": "a288dd4c-dcdd-3468-ad6c-4a4c8a931682",
+      "year": "2005",
+      "releaseType": "album"
     },
     {
       "slug": "project:l-ile-re-sonante",
       "type": "project",
-      "name": "L'Ile Re-sonante"
+      "name": "L'Ile Re-sonante",
+      "mbid": "c8460fee-f863-498e-a9b9-11aeef426131",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:geelriandre-arthesis--eliane-radigue",
+      "type": "project",
+      "name": "Geelriandre / Arthesis",
+      "artist": "Éliane Radigue",
+      "mbid": "f6ed77f2-f1f6-411a-81be-1b3f656ab1b3",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:adnos-i-iii",
+      "type": "project",
+      "name": "Adnos I-III",
+      "mbid": "ad4fa649-2617-35d8-ae93-23f1a698992a",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trilogie-de-la-mort",
+      "type": "project",
+      "name": "Trilogie de la Mort",
+      "mbid": "20a8f3c1-4d07-3ae6-8df1-559693a8df7d",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:biogenesis--eliane-radigue",
+      "type": "project",
+      "name": "Biogenesis",
+      "artist": "Éliane Radigue",
+      "mbid": "7f8a315a-62a2-3501-bb84-00b44a162c70",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kyema-intermediate-states--eliane-radigue",
+      "type": "project",
+      "name": "Kyema, Intermediate States",
+      "artist": "Éliane Radigue",
+      "mbid": "3cb64cb5-f5e6-3266-978f-7ae047f49e93",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jetsun-mila--eliane-radigue",
+      "type": "project",
+      "name": "Jetsun Mila",
+      "artist": "Éliane Radigue",
+      "mbid": "6a3bd9ce-5b5b-4977-b34f-c827b661e231",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mila-s-journey-inspired-by-a-dream--eliane-radigue",
+      "type": "project",
+      "name": "Mila's Journey Inspired by a Dream",
+      "artist": "Éliane Radigue",
+      "mbid": "66180096-e56a-385c-9ee0-c3bd79cad261",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:songs-of-milarepa",
+      "type": "project",
+      "name": "Songs of Milarepa",
+      "mbid": "554226fb-3049-326c-b043-4da810cbf668",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vice-versa-etc--eliane-radigue",
+      "type": "project",
+      "name": "Vice Versa, Etc…",
+      "artist": "Éliane Radigue",
+      "mbid": "fa7e7645-9d52-4445-89b9-18dc7a3b8ff7",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-b-a-b--eliane-radigue",
+      "type": "project",
+      "name": "Σ = a = b = a + b",
+      "artist": "Éliane Radigue",
+      "mbid": "48feb174-afb7-4f54-a8f4-c53227a5343e",
+      "year": "1969",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [],

@@ -66,9 +66,318 @@
   ],
   "discography": [
     {
+      "slug": "project:the-dark-side-of-the-moog-xi--pete-namlook",
+      "type": "project",
+      "name": "The Dark Side of the Moog XI",
+      "artist": "Pete Namlook",
+      "mbid": "ec8cfa1c-9c0f-4651-896f-d9a7cf2e8b96",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-dark-side-of-the-moog-x--pete-namlook",
+      "type": "project",
+      "name": "The Dark Side of the Moog X",
+      "artist": "Pete Namlook",
+      "mbid": "45d5c5e4-3cae-36da-9f8e-0c826e8ca84c",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:namlook-xviii-new-organic-life-iii--pete-namlook",
+      "type": "project",
+      "name": "Namlook XVIII: New Organic Life III",
+      "artist": "Pete Namlook",
+      "mbid": "2c417b82-5865-3628-9ef2-594b9e7e353c",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-dark-side-of-the-moog-ix--pete-namlook",
+      "type": "project",
+      "name": "The Dark Side of the Moog IX",
+      "artist": "Pete Namlook",
+      "mbid": "0a647c5e-ab0b-334e-9307-1616a667f2fb",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:namlook-xvi-new-organic-life--pete-namlook",
+      "type": "project",
+      "name": "Namlook XVI: New Organic Life",
+      "artist": "Pete Namlook",
+      "mbid": "165ef1ab-3766-382f-a4bb-c0b341480678",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:namlook-xvii-new-organic-life-ii--pete-namlook",
+      "type": "project",
+      "name": "Namlook XVII: New Organic Life II",
+      "artist": "Pete Namlook",
+      "mbid": "39271687-fcca-35f6-9f80-7405d77b4b93",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:4voice-iii--pete-namlook",
+      "type": "project",
+      "name": "4Voice III",
+      "artist": "Pete Namlook",
+      "mbid": "9bd2c299-69c6-3989-b831-688f8d61113c",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:namlook-xiv-solarized--pete-namlook",
+      "type": "project",
+      "name": "Namlook XIV: Solarized",
+      "artist": "Pete Namlook",
+      "mbid": "2e220bc2-2ed7-3f01-87d0-adbbd8d17898",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:namlook-xv-free-your-mind--pete-namlook",
+      "type": "project",
+      "name": "Namlook XV: Free Your Mind",
+      "artist": "Pete Namlook",
+      "mbid": "bf94bd94-4e0a-3b50-a9a2-f37497795e4c",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:s-h-a-d-o-2--pete-namlook",
+      "type": "project",
+      "name": "S.H.A.D.O 2",
+      "artist": "Pete Namlook",
+      "mbid": "e725c09a-9407-3700-b13a-5bae26d74e0a",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-dark-side-of-the-moog-viii--pete-namlook",
+      "type": "project",
+      "name": "The Dark Side of the Moog VIII",
+      "artist": "Pete Namlook",
+      "mbid": "df26cfaa-5148-3dac-a860-3e8f86f23516",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:4voice-ii--pete-namlook",
+      "type": "project",
+      "name": "4Voice II",
+      "artist": "Pete Namlook",
+      "mbid": "0a40ad03-2bef-31cc-bfb0-475ede4ceab9",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:namlook-xiii-license-to-chill--pete-namlook",
+      "type": "project",
+      "name": "Namlook XIII: License to Chill",
+      "artist": "Pete Namlook",
+      "mbid": "c95b100e-1338-31d7-b768-9f0a80a28512",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:namlook-xii--pete-namlook",
+      "type": "project",
+      "name": "Namlook XII",
+      "artist": "Pete Namlook",
+      "mbid": "ec921676-86ac-3149-a322-98e23704b001",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pete-namlook-hubertus-held--pete-namlook",
+      "type": "project",
+      "name": "Pete Namlook / Hubertus Held",
+      "artist": "Pete Namlook",
+      "mbid": "d25fd7c7-550d-3b62-97d5-6a7c262a3b03",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:s-h-a-d-o--pete-namlook",
+      "type": "project",
+      "name": "S.H.A.D.O",
+      "artist": "Pete Namlook",
+      "mbid": "31d24ef8-d90c-3d33-ae33-3ca251334e5c",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:atom--pete-namlook",
+      "type": "project",
+      "name": "Atom",
+      "artist": "Pete Namlook",
+      "mbid": "0fb575dc-e423-3f66-a2ef-d39fb255fd4d",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:namlook-xi--pete-namlook",
+      "type": "project",
+      "name": "Namlook XI",
+      "artist": "Pete Namlook",
+      "mbid": "37569a2c-b573-3c6c-8be3-1ee18e38cf67",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:namlook-x--pete-namlook",
+      "type": "project",
+      "name": "Namlook X",
+      "artist": "Pete Namlook",
+      "mbid": "91ed1f76-88bc-32f3-9761-d678c5bb4d34",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:seasons-greetings-summer--pete-namlook",
+      "type": "project",
+      "name": "Seasons Greetings: Summer",
+      "artist": "Pete Namlook",
+      "mbid": "894f84cf-7261-3128-adb6-22a262dbe06a",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-dark-side-of-the-moog-ii--pete-namlook",
+      "type": "project",
+      "name": "The Dark Side of the Moog II",
+      "artist": "Pete Namlook",
+      "mbid": "a8217bc4-4708-3835-8a54-6df59e48d184",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-dark-side-of-the-moog-iii--pete-namlook",
+      "type": "project",
+      "name": "The Dark Side of the Moog III",
+      "artist": "Pete Namlook",
+      "mbid": "e8abf45e-75f5-3bae-9867-3e231e4d75d1",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-for-ballet--pete-namlook",
+      "type": "project",
+      "name": "Music for Ballet",
+      "artist": "Pete Namlook",
+      "mbid": "1bb8c13f-44a9-3c3d-89e8-409d876c0b8e",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:namlook-iii--pete-namlook",
+      "type": "project",
+      "name": "Namlook III",
+      "artist": "Pete Namlook",
+      "mbid": "f89b9773-c985-356d-875c-88aba3a37ee2",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:namlook-iv--pete-namlook",
+      "type": "project",
+      "name": "Namlook IV",
+      "artist": "Pete Namlook",
+      "mbid": "d6efdde8-86ca-384e-923e-d8283f0fe1b3",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:namlook-v--pete-namlook",
+      "type": "project",
+      "name": "Namlook V",
+      "artist": "Pete Namlook",
+      "mbid": "855bf1c4-b5a4-3104-978c-36d5cac7c848",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:namlook-vi--pete-namlook",
+      "type": "project",
+      "name": "Namlook VI",
+      "artist": "Pete Namlook",
+      "mbid": "8207b41a-5423-3a4f-80ef-3e55c6e2e69e",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:namlook-vii--pete-namlook",
+      "type": "project",
+      "name": "Namlook VII",
+      "artist": "Pete Namlook",
+      "mbid": "bd33e47f-b447-3220-a73e-34c96f095d2f",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:namlook-viii-ix--pete-namlook",
+      "type": "project",
+      "name": "Namlook VIII + IX",
+      "artist": "Pete Namlook",
+      "mbid": "30dc24fd-08c8-3404-bf60-f3243dbc616c",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:seasons-greetings-autumn--pete-namlook",
+      "type": "project",
+      "name": "Seasons Greetings: Autumn",
+      "artist": "Pete Namlook",
+      "mbid": "ac7db4fd-20b3-3c4d-869c-638a52693ed1",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:seasons-greetings-spring--pete-namlook",
+      "type": "project",
+      "name": "Seasons Greetings: Spring",
+      "artist": "Pete Namlook",
+      "mbid": "62701907-8d19-383f-8d7a-7f946612a5d8",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:seasons-greetings-winter--pete-namlook",
+      "type": "project",
+      "name": "Seasons Greetings: Winter",
+      "artist": "Pete Namlook",
+      "mbid": "ec690a25-d2b1-3c03-8abf-19b63249f5e2",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:the-dark-side-of-the-moog",
       "type": "project",
-      "name": "The Dark Side of the Moog"
+      "name": "The Dark Side of the Moog",
+      "mbid": "bbab0d52-31fc-3246-8dba-f26f441bd594",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:namlook--pete-namlook",
+      "type": "project",
+      "name": "Namlook",
+      "artist": "Pete Namlook",
+      "mbid": "54471eb0-4cf3-30dd-8b79-3f0b74862fe9",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:namlook-ii--pete-namlook",
+      "type": "project",
+      "name": "Namlook II",
+      "artist": "Pete Namlook",
+      "mbid": "6fb03f38-e9d4-33f1-9341-b3b0bfe46f07",
+      "year": "1993",
+      "releaseType": "album"
     },
     {
       "slug": "project:dreamfish",

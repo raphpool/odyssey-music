@@ -38,14 +38,362 @@
   ],
   "discography": [
     {
-      "slug": "project:tesla",
+      "slug": "project:fluxiverse-vol-2--flux-pavilion",
       "type": "project",
-      "name": "Tesla"
+      "name": "Fluxiverse Vol. 2",
+      "artist": "Flux Pavilion",
+      "mbid": "b939ad81-1b70-4a38-a4b6-9e20d0fb82c2",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:fluxiverse--flux-pavilion",
+      "type": "project",
+      "name": "Fluxiverse",
+      "artist": "Flux Pavilion",
+      "mbid": "bb20dfb5-7491-4f86-8451-d56d64565b32",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:never-gonna-be-alone--flux-pavilion",
+      "type": "project",
+      "name": "(Never Gonna) Be Alone",
+      "artist": "Flux Pavilion",
+      "mbid": "9b6a078e-1fce-499e-92f6-8b2d4ea24a72",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lore--flux-pavilion",
+      "type": "project",
+      "name": "Lore",
+      "artist": "Flux Pavilion",
+      "mbid": "edabb8ca-ab7c-491e-9bbd-5ead0f084f88",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:technicolour-psychic-vision--flux-pavilion",
+      "type": "project",
+      "name": "Technicolour Psychic Vision",
+      "artist": "Flux Pavilion",
+      "mbid": "91a2bc90-d54c-4242-9a4f-e0e884bdb6a2",
+      "year": "2022",
+      "releaseType": "single"
     },
     {
       "slug": "project:wav",
       "type": "project",
-      "name": ".wav"
+      "name": ".wav",
+      "mbid": "5b574e35-14cd-4e75-b4f0-b45746fab123",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-believe--flux-pavilion",
+      "type": "project",
+      "name": "I Believe",
+      "artist": "Flux Pavilion",
+      "mbid": "d449a2ad-1bcd-4b50-a4cb-8512f333b8ee",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sink-your-teeth-in--flux-pavilion",
+      "type": "project",
+      "name": "Sink Your Teeth In",
+      "artist": "Flux Pavilion",
+      "mbid": "4f532e56-d31c-41c4-8878-212f56dbdee8",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-and-i--flux-pavilion",
+      "type": "project",
+      "name": "You & I",
+      "artist": "Flux Pavilion",
+      "mbid": "912984d3-c992-4764-a543-7662f237caf4",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:endless-fantasy--flux-pavilion",
+      "type": "project",
+      "name": "Endless Fantasy",
+      "artist": "Flux Pavilion",
+      "mbid": "ab9f66aa-87ba-499e-a831-2c89529df5da",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-will-stay--flux-pavilion",
+      "type": "project",
+      "name": "I Will Stay",
+      "artist": "Flux Pavilion",
+      "mbid": "2fd7cd5f-b1f4-431f-b2d5-f5ce01bb6372",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lion-s-cage--flux-pavilion",
+      "type": "project",
+      "name": "Lion's Cage",
+      "artist": "Flux Pavilion",
+      "mbid": "3c10a14a-ea6c-4754-b4a8-337e982d3e7c",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:saviour--flux-pavilion",
+      "type": "project",
+      "name": "Saviour",
+      "artist": "Flux Pavilion",
+      "mbid": "abff2299-d1d7-4536-a024-0f15bb804560",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:somebody-else--flux-pavilion",
+      "type": "project",
+      "name": "Somebody Else",
+      "artist": "Flux Pavilion",
+      "mbid": "c1ac4ad2-dcd8-45d8-9b1b-25e216707f1d",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:symphony--flux-pavilion",
+      "type": "project",
+      "name": "Symphony",
+      "artist": "Flux Pavilion",
+      "mbid": "d5551273-27ed-4026-a3cb-611f32f34fdc",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:call-to-arms--flux-pavilion",
+      "type": "project",
+      "name": "Call to Arms",
+      "artist": "Flux Pavilion",
+      "mbid": "3e5a9f57-718e-4a63-a3ed-c6a62c383068",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:flux-pavilion-presents-earwax--flux-pavilion",
+      "type": "project",
+      "name": "Flux Pavilion Presents: Earwax",
+      "artist": "Flux Pavilion",
+      "mbid": "443ad01d-8443-4ce5-84aa-bff4a72d77de",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:party-starter--flux-pavilion",
+      "type": "project",
+      "name": "Party Starter",
+      "artist": "Flux Pavilion",
+      "mbid": "f57edc6e-4c03-4bfb-bb1b-0fd102f23078",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pull-the-trigger-cut-me-out--flux-pavilion",
+      "type": "project",
+      "name": "Pull the Trigger / Cut Me Out",
+      "artist": "Flux Pavilion",
+      "mbid": "62d79902-c11b-414c-86b5-df344d0c216d",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stain-saxophone-doom--flux-pavilion",
+      "type": "project",
+      "name": "Stain / Saxophone Doom",
+      "artist": "Flux Pavilion",
+      "mbid": "ec0bcd62-2274-4165-b457-806af3eb7c66",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cannonball--flux-pavilion",
+      "type": "project",
+      "name": "Cannonball",
+      "artist": "Flux Pavilion",
+      "mbid": "3637e61e-5788-43cf-8b64-0276175cfe03",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:international-anthem--flux-pavilion",
+      "type": "project",
+      "name": "International Anthem",
+      "artist": "Flux Pavilion",
+      "mbid": "684076e3-a021-4ee6-8e30-cda47f939945",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tesla",
+      "type": "project",
+      "name": "Tesla",
+      "mbid": "1d6d2146-2a84-4518-b03c-2e2da3c729d9",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:who-wants-to-rock--flux-pavilion",
+      "type": "project",
+      "name": "Who Wants to Rock",
+      "artist": "Flux Pavilion",
+      "mbid": "ed2a273a-27ce-4086-bc59-3aa8c4f5c1ee",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blow-the-roof--flux-pavilion",
+      "type": "project",
+      "name": "Blow the Roof",
+      "artist": "Flux Pavilion",
+      "mbid": "8be4bb8c-423c-4926-868f-d8c7af5213f3",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:freeway--flux-pavilion",
+      "type": "project",
+      "name": "Freeway",
+      "artist": "Flux Pavilion",
+      "mbid": "99f7894d-4211-4350-9b59-b1a105d590ed",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:standing-on-a-hill--flux-pavilion",
+      "type": "project",
+      "name": "Standing on a Hill",
+      "artist": "Flux Pavilion",
+      "mbid": "82497ce9-6efb-40be-a39f-97317d42b8c6",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:daydreamer--flux-pavilion",
+      "type": "project",
+      "name": "Daydreamer",
+      "artist": "Flux Pavilion",
+      "mbid": "06a4e3fa-3dae-446e-97b4-0970a1f2569c",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-can-t-stop-ekali-tribute--flux-pavilion",
+      "type": "project",
+      "name": "I Can't Stop (Ekali Tribute)",
+      "artist": "Flux Pavilion",
+      "mbid": "c4e0cb86-13ce-4688-b596-f048aeb5d498",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bass-cannon--flux-pavilion",
+      "type": "project",
+      "name": "Bass Cannon",
+      "artist": "Flux Pavilion",
+      "mbid": "5aa25a48-e1ed-40a4-a056-30459db3727d",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-can-t-stop--flux-pavilion",
+      "type": "project",
+      "name": "I Can’t Stop",
+      "artist": "Flux Pavilion",
+      "mbid": "c8bfab39-5a32-48cb-b1ff-cac6c9b7dea5",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:superbad--flux-pavilion",
+      "type": "project",
+      "name": "Superbad",
+      "artist": "Flux Pavilion",
+      "mbid": "bb6dac80-3c2e-4bd8-83ad-3c98c776cfdd",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:got-2-know-normalize--flux-pavilion",
+      "type": "project",
+      "name": "Got 2 Know / Normalize",
+      "artist": "Flux Pavilion",
+      "mbid": "49a9b07b-bf07-40d4-9f83-12c95daa32be",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:how-rude-show-off-froggy-style--flux-pavilion",
+      "type": "project",
+      "name": "How Rude / Show Off / Froggy Style",
+      "artist": "Flux Pavilion",
+      "mbid": "971a56e1-525b-43e7-a58a-53bc97f16dcb",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lines-in-wax--flux-pavilion",
+      "type": "project",
+      "name": "Lines in Wax",
+      "artist": "Flux Pavilion",
+      "mbid": "a6ac92fe-eaa0-466e-954f-fd91654765ed",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:meathead-bass-abuse--flux-pavilion",
+      "type": "project",
+      "name": "Meathead / Bass Abuse",
+      "artist": "Flux Pavilion",
+      "mbid": "7570ed47-04ac-4529-93ab-09381fd0a1cb",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:voscillate-night-goes-on--flux-pavilion",
+      "type": "project",
+      "name": "Voscillate / Night Goes On",
+      "artist": "Flux Pavilion",
+      "mbid": "937402cf-ae94-414c-b7be-ae340baf3a6f",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:family-fortunes-steppa--flux-pavilion",
+      "type": "project",
+      "name": "Family Fortunes / Steppa",
+      "artist": "Flux Pavilion",
+      "mbid": "49c1f853-32a2-4480-9249-c0768a082a95",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fucking-noise-kontroller--flux-pavilion",
+      "type": "project",
+      "name": "Fucking Noise / Kontroller",
+      "artist": "Flux Pavilion",
+      "mbid": "10e58c4f-4020-4280-aa4d-591e2e1ca8ff",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-story-of-shadrok--flux-pavilion",
+      "type": "project",
+      "name": "The Story of Shadrok",
+      "artist": "Flux Pavilion",
+      "mbid": "c92a3be8-7a70-4c5b-8386-c6d0ce9ba374",
+      "year": "2008",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

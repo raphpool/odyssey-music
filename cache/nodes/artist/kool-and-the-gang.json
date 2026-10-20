@@ -76,29 +76,242 @@
   ],
   "discography": [
     {
-      "slug": "project:kool-and-the-gang",
+      "slug": "project:perfect-union--kool-and-the-gang",
       "type": "project",
-      "name": "Kool and the Gang (1969)"
+      "name": "Perfect Union",
+      "artist": "Kool and the Gang",
+      "mbid": "fff5fe64-9815-461f-a4aa-05549df16146",
+      "year": "2021",
+      "releaseType": "album"
     },
     {
-      "slug": "project:wild-and-peaceful",
+      "slug": "project:kool-for-the-holidays--kool-and-the-gang",
       "type": "project",
-      "name": "Wild and Peaceful (1973)"
+      "name": "Kool for the Holidays",
+      "artist": "Kool and the Gang",
+      "mbid": "cf769382-1fa8-4e31-a46b-0276eeb3a034",
+      "year": "2013",
+      "releaseType": "album"
     },
     {
-      "slug": "project:ladies-night",
+      "slug": "project:still-kool--kool-and-the-gang",
       "type": "project",
-      "name": "Ladies' Night (1979)"
+      "name": "Still Kool",
+      "artist": "Kool and the Gang",
+      "mbid": "fd9afa61-e540-3730-be80-2952f0af991d",
+      "year": "2007",
+      "releaseType": "album"
     },
     {
-      "slug": "project:celebrate",
+      "slug": "project:state-of-affairs--kool-and-the-gang",
       "type": "project",
-      "name": "Celebrate! (1980)"
+      "name": "State of Affairs",
+      "artist": "Kool and the Gang",
+      "mbid": "af5fede8-cff3-37cc-b631-c13f8fa92767",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unite--kool-and-the-gang",
+      "type": "project",
+      "name": "Unite",
+      "artist": "Kool and the Gang",
+      "mbid": "a3aac30a-2d7e-3e89-a912-defe6d50c186",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sweat--kool-and-the-gang",
+      "type": "project",
+      "name": "Sweat",
+      "artist": "Kool and the Gang",
+      "mbid": "bdc4bd36-f603-383d-8a8f-ead63c4079e3",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:forever--kool-and-the-gang",
+      "type": "project",
+      "name": "Forever",
+      "artist": "Kool and the Gang",
+      "mbid": "41ec7d1f-566b-3b7f-a119-b58fa683c247",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cherish--kool-and-the-gang",
+      "type": "project",
+      "name": "Cherish",
+      "artist": "Kool and the Gang",
+      "mbid": "8002ef1e-680f-4772-a5c0-7f60fec8f789",
+      "year": "1984",
+      "releaseType": "single"
     },
     {
       "slug": "project:emergency",
       "type": "project",
-      "name": "Emergency (1984)"
+      "name": "Emergency (1984)",
+      "mbid": "1e650dc3-191b-3816-a8ce-ef62a401a096",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fresh--kool-and-the-gang",
+      "type": "project",
+      "name": "Fresh",
+      "artist": "Kool and the Gang",
+      "mbid": "154a4cf4-ac60-3325-901c-8e7d0c5fd8b9",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:in-the-heart--kool-and-the-gang",
+      "type": "project",
+      "name": "In the Heart",
+      "artist": "Kool and the Gang",
+      "mbid": "1008e88e-f3b3-3902-99cf-50a4dfa7e357",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:as-one--kool-and-the-gang",
+      "type": "project",
+      "name": "As One",
+      "artist": "Kool and the Gang",
+      "mbid": "ee963c50-ddd2-30b6-949a-84b375b2645b",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:get-down-on-it--kool-and-the-gang",
+      "type": "project",
+      "name": "Get Down on It",
+      "artist": "Kool and the Gang",
+      "mbid": "43bc3440-f0be-3016-846b-4a8fac48e4ac",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:something-special--kool-and-the-gang",
+      "type": "project",
+      "name": "Something Special",
+      "artist": "Kool and the Gang",
+      "mbid": "eac77d89-46fd-3f7c-87e8-0afae0c18484",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:celebrate",
+      "type": "project",
+      "name": "Celebrate! (1980)",
+      "mbid": "e4774353-e22f-368a-848a-1e50aa08a0ae",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:celebration--kool-and-the-gang",
+      "type": "project",
+      "name": "Celebration",
+      "artist": "Kool and the Gang",
+      "mbid": "6c85ffba-ee47-3db3-a719-c0315c84b49b",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ladies-night",
+      "type": "project",
+      "name": "Ladies' Night (1979)",
+      "mbid": "5d3fb998-0857-37d5-b211-e95e646c38d5",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:everybody-s-dancin--kool-and-the-gang",
+      "type": "project",
+      "name": "Everybody’s Dancin’",
+      "artist": "Kool and the Gang",
+      "mbid": "f4e35980-7318-4c6a-8360-e09ccfda7358",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-force--kool-and-the-gang",
+      "type": "project",
+      "name": "The Force",
+      "artist": "Kool and the Gang",
+      "mbid": "5bb9a719-2a72-3eee-a687-30cee14ac66b",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-and-understanding--kool-and-the-gang",
+      "type": "project",
+      "name": "Love & Understanding",
+      "artist": "Kool and the Gang",
+      "mbid": "f74d4b3c-7fbb-3899-863c-bef98b23bcd6",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:open-sesame--kool-and-the-gang",
+      "type": "project",
+      "name": "Open Sesame",
+      "artist": "Kool and the Gang",
+      "mbid": "9298b31d-ec5b-3c72-b730-a20c39ab835c",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:spirit-of-the-boogie--kool-and-the-gang",
+      "type": "project",
+      "name": "Spirit of the Boogie",
+      "artist": "Kool and the Gang",
+      "mbid": "91741642-ee35-37e4-a852-2449f0a4d8cf",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:light-of-worlds--kool-and-the-gang",
+      "type": "project",
+      "name": "Light of Worlds",
+      "artist": "Kool and the Gang",
+      "mbid": "8ced95df-cff7-313e-92ea-73d4a8f08387",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wild-and-peaceful",
+      "type": "project",
+      "name": "Wild and Peaceful (1973)",
+      "mbid": "db9b94e6-9771-3835-8500-f50db5430ad6",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:good-times--kool-and-the-gang",
+      "type": "project",
+      "name": "Good Times",
+      "artist": "Kool and the Gang",
+      "mbid": "87c0ccbd-9379-3c82-87fe-eb887bbcd525",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-is-the-message--kool-and-the-gang",
+      "type": "project",
+      "name": "Music Is the Message",
+      "artist": "Kool and the Gang",
+      "mbid": "9df75ca4-ce88-3845-9d45-48004018328f",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kool-and-the-gang",
+      "type": "project",
+      "name": "Kool and the Gang (1969)",
+      "mbid": "0931b359-fc39-33b2-b52e-a9aaf103e33a",
+      "year": "1969",
+      "releaseType": "album"
     },
     {
       "slug": "project:saturday-night-fever-the-original-movie-soundtrack",

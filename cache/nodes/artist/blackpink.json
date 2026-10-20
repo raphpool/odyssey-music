@@ -49,19 +49,118 @@
   ],
   "discography": [
     {
-      "slug": "project:the-album",
+      "slug": "project:deadline--blackpink",
       "type": "project",
-      "name": "The Album"
+      "name": "DEADLINE",
+      "artist": "BLACKPINK",
+      "mbid": "38204997-b295-4d09-a946-f7e119725031",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:jump--blackpink",
+      "type": "project",
+      "name": "뛰어 (JUMP)",
+      "artist": "BLACKPINK",
+      "mbid": "173ec0cf-52e9-4ca6-bf30-408ccafd61d7",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
       "slug": "project:born-pink",
       "type": "project",
-      "name": "Born Pink"
+      "name": "Born Pink",
+      "mbid": "350340d1-0121-4881-a6fb-97801e64d261",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-album-jp-ver--blackpink",
+      "type": "project",
+      "name": "THE ALBUM -JP ver.-",
+      "artist": "BLACKPINK",
+      "mbid": "5021ee69-a944-4b31-966c-73d8918a47f3",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:how-you-like-that--blackpink",
+      "type": "project",
+      "name": "How You Like That",
+      "artist": "BLACKPINK",
+      "mbid": "8a099ed9-483d-48c4-a8ce-2044956dc713",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ice-cream--blackpink",
+      "type": "project",
+      "name": "Ice Cream",
+      "artist": "BLACKPINK",
+      "mbid": "f22cad4a-6b19-4003-ba20-20dfe37be2af",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-album",
+      "type": "project",
+      "name": "The Album",
+      "mbid": "8240b45e-5e5c-4c47-a96c-0a0d2c556c08",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kill-this-love-jp-ver--blackpink",
+      "type": "project",
+      "name": "KILL THIS LOVE -JP ver.-",
+      "artist": "BLACKPINK",
+      "mbid": "1ff48dab-0fdd-42c9-b0fd-07cf271993c7",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ddu-du-ddu-du--blackpink",
+      "type": "project",
+      "name": "DDU‐DU DDU‐DU",
+      "artist": "BLACKPINK",
+      "mbid": "6e8f0b0d-d455-408e-8a92-29df82237cb3",
+      "year": "2018",
+      "releaseType": "single"
     },
     {
       "slug": "project:square-up",
       "type": "project",
-      "name": "Square Up"
+      "name": "Square Up",
+      "mbid": "8ed9b2a2-e67b-4b8c-9907-258e438ac3a2",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:blackpink--blackpink",
+      "type": "project",
+      "name": "BLACKPINK",
+      "artist": "BLACKPINK",
+      "mbid": "4f54a818-25f4-4c5c-b962-a698dfd01098",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:square-one--blackpink",
+      "type": "project",
+      "name": "SQUARE ONE",
+      "artist": "BLACKPINK",
+      "mbid": "5d324679-403c-49b9-8e9f-5c8e529a0448",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:square-two--blackpink",
+      "type": "project",
+      "name": "SQUARE TWO",
+      "artist": "BLACKPINK",
+      "mbid": "4028a14d-bb3a-4fc1-bfff-edd73369aa4e",
+      "year": "2016",
+      "releaseType": "single"
     },
     {
       "slug": "project:kill-this-love",

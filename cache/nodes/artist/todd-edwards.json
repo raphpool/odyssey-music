@@ -54,7 +54,357 @@
       "name": "Defected Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:chase--todd-edwards",
+      "type": "project",
+      "name": "Chase",
+      "artist": "Todd Edwards",
+      "mbid": "03369914-cf2a-4ad2-8762-8f17bfff49a3",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:done-with-you--todd-edwards",
+      "type": "project",
+      "name": "Done With You",
+      "artist": "Todd Edwards",
+      "mbid": "bf4e5624-ec13-40e3-872b-33ef2b533132",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wishing-i-were-home--todd-edwards",
+      "type": "project",
+      "name": "Wishing I Were Home",
+      "artist": "Todd Edwards",
+      "mbid": "509210b9-5f97-4b05-903c-e7646b1b3dd6",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:serie-uno-ep--todd-edwards",
+      "type": "project",
+      "name": "Serie Uno EP",
+      "artist": "Todd Edwards",
+      "mbid": "9bf45965-575f-48eb-9925-a526fca566ed",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-chant--todd-edwards",
+      "type": "project",
+      "name": "The Chant",
+      "artist": "Todd Edwards",
+      "mbid": "d5bd3a72-e612-404c-ac1a-a6ae4780a1cb",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:inspire-me--todd-edwards",
+      "type": "project",
+      "name": "Inspire Me",
+      "artist": "Todd Edwards",
+      "mbid": "97e4d949-2781-4923-a9b6-8d816acf8fd6",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-re-sorry--todd-edwards",
+      "type": "project",
+      "name": "You’re Sorry",
+      "artist": "Todd Edwards",
+      "mbid": "59e23bcf-ad05-4e5b-af7b-6d9e21cff5d0",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:come-together--todd-edwards",
+      "type": "project",
+      "name": "Come Together",
+      "artist": "Todd Edwards",
+      "mbid": "233e0289-85a1-4764-9156-1a42da65d87c",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-inside--todd-edwards",
+      "type": "project",
+      "name": "Love Inside",
+      "artist": "Todd Edwards",
+      "mbid": "f2d7f2a6-1a89-406f-9b4d-0e64ad895d5b",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-place-like-london--todd-edwards",
+      "type": "project",
+      "name": "No Place Like London",
+      "artist": "Todd Edwards",
+      "mbid": "14f8782e-4eb2-464e-99b4-6b7a20284ac5",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:searching--todd-edwards",
+      "type": "project",
+      "name": "Searching",
+      "artist": "Todd Edwards",
+      "mbid": "55deffea-2c1e-456b-a908-2e8f2d5cbf67",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:shall-go--todd-edwards",
+      "type": "project",
+      "name": "Shall Go",
+      "artist": "Todd Edwards",
+      "mbid": "eae52730-0238-490f-9568-14858390b112",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:full-on-2-black--todd-edwards",
+      "type": "project",
+      "name": "Full On 2 Black",
+      "artist": "Todd Edwards",
+      "mbid": "64f82072-80b3-4db6-8670-588029a33577",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-might-be--todd-edwards",
+      "type": "project",
+      "name": "I Might Be",
+      "artist": "Todd Edwards",
+      "mbid": "d2db1c1e-f5b2-4011-a7c5-8f37f522595f",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:black-edition-2--todd-edwards",
+      "type": "project",
+      "name": "Black-Edition #2",
+      "artist": "Todd Edwards",
+      "mbid": "465340c4-7c97-43bc-8b79-34f18d0d84d9",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:full-on-volume-3--todd-edwards",
+      "type": "project",
+      "name": "Full On, Volume 3",
+      "artist": "Todd Edwards",
+      "mbid": "2f7543dd-0f4e-439f-8fc5-43f8651692fd",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-is-the-message--todd-edwards",
+      "type": "project",
+      "name": "Love is the Message",
+      "artist": "Todd Edwards",
+      "mbid": "7bf9471a-9b8c-4a6e-b675-1b899d391585",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:odyssey--todd-edwards",
+      "type": "project",
+      "name": "Odyssey",
+      "artist": "Todd Edwards",
+      "mbid": "9020a766-2027-30b1-914f-07b520fe8a9b",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:new-trend-sounds-2004--todd-edwards",
+      "type": "project",
+      "name": "New Trend Sounds 2004",
+      "artist": "Todd Edwards",
+      "mbid": "ad81ce1d-9f97-4536-a253-fdc2ba261076",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:full-on-volume-2--todd-edwards",
+      "type": "project",
+      "name": "Full On, Volume 2",
+      "artist": "Todd Edwards",
+      "mbid": "cd1e9aca-ebb9-37b6-8cd6-9258066a020d",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:new-trends-1995--todd-edwards",
+      "type": "project",
+      "name": "New Trends 1995",
+      "artist": "Todd Edwards",
+      "mbid": "7d825c5b-cb51-4018-912f-cbb401c7731f",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:new-trends-2002--todd-edwards",
+      "type": "project",
+      "name": "New Trends 2002",
+      "artist": "Todd Edwards",
+      "mbid": "e8f32a60-e58b-4ea3-b42d-752c4db25290",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:full-on-volume-1--todd-edwards",
+      "type": "project",
+      "name": "Full On, Volume 1",
+      "artist": "Todd Edwards",
+      "mbid": "6f12affd-20ec-4913-b13f-7d4a44b785a7",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shut-the-door--todd-edwards",
+      "type": "project",
+      "name": "Shut the Door",
+      "artist": "Todd Edwards",
+      "mbid": "7ca65e3e-e5db-45be-96fe-89705afca2c1",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:new-trends-2000--todd-edwards",
+      "type": "project",
+      "name": "New Trends 2000",
+      "artist": "Todd Edwards",
+      "mbid": "2623d0aa-7ae3-4eea-9c40-8334da6ee3c5",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:show-me-a-sign--todd-edwards",
+      "type": "project",
+      "name": "Show Me a Sign",
+      "artist": "Todd Edwards",
+      "mbid": "f0e3f039-5c04-4534-8ab1-16be5aa0a156",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:look-out--todd-edwards",
+      "type": "project",
+      "name": "Look Out",
+      "artist": "Todd Edwards",
+      "mbid": "de1e480c-3268-48e4-ba14-1c791736f27b",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:prima-edizione--todd-edwards",
+      "type": "project",
+      "name": "Prima Edizione",
+      "artist": "Todd Edwards",
+      "mbid": "02458c28-bf53-3d7b-a93f-557901bddec0",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-prima-ep--todd-edwards",
+      "type": "project",
+      "name": "The Prima EP",
+      "artist": "Todd Edwards",
+      "mbid": "cc6a0a7d-8d79-437b-a270-1fd82a73e6f9",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:isaiah-41-13--todd-edwards",
+      "type": "project",
+      "name": "Isaiah 41:13",
+      "artist": "Todd Edwards",
+      "mbid": "5f87da64-362e-42da-a633-34e1ce30bf35",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:never-far-from-you--todd-edwards",
+      "type": "project",
+      "name": "Never Far From You",
+      "artist": "Todd Edwards",
+      "mbid": "b63dcebf-d32d-4152-af2c-609b76db9742",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:push-the-love--todd-edwards",
+      "type": "project",
+      "name": "Push the Love",
+      "artist": "Todd Edwards",
+      "mbid": "b59081d7-5c4d-4d4d-b89f-63c800034614",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fly-away-one--todd-edwards",
+      "type": "project",
+      "name": "Fly Away (One)",
+      "artist": "Todd Edwards",
+      "mbid": "bdb7cc49-4996-4852-a121-a2ad9ba60091",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dancing-for-heaven--todd-edwards",
+      "type": "project",
+      "name": "Dancing for Heaven",
+      "artist": "Todd Edwards",
+      "mbid": "d13611e3-a9fd-48e6-93a8-9711337adfb7",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:saved-my-life--todd-edwards",
+      "type": "project",
+      "name": "Saved My Life",
+      "artist": "Todd Edwards",
+      "mbid": "d0720d26-94f8-48c2-88a5-5cfd0914238f",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:f-o-t--todd-edwards",
+      "type": "project",
+      "name": "F.O.T.",
+      "artist": "Todd Edwards",
+      "mbid": "f06bb14b-3b58-48f5-8874-34de59d4f577",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:feelin-lonely--todd-edwards",
+      "type": "project",
+      "name": "Feelin' Lonely",
+      "artist": "Todd Edwards",
+      "mbid": "962e49a9-bc57-4a77-8b1c-a273f5229700",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:new-trend-sounds-part-1--todd-edwards",
+      "type": "project",
+      "name": "New Trend Sounds, Part 1",
+      "artist": "Todd Edwards",
+      "mbid": "8920e108-5ed8-3554-911f-f299b0ae0942",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:far-away-single--todd-edwards",
+      "type": "project",
+      "name": "Far Away - Single",
+      "artist": "Todd Edwards",
+      "mbid": "01d15111-fa60-454f-8360-227618636998",
+      "releaseType": "single"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:face-to-face",

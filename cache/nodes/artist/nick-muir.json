@@ -55,6 +55,15 @@
   ],
   "discography": [
     {
+      "slug": "project:g-platz--nick-muir",
+      "type": "project",
+      "name": "G Platz",
+      "artist": "Nick Muir",
+      "mbid": "dc82a2d0-bdb4-334d-bcf2-fa4085be9cd6",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:dark-blue",
       "type": "project",
       "name": "Dark Blue"

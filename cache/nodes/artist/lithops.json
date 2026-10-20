@@ -53,9 +53,84 @@
   ],
   "discography": [
     {
+      "slug": "project:formationen--lithops",
+      "type": "project",
+      "name": "Formationen",
+      "artist": "Lithops",
+      "mbid": "835b3ccf-3cec-4fb0-9ad4-c44e867ce989",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:ye-viols",
       "type": "project",
-      "name": "Ye Viols!"
+      "name": "Ye Viols!",
+      "mbid": "2cb31459-eef4-3454-aa4f-c3bbc28bf9d8",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mound-magnet-part-2-elevations-above-sea-level--lithops",
+      "type": "project",
+      "name": "Mound Magnet, Part 2: Elevations Above Sea Level",
+      "artist": "Lithops",
+      "mbid": "911a7d66-c02e-4f41-97e7-0a7e207d16bc",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mound-magnet--lithops",
+      "type": "project",
+      "name": "Mound Magnet",
+      "artist": "Lithops",
+      "mbid": "3afe4b5d-3c35-30f9-a898-98aa589cb58d",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:queries--lithops",
+      "type": "project",
+      "name": "Queries",
+      "artist": "Lithops",
+      "mbid": "68e40ecf-f7c4-3abd-b897-cc99d32ba84c",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scrypt--lithops",
+      "type": "project",
+      "name": "Scrypt",
+      "artist": "Lithops",
+      "mbid": "da77fc54-82be-3294-a323-509ac404d668",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tubino-see-through-filterabend--lithops",
+      "type": "project",
+      "name": "Tubino See Through / Filterabend",
+      "artist": "Lithops",
+      "mbid": "f3bf169f-a68f-343f-8624-5f81fd5cb1e0",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:uni-umit--lithops",
+      "type": "project",
+      "name": "Uni Umit",
+      "artist": "Lithops",
+      "mbid": "3e431278-aaea-33b8-9891-93da7aa9659f",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blasmusik-intendo--lithops",
+      "type": "project",
+      "name": "Blasmusik / Intendo",
+      "artist": "Lithops",
+      "mbid": "513c7e1f-dccc-4321-83c5-5248f87f4c35",
+      "year": "1997",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [],

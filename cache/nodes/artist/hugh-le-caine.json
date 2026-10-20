@@ -43,7 +43,17 @@
     }
   ],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:nocturne-1962--hugh-le-caine",
+      "type": "project",
+      "name": "Nocturne (1962)",
+      "artist": "Hugh Le Caine",
+      "mbid": "9ccf87c0-c715-4279-bbb6-691915e62004",
+      "year": "2023",
+      "releaseType": "single"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:dripsody--hugh-le-caine",

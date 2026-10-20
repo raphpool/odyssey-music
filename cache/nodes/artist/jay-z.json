@@ -38,24 +38,360 @@
   ],
   "discography": [
     {
-      "slug": "project:reasonable-doubt",
+      "slug": "project:4-44--jay-z",
       "type": "project",
-      "name": "Reasonable Doubt"
+      "name": "4:44",
+      "artist": "Jay-Z",
+      "mbid": "aa35dd3d-b629-4a5f-abe9-a8463f80b37e",
+      "year": "2017",
+      "releaseType": "album"
     },
     {
-      "slug": "project:the-blueprint",
+      "slug": "project:before-reasonable-doubt-the-demos--jay-z",
       "type": "project",
-      "name": "The Blueprint"
+      "name": "Before Reasonable Doubt: The Demos",
+      "artist": "Jay-Z",
+      "mbid": "4375886b-42da-4d65-8edd-46110168f130",
+      "year": "2015",
+      "releaseType": "album"
     },
     {
-      "slug": "project:the-black-album",
+      "slug": "project:magna-carta-holy-grail--jay-z",
       "type": "project",
-      "name": "The Black Album"
+      "name": "Magna Carta… Holy Grail",
+      "artist": "Jay-Z",
+      "mbid": "ec8d1e4a-2413-407a-8192-f3cdcf1d5dad",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:otis--jay-z",
+      "type": "project",
+      "name": "Otis",
+      "artist": "Jay-Z",
+      "mbid": "1624e8c5-fb0c-4703-9f90-ddf4e8b0ad2b",
+      "year": "2011",
+      "releaseType": "single"
     },
     {
       "slug": "project:watch-the-throne",
       "type": "project",
-      "name": "Watch the Throne"
+      "name": "Watch the Throne",
+      "mbid": "a96597aa-93b4-4e14-9e6e-03892ab24979",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-prelude-to-blueprint-3--jay-z",
+      "type": "project",
+      "name": "A Prelude to Blueprint 3",
+      "artist": "Jay-Z",
+      "mbid": "46f24caf-6e49-4245-bc41-fdcc4c277fd1",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:empire-state-of-mind--jay-z",
+      "type": "project",
+      "name": "Empire State of Mind",
+      "artist": "Jay-Z",
+      "mbid": "eb868fd7-c9ca-44b1-b887-b3802492136e",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:run-this-town--jay-z",
+      "type": "project",
+      "name": "Run This Town",
+      "artist": "Jay-Z",
+      "mbid": "5bdf3c84-2b24-42b1-b7d4-7978867ad72f",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-blueprint-3--jay-z",
+      "type": "project",
+      "name": "The Blueprint 3",
+      "artist": "Jay-Z",
+      "mbid": "8f046e37-21ef-46de-9aa6-4f89e3d48bbb",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jay-z-sings-the-blues-the-forgotten-stories--jay-z",
+      "type": "project",
+      "name": "Jay-Z Sings the Blues “The Forgotten Stories”",
+      "artist": "Jay-Z",
+      "mbid": "d76fa31e-6623-4eb4-99e5-ac4a9a2ae439",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:my-president-is-black--jay-z",
+      "type": "project",
+      "name": "My President Is Black",
+      "artist": "Jay-Z",
+      "mbid": "6db47d50-591a-4f37-8aad-4d20ae0004c8",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:american-gangster--jay-z",
+      "type": "project",
+      "name": "American Gangster",
+      "artist": "Jay-Z",
+      "mbid": "4632d7ca-8813-303b-b85d-c1125cb05671",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-latin-album--jay-z",
+      "type": "project",
+      "name": "The Latin Album",
+      "artist": "Jay-Z",
+      "mbid": "ecb425e0-63bf-3793-85e5-83df713ba5f6",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kingdom-come--jay-z",
+      "type": "project",
+      "name": "Kingdom Come",
+      "artist": "Jay-Z",
+      "mbid": "d8f91a57-9c02-3a83-81c5-b99c572c7a10",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:serious-business-dj-clue-and-keyz-collaboration--jay-z",
+      "type": "project",
+      "name": "Serious Business DJ Clue & Keyz Collaboration",
+      "artist": "Jay-Z",
+      "mbid": "63fba28a-73d0-3b85-914b-ae961506b688",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:collision-course--jay-z",
+      "type": "project",
+      "name": "Collision Course",
+      "artist": "Jay-Z",
+      "mbid": "8ef859e3-feb2-4dd1-93da-22b91280d768",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dirt-off-your-shoulder-lying-from-you--jay-z",
+      "type": "project",
+      "name": "Dirt Off Your Shoulder/Lying from You",
+      "artist": "Jay-Z",
+      "mbid": "a3ea5d93-476e-4f23-bbb7-7a3e4196abc6",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-purple-album--jay-z",
+      "type": "project",
+      "name": "The Purple Album",
+      "artist": "Jay-Z",
+      "mbid": "c87cf1c3-8893-353c-b831-6de6ba86f19d",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:change-clothes--jay-z",
+      "type": "project",
+      "name": "Change Clothes",
+      "artist": "Jay-Z",
+      "mbid": "1b39b363-3d2f-4916-9acd-ad6582858ed9",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:s-carter-collection--jay-z",
+      "type": "project",
+      "name": "S. Carter Collection",
+      "artist": "Jay-Z",
+      "mbid": "228d1cda-d468-3ad7-9214-f645b1bf8dd7",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stop-excuse-me-miss-again--jay-z",
+      "type": "project",
+      "name": "Stop / Excuse Me Miss Again",
+      "artist": "Jay-Z",
+      "mbid": "b6a51622-99fe-3908-95dd-6826cc4adb4a",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-black-album",
+      "type": "project",
+      "name": "The Black Album",
+      "mbid": "77befaa0-662e-3d84-ba45-c862e16dc109",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:03-bonnie-and-clyde--jay-z",
+      "type": "project",
+      "name": "’03 Bonnie & Clyde",
+      "artist": "Jay-Z",
+      "mbid": "43588487-3216-3df4-ae2f-2d4cbbed2840",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-blueprint2-the-gift-and-the-curse--jay-z",
+      "type": "project",
+      "name": "The Blueprint²: The Gift & The Curse",
+      "artist": "Jay-Z",
+      "mbid": "c0cdbbdd-006d-3f4a-90bb-31e259d839e4",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:izzo-h-o-v-a--jay-z",
+      "type": "project",
+      "name": "Izzo (H.O.V.A.)",
+      "artist": "Jay-Z",
+      "mbid": "fbe1d744-7686-3cd0-9306-f25eddd453c8",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-blueprint",
+      "type": "project",
+      "name": "The Blueprint",
+      "mbid": "11ae8c9c-27c1-3308-9761-edb87c8f54ea",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:anything--jay-z",
+      "type": "project",
+      "name": "Anything",
+      "artist": "Jay-Z",
+      "mbid": "d5e53edc-fb50-3582-9d39-8b7977232145",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:big-pimpin--jay-z",
+      "type": "project",
+      "name": "Big Pimpin’",
+      "artist": "Jay-Z",
+      "mbid": "eab33a57-2413-3c14-adb5-27e3720ce4eb",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-just-wanna-love-u-give-it-2-me--jay-z",
+      "type": "project",
+      "name": "I Just Wanna Love U (Give It 2 Me)",
+      "artist": "Jay-Z",
+      "mbid": "75a9fda0-55ac-318d-86c5-9a91d455b60a",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-dynasty-roc-la-familia--jay-z",
+      "type": "project",
+      "name": "The Dynasty: Roc La Familia",
+      "artist": "Jay-Z",
+      "mbid": "775bc732-a8ad-3298-ab66-fd1549a96a3f",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vol-3-life-and-times-of-s-carter--jay-z",
+      "type": "project",
+      "name": "Vol. 3… Life and Times of S. Carter",
+      "artist": "Jay-Z",
+      "mbid": "75d65362-a9b4-3e9c-82c6-5392e6615c0a",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hard-knock-life-ghetto-anthem--jay-z",
+      "type": "project",
+      "name": "Hard Knock Life (Ghetto Anthem)",
+      "artist": "Jay-Z",
+      "mbid": "284c4d71-6c7e-36ff-91dd-00be3f89eaa7",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vol-2-hard-knock-life--jay-z",
+      "type": "project",
+      "name": "Vol. 2… Hard Knock Life",
+      "artist": "Jay-Z",
+      "mbid": "342d74c6-4c01-4541-b3ae-4524c47ad543",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wishing-on-a-star--jay-z",
+      "type": "project",
+      "name": "Wishing on a Star",
+      "artist": "Jay-Z",
+      "mbid": "02b572e5-9bde-30eb-af27-1395a0ae0a06",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:in-my-lifetime-vol-1--jay-z",
+      "type": "project",
+      "name": "In My Lifetime, Vol. 1",
+      "artist": "Jay-Z",
+      "mbid": "3a7cb4ec-575e-3614-b71d-1248c2e470cf",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ain-t-no-nigga--jay-z",
+      "type": "project",
+      "name": "Ain’t No Nigga",
+      "artist": "Jay-Z",
+      "mbid": "bfffe199-8100-47dc-8cc6-e09f763eb022",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:can-t-knock-the-hustle--jay-z",
+      "type": "project",
+      "name": "Can’t Knock the Hustle",
+      "artist": "Jay-Z",
+      "mbid": "90d719d8-d409-4d0c-9d9a-12e2d56a884a",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dead-presidents--jay-z",
+      "type": "project",
+      "name": "Dead Presidents",
+      "artist": "Jay-Z",
+      "mbid": "9dc6955c-b819-35da-9188-b3254fafcfec",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:reasonable-doubt",
+      "type": "project",
+      "name": "Reasonable Doubt",
+      "mbid": "a7f852ba-08bc-36f1-92f3-4dc127f4b70a",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-my-lifetime-i-can-t-get-wid-dat--jay-z",
+      "type": "project",
+      "name": "In My Lifetime / I Can’t Get Wid Dat",
+      "artist": "Jay-Z",
+      "mbid": "9f58f849-59db-4bab-b737-cf50a34d2d89",
+      "year": "1994",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

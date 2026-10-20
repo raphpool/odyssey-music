@@ -73,30 +73,264 @@
   ],
   "discography": [
     {
-      "slug": "project:thousand-knives",
+      "slug": "project:12--ryuichi-sakamoto",
       "type": "project",
-      "name": "Thousand Knives"
-    },
-    {
-      "slug": "project:b-2-unit",
-      "type": "project",
-      "name": "B-2 Unit"
-    },
-    {
-      "slug": "project:merry-christmas-mr-lawrence",
-      "type": "project",
-      "name": "Merry Christmas, Mr. Lawrence"
-    },
-    {
-      "slug": "project:the-last-emperor",
-      "type": "project",
-      "name": "The Last Emperor"
+      "name": "12",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "30514031-8561-4338-b9bf-8970e1e2a214",
+      "year": "2023",
+      "releaseType": "album"
     },
     {
       "slug": "project:vrioon--ryuichi-sakamoto",
       "type": "project",
       "name": "Vrioon",
-      "artist": "Ryuichi Sakamoto"
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "51d844a9-12b6-4240-a67e-7f1af9e87804",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:merry-christmas-mr-lawrence",
+      "type": "project",
+      "name": "Merry Christmas, Mr. Lawrence",
+      "mbid": "cadd2040-8536-4291-a210-3a7cf43c5804",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:async--ryuichi-sakamoto",
+      "type": "project",
+      "name": "async",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "bd6cfcaf-605f-44ff-8d1f-52833306e30c",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:playing-the-piano--ryuichi-sakamoto",
+      "type": "project",
+      "name": "Playing the Piano",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "7746e70d-85f0-40af-a574-039866f6ec09",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:out-of-noise--ryuichi-sakamoto",
+      "type": "project",
+      "name": "out of noise",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "e2559795-e0ea-3eab-8f1f-1640ce375e59",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chasm--ryuichi-sakamoto",
+      "type": "project",
+      "name": "CHASM",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "2d358874-cbeb-30b5-b2d1-acd582ecb759",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:world-citizen--ryuichi-sakamoto",
+      "type": "project",
+      "name": "World Citizen",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "b8e1ad72-7460-3897-8079-f0649c3795dd",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:l-o-l-lack-of-love--ryuichi-sakamoto",
+      "type": "project",
+      "name": "L.O.L.: Lack of Love",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "95d23144-5863-3441-8a24-09d6a1b7672d",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bttb--ryuichi-sakamoto",
+      "type": "project",
+      "name": "BTTB",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "7740ecfa-3620-304d-abfe-35b06bb8eb3d",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-is-the-devil--ryuichi-sakamoto",
+      "type": "project",
+      "name": "Love Is the Devil",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "2a204e9d-46ff-3cca-ab36-a3d1170d7558",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-other-side-of-love--ryuichi-sakamoto",
+      "type": "project",
+      "name": "The Other Side of Love",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "542cf45b-ca9e-44da-b9c2-34bb0785b2fd",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:1996--ryuichi-sakamoto",
+      "type": "project",
+      "name": "1996",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "59774d5a-c2f0-380f-b30b-8ab1fcca5197",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:smoochy--ryuichi-sakamoto",
+      "type": "project",
+      "name": "Smoochy",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "215cb529-e64f-354b-933f-7930d6abf6d7",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sweet-revenge--ryuichi-sakamoto",
+      "type": "project",
+      "name": "Sweet Revenge",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "e40c5f9e-47ce-3910-bd47-b6d821ca13dd",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:coda--ryuichi-sakamoto",
+      "type": "project",
+      "name": "Coda",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "56e29e23-6877-3f10-8050-1c1ca5d94ce4",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wild-palms--ryuichi-sakamoto",
+      "type": "project",
+      "name": "Wild Palms",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "a578c60d-f7a5-3f81-9b31-af0fd501794a",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:heartbeat--ryuichi-sakamoto",
+      "type": "project",
+      "name": "Heartbeat",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "7c5ea4c9-da02-3d4e-b1da-0685a80504ab",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:high-heels--ryuichi-sakamoto",
+      "type": "project",
+      "name": "High Heels",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "420c7aeb-27b8-36cc-ac44-f654298d6511",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beauty--ryuichi-sakamoto",
+      "type": "project",
+      "name": "Beauty",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "2db02bac-8d24-31cb-ba70-b42737a61ff3",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:b-2-unit",
+      "type": "project",
+      "name": "B-2 Unit",
+      "mbid": "f4217f0f-9a6d-398c-8556-b65398bfd768",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aile-de-honneamise-royal-space-force--ryuichi-sakamoto",
+      "type": "project",
+      "name": "Aile de Honnêamise - Royal Space Force",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "e6574916-2c94-3ee9-a066-e4208fa3027f",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:neo-geo--ryuichi-sakamoto",
+      "type": "project",
+      "name": "Neo Geo",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "208d310e-bf76-3568-a01c-6872d5b497ce",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:risky--ryuichi-sakamoto",
+      "type": "project",
+      "name": "Risky",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "ad4139e1-0ea4-40df-8e35-74cf87d764c4",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:forbidden-colours--ryuichi-sakamoto",
+      "type": "project",
+      "name": "Forbidden Colours",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "b988c943-1fac-3291-8462-7c8d2cad031f",
+      "year": "1983",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:merry-christmas-mr-lawrence-furyo--ryuichi-sakamoto",
+      "type": "project",
+      "name": "Merry Christmas, Mr. Lawrence/Furyo",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "3870eb3e-3447-384e-8d8a-aeddab4ef00b",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tokyo-joe--ryuichi-sakamoto",
+      "type": "project",
+      "name": "TOKYO JOE",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "2db00398-3a0d-4475-8214-2c9147b6a67f",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:left-handed-dream--ryuichi-sakamoto",
+      "type": "project",
+      "name": "Left Handed Dream",
+      "artist": "Ryuichi Sakamoto",
+      "mbid": "0d679b90-b369-380f-ae40-691abe80668f",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:thousand-knives",
+      "type": "project",
+      "name": "Thousand Knives"
+    },
+    {
+      "slug": "project:the-last-emperor",
+      "type": "project",
+      "name": "The Last Emperor"
     }
   ],
   "notable_tracks": [

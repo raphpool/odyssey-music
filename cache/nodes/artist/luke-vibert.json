@@ -67,19 +67,349 @@
   ],
   "discography": [
     {
-      "slug": "project:drum-n-bass-for-papa",
+      "slug": "project:machine-funk--luke-vibert",
       "type": "project",
-      "name": "Drum 'n' Bass for Papa"
+      "name": "Machine Funk",
+      "artist": "Luke Vibert",
+      "mbid": "dd3064fe-9bdc-4ef8-a9ab-e2608ab086fb",
+      "year": "2023",
+      "releaseType": "album"
     },
     {
-      "slug": "project:big-soup",
+      "slug": "project:grit--luke-vibert",
       "type": "project",
-      "name": "Big Soup"
+      "name": "GRIT.",
+      "artist": "Luke Vibert",
+      "mbid": "61717805-3780-4f95-bf1d-14cc1037c933",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:luke-vibert-presents-amen-andrews--luke-vibert",
+      "type": "project",
+      "name": "Luke Vibert presents Amen Andrews",
+      "artist": "Luke Vibert",
+      "mbid": "3f0a9f9e-d123-4b27-b557-7cccfe5d22f7",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:luke-vibert-presents-modern-rave--luke-vibert",
+      "type": "project",
+      "name": "Luke Vibert presents Modern Rave",
+      "artist": "Luke Vibert",
+      "mbid": "ab5c7ba8-4f55-468b-b0a9-514d4eee24bc",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:luke-vibert-presents-rave-hop--luke-vibert",
+      "type": "project",
+      "name": "Luke Vibert presents Rave Hop",
+      "artist": "Luke Vibert",
+      "mbid": "6e90e1ef-3e8e-4933-af5c-61afc29f04d5",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:libertine-traditions-10--luke-vibert",
+      "type": "project",
+      "name": "Libertine Traditions 10",
+      "artist": "Luke Vibert",
+      "mbid": "6d519b30-5fd7-47bd-b3d0-4e291ee126c6",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:valvable--luke-vibert",
+      "type": "project",
+      "name": "Valvable",
+      "artist": "Luke Vibert",
+      "mbid": "e41a98de-ca8f-42cd-9029-326a36e93b22",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:x-to-c--luke-vibert",
+      "type": "project",
+      "name": "X to C",
+      "artist": "Luke Vibert",
+      "mbid": "a6a4cab5-3746-48de-a349-60df32cade55",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:arcadia--luke-vibert",
+      "type": "project",
+      "name": "Arcadia",
+      "artist": "Luke Vibert",
+      "mbid": "86b1ef5a-36bc-41c5-a8ae-ac465c306608",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:turn--luke-vibert",
+      "type": "project",
+      "name": "Turn",
+      "artist": "Luke Vibert",
+      "mbid": "bc301375-80bd-4a0b-9257-a4dafdb0694e",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:luke-vibert-presents-uk-garave-vol-1--luke-vibert",
+      "type": "project",
+      "name": "Luke Vibert presents UK Garave, Vol. 1",
+      "artist": "Luke Vibert",
+      "mbid": "cda894dd-4a5d-48a4-b5fb-f11bff46fe35",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ila012--luke-vibert",
+      "type": "project",
+      "name": "ILA012",
+      "artist": "Luke Vibert",
+      "mbid": "2f908d27-af30-49f0-95c0-a98624f37441",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:bizarster--luke-vibert",
+      "type": "project",
+      "name": "Bizarster",
+      "artist": "Luke Vibert",
+      "mbid": "f22d70c8-9893-4465-bfae-bfecc7cdfa94",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-love-acid-003--luke-vibert",
+      "type": "project",
+      "name": "I Love Acid 003",
+      "artist": "Luke Vibert",
+      "mbid": "ee0aa350-3cba-4e84-8b37-4911d49463b7",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:halloween--luke-vibert",
+      "type": "project",
+      "name": "Halloween",
+      "artist": "Luke Vibert",
+      "mbid": "140a11df-6c8b-4afd-9aaf-771019a49bc1",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:halloween-part-one--luke-vibert",
+      "type": "project",
+      "name": "Halloween (Part One)",
+      "artist": "Luke Vibert",
+      "mbid": "454748f0-4509-4da3-887e-230fa0d87266",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:halloween-part-two--luke-vibert",
+      "type": "project",
+      "name": "Halloween (Part Two)",
+      "artist": "Luke Vibert",
+      "mbid": "ae5a32f4-0d37-494f-b9fd-f3b63f0e9b81",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ridmik--luke-vibert",
+      "type": "project",
+      "name": "Ridmik",
+      "artist": "Luke Vibert",
+      "mbid": "7b12dc25-4caf-4334-8752-dabfb3bea3b0",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ep-three--luke-vibert",
+      "type": "project",
+      "name": "EP Three",
+      "artist": "Luke Vibert",
+      "mbid": "ea96ab01-8e4b-47f4-8a07-f1a253a14db4",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:we-hear-you--luke-vibert",
+      "type": "project",
+      "name": "We Hear You",
+      "artist": "Luke Vibert",
+      "mbid": "64548dea-6e5e-4584-a56b-92f10b7b9368",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ep-one--luke-vibert",
+      "type": "project",
+      "name": "EP One",
+      "artist": "Luke Vibert",
+      "mbid": "a773f54a-963c-465b-b768-d31cf29727cb",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ep-two--luke-vibert",
+      "type": "project",
+      "name": "EP Two",
+      "artist": "Luke Vibert",
+      "mbid": "b090e5d1-c8fb-4dbf-b006-f1933ceacabb",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:rhythm--luke-vibert",
+      "type": "project",
+      "name": "Rhythm",
+      "artist": "Luke Vibert",
+      "mbid": "1ffd0d8c-296f-359d-88df-5414a933b499",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rodulate--luke-vibert",
+      "type": "project",
+      "name": "Rodulate",
+      "artist": "Luke Vibert",
+      "mbid": "1654c4be-38e9-382b-810a-44b3a2f144d5",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chicago-detroit-redruth--luke-vibert",
+      "type": "project",
+      "name": "Chicago, Detroit, Redruth",
+      "artist": "Luke Vibert",
+      "mbid": "4bb0663e-4662-36d8-a4ac-8ce132087a40",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mate-tron--luke-vibert",
+      "type": "project",
+      "name": "Mate Tron",
+      "artist": "Luke Vibert",
+      "mbid": "2dc8cf7c-6af2-3983-ad96-a6142f17e47f",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:voix-des-reason--luke-vibert",
+      "type": "project",
+      "name": "Voix des Reason",
+      "artist": "Luke Vibert",
+      "mbid": "3772f2c8-f3ea-344b-8a52-f289691ee023",
+      "year": "2007",
+      "releaseType": "ep"
     },
     {
       "slug": "project:lover-s-acid",
       "type": "project",
-      "name": "Lover's Acid"
+      "name": "Lover's Acid",
+      "mbid": "8adaf25e-0527-432e-a236-2b4d625b9808",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yoseph--luke-vibert",
+      "type": "project",
+      "name": "YosepH",
+      "artist": "Luke Vibert",
+      "mbid": "9cd340d9-6293-36c9-87e3-de7192514693",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:homewerk--luke-vibert",
+      "type": "project",
+      "name": "Homewerk",
+      "artist": "Luke Vibert",
+      "mbid": "e3499915-b219-3dc6-b820-09cc479b8bf3",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:95-99--luke-vibert",
+      "type": "project",
+      "name": "'95-'99",
+      "artist": "Luke Vibert",
+      "mbid": "baccc653-99aa-3700-9095-5653b032a634",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:spring-collection--luke-vibert",
+      "type": "project",
+      "name": "Spring Collection",
+      "artist": "Luke Vibert",
+      "mbid": "71176a8d-d535-379a-a180-262eca591976",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:drum-n-bass-n-steel--luke-vibert",
+      "type": "project",
+      "name": "Drum ’n’ Bass ’n’ Steel",
+      "artist": "Luke Vibert",
+      "mbid": "b820dcc8-3d92-362a-b66c-86ac23ec32f4",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stop-the-panic--luke-vibert",
+      "type": "project",
+      "name": "Stop the Panic",
+      "artist": "Luke Vibert",
+      "mbid": "63f10645-b1bf-3596-8dde-56435fcd6a71",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:big-soup",
+      "type": "project",
+      "name": "Big Soup",
+      "mbid": "0ba8de9d-54ae-352f-91e6-cf6949d8f1ee",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:do-unto-others--luke-vibert",
+      "type": "project",
+      "name": "Do Unto Others",
+      "artist": "Luke Vibert",
+      "mbid": "9220cbbb-0edb-3335-a117-021a33f9c97b",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:a-polished-solid--luke-vibert",
+      "type": "project",
+      "name": "A Polished Solid",
+      "artist": "Luke Vibert",
+      "mbid": "7788cb50-7a5b-30c4-9e68-12a4b4886063",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:weirs--luke-vibert",
+      "type": "project",
+      "name": "Weirs",
+      "artist": "Luke Vibert",
+      "mbid": "4c01121b-684a-3466-9fc4-face51fb6be9",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:drum-n-bass-for-papa",
+      "type": "project",
+      "name": "Drum 'n' Bass for Papa"
     },
     {
       "slug": "project:throbbing-pouch",

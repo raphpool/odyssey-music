@@ -64,6 +64,14 @@
   ],
   "discography": [
     {
+      "slug": "project:glad-to-be-here",
+      "type": "project",
+      "name": "Glad to Be Here",
+      "mbid": "190b0733-774a-4d98-8bea-965269da170c",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:chic",
       "type": "project",
       "name": "Chic"
@@ -77,11 +85,6 @@
       "slug": "project:risque",
       "type": "project",
       "name": "Risqué"
-    },
-    {
-      "slug": "project:glad-to-be-here",
-      "type": "project",
-      "name": "Glad to Be Here"
     },
     {
       "slug": "project:the-power-station",

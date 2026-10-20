@@ -42,19 +42,358 @@
   ],
   "discography": [
     {
-      "slug": "project:big-showdown",
+      "slug": "project:jah-life-in-dub--scientist",
       "type": "project",
-      "name": "Big Showdown"
+      "name": "Jah Life in Dub",
+      "artist": "Scientist",
+      "mbid": "efb75630-9796-4c59-83fc-cf9087077910",
+      "year": "2015",
+      "releaseType": "album"
     },
     {
-      "slug": "project:heavyweight-dub-champion",
+      "slug": "project:the-dub-album-they-didn-t-want-you-to-hear--scientist",
       "type": "project",
-      "name": "Heavyweight Dub Champion"
+      "name": "The Dub Album They Didn't Want You To Hear!",
+      "artist": "Scientist",
+      "mbid": "a1f6b91c-2d83-4ce1-bca2-8b86cae84d30",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tribute-to-augustus-pablo--scientist",
+      "type": "project",
+      "name": "Tribute to Augustus Pablo",
+      "artist": "Scientist",
+      "mbid": "90249b82-9874-4b8f-91f5-cd541e360a7a",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scientist-meets-the-crazy-mad-professor-at-channel-one--scientist",
+      "type": "project",
+      "name": "Scientist Meets the Crazy Mad Professor At Channel One",
+      "artist": "Scientist",
+      "mbid": "ae10f559-aaf5-40e7-82f1-603c44caa0ee",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dub-911--scientist",
+      "type": "project",
+      "name": "Dub 911",
+      "artist": "Scientist",
+      "mbid": "56a702dc-c844-41f1-a2c4-c8d47959e9df",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dub-from-the-ghetto--scientist",
+      "type": "project",
+      "name": "Dub From the Ghetto",
+      "artist": "Scientist",
+      "mbid": "bf20c65a-5d9c-31a4-a896-4e95e151df86",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dub-war-coxsone-vs-quaker-city--scientist",
+      "type": "project",
+      "name": "Dub War - Coxsone vs. Quaker City",
+      "artist": "Scientist",
+      "mbid": "7f74d1e9-a2ec-314c-b85b-78ee345bcf1f",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nightshade-meets-scientist--scientist",
+      "type": "project",
+      "name": "Nightshade Meets Scientist",
+      "artist": "Scientist",
+      "mbid": "8b9bdec8-e7ee-4e17-9c2b-93fce25cf2b3",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:all-hail-the-dub-head--scientist",
+      "type": "project",
+      "name": "All Hail the Dub Head",
+      "artist": "Scientist",
+      "mbid": "31458450-e84c-322f-8e92-5f3ff684cef7",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scientist-dubs-culture-into-a-parallel-universe--scientist",
+      "type": "project",
+      "name": "Scientist Dubs Culture Into a Parallel Universe",
+      "artist": "Scientist",
+      "mbid": "37c7016b-afbd-39bd-8710-cc521a6f03ec",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scientist-kills-the-millennium-bug--scientist",
+      "type": "project",
+      "name": "Scientist Kills The Millennium Bug",
+      "artist": "Scientist",
+      "mbid": "126eb18f-56fe-4f2e-8822-a11c39c06e94",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:at-channel-one-studio--scientist",
+      "type": "project",
+      "name": "At Channel One Studio",
+      "artist": "Scientist",
+      "mbid": "62dce105-43e0-3c50-a2b2-53f2a34b6adf",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dub-for-daze-volume-two--scientist",
+      "type": "project",
+      "name": "Dub for Daze, Volume Two",
+      "artist": "Scientist",
+      "mbid": "9021aa6c-b4fb-3dcc-92aa-1c6c1097d0ad",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dub-in-the-roots-tradition--scientist",
+      "type": "project",
+      "name": "Dub in the Roots Tradition",
+      "artist": "Scientist",
+      "mbid": "1e46b0af-dd92-3f11-8594-9d03b4f82aee",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dubbin-with-horns--scientist",
+      "type": "project",
+      "name": "Dubbin With Horns",
+      "artist": "Scientist",
+      "mbid": "d8721feb-7797-3cdb-bb88-6bf0f47bbdd4",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:king-of-dub--scientist",
+      "type": "project",
+      "name": "King of Dub",
+      "artist": "Scientist",
+      "mbid": "ac2fe0f3-3818-3881-a985-3b7c83e7221d",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:1999-dub--scientist",
+      "type": "project",
+      "name": "1999 Dub",
+      "artist": "Scientist",
+      "mbid": "533085de-4f1a-4cb5-a773-575d6416a0fe",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dub-duel-at-king-tubby-s--scientist",
+      "type": "project",
+      "name": "Dub Duel At King Tubby's",
+      "artist": "Scientist",
+      "mbid": "725e90e4-6dbe-4de9-876c-7a24edf72a0b",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:high-priest-of-dub--scientist",
+      "type": "project",
+      "name": "High Priest of Dub",
+      "artist": "Scientist",
+      "mbid": "e400add5-86cd-33d7-8135-63c8a207401b",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:repatriation-dub--scientist",
+      "type": "project",
+      "name": "Repatriation Dub",
+      "artist": "Scientist",
+      "mbid": "e64feb48-a98c-39aa-8e5f-b134932354f8",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scientist-and-jammy-strike-back--scientist",
+      "type": "project",
+      "name": "Scientist and Jammy Strike Back!",
+      "artist": "Scientist",
+      "mbid": "61c5f716-3a92-3e0d-97f9-e54cd967b4d4",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-peoples-choice--scientist",
+      "type": "project",
+      "name": "The Peoples Choice",
+      "artist": "Scientist",
+      "mbid": "de322ec5-6357-36a2-bb6e-b75e3f858e2f",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dub-landing-volume-2--scientist",
+      "type": "project",
+      "name": "Dub Landing, Volume 2",
+      "artist": "Scientist",
+      "mbid": "26ca15c0-3b31-3da0-bbd7-11fbd12c80b7",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:heavy-metal-dub--scientist",
+      "type": "project",
+      "name": "Heavy Metal Dub",
+      "artist": "Scientist",
+      "mbid": "e6c773b3-dff3-39c7-92a5-6e1a90b029bc",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scientist-encounters-pac-man--scientist",
+      "type": "project",
+      "name": "Scientist Encounters Pac-Man",
+      "artist": "Scientist",
+      "mbid": "be56aa1a-54ec-3495-9336-0381fb08ddb2",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scientist-meets-the-roots-radics--scientist",
+      "type": "project",
+      "name": "Scientist Meets the Roots Radics",
+      "artist": "Scientist",
+      "mbid": "e484c622-efbb-3e29-99a2-c4b244d065b4",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scientist-wins-the-world-cup--scientist",
+      "type": "project",
+      "name": "Scientist Wins the World Cup",
+      "artist": "Scientist",
+      "mbid": "9c0414bb-7f44-3153-9d2c-b06263091bd1",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-seducer-dub-wise--scientist",
+      "type": "project",
+      "name": "The Seducer Dub Wise",
+      "artist": "Scientist",
+      "mbid": "51feb429-a6cc-4ac7-a168-32fdd3b8e957",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dub-landing--scientist",
+      "type": "project",
+      "name": "Dub Landing",
+      "artist": "Scientist",
+      "mbid": "aaafe637-de91-3871-9d82-0f5264ba4040",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-dub--scientist",
+      "type": "project",
+      "name": "In Dub",
+      "artist": "Scientist",
+      "mbid": "edf8e1b3-f4f7-4ce3-ad88-df0c9008a678",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-the-kingdom-of-dub--scientist",
+      "type": "project",
+      "name": "In the Kingdom of Dub",
+      "artist": "Scientist",
+      "mbid": "febb906c-d8b5-38a4-85b2-0b2c196096cc",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scientific-dub--scientist",
+      "type": "project",
+      "name": "Scientific Dub",
+      "artist": "Scientist",
+      "mbid": "e13e2107-773c-3566-a194-ad4ca2f056f2",
+      "year": "1981",
+      "releaseType": "album"
     },
     {
       "slug": "project:scientist-meets-the-space-invaders",
       "type": "project",
-      "name": "Scientist Meets The Space Invaders"
+      "name": "Scientist Meets The Space Invaders",
+      "mbid": "3ec37c8f-f728-3ebb-abbc-42a337c18702",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scientist-rids-the-world-of-the-evil-curse-of-the-vampires--scientist",
+      "type": "project",
+      "name": "Scientist Rids the World of the Evil Curse of the Vampires",
+      "artist": "Scientist",
+      "mbid": "ea7e7cbb-73f2-3d39-b17c-584486d94c9c",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:world-at-war--scientist",
+      "type": "project",
+      "name": "World at War",
+      "artist": "Scientist",
+      "mbid": "691927cf-dcfe-45e1-8e31-1b91cd2ec2f4",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:allied-dub-selection--scientist",
+      "type": "project",
+      "name": "Allied Dub Selection",
+      "artist": "Scientist",
+      "mbid": "a1c01519-635c-4f28-b7cd-ddfca8add51e",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:heavyweight-dub-champion",
+      "type": "project",
+      "name": "Heavyweight Dub Champion",
+      "mbid": "14c31822-11b4-3780-a83a-14589cb322d6",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:scientist-vs-prince-jammy-big-showdown-at-king-tubby-s--scientist",
+      "type": "project",
+      "name": "Scientist vs. Prince Jammy: Big Showdown at King Tubby's",
+      "artist": "Scientist",
+      "mbid": "c45a283f-2ccd-357b-9b48-796cc741767e",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-best-dub-album-in-the-world-introducing-scientist--scientist",
+      "type": "project",
+      "name": "The Best Dub Album in the World (Introducing Scientist)",
+      "artist": "Scientist",
+      "mbid": "e0afea16-3425-3881-b58c-150122d4faec",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:big-showdown",
+      "type": "project",
+      "name": "Big Showdown"
     }
   ],
   "notable_tracks": [],

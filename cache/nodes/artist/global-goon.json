@@ -58,7 +58,368 @@
       "name": "J-HOK Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:grow-your-own-goon-garden--global-goon",
+      "type": "project",
+      "name": "Grow Your Own Goon Garden",
+      "artist": "Global Goon",
+      "mbid": "f128dc7e-6749-4736-a659-7bdc8a028337",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:adopt-me--global-goon",
+      "type": "project",
+      "name": "Adopt Me",
+      "artist": "Global Goon",
+      "mbid": "df13b4f9-4523-4e02-81b3-0468100cfca7",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ruff-woodz--global-goon",
+      "type": "project",
+      "name": "Ruff Woodz",
+      "artist": "Global Goon",
+      "mbid": "87bc4234-1468-4c2c-aab4-df3729446cce",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ambient-rave-music--global-goon",
+      "type": "project",
+      "name": "Ambient Rave Music",
+      "artist": "Global Goon",
+      "mbid": "5daf8ed5-341e-470a-8e4b-b8b35e98d981",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nanoclusters--global-goon",
+      "type": "project",
+      "name": "Nanoclusters",
+      "artist": "Global Goon",
+      "mbid": "ccefdfdc-b172-4b16-923f-9a465f71fcf4",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-acid-arcana--global-goon",
+      "type": "project",
+      "name": "THE ACID ARCANA",
+      "artist": "Global Goon",
+      "mbid": "df46e24c-7bb7-4269-867b-b86b362c4350",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:euro-jack--global-goon",
+      "type": "project",
+      "name": "Euro Jack",
+      "artist": "Global Goon",
+      "mbid": "6e1a1635-1920-40b2-92f4-8bffaa628467",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fundu--global-goon",
+      "type": "project",
+      "name": "Fundu",
+      "artist": "Global Goon",
+      "mbid": "f8e45bff-b560-4932-a9c5-c554dba79c5c",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:kepler-odyssey--global-goon",
+      "type": "project",
+      "name": "Kepler Odyssey",
+      "artist": "Global Goon",
+      "mbid": "356209a6-eaad-4289-bec8-4ca1a9d3ad93",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:great-heck--global-goon",
+      "type": "project",
+      "name": "Great Heck",
+      "artist": "Global Goon",
+      "mbid": "5b4fc9ed-1b18-4a83-b9d1-0f997e717a3e",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:i-love-acid-006--global-goon",
+      "type": "project",
+      "name": "I Love Acid 006",
+      "artist": "Global Goon",
+      "mbid": "b7089144-d06b-4112-804e-9c8b627f349f",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:nush--global-goon",
+      "type": "project",
+      "name": "NUSH!",
+      "artist": "Global Goon",
+      "mbid": "5bb8df75-500c-4627-a4a1-e30ba642c0f3",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:rivers--global-goon",
+      "type": "project",
+      "name": "Rivers",
+      "artist": "Global Goon",
+      "mbid": "b566c3fc-2c47-4337-9b9a-408371a8e8af",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:shazbot--global-goon",
+      "type": "project",
+      "name": "Shazbot",
+      "artist": "Global Goon",
+      "mbid": "3112d5ae-73b5-4335-95f8-f7b60c546f82",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sweet-box--global-goon",
+      "type": "project",
+      "name": "Sweet Box",
+      "artist": "Global Goon",
+      "mbid": "4690abe0-1c02-4a7b-9cba-ae7accb7c6c5",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:activision--global-goon",
+      "type": "project",
+      "name": "Activision",
+      "artist": "Global Goon",
+      "mbid": "09c1ef7c-61c5-4d30-be96-7034e963718d",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:destroy-the-mirror--global-goon",
+      "type": "project",
+      "name": "Destroy The Mirror",
+      "artist": "Global Goon",
+      "mbid": "eaca9064-fa06-4b8a-97d6-780e33e659be",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:k-wal--global-goon",
+      "type": "project",
+      "name": "K-WAL",
+      "artist": "Global Goon",
+      "mbid": "1dcef39c-659e-4bc8-be96-1c8b8b56e94e",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:weme10-edits--global-goon",
+      "type": "project",
+      "name": "WeMe10 Edits",
+      "artist": "Global Goon",
+      "mbid": "261c5882-af0c-4323-8bc3-0a65e7ccb6c5",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:horizon--global-goon",
+      "type": "project",
+      "name": "Horizon",
+      "artist": "Global Goon",
+      "mbid": "266a47bc-69fd-4522-826c-27838c1dbc9c",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:journeys--global-goon",
+      "type": "project",
+      "name": "Journeys",
+      "artist": "Global Goon",
+      "mbid": "676bb941-556f-4a0b-861e-6cb26495377a",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:plastic-orchestra--global-goon",
+      "type": "project",
+      "name": "Plastic Orchestra",
+      "artist": "Global Goon",
+      "mbid": "bb010748-555f-4fef-902f-b8838d48eabb",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pop-spectrum--global-goon",
+      "type": "project",
+      "name": "Pop Spectrum",
+      "artist": "Global Goon",
+      "mbid": "b13b8517-d92c-4785-9817-5fbba43c13e7",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:quonk--global-goon",
+      "type": "project",
+      "name": "Quonk",
+      "artist": "Global Goon",
+      "mbid": "41ad66e3-2f3d-45f2-8e5a-d5be7ad19398",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:carbon--global-goon",
+      "type": "project",
+      "name": "Carbon",
+      "artist": "Global Goon",
+      "mbid": "eddc10f9-5880-4596-adb8-3acbe4a41a60",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:everything-is-connected--global-goon",
+      "type": "project",
+      "name": "Everything Is Connected",
+      "artist": "Global Goon",
+      "mbid": "1f709a2f-aba5-4bab-86f8-2741853e11e5",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:quones--global-goon",
+      "type": "project",
+      "name": "Quones",
+      "artist": "Global Goon",
+      "mbid": "4e4d0488-49cb-4c9b-a1fe-3839d02dbe90",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:quonesha--global-goon",
+      "type": "project",
+      "name": "Quonesha",
+      "artist": "Global Goon",
+      "mbid": "761c0004-ed95-4de8-aceb-7118142c69d8",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:threezadoozy--global-goon",
+      "type": "project",
+      "name": "Threezadoozy",
+      "artist": "Global Goon",
+      "mbid": "3a9f777f-9c87-4e9e-858f-1477125b27a8",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:earwhig--global-goon",
+      "type": "project",
+      "name": "Earwhig",
+      "artist": "Global Goon",
+      "mbid": "78238ba0-c557-4695-848b-c587f44a929c",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chimay--global-goon",
+      "type": "project",
+      "name": "Chimay",
+      "artist": "Global Goon",
+      "mbid": "6a6bacaf-db2b-4a62-a1bd-301e5c566bc5",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:saint-aime--global-goon",
+      "type": "project",
+      "name": "Saint Aime",
+      "artist": "Global Goon",
+      "mbid": "9c02ff9f-0938-4c33-98ae-8925d27a0583",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bessemer-cocktail--global-goon",
+      "type": "project",
+      "name": "Bessemer Cocktail",
+      "artist": "Global Goon",
+      "mbid": "5d67fe4e-d91a-3cb0-ad43-0aaa0654b17b",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pure-rock--global-goon",
+      "type": "project",
+      "name": "Pure Rock",
+      "artist": "Global Goon",
+      "mbid": "f73fffb2-6c3e-3379-9815-c970607e8891",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:family-glue--global-goon",
+      "type": "project",
+      "name": "Family Glue",
+      "artist": "Global Goon",
+      "mbid": "b8c4dd15-e73e-30b8-a741-aef00fe5bf2e",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:junior-glue--global-goon",
+      "type": "project",
+      "name": "Junior Glue",
+      "artist": "Global Goon",
+      "mbid": "5de6be8f-2333-3da3-a60f-9f7208e83ca2",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:vatican-nitez--global-goon",
+      "type": "project",
+      "name": "Vatican Nitez",
+      "artist": "Global Goon",
+      "mbid": "a1a47af4-4ace-3ca4-afa4-f07f7f7843a1",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cradle-of-history--global-goon",
+      "type": "project",
+      "name": "Cradle of History",
+      "artist": "Global Goon",
+      "mbid": "de8b952d-ae2d-3223-bed1-31e024ecc363",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:afterlife--global-goon",
+      "type": "project",
+      "name": "Afterlife",
+      "artist": "Global Goon",
+      "mbid": "d33c3eb7-ff53-3cc5-8dc9-83ceb7538409",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:goon--global-goon",
+      "type": "project",
+      "name": "Goon",
+      "artist": "Global Goon",
+      "mbid": "ff476014-9a40-3155-93c1-b6f3dc0be3ef",
+      "year": "1996",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:craehrzhd",

@@ -56,34 +56,358 @@
   ],
   "discography": [
     {
-      "slug": "project:dare",
+      "slug": "project:credo--the-human-league",
       "type": "project",
-      "name": "Dare"
+      "name": "Credo",
+      "artist": "The Human League",
+      "mbid": "e883a9ca-9e75-4477-ab93-28a739ce02e3",
+      "year": "2011",
+      "releaseType": "album"
     },
     {
-      "slug": "project:travelogue",
+      "slug": "project:all-i-ever-wanted--the-human-league",
       "type": "project",
-      "name": "Travelogue"
+      "name": "All I Ever Wanted",
+      "artist": "The Human League",
+      "mbid": "8bd60465-7a09-4de2-a24f-a6bd56b42a68",
+      "year": "2001",
+      "releaseType": "single"
     },
     {
-      "slug": "project:reproduction",
+      "slug": "project:secrets--the-human-league",
       "type": "project",
-      "name": "Reproduction"
+      "name": "Secrets",
+      "artist": "The Human League",
+      "mbid": "f96d9032-11c7-3919-919a-1b942641ba11",
+      "year": "2001",
+      "releaseType": "album"
     },
     {
-      "slug": "project:hysteria",
+      "slug": "project:stay-with-me-tonight--the-human-league",
       "type": "project",
-      "name": "Hysteria"
+      "name": "Stay With Me Tonight",
+      "artist": "The Human League",
+      "mbid": "35eaad5c-c81e-4d99-a8f7-4de72690a32b",
+      "year": "1996",
+      "releaseType": "single"
     },
     {
-      "slug": "project:crash",
+      "slug": "project:filling-up-with-heaven--the-human-league",
       "type": "project",
-      "name": "Crash"
+      "name": "Filling Up With Heaven",
+      "artist": "The Human League",
+      "mbid": "e97ec90a-f899-3033-ad24-68cac917f1ae",
+      "year": "1995",
+      "releaseType": "single"
     },
     {
       "slug": "project:octopus",
       "type": "project",
-      "name": "Octopus"
+      "name": "Octopus",
+      "mbid": "79b39e3d-6860-3cf5-a5b2-1c4b028667fa",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-man-in-my-heart--the-human-league",
+      "type": "project",
+      "name": "One Man in My Heart",
+      "artist": "The Human League",
+      "mbid": "007bfd50-745e-326c-b125-81ba91a2a3a6",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tell-me-when--the-human-league",
+      "type": "project",
+      "name": "Tell Me When",
+      "artist": "The Human League",
+      "mbid": "cc100877-c0f5-394d-bf79-e2b2f58e46fe",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heart-like-a-wheel--the-human-league",
+      "type": "project",
+      "name": "Heart Like a Wheel",
+      "artist": "The Human League",
+      "mbid": "4a05ea44-19c8-4767-80e8-b1be84228205",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:romantic--the-human-league",
+      "type": "project",
+      "name": "Romantic?",
+      "artist": "The Human League",
+      "mbid": "6d284293-a175-388a-a8d1-0c15bcf01009",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soundtrack-to-a-generation--the-human-league",
+      "type": "project",
+      "name": "Soundtrack to a Generation",
+      "artist": "The Human League",
+      "mbid": "018f7256-090f-4037-8a28-ae590884e04b",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:are-you-ever-coming-back--the-human-league",
+      "type": "project",
+      "name": "Are You Ever Coming Back",
+      "artist": "The Human League",
+      "mbid": "852a6af9-10a2-4855-9650-04cd8e8871c2",
+      "year": "1986",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:crash",
+      "type": "project",
+      "name": "Crash",
+      "mbid": "0aca24c5-d99d-3bc7-913c-8761e3409304",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:human--the-human-league",
+      "type": "project",
+      "name": "Human",
+      "artist": "The Human League",
+      "mbid": "60aa3d0d-aaa4-4bbb-b6d1-2ba92c72768a",
+      "year": "1986",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:human-ocean--the-human-league",
+      "type": "project",
+      "name": "Human / Ocean",
+      "artist": "The Human League",
+      "mbid": "a812cc07-7f05-36ae-9165-bdb57825b20c",
+      "year": "1986",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-need-your-loving--the-human-league",
+      "type": "project",
+      "name": "I Need Your Loving",
+      "artist": "The Human League",
+      "mbid": "d2051abe-485e-4a26-8b1b-cb354637f129",
+      "year": "1986",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-is-all-that-matters--the-human-league",
+      "type": "project",
+      "name": "Love Is All That Matters",
+      "artist": "The Human League",
+      "mbid": "12dd21f6-a1e8-4c7a-a1f7-0a10ad953224",
+      "year": "1986",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hysteria",
+      "type": "project",
+      "name": "Hysteria",
+      "mbid": "25e99f78-f69f-34f0-b257-fd45b3ec0114",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-m-coming-back--the-human-league",
+      "type": "project",
+      "name": "I’m Coming Back",
+      "artist": "The Human League",
+      "mbid": "f466e3a1-4fe7-48f7-976a-2463aba33961",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:life-on-your-own--the-human-league",
+      "type": "project",
+      "name": "Life on Your Own",
+      "artist": "The Human League",
+      "mbid": "7aaa66df-e98c-4577-9182-e23a13953cd8",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:louise--the-human-league",
+      "type": "project",
+      "name": "Louise",
+      "artist": "The Human League",
+      "mbid": "f7b0f8c5-5a34-4b81-989b-5964745259ef",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-lebanon--the-human-league",
+      "type": "project",
+      "name": "The Lebanon",
+      "artist": "The Human League",
+      "mbid": "813cc3d3-0017-421c-8704-fef8d6626db9",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:keep-feeling-fascination--the-human-league",
+      "type": "project",
+      "name": "(Keep Feeling) Fascination",
+      "artist": "The Human League",
+      "mbid": "3fb143eb-6fac-4689-a97b-52c55b567757",
+      "year": "1983",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fascination--the-human-league",
+      "type": "project",
+      "name": "Fascination!",
+      "artist": "The Human League",
+      "mbid": "ea6c6bc3-3d01-348c-bf0a-1baef9aa8c40",
+      "year": "1983",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mirror-man--the-human-league",
+      "type": "project",
+      "name": "Mirror Man",
+      "artist": "The Human League",
+      "mbid": "52bb4e09-eae1-3082-a70e-232e5aa392f9",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-things-that-dreams-are-made-of--the-human-league",
+      "type": "project",
+      "name": "The Things That Dreams Are Made Of",
+      "artist": "The Human League",
+      "mbid": "935f9f69-e3df-35f2-9cac-98b8bffda7a7",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:boys-and-girls--the-human-league",
+      "type": "project",
+      "name": "Boys and Girls",
+      "artist": "The Human League",
+      "mbid": "e10505d8-e5a0-49e2-b50d-b10c20d621bc",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dare",
+      "type": "project",
+      "name": "Dare",
+      "mbid": "e8e7999e-0b87-3298-947d-2ad22717fc27",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:don-t-you-want-me--the-human-league",
+      "type": "project",
+      "name": "Don’t You Want Me",
+      "artist": "The Human League",
+      "mbid": "3daa5e36-793e-3af7-8a07-bc244a0a6157",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-action-i-believe-in-love--the-human-league",
+      "type": "project",
+      "name": "Love Action (I Believe in Love)",
+      "artist": "The Human League",
+      "mbid": "033c2cc7-375b-3817-8a91-8b59ee53b5aa",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:open-your-heart-non-stop--the-human-league",
+      "type": "project",
+      "name": "Open Your Heart / Non‐Stop",
+      "artist": "The Human League",
+      "mbid": "68975123-dd8c-3194-bb30-9226b6fb596f",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-sound-of-the-crowd--the-human-league",
+      "type": "project",
+      "name": "The Sound of the Crowd",
+      "artist": "The Human League",
+      "mbid": "4cbf13e9-dde5-3836-ae55-232c52cbb9a8",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:holiday-80--the-human-league",
+      "type": "project",
+      "name": "Holiday ’80",
+      "artist": "The Human League",
+      "mbid": "60bfd1e1-2a4a-4027-bb7d-f92949eee5d9",
+      "year": "1980",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:only-after-dark--the-human-league",
+      "type": "project",
+      "name": "Only After Dark",
+      "artist": "The Human League",
+      "mbid": "913bf342-f485-453d-a219-6f2b9ba047a9",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rock-n-roll--the-human-league",
+      "type": "project",
+      "name": "Rock ’n’ Roll",
+      "artist": "The Human League",
+      "mbid": "7059d2ac-1adc-4281-88d6-35863714ff16",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:travelogue",
+      "type": "project",
+      "name": "Travelogue",
+      "mbid": "e30d6387-674f-3489-8b57-138735f5f9cf",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:empire-state-human--the-human-league",
+      "type": "project",
+      "name": "Empire State Human",
+      "artist": "The Human League",
+      "mbid": "1c3240f2-92c4-4751-b505-2b72130029a7",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:reproduction",
+      "type": "project",
+      "name": "Reproduction",
+      "mbid": "1d41c0ad-ceb4-39bc-9885-4bb3c9cc27af",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-dignity-of-labour--the-human-league",
+      "type": "project",
+      "name": "The Dignity of Labour",
+      "artist": "The Human League",
+      "mbid": "bb6354c1-957c-3759-8457-bab52a4c4aa2",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:being-boiled-circus-of-death--the-human-league",
+      "type": "project",
+      "name": "Being Boiled / Circus of Death",
+      "artist": "The Human League",
+      "mbid": "bc00ead2-0412-346c-820a-ada4da1dadc3",
+      "year": "1978",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

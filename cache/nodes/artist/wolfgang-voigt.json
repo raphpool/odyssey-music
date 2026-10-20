@@ -61,6 +61,195 @@
   ],
   "discography": [
     {
+      "slug": "project:ruckverzauberung-im-tunnel--wolfgang-voigt",
+      "type": "project",
+      "name": "Rückverzauberung im Tunnel",
+      "artist": "Wolfgang Voigt",
+      "mbid": "60c8ad93-5674-438e-9f14-38c5c3fe153e",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-queen-is-dead--wolfgang-voigt",
+      "type": "project",
+      "name": "The Queen Is Dead",
+      "artist": "Wolfgang Voigt",
+      "mbid": "61ea5168-92dc-46f9-a215-ec0ec6dc70b9",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ruckverzauberung-exhibition--wolfgang-voigt",
+      "type": "project",
+      "name": "Rückverzauberung Exhibition",
+      "artist": "Wolfgang Voigt",
+      "mbid": "c6570c84-b21b-49f2-a101-25d670e5cb1e",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:apodiktische-gewissheit--wolfgang-voigt",
+      "type": "project",
+      "name": "Apodiktische Gewissheit",
+      "artist": "Wolfgang Voigt",
+      "mbid": "9d98e03d-4a57-4333-9e6a-762d247525c6",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ruckverzauberung-10-nationalpark--wolfgang-voigt",
+      "type": "project",
+      "name": "Rückverzauberung 10 / Nationalpark",
+      "artist": "Wolfgang Voigt",
+      "mbid": "f0f57bff-e8da-47a9-86a0-8fd17b4ad54a",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:polkatrax-2--wolfgang-voigt",
+      "type": "project",
+      "name": "Polkatrax 2",
+      "artist": "Wolfgang Voigt",
+      "mbid": "6b90df24-2346-4e02-bafe-6a019e494f50",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:polkatrax-3--wolfgang-voigt",
+      "type": "project",
+      "name": "Polkatrax 3",
+      "artist": "Wolfgang Voigt",
+      "mbid": "87975793-fc50-4d4c-8859-5854b0b33ac8",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ruckverzauberung-9-musik-fur-kulturinstitutionen--wolfgang-voigt",
+      "type": "project",
+      "name": "Rückverzauberung 9 / Musik für Kulturinstitutionen",
+      "artist": "Wolfgang Voigt",
+      "mbid": "aaaae604-8b29-43fa-ab9c-0f475f4fc99a",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:zukunft-ohne-menschen--wolfgang-voigt",
+      "type": "project",
+      "name": "Zukunft ohne Menschen",
+      "artist": "Wolfgang Voigt",
+      "mbid": "c27ee7dd-f02f-4b11-92c0-25b90b07eff9",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ruckverzauberung-6--wolfgang-voigt",
+      "type": "project",
+      "name": "Rückverzauberung 6",
+      "artist": "Wolfgang Voigt",
+      "mbid": "149a9986-78cb-4434-9d20-0758885d2c28",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ruckverzauberung-live-in-london--wolfgang-voigt",
+      "type": "project",
+      "name": "Rückverzauberung Live in London",
+      "artist": "Wolfgang Voigt",
+      "mbid": "b3040fa3-c0a6-41cf-bfb5-b07c70c26660",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kafkatrax--wolfgang-voigt",
+      "type": "project",
+      "name": "Kafkatrax",
+      "artist": "Wolfgang Voigt",
+      "mbid": "be9c5815-2740-4fb6-a9c4-388e114bd686",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kafkatrax-1--wolfgang-voigt",
+      "type": "project",
+      "name": "Kafkatrax 1",
+      "artist": "Wolfgang Voigt",
+      "mbid": "cf7b2232-2fca-4756-9af9-9c0024693671",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:kafkatrax-2--wolfgang-voigt",
+      "type": "project",
+      "name": "Kafkatrax 2",
+      "artist": "Wolfgang Voigt",
+      "mbid": "c764c574-5e1f-42d2-ade9-e2ec4d54e08a",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:kafkatrax-3--wolfgang-voigt",
+      "type": "project",
+      "name": "Kafkatrax 3",
+      "artist": "Wolfgang Voigt",
+      "mbid": "167972ab-0ac4-403e-89ea-35ac1cc73feb",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:umbau-1--wolfgang-voigt",
+      "type": "project",
+      "name": "Umbau 1",
+      "artist": "Wolfgang Voigt",
+      "mbid": "0257060e-3273-43de-a7de-6e6e8f766914",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:freiland-klaviermusik--wolfgang-voigt",
+      "type": "project",
+      "name": "Freiland Klaviermusik",
+      "artist": "Wolfgang Voigt",
+      "mbid": "273b9efb-99f9-42cb-9bab-9477bfa444ca",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:20-to-2000-november-20-minuten-gas-im-november--wolfgang-voigt",
+      "type": "project",
+      "name": "20′ to 2000.November: 20 Minuten Gas im November",
+      "artist": "Wolfgang Voigt",
+      "mbid": "4423c5bc-5894-37c6-bd19-5ef1cbf1fde6",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:diskoschleifen-2000--wolfgang-voigt",
+      "type": "project",
+      "name": "Diskoschleifen 2000",
+      "artist": "Wolfgang Voigt",
+      "mbid": "6b9e9fe2-ad1b-3789-b296-9321d2a344c3",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:loikum-1--wolfgang-voigt",
+      "type": "project",
+      "name": "Loikum 1",
+      "artist": "Wolfgang Voigt",
+      "mbid": "66c94f7d-0344-3193-a308-e7625b7dde45",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:oktoberfest--wolfgang-voigt",
+      "type": "project",
+      "name": "Oktoberfest",
+      "artist": "Wolfgang Voigt",
+      "mbid": "839a533a-2e11-3764-8c16-27612f80f094",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:pop",
       "type": "project",
       "name": "Pop"

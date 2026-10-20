@@ -61,39 +61,357 @@
   ],
   "discography": [
     {
-      "slug": "project:dance-tracks-vol-1",
+      "slug": "project:past-future--namie-amuro",
       "type": "project",
-      "name": "Dance Tracks Vol.1"
+      "name": "PAST＜FUTURE",
+      "artist": "Namie Amuro",
+      "mbid": "e92115c7-060c-4d20-aba2-f936b7ab10f2",
+      "year": "2009",
+      "releaseType": "album"
     },
     {
-      "slug": "project:sweet-19-blues",
+      "slug": "project:wild-dr--namie-amuro",
       "type": "project",
-      "name": "Sweet 19 Blues"
-    },
-    {
-      "slug": "project:concentration-20",
-      "type": "project",
-      "name": "Concentration 20"
-    },
-    {
-      "slug": "project:genius-2000",
-      "type": "project",
-      "name": "Genius 2000"
-    },
-    {
-      "slug": "project:queen-of-hip-pop",
-      "type": "project",
-      "name": "Queen of Hip-Pop"
-    },
-    {
-      "slug": "project:play",
-      "type": "project",
-      "name": "Play"
+      "name": "WILD / Dr.",
+      "artist": "Namie Amuro",
+      "mbid": "31df50b1-5401-3d3f-aa13-2f36f063030b",
+      "year": "2009",
+      "releaseType": "single"
     },
     {
       "slug": "project:best-fiction",
       "type": "project",
-      "name": "Best Fiction"
+      "name": "Best Fiction",
+      "mbid": "1c17f407-17c2-3c15-baf8-a9b83e95eda7",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:play",
+      "type": "project",
+      "name": "Play",
+      "mbid": "76aff0b8-c2bf-3a24-baee-a3caed4ef298",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:queen-of-hip-pop",
+      "type": "project",
+      "name": "Queen of Hip-Pop",
+      "mbid": "200ab90e-48ca-3ec4-803f-161286029ab6",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:want-me-want-me--namie-amuro",
+      "type": "project",
+      "name": "WANT ME, WANT ME",
+      "artist": "Namie Amuro",
+      "mbid": "e54c578f-5bfd-32d8-99c8-c8ea1b320806",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:white-light-violet-sauce--namie-amuro",
+      "type": "project",
+      "name": "White Light / Violet Sauce",
+      "artist": "Namie Amuro",
+      "mbid": "e821de27-e0cd-3396-99d4-63b8c4e47ea9",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:alarm--namie-amuro",
+      "type": "project",
+      "name": "ALARM",
+      "artist": "Namie Amuro",
+      "mbid": "d59d1c33-bd5b-3002-b0e3-95bde3d51f0d",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-for-you--namie-amuro",
+      "type": "project",
+      "name": "ALL FOR YOU",
+      "artist": "Namie Amuro",
+      "mbid": "49084237-f3cc-3ef4-aec7-2c520aad61a0",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:girl-talk-the-speed-star--namie-amuro",
+      "type": "project",
+      "name": "GIRL TALK/the SPEED STAR",
+      "artist": "Namie Amuro",
+      "mbid": "86b72620-db55-30a0-8ebf-e2224c4f1d1a",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:put-em-up--namie-amuro",
+      "type": "project",
+      "name": "Put 'Em Up",
+      "artist": "Namie Amuro",
+      "mbid": "a9308793-dae2-3647-8d7a-18ea67abd26d",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:so-crazy-come--namie-amuro",
+      "type": "project",
+      "name": "SO CRAZY/Come",
+      "artist": "Namie Amuro",
+      "mbid": "4c2351b9-876e-37df-aecc-a2624c670692",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:style--namie-amuro",
+      "type": "project",
+      "name": "STYLE",
+      "artist": "Namie Amuro",
+      "mbid": "4dfb2c23-2512-33a4-96c5-a95b799e558a",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shine-more--namie-amuro",
+      "type": "project",
+      "name": "shine more",
+      "artist": "Namie Amuro",
+      "mbid": "2cbd40f8-3427-39ae-9b6b-89dbd5a2f164",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-will--namie-amuro",
+      "type": "project",
+      "name": "I WILL",
+      "artist": "Namie Amuro",
+      "mbid": "4f9f2312-5464-3ae7-9958-11e5b70d0702",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wishing-on-the-same-star--namie-amuro",
+      "type": "project",
+      "name": "Wishing On The Same Star",
+      "artist": "Namie Amuro",
+      "mbid": "16355036-20e0-3aca-a579-085efea45752",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:say-the-word--namie-amuro",
+      "type": "project",
+      "name": "Say the word",
+      "artist": "Namie Amuro",
+      "mbid": "b2fdb55a-e9fa-3902-bda9-c36d6e2b2411",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lovin-it--namie-amuro",
+      "type": "project",
+      "name": "lovin' it",
+      "artist": "Namie Amuro",
+      "mbid": "00d9c052-6c9e-3b61-8435-07bd4303c838",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:think-of-me-no-more-tears--namie-amuro",
+      "type": "project",
+      "name": "think of me / no more tears",
+      "artist": "Namie Amuro",
+      "mbid": "845d6937-005d-382a-9fa8-e0daa262cb05",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:genius-2000",
+      "type": "project",
+      "name": "Genius 2000",
+      "mbid": "727aaf32-ba18-3a18-9ca3-8f7b2f2a52b1",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-2000--namie-amuro",
+      "type": "project",
+      "name": "LOVE 2000",
+      "artist": "Namie Amuro",
+      "mbid": "069cfcd7-371d-3a76-a544-d8e3b0638a39",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:never-end--namie-amuro",
+      "type": "project",
+      "name": "NEVER END",
+      "artist": "Namie Amuro",
+      "mbid": "a27efe6c-1f34-359a-9cba-2242a98d278e",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:please-smile-again--namie-amuro",
+      "type": "project",
+      "name": "PLEASE SMILE AGAIN",
+      "artist": "Namie Amuro",
+      "mbid": "9f18cc63-4669-3da9-bda0-8bd3b781539e",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:break-the-rules--namie-amuro",
+      "type": "project",
+      "name": "break the rules",
+      "artist": "Namie Amuro",
+      "mbid": "47cff6a6-b15d-3d2e-90e3-f391230bb391",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:respect-the-power-of-love--namie-amuro",
+      "type": "project",
+      "name": "RESPECT the POWER OF LOVE",
+      "artist": "Namie Amuro",
+      "mbid": "b5016c90-69cd-3ee1-ad9d-68b5f09c5d10",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:something-bout-the-kiss--namie-amuro",
+      "type": "project",
+      "name": "SOMETHING 'BOUT THE KISS",
+      "artist": "Namie Amuro",
+      "mbid": "23ab5d99-8247-3789-a378-c2fbce37ccf6",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:toi-et-moi--namie-amuro",
+      "type": "project",
+      "name": "toi et moi",
+      "artist": "Namie Amuro",
+      "mbid": "7ef58803-2a16-376e-a8f6-c17727b29f1d",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-have-never-seen--namie-amuro",
+      "type": "project",
+      "name": "I HAVE NEVER SEEN",
+      "artist": "Namie Amuro",
+      "mbid": "aad00164-c765-3212-96fd-55cd2a268cf2",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:can-you-celebrate--namie-amuro",
+      "type": "project",
+      "name": "CAN YOU CELEBRATE?",
+      "artist": "Namie Amuro",
+      "mbid": "9ac453dd-0823-3c2d-83c3-72b87d871741",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:concentration-20",
+      "type": "project",
+      "name": "Concentration 20",
+      "mbid": "764d1080-e001-39a3-871f-be4519d43bdc",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dreaming-i-was-dreaming--namie-amuro",
+      "type": "project",
+      "name": "Dreaming I was dreaming",
+      "artist": "Namie Amuro",
+      "mbid": "cedf9435-b984-3967-aee0-9a76c8b4d369",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:how-to-be-a-girl--namie-amuro",
+      "type": "project",
+      "name": "How to be a Girl",
+      "artist": "Namie Amuro",
+      "mbid": "7edafbd7-9c51-3ede-a996-e3dd58d99bbf",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-wanna-cry--namie-amuro",
+      "type": "project",
+      "name": "Don't wanna cry",
+      "artist": "Namie Amuro",
+      "mbid": "5a95c2d4-8dd8-3267-830b-cf9a6b34fea0",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sweet-19-blues",
+      "type": "project",
+      "name": "Sweet 19 Blues",
+      "mbid": "652b97af-ad12-332e-b59c-490b7246e7b3",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-re-my-sunshine--namie-amuro",
+      "type": "project",
+      "name": "You're my sunshine",
+      "artist": "Namie Amuro",
+      "mbid": "cc052ab6-1944-306b-91d7-a9071e566329",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-walk-in-the-park--namie-amuro",
+      "type": "project",
+      "name": "a walk in the park",
+      "artist": "Namie Amuro",
+      "mbid": "88aa0c2e-b17f-305f-8971-06aeb0b15b48",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:body-feels-exit--namie-amuro",
+      "type": "project",
+      "name": "Body Feels EXIT",
+      "artist": "Namie Amuro",
+      "mbid": "32ddda99-33fd-3e37-8144-e139a21531f2",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:chase-the-chance--namie-amuro",
+      "type": "project",
+      "name": "Chase the Chance",
+      "artist": "Namie Amuro",
+      "mbid": "7cf65e28-d714-3586-99ee-0083daa94f84",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dance-tracks-vol-1",
+      "type": "project",
+      "name": "Dance Tracks Vol.1",
+      "mbid": "b5c9f7b7-5961-3f5c-9d27-74fec4249517",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:season--namie-amuro",
+      "type": "project",
+      "name": "太陽のSEASON",
+      "artist": "Namie Amuro",
+      "mbid": "3e090f22-b372-3f47-94ac-08c8ae8a32ca",
+      "year": "1995",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

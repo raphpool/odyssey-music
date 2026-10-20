@@ -44,19 +44,217 @@
   ],
   "discography": [
     {
-      "slug": "project:harmonielehre",
+      "slug": "project:girls-of-the-golden-west--john-adams",
       "type": "project",
-      "name": "Harmonielehre"
-    },
-    {
-      "slug": "project:nixon-in-china",
-      "type": "project",
-      "name": "Nixon in China"
+      "name": "Girls of the Golden West",
+      "artist": "John Adams",
+      "mbid": "786ecbb3-34f8-4b86-992f-4019424a2891",
+      "year": "2024",
+      "releaseType": "album"
     },
     {
       "slug": "project:doctor-atomic",
       "type": "project",
-      "name": "Doctor Atomic"
+      "name": "Doctor Atomic",
+      "mbid": "c3525ff3-fb6e-4ef4-8030-06076f104f55",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:piano-music--john-adams",
+      "type": "project",
+      "name": "Piano Music",
+      "artist": "John Adams",
+      "mbid": "c545469a-6344-4348-adbd-718ab1b33b2e",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fellow-traveller-the-complete-quartet-works-of-john-adams--john-adams",
+      "type": "project",
+      "name": "Fellow Traveller: the complete quartet works of John Adams",
+      "artist": "John Adams",
+      "mbid": "0e4f58df-7f9d-4674-8716-3a264bde9209",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-am-love--john-adams",
+      "type": "project",
+      "name": "I Am Love",
+      "artist": "John Adams",
+      "mbid": "42035fcf-9ba7-428d-83c8-3194742ceeff",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-flowering-tree--john-adams",
+      "type": "project",
+      "name": "A Flowering Tree",
+      "artist": "John Adams",
+      "mbid": "119abd6d-94fe-39ca-a334-7545c01bfa24",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:complete-piano-music--john-adams",
+      "type": "project",
+      "name": "Complete Piano Music",
+      "artist": "John Adams",
+      "mbid": "0a791660-7042-3fd0-9217-f1d52134a778",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-dharma-at-big-sur-my-father-knew-charles-ives--john-adams",
+      "type": "project",
+      "name": "The Dharma at Big Sur / My Father Knew Charles Ives",
+      "artist": "John Adams",
+      "mbid": "bcfc9bb2-b546-339a-b8a7-ba60100e26ba",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:road-movies--john-adams",
+      "type": "project",
+      "name": "Road Movies",
+      "artist": "John Adams",
+      "mbid": "ccea4a0d-f30d-3bcd-b079-317a1e1d4cfb",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bbc-music-volume-11-number-2-short-ride-in-a-fast-machine-the-chairman-dances-harmonium-de-snelheid--john-adams",
+      "type": "project",
+      "name": "BBC Music, Volume 11, Number 2: Short Ride in a Fast Machine / The Chairman Dances / Harmonium / De Snelheid",
+      "artist": "John Adams",
+      "mbid": "1aaf3371-02ed-3cf0-9f27-17322337e0ce",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tromba-lontana-violin-concerto-the-wound-dresser--john-adams",
+      "type": "project",
+      "name": "Tromba Lontana / Violin Concerto / The Wound Dresser",
+      "artist": "John Adams",
+      "mbid": "f4c82c5a-9ec4-4b1d-a3a1-610d63d53b28",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:harmonium-the-klinghoffer-choruses--john-adams",
+      "type": "project",
+      "name": "Harmonium / The Klinghoffer Choruses",
+      "artist": "John Adams",
+      "mbid": "4ecfd647-c781-3b37-a152-c8fb150bdf73",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:china-gates-phrygian-gates--john-adams",
+      "type": "project",
+      "name": "China Gates / Phrygian Gates",
+      "artist": "John Adams",
+      "mbid": "fc3c7f12-9cfa-4ab4-ad52-b991b9f55579",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gnarly-buttons-john-s-book-of-alleged-dances--john-adams",
+      "type": "project",
+      "name": "Gnarly Buttons / John's Book of Alleged Dances",
+      "artist": "John Adams",
+      "mbid": "cd913833-1b98-3c6b-b640-7dc191ccaf4c",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-was-looking-at-the-ceiling-and-then-i-saw-the-sky--john-adams",
+      "type": "project",
+      "name": "I Was Looking at the Ceiling and Then I Saw the Sky",
+      "artist": "John Adams",
+      "mbid": "599a9e8d-636c-388d-837a-7792fd0cd44a",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shaker-loops-phrygian-gates-chamber-symphony--john-adams",
+      "type": "project",
+      "name": "Shaker Loops / Phrygian Gates / Chamber Symphony",
+      "artist": "John Adams",
+      "mbid": "bbe83962-8604-3171-ba68-4b027861616b",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:century-rolls--john-adams",
+      "type": "project",
+      "name": "Century Rolls",
+      "artist": "John Adams",
+      "mbid": "a31e5ac6-cfb3-3413-988a-b575093be178",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:el-dorado--john-adams",
+      "type": "project",
+      "name": "El Dorado",
+      "artist": "John Adams",
+      "mbid": "92172e97-d123-3462-873a-103176bb4ead",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chamber-symphony-grand-pianola-music--john-adams",
+      "type": "project",
+      "name": "Chamber Symphony / Grand Pianola Music",
+      "artist": "John Adams",
+      "mbid": "9cd71df1-336e-3a41-98a6-cd7bf56a6326",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hoodoo-zephyr--john-adams",
+      "type": "project",
+      "name": "Hoodoo Zephyr",
+      "artist": "John Adams",
+      "mbid": "48f6ad94-ee77-37e3-9f7f-aa657f29bc8a",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fearful-symmetries-the-wound-dresser--john-adams",
+      "type": "project",
+      "name": "Fearful Symmetries / The Wound-Dresser",
+      "artist": "John Adams",
+      "mbid": "954db986-8b7c-3c59-b4e6-84597e9f9c00",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nixon-in-china",
+      "type": "project",
+      "name": "Nixon in China",
+      "mbid": "ab57421b-ec7b-3190-8c98-93e7cc01fe16",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shaker-loops-phrygian-gates--john-adams",
+      "type": "project",
+      "name": "Shaker Loops / Phrygian Gates",
+      "artist": "John Adams",
+      "mbid": "c6e2100a-2be3-465a-aed8-02b6b684eab9",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:harmonielehre",
+      "type": "project",
+      "name": "Harmonielehre",
+      "mbid": "662dbba9-ef3d-3c21-98c0-0826b0aedcfe",
+      "year": "1985",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

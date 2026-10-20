@@ -54,29 +54,359 @@
   ],
   "discography": [
     {
-      "slug": "project:debut",
+      "slug": "project:fossora--bjork",
       "type": "project",
-      "name": "Debut"
+      "name": "Fossora",
+      "artist": "Björk",
+      "mbid": "b1977359-d45c-4e49-8ae7-1dbbb37f0811",
+      "year": "2022",
+      "releaseType": "album"
     },
     {
-      "slug": "project:post",
+      "slug": "project:utopia--bjork",
       "type": "project",
-      "name": "Post"
+      "name": "Utopia",
+      "artist": "Björk",
+      "mbid": "c137e1f0-00bf-4bee-8d69-631664b52d1f",
+      "year": "2017",
+      "releaseType": "album"
     },
     {
-      "slug": "project:homogenic",
+      "slug": "project:vulnicura--bjork",
       "type": "project",
-      "name": "Homogenic"
+      "name": "Vulnicura",
+      "artist": "Björk",
+      "mbid": "73efadfc-07db-42bd-81ab-7a35a2601990",
+      "year": "2015",
+      "releaseType": "album"
     },
     {
-      "slug": "project:vespertine--bjork",
+      "slug": "project:biophilia--bjork",
       "type": "project",
-      "name": "Vespertine"
+      "name": "Biophilia",
+      "artist": "Björk",
+      "mbid": "61db2db8-1775-4663-9dff-d5ec2139dbea",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:virus--bjork",
+      "type": "project",
+      "name": "Virus",
+      "artist": "Björk",
+      "mbid": "02c74661-2f8b-43e4-9078-e2ff0c285508",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:declare-independence--bjork",
+      "type": "project",
+      "name": "Declare Independence",
+      "artist": "Björk",
+      "mbid": "9d54d32c-8003-32df-81b9-a4d3fe006271",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nattura--bjork",
+      "type": "project",
+      "name": "Náttúra",
+      "artist": "Björk",
+      "mbid": "54276e60-7fdc-3c99-98bb-7f038f5fce0e",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wanderlust--bjork",
+      "type": "project",
+      "name": "Wanderlust",
+      "artist": "Björk",
+      "mbid": "7cd4b89a-c9b3-3645-9d0d-9ffc04aa2787",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:earth-intruders--bjork",
+      "type": "project",
+      "name": "Earth Intruders",
+      "artist": "Björk",
+      "mbid": "77905789-366f-332c-a280-fdd0686e8832",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:innocence--bjork",
+      "type": "project",
+      "name": "Innocence",
+      "artist": "Björk",
+      "mbid": "0cf8932b-a103-30c9-ae12-9ab5dcce9bae",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:volta--bjork",
+      "type": "project",
+      "name": "Volta",
+      "artist": "Björk",
+      "mbid": "dd749dc7-dd75-35e7-86fe-3c1db24483c0",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:drawing-restraint-9--bjork",
+      "type": "project",
+      "name": "Drawing Restraint 9",
+      "artist": "Björk",
+      "mbid": "74cb57f7-b5f9-3464-aa12-914a4d306598",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:triumph-of-a-heart--bjork",
+      "type": "project",
+      "name": "Triumph of a Heart",
+      "artist": "Björk",
+      "mbid": "26d457a3-1232-3e37-a8b5-f3a0c17a0dc1",
+      "year": "2005",
+      "releaseType": "single"
     },
     {
       "slug": "project:medulla",
       "type": "project",
-      "name": "Medúlla"
+      "name": "Medúlla",
+      "mbid": "4b2ee53c-6527-30e5-940c-c426a7a6f618",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:who-is-it--bjork",
+      "type": "project",
+      "name": "Who Is It",
+      "artist": "Björk",
+      "mbid": "4a311145-f4a4-31cc-b174-a2097f52f947",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cocoon--bjork",
+      "type": "project",
+      "name": "Cocoon",
+      "artist": "Björk",
+      "mbid": "e45c0d4e-6d6b-356a-a258-08184a196ae5",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:it-s-in-our-hands--bjork",
+      "type": "project",
+      "name": "It’s in Our Hands",
+      "artist": "Björk",
+      "mbid": "c724f74e-a7da-371b-b419-770c675518bf",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hidden-place--bjork",
+      "type": "project",
+      "name": "Hidden Place",
+      "artist": "Björk",
+      "mbid": "10996280-e2e9-3654-a2b8-615bcca8e633",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pagan-poetry--bjork",
+      "type": "project",
+      "name": "Pagan Poetry",
+      "artist": "Björk",
+      "mbid": "12f7311f-1706-315e-8366-1cd038a90750",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vespertine--bjork",
+      "type": "project",
+      "name": "Vespertine",
+      "mbid": "271faeb3-fdd1-3ebb-80aa-97b3116e9341",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:selmasongs--bjork",
+      "type": "project",
+      "name": "Selmasongs",
+      "artist": "Björk",
+      "mbid": "14a8c576-44af-36a1-b896-81901705b5b0",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:alarm-call--bjork",
+      "type": "project",
+      "name": "Alarm Call",
+      "artist": "Björk",
+      "mbid": "0b944244-3dd2-3f26-91d8-67b3a37afa73",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-is-full-of-love--bjork",
+      "type": "project",
+      "name": "All Is Full of Love",
+      "artist": "Björk",
+      "mbid": "3f9c1bf3-ff34-3691-9da3-5cd395b81cf9",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hunter--bjork",
+      "type": "project",
+      "name": "Hunter",
+      "artist": "Björk",
+      "mbid": "ddf48f2f-1e80-33c1-99e8-57ba9d7ff8fa",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:big-time-sensuality-one-day--bjork",
+      "type": "project",
+      "name": "Big Time Sensuality / One Day",
+      "artist": "Björk",
+      "mbid": "72dfbc41-7043-45bd-95e7-62da39b0ba2b",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:homogenic",
+      "type": "project",
+      "name": "Homogenic",
+      "mbid": "810272e0-aef1-3d85-b2d3-e512e87fc38c",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:joga--bjork",
+      "type": "project",
+      "name": "Jóga",
+      "artist": "Björk",
+      "mbid": "ecb0a296-2813-36cb-9470-dae14b44fda3",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:possibly-maybe--bjork",
+      "type": "project",
+      "name": "Possibly Maybe",
+      "artist": "Björk",
+      "mbid": "2937b22b-0ec2-3faa-baad-8d8927e32f30",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:army-of-me--bjork",
+      "type": "project",
+      "name": "Army of Me",
+      "artist": "Björk",
+      "mbid": "78d9a35e-4e06-42a3-9770-163b9a56ab56",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hyperballad--bjork",
+      "type": "project",
+      "name": "Hyperballad",
+      "artist": "Björk",
+      "mbid": "cf8297e4-9891-3858-9eef-614803b23161",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:isobel--bjork",
+      "type": "project",
+      "name": "Isobel",
+      "artist": "Björk",
+      "mbid": "3728be4b-6435-3deb-9e03-9f28b56e915b",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:it-s-oh-so-quiet--bjork",
+      "type": "project",
+      "name": "It’s Oh So Quiet",
+      "artist": "Björk",
+      "mbid": "925a9637-ddd2-3eb7-b5d2-6e06b829f239",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:post",
+      "type": "project",
+      "name": "Post",
+      "mbid": "b2a6e057-087d-3ae5-a6e5-7f5fa39808ff",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:big-time-sensuality--bjork",
+      "type": "project",
+      "name": "Big Time Sensuality",
+      "artist": "Björk",
+      "mbid": "34eb198a-74f1-346d-ab68-6dd477b6713a",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:debut",
+      "type": "project",
+      "name": "Debut",
+      "mbid": "6891a28c-5865-36e2-9e5f-c9fac1d3595f",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:human-behaviour--bjork",
+      "type": "project",
+      "name": "Human Behaviour",
+      "artist": "Björk",
+      "mbid": "d8d1f213-7c4d-3c4a-b103-4fe2a7ea20de",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:venus-as-a-boy--bjork",
+      "type": "project",
+      "name": "Venus as a Boy",
+      "artist": "Björk",
+      "mbid": "c38c41df-aade-39c5-93ba-eeab699a899c",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:violently-happy--bjork",
+      "type": "project",
+      "name": "Violently Happy",
+      "artist": "Björk",
+      "mbid": "90f2be3c-c6c4-3f52-ad76-d6aaf34be5f5",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gling-glo--bjork",
+      "type": "project",
+      "name": "Gling‐Gló",
+      "artist": "Björk",
+      "mbid": "7b0e60ce-ad06-3578-ad5e-5d5ca4353379",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bjork--bjork",
+      "type": "project",
+      "name": "Björk",
+      "artist": "Björk",
+      "mbid": "e7190579-8711-3422-af2f-16337139ed67",
+      "year": "1977",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

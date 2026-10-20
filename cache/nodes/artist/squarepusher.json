@@ -69,25 +69,217 @@
   ],
   "discography": [
     {
-      "slug": "project:feed-me-weird-things",
+      "slug": "project:kammerkonzert--squarepusher",
       "type": "project",
-      "name": "Feed Me Weird Things"
+      "name": "Kammerkonzert",
+      "artist": "Squarepusher",
+      "mbid": "a80f1a63-d1cc-4b13-90ec-694246c24551",
+      "year": "2026",
+      "releaseType": "album"
     },
     {
-      "slug": "project:go-plastic",
+      "slug": "project:vaclament-a--squarepusher",
       "type": "project",
-      "name": "Go Plastic"
+      "name": "Vaclament A",
+      "artist": "Squarepusher",
+      "mbid": "57a158b2-7e08-4a7a-819b-8139e387c831",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dostrotime--squarepusher",
+      "type": "project",
+      "name": "Dostrotime",
+      "artist": "Squarepusher",
+      "mbid": "851ac285-0a7c-4d52-aba9-bf77733a4bad",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:be-up-a-hello--squarepusher",
+      "type": "project",
+      "name": "Be Up a Hello",
+      "artist": "Squarepusher",
+      "mbid": "6dc5a5e5-a07b-453e-8423-021dbe199253",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lamental--squarepusher",
+      "type": "project",
+      "name": "Lamental",
+      "artist": "Squarepusher",
+      "mbid": "2cb83514-12b3-4e37-b3e6-2708778d68d3",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:damogen-furies--squarepusher",
+      "type": "project",
+      "name": "Damogen Furies",
+      "artist": "Squarepusher",
+      "mbid": "42e5557d-1c2e-4b1d-8580-7524ef8c3fd4",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-for-robots--squarepusher",
+      "type": "project",
+      "name": "Music for Robots",
+      "artist": "Squarepusher",
+      "mbid": "6c7bc214-a91e-4162-a730-8dedd14d8fdd",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:enstrobia--squarepusher",
+      "type": "project",
+      "name": "Enstrobia",
+      "artist": "Squarepusher",
+      "mbid": "e2b4e7d3-3494-4a86-bbec-176c26926980",
+      "year": "2013",
+      "releaseType": "ep"
     },
     {
       "slug": "project:ufabulum",
       "type": "project",
-      "name": "Ufabulum"
+      "name": "Ufabulum",
+      "mbid": "cb1c8127-448c-4632-99f4-25fe69082ecd",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:numbers-lucent--squarepusher",
+      "type": "project",
+      "name": "Numbers Lucent",
+      "artist": "Squarepusher",
+      "mbid": "823e5f25-2241-3189-bde5-8736b92a4927",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:just-a-souvenir--squarepusher",
+      "type": "project",
+      "name": "Just a Souvenir",
+      "artist": "Squarepusher",
+      "mbid": "ba070511-5c8f-3cde-bdda-ff0b218a230c",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hello-everything--squarepusher",
+      "type": "project",
+      "name": "Hello Everything",
+      "artist": "Squarepusher",
+      "mbid": "1dc3c396-9eb8-33f2-b905-cbe36fd1bada",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:welcome-to-europe--squarepusher",
+      "type": "project",
+      "name": "Welcome to Europe",
+      "artist": "Squarepusher",
+      "mbid": "37e0db6d-c272-375e-ac91-d0f1aa398a26",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ultravisitor--squarepusher",
+      "type": "project",
+      "name": "Ultravisitor",
+      "artist": "Squarepusher",
+      "mbid": "38e75f50-0c0d-305d-b4c6-2bbf3ba72a3f",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:venus-no-17--squarepusher",
+      "type": "project",
+      "name": "Venus No. 17",
+      "artist": "Squarepusher",
+      "mbid": "139c6f6b-0ba7-38bd-b86b-9093cee8b02c",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:do-you-know-squarepusher--squarepusher",
+      "type": "project",
+      "name": "Do You Know Squarepusher",
+      "artist": "Squarepusher",
+      "mbid": "c3037944-2e4a-3a85-9f4b-0a1b120cbfbe",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:go-plastic",
+      "type": "project",
+      "name": "Go Plastic",
+      "mbid": "d23b8787-52a7-3b9c-bf94-862d17410ea7",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:budakhan-mindphone--squarepusher",
+      "type": "project",
+      "name": "Budakhan Mindphone",
+      "artist": "Squarepusher",
+      "mbid": "40cc61de-1292-3920-8aaf-67cdb0b7e549",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:maximum-priest-e-p--squarepusher",
+      "type": "project",
+      "name": "Maximum Priest E.P.",
+      "artist": "Squarepusher",
+      "mbid": "ce91ae59-0167-31cc-bc0d-f517065ced93",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:selection-sixteen--squarepusher",
+      "type": "project",
+      "name": "Selection Sixteen",
+      "artist": "Squarepusher",
+      "mbid": "fe073d16-6644-3ce6-a3cb-fbd07996d4a9",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-is-rotted-one-note--squarepusher",
+      "type": "project",
+      "name": "Music Is Rotted One Note",
+      "artist": "Squarepusher",
+      "mbid": "6027638b-9ac6-3da0-b689-fb3804629936",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:big-loada--squarepusher",
+      "type": "project",
+      "name": "Big Loada",
+      "artist": "Squarepusher",
+      "mbid": "77bef9af-e438-3ad2-9d1c-eb45fa97a9f4",
+      "year": "1997",
+      "releaseType": "ep"
     },
     {
       "slug": "project:hard-normal-daddy--squarepusher",
       "type": "project",
       "name": "Hard Normal Daddy",
-      "artist": "Squarepusher"
+      "artist": "Squarepusher",
+      "mbid": "f4168d4e-c0e8-388f-8baa-4de058d852e5",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:feed-me-weird-things",
+      "type": "project",
+      "name": "Feed Me Weird Things",
+      "mbid": "9d1fe9fa-9e76-3ce0-a845-83431033a160",
+      "year": "1996",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

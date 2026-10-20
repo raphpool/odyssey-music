@@ -69,11 +69,12 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:the-incredible-hawk-undaground-volume-2",
+      "slug": "project:since-the-gray-tapes-vol-4--big-hawk",
       "type": "project",
-      "name": "The Incredible Hawk Undaground Volume 2",
-      "mbid": "6406e77e-6cbe-40cb-bf0c-c702b3e71aa8",
-      "year": "2005",
+      "name": "Since the Gray Tapes Vol. 4",
+      "artist": "Big Hawk",
+      "mbid": "bf7fe2f8-591e-445e-a02b-0b3e53a91d4a",
+      "year": "2006",
       "releaseType": "album"
     },
     {
@@ -82,6 +83,23 @@
       "name": "The Incredible Hawk Undaground Volume 1",
       "mbid": "bb6c32b0-6359-407c-b9c8-c94930245107",
       "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-incredible-hawk-undaground-volume-2",
+      "type": "project",
+      "name": "The Incredible Hawk Undaground Volume 2",
+      "mbid": "6406e77e-6cbe-40cb-bf0c-c702b3e71aa8",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-bad-azz-mix-tape-tape-ii--big-hawk",
+      "type": "project",
+      "name": "A Bad Azz Mix Tape Tape II",
+      "artist": "Big Hawk",
+      "mbid": "c8943ca9-1ea0-4baf-ae1f-1ac7f96c7921",
+      "year": "2003",
       "releaseType": "album"
     },
     {

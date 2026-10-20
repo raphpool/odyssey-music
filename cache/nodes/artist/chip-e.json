@@ -49,9 +49,39 @@
   ],
   "discography": [
     {
+      "slug": "project:like-this--chip-e",
+      "type": "project",
+      "name": "Like This",
+      "artist": "Chip E.",
+      "mbid": "a63ac9ea-8c95-3c65-afba-c4edb0de3e9e",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:if-you-only-knew--chip-e",
+      "type": "project",
+      "name": "If You Only Knew",
+      "artist": "Chip E.",
+      "mbid": "d37c00f6-47ab-35f3-89c1-24f29bbeb78b",
+      "year": "1986",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:time-to-jack--chip-e",
+      "type": "project",
+      "name": "Time to Jack",
+      "artist": "Chip E.",
+      "mbid": "bb45bb11-5a83-4f9c-a78a-a655c0737f2a",
+      "year": "1986",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:jack-trax",
       "type": "project",
-      "name": "Jack Trax"
+      "name": "Jack Trax",
+      "mbid": "f9e80b24-b2e9-3a62-92d3-b196ad20adb9",
+      "year": "1985",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

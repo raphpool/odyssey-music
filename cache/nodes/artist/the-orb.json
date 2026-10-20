@@ -60,19 +60,109 @@
   ],
   "discography": [
     {
-      "slug": "project:the-orb-s-adventures-beyond-the-ultraworld--the-orb",
+      "slug": "project:buddhist-hipsters--the-orb",
       "type": "project",
-      "name": "The Orb's Adventures Beyond the Ultraworld"
+      "name": "Buddhist Hipsters",
+      "artist": "The Orb",
+      "mbid": "f618baa5-68e9-4181-a37b-6025d23c30de",
+      "year": "2025",
+      "releaseType": "album"
     },
     {
-      "slug": "project:u-f-orb",
+      "slug": "project:prism--the-orb",
       "type": "project",
-      "name": "U.F.Orb"
+      "name": "Prism",
+      "artist": "The Orb",
+      "mbid": "ee0f8870-b952-4127-9772-3c76f567fd5a",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-sounds-are-out-of-bounds--the-orb",
+      "type": "project",
+      "name": "No Sounds Are Out of Bounds",
+      "artist": "The Orb",
+      "mbid": "a332b676-eb80-46e4-af4e-0cc20c76abc0",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cow-chill-out-world--the-orb",
+      "type": "project",
+      "name": "COW / Chill Out, World!",
+      "artist": "The Orb",
+      "mbid": "dd8a6b74-d482-4bc4-9c07-e539794e6bb5",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:more-tales-from-the-orbservatory--the-orb",
+      "type": "project",
+      "name": "More Tales From the Orbservatory",
+      "artist": "The Orb",
+      "mbid": "9b47af4b-e12e-4311-8387-dce79fcd9b9a",
+      "year": "2013",
+      "releaseType": "album"
     },
     {
       "slug": "project:metallic-spheres",
       "type": "project",
-      "name": "Metallic Spheres"
+      "name": "Metallic Spheres",
+      "mbid": "02050e51-32a2-4fb2-a2ac-90a4f1e8b585",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cydonia--the-orb",
+      "type": "project",
+      "name": "Cydonia",
+      "artist": "The Orb",
+      "mbid": "1557f593-2fd7-3ae8-bb0d-04d957fad4a4",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:orblivion--the-orb",
+      "type": "project",
+      "name": "Orblivion",
+      "artist": "The Orb",
+      "mbid": "5e461f96-d17f-3096-9a5f-df717a8d0736",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:orbus-terrarum--the-orb",
+      "type": "project",
+      "name": "Orbus Terrarum",
+      "artist": "The Orb",
+      "mbid": "408d2cb2-3fc3-356c-82b3-69b8d1d69e0c",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pomme-fritz--the-orb",
+      "type": "project",
+      "name": "Pomme Fritz",
+      "artist": "The Orb",
+      "mbid": "a78da617-7add-3c3e-9186-189d4d683cc2",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:u-f-orb",
+      "type": "project",
+      "name": "U.F.Orb",
+      "mbid": "69bfc719-5d4d-3f9c-8e71-5010d533d06a",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-orb-s-adventures-beyond-the-ultraworld--the-orb",
+      "type": "project",
+      "name": "The Orb's Adventures Beyond the Ultraworld",
+      "mbid": "27b682b2-dd29-3e15-8ef2-f6475f4d262f",
+      "year": "1991",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [],

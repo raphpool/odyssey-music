@@ -34,19 +34,361 @@
   ],
   "discography": [
     {
-      "slug": "project:de-la-planete-mars",
+      "slug": "project:hhhistory--iam",
       "type": "project",
-      "name": "De la planète Mars"
+      "name": "HHHistory",
+      "artist": "IAM",
+      "mbid": "6763c25d-3ab8-4747-af53-7e0237e8f281",
+      "year": "2023",
+      "releaseType": "album"
     },
     {
-      "slug": "project:ombre-est-lumiere",
+      "slug": "project:deuxieme-vague--iam",
       "type": "project",
-      "name": "Ombre est lumière"
+      "name": "Deuxième vague",
+      "artist": "IAM",
+      "mbid": "81876576-b8f2-4bff-907c-26cf3333ef6e",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:premiere-vague--iam",
+      "type": "project",
+      "name": "Première vague",
+      "artist": "IAM",
+      "mbid": "15d64161-e351-4624-bb5d-b25c77473415",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:quatrieme-vague--iam",
+      "type": "project",
+      "name": "Quatrième vague",
+      "artist": "IAM",
+      "mbid": "b00dca39-0ff7-467e-b3b6-6f3769519e09",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:rimes-essentielles--iam",
+      "type": "project",
+      "name": "Rimes essentielles",
+      "artist": "IAM",
+      "mbid": "b58ae41f-3885-47ed-9226-c79a38dda293",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:troisieme-vague--iam",
+      "type": "project",
+      "name": "Troisième vague",
+      "artist": "IAM",
+      "mbid": "e864bd4e-100f-4798-9344-37e6cf5c22ed",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:yasuke--iam",
+      "type": "project",
+      "name": "Yasuke",
+      "artist": "IAM",
+      "mbid": "e0029417-5fba-4473-96ad-939a459a853b",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:etranger--iam",
+      "type": "project",
+      "name": "Etranger",
+      "artist": "IAM",
+      "mbid": "2efcc8c1-8342-4ec2-897c-f25e0b61c785",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:iam-2017--iam",
+      "type": "project",
+      "name": "IAM 2017",
+      "artist": "IAM",
+      "mbid": "c9931086-c21b-4ec9-bdb5-a2d012849f31",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mwa--iam",
+      "type": "project",
+      "name": "Mwa",
+      "artist": "IAM",
+      "mbid": "e8019f97-a4c2-47ae-a0cc-147946c7e150",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:passe-passe--iam",
+      "type": "project",
+      "name": "Passe passe",
+      "artist": "IAM",
+      "mbid": "58edf91f-3a6d-4f3e-98ad-01c6a3e23f36",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:revolution--iam",
+      "type": "project",
+      "name": "Rêvolution",
+      "artist": "IAM",
+      "mbid": "f50a2e4f-71c5-4c8d-8eb6-6b80c106ca5f",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:arts-martiens--iam",
+      "type": "project",
+      "name": "Arts martiens",
+      "artist": "IAM",
+      "mbid": "3f6ead4d-f44c-4788-aa19-6eedcc1eca9c",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:les-mots--iam",
+      "type": "project",
+      "name": "Les Mots",
+      "artist": "IAM",
+      "mbid": "3f42f4f0-c11d-4d4d-946c-c2e614fd2223",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:les-raisons-de-la-colere--iam",
+      "type": "project",
+      "name": "Les Raisons de la colère",
+      "artist": "IAM",
+      "mbid": "e8a9f415-2442-4c55-ad0f-b0d464513a77",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spartiate-spirit--iam",
+      "type": "project",
+      "name": "Spartiate Spirit",
+      "artist": "IAM",
+      "mbid": "f4d75e55-8e45-4740-91c7-537aa105db9c",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:iam--iam",
+      "type": "project",
+      "name": "… IAM",
+      "artist": "IAM",
+      "mbid": "730dfd10-6807-4468-8170-71738620e1e4",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:les-cons--iam",
+      "type": "project",
+      "name": "Les Cons",
+      "artist": "IAM",
+      "mbid": "bf6f1aa8-de5a-468d-856f-412687c2a039",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hier-j-ai-croise-un-guerrier--iam",
+      "type": "project",
+      "name": "Hier j’ai croisé un guerrier",
+      "artist": "IAM",
+      "mbid": "4baabd27-efe8-4b9b-9e34-259f6bde9e3b",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:saison-5--iam",
+      "type": "project",
+      "name": "Saison 5",
+      "artist": "IAM",
+      "mbid": "d63b80be-e75a-30a7-9814-3763753486b1",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ou-va-la-vie--iam",
+      "type": "project",
+      "name": "Où va la vie ?",
+      "artist": "IAM",
+      "mbid": "ca5f392c-3c66-445b-a5df-c9e75cae4749",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:strategie-d-un-pion--iam",
+      "type": "project",
+      "name": "Stratégie d’un pion",
+      "artist": "IAM",
+      "mbid": "73efbe18-e8ac-4fdc-95c5-1ecedfc24421",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:noble-art--iam",
+      "type": "project",
+      "name": "Noble Art",
+      "artist": "IAM",
+      "mbid": "f62884eb-dfaf-41ff-8346-4fc369313c33",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:revoir-un-printemps--iam",
+      "type": "project",
+      "name": "Revoir un printemps",
+      "artist": "IAM",
+      "mbid": "ae8f91f8-ef21-3791-a064-34f0823f8bbd",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:independenza--iam",
+      "type": "project",
+      "name": "Independenza",
+      "artist": "IAM",
+      "mbid": "a0ca325e-bdd3-334b-9646-6ef6f3a8d95a",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:petit-frere--iam",
+      "type": "project",
+      "name": "Petit Frère",
+      "artist": "IAM",
+      "mbid": "f9d1e8c8-a805-407a-8053-6d256bd8b5c8",
+      "year": "1998",
+      "releaseType": "single"
     },
     {
       "slug": "project:l-ecole-du-micro-d-argent",
       "type": "project",
-      "name": "L'École du micro d'argent"
+      "name": "L'École du micro d'argent",
+      "mbid": "a475a63d-4481-32e5-b7e0-5c56d8a9a9d6",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-saga--iam",
+      "type": "project",
+      "name": "La Saga",
+      "artist": "IAM",
+      "mbid": "52750f31-70b8-47b8-9097-41abb7dc3fa9",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:l-empire-du-cote-obscur--iam",
+      "type": "project",
+      "name": "L’Empire du côté obscur",
+      "artist": "IAM",
+      "mbid": "d2a19463-3cdc-4831-94ef-2dd32040936f",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nes-sous-la-meme-etoile--iam",
+      "type": "project",
+      "name": "Nés sous la même étoile",
+      "artist": "IAM",
+      "mbid": "039b6db8-7716-4546-967f-4ef2d930f386",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:une-femme-seule-sachet-blanc--iam",
+      "type": "project",
+      "name": "Une femme seule / Sachet blanc",
+      "artist": "IAM",
+      "mbid": "4ca079c3-7a13-4c2b-b048-d1ca0aa65382",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:je-danse-le-mia--iam",
+      "type": "project",
+      "name": "Je danse le Mia",
+      "artist": "IAM",
+      "mbid": "aa1f6ec6-042b-3989-b337-cc5abc9438c3",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:le-feu--iam",
+      "type": "project",
+      "name": "Le Feu",
+      "artist": "IAM",
+      "mbid": "c82d0514-583c-498c-b4a6-96f1d0fa82bb",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ombre-est-lumiere",
+      "type": "project",
+      "name": "Ombre est lumière",
+      "mbid": "fe3bb3f5-5ea1-3972-9b44-302214c9ba21",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:donne-moi-le-micro--iam",
+      "type": "project",
+      "name": "Donne moi le micro",
+      "artist": "IAM",
+      "mbid": "72e5e6ee-0aba-367e-9b9b-9265f25734d1",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:planete-mars--iam",
+      "type": "project",
+      "name": "Planète Mars",
+      "artist": "IAM",
+      "mbid": "dea0a9ad-3c8e-4169-8540-cacbfeacacf1",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:de-la-planete-mars",
+      "type": "project",
+      "name": "De la planète Mars",
+      "mbid": "03c21989-c7db-3be1-b2ca-fb1ace407b96",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:red-black-and-green--iam",
+      "type": "project",
+      "name": "Red, Black and Green",
+      "artist": "IAM",
+      "mbid": "7a51c697-1a0d-4cee-bd51-cb3ac7ba7a5a",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tam-tam-de-l-afrique--iam",
+      "type": "project",
+      "name": "Tam tam de l’Afrique",
+      "artist": "IAM",
+      "mbid": "f33031a0-d793-3056-a832-683b74afd853",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:concept--iam",
+      "type": "project",
+      "name": "Concept",
+      "artist": "IAM",
+      "mbid": "e02ab2e8-bae2-35f3-ac35-e07861d92661",
+      "year": "1990",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

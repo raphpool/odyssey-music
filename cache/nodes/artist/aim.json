@@ -65,10 +65,130 @@
   ],
   "discography": [
     {
+      "slug": "project:aim--aim",
+      "type": "project",
+      "name": "Aim",
+      "artist": "Aim",
+      "mbid": "703d7fef-cca5-4f57-ad40-704fcd38f049",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:adora-rarities-and-outtakes--aim",
+      "type": "project",
+      "name": "Adora - Rarities & Outtakes",
+      "artist": "Aim",
+      "mbid": "7ad676c0-5e61-412e-8b3a-73e4ac2c16bb",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-habit-of-a-lifetime-and-how-to-kick-it--aim",
+      "type": "project",
+      "name": "The Habit of a Lifetime (And How to Kick It)",
+      "artist": "Aim",
+      "mbid": "e5c16ba6-a254-451f-b827-e15ca62587ce",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:birchwood-ep--aim",
+      "type": "project",
+      "name": "Birchwood EP",
+      "artist": "Aim",
+      "mbid": "e4dbef1f-ab51-4845-a7b3-2a1c243c4232",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:flight-602--aim",
+      "type": "project",
+      "name": "Flight 602",
+      "artist": "Aim",
+      "mbid": "2d014a99-ae0c-3dca-b5ae-46310e16a2d8",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:good-disease--aim",
+      "type": "project",
+      "name": "Good Disease",
+      "artist": "Aim",
+      "mbid": "d3aea44e-6c78-3ac4-bc54-3fb410dfff70",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hinterland--aim",
+      "type": "project",
+      "name": "Hinterland",
+      "artist": "Aim",
+      "mbid": "8476747c-9af2-302a-9ac3-9f746ca6b9a9",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cold-water-music-e-p--aim",
+      "type": "project",
+      "name": "Cold Water Music E.P.",
+      "artist": "Aim",
+      "mbid": "aef01a53-9692-395e-bb0a-6c5c0ccae7e0",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:cold-water-music--aim",
       "type": "project",
       "name": "Cold Water Music",
-      "artist": "Aim"
+      "artist": "Aim",
+      "mbid": "e4def5f6-618f-3c56-9557-8b7074a0b12b",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sail--aim",
+      "type": "project",
+      "name": "Sail",
+      "artist": "Aim",
+      "mbid": "7aa25204-4947-3046-9b5c-ddb9b585031d",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-force--aim",
+      "type": "project",
+      "name": "The Force",
+      "artist": "Aim",
+      "mbid": "61963565-e790-4dcb-a307-7ec2bda443c7",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:true-to-hip-hop--aim",
+      "type": "project",
+      "name": "True To Hip Hop",
+      "artist": "Aim",
+      "mbid": "aa79e147-0019-47a7-a2a7-3d619dc4e1e9",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:downstate--aim",
+      "type": "project",
+      "name": "Downstate",
+      "artist": "Aim",
+      "mbid": "cd3d9dcf-0f19-3729-93e5-adfeacfd2403",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:demotape--aim",
+      "type": "project",
+      "name": "Demotape",
+      "artist": "Aim",
+      "mbid": "d80ecc43-d139-4647-949e-be8fa89771c9",
+      "year": "1996",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

@@ -57,25 +57,172 @@
   ],
   "discography": [
     {
-      "slug": "project:signing-off",
+      "slug": "project:tell-me-is-it-true--ub40",
       "type": "project",
-      "name": "Signing Off"
+      "name": "Tell Me Is It True",
+      "artist": "UB40",
+      "mbid": "de646a68-93d9-3116-87a2-0cef09b429aa",
+      "year": "1997",
+      "releaseType": "single"
     },
     {
-      "slug": "project:labour-of-love",
+      "slug": "project:i-can-t-help-falling-in-love-with-you--ub40",
       "type": "project",
-      "name": "Labour of Love"
+      "name": "(I Can’t Help) Falling in Love With You",
+      "artist": "UB40",
+      "mbid": "e6a7411a-1cf0-3e59-8f91-2f8d06ee5766",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bring-me-your-cup--ub40",
+      "type": "project",
+      "name": "Bring Me Your Cup",
+      "artist": "UB40",
+      "mbid": "fb99385f-cb31-413f-ba76-fa472598c5ff",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:higher-ground--ub40",
+      "type": "project",
+      "name": "Higher Ground",
+      "artist": "UB40",
+      "mbid": "a90ed138-1b27-3587-86e9-4b4bd7977049",
+      "year": "1993",
+      "releaseType": "single"
     },
     {
       "slug": "project:promises-and-lies",
       "type": "project",
-      "name": "Promises and Lies"
+      "name": "Promises and Lies",
+      "mbid": "b250f5c8-33f8-381c-ac5d-a278b5f3abbf",
+      "year": "1993",
+      "releaseType": "album"
     },
     {
       "slug": "project:impossible-love--ub40",
       "type": "project",
       "name": "Impossible Love",
-      "artist": "UB40"
+      "artist": "UB40",
+      "mbid": "20dcf1c6-73ed-42ab-8f78-ec8408db1012",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kingston-town--ub40",
+      "type": "project",
+      "name": "Kingston Town",
+      "artist": "UB40",
+      "mbid": "dd7c39d9-7568-4f1c-a1a2-3a61dd85e03d",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:here-i-am-come-and-take-me--ub40",
+      "type": "project",
+      "name": "Here I Am (Come and Take Me)",
+      "artist": "UB40",
+      "mbid": "89878d82-d801-4c86-8bb9-d3350a824b88",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:labour-of-love-ii--ub40",
+      "type": "project",
+      "name": "Labour of Love II",
+      "artist": "UB40",
+      "mbid": "3bae6af4-4b9b-3637-83f2-7a075e69a411",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:red-red-wine--ub40",
+      "type": "project",
+      "name": "Red Red Wine",
+      "artist": "UB40",
+      "mbid": "b8d496ef-b312-45cf-8e78-4404cf3b81f1",
+      "year": "1989",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:rat-in-mi-kitchen--ub40",
+      "type": "project",
+      "name": "Rat in Mi Kitchen",
+      "artist": "UB40",
+      "mbid": "8cc08b13-7a90-3878-8d0e-35ebd7e4bf1c",
+      "year": "1986",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rat-in-the-kitchen--ub40",
+      "type": "project",
+      "name": "Rat in the Kitchen",
+      "artist": "UB40",
+      "mbid": "12d97cc8-9e5a-3e7c-a8a3-b26d95b80d5e",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:don-t-break-my-heart--ub40",
+      "type": "project",
+      "name": "Don't Break My Heart",
+      "artist": "UB40",
+      "mbid": "3b5ef232-a0e0-3548-a486-e0b0857d0174",
+      "year": "1985",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:geffery-morgan--ub40",
+      "type": "project",
+      "name": "Geffery Morgan",
+      "artist": "UB40",
+      "mbid": "88f4e0ac-29c2-37b2-a6e6-392768e0d41d",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:labour-of-love",
+      "type": "project",
+      "name": "Labour of Love",
+      "mbid": "f1363399-2ab5-3b0c-83ee-f973230a8591",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ub44--ub40",
+      "type": "project",
+      "name": "UB44",
+      "artist": "UB40",
+      "mbid": "2760194e-3f6b-37ef-9538-01b998f89db8",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-in-ten--ub40",
+      "type": "project",
+      "name": "One in Ten",
+      "artist": "UB40",
+      "mbid": "b336f4be-ce40-34a3-8775-210d274d4d28",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:present-arms--ub40",
+      "type": "project",
+      "name": "Present Arms",
+      "artist": "UB40",
+      "mbid": "f3c37271-c266-3bfd-b827-03afa5738b2e",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:signing-off",
+      "type": "project",
+      "name": "Signing Off",
+      "mbid": "73459ae1-a126-3f8b-ac59-a8a41fbda78f",
+      "year": "1980",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

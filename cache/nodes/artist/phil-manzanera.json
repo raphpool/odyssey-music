@@ -47,7 +47,152 @@
     }
   ],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:revolucion-to-roxy--phil-manzanera",
+      "type": "project",
+      "name": "Revolución to Roxy",
+      "artist": "Phil Manzanera",
+      "mbid": "17178405-567c-420f-9892-ffc9ea5ca81a",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:live-at-the-curious-arts-festival--phil-manzanera",
+      "type": "project",
+      "name": "Live At The Curious Arts Festival",
+      "artist": "Phil Manzanera",
+      "mbid": "670e8cab-0ba1-410f-ae8d-0bce4e54b7d5",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-sound-of-blue--phil-manzanera",
+      "type": "project",
+      "name": "The Sound of Blue",
+      "artist": "Phil Manzanera",
+      "mbid": "32648d36-998a-404e-9982-b8adf48451a8",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nth-entities-anne-le-does-poetry-phil-manzanera-does-music--phil-manzanera",
+      "type": "project",
+      "name": "Nth Entities: Anne Le Does Poetry / Phil Manzanera Does Music",
+      "artist": "Phil Manzanera",
+      "mbid": "4ddf248a-0a23-482c-a83b-dab5f53e9c53",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:firebird-vii--phil-manzanera",
+      "type": "project",
+      "name": "Firebird VII",
+      "artist": "Phil Manzanera",
+      "mbid": "c1224ec4-6487-4fe7-8f5a-a4372dc1c7ec",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:50-minutes-later--phil-manzanera",
+      "type": "project",
+      "name": "50 Minutes Later",
+      "artist": "Phil Manzanera",
+      "mbid": "93dc3405-2479-36fa-b921-52be4440570e",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:6pm--phil-manzanera",
+      "type": "project",
+      "name": "6pm",
+      "artist": "Phil Manzanera",
+      "mbid": "2a9ef4b1-3d67-3905-9b2d-ec7f5e076306",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vozero--phil-manzanera",
+      "type": "project",
+      "name": "Vozero",
+      "artist": "Phil Manzanera",
+      "mbid": "3362b097-6227-382b-b8fb-2d79f66e2be9",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-million-reasons-why--phil-manzanera",
+      "type": "project",
+      "name": "A Million Reasons Why",
+      "artist": "Phil Manzanera",
+      "mbid": "a94bbc7b-b74c-4cea-ae3a-bab4bf22e98b",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mato-grosso--phil-manzanera",
+      "type": "project",
+      "name": "Mato Grosso",
+      "artist": "Phil Manzanera",
+      "mbid": "c32d2a56-79b7-3e55-a0fe-4c9a6d34c99a",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:southern-cross--phil-manzanera",
+      "type": "project",
+      "name": "Southern Cross",
+      "artist": "Phil Manzanera",
+      "mbid": "eb4a3c7e-6543-3991-827e-e42a1d7788fe",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:impossible-guitars--phil-manzanera",
+      "type": "project",
+      "name": "Impossible Guitars",
+      "artist": "Phil Manzanera",
+      "mbid": "4a55873c-1ecf-4eca-b848-7efd0263e367",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:primitive-guitars--phil-manzanera",
+      "type": "project",
+      "name": "Primitive Guitars",
+      "artist": "Phil Manzanera",
+      "mbid": "94049fd0-e1a0-3768-9599-1981cde7673f",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:k-scope--phil-manzanera",
+      "type": "project",
+      "name": "K-Scope",
+      "artist": "Phil Manzanera",
+      "mbid": "5844110a-d15d-4a82-931e-478bd53aecf8",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:listen-now--phil-manzanera",
+      "type": "project",
+      "name": "Listen Now",
+      "artist": "Phil Manzanera",
+      "mbid": "196454c5-4c0e-3434-9577-720b16103ed1",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:diamond-head--phil-manzanera",
+      "type": "project",
+      "name": "Diamond Head",
+      "artist": "Phil Manzanera",
+      "mbid": "228bc39e-26c8-3565-9655-48b8d0669577",
+      "year": "1975",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:diamond-head",

@@ -54,19 +54,262 @@
   ],
   "discography": [
     {
-      "slug": "project:tubular-bells--mike-oldfield",
+      "slug": "project:return-to-ommadawn--mike-oldfield",
       "type": "project",
-      "name": "Tubular Bells"
+      "name": "Return to Ommadawn",
+      "artist": "Mike Oldfield",
+      "mbid": "2db9bfde-134f-43e1-b0db-ad09b05c6508",
+      "year": "2017",
+      "releaseType": "album"
     },
     {
-      "slug": "project:hergest-ridge",
+      "slug": "project:man-on-the-rocks--mike-oldfield",
       "type": "project",
-      "name": "Hergest Ridge"
+      "name": "Man on the Rocks",
+      "artist": "Mike Oldfield",
+      "mbid": "2afc313d-b59f-4bee-adc2-462f7920f7ec",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-of-the-spheres--mike-oldfield",
+      "type": "project",
+      "name": "Music of the Spheres",
+      "artist": "Mike Oldfield",
+      "mbid": "04e93487-57e8-32f9-bd39-50edd1aa1d67",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:light-shade--mike-oldfield",
+      "type": "project",
+      "name": "Light + Shade",
+      "artist": "Mike Oldfield",
+      "mbid": "30f8a9ab-ef99-301d-a934-bad3bc115334",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tubular-bells-2003--mike-oldfield",
+      "type": "project",
+      "name": "Tubular Bells 2003",
+      "artist": "Mike Oldfield",
+      "mbid": "0096c5ef-5135-31a0-9b47-a93fca2ee119",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tr3s-lunas--mike-oldfield",
+      "type": "project",
+      "name": "Tr3s Lunas",
+      "artist": "Mike Oldfield",
+      "mbid": "84a08986-81c8-3eb3-9d35-f37ec705f925",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:guitars--mike-oldfield",
+      "type": "project",
+      "name": "Guitars",
+      "artist": "Mike Oldfield",
+      "mbid": "5a6f8fd6-ede0-38c7-b623-6497019684e3",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-millennium-bell--mike-oldfield",
+      "type": "project",
+      "name": "The Millennium Bell",
+      "artist": "Mike Oldfield",
+      "mbid": "d7f17655-e1d0-38f4-bf9b-a080aaf73f0e",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tubular-bells-iii--mike-oldfield",
+      "type": "project",
+      "name": "Tubular Bells III",
+      "artist": "Mike Oldfield",
+      "mbid": "661b24d2-2da1-3042-9c0e-6008e069b637",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:voyager--mike-oldfield",
+      "type": "project",
+      "name": "Voyager",
+      "artist": "Mike Oldfield",
+      "mbid": "53aaf7ac-0769-3669-915b-fceef744da0b",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-songs-of-distant-earth--mike-oldfield",
+      "type": "project",
+      "name": "The Songs of Distant Earth",
+      "artist": "Mike Oldfield",
+      "mbid": "1d8ca430-e6ab-3d87-a692-46ca92d19242",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tubular-bells-ii--mike-oldfield",
+      "type": "project",
+      "name": "Tubular Bells II",
+      "artist": "Mike Oldfield",
+      "mbid": "fce99ef4-91c9-3cda-9d10-54874489212f",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:heaven-s-open--mike-oldfield",
+      "type": "project",
+      "name": "Heaven’s Open",
+      "artist": "Mike Oldfield",
+      "mbid": "da0eb303-a5af-3d9c-947e-f1652a6ac8b9",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:amarok--mike-oldfield",
+      "type": "project",
+      "name": "Amarok",
+      "artist": "Mike Oldfield",
+      "mbid": "62d7c00d-08a5-322d-9952-cd6ef989f8ba",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:earth-moving--mike-oldfield",
+      "type": "project",
+      "name": "Earth Moving",
+      "artist": "Mike Oldfield",
+      "mbid": "053535d3-eaea-3f38-8a56-fd7a6a343b68",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:islands--mike-oldfield",
+      "type": "project",
+      "name": "Islands",
+      "artist": "Mike Oldfield",
+      "mbid": "2d5c179d-1fa7-347e-9d62-c577d5e47638",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:discovery--mike-oldfield",
+      "type": "project",
+      "name": "Discovery",
+      "artist": "Mike Oldfield",
+      "mbid": "e52bc79f-0f3e-3473-8642-3cd1601a3997",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-killing-fields-original-film-soundtrack--mike-oldfield",
+      "type": "project",
+      "name": "The Killing Fields: Original Film Soundtrack",
+      "artist": "Mike Oldfield",
+      "mbid": "775e8585-c703-356d-bcaf-be8cd3c89ad3",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:crises--mike-oldfield",
+      "type": "project",
+      "name": "Crises",
+      "artist": "Mike Oldfield",
+      "mbid": "bfcd36b4-10b5-385a-8365-d8ca38e1fc83",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:five-miles-out--mike-oldfield",
+      "type": "project",
+      "name": "Five Miles Out",
+      "artist": "Mike Oldfield",
+      "mbid": "ab036070-70c8-302e-91a6-ad585c3f6062",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:qe2--mike-oldfield",
+      "type": "project",
+      "name": "QE2",
+      "artist": "Mike Oldfield",
+      "mbid": "93f7d8d7-5be7-3466-bcc4-3346b8390b5f",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:platinum--mike-oldfield",
+      "type": "project",
+      "name": "Platinum",
+      "artist": "Mike Oldfield",
+      "mbid": "227db238-4f27-373e-807c-b024a20cc9d8",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:incantations--mike-oldfield",
+      "type": "project",
+      "name": "Incantations",
+      "artist": "Mike Oldfield",
+      "mbid": "e91f2798-5e0c-35bb-b58f-309fec014e0d",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:don-alfonso--mike-oldfield",
+      "type": "project",
+      "name": "Don Alfonso",
+      "artist": "Mike Oldfield",
+      "mbid": "390ffe38-3edc-38b5-8ca2-95dc4c8b172f",
+      "year": "1975",
+      "releaseType": "single"
     },
     {
       "slug": "project:ommadawn",
       "type": "project",
-      "name": "Ommadawn"
+      "name": "Ommadawn",
+      "mbid": "38ebbc75-c6e0-3576-bd42-802b2e4850c6",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-orchestral-tubular-bells--mike-oldfield",
+      "type": "project",
+      "name": "The Orchestral Tubular Bells",
+      "artist": "Mike Oldfield",
+      "mbid": "dd251688-bb41-3ba8-9a37-a7fe252ada3c",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hergest-ridge",
+      "type": "project",
+      "name": "Hergest Ridge",
+      "mbid": "2d1cf410-95f2-3562-a35d-4559bbacb452",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mike-oldfield-s-single-theme-from-tubular-bells--mike-oldfield",
+      "type": "project",
+      "name": "Mike Oldfield’s Single (theme from Tubular Bells)",
+      "artist": "Mike Oldfield",
+      "mbid": "7eebbd95-9939-3847-b515-b909973aa868",
+      "year": "1974",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tubular-bells--mike-oldfield",
+      "type": "project",
+      "name": "Tubular Bells",
+      "mbid": "d3f057b4-7e89-3018-9f84-9835ed9b4732",
+      "year": "1973",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

@@ -29,7 +29,53 @@
     }
   ],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:bhairav-dawn-raga--pandit-pran-nath",
+      "type": "project",
+      "name": "Bhairav - Dawn Raga",
+      "artist": "Pandit Pran Nath",
+      "mbid": "5db6e855-b918-4d16-88c8-5c66f602df60",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:miyan-ki-malhar-storm-raga--pandit-pran-nath",
+      "type": "project",
+      "name": "Miyan Ki Malhar - Storm Raga",
+      "artist": "Pandit Pran Nath",
+      "mbid": "ad476891-0fe1-4b29-8d5e-bd8e5397f349",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:midnight-raga-malkauns--pandit-pran-nath",
+      "type": "project",
+      "name": "Midnight: Raga Malkauns",
+      "artist": "Pandit Pran Nath",
+      "mbid": "a647978f-13e2-3c51-91fe-bc13a54cc530",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ragas--pandit-pran-nath",
+      "type": "project",
+      "name": "Ragas",
+      "artist": "Pandit Pran Nath",
+      "mbid": "1f60c3ff-fadd-4637-a00f-d2ce39558b0a",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:earth-groove--pandit-pran-nath",
+      "type": "project",
+      "name": "Earth Groove",
+      "artist": "Pandit Pran Nath",
+      "mbid": "fba3da83-f4a0-4c1a-b180-f3afea42cb28",
+      "year": "1968",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [

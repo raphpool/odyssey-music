@@ -62,10 +62,237 @@
   ],
   "discography": [
     {
+      "slug": "project:the-filth-and-the-fury-original-motion-picture-soundtrack--sex-pistols",
+      "type": "project",
+      "name": "The Filth & the Fury (original motion picture soundtrack)",
+      "artist": "Sex Pistols",
+      "mbid": "062bf0d6-8292-4772-8b92-ecd1714b3c35",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:76-77--sex-pistols",
+      "type": "project",
+      "name": "76–77",
+      "artist": "Sex Pistols",
+      "mbid": "7da25166-f367-4331-ba97-af285a6fd819",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:more-product--sex-pistols",
+      "type": "project",
+      "name": "More Product",
+      "artist": "Sex Pistols",
+      "mbid": "2fab39c6-c73f-46a9-9edc-77e27dadd83b",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:anarchy-in-the-uk--sex-pistols",
+      "type": "project",
+      "name": "Anarchy in the UK",
+      "artist": "Sex Pistols",
+      "mbid": "36c13ef5-7a6d-4bf7-a26a-7aa1a1c74342",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:problems--sex-pistols",
+      "type": "project",
+      "name": "Problems",
+      "artist": "Sex Pistols",
+      "mbid": "aafe5fbc-60bb-4e34-8f2c-daa17d0aaf54",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-feelings-76-new-york-rocket-78--sex-pistols",
+      "type": "project",
+      "name": "No Feelings ’76 / New York Rocket ’78",
+      "artist": "Sex Pistols",
+      "mbid": "84383dee-fbaf-496f-9c3e-0d4d328b40af",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pretty-vacant-disorder-you-bug-me--sex-pistols",
+      "type": "project",
+      "name": "Pretty Vacant / Disorder / You Bug Me",
+      "artist": "Sex Pistols",
+      "mbid": "d3e1166f-d027-47fd-85ed-c2c35a29a49b",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:we-don-t-care--sex-pistols",
+      "type": "project",
+      "name": "We Don't Care",
+      "artist": "Sex Pistols",
+      "mbid": "de03ba63-7e26-35f3-a7ae-e58575f46f44",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-mini-album--sex-pistols",
+      "type": "project",
+      "name": "The Mini Album",
+      "artist": "Sex Pistols",
+      "mbid": "f49c9960-6e7a-433f-bcf1-9b2dae5e4cce",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-m-not-your-stepping-stone--sex-pistols",
+      "type": "project",
+      "name": "(I’m Not Your) Stepping Stone",
+      "artist": "Sex Pistols",
+      "mbid": "6b57eb66-3934-4e70-89fd-21f575951f27",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:black-leather--sex-pistols",
+      "type": "project",
+      "name": "Black Leather",
+      "artist": "Sex Pistols",
+      "mbid": "74b99e19-81a6-4abd-acaa-105e01d8d360",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rock-around-the-clock--sex-pistols",
+      "type": "project",
+      "name": "Rock Around the Clock",
+      "artist": "Sex Pistols",
+      "mbid": "89d31a65-4bbc-4a3e-973b-862737b2a67f",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:c-mon-everybody--sex-pistols",
+      "type": "project",
+      "name": "C’mon Everybody",
+      "artist": "Sex Pistols",
+      "mbid": "678b0756-aa39-327f-8f34-071195e62509",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-way-something-else-c-mon-everybody--sex-pistols",
+      "type": "project",
+      "name": "My Way / Something Else / C’mon Everybody",
+      "artist": "Sex Pistols",
+      "mbid": "235f8066-9aec-4248-a897-289599884c5e",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:silly-thing--sex-pistols",
+      "type": "project",
+      "name": "Silly Thing",
+      "artist": "Sex Pistols",
+      "mbid": "5befba10-79b3-413a-bbc0-7838292f3543",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:something-else--sex-pistols",
+      "type": "project",
+      "name": "Something Else",
+      "artist": "Sex Pistols",
+      "mbid": "552268b3-435d-3f7f-8810-6d023180152c",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-great-rock-n-roll-swindle--sex-pistols",
+      "type": "project",
+      "name": "The Great Rock ’n’ Roll Swindle",
+      "artist": "Sex Pistols",
+      "mbid": "8bdf5b94-4d4e-361d-85e3-15cfad0c0ee0",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-one-is-innocent-a-punk-prayer-by-ronald-biggs-my-way--sex-pistols",
+      "type": "project",
+      "name": "No One Is Innocent (A Punk Prayer By Ronald Biggs) / My Way",
+      "artist": "Sex Pistols",
+      "mbid": "c2de6434-268d-4480-8b5a-9b90a86a7c41",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-biggest-blow-my-way--sex-pistols",
+      "type": "project",
+      "name": "The Biggest Blow / My Way",
+      "artist": "Sex Pistols",
+      "mbid": "bf4c2022-14e1-4f19-a367-d030a9683981",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:god-save-the-queen--sex-pistols",
+      "type": "project",
+      "name": "God Save the Queen",
+      "artist": "Sex Pistols",
+      "mbid": "24deb8e2-645e-3d5b-bf1b-9c229ed931bd",
+      "year": "1977",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:holidays-in-the-sun--sex-pistols",
+      "type": "project",
+      "name": "Holidays in the Sun",
+      "artist": "Sex Pistols",
+      "mbid": "a1251578-f88a-33e1-8497-b3ebe23838cf",
+      "year": "1977",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:never-mind-the-bollocks-here-s-the-sex-pistols--sex-pistols",
       "type": "project",
       "name": "Never Mind the Bollocks, Here's the Sex Pistols",
-      "artist": "Sex Pistols"
+      "artist": "Sex Pistols",
+      "mbid": "e959a4b3-6306-3c45-9df6-e7241dae9ea3",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pretty-vacant--sex-pistols",
+      "type": "project",
+      "name": "Pretty Vacant",
+      "artist": "Sex Pistols",
+      "mbid": "7b0db2e0-adda-31d6-ae9b-ae12912c22d3",
+      "year": "1977",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:submission--sex-pistols",
+      "type": "project",
+      "name": "Submission",
+      "artist": "Sex Pistols",
+      "mbid": "8ab252e9-d564-48cb-ac07-8f3d81ef31d8",
+      "year": "1977",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:anarchy-in-the-u-k--sex-pistols",
+      "type": "project",
+      "name": "Anarchy in the U.K.",
+      "artist": "Sex Pistols",
+      "mbid": "e5452e42-e646-3e6d-ba4d-dc3abc83590c",
+      "year": "1976",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:belsen-was-a-gas--sex-pistols",
+      "type": "project",
+      "name": "Belsen Was A Gas",
+      "artist": "Sex Pistols",
+      "mbid": "cbf04055-3f4b-4ad7-880c-2a1bb471667d",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

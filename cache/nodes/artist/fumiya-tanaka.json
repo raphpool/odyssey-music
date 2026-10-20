@@ -62,24 +62,258 @@
   ],
   "discography": [
     {
+      "slug": "project:deep-one--fumiya-tanaka",
+      "type": "project",
+      "name": "Deep One",
+      "artist": "Fumiya Tanaka",
+      "mbid": "9b608e53-73a4-43a9-9295-bb9dfc20e151",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:one-more-thing-first-part--fumiya-tanaka",
+      "type": "project",
+      "name": "One More Thing (First Part)",
+      "artist": "Fumiya Tanaka",
+      "mbid": "c43e5dd4-729b-4ed6-8f5e-a035a7f311eb",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:right-moment",
+      "type": "project",
+      "name": "Right Moment",
+      "mbid": "6530f285-0571-4c3e-b741-043f97e8ee66",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stinking-man--fumiya-tanaka",
+      "type": "project",
+      "name": "Stinking Man",
+      "artist": "Fumiya Tanaka",
+      "mbid": "f75683e6-9de2-4296-986f-163437be3869",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:we-would-like-to-do-song-for-the-step--fumiya-tanaka",
+      "type": "project",
+      "name": "We Would Like to Do Song for the Step",
+      "artist": "Fumiya Tanaka",
+      "mbid": "e00fe46e-8d73-4d0b-9f5d-6f9c4c0f2985",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:a-round-about-route--fumiya-tanaka",
+      "type": "project",
+      "name": "A Round About Route",
+      "artist": "Fumiya Tanaka",
+      "mbid": "f2b2ec56-cf88-4bf6-a7d6-d8eeeec9178b",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ab--fumiya-tanaka",
+      "type": "project",
+      "name": "AB",
+      "artist": "Fumiya Tanaka",
+      "mbid": "ddf5acde-eaea-4946-97e0-06c0dd1e5063",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:cd--fumiya-tanaka",
+      "type": "project",
+      "name": "CD",
+      "artist": "Fumiya Tanaka",
+      "mbid": "8052c66b-5594-4347-a7aa-ecfbfdaa2d56",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:beautiful-days-ep1--fumiya-tanaka",
+      "type": "project",
+      "name": "Beautiful Days EP1",
+      "artist": "Fumiya Tanaka",
+      "mbid": "cf1def55-bdd4-4554-a60b-1dbdb33cd000",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:beautiful-days-ep2--fumiya-tanaka",
+      "type": "project",
+      "name": "Beautiful Days EP2",
+      "artist": "Fumiya Tanaka",
+      "mbid": "c881ec57-e13f-4ba9-afdc-ab141f60cb99",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:beautiful-days-ep3--fumiya-tanaka",
+      "type": "project",
+      "name": "Beautiful Days EP3",
+      "artist": "Fumiya Tanaka",
+      "mbid": "beb3581a-2e25-4c35-85b4-9549dd3f0611",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:you-find-the-key--fumiya-tanaka",
+      "type": "project",
+      "name": "You Find the Key",
+      "artist": "Fumiya Tanaka",
+      "mbid": "c0ede10b-0811-442f-a4e5-3d08e848a97c",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dark-pad--fumiya-tanaka",
+      "type": "project",
+      "name": "Dark Pad",
+      "artist": "Fumiya Tanaka",
+      "mbid": "44f0ad67-b9af-4236-94d1-9c67146af2f1",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:unknown-possibility-vol-3-3--fumiya-tanaka",
+      "type": "project",
+      "name": "Unknown Possibility Vol 3 - 3",
+      "artist": "Fumiya Tanaka",
+      "mbid": "01be4aeb-b2c5-424c-97b2-6991a0646b67",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:unknown-3",
+      "type": "project",
+      "name": "Unknown 3",
+      "mbid": "c25721ab-497e-4a61-b81b-258e5388b95e",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mur-mur-conversation-mix--fumiya-tanaka",
+      "type": "project",
+      "name": "Mur Mur: Conversation Mix",
+      "artist": "Fumiya Tanaka",
+      "mbid": "01fff2e8-e52b-3091-8ac3-d4649d86d2ff",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unknown-possibility-vol-3-2--fumiya-tanaka",
+      "type": "project",
+      "name": "Unknown Possibility Vol. 3 - 2",
+      "artist": "Fumiya Tanaka",
+      "mbid": "f60f3f72-b985-496a-b1d5-6288c0659755",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:unknown-possibility-vol-3-1--fumiya-tanaka",
+      "type": "project",
+      "name": "Unknown Possibility Vol. 3 - 1",
+      "artist": "Fumiya Tanaka",
+      "mbid": "3406d632-cf35-4332-bb6d-9d13f1d9e5a8",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:drive-ep--fumiya-tanaka",
+      "type": "project",
+      "name": "Drive EP",
+      "artist": "Fumiya Tanaka",
+      "mbid": "e2472c01-042b-3cf4-87ac-b2995d608448",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:floor-people-tension-ep--fumiya-tanaka",
+      "type": "project",
+      "name": "Floor People Tension EP",
+      "artist": "Fumiya Tanaka",
+      "mbid": "a9841893-87b8-4d03-a928-66955e654118",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:unknown-possibility-volume-2--fumiya-tanaka",
+      "type": "project",
+      "name": "Unknown Possibility, Volume 2",
+      "artist": "Fumiya Tanaka",
+      "mbid": "53afff08-a061-3dfc-ab17-90ed8437a47e",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:player-ep--fumiya-tanaka",
+      "type": "project",
+      "name": "Player EP",
+      "artist": "Fumiya Tanaka",
+      "mbid": "3b6f02cd-40d1-4ed7-acb1-7c1ce4e0aa11",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:move-ep--fumiya-tanaka",
+      "type": "project",
+      "name": "Move EP",
+      "artist": "Fumiya Tanaka",
+      "mbid": "e7f39203-5168-3da2-ba13-7f6d1fae882a",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:midnight-ep--fumiya-tanaka",
+      "type": "project",
+      "name": "Midnight EP",
+      "artist": "Fumiya Tanaka",
+      "mbid": "3a23ac73-9486-4401-9dbf-d7362a820f92",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:unknown-possibility-vol-1",
       "type": "project",
-      "name": "Unknown Possibility Vol. 1"
+      "name": "Unknown Possibility Vol. 1",
+      "mbid": "075c40ec-3fea-4979-9396-3776c49beb4e",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:time-ep--fumiya-tanaka",
+      "type": "project",
+      "name": "Time EP",
+      "artist": "Fumiya Tanaka",
+      "mbid": "a4f50b5a-430d-4252-8c01-d7db46e825f3",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:four-tracks-ep--fumiya-tanaka",
+      "type": "project",
+      "name": "Four Tracks EP",
+      "artist": "Fumiya Tanaka",
+      "mbid": "9158be93-4375-3a92-873b-62c53fa1f5b7",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:micro-e-p--fumiya-tanaka",
+      "type": "project",
+      "name": "Micro E.P.",
+      "artist": "Fumiya Tanaka",
+      "mbid": "d1e67d6d-ac73-4606-844f-37273bace705",
+      "year": "1995",
+      "releaseType": "ep"
     },
     {
       "slug": "project:unknown-possibility-vol-2",
       "type": "project",
       "name": "Unknown Possibility Vol. 2"
-    },
-    {
-      "slug": "project:unknown-3",
-      "type": "project",
-      "name": "Unknown 3"
-    },
-    {
-      "slug": "project:right-moment",
-      "type": "project",
-      "name": "Right Moment"
     }
   ],
   "notable_tracks": [],

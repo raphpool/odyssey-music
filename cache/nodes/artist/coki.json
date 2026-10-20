@@ -46,9 +46,345 @@
   ],
   "discography": [
     {
+      "slug": "project:dlt--coki",
+      "type": "project",
+      "name": "DLT",
+      "artist": "Coki",
+      "mbid": "87665c94-ca16-425e-8ac7-99d249613898",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:red-rocks-ep--coki",
+      "type": "project",
+      "name": "Red Rocks - EP",
+      "artist": "Coki",
+      "mbid": "7ccf9acb-5087-4fb9-bf85-0c8fa88c306b",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:crystal-lake-ep--coki",
+      "type": "project",
+      "name": "Crystal Lake EP",
+      "artist": "Coki",
+      "mbid": "9cce4426-c022-454a-aa98-92aad9cdc877",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:fresh-riddims--coki",
+      "type": "project",
+      "name": "Fresh Riddims",
+      "artist": "Coki",
+      "mbid": "3d04344d-6fc9-483f-83b5-f8b4dd40ada8",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-lost-files-2004-2006--coki",
+      "type": "project",
+      "name": "The Lost Files (2004-2006)",
+      "artist": "Coki",
+      "mbid": "9541dfc1-f349-4a21-a98d-108c202f29a8",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:archive-dubs--coki",
+      "type": "project",
+      "name": "ARCHIVE DUBS",
+      "artist": "Coki",
+      "mbid": "afaa85d7-68d4-4c30-b21a-73b267da3807",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:savanna-la-mar-coki-meets-trixx--coki",
+      "type": "project",
+      "name": "Savanna La Mar (Coki Meets Trixx)",
+      "artist": "Coki",
+      "mbid": "9ca67208-66b2-4899-aad6-281bbba210c0",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dtg--coki",
+      "type": "project",
+      "name": "DTG",
+      "artist": "Coki",
+      "mbid": "b1c9e3d2-bcac-4dda-8fcd-6b2954940fef",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dhb--coki",
+      "type": "project",
+      "name": "DHB",
+      "artist": "Coki",
+      "mbid": "84bc5c77-86e2-4426-a70e-21660920deb9",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:heaters--coki",
+      "type": "project",
+      "name": "Heaters",
+      "artist": "Coki",
+      "mbid": "779caa9e-8494-437b-b8c1-66f6f67fe3b5",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:msl--coki",
+      "type": "project",
+      "name": "MSL",
+      "artist": "Coki",
+      "mbid": "6d228238-3b28-41dd-b280-6d912fa9d602",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:opm--coki",
+      "type": "project",
+      "name": "OPM",
+      "artist": "Coki",
+      "mbid": "007b5a5c-3a85-4f5c-b0bb-1cc3a1a0c1d2",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:reckless--coki",
+      "type": "project",
+      "name": "Reckless",
+      "artist": "Coki",
+      "mbid": "aecd5abc-119b-4325-80ab-20455ea997b7",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tkw--coki",
+      "type": "project",
+      "name": "TKW",
+      "artist": "Coki",
+      "mbid": "ee34d973-5fed-4863-8899-883344750927",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:fmc--coki",
+      "type": "project",
+      "name": "FMC",
+      "artist": "Coki",
+      "mbid": "17d0434a-517b-4f86-8e9e-56bec53cb855",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tunes--coki",
+      "type": "project",
+      "name": "Tunes",
+      "artist": "Coki",
+      "mbid": "1b6966cd-aaa4-49da-9e1c-3aeff95b76e4",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hatched-36--coki",
+      "type": "project",
+      "name": "Hatched 36",
+      "artist": "Coki",
+      "mbid": "233c4061-2a45-499c-839f-8f8579ddb97e",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hatched-17--coki",
+      "type": "project",
+      "name": "Hatched 17",
+      "artist": "Coki",
+      "mbid": "0a26eddb-a74a-4dc2-b616-1d7953a6bb24",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:heights-ep--coki",
+      "type": "project",
+      "name": "Heights EP",
+      "artist": "Coki",
+      "mbid": "d2228b55-49ee-4be0-9303-b7fb657ebdd8",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hatched-12--coki",
+      "type": "project",
+      "name": "Hatched 12",
+      "artist": "Coki",
+      "mbid": "33531a75-16f3-4b1a-897d-b5b658183f9d",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hold-on-wait-bedouins--coki",
+      "type": "project",
+      "name": "Hold On Wait / Bedouins",
+      "artist": "Coki",
+      "mbid": "f1992d09-3a55-4e86-ae39-bc4b9be0cbb3",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:voodoo-dolls-prototype--coki",
+      "type": "project",
+      "name": "Voodoo Dolls / Prototype",
+      "artist": "Coki",
+      "mbid": "bf7acbb3-ae86-40c4-bcfc-e38eed6dd8ca",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bob-s-pillow-spooky--coki",
+      "type": "project",
+      "name": "Bob's Pillow / Spooky",
+      "artist": "Coki",
+      "mbid": "ac516fba-5882-466a-a82f-64651ddae612",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-get-it-twisted-ep002--coki",
+      "type": "project",
+      "name": "Don't Get It Twisted ep002",
+      "artist": "Coki",
+      "mbid": "46f7bef1-d7f9-4422-a41a-46b321321ca8",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dry-cry--coki",
+      "type": "project",
+      "name": "Dry Cry",
+      "artist": "Coki",
+      "mbid": "a3fae0f1-091d-406b-9af2-554ad1da1480",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:duppy-soursop--coki",
+      "type": "project",
+      "name": "Duppy Soursop",
+      "artist": "Coki",
+      "mbid": "495985dd-2ebe-4ab3-abab-3adc138dbb8a",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:haymaker-revolution--coki",
+      "type": "project",
+      "name": "Haymaker / Revolution",
+      "artist": "Coki",
+      "mbid": "d2f8da39-e78a-4b4f-a419-1b1f4743c961",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:boomba-carbon-aliens--coki",
+      "type": "project",
+      "name": "Boomba / Carbon Aliens",
+      "artist": "Coki",
+      "mbid": "1c0957a0-248b-4f7c-885b-ad1046df825e",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-get-it-twisted--coki",
+      "type": "project",
+      "name": "Don't Get It Twisted",
+      "artist": "Coki",
+      "mbid": "1c80c50c-20d0-4189-988b-1a5e76235fe9",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:lucifer-ruff-lovin--coki",
+      "type": "project",
+      "name": "Lucifer / Ruff Lovin'",
+      "artist": "Coki",
+      "mbid": "b3bcbdd0-85d5-4c47-a7e1-c323c7146c49",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:square-off-warlord-riddim--coki",
+      "type": "project",
+      "name": "Square Off / Warlord Riddim",
+      "artist": "Coki",
+      "mbid": "497fc295-675d-376f-b662-0ff54366623f",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bloodthirst-electro-bashment--coki",
+      "type": "project",
+      "name": "Bloodthirst / Electro Bashment",
+      "artist": "Coki",
+      "mbid": "7e15a719-cd7a-4b8c-a91c-7dc4dd36fae7",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mad-head-bass--coki",
+      "type": "project",
+      "name": "Mad Head / Bass",
+      "artist": "Coki",
+      "mbid": "f5594d03-bdb9-43cf-b048-c4c4fb7823a8",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:triple-six-road-rage--coki",
+      "type": "project",
+      "name": "Triple Six / Road Rage",
+      "artist": "Coki",
+      "mbid": "a1277119-0db8-3c43-876f-4cf5a8182fdc",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:red-eye--coki",
+      "type": "project",
+      "name": "Red Eye",
+      "artist": "Coki",
+      "mbid": "52c79cec-850c-4e0f-b1a1-d9d1a6761e9e",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:spongebob-the-end",
       "type": "project",
-      "name": "Spongebob / The End"
+      "name": "Spongebob / The End",
+      "mbid": "2db6a350-5009-38dd-a252-82a948a00443",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tortured-shattered--coki",
+      "type": "project",
+      "name": "Tortured / Shattered",
+      "artist": "Coki",
+      "mbid": "ad67209a-5308-3704-a52e-066d7b2d91fd",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:officer-mood-dub--coki",
+      "type": "project",
+      "name": "Officer / Mood Dub",
+      "artist": "Coki",
+      "mbid": "72640463-7a9a-46b5-87e8-10ca02580ab1",
+      "year": "2005",
+      "releaseType": "single"
     },
     {
       "slug": "project:night",

@@ -72,29 +72,233 @@
   ],
   "discography": [
     {
-      "slug": "project:in-rough-territory",
+      "slug": "project:angry-people-vip-evacuation-plan--4hero",
       "type": "project",
-      "name": "In Rough Territory"
+      "name": "Angry People (VIP) / Evacuation Plan",
+      "artist": "4hero",
+      "mbid": "45b9e4f6-3b56-4a78-ae0d-74892f0fd035",
+      "year": "2017",
+      "releaseType": "single"
     },
     {
-      "slug": "project:parallel-universe",
+      "slug": "project:look-inside--4hero",
       "type": "project",
-      "name": "Parallel Universe"
+      "name": "Look Inside",
+      "artist": "4hero",
+      "mbid": "e5c07a7f-37a8-4f46-b4db-de87cb15bfc4",
+      "year": "2008",
+      "releaseType": "single"
     },
     {
-      "slug": "project:two-pages",
+      "slug": "project:morning-child--4hero",
       "type": "project",
-      "name": "Two Pages"
+      "name": "Morning Child",
+      "artist": "4hero",
+      "mbid": "2b91b3cd-0f5c-3476-ad03-6b684f94d20d",
+      "year": "2007",
+      "releaseType": "single"
     },
     {
-      "slug": "project:creating-patterns",
+      "slug": "project:morning-child-take-my-time--4hero",
       "type": "project",
-      "name": "Creating Patterns"
+      "name": "Morning Child / Take My Time",
+      "artist": "4hero",
+      "mbid": "cc1004fd-485a-4103-a2ec-3d302d0133b3",
+      "year": "2007",
+      "releaseType": "single"
     },
     {
       "slug": "project:play-with-the-changes",
       "type": "project",
-      "name": "Play with the Changes"
+      "name": "Play with the Changes",
+      "mbid": "7ffe9b47-8b1e-3923-8b22-ff5deedebda2",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mr-kirk-s-nightmare-feel-reel-good--4hero",
+      "type": "project",
+      "name": "Mr. Kirk's Nightmare / Feel Reel Good",
+      "artist": "4hero",
+      "mbid": "a93342ef-39cf-472e-ba82-3127dd76d986",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:creating-patterns",
+      "type": "project",
+      "name": "Creating Patterns",
+      "mbid": "bd968460-bea2-32d2-a282-57010a6fa956",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:les-fleur--4hero",
+      "type": "project",
+      "name": "Les Fleur",
+      "artist": "4hero",
+      "mbid": "f66e497b-589b-3516-8152-fee29ecbdfca",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:escape-that--4hero",
+      "type": "project",
+      "name": "Escape That",
+      "artist": "4hero",
+      "mbid": "09f6684b-47d5-3b27-aed6-e385d4ca2897",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:star-chasers--4hero",
+      "type": "project",
+      "name": "Star Chasers",
+      "artist": "4hero",
+      "mbid": "a4bd8e97-85ba-3a73-b66c-a7ac942fd6bc",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:two-pages",
+      "type": "project",
+      "name": "Two Pages",
+      "mbid": "ce9c7b25-6976-3f72-95e0-e7a4e4843080",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:we-who-are-not-as-others--4hero",
+      "type": "project",
+      "name": "We Who Are Not as Others",
+      "artist": "4hero",
+      "mbid": "da205e22-d977-4bbd-8219-ffeaff8178cb",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:earth-pioneers-ep--4hero",
+      "type": "project",
+      "name": "Earth Pioneers EP",
+      "artist": "4hero",
+      "mbid": "ac0b4d44-69ce-395c-be1e-9e6161b30653",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:loveless--4hero",
+      "type": "project",
+      "name": "Loveless",
+      "artist": "4hero",
+      "mbid": "24e2c2ea-0f3b-458a-805c-9e0ae770028e",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mr-kirk-s-nightmare--4hero",
+      "type": "project",
+      "name": "Mr. Kirk's Nightmare",
+      "artist": "4hero",
+      "mbid": "5f0aca03-7540-3d67-aed1-5894a0051562",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:parallel-universe",
+      "type": "project",
+      "name": "Parallel Universe",
+      "mbid": "04cfff6b-3e21-350f-a0d3-583c008d9b92",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:universal-love-ep--4hero",
+      "type": "project",
+      "name": "Universal Love EP",
+      "artist": "4hero",
+      "mbid": "8f2e0420-35c1-386e-a649-b7efcee8104f",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:golden-age-ep--4hero",
+      "type": "project",
+      "name": "Golden Age EP",
+      "artist": "4hero",
+      "mbid": "66698f93-8520-30b9-bdf5-3b33435dcd76",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:journey-from-the-light--4hero",
+      "type": "project",
+      "name": "Journey From the Light",
+      "artist": "4hero",
+      "mbid": "10fab514-94c3-3e33-80f1-6f0ef40d20f7",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:cooking-up-yah-brain--4hero",
+      "type": "project",
+      "name": "Cooking Up Yah Brain",
+      "artist": "4hero",
+      "mbid": "8d578f56-ab66-3272-9917-6b816dd9061a",
+      "year": "1992",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:in-rough-territory",
+      "type": "project",
+      "name": "In Rough Territory",
+      "mbid": "6f10c57c-7426-3ce2-b69b-c4636c359f90",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-sleep-raver-marimba--4hero",
+      "type": "project",
+      "name": "No Sleep Raver / Marimba",
+      "artist": "4hero",
+      "mbid": "dcf44a8c-49a0-337d-bd98-df07d954f7c9",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-head-hunter--4hero",
+      "type": "project",
+      "name": "The Head Hunter",
+      "artist": "4hero",
+      "mbid": "e6dd9cd7-e18f-353d-a21b-7888445c76f4",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:all-b-3-rising-son--4hero",
+      "type": "project",
+      "name": "All B 3 / Rising Son",
+      "artist": "4hero",
+      "mbid": "8464b1f4-5690-4d63-a568-fbccd19b1d03",
+      "year": "1990",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:combat-dancin--4hero",
+      "type": "project",
+      "name": "Combat Dancin’",
+      "artist": "4hero",
+      "mbid": "021df3ec-d47d-3bed-a2bf-2b382d00f1db",
+      "year": "1990",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-scorcher-kirk-s-back--4hero",
+      "type": "project",
+      "name": "The Scorcher / Kirk's Back",
+      "artist": "4hero",
+      "mbid": "41f64ad0-d852-381b-8102-2a8af98065e3",
+      "year": "1990",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

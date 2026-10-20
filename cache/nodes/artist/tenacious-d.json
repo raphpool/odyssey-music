@@ -56,24 +56,188 @@
   ],
   "discography": [
     {
-      "slug": "project:tenacious-d",
+      "slug": "project:baby-one-more-time-from-kung-fu-panda-4--tenacious-d",
       "type": "project",
-      "name": "Tenacious D"
+      "name": "…Baby One More Time (from Kung Fu Panda 4)",
+      "artist": "Tenacious D",
+      "mbid": "cca120b6-5145-400c-a38e-405febcb6f17",
+      "year": "2024",
+      "releaseType": "single"
     },
     {
-      "slug": "project:the-pick-of-destiny",
+      "slug": "project:singles--tenacious-d",
       "type": "project",
-      "name": "The Pick Of Destiny"
+      "name": "Singles",
+      "artist": "Tenacious D",
+      "mbid": "f0a79680-ead0-4a57-9722-fb8865b33275",
+      "year": "2023",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:rize-of-the-fenix",
+      "slug": "project:video-games--tenacious-d",
       "type": "project",
-      "name": "Rize Of The Fenix"
+      "name": "Video Games",
+      "artist": "Tenacious D",
+      "mbid": "50076399-2bdd-417b-b356-dabcd6a5f622",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wicked-game--tenacious-d",
+      "type": "project",
+      "name": "Wicked Game",
+      "artist": "Tenacious D",
+      "mbid": "ac42f1c2-51be-49d4-bd62-06affd6c1a71",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tenacious-d-s-the-who-medley--tenacious-d",
+      "type": "project",
+      "name": "Tenacious D’s The Who Medley",
+      "artist": "Tenacious D",
+      "mbid": "615125ab-1d45-49d9-b293-b968a3ffb312",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tribute-ep--tenacious-d",
+      "type": "project",
+      "name": "Tribute EP",
+      "artist": "Tenacious D",
+      "mbid": "cb10d524-7463-43ba-a13c-ce1a1ebf60f7",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:you-never-give-me-your-money-the-end--tenacious-d",
+      "type": "project",
+      "name": "You Never Give Me Your Money / The End",
+      "artist": "Tenacious D",
+      "mbid": "a109b0a6-6c34-4ac5-b7f3-6a38f888f614",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:5-needs--tenacious-d",
+      "type": "project",
+      "name": "5 Needs",
+      "artist": "Tenacious D",
+      "mbid": "409609cf-f414-43c8-8782-59339c609be4",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:time-warp--tenacious-d",
+      "type": "project",
+      "name": "Time Warp",
+      "artist": "Tenacious D",
+      "mbid": "b870f9e3-aafa-485e-9b4f-8b802814f953",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-blow-it-kage--tenacious-d",
+      "type": "project",
+      "name": "Don’t Blow It, Kage",
+      "artist": "Tenacious D",
+      "mbid": "72f414e7-2d6e-42b5-b45c-9229becf57b5",
+      "year": "2019",
+      "releaseType": "single"
     },
     {
       "slug": "project:post-apocalypto",
       "type": "project",
-      "name": "Post-Apocalypto"
+      "name": "Post-Apocalypto",
+      "mbid": "6bbfd1c7-e6ef-4baa-8fe0-1369b3eb2a57",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jazz--tenacious-d",
+      "type": "project",
+      "name": "Jazz",
+      "artist": "Tenacious D",
+      "mbid": "616a1bfd-6edd-4275-ab94-9c784a6e1dfb",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rize-of-the-fenix",
+      "type": "project",
+      "name": "Rize Of The Fenix",
+      "mbid": "da66aede-c3d0-405c-b632-8175c386e6c3",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pod--tenacious-d",
+      "type": "project",
+      "name": "Pod",
+      "artist": "Tenacious D",
+      "mbid": "63bf3666-d3e1-4c06-89af-dfc4c6bcf202",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-pick-of-destiny",
+      "type": "project",
+      "name": "The Pick Of Destiny",
+      "mbid": "096f3aca-8515-3153-955f-95a7456f4962",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:training-medley--tenacious-d",
+      "type": "project",
+      "name": "Training Medley",
+      "artist": "Tenacious D",
+      "mbid": "f5fc3d9a-a338-4a6c-ae7c-700d5740cf7e",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:d-fun-pak--tenacious-d",
+      "type": "project",
+      "name": "D Fun Pak",
+      "artist": "Tenacious D",
+      "mbid": "c5a6f97e-d420-3b1c-bd15-feeb61f7277b",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tribute--tenacious-d",
+      "type": "project",
+      "name": "Tribute",
+      "artist": "Tenacious D",
+      "mbid": "b337067a-c502-314a-a84c-80e8faae8e49",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wonderboy--tenacious-d",
+      "type": "project",
+      "name": "Wonderboy",
+      "artist": "Tenacious D",
+      "mbid": "dc48329e-f2ca-3112-8db6-54f6e141f1e7",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tenacious-d",
+      "type": "project",
+      "name": "Tenacious D",
+      "mbid": "a1369e69-ceb7-3d23-9e19-4c76157b3cad",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-d-best-a-fan-album--tenacious-d",
+      "type": "project",
+      "name": "ThE D BesT (A Fan Album)",
+      "artist": "Tenacious D",
+      "mbid": "46c02084-d72b-4538-9a72-10580d6e9ba8",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

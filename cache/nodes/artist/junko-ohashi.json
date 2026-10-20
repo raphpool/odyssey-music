@@ -42,24 +42,288 @@
   ],
   "discography": [
     {
-      "slug": "project:feeling-now",
+      "slug": "project:terra3--junko-ohashi",
       "type": "project",
-      "name": "Feeling Now"
+      "name": "Terra3〜愛は時を越えて",
+      "artist": "Junko Ōhashi",
+      "mbid": "354f106d-7b12-48d6-8c62-b9a376e9c2db",
+      "year": "2019",
+      "releaseType": "album"
     },
     {
-      "slug": "project:paper-moon",
+      "slug": "project:live-life--junko-ohashi",
       "type": "project",
-      "name": "Paper Moon"
+      "name": "LIVE LIFE",
+      "artist": "Junko Ōhashi",
+      "mbid": "9996f6fc-d45e-4920-8147-9057e22acc6c",
+      "year": "2014",
+      "releaseType": "album"
     },
     {
-      "slug": "project:rainbow",
+      "slug": "project:terra-2--junko-ohashi",
       "type": "project",
-      "name": "Rainbow"
+      "name": "Terra 2",
+      "artist": "Junko Ōhashi",
+      "mbid": "0fef9097-734a-4de5-b927-0d2d7737a228",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:terra--junko-ohashi",
+      "type": "project",
+      "name": "Terra",
+      "artist": "Junko Ōhashi",
+      "mbid": "30fffc7a-9577-4507-901f-ba3b23a19365",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trinta--junko-ohashi",
+      "type": "project",
+      "name": "Trinta",
+      "artist": "Junko Ōhashi",
+      "mbid": "1e242743-07e3-41b6-8e42-baeaefe34a69",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:june--junko-ohashi",
+      "type": "project",
+      "name": "June",
+      "artist": "Junko Ōhashi",
+      "mbid": "9a3a9dbf-70e7-4893-91dc-c2fd85d1d77f",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:quarter--junko-ohashi",
+      "type": "project",
+      "name": "QUARTER",
+      "artist": "Junko Ōhashi",
+      "mbid": "d520a0c6-77a2-4038-bd3c-9fa2aedaef92",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:time-flies--junko-ohashi",
+      "type": "project",
+      "name": "Time Flies",
+      "artist": "Junko Ōhashi",
+      "mbid": "5875cec6-6b7f-489e-9d5e-0838b543512b",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:j-selection-vol-3-love-songs--junko-ohashi",
+      "type": "project",
+      "name": "J'selection Vol.3 LOVE SONGS",
+      "artist": "Junko Ōhashi",
+      "mbid": "94bed308-95f2-4565-a0cf-07c20ef24e8f",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tokyo-daze--junko-ohashi",
+      "type": "project",
+      "name": "Tokyo Daze",
+      "artist": "Junko Ōhashi",
+      "mbid": "b1f7c624-15d7-4ef4-a9f1-162a04807c8b",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:20--junko-ohashi",
+      "type": "project",
+      "name": "20才の頃",
+      "artist": "Junko Ōhashi",
+      "mbid": "bb129c2e-8182-4603-abbc-6c732e5e149c",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:for-tomorrow--junko-ohashi",
+      "type": "project",
+      "name": "For Tomorrow",
+      "artist": "Junko Ōhashi",
+      "mbid": "e777c2cf-ba04-4e8c-893d-75c16626302d",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:j-selection-vol-2-bossa-nova--junko-ohashi",
+      "type": "project",
+      "name": "J'selection Vol.2 Bossa Nova",
+      "artist": "Junko Ōhashi",
+      "mbid": "4df638db-3912-4f6a-b11f-9d995a879d57",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blue-desert--junko-ohashi",
+      "type": "project",
+      "name": "Blue Desert",
+      "artist": "Junko Ōhashi",
+      "mbid": "78425996-c004-491c-b712-913190cb94c2",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:j-selection-another-works-of-junko-ohashi-volume-one--junko-ohashi",
+      "type": "project",
+      "name": "J’selection〜ANOTHER WORKS OF JUNKO OHASHI VOLUME ONE",
+      "artist": "Junko Ōhashi",
+      "mbid": "083072c8-5f9d-4e57-8ffb-871c65d13c36",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rain--junko-ohashi",
+      "type": "project",
+      "name": "Rain",
+      "artist": "Junko Ōhashi",
+      "mbid": "ea0cc652-11b6-4156-85ab-0cfcc830e031",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:miscellaneous--junko-ohashi",
+      "type": "project",
+      "name": "Miscellaneous",
+      "artist": "Junko Ōhashi",
+      "mbid": "11a48b32-457e-4b65-9d67-ae3a5187b83c",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:neo-history--junko-ohashi",
+      "type": "project",
+      "name": "Neo History",
+      "artist": "Junko Ōhashi",
+      "mbid": "7dbefc46-9db3-4c4e-b88a-db0f50926559",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tears--junko-ohashi",
+      "type": "project",
+      "name": "TEARS",
+      "artist": "Junko Ōhashi",
+      "mbid": "4c9595f7-1a9f-41fd-a5b8-4ee2880dccd9",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pagoda--junko-ohashi",
+      "type": "project",
+      "name": "Pagoda",
+      "artist": "Junko Ōhashi",
+      "mbid": "80a04e8e-1845-4671-bba1-87daa88b8743",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:def--junko-ohashi",
+      "type": "project",
+      "name": "DEF",
+      "artist": "Junko Ōhashi",
+      "mbid": "c9eadd06-41b2-4a23-950a-7553fb36421a",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:question--junko-ohashi",
+      "type": "project",
+      "name": "QUESTION",
+      "artist": "Junko Ōhashi",
+      "mbid": "4f6db58b-e7ca-4e2d-a6e5-b3ef14f3287f",
+      "year": "1988",
+      "releaseType": "album"
     },
     {
       "slug": "project:magical",
       "type": "project",
-      "name": "Magical"
+      "name": "Magical",
+      "mbid": "db9f56f6-c9c5-41ca-9778-98f501c60414",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:point-zero--junko-ohashi",
+      "type": "project",
+      "name": "Point Zero",
+      "artist": "Junko Ōhashi",
+      "mbid": "8bd6d93f-9a5e-4a84-a8a0-4049cfa06e47",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:postcard-fantasy--junko-ohashi",
+      "type": "project",
+      "name": "黄昏 ~Postcard Fantasy~",
+      "artist": "Junko Ōhashi",
+      "mbid": "f980b5fd-709b-48d6-af8f-6465f8bc57c8",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tea-for-tears--junko-ohashi",
+      "type": "project",
+      "name": "Tea For Tears",
+      "artist": "Junko Ōhashi",
+      "mbid": "becd68a5-c39d-4255-b366-320ba1ed21f7",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hot-life--junko-ohashi",
+      "type": "project",
+      "name": "HOT LIFE",
+      "artist": "Junko Ōhashi",
+      "mbid": "723675bf-19a9-48d3-ab8a-15728627ff94",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:full-house--junko-ohashi",
+      "type": "project",
+      "name": "FULL HOUSE",
+      "artist": "Junko Ōhashi",
+      "mbid": "2d91790b-ee69-4492-a53d-8fefe86c9c2c",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:flush--junko-ohashi",
+      "type": "project",
+      "name": "FLUSH",
+      "artist": "Junko Ōhashi",
+      "mbid": "da03f8e6-c301-4a4a-9239-eb38146253b6",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rainbow",
+      "type": "project",
+      "name": "Rainbow",
+      "mbid": "457090b0-e870-4c39-9a27-1bacbb56a5d5",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:paper-moon",
+      "type": "project",
+      "name": "Paper Moon",
+      "mbid": "04362480-ce44-4c34-85d4-6f920cf36f4e",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:feeling-now",
+      "type": "project",
+      "name": "Feeling Now",
+      "mbid": "90cfb817-4d5c-4409-b2b5-3d69e677228c",
+      "year": "1974",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

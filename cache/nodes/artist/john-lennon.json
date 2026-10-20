@@ -34,34 +34,124 @@
   ],
   "discography": [
     {
-      "slug": "project:john-lennon-plastic-ono-band",
+      "slug": "project:milk-and-honey--john-lennon",
       "type": "project",
-      "name": "John Lennon/Plastic Ono Band"
-    },
-    {
-      "slug": "project:imagine",
-      "type": "project",
-      "name": "Imagine"
-    },
-    {
-      "slug": "project:some-time-in-new-york-city",
-      "type": "project",
-      "name": "Some Time in New York City"
-    },
-    {
-      "slug": "project:mind-games",
-      "type": "project",
-      "name": "Mind Games"
-    },
-    {
-      "slug": "project:walls-and-bridges",
-      "type": "project",
-      "name": "Walls and Bridges"
+      "name": "Milk and Honey",
+      "artist": "John Lennon",
+      "mbid": "9e51160b-c309-334a-84f9-80feb0112a8f",
+      "year": "1984",
+      "releaseType": "album"
     },
     {
       "slug": "project:double-fantasy",
       "type": "project",
-      "name": "Double Fantasy"
+      "name": "Double Fantasy",
+      "mbid": "790ec782-7344-366c-af67-4a427bcaf991",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:be-bop-a-lula-move-over-m-s-l--john-lennon",
+      "type": "project",
+      "name": "Be Bop a Lula / Move Over M S.L.",
+      "artist": "John Lennon",
+      "mbid": "9164376f-9177-4635-930f-63a77c185039",
+      "year": "1975",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rock-n-roll--john-lennon",
+      "type": "project",
+      "name": "Rock ’n’ Roll",
+      "artist": "John Lennon",
+      "mbid": "316bd588-952e-34b0-aeff-b8fd43ef9cf8",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stand-by-me--john-lennon",
+      "type": "project",
+      "name": "Stand by Me",
+      "artist": "John Lennon",
+      "mbid": "880f5590-5b43-42f5-9b5e-0fb2b96489c7",
+      "year": "1975",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:walls-and-bridges",
+      "type": "project",
+      "name": "Walls and Bridges",
+      "mbid": "cf90044e-b161-3cda-99c7-2390802023b9",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mind-games",
+      "type": "project",
+      "name": "Mind Games",
+      "mbid": "611a001d-dae3-390c-babf-bba33ee4ba31",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:some-time-in-new-york-city",
+      "type": "project",
+      "name": "Some Time in New York City",
+      "mbid": "e5153705-e798-343c-aeaf-1777db763dd6",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:imagine",
+      "type": "project",
+      "name": "Imagine",
+      "mbid": "f242f304-0f1f-33a5-81a2-7a965b30e3b5",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:instant-karma-who-has-seen-the-wind--john-lennon",
+      "type": "project",
+      "name": "Instant Karma! / Who Has Seen the Wind?",
+      "artist": "John Lennon",
+      "mbid": "7fbd9ad3-5a61-3df8-8d7e-9c231162bd31",
+      "year": "1970",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:john-lennon-plastic-ono-band",
+      "type": "project",
+      "name": "John Lennon/Plastic Ono Band",
+      "mbid": "8be83468-4917-390d-82b6-d890f058cd22",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unfinished-music-no-2-life-with-the-lions--john-lennon",
+      "type": "project",
+      "name": "Unfinished Music No. 2: Life With the Lions",
+      "artist": "John Lennon",
+      "mbid": "ae59682d-3dfe-3a0c-b9e5-87623bd0ae6f",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wedding-album--john-lennon",
+      "type": "project",
+      "name": "Wedding Album",
+      "artist": "John Lennon",
+      "mbid": "9ea6179c-075e-3784-b0e0-62813bd94723",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unfinished-music-no-1-two-virgins--john-lennon",
+      "type": "project",
+      "name": "Unfinished Music No. 1: Two Virgins",
+      "artist": "John Lennon",
+      "mbid": "b7cb0753-b05f-35c7-bcc2-85e1c783bd0f",
+      "year": "1968",
+      "releaseType": "album"
     },
     {
       "slug": "project:the-beatles",

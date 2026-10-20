@@ -62,14 +62,38 @@
   ],
   "discography": [
     {
-      "slug": "project:spatula-freak",
+      "slug": "project:joozy--kid-spatula",
       "type": "project",
-      "name": "Spatula Freak"
+      "name": "Joozy",
+      "artist": "Kid Spatula",
+      "mbid": "3a5241d9-5c6f-497b-992f-f2bfa9597238",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:meast--kid-spatula",
+      "type": "project",
+      "name": "Meast",
+      "artist": "Kid Spatula",
+      "mbid": "c22d13a1-3f2f-3bce-b4ac-bfbd7a2cdcaf",
+      "year": "2004",
+      "releaseType": "album"
     },
     {
       "slug": "project:full-sunken-breaks",
       "type": "project",
-      "name": "Full Sunken Breaks"
+      "name": "Full Sunken Breaks",
+      "mbid": "ddc67cfd-1c00-3ece-981a-2b7521f26074",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:spatula-freak",
+      "type": "project",
+      "name": "Spatula Freak",
+      "mbid": "2d9fd488-0816-350b-bfe5-faf133049f07",
+      "year": "1995",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

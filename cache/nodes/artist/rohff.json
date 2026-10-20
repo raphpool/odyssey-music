@@ -48,35 +48,350 @@
   ],
   "discography": [
     {
-      "slug": "project:le-code-de-l-honneur--rohff",
+      "slug": "project:fitna--rohff",
       "type": "project",
-      "name": "Le Code de l'honneur"
-    },
-    {
-      "slug": "project:la-vie-avant-la-mort",
-      "type": "project",
-      "name": "La Vie avant la mort"
-    },
-    {
-      "slug": "project:la-fierte-des-notres",
-      "type": "project",
-      "name": "La Fierté des nôtres"
-    },
-    {
-      "slug": "project:au-dela-de-mes-limites",
-      "type": "project",
-      "name": "Au-delà de mes limites"
+      "name": "Fitna",
+      "mbid": "4407bb57-204e-448a-af98-026b5d5f5317",
+      "year": "2024",
+      "releaseType": "album"
     },
     {
       "slug": "project:grand-monsieur--rohff",
       "type": "project",
       "name": "Grand Monsieur",
-      "artist": "Rohff"
+      "artist": "Rohff",
+      "mbid": "0109ec47-5698-4d92-851f-3d322eb48fc5",
+      "year": "2021",
+      "releaseType": "album"
     },
     {
-      "slug": "project:fitna--rohff",
+      "slug": "project:hors-de-controle--rohff",
       "type": "project",
-      "name": "Fitna"
+      "name": "Hors De Contrôle",
+      "artist": "Rohff",
+      "mbid": "5674ed92-1a6e-474f-af00-8759b42240f6",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:saturne--rohff",
+      "type": "project",
+      "name": "Saturne",
+      "artist": "Rohff",
+      "mbid": "d45934e3-8f73-45db-a3db-33fe3b0e4a36",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:culture-urbhaine--rohff",
+      "type": "project",
+      "name": "Culture UrbHaine",
+      "artist": "Rohff",
+      "mbid": "5205a700-db9c-431b-8380-b9045ec5d3f0",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dans-le-game--rohff",
+      "type": "project",
+      "name": "Dans Le Game",
+      "artist": "Rohff",
+      "mbid": "2967e93e-7228-47a6-8372-6556c92a1da2",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:surnaturel--rohff",
+      "type": "project",
+      "name": "Surnaturel",
+      "artist": "Rohff",
+      "mbid": "d744bbd3-cdd9-4a37-a232-a3815ac6dacb",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:le-rohff-game--rohff",
+      "type": "project",
+      "name": "Le Rohff Game",
+      "artist": "Rohff",
+      "mbid": "f2175a89-2724-454f-93d8-c0dc4005bfec",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sans-forcer--rohff",
+      "type": "project",
+      "name": "Sans Forcer",
+      "artist": "Rohff",
+      "mbid": "0eab25ac-3d01-4b29-877b-cb89f200ffd5",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dounia--rohff",
+      "type": "project",
+      "name": "Dounia",
+      "artist": "Rohff",
+      "mbid": "14406460-24d6-41f4-9f51-869e4aa6d3d8",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:j-accelere--rohff",
+      "type": "project",
+      "name": "J'accélère",
+      "artist": "Rohff",
+      "mbid": "6e7a2129-4022-4631-a084-17aa52365826",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:p-d-r-g-pouvoir-danger-respect-and-game--rohff",
+      "type": "project",
+      "name": "P.D.R.G. (Pouvoir, Danger, Respect & Game)",
+      "artist": "Rohff",
+      "mbid": "e61286bf-dff5-4160-b796-38dc17a494e2",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:k-sos-musik--rohff",
+      "type": "project",
+      "name": "K-sos Musik",
+      "artist": "Rohff",
+      "mbid": "8441345c-a200-4628-becc-0f9d31fab48d",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:animal--rohff",
+      "type": "project",
+      "name": "Animal",
+      "artist": "Rohff",
+      "mbid": "b529171f-82ce-4bbc-abc2-799b325bc157",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dans-ma-werss--rohff",
+      "type": "project",
+      "name": "Dans ma werss",
+      "artist": "Rohff",
+      "mbid": "ccb6d94a-111d-45c7-a199-bbadb96aff5b",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dans-tes-yeux--rohff",
+      "type": "project",
+      "name": "Dans tes yeux",
+      "artist": "Rohff",
+      "mbid": "d9da83fc-f321-4aa5-970a-1e30e6549766",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-cuenta--rohff",
+      "type": "project",
+      "name": "La cuenta",
+      "artist": "Rohff",
+      "mbid": "8708889a-14de-4364-9831-86e1479f3c9d",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rien-a-prouver--rohff",
+      "type": "project",
+      "name": "Rien à prouver",
+      "artist": "Rohff",
+      "mbid": "faf7f2e4-5375-4d61-9edb-20c8d5781133",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:salamoualikoum--rohff",
+      "type": "project",
+      "name": "Salamoualikoum",
+      "artist": "Rohff",
+      "mbid": "51963b7f-177c-4101-90ba-2c419bf156a1",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:zenith-classics--rohff",
+      "type": "project",
+      "name": "Zenith Classics",
+      "artist": "Rohff",
+      "mbid": "967d4f36-cca4-45c5-96f9-f8cda9d4149e",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-grande-classe--rohff",
+      "type": "project",
+      "name": "La grande classe",
+      "artist": "Rohff",
+      "mbid": "89b4341b-13ad-4183-84c1-a5a8e415e4c9",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:le-code-de-l-horreur--rohff",
+      "type": "project",
+      "name": "Le Code de l'horreur",
+      "artist": "Rohff",
+      "mbid": "285233ba-e984-3770-b947-9d7d58b8bc80",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rap-game--rohff",
+      "type": "project",
+      "name": "Rap Game",
+      "artist": "Rohff",
+      "mbid": "774325b9-0c35-4f86-b931-500f162f8205",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dirty-hous-classic--rohff",
+      "type": "project",
+      "name": "Dirty Hous' (Classic)",
+      "artist": "Rohff",
+      "mbid": "026a88b5-cd4c-4e76-ab85-00ffb5699933",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-resurrection--rohff",
+      "type": "project",
+      "name": "La Résurrection",
+      "artist": "Rohff",
+      "mbid": "9bdc6910-36d6-43e0-8890-1b5adf20efe1",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:au-dela-de-mes-limites",
+      "type": "project",
+      "name": "Au-delà de mes limites",
+      "mbid": "582a9074-56e6-3515-bff9-c62ae6d54492",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:charisme--rohff",
+      "type": "project",
+      "name": "Charisme",
+      "artist": "Rohff",
+      "mbid": "4b5c3498-4d54-4ac8-9fc5-f103afba9593",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-puissance--rohff",
+      "type": "project",
+      "name": "La puissance",
+      "artist": "Rohff",
+      "mbid": "dc7513d7-40d5-4d23-89b5-732f6b0b45db",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:premier-sur-l-ghetto--rohff",
+      "type": "project",
+      "name": "Premier sur l'ghetto",
+      "artist": "Rohff",
+      "mbid": "bf7adc7b-7cf0-337c-b166-e04fe1d939e8",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:94--rohff",
+      "type": "project",
+      "name": "94",
+      "artist": "Rohff",
+      "mbid": "0d33386b-0266-4a14-94a9-c67d021347bd",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-fierte-des-notres",
+      "type": "project",
+      "name": "La Fierté des nôtres",
+      "mbid": "d1849b65-bf41-30a1-926f-22a7b303f610",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:le-son-qui-tue--rohff",
+      "type": "project",
+      "name": "Le Son qui tue",
+      "artist": "Rohff",
+      "mbid": "9c748572-53e9-424c-96cd-467bb561c380",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:le-son-c-est-la-guerre--rohff",
+      "type": "project",
+      "name": "Le son c’est la guerre",
+      "artist": "Rohff",
+      "mbid": "a5190dc4-43c8-4c40-845f-4dd00ea3eb8e",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:5-9-1--rohff",
+      "type": "project",
+      "name": "5, 9, 1",
+      "artist": "Rohff",
+      "mbid": "a291de84-02d8-4d9b-856b-4df1950d7754",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:la-vie-avant-la-mort",
+      "type": "project",
+      "name": "La Vie avant la mort",
+      "mbid": "961908c1-6e99-3322-8c99-57759cfeae59",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:qui-est-l-exemple--rohff",
+      "type": "project",
+      "name": "Qui est l'exemple ?",
+      "artist": "Rohff",
+      "mbid": "e719ba10-55aa-38c1-840d-142f4f249224",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:r-o-h-f-f-rimeur-original-hardcore-flow-fluide--rohff",
+      "type": "project",
+      "name": "R.O.H.F.F: Rimeur Original Hardcore Flow Fluide",
+      "artist": "Rohff",
+      "mbid": "b31d23c3-df78-401d-b7cd-521f7f279df8",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:le-code-de-l-honneur--rohff",
+      "type": "project",
+      "name": "Le Code de l'honneur",
+      "mbid": "3fe1c63c-d5a9-354c-857b-3537ffa952c1",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:appelles-moi-rohff-despee--rohff",
+      "type": "project",
+      "name": "Appelles moi Rohff / Despee",
+      "artist": "Rohff",
+      "mbid": "3526c608-2fdc-4a92-a840-24d8813d709d",
+      "year": "1998",
+      "releaseType": "single"
     },
     {
       "slug": "project:la-cerise-sur-le-ghetto--mafia-k-1-fry",

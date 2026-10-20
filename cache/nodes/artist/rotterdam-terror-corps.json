@@ -32,6 +32,15 @@
   ],
   "discography": [
     {
+      "slug": "project:faster-harder-louder--rotterdam-terror-corps",
+      "type": "project",
+      "name": "Faster, Harder, Louder!",
+      "artist": "Rotterdam Terror Corps",
+      "mbid": "ef95281d-adff-4945-95c9-635c56dd3e30",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:the-essence-of-hardcore",
       "type": "project",
       "name": "The Essence Of Hardcore",
@@ -72,20 +81,20 @@
       "releaseType": "ep"
     },
     {
-      "slug": "project:giftbox",
-      "type": "project",
-      "name": "Giftbox",
-      "mbid": "c4f9eeff-b63e-35f9-9f25-bb95954e7e15",
-      "year": "2005",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:classics-limited-edition",
       "type": "project",
       "name": "Classics - Limited Edition",
       "mbid": "3df4e0f5-1525-4400-b730-187c58bc7af9",
       "year": "2005",
       "releaseType": "album"
+    },
+    {
+      "slug": "project:giftbox",
+      "type": "project",
+      "name": "Giftbox",
+      "mbid": "c4f9eeff-b63e-35f9-9f25-bb95954e7e15",
+      "year": "2005",
+      "releaseType": "single"
     },
     {
       "slug": "project:chaos-on-the-dancefloor",
@@ -152,6 +161,22 @@
       "releaseType": "album"
     },
     {
+      "slug": "project:limited-edition",
+      "type": "project",
+      "name": "Limited Edition",
+      "mbid": "f99d1b05-65ea-45e3-ab6b-f70845eec4bb",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:megarave",
+      "type": "project",
+      "name": "Megarave",
+      "mbid": "938122cf-2457-4046-8c0a-2471dbcecd3f",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:sick-and-twisted",
       "type": "project",
       "name": "Sick & Twisted",
@@ -168,28 +193,28 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:megarave",
-      "type": "project",
-      "name": "Megarave",
-      "mbid": "938122cf-2457-4046-8c0a-2471dbcecd3f",
-      "year": "1997",
-      "releaseType": "ep"
-    },
-    {
-      "slug": "project:limited-edition",
-      "type": "project",
-      "name": "Limited Edition",
-      "mbid": "f99d1b05-65ea-45e3-ab6b-f70845eec4bb",
-      "year": "1997",
-      "releaseType": "ep"
-    },
-    {
       "slug": "project:the-horror",
       "type": "project",
       "name": "The Horror",
       "mbid": "a00575c7-87fd-3c96-990f-28595cdeb6bc",
       "year": "1997",
       "releaseType": "single"
+    },
+    {
+      "slug": "project:hardcore-motherfuckers",
+      "type": "project",
+      "name": "Hardcore Motherfuckers",
+      "mbid": "213bc044-edd3-4ab9-9bd6-a74c16f5764b",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hardcore-slam",
+      "type": "project",
+      "name": "Hardcore Slam",
+      "mbid": "f448dfb5-3968-4abf-a4ce-5945f237b284",
+      "year": "1996",
+      "releaseType": "ep"
     },
     {
       "slug": "project:strictly-hardcore",
@@ -206,22 +231,6 @@
       "mbid": "16dd7626-225c-4e0c-9193-b69687409c6e",
       "year": "1996",
       "releaseType": "ep"
-    },
-    {
-      "slug": "project:hardcore-slam",
-      "type": "project",
-      "name": "Hardcore Slam",
-      "mbid": "f448dfb5-3968-4abf-a4ce-5945f237b284",
-      "year": "1996",
-      "releaseType": "ep"
-    },
-    {
-      "slug": "project:hardcore-motherfuckers",
-      "type": "project",
-      "name": "Hardcore Motherfuckers",
-      "mbid": "213bc044-edd3-4ab9-9bd6-a74c16f5764b",
-      "year": "1996",
-      "releaseType": "single"
     },
     {
       "slug": "project:three-waisted-souls",

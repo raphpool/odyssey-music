@@ -65,25 +65,361 @@
   ],
   "discography": [
     {
-      "slug": "project:kind-of-blue--miles-davis",
+      "slug": "project:doo-bop--miles-davis",
       "type": "project",
-      "name": "Kind of Blue"
+      "name": "Doo‐Bop",
+      "artist": "Miles Davis",
+      "mbid": "2fc131ce-5962-32ba-bc5b-51d1c6f770b5",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:amandla--miles-davis",
+      "type": "project",
+      "name": "Amandla",
+      "artist": "Miles Davis",
+      "mbid": "fffbcf97-843e-3481-9b3c-bcd93bed1a44",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aura--miles-davis",
+      "type": "project",
+      "name": "Aura",
+      "artist": "Miles Davis",
+      "mbid": "ad706e89-d59f-3833-8b46-bf3fd684b9e0",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tutu--miles-davis",
+      "type": "project",
+      "name": "Tutu",
+      "artist": "Miles Davis",
+      "mbid": "44a7c417-f4ce-31d3-9e81-2f370126526f",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-re-under-arrest--miles-davis",
+      "type": "project",
+      "name": "You’re Under Arrest",
+      "artist": "Miles Davis",
+      "mbid": "bd104acb-d034-3100-bb26-b6a046ba07f6",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:decoy--miles-davis",
+      "type": "project",
+      "name": "Decoy",
+      "artist": "Miles Davis",
+      "mbid": "860d07a9-c4b2-399a-9243-555d6a446f8b",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:star-people--miles-davis",
+      "type": "project",
+      "name": "Star People",
+      "artist": "Miles Davis",
+      "mbid": "77fe6224-38dc-383d-ad5f-297ddaa14085",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-man-with-the-horn--miles-davis",
+      "type": "project",
+      "name": "The Man With the Horn",
+      "artist": "Miles Davis",
+      "mbid": "a4ec9a06-d953-398d-bdbb-a7710c00182c",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:water-babies--miles-davis",
+      "type": "project",
+      "name": "Water Babies",
+      "artist": "Miles Davis",
+      "mbid": "5ee0b8e6-e56d-3b22-85d8-0e29b223be00",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:big-fun--miles-davis",
+      "type": "project",
+      "name": "Big Fun",
+      "artist": "Miles Davis",
+      "mbid": "7b44726d-0077-39c0-8525-129e59c8e496",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:get-up-with-it--miles-davis",
+      "type": "project",
+      "name": "Get Up With It",
+      "artist": "Miles Davis",
+      "mbid": "49f122e4-8eef-3c69-93d4-a4369dc408d8",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:on-the-corner--miles-davis",
+      "type": "project",
+      "name": "On the Corner",
+      "artist": "Miles Davis",
+      "mbid": "d8ced714-bc46-3657-9076-8577c9d50231",
+      "year": "1972",
+      "releaseType": "album"
     },
     {
       "slug": "project:bitches-brew",
       "type": "project",
-      "name": "Bitches Brew"
+      "name": "Bitches Brew",
+      "mbid": "a9e30282-5b37-3f92-b897-b9659a1a312b",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:filles-de-kilimanjaro--miles-davis",
+      "type": "project",
+      "name": "Filles de Kilimanjaro",
+      "artist": "Miles Davis",
+      "mbid": "82fd3ab5-0fc9-3a36-8832-65afaf05c2fe",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-a-silent-way--miles-davis",
+      "type": "project",
+      "name": "In a Silent Way",
+      "artist": "Miles Davis",
+      "mbid": "7d0a9612-7636-34fe-84d9-445c8df9c0f3",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:miles-in-the-sky--miles-davis",
+      "type": "project",
+      "name": "Miles in the Sky",
+      "artist": "Miles Davis",
+      "mbid": "5be21119-1842-38bd-8f43-23333e7ee182",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nefertiti--miles-davis",
+      "type": "project",
+      "name": "Nefertiti",
+      "artist": "Miles Davis",
+      "mbid": "eb84987d-15bd-3f69-bcd0-a0804c9d1130",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sorcerer--miles-davis",
+      "type": "project",
+      "name": "Sorcerer",
+      "artist": "Miles Davis",
+      "mbid": "3c17dc33-ff39-3ac0-a190-847f42e4d03c",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:e-s-p--miles-davis",
+      "type": "project",
+      "name": "E.S.P.",
+      "artist": "Miles Davis",
+      "mbid": "ebc5d7cd-63eb-3030-8fda-2f5cf27b1ba5",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:quiet-nights--miles-davis",
+      "type": "project",
+      "name": "Quiet Nights",
+      "artist": "Miles Davis",
+      "mbid": "b5a0a374-d8e2-45d0-a4da-5b6465c2563a",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:seven-steps-to-heaven--miles-davis",
+      "type": "project",
+      "name": "Seven Steps to Heaven",
+      "artist": "Miles Davis",
+      "mbid": "5f491dad-4138-3f03-b3a0-655e6e15df2a",
+      "year": "1963",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sketches-of-spain--miles-davis",
+      "type": "project",
+      "name": "Sketches of Spain",
+      "artist": "Miles Davis",
+      "mbid": "966fede2-31b2-3b6a-ab50-4a650d3bb97d",
+      "year": "1960",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kind-of-blue--miles-davis",
+      "type": "project",
+      "name": "Kind of Blue",
+      "mbid": "8e8a594f-2175-38c7-a871-abb68ec363e7",
+      "year": "1959",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:milestones--miles-davis",
+      "type": "project",
+      "name": "Milestones",
+      "artist": "Miles Davis",
+      "mbid": "89896a3e-e309-3ed3-a1a9-36be29ae76b0",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:porgy-and-bess--miles-davis",
+      "type": "project",
+      "name": "Porgy and Bess",
+      "artist": "Miles Davis",
+      "mbid": "70f3e516-4e76-3dc5-a261-e6c5cd6d71a1",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bags-groove--miles-davis",
+      "type": "project",
+      "name": "Bags’ Groove",
+      "artist": "Miles Davis",
+      "mbid": "25a721dc-0940-359e-8b0d-4be9d5616348",
+      "year": "1957",
+      "releaseType": "album"
     },
     {
       "slug": "project:birth-of-the-cool",
       "type": "project",
-      "name": "Birth of the Cool"
+      "name": "Birth of the Cool",
+      "mbid": "903d5fe8-ab43-33b2-9411-6738af50de19",
+      "year": "1957",
+      "releaseType": "album"
     },
     {
       "slug": "project:birth-of-the-cool--miles-davis",
       "type": "project",
       "name": "Birth of the Cool",
-      "artist": "Miles Davis"
+      "artist": "Miles Davis",
+      "mbid": "903d5fe8-ab43-33b2-9411-6738af50de19",
+      "year": "1957",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:miles-ahead--miles-davis",
+      "type": "project",
+      "name": "Miles Ahead",
+      "artist": "Miles Davis",
+      "mbid": "cc0c7530-a135-3386-a682-0d33d14c876e",
+      "year": "1957",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:round-about-midnight--miles-davis",
+      "type": "project",
+      "name": "’Round About Midnight",
+      "artist": "Miles Davis",
+      "mbid": "6477da93-2286-4919-a898-031caa34c307",
+      "year": "1957",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blue-haze--miles-davis",
+      "type": "project",
+      "name": "Blue Haze",
+      "artist": "Miles Davis",
+      "mbid": "2978c580-9123-3ca5-bf60-6a6e45ad2c4a",
+      "year": "1956",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:collectors-items--miles-davis",
+      "type": "project",
+      "name": "Collectors’ Items",
+      "artist": "Miles Davis",
+      "mbid": "7b2ac355-548e-3d4a-b625-920dab441509",
+      "year": "1956",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dig--miles-davis",
+      "type": "project",
+      "name": "Dig",
+      "artist": "Miles Davis",
+      "mbid": "933c977e-8312-353e-b4ef-55d0dd90bd30",
+      "year": "1956",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blue-moods--miles-davis",
+      "type": "project",
+      "name": "Blue Moods",
+      "artist": "Miles Davis",
+      "mbid": "39402cf4-888f-3af0-9d0c-0dc7e80baa35",
+      "year": "1955",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:miles-davis-and-milt-jackson-quintet-sextet--miles-davis",
+      "type": "project",
+      "name": "Miles Davis and Milt Jackson Quintet / Sextet",
+      "artist": "Miles Davis",
+      "mbid": "e5e1dfb2-9184-32f4-af73-6093422ed77b",
+      "year": "1955",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blue-period--miles-davis",
+      "type": "project",
+      "name": "Blue Period",
+      "artist": "Miles Davis",
+      "mbid": "5d5b6555-9752-4edd-9e78-dcd5a76daca3",
+      "year": "1953",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:miles-davis-vol-2--miles-davis",
+      "type": "project",
+      "name": "Miles Davis, Vol. 2",
+      "artist": "Miles Davis",
+      "mbid": "29393845-34a2-40a6-9c8c-6647c83e9c1d",
+      "year": "1953",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-compositions-of-al-cohn--miles-davis",
+      "type": "project",
+      "name": "The Compositions of Al Cohn",
+      "artist": "Miles Davis",
+      "mbid": "1a5abe37-f8d5-488e-b600-8ac93f36f7c4",
+      "year": "1953",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:young-man-with-a-horn--miles-davis",
+      "type": "project",
+      "name": "Young Man With a Horn",
+      "artist": "Miles Davis",
+      "mbid": "093a3235-7271-46d5-9c94-c092edf1fb25",
+      "year": "1952",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-new-sounds--miles-davis",
+      "type": "project",
+      "name": "The New Sounds",
+      "artist": "Miles Davis",
+      "mbid": "c8d56072-a32d-43c4-b52f-82ff0b8311a4",
+      "year": "1951",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

@@ -70,29 +70,143 @@
   ],
   "discography": [
     {
-      "slug": "project:first-love",
+      "slug": "project:mine-or-yours--hikaru-utada",
       "type": "project",
-      "name": "First Love"
+      "name": "Mine or Yours",
+      "artist": "Hikaru Utada",
+      "mbid": "14959dc4-3016-4824-8545-a031502f9e2c",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:distance",
+      "slug": "project:bad--hikaru-utada",
       "type": "project",
-      "name": "Distance"
+      "name": "BADモード",
+      "artist": "Hikaru Utada",
+      "mbid": "68cd3faf-6df2-451f-8e19-395269159076",
+      "year": "2022",
+      "releaseType": "album"
     },
     {
-      "slug": "project:deep-river",
+      "slug": "project:one-last-kiss--hikaru-utada",
       "type": "project",
-      "name": "Deep River"
+      "name": "One Last Kiss",
+      "artist": "Hikaru Utada",
+      "mbid": "e9e72dc3-178f-43bc-b8d1-1b6ddfb5fec3",
+      "year": "2021",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:exodus",
+      "slug": "project:face-my-fears--hikaru-utada",
       "type": "project",
-      "name": "Exodus"
+      "name": "Face My Fears",
+      "artist": "Hikaru Utada",
+      "mbid": "c699d45c-8ead-4cad-8554-061a3690f4f8",
+      "year": "2019",
+      "releaseType": "single"
     },
     {
       "slug": "project:fantome",
       "type": "project",
-      "name": "Fantôme"
+      "name": "Fantôme",
+      "mbid": "8e8aead9-812e-4f95-ac65-186cf1b5d465",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:this-is-the-one--hikaru-utada",
+      "type": "project",
+      "name": "This Is the One",
+      "artist": "Hikaru Utada",
+      "mbid": "671e04d6-3903-374b-8e48-621383408b6f",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:heart-station--hikaru-utada",
+      "type": "project",
+      "name": "HEART STATION",
+      "artist": "Hikaru Utada",
+      "mbid": "b9823f5a-c4ae-3883-b895-58501146607f",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beautiful-world-kiss-and-cry--hikaru-utada",
+      "type": "project",
+      "name": "Beautiful World / Kiss & Cry",
+      "artist": "Hikaru Utada",
+      "mbid": "b7ec8061-e3e7-3573-a2a0-deaf3a59b095",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ultra-blue--hikaru-utada",
+      "type": "project",
+      "name": "ULTRA BLUE",
+      "artist": "Hikaru Utada",
+      "mbid": "ec19fe3d-ae17-31b2-8a74-b3daf6d802c2",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:exodus",
+      "type": "project",
+      "name": "Exodus",
+      "mbid": "9543516d-fee1-3638-b247-2a05cb5c8381",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:colors--hikaru-utada",
+      "type": "project",
+      "name": "COLORS",
+      "artist": "Hikaru Utada",
+      "mbid": "88d673d7-7629-357f-9f52-3f2dc6996001",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:deep-river",
+      "type": "project",
+      "name": "Deep River",
+      "mbid": "cf2eaaeb-e472-3b2a-a643-a01efd24c4e5",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:distance",
+      "type": "project",
+      "name": "Distance",
+      "mbid": "0f9f92ed-d6fe-3b52-8cdf-262410f6a77a",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:final-distance--hikaru-utada",
+      "type": "project",
+      "name": "FINAL DISTANCE",
+      "artist": "Hikaru Utada",
+      "mbid": "e242e5fd-3837-3655-82ed-5f7076a5b60e",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:first-love",
+      "type": "project",
+      "name": "First Love",
+      "mbid": "c60fcd45-9420-30aa-98e5-2bffb894021a",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:precious--hikaru-utada",
+      "type": "project",
+      "name": "Precious",
+      "artist": "Hikaru Utada",
+      "mbid": "a166ef97-5540-3faa-b556-c6ecf812faa4",
+      "year": "1998",
+      "releaseType": "album"
     },
     {
       "slug": "project:bad-mode",

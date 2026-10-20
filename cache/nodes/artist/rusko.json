@@ -65,19 +65,352 @@
   ],
   "discography": [
     {
-      "slug": "project:o-m-g",
+      "slug": "project:1-man-army--rusko",
       "type": "project",
-      "name": "O.M.G.!"
+      "name": "1 MAN ARMY",
+      "artist": "Rusko",
+      "mbid": "dc710936-48fd-4e05-8759-8beb663c0d7d",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:wassup--rusko",
+      "type": "project",
+      "name": "Wassup",
+      "artist": "Rusko",
+      "mbid": "46ce609c-d12a-4277-8b52-dcebf532e43b",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:butcher-shop--rusko",
+      "type": "project",
+      "name": "Butcher Shop",
+      "artist": "Rusko",
+      "mbid": "99ae315c-6d6c-4385-a576-3506e42683d3",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gone-sleep--rusko",
+      "type": "project",
+      "name": "Gone Sleep",
+      "artist": "Rusko",
+      "mbid": "0251a819-9508-41f8-ba5d-13554dea588d",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mac-19--rusko",
+      "type": "project",
+      "name": "Mac 19",
+      "artist": "Rusko",
+      "mbid": "c82c8625-f1c9-47bc-8562-b016dc4342e0",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mac-19-ep--rusko",
+      "type": "project",
+      "name": "Mac 19 EP",
+      "artist": "Rusko",
+      "mbid": "7f4ca5e5-07cf-4f98-99af-5a3657afc755",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:shut-ya-mouth--rusko",
+      "type": "project",
+      "name": "Shut Ya Mouth",
+      "artist": "Rusko",
+      "mbid": "a8fe35c3-f91f-418b-aed6-aa0e7193a4fa",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sticks-and-stones--rusko",
+      "type": "project",
+      "name": "Sticks & Stones",
+      "artist": "Rusko",
+      "mbid": "9b62d97b-f7e0-4517-a599-225a21ce1091",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tings--rusko",
+      "type": "project",
+      "name": "Tings",
+      "artist": "Rusko",
+      "mbid": "4040a228-77c9-4dbe-8a5d-b46d6030970a",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sauce--rusko",
+      "type": "project",
+      "name": "Sauce",
+      "artist": "Rusko",
+      "mbid": "6b530590-ea18-4b79-8fe5-963cd9191cdb",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:bounce--rusko",
+      "type": "project",
+      "name": "Bounce",
+      "artist": "Rusko",
+      "mbid": "4be3cf0a-5033-4eb4-ac5c-7b7048f229fa",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:genghis-danger--rusko",
+      "type": "project",
+      "name": "Genghis Danger",
+      "artist": "Rusko",
+      "mbid": "a4abcf93-9f37-4b2f-8a93-2257c2529b6c",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:megarad--rusko",
+      "type": "project",
+      "name": "MEGARAD",
+      "artist": "Rusko",
+      "mbid": "fa0a3f96-302f-4421-81a4-7ae21396edb3",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:emotional--rusko",
+      "type": "project",
+      "name": "Emotional",
+      "artist": "Rusko",
+      "mbid": "cf13c2ae-a683-4c45-af9e-f7e42fee1086",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:has-made-5-more-songs--rusko",
+      "type": "project",
+      "name": "Has Made 5 More Songs",
+      "artist": "Rusko",
+      "mbid": "f70e99b9-4e51-42f1-af1e-788063e6f153",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hot--rusko",
+      "type": "project",
+      "name": "Hot",
+      "artist": "Rusko",
+      "mbid": "b5107b8d-c223-4d8a-9d5e-b7435b6dfa2c",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mr-policeman--rusko",
+      "type": "project",
+      "name": "Mr. Policeman",
+      "artist": "Rusko",
+      "mbid": "076f3d16-5b7e-40dc-87e5-6efd1aa8824c",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:14-traxx-in-14-days--rusko",
+      "type": "project",
+      "name": "14 traxx in 14 days",
+      "artist": "Rusko",
+      "mbid": "9ca8ce53-849f-4ed9-a240-774338215ba1",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:volume-2--rusko",
+      "type": "project",
+      "name": "!, Volume 2",
+      "artist": "Rusko",
+      "mbid": "c8a95129-b5d3-4817-9db3-4a52d1002b97",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:lift-me-up--rusko",
+      "type": "project",
+      "name": "Lift Me Up",
+      "artist": "Rusko",
+      "mbid": "00b26722-ca01-4cfb-b975-e4b948fb55b1",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:kapow--rusko",
+      "type": "project",
+      "name": "Kapow",
+      "artist": "Rusko",
+      "mbid": "f34cdb00-d82c-4899-aa48-b57dabb4c755",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:somebody-to-love--rusko",
+      "type": "project",
+      "name": "Somebody to Love",
+      "artist": "Rusko",
+      "mbid": "9937e361-d43a-40d8-ab9a-61b12a1c2863",
+      "year": "2012",
+      "releaseType": "single"
     },
     {
       "slug": "project:songs",
       "type": "project",
-      "name": "Songs"
+      "name": "Songs",
+      "mbid": "ecd0edfb-19d0-439c-92b9-f689e75a05a6",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:thunder--rusko",
+      "type": "project",
+      "name": "Thunder",
+      "artist": "Rusko",
+      "mbid": "99f4163e-3b76-41ed-869c-814665a9f3ca",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:da-cali-anthem--rusko",
+      "type": "project",
+      "name": "Da Cali Anthem",
+      "artist": "Rusko",
+      "mbid": "3306ac37-8a9e-45ee-9529-8ef6cfa832b3",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:do-u-wanna-have-a-party--rusko",
+      "type": "project",
+      "name": "Do U Wanna Have A Party",
+      "artist": "Rusko",
+      "mbid": "a65969ef-8b55-4316-8f8b-7a665a9b326a",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:feels-so-real--rusko",
+      "type": "project",
+      "name": "Feels So Real",
+      "artist": "Rusko",
+      "mbid": "20ddc14a-2af9-4e3b-a152-8014b0b6b910",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hold-on--rusko",
+      "type": "project",
+      "name": "Hold On",
+      "artist": "Rusko",
+      "mbid": "b91a76cf-f68a-4b15-b0c2-62b6c5403b7c",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:o-m-g",
+      "type": "project",
+      "name": "O.M.G.!",
+      "mbid": "ac9c8120-1a52-4f90-8679-9ccff88c7edd",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:woo-boost--rusko",
+      "type": "project",
+      "name": "Woo-Boost",
+      "artist": "Rusko",
+      "mbid": "5840319f-7ed6-4bf0-a7f8-08fda716a2ac",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:babylon-volume-2--rusko",
+      "type": "project",
+      "name": "Babylon: Volume 2",
+      "artist": "Rusko",
+      "mbid": "6d3eeee9-e5c7-3050-b6bb-40fff788f004",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:cockney-thug--rusko",
+      "type": "project",
+      "name": "Cockney Thug",
+      "artist": "Rusko",
+      "mbid": "3de5b080-083e-49c0-bfba-865470b7413e",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:biggest-chopper--rusko",
+      "type": "project",
+      "name": "Biggest Chopper",
+      "artist": "Rusko",
+      "mbid": "2a8d0ec4-c551-4a2f-966a-aa8e078ff0d8",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gone-2-far-2-n-a-q--rusko",
+      "type": "project",
+      "name": "Gone 2 Far / 2 N A Q",
+      "artist": "Rusko",
+      "mbid": "b8cae00d-6e2a-3d04-bd17-51e134994ce7",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mr-chips-hammertime--rusko",
+      "type": "project",
+      "name": "Mr Chips / Hammertime",
+      "artist": "Rusko",
+      "mbid": "5cfd9e7e-59db-3018-a191-1a19efc23248",
+      "year": "2008",
+      "releaseType": "single"
     },
     {
       "slug": "project:babylon-volume-1",
       "type": "project",
-      "name": "Babylon: Volume 1"
+      "name": "Babylon: Volume 1",
+      "mbid": "882b7fc2-ea76-3967-89f7-c9ffeb4ed81c",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:betamax-bed-bugz--rusko",
+      "type": "project",
+      "name": "BetaMax / Bed Bugz",
+      "artist": "Rusko",
+      "mbid": "d01badf5-d947-3cbe-b38f-cbf7d26f2095",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:william-h-tonkers-roma--rusko",
+      "type": "project",
+      "name": "William H Tonkers / Roma",
+      "artist": "Rusko",
+      "mbid": "5f825595-3e01-40e6-b878-105e91f8e479",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:snes-dub--rusko",
+      "type": "project",
+      "name": "SNES Dub",
+      "artist": "Rusko",
+      "mbid": "ff3bc46a-3b5d-4f65-b413-626fc7645924",
+      "year": "2006",
+      "releaseType": "single"
     },
     {
       "slug": "project:fabriclive-37--caspa",

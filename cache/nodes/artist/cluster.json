@@ -66,24 +66,99 @@
   ],
   "discography": [
     {
-      "slug": "project:cluster-71",
+      "slug": "project:71-edits--cluster",
       "type": "project",
-      "name": "Cluster '71"
+      "name": "71 Edits",
+      "artist": "Cluster",
+      "mbid": "256ed494-1220-45f2-880d-5d51f8b3ca7b",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:cluster-ii",
+      "slug": "project:qua--cluster",
       "type": "project",
-      "name": "Cluster II"
+      "name": "Qua",
+      "artist": "Cluster",
+      "mbid": "40d7512f-1d8c-401f-8bdc-d33a5648d1a2",
+      "year": "2009",
+      "releaseType": "album"
     },
     {
-      "slug": "project:zuckerzeit",
+      "slug": "project:berlin-07--cluster",
       "type": "project",
-      "name": "Zuckerzeit"
+      "name": "Berlin 07",
+      "artist": "Cluster",
+      "mbid": "c414d21e-9d94-4bec-8916-a661292b188a",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one-hour--cluster",
+      "type": "project",
+      "name": "One Hour",
+      "artist": "Cluster",
+      "mbid": "1b1bcd26-9167-36b3-aea8-f2c0335e6132",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:curiosum--cluster",
+      "type": "project",
+      "name": "Curiosum",
+      "artist": "Cluster",
+      "mbid": "18af7e54-5f2d-3440-a825-2794fbc30eb3",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:grosses-wasser--cluster",
+      "type": "project",
+      "name": "Grosses Wasser",
+      "artist": "Cluster",
+      "mbid": "2c83af61-f7f2-364c-befa-c295008237da",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cluster-and-eno--cluster",
+      "type": "project",
+      "name": "Cluster & Eno",
+      "artist": "Cluster",
+      "mbid": "63456fe7-2d31-378d-a97d-91e8b55946cc",
+      "year": "1977",
+      "releaseType": "album"
     },
     {
       "slug": "project:sowiesoso",
       "type": "project",
-      "name": "Sowiesoso"
+      "name": "Sowiesoso",
+      "mbid": "506d5aec-e408-3b95-82d3-4be21cccf8bd",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:zuckerzeit",
+      "type": "project",
+      "name": "Zuckerzeit",
+      "mbid": "bec7e911-3209-32c6-8523-7694cde62a1c",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cluster-ii",
+      "type": "project",
+      "name": "Cluster II",
+      "mbid": "6a12c5ee-2a74-3036-891f-99ac0c6638bd",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cluster-71",
+      "type": "project",
+      "name": "Cluster '71",
+      "mbid": "5981f323-3d9a-354f-a34d-6d3825556e97",
+      "year": "1971",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

@@ -61,19 +61,172 @@
   ],
   "discography": [
     {
-      "slug": "project:roots-and-crowns",
+      "slug": "project:the-villager-s-companion--califone",
       "type": "project",
-      "name": "Roots & Crowns"
+      "name": "The Villager’s Companion",
+      "artist": "Califone",
+      "mbid": "977be4a0-ef6f-4313-af40-8ca092a68767",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:every-amnesia-movie--califone",
+      "type": "project",
+      "name": "every amnesia movie",
+      "artist": "Califone",
+      "mbid": "fe0ae72a-005c-471e-bca6-c168031fc802",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:villagers--califone",
+      "type": "project",
+      "name": "villagers",
+      "artist": "Califone",
+      "mbid": "66b3a80d-47b2-4341-bdc4-245077342dbd",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:family-swan--califone",
+      "type": "project",
+      "name": "Family Swan",
+      "artist": "Califone",
+      "mbid": "f73cdea3-faad-4540-800e-089e569fe175",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:crazy-as-a-loon--califone",
+      "type": "project",
+      "name": "Crazy As A Loon",
+      "artist": "Califone",
+      "mbid": "371ce727-b304-47b4-b555-c2b1309d7706",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:echo-mine--califone",
+      "type": "project",
+      "name": "Echo Mine",
+      "artist": "Califone",
+      "mbid": "262a846c-bc72-41f2-bb29-3848ff39714a",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:needle-in-the-hay--califone",
+      "type": "project",
+      "name": "Needle in the Hay",
+      "artist": "Califone",
+      "mbid": "ba04b418-65fe-417a-95fa-0ff6e8639b2f",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:insect-courage--califone",
+      "type": "project",
+      "name": "Insect Courage",
+      "artist": "Califone",
+      "mbid": "02b84c30-04c1-4eb2-808c-3acabc2ba33f",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stitches--califone",
+      "type": "project",
+      "name": "Stitches",
+      "artist": "Califone",
+      "mbid": "81de3500-02f5-423c-bb1f-ca4285d6ba6a",
+      "year": "2013",
+      "releaseType": "album"
     },
     {
       "slug": "project:all-my-friends-are-funeral-singers",
       "type": "project",
-      "name": "All My Friends Are Funeral Singers"
+      "name": "All My Friends Are Funeral Singers",
+      "mbid": "137339b6-5eb8-4be2-bc83-10df624d403e",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:roots-and-crowns",
+      "type": "project",
+      "name": "Roots & Crowns",
+      "mbid": "e713c4a2-5bed-323a-b207-5e203a446b12",
+      "year": "2006",
+      "releaseType": "album"
     },
     {
       "slug": "project:heron-king-blues",
       "type": "project",
-      "name": "Heron King Blues"
+      "name": "Heron King Blues",
+      "mbid": "e8e7959a-42c0-32fe-9bbf-3e53a516ffc0",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:knub-u-knive--califone",
+      "type": "project",
+      "name": "Knub U Knive",
+      "artist": "Califone",
+      "mbid": "82d14d1e-3cfb-4245-89a4-84792171fb03",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:deceleration-two--califone",
+      "type": "project",
+      "name": "Deceleration Two",
+      "artist": "Califone",
+      "mbid": "fa64df71-4809-3d2d-a9bc-156cf4a616ec",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:homesleep-singles-club-7--califone",
+      "type": "project",
+      "name": "Homesleep Singles Club #7",
+      "artist": "Califone",
+      "mbid": "0c009429-396f-3d08-87f9-c02e9e4602dd",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:quicksand-cradlesnakes--califone",
+      "type": "project",
+      "name": "Quicksand/Cradlesnakes",
+      "artist": "Califone",
+      "mbid": "4bfe9bdc-5492-313f-9f65-4bdf05920af7",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:deceleration-one--califone",
+      "type": "project",
+      "name": "Deceleration One",
+      "artist": "Califone",
+      "mbid": "4f78b5ab-98e9-36fa-96c9-70ecfbec6a36",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:roomsound--califone",
+      "type": "project",
+      "name": "Roomsound",
+      "artist": "Califone",
+      "mbid": "92d01b5b-da35-32e6-85f6-5dc0e79407db",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:califone--califone",
+      "type": "project",
+      "name": "Califone",
+      "artist": "Califone",
+      "mbid": "b26f9b8f-3935-31fa-a3d1-703e2aac898a",
+      "year": "1998",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

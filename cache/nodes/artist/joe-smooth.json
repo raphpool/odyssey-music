@@ -38,7 +38,89 @@
       "name": "Trax Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:we-shall-overcome--joe-smooth",
+      "type": "project",
+      "name": "We Shall Overcome",
+      "artist": "Joe Smooth",
+      "mbid": "caf655c5-d049-4345-96b0-1124b99aab7e",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:disco-acid-volume-3--joe-smooth",
+      "type": "project",
+      "name": "Disco Acid, Volume 3",
+      "artist": "Joe Smooth",
+      "mbid": "d5c6242d-5d34-3f1e-8c9c-815d45d716a4",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:disco-acid-ep-volume-1--joe-smooth",
+      "type": "project",
+      "name": "Disco Acid EP, Volume 1",
+      "artist": "Joe Smooth",
+      "mbid": "8ff6dc25-c12e-3f42-a8b1-1e52bc4cae0d",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:i-m-not-givin-up-one-moment-in-love--joe-smooth",
+      "type": "project",
+      "name": "I'm Not Givin' Up / One Moment in Love",
+      "artist": "Joe Smooth",
+      "mbid": "9f693aaa-61bf-3a1d-8a33-24b3ec5fbdb7",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rejoice--joe-smooth",
+      "type": "project",
+      "name": "Rejoice",
+      "artist": "Joe Smooth",
+      "mbid": "d27dce6f-6044-3358-9a0a-edd15e5a3bcb",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:they-want-to-be-free--joe-smooth",
+      "type": "project",
+      "name": "They Want to Be Free",
+      "artist": "Joe Smooth",
+      "mbid": "294124c6-f532-42db-b628-e690ea843c2f",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:promised-land--joe-smooth",
+      "type": "project",
+      "name": "Promised Land",
+      "artist": "Joe Smooth",
+      "mbid": "c179abbf-84de-3470-b44a-d09cfe5cd316",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:goin-down--joe-smooth",
+      "type": "project",
+      "name": "Goin' Down",
+      "artist": "Joe Smooth",
+      "mbid": "d204b4e1-1211-488f-8e53-0fe728e6b6a2",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-promised-land--joe-smooth",
+      "type": "project",
+      "name": "The Promised Land",
+      "artist": "Joe Smooth",
+      "mbid": "22573888-f66a-38b3-ac3c-bf982722cc41",
+      "year": "1987",
+      "releaseType": "single"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:promised-land",

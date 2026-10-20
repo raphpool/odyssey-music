@@ -49,19 +49,152 @@
   ],
   "discography": [
     {
-      "slug": "project:my-pain-and-sadness-is-more-sad-and-painful-than-yours",
+      "slug": "project:i-sure-am-getting-sick-of-this-bowling-alley--mclusky",
       "type": "project",
-      "name": "My Pain and Sadness Is More Sad and Painful Than Yours"
+      "name": "i sure am getting sick of this bowling alley",
+      "artist": "Mclusky",
+      "mbid": "50b0ffb5-c38c-4640-ad67-7d6d1fe38f8b",
+      "year": "2026",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:mclusky-do-dallas--mclusky",
+      "slug": "project:the-world-is-still-here-and-so-are-we--mclusky",
       "type": "project",
-      "name": "mclusky Do Dallas"
+      "name": "the world is still here and so are we",
+      "artist": "Mclusky",
+      "mbid": "a7d6dfc5-95a3-4c63-b352-35ca48dbce78",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unpopular-parts-of-a-pig-the-digger-you-deep--mclusky",
+      "type": "project",
+      "name": "Unpopular Parts of a Pig / The Digger You Deep",
+      "artist": "Mclusky",
+      "mbid": "21c08a3a-602a-498c-83e8-6ee0d5511a9b",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:she-will-only-bring-you-happiness--mclusky",
+      "type": "project",
+      "name": "She Will Only Bring You Happiness",
+      "artist": "Mclusky",
+      "mbid": "fedc855d-86c5-3f79-995c-00b38c12de2a",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:that-man-will-not-hang--mclusky",
+      "type": "project",
+      "name": "That Man Will Not Hang",
+      "artist": "Mclusky",
+      "mbid": "431fd215-f503-3f4f-b814-fbd2a27efbda",
+      "year": "2004",
+      "releaseType": "single"
     },
     {
       "slug": "project:the-difference-between-me-and-you-is-that-i-m-not-on-fire",
       "type": "project",
-      "name": "The Difference Between Me and You Is That I'm Not on Fire"
+      "name": "The Difference Between Me and You Is That I'm Not on Fire",
+      "mbid": "16c12427-7def-374d-b4f2-e2b12281e6de",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:there-ain-t-no-fool-in-ferguson--mclusky",
+      "type": "project",
+      "name": "There Ain’t No Fool in Ferguson",
+      "artist": "Mclusky",
+      "mbid": "83f6e5ad-1734-3a69-b543-9521feec8166",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:undress-for-success--mclusky",
+      "type": "project",
+      "name": "Undress for Success",
+      "artist": "Mclusky",
+      "mbid": "09b3c493-1b76-3ee7-a02c-0b7fe24f05b9",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:alan-is-a-cowboy-killer--mclusky",
+      "type": "project",
+      "name": "Alan Is a Cowboy Killer",
+      "artist": "Mclusky",
+      "mbid": "3caacdfc-669a-3bcb-bf40-570c2101b747",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:to-hell-with-good-intentions--mclusky",
+      "type": "project",
+      "name": "To Hell With Good Intentions",
+      "artist": "Mclusky",
+      "mbid": "4440f1ed-5bc9-3b2b-ba91-7814ff7186e4",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mclusky-do-dallas--mclusky",
+      "type": "project",
+      "name": "mclusky Do Dallas",
+      "mbid": "3e710532-61e8-3925-b3b9-24b21eb2fbf9",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:whoyouknow--mclusky",
+      "type": "project",
+      "name": "Whoyouknow",
+      "artist": "Mclusky",
+      "mbid": "40dc4e0a-63e8-3d74-b18b-75b8164139b2",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:joy--mclusky",
+      "type": "project",
+      "name": "Joy",
+      "artist": "Mclusky",
+      "mbid": "2317df12-3a68-377f-bf8e-98f68ee35af0",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-pain-and-sadness-is-more-sad-and-painful-than-yours",
+      "type": "project",
+      "name": "My Pain and Sadness Is More Sad and Painful Than Yours",
+      "mbid": "25979311-2ff4-3250-87a6-7aa0efce3d4c",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rice-is-nice--mclusky",
+      "type": "project",
+      "name": "rice is nice",
+      "artist": "Mclusky",
+      "mbid": "9002cde1-9405-33be-a496-4c5f52f35df6",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:unmastered-steve-albini-tracks--mclusky",
+      "type": "project",
+      "name": "Unmastered Steve Albini Tracks",
+      "artist": "Mclusky",
+      "mbid": "d8fbb46a-c7d2-3c85-b232-81022f46c1c0",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dave-mirra-bmx-2-gameboy-advance--mclusky",
+      "type": "project",
+      "name": "Dave Mirra BMX 2 (Gameboy Advance)",
+      "artist": "Mclusky",
+      "mbid": "2fadeae6-d1e6-3cad-a028-1fabada5fd31",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

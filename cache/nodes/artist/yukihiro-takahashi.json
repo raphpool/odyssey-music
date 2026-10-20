@@ -70,19 +70,244 @@
   ],
   "discography": [
     {
-      "slug": "project:saravah",
+      "slug": "project:saravah-saravah--yukihiro-takahashi",
       "type": "project",
-      "name": "Saravah!"
+      "name": "Saravah Saravah!",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "6d1df7e2-9387-4cfb-8f2e-588f0b84ca9c",
+      "year": "2018",
+      "releaseType": "album"
     },
     {
-      "slug": "project:murdered-by-the-music",
+      "slug": "project:split-spirit--yukihiro-takahashi",
       "type": "project",
-      "name": "Murdered by the Music"
+      "name": "Split Spirit",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "07908505-c344-4c9b-aabf-fdfc2314da65",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:life-anew--yukihiro-takahashi",
+      "type": "project",
+      "name": "Life Anew",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "7e46340a-da75-4b4d-92ea-6e4064f21975",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:page-by-page--yukihiro-takahashi",
+      "type": "project",
+      "name": "Page by Page",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "0ec792a7-7f8b-46a4-90c2-bcb17c7b7237",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blue-moon-blue--yukihiro-takahashi",
+      "type": "project",
+      "name": "Blue Moon Blue",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "ca2732c3-130d-4d0a-a39b-0b664f4a0a68",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-dearest-fool--yukihiro-takahashi",
+      "type": "project",
+      "name": "The Dearest Fool",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "98b936dc-8418-4d3a-af5a-3c0f7781bd74",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-ray-of-hope--yukihiro-takahashi",
+      "type": "project",
+      "name": "A RAY OF HOPE",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "c8280d5d-0bcc-3890-b638-4784701c0502",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-sigh-of-ghost--yukihiro-takahashi",
+      "type": "project",
+      "name": "A Sigh of Ghost",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "e4ac0e85-a0e2-4d55-a113-150560fb1d67",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-touch-of-love--yukihiro-takahashi",
+      "type": "project",
+      "name": "手をのばせば〜A touch of Love〜",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "00370a56-d1f4-404b-ae82-bcdbdfe113c0",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:portrait-with-no-name--yukihiro-takahashi",
+      "type": "project",
+      "name": "Portrait with No Name",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "3fce0b25-8c1d-4a94-ab49-52b095fc1fe7",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fate-of-gold--yukihiro-takahashi",
+      "type": "project",
+      "name": "Fate of Gold",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "2eaae9c0-fc37-4334-9a5d-8f71b4cb15aa",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mr-yt--yukihiro-takahashi",
+      "type": "project",
+      "name": "MR.YT",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "7ab55215-c9b7-495d-934b-03bf21842072",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:heart-of-hurt--yukihiro-takahashi",
+      "type": "project",
+      "name": "HEART OF HURT",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "60912983-a8fa-4f8c-9bc7-076fd038845a",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lifetime-happy-time--yukihiro-takahashi",
+      "type": "project",
+      "name": "Lifetime, Happy Time",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "bbcd6c7d-0a81-4c36-99ca-c4612aa8ca8c",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-day-in-the-next-life--yukihiro-takahashi",
+      "type": "project",
+      "name": "A Day in The Next Life",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "2071e563-4006-44d2-aa8c-f7fd6b1fe979",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-adventure-of-gaku--yukihiro-takahashi",
+      "type": "project",
+      "name": "The Adventure Of Gaku",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "aa1367bc-c580-4a17-a8f1-8f898e07cfd4",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:broadcast-from-heaven--yukihiro-takahashi",
+      "type": "project",
+      "name": "Broadcast From Heaven",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "f4344c96-0a49-4a99-9e09-f9c17ec0ea0d",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:x-mas-day-in-the-next-life--yukihiro-takahashi",
+      "type": "project",
+      "name": "X’MAS DAY IN THE NEXT LIFE",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "1cb128bf-143c-46d6-925d-cc4c01104d9b",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ego--yukihiro-takahashi",
+      "type": "project",
+      "name": "EGO",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "a8efef98-99fd-4a96-9dfc-b1e34c1e030d",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-pensee--yukihiro-takahashi",
+      "type": "project",
+      "name": "La Pensée",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "304ae18c-41f3-4863-b759-967af0f0fed0",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:only-when-i-laugh--yukihiro-takahashi",
+      "type": "project",
+      "name": "…Only When I Laugh",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "18b97d73-cabd-41bb-ab36-c5ce8bb299e5",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:once-a-fool--yukihiro-takahashi",
+      "type": "project",
+      "name": "ONCE A FOOL,…",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "ac300e7d-6bfa-4cd4-b947-2c4cdfa668da",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wild-and-moody--yukihiro-takahashi",
+      "type": "project",
+      "name": "Wild & Moody",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "61da2e91-735f-305e-87d7-334747d5529b",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:what-me-worry--yukihiro-takahashi",
+      "type": "project",
+      "name": "What, Me Worry?",
+      "artist": "Yukihiro Takahashi",
+      "mbid": "caf6bf71-085f-30a9-a95e-6a8d1ae3b5bf",
+      "year": "1982",
+      "releaseType": "album"
     },
     {
       "slug": "project:neuromantic",
       "type": "project",
-      "name": "Neuromantic"
+      "name": "Neuromantic",
+      "mbid": "d3d5a11d-5c4a-3111-955b-8c92e269228b",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:murdered-by-the-music",
+      "type": "project",
+      "name": "Murdered by the Music",
+      "mbid": "534470ad-3de8-3912-91fa-c68a329f4d9c",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:saravah",
+      "type": "project",
+      "name": "Saravah!",
+      "mbid": "c7b7d203-30b0-355e-851d-686fec0b0991",
+      "year": "1978",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

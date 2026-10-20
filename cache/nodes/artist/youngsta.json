@@ -51,6 +51,68 @@
   ],
   "discography": [
     {
+      "slug": "project:the-curse--youngsta",
+      "type": "project",
+      "name": "The Curse",
+      "artist": "Youngsta",
+      "mbid": "7287421d-6576-4f8f-8c04-497307e75774",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:plenty--youngsta",
+      "type": "project",
+      "name": "Plenty",
+      "artist": "Youngsta",
+      "mbid": "f0cccd15-a8ab-4ddc-9701-16ce0817a2ea",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:terror-industrial--youngsta",
+      "type": "project",
+      "name": "Terror / Industrial",
+      "artist": "Youngsta",
+      "mbid": "efe8d3ce-f7cb-4075-bd4e-3d8713da5531",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:split-minds-redshift--youngsta",
+      "type": "project",
+      "name": "Split Minds / Redshift",
+      "artist": "Youngsta",
+      "mbid": "0066cd98-30e8-4114-a95f-313d6a8e3d75",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:architects-war-cry--youngsta",
+      "type": "project",
+      "name": "Architects / War Cry",
+      "artist": "Youngsta",
+      "mbid": "a5906de7-a221-4fce-9b55-4e889a1ed283",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:destruction-poseidon--youngsta",
+      "type": "project",
+      "name": "Destruction / Poseidon",
+      "artist": "Youngsta",
+      "mbid": "534318a3-8a42-4d08-8fab-996e5680b2d4",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rinse-14",
+      "type": "project",
+      "name": "Rinse 14",
+      "mbid": "be520a46-3335-4c81-8211-fa8a163104ac",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:dubstep-allstars-vol-2",
       "type": "project",
       "name": "Dubstep Allstars Vol. 2"
@@ -59,11 +121,6 @@
       "slug": "project:dubstep-allstars-vol-4",
       "type": "project",
       "name": "Dubstep Allstars Vol. 4"
-    },
-    {
-      "slug": "project:rinse-14",
-      "type": "project",
-      "name": "Rinse 14"
     }
   ],
   "notable_tracks": [

@@ -57,7 +57,134 @@
       "name": "Virgin Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:headlines-friendship-never-ends--spice-girls",
+      "type": "project",
+      "name": "Headlines (Friendship Never Ends)",
+      "artist": "Spice Girls",
+      "mbid": "741e5371-7f73-3e97-b539-cc803734a060",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:forever--spice-girls",
+      "type": "project",
+      "name": "Forever",
+      "artist": "Spice Girls",
+      "mbid": "7b90d6bc-31f8-443e-8e75-4404b7a63039",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:holler-let-love-lead-the-way--spice-girls",
+      "type": "project",
+      "name": "Holler / Let Love Lead the Way",
+      "artist": "Spice Girls",
+      "mbid": "9efe465a-7752-3a17-bdc6-c008ce8fc63e",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:goodbye--spice-girls",
+      "type": "project",
+      "name": "Goodbye",
+      "artist": "Spice Girls",
+      "mbid": "8c66ffff-4f95-3d9b-9286-574123e6063d",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:viva-forever--spice-girls",
+      "type": "project",
+      "name": "Viva Forever",
+      "artist": "Spice Girls",
+      "mbid": "b245541b-41b7-3ad6-bb80-86028adeb3b3",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mama-who-do-you-think-you-are--spice-girls",
+      "type": "project",
+      "name": "Mama / Who Do You Think You Are",
+      "artist": "Spice Girls",
+      "mbid": "cc4c71b2-905f-3ddb-935b-103303680188",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spice-up-your-life--spice-girls",
+      "type": "project",
+      "name": "Spice Up Your Life",
+      "artist": "Spice Girls",
+      "mbid": "aa8274d8-b201-4a1b-a03b-5e3d48f50f23",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spiceworld--spice-girls",
+      "type": "project",
+      "name": "Spiceworld",
+      "artist": "Spice Girls",
+      "mbid": "381688eb-8a4e-3230-8819-dc11d437bb60",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stop--spice-girls",
+      "type": "project",
+      "name": "Stop",
+      "artist": "Spice Girls",
+      "mbid": "2a90dc8e-a859-4941-854e-ca33c1c170bb",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:too-much--spice-girls",
+      "type": "project",
+      "name": "Too Much",
+      "artist": "Spice Girls",
+      "mbid": "3552c358-a897-3570-be8d-12deb3ceb15f",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:2-become-1--spice-girls",
+      "type": "project",
+      "name": "2 Become 1",
+      "artist": "Spice Girls",
+      "mbid": "3cc8d134-469e-33dd-9979-61ecf5061977",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:say-you-ll-be-there--spice-girls",
+      "type": "project",
+      "name": "Say You’ll Be There",
+      "artist": "Spice Girls",
+      "mbid": "83ffb3a7-c3f5-393f-a9ce-fceb00bb9f8c",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spice--spice-girls",
+      "type": "project",
+      "name": "Spice",
+      "artist": "Spice Girls",
+      "mbid": "4180845c-8700-3fda-af8f-0b9f3a932009",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wannabe--spice-girls",
+      "type": "project",
+      "name": "Wannabe",
+      "artist": "Spice Girls",
+      "mbid": "b50ee798-2b55-3c1b-9d67-f8d0d8395732",
+      "year": "1996",
+      "releaseType": "single"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:wannabe",

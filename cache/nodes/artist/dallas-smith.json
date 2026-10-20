@@ -61,24 +61,108 @@
   ],
   "discography": [
     {
-      "slug": "project:jumped-right-in",
+      "slug": "project:how-do-you-miss-me--dallas-smith",
       "type": "project",
-      "name": "Jumped Right In"
+      "name": "How Do You Miss Me",
+      "artist": "Dallas Smith",
+      "mbid": "a12e51a8-f86a-4b01-a993-d0fc46570f5f",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:lifted",
+      "slug": "project:dallas-smith--dallas-smith",
       "type": "project",
-      "name": "Lifted"
+      "name": "Dallas Smith",
+      "artist": "Dallas Smith",
+      "mbid": "c123354f-946c-40e0-a4d6-31a89b374bd1",
+      "year": "2023",
+      "releaseType": "album"
     },
     {
-      "slug": "project:side-effects",
+      "slug": "project:one-too--dallas-smith",
       "type": "project",
-      "name": "Side Effects"
+      "name": "One Too",
+      "artist": "Dallas Smith",
+      "mbid": "98d08bcb-9315-449e-b2e4-341038fee657",
+      "year": "2022",
+      "releaseType": "single"
     },
     {
       "slug": "project:timeless--dallas-smith",
       "type": "project",
-      "name": "Timeless"
+      "name": "Timeless",
+      "mbid": "1c30f125-57c3-4816-92f6-3e92716c6e45",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-fall--dallas-smith",
+      "type": "project",
+      "name": "The Fall",
+      "artist": "Dallas Smith",
+      "mbid": "04621701-153c-456f-9669-3c15d286c185",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:acoustic-sessions-vol-1--dallas-smith",
+      "type": "project",
+      "name": "Acoustic Sessions Vol. 1",
+      "artist": "Dallas Smith",
+      "mbid": "30a8d08d-cd89-4355-b4f1-eba6064aa018",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:one-drink-ago--dallas-smith",
+      "type": "project",
+      "name": "One Drink Ago",
+      "artist": "Dallas Smith",
+      "mbid": "4acfd1a6-a3cc-4fd3-ad38-e0e8c989d359",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:side-effects",
+      "type": "project",
+      "name": "Side Effects",
+      "mbid": "f9f89f3a-1493-48b8-abc3-2b21b5a2238f",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kids-with-cars--dallas-smith",
+      "type": "project",
+      "name": "Kids With Cars",
+      "artist": "Dallas Smith",
+      "mbid": "e09ebf04-3322-4bde-870e-b5dd4ffe217b",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:lifted",
+      "type": "project",
+      "name": "Lifted",
+      "mbid": "e5d32d0a-b34c-4d3e-92b8-f2f750fb199e",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tippin-point-ep--dallas-smith",
+      "type": "project",
+      "name": "Tippin’ Point EP",
+      "artist": "Dallas Smith",
+      "mbid": "d55e0db6-1b64-4ef4-a53d-410a99bc32cf",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:jumped-right-in",
+      "type": "project",
+      "name": "Jumped Right In",
+      "mbid": "51d10517-75f0-4663-a419-3246b174ef3b",
+      "year": "2012",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

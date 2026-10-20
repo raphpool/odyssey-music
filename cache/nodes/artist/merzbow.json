@@ -54,10 +54,220 @@
   "labels": [],
   "discography": [
     {
+      "slug": "project:avian-hydraulics--merzbow",
+      "type": "project",
+      "name": "Avian Hydraulics",
+      "artist": "Merzbow",
+      "mbid": "aa138076-ea19-4a73-80ac-12f77829e1da",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:merzbow-meets-sphinx-africa--merzbow",
+      "type": "project",
+      "name": "Merzbow meets Sphinx Africa",
+      "artist": "Merzbow",
+      "mbid": "60846ae5-1748-40a9-88c6-4651764e9dd5",
+      "year": "2026",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stu-the-goat--merzbow",
+      "type": "project",
+      "name": "Stu the Goat",
+      "artist": "Merzbow",
+      "mbid": "f6bb63cd-543d-458c-b642-6444c489892f",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kachouzu--merzbow",
+      "type": "project",
+      "name": "Kachouzu",
+      "artist": "Merzbow",
+      "mbid": "22d690ae-bb7f-41ce-95ab-ddf6072a0ec7",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:magpie--merzbow",
+      "type": "project",
+      "name": "Magpie",
+      "artist": "Merzbow",
+      "mbid": "c959e134-9b16-482a-800a-47e0c1c2a66e",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:merzlicht--merzbow",
+      "type": "project",
+      "name": "Merzlicht",
+      "artist": "Merzbow",
+      "mbid": "0d103171-4d76-4494-a516-c0006fb0e242",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pendulum--merzbow",
+      "type": "project",
+      "name": "Pendulum",
+      "artist": "Merzbow",
+      "mbid": "676eb83d-2178-44e6-84c8-9fc0d4d2d48c",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:merzbuddha-variations--merzbow",
+      "type": "project",
+      "name": "Merzbuddha Variations",
+      "artist": "Merzbow",
+      "mbid": "8da39ce9-cf31-4b83-9bac-83253c6edf19",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lop-lop--merzbow",
+      "type": "project",
+      "name": "Lop Lop",
+      "artist": "Merzbow",
+      "mbid": "e953aec0-7f2e-480a-9073-35780d63aa1f",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:partikel--merzbow",
+      "type": "project",
+      "name": "Partikel",
+      "artist": "Merzbow",
+      "mbid": "d064a288-15ee-3e3e-b023-5456106903c4",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:merzbeat--merzbow",
+      "type": "project",
+      "name": "Merzbeat",
+      "artist": "Merzbow",
+      "mbid": "c19c09d3-015a-3718-aa98-11dc8cd29cf8",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hybrid-noisebloom--merzbow",
+      "type": "project",
+      "name": "Hybrid Noisebloom",
+      "artist": "Merzbow",
+      "mbid": "d57477c1-3d83-3312-b636-55f14e06b73a",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:arctic-twilight-anthem-of-the-sun--merzbow",
+      "type": "project",
+      "name": "Arctic Twilight / Anthem of the Sun",
+      "artist": "Merzbow",
+      "mbid": "c155c51c-66df-4b8a-a06b-8df6d2b7c725",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:electric-salad--merzbow",
+      "type": "project",
+      "name": "Electric Salad",
+      "artist": "Merzbow",
+      "mbid": "26990aec-c2ba-3bbd-9642-17a9a340615e",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:magnesia-nova--merzbow",
+      "type": "project",
+      "name": "Magnesia Nova",
+      "artist": "Merzbow",
+      "mbid": "ac549384-6e3b-3f86-b818-803dab93cb75",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mercurated--merzbow",
+      "type": "project",
+      "name": "Mercurated",
+      "artist": "Merzbow",
+      "mbid": "5ab28689-0f5c-3911-9fa3-5242c70f7e43",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-for-bondage-performance-2--merzbow",
+      "type": "project",
+      "name": "Music for Bondage Performance 2",
+      "artist": "Merzbow",
+      "mbid": "0b594e18-2ad0-3a1d-872f-6f5fe9683974",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:oersted--merzbow",
+      "type": "project",
+      "name": "Oersted",
+      "artist": "Merzbow",
+      "mbid": "68a0cf0c-d8cd-3976-9000-fe1938324a78",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:pulse-demon--merzbow",
       "type": "project",
       "name": "Pulse Demon",
-      "artist": "Merzbow"
+      "artist": "Merzbow",
+      "mbid": "9c7ea5d2-2a14-3ba3-bb03-389bf1f0a926",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rainbow-electronics-2--merzbow",
+      "type": "project",
+      "name": "Rainbow Electronics 2",
+      "artist": "Merzbow",
+      "mbid": "99a0f86b-33c2-33e0-9220-2d4fa448700b",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:voice-pie--merzbow",
+      "type": "project",
+      "name": "Voice Pie",
+      "artist": "Merzbow",
+      "mbid": "090ae5ec-c26c-3549-852d-e0e7b5fe71ef",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pinkream--merzbow",
+      "type": "project",
+      "name": "Pinkream",
+      "artist": "Merzbow",
+      "mbid": "7fdc3f8d-1340-3bd5-a8fd-22332469435e",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:venereology--merzbow",
+      "type": "project",
+      "name": "Venereology",
+      "artist": "Merzbow",
+      "mbid": "7c386da7-3af0-3cd3-8053-b723002bb40c",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:metalvelodrome-exposition-of-electro-vivisection--merzbow",
+      "type": "project",
+      "name": "Metalvelodrome: Exposition of Electro‐Vivisection",
+      "artist": "Merzbow",
+      "mbid": "ab3c0a22-0339-310b-80e9-5cd75b361a1c",
+      "year": "1993",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [],

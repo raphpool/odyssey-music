@@ -55,65 +55,101 @@
   ],
   "discography": [
     {
-      "slug": "project:hongkong--monolake",
+      "slug": "project:studio",
       "type": "project",
-      "name": "Hongkong"
-    },
-    {
-      "slug": "project:interstate",
-      "type": "project",
-      "name": "Interstate"
-    },
-    {
-      "slug": "project:cinemascope",
-      "type": "project",
-      "name": "Cinemascope"
-    },
-    {
-      "slug": "project:gravity",
-      "type": "project",
-      "name": "Gravity"
-    },
-    {
-      "slug": "project:momentum",
-      "type": "project",
-      "name": "Momentum"
-    },
-    {
-      "slug": "project:polygon-cities--monolake",
-      "type": "project",
-      "name": "Polygon Cities"
-    },
-    {
-      "slug": "project:silence",
-      "type": "project",
-      "name": "Silence"
-    },
-    {
-      "slug": "project:ghosts",
-      "type": "project",
-      "name": "Ghosts"
-    },
-    {
-      "slug": "project:vlsi--monolake",
-      "type": "project",
-      "name": "VLSI"
+      "name": "Studio",
+      "mbid": "cc77aae5-dcfd-4540-9870-044f91794cc6",
+      "year": "2024",
+      "releaseType": "album"
     },
     {
       "slug": "project:archaeopteryx--monolake",
       "type": "project",
-      "name": "Archaeopteryx"
+      "name": "Archaeopteryx",
+      "mbid": "3340a1c6-e657-4862-99d1-92bb9eb3f25c",
+      "year": "2020",
+      "releaseType": "album"
     },
     {
-      "slug": "project:studio",
+      "slug": "project:vlsi--monolake",
       "type": "project",
-      "name": "Studio"
+      "name": "VLSI",
+      "mbid": "548c1d30-722b-4c2e-a28f-f96c077fd48d",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ghosts",
+      "type": "project",
+      "name": "Ghosts",
+      "mbid": "cb56d938-3e61-49af-b9a4-9c15693a139f",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:silence",
+      "type": "project",
+      "name": "Silence",
+      "mbid": "5e580877-a219-444a-8acd-3fdb2fb807b8",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:polygon-cities--monolake",
+      "type": "project",
+      "name": "Polygon Cities",
+      "mbid": "c6f3011c-14ac-3045-9514-8e2c434f673b",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:momentum",
+      "type": "project",
+      "name": "Momentum",
+      "mbid": "6132ffb9-229b-3136-862f-19488db88457",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cinemascope",
+      "type": "project",
+      "name": "Cinemascope",
+      "mbid": "36407224-9fc2-369f-89a5-8afeea717de5",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gravity",
+      "type": "project",
+      "name": "Gravity",
+      "mbid": "a6ee9d93-7a00-32c7-b410-842eeb8d1f7f",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:interstate",
+      "type": "project",
+      "name": "Interstate",
+      "mbid": "d08d33a0-a2e4-3863-aa99-a68cecc904b8",
+      "year": "1999",
+      "releaseType": "album"
     },
     {
       "slug": "project:interstate--monolake",
       "type": "project",
       "name": "Interstate",
-      "artist": "Monolake"
+      "artist": "Monolake",
+      "mbid": "d08d33a0-a2e4-3863-aa99-a68cecc904b8",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hongkong--monolake",
+      "type": "project",
+      "name": "Hongkong",
+      "mbid": "31e04335-1726-3593-b4af-0ac858df5506",
+      "year": "1997",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [],

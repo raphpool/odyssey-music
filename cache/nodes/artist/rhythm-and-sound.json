@@ -42,7 +42,206 @@
     }
   ],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:free-for-all--rhythm-and-sound",
+      "type": "project",
+      "name": "Free for All",
+      "artist": "Rhythm & Sound",
+      "mbid": "dfab0f6a-4041-4d7e-8b25-0a4459dc2e6b",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lightning-storm--rhythm-and-sound",
+      "type": "project",
+      "name": "Lightning Storm",
+      "artist": "Rhythm & Sound",
+      "mbid": "3e568734-e589-477e-8418-6f8ede1f8162",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:truly--rhythm-and-sound",
+      "type": "project",
+      "name": "Truly",
+      "artist": "Rhythm & Sound",
+      "mbid": "76824e57-0911-4be5-87cf-fb95596467c2",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mash-down-babylon--rhythm-and-sound",
+      "type": "project",
+      "name": "Mash Down Babylon",
+      "artist": "Rhythm & Sound",
+      "mbid": "74265225-1a0d-4262-b8ab-17435cc8ae1a",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:music-hit-you--rhythm-and-sound",
+      "type": "project",
+      "name": "Music Hit You",
+      "artist": "Rhythm & Sound",
+      "mbid": "e7b40a70-4ed6-429d-b055-cbbedd6376ac",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:queen-in-my-empire--rhythm-and-sound",
+      "type": "project",
+      "name": "Queen in My Empire",
+      "artist": "Rhythm & Sound",
+      "mbid": "bd247aa2-2746-484f-81a8-b34835b8bc2b",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:aground-aerial--rhythm-and-sound",
+      "type": "project",
+      "name": "Aground / Aerial",
+      "artist": "Rhythm & Sound",
+      "mbid": "524ea573-b027-39c9-a04e-6113b2cff6d1",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:best-friend--rhythm-and-sound",
+      "type": "project",
+      "name": "Best Friend",
+      "artist": "Rhythm & Sound",
+      "mbid": "5d5faf4c-bd2c-464c-a6f0-bfad0fbb5e74",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:making-history--rhythm-and-sound",
+      "type": "project",
+      "name": "Making History",
+      "artist": "Rhythm & Sound",
+      "mbid": "7774613e-c80e-4739-a1cb-81b1e030fabf",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:we-been-troddin--rhythm-and-sound",
+      "type": "project",
+      "name": "We Been Troddin",
+      "artist": "Rhythm & Sound",
+      "mbid": "43ff51ef-8d34-4888-8283-f4b3e93f98e7",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jah-rule--rhythm-and-sound",
+      "type": "project",
+      "name": "Jah Rule",
+      "artist": "Rhythm & Sound",
+      "mbid": "a3970dbe-b8a2-40f7-96ac-53bf109f9aaa",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:king-in-my-empire--rhythm-and-sound",
+      "type": "project",
+      "name": "King in My Empire",
+      "artist": "Rhythm & Sound",
+      "mbid": "2f49795f-0ffb-465b-87cd-b34b6c851be3",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trace-imprint--rhythm-and-sound",
+      "type": "project",
+      "name": "Trace / Imprint",
+      "artist": "Rhythm & Sound",
+      "mbid": "e036992c-2979-3792-8ae2-9ae68a17ff9d",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:carrier--rhythm-and-sound",
+      "type": "project",
+      "name": "Carrier",
+      "artist": "Rhythm & Sound",
+      "mbid": "f7e35d01-54ed-3dc2-947c-da8cfda2e053",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:smile--rhythm-and-sound",
+      "type": "project",
+      "name": "Smile",
+      "artist": "Rhythm & Sound",
+      "mbid": "199d2eac-5195-3ee8-93c9-5820a8dcb025",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:roll-off--rhythm-and-sound",
+      "type": "project",
+      "name": "Roll Off",
+      "artist": "Rhythm & Sound",
+      "mbid": "746c9821-1dea-3af1-b743-bb339b277c9e",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:why--rhythm-and-sound",
+      "type": "project",
+      "name": "Why",
+      "artist": "Rhythm & Sound",
+      "mbid": "1420a9ba-cb6e-4f5a-8465-9b0bfff57472",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:music-a-fe-rule--rhythm-and-sound",
+      "type": "project",
+      "name": "Music a Fe Rule",
+      "artist": "Rhythm & Sound",
+      "mbid": "11b090fb-fbfb-3d65-aa6d-c9ae84b31be3",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ruff-way--rhythm-and-sound",
+      "type": "project",
+      "name": "Ruff Way",
+      "artist": "Rhythm & Sound",
+      "mbid": "854633a2-3288-44d0-b9aa-0c77f81a81a2",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-a-mistry--rhythm-and-sound",
+      "type": "project",
+      "name": "What a Mistry",
+      "artist": "Rhythm & Sound",
+      "mbid": "f2120af3-9a01-46a4-93ac-40dd15eb1133",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:never-tell-you--rhythm-and-sound",
+      "type": "project",
+      "name": "Never Tell You",
+      "artist": "Rhythm & Sound",
+      "mbid": "05a42d2b-0dea-4797-9f01-9538ce3e17d8",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spend-some-time--rhythm-and-sound",
+      "type": "project",
+      "name": "Spend Some Time",
+      "artist": "Rhythm & Sound",
+      "mbid": "d3c628a0-88b0-40a7-8861-6eaed6736086",
+      "year": "1996",
+      "releaseType": "single"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],

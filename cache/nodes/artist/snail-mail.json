@@ -51,19 +51,154 @@
   ],
   "discography": [
     {
-      "slug": "project:habit",
+      "slug": "project:dead-end--snail-mail",
       "type": "project",
-      "name": "Habit"
+      "name": "Dead End",
+      "artist": "Snail Mail",
+      "mbid": "4cc06e74-4b56-49af-87c1-68f06c92e81b",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:lush",
+      "slug": "project:my-maker--snail-mail",
       "type": "project",
-      "name": "Lush"
+      "name": "My Maker",
+      "artist": "Snail Mail",
+      "mbid": "c549f24a-954d-442f-85a4-fae556a12142",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ricochet--snail-mail",
+      "type": "project",
+      "name": "Ricochet",
+      "artist": "Snail Mail",
+      "mbid": "812fa041-72e3-4fe7-8f4a-dafdb5d99125",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tractor-beam--snail-mail",
+      "type": "project",
+      "name": "Tractor Beam",
+      "artist": "Snail Mail",
+      "mbid": "2ac12e3c-5c5e-4c82-889a-db73084ab711",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tonight-tonight--snail-mail",
+      "type": "project",
+      "name": "Tonight, Tonight",
+      "artist": "Snail Mail",
+      "mbid": "dc632d89-d46c-4b43-a616-96a14ed75898",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:easy-thing--snail-mail",
+      "type": "project",
+      "name": "Easy Thing",
+      "artist": "Snail Mail",
+      "mbid": "1069b6af-d0dc-4ffa-ad5e-cd195e27096a",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:valentine-demos--snail-mail",
+      "type": "project",
+      "name": "Valentine (demos)",
+      "artist": "Snail Mail",
+      "mbid": "aa4df891-5bb9-4169-82b1-1bf1fbd192cc",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:adore-you-valentine-demo--snail-mail",
+      "type": "project",
+      "name": "Adore You (Valentine demo)",
+      "artist": "Snail Mail",
+      "mbid": "b0c85d6a-129c-4b5e-86a7-f425b739ac29",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spotify-singles--snail-mail",
+      "type": "project",
+      "name": "Spotify Singles",
+      "artist": "Snail Mail",
+      "mbid": "ed79307c-1818-42a4-85cd-440505687383",
+      "year": "2022",
+      "releaseType": "single"
     },
     {
       "slug": "project:valentine",
       "type": "project",
-      "name": "Valentine"
+      "name": "Valentine",
+      "mbid": "294e4822-77bd-499e-ae6f-4c890d79b699",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:heat-wave--snail-mail",
+      "type": "project",
+      "name": "Heat Wave",
+      "artist": "Snail Mail",
+      "mbid": "fa70cd9c-4288-4403-a258-3ba6a109d095",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:let-s-find-an-out--snail-mail",
+      "type": "project",
+      "name": "Let‘s Find an Out",
+      "artist": "Snail Mail",
+      "mbid": "945aec76-93f9-482b-964a-bfbc28bf9077",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lush",
+      "type": "project",
+      "name": "Lush",
+      "mbid": "aab57d48-aa8f-48ed-bba0-c8dc56aba8ab",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pristine--snail-mail",
+      "type": "project",
+      "name": "Pristine",
+      "artist": "Snail Mail",
+      "mbid": "6f37ed25-c137-46bd-8421-6908a5134688",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-2nd-most-beautiful-girl-in-the-world--snail-mail",
+      "type": "project",
+      "name": "The 2nd Most Beautiful Girl in the World",
+      "artist": "Snail Mail",
+      "mbid": "e242937e-4d1e-46ef-aa40-516c41949b45",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:habit",
+      "type": "project",
+      "name": "Habit",
+      "mbid": "9221c2dc-ab12-47fb-8034-b1149e37e16a",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sticki--snail-mail",
+      "type": "project",
+      "name": "Sticki",
+      "artist": "Snail Mail",
+      "mbid": "26094be9-c01b-4394-9194-1377f9773594",
+      "year": "2015",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

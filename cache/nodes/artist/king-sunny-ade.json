@@ -55,6 +55,86 @@
   ],
   "discography": [
     {
+      "slug": "project:sunny-ade-vol-1--king-sunny-ade",
+      "type": "project",
+      "name": "Sunny Ade, Vol. 1",
+      "artist": "King Sunny Ade",
+      "mbid": "08db3f1d-646b-44da-ba29-6d4280c5651e",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:baba-mo-tunde--king-sunny-ade",
+      "type": "project",
+      "name": "Bábá Mo Túndé",
+      "artist": "King Sunny Ade",
+      "mbid": "68474738-7e49-4d8c-8dbf-0e302e4587b6",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:seven-degrees-north--king-sunny-ade",
+      "type": "project",
+      "name": "Seven Degrees North",
+      "artist": "King Sunny Ade",
+      "mbid": "b5c9ff31-36a9-3a48-91f4-e4ab5510aa89",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:odu",
+      "type": "project",
+      "name": "Odu",
+      "mbid": "6a9fe4fd-e64a-3356-a712-862ca280c467",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ogun--king-sunny-ade",
+      "type": "project",
+      "name": "Ogun",
+      "artist": "King Sunny Ade",
+      "mbid": "b7dbe100-5b5e-4b3f-9d0d-296c513b8dd2",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:e-dide-get-up--king-sunny-ade",
+      "type": "project",
+      "name": "Ẹ Dide / Get Up",
+      "artist": "King Sunny Ade",
+      "mbid": "4b8a1c35-0365-30f8-8e04-9326161f943e",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:let-them-say--king-sunny-ade",
+      "type": "project",
+      "name": "Let Them Say",
+      "artist": "King Sunny Ade",
+      "mbid": "75d16043-66cb-440b-9531-931682731d66",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sweet-banana--king-sunny-ade",
+      "type": "project",
+      "name": "Sweet Banana",
+      "artist": "King Sunny Ade",
+      "mbid": "681f0d25-2447-434f-98c0-d7ab4e973441",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vintage--king-sunny-ade",
+      "type": "project",
+      "name": "Vintage",
+      "artist": "King Sunny Ade",
+      "mbid": "f12bf97d-db7a-489e-8edf-0cfadd17586b",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:juju-music",
       "type": "project",
       "name": "Juju Music"
@@ -65,9 +145,20 @@
       "name": "Syncro System"
     },
     {
-      "slug": "project:odu",
+      "slug": "project:ajoo--king-sunny-ade",
       "type": "project",
-      "name": "Odu"
+      "name": "Ajoo",
+      "artist": "King Sunny Ade",
+      "mbid": "3e3f8b0e-1977-4fa0-b971-c8c9bca1fa63",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:let-them-say-and-edide--king-sunny-ade",
+      "type": "project",
+      "name": "Let Them Say & Edide",
+      "artist": "King Sunny Ade",
+      "mbid": "ffe113c9-ce8d-35da-9ea8-dcf59478f24d",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [],
