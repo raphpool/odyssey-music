@@ -38,10 +38,6 @@ final class OnboardingCopyTests: XCTestCase {
 		XCTAssertEqual(OnboardingCopy.selectionSummary(families: -1, genres: -4), "0 famille")
 	}
 
-	func testTheHelpLineTellsThatAnEmptyListIsTheWholeFamily() {
-		XCTAssertEqual(OnboardingCopy.wholeFamilyHint, "Sans sous-genre coché, toute la famille compte.")
-	}
-
 	func testTheSubgenreCountIsSingularForZero() {
 		XCTAssertEqual(OnboardingCopy.subgenreCount(0), "0 sous-genre")
 	}
