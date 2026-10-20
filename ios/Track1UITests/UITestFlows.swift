@@ -98,9 +98,25 @@ enum UITestFlows {
 	@MainActor
 	static func completeOnboarding(_ app: XCUIApplication) {
 		tapWhenReady(app.buttons["onboarding-start"])
-		tapWhenReady(app.buttons["genre-card-family-0"])
-		tapWhenReady(app.buttons["subgenre-chip-local:genre-0a"])
-		tapWhenReady(app.buttons["onboarding-genres-continue"])
+		let bar = app.buttons["onboarding-genres-continue"]
+		tapAboveBar(app.buttons["genre-card-family-0"], bar: bar, in: app)
+		tapAboveBar(app.buttons["subgenre-chip-local:genre-0a"], bar: bar, in: app)
+		tapWhenReady(bar)
+	}
+
+	/// 2026-10-20 (TRA-639, ios-check): at the largest text size the header of the genre screen fills the
+	/// first screen, so the cards, then the chips of the open card, start under the pinned action bar, which
+	/// takes the touch (the large text test of `NavigationTests` waited 10 s for a chip that never showed).
+	/// The list is scrolled until the element clears the bar and the 24 pt above its button, as a person would.
+	@MainActor
+	static func tapAboveBar(_ element: XCUIElement, bar: XCUIElement, in app: XCUIApplication) {
+		XCTAssertTrue(element.waitForExistence(timeout: 10), "\(element) did not appear")
+		XCTAssertTrue(bar.waitForExistence(timeout: 10), "\(bar) did not appear")
+		for _ in 0..<8 where element.frame.maxY > bar.frame.minY - 24 {
+			app.swipeUp()
+		}
+		XCTAssertLessThanOrEqual(element.frame.maxY, bar.frame.minY - 24, "\(element) stays under the action bar")
+		element.tap()
 	}
 
 	/// Waits for `element` to be there and enabled (the CTA of a step is disabled until a genre is chosen).
