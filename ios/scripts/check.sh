@@ -437,6 +437,12 @@ remove_orphan_harnesses() {
 }
 
 start_contract_harness() {
+	# 2026-10-19 (TRA-643): the wait was 5 s (100 tries of 0.05 s). With five PRs running CI on the same Mac, the
+	# cold start of tsx on the graph of server.ts took longer, and ios-check failed with "did not publish its XCTest
+	# base URL" on a Swift-only diff. A harness that dies is still caught by `kill -0` at once, so a long budget
+	# only costs time when the harness is alive and slow.
+	local -r ready_wait_tries=600 # x 0.05 s of sleep = 30 s, a little more with the loop overhead
+	local try
 	contract_dir="$(mktemp -d "${TMPDIR:-/tmp}/track1-contract.XXXXXX")"
 	local ready_file="$contract_dir/base-url"
 	local log_file="$contract_dir/server.log"
@@ -453,7 +459,7 @@ start_contract_harness() {
 		FIRECRAWL_API_KEY="contract-test-only" \
 		node --import tsx "$repository_root/test/helpers/mobile-contract-server.ts" --ready-file "$ready_file" >"$log_file" 2>&1 &
 	contract_pid=$!
-	for _ in {1..100}; do
+	for ((try = 0; try < ready_wait_tries; try++)); do
 		[[ -s "$ready_file" ]] && break
 		if ! kill -0 "$contract_pid" 2>/dev/null; then
 			cat "$log_file" >&2
@@ -729,7 +735,7 @@ for scheme in Track1 Track1Preview; do
 done
 end_step
 
-# Includes the start of the contract harness, which is quick.
+# Includes the start of the contract harness: quick when the Mac is idle, up to ~30 s (TRA-643) when it is loaded.
 begin_step simulator-boot
 start_contract_harness
 
