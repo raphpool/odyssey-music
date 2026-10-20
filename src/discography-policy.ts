@@ -402,7 +402,6 @@ export interface MergeInput {
 	existing: readonly EdgeRef[]; // the artist's current discography
 	candidates: readonly ReleaseGroupCandidate[]; // selectReleases(...).kept: what may be added
 	// Every release group first-credited to the artist, any type: what an mbid may be posed from.
-	// An mbid may only be posed from one that passes the credit rule of classifyRelease (TRA-647).
 	allCredited: readonly ReleaseGroupCandidate[];
 	policy: DiscographyPolicy;
 	projectIndex: {
@@ -414,7 +413,13 @@ export interface MergeInput {
 	};
 }
 
-export type AmbiguousReason = "multiple" | "type" | "year-mismatch" | "node-conflict" | "unrated-pose";
+export type AmbiguousReason =
+	| "multiple"
+	| "type"
+	| "year-mismatch"
+	| "node-conflict"
+	| "unrated-pose"
+	| "credit";
 
 export interface MergeResult {
 	edges: EdgeRef[];
@@ -525,17 +530,23 @@ interface PoseCaution {
 }
 
 /**
- * decidePose, with a second look at an entry that states neither releaseType nor year (TRA-647, measured
- * 2026-10-20 on the cache of PR #562: 804 of 809 poses were of that kind, and 5 of them took a minor release of
- * the exact title: Kraftwerk "Trans-Europe Express" a 1999 promo single, Zappa "Joe's Garage" the single while the
- * album is "Joe's Garage Act I", Sakamoto "Vrioon" the 2022 reissue, against the mbid its node already held).
- * With no type and no year, nothing but the title backs the pose. So, in this order:
- *  1. the entry's project node holds an mbid: it is the identity. It is posed if it is among the candidates,
- *     even where several compete; otherwise nothing is posed, `node-conflict`;
- *  2. the artist is rated and the release group to pose has no vote and is not recent: nothing is posed,
- *     `unrated-pose`. A minor release rarely has votes where the real album has them; below the threshold
- *     (Kode9, 4hero) nobody has votes and the rule stays out.
- * A year or a type on the entry (or a year in its title) keeps the guards of decidePose.
+ * decidePose, with the guards of TRA-647 (measured 2026-10-20 on the cache of PR #562: 804 of 809 poses were of
+ * an entry with neither type nor year, and 5 of them took a minor release of the exact title: Kraftwerk
+ * "Trans-Europe Express" a 1999 promo single, Zappa "Joe's Garage" the single while the album is "Joe's Garage Act
+ * I", Sakamoto "Vrioon" the 2022 reissue, against the mbid its node already held). In this order:
+ *  1. an entry without year whose project node holds an mbid: it is the identity. It is posed if it is among the
+ *     candidates, even where several compete (an entry that states a type still may not take another type);
+ *     otherwise nothing is posed, `node-conflict`;
+ *  2. otherwise decidePose decides, on the whole group, with its resolution of several release groups;
+ *  3. whatever was decided, the release group to pose must pass the credit rule of classifyRelease (the artist
+ *     heads it, at most two credits, not Various Artists), else nothing is posed, `credit`. It is checked on the
+ *     one the decision picked, never on the group beforehand: removing a candidate first would turn "two
+ *     recordings" into a confident pose on the other, or an album into its single (TRA-560). Ellington's "Black,
+ *     Brown and Beige" took a 2013 recording credited to three artists;
+ *  4. an entry with neither year nor type, an artist with MIN_VOTED_FOR_UNRATED_CUT voted release groups, and a
+ *     release group with no vote that is not recent: nothing is posed, `unrated-pose`. A minor release rarely has
+ *     votes where the real album has them; below the threshold (Kode9, 4hero) nobody has votes and it stays out.
+ * A year or a type on the entry (or a year in its title) keeps the guards of decidePose for 1 and 4.
  */
 function decideCautiously(
 	entry: EdgeRef,
@@ -543,18 +554,25 @@ function decideCautiously(
 	titleYear: number | null,
 	caution: PoseCaution,
 ): PoseVerdict {
-	const unstated = entry.releaseType === undefined && yearOf(entry.year) === null && titleYear === null;
-	if (!unstated || matches.length === 0) return decidePose(entry, matches, titleYear);
-	const nodeMbid = caution.nodeMbidOf(entry);
+	const hasYear = yearOf(entry.year) !== null || titleYear !== null;
+	const unstated = entry.releaseType === undefined && !hasYear;
+	const nodeMbid = !hasYear && matches.length > 0 ? caution.nodeMbidOf(entry) : undefined;
+	let verdict: PoseVerdict;
 	if (nodeMbid !== undefined) {
 		const held = matches.find((m) => sameMbid(m.mbid, nodeMbid));
-		return held === undefined
-			? { kind: "ambiguous", reason: "node-conflict" }
-			: { kind: "pose", match: held };
+		if (held === undefined) return { kind: "ambiguous", reason: "node-conflict" };
+		verdict =
+			entry.releaseType !== undefined && held.primaryType.toLowerCase() !== entry.releaseType
+				? { kind: "ambiguous", reason: "type" }
+				: { kind: "pose", match: held };
+	} else {
+		verdict = decidePose(entry, matches, titleYear);
 	}
-	const verdict = decidePose(entry, matches, titleYear);
+	if (verdict.kind !== "pose") return verdict;
+	if (creditVerdict(verdict.match, caution.policy) !== null) return { kind: "ambiguous", reason: "credit" };
 	if (
-		verdict.kind === "pose" &&
+		nodeMbid === undefined &&
+		unstated &&
 		caution.ratedArtist &&
 		!isVoted(verdict.match) &&
 		!isRecentRelease(verdict.match, caution.policy)
@@ -616,12 +634,7 @@ function groupCredited(
  * as the same array, with `changed: false`.
  */
 export function mergeDiscography(input: MergeInput): MergeResult {
-	const { existing, candidates, policy, projectIndex } = input;
-	// TRA-647 (measured 2026-10-20: Ellington's "Black, Brown and Beige" took the mbid of a 2013 recording credited to
-	// three artists): a release group the artist does not head is somebody else's work, whatever its title, and its
-	// mbid never becomes the identity of an entry. Only the credit filters here: the secondary types keep the
-	// treatment they have in decidePose (a Live release group is still posed on its entry).
-	const allCredited = input.allCredited.filter((c) => creditVerdict(c, policy) === null);
+	const { existing, candidates, allCredited, policy, projectIndex } = input;
 
 	const creditedByTitle = groupCredited(allCredited, normalizeTitleBody);
 	// TRA-629: the same release groups under the looser key. It is only consulted when the exact title finds

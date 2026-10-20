@@ -1553,7 +1553,7 @@ describe("mergeDiscography — cautious pose without a year (TRA-647)", () => {
 				"the release is credited to Various Artists",
 				[ELLINGTON, { mbid: VARIOUS_ARTISTS_MBID, name: "Various Artists" }],
 			],
-		])("is not posed, nor added, when %s", (_label, artistCredits) => {
+		])("is not posed, nor added, and is reported `credit`, when %s", (_label, artistCredits) => {
 			const found = release("Black, Brown and Beige", { firstReleaseDate: "2013-02-26", artistCredits });
 			const { kept } = selectReleases([found], ellington);
 
@@ -1561,6 +1561,7 @@ describe("mergeDiscography — cautious pose without a year (TRA-647)", () => {
 
 			expect(result.posed).toEqual([]);
 			expect(result.added).toEqual([]);
+			expect(result.ambiguous).toEqual([{ slug: bbb.slug, reason: "credit" }]);
 			expect(result.changed).toBe(false);
 		});
 
@@ -1576,11 +1577,28 @@ describe("mergeDiscography — cautious pose without a year (TRA-647)", () => {
 				primaryType: "EP",
 				artistCredits: [BUFFALO, ELLINGTON],
 			});
-			const result = merge({ existing: [entry("Xpander EP", {}, "Duke Ellington")], allCredited: [found] });
+			const xpander = entry("Xpander EP", {}, "Duke Ellington");
+			const result = merge({ existing: [xpander], allCredited: [found] });
 			expect(result.posed).toEqual([]);
+			expect(result.ambiguous).toEqual([{ slug: xpander.slug, reason: "credit" }]);
 		});
 
-		it("does not take the place of the artist's own release group of that title", () => {
+		it("is not posed on an entry that states a year or a type: the credit guard is for every entry", () => {
+			const found = release("Black, Brown and Beige", {
+				firstReleaseDate: "2013-02-26",
+				artistCredits: [ELLINGTON, third(1), third(2)],
+			});
+			for (const extra of [{ year: "2013" }, { releaseType: "album" as const }]) {
+				const stated = entry("Black, Brown and Beige", extra, "Duke Ellington");
+				const result = merge({ existing: [stated], allCredited: [found], policy: ellington });
+				expect(result.posed).toEqual([]);
+				expect(result.ambiguous).toEqual([{ slug: stated.slug, reason: "credit" }]);
+			}
+		});
+
+		// The credit is checked on the release group the decision picks, not before it: filtering first would turn
+		// "two recordings" (multiple) into a confident pose on the other one.
+		it("keeps two recordings of one title ambiguous when only one of them fails the credit rule", () => {
 			const own = release("Black, Brown and Beige", { firstReleaseDate: "1958-01-01" });
 			const other = release("Black, Brown and Beige", {
 				firstReleaseDate: "2013-02-26",
@@ -1591,9 +1609,40 @@ describe("mergeDiscography — cautious pose without a year (TRA-647)", () => {
 				[other, own],
 			]) {
 				const result = merge({ existing: [bbb], allCredited, policy: ellington });
-				expect(result.ambiguous).toEqual([]);
-				expect(result.posed.map((p) => p.mbid)).toEqual([own.mbid]);
+				expect(result.posed).toEqual([]);
+				expect(result.added).toEqual([]);
+				expect(result.ambiguous).toEqual([{ slug: bbb.slug, reason: "multiple" }]);
 			}
+		});
+
+		it("does not fall back on the single when the album of the title fails the credit rule (TRA-560)", () => {
+			const album = release("Black, Brown and Beige", {
+				firstReleaseDate: "1958-01-01",
+				artistCredits: [ELLINGTON, third(1), third(2)],
+			});
+			const single = release("Black, Brown and Beige", {
+				primaryType: "Single",
+				firstReleaseDate: "1958-01-01",
+			});
+			for (const allCredited of [
+				[album, single],
+				[single, album],
+			]) {
+				const result = merge({ existing: [bbb], allCredited, policy: ellington });
+				expect(result.posed).toEqual([]);
+				expect(result.added).toEqual([]);
+				expect(result.ambiguous).toEqual([{ slug: bbb.slug, reason: "credit" }]);
+			}
+		});
+
+		it("poses the artist's own release group when the other one of the title is a single it heads", () => {
+			const album = release("Black, Brown and Beige", { firstReleaseDate: "1958-01-01" });
+			const single = release("Black, Brown and Beige", {
+				primaryType: "Single",
+				firstReleaseDate: "1958-01-01",
+			});
+			const result = merge({ existing: [bbb], allCredited: [single, album], policy: ellington });
+			expect(result.posed.map((p) => p.mbid)).toEqual([album.mbid]);
 		});
 
 		it("still poses an album credited to the artist and one guest, the artist first (Kode9 & The Spaceape)", () => {
@@ -1708,7 +1757,48 @@ describe("mergeDiscography — cautious pose without a year (TRA-647)", () => {
 			expect(result.ambiguous).toEqual([{ slug: epEntry.slug, reason: "node-conflict" }]);
 		});
 
-		it("does not apply to a node without mbid, nor to an entry that states a year or a type", () => {
+		it("applies to an entry that states a type but no year: the same guard, at no cost", () => {
+			const remaster = release("Vrioon", { firstReleaseDate: "2022-04-08" });
+			const original = release("Vrioon", { mbid: M1, firstReleaseDate: "2002-01-01" });
+			const typed = entry("Vrioon", { releaseType: "album" }, "Ryuichi Sakamoto");
+
+			const conflict = mergeFor(sakamoto, [typed], [remaster], { projectIndex: nodeIndex(M1) });
+			expect(conflict.posed).toEqual([]);
+			expect(conflict.added).toEqual([]);
+			expect(conflict.ambiguous).toEqual([{ slug: typed.slug, reason: "node-conflict" }]);
+
+			const match = mergeFor(sakamoto, [typed], [original], { projectIndex: nodeIndex(M1) });
+			expect(match.posed.map((p) => p.mbid)).toEqual([M1]);
+		});
+
+		it("keeps the type guard on the node's own mbid: an album entry never takes a single", () => {
+			const single = release("Vrioon", { mbid: M1, primaryType: "Single", firstReleaseDate: "2002-01-01" });
+			const typed = entry("Vrioon", { releaseType: "album" }, "Ryuichi Sakamoto");
+
+			const result = mergeFor(sakamoto, [typed], [single], { projectIndex: nodeIndex(M1) });
+
+			expect(result.posed).toEqual([]);
+			expect(result.ambiguous).toEqual([{ slug: typed.slug, reason: "type" }]);
+		});
+
+		it("never poses the node's mbid from a release group the artist does not head", () => {
+			const collaboration = release("Vrioon", {
+				mbid: M1,
+				firstReleaseDate: "2002-01-01",
+				artistCredits: [
+					{ mbid: ARTIST_MBID, name: "Ryuichi Sakamoto" },
+					{ mbid: mbidOf(951), name: "Guest 1" },
+					{ mbid: mbidOf(952), name: "Guest 2" },
+				],
+			});
+
+			const result = mergeFor(sakamoto, [vrioon], [collaboration], { projectIndex: nodeIndex(M1) });
+
+			expect(result.posed).toEqual([]);
+			expect(result.ambiguous).toEqual([{ slug: vrioon.slug, reason: "credit" }]);
+		});
+
+		it("does not apply to a node without mbid, nor to an entry that states a year", () => {
 			const remaster = release("Vrioon", { firstReleaseDate: "2022-04-08" });
 
 			const noNode = mergeFor(sakamoto, [vrioon], [remaster], { projectIndex: nodeIndex(undefined) });
@@ -1718,9 +1808,9 @@ describe("mergeDiscography — cautious pose without a year (TRA-647)", () => {
 			const withYear = mergeFor(sakamoto, [dated], [remaster], { projectIndex: nodeIndex(M1) });
 			expect(withYear.posed.map((p) => p.mbid)).toEqual([remaster.mbid]);
 
-			const typed = entry("Vrioon", { releaseType: "album" }, "Ryuichi Sakamoto");
-			const withType = mergeFor(sakamoto, [typed], [remaster], { projectIndex: nodeIndex(M1) });
-			expect(withType.posed.map((p) => p.mbid)).toEqual([remaster.mbid]);
+			const datedAndTyped = entry("Vrioon", { year: "2022", releaseType: "album" }, "Ryuichi Sakamoto");
+			const both = mergeFor(sakamoto, [datedAndTyped], [remaster], { projectIndex: nodeIndex(M1) });
+			expect(both.posed.map((p) => p.mbid)).toEqual([remaster.mbid]);
 		});
 	});
 
