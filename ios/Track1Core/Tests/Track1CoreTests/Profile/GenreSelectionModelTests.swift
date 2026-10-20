@@ -4,8 +4,8 @@ import XCTest
 
 @MainActor
 final class GenreSelectionModelTests: XCTestCase {
-	// Same taxonomy as `GenreOnboardingModelTests`. Families are served in the order jazz, hip-hop, rock; the
-	// label order (Hip-Hop, Jazz, Rock) differs, so a label sort cannot pass by accident.
+	// Families are served in the order jazz, hip-hop, rock; the label order (Hip-Hop, Jazz, Rock) differs, so
+	// a label sort cannot pass by accident.
 	private let hipHop = "hip-hop"
 	private let jazz = "jazz"
 	private let rock = "rock"
@@ -255,11 +255,10 @@ final class GenreSelectionModelTests: XCTestCase {
 	func testAFamilyAloneIsRestoredWithAllItsVisibleGenres() throws {
 		let stored = profile(GenreSelection(families: [rock], genres: []))
 		let model = try makeModel(editing: stored)
-		let legacy = GenreOnboardingModel(taxonomy: try taxonomy(), editing: stored)
 
 		XCTAssertEqual(model.selectedGenres, [punk])
 		XCTAssertTrue(model.isAllSelected(of: rock))
-		XCTAssertEqual(model.makeDraft().genreIDs, legacy.makeDraft().genreIDs)
+		XCTAssertEqual(model.makeDraft().genreIDs, try ["genre:punk-rock"].map(slug))
 		XCTAssertEqual(model.droppedGenreIDs, [])
 	}
 
