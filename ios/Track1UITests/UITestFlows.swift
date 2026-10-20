@@ -93,18 +93,17 @@ enum UITestFlows {
 		app.buttons["analytics-consent-decline"].tap()
 	}
 
-	/// The first launch up to the end of the flow: Welcome, the first family, its genre step. A family alone
-	/// is already a profile (it stands for all of its genres). Every step waits for the next one: the push
-	/// animations are not instant.
+	/// The first launch up to the end of the flow: Welcome, the first family opened, one of its genres ticked.
+	/// Every step waits for the next one: the push and unfold animations are not instant.
 	@MainActor
 	static func completeOnboarding(_ app: XCUIApplication) {
 		tapWhenReady(app.buttons["onboarding-start"])
-		tapWhenReady(app.buttons["genre-tile-family-0"])
+		tapWhenReady(app.buttons["genre-card-family-0"])
+		tapWhenReady(app.buttons["subgenre-chip-local:genre-0a"])
 		tapWhenReady(app.buttons["onboarding-genres-continue"])
-		tapWhenReady(app.buttons["onboarding-subgenres-continue"])
 	}
 
-	/// Waits for `element` to be there and enabled (the CTA of a step is disabled until a family is chosen).
+	/// Waits for `element` to be there and enabled (the CTA of a step is disabled until a genre is chosen).
 	@MainActor
 	static func tapWhenReady(_ element: XCUIElement, timeout: TimeInterval = 10) {
 		XCTAssertTrue(element.waitForExistence(timeout: timeout), "\(element) did not appear")
