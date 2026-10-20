@@ -112,7 +112,7 @@ struct GenresTabView: View {
 	@ViewBuilder
 	private func grid(of profile: Profile, in taxonomy: EditorialGenreTaxonomy) -> some View {
 		// The model already normalizes a stored profile for the edit flow: the tab shows what the flow will.
-		let families = GenreOnboardingModel(taxonomy: taxonomy, editing: profile).selectedFamilyChoices
+		let families = GenreSelectionModel(taxonomy: taxonomy, editing: profile).selectedFamilyChoices
 		if families.isEmpty {
 			// Every stored family left the taxonomy (TRA-442), or the profile predates it and has no selection:
 			// the flow lets the person choose again.
@@ -271,12 +271,12 @@ struct GenresTabView: View {
 /// The host of the edit flow. The model is a `@State` here, not a value of the tab's `body`: a model built in a
 /// parent's `body` would be rebuilt on every render and drop the selection with it.
 private struct ProfileEditorSheet: View {
-	@State private var model: GenreOnboardingModel
+	@State private var model: GenreSelectionModel
 	@State private var saveFailed = false
 	private let save: (ProfileDraft) async -> Bool
 
 	init(profile: Profile, taxonomy: EditorialGenreTaxonomy, save: @escaping (ProfileDraft) async -> Bool) {
-		_model = State(initialValue: GenreOnboardingModel(taxonomy: taxonomy, editing: profile))
+		_model = State(initialValue: GenreSelectionModel(taxonomy: taxonomy, editing: profile))
 		self.save = save
 	}
 

@@ -1,15 +1,14 @@
-import CoreGraphics
 import Track1Core
 import XCTest
 
 @testable import Track1
 
-/// Genres step (`176:80`), TRA-403. Sizes are the Figma ones: a 393 pt screen gives a 345 pt column and
-/// 164 x 176 tiles; the iPhone SE (375 pt) gives 327 pt, and the height follows the 164:176 ratio.
+/// Genres step (`243:1585`), TRA-403 then TRA-639. The accordion list takes the Figma margins (`243:1671`):
+/// 16 pt from the screen edges, 4 pt between two cards, 12 pt above and below the list.
 @MainActor
 final class GenresStepLayoutTests: XCTestCase {
-	/// One editorial family with one published genre, so a single tile is there to toggle.
-	private func model() throws -> GenreOnboardingModel {
+	/// One editorial family with one published genre, so a single chip is there to toggle.
+	private func model() throws -> GenreSelectionModel {
 		let json = """
 			{"version": "v1", "revision": "sha256:\(String(repeating: "0123456789abcdef", count: 4))",
 			"taxonomy": {"mode": "editorial", "version": 2,
@@ -20,33 +19,7 @@ final class GenresStepLayoutTests: XCTestCase {
 			"edges": []}
 			"""
 		let catalog = try JSONDecoder().decode(Catalog.self, from: Data(json.utf8))
-		return GenreOnboardingModel(taxonomy: try XCTUnwrap(EditorialGenreTaxonomy(catalog: catalog)))
-	}
-
-	func testTileSizeOnA345PointColumn() {
-		let size = GenresStepLayout.tileSize(containerWidth: 345)
-		XCTAssertEqual(size.width, 164.5, accuracy: 0.01)
-		// 164.5 x 176 / 164 = 176.5366: the ticket's "~176,5" is rounded, the ratio is the contract.
-		XCTAssertEqual(size.height, 176.54, accuracy: 0.01)
-	}
-
-	func testTileSizeOnAnIPhoneSEColumn() {
-		let size = GenresStepLayout.tileSize(containerWidth: 327)
-		XCTAssertEqual(size.width, 155.5, accuracy: 0.01)
-		XCTAssertEqual(size.height, 166.88, accuracy: 0.01)
-	}
-
-	func testTwoTilesAndTheGutterFillTheColumn() {
-		let size = GenresStepLayout.tileSize(containerWidth: 300)
-		XCTAssertEqual(2 * size.width + GenresStepLayout.gutter, 300, accuracy: 0.01)
-	}
-
-	func testAColumnNarrowerThanTheGutterGivesAnEmptySizeNotANegativeOne() {
-		for width: CGFloat in [16, 0, -40] {
-			let size = GenresStepLayout.tileSize(containerWidth: width)
-			XCTAssertEqual(size.width, 0, accuracy: 0.01)
-			XCTAssertEqual(size.height, 0, accuracy: 0.01)
-		}
+		return GenreSelectionModel(taxonomy: try XCTUnwrap(EditorialGenreTaxonomy(catalog: catalog)))
 	}
 
 	func testGenresBarHasItsOwnIdentifierAndKeepsTheFade() throws {
@@ -55,12 +28,22 @@ final class GenresStepLayoutTests: XCTestCase {
 		XCTAssertTrue(bar.showsFade)
 	}
 
-	func testContinueIsDisabledUntilAFamilyIsChosen() throws {
+	func testSelectAllIdentifierCarriesTheFamilyKey() {
+		XCTAssertEqual(GenresStepView.selectAllIdentifier(for: "hip-hop"), "select-all-hip-hop")
+	}
+
+	func testContinueIsDisabledUntilASubgenreIsChosen() throws {
 		let model = try model()
 		XCTAssertFalse(GenresStepView.isContinueEnabled(model))
-		model.toggleFamily("hip-hop")
+		model.toggleSubgenre("Q11401")
 		XCTAssertTrue(GenresStepView.isContinueEnabled(model))
-		model.toggleFamily("hip-hop")
+		model.toggleSubgenre("Q11401")
 		XCTAssertFalse(GenresStepView.isContinueEnabled(model))
+	}
+
+	func testListInsetsAreTheFigmaValues() {
+		XCTAssertEqual(GenresStepLayout.listInset, 16)
+		XCTAssertEqual(GenresStepLayout.cardSpacing, 4)
+		XCTAssertEqual(GenresStepLayout.listVerticalInset, 12)
 	}
 }
