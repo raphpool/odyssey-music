@@ -27,12 +27,21 @@ function hint(title: string, artist: string, slug?: string): WorkImageHint {
 	return { slug: (slug ?? `project:${title.toLowerCase()}`) as Slug, type: "project", title, artist };
 }
 
-/** Wait on real I/O (the sidecar is a real folder) while the timers stay fake. */
-async function until(cond: () => boolean | Promise<boolean>): Promise<void> {
-	for (let i = 0; i < 5_000; i++) {
+/**
+ * Wait on real I/O (the sidecar is a real folder) while the timers stay fake.
+ *
+ * 2026-10-19 (TRA-646): the budget was 5 000 event-loop turns, so a saturated CI disk let all of them
+ * pass before the sidecar write landed ("condition never became true" on unrelated PRs). The deadline
+ * is now real time, read from performance.now() because Date is faked in this file.
+ */
+async function until(cond: () => boolean | Promise<boolean>, timeoutMs = 10_000): Promise<void> {
+	const deadline = performance.now() + timeoutMs;
+	while (performance.now() < deadline) {
 		if (await cond()) return;
 		await new Promise<void>((r) => setImmediate(r));
 	}
+	// one last look: the write may have landed during the final wait
+	if (await cond()) return;
 	throw new Error("condition never became true");
 }
 
@@ -544,5 +553,21 @@ describe("calls", () => {
 		expect(injected).toHaveBeenCalledTimes(1);
 		const init = (injected.mock.calls[0] as unknown as [string, RequestInit])[1];
 		expect(init.signal).toBeInstanceOf(AbortSignal);
+	});
+});
+
+describe("until", () => {
+	it("accepts a condition that becomes true after more than 5 000 loop turns", async () => {
+		let calls = 0;
+		await until(() => ++calls >= 6_000);
+		expect(calls).toBe(6_000);
+	});
+
+	it("still fails with the same message once the real-time deadline passes", async () => {
+		// short deadline so the case does not wait the full 10 s; Date is faked here, so this also
+		// proves the deadline is read from performance.now()
+		const started = performance.now();
+		await expect(until(() => false, 50)).rejects.toThrow("condition never became true");
+		expect(performance.now() - started).toBeGreaterThanOrEqual(50);
 	});
 });

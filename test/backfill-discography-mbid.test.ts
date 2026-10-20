@@ -69,27 +69,66 @@ const page = (groups: Rg[]): Response =>
 		{ status: 200, headers: { "Content-Type": "application/json" } },
 	);
 
+/** What `/artist/<mbid>?inc=aliases` answers (TRA-630). */
+interface Names {
+	name: string;
+	sortName?: string;
+	aliases?: { name: string; sortName?: string; type?: string }[];
+}
+const namesBody = (n: Names): Response =>
+	new Response(
+		JSON.stringify({
+			id: "ignored",
+			name: n.name,
+			"sort-name": n.sortName ?? n.name,
+			aliases: (n.aliases ?? []).map((a) => ({
+				name: a.name,
+				"sort-name": a.sortName ?? a.name,
+				type: a.type ?? "Artist name",
+			})),
+		}),
+		{ status: 200, headers: { "Content-Type": "application/json" } },
+	);
+
 interface World {
 	byArtist: Map<string, Rg[] | "down">;
+	/** The names MusicBrainz holds for an artist; no entry = it does not know the MBID (404). */
+	names: Map<string, Names | "down">;
+	/** The alias lookups, in order: the extra request the identity guard may make, one per failed guard. */
+	aliasRequests: { artist: string; inc: string | null }[];
 	requests: { artist: string; type: string }[];
 	inFlight: number;
 	maxInFlight: number;
 	onRequest?: (artist: string) => void;
 }
 function world(): World {
-	return { byArtist: new Map(), requests: [], inFlight: 0, maxInFlight: 0 };
+	return {
+		byArtist: new Map(),
+		names: new Map(),
+		aliasRequests: [],
+		requests: [],
+		inFlight: 0,
+		maxInFlight: 0,
+	};
 }
 function mbFetch(w: World): typeof fetch {
 	return (async (input: string | URL | Request) => {
 		const url = new URL(input instanceof Request ? input.url : String(input));
-		const artist = url.searchParams.get("artist") ?? "";
+		const lookup = /\/artist\/([^/]+)$/.exec(url.pathname)?.[1];
+		const artist = lookup ?? url.searchParams.get("artist") ?? "";
 		const type = url.searchParams.get("type") ?? "";
-		w.requests.push({ artist, type });
+		if (lookup === undefined) w.requests.push({ artist, type });
+		else w.aliasRequests.push({ artist, inc: url.searchParams.get("inc") });
 		w.onRequest?.(artist);
 		w.inFlight++;
 		w.maxInFlight = Math.max(w.maxInFlight, w.inFlight);
 		await new Promise((resolve) => setTimeout(resolve, 2));
 		w.inFlight--;
+		if (lookup !== undefined) {
+			const names = w.names.get(lookup);
+			if (names === undefined) return new Response("", { status: 404 });
+			return names === "down" ? new Response("", { status: 503 }) : namesBody(names);
+		}
 		const answer = w.byArtist.get(artist);
 		if (answer === undefined || answer === "down") return new Response("", { status: 503 });
 		return page(answer.filter((g) => g.type.toLowerCase() === type));
@@ -401,6 +440,38 @@ describe("--apply", () => {
 		expect(list.find((e) => e.name === "Nothing")?.slug).toBe("project:nothing-ep--kode9");
 	});
 
+	// TRA-647 (measured 2026-10-20 on the cache of PR #562): "Vrioon" was posed the 2022 reissue's mbid while the
+	// project node of the album held another one. The migration hands the merge the mbid of every project node.
+	it("does not pose an mbid against the one the project node of an entry without type or year holds", async () => {
+		const sakamoto = mb(20);
+		const credit = { id: sakamoto, name: "Ryuichi Sakamoto" };
+		const w = world();
+		w.byArtist.set(sakamoto, [rg(80, "Vrioon", "Album", "2022-04-08", [credit])]);
+		await put(
+			artistNode("ryuichi-sakamoto", "Ryuichi Sakamoto", {
+				mbid: sakamoto,
+				artist_kind: "person",
+				discography: [edge("project", "vrioon--ryuichi-sakamoto", "Vrioon", { artist: "Ryuichi Sakamoto" })],
+			}),
+		);
+		await put(projectNode("vrioon--ryuichi-sakamoto", "Vrioon", { mbid: mb(3001) }));
+
+		await runBackfill(options(w, { apply: true }));
+
+		const entry = entryOf(await readManifest(), "artist:ryuichi-sakamoto");
+		expect(entry.posed).toEqual([]);
+		expect(entry.added).toEqual([]);
+		expect(entry.ambiguous).toEqual([{ slug: "project:vrioon--ryuichi-sakamoto", reason: "node-conflict" }]);
+		const list = (await readNode("artist:ryuichi-sakamoto")).discography as { mbid?: string }[];
+		expect(list.map((e) => e.mbid)).toEqual([undefined]);
+
+		// The node holds the mbid MusicBrainz gives: it is posed.
+		await put(projectNode("vrioon--ryuichi-sakamoto", "Vrioon", { mbid: mb(1080) }));
+		await runBackfill(options(w, { apply: true }));
+		const posed = entryOf(await readManifest(), "artist:ryuichi-sakamoto").posed;
+		expect(posed?.map((p) => p.mbid)).toEqual([mb(1080)]);
+	});
+
 	it("does not follow a redirect to a work scoped on another artist", async () => {
 		const w = world();
 		const twin = mb(11);
@@ -470,6 +541,7 @@ describe("skipped artists", () => {
 		w.byArtist.set(PRINCE, [
 			rg(30, "Purple Rain", "Album", "1984-06-25", [{ id: PRINCE, name: "Prince Buster" }]),
 		]);
+		w.names.set(PRINCE, { name: "Prince Buster", sortName: "Buster, Prince" });
 		w.byArtist.set(BURIAL, "down");
 		w.byArtist.set(mb(6), [rg(31, "Anything", "Album", "2000-01-01", [{ id: mb(6), name: "Excluded One" }])]);
 		await put(
@@ -513,8 +585,10 @@ describe("skipped artists", () => {
 		});
 		expect(await snapshot()).toEqual(before);
 		expect(result).toMatchObject({ written: 0, exitCode: 1 });
-		// Asked about: Prince and Burial only. Nothing for no-mbid, excluded or capped.
+		// Asked about: Prince and Burial only. Nothing for no-mbid, excluded or capped. Burial's list never
+		// came, so it has no credit to doubt: only Prince's failed guard costs the alias lookup.
 		expect(new Set(w.requests.map((r) => r.artist))).toEqual(new Set([PRINCE, BURIAL]));
+		expect(w.aliasRequests.map((r) => r.artist)).toEqual([PRINCE]);
 		expect(formatSummary(result, true, "out/x.json")).toContain("unavailable artist:burial");
 	});
 
@@ -523,6 +597,331 @@ describe("skipped artists", () => {
 		await rm(join(dataDir, "identity-exclusions.json"));
 		await putKode9();
 		await expect(runBackfill(options(w))).rejects.toThrow(/exclusion list/);
+	});
+});
+
+describe("the identity guard reads the artist's own names (TRA-630)", () => {
+	const SAKAMOTO = mb(8001);
+	const ATOM = mb(8002);
+	const SMITH = mb(8003);
+	const OTHER = mb(8004);
+
+	async function putArtist(slug: string, name: string, mbid: string): Promise<void> {
+		await put(artistNode(slug, name, { mbid, artist_kind: "person", discography: [] }));
+	}
+	const credited = (id: string, name: string, n: number): Rg[] => [
+		rg(n, `Record ${n}`, "Album", "2001-01-01", [{ id, name }]),
+	];
+	async function sakamotoWorld(w: World): Promise<void> {
+		await putArtist("ryuichi-sakamoto", "Ryuichi Sakamoto", SAKAMOTO);
+		w.byArtist.set(SAKAMOTO, credited(SAKAMOTO, "坂本龍一", 40));
+		w.names.set(SAKAMOTO, {
+			name: "坂本龍一",
+			sortName: "Sakamoto, Ryuichi",
+			aliases: [{ name: "Ryuichi Sakamoto", sortName: "Sakamoto, Ryuichi" }],
+		});
+	}
+	async function smithWorld(w: World): Promise<void> {
+		await putArtist("john-smith", "John Smith", SMITH);
+		w.byArtist.set(SMITH, credited(SMITH, "Jane Doe", 43));
+		w.names.set(SMITH, {
+			name: "Jane Doe",
+			sortName: "Doe, Jane",
+			aliases: [{ name: "J. Doe" }, { name: "Smith Jane", sortName: "Jane, Smith" }],
+		});
+	}
+
+	it("accepts Ryuichi Sakamoto credited in 坂本龍一 on an alias of the artist, and says so in the manifest", async () => {
+		const w = world();
+		await sakamotoWorld(w);
+
+		const result = await runBackfill(options(w, { apply: true }));
+
+		const entry = entryOf(await readManifest(), "artist:ryuichi-sakamoto");
+		expect(entry.skipped).toBeUndefined();
+		expect(entry.identity).toBe("alias");
+		expect(entry.added?.map((a) => a.title)).toEqual(["Record 40"]);
+		expect((await readNode("artist:ryuichi-sakamoto")).discography).toHaveLength(1);
+		expect((await readManifest()).totals.identity).toEqual({ credit: 0, alias: 1 });
+		expect(result.exitCode).toBe(0);
+		expect(w.aliasRequests).toEqual([{ artist: SAKAMOTO, inc: "aliases" }]);
+	});
+
+	it("accepts the inverted sort-name alone, when no alias spells the name", async () => {
+		const w = world();
+		await sakamotoWorld(w);
+		w.names.set(SAKAMOTO, { name: "坂本龍一", sortName: "Sakamoto, Ryuichi" });
+		await runBackfill(options(w));
+		expect(entryOf(await readManifest(), "artist:ryuichi-sakamoto").identity).toBe("alias");
+	});
+
+	it("accepts the artist's native-script name for a node written in the same script", async () => {
+		const w = world();
+		await putArtist("sakamoto-native", "坂本龍一", SAKAMOTO);
+		w.byArtist.set(SAKAMOTO, credited(SAKAMOTO, "Ryuichi Sakamoto", 40));
+		w.names.set(SAKAMOTO, { name: "坂本龍一" });
+		await runBackfill(options(w));
+		expect(entryOf(await readManifest(), "artist:sakamoto-native").identity).toBe("alias");
+	});
+
+	it('accepts "Atom TM" against the MusicBrainz name "Atom™"', async () => {
+		const w = world();
+		await putArtist("atom-tm", "Atom TM", ATOM);
+		w.byArtist.set(ATOM, credited(ATOM, "Uwe Schmidt", 41));
+		w.names.set(ATOM, { name: "Atom™" });
+		await runBackfill(options(w));
+		expect(entryOf(await readManifest(), "artist:atom-tm").identity).toBe("alias");
+	});
+
+	it("takes the credits' own Atom™ and Tronikhouse for the nodes Atom TM and Tronik House, with no extra request", async () => {
+		const w = world();
+		await putArtist("atom-tm", "Atom TM", ATOM);
+		w.byArtist.set(ATOM, credited(ATOM, "Atom™", 41));
+		await putArtist("tronik-house", "Tronik House", SMITH);
+		w.byArtist.set(SMITH, credited(SMITH, "Tronikhouse", 53));
+		await runBackfill(options(w));
+		const manifest = await readManifest();
+		expect(entryOf(manifest, "artist:atom-tm").identity).toBe("credit");
+		expect(entryOf(manifest, "artist:tronik-house").identity).toBe("credit");
+		expect(w.aliasRequests).toEqual([]);
+	});
+
+	// The Latin spellings the credits' own normalization does not fold (it folds accents, not "oe" or a
+	// nickname), a script change, a spacing variant, a sort-name only: the artist's names say who it is.
+	const variants: [string, string, Names][] = [
+		[
+			"Arnold Schoenberg",
+			"Arnold Sch\u00f6nberg",
+			{ name: "Arnold Sch\u00f6nberg", aliases: [{ name: "Arnold Schoenberg" }] },
+		],
+		["Tronik House", "Tronik Haus Project", { name: "Tronikhouse" }],
+		["Junko Ohashi", "\u5927\u6a4b\u7d14\u5b50", { name: "Junko \u014chashi" }],
+		["Mike Golding", "Michael Golding", { name: "Michael Golding", aliases: [{ name: "Mike Golding" }] }],
+		["Atom", "Atom\u2122", { name: "Atom\u2122" }],
+		[
+			"Hikaru Utada",
+			"\u5b87\u591a\u7530\u30d2\u30ab\u30eb",
+			{ name: "\u5b87\u591a\u7530\u30d2\u30ab\u30eb", sortName: "Utada, Hikaru" },
+		],
+	];
+	it.each(variants)(
+		"accepts the node %s credited %s on the names of the artist",
+		async (node, credit, names) => {
+			const w = world();
+			await putArtist("subject", node, ATOM);
+			w.byArtist.set(ATOM, credited(ATOM, credit, 42));
+			w.names.set(ATOM, names);
+			await runBackfill(options(w));
+			expect(entryOf(await readManifest(), "artist:subject").identity).toBe("alias");
+		},
+	);
+
+	it("still skips a John Smith that carries the MBID of another artist: name-mismatch", async () => {
+		const w = world();
+		await smithWorld(w);
+		// Names made of nothing but punctuation have an empty key, which never matches.
+		await putArtist("bangs", "!!!", OTHER);
+		w.byArtist.set(OTHER, credited(OTHER, "???", 44));
+		w.names.set(OTHER, { name: "???" });
+
+		const result = await runBackfill(options(w, { apply: true }));
+
+		const manifest = await readManifest();
+		expect(entryOf(manifest, "artist:john-smith")).toMatchObject({
+			skipped: "name-mismatch",
+			aliasesChecked: true,
+		});
+		expect(entryOf(manifest, "artist:bangs").skipped).toBe("name-mismatch");
+		expect(result.written).toBe(0);
+		expect((await readNode("artist:john-smith")).discography).toEqual([]);
+	});
+
+	it("ignores the 'Search hint' aliases, whatever their case: too generic to name the artist", async () => {
+		const w = world();
+		// H.A.W.K. has the search hints "Hawk" and "John Hawkins" (measured 2026-10-19); a node named so is not him.
+		await putArtist("hint-one", "John Hawkins", SMITH);
+		w.byArtist.set(SMITH, credited(SMITH, "H.A.W.K.", 47));
+		w.names.set(SMITH, {
+			name: "H.A.W.K.",
+			aliases: [{ name: "John Hawkins", type: "Search hint" }],
+		});
+		await putArtist("hint-two", "Hawk", OTHER);
+		w.byArtist.set(OTHER, credited(OTHER, "H.A.W.K.", 48));
+		w.names.set(OTHER, { name: "H.A.W.K.", aliases: [{ name: "Hawk", type: "search HINT" }] });
+		// The same alias with another type is a name of the artist.
+		await putArtist("not-a-hint", "Big Hawk", ATOM);
+		w.byArtist.set(ATOM, credited(ATOM, "H.A.W.K.", 49));
+		w.names.set(ATOM, { name: "H.A.W.K.", aliases: [{ name: "Big Hawk", type: "Artist name" }] });
+
+		await runBackfill(options(w));
+
+		const manifest = await readManifest();
+		expect(entryOf(manifest, "artist:hint-one").skipped).toBe("name-mismatch");
+		expect(entryOf(manifest, "artist:hint-two").skipped).toBe("name-mismatch");
+		expect(entryOf(manifest, "artist:not-a-hint").identity).toBe("alias");
+	});
+
+	it("accepts a node on the sort-name of an alias alone, name and sort-name of the artist being other", async () => {
+		const w = world();
+		await putArtist("haruomi-hosono", "Haruomi Hosono", SAKAMOTO);
+		w.byArtist.set(SAKAMOTO, credited(SAKAMOTO, "細野晴臣", 50));
+		w.names.set(SAKAMOTO, {
+			name: "細野晴臣",
+			sortName: "細野晴臣",
+			aliases: [{ name: "細野 晴臣", sortName: "Hosono, Haruomi" }],
+		});
+		await runBackfill(options(w));
+		expect(entryOf(await readManifest(), "artist:haruomi-hosono").identity).toBe("alias");
+	});
+
+	// Dots stay in the key (TRA-630): an initialism is not the word its letters spell, in either direction.
+	it.each([
+		["H.A.W.K.", "Hawk"],
+		["Hawk", "H.A.W.K."],
+		["M.I.A.", "Mia"],
+		["Mia", "M.I.A."],
+	])("does not take the node %s for the artist named %s", async (node, name) => {
+		const w = world();
+		await putArtist("subject", node, SMITH);
+		w.byArtist.set(SMITH, credited(SMITH, "Someone Else", 51));
+		w.names.set(SMITH, { name });
+		await runBackfill(options(w));
+		expect(entryOf(await readManifest(), "artist:subject").skipped).toBe("name-mismatch");
+	});
+
+	it.each([
+		["H.A.W.K.", "H. A. W. K."],
+		["Guns N' Roses", "Guns N’ Roses"],
+		["Jay-Z", "Jay‐Z"],
+		["Atom TM", "Atom™"],
+		["Tronik House", "Tronikhouse"],
+	])("still takes the node %s for the artist named %s", async (node, name) => {
+		const w = world();
+		await putArtist("subject", node, SMITH);
+		w.byArtist.set(SMITH, credited(SMITH, "Someone Else", 52));
+		w.names.set(SMITH, { name });
+		await runBackfill(options(w));
+		expect(entryOf(await readManifest(), "artist:subject").identity).toBe("alias");
+	});
+
+	it("compares a name that mixes scripts whole, and inverts a sort-name only around a single comma", async () => {
+		const w = world();
+		// "Hikaru 宇多田" must not pass for the artist named just "Hikaru".
+		await putArtist("mixed", "Hikaru 宇多田", SMITH);
+		w.byArtist.set(SMITH, credited(SMITH, "Someone Else", 45));
+		w.names.set(SMITH, { name: "Hikaru", sortName: "Hikaru" });
+		// "Wind, Earth" is a "Last, First" form; a name with two commas is not inverted at all.
+		await putArtist("comma", "Wind and Fire Earth", OTHER);
+		w.byArtist.set(OTHER, credited(OTHER, "Someone Else", 46));
+		w.names.set(OTHER, { name: "Earth, Wind, Fire" });
+
+		await runBackfill(options(w));
+
+		const manifest = await readManifest();
+		expect(entryOf(manifest, "artist:mixed").skipped).toBe("name-mismatch");
+		expect(entryOf(manifest, "artist:comma").skipped).toBe("name-mismatch");
+	});
+
+	it("makes one extra request per artist whose credits fail the guard, and none for the others", async () => {
+		const w = world();
+		await putKode9();
+		kode9World(w);
+		await putDaftPunk();
+		daftWorld(w);
+		await sakamotoWorld(w);
+		await smithWorld(w);
+		// No credited release group at all: nothing to doubt, nothing to look up.
+		await putArtist("quiet", "Quiet", OTHER);
+		w.byArtist.set(OTHER, []);
+
+		await runBackfill(options(w));
+
+		expect(w.aliasRequests.map((r) => r.artist).sort()).toEqual([SAKAMOTO, SMITH].sort());
+		const manifest = await readManifest();
+		expect(entryOf(manifest, "artist:kode9").identity).toBe("credit");
+		expect(entryOf(manifest, "artist:daft-punk").identity).toBe("credit");
+		expect(entryOf(manifest, "artist:quiet").identity).toBeUndefined();
+		expect(manifest.totals.identity).toEqual({ credit: 2, alias: 1 });
+	});
+
+	it("is unavailable, never accepted, when the alias request fails, whatever the credits say", async () => {
+		for (const failure of ["down", undefined] as const) {
+			const w = world();
+			await sakamotoWorld(w);
+			// "down" is a 503, undefined a 404 (no entry for the MBID): neither is an answer.
+			if (failure === undefined) w.names.delete(SAKAMOTO);
+			else w.names.set(SAKAMOTO, failure);
+			const before = await snapshot();
+
+			const result = await runBackfill(options(w, { apply: true }));
+
+			expect(entryOf(await readManifest(), "artist:ryuichi-sakamoto")).toMatchObject({
+				skipped: "unavailable",
+			});
+			expect(result.requests).toEqual({ asked: 1, unavailable: 1 });
+			expect(result).toMatchObject({ written: 0, exitCode: 1 });
+			expect(await snapshot()).toEqual(before);
+		}
+	});
+
+	it("gives the same manifest bytes twice, and in a dry-run and an apply, with an alias acceptance", async () => {
+		const w = world();
+		await sakamotoWorld(w);
+		await smithWorld(w);
+		await runBackfill(options(w, { manifestPath: manifestFile("dry.json") }));
+		await runBackfill(options(w, { manifestPath: manifestFile("dry2.json") }));
+		await runBackfill(options(w, { apply: true, manifestPath: manifestFile("apply.json") }));
+		const bytes = async (name: string): Promise<string> => readFile(manifestFile(name), "utf8");
+		expect(await bytes("dry2.json")).toBe(await bytes("dry.json"));
+		expect(await bytes("apply.json")).toBe(await bytes("dry.json"));
+	});
+
+	describe("--resume", () => {
+		it("carries what a run settled, the alias acceptance and the refusal alike, without a request", async () => {
+			const w = world();
+			await sakamotoWorld(w);
+			await smithWorld(w);
+			await runBackfill(options(w, { apply: true }));
+			const first = await readFile(manifestFile(), "utf8");
+			// Same answers, same cache: only the fetch counters are fresh.
+			const w2 = world();
+			w2.byArtist = w.byArtist;
+			w2.names = w.names;
+
+			const result = await runBackfill(options(w2, { apply: true, resume: true }));
+
+			expect(w2.requests).toEqual([]);
+			expect(w2.aliasRequests).toEqual([]);
+			expect(result.requests).toEqual({ asked: 0, unavailable: 0 });
+			expect(await readFile(manifestFile(), "utf8")).toBe(first);
+		});
+
+		it("decides again a name-mismatch recorded before the alias check existed", async () => {
+			const w = world();
+			await sakamotoWorld(w);
+			await runBackfill(options(w));
+			const manifest = await readManifest();
+			const legacy = entryOf(manifest, "artist:ryuichi-sakamoto");
+			// The entry as the pre-TRA-630 run wrote it: a mismatch, no `aliasesChecked`.
+			manifest.artists["artist:ryuichi-sakamoto"] = {
+				mbid: SAKAMOTO,
+				before: legacy.before,
+				after: legacy.before,
+				withMbidBefore: legacy.withMbidBefore,
+				withMbidAfter: legacy.withMbidBefore,
+				skipped: "name-mismatch",
+				...(legacy.fingerprint === undefined ? {} : { fingerprint: legacy.fingerprint }),
+			};
+			await writeFile(manifestFile(), JSON.stringify(manifest), "utf8");
+			const w2 = world();
+			w2.byArtist = w.byArtist;
+			w2.names = w.names;
+
+			await runBackfill(options(w2, { resume: true }));
+
+			expect(w2.aliasRequests.map((r) => r.artist)).toEqual([SAKAMOTO]);
+			expect(entryOf(await readManifest(), "artist:ryuichi-sakamoto").identity).toBe("alias");
+		});
 	});
 });
 

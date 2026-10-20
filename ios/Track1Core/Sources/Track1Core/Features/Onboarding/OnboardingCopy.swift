@@ -27,4 +27,20 @@ public enum OnboardingCopy {
 		guard genreCount > 0 else { return familyPart }
 		return "\(familyPart) · \(genreCount) \(genreCount <= 1 ? "sous-genre" : "sous-genres")"
 	}
+
+	/// "13 sous-genres", the line under the title of a collapsed family card. Same French rule as `counter`:
+	/// 0 and 1 are singular, so only 2 and more take the plural. A negative count cannot come from a family:
+	/// it reads as 0 rather than printing a minus sign.
+	public static func subgenreCount(_ count: Int) -> String {
+		let shown = max(count, 0)
+		return "\(shown) \(shown <= 1 ? "sous-genre" : "sous-genres")"
+	}
+
+	/// "(4 sélectionnés)", the accent suffix after a family title once a sub-genre is ticked. The parentheses
+	/// belong to the string. Same French rule as `counter`: 0 and 1 are singular ("(0 sélectionné)",
+	/// "(1 sélectionné)"). A negative count reads as 0 rather than printing a minus sign.
+	public static func selectedCount(_ count: Int) -> String {
+		let shown = max(count, 0)
+		return "(\(shown) \(shown <= 1 ? "sélectionné" : "sélectionnés"))"
+	}
 }
