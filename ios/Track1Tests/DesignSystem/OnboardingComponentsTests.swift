@@ -155,6 +155,74 @@ final class OnboardingComponentsTests: XCTestCase {
 		XCTAssertEqual(SelectAllChip.identifier, "select-all")
 	}
 
+	// MARK: Subgenre chip
+
+	func testSubgenreChipIdentifierCarriesTheTaxonomyID() {
+		XCTAssertEqual(SubgenreChip.identifier(for: "Q10413"), "subgenre-chip-Q10413")
+	}
+
+	func testSubgenreChipGlyphFitsTheLabelLineHeight() {
+		XCTAssertEqual(SubgenreChip.glyphSize, 16)
+	}
+
+	// MARK: Genre accordion card
+
+	func testGenreCardIdentifierCarriesTheFamilyKey() {
+		XCTAssertEqual(GenreAccordionCard<EmptyView>.identifier(for: "hip-hop"), "genre-card-hip-hop")
+	}
+
+	func testGenreCardChevronIs20Points() {
+		XCTAssertEqual(GenreAccordionCard<EmptyView>.chevronSize, 20)
+	}
+
+	func testGenreCardCornerRadiusIs20() {
+		XCTAssertEqual(GenreAccordionCardStyle.cornerRadius, 20)
+	}
+
+	func testExpandedGenreCardIsOnTheDefaultSurface() {
+		let background = GenreAccordionCardStyle.background(isExpanded: true)
+		XCTAssertEqual(rgbaHex(background), "241713ff", "surface/default")
+		assertSameColor(background, Track1Tokens.colorSurfaceDefault)
+	}
+
+	func testCollapsedGenreCardIsOnTheElevatedBackground() {
+		let background = GenreAccordionCardStyle.background(isExpanded: false)
+		XCTAssertEqual(rgbaHex(background), "1a110eff", "background/elevated")
+		assertSameColor(background, Track1Tokens.colorBackgroundElevated)
+	}
+
+	func testGenreCardAccentIsThePrimaryTextUntilASubgenreIsTicked() {
+		let accent = GenreAccordionCardStyle.accent(selectedCount: 0)
+		XCTAssertEqual(rgbaHex(accent), "f6e9d8ff", "text/primary")
+		assertSameColor(accent, Track1Tokens.colorTextPrimary)
+	}
+
+	func testGenreCardAccentIsTheSelectionColorOnceASubgenreIsTicked() {
+		for count in [1, 4] {
+			let accent = GenreAccordionCardStyle.accent(selectedCount: count)
+			XCTAssertEqual(rgbaHex(accent), "bc7722ff", "selection/content, \(count) ticked")
+			assertSameColor(accent, Track1Tokens.colorSelectionContent)
+		}
+	}
+
+	func testGenreCardSpokenLabelStopsAtTheCountWhenNothingIsTicked() {
+		XCTAssertEqual(
+			GenreAccordionCard<EmptyView>.accessibilityLabel(title: "Hip-hop", subgenreCount: 13, selectedCount: 0),
+			"Hip-hop, 13 sous-genres")
+	}
+
+	func testGenreCardSpokenLabelAddsTheSelectedCountWithoutParentheses() {
+		XCTAssertEqual(
+			GenreAccordionCard<EmptyView>.accessibilityLabel(title: "Jazz", subgenreCount: 13, selectedCount: 4),
+			"Jazz, 13 sous-genres, 4 sélectionnés")
+	}
+
+	func testGenreCardSpokenLabelIsSingularForOne() {
+		XCTAssertEqual(
+			GenreAccordionCard<EmptyView>.accessibilityLabel(title: "Rock", subgenreCount: 1, selectedCount: 1),
+			"Rock, 1 sous-genre, 1 sélectionné")
+	}
+
 	// MARK: Bottom action bar
 
 	func testBottomBarIdentifiers() {
