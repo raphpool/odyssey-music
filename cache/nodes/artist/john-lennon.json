@@ -94,14 +94,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:some-time-in-new-york-city",
-      "type": "project",
-      "name": "Some Time in New York City",
-      "mbid": "e5153705-e798-343c-aeaf-1777db763dd6",
-      "year": "1972",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:imagine",
       "type": "project",
       "name": "Imagine",
@@ -152,6 +144,11 @@
       "mbid": "b7cb0753-b05f-35c7-bcc2-85e1c783bd0f",
       "year": "1968",
       "releaseType": "album"
+    },
+    {
+      "slug": "project:some-time-in-new-york-city",
+      "type": "project",
+      "name": "Some Time in New York City"
     },
     {
       "slug": "project:the-beatles",

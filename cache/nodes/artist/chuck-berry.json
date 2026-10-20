@@ -44,14 +44,6 @@
   ],
   "discography": [
     {
-      "slug": "project:chuck",
-      "type": "project",
-      "name": "Chuck",
-      "mbid": "bcdddc95-613a-4494-ba82-1567ac9f9d7f",
-      "year": "2017",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:rockit",
       "type": "project",
       "name": "Rockit",
@@ -66,14 +58,6 @@
       "artist": "Chuck Berry",
       "mbid": "4247cefb-737f-4576-826d-8e5a30021714",
       "year": "1973",
-      "releaseType": "album"
-    },
-    {
-      "slug": "project:the-london-chuck-berry-sessions",
-      "type": "project",
-      "name": "The London Chuck Berry Sessions",
-      "mbid": "6f95c735-02ff-3cd8-897b-d77de5f14e80",
-      "year": "1972",
       "releaseType": "album"
     },
     {
@@ -228,6 +212,16 @@
       "mbid": "e321c651-5f43-40c6-a508-55f4a39e32a8",
       "year": "1957",
       "releaseType": "single"
+    },
+    {
+      "slug": "project:the-london-chuck-berry-sessions",
+      "type": "project",
+      "name": "The London Chuck Berry Sessions"
+    },
+    {
+      "slug": "project:chuck",
+      "type": "project",
+      "name": "Chuck"
     },
     {
       "slug": "project:chuck-berry-on-stage",

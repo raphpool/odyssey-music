@@ -357,6 +357,14 @@
       "releaseType": "album"
     },
     {
+      "slug": "project:kontakte--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Kontakte",
+      "mbid": "f6aee2d5-c0ae-3306-aed9-bb5c8a320f39",
+      "year": "1960",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:klavierstucke-i-xi",
       "type": "project",
       "name": "Klavierstücke I–XI"
@@ -370,11 +378,6 @@
       "slug": "project:gruppen--karlheinz-stockhausen",
       "type": "project",
       "name": "Gruppen"
-    },
-    {
-      "slug": "project:kontakte--karlheinz-stockhausen",
-      "type": "project",
-      "name": "Kontakte"
     },
     {
       "slug": "project:stimmung--karlheinz-stockhausen",

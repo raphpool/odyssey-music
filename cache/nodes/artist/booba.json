@@ -142,28 +142,11 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:ultra--booba",
-      "type": "project",
-      "name": "Ultra",
-      "artist": "Booba",
-      "mbid": "442f9666-5f83-4827-8da5-5d5adeaf1850",
-      "year": "2021",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:trone",
       "type": "project",
       "name": "Trône",
       "mbid": "3e472e7e-a706-478a-a8dd-25dbec5186d3",
       "year": "2017",
-      "releaseType": "album"
-    },
-    {
-      "slug": "project:d-u-c",
-      "type": "project",
-      "name": "D.U.C",
-      "mbid": "65293bd0-a326-4178-b2fb-8f68d0065223",
-      "year": "2015",
       "releaseType": "album"
     },
     {
@@ -193,22 +176,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:futur",
-      "type": "project",
-      "name": "Futur",
-      "mbid": "aafdf79f-6955-4d93-a989-76627d8adbfb",
-      "year": "2012",
-      "releaseType": "album"
-    },
-    {
-      "slug": "project:lunatic",
-      "type": "project",
-      "name": "Lunatic",
-      "mbid": "1f422be0-4b9a-4984-adc5-3bef0ee8c100",
-      "year": "2010",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:paradis--booba",
       "type": "project",
       "name": "Paradis",
@@ -234,20 +201,38 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:pantheon",
-      "type": "project",
-      "name": "Panthéon",
-      "mbid": "a47efde0-ca84-34ee-8ac8-65b475166ade",
-      "year": "2004",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:temps-mort--booba",
       "type": "project",
       "name": "Temps mort",
       "mbid": "1bd0767d-756b-3023-bf84-ca475fea487a",
       "year": "2002",
       "releaseType": "album"
+    },
+    {
+      "slug": "project:pantheon",
+      "type": "project",
+      "name": "Panthéon"
+    },
+    {
+      "slug": "project:lunatic",
+      "type": "project",
+      "name": "Lunatic"
+    },
+    {
+      "slug": "project:futur",
+      "type": "project",
+      "name": "Futur"
+    },
+    {
+      "slug": "project:d-u-c",
+      "type": "project",
+      "name": "D.U.C"
+    },
+    {
+      "slug": "project:ultra--booba",
+      "type": "project",
+      "name": "Ultra",
+      "artist": "Booba"
     },
     {
       "slug": "project:autopsie-vol-1",

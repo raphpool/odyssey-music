@@ -394,6 +394,14 @@
       "releaseType": "album"
     },
     {
+      "slug": "project:spectrum-suite--steven-halpern",
+      "type": "project",
+      "name": "Spectrum Suite",
+      "mbid": "596a221f-9d22-3bfc-9afb-293f834c72b0",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:christening-for-listening-a-soundtrack-for-every-body--steven-halpern",
       "type": "project",
       "name": "Christening For Listening (A Soundtrack For Every Body)",
@@ -401,11 +409,6 @@
       "mbid": "5b2d588a-438a-4e11-9c87-7b405b3397bf",
       "year": "1975",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:spectrum-suite--steven-halpern",
-      "type": "project",
-      "name": "Spectrum Suite"
     }
   ],
   "notable_tracks": [],

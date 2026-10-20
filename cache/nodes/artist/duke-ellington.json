@@ -40,14 +40,6 @@
   ],
   "discography": [
     {
-      "slug": "project:black-brown-and-beige",
-      "type": "project",
-      "name": "Black, Brown and Beige",
-      "mbid": "a6015061-b98e-439a-9de1-51ee60f7f14e",
-      "year": "2013",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:one-o-clock-jump--duke-ellington",
       "type": "project",
       "name": "One O'Clock Jump",
@@ -388,6 +380,11 @@
       "mbid": "783a784f-8b61-4437-8ef4-617bbde86e89",
       "year": "1940",
       "releaseType": "album"
+    },
+    {
+      "slug": "project:black-brown-and-beige",
+      "type": "project",
+      "name": "Black, Brown and Beige"
     },
     {
       "slug": "project:ellington-at-newport",

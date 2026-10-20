@@ -116,14 +116,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:mr-big",
-      "type": "project",
-      "name": "Mr. Big",
-      "mbid": "864f6b3c-f027-4443-b913-477a18d6adb1",
-      "year": "1971",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:well-alright--little-richard",
       "type": "project",
       "name": "Well Alright!",
@@ -206,6 +198,11 @@
       "slug": "project:little-richard",
       "type": "project",
       "name": "Little Richard"
+    },
+    {
+      "slug": "project:mr-big",
+      "type": "project",
+      "name": "Mr. Big"
     },
     {
       "slug": "project:friends-from-the-beginning-little-richard-and-jimi-hendrix",

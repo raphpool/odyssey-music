@@ -59,14 +59,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:trans-europe-express",
-      "type": "project",
-      "name": "Trans-Europe Express",
-      "mbid": "0e2b636a-3813-476e-898d-d027218e05d2",
-      "year": "1999",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:electric-cafe--kraftwerk",
       "type": "project",
       "name": "Electric Cafe",
@@ -172,6 +164,11 @@
       "mbid": "47e62190-67b6-3d37-951c-43eb14894b3e",
       "year": "1970",
       "releaseType": "album"
+    },
+    {
+      "slug": "project:trans-europe-express",
+      "type": "project",
+      "name": "Trans-Europe Express"
     },
     {
       "slug": "project:the-man-machine--kraftwerk",

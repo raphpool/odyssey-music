@@ -73,28 +73,12 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:his-greatest-hits",
-      "type": "project",
-      "name": "His Greatest Hits",
-      "mbid": "72008afb-dd6e-49de-96a3-b1aa28ad855b",
-      "year": "1986",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:sleeping-on-the-job--fats-domino",
       "type": "project",
       "name": "Sleeping on the Job",
       "artist": "Fats Domino",
       "mbid": "d5eee898-def6-38f9-b447-f0dba333176b",
       "year": "1979",
-      "releaseType": "album"
-    },
-    {
-      "slug": "project:live-in-europe",
-      "type": "project",
-      "name": "Live in Europe",
-      "mbid": "c0017e88-d7b5-4ce9-8aea-1c90d499355c",
-      "year": "1977",
       "releaseType": "album"
     },
     {
@@ -325,6 +309,16 @@
       "slug": "project:in-concert",
       "type": "project",
       "name": "In Concert!"
+    },
+    {
+      "slug": "project:live-in-europe",
+      "type": "project",
+      "name": "Live in Europe"
+    },
+    {
+      "slug": "project:his-greatest-hits",
+      "type": "project",
+      "name": "His Greatest Hits"
     }
   ],
   "notable_tracks": [

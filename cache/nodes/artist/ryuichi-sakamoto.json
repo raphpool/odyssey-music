@@ -82,23 +82,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:vrioon--ryuichi-sakamoto",
-      "type": "project",
-      "name": "Vrioon",
-      "artist": "Ryuichi Sakamoto",
-      "mbid": "51d844a9-12b6-4240-a67e-7f1af9e87804",
-      "year": "2022",
-      "releaseType": "album"
-    },
-    {
-      "slug": "project:merry-christmas-mr-lawrence",
-      "type": "project",
-      "name": "Merry Christmas, Mr. Lawrence",
-      "mbid": "cadd2040-8536-4291-a210-3a7cf43c5804",
-      "year": "2019",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:async--ryuichi-sakamoto",
       "type": "project",
       "name": "async",
@@ -328,9 +311,20 @@
       "name": "Thousand Knives"
     },
     {
+      "slug": "project:merry-christmas-mr-lawrence",
+      "type": "project",
+      "name": "Merry Christmas, Mr. Lawrence"
+    },
+    {
       "slug": "project:the-last-emperor",
       "type": "project",
       "name": "The Last Emperor"
+    },
+    {
+      "slug": "project:vrioon--ryuichi-sakamoto",
+      "type": "project",
+      "name": "Vrioon",
+      "artist": "Ryuichi Sakamoto"
     }
   ],
   "notable_tracks": [

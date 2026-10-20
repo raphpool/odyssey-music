@@ -138,14 +138,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:intolleranza-1960",
-      "type": "project",
-      "name": "Intolleranza 1960",
-      "mbid": "203106cc-4cc5-3715-9f0d-3441d3c0c12f",
-      "year": "1995",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:luigi-nono-3-guai-ai-gelidi-mostri-omaggio-a-gyorgy-kurtag--luigi-nono",
       "type": "project",
       "name": "Luigi Nono 3: Guai ai gelidi mostri / Omaggio a György Kurtág",
@@ -243,6 +235,11 @@
       "mbid": "32fb73ae-c202-4c60-b634-b816d105afaf",
       "year": "1968",
       "releaseType": "album"
+    },
+    {
+      "slug": "project:intolleranza-1960",
+      "type": "project",
+      "name": "Intolleranza 1960"
     },
     {
       "slug": "project:il-canto-sospeso",

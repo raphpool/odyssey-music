@@ -53,14 +53,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:doctor-atomic",
-      "type": "project",
-      "name": "Doctor Atomic",
-      "mbid": "c3525ff3-fb6e-4ef4-8030-06076f104f55",
-      "year": "2018",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:piano-music--john-adams",
       "type": "project",
       "name": "Piano Music",
@@ -232,14 +224,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:nixon-in-china",
-      "type": "project",
-      "name": "Nixon in China",
-      "mbid": "ab57421b-ec7b-3190-8c98-93e7cc01fe16",
-      "year": "1988",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:shaker-loops-phrygian-gates--john-adams",
       "type": "project",
       "name": "Shaker Loops / Phrygian Gates",
@@ -255,6 +239,16 @@
       "mbid": "662dbba9-ef3d-3c21-98c0-0826b0aedcfe",
       "year": "1985",
       "releaseType": "album"
+    },
+    {
+      "slug": "project:nixon-in-china",
+      "type": "project",
+      "name": "Nixon in China"
+    },
+    {
+      "slug": "project:doctor-atomic",
+      "type": "project",
+      "name": "Doctor Atomic"
     }
   ],
   "notable_tracks": [

@@ -220,14 +220,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:joe-s-garage",
-      "type": "project",
-      "name": "Joe's Garage",
-      "mbid": "48767842-216a-43a8-8d3f-ce30e91fe139",
-      "year": "1979",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:joe-s-garage-act-i--frank-zappa",
       "type": "project",
       "name": "Joe’s Garage: Act I",
@@ -346,6 +338,11 @@
       "slug": "project:freak-out",
       "type": "project",
       "name": "Freak Out!"
+    },
+    {
+      "slug": "project:joe-s-garage",
+      "type": "project",
+      "name": "Joe's Garage"
     }
   ],
   "notable_tracks": [

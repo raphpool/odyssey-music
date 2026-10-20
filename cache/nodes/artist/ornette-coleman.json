@@ -42,14 +42,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:free-jazz",
-      "type": "project",
-      "name": "Free Jazz",
-      "mbid": "ce448b7d-f672-362b-8a75-7bb8d7028e0e",
-      "year": "1996",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:sound-museum-hidden-man--ornette-coleman",
       "type": "project",
       "name": "Sound Museum: Hidden Man",
@@ -276,6 +268,11 @@
       "slug": "project:something-else",
       "type": "project",
       "name": "Something Else!!!!"
+    },
+    {
+      "slug": "project:free-jazz",
+      "type": "project",
+      "name": "Free Jazz"
     }
   ],
   "notable_tracks": [

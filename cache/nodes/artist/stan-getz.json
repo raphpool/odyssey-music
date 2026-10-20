@@ -334,14 +334,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:getz-gilberto",
-      "type": "project",
-      "name": "Getz/Gilberto",
-      "mbid": "b248d212-aace-3c3e-a23d-e13aaac1f87a",
-      "year": "1964",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:stan-getz-with-guest-artist-laurindo-almeida--stan-getz",
       "type": "project",
       "name": "Stan Getz With Guest Artist Laurindo Almeida",
@@ -437,6 +429,11 @@
       "mbid": "492ffa75-8d67-48ff-8805-306a96ca1e0b",
       "year": "1954",
       "releaseType": "album"
+    },
+    {
+      "slug": "project:getz-gilberto",
+      "type": "project",
+      "name": "Getz/Gilberto"
     }
   ],
   "notable_tracks": [

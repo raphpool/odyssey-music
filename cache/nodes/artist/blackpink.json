@@ -67,14 +67,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:born-pink",
-      "type": "project",
-      "name": "Born Pink",
-      "mbid": "350340d1-0121-4881-a6fb-97801e64d261",
-      "year": "2022",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:the-album-jp-ver--blackpink",
       "type": "project",
       "name": "THE ALBUM -JP ver.-",
@@ -161,6 +153,11 @@
       "mbid": "4028a14d-bb3a-4fc1-bfff-edd73369aa4e",
       "year": "2016",
       "releaseType": "single"
+    },
+    {
+      "slug": "project:born-pink",
+      "type": "project",
+      "name": "Born Pink"
     },
     {
       "slug": "project:kill-this-love",

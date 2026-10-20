@@ -107,14 +107,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:playing-robots-into-heaven",
-      "type": "project",
-      "name": "Playing Robots Into Heaven",
-      "mbid": "9980f970-e6a5-493c-973f-1c45a5c4a0ba",
-      "year": "2023",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:friends-that-break-your-heart--james-blake",
       "type": "project",
       "name": "Friends That Break Your Heart",
@@ -253,6 +245,11 @@
       "mbid": "f78c72ad-7575-4d70-aa62-1a3d9b405f7e",
       "year": "2009",
       "releaseType": "single"
+    },
+    {
+      "slug": "project:playing-robots-into-heaven",
+      "type": "project",
+      "name": "Playing Robots Into Heaven"
     }
   ],
   "notable_tracks": [

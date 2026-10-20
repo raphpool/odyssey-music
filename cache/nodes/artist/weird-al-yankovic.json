@@ -72,14 +72,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:squeeze-box-the-complete-works-of-weird-al-yankovic",
-      "type": "project",
-      "name": "Squeeze Box: The Complete Works of “Weird Al” Yankovic",
-      "mbid": "dd0e8286-aad6-499e-bf91-382d197d47bc",
-      "year": "2017",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:mandatory-fun--weird-al-yankovic",
       "type": "project",
       "name": "Mandatory Fun",
@@ -275,6 +267,11 @@
       "mbid": "a490c2d9-2ac2-4405-ba64-ee00d7257030",
       "year": "1981",
       "releaseType": "ep"
+    },
+    {
+      "slug": "project:squeeze-box-the-complete-works-of-weird-al-yankovic",
+      "type": "project",
+      "name": "Squeeze Box: The Complete Works of “Weird Al” Yankovic"
     }
   ],
   "notable_tracks": [

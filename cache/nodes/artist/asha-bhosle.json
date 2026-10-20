@@ -188,14 +188,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:dil-padosi-hai",
-      "type": "project",
-      "name": "Dil Padosi Hai",
-      "mbid": "5e472e7e-2cb5-3ffe-b63c-65b140a232c6",
-      "year": "1987",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:pran-jaye-par-vachan-na-jaye--asha-bhosle",
       "type": "project",
       "name": "Pran Jaye Par Vachan Na Jaye",
@@ -203,6 +195,11 @@
       "mbid": "f663a159-3486-469e-aee7-bfa8245c437b",
       "year": "1974",
       "releaseType": "album"
+    },
+    {
+      "slug": "project:dil-padosi-hai",
+      "type": "project",
+      "name": "Dil Padosi Hai"
     },
     {
       "slug": "project:janam-samjha-karo",
