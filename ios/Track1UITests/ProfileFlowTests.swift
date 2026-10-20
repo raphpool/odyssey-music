@@ -96,6 +96,106 @@ final class ProfileFlowTests: XCTestCase {
 		XCTAssertEqual(counter.label, "Total : 1 genre")
 	}
 
+	/// 2026-10-20 (TRA-640): "Tous" ticks every genre of its card, ticks them off again when they are all
+	/// ticked, and reads as ticked when the person ticked the last one by hand (the state is derived from the
+	/// selection). The count of the header is read off the label of the card: the header is one button, so the
+	/// texts drawn in it ("(2 sélectionnés)") are not elements of their own, and the label spells the same
+	/// count without the parentheses. Every tap goes through `tapAboveBar`: the pinned bar takes the touch of
+	/// whatever is under it.
+	@MainActor
+	func testSelectAllTogglesEverySubgenreOfTheCardBothWays() {
+		let app = UITestFlows.launch(catalog: Self.taxonomyCatalog)
+		UITestFlows.declineConsent(app)
+		UITestFlows.tapWhenReady(app.buttons["onboarding-start"])
+		let bar = app.buttons["onboarding-genres-continue"]
+		let family0 = card("family-0", in: app)
+		let all = app.buttons["select-all-family-0"]
+		let chipA = app.buttons["subgenre-chip-local:genre-0a"]
+		let chipB = app.buttons["subgenre-chip-local:genre-0b"]
+		let counter = element(app, "bottom-counter")
+
+		UITestFlows.tapAboveBar(family0, bar: bar, in: app)
+		XCTAssertTrue(all.waitForExistence(timeout: 10))
+		XCTAssertTrue(chipA.waitForExistence(timeout: 10))
+		XCTAssertTrue(chipB.waitForExistence(timeout: 10))
+		XCTAssertFalse(all.isSelected)
+		XCTAssertFalse(bar.isEnabled)
+
+		// Nothing ticked: "Tous" ticks both genres, the header counts two, the CTA opens.
+		UITestFlows.tapAboveBar(all, bar: bar, in: app)
+		XCTAssertTrue(all.isSelected)
+		XCTAssertTrue(chipA.isSelected)
+		XCTAssertTrue(chipB.isSelected)
+		XCTAssertTrue(family0.label.hasSuffix(", 2 sélectionnés"), family0.label)
+		XCTAssertTrue(counter.waitForExistence(timeout: 5))
+		XCTAssertEqual(counter.label, "Total : 2 genres")
+		XCTAssertTrue(bar.isEnabled)
+
+		// Everything ticked: the same chip ticks everything off, and the CTA closes again.
+		UITestFlows.tapAboveBar(all, bar: bar, in: app)
+		XCTAssertFalse(all.isSelected)
+		XCTAssertFalse(chipA.isSelected)
+		XCTAssertFalse(chipB.isSelected)
+		XCTAssertFalse(family0.label.contains("sélectionné"), family0.label)
+		XCTAssertEqual(counter.label, "Total : 0 genre")
+		XCTAssertFalse(bar.isEnabled)
+
+		// One genre by hand: the count is singular and "Tous" stays off, since one genre is still missing.
+		UITestFlows.tapAboveBar(chipA, bar: bar, in: app)
+		XCTAssertTrue(family0.label.hasSuffix(", 1 sélectionné"), family0.label)
+		XCTAssertFalse(all.isSelected)
+
+		// The last genre by hand: "Tous" is ticked without being touched.
+		UITestFlows.tapAboveBar(chipB, bar: bar, in: app)
+		XCTAssertTrue(all.isSelected)
+	}
+
+	/// 2026-10-20 (TRA-640, plan Q2): opening a card does not close the others, and closing a card keeps what
+	/// was ticked in it: the header and the total still count it, and the chip is ticked again when the card
+	/// reopens. The label of a card names its genre count whether it is open or not, so the closed state is
+	/// read off the value ("replié") and off the chip, which only exists while its card is open.
+	@MainActor
+	func testCardsOpenTogetherAndKeepTheirSelectionWhenCollapsed() {
+		let app = UITestFlows.launch(catalog: Self.taxonomyCatalog)
+		UITestFlows.declineConsent(app)
+		UITestFlows.tapWhenReady(app.buttons["onboarding-start"])
+		let bar = app.buttons["onboarding-genres-continue"]
+		let family0 = card("family-0", in: app)
+		let family1 = card("family-1", in: app)
+		let chip0a = element(app, "subgenre-chip-local:genre-0a")
+		let chip0aButton = app.buttons["subgenre-chip-local:genre-0a"]
+		let chip1a = element(app, "subgenre-chip-local:genre-1a")
+
+		// Both cards open at once: the chips of the two exist together.
+		UITestFlows.tapAboveBar(family0, bar: bar, in: app)
+		XCTAssertTrue(chip0a.waitForExistence(timeout: 10))
+		UITestFlows.tapAboveBar(family1, bar: bar, in: app)
+		XCTAssertTrue(chip1a.waitForExistence(timeout: 10))
+		XCTAssertTrue(chip0a.exists)
+		XCTAssertEqual(family0.value as? String, "déplié")
+		XCTAssertEqual(family1.value as? String, "déplié")
+		UITestFlows.screenshot(named: "1.2-accordion", in: self)
+
+		UITestFlows.tapAboveBar(chip0aButton, bar: bar, in: app)
+
+		// The first card closes: its chip is gone, its selection is not, and the second card is untouched.
+		UITestFlows.tapAboveBar(family0, bar: bar, in: app)
+		XCTAssertTrue(chip0a.waitForNonExistence(timeout: 10))
+		XCTAssertEqual(family0.value as? String, "replié")
+		XCTAssertTrue(family0.label.hasSuffix(", 1 sélectionné"), family0.label)
+		XCTAssertTrue(family0.label.contains("2 sous-genres"), family0.label)
+		let counter = element(app, "bottom-counter")
+		XCTAssertTrue(counter.waitForExistence(timeout: 5))
+		XCTAssertEqual(counter.label, "Total : 1 genre")
+		XCTAssertTrue(chip1a.exists)
+		XCTAssertEqual(family1.value as? String, "déplié")
+
+		// It opens again with its genre still ticked.
+		UITestFlows.tapAboveBar(family0, bar: bar, in: app)
+		XCTAssertTrue(chip0a.waitForExistence(timeout: 10))
+		XCTAssertTrue(chip0aButton.isSelected)
+	}
+
 	@MainActor
 	func testFailedProfileWriteShowsAnErrorAndCanBeRetried() {
 		let app = XCUIApplication()
