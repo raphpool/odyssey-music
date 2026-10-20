@@ -6,6 +6,7 @@ import {
 	DISCOGRAPHY_POLICY_VERSION,
 	type DiscographyPolicy,
 	type MergeResult,
+	MIN_VOTED_FOR_UNRATED_CUT,
 	mergeDiscography,
 	selectReleases,
 } from "../src/discography-policy.js";
@@ -104,6 +105,34 @@ async function replay(
 describe("discography policy v6 (TRA-649)", () => {
 	it("is version 6: a manifest decided by v5 is not replayed", () => {
 		expect(DISCOGRAPHY_POLICY_VERSION).toBe(6);
+	});
+
+	// The reduced lists must keep the guard under test in play: an artist that MusicBrainz rates (10 voted release
+	// groups among the candidates) is the one v5 held back, and a fixture that lost its votes would pass the cases
+	// below through the old, uncautious path.
+	it.each([
+		"booba",
+		"blackpink",
+		"chuck-berry",
+		"ub40",
+		"fats-domino",
+		"kraftwerk",
+		"frank-zappa",
+		"ryuichi-sakamoto",
+		"weird-al-yankovic",
+		"ornette-coleman",
+	])("%s: the fixture keeps the artist rated (10 voted candidates)", async (artist) => {
+		const fixture = fixtureOf(artist);
+		vi.stubGlobal("fetch", browseStub(fixture));
+		const { releases } = await fetchArtistDiscographyMb(fixture.artist.mbid, { priority: "background" });
+		const policy: DiscographyPolicy = {
+			artistMbid: fixture.artist.mbid,
+			artistName: fixture.artist.name,
+			cap: DEFAULT_DISCOGRAPHY_CAP,
+			currentYear: 2026,
+		};
+		const voted = selectReleases(releases, policy).kept.filter((c) => c.ratingVotes > 0);
+		expect(voted.length).toBeGreaterThanOrEqual(MIN_VOTED_FOR_UNRATED_CUT);
 	});
 
 	// The 33 entries v5 held back, replayed on MusicBrainz: 20 are posed.

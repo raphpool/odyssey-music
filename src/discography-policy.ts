@@ -53,12 +53,12 @@ export const DEFAULT_DISCOGRAPHY_CAP = 40;
  * posed 5 reference entries with the identity of a minor single or a reissue; and an mbid is only posed from a
  * release group that passes the credit rule of classifyRelease, Ellington's "Black, Brown and Beige" having
  * taken a 2013 recording credited to three artists): a manifest of version 4 is not replayed.
- * 2026-10-20: 6, the policy changed with TRA-649 (v5 held back 33 entries on prudence, replayed on MusicBrainz the
- * same day: 20 were right and are now posed, 13 stay out; the symptom was Booba's "Lunatic" and "Futur", Blackpink's
- * "Born Pink" or Lennon's "Some Time in New York City" left without mbid, a twin then missing from the artist's list.
- * An unvoted release group is posed when it is a plain album, the credit rule lets a release group that the artist
- * heads through when it is voted or when the entry states its very year and type): a manifest of version 5 is not
- * replayed, since an entry it left ambiguous is decided again.
+ * 2026-10-20: 6, the policy changed with TRA-649 (v5 held back 33 entries on prudence; replayed on MusicBrainz the
+ * same day, 20 were the right release group and 13 stay out. Symptom: Booba's "Lunatic" and "Futur", Blackpink's
+ * "Born Pink" or Lennon's "Some Time in New York City" stayed without mbid, hence without cover from the Cover Art
+ * Archive. An unvoted release group is posed when it is a plain album and its votes are not elsewhere; the credit
+ * rule lets through a release group the artist heads with three credits when it is voted or when the entry states its
+ * very year and type): a manifest of version 5 is not replayed, since an entry it left ambiguous is decided again.
  */
 export const DISCOGRAPHY_POLICY_VERSION = 6;
 
@@ -198,6 +198,12 @@ function isKeptPrimaryType(type: string): type is KeptPrimaryType {
 	return (KEPT_PRIMARY_TYPES as readonly string[]).includes(type);
 }
 
+// The artist is the first credit of the release group.
+function headsRelease(c: ReleaseGroupCandidate, policy: DiscographyPolicy): boolean {
+	const firstCredit = c.artistCredits[0];
+	return firstCredit !== undefined && sameMbid(firstCredit.mbid, policy.artistMbid);
+}
+
 // The credit rule alone: the artist heads the release (first credit), it has at most MAX_CREDITS credits, and
 // Various Artists is not one of them. Various Artists is told apart from a plain "credit" mismatch, which is what
 // the exclusion log is read for.
@@ -206,8 +212,7 @@ function creditVerdict(
 	policy: DiscographyPolicy,
 ): "various-artists" | "credit" | null {
 	if (c.artistCredits.some((credit) => sameMbid(credit.mbid, VARIOUS_ARTISTS_MBID))) return "various-artists";
-	const firstCredit = c.artistCredits[0];
-	if (firstCredit === undefined || !sameMbid(firstCredit.mbid, policy.artistMbid)) return "credit";
+	if (!headsRelease(c, policy)) return "credit";
 	return c.artistCredits.length > MAX_CREDITS ? "credit" : null;
 }
 
@@ -532,6 +537,9 @@ interface PoseCaution {
 	nodeMbidOf: (entry: EdgeRef) => string | undefined;
 	// The artist has MIN_VOTED_FOR_UNRATED_CUT voted release groups: the same count as the unrated cut.
 	ratedArtist: boolean;
+	// The title bodies of every voted release group credited to the artist, and the artist's own name body (TRA-649).
+	votedTitleBodies: readonly string[];
+	artistBody: string;
 	policy: DiscographyPolicy;
 }
 
@@ -547,19 +555,29 @@ function isPlainAlbum(c: ReleaseGroupCandidate): boolean {
 	);
 }
 
+// A voted release group of the artist whose title opens with the entry's: "Joe's Garage" and the voted "Joe's Garage:
+// Act I". The votes are on the longer title, so an unvoted release group of the exact title is not the work. A title
+// that opens with the artist's own name says nothing ("Chuck" against "Chuck Berry Is on Top").
+function hasVotedExtension(entry: EdgeRef, caution: PoseCaution): boolean {
+	const body = reconciliationKey(entry.name);
+	return caution.votedTitleBodies.some(
+		(longer) => opensWith(longer, body) && !opensWith(longer, caution.artistBody),
+	);
+}
+
 // The credit rule, as it applies to a pose on an existing entry (TRA-649). The artist must head the release and
 // Various Artists is never one of its credits: nothing relaxes that. A third-party recording of the artist's work
 // ("Black, Brown, and Beige" by an orchestra, with Ellington first) fails it by its number of credits, as do
 // Asha Bhosle's "Dil Padosi Hai" (with its composer and lyricist), Lennon's "Some Time in New York City" (with
 // Yoko Ono and the Plastic Ono Band) and Getz / Gilberto, which are the artist's own. What tells them apart is a
 // vote, which MusicBrainz users give to known releases (1 to 6 here, 0 for the recordings), or the entry itself
-// stating the very year and type of the release group (an "Annihilatiøn", 2025, single, with two guests).
+// stating the very year and type of the release group (an "Annihilatiøn", 2025, single, with two guests). Only one
+// credit more than the rule allows is let through: a vote on a release with a long cast says nothing about the artist.
 function creditBlocksPose(entry: EdgeRef, match: ReleaseGroupCandidate, policy: DiscographyPolicy): boolean {
 	const verdict = creditVerdict(match, policy);
 	if (verdict === null) return false;
-	const first = match.artistCredits[0];
-	if (verdict === "various-artists" || first === undefined || !sameMbid(first.mbid, policy.artistMbid))
-		return true;
+	if (verdict === "various-artists" || !headsRelease(match, policy)) return true;
+	if (match.artistCredits.length > MAX_CREDITS + 1) return true;
 	if (isVoted(match)) return false;
 	const year = yearOf(entry.year);
 	return !(
@@ -581,15 +599,16 @@ function creditBlocksPose(entry: EdgeRef, match: ReleaseGroupCandidate, policy: 
  *  2. otherwise decidePose decides, on the whole group, with its resolution of several release groups;
  *  3. whatever was decided, the release group to pose must pass the credit rule of classifyRelease (the artist
  *     heads it, at most two credits, not Various Artists), else nothing is posed, `credit`; except that a release
- *     group the artist heads with more credits is let through when it is voted or when the entry states its year
+ *     group the artist heads with three credits is let through when it is voted or when the entry states its year
  *     and type (creditBlocksPose). It is checked on the one the decision picked, never on the group beforehand:
  *     removing a candidate first would turn "two recordings" into a confident pose on the other, or an album into
  *     its single (TRA-560). Ellington's "Black, Brown and Beige" took a 2013 recording credited to three artists;
  *  4. an entry with neither year nor type, an artist with MIN_VOTED_FOR_UNRATED_CUT voted release groups, and a
  *     release group with no vote that is not recent: nothing is posed, `unrated-pose`, unless it is a plain album
- *     (isPlainAlbum) and no other release group of the title has a vote. The five false identities were a single,
- *     a reissue and a recording, never an unvoted album of the artist's own; a lone single or EP, a compilation
- *     or a "Greatest Hits" of the title, or an album whose title has votes elsewhere, stays out. Below the
+ *     (isPlainAlbum) and the votes of the title are not elsewhere: on another release group of the same title, or
+ *     on a longer title of the artist that opens with it (hasVotedExtension). The five false identities were a
+ *     single, a reissue and a recording, never an unvoted album of the artist's own; a lone single or EP, a
+ *     compilation or a "Greatest Hits" of the title stays out. Below the
  *     threshold (Kode9, 4hero) nobody has votes and it is posed as before.
  * A year or a type on the entry (or a year in its title) keeps the guards of decidePose for 1 and 4.
  */
@@ -622,7 +641,11 @@ function decideCautiously(
 		caution.ratedArtist &&
 		!isVoted(chosen) &&
 		!isRecentRelease(chosen, caution.policy) &&
-		!(isPlainAlbum(chosen) && !matches.some((m) => m !== chosen && isVoted(m)))
+		!(
+			isPlainAlbum(chosen) &&
+			!matches.some((m) => m !== chosen && isVoted(m)) &&
+			!hasVotedExtension(entry, caution)
+		)
 	) {
 		return { kind: "ambiguous", reason: "unrated-pose" };
 	}
@@ -699,6 +722,8 @@ export function mergeDiscography(input: MergeInput): MergeResult {
 		// Counted on `candidates`, the kept list of selectReleases, whose cut counts the very same voted release groups.
 		ratedArtist:
 			new Set(candidates.filter(isVoted).map((c) => c.mbid.toLowerCase())).size >= MIN_VOTED_FOR_UNRATED_CUT,
+		votedTitleBodies: allCredited.filter(isVoted).map((c) => normalizeTitleBody(c.title)),
+		artistBody: normalizeTitleBody(policy.artistName),
 		policy,
 	};
 

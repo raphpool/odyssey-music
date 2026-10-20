@@ -1923,6 +1923,24 @@ describe("mergeDiscography — cautious pose without a year (TRA-647)", () => {
 				},
 			);
 
+			it("holds an unvoted album when the votes are on a longer title of the artist: 'Joe's Garage: Act I'", () => {
+				const exact = unvoted("Joe's Garage", { firstReleaseDate: "1987-06-01" });
+				const act = unvoted("Joe's Garage: Act I", { firstReleaseDate: "1979-09-17", ratingVotes: 6 });
+				const existing = [zappaEntry("Joe's Garage")];
+
+				const result = mergeFor(zappa, existing, [...votedAlbums(10), exact, act]);
+
+				expect(result.posed).toEqual([]);
+				expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "unrated-pose" }]);
+			});
+
+			it("does not read the artist's name as a longer title: 'Frank' against the voted 'Frank Zappa Is on Top'", () => {
+				const album = unvoted("Frank");
+				const onTop = unvoted("Frank Zappa Is on Top", { ratingVotes: 3 });
+				const result = mergeFor(zappa, [zappaEntry("Frank")], [...votedAlbums(10), album, onTop]);
+				expect(result.posed.map((p) => p.mbid)).toEqual([album.mbid]);
+			});
+
 			it("holds an unvoted album when another release group of the title has a vote", () => {
 				const album = unvoted("Joe's Garage", { firstReleaseDate: "1979-09-07" });
 				const single = unvoted("Joe's Garage", {
@@ -2013,6 +2031,13 @@ describe("mergeDiscography — cautious pose without a year (TRA-647)", () => {
 					artistCredits: [HEAD, { mbid: VARIOUS_ARTISTS_MBID, name: "Various Artists" }],
 					ratingVotes: 9,
 				});
+				const result = mergeFor(zappa, existing, [found]);
+				expect(result.posed).toEqual([]);
+				expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "credit" }]);
+			});
+
+			it("is held with four credits or more, even voted: only one credit past the rule is let through", () => {
+				const found = release("Dil Padosi Hai", { artistCredits: [...credits, guest(3)], ratingVotes: 9 });
 				const result = mergeFor(zappa, existing, [found]);
 				expect(result.posed).toEqual([]);
 				expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "credit" }]);
