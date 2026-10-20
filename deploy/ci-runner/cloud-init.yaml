@@ -18,12 +18,7 @@ packages:
   - ufw
   - unattended-upgrades
 
-users:
-  - default
-  # Runs the runner services. No sudo: workflow steps execute PR code under this account.
-  - name: runner
-    shell: /bin/bash
-    lock_passwd: true
+# The runner accounts (runner-1 ... runner-N, no sudo) are created by setup-runners.sh, one per runner.
 
 ssh_pwauth: false
 
