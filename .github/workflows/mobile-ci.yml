@@ -35,7 +35,7 @@ jobs:
   mobile-check:
     # Draft PRs are excluded until GitHub emits ready_for_review for this workflow.
     if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
-    runs-on: [self-hosted, macOS, ARM64]
+    runs-on: [self-hosted, linux]
     steps:
       - name: Isolate HOME from the runner host account
         # The self-hosted runner uses a personal macOS account. Keep npm and git configuration

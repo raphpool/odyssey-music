@@ -150,7 +150,7 @@ describe("CI policy integration", () => {
 
 		expect(workflow).toContain("types: [opened, synchronize, reopened, ready_for_review]");
 		expect(workflow).toContain("github.event.pull_request.draft == false");
-		expect(workflow).toContain("runs-on: [self-hosted, macOS, ARM64]");
+		expect(workflow).toContain("runs-on: [self-hosted, linux]");
 		expect(workflow).toContain("permissions: { contents: read, pull-requests: write }");
 		expect(workflow).toContain("npx --no-install tsx scripts/ci/pr-policy.ts");
 		expect(workflow).toContain('--add-label "tier/3"');
