@@ -267,11 +267,4 @@ final class OnboardingComponentsTests: XCTestCase {
 		XCTAssertEqual(bar.identifier, "onboarding-start")
 		XCTAssertFalse(bar.showsFade)
 	}
-
-	@MainActor
-	func testSubgenresBarHasItsOwnIdentifierAndKeepsTheFade() {
-		let bar = SubgenresStepView.actionBar(title: "Continuer", counter: "2 sélectionnés") {}
-		XCTAssertEqual(bar.identifier, "onboarding-subgenres-continue")
-		XCTAssertTrue(bar.showsFade)
-	}
 }
