@@ -419,13 +419,13 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 	// The project nodes, once: mbid -> slug, and where a redirected slug lands (resolveReadSlug is async, the
 	// merge wants a function, so every redirect key of a project is resolved here, against the real cache).
 	const byMbid = new Map<string, Slug>();
+	// And the other way round (TRA-647): the mbid a project node holds, which an entry without type or year is
+	// never posed against.
+	const mbidBySlug = new Map<Slug, string>();
 	for (const { slug, node } of nodes) {
-		if (
-			slug.startsWith("project:") &&
-			typeof node.mbid === "string" &&
-			!byMbid.has(node.mbid.toLowerCase())
-		) {
-			byMbid.set(node.mbid.toLowerCase(), slug as Slug);
+		if (slug.startsWith("project:") && typeof node.mbid === "string") {
+			if (!byMbid.has(node.mbid.toLowerCase())) byMbid.set(node.mbid.toLowerCase(), slug as Slug);
+			if (node.mbid !== "") mbidBySlug.set(slug as Slug, node.mbid);
 		}
 	}
 	const cache = new NodeCache(cacheDir);
@@ -581,7 +581,7 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 			candidates: selection.kept,
 			allCredited,
 			policy,
-			projectIndex: { byMbid, resolveSlug },
+			projectIndex: { byMbid, mbidBySlug, resolveSlug },
 		});
 		const decision = {
 			posed: merge.posed,
