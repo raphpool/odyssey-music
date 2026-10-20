@@ -440,6 +440,38 @@ describe("--apply", () => {
 		expect(list.find((e) => e.name === "Nothing")?.slug).toBe("project:nothing-ep--kode9");
 	});
 
+	// TRA-647 (measured 2026-10-20 on the cache of PR #562): "Vrioon" was posed the 2022 reissue's mbid while the
+	// project node of the album held another one. The migration hands the merge the mbid of every project node.
+	it("does not pose an mbid against the one the project node of an entry without type or year holds", async () => {
+		const sakamoto = mb(20);
+		const credit = { id: sakamoto, name: "Ryuichi Sakamoto" };
+		const w = world();
+		w.byArtist.set(sakamoto, [rg(80, "Vrioon", "Album", "2022-04-08", [credit])]);
+		await put(
+			artistNode("ryuichi-sakamoto", "Ryuichi Sakamoto", {
+				mbid: sakamoto,
+				artist_kind: "person",
+				discography: [edge("project", "vrioon--ryuichi-sakamoto", "Vrioon", { artist: "Ryuichi Sakamoto" })],
+			}),
+		);
+		await put(projectNode("vrioon--ryuichi-sakamoto", "Vrioon", { mbid: mb(3001) }));
+
+		await runBackfill(options(w, { apply: true }));
+
+		const entry = entryOf(await readManifest(), "artist:ryuichi-sakamoto");
+		expect(entry.posed).toEqual([]);
+		expect(entry.added).toEqual([]);
+		expect(entry.ambiguous).toEqual([{ slug: "project:vrioon--ryuichi-sakamoto", reason: "node-conflict" }]);
+		const list = (await readNode("artist:ryuichi-sakamoto")).discography as { mbid?: string }[];
+		expect(list.map((e) => e.mbid)).toEqual([undefined]);
+
+		// The node holds the mbid MusicBrainz gives: it is posed.
+		await put(projectNode("vrioon--ryuichi-sakamoto", "Vrioon", { mbid: mb(1080) }));
+		await runBackfill(options(w, { apply: true }));
+		const posed = entryOf(await readManifest(), "artist:ryuichi-sakamoto").posed;
+		expect(posed?.map((p) => p.mbid)).toEqual([mb(1080)]);
+	});
+
 	it("does not follow a redirect to a work scoped on another artist", async () => {
 		const w = world();
 		const twin = mb(11);
