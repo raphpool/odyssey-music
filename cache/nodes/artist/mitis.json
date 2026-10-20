@@ -50,65 +50,353 @@
   ],
   "discography": [
     {
-      "slug": "project:til-the-end",
+      "slug": "project:through-the-dark--mitis",
       "type": "project",
-      "name": "Til the End"
-    },
-    {
-      "slug": "project:lost",
-      "type": "project",
-      "name": "Lost"
+      "name": "Through the Dark",
+      "artist": "MitiS",
+      "mbid": "c19f43ef-36e3-43e5-8838-022d8e676b04",
+      "year": "2026",
+      "releaseType": "ep"
     },
     {
       "slug": "project:unity",
       "type": "project",
-      "name": "Unity"
+      "name": "Unity",
+      "mbid": "fb08ee9e-eea8-4031-b1ce-b6dfb482dd03",
+      "year": "2024",
+      "releaseType": "album"
     },
     {
-      "slug": "project:living-color-ep",
+      "slug": "project:falling-into-mystery--mitis",
       "type": "project",
-      "name": "Living Color EP"
+      "name": "Falling into Mystery",
+      "artist": "MitiS",
+      "mbid": "d7ee7e58-8090-4e9c-b36b-327411ef94bf",
+      "year": "2023",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:born",
+      "slug": "project:memories",
       "type": "project",
-      "name": "Born"
+      "name": "Memories",
+      "mbid": "84ab86a1-b6f3-4671-91be-d105bdc39e14",
+      "year": "2023",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:foundations-ep",
+      "slug": "project:phantom-love--mitis",
       "type": "project",
-      "name": "Foundations EP"
-    },
-    {
-      "slug": "project:moments",
-      "type": "project",
-      "name": "Moments"
-    },
-    {
-      "slug": "project:life-of-sin-series",
-      "type": "project",
-      "name": "Life of Sin Series"
-    },
-    {
-      "slug": "project:shattered",
-      "type": "project",
-      "name": "Shattered"
-    },
-    {
-      "slug": "project:all-i-have",
-      "type": "project",
-      "name": "All I Have"
+      "name": "Phantom Love",
+      "artist": "MitiS",
+      "mbid": "1ae7175b-f109-4e92-ab10-1d6441475010",
+      "year": "2023",
+      "releaseType": "single"
     },
     {
       "slug": "project:together--mitis",
       "type": "project",
       "name": "Together",
-      "artist": "MitiS"
+      "artist": "MitiS",
+      "mbid": "badbcdd9-e575-43c4-9a8f-009792193720",
+      "year": "2022",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:memories",
+      "slug": "project:homesick--mitis",
       "type": "project",
-      "name": "Memories"
+      "name": "Homesick",
+      "artist": "MitiS",
+      "mbid": "553ff336-c891-4fcf-8758-c0964efac006",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hurt--mitis",
+      "type": "project",
+      "name": "Hurt",
+      "artist": "MitiS",
+      "mbid": "9eefabf9-3d12-4032-9a5c-70f4112c93a8",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lost",
+      "type": "project",
+      "name": "Lost",
+      "mbid": "c0d9249b-c0ca-45fe-9cb4-c6ae9cff281d",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:try--mitis",
+      "type": "project",
+      "name": "Try",
+      "artist": "MitiS",
+      "mbid": "22570389-4b80-436a-8cec-aa45a1dc3bb8",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-i-have",
+      "type": "project",
+      "name": "All I Have",
+      "mbid": "cd676f43-8ace-4a5b-bc24-cbefef489083",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:life-of-sin-series-2019--mitis",
+      "type": "project",
+      "name": "Life Of Sin Series (2019)",
+      "artist": "MitiS",
+      "mbid": "96fe27c3-9d60-42ee-9b45-e5161350dd11",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mercy--mitis",
+      "type": "project",
+      "name": "Mercy",
+      "artist": "MitiS",
+      "mbid": "c63e76c3-36ab-486c-9b9c-5434aad5a7f0",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shattered",
+      "type": "project",
+      "name": "Shattered",
+      "mbid": "a0af1a56-ecbb-4f09-9380-a89528be153e",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:away--mitis",
+      "type": "project",
+      "name": "Away",
+      "artist": "MitiS",
+      "mbid": "412e0ef3-3ca7-46f9-8f00-02bd9df2df8d",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:by-my-side--mitis",
+      "type": "project",
+      "name": "By My Side",
+      "artist": "MitiS",
+      "mbid": "4092182f-cb12-4d49-995c-4d396959ceed",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:for-miles-and-miles--mitis",
+      "type": "project",
+      "name": "For Miles & Miles",
+      "artist": "MitiS",
+      "mbid": "25a750c6-8a35-43d6-a418-7ed1e4d2c369",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:moments",
+      "type": "project",
+      "name": "Moments",
+      "mbid": "fdba8b06-64a7-432e-9833-57ecd30f276e",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:til-the-end",
+      "type": "project",
+      "name": "Til the End",
+      "mbid": "1d422d0e-43ae-4167-bc98-9015280d3d73",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beautiful-life--mitis",
+      "type": "project",
+      "name": "Beautiful Life",
+      "artist": "MitiS",
+      "mbid": "7243d038-de75-4c04-bd7b-662f1bb11b2d",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:foundations-ep",
+      "type": "project",
+      "name": "Foundations EP",
+      "mbid": "194a366b-28a8-4ce3-ad9b-987132d001f7",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:frameworks--mitis",
+      "type": "project",
+      "name": "Frameworks",
+      "artist": "MitiS",
+      "mbid": "265a6c55-8383-4295-b34a-575ecef60bc7",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hafan--mitis",
+      "type": "project",
+      "name": "Hafan",
+      "artist": "MitiS",
+      "mbid": "efba2425-69fb-411c-855f-8ab010f62de4",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beneath-us--mitis",
+      "type": "project",
+      "name": "Beneath Us",
+      "artist": "MitiS",
+      "mbid": "9b30309b-b0fd-4a49-931a-5e9788df9d14",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:forever--mitis",
+      "type": "project",
+      "name": "Forever",
+      "artist": "MitiS",
+      "mbid": "fd0b533c-b09e-4308-8c31-49bb79f9e48b",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:life-of-sin-series",
+      "type": "project",
+      "name": "Life of Sin Series",
+      "mbid": "58d1d315-8fdb-428a-916f-35d2765b11f0",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:living-color-ep",
+      "type": "project",
+      "name": "Living Color EP",
+      "mbid": "1728c2dd-1c61-47ef-8f12-6d5feaad4fe0",
+      "year": "2015",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mirages--mitis",
+      "type": "project",
+      "name": "Mirages",
+      "artist": "MitiS",
+      "mbid": "6c1a3a3d-998c-4287-b0a8-995a9c0cd781",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:oasis--mitis",
+      "type": "project",
+      "name": "Oasis",
+      "artist": "MitiS",
+      "mbid": "040dc4b0-b8e2-440d-82b7-cf47ae7161a0",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:touch--mitis",
+      "type": "project",
+      "name": "Touch",
+      "artist": "MitiS",
+      "mbid": "6e903bb5-5a23-47b9-a10a-99a8d4f70c5e",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:you--mitis",
+      "type": "project",
+      "name": "You",
+      "artist": "MitiS",
+      "mbid": "d5752daf-ffc2-4d44-9b18-3a5347d4fc26",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:born",
+      "type": "project",
+      "name": "Born",
+      "mbid": "d4d96868-64aa-429d-b1fb-6e46e70d8500",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:change-will-come--mitis",
+      "type": "project",
+      "name": "Change Will Come",
+      "artist": "MitiS",
+      "mbid": "7ce99acd-8d9b-4fbd-8130-bcf0208f6c75",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:open-window--mitis",
+      "type": "project",
+      "name": "Open Window",
+      "artist": "MitiS",
+      "mbid": "c2fb17c2-94d7-4e37-80a7-94394b633030",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:chain-reaction--mitis",
+      "type": "project",
+      "name": "Chain Reaction",
+      "artist": "MitiS",
+      "mbid": "9761739e-6366-4044-be48-7a0901118c63",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:deliverance--mitis",
+      "type": "project",
+      "name": "Deliverance",
+      "artist": "MitiS",
+      "mbid": "806f9986-ec62-4207-99bb-fa87076363b0",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:elixir--mitis",
+      "type": "project",
+      "name": "Elixir",
+      "artist": "MitiS",
+      "mbid": "950a5289-ee27-49ec-a601-7952088b3a1b",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:influential-past--mitis",
+      "type": "project",
+      "name": "Influential Past",
+      "artist": "MitiS",
+      "mbid": "3326b9f9-9424-4231-b1d7-5c5a5436ae9a",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:give-my-regards--mitis",
+      "type": "project",
+      "name": "Give My Regards",
+      "artist": "MitiS",
+      "mbid": "0087f2dd-ea5f-4342-86dc-689e18f3c030",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:what-we-saw--mitis",
+      "type": "project",
+      "name": "What We Saw",
+      "artist": "MitiS",
+      "mbid": "bdbca73d-85d3-48d1-add9-a8e28e91500b",
+      "year": "2011",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

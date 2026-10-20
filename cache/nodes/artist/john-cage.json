@@ -64,14 +64,116 @@
   "labels": [],
   "discography": [
     {
-      "slug": "project:sonatas-and-interludes",
+      "slug": "project:chamber-works-1943-1951--john-cage",
       "type": "project",
-      "name": "Sonatas and Interludes"
+      "name": "Chamber Works 1943-1951",
+      "artist": "John Cage",
+      "mbid": "1cc31ae2-8854-4d94-a4ad-24c09d7a8c8c",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:108-109-110--john-cage",
+      "type": "project",
+      "name": "108 / 109 / 110",
+      "artist": "John Cage",
+      "mbid": "6d0243a9-971b-48ce-9e81-3df9295d45bb",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sculptures-musicales-fifty-five-eight-three-eighty--john-cage",
+      "type": "project",
+      "name": "Sculptures Musicales / Fifty-Five / Eight-Three / Eighty",
+      "artist": "John Cage",
+      "mbid": "6fa3537e-e7d3-4f71-b5f3-37b838ac6ff2",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:three-twenty-eight-fifty-four-fifty-seven--john-cage",
+      "type": "project",
+      "name": "Three / Twenty-Eight / Fifty-Four / Fifty-Seven",
+      "artist": "John Cage",
+      "mbid": "608ca8c8-5c16-4f80-af5d-b2e943c43154",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:two3-inlets-two4--john-cage",
+      "type": "project",
+      "name": "Two³ / Inlets / Two⁴",
+      "artist": "John Cage",
+      "mbid": "4316c818-9423-4d9e-add8-12b80e9c1843",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:one4-four-twenty-nine--john-cage",
+      "type": "project",
+      "name": "One⁴ / Four / Twenty-Nine",
+      "artist": "John Cage",
+      "mbid": "3ee3f942-2a1b-427e-9257-e64e978ca7db",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:four4--john-cage",
+      "type": "project",
+      "name": "Four⁴",
+      "artist": "John Cage",
+      "mbid": "d1f7e165-5cac-49bf-a2b6-08e6c8441e32",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:three2-twenty-three-six-twenty-six--john-cage",
+      "type": "project",
+      "name": "Three² / Twenty-Three / Six / Twenty-Six",
+      "artist": "John Cage",
+      "mbid": "93c2e881-57ef-4d48-87c1-24697d5fc18a",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:oneviolin--john-cage",
+      "type": "project",
+      "name": "ONEviolin",
+      "artist": "John Cage",
+      "mbid": "f83aefdb-c70e-407b-ac67-7a763b302cc4",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:two4-two6-five2-five5-seven-seven2--john-cage",
+      "type": "project",
+      "name": "Two⁴ / Two⁶ / Five² / Five⁵ / Seven / Seven²",
+      "artist": "John Cage",
+      "mbid": "51409996-e2f3-3a71-b4b4-1e41a7150c8f",
+      "year": "1996",
+      "releaseType": "album"
     },
     {
       "slug": "project:4-33",
       "type": "project",
-      "name": "4'33\""
+      "name": "4'33\"",
+      "mbid": "16fc0ccb-3b89-4705-956d-74595adaafc0",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:music-of-changes--john-cage",
+      "type": "project",
+      "name": "Music of Changes",
+      "artist": "John Cage",
+      "mbid": "bdf043af-82a6-388e-bc2a-c7ed6079f655",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sonatas-and-interludes",
+      "type": "project",
+      "name": "Sonatas and Interludes"
     },
     {
       "slug": "project:imaginary-landscape-no-1",

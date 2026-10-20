@@ -46,20 +46,182 @@
   ],
   "discography": [
     {
-      "slug": "project:every-dog-has-its-day",
+      "slug": "project:theme-from-star-child--millsart",
       "type": "project",
-      "name": "Every Dog Has Its Day"
+      "name": "Theme From Star Child",
+      "artist": "Millsart",
+      "mbid": "c32786d9-654b-40ea-ae94-ecd5b8d54fd4",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:mecca-ep",
+      "slug": "project:don-t-ask-me-why--millsart",
       "type": "project",
-      "name": "Mecca EP"
+      "name": "Don't Ask Me Why",
+      "artist": "Millsart",
+      "mbid": "fb90a395-b6e0-49b9-83d5-37227d3b39a4",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:think-again--millsart",
+      "type": "project",
+      "name": "Think Again",
+      "artist": "Millsart",
+      "mbid": "1f95cf1a-22e8-4d8c-9a4e-92a2c9f4bbd9",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:every-dog-has-its-day-vol-10--millsart",
+      "type": "project",
+      "name": "Every Dog Has Its Day Vol. 10",
+      "artist": "Millsart",
+      "mbid": "d31a7129-3ca5-4b27-8cd6-315871f0248a",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:every-dog-has-its-day-vol-11--millsart",
+      "type": "project",
+      "name": "Every Dog Has Its Day Vol. 11",
+      "artist": "Millsart",
+      "mbid": "f24e68e8-7d8c-4ddd-9b07-4297b0ac2c08",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:every-dog-has-its-day-vol-12--millsart",
+      "type": "project",
+      "name": "Every Dog Has Its Day Vol. 12",
+      "artist": "Millsart",
+      "mbid": "683afe07-b2d9-4436-bb32-c43fc5cd809e",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:every-dog-has-its-day-vol-13--millsart",
+      "type": "project",
+      "name": "Every Dog Has Its Day Vol. 13",
+      "artist": "Millsart",
+      "mbid": "1b5f3231-179d-4061-9e16-1f6f7882d3ec",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:every-dog-has-its-day-vol-5--millsart",
+      "type": "project",
+      "name": "Every Dog Has Its Day, Vol. 5",
+      "artist": "Millsart",
+      "mbid": "bf19668a-af94-4d77-ae9e-80e5b81fb99c",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:every-dog-has-its-day-vol-6--millsart",
+      "type": "project",
+      "name": "Every Dog Has Its Day, Vol. 6",
+      "artist": "Millsart",
+      "mbid": "13dc3cf4-eb71-4f3e-9198-7ab66aefab3e",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:every-dog-has-its-day-vol-7--millsart",
+      "type": "project",
+      "name": "Every Dog Has Its Day, Vol. 7",
+      "artist": "Millsart",
+      "mbid": "6509e24b-171f-4d63-a3b7-67d7f7a96287",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:every-dog-has-its-day-vol-8--millsart",
+      "type": "project",
+      "name": "Every Dog Has Its Day, Vol. 8",
+      "artist": "Millsart",
+      "mbid": "6b2b3ee4-277f-436c-adaf-e1d9ee8185ce",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:every-dog-has-its-day-vol-9--millsart",
+      "type": "project",
+      "name": "Every Dog Has Its Day, Vol. 9",
+      "artist": "Millsart",
+      "mbid": "4b88c75b-3e80-4f4c-800a-70d2e7155924",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:every-dog-has-its-day-vol-4--millsart",
+      "type": "project",
+      "name": "Every Dog Has Its Day Vol. 4",
+      "artist": "Millsart",
+      "mbid": "932f50fb-c349-4da5-9f30-866eff144a7d",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blue-potential--millsart",
+      "type": "project",
+      "name": "Blue Potential",
+      "artist": "Millsart",
+      "mbid": "0b5a0e8a-b1c1-4947-be43-385bb748791b",
+      "year": "2002",
+      "releaseType": "ep"
     },
     {
       "slug": "project:every-dog-has-its-day-vol-3--millsart",
       "type": "project",
       "name": "Every Dog Has Its Day vol.3",
-      "artist": "Millsart"
+      "artist": "Millsart",
+      "mbid": "bf2d03d5-580d-4eae-80f8-9c033a1d2cff",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:every-dog-has-its-day",
+      "type": "project",
+      "name": "Every Dog Has Its Day",
+      "mbid": "e94dc73b-8869-3274-9086-404f7610a861",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:every-dog-has-its-day-vol-2--millsart",
+      "type": "project",
+      "name": "Every Dog Has Its Day, Vol. 2",
+      "artist": "Millsart",
+      "mbid": "06c37e61-0709-4918-b31b-44c926e2773b",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:inner-life-medusa--millsart",
+      "type": "project",
+      "name": "Inner Life / Medusa",
+      "artist": "Millsart",
+      "mbid": "b200c1d3-195c-3c3b-9291-f45dcc55541b",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:humana--millsart",
+      "type": "project",
+      "name": "Humana",
+      "artist": "Millsart",
+      "mbid": "ed9d936e-e27b-359c-ae26-36cd50cec833",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mecca-ep",
+      "type": "project",
+      "name": "Mecca EP",
+      "mbid": "ae7cce60-168c-3ce2-9df7-7fd12d883dc3",
+      "year": "1993",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

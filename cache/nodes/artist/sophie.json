@@ -46,7 +46,241 @@
     }
   ],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:ooh--sophie",
+      "type": "project",
+      "name": "OOH",
+      "artist": "SOPHIE",
+      "mbid": "0a790df1-4459-48af-9422-2a6eb20a17c5",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:berlin-nightmare--sophie",
+      "type": "project",
+      "name": "Berlin Nightmare",
+      "artist": "SOPHIE",
+      "mbid": "cc4d7863-b4d3-439c-8ffa-ec77bf7c48ce",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:exhilarate--sophie",
+      "type": "project",
+      "name": "Exhilarate",
+      "artist": "SOPHIE",
+      "mbid": "6c2affcb-5c62-45f9-8735-7c7f274c94f5",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-forever--sophie",
+      "type": "project",
+      "name": "My Forever",
+      "artist": "SOPHIE",
+      "mbid": "a95e5faf-e9e5-4209-988d-f9c5d8df8a97",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-more-time--sophie",
+      "type": "project",
+      "name": "One More Time",
+      "artist": "SOPHIE",
+      "mbid": "34922d4e-1f89-47a6-b0c0-3ec16131753d",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sophie--sophie",
+      "type": "project",
+      "name": "SOPHIE",
+      "artist": "SOPHIE",
+      "mbid": "856511d5-9fbc-4f0f-907e-13e78a6b06e4",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fuck-i-m-trying--sophie",
+      "type": "project",
+      "name": "Fuck I’m Trying",
+      "artist": "SOPHIE",
+      "mbid": "0924d9f0-1296-4339-8e71-ffb498c10687",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:faceshopping--sophie",
+      "type": "project",
+      "name": "Faceshopping",
+      "artist": "SOPHIE",
+      "mbid": "6d762c06-6dd2-4940-9118-eb0e2cd19e87",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:oil-of-every-pearl-s-un-insides--sophie",
+      "type": "project",
+      "name": "OIL OF EVERY PEARL’S UN‐INSIDES",
+      "artist": "SOPHIE",
+      "mbid": "e11aa3a6-9820-483c-98f8-603b5823178b",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:it-s-okay-to-cry--sophie",
+      "type": "project",
+      "name": "It’s Okay to Cry",
+      "artist": "SOPHIE",
+      "mbid": "f6a95870-5abb-489e-b773-e618aa8a55e8",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ponyboy--sophie",
+      "type": "project",
+      "name": "Ponyboy",
+      "artist": "SOPHIE",
+      "mbid": "a4d7b5d3-2147-4428-ad59-4c9334d873e7",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bipp--sophie",
+      "type": "project",
+      "name": "BIPP",
+      "artist": "SOPHIE",
+      "mbid": "ba64fe6e-c2da-41e7-8c07-a0856839cc5a",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:elle--sophie",
+      "type": "project",
+      "name": "ELLE",
+      "artist": "SOPHIE",
+      "mbid": "a6478d6e-10fe-434d-afd4-ffa6d0e1e86f",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:get-higher--sophie",
+      "type": "project",
+      "name": "GET HIGHER",
+      "artist": "SOPHIE",
+      "mbid": "5dc64f2d-d92b-43ea-9776-2e3eff5b2c93",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hard--sophie",
+      "type": "project",
+      "name": "HARD",
+      "artist": "SOPHIE",
+      "mbid": "1dbe0b26-9e7b-48ab-831a-ece7817e63e6",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:just-like-we-never-said-goodbye--sophie",
+      "type": "project",
+      "name": "JUST LIKE WE NEVER SAID GOODBYE",
+      "artist": "SOPHIE",
+      "mbid": "c004b614-3240-404d-adb0-73fec9961de5",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:l-o-v-e--sophie",
+      "type": "project",
+      "name": "L.O.V.E.",
+      "artist": "SOPHIE",
+      "mbid": "cacfd0de-0d47-4ddb-aa56-7ffb6f2d8309",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lemonade--sophie",
+      "type": "project",
+      "name": "LEMONADE",
+      "artist": "SOPHIE",
+      "mbid": "288d6549-ef2b-4cf3-8cdd-aabb34d912c2",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:msmsmsm--sophie",
+      "type": "project",
+      "name": "MSMSMSM",
+      "artist": "SOPHIE",
+      "mbid": "e4b0a0ac-1901-458a-9f57-dbc99cf08d64",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:unisil--sophie",
+      "type": "project",
+      "name": "UNISIL",
+      "artist": "SOPHIE",
+      "mbid": "559553d4-0e0a-40e5-b4e6-5c5fb9b6e2a5",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vyzee--sophie",
+      "type": "project",
+      "name": "VYZEE",
+      "artist": "SOPHIE",
+      "mbid": "0716440a-d1b0-47c3-818c-c4d8a6a1516e",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lemonade-hard--sophie",
+      "type": "project",
+      "name": "LEMONADE / HARD",
+      "artist": "SOPHIE",
+      "mbid": "34e3d5e4-1a0b-4fa6-863f-25b0e96b0aeb",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bipp-elle--sophie",
+      "type": "project",
+      "name": "BIPP / ELLE",
+      "artist": "SOPHIE",
+      "mbid": "a915d477-62e0-428c-b441-0c1638434556",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nothing-more-to-say-eeehhh--sophie",
+      "type": "project",
+      "name": "NOTHING MORE TO SAY / EEEHHH",
+      "artist": "SOPHIE",
+      "mbid": "4d5d6310-2af6-4cd4-9d18-d47c276ce2bb",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jamz-beats-pre-production--sophie",
+      "type": "project",
+      "name": "Jamz/Beats/Pre Production",
+      "artist": "SOPHIE",
+      "mbid": "82456c36-fafc-4656-903a-7b0b00b528cd",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:burn-rubber--sophie",
+      "type": "project",
+      "name": "Burn Rubber",
+      "artist": "SOPHIE",
+      "mbid": "0bd1b451-354f-4001-a88b-8fc706c82422",
+      "releaseType": "single"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:bipp",

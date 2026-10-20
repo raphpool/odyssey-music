@@ -58,19 +58,181 @@
   "labels": [],
   "discography": [
     {
-      "slug": "project:in-the-court-of-the-crimson-king--king-crimson",
+      "slug": "project:i-talk-to-the-wind--king-crimson",
       "type": "project",
-      "name": "In the Court of the Crimson King"
+      "name": "I Talk to the Wind",
+      "artist": "King Crimson",
+      "mbid": "b272702a-6e37-4dd1-ae49-ccee51670cd6",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:larks-tongues-in-aspic",
+      "slug": "project:book-of-saturday--king-crimson",
       "type": "project",
-      "name": "Larks' Tongues in Aspic"
+      "name": "Book of Saturday",
+      "artist": "King Crimson",
+      "mbid": "ea46d575-e26d-49d5-b832-2f1d6d456358",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:form-1--king-crimson",
+      "type": "project",
+      "name": "Form #1",
+      "artist": "King Crimson",
+      "mbid": "18ec0c40-9ec8-4581-9161-148b30b23fe1",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:groon-alt-take--king-crimson",
+      "type": "project",
+      "name": "Groon (alt. take)",
+      "artist": "King Crimson",
+      "mbid": "064173d5-b085-4bbf-843c-cbfe94e34d44",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kc50-vol-33-form-1--king-crimson",
+      "type": "project",
+      "name": "KC50, Vol. 33 – Form #1",
+      "artist": "King Crimson",
+      "mbid": "02fb12a1-426f-49b3-9c26-0da0b9dea4ca",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:requiem-extended--king-crimson",
+      "type": "project",
+      "name": "Requiem (extended)",
+      "artist": "King Crimson",
+      "mbid": "6ee44a68-f5c1-4127-abc5-82ed73d47ced",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-power-to-believe--king-crimson",
+      "type": "project",
+      "name": "The Power to Believe",
+      "artist": "King Crimson",
+      "mbid": "afaaef0d-eb28-3fbf-bf79-fe5454b660fb",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-construkction-of-light--king-crimson",
+      "type": "project",
+      "name": "The ConstruKction of Light",
+      "artist": "King Crimson",
+      "mbid": "dd7db5e6-4239-3967-aa13-1fa082471d09",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:thrak--king-crimson",
+      "type": "project",
+      "name": "THRAK",
+      "artist": "King Crimson",
+      "mbid": "e521e3fa-01d8-33d6-aec2-1b5584233e99",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:three-of-a-perfect-pair--king-crimson",
+      "type": "project",
+      "name": "Three of a Perfect Pair",
+      "artist": "King Crimson",
+      "mbid": "939fde6a-e999-33a9-a7a0-7679aefe8bb0",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beat--king-crimson",
+      "type": "project",
+      "name": "Beat",
+      "artist": "King Crimson",
+      "mbid": "d17dc291-f818-3803-9ac5-1c6cfb73d8d6",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:discipline--king-crimson",
+      "type": "project",
+      "name": "Discipline",
+      "artist": "King Crimson",
+      "mbid": "d498c31d-3b72-3748-a142-df0bf774a920",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:epitaph-21st-century-schizoid-man--king-crimson",
+      "type": "project",
+      "name": "Epitaph / 21st Century Schizoid Man",
+      "artist": "King Crimson",
+      "mbid": "d0551c07-9fc3-4e5b-afed-f351f49dfb96",
+      "year": "1976",
+      "releaseType": "single"
     },
     {
       "slug": "project:red",
       "type": "project",
-      "name": "Red"
+      "name": "Red",
+      "mbid": "89bc97c8-921a-3758-8481-3b39c564e297",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:starless-and-bible-black--king-crimson",
+      "type": "project",
+      "name": "Starless and Bible Black",
+      "artist": "King Crimson",
+      "mbid": "e65ee097-180e-3116-8b68-599b177947b8",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:larks-tongues-in-aspic",
+      "type": "project",
+      "name": "Larks' Tongues in Aspic",
+      "mbid": "6d655093-4a0b-32ca-8d0e-b497d6ac781d",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:islands--king-crimson",
+      "type": "project",
+      "name": "Islands",
+      "artist": "King Crimson",
+      "mbid": "294ffbbb-75bb-3f65-b309-94a99fa3c194",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-the-wake-of-poseidon--king-crimson",
+      "type": "project",
+      "name": "In the Wake of Poseidon",
+      "artist": "King Crimson",
+      "mbid": "ef9dfb95-3217-3006-84e2-92037460eb27",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lizard--king-crimson",
+      "type": "project",
+      "name": "Lizard",
+      "artist": "King Crimson",
+      "mbid": "abe5a8ec-20c9-3d49-bb2d-4c371bf1ef25",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-the-court-of-the-crimson-king--king-crimson",
+      "type": "project",
+      "name": "In the Court of the Crimson King",
+      "mbid": "a50636b5-5233-3329-a7f3-dba3d0e00ef7",
+      "year": "1969",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

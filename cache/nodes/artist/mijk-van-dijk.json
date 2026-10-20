@@ -80,24 +80,114 @@
   ],
   "discography": [
     {
-      "slug": "project:afreuropamericasiaustralica",
+      "slug": "project:closer-wider--mijk-van-dijk",
       "type": "project",
-      "name": "Afreuropamericasiaustralica"
+      "name": "Closer / Wider",
+      "artist": "Mijk van Dijk",
+      "mbid": "b7b4d222-53c6-44cf-961b-bb1cfbe2d573",
+      "year": "2006",
+      "releaseType": "single"
     },
     {
-      "slug": "project:glow",
+      "slug": "project:kapt-n-timewarp--mijk-van-dijk",
       "type": "project",
-      "name": "Glow"
-    },
-    {
-      "slug": "project:teamwork",
-      "type": "project",
-      "name": "Teamwork"
+      "name": "Käpt'n / Timewarp",
+      "artist": "Mijk van Dijk",
+      "mbid": "43ddaf01-7f42-4381-87f0-280d440d3e67",
+      "year": "2005",
+      "releaseType": "single"
     },
     {
       "slug": "project:everyground",
       "type": "project",
-      "name": "Everyground"
+      "name": "Everyground",
+      "mbid": "ca2fac39-99c7-3fe9-aed9-71ce8018cc6d",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gametrax-vol-2-e-p--mijk-van-dijk",
+      "type": "project",
+      "name": "GameTrax Vol.2 E.P.",
+      "artist": "Mijk van Dijk",
+      "mbid": "24b47671-758a-4acc-b364-2718ccdc02a6",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:gametrax-volume-1-ep--mijk-van-dijk",
+      "type": "project",
+      "name": "Gametrax, Volume 1: EP",
+      "artist": "Mijk van Dijk",
+      "mbid": "1943ebc4-b663-3667-a3ad-c5943a7ba2d6",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:paperwall-e-p--mijk-van-dijk",
+      "type": "project",
+      "name": "Paperwall E.P.",
+      "artist": "Mijk van Dijk",
+      "mbid": "daea367b-548a-4cdc-8dd7-1506a2950b97",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:armored-core-2-original-sound-track--mijk-van-dijk",
+      "type": "project",
+      "name": "Armored Core 2 Original Sound Track",
+      "artist": "Mijk van Dijk",
+      "mbid": "4c353e2c-22e2-30b5-b784-6f8dced649ea",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:teamwork",
+      "type": "project",
+      "name": "Teamwork",
+      "mbid": "fdbd5cbe-4de8-40fc-ad60-76a4d32be265",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:delivery--mijk-van-dijk",
+      "type": "project",
+      "name": "Delivery",
+      "artist": "Mijk van Dijk",
+      "mbid": "148c03cb-9a48-3390-b5ac-1f696df85398",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:never-have-it-cold--mijk-van-dijk",
+      "type": "project",
+      "name": "Never Have It Cold",
+      "artist": "Mijk van Dijk",
+      "mbid": "a29e42ae-b56f-459d-88e7-5c29a371af23",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:glow",
+      "type": "project",
+      "name": "Glow",
+      "mbid": "16dfe239-e8fa-3789-a918-40ce9f704928",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:suck-my-soul--mijk-van-dijk",
+      "type": "project",
+      "name": "Suck My Soul",
+      "artist": "Mijk van Dijk",
+      "mbid": "9a48e820-499b-4900-9e89-14e9c63f6b40",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:afreuropamericasiaustralica",
+      "type": "project",
+      "name": "Afreuropamericasiaustralica"
     },
     {
       "slug": "project:tranceformed-from-beyond--cosmic-baby",

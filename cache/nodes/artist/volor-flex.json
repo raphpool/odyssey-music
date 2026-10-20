@@ -19,7 +19,251 @@
   "editorial_bio": "Volor Flex is the recording alias of Alexander Frolov, an influential Russian electronic music producer hailing from Syktyvkar, Republic of Komi.",
   "genres": [],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:autumn-mist-die-young--volor-flex",
+      "type": "project",
+      "name": "Autumn Mist / Die Young",
+      "artist": "Volor Flex",
+      "mbid": "06e994eb-7179-445d-b807-5a692500a72a",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rec-in-a-pale-tiled-room--volor-flex",
+      "type": "project",
+      "name": "Rec in a Pale Tiled Room",
+      "artist": "Volor Flex",
+      "mbid": "fe85f1bc-bb47-4287-b276-c584d57a7278",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vremya-sever--volor-flex",
+      "type": "project",
+      "name": "Vremya / Sever",
+      "artist": "Volor Flex",
+      "mbid": "b9d5d080-0941-4238-aeb4-bcc8fe16cb2e",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:walk-in-the-park-mix--volor-flex",
+      "type": "project",
+      "name": "Walk In The Park Mix",
+      "artist": "Volor Flex",
+      "mbid": "c6805c92-48e3-4c99-ba0e-1159ad4af378",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mari--volor-flex",
+      "type": "project",
+      "name": "Mari",
+      "artist": "Volor Flex",
+      "mbid": "6fcb4df2-550c-4de0-a084-95b9f85c8b7b",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:embrace--volor-flex",
+      "type": "project",
+      "name": "Embrace",
+      "artist": "Volor Flex",
+      "mbid": "1a258238-f042-4565-a837-a42d2f984e14",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:split-ep--volor-flex",
+      "type": "project",
+      "name": "Split EP",
+      "artist": "Volor Flex",
+      "mbid": "4402944f-43e4-4beb-97c3-181d6e4c56ae",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:winter-storm--volor-flex",
+      "type": "project",
+      "name": "Winter Storm",
+      "artist": "Volor Flex",
+      "mbid": "64e1fffb-fabd-49b7-9aa0-b6f484491ce0",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dewdrop--volor-flex",
+      "type": "project",
+      "name": "Dewdrop",
+      "artist": "Volor Flex",
+      "mbid": "bd978911-adf0-4d02-977a-a3df35f136bf",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blowing-smoke--volor-flex",
+      "type": "project",
+      "name": "Blowing Smoke",
+      "artist": "Volor Flex",
+      "mbid": "46dda45c-69ce-4de9-9f86-d4d8a0089bc8",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dark-paths--volor-flex",
+      "type": "project",
+      "name": "Dark Paths",
+      "artist": "Volor Flex",
+      "mbid": "e8b20b27-8471-4706-bbfb-2591b38ffc40",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:day-s-end--volor-flex",
+      "type": "project",
+      "name": "Day's End",
+      "artist": "Volor Flex",
+      "mbid": "da8331fa-00c0-436a-a0e8-269231184b71",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:on-the-roof--volor-flex",
+      "type": "project",
+      "name": "On The Roof",
+      "artist": "Volor Flex",
+      "mbid": "e5e7e9d2-6df0-4a89-b991-4ff6f8b82107",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:contact--volor-flex",
+      "type": "project",
+      "name": "Contact",
+      "artist": "Volor Flex",
+      "mbid": "592c3df3-f236-43fb-860f-27c1b8fdcaa1",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:seven--volor-flex",
+      "type": "project",
+      "name": "Seven",
+      "artist": "Volor Flex",
+      "mbid": "07e76554-da37-4bdc-8026-079613c1bc0e",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:unreleased-tracks--volor-flex",
+      "type": "project",
+      "name": "Unreleased Tracks",
+      "artist": "Volor Flex",
+      "mbid": "bf2e83c5-dbc5-4af6-a2f1-60a1dec2450e",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:invasion--volor-flex",
+      "type": "project",
+      "name": "Invasion",
+      "artist": "Volor Flex",
+      "mbid": "a06bf6e0-bf48-4582-a06e-81c8de1ddd31",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:into-deep--volor-flex",
+      "type": "project",
+      "name": "Into Deep",
+      "artist": "Volor Flex",
+      "mbid": "d6dbf526-f1bd-4863-83dc-7315e1d4c545",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:exhale--volor-flex",
+      "type": "project",
+      "name": "Exhale",
+      "artist": "Volor Flex",
+      "mbid": "02787b15-3300-498b-9e3d-9778eaec9118",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trilogy-bundle--volor-flex",
+      "type": "project",
+      "name": "Trilogy Bundle",
+      "artist": "Volor Flex",
+      "mbid": "aa67dec0-ff7b-4513-b642-0b5b6c3f5c5b",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:altiplano--volor-flex",
+      "type": "project",
+      "name": "Altiplano",
+      "artist": "Volor Flex",
+      "mbid": "14dc0f4b-c851-447e-aba4-daa708498ab6",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sabo--volor-flex",
+      "type": "project",
+      "name": "Sabo",
+      "artist": "Volor Flex",
+      "mbid": "2362a525-f14f-4652-a987-834b424c542e",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unlit--volor-flex",
+      "type": "project",
+      "name": "Unlit",
+      "artist": "Volor Flex",
+      "mbid": "c54d84aa-ff60-4432-aca7-ea566f72b744",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:my-story--volor-flex",
+      "type": "project",
+      "name": "My Story",
+      "artist": "Volor Flex",
+      "mbid": "b8ade80d-7fd7-44f4-8f7a-32d9ca25e98e",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tent-street--volor-flex",
+      "type": "project",
+      "name": "Tent Street",
+      "artist": "Volor Flex",
+      "mbid": "135a7bc8-d9e1-4b70-8ae6-45a2d89978df",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-conspiracy--volor-flex",
+      "type": "project",
+      "name": "The Conspiracy",
+      "artist": "Volor Flex",
+      "mbid": "2ac8459a-1449-4271-bf01-1e814005c924",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tramp--volor-flex",
+      "type": "project",
+      "name": "Tramp",
+      "artist": "Volor Flex",
+      "mbid": "1bcbbe6d-302e-4c05-8c89-db77ab95f4ee",
+      "year": "2011",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],

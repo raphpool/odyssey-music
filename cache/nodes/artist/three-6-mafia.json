@@ -124,6 +124,14 @@
       "releaseType": "single"
     },
     {
+      "slug": "project:doe-boy-fresh",
+      "type": "project",
+      "name": "Doe Boy Fresh",
+      "mbid": "c6e4b3e1-bebf-3c3e-afec-f1b6da33da1f",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:like-money",
       "type": "project",
       "name": "Like Money",
@@ -132,11 +140,11 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:doe-boy-fresh",
+      "slug": "project:act-a-fool",
       "type": "project",
-      "name": "Doe Boy Fresh",
-      "mbid": "c6e4b3e1-bebf-3c3e-afec-f1b6da33da1f",
-      "year": "2007",
+      "name": "Act a Fool",
+      "mbid": "d9e2a998-b6c7-4f58-835e-d47ad435c69c",
+      "year": "2006",
       "releaseType": "single"
     },
     {
@@ -148,12 +156,13 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:act-a-fool",
+      "slug": "project:choices-ii--three-6-mafia",
       "type": "project",
-      "name": "Act a Fool",
-      "mbid": "d9e2a998-b6c7-4f58-835e-d47ad435c69c",
-      "year": "2006",
-      "releaseType": "single"
+      "name": "Choices II",
+      "artist": "Three 6 Mafia",
+      "mbid": "1e469f57-ec81-3536-a175-51d0e879d33e",
+      "year": "2005",
+      "releaseType": "album"
     },
     {
       "slug": "project:most-known-unknown",
@@ -196,11 +205,12 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:when-the-smoke-clears-sixty-6-sixty-1",
+      "slug": "project:choices-the-album--three-6-mafia",
       "type": "project",
-      "name": "When the Smoke Clears: Sixty 6, Sixty 1",
-      "mbid": "ce2eb30e-f1ef-3b41-8899-87056d18f835",
-      "year": "2000",
+      "name": "Choices: The Album",
+      "artist": "Three 6 Mafia",
+      "mbid": "c720d4b9-2590-3caf-a9fd-43762fd3d905",
+      "year": "2001",
       "releaseType": "album"
     },
     {
@@ -220,14 +230,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:memphis-instrumentals-volume-2",
-      "type": "project",
-      "name": "Memphis Instrumentals, Volume 2",
-      "mbid": "92857d99-f4d9-3305-9212-aab9b55d916a",
-      "year": "2000",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:memphis-instrumentals-volume-1",
       "type": "project",
       "name": "Memphis Instrumentals, Volume 1",
@@ -236,12 +238,12 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:tongue-ring",
+      "slug": "project:memphis-instrumentals-volume-2",
       "type": "project",
-      "name": "Tongue Ring",
-      "mbid": "26eb2bd8-30ec-4704-b46c-f059720278fc",
+      "name": "Memphis Instrumentals, Volume 2",
+      "mbid": "92857d99-f4d9-3305-9212-aab9b55d916a",
       "year": "2000",
-      "releaseType": "single"
+      "releaseType": "album"
     },
     {
       "slug": "project:sippin-on-da-syrup",
@@ -252,19 +254,45 @@
       "releaseType": "single"
     },
     {
+      "slug": "project:tongue-ring",
+      "type": "project",
+      "name": "Tongue Ring",
+      "mbid": "26eb2bd8-30ec-4704-b46c-f059720278fc",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:we-never-sleep-volume-1--three-6-mafia",
+      "type": "project",
+      "name": "We Never Sleep, Volume 1",
+      "artist": "Three 6 Mafia",
+      "mbid": "dde45e30-9b4c-3be1-affd-b5d891052bf6",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:we-never-sleep-volume-2--three-6-mafia",
+      "type": "project",
+      "name": "We Never Sleep, Volume 2",
+      "artist": "Three 6 Mafia",
+      "mbid": "7bc3bc76-5b7a-3d78-b5a8-59f970f4bf20",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:when-the-smoke-clears-sixty-6-sixty-1",
+      "type": "project",
+      "name": "When the Smoke Clears: Sixty 6, Sixty 1",
+      "mbid": "ce2eb30e-f1ef-3b41-8899-87056d18f835",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:hit-em-motivated",
       "type": "project",
       "name": "Hit'Em / Motivated",
       "mbid": "9912fd38-6bd3-4d22-a735-d3a890c82d8c",
       "year": "1998",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:late-nite-tip",
-      "type": "project",
-      "name": "Late Nite Tip",
-      "mbid": "2a9f1f63-b533-4c4a-9816-49113cb39241",
-      "year": "1997",
       "releaseType": "single"
     },
     {
@@ -274,6 +302,14 @@
       "mbid": "1be9850a-3735-3d4a-a65c-1de794b264a3",
       "year": "1997",
       "releaseType": "album"
+    },
+    {
+      "slug": "project:late-nite-tip",
+      "type": "project",
+      "name": "Late Nite Tip",
+      "mbid": "2a9f1f63-b533-4c4a-9816-49113cb39241",
+      "year": "1997",
+      "releaseType": "single"
     },
     {
       "slug": "project:the-end",
@@ -297,6 +333,15 @@
       "name": "Mystic Stylez",
       "mbid": "ac6859cf-3bc7-31da-9255-b7d6a08cc6a9",
       "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:smoked-out-loced-out--three-6-mafia",
+      "type": "project",
+      "name": "Smoked Out, Loced Out",
+      "artist": "Three 6 Mafia",
+      "mbid": "5dadc1f5-5c38-3587-92f5-dded7c613a00",
+      "year": "1994",
       "releaseType": "album"
     }
   ],

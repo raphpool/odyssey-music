@@ -59,25 +59,334 @@
   ],
   "discography": [
     {
-      "slug": "project:multila--vladislav-delay",
+      "slug": "project:in-a-lawless-world-there-is-strength-in-numbers--vladislav-delay",
       "type": "project",
-      "name": "Multila"
+      "name": "In a Lawless World There Is Strength in Numbers",
+      "artist": "Vladislav Delay",
+      "mbid": "149aae1c-48af-46ae-90f2-910a44e07b4c",
+      "year": "2025",
+      "releaseType": "album"
     },
     {
-      "slug": "project:entain",
+      "slug": "project:hide-behind-the-silence-ep-5--vladislav-delay",
       "type": "project",
-      "name": "Entain"
+      "name": "Hide Behind The Silence EP 5",
+      "artist": "Vladislav Delay",
+      "mbid": "639ede99-6469-4a12-b786-94852a85450a",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dancefloor-classics-vol-2--vladislav-delay",
+      "type": "project",
+      "name": "Dancefloor Classics, Vol. 2",
+      "artist": "Vladislav Delay",
+      "mbid": "3bcf2c3d-9071-46fd-be55-3b1345482b84",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dancefloor-classics-vol-3--vladislav-delay",
+      "type": "project",
+      "name": "Dancefloor Classics, Vol. 3",
+      "artist": "Vladislav Delay",
+      "mbid": "4a8fcddc-1c6e-4c5d-9c70-e771589c4e0d",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hide-behind-the-silence-ep-1--vladislav-delay",
+      "type": "project",
+      "name": "Hide Behind the Silence EP 1",
+      "artist": "Vladislav Delay",
+      "mbid": "42194782-c5bc-479b-9802-9917dbab302d",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hide-behind-the-silence-ep-2--vladislav-delay",
+      "type": "project",
+      "name": "Hide Behind the Silence EP 2",
+      "artist": "Vladislav Delay",
+      "mbid": "86c960e4-a365-43ba-acf2-bda77dba5a7e",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hide-behind-the-silence-ep-3--vladislav-delay",
+      "type": "project",
+      "name": "Hide Behind the Silence EP 3",
+      "artist": "Vladislav Delay",
+      "mbid": "d6f1d7a0-a47f-4569-951b-8582ef249cf1",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hide-behind-the-silence-ep-4--vladislav-delay",
+      "type": "project",
+      "name": "Hide Behind the Silence EP 4",
+      "artist": "Vladislav Delay",
+      "mbid": "0e826b2b-d2c0-4246-8cb5-5d9402f43a86",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:isoviha--vladislav-delay",
+      "type": "project",
+      "name": "Isoviha",
+      "artist": "Vladislav Delay",
+      "mbid": "2a5eeef5-6952-4f18-af41-986d5e96979c",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:isoviha-extraviha--vladislav-delay",
+      "type": "project",
+      "name": "Isoviha - Extraviha",
+      "artist": "Vladislav Delay",
+      "mbid": "4442389f-d3d9-44ad-8e59-3a1b2a7e87bd",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:singles--vladislav-delay",
+      "type": "project",
+      "name": "Singles",
+      "artist": "Vladislav Delay",
+      "mbid": "e3b03f24-c857-4907-be88-dd215c5c3b94",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rakka-ii--vladislav-delay",
+      "type": "project",
+      "name": "Rakka II",
+      "artist": "Vladislav Delay",
+      "mbid": "ac913f72-862b-4073-b4bb-ce4a674c5792",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:relapse-ep--vladislav-delay",
+      "type": "project",
+      "name": "Relapse EP",
+      "artist": "Vladislav Delay",
+      "mbid": "dbe7bcc1-cd97-4c0e-849e-0108a143bc3b",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:roadblocks--vladislav-delay",
+      "type": "project",
+      "name": "ROADBLOCKS",
+      "artist": "Vladislav Delay",
+      "mbid": "cc880b5b-dd50-4b5e-88ed-c0b82deff5c4",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rakka--vladislav-delay",
+      "type": "project",
+      "name": "Rakka",
+      "artist": "Vladislav Delay",
+      "mbid": "a30455e6-6c00-4b34-a448-a7482979adf1",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:untitled-circa-2014--vladislav-delay",
+      "type": "project",
+      "name": "untitled - circa 2014",
+      "artist": "Vladislav Delay",
+      "mbid": "92410b47-156d-4eaf-a82a-5ba733e1481e",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ripatti03--vladislav-delay",
+      "type": "project",
+      "name": "Ripatti03",
+      "artist": "Vladislav Delay",
+      "mbid": "d0f07736-74b5-4eab-97c4-9803a2d9308a",
+      "year": "2014",
+      "releaseType": "ep"
     },
     {
       "slug": "project:visa--vladislav-delay",
       "type": "project",
-      "name": "Visa"
+      "name": "Visa",
+      "mbid": "cadbafcb-d158-42c1-a875-d8e3000e35aa",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:espoo--vladislav-delay",
+      "type": "project",
+      "name": "Espoo",
+      "artist": "Vladislav Delay",
+      "mbid": "fecab6a3-5abe-4523-ba2a-73fef97614d8",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:kuopio--vladislav-delay",
+      "type": "project",
+      "name": "Kuopio",
+      "artist": "Vladislav Delay",
+      "mbid": "a524ee05-b635-415f-a1d8-acdbf282a3e5",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:latoma--vladislav-delay",
+      "type": "project",
+      "name": "Latoma",
+      "artist": "Vladislav Delay",
+      "mbid": "7bda2cdd-2d56-4a55-aa05-a52273a30985",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:vantaa--vladislav-delay",
+      "type": "project",
+      "name": "Vantaa",
+      "artist": "Vladislav Delay",
+      "mbid": "fa19fdb3-ca16-49a7-8b98-e148c05dbe98",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:melankolia--vladislav-delay",
+      "type": "project",
+      "name": "Melankolia",
+      "artist": "Vladislav Delay",
+      "mbid": "6edc36b5-7510-4115-bdcc-c3b92ae57c1a",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tummaa--vladislav-delay",
+      "type": "project",
+      "name": "Tummaa",
+      "artist": "Vladislav Delay",
+      "mbid": "4bf169ca-7cde-4d8d-9733-4c00ea9b4f73",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:whistleblower--vladislav-delay",
+      "type": "project",
+      "name": "Whistleblower",
+      "artist": "Vladislav Delay",
+      "mbid": "e7a2f700-1c6c-37ad-a1ca-827851d611c3",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-four-quarters--vladislav-delay",
+      "type": "project",
+      "name": "The Four Quarters",
+      "artist": "Vladislav Delay",
+      "mbid": "91728f94-aac0-3c0f-a4ee-15935aa41a7e",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:demo-n-cuts-ep--vladislav-delay",
+      "type": "project",
+      "name": "Demo(n) Cuts EP",
+      "artist": "Vladislav Delay",
+      "mbid": "2ccc507a-dc10-307f-8b9c-0c5c2a17313a",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:demo-n-tracks--vladislav-delay",
+      "type": "project",
+      "name": "Demo(n) Tracks",
+      "artist": "Vladislav Delay",
+      "mbid": "9c52b23e-7ca7-31ff-b9ad-5454707dbf01",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:anima--vladislav-delay",
+      "type": "project",
+      "name": "Anima",
+      "artist": "Vladislav Delay",
+      "mbid": "181b65fd-1976-3cbe-9046-efa50cc6a159",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:entain",
+      "type": "project",
+      "name": "Entain",
+      "mbid": "05dafeb5-5626-3541-9f45-152ce5b2269f",
+      "year": "2000",
+      "releaseType": "album"
     },
     {
       "slug": "project:entain--vladislav-delay",
       "type": "project",
       "name": "Entain",
-      "artist": "Vladislav Delay"
+      "artist": "Vladislav Delay",
+      "mbid": "05dafeb5-5626-3541-9f45-152ce5b2269f",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:multila--vladislav-delay",
+      "type": "project",
+      "name": "Multila",
+      "mbid": "8e748392-288b-3f44-af2c-ce6b2ee24b94",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ranta--vladislav-delay",
+      "type": "project",
+      "name": "Ranta",
+      "artist": "Vladislav Delay",
+      "mbid": "5f8f64ac-fb8e-36cb-8637-0ca425366100",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ele--vladislav-delay",
+      "type": "project",
+      "name": "Ele",
+      "artist": "Vladislav Delay",
+      "mbid": "0e18145f-2fa6-3011-bfc9-d3c1e0a0620f",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:helsinki-suomi--vladislav-delay",
+      "type": "project",
+      "name": "Helsinki / Suomi",
+      "artist": "Vladislav Delay",
+      "mbid": "336ce951-862b-34cb-9cab-f19cd1038299",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:huone--vladislav-delay",
+      "type": "project",
+      "name": "Huone",
+      "artist": "Vladislav Delay",
+      "mbid": "dc4963b3-68ee-3408-890a-9efbb397315c",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-kind-of-blue-ep--vladislav-delay",
+      "type": "project",
+      "name": "The Kind of Blue EP",
+      "artist": "Vladislav Delay",
+      "mbid": "0ad01842-5f4c-37e0-bac3-38932e508b1e",
+      "year": "1997",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

@@ -65,6 +65,24 @@
   ],
   "discography": [
     {
+      "slug": "project:braindead-moth--mike-paradinas",
+      "type": "project",
+      "name": "Braindead Moth",
+      "artist": "Mike Paradinas",
+      "mbid": "6db14e3e-d1c3-4d6d-b11b-ab7cc4dfde37",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:expert-knob-twiddlers--mike-paradinas",
+      "type": "project",
+      "name": "Expert Knob Twiddlers",
+      "artist": "Mike Paradinas",
+      "mbid": "72a4073d-b1ff-37fb-9b36-75c52802e1c9",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:tango-n-vectif--ziq",
       "type": "project",
       "name": "Tango n' Vectif"
@@ -73,12 +91,6 @@
       "slug": "project:lunatic-harness",
       "type": "project",
       "name": "Lunatic Harness"
-    },
-    {
-      "slug": "project:expert-knob-twiddlers--mike-paradinas",
-      "type": "project",
-      "name": "Expert Knob Twiddlers",
-      "artist": "Mike Paradinas"
     },
     {
       "slug": "project:royal-astronomy",

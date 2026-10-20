@@ -52,6 +52,96 @@
   ],
   "discography": [
     {
+      "slug": "project:my-life-with-the-wave-2-73--mike-huckaby",
+      "type": "project",
+      "name": "My Life With The Wave 2.73",
+      "artist": "Mike Huckaby",
+      "mbid": "5ae70b3f-42c0-43bd-8863-af5f1cb72de4",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:my-life-with-the-wave-2--mike-huckaby",
+      "type": "project",
+      "name": "My Life With the Wave 2",
+      "artist": "Mike Huckaby",
+      "mbid": "672ab305-a693-47ce-91d0-0963f4f1bc90",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:shifting-gears-ep--mike-huckaby",
+      "type": "project",
+      "name": "Shifting Gears EP",
+      "artist": "Mike Huckaby",
+      "mbid": "d31dac69-4de6-4856-9220-84f4fd24367d",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:baseline-88-89--mike-huckaby",
+      "type": "project",
+      "name": "Baseline 88–89",
+      "artist": "Mike Huckaby",
+      "mbid": "d2fa0888-340e-4d05-8b2e-17e562876fbd",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-tresor--mike-huckaby",
+      "type": "project",
+      "name": "The Tresor",
+      "artist": "Mike Huckaby",
+      "mbid": "a6fa16c2-5be2-4a45-a971-f82c990a0433",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:my-life-with-the-wave--mike-huckaby",
+      "type": "project",
+      "name": "My Life With the Wave",
+      "artist": "Mike Huckaby",
+      "mbid": "8eff30aa-dce6-43b2-b6ba-15ed1af204a6",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sessions--mike-huckaby",
+      "type": "project",
+      "name": "Sessions",
+      "artist": "Mike Huckaby",
+      "mbid": "9bb62d1a-b197-4507-ad6f-9fbe68598de1",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:deep-transportation-volume-2--mike-huckaby",
+      "type": "project",
+      "name": "Deep Transportation, Volume 2",
+      "artist": "Mike Huckaby",
+      "mbid": "babf6e4d-d43a-396f-acb2-b4f64b4ec721",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-jazz-republic--mike-huckaby",
+      "type": "project",
+      "name": "The Jazz Republic",
+      "artist": "Mike Huckaby",
+      "mbid": "8c13d7d7-f7c6-37f7-b8c8-90785e263ad4",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:deep-transportation-volume-1--mike-huckaby",
+      "type": "project",
+      "name": "Deep Transportation, Volume 1",
+      "artist": "Mike Huckaby",
+      "mbid": "717f1179-11e9-3413-a132-f06afb188b7d",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:harmonie-park-classics-volume-1--mike-huckaby",
       "type": "project",
       "name": "Harmonie Park Classics Volume 1",

@@ -38,9 +38,93 @@
   ],
   "discography": [
     {
+      "slug": "project:the-antikythera-mechanism--atomine-elektrine",
+      "type": "project",
+      "name": "The Antikythera Mechanism",
+      "artist": "Atomine Elektrine",
+      "mbid": "81c3842a-4363-444c-a50d-d4d88f34d3df",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-second-moon--atomine-elektrine",
+      "type": "project",
+      "name": "The Second Moon",
+      "artist": "Atomine Elektrine",
+      "mbid": "480b6608-0abf-4071-94cc-2338a7f2e769",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:laniakea--atomine-elektrine",
+      "type": "project",
+      "name": "Laniakea",
+      "artist": "Atomine Elektrine",
+      "mbid": "3687d8cc-315e-475d-8d7b-811315ec4d1d",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:zektor-x--atomine-elektrine",
+      "type": "project",
+      "name": "Zektor X",
+      "artist": "Atomine Elektrine",
+      "mbid": "bc710ca3-b302-43aa-9722-cabe8d977de1",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-deep-invisible--atomine-elektrine",
+      "type": "project",
+      "name": "The Deep Invisible",
+      "artist": "Atomine Elektrine",
+      "mbid": "67179676-242e-4ea2-b1cb-465560942f41",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nebulous--atomine-elektrine",
+      "type": "project",
+      "name": "Nebulous",
+      "artist": "Atomine Elektrine",
+      "mbid": "9c17c492-61d7-3112-b3e5-bf20006a263a",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:binomial-fusion",
       "type": "project",
-      "name": "Binomial Fusion"
+      "name": "Binomial Fusion",
+      "mbid": "1ecbc863-a4bd-3e88-aa43-91478a2347b2",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:archimetrical-universe--atomine-elektrine",
+      "type": "project",
+      "name": "Archimetrical Universe",
+      "artist": "Atomine Elektrine",
+      "mbid": "2455c2c1-8d60-3b86-848e-4fc8947018b4",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:atom-xtension--atomine-elektrine",
+      "type": "project",
+      "name": "Atom Xtension",
+      "artist": "Atomine Elektrine",
+      "mbid": "010b9019-cc71-3d77-92ea-945136f723cf",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:elemental-severance--atomine-elektrine",
+      "type": "project",
+      "name": "Elemental Severance",
+      "artist": "Atomine Elektrine",
+      "mbid": "709aca88-9a27-30fe-9487-7cd4010e7527",
+      "year": "1995",
+      "releaseType": "album"
     },
     {
       "slug": "project:leftfield",

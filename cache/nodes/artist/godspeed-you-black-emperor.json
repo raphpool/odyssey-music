@@ -57,19 +57,106 @@
   ],
   "discography": [
     {
+      "slug": "project:grey-rubble-green-shoots--godspeed-you-black-emperor",
+      "type": "project",
+      "name": "GREY RUBBLE – GREEN SHOOTS",
+      "artist": "Godspeed You! Black Emperor",
+      "mbid": "a9e79e09-967e-40aa-a355-e09d1530339c",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-title-as-of-13-february-2024-28-340-dead--godspeed-you-black-emperor",
+      "type": "project",
+      "name": "“NO TITLE AS OF 13 FEBRUARY 2024 28,340 DEAD”",
+      "artist": "Godspeed You! Black Emperor",
+      "mbid": "7df4cbb0-30ed-4fed-9383-dd5fe3dbff30",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:g-d-s-pee-at-state-s-end",
+      "type": "project",
+      "name": "G_d’s Pee AT STATE’S END!",
+      "mbid": "3805cfb2-b333-4ed0-a696-019666cca5d7",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:luciferian-towers--godspeed-you-black-emperor",
+      "type": "project",
+      "name": "“Luciferian Towers”",
+      "artist": "Godspeed You! Black Emperor",
+      "mbid": "bd835044-cd62-4f30-8447-438232763075",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:asunder-sweet-and-other-distress--godspeed-you-black-emperor",
+      "type": "project",
+      "name": "‘Asunder, Sweet and Other Distress’",
+      "artist": "Godspeed You! Black Emperor",
+      "mbid": "c74035da-e212-4048-abed-40a7b5343e9a",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:allelujah-don-t-bend-ascend--godspeed-you-black-emperor",
+      "type": "project",
+      "name": "’ALLELUJAH! DON’T BEND! ASCEND!",
+      "artist": "Godspeed You! Black Emperor",
+      "mbid": "62959180-8405-41f9-8fb8-1e18a5e8902d",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yanqui-u-x-o--godspeed-you-black-emperor",
+      "type": "project",
+      "name": "Yanqui U.X.O.",
+      "artist": "Godspeed You! Black Emperor",
+      "mbid": "fc3cf08c-3273-3af3-84ed-ab9782a72505",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lift-yr-skinny-fists-like-antennas-to-heaven--godspeed-you-black-emperor",
+      "type": "project",
+      "name": "Lift Yr. Skinny Fists Like Antennas to Heaven!",
+      "artist": "Godspeed You! Black Emperor",
+      "mbid": "3822abb6-ca53-3ae1-a4ec-7718cb321e9b",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:slow-riot-for-new-zero-kanada--godspeed-you-black-emperor",
+      "type": "project",
+      "name": "Slow Riot for New Zero Kanada",
+      "artist": "Godspeed You! Black Emperor",
+      "mbid": "7a474ed2-8f4a-3295-8943-68818da3af3e",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:amazezine-4-lost-in-the-house--godspeed-you-black-emperor",
+      "type": "project",
+      "name": "aMAZEzine! #4: Lost in the House",
+      "artist": "Godspeed You! Black Emperor",
+      "mbid": "446d8d7a-678f-3de0-a733-5130df9daec9",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:f-a",
       "type": "project",
-      "name": "F#A#∞"
+      "name": "F#A#∞",
+      "mbid": "01d06c6e-a4e6-3d8b-8a45-42a598fe87d7",
+      "year": "1997",
+      "releaseType": "album"
     },
     {
       "slug": "project:lift-your-skinny-fists-like-antennas-to-heaven",
       "type": "project",
       "name": "Lift Your Skinny Fists Like Antennas to Heaven"
-    },
-    {
-      "slug": "project:g-d-s-pee-at-state-s-end",
-      "type": "project",
-      "name": "G_d’s Pee AT STATE’S END!"
     }
   ],
   "notable_tracks": [

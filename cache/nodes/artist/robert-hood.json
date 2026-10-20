@@ -61,14 +61,350 @@
   ],
   "discography": [
     {
-      "slug": "project:minimal-nation",
+      "slug": "project:variations--robert-hood",
       "type": "project",
-      "name": "Minimal Nation"
+      "name": "Variations",
+      "artist": "Robert Hood",
+      "mbid": "0ba4b414-33f5-4728-9769-a71492374fe2",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mirror-man--robert-hood",
+      "type": "project",
+      "name": "Mirror Man",
+      "artist": "Robert Hood",
+      "mbid": "d5fdab4f-6714-4f42-a245-410bdf197464",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:paradygm-shift--robert-hood",
+      "type": "project",
+      "name": "Paradygm Shift",
+      "artist": "Robert Hood",
+      "mbid": "7d88a84b-516e-4ad4-bb72-a27556cc8310",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:protein-valve-edits--robert-hood",
+      "type": "project",
+      "name": "Protein Valve Edits",
+      "artist": "Robert Hood",
+      "mbid": "928846bd-063c-49fa-b065-9b8b67660901",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:eleven-alarm--robert-hood",
+      "type": "project",
+      "name": "Eleven / Alarm",
+      "artist": "Robert Hood",
+      "mbid": "27967d4c-8511-418c-91a3-d8f472fc7ae9",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:motor-nighttime-world-3--robert-hood",
+      "type": "project",
+      "name": "Motor: Nighttime World 3",
+      "artist": "Robert Hood",
+      "mbid": "1f8166e3-3197-4fc9-a8ce-d8ed3474cd63",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:omega-alive--robert-hood",
+      "type": "project",
+      "name": "Omega: Alive",
+      "artist": "Robert Hood",
+      "mbid": "5f35cc94-c5f4-400d-aba2-1d2a8648dd43",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:omega--robert-hood",
+      "type": "project",
+      "name": "Omega",
+      "artist": "Robert Hood",
+      "mbid": "1274a19e-da4d-44d4-ae0a-854593d143c1",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shonky-in-the-hood--robert-hood",
+      "type": "project",
+      "name": "Shonky in the Hood",
+      "artist": "Robert Hood",
+      "mbid": "87f882f7-8d43-4358-9b4a-0b6c224e566d",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hoodmusic-1--robert-hood",
+      "type": "project",
+      "name": "Hoodmusic 1",
+      "artist": "Robert Hood",
+      "mbid": "4d88589d-3efe-4af1-bab4-8110e9061234",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hoodmusic-2--robert-hood",
+      "type": "project",
+      "name": "Hoodmusic 2",
+      "artist": "Robert Hood",
+      "mbid": "c64aa267-b726-4933-95f4-873150f336d9",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:wire-to-wire--robert-hood",
+      "type": "project",
+      "name": "Wire to Wire",
+      "artist": "Robert Hood",
+      "mbid": "ff8744f6-6ee1-45ed-b519-9d41bba9b4aa",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kick-dirt-ep--robert-hood",
+      "type": "project",
+      "name": "Kick Dirt EP",
+      "artist": "Robert Hood",
+      "mbid": "9a38ec93-31c3-4c41-acc8-f28a365cf741",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:monobox-ep--robert-hood",
+      "type": "project",
+      "name": "Monobox EP",
+      "artist": "Robert Hood",
+      "mbid": "85ebab80-6b5e-4153-b149-600847aad9c8",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:point-blank--robert-hood",
+      "type": "project",
+      "name": "Point Blank",
+      "artist": "Robert Hood",
+      "mbid": "fccfa9c7-330e-3656-956f-b6e1072c7477",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-art-of-war--robert-hood",
+      "type": "project",
+      "name": "The Art Of War",
+      "artist": "Robert Hood",
+      "mbid": "952098cf-df47-4a48-a46a-067a98b39c8d",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-black-and-white-lab--robert-hood",
+      "type": "project",
+      "name": "The Black and White Lab",
+      "artist": "Robert Hood",
+      "mbid": "a0d51816-08ea-47b5-8a16-d8ca9afd2292",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:untitled-5--robert-hood",
+      "type": "project",
+      "name": "Untitled 5",
+      "artist": "Robert Hood",
+      "mbid": "996c3a6c-34bb-4ae3-8513-42e9123ee767",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:invincible--robert-hood",
+      "type": "project",
+      "name": "Invincible",
+      "artist": "Robert Hood",
+      "mbid": "32ea52ab-10f7-39c0-b16f-56d6aa44c4f2",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:master-builder-archiv-03--robert-hood",
+      "type": "project",
+      "name": "Master Builder (Archiv #03)",
+      "artist": "Robert Hood",
+      "mbid": "2e3418c5-2f4c-4b55-91f6-fb0d889d6481",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:spectra--robert-hood",
+      "type": "project",
+      "name": "Spectra",
+      "artist": "Robert Hood",
+      "mbid": "f9ea4598-4075-4238-b666-2e58433eb2f7",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:apartment-zero--robert-hood",
+      "type": "project",
+      "name": "Apartment Zero",
+      "artist": "Robert Hood",
+      "mbid": "e919729a-4b93-3154-a6a0-f691edb23745",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:nighttime-world-volume-2--robert-hood",
+      "type": "project",
+      "name": "Nighttime World, Volume 2",
+      "artist": "Robert Hood",
+      "mbid": "3e6d73ac-c47d-32b4-a53b-49431acce465",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:red-passion-3--robert-hood",
+      "type": "project",
+      "name": "Red Passion 3",
+      "artist": "Robert Hood",
+      "mbid": "5ddf9c62-82d2-45f7-9ad6-61ce60f37e3d",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:technatural-ep--robert-hood",
+      "type": "project",
+      "name": "Technatural EP",
+      "artist": "Robert Hood",
+      "mbid": "2505ec4c-4f01-3d16-99d2-6a4c4e926b56",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sophisticcato--robert-hood",
+      "type": "project",
+      "name": "Sophisticcato",
+      "artist": "Robert Hood",
+      "mbid": "914d0ed0-8463-41f7-8967-741abf1b2f40",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hoodlum--robert-hood",
+      "type": "project",
+      "name": "Hoodlum",
+      "artist": "Robert Hood",
+      "mbid": "e9ae1b3d-dc37-4a27-954e-263adea58378",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:red-passion-ii--robert-hood",
+      "type": "project",
+      "name": "Red Passion II",
+      "artist": "Robert Hood",
+      "mbid": "c191724a-1781-3fac-884d-1477779d3040",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stereotype--robert-hood",
+      "type": "project",
+      "name": "Stereotype",
+      "artist": "Robert Hood",
+      "mbid": "f22ee9b9-98e9-3ec5-862c-d5dee30b127e",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:underestimated--robert-hood",
+      "type": "project",
+      "name": "Underestimated",
+      "artist": "Robert Hood",
+      "mbid": "f294f055-f1df-39eb-8f4b-560ab1d70183",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:all-day-long--robert-hood",
+      "type": "project",
+      "name": "All Day Long",
+      "artist": "Robert Hood",
+      "mbid": "c7556aa0-c092-3bd7-8f01-67aeacdef031",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:moveable-parts-chapter-2--robert-hood",
+      "type": "project",
+      "name": "Moveable Parts Chapter 2",
+      "artist": "Robert Hood",
+      "mbid": "db5fa386-93d1-4b27-b0f8-fd7722826cd2",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:moveable-parts-chapter-2-the-puppet-master--robert-hood",
+      "type": "project",
+      "name": "Moveable Parts, Chapter 2: The Puppet Master",
+      "artist": "Robert Hood",
+      "mbid": "51d57be3-c126-3f11-af6f-e7fbef803fe8",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:master-builder--robert-hood",
+      "type": "project",
+      "name": "Master Builder",
+      "artist": "Robert Hood",
+      "mbid": "a1069417-c36a-41cf-b0e7-cc91dbd278e3",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:moveable-parts-chapter-1--robert-hood",
+      "type": "project",
+      "name": "Moveable Parts, Chapter 1",
+      "artist": "Robert Hood",
+      "mbid": "cf18ef6b-61fe-3ca6-8261-478f9d298bd9",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:nighttime-world-volume-1--robert-hood",
+      "type": "project",
+      "name": "Nighttime World, Volume 1",
+      "artist": "Robert Hood",
+      "mbid": "9bfc445e-9a7f-3b14-a051-633c870b3a88",
+      "year": "1995",
+      "releaseType": "album"
     },
     {
       "slug": "project:internal-empire",
       "type": "project",
-      "name": "Internal Empire"
+      "name": "Internal Empire",
+      "mbid": "245a5813-8461-3686-a682-d3e9c3585c2b",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-protein-valve--robert-hood",
+      "type": "project",
+      "name": "The Protein Valve",
+      "artist": "Robert Hood",
+      "mbid": "cb313649-d775-32a9-9b95-b1d5560c20dd",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:minimal-nation",
+      "type": "project",
+      "name": "Minimal Nation"
     },
     {
       "slug": "project:victorious",

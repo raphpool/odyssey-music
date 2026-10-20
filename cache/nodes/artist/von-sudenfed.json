@@ -59,9 +59,30 @@
   ],
   "discography": [
     {
+      "slug": "project:fledermaus-can-t-get-it--von-sudenfed",
+      "type": "project",
+      "name": "Fledermaus Can't Get It",
+      "artist": "Von Südenfed",
+      "mbid": "990be4a7-7411-37eb-9816-342d527e2910",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-rhinohead--von-sudenfed",
+      "type": "project",
+      "name": "The Rhinohead",
+      "artist": "Von Südenfed",
+      "mbid": "42290808-a6a1-3812-8f45-d570aae61507",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:tromatic-reflexxions--von-sudenfed",
       "type": "project",
-      "name": "Tromatic Reflexxions"
+      "name": "Tromatic Reflexxions",
+      "mbid": "63d74e69-4b50-3215-88aa-cceebf7d6a15",
+      "year": "2007",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

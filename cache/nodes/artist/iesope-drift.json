@@ -53,7 +53,44 @@
       "name": "Element Com"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:crains-ep--iesope-drift",
+      "type": "project",
+      "name": "CRAINS EP",
+      "artist": "Iesope Drift",
+      "mbid": "2ab5026f-3e0d-4b5d-bf6a-0472835d24fa",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:recapture-9972-pt-i--iesope-drift",
+      "type": "project",
+      "name": "Recapture 9972 Pt.I",
+      "artist": "Iesope Drift",
+      "mbid": "22ed43a1-64f1-40ae-9392-6d63cffbbe55",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sohdoligo--iesope-drift",
+      "type": "project",
+      "name": "SÖHDOLIGO",
+      "artist": "Iesope Drift",
+      "mbid": "c58f7df6-ed6e-4daf-abbc-e6f9d0c7ad21",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vaihteaa--iesope-drift",
+      "type": "project",
+      "name": "VAIHTEAA",
+      "artist": "Iesope Drift",
+      "mbid": "5d75dd14-1ca2-4f17-b346-b48133a9ac51",
+      "year": "2023",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:arlette",

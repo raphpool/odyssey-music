@@ -59,7 +59,368 @@
       "name": "Fine Audio Recordings"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:evolver--chris-liebing",
+      "type": "project",
+      "name": "Evolver",
+      "artist": "Chris Liebing",
+      "mbid": "1829846d-3514-4d8b-8a93-7585677d1623",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:another-night--chris-liebing",
+      "type": "project",
+      "name": "Another Night",
+      "artist": "Chris Liebing",
+      "mbid": "20e1002b-1d7c-42cb-9955-fa7b2da04701",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:another-day--chris-liebing",
+      "type": "project",
+      "name": "Another Day",
+      "artist": "Chris Liebing",
+      "mbid": "1f917321-fa1c-4add-8494-8dda7d92dea9",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:burn-slow--chris-liebing",
+      "type": "project",
+      "name": "Burn Slow",
+      "artist": "Chris Liebing",
+      "mbid": "712af642-a11d-4f3b-90f4-3b59049e78f5",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:auf-ep--chris-liebing",
+      "type": "project",
+      "name": "Auf... EP",
+      "artist": "Chris Liebing",
+      "mbid": "cb981a3f-ff9e-47cc-aad3-9e90bb423dc1",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:a-b-c-d-e-p-part-one--chris-liebing",
+      "type": "project",
+      "name": "A, B, C, D E.P. - Part One",
+      "artist": "Chris Liebing",
+      "mbid": "8c265bcb-7c80-4c40-8862-9a5cb4332eb9",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:a-b-c-d-ep-part-two--chris-liebing",
+      "type": "project",
+      "name": "A, B, C, D EP - Part Two",
+      "artist": "Chris Liebing",
+      "mbid": "ec9df0f4-4951-45fb-808d-ee834a0490bc",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:work-it--chris-liebing",
+      "type": "project",
+      "name": "Work It",
+      "artist": "Chris Liebing",
+      "mbid": "ccd65770-6f32-4851-8bf1-9496e10f8e45",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:evolution--chris-liebing",
+      "type": "project",
+      "name": "Evolution",
+      "artist": "Chris Liebing",
+      "mbid": "76466210-11f0-32c0-b012-08856fdacc11",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:talkshow-e-p--chris-liebing",
+      "type": "project",
+      "name": "Talkshow E.P.",
+      "artist": "Chris Liebing",
+      "mbid": "0205949b-9a13-4eac-924d-6ec95c534056",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:early-works--chris-liebing",
+      "type": "project",
+      "name": "Early Works",
+      "artist": "Chris Liebing",
+      "mbid": "9f392f0c-dca1-3021-840d-bb16efacfce2",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:es-ist-freitag-aaabend-3rd-anniversary-night--chris-liebing",
+      "type": "project",
+      "name": "Es ist Freitag-aaabend... 3rd Anniversary Night",
+      "artist": "Chris Liebing",
+      "mbid": "b49636fa-b9f8-495d-991d-a7c79a7a4b7c",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stigmata-8-10--chris-liebing",
+      "type": "project",
+      "name": "Stigmata 8/10",
+      "artist": "Chris Liebing",
+      "mbid": "574ccb02-b097-447b-8fe0-8aaaa20aacab",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stigmata-9-10--chris-liebing",
+      "type": "project",
+      "name": "Stigmata 9/10",
+      "artist": "Chris Liebing",
+      "mbid": "72463594-3051-4b9e-9794-5d112b1d7977",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-shaker-e-p--chris-liebing",
+      "type": "project",
+      "name": "The Shaker E.P.",
+      "artist": "Chris Liebing",
+      "mbid": "da9a9457-c1b2-4976-ae05-b8500ffb89ca",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:weather-e-p--chris-liebing",
+      "type": "project",
+      "name": "Weather E.P.",
+      "artist": "Chris Liebing",
+      "mbid": "dff7d723-8479-4174-9687-894388ce751d",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:next-try-ep--chris-liebing",
+      "type": "project",
+      "name": "Next Try EP",
+      "artist": "Chris Liebing",
+      "mbid": "8c9a42da-a95b-3e15-965f-c1d5b18ccfab",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stigmata-6--chris-liebing",
+      "type": "project",
+      "name": "Stigmata 6",
+      "artist": "Chris Liebing",
+      "mbid": "80d04fa2-07b7-3d1a-9577-4667049a6728",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stigmata-6-10--chris-liebing",
+      "type": "project",
+      "name": "Stigmata 6/10",
+      "artist": "Chris Liebing",
+      "mbid": "a4901c9e-253d-4a99-bb7e-0e85701209bd",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stigmata-7-10--chris-liebing",
+      "type": "project",
+      "name": "Stigmata 7/10",
+      "artist": "Chris Liebing",
+      "mbid": "38e3c85c-8d11-4c2c-b1ac-214ef56eaeec",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-biggest-ten-inches-i-have-ever-seen--chris-liebing",
+      "type": "project",
+      "name": "The Biggest Ten Inches I Have Ever Seen",
+      "artist": "Chris Liebing",
+      "mbid": "771e6428-4be9-32cc-93bc-a14264f9f88c",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:analogon-e-p--chris-liebing",
+      "type": "project",
+      "name": "Analogon E.P.",
+      "artist": "Chris Liebing",
+      "mbid": "f0aaa28f-5459-3859-8349-9ab217a49fae",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:call-it-what-you-want-part-4--chris-liebing",
+      "type": "project",
+      "name": "Call It What You Want, Part 4",
+      "artist": "Chris Liebing",
+      "mbid": "0a5d98aa-76d2-3b32-b874-9dbfa9cf5572",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:downtown-ep--chris-liebing",
+      "type": "project",
+      "name": "Downtown EP",
+      "artist": "Chris Liebing",
+      "mbid": "1ae41cb6-501b-37fd-bf39-c31437e4a836",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:koller--chris-liebing",
+      "type": "project",
+      "name": "Koller",
+      "artist": "Chris Liebing",
+      "mbid": "14156196-7a43-34b7-8965-ce1cce75754a",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:locke--chris-liebing",
+      "type": "project",
+      "name": "Locke",
+      "artist": "Chris Liebing",
+      "mbid": "bb7ea615-3bfa-38c5-a07d-96d7c6efaf83",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stigmata-4-10--chris-liebing",
+      "type": "project",
+      "name": "Stigmata 4/10",
+      "artist": "Chris Liebing",
+      "mbid": "044a198a-331f-4159-9369-15d95d81ae3e",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stigmata-5-10--chris-liebing",
+      "type": "project",
+      "name": "Stigmata 5/10",
+      "artist": "Chris Liebing",
+      "mbid": "0194bdbc-4e30-4a49-b80c-9bdeddc2b1b5",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-order-of-art--chris-liebing",
+      "type": "project",
+      "name": "The Order Of Art",
+      "artist": "Chris Liebing",
+      "mbid": "40788607-a636-318d-8d6f-b1db6e848e54",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:advanced-audio-e-p--chris-liebing",
+      "type": "project",
+      "name": "Advanced Audio E.P.",
+      "artist": "Chris Liebing",
+      "mbid": "b723007f-8b38-3e58-9f6c-1227fdcbe0e9",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:chord-dive-master-malt-drum-kitchen--chris-liebing",
+      "type": "project",
+      "name": "Chord Dive / Master Malt / Drum Kitchen",
+      "artist": "Chris Liebing",
+      "mbid": "ec45c736-8247-3ac3-b653-8dc5b1dac066",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:new-beginnings-e-p--chris-liebing",
+      "type": "project",
+      "name": "New Beginnings E.P.",
+      "artist": "Chris Liebing",
+      "mbid": "b1c4f8f9-e692-3444-a4e7-4382d466a432",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stigmata-1-10--chris-liebing",
+      "type": "project",
+      "name": "Stigmata 1/10",
+      "artist": "Chris Liebing",
+      "mbid": "9c51d9ef-bd61-4653-a415-02b6580f17c7",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stigmata-2-10--chris-liebing",
+      "type": "project",
+      "name": "Stigmata 2/10",
+      "artist": "Chris Liebing",
+      "mbid": "0a1032c2-b9e4-4fc3-9417-b415fa51a23d",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stigmata-3-10--chris-liebing",
+      "type": "project",
+      "name": "Stigmata 3/10",
+      "artist": "Chris Liebing",
+      "mbid": "954a2fa1-410e-4679-bb1b-29e5d4feb7e2",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stigmata-e-p--chris-liebing",
+      "type": "project",
+      "name": "Stigmata E.P.",
+      "artist": "Chris Liebing",
+      "mbid": "c3ac455c-5f31-31a0-bd53-86a895073370",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-real-schranz-part-3--chris-liebing",
+      "type": "project",
+      "name": "The Real Schranz, Part 3",
+      "artist": "Chris Liebing",
+      "mbid": "d6c21463-bf86-3beb-8f62-945703ca8fbc",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dandu-groove--chris-liebing",
+      "type": "project",
+      "name": "Dandu Groove",
+      "artist": "Chris Liebing",
+      "mbid": "b2cf0ab0-19ce-3d93-bc05-4ecefdacff8f",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:drumcook--chris-liebing",
+      "type": "project",
+      "name": "Drumcook",
+      "artist": "Chris Liebing",
+      "mbid": "0365b3af-73d0-3c84-8b74-8c3e7423e079",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:no-time-to-waste-e-p--chris-liebing",
+      "type": "project",
+      "name": "No Time to Waste E.P.",
+      "artist": "Chris Liebing",
+      "mbid": "fc217a6c-cf49-3bea-82e0-526be790f0ff",
+      "year": "1998",
+      "releaseType": "ep"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:liquid-slow",

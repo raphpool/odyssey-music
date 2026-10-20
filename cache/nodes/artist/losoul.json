@@ -51,14 +51,200 @@
   ],
   "discography": [
     {
-      "slug": "project:belong",
+      "slug": "project:sawce--losoul",
       "type": "project",
-      "name": "Belong"
+      "name": "Sawce",
+      "artist": "Losoul",
+      "mbid": "b950a4fa-01e2-47f5-b382-f7fdf45c7d66",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:show-me-yours--losoul",
+      "type": "project",
+      "name": "Show Me Yours",
+      "artist": "Losoul",
+      "mbid": "43770481-f668-47d7-8b5c-49d1033117bb",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:care--losoul",
+      "type": "project",
+      "name": "Care",
+      "artist": "Losoul",
+      "mbid": "8683718b-dcc1-4798-9d0b-61ee82d4f874",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:metroworks-e-p--losoul",
+      "type": "project",
+      "name": "Metroworks E.P",
+      "artist": "Losoul",
+      "mbid": "98262903-ad3d-493c-9500-eb64aa55f835",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:slightly--losoul",
+      "type": "project",
+      "name": "Slightly",
+      "artist": "Losoul",
+      "mbid": "c6ae42ce-1448-478a-9d9e-cfde38eb1631",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:time-passes-ep--losoul",
+      "type": "project",
+      "name": "Time.. Passes EP",
+      "artist": "Losoul",
+      "mbid": "0c86a9b3-0c91-4d1b-8302-1b7aacb31a04",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:up-the-beach--losoul",
+      "type": "project",
+      "name": "Up the Beach",
+      "artist": "Losoul",
+      "mbid": "41ab8f3f-97ea-4b9e-a92c-67d647a89309",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-radio--losoul",
+      "type": "project",
+      "name": "What Radio?",
+      "artist": "Losoul",
+      "mbid": "91762554-b866-3bc3-8bf8-9fe7ca588e12",
+      "year": "2006",
+      "releaseType": "ep"
     },
     {
       "slug": "project:getting-even",
       "type": "project",
-      "name": "Getting Even"
+      "name": "Getting Even",
+      "mbid": "9fb1befc-0d55-3b80-9a95-9a4697880ccf",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-know--losoul",
+      "type": "project",
+      "name": "You Know",
+      "artist": "Losoul",
+      "mbid": "8bdedbe5-3a32-3d39-b7a8-a20470e26907",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-play-my-story--losoul",
+      "type": "project",
+      "name": "Don't Play My Story",
+      "artist": "Losoul",
+      "mbid": "47372371-cf2b-307e-8d65-d26f0d8700a3",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:aspects-on-the-same-theme--losoul",
+      "type": "project",
+      "name": "Aspects on the Same Theme",
+      "artist": "Losoul",
+      "mbid": "09c4e0a1-6f60-467d-9641-1e01983c3ea9",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:warriors--losoul",
+      "type": "project",
+      "name": "Warriors",
+      "artist": "Losoul",
+      "mbid": "dd22328e-ce58-3006-acba-3ac6c675d9d5",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:belong",
+      "type": "project",
+      "name": "Belong",
+      "mbid": "a5cc2779-28b7-369c-9960-5aee790f5a18",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:late-chick-brother-in-love--losoul",
+      "type": "project",
+      "name": "Late Chick / Brother in Love",
+      "artist": "Losoul",
+      "mbid": "e6cbf834-04fe-3890-83da-fc7ef8a623a1",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:lies-watch-your-lift--losoul",
+      "type": "project",
+      "name": "Lies (Watch Your Lift)",
+      "artist": "Losoul",
+      "mbid": "db44da21-536d-30c7-856a-c5163a3e0f48",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ex-or-zis-mus--losoul",
+      "type": "project",
+      "name": "Ex.or.zis.mus",
+      "artist": "Losoul",
+      "mbid": "d3c0a328-c25c-4cb7-94a9-c04d9acded19",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:synchro--losoul",
+      "type": "project",
+      "name": "Synchro",
+      "artist": "Losoul",
+      "mbid": "0a8e41fe-3ecc-3552-944e-4999b7389330",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:caterpillar--losoul",
+      "type": "project",
+      "name": "Caterpillar",
+      "artist": "Losoul",
+      "mbid": "933e3694-fb9c-3fdd-af40-dad3459a60da",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:don-disco-de-super-bleep--losoul",
+      "type": "project",
+      "name": "Don Disco De Super Bleep",
+      "artist": "Losoul",
+      "mbid": "693785dd-af6b-37c2-a7e2-e23a5803450a",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mandu-zuma--losoul",
+      "type": "project",
+      "name": "Mandu / Zuma",
+      "artist": "Losoul",
+      "mbid": "21d43bdd-9046-3402-9c3f-ad617146b5d9",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:open-door--losoul",
+      "type": "project",
+      "name": "Open Door",
+      "artist": "Losoul",
+      "mbid": "80c5624d-add0-3bb5-b4ac-3c2e0d0843fb",
+      "year": "1996",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

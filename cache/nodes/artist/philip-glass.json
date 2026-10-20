@@ -62,14 +62,341 @@
   ],
   "discography": [
     {
-      "slug": "project:music-in-twelve-parts",
+      "slug": "project:book-of-longing--philip-glass",
       "type": "project",
-      "name": "Music in Twelve Parts"
+      "name": "Book of Longing",
+      "artist": "Philip Glass",
+      "mbid": "c9d8ab4e-2277-3c3f-b1d4-51dfb8fa4112",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cassandra-s-dream--philip-glass",
+      "type": "project",
+      "name": "Cassandra’s Dream",
+      "artist": "Philip Glass",
+      "mbid": "eda649f2-453e-3270-aa14-a4880aceab3f",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-the-philip-glass-recording-archive-volume-i-theater-music--philip-glass",
+      "type": "project",
+      "name": "From the Philip Glass Recording Archive, Volume I: Theater Music",
+      "artist": "Philip Glass",
+      "mbid": "6dc36963-ff46-4e38-94db-ce1d01d4bc19",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:les-animaux-amoureux--philip-glass",
+      "type": "project",
+      "name": "Les Animaux amoureux",
+      "artist": "Philip Glass",
+      "mbid": "0d885855-0a6d-4413-ab1c-c38d8e2ebc98",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:notes-on-a-scandal-original-motion-picture-soundtrack--philip-glass",
+      "type": "project",
+      "name": "Notes on a Scandal: Original Motion Picture Soundtrack",
+      "artist": "Philip Glass",
+      "mbid": "99dee06c-b763-3fd5-b16f-d7f78c00a9bd",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-illusionist--philip-glass",
+      "type": "project",
+      "name": "The Illusionist",
+      "artist": "Philip Glass",
+      "mbid": "0c3d3cc8-b8d9-33d9-a35f-28108818aa86",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-witches-of-venice--philip-glass",
+      "type": "project",
+      "name": "The Witches of Venice",
+      "artist": "Philip Glass",
+      "mbid": "f48dacd4-7461-3981-872d-986c373710ba",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-from-the-hours--philip-glass",
+      "type": "project",
+      "name": "Music From The Hours",
+      "artist": "Philip Glass",
+      "mbid": "35944214-4c17-40f7-a273-281318da8592",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-music-of-undertow--philip-glass",
+      "type": "project",
+      "name": "The Music of Undertow",
+      "artist": "Philip Glass",
+      "mbid": "ed2eed57-0de9-38ea-82f6-f3234557ffdf",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-fog-of-war--philip-glass",
+      "type": "project",
+      "name": "The Fog of War",
+      "artist": "Philip Glass",
+      "mbid": "cc3b8675-f16e-3a1c-910d-d2b943c852e5",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-descent-into-the-maelstrom--philip-glass",
+      "type": "project",
+      "name": "A Descent Into the Maelström",
+      "artist": "Philip Glass",
+      "mbid": "62e9a66d-dde1-3638-90c9-5b78768a1565",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:naqoyqatsi-original-motion-picture-soundtrack--philip-glass",
+      "type": "project",
+      "name": "Naqoyqatsi: Original Motion Picture Soundtrack",
+      "artist": "Philip Glass",
+      "mbid": "1109109b-8950-3cd0-9845-0ec433e750f4",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-hours--philip-glass",
+      "type": "project",
+      "name": "The Hours",
+      "artist": "Philip Glass",
+      "mbid": "2383f95d-3452-31e9-83c9-c86b12edc7f1",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-music-of-candyman--philip-glass",
+      "type": "project",
+      "name": "The Music of Candyman",
+      "artist": "Philip Glass",
+      "mbid": "45d0d5d1-8cfb-3541-8844-05d3ccfeb53b",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dracula--philip-glass",
+      "type": "project",
+      "name": "Dracula",
+      "artist": "Philip Glass",
+      "mbid": "85f8acca-aec1-3910-9b9c-a8c883d6a2d3",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aguas-da-amazonia--philip-glass",
+      "type": "project",
+      "name": "Águas da Amazonia",
+      "artist": "Philip Glass",
+      "mbid": "e9f9cbbc-11dd-3e0c-b884-088c2c02b3be",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kundun--philip-glass",
+      "type": "project",
+      "name": "Kundun",
+      "artist": "Philip Glass",
+      "mbid": "3f16b629-2403-3ef5-ba75-77bce3bbd2ce",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-secret-agent-music-from-the-original-soundtrack--philip-glass",
+      "type": "project",
+      "name": "The Secret Agent: Music From the Original Soundtrack",
+      "artist": "Philip Glass",
+      "mbid": "1ac20882-5c82-32c1-852a-9c388e4ae4ea",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kronos-quartet-performs-philip-glass--philip-glass",
+      "type": "project",
+      "name": "Kronos Quartet performs Philip Glass",
+      "artist": "Philip Glass",
+      "mbid": "fbbd6d73-4a6f-392c-b78f-ba513f0f9aaa",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-belle-et-la-bete--philip-glass",
+      "type": "project",
+      "name": "La Belle et la Bête",
+      "artist": "Philip Glass",
+      "mbid": "a1087605-3407-3664-8f37-6913e72f02af",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:anima-mundi-original-soundtrack-recording--philip-glass",
+      "type": "project",
+      "name": "Anima Mundi (Original Soundtrack Recording)",
+      "artist": "Philip Glass",
+      "mbid": "fac46196-b8b6-328e-a17e-d0e2a523c6b9",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hydrogen-jukebox--philip-glass",
+      "type": "project",
+      "name": "Hydrogen Jukebox",
+      "artist": "Philip Glass",
+      "mbid": "f5d1246a-87d7-31e4-a7f2-b3e12449279a",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:low-symphony--philip-glass",
+      "type": "project",
+      "name": "“Low” Symphony",
+      "artist": "Philip Glass",
+      "mbid": "7af73395-df59-3b38-9c2e-4a30c2f01636",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-screens--philip-glass",
+      "type": "project",
+      "name": "The Screens",
+      "artist": "Philip Glass",
+      "mbid": "ac0cd60d-9121-3326-96c4-5aa190f38650",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:solo-piano--philip-glass",
+      "type": "project",
+      "name": "Solo Piano",
+      "artist": "Philip Glass",
+      "mbid": "cc241465-b044-3a1c-ad41-8961493d6bda",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dance-nos-1-5--philip-glass",
+      "type": "project",
+      "name": "Dance nos. 1-5",
+      "artist": "Philip Glass",
+      "mbid": "ded2c94d-a41f-3476-b464-7590b0372764",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:powaqqatsi--philip-glass",
+      "type": "project",
+      "name": "Powaqqatsi",
+      "artist": "Philip Glass",
+      "mbid": "4fc99c56-164b-3940-b5d1-4a40c635bf0c",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-thin-blue-line--philip-glass",
+      "type": "project",
+      "name": "The Thin Blue Line",
+      "artist": "Philip Glass",
+      "mbid": "03baf7a0-f4d8-3169-9f92-ad6ce4f6b156",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:songs-from-liquid-days--philip-glass",
+      "type": "project",
+      "name": "Songs From Liquid Days",
+      "artist": "Philip Glass",
+      "mbid": "db33c143-def8-3f3b-ab76-e887de531d62",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mishima--philip-glass",
+      "type": "project",
+      "name": "Mishima",
+      "artist": "Philip Glass",
+      "mbid": "93ef449b-8993-31b9-9458-5721c5a5cc5c",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:koyaanisqatsi--philip-glass",
+      "type": "project",
+      "name": "Koyaanisqatsi",
+      "artist": "Philip Glass",
+      "mbid": "e5b96d62-1414-337b-b0c3-28a6c5d5b65a",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-photographer--philip-glass",
+      "type": "project",
+      "name": "The Photographer",
+      "artist": "Philip Glass",
+      "mbid": "1193fbc2-8161-3113-b6ed-81538a47ec47",
+      "year": "1983",
+      "releaseType": "album"
     },
     {
       "slug": "project:glassworks",
       "type": "project",
-      "name": "Glassworks"
+      "name": "Glassworks",
+      "mbid": "e05203e6-5344-3fac-91d7-cc403832a247",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dance-nos-1-and-3--philip-glass",
+      "type": "project",
+      "name": "Dance nos. 1 & 3",
+      "artist": "Philip Glass",
+      "mbid": "d1b1d51a-30d6-49aa-9d9d-64b12643902c",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:north-star--philip-glass",
+      "type": "project",
+      "name": "North Star",
+      "artist": "Philip Glass",
+      "mbid": "e4b29074-0744-33ab-a47b-59a69df40ae6",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-in-twelve-parts-parts-1-and-2--philip-glass",
+      "type": "project",
+      "name": "Music in Twelve Parts, Parts 1 & 2",
+      "artist": "Philip Glass",
+      "mbid": "94b6029a-3b0c-3bb6-87c7-a39a059018a7",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-with-changing-parts--philip-glass",
+      "type": "project",
+      "name": "Music With Changing Parts",
+      "artist": "Philip Glass",
+      "mbid": "ba24bb3c-4061-3a78-ae91-018a2efe74f9",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-in-twelve-parts",
+      "type": "project",
+      "name": "Music in Twelve Parts"
     },
     {
       "slug": "project:einstein-on-the-beach",

@@ -60,6 +60,328 @@
   ],
   "discography": [
     {
+      "slug": "project:scrambled-eggs-vip--roni-size",
+      "type": "project",
+      "name": "Scrambled Eggs VIP",
+      "artist": "Roni Size",
+      "mbid": "ef6f04d2-58c7-4454-83c4-dbf5da360d86",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:edition-1--roni-size",
+      "type": "project",
+      "name": "Edition 1",
+      "artist": "Roni Size",
+      "mbid": "59298b6f-261d-4069-81c7-196ca26c3d58",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-sky--roni-size",
+      "type": "project",
+      "name": "The Sky",
+      "artist": "Roni Size",
+      "mbid": "ef950fac-5077-408a-9095-cf5876539db9",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:25-years-of-v-cycled--roni-size",
+      "type": "project",
+      "name": "25 Years Of V-Cycled",
+      "artist": "Roni Size",
+      "mbid": "d1367872-a8ec-476a-bec8-c478c035f4e8",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:formulate--roni-size",
+      "type": "project",
+      "name": "Formulate",
+      "artist": "Roni Size",
+      "mbid": "60aaafb1-5f06-48ed-8537-9946f0f1071c",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:past-and-present--roni-size",
+      "type": "project",
+      "name": "Past & Present",
+      "artist": "Roni Size",
+      "mbid": "ee2c39d3-da97-4687-8733-fbe597699248",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-february-edition-94-95--roni-size",
+      "type": "project",
+      "name": "The February Edition 94 - 95",
+      "artist": "Roni Size",
+      "mbid": "d5cbacfb-3143-4322-b58e-f32df025b635",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:size-matters--roni-size",
+      "type": "project",
+      "name": "Size Matters",
+      "artist": "Roni Size",
+      "mbid": "f21b6a84-db2c-4359-9a68-5d11f3c529e7",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:take-kontrol--roni-size",
+      "type": "project",
+      "name": "Take Kontrol",
+      "artist": "Roni Size",
+      "mbid": "5900c9ae-6d33-4e8b-8c3e-8bbc154b7841",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sing--roni-size",
+      "type": "project",
+      "name": "Sing",
+      "artist": "Roni Size",
+      "mbid": "64b24b04-d9de-46b8-812d-85b085e15473",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:time-out-bite-the-bullet--roni-size",
+      "type": "project",
+      "name": "Time Out / Bite The Bullet",
+      "artist": "Roni Size",
+      "mbid": "1b3c1ca1-ddd0-4440-9b79-ea19a2d43046",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:with-out-of-breath-shoulder-to-shoulder--roni-size",
+      "type": "project",
+      "name": "(With) Out Of Breath / Shoulder To Shoulder",
+      "artist": "Roni Size",
+      "mbid": "27d75756-ce53-493e-9e16-d4652963f09c",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bumbakita-fassy-ole--roni-size",
+      "type": "project",
+      "name": "Bumbakita / Fassy Ole",
+      "artist": "Roni Size",
+      "mbid": "f5d77d10-42e3-4fa9-8d98-fc589066031c",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:out-of-breath-bump-n-grind--roni-size",
+      "type": "project",
+      "name": "Out Of Breath / Bump'N'Grind",
+      "artist": "Roni Size",
+      "mbid": "11e813f9-fd12-4b63-9240-427ee893c568",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:return-to-v",
+      "type": "project",
+      "name": "Return To V",
+      "mbid": "238d247c-a00e-37fe-b7c1-27bc589ccf75",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:feel-the-heat--roni-size",
+      "type": "project",
+      "name": "Feel the Heat",
+      "artist": "Roni Size",
+      "mbid": "a3f96d2c-5d69-4c4b-b211-6fdcb4954c56",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:snapshot-3--roni-size",
+      "type": "project",
+      "name": "Snapshot 3",
+      "artist": "Roni Size",
+      "mbid": "1130d4f6-56fd-4510-9686-a1d2fbabaad0",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:child-of-the-wild-west--roni-size",
+      "type": "project",
+      "name": "Child of the Wild West",
+      "artist": "Roni Size",
+      "mbid": "d598b866-ab53-3be6-be3a-deaa46d4a4d0",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:playtime--roni-size",
+      "type": "project",
+      "name": "Playtime",
+      "artist": "Roni Size",
+      "mbid": "6c369c45-623d-45d5-ac62-94499d8098ac",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:scrambled-eggs--roni-size",
+      "type": "project",
+      "name": "Scrambled Eggs",
+      "artist": "Roni Size",
+      "mbid": "ea1b7901-2fbd-41df-bfed-e5ba670df641",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sound-advice--roni-size",
+      "type": "project",
+      "name": "Sound Advice",
+      "artist": "Roni Size",
+      "mbid": "50fb16c7-4de2-4705-80bd-a790909553c2",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:touching-down",
+      "type": "project",
+      "name": "Touching Down",
+      "mbid": "84c10d1b-725c-3902-bfae-28aea56334a0",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:on-point-breaks--roni-size",
+      "type": "project",
+      "name": "On Point / Breaks",
+      "artist": "Roni Size",
+      "mbid": "a3c59d61-357d-4171-8ae8-563b806720f5",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:26-bass-snapshot--roni-size",
+      "type": "project",
+      "name": "26 Bass / Snapshot",
+      "artist": "Roni Size",
+      "mbid": "6a3f367f-667b-36ab-b1d9-e0fbeca19a81",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:it-s-jazzy-maintain--roni-size",
+      "type": "project",
+      "name": "It's Jazzy / Maintain",
+      "artist": "Roni Size",
+      "mbid": "16999a38-f2ff-348a-a33f-1913fcf52e88",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fresh-kiss--roni-size",
+      "type": "project",
+      "name": "Fresh / Kiss",
+      "artist": "Roni Size",
+      "mbid": "c72dcf06-0839-47a2-aa84-7a441c034884",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:brut-force-secrets--roni-size",
+      "type": "project",
+      "name": "Brut Force / Secrets",
+      "artist": "Roni Size",
+      "mbid": "7beb65b2-61bc-38f7-940f-d41dbf9a266b",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dayz-box-of-tricks--roni-size",
+      "type": "project",
+      "name": "Dayz / Box of Tricks",
+      "artist": "Roni Size",
+      "mbid": "d2485e1e-cada-3132-a960-dc6ff99a36f3",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:soul-power-silent-partner--roni-size",
+      "type": "project",
+      "name": "Soul Power / Silent Partner",
+      "artist": "Roni Size",
+      "mbid": "e4d8ab9f-eefb-37cc-be7e-bd4a91963c2a",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-touch-of-daylight--roni-size",
+      "type": "project",
+      "name": "A Touch of Daylight",
+      "artist": "Roni Size",
+      "mbid": "f8189800-681f-308a-9674-b18a7d62e5f4",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fashion-step-up--roni-size",
+      "type": "project",
+      "name": "Fashion / Step Up",
+      "artist": "Roni Size",
+      "mbid": "4c2afead-0965-44fe-87a8-30b601313905",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:selektor-bwoy--roni-size",
+      "type": "project",
+      "name": "Selektor Bwoy",
+      "artist": "Roni Size",
+      "mbid": "28a004bf-1e82-4eea-b913-1b01149a51d9",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sexy-girl-girls-dem-want-it--roni-size",
+      "type": "project",
+      "name": "Sexy Girl / Girls Dem Want It",
+      "artist": "Roni Size",
+      "mbid": "374de58d-eaf5-41a0-8e82-335ba38a5992",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:timestretch-phizical--roni-size",
+      "type": "project",
+      "name": "Timestretch / Phizical",
+      "artist": "Roni Size",
+      "mbid": "1eb5ead2-2da0-3f70-b431-0bc94270d84d",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:exer-size-ep--roni-size",
+      "type": "project",
+      "name": "Exer-Size EP",
+      "artist": "Roni Size",
+      "mbid": "f4f77e42-bcd2-394b-adf3-034d59834fe4",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:size-of-things-to-come--roni-size",
+      "type": "project",
+      "name": "Size of Things to Come",
+      "artist": "Roni Size",
+      "mbid": "4174dd15-4ff4-3f7e-8728-25556ddc7bd5",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:new-forms--roni-size-reprazent",
       "type": "project",
       "name": "New Forms"
@@ -68,16 +390,6 @@
       "slug": "project:in-the-mode",
       "type": "project",
       "name": "In the Mode"
-    },
-    {
-      "slug": "project:touching-down",
-      "type": "project",
-      "name": "Touching Down"
-    },
-    {
-      "slug": "project:return-to-v",
-      "type": "project",
-      "name": "Return To V"
     }
   ],
   "notable_tracks": [

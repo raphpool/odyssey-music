@@ -44,14 +44,20 @@
   ],
   "discography": [
     {
-      "slug": "project:system-fork",
-      "type": "project",
-      "name": "System Fork"
-    },
-    {
       "slug": "project:applied-remixes",
       "type": "project",
-      "name": "Applied Remixes"
+      "name": "Applied Remixes",
+      "mbid": "e8a9f2ee-21ab-4eee-9d75-eae5e9f9ae90",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:system-fork",
+      "type": "project",
+      "name": "System Fork",
+      "mbid": "b654fb81-5f8a-4cd8-8795-d4ad0599a773",
+      "year": "2014",
+      "releaseType": "album"
     },
     {
       "slug": "project:manifesto-01-ep",

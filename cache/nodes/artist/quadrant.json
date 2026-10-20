@@ -40,14 +40,179 @@
   ],
   "discography": [
     {
-      "slug": "project:206",
+      "slug": "project:rough-puff--quadrant",
       "type": "project",
-      "name": "206"
+      "name": "Rough Puff",
+      "artist": "Quadrant",
+      "mbid": "50607fd2-6c1f-405d-add5-b881288603a0",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sparkline-suspensor--quadrant",
+      "type": "project",
+      "name": "Sparkline / Suspensor",
+      "artist": "Quadrant",
+      "mbid": "9da45bc0-99f1-424c-b2c5-c788c4f1c8c5",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:false-spring-muse--quadrant",
+      "type": "project",
+      "name": "False Spring / Muse",
+      "artist": "Quadrant",
+      "mbid": "9c1e85e2-76eb-4a3d-a4d4-b811b76f2f9e",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:double-path-ep--quadrant",
+      "type": "project",
+      "name": "Double Path EP",
+      "artist": "Quadrant",
+      "mbid": "d8d5d0e2-fde1-4e41-9619-9765ed6616d0",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:harsh-realm--quadrant",
+      "type": "project",
+      "name": "Harsh Realm",
+      "artist": "Quadrant",
+      "mbid": "6b4e9954-cee8-4904-99bd-eb1d773e4fef",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:libation-ep--quadrant",
+      "type": "project",
+      "name": "Libation EP",
+      "artist": "Quadrant",
+      "mbid": "ed3d8c25-32b5-4a82-a667-e441b33d723f",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:form-constant-ep--quadrant",
+      "type": "project",
+      "name": "Form Constant EP",
+      "artist": "Quadrant",
+      "mbid": "603684ab-eb12-47de-a091-fcfc6ff8689d",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:twenty-two-is-this-now--quadrant",
+      "type": "project",
+      "name": "Twenty‐Two / Is This Now",
+      "artist": "Quadrant",
+      "mbid": "118daef6-2ff4-496c-b265-bff320ee6c11",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:calculated-risk--quadrant",
+      "type": "project",
+      "name": "Calculated Risk",
+      "artist": "Quadrant",
+      "mbid": "00cdab06-2b6a-443f-98f4-2164b9f794d2",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dub-central--quadrant",
+      "type": "project",
+      "name": "Dub Central",
+      "artist": "Quadrant",
+      "mbid": "7703b7ac-3e96-496c-8886-a39c56fda51c",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:scattershot-ep--quadrant",
+      "type": "project",
+      "name": "Scattershot EP",
+      "artist": "Quadrant",
+      "mbid": "216dc66e-2f99-4674-9d6c-1517b4feea37",
+      "year": "2016",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dirty-78--quadrant",
+      "type": "project",
+      "name": "Dirty 78",
+      "artist": "Quadrant",
+      "mbid": "6c763c21-3bf3-426f-baf1-bd4d35abac1a",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-call-it-anything--quadrant",
+      "type": "project",
+      "name": "Don’t Call It Anything",
+      "artist": "Quadrant",
+      "mbid": "51315eba-19c0-4131-a02a-5cf7b27274a8",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-microsleep-ep--quadrant",
+      "type": "project",
+      "name": "The Microsleep EP",
+      "artist": "Quadrant",
+      "mbid": "f84475ef-a76e-4465-a417-6958f5838f43",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:solar-wind-ep--quadrant",
+      "type": "project",
+      "name": "Solar Wind EP",
+      "artist": "Quadrant",
+      "mbid": "5f2cd95f-7aff-4ffa-bf4d-348daf27f349",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:spinout--quadrant",
+      "type": "project",
+      "name": "Spinout",
+      "artist": "Quadrant",
+      "mbid": "bc6cb4c8-5134-42b4-8c4b-93fc887922ef",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trompe-l-oeil-tilt-shift--quadrant",
+      "type": "project",
+      "name": "Trompe L'oeil / Tilt Shift",
+      "artist": "Quadrant",
+      "mbid": "c84932e2-9026-4a4e-9deb-67b44a19ca64",
+      "year": "2012",
+      "releaseType": "single"
     },
     {
       "slug": "project:dermaphoria",
       "type": "project",
-      "name": "Dermaphoria"
+      "name": "Dermaphoria",
+      "mbid": "49406434-8d31-4a48-a64d-9569f381947e",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:lost-city-insidious--quadrant",
+      "type": "project",
+      "name": "Lost City / Insidious",
+      "artist": "Quadrant",
+      "mbid": "b44cf075-73b3-4409-a06f-036cb296a256",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:206",
+      "type": "project",
+      "name": "206"
     }
   ],
   "notable_tracks": [

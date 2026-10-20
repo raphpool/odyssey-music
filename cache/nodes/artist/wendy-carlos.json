@@ -61,7 +61,143 @@
     }
   ],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:the-shining-music-from-the-motion-picture--wendy-carlos",
+      "type": "project",
+      "name": "The Shining (Music from the Motion Picture)",
+      "artist": "Wendy Carlos",
+      "mbid": "aff07c4a-323f-4186-9421-f90cf8b4fae4",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rediscovering-lost-scores-volume-2--wendy-carlos",
+      "type": "project",
+      "name": "Rediscovering Lost Scores, Volume 2",
+      "artist": "Wendy Carlos",
+      "mbid": "60fc2fe7-310c-31a4-af41-de99998ab2c2",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tales-of-heaven-and-hell--wendy-carlos",
+      "type": "project",
+      "name": "Tales of Heaven and Hell",
+      "artist": "Wendy Carlos",
+      "mbid": "e13bf2a9-d48e-333f-9382-85baca00f270",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:switched-on-bach-2000--wendy-carlos",
+      "type": "project",
+      "name": "Switched-On Bach 2000",
+      "artist": "Wendy Carlos",
+      "mbid": "95a2e805-5429-331a-8fe2-7e92dc3c3b89",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:switched-on-brandenburgs-vol-i--wendy-carlos",
+      "type": "project",
+      "name": "Switched-On Brandenburgs, Vol. I",
+      "artist": "Wendy Carlos",
+      "mbid": "fcb08903-9811-3a63-9f08-4566f3d1d1fd",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:switched-on-brandenburgs-vol-ii--wendy-carlos",
+      "type": "project",
+      "name": "Switched‐On Brandenburgs, Vol. II",
+      "artist": "Wendy Carlos",
+      "mbid": "c4acf729-6562-3e23-88c8-6e4cefbdcd2c",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beauty-in-the-beast--wendy-carlos",
+      "type": "project",
+      "name": "Beauty in the Beast",
+      "artist": "Wendy Carlos",
+      "mbid": "ec02045c-157a-3453-8010-f7219110e2d8",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:digital-moonscapes--wendy-carlos",
+      "type": "project",
+      "name": "Digital Moonscapes",
+      "artist": "Wendy Carlos",
+      "mbid": "081713bd-2b60-3874-a56c-ab1d49f42a45",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tron--wendy-carlos",
+      "type": "project",
+      "name": "TRON",
+      "artist": "Wendy Carlos",
+      "mbid": "92a6e5fe-c5ec-3f39-adff-a04a4b8658b6",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:switched-on-brandenburgs--wendy-carlos",
+      "type": "project",
+      "name": "Switched‐On Brandenburgs",
+      "artist": "Wendy Carlos",
+      "mbid": "42875b63-9071-489f-9ed4-4cd1eb8fb83a",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:by-request--wendy-carlos",
+      "type": "project",
+      "name": "By Request",
+      "artist": "Wendy Carlos",
+      "mbid": "1a487803-3c9d-35ce-9455-56896eac71d2",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sonic-seasonings--wendy-carlos",
+      "type": "project",
+      "name": "Sonic Seasonings",
+      "artist": "Wendy Carlos",
+      "mbid": "f46669fd-4ce1-31b4-9f59-6bfb445046ae",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:walter-carlos-clockwork-orange--wendy-carlos",
+      "type": "project",
+      "name": "Walter Carlos’ Clockwork Orange",
+      "artist": "Wendy Carlos",
+      "mbid": "c8bb7053-6543-31df-ae35-bf0d6749761d",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-well-tempered-synthesizer--wendy-carlos",
+      "type": "project",
+      "name": "The Well‐Tempered Synthesizer",
+      "artist": "Wendy Carlos",
+      "mbid": "5d096be3-5b83-3718-a002-31470261e4ae",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:moog-900-series-electronic-music-systems-demonstration-record--wendy-carlos",
+      "type": "project",
+      "name": "Moog 900 Series: Electronic Music Systems Demonstration Record",
+      "artist": "Wendy Carlos",
+      "mbid": "aaccc26e-233a-4921-a462-809770c463ce",
+      "year": "1967",
+      "releaseType": "ep"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:brandenburg-concerto-no-3-in-g-major-i-allegro",

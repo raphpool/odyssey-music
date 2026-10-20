@@ -60,19 +60,190 @@
   ],
   "discography": [
     {
-      "slug": "project:accident-in-paradise",
+      "slug": "project:catharsis--sven-vath",
       "type": "project",
-      "name": "Accident in Paradise"
+      "name": "Catharsis",
+      "artist": "Sven Väth",
+      "mbid": "8910908b-3d06-4710-931c-c56520e38831",
+      "year": "2022",
+      "releaseType": "album"
     },
     {
-      "slug": "project:fusion",
+      "slug": "project:mystic-voices-butoh--sven-vath",
       "type": "project",
-      "name": "Fusion"
+      "name": "Mystic Voices / Butoh",
+      "artist": "Sven Väth",
+      "mbid": "93c6267c-85b7-4929-8ec1-8b276dc2c7e3",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:feiern--sven-vath",
+      "type": "project",
+      "name": "Feiern",
+      "artist": "Sven Väth",
+      "mbid": "c1741cf2-b0b9-46c5-a4c9-56a6838169d6",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:springlove--sven-vath",
+      "type": "project",
+      "name": "Springlove",
+      "artist": "Sven Väth",
+      "mbid": "71793736-fd86-3da2-9a8e-687a538719a0",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:komm--sven-vath",
+      "type": "project",
+      "name": "Komm",
+      "artist": "Sven Väth",
+      "mbid": "cef038fe-4ba4-3ca3-898a-36ce5c96d583",
+      "year": "2005",
+      "releaseType": "single"
     },
     {
       "slug": "project:fire",
       "type": "project",
-      "name": "Fire"
+      "name": "Fire",
+      "mbid": "b0a8b892-877b-3648-8510-b20bf1ecc439",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mind-games--sven-vath",
+      "type": "project",
+      "name": "Mind Games",
+      "artist": "Sven Väth",
+      "mbid": "d7604352-2983-4fa6-8b72-85f8ca2d4beb",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vision--sven-vath",
+      "type": "project",
+      "name": "Vision",
+      "artist": "Sven Väth",
+      "mbid": "4d50122c-903a-3576-a036-7f845b0199a4",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:design-music-je-t-aime-moi-non-plus--sven-vath",
+      "type": "project",
+      "name": "Design Music / Je t’aime… Moi non plus",
+      "artist": "Sven Väth",
+      "mbid": "b8c99d40-6334-4a31-9d9c-f4538abd6a1b",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:contact--sven-vath",
+      "type": "project",
+      "name": "Contact",
+      "artist": "Sven Väth",
+      "mbid": "b44fb818-8d51-39df-9acc-0f65600145a7",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pathfinder-ein-waggon-voller-geschichten--sven-vath",
+      "type": "project",
+      "name": "Pathfinder / Ein Waggon Voller Geschichten",
+      "artist": "Sven Väth",
+      "mbid": "0c19a519-9814-49d5-a58b-634fa4c4e876",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dein-schweiss--sven-vath",
+      "type": "project",
+      "name": "Dein Schweiß",
+      "artist": "Sven Väth",
+      "mbid": "0b516acf-336a-49cb-8b13-cadbeb38db87",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fusion-ep--sven-vath",
+      "type": "project",
+      "name": "Fusion EP",
+      "artist": "Sven Väth",
+      "mbid": "2bf50719-2aac-429d-8424-e01c0de5f457",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:face-it--sven-vath",
+      "type": "project",
+      "name": "Face It",
+      "artist": "Sven Väth",
+      "mbid": "78257316-3eda-4bc2-81d5-41de7c931496",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fusion",
+      "type": "project",
+      "name": "Fusion",
+      "mbid": "611fd466-87a2-3af9-a1ae-fc63917926b8",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fusion-scorpio-s-movement--sven-vath",
+      "type": "project",
+      "name": "Fusion / Scorpio's Movement",
+      "artist": "Sven Väth",
+      "mbid": "9349bb54-dd4f-4eac-815c-07d87339e376",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ballet-fusion--sven-vath",
+      "type": "project",
+      "name": "Ballet-Fusion",
+      "artist": "Sven Väth",
+      "mbid": "5aa7752b-e390-346c-bb8f-88d9a44ffc4a",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:harlequin-the-beauty-and-the-beast--sven-vath",
+      "type": "project",
+      "name": "Harlequin - The Beauty And The Beast",
+      "artist": "Sven Väth",
+      "mbid": "3bf63d87-7ef7-33aa-ac69-7ec198949c5f",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-harlequin-the-robot-and-the-ballet-dancer--sven-vath",
+      "type": "project",
+      "name": "The Harlequin - The Robot and the Ballet-Dancer",
+      "artist": "Sven Väth",
+      "mbid": "4f574d14-e464-3b61-92e4-127368cf7a20",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:accident-in-paradise",
+      "type": "project",
+      "name": "Accident in Paradise",
+      "mbid": "fa087974-1ecd-3340-a978-5a83348c50f4",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:l-esperanza--sven-vath",
+      "type": "project",
+      "name": "L’esperanza",
+      "artist": "Sven Väth",
+      "mbid": "ed706740-2d4b-3e0d-86b5-350d321f1786",
+      "year": "1990",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

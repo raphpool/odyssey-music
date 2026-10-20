@@ -70,29 +70,314 @@
   ],
   "discography": [
     {
-      "slug": "project:and-don-t-the-kids-just-love-it",
+      "slug": "project:beautiful-despair--television-personalities",
       "type": "project",
-      "name": "...And Don't the Kids Just Love It"
+      "name": "Beautiful Despair",
+      "artist": "Television Personalities",
+      "mbid": "d5b20373-5e6e-42d7-b1a0-71dd2f756439",
+      "year": "2017",
+      "releaseType": "album"
     },
     {
-      "slug": "project:mummy-your-not-watching-me",
+      "slug": "project:a-memory-is-better-than-nothing--television-personalities",
       "type": "project",
-      "name": "Mummy Your Not Watching Me"
+      "name": "A Memory Is Better Than Nothing",
+      "artist": "Television Personalities",
+      "mbid": "efd67282-b72c-475d-b489-495ce72127c4",
+      "year": "2010",
+      "releaseType": "album"
     },
     {
-      "slug": "project:they-could-have-been-bigger-than-the-beatles",
+      "slug": "project:people-think-that-we-re-strange--television-personalities",
       "type": "project",
-      "name": "They Could Have Been Bigger Than The Beatles"
+      "name": "People Think That We're Strange",
+      "artist": "Television Personalities",
+      "mbid": "0e3dd987-e128-4e03-a73c-ba208ede9506",
+      "year": "2009",
+      "releaseType": "single"
     },
     {
-      "slug": "project:the-painted-word",
+      "slug": "project:the-good-anarchist--television-personalities",
       "type": "project",
-      "name": "The Painted Word"
+      "name": "The Good Anarchist",
+      "artist": "Television Personalities",
+      "mbid": "debbe469-2393-3960-b2fd-3f31c95bae13",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:are-we-nearly-there-yet--television-personalities",
+      "type": "project",
+      "name": "Are We Nearly There Yet?",
+      "artist": "Television Personalities",
+      "mbid": "09c7a0c9-f2c4-3ce5-9dd7-4e8f029d41fe",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:all-the-young-children-on-crack--television-personalities",
+      "type": "project",
+      "name": "All the Young Children on Crack",
+      "artist": "Television Personalities",
+      "mbid": "dad8f7f4-cf0d-386e-aa35-b239349459fd",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-dark-places--television-personalities",
+      "type": "project",
+      "name": "My Dark Places",
+      "artist": "Television Personalities",
+      "mbid": "4a27b4f8-570e-3612-907b-ab43585638f5",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:she-can-stop-traffic--television-personalities",
+      "type": "project",
+      "name": "She Can Stop Traffic",
+      "artist": "Television Personalities",
+      "mbid": "d56fafd8-108f-4d79-8c5f-923cb9dc46ba",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:when-i-grow-up-i-want-to-be--television-personalities",
+      "type": "project",
+      "name": "When I Grow Up I Want to Be...",
+      "artist": "Television Personalities",
+      "mbid": "0a8ff1d1-291f-4b00-b534-3dc42a20ed27",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-cry-baby-it-s-only-a-movie--television-personalities",
+      "type": "project",
+      "name": "Don't Cry Baby... It's Only a Movie",
+      "artist": "Television Personalities",
+      "mbid": "033fabfb-ffd9-33ef-832d-8f650ed2cb47",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bike--television-personalities",
+      "type": "project",
+      "name": "Bike",
+      "artist": "Television Personalities",
+      "mbid": "a0cfa141-00b6-4ad6-ab7f-6a68ee292ea0",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:do-you-think-if-you-were-beautiful-you-d-be-happy--television-personalities",
+      "type": "project",
+      "name": "Do You Think If You Were Beautiful You'd Be Happy?",
+      "artist": "Television Personalities",
+      "mbid": "3f6f1484-9c27-41b4-b45f-520f58aad54c",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-was-a-mod-before-you-was-a-mod--television-personalities",
+      "type": "project",
+      "name": "I Was a Mod Before You Was a Mod",
+      "artist": "Television Personalities",
+      "mbid": "9dad6ea1-e435-3182-a4aa-875ebd835279",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:far-away-and-lost-in-joy-ep--television-personalities",
+      "type": "project",
+      "name": "Far Away and Lost in Joy EP",
+      "artist": "Television Personalities",
+      "mbid": "8bd32399-7fb9-32ac-9bbe-88594c43beae",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:not-like-everybody-else--television-personalities",
+      "type": "project",
+      "name": "Not Like Everybody Else",
+      "artist": "Television Personalities",
+      "mbid": "bff2e333-989f-48ec-9021-2bd4178c05c3",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-prettiest-girl-in-the-world--television-personalities",
+      "type": "project",
+      "name": "The Prettiest Girl in the World",
+      "artist": "Television Personalities",
+      "mbid": "35b20dbb-817f-4793-be50-d18826e8dec6",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:goodnight-mr-spaceman--television-personalities",
+      "type": "project",
+      "name": "Goodnight Mr Spaceman",
+      "artist": "Television Personalities",
+      "mbid": "a6793ca2-4f2c-44eb-810d-bed78359b5bc",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:closer-to-god--television-personalities",
+      "type": "project",
+      "name": "Closer to God",
+      "artist": "Television Personalities",
+      "mbid": "49a3441a-8d3a-3345-9998-f652e808fed2",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:we-will-be-your-gurus--television-personalities",
+      "type": "project",
+      "name": "We Will Be Your Gurus",
+      "artist": "Television Personalities",
+      "mbid": "1967d4da-55a2-3904-9e02-3e95fd4b6870",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:she-s-never-read-my-poems--television-personalities",
+      "type": "project",
+      "name": "She's Never Read My Poems",
+      "artist": "Television Personalities",
+      "mbid": "8703cb15-e7a0-3034-887b-e1d8fde3c04e",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-strangely-beautiful-e-p--television-personalities",
+      "type": "project",
+      "name": "The Strangely Beautiful E.P.",
+      "artist": "Television Personalities",
+      "mbid": "da4168ba-5be4-451e-b892-766c6c07c1b2",
+      "year": "1991",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:i-still-believe-in-magic--television-personalities",
+      "type": "project",
+      "name": "I Still Believe in Magic",
+      "artist": "Television Personalities",
+      "mbid": "6c61b096-a45f-4dfb-8578-5758257027d2",
+      "year": "1989",
+      "releaseType": "single"
     },
     {
       "slug": "project:privilege",
       "type": "project",
-      "name": "Privilege"
+      "name": "Privilege",
+      "mbid": "583cf68a-e16f-3372-be95-143e0f598d56",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:how-i-learned-to-love-the-bomb--television-personalities",
+      "type": "project",
+      "name": "How I Learned to Love the Bomb",
+      "artist": "Television Personalities",
+      "mbid": "5b35f5a3-377d-358c-9ba7-5be3fc6c8726",
+      "year": "1986",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-painted-word",
+      "type": "project",
+      "name": "The Painted Word",
+      "mbid": "f03e2b4e-572f-3a7a-9662-b25111a4d4ab",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-sense-of-belonging--television-personalities",
+      "type": "project",
+      "name": "A Sense of Belonging",
+      "artist": "Television Personalities",
+      "mbid": "f2f55f06-8cac-41a6-88ef-eb0b6db58c27",
+      "year": "1983",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:biff-bang-pow--television-personalities",
+      "type": "project",
+      "name": "Biff Bang Pow!",
+      "artist": "Television Personalities",
+      "mbid": "9244483c-97ea-4548-b04b-61f7e0d16235",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mummy-your-not-watching-me",
+      "type": "project",
+      "name": "Mummy Your Not Watching Me",
+      "mbid": "e5022bff-2868-3220-8336-6f1301b73322",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:they-could-have-been-bigger-than-the-beatles",
+      "type": "project",
+      "name": "They Could Have Been Bigger Than The Beatles",
+      "mbid": "a7226b48-bed0-3b9e-8140-df797f6890c8",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:three-wishes--television-personalities",
+      "type": "project",
+      "name": "Three Wishes",
+      "artist": "Television Personalities",
+      "mbid": "efd21c2a-f679-4c72-801a-c4a1d576024a",
+      "year": "1982",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:and-don-t-the-kids-just-love-it",
+      "type": "project",
+      "name": "...And Don't the Kids Just Love It",
+      "mbid": "175cb867-2d75-3f75-b966-465a077809f3",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-know-where-syd-barrett-lives-arthur-the-gardener--television-personalities",
+      "type": "project",
+      "name": "I Know Where Syd Barrett Lives / Arthur the Gardener",
+      "artist": "Television Personalities",
+      "mbid": "12b3309c-bffa-4db0-a0ea-73351a7ce038",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:smashing-time--television-personalities",
+      "type": "project",
+      "name": "Smashing Time!",
+      "artist": "Television Personalities",
+      "mbid": "0e0998d7-35ca-4292-9a8b-ef64b0be46e3",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:14th-floor-oxford-st-w1--television-personalities",
+      "type": "project",
+      "name": "14th Floor / Oxford St., W1",
+      "artist": "Television Personalities",
+      "mbid": "e7c707c5-2ed3-3635-9a80-67b411901dd3",
+      "year": "1978",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:where-s-bill-grundy-now--television-personalities",
+      "type": "project",
+      "name": "Where's Bill Grundy Now?",
+      "artist": "Television Personalities",
+      "mbid": "898a09e7-4575-3c7d-9d62-949cdf7a1ceb",
+      "year": "1978",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

@@ -60,19 +60,190 @@
   ],
   "discography": [
     {
-      "slug": "project:roxy-music",
+      "slug": "project:avalon",
       "type": "project",
-      "name": "Roxy Music"
+      "name": "Avalon",
+      "mbid": "4b51d75c-ca0e-3ea7-9950-639eda1f7d1a",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:more-than-this--roxy-music",
+      "type": "project",
+      "name": "More Than This",
+      "artist": "Roxy Music",
+      "mbid": "afcef0d7-603a-3378-ac6a-fbd28a356e84",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jealous-guy--roxy-music",
+      "type": "project",
+      "name": "Jealous Guy",
+      "artist": "Roxy Music",
+      "mbid": "6c74fc93-82bc-3522-8e57-83f3089191f9",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:flesh-blood--roxy-music",
+      "type": "project",
+      "name": "Flesh + Blood",
+      "artist": "Roxy Music",
+      "mbid": "48cb1f6d-d65a-3e5d-aabb-83977322d3fd",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:oh-yeah--roxy-music",
+      "type": "project",
+      "name": "Oh Yeah",
+      "artist": "Roxy Music",
+      "mbid": "ee77baab-2e60-3497-923c-8a8093ce0e90",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:over-you--roxy-music",
+      "type": "project",
+      "name": "Over You",
+      "artist": "Roxy Music",
+      "mbid": "5b3f62bb-adba-3a0d-ae18-5fe0a857cb7a",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-same-old-scene--roxy-music",
+      "type": "project",
+      "name": "The Same Old Scene",
+      "artist": "Roxy Music",
+      "mbid": "a597edf1-fb39-4a9a-983b-057e31d161f6",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:angel-eyes--roxy-music",
+      "type": "project",
+      "name": "Angel Eyes",
+      "artist": "Roxy Music",
+      "mbid": "60fcb71c-6162-3ae8-aa35-dc4cb6948cea",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dance-away--roxy-music",
+      "type": "project",
+      "name": "Dance Away",
+      "artist": "Roxy Music",
+      "mbid": "9fa37d5c-2a2c-3169-bc9d-52d546d82524",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:manifesto--roxy-music",
+      "type": "project",
+      "name": "Manifesto",
+      "artist": "Roxy Music",
+      "mbid": "0050c06d-21c3-300e-a212-bc79ad99473e",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:both-ends-burning--roxy-music",
+      "type": "project",
+      "name": "Both Ends Burning",
+      "artist": "Roxy Music",
+      "mbid": "80a3bf77-7dfa-45e4-acc9-67b7f05c441a",
+      "year": "1975",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-is-the-drug--roxy-music",
+      "type": "project",
+      "name": "Love Is the Drug",
+      "artist": "Roxy Music",
+      "mbid": "3d8c4f0a-4cb8-379d-9cd7-d6a615ce914e",
+      "year": "1975",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:siren--roxy-music",
+      "type": "project",
+      "name": "Siren",
+      "artist": "Roxy Music",
+      "mbid": "42268e91-863c-3dc3-a9c7-f6eea7a54462",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:all-i-want-is-you--roxy-music",
+      "type": "project",
+      "name": "All I Want Is You",
+      "artist": "Roxy Music",
+      "mbid": "59c577a3-0fdb-3fcd-9f59-c248740d346d",
+      "year": "1974",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:country-life--roxy-music",
+      "type": "project",
+      "name": "Country Life",
+      "artist": "Roxy Music",
+      "mbid": "b2d10ce6-bf86-3091-8c71-3e8330f4b748",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:do-the-strand--roxy-music",
+      "type": "project",
+      "name": "Do the Strand",
+      "artist": "Roxy Music",
+      "mbid": "a5d699b8-14a0-4a87-9eae-caf5589648ba",
+      "year": "1973",
+      "releaseType": "single"
     },
     {
       "slug": "project:for-your-pleasure--roxy-music",
       "type": "project",
-      "name": "For Your Pleasure"
+      "name": "For Your Pleasure",
+      "mbid": "72fd9993-17b8-3402-9f8d-c39cb3d2c27e",
+      "year": "1973",
+      "releaseType": "album"
     },
     {
-      "slug": "project:avalon",
+      "slug": "project:stranded--roxy-music",
       "type": "project",
-      "name": "Avalon"
+      "name": "Stranded",
+      "artist": "Roxy Music",
+      "mbid": "a50cff84-f6ed-315e-9754-10b572169bf3",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:street-life-hula-kula--roxy-music",
+      "type": "project",
+      "name": "Street Life / Hula‐Kula",
+      "artist": "Roxy Music",
+      "mbid": "8dfd3717-11e0-3757-8951-6b18a3a5fdcd",
+      "year": "1973",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:roxy-music",
+      "type": "project",
+      "name": "Roxy Music",
+      "mbid": "3ff6284f-88b0-3285-895a-61c733e6d4ca",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:virginia-plain--roxy-music",
+      "type": "project",
+      "name": "Virginia Plain",
+      "artist": "Roxy Music",
+      "mbid": "b177e38b-b6d6-3b7b-a067-e6ad89925683",
+      "year": "1972",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

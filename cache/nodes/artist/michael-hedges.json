@@ -42,19 +42,73 @@
   ],
   "discography": [
     {
-      "slug": "project:aerial-boundaries",
+      "slug": "project:torched--michael-hedges",
       "type": "project",
-      "name": "Aerial Boundaries"
+      "name": "Torched",
+      "artist": "Michael Hedges",
+      "mbid": "a9fd366e-f750-3a18-8a0a-9a0b4c693632",
+      "year": "1999",
+      "releaseType": "album"
     },
     {
       "slug": "project:oracle",
       "type": "project",
-      "name": "Oracle"
+      "name": "Oracle",
+      "mbid": "6b19c2c2-d35a-325f-a92a-00b25e6a5037",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-road-to-return--michael-hedges",
+      "type": "project",
+      "name": "The Road to Return",
+      "artist": "Michael Hedges",
+      "mbid": "0582288d-50af-3ff3-bfea-d8d0f9d0fa81",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:taproot--michael-hedges",
+      "type": "project",
+      "name": "Taproot",
+      "artist": "Michael Hedges",
+      "mbid": "601ed13e-ece1-313d-8142-91af60b07619",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:strings-of-steel--michael-hedges",
+      "type": "project",
+      "name": "Strings of Steel",
+      "artist": "Michael Hedges",
+      "mbid": "e3e4fb93-b3d1-423e-a362-8484755d4de5",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:watching-my-life-go-by--michael-hedges",
+      "type": "project",
+      "name": "Watching My Life Go By",
+      "artist": "Michael Hedges",
+      "mbid": "76a11c1f-2153-33bd-aca6-d289b895fb86",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aerial-boundaries",
+      "type": "project",
+      "name": "Aerial Boundaries",
+      "mbid": "83cb4627-ebcf-3dfd-89df-53b607b5c39f",
+      "year": "1984",
+      "releaseType": "album"
     },
     {
       "slug": "project:breakfast-in-the-field",
       "type": "project",
-      "name": "Breakfast in the Field"
+      "name": "Breakfast in the Field",
+      "mbid": "c859f195-7987-3077-b741-95fb255a9e06",
+      "year": "1981",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

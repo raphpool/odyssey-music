@@ -71,7 +71,62 @@
       "name": "Virgin Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:the-making-of--ashra",
+      "type": "project",
+      "name": "The Making Of",
+      "artist": "Ashra",
+      "mbid": "57519e1c-668c-4b37-bb7f-a15cc0cb7be2",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tropical-heat--ashra",
+      "type": "project",
+      "name": "Tropical Heat",
+      "artist": "Ashra",
+      "mbid": "63d9a373-9926-3d0c-9531-b581fb7590fc",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:walkin-the-desert--ashra",
+      "type": "project",
+      "name": "Walkin' the Desert",
+      "artist": "Ashra",
+      "mbid": "0eb16eca-b1bd-3480-ab08-824acbeb18ae",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:belle-alliance--ashra",
+      "type": "project",
+      "name": "Belle Alliance",
+      "artist": "Ashra",
+      "mbid": "13e648aa-df02-31c8-87a5-640e7d8e2dcf",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:correlations--ashra",
+      "type": "project",
+      "name": "Correlations",
+      "artist": "Ashra",
+      "mbid": "1d6840f1-8a6f-3bac-a65d-bab22209668e",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blackouts--ashra",
+      "type": "project",
+      "name": "Blackouts",
+      "artist": "Ashra",
+      "mbid": "efcf96a4-d50f-3c59-a13f-8a24fd7a8998",
+      "year": "1978",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:sunrain",

@@ -61,12 +61,111 @@
   ],
   "discography": [
     {
+      "slug": "project:oh-no--rema",
+      "type": "project",
+      "name": "Oh No",
+      "artist": "Rema",
+      "mbid": "32dab69d-050a-4746-84d1-857589bff972",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tea--rema",
+      "type": "project",
+      "name": "TEA",
+      "artist": "Rema",
+      "mbid": "2abcb03d-bd2c-4bfe-a214-802d482380d1",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:baby-is-it-a-crime--rema",
+      "type": "project",
+      "name": "Baby (Is it a Crime)",
+      "artist": "Rema",
+      "mbid": "e291c2b7-683e-4290-9f24-250d210a01e0",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bout-u--rema",
+      "type": "project",
+      "name": "Bout U",
+      "artist": "Rema",
+      "mbid": "1388dc79-11b7-469c-94e1-7bb1d492f74a",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fun--rema",
+      "type": "project",
+      "name": "FUN",
+      "artist": "Rema",
+      "mbid": "b1c3e1c4-4c61-432a-89d0-6bfd1f8d55d9",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kelebu--rema",
+      "type": "project",
+      "name": "KELEBU",
+      "artist": "Rema",
+      "mbid": "9fd7aa6c-91b6-4fad-b7bd-f8d6b60cd228",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:benin-boys--rema",
+      "type": "project",
+      "name": "BENIN BOYS",
+      "artist": "Rema",
+      "mbid": "71f036cc-9e42-4247-95bd-cd897456b983",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hehehe--rema",
+      "type": "project",
+      "name": "HEHEHE",
+      "artist": "Rema",
+      "mbid": "d744b7bc-fda0-41f6-9a3e-4d66e42d3ae1",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:heis",
       "type": "project",
       "name": "HEIS",
       "mbid": "03381bd9-19b5-4240-b6dd-ea7e1a6b31fc",
       "year": "2024",
       "releaseType": "album"
+    },
+    {
+      "slug": "project:charm-sped-up--rema",
+      "type": "project",
+      "name": "Charm (Sped Up)",
+      "artist": "Rema",
+      "mbid": "2927bf11-525e-4dac-980f-524f71e2e745",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:holiday--rema",
+      "type": "project",
+      "name": "Holiday",
+      "artist": "Rema",
+      "mbid": "f8a3cd33-a7b3-40c8-ba2c-5d338222234b",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:holiday-reason-you--rema",
+      "type": "project",
+      "name": "Holiday / Reason You",
+      "artist": "Rema",
+      "mbid": "6653b88f-34f2-4e26-92d8-441069e1df65",
+      "year": "2023",
+      "releaseType": "single"
     },
     {
       "slug": "project:ravage",
@@ -77,12 +176,93 @@
       "releaseType": "ep"
     },
     {
+      "slug": "project:reason-you--rema",
+      "type": "project",
+      "name": "Reason You",
+      "artist": "Rema",
+      "mbid": "6986b6e4-c8e3-4d63-aaf3-f430f2be6205",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:calm-down--rema",
+      "type": "project",
+      "name": "Calm Down",
+      "artist": "Rema",
+      "mbid": "60119260-23be-45b2-b431-4dd75dd91ea8",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fyn--rema",
+      "type": "project",
+      "name": "FYN",
+      "artist": "Rema",
+      "mbid": "19cb4e63-39e9-44fa-bdaf-f87699eb005f",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:rave-and-roses",
       "type": "project",
       "name": "Rave & Roses",
       "mbid": "d9ce5deb-37e5-4fc6-997d-484ea4711836",
       "year": "2022",
       "releaseType": "album"
+    },
+    {
+      "slug": "project:bounce--rema",
+      "type": "project",
+      "name": "Bounce",
+      "artist": "Rema",
+      "mbid": "637b3a04-1fd5-4fb1-bc2e-f1834a0f1453",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:soundgasm--rema",
+      "type": "project",
+      "name": "Soundgasm",
+      "artist": "Rema",
+      "mbid": "1f637d2b-70eb-409e-ac86-8c73e66f49cf",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beamer-bad-boys--rema",
+      "type": "project",
+      "name": "Beamer (Bad Boys)",
+      "artist": "Rema",
+      "mbid": "1f96ba9a-67c2-4349-bdd6-2d6a4a453dc5",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dumebi--rema",
+      "type": "project",
+      "name": "Dumebi",
+      "artist": "Rema",
+      "mbid": "23ff7777-58d3-408e-837c-5e44fbc50544",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ginger-me--rema",
+      "type": "project",
+      "name": "Ginger Me",
+      "artist": "Rema",
+      "mbid": "ff0db036-e189-4ab0-9014-80d0b9230a4d",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:woman--rema",
+      "type": "project",
+      "name": "Woman",
+      "artist": "Rema",
+      "mbid": "5a95ad67-c3fb-4ac6-9612-d52418258f68",
+      "year": "2020",
+      "releaseType": "single"
     },
     {
       "slug": "project:bad-commando",

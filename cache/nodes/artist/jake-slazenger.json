@@ -59,6 +59,66 @@
   ],
   "discography": [
     {
+      "slug": "project:ace-in-the-hole--jake-slazenger",
+      "type": "project",
+      "name": "Ace in the Hole",
+      "artist": "Jake Slazenger",
+      "mbid": "8925418d-eb1e-4540-84b9-5bda148a4066",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:drops-a-deuce--jake-slazenger",
+      "type": "project",
+      "name": "Drops A Deuce",
+      "mbid": "3f72fc60-c880-402f-a256-23229a723017",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pewter-dragon-on-the-street--jake-slazenger",
+      "type": "project",
+      "name": "Pewter Dragon / On the Street",
+      "artist": "Jake Slazenger",
+      "mbid": "1abdeba5-c459-319c-93bd-c5bde297bb63",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:das-ist-ein-groovy-beat-ja--jake-slazenger",
+      "type": "project",
+      "name": "Das ist ein Groovy Beat, ja?",
+      "artist": "Jake Slazenger",
+      "mbid": "20d92bc8-05ae-320a-b4cd-995b7457998c",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nautilus",
+      "type": "project",
+      "name": "Nautilus",
+      "mbid": "e1e7a32d-96ae-329d-9f0a-2b6c72c87a99",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:makes-a-racket--jake-slazenger",
+      "type": "project",
+      "name": "Makes a Racket",
+      "artist": "Jake Slazenger",
+      "mbid": "299bd6a4-7a53-3540-9128-223b7b826e0d",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:megaphonk",
+      "type": "project",
+      "name": "Megaphonk",
+      "mbid": "a3bc65ab-575d-375a-ac94-5dd32318d127",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:makesaracket",
       "type": "project",
       "name": "Makesaracket"
@@ -67,21 +127,6 @@
       "slug": "project:das-ist-ein-groovybeat-ja--jake-slazenger",
       "type": "project",
       "name": "Das Ist Ein Groovybeat, Ja"
-    },
-    {
-      "slug": "project:drops-a-deuce--jake-slazenger",
-      "type": "project",
-      "name": "Drops A Deuce"
-    },
-    {
-      "slug": "project:megaphonk",
-      "type": "project",
-      "name": "Megaphonk"
-    },
-    {
-      "slug": "project:nautilus",
-      "type": "project",
-      "name": "Nautilus"
     }
   ],
   "notable_tracks": [

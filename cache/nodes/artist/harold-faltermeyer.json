@@ -25,7 +25,152 @@
   "editorial_bio": "Hans Hugo Harold Faltermeyer (born 1952 in Munich, Germany) is a highly influential German composer, musician, and record producer whose work defined the sound of 1980s synth-pop and cinematic scoring.",
   "genres": [],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:titans-arise--harold-faltermeyer",
+      "type": "project",
+      "name": "Titans Arise",
+      "artist": "Harold Faltermeyer",
+      "mbid": "3268420a-e71b-4ace-acca-2d517d78a1ec",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:beverly-hills-cop-ii--harold-faltermeyer",
+      "type": "project",
+      "name": "Beverly Hills Cop II",
+      "artist": "Harold Faltermeyer",
+      "mbid": "6d5a412a-1647-4889-b81f-148992a2332f",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cop-out-original-motion-picture-soundtrack--harold-faltermeyer",
+      "type": "project",
+      "name": "Cop Out: Original Motion Picture Soundtrack",
+      "artist": "Harold Faltermeyer",
+      "mbid": "17c493bc-09dc-4cba-8872-135d38643d47",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:two-worlds-2-pirates-of-the-flying-fortress-ost--harold-faltermeyer",
+      "type": "project",
+      "name": "Two Worlds 2: Pirates of the Flying Fortress OST",
+      "artist": "Harold Faltermeyer",
+      "mbid": "c1ca3cd6-d3bd-4fb3-81aa-725ed06990dd",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tango-and-cash--harold-faltermeyer",
+      "type": "project",
+      "name": "Tango & Cash",
+      "artist": "Harold Faltermeyer",
+      "mbid": "839d9b73-0db3-36c5-8b20-f8f731af509c",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:two-worlds--harold-faltermeyer",
+      "type": "project",
+      "name": "Two Worlds",
+      "artist": "Harold Faltermeyer",
+      "mbid": "9cc4c148-64fa-432a-b178-621bb1cc9d41",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jack-orlando--harold-faltermeyer",
+      "type": "project",
+      "name": "Jack Orlando",
+      "artist": "Harold Faltermeyer",
+      "mbid": "c57ebe0b-9291-4916-aa48-c0c1aadf4284",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kuffs--harold-faltermeyer",
+      "type": "project",
+      "name": "Kuffs",
+      "artist": "Harold Faltermeyer",
+      "mbid": "3c00509d-30a6-3e4c-a1dd-0be3997eac22",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:muscles--harold-faltermeyer",
+      "type": "project",
+      "name": "Muscles",
+      "artist": "Harold Faltermeyer",
+      "mbid": "56024f53-a43d-423b-b676-75240dcc51ce",
+      "year": "1990",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fletch-lives--harold-faltermeyer",
+      "type": "project",
+      "name": "Fletch Lives",
+      "artist": "Harold Faltermeyer",
+      "mbid": "5e5007d9-c16f-4310-830f-28c47d3ab8fc",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:harold-f--harold-faltermeyer",
+      "type": "project",
+      "name": "Harold F",
+      "artist": "Harold Faltermeyer",
+      "mbid": "f21528e1-3c27-3588-9191-8a6d214edb69",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-running-man--harold-faltermeyer",
+      "type": "project",
+      "name": "The Running Man",
+      "artist": "Harold Faltermeyer",
+      "mbid": "39efa54d-9415-3ee9-a653-efb8fb4564e3",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:top-gun-music-from-the-motion-picture--harold-faltermeyer",
+      "type": "project",
+      "name": "Top Gun: Music From the Motion Picture",
+      "artist": "Harold Faltermeyer",
+      "mbid": "ea44a36b-95c0-4848-b0ae-cf95f983eec4",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fletch-theme--harold-faltermeyer",
+      "type": "project",
+      "name": "Fletch Theme",
+      "artist": "Harold Faltermeyer",
+      "mbid": "351f383f-d547-4885-b6c3-8e03c4313dfc",
+      "year": "1985",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:axel-f--harold-faltermeyer",
+      "type": "project",
+      "name": "Axel F",
+      "artist": "Harold Faltermeyer",
+      "mbid": "c0ee278b-4362-3ebb-a337-b7e190eb0fa4",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:thief-of-hearts-original-motion-picture-soundtrack--harold-faltermeyer",
+      "type": "project",
+      "name": "Thief of Hearts: Original Motion Picture Soundtrack",
+      "artist": "Harold Faltermeyer",
+      "mbid": "6c7e3874-5555-3088-811e-7c80db3d483e",
+      "year": "1984",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:axel-f--harold-faltermeyer",

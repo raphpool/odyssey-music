@@ -34,24 +34,50 @@
   ],
   "discography": [
     {
-      "slug": "project:dernier-round",
+      "slug": "project:sur-le-fil-du-rasoir",
       "type": "project",
-      "name": "Dernier Round"
+      "name": "Sur le fil du rasoir",
+      "mbid": "eeb3a4a4-1bef-4500-ab3c-78b9affaef9a",
+      "year": "2016",
+      "releaseType": "album"
     },
     {
       "slug": "project:crise-de-conscience",
       "type": "project",
-      "name": "Crise de conscience"
+      "name": "Crise de conscience",
+      "mbid": "eb0bbc3c-df26-405c-a5e8-f40ec09b72a4",
+      "year": "2009",
+      "releaseType": "album"
     },
     {
-      "slug": "project:sur-le-fil-du-rasoir",
+      "slug": "project:l-avenir-est-a-nous--kool-shen",
       "type": "project",
-      "name": "Sur le fil du rasoir"
+      "name": "L'avenir est à nous",
+      "artist": "Kool Shen",
+      "mbid": "7b4f4a83-8868-362d-a5a8-effa226a6c9c",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dernier-round",
+      "type": "project",
+      "name": "Dernier Round",
+      "mbid": "3c155201-8ac7-30ad-a993-2dd97d4e8271",
+      "year": "2004",
+      "releaseType": "album"
     },
     {
       "slug": "project:qui-suis-je",
       "type": "project",
       "name": "Qui Suis-Je?"
+    },
+    {
+      "slug": "project:are-you-ready--kool-shen",
+      "type": "project",
+      "name": "Are you ready ?",
+      "artist": "Kool Shen",
+      "mbid": "f6db4711-27a2-4a3c-ad86-e9acb178e7bc",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

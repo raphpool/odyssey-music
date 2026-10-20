@@ -37,7 +37,44 @@
       "name": "Geffen Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:the-greatest-hitz--jesse-saunders",
+      "type": "project",
+      "name": "The Greatest Hitz",
+      "artist": "Jesse Saunders",
+      "mbid": "8a7485ed-7f91-4a8b-b928-0a42f3166e43",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:funk-you-up--jesse-saunders",
+      "type": "project",
+      "name": "Funk You Up",
+      "artist": "Jesse Saunders",
+      "mbid": "864e443a-a7f1-3c27-8fe8-4cde67d3c199",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:funk-u-up-those-pretty-girls--jesse-saunders",
+      "type": "project",
+      "name": "Funk U Up (Those Pretty Girls)",
+      "artist": "Jesse Saunders",
+      "mbid": "c7e0f2be-50f8-4c5a-bd64-ebb3c5f2bb88",
+      "year": "1984",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:on-and-on--jesse-saunders",
+      "type": "project",
+      "name": "On and On",
+      "artist": "Jesse Saunders",
+      "mbid": "8e2794fd-1f37-4b48-ae98-f158e5e491ac",
+      "year": "1984",
+      "releaseType": "ep"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],

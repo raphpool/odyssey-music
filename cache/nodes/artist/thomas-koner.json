@@ -58,14 +58,110 @@
   ],
   "discography": [
     {
+      "slug": "project:motus--thomas-koner",
+      "type": "project",
+      "name": "Motus",
+      "artist": "Thomas Köner",
+      "mbid": "535a6eab-6c86-4943-9228-d85cd5b3b7b0",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tiento-de-la-luz--thomas-koner",
+      "type": "project",
+      "name": "Tiento de la Luz",
+      "artist": "Thomas Köner",
+      "mbid": "67dc3b7f-1cfd-4582-af18-79c7e6c0f7e5",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-futurist-manifesto--thomas-koner",
+      "type": "project",
+      "name": "The Futurist Manifesto",
+      "artist": "Thomas Köner",
+      "mbid": "308e441b-e2ae-418f-8b91-818a67c92c8f",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tiento-de-las-nieves--thomas-koner",
+      "type": "project",
+      "name": "Tiento de las Nieves",
+      "artist": "Thomas Köner",
+      "mbid": "e71f5c78-db2d-49b6-8536-e96ea1f0b856",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:novaya-zemlya--thomas-koner",
+      "type": "project",
+      "name": "Novaya Zemlya",
+      "artist": "Thomas Köner",
+      "mbid": "747ca196-c3dc-439d-bd82-fb5025d460fb",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-barca--thomas-koner",
+      "type": "project",
+      "name": "La Barca",
+      "artist": "Thomas Köner",
+      "mbid": "90b8ce6e-06cb-484f-bb85-ee4b931ef00e",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unerforschtes-gebiet--thomas-koner",
+      "type": "project",
+      "name": "Unerforschtes Gebiet",
+      "artist": "Thomas Köner",
+      "mbid": "23123ea3-2a63-38dd-a668-0c5da475553d",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kaamos--thomas-koner",
+      "type": "project",
+      "name": "Kaamos",
+      "artist": "Thomas Köner",
+      "mbid": "466fad89-3077-342c-8fa1-e16bd78be28e",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aubrite--thomas-koner",
+      "type": "project",
+      "name": "Aubrite",
+      "artist": "Thomas Köner",
+      "mbid": "09afefb0-ea63-3f57-8f9a-7438318c8f74",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:permafrost",
       "type": "project",
-      "name": "Permafrost"
+      "name": "Permafrost",
+      "mbid": "24c944e9-ef5f-31c2-ba20-c744cdb5bb3a",
+      "year": "1993",
+      "releaseType": "album"
     },
     {
       "slug": "project:teimo--thomas-koner",
       "type": "project",
-      "name": "Teimo"
+      "name": "Teimo",
+      "mbid": "d5d58beb-f2bc-3cea-9dcf-cc2fd4569b2e",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:nunatak-gongamur--thomas-koner",
+      "type": "project",
+      "name": "Nunatak Gongamur",
+      "artist": "Thomas Köner",
+      "mbid": "38e07f35-6617-3b46-8262-cbd377373b32",
+      "year": "1990",
+      "releaseType": "album"
     },
     {
       "slug": "project:nunatak-gongamur-ram",

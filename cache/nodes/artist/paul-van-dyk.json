@@ -80,24 +80,360 @@
   ],
   "discography": [
     {
-      "slug": "project:45-rpm--paul-van-dyk",
+      "slug": "project:this-world-is-ours--paul-van-dyk",
       "type": "project",
-      "name": "45 RPM"
+      "name": "This World Is Ours",
+      "artist": "Paul van Dyk",
+      "mbid": "a52392fa-88ee-43c5-88c1-76105b0d4efc",
+      "year": "2025",
+      "releaseType": "album"
     },
     {
-      "slug": "project:seven-ways",
+      "slug": "project:acid-traxxx--paul-van-dyk",
       "type": "project",
-      "name": "Seven Ways"
+      "name": "ACID TRAXXX",
+      "artist": "Paul van Dyk",
+      "mbid": "98997701-0662-4fd9-adc6-00293117a647",
+      "year": "2023",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:reflections",
+      "slug": "project:guiding-light--paul-van-dyk",
       "type": "project",
-      "name": "Reflections"
+      "name": "Guiding Light",
+      "artist": "Paul van Dyk",
+      "mbid": "655cad2f-3be4-4adf-b65e-1e64a9b110e9",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:im-leben-bleiben--paul-van-dyk",
+      "type": "project",
+      "name": "Im Leben bleiben",
+      "artist": "Paul van Dyk",
+      "mbid": "c56d473f-752d-4347-838a-1e7550304235",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-rescues-me--paul-van-dyk",
+      "type": "project",
+      "name": "Music Rescues Me",
+      "artist": "Paul van Dyk",
+      "mbid": "a96822ac-9f5a-4961-883f-5178d76c602a",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-then-on--paul-van-dyk",
+      "type": "project",
+      "name": "From Then On",
+      "artist": "Paul van Dyk",
+      "mbid": "56dc59c4-fafc-454b-b04a-7597903d39fa",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:eternity--paul-van-dyk",
+      "type": "project",
+      "name": "Eternity",
+      "artist": "Paul van Dyk",
+      "mbid": "8fa81551-2432-4485-a2b0-58de7089a7d5",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:evolution--paul-van-dyk",
+      "type": "project",
+      "name": "Evolution",
+      "artist": "Paul van Dyk",
+      "mbid": "82af45dc-8625-4606-82cf-4b86f93baec0",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vonyc-sessions-selection-2011-02--paul-van-dyk",
+      "type": "project",
+      "name": "Vonyc Sessions Selection 2011 - 02",
+      "artist": "Paul van Dyk",
+      "mbid": "89bc978e-e56f-4f4f-87e6-2f6667d4567d",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:come-with-me-we-are-one--paul-van-dyk",
+      "type": "project",
+      "name": "Come With Me (We Are One)",
+      "artist": "Paul van Dyk",
+      "mbid": "3cc05afa-50ef-4cfe-912b-6f8f5e9d52b9",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:home--paul-van-dyk",
+      "type": "project",
+      "name": "Home",
+      "artist": "Paul van Dyk",
+      "mbid": "3fd5e865-328f-4621-9158-addcd131d989",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:far-away-ep--paul-van-dyk",
+      "type": "project",
+      "name": "Far Away EP",
+      "artist": "Paul van Dyk",
+      "mbid": "a7b593da-048c-4e62-abf2-68f6cb946c8e",
+      "year": "2008",
+      "releaseType": "ep"
     },
     {
       "slug": "project:in-between",
       "type": "project",
-      "name": "In Between"
+      "name": "In Between",
+      "mbid": "da8b968a-32a6-3612-a863-4202a547b32c",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-between-ep--paul-van-dyk",
+      "type": "project",
+      "name": "In Between EP",
+      "artist": "Paul van Dyk",
+      "mbid": "11eff501-28ae-4c68-8e5e-1fdaa4b3f9d5",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:let-go--paul-van-dyk",
+      "type": "project",
+      "name": "Let Go",
+      "artist": "Paul van Dyk",
+      "mbid": "c13afcc1-df0d-327b-96be-713e9c543554",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:white-lies--paul-van-dyk",
+      "type": "project",
+      "name": "White Lies",
+      "artist": "Paul van Dyk",
+      "mbid": "93019583-729c-3b44-9c9f-d23bc10b2bd3",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-other-side--paul-van-dyk",
+      "type": "project",
+      "name": "The Other Side",
+      "artist": "Paul van Dyk",
+      "mbid": "01980fe9-2e38-3415-82f7-ba59a025bef7",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:crush--paul-van-dyk",
+      "type": "project",
+      "name": "Crush",
+      "artist": "Paul van Dyk",
+      "mbid": "d2d814be-cab1-46fb-9e91-98237603d15a",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:time-of-our-lives--paul-van-dyk",
+      "type": "project",
+      "name": "Time of Our Lives",
+      "artist": "Paul van Dyk",
+      "mbid": "bdb5859a-8694-4608-8bd7-215223db4b90",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wir-sind-wir--paul-van-dyk",
+      "type": "project",
+      "name": "Wir sind wir",
+      "artist": "Paul van Dyk",
+      "mbid": "86399bfb-9e4b-3800-b5ae-01a65ca84d7a",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nothing-but-you--paul-van-dyk",
+      "type": "project",
+      "name": "Nothing But You",
+      "artist": "Paul van Dyk",
+      "mbid": "ecdf5587-cdb4-3756-a2fc-b542565a72f7",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:reflections",
+      "type": "project",
+      "name": "Reflections",
+      "mbid": "e2063f50-f3ba-3174-b71f-8eb90e40be93",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:time-of-our-lives-connected--paul-van-dyk",
+      "type": "project",
+      "name": "Time of Our Lives / Connected",
+      "artist": "Paul van Dyk",
+      "mbid": "efb9d357-040a-307c-aeb4-1f3c00c983f4",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:zurdo-musica-original-de-la-pelicula--paul-van-dyk",
+      "type": "project",
+      "name": "Zurdo: Musica Original De La Pelicula",
+      "artist": "Paul van Dyk",
+      "mbid": "c8e9bf48-6938-3d5a-97e3-95d44ff15c7b",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:columbia-ep--paul-van-dyk",
+      "type": "project",
+      "name": "Columbia EP",
+      "artist": "Paul van Dyk",
+      "mbid": "03ec9c4a-2cc4-3239-bc5a-93fbf4506467",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:for-an-angel-vs-silence--paul-van-dyk",
+      "type": "project",
+      "name": "For An Angel vs. Silence",
+      "artist": "Paul van Dyk",
+      "mbid": "090a907b-4e31-459a-9dfa-545299d61e0d",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:out-there-and-back--paul-van-dyk",
+      "type": "project",
+      "name": "Out There and Back",
+      "artist": "Paul van Dyk",
+      "mbid": "5f7b8d57-5c6b-38a9-a9c7-0848653d7f32",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tell-me-why-the-riddle--paul-van-dyk",
+      "type": "project",
+      "name": "Tell Me Why (The Riddle)",
+      "artist": "Paul van Dyk",
+      "mbid": "41e62f21-ad4d-3f42-bbd7-cacf1b3d1361",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:we-are-alive--paul-van-dyk",
+      "type": "project",
+      "name": "We Are Alive",
+      "artist": "Paul van Dyk",
+      "mbid": "2f8d3099-8f1f-31c7-91a8-17c2bff64ed1",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:another-way--paul-van-dyk",
+      "type": "project",
+      "name": "Another Way",
+      "artist": "Paul van Dyk",
+      "mbid": "21f68147-aa91-40d4-9f39-449ac6ffd827",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:another-way-avenue--paul-van-dyk",
+      "type": "project",
+      "name": "Another Way / Avenue",
+      "artist": "Paul van Dyk",
+      "mbid": "bf024ed0-b506-3f69-98d2-75bb4a4a78d6",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:for-an-angel--paul-van-dyk",
+      "type": "project",
+      "name": "For an Angel",
+      "artist": "Paul van Dyk",
+      "mbid": "e68a8400-b5e2-37b7-8364-eb06eeabad28",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:forbidden-fruit--paul-van-dyk",
+      "type": "project",
+      "name": "Forbidden Fruit",
+      "artist": "Paul van Dyk",
+      "mbid": "de830c6c-6a59-3120-bedf-c107f055d44a",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:words--paul-van-dyk",
+      "type": "project",
+      "name": "Words",
+      "artist": "Paul van Dyk",
+      "mbid": "f2e10f95-f060-3153-bdfc-cd4abdfb1873",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:words-part-2--paul-van-dyk",
+      "type": "project",
+      "name": "Words (Part 2)",
+      "artist": "Paul van Dyk",
+      "mbid": "4430ce66-0217-41f6-bc5c-16082a735ee0",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:beautiful-place--paul-van-dyk",
+      "type": "project",
+      "name": "Beautiful Place",
+      "artist": "Paul van Dyk",
+      "mbid": "f366bba5-bb63-4c72-8120-30754660c2be",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:seven-ways",
+      "type": "project",
+      "name": "Seven Ways",
+      "mbid": "4feb78b5-aa39-3979-8814-59f8ab4630f4",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:45-rpm--paul-van-dyk",
+      "type": "project",
+      "name": "45 RPM",
+      "mbid": "a3d25fd9-86ae-3727-aca6-955d0cdc3342",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pumpin-pump-this-party--paul-van-dyk",
+      "type": "project",
+      "name": "Pumpin': Pump This Party!",
+      "artist": "Paul van Dyk",
+      "mbid": "e7b58903-2b67-4825-8f58-7844541c59b8",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-green-valley-e-p--paul-van-dyk",
+      "type": "project",
+      "name": "The Green Valley E.P.",
+      "artist": "Paul van Dyk",
+      "mbid": "fa3e250c-ef41-306b-a0f2-221ea87b0b75",
+      "year": "1994",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

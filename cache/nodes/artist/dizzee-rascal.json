@@ -63,44 +63,356 @@
   ],
   "discography": [
     {
-      "slug": "project:boy-in-da-corner--dizzee-rascal",
+      "slug": "project:we-want-bass--dizzee-rascal",
       "type": "project",
-      "name": "Boy in da Corner"
-    },
-    {
-      "slug": "project:showtime",
-      "type": "project",
-      "name": "Showtime"
-    },
-    {
-      "slug": "project:maths-english",
-      "type": "project",
-      "name": "Maths + English"
-    },
-    {
-      "slug": "project:tongue-n-cheek",
-      "type": "project",
-      "name": "Tongue n' Cheek"
-    },
-    {
-      "slug": "project:the-fifth",
-      "type": "project",
-      "name": "The Fifth"
-    },
-    {
-      "slug": "project:raskit",
-      "type": "project",
-      "name": "Raskit"
-    },
-    {
-      "slug": "project:e3-af",
-      "type": "project",
-      "name": "E3 AF"
+      "name": "We Want Bass",
+      "artist": "Dizzee Rascal",
+      "mbid": "1809eb6d-1513-4823-bbcb-944890d13bc2",
+      "year": "2026",
+      "releaseType": "album"
     },
     {
       "slug": "project:don-t-take-it-personal",
       "type": "project",
-      "name": "Don't Take It Personal"
+      "name": "Don't Take It Personal",
+      "mbid": "9f1a1088-2ce6-4689-902d-b91c1007c488",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-invented-grime--dizzee-rascal",
+      "type": "project",
+      "name": "I Invented Grime",
+      "artist": "Dizzee Rascal",
+      "mbid": "7834528d-34e9-4459-8fd4-e98253c84f17",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:boy-in-da-corner-instrumentals--dizzee-rascal",
+      "type": "project",
+      "name": "Boy in da Corner Instrumentals",
+      "artist": "Dizzee Rascal",
+      "mbid": "f68c6b12-30cd-4184-a120-90250bd8b6c7",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:e3-af",
+      "type": "project",
+      "name": "E3 AF",
+      "mbid": "0b7f1162-458b-454b-b6ae-b0dd9adafb5f",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:don-t-gas-me--dizzee-rascal",
+      "type": "project",
+      "name": "Don’t Gas Me",
+      "artist": "Dizzee Rascal",
+      "mbid": "613ac38d-2553-4da4-ab78-9b1a40db9ad6",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ghost--dizzee-rascal",
+      "type": "project",
+      "name": "Ghost",
+      "artist": "Dizzee Rascal",
+      "mbid": "9fa34883-9ec3-4414-861d-d2d021b8b717",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:money-right--dizzee-rascal",
+      "type": "project",
+      "name": "Money Right",
+      "artist": "Dizzee Rascal",
+      "mbid": "8b137242-bd11-4192-8830-0307b168218b",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:raskit",
+      "type": "project",
+      "name": "Raskit",
+      "mbid": "4a4ef128-8964-446b-b421-37ebbb3ae82d",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hype--dizzee-rascal",
+      "type": "project",
+      "name": "Hype",
+      "artist": "Dizzee Rascal",
+      "mbid": "095f1e61-17aa-4918-8a9a-72be24606a95",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pagans-ep--dizzee-rascal",
+      "type": "project",
+      "name": "Pagans EP",
+      "artist": "Dizzee Rascal",
+      "mbid": "41687c64-5e45-4e28-9fed-77c863a5eb71",
+      "year": "2014",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:strings-hoe-wen-refix-signal--dizzee-rascal",
+      "type": "project",
+      "name": "Strings Hoe (Wen Refix) / Signal",
+      "artist": "Dizzee Rascal",
+      "mbid": "03dc277f-75dd-412a-8e92-647c1ef1cfd4",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bassline-junkie--dizzee-rascal",
+      "type": "project",
+      "name": "Bassline Junkie",
+      "artist": "Dizzee Rascal",
+      "mbid": "78765ba2-d902-4e94-aaff-b87785d35e4d",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:goin-crazy--dizzee-rascal",
+      "type": "project",
+      "name": "Goin' Crazy",
+      "artist": "Dizzee Rascal",
+      "mbid": "50b2a59f-5b1a-43c1-b4f9-21f733f04a01",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:something-really-bad--dizzee-rascal",
+      "type": "project",
+      "name": "Something Really Bad",
+      "artist": "Dizzee Rascal",
+      "mbid": "88277531-9545-4000-af64-ff509508f686",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-fifth",
+      "type": "project",
+      "name": "The Fifth",
+      "mbid": "5b40985d-d54f-4109-ad1a-a81d59202de6",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dirteetv-com-the-mixtape--dizzee-rascal",
+      "type": "project",
+      "name": "DirteeTV.com The Mixtape",
+      "artist": "Dizzee Rascal",
+      "mbid": "96929133-02bb-4e39-afec-3324f4434f0d",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:scream--dizzee-rascal",
+      "type": "project",
+      "name": "Scream",
+      "artist": "Dizzee Rascal",
+      "mbid": "2e140571-d868-4d97-8227-6c48bc2befe0",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dirtee-disco--dizzee-rascal",
+      "type": "project",
+      "name": "Dirtee Disco",
+      "artist": "Dizzee Rascal",
+      "mbid": "46aaea81-0947-469e-b4c0-43a9c84a0104",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bonkers--dizzee-rascal",
+      "type": "project",
+      "name": "Bonkers",
+      "artist": "Dizzee Rascal",
+      "mbid": "43746e9d-63df-335e-b6e1-55659082e659",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dirtee-cash--dizzee-rascal",
+      "type": "project",
+      "name": "Dirtee Cash",
+      "artist": "Dizzee Rascal",
+      "mbid": "558cb59f-6218-4300-bf40-701274ed2b2f",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:holiday--dizzee-rascal",
+      "type": "project",
+      "name": "Holiday",
+      "artist": "Dizzee Rascal",
+      "mbid": "75e9dbeb-60b8-4159-9db0-831489ee1bb2",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tongue-n-cheek",
+      "type": "project",
+      "name": "Tongue n' Cheek",
+      "mbid": "49c8fe6e-8230-4c6d-942d-7f75210b7762",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:flex--dizzee-rascal",
+      "type": "project",
+      "name": "Flex",
+      "artist": "Dizzee Rascal",
+      "mbid": "ab77de6b-9869-38ff-ab1d-ab1410219964",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:maths-english",
+      "type": "project",
+      "name": "Maths + English",
+      "mbid": "c5863807-35f9-3443-b662-fe036b4d02aa",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pussyole-old-skool--dizzee-rascal",
+      "type": "project",
+      "name": "Pussyole (Old Skool)",
+      "artist": "Dizzee Rascal",
+      "mbid": "a677f6f7-c727-3bfa-8a8a-b513109ab80b",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sirens--dizzee-rascal",
+      "type": "project",
+      "name": "Sirens",
+      "artist": "Dizzee Rascal",
+      "mbid": "329c82b2-9175-3134-8443-4cb657c68e96",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:off-2-work--dizzee-rascal",
+      "type": "project",
+      "name": "Off 2 Work",
+      "artist": "Dizzee Rascal",
+      "mbid": "d66806c4-0333-3da1-8698-414bcbdd84ce",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dream--dizzee-rascal",
+      "type": "project",
+      "name": "Dream",
+      "artist": "Dizzee Rascal",
+      "mbid": "2432bac1-6b9c-389b-92d7-311162fcbbcd",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hoe-4--dizzee-rascal",
+      "type": "project",
+      "name": "Hoe 4",
+      "artist": "Dizzee Rascal",
+      "mbid": "f2c5683d-804b-48e6-8f6d-56f9e3b1f459",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:showtime",
+      "type": "project",
+      "name": "Showtime",
+      "mbid": "3955be9d-97de-3d05-8564-bd45359c1c1e",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stand-up-tall--dizzee-rascal",
+      "type": "project",
+      "name": "Stand Up Tall",
+      "artist": "Dizzee Rascal",
+      "mbid": "2e76ded9-6b9f-38ee-b505-1f856cdba880",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:street-fighter--dizzee-rascal",
+      "type": "project",
+      "name": "Street Fighter",
+      "artist": "Dizzee Rascal",
+      "mbid": "1311ac53-1371-474a-84e6-0f60aa8950a7",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:strings-hoe--dizzee-rascal",
+      "type": "project",
+      "name": "Strings Hoe",
+      "artist": "Dizzee Rascal",
+      "mbid": "961ff03a-7139-4666-bf52-664d087f2c5f",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-trip-down-memory-lane--dizzee-rascal",
+      "type": "project",
+      "name": "A Trip Down Memory Lane",
+      "artist": "Dizzee Rascal",
+      "mbid": "42f38268-17de-456a-b908-f3c899c64dd3",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:boy-in-da-corner--dizzee-rascal",
+      "type": "project",
+      "name": "Boy in da Corner",
+      "mbid": "01ac6115-0ea4-346d-b022-5bcde31c6264",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fix-up-look-sharp--dizzee-rascal",
+      "type": "project",
+      "name": "Fix Up, Look Sharp",
+      "artist": "Dizzee Rascal",
+      "mbid": "38f53552-7c85-3d4b-980d-f4bdcca4d783",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jus-a-rascal--dizzee-rascal",
+      "type": "project",
+      "name": "Jus’ a Rascal",
+      "artist": "Dizzee Rascal",
+      "mbid": "5a5ebe85-e329-3417-bdc5-04bc9a066a21",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-luv-u--dizzee-rascal",
+      "type": "project",
+      "name": "I Luv U",
+      "artist": "Dizzee Rascal",
+      "mbid": "60a4b6e8-1b80-341a-9f9c-a3b9d12b1401",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ready-4-war-trouble--dizzee-rascal",
+      "type": "project",
+      "name": "Ready 4 War / Trouble",
+      "artist": "Dizzee Rascal",
+      "mbid": "678f8b02-8412-46c4-bdf3-f15ba00668b9",
+      "year": "2001",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

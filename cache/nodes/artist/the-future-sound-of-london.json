@@ -55,24 +55,351 @@
   "labels": [],
   "discography": [
     {
-      "slug": "project:accelerator",
+      "slug": "project:fsoldigital-presents-2025-calendar--the-future-sound-of-london",
       "type": "project",
-      "name": "Accelerator"
+      "name": "FSOLdigital Presents 2025 Calendar",
+      "artist": "The Future Sound of London",
+      "mbid": "e20cecbd-acd4-43f7-8f5a-5858abd25fea",
+      "year": "2025",
+      "releaseType": "album"
     },
     {
-      "slug": "project:lifeforms--the-future-sound-of-london",
+      "slug": "project:fsoldigital-presents-2024-calendar--the-future-sound-of-london",
       "type": "project",
-      "name": "Lifeforms"
+      "name": "FSOLdigital Presents 2024 Calendar",
+      "artist": "The Future Sound of London",
+      "mbid": "0926e534-acca-4173-9295-4785e171572e",
+      "year": "2024",
+      "releaseType": "album"
     },
     {
-      "slug": "project:isdn",
+      "slug": "project:environment-7-003--the-future-sound-of-london",
       "type": "project",
-      "name": "ISDN"
+      "name": "Environment 7.003",
+      "artist": "The Future Sound of London",
+      "mbid": "7dad1146-289e-4498-b8bb-071c85746b1d",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fsoldigital-presents-2023-calendar--the-future-sound-of-london",
+      "type": "project",
+      "name": "FSOLdigital Presents 2023 Calendar",
+      "artist": "The Future Sound of London",
+      "mbid": "bd19e855-a840-4497-817e-413871916151",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-space-of-partial-illumination-e7-02--the-future-sound-of-london",
+      "type": "project",
+      "name": "A Space of Partial Illumination E7.02",
+      "artist": "The Future Sound of London",
+      "mbid": "aa0b51e6-4b3d-4e3f-b1e9-1c9aea083fc7",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fsoldigital-presents-2021-calendar--the-future-sound-of-london",
+      "type": "project",
+      "name": "FSOLdigital Presents 2021 Calendar",
+      "artist": "The Future Sound of London",
+      "mbid": "e05a4d98-5240-4c08-90c0-0be75c5f3660",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fsoldigital-presents-2022-calendar--the-future-sound-of-london",
+      "type": "project",
+      "name": "FSOLdigital Presents 2022 Calendar",
+      "artist": "The Future Sound of London",
+      "mbid": "7627aa57-92c3-4777-a9d3-3a769b567126",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rituals-e7-001--the-future-sound-of-london",
+      "type": "project",
+      "name": "Rituals E7.001",
+      "artist": "The Future Sound of London",
+      "mbid": "398984d5-946a-48df-9bd7-5e6b88949a1e",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fsoldigital-presents-2020-calendar--the-future-sound-of-london",
+      "type": "project",
+      "name": "FSOLdigital Presents 2020 Calendar",
+      "artist": "The Future Sound of London",
+      "mbid": "644a2818-1db3-482d-ac0c-70fe4b3552b8",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-for-3-books--the-future-sound-of-london",
+      "type": "project",
+      "name": "Music for 3 Books",
+      "artist": "The Future Sound of London",
+      "mbid": "eda62e38-ec33-458f-a4e5-575cc3c48b87",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:we-have-explosive--the-future-sound-of-london",
+      "type": "project",
+      "name": "We Have Explosive",
+      "artist": "The Future Sound of London",
+      "mbid": "3247b44d-2ba3-412e-aa88-bbcdd6989458",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cascade-2020--the-future-sound-of-london",
+      "type": "project",
+      "name": "Cascade 2020",
+      "artist": "The Future Sound of London",
+      "mbid": "c36027c5-28ac-4f58-bfd5-7659276b747f",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fsoldigital-presents-2019-calendar-album--the-future-sound-of-london",
+      "type": "project",
+      "name": "FSOLdigital Presents 2019 Calendar Album",
+      "artist": "The Future Sound of London",
+      "mbid": "ac3171e2-a6a1-461e-98f8-9fae26bf3fa3",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:yage-2019--the-future-sound-of-london",
+      "type": "project",
+      "name": "Yage 2019",
+      "artist": "The Future Sound of London",
+      "mbid": "e1d5c013-4d1b-4f51-900f-fc2551f6a3e7",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:archived-9--the-future-sound-of-london",
+      "type": "project",
+      "name": "Archived 9",
+      "artist": "The Future Sound of London",
+      "mbid": "6cc09767-bb88-4f33-b4c4-25183d7f9f83",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fsoldigital-presents-2018-calendar-album--the-future-sound-of-london",
+      "type": "project",
+      "name": "FSOLdigital Presents 2018 Calendar Album",
+      "artist": "The Future Sound of London",
+      "mbid": "807c34eb-7f7e-405a-ac23-9393ac82d000",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:my-kingdom-re-imagined--the-future-sound-of-london",
+      "type": "project",
+      "name": "My Kingdom: Re‐imagined",
+      "artist": "The Future Sound of London",
+      "mbid": "1aeae111-e579-43a6-87c5-b2bf4c619a64",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fsoldigital-presents-2017-calendar-album--the-future-sound-of-london",
+      "type": "project",
+      "name": "FSOLdigital Presents 2017 Calendar Album",
+      "artist": "The Future Sound of London",
+      "mbid": "ae0d75c9-2b0e-40a1-8398-8f56582707d2",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:environment-6-5--the-future-sound-of-london",
+      "type": "project",
+      "name": "Environment 6.5",
+      "artist": "The Future Sound of London",
+      "mbid": "b77af70c-d3e5-4886-b274-75cf26a9b4ca",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:environment-six--the-future-sound-of-london",
+      "type": "project",
+      "name": "Environment Six",
+      "artist": "The Future Sound of London",
+      "mbid": "d05768c2-3f22-4ea3-8ac6-27088db19abf",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:archived-8--the-future-sound-of-london",
+      "type": "project",
+      "name": "Archived 8",
+      "artist": "The Future Sound of London",
+      "mbid": "a432b508-31bd-4664-95d8-696b4bae2480",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:environment-five--the-future-sound-of-london",
+      "type": "project",
+      "name": "Environment Five",
+      "artist": "The Future Sound of London",
+      "mbid": "23bc1e0a-fc2e-4980-a3fe-7304d9f04544",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:environments-4--the-future-sound-of-london",
+      "type": "project",
+      "name": "Environments 4",
+      "artist": "The Future Sound of London",
+      "mbid": "5ac054e1-6629-4f18-9beb-730b3fc726a7",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-the-archives-volume-7--the-future-sound-of-london",
+      "type": "project",
+      "name": "From the Archives, Volume 7",
+      "artist": "The Future Sound of London",
+      "mbid": "b7a3ccd3-17b5-471a-9426-298c956bfe10",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:environments-3--the-future-sound-of-london",
+      "type": "project",
+      "name": "Environments 3",
+      "artist": "The Future Sound of London",
+      "mbid": "0bc7761d-28ba-49d0-ae96-179e3ea2ccac",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-the-archives-vol-6--the-future-sound-of-london",
+      "type": "project",
+      "name": "From the Archives, Vol. 6",
+      "artist": "The Future Sound of London",
+      "mbid": "49077d53-dfb3-43f8-9a53-7a6a79dcff89",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:environments-ii--the-future-sound-of-london",
+      "type": "project",
+      "name": "Environments II",
+      "artist": "The Future Sound of London",
+      "mbid": "1eb4f091-aa57-35d5-9e67-92e5a8c72a87",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-the-archives-volume-5--the-future-sound-of-london",
+      "type": "project",
+      "name": "From the Archives, Volume 5",
+      "artist": "The Future Sound of London",
+      "mbid": "73b7e3ae-85fd-36f4-8737-79536caf8a59",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-gigantic-globular-burst-of-antistatic--the-future-sound-of-london",
+      "type": "project",
+      "name": "A Gigantic Globular Burst of Antistatic",
+      "artist": "The Future Sound of London",
+      "mbid": "8e236d22-2667-3f15-8bd4-b7ddb3c2013c",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:environments--the-future-sound-of-london",
+      "type": "project",
+      "name": "Environments",
+      "artist": "The Future Sound of London",
+      "mbid": "324f6532-6126-3719-9874-dc5cebd932b1",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-the-archives-volume-1--the-future-sound-of-london",
+      "type": "project",
+      "name": "From the Archives, Volume 1",
+      "artist": "The Future Sound of London",
+      "mbid": "a9a8d971-abc8-379d-9983-dea7b25a9016",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-the-archives-volume-2--the-future-sound-of-london",
+      "type": "project",
+      "name": "From the Archives, Volume 2",
+      "artist": "The Future Sound of London",
+      "mbid": "e80144be-b172-3296-a98c-500486f94cb0",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-the-archives-volume-3--the-future-sound-of-london",
+      "type": "project",
+      "name": "From the Archives, Volume 3",
+      "artist": "The Future Sound of London",
+      "mbid": "dca52b9d-5f4f-3b7c-b517-a4a2ee8fece2",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-the-archives-volume-4--the-future-sound-of-london",
+      "type": "project",
+      "name": "From the Archives, Volume 4",
+      "artist": "The Future Sound of London",
+      "mbid": "8bc2b1c9-9d53-3809-a156-515d6ea5f521",
+      "year": "2007",
+      "releaseType": "album"
     },
     {
       "slug": "project:dead-cities",
       "type": "project",
-      "name": "Dead Cities"
+      "name": "Dead Cities",
+      "mbid": "4184c659-8cba-3890-90a2-248d1709b265",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:isdn",
+      "type": "project",
+      "name": "ISDN",
+      "mbid": "acec2833-af97-3f09-9f22-35ebf97f1761",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lifeforms--the-future-sound-of-london",
+      "type": "project",
+      "name": "Lifeforms",
+      "mbid": "06e12b5c-2888-3fc7-87ad-ed68c262e41b",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:accelerator",
+      "type": "project",
+      "name": "Accelerator",
+      "mbid": "0de44224-5b8e-3b77-9cf3-ffc3b051cd6d",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:papua-new-guinea--the-future-sound-of-london",
+      "type": "project",
+      "name": "Papua New Guinea",
+      "artist": "The Future Sound of London",
+      "mbid": "c8b8fafd-e72b-385f-af70-b5f29e6d5c32",
+      "year": "1991",
+      "releaseType": "single"
     },
     {
       "slug": "project:the-isness",

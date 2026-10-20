@@ -52,24 +52,153 @@
   ],
   "discography": [
     {
-      "slug": "project:knife-play",
+      "slug": "project:eraserhead-xiu-xiu--xiu-xiu",
       "type": "project",
-      "name": "Knife Play"
+      "name": "Eraserhead Xiu Xiu",
+      "artist": "Xiu Xiu",
+      "mbid": "dcd277a6-7568-461e-87e6-41abdad6b47c",
+      "year": "2026",
+      "releaseType": "album"
     },
     {
-      "slug": "project:a-promise",
+      "slug": "project:in-heaven--xiu-xiu",
       "type": "project",
-      "name": "A Promise"
+      "name": "In Heaven",
+      "artist": "Xiu Xiu",
+      "mbid": "5191fe20-2227-4f7c-ad1e-77d2004287e9",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:fabulous-muscles",
+      "slug": "project:tired-of-your-world-newfoundland--xiu-xiu",
       "type": "project",
-      "name": "Fabulous Muscles"
+      "name": "Tired of Your World Newfoundland",
+      "artist": "Xiu Xiu",
+      "mbid": "52d5bd06-1ac4-4a25-8103-42c556a847d5",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tired-of-your-world-indonesia--xiu-xiu",
+      "type": "project",
+      "name": "Tired of Your World: Indonesia",
+      "artist": "Xiu Xiu",
+      "mbid": "246ea47f-d5c5-432b-81b8-d1a335e6c6cf",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:13-frank-beltrame-italian-stiletto-with-bison-horn-grips--xiu-xiu",
+      "type": "project",
+      "name": "13” Frank Beltrame Italian Stiletto With Bison Horn Grips",
+      "artist": "Xiu Xiu",
+      "mbid": "1ad847f9-7de8-4ce1-9ca6-e38bc33f8798",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ignore-grief--xiu-xiu",
+      "type": "project",
+      "name": "Ignore Grief",
+      "artist": "Xiu Xiu",
+      "mbid": "5b005e2a-769f-4d7a-9bfe-4c8f91170131",
+      "year": "2023",
+      "releaseType": "album"
     },
     {
       "slug": "project:girl-with-basket-of-fruit",
       "type": "project",
-      "name": "Girl with Basket of Fruit"
+      "name": "Girl with Basket of Fruit",
+      "mbid": "2c389dc5-e446-47bf-8cc0-8199bfb36229",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:forget--xiu-xiu",
+      "type": "project",
+      "name": "FORGET",
+      "artist": "Xiu Xiu",
+      "mbid": "9d963bbe-1c08-4dff-8452-d824e4c1a530",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:plays-the-music-of-twin-peaks--xiu-xiu",
+      "type": "project",
+      "name": "Plays the Music of Twin Peaks",
+      "artist": "Xiu Xiu",
+      "mbid": "ab3023f3-41c8-4b14-8ef9-18a1b62b564d",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wondering--xiu-xiu",
+      "type": "project",
+      "name": "Wondering",
+      "artist": "Xiu Xiu",
+      "mbid": "25914923-e168-49ae-930d-ca7b7bcf026c",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:women-as-lovers--xiu-xiu",
+      "type": "project",
+      "name": "Women as Lovers",
+      "artist": "Xiu Xiu",
+      "mbid": "79c01020-de5e-3e57-a78d-68df64107dde",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:creepshow--xiu-xiu",
+      "type": "project",
+      "name": "Creepshow",
+      "artist": "Xiu Xiu",
+      "mbid": "2fefd995-e990-39ef-92ca-ee8bfd831bb7",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-air-force--xiu-xiu",
+      "type": "project",
+      "name": "The Air Force",
+      "artist": "Xiu Xiu",
+      "mbid": "57e7926e-fa29-3b9f-9fb1-b57a788c4a93",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fabulous-muscles",
+      "type": "project",
+      "name": "Fabulous Muscles",
+      "mbid": "adef573b-8b6d-3fe8-be5c-c2792bf3042a",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-promise",
+      "type": "project",
+      "name": "A Promise",
+      "mbid": "301e16b6-b33e-3a72-8f52-794996e08599",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fag-patrol--xiu-xiu",
+      "type": "project",
+      "name": "Fag Patrol",
+      "artist": "Xiu Xiu",
+      "mbid": "ebdca3fd-5d41-34a5-8b14-d4fa72ffae53",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:knife-play",
+      "type": "project",
+      "name": "Knife Play",
+      "mbid": "b092e33d-b8d5-3f7b-8b37-3b15b0bf60c9",
+      "year": "2002",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

@@ -49,7 +49,10 @@
     {
       "slug": "project:funk-riot-beat",
       "type": "project",
-      "name": "Funk Riot Beat"
+      "name": "Funk Riot Beat",
+      "mbid": "4e853a17-6b37-3245-8dc1-fc258cb1e279",
+      "year": "1997",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

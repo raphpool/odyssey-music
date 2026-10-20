@@ -71,14 +71,335 @@
   ],
   "discography": [
     {
-      "slug": "project:murmur--r-e-m",
+      "slug": "project:radio-free-europe-2025--r-e-m",
       "type": "project",
-      "name": "Murmur"
+      "name": "Radio Free Europe 2025",
+      "artist": "R.E.M.",
+      "mbid": "465aecaa-0922-47e8-95b3-a282a775f024",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:collapse-into-now--r-e-m",
+      "type": "project",
+      "name": "Collapse Into Now",
+      "artist": "R.E.M.",
+      "mbid": "5f19f8e8-8b13-4829-835e-d53d84cff63f",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:accelerate--r-e-m",
+      "type": "project",
+      "name": "Accelerate",
+      "artist": "R.E.M.",
+      "mbid": "20829bc2-ea4e-37c5-a72d-1df9fb6d27ca",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hollow-man--r-e-m",
+      "type": "project",
+      "name": "Hollow Man",
+      "artist": "R.E.M.",
+      "mbid": "cb0fbffa-7a9d-3159-a25b-8502d3720852",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:supernatural-superserious--r-e-m",
+      "type": "project",
+      "name": "Supernatural Superserious",
+      "artist": "R.E.M.",
+      "mbid": "8490143f-ebbd-3084-bf75-4396504a94bf",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:around-the-sun--r-e-m",
+      "type": "project",
+      "name": "Around the Sun",
+      "artist": "R.E.M.",
+      "mbid": "13cf95c5-cc88-395c-9f49-37c4e3fc73bd",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:imitation-of-life--r-e-m",
+      "type": "project",
+      "name": "Imitation of Life",
+      "artist": "R.E.M.",
+      "mbid": "f86946b4-1417-3ee1-b7a0-58ee755f01f6",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:not-bad-for-no-tour--r-e-m",
+      "type": "project",
+      "name": "Not Bad for No Tour",
+      "artist": "R.E.M.",
+      "mbid": "f6c45209-0856-30c2-9b93-810502467876",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:reveal--r-e-m",
+      "type": "project",
+      "name": "Reveal",
+      "artist": "R.E.M.",
+      "mbid": "6f285675-2ae8-3a6c-883a-0e29f8a6d1c6",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:suspicion--r-e-m",
+      "type": "project",
+      "name": "Suspicion",
+      "artist": "R.E.M.",
+      "mbid": "2bb42d5c-81d3-3e66-8309-07650ec7add5",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-great-beyond--r-e-m",
+      "type": "project",
+      "name": "The Great Beyond",
+      "artist": "R.E.M.",
+      "mbid": "262b3e22-cfae-3843-9ab7-52d5509ad93d",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:daysleeper--r-e-m",
+      "type": "project",
+      "name": "Daysleeper",
+      "artist": "R.E.M.",
+      "mbid": "95d68b2a-9c99-3044-8db1-b3336c6ccd24",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lotus--r-e-m",
+      "type": "project",
+      "name": "Lotus",
+      "artist": "R.E.M.",
+      "mbid": "4bd0a3ac-83da-3d38-a57c-2409b826c83e",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:up--r-e-m",
+      "type": "project",
+      "name": "Up",
+      "artist": "R.E.M.",
+      "mbid": "d867582f-3e0e-3e64-8418-aadddd53fde5",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bittersweet-me--r-e-m",
+      "type": "project",
+      "name": "Bittersweet Me",
+      "artist": "R.E.M.",
+      "mbid": "d06fef76-f086-3df7-a0db-ab973f034880",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:new-adventures-in-hi-fi--r-e-m",
+      "type": "project",
+      "name": "New Adventures in Hi‐Fi",
+      "artist": "R.E.M.",
+      "mbid": "6d4f73cb-9c02-33c5-ba06-c927a9b963ad",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:monster--r-e-m",
+      "type": "project",
+      "name": "Monster",
+      "artist": "R.E.M.",
+      "mbid": "2a71baeb-0c95-3d3a-aef9-8d5fe17a8038",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:strange-currencies--r-e-m",
+      "type": "project",
+      "name": "Strange Currencies",
+      "artist": "R.E.M.",
+      "mbid": "7876a8e7-7cc5-3252-ad2b-2dd38eff4ad8",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:everybody-hurts--r-e-m",
+      "type": "project",
+      "name": "Everybody Hurts",
+      "artist": "R.E.M.",
+      "mbid": "a6b2a2d1-8e67-30fd-aab6-6f0e135d9708",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-sidewinder-sleeps-tonite--r-e-m",
+      "type": "project",
+      "name": "The Sidewinder Sleeps Tonite",
+      "artist": "R.E.M.",
+      "mbid": "5c7ad577-6a55-37f0-b414-0939d1d8101d",
+      "year": "1993",
+      "releaseType": "single"
     },
     {
       "slug": "project:automatic-for-the-people",
       "type": "project",
-      "name": "Automatic for the People"
+      "name": "Automatic for the People",
+      "mbid": "c86c6af9-d10e-3079-b34b-30b682a797eb",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:drive--r-e-m",
+      "type": "project",
+      "name": "Drive",
+      "artist": "R.E.M.",
+      "mbid": "2a643420-c6fe-327c-bb50-1529319b74fa",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:losing-my-religion--r-e-m",
+      "type": "project",
+      "name": "Losing My Religion",
+      "artist": "R.E.M.",
+      "mbid": "385d07e2-f888-3fce-b115-b0feadcb2920",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:losing-my-religion-shiny-happy-people--r-e-m",
+      "type": "project",
+      "name": "Losing My Religion / Shiny Happy People",
+      "artist": "R.E.M.",
+      "mbid": "0bfd51b4-e7a2-3788-9f76-73185b2e5aa9",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:out-of-time--r-e-m",
+      "type": "project",
+      "name": "Out of Time",
+      "artist": "R.E.M.",
+      "mbid": "400a5fdd-e616-3598-a9bf-cd8275cb53d0",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:radio-song--r-e-m",
+      "type": "project",
+      "name": "Radio Song",
+      "artist": "R.E.M.",
+      "mbid": "c549476c-9e21-3389-8b1c-72576df889f9",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shiny-happy-people--r-e-m",
+      "type": "project",
+      "name": "Shiny Happy People",
+      "artist": "R.E.M.",
+      "mbid": "715cf136-a6df-332f-86d6-f91095b910dc",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:stand--r-e-m",
+      "type": "project",
+      "name": "Stand",
+      "artist": "R.E.M.",
+      "mbid": "8382fefb-8a7a-3948-b513-ab5b021c6782",
+      "year": "1989",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:finest-worksong--r-e-m",
+      "type": "project",
+      "name": "Finest Worksong",
+      "artist": "R.E.M.",
+      "mbid": "e967ba57-f23c-3048-bbfb-fb7cb097506c",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:green--r-e-m",
+      "type": "project",
+      "name": "Green",
+      "artist": "R.E.M.",
+      "mbid": "16a9cef3-b470-3ae1-bf10-cc04232d3e21",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:document--r-e-m",
+      "type": "project",
+      "name": "Document",
+      "artist": "R.E.M.",
+      "mbid": "137385b2-b4cc-385e-9d59-781e7674f5bc",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-one-i-love--r-e-m",
+      "type": "project",
+      "name": "The One I Love",
+      "artist": "R.E.M.",
+      "mbid": "ffe08a9a-e7e1-3c58-a6af-93616138a95a",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lifes-rich-pageant--r-e-m",
+      "type": "project",
+      "name": "Lifes Rich Pageant",
+      "artist": "R.E.M.",
+      "mbid": "8b6b2628-7bd4-3fed-9d65-cf4e5dc45939",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fables-of-the-reconstruction--r-e-m",
+      "type": "project",
+      "name": "Fables of the Reconstruction",
+      "artist": "R.E.M.",
+      "mbid": "871de38f-9783-318c-9c0e-4cc5e17a7b02",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:reckoning--r-e-m",
+      "type": "project",
+      "name": "Reckoning",
+      "artist": "R.E.M.",
+      "mbid": "eec55734-1387-3aa3-af3d-ff0ae8083806",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:murmur--r-e-m",
+      "type": "project",
+      "name": "Murmur",
+      "mbid": "de790d3d-a35c-364c-a8fb-adfb73084a45",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chronic-town--r-e-m",
+      "type": "project",
+      "name": "Chronic Town",
+      "artist": "R.E.M.",
+      "mbid": "19c331a6-c93e-3ef4-82cf-24adf4f4b14b",
+      "year": "1982",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

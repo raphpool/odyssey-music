@@ -43,7 +43,269 @@
     }
   ],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:complete-works-14-les-anecdotiques-2001-02--luc-ferrari",
+      "type": "project",
+      "name": "COMPLETE WORKS 14 • Les anecdotiques (2001-02)",
+      "artist": "Luc Ferrari",
+      "mbid": "b065d5d2-05f6-45e8-b843-4d1016435da6",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:solitude-transit--luc-ferrari",
+      "type": "project",
+      "name": "Solitude Transit",
+      "artist": "Luc Ferrari",
+      "mbid": "dd6ab29c-afab-4038-b38d-e15654cb592b",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:et-apres--luc-ferrari",
+      "type": "project",
+      "name": "...Et Après",
+      "artist": "Luc Ferrari",
+      "mbid": "db381223-d9eb-4430-8e4f-1e5b78b6b641",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dialogue-ordinaire-avec-la-machine-sexolidad--luc-ferrari",
+      "type": "project",
+      "name": "Dialogue ordinaire avec la machine/Sexolidad",
+      "artist": "Luc Ferrari",
+      "mbid": "0f84b114-bbb2-4743-9e26-5bd5993583cb",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:photophonie-bandes-magnetiques-inedities-1973-1992--luc-ferrari",
+      "type": "project",
+      "name": "Photophonie : Bandes magnétiques inédities (1973–1992)",
+      "artist": "Luc Ferrari",
+      "mbid": "12247399-d245-4264-968a-4e8f60f3902c",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:atelier-de-liberation-de-la-musique--luc-ferrari",
+      "type": "project",
+      "name": "Atelier de libération de la musique",
+      "artist": "Luc Ferrari",
+      "mbid": "7d4fd9bd-5819-44be-8f6c-4aa8fac30b1e",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tinguely-1967--luc-ferrari",
+      "type": "project",
+      "name": "Tinguely 1967",
+      "artist": "Luc Ferrari",
+      "mbid": "19cb70ad-b88b-4653-ae62-2a4b04883949",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:symphonie-dechiree--luc-ferrari",
+      "type": "project",
+      "name": "Symphonie déchirée",
+      "artist": "Luc Ferrari",
+      "mbid": "bdcaa1d5-557d-4cbd-9cb8-ee1569e90bc2",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:programme-commun--luc-ferrari",
+      "type": "project",
+      "name": "Programme commun",
+      "artist": "Luc Ferrari",
+      "mbid": "6150c9ba-467c-40e9-9dba-759561a4cee3",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:madame-de-shanghai-apres-presque-rien-visage-2--luc-ferrari",
+      "type": "project",
+      "name": "Madame de Shanghai / Après Presque Rien / Visage 2",
+      "artist": "Luc Ferrari",
+      "mbid": "913e04c9-5b9a-4000-b2f0-a499be8d016f",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ephemere-i-and-ii--luc-ferrari",
+      "type": "project",
+      "name": "Éphémère I & II",
+      "artist": "Luc Ferrari",
+      "mbid": "0115e9b8-f264-4bde-a2da-94a32397cb40",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:labyrinthe-de-violence-dance--luc-ferrari",
+      "type": "project",
+      "name": "Labyrinthe de violence / DANCE",
+      "artist": "Luc Ferrari",
+      "mbid": "27a6ec88-db03-43b4-b206-c9fcaede7149",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:archives-genetiquement-modifiees-societe-ii--luc-ferrari",
+      "type": "project",
+      "name": "Archives Génétiquement Modifiées / Société II",
+      "artist": "Luc Ferrari",
+      "mbid": "ae93b1b1-7c7c-46f2-b694-d1a339882755",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tuchan-chantal--luc-ferrari",
+      "type": "project",
+      "name": "Tuchan-Chantal",
+      "artist": "Luc Ferrari",
+      "mbid": "47cbf5d1-90f3-47c8-8910-46fe16fc65c4",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:didascalies--luc-ferrari",
+      "type": "project",
+      "name": "Didascalies",
+      "artist": "Luc Ferrari",
+      "mbid": "d5ba9271-f326-3041-9092-b860846710c4",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:far-west-news-episodes-2-and-3--luc-ferrari",
+      "type": "project",
+      "name": "Far-West News: Episodes 2 and 3",
+      "artist": "Luc Ferrari",
+      "mbid": "c46d6ab4-b275-47b0-912e-61324c664111",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:son-memorise--luc-ferrari",
+      "type": "project",
+      "name": "Son mémorisé",
+      "artist": "Luc Ferrari",
+      "mbid": "0282c622-0db6-30bd-94f1-bb8c931ea833",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:les-anecdotiques-exploitation-des-concepts-n-6--luc-ferrari",
+      "type": "project",
+      "name": "Les Anecdotiques: Exploitation des concepts N° 6",
+      "artist": "Luc Ferrari",
+      "mbid": "fcadbb7c-61c9-31d1-91e3-086395aa5106",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cycle-des-souvenirs-1995-2000-exploitation-des-concepts-no-2--luc-ferrari",
+      "type": "project",
+      "name": "Cycle des souvenirs (1995–2000): Exploitation des concepts no. 2",
+      "artist": "Luc Ferrari",
+      "mbid": "8c8039c2-f2be-4fa7-a87f-51f3a2e896aa",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:far-west-news-episode-1--luc-ferrari",
+      "type": "project",
+      "name": "Far West News: Episode 1",
+      "artist": "Luc Ferrari",
+      "mbid": "5997b4c0-1f0a-39d2-985b-831135b6f0b0",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:volume-1-chansons-pour-le-corps--luc-ferrari",
+      "type": "project",
+      "name": "Volume 1: Chansons pour le corps",
+      "artist": "Luc Ferrari",
+      "mbid": "b0a65f54-6e21-3aa2-a6df-c2719c3c7a28",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:danses-organiques--luc-ferrari",
+      "type": "project",
+      "name": "Danses organiques",
+      "artist": "Luc Ferrari",
+      "mbid": "1578a131-3208-46fa-b546-f8a0f7777c97",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:interrupteur-tautologos-3--luc-ferrari",
+      "type": "project",
+      "name": "Interrupteur / Tautologos 3",
+      "artist": "Luc Ferrari",
+      "mbid": "de4f3b07-0c35-3b66-9248-952bf74cc84c",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cellule-75--luc-ferrari",
+      "type": "project",
+      "name": "Cellule 75",
+      "artist": "Luc Ferrari",
+      "mbid": "fb8e0485-b78a-374a-b7d8-f2de5207b810",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:presque-rien--luc-ferrari",
+      "type": "project",
+      "name": "Presque rien",
+      "artist": "Luc Ferrari",
+      "mbid": "e68b6484-d067-33ba-af23-ace8ecaf8bd8",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unheimlich-schon--luc-ferrari",
+      "type": "project",
+      "name": "Unheimlich Schön",
+      "artist": "Luc Ferrari",
+      "mbid": "cda5bada-17b7-386f-abd4-ea8304580f15",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:l-escalier-des-aveugles--luc-ferrari",
+      "type": "project",
+      "name": "L’escalier des aveugles",
+      "artist": "Luc Ferrari",
+      "mbid": "dde21c23-debc-39cc-8394-880f472f03f2",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:acousmatrix-iii-petite-symphonie-strathoven-presque-rien-avec-filles-heterozygote--luc-ferrari",
+      "type": "project",
+      "name": "Acousmatrix III: Petite Symphonie / Strathoven / Presque rien avec filles / Hétérozygote",
+      "artist": "Luc Ferrari",
+      "mbid": "b0bf038b-2c4e-3300-aee8-58061452cc12",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:und-so-weiter-music-promenade--luc-ferrari",
+      "type": "project",
+      "name": "Und so Weiter / Music Promenade",
+      "artist": "Luc Ferrari",
+      "mbid": "0a06e89a-f2d0-48a5-9ba6-9fc02ecee800",
+      "year": "1969",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],

@@ -68,7 +68,368 @@
     }
   ],
   "labels": [],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:fight-fire-with-fire--the-prodigy",
+      "type": "project",
+      "name": "Fight Fire With Fire",
+      "artist": "The Prodigy",
+      "mbid": "f6105f6b-48cf-4e48-9e41-834b3525a7f7",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:light-up-the-sky--the-prodigy",
+      "type": "project",
+      "name": "Light Up the Sky",
+      "artist": "The Prodigy",
+      "mbid": "aa093ede-d3d7-4f0c-b720-aeb9604c2663",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:need-some1--the-prodigy",
+      "type": "project",
+      "name": "Need Some1",
+      "artist": "The Prodigy",
+      "mbid": "4d6db368-2c0a-494d-b8d7-2256a5420c26",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:no-tourists--the-prodigy",
+      "type": "project",
+      "name": "No Tourists",
+      "artist": "The Prodigy",
+      "mbid": "b8f58ed0-ea06-41cb-87d2-6027caeea1cd",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:we-live-forever--the-prodigy",
+      "type": "project",
+      "name": "We Live Forever",
+      "artist": "The Prodigy",
+      "mbid": "2e58652f-0c12-45cf-a2d5-0ad0fbaabe4c",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ibiza--the-prodigy",
+      "type": "project",
+      "name": "Ibiza",
+      "artist": "The Prodigy",
+      "mbid": "e4c31a6f-bbdc-44e8-91ee-096effa6a7e3",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nasty--the-prodigy",
+      "type": "project",
+      "name": "Nasty",
+      "artist": "The Prodigy",
+      "mbid": "0667cb99-ff4a-44f7-96ed-224ed0a966ce",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rhythm-bomb--the-prodigy",
+      "type": "project",
+      "name": "Rhythm Bomb",
+      "artist": "The Prodigy",
+      "mbid": "a1d287e4-b052-4d6a-b1a9-0803bc7fd030",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-day-is-my-enemy--the-prodigy",
+      "type": "project",
+      "name": "The Day Is My Enemy",
+      "artist": "The Prodigy",
+      "mbid": "b935bfda-dd9b-4f30-8e43-ea9561a7e751",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wall-of-death--the-prodigy",
+      "type": "project",
+      "name": "Wall of Death",
+      "artist": "The Prodigy",
+      "mbid": "c49b9e03-e3e3-4c0f-aa4b-6a1a272fc555",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wild-frontier--the-prodigy",
+      "type": "project",
+      "name": "Wild Frontier",
+      "artist": "The Prodigy",
+      "mbid": "0e904781-3ab0-4b5e-b406-dba05d8ff8f5",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:invaders-must-die--the-prodigy",
+      "type": "project",
+      "name": "Invaders Must Die",
+      "artist": "The Prodigy",
+      "mbid": "dafbb45b-e06f-3a2b-b4fd-981d3d99a3a4",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:omen--the-prodigy",
+      "type": "project",
+      "name": "Omen",
+      "artist": "The Prodigy",
+      "mbid": "a7c2f3dd-4fd1-305a-b075-616f8b755ebe",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:run-with-the-wolves--the-prodigy",
+      "type": "project",
+      "name": "Run With the Wolves",
+      "artist": "The Prodigy",
+      "mbid": "3b03e381-a5fd-46ea-8313-71234d203a02",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:take-me-to-the-hospital--the-prodigy",
+      "type": "project",
+      "name": "Take Me to the Hospital",
+      "artist": "The Prodigy",
+      "mbid": "d88ba898-3184-4883-8e08-bcc96bd3e7e5",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:warrior-s-dance--the-prodigy",
+      "type": "project",
+      "name": "Warrior’s Dance",
+      "artist": "The Prodigy",
+      "mbid": "5c19b934-9631-48a8-a6bf-e18ea95a3fcc",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spitfire--the-prodigy",
+      "type": "project",
+      "name": "Spitfire",
+      "artist": "The Prodigy",
+      "mbid": "d3afcf25-3a96-3277-9b70-0d969f3ca615",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:always-outnumbered-never-outgunned--the-prodigy",
+      "type": "project",
+      "name": "Always Outnumbered, Never Outgunned",
+      "artist": "The Prodigy",
+      "mbid": "50da1a12-ca69-3287-b89f-33775e396870",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:girls--the-prodigy",
+      "type": "project",
+      "name": "Girls",
+      "artist": "The Prodigy",
+      "mbid": "aa9a5ef4-6496-3721-80db-36f1320e480e",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hotride--the-prodigy",
+      "type": "project",
+      "name": "Hotride",
+      "artist": "The Prodigy",
+      "mbid": "80418c8b-34fd-319e-a624-2611516be9c0",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:baby-s-got-a-temper--the-prodigy",
+      "type": "project",
+      "name": "Baby’s Got a Temper",
+      "artist": "The Prodigy",
+      "mbid": "3647800b-0613-3ece-ba78-dc6f6232d825",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:funky-shit--the-prodigy",
+      "type": "project",
+      "name": "Funky Shit",
+      "artist": "The Prodigy",
+      "mbid": "8644ad8d-f4a9-3d9f-bac2-e84aa8e3924a",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:smack-my-bitch-up--the-prodigy",
+      "type": "project",
+      "name": "Smack My Bitch Up",
+      "artist": "The Prodigy",
+      "mbid": "daeb5f4a-50f8-3f79-ada2-b0f53d3afc58",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-fat-of-the-land--the-prodigy",
+      "type": "project",
+      "name": "The Fat of the Land",
+      "artist": "The Prodigy",
+      "mbid": "ac9138ce-6331-3f8d-86d7-69f13e4ab4f4",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:breathe--the-prodigy",
+      "type": "project",
+      "name": "Breathe",
+      "artist": "The Prodigy",
+      "mbid": "dcccfd93-aa36-388c-a884-99547cb3b989",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:firestarter--the-prodigy",
+      "type": "project",
+      "name": "Firestarter",
+      "artist": "The Prodigy",
+      "mbid": "7eb4a100-9812-39ea-91e9-b364527e7c5e",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:minefields--the-prodigy",
+      "type": "project",
+      "name": "Minefields",
+      "artist": "The Prodigy",
+      "mbid": "f23c3286-4a9c-4a2f-a706-4abafac2e67f",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:poison--the-prodigy",
+      "type": "project",
+      "name": "Poison",
+      "artist": "The Prodigy",
+      "mbid": "6786fc98-0ec8-3dbd-8d76-e42974343913",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:music-for-the-jilted-generation--the-prodigy",
+      "type": "project",
+      "name": "Music for the Jilted Generation",
+      "artist": "The Prodigy",
+      "mbid": "f9fa083f-db00-3048-99e7-5b186672bb09",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-good-start-the-dance--the-prodigy",
+      "type": "project",
+      "name": "No Good (Start the Dance)",
+      "artist": "The Prodigy",
+      "mbid": "100ad1ed-f84d-35a9-bf08-06ed1e97c9e3",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:voodoo-people--the-prodigy",
+      "type": "project",
+      "name": "Voodoo People",
+      "artist": "The Prodigy",
+      "mbid": "4ae088e6-5d11-3f43-a7b5-2336d7410e1e",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:one-love--the-prodigy",
+      "type": "project",
+      "name": "One Love",
+      "artist": "The Prodigy",
+      "mbid": "dcc08d3b-2671-3e7d-b757-0adec2f4eeb6",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wind-it-up-rewound--the-prodigy",
+      "type": "project",
+      "name": "Wind It Up (Rewound)",
+      "artist": "The Prodigy",
+      "mbid": "0a3ef90a-c8aa-33bf-85ff-2d13b89b01e6",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:charly-everybody-in-the-place--the-prodigy",
+      "type": "project",
+      "name": "Charly / Everybody in the Place",
+      "artist": "The Prodigy",
+      "mbid": "8f10e988-3ed5-36da-90ff-d4f1fc2dedd9",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:experience--the-prodigy",
+      "type": "project",
+      "name": "Experience",
+      "artist": "The Prodigy",
+      "mbid": "a3f046a8-8edd-3b8c-bb51-112950b0839c",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fire-jericho--the-prodigy",
+      "type": "project",
+      "name": "Fire / Jericho",
+      "artist": "The Prodigy",
+      "mbid": "5c6a23f6-a36b-3ddd-9226-6268a538a95b",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:out-of-space--the-prodigy",
+      "type": "project",
+      "name": "Out of Space",
+      "artist": "The Prodigy",
+      "mbid": "64251686-2317-3275-8afb-c8e30b41a482",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:charly--the-prodigy",
+      "type": "project",
+      "name": "Charly",
+      "artist": "The Prodigy",
+      "mbid": "8dd77f9d-fe09-3a24-b7fc-85b3409915ef",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:everybody-in-the-place--the-prodigy",
+      "type": "project",
+      "name": "Everybody in the Place",
+      "artist": "The Prodigy",
+      "mbid": "10fb9bcc-e71c-352d-90dd-a500eca65ba3",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-evil-lurks--the-prodigy",
+      "type": "project",
+      "name": "What Evil Lurks",
+      "artist": "The Prodigy",
+      "mbid": "4629c877-bd4c-3bb2-bfe5-26f5f3a77de5",
+      "year": "1991",
+      "releaseType": "ep"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:firestarter",

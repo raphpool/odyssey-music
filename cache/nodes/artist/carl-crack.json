@@ -41,6 +41,15 @@
   ],
   "discography": [
     {
+      "slug": "project:black-ark--carl-crack",
+      "type": "project",
+      "name": "Black Ark",
+      "artist": "Carl Crack",
+      "mbid": "6fbd6c4e-5a9e-3e00-9fdc-19c0312d6523",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:delete-yourself",
       "type": "project",
       "name": "Delete Yourself!"

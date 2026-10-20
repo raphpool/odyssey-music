@@ -38,19 +38,37 @@
   ],
   "discography": [
     {
-      "slug": "project:la-cerise-sur-le-ghetto--mafia-k-1-fry",
+      "slug": "project:on-vous-gene--mafia-k-1-fry",
       "type": "project",
-      "name": "La Cerise sur le ghetto"
+      "name": "On vous gêne",
+      "artist": "Mafia K'1 Fry",
+      "mbid": "475c2bff-de62-4051-8040-1b4b6da64cad",
+      "year": "2022",
+      "releaseType": "single"
     },
     {
       "slug": "project:jusqu-a-la-mort",
       "type": "project",
-      "name": "Jusqu'à la mort"
+      "name": "Jusqu'à la mort",
+      "mbid": "5fb2fd66-4246-3c9f-b3ee-fcea37827ee4",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-cerise-sur-le-ghetto--mafia-k-1-fry",
+      "type": "project",
+      "name": "La Cerise sur le ghetto",
+      "mbid": "8fa3f314-78a8-3921-8da4-0c279dbaddef",
+      "year": "2003",
+      "releaseType": "album"
     },
     {
       "slug": "project:legendaire",
       "type": "project",
-      "name": "Légendaire"
+      "name": "Légendaire",
+      "mbid": "b4bb281c-5b6c-3a8d-bcee-35622dcaab45",
+      "year": "1998",
+      "releaseType": "ep"
     },
     {
       "slug": "project:guerre",

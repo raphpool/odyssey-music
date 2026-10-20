@@ -75,19 +75,187 @@
   ],
   "discography": [
     {
+      "slug": "project:a-jazz-life--tony-scott",
+      "type": "project",
+      "name": "A Jazz Life",
+      "artist": "Tony Scott",
+      "mbid": "4bbb6ea0-b441-4256-aac2-cdae684690d1",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-day-in-new-york--tony-scott",
+      "type": "project",
+      "name": "A Day in New York",
+      "artist": "Tony Scott",
+      "mbid": "d447abc0-2cbf-3386-8a67-b7846ce6af4b",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:in-afrika-mayibue-afrika-uhuuru--tony-scott",
+      "type": "project",
+      "name": "In Afrika / Mayibue Afrika! Uhuuru!",
+      "artist": "Tony Scott",
+      "mbid": "bf10bd9c-11c3-40fe-b31c-e9889a4c78a2",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:astral-meditation-voyage-into-a-black-hole-part-1--tony-scott",
+      "type": "project",
+      "name": "Astral Meditation - Voyage Into A Black Hole - Part 1",
+      "artist": "Tony Scott",
+      "mbid": "23272ff8-83be-4300-8a59-4897ecb91c5f",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:meditation--tony-scott",
+      "type": "project",
+      "name": "Meditation",
+      "artist": "Tony Scott",
+      "mbid": "8b3906c6-f036-4023-a760-b37e64dd7cf8",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-for-yoga-meditation-and-other-joys",
+      "type": "project",
+      "name": "Music for Yoga Meditation and Other Joys",
+      "mbid": "8f19bf60-e499-3d85-be43-d706a044cad7",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sung-heroes--tony-scott",
+      "type": "project",
+      "name": "Sung Heroes",
+      "artist": "Tony Scott",
+      "mbid": "647ac240-a1f8-4c31-93bf-fbb88ed0f16d",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:african-bird-come-back-mother-africa-to-the-spirit-of-charlie-parker--tony-scott",
+      "type": "project",
+      "name": "African Bird / Come Back! Mother Africa: To the Spirit of Charlie Parker",
+      "artist": "Tony Scott",
+      "mbid": "7fec00b2-cd71-4213-8818-af7539ff94f5",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-ll-remember--tony-scott",
+      "type": "project",
+      "name": "I'll Remember",
+      "artist": "Tony Scott",
+      "mbid": "5dac1bd9-25a0-4578-a7e7-96d696dd0b02",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:boomerang--tony-scott",
+      "type": "project",
+      "name": "Boomerang",
+      "artist": "Tony Scott",
+      "mbid": "2aef4cfb-fd88-4059-8033-b8297e78a2d7",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-touch-of-tony-scott--tony-scott",
+      "type": "project",
+      "name": "The Touch of Tony Scott",
+      "artist": "Tony Scott",
+      "mbid": "6e787ecd-1d31-3125-80e8-2316241fb05f",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:manteca--tony-scott",
+      "type": "project",
+      "name": "Manteca",
+      "artist": "Tony Scott",
+      "mbid": "a1938d70-82eb-4e95-9da1-9686bee13fd0",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:music-for-voodoo-meditation--tony-scott",
+      "type": "project",
+      "name": "Music For Voodoo Meditation",
+      "artist": "Tony Scott",
+      "mbid": "ee189663-0b66-4fa3-a448-e7f31339adc6",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tony-scott--tony-scott",
+      "type": "project",
+      "name": "Tony Scott",
+      "artist": "Tony Scott",
+      "mbid": "00140c9d-cdcb-4d9e-a9aa-16fb5a913478",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:djanger-bali--tony-scott",
+      "type": "project",
+      "name": "Djanger Bali",
+      "artist": "Tony Scott",
+      "mbid": "e98eb4ee-fdb4-4c0b-8452-ad27bdc79bbc",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:music-for-zen-meditation--tony-scott",
       "type": "project",
-      "name": "Music for Zen Meditation"
+      "name": "Music for Zen Meditation",
+      "mbid": "26b6de2d-d30c-3e7d-8618-1cb669e8b911",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:free-blown-jazz--tony-scott",
+      "type": "project",
+      "name": "Free Blown Jazz",
+      "artist": "Tony Scott",
+      "mbid": "246de64f-e242-46ae-9078-aa60389837e0",
+      "year": "1959",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:52nd-st-scene--tony-scott",
+      "type": "project",
+      "name": "52nd St. Scene",
+      "artist": "Tony Scott",
+      "mbid": "c4a56b28-e245-4b59-9bd9-32392dfd1d81",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-modern-art-of-jazz--tony-scott",
+      "type": "project",
+      "name": "The Modern Art Of Jazz",
+      "artist": "Tony Scott",
+      "mbid": "20c62093-bbb9-4baa-9888-196aa2abfd94",
+      "year": "1958",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:my-kind-of-jazz--tony-scott",
+      "type": "project",
+      "name": "My Kind of Jazz",
+      "artist": "Tony Scott",
+      "mbid": "9f854cec-29f4-4c55-85ce-bb380adcd617",
+      "year": "1957",
+      "releaseType": "album"
     },
     {
       "slug": "project:both-sides-of-tony-scott",
       "type": "project",
       "name": "Both Sides of Tony Scott"
-    },
-    {
-      "slug": "project:music-for-yoga-meditation-and-other-joys",
-      "type": "project",
-      "name": "Music for Yoga Meditation and Other Joys"
     },
     {
       "slug": "project:african-bird",

@@ -53,24 +53,144 @@
   ],
   "discography": [
     {
-      "slug": "project:moderat",
+      "slug": "project:easy-prey--moderat",
       "type": "project",
-      "name": "Moderat"
+      "name": "EASY PREY",
+      "artist": "Moderat",
+      "mbid": "454c7db2-ab16-4fe1-9696-2aa89c6630f4",
+      "year": "2022",
+      "releaseType": "single"
     },
     {
-      "slug": "project:ii--moderat",
+      "slug": "project:fast-land--moderat",
       "type": "project",
-      "name": "II"
+      "name": "FAST LAND",
+      "artist": "Moderat",
+      "mbid": "19a49853-68a3-43fa-91fa-259bb41c2492",
+      "year": "2022",
+      "releaseType": "single"
     },
     {
-      "slug": "project:iii",
+      "slug": "project:more-love--moderat",
       "type": "project",
-      "name": "III"
+      "name": "MORE LOVE",
+      "artist": "Moderat",
+      "mbid": "4a4e40bb-c6ac-484a-a5c0-77606f003957",
+      "year": "2022",
+      "releaseType": "single"
     },
     {
       "slug": "project:more-d4ta",
       "type": "project",
-      "name": "More D4ta"
+      "name": "More D4ta",
+      "mbid": "c2763eff-9170-46ad-8155-1d3cb74db13b",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:eating-hooks--moderat",
+      "type": "project",
+      "name": "Eating Hooks",
+      "artist": "Moderat",
+      "mbid": "5abbf65c-327e-43f1-9313-7f988608c7e1",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:iii",
+      "type": "project",
+      "name": "III",
+      "mbid": "b634f7d5-6ff5-4612-bb1a-c400b642e529",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:reminder--moderat",
+      "type": "project",
+      "name": "Reminder",
+      "artist": "Moderat",
+      "mbid": "2ffab200-e0f7-4a98-9a18-5d1275d25af5",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:running--moderat",
+      "type": "project",
+      "name": "Running",
+      "artist": "Moderat",
+      "mbid": "59bdddae-575e-4f39-846b-162de265bee3",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:last-time--moderat",
+      "type": "project",
+      "name": "Last Time",
+      "artist": "Moderat",
+      "mbid": "0d2da2cd-fde4-42fd-a973-a92bac72abad",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bad-kingdom--moderat",
+      "type": "project",
+      "name": "Bad Kingdom",
+      "artist": "Moderat",
+      "mbid": "b18d5f39-67e6-4e10-aec6-1a6638cc9811",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gita--moderat",
+      "type": "project",
+      "name": "Gita",
+      "artist": "Moderat",
+      "mbid": "230c9b74-92cc-43f5-99cd-564b199bf314",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ii--moderat",
+      "type": "project",
+      "name": "II",
+      "mbid": "885181a4-9133-485f-bfce-fddc1168a3c1",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:moderat",
+      "type": "project",
+      "name": "Moderat",
+      "mbid": "6b3cd75d-7453-39f3-86c4-1441f360e121",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rusty-nails--moderat",
+      "type": "project",
+      "name": "Rusty Nails",
+      "artist": "Moderat",
+      "mbid": "a16b3167-369f-4024-a505-f4e30433502e",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:seamonkey--moderat",
+      "type": "project",
+      "name": "Seamonkey",
+      "artist": "Moderat",
+      "mbid": "37b1e157-b177-4b55-b36a-8569294bd85c",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:auf-kosten-der-gesundheit--moderat",
+      "type": "project",
+      "name": "Auf Kosten der Gesundheit",
+      "artist": "Moderat",
+      "mbid": "f546675a-29c4-3308-8e4a-93bc544f33a0",
+      "year": "2003",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

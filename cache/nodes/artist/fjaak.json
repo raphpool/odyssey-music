@@ -56,14 +56,218 @@
   ],
   "discography": [
     {
-      "slug": "project:fjaak",
+      "slug": "project:fjaak-012--fjaak",
       "type": "project",
-      "name": "FJAAK"
+      "name": "FJAAK 012",
+      "artist": "FJAAK",
+      "mbid": "267ab6a6-a3ec-4ca4-8c39-e22f51f0d67f",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:fjaak-014--fjaak",
+      "type": "project",
+      "name": "FJAAK 014",
+      "artist": "FJAAK",
+      "mbid": "993b9639-edf5-4b6a-a221-17b4377457e4",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:spandau20-010a--fjaak",
+      "type": "project",
+      "name": "SPANDAU20 010A",
+      "artist": "FJAAK",
+      "mbid": "4ee755b2-98a1-4b46-8af3-b406aed25899",
+      "year": "2025",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:fjaak-the-system--fjaak",
+      "type": "project",
+      "name": "FJAAK THE SYSTEM",
+      "artist": "FJAAK",
+      "mbid": "14465bd9-6cf0-4341-924e-b3e9388fb400",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fjaak009--fjaak",
+      "type": "project",
+      "name": "FJAAK009",
+      "artist": "FJAAK",
+      "mbid": "68be7e4d-212f-4a6b-937e-33c990e61a9a",
+      "year": "2023",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:fjaak-008--fjaak",
+      "type": "project",
+      "name": "FJAAK 008",
+      "artist": "FJAAK",
+      "mbid": "a1afdf05-85f4-437b-ae54-af3538858748",
+      "year": "2022",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:sys02--fjaak",
+      "type": "project",
+      "name": "SYS02",
+      "artist": "FJAAK",
+      "mbid": "e56203c2-c815-4fd1-9728-03900d17afd3",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sys03--fjaak",
+      "type": "project",
+      "name": "SYS03",
+      "artist": "FJAAK",
+      "mbid": "5796a960-1d9a-475a-b9f9-18ab2121bf19",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:wh-t-ep--fjaak",
+      "type": "project",
+      "name": "WH?T EP",
+      "artist": "FJAAK",
+      "mbid": "697c665f-0755-4ced-870d-42a2a3f248a0",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:your-time-is-ov3r--fjaak",
+      "type": "project",
+      "name": "Your Time Is Ov3r",
+      "artist": "FJAAK",
+      "mbid": "0cc368ae-afcc-4925-99d6-c80a7c392263",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:fjaak-006--fjaak",
+      "type": "project",
+      "name": "FJAAK 006",
+      "artist": "FJAAK",
+      "mbid": "e6eb7164-c059-44a1-878d-6cf75e126114",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:fjaak-007--fjaak",
+      "type": "project",
+      "name": "FJAAK 007",
+      "artist": "FJAAK",
+      "mbid": "8d195bef-34a1-444b-9470-c3292e9996c4",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sys01--fjaak",
+      "type": "project",
+      "name": "SYS01",
+      "artist": "FJAAK",
+      "mbid": "7153d923-2d1f-452c-a77b-24ffe1d257ec",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:fjaak-005--fjaak",
+      "type": "project",
+      "name": "FJAAK 005",
+      "artist": "FJAAK",
+      "mbid": "c0b136ee-9b0e-4462-a261-3b46a173d01f",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:drugs-ep--fjaak",
+      "type": "project",
+      "name": "Drugs EP",
+      "artist": "FJAAK",
+      "mbid": "f9034063-441b-4420-ab89-51e4cd7f947a",
+      "year": "2018",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:fjaak-003--fjaak",
+      "type": "project",
+      "name": "FJAAK 003",
+      "artist": "FJAAK",
+      "mbid": "c3eb1d5f-a407-4077-8016-fef0d82afb59",
+      "year": "2018",
+      "releaseType": "single"
     },
     {
       "slug": "project:havel",
       "type": "project",
-      "name": "Havel"
+      "name": "Havel",
+      "mbid": "191946c1-b728-4f77-a24d-314c5ec83818",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fjaak",
+      "type": "project",
+      "name": "FJAAK",
+      "mbid": "7039a386-6235-4a66-9229-9349128c7fae",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gewerbe-15-rush--fjaak",
+      "type": "project",
+      "name": "Gewerbe 15 / Rush",
+      "artist": "FJAAK",
+      "mbid": "6864bfac-1426-4778-8a88-32825bf54183",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:oben-unten--fjaak",
+      "type": "project",
+      "name": "Oben / Unten",
+      "artist": "FJAAK",
+      "mbid": "fd849056-3572-479a-9d99-ddce15edf9f3",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:super-smash-oblivion--fjaak",
+      "type": "project",
+      "name": "Super Smash / Oblivion",
+      "artist": "FJAAK",
+      "mbid": "8694c883-700b-48e2-8e38-452a6861e17a",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:attack-the-wind--fjaak",
+      "type": "project",
+      "name": "Attack / The Wind",
+      "artist": "FJAAK",
+      "mbid": "ebe4fb48-8eeb-40b9-9112-8acc94e9ac7f",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-leave-me-plan-a--fjaak",
+      "type": "project",
+      "name": "Don't Leave Me / Plan A",
+      "artist": "FJAAK",
+      "mbid": "72466713-5c89-4ff8-80f6-85f7e7d1bb0b",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mind-games-ep--fjaak",
+      "type": "project",
+      "name": "Mind Games EP",
+      "artist": "FJAAK",
+      "mbid": "603bc7a8-f737-4143-a549-be55406594c9",
+      "year": "2013",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

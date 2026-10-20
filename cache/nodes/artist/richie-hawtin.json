@@ -50,6 +50,105 @@
   ],
   "discography": [
     {
+      "slug": "project:acid-king--richie-hawtin",
+      "type": "project",
+      "name": "Acid King",
+      "artist": "Richie Hawtin",
+      "mbid": "16fcf551-ce14-49f8-a874-44e2d7df07c6",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:time-warps--richie-hawtin",
+      "type": "project",
+      "name": "Time Warps",
+      "artist": "Richie Hawtin",
+      "mbid": "17d35918-dd0f-4128-8748-736cf3e0c70c",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:close-combined-live-glasgow-london-tokyo--richie-hawtin",
+      "type": "project",
+      "name": "CLOSE COMBINED (Live, GLASGOW, LONDON, TOKYO)",
+      "artist": "Richie Hawtin",
+      "mbid": "84e3ccaa-a5c5-46df-881a-acf5d7aa97ba",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-my-mind-to-yours--richie-hawtin",
+      "type": "project",
+      "name": "From My Mind to Yours",
+      "artist": "Richie Hawtin",
+      "mbid": "3224f8d2-d038-431d-8484-bee106646124",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:de9-transitions-proper--richie-hawtin",
+      "type": "project",
+      "name": "DE9 Transitions-Proper",
+      "artist": "Richie Hawtin",
+      "mbid": "6f18bca7-0825-4d88-82cd-cffb61e15f74",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-tunnel-twin-cities--richie-hawtin",
+      "type": "project",
+      "name": "The Tunnel / Twin Cities",
+      "artist": "Richie Hawtin",
+      "mbid": "a3636ab1-803f-3aa9-888e-111d25fb8842",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:de9-closer-to-the-r-edit--richie-hawtin",
+      "type": "project",
+      "name": "DE9 | Closer to the (R)Edit",
+      "artist": "Richie Hawtin",
+      "mbid": "ab2e7ebb-56b0-301c-bc44-c7cc47bdbe67",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:minus-yellow--richie-hawtin",
+      "type": "project",
+      "name": "Minus Yellow",
+      "artist": "Richie Hawtin",
+      "mbid": "1346c0cd-6b73-3f79-8742-34a21fcf60cd",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:005--richie-hawtin",
+      "type": "project",
+      "name": "005",
+      "artist": "Richie Hawtin",
+      "mbid": "0eb49acd-3e2d-3616-8c9c-c490f0e95377",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:orange--richie-hawtin",
+      "type": "project",
+      "name": "Orange",
+      "artist": "Richie Hawtin",
+      "mbid": "c9500794-27a7-3798-8f7c-3c42fa57e726",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:call-it-what-you-want--richie-hawtin",
+      "type": "project",
+      "name": "Call It What You Want!",
+      "artist": "Richie Hawtin",
+      "mbid": "dcd9663a-212e-3e14-962f-2e276aaa908d",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:sheet-one",
       "type": "project",
       "name": "Sheet One"

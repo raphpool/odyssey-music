@@ -61,9 +61,156 @@
   ],
   "discography": [
     {
+      "slug": "project:choose-love-it-s-been-too-long--ringo-starr",
+      "type": "project",
+      "name": "Choose Love / It’s Been Too Long",
+      "artist": "Ringo Starr",
+      "mbid": "2ef8ea43-db67-4c5c-8102-c2bfbc919abe",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:it-s-been-too-long--ringo-starr",
+      "type": "project",
+      "name": "It’s Been Too Long",
+      "artist": "Ringo Starr",
+      "mbid": "015b2776-67dc-400f-b8be-0ec254f7c7b9",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:long-long-road--ringo-starr",
+      "type": "project",
+      "name": "Long Long Road",
+      "artist": "Ringo Starr",
+      "mbid": "444b5719-4ddb-4f9e-99ce-a7411749eb30",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:look-up--ringo-starr",
+      "type": "project",
+      "name": "Look Up",
+      "artist": "Ringo Starr",
+      "mbid": "53b5f17c-4375-4e34-b305-affcc4ca0e12",
+      "year": "2025",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:crooked-boy--ringo-starr",
+      "type": "project",
+      "name": "Crooked Boy",
+      "artist": "Ringo Starr",
+      "mbid": "b393bd89-466d-46a6-baa3-50b3d91e93ae",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ep3--ringo-starr",
+      "type": "project",
+      "name": "EP3",
+      "artist": "Ringo Starr",
+      "mbid": "647278da-38d9-48c9-9547-bd37aaaa89e8",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:what-s-my-name--ringo-starr",
+      "type": "project",
+      "name": "What’s My Name",
+      "artist": "Ringo Starr",
+      "mbid": "abd99010-c8f7-4e80-a483-cb8d27649f15",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ringo-2012--ringo-starr",
+      "type": "project",
+      "name": "Ringo 2012",
+      "artist": "Ringo Starr",
+      "mbid": "46e3f9e5-2238-4997-99b9-ba51e25ee038",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:y-not--ringo-starr",
+      "type": "project",
+      "name": "Y Not",
+      "artist": "Ringo Starr",
+      "mbid": "e74e43a4-34e7-4663-a419-eb504edf08a7",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:choose-love--ringo-starr",
+      "type": "project",
+      "name": "Choose Love",
+      "artist": "Ringo Starr",
+      "mbid": "d7b6f917-d2d5-3917-9a74-e47d3af61902",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-de-da--ringo-starr",
+      "type": "project",
+      "name": "La De Da",
+      "artist": "Ringo Starr",
+      "mbid": "2a2ebcb4-f7d9-4b43-86ec-e0320da46600",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:time-takes-time--ringo-starr",
+      "type": "project",
+      "name": "Time Takes Time",
+      "artist": "Ringo Starr",
+      "mbid": "97b094be-d85a-308b-a8ab-9c5e3fb97306",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:photograph--ringo-starr",
+      "type": "project",
+      "name": "Photograph",
+      "artist": "Ringo Starr",
+      "mbid": "bd4e3afb-a68a-36aa-b8a5-f7547f636c29",
+      "year": "1973",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:ringo",
       "type": "project",
-      "name": "Ringo"
+      "name": "Ringo",
+      "mbid": "92e9a813-265a-3ddb-a5ad-5daac76af8b1",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:it-don-t-come-easy--ringo-starr",
+      "type": "project",
+      "name": "It Don’t Come Easy",
+      "artist": "Ringo Starr",
+      "mbid": "8dc31946-f4e5-37c5-a387-7694d56e6893",
+      "year": "1971",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beaucoups-of-blues--ringo-starr",
+      "type": "project",
+      "name": "Beaucoups of Blues",
+      "artist": "Ringo Starr",
+      "mbid": "895487bd-5ed3-3aff-b39e-cf743acfa57e",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sentimental-journey--ringo-starr",
+      "type": "project",
+      "name": "Sentimental Journey",
+      "artist": "Ringo Starr",
+      "mbid": "18f49dbe-5776-35f7-9ea3-3b1aea1fe708",
+      "year": "1970",
+      "releaseType": "album"
     },
     {
       "slug": "project:ringo-s-rotogravure",

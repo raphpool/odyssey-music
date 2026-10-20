@@ -42,14 +42,146 @@
   ],
   "discography": [
     {
+      "slug": "project:cr7-chamber--digital-mystikz",
+      "type": "project",
+      "name": "CR7 Chamber",
+      "artist": "Digital Mystikz",
+      "mbid": "08325942-6a89-4118-b507-75dea48337c5",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:2-much-chat-coral-reef--digital-mystikz",
+      "type": "project",
+      "name": "2 Much Chat / Coral Reef",
+      "artist": "Digital Mystikz",
+      "mbid": "7a04137d-20ec-4278-bece-a076f9e35193",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:marduk-enter-dimensions--digital-mystikz",
+      "type": "project",
+      "name": "Marduk / Enter Dimensions",
+      "artist": "Digital Mystikz",
+      "mbid": "c1878586-b492-498b-a0a1-03cba894dbb1",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:education-horrid-henry--digital-mystikz",
+      "type": "project",
+      "name": "Education / Horrid Henry",
+      "artist": "Digital Mystikz",
+      "mbid": "20fa1606-c59c-42f8-8873-b58cdd6e7164",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:return-ii-space--digital-mystikz",
       "type": "project",
-      "name": "Return II Space"
+      "name": "Return II Space",
+      "mbid": "3528b7a1-6215-4ee7-a8ab-a8bfdf7f7c1b",
+      "year": "2010",
+      "releaseType": "album"
     },
     {
       "slug": "project:urban-ethics",
       "type": "project",
-      "name": "Urban Ethics"
+      "name": "Urban Ethics",
+      "mbid": "e64f6232-f4c8-4509-a6c1-d660045737e8",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:thief-in-the-night-stung--digital-mystikz",
+      "type": "project",
+      "name": "Thief in the Night / Stung",
+      "artist": "Digital Mystikz",
+      "mbid": "7544e7e9-17f6-41e2-9c73-b8a2723bd359",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wait-magnetic-city--digital-mystikz",
+      "type": "project",
+      "name": "Wait / Magnetic City",
+      "artist": "Digital Mystikz",
+      "mbid": "35e84f64-f18e-4af4-a164-3b1810fb2c40",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ancient-memories--digital-mystikz",
+      "type": "project",
+      "name": "Ancient Memories",
+      "artist": "Digital Mystikz",
+      "mbid": "97011af9-787a-4100-888e-31bea5058d94",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:haunted-anti-war-dub--digital-mystikz",
+      "type": "project",
+      "name": "Haunted / Anti War Dub",
+      "artist": "Digital Mystikz",
+      "mbid": "7802e479-03ba-30ac-9056-1a2e27bfd251",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:misty-winter-conference--digital-mystikz",
+      "type": "project",
+      "name": "Misty Winter / Conference",
+      "artist": "Digital Mystikz",
+      "mbid": "50475239-ffa8-3a81-8a0c-655e4eeee02e",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:walkin-with-jah-earth-a-run-red--digital-mystikz",
+      "type": "project",
+      "name": "Walkin' With Jah / Earth a Run Red",
+      "artist": "Digital Mystikz",
+      "mbid": "a2427aa8-2081-332b-b9e3-2d50cac793d6",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:neverland-stuck--digital-mystikz",
+      "type": "project",
+      "name": "Neverland / Stuck",
+      "artist": "Digital Mystikz",
+      "mbid": "60869ca0-ef09-34c0-9492-d8c8705a9b9d",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dubsession--digital-mystikz",
+      "type": "project",
+      "name": "Dubsession",
+      "artist": "Digital Mystikz",
+      "mbid": "f819e908-a2c3-43bb-91cf-1f331a62232a",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pathways-ugly--digital-mystikz",
+      "type": "project",
+      "name": "Pathways / Ugly",
+      "artist": "Digital Mystikz",
+      "mbid": "beddb408-4b81-4062-990c-076638fb9b4a",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:twisup--digital-mystikz",
+      "type": "project",
+      "name": "Twisup",
+      "artist": "Digital Mystikz",
+      "mbid": "09b400d4-5563-4102-938b-c9898c712751",
+      "year": "2004",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

@@ -87,29 +87,356 @@
   ],
   "discography": [
     {
-      "slug": "project:northern-exposure-vol-1",
+      "slug": "project:da-vinci-genius--sasha",
       "type": "project",
-      "name": "Northern Exposure, Vol. 1"
+      "name": "Da Vinci Genius",
+      "artist": "Sasha",
+      "mbid": "0130e494-7708-40ba-a42e-5af45b4042a6",
+      "year": "2024",
+      "releaseType": "album"
     },
     {
-      "slug": "project:xpander",
+      "slug": "project:how-to-wear-raybans-well--sasha",
       "type": "project",
-      "name": "Xpander"
+      "name": "How to Wear Raybans Well",
+      "artist": "Sasha",
+      "mbid": "248d1613-896d-4a58-a93c-eb929fc4cef9",
+      "year": "2024",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:airdrawndagger",
+      "slug": "project:track-10--sasha",
       "type": "project",
-      "name": "Airdrawndagger"
+      "name": "Track 10",
+      "artist": "Sasha",
+      "mbid": "e2fbfd96-374b-40af-8deb-5fa175b40022",
+      "year": "2023",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:involver",
+      "slug": "project:lnoe-ten--sasha",
       "type": "project",
-      "name": "Involver"
+      "name": "LNOE TEN",
+      "artist": "Sasha",
+      "mbid": "a83803b0-9044-441d-b025-0ad081ef92cb",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:detat--sasha",
+      "type": "project",
+      "name": "Detat",
+      "artist": "Sasha",
+      "mbid": "6ddd362f-b5e5-4b3f-ae88-d976ceb2fc0a",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:full-circle--sasha",
+      "type": "project",
+      "name": "Full Circle",
+      "artist": "Sasha",
+      "mbid": "4895eb7b-35f5-4b27-90e9-87357772cdf8",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:haunted--sasha",
+      "type": "project",
+      "name": "Haunted",
+      "artist": "Sasha",
+      "mbid": "ab4af942-c5e3-4d3b-9f9e-836ce833793a",
+      "year": "2020",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:forbindelse--sasha",
+      "type": "project",
+      "name": "Förbindelse",
+      "artist": "Sasha",
+      "mbid": "4c251fda-fa7a-491f-8266-ed2bc5cab1de",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gameovr--sasha",
+      "type": "project",
+      "name": "GameOvr",
+      "artist": "Sasha",
+      "mbid": "3e984128-9b6a-4741-a8b1-c487b0668ecc",
+      "year": "2017",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:out-of-time--sasha",
+      "type": "project",
+      "name": "Out of Time",
+      "artist": "Sasha",
+      "mbid": "3e1600de-e641-484f-b5c2-6f2895482c0d",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:true--sasha",
+      "type": "project",
+      "name": "True",
+      "artist": "Sasha",
+      "mbid": "53e4490b-b211-444f-831c-bfb525e9d61c",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:xpander-refracted--sasha",
+      "type": "project",
+      "name": "Xpander : Refracted",
+      "artist": "Sasha",
+      "mbid": "d311f956-9bc2-4ce8-b326-2f72c039041c",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pontiac--sasha",
+      "type": "project",
+      "name": "Pontiac",
+      "artist": "Sasha",
+      "mbid": "654de7ac-0201-4fd8-b363-ad1d90ac7b62",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rivaldo--sasha",
+      "type": "project",
+      "name": "Rivaldo",
+      "artist": "Sasha",
+      "mbid": "42e585fe-dda8-4463-b533-4acef7735d00",
+      "year": "2016",
+      "releaseType": "single"
     },
     {
       "slug": "project:scene-delete",
       "type": "project",
-      "name": "Scene Delete"
+      "name": "Scene Delete",
+      "mbid": "f39cc588-f482-410a-b0ae-032b2c82c9bd",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ether--sasha",
+      "type": "project",
+      "name": "Ether",
+      "artist": "Sasha",
+      "mbid": "3e05aaad-dcb9-4145-b53d-30fd5e470281",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:vapourspace--sasha",
+      "type": "project",
+      "name": "Vapourspace",
+      "artist": "Sasha",
+      "mbid": "db41c63e-ca11-4e74-85b5-164ce789c723",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bring-on-the-night-ep--sasha",
+      "type": "project",
+      "name": "Bring On the Night EP",
+      "artist": "Sasha",
+      "mbid": "f6959758-6785-4962-a4c9-210344c1f51d",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sparkylives--sasha",
+      "type": "project",
+      "name": "SparkyLives",
+      "artist": "Sasha",
+      "mbid": "22c860ad-d94e-4180-bbdc-a1dc378ca42c",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:highlife-ep--sasha",
+      "type": "project",
+      "name": "Highlife EP",
+      "artist": "Sasha",
+      "mbid": "4db51a27-cd90-4c39-b0fa-b540969c7d1b",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-midnight-eclipse-ep--sasha",
+      "type": "project",
+      "name": "The Midnight Eclipse EP",
+      "artist": "Sasha",
+      "mbid": "cd1fee6f-f3d9-4a30-8213-f48a703c9800",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:3-little-piggys--sasha",
+      "type": "project",
+      "name": "3 Little Piggys",
+      "artist": "Sasha",
+      "mbid": "39c7ef91-0ce8-42e6-a7a5-411d2b5a948c",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:invol2ver-unmixed--sasha",
+      "type": "project",
+      "name": "Invol2ver (Unmixed)",
+      "artist": "Sasha",
+      "mbid": "464e02ab-5c32-307d-9649-5155b10cb616",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:who-killed-sparky--sasha",
+      "type": "project",
+      "name": "Who Killed Sparky?",
+      "artist": "Sasha",
+      "mbid": "708deef2-7ed2-4519-91fa-a7d52d3e4858",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:coma--sasha",
+      "type": "project",
+      "name": "Coma",
+      "artist": "Sasha",
+      "mbid": "b83009ae-ace9-36bf-9ebf-61fed62a6393",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mongoose--sasha",
+      "type": "project",
+      "name": "Mongoose",
+      "artist": "Sasha",
+      "mbid": "23bb746d-a744-3947-be83-84cec2753636",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:new-emissions-of-light-and-sound-the-dark-side-of-the-machine--sasha",
+      "type": "project",
+      "name": "New Emissions of Light and Sound (The Dark Side of the Machine)",
+      "artist": "Sasha",
+      "mbid": "30ab0587-be47-43e7-a11d-b80d9dde3a62",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:park-it-in-the-shade--sasha",
+      "type": "project",
+      "name": "Park It in the Shade",
+      "artist": "Sasha",
+      "mbid": "b85f42b3-abdd-3812-addc-00621613f9e7",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:involver",
+      "type": "project",
+      "name": "Involver",
+      "mbid": "3021a8cc-bb93-31b2-acdd-fdca2341ccb1",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cowpander--sasha",
+      "type": "project",
+      "name": "Cowpander",
+      "artist": "Sasha",
+      "mbid": "540df712-88aa-448d-862a-25761c22c547",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:airdrawndagger",
+      "type": "project",
+      "name": "Airdrawndagger",
+      "mbid": "c98f342f-ba4f-3d0f-bc27-ab9c5c3e38de",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wavy-gravy--sasha",
+      "type": "project",
+      "name": "Wavy Gravy",
+      "artist": "Sasha",
+      "mbid": "a57d154a-aa96-3ee8-8ad7-f09c930e88bb",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:expander-hybrid-rmx--sasha",
+      "type": "project",
+      "name": "Expander (Hybrid rmx)",
+      "artist": "Sasha",
+      "mbid": "64011f21-2d09-4ec0-856d-3bbb2cb3aac2",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:scorchio--sasha",
+      "type": "project",
+      "name": "Scorchio",
+      "artist": "Sasha",
+      "mbid": "e9c6feb2-d2b5-37e6-9077-cce19df658aa",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:xpander",
+      "type": "project",
+      "name": "Xpander",
+      "mbid": "fabad778-1279-3a7a-89e9-b1cc47b90900",
+      "year": "1999",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:arkham-asylum-ohmna--sasha",
+      "type": "project",
+      "name": "Arkham Asylum / Ohmna",
+      "artist": "Sasha",
+      "mbid": "d947a933-d688-37d4-bafa-a2aa7b93b57c",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:be-as-one--sasha",
+      "type": "project",
+      "name": "Be as One",
+      "artist": "Sasha",
+      "mbid": "9e404f88-15d8-3398-b6f6-8a5902386c62",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:magic--sasha",
+      "type": "project",
+      "name": "Magic",
+      "artist": "Sasha",
+      "mbid": "ba0c76e0-3390-40bf-a8e6-55a2ac6da1ef",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-qat-collection--sasha",
+      "type": "project",
+      "name": "The Qat Collection",
+      "artist": "Sasha",
+      "mbid": "2a24703e-e922-3217-b4f7-4e975a98b2ad",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:northern-exposure-vol-1",
+      "type": "project",
+      "name": "Northern Exposure, Vol. 1"
     }
   ],
   "notable_tracks": [

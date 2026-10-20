@@ -55,14 +55,110 @@
   ],
   "discography": [
     {
-      "slug": "project:the-story-of-espion",
+      "slug": "project:espion-le-ep--dj-mehdi",
       "type": "project",
-      "name": "The Story of Espion"
+      "name": "Espion Le Ep",
+      "artist": "DJ Mehdi",
+      "mbid": "05644796-1235-41d1-b4ec-ff1654b6b3ab",
+      "year": "2024",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:pocket-piano--dj-mehdi",
+      "type": "project",
+      "name": "Pocket Piano",
+      "artist": "DJ Mehdi",
+      "mbid": "b67b53df-7c1d-4989-80d4-c6d6f4ef07f2",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:signatuned--dj-mehdi",
+      "type": "project",
+      "name": "Signatuned",
+      "artist": "DJ Mehdi",
+      "mbid": "f830d4f4-7f80-432b-a6df-2e2fb8fa9fb9",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lucky-boy-at-night--dj-mehdi",
+      "type": "project",
+      "name": "Lucky Boy at Night",
+      "artist": "DJ Mehdi",
+      "mbid": "da496744-2b56-383b-a846-dcfa9b0357f4",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lucky-girl--dj-mehdi",
+      "type": "project",
+      "name": "Lucky Girl",
+      "artist": "DJ Mehdi",
+      "mbid": "b9ddd409-5d7c-31f8-8849-b75befa3d9bf",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:your-way-or-mine-grand-canyon--dj-mehdi",
+      "type": "project",
+      "name": "Your Way or Mine? / Grand Canyon",
+      "artist": "DJ Mehdi",
+      "mbid": "d5ba15fb-298c-311a-9038-eff07b47bb0c",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-am-somebody--dj-mehdi",
+      "type": "project",
+      "name": "I Am Somebody",
+      "artist": "DJ Mehdi",
+      "mbid": "24c75bbc-38ed-3a4d-8d22-9925511a33f4",
+      "year": "2006",
+      "releaseType": "single"
     },
     {
       "slug": "project:lucky-boy",
       "type": "project",
-      "name": "Lucky Boy"
+      "name": "Lucky Boy",
+      "mbid": "fc051163-1302-3965-9a2a-e06ff4c80549",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:des-friandises-pour-ta-bouche--dj-mehdi",
+      "type": "project",
+      "name": "Des friandises pour ta bouche",
+      "artist": "DJ Mehdi",
+      "mbid": "bd1f615b-4f94-3f95-8b7d-441995477510",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:about-me--dj-mehdi",
+      "type": "project",
+      "name": "About Me",
+      "artist": "DJ Mehdi",
+      "mbid": "429f91db-114c-4342-943c-48a2542c741a",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:breakaway--dj-mehdi",
+      "type": "project",
+      "name": "Breakaway",
+      "artist": "DJ Mehdi",
+      "mbid": "6bc19760-b69a-4829-8b99-8ad3a3d6cd92",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-story-of-espion",
+      "type": "project",
+      "name": "The Story of Espion",
+      "mbid": "086f96ab-4b8c-377b-99d7-a897f81d78cc",
+      "year": "2002",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

@@ -116,10 +116,10 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:that-s-not-enough",
+      "slug": "project:fair-chance",
       "type": "project",
-      "name": "That’s Not Enough",
-      "mbid": "b8246381-1cb0-478c-ba84-721135f6c2f4",
+      "name": "Fair Chance",
+      "mbid": "dfab28ba-966d-499b-98df-d4f4d4ca5360",
       "year": "2020",
       "releaseType": "single"
     },
@@ -132,10 +132,10 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:fair-chance",
+      "slug": "project:that-s-not-enough",
       "type": "project",
-      "name": "Fair Chance",
-      "mbid": "dfab28ba-966d-499b-98df-d4f4d4ca5360",
+      "name": "That’s Not Enough",
+      "mbid": "b8246381-1cb0-478c-ba84-721135f6c2f4",
       "year": "2020",
       "releaseType": "single"
     },
@@ -156,6 +156,14 @@
       "releaseType": "single"
     },
     {
+      "slug": "project:free-love",
+      "type": "project",
+      "name": "Free Love",
+      "mbid": "e51ac36c-ee4c-49a4-8ef2-44b2dc038c5f",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:live-my-life",
       "type": "project",
       "name": "Live My Life",
@@ -164,12 +172,13 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:free-love",
+      "slug": "project:thugged-out-pissed-off--lil-b",
       "type": "project",
-      "name": "Free Love",
-      "mbid": "e51ac36c-ee4c-49a4-8ef2-44b2dc038c5f",
-      "year": "2016",
-      "releaseType": "single"
+      "name": "Thugged Out Pissed Off",
+      "artist": "Lil B",
+      "mbid": "35446294-50d3-45dc-8a37-920540fbf18a",
+      "year": "2015",
+      "releaseType": "album"
     },
     {
       "slug": "project:murder-rate",
@@ -180,10 +189,29 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:tears-4-god",
+      "slug": "project:pink-flame--lil-b",
       "type": "project",
-      "name": "Tears 4 God",
-      "mbid": "3aa6d618-2b7c-4884-a52d-3f2606851264",
+      "name": "Pink Flame",
+      "artist": "Lil B",
+      "mbid": "dc9e997e-d662-49df-8952-eb0138bc22fb",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:855-song-based-freestyle-mixtape--lil-b",
+      "type": "project",
+      "name": "855 Song Based Freestyle Mixtape",
+      "artist": "Lil B",
+      "mbid": "04b69b69-952b-4edf-9eb3-4298d3697a30",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:based-jam--lil-b",
+      "type": "project",
+      "name": "Based Jam",
+      "artist": "Lil B",
+      "mbid": "286f12eb-f3c2-4515-8c0e-bacdcb81916f",
       "year": "2012",
       "releaseType": "album"
     },
@@ -196,19 +224,74 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:keep-my-eyes-open-2",
+      "slug": "project:frozen-based-freestyle-mixtape--lil-b",
       "type": "project",
-      "name": "Keep My Eyes Open 2",
-      "mbid": "121195a4-dec2-4993-8e1e-f45b6427841e",
-      "year": "2011",
-      "releaseType": "single"
+      "name": "Frozen Based Freestyle Mixtape",
+      "artist": "Lil B",
+      "mbid": "f7e6d8f9-860a-4931-8b81-d324d4709690",
+      "year": "2012",
+      "releaseType": "album"
     },
     {
-      "slug": "project:i-m-gay",
+      "slug": "project:god-s-father--lil-b",
       "type": "project",
-      "name": "I’m Gay (I’m Happy)",
-      "mbid": "1fb883a7-bed9-467e-a345-38617ec3e5d8",
-      "year": "2011",
+      "name": "God's Father",
+      "artist": "Lil B",
+      "mbid": "64aaf894-3397-4b3b-9f7f-ffc6bd5f0df8",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:holloween-h20--lil-b",
+      "type": "project",
+      "name": "Holloween H20",
+      "artist": "Lil B",
+      "mbid": "d86c3990-7989-4354-bbde-26efa3e92e91",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:illusions-of-grandeur-2--lil-b",
+      "type": "project",
+      "name": "Illusions of Grandeur 2",
+      "artist": "Lil B",
+      "mbid": "44aafdaf-8e20-448c-a1b3-3a0f48eb95af",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:obama-basedgod--lil-b",
+      "type": "project",
+      "name": "Obama BasedGod",
+      "artist": "Lil B",
+      "mbid": "5da1dfe2-4d12-4581-9784-e37e36ddbda8",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tears-4-god",
+      "type": "project",
+      "name": "Tears 4 God",
+      "mbid": "3aa6d618-2b7c-4884-a52d-3f2606851264",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trapped-in-basedworld--lil-b",
+      "type": "project",
+      "name": "Trapped in BasedWorld",
+      "artist": "Lil B",
+      "mbid": "f581a029-624e-4d80-b78e-ce332a2bd04c",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:white-flame--lil-b",
+      "type": "project",
+      "name": "White Flame",
+      "artist": "Lil B",
+      "mbid": "934d5462-7765-4df1-b6d7-35ecfc105553",
+      "year": "2012",
       "releaseType": "album"
     },
     {
@@ -220,12 +303,28 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:wonton-soup",
+      "slug": "project:i-m-gay",
       "type": "project",
-      "name": "Wonton Soup",
-      "mbid": "a4413307-4701-4251-8f51-5c4308ae0cba",
-      "year": "2010",
+      "name": "I’m Gay (I’m Happy)",
+      "mbid": "1fb883a7-bed9-467e-a345-38617ec3e5d8",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:keep-my-eyes-open-2",
+      "type": "project",
+      "name": "Keep My Eyes Open 2",
+      "mbid": "121195a4-dec2-4993-8e1e-f45b6427841e",
+      "year": "2011",
       "releaseType": "single"
+    },
+    {
+      "slug": "project:paint",
+      "type": "project",
+      "name": "Paint",
+      "mbid": "3284bea5-efe1-4efb-9543-43e1f1443290",
+      "year": "2010",
+      "releaseType": "ep"
     },
     {
       "slug": "project:rain-in-england",
@@ -236,12 +335,30 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:paint",
+      "slug": "project:red-flame--lil-b",
       "type": "project",
-      "name": "Paint",
-      "mbid": "3284bea5-efe1-4efb-9543-43e1f1443290",
+      "name": "Red Flame",
+      "artist": "Lil B",
+      "mbid": "90deb1e0-7829-49c5-baea-73d078ce6497",
       "year": "2010",
-      "releaseType": "ep"
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wonton-soup",
+      "type": "project",
+      "name": "Wonton Soup",
+      "mbid": "a4413307-4701-4251-8f51-5c4308ae0cba",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:6-kiss--lil-b",
+      "type": "project",
+      "name": "6 Kiss",
+      "artist": "Lil B",
+      "mbid": "190fd5a4-663f-41ab-875e-cbf0936af617",
+      "year": "2009",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

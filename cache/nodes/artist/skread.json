@@ -38,6 +38,24 @@
   ],
   "discography": [
     {
+      "slug": "project:instrus-2-0--skread",
+      "type": "project",
+      "name": "Instrus 2.0",
+      "artist": "Skread",
+      "mbid": "f9e27341-71ea-4c4c-9af4-07fa135faac9",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:instrus--skread",
+      "type": "project",
+      "name": "Instrus",
+      "artist": "Skread",
+      "mbid": "5eeee768-306b-458f-8803-e31ce43e349c",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:autopsie-vol-1",
       "type": "project",
       "name": "Autopsie, Vol. 1"

@@ -58,12 +58,18 @@
     {
       "slug": "project:in-search-of-eddie-riff",
       "type": "project",
-      "name": "In Search of Eddie Riff"
+      "name": "In Search of Eddie Riff",
+      "mbid": "62deeeb7-0280-3fd7-aef2-516a6ad461c3",
+      "year": "1999",
+      "releaseType": "album"
     },
     {
       "slug": "project:resolving-contradictions",
       "type": "project",
-      "name": "Resolving Contradictions"
+      "name": "Resolving Contradictions",
+      "mbid": "ecec9355-19c1-4eba-a7e7-63c8d3094ae5",
+      "year": "1978",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

@@ -79,9 +79,210 @@
   ],
   "discography": [
     {
+      "slug": "project:try-a-little-tenderness--otis-redding",
+      "type": "project",
+      "name": "Try a Little Tenderness",
+      "artist": "Otis Redding",
+      "mbid": "5e2cacc2-ce7a-4dde-85dc-26ed82dc6881",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tell-the-truth--otis-redding",
+      "type": "project",
+      "name": "Tell the Truth",
+      "artist": "Otis Redding",
+      "mbid": "2b2af301-5d5a-3eda-9549-2f02e8dc3399",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-man--otis-redding",
+      "type": "project",
+      "name": "Love Man",
+      "artist": "Otis Redding",
+      "mbid": "13482d8b-1f33-3cfb-adc1-6bf934970622",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sittin-on-the-dock-of-the-bay--otis-redding",
+      "type": "project",
+      "name": "(Sittin' on) The Dock of the Bay",
+      "artist": "Otis Redding",
+      "mbid": "b9023e0d-10e7-4f17-b416-f7ee5156ceb8",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hard-to-handle-amen--otis-redding",
+      "type": "project",
+      "name": "Hard to Handle / Amen",
+      "artist": "Otis Redding",
+      "mbid": "8823b8b0-214d-4398-a171-1994052aaa4e",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-ve-got-dreams-to-remember--otis-redding",
+      "type": "project",
+      "name": "I've Got Dreams to Remember",
+      "artist": "Otis Redding",
+      "mbid": "100b7264-a51f-4add-a04e-abe4691fb8e6",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:papa-s-got-a-brand-new-bag-direct-me--otis-redding",
+      "type": "project",
+      "name": "Papa’s Got a Brand New Bag / Direct Me",
+      "artist": "Otis Redding",
+      "mbid": "48ba770c-212f-4bd1-a645-0b1a7e951874",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-immortal-otis-redding--otis-redding",
+      "type": "project",
+      "name": "The Immortal Otis Redding",
+      "artist": "Otis Redding",
+      "mbid": "1f8e1ab8-c846-3e92-98c5-e84add4d6705",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:white-christmas-merry-christmas-baby--otis-redding",
+      "type": "project",
+      "name": "White Christmas / Merry Christmas Baby",
+      "artist": "Otis Redding",
+      "mbid": "8e59bbbb-e7e6-436d-99ff-62f12042bb4a",
+      "year": "1968",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:king-and-queen--otis-redding",
+      "type": "project",
+      "name": "King & Queen",
+      "artist": "Otis Redding",
+      "mbid": "31330889-a8cf-3467-ba1d-955e6e0ac4e1",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tramp-tell-it-like-it-is--otis-redding",
+      "type": "project",
+      "name": "Tramp / Tell It Like It Is",
+      "artist": "Otis Redding",
+      "mbid": "90b61205-a4c9-4ac2-8b1e-80f008150657",
+      "year": "1967",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:complete-and-unbelievable-the-otis-redding-dictionary-of-soul--otis-redding",
+      "type": "project",
+      "name": "Complete & Unbelievable: The Otis Redding Dictionary of Soul",
+      "artist": "Otis Redding",
+      "mbid": "aeea2d91-3d98-389e-92fc-ff0db34762be",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fa-fa-fa-fa-fa-sad-song-good-to-me--otis-redding",
+      "type": "project",
+      "name": "Fa-Fa-Fa-Fa-Fa (Sad Song) / Good To Me",
+      "artist": "Otis Redding",
+      "mbid": "000a2c0b-d6e1-43ff-9b41-811b6738f42d",
+      "year": "1966",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-soul-album--otis-redding",
+      "type": "project",
+      "name": "The Soul Album",
+      "artist": "Otis Redding",
+      "mbid": "fdb2005c-78ac-38c8-951d-696e44b6e29c",
+      "year": "1966",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-can-t-turn-you-loose-just-one-more-day--otis-redding",
+      "type": "project",
+      "name": "I Can't Turn You Loose / Just One More Day",
+      "artist": "Otis Redding",
+      "mbid": "6e32ed10-7319-3be5-9827-95c7b629b120",
+      "year": "1965",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-ve-been-loving-you-too-long-to-stop-now-i-m-depending-on-you--otis-redding",
+      "type": "project",
+      "name": "I've Been Loving You Too Long (To Stop Now) / I'm Depending on You",
+      "artist": "Otis Redding",
+      "mbid": "3bbf9daf-50b8-4821-9483-7d67439ef4c9",
+      "year": "1965",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:otis-blue-otis-redding-sings-soul--otis-redding",
+      "type": "project",
+      "name": "Otis Blue / Otis Redding Sings Soul",
+      "artist": "Otis Redding",
+      "mbid": "2c8fd4f3-1523-3604-97dd-18ba222e2f3b",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shake--otis-redding",
+      "type": "project",
+      "name": "Shake",
+      "artist": "Otis Redding",
+      "mbid": "9cd7ac61-9e0b-40bc-b45c-c185cf251215",
+      "year": "1965",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-great-otis-redding-sings-soul-ballads--otis-redding",
+      "type": "project",
+      "name": "The Great Otis Redding Sings Soul Ballads",
+      "artist": "Otis Redding",
+      "mbid": "2df0f332-2014-3f4c-b244-24652b5553f8",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:pain-in-my-heart",
       "type": "project",
-      "name": "Pain in My Heart"
+      "name": "Pain in My Heart",
+      "mbid": "b7998522-2870-3116-a1d4-307832e55df7",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:that-s-what-my-heart-needs-mary-s-little-lamb--otis-redding",
+      "type": "project",
+      "name": "That's What My Heart Needs / Mary's Little Lamb",
+      "artist": "Otis Redding",
+      "mbid": "e5528c5b-75b2-42be-8f26-9cc354910e9e",
+      "year": "1963",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:these-arms-of-mine-hey-hey-baby--otis-redding",
+      "type": "project",
+      "name": "These Arms of Mine / Hey Hey Baby",
+      "artist": "Otis Redding",
+      "mbid": "bef65d3b-7904-4f90-be85-762b830c08e2",
+      "year": "1962",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fat-gal-shout-bamalama--otis-redding",
+      "type": "project",
+      "name": "Fat Gal / Shout Bamalama",
+      "artist": "Otis Redding",
+      "mbid": "6a34406d-e7be-4d48-baea-6ddc6e2f32f3",
+      "year": "1961",
+      "releaseType": "single"
     },
     {
       "slug": "project:the-otis-redding-dictionary-of-soul",

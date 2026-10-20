@@ -57,7 +57,71 @@
       "name": "Too Pure"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:rooting-for-love--laetitia-sadier",
+      "type": "project",
+      "name": "Rooting for Love",
+      "artist": "Laetitia Sadier",
+      "mbid": "1529f82c-7025-4495-aebd-4ba09f0922cc",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:new-moon--laetitia-sadier",
+      "type": "project",
+      "name": "New Moon",
+      "artist": "Laetitia Sadier",
+      "mbid": "e8ae8ec8-36b4-4d3d-aa5f-361f8ada883d",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dry-fruit--laetitia-sadier",
+      "type": "project",
+      "name": "Dry Fruit",
+      "artist": "Laetitia Sadier",
+      "mbid": "a31bbab5-436a-469a-a328-3eaffe8e1b62",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:something-shines--laetitia-sadier",
+      "type": "project",
+      "name": "Something Shines",
+      "artist": "Laetitia Sadier",
+      "mbid": "745f7f13-0324-4fe8-905b-fd6ab8624e9f",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:then-i-will-love-you-again--laetitia-sadier",
+      "type": "project",
+      "name": "Then, I Will Love You Again",
+      "artist": "Laetitia Sadier",
+      "mbid": "acd98be2-142c-465c-a487-5c10760fe5d0",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:silencio--laetitia-sadier",
+      "type": "project",
+      "name": "Silencio",
+      "artist": "Laetitia Sadier",
+      "mbid": "d831c45c-4a2b-4729-9052-b3b041c81e3c",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-trip--laetitia-sadier",
+      "type": "project",
+      "name": "The Trip",
+      "artist": "Laetitia Sadier",
+      "mbid": "8b26219f-1933-4e99-b807-87de7b14a539",
+      "year": "2010",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [],

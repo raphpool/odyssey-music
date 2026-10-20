@@ -63,7 +63,44 @@
       "name": "Philips Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:oeuvres-1948-1952--pierre-schaeffer",
+      "type": "project",
+      "name": "Œuvres 1948-1952",
+      "artist": "Pierre Schaeffer",
+      "mbid": "9ff2cf93-8af0-4bda-9bdb-e42f8aa5cd3f",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:oeuvres-1958-1979--pierre-schaeffer",
+      "type": "project",
+      "name": "Œuvres 1958-1979",
+      "artist": "Pierre Schaeffer",
+      "mbid": "ba826881-ea07-43ea-905e-0ef1f8a900d6",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:le-triedre-fertile--pierre-schaeffer",
+      "type": "project",
+      "name": "Le Trièdre fertile",
+      "artist": "Pierre Schaeffer",
+      "mbid": "c9593fbe-23a6-4f3f-b5cf-93fdbaedb849",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:symphonie-pour-un-homme-seul-concerto-des-ambiguites--pierre-schaeffer",
+      "type": "project",
+      "name": "Symphonie pour un homme seul / Concerto des ambiguïtés",
+      "artist": "Pierre Schaeffer",
+      "mbid": "61f4ea75-b495-4a03-b304-05a1ec4a4f57",
+      "year": "1973",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [],
   "influences": [],
   "influenced": [

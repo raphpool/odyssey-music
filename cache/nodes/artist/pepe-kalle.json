@@ -50,6 +50,15 @@
   ],
   "discography": [
     {
+      "slug": "project:l-argent-ne-fait-pas-le-bonheur--pepe-kalle",
+      "type": "project",
+      "name": "L'argent ne fait pas le bonheur!",
+      "artist": "Pépé Kallé",
+      "mbid": "5c33beb5-343b-40ce-a67a-daf896306c8f",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:zouke-zouke",
       "type": "project",
       "name": "Zouke Zouke"
@@ -57,7 +66,9 @@
     {
       "slug": "project:gerant",
       "type": "project",
-      "name": "Gérant"
+      "name": "Gérant",
+      "mbid": "4d7fb143-833d-3feb-910e-4470c0bf9b38",
+      "releaseType": "album"
     },
     {
       "slug": "project:moyibi",
@@ -72,7 +83,17 @@
     {
       "slug": "project:cocktail",
       "type": "project",
-      "name": "Cocktail"
+      "name": "Cocktail",
+      "mbid": "970ae690-723f-3914-b888-214d3fc0991e",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gigantafrique--pepe-kalle",
+      "type": "project",
+      "name": "Gigantafrique",
+      "artist": "Pépé Kallé",
+      "mbid": "7533d0ea-9402-4181-ba3c-b8f106e9a1cc",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

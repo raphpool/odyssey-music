@@ -51,6 +51,249 @@
   ],
   "discography": [
     {
+      "slug": "project:sound-pieces--pauline-oliveros",
+      "type": "project",
+      "name": "Sound Pieces",
+      "artist": "Pauline Oliveros",
+      "mbid": "2d2bd7f6-d935-4736-b9d6-b259de3d17b4",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:silence--pauline-oliveros",
+      "type": "project",
+      "name": "Silence",
+      "artist": "Pauline Oliveros",
+      "mbid": "579c0aeb-d74a-425b-96ea-2997dc180b4e",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-well-the-gentle--pauline-oliveros",
+      "type": "project",
+      "name": "The Well / The Gentle",
+      "artist": "Pauline Oliveros",
+      "mbid": "470ddafc-7eac-47f2-9474-32d6f23f391f",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:we-are-still-thinking-about-the-title--pauline-oliveros",
+      "type": "project",
+      "name": "We Are Still Thinking About the Title",
+      "artist": "Pauline Oliveros",
+      "mbid": "37687b68-e363-43dc-a5d2-ddb6fad513a4",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sounding-way--pauline-oliveros",
+      "type": "project",
+      "name": "Sounding / Way",
+      "artist": "Pauline Oliveros",
+      "mbid": "4b3a3285-53c8-49b8-8fcc-35535c9a1a19",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:four-meditations-sound-geometrics--pauline-oliveros",
+      "type": "project",
+      "name": "Four Meditations / Sound Geometrics",
+      "artist": "Pauline Oliveros",
+      "mbid": "564ae843-6f80-48b9-924c-a2f09bc91ed5",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:water-above-sky-below-now--pauline-oliveros",
+      "type": "project",
+      "name": "Water Above Sky Below Now",
+      "artist": "Pauline Oliveros",
+      "mbid": "4689adac-b70e-4166-a082-29eac06ea558",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-dunrobin-session--pauline-oliveros",
+      "type": "project",
+      "name": "The Dunrobin Session",
+      "artist": "Pauline Oliveros",
+      "mbid": "11ea200b-4a90-453f-ab6b-b2f3fa748b3a",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:to-valerie-solanas-and-marilyn-monroe-in-recognition-of-their-desperation--pauline-oliveros",
+      "type": "project",
+      "name": "To Valerie Solanas and Marilyn Monroe in Recognition of Their Desperation",
+      "artist": "Pauline Oliveros",
+      "mbid": "8561de36-ffac-423d-b76e-8b992dac742d",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:four-electronic-pieces-1959-1966--pauline-oliveros",
+      "type": "project",
+      "name": "Four Electronic Pieces 1959–1966",
+      "artist": "Pauline Oliveros",
+      "mbid": "ac711d39-e087-3d09-aa49-3a5988648f57",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:accordion-koto--pauline-oliveros",
+      "type": "project",
+      "name": "Accordion Koto",
+      "artist": "Pauline Oliveros",
+      "mbid": "75df2ce1-0da2-41cd-8463-0c6cc5c6edd7",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lion-s-eye-lion-s-tale--pauline-oliveros",
+      "type": "project",
+      "name": "Lion's Eye / Lion's Tale",
+      "artist": "Pauline Oliveros",
+      "mbid": "e59b25fe-8977-404c-8c17-9bd38e19294b",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-little-noise-in-the-system--pauline-oliveros",
+      "type": "project",
+      "name": "A Little Noise in the System",
+      "artist": "Pauline Oliveros",
+      "mbid": "9517813a-b000-3a26-aa74-24b28df2f26c",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tara-s-room--pauline-oliveros",
+      "type": "project",
+      "name": "Tara's Room",
+      "artist": "Pauline Oliveros",
+      "mbid": "a324c4e5-82c0-36e2-a94e-d0aad6ded469",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-mo--pauline-oliveros",
+      "type": "project",
+      "name": "No Mo",
+      "artist": "Pauline Oliveros",
+      "mbid": "7b6a0fc0-1d1a-3168-a5f0-fa5edd7d196c",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pauline-oliveros-in-the-arms-of-reynols--pauline-oliveros",
+      "type": "project",
+      "name": "Pauline Oliveros in the Arms of Reynols",
+      "artist": "Pauline Oliveros",
+      "mbid": "ba19d221-7ab2-3784-ab33-d4b3db5ffcac",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:primordial-lift--pauline-oliveros",
+      "type": "project",
+      "name": "Primordial Lift",
+      "artist": "Pauline Oliveros",
+      "mbid": "5a9082f0-b2f9-3012-b3b9-f55be64e0281",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:springs--pauline-oliveros",
+      "type": "project",
+      "name": "Springs",
+      "artist": "Pauline Oliveros",
+      "mbid": "250a3e5c-84d7-3f93-977a-bdd961ac8461",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:summer-bugs--pauline-oliveros",
+      "type": "project",
+      "name": "Summer Bugs",
+      "artist": "Pauline Oliveros",
+      "mbid": "40dd2bcd-2e8b-3234-8e15-686cf9d4eb50",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ghostdance--pauline-oliveros",
+      "type": "project",
+      "name": "Ghostdance",
+      "artist": "Pauline Oliveros",
+      "mbid": "bc10d09a-5d01-3971-a72b-c8c1bd832d6b",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:alien-bog-beautiful-soop--pauline-oliveros",
+      "type": "project",
+      "name": "Alien Bog / Beautiful Soop",
+      "artist": "Pauline Oliveros",
+      "mbid": "60a20f3b-0d96-391f-aad7-682ece28a5f6",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:electronic-works--pauline-oliveros",
+      "type": "project",
+      "name": "Electronic Works",
+      "artist": "Pauline Oliveros",
+      "mbid": "1858b76b-df89-3eb3-9e38-adfe679dc1c8",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:st-george-and-the-dragon-in-memoriam-mr-whitney--pauline-oliveros",
+      "type": "project",
+      "name": "St. George and the Dragon / In Memoriam Mr. Whitney",
+      "artist": "Pauline Oliveros",
+      "mbid": "c87f92ea-b3d5-4705-9f12-6ce54bad74fd",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:crone-music--pauline-oliveros",
+      "type": "project",
+      "name": "Crone Music",
+      "artist": "Pauline Oliveros",
+      "mbid": "a9163dfb-d399-3d1a-b046-4409d7160b88",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-roots-of-the-moment--pauline-oliveros",
+      "type": "project",
+      "name": "The Roots of the Moment",
+      "artist": "Pauline Oliveros",
+      "mbid": "0cc931f2-f41a-427c-9865-05b81c3f9d40",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-well-and-the-gentle--pauline-oliveros",
+      "type": "project",
+      "name": "The Well and the Gentle",
+      "artist": "Pauline Oliveros",
+      "mbid": "7422f8d8-550d-4fa0-978f-b0b4347793ba",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:accordion-and-voice--pauline-oliveros",
+      "type": "project",
+      "name": "Accordion & Voice",
+      "artist": "Pauline Oliveros",
+      "mbid": "a7da3f6e-0d69-4b8f-9e02-3e8dfe202320",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:sonic-meditations",
       "type": "project",
       "name": "Sonic Meditations"

@@ -70,34 +70,358 @@
   ],
   "discography": [
     {
-      "slug": "project:mariah-carey",
+      "slug": "project:here-for-it-all--mariah-carey",
       "type": "project",
-      "name": "Mariah Carey"
+      "name": "Here for It All",
+      "artist": "Mariah Carey",
+      "mbid": "9af46078-2bef-47c2-9239-571d71932f88",
+      "year": "2025",
+      "releaseType": "album"
     },
     {
-      "slug": "project:emotions",
+      "slug": "project:mariah-carey-s-magical-christmas-special-apple-tv-original-soundtrack--mariah-carey",
       "type": "project",
-      "name": "Emotions"
+      "name": "Mariah Carey’s Magical Christmas Special: Apple TV+ Original Soundtrack",
+      "artist": "Mariah Carey",
+      "mbid": "cdea1401-9324-48e4-a7e4-a2d3e8ed7523",
+      "year": "2020",
+      "releaseType": "album"
     },
     {
-      "slug": "project:music-box",
+      "slug": "project:mariah-en-espanol--mariah-carey",
       "type": "project",
-      "name": "Music Box"
+      "name": "Mariah en español",
+      "artist": "Mariah Carey",
+      "mbid": "4dbf3f1a-27ba-4516-a3a4-2ba822d0541f",
+      "year": "2020",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:daydream",
+      "slug": "project:caution--mariah-carey",
       "type": "project",
-      "name": "Daydream"
+      "name": "Caution",
+      "artist": "Mariah Carey",
+      "mbid": "52584b35-309d-4d0b-895b-a7d215a1e673",
+      "year": "2018",
+      "releaseType": "album"
     },
     {
-      "slug": "project:butterfly",
+      "slug": "project:gtfo--mariah-carey",
       "type": "project",
-      "name": "Butterfly"
+      "name": "GTFO",
+      "artist": "Mariah Carey",
+      "mbid": "ed191044-a0b1-4559-bc7b-0713f05ccd95",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:me-i-am-mariah-the-elusive-chanteuse--mariah-carey",
+      "type": "project",
+      "name": "Me. I Am Mariah…The Elusive Chanteuse",
+      "artist": "Mariah Carey",
+      "mbid": "be041a02-cb71-4f77-965c-048d85c86978",
+      "year": "2014",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:merry-christmas-ii-you--mariah-carey",
+      "type": "project",
+      "name": "Merry Christmas II You",
+      "artist": "Mariah Carey",
+      "mbid": "7894fb13-3d22-47be-a710-d213adc99cb0",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:memoirs-of-an-imperfect-angel--mariah-carey",
+      "type": "project",
+      "name": "Memoirs of an Imperfect Angel",
+      "artist": "Mariah Carey",
+      "mbid": "57696575-b91f-45d1-ac7a-f2c80185b22a",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:obsessed--mariah-carey",
+      "type": "project",
+      "name": "Obsessed",
+      "artist": "Mariah Carey",
+      "mbid": "5cf5c426-b8aa-4e66-ba48-465a13ccc886",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:e-mc2--mariah-carey",
+      "type": "project",
+      "name": "E=MC²",
+      "artist": "Mariah Carey",
+      "mbid": "3e1ef971-24c7-3a9b-ba7b-f40bc0462c38",
+      "year": "2008",
+      "releaseType": "album"
     },
     {
       "slug": "project:the-emancipation-of-mimi",
       "type": "project",
-      "name": "The Emancipation of Mimi"
+      "name": "The Emancipation of Mimi",
+      "mbid": "2391debf-38aa-3a90-888e-51f857131e98",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:charmbracelet--mariah-carey",
+      "type": "project",
+      "name": "Charmbracelet",
+      "artist": "Mariah Carey",
+      "mbid": "235619d9-3dc8-3126-8af6-d77c6b5c1a97",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:glitter--mariah-carey",
+      "type": "project",
+      "name": "Glitter",
+      "artist": "Mariah Carey",
+      "mbid": "3f3f3f3b-16c9-34ea-910e-eb63056892e8",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:valentines--mariah-carey",
+      "type": "project",
+      "name": "Valentines",
+      "artist": "Mariah Carey",
+      "mbid": "b944a8c9-9b38-4adb-bb1e-bce06a509e42",
+      "year": "2000",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:heartbreaker--mariah-carey",
+      "type": "project",
+      "name": "Heartbreaker",
+      "artist": "Mariah Carey",
+      "mbid": "d4bc097e-33a3-3c43-ba62-64d7001968bc",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rainbow--mariah-carey",
+      "type": "project",
+      "name": "Rainbow",
+      "artist": "Mariah Carey",
+      "mbid": "4509577f-ee12-3e4f-bf50-730264301d31",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:breakdown--mariah-carey",
+      "type": "project",
+      "name": "Breakdown",
+      "artist": "Mariah Carey",
+      "mbid": "fc08931f-2ff5-4b1c-9434-0d968ede523a",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-still-believe--mariah-carey",
+      "type": "project",
+      "name": "I Still Believe",
+      "artist": "Mariah Carey",
+      "mbid": "394ef221-020b-3d41-93a7-61bb61b69a1c",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:my-all--mariah-carey",
+      "type": "project",
+      "name": "My All",
+      "artist": "Mariah Carey",
+      "mbid": "2172b4d7-bc8d-36e4-b3e0-f9591fec5502",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-roof-back-in-time--mariah-carey",
+      "type": "project",
+      "name": "The Roof (Back in Time)",
+      "artist": "Mariah Carey",
+      "mbid": "a354c049-f803-35fc-9874-4d534ca7a474",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:butterfly",
+      "type": "project",
+      "name": "Butterfly",
+      "mbid": "1ea6ffaa-df4f-31cc-955f-0fc57a9cf864",
+      "year": "1997",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:honey--mariah-carey",
+      "type": "project",
+      "name": "Honey",
+      "artist": "Mariah Carey",
+      "mbid": "dbc925e4-78d9-362e-9766-0339fb16981a",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:always-be-my-baby--mariah-carey",
+      "type": "project",
+      "name": "Always Be My Baby",
+      "artist": "Mariah Carey",
+      "mbid": "1f5310f1-e62a-38f6-b4fe-885a81d435b3",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:forever--mariah-carey",
+      "type": "project",
+      "name": "Forever",
+      "artist": "Mariah Carey",
+      "mbid": "db47cf74-5404-4552-ad80-9a3f8d742449",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:open-arms--mariah-carey",
+      "type": "project",
+      "name": "Open Arms",
+      "artist": "Mariah Carey",
+      "mbid": "ab1887b0-959b-36a8-960c-ce7c8e5f09ee",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:daydream",
+      "type": "project",
+      "name": "Daydream",
+      "mbid": "bf0126a1-b79c-3c9c-a892-f4bf4fac2bb0",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fantasy--mariah-carey",
+      "type": "project",
+      "name": "Fantasy",
+      "artist": "Mariah Carey",
+      "mbid": "1648d909-a941-3f3a-bfc1-95320a351320",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:one-sweet-day--mariah-carey",
+      "type": "project",
+      "name": "One Sweet Day",
+      "artist": "Mariah Carey",
+      "mbid": "c54c1738-02f8-3520-9a59-1c3d4d533720",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-i-want-for-christmas-is-you--mariah-carey",
+      "type": "project",
+      "name": "All I Want for Christmas Is You",
+      "artist": "Mariah Carey",
+      "mbid": "9e686e6e-ad1f-39c3-a8be-13b082f5eb7a",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:joy-to-the-world--mariah-carey",
+      "type": "project",
+      "name": "Joy to the World",
+      "artist": "Mariah Carey",
+      "mbid": "e33339ca-c6fb-4187-8572-977713b43718",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:merry-christmas--mariah-carey",
+      "type": "project",
+      "name": "Merry Christmas",
+      "artist": "Mariah Carey",
+      "mbid": "ea885664-bf25-3e52-8ce0-15a84aed4a83",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:never-forget-you--mariah-carey",
+      "type": "project",
+      "name": "Never Forget You",
+      "artist": "Mariah Carey",
+      "mbid": "8940be50-dd03-4d49-8dd7-4f3187eb67d0",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:o-holy-night--mariah-carey",
+      "type": "project",
+      "name": "O Holy Night",
+      "artist": "Mariah Carey",
+      "mbid": "08524c56-11ad-4a1c-a5d9-f19110c93f0d",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:without-you--mariah-carey",
+      "type": "project",
+      "name": "Without You",
+      "artist": "Mariah Carey",
+      "mbid": "d19b4c2e-236a-3459-821b-d6c8ea9d6726",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hero--mariah-carey",
+      "type": "project",
+      "name": "Hero",
+      "artist": "Mariah Carey",
+      "mbid": "4919e241-b9b7-32cb-8c0b-6d5c85aff4de",
+      "year": "1993",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:music-box",
+      "type": "project",
+      "name": "Music Box",
+      "mbid": "7625cb89-79a6-3a00-bc38-d44552add611",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-ll-be-there--mariah-carey",
+      "type": "project",
+      "name": "I’ll Be There",
+      "artist": "Mariah Carey",
+      "mbid": "f1e20069-9cc4-382d-bc9e-58816e33f0bd",
+      "year": "1992",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:emotions",
+      "type": "project",
+      "name": "Emotions",
+      "mbid": "1746a028-cb05-39db-9249-f2e58331fd23",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mariah-carey",
+      "type": "project",
+      "name": "Mariah Carey",
+      "mbid": "67cd8314-bdfc-3023-b4d0-46a0b06ff819",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:vision-of-love--mariah-carey",
+      "type": "project",
+      "name": "Vision of Love",
+      "artist": "Mariah Carey",
+      "mbid": "556f7e6c-57ed-4aaf-93a3-b57afcc59b66",
+      "year": "1990",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

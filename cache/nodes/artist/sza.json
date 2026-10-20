@@ -56,14 +56,6 @@
   ],
   "discography": [
     {
-      "slug": "project:is-it-cool",
-      "type": "project",
-      "name": "is it cool?",
-      "mbid": "41953313-f7b2-4e9f-a555-65e753405c7d",
-      "year": "2026",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:boy-in-red",
       "type": "project",
       "name": "BOY IN RED",
@@ -72,11 +64,20 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:girl-get-up",
+      "slug": "project:save-the-day--sza",
       "type": "project",
-      "name": "girl, get up.",
-      "mbid": "7ce52482-5f17-427c-892e-124011af0635",
-      "year": "2025",
+      "name": "Save the Day",
+      "artist": "SZA",
+      "mbid": "9c47388e-07d1-4c60-9324-7ba1a48d0b03",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:is-it-cool",
+      "type": "project",
+      "name": "is it cool?",
+      "mbid": "41953313-f7b2-4e9f-a555-65e753405c7d",
+      "year": "2026",
       "releaseType": "single"
     },
     {
@@ -96,11 +97,35 @@
       "releaseType": "single"
     },
     {
+      "slug": "project:girl-get-up",
+      "type": "project",
+      "name": "girl, get up.",
+      "mbid": "7ce52482-5f17-427c-892e-124011af0635",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:saturn",
       "type": "project",
       "name": "Saturn",
       "mbid": "3718f50a-c913-4920-ab66-e523e8bcbc43",
       "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kill-bill",
+      "type": "project",
+      "name": "Kill Bill",
+      "mbid": "4bf388c5-bdef-45c1-8e27-7c1359797a47",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kill-bill",
+      "type": "project",
+      "name": "Kill Bill (acoustic)",
+      "mbid": "239f5ce8-5933-4b56-a20f-835417e9b493",
+      "year": "2023",
       "releaseType": "single"
     },
     {
@@ -122,33 +147,25 @@
     {
       "slug": "project:snooze",
       "type": "project",
-      "name": "Snooze (acoustic)",
-      "mbid": "02e60293-3891-4ace-865b-d1590b628f5b",
-      "year": "2023",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:snooze",
-      "type": "project",
       "name": "Snooze",
       "mbid": "14cb0ff3-0b86-46d4-a907-b2764ce39b2b",
       "year": "2023",
       "releaseType": "single"
     },
     {
-      "slug": "project:kill-bill",
+      "slug": "project:snooze",
       "type": "project",
-      "name": "Kill Bill (acoustic)",
-      "mbid": "239f5ce8-5933-4b56-a20f-835417e9b493",
+      "name": "Snooze (acoustic)",
+      "mbid": "02e60293-3891-4ace-865b-d1590b628f5b",
       "year": "2023",
       "releaseType": "single"
     },
     {
-      "slug": "project:kill-bill",
+      "slug": "project:beautiful",
       "type": "project",
-      "name": "Kill Bill",
-      "mbid": "4bf388c5-bdef-45c1-8e27-7c1359797a47",
-      "year": "2023",
+      "name": "BEAUTIFUL",
+      "mbid": "36d4c80c-a866-4fd1-8717-5e4c01bde82c",
+      "year": "2022",
       "releaseType": "single"
     },
     {
@@ -168,42 +185,10 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:beautiful",
-      "type": "project",
-      "name": "BEAUTIFUL",
-      "mbid": "36d4c80c-a866-4fd1-8717-5e4c01bde82c",
-      "year": "2022",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:tread-carefully",
-      "type": "project",
-      "name": "Tread Carefully",
-      "mbid": "48a30c03-bc62-4afc-8747-60f0b347dcc5",
-      "year": "2021",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:i-hate-u",
       "type": "project",
       "name": "I Hate U",
       "mbid": "f91dd7b7-2c87-4cb9-ab00-514773b6da0d",
-      "year": "2021",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:fue-mejor",
-      "type": "project",
-      "name": "fue mejor",
-      "mbid": "87988813-c20b-4f0a-86c6-203511cb1d0e",
-      "year": "2021",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:the-anonymous-ones",
-      "type": "project",
-      "name": "The Anonymous Ones",
-      "mbid": "7e731ce2-3825-45d1-9622-1bde82988eba",
       "year": "2021",
       "releaseType": "single"
     },
@@ -224,6 +209,30 @@
       "releaseType": "single"
     },
     {
+      "slug": "project:the-anonymous-ones",
+      "type": "project",
+      "name": "The Anonymous Ones",
+      "mbid": "7e731ce2-3825-45d1-9622-1bde82988eba",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tread-carefully",
+      "type": "project",
+      "name": "Tread Carefully",
+      "mbid": "48a30c03-bc62-4afc-8747-60f0b347dcc5",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:fue-mejor",
+      "type": "project",
+      "name": "fue mejor",
+      "mbid": "87988813-c20b-4f0a-86c6-203511cb1d0e",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:good-days",
       "type": "project",
       "name": "Good Days",
@@ -240,6 +249,15 @@
       "releaseType": "single"
     },
     {
+      "slug": "project:the-other-side--sza",
+      "type": "project",
+      "name": "The Other Side",
+      "artist": "SZA",
+      "mbid": "2e9afe4b-4890-4a92-a684-459d1b189eac",
+      "year": "2020",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:just-us",
       "type": "project",
       "name": "Just Us",
@@ -248,18 +266,10 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:what-lovers-do",
+      "slug": "project:broken-clocks",
       "type": "project",
-      "name": "What Lovers Do",
-      "mbid": "3968c1c3-ad7e-48b1-b200-eb64af17e2fb",
-      "year": "2017",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:julia",
-      "type": "project",
-      "name": "Julia / (Tender)",
-      "mbid": "071b41c3-7d1b-4bb2-8164-4e01c82bc976",
+      "name": "Broken Clocks",
+      "mbid": "93d69227-71a7-4a24-a7c1-feb25fe4681d",
       "year": "2017",
       "releaseType": "single"
     },
@@ -272,10 +282,18 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:broken-clocks",
+      "slug": "project:drew-barrymore",
       "type": "project",
-      "name": "Broken Clocks",
-      "mbid": "93d69227-71a7-4a24-a7c1-feb25fe4681d",
+      "name": "Drew Barrymore",
+      "mbid": "b980bb62-ac5f-47fa-9b6f-d6722e652212",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:julia",
+      "type": "project",
+      "name": "Julia / (Tender)",
+      "mbid": "071b41c3-7d1b-4bb2-8164-4e01c82bc976",
       "year": "2017",
       "releaseType": "single"
     },
@@ -288,10 +306,10 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:drew-barrymore",
+      "slug": "project:what-lovers-do",
       "type": "project",
-      "name": "Drew Barrymore",
-      "mbid": "b980bb62-ac5f-47fa-9b6f-d6722e652212",
+      "name": "What Lovers Do",
+      "mbid": "3968c1c3-ad7e-48b1-b200-eb64af17e2fb",
       "year": "2017",
       "releaseType": "single"
     },
@@ -312,6 +330,14 @@
       "releaseType": "single"
     },
     {
+      "slug": "project:childs-play",
+      "type": "project",
+      "name": "Childs Play",
+      "mbid": "62b66a01-86b2-43a6-8443-2b4b14f495c4",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:sobriety",
       "type": "project",
       "name": "Sobriety",
@@ -328,11 +354,11 @@
       "releaseType": "ep"
     },
     {
-      "slug": "project:childs-play",
+      "slug": "project:ice-moon",
       "type": "project",
-      "name": "Childs Play",
-      "mbid": "62b66a01-86b2-43a6-8443-2b4b14f495c4",
-      "year": "2014",
+      "name": "Ice Moon",
+      "mbid": "f8932b65-a4e9-4ded-8a2c-c9d7e9667ee8",
+      "year": "2013",
       "releaseType": "single"
     },
     {
@@ -342,14 +368,6 @@
       "mbid": "40035d98-27d5-42a0-b66b-2b790d3a69cf",
       "year": "2013",
       "releaseType": "ep"
-    },
-    {
-      "slug": "project:ice-moon",
-      "type": "project",
-      "name": "Ice Moon",
-      "mbid": "f8932b65-a4e9-4ded-8a2c-c9d7e9667ee8",
-      "year": "2013",
-      "releaseType": "single"
     },
     {
       "slug": "project:see-sza-run",

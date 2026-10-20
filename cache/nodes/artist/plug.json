@@ -79,9 +79,66 @@
   ],
   "discography": [
     {
+      "slug": "project:variety-magic--plug",
+      "type": "project",
+      "name": "Variety Magic",
+      "artist": "Plug",
+      "mbid": "e895baf1-36bf-46d3-98ea-fa9d5c7547f3",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:back-on-time--plug",
+      "type": "project",
+      "name": "Back on Time",
+      "artist": "Plug",
+      "mbid": "c5245729-6e7b-4113-a7dd-4615b2431c79",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:here-it-comes-ep--plug",
+      "type": "project",
+      "name": "Here It Comes EP",
+      "artist": "Plug",
+      "mbid": "729594b2-57db-3fa4-a391-598352cfe1f1",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:drum-n-bass-for-papa",
       "type": "project",
-      "name": "Drum 'n' Bass for Papa"
+      "name": "Drum 'n' Bass for Papa",
+      "mbid": "075b3229-b625-3039-8ec4-0453ddb95a36",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:plug-1-visible-crater-funk-ep--plug",
+      "type": "project",
+      "name": "Plug 1: Visible Crater Funk EP",
+      "artist": "Plug",
+      "mbid": "ef5ceb06-0eb5-31bb-9fa4-cb0c1e8d9536",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:plug-2-rebuilt-kev-ep--plug",
+      "type": "project",
+      "name": "Plug 2: Rebuilt Kev EP",
+      "artist": "Plug",
+      "mbid": "b9691838-d280-3b13-ba96-90deadd13b71",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:plug-3-versatile-crib-funk-ep--plug",
+      "type": "project",
+      "name": "Plug 3: Versatile Crib Funk EP",
+      "artist": "Plug",
+      "mbid": "7fce3da9-92af-33b2-bed3-757bab774343",
+      "year": "1995",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

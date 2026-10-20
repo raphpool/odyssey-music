@@ -71,7 +71,107 @@
       "name": "Sky Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:as-long-as-the-light--michael-rother",
+      "type": "project",
+      "name": "As Long as the Light",
+      "artist": "Michael Rother",
+      "mbid": "df144288-b005-4d9d-b0a6-c7c0f4addff7",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dreaming--michael-rother",
+      "type": "project",
+      "name": "Dreaming",
+      "artist": "Michael Rother",
+      "mbid": "380827a7-7512-4d86-bae5-5049b50e0085",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:remember-the-great-adventure--michael-rother",
+      "type": "project",
+      "name": "Remember (The Great Adventure)",
+      "artist": "Michael Rother",
+      "mbid": "dfb46044-ec48-35a9-b799-6422d7d4ea16",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:esperanza--michael-rother",
+      "type": "project",
+      "name": "Esperanza",
+      "artist": "Michael Rother",
+      "mbid": "f86dcb70-99a9-4c4b-8299-f373cda91edd",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:traumreisen--michael-rother",
+      "type": "project",
+      "name": "Traumreisen",
+      "artist": "Michael Rother",
+      "mbid": "6751c6b2-b246-4fcd-9b28-eb83b01a7033",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sussherz-und-tiefenscharfe--michael-rother",
+      "type": "project",
+      "name": "Süßherz und Tiefenschärfe",
+      "artist": "Michael Rother",
+      "mbid": "cc41ebcd-0ecd-4451-be5f-dd986ce045b1",
+      "year": "1985",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:lust--michael-rother",
+      "type": "project",
+      "name": "Lust",
+      "artist": "Michael Rother",
+      "mbid": "41e8f7e5-de09-35d5-a0bf-85de2c9bb74f",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fernwarme--michael-rother",
+      "type": "project",
+      "name": "Fernwärme",
+      "artist": "Michael Rother",
+      "mbid": "e6da760b-7d96-4c5b-add4-b0ae475c95bb",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:katzenmusik--michael-rother",
+      "type": "project",
+      "name": "Katzenmusik",
+      "artist": "Michael Rother",
+      "mbid": "732ba41d-8b4c-3592-a761-51c132ffa59e",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sterntaler--michael-rother",
+      "type": "project",
+      "name": "Sterntaler",
+      "artist": "Michael Rother",
+      "mbid": "6f774a9d-cb14-3269-8990-4372d9213532",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:flammende-herzen--michael-rother",
+      "type": "project",
+      "name": "Flammende Herzen",
+      "artist": "Michael Rother",
+      "mbid": "709c880b-9980-35fd-9944-7f472ba86762",
+      "year": "1977",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:flammende-herzen",

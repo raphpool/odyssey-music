@@ -72,49 +72,121 @@
   ],
   "discography": [
     {
-      "slug": "project:dear-sir",
+      "slug": "project:redux--cat-power",
       "type": "project",
-      "name": "Dear Sir"
+      "name": "Redux",
+      "artist": "Cat Power",
+      "mbid": "33d2ca98-e2fa-4207-abcc-65aa34be2716",
+      "year": "2026",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:myra-lee",
+      "slug": "project:try-me--cat-power",
       "type": "project",
-      "name": "Myra Lee"
+      "name": "Try Me",
+      "artist": "Cat Power",
+      "mbid": "e5416a16-4cf5-47cd-999d-86f04d25b49e",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:what-would-the-community-think",
+      "slug": "project:covers--cat-power",
       "type": "project",
-      "name": "What Would the Community Think"
+      "name": "Covers",
+      "artist": "Cat Power",
+      "mbid": "1adaab4d-5ee5-4498-881d-d0256b9f277d",
+      "year": "2022",
+      "releaseType": "album"
     },
     {
-      "slug": "project:moon-pix",
+      "slug": "project:wanderer--cat-power",
       "type": "project",
-      "name": "Moon Pix"
-    },
-    {
-      "slug": "project:the-covers-record",
-      "type": "project",
-      "name": "The Covers Record"
-    },
-    {
-      "slug": "project:you-are-free",
-      "type": "project",
-      "name": "You Are Free"
-    },
-    {
-      "slug": "project:the-greatest",
-      "type": "project",
-      "name": "The Greatest"
-    },
-    {
-      "slug": "project:jukebox",
-      "type": "project",
-      "name": "Jukebox"
+      "name": "Wanderer",
+      "artist": "Cat Power",
+      "mbid": "83720f3f-3207-4a95-8fca-0d68c2b049b3",
+      "year": "2018",
+      "releaseType": "album"
     },
     {
       "slug": "project:sun",
       "type": "project",
-      "name": "Sun"
+      "name": "Sun",
+      "mbid": "71ca1851-2de4-42e4-b72e-40917118dfa9",
+      "year": "2012",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dark-end-of-the-street--cat-power",
+      "type": "project",
+      "name": "Dark End of the Street",
+      "artist": "Cat Power",
+      "mbid": "f7882213-dc4d-3cc3-831e-80667ad877da",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:jukebox",
+      "type": "project",
+      "name": "Jukebox",
+      "mbid": "5215626d-3664-3d34-a36f-b91bba827127",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-greatest",
+      "type": "project",
+      "name": "The Greatest",
+      "mbid": "1d09530d-2a86-3495-9de1-6636e5f8a0f1",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-are-free",
+      "type": "project",
+      "name": "You Are Free",
+      "mbid": "b24234fc-1afd-34df-9c42-92cb51cc0a36",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-covers-record",
+      "type": "project",
+      "name": "The Covers Record",
+      "mbid": "f79e58f0-f2d0-3037-9251-b0564cab654e",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:moon-pix",
+      "type": "project",
+      "name": "Moon Pix",
+      "mbid": "88d34969-dd30-32ee-a28b-eb8015f07116",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:myra-lee",
+      "type": "project",
+      "name": "Myra Lee",
+      "mbid": "dc58d3f2-cdea-3006-a998-21d614bed5e1",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:what-would-the-community-think",
+      "type": "project",
+      "name": "What Would the Community Think",
+      "mbid": "eadb8f2e-3924-314e-9565-eaee3b6a51e5",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dear-sir",
+      "type": "project",
+      "name": "Dear Sir",
+      "mbid": "b1d7bce1-68e4-38c7-8b17-164e0dceced3",
+      "year": "1995",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

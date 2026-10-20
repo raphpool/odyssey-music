@@ -53,9 +53,75 @@
   ],
   "discography": [
     {
+      "slug": "project:caribbean-dandee--joeystarr",
+      "type": "project",
+      "name": "Caribbean Dandee",
+      "artist": "JoeyStarr",
+      "mbid": "51200672-a791-4e0f-a442-cca9a0fdfd91",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:egomaniac--joeystarr",
+      "type": "project",
+      "name": "Egomaniac",
+      "artist": "JoeyStarr",
+      "mbid": "2e2f983f-d0f6-4da1-b605-42593abdc07d",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:jour-de-sortie--joeystarr",
+      "type": "project",
+      "name": "Jour de sortie",
+      "artist": "JoeyStarr",
+      "mbid": "776b6f18-3864-4e7f-91af-cc452e3bfa1d",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:gare-au-jaguarr",
       "type": "project",
-      "name": "Gare au Jaguarr"
+      "name": "Gare au Jaguarr",
+      "mbid": "9f24adb5-5d4e-39ed-a8fc-0e68aa31bece",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:meteque--joeystarr",
+      "type": "project",
+      "name": "Métèque",
+      "artist": "JoeyStarr",
+      "mbid": "6a033681-bdeb-4e55-bd4f-ef27c08f4a94",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pose-ton-gun-2--joeystarr",
+      "type": "project",
+      "name": "Pose ton Gun 2",
+      "artist": "JoeyStarr",
+      "mbid": "d76976f0-5d32-4118-9883-c9110b19af45",
+      "year": "2006",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gaz-l--joeystarr",
+      "type": "project",
+      "name": "Gaz-L",
+      "artist": "JoeyStarr",
+      "mbid": "94354f03-8d41-4f78-a81a-222bf900bde2",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:yamakasi-les-samourais-des-temps-modernes--joeystarr",
+      "type": "project",
+      "name": "Yamakasi : Les Samouraïs des temps modernes",
+      "artist": "JoeyStarr",
+      "mbid": "b2901929-8e25-4d9f-9cdc-e084e7b06577",
+      "year": "2001",
+      "releaseType": "album"
     },
     {
       "slug": "project:supreme-ntm",

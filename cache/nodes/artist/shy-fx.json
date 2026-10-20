@@ -56,7 +56,215 @@
       "name": "Digital Soundboy"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:100--shy-fx",
+      "type": "project",
+      "name": "100",
+      "artist": "Shy FX",
+      "mbid": "14714214-d904-4a75-ac30-1718d11466c7",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:nobu--shy-fx",
+      "type": "project",
+      "name": "NOBU",
+      "artist": "Shy FX",
+      "mbid": "8ee139cc-ebd6-49e1-bca7-836c15bf5f44",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:on-my-way--shy-fx",
+      "type": "project",
+      "name": "On My Way",
+      "artist": "Shy FX",
+      "mbid": "9f4cf514-fd9b-45e5-9dd8-9f78bd29dfad",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:skanga-riddim--shy-fx",
+      "type": "project",
+      "name": "Skanga Riddim",
+      "artist": "Shy FX",
+      "mbid": "64835c81-14dd-4ad9-89f4-586615b1d545",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:risk-it-all--shy-fx",
+      "type": "project",
+      "name": "Risk It All",
+      "artist": "Shy FX",
+      "mbid": "2a5bfe7d-0c57-4729-81ae-8521fd2e3679",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:rudeboy-design-soundtape--shy-fx",
+      "type": "project",
+      "name": "Rudeboy Design Soundtape",
+      "artist": "Shy FX",
+      "mbid": "261c92c7-8453-413a-90bc-37389f3788e4",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:darker-than-blue--shy-fx",
+      "type": "project",
+      "name": "Darker Than Blue",
+      "artist": "Shy FX",
+      "mbid": "9752eb2a-e0b9-4c62-b52c-27885f67c6e1",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:raggamuffin-soundtape--shy-fx",
+      "type": "project",
+      "name": "Raggamuffin SoundTape",
+      "artist": "Shy FX",
+      "mbid": "1fd47b0a-2a69-424b-8693-ccc12eee3043",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soon-come--shy-fx",
+      "type": "project",
+      "name": "Soon Come",
+      "artist": "Shy FX",
+      "mbid": "ecaec61f-96c0-40b2-8346-714f5a140c38",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:raver-ep--shy-fx",
+      "type": "project",
+      "name": "Raver EP",
+      "artist": "Shy FX",
+      "mbid": "2d03a9ae-83d2-4428-9c3c-1b011e1994e6",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:plastic-soul-palma--shy-fx",
+      "type": "project",
+      "name": "Plastic Soul / Palma",
+      "artist": "Shy FX",
+      "mbid": "24863271-e25a-48da-918e-abf8e079677f",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shake-your-body-shake-it--shy-fx",
+      "type": "project",
+      "name": "Shake Your Body / Shake It",
+      "artist": "Shy FX",
+      "mbid": "920e0c68-5b0d-3c50-923f-c21e3b09cd4b",
+      "year": "2001",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:back-2-back-volume-1--shy-fx",
+      "type": "project",
+      "name": "Back 2 Back (Volume 1)",
+      "artist": "Shy FX",
+      "mbid": "bad8bad8-cdb5-47b3-9e7e-59f986c283b3",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bambaata-funksta--shy-fx",
+      "type": "project",
+      "name": "Bambaata / Funksta",
+      "artist": "Shy FX",
+      "mbid": "08983ec4-ebfe-30c0-b6ee-256642f35d98",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bambaata-2012--shy-fx",
+      "type": "project",
+      "name": "Bambaata 2012",
+      "artist": "Shy FX",
+      "mbid": "8c63e9d8-3d26-3eb7-8b58-c2e56eb9a775",
+      "year": "1998",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pandoras-box--shy-fx",
+      "type": "project",
+      "name": "Pandoras Box",
+      "artist": "Shy FX",
+      "mbid": "ebcfbe9d-84e9-32af-9728-78b8b50f6dbf",
+      "year": "1997",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-message--shy-fx",
+      "type": "project",
+      "name": "The Message",
+      "artist": "Shy FX",
+      "mbid": "865d8b99-0140-3091-a263-6aa17457174d",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wolf-to-the-beat--shy-fx",
+      "type": "project",
+      "name": "Wolf / To The Beat",
+      "artist": "Shy FX",
+      "mbid": "cc9788c0-ced1-48d4-bbda-7fb2043a5157",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:just-an-example--shy-fx",
+      "type": "project",
+      "name": "Just an Example",
+      "artist": "Shy FX",
+      "mbid": "7d37137e-7445-358b-a217-6ffc5b51b84d",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:simple-tings--shy-fx",
+      "type": "project",
+      "name": "Simple 'Tings",
+      "artist": "Shy FX",
+      "mbid": "ed30125c-8262-40d5-964d-539507331ca8",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:this-style--shy-fx",
+      "type": "project",
+      "name": "This Style",
+      "artist": "Shy FX",
+      "mbid": "487fe2bc-c4f1-4482-b25c-44c0e02de21e",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:gangsta-kid-ep--shy-fx",
+      "type": "project",
+      "name": "Gangsta Kid EP",
+      "artist": "Shy FX",
+      "mbid": "da2f8631-fe42-4ac2-8828-de0094d408a4",
+      "year": "1994",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sound-of-the-beast-ep--shy-fx",
+      "type": "project",
+      "name": "Sound of the Beast EP",
+      "artist": "Shy FX",
+      "mbid": "bd9e9e58-852d-4368-a475-66ed11aea0bc",
+      "year": "1994",
+      "releaseType": "ep"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:original-nuttah",

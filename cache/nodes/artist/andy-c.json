@@ -37,7 +37,170 @@
       "name": "RAM Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:ricochet--andy-c",
+      "type": "project",
+      "name": "Ricochet",
+      "artist": "Andy C",
+      "mbid": "4d71bf9a-c52d-4f3e-b1bf-a56ae1d8f8a0",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:home-in-that-bass--andy-c",
+      "type": "project",
+      "name": "Home In That Bass",
+      "artist": "Andy C",
+      "mbid": "4bddfc30-f022-42cc-844f-55f659519944",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:indestructible--andy-c",
+      "type": "project",
+      "name": "Indestructible",
+      "artist": "Andy C",
+      "mbid": "617b9020-8755-45a3-9425-bec620168439",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:positions--andy-c",
+      "type": "project",
+      "name": "Positions",
+      "artist": "Andy C",
+      "mbid": "c8c5d6ff-1b48-4771-9da7-00371df738f5",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:punk--andy-c",
+      "type": "project",
+      "name": "Punk",
+      "artist": "Andy C",
+      "mbid": "ade83308-287e-4500-9798-3c7fddda8087",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:boom--andy-c",
+      "type": "project",
+      "name": "Boom",
+      "artist": "Andy C",
+      "mbid": "c5b8e9ff-4ba0-458a-9cfc-0b60f396227f",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ghost--andy-c",
+      "type": "project",
+      "name": "Ghost",
+      "artist": "Andy C",
+      "mbid": "06821712-e64f-4d6a-87b0-2b791b8ca35d",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:slip-n-slide-roll-on--andy-c",
+      "type": "project",
+      "name": "Slip ‘N’ Slide / Roll On",
+      "artist": "Andy C",
+      "mbid": "814abb4a-0d46-4940-a3b5-57876184df21",
+      "year": "2021",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:back-and-forth--andy-c",
+      "type": "project",
+      "name": "Back & Forth",
+      "artist": "Andy C",
+      "mbid": "78479448-8019-4c2e-8578-e23e235d644e",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:till-dawn--andy-c",
+      "type": "project",
+      "name": "Till Dawn",
+      "artist": "Andy C",
+      "mbid": "b1348fad-b55f-46c5-91c2-d52e535dfcdb",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:what-bass--andy-c",
+      "type": "project",
+      "name": "What Bass",
+      "artist": "Andy C",
+      "mbid": "25c841e0-fab2-42b7-a848-91d9b4015dfd",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:new-era--andy-c",
+      "type": "project",
+      "name": "New Era",
+      "artist": "Andy C",
+      "mbid": "b3f435d6-41ff-4c5f-9819-5e45cae613bd",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heartbeat-loud--andy-c",
+      "type": "project",
+      "name": "Heartbeat Loud",
+      "artist": "Andy C",
+      "mbid": "e0dee419-5560-4620-ac71-265d7bf28768",
+      "year": "2014",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:haunting-workout--andy-c",
+      "type": "project",
+      "name": "Haunting / Workout",
+      "artist": "Andy C",
+      "mbid": "253dcfd3-5c46-479c-a49d-7c8b96de56bd",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cool-down-roll-on--andy-c",
+      "type": "project",
+      "name": "Cool Down / Roll On",
+      "artist": "Andy C",
+      "mbid": "acc775e4-9b67-3828-a4a0-92df54273190",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cool-down-rasta-man--andy-c",
+      "type": "project",
+      "name": "Cool Down / Rasta Man",
+      "artist": "Andy C",
+      "mbid": "8800b8a1-dd98-489a-a511-e0d2de302002",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:bass-logic-e-p--andy-c",
+      "type": "project",
+      "name": "Bass Logic E.P.",
+      "artist": "Andy C",
+      "mbid": "c75b760b-4f81-47ed-b393-52ce80e49687",
+      "year": "1993",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sour-mash-e-p--andy-c",
+      "type": "project",
+      "name": "Sour Mash E.P.",
+      "artist": "Andy C",
+      "mbid": "164df162-b54b-4ac2-bb3e-1a4e19107f8a",
+      "year": "1992",
+      "releaseType": "ep"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:valley-of-the-shadows",

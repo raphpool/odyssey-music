@@ -91,34 +91,121 @@
   ],
   "discography": [
     {
-      "slug": "project:now-you-know",
+      "slug": "project:bl0000m--machinedrum",
       "type": "project",
-      "name": "Now You Know"
+      "name": "BL0000M",
+      "artist": "Machinedrum",
+      "mbid": "96a01536-ad94-4a6d-89a9-d01b1d71c0be",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:room",
+      "slug": "project:bl00ms--machinedrum",
       "type": "project",
-      "name": "Room(s)"
+      "name": "BL00MS",
+      "artist": "Machinedrum",
+      "mbid": "fbebbe9e-d6cf-4c17-b0c2-27bc793cff0d",
+      "year": "2026",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:no-1-knew--machinedrum",
+      "type": "project",
+      "name": "No 1 Knew",
+      "artist": "Machinedrum",
+      "mbid": "6ab13aa6-c7fd-4244-972f-694643f2408d",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:ugly--machinedrum",
+      "type": "project",
+      "name": "Ugly",
+      "artist": "Machinedrum",
+      "mbid": "521a6014-f565-4b69-93b9-8ec97dd8d04c",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:3for82",
+      "type": "project",
+      "name": "3FOR82",
+      "mbid": "12b1bdbe-63bb-473e-8a80-f5ac7107add3",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-view-of-u",
+      "type": "project",
+      "name": "A View of U",
+      "mbid": "ed13eb5b-dc3d-4791-9a02-5bfda3a1e84d",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:berry-patch--machinedrum",
+      "type": "project",
+      "name": "Berry Patch",
+      "artist": "Machinedrum",
+      "mbid": "2c01d31c-6aac-4ce5-ac50-e8ce28ef284a",
+      "year": "2020",
+      "releaseType": "ep"
     },
     {
       "slug": "project:vapor-city",
       "type": "project",
-      "name": "Vapor City"
+      "name": "Vapor City",
+      "mbid": "1ae62c02-a6a3-425c-8f54-7dbdd2ee5429",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:room",
+      "type": "project",
+      "name": "Room(s)",
+      "mbid": "c35ded09-4756-4587-8cb3-46150e27c78f",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:want-to-1-2--machinedrum",
+      "type": "project",
+      "name": "Want to 1 2?",
+      "artist": "Machinedrum",
+      "mbid": "da46e075-3e1c-42fe-9be9-df9529291245",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bidnezz--machinedrum",
+      "type": "project",
+      "name": "Bidnezz",
+      "artist": "Machinedrum",
+      "mbid": "8ce3efad-1664-3330-a270-7fbbec929b51",
+      "year": "2004",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:urban-biology--machinedrum",
+      "type": "project",
+      "name": "Urban Biology",
+      "artist": "Machinedrum",
+      "mbid": "2c1d5747-c4b6-313a-ae4b-c60e16acc14c",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:now-you-know",
+      "type": "project",
+      "name": "Now You Know",
+      "mbid": "7b8de034-55d5-339b-a255-856c1983fdf9",
+      "year": "2001",
+      "releaseType": "album"
     },
     {
       "slug": "project:human-energy",
       "type": "project",
       "name": "Human Energy"
-    },
-    {
-      "slug": "project:a-view-of-u",
-      "type": "project",
-      "name": "A View of U"
-    },
-    {
-      "slug": "project:3for82",
-      "type": "project",
-      "name": "3FOR82"
     }
   ],
   "notable_tracks": [

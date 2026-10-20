@@ -48,6 +48,42 @@
   ],
   "discography": [
     {
+      "slug": "project:the-inside-outtakes--bo-burnham",
+      "type": "project",
+      "name": "THE INSIDE OUTTAKES",
+      "artist": "Bo Burnham",
+      "mbid": "1d1cae70-7b92-4c8f-b3dd-ca9abec33737",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:all-eyes-on-me-song-only--bo-burnham",
+      "type": "project",
+      "name": "All Eyes on Me (song only)",
+      "artist": "Bo Burnham",
+      "mbid": "5077df7a-cc0b-4999-9000-e86fdc7c2ce4",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:inside-the-songs--bo-burnham",
+      "type": "project",
+      "name": "Inside (The Songs)",
+      "artist": "Bo Burnham",
+      "mbid": "0ab54c49-05dd-440c-ba9c-b70649c758a5",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bo-fo-sho--bo-burnham",
+      "type": "project",
+      "name": "Bo fo Sho",
+      "artist": "Bo Burnham",
+      "mbid": "6ef4f128-b42a-3563-9b6d-6db0afe7780a",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:inside--bo-burnham",
       "type": "project",
       "name": "Inside",

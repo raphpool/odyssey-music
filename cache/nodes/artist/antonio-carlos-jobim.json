@@ -151,18 +151,18 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:passarim",
-      "type": "project",
-      "name": "Passarim",
-      "mbid": "18cb18c9-4f1e-333c-9859-4b2a5f4f5583",
-      "year": "1987",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:inedito",
       "type": "project",
       "name": "Inédito",
       "mbid": "5c55a7c2-cf9a-32d3-84a4-76b6b4f8b49e",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:passarim",
+      "type": "project",
+      "name": "Passarim",
+      "mbid": "18cb18c9-4f1e-333c-9859-4b2a5f4f5583",
       "year": "1987",
       "releaseType": "album"
     },
@@ -215,18 +215,18 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:matita-pere",
-      "type": "project",
-      "name": "Matita Perê",
-      "mbid": "e894164e-204d-416e-a572-cd7e19fd2a47",
-      "year": "1973",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:jobim",
       "type": "project",
       "name": "Jobim",
       "mbid": "a8e27598-6f50-39b2-87f1-2bcb6c9ad30b",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:matita-pere",
+      "type": "project",
+      "name": "Matita Perê",
+      "mbid": "e894164e-204d-416e-a572-cd7e19fd2a47",
       "year": "1973",
       "releaseType": "album"
     },
@@ -237,14 +237,6 @@
       "mbid": "a43fe12f-35d5-44c3-9cf8-2a321290f075",
       "year": "1972",
       "releaseType": "single"
-    },
-    {
-      "slug": "project:tide",
-      "type": "project",
-      "name": "Tide",
-      "mbid": "27d85194-e2e9-3d86-b6c2-53fc3d7eb15c",
-      "year": "1970",
-      "releaseType": "album"
     },
     {
       "slug": "project:brazil",
@@ -263,11 +255,20 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:francis-albert-sinatra-and-antonio-carlos-jobim",
+      "slug": "project:the-adventurers--antonio-carlos-jobim",
       "type": "project",
-      "name": "Francis Albert Sinatra & Antônio Carlos Jobim",
-      "mbid": "943461cc-377c-3f96-9d89-4d3ff5b03d25",
-      "year": "1967",
+      "name": "The Adventurers",
+      "artist": "Antônio Carlos Jobim",
+      "mbid": "911ebfe6-3c61-48c5-b35d-9b6d62e16eb9",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tide",
+      "type": "project",
+      "name": "Tide",
+      "mbid": "27d85194-e2e9-3d86-b6c2-53fc3d7eb15c",
+      "year": "1970",
       "releaseType": "album"
     },
     {
@@ -279,18 +280,26 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:wave",
-      "type": "project",
-      "name": "Wave",
-      "mbid": "935fccc4-064a-339c-ba4c-b0acee6ff5eb",
-      "year": "1967",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:antonio-carlos-jobim-and-sergio-mendes",
       "type": "project",
       "name": "Antonio Carlos Jobim & Sérgio Mendes",
       "mbid": "bd2d1864-f84e-402b-baa4-3ab848cfea4c",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:francis-albert-sinatra-and-antonio-carlos-jobim",
+      "type": "project",
+      "name": "Francis Albert Sinatra & Antônio Carlos Jobim",
+      "mbid": "943461cc-377c-3f96-9d89-4d3ff5b03d25",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wave",
+      "type": "project",
+      "name": "Wave",
+      "mbid": "935fccc4-064a-339c-ba4c-b0acee6ff5eb",
       "year": "1967",
       "releaseType": "album"
     },
@@ -319,18 +328,18 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:getz-gilberto",
-      "type": "project",
-      "name": "Getz / Gilberto",
-      "mbid": "b248d212-aace-3c3e-a23d-e13aaac1f87a",
-      "year": "1964",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:caymmi-visita-tom",
       "type": "project",
       "name": "Caymmi visita Tom",
       "mbid": "608b1c11-9f3c-3f1f-9f2e-3cc4f6c76390",
+      "year": "1964",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:getz-gilberto",
+      "type": "project",
+      "name": "Getz / Gilberto",
+      "mbid": "b248d212-aace-3c3e-a23d-e13aaac1f87a",
       "year": "1964",
       "releaseType": "album"
     },
@@ -348,6 +357,24 @@
       "name": "Brasília: Sinfonia da Alvorada",
       "mbid": "ef8b88e0-8ef1-428a-baa1-9a8a5b5b42cc",
       "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:black-orpheus--antonio-carlos-jobim",
+      "type": "project",
+      "name": "Black Orpheus",
+      "artist": "Antônio Carlos Jobim",
+      "mbid": "4c93e2ff-54a7-3a8a-9bec-45c64eb37950",
+      "year": "1959",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:orfeu-da-conceicao--antonio-carlos-jobim",
+      "type": "project",
+      "name": "Orfeu da Conceição",
+      "artist": "Antônio Carlos Jobim",
+      "mbid": "ceabdc4d-5bc9-3d71-ab5e-1aee537be24f",
+      "year": "1956",
       "releaseType": "album"
     },
     {

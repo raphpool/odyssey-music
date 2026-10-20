@@ -57,24 +57,72 @@
   ],
   "discography": [
     {
-      "slug": "project:lyot",
+      "slug": "project:reductions-1995-1997",
       "type": "project",
-      "name": "Lyot"
+      "name": "Reductions 1995-1997",
+      "mbid": "523061c0-77da-44fd-8128-a14281b4d7cb",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ranges--vainqueur",
+      "type": "project",
+      "name": "Ranges",
+      "artist": "Vainqueur",
+      "mbid": "f58cb829-40fd-468d-9dc1-d06097963c64",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lyot-brain-ticket--vainqueur",
+      "type": "project",
+      "name": "Lyot / Brain Ticket",
+      "artist": "Vainqueur",
+      "mbid": "b3f8e9f8-eeaa-3c80-ba6f-e5e43860787c",
+      "year": "2000",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:elevation-ii--vainqueur",
+      "type": "project",
+      "name": "Elevation II",
+      "artist": "Vainqueur",
+      "mbid": "59604c06-3cf6-484c-9ebb-047e1dcb1b65",
+      "year": "1997",
+      "releaseType": "single"
     },
     {
       "slug": "project:elevation",
       "type": "project",
-      "name": "Elevation"
+      "name": "Elevation",
+      "mbid": "3b22caf1-62e9-3a24-aeaa-fcf41462acf1",
+      "year": "1996",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:reduce--vainqueur",
+      "type": "project",
+      "name": "Reduce",
+      "artist": "Vainqueur",
+      "mbid": "d23000ae-69f4-3c54-b48c-cc2353172899",
+      "year": "1996",
+      "releaseType": "single"
     },
     {
       "slug": "project:solanus",
       "type": "project",
-      "name": "Solanus"
+      "name": "Solanus",
+      "mbid": "710026bb-8799-39a6-9c4c-c7f44e7814b9",
+      "year": "1996",
+      "releaseType": "ep"
     },
     {
-      "slug": "project:reductions-1995-1997",
+      "slug": "project:lyot",
       "type": "project",
-      "name": "Reductions 1995-1997"
+      "name": "Lyot",
+      "mbid": "bc33d139-6f44-3c9e-a57d-cc8df8debeef",
+      "year": "1992",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

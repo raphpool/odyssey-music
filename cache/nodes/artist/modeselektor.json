@@ -61,29 +61,278 @@
   ],
   "discography": [
     {
-      "slug": "project:hello-mom",
+      "slug": "project:blockchain--modeselektor",
       "type": "project",
-      "name": "Hello Mom!"
+      "name": "Blockchain",
+      "artist": "Modeselektor",
+      "mbid": "18019f42-3b65-41dc-bf24-6823e96dd602",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:happy-birthday",
+      "slug": "project:bullerbu--modeselektor",
       "type": "project",
-      "name": "Happy Birthday!"
+      "name": "Bullerbü",
+      "artist": "Modeselektor",
+      "mbid": "6e68cb38-019c-4d19-b33b-e65b0105a43c",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:monkeytown",
+      "slug": "project:classics-vol-1--modeselektor",
       "type": "project",
-      "name": "Monkeytown"
+      "name": "Classics Vol. 1",
+      "artist": "Modeselektor",
+      "mbid": "25a8d71f-a1d7-4c0b-8b24-b9c0146a1bd2",
+      "year": "2026",
+      "releaseType": "album"
     },
     {
-      "slug": "project:who-else",
+      "slug": "project:this-track-kills-fascism--modeselektor",
       "type": "project",
-      "name": "Who Else"
+      "name": "This Track Kills Fascism",
+      "artist": "Modeselektor",
+      "mbid": "295831be-85df-402e-af7f-7a202d6439bf",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kill-bill-vol-4-cv1--modeselektor",
+      "type": "project",
+      "name": "Kill Bill Vol.4 (CV1)",
+      "artist": "Modeselektor",
+      "mbid": "1a049e1c-8972-4a82-97e7-48ae33ea2321",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mega-mega-mega-dj-kicks--modeselektor",
+      "type": "project",
+      "name": "MEGA MEGA MEGA (DJ-Kicks)",
+      "artist": "Modeselektor",
+      "mbid": "4059cfbb-c2f7-43ce-a6a0-3afe9ae44ed6",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dating-is-in-china--modeselektor",
+      "type": "project",
+      "name": "Dating Is in China",
+      "artist": "Modeselektor",
+      "mbid": "4a844ea8-dde7-4d24-8ad5-bf633cf6526e",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:extlp--modeselektor",
+      "type": "project",
+      "name": "EXTLP",
+      "artist": "Modeselektor",
+      "mbid": "9d9d807d-70d1-4846-aa65-ff9809c7ee3e",
+      "year": "2021",
+      "releaseType": "album"
     },
     {
       "slug": "project:extended",
       "type": "project",
-      "name": "Extended"
+      "name": "Extended",
+      "mbid": "b048f1cf-c14c-47a8-9899-a0f602873f52",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:extended-chords--modeselektor",
+      "type": "project",
+      "name": "Extended Chords",
+      "artist": "Modeselektor",
+      "mbid": "f28263a3-4e40-45bc-8823-428c02e44f61",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:komm--modeselektor",
+      "type": "project",
+      "name": "Komm",
+      "artist": "Modeselektor",
+      "mbid": "6554fc3a-a118-4f92-96a2-b5db9cc8f11e",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mean-friend--modeselektor",
+      "type": "project",
+      "name": "Mean Friend",
+      "artist": "Modeselektor",
+      "mbid": "c2855873-800a-4f2c-a3bd-098312ee181b",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:missed-opportunities--modeselektor",
+      "type": "project",
+      "name": "Missed Opportunities",
+      "artist": "Modeselektor",
+      "mbid": "6f7efcd1-5ea6-489a-a097-f57a71d821f7",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:social-distancing--modeselektor",
+      "type": "project",
+      "name": "Social Distancing",
+      "artist": "Modeselektor",
+      "mbid": "20c9d115-a27d-4c0f-94a0-56fbc6ee8234",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-am-your-god-bronko--modeselektor",
+      "type": "project",
+      "name": "I Am Your God / Bronko",
+      "artist": "Modeselektor",
+      "mbid": "249389ba-e6e7-463c-837a-9ca1eaadfc1c",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:who--modeselektor",
+      "type": "project",
+      "name": "Who",
+      "artist": "Modeselektor",
+      "mbid": "d655c660-9882-4b12-a4dc-4b7f9bebb697",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:who-else",
+      "type": "project",
+      "name": "Who Else",
+      "mbid": "6e114260-761c-4044-9885-02a2986d4410",
+      "year": "2019",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wealth--modeselektor",
+      "type": "project",
+      "name": "Wealth",
+      "artist": "Modeselektor",
+      "mbid": "9359e998-f68e-4f85-b206-48dec60faead",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:trees-50-trees--modeselektor",
+      "type": "project",
+      "name": "Trees / 50 Trees",
+      "artist": "Modeselektor",
+      "mbid": "733afae1-c7f3-4b3d-b2f9-10838a565442",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:evil-twin-german-clap--modeselektor",
+      "type": "project",
+      "name": "Evil Twin / German Clap",
+      "artist": "Modeselektor",
+      "mbid": "6991c0b7-01b9-458b-9892-297130451c91",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:this--modeselektor",
+      "type": "project",
+      "name": "This",
+      "artist": "Modeselektor",
+      "mbid": "5e6f588c-5891-46e1-bbc4-c56d170b701c",
+      "year": "2012",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:monkeytown",
+      "type": "project",
+      "name": "Monkeytown",
+      "mbid": "36eb7d49-e030-4564-8473-28d5dd1a9ec6",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:shipwreck--modeselektor",
+      "type": "project",
+      "name": "Shipwreck",
+      "artist": "Modeselektor",
+      "mbid": "0438388d-d61c-4949-9368-6329ee1ab5d0",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:art-and-cash--modeselektor",
+      "type": "project",
+      "name": "Art & Cash",
+      "artist": "Modeselektor",
+      "mbid": "6d5fc96f-57d1-4885-a701-93949b93632e",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:happy-birthday",
+      "type": "project",
+      "name": "Happy Birthday!",
+      "mbid": "f88f809c-d2d1-387c-bd96-28b5aa323813",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-dark-side-of-the-sun--modeselektor",
+      "type": "project",
+      "name": "The Dark Side of the Sun",
+      "artist": "Modeselektor",
+      "mbid": "f11eed96-8064-3ce4-a5c3-918d10f6e865",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hello-mom",
+      "type": "project",
+      "name": "Hello Mom!",
+      "mbid": "b9bb1479-5fa8-3c2b-b4d3-ff751ff57373",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:turn-deaf--modeselektor",
+      "type": "project",
+      "name": "Turn Deaf!",
+      "artist": "Modeselektor",
+      "mbid": "5b38652c-f70e-37e7-b24c-d4c15e1999c6",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ganes-de-frau-vol-1--modeselektor",
+      "type": "project",
+      "name": "Ganes De Frau Vol. 1",
+      "artist": "Modeselektor",
+      "mbid": "9d1ddb26-1213-364d-838c-99d49074a43b",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:death-medley--modeselektor",
+      "type": "project",
+      "name": "Death Medley",
+      "artist": "Modeselektor",
+      "mbid": "9662f629-4d53-3164-8a35-fd42340e9c55",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:in-loving-memory--modeselektor",
+      "type": "project",
+      "name": "In Loving Memory",
+      "artist": "Modeselektor",
+      "mbid": "bd0fde18-164c-3b67-9bd7-aa18ba9452a4",
+      "year": "2002",
+      "releaseType": "ep"
     }
   ],
   "notable_tracks": [

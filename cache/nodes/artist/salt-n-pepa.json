@@ -74,20 +74,20 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:shoop-re-recorded",
-      "type": "project",
-      "name": "Shoop (Re‐Recorded) [Sped Up]",
-      "mbid": "908f4f1d-3804-425a-8a77-56b1749fd479",
-      "year": "2023",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:push-it",
       "type": "project",
       "name": "Push It (Re-Recorded - Sped Up)",
       "mbid": "e20fa76b-b805-4bea-865f-fc39e72bd90f",
       "year": "2023",
       "releaseType": "ep"
+    },
+    {
+      "slug": "project:shoop-re-recorded",
+      "type": "project",
+      "name": "Shoop (Re‐Recorded) [Sped Up]",
+      "mbid": "908f4f1d-3804-425a-8a77-56b1749fd479",
+      "year": "2023",
+      "releaseType": "single"
     },
     {
       "slug": "project:push-it",
@@ -154,6 +154,14 @@
       "releaseType": "single"
     },
     {
+      "slug": "project:heaven-n-hell",
+      "type": "project",
+      "name": "Heaven ’n Hell",
+      "mbid": "87dfbe96-ddec-44a2-926a-06efe36f1dad",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:none-of-your-business",
       "type": "project",
       "name": "None of Your Business",
@@ -162,11 +170,11 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:heaven-n-hell",
+      "slug": "project:shoop",
       "type": "project",
-      "name": "Heaven ’n Hell",
-      "mbid": "87dfbe96-ddec-44a2-926a-06efe36f1dad",
-      "year": "1994",
+      "name": "Shoop",
+      "mbid": "f1f6a433-fef9-3ea8-8256-26a188c488b5",
+      "year": "1993",
       "releaseType": "single"
     },
     {
@@ -176,14 +184,6 @@
       "mbid": "4ec41ccd-e2b5-3e7a-8a4b-33d143b601d9",
       "year": "1993",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:shoop",
-      "type": "project",
-      "name": "Shoop",
-      "mbid": "f1f6a433-fef9-3ea8-8256-26a188c488b5",
-      "year": "1993",
-      "releaseType": "single"
     },
     {
       "slug": "project:whatta-man",
@@ -210,14 +210,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:do-you-want-me",
-      "type": "project",
-      "name": "Do You Want Me",
-      "mbid": "f8abd2e3-5ad6-407a-9639-f67736104188",
-      "year": "1991",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:backyard",
       "type": "project",
       "name": "Backyard",
@@ -226,10 +218,10 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:let-s-talk-about-sex",
+      "slug": "project:do-you-want-me",
       "type": "project",
-      "name": "Let’s Talk About Sex",
-      "mbid": "1a314175-74f6-34e6-a9ab-9721a11e0f29",
+      "name": "Do You Want Me",
+      "mbid": "f8abd2e3-5ad6-407a-9639-f67736104188",
       "year": "1991",
       "releaseType": "single"
     },
@@ -238,6 +230,14 @@
       "type": "project",
       "name": "Let's Talk About Sex (The Power Mix)",
       "mbid": "8bd3d0d2-639b-41d2-b062-de0f61bcad42",
+      "year": "1991",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:let-s-talk-about-sex",
+      "type": "project",
+      "name": "Let’s Talk About Sex",
+      "mbid": "1a314175-74f6-34e6-a9ab-9721a11e0f29",
       "year": "1991",
       "releaseType": "single"
     },
@@ -254,6 +254,15 @@
       "type": "project",
       "name": "Blacks’ Magic",
       "mbid": "1530b3d2-8819-3662-96c5-73f92fa91923",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:salt-n-pepa--salt-n-pepa",
+      "type": "project",
+      "name": "Salt‐N‐Pepa",
+      "artist": "Salt-N-Pepa",
+      "mbid": "bcf2b376-eb6b-406f-941d-086a1be41302",
       "year": "1990",
       "releaseType": "album"
     },
@@ -282,18 +291,18 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:twist-and-shout",
-      "type": "project",
-      "name": "Twist And Shout",
-      "mbid": "c19deddb-7fdd-4b68-857e-46adb7ef59fd",
-      "year": "1988",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:shake-your-thang-spinderella-s-not-a-fella",
       "type": "project",
       "name": "Shake Your Thang / Spinderella’s Not a Fella (But a Girl DJ)",
       "mbid": "c2b6de9c-f1fc-4a03-a4ef-397b126f0ad3",
+      "year": "1988",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:twist-and-shout",
+      "type": "project",
+      "name": "Twist And Shout",
+      "mbid": "c19deddb-7fdd-4b68-857e-46adb7ef59fd",
       "year": "1988",
       "releaseType": "single"
     },

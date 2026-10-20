@@ -54,19 +54,44 @@
   ],
   "discography": [
     {
-      "slug": "project:the-trance-of-seven-colors",
+      "slug": "project:aicha",
       "type": "project",
-      "name": "The Trance Of Seven Colors"
+      "name": "Aicha",
+      "mbid": "920a0e5b-2df1-4201-a78e-72b1165b5c63",
+      "year": "2020",
+      "releaseType": "album"
     },
     {
       "slug": "project:colours-of-the-night",
       "type": "project",
-      "name": "Colours of the Night"
+      "name": "Colours of the Night",
+      "mbid": "7d1750d6-edda-4f89-b6a8-eabfdc7b8aff",
+      "year": "2017",
+      "releaseType": "album"
     },
     {
-      "slug": "project:aicha",
+      "slug": "project:the-trance-of-seven-colors",
       "type": "project",
-      "name": "Aicha"
+      "name": "The Trance Of Seven Colors",
+      "mbid": "561006cd-c48f-3e13-9dae-82b29645fe03",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:essaouira-star-de-la-chanson-gnaoua--mahmoud-guinia",
+      "type": "project",
+      "name": "Essaouira: Star de la Chanson Gnaoua",
+      "artist": "Mahmoud Guinia",
+      "mbid": "74c21ed9-b4bd-44c3-bfd6-bfda027abc65",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mimouna--mahmoud-guinia",
+      "type": "project",
+      "name": "Mimouna",
+      "artist": "Mahmoud Guinia",
+      "mbid": "65d5ded6-fbaf-4c11-b83f-87a11fc54ecd",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

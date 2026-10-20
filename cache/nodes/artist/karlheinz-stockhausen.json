@@ -62,6 +62,309 @@
   ],
   "discography": [
     {
+      "slug": "project:karlheinz-stockhausen--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Karlheinz Stockhausen",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "6d654cbe-7c42-4d7f-8b98-a7f466c5c63f",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kontra-punkte-refrain-zeitmasze-schlagtrio--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Kontra-Punkte / Refrain / Zeitmasze / Schlagtrio",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "b75b4101-b203-4970-b105-b9c97d56f992",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:eotvos-conducts-stockhausen--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Eötvös Conducts Stockhausen",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "73f0e3d2-7141-4b7d-9e95-1f454d762d3c",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:harlekin-der-kleine-harlekin--karlheinz-stockhausen",
+      "type": "project",
+      "name": "HARLEKIN / DER KLEINE HARLEKIN",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "14f3b64d-e2b4-4af5-84bd-273904f708de",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:inori--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Inori",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "30412ab8-b1c6-40e8-99ed-a63a013fe0de",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kontra-punkte-zeitmasze-stop-adieu--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Kontra-Punkte / Zeitmasze / Stop / Adieu",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "a122a87f-9d16-32a9-9488-6d4dd28de646",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:montag-aus-licht--karlheinz-stockhausen",
+      "type": "project",
+      "name": "MONTAG aus LICHT",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "5b86def2-6ec5-369a-b225-90af7b340331",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:momente--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Momente",
+      "mbid": "0fa01a0f-fa5d-4dfc-8c7d-ca3f1771e25b",
+      "year": "1992",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:formel-schlagtrio-spiel-punkte--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Formel / Schlagtrio / Spiel / Punkte",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "af1825e1-31c6-3e0a-a8ef-72923f8d2132",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stockhausen-edition-no-16-mantra--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Stockhausen Edition, no. 16: Mantra",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "9771a554-145e-4ffc-979a-1585af71d6de",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stockhausen-edition-no-2-formel-schlagtrio-spiel-punkte--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Stockhausen Edition, no. 2: Formel / Schlagtrio / Spiel / Punkte",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "71f16879-ab1d-4ce4-b93f-e09f4a1f43a7",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stockhausen-edition-no-3-elektronische-musik-1952-1960--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Stockhausen Edition, no. 3: Elektronische Musik 1952–1960",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "fb1d5bd0-97e2-412a-a0c6-f151497ae72d",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mantra-pianos-yvar-mikhashoff-rosalind-bevan-electronics-ole-orsted--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Mantra (pianos: Yvar Mikhashoff, Rosalind Bevan, electronics: Ole Ørsted)",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "936cbee3-e03e-3d05-8f01-4ab73db549bc",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:stockhausen-edition-no-1-chore-fur-doris-kreuzspiel-etc--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Stockhausen Edition no. 1: Chöre für Doris, Kreuzspiel, etc.",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "d7606266-f601-44ba-91e4-166c5a669c8a",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:klavierstucke-vol-ii--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Klavierstücke vol. II",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "47005c47-95cc-449b-a3f5-11d3462fb82e",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:donnerstag-aus-licht--karlheinz-stockhausen",
+      "type": "project",
+      "name": "DONNERSTAG aus LICHT",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "47e4cf2b-8d03-3420-9a21-49f548dc70fe",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:klavierstucke-vol-iii--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Klavierstücke Vol. III",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "c96d3951-c0e7-48b8-b5e8-0f987a17f708",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:piano-pieces-i-viii-bernhard-wambach--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Piano Pieces I-VIII (Bernhard Wambach)",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "cb3fc34f-8fa5-3e57-a957-13ec299eed58",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:samstag-aus-licht--karlheinz-stockhausen",
+      "type": "project",
+      "name": "SAMSTAG aus LICHT",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "5aa30d20-fa3b-4275-a645-6a2c43dc53cc",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unsichtbare-chore-choeurs-invisibles--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Unsichtbare Chöre - Choeurs invisibles",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "252e9979-9d77-4982-a633-2b4e914bf586",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:harlekin--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Harlekin",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "627d56b3-b4a3-45b3-a15f-98f71d37c2d6",
+      "year": "1978",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:musik-im-bauch--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Musik Im Bauch",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "bc2692c0-1384-4734-b44b-429a4f94545a",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ceylon-bird-of-passage--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Ceylon / Bird of Passage",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "b536cce9-0a13-4753-a400-5805a4f1e8a5",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ensemble--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Ensemble",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "45287e0c-b921-33de-b32e-c5e085ce6136",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:illimite--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Illimité",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "8681ee71-8538-371f-99b8-6a9e6e792f86",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kurzwellen--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Kurzwellen",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "129e0fed-9a3a-39d7-8f5f-b2b8c820194d",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:opus-1970--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Opus 1970",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "cf307450-c50e-40b8-99fd-b2623ca2c55a",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:hymnen",
+      "type": "project",
+      "name": "Hymnen",
+      "mbid": "316372f4-4466-3e23-8bc0-cb6e5e44eb81",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:telemusik-mixtur--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Telemusik / Mixtur",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "2c317415-315b-4ac3-91fd-29131d364d11",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gruppen-carre--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Gruppen / Carré",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "bc15eded-1ac4-4edb-b173-861fd4e3b7c0",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:prozession--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Prozession",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "1f8836ed-af6d-4e69-b4a4-05b689bd63bd",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:momente-1965-version--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Momente (1965 Version)",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "bf121e1f-0b9e-4b7f-a243-0ca514c355c0",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:gesang-der-junglinge-kontakte--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Gesang der Jünglinge / Kontakte",
+      "artist": "Karlheinz Stockhausen",
+      "mbid": "2e7ae485-3076-41bf-8d3d-25ca8db686eb",
+      "year": "1962",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kontakte--karlheinz-stockhausen",
+      "type": "project",
+      "name": "Kontakte",
+      "mbid": "f6aee2d5-c0ae-3306-aed9-bb5c8a320f39",
+      "year": "1960",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:klavierstucke-i-xi",
       "type": "project",
       "name": "Klavierstücke I–XI"
@@ -75,21 +378,6 @@
       "slug": "project:gruppen--karlheinz-stockhausen",
       "type": "project",
       "name": "Gruppen"
-    },
-    {
-      "slug": "project:kontakte--karlheinz-stockhausen",
-      "type": "project",
-      "name": "Kontakte"
-    },
-    {
-      "slug": "project:momente--karlheinz-stockhausen",
-      "type": "project",
-      "name": "Momente"
-    },
-    {
-      "slug": "project:hymnen",
-      "type": "project",
-      "name": "Hymnen"
     },
     {
       "slug": "project:stimmung--karlheinz-stockhausen",

@@ -44,14 +44,6 @@
   ],
   "discography": [
     {
-      "slug": "project:work-that-ep",
-      "type": "project",
-      "name": "Work That EP",
-      "mbid": "1b9b2f65-9607-4ecf-9221-981b310f57ca",
-      "year": "2024",
-      "releaseType": "ep"
-    },
-    {
       "slug": "project:ghetto-shh-get-up",
       "type": "project",
       "name": "Ghetto Shh / Get Up",
@@ -60,11 +52,11 @@
       "releaseType": "ep"
     },
     {
-      "slug": "project:wouldn-t-you-like-to-be-a-hoe-too",
+      "slug": "project:work-that-ep",
       "type": "project",
-      "name": "Wouldn't You Like To Be A Hoe Too",
-      "mbid": "a4eb351d-60dc-459b-a0d9-c94c64440008",
-      "year": "2016",
+      "name": "Work That EP",
+      "mbid": "1b9b2f65-9607-4ecf-9221-981b310f57ca",
+      "year": "2024",
       "releaseType": "ep"
     },
     {
@@ -74,6 +66,14 @@
       "mbid": "c9f7c8d6-0b8b-4ec8-a031-da486cb0dcb3",
       "year": "2016",
       "releaseType": "album"
+    },
+    {
+      "slug": "project:wouldn-t-you-like-to-be-a-hoe-too",
+      "type": "project",
+      "name": "Wouldn't You Like To Be A Hoe Too",
+      "mbid": "a4eb351d-60dc-459b-a0d9-c94c64440008",
+      "year": "2016",
+      "releaseType": "ep"
     },
     {
       "slug": "project:ghetto",
@@ -100,22 +100,6 @@
       "releaseType": "ep"
     },
     {
-      "slug": "project:the-switch-over",
-      "type": "project",
-      "name": "The Switch Over",
-      "mbid": "673c1e7f-5fc4-4b3e-b590-4b390a8adb4f",
-      "year": "2008",
-      "releaseType": "ep"
-    },
-    {
-      "slug": "project:juke-chronicles-volume-3",
-      "type": "project",
-      "name": "Juke Chronicles, Volume 3",
-      "mbid": "e58fd129-f91c-454b-bab4-c815d8a8cf19",
-      "year": "2008",
-      "releaseType": "ep"
-    },
-    {
       "slug": "project:juke-chronicles-volume-1",
       "type": "project",
       "name": "Juke Chronicles, Volume 1",
@@ -130,6 +114,31 @@
       "mbid": "ed5a4f19-f80a-4ee0-b158-80772584fc62",
       "year": "2008",
       "releaseType": "ep"
+    },
+    {
+      "slug": "project:juke-chronicles-volume-3",
+      "type": "project",
+      "name": "Juke Chronicles, Volume 3",
+      "mbid": "e58fd129-f91c-454b-bab4-c815d8a8cf19",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:the-switch-over",
+      "type": "project",
+      "name": "The Switch Over",
+      "mbid": "673c1e7f-5fc4-4b3e-b590-4b390a8adb4f",
+      "year": "2008",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:juke-or-die--dj-slugo",
+      "type": "project",
+      "name": "Juke or Die",
+      "artist": "DJ Slugo",
+      "mbid": "00f25bff-67ff-4437-bc4c-ab73beb771cb",
+      "year": "2006",
+      "releaseType": "album"
     },
     {
       "slug": "project:freaks-like-it-raw-part-3",
@@ -188,18 +197,18 @@
       "releaseType": "ep"
     },
     {
-      "slug": "project:taris-is-paris",
-      "type": "project",
-      "name": "Taris Is Paris",
-      "mbid": "ab498683-a60c-4721-a117-fa35c8262688",
-      "year": "1995",
-      "releaseType": "ep"
-    },
-    {
       "slug": "project:livin-that-ghetto-life",
       "type": "project",
       "name": "Livin' That Ghetto Life",
       "mbid": "ecfd2a14-9709-459a-a328-792b55f810c7",
+      "year": "1995",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:taris-is-paris",
+      "type": "project",
+      "name": "Taris Is Paris",
+      "mbid": "ab498683-a60c-4721-a117-fa35c8262688",
       "year": "1995",
       "releaseType": "ep"
     }

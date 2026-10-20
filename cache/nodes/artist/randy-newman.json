@@ -69,24 +69,350 @@
   ],
   "discography": [
     {
-      "slug": "project:randy-newman",
+      "slug": "project:toy-story-5-original-motion-picture-soundtrack--randy-newman",
       "type": "project",
-      "name": "Randy Newman"
+      "name": "Toy Story 5: Original Motion Picture Soundtrack",
+      "artist": "Randy Newman",
+      "mbid": "444b38fa-919d-4dbd-b404-a48549c81af4",
+      "year": "2026",
+      "releaseType": "album"
     },
     {
-      "slug": "project:good-old-boys",
+      "slug": "project:dark-matter--randy-newman",
       "type": "project",
-      "name": "Good Old Boys"
+      "name": "Dark Matter",
+      "artist": "Randy Newman",
+      "mbid": "de1e3b31-2f91-4098-ab55-5cf46ce1a607",
+      "year": "2017",
+      "releaseType": "album"
     },
     {
-      "slug": "project:little-criminals",
+      "slug": "project:monsters-university--randy-newman",
       "type": "project",
-      "name": "Little Criminals"
+      "name": "Monsters University",
+      "artist": "Randy Newman",
+      "mbid": "69a5d678-fa18-4c20-8e60-73851039a069",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-randy-newman-songbook-volume-2--randy-newman",
+      "type": "project",
+      "name": "The Randy Newman Songbook, Volume 2",
+      "artist": "Randy Newman",
+      "mbid": "9b0d3f5a-00ce-46a0-a595-1911e5bea4f1",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:toy-story-3--randy-newman",
+      "type": "project",
+      "name": "Toy Story 3",
+      "artist": "Randy Newman",
+      "mbid": "c2e0f415-beb5-42d8-a169-f8f101c73d6d",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:kuss-den-frosch--randy-newman",
+      "type": "project",
+      "name": "Küss den Frosch",
+      "artist": "Randy Newman",
+      "mbid": "6d651a80-d430-44a0-b278-8a7dc08df058",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-princesse-et-la-grenouille-bande-originale-francaise-du-film--randy-newman",
+      "type": "project",
+      "name": "La Princesse et la Grenouille (Bande originale française du film)",
+      "artist": "Randy Newman",
+      "mbid": "4daf349c-4181-4739-8853-e19d5c01540e",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-principessa-e-il-ranocchio--randy-newman",
+      "type": "project",
+      "name": "La principessa e il ranocchio",
+      "artist": "Randy Newman",
+      "mbid": "e6f96c06-370c-43c4-a673-1e44ce303657",
+      "year": "2009",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-princess-and-the-frog--randy-newman",
+      "type": "project",
+      "name": "The Princess and the Frog",
+      "artist": "Randy Newman",
+      "mbid": "0307550a-d078-45c6-983f-0e5b3edf79f0",
+      "year": "2009",
+      "releaseType": "album"
     },
     {
       "slug": "project:harps-and-angels",
       "type": "project",
-      "name": "Harps and Angels"
+      "name": "Harps and Angels",
+      "mbid": "f39d30d8-cc09-38a7-b18b-25246aaf9226",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:leatherheads--randy-newman",
+      "type": "project",
+      "name": "Leatherheads",
+      "artist": "Randy Newman",
+      "mbid": "2ffe89fb-7250-3eeb-9b32-e8c77c605dbc",
+      "year": "2008",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:cold-turkey--randy-newman",
+      "type": "project",
+      "name": "Cold Turkey",
+      "artist": "Randy Newman",
+      "mbid": "d384dfbb-07d5-404c-bb8e-7a6a8b38d850",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-randy-newman-songbook-volume-1--randy-newman",
+      "type": "project",
+      "name": "The Randy Newman Songbook, Volume 1",
+      "artist": "Randy Newman",
+      "mbid": "7c5307ea-5929-359f-bf5a-6292ea538884",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:monsters-inc--randy-newman",
+      "type": "project",
+      "name": "Monsters, Inc.",
+      "artist": "Randy Newman",
+      "mbid": "e044905d-955f-3310-80a0-3559b0f0c033",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:seabiscuit--randy-newman",
+      "type": "project",
+      "name": "Seabiscuit",
+      "artist": "Randy Newman",
+      "mbid": "dd4ece1d-9458-3657-a944-d2a995bbf40e",
+      "year": "2001",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:bad-love--randy-newman",
+      "type": "project",
+      "name": "Bad Love",
+      "artist": "Randy Newman",
+      "mbid": "3a1ac488-ddd1-3039-b715-b99294ec4ad1",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:toy-story-2--randy-newman",
+      "type": "project",
+      "name": "Toy Story 2",
+      "artist": "Randy Newman",
+      "mbid": "977c1a09-6a07-3b10-9f43-fa4ba68e4eec",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:a-bug-s-life--randy-newman",
+      "type": "project",
+      "name": "A Bug’s Life",
+      "artist": "Randy Newman",
+      "mbid": "fda7f179-276a-387a-8762-7b1c3da4e25a",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pleasantville-original-motion-picture-score--randy-newman",
+      "type": "project",
+      "name": "Pleasantville (Original Motion Picture Score)",
+      "artist": "Randy Newman",
+      "mbid": "b966f8d8-b320-3336-86e8-43d6b5afdd15",
+      "year": "1998",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:james-and-the-giant-peach--randy-newman",
+      "type": "project",
+      "name": "James and the Giant Peach",
+      "artist": "Randy Newman",
+      "mbid": "fcf82798-8905-3fb4-9f7b-a9b652677b0c",
+      "year": "1996",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:toy-story--randy-newman",
+      "type": "project",
+      "name": "Toy Story",
+      "artist": "Randy Newman",
+      "mbid": "7fdc293a-f634-356f-b611-b1e3d94be5e2",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:you-ve-got-a-friend-in-me--randy-newman",
+      "type": "project",
+      "name": "You’ve Got a Friend in Me",
+      "artist": "Randy Newman",
+      "mbid": "4afb4342-5032-4121-9af6-255dd629a4a2",
+      "year": "1995",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:maverick--randy-newman",
+      "type": "project",
+      "name": "Maverick",
+      "artist": "Randy Newman",
+      "mbid": "e98ebdd7-c8a0-3829-9571-990fdbb8c203",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-paper-music-from-the-motion-picture--randy-newman",
+      "type": "project",
+      "name": "The Paper: Music From the Motion Picture",
+      "artist": "Randy Newman",
+      "mbid": "8eaefd0e-2831-4ae9-b4bb-3b82f5521ef1",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:awakenings--randy-newman",
+      "type": "project",
+      "name": "Awakenings",
+      "artist": "Randy Newman",
+      "mbid": "df54f73d-8881-34ef-8d81-24f170202dbc",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:avalon--randy-newman",
+      "type": "project",
+      "name": "Avalon",
+      "artist": "Randy Newman",
+      "mbid": "83a36f50-51a7-30e8-b1d3-58a643d9be3b",
+      "year": "1990",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:parenthood--randy-newman",
+      "type": "project",
+      "name": "Parenthood",
+      "artist": "Randy Newman",
+      "mbid": "1f835215-475d-3ef0-a44e-e6850ff53c80",
+      "year": "1989",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-love-l-a--randy-newman",
+      "type": "project",
+      "name": "I Love L.A.",
+      "artist": "Randy Newman",
+      "mbid": "68dbe56b-7a76-4065-bc0c-8a52fa4d2bb7",
+      "year": "1988",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:land-of-dreams--randy-newman",
+      "type": "project",
+      "name": "Land of Dreams",
+      "artist": "Randy Newman",
+      "mbid": "972a5398-b8b6-3292-9148-42fa63f961f6",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-natural--randy-newman",
+      "type": "project",
+      "name": "The Natural",
+      "artist": "Randy Newman",
+      "mbid": "f4cfcd29-539f-3abc-9ce2-3728598fee48",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:trouble-in-paradise--randy-newman",
+      "type": "project",
+      "name": "Trouble in Paradise",
+      "artist": "Randy Newman",
+      "mbid": "0a5a18d0-c6e9-3404-8aa5-bb0738df1f2b",
+      "year": "1983",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ragtime--randy-newman",
+      "type": "project",
+      "name": "Ragtime",
+      "artist": "Randy Newman",
+      "mbid": "dd5a98d9-931b-3281-87e6-3c57078eacd6",
+      "year": "1981",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:born-again--randy-newman",
+      "type": "project",
+      "name": "Born Again",
+      "artist": "Randy Newman",
+      "mbid": "a878c59a-5128-30f5-b065-595c00207c1a",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:little-criminals",
+      "type": "project",
+      "name": "Little Criminals",
+      "mbid": "8211ba5c-b994-3546-b735-a05106b67052",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:good-old-boys",
+      "type": "project",
+      "name": "Good Old Boys",
+      "mbid": "bb1a6e55-7d0a-3d48-b447-49b86cdcca7a",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sail-away--randy-newman",
+      "type": "project",
+      "name": "Sail Away",
+      "artist": "Randy Newman",
+      "mbid": "d1c0b3db-6b93-3b9d-9479-0d60486120cb",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:12-songs--randy-newman",
+      "type": "project",
+      "name": "12 Songs",
+      "artist": "Randy Newman",
+      "mbid": "b64e15f7-884e-3f49-a2cf-b07894c4a624",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:randy-newman-creates-something-new-under-the-sun--randy-newman",
+      "type": "project",
+      "name": "Randy Newman Creates Something New Under the Sun",
+      "artist": "Randy Newman",
+      "mbid": "3e3ba5b7-bde1-3780-8cce-93734617bbf0",
+      "year": "1968",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:randy-newman",
+      "type": "project",
+      "name": "Randy Newman",
+      "mbid": "5b6220a9-0f7c-3122-81bc-56358cd7fa01",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

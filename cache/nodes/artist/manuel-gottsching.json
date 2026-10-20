@@ -59,6 +59,59 @@
   ],
   "discography": [
     {
+      "slug": "project:e2e4-re-construction--manuel-gottsching",
+      "type": "project",
+      "name": "E2E4 Re:construction",
+      "artist": "Manuel Göttsching",
+      "mbid": "dd916e2d-2b78-41b9-9ec7-f7784e85ab43",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:joaquin-joe-claussell-meets-manuel-gottsching--manuel-gottsching",
+      "type": "project",
+      "name": "Joaquin Joe Claussell Meets Manuel Göttsching",
+      "artist": "Manuel Göttsching",
+      "mbid": "83b57df3-7396-3706-9198-b77f439c00c8",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:concert-for-murnau--manuel-gottsching",
+      "type": "project",
+      "name": "Concert for Murnau",
+      "artist": "Manuel Göttsching",
+      "mbid": "5cd1d37d-1834-3ba6-8fa6-0593490cc0b2",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:die-mulde--manuel-gottsching",
+      "type": "project",
+      "name": "Die Mulde",
+      "artist": "Manuel Göttsching",
+      "mbid": "a82f1b6e-b799-3c36-ab6e-6ef74692cd06",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dream-and-desire--manuel-gottsching",
+      "type": "project",
+      "name": "Dream & Desire",
+      "artist": "Manuel Göttsching",
+      "mbid": "0a506293-56a2-31ad-bf9d-462d39e9fde4",
+      "year": "1991",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:e2-e4",
+      "type": "project",
+      "name": "E2-E4",
+      "mbid": "07ecedf1-6af6-3fee-b794-60946f503def",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:ash-ra-tempel",
       "type": "project",
       "name": "Ash Ra Tempel"
@@ -72,11 +125,6 @@
       "slug": "project:new-age-of-earth",
       "type": "project",
       "name": "New Age of Earth"
-    },
-    {
-      "slug": "project:e2-e4",
-      "type": "project",
-      "name": "E2-E4"
     },
     {
       "slug": "project:blackouts",

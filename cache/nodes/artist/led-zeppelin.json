@@ -60,49 +60,238 @@
   "labels": [],
   "discography": [
     {
-      "slug": "project:led-zeppelin",
+      "slug": "project:communication-breakdown--led-zeppelin",
       "type": "project",
-      "name": "Led Zeppelin"
+      "name": "Communication Breakdown",
+      "artist": "Led Zeppelin",
+      "mbid": "c0f1ef7d-0cc3-343a-b378-9eccf5191f32",
+      "year": "1997",
+      "releaseType": "single"
     },
     {
-      "slug": "project:led-zeppelin-ii",
+      "slug": "project:the-girl-i-love--led-zeppelin",
       "type": "project",
-      "name": "Led Zeppelin II"
+      "name": "The Girl I Love",
+      "artist": "Led Zeppelin",
+      "mbid": "49d8ca55-5a9a-3869-b895-2cf4b2975554",
+      "year": "1997",
+      "releaseType": "single"
     },
     {
-      "slug": "project:led-zeppelin-iii",
+      "slug": "project:baby-come-on-home--led-zeppelin",
       "type": "project",
-      "name": "Led Zeppelin III"
-    },
-    {
-      "slug": "project:led-zeppelin-iv--led-zeppelin",
-      "type": "project",
-      "name": "Led Zeppelin IV"
-    },
-    {
-      "slug": "project:houses-of-the-holy",
-      "type": "project",
-      "name": "Houses of the Holy"
-    },
-    {
-      "slug": "project:physical-graffiti",
-      "type": "project",
-      "name": "Physical Graffiti"
-    },
-    {
-      "slug": "project:presence",
-      "type": "project",
-      "name": "Presence"
-    },
-    {
-      "slug": "project:in-through-the-out-door",
-      "type": "project",
-      "name": "In Through the Out Door"
+      "name": "Baby Come On Home",
+      "artist": "Led Zeppelin",
+      "mbid": "a7e245af-ecbf-36e5-a92b-bc2714bda0c4",
+      "year": "1993",
+      "releaseType": "single"
     },
     {
       "slug": "project:coda",
       "type": "project",
-      "name": "Coda"
+      "name": "Coda",
+      "mbid": "61de0438-6c34-363f-904e-b4d6267c79b9",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:fool-in-the-rain-hot-dog--led-zeppelin",
+      "type": "project",
+      "name": "Fool in the Rain / Hot Dog",
+      "artist": "Led Zeppelin",
+      "mbid": "859287da-a879-3917-bb34-7614732d8e31",
+      "year": "1979",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:in-through-the-out-door",
+      "type": "project",
+      "name": "In Through the Out Door",
+      "mbid": "2fbf4c3e-09e5-38f0-ae59-fbdc9ea16b87",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:candy-store-rock-royal-orleans--led-zeppelin",
+      "type": "project",
+      "name": "Candy Store Rock / Royal Orleans",
+      "artist": "Led Zeppelin",
+      "mbid": "e470c1be-07e0-3aed-9f91-118b4970eb5d",
+      "year": "1976",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:presence",
+      "type": "project",
+      "name": "Presence",
+      "mbid": "42f8acce-90fc-3471-a4cd-ace1ab816276",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:physical-graffiti",
+      "type": "project",
+      "name": "Physical Graffiti",
+      "mbid": "116c9490-6af4-3827-8261-2d5b1f508fe7",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:d-yer-mak-er-the-crunge--led-zeppelin",
+      "type": "project",
+      "name": "D'yer Mak'er / The Crunge",
+      "artist": "Led Zeppelin",
+      "mbid": "5e257f73-ebb8-32b1-ba72-598e30f4881c",
+      "year": "1973",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:houses-of-the-holy",
+      "type": "project",
+      "name": "Houses of the Holy",
+      "mbid": "9b5006e5-b276-3a05-bcdd-8d986842320b",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-ocean--led-zeppelin",
+      "type": "project",
+      "name": "The Ocean",
+      "artist": "Led Zeppelin",
+      "mbid": "fd5d71f2-d6e3-4bf0-b3ee-38b27efbdccf",
+      "year": "1973",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:acoustically--led-zeppelin",
+      "type": "project",
+      "name": "Acoustically",
+      "artist": "Led Zeppelin",
+      "mbid": "d1d2ae34-08e6-31f9-a576-52c02bdd892a",
+      "year": "1972",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:stairway-to-heaven--led-zeppelin",
+      "type": "project",
+      "name": "Stairway to Heaven",
+      "artist": "Led Zeppelin",
+      "mbid": "94aabd06-bc7b-446e-831a-8cc6d729069c",
+      "year": "1972",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:whole-lotta-love-immigrant-song--led-zeppelin",
+      "type": "project",
+      "name": "Whole Lotta Love / Immigrant Song",
+      "artist": "Led Zeppelin",
+      "mbid": "8a6ff02c-e8e0-4b81-a8a6-6bb4b4ed5976",
+      "year": "1972",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:black-dog-misty-mountain-hop--led-zeppelin",
+      "type": "project",
+      "name": "Black Dog / Misty Mountain Hop",
+      "artist": "Led Zeppelin",
+      "mbid": "9ddada68-98ec-3f76-b3ec-373a4141798b",
+      "year": "1971",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:led-zeppelin-iv--led-zeppelin",
+      "type": "project",
+      "name": "Led Zeppelin IV",
+      "mbid": "2e61da88-39e9-3473-81d2-c964cb394952",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:this-is-led-zeppelin--led-zeppelin",
+      "type": "project",
+      "name": "This Is Led Zeppelin",
+      "artist": "Led Zeppelin",
+      "mbid": "ffeb9258-4101-360b-8a84-69b2b1a10c22",
+      "year": "1971",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:bron-y-aur-stomp-immigrant-song--led-zeppelin",
+      "type": "project",
+      "name": "Bron‐Y‐Aur Stomp / Immigrant Song",
+      "artist": "Led Zeppelin",
+      "mbid": "f05d39f1-a50c-424a-ad16-da7a1ac90bc2",
+      "year": "1970",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heartbreaker-bring-it-on-home--led-zeppelin",
+      "type": "project",
+      "name": "Heartbreaker / Bring It On Home",
+      "artist": "Led Zeppelin",
+      "mbid": "ae7eab8d-f6c7-40d6-83e4-fc819d7428f2",
+      "year": "1970",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:immigrant-song-hey-hey-what-can-i-do--led-zeppelin",
+      "type": "project",
+      "name": "Immigrant Song / Hey, Hey, What Can I Do",
+      "artist": "Led Zeppelin",
+      "mbid": "94ddbbd4-2724-3a0d-97f5-d7e4dfca0bad",
+      "year": "1970",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:led-zeppelin-iii",
+      "type": "project",
+      "name": "Led Zeppelin III",
+      "mbid": "53f80f76-f8af-3558-bfd5-e7221e055c75",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:babe-i-m-gonna-leave-you-dazed-and-confused--led-zeppelin",
+      "type": "project",
+      "name": "Babe, I’m Gonna Leave You / Dazed and Confused",
+      "artist": "Led Zeppelin",
+      "mbid": "ef9263fd-bdf9-485e-a09f-8ed0d59a0fde",
+      "year": "1969",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:good-times-bad-times-communication-breakdown--led-zeppelin",
+      "type": "project",
+      "name": "Good Times Bad Times / Communication Breakdown",
+      "artist": "Led Zeppelin",
+      "mbid": "29b7150e-0c3b-37e4-b051-41f9df6006e1",
+      "year": "1969",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:led-zeppelin",
+      "type": "project",
+      "name": "Led Zeppelin",
+      "mbid": "0f18ec88-aa87-38a9-8a65-f03d81763560",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:led-zeppelin-ii",
+      "type": "project",
+      "name": "Led Zeppelin II",
+      "mbid": "33b4653d-006e-3cc1-8afb-386b15a6cd6e",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:whole-lotta-love-living-loving-maid--led-zeppelin",
+      "type": "project",
+      "name": "Whole Lotta Love / Living Loving Maid",
+      "artist": "Led Zeppelin",
+      "mbid": "2a581f1f-20bf-3797-803c-ec3ac1a7c6c5",
+      "year": "1969",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

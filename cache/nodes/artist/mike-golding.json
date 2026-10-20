@@ -57,6 +57,15 @@
   ],
   "discography": [
     {
+      "slug": "project:the-beginning--mike-golding",
+      "type": "project",
+      "name": "The Beginning",
+      "artist": "Mike Golding",
+      "mbid": "720cb1c6-1338-4c09-a134-2621f233b4a4",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
       "slug": "project:electro-soma--b12",
       "type": "project",
       "name": "Electro-Soma"

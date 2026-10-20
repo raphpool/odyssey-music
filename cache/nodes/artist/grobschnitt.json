@@ -49,7 +49,143 @@
       "name": "Brain"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:fantasten--grobschnitt",
+      "type": "project",
+      "name": "Fantasten",
+      "artist": "Grobschnitt",
+      "mbid": "40cff3cf-21c3-34ed-914f-5e1e019ac80f",
+      "year": "1987",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:unser-himmel--grobschnitt",
+      "type": "project",
+      "name": "Unser Himmel",
+      "artist": "Grobschnitt",
+      "mbid": "d75ba1de-cb0c-3cf5-a986-bb6bfa5aa0ae",
+      "year": "1987",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:kinder-und-narren--grobschnitt",
+      "type": "project",
+      "name": "Kinder und Narren",
+      "artist": "Grobschnitt",
+      "mbid": "c8c59f5e-2370-3aaa-8542-907e7b025a6a",
+      "year": "1984",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wie-der-wind--grobschnitt",
+      "type": "project",
+      "name": "Wie der Wind",
+      "artist": "Grobschnitt",
+      "mbid": "f99d90c3-b04e-3053-8678-786118f613b8",
+      "year": "1984",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:razzia--grobschnitt",
+      "type": "project",
+      "name": "Razzia",
+      "artist": "Grobschnitt",
+      "mbid": "bace3431-9658-399d-aa4a-9103439af266",
+      "year": "1982",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:wir-wollen-leben--grobschnitt",
+      "type": "project",
+      "name": "Wir wollen leben",
+      "artist": "Grobschnitt",
+      "mbid": "1e8df38a-0bf5-31e8-a01c-1ad719642cb1",
+      "year": "1982",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:silent-movie--grobschnitt",
+      "type": "project",
+      "name": "Silent Movie",
+      "artist": "Grobschnitt",
+      "mbid": "2bad4d26-9aa9-30ca-a5eb-5cd0c41ba560",
+      "year": "1981",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:illegal--grobschnitt",
+      "type": "project",
+      "name": "Illegal",
+      "artist": "Grobschnitt",
+      "mbid": "bc5fb9fd-88b7-3f92-b162-ff47df154f1d",
+      "year": "1980",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:joker-waldeslied--grobschnitt",
+      "type": "project",
+      "name": "Joker / Waldeslied",
+      "artist": "Grobschnitt",
+      "mbid": "79102b1a-e165-31a4-b847-707aa04d56c4",
+      "year": "1980",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:merry-go-round--grobschnitt",
+      "type": "project",
+      "name": "Merry-Go-Round",
+      "artist": "Grobschnitt",
+      "mbid": "b8414915-4945-373c-b4d1-13905585554d",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rockpommel-s-land--grobschnitt",
+      "type": "project",
+      "name": "Rockpommel's Land",
+      "artist": "Grobschnitt",
+      "mbid": "1e54d727-5ed8-3979-8ea4-490a26afad40",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sonnenflug--grobschnitt",
+      "type": "project",
+      "name": "Sonnenflug",
+      "artist": "Grobschnitt",
+      "mbid": "942e8718-78d9-3b73-ae4a-eaa6de8465bf",
+      "year": "1976",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:jumbo--grobschnitt",
+      "type": "project",
+      "name": "Jumbo",
+      "artist": "Grobschnitt",
+      "mbid": "81d5eebf-be89-3674-8369-956215e663dc",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:ballermann--grobschnitt",
+      "type": "project",
+      "name": "Ballermann",
+      "artist": "Grobschnitt",
+      "mbid": "db850d89-1299-3820-8ece-1abe71699fff",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:grobschnitt--grobschnitt",
+      "type": "project",
+      "name": "Grobschnitt",
+      "artist": "Grobschnitt",
+      "mbid": "f39a61c7-1845-33b1-9dcb-8690a2070c9d",
+      "year": "1972",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:solar-music",

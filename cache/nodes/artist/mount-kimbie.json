@@ -48,7 +48,233 @@
       "name": "Warp"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:jomox--mount-kimbie",
+      "type": "project",
+      "name": "Jomox",
+      "artist": "Mount Kimbie",
+      "mbid": "76f7a32c-2b22-4b09-9cde-9197b8201e5e",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:monroe--mount-kimbie",
+      "type": "project",
+      "name": "Monroe",
+      "artist": "Mount Kimbie",
+      "mbid": "f3352ddd-ea98-4a6a-a913-ad75a2e4cac9",
+      "year": "2026",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:empty-and-silent--mount-kimbie",
+      "type": "project",
+      "name": "Empty And Silent",
+      "artist": "Mount Kimbie",
+      "mbid": "3dd5173d-5ec7-4404-9ead-f9557a15cb8c",
+      "year": "2024",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-sunset-violent--mount-kimbie",
+      "type": "project",
+      "name": "The Sunset Violent",
+      "artist": "Mount Kimbie",
+      "mbid": "73dad69e-7f7e-43c8-b2ac-469dc929fc9e",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:boxing--mount-kimbie",
+      "type": "project",
+      "name": "Boxing",
+      "artist": "Mount Kimbie",
+      "mbid": "6e7853d3-a006-4a1b-ab1b-37eb45e8bdb6",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:dumb-guitar--mount-kimbie",
+      "type": "project",
+      "name": "Dumb Guitar",
+      "artist": "Mount Kimbie",
+      "mbid": "110902fa-bd8a-4e6d-af05-7c16d23f5eaf",
+      "year": "2023",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:mk-3-5--mount-kimbie",
+      "type": "project",
+      "name": "MK 3.5",
+      "artist": "Mount Kimbie",
+      "mbid": "fc6688b8-167b-41af-9bc8-137537a500a5",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:mk-3-5-die-cuts-city-planning--mount-kimbie",
+      "type": "project",
+      "name": "MK 3.5: Die Cuts | City Planning",
+      "artist": "Mount Kimbie",
+      "mbid": "a2ce44b3-e8e2-4f93-a8a6-e15ae3083deb",
+      "year": "2022",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mk-3-5-f1-racer-and-locked-in-zone-1-24-hours--mount-kimbie",
+      "type": "project",
+      "name": "MK 3.5: F1 Racer & Locked In | Zone 1 (24 Hours)",
+      "artist": "Mount Kimbie",
+      "mbid": "6091dc65-fc34-4adc-8716-0826f22ff04e",
+      "year": "2022",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:black-stone-blue-liquid--mount-kimbie",
+      "type": "project",
+      "name": "Black Stone / Blue Liquid",
+      "artist": "Mount Kimbie",
+      "mbid": "98a8bebb-ba19-49de-843c-644832706909",
+      "year": "2021",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:wxaxrxp-session--mount-kimbie",
+      "type": "project",
+      "name": "WXAXRXP Session",
+      "artist": "Mount Kimbie",
+      "mbid": "016ae6b1-d6a6-48d0-951a-9295fe9c2fdc",
+      "year": "2019",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:turtle-neck-man--mount-kimbie",
+      "type": "project",
+      "name": "Turtle Neck Man",
+      "artist": "Mount Kimbie",
+      "mbid": "59c7c70d-0d4e-4df3-9379-cc9882e87ff0",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blue-train-lines--mount-kimbie",
+      "type": "project",
+      "name": "Blue Train Lines",
+      "artist": "Mount Kimbie",
+      "mbid": "7217afc1-8c15-494e-a3d3-ea982170bc03",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:four-years-and-one-day--mount-kimbie",
+      "type": "project",
+      "name": "Four Years and One Day",
+      "artist": "Mount Kimbie",
+      "mbid": "4029f0a8-de98-4004-8b0b-64948945759c",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-what-survives--mount-kimbie",
+      "type": "project",
+      "name": "Love What Survives",
+      "artist": "Mount Kimbie",
+      "mbid": "b9f3c1b2-5294-4790-8735-4192a20d2c7b",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:marilyn--mount-kimbie",
+      "type": "project",
+      "name": "Marilyn",
+      "artist": "Mount Kimbie",
+      "mbid": "48e01bcd-99d6-4441-a9a6-96c323fef9af",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:you-look-certain-i-m-not-so-sure--mount-kimbie",
+      "type": "project",
+      "name": "You Look Certain (I'm Not So Sure)",
+      "artist": "Mount Kimbie",
+      "mbid": "bf987c89-0160-40a3-8350-01adb5871d60",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:cold-spring-fault-less-youth--mount-kimbie",
+      "type": "project",
+      "name": "Cold Spring Fault Less Youth",
+      "artist": "Mount Kimbie",
+      "mbid": "a2bb922c-c018-4e6d-857f-81fa087c1b6d",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:made-to-stray--mount-kimbie",
+      "type": "project",
+      "name": "Made to Stray",
+      "artist": "Mount Kimbie",
+      "mbid": "a08d2a4c-b645-4f5f-8c90-4140e4e63ebb",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:carbonated--mount-kimbie",
+      "type": "project",
+      "name": "Carbonated",
+      "artist": "Mount Kimbie",
+      "mbid": "4870b679-2b09-448e-8eae-b6eea8d0ad3e",
+      "year": "2011",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:blind-night-errand--mount-kimbie",
+      "type": "project",
+      "name": "Blind Night Errand",
+      "artist": "Mount Kimbie",
+      "mbid": "0d4f1c4c-ca37-419a-9b26-9e842b427c29",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:crooks-and-lovers--mount-kimbie",
+      "type": "project",
+      "name": "Crooks & Lovers",
+      "artist": "Mount Kimbie",
+      "mbid": "8d03c36c-2fd1-4537-b5ba-786eb6e28ec2",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mayor--mount-kimbie",
+      "type": "project",
+      "name": "Mayor",
+      "artist": "Mount Kimbie",
+      "mbid": "ab2c20e2-b833-407e-8fc9-dadcf0bedd9d",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:maybes--mount-kimbie",
+      "type": "project",
+      "name": "Maybes",
+      "artist": "Mount Kimbie",
+      "mbid": "f59b38e8-c0b7-4120-9ac5-b40db7288a3f",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sketch-on-glass--mount-kimbie",
+      "type": "project",
+      "name": "Sketch on Glass",
+      "artist": "Mount Kimbie",
+      "mbid": "b582c064-1b87-4434-8980-a89490a14319",
+      "year": "2009",
+      "releaseType": "ep"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:blue-train-lines",

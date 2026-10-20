@@ -53,7 +53,188 @@
       "name": "Pampa Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:resort-island--isolee",
+      "type": "project",
+      "name": "resort island",
+      "artist": "Isolée",
+      "mbid": "e7ff125c-ac5c-4b78-b3ea-0fdb1bb0ea78",
+      "year": "2023",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:mangroove--isolee",
+      "type": "project",
+      "name": "Mangroove",
+      "artist": "Isolée",
+      "mbid": "19bd234d-98e1-4c6a-a124-028e2bbc0be2",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:floripa--isolee",
+      "type": "project",
+      "name": "Floripa",
+      "artist": "Isolée",
+      "mbid": "59f576b9-32aa-416c-9989-fe2b9462347e",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:allowance--isolee",
+      "type": "project",
+      "name": "Allowance",
+      "artist": "Isolée",
+      "mbid": "7c52d796-4d58-400a-acfd-61f09318d4ac",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dennis-ep--isolee",
+      "type": "project",
+      "name": "Dennis EP",
+      "artist": "Isolée",
+      "mbid": "559e3242-0365-4713-bb9b-3682a777fb53",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:taktell-thora-vukk--isolee",
+      "type": "project",
+      "name": "Taktell / Thora Vukk",
+      "artist": "Isolée",
+      "mbid": "8104800f-3e69-4d5e-a40b-a822b9fb0ee0",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:well-spent-youth--isolee",
+      "type": "project",
+      "name": "Well Spent Youth",
+      "artist": "Isolée",
+      "mbid": "ca7fc139-59cc-433c-a7b8-06b0415a23c1",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:the-fantastic-researches-of-yushin-maru--isolee",
+      "type": "project",
+      "name": "The Fantastic Researches of Yushin Maru",
+      "artist": "Isolée",
+      "mbid": "3f1d4a27-447b-479e-88c3-2fca8cf38258",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:albacares--isolee",
+      "type": "project",
+      "name": "Albacares",
+      "artist": "Isolée",
+      "mbid": "579bfcab-b375-4597-b0bf-21a17423c715",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:october-nightingale--isolee",
+      "type": "project",
+      "name": "October Nightingale",
+      "artist": "Isolée",
+      "mbid": "d6bbdfbb-8540-36b7-9662-124a33eae4ed",
+      "year": "2009",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:hermelin--isolee",
+      "type": "project",
+      "name": "Hermelin",
+      "artist": "Isolée",
+      "mbid": "6daec7a5-83cc-3893-bde9-6a291231d8ae",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:we-are-monster--isolee",
+      "type": "project",
+      "name": "We Are Monster",
+      "artist": "Isolée",
+      "mbid": "2414f09f-9e1c-3226-98d2-2d782587b9fb",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:can-t-sleep-all-night--isolee",
+      "type": "project",
+      "name": "Can’t Sleep All Night",
+      "artist": "Isolée",
+      "mbid": "14b4da22-1f51-39d2-8d07-f82ba5d00ef9",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:rest--isolee",
+      "type": "project",
+      "name": "Rest",
+      "artist": "Isolée",
+      "mbid": "1080afe9-aa77-3ef8-b0e9-525f7f776eb2",
+      "year": "2000",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-owe-you--isolee",
+      "type": "project",
+      "name": "I Owe You",
+      "artist": "Isolée",
+      "mbid": "24edcff5-a405-3f40-9f6a-115e16d8d54a",
+      "year": "1999",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beau-mot-plage--isolee",
+      "type": "project",
+      "name": "Beau Mot Plage",
+      "artist": "Isolée",
+      "mbid": "8c660c4b-f583-416e-b56a-32a71c01d2a5",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:initiate--isolee",
+      "type": "project",
+      "name": "Initiate",
+      "artist": "Isolée",
+      "mbid": "5db2e81e-ebee-3cf2-8f12-2830de9b7cdf",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:western-store--isolee",
+      "type": "project",
+      "name": "Western Store",
+      "artist": "Isolée",
+      "mbid": "6843d54d-e3fd-3c59-9bc2-c6fd63b959cf",
+      "year": "1998",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:raum-einz-raum-zwei--isolee",
+      "type": "project",
+      "name": "Raum Einz / Raum Zwei",
+      "artist": "Isolée",
+      "mbid": "ca175cbe-9475-3c80-8e24-82110494ef56",
+      "year": "1997",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:system--isolee",
+      "type": "project",
+      "name": "System",
+      "artist": "Isolée",
+      "mbid": "c325e140-ffc7-328a-af92-75956aeaa4a5",
+      "year": "1996",
+      "releaseType": "ep"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:beau-mot-plage--isolee",

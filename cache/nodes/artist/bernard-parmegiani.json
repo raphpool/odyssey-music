@@ -70,7 +70,197 @@
       "name": "Sub Rosa"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:early-and-rarities--bernard-parmegiani",
+      "type": "project",
+      "name": "Early and Rarities",
+      "artist": "Bernard Parmegiani",
+      "mbid": "c4c566ea-31e7-4bd1-9747-efab5ff4977d",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:l-echo-du-miroir--bernard-parmegiani",
+      "type": "project",
+      "name": "L'Écho du miroir",
+      "artist": "Bernard Parmegiani",
+      "mbid": "39c35b76-321b-47e7-9698-14ad83744990",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:memoire-magnetique-vol-2-1966-1993--bernard-parmegiani",
+      "type": "project",
+      "name": "Mémoire magnétique, vol.2 (1966–1993)",
+      "artist": "Bernard Parmegiani",
+      "mbid": "b50ecbd6-d372-4bb4-9774-5ce913240aff",
+      "year": "2021",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:les-soleils-de-l-ile-de-paques-la-brulure-de-mille-soleils--bernard-parmegiani",
+      "type": "project",
+      "name": "Les soleils de l’île de Pâques / La brûlure de mille soleils",
+      "artist": "Bernard Parmegiani",
+      "mbid": "d0df80ab-c2fb-4d76-aa0d-3678ea8272f6",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:memoire-magnetique-vol-1-1966-1990--bernard-parmegiani",
+      "type": "project",
+      "name": "Mémoire magnétique, vol.1 (1966–1990)",
+      "artist": "Bernard Parmegiani",
+      "mbid": "202b81e9-8325-4652-a6dc-8a0fb2157d80",
+      "year": "2018",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:matieres-premieres--bernard-parmegiani",
+      "type": "project",
+      "name": "Matières premières",
+      "artist": "Bernard Parmegiani",
+      "mbid": "21a9c6dd-3072-40d6-8317-0098948dcf82",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:rock--bernard-parmegiani",
+      "type": "project",
+      "name": "Rock",
+      "artist": "Bernard Parmegiani",
+      "mbid": "d044255a-0147-4890-ba44-68a2055874c0",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:immersion--bernard-parmegiani",
+      "type": "project",
+      "name": "Immersion",
+      "artist": "Bernard Parmegiani",
+      "mbid": "3ff5e791-d727-41da-80d0-dd4fd07c235b",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:plain-temps--bernard-parmegiani",
+      "type": "project",
+      "name": "Plain-temps",
+      "artist": "Bernard Parmegiani",
+      "mbid": "2859ee90-7cea-4abf-864f-1d2d3dddc1f9",
+      "year": "2006",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-memoire-des-sons--bernard-parmegiani",
+      "type": "project",
+      "name": "La mémoire des sons",
+      "artist": "Bernard Parmegiani",
+      "mbid": "b9065ccd-ea2f-4cb9-ba26-27fb0bd24792",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sonare--bernard-parmegiani",
+      "type": "project",
+      "name": "Sonare",
+      "artist": "Bernard Parmegiani",
+      "mbid": "6c7e76f2-62b9-3087-9469-28e3601e931c",
+      "year": "2002",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pop-eclectic--bernard-parmegiani",
+      "type": "project",
+      "name": "Pop’eclectic",
+      "artist": "Bernard Parmegiani",
+      "mbid": "6eff6d25-1cb2-3ca6-a80c-b50382184fb7",
+      "year": "1999",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:divine-comedie--bernard-parmegiani",
+      "type": "project",
+      "name": "Divine Comédie",
+      "artist": "Bernard Parmegiani",
+      "mbid": "eea47618-44ec-312e-af3e-4b7166661a56",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-serpente--bernard-parmegiani",
+      "type": "project",
+      "name": "La serpente",
+      "artist": "Bernard Parmegiani",
+      "mbid": "8fc5d889-3fbc-471a-a813-2b5efd187a17",
+      "year": "1994",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:la-creation-du-monde--bernard-parmegiani",
+      "type": "project",
+      "name": "La création du monde",
+      "artist": "Bernard Parmegiani",
+      "mbid": "4d425631-1756-37f5-8041-5d10f53d2450",
+      "year": "1986",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dedans-dehors--bernard-parmegiani",
+      "type": "project",
+      "name": "Dedans dehors",
+      "artist": "Bernard Parmegiani",
+      "mbid": "51b5ea47-a66a-44f9-8333-8e54dbb95142",
+      "year": "1979",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:de-natura-sonorum--bernard-parmegiani",
+      "type": "project",
+      "name": "De natura sonorum",
+      "artist": "Bernard Parmegiani",
+      "mbid": "29ecfc06-05c0-4532-ba9b-b074b12e0f3e",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chants-magnetiques--bernard-parmegiani",
+      "type": "project",
+      "name": "Chants magnétiques",
+      "artist": "Bernard Parmegiani",
+      "mbid": "b26aa262-68e5-32a9-8b13-e292a175bca8",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:chronos--bernard-parmegiani",
+      "type": "project",
+      "name": "Chronos",
+      "artist": "Bernard Parmegiani",
+      "mbid": "c1093ba6-5073-421f-9b30-11e8a2890113",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:le-socrate--bernard-parmegiani",
+      "type": "project",
+      "name": "Le Socrate",
+      "artist": "Bernard Parmegiani",
+      "mbid": "5358219d-6219-4728-a176-5cea6b31c9a7",
+      "year": "1969",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:violostries-bidule-en-re-capture-ephemere--bernard-parmegiani",
+      "type": "project",
+      "name": "Violostries / Bidule en ré / Capture éphémère",
+      "artist": "Bernard Parmegiani",
+      "mbid": "660ce251-ac33-4f8f-9e61-4ad03d2faf9c",
+      "year": "1969",
+      "releaseType": "album"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:violostries",

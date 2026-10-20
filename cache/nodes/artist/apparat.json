@@ -60,40 +60,268 @@
   ],
   "discography": [
     {
-      "slug": "project:multifunktionsebene",
+      "slug": "project:a-hum-of-maybe",
       "type": "project",
-      "name": "Multifunktionsebene"
+      "name": "A Hum of Maybe",
+      "mbid": "5a5f33cf-14ef-4e7d-b14f-0ac8fdf39787",
+      "year": "2026",
+      "releaseType": "album"
     },
     {
-      "slug": "project:duplex",
+      "slug": "project:hum-of-maybe--apparat",
       "type": "project",
-      "name": "Duplex"
+      "name": "Hum of Maybe",
+      "artist": "Apparat",
+      "mbid": "4ade81a2-d8fb-477f-ad19-3c83f33efab0",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:walls",
+      "slug": "project:little-feet--apparat",
       "type": "project",
-      "name": "Walls"
+      "name": "Little Feet",
+      "artist": "Apparat",
+      "mbid": "5f7af29b-6d97-4b37-9e9e-64a3f02e5aa2",
+      "year": "2026",
+      "releaseType": "single"
     },
     {
-      "slug": "project:the-devil-s-walk",
+      "slug": "project:an-echo-skips-a-name-alternate-take--apparat",
       "type": "project",
-      "name": "The Devil's Walk"
+      "name": "An Echo Skips a Name (alternate take)",
+      "artist": "Apparat",
+      "mbid": "14bbc8d4-6bb5-475d-9143-8c7e17a443d2",
+      "year": "2025",
+      "releaseType": "single"
     },
     {
-      "slug": "project:krieg-und-frieden",
+      "slug": "project:soundtracks-capri-revolution--apparat",
       "type": "project",
-      "name": "Krieg und Frieden (Music for Theatre)"
+      "name": "Soundtracks: Capri‐Revolution",
+      "artist": "Apparat",
+      "mbid": "f9045b1b-2cc9-4c34-b3d6-8daa7d216387",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soundtracks-damonen--apparat",
+      "type": "project",
+      "name": "Soundtracks: Dämonen",
+      "artist": "Apparat",
+      "mbid": "8c428561-6a95-4f04-a050-9424e1da379e",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soundtracks-equals-sessions--apparat",
+      "type": "project",
+      "name": "Soundtracks: Equals Sessions",
+      "artist": "Apparat",
+      "mbid": "efd68bd5-aba3-47f5-9625-d5f550938e99",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:soundtracks-stay-still--apparat",
+      "type": "project",
+      "name": "Soundtracks: Stay Still",
+      "artist": "Apparat",
+      "mbid": "cdbd9a53-a8ba-43e5-ac8e-459249d85ab5",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:dawan--apparat",
+      "type": "project",
+      "name": "DAWAN",
+      "artist": "Apparat",
+      "mbid": "ca20e4ef-a14e-49ed-b7a1-3bdc2229481e",
+      "year": "2019",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:heroist--apparat",
+      "type": "project",
+      "name": "HEROIST",
+      "artist": "Apparat",
+      "mbid": "5aaec305-ac3f-42c7-873f-c30c8b94863c",
+      "year": "2019",
+      "releaseType": "single"
     },
     {
       "slug": "project:lp5--apparat",
       "type": "project",
       "name": "LP5",
-      "artist": "Apparat"
+      "artist": "Apparat",
+      "mbid": "193f5514-4fad-4f60-b54c-23565213baa2",
+      "year": "2019",
+      "releaseType": "album"
     },
     {
-      "slug": "project:a-hum-of-maybe",
+      "slug": "project:goodbye--apparat",
       "type": "project",
-      "name": "A Hum of Maybe"
+      "name": "Goodbye",
+      "artist": "Apparat",
+      "mbid": "21b52f58-d3ca-4e4d-a273-bf117fb89977",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:krieg-und-frieden",
+      "type": "project",
+      "name": "Krieg und Frieden (Music for Theatre)",
+      "mbid": "45802b86-f741-4c49-b2f7-720257fbdfe1",
+      "year": "2013",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:candil-de-la-calle--apparat",
+      "type": "project",
+      "name": "Candil de la Calle",
+      "artist": "Apparat",
+      "mbid": "97c1bb49-1e1b-42ce-af09-8b0b6a745d97",
+      "year": "2012",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:ash-black-veil--apparat",
+      "type": "project",
+      "name": "Ash/Black Veil",
+      "artist": "Apparat",
+      "mbid": "74492bfa-d73e-4810-a3cc-8061e91f3211",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:black-water--apparat",
+      "type": "project",
+      "name": "Black Water",
+      "artist": "Apparat",
+      "mbid": "5a383038-b2c2-482e-95c1-2bd00a655fb8",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:song-of-los--apparat",
+      "type": "project",
+      "name": "Song of Los",
+      "artist": "Apparat",
+      "mbid": "72548a18-8638-41ea-8041-474f20832c8e",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:the-devil-s-walk",
+      "type": "project",
+      "name": "The Devil's Walk",
+      "mbid": "13d2eaea-a8ee-449b-b3bb-79b123802a5e",
+      "year": "2011",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:sayulita-dj-kicks--apparat",
+      "type": "project",
+      "name": "Sayulita (DJ-KICKS)",
+      "artist": "Apparat",
+      "mbid": "7a2ea003-0bfc-4782-8b5f-bfd1b1128530",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:holdon--apparat",
+      "type": "project",
+      "name": "Holdon",
+      "artist": "Apparat",
+      "mbid": "bb58e973-97b8-3da9-a9a3-f0dc68b2bdb4",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:walls",
+      "type": "project",
+      "name": "Walls",
+      "mbid": "8555ae4d-dc6d-3031-a8d9-101f8a8d0fee",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:berlin-montreal-telaviv--apparat",
+      "type": "project",
+      "name": "Berlin.Montreal.Telaviv",
+      "artist": "Apparat",
+      "mbid": "2dfb9f02-6569-3e34-9a60-0327cedb3e40",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:silizium-ep--apparat",
+      "type": "project",
+      "name": "Silizium EP",
+      "artist": "Apparat",
+      "mbid": "dca25651-01e7-3336-a6ef-e20c9c5896c5",
+      "year": "2005",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:can-t-computerize-it--apparat",
+      "type": "project",
+      "name": "Can't Computerize It",
+      "artist": "Apparat",
+      "mbid": "1165c8f0-b519-3b94-b3ba-df1cbfe3536c",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:shapemodes-ep--apparat",
+      "type": "project",
+      "name": "Shapemodes EP",
+      "artist": "Apparat",
+      "mbid": "eb130a4d-73fd-342d-998e-5e587432f824",
+      "year": "2004",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:duplex",
+      "type": "project",
+      "name": "Duplex",
+      "mbid": "2e5cb502-7729-38ff-9b37-b263271a39da",
+      "year": "2003",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:koax--apparat",
+      "type": "project",
+      "name": "Koax",
+      "artist": "Apparat",
+      "mbid": "b4f17d06-9bbb-3239-a04d-2eecf7254b65",
+      "year": "2003",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:tttrial-and-eror--apparat",
+      "type": "project",
+      "name": "Tttrial and Eror",
+      "artist": "Apparat",
+      "mbid": "e6e3b065-fdc5-3f47-9922-859b95986879",
+      "year": "2002",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:algorhythm--apparat",
+      "type": "project",
+      "name": "Algorhythm",
+      "artist": "Apparat",
+      "mbid": "8e60dd8c-4fb8-30c0-a0e2-695904883a0e",
+      "year": "2001",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:multifunktionsebene",
+      "type": "project",
+      "name": "Multifunktionsebene",
+      "mbid": "6426278a-26da-34ef-bc11-38c7f30684e9",
+      "year": "2001",
+      "releaseType": "album"
     }
   ],
   "notable_tracks": [

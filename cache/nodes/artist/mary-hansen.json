@@ -62,7 +62,17 @@
       "name": "Duophonic Records"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:hybird--mary-hansen",
+      "type": "project",
+      "name": "Hybird",
+      "artist": "Mary Hansen",
+      "mbid": "9dde94c2-f1dc-3221-a344-5b3ccdcc09ea",
+      "year": "2005",
+      "releaseType": "ep"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:twenty-feet-behind",

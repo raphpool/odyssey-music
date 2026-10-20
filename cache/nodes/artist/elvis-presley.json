@@ -55,14 +55,362 @@
   ],
   "discography": [
     {
-      "slug": "project:elvis-presley",
+      "slug": "project:moody-blue--elvis-presley",
       "type": "project",
-      "name": "Elvis Presley"
+      "name": "Moody Blue",
+      "artist": "Elvis Presley",
+      "mbid": "a61b9898-0d5c-3850-a655-68dcc1462688",
+      "year": "1977",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-elvis-presley-boulevard-memphis-tennessee--elvis-presley",
+      "type": "project",
+      "name": "From Elvis Presley Boulevard, Memphis, Tennessee",
+      "artist": "Elvis Presley",
+      "mbid": "63b80a2c-bfa9-391b-b199-fbaaafeedfdf",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:promised-land--elvis-presley",
+      "type": "project",
+      "name": "Promised Land",
+      "artist": "Elvis Presley",
+      "mbid": "9bbbe5c6-a7ac-3899-84d5-2788a9003e8d",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:today--elvis-presley",
+      "type": "project",
+      "name": "Today",
+      "artist": "Elvis Presley",
+      "mbid": "d4edda0a-d70a-34aa-a31b-5bb00f3cdb8b",
+      "year": "1975",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:good-times--elvis-presley",
+      "type": "project",
+      "name": "Good Times",
+      "artist": "Elvis Presley",
+      "mbid": "d7695480-d8e5-3cbb-beed-7de7021f2d0b",
+      "year": "1974",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:raised-on-rock-for-ol-times-sake--elvis-presley",
+      "type": "project",
+      "name": "Raised on Rock / For Ol’ Times Sake",
+      "artist": "Elvis Presley",
+      "mbid": "53dc4b12-cf49-31f2-bb27-e93a70b1c617",
+      "year": "1973",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:burning-love-it-s-a-matter-of-time--elvis-presley",
+      "type": "project",
+      "name": "Burning Love / It's a Matter of Time",
+      "artist": "Elvis Presley",
+      "mbid": "3b7bf798-f065-425c-989a-925e00f2a57b",
+      "year": "1972",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:elvis-now--elvis-presley",
+      "type": "project",
+      "name": "Elvis Now",
+      "artist": "Elvis Presley",
+      "mbid": "40c090b7-cf63-33c2-9493-e15075a72035",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:he-touched-me--elvis-presley",
+      "type": "project",
+      "name": "He Touched Me",
+      "artist": "Elvis Presley",
+      "mbid": "ac2a98ba-6578-3196-8d8e-7f2ca9687338",
+      "year": "1972",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:elvis-country-i-m-10-000-years-old--elvis-presley",
+      "type": "project",
+      "name": "Elvis Country: I’m 10,000 Years Old",
+      "artist": "Elvis Presley",
+      "mbid": "01e9f928-9fe4-3153-9404-e6b2b1e95f34",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:elvis-sings-the-wonderful-world-of-christmas--elvis-presley",
+      "type": "project",
+      "name": "Elvis Sings the Wonderful World of Christmas",
+      "artist": "Elvis Presley",
+      "mbid": "07af1498-2709-30f5-80b8-232ce07f605c",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:love-letters-from-elvis--elvis-presley",
+      "type": "project",
+      "name": "Love Letters From Elvis",
+      "artist": "Elvis Presley",
+      "mbid": "db779002-25dc-45f5-b39a-339879b30007",
+      "year": "1971",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:that-s-the-way-it-is--elvis-presley",
+      "type": "project",
+      "name": "That’s the Way It Is",
+      "artist": "Elvis Presley",
+      "mbid": "99d47a96-4666-3d8f-a613-75561cda1b48",
+      "year": "1970",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:back-in-memphis--elvis-presley",
+      "type": "project",
+      "name": "Back in Memphis",
+      "artist": "Elvis Presley",
+      "mbid": "d2fa78f3-50d9-3d5c-8760-a00074d5d376",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:from-elvis-in-memphis--elvis-presley",
+      "type": "project",
+      "name": "From Elvis in Memphis",
+      "artist": "Elvis Presley",
+      "mbid": "2a753764-89d5-3b72-8dff-8c599f1ea925",
+      "year": "1969",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:suspicious-minds--elvis-presley",
+      "type": "project",
+      "name": "Suspicious Minds",
+      "artist": "Elvis Presley",
+      "mbid": "dd4846b7-a8cd-3b15-94c7-bbf57ca684a8",
+      "year": "1969",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:how-great-thou-art--elvis-presley",
+      "type": "project",
+      "name": "How Great Thou Art",
+      "artist": "Elvis Presley",
+      "mbid": "84324cfa-4827-30e8-88ef-e432a98de181",
+      "year": "1967",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:elvis-for-everyone--elvis-presley",
+      "type": "project",
+      "name": "Elvis for Everyone!",
+      "artist": "Elvis Presley",
+      "mbid": "6590150a-22bf-3904-8b38-1a978f6b03f0",
+      "year": "1965",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:pot-luck--elvis-presley",
+      "type": "project",
+      "name": "Pot Luck",
+      "artist": "Elvis Presley",
+      "mbid": "86830b54-b672-3bf6-a9ca-27158f50b1be",
+      "year": "1962",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:can-t-help-falling-in-love-rock-a-hula-baby--elvis-presley",
+      "type": "project",
+      "name": "Can’t Help Falling in Love / Rock‐A‐Hula Baby",
+      "artist": "Elvis Presley",
+      "mbid": "8d6b0623-f93b-45c8-b1ff-89dad45c8be5",
+      "year": "1961",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:elvis-by-request-flaming-star--elvis-presley",
+      "type": "project",
+      "name": "Elvis by Request: Flaming Star",
+      "artist": "Elvis Presley",
+      "mbid": "4b4eb9ac-65ec-3542-b7ec-a403cbf55603",
+      "year": "1961",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:something-for-everybody--elvis-presley",
+      "type": "project",
+      "name": "Something for Everybody",
+      "artist": "Elvis Presley",
+      "mbid": "d6090b20-bee8-38e1-bb25-8c4ee0a52204",
+      "year": "1961",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:are-you-lonesome-tonight-i-gotta-know--elvis-presley",
+      "type": "project",
+      "name": "Are You Lonesome Tonight? / I Gotta Know",
+      "artist": "Elvis Presley",
+      "mbid": "6b67c053-f301-463d-b30c-75a3593b5472",
+      "year": "1960",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:elvis-is-back--elvis-presley",
+      "type": "project",
+      "name": "Elvis Is Back!",
+      "artist": "Elvis Presley",
+      "mbid": "4524e346-681e-364d-b975-bad70d71f2d7",
+      "year": "1960",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:his-hand-in-mine--elvis-presley",
+      "type": "project",
+      "name": "His Hand in Mine",
+      "artist": "Elvis Presley",
+      "mbid": "d76fa095-8801-30b7-85be-65cbad806378",
+      "year": "1960",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:it-s-now-or-never--elvis-presley",
+      "type": "project",
+      "name": "It’s Now or Never",
+      "artist": "Elvis Presley",
+      "mbid": "7ab66d3c-676b-3846-b876-bbf697b53f8b",
+      "year": "1960",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:it-s-now-or-never-a-mess-of-blues--elvis-presley",
+      "type": "project",
+      "name": "It’s Now or Never / A Mess of Blues",
+      "artist": "Elvis Presley",
+      "mbid": "7ff1cad6-1aee-4567-bbf3-12f364f5f3f8",
+      "year": "1960",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:don-t-i-beg-of-you--elvis-presley",
+      "type": "project",
+      "name": "Don’t / I Beg of You",
+      "artist": "Elvis Presley",
+      "mbid": "6624a536-13f1-358c-8ce7-ec036ac8cb03",
+      "year": "1957",
+      "releaseType": "single"
     },
     {
       "slug": "project:elvis-christmas-album",
       "type": "project",
-      "name": "Elvis' Christmas Album"
+      "name": "Elvis' Christmas Album",
+      "mbid": "626a3486-a3ef-3cf6-bdda-11c55b529509",
+      "year": "1957",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:blue-moon-just-because--elvis-presley",
+      "type": "project",
+      "name": "Blue Moon / Just Because",
+      "artist": "Elvis Presley",
+      "mbid": "4dcbc3dc-0a47-4e02-ae3f-7ab22603522a",
+      "year": "1956",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:blue-suede-shoes-tutti-frutti--elvis-presley",
+      "type": "project",
+      "name": "Blue Suede Shoes / Tutti Frutti",
+      "artist": "Elvis Presley",
+      "mbid": "4a549f38-4fde-34a1-b1ec-bb22aaff7532",
+      "year": "1956",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:elvis--elvis-presley",
+      "type": "project",
+      "name": "Elvis",
+      "artist": "Elvis Presley",
+      "mbid": "79dabce4-71c2-34ce-9d5d-83f9442fb325",
+      "year": "1956",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:elvis-presley",
+      "type": "project",
+      "name": "Elvis Presley",
+      "mbid": "2ebeec96-6ef7-3d4d-943c-0b4a2af1d7cc",
+      "year": "1956",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:heartbreak-hotel--elvis-presley",
+      "type": "project",
+      "name": "Heartbreak Hotel",
+      "artist": "Elvis Presley",
+      "mbid": "743cb0c3-2efd-35d7-8c53-8caf1ed0cd32",
+      "year": "1956",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:hound-dog-don-t-be-cruel--elvis-presley",
+      "type": "project",
+      "name": "Hound Dog / Don’t Be Cruel",
+      "artist": "Elvis Presley",
+      "mbid": "a0b68770-94eb-333f-9b4a-cd539eab6d4c",
+      "year": "1956",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:love-me-tender-any-way-you-want-me-that-s-how-i-will-be--elvis-presley",
+      "type": "project",
+      "name": "Love Me Tender / Any Way You Want Me (That’s How I Will Be)",
+      "artist": "Elvis Presley",
+      "mbid": "9847bdce-0987-33a9-94f4-a3fd75dd0119",
+      "year": "1956",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:money-honey-one-sided-love-affair--elvis-presley",
+      "type": "project",
+      "name": "Money Honey / One-Sided Love Affair",
+      "artist": "Elvis Presley",
+      "mbid": "de80bf44-f7d9-4d44-8b9f-2cbbbf22373c",
+      "year": "1956",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:shake-rattle-and-roll--elvis-presley",
+      "type": "project",
+      "name": "Shake, Rattle and Roll",
+      "artist": "Elvis Presley",
+      "mbid": "6eacee63-15d5-416e-909c-6d098723b838",
+      "year": "1956",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tryin-to-get-to-you-i-love-you-because--elvis-presley",
+      "type": "project",
+      "name": "Tryin’ to Get to You / I Love You Because",
+      "artist": "Elvis Presley",
+      "mbid": "30bf06bb-3172-4311-8d4b-5cf98ec8a125",
+      "year": "1956",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:that-s-all-right-blue-moon-of-kentucky--elvis-presley",
+      "type": "project",
+      "name": "That’s All Right / Blue Moon of Kentucky",
+      "artist": "Elvis Presley",
+      "mbid": "7e2d9b46-af98-30ea-9bd9-7407ac089b29",
+      "year": "1954",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

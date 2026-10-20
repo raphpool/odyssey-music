@@ -76,24 +76,351 @@
   ],
   "discography": [
     {
-      "slug": "project:lcd-soundsystem",
+      "slug": "project:x-ray-eyes--lcd-soundsystem",
       "type": "project",
-      "name": "LCD Soundsystem"
+      "name": "x-ray eyes",
+      "artist": "LCD Soundsystem",
+      "mbid": "193fc1d4-4741-4cb6-b2df-7272be85350d",
+      "year": "2024",
+      "releaseType": "single"
     },
     {
-      "slug": "project:sound-of-silver--lcd-soundsystem",
+      "slug": "project:new-body-rhumba-from-the-film-white-noise--lcd-soundsystem",
       "type": "project",
-      "name": "Sound of Silver"
+      "name": "new body rhumba (from the film White Noise)",
+      "artist": "LCD Soundsystem",
+      "mbid": "c7845ea7-6a75-46e9-af25-1cd1fe58e120",
+      "year": "2022",
+      "releaseType": "single"
     },
     {
-      "slug": "project:this-is-happening",
+      "slug": "project:we-don-t-need-this-fascist-groove-thang--lcd-soundsystem",
       "type": "project",
-      "name": "This Is Happening"
+      "name": "(We Don’t Need This) Fascist Groove Thang",
+      "artist": "LCD Soundsystem",
+      "mbid": "d287bba8-d533-45cc-af1b-c11bb389c78e",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-used-to-dixon-retouch--lcd-soundsystem",
+      "type": "project",
+      "name": "I Used To (Dixon Retouch)",
+      "artist": "LCD Soundsystem",
+      "mbid": "47d9c387-7453-479e-9452-3476bdf599dd",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:oh-baby--lcd-soundsystem",
+      "type": "project",
+      "name": "Oh Baby",
+      "artist": "LCD Soundsystem",
+      "mbid": "1cdbef65-a054-4dbb-894e-c79d33e8c7cd",
+      "year": "2018",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:spotify-singles--lcd-soundsystem",
+      "type": "project",
+      "name": "Spotify Singles",
+      "artist": "LCD Soundsystem",
+      "mbid": "a5ca9ad1-4bfd-479a-9166-89036c6d10a1",
+      "year": "2018",
+      "releaseType": "ep"
     },
     {
       "slug": "project:american-dream",
       "type": "project",
-      "name": "American Dream"
+      "name": "American Dream",
+      "mbid": "bfedb7ca-9067-4cdb-8921-1f0cd920f2e9",
+      "year": "2017",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:call-the-police-american-dream--lcd-soundsystem",
+      "type": "project",
+      "name": "Call The Police / American Dream",
+      "artist": "LCD Soundsystem",
+      "mbid": "79f76e5b-f44e-48fe-a352-9d411da66bef",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pulse-v-1--lcd-soundsystem",
+      "type": "project",
+      "name": "pulse (v.1)",
+      "artist": "LCD Soundsystem",
+      "mbid": "ab259b1c-2183-46b6-a95a-b597908cc599",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:tonite--lcd-soundsystem",
+      "type": "project",
+      "name": "tonite",
+      "artist": "LCD Soundsystem",
+      "mbid": "d666aa79-aab1-4a01-9744-309bddb3c91e",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:christmas-will-break-your-heart--lcd-soundsystem",
+      "type": "project",
+      "name": "christmas will break your heart",
+      "artist": "LCD Soundsystem",
+      "mbid": "c8a19f18-41a7-423a-a131-98aafae5b786",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:live-alone--lcd-soundsystem",
+      "type": "project",
+      "name": "Live Alone",
+      "artist": "LCD Soundsystem",
+      "mbid": "ee3b3925-1ba8-4ab3-8a19-6f57ff1ff8b5",
+      "year": "2011",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:drunk-girls--lcd-soundsystem",
+      "type": "project",
+      "name": "Drunk Girls",
+      "artist": "LCD Soundsystem",
+      "mbid": "0e9a03e8-0dec-45a7-9888-00378b37488d",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:i-can-change--lcd-soundsystem",
+      "type": "project",
+      "name": "I Can Change",
+      "artist": "LCD Soundsystem",
+      "mbid": "d01a4f90-ee3f-4365-8775-3d3bc0084c5e",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:pow-pow--lcd-soundsystem",
+      "type": "project",
+      "name": "Pow Pow",
+      "artist": "LCD Soundsystem",
+      "mbid": "45152854-3107-415f-bd3c-3000442583f5",
+      "year": "2010",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:this-is-happening",
+      "type": "project",
+      "name": "This Is Happening",
+      "mbid": "8898e5eb-48aa-4eea-8569-d3a2e9adaf02",
+      "year": "2010",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:this-is-happening-ep--lcd-soundsystem",
+      "type": "project",
+      "name": "This Is Happening EP",
+      "artist": "LCD Soundsystem",
+      "mbid": "cc6f17a4-f4ab-4ad9-a43f-04253ee6eb70",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:throw--lcd-soundsystem",
+      "type": "project",
+      "name": "Throw",
+      "artist": "LCD Soundsystem",
+      "mbid": "67c909ae-4ef3-4a54-b8da-35bd6108f3a7",
+      "year": "2010",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:bye-bye-bayou--lcd-soundsystem",
+      "type": "project",
+      "name": "Bye Bye Bayou",
+      "artist": "LCD Soundsystem",
+      "mbid": "4582175e-71be-4d55-9b9d-5182856acd16",
+      "year": "2009",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:big-ideas--lcd-soundsystem",
+      "type": "project",
+      "name": "Big Ideas",
+      "artist": "LCD Soundsystem",
+      "mbid": "ef5cf13d-7fbd-35e9-af35-b3e032d4ff23",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:time-to-get-away--lcd-soundsystem",
+      "type": "project",
+      "name": "Time to Get Away",
+      "artist": "LCD Soundsystem",
+      "mbid": "a25cad6b-2df1-43fa-a4f5-30bd5ea4a52e",
+      "year": "2008",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:a-bunch-of-stuff--lcd-soundsystem",
+      "type": "project",
+      "name": "A Bunch of Stuff",
+      "artist": "LCD Soundsystem",
+      "mbid": "caa2f0a7-0d1f-33ba-9380-993161b56542",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:all-my-friends--lcd-soundsystem",
+      "type": "project",
+      "name": "All My Friends",
+      "artist": "LCD Soundsystem",
+      "mbid": "7dd6b9b8-1589-3489-acb7-21201ba7f858",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:confuse-the-marketplace--lcd-soundsystem",
+      "type": "project",
+      "name": "Confuse the Marketplace",
+      "artist": "LCD Soundsystem",
+      "mbid": "2f05ad54-1d9a-34c9-a30e-110309e1a752",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:north-american-scum--lcd-soundsystem",
+      "type": "project",
+      "name": "North American Scum",
+      "artist": "LCD Soundsystem",
+      "mbid": "58787c56-54dc-3606-97d5-8e0a88b173af",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:poupee-de-cire-poupee-de-son-no-love-lost--lcd-soundsystem",
+      "type": "project",
+      "name": "Poupée de cire, poupée de son / No Love Lost",
+      "artist": "LCD Soundsystem",
+      "mbid": "7e04ca65-bffe-3151-8efe-8c1115ccc747",
+      "year": "2007",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:someone-great--lcd-soundsystem",
+      "type": "project",
+      "name": "Someone Great",
+      "artist": "LCD Soundsystem",
+      "mbid": "ad4b3a08-dea5-32b2-9eeb-df90fe48abaf",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:sound-of-silver--lcd-soundsystem",
+      "type": "project",
+      "name": "Sound of Silver",
+      "mbid": "5cbcdd9f-4b7d-3b3c-b9f2-6b0e75971157",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:video-ep--lcd-soundsystem",
+      "type": "project",
+      "name": "Video EP",
+      "artist": "LCD Soundsystem",
+      "mbid": "ff898932-eb3a-4e1b-a8d0-d2a262586e65",
+      "year": "2007",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:45-33--lcd-soundsystem",
+      "type": "project",
+      "name": "45:33",
+      "artist": "LCD Soundsystem",
+      "mbid": "6d02e9fe-d8e1-3017-8203-1d783d8d9720",
+      "year": "2006",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:disco-infiltrator--lcd-soundsystem",
+      "type": "project",
+      "name": "Disco Infiltrator",
+      "artist": "LCD Soundsystem",
+      "mbid": "440b6ec0-c087-3ad1-99fb-37be2b724b2d",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lcd-soundsystem",
+      "type": "project",
+      "name": "LCD Soundsystem",
+      "mbid": "0276770a-5f4b-3b0a-936c-69e295f3c5b9",
+      "year": "2005",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:tribulations--lcd-soundsystem",
+      "type": "project",
+      "name": "Tribulations",
+      "artist": "LCD Soundsystem",
+      "mbid": "e7617545-4260-3f75-950a-f5e0c0602e36",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:yr-city-s-a-sucker--lcd-soundsystem",
+      "type": "project",
+      "name": "Yr City's a Sucker",
+      "artist": "LCD Soundsystem",
+      "mbid": "12ecc2cc-2eba-45f5-8c9e-fa85f83e595d",
+      "year": "2005",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:daft-punk-is-playing-at-my-house--lcd-soundsystem",
+      "type": "project",
+      "name": "Daft Punk Is Playing at My House",
+      "artist": "LCD Soundsystem",
+      "mbid": "b977d0ed-3da3-39ac-b2b4-e8b3fa2c06a6",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:movement--lcd-soundsystem",
+      "type": "project",
+      "name": "Movement",
+      "artist": "LCD Soundsystem",
+      "mbid": "540aa1c6-1f6c-41e0-92ce-866e1b2bbefd",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:yeah--lcd-soundsystem",
+      "type": "project",
+      "name": "Yeah",
+      "artist": "LCD Soundsystem",
+      "mbid": "1fe4db4e-7af8-37fe-85a1-8ee3473d5bce",
+      "year": "2004",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:give-it-up--lcd-soundsystem",
+      "type": "project",
+      "name": "Give It Up",
+      "artist": "LCD Soundsystem",
+      "mbid": "0b028a04-df0c-3419-b1d7-330e9c48c663",
+      "year": "2002",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:losing-my-edge--lcd-soundsystem",
+      "type": "project",
+      "name": "Losing My Edge",
+      "artist": "LCD Soundsystem",
+      "mbid": "afe0ea13-b950-36cb-b0c2-1181ac30264f",
+      "year": "2002",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [

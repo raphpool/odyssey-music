@@ -59,19 +59,91 @@
   ],
   "discography": [
     {
-      "slug": "project:visions-of-the-past",
+      "slug": "project:analog-days",
       "type": "project",
-      "name": "Visions of the Past"
+      "name": "Analog Days",
+      "mbid": "3f0403ce-8744-4463-ae8a-a9591fc03125",
+      "year": "2024",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:2020--robert-leiner",
+      "type": "project",
+      "name": "2020",
+      "artist": "Robert Leiner",
+      "mbid": "ffae7bbc-5eb4-4926-95e0-2a214c79f454",
+      "year": "2020",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:aqua-viva--robert-leiner",
+      "type": "project",
+      "name": "Aqua Viva",
+      "artist": "Robert Leiner",
+      "mbid": "0341b120-3e0f-4c43-984f-88d914e7ee3b",
+      "year": "2017",
+      "releaseType": "single"
     },
     {
       "slug": "project:melomania",
       "type": "project",
-      "name": "Melomania"
+      "name": "Melomania",
+      "mbid": "71652d19-7707-4336-b439-66d77928d03b",
+      "year": "2015",
+      "releaseType": "album"
     },
     {
-      "slug": "project:analog-days",
+      "slug": "project:de-tuned-ep--robert-leiner",
       "type": "project",
-      "name": "Analog Days"
+      "name": "De:tuned EP",
+      "artist": "Robert Leiner",
+      "mbid": "ee3d682b-0f51-4d71-b5c2-c03b05d34b99",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:duff-80-injected--robert-leiner",
+      "type": "project",
+      "name": "Duff 80/Injected",
+      "artist": "Robert Leiner",
+      "mbid": "1727e852-4856-47c0-bf30-3dc2a2da624a",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lunar-ep--robert-leiner",
+      "type": "project",
+      "name": "Lunar EP",
+      "artist": "Robert Leiner",
+      "mbid": "8c640b3f-430b-4226-87cf-30b60dab8ae8",
+      "year": "2013",
+      "releaseType": "ep"
+    },
+    {
+      "slug": "project:dream-or-reality--robert-leiner",
+      "type": "project",
+      "name": "Dream or Reality",
+      "artist": "Robert Leiner",
+      "mbid": "c690a6b5-92fa-3cd3-9416-84867bbc1012",
+      "year": "1994",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:visions-of-the-past",
+      "type": "project",
+      "name": "Visions of the Past",
+      "mbid": "f2ed4bdc-6a38-3faf-971e-a1486e9a343f",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
+      "slug": "project:i-wanna-love-you--robert-leiner",
+      "type": "project",
+      "name": "I Wanna Love You",
+      "artist": "Robert Leiner",
+      "mbid": "9576b31a-954f-4317-ab24-3d710ee5d9aa",
+      "year": "1992",
+      "releaseType": "single"
     }
   ],
   "notable_tracks": [
