@@ -28,7 +28,7 @@ concurrency:
 
 jobs:
   sync-genre-cache:
-    runs-on: [self-hosted, macOS, ARM64]
+    runs-on: [self-hosted, linux]
     # Higher than deploy.yml's 15: an apply dispatch runs the whole snapshot+union sequence twice
     # (once for the preview artifact below, once again inside --apply itself), on a real remote
     # host and a cache/ tree that only grows -- a timeout mid-apply, after the writer is already

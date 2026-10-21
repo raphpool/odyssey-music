@@ -52,7 +52,7 @@ env:
 
 jobs:
   top-up:
-    runs-on: [self-hosted, macOS, ARM64]
+    runs-on: [self-hosted, linux]
     timeout-minutes: 20
     permissions:
       contents: write
