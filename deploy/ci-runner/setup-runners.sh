@@ -3,6 +3,9 @@
 # Idempotent: configured runners are skipped. Labels: the automatic self-hosted/Linux/<arch> plus `linux`, which
 # the workflows select.
 #
+# 8 runners by default: a ready PR starts 8 jobs at once (6 ci jobs, review, review-gate), most of them I/O-bound
+# npm ci. Over Oct 16-20, outside the night the Mac slept, demand stayed at or under 8 jobs ~85% of the time.
+#
 # Each runner gets its own unprivileged user (runner-1 ... runner-N) and a private /tmp. Runners execute PR code,
 # and deploy.yml loads the prod key into an ssh-agent whose socket lives under /tmp: with one shared account, a
 # job on another runner could reach that socket, or read another job's files.
@@ -10,10 +13,10 @@
 # From a machine with gh logged in (the token goes through stdin, not a command line):
 #   scp -i ~/.ssh/odyssey-ci deploy/ci-runner/setup-runners.sh root@<host>:/root/
 #   gh api -X POST repos/raphpool/odyssey-music/actions/runners/registration-token --jq .token \
-#     | ssh -i ~/.ssh/odyssey-ci root@<host> bash /root/setup-runners.sh 4
+#     | ssh -i ~/.ssh/odyssey-ci root@<host> bash /root/setup-runners.sh 8
 set -euo pipefail
 
-COUNT="${1:-4}"
+COUNT="${1:-8}"
 REPO_URL="https://github.com/raphpool/odyssey-music"
 RUNNER_VERSION="2.338.0"
 read -r RUNNER_TOKEN
