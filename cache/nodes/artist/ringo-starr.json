@@ -169,6 +169,14 @@
       "releaseType": "album"
     },
     {
+      "slug": "project:ringo-s-rotogravure",
+      "type": "project",
+      "name": "Ringo's Rotogravure",
+      "mbid": "c0365070-a86d-3ce0-b3bb-2cf7dc8ad2be",
+      "year": "1976",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:photograph--ringo-starr",
       "type": "project",
       "name": "Photograph",
@@ -211,11 +219,6 @@
       "mbid": "18f49dbe-5776-35f7-9ea3-3b1aea1fe708",
       "year": "1970",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:ringo-s-rotogravure",
-      "type": "project",
-      "name": "Ringo's Rotogravure"
     },
     {
       "slug": "project:the-beatles",

@@ -87,6 +87,14 @@
       "releaseType": "album"
     },
     {
+      "slug": "project:play",
+      "type": "project",
+      "name": "Play",
+      "mbid": "76aff0b8-c2bf-3a24-baee-a3caed4ef298",
+      "year": "2007",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:queen-of-hip-pop",
       "type": "project",
       "name": "Queen of Hip-Pop",
@@ -389,6 +397,14 @@
       "releaseType": "single"
     },
     {
+      "slug": "project:dance-tracks-vol-1",
+      "type": "project",
+      "name": "Dance Tracks Vol.1",
+      "mbid": "b5c9f7b7-5961-3f5c-9d27-74fec4249517",
+      "year": "1995",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:season--namie-amuro",
       "type": "project",
       "name": "太陽のSEASON",
@@ -396,16 +412,6 @@
       "mbid": "3e090f22-b372-3f47-94ac-08c8ae8a32ca",
       "year": "1995",
       "releaseType": "single"
-    },
-    {
-      "slug": "project:dance-tracks-vol-1",
-      "type": "project",
-      "name": "Dance Tracks Vol.1"
-    },
-    {
-      "slug": "project:play",
-      "type": "project",
-      "name": "Play"
     }
   ],
   "notable_tracks": [
