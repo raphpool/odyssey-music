@@ -5,7 +5,8 @@ import UIKit
 /// Gives the onboarding stack its edge swipe back.
 ///
 /// 2026-10-14 (TRA-405, ios-check): with the navigation bar hidden, UIKit's interactive pop gesture refuses to
-/// begin, so the edge swipe left step 1.4 in place (`testTheBackGestureOfTheSecondStepKeepsTheSelection`) and,
+/// begin, so the edge swipe left step 1.4 in place (`testTheBackGestureToWelcomeKeepsTheSelection`, named
+/// `testTheBackGestureOfTheSecondStepKeepsTheSelection` until TRA-639) and,
 /// as Figma draws no back control, the person was stuck there. The gesture's delegate is replaced by one that
 /// allows it whenever there is a screen to go back to. It sits on the root of the stack, which stays in it for
 /// the whole flow, and is scoped to this flow rather than to every `UINavigationController` of the app.
@@ -28,24 +29,23 @@ private struct SwipeBackEnabler: UIViewControllerRepresentable {
 	}
 }
 
-/// The onboarding flow of Flow 1: Welcome, the editorial families, then one genre step per selected family.
-/// A model built from a profile (`isEditing`) is the edit flow of the Genres tab (K.1): it opens on the genre
-/// step with no Welcome and ends on "Enregistrer". `FirstLaunchOnboardingView` hosts the first launch.
+/// The onboarding flow of Flow 1: Welcome, then the one genre screen, an accordion of the editorial families
+/// whose genres are ticked as chips. A model built from a profile (`isEditing`) is the edit flow of the
+/// Genres tab (K.1): it opens on that screen with no Welcome and ends on "Enregistrer".
+/// `FirstLaunchOnboardingView` hosts the first launch.
 ///
 /// The caller owns `model` (a `@State` in its host): a model created inside a parent's `body` would be
 /// rebuilt on every render and drop the selection with it.
 struct OnboardingFlowView: View {
 	enum Step: Hashable {
 		case genres
-		/// One step per selected family, identified by its key so that a step keeps its place in the path.
-		case subgenres(String)
 	}
 
-	let model: GenreOnboardingModel
+	let model: GenreSelectionModel
 	let onFinish: (ProfileDraft) -> Void
 	@State private var path = [Step]()
 
-	init(model: GenreOnboardingModel, onFinish: @escaping (ProfileDraft) -> Void) {
+	init(model: GenreSelectionModel, onFinish: @escaping (ProfileDraft) -> Void) {
 		self.model = model
 		self.onFinish = onFinish
 	}
@@ -55,11 +55,11 @@ struct OnboardingFlowView: View {
 			root
 				.background(SwipeBackEnabler())
 				.toolbar(.hidden, for: .navigationBar)
-				.navigationDestination(for: Step.self) { step in
-					destination(for: step)
+				.navigationDestination(for: Step.self) { _ in
+					genresStep
 						.toolbar(.hidden, for: .navigationBar)
 						// The bar is hidden and Figma draws no back control: VoiceOver's two-finger scrub and
-						// the edge swipe are the ways back, to the previous step or to Welcome.
+						// the edge swipe are the ways back, to Welcome.
 						.accessibilityAction(.escape) {
 							if !path.isEmpty { path.removeLast() }
 						}
@@ -87,36 +87,9 @@ struct OnboardingFlowView: View {
 
 	private var genresStep: some View {
 		GenresStepView(model: model) {
-			// Families are chosen: the first genre step follows, in selection order. Only the genre step
-			// may advance, so a second tap before the push animation ends is ignored.
-			if isOnGenresStep, let first = model.subgenreSteps.first {
-				path.append(.subgenres(first))
-			}
-		}
-	}
-
-	@ViewBuilder
-	private func destination(for step: Step) -> some View {
-		switch step {
-		case .genres:
-			genresStep
-		case .subgenres(let familyKey):
-			// A family that is no longer selected has no step; the path cannot hold one, since the families
-			// only change on the genre step, below it.
-			if let family = model.selectedFamilyChoices.first(where: { $0.id == familyKey }) {
-				SubgenresStepView(parent: family, model: model) { advance(from: familyKey) }
-			}
-		}
-	}
-
-	/// The next selected family, or the end of the flow after the last one. The host must ignore a second
-	/// `onFinish`: a double tap on the last CTA sends two.
-	private func advance(from familyKey: String) {
-		guard path.last == .subgenres(familyKey) else { return }
-		if let next = model.subgenreStep(after: familyKey) {
-			path.append(.subgenres(next))
-		} else {
-			onFinish(model.makeDraft())
+			// The flow ends here. Only the genre step may finish, so a tap that lands once the screen has left
+			// the path is ignored. The host must ignore a second `onFinish`: a double tap on the CTA sends two.
+			if isOnGenresStep { onFinish(model.makeDraft()) }
 		}
 	}
 }
@@ -129,7 +102,7 @@ struct OnboardingFlowView: View {
 /// rebuilt on every render and drop the selection with it.
 struct FirstLaunchOnboardingView: View {
 	private struct Loaded {
-		let model: GenreOnboardingModel
+		let model: GenreSelectionModel
 		/// Every genre of the catalog: the profile keeps the ones that are still there.
 		let genreIDs: [NodeIdentity]
 	}
@@ -137,7 +110,7 @@ struct FirstLaunchOnboardingView: View {
 	private enum Phase {
 		case loading
 		case ready(Loaded)
-		/// The catalog, the draft or the taxonomy is not there (a degraded catalog included): an empty grid with
+		/// The catalog, the draft or the taxonomy is not there (a degraded catalog included): an empty list with
 		/// a disabled CTA would say nothing.
 		case unavailable
 	}
@@ -173,7 +146,7 @@ struct FirstLaunchOnboardingView: View {
 		.alert("Enregistrement indisponible", isPresented: $saveFailed) {
 			Button("OK") {}
 		} message: {
-			Text("Tes genres n'ont pas été enregistrés. Appuie de nouveau sur « Terminer ».")
+			Text("Tes genres n'ont pas été enregistrés. Appuie de nouveau sur « Continuer ».")
 		}
 	}
 
@@ -192,7 +165,7 @@ struct FirstLaunchOnboardingView: View {
 		}
 		phase = .ready(
 			Loaded(
-				model: GenreOnboardingModel(taxonomy: taxonomy, draft: draft),
+				model: GenreSelectionModel(taxonomy: taxonomy, draft: draft),
 				genreIDs: catalog.nodes.filter { $0.type == .genre }.map(\.identity)))
 		await recordStartIfNeeded(draft)
 	}
@@ -211,7 +184,7 @@ struct FirstLaunchOnboardingView: View {
 		)
 	}
 
-	/// A double tap on the last CTA sends two `onFinish`: the second is ignored while the first one writes.
+	/// A double tap on the CTA sends two `onFinish`: the second is ignored while the first one writes.
 	private func save(_ draft: ProfileDraft, available: [NodeIdentity]) {
 		guard !isSaving else { return }
 		isSaving = true

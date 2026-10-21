@@ -100,7 +100,7 @@ final class GenreSelectionModelLegacyRestoreTests: XCTestCase {
 	func testAFamilySlugKeepsEveryVisibleSlugOfTheFamilyInTheDraft() throws {
 		let draft = try model(v1: ["genre:rock"]).makeDraft()
 
-		// Same `genre_ids` as `GenreOnboardingModel` writes for "family alone": nothing is lost on save.
+		// A family alone writes every visible slug of the family to `genre_ids`: nothing is lost on save.
 		XCTAssertEqual(
 			draft.genreIDs,
 			try ["genre:hard-rock", "genre:prog", "genre:progressive-rock", "genre:punk-rock"].map(slug))

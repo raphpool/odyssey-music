@@ -5,10 +5,11 @@ import XCTest
 
 @testable import Track1
 
-/// Genre tile (`175:6`), Subgenre row (`175:27`), Select-all chip (`175:47`) and Bottom action bar
-/// (`173:137`), TRA-389. Figma values are spelled out again here, read on 2026-10-13 from the variants
-/// `175:2` / `175:4`, `175:21` / `175:24`, `175:39` / `175:43` and `173:123`: a token changed in the
-/// components alone fails here. The counter label is tested in the package (`OnboardingCopyTests`).
+/// Genre tile (`175:6`), the chip colors (`SubgenreChip`, Figma `Select-all chip` `175:47`), the accordion
+/// card and Bottom action bar (`173:137`), TRA-389. Figma values are spelled out again here, read on
+/// 2026-10-13 from the variants `175:2` / `175:4`, `175:21` / `175:24`, `175:39` / `175:43` and `173:123`: a
+/// token changed in the components alone fails here. The counter label is tested in the package
+/// (`OnboardingCopyTests`).
 final class OnboardingComponentsTests: XCTestCase {
 	private func components(_ color: Color) -> [Double] {
 		var red: CGFloat = 0
@@ -99,7 +100,7 @@ final class OnboardingComponentsTests: XCTestCase {
 		XCTAssertEqual(GenreTile.identifier(for: "electronic"), "genre-tile-electronic")
 	}
 
-	// MARK: Subgenre row and Select-all chip
+	// MARK: Chip colors
 
 	func testSelectedChoiceResolvesToTheSelectionTokens() {
 		let style = OnboardingChoiceColors.resolve(isSelected: true)
@@ -124,35 +125,6 @@ final class OnboardingComponentsTests: XCTestCase {
 
 	func testChoiceBorderIs2Points() {
 		XCTAssertEqual(OnboardingChoiceColors.borderWidth, 2)
-	}
-
-	func testSubgenreDescriptionIsCutAtTwoLines() {
-		XCTAssertEqual(SubgenreRow.descriptionLineLimit, 2)
-	}
-
-	func testABlankSubgenreDescriptionDrawsNothing() {
-		XCTAssertNil(SubgenreRow.visibleDescription(nil))
-		XCTAssertNil(SubgenreRow.visibleDescription(""))
-		XCTAssertNil(SubgenreRow.visibleDescription("  \n "))
-		XCTAssertEqual(SubgenreRow.visibleDescription("Warm and soulful."), "Warm and soulful.")
-	}
-
-	func testSubgenreSpokenLabelJoinsNameAndDescription() {
-		XCTAssertEqual(
-			SubgenreRow.accessibilityLabel(name: "Deep House", description: "Warm and soulful."),
-			"Deep House, Warm and soulful.")
-		XCTAssertEqual(SubgenreRow.accessibilityLabel(name: "Deep House", description: " "), "Deep House")
-	}
-
-	func testSubgenreIdentifierCarriesTheTaxonomyID() {
-		XCTAssertEqual(SubgenreRow.identifier(for: "Q10413"), "subgenre-row-Q10413")
-	}
-
-	func testSelectAllShowsAChevronUntilEverySubgenreIsIn() {
-		XCTAssertEqual(SelectAllChip.glyph(isSelected: false), .chevronDown)
-		XCTAssertEqual(SelectAllChip.glyph(isSelected: true), .check)
-		XCTAssertEqual(SelectAllChip.title, "Tous")
-		XCTAssertEqual(SelectAllChip.identifier, "select-all")
 	}
 
 	// MARK: Subgenre chip
@@ -266,12 +238,5 @@ final class OnboardingComponentsTests: XCTestCase {
 		let bar = WelcomeView.actionBar {}
 		XCTAssertEqual(bar.identifier, "onboarding-start")
 		XCTAssertFalse(bar.showsFade)
-	}
-
-	@MainActor
-	func testSubgenresBarHasItsOwnIdentifierAndKeepsTheFade() {
-		let bar = SubgenresStepView.actionBar(title: "Continuer", counter: "2 sélectionnés") {}
-		XCTAssertEqual(bar.identifier, "onboarding-subgenres-continue")
-		XCTAssertTrue(bar.showsFade)
 	}
 }
