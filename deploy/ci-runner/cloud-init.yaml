@@ -1,5 +1,5 @@
 #cloud-config
-# Linux CI runner host for raphpool/odyssey-music (Ubuntu 24.04, ARM64 or x64).
+# Linux CI runner host for raphpool/odyssey-music (Ubuntu LTS 24.04 or later, ARM64 or x64).
 # 2026-10-20: every job ran on three runner processes sharing Raphael's Mac; over Oct 16-20 jobs waited ~3.7x
 # longer for a runner than they ran, and 74% of runner-minutes were Node jobs that do not need macOS. This host
 # takes those jobs; the Mac keeps ios-check only.
