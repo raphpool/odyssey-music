@@ -1,5 +1,6 @@
 import { spawn, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
+import { existsSync } from "node:fs";
 import {
 	access,
 	chmod,
@@ -34,6 +35,30 @@ async function writeTool(directory: string, name: string, contents: string) {
 	const path = join(directory, name);
 	await writeFile(path, contents, { mode: 0o755 });
 	await chmod(path, 0o755);
+}
+
+// 2026-10-21 (TRA-650): PlistBuddy and plutil only exist on macOS, so on the Linux CI host the real ones were
+// missing (45 tests of this file failed there). Both are doubles, first in PATH like the other tools.
+// PlistBuddy logs its calls to TRACK1_TEST_PLISTBUDDY_CALLS when set.
+async function writePlistTools(directory: string) {
+	await writeTool(
+		directory,
+		"PlistBuddy",
+		`#!/usr/bin/env bash
+printf '%s\\n' "$*" >> "\${TRACK1_TEST_PLISTBUDDY_CALLS:-/dev/null}"
+`,
+	);
+	// Stands for `plutil -convert json -o - -` on the `simctl listapps` text: the top-level keys (four-space
+	// indent, as in the fixture) become the keys of a JSON object, which is all check.sh reads.
+	await writeTool(
+		directory,
+		"plutil",
+		`#!/usr/bin/env bash
+awk 'BEGIN { printf "{" }
+  /^    "[^"]+" = \\{/ { key = $0; sub(/^    "/, "", key); sub(/" = \\{.*$/, "", key); printf "%s\\"%s\\":{}", separator, key; separator = "," }
+  END { print "}" }'
+`,
+	);
 }
 
 // A fake `swift` (check.sh takes it from PATH, not through xcrun). Every call is logged to
@@ -236,6 +261,7 @@ while :; do sleep 1; done
 `,
 		);
 		await writeTool(toolDirectory, "swift", fakeSwift);
+		await writePlistTools(toolDirectory);
 		if (options.discoveryFailure) {
 			await writeTool(toolDirectory, "find", "#!/usr/bin/env bash\nexit 73\n");
 		}
@@ -410,26 +436,7 @@ esac
 		);
 		await writeTool(directory, "swift", fakeSwift);
 		await writeTool(directory, "jq", "#!/usr/bin/env bash\ncat >/dev/null\nprintf 'runtime-id\\n'\n");
-		// 2026-10-21 (TRA-650): PlistBuddy and plutil only exist on macOS, so on the Linux CI host the real ones
-		// were missing (45 tests of this file failed there). Both are doubles now, first in PATH like the others.
-		await writeTool(
-			directory,
-			"PlistBuddy",
-			`#!/usr/bin/env bash
-printf '%s\\n' "$*" >> "$TRACK1_TEST_PLISTBUDDY_CALLS"
-`,
-		);
-		// Stands for `plutil -convert json -o - -` on the `simctl listapps` text: the top-level keys (four-space
-		// indent, as in the fixture) become the keys of a JSON object, which is all check.sh reads.
-		await writeTool(
-			directory,
-			"plutil",
-			`#!/usr/bin/env bash
-awk 'BEGIN { printf "{" }
-  /^    "[^"]+" = \\{/ { key = $0; sub(/^    "/, "", key); sub(/" = \\{.*$/, "", key); printf "%s\\"%s\\":{}", separator, key; separator = "," }
-  END { print "}" }'
-`,
-		);
+		await writePlistTools(directory);
 		await writeTool(
 			directory,
 			"curl",
@@ -1613,7 +1620,9 @@ describe.sequential("Track1 Swift format coverage", () => {
 // These tests start the real harness (the doubles of the other tests only replace Xcode and simctl).
 describe.sequential("Track1 contract harness lifecycle", () => {
 	const harness = resolve("test/helpers/mobile-contract-server.ts");
-	const lsof = "/usr/sbin/lsof";
+	// 2026-10-21 (TRA-650): lsof lives in /usr/sbin on macOS and /usr/bin on Ubuntu (spawnSync ENOENT there), so it
+	// is looked up in PATH when the macOS location does not exist.
+	const lsof = existsSync("/usr/sbin/lsof") ? "/usr/sbin/lsof" : "lsof";
 	// The same environment as start_contract_harness in check.sh.
 	function harnessEnvironment(directory: string) {
 		return {
