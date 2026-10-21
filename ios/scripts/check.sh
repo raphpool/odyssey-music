@@ -2,6 +2,11 @@
 
 set -euo pipefail
 
+# 2026-10-21 (TRA-650): PlistBuddy is resolved through PATH, with its macOS directory last, instead of by absolute
+# path. Symptom: on the Linux CI host the ios-check tests failed with "/usr/libexec/PlistBuddy: No such file or
+# directory" because their double, placed first in PATH, could never be reached. On a Mac nothing changes.
+PATH="$PATH:/usr/libexec"
+
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ios_dir="$(cd "$script_dir/.." && pwd)"
 repository_root="$(cd "$ios_dir/.." && pwd)"
@@ -753,9 +758,9 @@ for scheme in Track1 Track1Preview; do
 		echo "xcodebuild did not produce an xctestrun file for $scheme." >&2
 		exit 1
 	fi
-	/usr/libexec/PlistBuddy -c "Add :Track1Tests:EnvironmentVariables dict" "$xctestrun_path" 2>/dev/null || true
-	/usr/libexec/PlistBuddy -c "Add :Track1Tests:EnvironmentVariables:TRACK1_CONTRACT_BASE_URL string $contract_base_url" "$xctestrun_path" 2>/dev/null \
-		|| /usr/libexec/PlistBuddy -c "Set :Track1Tests:EnvironmentVariables:TRACK1_CONTRACT_BASE_URL $contract_base_url" "$xctestrun_path"
+	PlistBuddy -c "Add :Track1Tests:EnvironmentVariables dict" "$xctestrun_path" 2>/dev/null || true
+	PlistBuddy -c "Add :Track1Tests:EnvironmentVariables:TRACK1_CONTRACT_BASE_URL string $contract_base_url" "$xctestrun_path" 2>/dev/null \
+		|| PlistBuddy -c "Set :Track1Tests:EnvironmentVariables:TRACK1_CONTRACT_BASE_URL $contract_base_url" "$xctestrun_path"
 	# Track1 runs the whole suite; Track1Preview only the tests listed in preview_only_testing.
 	only_testing_arguments=()
 	if [[ "$scheme" == "Track1Preview" ]]; then

@@ -11,7 +11,7 @@ concurrency:
 jobs:
   review-gate:
     if: github.event.pull_request.draft == false
-    runs-on: [self-hosted, macOS, ARM64]
+    runs-on: [self-hosted, linux]
     # TRA-520 (2026-10-15): the 24 polling attempts took 7 min 59 s with the previous version of this job and the
     # API calls added here cost about 8 s more; 8 minutes would have turned a legitimate wait into a timeout.
     timeout-minutes: 9

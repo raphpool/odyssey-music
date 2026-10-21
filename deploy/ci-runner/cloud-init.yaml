@@ -1,0 +1,47 @@
+#cloud-config
+# Linux CI runner host for raphpool/odyssey-music (Ubuntu LTS 24.04 or later, ARM64 or x64).
+# 2026-10-20: every job ran on three runner processes sharing Raphael's Mac; over Oct 16-20 jobs waited ~3.7x
+# longer for a runner than they ran, and 74% of runner-minutes were Node jobs that do not need macOS. This host
+# takes those jobs; the Mac keeps ios-check only.
+# Paste this file into "Cloud config" when creating the server, with the admin SSH key selected. Then register
+# the runners with setup-runners.sh (see its header).
+
+package_update: true
+package_upgrade: true
+packages:
+  - ca-certificates
+  - curl
+  - git
+  - jq
+  - lsof
+  - rsync
+  - unzip
+  - ufw
+  - unattended-upgrades
+
+# The runner accounts (runner-1 ... runner-N, no sudo) are created by setup-runners.sh, one per runner.
+
+ssh_pwauth: false
+
+write_files:
+  - path: /etc/ssh/sshd_config.d/10-odyssey-ci.conf
+    content: |
+      PasswordAuthentication no
+      KbdInteractiveAuthentication no
+      PermitRootLogin prohibit-password
+
+runcmd:
+  # Outbound HTTPS is all the runners need; only SSH comes in.
+  - ufw default deny incoming
+  - ufw default allow outgoing
+  - ufw allow 22/tcp
+  - ufw --force enable
+  # gh is preinstalled on GitHub-hosted images, not here; ci.yml and review-gate.yml call it.
+  - install -d -m 755 /etc/apt/keyrings
+  - curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg -o /etc/apt/keyrings/githubcli-archive-keyring.gpg
+  - chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg
+  - echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github-cli.list
+  - apt-get update -qq && apt-get install -y -qq gh
+  # Headroom for parallel vitest runs on a 16 GB host.
+  - fallocate -l 4G /swapfile && chmod 600 /swapfile && mkswap /swapfile && swapon /swapfile && echo '/swapfile none swap sw 0 0' >> /etc/fstab
+  - systemctl restart ssh

@@ -78,6 +78,36 @@ describe("ios-check runner label (TRA-411)", () => {
 	});
 });
 
+// TRA-650 (2026-10-20): jobs waited ~3.7x longer for a runner than they ran, and 74% of runner minutes were
+// Node jobs that do not need macOS. Only ios-check does, so every other workflow targets the Linux runners.
+describe("runner labels by workflow (TRA-650)", () => {
+	const workflowFiles = readdirSync(".github/workflows").filter((file) => /\.ya?ml$/.test(file));
+	const runsOnLinesOf = (file: string): string[] =>
+		withoutComments(readFileSync(join(".github/workflows", file), "utf8")).match(/^\s*runs-on:.*$/gm) ?? [];
+
+	it("finds the workflows and their runs-on lines", () => {
+		expect(workflowFiles).toContain("ci.yml");
+		for (const file of workflowFiles) expect(runsOnLinesOf(file).length).toBeGreaterThan(0);
+	});
+
+	it("requests the macOS label in no workflow except ios-ci.yml", () => {
+		for (const file of workflowFiles.filter((name) => name !== "ios-ci.yml")) {
+			for (const line of runsOnLinesOf(file)) expect(`${file}: ${line}`).not.toMatch(/macOS/i);
+		}
+	});
+
+	it("targets the Linux runners explicitly in every other workflow, so a typo cannot queue forever", () => {
+		for (const file of workflowFiles.filter((name) => name !== "ios-ci.yml")) {
+			for (const line of runsOnLinesOf(file))
+				expect(`${file}: ${line}`).toMatch(/runs-on: \[self-hosted, linux\]\s*$/);
+		}
+	});
+
+	it("keeps the ios label in every runs-on of ios-ci.yml", () => {
+		for (const line of runsOnLinesOf("ios-ci.yml")) expect(line).toMatch(/\bios\b/);
+	});
+});
+
 // TRA-415 / TRA-417 (2026-10-12, #341): ios-check and mobile-check are not required checks, so `paths` lists
 // their inputs. A forgotten input silently skips a check, so these tests compute the inputs they can (harness
 // import graph, ios/, mobile/, check.sh reads) and fail if one is uncovered; they refuse unmodelled glob syntax.
