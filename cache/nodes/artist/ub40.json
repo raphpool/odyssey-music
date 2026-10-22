@@ -93,6 +93,14 @@
       "releaseType": "single"
     },
     {
+      "slug": "project:promises-and-lies",
+      "type": "project",
+      "name": "Promises and Lies",
+      "mbid": "b250f5c8-33f8-381c-ac5d-a278b5f3abbf",
+      "year": "1993",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:impossible-love--ub40",
       "type": "project",
       "name": "Impossible Love",
@@ -215,11 +223,6 @@
       "mbid": "73459ae1-a126-3f8b-ac59-a8a41fbda78f",
       "year": "1980",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:promises-and-lies",
-      "type": "project",
-      "name": "Promises and Lies"
     }
   ],
   "notable_tracks": [

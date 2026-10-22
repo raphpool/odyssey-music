@@ -189,6 +189,15 @@
       "releaseType": "album"
     },
     {
+      "slug": "project:scandal-in-new-york--satoshi-tomiie",
+      "type": "project",
+      "name": "Scandal in New York",
+      "artist": "Satoshi Tomiie",
+      "mbid": "544ce512-e078-45bf-ba58-1cb38da945f8",
+      "year": "2003",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:love-in-traffic--satoshi-tomiie",
       "type": "project",
       "name": "Love in Traffic",

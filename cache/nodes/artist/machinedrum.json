@@ -152,6 +152,14 @@
       "releaseType": "ep"
     },
     {
+      "slug": "project:human-energy",
+      "type": "project",
+      "name": "Human Energy",
+      "mbid": "4510870d-489c-438e-8396-3314f0e5c6a1",
+      "year": "2016",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:vapor-city",
       "type": "project",
       "name": "Vapor City",
@@ -201,11 +209,6 @@
       "mbid": "7b8de034-55d5-339b-a255-856c1983fdf9",
       "year": "2001",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:human-energy",
-      "type": "project",
-      "name": "Human Energy"
     }
   ],
   "notable_tracks": [
