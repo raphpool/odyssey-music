@@ -55,6 +55,11 @@ export const INFORMATIVE_METRICS: ReadonlySet<string> = new Set([
 	// Counted per edge, so no per-artist allowance can cover it; the ratcheted twin is
 	// artist-discography-without-mbid (TRA-616, amends 8-D6).
 	"discography-edge-without-mbid",
+	// The redirect leads to a node the repo cache does not hold (prod-only work, TRA-484), so its credit cannot
+	// be judged here and the count rises with every backfill that adds a right identity (2026-10-23, TRA-598:
+	// #531 would have taken it from 8 to 11 with three correct ones, and turned the integrity job red). Its
+	// ceilinged twin is artist-edge-to-redirect-key, which only counts a target it can read.
+	"artist-edge-to-redirect-key-unresolved",
 ]);
 
 /**
@@ -333,7 +338,7 @@ export function auditNodes(
 			// node wins over the redirect (resolveReadSlug), so such an edge is not misrouted and is skipped.
 			// The per-field metric reads the credit of the resolved node (an empty credit credits no one, so it
 			// counts). A target missing from the repo cache (prod-only work, TRA-484) cannot be judged here: it
-			// is ceilinged apart, so such an edge cannot be added without an explicit decision.
+			// is only reported, as informative, with its cases.
 			for (const field of ARTIST_WORK_FIELDS) {
 				for (const edge of edgesOf(node, field)) {
 					const resolved = redirects.get(edge.slug);

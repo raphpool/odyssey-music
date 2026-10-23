@@ -451,7 +451,7 @@ describe("auditNodes", () => {
 			expect(metric(report, "artist-edge-to-redirect-key", "discography")).toBe(1);
 		});
 
-		it("counts a redirect to a node missing from the cache apart, under its own strict ceiling", () => {
+		it("reports a redirect to a node missing from the cache apart, as informative: never compared, no ceiling", () => {
 			const report = auditNodes(
 				toMap(node("artist:a", { discography: [edge("project:ghost")] })),
 				[],
@@ -462,13 +462,16 @@ describe("auditNodes", () => {
 			expect(report.cases["artist-edge-to-redirect-key-unresolved"]).toEqual([
 				"artist:a discography project:ghost -> project:ghost--the-ghosts",
 			]);
-			// Its credit cannot be read, so it is not left informative: a new such edge must fail the audit.
-			expect(INFORMATIVE_METRICS.has("artist-edge-to-redirect-key-unresolved")).toBe(false);
-			expect(coverageNodeType("artist-edge-to-redirect-key-unresolved")).toBeNull();
-			const thresholds = { ...thresholdsFromReport(report), "artist-edge-to-redirect-key-unresolved": 0 };
-			expect(compareWithThresholds(report, thresholds).map(formatViolation)).toEqual([
-				"artist-edge-to-redirect-key-unresolved 1 > 0",
-			]);
+			// Its credit cannot be read here, and a backfill adding right identities raises it (#531: 8 -> 11):
+			// a ceiling would turn legitimate data PRs red (TRA-616 trap).
+			expect(INFORMATIVE_METRICS.has("artist-edge-to-redirect-key-unresolved")).toBe(true);
+			const thresholds = thresholdsFromReport(report);
+			expect(thresholds).not.toHaveProperty("artist-edge-to-redirect-key-unresolved");
+			expect(compareWithThresholds(report, thresholds)).toEqual([]);
+			// Even if the file still carries an old ceiling, rising above it is not a violation.
+			expect(
+				compareWithThresholds(report, { ...thresholds, "artist-edge-to-redirect-key-unresolved": 0 }),
+			).toEqual([]);
 		});
 
 		it("measures every artist field that targets a project or a track, and only those", () => {
