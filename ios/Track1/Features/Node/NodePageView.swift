@@ -51,7 +51,8 @@ struct NodePageView: View {
 	/// node-type colour (D3), which `CoverTintTone` darkens like any cover. It does not depend on the root.
 	static func pageTint(coverTint: CoverTint?, type: NodeType) -> CoverTint {
 		if let coverTint { return coverTint }
-		// The conversions cannot fail for a token colour; the literal is `background.elevated` (0x1A110E) in case one does.
+		// The conversions cannot fail for a token colour; if one did, fall back on `background.elevated`
+		// (0x1A110E), written out so that the last step cannot fail either.
 		let rgb =
 			LinearRGB(Track1Tokens.colorNode(type)) ?? LinearRGB(Track1Tokens.colorBackgroundElevated)
 			?? LinearRGB(red: 26 / 255, green: 17 / 255, blue: 14 / 255)
