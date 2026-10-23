@@ -22,6 +22,7 @@
     "migrate:genre-qid": "tsx scripts/migrations/2026-09-04-backfill-genre-qid.ts",
     "migrate:genre-merge": "tsx scripts/migrations/2026-09-04-merge-genre-duplicates.ts",
     "audit:cache": "tsx scripts/audit-cache.ts",
+    "reenrich:thin": "tsx scripts/reenrich-thin-nodes.ts",
     "analyze:coverage": "tsx scripts/analyze-coverage.ts",
     "analyze:genre-coverage": "tsx scripts/analyze-genre-coverage.ts",
     "report:genre-dupes": "tsx scripts/report-genre-duplicates.ts",
