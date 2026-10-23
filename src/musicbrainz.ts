@@ -1270,24 +1270,24 @@ function mainCreditEntries(entries: MbArtistCreditEntry[]): MbArtistCreditEntry[
 	});
 }
 
-const NO_MBIDS: ReadonlySet<string> = new Set();
-
 /**
- * True when the requested artist is in the MAIN credit of the work (mainCreditEntries): equal to the hint by
- * name, or carrying the requested or an accepted MBID. Same rules as the whole-credit checks, on fewer entries.
+ * The candidates that have the requested artist in their MAIN credit (mainCreditEntries) when there are any,
+ * else all of them: the featured-only ones are looked at only when no candidate has the artist up front
+ * (TRA-542). `inMain` is the caller's own test, by name or by MBID.
  */
-function creditedInMain(
-	credit: MbArtistCreditEntry[],
+function preferMainCredit<T>(candidates: T[], inMain: (candidate: T) => boolean): T[] {
+	const main = candidates.filter(inMain);
+	return main.length > 0 ? main : candidates;
+}
+
+/** True when the requested artist, by name or by MBID when it is known, is in the MAIN credit of the candidate. */
+function inMainCredit(
+	candidate: { "artist-credit"?: MbArtistCreditEntry[] | undefined },
 	hint: string,
 	requested: ReadonlySet<string> | null,
-	accepted: ReadonlySet<string>,
 ): boolean {
-	const main = mainCreditEntries(credit);
-	return (
-		creditEqualsHint(main, hint) ||
-		(requested !== null && creditCarriesMbid(main, requested)) ||
-		(accepted.size > 0 && creditCarriesMbid(main, accepted))
-	);
+	const main = mainCreditEntries(candidate["artist-credit"] ?? []);
+	return creditEqualsHint(main, hint) || (requested !== null && creditCarriesMbid(main, requested));
 }
 
 /**
@@ -1407,8 +1407,7 @@ function pickDoubleSided<
 	});
 	// The main credit first (TRA-542): a double A-side single the artist only features on is a candidate
 	// only when no other one has them in its main credit.
-	const inMain = matches.filter((c) => creditedInMain(c["artist-credit"] ?? [], hint, requested, NO_MBIDS));
-	const ranked = inMain.length > 0 ? inMain : matches;
+	const ranked = preferMainCredit(matches, (c) => inMainCredit(c, hint, requested));
 	const only = ranked[0];
 	return ranked.length === 1 && only ? { kind: "one", candidate: only } : { kind: "none" };
 }
@@ -1430,10 +1429,13 @@ function pickDoubleSided<
  *    is credited to someone else ("Prince" asked, "Prince Buster" credited). TRA-537 removed the old
  *    fallback to the single exact-title candidate, which resolved exactly that case. Without a hint,
  *    the single exact-title candidate wins (more than one = ambiguous);
- *    The main credit comes first (TRA-542): when some of those candidates have the artist in their main
+ * 2b. the main credit comes first (TRA-542): when some of those candidates have the artist in their main
  *    credit (before any "feat." / "ft." / "featuring" / "with" join phrase), the ones that only feature
- *    them are set aside, so that an older "B feat. A" single does not beat A's own album. They are
- *    looked at only when no candidate has the artist in its main credit;
+ *    them are set aside, so that an older "B feat. A" single does not beat A's own album. They are looked
+ *    at only when no candidate has the artist in its main credit. Ranked within a kind of credit (the
+ *    artist's own against the artist's own, a band against a band): an own credit and a band's stay a doubt.
+ *    This comes BEFORE steps 3 to 5: neither a recording's disambiguation nor the caller's `releaseType`
+ *    brings a set-aside candidate back (a known type that the remaining candidates lack is `ambiguous`);
  * 3. recordings carrying a non-empty `disambiguation` (live, DJ-mix, video...) are set aside; exactly
  *    one must remain. Release groups have no such note: when they all share one primary type, the one
  *    with the strictly earliest first-release-date among the dated ones wins (a later reissue of the
@@ -1490,7 +1492,7 @@ function pickByTitleAndCredit<
 	if (kind === "release-group" && hasHint && exact.length === 0) {
 		return pickDoubleSided(candidates, wanted, hint, requested, releaseType);
 	}
-	let direct = hasHint
+	const credited = hasHint
 		? exact.filter(
 				(c) =>
 					creditEqualsHint(c["artist-credit"] ?? [], hint) ||
@@ -1499,23 +1501,23 @@ function pickByTitleAndCredit<
 		: exact;
 	// Credited to a band the artist belongs to, accepted by MBID alone (TRA-539). Mixed with a direct
 	// credit on the same title it is a doubt, not a preference for the direct one (TRA-537 deep review).
-	let viaGroup =
+	const creditedViaGroup =
 		hasHint && acceptedMbids.size > 0
-			? exact.filter((c) => !direct.includes(c) && creditCarriesMbid(c["artist-credit"] ?? [], acceptedMbids))
+			? exact.filter(
+					(c) => !credited.includes(c) && creditCarriesMbid(c["artist-credit"] ?? [], acceptedMbids),
+				)
 			: [];
-	// The artist in the MAIN credit comes before the artist only featured (TRA-542): the featured-only
-	// candidates are looked at when no candidate has the artist (or an accepted band) in its main credit.
+	// The artist in the MAIN credit comes before the artist only featured (TRA-542), within each kind of
+	// credit: a direct credit against a direct one, a band against a band. A direct candidate and a band's
+	// stay a doubt (below), featured or not. Without a hint the title alone decides: nothing to rank.
+	const direct = hasHint ? preferMainCredit(credited, (c) => inMainCredit(c, hint, requested)) : credited;
+	const viaGroup = preferMainCredit(creditedViaGroup, (c) =>
+		creditCarriesMbid(mainCreditEntries(c["artist-credit"] ?? []), acceptedMbids),
+	);
 	// Set aside for good, not "doubts": a featured credit is another artist's work, whatever its date.
-	const featuredOnly = new Set<T>();
-	if (hasHint) {
-		const credited = [...direct, ...viaGroup];
-		const inMain = (c: T) => creditedInMain(c["artist-credit"] ?? [], hint, requested, acceptedMbids);
-		if (credited.some(inMain)) {
-			for (const c of credited) if (!inMain(c)) featuredOnly.add(c);
-			direct = direct.filter((c) => !featuredOnly.has(c));
-			viaGroup = viaGroup.filter((c) => !featuredOnly.has(c));
-		}
-	}
+	const featuredOnly = new Set(
+		[...credited, ...creditedViaGroup].filter((c) => !direct.includes(c) && !viaGroup.includes(c)),
+	);
 	if (direct.length > 0 && viaGroup.length > 0) return { kind: "ambiguous" };
 	// Two different bands of the same member, each with a work of this title: which one is meant is a
 	// doubt, not a matter of age (TRA-552; main kept the oldest). Candidates that share one accepted band

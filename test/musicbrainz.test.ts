@@ -2137,10 +2137,15 @@ describe("pickByTitleAndCredit: the main credit before the featured ones (TRA-54
 		expect(out.identity?.mbid).toBe(ALBUM_ID);
 	});
 
-	it("puts a band's main credit (accepted by MBID) before the artist featured on someone else's work", async () => {
+	it("ranks bands against bands: a band in the main credit before the same band only featured", async () => {
 		stubMb({
 			"release-groups": [
-				bFeatA(FEAT_ID, "Band Title", " feat. ", { "first-release-date": "2003" }),
+				{
+					id: FEAT_ID,
+					title: "Band Title",
+					"artist-credit": [entry(B, "B", " feat. "), entry(BAND, "The Band")],
+					"first-release-date": "2003",
+				},
 				{
 					id: ALBUM_ID,
 					title: "Band Title",
@@ -2151,6 +2156,76 @@ describe("pickByTitleAndCredit: the main credit before the featured ones (TRA-54
 		});
 		const out = await resolveReleaseGroupDetailed("Band Title", "A", { acceptCreditMbids: [BAND] });
 		expect(out.identity?.mbid).toBe(ALBUM_ID);
+	});
+
+	it("keeps a direct credit and a band's work a doubt, featured or not (TRA-537 rule, unchanged)", async () => {
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Doubt Band Title", " feat. ", { "first-release-date": "2003" }),
+				{
+					id: ALBUM_ID,
+					title: "Doubt Band Title",
+					"artist-credit": [entry(BAND, "The Band")],
+					"first-release-date": "2005",
+				},
+			],
+		});
+		const out = await resolveReleaseGroupDetailed("Doubt Band Title", "A", { acceptCreditMbids: [BAND] });
+		expect(out).toEqual({ identity: null, ambiguous: true, unavailable: false });
+	});
+
+	it("ranks the credit before the known release type: the type never brings back a featured-only candidate", async () => {
+		// A single known as such, A's album and "B feat. A"'s single share a title: the album is the main-credit
+		// candidate, the type then finds no single among them. Doubt, as for any known type no candidate has.
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Typed Title", " feat. ", { "primary-type": "Single", "first-release-date": "2003" }),
+				aAlone(ALBUM_ID, "Typed Title", { "primary-type": "Album", "first-release-date": "2005" }),
+			],
+		});
+		expect(await resolveReleaseGroupDetailed("Typed Title", "A", { releaseType: "single" })).toEqual({
+			identity: null,
+			ambiguous: true,
+			unavailable: false,
+		});
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Typed Title", " feat. ", { "primary-type": "Single", "first-release-date": "2003" }),
+				aAlone(ALBUM_ID, "Typed Title", { "primary-type": "Album", "first-release-date": "2005" }),
+			],
+		});
+		expect(
+			(await resolveReleaseGroupDetailed("Typed Title", "A", { releaseType: "album" })).identity?.mbid,
+		).toBe(ALBUM_ID);
+	});
+
+	it("ranks the credit before the disambiguation of recordings: A's live take is not traded for a featured studio one", async () => {
+		stubMb({
+			recordings: [
+				bFeatA(FEAT_ID, "Live Title", " feat. "),
+				aAlone(ALBUM_ID, "Live Title", { disambiguation: "live, Paris 1998" }),
+			],
+		});
+		expect(await resolveRecordingDetailed("Live Title", "A")).toEqual({
+			identity: null,
+			ambiguous: false,
+			unavailable: false,
+		});
+	});
+
+	it("does not cut a credit whose featuring phrase follows its last entry: nobody is featured", async () => {
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Trailing Title", " feat. ", { "first-release-date": "2003" }),
+				{
+					id: ALBUM_ID,
+					title: "Trailing Title",
+					"artist-credit": [entry(A, "A", " feat. ")],
+					"first-release-date": "2005",
+				},
+			],
+		});
+		expect((await resolveReleaseGroup("Trailing Title", "A"))?.mbid).toBe(ALBUM_ID);
 	});
 
 	it("applies to a double A-side single too: the main-credit one beats a featured one", async () => {
