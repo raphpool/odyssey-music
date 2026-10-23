@@ -43,15 +43,6 @@
   "labels": [],
   "discography": [
     {
-      "slug": "project:variance-duo--pierre-henry",
-      "type": "project",
-      "name": "Variance / Duo",
-      "artist": "Pierre Henry",
-      "mbid": "b3189f1d-3d84-4966-acac-d1f4ac7b6e44",
-      "year": "2026",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:un-monde-lacere--pierre-henry",
       "type": "project",
       "name": "Un monde lacéré",
