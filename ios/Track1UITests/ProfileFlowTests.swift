@@ -16,7 +16,7 @@ final class ProfileFlowTests: XCTestCase {
 		// 1.1: the brand moment is the whole app until the person starts.
 		let start = app.buttons["onboarding-start"]
 		XCTAssertTrue(start.waitForExistence(timeout: 10))
-		XCTAssertFalse(app.tabBars.firstMatch.exists)
+		XCTAssertFalse(UITestFlows.tabBar(in: app).exists)
 		UITestFlows.screenshot(named: "1.1", in: self)
 		start.tap()
 
@@ -50,7 +50,7 @@ final class ProfileFlowTests: XCTestCase {
 		// 1.6, then Today: the onboarding is gone and the tabs are there.
 		UITestFlows.screenshot(named: "1.6", in: self)
 		XCTAssertTrue(element(app, "node-title").waitForExistence(timeout: 15))
-		XCTAssertTrue(app.tabBars.buttons["Aujourd’hui"].exists)
+		XCTAssertTrue(UITestFlows.tabButton("Aujourd’hui", in: app).exists)
 		XCTAssertFalse(app.buttons["onboarding-start"].exists)
 
 		// A launch without reset finds the profile: no onboarding, Today again.
@@ -59,7 +59,7 @@ final class ProfileFlowTests: XCTestCase {
 		XCTAssertFalse(app.buttons["onboarding-start"].exists)
 
 		// The settings count what the saved selection holds: it was written, and read back after the relaunch.
-		app.tabBars.buttons["Genres"].tap()
+		UITestFlows.tabButton("Genres", in: app).tap()
 		XCTAssertEqual(openSettings(in: app).value as? String, "2 familles · 3 sous-genres")
 	}
 
@@ -214,11 +214,11 @@ final class ProfileFlowTests: XCTestCase {
 		// The write failed: the flow stays where it is, and the same button writes again.
 		let alert = app.alerts["Enregistrement indisponible"]
 		XCTAssertTrue(alert.waitForExistence(timeout: 10))
-		XCTAssertFalse(app.tabBars.firstMatch.exists)
+		XCTAssertFalse(UITestFlows.tabBar(in: app).exists)
 		alert.buttons["OK"].tap()
 		XCTAssertTrue(alert.waitForNonExistence(timeout: 5))
 		UITestFlows.tapWhenReady(app.buttons["onboarding-genres-continue"])
-		XCTAssertTrue(app.tabBars.buttons["Genres"].waitForExistence(timeout: 10))
+		XCTAssertTrue(UITestFlows.tabButton("Genres", in: app).waitForExistence(timeout: 10))
 	}
 
 	@MainActor
@@ -232,7 +232,7 @@ final class ProfileFlowTests: XCTestCase {
 		UITestFlows.declineConsent(app)
 
 		XCTAssertTrue(app.staticTexts["profile-recovery-message"].waitForExistence(timeout: 10))
-		app.tabBars.buttons["Genres"].tap()
+		UITestFlows.tabButton("Genres", in: app).tap()
 		// 2026-10-14 (K.1): the settings, where a corrupt profile is deleted, open from the Genres tab.
 		XCTAssertTrue(app.staticTexts["genres-recovery-message"].waitForExistence(timeout: 5))
 		app.buttons["genres-settings"].tap()
@@ -246,13 +246,13 @@ final class ProfileFlowTests: XCTestCase {
 
 		// 2026-10-14 (J.4): with no profile left the app is the first launch again, not a tab with a button.
 		XCTAssertTrue(app.buttons["onboarding-start"].waitForExistence(timeout: 10))
-		XCTAssertFalse(app.tabBars.firstMatch.exists)
+		XCTAssertFalse(UITestFlows.tabBar(in: app).exists)
 		UITestFlows.tapWhenReady(app.buttons["onboarding-start"])
 		tapCard("family-0", in: app)
 		UITestFlows.tapWhenReady(app.buttons["subgenre-chip-local:genre-3"])
 		UITestFlows.tapWhenReady(app.buttons["onboarding-genres-continue"])
-		XCTAssertTrue(app.tabBars.buttons["Genres"].waitForExistence(timeout: 10))
-		app.tabBars.buttons["Genres"].tap()
+		XCTAssertTrue(UITestFlows.tabButton("Genres", in: app).waitForExistence(timeout: 10))
+		UITestFlows.tabButton("Genres", in: app).tap()
 		_ = openSettings(in: app)
 		XCTAssertEqual(app.buttons["profile-settings-edit"].value as? String, "1 famille · 1 sous-genre")
 	}
@@ -260,7 +260,7 @@ final class ProfileFlowTests: XCTestCase {
 	@MainActor
 	func testTheGenresTabShowsTheFamiliesOfTheProfileAndOpensTheSettings() {
 		let app = firstProfile()
-		app.tabBars.buttons["Genres"].tap()
+		UITestFlows.tabButton("Genres", in: app).tap()
 
 		XCTAssertTrue(app.staticTexts["Mes genres"].waitForExistence(timeout: 5))
 		XCTAssertTrue(tile("family-0", in: app).waitForExistence(timeout: 5))
@@ -278,7 +278,7 @@ final class ProfileFlowTests: XCTestCase {
 	@MainActor
 	func testEditingTheGenresAddsAFamilyThenTodayIsComputedAgain() {
 		let app = firstProfile()
-		app.tabBars.buttons["Genres"].tap()
+		UITestFlows.tabButton("Genres", in: app).tap()
 		app.buttons["genres-edit"].tap()
 
 		// The edit flow opens on the accordion, with no Welcome: the card of the current family is closed
@@ -297,7 +297,7 @@ final class ProfileFlowTests: XCTestCase {
 
 		// The flow ends on Today, which loads the recommendation again for the new revision of the profile.
 		XCTAssertTrue(element(app, "node-title").waitForExistence(timeout: 15))
-		app.tabBars.buttons["Genres"].tap()
+		UITestFlows.tabButton("Genres", in: app).tap()
 		XCTAssertTrue(tile("family-1", in: app).waitForExistence(timeout: 5))
 		XCTAssertTrue(tile("family-0", in: app).exists)
 	}
@@ -324,7 +324,7 @@ final class ProfileFlowTests: XCTestCase {
 		UITestFlows.relaunch(app, catalog: Self.degradedCatalog)
 
 		XCTAssertTrue(element(app, "node-title").waitForExistence(timeout: 15))
-		app.tabBars.buttons["Genres"].tap()
+		UITestFlows.tabButton("Genres", in: app).tap()
 		XCTAssertTrue(app.buttons["genres-retry"].waitForExistence(timeout: 5))
 		XCTAssertFalse(app.buttons["genres-edit"].isEnabled)
 	}
