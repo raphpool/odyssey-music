@@ -13,9 +13,18 @@
  * plus `materialized_at`. Every other key (edges, mbid, image, _metrics...) is the one on disk. A fact the
  * fresh node does not carry is kept, never erased.
  *
- * A node is rewritten only if the fresh node really cites >= 2 sources, validates (`nodePayloadSchema`), and
- * is the same entity (same slug and type, and the same `mbid` when both carry one). A fresh node that is still
- * thin leaves the file alone and its slug goes to `stillThin`; any other refusal goes to `errors`.
+ * The goal is to ADD a source without impoverishing the card, so a rewrite is guarded (decision of the
+ * dispatcher, 2026-10-24, after a first run that shortened articles by a third, dropped the original source of
+ * 39 nodes out of 99, cited Facebook, and wrote a folk singer's text on the trip-hop producer Aim):
+ *   1. the citations already on the node are always kept (first, in order); the fresh ones are appended;
+ *   2. a fresh citation on a social network or a streaming platform is not added (BLOCKED_CITATION_HOSTS);
+ *      a node left without a new source stays thin (`stillThin`);
+ *   3. a fresh article under 80 % of the stored one is refused (`refused`, "shorter-article");
+ *   4. a node without `mbid` (identity not pinned, so a homonym can answer the search) is rewritten only if
+ *      the fresh text names an entity the node is already linked to: a label, a project, a track, a member, an
+ *      alias (a roster or a release for a label). Otherwise "identity-unconfirmed".
+ * The node must also validate (`nodePayloadSchema`) and be the same entity (same slug and type, and the same
+ * `mbid` when both carry one); any other failure goes to `errors`. A refused node keeps its file as it is.
  *
  * Why this is safe to re-run: the selection is read from the files, so a node already rewritten is no longer
  * selected. A run that stops half-way (budget, quota, a kill) is resumed by running it again.
@@ -37,7 +46,7 @@ import { isDeepStrictEqual, parseArgs } from "node:util";
 import { atomicWriteJson } from "../src/cache.js";
 import { loadEnv } from "../src/env.js";
 import { OPTIONAL_TEXT_FIELDS, TEASER_FIELD_BY_TYPE } from "../src/node-spec.js";
-import { type PipelineDeps, type PipelineInput, runPipeline } from "../src/pipeline.js";
+import { type PipelineDeps, type PipelineInput, type PipelineResult, runPipeline } from "../src/pipeline.js";
 import { nodePayloadSchema } from "../src/schemas.js";
 import type { NodeType, Slug } from "../src/types.js";
 import {
@@ -105,6 +114,118 @@ function hasValue(value: unknown): boolean {
 	return typeof value !== "string" || value.trim() !== "";
 }
 
+/** Social networks and streaming platforms: never a source for a card (hostname or any subdomain of it). */
+export const BLOCKED_CITATION_HOSTS = [
+	"facebook.com",
+	"fb.com",
+	"fb.watch",
+	"instagram.com",
+	"x.com",
+	"twitter.com",
+	"tiktok.com",
+	"youtube.com",
+	"youtu.be",
+	"spotify.com",
+	"music.apple.com",
+	"itunes.apple.com",
+	"deezer.com",
+	"soundcloud.com",
+] as const;
+
+/** True for a blocked host, and for a URL that does not parse (a citation is untrusted third-party data). */
+export function isBlockedCitationUrl(url: string): boolean {
+	let host: string;
+	try {
+		host = new URL(url).hostname.toLowerCase();
+	} catch {
+		return true;
+	}
+	return BLOCKED_CITATION_HOSTS.some((h) => host === h || host.endsWith(`.${h}`));
+}
+
+function urlKey(url: string): string {
+	try {
+		const u = new URL(url);
+		return `${u.hostname.toLowerCase()}${u.pathname.replace(/\/+$/, "")}${u.search}`;
+	} catch {
+		return url;
+	}
+}
+
+/** A fresh article shorter than this share of the stored one is refused. */
+export const MIN_ARTICLE_RATIO = 0.8;
+/** Shorter names ("Sky", "Air") appear in any text: they do not confirm an identity. */
+const MIN_LINKED_NAME_LENGTH = 4;
+
+/** Edges that name an entity of the node's own world. Genres are left out: any text on any artist names one. */
+const LINK_FIELDS: Record<ReenrichType, readonly string[]> = {
+	artist: ["labels", "discography", "notable_tracks", "members", "aliases"],
+	label: ["roster", "notable_releases"],
+};
+
+const fold = (text: string): string => text.normalize("NFD").replace(/\p{M}/gu, "").toLowerCase();
+
+/** The names of the entities the node is already linked to. */
+export function linkedEntityNames(node: Obj, type: ReenrichType): string[] {
+	const names = new Set<string>();
+	for (const field of LINK_FIELDS[type]) {
+		const edges = node[field];
+		if (!Array.isArray(edges)) continue;
+		for (const edge of edges as Obj[]) {
+			if (typeof edge?.name === "string" && edge.name.length >= MIN_LINKED_NAME_LENGTH) names.add(edge.name);
+		}
+	}
+	return [...names];
+}
+
+/** True if `text` names (whole words, accents and case ignored) an entity the node is already linked to. */
+export function namesLinkedEntity(node: Obj, type: ReenrichType, text: string): boolean {
+	const haystack = fold(text);
+	return linkedEntityNames(node, type).some((name) => {
+		const escaped = fold(name).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+		return new RegExp(`(?<![\\p{L}\\p{N}])${escaped}(?![\\p{L}\\p{N}])`, "u").test(haystack);
+	});
+}
+
+export type Refusal = "still-thin" | "shorter-article" | "identity-unconfirmed";
+
+/**
+ * The node to write for `fresh`, or why it is refused. Citations: the stored ones first, then the fresh ones that
+ * are new and not on a blocked host. See the header for the guards.
+ */
+export function evaluateCandidate(
+	existing: Obj,
+	fresh: Obj,
+	type: ReenrichType,
+	materializedAt: string,
+): { ok: true; node: Obj; changed: string[] } | { ok: false; reason: Refusal } {
+	const stored = Array.isArray(existing.citations) ? (existing.citations as Obj[]) : [];
+	const seen = new Set(stored.map((c) => urlKey(String(c.url))));
+	const added: Obj[] = [];
+	for (const c of Array.isArray(fresh.citations) ? (fresh.citations as Obj[]) : []) {
+		const url = typeof c?.url === "string" ? c.url : "";
+		if (url === "" || isBlockedCitationUrl(url) || seen.has(urlKey(url))) continue;
+		seen.add(urlKey(url));
+		added.push(c);
+	}
+	if (stored.length + added.length < MIN_CITATIONS) return { ok: false, reason: "still-thin" };
+	const article = String(fresh.editorial_article ?? "");
+	if (article.length < MIN_ARTICLE_RATIO * String(existing.editorial_article ?? "").length) {
+		return { ok: false, reason: "shorter-article" };
+	}
+	if (typeof existing.mbid !== "string") {
+		const text = `${article}\n${String(fresh[TEASER_FIELD_BY_TYPE[type]] ?? "")}`;
+		if (!namesLinkedEntity(existing, type, text)) return { ok: false, reason: "identity-unconfirmed" };
+	}
+	const { node, changed } = mergeFreshText(
+		existing,
+		{ ...fresh, citations: [...stored, ...added] },
+		type,
+		materializedAt,
+	);
+	return { ok: true, node, changed };
+}
+
 /**
  * `existing` with the text fields of `fresh` and a new `materialized_at`. A field `fresh` does not carry (or
  * carries empty) keeps its stored value. `changed` lists the fields whose value differs.
@@ -140,8 +261,10 @@ export interface ReenrichManifest {
 	/** Files written (planned, never in a dry-run). */
 	rewritten: number;
 	rewrittenSlugs: string[];
-	/** Nodes the pipeline still gave < 2 citations: their file is untouched. */
+	/** Nodes left with < 2 citations (the pipeline gave no new allowed source): their file is untouched. */
 	stillThin: string[];
+	/** Nodes refused by a guard (shorter article, identity unconfirmed): their file is untouched. */
+	refused: { slug: string; reason: Refusal }[];
 	/** Sum of the pipeline `metrics.costUsd` of the calls made (priced by GEMINI_FLASH_LITE_*_USD_PER_MILLION). */
 	costUsd: number;
 	inputTokens: number;
@@ -156,6 +279,8 @@ export interface ReenrichOptions extends SelectOptions {
 	cacheDir: string;
 	apply: boolean;
 	deps?: PipelineDeps;
+	/** The generator of the fresh node. Default `runPipeline`; a replay of an earlier, already paid result may stand in. */
+	pipeline?: (input: PipelineInput, deps: PipelineDeps) => Promise<PipelineResult>;
 	concurrency?: number;
 	/** Stop starting nodes once the pipeline cost reaches this many dollars. */
 	maxCostUsd?: number;
@@ -192,6 +317,7 @@ export async function reenrichThinNodes(opts: ReenrichOptions): Promise<Reenrich
 		rewritten: 0,
 		rewrittenSlugs: [],
 		stillThin: [],
+		refused: [],
 		costUsd: 0,
 		inputTokens: 0,
 		outputTokens: 0,
@@ -212,7 +338,7 @@ export async function reenrichThinNodes(opts: ReenrichOptions): Promise<Reenrich
 				continue;
 			}
 			try {
-				await reenrichOne(file, deps, manifest, now, log);
+				await reenrichOne(file, deps, opts.pipeline ?? runPipeline, manifest, now, log);
 			} catch (e) {
 				const error = e instanceof Error ? e.message : String(e);
 				manifest.errors.push({ slug: file.slug, error });
@@ -223,6 +349,7 @@ export async function reenrichThinNodes(opts: ReenrichOptions): Promise<Reenrich
 	await Promise.all(Array.from({ length: Math.max(1, opts.concurrency ?? 2) }, worker));
 	manifest.rewrittenSlugs.sort();
 	manifest.stillThin.sort();
+	manifest.refused.sort((a, b) => (a.slug < b.slug ? -1 : 1));
 	manifest.notRun.sort();
 	manifest.errors.sort((a, b) => (a.slug < b.slug ? -1 : 1));
 	manifest.rewritten = manifest.rewrittenSlugs.length;
@@ -232,12 +359,13 @@ export async function reenrichThinNodes(opts: ReenrichOptions): Promise<Reenrich
 async function reenrichOne(
 	file: CacheNodeFile,
 	deps: PipelineDeps,
+	pipeline: NonNullable<ReenrichOptions["pipeline"]>,
 	manifest: ReenrichManifest,
 	now: () => Date,
 	log: (line: string) => void,
 ): Promise<void> {
 	const type = file.type as ReenrichType;
-	const result = await runPipeline(inputOf(file), { ...deps, maxProviderAttempts: 1 });
+	const result = await pipeline(inputOf(file), { ...deps, maxProviderAttempts: 1 });
 	manifest.costUsd += result.metrics.costUsd;
 	manifest.inputTokens += result.metrics.inputTokens;
 	manifest.outputTokens += result.metrics.outputTokens;
@@ -245,12 +373,14 @@ async function reenrichOne(
 
 	const mismatch = identityMismatch(file.node, fresh);
 	if (mismatch) throw new Error(`fresh node is not the same entity (${mismatch})`);
-	if (citationCount(fresh) < MIN_CITATIONS) {
-		manifest.stillThin.push(file.slug);
-		log(`STILL THIN ${file.slug}: ${citationCount(fresh)} citation(s)`);
+	const verdict = evaluateCandidate(file.node, fresh, type, now().toISOString());
+	if (!verdict.ok) {
+		if (verdict.reason === "still-thin") manifest.stillThin.push(file.slug);
+		else manifest.refused.push({ slug: file.slug, reason: verdict.reason });
+		log(`${verdict.reason === "still-thin" ? "STILL THIN" : "REFUSED"} ${file.slug}: ${verdict.reason}`);
 		return;
 	}
-	const { node, changed } = mergeFreshText(file.node, fresh, type, now().toISOString());
+	const { node, changed } = verdict;
 	const parsed = nodePayloadSchema.safeParse(node);
 	if (!parsed.success)
 		throw new Error(`merged node refused by the schema: ${parsed.error.message.slice(0, 300)}`);
@@ -364,7 +494,7 @@ async function main(): Promise<void> {
 	await mkdir(dirname(args.manifest), { recursive: true });
 	await atomicWriteJson(args.manifest, manifest);
 	const summary = args.apply
-		? `rewritten=${manifest.rewritten} stillThin=${manifest.stillThin.length} errors=${manifest.errors.length} ` +
+		? `rewritten=${manifest.rewritten} stillThin=${manifest.stillThin.length} refused=${manifest.refused.length} errors=${manifest.errors.length} ` +
 			`notRun=${manifest.notRun.length} cost=$${manifest.costUsd.toFixed(4)}`
 		: `candidates=${manifest.selected} estimated cost=$${manifest.estimatedCostUsd.toFixed(2)} (dry-run, nothing written)`;
 	process.stdout.write(`[reenrich] ${manifest.mode}: ${summary} -> ${args.manifest}\n`);

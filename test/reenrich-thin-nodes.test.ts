@@ -124,6 +124,10 @@ const TWO_CITATIONS = [
 	{ url: OTHER_PAGE_URL, title: "Fixture Artist - Discogs" },
 ];
 
+/** What the nodes below cite before the run, and after a rewrite: the original source stays, first. */
+const OLD_CITATION = { url: "https://en.wikipedia.org/wiki/Old", title: "Old" };
+const WITH_ORIGINAL = [OLD_CITATION, ...TWO_CITATIONS];
+
 describe("reenrich-thin-nodes (TRA-487)", () => {
 	let dir: string;
 
@@ -226,6 +230,124 @@ describe("reenrich-thin-nodes (TRA-487)", () => {
 		});
 	});
 
+	// Decision of the dispatcher, 2026-10-24: add a source without impoverishing the card.
+	describe("guards", () => {
+		const fresh = (overrides: Record<string, unknown> = {}): Record<string, unknown> => ({
+			...artistNode("artist:g"),
+			editorial_article: NEW_ARTICLE,
+			editorial_bio: "New bio.",
+			citations: TWO_CITATIONS,
+			...overrides,
+		});
+		const withoutMbid = (overrides: Record<string, unknown> = {}): Record<string, unknown> => {
+			const { mbid: _mbid, ...rest } = artistNode("artist:g", overrides);
+			return rest;
+		};
+
+		it("keeps the stored citation, first, and appends the fresh ones without repeating a source", async () => {
+			const { evaluateCandidate } = await loadScript();
+			const repeated = { url: "HTTPS://en.wikipedia.org/wiki/Old/", title: "Old again" };
+
+			const verdict = evaluateCandidate(
+				artistNode("artist:g"),
+				fresh({ citations: [repeated, ...TWO_CITATIONS] }),
+				"artist",
+				NEW_STAMP,
+			);
+
+			expect(verdict).toMatchObject({ ok: true });
+			expect(verdict.ok && verdict.node.citations).toEqual(WITH_ORIGINAL);
+		});
+
+		it("refuses a new source from a social network or a streaming platform", async () => {
+			const { evaluateCandidate, isBlockedCitationUrl } = await loadScript();
+			for (const url of [
+				"https://www.facebook.com/groups/x/posts/1",
+				"https://m.facebook.com/x",
+				"https://www.instagram.com/reel/abc",
+				"https://x.com/someone",
+				"https://twitter.com/someone",
+				"https://www.tiktok.com/@someone",
+				"https://www.youtube.com/watch?v=abc",
+				"https://music.youtube.com/channel/abc",
+				"https://youtu.be/abc",
+				"https://open.spotify.com/artist/abc",
+				"https://music.apple.com/ca/artist/x/1",
+				"https://www.deezer.com/en/artist/1",
+				"https://soundcloud.com/someone",
+				"not a url",
+			]) {
+				expect(isBlockedCitationUrl(url), url).toBe(true);
+			}
+			for (const url of [
+				"https://en.wikipedia.org/wiki/X",
+				"https://www.discogs.com/artist/1",
+				"https://notfacebook.com/x",
+				"https://box.com/x",
+				"https://www.apple.com/newsroom",
+				"https://someone.bandcamp.com/",
+			]) {
+				expect(isBlockedCitationUrl(url), url).toBe(false);
+			}
+			const social = { url: "https://www.facebook.com/x/posts/1", title: "Post" };
+			const video = { url: "https://www.youtube.com/watch?v=abc", title: "Video" };
+
+			// Only blocked sources to add: the node gains none, so it stays thin and untouched.
+			expect(
+				evaluateCandidate(artistNode("artist:g"), fresh({ citations: [social, video] }), "artist", NEW_STAMP),
+			).toEqual({ ok: false, reason: "still-thin" });
+			// One allowed source among them: it is added, the social one is not.
+			const verdict = evaluateCandidate(
+				artistNode("artist:g"),
+				fresh({ citations: [social, TWO_CITATIONS[1]] }),
+				"artist",
+				NEW_STAMP,
+			);
+			expect(verdict.ok && verdict.node.citations).toEqual([OLD_CITATION, TWO_CITATIONS[1]]);
+		});
+
+		it("refuses an article under 80 % of the stored one, and accepts one at 80 %", async () => {
+			const { evaluateCandidate } = await loadScript();
+			const stored = artistNode("artist:g", { editorial_article: "x".repeat(100) });
+
+			expect(
+				evaluateCandidate(stored, fresh({ editorial_article: "y".repeat(79) }), "artist", NEW_STAMP),
+			).toEqual({ ok: false, reason: "shorter-article" });
+			expect(
+				evaluateCandidate(stored, fresh({ editorial_article: "y".repeat(80) }), "artist", NEW_STAMP).ok,
+			).toBe(true);
+		});
+
+		it("without an mbid, wants the text to name an entity the node is linked to", async () => {
+			const { evaluateCandidate } = await loadScript();
+			const verdictFor = (stored: Record<string, unknown>, article: string) =>
+				evaluateCandidate(stored, fresh({ editorial_article: article }), "artist", NEW_STAMP);
+			const refused = { ok: false, reason: "identity-unconfirmed" };
+
+			// A homonym's text: no label, project, track, member or alias of the node in it.
+			expect(verdictFor(withoutMbid(), "A folk singer who plays the concertina. ".repeat(6))).toEqual(
+				refused,
+			);
+			// A genre is not a confirmation: any text on any artist names one.
+			expect(verdictFor(withoutMbid(), "A Techno producer from somewhere far away. ".repeat(6))).toEqual(
+				refused,
+			);
+			// Whole words only.
+			expect(verdictFor(withoutMbid(), "Released the old lps in a box. ".repeat(8))).toEqual(refused);
+			// Nothing to confirm with.
+			expect(
+				verdictFor(withoutMbid({ labels: [], discography: [] }), "Signed to Old Records. ".repeat(10)),
+			).toEqual(refused);
+			// Named, whatever the case and the accents.
+			expect(verdictFor(withoutMbid(), "Signed to OLD records, an old label. ".repeat(6)).ok).toBe(true);
+			expect(verdictFor(withoutMbid(), "Debut on the Old LP, a record. ".repeat(6)).ok).toBe(true);
+			// With an mbid the identity is pinned: the check does not apply.
+			expect(
+				verdictFor(artistNode("artist:g"), "A folk singer who plays the concertina. ".repeat(6)).ok,
+			).toBe(true);
+		});
+	});
+
 	describe("run", () => {
 		it(
 			"rewrites a one-citation artist with two citations and a new article, edges and mbid untouched",
@@ -253,7 +375,7 @@ describe("reenrich-thin-nodes (TRA-487)", () => {
 				});
 
 				const after = await readJson(file);
-				expect(after.citations).toEqual(TWO_CITATIONS);
+				expect(after.citations).toEqual(WITH_ORIGINAL);
 				// TRA-458's normalization applied by the pipeline: a real paragraph break, not a literal escape.
 				expect(after.editorial_article).toBe(`${NEW_ARTICLE.trim()}\n\nA second paragraph.`);
 				expect(after.editorial_bio).toBe("New bio.");
@@ -294,9 +416,11 @@ describe("reenrich-thin-nodes (TRA-487)", () => {
 		it(
 			"leaves the node intact and lists its slug in stillThin when the pipeline still gives one citation",
 			async () => {
-				// The default fixture search has a single Wikipedia page: a corpus of one page, one citation.
+				// The default fixture search has a single Wikipedia page, which the node already cites: no new source.
 				installPipelineMocks({ draft: artistDraftFixture({ editorial_article: NEW_ARTICLE }) });
-				const file = await put(artistNode("artist:still-thin"));
+				const file = await put(
+					artistNode("artist:still-thin", { citations: [{ url: FIXTURE_WIKI_URL, title: "Fixture" }] }),
+				);
 				const bytesBefore = await readFile(file, "utf8");
 				const { reenrichThinNodes } = await loadScript();
 
@@ -353,7 +477,7 @@ describe("reenrich-thin-nodes (TRA-487)", () => {
 					...before,
 					editorial_article: NEW_ARTICLE.trim(),
 					editorial_description: "New description.",
-					citations: TWO_CITATIONS,
+					citations: WITH_ORIGINAL,
 					founded: "1991",
 					location: "New City",
 					founders: "Someone",
@@ -426,7 +550,7 @@ describe("reenrich-thin-nodes (TRA-487)", () => {
 				});
 
 				expect(await readFile(first, "utf8")).toBe(bytesFirst);
-				expect((await readJson(second)).citations).toEqual(TWO_CITATIONS);
+				expect((await readJson(second)).citations).toEqual(WITH_ORIGINAL);
 				expect(manifest.rewrittenSlugs).toEqual(["artist:b-works"]);
 				expect(manifest.errors).toEqual([{ slug: "artist:a-fails", error: expect.stringContaining("503") }]);
 			},
@@ -457,6 +581,71 @@ describe("reenrich-thin-nodes (TRA-487)", () => {
 				expect(manifest.rewrittenSlugs).toEqual(["artist:a-first"]);
 				expect(manifest.notRun).toEqual(["artist:b-second", "artist:c-third"]);
 				expect(manifest.budgetExhausted).toBe(true);
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"refuses an article under 80 % of the stored one and leaves the file as it is",
+			async () => {
+				installPipelineMocks({
+					draft: artistDraftFixture({
+						editorial_article:
+							"A short article, far under the stored one, but still past the eighty character schema floor.",
+						citations: TWO_CITATIONS,
+					}),
+				});
+				await armTwoPages();
+				const file = await put(artistNode("artist:shrunk", { editorial_article: OLD_ARTICLE.repeat(2) }));
+				const bytesBefore = await readFile(file, "utf8");
+				const { reenrichThinNodes } = await loadScript();
+
+				const manifest = await reenrichThinNodes({
+					cacheDir: dir,
+					types: ["artist"],
+					apply: true,
+					deps: DEPS,
+				});
+
+				expect(await readFile(file, "utf8")).toBe(bytesBefore);
+				expect(manifest.refused).toEqual([{ slug: "artist:shrunk", reason: "shorter-article" }]);
+				expect(manifest.rewritten).toBe(0);
+			},
+			TIMEOUT_MS,
+		);
+
+		it(
+			"without an mbid, writes only the node whose text names an entity it is linked to (the Aim / folk singer case)",
+			async () => {
+				installPipelineMocks({
+					draft: artistDraftFixture({
+						editorial_article: `${NEW_ARTICLE}Signed to Old Records, a label of the period.`,
+						citations: TWO_CITATIONS,
+					}),
+				});
+				await armTwoPages();
+				const { mbid: _a, ...linked } = artistNode("artist:a-linked");
+				const { mbid: _b, ...homonym } = artistNode("artist:b-homonym", {
+					labels: [{ type: "label", slug: "label:grand-central", name: "Grand Central" }],
+					discography: [],
+				});
+				const linkedFile = await put(linked);
+				const homonymFile = await put(homonym);
+				const homonymBefore = await readFile(homonymFile, "utf8");
+				const { reenrichThinNodes } = await loadScript();
+
+				const manifest = await reenrichThinNodes({
+					cacheDir: dir,
+					types: ["artist"],
+					apply: true,
+					deps: DEPS,
+					concurrency: 1,
+				});
+
+				expect((await readJson(linkedFile)).citations).toEqual(WITH_ORIGINAL);
+				expect(await readFile(homonymFile, "utf8")).toBe(homonymBefore);
+				expect(manifest.rewrittenSlugs).toEqual(["artist:a-linked"]);
+				expect(manifest.refused).toEqual([{ slug: "artist:b-homonym", reason: "identity-unconfirmed" }]);
 			},
 			TIMEOUT_MS,
 		);

@@ -7,6 +7,8 @@
  *   - a key outside the text fields (+ `materialized_at`) that differs, appears or disappears: edges, `mbid`,
  *     `image_url`, `_metrics`, `name`, `slug`... all strictly deep-equal;
  *   - `materialized_at` not moving forward;
+ *   - a stored citation lost, a new citation on a social network or streaming platform, an article under 80 %
+ *     of the stored one, or (no `mbid`) a text that names no entity the node was already linked to;
  *   - a node that no longer validates (`nodePayloadSchema`), which also checks the citation and image hosts.
  * Any other file of the cache (pending-reverses.json...) must be byte-identical.
  *
@@ -18,8 +20,17 @@ import { join, relative } from "node:path";
 import { pathToFileURL } from "node:url";
 import { isDeepStrictEqual } from "node:util";
 import { atomicWriteJson } from "../src/cache.js";
+import { TEASER_FIELD_BY_TYPE } from "../src/node-spec.js";
 import { nodePayloadSchema } from "../src/schemas.js";
-import { citationCount, isReenrichType, MIN_CITATIONS, mergedFieldsOf } from "./reenrich-thin-nodes.js";
+import {
+	citationCount,
+	isBlockedCitationUrl,
+	isReenrichType,
+	MIN_ARTICLE_RATIO,
+	MIN_CITATIONS,
+	mergedFieldsOf,
+	namesLinkedEntity,
+} from "./reenrich-thin-nodes.js";
 
 export interface VerifyReport {
 	/** Node files whose content differs. */
@@ -41,6 +52,9 @@ async function listFiles(root: string, dir = root): Promise<string[]> {
 
 type Obj = Record<string, unknown>;
 
+const urlsOf = (node: Obj): string[] =>
+	Array.isArray(node.citations) ? (node.citations as Obj[]).map((c) => String(c.url)) : [];
+
 function checkNode(path: string, before: Obj, after: Obj): string[] {
 	const out: string[] = [];
 	const type = String(before.type);
@@ -55,6 +69,21 @@ function checkNode(path: string, before: Obj, after: Obj): string[] {
 	}
 	if (!(String(after.materialized_at) > String(before.materialized_at))) {
 		out.push(`${path}: materialized_at did not move forward`);
+	}
+	// The guards of the script, checked again on the result: nothing lost, nothing impoverished, no social source.
+	const beforeUrls = urlsOf(before);
+	const afterUrls = urlsOf(after);
+	for (const url of beforeUrls) if (!afterUrls.includes(url)) out.push(`${path}: lost its citation ${url}`);
+	for (const url of afterUrls) {
+		if (!beforeUrls.includes(url) && isBlockedCitationUrl(url))
+			out.push(`${path}: new social/streaming citation ${url}`);
+	}
+	const ratio = String(after.editorial_article).length / String(before.editorial_article).length;
+	if (ratio < MIN_ARTICLE_RATIO) out.push(`${path}: article shrank to ${Math.round(ratio * 100)} %`);
+	if (typeof before.mbid !== "string") {
+		const text = `${String(after.editorial_article)}\n${String(after[TEASER_FIELD_BY_TYPE[type]])}`;
+		if (!namesLinkedEntity(before, type, text))
+			out.push(`${path}: no mbid and the text names no linked entity`);
 	}
 	const parsed = nodePayloadSchema.safeParse(after);
 	if (!parsed.success) out.push(`${path}: no longer validates (${parsed.error.issues[0]?.message ?? "?"})`);

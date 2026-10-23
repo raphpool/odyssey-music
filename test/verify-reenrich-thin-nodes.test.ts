@@ -105,6 +105,38 @@ describe("verifyReenrich (TRA-487)", () => {
 		);
 	});
 
+	it("checks the guards again: lost citation, social source, shrunk article, unconfirmed identity", async () => {
+		const { mbid: _mbid, ...noMbid } = artist("artist:thin", {
+			editorial_article: ARTICLE.repeat(2),
+			labels: [{ type: "label", slug: "label:old-records", name: "Old Records" }],
+		});
+		await writeFile(join(before, "nodes", "artist", "thin.json"), JSON.stringify(noMbid));
+		await write(
+			"nodes/artist/thin.json",
+			artist("artist:thin", {
+				...REWRITTEN,
+				mbid: undefined,
+				labels: [{ type: "label", slug: "label:old-records", name: "Old Records" }],
+				editorial_article: ARTICLE.slice(0, 40).padEnd(80, "."),
+				citations: [
+					{ url: "https://www.discogs.com/artist/1-Fixture" },
+					{ url: "https://www.facebook.com/x/posts/1" },
+				],
+			}),
+		);
+
+		const { violations } = await verifyReenrich(before, after);
+
+		expect(violations).toEqual(
+			expect.arrayContaining([
+				expect.stringContaining("lost its citation https://en.wikipedia.org/wiki/Fixture"),
+				expect.stringContaining("new social/streaming citation https://www.facebook.com/x/posts/1"),
+				expect.stringContaining("article shrank"),
+				expect.stringContaining("names no linked entity"),
+			]),
+		);
+	});
+
 	it("refuses a node that is still thin, a stale stamp, and a node that no longer validates", async () => {
 		await write("nodes/artist/thin.json", artist("artist:thin", { editorial_article: `${ARTICLE} More.` }));
 		await write(
