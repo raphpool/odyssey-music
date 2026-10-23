@@ -35,12 +35,14 @@
  * `refused` is separate: a node that does not validate against the schema (before or after the merge), or a
  * file that cannot be read. It is counted, never rewritten, and makes the run exit 1, like `unavailable`.
  *
- * SLUG FORM (2026-10-19, found while writing this migration). The channel runs the migrations with
- * ODYSSEY_SCOPED_RELEASE_SLUGS=0 (deploy/sync-genre-cache.sh, only the scope step gets 1), but the cache and
- * the server are in the flag-on form since TRA-509 (`artist:hildur-gudnadottir`, not `-gu-nadottir`): an edge
- * minted here with the flag off would carry a slug no node answers to for every title or artist with an
- * o-slash, ae, sharp s or dotless i. The flag is therefore pinned on for the duration of the run (restored
- * afterwards), like `canonicalArtistSlug` does for artist slugs in the similar-artists backfill.
+ * SLUG FORM (2026-10-19, found while writing this migration). The channel then ran the migrations with
+ * ODYSSEY_SCOPED_RELEASE_SLUGS=0 (only the scope step got 1); since TRA-599 it runs all of them with 1
+ * (deploy/sync-genre-cache.sh), which makes the pin below redundant on the channel but still useful for a
+ * local run. The cache and the server are in the flag-on form since TRA-509 (`artist:hildur-gudnadottir`,
+ * not `-gu-nadottir`): an edge minted here with the flag off would carry a slug no node answers to for
+ * every title or artist with an o-slash, ae, sharp s or dotless i. The flag is therefore pinned on for the
+ * duration of the run (restored afterwards), like `canonicalArtistSlug` does for artist slugs in the
+ * similar-artists backfill.
  *
  * Pace: ONE MusicBrainz request at a time, at the pace `mbFetch` enforces (1 request per second, shared
  * queue, `background` priority). `fetchArtistDiscographyMb` starts its three types together; the queue spaces
