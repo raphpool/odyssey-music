@@ -322,10 +322,11 @@ describe("migration channel: the three identity migrations (TRA-568)", () => {
 		expect(preview.stdout).toContain(`${SCOPE_STEP} (apply)`);
 		expect(preview.stdout).not.toContain("is off");
 		expect(process.env.ODYSSEY_SCOPED_RELEASE_SLUGS).toBeUndefined();
-		// ...and only the scope gets it: the artist and work backfills run on a cache that still holds unscoped slugs.
+		// ...and the artist and work backfills get it too (TRA-599): the cache and the server are scoped and
+		// transliterated, so a slug they mint from a name must have that spelling (no exception list).
 		expect(callOf(preview, SCOPE_STEP)).toContain("FLAG=1");
-		expect(callOf(preview, ARTIST_STEP)).toContain("FLAG=0");
-		expect(callOf(preview, RELEASE_STEP)).toContain("FLAG=0");
+		expect(callOf(preview, ARTIST_STEP)).toContain("FLAG=1");
+		expect(callOf(preview, RELEASE_STEP)).toContain("FLAG=1");
 	});
 
 	it("calls the scope with the artist manifest written by this run's artist step", () => {
