@@ -499,13 +499,18 @@ if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
 		esac
 		echo "==> Running migration $name on the union (never on the repo or the server)"
 		set +e
-		# ODYSSEY_SCOPED_RELEASE_SLUGS=1 for the scope's process only: it refuses to run without it and its
-		# target slugs depend on it, whereas the artist and work backfills run on a cache that still holds
-		# the unscoped slugs (flag on, their makeSlug would aim credits at slugs that do not exist yet, see
-		# src/flags.ts). Not exported to the shell, so the server never sees it.
-		SCOPE_FLAG=0
-		if [[ "$name" == "$SCOPE_STEP" ]]; then SCOPE_FLAG=1; fi
-		(cd "$REPO_ROOT" && ODYSSEY_SCOPED_RELEASE_SLUGS=$SCOPE_FLAG npx tsx "$MIGRATIONS_DIR/$name.ts" "$UNION_DIR" --apply --manifest "$MIGRATION_MANIFEST" --data-dir "$MIGRATION_DATA_DIR" ${MIGRATION_EXTRA[@]+"${MIGRATION_EXTRA[@]}"})
+		# ODYSSEY_SCOPED_RELEASE_SLUGS=1 for EVERY migration process, the same value as the server
+		# (deploy/deploy-server.sh) and the cache. 2026-10-23 (TRA-599): until then only the scope step got
+		# 1, the other migrations got 0 because the artist and work backfills ran before the scope on a cache
+		# that still held the unscoped slugs. Since TRA-484/TRA-509 the repo cache and prod are scoped and
+		# transliterated, and a migration running at 0 mints the old spelling for a name with an o-slash, ae,
+		# sharp s or dotless i: "Gökhan Kırdar" came out as `artist:gokhan-k-rdar`, a redirect key to
+		# ANOTHER artist, and "MØ" as `artist:m`, somebody else (TRA-490, TRA-604).
+		# The flag only switches that transliteration (src/slug.ts), so a migration whose names hold none of
+		# those letters behaves the same at 1 and at 0. No exception list: a migration that needs 0 would be
+		# working on a cache that no longer exists. Not exported to the shell, so the server never sees it
+		# from here.
+		(cd "$REPO_ROOT" && ODYSSEY_SCOPED_RELEASE_SLUGS=1 npx tsx "$MIGRATIONS_DIR/$name.ts" "$UNION_DIR" --apply --manifest "$MIGRATION_MANIFEST" --data-dir "$MIGRATION_DATA_DIR" ${MIGRATION_EXTRA[@]+"${MIGRATION_EXTRA[@]}"})
 		MIGRATION_EXIT=$?
 		set -e
 		if [[ $MIGRATION_EXIT -ne 0 ]]; then
