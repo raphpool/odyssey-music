@@ -29,6 +29,51 @@ final class NodePageViewTests: XCTestCase {
 		}
 	}
 
+	// MARK: - Node card
+
+	/// `content(tint:)` draws these children in this order (contract of TRA-659); the view and
+	/// `cardChildren(for:)` read the same predicates, so this pins what the card is given.
+	func testTheProjectCardChildrenFollowTheContractOrder() throws {
+		let node = try Self.node(
+			type: "project", name: "Album", teaser: "Un disque.",
+			facts: #"{"year":"2015","release_type":"album","bpm":"96"}"#,
+			edges: ["artists": "[" + Self.edgeJSON("artist:band", name: "Band") + "]"],
+			article: "Un article.")
+
+		XCTAssertEqual(
+			NodePageView.cardChildren(for: node),
+			[
+				"node-type-badge", "node-hero", "node-title", "node-subtitle", "teaser", "facts",
+				"section-artists", "section-article",
+			])
+	}
+
+	/// An artist page has no facts block (`NodePageSpec.factFields`), and its highlights stand above the
+	/// discography.
+	func testTheArtistCardPutsTheHighlightsAboveTheDiscographyAfterTheTeaser() throws {
+		let node = try Self.node(
+			type: "artist", name: "Sample", teaser: "Un artiste.",
+			facts: #"{"origin":"Compton","active_years":"2003-"}"#,
+			edges: [
+				"landmark_project": Self.edgeJSON("project:album", name: "Album"),
+				"discography": "[" + Self.edgeJSON("project:album", name: "Album") + "]",
+			],
+			article: "")
+
+		XCTAssertEqual(
+			NodePageView.cardChildren(for: node),
+			[
+				"node-type-badge", "node-hero", "node-title", "node-subtitle", "teaser", "highlights",
+				"section-discography",
+			])
+	}
+
+	func testTheCardOmitsTheTeaserAndTheFactsWhenThePageHasNone() throws {
+		let node = try Self.node(type: "artist", name: "Sample", teaser: nil, facts: "{}", edges: [:], article: "")
+
+		XCTAssertEqual(NodePageView.cardChildren(for: node), ["node-type-badge", "node-hero", "node-title"])
+	}
+
 	// MARK: - Opening a relation
 
 	func testTouchingAChipRecordsOneEventAndPushesTheTargetNamedInTheBreadcrumb() async throws {
@@ -186,6 +231,19 @@ final class NodePageViewTests: XCTestCase {
 	private static func edgeJSON(_ slug: String, name: String) -> String {
 		let type = slug.prefix { $0 != ":" }
 		return #"{"slug":"\#(slug)","type":"\#(type)","name":"\#(name)"}"#
+	}
+
+	private static func node(
+		type: String, name: String, teaser: String?, facts: String, edges: [String: String], article: String
+	) throws -> NodeDetail {
+		let body = edges.map { #""\#($0.key)":\#($0.value)"# }.joined(separator: ",")
+		let teaserJSON = teaser.map { #""\#($0)""# } ?? "null"
+		let source = """
+			{"id":"\(type):sample","type":"\(type)","name":"\(name)","teaser":\(teaserJSON),"article":"\(article)","citations":[],"facts":\(facts),"edges":{\(body)},"materialized_at":"2026-10-08T00:00:00Z","image_url":null}
+			"""
+		let decoder = JSONDecoder()
+		decoder.dateDecodingStrategy = .iso8601
+		return try decoder.decode(NodeDetail.self, from: Data(source.utf8))
 	}
 
 	private static func artist(edges: [String: String]) throws -> NodeDetail {
