@@ -2036,6 +2036,65 @@ describe("mergeDiscography — cautious pose without a year (TRA-647)", () => {
 				expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "credit" }]);
 			});
 
+			// TRA-653. MusicBrainz separates the composer from the performers of a classical recording with ";"
+			// ("Duke Ellington; Buffalo Philharmonic, JoAnn Falletta"): a third party's recording of the artist's work,
+			// whatever its votes. The legitimate three-credit releases (Lennon, Getz, Asha Bhosle, Elstak) have none.
+			describe("whose credits separate a composer from the performers with ';' (TRA-653)", () => {
+				const classical = [{ ...HEAD, joinphrase: "; " }, { ...guest(1), joinphrase: ", " }, guest(2)];
+
+				it.each([
+					["a vote", { ratingVotes: 1 }],
+					["many votes", { ratingVotes: 40 }],
+					["no vote", {}],
+				])("is held with %s", (_label, extra) => {
+					const found = release("Dil Padosi Hai", { artistCredits: classical, ...extra });
+					const result = mergeFor(zappa, existing, [found]);
+					expect(result.posed).toEqual([]);
+					expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "credit" }]);
+				});
+
+				it("is held even when the entry states the very year and type of the release group", () => {
+					const found = release("Annihilation", {
+						primaryType: "Single",
+						firstReleaseDate: "2025-10-31",
+						artistCredits: classical,
+					});
+					const stated = zappaEntry("Annihilation", { year: "2025", releaseType: "single" });
+					const result = mergeFor(zappa, [stated], [found]);
+					expect(result.posed).toEqual([]);
+					expect(result.ambiguous).toEqual([{ slug: stated.slug, reason: "credit" }]);
+				});
+
+				it("is found whichever credit carries the ';'", () => {
+					const found = release("Dil Padosi Hai", {
+						artistCredits: [{ ...HEAD, joinphrase: ", " }, { ...guest(1), joinphrase: "; " }, guest(2)],
+						ratingVotes: 1,
+					});
+					const result = mergeFor(zappa, existing, [found]);
+					expect(result.posed).toEqual([]);
+					expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "credit" }]);
+				});
+
+				it("does not hold a voted release group whose joinphrases are the usual ones", () => {
+					const found = release("Dil Padosi Hai", {
+						artistCredits: [{ ...HEAD, joinphrase: ", " }, { ...guest(1), joinphrase: " & " }, guest(2)],
+						ratingVotes: 1,
+					});
+					const result = mergeFor(zappa, existing, [found]);
+					expect(result.ambiguous).toEqual([]);
+					expect(result.posed.map((p) => p.mbid)).toEqual([found.mbid]);
+				});
+
+				it("leaves a release group within the credit rule alone: two credits with ';' are still posed", () => {
+					const found = release("Dil Padosi Hai", {
+						artistCredits: [{ ...HEAD, joinphrase: "; " }, guest(1)],
+					});
+					const result = mergeFor(zappa, existing, [found]);
+					expect(result.ambiguous).toEqual([]);
+					expect(result.posed.map((p) => p.mbid)).toEqual([found.mbid]);
+				});
+			});
+
 			it("is held with four credits or more, even voted: only one credit past the rule is let through", () => {
 				const found = release("Dil Padosi Hai", { artistCredits: [...credits, guest(3)], ratingVotes: 9 });
 				const result = mergeFor(zappa, existing, [found]);

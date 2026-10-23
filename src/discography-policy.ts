@@ -21,7 +21,8 @@ export interface ReleaseGroupCandidate {
 	firstReleaseDate: string; // "" when MusicBrainz has none
 	primaryType: string; // "Album" | "EP" | "Single" | other
 	secondaryTypes: string[];
-	artistCredits: { mbid: string; name: string }[]; // MusicBrainz order
+	// MusicBrainz order. `joinphrase` is the text that follows the credit ("; ", " & "), absent when empty (TRA-653).
+	artistCredits: { mbid: string; name: string; joinphrase?: string }[];
 	ratingVotes: number; // MusicBrainz `rating["votes-count"]`, 0 when none: the cap's priority signal (TRA-625)
 }
 
@@ -59,8 +60,12 @@ export const DEFAULT_DISCOGRAPHY_CAP = 40;
  * Archive. An unvoted release group is posed when it is a plain album and its votes are not elsewhere; the credit
  * rule lets through a release group the artist heads with three credits when it is voted or when the entry states its
  * very year and type): a manifest of version 5 is not replayed, since an entry it left ambiguous is decided again.
+ * 2026-10-23: 7, the policy changed with TRA-653 (the credit rule's relaxation of v6 no longer applies to a
+ * release group whose credits separate a composer from the performers with ";": the 2013 "Black, Brown, and Beige"
+ * of the Buffalo Philharmonic was held back only because nobody had voted for it yet, and the first vote would have
+ * posed it): a manifest of version 6 is not replayed.
  */
-export const DISCOGRAPHY_POLICY_VERSION = 6;
+export const DISCOGRAPHY_POLICY_VERSION = 7;
 
 // TRA-628 (measured 2026-10-19 on MusicBrainz): John Lennon has 69 eligible release groups, 14 voted and 55
 // not (The Lost Lennon Tapes, Archives, outtakes), and the cap used to fill with the oldest of them. From this
@@ -565,6 +570,13 @@ function hasVotedExtension(entry: EdgeRef, caution: PoseCaution): boolean {
 	);
 }
 
+// MusicBrainz writes a classical credit as "composer; performers": "Duke Ellington; Buffalo Philharmonic, JoAnn
+// Falletta". The ";" tells a third party's recording of the artist's work from the artist's own release (TRA-653);
+// the legitimate collaborations (Lennon "&" Yoko "/" the Plastic Ono Band, Getz "/" Gilberto) never use it.
+function hasComposerSeparator(c: ReleaseGroupCandidate): boolean {
+	return c.artistCredits.some((credit) => credit.joinphrase?.includes(";") === true);
+}
+
 // The credit rule, as it applies to a pose on an existing entry (TRA-649). The artist must head the release and
 // Various Artists is never one of its credits: nothing relaxes that. A third-party recording of the artist's work
 // ("Black, Brown, and Beige" by an orchestra, with Ellington first) fails it by its number of credits, as do
@@ -573,11 +585,14 @@ function hasVotedExtension(entry: EdgeRef, caution: PoseCaution): boolean {
 // vote, which MusicBrainz users give to known releases (1 to 6 here, 0 for the recordings), or the entry itself
 // stating the very year and type of the release group (an "Annihilatiøn", 2025, single, with two guests). Only one
 // credit more than the rule allows is let through: a vote on a release with a long cast says nothing about the artist.
+// Neither relaxation applies to a classical credit (hasComposerSeparator, TRA-653): the recording of the
+// Buffalo Philharmonic has no vote today only because nobody gave it one, and a pose is definitive.
 function creditBlocksPose(entry: EdgeRef, match: ReleaseGroupCandidate, policy: DiscographyPolicy): boolean {
 	const verdict = creditVerdict(match, policy);
 	if (verdict === null) return false;
 	if (verdict === "various-artists" || !headsRelease(match, policy)) return true;
 	if (match.artistCredits.length > MAX_CREDITS + 1) return true;
+	if (hasComposerSeparator(match)) return true;
 	if (isVoted(match)) return false;
 	const year = yearOf(entry.year);
 	return !(
