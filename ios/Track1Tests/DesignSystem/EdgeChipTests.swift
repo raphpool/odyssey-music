@@ -51,7 +51,7 @@ final class EdgeChipTests: XCTestCase {
 		XCTAssertEqual(EdgeChipMetrics.chipVisualHeight, 34)
 		XCTAssertEqual(EdgeChipMetrics.overflowVisualHeight, 32)
 		XCTAssertEqual(EdgeChipMetrics.contentSpacing, 4)
-		XCTAssertEqual(EdgeChipMetrics.cornerRadius, 0)
+		XCTAssertEqual(EdgeChipMetrics.cornerRadius, Track1Tokens.radius6)
 	}
 
 	func testTouchZoneIs44PointsHighAndNeverShrinks() {
