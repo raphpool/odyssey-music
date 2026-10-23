@@ -179,7 +179,7 @@ describe("rewrite to the work scoped on the artist (TRA-602)", () => {
 	});
 });
 
-describe("canonical scope, whatever the flag (TRA-599 is open)", () => {
+describe("canonical scope, whatever the flag (the channel ran with 0 before TRA-599)", () => {
 	// "Roeyksopp" spelled with a slashed o: the flag decides whether the o-slash is dropped or transliterated.
 	const SLASHED = "Røyksopp";
 	const UMLAUT = "Röyksopp";
