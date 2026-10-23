@@ -2,6 +2,7 @@ import { mkdir, mkdtemp, readFile, rm, stat, writeFile } from "node:fs/promises"
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { mergeRedirects } from "../scripts/migrations/2026-09-04-merge-genre-duplicates.js";
 import {
 	type FixManifest,
 	parseCliArgs,
@@ -35,6 +36,8 @@ interface FakeWork {
 	credit: FakeCredit[];
 	date?: string;
 	primaryType?: string;
+	/** Release groups: MB's secondary types ("Compilation", "Live"...). */
+	secondaryTypes?: string[];
 	/** MB's note on a recording ("live, Detroit 1998", "DJ-mix"...). */
 	disambiguation?: string;
 	label?: { id: string; name: string };
@@ -110,6 +113,7 @@ function stubMb(
 						...(w.date ? { "first-release-date": w.date } : {}),
 						...(w.disambiguation ? { disambiguation: w.disambiguation } : {}),
 						...(w.primaryType ? { "primary-type": w.primaryType } : {}),
+						...(w.secondaryTypes ? { "secondary-types": w.secondaryTypes } : {}),
 					}));
 				return jsonResponse(kind === "recording" ? { recordings: hits } : { "release-groups": hits });
 			}
@@ -745,5 +749,379 @@ describe("parseCliArgs", () => {
 		expect(parseCliArgs(["cache", "--manifest"])).toBeNull();
 		expect(parseCliArgs(["cache", "--bogus"])).toBeNull();
 		expect(parseCliArgs([])).toBeNull();
+	});
+});
+
+// --- TRA-610: the latent defects the deep review of #535 found, and the tests it said were missing ---
+
+const writePending = (pending: Record<string, unknown>) =>
+	writeFile(join(cacheDir(), "pending-reverses.json"), JSON.stringify(pending));
+const readPending = async (): Promise<Record<string, unknown[]>> =>
+	JSON.parse(await readFile(join(cacheDir(), "pending-reverses.json"), "utf8")) as Record<string, unknown[]>;
+
+/** The channel's step between the preview and the apply: the pairs the preview lists are committed (flattened). */
+async function commitRedirects(pairs: Record<string, string>): Promise<void> {
+	const path = join(dataDir, "slug-redirects.json");
+	const table = JSON.parse(await readFile(path, "utf8")) as { redirects: Record<string, string> };
+	await writeFile(path, JSON.stringify({ ...table, redirects: mergeRedirects(table.redirects, pairs) }));
+}
+
+describe("runFix: latent defects of #535 (TRA-610)", () => {
+	it("(a) takes the artist's mbid from its node, never from its list entry, which carries the WORK's", async () => {
+		const s = await homonym("Latent A");
+		const floyd = (await readNode("artist:pink-floyd")) as Obj;
+		const entry = (floyd.discography as Obj[])[0] as Obj;
+		// The cache has no mbid for the artist; the entry of its discography has the release group's.
+		await seed({
+			...floyd,
+			slug: "artist:pink-floyd",
+			mbid: undefined,
+			discography: [{ ...entry, mbid: s.works[1]?.id }],
+		});
+		stubMb(s.works, { filterByArtist: true });
+
+		const result = await run(true);
+
+		expect(result.manifest.stripped).toEqual([]);
+		expect(result.manifest.fixed).toHaveLength(1);
+		expect((await readNode(s.next)).mbid).toBe(s.works[1]?.id);
+	});
+
+	/**
+	 * `project:<body>--hot-wax` (A) is Pink Floyd's, credited to a homonym. `project:<body>--pink-floyd` (T) is
+	 * credited to Pink Floyd but is Roger Waters' work, so it is a suspect of its own, whose right slug is
+	 * `--roger-waters`. A's right slug is T's: A would be merged into a node that is itself being moved.
+	 */
+	async function mergeIntoSuspect(title: string, rogerInLead: boolean) {
+		const body = bodyOf(title);
+		const [hotWax, floyd, roger] = [mbid(), mbid(), mbid()];
+		const a = `project:${body}--hot-wax`;
+		const t = `project:${body}--pink-floyd`;
+		const works: FakeWork[] = [
+			{
+				kind: "release-group",
+				id: mbid(),
+				title,
+				credit: [{ id: floyd, name: "Pink Floyd" }],
+				date: "1975",
+				primaryType: "Album",
+			},
+			{
+				kind: "release-group",
+				id: mbid(),
+				title,
+				credit: [{ id: roger, name: "Roger Waters" }],
+				date: "1992",
+				primaryType: "Album",
+			},
+		];
+		await seed(
+			projectNode(a, title, {
+				mbid: mbid(),
+				editorial_pitch: `Pink Floyd's 1975 album ${title}.`,
+				artists: [edge("artist:hot-wax", "Hot Wax", { mbid: hotWax })],
+			}),
+			projectNode(t, title, {
+				editorial_pitch: rogerInLead ? `Roger Waters' 1992 album ${title}.` : "A record.",
+				editorial_article: `${article.repeat(rogerInLead ? 1 : 4)} Roger Waters wrote it.`,
+				artists: [edge("artist:pink-floyd", "Pink Floyd", { mbid: floyd })],
+				producers: [edge("artist:roger-waters", "Roger Waters")],
+			}),
+			artistNode("artist:hot-wax", { name: "Hot Wax", mbid: hotWax, discography: [edge(a, title)] }),
+			artistNode("artist:pink-floyd", {
+				name: "Pink Floyd",
+				mbid: floyd,
+				editorial_bio: "Pink Floyd were an English rock band.",
+				editorial_article: `Pink Floyd were an English rock band. ${article}`,
+				discography: [
+					edge(a, title, { releaseType: "album", year: "1975" }),
+					edge(t, title, { releaseType: "album", year: "1975" }),
+				],
+			}),
+			artistNode("artist:roger-waters", {
+				name: "Roger Waters",
+				mbid: roger,
+				editorial_bio: "Roger Waters is a bassist.",
+				editorial_article: `Roger Waters is a bassist. ${article}`,
+				discography: [edge(t, title, { releaseType: "album", year: "1992" })],
+			}),
+		);
+		await writeFile(join(dataDir, "slug-redirects.json"), JSON.stringify({ redirects: {} }));
+		stubMb(works, { filterByArtist: true });
+		return { a, t, moved: `project:${body}--roger-waters` };
+	}
+
+	it("(b) raises a conflict instead of merging into a node that is itself renamed (a node was lost)", async () => {
+		const s = await mergeIntoSuspect("Latent B", true);
+		const before = await readFile(nodePath(s.a), "utf8");
+
+		const result = await run(true);
+
+		expect(result.manifest.conflicts).toEqual([{ slug: s.a, to: s.t, reason: "target-is-renamed" }]);
+		expect(result.manifest.renamed).toEqual({ [s.t]: s.moved });
+		// Nothing of A was merged into T and then deleted with it: A is where it was.
+		expect(await readFile(nodePath(s.a), "utf8")).toBe(before);
+		expect(await exists(s.moved)).toBe(true);
+	});
+
+	it("(b) raises a conflict instead of merging into a node that is itself suspect and left as it is", async () => {
+		const s = await mergeIntoSuspect("Latent B2", false);
+		const before = await readFile(nodePath(s.t), "utf8");
+
+		const result = await run(true);
+
+		expect(result.manifest.skipped).toMatchObject([{ slug: s.t, reason: "article-artist-not-in-lead" }]);
+		expect(result.manifest.conflicts).toEqual([{ slug: s.a, to: s.t, reason: "target-is-suspect" }]);
+		expect(await readFile(nodePath(s.t), "utf8")).toBe(before);
+		expect(await exists(s.a)).toBe(true);
+	});
+
+	it("(c) finds the same suspect in the apply as in the preview once the preview's redirects are committed", async () => {
+		const s = await homonym("Latent C");
+		// Pink Floyd lists the BARE slug only, and nothing in the work names Pink Floyd as a producer: the redirect
+		// is the only evidence there is.
+		const bare = `project:${bodyOf(s.title)}`;
+		const floyd = (await readNode("artist:pink-floyd")) as Obj;
+		await seed(
+			{
+				...floyd,
+				slug: "artist:pink-floyd",
+				discography: [edge(bare, s.title, { releaseType: "album", year: "1975" })],
+			},
+			{ ...(await readNode(s.old)), slug: s.old, producers: [] },
+		);
+		stubMb(s.works, { filterByArtist: true });
+
+		const preview = await run(false);
+		expect(preview.manifest.fixed).toHaveLength(1);
+		await commitRedirects(preview.manifest.redirects);
+		const applied = await run(true);
+
+		expect(applied.manifest.summary.suspects).toBe(1);
+		expect(applied.manifest.renamed).toEqual(preview.manifest.renamed);
+		expect(await exists(s.old)).toBe(false);
+		expect((await readNode(s.next)).mbid).toBe(s.works[1]?.id);
+	});
+
+	it("(d) applies the reverse edges waiting under the new slug, and keeps the ones the runtime does not emit", async () => {
+		const [stanley, daft] = [mbid(), mbid()];
+		const old = "track:latent-d--stanley-black";
+		const next = "track:latent-d--daft-punk";
+		const works: FakeWork[] = [
+			{ kind: "recording", id: mbid(), title: "Latent D", credit: [{ id: stanley, name: "Stanley Black" }] },
+			{
+				kind: "recording",
+				id: mbid(),
+				title: "Latent D",
+				credit: [{ id: daft, name: "Daft Punk" }],
+				date: "1997",
+			},
+		];
+		await seed(
+			trackNode(old, "Latent D", {
+				mbid: works[0]?.id,
+				editorial_article: `Released in 1997, Latent D is a single by Daft Punk. ${article}`,
+				artists: [edge("artist:stanley-black", "Stanley Black", { mbid: stanley })],
+				producers: [edge("artist:daft-punk", "Daft Punk")],
+			}),
+			artistNode("artist:stanley-black", {
+				name: "Stanley Black",
+				mbid: stanley,
+				notable_tracks: [edge(old, "Latent D")],
+			}),
+			artistNode("artist:daft-punk", { name: "Daft Punk", mbid: daft }),
+		);
+		await writeFile(join(dataDir, "slug-redirects.json"), JSON.stringify({ redirects: {} }));
+		// A track that samples the work, and a credit from a namesake's list (a direction the runtime no longer emits).
+		const safe = { field: "sampled_by", cardinality: "list", edge: edge("track:sampler", "Sampler") };
+		const unsafe = { field: "artists", cardinality: "list", edge: edge("artist:namesake", "Namesake") };
+		await writePending({ [next]: [safe, unsafe] });
+		stubMb(works, { filterByArtist: true });
+
+		const result = await run(true);
+
+		expect(result.manifest.fixed).toHaveLength(1);
+		expect(((await readNode(next)).sampled_by as Obj[]).map((e) => e.slug)).toEqual(["track:sampler"]);
+		expect(await readPending()).toEqual({ [next]: [unsafe] });
+	});
+
+	it("(e) reports the edges of one slug that carry two mbids when a rename folds them, and keeps both", async () => {
+		const s = await homonym("Latent E", { ownNode: true });
+		const floyd = (await readNode("artist:pink-floyd")) as Obj;
+		const [wrongMbid, rightMbid] = [mbid(), mbid()];
+		await seed({
+			...floyd,
+			slug: "artist:pink-floyd",
+			discography: [
+				edge(s.old, s.title, { mbid: wrongMbid, releaseType: "album", year: "1975" }),
+				edge(s.next, s.title, { mbid: rightMbid, releaseType: "album", year: "1975" }),
+			],
+		});
+		stubMb(s.works, { filterByArtist: true });
+
+		const result = await run(true);
+
+		expect(result.manifest.edgeConflicts).toEqual([
+			expect.objectContaining({ at: "artist:pink-floyd.discography", slug: s.next }),
+		]);
+		expect(result.manifest.summary.edgeConflicts).toBe(1);
+		const kept = ((await readNode("artist:pink-floyd")).discography as Obj[]).map((e) => e.mbid);
+		expect(kept).toEqual([wrongMbid, rightMbid]);
+	});
+
+	// The redirect keys of the work lead to the old slug before the preview's pairs are committed, to the new one after.
+	describe.each([
+		["before", false],
+		["after", true],
+	])("(f) with the preview's redirects committed: %s", (_, committed) => {
+		/** The sequence of the channel: preview, the pairs committed or not, apply. */
+		async function previewThenApply(works: FakeWork[]) {
+			stubMb(works, { filterByArtist: true });
+			if (committed) await commitRedirects((await run(false)).manifest.redirects);
+			return run(true);
+		}
+
+		it("folds an edge naming the bare slug with the one naming the renamed work (Harvest Records)", async () => {
+			const s = await homonym(`Latent F ${committed}`);
+			const bare = `project:${bodyOf(s.title)}`;
+			const label = (await readNode("label:harvest-records")) as Obj;
+			await seed({
+				...label,
+				slug: "label:harvest-records",
+				notable_releases: [edge(bare, s.title), edge(s.old, s.title)],
+			});
+
+			const result = await previewThenApply(s.works);
+
+			expect(result.exitCode).toBe(0);
+			const listed = (await readNode("label:harvest-records")).notable_releases as Obj[];
+			expect(listed.map((e) => e.slug)).toEqual([s.next]);
+		});
+
+		it("drops the wrong artist's edge when it names the work by its bare slug", async () => {
+			const s = await homonym(`Latent F2 ${committed}`);
+			const bare = `project:${bodyOf(s.title)}`;
+			const hotWax = (await readNode("artist:american-hot-wax")) as Obj;
+			await seed({ ...hotWax, slug: "artist:american-hot-wax", discography: [edge(bare, s.title)] });
+
+			await previewThenApply(s.works);
+
+			expect((await readNode("artist:american-hot-wax")).discography).toEqual([]);
+		});
+	});
+
+	it("(g) does not pick the studio album when the prose says the work is a compilation, and strips nothing", async () => {
+		const s = await homonym("Latent G", { floydRelease: false });
+		const node = (await readNode(s.old)) as Obj;
+		await seed({ ...node, slug: s.old, editorial_pitch: "Pink Floyd's 2011 compilation album Latent G." });
+		const before = await readFile(nodePath(s.old), "utf8");
+		const release = (date: string, secondaryTypes?: string[]): FakeWork => ({
+			kind: "release-group",
+			id: mbid(),
+			title: s.title,
+			credit: [{ id: s.floyd, name: "Pink Floyd" }],
+			date,
+			primaryType: "Album",
+			...(secondaryTypes ? { secondaryTypes } : {}),
+		});
+		stubMb([...s.works, release("1975-09-12"), release("2011-09-26", ["Compilation"])], {
+			filterByArtist: true,
+		});
+
+		const result = await run(true);
+
+		expect(result.manifest.fixed).toEqual([]);
+		expect(result.manifest.stripped).toEqual([]);
+		expect(result.manifest.skipped).toEqual([
+			{ slug: s.old, reason: "compilation-unsettled", artists: ["artist:pink-floyd"] },
+		]);
+		expect(await readFile(nodePath(s.old), "utf8")).toBe(before);
+	});
+});
+
+describe("runFix: cases the review of #535 found untested (TRA-610)", () => {
+	it("removes the wrong identity when MusicBrainz is ambiguous about the article artist's release", async () => {
+		const s = await homonym("Untested One", { floydRelease: false });
+		// Two plain albums of Pink Floyd on the same date: MusicBrainz cannot tell which is the work.
+		const twin = (): FakeWork => ({
+			kind: "release-group",
+			id: mbid(),
+			title: s.title,
+			credit: [{ id: s.floyd, name: "Pink Floyd" }],
+			date: "1975-09-12",
+			primaryType: "Album",
+		});
+		stubMb([...s.works, twin(), twin()], { filterByArtist: true });
+
+		const result = await run(true);
+
+		expect(result.manifest.fixed).toEqual([]);
+		expect(result.manifest.stripped).toMatchObject([{ slug: s.old, reason: "ambiguous-candidates" }]);
+		const node = await readNode(s.old);
+		expect(node.mbid).toBeUndefined();
+		expect(node.artists).toEqual([]);
+	});
+
+	it("leaves the work alone (already-consistent) when MusicBrainz finds the very identity it carries", async () => {
+		const s = await homonym("Untested Two");
+		const node = (await readNode(s.old)) as Obj;
+		// The mbid is the right release group's: only the credit edge is the homonym's.
+		await seed({ ...node, slug: s.old, mbid: s.works[1]?.id });
+		stubMb(s.works, { filterByArtist: true });
+		const before = await readFile(nodePath(s.old), "utf8");
+
+		const result = await run(true);
+
+		expect(result.exitCode).toBe(0);
+		expect(result.manifest.skipped).toEqual([
+			{ slug: s.old, reason: "already-consistent", artists: ["artist:pink-floyd"] },
+		]);
+		expect(await readFile(nodePath(s.old), "utf8")).toBe(before);
+		expect(result.written).toEqual([]);
+	});
+
+	it("drops the pending reverse edges that pointed at the wrong work, and the keys they leave empty", async () => {
+		const s = await homonym("Untested Three");
+		const node = (await readNode(s.old)) as Obj;
+		const ghost = (name: string) => edge(`track:${name}`, name, { mbid: mbid() });
+		// Two neighbours of the wrong release whose own node was never written: reverse edges wait for them.
+		await seed({
+			...node,
+			slug: s.old,
+			tracklist: [...(node.tracklist as Obj[]), ghost("ghost-one"), ghost("ghost-two")],
+		});
+		const toWrong = { field: "project", cardinality: "single", edge: edge(s.old, s.title) };
+		const other = { field: "project", cardinality: "single", edge: edge("project:another", "Another") };
+		await writePending({
+			"track:ghost-one": [toWrong, other],
+			"track:ghost-two": [toWrong],
+			"track:unrelated": [other],
+		});
+		stubMb(s.works, { filterByArtist: true });
+
+		const result = await run(true);
+
+		expect(result.exitCode).toBe(0);
+		expect(await readPending()).toEqual({ "track:ghost-one": [other], "track:unrelated": [other] });
+	});
+
+	it("gives the same result when the preview's redirects are committed before the apply (preview, commit, apply)", async () => {
+		const s = await homonym("Untested Four");
+		stubMb(s.works, { filterByArtist: true });
+		const preview = await run(false);
+		expect(preview.manifest.redirects).toMatchObject({ [s.old]: s.next });
+
+		await commitRedirects(preview.manifest.redirects);
+		const applied = await run(true);
+
+		expect(applied.exitCode).toBe(0);
+		expect(applied.manifest.renamed).toEqual(preview.manifest.renamed);
+		expect(applied.manifest.fixed).toEqual(preview.manifest.fixed);
+		expect(applied.manifest.summary).toEqual(preview.manifest.summary);
+		// The pairs are committed already: the apply has none left to ask for.
+		expect(applied.manifest.redirects).toEqual({});
+		expect(await exists(s.old)).toBe(false);
+		expect((await readRedirects())[s.old]).toBe(s.next);
+		expect((await run(true)).written).toEqual([]);
 	});
 });
