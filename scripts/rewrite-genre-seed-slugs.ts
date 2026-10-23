@@ -42,6 +42,9 @@ for (const entry of unresolved) console.log(`UNRESOLVED (left untouched): ${entr
 console.log(`${rewritten} target(s) rewritten, ${unresolved.length} unresolved`);
 
 if (apply) {
+	// Re-validate the rewritten table: two targets of one folder landing on the same scoped slug
+	// would trip the folder-level duplicate check and break every loader of the seeds.
+	GenreSeedsSchema.parse(seeds);
 	// Same layout as the committed file (tabs, trailing newline), so the diff is the slugs only.
 	await writeFile(SEEDS_PATH, `${JSON.stringify(seeds, null, "\t")}\n`);
 	console.log(`written: ${SEEDS_PATH}`);

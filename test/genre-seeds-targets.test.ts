@@ -36,9 +36,12 @@ describe("genre seed project/track targets (TRA-673)", () => {
 
 	it("no target keeps a stale pre-migration slug that only works through a redirect", async () => {
 		const [targets, redirects] = await Promise.all([projectAndTrackTargets(), loadRedirects()]);
-		const stale = targets
-			.filter(({ slug }) => redirects.has(slug))
-			.map(({ qid, slug }) => `${qid} ${slug} -> ${redirects.get(slug)}`);
+		const cache = new NodeCache(CACHE_ROOT);
+		const stale: string[] = [];
+		for (const { qid, slug } of targets) {
+			const resolved = await resolveReadSlug(slug, redirects, cache);
+			if (resolved !== slug) stale.push(`${qid} ${slug} -> ${resolved}`);
+		}
 		expect(stale).toEqual([]);
 	});
 });
