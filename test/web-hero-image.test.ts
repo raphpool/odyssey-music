@@ -1,6 +1,8 @@
 // TRA-466: every node type shows the `image_url` the graph already carries (hero, carousel card,
 // reco card) without a JIT `/image` round-trip, a materialized node keeps its image, and a
 // `derived-cover` hero is marked so the stylesheet can keep the type gradient behind it.
+// TRA-593: a hero borrows the cover of a listed work only when that work points back at the node
+// (label / artist / genre, same predicate as src/images/reciprocity.ts), else the gradient and the JIT.
 // Loads the real web/index.html into jsdom (same pattern as web-safe-css-url.test.ts).
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -42,6 +44,14 @@ const NODES = [
 		teaser: "p",
 		image_url: IMG("NewForms"),
 		image_source: "caa",
+		edges: {
+			artists: [{ slug: "artist:roni-size", name: "Roni Size" }],
+			label: { slug: "label:talkin-loud", name: "Talkin' Loud" },
+			genres: [
+				{ slug: "genre:no-image", name: "No image" },
+				{ slug: "genre:bad-own", name: "Bad own" },
+			],
+		},
 	},
 	{
 		id: "artist:roni-size",
@@ -84,6 +94,138 @@ const NODES = [
 		name: "Bad alone",
 		teaser: "x",
 		image_url: "javascript:alert(1)",
+	},
+	// TRA-593: works that list the wrong node, and the nodes whose lists they pollute.
+	{
+		id: "project:electric-ladyland",
+		type: "project",
+		name: "Electric Ladyland",
+		teaser: "p",
+		image_url: IMG("Ladyland"),
+		image_source: "caa",
+		edges: {
+			artists: [{ slug: "artist:jimi-hendrix", name: "Jimi Hendrix" }],
+			label: { slug: "label:reprise", name: "Reprise" },
+			genres: [{ slug: "genre:rock", name: "Rock" }],
+		},
+	},
+	{
+		id: "project:paradise",
+		type: "project",
+		name: "Paradise",
+		teaser: "p",
+		image_url: IMG("Paradise"),
+		image_source: "caa",
+		edges: {
+			artists: [{ slug: "artist:inner-city", name: "Inner City" }],
+			label: { slug: "label:ten", name: "Ten" },
+			genres: [{ slug: "genre:house", name: "House" }],
+		},
+	},
+	{
+		id: "label:mille-plateaux",
+		type: "label",
+		name: "Mille Plateaux",
+		teaser: "l",
+		edges: { notable_releases: [{ slug: "project:electric-ladyland", name: "Electric Ladyland" }] },
+	},
+	{
+		id: "label:talkin-loud",
+		type: "label",
+		name: "Talkin' Loud",
+		teaser: "l",
+		edges: {
+			notable_releases: [
+				{ slug: "project:electric-ladyland", name: "Electric Ladyland" },
+				{ slug: "project:new-forms", name: "New Forms" },
+			],
+		},
+	},
+	{
+		id: "artist:inner-city",
+		type: "artist",
+		name: "Inner City",
+		teaser: "a",
+		edges: {
+			discography: [
+				{ slug: "project:electric-ladyland", name: "Electric Ladyland" },
+				{ slug: "project:paradise", name: "Paradise" },
+			],
+		},
+	},
+	{
+		id: "artist:strangers-only",
+		type: "artist",
+		name: "Strangers Only",
+		teaser: "a",
+		edges: {
+			discography: [{ slug: "project:electric-ladyland", name: "Electric Ladyland" }],
+			notable_tracks: [{ slug: "track:stranger", name: "Stranger" }],
+		},
+	},
+	{
+		id: "track:stranger",
+		type: "track",
+		name: "Stranger",
+		teaser: "t",
+		image_url: IMG("Stranger"),
+		image_source: "itunes-verified",
+		edges: { artists: [{ slug: "artist:someone-else", name: "Someone Else" }] },
+	},
+	{
+		id: "genre:house",
+		type: "genre",
+		name: "House",
+		teaser: "g",
+		edges: {
+			subgenres: [{ slug: "genre:acid-house", name: "Acid house" }],
+			landmark_projects: [
+				{ slug: "project:electric-ladyland", name: "Electric Ladyland" },
+				{ slug: "project:acid-album", name: "Acid album" },
+				{ slug: "project:paradise", name: "Paradise" },
+			],
+		},
+	},
+	{
+		id: "genre:garage",
+		type: "genre",
+		name: "Garage",
+		teaser: "g",
+		edges: {
+			subgenres: [{ slug: "genre:speed-garage", name: "Speed garage" }],
+			landmark_projects: [
+				{ slug: "project:electric-ladyland", name: "Electric Ladyland" },
+				{ slug: "project:speed-album", name: "Speed album" },
+			],
+		},
+	},
+	{
+		id: "genre:stranger-only",
+		type: "genre",
+		name: "Stranger only",
+		teaser: "g",
+		edges: {
+			landmark_projects: [{ slug: "project:electric-ladyland", name: "Electric Ladyland" }],
+			landmark_tracks: [{ slug: "track:stranger", name: "Stranger" }],
+		},
+	},
+	{
+		id: "project:acid-album",
+		type: "project",
+		name: "Acid album",
+		teaser: "p",
+		image_url: IMG("Acid"),
+		image_source: "caa",
+		edges: { genres: [{ slug: "genre:acid-house", name: "Acid house" }] },
+	},
+	{
+		id: "project:speed-album",
+		type: "project",
+		name: "Speed album",
+		teaser: "p",
+		image_url: IMG("Speed"),
+		image_source: "caa",
+		edges: { genres: [{ slug: "genre:speed-garage", name: "Speed garage" }] },
 	},
 ];
 
@@ -202,6 +344,58 @@ describe("fallbacks keep working", () => {
 	it("a refused own image_url with nothing else asks the JIT", async () => {
 		const w = await boot();
 		w.show("artist:bad-alone");
+		expect(heroOf(w).classList.contains("no-image")).toBe(true);
+		await vi.waitFor(() => expect(imageRequests()).toHaveLength(1));
+	});
+});
+
+describe("a hero borrows a cover only from a work that points back at the node (TRA-593)", () => {
+	const style = (url: string) => `background-image: url('${url}');`;
+
+	it("label: a release on another label is never borrowed, the gradient and the JIT answer", async () => {
+		const w = await boot();
+		w.show("label:mille-plateaux");
+		expect(heroOf(w).classList.contains("no-image")).toBe(true);
+		expect(w.resolveHeroImage(NODES.find((n) => n.id === "label:mille-plateaux"))).toBeNull();
+		await vi.waitFor(() => expect(imageRequests()).toEqual(["GET /api/image/label%3Amille-plateaux"]));
+	});
+
+	it("label: skips the unrelated release and borrows the one that declares the label", async () => {
+		const w = await boot();
+		w.show("label:talkin-loud");
+		expect(heroOf(w).getAttribute("style")).toBe(style(IMG("NewForms")));
+		await new Promise((r) => setTimeout(r, 20));
+		expect(imageRequests()).toEqual([]);
+	});
+
+	it("artist: a release credited to another artist is skipped, the credited one is borrowed", async () => {
+		const w = await boot();
+		w.show("artist:inner-city");
+		expect(heroOf(w).getAttribute("style")).toBe(style(IMG("Paradise")));
+	});
+
+	it("artist: neither a stranger's release nor a stranger's track is borrowed", async () => {
+		const w = await boot();
+		w.show("artist:strangers-only");
+		expect(heroOf(w).classList.contains("no-image")).toBe(true);
+		await vi.waitFor(() => expect(imageRequests()).toHaveLength(1));
+	});
+
+	it("genre: a work that declares the genre beats a neighbour listed before it", async () => {
+		const w = await boot();
+		w.show("genre:house");
+		expect(heroOf(w).getAttribute("style")).toBe(style(IMG("Paradise")));
+	});
+
+	it("genre: a direct subgenre's work is accepted when no work declares the genre itself", async () => {
+		const w = await boot();
+		w.show("genre:garage");
+		expect(heroOf(w).getAttribute("style")).toBe(style(IMG("Speed")));
+	});
+
+	it("genre: works that carry unrelated genres lend nothing", async () => {
+		const w = await boot();
+		w.show("genre:stranger-only");
 		expect(heroOf(w).classList.contains("no-image")).toBe(true);
 		await vi.waitFor(() => expect(imageRequests()).toHaveLength(1));
 	});
