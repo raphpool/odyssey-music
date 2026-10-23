@@ -68,6 +68,8 @@ private struct ApplicationTabs: View {
 	@State private var todayRootTitle: String?
 	/// The result chosen in the search sheet. The page is pushed once the sheet is gone, not under it.
 	@State private var chosenResult: ChosenResult?
+	/// The window's bottom safe area, handed to the tab bar (see `tabs`).
+	@State private var windowSafeAreaBottom: CGFloat = 0
 
 	/// What the app shows for the state of the profile (J.4): no profile is the full-screen onboarding, without
 	/// the tabs, and the saved profile fades into them.
@@ -135,40 +137,42 @@ private struct ApplicationTabs: View {
 		Binding(get: { router.selectedTab }, set: { router.select($0) })
 	}
 
-	@ViewBuilder
+	/// One `TabView` for the per-tab stacks and the selection; the bar is drawn by `Track1TabBar` (D1), not by
+	/// the system, so there is a single code path from iOS 17 to 26.
 	private var tabs: some View {
-		if #available(iOS 26, *) {
-			// Native Liquid Glass bar; the search role draws the isolated round button of the Figma.
-			TabView(selection: tabSelection) {
-				Tab(AppTab.today.title, systemImage: AppTab.today.glyph.systemName, value: AppTab.today) {
-					entry(for: .today)
-				}
-				Tab(AppTab.genres.title, systemImage: AppTab.genres.glyph.systemName, value: AppTab.genres) {
-					entry(for: .genres)
-				}
-				Tab(
-					AppTab.search.title, systemImage: AppTab.search.glyph.systemName, value: AppTab.search,
-					role: .search
-				) {
-					// Never shown: selecting Search opens the sheet and keeps the current tab.
-					Color.clear
-				}
-			}
-		} else {
-			TabView(selection: tabSelection) {
-				ForEach(AppTab.allCases) { tab in
-					Group {
-						if tab == .search { Color.clear } else { entry(for: tab) }
-					}
-					// The glass of iOS 26 does not exist before: a frosted bar is the closest native fallback.
-					// It goes on the tab content, where SwiftUI reads it, not on the `TabView`.
-					.toolbarBackground(.visible, for: .tabBar)
-					.toolbarBackground(.ultraThinMaterial, for: .tabBar)
-					.tabItem { Label(tab.title, systemImage: tab.glyph.systemName) }
-					.tag(tab)
-				}
-			}
+		TabView(selection: tabSelection) {
+			entry(for: .today).tag(AppTab.today)
+			entry(for: .genres).tag(AppTab.genres)
 		}
+		// The window's bottom safe area, read here, outside the inset below: inside it the bar is already above
+		// the home indicator and would read 0. The keyboard is left out so that the bar does not change its
+		// padding while a field is focused.
+		.background {
+			GeometryReader { proxy in
+				Color.clear.preference(key: WindowSafeAreaBottomKey.self, value: proxy.safeAreaInsets.bottom)
+			}
+			.ignoresSafeArea(.keyboard, edges: .bottom)
+		}
+		.onPreferenceChange(WindowSafeAreaBottomKey.self) { windowSafeAreaBottom = $0 }
+		.safeAreaInset(edge: .bottom, spacing: 0) {
+			Track1TabBar(
+				items: [item(.today), item(.genres)],
+				selected: router.selectedTab.rawValue,
+				search: item(.search),
+				safeAreaBottom: windowSafeAreaBottom,
+				onSelect: { id in
+					if let tab = AppTab(rawValue: id) { router.select(tab) }
+				},
+				onSearch: { router.select(.search) }
+			)
+			// Without this the field of the Genres tab would lift the bar with the keyboard (R5).
+			.ignoresSafeArea(.keyboard, edges: .bottom)
+		}
+	}
+
+	private func item(_ tab: AppTab) -> Track1TabBar.Item {
+		Track1TabBar.Item(
+			id: tab.rawValue, icon: tab.icon, label: tab.title, identifier: tab.accessibilityIdentifier)
 	}
 
 	@ViewBuilder
@@ -229,6 +233,8 @@ private struct ApplicationTabs: View {
 				}
 			}
 		}
+		// On the stack, not on its root view: from a pushed page the native bar would come back otherwise (R1).
+		.toolbar(.hidden, for: .tabBar)
 	}
 
 	@ViewBuilder
@@ -354,5 +360,14 @@ private struct InvalidConfigurationView: View {
 		.accessibilityIdentifier("invalid-configuration")
 		.accessibilityElement(children: .combine)
 		.accessibilityLabel("Configuration requise. \(error.userMessage)")
+	}
+}
+
+/// The bottom safe area of the window, carried from a background `GeometryReader` to `ApplicationTabs`.
+private struct WindowSafeAreaBottomKey: PreferenceKey {
+	static let defaultValue: CGFloat = 0
+
+	static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+		value = nextValue()
 	}
 }

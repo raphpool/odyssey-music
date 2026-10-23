@@ -62,15 +62,22 @@ struct Track1TabBar: View {
 	private let onSelect: (String) -> Void
 	private let onSearch: () -> Void
 
-	/// Bottom safe area as the bar sees it. Measured in a background `GeometryReader` rather than by wrapping
-	/// the bar in one: a `GeometryReader` takes all the space it is offered, which would stretch the bar
-	/// inside a `safeAreaInset`.
-	@State private var safeAreaBottom: CGFloat = 0
+	/// Bottom safe area handed in by the screen that mounts the bar (the window's, see `RootView`). Inside a
+	/// `safeAreaInset` the bar is already placed above the home indicator, so what it measures itself can read
+	/// 0 there (2026-10-24, TRA-671): it would then add the 12 pt of a screen without an indicator everywhere.
+	private let injectedSafeAreaBottom: CGFloat?
+
+	/// Fallback when nothing is injected (previews, tests): measured in a background `GeometryReader` rather
+	/// than by wrapping the bar in one, which would take all the space it is offered and stretch the bar.
+	@State private var measuredSafeAreaBottom: CGFloat = 0
+
+	private var safeAreaBottom: CGFloat { injectedSafeAreaBottom ?? measuredSafeAreaBottom }
 
 	init(
-		items: [Item], selected: String, search: Item, onSelect: @escaping (String) -> Void,
-		onSearch: @escaping () -> Void
+		items: [Item], selected: String, search: Item, safeAreaBottom: CGFloat? = nil,
+		onSelect: @escaping (String) -> Void, onSearch: @escaping () -> Void
 	) {
+		self.injectedSafeAreaBottom = safeAreaBottom
 		self.items = items
 		self.selected = selected
 		self.search = search
@@ -100,7 +107,7 @@ struct Track1TabBar: View {
 				Color.clear.preference(key: SafeAreaBottomKey.self, value: proxy.safeAreaInsets.bottom)
 			}
 		}
-		.onPreferenceChange(SafeAreaBottomKey.self) { safeAreaBottom = $0 }
+		.onPreferenceChange(SafeAreaBottomKey.self) { measuredSafeAreaBottom = $0 }
 		.background {
 			LinearGradient(stops: Track1TabBarStyle.fadeStops(), startPoint: .top, endPoint: .bottom)
 				.ignoresSafeArea(edges: .bottom)
