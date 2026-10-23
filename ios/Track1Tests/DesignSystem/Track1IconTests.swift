@@ -38,6 +38,7 @@ final class Track1IconTests: XCTestCase {
 			(.primary, Track1Tokens.colorIconPrimary),
 			(.secondary, Track1Tokens.colorIconSecondary),
 			(.inverse, Track1Tokens.colorIconInverse),
+			(.action, Track1Tokens.colorIconAction),
 		]
 		XCTAssertEqual(Track1Icon.Tone.allCases, expected.map(\.0))
 		for (tone, color) in expected {
@@ -49,10 +50,44 @@ final class Track1IconTests: XCTestCase {
 		XCTAssertEqual(rgbaBytes(Track1Icon.Tone.primary.color), [0xF6, 0xE9, 0xD8, 0xFF])
 		XCTAssertEqual(rgbaBytes(Track1Icon.Tone.secondary.color), [0xC8, 0xB6, 0xA3, 0xFF])
 		XCTAssertEqual(rgbaBytes(Track1Icon.Tone.inverse.color), [0x0B, 0x07, 0x06, 0xFF])
+		XCTAssertEqual(rgbaBytes(Track1Icon.Tone.action.color), [0xF0, 0x64, 0x2D, 0xFF])
 	}
 
 	func testTheIconFrameIs20Points() {
 		XCTAssertEqual(Track1Icon.defaultSize, 20)
+	}
+
+	@MainActor
+	func testAnAssetIconAndAGlyphIconBothRenderInTheDefaultFrame() {
+		let proposal = CGSize(width: 200, height: 200)
+		let glyphSize = UIHostingController(rootView: Track1Icon(.home)).sizeThatFits(in: proposal)
+		XCTAssertEqual(glyphSize, CGSize(width: 20, height: 20))
+		for asset in Track1Icon.Asset.allCases {
+			let size = UIHostingController(rootView: Track1Icon(asset: asset)).sizeThatFits(in: proposal)
+			XCTAssertEqual(size, glyphSize, "\(asset)")
+		}
+	}
+
+	@MainActor
+	func testAnAssetIconFollowsTheRequestedSize() {
+		let size = UIHostingController(rootView: Track1Icon(asset: .tabSearch, size: 32))
+			.sizeThatFits(in: CGSize(width: 200, height: 200))
+		XCTAssertEqual(size, CGSize(width: 32, height: 32))
+	}
+
+	// MARK: Tab assets
+
+	func testTheTabAssetsAreThoseOfTheFigmaTabBar() {
+		XCTAssertEqual(
+			Track1Icon.Asset.allCases.map(\.rawValue),
+			["Tab/Today", "Tab/Genres", "Tab/Search"])
+	}
+
+	/// The host app is the bundle that carries the catalog: `Bundle.main` of an app-hosted test run.
+	func testEveryTabAssetIsInTheAppCatalog() {
+		for asset in Track1Icon.Asset.allCases {
+			XCTAssertNotNil(UIImage(named: asset.rawValue, in: .main, compatibleWith: nil), "\(asset)")
+		}
 	}
 
 	func testIconButtonOffersAtLeast44By44Points() {
