@@ -574,7 +574,8 @@ function hasVotedExtension(entry: EdgeRef, caution: PoseCaution): boolean {
 // Falletta". The ";" tells a third party's recording of the artist's work from the artist's own release (TRA-653);
 // the legitimate collaborations (Lennon "&" Yoko "/" the Plastic Ono Band, Getz "/" Gilberto) never use it.
 function hasComposerSeparator(c: ReleaseGroupCandidate): boolean {
-	return c.artistCredits.some((credit) => credit.joinphrase?.includes(";") === true);
+	// Not the last credit: what follows it separates nothing.
+	return c.artistCredits.slice(0, -1).some((credit) => credit.joinphrase?.includes(";") === true);
 }
 
 // The credit rule, as it applies to a pose on an existing entry (TRA-649). The artist must head the release and

@@ -2075,6 +2075,20 @@ describe("mergeDiscography — cautious pose without a year (TRA-647)", () => {
 					expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "credit" }]);
 				});
 
+				it("ignores a ';' after the last credit: it separates nothing", () => {
+					const found = release("Dil Padosi Hai", {
+						artistCredits: [
+							{ ...HEAD, joinphrase: ", " },
+							{ ...guest(1), joinphrase: " & " },
+							{ ...guest(2), joinphrase: ";" },
+						],
+						ratingVotes: 1,
+					});
+					const result = mergeFor(zappa, existing, [found]);
+					expect(result.ambiguous).toEqual([]);
+					expect(result.posed.map((p) => p.mbid)).toEqual([found.mbid]);
+				});
+
 				it("does not hold a voted release group whose joinphrases are the usual ones", () => {
 					const found = release("Dil Padosi Hai", {
 						artistCredits: [{ ...HEAD, joinphrase: ", " }, { ...guest(1), joinphrase: " & " }, guest(2)],

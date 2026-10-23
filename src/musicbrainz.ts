@@ -196,18 +196,23 @@ function toJoinedCredits(raw: unknown): MbJoinedCredit[] {
 	const out: MbJoinedCredit[] = [];
 	const seen = new Set<string>();
 	for (const entry of raw) {
-		if (!isRecord(entry) || !isRecord(entry.artist)) continue;
-		const { id, name: canonical } = entry.artist;
-		if (!isMbid(id) || seen.has(id)) continue;
+		if (!isRecord(entry)) continue;
+		const joinphrase = typeof entry.joinphrase === "string" ? entry.joinphrase : "";
+		const { id, name: canonical } = isRecord(entry.artist)
+			? entry.artist
+			: { id: undefined, name: undefined };
 		const name = isText(canonical) ? canonical : isText(entry.name) ? entry.name : null;
-		if (name === null) continue;
+		if (!isMbid(id) || seen.has(id) || name === null) {
+			// A dropped credit (repeated artist, no artist id) leaves its joinphrase to the credit before it, so that a
+			// ";" is found whichever of the credits MusicBrainz put it on.
+			const previous = out.at(-1);
+			if (previous !== undefined && joinphrase !== "") {
+				previous.joinphrase = `${previous.joinphrase ?? ""}${joinphrase}`;
+			}
+			continue;
+		}
 		seen.add(id);
-		const { joinphrase } = entry;
-		out.push(
-			typeof joinphrase === "string" && joinphrase !== ""
-				? { mbid: id, name, joinphrase }
-				: { mbid: id, name },
-		);
+		out.push(joinphrase !== "" ? { mbid: id, name, joinphrase } : { mbid: id, name });
 	}
 	return out;
 }

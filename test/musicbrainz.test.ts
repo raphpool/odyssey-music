@@ -2880,6 +2880,35 @@ describe("fetchArtistDiscographyMb: credits and unavailability", () => {
 		expect(releases[0]?.artistCredits[1]).not.toHaveProperty("joinphrase");
 	});
 
+	// A ";" must survive the credits that are dropped, else the shape of the credit depends on which artist repeats.
+	it("hands the joinphrase of a dropped credit (repeated artist, no artist id) to the credit before it", async () => {
+		stubBrowse(({ type }) =>
+			page(
+				type === "album"
+					? [
+							rg(1, {
+								"artist-credit": [
+									{ ...credit(KODE9, "Kode9"), joinphrase: ", " },
+									{ ...credit(SPACEAPE, "The Spaceape"), joinphrase: "; " },
+									{ ...credit(KODE9, "Kode9"), joinphrase: "" },
+									{ name: "Nobody", joinphrase: " & " },
+									{ ...credit(rgId(90), "Third"), joinphrase: "" },
+								],
+							}),
+						]
+					: [],
+			),
+		);
+
+		const { releases } = await fetchArtistDiscographyMb(freshArtist());
+
+		expect(releases[0]?.artistCredits).toEqual([
+			{ mbid: KODE9, name: "Kode9", joinphrase: ", " },
+			{ mbid: SPACEAPE, name: "The Spaceape", joinphrase: ";  & " },
+			{ mbid: rgId(90), name: "Third" },
+		]);
+	});
+
 	it("reads rating votes-count as ratingVotes; an absent or invalid value is 0 (TRA-625)", async () => {
 		const bad: [string, unknown][] = [
 			["no rating", undefined],
