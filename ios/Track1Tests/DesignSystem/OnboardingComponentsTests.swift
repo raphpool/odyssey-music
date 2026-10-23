@@ -195,6 +195,15 @@ final class OnboardingComponentsTests: XCTestCase {
 			"Rock, 1 sous-genre, 1 sélectionné")
 	}
 
+	func testGenreCardBadgeDrawsNothingBelowOne() {
+		XCTAssertNil(GenreAccordionCard<EmptyView>.badge(selectedCount: 0))
+		XCTAssertNil(GenreAccordionCard<EmptyView>.badge(selectedCount: -1))
+	}
+
+	func testGenreCardBadgeIsTheNumberBetweenParentheses() {
+		XCTAssertEqual(GenreAccordionCard<EmptyView>.badge(selectedCount: 4), "(4)")
+	}
+
 	// MARK: Bottom action bar
 
 	func testBottomBarIdentifiers() {
