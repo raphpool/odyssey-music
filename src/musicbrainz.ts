@@ -1112,11 +1112,9 @@ export interface MbReleaseIdentity {
 	/**
 	 * Recordings only: the release group of the release the search hit lists best for it (an Album-primary
 	 * one, else the first listed), the cover-bearing home of a track. Null for a release group (that is
-	 * `mbid`) and when the hit names none. Read from the hit; costs no request. Optional in the type only
-	 * so that the fixtures of other suites that build an identity by hand keep compiling: the two
-	 * resolvers always set it, and a reader takes absent as null.
+	 * `mbid`) and when the hit names none. Read from the hit; costs no request.
 	 */
-	releaseGroupMbid?: string | null;
+	releaseGroupMbid: string | null;
 }
 
 /**
