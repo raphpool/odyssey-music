@@ -2039,11 +2039,13 @@ describe("pickByTitleAndCredit: the main credit before the featured ones (TRA-54
 		async (joinphrase) => {
 			stubMb({
 				"release-groups": [
-					bFeatA(FEAT_ID, "Phrase Title", joinphrase, { "first-release-date": "2003" }),
-					aAlone(ALBUM_ID, "Phrase Title", { "first-release-date": "2005" }),
+					bFeatA(FEAT_ID, `Phrase Title ${joinphrase.trim()}`, joinphrase, { "first-release-date": "2003" }),
+					aAlone(ALBUM_ID, `Phrase Title ${joinphrase.trim()}`, { "first-release-date": "2005" }),
 				],
 			});
-			expect((await resolveReleaseGroup("Phrase Title", "A"))?.mbid).toBe(ALBUM_ID);
+			// One title per join phrase: mbCache is keyed on the request and outlives a test, so a shared title
+			// would replay the first response and test "feat." five times.
+			expect((await resolveReleaseGroup(`Phrase Title ${joinphrase.trim()}`, "A"))?.mbid).toBe(ALBUM_ID);
 		},
 	);
 
@@ -2135,6 +2137,41 @@ describe("pickByTitleAndCredit: the main credit before the featured ones (TRA-54
 		});
 		const out = await resolveReleaseGroupDetailed("Mbid Title", "A", { requestedArtistMbid: A });
 		expect(out.identity?.mbid).toBe(ALBUM_ID);
+	});
+
+	it("judges the main credit by MBID alone when it is known: a namesake credited first does not push down the real artist", async () => {
+		const NAMESAKE = "eeeeeeee-0000-4000-8000-000000000005";
+		const namesake = "eeeeeeee-1111-4111-8111-000000000008";
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Namesake Title", " feat. ", { "first-release-date": "2003" }),
+				{
+					id: namesake,
+					title: "Namesake Title",
+					"artist-credit": [entry(NAMESAKE, "A")],
+					"first-release-date": "2005",
+				},
+			],
+		});
+		const out = await resolveReleaseGroupDetailed("Namesake Title", "A", { requestedArtistMbid: A });
+		expect(out.identity?.mbid).toBe(FEAT_ID);
+		expect(out.identity?.credit.map((c) => c.mbid)).toEqual([B, A]);
+	});
+
+	it("keeps a direct main credit and a band's work a doubt: the direct one does not win over the band", async () => {
+		stubMb({
+			"release-groups": [
+				aAlone(ALBUM_ID, "Direct Band Title", { "first-release-date": "2005" }),
+				{
+					id: FEAT_ID,
+					title: "Direct Band Title",
+					"artist-credit": [entry(C, "Z", " feat. "), entry(BAND, "The Band")],
+					"first-release-date": "2003",
+				},
+			],
+		});
+		const out = await resolveReleaseGroupDetailed("Direct Band Title", "A", { acceptCreditMbids: [BAND] });
+		expect(out).toEqual({ identity: null, ambiguous: true, unavailable: false });
 	});
 
 	it("ranks bands against bands: a band in the main credit before the same band only featured", async () => {

@@ -1280,14 +1280,18 @@ function preferMainCredit<T>(candidates: T[], inMain: (candidate: T) => boolean)
 	return main.length > 0 ? main : candidates;
 }
 
-/** True when the requested artist, by name or by MBID when it is known, is in the MAIN credit of the candidate. */
+/**
+ * True when the requested artist is in the MAIN credit of the candidate. When the artist's MBID is known the
+ * main credit is judged by MBID ALONE (TRA-542 review): a namesake printed under the same name, credited first
+ * on another work, must not push down the real artist credited as a featured one. Without an MBID, by name.
+ */
 function inMainCredit(
 	candidate: { "artist-credit"?: MbArtistCreditEntry[] | undefined },
 	hint: string,
 	requested: ReadonlySet<string> | null,
 ): boolean {
 	const main = mainCreditEntries(candidate["artist-credit"] ?? []);
-	return creditEqualsHint(main, hint) || (requested !== null && creditCarriesMbid(main, requested));
+	return requested !== null ? creditCarriesMbid(main, requested) : creditEqualsHint(main, hint);
 }
 
 /**
