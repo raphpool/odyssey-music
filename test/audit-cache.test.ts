@@ -367,6 +367,171 @@ describe("auditNodes", () => {
 		expect(metric(report, "pending-reverse-targets-existing")).toBe(1);
 	});
 
+	describe("artist edges to a redirect key (TRA-598)", () => {
+		const redirects = new Map([
+			["track:mr-tambourine-man", "track:mr-tambourine-man--bob-dylan"],
+			["project:ghost", "project:ghost--the-ghosts"],
+		]);
+		const dylan = (): RawNode[] => [
+			node("artist:bob-dylan"),
+			node("track:mr-tambourine-man--bob-dylan", { artists: [edge("artist:bob-dylan")] }),
+		];
+
+		it("counts the Byrds -> Dylan edge: the redirect leads to a track that does not credit the artist (acceptance case)", () => {
+			const report = auditNodes(
+				toMap(node("artist:the-byrds", { notable_tracks: [edge("track:mr-tambourine-man")] }), ...dylan()),
+				[],
+				redirects,
+			);
+			expect(report.metrics["artist-edge-to-redirect-key"]).toEqual({
+				discography: 0,
+				notable_tracks: 1,
+				landmark_project: 0,
+				reference_track: 0,
+			});
+			expect(report.samples["artist-edge-to-redirect-key[notable_tracks]"]).toEqual(["artist:the-byrds"]);
+			expect(report.cases["artist-edge-to-redirect-key"]).toEqual([
+				"artist:the-byrds notable_tracks track:mr-tambourine-man -> track:mr-tambourine-man--bob-dylan",
+			]);
+		});
+
+		it("counts each of the four artist work fields under its own key", () => {
+			const report = auditNodes(
+				toMap(
+					node("artist:a", {
+						discography: [edge("project:ghost")],
+						notable_tracks: [edge("track:mr-tambourine-man")],
+						landmark_project: edge("project:ghost"),
+						reference_track: edge("track:mr-tambourine-man"),
+					}),
+					node("project:ghost--the-ghosts", { artists: [edge("artist:the-ghosts")] }),
+					...dylan(),
+				),
+				[],
+				redirects,
+			);
+			expect(report.metrics["artist-edge-to-redirect-key"]).toEqual({
+				discography: 1,
+				notable_tracks: 1,
+				landmark_project: 1,
+				reference_track: 1,
+			});
+		});
+
+		it("does not count a redirect whose target credits the artist, as artist, producer or group member", () => {
+			const table = new Map([
+				["project:own", "project:own--a"],
+				["project:produced", "project:produced--a"],
+				["project:group", "project:group--reprazent"],
+			]);
+			const report = auditNodes(
+				toMap(
+					node("artist:a", {
+						discography: [edge("project:own"), edge("project:produced"), edge("project:group")],
+					}),
+					node("project:own--a", { artists: [edge("artist:a")] }),
+					node("project:produced--a", { artists: [edge("artist:b")], producers: [edge("artist:a")] }),
+					node("project:group--reprazent", { artists: [edge("artist:reprazent")] }),
+					node("artist:reprazent", { members: [edge("artist:a")] }),
+					node("artist:b"),
+				),
+				[],
+				table,
+			);
+			expect(metric(report, "artist-edge-to-redirect-key", "discography")).toBe(0);
+			expect(report.cases["artist-edge-to-redirect-key"] ?? []).toEqual([]);
+		});
+
+		it("counts a redirect whose target has no credit: it credits no one", () => {
+			const report = auditNodes(
+				toMap(node("artist:a", { discography: [edge("project:ghost")] }), node("project:ghost--the-ghosts")),
+				[],
+				redirects,
+			);
+			expect(metric(report, "artist-edge-to-redirect-key", "discography")).toBe(1);
+		});
+
+		it("counts a redirect to a node missing from the cache apart, under its own strict ceiling", () => {
+			const report = auditNodes(
+				toMap(node("artist:a", { discography: [edge("project:ghost")] })),
+				[],
+				redirects,
+			);
+			expect(metric(report, "artist-edge-to-redirect-key", "discography")).toBe(0);
+			expect(metric(report, "artist-edge-to-redirect-key-unresolved")).toBe(1);
+			expect(report.cases["artist-edge-to-redirect-key-unresolved"]).toEqual([
+				"artist:a discography project:ghost -> project:ghost--the-ghosts",
+			]);
+			// Its credit cannot be read, so it is not left informative: a new such edge must fail the audit.
+			expect(INFORMATIVE_METRICS.has("artist-edge-to-redirect-key-unresolved")).toBe(false);
+			expect(coverageNodeType("artist-edge-to-redirect-key-unresolved")).toBeNull();
+			const thresholds = { ...thresholdsFromReport(report), "artist-edge-to-redirect-key-unresolved": 0 };
+			expect(compareWithThresholds(report, thresholds).map(formatViolation)).toEqual([
+				"artist-edge-to-redirect-key-unresolved 1 > 0",
+			]);
+		});
+
+		it("measures every artist field that targets a project or a track, and only those", () => {
+			const report = auditNodes(toMap(node("artist:a")));
+			expect(Object.keys(report.metrics["artist-edge-to-redirect-key"] as object)).toEqual([
+				"discography",
+				"notable_tracks",
+				"landmark_project",
+				"reference_track",
+			]);
+		});
+
+		it("ignores a key that is still a live node: a read does not redirect it", () => {
+			const report = auditNodes(
+				toMap(
+					node("artist:a", { discography: [edge("project:ghost")] }),
+					node("project:ghost", { artists: [edge("artist:a")] }),
+					node("project:ghost--the-ghosts", { artists: [edge("artist:the-ghosts")] }),
+				),
+				[],
+				redirects,
+			);
+			expect(metric(report, "artist-edge-to-redirect-key", "discography")).toBe(0);
+			expect(metric(report, "artist-edge-to-redirect-key-unresolved")).toBe(0);
+		});
+
+		it("is 0 without a redirect table, and for edges to slugs that are not keys", () => {
+			const nodes = toMap(node("artist:the-byrds", { notable_tracks: [edge("track:mr-tambourine-man")] }));
+			expect(metric(auditNodes(nodes), "artist-edge-to-redirect-key", "notable_tracks")).toBe(0);
+			const other = new Map([["track:elsewhere", "track:elsewhere--x"]]);
+			expect(metric(auditNodes(nodes, [], other), "artist-edge-to-redirect-key", "notable_tracks")).toBe(0);
+		});
+
+		it("keeps every case, not only the 10 first slugs", () => {
+			const artists = Array.from({ length: 12 }, (_, i) =>
+				node(`artist:a${i}`, { notable_tracks: [edge("track:mr-tambourine-man")] }),
+			);
+			const report = auditNodes(toMap(...artists, ...dylan()), [], redirects);
+			expect(metric(report, "artist-edge-to-redirect-key", "notable_tracks")).toBe(12);
+			expect(report.samples["artist-edge-to-redirect-key[notable_tracks]"]).toHaveLength(10);
+			expect(report.cases["artist-edge-to-redirect-key"]).toHaveLength(12);
+		});
+
+		it("is a strict metric: no node growth absorbs a rise (a data PR must not add such an edge)", () => {
+			for (const field of ["discography", "notable_tracks", "landmark_project", "reference_track"]) {
+				expect(coverageNodeType("artist-edge-to-redirect-key", field)).toBeNull();
+			}
+		});
+
+		it("fails the comparison when the count exceeds its ceiling, naming the field", () => {
+			const report = auditNodes(
+				toMap(node("artist:the-byrds", { notable_tracks: [edge("track:mr-tambourine-man")] }), ...dylan()),
+				[],
+				redirects,
+			);
+			const thresholds = thresholdsFromReport(report);
+			expect(compareWithThresholds(report, thresholds)).toEqual([]);
+			(thresholds["artist-edge-to-redirect-key"] as Record<string, number>).notable_tracks = 0;
+			const violations = compareWithThresholds(report, thresholds);
+			expect(violations.map(formatViolation)).toEqual(["artist-edge-to-redirect-key[notable_tracks] 1 > 0"]);
+		});
+	});
+
 	it("counts nodes per type", () => {
 		const report = auditNodes(toMap(node("artist:a"), node("artist:b"), node("genre:g")));
 		expect(report.nodeCount).toEqual({ genre: 1, label: 0, artist: 2, project: 0, track: 0 });
@@ -460,6 +625,12 @@ describe("parseThresholds / parseCliArgs", () => {
 			thresholdsPath: "t.json",
 			jsonPath: "o.json",
 		});
+	});
+
+	it("reads the redirect table from data/slug-redirects.json unless --redirects overrides it", () => {
+		expect(parseCliArgs(["cache"])?.redirectsPath).toBe(join(REPO_ROOT, "data", "slug-redirects.json"));
+		expect(parseCliArgs(["cache", "--redirects", "r.json"])?.redirectsPath).toBe("r.json");
+		expect(parseCliArgs(["cache", "--redirects"])).toBeNull();
 	});
 });
 
@@ -585,6 +756,61 @@ describe("audit-cache CLI", () => {
 		const r = run(cacheDir, "--thresholds", thresholds, "--json", join(cacheDir, "report.json"));
 		expect(r.status).toBe(2);
 		expect(await snapshot(cacheDir)).toEqual(before);
+	});
+
+	describe("with a redirect table (TRA-598)", () => {
+		async function byrdsCache(): Promise<string> {
+			for (const n of [
+				node("artist:the-byrds", { notable_tracks: [edge("track:mr-tambourine-man")] }),
+				node("artist:bob-dylan"),
+				node("track:mr-tambourine-man--bob-dylan", { artists: [edge("artist:bob-dylan")] }),
+			]) {
+				await writeRawNode(cacheDir, n);
+			}
+			const redirects = join(dir, "slug-redirects.json");
+			await writeFile(
+				redirects,
+				JSON.stringify({ redirects: { "track:mr-tambourine-man": "track:mr-tambourine-man--bob-dylan" } }),
+				"utf8",
+			);
+			return redirects;
+		}
+
+		it("exits 1 naming the field and lists the cases when the ceiling is exceeded", async () => {
+			const redirects = await byrdsCache();
+			const thresholds = await thresholdsFile();
+			const r = run(cacheDir, "--thresholds", thresholds, "--redirects", redirects);
+			expect(r.status).toBe(1);
+			expect(r.stderr).toContain("artist-edge-to-redirect-key[notable_tracks] 1 > 0");
+			expect(r.stdout).toContain(
+				"artist:the-byrds notable_tracks track:mr-tambourine-man -> track:mr-tambourine-man--bob-dylan",
+			);
+		});
+
+		it("exits 0 once the ceiling is committed at the measured value", async () => {
+			const redirects = await byrdsCache();
+			const thresholds = await thresholdsFile((t) => {
+				t["artist-edge-to-redirect-key"] = {
+					discography: 0,
+					notable_tracks: 1,
+					landmark_project: 0,
+					reference_track: 0,
+				};
+			});
+			const r = run(cacheDir, "--thresholds", thresholds, "--redirects", redirects);
+			expect(r.status).toBe(0);
+			expect(r.stdout).toMatch(/artist-edge-to-redirect-key\[notable_tracks\]\s+1\s+\(threshold 1\)/);
+		});
+
+		it("exits 2 rather than report 0 when the redirect table is unreadable or malformed", async () => {
+			const thresholds = await thresholdsFile();
+			const missing = run(cacheDir, "--thresholds", thresholds, "--redirects", join(dir, "nope.json"));
+			expect(missing.status).toBe(2);
+			expect(missing.stderr).toContain("cannot read redirects");
+			const bad = join(dir, "bad-redirects.json");
+			await writeFile(bad, JSON.stringify({ redirects: { "track:a": "project:b" } }), "utf8");
+			expect(run(cacheDir, "--thresholds", thresholds, "--redirects", bad).status).toBe(2);
+		});
 	});
 
 	it("never writes inside the cache directory", async () => {

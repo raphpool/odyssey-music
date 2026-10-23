@@ -9,15 +9,19 @@
  * Nodes are read as raw JSON, never through `NodeCache.get`: the Zod schema strips undeclared
  * fields, which would hide exactly the drift this audit exists to see.
  *
+ * `artist-edge-to-redirect-key` also needs the slug-redirects table (`data/slug-redirects.json`, or
+ * `--redirects <file>`): an unreadable table is a usage error (exit 2), never a silent 0 (TRA-598).
+ *
  * Read-only: nothing is ever written under <cache-dir>.
  *
- * Usage: audit-cache.ts <cache-dir> [--thresholds <file>] [--json <file>]
+ * Usage: audit-cache.ts <cache-dir> [--thresholds <file>] [--redirects <file>] [--json <file>]
  * Exit:  0 no metric above its ceiling, 1 at least one violation, 2 usage or read error.
  */
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import { basename, dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { z } from "zod";
+import { parseSlugRedirects } from "../src/genre-registry.js";
 import { EDGE_FIELDS_BY_TYPE, NODE_TYPES, type NodeType, REVERSE_EDGE_PAIRS } from "../src/node-spec.js";
 
 export type RawNode = Record<string, unknown>;
@@ -28,6 +32,8 @@ export interface AuditReport {
 	nodeCount: Record<NodeType, number>;
 	metrics: Record<string, MetricValue>;
 	samples: Record<string, string[]>;
+	/** Full case lists (unlike the 10-slug `samples`), for the metrics whose cases feed a data ticket. */
+	cases: Record<string, string[]>;
 }
 
 export type Thresholds = Record<string, MetricValue>;
@@ -81,6 +87,13 @@ export function coverageNodeType(metric: string, key?: string): NodeType | null 
 const SAMPLE_LIMIT = 10;
 const IMAGE_FIELDS = ["image_url", "photo_url", "cover_url"] as const;
 const RELEASE_LINK_FIELDS = ["discography", "notable_tracks"] as const;
+/**
+ * Every artist edge field that points at a work (project or track): the ones a redirect can misroute
+ * (TRA-598). Derived from the node spec so a new such field gets measured, and then needs its ceiling.
+ */
+const ARTIST_WORK_FIELDS: readonly string[] = Object.entries(EDGE_FIELDS_BY_TYPE.artist)
+	.filter(([, spec]) => spec.targets.some((t) => t === "project" || t === "track"))
+	.map(([field]) => field);
 
 interface ReciprocityPair {
 	sourceType: NodeType;
@@ -147,6 +160,7 @@ function hasText(v: unknown): boolean {
 class Collector {
 	readonly metrics: Record<string, MetricValue> = {};
 	readonly samples: Record<string, string[]> = {};
+	readonly cases: Record<string, string[]> = {};
 
 	scalar(metric: string): void {
 		this.metrics[metric] = 0;
@@ -167,6 +181,13 @@ class Collector {
 		this.sample(key === undefined ? metric : `${metric}[${key}]`, slug);
 	}
 
+	/** Keeps every case of a metric, in cache order. */
+	addCase(metric: string, description: string): void {
+		const list = this.cases[metric] ?? [];
+		this.cases[metric] = list;
+		list.push(description);
+	}
+
 	/** Keeps the first SAMPLE_LIMIT distinct slugs seen for a metric. */
 	sample(sampleKey: string, slug: string): void {
 		const list = this.samples[sampleKey] ?? [];
@@ -176,13 +197,31 @@ class Collector {
 }
 
 /**
+ * Whether one of the credited slugs is `slug` itself or a group whose `members` include it
+ * (Roni Size -> New Forms, credited to Reprazent).
+ */
+function creditsArtist(nodes: Map<string, RawNode>, credited: readonly string[], slug: string): boolean {
+	return credited.some(
+		(creditedSlug) =>
+			creditedSlug === slug || edgesOf(nodes.get(creditedSlug) ?? {}, "members").some((m) => m.slug === slug),
+	);
+}
+
+/** The artists and producers a release or track credits. */
+function creditedSlugs(target: RawNode): string[] {
+	return [...edgesOf(target, "artists"), ...edgesOf(target, "producers")].map((e) => e.slug);
+}
+
+/**
  * Computes every metric over the raw nodes of a cache.
  * `pendingReverseKeys` are the keys of `cache/pending-reverses.json`: they are not nodes, so
- * they come in separately.
+ * they come in separately. `redirects` is the slug-redirects table (old slug -> canonical slug); empty
+ * by default, in which case `artist-edge-to-redirect-key` is 0.
  */
 export function auditNodes(
 	nodes: Map<string, RawNode>,
 	pendingReverseKeys: Iterable<string> = [],
+	redirects: ReadonlyMap<string, string> = new Map(),
 ): AuditReport {
 	const c = new Collector();
 	const typeKeys: readonly string[] = NODE_TYPES;
@@ -205,9 +244,11 @@ export function auditNodes(
 		"discography-edge-without-mbid",
 		"artist-discography-under-3",
 		"artist-discography-without-mbid",
+		"artist-edge-to-redirect-key-unresolved",
 	]) {
 		c.scalar(m);
 	}
+	c.keyed("artist-edge-to-redirect-key", ARTIST_WORK_FIELDS);
 	c.keyed("empty-artists", ["project", "track"]);
 	c.keyed("single-citation", typeKeys);
 	c.keyed("missing-image", typeKeys);
@@ -279,19 +320,35 @@ export function auditNodes(
 				for (const edge of edgesOf(node, field)) {
 					const target = nodes.get(edge.slug);
 					if (!target) continue;
-					const credited = [...edgesOf(target, "artists"), ...edgesOf(target, "producers")].map(
-						(e) => e.slug,
-					);
+					const credited = creditedSlugs(target);
 					if (edgesOf(target, "artists").length === 0) c.hit("release-links-to-empty-credit", slug);
 					if (credited.length === 0) continue;
-					// A credited group whose `members` include the source counts as crediting it
-					// (Roni Size -> New Forms, credited to Reprazent).
-					const creditsSource = credited.some(
-						(creditedSlug) =>
-							creditedSlug === slug ||
-							edgesOf(nodes.get(creditedSlug) ?? {}, "members").some((m) => m.slug === slug),
-					);
-					if (!creditsSource) c.hit("homonym-release-links", slug);
+					if (!creditsArtist(nodes, credited, slug)) c.hit("homonym-release-links", slug);
+				}
+			}
+
+			// TRA-598: an edge whose slug is a redirect key. A read follows the redirect, and it can lead to
+			// another artist's work (the-byrds -> track:mr-tambourine-man -> --bob-dylan). The two metrics above
+			// never see it: they skip a target that is not a live node, and a redirect key is not one. A live
+			// node wins over the redirect (resolveReadSlug), so such an edge is not misrouted and is skipped.
+			// The per-field metric reads the credit of the resolved node (an empty credit credits no one, so it
+			// counts). A target missing from the repo cache (prod-only work, TRA-484) cannot be judged here: it
+			// is ceilinged apart, so such an edge cannot be added without an explicit decision.
+			for (const field of ARTIST_WORK_FIELDS) {
+				for (const edge of edgesOf(node, field)) {
+					const resolved = redirects.get(edge.slug);
+					if (resolved === undefined || nodes.has(edge.slug)) continue;
+					const target = nodes.get(resolved);
+					if (target === undefined) {
+						c.hit("artist-edge-to-redirect-key-unresolved", slug);
+						c.addCase(
+							"artist-edge-to-redirect-key-unresolved",
+							`${slug} ${field} ${edge.slug} -> ${resolved}`,
+						);
+					} else if (!creditsArtist(nodes, creditedSlugs(target), slug)) {
+						c.hit("artist-edge-to-redirect-key", slug, field);
+						c.addCase("artist-edge-to-redirect-key", `${slug} ${field} ${edge.slug} -> ${resolved}`);
+					}
 				}
 			}
 		}
@@ -330,7 +387,13 @@ export function auditNodes(
 		if (nodes.has(key)) c.hit("pending-reverse-targets-existing", key);
 	}
 
-	return { generatedAt: new Date().toISOString(), nodeCount, metrics: c.metrics, samples: c.samples };
+	return {
+		generatedAt: new Date().toISOString(),
+		nodeCount,
+		metrics: c.metrics,
+		samples: c.samples,
+		cases: c.cases,
+	};
 }
 
 /** One violation per metric (or metric key) whose value exceeds its ceiling or has none. */
@@ -443,6 +506,7 @@ export function parseThresholds(raw: unknown): Thresholds {
 export interface CliArgs {
 	cacheDir: string;
 	thresholdsPath: string;
+	redirectsPath: string;
 	jsonPath?: string;
 }
 
@@ -450,16 +514,22 @@ export function defaultThresholdsPath(): string {
 	return join(dirname(fileURLToPath(import.meta.url)), "..", "data", "integrity-thresholds.json");
 }
 
+export function defaultRedirectsPath(): string {
+	return join(dirname(fileURLToPath(import.meta.url)), "..", "data", "slug-redirects.json");
+}
+
 export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 	let cacheDir: string | undefined;
 	let thresholdsPath = defaultThresholdsPath();
+	let redirectsPath = defaultRedirectsPath();
 	let jsonPath: string | undefined;
 	for (let i = 0; i < argv.length; i++) {
 		const arg = argv[i] as string;
-		if (arg === "--thresholds" || arg === "--json") {
+		if (arg === "--thresholds" || arg === "--redirects" || arg === "--json") {
 			const value = argv[++i];
 			if (value === undefined || value.startsWith("--")) return null;
 			if (arg === "--thresholds") thresholdsPath = value;
+			else if (arg === "--redirects") redirectsPath = value;
 			else jsonPath = value;
 		} else if (arg.startsWith("--") || cacheDir !== undefined) {
 			return null;
@@ -468,10 +538,11 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 		}
 	}
 	if (cacheDir === undefined) return null;
-	return { cacheDir, thresholdsPath, ...(jsonPath === undefined ? {} : { jsonPath }) };
+	return { cacheDir, thresholdsPath, redirectsPath, ...(jsonPath === undefined ? {} : { jsonPath }) };
 }
 
-const USAGE = "usage: audit-cache.ts <cache-dir> [--thresholds <file>] [--json <file>]\n";
+const USAGE =
+	"usage: audit-cache.ts <cache-dir> [--thresholds <file>] [--redirects <file>] [--json <file>]\n";
 
 export async function main(argv: readonly string[]): Promise<number> {
 	const args = parseCliArgs(argv);
@@ -497,6 +568,16 @@ export async function main(argv: readonly string[]): Promise<number> {
 		);
 		return 2;
 	}
+	// The redirect table is an input of a metric: reading none would report 0 and look clean.
+	let redirects: ReadonlyMap<string, string>;
+	try {
+		redirects = parseSlugRedirects(JSON.parse(await readFile(args.redirectsPath, "utf8")));
+	} catch (e) {
+		process.stderr.write(
+			`error: cannot read redirects ${args.redirectsPath}: ${e instanceof Error ? e.message : String(e)}\n`,
+		);
+		return 2;
+	}
 	let nodes: Map<string, RawNode>;
 	let pendingKeys: string[];
 	try {
@@ -519,7 +600,7 @@ export async function main(argv: readonly string[]): Promise<number> {
 		return 2;
 	}
 
-	const report = auditNodes(nodes, pendingKeys);
+	const report = auditNodes(nodes, pendingKeys, redirects);
 	if (args.jsonPath) {
 		try {
 			await writeFile(args.jsonPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
@@ -531,6 +612,10 @@ export async function main(argv: readonly string[]): Promise<number> {
 		}
 	}
 	console.log(formatReport(report, thresholds));
+	for (const [metric, cases] of Object.entries(report.cases)) {
+		console.log(`\n${metric}: ${cases.length} case(s)`);
+		for (const line of cases) console.log(`  ${line}`);
+	}
 	const violations = compareWithThresholds(report, thresholds);
 	for (const v of violations) process.stderr.write(`${formatViolation(v)}\n`);
 	return violations.length > 0 ? 1 : 0;
