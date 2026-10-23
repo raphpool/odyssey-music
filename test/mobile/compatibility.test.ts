@@ -280,7 +280,9 @@ async function startServer(): Promise<RunningServer> {
 	runningServers.push(server);
 
 	// `tsx` may need more than two seconds on a cold CI filesystem before the HTTP listener exists.
-	for (let attempt = 0; attempt < 100; attempt += 1) {
+	// 2026-10-24 (TRA-677): 5 s was not enough on the shared Linux runners (8 jobs per host since
+	// TRA-650) and failed main with "server did not start"; 15 s matches server-image-contract.test.ts.
+	for (let attempt = 0; attempt < 300; attempt += 1) {
 		if (child.exitCode !== null) throw new Error(`server failed to start: ${logs.stderr || logs.stdout}`);
 		try {
 			if ((await http(port, "GET", "/health")).status === 200) return server;
