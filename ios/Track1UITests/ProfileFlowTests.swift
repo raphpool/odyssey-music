@@ -217,6 +217,16 @@ final class ProfileFlowTests: XCTestCase {
 		XCTAssertTrue(family0.label.hasSuffix(", 1 sélectionné"), family0.label)
 		XCTAssertEqual(UITestFlows.settledFrame(of: family0).height, before, accuracy: 1)
 		UITestFlows.screenshot(named: "1.2-badge", in: self)
+
+		// 2026-10-24 (TRA-664 review): the header of the long name (two or three lines, no badge) drew its text over
+		// the count line while its frame was right, so the frame check above cannot see it: the capture is the
+		// proof to read, along with the unit tests of the header layout.
+		let longName = card("family-1", in: app)
+		XCTAssertTrue(longName.waitForExistence(timeout: 5))
+		let capture = XCTAttachment(screenshot: longName.screenshot())
+		capture.name = "1.2-long-name-collapsed"
+		capture.lifetime = .keepAlways
+		add(capture)
 	}
 
 	@MainActor
