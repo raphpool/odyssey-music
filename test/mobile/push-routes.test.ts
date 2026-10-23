@@ -81,7 +81,9 @@ async function reservePort(): Promise<number> {
 }
 
 async function waitForRuntimeServer(child: ChildProcess, port: number): Promise<void> {
-	for (let attempt = 0; attempt < 100; attempt += 1) {
+	// 2026-10-24 (TRA-677): 5 s was not enough for `tsx` to boot src/server.ts on the shared Linux
+	// runners (8 jobs per host since TRA-650) and failed main with "runtime server did not become ready".
+	for (let attempt = 0; attempt < 300; attempt += 1) {
 		if (child.exitCode !== null) throw new Error("runtime server exited before becoming ready");
 		if (await isRuntimeServerReady(port)) return;
 		await new Promise<void>((resolve) => setTimeout(resolve, 50));
