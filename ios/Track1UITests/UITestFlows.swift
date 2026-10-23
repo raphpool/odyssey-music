@@ -93,17 +93,25 @@ enum UITestFlows {
 		app.buttons["analytics-consent-decline"].tap()
 	}
 
-	/// The tab bar and its buttons: the only place the tests ask for them, so a change of bar (the native one
-	/// gives way to `Track1TabBar`) touches these two bodies and no journey. `title` is the label of the tab
-	/// (`AppTab.title`: "Aujourd’hui" with U+2019, "Genres", "Recherche").
+	/// The tab bar and its buttons: the only place the tests ask for them, so a change of bar touches these two
+	/// bodies and no journey. The bar is drawn by `Track1TabBar` (no native `UITabBar`): its container is the
+	/// `tab-bar` element and each tab is a button found by `AppTab.accessibilityIdentifier`. `title` is the
+	/// label of the tab (`AppTab.title`: "Aujourd’hui" with U+2019, "Genres", "Recherche").
 	@MainActor
 	static func tabBar(in app: XCUIApplication) -> XCUIElement {
-		app.tabBars.firstMatch
+		app.otherElements["tab-bar"]
 	}
 
+	private static let tabIdentifiers = [
+		"Aujourd’hui": "tab-today",
+		"Genres": "tab-genres",
+		"Recherche": "tab-search",
+	]
+
+	/// A title that is not a tab ("Réglages": there is none, D8) is looked up as it is and finds nothing.
 	@MainActor
 	static func tabButton(_ title: String, in app: XCUIApplication) -> XCUIElement {
-		app.tabBars.buttons[title]
+		app.buttons[tabIdentifiers[title] ?? title]
 	}
 
 	/// The first launch up to the end of the flow: Welcome, the first family opened, one of its genres ticked.
