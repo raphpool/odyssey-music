@@ -12,7 +12,13 @@ import {
 	UNRESOLVED_COMPILATION_CREDITS,
 } from "../scripts/migrations/2026-10-16-scope-release-slugs.js";
 import { parseSlugRedirects } from "../src/genre-registry.js";
-import { LIST_EDGES_BY_TYPE, type NodeType } from "../src/node-spec.js";
+import {
+	EDGE_FIELDS_BY_TYPE,
+	LIST_EDGES_BY_TYPE,
+	type NodeType,
+	REVERSE_EDGE_PAIRS,
+} from "../src/node-spec.js";
+import { isEmittedPendingReverse } from "../src/reverse-edges.js";
 import { nodePayloadSchema } from "../src/schemas.js";
 import { normalizeSlugBody, parseSlug } from "../src/slug.js";
 
@@ -1076,6 +1082,9 @@ describe("scope-release-slugs migration", () => {
 			expect(isSafePendingEntry("artist:a", e("labels", "label:x"))).toBe(false);
 			expect(isSafePendingEntry("artist:a", e("genres", "genre:x"))).toBe(false);
 			expect(isSafePendingEntry("label:a", e("genres", "genre:x"))).toBe(false);
+			// A singular reverse is declared by the work itself, never derived from another node's list (TRA-569,
+			// TRA-656): the migration kept its own copy of the directions and went on treating this one as emitted.
+			expect(isSafePendingEntry("track:a", e("remix_of", "track:x"))).toBe(false);
 			// Emitted: the four safe cross-type directions, and same-kind pairs.
 			expect(isSafePendingEntry("artist:a", e("discography", "project:x"))).toBe(true);
 			expect(isSafePendingEntry("artist:a", e("notable_tracks", "track:x"))).toBe(true);
@@ -1083,6 +1092,21 @@ describe("scope-release-slugs migration", () => {
 			expect(isSafePendingEntry("label:a", e("roster", "artist:x"))).toBe(true);
 			expect(isSafePendingEntry("artist:a", e("collaborators", "artist:x"))).toBe(true);
 			expect(isSafePendingEntry("track:a", e("sampled_by", "track:x"))).toBe(true);
+		});
+
+		it("judges every declared reverse pair exactly as the runtime does (TRA-656)", () => {
+			for (const pair of REVERSE_EDGE_PAIRS) {
+				const specs = EDGE_FIELDS_BY_TYPE[pair.sourceType] as Record<
+					string,
+					{ targets: readonly NodeType[] }
+				>;
+				const target = specs[pair.sourceField]?.targets[0];
+				if (!target) continue;
+				const entry = { field: pair.reverse.field, edge: ref(`${pair.sourceType}:x`, "N") } as never;
+				expect(isSafePendingEntry(`${target}:a`, entry), `${pair.sourceType}.${pair.sourceField}`).toBe(
+					isEmittedPendingReverse(target, entry),
+				);
+			}
 		});
 	});
 
