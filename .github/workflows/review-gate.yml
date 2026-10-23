@@ -80,6 +80,10 @@ jobs:
           # ai-review.yml on this exact sha: same check suite as that run, and its id is the id of one of that
           # run's jobs (an API-created check-run has no job), reported by the Actions app. The name alone is
           # forgeable: any workflow step of a PR can create a check-run called `review`, with any start time.
+          # TRA-524 (2026-10-24): only a conclusion that carries a verdict (success, failure, neutral) is passed on.
+          # Anything else is `missing`: no conclusion yet, and also cancelled, timed_out (the 25-minute timeout of
+          # ai-review.yml), skipped, stale, action_required or a value GitHub adds later. Those mean that no review
+          # completed, and `codex-review: success` alone must not pass the gate (review-gate-policy.ts checks it too).
           select_review=$(cat <<'JQ'
           [$runs[]
             | select(.path == $path and .event == "pull_request" and .head_sha == $sha)] as $trusted
@@ -91,7 +95,8 @@ jobs:
                 | $run.check_suite_id == $check.check_suite.id
                 and any($jobs[]; .run_id == $run.id and .id == $check.id and .name == "review")))]
           | sort_by(.started_at) | last // {}
-          | [(.id // 0), (.conclusion // "missing")] | @tsv
+          | (.conclusion // "missing") as $conclusion
+          | [(.id // 0), (if $conclusion | IN("success", "failure", "neutral") then $conclusion else "missing" end)] | @tsv
           JQ
           )
           # jq program of the `codex-*` status selection (tested as is by test/review-gate-workflow.test.ts).
