@@ -348,7 +348,8 @@ private struct HeaderLayoutProbe: View {
 					Track1Text("1 sous-genre", role: .monoLabel).readHeaderFrame("count")
 				}
 				Spacer(minLength: 0)
-				Track1Icon(.chevronDown, color: Track1Tokens.colorIconPrimary, size: GenreAccordionCard<EmptyView>.chevronSize)
+				Track1Icon(
+					.chevronDown, color: Track1Tokens.colorIconPrimary, size: GenreAccordionCard<EmptyView>.chevronSize)
 			}
 			.frame(maxWidth: .infinity, alignment: .leading)
 			.contentShape(Rectangle())
