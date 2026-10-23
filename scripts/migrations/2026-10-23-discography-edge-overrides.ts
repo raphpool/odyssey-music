@@ -15,7 +15,11 @@
  * field stay. Each pose is checked against MusicBrainz BEFORE anything is written: the release group answers to the
  * pinned mbid with the pinned title, type and year, and its FIRST credit is the artist node's own mbid. One request
  * per pose. An edge that already holds the pinned mbid is left alone (the run is idempotent); an edge holding any
- * other mbid is a conflict, never overwritten.
+ * other mbid is a conflict, never overwritten. The checks and the write must concern the same edge: a slug that
+ * appears more than once in the list is refused (`duplicate-slug`; 141 such groups exist in the repo's discographies,
+ * none in these five nodes, and the union with prod cannot be known in advance). And the project node of the slug
+ * (read after redirects, `projectNode` in the manifest), when the union has one, is the identity the policy honors:
+ * a node holding another mbid refuses the pose (`project-node-conflict`); the same mbid, no mbid or no node poses.
  *
  * RETRACTIONS (2, TRA-654). Remove an edge the v6 backfill ADDED wrongly: Pierre Henry "Variance / Duo" (a release
  * group MusicBrainz announces for 2026-11-20, so it does not exist yet) and Hikaru Utada "Intentions" (its only
@@ -24,7 +28,8 @@
  * so a release date that slips would leave a wrong year for good. Each retraction is re-checked on MusicBrainz
  * (one request each) and only goes ahead while its reason still holds: a release date that has since passed, or a
  * promo that has since been joined by a real release, makes the entry legitimate and the run refuses. An edge that is
- * already gone is `absent`: the target state is reached, no request is made. Only the edge goes: no project node
+ * already gone is `absent`: the target state is reached, no request is made. A slug that appears twice in the list
+ * is refused (`duplicate-slug`): an edge the cache came with is never removed along with the one that was checked. Only the edge goes: no project node
  * exists for either slug in the repo, and none is deleted here. If the union holds one, or if its
  * `pending-reverses.json` names the slug, the manifest says so (`projectNode` / `pendingReverse: true`) so that
  * nobody discovers a dangling reciprocity later.
@@ -59,7 +64,8 @@
  * edge is traced in `edgeRetractions`.
  *
  * Migration channel (deploy/sync-genre-cache.sh): `--apply`, `--manifest` and `--data-dir` are the flags it passes;
- * `--data-dir` is accepted and unused (no redirect table is read or written).
+ * `--data-dir` is the scratch copy of the redirect tables, READ to follow a project slug to its node (as the
+ * backfill does) and never written; without it the committed tables are read.
  *
  * Exit codes: 0; 1 when at least one item is refused; 2 on a usage error.
  *
@@ -69,14 +75,16 @@
 import { access, mkdir, readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { pathToFileURL } from "node:url";
-import { atomicWriteJson } from "../../src/cache.js";
+import { atomicWriteJson, NodeCache } from "../../src/cache.js";
 import { musicBrainzConfig } from "../../src/config.js";
 import { orderDiscography } from "../../src/discography-policy.js";
+import { resolveReadSlug } from "../../src/genre-registry.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
 import { parseSlug } from "../../src/slug.js";
 import type { EdgeRef, Slug } from "../../src/types.js";
 import { looksLikeCacheDir } from "./2026-09-04-merge-genre-duplicates.js";
 import { onlyAddsSchemaDefaults } from "./2026-10-15-backfill-artist-identity.js";
+import { loadRunRedirects } from "./2026-10-19-backfill-similar-artists.js";
 
 export const MIGRATION_NAME = "2026-10-23-discography-edge-overrides";
 export const DEFAULT_MANIFEST_PATH = "out/discography-edge-overrides.json";
@@ -178,6 +186,9 @@ export type RefusedReason =
 	| "edge-missing"
 	| "mbid-conflict"
 	| "name-mismatch"
+	| "duplicate-slug"
+	| "project-node-conflict"
+	| "project-node-unreadable"
 	| "unavailable"
 	| "mismatch"
 	| "reason-gone"
@@ -193,6 +204,8 @@ export interface PoseEntry {
 	/** On a refusal: what was found (the other mbid, the check that failed). */
 	detail?: string;
 	filled?: ("year" | "releaseType")[];
+	/** The project node the union holds for the slug (absent when there is none): where it was read, its mbid. */
+	projectNode?: { slug: Slug; mbid: string | null };
 	/** What MusicBrainz answered (absent when it was not asked). */
 	musicBrainz?: { title: string; primaryType: string; firstReleaseDate: string; firstCredit: string };
 }
@@ -236,6 +249,8 @@ export interface RunOptions {
 	fetchImpl?: typeof fetch;
 	/** Calendar day (YYYY-MM-DD, UTC) a "future release" is measured against. */
 	today?: string;
+	/** The channel's scratch copy of the redirect tables (`--data-dir`); defaults to the committed ones. */
+	dataDir?: string | undefined;
 	/** Minimum gap between two MusicBrainz requests; defaults to the shared client's. */
 	minIntervalMs?: number;
 }
@@ -357,6 +372,28 @@ function refuse(
 	if (detail !== undefined && detail !== "") entry.detail = detail;
 }
 
+/**
+ * What the union holds for the project node of `slug`, read where `resolveReadSlug` sends it (a redirect is
+ * followed only while the slug itself has no node): null when there is none, `"unreadable"` when the file is not a
+ * JSON object, else its slug and the mbid it carries (null when it carries none).
+ */
+async function readProjectNode(
+	cacheDir: string,
+	slug: Slug,
+	redirects: ReadonlyMap<Slug, Slug>,
+): Promise<{ slug: Slug; mbid: string | null } | "unreadable" | null> {
+	const resolved = await resolveReadSlug(slug, redirects, new NodeCache(cacheDir));
+	const path = nodePath(cacheDir, resolved);
+	if (!(await exists(path))) return null;
+	try {
+		const node: unknown = JSON.parse(await readFile(path, "utf8"));
+		if (!isObject(node)) return "unreadable";
+		return { slug: resolved, mbid: typeof node.mbid === "string" && node.mbid !== "" ? node.mbid : null };
+	} catch {
+		return "unreadable";
+	}
+}
+
 async function readTextIfAny(path: string): Promise<string> {
 	try {
 		return await readFile(path, "utf8");
@@ -413,6 +450,8 @@ export async function runEdgeOverrides(options: RunOptions): Promise<RunResult> 
 		retriesLeft: MAX_RETRIES,
 	};
 	const pendingReverses = await readTextIfAny(join(cacheDir, "pending-reverses.json"));
+	// Fail closed, like the backfill: a redirect table that cannot be read is not guessed.
+	const redirects = await loadRunRedirects(options.dataDir);
 
 	const artists = new Map<Slug, ArtistFile | null>();
 	for (const slug of new Set([...POSES, ...RETRACTIONS, ...KEPT_CLOSED].map((o) => o.artist))) {
@@ -428,10 +467,20 @@ export async function runEdgeOverrides(options: RunOptions): Promise<RunResult> 
 		const entry: PoseEntry = { artist: o.artist, edge: o.edge, mbid: o.mbid, status: "refused" };
 		poses.push(entry);
 		const file = artists.get(o.artist);
-		const edge = edgeOf(o.artist, o.edge);
+		const edges = file?.edges.filter((e) => e.slug === o.edge) ?? [];
+		const edge = edges[0];
+		// The project node of the slug (after redirects), when the union holds one: its mbid is the identity the policy
+		// itself honors (node-conflict), so a pose that disagrees with it would leave edge and node apart.
+		const project = edge === undefined ? null : await readProjectNode(cacheDir, o.edge, redirects);
+		if (project !== null && project !== "unreadable") entry.projectNode = project;
 		if (!file) refuse(entry, "artist-missing");
+		// The checks below look at one edge and the write acts on a slug: with two, they would not be the same edge.
+		else if (edges.length > 1) refuse(entry, "duplicate-slug", String(edges.length));
 		else if (!edge) refuse(entry, "edge-missing");
-		else if (sameMbid(edge.mbid, o.mbid)) entry.status = "already-posed";
+		else if (project === "unreadable") refuse(entry, "project-node-unreadable");
+		else if (project?.mbid != null && !sameMbid(project.mbid, o.mbid)) {
+			refuse(entry, "project-node-conflict", project.mbid);
+		} else if (sameMbid(edge.mbid, o.mbid)) entry.status = "already-posed";
 		else if (edge.mbid !== undefined && edge.mbid !== "") refuse(entry, "mbid-conflict", str(edge.mbid));
 		else if (edge.name !== o.title) refuse(entry, "name-mismatch", str(edge.name));
 		else toPose.push({ entry, override: o });
@@ -481,10 +530,13 @@ export async function runEdgeOverrides(options: RunOptions): Promise<RunResult> 
 		};
 		retractions.push(entry);
 		const file = artists.get(o.artist);
-		const edge = edgeOf(o.artist, o.edge);
+		const edges = file?.edges.filter((e) => e.slug === o.edge) ?? [];
+		const edge = edges[0];
 		if (await exists(nodePath(cacheDir, o.edge))) entry.projectNode = true;
 		if (pendingReverses.includes(`"${o.edge}"`)) entry.pendingReverse = true;
 		if (!file) refuse(entry, "artist-missing");
+		// An edge the cache came with must never go because it shares the slug of the one that was checked.
+		else if (edges.length > 1) refuse(entry, "duplicate-slug", String(edges.length));
 		else if (!edge) entry.status = "absent";
 		// An edge without the mbid the backfill gave it is not the one that was checked: left alone.
 		else if (!sameMbid(edge.mbid, o.mbid)) refuse(entry, "mbid-conflict", str(edge.mbid) || "(none)");
@@ -674,6 +726,7 @@ async function main(): Promise<void> {
 		cacheDir: args.cacheDir,
 		apply: args.apply,
 		manifestPath: args.manifestPath,
+		dataDir: args.dataDir,
 	});
 	console.log(formatSummary(result, args.apply, args.manifestPath));
 	process.exit(result.exitCode);

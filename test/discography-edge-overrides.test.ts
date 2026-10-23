@@ -378,6 +378,137 @@ describe("poses (TRA-652)", () => {
 	});
 });
 
+describe("a slug that appears twice (review of #588, nit 1)", () => {
+	it("refuses a retraction when the slug is in the list twice, and removes neither edge", async () => {
+		const nodes = fixtureNodes();
+		const henry = (nodes[3] as Obj).discography as Obj[];
+		// An edge the cache came with, sharing the slug of the one the backfill added.
+		henry.push(edge("project:variance-duo--pierre-henry", "Variance"));
+		const root = writeCache(nodes);
+		const before = snapshot(root);
+		const result = await run(root, fakeMusicBrainz());
+		expect(result.exitCode).toBe(1);
+		expect(result.manifest.edgeRetractions[0]).toMatchObject({
+			status: "refused",
+			refusal: "duplicate-slug",
+			detail: "2",
+		});
+		expect(result.manifest.blocked).toBe(true);
+		// All or nothing: the other four items, which were fine, are not applied either.
+		expect(snapshot(root)).toEqual(before);
+		expect(
+			discographyOf(root, "artist:pierre-henry").filter(
+				(e) => e.slug === "project:variance-duo--pierre-henry",
+			),
+		).toHaveLength(2);
+	});
+
+	it("refuses a pose when the slug is in the list twice, and gives no edge an mbid", async () => {
+		const nodes = fixtureNodes();
+		((nodes[0] as Obj).discography as Obj[]).push(edge("project:the-serpent", "The Serpent"));
+		const root = writeCache(nodes);
+		const before = snapshot(root);
+		const fake = fakeMusicBrainz();
+		const result = await run(root, fake);
+		expect(result.exitCode).toBe(1);
+		expect(result.manifest.poses[0]).toMatchObject({
+			status: "refused",
+			refusal: "duplicate-slug",
+			detail: "2",
+		});
+		expect(snapshot(root)).toEqual(before);
+		// The refused pose is not even asked about.
+		expect(fake.urls.map((u) => u.pathname.split("/").pop())).not.toContain(
+			"bbea6257-57de-4754-a9f0-658166ac02d8",
+		);
+	});
+});
+
+describe("the project node of a posed slug (review of #588, nit 2)", () => {
+	const NIXON = "ab57421b-ec7b-3190-8c98-93e7cc01fe16";
+	const OTHER = "99999999-9999-4999-8999-999999999999";
+	const writeRaw = (root: string, slug: string, content: unknown): void => {
+		mkdirSync(join(root, "nodes", "project"), { recursive: true });
+		writeFileSync(
+			join(root, "nodes", "project", `${slug}.json`),
+			typeof content === "string" ? content : `${JSON.stringify(content, null, 2)}\n`,
+		);
+	};
+
+	it("refuses the pose when the node holds another mbid, and reports what it found", async () => {
+		const root = writeCache(fixtureNodes());
+		writeRaw(root, "nixon-in-china", { slug: "project:nixon-in-china", mbid: OTHER });
+		const before = snapshot(root);
+		const result = await run(root, fakeMusicBrainz());
+		expect(result.exitCode).toBe(1);
+		expect(result.manifest.poses[1]).toMatchObject({
+			status: "refused",
+			refusal: "project-node-conflict",
+			detail: OTHER,
+			projectNode: { slug: "project:nixon-in-china", mbid: OTHER },
+		});
+		expect(snapshot(root)).toEqual(before);
+	});
+
+	it("poses when the node holds the same mbid, and reports it", async () => {
+		const root = writeCache(fixtureNodes());
+		writeRaw(root, "nixon-in-china", { slug: "project:nixon-in-china", mbid: NIXON.toUpperCase() });
+		const result = await run(root, fakeMusicBrainz());
+		expect(result.exitCode).toBe(0);
+		expect(result.manifest.poses[1]).toMatchObject({
+			status: "posed",
+			projectNode: { slug: "project:nixon-in-china", mbid: NIXON.toUpperCase() },
+		});
+		expect(edgeOf(root, "artist:john-adams", "project:nixon-in-china")).toHaveProperty("mbid", NIXON);
+	});
+
+	it("poses when the node holds no mbid, or when there is no node, and says which", async () => {
+		const root = writeCache(fixtureNodes());
+		writeRaw(root, "nixon-in-china", { slug: "project:nixon-in-china" });
+		const result = await run(root, fakeMusicBrainz());
+		expect(result.exitCode).toBe(0);
+		expect(result.manifest.poses[1]?.projectNode).toEqual({ slug: "project:nixon-in-china", mbid: null });
+		// The two other poses have no node at all: nothing is reported for them.
+		expect(result.manifest.poses[0]).not.toHaveProperty("projectNode");
+		expect(result.manifest.poses[2]).not.toHaveProperty("projectNode");
+	});
+
+	it("reads the node where a redirect sends the slug, as the backfill does", async () => {
+		const root = writeCache(fixtureNodes());
+		const dataDir = join(root, "scratch-data");
+		mkdirSync(dataDir);
+		writeFileSync(join(dataDir, "genre-redirects.json"), `${JSON.stringify({ redirects: {} })}\n`);
+		writeFileSync(
+			join(dataDir, "slug-redirects.json"),
+			`${JSON.stringify({ redirects: { "project:nixon-in-china": "project:nixon-in-china-1988" } })}\n`,
+		);
+		writeRaw(root, "nixon-in-china-1988", { slug: "project:nixon-in-china-1988", mbid: OTHER });
+		const result = await run(root, fakeMusicBrainz(), { dataDir });
+		expect(result.manifest.poses[1]).toMatchObject({
+			refusal: "project-node-conflict",
+			projectNode: { slug: "project:nixon-in-china-1988", mbid: OTHER },
+		});
+	});
+
+	it("refuses when the node file cannot be read, rather than guess", async () => {
+		const root = writeCache(fixtureNodes());
+		writeRaw(root, "nixon-in-china", "{ not json");
+		const result = await run(root, fakeMusicBrainz());
+		expect(result.exitCode).toBe(1);
+		expect(result.manifest.poses[1]).toMatchObject({ status: "refused", refusal: "project-node-unreadable" });
+	});
+
+	it("does not look for a node when the edge is not there", async () => {
+		const nodes = fixtureNodes();
+		((nodes[1] as Obj).discography as Obj[]).splice(1, 1);
+		const root = writeCache(nodes);
+		writeRaw(root, "nixon-in-china", { slug: "project:nixon-in-china", mbid: OTHER });
+		const result = await run(root, fakeMusicBrainz());
+		expect(result.manifest.poses[1]).toMatchObject({ refusal: "edge-missing" });
+		expect(result.manifest.poses[1]).not.toHaveProperty("projectNode");
+	});
+});
+
 describe("MusicBrainz verification of the poses", () => {
 	const wrong: [string, (a: Record<string, Obj>) => void, string][] = [
 		[
