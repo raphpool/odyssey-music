@@ -756,8 +756,9 @@ describe("MB identity at enrichment (TRA-473)", () => {
 				await resolvedWork("releaseGroup", "New Forms", [{ mbid: RONI_MBID, name: "Roni Size" }]);
 				const other = await runPipeline({ ...input, mbid: "bbbbbbbb-1111-4111-8111-0000000000ff" }, DEPS);
 				expect((other.node as ProjectNode).mbid).toBeUndefined();
-				// Neither MB's other answer nor the hint's own metadata reaches the node.
-				expect(vi.mocked(m.fetchProjectMetaMb)).toHaveBeenCalledTimes(1);
+				// Neither MB's other answer nor the hint's own metadata reaches the node. The one call this used
+				// to count was the web search looking the unconfirmed hint up (TRA-545).
+				expect(vi.mocked(m.fetchProjectMetaMb)).not.toHaveBeenCalled();
 			},
 			TIMEOUT_MS,
 		);

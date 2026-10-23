@@ -916,6 +916,32 @@ function confirmsHint(resolved: string, hint: string | undefined): boolean {
 	return hint === undefined || hint.toLowerCase() === resolved.toLowerCase();
 }
 
+/**
+ * TRA-545: the mbid whose MusicBrainz metadata may steer the web search of a track or a project. A trusted
+ * caller's mbid does. A client's one (`mbidIsClientHint`) does only once the server's own resolution (title +
+ * credit) lands on it, the rule that decides whether the node carries it (TRA-538): until then it may designate
+ * another work, and pinning the query on that work's artists, album or year pulls the editorial text toward it
+ * under the requested slug. 2026-10-15 symptom (TRA-538 probe): `track:garbage--rohff`, created from the mbid of
+ * "Le Bitume", was searched with "Rohff Le Bitume". An unavailable resolution counts as not confirmed.
+ */
+async function mbidThatMaySteerSearch(input: PipelineInput, log: PipelineLog): Promise<string | undefined> {
+	if (!input.mbid) return undefined;
+	if (input.mbidIsClientHint !== true) return input.mbid;
+	try {
+		const identity =
+			input.type === "track"
+				? await resolveRecording(input.name, input.artist)
+				: await resolveReleaseGroup(input.name, input.artist);
+		return identity && confirmsHint(identity.mbid, input.mbid) ? input.mbid : undefined;
+	} catch (e) {
+		const msg = e instanceof Error ? e.message : String(e);
+		log(
+			`[pipeline] client mbid hint not used to steer the search (MB resolution failed): ${msg.slice(0, 100)}`,
+		);
+		return undefined;
+	}
+}
+
 /** TRA-546: does MusicBrainz's own record for this label carry the requested name (same slug body)? */
 async function labelIsNamed(mbid: string, name: string): Promise<boolean> {
 	const entity = await fetchLabelEntityMb(mbid);
@@ -949,9 +975,11 @@ async function researchTarget(
 			// non-fatal
 		}
 	}
-	if (input.mbid && input.type === "track") {
+	const steeringMbid =
+		input.type === "track" || input.type === "project" ? await mbidThatMaySteerSearch(input, log) : undefined;
+	if (steeringMbid && input.type === "track") {
 		try {
-			const meta = await fetchTrackMetaMb(input.mbid);
+			const meta = await fetchTrackMetaMb(steeringMbid);
 			const parts: string[] = [];
 			if (meta.artists.length > 0) parts.push(meta.artists.map((a) => a.name).join(" "));
 			if (meta.project) parts.push(meta.project.name);
@@ -966,9 +994,9 @@ async function researchTarget(
 	// wrong release). With MBID we can pull artist credit + year from MB and pin the
 	// search to the exact release-group the user clicked. mbFetch memoizes so the later
 	// fetchProjectMetaMb call in the enrichment step costs nothing extra.
-	if (input.mbid && input.type === "project") {
+	if (steeringMbid && input.type === "project") {
 		try {
-			const meta = await fetchProjectMetaMb(input.mbid);
+			const meta = await fetchProjectMetaMb(steeringMbid);
 			const parts: string[] = [];
 			if (meta.artists.length > 0) parts.push(meta.artists.map((a) => a.name).join(" "));
 			if (meta.year) parts.push(meta.year);
