@@ -99,8 +99,8 @@ final class ProfileFlowTests: XCTestCase {
 	/// 2026-10-20 (TRA-640): "Tous" ticks every genre of its card, ticks them off again when they are all
 	/// ticked, and reads as ticked when the person ticked the last one by hand (the state is derived from the
 	/// selection). The count of the header is read off the label of the card: the header is one button, so the
-	/// texts drawn in it ("(2 sélectionnés)") are not elements of their own, and the label spells the same
-	/// count without the parentheses. Every tap goes through `tapAboveBar`: the pinned bar takes the touch of
+	/// texts drawn in it ("(2)") are not elements of their own, and the label spells the same
+	/// count in words ("2 sélectionnés"). Every tap goes through `tapAboveBar`: the pinned bar takes the touch of
 	/// whatever is under it.
 	@MainActor
 	func testSelectAllTogglesEverySubgenreOfTheCardBothWays() {
@@ -194,6 +194,39 @@ final class ProfileFlowTests: XCTestCase {
 		UITestFlows.tapAboveBar(family0, bar: bar, in: app)
 		XCTAssertTrue(chip0a.waitForExistence(timeout: 10))
 		XCTAssertTrue(chip0aButton.isSelected)
+	}
+
+	/// 2026-10-23: "(1 sélectionné)" next to "Rock alternatif / Punk" made the header fold on two lines (363 pt asked
+	/// for 302). The badge is the bare number now and is never compressed, so a name that fits on one line keeps
+	/// its one line once a genre is ticked. Heights are read on the collapsed header, which carries the identifier.
+	@MainActor
+	func testTheBadgeAddsNoLineToAFamilyNameThatFitsOnOne() {
+		let app = UITestFlows.launch(catalog: Self.longLabelsCatalog)
+		UITestFlows.declineConsent(app)
+		UITestFlows.tapWhenReady(app.buttons["onboarding-start"])
+		let bar = app.buttons["onboarding-genres-continue"]
+		let family0 = card("family-0", in: app)
+		let chip = app.buttons["subgenre-chip-local:genre-0a"]
+		let before = UITestFlows.settledFrame(of: family0).height
+
+		UITestFlows.tapAboveBar(family0, bar: bar, in: app)
+		UITestFlows.tapAboveBar(chip, bar: bar, in: app)
+		UITestFlows.tapAboveBar(family0, bar: bar, in: app)
+		XCTAssertTrue(chip.waitForNonExistence(timeout: 10))
+		XCTAssertEqual(family0.value as? String, "replié")
+		XCTAssertTrue(family0.label.hasSuffix(", 1 sélectionné"), family0.label)
+		XCTAssertEqual(UITestFlows.settledFrame(of: family0).height, before, accuracy: 1)
+		UITestFlows.screenshot(named: "1.2-badge", in: self)
+
+		// 2026-10-24 (TRA-664 review): the header of the long name (two or three lines, no badge) drew its text over
+		// the count line while its frame was right, so the frame check above cannot see it: the capture is the
+		// proof to read, along with the unit tests of the header layout.
+		let longName = card("family-1", in: app)
+		XCTAssertTrue(longName.waitForExistence(timeout: 5))
+		let capture = XCTAttachment(screenshot: longName.screenshot())
+		capture.name = "1.2-long-name-collapsed"
+		capture.lifetime = .keepAlways
+		add(capture)
 	}
 
 	@MainActor
@@ -384,12 +417,20 @@ final class ProfileFlowTests: XCTestCase {
 		{"mode":"editorial","version":2,"families":[{"key":"family-0","label":"Family 0","order":1},{"key":"family-1","label":"Family 1","order":2}],"genres":[{"id":"local:genre-0a","name":"Genre 0a","family":"family-0","slugs":["genre:genre-0a"]},{"id":"local:genre-0b","name":"Genre 0b","family":"family-0","slugs":["genre:genre-0b"]},{"id":"local:genre-1a","name":"Genre 1a","family":"family-1","slugs":["genre:genre-1a"]}],"legacySelectionBySlug":{}}
 		"""
 
+	/// `editorialTaxonomy` with two long family names: only the `label`s change.
+	private static let longLabelsTaxonomy =
+		"""
+		{"mode":"editorial","version":2,"families":[{"key":"family-0","label":"Rock alternatif / Punk","order":1},{"key":"family-1","label":"Musiques traditionnelles d'Afrique et d'Orient","order":2}],"genres":[{"id":"local:genre-0a","name":"Genre 0a","family":"family-0","slugs":["genre:genre-0a"]},{"id":"local:genre-0b","name":"Genre 0b","family":"family-0","slugs":["genre:genre-0b"]},{"id":"local:genre-1a","name":"Genre 1a","family":"family-1","slugs":["genre:genre-1a"]}],"legacySelectionBySlug":{}}
+		"""
+
 	private static let degradedTaxonomy = #"{"mode":"degraded","available":true}"#
 
 	/// Two families, with two published genres for the first and one for the second, and the works of the Today
 	/// fixtures linked to the first genre of each: the pick exists for a profile of one family and for a
 	/// profile of two.
 	private static let taxonomyCatalog = catalog(taxonomy: editorialTaxonomy)
+
+	private static let longLabelsCatalog = catalog(taxonomy: longLabelsTaxonomy)
 
 	/// The same nodes and edges with the taxonomy the server serves when it cannot build the editorial one.
 	private static let degradedCatalog = catalog(taxonomy: degradedTaxonomy)
