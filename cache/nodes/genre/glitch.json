@@ -37,6 +37,18 @@
       "type": "genre",
       "name": "Minimal Techno",
       "qid": "Q1430587"
+    },
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse",
+      "qid": "Q1931555"
+    },
+    {
+      "slug": "genre:microsound",
+      "type": "genre",
+      "name": "Microsound",
+      "qid": "Q3503814"
     }
   ],
   "key_artists": [

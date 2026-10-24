@@ -64,6 +64,12 @@
       "type": "genre",
       "name": "Neurofunk",
       "qid": "Q967654"
+    },
+    {
+      "slug": "genre:drumstep",
+      "type": "genre",
+      "name": "Drumstep",
+      "qid": "Q24876318"
     }
   ],
   "key_artists": [

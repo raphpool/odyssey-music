@@ -16,7 +16,62 @@
   "origin": "United States (primarily California and New York City)",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    },
+    {
+      "slug": "genre:avant-pop",
+      "type": "genre",
+      "name": "Avant-pop",
+      "qid": "Q9162904"
+    },
+    {
+      "slug": "genre:classical",
+      "type": "genre",
+      "name": "Classical",
+      "qid": "Q9730"
+    },
+    {
+      "slug": "genre:contemporary-classical",
+      "type": "genre",
+      "name": "Contemporary Classical",
+      "qid": "Q612024"
+    },
+    {
+      "slug": "genre:drone",
+      "type": "genre",
+      "name": "Drone",
+      "qid": "Q650316"
+    },
+    {
+      "slug": "genre:microsound",
+      "type": "genre",
+      "name": "Microsound",
+      "qid": "Q3503814"
+    },
+    {
+      "slug": "genre:microtonal-music",
+      "type": "genre",
+      "name": "Microtonal Music",
+      "qid": "Q1045756"
+    },
+    {
+      "slug": "genre:modern-classical",
+      "type": "genre",
+      "name": "Modern Classical",
+      "qid": "Q65937946"
+    },
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New age",
+      "qid": "Q213121"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:steve-reich",
@@ -57,9 +112,10 @@
       "name": "In C"
     },
     {
-      "slug": "project:einstein-on-the-beach",
+      "slug": "project:einstein-on-the-beach--philip-glass",
       "type": "project",
-      "name": "Einstein on the Beach"
+      "name": "Einstein on the Beach",
+      "artist": "Philip Glass"
     }
   ],
   "landmark_tracks": []

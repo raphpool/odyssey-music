@@ -60,7 +60,14 @@
       "qid": "Q1091450"
     }
   ],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:futurepop",
+      "type": "genre",
+      "name": "Futurepop",
+      "qid": "Q828243"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:skinny-puppy",

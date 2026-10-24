@@ -37,6 +37,18 @@
       "type": "genre",
       "name": "Acousmatic music",
       "qid": "Q423918"
+    },
+    {
+      "slug": "genre:experimental-techno",
+      "type": "genre",
+      "name": "Experimental Techno",
+      "qid": "Q105636937"
+    },
+    {
+      "slug": "genre:noise",
+      "type": "genre",
+      "name": "Noise",
+      "qid": "Q726239"
     }
   ],
   "key_artists": [

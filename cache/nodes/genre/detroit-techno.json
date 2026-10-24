@@ -44,6 +44,24 @@
       "type": "genre",
       "name": "Ghettotech",
       "qid": "Q1521688"
+    },
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago house",
+      "qid": "Q1071961"
+    },
+    {
+      "slug": "genre:detroit-house",
+      "type": "genre",
+      "name": "Detroit House",
+      "qid": "Q108610706"
+    },
+    {
+      "slug": "genre:electro-funk",
+      "type": "genre",
+      "name": "Electro-funk",
+      "qid": "Q1325963"
     }
   ],
   "key_artists": [

@@ -319,14 +319,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:entain",
-      "type": "project",
-      "name": "Entain",
-      "mbid": "05dafeb5-5626-3541-9f45-152ce5b2269f",
-      "year": "2000",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:entain--vladislav-delay",
       "type": "project",
       "name": "Entain",

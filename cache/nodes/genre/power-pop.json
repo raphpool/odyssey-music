@@ -30,7 +30,14 @@
   "origin": "United States, United Kingdom",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:garage-punk",
+      "type": "genre",
+      "name": "Garage punk",
+      "qid": "Q2296495"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:the-who",

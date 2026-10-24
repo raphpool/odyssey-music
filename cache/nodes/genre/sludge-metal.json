@@ -77,6 +77,12 @@
       "type": "genre",
       "name": "Stoner rock",
       "qid": "Q617240"
+    },
+    {
+      "slug": "genre:doom-metal",
+      "type": "genre",
+      "name": "Doom metal",
+      "qid": "Q186170"
     }
   ],
   "key_artists": [

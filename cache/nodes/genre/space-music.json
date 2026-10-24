@@ -53,6 +53,12 @@
       "type": "genre",
       "name": "Space rock",
       "qid": "Q236913"
+    },
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New age",
+      "qid": "Q213121"
     }
   ],
   "key_artists": [],

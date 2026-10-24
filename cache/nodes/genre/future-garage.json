@@ -36,7 +36,14 @@
     }
   ],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:chillstep",
+      "type": "genre",
+      "name": "Chillstep",
+      "qid": "Q2963621"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:burial",

@@ -71,6 +71,18 @@
       "type": "genre",
       "name": "Garage rock",
       "qid": "Q211573"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic rock",
+      "qid": "Q206159"
+    },
+    {
+      "slug": "genre:stoner-rock",
+      "type": "genre",
+      "name": "Stoner Rock",
+      "qid": "Q617240"
     }
   ],
   "key_artists": [

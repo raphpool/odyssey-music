@@ -45,6 +45,12 @@
       "slug": "genre:traditional-irish-music",
       "type": "genre",
       "name": "Traditional Irish music"
+    },
+    {
+      "slug": "genre:celtic-fusion",
+      "type": "genre",
+      "name": "Celtic fusion",
+      "qid": "Q1092553"
     }
   ],
   "key_artists": [

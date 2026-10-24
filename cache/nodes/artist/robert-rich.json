@@ -56,11 +56,6 @@
   ],
   "discography": [
     {
-      "slug": "project:stalker",
-      "type": "project",
-      "name": "Stalker"
-    },
-    {
       "slug": "project:sunyata",
       "type": "project",
       "name": "Sunyata"
@@ -79,9 +74,10 @@
   ],
   "notable_tracks": [],
   "landmark_project": {
-    "slug": "project:stalker",
+    "slug": "project:stalker--robert-rich",
     "type": "project",
-    "name": "Stalker"
+    "name": "Stalker",
+    "artist": "Robert Rich"
   },
   "influences": [],
   "influenced": [],
