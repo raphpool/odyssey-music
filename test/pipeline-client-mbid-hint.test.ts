@@ -91,7 +91,14 @@ async function mb() {
 async function armMusicBrainz(kind: Kind, resolved: string | null) {
 	const m = await mb();
 	const identity = resolved
-		? { mbid: resolved, title: "Le Bitume", credit: [ROHFF], primaryType: null, firstReleaseDate: null }
+		? {
+				mbid: resolved,
+				title: "Le Bitume",
+				credit: [ROHFF],
+				primaryType: null,
+				firstReleaseDate: null,
+				releaseGroupMbid: null,
+			}
 		: null;
 	vi.mocked(kind === "track" ? m.resolveRecording : m.resolveReleaseGroup).mockImplementation(
 		async () => identity,
