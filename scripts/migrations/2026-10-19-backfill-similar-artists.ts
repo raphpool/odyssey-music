@@ -20,8 +20,9 @@
  * artist therefore exists only when the MBIDs agree. Safety before rate.
  *
  * CANONICAL SLUGS (2026-10-17, deep review of PR #522). The client mints with `makeSlug`, which depends on
- * ODYSSEY_SCOPED_RELEASE_SLUGS (TRA-528 transliteration), and the channel runs this migration with the flag
- * OFF while the cache and the server are in the flag-ON form: "Gokhan Kirdar" (dotless i) came out as
+ * ODYSSEY_SCOPED_RELEASE_SLUGS (TRA-528 transliteration). When this migration was written the channel ran it
+ * with the flag OFF while the cache and the server were in the flag-ON form (since TRA-599 the channel runs
+ * every migration with the flag at 1, so the two now agree): "Gokhan Kirdar" (dotless i) came out as
  * `artist:gokhan-k-rdar`, a redirect key to ANOTHER artist's `artist:gokhan-kirdar`, and "MØ" as `artist:m`
  * (somebody else). Both the guard and the slugs of the edges written therefore use the flag-on form,
  * `transliteratedSlug` (src/slug.ts), which does not read the flag: the guard judges that form, and an edge

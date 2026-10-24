@@ -18,20 +18,24 @@ struct NodeHero: View {
 	private let image: Track1Artwork.State
 	private let imageStyle: HeroImageStyle
 	private let discTint: Color?
+	private let halo: Color?
 	private let accessibilityLabel: String?
 
-	/// `discTint` only matters to `release`. `accessibilityLabel` is the node name: without one the hero is
-	/// still addressable by its identifier, but it is not announced as an image. `imageStyle` is
-	/// `derivedCover` for a release cover standing in for an artist, label or genre: shown whole over the
-	/// gradient, in a square, never as a portrait (plan Part 3, decision 5). `release` ignores it.
+	/// `discTint` only matters to `release`. `halo` is the colored glow around the disc and the case, supplied
+	/// by the caller; only `release` draws it and `nil` draws nothing (`NodeHeroStyle.appliesHalo`).
+	/// `accessibilityLabel` is the node name: without one the hero is still addressable by its identifier,
+	/// but it is not announced as an image. `imageStyle` is `derivedCover` for a release cover standing in
+	/// for an artist, label or genre: shown whole over the gradient, in a square, never as a portrait (plan
+	/// Part 3, decision 5). `release` ignores it.
 	init(
 		kind: Kind, image: Track1Artwork.State, imageStyle: HeroImageStyle = .photo, discTint: Color? = nil,
-		accessibilityLabel: String? = nil
+		halo: Color? = nil, accessibilityLabel: String? = nil
 	) {
 		self.kind = kind
 		self.image = image
 		self.imageStyle = imageStyle
 		self.discTint = discTint
+		self.halo = halo
 		self.accessibilityLabel = accessibilityLabel
 	}
 
@@ -53,7 +57,8 @@ struct NodeHero: View {
 	private var content: some View {
 		switch kind {
 		case .release:
-			ReleaseHero(image: Self.decodedImage(for: image), tint: discTint ?? NodeHeroStyle.defaultDiscTint)
+			ReleaseHero(
+				image: Self.decodedImage(for: image), tint: discTint ?? NodeHeroStyle.defaultDiscTint, halo: halo)
 		case .artist where imageStyle == .photo:
 			HeroPhoto(image: Self.decodedImage(for: image), kind: kind, style: imageStyle, shape: Circle())
 		case .artist, .cover:
@@ -136,6 +141,15 @@ enum NodeHeroStyle {
 	/// The label of a disc whose cover has no dominant color yet: the orange of the Release placeholder
 	/// (`171:10`), so the disc matches the cover it sits next to.
 	static let defaultDiscTint = Track1Tokens.colorNodeTrack
+
+	/// Figma `286:1674` (disc) and `286:1685` (case): `drop-shadow(0 0 5px)` in the cover's color. Same
+	/// convention as the case shadow in `HeroJewelCase`: SwiftUI radius = Figma blur / 2, offset 0, opacity 1.
+	static let haloRadius: CGFloat = 2.5
+
+	/// Only the release hero glows. The photo heroes keep their glass border alone (decision D5, Q7).
+	static func appliesHalo(to kind: NodeHeroKind) -> Bool {
+		kind == .release
+	}
 }
 
 /// A gradient placeholder with the decoded image over it: the one cover drawing of every variant and of the
@@ -171,6 +185,16 @@ extension View {
 	fileprivate func placed(_ rect: CGRect) -> some View {
 		frame(width: rect.width, height: rect.height).offset(x: rect.minX, y: rect.minY)
 	}
+
+	/// The colored glow of the release hero; no halo draws nothing at all.
+	@ViewBuilder
+	fileprivate func haloed(_ halo: Color?) -> some View {
+		if let halo {
+			shadow(color: halo, radius: NodeHeroStyle.haloRadius, x: 0, y: 0)
+		} else {
+			self
+		}
+	}
 }
 
 /// The hero is one element: its label is the node name, and only a real image carries the image trait.
@@ -205,11 +229,14 @@ private struct HeroPhoto<ClipShape: InsettableShape>: View {
 private struct ReleaseHero: View {
 	let image: UIImage?
 	let tint: Color
+	let halo: Color?
 
 	var body: some View {
 		ZStack(alignment: .topLeading) {
-			HeroDisc(tint: tint).placed(NodeHeroMetrics.discFrame)
-			HeroJewelCase(image: image).placed(NodeHeroMetrics.caseFrame)
+			// The halo goes on each part after `placed`, not on the `ZStack`: the glow follows the disc and
+			// the case outlines, and the case is drawn over the disc without the disc's glow showing through it.
+			HeroDisc(tint: tint).placed(NodeHeroMetrics.discFrame).haloed(halo)
+			HeroJewelCase(image: image).placed(NodeHeroMetrics.caseFrame).haloed(halo)
 		}
 		.frame(width: NodeHeroMetrics.releaseWidth, height: NodeHeroMetrics.releaseHeight, alignment: .topLeading)
 	}

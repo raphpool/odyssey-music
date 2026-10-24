@@ -85,9 +85,10 @@
       "name": "An Ending (Ascent)"
     },
     {
-      "slug": "track:shadow--chromatics",
+      "slug": "track:shadow--brian-eno",
       "type": "track",
-      "name": "Shadow"
+      "name": "Shadow",
+      "artist": "Brian Eno"
     }
   ],
   "producers": [

@@ -57,13 +57,18 @@ struct NodePageView: View {
 	static func heroImage(for state: NodeHeroModel.State) -> Track1Artwork.State {
 		switch state {
 		case .loading: .loading
-		case .loaded(let image, _): .image(image)
+		case .loaded(let image, _, _): .image(image)
 		case .placeholder: .unavailable
 		}
 	}
 
 	static func heroTint(for state: NodeHeroModel.State) -> Color? {
-		if case .loaded(_, let tint) = state { tint } else { nil }
+		if case .loaded(_, let tint, _) = state { tint } else { nil }
+	}
+
+	/// The three-band palette of the cover, once the image is loaded and none of its bands is fully transparent.
+	static func coverTint(for state: NodeHeroModel.State) -> CoverTint? {
+		if case .loaded(_, _, let coverTint) = state { coverTint } else { nil }
 	}
 
 	/// The notice above the streaming bar once the model reports a failed opening, none otherwise.
