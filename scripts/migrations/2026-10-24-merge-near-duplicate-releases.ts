@@ -20,6 +20,16 @@
  * whose loser is already gone is `alreadyDone`. The migration therefore runs unchanged on the union of the
  * repository and the server, and a second run writes nothing.
  *
+ * Two options added by PR 3 (the last four twins, which the re-review of #632 judged; the migration had not run on
+ * prod yet, so they extend this list instead of a sibling migration: one name for the channel):
+ * - `kind: "edge-only"`: the artist's entry is already merged and only an edge of a label / genre / project still names
+ *   the bare slug (`label:barooni` -> `project:nunatak-gongamur`, no node, no redirect). The artist must hold exactly
+ *   the proven survivor and no loser entry. The edge follows (deduplicated), the redirect is posted. It stays
+ *   `alreadyDone` only once no node names the slug, so the server's older copy of the label is still cleaned.
+ * - `redirect: false`: for a bare slug that belongs to a famous homonym (`project:made-in-japan` is Deep Purple's, the
+ *   survivor is Ayumi Hamasaki's). Only the artist's own entry is merged: no redirect is posted and no other node's edge
+ *   to the slug is rewritten. A loser that has a node, or that already redirects, is flagged.
+ *
  * Merge of a pair. The survivor is the entry that holds the mbid (the release group MusicBrainz names), or, when
  * the table gives `loser.mbid`, the entry that has the node and the title people use (Kraftwerk's English titles):
  * it takes the loser's mbid, year and type and sits in the loser's place. The loser is removed from the artist's `discography` and the artist's `landmark_project` follows if it pointed at the
@@ -83,19 +93,31 @@ const mbid = z.string().uuid();
 export const pairsSchema = z.object({
 	source: z.string(),
 	pairs: z.array(
-		z.object({
-			id: z.string().min(1),
-			// release-group: MusicBrainz proves the two titles are one release group. same-node: the two entries
-			// already resolve to the same node (same title, same mbid or none, redirect in place).
-			kind: z.enum(["release-group", "same-node"]),
-			artist: z.string().regex(/^artist:.+/u),
-			// `mbid` on the loser: the survivor is the entry that has the node and the title people use (Kraftwerk's
-			// English titles), the loser is the entry that holds the release group. The survivor takes the loser's
-			// mbid, year and type, and the entry keeps the loser's place in the list.
-			loser: z.object({ slug: projectSlug, name: z.string().min(1), mbid: mbid.optional() }),
-			survivor: z.object({ slug: projectSlug, name: z.string().min(1), mbid: mbid.optional() }),
-			evidence: z.string().min(1),
-		}),
+		z
+			.object({
+				id: z.string().min(1),
+				// release-group: MusicBrainz proves the two titles are one release group. same-node: the two entries
+				// already resolve to the same node (same title, same mbid or none, redirect in place). edge-only: the
+				// artist's entry is already merged; a label / genre / project still names the bare slug (no node, no
+				// redirect), and only that edge follows.
+				kind: z.enum(["release-group", "same-node", "edge-only"]),
+				artist: z.string().regex(/^artist:.+/u),
+				// `false`: no redirect for the loser's slug, and no other node's edge to it is rewritten. For a bare slug
+				// that belongs to a famous homonym (`project:made-in-japan` is Deep Purple's): only the artist's own
+				// entry is merged. The loser then has no node.
+				redirect: z.literal(false).optional(),
+				// `mbid` on the loser: the survivor is the entry that has the node and the title people use (Kraftwerk's
+				// English titles), the loser is the entry that holds the release group. The survivor takes the loser's
+				// mbid, year and type, and the entry keeps the loser's place in the list.
+				loser: z.object({ slug: projectSlug, name: z.string().min(1), mbid: mbid.optional() }),
+				survivor: z.object({ slug: projectSlug, name: z.string().min(1), mbid: mbid.optional() }),
+				evidence: z.string().min(1),
+			})
+			// An edge-only pair posts the redirect and re-points the edges: it cannot also opt out of them, and it has
+			// no entry to adopt a release group from.
+			.refine((p) => p.kind !== "edge-only" || (p.redirect === undefined && p.loser.mbid === undefined), {
+				message: "an edge-only pair takes neither `redirect: false` nor a loser mbid",
+			}),
 	),
 	// Look-alikes judged distinct: documentation only, never read by the merge.
 	kept: z.array(z.object({ artist: z.string(), titles: z.array(z.string()), reason: z.string() })),
@@ -178,6 +200,24 @@ function answers(n: CacheNodeFile, project: Obj | undefined): boolean {
 	if (n.type === "label") return isRecord(project.label) && project.label.slug === n.slug;
 	if (n.type === "genre") return edgesOf(project, "genres").some((g) => g.slug === n.slug);
 	return true;
+}
+
+/** Does a label, genre, project or track name `slug`? (An artist's edge to a bare slug is never rewritten.) */
+function holdsEdgeTo(
+	nodes: readonly CacheNodeFile[],
+	work: ReadonlyMap<string, Obj>,
+	pending: PendingFile,
+	slug: string,
+): boolean {
+	return (
+		nodes.some(
+			(n) =>
+				n.type !== "artist" &&
+				projectFields(n.type).some((f) => edgesOf(work.get(n.slug) as Obj, f).some((e) => e.slug === slug)),
+		) ||
+		// pending-reverses.json: a key or an edge naming the slug follows the survivor too.
+		Object.entries(pending).some(([key, list]) => key === slug || list.some((p) => p.edge.slug === slug))
+	);
 }
 
 /** `node` with every edge of `fields` to a key of `to` pointed at its target; null when nothing changes. */
@@ -284,6 +324,43 @@ export function planMerge(
 		}
 		const survivor = disc.find((e) => e.slug === pair.survivor.slug);
 		const loser = disc.find((e) => e.slug === pair.loser.slug);
+		if (pair.kind === "edge-only") {
+			if (
+				loser ||
+				!survivor ||
+				survivor.name !== pair.survivor.name ||
+				survivor.mbid !== pair.survivor.mbid
+			) {
+				flag(
+					pair,
+					"state-differs",
+					"the artist does not hold exactly the proven survivor and no loser entry",
+				);
+			} else if (bySlug.has(pair.loser.slug)) {
+				flag(pair, "state-differs", `${pair.loser.slug} has a node: not a bare edge`);
+			} else if (
+				existingRedirects[pair.loser.slug] !== undefined &&
+				existingRedirects[pair.loser.slug] !== pair.survivor.slug
+			) {
+				flag(
+					pair,
+					"redirect-conflict",
+					`${pair.loser.slug} already redirects to ${existingRedirects[pair.loser.slug]}`,
+				);
+			} else if (holdsEdgeTo(nodes, work, pending, pair.loser.slug)) accepted.push(pair);
+			else manifest.alreadyDone.push(pair.id);
+			continue;
+		}
+		if (pair.redirect === false && loser) {
+			if (bySlug.has(pair.loser.slug)) {
+				flag(pair, "state-differs", `${pair.loser.slug} has a node and no redirect would lead anywhere`);
+				continue;
+			}
+			if (existingRedirects[pair.loser.slug] !== undefined) {
+				flag(pair, "redirect-conflict", `${pair.loser.slug} is a homonym's slug and already redirects`);
+				continue;
+			}
+		}
 		if (!loser) {
 			if (survivor) manifest.alreadyDone.push(pair.id);
 			else flag(pair, "state-differs", "neither the loser nor the survivor is in the discography");
@@ -339,9 +416,9 @@ export function planMerge(
 	}
 
 	// loser slug -> where its edges go. One loser, one survivor.
-	const repointTo = new Map<string, Target>();
+	const targetOf = new Map<string, Target>();
 	for (const pair of accepted) {
-		const prior = repointTo.get(pair.loser.slug);
+		const prior = targetOf.get(pair.loser.slug);
 		if (prior && prior.slug !== pair.survivor.slug) {
 			manifest.errors.push(
 				`${pair.loser.slug} would go to two survivors (${prior.slug}, ${pair.survivor.slug})`,
@@ -350,12 +427,15 @@ export function planMerge(
 		}
 		const artist = work.get(pair.artist) as Obj;
 		const entry = keptEntry(pair, artist.discography as Obj[]);
-		repointTo.set(pair.loser.slug, {
+		targetOf.set(pair.loser.slug, {
 			slug: pair.survivor.slug,
 			name: pair.survivor.name,
 			...(typeof entry.artist === "string" ? { artist: entry.artist } : {}),
 		});
 	}
+	// A slug without redirect (a homonym's) is followed by the artist's own entry only, never by another node's edge.
+	const noRedirect = new Set(accepted.filter((p) => p.redirect === false).map((p) => p.loser.slug));
+	const repointTo = new Map([...targetOf].filter(([slug]) => !noRedirect.has(slug)));
 
 	// The node each loser's edges will land on: the survivor's, or the loser's own once it has moved.
 	const survivorNodeOf = new Map<string, Obj | undefined>(
@@ -368,7 +448,18 @@ export function planMerge(
 	const redirects: Record<string, string> = {};
 
 	for (const pair of accepted) {
-		const target = repointTo.get(pair.loser.slug) as Target;
+		if (pair.kind === "edge-only") {
+			// The artist is already right: only the redirect, and the edges re-pointed below.
+			if (existingRedirects[pair.loser.slug] === undefined) redirects[pair.loser.slug] = pair.survivor.slug;
+			manifest.merged.push({
+				id: pair.id,
+				loser: pair.loser.slug,
+				survivor: pair.survivor.slug,
+				movedNode: false,
+			});
+			continue;
+		}
+		const target = targetOf.get(pair.loser.slug) as Target;
 		const artist = work.get(pair.artist) as Obj;
 		const kept = keptEntry(pair, artist.discography as Obj[]);
 		const next: Obj = {
@@ -401,7 +492,8 @@ export function planMerge(
 			);
 			touched.add(pair.survivor.slug);
 		}
-		if (existingRedirects[pair.loser.slug] === undefined) redirects[pair.loser.slug] = pair.survivor.slug;
+		if (pair.redirect !== false && existingRedirects[pair.loser.slug] === undefined)
+			redirects[pair.loser.slug] = pair.survivor.slug;
 		manifest.merged.push({
 			id: pair.id,
 			loser: pair.loser.slug,
