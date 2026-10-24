@@ -64,6 +64,8 @@ enum Track1Tokens {
 	static let colorBorderStrong = rgb(0x6A4938)
 	static let colorBorderFocus = rgb(0x5D7FA8)
 	static let colorBorderContrast = rgba(0xFFFF_FF85)
+	/// Border of the relation chips, `rgba(125, 100, 89, 0.2)` in the "UI Refresh" revision (TRA-657).
+	static let colorBorderChip = rgba(0x7D64_5933)
 
 	// Action
 
@@ -131,6 +133,7 @@ enum Track1Tokens {
 	// MARK: Radius
 
 	static let radius0: CGFloat = 0
+	static let radius6: CGFloat = 6
 	static let radius8: CGFloat = 8
 	static let radius12: CGFloat = 12
 	static let radius16: CGFloat = 16

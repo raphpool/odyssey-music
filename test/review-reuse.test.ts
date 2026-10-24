@@ -9,12 +9,15 @@ import { describe, expect, it } from "vitest";
 import {
 	AI_REVIEW_PATH,
 	BLOCKING_ANNOTATION,
+	belongsToPullRequest,
 	type DecisionInput,
 	decideReuse,
 	type Facts,
+	type HeadPull,
 	latestReview,
 	MAX_PAGES,
 	PAGE_SIZE,
+	type PullRequestIdentity,
 	RECORD_PREFIX,
 	type ReviewCheckRun,
 	recordMessage,
@@ -31,6 +34,20 @@ const LATER = "2026-10-15T11:00:00Z";
 
 const SUITE = 100;
 const RUN_ID = 5100;
+
+// TRA-526: a run only counts when it belongs to the pull request being updated. This is that pull request, and the
+// list of the pull requests sharing its head (just itself, in the ordinary case).
+const HEAD_SHA = "e".repeat(40);
+const PULL: PullRequestIdentity = {
+	number: 42,
+	headSha: HEAD_SHA,
+	baseRef: "main",
+	headRef: "rdoulonne/tra-1-feature",
+	headRepository: "raphpool/odyssey-music",
+};
+const OWN: HeadPull = { number: PULL.number, baseRef: PULL.baseRef, headSha: HEAD_SHA };
+// A PR against another base whose last head is the previous head (closed there), or the current one (open).
+const OTHER_BASE: HeadPull = { number: 77, baseRef: "release/1.0", headSha: PREVIOUS };
 
 // TRA-525: a `review` check-run only counts when it is the job of a `pull_request` run of ai-review.yml on the
 // previous head. `run`, `workflowRun` and `job` below are the three records that, together, make one genuine review.
@@ -52,6 +69,10 @@ const workflowRun = (overrides: Partial<WorkflowRun> = {}): WorkflowRun => ({
 	event: "pull_request",
 	headSha: PREVIOUS,
 	checkSuiteId: SUITE,
+	headBranch: PULL.headRef,
+	headRepository: PULL.headRepository,
+	// Empty, as on many real runs: it can reject a run, never be required.
+	pullRequests: [],
 	...overrides,
 });
 
@@ -88,6 +109,8 @@ const input = (overrides: Partial<DecisionInput> = {}): DecisionInput => ({
 	workflowRuns: [workflowRun()],
 	jobs: [job()],
 	annotations: [recordMessage(PATCH)],
+	pullRequest: PULL,
+	headPulls: [OWN],
 	...overrides,
 });
 
@@ -95,6 +118,8 @@ const evidenceOf = (value: DecisionInput) => ({
 	checkRuns: value.checkRuns ?? [],
 	workflowRuns: value.workflowRuns ?? [],
 	jobs: value.jobs ?? [],
+	pullRequest: PULL,
+	headPulls: value.headPulls ?? [],
 });
 
 describe("decideReuse (TRA-510, TRA-525)", () => {
@@ -161,6 +186,37 @@ describe("decideReuse (TRA-510, TRA-525)", () => {
 			"two genuine reviews that started together (the gate cannot tell which it reads)",
 			genuine(run({ id: 1 }), run({ id: 2, conclusion: "failure" })),
 		],
+		// TRA-526: the run must be the one of this pull request, not just of this sha.
+		["pull request not identified", { pullRequest: null }],
+		["pull requests of the head not listed", { headPulls: null }],
+		[
+			"run produced for a PR from another branch on the same sha",
+			{ workflowRuns: [workflowRun({ headBranch: "someone/else" })] },
+		],
+		["run without a head branch", { workflowRuns: [workflowRun({ headBranch: null })] }],
+		[
+			"run produced for a fork with a branch of the same name",
+			{ workflowRuns: [workflowRun({ headRepository: "attacker/odyssey-music" })] },
+		],
+		["run without a head repository", { workflowRuns: [workflowRun({ headRepository: null })] }],
+		["run that names only another PR", { workflowRuns: [workflowRun({ pullRequests: [OTHER_BASE] })] }],
+		[
+			"run that names this PR and another one against another base",
+			{ workflowRuns: [workflowRun({ pullRequests: [OWN, OTHER_BASE] })] },
+		],
+		[
+			"run that names this PR against another base",
+			{ workflowRuns: [workflowRun({ pullRequests: [{ number: PULL.number, baseRef: "release/1.0" }] })] },
+		],
+		[
+			"head shared with a PR against another base (the two runs cannot be told apart)",
+			{ headPulls: [OWN, OTHER_BASE] },
+		],
+		[
+			"this PR absent from the pull requests of the head",
+			{ headPulls: [{ number: 78, baseRef: "main", headSha: PREVIOUS }] },
+		],
+		["no pull request on the head at all", { headPulls: [] }],
 	];
 	it.each(full)("runs a full review: %s", (_label, overrides) => {
 		expect(decideReuse(input(overrides)).decision).toBe("full");
@@ -172,6 +228,43 @@ describe("decideReuse (TRA-510, TRA-525)", () => {
 		const succeededLater = genuine(run({ id: 1, conclusion: "failure" }), run({ id: 2, startedAt: LATER }));
 		expect(decideReuse(input(succeededLater)).decision).toBe("reuse");
 		expect(latestReview(PREVIOUS, evidenceOf(input(succeededLater)))?.id).toBe(2);
+	});
+
+	it("keeps the review of the PR itself whether its run lists the PR or lists nothing, and a sibling PR on the same base", () => {
+		expect(decideReuse(input({ workflowRuns: [workflowRun({ pullRequests: [OWN] })] })).decision).toBe(
+			"reuse",
+		);
+		const sibling: HeadPull = { number: 78, baseRef: PULL.baseRef, headSha: PREVIOUS };
+		expect(decideReuse(input({ headPulls: [OWN, sibling] })).decision).toBe("reuse");
+	});
+
+	it("ignores a PR against another base left on an older sha (a closed stack parent reopened against main)", () => {
+		const stale: HeadPull = { ...OTHER_BASE, headSha: "d".repeat(40) };
+		expect(decideReuse(input({ headPulls: [stale, OWN] })).decision).toBe("reuse");
+		// Open on the branch, it sits on the current head and keeps the head ambiguous.
+		const openOnHead: HeadPull = { ...OTHER_BASE, headSha: HEAD_SHA };
+		expect(decideReuse(input({ headPulls: [openOnHead, OWN] })).decision).toBe("full");
+	});
+
+	it("does not let the success of a PR B on the same sha win over the review of the PR", () => {
+		const ofB = {
+			check: run({ id: 99, startedAt: LATER, checkSuiteId: 200 }),
+			run: workflowRun({ id: 5200, checkSuiteId: 200, headBranch: "someone/else" }),
+		};
+		const failedOwn = run({ id: 1, conclusion: "failure" });
+		const evidence = input({
+			checkRuns: [failedOwn, ofB.check],
+			workflowRuns: [workflowRun(), ofB.run],
+			jobs: [job({ id: 1 }), job({ id: 99, runId: 5200 })],
+		});
+		expect(latestReview(PREVIOUS, evidenceOf(evidence))?.id).toBe(1);
+		expect(decideReuse(evidence).decision).toBe("full");
+	});
+
+	it("applies the rule on its own: same head, same repository, nothing contradicting", () => {
+		expect(belongsToPullRequest(workflowRun(), PULL, [OWN])).toBe(true);
+		expect(belongsToPullRequest(workflowRun(), PULL, [OWN, OTHER_BASE])).toBe(false);
+		expect(belongsToPullRequest(workflowRun({ headBranch: "other" }), PULL, [OWN])).toBe(false);
 	});
 
 	it("accepts the same record twice (a reused review records it again)", () => {
@@ -203,8 +296,22 @@ const runsBody = (runs: WorkflowRun[], total = runs.length) => ({
 		event: r.event,
 		head_sha: r.headSha,
 		check_suite_id: r.checkSuiteId,
+		head_branch: r.headBranch,
+		head_repository: r.headRepository === null ? null : { full_name: r.headRepository },
+		pull_requests: r.pullRequests.map((pull) => ({ number: pull.number, base: { ref: pull.baseRef } })),
 	})),
 });
+
+/** `GET pulls/<n>`: the pull request being updated. */
+const pullBody = (pull: PullRequestIdentity = PULL) => ({
+	number: pull.number,
+	base: { ref: pull.baseRef },
+	head: { ref: pull.headRef, sha: pull.headSha, repo: { full_name: pull.headRepository } },
+});
+
+/** `GET pulls?head=…`: a bare array, not a `{ total_count, … }` envelope. */
+const headPullsBody = (pulls: HeadPull[]) =>
+	pulls.map((pull) => ({ number: pull.number, base: { ref: pull.baseRef }, head: { sha: pull.headSha } }));
 
 const jobsBody = (jobs: WorkflowJob[], total = jobs.length) => ({
 	total_count: total,
@@ -231,10 +338,11 @@ const fakeApi = (answers: Record<string, Answer>) => {
 
 const ctx = (
 	get: (path: string) => Promise<unknown>,
-	overrides: Partial<Facts & { repository: string }> = {},
+	overrides: Partial<Facts & { repository: string; pullNumber: number | null }> = {},
 ) => ({
 	...facts(),
 	repository: "raphpool/odyssey-music",
+	pullNumber: PULL.number,
 	get,
 	...overrides,
 });
@@ -243,7 +351,11 @@ describe("resolveDecision (API lookups)", () => {
 	const listing = `commits/${PREVIOUS}/check-runs`;
 	const runsListing = `actions/runs?head_sha=${PREVIOUS}&event=pull_request`;
 	const jobsListing = `actions/runs/${RUN_ID}/jobs`;
+	const pullLookup = `pulls/${PULL.number}`;
+	const headPullsListing = "pulls?head=";
 	const happy = (): Record<string, Answer> => ({
+		[pullLookup]: pullBody(),
+		[headPullsListing]: headPullsBody([OWN]),
 		[listing]: checkRunsBody([run()]),
 		[runsListing]: runsBody([workflowRun()]),
 		[jobsListing]: jobsBody([job()]),
@@ -254,11 +366,75 @@ describe("resolveDecision (API lookups)", () => {
 		const api = fakeApi(happy());
 		expect((await resolveDecision(ctx(api.get))).decision).toBe("reuse");
 		const repo = "repos/raphpool/odyssey-music";
-		expect(api.paths[0]).toContain(`${repo}/${listing}?check_name=review&filter=all`);
-		expect(api.paths[1]).toContain(`${repo}/${runsListing}`);
-		expect(api.paths[2]).toContain(`${repo}/${jobsListing}?filter=all`);
-		expect(api.paths[3]).toContain(`${repo}/check-runs/7/annotations`);
-		expect(api.paths).toHaveLength(4);
+		expect(api.paths[0]).toContain(`${repo}/${pullLookup}`);
+		// `head` is `<owner>:<branch>`, encoded: a branch name is chosen by the PR author.
+		expect(api.paths[1]).toContain(`${repo}/pulls?head=raphpool%3Ardoulonne%2Ftra-1-feature&state=all`);
+		expect(api.paths[2]).toContain(`${repo}/${listing}?check_name=review&filter=all`);
+		expect(api.paths[3]).toContain(`${repo}/${runsListing}`);
+		expect(api.paths[4]).toContain(`${repo}/${jobsListing}?filter=all`);
+		expect(api.paths[5]).toContain(`${repo}/check-runs/7/annotations`);
+		expect(api.paths).toHaveLength(6);
+	});
+
+	// TRA-526: the pull request is established from the API, whose answer is the authority on its head and base.
+	it.each([
+		["the pull request lookup fails", { [pullLookup]: new Error("GitHub API answered 404") }],
+		["the lookup answers another PR", { [pullLookup]: pullBody({ ...PULL, number: 43 }) }],
+		[
+			"the PR now targets another base than the event said",
+			{ [pullLookup]: pullBody({ ...PULL, baseRef: "release/1.0" }) },
+		],
+		[
+			"the PR has no head repository (deleted fork)",
+			{ [pullLookup]: { ...pullBody(), head: { ref: PULL.headRef, repo: null } } },
+		],
+		[
+			"the pull requests of the head cannot be listed",
+			{ [headPullsListing]: new Error("GitHub API answered 500") },
+		],
+		["the pull requests of the head have the wrong shape", { [headPullsListing]: { not: "an array" } }],
+		[
+			"another PR shares the head against another base",
+			{ [headPullsListing]: headPullsBody([OWN, OTHER_BASE]) },
+		],
+		["the listing of the head does not hold the PR", { [headPullsListing]: headPullsBody([]) }],
+		[
+			"the listing of the head never ends",
+			{
+				[headPullsListing]: () =>
+					headPullsBody(
+						Array.from({ length: PAGE_SIZE }, (_, i) => ({
+							number: 1000 + i,
+							baseRef: "main",
+							headSha: PREVIOUS,
+						})),
+					),
+			},
+		],
+	])("runs a full review when %s", async (_label, answers) => {
+		expect((await resolveDecision(ctx(fakeApi({ ...happy(), ...answers }).get))).decision).toBe("full");
+	});
+
+	it("runs a full review without any call when the pull request number is unknown", async () => {
+		const api = fakeApi(happy());
+		expect((await resolveDecision(ctx(api.get, { pullNumber: null }))).decision).toBe("full");
+		expect(api.paths).toHaveLength(0);
+	});
+
+	it("reads every page of the pull requests of the head", async () => {
+		const pages = (path: string) =>
+			/[?&]page=1$/.test(path)
+				? headPullsBody(
+						Array.from({ length: PAGE_SIZE }, (_, i) => ({
+							number: 1000 + i,
+							baseRef: PULL.baseRef,
+							headSha: PREVIOUS,
+						})),
+					)
+				: headPullsBody([OWN]);
+		const api = fakeApi({ ...happy(), [headPullsListing]: pages });
+		expect((await resolveDecision(ctx(api.get))).decision).toBe("reuse");
+		expect(api.paths.filter((path) => path.includes(headPullsListing))).toHaveLength(2);
 	});
 
 	it("only asks for the jobs of runs of ai-review.yml that own a listed check-run", async () => {
@@ -267,6 +443,7 @@ describe("resolveDecision (API lookups)", () => {
 			[runsListing]: runsBody([
 				workflowRun({ id: 1, path: ".github/workflows/other.yml" }),
 				workflowRun({ id: 2, checkSuiteId: 555 }),
+				workflowRun({ id: 3, headBranch: "someone/else" }),
 				workflowRun(),
 			]),
 		});
@@ -367,7 +544,7 @@ describe("resolveDecision (API lookups)", () => {
 	])("runs a full review when %s", async (_label, answer) => {
 		const api = fakeApi({ ...happy(), [listing]: answer });
 		expect((await resolveDecision(ctx(api.get))).decision).toBe("full");
-		expect(api.paths.length).toBeLessThanOrEqual(MAX_PAGES);
+		expect(api.paths.filter((path) => path.includes(listing)).length).toBeLessThanOrEqual(MAX_PAGES);
 	});
 
 	it.each([
@@ -408,7 +585,14 @@ describe("the selection is the one of review-gate.yml", () => {
 		checks: Item[];
 		runs: Item[];
 		jobs: Item[];
+		/** The pull requests of the head, as the gate slims them down; just the PR itself by default. */
+		pulls?: Item[];
 	}
+	const apiPull = (pull: HeadPull): Item => ({
+		number: pull.number,
+		base_ref: pull.baseRef,
+		head_sha: pull.headSha,
+	});
 
 	const apiCheck = (id: number, suite: number, overrides: Item = {}): Item => ({
 		id,
@@ -427,6 +611,9 @@ describe("the selection is the one of review-gate.yml", () => {
 		event: "pull_request",
 		head_sha: PREVIOUS,
 		check_suite_id: suite,
+		head_branch: PULL.headRef,
+		head_repository: PULL.headRepository,
+		pull_requests: [],
 		...overrides,
 	});
 	const apiJob = (id: number, runId: number, overrides: Item = {}): Item => ({
@@ -481,6 +668,47 @@ describe("the selection is the one of review-gate.yml", () => {
 			oneOff({ check: { check_suite: { id: 101 } } }),
 			false,
 		],
+		// TRA-526: the run is the one of this pull request, not just of this sha.
+		["a run produced for a PR from another branch", oneOff({ run: { head_branch: "someone/else" } }), false],
+		["a run produced for a fork", oneOff({ run: { head_repository: "attacker/odyssey-music" } }), false],
+		["a run produced for a fork that was deleted", oneOff({ run: { head_repository: null } }), false],
+		["a run that lists this PR", oneOff({ run: { pull_requests: [apiPull(OWN)] } }), true],
+		["a run that lists only another PR", oneOff({ run: { pull_requests: [apiPull(OTHER_BASE)] } }), false],
+		[
+			"a run that lists this PR and another against another base",
+			oneOff({ run: { pull_requests: [apiPull(OWN), apiPull(OTHER_BASE)] } }),
+			false,
+		],
+		[
+			"a run that lists this PR against another base",
+			oneOff({ run: { pull_requests: [apiPull({ ...OWN, baseRef: "release/1.0" })] } }),
+			false,
+		],
+		[
+			"a head shared with a PR against another base",
+			{ ...reviewOf(11, 100), pulls: [apiPull(OWN), apiPull(OTHER_BASE)] },
+			false,
+		],
+		[
+			"a head shared with a PR against the same base",
+			{ ...reviewOf(11, 100), pulls: [apiPull(OWN), apiPull({ ...OWN, number: 78 })] },
+			true,
+		],
+		[
+			"a head shared with a PR against another base left on an older sha",
+			{ ...reviewOf(11, 100), pulls: [apiPull({ ...OTHER_BASE, headSha: "d".repeat(40) }), apiPull(OWN)] },
+			true,
+		],
+		["a head whose pull requests do not hold this PR", { ...reviewOf(11, 100), pulls: [] }, false],
+		[
+			"the success of a PR from another branch after a genuine failure",
+			together(reviewOf(11, 100, { conclusion: "failure" }), {
+				checks: [apiCheck(99, 200, { started_at: "2099-01-01T00:00:00Z" })],
+				runs: [apiRun(5200, 200, { head_branch: "someone/else" })],
+				jobs: [apiJob(99, 5200)],
+			}),
+			false,
+		],
 		["a job of another id", oneOff({ job: { id: 12 } }), false],
 		["a job named otherwise", oneOff({ job: { name: "typecheck" } }), false],
 		["a job of another run", oneOff({ job: { run_id: 5999 } }), false],
@@ -504,16 +732,37 @@ describe("the selection is the one of review-gate.yml", () => {
 		],
 	];
 
+	// The scenarios hold runs as the gate slims them down; the API lists `head_repository` and `pull_requests` in full.
+	const rawRun = (slim: Item): Item => ({
+		...slim,
+		head_repository: slim.head_repository === null ? null : { full_name: slim.head_repository },
+		pull_requests: (slim.pull_requests as Item[]).map((pull) => ({
+			number: pull.number,
+			base: { ref: pull.base_ref },
+		})),
+	});
+
 	const decisionOf = async (api: Api): Promise<string> => {
 		const stub = fakeApi({
 			[`commits/${PREVIOUS}/check-runs`]: { total_count: api.checks.length, check_runs: api.checks },
-			[`actions/runs?head_sha=${PREVIOUS}`]: { total_count: api.runs.length, workflow_runs: api.runs },
+			[`actions/runs?head_sha=${PREVIOUS}`]: {
+				total_count: api.runs.length,
+				workflow_runs: api.runs.map(rawRun),
+			},
 			"/jobs": (path: string) => {
 				const runId = Number(/actions\/runs\/(\d+)\/jobs/.exec(path)?.[1]);
 				const jobs = api.jobs.filter((j) => j.run_id === runId);
 				return { total_count: jobs.length, jobs };
 			},
 			"/annotations": annotationsBody([recordMessage(PATCH)]),
+			[`pulls/${PULL.number}`]: pullBody(),
+			"pulls?head=": headPullsBody(
+				(api.pulls ?? [apiPull(OWN)]).map((p) => ({
+					number: p.number as number,
+					baseRef: p.base_ref as string,
+					headSha: p.head_sha as string,
+				})),
+			),
 		});
 		return (await resolveDecision(ctx(stub.get))).decision;
 	};
@@ -527,16 +776,24 @@ describe("the selection is the one of review-gate.yml", () => {
 	it.runIf(program !== null)("agrees with the jq program of the gate on every scenario", async () => {
 		const scratch = mkdtempSync(join(tmpdir(), "review-reuse-parity-"));
 		try {
+			const pr = {
+				number: PULL.number,
+				baseRef: PULL.baseRef,
+				headRef: PULL.headRef,
+				headRepo: PULL.headRepository,
+			};
 			for (const [label, api, counts] of scenarios) {
-				const [checks, runs, jobs] = (["checks", "runs", "jobs"] as const).map((kind) => {
+				const [checks, runs, jobs, pulls] = (["checks", "runs", "jobs", "pulls"] as const).map((kind) => {
 					const path = join(scratch, `${kind}.json`);
-					writeFileSync(path, api[kind].map((item) => JSON.stringify(item)).join("\n"));
+					const items = kind === "pulls" ? (api.pulls ?? [apiPull(OWN)]) : api[kind];
+					writeFileSync(path, items.map((item) => JSON.stringify(item)).join("\n"));
 					return path;
-				}) as [string, string, string];
+				}) as [string, string, string, string];
 				const args = ["-nr", "--arg", "sha", PREVIOUS, "--arg", "path", AI_REVIEW_PATH];
 				const { stdout } = await exec("jq", [
 					...args,
 					...["--slurpfile", "checks", checks, "--slurpfile", "runs", runs, "--slurpfile", "jobs", jobs],
+					...["--slurpfile", "pulls", pulls, "--argjson", "pr", JSON.stringify(pr)],
 					program as string,
 				]);
 				const [, conclusion] = stdout.trimEnd().split("\t");
@@ -568,6 +825,8 @@ describe("review-reuse.ts as the workflow runs it", () => {
 			GITHUB_API_URL: `http://127.0.0.1:${(server.address() as AddressInfo).port}`,
 			GH_TOKEN: "test-token",
 			REPOSITORY: "raphpool/odyssey-music",
+			// What the runner gives every step of a pull_request run: the PR number is read from there.
+			GITHUB_REF: `refs/pull/${PULL.number}/merge`,
 			EVENT_ACTION: "synchronize",
 			RUN_ATTEMPT: "1",
 			PREVIOUS_SHA: PREVIOUS,
@@ -588,6 +847,8 @@ describe("review-reuse.ts as the workflow runs it", () => {
 
 	it("prints reuse for an unchanged diff and authenticates with GH_TOKEN", async () => {
 		const answer = (url: string) => {
+			if (url.includes("/pulls?head=")) return headPullsBody([OWN]);
+			if (url.includes(`/pulls/${PULL.number}`)) return pullBody();
 			if (url.includes("/annotations")) return annotationsBody([recordMessage(PATCH)]);
 			if (url.includes("/jobs")) return jobsBody([job()]);
 			if (url.includes("/actions/runs")) return runsBody([workflowRun()]);
@@ -595,7 +856,13 @@ describe("review-reuse.ts as the workflow runs it", () => {
 		};
 		const { result, seen } = await runScript(200, answer);
 		expect(result.decision).toBe("reuse");
-		expect(seen).toEqual(Array(4).fill("Bearer test-token"));
+		expect(seen).toEqual(Array(6).fill("Bearer test-token"));
+	}, 30_000);
+
+	it("prints full without calling the API when the runner gives no pull request ref", async () => {
+		const { result, seen } = await runScript(200, () => ({}), { GITHUB_REF: "refs/heads/main" });
+		expect(result.decision).toBe("full");
+		expect(seen).toHaveLength(0);
 	}, 30_000);
 
 	it("prints full, and still exits 0, when the API is down", async () => {

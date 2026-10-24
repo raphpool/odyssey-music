@@ -139,7 +139,7 @@
   ],
   "notable_tracks": [
     {
-      "slug": "track:trio-for-strings",
+      "slug": "track:trio-for-strings--la-monte-young",
       "type": "track",
       "name": "Trio for Strings"
     },
@@ -155,7 +155,7 @@
     }
   ],
   "reference_track": {
-    "slug": "track:trio-for-strings",
+    "slug": "track:trio-for-strings--la-monte-young",
     "type": "track",
     "name": "Trio for Strings"
   },
