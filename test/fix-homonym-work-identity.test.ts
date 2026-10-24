@@ -1125,3 +1125,46 @@ describe("runFix: cases the review of #535 found untested (TRA-610)", () => {
 		expect((await run(true)).written).toEqual([]);
 	});
 });
+
+describe("runFix: review of #607 (TRA-610)", () => {
+	it("(g) leaves tracks to the plain path: a track whose article cites a compilation is still stripped when ambiguous", async () => {
+		const [stanley, daft] = [mbid(), mbid()];
+		const old = "track:latent-h--stanley-black";
+		const twin = (): FakeWork => ({
+			kind: "recording",
+			id: mbid(),
+			title: "Latent H",
+			credit: [{ id: daft, name: "Daft Punk" }],
+			date: "1997",
+		});
+		await seed(
+			trackNode(old, "Latent H", {
+				mbid: mbid(),
+				editorial_article: `Released in 1997, Latent H is a single by Daft Punk, from the compilation Musique Vol. 1. ${article}`,
+				artists: [edge("artist:stanley-black", "Stanley Black", { mbid: stanley })],
+				producers: [edge("artist:daft-punk", "Daft Punk")],
+			}),
+			artistNode("artist:stanley-black", {
+				name: "Stanley Black",
+				mbid: stanley,
+				notable_tracks: [edge(old, "Latent H")],
+			}),
+			artistNode("artist:daft-punk", {
+				name: "Daft Punk",
+				mbid: daft,
+				notable_tracks: [edge(old, "Latent H")],
+			}),
+		);
+		await writeFile(join(dataDir, "slug-redirects.json"), JSON.stringify({ redirects: {} }));
+		// Two recordings of Daft Punk with this title: MusicBrainz cannot tell which one is the track.
+		stubMb([twin(), twin()], { filterByArtist: true });
+
+		const result = await run(true);
+
+		expect(result.manifest.skipped).toEqual([]);
+		expect(result.manifest.stripped).toMatchObject([{ slug: old, reason: "ambiguous-candidates" }]);
+		const node = await readNode(old);
+		expect(node.mbid).toBeUndefined();
+		expect(node.artists).toEqual([]);
+	});
+});

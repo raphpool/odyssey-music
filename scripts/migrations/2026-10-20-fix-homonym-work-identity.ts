@@ -356,6 +356,8 @@ export function detectHomonymWorks(index: NodeIndex): Detection {
 			const previous = candidates.get(artistSlug);
 			if (previous) {
 				if (!previous.evidence.includes(evidence)) previous.evidence.push(evidence);
+				// Seen by its list first: the producer edge still names the artist (TRA-610 review, 2026-10-24).
+				if (evidence === "producer") previous.mbid ??= validMbid(edge.mbid);
 				if (evidence === "lists" && previous.entry === undefined) {
 					previous.entry = entryHints(edge);
 				}
@@ -819,9 +821,13 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 		let unavailable = false;
 		let consistent = false;
 		// The prose calls the work a compilation and MusicBrainz cannot tell it from the studio album of the same
-		// title: no answer, and nothing destructive on a guess.
+		// title: no answer, and nothing destructive on a guess. Projects only: a track has no studio-album rule.
+		// This corrects LESS than the plain path (an ambiguous answer is skipped, not stripped, although the
+		// ambiguity is about WHICH release of the article artist, not about the credit being wrong), by choice:
+		// the migration never removes nor re-credits on a reading of the prose it cannot rely on (review of #607,
+		// 2026-10-24).
 		let compilationUnsettled = false;
-		const compilation = proseSaysCompilation(file.node);
+		const compilation = suspect.type === "project" && proseSaysCompilation(file.node);
 		const tryable = suspect.articleArtists.filter((a) => a.inLead);
 		if (tryable.length === 0) {
 			skipped.push({
