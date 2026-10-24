@@ -918,6 +918,16 @@ describe("Virgin, KMS and Plus 8 as the committed table proves them (TRA-608)", 
 		expect(existsSync(pathOf(cache, "label:virgin"))).toBe(true);
 	});
 
+	it("has its three redirects committed, as the channel refuses --apply otherwise", async () => {
+		const { cache, data } = makeCache(nodes());
+		const { manifest } = await runMigration({ cacheDir: cache, apply: false, dataDir: data });
+		expect(Object.keys(manifest.redirects)).toHaveLength(3);
+		const committed = (
+			JSON.parse(readFileSync("data/slug-redirects.json", "utf8")) as { redirects: Record<string, string> }
+		).redirects;
+		for (const [from, to] of Object.entries(manifest.redirects)) expect(committed[from]).toBe(to);
+	});
+
 	it("lists no deprecated Wikidata mbid among the links of any proven group", () => {
 		const table = JSON.parse(readFileSync(IDENTITIES_PATH, "utf8")) as Identities;
 		for (const g of table.groups) {
