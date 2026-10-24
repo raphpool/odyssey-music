@@ -88,9 +88,19 @@ enum UITestFlows {
 		app.launch()
 	}
 
+	/// 2026-10-24 (TRA-683, ios-check of #578): the tap on `onboarding-start`, made 1.5 s after the decline, was
+	/// swallowed and the app stayed on Welcome (`genre-card-family-0` never appeared). The decline is handled
+	/// asynchronously (`deny()`), then `RootView` swaps the consent for the tabs and fades the onboarding in, so
+	/// a tap sent as soon as the decline tap returns can land on a screen that is still being replaced. Hand
+	/// back only once the decline button is gone. Probable cause, not reproduced locally (no simulator here).
 	@MainActor
 	static func declineConsent(_ app: XCUIApplication) {
-		app.buttons["analytics-consent-decline"].tap()
+		let identifier = "analytics-consent-decline"
+		let decline = app.buttons[identifier]
+		XCTAssertTrue(decline.waitForExistence(timeout: 10), "\(identifier) did not appear")
+		decline.tap()
+		XCTAssertTrue(
+			decline.waitForNonExistence(timeout: 10), "\(identifier) is still on screen after the decline tap")
 	}
 
 	/// The first launch up to the end of the flow: Welcome, the first family opened, one of its genres ticked.
