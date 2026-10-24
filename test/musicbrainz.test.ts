@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { musicBrainzConfig } from "../src/config.js";
 import {
+	createMusicBrainzCatalog,
 	fetchArtistDiscographyMb,
 	fetchArtistEntityMb,
 	fetchArtistMembershipsMb,
@@ -2586,22 +2587,60 @@ describe("pickByTitleAndCredit: release groups of different primary types", () =
 			);
 		});
 
-		it("reads an off-shape secondary-types as none, never as a crash", async () => {
+		// MB always sends an array. Anything else is off schema: like a malformed primary-type, it makes the
+		// whole answer unusable (an outage, not a verdict) instead of being read as "no secondary type", which
+		// let a live album marked `"secondary-types": "Live"` pass for a studio one (TRA-566).
+		it.each([
+			["a string", "Live"],
+			["an object", { 0: "Live" }],
+			["an array holding a non-string", [null, 3]],
+			["an array mixing strings and a non-string", ["Live", 3]],
+			["null", null],
+			["an array holding a blank name", [""]],
+			["an array holding an untrimmed name", [" Live "]],
+		])("never keeps a release group whose secondary-types is %s", async (shape, secondaryTypes) => {
+			const title = `Odd Shape ${shape}`;
 			stubMb({
 				"release-groups": [
-					hit(album, "Odd Shape", [[INTER_ARMA, "Inter Arma"]], {
+					hit(album, title, [[INTER_ARMA, "Inter Arma"]], {
 						"primary-type": "Album",
-						"secondary-types": "Live",
-						"first-release-date": "2005-01-01",
-					}),
-					hit(compilation, "Odd Shape", [[INTER_ARMA, "Inter Arma"]], {
-						"primary-type": "Album",
-						"secondary-types": [null, 3],
+						"secondary-types": secondaryTypes,
 						"first-release-date": "1999-01-01",
+					}),
+					hit(compilation, title, [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"first-release-date": "2005-01-01",
 					}),
 				],
 			});
-			expect((await resolveReleaseGroupDetailed("Odd Shape", "Inter Arma")).identity?.mbid).toBe(compilation);
+			expect(await resolveReleaseGroupDetailed(title, "Inter Arma")).toEqual({
+				identity: null,
+				ambiguous: false,
+				unavailable: true,
+			});
+		});
+
+		// Same all-or-nothing rule as a malformed primary-type: the autocomplete shares the parser, so it
+		// answers nothing rather than a list that holds an unreadable hit.
+		it("blanks the project autocomplete on an off-shape secondary-types, like on an off-shape primary-type", async () => {
+			stubMb({
+				"release-groups": [
+					hit(album, "Odd Autocomplete", [[INTER_ARMA, "Inter Arma"]], { "secondary-types": "Live" }),
+				],
+			});
+			expect(await createMusicBrainzCatalog().searchByType("project", "Odd Autocomplete", 5)).toEqual([]);
+		});
+
+		it("still takes a release group whose secondary-types is absent or an empty array", async () => {
+			stubMb({
+				"release-groups": [
+					hit(album, "Well Formed", [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"secondary-types": [],
+					}),
+				],
+			});
+			expect((await resolveReleaseGroupDetailed("Well Formed", "Inter Arma")).identity?.mbid).toBe(album);
 		});
 	});
 
@@ -2971,6 +3010,66 @@ describe("fetchArtistDiscographyMb: credits and unavailability", () => {
 				],
 				ratingVotes: 12,
 			},
+		]);
+	});
+
+	// TRA-653: the separator between two credits is the only trace of a classical credit's shape ("Ellington;
+	// Buffalo Philharmonic, Falletta"). Third-party text: kept as given when it is a non-empty string, else absent.
+	it("carries the joinphrase of each credit that has one, and none for an absent, empty or invalid one", async () => {
+		stubBrowse(({ type }) =>
+			page(
+				type === "album"
+					? [
+							rg(1, {
+								"artist-credit": [
+									{ ...credit(KODE9, "Kode9"), joinphrase: "; " },
+									{ ...credit(SPACEAPE, "The Spaceape"), joinphrase: "" },
+									{ ...credit(rgId(90), "Third"), joinphrase: 42 },
+									credit(rgId(91), "Fourth"),
+								],
+							}),
+						]
+					: [],
+			),
+		);
+
+		const { releases } = await fetchArtistDiscographyMb(freshArtist());
+
+		expect(releases[0]?.artistCredits).toEqual([
+			{ mbid: KODE9, name: "Kode9", joinphrase: "; " },
+			{ mbid: SPACEAPE, name: "The Spaceape" },
+			{ mbid: rgId(90), name: "Third" },
+			{ mbid: rgId(91), name: "Fourth" },
+		]);
+		expect(releases[0]?.artistCredits[1]).not.toHaveProperty("joinphrase");
+	});
+
+	// A ";" must survive the credits that are dropped, else the shape of the credit depends on which artist repeats.
+	it("hands the joinphrase of a dropped credit (repeated artist, no artist id) to the credit before it", async () => {
+		stubBrowse(({ type }) =>
+			page(
+				type === "album"
+					? [
+							rg(1, {
+								"artist-credit": [
+									{ ...credit(KODE9, "Kode9"), joinphrase: ", " },
+									{ ...credit(SPACEAPE, "The Spaceape"), joinphrase: "; " },
+									{ ...credit(KODE9, "Kode9"), joinphrase: "" },
+									{ name: "Nobody", joinphrase: " & " },
+									{ ...credit(rgId(90), "Third"), joinphrase: "" },
+								],
+							}),
+						]
+					: [],
+			),
+		);
+
+		const { releases } = await fetchArtistDiscographyMb(freshArtist());
+
+		expect(releases[0]?.artistCredits).toEqual([
+			{ mbid: KODE9, name: "Kode9", joinphrase: ", " },
+			{ mbid: SPACEAPE, name: "The Spaceape", joinphrase: ";  & " },
+			{ mbid: rgId(90), name: "Third" },
 		]);
 	});
 

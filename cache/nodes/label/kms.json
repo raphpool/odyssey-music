@@ -83,6 +83,26 @@
       "slug": "artist:tronik-house",
       "type": "artist",
       "name": "Tronik House"
+    },
+    {
+      "slug": "artist:chez-damier",
+      "type": "artist",
+      "name": "Chez Damier"
+    },
+    {
+      "slug": "artist:mk",
+      "type": "artist",
+      "name": "MK"
+    },
+    {
+      "slug": "artist:derrick-carter",
+      "type": "artist",
+      "name": "Derrick Carter"
+    },
+    {
+      "slug": "artist:kenny-larkin",
+      "type": "artist",
+      "name": "Kenny Larkin"
     }
   ],
   "notable_releases": [
@@ -100,6 +120,16 @@
       "slug": "project:let-the-music",
       "type": "project",
       "name": "Let The Music (Lift You Up)"
+    },
+    {
+      "slug": "project:inner-city",
+      "type": "project",
+      "name": "Inner City"
+    },
+    {
+      "slug": "project:e-dancer",
+      "type": "project",
+      "name": "E-Dancer"
     }
   ]
 }

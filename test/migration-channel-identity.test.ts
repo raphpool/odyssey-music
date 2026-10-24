@@ -1,21 +1,25 @@
-import { execFileSync, spawn } from "node:child_process";
-import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { createServer, type Server } from "node:http";
 import type { AddressInfo } from "node:net";
-import { tmpdir } from "node:os";
-import { dirname, join, resolve } from "node:path";
+import { dirname, join } from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
-import { LIST_EDGES_BY_TYPE, type NodeType } from "../src/node-spec.js";
-import { parseSlug } from "../src/slug.js";
+import {
+	type ChannelFixture,
+	type ChannelOutcome,
+	createChannelWorkspace,
+	node,
+	type Obj,
+	ref,
+	removeTmpDirs,
+	runChannel as runChannelOnFixture,
+	writeGenreTaxonomy,
+	writeNode,
+} from "./helpers/migration-channel.js";
 
 // TRA-568: the three REAL identity migrations (artists -> works -> scope) through the real
 // deploy/sync-genre-cache.sh, in preview, on a small fixture. Offline: ssh and rsync are local fakes (as in
 // genre-cache-sync.test.ts) and MusicBrainz is a fake HTTP server on 127.0.0.1, reached through the
 // MB_BASE_URL the code under test already reads -- the external boundary is replaced, nothing else is.
-
-const script = resolve("deploy/sync-genre-cache.sh");
-const realRsync = execFileSync("bash", ["-c", "command -v rsync"], { encoding: "utf8" }).trim();
-const realNpx = execFileSync("bash", ["-c", "command -v npx"], { encoding: "utf8" }).trim();
 
 const ARTIST_STEP = "2026-10-15-backfill-artist-identity";
 const RELEASE_STEP = "2026-10-15-backfill-release-identity";
@@ -23,46 +27,6 @@ const SCOPE_STEP = "2026-10-16-scope-release-slugs";
 const ALL_STEPS = [ARTIST_STEP, RELEASE_STEP, SCOPE_STEP];
 
 const MBID_POLE = "45e00f0f-0000-4000-8000-000000000003";
-
-const dirs: string[] = [];
-function tmp(prefix: string): string {
-	const d = mkdtempSync(join(tmpdir(), prefix));
-	dirs.push(d);
-	return d;
-}
-
-type Obj = Record<string, unknown>;
-
-const ref = (slug: string, name: string): Obj => ({ slug, type: parseSlug(slug).type, name });
-
-function node(slug: string, name: string, fields: Obj = {}): Obj {
-	const type = parseSlug(slug).type;
-	const prose: Record<NodeType, Obj> = {
-		artist: { editorial_bio: "bio" },
-		project: { editorial_pitch: "pitch" },
-		track: { editorial_teaser: "teaser" },
-		label: { editorial_description: "description" },
-		genre: { editorial_definition: "definition", editorial_description: "description" },
-	};
-	return {
-		slug,
-		name,
-		type,
-		editorial_article: "x".repeat(100),
-		citations: [{ url: "https://example.com/a", title: "a" }],
-		materialized_at: "2026-10-16T00:00:00.000Z",
-		...prose[type],
-		...Object.fromEntries(LIST_EDGES_BY_TYPE[type].map((f) => [f, []])),
-		...fields,
-	};
-}
-
-function writeNode(cacheDir: string, n: Obj): void {
-	const { type, body } = parseSlug(n.slug as string);
-	const path = join(cacheDir, "nodes", type, `${body}.json`);
-	mkdirSync(dirname(path), { recursive: true });
-	writeFileSync(path, JSON.stringify(n));
-}
 
 const pendingEntry = (field: string, edge: Obj): Obj => ({ field, cardinality: "list", edge });
 
@@ -108,33 +72,19 @@ beforeAll(async () => {
 
 afterAll(async () => {
 	await new Promise<void>((done) => mb.close(() => done()));
-	for (const d of dirs.splice(0)) rmSync(d, { recursive: true, force: true });
+	removeTmpDirs();
 });
 
 // --- The fixture: a repo cache, and a server cache holding the prod-only artist ---
 
-interface Fixture {
-	repoCacheDir: string;
-	serverRoot: string;
-	binDir: string;
-	callsLog: string;
+interface Fixture extends ChannelFixture {
 	replayDir: string;
 }
 
-function writeFakeBin(dir: string, name: string, body: string): void {
-	const path = join(dir, name);
-	writeFileSync(path, `#!/usr/bin/env bash\n${body}\n`);
-	chmodSync(path, 0o755);
-}
-
 function makeFixture(): Fixture {
-	const root = tmp("identity-channel-");
-	const repoCacheDir = join(root, "repo", "cache");
-	const serverRoot = join(root, "server");
-	const binDir = join(root, "bin");
-	const callsLog = join(root, "npx-calls.log");
-	mkdirSync(binDir, { recursive: true });
-	writeFileSync(callsLog, "");
+	const base = createChannelWorkspace("identity-channel-");
+	const fx: Fixture = { ...base, replayDir: join(dirname(base.serverRoot), "replay") };
+	const { repoCacheDir, serverRoot } = fx;
 
 	// Repo: the stored-mbid Pole with a work credited to it, plus the genre the union's taxonomy guard wants.
 	writeNode(repoCacheDir, {
@@ -156,23 +106,7 @@ function makeFixture(): Fixture {
 		repoCacheDir,
 		node("project:steel", "Steel", { artists: [ref("artist:pole--stefan-betke", "Pole")] }),
 	);
-	mkdirSync(join(dirname(repoCacheDir), "data"), { recursive: true });
-	writeFileSync(
-		join(dirname(repoCacheDir), "data", "genre-taxonomy.json"),
-		JSON.stringify({
-			version: 2,
-			families: [{ key: "electronic", label: "Electronic", order: 0 }],
-			genres: [
-				{
-					id: "local:sync-fixture-genre",
-					name: "Sync Fixture Genre",
-					family: "electronic",
-					published: true,
-					sourceSlugs: ["genre:only-repo"],
-				},
-			],
-		}),
-	);
+	writeGenreTaxonomy(fx.repoDataDir);
 	// The same reverse edge recorded under both spellings of Pole (the key the scope merges), and an entry that
 	// would put a credit on the work `project:steel` once the scope renames it.
 	const discography = pendingEntry("discography", ref("project:steel", "Steel"));
@@ -194,98 +128,30 @@ function makeFixture(): Fixture {
 	});
 	writeNode(serverCache, node("artist:pole", "Pole", { origin: "Düsseldorf, Germany" }));
 	writeFileSync(join(serverCache, "pending-reverses.json"), JSON.stringify({ "artist:pole": [discography] }));
-	mkdirSync(join(serverRoot, "data"), { recursive: true });
-	writeFileSync(join(serverRoot, "data", "genre-redirects.json"), JSON.stringify({ redirects: {} }));
-	writeFileSync(join(serverRoot, "data", "slug-redirects.json"), JSON.stringify({ redirects: {} }));
-	writeFileSync(join(serverRoot, ".service-active"), "");
-
-	writeFakeBin(binDir, "ssh", 'printf "ssh %s\\n" "$*" >> "$TEST_CALLS.ssh"\nhost="$1"; shift\nbash -c "$*"');
-	writeFakeBin(
-		binDir,
-		"rsync",
-		`if [[ "$1" == "--server" ]]; then exec "$REAL_RSYNC" "$@"; fi
-args=()
-for a in "$@"; do
-  if [[ "$a" == *:* && "$a" != -* ]]; then args+=("\${a#*:}"); else args+=("$a"); fi
-done
-exec "$REAL_RSYNC" "\${args[@]}"`,
-	);
-	// Records every `npx tsx <script> <args>` (one JSON line each) before running the real one.
-	writeFakeBin(
-		binDir,
-		"npx",
-		`node -e 'require("fs").appendFileSync(process.env.TEST_CALLS, JSON.stringify([...process.argv.slice(1), "FLAG=" + process.env.ODYSSEY_SCOPED_RELEASE_SLUGS]) + "\\n")' -- "$@"
-exec "$REAL_NPX" "$@"`,
-	);
-	return { repoCacheDir, serverRoot, binDir, callsLog, replayDir: join(root, "replay") };
+	return fx;
 }
 
-interface Outcome {
-	status: number | null;
-	stdout: string;
-	stderr: string;
-	/** Argv of every `npx` call, in order. */
-	npx: string[][];
+interface Outcome extends ChannelOutcome {
 	/** The kind (artist, release-group, ...) of every MusicBrainz request made during the run. */
 	mbKinds: string[];
 }
 
-function runChannel(fx: Fixture, args: string[], env: Record<string, string> = {}): Promise<Outcome> {
+async function runChannel(fx: Fixture, args: string[], env: Record<string, string> = {}): Promise<Outcome> {
 	const before = mbKinds.length;
-	writeFileSync(fx.callsLog, "");
-	const childEnv: Record<string, string | undefined> = {
-		...process.env,
-		PATH: `${fx.binDir}:${process.env.PATH ?? ""}`,
-		SERVER: "test@fake-server",
-		REPO_CACHE_DIR: fx.repoCacheDir,
-		SERVER_CACHE_REMOTE: join(fx.serverRoot, "cache"),
-		SERVER_REDIRECTS_REMOTE: join(fx.serverRoot, "data", "genre-redirects.json"),
-		SERVER_SLUG_REDIRECTS_REMOTE: join(fx.serverRoot, "data", "slug-redirects.json"),
-		SERVER_BACKUP_DIR: join(fx.serverRoot, "backups"),
-		SERVER_CRAWL_LOCK: join(fx.serverRoot, ".crawl-lock"),
-		REPO_SLUG_REDIRECTS_PATH: join(fx.serverRoot, "data", "slug-redirects.json"),
-		TEST_CALLS: fx.callsLog,
-		REAL_RSYNC: realRsync,
-		REAL_NPX: realNpx,
-		SYNC_ALLOW_NON_MAIN: "1",
-		SYNC_ALLOW_DIRTY: "1",
+	const out = await runChannelOnFixture(fx, args, {
 		MB_BASE_URL: mbBase,
-		MB_MIN_INTERVAL_MS: "0",
 		MIGRATION_REPLAY_DIR: fx.replayDir,
 		...env,
-	};
-	// The channel must set the scoped-slug flag itself, for the migration process only.
-	delete childEnv.ODYSSEY_SCOPED_RELEASE_SLUGS;
-	return new Promise((done, fail) => {
-		const child = spawn("bash", [script, ...args], { env: childEnv });
-		let stdout = "";
-		let stderr = "";
-		child.stdout.on("data", (d: Buffer) => {
-			stdout += d.toString();
-		});
-		child.stderr.on("data", (d: Buffer) => {
-			stderr += d.toString();
-		});
-		child.on("error", fail);
-		child.on("close", (status) => {
-			const log = existsSync(fx.callsLog) ? readFileSync(fx.callsLog, "utf8") : "";
-			done({
-				status,
-				stdout,
-				stderr,
-				npx: log
-					.split("\n")
-					.filter(Boolean)
-					.map((l) => JSON.parse(l) as string[]),
-				mbKinds: mbKinds.slice(before),
-			});
-		});
 	});
+	return { ...out, mbKinds: mbKinds.slice(before) };
 }
 
 const migrationArgs = (names: string[]): string[] => names.flatMap((n) => ["--migration", n]);
 const callOf = (out: Outcome, step: string): string[] | undefined =>
 	out.npx.find((argv) => argv.some((a) => a.endsWith(`${step}.ts`)));
+/** The ODYSSEY_SCOPED_RELEASE_SLUGS a step ran under (the channel must set it itself), null when unset. */
+const scopedFlagOf = (out: Outcome, step: string): string | null | undefined =>
+	out.npxCalls.find((c) => c.argv.some((a) => a.endsWith(`${step}.ts`)))?.scoped;
 const flagValue = (argv: string[] | undefined, flag: string): string | undefined =>
 	argv?.[argv.indexOf(flag) + 1];
 
@@ -322,10 +188,11 @@ describe("migration channel: the three identity migrations (TRA-568)", () => {
 		expect(preview.stdout).toContain(`${SCOPE_STEP} (apply)`);
 		expect(preview.stdout).not.toContain("is off");
 		expect(process.env.ODYSSEY_SCOPED_RELEASE_SLUGS).toBeUndefined();
-		// ...and only the scope gets it: the artist and work backfills run on a cache that still holds unscoped slugs.
-		expect(callOf(preview, SCOPE_STEP)).toContain("FLAG=1");
-		expect(callOf(preview, ARTIST_STEP)).toContain("FLAG=0");
-		expect(callOf(preview, RELEASE_STEP)).toContain("FLAG=0");
+		// ...and the artist and work backfills get it too (TRA-599): the cache and the server are scoped and
+		// transliterated, so a slug they mint from a name must have that spelling (no exception list).
+		expect(scopedFlagOf(preview, SCOPE_STEP)).toBe("1");
+		expect(scopedFlagOf(preview, ARTIST_STEP)).toBe("1");
+		expect(scopedFlagOf(preview, RELEASE_STEP)).toBe("1");
 	});
 
 	it("calls the scope with the artist manifest written by this run's artist step", () => {

@@ -62,9 +62,9 @@
       "name": "Virgin Records"
     },
     {
-      "slug": "label:kms-records",
+      "slug": "label:kms",
       "type": "label",
-      "name": "KMS Records"
+      "name": "KMS"
     },
     {
       "slug": "label:armada-music",
@@ -77,19 +77,19 @@
       "slug": "project:say-something--inner-city",
       "type": "project",
       "name": "Say Something",
-      "artist": "Inner City",
       "mbid": "cd1b7d93-b886-40d4-bd59-47703813b266",
       "year": "2023",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Inner City"
     },
     {
       "slug": "project:ahnonghay-ep--inner-city",
       "type": "project",
       "name": "Ahnonghay EP",
-      "artist": "Inner City",
       "mbid": "390d2b16-51b6-49b9-a5e6-722afa9a07aa",
       "year": "2021",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Inner City"
     },
     {
       "slug": "project:we-all-move-together",
@@ -103,172 +103,172 @@
       "slug": "project:do-you-love-what-you-feel-2018--inner-city",
       "type": "project",
       "name": "Do You Love What You Feel 2018",
-      "artist": "Inner City",
       "mbid": "490f9770-3e73-4838-9ab6-f765ad38ee67",
       "year": "2018",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:you-give-me-that-feeling-pt-1--inner-city",
       "type": "project",
       "name": "You Give Me That Feeling, Pt. 1",
-      "artist": "Inner City",
       "mbid": "cc87e605-2234-4133-9f68-99256f243bc3",
       "year": "2018",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:you-give-me-that-feeling-pt-2--inner-city",
       "type": "project",
       "name": "You Give Me That Feeling, Pt. 2",
-      "artist": "Inner City",
       "mbid": "5cbee72a-20f3-4e8e-8fad-05cbc0607e56",
       "year": "2018",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:good-luck--inner-city",
       "type": "project",
       "name": "Good Luck",
-      "artist": "Inner City",
       "mbid": "9477d6a9-f0e2-4539-a426-004cf593ac81",
       "year": "2017",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:rise--inner-city",
       "type": "project",
       "name": "Rise",
-      "artist": "Inner City",
       "mbid": "d3aa1e5b-41fa-4ed8-9143-0e7ad916bcff",
       "year": "2011",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:dangerous-liason-to-the-innercity-it-s-a-lovestory--inner-city",
       "type": "project",
       "name": "Dangerous Liason To The Innercity - It's A Lovestory...",
-      "artist": "Inner City",
       "mbid": "c2e53af3-509b-456f-b0e9-773b280e4aa5",
       "year": "2007",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Inner City"
     },
     {
       "slug": "project:good-love--inner-city",
       "type": "project",
       "name": "Good Love",
-      "artist": "Inner City",
       "mbid": "64f6dad7-1782-4e11-86b5-3bc212c9123f",
       "year": "2001",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:good-life-buena-vida--inner-city",
       "type": "project",
       "name": "Good Life (Buena Vida)",
-      "artist": "Inner City",
       "mbid": "9ce50cd3-b1ac-36cf-8495-7809b500f81f",
       "year": "1999",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:do-me-right--inner-city",
       "type": "project",
       "name": "Do Me Right",
-      "artist": "Inner City",
       "mbid": "0934b350-fea6-4927-93f6-177748729134",
       "year": "1996",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:hiatus--inner-city",
       "type": "project",
       "name": "Hiatus",
-      "artist": "Inner City",
       "mbid": "7c720eb6-ec39-45c3-97fd-f13707a393af",
       "year": "1995",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Inner City"
     },
     {
       "slug": "project:your-love--inner-city",
       "type": "project",
       "name": "Your Love",
-      "artist": "Inner City",
       "mbid": "a0424eda-021b-4841-98db-5a43366d69d8",
       "year": "1995",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:your-love-hiatus--inner-city",
       "type": "project",
       "name": "Your Love / Hiatus",
-      "artist": "Inner City",
       "mbid": "189d8b9b-6ecf-3eb3-a875-96ae7a80d1cc",
       "year": "1995",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Inner City"
     },
     {
       "slug": "project:ahnonghay--inner-city",
       "type": "project",
       "name": "Ahnonghay",
-      "artist": "Inner City",
       "mbid": "7cb97782-6226-403e-9287-d7014c34ee07",
       "year": "1994",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:do-ya--inner-city",
       "type": "project",
       "name": "Do Ya",
-      "artist": "Inner City",
       "mbid": "a1d32b2f-8927-3f30-b75b-bb5925f4d457",
       "year": "1994",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:share-my-life--inner-city",
       "type": "project",
       "name": "Share My Life",
-      "artist": "Inner City",
       "mbid": "1a75b365-1e52-44e1-bdf4-b61783a79ce1",
       "year": "1994",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:back-together-again--inner-city",
       "type": "project",
       "name": "Back Together Again",
-      "artist": "Inner City",
       "mbid": "24a31a15-f81e-42c8-9c63-6d1288dcf435",
       "year": "1993",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:big-fun-good-life--inner-city",
       "type": "project",
       "name": "Big Fun / Good Life",
-      "artist": "Inner City",
       "mbid": "0a78e18e-d015-4481-9d9c-37f445a9d153",
       "year": "1993",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:follow-your-heart--inner-city",
       "type": "project",
       "name": "Follow Your Heart",
-      "artist": "Inner City",
       "mbid": "fc208929-f2a6-43a5-a2a5-ca4f0ddff563",
       "year": "1992",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:pennies-from-heaven--inner-city",
       "type": "project",
       "name": "Pennies From Heaven",
-      "artist": "Inner City",
       "mbid": "35934a4a-acde-3c23-a5a2-1d34736c9e21",
       "year": "1992",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:praise",
@@ -282,19 +282,19 @@
       "slug": "project:let-it-reign--inner-city",
       "type": "project",
       "name": "Let It Reign",
-      "artist": "Inner City",
       "mbid": "f46ec706-ec4f-4f09-8732-41d3f1c3f6af",
       "year": "1991",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:till-we-meet-again--inner-city",
       "type": "project",
       "name": "Till We Meet Again",
-      "artist": "Inner City",
       "mbid": "597d59f4-2605-39a3-86bb-195b2d003290",
       "year": "1991",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:fire",
@@ -308,28 +308,28 @@
       "slug": "project:that-man-he-s-all-mine--inner-city",
       "type": "project",
       "name": "That Man (He's All Mine)",
-      "artist": "Inner City",
       "mbid": "e86e11d4-d346-4eab-914b-a082d6f1dfee",
       "year": "1990",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:ain-t-nobody-better--inner-city",
       "type": "project",
       "name": "Ain't Nobody Better",
-      "artist": "Inner City",
       "mbid": "8967d940-ebb5-378a-b25a-db59dd1de712",
       "year": "1989",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:do-you-love-what-you-feel--inner-city",
       "type": "project",
       "name": "Do You Love What You Feel",
-      "artist": "Inner City",
       "mbid": "e6e7f8a2-6950-4e08-99bf-0e9984ad5a9a",
       "year": "1989",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Inner City"
     },
     {
       "slug": "project:paradise",
@@ -343,28 +343,28 @@
       "slug": "project:whatcha-gonna-do-with-my-lovin--inner-city",
       "type": "project",
       "name": "Whatcha Gonna Do With My Lovin'",
-      "artist": "Inner City",
       "mbid": "cafd1aa1-8b96-4dcd-839d-db873d9c45e9",
       "year": "1989",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:big-fun--inner-city",
       "type": "project",
       "name": "Big Fun",
-      "artist": "Inner City",
       "mbid": "17acb40b-efec-3479-b287-1d06767f1454",
       "year": "1988",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:good-life--inner-city",
       "type": "project",
       "name": "Good Life",
-      "artist": "Inner City",
       "mbid": "80a2724e-1efb-41c1-8944-959ef6ee5684",
       "year": "1988",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     },
     {
       "slug": "project:techno-the-new-dance-sound-of-detroit",
@@ -376,9 +376,9 @@
       "slug": "project:big-club--inner-city",
       "type": "project",
       "name": "Big Club",
-      "artist": "Inner City",
       "mbid": "72ed7b87-a193-4ae1-814f-f612dec8e13b",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Inner City"
     }
   ],
   "notable_tracks": [
