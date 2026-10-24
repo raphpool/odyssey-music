@@ -282,6 +282,29 @@ describe("planDetachments", () => {
 });
 
 describe("the closed list", () => {
+	it("keeps Spiritual High on the compilation, scoped on Richie Hawtin (UP!), and removes no entry (B1)", () => {
+		const item = DETACHMENTS.find((d) => d.track === "track:spiritual-high--moodswings") as Listed;
+		const credits = item.projectCredit.map((slug) => ref(slug, slug.slice("artist:".length)));
+		const titles = ["A", "B", "C"].map((t) => ref(`track:${t.toLowerCase()}--x`, t));
+		const nodes = [
+			node(item.project, "Artificial Intelligence", {
+				artists: credits,
+				tracklist: [titles[0], ref(item.track, "Spiritual High"), titles[1], titles[2]],
+			}),
+			node(item.track, "Spiritual High", { artists: item.trackCredit.map((s) => ref(s, s)) }),
+		];
+		const { writes, manifest } = plan(nodes, [item]);
+		expect(manifest.errors).toEqual([]);
+		const tracklist = ([...writes.values()][0]?.tracklist as Obj[]).map((e) => e.slug);
+		expect(tracklist).toEqual([
+			"track:a--x",
+			"track:spiritual-high--richie-hawtin",
+			"track:b--x",
+			"track:c--x",
+		]);
+		expect(DETACHMENTS.filter((d) => d.action === "detach" && d.scope === null)).toEqual([]);
+	});
+
 	it("names each entry once, with a proof, scoped on one of the project's credits", () => {
 		const keys = DETACHMENTS.map((d) => `${d.project}|${d.track}`);
 		expect(new Set(keys).size).toBe(keys.length);

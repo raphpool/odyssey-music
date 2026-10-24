@@ -150,8 +150,9 @@ const PROJECTS: readonly ProjectProof[] = [
 		],
 	},
 	{
-		// Seven credited artists, none of them Moodswings: which one performs the piece is not proved, and a scope
-		// on the first credit would mint the wrong credit when the track is materialized.
+		// Seven credited artists, none of them Moodswings. "Spiritual High" on this compilation is UP!'s, that is
+		// Richie Hawtin on MusicBrainz (relation "is person"), who is credited on the project: scoped on him, not on
+		// the first credit (review of #623, B1: the entry was first removed, wrongly).
 		project: "project:artificial-intelligence",
 		credit: [
 			"artist:aphex-twin",
@@ -162,13 +163,13 @@ const PROJECTS: readonly ProjectProof[] = [
 			"artist:b12",
 			"artist:alex-paterson",
 		],
-		scope: null,
+		scope: "artist:richie-hawtin",
 		tracks: [
 			{
 				track: "track:spiritual-high--moodswings",
 				credit: ["artist:moodswings", "artist:chrissie-hynde"],
 				proof:
-					"credited to Moodswings and Chrissie Hynde, 1991, no project; none of the compilation's artists",
+					"credited to Moodswings and Chrissie Hynde, 1991, no project; the compilation's piece is UP!'s, i.e. Richie Hawtin (MusicBrainz)",
 			},
 		],
 	},
