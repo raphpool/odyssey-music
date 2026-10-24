@@ -1,24 +1,24 @@
-import { execFileSync, spawn } from "node:child_process";
-import {
-	chmodSync,
-	copyFileSync,
-	existsSync,
-	mkdirSync,
-	mkdtempSync,
-	readdirSync,
-	readFileSync,
-	rmSync,
-	statSync,
-	writeFileSync,
-} from "node:fs";
+import { copyFileSync, existsSync, writeFileSync } from "node:fs";
 import { createServer, type Server } from "node:http";
 import type { AddressInfo } from "node:net";
-import { tmpdir } from "node:os";
-import { dirname, join, resolve } from "node:path";
+import { join, resolve } from "node:path";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { MIGRATION_NAME } from "../scripts/migrations/2026-10-21-backfill-discography-mbid.js";
-import { LIST_EDGES_BY_TYPE, type NodeType } from "../src/node-spec.js";
-import { parseSlug } from "../src/slug.js";
+import {
+	type ChannelFixture,
+	type ChannelOutcome,
+	createChannelWorkspace,
+	manifestReader,
+	node,
+	type Obj,
+	readServer,
+	ref,
+	removeTmpDirs,
+	runChannel,
+	serverTree,
+	writeGenreTaxonomy,
+	writeNode,
+} from "./helpers/migration-channel.js";
 
 // TRA-619: the REAL discography backfill (TRA-618) through the real deploy/sync-genre-cache.sh, in preview and
 // with --apply, on a small fixture (the pattern of migration-channel-merge-duplicate-labels.test.ts: ssh, rsync
@@ -27,22 +27,18 @@ import { parseSlug } from "../src/slug.js";
 // the flags the script parses, the manifest shape, no deletion, pending-reverses.json untouched, the union
 // check, the refusal of a run whose MusicBrainz does not answer.
 
-const script = resolve("deploy/sync-genre-cache.sh");
-const realRsync = execFileSync("bash", ["-c", "command -v rsync"], { encoding: "utf8" }).trim();
-const realNpx = execFileSync("bash", ["-c", "command -v npx"], { encoding: "utf8" }).trim();
-
-const dirs: string[] = [];
 const servers: Server[] = [];
 afterAll(async () => {
-	for (const d of dirs.splice(0)) rmSync(d, { recursive: true, force: true });
+	removeTmpDirs();
 	await Promise.all(servers.splice(0).map((s) => new Promise((done) => s.close(done))));
 });
 
-type Obj = Record<string, unknown>;
-const ref = (slug: string, name: string): Obj => ({ slug, type: parseSlug(slug).type, name });
-
 const FLASH_MBID = "5b11f4ce-a62d-471e-81fc-a69a8278c7da";
 const PROD_MBID = "f1c6f5a0-7a3e-4d3c-9b6e-2c1d8e4a5b77";
+// Accented on purpose (TRA-632): the slug of the appended work holds a letter only the scoped form transliterates
+// (o-slash, ae), so a flag left off would mint `etoile-s-ndag-ther--flash` and no node would answer to it.
+const SECOND_WIND_TITLE = "\u00c9toile S\u00f8ndag \u00c6ther";
+const SECOND_WIND_SLUG = "project:etoile-sondag-aether--flash";
 const RG = {
 	firstLight: "11111111-1111-4111-8111-111111111111",
 	secondWind: "22222222-2222-4222-8222-222222222222",
@@ -62,7 +58,7 @@ const releaseGroup = (id: string, title: string, type: string, date: string, who
 const MB_ANSWERS: Record<string, Obj[]> = {
 	[FLASH_MBID]: [
 		releaseGroup(RG.firstLight, "First Light", "Album", "1999-05-01", [FLASH_MBID, "Flash"]),
-		releaseGroup(RG.secondWind, "Second Wind", "Album", "2003-03-03", [FLASH_MBID, "Flash"]),
+		releaseGroup(RG.secondWind, SECOND_WIND_TITLE, "Album", "2003-03-03", [FLASH_MBID, "Flash"]),
 	],
 	[PROD_MBID]: [
 		releaseGroup(RG.nightShift, "Night Shift", "Album", "2001-01-01", [PROD_MBID, "Prod Only"]),
@@ -95,41 +91,6 @@ async function startMusicBrainz(
 	return { baseUrl: `http://127.0.0.1:${(server.address() as AddressInfo).port}/ws/2`, asked, refused };
 }
 
-function node(slug: string, name: string, fields: Obj = {}): Obj {
-	const type = parseSlug(slug).type;
-	const prose: Record<NodeType, Obj> = {
-		artist: { editorial_bio: "bio" },
-		project: { editorial_pitch: "pitch" },
-		track: { editorial_teaser: "teaser" },
-		label: { editorial_description: "description" },
-		genre: { editorial_definition: "definition" },
-	};
-	return {
-		slug,
-		name,
-		type,
-		editorial_article: "x".repeat(100),
-		citations: [{ url: "https://example.com/a", title: "a" }],
-		materialized_at: "2026-10-16T00:00:00.000Z",
-		...prose[type],
-		...Object.fromEntries(LIST_EDGES_BY_TYPE[type].map((f) => [f, []])),
-		...fields,
-	};
-}
-
-function writeNode(cacheDir: string, n: Obj): void {
-	const { type, body } = parseSlug(n.slug as string);
-	const path = join(cacheDir, "nodes", type, `${body}.json`);
-	mkdirSync(dirname(path), { recursive: true });
-	writeFileSync(path, JSON.stringify(n));
-}
-
-function writeFakeBin(dir: string, name: string, body: string): void {
-	const path = join(dir, name);
-	writeFileSync(path, `#!/usr/bin/env bash\n${body}\n`);
-	chmodSync(path, 0o755);
-}
-
 const PENDING_REPO = {
 	"artist:unborn-repo": [{ field: "labels", cardinality: "list", edge: ref("label:warp", "Warp") }],
 };
@@ -137,60 +98,38 @@ const PENDING_PROD = {
 	"artist:unborn-prod": [{ field: "labels", cardinality: "list", edge: ref("label:warp", "Warp") }],
 };
 
-interface Fixture {
-	repoCacheDir: string;
-	serverRoot: string;
-	binDir: string;
-	callsLog: string;
+interface Fixture extends ChannelFixture {
 	mb: { baseUrl: string; asked: string[]; refused: string[] };
 }
 
 async function makeFixture(mbDown = false): Promise<Fixture> {
-	const root = mkdtempSync(join(tmpdir(), "discography-channel-"));
-	dirs.push(root);
-	const repoCacheDir = join(root, "repo", "cache");
-	const serverRoot = join(root, "server");
-	const binDir = join(root, "bin");
-	const callsLog = join(root, "calls.log");
-	mkdirSync(binDir, { recursive: true });
-	writeFileSync(callsLog, "");
+	const base = createChannelWorkspace("discography-channel-");
+	const fx: Fixture = { ...base, mb: await startMusicBrainz(mbDown) };
+	// The channel asks the fake MusicBrainz, and reads the repo's own tables.
+	fx.env.MB_BASE_URL = fx.mb.baseUrl;
+	fx.env.REPO_SLUG_REDIRECTS_PATH = join(fx.repoDataDir, "slug-redirects.json");
+	fx.env.REPO_REDIRECTS_PATH = join(fx.repoDataDir, "genre-redirects.json");
+	fx.env.REPO_IDENTITY_EXCLUSIONS_PATH = join(fx.repoDataDir, "identity-exclusions.json");
 
 	// The repo: one artist with an mbid whose list has an entry WITHOUT mbid, and one artist without mbid.
-	writeNode(repoCacheDir, node("genre:only-repo", "only-repo"));
+	writeNode(fx.repoCacheDir, node("genre:only-repo", "only-repo"));
 	writeNode(
-		repoCacheDir,
+		fx.repoCacheDir,
 		node("artist:flash", "Flash", {
 			mbid: FLASH_MBID,
 			discography: [ref("project:first-light", "First Light")],
 		}),
 	);
-	writeNode(repoCacheDir, node("artist:solo", "Solo"));
-	writeFileSync(join(repoCacheDir, "pending-reverses.json"), JSON.stringify(PENDING_REPO));
-	const repoData = join(dirname(repoCacheDir), "data");
-	mkdirSync(repoData, { recursive: true });
-	writeFileSync(
-		join(repoData, "genre-taxonomy.json"),
-		JSON.stringify({
-			version: 2,
-			families: [{ key: "electronic", label: "Electronic", order: 0 }],
-			genres: [
-				{
-					id: "local:sync-fixture-genre",
-					name: "Sync Fixture Genre",
-					family: "electronic",
-					published: true,
-					sourceSlugs: ["genre:only-repo"],
-				},
-			],
-		}),
-	);
-	writeFileSync(join(repoData, "slug-redirects.json"), JSON.stringify({ redirects: {} }));
+	writeNode(fx.repoCacheDir, node("artist:solo", "Solo"));
+	writeFileSync(join(fx.repoCacheDir, "pending-reverses.json"), JSON.stringify(PENDING_REPO));
+	writeGenreTaxonomy(fx.repoDataDir);
+	writeFileSync(fx.env.REPO_SLUG_REDIRECTS_PATH, JSON.stringify({ redirects: {} }));
 	// The union's own genre merges mint redirects the committed table must already hold: take the repo's.
-	copyFileSync(resolve("data/genre-redirects.json"), join(repoData, "genre-redirects.json"));
-	writeFileSync(join(repoData, "identity-exclusions.json"), JSON.stringify({ artists: {} }));
+	copyFileSync(resolve("data/genre-redirects.json"), fx.env.REPO_REDIRECTS_PATH);
+	writeFileSync(fx.env.REPO_IDENTITY_EXCLUSIONS_PATH, JSON.stringify({ artists: {} }));
 
 	// The server: a snapshot with an artist only prod has, mbid included.
-	const serverCache = join(serverRoot, "cache");
+	const serverCache = join(fx.serverRoot, "cache");
 	writeNode(serverCache, node("genre:only-server", "only-server"));
 	writeNode(
 		serverCache,
@@ -200,134 +139,21 @@ async function makeFixture(mbDown = false): Promise<Fixture> {
 		}),
 	);
 	writeFileSync(join(serverCache, "pending-reverses.json"), JSON.stringify(PENDING_PROD));
-	mkdirSync(join(serverRoot, "data"), { recursive: true });
-	writeFileSync(join(serverRoot, "data", "genre-redirects.json"), JSON.stringify({ redirects: {} }));
-	writeFileSync(join(serverRoot, "data", "slug-redirects.json"), JSON.stringify({ redirects: {} }));
-	writeFileSync(join(serverRoot, ".service-active"), "");
-
-	writeFakeBin(
-		binDir,
-		"ssh",
-		`host="$1"; shift
-cmd="$*"
-case "$cmd" in
-  *"systemctl stop odyssey-server.service"*) rm -f "$TEST_SERVICE_MARKER" ;;
-  *"systemctl start odyssey-server.service"*) touch "$TEST_SERVICE_MARKER" ;;
-  *"systemctl is-active --quiet odyssey-server.service"*) [[ -f "$TEST_SERVICE_MARKER" ]] ;;
-  *) bash -c "$cmd" ;;
-esac`,
-	);
-	writeFakeBin(binDir, "curl", "echo ok");
-	// Records every rsync (one JSON line, the arguments as received) before running the real one.
-	writeFakeBin(
-		binDir,
-		"rsync",
-		`if [[ "$1" == "--server" ]]; then exec "$REAL_RSYNC" "$@"; fi
-node -e 'require("fs").appendFileSync(process.env.TEST_CALLS, JSON.stringify({ rsync: process.argv.slice(1) }) + "\\n")' -- "$@"
-args=()
-for a in "$@"; do
-  if [[ "$a" == *:* && "$a" != -* ]]; then args+=("\${a#*:}"); else args+=("$a"); fi
-done
-exec "$REAL_RSYNC" "\${args[@]}"`,
-	);
-	// Records every `npx tsx <script> <args>` with the slug flag it runs under, then runs the real one.
-	writeFakeBin(
-		binDir,
-		"npx",
-		`node -e 'require("fs").appendFileSync(process.env.TEST_CALLS, JSON.stringify({ npx: process.argv.slice(1), scoped: process.env.ODYSSEY_SCOPED_RELEASE_SLUGS ?? null }) + "\\n")' -- "$@"
-exec "$REAL_NPX" "$@"`,
-	);
-	return { repoCacheDir, serverRoot, binDir, callsLog, mb: await startMusicBrainz(mbDown) };
+	return fx;
 }
 
-interface Outcome {
-	status: number | null;
-	stdout: string;
-	stderr: string;
-	rsyncs: string[][];
-	npxs: { npx: string[]; scoped: string | null }[];
-}
-
-function runChannel(fx: Fixture, args: string[]): Promise<Outcome> {
-	writeFileSync(fx.callsLog, "");
-	const env: Record<string, string | undefined> = {
-		...process.env,
-		PATH: `${fx.binDir}:${process.env.PATH ?? ""}`,
-		SERVER: "test@fake-server",
-		REPO_CACHE_DIR: fx.repoCacheDir,
-		SERVER_CACHE_REMOTE: join(fx.serverRoot, "cache"),
-		SERVER_REDIRECTS_REMOTE: join(fx.serverRoot, "data", "genre-redirects.json"),
-		SERVER_SLUG_REDIRECTS_REMOTE: join(fx.serverRoot, "data", "slug-redirects.json"),
-		SERVER_BACKUP_DIR: join(fx.serverRoot, "backups"),
-		SERVER_CRAWL_LOCK: join(fx.serverRoot, ".crawl-lock"),
-		REPO_SLUG_REDIRECTS_PATH: join(dirname(fx.repoCacheDir), "data", "slug-redirects.json"),
-		REPO_REDIRECTS_PATH: join(dirname(fx.repoCacheDir), "data", "genre-redirects.json"),
-		REPO_IDENTITY_EXCLUSIONS_PATH: join(dirname(fx.repoCacheDir), "data", "identity-exclusions.json"),
-		TEST_SERVICE_MARKER: join(fx.serverRoot, ".service-active"),
-		TEST_CALLS: fx.callsLog,
-		REAL_RSYNC: realRsync,
-		REAL_NPX: realNpx,
-		SYNC_ALLOW_NON_MAIN: "1",
-		SYNC_ALLOW_DIRTY: "1",
-		MB_BASE_URL: fx.mb.baseUrl,
-		MB_MIN_INTERVAL_MS: "0",
-	};
-	// No key in the environment: the migration has no LLM, this makes it a fact of the run.
-	delete env.GEMINI_API_KEY;
-	return new Promise((done, fail) => {
-		const child = spawn("bash", [script, ...args], { env });
-		let stdout = "";
-		let stderr = "";
-		child.stdout.on("data", (d: Buffer) => {
-			stdout += d.toString();
-		});
-		child.stderr.on("data", (d: Buffer) => {
-			stderr += d.toString();
-		});
-		child.on("error", fail);
-		child.on("close", (status) => {
-			const lines = (existsSync(fx.callsLog) ? readFileSync(fx.callsLog, "utf8") : "")
-				.split("\n")
-				.filter(Boolean)
-				.map((l) => JSON.parse(l) as Obj);
-			done({
-				status,
-				stdout,
-				stderr,
-				rsyncs: lines.filter((l) => "rsync" in l).map((l) => l.rsync as string[]),
-				npxs: lines.filter((l) => "npx" in l) as Outcome["npxs"],
-			});
-		});
-	});
-}
-
-const manifestOf = (out: Outcome): string =>
-	new RegExp(`==> Migration manifest: ${MIGRATION_NAME}\\n([\\s\\S]*?)\\n\\n`).exec(out.stdout)?.[1] ?? "";
-const readServer = (fx: Fixture, ...parts: string[]): Obj =>
-	JSON.parse(readFileSync(join(fx.serverRoot, ...parts), "utf8")) as Obj;
+const manifestOf = manifestReader(MIGRATION_NAME);
 const serverArtist = (fx: Fixture, body: string): Obj =>
 	readServer(fx, "cache", "nodes", "artist", `${body}.json`);
 const mbidsOf = (list: unknown): (string | undefined)[] => (list as { mbid?: string }[]).map((e) => e.mbid);
 
-/** Every file of the server's cache/ and data/, path -> bytes: what "nothing was written" is compared on. */
-function serverTree(fx: Fixture): Record<string, string> {
-	const tree: Record<string, string> = {};
-	for (const sub of ["cache", "data"]) {
-		const base = join(fx.serverRoot, sub);
-		for (const rel of readdirSync(base, { recursive: true, encoding: "utf8" })) {
-			if (statSync(join(base, rel)).isFile()) tree[`${sub}/${rel}`] = readFileSync(join(base, rel), "utf8");
-		}
-	}
-	return tree;
-}
-
 describe("migration channel: the discography backfill (TRA-619)", () => {
 	let fx: Fixture;
 	let serverBefore: Record<string, string>;
-	let preview: Outcome;
+	let preview: ChannelOutcome;
 	let serverAfterPreview: Record<string, string>;
 	let backupsAfterPreview: boolean;
-	let apply: Outcome;
+	let apply: ChannelOutcome;
 
 	beforeAll(async () => {
 		fx = await makeFixture();
@@ -343,12 +169,11 @@ describe("migration channel: the discography backfill (TRA-619)", () => {
 		expect(preview.status).toBe(0);
 		expect(preview.stdout).toContain("Preview only");
 		expect(manifestOf(preview)).not.toBe("");
-		expect(JSON.parse(manifestOf(preview))).toMatchObject({
-			migration: MIGRATION_NAME,
-			removed: [],
-			renamed: {},
-			redirects: {},
-		});
+		const previewManifest = JSON.parse(manifestOf(preview)) as Obj;
+		expect(previewManifest).toMatchObject({ migration: MIGRATION_NAME, removed: [] });
+		// toMatchObject({}) would accept any object: these are compared whole.
+		expect(previewManifest.renamed).toEqual({});
+		expect(previewManifest.redirects).toEqual({});
 		// An rsync reads the server (source) but never writes it: no destination, the last argument, is remote.
 		expect(preview.rsyncs.length).toBeGreaterThan(0);
 		for (const args of preview.rsyncs) expect(args.at(-1)).not.toMatch(/^test@fake-server:/);
@@ -357,9 +182,9 @@ describe("migration channel: the discography backfill (TRA-619)", () => {
 	});
 
 	it("hands --apply, --manifest and --data-dir to the script, with no --resume and the channel's slug flag", () => {
-		const call = preview.npxs.find((c) => c.npx.some((x) => x.endsWith(`${MIGRATION_NAME}.ts`)));
+		const call = preview.npxCalls.find((c) => c.argv.some((x) => x.endsWith(`${MIGRATION_NAME}.ts`)));
 		expect(call).toBeDefined();
-		const argv = call?.npx ?? [];
+		const argv = call?.argv ?? [];
 		expect(argv).toContain("--apply");
 		expect(argv).not.toContain("--resume");
 		expect(argv[argv.indexOf("--manifest") + 1]).toMatch(new RegExp(`${MIGRATION_NAME}\\.manifest\\.json$`));
@@ -375,7 +200,10 @@ describe("migration channel: the discography backfill (TRA-619)", () => {
 	it("--apply ships the repo artist and the prod-only artist with completed discographies, deleting nothing", () => {
 		expect(apply.stderr).not.toMatch(/ERROR/);
 		expect(apply.status).toBe(0);
-		expect(JSON.parse(manifestOf(apply))).toMatchObject({ removed: [], renamed: {}, redirects: {} });
+		const applyManifest = JSON.parse(manifestOf(apply)) as Obj;
+		expect(applyManifest.removed).toEqual([]);
+		expect(applyManifest.renamed).toEqual({});
+		expect(applyManifest.redirects).toEqual({});
 		expect(apply.stdout).not.toContain("Removing");
 		for (const [artist, mbids] of [
 			["flash", [RG.firstLight, RG.secondWind]],
@@ -390,9 +218,11 @@ describe("migration channel: the discography backfill (TRA-619)", () => {
 			slug: "project:first-light",
 			name: "First Light",
 		});
+		// ...with the scoped, transliterated slug (title--artist) the cache and the server use.
 		expect(flash.find((e) => e.mbid === RG.secondWind)).toMatchObject({
+			slug: SECOND_WIND_SLUG,
 			type: "project",
-			name: "Second Wind",
+			name: SECOND_WIND_TITLE,
 		});
 		// A discography backfill writes no work and no inverse edge: cache/nodes/project/ does not exist.
 		expect(existsSync(join(fx.serverRoot, "cache", "nodes", "project"))).toBe(false);
@@ -410,8 +240,8 @@ describe("migration channel: the discography backfill (TRA-619)", () => {
 	});
 
 	it("passes the migrated union through validate-migrated-union.ts, which accepts it", () => {
-		const check = apply.npxs.find(
-			(c) => c.npx.some((x) => x.endsWith("validate-migrated-union.ts")) && c.npx.includes("check"),
+		const check = apply.npxCalls.find(
+			(c) => c.argv.some((x) => x.endsWith("validate-migrated-union.ts")) && c.argv.includes("check"),
 		);
 		expect(check).toBeDefined();
 		expect(apply.stdout + apply.stderr).not.toContain("the migrated union is invalid");

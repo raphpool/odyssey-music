@@ -39,6 +39,11 @@ export interface CacheStats {
 interface CacheWriteDelta {
 	written: number;
 	revUpdates: number;
+	/**
+	 * Exact text commitLocked put on disk for the node, set once the file has landed. A rollback restores the
+	 * backup only while the file still holds this text (TRA-555); unset means the commit never landed.
+	 */
+	committedText?: string;
 }
 
 /**
@@ -451,7 +456,9 @@ export class NodeCache {
 		const validated = readNodePayloadSchema.parse(merged) as NodePayload;
 		const file = this.pathFor(validated.slug);
 		await mkdir(dirname(file), { recursive: true });
-		await atomicWriteJson(file, validated);
+		const text = jsonText(validated);
+		await atomicWriteText(file, text);
+		delta.committedText = text;
 		this.stats.written++;
 		delta.written++;
 		if (applicable.length) {
@@ -470,7 +477,8 @@ export class NodeCache {
 	 * pending for the node are merged like write() does.
 	 *
 	 * Errors from `fn` or from validation leave the file untouched; a failure after the write (reverse-edge
-	 * emission, pending flush) restores the previous file like replace(). Returns whether a write happened;
+	 * emission, pending flush) restores the previous file like replace(), unless the node was rewritten since
+	 * the commit (see rollbackFromBackup). Returns whether a write happened;
 	 * a missing node throws NotFoundError. `fn` runs while the lock is held: it must not call back into
 	 * this cache for the same slug (it would wait on itself).
 	 */
@@ -514,16 +522,7 @@ export class NodeCache {
 					await this.emitReverses(committed, delta);
 					await this.flushPending();
 				} catch (error) {
-					this.stats.written -= delta.written;
-					this.stats.revUpdates -= delta.revUpdates;
-					try {
-						await rename(backup, file);
-					} catch (rollbackError) {
-						throw new AggregateError(
-							[error, rollbackError],
-							`Failed to update ${slug} and restore its previous source file`,
-						);
-					}
+					await this.rollbackFromBackup(slug, backup, delta, "update", error);
 					throw error;
 				}
 				await unlink(backup).catch((error: unknown) => {
@@ -562,16 +561,7 @@ export class NodeCache {
 			try {
 				await this.writeParsed(parsed, delta);
 			} catch (error) {
-				this.stats.written -= delta.written;
-				this.stats.revUpdates -= delta.revUpdates;
-				try {
-					await rename(backup, file);
-				} catch (rollbackError) {
-					throw new AggregateError(
-						[error, rollbackError],
-						`Failed to replace ${parsed.slug} and restore its previous source file`,
-					);
-				}
+				await this.rollbackFromBackup(parsed.slug, backup, delta, "replace", error);
 				throw error;
 			}
 
@@ -586,6 +576,86 @@ export class NodeCache {
 				}
 			}
 		});
+	}
+
+	/**
+	 * Undoes update()/replace() after a failure that came once the node had been committed (reverse-edge
+	 * emission, pending flush), under the node's lock (TRA-555).
+	 *
+	 * 2026-10-24: this used to be a bare `rename(backup, file)` outside any lock. Another node's reverse-edge
+	 * emission writes this slug under `runLocked` only, so it could land between the commit and the rename,
+	 * and the rename then overwrote it silently. Now the restore waits for the lock and happens only if the
+	 * file still holds exactly what this operation committed; a node rewritten since keeps its content (the
+	 * failed operation then stays applied, and the skipped rollback is logged).
+	 *
+	 * Known limits, both consequences of comparing the file's text rather than counting writes:
+	 * - a rewrite made by the failing operation itself (a node listing its own slug through an asymmetric
+	 *   pair such as influences/influenced) is indistinguishable from a foreign one, so its rollback is skipped;
+	 * - a concurrent writer that produces exactly the committed text (an inverse edge, or an mbid, that the
+	 *   committed node already carries) leaves no trace, so the rollback still restores the backup and that
+	 *   writer's effect goes with it. Not a regression: the unlocked rollback lost it in every case.
+	 *
+	 * Called from the operation lock, never from inside `runLocked(slug)`, so taking the (non-reentrant) node
+	 * lock here cannot wait on itself. Throws only when the restore or its check fails (AggregateError with
+	 * the original error); the backup is then kept.
+	 */
+	private async rollbackFromBackup(
+		slug: Slug,
+		backup: string,
+		delta: CacheWriteDelta,
+		operation: "update" | "replace",
+		error: unknown,
+	): Promise<void> {
+		const file = this.pathFor(slug);
+		const failed = (cause: unknown) =>
+			new AggregateError(
+				[error, cause],
+				`Failed to ${operation} ${slug} and restore its previous source file`,
+			);
+		try {
+			await this.runLocked(slug, async () => {
+				const committed = delta.committedText;
+				if (committed === undefined) {
+					// The commit never landed, so this operation never replaced the file: leave it alone (restoring
+					// the backup could overwrite a write made since it was copied, which replace() does outside
+					// the lock).
+					this.stats.written -= delta.written;
+					this.stats.revUpdates -= delta.revUpdates;
+					await unlink(backup).catch(() => undefined);
+					return;
+				}
+				let current: string | undefined;
+				try {
+					current = await readFile(file, "utf8");
+				} catch (readError) {
+					// A vanished file counts as rewritten; any other failure leaves the question open.
+					if ((readError as NodeJS.ErrnoException).code !== "ENOENT") throw failed(readError);
+				}
+				if (current !== committed) {
+					log.warn("rollback skipped: the node was rewritten since its commit", {
+						slug,
+						operation,
+						error: error instanceof Error ? error.message : String(error),
+					});
+					await unlink(backup).catch(() => undefined);
+					return;
+				}
+				this.stats.written -= delta.written;
+				this.stats.revUpdates -= delta.revUpdates;
+				try {
+					await rename(backup, file);
+				} catch (rollbackError) {
+					throw failed(rollbackError);
+				}
+			});
+		} finally {
+			if (parseSlug(slug).type === "genre") {
+				// The rollback may wait for the lock, with the committed node readable meanwhile: a qid index
+				// built in that gap would memoize it. Invalidate again once the file is settled.
+				this.genreQidIndex = null;
+				this.genreQidIndexVersion++;
+			}
+		}
 	}
 
 	private async emitReverses(source: NodePayload, delta: CacheWriteDelta): Promise<void> {
@@ -706,8 +776,16 @@ export function applySingleReverse(
 	return next as unknown as NodePayload;
 }
 
-export async function atomicWriteJson(file: string, data: unknown): Promise<void> {
+function jsonText(data: unknown): string {
+	return `${JSON.stringify(data, null, 2)}\n`;
+}
+
+async function atomicWriteText(file: string, text: string): Promise<void> {
 	const tmp = `${file}.tmp-${process.pid}-${Math.random().toString(36).slice(2)}`;
-	await writeFile(tmp, `${JSON.stringify(data, null, 2)}\n`, "utf8");
+	await writeFile(tmp, text, "utf8");
 	await rename(tmp, file);
+}
+
+export async function atomicWriteJson(file: string, data: unknown): Promise<void> {
+	await atomicWriteText(file, jsonText(data));
 }

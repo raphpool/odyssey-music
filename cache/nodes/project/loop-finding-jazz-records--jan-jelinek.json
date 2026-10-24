@@ -90,9 +90,10 @@
       "name": "Do Dekor"
     },
     {
-      "slug": "track:drift--underworld",
+      "slug": "track:drift--jan-jelinek",
       "type": "track",
-      "name": "Drift"
+      "name": "Drift",
+      "artist": "Jan Jelinek"
     },
     {
       "slug": "track:poren--jan-jelinek",

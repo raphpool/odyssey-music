@@ -1,5 +1,5 @@
 {
-	"source": "TRA-600: identity of the 9 duplicate label groups, MusicBrainz + Wikidata (looked up 2026-10-18); TRA-611: Columbia extended to its prod-only node (2026-10-23)",
+	"source": "TRA-600: identity of the 9 duplicate label groups, MusicBrainz + Wikidata (looked up 2026-10-18); TRA-611: Columbia extended to its prod-only node (2026-10-23); TRA-608: Virgin (brand + company), KMS and Plus 8 (no identifier link, anchored) proven, deprecated P966 mbids out of wd.mbids (2026-10-24)",
 	"groups": [
 		{
 			"key": "warp",
@@ -34,6 +34,7 @@
 				"https://musicbrainz.org/label/011d1192-6f65-45bd-85c4-0400dd45693e",
 				"https://www.wikidata.org/wiki/Q183387",
 				"Not this one: MusicBrainz ad6f8706-c95e-443b-8579-8e3ecd27126c (Columbia Records, EMI 1931-1990, UK) is Q1112471 on its own side",
+				"TRA-608, re-read 2026-10-24: both mbids of `wd.mbids` are at normal rank on Q183387 P966 (none deprecated), so the list is unchanged",
 				"https://dropcliffs.com/api/odyssey/node/label:columbia-records--american-major-label-founded-1888",
 				"TRA-611, read from that public prod API URL on 2026-10-23: the node is named \"Columbia Records\", founded 1889 (Wikidata inception), location field New York City, USA (its article gives Washington, D.C. as the founding place), and the article names Edward D. Easton, founder of the Columbia Phonograph Company (anchor, also in the articles of label:columbia and label:columbia-records). The server generated the disambiguated slug; the \"1888\" in it is not the node's own founded year. The prod graph holds exactly these three Columbia nodes (plus Columbia Masterworks, a different name)",
 				"TRA-611: the anchor is new for this group: the third node only exists in prod, so it is proven by what its article says (the founder of the US label) and not by its name alone"
@@ -61,9 +62,8 @@
 				"label": "Epic Records",
 				"aliases": ["Epic"],
 				"inception": 1953,
-				"mbids": [
-					"8f638ddb-131a-4cc3-b3d4-7ebdac201b55",
-					"e2e4ff42-7af5-4af6-95fd-70defc9f38e2",
+				"mbids": ["8f638ddb-131a-4cc3-b3d4-7ebdac201b55", "e2e4ff42-7af5-4af6-95fd-70defc9f38e2"],
+				"deprecated_mbids": [
 					"e4c26cf8-e9af-402a-a1d9-77e9ae909cb8",
 					"66f594e3-e930-4943-99f9-f45add71e0f8",
 					"6c4ae0f0-0449-41f6-b1dc-981b23edc115",
@@ -77,7 +77,7 @@
 			"evidence": [
 				"https://musicbrainz.org/label/8f638ddb-131a-4cc3-b3d4-7ebdac201b55",
 				"https://www.wikidata.org/wiki/Q216364",
-				"Wikidata P966 of Q216364 lists 9 mbids: 8f638ddb and e2e4ff42 at normal rank, the 7 others deprecated",
+				"Wikidata P966 of Q216364 lists 9 mbids: 8f638ddb and e2e4ff42 at normal rank, the 7 others deprecated (TRA-608, re-read 2026-10-24: `wd.mbids` keeps the two normal ones, the 7 are in `wd.deprecated_mbids` and are no link)",
 				"Not these: Epic Records Japan (74d4bedc-649c-4855-89ec-c3ec02e68861, Q846383), Epic Records Germany (3da55ce4-7c2e-4f05-b546-1049c3536ea2, Q96743129)"
 			]
 		},
@@ -115,34 +115,76 @@
 		},
 		{
 			"key": "virgin",
-			"status": "refused",
+			"status": "proven",
 			"members": ["label:virgin", "label:virgin-records"],
-			"reason": "MusicBrainz and Wikidata both keep two entities: Virgin (imprint, 49b58bdb-3d74-40c6-956a-4c4b46115c9c, Q50133002) and Virgin Records (84009bd4-0ba1-411e-a952-78e6f9428572, Q203059, different from Q2513768). Neither says the two cache nodes are one label.",
+			"mb": {
+				"mbid": "84009bd4-0ba1-411e-a952-78e6f9428572",
+				"name": "Virgin Records",
+				"aliases": [],
+				"wikidata": "Q203059",
+				"discogs": [750]
+			},
+			"brands": [
+				{
+					"mbid": "49b58bdb-3d74-40c6-956a-4c4b46115c9c",
+					"name": "Virgin",
+					"aliases": ["Virgin Records", "Virgin UK"],
+					"wikidata": "Q50133002",
+					"discogs": [750]
+				}
+			],
+			"wd": { "qid": "Q203059", "label": "Virgin Records", "aliases": [], "inception": 1972, "mbids": ["84009bd4-0ba1-411e-a952-78e6f9428572"] },
+			"anchors": ["Richard Branson", "Simon Draper"],
 			"evidence": [
-				"https://musicbrainz.org/label/49b58bdb-3d74-40c6-956a-4c4b46115c9c",
 				"https://musicbrainz.org/label/84009bd4-0ba1-411e-a952-78e6f9428572",
+				"https://musicbrainz.org/label/49b58bdb-3d74-40c6-956a-4c4b46115c9c",
+				"https://www.wikidata.org/wiki/Q203059",
 				"https://www.wikidata.org/wiki/Q50133002",
-				"https://www.wikidata.org/wiki/Q203059"
+				"TRA-608, looked up 2026-10-24: MusicBrainz keeps a brand and its company apart. Virgin (49b58bdb, Imprint, GB, 1972) is described as \"worldwide imprint of Virgin Records Ltd. and all its subsidiaries\" and relates to Wikidata Q50133002; Virgin Records (84009bd4, XE, 1972) is described as \"imprint + company, only for releases with Virgin RECORDS logo\" and relates to Q203059",
+				"The link between the two: both carry the same Discogs relation, https://www.discogs.com/label/750. The Wikidata side agrees per entity: P966 of Q203059 lists 84009bd4 and P966 of Q50133002 lists 49b58bdb, both at normal rank; Q203059 has inception 1972, the cache says 1972 on both nodes",
+				"Both cache articles name the founders (anchors) Richard Branson and Simon Draper, and Tubular Bells. The main entity is the company (named like the Wikidata label), so the survivor is label:virgin-records (roster 19, Wikidata logo)"
 			]
 		},
 		{
 			"key": "kms",
-			"status": "refused",
+			"status": "proven",
 			"members": ["label:kms", "label:kms-records"],
-			"reason": "No identifier links the two sources: MusicBrainz KMS (6b271325-b78a-4002-8ae6-e3ecaa91347b, 1987, Detroit) has no Wikidata relation and Wikidata Q1718826 (KMS Records) has no P966. Name, year and country agree, which is not a proof. Reopen when one side gets the link.",
+			"mb": {
+				"mbid": "6b271325-b78a-4002-8ae6-e3ecaa91347b",
+				"name": "KMS",
+				"aliases": ["KMS Records"],
+				"wikidata": null,
+				"begin": 1987,
+				"discogs": [271520, 290]
+			},
+			"wd": { "qid": "Q1718826", "label": "KMS Records", "aliases": [], "inception": 1987, "mbids": [] },
+			"anchors": ["Kevin Saunderson"],
 			"evidence": [
 				"https://musicbrainz.org/label/6b271325-b78a-4002-8ae6-e3ecaa91347b",
-				"https://www.wikidata.org/wiki/Q1718826"
+				"https://www.wikidata.org/wiki/Q1718826",
+				"TRA-608, looked up 2026-10-24: no identifier links the sources (MusicBrainz has no Wikidata relation, Q1718826 has no P966). They agree otherwise: MusicBrainz KMS has the alias \"KMS Records\" and begins in 1987, Wikidata Q1718826 is \"KMS Records\" with inception 1987. MusicBrainz has no second KMS",
+				"The anchor tolerates the missing link: both cache articles name Kevin Saunderson (the initials are his, Kevin Maurice Saunderson), and the Detroit techno of 1987. Survivor label:kms, named like MusicBrainz"
 			]
 		},
 		{
 			"key": "plus8",
-			"status": "refused",
+			"status": "proven",
 			"members": ["label:plus-8", "label:plus-8-records"],
-			"reason": "No identifier links the two sources: MusicBrainz Plus 8 Records Ltd. (f8c842b4-3b25-4fcc-89f9-da08d5d8b7b4, 1990-05, Windsor) has no Wikidata relation and Wikidata Q1428839 (Plus 8) has no P966. Name, year and country agree, which is not a proof. Reopen when one side gets the link.",
+			"mb": {
+				"mbid": "f8c842b4-3b25-4fcc-89f9-da08d5d8b7b4",
+				"name": "Plus 8 Records Ltd.",
+				"aliases": ["+ 8", "+8 Records"],
+				"wikidata": null,
+				"begin": 1990,
+				"discogs": [316, 881911]
+			},
+			"wd": { "qid": "Q1428839", "label": "Plus 8", "aliases": [], "inception": 1990, "mbids": [] },
+			"anchors": ["Richie Hawtin", "John Acquaviva"],
 			"evidence": [
 				"https://musicbrainz.org/label/f8c842b4-3b25-4fcc-89f9-da08d5d8b7b4",
-				"https://www.wikidata.org/wiki/Q1428839"
+				"https://www.wikidata.org/wiki/Q1428839",
+				"TRA-608, looked up 2026-10-24: no identifier links the sources (MusicBrainz has no Wikidata relation, Q1428839 has no P966). They agree otherwise: MusicBrainz \"Plus 8 Records Ltd.\" (\"Ltd.\" is the company form, ignored by the name comparison) begins in 1990-05, Wikidata Q1428839 is \"Plus 8\" with inception 1990",
+				"The anchors tolerate the missing link: both cache articles name Richie Hawtin and John Acquaviva as the founders, and Windsor. The survivor is label:plus-8-records, the member named like MusicBrainz; label:plus-8 holds the Wikidata logo (P154) and gives it to the survivor"
 			]
 		}
 	]
