@@ -35,7 +35,7 @@ final class TodayFlowTests: XCTestCase {
 		// 6. Tapping Today again from a pushed page goes back to the root too.
 		tapFirstChip(in: app)
 		XCTAssertTrue(breadcrumb.waitForExistence(timeout: 5))
-		app.tabBars.buttons["Aujourd’hui"].tap()
+		UITestFlows.tabButton("Aujourd’hui", in: app).tap()
 		XCTAssertTrue(breadcrumb.waitForNonExistence(timeout: 5))
 		XCTAssertTrue(date.waitForExistence(timeout: 5))
 		XCTAssertEqual(title.label, titleOfTheDay)

@@ -3,23 +3,31 @@
 	"release-links-to-empty-credit": 41,
 	"zero-edge-nodes": 28,
 	"self-edges": 0,
+	"homonym-tracklist-links": 2,
 	"duplicate-names": 0,
 	"unscoped-release-slugs": 87,
 	"literal-newlines": 0,
+	"literal-escaped-quotes": 0,
+	"alias-to-uncorroborated-identity": 1,
 	"missing-similar-artists": 31,
-	"missing-landmark-project": 112,
+	"missing-landmark-project": 113,
 	"missing-reference-track": 78,
 	"artist-discography-under-3": 69,
-	"artist-discography-without-mbid": 175,
+	"artist-discography-without-mbid": 174,
 	"artist-edge-to-redirect-key": {
-		"discography": 1,
+		"discography": 0,
 		"notable_tracks": 0,
 		"landmark_project": 0,
 		"reference_track": 0
 	},
 	"empty-artists": {
-		"project": 62,
+		"project": 63,
 		"track": 26
+	},
+	"bidirectional-credit-mismatch": {
+		"mbid-divergent": 0,
+		"credit-excludes-artist": 5,
+		"members-for-group": 8
 	},
 	"single-citation": {
 		"genre": 135,

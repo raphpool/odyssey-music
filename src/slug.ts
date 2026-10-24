@@ -130,6 +130,28 @@ function flattenTitleBody(title: string, transliterate: boolean): string {
 	return s.replace(/^-+|-+$/g, "");
 }
 
+/**
+ * True when the title holds a letter or a digit that normalizeTitleBody drops: a non-Latin script, a letter the
+ * transliteration table does not cover (while ODYSSEY_SCOPED_RELEASE_SLUGS is off, "ø" is one). The body of such a
+ * title is partial: "20才の頃" is "20", "二ノ国II ..." is "ii", "予約座003" is "003". It still names the title
+ * exactly (the same title gives the same body), but two different titles can give the same one, so a body like that
+ * must not stand for the title where it is compared with another (TRA-633, measured 2026-10-24 on the cache: 65 of
+ * 12610 artist / title pairs lose something, 34 of them to a non-Latin script; in the discographies none collides today).
+ *
+ * A title with no Latin letter at all has an empty body and gets no scoped slug (makeScopedSlug: `empty-title`); this
+ * is the partial case. Changing the slug of such a title is an identity change (TRA-557), not decided here.
+ */
+export function titleLosesLetters(title: string): boolean {
+	const transliterate = scopedReleaseSlugsEnabled();
+	const cleaned = stripEditionNoise(title.normalize("NFKD").replace(/[̀-ͯ]/g, "")).toLowerCase();
+	for (const ch of cleaned.match(/[\p{L}\p{N}]/gu) ?? []) {
+		if (/[a-z0-9]/.test(ch)) continue;
+		if (transliterate && Object.hasOwn(TRANSLITERATION, ch)) continue;
+		return true;
+	}
+	return false;
+}
+
 export function makeSlug(type: NodeType, name: string, disambiguator?: string): Slug {
 	const body = normalizeSlugBody(name);
 	if (!body) {
