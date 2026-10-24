@@ -841,3 +841,279 @@ describe("review workflows hardening (TRA-553)", () => {
 		},
 	);
 });
+
+// TRA-529 (2026-10-24): the verdict must have been produced for THIS pull request against the default branch. The
+// selection above cannot tell: `pull_requests[]` and `pulls?head=` are recomputed at every read (they show the base a
+// PR has NOW), and `pulls?head=` ignores a PR B that left the sha. ai-review.yml therefore writes
+// `review-base v1 <pr> <base>` on its job from the event, and the "Evaluate" step reads it on the selected check-run.
+// These tests run that step itself, as the job runs it: `gh` serves the simulated API answers, `git` and `sleep` do
+// nothing, `seq` makes one attempt of the 24, and `node` runs the real policy through tsx (the repository tests run on
+// node 20, which has no type stripping).
+describe("review-gate.yml: the review must have been produced for this PR against the default branch (TRA-529)", () => {
+	const REPO = "raphpool/odyssey-music";
+	const BASE_COMMIT = "a".repeat(40);
+	const base = (number: number, baseRef: string): string => `review-base v1 ${number} ${baseRef}`;
+	const OWN_RECORD = base(PR.number, PR.baseRef);
+	const PATCH_RECORD = `review-patch-id v1 ${"1".repeat(40)}-${"2".repeat(40)}`;
+	const BLOCKING = "Findings bloquants — voir les commentaires inline.";
+
+	const bin = join(scratch, "tra529-bin");
+	mkdirSync(bin);
+	const tool = (name: string, body: string): void => {
+		writeFileSync(join(bin, name), `#!/usr/bin/env bash\n${body}\n`, { mode: 0o755 });
+	};
+	// `--jq` is not applied: the fixtures are already what the projections produce.
+	tool(
+		"gh",
+		`shift
+url=""
+while [ $# -gt 0 ]; do
+  case "$1" in
+    --jq|--method|-f|-X|-H) shift 2 ;;
+    --paginate) shift ;;
+    *) url="$1"; shift ;;
+  esac
+done
+echo "$url" >> "$FIXTURES/calls.log"
+case "$url" in
+  */annotations*) id="\${url#*check-runs/}"; f="annotations-\${id%%/*}" ;;
+  */issues/*/labels*) f=labels ;;
+  */commits/*/check-runs*) f=checks ;;
+  */commits/*/statuses*) f=statuses ;;
+  */actions/runs/*/jobs*) id="\${url#*actions/runs/}"; f="jobs-\${id%%/*}" ;;
+  */actions/runs\\?*) f=runs ;;
+  */pulls) f=pulls ;;
+  *) echo "fake gh: unexpected $url" >&2; exit 1 ;;
+esac
+if [ -f "$FIXTURES/$f.json" ]; then cat "$FIXTURES/$f.json"; fi`,
+	);
+	tool("git", `if [ "$1" = diff ]; then printf 'src/graph.ts\\0'; fi`);
+	tool("sleep", "exit 0");
+	tool("seq", "echo 1");
+	// tsx is itself a node script (`#!/usr/bin/env node`): it is started by the real node, or this shim would call itself.
+	tool(
+		"node",
+		'while case "$1" in --*) true ;; *) false ;; esac; do shift; done\nexec "$REAL_NODE" "$TSX" "$@"',
+	);
+
+	interface Scenario {
+		api: Api;
+		/** Annotations (messages) of each check-run, by check-run id. */
+		notes?: Record<number, string[]>;
+		/** The facts of the event; the PR of the other tests by default. */
+		pr?: { number: number; baseRef: string };
+		defaultBranch?: string;
+	}
+
+	/** The "Evaluate" step on simulated API answers: its exit code, its output, and the API paths it requested. */
+	async function evaluate({ api, notes = {}, pr = PR, defaultBranch = "main" }: Scenario) {
+		fixture += 1;
+		const dir = join(scratch, `tra529-${fixture}`);
+		const fx = join(dir, "fixtures");
+		const runnerTemp = join(dir, "runner-temp");
+		mkdirSync(fx, { recursive: true });
+		mkdirSync(join(runnerTemp, "review-gate-policy"), { recursive: true });
+		copyFileSync(
+			"scripts/ci/review-gate-policy.ts",
+			join(runnerTemp, "review-gate-policy", "review-gate-policy.ts"),
+		);
+		writeFileSync(join(runnerTemp, "review-gate-policy", "authors.json"), JSON.stringify(["raphpool"]));
+		stream(join(fx, "checks.json"), api.checks);
+		stream(join(fx, "runs.json"), api.runs);
+		stream(join(fx, "pulls.json"), api.pulls ?? [{ ...ownPull, number: pr.number, base_ref: pr.baseRef }]);
+		stream(join(fx, "statuses.json"), [
+			{
+				id: 1,
+				context: "codex-review",
+				state: "success",
+				created_at: "2026-10-15T09:30:00Z",
+				creator: { login: "raphpool" },
+			},
+		]);
+		writeFileSync(join(fx, "labels.json"), "");
+		for (const runId of new Set((api.jobs as { run_id: number }[]).map((j) => j.run_id))) {
+			stream(
+				join(fx, `jobs-${runId}.json`),
+				api.jobs.filter((j) => (j as { run_id: number }).run_id === runId),
+			);
+		}
+		for (const [id, messages] of Object.entries(notes)) {
+			stream(
+				join(fx, `annotations-${id}.json`),
+				messages.map((message) => ({ message })),
+			);
+		}
+		// The three expressions the script interpolates (`${{ … }}` is not shell): the base commit and the PR number.
+		const script = stepScript("Evaluate combined review policy")
+			.replaceAll(expr("github.event.pull_request.base.sha"), BASE_COMMIT)
+			.replaceAll(expr("github.event.pull_request.number"), String(pr.number));
+		expect(script).not.toContain("${{");
+		const env = {
+			PATH: `${bin}:${process.env.PATH ?? ""}`,
+			RUNNER_TEMP: runnerTemp,
+			FIXTURES: fx,
+			REAL_NODE: process.execPath,
+			TSX: join(process.cwd(), "node_modules", ".bin", "tsx"),
+			GH_TOKEN: "test",
+			REPOSITORY: REPO,
+			SHA: HEAD,
+			DEFAULT_BRANCH: defaultBranch,
+			PR_NUMBER: String(pr.number),
+			BASE_REF: pr.baseRef,
+			HEAD_REF: PR.headRef,
+			HEAD_REPO: PR.headRepo,
+		};
+		const done = await exec("bash", ["-c", script], { env, timeout: 25_000, killSignal: "SIGKILL" }).then(
+			({ stdout }) => ({ code: 0, stdout }),
+			(error: { code: number; stdout: string }) => ({ code: error.code, stdout: error.stdout }),
+		);
+		const calls = existsSync(join(fx, "calls.log"))
+			? readFileSync(join(fx, "calls.log"), "utf8").split("\n")
+			: [];
+		return { ...done, calls: calls.filter((call) => call !== "") };
+	}
+
+	const passes = (outcome: { code: number; stdout: string }): boolean =>
+		outcome.code === 0 && outcome.stdout.includes('"verdict":"pass"');
+
+	it("passes a review that recorded this PR against the default branch (control)", async () => {
+		const outcome = await evaluate({ api: genuine(11, 100), notes: { 11: [OWN_RECORD, PATCH_RECORD] } });
+		expect(passes(outcome), outcome.stdout).toBe(true);
+	}, 30_000);
+
+	// Criterion 2 of the ticket, and the scenario of its description: the review ran against the stack parent `x`,
+	// then the PR was retargeted to main (`pull_requests[]` and `pulls?head=` now say main) and updated.
+	it("does not retain a review produced against another base, once the PR targets the default branch", async () => {
+		const api = genuine(11, 100);
+		// The selection of TRA-526 alone retains it: this is the gap the record closes.
+		expect(await select(api)).toBe("11\tsuccess");
+		const outcome = await evaluate({ api, notes: { 11: [base(PR.number, "feature/x"), PATCH_RECORD] } });
+		expect(passes(outcome)).toBe(false);
+		expect(outcome.code).toBe(1);
+		expect(outcome.stdout).toContain("n'a pas enregistré cette PR contre la branche par défaut");
+		expect(outcome.stdout).toContain("Aucun fournisseur");
+	}, 30_000);
+
+	// The nit of the review of TRA-526: B (same branch, base `evil`) got a genuine success on this sha, moved to
+	// another sha and was closed; the sha came back through a force-push and A was opened on it, ready.
+	it.each([
+		["against its own base", base(77, "evil")],
+		["on main too", base(77, "main")],
+	])(
+		"does not retain the review of a closed PR of the same branch left on another sha (%s)",
+		async (_label, record) => {
+			const closedB = { number: 77, base_ref: "evil", head_sha: OTHER_HEAD };
+			const api = { ...genuine(99, 200), pulls: [closedB, ownPull] };
+			expect(await select(api)).toBe("99\tsuccess");
+			const outcome = await evaluate({ api, notes: { 99: [record, PATCH_RECORD] } });
+			expect(passes(outcome)).toBe(false);
+			expect(outcome.stdout).toContain("n'a pas enregistré cette PR");
+			// Control: the same listing with the record of A passes.
+			expect(passes(await evaluate({ api, notes: { 99: [OWN_RECORD, PATCH_RECORD] } }))).toBe(true);
+		},
+		60_000,
+	);
+
+	it("treats a review from before TRA-529 (no base record) as missing, and says how to get a new one", async () => {
+		const outcome = await evaluate({ api: genuine(11, 100), notes: { 11: [PATCH_RECORD] } });
+		expect(passes(outcome)).toBe(false);
+		expect(outcome.stdout).toContain("::warning::La review (check-run 11)");
+		expect(outcome.stdout).toContain("fermer puis rouvrir la PR");
+	}, 30_000);
+
+	it("does not pass a stacked PR, even with the record of its own base: only a review against the default branch counts", async () => {
+		const pr = { number: PR.number, baseRef: "feature/parent" };
+		const outcome = await evaluate({
+			api: genuine(11, 100),
+			pr,
+			notes: { 11: [base(pr.number, pr.baseRef)] },
+		});
+		expect(passes(outcome)).toBe(false);
+	}, 30_000);
+
+	it.each([
+		["two different records", [OWN_RECORD, base(PR.number, "feature/x")]],
+		["the record of this PR and of another one", [OWN_RECORD, base(43, "main")]],
+		["a record of another version next to the v1", [OWN_RECORD, `review-base v2 ${PR.number} main`]],
+		["a record that is not the exact message", [`review-base v1 0${PR.number} main`]],
+	])(
+		"does not retain a review with %s",
+		async (_label, records) => {
+			expect(passes(await evaluate({ api: genuine(11, 100), notes: { 11: records } }))).toBe(false);
+		},
+		30_000,
+	);
+
+	it("judges the latest review: a newer one without record does not fall back on the older one that has it", async () => {
+		const older = genuine(11, 100, { started_at: "2026-10-15T09:00:00Z" });
+		const newer = genuine(12, 101, { started_at: "2026-10-15T10:00:00Z" });
+		const outcome = await evaluate({
+			api: merge(older, newer) as Api,
+			notes: { 11: [OWN_RECORD], 12: [PATCH_RECORD] },
+		});
+		expect(passes(outcome)).toBe(false);
+		expect(outcome.stdout).toContain("check-run 12");
+		// And the other way round, the newer one with the record is the review.
+		const both = await evaluate({
+			api: merge(older, newer) as Api,
+			notes: { 11: [PATCH_RECORD], 12: [OWN_RECORD] },
+		});
+		expect(passes(both)).toBe(true);
+	}, 60_000);
+
+	// TRA-524 and the blocking path keep working: a failure carries the record too (it is the first step of the job).
+	it("still blocks on a blocking review that recorded this PR, and only reads the annotations of the selected check-run", async () => {
+		const outcome = await evaluate({
+			api: genuine(11, 100, { conclusion: "failure" }),
+			notes: { 11: [OWN_RECORD, BLOCKING] },
+		});
+		expect(outcome.code).toBe(1);
+		expect(outcome.stdout).toContain("Un fournisseur de review a détecté des findings bloquants");
+		expect(outcome.calls.filter((call) => call.includes("/annotations"))).toEqual([
+			`repos/${REPO}/check-runs/11/annotations?per_page=100`,
+		]);
+	}, 30_000);
+
+	it("does not let a blocking review without a record block: it is no review, as for a success", async () => {
+		const outcome = await evaluate({
+			api: genuine(11, 100, { conclusion: "failure" }),
+			notes: { 11: [BLOCKING] },
+		});
+		expect(outcome.stdout).not.toContain("findings bloquants");
+		expect(passes(outcome)).toBe(false);
+	}, 30_000);
+
+	it("still passes a failure that is not blocking when it recorded this PR, as before", async () => {
+		const outcome = await evaluate({
+			api: genuine(11, 100, { conclusion: "failure" }),
+			notes: { 11: [OWN_RECORD, "Error: something else"] },
+		});
+		expect(passes(outcome), outcome.stdout).toBe(true);
+	}, 30_000);
+
+	it("reads no annotations while no review has a verdict", async () => {
+		const outcome = await evaluate({
+			api: genuine(11, 100, { conclusion: null }),
+			notes: { 11: [OWN_RECORD] },
+		});
+		expect(passes(outcome)).toBe(false);
+		expect(outcome.calls.some((call) => call.includes("/annotations"))).toBe(false);
+	}, 30_000);
+
+	it("reads the annotations with pagination and through a file, and checks the base before the policy runs", () => {
+		const evaluateStep = stepScript("Evaluate combined review policy");
+		expect(code).toContain(
+			'gh api --paginate "repos/$REPOSITORY/check-runs/$claude_id/annotations?per_page=100"',
+		);
+		expect(code).toContain('--slurpfile notes "$api/annotations.json"');
+		expect(code).toContain(`DEFAULT_BRANCH: ${expr("github.event.repository.default_branch")}`);
+		expect(evaluateStep.indexOf('"$validate_base"')).toBeGreaterThan(
+			evaluateStep.indexOf('"$select_review"'),
+		);
+		expect(evaluateStep.indexOf('"$validate_base"')).toBeLessThan(
+			evaluateStep.indexOf("node --experimental-strip-types"),
+		);
+		// Fail closed: a review that does not validate is `missing` with no id, never left as read.
+		expect(evaluateStep).toMatch(/claude=missing\s+claude_id=0/);
+	});
+});

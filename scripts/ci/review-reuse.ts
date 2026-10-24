@@ -57,7 +57,11 @@ export interface WorkflowRun {
 	/** Head branch and repository of the run; null when the API gives none (a deleted fork). */
 	headBranch: string | null;
 	headRepository: string | null;
-	/** `pull_requests[]` of the run. Empty on many real runs, so it can reject a run but is never required. */
+	/**
+	 * `pull_requests[]` of the run. Empty on many real runs, so it can reject a run but is never required. It is
+	 * recomputed at every read (open PRs of the head branch, with their CURRENT base): it says nothing about the base
+	 * the run was made against, which only the `review-base` record of the review carries (TRA-529).
+	 */
 	pullRequests: readonly PullRef[];
 }
 
@@ -99,6 +103,31 @@ export const isSha = (value: unknown): value is string => typeof value === "stri
 
 export const recordMessage = (patchId: string): string => `${RECORD_PREFIX}${patchId}`;
 
+// TRA-529 (2026-10-24): which pull request, and against which base, a review ran. ai-review.yml writes this notice on
+// the `review` job as its first step, from the event of the run, so it is frozen when the run starts. The base of a
+// pull request is not: `pull_requests[]` of a run is recomputed at every read, so after a retarget a run made against
+// an unreviewed base shows the new one. Same standing as the patch-id record: a notice any workflow step of the PR
+// could also write, not a proof (the PR of TRA-529 says what it does and does not stop).
+export const BASE_RECORD_FAMILY = "review-base ";
+export const baseRecordMessage = (pullNumber: number | string, baseRef: string): string =>
+	`${BASE_RECORD_FAMILY}${RECORD_VERSION} ${pullNumber} ${baseRef}`;
+
+/**
+ * Whether the annotations of a review say it ran for pull request `pullNumber` against `defaultBranch`, and only that:
+ * exactly one distinct `review-base` record (any version counts as one, so a v2 next to the v1 is ambiguous), equal
+ * to the expected message. No record (a run from before TRA-529), another PR, another base or two records: false.
+ * Same rule as the `validate_base` program of review-gate.yml (message compared to message, nothing parsed).
+ */
+export const hasBaseRecord = (
+	messages: readonly string[],
+	pullNumber: number,
+	defaultBranch: string,
+): boolean => {
+	if (defaultBranch === "") return false;
+	const records = new Set(messages.filter((message) => message.startsWith(BASE_RECORD_FAMILY)));
+	return records.size === 1 && records.has(baseRecordMessage(pullNumber, defaultBranch));
+};
+
 export const reuseMessage = (previousSha: string, patchId: string): string =>
 	`verdict réutilisé de ${previousSha}, patch-id ${patchId}`;
 
@@ -128,14 +157,19 @@ const isAiReviewRun = (run: WorkflowRun, sha: string): boolean =>
 
 /**
  * Whether a run of ai-review.yml was produced for `pullRequest` and not for another PR that shares its head sha
- * (TRA-526, 2026-10-24). Same rule as the `select_review` program of review-gate.yml, to be kept equal:
+ * (TRA-526, 2026-10-24). Same shape as the `select_review` program of review-gate.yml, but NOT equal to it (TRA-529,
+ * 2026-10-24: this comment used to say "to be kept equal"). It is deliberately stricter, so that a verdict is never
+ * reused when the gate would refuse it: it also counts the PRs sitting on the PR's current head, where the gate has
+ * a single head to look at. The test "ignores a PR against another base left on an older sha" pins that difference.
+ * What it checks:
  * - `headPulls` lists the pull requests, open or not, whose head is this branch of this repository. Those sitting on
  *   the sha of the run (or on the PR's current head) count: if one targets another base, the two runs cannot be told
  *   apart (same branch, same sha, and `pull_requests[]` may be empty); a list that does not hold the PR means it is
  *   not established: both are "no". A PR of the same branch name left on an older sha says nothing and is ignored;
  * - the run was made for this head branch of this head repository (a PR from another branch, or from a fork whose
  *   branch has the same name, is another PR);
- * - `pull_requests[]`, when it is not empty, holds this PR and only PRs against this base.
+ * - `pull_requests[]`, when it is not empty, holds this PR and only PRs against this base (their current one: a
+ *   retarget is caught by the `review-base` record, not here).
  */
 export const belongsToPullRequest = (
 	run: WorkflowRun,
@@ -275,6 +309,10 @@ export const decideReuse = (input: DecisionInput): ReuseResult => {
 		return no(`previous review concluded ${review.conclusion ?? "nothing"}`);
 	if (input.annotations === null) return no("previous review annotations unreadable");
 	if (input.annotations.includes(BLOCKING_ANNOTATION)) return no("previous review had blocking findings");
+	// TRA-529: the review must say it ran for this PR against the default branch. A review made against another
+	// base (a stack parent later retargeted) or for another PR is not the review of this diff against the default branch.
+	if (!hasBaseRecord(input.annotations, pullRequest.number, input.defaultBranch))
+		return no("previous review did not record this pull request against the default branch");
 	const recorded = recordedPatchId(input.annotations);
 	if (recorded === null) return no("previous review recorded no usable patch-id");
 	if (recorded !== patchId) return no("PR diff changed since the previous review");
