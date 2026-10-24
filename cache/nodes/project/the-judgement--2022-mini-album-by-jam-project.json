@@ -1,0 +1,41 @@
+{
+  "slug": "project:the-judgement--2022-mini-album-by-jam-project",
+  "name": "The Judgement",
+  "editorial_article": "Released in September 2022, \"The Judgement\" stands as a significant conceptual EP from JAM Project, the esteemed Japanese \"anison\" (anime song) supergroup known for their thunderous, heavy metal-infused anthems. Since their formation in 2000, the group—comprised of veteran vocalists like Hironobu Kageyama and Masaaki Endoh—has been synonymous with the high-energy intensity required for shonen anime openings and video game soundtracks. \"The Judgement,\" however, leans into a more cohesive, thematic narrative, moving beyond single-track utility to offer a structured sonic journey.\n\nThe EP, containing seven tracks, utilizes a blend of symphonic metal, progressive rock, and hard rock elements that JAM Project has perfected over two decades. Musically, the release is characterized by tight, technical instrumentation that highlights the individual vocal prowess of its members. Songs like \"Karma ~the dark side of human nature~\" and \"Atonement\" reflect a tonal shift toward the dramatic and the somber, illustrating the group's ability to balance their typical explosive energy with contemplative, dark-hued songwriting. The project serves as both a testament to the group's enduring influence in the Japanese music industry and their continued willingness to experiment with the conventions of the anison genre. For fans and newcomers alike, it represents a polished, intense, and deeply theatrical offering that honors the group's legacy while pushing their sound toward more mature, emotive landscapes. The production value is characteristically high, capturing the bombastic spirit of live arena performance while maintaining the intricate detail needed for studio recording. It remains a standout entry in the band's extensive, multi-decade catalog.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/release/25189018-JAM-Project-The-Judgement?srsltid=AfmBOoqYC69CQomfAAPT5gs6wJMp3s1P7-pWTDcOyCu9StTmAPLMWnfs",
+      "title": "JAM Project – The Judgement – CD (Mini-Album), 2022 [r25189018] | Discogs"
+    },
+    {
+      "url": "https://open.spotify.com/album/66xyl3qiiWwJm0Kc6q6ydw",
+      "title": "THE JUDGEMENT - Album by JAM Project | Spotify"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:16:54.661Z",
+  "type": "project",
+  "editorial_pitch": "\"The Judgement\" is a powerful 2022 mini-album from the long-running Japanese anison supergroup JAM Project, blending intense, orchestral heavy metal arrangements with their signature high-octane vocal delivery. The collection explores dark, introspective themes, moving through a narrative arc that culminates in tracks of redemption and existential struggle.",
+  "year": "2022",
+  "artists": [],
+  "label": {
+    "slug": "label:lantis",
+    "type": "label",
+    "name": "Lantis"
+  },
+  "genres": [
+    {
+      "slug": "genre:anison",
+      "type": "genre",
+      "name": "Anison"
+    },
+    {
+      "slug": "genre:heavy-metal",
+      "type": "genre",
+      "name": "Heavy Metal",
+      "qid": "Q38848"
+    }
+  ],
+  "tracklist": [],
+  "producers": [],
+  "related_projects": []
+}

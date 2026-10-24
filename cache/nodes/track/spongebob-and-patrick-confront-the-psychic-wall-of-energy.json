@@ -1,0 +1,68 @@
+{
+  "slug": "track:spongebob-and-patrick-confront-the-psychic-wall-of-energy",
+  "name": "SpongeBob & Patrick Confront the Psychic Wall of Energy",
+  "editorial_article": "\"SpongeBob & Patrick Confront the Psychic Wall of Energy\" is a distinctive, psych-pop contribution to the 2004 \"The SpongeBob SquarePants Movie\" soundtrack, performed by the American band The Flaming Lips. The track, noted for its dreamy, surreal instrumentation and Wayne Coyne’s characteristic vocal style, serves as a narrative reflection on the film’s pivotal moment where the titular characters find themselves trapped in a glass bowl at the ominous Shell City. Beyond its cinematic function, the song is a notable example of mainstream film soundtracks incorporating the idiosyncratic aesthetics of indie-rock veterans. \n\nThe composition is particularly famous among fans for its quirky, melodic sensibilities that manage to bridge the gap between existential dread and the whimsical nature of the SpongeBob universe. Musically, it is layered and atmospheric; trivia from the production notes suggests the use of the Roland JV-1080 sound module for its flute sounds, a detail that has been archived by dedicated followers of the series' extensive sonic history. The lyrics provide a meta-commentary on the characters' struggles—with specific references to Plankton and Karen—while maintaining the band's penchant for offbeat, emotive songwriting. It remains a cult favorite that highlights a unique intersection of cult-classic animation and alternative rock culture, cementing its legacy as one of the most memorable tracks in the franchise's music history. 13 years after its debut, The Flaming Lips would maintain their relationship with the SpongeBob universe by contributing to the SpongeBob SquarePants musical. Additionally, the band's long-term collaborator Dave Fridmann was instrumental in shaping the dream-pop textures inherent in this track, cementing its place as a crossover hit for both fans of the show and followers of 2000s indie rock. The track's use of simple, evocative imagery to describe high-stakes animated drama is emblematic of the Flaming Lips' ability to synthesize childish wonder with mature sonic architecture, a signature that defines much of their mid-2000s output. By leveraging unconventional sounds and a playful yet poignant vocal delivery, the track stands as a testament to the creative collaboration between high-concept musical artists and popular culture icons.",
+  "citations": [
+    {
+      "url": "https://spongebob.fandom.com/wiki/SpongeBob_and_Patrick_Confront_the_Psychic_Wall_of_Energy",
+      "title": "SpongeBob and Patrick Confront the Psychic Wall of Energy | Encyclopedia SpongeBobia | Fandom"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=xU8TBvMclY4",
+      "title": "SpongeBob & Patrick Confront the Psychic Wall of Energy - YouTube"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:49:59.825Z",
+  "_metrics": {
+    "input_tokens": 59826,
+    "output_tokens": 3173,
+    "cache_read_tokens": 8097,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.019918,
+    "llm_calls": 10,
+    "search_calls": 3,
+    "fetch_calls": 1,
+    "turns": 10,
+    "emit_attempts": 4,
+    "agent_ms": 55762,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "type": "track",
+  "editorial_teaser": "\"SpongeBob & Patrick Confront the Psychic Wall of Energy\" is a distinctive, psych-pop contribution to the 2004 \"The SpongeBob SquarePants Movie\" soundtrack, performed by the American band The Flaming Lips.",
+  "artists": [],
+  "project": {
+    "slug": "project:the-spongebob-squarepants-movie-music-from-the-movie-and-more",
+    "type": "project",
+    "name": "The SpongeBob SquarePants Movie: Music from the Movie and More"
+  },
+  "genres": [
+    {
+      "slug": "genre:neo-psychedelia",
+      "type": "genre",
+      "name": "Neo-Psychedelia",
+      "qid": "Q703778"
+    },
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative Rock",
+      "qid": "Q11366"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:the-flaming-lips",
+      "type": "artist",
+      "name": "The Flaming Lips"
+    },
+    {
+      "slug": "artist:dave-fridmann",
+      "type": "artist",
+      "name": "Dave Fridmann"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

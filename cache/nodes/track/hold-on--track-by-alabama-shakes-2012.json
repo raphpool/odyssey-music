@@ -1,0 +1,42 @@
+{
+  "slug": "track:hold-on--track-by-alabama-shakes-2012",
+  "name": "Hold On (by Alabama Shakes)",
+  "editorial_article": "\"Hold On\" is the breakout debut single from the American blues-rock band Alabama Shakes, released in 2012. It acts as a cornerstone track for the band, helping to propel them from Athens, Alabama, into international acclaim. The song is defined by frontwoman Brittany Howard’s raw, commanding vocal performance and a driving, gritty rhythm that evokes the soul and R&B traditions of the American South. The track's sonic profile is anchored by a propulsive, steady groove, jangly guitar lines, and a gospel-infused intensity that feels both classic and urgent. Lyrically, \"Hold On\" captures a sense of perseverance and resilience, themes that Howard delivers with a visceral emotional depth that became the band's signature. \n\nThe success of \"Hold On\" was pivotal in the appreciation of roots-rock and soul in the early 2010s, earning the band widespread critical praise and multiple Grammy nominations. Its production—lean, punchy, and unadorned—allowed the band’s organic chemistry to take center stage, contrasting with the more polished pop sounds dominating the airwaves at the time. \"Hold On\" remains an enduring anthem of the band's career, symbolizing the powerful, unvarnished spirit of their sound. By blending historical influences with a contemporary garage-rock attitude, Alabama Shakes ensured that their breakthrough single resonated far beyond traditional blues circles, marking the start of a brief but highly influential run for the group. The track was instrumental in establishing the presence of the band in the modern rock landscape.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/2250745-Alabama-Shakes-Hold-On?srsltid=AfmBOopLZf-VtwQ6MRX-xB9xREqFANnXFPa_Do1Gd-w-I2EwVKxiSMPF",
+      "title": "Alabama Shakes – Hold On | Releases | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:51:11.543Z",
+  "_metrics": {
+    "input_tokens": 21787,
+    "output_tokens": 1691,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.007983,
+    "llm_calls": 5,
+    "search_calls": 2,
+    "fetch_calls": 1,
+    "turns": 5,
+    "emit_attempts": 2,
+    "agent_ms": 31684,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "disambiguator": "track by Alabama Shakes, 2012",
+  "type": "track",
+  "editorial_teaser": "\"Hold On\" is the breakout debut single from the American blues-rock band Alabama Shakes, released in 2012.",
+  "duration": "3:47",
+  "artists": [],
+  "project": {
+    "slug": "project:boys-and-girls",
+    "type": "project",
+    "name": "Boys & Girls"
+  },
+  "genres": [],
+  "producers": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

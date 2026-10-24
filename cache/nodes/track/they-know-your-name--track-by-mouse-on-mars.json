@@ -1,0 +1,44 @@
+{
+  "slug": "track:they-know-your-name--track-by-mouse-on-mars",
+  "name": "They Know Your Name",
+  "editorial_article": "\"They Know Your Name\" is a distinctive electronic composition by the influential German duo Mouse on Mars, released as a 7-inch single in 2012 via Monkeytown Records. Known for their experimental, genre-defying approach to electronica, Andi Toma and Jan St. Werner showcase a blend of glitch-inflected production and melodic sensibilities that have defined their sound for decades. The track features vocals by collaborator Dodo Nkishi, whose performance provides an essential human element to the duo's intricate, hyper-digital landscape. \n\nThe 2012 release also features a remix by the celebrated electronic producer Machinedrum, who brings his signature footwork and bass-heavy style to the source material, recontextualizing the original’s rhythmic backbone. As a limited-edition physical release (limited to 500 copies), it represents a specific moment in Mouse on Mars’ late-career output, following their highly regarded experimentation throughout the 1990s and 2000s. The track effectively captures the duo's ability to balance technical complexity with infectious, pop-adjacent hooks, cementing their reputation as masters of bridging the gap between avant-garde electronic music and accessible, emotive sound design. It remains a key artifact for fans of the Monkeytown label aesthetic and the broader IDM-adjacent experimental scene of the 2010s. The release features distinct contributions from Andi Toma, Jan St. Werner, Dodo Nkishi, and Machinedrum.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/release/3830146-Mouse-On-Mars-They-Know-Your-Name?srsltid=AfmBOorZJIVOEKsKRu2yTcQIy-L52ciPXNpBJDdby4uqRQL82MfD7gk7",
+      "title": "Mouse On Mars – They Know Your Name – Vinyl (7', Single + 2 more), 2012 [r3830146] | Discogs"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:00:40.600Z",
+  "type": "track",
+  "editorial_teaser": "\"They Know Your Name\" is a distinctive electronic composition by the influential German duo Mouse on Mars, released as a 7-inch single in 2012 via Monkeytown Records.",
+  "artists": [],
+  "genres": [
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica",
+      "qid": "Q817138"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars"
+    },
+    {
+      "slug": "artist:machinedrum",
+      "type": "artist",
+      "name": "Machinedrum"
+    }
+  ],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

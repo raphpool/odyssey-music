@@ -1,0 +1,60 @@
+{
+  "slug": "track:electromagnetic-dowsing--deepchord-track-from-the-electromagnetic-dowsing-12-released-on-s-y-n-t-h",
+  "name": "Electromagnetic Dowsing (Step 1)",
+  "editorial_article": "\"Electromagnetic Dowsing (Step 1)\" is a quintessential work of deep dub techno, originally released in 2005 by the influential project DeepChord, headed by the visionary American producer Rod Modell. Released on the self-titled debut imprint S Y N T H (catalog number SYNTH 001), the track exemplifies the murky, atmospheric, and rhythmically hypnotic sound that helped define the Detroit-Berlin connection in modern electronic music. With a runtime of nearly 12 minutes, the composition is built upon dense, cavernous dub chords and a meticulously crafted, evolving loop structure that creates an immersive, subterranean listening experience.\n\nThe track gained significant underground acclaim for its ability to bridge the gap between classic dub aesthetics and contemporary minimalist techno. While deeply rooted in the production sensibilities of labels like Basic Channel, DeepChord managed to cultivate a distinctively American, cinematic sound palette. Over the years, the track has remained a staple in the sets of discerning DJs who favor long-form, psychedelic progressions. The production process famously featured mastering by Ron Murphy, a legendary figure in the Detroit techno scene whose work at National Sound Corporation gave many iconic records their signature weight and warmth. Beyond its original pressing, the track continues to be revered as a masterclass in the \"deep\" aesthetic, illustrating the power of repetition and texture in electronic music design. Its enduring influence persists as a benchmark for producers exploring the atmospheric boundaries of the genre.",
+  "citations": [
+    {
+      "url": "https://www.discogs.com/master/23752-DeepChord-Electromagnetic-Dowsing",
+      "title": "DeepChord – Electromagnetic Dowsing | Releases | Discogs"
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=S8hIwRcxM6A",
+      "title": "DeepChord - Electromagnetic Dowsing (Step 1)"
+    }
+  ],
+  "materialized_at": "2026-05-13T13:53:27.662Z",
+  "_metrics": {
+    "input_tokens": 14367,
+    "output_tokens": 651,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 0,
+    "cost_usd": 0.004568,
+    "llm_calls": 3,
+    "search_calls": 1,
+    "fetch_calls": 1,
+    "turns": 3,
+    "emit_attempts": 1,
+    "agent_ms": 13273,
+    "model_id": "gemini-3.1-flash-lite-preview",
+    "search_provider": "tavily"
+  },
+  "disambiguator": "DeepChord track from the Electromagnetic Dowsing 12\" released on S Y N T H (2005)",
+  "type": "track",
+  "editorial_teaser": "\"Electromagnetic Dowsing (Step 1)\" is a quintessential work of deep dub techno, originally released in 2005 by the influential project DeepChord, headed by the visionary American producer Rod Modell.",
+  "year": "2005",
+  "artists": [],
+  "project": {
+    "slug": "project:electromagnetic-dowsing--deepchord",
+    "type": "project",
+    "name": "Electromagnetic Dowsing"
+  },
+  "genres": [
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub Techno",
+      "qid": "Q1262781"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:rod-modell",
+      "type": "artist",
+      "name": "Rod Modell"
+    }
+  ],
+  "personnel": [],
+  "samples": [],
+  "sampled_by": [],
+  "remixed_by": []
+}

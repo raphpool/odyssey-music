@@ -1,0 +1,72 @@
+{
+  "slug": "project:bcd-2--compilation-album-by-basic-channel-2008",
+  "name": "BCD-2",
+  "editorial_article": "BCD-2 is a definitive compilation album by the legendary German minimal techno duo Basic Channel, released in 2008 on their eponymous label. Consisting of six sprawling, hypnotic tracks, the project serves as a masterclass in the intersection of dub, industrial, and techno, showcasing the unparalleled sound design and production prowess of Mark Ernestus and Moritz von Oswald. The album is celebrated for its uncompromising commitment to minimalism, where repetition is elevated to an art form, creating dense, atmospheric soundscapes that feel simultaneously cold, mechanical, and deeply human.\n\nThe collection includes essential compositions such as \"Enforcement,\" \"Phylyps Trak,\" and \"Inversion,\" all of which highlight the duo's ability to manipulate polyrhythmic, robotic percussion and submerged bass textures. By eschewing conventional melodic structures in favor of texture and visceral energy, BCD-2 captures the nocturnal, introspective mood of the 1990s Berlin techno scene. Its influence remains profound, having shaped the trajectory of genres like microhouse and beyond through its rigorous economy of sound. For the listener, the album functions as a hypnotic, immersive experience, offering a glimpse into a world of discontent and architectural precision that feels just as vital and revelatory today as it did upon its release. It is not merely an album to be heard, but a conceptual space to be inhabited.",
+  "citations": [
+    {
+      "url": "https://rateyourmusic.com/release/comp/basic-channel/bcd-2/",
+      "title": "BCD-2 by Basic Channel (Compilation, Minimal Techno): Reviews, Ratings, Credits, Song list - Rate Your Music"
+    },
+    {
+      "url": "https://www.allmusic.com/album/bcd-2-mw0000792417",
+      "title": "BCD-2 - Basic Channel | Album - AllMusic"
+    }
+  ],
+  "materialized_at": "2026-05-13T12:46:01.179Z",
+  "type": "project",
+  "editorial_pitch": "A foundational compilation of minimal and dub techno, BCD-2 showcases the masterfully repetitive and atmospheric production of Basic Channel’s Mark Ernestus and Moritz von Oswald.",
+  "year": "2008",
+  "artists": [],
+  "label": {
+    "slug": "label:basic-channel",
+    "type": "label",
+    "name": "Basic Channel"
+  },
+  "genres": [],
+  "tracklist": [
+    {
+      "slug": "track:enforcement",
+      "type": "track",
+      "name": "Enforcement"
+    },
+    {
+      "slug": "track:phylyps-trak--basic-channel",
+      "type": "track",
+      "name": "Phylyps Trak"
+    },
+    {
+      "slug": "track:inversion",
+      "type": "track",
+      "name": "Inversion"
+    },
+    {
+      "slug": "track:octagon",
+      "type": "track",
+      "name": "Octagon"
+    },
+    {
+      "slug": "track:octaedre",
+      "type": "track",
+      "name": "Octaedre"
+    },
+    {
+      "slug": "track:phylyps-trak-ii-ii",
+      "type": "track",
+      "name": "Phylyps Trak II/II"
+    }
+  ],
+  "producers": [
+    {
+      "slug": "artist:mark-ernestus",
+      "type": "artist",
+      "name": "Mark Ernestus"
+    },
+    {
+      "slug": "artist:moritz-von-oswald",
+      "type": "artist",
+      "name": "Moritz von Oswald"
+    }
+  ],
+  "personnel": [],
+  "related_projects": []
+}

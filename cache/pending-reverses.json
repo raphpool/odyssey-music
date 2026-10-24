@@ -15090,6 +15090,15 @@
       "field": "notable_releases",
       "cardinality": "list",
       "edge": {
+        "slug": "project:bcd-2--compilation-album-by-basic-channel-2008",
+        "type": "project",
+        "name": "BCD-2"
+      }
+    },
+    {
+      "field": "notable_releases",
+      "cardinality": "list",
+      "edge": {
         "slug": "project:phylyps-trak--basic-channel",
         "type": "project",
         "name": "Phylyps Trak",
@@ -22266,6 +22275,17 @@
       }
     }
   ],
+  "label:the-null-corporation": [
+    {
+      "field": "notable_releases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:ghosts-i-iv",
+        "type": "project",
+        "name": "Ghosts I–IV"
+      }
+    }
+  ],
   "artist:madame-monsieur": [
     {
       "field": "discography",
@@ -22311,6 +22331,17 @@
         "type": "project",
         "name": "Have Some",
         "artist": "We Ride On"
+      }
+    }
+  ],
+  "label:soleilmoon-recordings": [
+    {
+      "field": "notable_releases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:heresy--1990-ambient-album-by-lustmord",
+        "type": "project",
+        "name": "Heresy"
       }
     }
   ],
@@ -22895,6 +22926,17 @@
       }
     }
   ],
+  "label:plain-pack": [
+    {
+      "field": "notable_releases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:resort-vol-1",
+        "type": "project",
+        "name": "RESORT Vol. 1"
+      }
+    }
+  ],
   "artist:black-box": [
     {
       "field": "discography",
@@ -23146,6 +23188,17 @@
       }
     }
   ],
+  "label:wave-records": [
+    {
+      "field": "notable_releases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:stains-of-love",
+        "type": "project",
+        "name": "Stains of Love"
+      }
+    }
+  ],
   "artist:blake-baxter": [
     {
       "field": "discography",
@@ -23226,6 +23279,17 @@
         "slug": "project:the-dive",
         "type": "project",
         "name": "The Dive"
+      }
+    }
+  ],
+  "label:lantis": [
+    {
+      "field": "notable_releases",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:the-judgement--2022-mini-album-by-jam-project",
+        "type": "project",
+        "name": "The Judgement"
       }
     }
   ],
