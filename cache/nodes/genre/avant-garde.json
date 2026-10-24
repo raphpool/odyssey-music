@@ -15,7 +15,6 @@
   "materialized_at": "2026-05-13T12:44:04.511Z",
   "type": "genre",
   "editorial_definition": "Avant-garde music refers to compositions that are innovative, experimental, and inherently subversive, intentionally bucking normative trends to challenge audience expectations. It is a fluid, trans-genre phenomenon that prioritizes artistic boundary-pushing and conceptual exploration over established musical rules.",
-  "qid": "Q2332751",
   "era": "20th century to present",
   "origin": "Western Europe and North America, early 20th century",
   "parent_genres": [
@@ -112,5 +111,6 @@
       "type": "track",
       "name": "4'33\""
     }
-  ]
+  ],
+  "qid": "Q2332751"
 }

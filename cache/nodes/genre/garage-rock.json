@@ -19,7 +19,6 @@
   "materialized_at": "2026-05-14T09:16:05.842Z",
   "type": "genre",
   "editorial_definition": "A raw and energetic style of rock music characterized by distorted guitars, aggressive delivery, and a DIY aesthetic that gained popularity in the mid-1960s.",
-  "qid": "Q211573",
   "era": "mid-1960s to early 2000s",
   "origin": "United States and Canada",
   "sonic_markers": "Distorted guitars, raw vocal delivery, mid-tempo, amateur production.",
@@ -99,5 +98,6 @@
       "type": "track",
       "name": "Dirty Water"
     }
-  ]
+  ],
+  "qid": "Q211573"
 }

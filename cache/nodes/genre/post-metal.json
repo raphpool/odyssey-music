@@ -26,7 +26,6 @@
   },
   "type": "genre",
   "editorial_definition": "A genre of experimental music that combines the heaviness, weight, and distortion of metal with the structure, atmospheric texture, and slow-build dynamics of post-rock.",
-  "qid": "Q41343",
   "era": "1990s-present",
   "origin": "United States, United Kingdom",
   "parent_genres": [
@@ -109,5 +108,6 @@
       "name": "Panopticon"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q41343"
 }

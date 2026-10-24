@@ -26,7 +26,6 @@
   },
   "type": "genre",
   "editorial_definition": "A musical category for artists who compose, write lyrics for, and perform their own musical material, typically maintaining creative control over the artistic process and frequently performing solo with acoustic accompaniment.",
-  "qid": "Q89363113",
   "era": "1960s–present (popularized); historical roots in folk/bardic tradition",
   "origin": "United States (modern popularized usage); global folk/bardic traditions",
   "parent_genres": [],
@@ -91,5 +90,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q89363113"
 }

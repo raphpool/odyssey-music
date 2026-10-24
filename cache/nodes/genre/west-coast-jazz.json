@@ -30,7 +30,6 @@
   },
   "type": "genre",
   "editorial_definition": "A style of jazz that developed on the American West Coast during the 1950s, characterized by a relaxed, cool temperament, precise arrangements, and a lighter, more lyrical melodic sensibility.",
-  "qid": "Q1548603",
   "era": "1950s",
   "origin": "Los Angeles and San Francisco, USA",
   "parent_genres": [
@@ -108,5 +107,6 @@
       "name": "Birth of the Cool"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1548603"
 }

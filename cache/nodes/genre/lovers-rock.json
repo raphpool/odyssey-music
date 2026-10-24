@@ -30,7 +30,6 @@
   },
   "type": "genre",
   "editorial_definition": "A romanticized subgenre of reggae that originated in the mid-1970s in London, characterized by its focus on love-themed lyrics, smooth vocal harmonies, and a fusion of Jamaican rhythms with American soul and R&B sensibilities.",
-  "qid": "Q1872505",
   "era": "Mid-1970s to present",
   "origin": "London, England",
   "sonic_markers": "Smooth vocal arrangements, melodic hooks, soulful influence, reggae basslines, apolitical romantic themes, often features horn sections and soft keyboard accompaniment.",
@@ -131,5 +130,6 @@
       "type": "track",
       "name": "Caught You in a Lie"
     }
-  ]
+  ],
+  "qid": "Q1872505"
 }

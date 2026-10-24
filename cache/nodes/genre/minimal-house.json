@@ -15,7 +15,6 @@
   "materialized_at": "2026-05-13T13:04:59.206Z",
   "type": "genre",
   "editorial_definition": "Minimal house is a subgenre of house music emphasizing a stripped-back aesthetic, characterized by 4-on-the-floor rhythms, sparse but high-quality sound design, and hypnotic, gradual progressions.",
-  "qid": "Q750811",
   "origin": "Detroit/Chicago influence, evolved globally",
   "parent_genres": [],
   "subgenres": [],
@@ -75,5 +74,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q750811"
 }

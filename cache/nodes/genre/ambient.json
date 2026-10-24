@@ -84,16 +84,6 @@
       "qid": "Q622871"
     },
     {
-      "slug": "genre:abstract-electronic",
-      "type": "genre",
-      "name": "Abstract Electronic"
-    },
-    {
-      "slug": "genre:berlin-school",
-      "type": "genre",
-      "name": "Berlin School"
-    },
-    {
       "slug": "genre:berlin-school-of-electronic-music",
       "type": "genre",
       "name": "Berlin school of electronic music",
@@ -128,11 +118,6 @@
       "type": "genre",
       "name": "Microsound",
       "qid": "Q3503814"
-    },
-    {
-      "slug": "genre:modular-synth",
-      "type": "genre",
-      "name": "Modular Synth"
     },
     {
       "slug": "genre:post-dubstep",

@@ -26,7 +26,6 @@
   },
   "type": "genre",
   "editorial_definition": "A short-lived but highly influential genre of Jamaican popular music that originated in 1966, characterized by a slower tempo than ska and a strong focus on soulful vocal harmonies and melodic, prominent bass lines.",
-  "qid": "Q573484",
   "era": "1966–1968",
   "origin": "Jamaica",
   "sonic_markers": "Slower tempo than ska, prominent melodic bass lines, soulful vocal harmonies, focus on the offbeat, and minimal horn arrangements.",
@@ -143,5 +142,6 @@
       "type": "track",
       "name": "The Tide Is High"
     }
-  ]
+  ],
+  "qid": "Q573484"
 }

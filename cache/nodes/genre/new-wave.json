@@ -15,7 +15,6 @@
   "materialized_at": "2026-05-13T12:43:56.780Z",
   "type": "genre",
   "editorial_definition": "A melodic, pop-oriented genre emerging in the late 1970s as a successor to punk, characterized by quirky, idiosyncratic sensibilities, angular guitar work, and the increasing incorporation of synthesizers and electronic elements.",
-  "qid": "Q187760",
   "era": "Mid-1970s to mid-1980s",
   "origin": "United Kingdom and United States",
   "parent_genres": [
@@ -176,5 +175,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q187760"
 }

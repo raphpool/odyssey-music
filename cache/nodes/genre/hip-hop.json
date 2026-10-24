@@ -220,11 +220,6 @@
       "qid": "Q164444"
     },
     {
-      "slug": "genre:hip-hop-francais",
-      "type": "genre",
-      "name": "Hip-hop français"
-    },
-    {
       "slug": "genre:lo-fi",
       "type": "genre",
       "name": "Lo-fi",
@@ -241,11 +236,6 @@
       "type": "genre",
       "name": "R&B",
       "qid": "Q45981"
-    },
-    {
-      "slug": "genre:rap-francais",
-      "type": "genre",
-      "name": "Rap français"
     }
   ],
   "key_artists": [

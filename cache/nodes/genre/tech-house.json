@@ -34,7 +34,6 @@
   },
   "type": "genre",
   "editorial_definition": "Tech House is an electronic dance music genre characterized by the fusion of the groovy, soulful elements of house music with the precise, rhythmic patterns and rugged basslines of techno.",
-  "qid": "Q598593",
   "era": "1990s–present",
   "origin": "United Kingdom",
   "parent_genres": [
@@ -128,5 +127,6 @@
       "type": "track",
       "name": "Hungry For The Power (Jamie Jones Ridge Street Mix)"
     }
-  ]
+  ],
+  "qid": "Q598593"
 }

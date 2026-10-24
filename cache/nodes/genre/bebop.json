@@ -15,7 +15,6 @@
   "materialized_at": "2026-05-13T13:17:39.333Z",
   "type": "genre",
   "editorial_definition": "A 1940s jazz subgenre characterized by fast tempos, complex instrumental virtuosity, harmonic dissonance, and extensive improvisation, signaling a shift from dance music to art music.",
-  "qid": "Q105513",
   "era": "1940s",
   "origin": "New York City, USA",
   "parent_genres": [
@@ -126,5 +125,6 @@
       "type": "track",
       "name": "Ornithology"
     }
-  ]
+  ],
+  "qid": "Q105513"
 }

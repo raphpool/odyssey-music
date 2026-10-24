@@ -15,7 +15,6 @@
   "materialized_at": "2026-05-13T12:34:25.827Z",
   "type": "genre",
   "editorial_definition": "Glitch is an experimental electronic music genre that utilizes the sounds of digital error, hardware malfunction, and signal distortion as primary compositional elements, often treating technical imperfection as an aesthetic cornerstone.",
-  "qid": "Q1100989",
   "era": "1990s–Present",
   "origin": "Global, predominantly Europe and North America",
   "parent_genres": [],
@@ -38,21 +37,6 @@
       "type": "genre",
       "name": "Minimal Techno",
       "qid": "Q1430587"
-    },
-    {
-      "slug": "genre:abstract-electronic",
-      "type": "genre",
-      "name": "Abstract Electronic"
-    },
-    {
-      "slug": "genre:braindance",
-      "type": "genre",
-      "name": "Braindance"
-    },
-    {
-      "slug": "genre:drill-n-bass",
-      "type": "genre",
-      "name": "Drill 'n' bass"
     },
     {
       "slug": "genre:microhouse",
@@ -102,5 +86,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q1100989"
 }

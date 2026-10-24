@@ -47,13 +47,7 @@
     }
   ],
   "subgenres": [],
-  "related_genres": [
-    {
-      "slug": "genre:computer-music",
-      "type": "genre",
-      "name": "Computer music"
-    }
-  ],
+  "related_genres": [],
   "key_artists": [
     {
       "slug": "artist:david-tudor",

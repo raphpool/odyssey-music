@@ -34,7 +34,6 @@
   },
   "type": "genre",
   "editorial_definition": "A subgenre of indie rock characterized by heavily layered, distorted, and atmospheric guitar textures, often featuring breathy or indistinct vocals buried in the mix.",
-  "qid": "Q272167",
   "era": "Late 1980s–Present",
   "origin": "United Kingdom / Ireland",
   "parent_genres": [
@@ -159,5 +158,6 @@
       "name": "Psychocandy"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q272167"
 }

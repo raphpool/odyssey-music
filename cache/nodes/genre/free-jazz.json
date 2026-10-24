@@ -34,7 +34,6 @@
   },
   "type": "genre",
   "editorial_definition": "A revolutionary, experimental style of jazz improvisation that emerged in the late 1950s by discarding traditional jazz conventions like fixed chord changes, standard song structures, and regular tempos in favor of spontaneous, collective expression.",
-  "qid": "Q211781",
   "era": "Late 1950s – present",
   "origin": "United States",
   "parent_genres": [],
@@ -132,5 +131,6 @@
       "name": "Ascension"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q211781"
 }

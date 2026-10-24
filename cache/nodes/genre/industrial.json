@@ -42,11 +42,6 @@
       "qid": "Q105636937"
     },
     {
-      "slug": "genre:modular-synth",
-      "type": "genre",
-      "name": "Modular Synth"
-    },
-    {
       "slug": "genre:noise",
       "type": "genre",
       "name": "Noise",

@@ -15,7 +15,6 @@
   "materialized_at": "2026-05-13T13:17:38.390Z",
   "type": "genre",
   "editorial_definition": "A subdued, harmonically sophisticated subgenre of modern jazz that emerged after WWII, characterized by relaxed tempos, lighter tones, and an emphasis on melodic flow over rhythmic intensity.",
-  "qid": "Q327547",
   "era": "1940s–1950s",
   "origin": "United States",
   "parent_genres": [
@@ -117,5 +116,6 @@
       "name": "Birth of the Cool"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q327547"
 }
