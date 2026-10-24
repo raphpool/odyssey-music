@@ -7,15 +7,15 @@ final class HeroImageSourceTests: XCTestCase {
 
 	// MARK: - Candidates
 
-	func testArtistUsesItsImageThenTheFirstRelease() throws {
-		let edges = ["discography": Self.list(.project, "a", "b")]
+	func testArtistLabelAndGenreUseTheirImageElseTheirOwnImageEndpoint() throws {
 		let own = HeroCandidate.url(try XCTUnwrap(URL(string: cover)))
-		let release = HeroCandidate.node(try Self.id("project:a"))
 
-		XCTAssertEqual(try Self.candidates(.artist, imageURL: cover, edges: edges), [own, release])
-		XCTAssertEqual(try Self.candidates(.artist, imageURL: nil, edges: edges), [release])
-		XCTAssertEqual(try Self.candidates(.artist, imageURL: cover, edges: [:]), [own])
-		XCTAssertEqual(try Self.candidates(.artist, imageURL: nil, edges: [:]), [])
+		for type in [NodeType.artist, .label, .genre] {
+			XCTAssertEqual(try Self.candidates(type, imageURL: cover, edges: [:]), [own], "\(type)")
+			XCTAssertEqual(
+				try Self.candidates(type, imageURL: nil, edges: [:]), [.node(try Self.id("\(type.rawValue):roni-size"))],
+				"\(type)")
+		}
 	}
 
 	func testProjectUsesOnlyItsOwnImage() throws {
@@ -43,76 +43,79 @@ final class HeroImageSourceTests: XCTestCase {
 			try Self.candidates(.track, imageURL: nil, edges: edges), [.node(try Self.id("project:first"))])
 	}
 
-	func testGenreUsesItsImageThenLandmarkProjectThenLandmarkTrack() throws {
-		let both = [
-			"landmark_projects": Self.list(.project, "p1", "p2"), "landmark_tracks": Self.list(.track, "t1"),
-		]
-		let own = HeroCandidate.url(try XCTUnwrap(URL(string: cover)))
-		let project = HeroCandidate.node(try Self.id("project:p1"))
-		let track = HeroCandidate.node(try Self.id("track:t1"))
+	// MARK: - Reciprocity (TRA-593)
 
-		XCTAssertEqual(try Self.candidates(.genre, imageURL: cover, edges: both), [own, project, track])
-		XCTAssertEqual(try Self.candidates(.genre, imageURL: nil, edges: both), [project, track])
+	/// Mille Plateaux / Electric Ladyland: a label page that lists a Reprise release. A page edge says nothing
+	/// about the label of a work, so the only node the hero may ask is the label itself, whose `/image` the
+	/// server answers from a release that declares it.
+	func testALabelNeverBorrowsAListedRelease() throws {
+		let edges = [
+			"notable_releases": Self.list(.project, "electric-ladyland--the-jimi-hendrix-experience"),
+			"roster": Self.list(.artist, "x"),
+		]
+
 		XCTAssertEqual(
-			try Self.candidates(.genre, imageURL: nil, edges: ["landmark_tracks": Self.list(.track, "t1")]),
-			[track])
-		XCTAssertEqual(try Self.candidates(.genre, imageURL: cover, edges: [:]), [own])
-		XCTAssertEqual(try Self.candidates(.genre, imageURL: nil, edges: [:]), [])
+			try Self.candidates(.label, slug: "mille-plateaux", imageURL: nil, edges: edges),
+			[.node(try Self.id("label:mille-plateaux"))])
 	}
 
-	func testLabelUsesItsImageThenItsFirstNotableRelease() throws {
-		let edges = ["notable_releases": Self.list(.project, "r1", "r2"), "roster": Self.list(.artist, "x")]
-		let own = HeroCandidate.url(try XCTUnwrap(URL(string: cover)))
-		let release = HeroCandidate.node(try Self.id("project:r1"))
+	func testNoArtistLabelOrGenreHeroEverAsksForAnotherNodesImage() throws {
+		let edges = [
+			"discography": Self.list(.project, "a"), "notable_tracks": Self.list(.track, "t"),
+			"notable_releases": Self.list(.project, "r"), "landmark_project": Self.object(.project, "lp"),
+			"landmark_projects": Self.list(.project, "p"), "landmark_tracks": Self.list(.track, "lt"),
+		]
 
-		XCTAssertEqual(try Self.candidates(.label, imageURL: cover, edges: edges), [own, release])
-		XCTAssertEqual(try Self.candidates(.label, imageURL: nil, edges: edges), [release])
-		XCTAssertEqual(try Self.candidates(.label, imageURL: cover, edges: [:]), [own])
-		XCTAssertEqual(try Self.candidates(.label, imageURL: nil, edges: [:]), [])
+		for type in [NodeType.artist, .label, .genre] {
+			let identity = try Self.id("\(type.rawValue):subject")
+			XCTAssertEqual(
+				try Self.candidates(type, slug: "subject", imageURL: nil, edges: edges), [.node(identity)], "\(type)")
+			XCTAssertEqual(
+				try Self.candidates(type, slug: "subject", imageURL: cover, edges: edges),
+				[.url(try XCTUnwrap(URL(string: cover)))], "\(type)")
+		}
 	}
 
 	func testEveryNodeTypePutsItsOwnImageFirst() throws {
 		let own = HeroCandidate.url(try XCTUnwrap(URL(string: cover)))
-		let edges = [
-			"discography": Self.list(.project, "a"), "project": Self.object(.project, "album"),
-			"landmark_projects": Self.list(.project, "p"), "landmark_tracks": Self.list(.track, "t"),
-			"notable_releases": Self.list(.project, "r"),
-		]
+		let edges = ["discography": Self.list(.project, "a"), "project": Self.object(.project, "album")]
 		for type in [NodeType.artist, .project, .track, .genre, .label] {
 			XCTAssertEqual(try Self.candidates(type, imageURL: cover, edges: edges).first, own, "\(type)")
 		}
 	}
 
-	func testAnEmptyEdgeListGivesNoCandidate() throws {
-		XCTAssertEqual(try Self.candidates(.artist, imageURL: nil, edges: ["discography": "[]"]), [])
-	}
-
 	func testAnImageURLThatIsNotPublicHTTPSIsIgnoredAndTheNextCandidateIsKept() throws {
-		let edges = ["discography": Self.list(.project, "a")]
-		let release = HeroCandidate.node(try Self.id("project:a"))
+		let own = try Self.id("artist:roni-size")
 		let unsafe = [
 			"http://img.example.com/cover.jpg", "https://127.0.0.1/cover.jpg", "https://localhost/cover.jpg",
 			"https://img.example.com:8443/cover.jpg", "https://10.0.0.5/cover.jpg",
 		]
 		for value in unsafe {
-			XCTAssertEqual(try Self.candidates(.artist, imageURL: value, edges: edges), [release], value)
+			XCTAssertEqual(try Self.candidates(.artist, imageURL: value, edges: [:]), [.node(own)], value)
 			XCTAssertEqual(try Self.candidates(.project, imageURL: value, edges: [:]), [], value)
-			XCTAssertEqual(try Self.candidates(.genre, imageURL: value, edges: [:]), [], value)
-			XCTAssertEqual(try Self.candidates(.label, imageURL: value, edges: [:]), [], value)
+			XCTAssertEqual(
+				try Self.candidates(.genre, imageURL: value, edges: [:]), [.node(try Self.id("genre:roni-size"))], value)
+			XCTAssertEqual(
+				try Self.candidates(.label, imageURL: value, edges: [:]), [.node(try Self.id("label:roni-size"))], value)
 		}
 	}
 
 	func testCandidatesOfADecodedNodeMatchTheRawEntryPoint() throws {
-		let source = """
-			{"id":"artist:sample-node","type":"artist","name":"Sample","teaser":null,"article":"A","citations":[],"facts":{},"edges":{"discography":[{"slug":"project:a","type":"project","name":"A"}]},"materialized_at":"2026-10-08T00:00:00Z","image_url":"\(cover)"}
-			"""
-		let decoder = JSONDecoder()
-		decoder.dateDecodingStrategy = .iso8601
-		let node = try decoder.decode(NodeDetail.self, from: Data(source.utf8))
+		let edges = #""edges":{"discography":[{"slug":"project:a","type":"project","name":"A"}]}"#
+		func decode(_ image: String) throws -> NodeDetail {
+			let source = """
+				{"id":"artist:sample-node","type":"artist","name":"Sample","teaser":null,"article":"A","citations":[],"facts":{},\(edges),"materialized_at":"2026-10-08T00:00:00Z"\(image)}
+				"""
+			let decoder = JSONDecoder()
+			decoder.dateDecodingStrategy = .iso8601
+			return try decoder.decode(NodeDetail.self, from: Data(source.utf8))
+		}
 
 		XCTAssertEqual(
-			HeroImageSource.candidates(for: node),
-			[.url(try XCTUnwrap(URL(string: cover))), .node(try Self.id("project:a"))])
+			HeroImageSource.candidates(for: try decode(#","image_url":"\#(cover)""#)),
+			[.url(try XCTUnwrap(URL(string: cover)))])
+		XCTAssertEqual(
+			HeroImageSource.candidates(for: try decode("")), [.node(try Self.id("artist:sample-node"))])
 	}
 
 	// MARK: - Style (TRA-500)
@@ -126,7 +129,7 @@ final class HeroImageSourceTests: XCTestCase {
 		XCTAssertEqual(HeroImageSource.style(of: own, type: .artist, imageSource: nil), .photo)
 	}
 
-	func testAnImageBorrowedFromAnEdgeIsADerivedCoverForArtistLabelAndGenre() throws {
+	func testAnImageReadFromANodeEndpointIsADerivedCoverForArtistLabelAndGenre() throws {
 		let edge = HeroCandidate.node(try Self.id("project:a"))
 
 		for type in [NodeType.artist, .label, .genre] {
@@ -254,12 +257,15 @@ final class HeroImageSourceTests: XCTestCase {
 		try XCTUnwrap(NodeIdentity(rawValue: value))
 	}
 
+	/// `slug` defaults to `roni-size`: the node whose page the edge fixtures below describe.
 	private static func candidates(
-		_ type: NodeType, imageURL: String?, edges: [String: String]
+		_ type: NodeType, slug: String = "roni-size", imageURL: String?, edges: [String: String]
 	) throws -> [HeroCandidate] {
 		let decoder = JSONDecoder()
 		let values = try edges.mapValues { try decoder.decode(NodeEdgeValue.self, from: Data($0.utf8)) }
-		return HeroImageSource.candidates(type: type, imageURL: imageURL.flatMap { URL(string: $0) }, edges: values)
+		return HeroImageSource.candidates(
+			type: type, id: try id("\(type.rawValue):\(slug)"), imageURL: imageURL.flatMap { URL(string: $0) },
+			edges: values)
 	}
 
 	/// Slugs are `<type>:<name>`, so `list(.project, "a")` is the edge `project:a`.

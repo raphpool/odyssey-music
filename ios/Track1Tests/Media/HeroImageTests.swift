@@ -59,9 +59,11 @@ final class HeroImageTests: XCTestCase {
 
 	// MARK: - Fallback chain
 
+	// A track is the one kind that still has a chain after its own image: its project's cover is its album.
+
 	func testFirstCandidateWithoutImageFallsThroughToTheSecondAndTheStateIsLoaded() async throws {
 		let backend = Backend(images: [second: Self.solid(.red)])
-		let model = try model(backend, imageURL: first, discography: "project:a")
+		let model = try model(backend, type: .track, imageURL: first, listed: ("project", "project:a"))
 		backend.answers["project:a"] = second
 
 		await model.load()
@@ -90,7 +92,7 @@ final class HeroImageTests: XCTestCase {
 
 	func testFirstImageWinsAndLaterCandidatesAreNotRead() async throws {
 		let backend = Backend(images: [first: Self.solid(.red), second: Self.solid(.blue)])
-		let model = try model(backend, imageURL: first, discography: "project:a")
+		let model = try model(backend, type: .track, imageURL: first, listed: ("project", "project:a"))
 		backend.answers["project:a"] = second
 
 		await model.load()
@@ -102,7 +104,7 @@ final class HeroImageTests: XCTestCase {
 
 	func testWhenEveryCandidateGivesNothingTheStateIsPlaceholder() async throws {
 		let backend = Backend(images: [:])
-		let model = try model(backend, imageURL: first, discography: "project:a")
+		let model = try model(backend, type: .track, imageURL: first, listed: ("project", "project:a"))
 
 		await model.load()
 
@@ -110,9 +112,36 @@ final class HeroImageTests: XCTestCase {
 		XCTAssertEqual(backend.reads, ["project:a"])
 	}
 
-	func testANodeWithoutCandidateIsAPlaceholderWithoutAnyRead() async throws {
+	// MARK: - No borrowing from a listed work (TRA-593)
+
+	func testAnArtistWithoutImageAsksForItsOwnImageAndNeverForAListedWork() async throws {
+		let backend = Backend(images: [second: Self.solid(.red)])
+		let model = try model(backend, imageURL: nil, listed: ("discography", "project:a"))
+		backend.answers["project:a"] = first
+		backend.answers["artist:sample-artist"] = second
+
+		await model.load()
+
+		guard case .loaded = model.state else { return XCTFail("State was \(model.state).") }
+		XCTAssertEqual(backend.reads, ["artist:sample-artist"])
+		XCTAssertEqual(backend.loaded, [second])
+	}
+
+	func testAnArtistWhoseOwnImageEndpointGivesNothingIsAPlaceholderEvenWithAListedWork() async throws {
+		let backend = Backend(images: [first: Self.solid(.red)])
+		let model = try model(backend, imageURL: nil, listed: ("discography", "project:a"))
+		backend.answers["project:a"] = first
+
+		await model.load()
+
+		XCTAssertEqual(model.state, .placeholder)
+		XCTAssertEqual(backend.reads, ["artist:sample-artist"])
+		XCTAssertEqual(backend.loaded, [])
+	}
+
+	func testAProjectWithoutImageIsAPlaceholderWithoutAnyRead() async throws {
 		let backend = Backend(images: [:])
-		let model = try model(backend, imageURL: nil, discography: nil)
+		let model = try model(backend, type: .project, imageURL: nil)
 
 		await model.load()
 
@@ -133,7 +162,7 @@ final class HeroImageTests: XCTestCase {
 				signal.yield()
 				await gate.wait()
 			})
-		let model = try model(backend, imageURL: first, discography: nil)
+		let model = try model(backend, imageURL: first)
 
 		let task = Task { await model.load() }
 		for await _ in started { break }
@@ -208,19 +237,25 @@ final class HeroImageTests: XCTestCase {
 		return (Double(red), Double(green), Double(blue))
 	}
 
-	private func model(_ backend: Backend, imageURL: String?, discography: String?) throws -> NodeHeroModel {
-		NodeHeroModel(node: try Self.artist(imageURL: imageURL, discography: discography), store: backend.store)
+	private func model(
+		_ backend: Backend, type: NodeType = .artist, imageURL: String?,
+		listed: (edge: String, slug: String)? = nil
+	) throws -> NodeHeroModel {
+		NodeHeroModel(
+			node: try Self.node(type: type, imageURL: imageURL, listed: listed), store: backend.store)
 	}
 
-	/// An artist decoded from the JSON the API sends, so the fixture cannot drift from the real shape.
-	private static func artist(imageURL: String?, discography: String?) throws -> NodeDetail {
+	/// A node decoded from the JSON the API sends, so the fixture cannot drift from the real shape. `listed` is
+	/// a work on one of the node's edges (an artist's `discography`, a track's `project`).
+	private static func node(
+		type: NodeType, imageURL: String?, listed: (edge: String, slug: String)?
+	) throws -> NodeDetail {
 		let image = imageURL.map { "\"\($0)\"" } ?? "null"
-		let release = discography.map {
-			#"[{"slug":"\#($0)","type":"project","name":"Release"}]"#
+		let entry = listed.map {
+			#""\#($0.edge)":[{"slug":"\#($0.slug)","type":"project","name":"Release"}]"#
 		}
-		let edges = release.map { #""discography":\#($0)"# } ?? ""
 		let source = """
-			{"id":"artist:sample-artist","type":"artist","name":"Sample","teaser":null,"article":"A","citations":[],"facts":{},"edges":{\(edges)},"materialized_at":"2026-10-08T00:00:00Z","image_url":\(image)}
+			{"id":"\(type.rawValue):sample-\(type.rawValue)","type":"\(type.rawValue)","name":"Sample","teaser":null,"article":"A","citations":[],"facts":{},"edges":{\(entry ?? "")},"materialized_at":"2026-10-08T00:00:00Z","image_url":\(image)}
 			"""
 		let decoder = JSONDecoder()
 		decoder.dateDecodingStrategy = .iso8601
