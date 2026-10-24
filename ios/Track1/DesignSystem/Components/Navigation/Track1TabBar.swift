@@ -121,11 +121,11 @@ struct Track1TabBar: View {
 
 	private func tabButton(_ item: Item) -> some View {
 		let isSelected = Self.isSelected(item, selected: selected)
+		let tone = Self.tone(for: item, selected: selected)
 		return Button {
 			onSelect(item.id)
 		} label: {
-			Track1Icon(
-				asset: item.icon, tone: Self.tone(for: item, selected: selected), size: Track1TabBarMetrics.iconSize)
+			Track1Icon(asset: item.icon, tone: tone, size: Track1TabBarMetrics.iconSize)
 				.frame(width: Track1TabBarMetrics.tabWidth, height: Track1TabBarMetrics.tabHeight)
 				.background {
 					if isSelected {
