@@ -189,6 +189,7 @@ try {
 				return JSON.stringify({
 					artists: edges(n.artists),
 					personnel: edges(n.personnel),
+					producers: edges(n.producers),
 					cover_url: n.cover_url ?? null,
 					duration: n.duration ?? null,
 					year: n.year ?? null,
@@ -196,6 +197,15 @@ try {
 				});
 			};
 			console.log(`\n${f.slug}\n  before ${pick(b)}\n  after  ${pick(a)}`);
+			for (const { artist, field } of f.detach ?? []) {
+				const held = (text: string | undefined): unknown =>
+					text === undefined
+						? "(absent)"
+						: (((JSON.parse(text) as Obj)[field] as Obj | undefined)?.slug ?? null);
+				console.log(
+					`  ${artist}.${field}: ${held(prodBefore.get(path(artist)))} -> ${held(prodAfter.get(path(artist)))}`,
+				);
+			}
 		}
 	}
 } finally {

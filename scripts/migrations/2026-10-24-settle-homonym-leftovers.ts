@@ -10,13 +10,16 @@
  *    `track:around-the-world--daft-punk`, exists in prod: the stripped node is a duplicate of it and is MERGED into
  *    it (the target wins, the homonym's personnel, cover and 2:54 duration go with the node), its slug and the
  *    bare `track:around-the-world` redirect to the survivor.
- * 2. The seven works the first run reported and left. Four have the right prose and the homonym's identity
- *    (Digital Love credited to Logistics, Human After All to Twin Atlantic, Public Image to Fraebbblarnir, Tears
- *    to Lou Johnson): re-credited to the artist the prose is about, slug moved to its scope, the homonym's mbid,
- *    project, label, cover, year, duration and image removed (the identity backfill resolves the right ones when
- *    the credit maps onto a cache artist). Three keep their identity and are NOT touched: the prose is the wrong
- *    half (a Versailles album under IAM's "Noble Art", a Freddie Mercury discography under De Cylinders' single, a
- *    series text under Earth, Wind and Fire's "The Essential"), which only a new article can fix.
+ * 2. The seven works the first run reported and left. Three have the right prose and the homonym's identity
+ *    (Digital Love credited to Logistics, Human After All to Twin Atlantic, Public Image to Fraebbblarnir):
+ *    re-credited to the artist the prose is about, slug moved to its scope, the homonym's mbid, project, label,
+ *    cover, year, duration and image removed (the identity backfill resolves the right ones when the credit maps
+ *    onto a cache artist). Four keep their slug and their identity, which is right, and have a prose that is
+ *    wrong (a Versailles album under IAM's "Noble Art", a Freddie Mercury discography under De Cylinders'
+ *    single, a series text under Earth, Wind and Fire's "The Essential", and under Lou Johnson's "Tears" the
+ *    B-side of Mad World that MusicBrainz does not know): only a new article can fix the prose, so only what it
+ *    or the cover brought in goes (edges to the artists it names, the Clean Bandit cover of "Tears", IAM's
+ *    reference track, which is a node whose article is not about it, cleared as TRA-605 does).
  * 3. The five corrected works: the covers of the homonym stay on `project:human-after-all--daft-punk` (Twin
  *    Atlantic's single, UPC 884977687170) and `project:temps-mort--booba` (Corbillard's 2020 album, UPC
  *    5051083220071), checked against the iTunes catalogue; they go. An edge to the homonym in `personnel` /
@@ -59,10 +62,33 @@ export const FORCED: readonly ForcedFix[] = [
 		credit: { slug: "artist:public-image-ltd", name: "Public Image Ltd" },
 		wrongArtists: ["artist:fraebbblarnir"],
 	},
+	// 2b. Right identity, wrong prose: only what the prose and the cover brought in goes (the prose and the
+	// identity stay). Tears: Lou Johnson's track (Sweet Southern Soul, 1969) is real, MusicBrainz holds no
+	// "Tears" by Tears for Fears (the B-sides of Mad World are Ideas as Opiates and Saxophones as Opiates), and
+	// the cover is Clean Bandit's "Tears (acoustic piano version)", UPC 190295927530.
 	{
 		slug: "track:tears--lou-johnson",
-		credit: { slug: "artist:tears-for-fears", name: "Tears for Fears" },
-		wrongArtists: ["artist:lou-johnson"],
+		wrongArtists: [
+			"artist:roland-orzabal",
+			"artist:curt-smith",
+			"artist:manny-elias",
+			"artist:ian-stanley",
+			"artist:mike-howlett",
+		],
+		wrongCovers: ["89ce7a97-bfea-c31b-ae6d-9bc6587097a4"],
+	},
+	// Noble Art: the prose is Versailles' album, so its members (producers) and Jasmine You (personnel) are not
+	// IAM's, and IAM's reference track is a node whose article is not about it (cleared, as TRA-605 does).
+	{
+		slug: "track:noble-art--iam",
+		wrongArtists: ["artist:kamijo", "artist:hizaki", "artist:teru", "artist:jasmine-you"],
+		detach: [{ artist: "artist:iam", field: "reference_track" }],
+	},
+	// Freddie Mercury (De Cylinders): the prose is the discography of the Queen singer.
+	{
+		slug: "project:freddie-mercury--de-cylinders",
+		wrongArtists: ["artist:montserrat-caballe", "artist:giorgio-moroder"],
+		wrongEdges: ["project:queen--mia"],
 	},
 	// 3. The corrected works: the homonym's cover and edges.
 	{

@@ -353,6 +353,41 @@ describe("settle-homonym-leftovers: the corrected works", () => {
 		expect(result.manifest.renamed).toEqual({});
 	});
 
+	it("removes an itunes-verified image that is the homonym's, and keeps one that is not", async () => {
+		const wrong = TWIN.replace("1500x1500bb", "600x600bb");
+		await seed(
+			workNode("project", HAA, "Human After All", { image_url: wrong, image_source: "itunes-verified" }),
+			workNode("project", TM, "Temps mort", {
+				image_url: "https://is1-ssl.mzstatic.com/image/thumb/Music1/v4/aa/bb/cc/other/600x600bb.jpg",
+				image_source: "itunes-verified",
+			}),
+		);
+
+		await run(true);
+
+		const haa = await read(HAA);
+		expect([haa.image_url, haa.image_source]).toEqual([undefined, undefined]);
+		expect((await read(TM)).image_source).toBe("itunes-verified");
+	});
+
+	it("removes the derived images of a re-credited work, whatever their URL (Digital Love)", async () => {
+		const old = "track:digital-love--logistics";
+		await seed(
+			workNode("track", old, "Digital Love", {
+				editorial_article: `Released in 2001, Daft Punk's Digital Love is a single. ${article}`,
+				artists: [edge("artist:logistics", "Logistics")],
+				image_url: "https://is1-ssl.mzstatic.com/image/thumb/Music1/v4/aa/bb/cc/x/600x600bb.jpg",
+				image_source: "itunes-verified",
+			}),
+			artistNode("artist:daft-punk", "Daft Punk", { mbid: DAFT }),
+		);
+
+		await run(true);
+
+		const fixed = await read("track:digital-love--daft-punk");
+		expect([fixed.image_url, fixed.image_source]).toEqual([undefined, undefined]);
+	});
+
 	it("folds the bare and the scoped slug a label lists for the same work (Harvest Records)", async () => {
 		const wywh = "project:wish-you-were-here--pink-floyd";
 		await seed(
@@ -432,26 +467,98 @@ describe("settle-homonym-leftovers: the closed list", () => {
 		expect(result.manifest.renamed).toEqual({});
 	});
 
-	it("never touches the three works whose prose, not identity, is wrong", async () => {
-		const slugs = [
-			"project:freddie-mercury--de-cylinders",
-			"track:noble-art--iam",
-			"project:the-essential--earth-wind-and-fire",
-		];
+	it("keeps the identity of the works whose prose is wrong and removes only what the prose and the cover brought in", async () => {
+		const CLEAN_BANDIT =
+			"https://is1-ssl.mzstatic.com/image/thumb/Music30/v4/89/ce/7a/89ce7a97-bfea-c31b-ae6d-9bc6587097a4/190295927530.jpg/1500x1500bb.jpg";
+		const lou = edge("artist:lou-johnson", "Lou Johnson", { mbid: "99999999-9999-4999-8999-999999999999" });
 		await seed(
-			...slugs.map((slug) =>
-				workNode(slug.startsWith("track") ? "track" : "project", slug, "Left alone", {
-					cover_url: "https://is1-ssl.mzstatic.com/image/thumb/Music1/v4/aa/bb/cc/x/c.jpg/1500x1500bb.jpg",
-					artists: [edge("artist:someone", "Someone", { mbid: "88888888-8888-4888-8888-888888888888" })],
-				}),
-			),
+			workNode("track", "track:tears--lou-johnson", "Tears", {
+				mbid: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+				year: "1969",
+				duration: "2:37",
+				cover_url: CLEAN_BANDIT,
+				artists: [lou],
+				producers: [edge("artist:mike-howlett", "Mike Howlett")],
+				personnel: [
+					edge("artist:roland-orzabal", "Roland Orzabal"),
+					edge("artist:curt-smith", "Curt Smith"),
+					edge("artist:a-session-man", "A Session Man"),
+				],
+			}),
+			workNode("track", "track:noble-art--iam", "Noble Art", {
+				artists: [edge("artist:iam", "IAM", { mbid: "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb" })],
+				producers: [
+					edge("artist:kamijo", "Kamijo"),
+					edge("artist:hizaki", "Hizaki"),
+					edge("artist:teru", "Teru"),
+				],
+				personnel: [edge("artist:jasmine-you", "Jasmine You")],
+			}),
+			artistNode("artist:iam", "IAM", {
+				reference_track: edge("track:noble-art--iam", "Noble Art"),
+				notable_tracks: [edge("track:noble-art--iam", "Noble Art")],
+			}),
+			workNode("project", "project:freddie-mercury--de-cylinders", "Freddie Mercury", {
+				artists: [
+					edge("artist:de-cylinders", "De Cylinders", { mbid: "cccccccc-cccc-4ccc-8ccc-cccccccccccc" }),
+				],
+				producers: [edge("artist:giorgio-moroder", "Giorgio Moroder"), edge("artist:mack", "Mack")],
+				personnel: [edge("artist:montserrat-caballe", "Montserrat Caballé")],
+				related_projects: [edge("project:queen--mia", "Queen MIA")],
+			}),
 		);
-		const before = await Promise.all(slugs.map((s) => readFile(nodePath(s), "utf8")));
+
+		const result = await run(true);
+
+		expect(result.exitCode).toBe(0);
+		expect(result.manifest.renamed).toEqual({});
+		const tears = await read("track:tears--lou-johnson");
+		expect(tears).toMatchObject({
+			mbid: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa",
+			year: "1969",
+			duration: "2:37",
+		});
+		expect(slugsOf(tears.artists)).toEqual(["artist:lou-johnson"]);
+		expect(tears.cover_url).toBeUndefined();
+		expect(slugsOf(tears.personnel)).toEqual(["artist:a-session-man"]);
+		expect(slugsOf(tears.producers)).toEqual([]);
+		const noble = await read("track:noble-art--iam");
+		expect(slugsOf(noble.producers)).toEqual([]);
+		expect(slugsOf(noble.personnel)).toEqual([]);
+		// IAM does have this track (its identity is right): only the flagship pick goes.
+		const iam = await read("artist:iam");
+		expect(iam.reference_track).toBeUndefined();
+		expect(slugsOf(iam.notable_tracks)).toEqual(["track:noble-art--iam"]);
+		const freddie = await read("project:freddie-mercury--de-cylinders");
+		expect(slugsOf(freddie.producers)).toEqual(["artist:mack"]);
+		expect(slugsOf(freddie.personnel)).toEqual([]);
+		expect(freddie.related_projects).toEqual([]);
+	});
+
+	it("clears a reference track only while it still holds the work (a pick made since is not ours to undo)", async () => {
+		await seed(
+			workNode("track", "track:noble-art--iam", "Noble Art"),
+			artistNode("artist:iam", "IAM", { reference_track: edge("track:another-song--iam", "Another Song") }),
+		);
+
+		await run(true);
+
+		expect((await read("artist:iam")).reference_track).toMatchObject({ slug: "track:another-song--iam" });
+	});
+
+	it("leaves The Essential alone: its edges are Earth, Wind and Fire's own", async () => {
+		const slug = "project:the-essential--earth-wind-and-fire";
+		await seed(
+			workNode("project", slug, "The Essential", {
+				producers: [edge("artist:maurice-white", "Maurice White")],
+			}),
+		);
+		const before = await readFile(nodePath(slug), "utf8");
 
 		const result = await run(true);
 
 		expect(result.written).toEqual([]);
-		expect(await Promise.all(slugs.map((s) => readFile(nodePath(s), "utf8")))).toEqual(before);
+		expect(await readFile(nodePath(slug), "utf8")).toBe(before);
 	});
 
 	it("has its redirect pairs committed in data/slug-redirects.json, the bare slugs included (the channel refuses otherwise)", async () => {
@@ -463,9 +570,11 @@ describe("settle-homonym-leftovers: the closed list", () => {
 			["track:digital-love", "track:digital-love--logistics", "track:digital-love--daft-punk"],
 			["track:human-after-all", "track:human-after-all--twin-atlantic", "track:human-after-all--daft-punk"],
 			["track:public-image", "track:public-image--fraebbblarnir", "track:public-image--public-image-ltd"],
-			["track:tears", "track:tears--lou-johnson", "track:tears--tears-for-fears"],
 		];
 		for (const [bare, old, right] of pairs) expect([committed[bare], committed[old]]).toEqual([right, right]);
+		// Tears is not re-credited: its bare slug still reads as Lou Johnson's track, and there is no pair for it.
+		expect(committed["track:tears"]).toBe("track:tears--lou-johnson");
+		expect(committed["track:tears--lou-johnson"]).toBeUndefined();
 	});
 
 	it("carries a migration name the channel accepts", () => {

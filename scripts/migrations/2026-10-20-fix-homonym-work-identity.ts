@@ -754,9 +754,9 @@ const DERIVED_IMAGES: readonly string[] = IMAGE_SOURCES.filter((source) => !sour
 
 /** The node without the homonym's leftovers (see `ForcedFix`). */
 function withoutLeftovers(node: Obj, forced: ForcedFix, identityChanges: boolean): Obj {
-	const wrong = new Set(forced.wrongArtists);
+	const wrong = new Set([...forced.wrongArtists, ...(forced.wrongEdges ?? [])]);
 	const next: Obj = { ...node };
-	for (const field of ["personnel", "producers"] as const) {
+	for (const field of ["personnel", "producers", "related_projects"] as const) {
 		if (Array.isArray(node[field]))
 			next[field] = edgesOf(node[field]).filter((e) => !wrong.has(str(e.slug) ?? ""));
 	}
@@ -791,6 +791,14 @@ export interface ForcedFix {
 	slug: string;
 	wrongArtists: readonly string[];
 	wrongCovers?: readonly string[];
+	/** Other slugs (a related project, a producer) the work lists only because of the wrong prose: removed too. */
+	wrongEdges?: readonly string[];
+	/**
+	 * Artist fields (`reference_track`, `landmark_project`) that name this work and must not: cleared, but only when
+	 * the field still holds exactly this work (a pick the pipeline or a human changed since is not ours to undo,
+	 * the rule of 2026-10-24-fix-weak-landmarks, TRA-605).
+	 */
+	detach?: readonly { artist: string; field: "reference_track" | "landmark_project" }[];
 	credit?: { slug: string; name: string };
 	into?: string;
 }
@@ -876,6 +884,14 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 
 	const forcedList = options.forced ?? [];
 	const forcedSlugs = new Set(forcedList.map((f) => f.slug));
+	// artist -> [field, work]: the singular fields to clear, for the works this cache holds.
+	const detachments = new Map<string, [string, string][]>();
+	for (const forced of forcedList) {
+		if (!files.has(forced.slug)) continue;
+		for (const { artist, field } of forced.detach ?? []) {
+			detachments.set(artist, [...(detachments.get(artist) ?? []), [field, forced.slug]]);
+		}
+	}
 	const absent = forcedList.filter((f) => !files.has(f.slug)).map((f) => f.slug);
 	if (forcedList.length > 0) {
 		log(`${forcedList.length - absent.length} of ${forcedList.length} listed work(s) in this cache`);
@@ -1215,6 +1231,13 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 			const before = JSON.stringify(next);
 			next = removeEdgesTo(next, file.type, new Set([old, ...aliasesOf(old)]));
 			if (JSON.stringify(next) !== before) droppedBy.set(old, (droppedBy.get(old) ?? 0) + 1);
+		}
+		for (const [field, work] of detachments.get(file.slug) ?? []) {
+			const held = next[field];
+			if (isRecord(held) && str(held.slug) === work) {
+				next = { ...next };
+				delete next[field];
+			}
 		}
 		if (Object.keys(edgeMoves).length > 0) {
 			const rewritten = rewriteEdges(
