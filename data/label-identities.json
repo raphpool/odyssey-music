@@ -1,5 +1,5 @@
 {
-	"source": "Derived from scripts/migrations/2026-10-20-merge-duplicate-labels.identities.json (proven groups only; mbids = MusicBrainz label, its brands and the Wikidata P966 links). Read by src/label-registry.ts (TRA-607); test/label-registry.test.ts fails when the two drift apart.",
+	"source": "Derived from scripts/migrations/2026-10-20-merge-duplicate-labels.identities.json (proven groups only; mbids = the MusicBrainz label and its brands; the Wikidata P966 mbids are left out, one of them is another Columbia). Read by src/label-registry.ts (TRA-607); test/label-registry.test.ts fails when the two drift apart.",
 	"groups": [
 		{
 			"key": "warp",
@@ -19,8 +19,7 @@
 				"label:columbia-records--american-major-label-founded-1888"
 			],
 			"mbids": [
-				"011d1192-6f65-45bd-85c4-0400dd45693e",
-				"ad6f8706-c95e-443b-8579-8e3ecd27126c"
+				"011d1192-6f65-45bd-85c4-0400dd45693e"
 			]
 		},
 		{
@@ -40,8 +39,7 @@
 				"label:epic-records"
 			],
 			"mbids": [
-				"8f638ddb-131a-4cc3-b3d4-7ebdac201b55",
-				"e2e4ff42-7af5-4af6-95fd-70defc9f38e2"
+				"8f638ddb-131a-4cc3-b3d4-7ebdac201b55"
 			]
 		},
 		{

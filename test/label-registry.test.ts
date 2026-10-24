@@ -110,7 +110,6 @@ describe("parseLabelIdentities", () => {
 				members: string[];
 				mb?: { mbid: string };
 				brands?: { mbid: string }[];
-				wd?: { mbids: string[] };
 			}[];
 		};
 		const proven = source.groups
@@ -120,7 +119,7 @@ describe("parseLabelIdentities", () => {
 				members: g.members,
 				mbids: [
 					...new Set(
-						[g.mb?.mbid, ...(g.brands ?? []).map((b) => b.mbid), ...(g.wd?.mbids ?? [])]
+						[g.mb?.mbid, ...(g.brands ?? []).map((b) => b.mbid)]
 							.filter((id): id is string => id !== undefined)
 							.map((id) => id.toLowerCase()),
 					),
@@ -178,6 +177,63 @@ describe("canonicalSlugFor", () => {
 		expect(await registry.canonicalSlugFor({ slug: "label:warp-records" })).toBe("label:warp");
 		expect(await registry.canonicalSlugFor({ slug: "label:columbia-records" })).toBe("label:columbia");
 		expect(await registry.canonicalSlugFor({ slug: "label:virgin" })).toBe("label:virgin-records");
+	});
+
+	describe("an edge whose mbid is another label's does not follow a redirect (B1)", () => {
+		// 4AD's ancestor, one of the seven "Axis Records" of MusicBrainz; Jeff Mills's Axis is 0aa73845.
+		const FOREIGN_AXIS = "d6025dee-9ac4-4790-ac52-b83bb032b23e";
+		const AXIS_MBID = "0aa73845-13c6-49fc-935f-82b8db65cd8e";
+
+		it("keeps label:axis-records on the committed redirects, and leaves label:axis alone", async () => {
+			await cache.write(labelNode("label:axis", "Axis"));
+			const registry = createLabelRegistry({
+				cache,
+				redirects: await loadRedirects(),
+				identities: await loadLabelIdentities(),
+			});
+			expect(await registry.canonicalSlugFor({ slug: "label:axis-records", mbid: FOREIGN_AXIS })).toBe(
+				"label:axis-records",
+			);
+			// The same name with Axis's own mbid, or none, is still the merged loser.
+			expect(await registry.canonicalSlugFor({ slug: "label:axis-records", mbid: AXIS_MBID })).toBe(
+				"label:axis",
+			);
+			expect(await registry.canonicalSlugFor({ slug: "label:axis-records" })).toBe("label:axis");
+			// Epic and Virgin, merged the other way round, are protected the same way.
+			expect(await registry.canonicalSlugFor({ slug: "label:epic-records", mbid: FOREIGN_AXIS })).toBe(
+				"label:epic-records",
+			);
+			expect(await registry.canonicalSlugFor({ slug: "label:virgin", mbid: FOREIGN_AXIS })).toBe(
+				"label:virgin",
+			);
+		});
+
+		it("does not take the Wikidata-only mbid of the other Columbia as a proof", async () => {
+			const registry = createLabelRegistry({
+				cache,
+				redirects: await loadRedirects(),
+				identities: await loadLabelIdentities(),
+			});
+			// EMI's Columbia Records (GB): P966 on Wikidata's Columbia item, but another MusicBrainz label.
+			const emiColumbia = "ad6f8706-c95e-443b-8579-8e3ecd27126c";
+			expect(await registry.canonicalSlugFor({ slug: "label:columbia-records", mbid: emiColumbia })).toBe(
+				"label:columbia-records",
+			);
+		});
+
+		it("also holds against the mbid of the redirect target's cached node", async () => {
+			await cache.write(labelNode("label:foo", "Foo", OTHER_MBID));
+			const registry = createLabelRegistry({
+				cache,
+				redirects: redirects({ "label:foo-records": "label:foo" }),
+			});
+			expect(await registry.canonicalSlugFor({ slug: "label:foo-records", mbid: WARP_MBID })).toBe(
+				"label:foo-records",
+			);
+			expect(await registry.canonicalSlugFor({ slug: "label:foo-records", mbid: OTHER_MBID })).toBe(
+				"label:foo",
+			);
+		});
 	});
 
 	it("sends a suffix variant to the group's survivor when the mbid is the group's", async () => {

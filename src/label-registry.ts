@@ -197,12 +197,36 @@ export function createLabelRegistry(deps: LabelRegistryDeps): LabelRegistry {
 		return proven.find((candidate) => candidate !== undefined);
 	}
 
+	// True when the ref carries an mbid and the label it would be moved onto is known to have another: the
+	// proven group of either slug (MusicBrainz ids only) or the target's own cached node.
+	async function contradictsMbid(ref: LabelRef, target: Slug): Promise<boolean> {
+		if (!ref.mbid) return false;
+		const id = ref.mbid.toLowerCase();
+		const group = groupOfMember.get(target) ?? groupOfMember.get(ref.slug);
+		if (group && !group.mbids.has(id)) return true;
+		try {
+			const node = await deps.cache.get(target);
+			return node.type === "label" && node.mbid !== undefined && node.mbid.toLowerCase() !== id;
+		} catch (e) {
+			if (!isNotFoundError(e)) {
+				log.warn("canonicalSlugFor: unreadable redirect target, following the redirect", {
+					slug: target,
+					error: e instanceof Error ? e.message : String(e),
+				});
+			}
+			return false;
+		}
+	}
+
 	async function canonicalSlugFor(ref: LabelRef): Promise<Slug> {
 		if (await deps.cache.has(ref.slug)) return ref.slug;
+		// A redirect records that the SLUG was merged, not that every label ever cited under that name is the
+		// merged one: MusicBrainz has seven "Axis Records", none of them Jeff Mills's "Axis". An edge whose own
+		// mbid says it is another label keeps its slug, so it is not filed under the survivor's roster. An edge
+		// with no mbid has nothing to contradict and follows the redirect.
 		const redirected = deps.redirects.get(ref.slug);
-		if (redirected) return redirected;
-		// A table member whose own mbid says it is another label (six "Axis Records" on MusicBrainz) is not
-		// moved onto the group on the strength of its name.
+		if (redirected) return (await contradictsMbid(ref, redirected)) ? ref.slug : redirected;
+		// Same for a table member that no redirect covers yet (the merge has not run on this cache).
 		const member = groupOfMember.get(ref.slug);
 		const memberProven = member && (!ref.mbid || member.mbids.has(ref.mbid.toLowerCase()));
 		const group = (memberProven ? member : undefined) ?? groupOfVariant(ref);

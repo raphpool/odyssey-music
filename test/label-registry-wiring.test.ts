@@ -15,19 +15,27 @@ function sources(dir: string): string[] {
 
 describe("label registry wiring (TRA-607)", () => {
 	it("passes `labels` at every createGenreRegistry call of src/ and scripts/", () => {
-		const calls = [...sources("src"), ...sources("scripts")].flatMap((file) =>
-			[...readFileSync(file, "utf8").matchAll(/createGenreRegistry\(\{[^}]*\}\)/g)].map((m) => ({
-				file,
-				text: m[0],
-			})),
+		const files = [...sources("src"), ...sources("scripts")].filter(
+			(f) => f !== join("src", "genre-registry.ts"),
 		);
+		const found = files.flatMap((file) => {
+			const source = readFileSync(file, "utf8");
+			// Every call, whatever its argument: one that is not an object literal cannot be checked, so it fails.
+			const all = [...source.matchAll(/createGenreRegistry\(/g)];
+			const literal = [...source.matchAll(/createGenreRegistry\(\{[^}]*\}\)/g)].map((m) => m[0]);
+			return all.length === 0 ? [] : [{ file, calls: all.length, literal }];
+		});
 		// server.ts, crawler.ts, top-up-dangling.ts, top-up-genres.ts
-		expect(calls.map((c) => c.file).sort()).toEqual([
+		expect(found.map((f) => f.file).sort()).toEqual([
 			join("scripts", "top-up-dangling.ts"),
 			join("scripts", "top-up-genres.ts"),
 			join("src", "crawler.ts"),
 			join("src", "server.ts"),
 		]);
-		for (const call of calls) expect(call.text, call.file).toMatch(/\blabels\b/);
+		for (const { file, calls, literal } of found) {
+			expect(literal.length, `${file}: a createGenreRegistry call is not an object literal`).toBe(calls);
+			// `labels` as a shorthand or a value, never `labels: undefined`.
+			for (const text of literal) expect(text, file).toMatch(/\blabels\b(?!\s*:\s*undefined)/);
+		}
 	});
 });

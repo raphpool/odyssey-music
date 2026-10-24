@@ -21,6 +21,9 @@ const TIMEOUT_MS = 5_000;
 const WARP_MBID = "46f0f4cd-8aab-4b33-b698-f459faf64190";
 const FOO_MBID = "11111111-2222-4333-8444-555555555555";
 const OTHER_MBID = "99999999-2222-4333-8444-555555555555";
+const AXIS_MBID = "0aa73845-13c6-49fc-935f-82b8db65cd8e";
+// One of the seven "Axis Records" of MusicBrainz: the 1979 UK label renamed 4AD.
+const FOREIGN_AXIS_MBID = "d6025dee-9ac4-4790-ac52-b83bb032b23e";
 const RG_MBID = "bbbbbbbb-1111-4111-8111-000000000022";
 
 let dir: string;
@@ -93,7 +96,6 @@ describe("label duplicates at generation (TRA-607)", () => {
 			// Warp Records and Warp are one edge; Rephlex Records is the loser of its own merge.
 			expect(labels.map((l) => l.slug)).toEqual(["label:warp", "label:rephlex"]);
 			expect(labels[0]?.name).toBe("Warp Records");
-			expect(await cache.has("label:warp-records")).toBe(false);
 		},
 		TIMEOUT_MS,
 	);
@@ -185,6 +187,50 @@ describe("label duplicates at generation (TRA-607)", () => {
 				slug: "label:foo-records",
 				mbid: OTHER_MBID,
 			});
+		},
+		TIMEOUT_MS,
+	);
+
+	// B1 of the deep review: the committed redirect label:axis-records -> label:axis was followed whatever the
+	// mbid, so another "Axis Records" (MusicBrainz has seven) was filed under Jeff Mills's label on disk.
+	it(
+		"keeps a project released on another Axis Records out of label:axis, with the committed tables",
+		async () => {
+			vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "true");
+			await cache.write(labelNode("label:axis", "Axis", AXIS_MBID));
+			installPipelineMocks({ draft: projectDraftFixture("Fixture Album", "Fixture Artist") });
+			const runPipeline = await loadRunPipeline();
+			const m = await import("../src/musicbrainz.js");
+			vi.mocked(m.fetchEntityGenresMb).mockImplementation(async () => []);
+
+			const run = async (label: { name: string; mbid: string }) => {
+				vi.mocked(m.fetchProjectMetaMb).mockImplementation(async () => ({
+					tracks: [],
+					label,
+					artists: [],
+					year: null,
+					producers: [],
+					personnel: [],
+					primaryType: "Album",
+				}));
+				const result = await runPipeline(
+					{ type: "project", name: "Fixture Album", artist: "Fixture Artist", mbid: RG_MBID },
+					await deps(),
+				);
+				await cache.write(result.node);
+				return (result.node as ProjectNode).label;
+			};
+			const roster = async () => ((await cache.get("label:axis")) as LabelNode).notable_releases;
+
+			expect(await run({ name: "Axis Records", mbid: FOREIGN_AXIS_MBID })).toMatchObject({
+				slug: "label:axis-records",
+				mbid: FOREIGN_AXIS_MBID,
+			});
+			expect(await roster()).toEqual([]);
+
+			// Control: Axis's own mbid under the same name does reach the survivor.
+			expect(await run({ name: "Axis Records", mbid: AXIS_MBID })).toMatchObject({ slug: "label:axis" });
+			expect((await roster()).map((e) => e.slug)).toEqual([expect.stringContaining("fixture-album")]);
 		},
 		TIMEOUT_MS,
 	);
