@@ -126,16 +126,6 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:selected-ambient-works-85-92",
-      "type": "project",
-      "name": "Selected Ambient Works 85–92"
-    },
-    {
-      "slug": "project:hard-normal-daddy--squarepusher",
-      "type": "project",
-      "name": "Hard Normal Daddy"
-    },
-    {
       "slug": "project:analord",
       "type": "project",
       "name": "Analord"
@@ -163,16 +153,16 @@
       "name": "Expert Knob Twiddlers"
     },
     {
-      "slug": "project:polyester--lisa-carbon",
-      "type": "project",
-      "name": "Polyester",
-      "artist": "Lisa Carbon"
-    },
-    {
       "slug": "project:nu-romantix--dmx-krew",
       "type": "project",
       "name": "Nu Romantix",
       "artist": "DMX Krew"
+    },
+    {
+      "slug": "project:polyester--lisa-carbon",
+      "type": "project",
+      "name": "Polyester",
+      "artist": "Lisa Carbon"
     },
     {
       "slug": "project:rushup-edge--the-tuss",
