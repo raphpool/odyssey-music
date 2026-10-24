@@ -248,6 +248,92 @@ function creditedSlugs(target: RawNode): string[] {
 	return [...edgesOf(target, "artists"), ...edgesOf(target, "producers")].map((e) => e.slug);
 }
 
+const CREDIT_MISMATCH_METRIC = "bidirectional-credit-mismatch";
+const CREDIT_MISMATCH_KEYS = ["mbid-divergent", "credit-excludes-artist", "members-for-group"] as const;
+
+/** A lower-cased, trimmed mbid, `undefined` when the field is absent or blank. */
+function mbidOf(entry: unknown): string | undefined {
+	const raw = isRecord(entry) ? entry.mbid : undefined;
+	const mbid = typeof raw === "string" ? raw.trim().toLowerCase() : "";
+	return mbid === "" ? undefined : mbid;
+}
+
+/**
+ * TRA-570: a credit that went BOTH ways. `homonym-release-links` only sees a list entry whose target does
+ * not credit the artist, so a false credit on a work (a namesake's) that the artist's list later mirrored
+ * (the reverse backfill, TRA-486) left that measure and became invisible: artist:inside lists
+ * project:the-ep--inside, a 1993 UK electronic EP, because the EP credits "Inside". Here the pair (work W,
+ * artist A) is judged on identity: W credits A AND A lists W in `discography` / `notable_tracks`. Offline,
+ * from the mbids the cache already holds, one count per pair, the first key that applies:
+ * - `mbid-divergent`: the credit of A on W carries an mbid that is not A's, or A's list entry for W carries
+ *   an mbid that is not W's;
+ * - `credit-excludes-artist`: W has a MusicBrainz identity, its credit carries mbids and none is A's (A has
+ *   one, its own credit edge has none), and A is not a member of a credited group. A sideman or a credit
+ *   that MusicBrainz gives to a collaboration also lands here: the key counts what MusicBrainz does not
+ *   credit, it does not call it a homonym (the migration holds the proven cases);
+ * - `members-for-group`: W credits only members of a group G that is NOT credited but lists W (the album
+ *   "The Beatles" credited to the four, listed by the band): only the group is accepted (TRA-552).
+ * A pair with no mbid on either side cannot be judged here (artist:inside is one): it needs MusicBrainz,
+ * which is the migration's job (scripts/migrations/2026-10-24-detach-homonym-credits.ts).
+ */
+function auditBidirectionalCredits(nodes: Map<string, RawNode>, c: Collector): void {
+	c.keyed(CREDIT_MISMATCH_METRIC, CREDIT_MISMATCH_KEYS);
+	const artists = [...nodes].filter(([slug]) => nodeType(slug) === "artist");
+	for (const [artistSlug, artist] of artists) {
+		for (const field of RELEASE_LINK_FIELDS) {
+			const entries = Array.isArray(artist[field]) ? artist[field] : [];
+			for (const entry of entries) {
+				const slug = isRecord(entry) && typeof entry.slug === "string" ? entry.slug : "";
+				const work = nodes.get(slug);
+				if (work === undefined || (nodeType(slug) !== "project" && nodeType(slug) !== "track")) continue;
+				const rawCredit = Array.isArray(work.artists) ? work.artists : [];
+				const credited = edgesOf(work, "artists").map((e) => e.slug);
+				if (!credited.includes(artistSlug)) continue; // one-way: homonym-release-links
+				const creditEdge = rawCredit.find((e) => isRecord(e) && e.slug === artistSlug);
+				const artistMbid = mbidOf(artist);
+				const workMbid = mbidOf(work);
+				const creditMbids = rawCredit.map(mbidOf).filter((m): m is string => m !== undefined);
+				const others = credited.filter((s) => s !== artistSlug);
+				let key: (typeof CREDIT_MISMATCH_KEYS)[number] | undefined;
+				if (
+					(mbidOf(creditEdge) !== undefined &&
+						artistMbid !== undefined &&
+						mbidOf(creditEdge) !== artistMbid) ||
+					(mbidOf(entry) !== undefined && workMbid !== undefined && mbidOf(entry) !== workMbid)
+				) {
+					key = "mbid-divergent";
+				} else if (
+					workMbid !== undefined &&
+					artistMbid !== undefined &&
+					mbidOf(creditEdge) === undefined &&
+					creditMbids.length > 0 &&
+					!creditMbids.includes(artistMbid) &&
+					!creditsArtist(nodes, others, artistSlug)
+				) {
+					key = "credit-excludes-artist";
+				} else if (credited.length >= 2 && isMembersForGroup(nodes, work, credited)) {
+					key = "members-for-group";
+				}
+				if (key === undefined) continue;
+				c.hit(CREDIT_MISMATCH_METRIC, artistSlug, key);
+				c.addCase(CREDIT_MISMATCH_METRIC, `${artistSlug} ${field} ${slug} (${key})`);
+			}
+		}
+	}
+}
+
+/** Whether every credited slug is a member of one artist G that is not credited but lists the work. */
+function isMembersForGroup(nodes: Map<string, RawNode>, work: RawNode, credited: readonly string[]): boolean {
+	const workSlug = work.slug;
+	for (const [groupSlug, group] of nodes) {
+		if (nodeType(groupSlug) !== "artist" || credited.includes(groupSlug)) continue;
+		const members = edgesOf(group, "members").map((m) => m.slug);
+		if (!credited.every((slug) => members.includes(slug))) continue;
+		if (RELEASE_LINK_FIELDS.some((f) => edgesOf(group, f).some((e) => e.slug === workSlug))) return true;
+	}
+	return false;
+}
+
 /** Every artist edge field except `aliases`: the ties that can corroborate an alias (TRA-562). */
 const ALIAS_EVIDENCE_FIELDS: readonly string[] = Object.keys(EDGE_FIELDS_BY_TYPE.artist).filter(
 	(field) => field !== "aliases",
@@ -480,6 +566,7 @@ export function auditNodes(
 		if (nodes.has(key)) c.hit("pending-reverse-targets-existing", key);
 	}
 
+	auditBidirectionalCredits(nodes, c); // TRA-570
 	homonymTracklistLinks(nodes, c);
 	measureUncorroboratedAliases(nodes, c);
 
