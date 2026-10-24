@@ -13,6 +13,8 @@
     }
   ],
   "materialized_at": "2026-05-13T13:09:30.962Z",
+  "image_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Plus%208%20Logo.svg?width=600",
+  "image_source": "wikidata-p154",
   "type": "label",
   "editorial_description": "A definitive North American techno label founded by Richie Hawtin and John Acquaviva in 1990, pivotal to the second wave of Detroit techno.",
   "founded": "1990",
@@ -84,6 +86,16 @@
       "slug": "project:from-my-mind-to-yours",
       "type": "project",
       "name": "From My Mind to Yours"
+    },
+    {
+      "slug": "project:from-our-minds-to-yours",
+      "type": "project",
+      "name": "From Our Minds To Yours"
+    },
+    {
+      "slug": "project:blueprints-for-modern-technology",
+      "type": "project",
+      "name": "Blueprints For Modern Technology"
     }
   ]
 }

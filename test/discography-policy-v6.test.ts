@@ -138,9 +138,10 @@ async function replay(
 
 describe("discography policy v6 (TRA-649)", () => {
 	// TRA-653 changed what v6 decides for a voted classical credit, TRA-654 what it decides for a release group
-	// that is not out yet and for two credits joined by ";": 8 replays the manifests decided by v6 and v7.
-	it("is version 8: a manifest decided by v6 or v7 is not replayed", () => {
-		expect(DISCOGRAPHY_POLICY_VERSION).toBe(8);
+	// that is not out yet and for two credits joined by ";", TRA-633 for a subtitle, a coupling or an "(album)":
+	// 9 replays the manifests decided by v6, v7 and v8.
+	it("is version 9: a manifest decided by v6, v7 or v8 is not replayed", () => {
+		expect(DISCOGRAPHY_POLICY_VERSION).toBe(9);
 	});
 
 	// The reduced lists must keep the guard under test in play: an artist that MusicBrainz rates (10 voted release
