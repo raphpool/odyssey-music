@@ -18,11 +18,19 @@
  *     - every slug in targets.txt (one per line: rename and redirect targets) has a node file in
  *       the union -- the same "dangling target" rule as prepare-genre-cache-union.ts.
  *     Exit 1 with one problem per line on stderr, 0 and nothing otherwise.
+ *   validate-migrated-union.ts compare-outcome <preview-manifest.json> <apply-manifest.json>
+ *     (TRA-610) The apply of a job must rename, remove, redirect, strip and fix what its preview did: the
+ *     `renamed`, `removed` and `redirects` of the two manifests are equal, and so are the sets of slugs of
+ *     `stripped` and `fixed` (scripts/migration-outcome.ts). Nothing else of them is compared (the reason of a
+ *     conflict may change between the two runs without the outcome changing).
+ *     The check above cannot see a rename the apply did NOT redo: it only judges what the run produced. Exit 1
+ *     with one difference per line on stderr, 0 and nothing otherwise.
  */
 import { createHash } from "node:crypto";
 import { lstat, readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { nodePayloadSchema } from "../src/schemas.js";
+import { diffOutcomes, outcomeOf } from "./migration-outcome.js";
 import { checkPendingReversesAfterMigration, parsePendingReverses } from "./pending-reverses-union.js";
 
 type Snapshot = Record<string, string>;
@@ -124,6 +132,31 @@ async function deletedSlugs(unionDir: string, before: Snapshot, present: Set<str
 	return deleted;
 }
 
+async function compareOutcome(previewPath: string, applyPath: string): Promise<string[]> {
+	const outcomes = [];
+	for (const [label, path] of [
+		["preview", previewPath],
+		["apply", applyPath],
+	] as const) {
+		let parsed: unknown;
+		try {
+			parsed = JSON.parse(await readFile(path, "utf8"));
+		} catch (e) {
+			return [
+				`the ${label} manifest (${path}) is not readable JSON: ${e instanceof Error ? e.message : String(e)}`,
+			];
+		}
+		const outcome = outcomeOf(parsed);
+		if (!outcome.ok) return [`the ${label} manifest (${path}): ${outcome.error}`];
+		outcomes.push(outcome.value);
+	}
+	const [recorded, current] = outcomes;
+	if (!recorded || !current) return ["no manifest to compare"];
+	const diff = diffOutcomes(recorded, current);
+	// Capped: a wholesale divergence would otherwise print one line per renamed work.
+	return diff.length > 20 ? [...diff.slice(0, 20), `... and ${diff.length - 20} more`] : diff;
+}
+
 async function main(): Promise<void> {
 	const [mode, unionDir, a, b] = process.argv.slice(2);
 	if (mode === "snapshot" && unionDir && a) {
@@ -138,7 +171,20 @@ async function main(): Promise<void> {
 		}
 		return;
 	}
-	process.stderr.write("usage: validate-migrated-union.ts snapshot|check <union-dir> <file> [<targets>]\n");
+	if (mode === "compare-outcome" && unionDir && a) {
+		// Positional like the other modes: here the first two arguments are the two manifests, not a directory.
+		const [previewManifest, applyManifest] = [unionDir, a];
+		const problems = await compareOutcome(previewManifest, applyManifest);
+		if (problems.length > 0) {
+			process.stderr.write(`${problems.join("\n")}\n`);
+			process.exit(1);
+		}
+		return;
+	}
+	process.stderr.write(
+		"usage: validate-migrated-union.ts snapshot|check <union-dir> <file> [<targets>]\n" +
+			"       validate-migrated-union.ts compare-outcome <preview-manifest> <apply-manifest>\n",
+	);
 	process.exit(2);
 }
 

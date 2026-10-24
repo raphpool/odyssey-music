@@ -46,6 +46,12 @@
       "type": "genre",
       "name": "Drum and bass",
       "qid": "Q188994"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "subgenres": [
@@ -72,6 +78,18 @@
       "type": "genre",
       "name": "Post-dubstep",
       "qid": "Q106130091"
+    },
+    {
+      "slug": "genre:briddim",
+      "type": "genre",
+      "name": "Briddim",
+      "qid": "Q123421084"
+    },
+    {
+      "slug": "genre:drumstep",
+      "type": "genre",
+      "name": "Drumstep",
+      "qid": "Q24876318"
     }
   ],
   "related_genres": [

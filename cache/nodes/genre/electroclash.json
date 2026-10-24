@@ -30,7 +30,26 @@
   },
   "type": "genre",
   "editorial_definition": "A subgenre of electronic dance music that emerged in the late 1990s, characterized by a revival of 1980s electro, new wave, and synth-punk combined with modern techno production, often featuring deadpan vocals and a trashy, highly stylized aesthetic.",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:alternative-dance",
+      "type": "genre",
+      "name": "Alternative Dance",
+      "qid": "Q2187392"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop",
+      "qid": "Q1298934"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

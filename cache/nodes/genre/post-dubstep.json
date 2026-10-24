@@ -16,7 +16,14 @@
   "qid": "Q106130091",
   "era": "Late 2000s - Early 2010s",
   "origin": "London, UK",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep",
+      "qid": "Q20474"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

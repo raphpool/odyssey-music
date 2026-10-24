@@ -162,6 +162,8 @@ function targetTypeOf(sourceType: NodeType, field: string): string {
 }
 
 const PAIR = "genre.related_genres→genre.related_genres";
+const HIERARCHY_DOWN = "genre.parent_genres→genre.subgenres";
+const HIERARCHY_UP = "genre.subgenres→genre.parent_genres";
 const dubstep = genre("genre:dubstep", "Dubstep", "Q20474");
 const garage = (o: Partial<GenreNode> = {}) => genre("genre:2-step-garage", "2-step garage", "Q1165777", o);
 
@@ -286,6 +288,68 @@ describe("guarded backfill: genre.related_genres, proven by the Wikidata id", ()
 	});
 });
 
+describe("guarded backfill: genre hierarchy, proven by the Wikidata id (TRA-564, PR 2)", () => {
+	const jazz = (o: Partial<GenreNode> = {}) => genre("genre:jazz", "Jazz", "Q8341", o);
+	const acid = (o: Partial<GenreNode> = {}) => genre("genre:acid-jazz", "Acid jazz", "Q1", o);
+
+	it("adds the sub-genre to its parent when the child names the parent with the parent's qid", async () => {
+		await writeCache([acid({ parent_genres: [ref("genre:jazz", "Jazz", { qid: "Q8341" })] }), jazz()]);
+
+		const manifest = await run(true);
+
+		expect((await readNode<GenreNode>("genre:jazz")).subgenres).toEqual([
+			{ slug: "genre:acid-jazz", type: "genre", name: "Acid jazz", qid: "Q1" },
+		]);
+		expect(manifest.added).toEqual({ [HIERARCHY_DOWN]: 1 });
+		expect(manifest.doubtful).toEqual([]);
+	});
+
+	it("adds the parent to its sub-genre when the parent names the child with the child's qid", async () => {
+		await writeCache([jazz({ subgenres: [ref("genre:acid-jazz", "Acid jazz", { qid: "Q1" })] }), acid()]);
+
+		const manifest = await run(true);
+
+		expect((await readNode<GenreNode>("genre:acid-jazz")).parent_genres.map((e) => e.slug)).toEqual([
+			"genre:jazz",
+		]);
+		expect(manifest.added).toEqual({ [HIERARCHY_UP]: 1 });
+	});
+
+	it("does not graft a namesake in either direction: a qid that is not the target's is listed, not written", async () => {
+		await writeCache([
+			acid({ parent_genres: [ref("genre:jazz", "Jazz", { qid: "Q999" })] }),
+			jazz({ subgenres: [ref("genre:swing", "Swing", { qid: "Q555" })] }),
+			genre("genre:swing", "Swing", "Q7"),
+		]);
+		const before = await snapshot();
+
+		const manifest = await run(true);
+
+		expect(await snapshot()).toEqual(before);
+		expect(manifest.doubtfulByReason).toEqual({
+			[HIERARCHY_DOWN]: { "qid-mismatch": 1 },
+			[HIERARCHY_UP]: { "qid-mismatch": 1 },
+		});
+	});
+
+	it("is idempotent, and leaves related_genres alone", async () => {
+		await writeCache([
+			acid({
+				parent_genres: [ref("genre:jazz", "Jazz", { qid: "Q8341" })],
+			}),
+			jazz(),
+		]);
+
+		await run(true);
+		const afterFirst = await snapshot();
+		const second = await run(true);
+
+		expect((await readNode<GenreNode>("genre:jazz")).related_genres).toEqual([]);
+		expect(second.written).toBe(0);
+		expect(await snapshot()).toEqual(afterFirst);
+	});
+});
+
 describe("guarded backfill: what the deep review of PR #484 reproduced stays ungrafted", () => {
 	// The reproductions of the review (Deep Space, Chris Thomas, Moderat's II, Spiritual High, Call Me): every
 	// one of them is a cross-type pair, which this script does not touch. The whole cache must come out as it went in.
@@ -349,7 +413,7 @@ describe("guarded backfill: what the deep review of PR #484 reproduced stays ung
 
 describe("guarded backfill: the runtime is not widened", () => {
 	it("guards only declared list pairs, and none of them enters SAFE_BACKFILL_PAIRS", () => {
-		expect(GUARDED_PAIRS).toEqual([PAIR]);
+		expect([...GUARDED_PAIRS].sort()).toEqual([PAIR, HIERARCHY_DOWN, HIERARCHY_UP].sort());
 		for (const pair of GUARDED_PAIRS) expect(SAFE_BACKFILL_PAIRS.has(pair)).toBe(false);
 		expect(
 			REVERSE_EDGE_PAIRS.some((p) => p.sourceType === "genre" && p.sourceField === "related_genres"),
@@ -359,6 +423,24 @@ describe("guarded backfill: the runtime is not widened", () => {
 		// And the cross-type pairs stay as TRA-563 left them.
 		expect(isEmittedReversePair("artist", "discography", "artists")).toBe(false);
 		expect(isEmittedReversePair("project", "tracklist", "project")).toBe(false);
+	});
+});
+
+describe("guarded backfill: artist.collaborators is not caught up (review of PR #636)", () => {
+	it("grafts nothing on a namesake: an edge meant for the bluesman does not reach the English producer", async () => {
+		await writeCache([
+			artist("artist:jeff-beck", "Jeff Beck", {
+				collaborators: [ref("artist:chris-thomas", "Chris Thomas")],
+			}),
+			artist("artist:chris-thomas", "Chris Thomas", { mbid: "11111111-1111-1111-1111-111111111111" }),
+		]);
+		const before = await snapshot();
+
+		const manifest = await run(true);
+
+		expect(await snapshot()).toEqual(before);
+		expect(manifest.written).toBe(0);
+		expect(manifest.guardedPairs).not.toContain("artist.collaborators→artist.collaborators");
 	});
 });
 

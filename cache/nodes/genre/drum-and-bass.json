@@ -19,8 +19,40 @@
   "era": "1990s–present",
   "origin": "United Kingdom",
   "sonic_markers": "165-185 BPM, fast breakbeats, complex syncopation, heavy sub-bass lines, synthetic textures, sampling culture",
-  "parent_genres": [],
-  "subgenres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music",
+      "qid": "Q851213"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:drumstep",
+      "type": "genre",
+      "name": "Drumstep",
+      "qid": "Q24876318"
+    },
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep",
+      "qid": "Q20474"
+    },
+    {
+      "slug": "genre:jump-up",
+      "type": "genre",
+      "name": "Jump-Up",
+      "qid": "Q46649"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:jungle",

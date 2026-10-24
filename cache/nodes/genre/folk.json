@@ -30,6 +30,18 @@
       "slug": "genre:traditional-irish-music",
       "type": "genre",
       "name": "Traditional Irish music"
+    },
+    {
+      "slug": "genre:folk-rock",
+      "type": "genre",
+      "name": "Folk Rock",
+      "qid": "Q186472"
+    },
+    {
+      "slug": "genre:indie-folk",
+      "type": "genre",
+      "name": "Indie folk",
+      "qid": "Q1317816"
     }
   ],
   "related_genres": [
