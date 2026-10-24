@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { mkdirSync, readdirSync, readFileSync, symlinkSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, symlinkSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it, vi } from "vitest";
 import {
@@ -8,6 +8,8 @@ import {
 	isPlainWebUrl,
 	MAX_NODE_BYTES,
 	main,
+	nodePath,
+	parseTombstones,
 } from "../scripts/ci/pull-cache-validate.js";
 import {
 	artist,
@@ -31,6 +33,7 @@ interface Fixture {
 	out: string;
 	redirects: string;
 	genreRedirects: string;
+	tombstones: string;
 	thresholds: string;
 }
 
@@ -43,6 +46,7 @@ function fixture(ceilingsOn: (typeof REPO_NODES)[number][] = REPO_NODES): Fixtur
 		out: join(root, "out"),
 		redirects: writeJson(join(root, "slug-redirects.json"), { redirects: {} }),
 		genreRedirects: writeJson(join(root, "genre-redirects.json"), { redirects: {} }),
+		tombstones: writeJson(join(root, "tombstones.json"), { tombstones: {} }),
 		thresholds: writeJson(join(root, "thresholds.json"), thresholdsOf(ceilingsOn)),
 	};
 	mkdirSync(join(f.pulled, "nodes"), { recursive: true });
@@ -70,6 +74,8 @@ async function run(f: Fixture, extra: string[] = []) {
 			f.thresholds,
 			"--redirects",
 			f.redirects,
+			"--tombstones",
+			f.tombstones,
 			"--genre-redirects",
 			f.genreRedirects,
 			...extra,
@@ -208,6 +214,19 @@ describe("pull-cache-validate: a new node is untrusted data", () => {
 		expect(problemsOf("artist:ok", " ".repeat(MAX_NODE_BYTES + 1))[0]).toMatch(/larger than/);
 	});
 
+	it("refuses bytes that are not valid UTF-8 (they would be copied raw), and a BOM", () => {
+		const latin1 = Buffer.from(
+			JSON.stringify(artist("ok", { origin: "BEYONCE" })).replace("BEYONCE", "Beyonc\u00e9"),
+			"latin1",
+		);
+		expect(checkNode("artist:ok", latin1).problems).toEqual(["artist:ok: not valid UTF-8"]);
+		const utf8 = Buffer.from(JSON.stringify(artist("ok", { origin: "Beyonc\u00e9" })), "utf8");
+		expect(checkNode("artist:ok", utf8).problems).toEqual([]);
+		expect(
+			checkNode("artist:ok", Buffer.concat([Buffer.from([0xef, 0xbb, 0xbf]), utf8])).problems[0],
+		).toMatch(/not valid JSON/);
+	});
+
 	it("refuses a node whose slug is not the one its path implies", () => {
 		expect(problemsOf("artist:other", artist("ok"))).toEqual([
 			'artist:other: node slug "artist:ok" does not match its path',
@@ -231,6 +250,45 @@ describe("pull-cache-validate: a new node is untrusted data", () => {
 		expect(r.code).toBe(0);
 		expect(read(f, "new.txt")).toBe("artist:fresh\n");
 		expect(read(f, "superseded.txt")).toBe("artist:old-name\n");
+	});
+
+	it("skips and lists a tombstoned node (deleted on purpose, no redirect) without failing the batch", async () => {
+		const f = fixture([...REPO_NODES, artist("fresh")]);
+		writeJson(f.tombstones, { tombstones: { "artist:deleted-on-purpose": "TRA-1: wrong entity" } });
+		writeNodes(f.pulled, [artist("deleted-on-purpose"), artist("fresh")]);
+		const r = await run(f);
+		expect(r.code).toBe(0);
+		expect(r.stdout).toContain("tombstoned 1");
+		expect(read(f, "new.txt")).toBe("artist:fresh\n");
+		expect(read(f, "tombstoned.txt")).toBe("artist:deleted-on-purpose\n");
+		// Once the repo holds the slug again it is no tombstone: a pulled copy is a plain same/changed node.
+		writeNodes(f.repo, [artist("deleted-on-purpose")]);
+		const c = await classify(f.pulled, f.repo, new Map(), new Set(["artist:deleted-on-purpose"]));
+		expect(c.tombstoned).toEqual([]);
+		expect(c.same).toContain("artist:deleted-on-purpose");
+	});
+
+	it("refuses a tombstones file without a reason, or with a non-canonical slug (exit 2)", async () => {
+		const f = fixture();
+		writeNodes(f.pulled, [artist("fresh")]);
+		for (const bad of [
+			{ tombstones: { "artist:x": "" } },
+			{ tombstones: { "Artist:X": "why" } },
+			{ nope: 1 },
+		]) {
+			writeJson(f.tombstones, bad);
+			expect((await run(f)).code).toBe(2);
+		}
+	});
+
+	it("the committed tombstones: Incubus is listed, and no tombstone has a node in the repo", () => {
+		const slugs = parseTombstones(
+			JSON.parse(readFileSync(join("data", "pull-cache-tombstones.json"), "utf8")),
+		);
+		expect(slugs.has("track:incubus--1987-death-metal-band-from-atlanta")).toBe(true);
+		for (const slug of slugs) {
+			expect(existsSync(join("cache", nodePath(slug))), slug).toBe(false);
+		}
 	});
 
 	it("refuses an oversized new file from its size alone, before reading it", async () => {
@@ -280,6 +338,8 @@ describe("pull-cache-validate: a new node is untrusted data", () => {
 			"https://[::1]/",
 			"https://10.0.0.1/",
 			"https://intranet/",
+			'https://example.org/"><img src=x>',
+			"https://example.org/a b",
 			"not a url",
 		]) {
 			expect(isPlainWebUrl(url), url).toBe(false);

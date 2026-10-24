@@ -205,5 +205,7 @@ describe("scripts/ci/pull-cache-pr.sh", () => {
 		const r = run({ ghExit: 1, ghMessage: "HTTP 500" });
 		expect(r.status).toBe(1);
 		expect(r.stderr).toContain("gh pr create failed");
+		// No orphan branch: a retry the same day must not fail on the push.
+		expect(remoteBranches(r.remote)).toEqual(["main"]);
 	});
 });

@@ -10,6 +10,9 @@
  *   superseded  absent from the repo but a redirect source in data/{genre,slug}-redirects.json: the repo
  *            merged or renamed it away and prod still holds the old file until the migration channel
  *            reaches it. Listed, never copied, and not an error: it must not hold back the other nodes.
+ *   tombstoned  absent from the repo and listed in data/pull-cache-tombstones.json: deleted on purpose,
+ *            with no redirect (so it is no redirect source), and still held by prod. Listed, never copied,
+ *            not an error. Adding a deliberate deletion to that file is part of the PR that deletes it.
  * Each `new` file is then judged, as untrusted data: size, JSON, `nodePayloadSchema` (canonical slug),
  * path <-> slug agreement, no field the schema would strip (the repo must hold what a write would
  * produce), and plain http(s) URLs only in every `url` / `*_url` field (no userinfo, no IP literal, no
@@ -19,20 +22,21 @@
  * Only if every file passes, `auditNodes` runs on repo + new nodes against
  * `data/integrity-thresholds.json`, with the ceilings as committed: nothing here raises one.
  *
- * Known limit: a node the repo deleted on purpose, with no redirect, and that prod still holds looks
- * `new`. The draft PR is where a reviewer sees it come back; nothing here reads git history.
+ * Known limit: only the tombstones listed in that file are recognised; nothing here reads git history.
  *
- * Read-only: with `--out-dir`, the only writes are `new.txt`, `changed.txt` and `superseded.txt` (one
+ * Read-only: with `--out-dir`, the only writes are `new.txt`, `changed.txt` `superseded.txt` and `tombstoned.txt` (one
  * slug per line) under that directory, which the caller keeps outside the repo.
  *
  * Usage: pull-cache-validate.ts <pulled-cache-dir> <repo-cache-dir> [--out-dir <dir>]
  *          [--thresholds <file>] [--redirects <slug-redirects.json>] [--genre-redirects <file>]
+ *          [--tombstones <file>]
  * Exit:  0 every new node is valid and the audit holds, 1 at least one problem, 2 usage or read error.
  */
 import type { Stats } from "node:fs";
 import { mkdir, readdir, readFile, stat, writeFile } from "node:fs/promises";
-import { basename, join } from "node:path";
-import { pathToFileURL } from "node:url";
+import { basename, dirname, join } from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
+import { z } from "zod";
 import { loadRedirects, parseSlugRedirects } from "../../src/genre-registry.js";
 import { NODE_TYPES } from "../../src/node-spec.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
@@ -59,6 +63,7 @@ export interface Classification {
 	changed: string[];
 	same: string[];
 	superseded: string[];
+	tombstoned: string[];
 	/** Entries that are not node files (a server temp file, say): never copied, never judged. */
 	ignored: string[];
 	/** Layout problems: an unexpected directory, a symlink named like a node. */
@@ -92,8 +97,17 @@ export async function classify(
 	pulledDir: string,
 	repoDir: string,
 	redirects: ReadonlyMap<string, string> = new Map(),
+	tombstones: ReadonlySet<string> = new Set(),
 ): Promise<Classification> {
-	const out: Classification = { new: [], changed: [], same: [], superseded: [], ignored: [], problems: [] };
+	const out: Classification = {
+		new: [],
+		changed: [],
+		same: [],
+		superseded: [],
+		tombstoned: [],
+		ignored: [],
+		problems: [],
+	};
 	const known: readonly string[] = NODE_TYPES;
 	for (const typeDir of (await readdir(join(pulledDir, "nodes"), { withFileTypes: true })).sort((a, b) =>
 		a.name.localeCompare(b.name),
@@ -120,6 +134,7 @@ export async function classify(
 			if (inRepo === null) {
 				// Sizes first: a runaway file is never read into memory.
 				if (redirects.has(slug)) out.superseded.push(slug);
+				else if (tombstones.has(slug)) out.tombstoned.push(slug);
 				else if (pulledSize > MAX_NODE_BYTES) {
 					out.problems.push(`${label(slug)}: file larger than ${MAX_NODE_BYTES} bytes`);
 				} else out.new.push(slug);
@@ -141,6 +156,8 @@ const INTERNAL_TLDS = /\.(localhost|local|internal|intranet|lan|home|corp)$/;
 
 /** Plain web URL: http(s), no userinfo, a dotted public-looking host name (no IP literal, no internal TLD). */
 export function isPlainWebUrl(value: string): boolean {
+	// The raw string is what gets stored: no whitespace, double quote, angle bracket or backslash (a single quote is legitimate: Wikimedia file names) in it.
+	if (/[\s"<>\\]/.test(value)) return false;
 	let url: URL;
 	try {
 		url = new URL(value);
@@ -187,7 +204,18 @@ function strippedPaths(raw: unknown, parsed: unknown, path: string, out: string[
 }
 
 /** Why a new node file cannot be imported; empty when it can. `raw` is set whenever the JSON parsed. */
-export function checkNode(slug: string, text: string): { problems: string[]; raw?: RawNode } {
+export function checkNode(slug: string, bytes: Buffer | string): { problems: string[]; raw?: RawNode } {
+	// The bytes judged are the bytes copied: an invalid UTF-8 sequence must not become U+FFFD here and
+	// stay raw on disk. ignoreBOM keeps a BOM in the text, where JSON.parse refuses it.
+	let text: string;
+	try {
+		text =
+			typeof bytes === "string"
+				? bytes
+				: new TextDecoder("utf-8", { fatal: true, ignoreBOM: true }).decode(bytes);
+	} catch {
+		return { problems: [`${label(slug)}: not valid UTF-8`] };
+	}
 	// classify() already refuses oversized files before reading them; this keeps checkNode safe on its own.
 	if (Buffer.byteLength(text) > MAX_NODE_BYTES) {
 		return { problems: [`${label(slug)}: file larger than ${MAX_NODE_BYTES} bytes`] };
@@ -242,6 +270,26 @@ interface Options {
 	thresholdsPath: string;
 	redirectsPath: string;
 	genreRedirectsPath?: string;
+	tombstonesPath: string;
+}
+
+export function defaultTombstonesPath(): string {
+	return join(dirname(fileURLToPath(import.meta.url)), "..", "..", "data", "pull-cache-tombstones.json");
+}
+
+const tombstonesSchema = z
+	.object({
+		// slug -> why it was deleted (ticket): a tombstone without a reason is not reviewable.
+		tombstones: z.record(
+			z.string().refine(isValidSlug, { message: "not a canonical slug" }),
+			z.string().min(1),
+		),
+	})
+	.strict();
+
+/** The slugs of a tombstones file (data/pull-cache-tombstones.json); throws on any other shape. */
+export function parseTombstones(raw: unknown): Set<string> {
+	return new Set(Object.keys(tombstonesSchema.parse(raw).tombstones));
 }
 
 function parseArgs(argv: readonly string[]): Options | null {
@@ -249,7 +297,7 @@ function parseArgs(argv: readonly string[]): Options | null {
 	const opts: Record<string, string> = {};
 	for (let i = 0; i < argv.length; i++) {
 		const arg = argv[i] as string;
-		if (["--out-dir", "--thresholds", "--redirects", "--genre-redirects"].includes(arg)) {
+		if (["--out-dir", "--thresholds", "--redirects", "--genre-redirects", "--tombstones"].includes(arg)) {
 			const value = argv[++i];
 			if (value === undefined || value.startsWith("--")) return null;
 			opts[arg] = value;
@@ -266,13 +314,14 @@ function parseArgs(argv: readonly string[]): Options | null {
 		repoDir,
 		thresholdsPath: opts["--thresholds"] ?? defaultThresholdsPath(),
 		redirectsPath: opts["--redirects"] ?? defaultRedirectsPath(),
+		tombstonesPath: opts["--tombstones"] ?? defaultTombstonesPath(),
 		...(opts["--out-dir"] === undefined ? {} : { outDir: opts["--out-dir"] }),
 		...(opts["--genre-redirects"] === undefined ? {} : { genreRedirectsPath: opts["--genre-redirects"] }),
 	};
 }
 
 const USAGE =
-	"usage: pull-cache-validate.ts <pulled-cache-dir> <repo-cache-dir> [--out-dir <dir>] [--thresholds <file>] [--redirects <file>] [--genre-redirects <file>]\n";
+	"usage: pull-cache-validate.ts <pulled-cache-dir> <repo-cache-dir> [--out-dir <dir>] [--thresholds <file>] [--redirects <file>] [--genre-redirects <file>] [--tombstones <file>]\n";
 
 export async function main(argv: readonly string[]): Promise<number> {
 	const args = parseArgs(argv);
@@ -290,7 +339,8 @@ export async function main(argv: readonly string[]): Promise<number> {
 		thresholds = parseThresholds(JSON.parse(await readFile(args.thresholdsPath, "utf8")));
 		slugRedirects = parseSlugRedirects(JSON.parse(await readFile(args.redirectsPath, "utf8")));
 		allRedirects = await loadRedirects({ slug: args.redirectsPath, genre: args.genreRedirectsPath });
-		classification = await classify(args.pulledDir, args.repoDir, allRedirects);
+		const tombstones = parseTombstones(JSON.parse(await readFile(args.tombstonesPath, "utf8")));
+		classification = await classify(args.pulledDir, args.repoDir, allRedirects, tombstones);
 		const read = await readRawNodes(args.repoDir);
 		// A partial repo cache would lower every count: refuse to certify against it.
 		if (read.invalid.length > 0 || read.nodes.size === 0) {
@@ -306,17 +356,14 @@ export async function main(argv: readonly string[]): Promise<number> {
 	const problems = [...classification.problems];
 	const accepted = new Map<string, RawNode>();
 	for (const slug of classification.new) {
-		const { problems: found, raw } = checkNode(
-			slug,
-			await readFile(join(args.pulledDir, nodePath(slug)), "utf8"),
-		);
+		const { problems: found, raw } = checkNode(slug, await readFile(join(args.pulledDir, nodePath(slug))));
 		problems.push(...found);
 		if (found.length === 0 && raw !== undefined) accepted.set(slug, raw);
 	}
 
 	const c = classification;
 	console.log(
-		`pulled: ${c.new.length + c.changed.length + c.same.length + c.superseded.length} node file(s): new ${c.new.length}, changed ${c.changed.length}, same ${c.same.length}, superseded ${c.superseded.length}, ignored ${c.ignored.length}`,
+		`pulled: ${c.new.length + c.changed.length + c.same.length + c.superseded.length + c.tombstoned.length} node file(s): new ${c.new.length}, changed ${c.changed.length}, same ${c.same.length}, superseded ${c.superseded.length}, tombstoned ${c.tombstoned.length}, ignored ${c.ignored.length}`,
 	);
 	const list = (title: string, slugs: string[]) => {
 		if (slugs.length > 0) console.log(`${title}:\n${slugs.map((s) => `  ${label(s)}`).join("\n")}`);
@@ -324,6 +371,7 @@ export async function main(argv: readonly string[]): Promise<number> {
 	list("new", c.new);
 	list("changed (the repo wins: listed, never copied)", c.changed);
 	list("superseded (redirect source in the repo: never copied)", c.superseded);
+	list("tombstoned (deleted on purpose, still in prod: never copied)", c.tombstoned);
 
 	if (problems.length === 0) {
 		// Per-file problems make the audit meaningless: it would run on a union missing those nodes.
@@ -342,6 +390,7 @@ export async function main(argv: readonly string[]): Promise<number> {
 		await writeFile(join(args.outDir, "new.txt"), problems.length === 0 ? lines(c.new) : "");
 		await writeFile(join(args.outDir, "changed.txt"), lines(c.changed));
 		await writeFile(join(args.outDir, "superseded.txt"), lines(c.superseded));
+		await writeFile(join(args.outDir, "tombstoned.txt"), lines(c.tombstoned));
 	}
 	for (const p of problems) process.stderr.write(`${p}\n`);
 	if (problems.length === 0) console.log("validation: OK");

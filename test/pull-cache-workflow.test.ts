@@ -114,7 +114,7 @@ describe("pull-cache workflow", () => {
 		// One rsync, server -> local scratch, nodes/ on both sides: the git-ignored sidecars never come back.
 		const rsyncs = code.split("\n").filter((l) => /^\s*rsync\b/.test(l));
 		expect(rsyncs).toEqual([
-			'rsync -az --no-links "$SERVER:$SERVER_CACHE_REMOTE/nodes/" "$SCRATCH/pulled/nodes/"',
+			'rsync -az --no-links --max-size=256K "$SERVER:$SERVER_CACHE_REMOTE/nodes/" "$SCRATCH/pulled/nodes/"',
 		]);
 	});
 });

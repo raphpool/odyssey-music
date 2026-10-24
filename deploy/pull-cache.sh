@@ -11,7 +11,9 @@ set -euo pipefail
 # directory. Nothing is ever written, moved or deleted over there, and no ssh command is run.
 #   - only $SERVER_CACHE_REMOTE/nodes/ is pulled: the youtube/ and links/ sidecars are git-ignored,
 #     derived data, and pending-reverses.json is the migration channel's business;
-#   - --no-links: a symlink on the server is never followed nor recreated here.
+#   - --no-links: a symlink on the server is never followed nor recreated here;
+#   - --max-size=256K (the validator's MAX_NODE_BYTES): a runaway file is never transferred, so it is
+#     neither classified nor copied.
 # Classification and validation are scripts/ci/pull-cache-validate.ts's (see its header): `new` files
 # are those absent from the repo, `changed` ones (same slug, other bytes) are listed and NEVER copied --
 # after the identity migration the repo is the source of truth. A copy never overwrites a file either.
@@ -44,7 +46,7 @@ OUT_DIR="${PULL_OUT_DIR:-$SCRATCH/out}"
 mkdir -p "$SCRATCH/pulled/nodes"
 
 echo "==> Pulling $SERVER:$SERVER_CACHE_REMOTE/nodes/ (read-only)"
-rsync -az --no-links "$SERVER:$SERVER_CACHE_REMOTE/nodes/" "$SCRATCH/pulled/nodes/"
+rsync -az --no-links --max-size=256K "$SERVER:$SERVER_CACHE_REMOTE/nodes/" "$SCRATCH/pulled/nodes/"
 
 echo "==> Classifying and validating"
 # Test seam, like sync-genre-cache.sh's REPO_*_PATH overrides: the workflow sets none, so the committed

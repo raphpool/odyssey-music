@@ -99,5 +99,7 @@ elif echo "$PR_OUTPUT" | grep -qi "not permitted to create"; then
 	echo "gh pr create refused by the repository settings: see the run summary."
 else
 	echo "ERROR: gh pr create failed: $PR_OUTPUT" >&2
+	# The branch is useless without its PR and would make every retry of the day fail on the push.
+	git push "$REMOTE" --delete "$BRANCH" || echo "WARNING: could not delete $BRANCH; delete it by hand." >&2
 	exit 1
 fi

@@ -21,7 +21,9 @@ on:
         default: false
 
 # One production-touching job at a time: a read racing the cache transfer of sync-genre-cache would
-# classify half-written nodes.
+# classify half-written nodes. GitHub keeps ONE pending run per group: dispatching this while another
+# run holds the group and a deploy is already queued cancels that deploy (main stays undeployed until
+# the next push). Check the deploy-prod queue in the Actions tab before dispatching.
 concurrency:
   group: deploy-prod
   cancel-in-progress: false
