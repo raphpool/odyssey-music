@@ -24,7 +24,9 @@
  * (TRA-505), true when MB gave no usable answer: HTTP error, network error, a 200 whose body is not
  * JSON, or a 200 whose JSON is off schema. Any of the four during a node's lookups makes it
  * `failed` (exit 1, node untouched, retried by --resume), never `unresolved`. "No candidate" and
- * "ambiguous" are answers, not outages.
+ * "ambiguous" are answers, not outages. So is a 404 on the mbid just found (TRA-532, 2026-10-24): the
+ * entity was deleted, or was never there; it is `unresolved` as "mbid-not-found" (exit 0, node untouched,
+ * entry dropped from `resolved`) and the work is searched again next run, instead of failing every resume.
  *
  * Writes go through atomicWriteJson after nodePayloadSchema validation, never NodeCache.write, which
  * would also emit pending reverse edges this migration has no business creating.
@@ -101,7 +103,8 @@ export type UnresolvedReason =
 	| "credit-mismatch"
 	| "ambiguous-candidates"
 	| "year-mismatch"
-	| "unmappable-credit";
+	| "unmappable-credit"
+	| "mbid-not-found";
 
 export interface UnresolvedWork {
 	slug: string;
@@ -142,6 +145,29 @@ export interface BackfillOptions {
 	limit?: number;
 	resume?: boolean;
 	log?: (line: string) => void;
+	/**
+	 * TRA-485 (2026-10-24): restrict the run to these works instead of every work without an mbid, so that the
+	 * 89 works left with `artists: []` can be looked up without paying for the other 189.
+	 */
+	only?: ReadonlySet<string>;
+	/**
+	 * TRA-485: artist to look a work up under when neither its own credit nor the artists pointing at it give
+	 * one (a judged hint, checked by MusicBrainz exactly like any other: exact title, credit confirms the hint,
+	 * year agrees). Wins over the pointers.
+	 */
+	hints?: ReadonlyMap<string, { name: string; mbid?: string }>;
+	/**
+	 * TRA-485: more artists pointing at a work than the artists' own lists (a credited track naming this project
+	 * as its own, the credit of a track's project). Merged into the cache's pointers before any hint is read.
+	 */
+	extraPointers?: ReadonlyMap<string, ReadonlyMap<string, { name: string; mbid?: string }>>;
+	/**
+	 * TRA-485: with --apply, write the credit (`artists`) and the work's `mbid`, nothing else: no tracklist, label,
+	 * year or release type, so no second MusicBrainz call per work. The mbid is written because the reverse edge of
+	 * the new credit (artist.discography) carries it, and an edge without one is a hole of its own
+	 * (`artist-discography-without-mbid`).
+	 */
+	creditOnly?: boolean;
 }
 
 export interface BackfillResult {
@@ -201,6 +227,7 @@ async function readManifest(path: string): Promise<ReleaseManifest | null> {
 		"ambiguous-candidates",
 		"year-mismatch",
 		"unmappable-credit",
+		"mbid-not-found",
 	];
 	const ambiguousReasons: readonly unknown[] = [
 		"several-artists-point-here",
@@ -715,10 +742,15 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 	);
 	if (artistManifest === null) log("no artist manifest: credits map onto the cache's own artist MBIDs only");
 	const ctx = buildContext(nodes, artistManifest);
+	for (const [work, extra] of options.extraPointers ?? []) {
+		const row = ctx.pointers.get(work) ?? new Map<string, Pointer>();
+		for (const [artistSlug, pointer] of extra) if (!row.has(artistSlug)) row.set(artistSlug, pointer);
+		ctx.pointers.set(work, row);
+	}
 	const works = nodes.filter(
 		(n): n is typeof n & { type: "project" | "track" } => n.type === "project" || n.type === "track",
 	);
-	const pending = works.filter((w) => !text(w.node.mbid));
+	const pending = works.filter((w) => !text(w.node.mbid) && (options.only?.has(w.slug) ?? true));
 
 	let prior: ReleaseManifest | null = null;
 	try {
@@ -774,7 +806,8 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				if (a) ambiguous.push(a);
 				continue;
 			}
-			const hint = findHint(slug, node, ctx);
+			const judged = options.hints?.get(slug);
+			const hint: HintResult = judged ? { kind: "hint", ...judged } : findHint(slug, node, ctx);
 			if (hint.kind === "ambiguous") {
 				ambiguous.push({ slug, candidates: hint.candidates, reason: "several-artists-point-here" });
 				continue;
@@ -836,11 +869,19 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 
 		if (apply) {
 			let meta: MbProjectMeta | MbTrackMeta | null = null;
-			if (needsMeta(type, node)) {
+			if (!options.creditOnly && needsMeta(type, node)) {
 				const fetched =
 					type === "project"
 						? await fetchProjectMetaDetailedMb(work.mbid)
 						: await fetchTrackMetaDetailedMb(work.mbid);
+				if (fetched.notFound) {
+					// MB answered that the mbid does not exist: a verdict, so neither `failed` (which --resume
+					// would retry for ever) nor `resolved` (the entry would hand 1.12 a credit for an mbid
+					// that leads nowhere). The work is selected again next run and searched afresh.
+					delete resolved[slug];
+					unresolved.push({ slug, name, hint: work.hint, reason: "mbid-not-found" });
+					continue;
+				}
 				if (fetched.unavailable) {
 					// Writing the mbid without the tracklist / project would hide the hole: the work would no
 					// longer be selected. All or nothing; --resume repeats only this lookup.
@@ -849,7 +890,12 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				}
 				meta = fetched.meta;
 			}
-			const plan = planWrite(type, node, work, mapped.edges, ctx, meta);
+			const plan: Plan = options.creditOnly
+				? {
+						next: { ...node, mbid: work.mbid, artists: mergeArtists(edges(node.artists), mapped.edges, ctx) },
+						notes: [],
+					}
+				: planWrite(type, node, work, mapped.edges, ctx, meta);
 			const parsed = nodePayloadSchema.safeParse(plan.next);
 			if (!parsed.success) {
 				failed.push({ slug, reason: `refusing to write an invalid node: ${parsed.error.message}` });

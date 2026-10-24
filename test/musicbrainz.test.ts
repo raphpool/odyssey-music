@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { musicBrainzConfig } from "../src/config.js";
 import {
+	createMusicBrainzCatalog,
 	fetchArtistDiscographyMb,
 	fetchArtistEntityMb,
 	fetchArtistMembershipsMb,
@@ -11,6 +12,7 @@ import {
 	fetchTrackMetaDetailedMb,
 	fetchTrackMetaMb,
 	fetchWikidataUrlRelMb,
+	findCompilationCoverReleaseGroup,
 	resolveRecording,
 	resolveRecordingDetailed,
 	resolveReleaseGroup,
@@ -30,8 +32,22 @@ function failedResponse(status: number, retryAfter?: string): Response {
 		ok: false,
 		status,
 		headers: new Headers(retryAfter ? { "Retry-After": retryAfter } : undefined),
-		json: async () => ({}),
+		// MB's own error object on a 4xx it answers itself (`{ "error": "Not Found", "help": … }`).
+		json: async () => (status === 400 || status === 404 ? { error: "Not Found" } : {}),
 	} as Response;
+}
+
+/** A 404 that is not MB's: a proxy's HTML error page, or a wrong MB_BASE_URL. */
+function foreign404(body: "html" | "json"): Response {
+	return {
+		ok: false,
+		status: 404,
+		headers: new Headers(),
+		json: async () => {
+			if (body === "html") throw new SyntaxError("Unexpected token < in JSON at position 0");
+			return { message: "no such route" };
+		},
+	} as unknown as Response;
 }
 
 // vitest.config.ts sets MB_MIN_INTERVAL_MS=0 for the whole suite; the spacing tests below opt in
@@ -1806,6 +1822,195 @@ describe("a metadata lookup without an answer is flagged unavailable", () => {
 		expect((await fetchProjectMetaMb(freshRelease())).tracks).toEqual([]);
 		expect((await fetchTrackMetaMb(freshRelease())).project).toBeNull();
 	});
+
+	// TRA-532 (2026-10-24): a 404 on the mbid asked for is MB's answer (deleted or never-existing entity), not an
+	// outage: the migration must not file it under `failed`, where --resume retries it for ever.
+	describe("a 404 on the mbid asked for is told apart from an outage (TRA-532)", () => {
+		/** Counts the requests per entity kind while answering as `stubKinds` does. */
+		function countingKinds(answers: Record<string, () => Response>): Record<string, number> {
+			const counts: Record<string, number> = {};
+			vi.stubGlobal(
+				"fetch",
+				vi.fn(async (input: URL) => {
+					const kind = input.pathname.split("/")[3] ?? "";
+					counts[kind] = (counts[kind] ?? 0) + 1;
+					return (answers[kind] ?? (() => failedResponse(404)))();
+				}),
+			);
+			return counts;
+		}
+
+		it("flags a project whose release group is gone as notFound, without retrying it", async () => {
+			const counts = countingKinds({ "release-group": () => failedResponse(404) });
+			const out = await fetchProjectMetaDetailedMb(freshRelease());
+			expect(out.notFound).toBe(true);
+			// Fail closed for a caller that does not read `notFound` yet: no usable data.
+			expect(out.unavailable).toBe(true);
+			expect(counts["release-group"]).toBe(1);
+		});
+
+		it("flags a track whose recording is gone as notFound, without retrying it", async () => {
+			const counts = countingKinds({ recording: () => failedResponse(404) });
+			const out = await fetchTrackMetaDetailedMb(freshRelease());
+			expect(out.notFound).toBe(true);
+			expect(out.unavailable).toBe(true);
+			expect(counts.recording).toBe(1);
+		});
+
+		it("does not flag an outage as notFound: 5xx after the retries, network error, unreadable JSON, 400", async () => {
+			vi.stubEnv("MB_MAX_ATTEMPTS", "1");
+			for (const failing of [
+				() => failedResponse(503),
+				() => failedResponse(500),
+				() => failedResponse(400),
+				unreadable,
+			]) {
+				stubKinds({ "release-group": failing, recording: failing });
+				for (const out of [
+					await fetchProjectMetaDetailedMb(freshRelease()),
+					await fetchTrackMetaDetailedMb(freshRelease()),
+				]) {
+					expect(out.unavailable).toBe(true);
+					expect(out.notFound).toBe(false);
+				}
+			}
+			vi.stubGlobal(
+				"fetch",
+				vi.fn(async () => {
+					throw new TypeError("fetch failed");
+				}),
+			);
+			expect((await fetchProjectMetaDetailedMb(freshRelease())).notFound).toBe(false);
+			expect((await fetchTrackMetaDetailedMb(freshRelease())).notFound).toBe(false);
+		});
+
+		it("does not take a 404 that is not MB's for a verdict: an HTML page or foreign JSON is unavailable only", async () => {
+			for (const body of ["html", "json"] as const) {
+				const counts = countingKinds({
+					"release-group": () => foreign404(body),
+					recording: () => foreign404(body),
+				});
+				const project = await fetchProjectMetaDetailedMb(freshRelease());
+				const track = await fetchTrackMetaDetailedMb(freshRelease());
+				for (const out of [project, track]) {
+					expect(out.unavailable).toBe(true);
+					expect(out.notFound).toBe(false);
+				}
+				// Still no retry: 404 is not a retryable status, whoever sends it.
+				expect(counts["release-group"]).toBe(1);
+				expect(counts.recording).toBe(1);
+			}
+		});
+
+		it("does not flag a 404 on the release read after the group answered: the mbid asked for exists", async () => {
+			stubKinds({ "release-group": releaseGroupAnswer(freshRelease()), release: () => failedResponse(404) });
+			const project = await fetchProjectMetaDetailedMb(freshRelease());
+			expect(project.unavailable).toBe(true);
+			expect(project.notFound).toBe(false);
+			stubKinds({ recording: recordingAnswer(freshRelease()), release: () => failedResponse(404) });
+			const track = await fetchTrackMetaDetailedMb(freshRelease());
+			expect(track.unavailable).toBe(true);
+			expect(track.notFound).toBe(false);
+		});
+
+		it("does not flag an answered lookup", async () => {
+			stubKinds({ "release-group": releaseGroupAnswer(freshRelease()), release: releaseAnswer });
+			expect((await fetchProjectMetaDetailedMb(freshRelease())).notFound).toBe(false);
+			stubKinds({ recording: recordingAnswer(freshRelease()), release: releaseAnswer });
+			expect((await fetchTrackMetaDetailedMb(freshRelease())).notFound).toBe(false);
+		});
+
+		it("keeps a 404 on a search an outage: the query is ours, a miss there is not a verdict on a work", async () => {
+			vi.stubGlobal(
+				"fetch",
+				vi.fn(async () => failedResponse(404)),
+			);
+			expect(await resolveReleaseGroupDetailed("Search 404 TRA-532", "Anyone")).toEqual({
+				identity: null,
+				ambiguous: false,
+				unavailable: true,
+			});
+		});
+	});
+
+	// TRA-532 (2026-10-24): mbFetch memoized any 200 that parsed as JSON for five minutes, `null`, `[]` and
+	// off-schema objects included; the resolvers class such a body `unavailable`, so a second call in the
+	// same process replayed the outage without asking MB again.
+	describe("a 200 that is not MB's answer is not memoized (TRA-532)", () => {
+		function countingRgStub(bodies: unknown[]): { rgRequests: () => number } {
+			let rgRequests = 0;
+			vi.stubGlobal(
+				"fetch",
+				vi.fn(async (input: URL) => {
+					const kind = input.pathname.split("/")[3];
+					if (kind === "release-group")
+						return jsonResponse(bodies[Math.min(rgRequests++, bodies.length - 1)]);
+					return releaseAnswer();
+				}),
+			);
+			return { rgRequests: () => rgRequests };
+		}
+		const good = () => ({ "primary-type": "Album", releases: [{ id: freshRelease(), date: "2001-01-01" }] });
+
+		it("asks MB again after a body that is not a JSON object", async () => {
+			for (const junk of [null, [], "<html>", 42, true]) {
+				const rg = freshRelease();
+				const stub = countingRgStub([junk, good()]);
+				expect((await fetchProjectMetaDetailedMb(rg)).unavailable).toBe(true);
+				expect((await fetchProjectMetaDetailedMb(rg)).unavailable).toBe(false);
+				expect(stub.rgRequests()).toBe(2);
+			}
+		});
+
+		it("asks MB again after an object that lacks what the lookup always carries", async () => {
+			for (const offSchema of [{}, { releases: "none" }, { error: "Not found" }]) {
+				const rg = freshRelease();
+				const stub = countingRgStub([offSchema, good()]);
+				expect((await fetchProjectMetaDetailedMb(rg)).unavailable).toBe(true);
+				expect((await fetchProjectMetaDetailedMb(rg)).unavailable).toBe(false);
+				expect(stub.rgRequests()).toBe(2);
+			}
+		});
+
+		it("asks MB again after a recording or a release without its list", async () => {
+			const rec = freshRelease();
+			let recordingRequests = 0;
+			vi.stubGlobal(
+				"fetch",
+				vi.fn(async (input: URL) => {
+					const kind = input.pathname.split("/")[3];
+					if (kind === "recording") {
+						return recordingRequests++ === 0 ? jsonResponse({}) : recordingAnswer(freshRelease())();
+					}
+					return releaseAnswer();
+				}),
+			);
+			expect((await fetchTrackMetaDetailedMb(rec)).unavailable).toBe(true);
+			expect((await fetchTrackMetaDetailedMb(rec)).unavailable).toBe(false);
+			expect(recordingRequests).toBe(2);
+		});
+
+		it("still memoizes a complete answer: the second read does not touch MB", async () => {
+			const rg = freshRelease();
+			const stub = countingRgStub([good()]);
+			expect((await fetchProjectMetaDetailedMb(rg)).unavailable).toBe(false);
+			expect((await fetchProjectMetaDetailedMb(rg)).unavailable).toBe(false);
+			expect(stub.rgRequests()).toBe(1);
+		});
+
+		it("does not memoize a search page that is off schema either", async () => {
+			const title = "Off Schema Page TRA-532";
+			const bodies: unknown[] = [{ unexpected: true }, { "release-groups": [] }];
+			let requests = 0;
+			vi.stubGlobal(
+				"fetch",
+				vi.fn(async () => jsonResponse(bodies[requests++])),
+			);
+			expect((await resolveReleaseGroupDetailed(title, "Anyone")).unavailable).toBe(true);
+			expect((await resolveReleaseGroupDetailed(title, "Anyone")).unavailable).toBe(false);
+			expect(requests).toBe(2);
+		});
+	});
 });
 
 // TRA-537: the credit must EQUAL the requested artist, not contain it. Titles, hints and MBIDs are unique
@@ -1823,7 +2028,9 @@ describe("pickByTitleAndCredit: credit equals the hint", () => {
 			],
 		});
 		const out = await resolveReleaseGroupDetailed("Judge Dread", "Prince");
-		expect(out).toEqual({ identity: null, ambiguous: false, unavailable: false });
+		// TRA-551: `discardedCredits` says whom the exact-title candidate was set aside for; the answer is "none".
+		expect(out).toMatchObject({ identity: null, ambiguous: false, unavailable: false });
+		expect(out.discardedCredits).toEqual([{ mbid: BUSTER, name: "Prince Buster" }]);
 	});
 
 	it("does not resolve a recording credited to 'Prince Buster' for 'Prince'", async () => {
@@ -1957,6 +2164,7 @@ describe("pickByTitleAndCredit: hints that cannot be compared", () => {
 			],
 		});
 		expect(await resolveReleaseGroupDetailed("Crowd Title", "Act Three")).toEqual({
+			discardedCredits: [{ mbid: OTHER, name: "Act One" }],
 			identity: null,
 			ambiguous: false,
 			unavailable: false,
@@ -1980,6 +2188,300 @@ describe("pickByTitleAndCredit: hints that cannot be compared", () => {
 		const out = await resolveRecording("Feat Title", "Jay-Z");
 		expect(out?.mbid).toBe(id);
 		expect(out?.credit.map((c) => c.name)).toEqual(["Beyoncé", "Jay-Z"]);
+	});
+});
+
+// TRA-542: a featured artist is credited on the work, but ranks after the main credit. Before this, the
+// oldest release group won whoever the artist was in its credit, so an older "B feat. A" single beat A's album.
+describe("pickByTitleAndCredit: the main credit before the featured ones (TRA-542)", () => {
+	const A = "eeeeeeee-0000-4000-8000-000000000001";
+	const B = "eeeeeeee-0000-4000-8000-000000000002";
+	const C = "eeeeeeee-0000-4000-8000-000000000003";
+	const BAND = "eeeeeeee-0000-4000-8000-000000000004";
+	const ALBUM_ID = "eeeeeeee-1111-4111-8111-000000000001";
+	const FEAT_ID = "eeeeeeee-1111-4111-8111-000000000002";
+
+	const entry = (mbid: string, name: string, joinphrase?: string) => ({
+		name,
+		...(joinphrase === undefined ? {} : { joinphrase }),
+		artist: { id: mbid, name },
+	});
+	/** "B <joinphrase> A": B heads the credit, A follows the join phrase. */
+	const bFeatA = (id: string, title: string, joinphrase: string, extra = {}) => ({
+		id,
+		title,
+		"artist-credit": [entry(B, "B", joinphrase), entry(A, "A")],
+		...extra,
+	});
+	const aAlone = (id: string, title: string, extra = {}) => ({
+		id,
+		title,
+		"artist-credit": [entry(A, "A")],
+		...extra,
+	});
+
+	it("gives A's 2005 album over the 2003 single 'B feat. A' of the same title", async () => {
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Same Title", " feat. ", { "primary-type": "Single", "first-release-date": "2003" }),
+				aAlone(ALBUM_ID, "Same Title", { "primary-type": "Album", "first-release-date": "2005" }),
+			],
+		});
+		const out = await resolveReleaseGroupDetailed("Same Title", "A");
+		expect(out.identity?.mbid).toBe(ALBUM_ID);
+		expect(out.ambiguous).toBe(false);
+	});
+
+	it("gives the main-credit release group over an older featured one of the same type (the date no longer decides)", async () => {
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Same Type", " feat. ", { "primary-type": "Album", "first-release-date": "2003" }),
+				aAlone(ALBUM_ID, "Same Type", { "primary-type": "Album", "first-release-date": "2005" }),
+			],
+		});
+		expect((await resolveReleaseGroup("Same Type", "A"))?.mbid).toBe(ALBUM_ID);
+	});
+
+	it.each([" feat. ", " (feat. ", " ft. ", " featuring ", " with "])(
+		"reads %j as a featuring join phrase",
+		async (joinphrase) => {
+			stubMb({
+				"release-groups": [
+					bFeatA(FEAT_ID, `Phrase Title ${joinphrase.trim()}`, joinphrase, { "first-release-date": "2003" }),
+					aAlone(ALBUM_ID, `Phrase Title ${joinphrase.trim()}`, { "first-release-date": "2005" }),
+				],
+			});
+			// One title per join phrase: mbCache is keyed on the request and outlives a test, so a shared title
+			// would replay the first response and test "feat." five times.
+			expect((await resolveReleaseGroup(`Phrase Title ${joinphrase.trim()}`, "A"))?.mbid).toBe(ALBUM_ID);
+		},
+	);
+
+	it("keeps a title that exists only as a featured credit resolved", async () => {
+		stubMb({
+			"release-groups": [bFeatA(FEAT_ID, "Only Featured", " feat. ", { "first-release-date": "2003" })],
+		});
+		const out = await resolveReleaseGroupDetailed("Only Featured", "A");
+		expect(out.identity?.mbid).toBe(FEAT_ID);
+		expect(out.identity?.credit.map((c) => c.name)).toEqual(["B", "A"]);
+	});
+
+	it("decides among featured-only candidates as before: the strictly earliest wins", async () => {
+		const older = "eeeeeeee-1111-4111-8111-000000000003";
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Featured Twice", " feat. ", { "first-release-date": "2008" }),
+				bFeatA(older, "Featured Twice", " ft. ", { "first-release-date": "2003" }),
+			],
+		});
+		expect((await resolveReleaseGroup("Featured Twice", "A"))?.mbid).toBe(older);
+	});
+
+	it("does not demote a co-principal: 'A & B' and 'B & A' are both main credits, the oldest wins", async () => {
+		const older = "eeeeeeee-1111-4111-8111-000000000004";
+		stubMb({
+			"release-groups": [
+				aAlone(ALBUM_ID, "Duo Title", { "first-release-date": "2005" }),
+				{
+					id: older,
+					title: "Duo Title",
+					"artist-credit": [entry(B, "B", " & "), entry(A, "A")],
+					"first-release-date": "2003",
+				},
+			],
+		});
+		expect((await resolveReleaseGroup("Duo Title", "A"))?.mbid).toBe(older);
+	});
+
+	it("reads everything after the first featuring phrase as featured ('B feat. C & A')", async () => {
+		const lateA = "eeeeeeee-1111-4111-8111-000000000005";
+		stubMb({
+			"release-groups": [
+				{
+					id: lateA,
+					title: "Late Title",
+					"artist-credit": [entry(B, "B", " feat. "), entry(C, "C", " & "), entry(A, "A")],
+					"first-release-date": "2003",
+				},
+				aAlone(ALBUM_ID, "Late Title", { "first-release-date": "2005" }),
+			],
+		});
+		expect((await resolveReleaseGroup("Late Title", "A"))?.mbid).toBe(ALBUM_ID);
+	});
+
+	it("does not call a featured older candidate a doubt: no 'ambiguous' for the main one", async () => {
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Doubt Title", " feat. ", { "first-release-date": "2003" }),
+				aAlone(ALBUM_ID, "Doubt Title", { "first-release-date": "2005" }),
+			],
+		});
+		expect(await resolveReleaseGroupDetailed("Doubt Title", "A")).toMatchObject({ ambiguous: false });
+	});
+
+	it("applies to recordings: A's own recording over an older 'B feat. A' one", async () => {
+		const own = "eeeeeeee-2222-4222-8222-000000000001";
+		const featured = "eeeeeeee-2222-4222-8222-000000000002";
+		stubMb({
+			recordings: [
+				bFeatA(featured, "Take Title", " feat. ", { "first-release-date": "2003" }),
+				aAlone(own, "Take Title", { "first-release-date": "2005" }),
+			],
+		});
+		expect((await resolveRecording("Take Title", "A"))?.mbid).toBe(own);
+	});
+
+	it("counts the requested MBID in the main credit only, whatever name it is printed under", async () => {
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Mbid Title", " feat. ", { "first-release-date": "2003" }),
+				{
+					id: ALBUM_ID,
+					title: "Mbid Title",
+					"artist-credit": [{ name: "A Presents", artist: { id: A, name: "A Presents" } }],
+					"first-release-date": "2005",
+				},
+			],
+		});
+		const out = await resolveReleaseGroupDetailed("Mbid Title", "A", { requestedArtistMbid: A });
+		expect(out.identity?.mbid).toBe(ALBUM_ID);
+	});
+
+	it("judges the main credit by MBID alone when it is known: a namesake credited first does not push down the real artist", async () => {
+		const NAMESAKE = "eeeeeeee-0000-4000-8000-000000000005";
+		const namesake = "eeeeeeee-1111-4111-8111-000000000008";
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Namesake Title", " feat. ", { "first-release-date": "2003" }),
+				{
+					id: namesake,
+					title: "Namesake Title",
+					"artist-credit": [entry(NAMESAKE, "A")],
+					"first-release-date": "2005",
+				},
+			],
+		});
+		const out = await resolveReleaseGroupDetailed("Namesake Title", "A", { requestedArtistMbid: A });
+		expect(out.identity?.mbid).toBe(FEAT_ID);
+		expect(out.identity?.credit.map((c) => c.mbid)).toEqual([B, A]);
+	});
+
+	it("keeps a direct main credit and a band's work a doubt: the direct one does not win over the band", async () => {
+		stubMb({
+			"release-groups": [
+				aAlone(ALBUM_ID, "Direct Band Title", { "first-release-date": "2005" }),
+				{
+					id: FEAT_ID,
+					title: "Direct Band Title",
+					"artist-credit": [entry(C, "Z", " feat. "), entry(BAND, "The Band")],
+					"first-release-date": "2003",
+				},
+			],
+		});
+		const out = await resolveReleaseGroupDetailed("Direct Band Title", "A", { acceptCreditMbids: [BAND] });
+		expect(out).toEqual({ identity: null, ambiguous: true, unavailable: false });
+	});
+
+	it("ranks bands against bands: a band in the main credit before the same band only featured", async () => {
+		stubMb({
+			"release-groups": [
+				{
+					id: FEAT_ID,
+					title: "Band Title",
+					"artist-credit": [entry(B, "B", " feat. "), entry(BAND, "The Band")],
+					"first-release-date": "2003",
+				},
+				{
+					id: ALBUM_ID,
+					title: "Band Title",
+					"artist-credit": [entry(BAND, "The Band")],
+					"first-release-date": "2005",
+				},
+			],
+		});
+		const out = await resolveReleaseGroupDetailed("Band Title", "A", { acceptCreditMbids: [BAND] });
+		expect(out.identity?.mbid).toBe(ALBUM_ID);
+	});
+
+	it("keeps a direct credit and a band's work a doubt, featured or not (TRA-537 rule, unchanged)", async () => {
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Doubt Band Title", " feat. ", { "first-release-date": "2003" }),
+				{
+					id: ALBUM_ID,
+					title: "Doubt Band Title",
+					"artist-credit": [entry(BAND, "The Band")],
+					"first-release-date": "2005",
+				},
+			],
+		});
+		const out = await resolveReleaseGroupDetailed("Doubt Band Title", "A", { acceptCreditMbids: [BAND] });
+		expect(out).toEqual({ identity: null, ambiguous: true, unavailable: false });
+	});
+
+	it("ranks the credit before the known release type: the type never brings back a featured-only candidate", async () => {
+		// A single known as such, A's album and "B feat. A"'s single share a title: the album is the main-credit
+		// candidate, the type then finds no single among them. Doubt, as for any known type no candidate has.
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Typed Title", " feat. ", { "primary-type": "Single", "first-release-date": "2003" }),
+				aAlone(ALBUM_ID, "Typed Title", { "primary-type": "Album", "first-release-date": "2005" }),
+			],
+		});
+		expect(await resolveReleaseGroupDetailed("Typed Title", "A", { releaseType: "single" })).toEqual({
+			identity: null,
+			ambiguous: true,
+			unavailable: false,
+		});
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Typed Title", " feat. ", { "primary-type": "Single", "first-release-date": "2003" }),
+				aAlone(ALBUM_ID, "Typed Title", { "primary-type": "Album", "first-release-date": "2005" }),
+			],
+		});
+		expect(
+			(await resolveReleaseGroupDetailed("Typed Title", "A", { releaseType: "album" })).identity?.mbid,
+		).toBe(ALBUM_ID);
+	});
+
+	it("ranks the credit before the disambiguation of recordings: A's live take is not traded for a featured studio one", async () => {
+		stubMb({
+			recordings: [
+				bFeatA(FEAT_ID, "Live Title", " feat. "),
+				aAlone(ALBUM_ID, "Live Title", { disambiguation: "live, Paris 1998" }),
+			],
+		});
+		expect(await resolveRecordingDetailed("Live Title", "A")).toEqual({
+			identity: null,
+			ambiguous: false,
+			unavailable: false,
+		});
+	});
+
+	it("does not cut a credit whose featuring phrase follows its last entry: nobody is featured", async () => {
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Trailing Title", " feat. ", { "first-release-date": "2003" }),
+				{
+					id: ALBUM_ID,
+					title: "Trailing Title",
+					"artist-credit": [entry(A, "A", " feat. ")],
+					"first-release-date": "2005",
+				},
+			],
+		});
+		expect((await resolveReleaseGroup("Trailing Title", "A"))?.mbid).toBe(ALBUM_ID);
+	});
+
+	it("applies to a double A-side single too: the main-credit one beats a featured one", async () => {
+		const featured = "eeeeeeee-1111-4111-8111-000000000007";
+		stubMb({
+			"release-groups": [
+				bFeatA(featured, "Side One / Side Two", " feat. ", { "primary-type": "Single" }),
+				aAlone(ALBUM_ID, "Side One / Other Side", { "primary-type": "Single" }),
+			],
+		});
+		expect((await resolveReleaseGroup("Side One", "A"))?.mbid).toBe(ALBUM_ID);
 	});
 });
 
@@ -2120,13 +2622,131 @@ describe("work resolvers: credits accepted by MBID (TRA-539)", () => {
 
 	it("does not accept the band by name: without the option, or with another band's MBID", async () => {
 		stubMb({ "release-groups": [hit(NEW_FORMS, "New Forms", [[REPRAZENT_BAND, "Roni Size / Reprazent"]])] });
-		expect(await resolveReleaseGroupDetailed("New Forms", "Roni Size")).toEqual(none);
-		expect(await resolveReleaseGroupDetailed("New Forms", "Roni Size", { acceptCreditMbids: [] })).toEqual(
-			none,
-		);
+		expect(await resolveReleaseGroupDetailed("New Forms", "Roni Size")).toEqual({
+			...none,
+			discardedCredits: [{ mbid: REPRAZENT_BAND, name: "Roni Size / Reprazent" }],
+		});
+		expect(await resolveReleaseGroupDetailed("New Forms", "Roni Size", { acceptCreditMbids: [] })).toEqual({
+			...none,
+			discardedCredits: [{ mbid: REPRAZENT_BAND, name: "Roni Size / Reprazent" }],
+		});
 		expect(
 			await resolveReleaseGroupDetailed("New Forms", "Roni Size", { acceptCreditMbids: [OTHER_BAND] }),
-		).toEqual(none);
+		).toEqual({ ...none, discardedCredits: [{ mbid: REPRAZENT_BAND, name: "Roni Size / Reprazent" }] });
+	});
+
+	describe("discardedCredits: who the exact-title candidates were set aside for (TRA-551)", () => {
+		const reprazent = { mbid: REPRAZENT_BAND, name: "Roni Size / Reprazent" };
+
+		it("names the credited artists of the exact-title candidates set aside, release group and recording", async () => {
+			stubMb({
+				"release-groups": [
+					hit(NEW_FORMS, "Alpha Forms", [[REPRAZENT_BAND, "Roni Size / Reprazent"]]),
+					hit("ffffffff-1111-4111-8111-000000000002", "Alpha Forms", [
+						[REPRAZENT_BAND.toUpperCase(), "Reprazent"],
+					]),
+					hit("ffffffff-1111-4111-8111-000000000003", "Alpha Forms", [
+						[OTHER_BAND, "Someone Else"],
+						["ffffffff-0000-4000-8000-000000000009", "Featured"],
+					]),
+					// Not the title: its credit says nothing about the work.
+					hit("ffffffff-1111-4111-8111-000000000004", "Alpha Forms Remixed", [
+						["ffffffff-0000-4000-8000-000000000008", "Elsewhere"],
+					]),
+				],
+			});
+			const out = await resolveReleaseGroupDetailed("Alpha Forms", "Roni Size");
+			expect(out).toMatchObject(none);
+			expect(out.discardedCredits).toEqual([
+				reprazent,
+				{ mbid: OTHER_BAND, name: "Someone Else" },
+				{ mbid: "ffffffff-0000-4000-8000-000000000009", name: "Featured" },
+			]);
+
+			stubMb({ recordings: [hit(NEW_FORMS, "Alpha Forms", [[REPRAZENT_BAND, "Roni Size / Reprazent"]])] });
+			expect((await resolveRecordingDetailed("Alpha Forms", "Roni Size")).discardedCredits).toEqual([
+				reprazent,
+			]);
+		});
+
+		it("asks the same search again once the band is accepted, so that the request is the one already answered", async () => {
+			const urls = stubMb({
+				"release-groups": [hit(NEW_FORMS, "Beta Forms", [[REPRAZENT_BAND, "Roni Size / Reprazent"]])],
+			});
+			const first = await resolveReleaseGroupDetailed("Beta Forms", "Roni Size");
+			const second = await resolveReleaseGroupDetailed("Beta Forms", "Roni Size", {
+				acceptCreditMbids: first.discardedCredits?.map((c) => c.mbid) ?? [],
+			});
+			expect(second.identity?.mbid).toBe(NEW_FORMS);
+			// Two resolutions, one request: the second search is the first one, served from mbFetch's memo.
+			expect(urls).toHaveLength(1);
+		});
+
+		it("is absent when nothing was set aside for its credit", async () => {
+			// No exact-title candidate.
+			stubMb({
+				"release-groups": [
+					hit(NEW_FORMS, "Gamma Forms Remixed", [[REPRAZENT_BAND, "Roni Size / Reprazent"]]),
+				],
+			});
+			expect(await resolveReleaseGroupDetailed("Gamma Forms", "Roni Size")).toStrictEqual(none);
+			// No candidate at all.
+			stubMb({ "release-groups": [] });
+			expect(await resolveReleaseGroupDetailed("Gamma Forms", "Roni Size")).toStrictEqual(none);
+			// An exact-title candidate is credited to the artist: the work is theirs, a band's credit beside it is
+			// the picker's business (here every recording carries a disambiguation, so the answer is "none").
+			stubMb({
+				recordings: [
+					hit(NEW_FORMS, "T551 Heroes", [[RONI, "Roni Size"]], { disambiguation: "live" }),
+					hit("ffffffff-1111-4111-8111-000000000005", "T551 Heroes", [[OTHER_BAND, "Someone Else"]]),
+				],
+			});
+			expect(await resolveRecordingDetailed("T551 Heroes", "Roni Size")).toStrictEqual(none);
+			// Credited to the artist's own MBID under another name.
+			stubMb({
+				recordings: [
+					hit(NEW_FORMS, "T551 Y Title", [[RONI, "Roni Size Presents"]], { disambiguation: "live" }),
+				],
+			});
+			expect(
+				await resolveRecordingDetailed("T551 Y Title", "Roni Size", { requestedArtistMbid: RONI }),
+			).toStrictEqual(none);
+			// No hint: nobody to take memberships of.
+			stubMb({
+				recordings: [
+					hit(NEW_FORMS, "T551 Heroes", [[REPRAZENT_BAND, "Roni Size / Reprazent"]], {
+						disambiguation: "live",
+					}),
+				],
+			});
+			expect(await resolveRecordingDetailed("T551 Heroes")).toStrictEqual(none);
+		});
+
+		it("is absent from an ambiguous answer and from a found one", async () => {
+			stubMb({
+				"release-groups": [
+					hit(NEW_FORMS, "T551 Twin", [[RONI, "Roni Size"]], { "first-release-date": "1997" }),
+					hit("ffffffff-1111-4111-8111-000000000006", "T551 Twin", [[RONI, "Roni Size"]], {
+						"first-release-date": "1997",
+					}),
+					hit("ffffffff-1111-4111-8111-000000000007", "T551 Twin", [
+						[REPRAZENT_BAND, "Roni Size / Reprazent"],
+					]),
+				],
+			});
+			const ambiguousOut = await resolveReleaseGroupDetailed("T551 Twin", "Roni Size");
+			expect(ambiguousOut.ambiguous).toBe(true);
+			expect(ambiguousOut.discardedCredits).toBeUndefined();
+			stubMb({
+				"release-groups": [
+					hit(NEW_FORMS, "T551 Solo", [[RONI, "Roni Size"]]),
+					hit("ffffffff-1111-4111-8111-000000000008", "T551 Solo", [[OTHER_BAND, "Someone Else"]]),
+				],
+			});
+			const found = await resolveReleaseGroupDetailed("T551 Solo", "Roni Size");
+			expect(found.identity?.mbid).toBe(NEW_FORMS);
+			expect(found.discardedCredits).toBeUndefined();
+		});
 	});
 
 	it("never accepts a credit that merely contains the artist's name (Prince / Prince Buster)", async () => {
@@ -2135,7 +2755,7 @@ describe("work resolvers: credits accepted by MBID (TRA-539)", () => {
 		const out = await resolveRecordingDetailed("One Step Beyond", "Prince", {
 			acceptCreditMbids: [OTHER_BAND],
 		});
-		expect(out).toEqual(none);
+		expect(out).toEqual({ ...none, discardedCredits: [{ mbid: buster, name: "Prince Buster" }] });
 	});
 
 	it("is ambiguous when one candidate is credited to the artist and another to the band (Uoon II)", async () => {
@@ -2244,14 +2864,17 @@ describe("work resolvers: credits accepted by MBID (TRA-539)", () => {
 			expect(
 				(await resolveRecordingDetailed("Y Test", "Roni Size", { requestedArtistMbid: RONI })).identity?.mbid,
 			).toBe(PRESENTS);
-			expect(await resolveRecordingDetailed("Y Test", "Roni Size")).toEqual(none);
+			expect(await resolveRecordingDetailed("Y Test", "Roni Size")).toEqual({
+				...none,
+				discardedCredits: [{ mbid: RONI, name: "Roni Size Presents" }],
+			});
 		});
 
 		it("never reads another artist's MBID as the requested one", async () => {
 			stubMb({ recordings: [hit(PRESENTS, "Z Test", [[RONI, "Roni Size Presents"]])] });
 			expect(
 				await resolveRecordingDetailed("Z Test", "Roni Size", { requestedArtistMbid: OTHER_BAND }),
-			).toEqual(none);
+			).toEqual({ ...none, discardedCredits: [{ mbid: RONI, name: "Roni Size Presents" }] });
 		});
 
 		it("is ambiguous when two different accepted bands each have a work of the title (recording)", async () => {
@@ -2585,22 +3208,60 @@ describe("pickByTitleAndCredit: release groups of different primary types", () =
 			);
 		});
 
-		it("reads an off-shape secondary-types as none, never as a crash", async () => {
+		// MB always sends an array. Anything else is off schema: like a malformed primary-type, it makes the
+		// whole answer unusable (an outage, not a verdict) instead of being read as "no secondary type", which
+		// let a live album marked `"secondary-types": "Live"` pass for a studio one (TRA-566).
+		it.each([
+			["a string", "Live"],
+			["an object", { 0: "Live" }],
+			["an array holding a non-string", [null, 3]],
+			["an array mixing strings and a non-string", ["Live", 3]],
+			["null", null],
+			["an array holding a blank name", [""]],
+			["an array holding an untrimmed name", [" Live "]],
+		])("never keeps a release group whose secondary-types is %s", async (shape, secondaryTypes) => {
+			const title = `Odd Shape ${shape}`;
 			stubMb({
 				"release-groups": [
-					hit(album, "Odd Shape", [[INTER_ARMA, "Inter Arma"]], {
+					hit(album, title, [[INTER_ARMA, "Inter Arma"]], {
 						"primary-type": "Album",
-						"secondary-types": "Live",
-						"first-release-date": "2005-01-01",
-					}),
-					hit(compilation, "Odd Shape", [[INTER_ARMA, "Inter Arma"]], {
-						"primary-type": "Album",
-						"secondary-types": [null, 3],
+						"secondary-types": secondaryTypes,
 						"first-release-date": "1999-01-01",
+					}),
+					hit(compilation, title, [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"first-release-date": "2005-01-01",
 					}),
 				],
 			});
-			expect((await resolveReleaseGroupDetailed("Odd Shape", "Inter Arma")).identity?.mbid).toBe(compilation);
+			expect(await resolveReleaseGroupDetailed(title, "Inter Arma")).toEqual({
+				identity: null,
+				ambiguous: false,
+				unavailable: true,
+			});
+		});
+
+		// Same all-or-nothing rule as a malformed primary-type: the autocomplete shares the parser, so it
+		// answers nothing rather than a list that holds an unreadable hit.
+		it("blanks the project autocomplete on an off-shape secondary-types, like on an off-shape primary-type", async () => {
+			stubMb({
+				"release-groups": [
+					hit(album, "Odd Autocomplete", [[INTER_ARMA, "Inter Arma"]], { "secondary-types": "Live" }),
+				],
+			});
+			expect(await createMusicBrainzCatalog().searchByType("project", "Odd Autocomplete", 5)).toEqual([]);
+		});
+
+		it("still takes a release group whose secondary-types is absent or an empty array", async () => {
+			stubMb({
+				"release-groups": [
+					hit(album, "Well Formed", [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"secondary-types": [],
+					}),
+				],
+			});
+			expect((await resolveReleaseGroupDetailed("Well Formed", "Inter Arma")).identity?.mbid).toBe(album);
 		});
 	});
 
@@ -2632,6 +3293,130 @@ describe("pickByTitleAndCredit: release groups of different primary types", () =
 	});
 });
 
+describe("work search by the requested artist's MBID (TRA-543)", () => {
+	// MB's `artist:` field indexes the PRINTED name only: Ryuichi Sakamoto's 1983 soundtrack, credited 坂本龍一,
+	// never came back for "Ryuichi Sakamoto" (measured 2026-10-15). `arid:` is the artist's id, indexed
+	// whatever name the credit prints. Real hit, read from MB on 2026-10-24: the soundtrack is filed there as
+	// "Merry Christmas, Mr. Lawrence/Furyo", Album + Soundtrack, 1983-05, credited 坂本龍一.
+	const SAKAMOTO = "a7f7df4a-77d8-4f12-8acd-5c60c93f4de8";
+	const OST_1983 = "3870eb3e-3447-384e-8d8a-aeddab4ef00b";
+	const OST_TITLE = "Merry Christmas, Mr. Lawrence/Furyo";
+	// The credit prints 坂本龍一; the artist behind it is Sakamoto, by id.
+	const ost1983 = hit(OST_1983, OST_TITLE, [[SAKAMOTO, "坂本龍一"]], {
+		"primary-type": "Album",
+		"secondary-types": ["Soundtrack"],
+		"first-release-date": "1983-05",
+	});
+
+	/** An MB that, like the real one, returns the soundtrack for `arid:` only: `artist:"Ryuichi Sakamoto"` misses 坂本龍一. */
+	function stubIndexedMb(): URL[] {
+		const urls: URL[] = [];
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async (input: URL) => {
+				urls.push(input);
+				const byId = (input.searchParams.get("query") ?? "").includes(`arid:${SAKAMOTO}`);
+				return jsonResponse({ count: byId ? 1 : 0, "release-groups": byId ? [ost1983] : [] });
+			}),
+		);
+		return urls;
+	}
+
+	it("searches by arid, next to the printed name, when the artist's MBID is known", async () => {
+		const urls = stubMb({ "release-groups": [] });
+		await resolveReleaseGroupDetailed("Query Arid RG", "Ryuichi Sakamoto", { requestedArtistMbid: SAKAMOTO });
+		expect(urls[0]?.searchParams.get("query")).toBe(
+			`releasegroup:"Query Arid RG" AND (arid:${SAKAMOTO} OR artist:"Ryuichi Sakamoto")`,
+		);
+		await resolveRecordingDetailed("Query Arid Rec", "Ryuichi Sakamoto", { requestedArtistMbid: SAKAMOTO });
+		expect(urls[1]?.searchParams.get("query")).toBe(
+			`recording:"Query Arid Rec" AND (arid:${SAKAMOTO} OR artist:"Ryuichi Sakamoto")`,
+		);
+	});
+
+	// The name stays in the query: a work printed under the artist's name but filed under a band the artist
+	// belongs to ("Roni Size / Reprazent", accepted by MBID in the pick) carries the band's id, not the artist's.
+	it("keeps the printed-name clause, so no work found before is lost", async () => {
+		// This MB finds the band-credited work by the printed name only, never by the artist's own id.
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async (input: URL) => {
+				const query = input.searchParams.get("query") ?? "";
+				const found = query.includes('artist:"Roni Size"');
+				return jsonResponse({
+					"release-groups": found
+						? [
+								hit(NEW_FORMS_RG, "Union Keeps Name", [[REPRAZENT, "Roni Size / Reprazent"]], {
+									"primary-type": "Album",
+								}),
+							]
+						: [],
+				});
+			}),
+		);
+		const out = await resolveReleaseGroupDetailed("Union Keeps Name", "Roni Size", {
+			requestedArtistMbid: "11111111-0543-4543-8543-000000000002",
+			acceptCreditMbids: [REPRAZENT],
+		});
+		expect(out.identity?.mbid).toBe(NEW_FORMS_RG);
+	});
+
+	it("makes the soundtrack credited 坂本龍一 a candidate, and the work asked for", async () => {
+		stubIndexedMb();
+		const out = await resolveReleaseGroupDetailed(OST_TITLE, "Ryuichi Sakamoto", {
+			requestedArtistMbid: SAKAMOTO,
+			releaseType: "album",
+		});
+		expect(out.identity?.mbid).toBe(OST_1983);
+		expect(out.identity?.credit).toEqual([{ mbid: SAKAMOTO, name: "坂本龍一" }]);
+	});
+
+	it("without the MBID, searches by the printed name only and answers as before: nothing", async () => {
+		const urls = stubIndexedMb();
+		const out = await resolveReleaseGroupDetailed(OST_TITLE, "Ryuichi Sakamoto", { releaseType: "album" });
+		expect(urls[0]?.searchParams.get("query")).toBe(
+			`releasegroup:"${OST_TITLE}" AND artist:"Ryuichi Sakamoto"`,
+		);
+		expect(out).toEqual({ identity: null, ambiguous: false, unavailable: false });
+	});
+
+	it("reads a blank or malformed MBID as no MBID: only a bare UUID reaches the query", async () => {
+		const urls = stubMb({ "release-groups": [] });
+		for (const [i, bad] of ["", "   ", "not-an-mbid", `${SAKAMOTO}) OR artist:"x`].entries()) {
+			await resolveReleaseGroupDetailed(`Bad Mbid ${i}`, "Someone", { requestedArtistMbid: bad });
+			expect(urls[i]?.searchParams.get("query")).toBe(`releasegroup:"Bad Mbid ${i}" AND artist:"Someone"`);
+		}
+	});
+
+	it("lowercases the MBID", async () => {
+		const urls = stubMb({ "release-groups": [] });
+		await resolveReleaseGroupDetailed("Upper Mbid", "Someone", {
+			requestedArtistMbid: SAKAMOTO.toUpperCase(),
+		});
+		expect(urls[0]?.searchParams.get("query")).toContain(`arid:${SAKAMOTO} OR`);
+	});
+
+	it("leaves the title-only query alone when there is no usable hint, MBID or not", async () => {
+		const urls = stubMb({ "release-groups": [] });
+		await resolveReleaseGroupDetailed("Only Title", undefined, { requestedArtistMbid: SAKAMOTO });
+		expect(urls[0]?.searchParams.get("query")).toBe('releasegroup:"Only Title"');
+	});
+
+	it("searches the compilation cover's recordings by arid too", async () => {
+		const urls = stubMb({ recordings: [] });
+		await findCompilationCoverReleaseGroup("Query Arid Compilation", "Ryuichi Sakamoto", {
+			requestedArtistMbid: SAKAMOTO,
+		});
+		await findCompilationCoverReleaseGroup("Query Name Compilation", "Ryuichi Sakamoto");
+		expect(urls[0]?.searchParams.get("query")).toBe(
+			`release:"Query Arid Compilation" AND (arid:${SAKAMOTO} OR artist:"Ryuichi Sakamoto")`,
+		);
+		expect(urls[1]?.searchParams.get("query")).toBe(
+			'release:"Query Name Compilation" AND artist:"Ryuichi Sakamoto"',
+		);
+	});
+});
+
 // TRA-604: `project:wish-you-were-here--american-hot-wax` carried the MBID of a 2001 release by American Hot Wax
 // although its article is Pink Floyd's album, and `track:around-the-world--stanley-black-and-his-orchestra` the one
 // of a 1958 recording. The identity backfill had picked the release on the title. The resolver now has to ask for
@@ -2659,13 +3444,16 @@ describe("work resolvers: a homonym's work of the same title is never the answer
 	it("does not give 'Wish You Were Here' by Pink Floyd the release of American Hot Wax", async () => {
 		// MB answered with the homonym's release only: for Pink Floyd that is no work at all, not the work.
 		stubMb({ "release-groups": [hotWaxRelease()] });
-		expect(await resolveReleaseGroupDetailed("Wish You Were Here", "Pink Floyd")).toEqual(none);
+		expect(await resolveReleaseGroupDetailed("Wish You Were Here", "Pink Floyd")).toEqual({
+			...none,
+			discardedCredits: expect.any(Array),
+		});
 		expect(
 			await resolveReleaseGroupDetailed("Wish You Were Here", "Pink Floyd", {
 				requestedArtistMbid: PINK_FLOYD,
 				releaseType: "album",
 			}),
-		).toEqual(none);
+		).toEqual({ ...none, discardedCredits: expect.any(Array) });
 	});
 
 	it("picks Pink Floyd's own release when both are in the answer, and each artist gets its own", async () => {
@@ -2733,7 +3521,12 @@ describe("work resolvers: a homonym's work of the same title is never the answer
 
 	it("does not give Daft Punk's 'Around the World' the recording of Stanley Black and His Orchestra", async () => {
 		stubMb({ recordings: [blackRecording()] });
-		expect(await resolveRecordingDetailed("Around the World", "Daft Punk")).toEqual(none);
+		expect(await resolveRecordingDetailed("Around the World", "Daft Punk")).toEqual({
+			...none,
+			discardedCredits: [
+				{ mbid: "cccccccc-0604-4604-8604-000000000004", name: "Stanley Black & His Orchestra" },
+			],
+		});
 		stubMb({
 			recordings: [
 				blackRecording(),

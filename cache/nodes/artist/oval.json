@@ -48,7 +48,15 @@
       "name": "Mille Plateaux"
     }
   ],
-  "discography": [],
+  "discography": [
+    {
+      "slug": "project:94diskont",
+      "type": "project",
+      "name": "94diskont.",
+      "mbid": "204866bb-78ae-3c37-8611-2286cf6600ae",
+      "artist": "Oval"
+    }
+  ],
   "notable_tracks": [
     {
       "slug": "track:do-while--oval",

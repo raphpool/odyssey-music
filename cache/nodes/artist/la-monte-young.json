@@ -41,105 +41,105 @@
       "slug": "project:composition-1960-7--la-monte-young",
       "type": "project",
       "name": "Composition 1960 #7",
-      "artist": "La Monte Young",
       "mbid": "42d3a408-9e9e-4368-b78c-2a1e776237b5",
       "year": "2017",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "La Monte Young"
     },
     {
       "slug": "project:compositions-1960-arr-for-guitar--la-monte-young",
       "type": "project",
       "name": "Compositions 1960 (Arr. for Guitar)",
-      "artist": "La Monte Young",
       "mbid": "7dc8f0ee-0d7d-4302-822a-c65e11eca3ea",
       "year": "2016",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "La Monte Young"
     },
     {
       "slug": "project:raag-bhairava--la-monte-young",
       "type": "project",
       "name": "Raag Bhairava",
-      "artist": "La Monte Young",
       "mbid": "86ad7552-1d9d-4dd6-be7b-7d7bd66b9088",
       "year": "2012",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "La Monte Young"
     },
     {
       "slug": "project:just-charles-and-cello-in-the-romantic-chord-2002-2003--la-monte-young",
       "type": "project",
       "name": "Just Charles & Cello in the Romantic Chord (2002–2003)",
-      "artist": "La Monte Young",
       "mbid": "76372679-e251-4956-b3fb-96cd210f6fdb",
       "year": "2006",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "La Monte Young"
     },
     {
       "slug": "project:der-zweck-dieser-serie-is-nicht-unterhaltung-volume-one--la-monte-young",
       "type": "project",
       "name": "Der Zweck dieser Serie is nicht Unterhaltung, Volume One",
-      "artist": "La Monte Young",
       "mbid": "0a268df8-ac9c-478b-b2da-d58b621a81ea",
       "year": "2003",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "La Monte Young"
     },
     {
       "slug": "project:the-tamburas-of-pandit-pran-nath--la-monte-young",
       "type": "project",
       "name": "The Tamburas of Pandit Pran Nath",
-      "artist": "La Monte Young",
       "mbid": "afa97897-4134-4491-b70f-8e1245c706be",
       "year": "1999",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "La Monte Young"
     },
     {
       "slug": "project:the-theatre-of-eternal-music--la-monte-young",
       "type": "project",
       "name": "The Theatre of Eternal Music",
-      "artist": "La Monte Young",
       "mbid": "6bb9935a-9eb3-412e-9562-9e305fd60943",
       "year": "1995",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "La Monte Young"
     },
     {
       "slug": "project:the-second-dream-of-the-high-tension-line-stepdown-transformer-from-the-four-dreams-of-china--la-monte-young",
       "type": "project",
       "name": "The Second Dream of the High‐Tension Line Stepdown Transformer From the Four Dreams of China",
-      "artist": "La Monte Young",
       "mbid": "bfff7405-aa1f-3c96-b9a2-dd5f0e3924c2",
       "year": "1991",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "La Monte Young"
     },
     {
       "slug": "project:dream-house-78-17--la-monte-young",
       "type": "project",
       "name": "Dream House 78′17″",
-      "artist": "La Monte Young",
       "mbid": "1a3f6010-7f5b-4a0a-9759-4f899345a619",
       "year": "1974",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "La Monte Young"
     },
     {
       "slug": "project:31-vii-69-10-26-10-49-pm-23-viii-64-2-50-45-3-11-am--la-monte-young",
       "type": "project",
       "name": "31 VII 69 10:26–10:49 PM / 23 VIII 64 2:50:45–3:11 AM",
-      "artist": "La Monte Young",
       "mbid": "3c6d5f2b-80f4-3819-b986-7837b4e89f10",
       "year": "1969",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "La Monte Young"
     },
     {
       "slug": "project:drift-study--la-monte-young",
       "type": "project",
       "name": "Drift Study",
-      "artist": "La Monte Young",
       "mbid": "6962273c-ae3e-4b8e-92b9-855fceace581",
       "year": "1968",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "La Monte Young"
     }
   ],
   "notable_tracks": [
     {
-      "slug": "track:trio-for-strings",
+      "slug": "track:trio-for-strings--la-monte-young",
       "type": "track",
       "name": "Trio for Strings"
     },
@@ -152,10 +152,16 @@
       "slug": "track:the-second-dream-of-the-high-tension-line-stepdown-transformer--la-monte-young",
       "type": "track",
       "name": "The Second Dream of The High-Tension Line Stepdown Transformer"
+    },
+    {
+      "slug": "track:trio-for-strings--1958-composition-by-la-monte-young",
+      "type": "track",
+      "name": "Trio for Strings",
+      "artist": "La Monte Young"
     }
   ],
   "reference_track": {
-    "slug": "track:trio-for-strings",
+    "slug": "track:trio-for-strings--la-monte-young",
     "type": "track",
     "name": "Trio for Strings"
   },

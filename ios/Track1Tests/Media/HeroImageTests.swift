@@ -35,23 +35,64 @@ final class HeroImageTests: XCTestCase {
 		XCTAssertNil(DominantColor.of(Self.solid(.clear)))
 	}
 
+	// MARK: - Colour bands
+
+	func testThirdsRedGreenBlueGiveThreeBandsFromTopToBottom() throws {
+		let bands = try XCTUnwrap(DominantColor.bands(of: Self.thirds()))
+
+		Self.assertBands(bands, [(1, 0, 0), (0, 1, 0), (0, 0, 1)])
+	}
+
+	func testTranslucentBandsKeepTheirColourAndAreNotDarkened() throws {
+		let bands = try XCTUnwrap(DominantColor.bands(of: Self.thirds(alpha: 0.5)))
+
+		Self.assertBands(bands, [(1, 0, 0), (0, 1, 0), (0, 0, 1)])
+	}
+
+	func testFullyTransparentImageHasNoBands() {
+		XCTAssertNil(DominantColor.bands(of: Self.solid(.clear, side: 32)))
+	}
+
+	func testOneTransparentBandGivesNoBandsAtAll() {
+		XCTAssertNil(DominantColor.bands(of: Self.thirds(bottom: .clear)))
+	}
+
 	// MARK: - Fallback chain
+
+	// A track is the one kind that still has a chain after its own image: its project's cover is its album.
 
 	func testFirstCandidateWithoutImageFallsThroughToTheSecondAndTheStateIsLoaded() async throws {
 		let backend = Backend(images: [second: Self.solid(.red)])
-		let model = try model(backend, imageURL: first, discography: "project:a")
+		let model = try model(backend, type: .track, imageURL: first, listed: ("project", "project:a"))
 		backend.answers["project:a"] = second
 
 		await model.load()
 
-		guard case .loaded(_, let tint) = model.state else { return XCTFail("State was \(model.state).") }
+		guard case .loaded(_, let tint, let coverTint) = model.state else {
+			return XCTFail("State was \(model.state).")
+		}
 		XCTAssertNotNil(tint)
+		XCTAssertNotNil(coverTint)
 		XCTAssertEqual(backend.loaded, [first, second])
+	}
+
+	func testALoadedImageCarriesTheCoverTintOfItsBands() async throws {
+		let backend = Backend(images: [first: Self.thirds()])
+		let model = try model(backend, imageURL: first)
+
+		await model.load()
+
+		guard case .loaded(_, _, let coverTint) = model.state else { return XCTFail("State was \(model.state).") }
+		let bands = try XCTUnwrap(DominantColor.bands(of: Self.thirds()))
+		XCTAssertEqual(coverTint, CoverTintTone.tint(bands: bands))
+		XCTAssertNotNil(coverTint)
+		XCTAssertNil(NodePageView.coverTint(for: .loading))
+		XCTAssertNil(NodePageView.coverTint(for: .placeholder))
 	}
 
 	func testFirstImageWinsAndLaterCandidatesAreNotRead() async throws {
 		let backend = Backend(images: [first: Self.solid(.red), second: Self.solid(.blue)])
-		let model = try model(backend, imageURL: first, discography: "project:a")
+		let model = try model(backend, type: .track, imageURL: first, listed: ("project", "project:a"))
 		backend.answers["project:a"] = second
 
 		await model.load()
@@ -63,7 +104,7 @@ final class HeroImageTests: XCTestCase {
 
 	func testWhenEveryCandidateGivesNothingTheStateIsPlaceholder() async throws {
 		let backend = Backend(images: [:])
-		let model = try model(backend, imageURL: first, discography: "project:a")
+		let model = try model(backend, type: .track, imageURL: first, listed: ("project", "project:a"))
 
 		await model.load()
 
@@ -71,9 +112,36 @@ final class HeroImageTests: XCTestCase {
 		XCTAssertEqual(backend.reads, ["project:a"])
 	}
 
-	func testANodeWithoutCandidateIsAPlaceholderWithoutAnyRead() async throws {
+	// MARK: - No borrowing from a listed work (TRA-593)
+
+	func testAnArtistWithoutImageAsksForItsOwnImageAndNeverForAListedWork() async throws {
+		let backend = Backend(images: [second: Self.solid(.red)])
+		let model = try model(backend, imageURL: nil, listed: ("discography", "project:a"))
+		backend.answers["project:a"] = first
+		backend.answers["artist:sample-artist"] = second
+
+		await model.load()
+
+		guard case .loaded = model.state else { return XCTFail("State was \(model.state).") }
+		XCTAssertEqual(backend.reads, ["artist:sample-artist"])
+		XCTAssertEqual(backend.loaded, [second])
+	}
+
+	func testAnArtistWhoseOwnImageEndpointGivesNothingIsAPlaceholderEvenWithAListedWork() async throws {
+		let backend = Backend(images: [first: Self.solid(.red)])
+		let model = try model(backend, imageURL: nil, listed: ("discography", "project:a"))
+		backend.answers["project:a"] = first
+
+		await model.load()
+
+		XCTAssertEqual(model.state, .placeholder)
+		XCTAssertEqual(backend.reads, ["artist:sample-artist"])
+		XCTAssertEqual(backend.loaded, [])
+	}
+
+	func testAProjectWithoutImageIsAPlaceholderWithoutAnyRead() async throws {
 		let backend = Backend(images: [:])
-		let model = try model(backend, imageURL: nil, discography: nil)
+		let model = try model(backend, type: .project, imageURL: nil)
 
 		await model.load()
 
@@ -94,7 +162,7 @@ final class HeroImageTests: XCTestCase {
 				signal.yield()
 				await gate.wait()
 			})
-		let model = try model(backend, imageURL: first, discography: nil)
+		let model = try model(backend, imageURL: first)
 
 		let task = Task { await model.load() }
 		for await _ in started { break }
@@ -108,7 +176,7 @@ final class HeroImageTests: XCTestCase {
 		// A screen shown again loads afresh, and the image the cancelled load fetched is not lost.
 		await model.load()
 
-		guard case .loaded(_, let tint) = model.state else { return XCTFail("State was \(model.state).") }
+		guard case .loaded(_, let tint, _) = model.state else { return XCTFail("State was \(model.state).") }
 		XCTAssertNotNil(tint)
 		XCTAssertEqual(backend.loaded, [first])
 	}
@@ -127,6 +195,40 @@ final class HeroImageTests: XCTestCase {
 		}
 	}
 
+	/// A 32 × 32 image whose rows 0–10, 11–21 and 22–31 are red, green and blue, at `alpha`.
+	private static func thirds(
+		alpha: CGFloat = 1, top: UIColor = .red, middle: UIColor = .green, bottom: UIColor = .blue
+	) -> UIImage {
+		let format = UIGraphicsImageRendererFormat()
+		format.scale = 1
+		format.opaque = false
+		format.preferredRange = .standard
+		let size = CGSize(width: 32, height: 32)
+		let rows: [(UIColor, CGRect)] = [
+			(top, CGRect(x: 0, y: 0, width: 32, height: 11)),
+			(middle, CGRect(x: 0, y: 11, width: 32, height: 11)),
+			(bottom, CGRect(x: 0, y: 22, width: 32, height: 10)),
+		]
+		return UIGraphicsImageRenderer(size: size, format: format).image { context in
+			for (color, rect) in rows {
+				color.withAlphaComponent(color == .clear ? 0 : alpha).setFill()
+				context.fill(rect)
+			}
+		}
+	}
+
+	private static func assertBands(
+		_ bands: [LinearRGB], _ expected: [(Double, Double, Double)], file: StaticString = #filePath,
+		line: UInt = #line
+	) {
+		XCTAssertEqual(bands.count, expected.count, file: file, line: line)
+		for (band, want) in zip(bands, expected) {
+			XCTAssertEqual(band.red, want.0, accuracy: 2.0 / 255, file: file, line: line)
+			XCTAssertEqual(band.green, want.1, accuracy: 2.0 / 255, file: file, line: line)
+			XCTAssertEqual(band.blue, want.2, accuracy: 2.0 / 255, file: file, line: line)
+		}
+	}
+
 	private static func components(of color: Color) -> (red: Double, green: Double, blue: Double) {
 		var red: CGFloat = 0
 		var green: CGFloat = 0
@@ -135,19 +237,25 @@ final class HeroImageTests: XCTestCase {
 		return (Double(red), Double(green), Double(blue))
 	}
 
-	private func model(_ backend: Backend, imageURL: String?, discography: String?) throws -> NodeHeroModel {
-		NodeHeroModel(node: try Self.artist(imageURL: imageURL, discography: discography), store: backend.store)
+	private func model(
+		_ backend: Backend, type: NodeType = .artist, imageURL: String?,
+		listed: (edge: String, slug: String)? = nil
+	) throws -> NodeHeroModel {
+		NodeHeroModel(
+			node: try Self.node(type: type, imageURL: imageURL, listed: listed), store: backend.store)
 	}
 
-	/// An artist decoded from the JSON the API sends, so the fixture cannot drift from the real shape.
-	private static func artist(imageURL: String?, discography: String?) throws -> NodeDetail {
+	/// A node decoded from the JSON the API sends, so the fixture cannot drift from the real shape. `listed` is
+	/// a work on one of the node's edges (an artist's `discography`, a track's `project`).
+	private static func node(
+		type: NodeType, imageURL: String?, listed: (edge: String, slug: String)?
+	) throws -> NodeDetail {
 		let image = imageURL.map { "\"\($0)\"" } ?? "null"
-		let release = discography.map {
-			#"[{"slug":"\#($0)","type":"project","name":"Release"}]"#
+		let entry = listed.map {
+			#""\#($0.edge)":[{"slug":"\#($0.slug)","type":"project","name":"Release"}]"#
 		}
-		let edges = release.map { #""discography":\#($0)"# } ?? ""
 		let source = """
-			{"id":"artist:sample-artist","type":"artist","name":"Sample","teaser":null,"article":"A","citations":[],"facts":{},"edges":{\(edges)},"materialized_at":"2026-10-08T00:00:00Z","image_url":\(image)}
+			{"id":"\(type.rawValue):sample-\(type.rawValue)","type":"\(type.rawValue)","name":"Sample","teaser":null,"article":"A","citations":[],"facts":{},"edges":{\(entry ?? "")},"materialized_at":"2026-10-08T00:00:00Z","image_url":\(image)}
 			"""
 		let decoder = JSONDecoder()
 		decoder.dateDecodingStrategy = .iso8601

@@ -19,7 +19,7 @@
  * nothing about the work, so the caller retries later instead of recording a verdict.
  *
  * Pure: the network is injected (`deps.fetch` for CAA and iTunes; MusicBrainz goes through its own
- * client, to which `deps.mbOptions` is handed untouched), nothing is read from or written to the cache,
+ * client, to which `deps.mbOptions` is handed untouched, its `signal` included: TRA-590), nothing is read from or written to the cache,
  * and a rung that throws is a miss for that rung, never a crash. Every returned URL passes
  * `isAllowedImageUrl`. At most two MusicBrainz requests per hint (one in practice).
  *
@@ -170,6 +170,7 @@ async function viaCompilation(
 	const verdict = await attempt("musicbrainz-compilation", hint, () =>
 		findCompilationCoverReleaseGroup(album.title, album.artist, {
 			...(deps.mbOptions?.priority ? { priority: deps.mbOptions.priority } : {}),
+			signal: deps.mbOptions?.signal,
 			requestedArtistMbid: album.artistMbid,
 		}),
 	);
@@ -252,10 +253,13 @@ export async function resolveWorkImageByHint(
 			hint,
 			deps,
 			() => resolveRecordingDetailed(title, artist, deps.mbOptions),
-			(identity) => identity.releaseGroupMbid ?? null,
+			(identity) => identity.releaseGroupMbid,
 		);
 	}
 	if (outcome) return outcome;
+	// Abandoned (TRA-590): the caller no longer wants an answer, and the rungs below would only ask iTunes in
+	// vain. "Unavailable" and never "no match": nothing was learned about the work.
+	if (deps.mbOptions?.signal?.aborted) return { kind: "unavailable" };
 
 	const itunesTitle = album?.title ?? title;
 	const itunesArtist = album?.artist ?? artist;

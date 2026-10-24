@@ -19,21 +19,21 @@ final class NavigationTests: XCTestCase {
 		XCTAssertGreaterThanOrEqual(applicationWindow.frame.height, 800)
 		XCTAssertFalse(app.otherElements["invalid-configuration"].exists)
 
-		let today = app.tabBars.buttons["Aujourd’hui"]
+		let today = UITestFlows.tabButton("Aujourd’hui", in: app)
 		XCTAssertTrue(today.waitForExistence(timeout: 10))
-		XCTAssertTrue(app.tabBars.buttons["Genres"].exists)
-		XCTAssertTrue(app.tabBars.buttons["Recherche"].exists)
-		XCTAssertFalse(app.tabBars.buttons["Réglages"].exists)
+		XCTAssertTrue(UITestFlows.tabButton("Genres", in: app).exists)
+		XCTAssertTrue(UITestFlows.tabButton("Recherche", in: app).exists)
+		XCTAssertFalse(UITestFlows.tabButton("Réglages", in: app).exists)
 		XCTAssertTrue(todayPage(in: app).waitForExistence(timeout: 15))
 
-		app.tabBars.buttons["Genres"].tap()
+		UITestFlows.tabButton("Genres", in: app).tap()
 		XCTAssertTrue(app.buttons["genres-edit"].waitForExistence(timeout: 5))
 		XCTAssertTrue(app.buttons["genres-settings"].exists)
 
 		today.tap()
 		XCTAssertTrue(todayPage(in: app).waitForExistence(timeout: 15))
 
-		app.tabBars.buttons["Recherche"].tap()
+		UITestFlows.tabButton("Recherche", in: app).tap()
 		let sheet = app.descendants(matching: .any)["search-sheet"]
 		XCTAssertTrue(sheet.waitForExistence(timeout: 2))
 		dismiss(sheet)
@@ -52,7 +52,7 @@ final class NavigationTests: XCTestCase {
 		UITestFlows.completeOnboarding(app)
 
 		for tab in ["Aujourd’hui", "Genres", "Recherche"] {
-			let button = app.tabBars.buttons[tab]
+			let button = UITestFlows.tabButton(tab, in: app)
 			XCTAssertTrue(button.waitForExistence(timeout: 10))
 			XCTAssertGreaterThanOrEqual(button.frame.height, 44)
 			button.tap()
@@ -86,8 +86,8 @@ final class NavigationTests: XCTestCase {
 		UITestFlows.declineConsent(app)
 		UITestFlows.completeOnboarding(app)
 
-		XCTAssertTrue(app.tabBars.buttons["Recherche"].waitForExistence(timeout: 10))
-		app.tabBars.buttons["Recherche"].tap()
+		XCTAssertTrue(UITestFlows.tabButton("Recherche", in: app).waitForExistence(timeout: 10))
+		UITestFlows.tabButton("Recherche", in: app).tap()
 		let sheet = app.descendants(matching: .any)["search-sheet"]
 		XCTAssertTrue(sheet.waitForExistence(timeout: 5))
 		let field = app.textFields["search-field"]
@@ -96,7 +96,7 @@ final class NavigationTests: XCTestCase {
 		field.typeText("\n")
 
 		XCTAssertTrue(sheet.waitForNonExistence(timeout: 5))
-		XCTAssertTrue(app.tabBars.buttons["Aujourd’hui"].isSelected)
+		XCTAssertTrue(UITestFlows.tabButton("Aujourd’hui", in: app).isSelected)
 	}
 
 	/// The page of the day: Today only has one once the first launch has written the profile.

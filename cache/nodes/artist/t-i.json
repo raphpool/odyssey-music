@@ -290,14 +290,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:paperwork",
-      "type": "project",
-      "name": "Paperwork",
-      "mbid": "04e7dc4d-3e4d-4b38-a741-8807a52a8605",
-      "year": "2014",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:new-national-anthem",
       "type": "project",
       "name": "New National Anthem",

@@ -32,7 +32,14 @@
   "editorial_definition": "Britpop was a 1990s British rock movement that drew on 1960s guitar-pop melodies, evolving into a widespread cultural phenomenon known as 'Cool Britannia.' It is best remembered for its guitar-heavy hooks, British-centric lyrical themes, and the intense, media-driven rivalry between leading acts like Oasis and Blur.",
   "era": "1990s",
   "origin": "United Kingdom",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:alternative",
+      "type": "genre",
+      "name": "Alternative",
+      "qid": "Q1695023"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

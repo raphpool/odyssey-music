@@ -45,6 +45,12 @@
       "type": "genre",
       "name": "Black Metal",
       "qid": "Q132438"
+    },
+    {
+      "slug": "genre:deathstep",
+      "type": "genre",
+      "name": "Deathstep",
+      "qid": "Q106528420"
     }
   ],
   "key_artists": [

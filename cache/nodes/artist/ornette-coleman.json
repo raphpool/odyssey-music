@@ -265,11 +265,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:something-else",
-      "type": "project",
-      "name": "Something Else!!!!"
-    },
-    {
       "slug": "project:free-jazz",
       "type": "project",
       "name": "Free Jazz"

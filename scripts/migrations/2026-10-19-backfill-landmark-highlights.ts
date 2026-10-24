@@ -133,6 +133,9 @@
  * excluded; that costs rate, never safety. But a pick, once written, is final (idempotence: an artist that
  * has the field is never revisited), so run this AFTER those migrations, not before.
  *
+ * A pair emptied on purpose (data/cleared-landmarks.json, TRA-605 / TRA-674) is never filled either: an empty
+ * field is what this backfill fills, so a replay would write the rejected picks back.
+ *
  * An artist that already has the field is never touched; the node's other fields are not either (only
  * `landmark_project` and `reference_track` are added, plus the schema's own default `similar_artists: []`
  * on a node that did not carry it, which validation adds to every artist it writes: onlyAddsSchemaDefaults
@@ -155,6 +158,7 @@ import { mkdir, stat } from "node:fs/promises";
 import { dirname, join, relative } from "node:path";
 import { pathToFileURL } from "node:url";
 import { atomicWriteJson, NodeCache } from "../../src/cache.js";
+import { clearedPick } from "../../src/cleared-landmarks.js";
 import { loadRedirects, resolveReadSlug } from "../../src/genre-registry.js";
 import { reciprocity, type Work } from "../../src/images/reciprocity.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
@@ -680,7 +684,14 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 	log(`${artists.length} artist(s), ${nodes.length - artists.length} other node(s) read`);
 
 	for (const { slug, path, node: raw } of artists) {
-		const pending = HIGHLIGHT_FIELDS.filter(({ field }) => !hasField(raw, field));
+		// TRA-674: a pair TRA-605 emptied on purpose is exactly what this fills; a replay (or the prod run of a
+		// cache that still has the old picks) would write the bad choices back. They are withheld, not skipped.
+		const pending = HIGHLIGHT_FIELDS.filter(({ field }) => {
+			if (hasField(raw, field)) return false;
+			if (clearedPick(slug, field) === undefined) return true;
+			log(`${slug}: ${field} left empty (cleared on purpose, data/cleared-landmarks.json)`);
+			return false;
+		});
 		if (pending.length === 0) continue;
 		const parsed = nodePayloadSchema.safeParse(raw);
 		if (!parsed.success || parsed.data.type !== "artist") {

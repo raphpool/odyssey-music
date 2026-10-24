@@ -13,10 +13,18 @@
     }
   ],
   "materialized_at": "2026-05-13T13:08:33.734Z",
+  "mbid": "da6b3ef9-3a02-364a-b0ed-698fdab7dc4d",
   "type": "project",
   "editorial_pitch": "A definitive masterpiece of dub music, Super Ape captures Lee \"Scratch\" Perry at the height of his creative powers within the legendary Black Ark studio. It remains an essential artifact of Jamaican studio experimentation, defined by its hypnotic rhythms, ghostly spatial effects, and the uniquely eccentric production wizardry of its creator.",
   "year": "1976",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:the-upsetters",
+      "type": "artist",
+      "name": "The Upsetters",
+      "mbid": "7bcf8b20-72a6-48b1-bad3-b28869090dda"
+    }
+  ],
   "genres": [],
   "tracklist": [],
   "producers": [
@@ -26,5 +34,6 @@
       "name": "Lee Scratch Perry"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

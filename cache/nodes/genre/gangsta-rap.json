@@ -77,6 +77,12 @@
       "type": "genre",
       "name": "Drill",
       "qid": "Q15697534"
+    },
+    {
+      "slug": "genre:french-hip-hop",
+      "type": "genre",
+      "name": "French hip hop",
+      "qid": "Q138020"
     }
   ],
   "key_artists": [

@@ -21,6 +21,18 @@
       "type": "genre",
       "name": "Electronic Dance Music",
       "qid": "Q851213"
+    },
+    {
+      "slug": "genre:dance-music",
+      "type": "genre",
+      "name": "Dance music",
+      "qid": "Q316930"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "subgenres": [
@@ -29,6 +41,30 @@
       "type": "genre",
       "name": "Gabber",
       "qid": "Q820049"
+    },
+    {
+      "slug": "genre:acid-techno",
+      "type": "genre",
+      "name": "Acid Techno",
+      "qid": "Q341395"
+    },
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient techno",
+      "qid": "Q9149801"
+    },
+    {
+      "slug": "genre:industrial-techno",
+      "type": "genre",
+      "name": "Industrial Techno",
+      "qid": "Q29480448"
+    },
+    {
+      "slug": "genre:tech-house",
+      "type": "genre",
+      "name": "Tech House",
+      "qid": "Q598593"
     }
   ],
   "related_genres": [
@@ -67,6 +103,96 @@
       "type": "genre",
       "name": "Psytrance",
       "qid": "Q622871"
+    },
+    {
+      "slug": "genre:acid-trance",
+      "type": "genre",
+      "name": "Acid Trance",
+      "qid": "Q481900"
+    },
+    {
+      "slug": "genre:big-beat",
+      "type": "genre",
+      "name": "Big Beat",
+      "qid": "Q858579"
+    },
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit Techno",
+      "qid": "Q526463"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and bass",
+      "qid": "Q188994"
+    },
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub techno",
+      "qid": "Q1262781"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    },
+    {
+      "slug": "genre:electroclash",
+      "type": "genre",
+      "name": "Electroclash",
+      "qid": "Q861823"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music",
+      "qid": "Q851213"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica",
+      "qid": "Q817138"
+    },
+    {
+      "slug": "genre:eurodance",
+      "type": "genre",
+      "name": "Eurodance",
+      "qid": "Q216961"
+    },
+    {
+      "slug": "genre:hi-nrg",
+      "type": "genre",
+      "name": "Hi-NRG",
+      "qid": "Q606393"
+    },
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive House",
+      "qid": "Q915152"
+    },
+    {
+      "slug": "genre:rave",
+      "type": "genre",
+      "name": "Rave",
+      "qid": "Q898709"
+    },
+    {
+      "slug": "genre:uk-bass",
+      "type": "genre",
+      "name": "UK bass",
+      "qid": "Q2346991"
     }
   ],
   "key_artists": [

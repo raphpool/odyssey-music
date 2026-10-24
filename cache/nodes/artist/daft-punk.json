@@ -106,14 +106,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:discovery",
-      "type": "project",
-      "name": "Discovery (Sample Bandit Bootlegs)",
-      "mbid": "df7d1104-7543-4868-b6c4-92ab83ad27f3",
-      "year": "2022",
-      "releaseType": "ep"
-    },
-    {
       "slug": "project:phantom-robot",
       "type": "project",
       "name": "Phantom Robot (Kiivas’ “Soulwax” Mashup)",
@@ -440,13 +432,6 @@
       "mbid": "35a4f900-60c1-3f79-8cdb-193941b78768",
       "year": "1994",
       "releaseType": "single"
-    },
-    {
-      "slug": "project:discovery",
-      "type": "project",
-      "name": "Discovery (Beta Version)",
-      "mbid": "84216190-e46f-4cf1-8a28-76910183be38",
-      "releaseType": "album"
     },
     {
       "slug": "project:blue-monday-alive",

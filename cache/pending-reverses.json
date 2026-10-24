@@ -4427,6 +4427,17 @@
         "type": "artist",
         "name": "King Tubby"
       }
+    },
+    {
+      "field": "discography",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:king-tubbys-meets-rockers-uptown",
+        "type": "project",
+        "name": "King Tubbys Meets Rockers Uptown",
+        "artist": "Augustus Pablo",
+        "mbid": "8426fa46-01c5-3343-97f5-0551822542ed"
+      }
     }
   ],
   "artist:u-roy": [
@@ -21843,9 +21854,9 @@
       "field": "discography",
       "cardinality": "list",
       "edge": {
-        "slug": "project:avalon-sutra-as-long-as-i-can-hold-my-breath--harold-budd",
+        "slug": "project:avalon-sutra--harold-budd",
         "type": "project",
-        "name": "Avalon Sutra / As Long As I Can Hold My Breath",
+        "name": "Avalon Sutra",
         "artist": "Harold Budd"
       }
     }
@@ -21855,9 +21866,9 @@
       "field": "notable_releases",
       "cardinality": "list",
       "edge": {
-        "slug": "project:avalon-sutra-as-long-as-i-can-hold-my-breath--harold-budd",
+        "slug": "project:avalon-sutra--harold-budd",
         "type": "project",
-        "name": "Avalon Sutra / As Long As I Can Hold My Breath",
+        "name": "Avalon Sutra",
         "artist": "Harold Budd"
       }
     }
@@ -22923,17 +22934,6 @@
         "type": "project",
         "name": "Renaissance: The Mix Collection",
         "artist": "Sasha & John Digweed"
-      }
-    }
-  ],
-  "label:plain-pack": [
-    {
-      "field": "notable_releases",
-      "cardinality": "list",
-      "edge": {
-        "slug": "project:resort-vol-1",
-        "type": "project",
-        "name": "RESORT Vol. 1"
       }
     }
   ],
@@ -24337,6 +24337,109 @@
         "type": "track",
         "name": "Wonderfull",
         "artist": "Frank Who?"
+      }
+    }
+  ],
+  "artist:kyuss": [
+    {
+      "field": "discography",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:blues-for-the-red-sun",
+        "type": "project",
+        "name": "Blues for the Red Sun",
+        "artist": "Kyuss",
+        "mbid": "816f2753-e709-3b10-ad93-e4c1af7aea6c"
+      }
+    }
+  ],
+  "artist:nine-inch-nails": [
+    {
+      "field": "discography",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:ghosts-i-iv",
+        "type": "project",
+        "name": "Ghosts I–IV",
+        "artist": "Nine Inch Nails",
+        "mbid": "550bf4b9-92ca-30ba-9ea2-8b45f9d081f1"
+      }
+    }
+  ],
+  "artist:x": [
+    {
+      "field": "discography",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:los-angeles",
+        "type": "project",
+        "name": "Los Angeles",
+        "artist": "X",
+        "mbid": "700da083-bd95-3301-91f1-af571a001414"
+      }
+    }
+  ],
+  "artist:the-upsetters": [
+    {
+      "field": "discography",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:super-ape",
+        "type": "project",
+        "name": "Super Ape",
+        "artist": "The Upsetters",
+        "mbid": "da6b3ef9-3a02-364a-b0ed-698fdab7dc4d"
+      }
+    }
+  ],
+  "artist:jam-project": [
+    {
+      "field": "discography",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:the-judgement--2022-mini-album-by-jam-project",
+        "type": "project",
+        "name": "The Judgement",
+        "artist": "JAM Project",
+        "mbid": "5948a343-d133-42f7-b506-4935b71a42a9"
+      }
+    }
+  ],
+  "artist:interpol": [
+    {
+      "field": "discography",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:turn-on-the-bright-lights",
+        "type": "project",
+        "name": "Turn on the Bright Lights",
+        "artist": "Interpol",
+        "mbid": "e7227840-5ef2-3813-af26-15dab34e1a51"
+      }
+    }
+  ],
+  "artist:larry-young": [
+    {
+      "field": "discography",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:unity--1966-jazz-album-by-larry-young",
+        "type": "project",
+        "name": "Unity",
+        "artist": "Larry Young",
+        "mbid": "ba746b8f-b790-32cd-8082-966bf36a8637"
+      }
+    }
+  ],
+  "artist:the-flaming-lips": [
+    {
+      "field": "notable_tracks",
+      "cardinality": "list",
+      "edge": {
+        "slug": "track:spongebob-and-patrick-confront-the-psychic-wall-of-energy",
+        "type": "track",
+        "name": "SpongeBob & Patrick Confront the Psychic Wall of Energy",
+        "artist": "The Flaming Lips"
       }
     }
   ]

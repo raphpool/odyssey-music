@@ -76,8 +76,8 @@ interface MbReleaseGroup {
 	id: string;
 	title: string;
 	"primary-type"?: string;
-	/** Present in search hits and unvalidated: read with an Array.isArray / typeof guard. */
-	"secondary-types"?: unknown;
+	/** Checked by parseReleaseGroups: absent, or an array of strings. */
+	"secondary-types"?: string[];
 	"first-release-date"?: string;
 	"artist-credit"?: MbArtistCreditEntry[];
 }
@@ -110,6 +110,15 @@ function isMbid(value: unknown): value is string {
 function hasOptionalText(record: Record<string, unknown>, key: string): boolean {
 	const value = record[key];
 	return value === undefined || isText(value);
+}
+
+// MB always sends `secondary-types` as an array of names ("Live", "Compilation"...). Absent is fine (a hit may
+// omit it); any other shape is off schema. It used to be read as "no secondary type" (2026-10-16, TRA-560
+// review: a live album marked `"secondary-types": "Live"` passed for a studio one), so, like a malformed
+// `primary-type`, it now makes the whole answer unusable. Each name follows the isText rule (TRA-566).
+function hasOptionalTextArray(record: Record<string, unknown>, key: string): boolean {
+	const value = record[key];
+	return value === undefined || (Array.isArray(value) && value.every(isText));
 }
 
 function hasValidArtistCredit(value: unknown): boolean {
@@ -149,6 +158,7 @@ function parseReleaseGroups(body: unknown): MbReleaseGroup[] | null {
 				isMbid(releaseGroup.id) &&
 				isText(releaseGroup.title) &&
 				hasOptionalText(releaseGroup, "primary-type") &&
+				hasOptionalTextArray(releaseGroup, "secondary-types") &&
 				hasOptionalText(releaseGroup, "first-release-date") &&
 				(releaseGroup["artist-credit"] === undefined || hasValidArtistCredit(releaseGroup["artist-credit"])),
 		)
@@ -338,13 +348,25 @@ let pendingInteractive = 0;
 let backgroundSlotHeld = false;
 const backgroundWaiters: Array<() => void> = [];
 
-function reserveSlotDelayMs(): number {
+interface SlotReservation {
+	delayMs: number;
+	/** Gives the slot back when nobody used it, if no later reservation was made behind it. */
+	cancel(): void;
+}
+
+function reserveSlot(): SlotReservation {
 	const interval = musicBrainzConfig.minIntervalMs;
-	if (interval <= 0) return 0;
+	if (interval <= 0) return { delayMs: 0, cancel: () => undefined };
 	const now = Date.now();
-	const at = Math.max(now, lastSlotAt + interval);
+	const previous = lastSlotAt;
+	const at = Math.max(now, previous + interval);
 	lastSlotAt = at;
-	return at - now;
+	return {
+		delayMs: at - now,
+		cancel: () => {
+			if (lastSlotAt === at) lastSlotAt = previous;
+		},
+	};
 }
 
 function releaseNextBackground(): void {
@@ -352,28 +374,50 @@ function releaseNextBackground(): void {
 	backgroundWaiters.shift()?.();
 }
 
-// Resolves when the caller's slot is reached. With spacing off (`minIntervalMs` 0, tests) there is no
-// slot and no yielding.
-function waitForSlot(priority: MbPriority): Promise<void> {
-	if (musicBrainzConfig.minIntervalMs <= 0) return Promise.resolve();
+// Resolves to true when the caller's slot is reached, to false when `signal` was aborted first (2026-10-24,
+// TRA-590: an abandoned image job kept its place, and its slot, in this queue). An aborted wait leaves
+// nothing behind: a background waiter is dropped from the queue without ever reserving a slot; one that had
+// reserved gives the reservation back (when nothing was reserved after it, otherwise the gap stays, which
+// only costs time) and the held flags are cleared so the next waiter goes on. With spacing off
+// (`minIntervalMs` 0, tests) there is no slot and no yielding.
+function waitForSlot(priority: MbPriority, signal?: AbortSignal): Promise<boolean> {
+	if (signal?.aborted) return Promise.resolve(false);
+	if (musicBrainzConfig.minIntervalMs <= 0) return Promise.resolve(true);
 	if (priority === "interactive") {
 		pendingInteractive++;
-		return sleep(reserveSlotDelayMs()).finally(() => {
+		const slot = reserveSlot();
+		return sleep(slot.delayMs, signal).then(() => {
 			pendingInteractive--;
+			// The reservation goes back before the next background waiter is released: released first, it would
+			// reserve behind the dead slot and the gap would stay (review of #645, 2026-10-24).
+			if (signal?.aborted) slot.cancel();
 			releaseNextBackground();
+			return !signal?.aborted;
 		});
 	}
-	return new Promise<void>((resolve) => {
+	return new Promise<boolean>((resolve) => {
+		const onAbort = () => {
+			const index = backgroundWaiters.indexOf(release);
+			// Still queued: it holds nothing. Already released: its `sleep` ends on its own with the signal.
+			if (index < 0) return;
+			backgroundWaiters.splice(index, 1);
+			resolve(false);
+		};
 		// Runs synchronously when released, so no interactive request can slip in between the
 		// release decision and the reservation.
-		backgroundWaiters.push(() => {
+		const release = () => {
 			backgroundSlotHeld = true;
-			void sleep(reserveSlotDelayMs()).finally(() => {
+			const slot = reserveSlot();
+			void sleep(slot.delayMs, signal).then(() => {
 				backgroundSlotHeld = false;
-				resolve();
+				signal?.removeEventListener("abort", onAbort);
+				if (signal?.aborted) slot.cancel();
+				resolve(!signal?.aborted);
 				releaseNextBackground();
 			});
-		});
+		};
+		signal?.addEventListener("abort", onAbort, { once: true });
+		backgroundWaiters.push(release);
 		releaseNextBackground();
 	});
 }
@@ -396,33 +440,106 @@ function retryWaitMs(attempt: number, retryAfterMs: number | null): number {
 	return Math.min(MB_MAX_RETRY_WAIT_MS, Math.max(backoff, retryAfterMs ?? 0));
 }
 
-async function sleep(delayMs: number): Promise<void> {
-	for (let remaining = delayMs; remaining > 0; remaining -= MAX_TIMER_DELAY_MS) {
-		await new Promise<void>((resolve) => setTimeout(resolve, Math.min(remaining, MAX_TIMER_DELAY_MS)));
+// Ends early, without an error, when `signal` is aborted: the caller reads the signal to tell the two apart.
+async function sleep(delayMs: number, signal?: AbortSignal): Promise<void> {
+	for (let remaining = delayMs; remaining > 0 && !signal?.aborted; remaining -= MAX_TIMER_DELAY_MS) {
+		await new Promise<void>((resolve) => {
+			const done = () => {
+				clearTimeout(timer);
+				signal?.removeEventListener("abort", done);
+				resolve();
+			};
+			const timer = setTimeout(done, Math.min(remaining, MAX_TIMER_DELAY_MS));
+			signal?.addEventListener("abort", done, { once: true });
+		});
 	}
 }
 
-function queueRetry(delayMs: number): Promise<void> {
-	const queued = retryQueue.then(() => sleep(delayMs));
+// A retry waits its turn behind the others. An aborted caller stops waiting at once; its place in the chain
+// is a sleep that ends with the signal, so it holds nobody up.
+function queueRetry(delayMs: number, signal?: AbortSignal): Promise<void> {
+	const queued = retryQueue.then(() => sleep(delayMs, signal));
 	retryQueue = queued.catch(() => undefined);
-	return queued;
+	if (!signal) return queued;
+	return new Promise<void>((resolve) => {
+		if (signal.aborted) return resolve();
+		const done = () => {
+			signal.removeEventListener("abort", done);
+			resolve();
+		};
+		signal.addEventListener("abort", done, { once: true });
+		void queued.then(done);
+	});
+}
+
+/**
+ * What one MusicBrainz request came to, after its retries (2026-10-24, TRA-532: `null` stood for all of
+ * these, so a deleted mbid was filed as an outage and replayed by every --resume):
+ *  - `ok`: MB answered with a JSON object;
+ *  - `rejected`: MB answered with a final 4xx that repeating cannot change (see {@link DEFINITIVE_STATUSES})
+ *    and its error object (`{ "error": … }`); the same status with any other body is `unavailable`.
+ *    The status is kept: a 404 on `/recording/<mbid>` says the entity is gone, but the same status on a
+ *    search says nothing about any work, so each caller decides what it means;
+ *  - `unavailable`: no usable answer: network error or timeout, a throttling or gateway status that
+ *    outlasted the retries, any other HTTP error (401 and 403 say something about us, not about the
+ *    entity), or a 200 whose body is unreadable or not a JSON object;
+ *  - `aborted` (2026-10-24, TRA-590): the caller's own `signal` ended the request. MB said nothing, so it is
+ *    not an outage either: it is never retried, never memoized, and a caller that persists "MB was down"
+ *    must not read it as that. Only a caller that passed a `signal` can get it.
+ */
+type MbFetchResult<T> =
+	| { kind: "ok"; data: T }
+	| { kind: "rejected"; status: number }
+	| { kind: "unavailable" }
+	| { kind: "aborted" };
+
+// 400 is a query MB refuses (Lucene syntax) and 404 an entity it does not hold (never created, or
+// deleted; a merged mbid is not one of these, MB serves it by redirect with a 200): neither changes by
+// asking again. The other 4xx are not about the request's subject.
+// Today only the 404 of a lookup by mbid is read (see `isGone`): a 400 on a search is OUR query being
+// wrong, which must stay loud (`unavailable` to the callers that collapse `rejected`), not become a
+// quiet "no match".
+const DEFINITIVE_STATUSES = new Set([400, 404]);
+
+// 2026-10-24 (TRA-532 review): a 404 only speaks for MB when it carries MB's own error object
+// (`{ "error": "Not Found", "help": … }`). The same status from a proxy's HTML page, or from a wrong
+// MB_BASE_URL, says nothing about the entity: it stays `unavailable`. An unreadable body is not MB's.
+async function isMbErrorBody(r: Response): Promise<boolean> {
+	try {
+		const body: unknown = await r.json();
+		return isRecord(body) && typeof body.error === "string";
+	} catch {
+		return false;
+	}
 }
 
 // `fetchImpl` is injectable so callers outside this module (the image resolver, TRA-465) can be
 // tested without stubbing the global; it defaults to the global fetch read at call time.
-async function mbFetch<T>(
+//
+// `accept` is the caller's schema check on the parsed object. A body that fails it is still handed back
+// (the caller classifies it) but not memoized: 2026-10-24 (TRA-532), a 200 that was `null`, `[]` or an
+// object off schema was replayed for five minutes, so the "unavailable" the caller derives from it outlived
+// the glitch that produced it. A body that is not a JSON object at all is never memoized nor handed back.
+//
+// `signal` (TRA-590) is the caller's: once aborted, the request stops waiting for a slot, stops waiting
+// between retries, aborts the fetch in flight, is not retried and caches nothing; the result is `aborted`.
+async function mbRequest<T>(
 	path: string,
 	params: Record<string, string>,
 	fetchImpl: typeof fetch = fetch,
 	priority: MbPriority = "interactive",
-): Promise<T | null> {
+	accept?: (body: Record<string, unknown>) => boolean,
+	signal?: AbortSignal,
+): Promise<MbFetchResult<T>> {
+	const aborted: MbFetchResult<T> = { kind: "aborted" };
+	if (signal?.aborted) return aborted;
 	const key = `${path}?${Object.entries(params)
 		.sort()
 		.map(([k, v]) => `${k}=${v}`)
 		.join("&")}`;
 	const hit = mbCache.get(key);
 	if (hit && Date.now() - hit.at < MB_CACHE_TTL_MS) {
-		return hit.data as T;
+		return { kind: "ok", data: hit.data as T };
 	}
 
 	const url = new URL(`${MB_BASE}${path}`);
@@ -435,45 +552,87 @@ async function mbFetch<T>(
 	for (let attempt = 0; attempt < attempts; attempt++) {
 		// Wait for the slot before arming the abort timer so queueing never eats the fetch timeout.
 		// A retry keeps the priority of its first attempt.
-		await waitForSlot(priority);
+		if (!(await waitForSlot(priority, signal))) return aborted;
 		const ctrl = new AbortController();
 		const timer = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT_MS);
 		try {
 			const r = await fetchImpl(url, {
 				headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
-				signal: ctrl.signal,
+				signal: signal ? AbortSignal.any([ctrl.signal, signal]) : ctrl.signal,
 			});
 			if (RETRYABLE_STATUSES.has(r.status) && attempt < attempts - 1) {
 				const retryAfter = retryAfterDelayMs(r.headers.get("Retry-After"), Date.now());
-				await queueRetry(retryWaitMs(attempt, retryAfter));
+				await queueRetry(retryWaitMs(attempt, retryAfter), signal);
+				if (signal?.aborted) return aborted;
 				continue;
 			}
 			if (!r.ok) {
 				log.warn("request failed", { status: r.status, path: url.pathname });
-				return null;
+				return DEFINITIVE_STATUSES.has(r.status) && (await isMbErrorBody(r))
+					? { kind: "rejected", status: r.status }
+					: { kind: "unavailable" };
 			}
-			const data = (await r.json()) as T;
-			// Cache successful responses only — don't poison the cache with throttled empties.
-			if (mbCache.size >= MB_CACHE_MAX) {
-				const firstKey = mbCache.keys().next().value;
-				if (firstKey) mbCache.delete(firstKey);
+			const data = (await r.json()) as unknown;
+			if (!isRecord(data)) {
+				log.warn("response is not a JSON object", { path: url.pathname });
+				return { kind: "unavailable" };
 			}
-			mbCache.set(key, { at: Date.now(), data });
-			return data;
+			// An answer that arrived after the caller gave up is dropped, not cached: the caller never saw it.
+			if (signal?.aborted) return aborted;
+			// Cache successful responses only — don't poison the cache with throttled empties, nor with
+			// a body the caller is about to reject.
+			if (!accept || accept(data)) {
+				if (mbCache.size >= MB_CACHE_MAX) {
+					const firstKey = mbCache.keys().next().value;
+					if (firstKey) mbCache.delete(firstKey);
+				}
+				mbCache.set(key, { at: Date.now(), data });
+			}
+			return { kind: "ok", data: data as T };
 		} catch (e) {
+			// The caller's abort is not a failure to retry (it used to cost a slot per attempt).
+			if (signal?.aborted) return aborted;
 			const msg = e instanceof Error ? e.message : String(e);
 			if (attempt === attempts - 1) log.warn("fetch failed", { path: url.pathname, error: msg });
 		} finally {
 			clearTimeout(timer);
 		}
 	}
-	return null;
+	return { kind: "unavailable" };
 }
+
+/**
+ * {@link mbRequest} for the callers that only need the body: null for anything but an answer, an aborted
+ * request included (a caller that passes a `signal` reads it to tell the two apart).
+ */
+async function mbFetch<T>(
+	path: string,
+	params: Record<string, string>,
+	fetchImpl: typeof fetch = fetch,
+	priority: MbPriority = "interactive",
+	accept?: (body: Record<string, unknown>) => boolean,
+	signal?: AbortSignal,
+): Promise<T | null> {
+	const result = await mbRequest<T>(path, params, fetchImpl, priority, accept, signal);
+	return result.kind === "ok" ? result.data : null;
+}
+
+const isArtistPage = (body: unknown) => parseArtists(body) !== null;
+const isReleaseGroupPage = (body: unknown) => parseReleaseGroups(body) !== null;
+const isRecordingPage = (body: unknown) => parseRecordings(body) !== null;
+const isRgPage = (body: unknown) => parseRgPage(body) !== null;
+// The lookups' always-present lists (see fetchTrackMetaDetailedMb, fetchProjectMetaDetailedMb): an object
+// without one is not MB's answer, so it is not worth five minutes of memory.
+const hasReleaseList = (body: Record<string, unknown>) => Array.isArray(body.releases);
+const hasLabelInfo = (body: Record<string, unknown>) => Array.isArray(body["label-info"]);
+const hasMedia = (body: Record<string, unknown>) => Array.isArray(body.media);
 
 async function searchArtists(q: string, limit: number, failOnUnavailable = false): Promise<CatalogResult[]> {
 	const query = buildMbQuery(q);
 	if (!query) return [];
-	const artists = parseArtists(await mbFetch<unknown>("/artist", { query, limit: String(limit) }));
+	const artists = parseArtists(
+		await mbFetch<unknown>("/artist", { query, limit: String(limit) }, undefined, undefined, isArtistPage),
+	);
 	if (!artists) return unavailableOrEmpty(failOnUnavailable);
 	return artists
 		.filter((a) => !SPECIAL_PURPOSE_MBIDS.has(a.id) && a.name !== "[unknown]")
@@ -500,10 +659,13 @@ async function searchReleaseGroups(
 	// Lucene filter: only Album / Single / EP (matches our original SQLite filter).
 	const filtered = `(${query}) AND (primarytype:Album OR primarytype:Single OR primarytype:EP)`;
 	const releaseGroups = parseReleaseGroups(
-		await mbFetch<unknown>("/release-group", {
-			query: filtered,
-			limit: String(limit),
-		}),
+		await mbFetch<unknown>(
+			"/release-group",
+			{ query: filtered, limit: String(limit) },
+			undefined,
+			undefined,
+			isReleaseGroupPage,
+		),
 	);
 	if (!releaseGroups) return unavailableOrEmpty(failOnUnavailable);
 	return releaseGroups.map((rg) => {
@@ -527,10 +689,13 @@ async function searchRecordings(
 	const query = buildMbQuery(q);
 	if (!query) return [];
 	const recordings = parseRecordings(
-		await mbFetch<unknown>("/recording", {
-			query,
-			limit: String(limit),
-		}),
+		await mbFetch<unknown>(
+			"/recording",
+			{ query, limit: String(limit) },
+			undefined,
+			undefined,
+			isRecordingPage,
+		),
 	);
 	if (!recordings) return unavailableOrEmpty(failOnUnavailable);
 	return recordings.map((rec) => {
@@ -654,6 +819,7 @@ export async function fetchArtistDiscographyMb(
 			},
 			fetch,
 			priority,
+			isRgPage,
 		).catch(() => null);
 		const page = parseRgPage(body);
 		if (!page) unavailable = true;
@@ -735,13 +901,15 @@ export async function fetchWikidataUrlRelMb(
 	entity: "artist" | "label",
 	mbid: string,
 	fetchImpl?: typeof fetch,
-	options: { priority?: MbPriority } = {},
+	options: { priority?: MbPriority; signal?: AbortSignal | undefined } = {},
 ): Promise<string | null> {
 	const data = await mbFetch<{ relations?: MbUrlRelation[] }>(
 		`/${entity}/${mbid}`,
 		{ inc: "url-rels" },
 		fetchImpl,
 		options.priority,
+		undefined,
+		options.signal,
 	);
 	if (!data || !Array.isArray(data.relations)) return null;
 	for (const rel of data.relations) {
@@ -1132,11 +1300,9 @@ export interface MbReleaseIdentity {
 	/**
 	 * Recordings only: the release group of the release the search hit lists best for it (an Album-primary
 	 * one, else the first listed), the cover-bearing home of a track. Null for a release group (that is
-	 * `mbid`) and when the hit names none. Read from the hit; costs no request. Optional in the type only
-	 * so that the fixtures of other suites that build an identity by hand keep compiling: the two
-	 * resolvers always set it, and a reader takes absent as null.
+	 * `mbid`) and when the hit names none. Read from the hit; costs no request.
 	 */
-	releaseGroupMbid?: string | null;
+	releaseGroupMbid: string | null;
 }
 
 /**
@@ -1227,6 +1393,7 @@ function creditNamesHintAsSegment(entries: MbArtistCreditEntry[], hintKey: strin
  * itself matches that entry, or the joined credit ("Prince & The Revolution" over two entries).
  * Every credited artist counts, whatever the join phrase: a featured artist ("Beyoncé feat. Jay-Z") is
  * credited on the work, so asking for Jay-Z matches. Callers read the credit the resolver returns.
+ * This is equality only, not rank: pickByTitleAndCredit tries the main credit first (TRA-542).
  * An alias of a credited artist (when the hit carries them) is a name of that same artist, so it counts.
  */
 function creditEqualsHint(entries: MbArtistCreditEntry[], hintKey: string): boolean {
@@ -1265,6 +1432,54 @@ function creditEqualsHint(entries: MbArtistCreditEntry[], hintKey: string): bool
 	});
 }
 
+// A join phrase that introduces featured artists: " feat. ", " (feat. ", " ft. ", " featuring ", " with ".
+// Anything else (" & ", " / ", ", ", " vs. ", " x ") joins co-principals and does not match.
+const FEATURING_JOINPHRASE = /\b(?:feat|ft|featuring|with)\b/iu;
+
+/**
+ * The main credit of an untrusted `artist-credit`: the entries up to the first one followed by a featuring
+ * join phrase (TRA-542). "B feat. A" has B as its main credit and A as featured; every entry after the
+ * first featuring phrase is featured, whatever joins it ("B feat. C & A"). A credit without such a phrase,
+ * or whose featuring phrase follows the last entry and so introduces nobody, is returned as is. The
+ * featuring phrase itself is dropped from the last main entry, so that a joined credit read as one string
+ * ("A & B" in "A & B feat. C") is not polluted by it.
+ */
+function mainCreditEntries(entries: MbArtistCreditEntry[]): MbArtistCreditEntry[] {
+	const cut = entries.findIndex(
+		(e) => typeof e.joinphrase === "string" && FEATURING_JOINPHRASE.test(e.joinphrase),
+	);
+	if (cut < 0 || cut === entries.length - 1) return entries;
+	return entries.slice(0, cut + 1).map((e, i) => {
+		if (i !== cut) return e;
+		const { joinphrase: _featuring, ...rest } = e;
+		return rest;
+	});
+}
+
+/**
+ * The candidates that have the requested artist in their MAIN credit (mainCreditEntries) when there are any,
+ * else all of them: the featured-only ones are looked at only when no candidate has the artist up front
+ * (TRA-542). `inMain` is the caller's own test, by name or by MBID.
+ */
+function preferMainCredit<T>(candidates: T[], inMain: (candidate: T) => boolean): T[] {
+	const main = candidates.filter(inMain);
+	return main.length > 0 ? main : candidates;
+}
+
+/**
+ * True when the requested artist is in the MAIN credit of the candidate. When the artist's MBID is known the
+ * main credit is judged by MBID ALONE (TRA-542 review): a namesake printed under the same name, credited first
+ * on another work, must not push down the real artist credited as a featured one. Without an MBID, by name.
+ */
+function inMainCredit(
+	candidate: { "artist-credit"?: MbArtistCreditEntry[] | undefined },
+	hint: string,
+	requested: ReadonlySet<string> | null,
+): boolean {
+	const main = mainCreditEntries(candidate["artist-credit"] ?? []);
+	return requested !== null ? creditCarriesMbid(main, requested) : creditEqualsHint(main, hint);
+}
+
 /**
  * True when one of the credited artists carries one of the accepted MBIDs. MBIDs only: a name is never
  * enough here (TRA-539); the caller got these from a source it trusts (the artist's MB memberships).
@@ -1287,6 +1502,12 @@ function shareAcceptedMbid(
 export interface WorkResolveOptions {
 	/** Queue priority of the MusicBrainz requests (TRA-579); `interactive` when absent. */
 	priority?: MbPriority;
+	/**
+	 * Abandons the resolution (TRA-590): the request waiting for a slot leaves the queue without taking one, a
+	 * retry is not made, and nothing is cached. The resolution then answers `unavailable` (MB said nothing about
+	 * the work, so no verdict may be drawn from it); the caller that aborted knows why and discards it.
+	 */
+	signal?: AbortSignal | undefined;
 	/**
 	 * MBIDs of credited artists that stand for the requested artist, in addition to the equality of names:
 	 * the bands the artist is a member of (Roni Size is credited as "Roni Size / Reprazent"). Accepted by
@@ -1380,8 +1601,11 @@ function pickDoubleSided<
 		const credit = c["artist-credit"] ?? [];
 		return creditEqualsHint(credit, hint) || (requested !== null && creditCarriesMbid(credit, requested));
 	});
-	const only = matches[0];
-	return matches.length === 1 && only ? { kind: "one", candidate: only } : { kind: "none" };
+	// The main credit first (TRA-542): a double A-side single the artist only features on is a candidate
+	// only when no other one has them in its main credit.
+	const ranked = preferMainCredit(matches, (c) => inMainCredit(c, hint, requested));
+	const only = ranked[0];
+	return ranked.length === 1 && only ? { kind: "one", candidate: only } : { kind: "none" };
 }
 
 /**
@@ -1401,6 +1625,13 @@ function pickDoubleSided<
  *    is credited to someone else ("Prince" asked, "Prince Buster" credited). TRA-537 removed the old
  *    fallback to the single exact-title candidate, which resolved exactly that case. Without a hint,
  *    the single exact-title candidate wins (more than one = ambiguous);
+ * 2b. the main credit comes first (TRA-542): when some of those candidates have the artist in their main
+ *    credit (before any "feat." / "ft." / "featuring" / "with" join phrase), the ones that only feature
+ *    them are set aside, so that an older "B feat. A" single does not beat A's own album. They are looked
+ *    at only when no candidate has the artist in its main credit. Ranked within a kind of credit (the
+ *    artist's own against the artist's own, a band against a band): an own credit and a band's stay a doubt.
+ *    This comes BEFORE steps 3 to 5: neither a recording's disambiguation nor the caller's `releaseType`
+ *    brings a set-aside candidate back (a known type that the remaining candidates lack is `ambiguous`);
  * 3. recordings carrying a non-empty `disambiguation` (live, DJ-mix, video...) are set aside; exactly
  *    one must remain. Release groups have no such note: when they all share one primary type, the one
  *    with the strictly earliest first-release-date among the dated ones wins (a later reissue of the
@@ -1457,7 +1688,7 @@ function pickByTitleAndCredit<
 	if (kind === "release-group" && hasHint && exact.length === 0) {
 		return pickDoubleSided(candidates, wanted, hint, requested, releaseType);
 	}
-	const direct = hasHint
+	const credited = hasHint
 		? exact.filter(
 				(c) =>
 					creditEqualsHint(c["artist-credit"] ?? [], hint) ||
@@ -1466,10 +1697,23 @@ function pickByTitleAndCredit<
 		: exact;
 	// Credited to a band the artist belongs to, accepted by MBID alone (TRA-539). Mixed with a direct
 	// credit on the same title it is a doubt, not a preference for the direct one (TRA-537 deep review).
-	const viaGroup =
+	const creditedViaGroup =
 		hasHint && acceptedMbids.size > 0
-			? exact.filter((c) => !direct.includes(c) && creditCarriesMbid(c["artist-credit"] ?? [], acceptedMbids))
+			? exact.filter(
+					(c) => !credited.includes(c) && creditCarriesMbid(c["artist-credit"] ?? [], acceptedMbids),
+				)
 			: [];
+	// The artist in the MAIN credit comes before the artist only featured (TRA-542), within each kind of
+	// credit: a direct credit against a direct one, a band against a band. A direct candidate and a band's
+	// stay a doubt (below), featured or not. Without a hint the title alone decides: nothing to rank.
+	const direct = hasHint ? preferMainCredit(credited, (c) => inMainCredit(c, hint, requested)) : credited;
+	const viaGroup = preferMainCredit(creditedViaGroup, (c) =>
+		creditCarriesMbid(mainCreditEntries(c["artist-credit"] ?? []), acceptedMbids),
+	);
+	// Set aside for good, not "doubts": a featured credit is another artist's work, whatever its date.
+	const featuredOnly = new Set(
+		[...credited, ...creditedViaGroup].filter((c) => !direct.includes(c) && !viaGroup.includes(c)),
+	);
 	if (direct.length > 0 && viaGroup.length > 0) return { kind: "ambiguous" };
 	// Two different bands of the same member, each with a work of this title: which one is meant is a
 	// doubt, not a matter of age (TRA-552; main kept the oldest). Candidates that share one accepted band
@@ -1485,7 +1729,10 @@ function pickByTitleAndCredit<
 	// Doubt is "ambiguous", as before TRA-537. Segments are used to refuse only, never to accept.
 	if (
 		hasHint &&
-		exact.some((c) => !pool.includes(c) && creditNamesHintAsSegment(c["artist-credit"] ?? [], hint))
+		exact.some(
+			(c) =>
+				!pool.includes(c) && !featuredOnly.has(c) && creditNamesHintAsSegment(c["artist-credit"] ?? [], hint),
+		)
 	) {
 		return { kind: "ambiguous" };
 	}
@@ -1497,7 +1744,8 @@ function pickByTitleAndCredit<
 		return only ? { kind: "one", candidate: only } : { kind: "none" };
 	}
 	// Different types are different works (a single is not its album, a compilation is not the album it
-	// compiles): never settled by date. Secondary types come from an untrusted hit: keep the strings only.
+	// compiles): never settled by date. Hits from parseReleaseGroups already carry string[] secondary types
+	// (TRA-566); the guard stays because this picker is generic over any hit object.
 	const primaryOf = (c: T) => (c["primary-type"] ?? "").trim().toLowerCase();
 	const kindOf = (c: T) => {
 		const secondary = Array.isArray(c["secondary-types"]) ? c["secondary-types"] : [];
@@ -1523,10 +1771,26 @@ function pickByTitleAndCredit<
 	return strict && earliest ? { kind: "one", candidate: earliest } : { kind: "ambiguous" };
 }
 
+/**
+ * The Lucene clause that names the requested artist. MB's `artist:` field indexes the name PRINTED in the
+ * credit, not the canonical name nor the aliases (2026-10-15, TRA-543: Ryuichi Sakamoto's 1983 soundtrack,
+ * credited 坂本龍一, never came back for "Ryuichi Sakamoto"). `arid:` is the artist's id, indexed whatever
+ * name the credit prints, so a known MBID is searched next to the name, not instead of it: a work printed
+ * under the artist's name but credited to a band the artist belongs to ("Roni Size / Reprazent") carries
+ * the band's id, and must stay in the hits. The MBID is interpolated unquoted, so only a bare UUID is
+ * accepted; anything else is read as "no MBID".
+ */
+function artistClause(phrase: string, artistMbid: string | undefined): string {
+	const byName = `artist:"${phrase}"`;
+	const mbid = artistMbid?.trim().toLowerCase();
+	return mbid && isMbid(mbid) ? `(arid:${mbid} OR ${byName})` : byName;
+}
+
 function luceneQuery(
 	field: "releasegroup" | "recording",
 	title: string,
 	artistHint: string | undefined,
+	artistMbid?: string,
 ): string | null {
 	// A title with nothing left after normalization ("!!!") can never be verified against a result.
 	// The phrase is built from the title minus its edition noise, keeping case and spacing: MB files
@@ -1535,7 +1799,7 @@ function luceneQuery(
 	if (!phrase || !normalizeTitleBody(title)) return null;
 	// Same for the hint: a punctuation-only hint would only narrow the search to nothing.
 	const hint = artistHint && normalizeSlugBody(artistHint) ? lucenePhrase(artistHint) : "";
-	return hint ? `${field}:"${phrase}" AND artist:"${hint}"` : `${field}:"${phrase}"`;
+	return hint ? `${field}:"${phrase}" AND ${artistClause(hint, artistMbid)}` : `${field}:"${phrase}"`;
 }
 
 /** MB's maximum page: the whole result set of a title search, so that no look-alike hides past the page. */
@@ -1552,6 +1816,38 @@ function isTruncated(body: unknown, received: number): boolean {
 }
 
 /**
+ * The credited artists of the exact-title candidates that a "none" answer set aside for their credit
+ * (TRA-551), see {@link MbWorkResolution.discardedCredits}. Empty when there is no hint, no exact-title
+ * candidate, or when one is credited to the artist (by name, or by the artist's own MBID): the work is then
+ * the artist's, and a band's credit on the same title is a matter for the picker, never a reason to look up
+ * memberships. Credits without an MBID are dropped by toCredits, deduplicated by MBID.
+ */
+function discardedCreditsOf(
+	candidates: { title: string; "artist-credit"?: MbArtistCreditEntry[] | undefined }[],
+	title: string,
+	artistHint: string | undefined,
+	requestedArtistMbid: string | undefined,
+): MbCredit[] {
+	const wanted = normalizeTitleBody(title);
+	const hint = artistHint !== undefined && artistHint.trim() !== "" ? creditKey(artistHint) : "";
+	if (!wanted || !hint) return [];
+	const requested = requestedArtistMbid?.trim() ? new Set([requestedArtistMbid.trim().toLowerCase()]) : null;
+	const exact = candidates.filter((c) => normalizeTitleBody(c.title) === wanted);
+	const isDirect = (c: (typeof exact)[number]) =>
+		creditEqualsHint(c["artist-credit"] ?? [], hint) ||
+		(requested !== null && creditCarriesMbid(c["artist-credit"] ?? [], requested));
+	if (exact.length === 0 || exact.some(isDirect)) return [];
+	const out = new Map<string, MbCredit>();
+	for (const c of exact) {
+		for (const credit of toCredits(c["artist-credit"])) {
+			const key = credit.mbid.toLowerCase();
+			if (!out.has(key)) out.set(key, credit);
+		}
+	}
+	return [...out.values()];
+}
+
+/**
  * What a resolver found: the work, or nothing. 2026-10-15 (TRA-505): the backfill filed "MusicBrainz did
  * not answer" under "no match" (null for both), so an outage became a verdict that --resume never
  * revisited. A null identity is now told apart three ways: `ambiguous`
@@ -1563,6 +1859,15 @@ export interface MbWorkResolution {
 	identity: MbReleaseIdentity | null;
 	ambiguous: boolean;
 	unavailable: boolean;
+	/**
+	 * Only on a "none" answer, and only when exact-title candidates exist and none is credited to the artist
+	 * (TRA-551): the credited artists, with their MBID, of the candidates set aside for their credit. It tells
+	 * a caller that holds the requested artist's memberships whether asking again with `acceptCreditMbids` can
+	 * change the answer ("New Forms" credited to "Roni Size / Reprazent"), without a request of its own: the
+	 * answer comes from the search that was made anyway. Absent when no exact-title candidate exists, when one
+	 * is credited to the artist, and for any answer other than "none".
+	 */
+	discardedCredits?: MbCredit[];
 }
 
 /**
@@ -1576,13 +1881,15 @@ export async function resolveReleaseGroupDetailed(
 	options: WorkResolveOptions = {},
 ): Promise<MbWorkResolution> {
 	const none: MbWorkResolution = { identity: null, ambiguous: false, unavailable: false };
-	const query = luceneQuery("releasegroup", title, artistHint);
+	const query = luceneQuery("releasegroup", title, artistHint, options.requestedArtistMbid);
 	if (!query) return none;
 	const body = await mbFetch<unknown>(
 		"/release-group",
 		{ query, limit: WORK_SEARCH_LIMIT },
 		undefined,
 		options.priority,
+		isReleaseGroupPage,
+		options.signal,
 	);
 	const releaseGroups = parseReleaseGroups(body);
 	// mbFetch gives null for an HTTP error, a network error and a body that is not JSON; the parser
@@ -1599,7 +1906,16 @@ export async function resolveReleaseGroupDetailed(
 		options.releaseType,
 		options.preferPlainRelease === true,
 	);
-	if (picked.kind !== "one") return { ...none, ambiguous: picked.kind === "ambiguous" };
+	if (picked.kind === "ambiguous") return { ...none, ambiguous: true };
+	if (picked.kind === "none") {
+		const discardedCredits = discardedCreditsOf(
+			releaseGroups,
+			title,
+			artistHint,
+			options.requestedArtistMbid,
+		);
+		return discardedCredits.length > 0 ? { ...none, discardedCredits } : none;
+	}
 	const rg = picked.candidate;
 	return {
 		ambiguous: false,
@@ -1622,13 +1938,15 @@ export async function resolveRecordingDetailed(
 	options: WorkResolveOptions = {},
 ): Promise<MbWorkResolution> {
 	const none: MbWorkResolution = { identity: null, ambiguous: false, unavailable: false };
-	const query = luceneQuery("recording", title, artistHint);
+	const query = luceneQuery("recording", title, artistHint, options.requestedArtistMbid);
 	if (!query) return none;
 	const body = await mbFetch<unknown>(
 		"/recording",
 		{ query, limit: WORK_SEARCH_LIMIT },
 		undefined,
 		options.priority,
+		isRecordingPage,
+		options.signal,
 	);
 	const recordings = parseRecordings(body);
 	if (!recordings) return { ...none, unavailable: true };
@@ -1641,7 +1959,11 @@ export async function resolveRecordingDetailed(
 		acceptedMbidSet(options),
 		options.requestedArtistMbid,
 	);
-	if (picked.kind !== "one") return { ...none, ambiguous: picked.kind === "ambiguous" };
+	if (picked.kind === "ambiguous") return { ...none, ambiguous: true };
+	if (picked.kind === "none") {
+		const discardedCredits = discardedCreditsOf(recordings, title, artistHint, options.requestedArtistMbid);
+		return discardedCredits.length > 0 ? { ...none, discardedCredits } : none;
+	}
 	const rec = picked.candidate;
 	return {
 		ambiguous: false,
@@ -1683,8 +2005,8 @@ function secondaryTypesOf(group: Record<string, unknown>): string[] {
  * TRA-612: "Hyperdub 10.3" is credited to Various Artists, so the artist-credit step refused it for Kode9
  * whose tracks it holds). For a COVER only: the answer is never an identity (see {@link MbCompilationCover}).
  *
- * ONE request, a recording search `release:"<title>" AND artist:"<artist>"`: the hits are recordings
- * credited to the artist, and each lists the releases it appears on with their release group and credit.
+ * ONE request, a recording search `release:"<title>" AND artist:"<artist>"` (with the artist's `arid:` next to
+ * it when the MBID is known, see {@link artistClause}): the hits are recordings credited to the artist, and each lists the releases it appears on with their release group and credit.
  * The release group is accepted if, and only if:
  *  - its normalized title equals the requested one (edition noise ignored, as everywhere else);
  *  - it is the only release group of that title among the artist's recordings;
@@ -1697,7 +2019,12 @@ function secondaryTypesOf(group: Record<string, unknown>): string[] {
 export async function findCompilationCoverReleaseGroup(
 	title: string,
 	contextArtist: string,
-	options: { priority?: MbPriority | undefined; requestedArtistMbid?: string | undefined } = {},
+	options: {
+		priority?: MbPriority | undefined;
+		requestedArtistMbid?: string | undefined;
+		/** See {@link WorkResolveOptions.signal}: aborted, it answers `unavailable`. */
+		signal?: AbortSignal | undefined;
+	} = {},
 ): Promise<MbCompilationCover> {
 	const wanted = normalizeTitleBody(title);
 	const hint = creditKey(contextArtist);
@@ -1706,9 +2033,14 @@ export async function findCompilationCoverReleaseGroup(
 	if (!wanted || !hint || !release || !artist) return { kind: "none" };
 	const body = await mbFetch<unknown>(
 		"/recording",
-		{ query: `release:"${release}" AND artist:"${artist}"`, limit: WORK_SEARCH_LIMIT },
+		{
+			query: `release:"${release}" AND ${artistClause(artist, options.requestedArtistMbid)}`,
+			limit: WORK_SEARCH_LIMIT,
+		},
 		undefined,
 		options.priority,
+		isRecordingPage,
+		options.signal,
 	);
 	const recordings = parseRecordings(body);
 	if (!recordings) return { kind: "unavailable" };
@@ -2450,10 +2782,21 @@ export async function fetchTrackMetaMb(recordingMbid: string): Promise<MbTrackMe
  * any request got no usable answer (HTTP error, network error, unreadable or non-object JSON): the
  * `meta` then lacks what that request would have given, which a caller writing it to disk must not
  * mistake for a work that has no such data. A work MB knows to have none (no release) is not unavailable.
+ *
+ * `notFound` (2026-10-24, TRA-532) tells one `unavailable` apart: MB answered 404 for the mbid asked for
+ * (recording or release group), so the entity is gone (deleted, never existed) and asking again will not
+ * bring it back, where the other causes are worth a retry. It implies `unavailable`, so a caller that does
+ * not read it still refuses to write the empty `meta` (fail closed). Only the mbid the caller named counts:
+ * a 404 on a release that group or recording listed is MB contradicting itself, a glitch to retry.
  */
 export interface MbMetaLookup<T> {
 	meta: T;
 	unavailable: boolean;
+	notFound: boolean;
+}
+
+function isGone(result: MbFetchResult<unknown>): boolean {
+	return result.kind === "rejected" && result.status === 404;
 }
 
 /** {@link fetchTrackMetaMb} that also says whether MB failed to answer. */
@@ -2484,12 +2827,18 @@ export async function fetchTrackMetaDetailedMb(recordingMbid: string): Promise<M
 			};
 		}[];
 	}
-	const rec = await mbFetch<RecordingResp>(`/recording/${recordingMbid}`, {
-		inc: "releases+release-groups+artist-credits+artist-rels",
-	});
+	const recResult = await mbRequest<RecordingResp>(
+		`/recording/${recordingMbid}`,
+		{ inc: "releases+release-groups+artist-credits+artist-rels" },
+		undefined,
+		undefined,
+		hasReleaseList,
+	);
 	// The recording lookup always carries a `releases` array (empty when MB knows none): a body without
 	// one is not MB's answer (a proxy's error page, a truncated cache entry).
-	if (!rec || Array.isArray(rec) || !Array.isArray(rec.releases)) return { meta: empty, unavailable: true };
+	if (recResult.kind !== "ok") return { meta: empty, unavailable: true, notFound: isGone(recResult) };
+	const rec = recResult.data;
+	if (!Array.isArray(rec.releases)) return { meta: empty, unavailable: true, notFound: false };
 	let unavailable = false;
 	const out: MbTrackMeta = {
 		project: null,
@@ -2541,9 +2890,15 @@ export async function fetchTrackMetaDetailedMb(recordingMbid: string): Promise<M
 		interface ReleaseLabelResp {
 			"label-info"?: { label?: { id: string; name: string } | null }[];
 		}
-		const rel = await mbFetch<ReleaseLabelResp>(`/release/${earliest.id}`, { inc: "labels" });
+		const rel = await mbFetch<ReleaseLabelResp>(
+			`/release/${earliest.id}`,
+			{ inc: "labels" },
+			undefined,
+			undefined,
+			hasLabelInfo,
+		);
 		// `label-info` is always there under `inc=labels` (empty for a release without label).
-		if (!rel || Array.isArray(rel) || !Array.isArray(rel["label-info"])) unavailable = true;
+		if (!rel || !Array.isArray(rel["label-info"])) unavailable = true;
 		const firstLabel = (Array.isArray(rel?.["label-info"]) ? rel["label-info"] : []).find(
 			(li) => li.label && li.label.name,
 		)?.label;
@@ -2552,7 +2907,7 @@ export async function fetchTrackMetaDetailedMb(recordingMbid: string): Promise<M
 	out.producers = [...producersMap.values()];
 	const prodIdsT = new Set(out.producers.map((p) => p.mbid));
 	out.personnel = [...personnelMap.values()].filter((p) => !prodIdsT.has(p.mbid));
-	return { meta: out, unavailable };
+	return { meta: out, unavailable, notFound: false };
 }
 
 export interface MbProjectMeta {
@@ -2594,13 +2949,19 @@ export async function fetchProjectMetaDetailedMb(rgMbid: string): Promise<MbMeta
 		relations?: MbArtistRel[];
 		releases?: { id: string; "release-events"?: { date?: string }[]; date?: string }[];
 	}
-	const rg = await mbFetch<ReleaseGroupResp>(`/release-group/${rgMbid}`, {
-		inc: "releases+artist-rels",
-	});
-	if (!rg || Array.isArray(rg) || !Array.isArray(rg.releases)) return { meta: empty, unavailable: true };
+	const rgResult = await mbRequest<ReleaseGroupResp>(
+		`/release-group/${rgMbid}`,
+		{ inc: "releases+artist-rels" },
+		undefined,
+		undefined,
+		hasReleaseList,
+	);
+	if (rgResult.kind !== "ok") return { meta: empty, unavailable: true, notFound: isGone(rgResult) };
+	const rg = rgResult.data;
+	if (!Array.isArray(rg.releases)) return { meta: empty, unavailable: true, notFound: false };
 	// An empty release list is an answer: MB knows the group and it has no release to read. A release
 	// entry without an id is not (off schema).
-	if (rg.releases.length === 0) return { meta: empty, unavailable: false };
+	if (rg.releases.length === 0) return { meta: empty, unavailable: false, notFound: false };
 	const releases = [...rg.releases].sort((a, b) => {
 		// `||`, not `??`: MB sends "date": "" for an undated edition, which must sort last, not first.
 		const ad = a.date || a["release-events"]?.[0]?.date || "9999";
@@ -2608,7 +2969,7 @@ export async function fetchProjectMetaDetailedMb(rgMbid: string): Promise<MbMeta
 		return ad.localeCompare(bd);
 	});
 	const releaseId = releases[0]?.id;
-	if (!releaseId) return { meta: empty, unavailable: true };
+	if (!releaseId) return { meta: empty, unavailable: true, notFound: false };
 	interface ReleaseResp {
 		date?: string;
 		"label-info"?: { label?: { id: string; name: string } | null }[];
@@ -2626,11 +2987,15 @@ export async function fetchProjectMetaDetailedMb(rgMbid: string): Promise<MbMeta
 			}[];
 		}[];
 	}
-	const rel = await mbFetch<ReleaseResp>(`/release/${releaseId}`, {
-		inc: "recordings+labels+artist-credits+artist-rels+recording-level-rels",
-	});
+	const rel = await mbFetch<ReleaseResp>(
+		`/release/${releaseId}`,
+		{ inc: "recordings+labels+artist-credits+artist-rels+recording-level-rels" },
+		undefined,
+		undefined,
+		hasMedia,
+	);
 	// `media` is always there under `inc=recordings` (empty for a release without track).
-	if (!rel || Array.isArray(rel) || !Array.isArray(rel.media)) return { meta: empty, unavailable: true };
+	if (!rel || !Array.isArray(rel.media)) return { meta: empty, unavailable: true, notFound: false };
 	const out: MbProjectMeta = {
 		tracks: [],
 		label: null,
@@ -2675,7 +3040,7 @@ export async function fetchProjectMetaDetailedMb(rgMbid: string): Promise<MbMeta
 	const dateStr = rel.date ?? rg["first-release-date"];
 	if (typeof dateStr === "string" && /^\d{4}/.test(dateStr)) out.year = dateStr.slice(0, 4);
 	if (typeof rg["primary-type"] === "string") out.primaryType = rg["primary-type"];
-	return { meta: out, unavailable: false };
+	return { meta: out, unavailable: false, notFound: false };
 }
 
 function unavailableOrEmpty(failOnUnavailable: boolean): CatalogResult[] {

@@ -59,6 +59,12 @@
       "type": "genre",
       "name": "Soul music",
       "qid": "Q131272"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
     }
   ],
   "key_artists": [

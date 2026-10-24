@@ -324,14 +324,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:encore",
-      "type": "project",
-      "name": "Encore (Acoustic Version)",
-      "mbid": "84ed941c-47f6-48ff-9a53-b811270e07e4",
-      "year": "2018",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:broken",
       "type": "project",
       "name": "Broken (Wildstylez remix)",
@@ -489,14 +481,6 @@
       "name": "Back To History",
       "mbid": "4983c574-b349-4166-8417-762d8118b3fc",
       "year": "2014",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:lose-control",
-      "type": "project",
-      "name": "Lose Control",
-      "mbid": "dff9ce5e-ebf5-4598-8d76-cb2b683bf469",
-      "year": "2013",
       "releaseType": "single"
     },
     {

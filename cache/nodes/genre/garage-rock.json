@@ -23,7 +23,14 @@
   "origin": "United States and Canada",
   "sonic_markers": "Distorted guitars, raw vocal delivery, mid-tempo, amateur production.",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:proto-punk",
+      "type": "genre",
+      "name": "Proto-Punk",
+      "qid": "Q27190"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:psychedelic-rock",
@@ -48,6 +55,18 @@
       "type": "genre",
       "name": "Garage punk",
       "qid": "Q2296495"
+    },
+    {
+      "slug": "genre:acid-rock",
+      "type": "genre",
+      "name": "Acid rock",
+      "qid": "Q236932"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock",
+      "qid": "Q3071"
     }
   ],
   "key_artists": [

@@ -308,14 +308,6 @@
       "releaseType": "ep"
     },
     {
-      "slug": "project:the-grind-date",
-      "type": "project",
-      "name": "The Grind Date",
-      "mbid": "7cc268c4-354e-45a2-95a2-8309ae352742",
-      "year": "2004",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:say-you-gotta-believe",
       "type": "project",
       "name": "Say You Gotta Believe",
@@ -418,14 +410,6 @@
       "mbid": "c1f79e51-4010-45fa-8f38-a8850172ed94",
       "year": "1996",
       "releaseType": "ep"
-    },
-    {
-      "slug": "project:stakes-is-high",
-      "type": "project",
-      "name": "Stakes Is High",
-      "mbid": "77ee68c1-d0bc-3315-a296-a3cee977d1e3",
-      "year": "1996",
-      "releaseType": "single"
     },
     {
       "slug": "project:4-more",

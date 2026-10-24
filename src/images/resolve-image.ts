@@ -25,13 +25,13 @@ import type { NodeCache } from "../cache.js";
 import { type GenreRedirects, loadRedirects } from "../genre-registry.js";
 import { lookupVerifiedAlbumArt } from "../itunes.js";
 import { logger } from "../logger.js";
-import { fetchWikidataUrlRelMb, type MbPriority } from "../musicbrainz.js";
+import type { MbPriority } from "../musicbrainz.js";
 import type { EdgeRef, ImageSource, NodePayload } from "../types.js";
 import { coverArtUrl } from "./coverart.js";
 import { isAllowedImageUrl } from "./hosts.js";
 import { isWork, reciprocity, type Subject } from "./reciprocity.js";
 import { resolveAlbumByMusicBrainz } from "./resolve-work-hint.js";
-import { commonsFileUrl, fetchWikidataImages, searchWikidataLabel } from "./wikidata.js";
+import { commonsFileUrl, fetchWikidataImages, fetchWikidataQid, searchWikidataLabel } from "./wikidata.js";
 
 const log = logger.child({ module: "resolve-image" });
 
@@ -45,6 +45,11 @@ export interface ImageDeps {
 	fetch?: typeof fetch;
 	/** Queue priority of the MusicBrainz lookups (TRA-579); `interactive` when absent. */
 	priority?: MbPriority;
+	/**
+	 * Abandons the MusicBrainz lookups of the resolution (TRA-590): handed to the queue's resolvers, which stop
+	 * waiting for a slot and stop retrying. The caller (the image queue's job deadline) discards the result.
+	 */
+	signal?: AbortSignal;
 	/**
 	 * Slug redirect table used to compare genres by their canonical slug (TRA-591). Loaded lazily from
 	 * `data/` when absent; an unreadable table counts as empty, i.e. strict slug equality.
@@ -65,23 +70,12 @@ export interface ImageDeps {
 	outage?: { musicBrainz: boolean; coverArt?: boolean };
 }
 
-// Calls `fetchWikidataUrlRelMb` directly rather than `fetchWikidataQid`: that wrapper (src/images/wikidata.ts)
-// is outside the scope of TRA-579 and does not carry a priority. Same contract: any failure is a null QID.
-async function mbWikidataQid(
-	entity: "artist" | "label",
-	mbid: string,
-	deps: ImageDeps,
-): Promise<string | null> {
-	try {
-		return await fetchWikidataUrlRelMb(
-			entity,
-			mbid,
-			deps.fetch,
-			deps.priority ? { priority: deps.priority } : {},
-		);
-	} catch {
-		return null;
-	}
+/** MusicBrainz queue options of the lookups: the priority of `deps` (interactive when absent) and its signal. */
+function mbOptions(deps: ImageDeps): { priority?: MbPriority; signal?: AbortSignal } {
+	return {
+		...(deps.priority ? { priority: deps.priority } : {}),
+		...(deps.signal ? { signal: deps.signal } : {}),
+	};
 }
 
 /** Run one rung; a thrown error is a miss for that rung, not a failure of the ladder. */
@@ -238,7 +232,7 @@ async function musicBrainzCover(
 			compilations: true,
 			outage: coverArtOutage,
 			...(deps.fetch ? { fetch: deps.fetch } : {}),
-			...(deps.priority ? { mbOptions: { priority: deps.priority } } : {}),
+			...(deps.priority || deps.signal ? { mbOptions: mbOptions(deps) } : {}),
 		},
 	);
 	// A MusicBrainz outage is no verdict on the work: the caller is told, so that it is not kept as a miss.
@@ -324,7 +318,11 @@ export async function resolveImage(node: NodePayload, deps: ImageDeps): Promise<
 				[
 					"wikidata",
 					async () =>
-						wikidataImage(node.mbid ? await mbWikidataQid("artist", node.mbid, deps) : null, ["p18"], deps),
+						wikidataImage(
+							node.mbid ? await fetchWikidataQid("artist", node.mbid, deps.fetch, mbOptions(deps)) : null,
+							["p18"],
+							deps,
+						),
 				],
 				["derived-cover", () => derivedCover(node, derivedRefs(node), deps)],
 			]);
@@ -335,7 +333,7 @@ export async function resolveImage(node: NodePayload, deps: ImageDeps): Promise<
 					"wikidata",
 					async () => {
 						const qid =
-							(node.mbid ? await mbWikidataQid("label", node.mbid, deps) : null) ??
+							(node.mbid ? await fetchWikidataQid("label", node.mbid, deps.fetch, mbOptions(deps)) : null) ??
 							(await searchWikidataLabel(node.name, node.mbid, deps.fetch));
 						return wikidataImage(qid, ["p154", "p18"], deps);
 					},

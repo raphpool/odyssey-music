@@ -80,14 +80,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:bullet-in-the-gun",
-      "type": "project",
-      "name": "Bullet in the Gun",
-      "mbid": "81af0ce3-9742-42e4-aae4-021ea635c5b1",
-      "year": "2026",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:orange",
       "type": "project",
       "name": "Orange",
@@ -116,14 +108,6 @@
       "type": "project",
       "name": "Bang Bang",
       "mbid": "ed47ae52-9971-4074-946c-abdfc84a0156",
-      "year": "2025",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:novacaine",
-      "type": "project",
-      "name": "Novacaine (Mixes)",
-      "mbid": "72564de3-ab73-46b1-b7b1-26f5365ecf77",
       "year": "2025",
       "releaseType": "single"
     },
@@ -182,14 +166,6 @@
       "mbid": "fe36c537-7929-4270-9fc3-ab396ed21dd9",
       "year": "2024",
       "releaseType": "ep"
-    },
-    {
-      "slug": "project:theme-for-great-cities",
-      "type": "project",
-      "name": "Theme For Great Cities (Revisited)",
-      "mbid": "1d115e28-0c8d-45e1-bcf3-745c2bfd5d3a",
-      "year": "2024",
-      "releaseType": "single"
     },
     {
       "slug": "project:concentrate",
@@ -264,14 +240,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:shine-on",
-      "type": "project",
-      "name": "Shine On (Remixes)",
-      "mbid": "2ec3cea9-fe06-471a-9f8b-12202acbf04f",
-      "year": "2022",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:love-you-back",
       "type": "project",
       "name": "Love You Back",
@@ -332,14 +300,6 @@
       "type": "project",
       "name": "What's Your Love Like (Hip Hop mix)",
       "mbid": "1586c175-512e-40c1-9997-35f6d4e2b086",
-      "year": "2020",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:what-s-your-love-like",
-      "type": "project",
-      "name": "What’s Your Love Like (original mix)",
-      "mbid": "07bdd2e5-3dc3-444c-9572-4b04e3fdc080",
       "year": "2020",
       "releaseType": "single"
     },
@@ -437,14 +397,6 @@
       "name": "Waterfall",
       "mbid": "cf2d6487-043f-4cf6-a938-89df23de5368",
       "year": "2017",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:u-are",
-      "type": "project",
-      "name": "U Are (Festival Mix)",
-      "mbid": "b4499127-be7f-4b3b-9ef5-8e2414d9daaa",
-      "year": "2016",
       "releaseType": "single"
     },
     {
@@ -590,14 +542,6 @@
       "mbid": "878ccdc6-8654-4683-b7a4-1ace7a59ebce",
       "year": "2014",
       "releaseType": "single"
-    },
-    {
-      "slug": "project:beautiful-world",
-      "type": "project",
-      "name": "Beautiful World (Remixes)",
-      "mbid": "ffe2b55a-5db2-40b8-a175-0d8b32a06b7e",
-      "year": "2013",
-      "releaseType": "ep"
     },
     {
       "slug": "project:turn-it-on",

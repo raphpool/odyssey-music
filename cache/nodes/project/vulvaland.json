@@ -13,10 +13,18 @@
     }
   ],
   "materialized_at": "2026-05-13T12:39:13.546Z",
+  "mbid": "9ca304cc-c55b-3705-8f19-ef4252a57403",
   "type": "project",
   "editorial_pitch": "The debut album from German duo Mouse on Mars, *Vulvaland* is a landmark of 1990s experimental electronic music that masterfully fuses ambient, dub, and Krautrock influences into a unique IDM aesthetic.",
   "year": "1994",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars",
+      "mbid": "4d4f5d92-0589-42fa-bc0e-1bd73e17a2ce"
+    }
+  ],
   "label": {
     "slug": "label:too-pure",
     "type": "label",
@@ -55,5 +63,6 @@
       "name": "Andi Toma"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

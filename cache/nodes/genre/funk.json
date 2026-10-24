@@ -30,6 +30,12 @@
       "type": "genre",
       "name": "Rhythm and Blues",
       "qid": "Q45981"
+    },
+    {
+      "slug": "genre:dance-music",
+      "type": "genre",
+      "name": "Dance music",
+      "qid": "Q316930"
     }
   ],
   "subgenres": [
@@ -44,6 +50,30 @@
       "type": "genre",
       "name": "Go-go",
       "qid": "Q2697917"
+    },
+    {
+      "slug": "genre:acid-jazz",
+      "type": "genre",
+      "name": "Acid Jazz",
+      "qid": "Q221772"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    },
+    {
+      "slug": "genre:jazz-funk",
+      "type": "genre",
+      "name": "Jazz-Funk",
+      "qid": "Q38656"
+    },
+    {
+      "slug": "genre:synth-funk",
+      "type": "genre",
+      "name": "Synth-funk",
+      "qid": "Q30632022"
     }
   ],
   "related_genres": [
@@ -100,6 +130,30 @@
       "type": "genre",
       "name": "New Jack Swing",
       "qid": "Q840065"
+    },
+    {
+      "slug": "genre:electro-funk",
+      "type": "genre",
+      "name": "Electro-funk",
+      "qid": "Q1325963"
+    },
+    {
+      "slug": "genre:jazz-fusion",
+      "type": "genre",
+      "name": "Jazz-Fusion",
+      "qid": "Q105527"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B",
+      "qid": "Q45981"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul",
+      "qid": "Q131272"
     }
   ],
   "key_artists": [

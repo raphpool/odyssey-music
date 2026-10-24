@@ -17,10 +17,18 @@
     }
   ],
   "materialized_at": "2026-05-13T13:08:58.683Z",
+  "mbid": "550bf4b9-92ca-30ba-9ea2-8b45f9d081f1",
   "type": "project",
   "editorial_pitch": "A sprawling, 36-track instrumental journey through dark ambient and industrial soundscapes, recorded by Nine Inch Nails as a \"soundtrack for daydreams.\"",
   "year": "2008",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:nine-inch-nails",
+      "type": "artist",
+      "name": "Nine Inch Nails",
+      "mbid": "b7ffd2af-418f-4be2-bdd1-22f8b48613da"
+    }
+  ],
   "label": {
     "slug": "label:the-null-corporation",
     "type": "label",
@@ -45,5 +53,6 @@
       "name": "Alan Moulder"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

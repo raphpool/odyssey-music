@@ -9,11 +9,19 @@
     }
   ],
   "materialized_at": "2026-05-13T13:07:38.234Z",
+  "mbid": "693c397a-eaf2-4649-8bc7-6d961c57a4e2",
   "image_url": "https://coverartarchive.org/release-group/7b0f7a83-8d31-3bc8-81cb-66ea119a5090/front-500",
   "image_source": "caa",
   "type": "track",
   "editorial_teaser": "An essential early IDM track from µ-Ziq's debut album, known for its intricate percussion and the experimental, lo-fi aesthetic that helped define the Rephlex Records sound.",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:ziq",
+      "type": "artist",
+      "name": "μ-Ziq",
+      "mbid": "aae5b930-c59c-4509-81a1-4e65e8f424e4"
+    }
+  ],
   "project": {
     "slug": "project:tango-n-vectif--ziq",
     "type": "project",

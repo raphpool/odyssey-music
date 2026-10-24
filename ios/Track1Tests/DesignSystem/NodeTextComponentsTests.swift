@@ -70,4 +70,22 @@ final class NodeTextComponentsTests: XCTestCase {
 	func testTeaserCardIdentifier() {
 		XCTAssertEqual(TeaserCard.identifier, "teaser")
 	}
+
+	/// Since the UI refresh the teaser is plain text: the card around the page provides the padding and the
+	/// fill. A teaser as tall as the bare text it draws has neither padding nor a padded background.
+	@MainActor
+	func testTeaserCardIsAsTallAsItsBareTextWithNoPadding() {
+		let text = "Un disque."
+		let size = CGSize(width: 337, height: 1000)
+		let teaser = UIHostingController(rootView: TeaserCard(text: text)).sizeThatFits(in: size)
+		let bare = UIHostingController(
+			rootView: Track1Text(text, role: .bodyMedium, verbatim: true)
+				.frame(maxWidth: .infinity, alignment: .leading)
+				.fixedSize(horizontal: false, vertical: true)
+		).sizeThatFits(in: size)
+
+		XCTAssertGreaterThan(bare.height, 0)
+		XCTAssertEqual(teaser.height, bare.height, accuracy: 0.5)
+		XCTAssertEqual(teaser.width, bare.width, accuracy: 0.5)
+	}
 }

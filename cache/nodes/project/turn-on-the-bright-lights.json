@@ -1,7 +1,7 @@
 {
   "slug": "project:turn-on-the-bright-lights",
   "name": "Turn on the Bright Lights",
-  "editorial_article": "Turn On the Bright Lights is the debut studio album by the New York City rock band Interpol, released on August 19, 2002, through Matador Records. Recorded at Tarquin Studios in Bridgeport, Connecticut, under the guidance of producer Peter Katis, the album became a foundational pillar of the early 2000s post-punk revival. Its sound is characterized by a sleek, moody aesthetic, defined by interlocking guitar lines, driving bass, and Paul Banks’s detached, baritone vocal delivery. Although the songs were written prior to the September 11 attacks, the record’s dark, atmospheric tension and urban anxiety resonated deeply in a post-9/11 landscape, helping to cement its status as a seminal work of the era.\n\nThe creation process was marked by intense focus and personal friction among band members—including Paul Banks, Daniel Kessler, Carlos Dengler, and Sam Fogarino—as they sought to capture their electric live energy on tape. The album features iconic tracks like \\\"Obstacle 1,\\\" \\\"PDA,\\\" and the melancholic \\\"NYC,\\\" which provided the album's title. By successfully blending the influence of 1980s post-punk stalwarts like Joy Division and The Chameleons with a distinct New York sensibilities, Interpol carved out a sound that felt both reverent and original. The album’s enduring influence on indie rock persists decades later, with its tenth-anniversary reissue in 2012 further showcasing the depth of the band's initial sessions and their immense impact on alternative music culture. It remains widely celebrated by critics and fans alike as one of the most cohesive and atmospheric debuts of the 21st century.",
+  "editorial_article": "Turn On the Bright Lights is the debut studio album by the New York City rock band Interpol, released on August 19, 2002, through Matador Records. Recorded at Tarquin Studios in Bridgeport, Connecticut, under the guidance of producer Peter Katis, the album became a foundational pillar of the early 2000s post-punk revival. Its sound is characterized by a sleek, moody aesthetic, defined by interlocking guitar lines, driving bass, and Paul Banks’s detached, baritone vocal delivery. Although the songs were written prior to the September 11 attacks, the record’s dark, atmospheric tension and urban anxiety resonated deeply in a post-9/11 landscape, helping to cement its status as a seminal work of the era.\n\nThe creation process was marked by intense focus and personal friction among band members—including Paul Banks, Daniel Kessler, Carlos Dengler, and Sam Fogarino—as they sought to capture their electric live energy on tape. The album features iconic tracks like \"Obstacle 1,\" \"PDA,\" and the melancholic \"NYC,\" which provided the album's title. By successfully blending the influence of 1980s post-punk stalwarts like Joy Division and The Chameleons with a distinct New York sensibilities, Interpol carved out a sound that felt both reverent and original. The album’s enduring influence on indie rock persists decades later, with its tenth-anniversary reissue in 2012 further showcasing the depth of the band's initial sessions and their immense impact on alternative music culture. It remains widely celebrated by critics and fans alike as one of the most cohesive and atmospheric debuts of the 21st century.",
   "citations": [
     {
       "url": "https://en.wikipedia.org/wiki/Turn_On_the_Bright_Lights",
@@ -13,11 +13,20 @@
     }
   ],
   "materialized_at": "2026-05-13T13:18:40.511Z",
+  "mbid": "e7227840-5ef2-3813-af26-15dab34e1a51",
   "type": "project",
   "editorial_pitch": "Interpol's 2002 debut is a masterclass in atmospheric post-punk revivalism, combining driving, interlocking melodies with a moody, urban intensity that defined the New York indie rock sound of the 2000s.",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:interpol",
+      "type": "artist",
+      "name": "Interpol",
+      "mbid": "b23e8a63-8f47-4882-b55b-df2c92ef400e"
+    }
+  ],
   "genres": [],
   "tracklist": [],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

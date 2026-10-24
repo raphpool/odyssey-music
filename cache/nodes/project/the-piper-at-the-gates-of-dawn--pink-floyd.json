@@ -40,11 +40,6 @@
       "mbid": "83d91898-7763-47d7-b03b-b92132375c47"
     }
   ],
-  "label": {
-    "slug": "label:columbia",
-    "type": "label",
-    "name": "Columbia"
-  },
   "genres": [
     {
       "slug": "genre:psychedelic-rock",

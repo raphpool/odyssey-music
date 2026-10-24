@@ -13,10 +13,18 @@
     }
   ],
   "materialized_at": "2026-05-13T12:45:43.617Z",
+  "mbid": "024dd9d6-7647-38e2-99f8-b365992caa51",
   "type": "project",
   "editorial_pitch": "Released in 1996 on Warp Records, 'Time Tourist' is a foundational work of intelligent dance music (IDM) that blends Detroit techno aesthetics with ambient textures and sci-fi narrative concepts. Developed by the duo B12, the album acts as a sprawling, atmospheric soundscape that feels both futuristic and distinctly grounded in the bleep-techno lineage of the early nineties.",
   "year": "1996",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:b12",
+      "type": "artist",
+      "name": "B12",
+      "mbid": "fa187203-5d60-4e3d-9042-cac7de849649"
+    }
+  ],
   "label": {
     "slug": "label:warp",
     "type": "label",

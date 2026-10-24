@@ -134,6 +134,43 @@ describe("runPipeline e2e (mocked boundaries)", () => {
 		TIMEOUT_MS,
 	);
 
+	// TRA-687: the same double escaping reached the citation titles (2 cached nodes), which the prose
+	// normalization does not cover. A title the model double-escaped must be written with plain quotes.
+	it(
+		"turns a literal backslash-quote in a citation title into a quote, and keeps a real backslash (TRA-687)",
+		async () => {
+			installPipelineMocks({
+				draft: artistDraftFixture({
+					citations: [{ url: FIXTURE_WIKI_URL, title: ' \\"Fixture Artist\\" (1998) \\\\"live\\\\" ' }],
+				}),
+			});
+			const runPipeline = await loadRunPipeline();
+
+			const result = await runPipeline({ type: "artist", name: "Fixture Artist" }, DEPS);
+
+			// Negative case: a quote after a real backslash (an even run) is content, not an escape.
+			expect(result.node.citations[0]?.title).toBe('"Fixture Artist" (1998) \\\\"live\\\\"');
+		},
+		TIMEOUT_MS,
+	);
+
+	it(
+		"leaves a citation title without an escaped quote as it was, trimmed (TRA-687)",
+		async () => {
+			installPipelineMocks({
+				draft: artistDraftFixture({
+					citations: [{ url: FIXTURE_WIKI_URL, title: '  Fixture Artist - "Live" \\ Wikipedia ' }],
+				}),
+			});
+			const runPipeline = await loadRunPipeline();
+
+			const result = await runPipeline({ type: "artist", name: "Fixture Artist" }, DEPS);
+
+			expect(result.node.citations[0]?.title).toBe('Fixture Artist - "Live" \\ Wikipedia');
+		},
+		TIMEOUT_MS,
+	);
+
 	it(
 		"materializes a genre node, with related_genres/subgenres present",
 		async () => {
@@ -566,6 +603,7 @@ describe("MB identity at enrichment (TRA-473)", () => {
 			credit,
 			primaryType: null,
 			firstReleaseDate: null,
+			releaseGroupMbid: null,
 		};
 		if (kind === "recording") vi.mocked(m.resolveRecording).mockImplementation(async () => identity);
 		else vi.mocked(m.resolveReleaseGroup).mockImplementation(async () => identity);
@@ -756,8 +794,9 @@ describe("MB identity at enrichment (TRA-473)", () => {
 				await resolvedWork("releaseGroup", "New Forms", [{ mbid: RONI_MBID, name: "Roni Size" }]);
 				const other = await runPipeline({ ...input, mbid: "bbbbbbbb-1111-4111-8111-0000000000ff" }, DEPS);
 				expect((other.node as ProjectNode).mbid).toBeUndefined();
-				// Neither MB's other answer nor the hint's own metadata reaches the node.
-				expect(vi.mocked(m.fetchProjectMetaMb)).toHaveBeenCalledTimes(1);
+				// Neither MB's other answer nor the hint's own metadata reaches the node. The one call this used
+				// to count was the web search looking the unconfirmed hint up (TRA-545).
+				expect(vi.mocked(m.fetchProjectMetaMb)).not.toHaveBeenCalled();
 			},
 			TIMEOUT_MS,
 		);
