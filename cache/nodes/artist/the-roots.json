@@ -144,14 +144,6 @@
     {
       "slug": "project:wake-up",
       "type": "project",
-      "name": "Wake Up",
-      "mbid": "b20631a0-ae8d-4cc3-b087-b31b18b76db6",
-      "year": "2010",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:wake-up",
-      "type": "project",
       "name": "Wake Up!",
       "mbid": "563d758b-aa16-4e35-8986-6d402ea3cef8",
       "year": "2010",

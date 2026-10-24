@@ -60,36 +60,12 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:no-limit",
-      "type": "project",
-      "name": "No Limit (Remixes, Pt. 3)",
-      "mbid": "218b0604-6f03-412a-ace9-84edb2154187",
-      "year": "2023",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:fan-collection",
       "type": "project",
       "name": "Fan Collection",
       "mbid": "b76b137c-f0b3-4fcb-85aa-57283f717b80",
       "year": "2020",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:get-ready",
-      "type": "project",
-      "name": "Get Ready (Steve Aoki Radio Mixes)",
-      "mbid": "0b74a32c-f108-4287-9325-2850599f1359",
-      "year": "2013",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:get-ready-for-this",
-      "type": "project",
-      "name": "Get Ready For This (Yves Deruyter Remix)",
-      "mbid": "a8f03ff3-824f-4e8f-916c-b8ceb515febf",
-      "year": "2001",
-      "releaseType": "single"
     },
     {
       "slug": "project:edge-of-heaven",

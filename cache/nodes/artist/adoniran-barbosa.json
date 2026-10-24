@@ -46,22 +46,6 @@
       "releaseType": "ep"
     },
     {
-      "slug": "project:adoniran-barbosa",
-      "type": "project",
-      "name": "Adoniran Barbosa",
-      "mbid": "08a3b2e8-3843-4f6f-a269-49d170a5dce1",
-      "year": "1980",
-      "releaseType": "album"
-    },
-    {
-      "slug": "project:adoniran-barbosa",
-      "type": "project",
-      "name": "Adoniran Barbosa",
-      "mbid": "a2e7574a-4cbe-46b9-8cb9-4ac3f2765817",
-      "year": "1975",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:adoniran-barbosa-e-convidados",
       "type": "project",
       "name": "Adoniran Barbosa e Convidados",

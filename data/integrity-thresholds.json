@@ -8,6 +8,7 @@
 	"unscoped-release-slugs": 86,
 	"literal-newlines": 0,
 	"literal-escaped-quotes": 0,
+	"duplicate-list-edges": 0,
 	"alias-to-uncorroborated-identity": 1,
 	"missing-similar-artists": 31,
 	"missing-landmark-project": 113,

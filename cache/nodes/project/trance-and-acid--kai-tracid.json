@@ -120,12 +120,6 @@
       "mbid": "7bab78e2-99c0-4e2b-8820-9c033fa0799f"
     },
     {
-      "slug": "track:destiny-s-path",
-      "type": "track",
-      "name": "Destiny's Path (Warmduscher remix)",
-      "mbid": "d629d190-dae0-4c96-a1e7-a488accd7bcb"
-    },
-    {
       "slug": "track:the-worst-pain-of-all",
       "type": "track",
       "name": "The Worst Pain of All",
@@ -145,12 +139,6 @@
       "type": "artist",
       "name": "Vernon",
       "mbid": "b67f0a1b-b097-4776-bb04-1496497063ff"
-    },
-    {
-      "slug": "artist:vernon",
-      "type": "artist",
-      "name": "Vernon",
-      "mbid": "fc9cdfaa-4fba-4e9b-a5d9-c36d69495112"
     },
     {
       "slug": "artist:jade-4u",

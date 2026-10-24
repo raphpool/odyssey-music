@@ -90,14 +90,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:tracid",
-      "type": "project",
-      "name": "Tracid (Extended Mix)",
-      "mbid": "8e927a32-5a39-4195-9bcb-9218821a37c6",
-      "year": "2023",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:mockmoon",
       "type": "project",
       "name": "Mockmoon (Peace, Love, XTC)",
@@ -242,36 +234,12 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:4-just-1-day",
-      "type": "project",
-      "name": "4 Just 1 Day",
-      "mbid": "91fad905-8550-3b68-bc40-d8d9c7ba0389",
-      "year": "2002",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:trance-and-acid--kai-tracid",
-      "type": "project",
-      "name": "Trance & Acid",
-      "mbid": "d5f50afa-49eb-3e2b-9873-ef831bc287d4",
-      "year": "2002",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:trance-and-acid--kai-tracid",
       "type": "project",
       "name": "Trance & Acid",
       "mbid": "469709c2-8d36-3734-a447-684818851ffa",
       "year": "2002",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:trance-and-acid--kai-tracid",
-      "type": "project",
-      "name": "Trance & Acid",
-      "mbid": "0f2360e0-1636-4e84-a782-f1b72a360f9f",
-      "year": "2002",
-      "releaseType": "ep"
     },
     {
       "slug": "project:life-is-too-short",
@@ -286,14 +254,6 @@
       "type": "project",
       "name": "Too Many Times",
       "mbid": "9aeb5b9f-1b2b-348c-ab0c-6f8fd1df8f59",
-      "year": "2001",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:too-many-times",
-      "type": "project",
-      "name": "Too Many Times",
-      "mbid": "44b77337-9fc4-4c48-a6c4-5b8c87f4ea51",
       "year": "2001",
       "releaseType": "single"
     },
@@ -327,22 +287,6 @@
       "name": "Dance for Eternity",
       "mbid": "9f651ec9-9706-3cb3-8957-184a9618236f",
       "year": "1998",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:liquid-skies",
-      "type": "project",
-      "name": "Liquid Skies",
-      "mbid": "f6822fb9-6b1b-3934-b81d-3e0ebb91a5ea",
-      "year": "1998",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:your-own-reality",
-      "type": "project",
-      "name": "Your Own Reality",
-      "mbid": "26f5edad-e73a-3c1f-8b44-fa1f81956d2c",
-      "year": "1997",
       "releaseType": "single"
     },
     {
