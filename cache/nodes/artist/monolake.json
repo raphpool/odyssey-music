@@ -127,14 +127,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:interstate",
-      "type": "project",
-      "name": "Interstate",
-      "mbid": "d08d33a0-a2e4-3863-aa99-a68cecc904b8",
-      "year": "1999",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:interstate--monolake",
       "type": "project",
       "name": "Interstate",

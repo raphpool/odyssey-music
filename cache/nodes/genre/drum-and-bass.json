@@ -19,8 +19,40 @@
   "era": "1990s–present",
   "origin": "United Kingdom",
   "sonic_markers": "165-185 BPM, fast breakbeats, complex syncopation, heavy sub-bass lines, synthetic textures, sampling culture",
-  "parent_genres": [],
-  "subgenres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music",
+      "qid": "Q851213"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:drumstep",
+      "type": "genre",
+      "name": "Drumstep",
+      "qid": "Q24876318"
+    },
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep",
+      "qid": "Q20474"
+    },
+    {
+      "slug": "genre:jump-up",
+      "type": "genre",
+      "name": "Jump-Up",
+      "qid": "Q46649"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:jungle",
@@ -75,6 +107,48 @@
       "type": "genre",
       "name": "Drill and Bass",
       "qid": "Q1259016"
+    },
+    {
+      "slug": "genre:2-step-garage",
+      "type": "genre",
+      "name": "2-step garage",
+      "qid": "Q1751409"
+    },
+    {
+      "slug": "genre:big-beat",
+      "type": "genre",
+      "name": "Big Beat",
+      "qid": "Q858579"
+    },
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat",
+      "qid": "Q663519"
+    },
+    {
+      "slug": "genre:breakstep",
+      "type": "genre",
+      "name": "breakstep",
+      "qid": "Q1987980"
+    },
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music",
+      "qid": "Q851213"
+    },
+    {
+      "slug": "genre:ragga-jungle",
+      "type": "genre",
+      "name": "Ragga Jungle",
+      "qid": "Q2710523"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage",
+      "qid": "Q1165777"
     }
   ],
   "key_artists": [

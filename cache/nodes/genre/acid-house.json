@@ -22,6 +22,18 @@
       "type": "genre",
       "name": "House music",
       "qid": "Q20502"
+    },
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago house",
+      "qid": "Q1071961"
+    },
+    {
+      "slug": "genre:rave",
+      "type": "genre",
+      "name": "Rave",
+      "qid": "Q898709"
     }
   ],
   "subgenres": [
@@ -68,6 +80,30 @@
       "type": "genre",
       "name": "Hip-House",
       "qid": "Q601235"
+    },
+    {
+      "slug": "genre:ambient-house",
+      "type": "genre",
+      "name": "Ambient House",
+      "qid": "Q2465085"
+    },
+    {
+      "slug": "genre:breakbeat-hardcore",
+      "type": "genre",
+      "name": "Breakbeat hardcore",
+      "qid": "Q1585075"
+    },
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago house",
+      "qid": "Q1071961"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
     }
   ],
   "key_artists": [

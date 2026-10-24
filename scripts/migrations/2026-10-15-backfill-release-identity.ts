@@ -24,7 +24,9 @@
  * (TRA-505), true when MB gave no usable answer: HTTP error, network error, a 200 whose body is not
  * JSON, or a 200 whose JSON is off schema. Any of the four during a node's lookups makes it
  * `failed` (exit 1, node untouched, retried by --resume), never `unresolved`. "No candidate" and
- * "ambiguous" are answers, not outages.
+ * "ambiguous" are answers, not outages. So is a 404 on the mbid just found (TRA-532, 2026-10-24): the
+ * entity was deleted, or was never there; it is `unresolved` as "mbid-not-found" (exit 0, node untouched,
+ * entry dropped from `resolved`) and the work is searched again next run, instead of failing every resume.
  *
  * Writes go through atomicWriteJson after nodePayloadSchema validation, never NodeCache.write, which
  * would also emit pending reverse edges this migration has no business creating.
@@ -101,7 +103,8 @@ export type UnresolvedReason =
 	| "credit-mismatch"
 	| "ambiguous-candidates"
 	| "year-mismatch"
-	| "unmappable-credit";
+	| "unmappable-credit"
+	| "mbid-not-found";
 
 export interface UnresolvedWork {
 	slug: string;
@@ -224,6 +227,7 @@ async function readManifest(path: string): Promise<ReleaseManifest | null> {
 		"ambiguous-candidates",
 		"year-mismatch",
 		"unmappable-credit",
+		"mbid-not-found",
 	];
 	const ambiguousReasons: readonly unknown[] = [
 		"several-artists-point-here",
@@ -870,6 +874,14 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 					type === "project"
 						? await fetchProjectMetaDetailedMb(work.mbid)
 						: await fetchTrackMetaDetailedMb(work.mbid);
+				if (fetched.notFound) {
+					// MB answered that the mbid does not exist: a verdict, so neither `failed` (which --resume
+					// would retry for ever) nor `resolved` (the entry would hand 1.12 a credit for an mbid
+					// that leads nowhere). The work is selected again next run and searched afresh.
+					delete resolved[slug];
+					unresolved.push({ slug, name, hint: work.hint, reason: "mbid-not-found" });
+					continue;
+				}
 				if (fetched.unavailable) {
 					// Writing the mbid without the tracklist / project would hide the hole: the work would no
 					// longer be selected. All or nothing; --resume repeats only this lookup.

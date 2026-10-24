@@ -29,8 +29,28 @@
   "qid": "Q10922",
   "era": "Late 1970s–Present",
   "origin": "United States",
-  "parent_genres": [],
-  "subgenres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock",
+      "qid": "Q3071"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:emo",
+      "type": "genre",
+      "name": "Emo",
+      "qid": "Q10926"
+    },
+    {
+      "slug": "genre:sludge-metal",
+      "type": "genre",
+      "name": "Sludge metal",
+      "qid": "Q720959"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:punk-rock",
@@ -61,6 +81,18 @@
       "type": "genre",
       "name": "Extreme metal",
       "qid": "Q465978"
+    },
+    {
+      "slug": "genre:digital-hardcore",
+      "type": "genre",
+      "name": "Digital Hardcore",
+      "qid": "Q56580"
+    },
+    {
+      "slug": "genre:garage-punk",
+      "type": "genre",
+      "name": "Garage punk",
+      "qid": "Q2296495"
     }
   ],
   "key_artists": [

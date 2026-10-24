@@ -183,14 +183,20 @@ function hasText(v: unknown): boolean {
 }
 
 /**
- * A top-level string holding a backslash + quote that `unescapeQuotes` would turn into a quote (TRA-577):
- * the same double escaping as the `\n` of `literal-newlines`, which does not see it. Asking the normalizer
- * keeps the measure and the fix in step: a `\"` it keeps on purpose (escaped backslash, code block) is not
- * counted, so 0 stays reachable. Like `literal-newlines`, it reads the top-level strings of the node: the
- * titles inside `citations` are not looked at.
+ * A top-level string, or the title of a citation, holding a backslash + quote that `unescapeQuotes` would
+ * turn into a quote (TRA-577, TRA-687): the same double escaping as the `\n` of `literal-newlines`, which does
+ * not see it. Asking the normalizer keeps the measure and the fix in step: a `\"` it keeps on purpose
+ * (escaped backslash, code block) is not counted, so 0 stays reachable. Like `literal-newlines`, it reads the
+ * top-level strings of the node; the citation titles are the one nested place it looks at (2026-10: two
+ * nodes carried a `\"` there and no top-level field did). Other nested strings are not looked at.
  */
 function hasLiteralEscapedQuote(node: RawNode): boolean {
-	return Object.values(node).some((v) => typeof v === "string" && unescapeQuotes(v) !== v);
+	const escaped = (v: unknown): boolean => typeof v === "string" && unescapeQuotes(v) !== v;
+	if (Object.values(node).some(escaped)) return true;
+	return (
+		Array.isArray(node.citations) &&
+		node.citations.some((c: unknown) => c !== null && typeof c === "object" && escaped((c as RawNode).title))
+	);
 }
 
 class Collector {

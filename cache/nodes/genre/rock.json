@@ -69,9 +69,58 @@
       "type": "genre",
       "name": "Glam rock",
       "qid": "Q76092"
+    },
+    {
+      "slug": "genre:acid-rock",
+      "type": "genre",
+      "name": "Acid rock",
+      "qid": "Q236932"
+    },
+    {
+      "slug": "genre:comedy-rock",
+      "type": "genre",
+      "name": "Comedy rock",
+      "qid": "Q1391336"
+    },
+    {
+      "slug": "genre:folk-rock",
+      "type": "genre",
+      "name": "Folk Rock",
+      "qid": "Q186472"
+    },
+    {
+      "slug": "genre:pop-rock",
+      "type": "genre",
+      "name": "Pop rock",
+      "qid": "Q484641"
+    },
+    {
+      "slug": "genre:post-rock",
+      "type": "genre",
+      "name": "Post-rock",
+      "qid": "Q209137"
+    },
+    {
+      "slug": "genre:stoner-rock",
+      "type": "genre",
+      "name": "Stoner Rock",
+      "qid": "Q617240"
     }
   ],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:jazz-fusion",
+      "type": "genre",
+      "name": "Jazz-Fusion",
+      "qid": "Q105527"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:the-beatles",

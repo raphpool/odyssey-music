@@ -308,11 +308,6 @@
       "mbid": "b4eee91a-479f-4c7e-aac4-f84e78d6238c",
       "year": "2006",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:bigbang-vol-1",
-      "type": "project",
-      "name": "BigBang Vol. 1"
     }
   ],
   "notable_tracks": [
@@ -343,9 +338,10 @@
     }
   ],
   "landmark_project": {
-    "slug": "project:bigbang-vol-1",
+    "slug": "project:bigbang-vol-1-since-2007--bigbang",
     "type": "project",
-    "name": "BigBang Vol. 1"
+    "name": "BIGBANG VOL.1 SINCE 2007",
+    "artist": "BIGBANG"
   },
   "reference_track": {
     "slug": "track:lies",

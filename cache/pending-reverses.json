@@ -21854,9 +21854,9 @@
       "field": "discography",
       "cardinality": "list",
       "edge": {
-        "slug": "project:avalon-sutra-as-long-as-i-can-hold-my-breath--harold-budd",
+        "slug": "project:avalon-sutra--harold-budd",
         "type": "project",
-        "name": "Avalon Sutra / As Long As I Can Hold My Breath",
+        "name": "Avalon Sutra",
         "artist": "Harold Budd"
       }
     }
@@ -21866,9 +21866,9 @@
       "field": "notable_releases",
       "cardinality": "list",
       "edge": {
-        "slug": "project:avalon-sutra-as-long-as-i-can-hold-my-breath--harold-budd",
+        "slug": "project:avalon-sutra--harold-budd",
         "type": "project",
-        "name": "Avalon Sutra / As Long As I Can Hold My Breath",
+        "name": "Avalon Sutra",
         "artist": "Harold Budd"
       }
     }

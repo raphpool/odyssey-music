@@ -76,6 +76,12 @@
       "type": "genre",
       "name": "New Jack Swing",
       "qid": "Q840065"
+    },
+    {
+      "slug": "genre:teen-pop",
+      "type": "genre",
+      "name": "Teen pop",
+      "qid": "Q739138"
     }
   ],
   "key_artists": [

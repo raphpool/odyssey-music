@@ -251,12 +251,6 @@
       "artist": "Harold Budd"
     },
     {
-      "slug": "project:avalon-sutra-as-long-as-i-can-hold-my-breath--harold-budd",
-      "type": "project",
-      "name": "Avalon Sutra / As Long As I Can Hold My Breath",
-      "artist": "Harold Budd"
-    },
-    {
       "slug": "project:ambient-2-the-plateaux-of-mirror",
       "type": "project",
       "name": "Ambient 2: The Plateaux of Mirror",
@@ -295,9 +289,9 @@
     }
   ],
   "landmark_project": {
-    "slug": "project:avalon-sutra-as-long-as-i-can-hold-my-breath--harold-budd",
+    "slug": "project:avalon-sutra--harold-budd",
     "type": "project",
-    "name": "Avalon Sutra / As Long As I Can Hold My Breath",
+    "name": "Avalon Sutra",
     "artist": "Harold Budd"
   },
   "reference_track": {

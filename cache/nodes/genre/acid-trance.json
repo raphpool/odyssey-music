@@ -33,6 +33,12 @@
       "type": "genre",
       "name": "Acid Music",
       "qid": "Q106528337"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House",
+      "qid": "Q341364"
     }
   ],
   "subgenres": [],

@@ -39,6 +39,7 @@ import { createGenreRegistry, loadRedirects, resolveReadSlug } from "./genre-reg
 import { createImageQueue } from "./images/image-queue.js";
 import { resolveImage } from "./images/resolve-image.js";
 import { resolveWorkImageByHint } from "./images/resolve-work-hint.js";
+import { loadLabelRegistry } from "./label-registry.js";
 import { logger } from "./logger.js";
 import { createApnsPushSender } from "./mobile/apns-sender.js";
 import { createMobileCatalog } from "./mobile/catalog.js";
@@ -82,7 +83,14 @@ const cache = new NodeCache(CACHE_DIR);
 // loadGenreResolver() is memoized (genre-identity.ts), so this doesn't double the load
 // enrichFromMusicBrainz already does per pipeline run.
 const [genreRedirects, genreResolver] = await Promise.all([loadRedirects(), loadGenreResolver()]);
-const genreRegistry = createGenreRegistry({ cache, resolver: genreResolver, redirects: genreRedirects });
+// TRA-607: label edges ride on the same registry (redirects + proven identities, see label-registry.ts).
+const labels = await loadLabelRegistry(cache);
+const genreRegistry = createGenreRegistry({
+	cache,
+	resolver: genreResolver,
+	redirects: genreRedirects,
+	labels,
+});
 const catalogIndex: CatalogIndex = createMusicBrainzCatalog();
 // The existing web search degrades to cache-only on catalog outages. Mobile has a typed
 // provider error contract, so it receives an adapter that preserves that distinction.
