@@ -80,6 +80,12 @@
       "slug": "genre:no-wave-cinema",
       "type": "genre",
       "name": "No Wave cinema"
+    },
+    {
+      "slug": "genre:dance-punk",
+      "type": "genre",
+      "name": "Dance-punk",
+      "qid": "Q1643549"
     }
   ],
   "key_artists": [

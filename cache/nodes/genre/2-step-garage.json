@@ -29,7 +29,14 @@
       "qid": "Q1165777"
     }
   ],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep",
+      "qid": "Q20474"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:dubstep",
@@ -60,6 +67,12 @@
       "type": "genre",
       "name": "breakstep",
       "qid": "Q1987980"
+    },
+    {
+      "slug": "genre:speed-garage",
+      "type": "genre",
+      "name": "Speed garage",
+      "qid": "Q780517"
     }
   ],
   "key_artists": [

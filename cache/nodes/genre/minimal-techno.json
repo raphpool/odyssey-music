@@ -29,8 +29,58 @@
   "era": "1990s–present",
   "origin": "Detroit, USA",
   "parent_genres": [],
-  "subgenres": [],
-  "related_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse",
+      "qid": "Q1931555"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:ambient-techno",
+      "type": "genre",
+      "name": "Ambient techno",
+      "qid": "Q9149801"
+    },
+    {
+      "slug": "genre:dub-techno",
+      "type": "genre",
+      "name": "Dub techno",
+      "qid": "Q1262781"
+    },
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch",
+      "qid": "Q1100989"
+    },
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse",
+      "qid": "Q1931555"
+    },
+    {
+      "slug": "genre:minimal-house",
+      "type": "genre",
+      "name": "Minimal house",
+      "qid": "Q750811"
+    },
+    {
+      "slug": "genre:minimal-music",
+      "type": "genre",
+      "name": "Minimal music",
+      "qid": "Q12183214"
+    },
+    {
+      "slug": "genre:tech-house",
+      "type": "genre",
+      "name": "Tech House",
+      "qid": "Q598593"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:robert-hood",

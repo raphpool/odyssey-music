@@ -1,5 +1,6 @@
 import CoreImage
 import SwiftUI
+import Track1Core
 import UIKit
 
 /// The tint of a node image (disc label, glow of project and track pages), computed on the phone (D10, Q6):
@@ -13,6 +14,24 @@ enum DominantColor {
 	static func of(_ image: UIImage) -> Color? {
 		guard let sample = reduced(image), let rgba = average(of: sample) else { return nil }
 		return Color(.sRGB, red: rgba.red, green: rgba.green, blue: rgba.blue, opacity: 1)
+	}
+
+	/// The rows of the sample each band covers, top to bottom: 0–10, 11–21, 22–31 of `sampleSide` (thirds, the
+	/// last one a row shorter). They feed `CoverTintTone.tint(bands:)`, which paints the page behind the hero.
+	private static let bandRows: [Range<Int>] = [0..<11, 11..<22, 22..<32]
+
+	/// The average colour of the top, middle and bottom thirds of `image`, from one single reduction of it (the
+	/// reduction is the costly step), with the same opacity rule as `of(_:)`: a translucent band keeps its
+	/// colour. `nil` as soon as one band has no opaque pixel, since the three colours are meant to go together.
+	static func bands(of image: UIImage) -> [LinearRGB]? {
+		guard let sample = reduced(image) else { return nil }
+		var bands: [LinearRGB] = []
+		for rows in bandRows {
+			let rect = CGRect(x: 0, y: rows.lowerBound, width: sample.width, height: rows.count)
+			guard let slice = sample.cropping(to: rect), let rgb = average(of: slice) else { return nil }
+			bands.append(LinearRGB(red: rgb.red, green: rgb.green, blue: rgb.blue))
+		}
+		return bands
 	}
 
 	/// Redraws the image into a `sampleSide` square, in sRGB, whatever its size, scale or orientation.

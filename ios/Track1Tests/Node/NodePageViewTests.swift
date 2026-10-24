@@ -29,6 +29,19 @@ final class NodePageViewTests: XCTestCase {
 		}
 	}
 
+	// MARK: - Cover tint
+
+	func testCoverTintIsReadFromTheLoadedStateOnly() {
+		let coverTint = CoverTint(
+			stops: Array(repeating: LinearRGB(red: 0.2, green: 0.1, blue: 0.1), count: 3),
+			shadow: LinearRGB(red: 0.5, green: 0.2, blue: 0.2))
+
+		XCTAssertEqual(NodePageView.coverTint(for: .loaded(UIImage(), tint: nil, coverTint: coverTint)), coverTint)
+		XCTAssertNil(NodePageView.coverTint(for: .loaded(UIImage(), tint: .red, coverTint: nil)))
+		XCTAssertNil(NodePageView.coverTint(for: .placeholder))
+		XCTAssertNil(NodePageView.coverTint(for: .loading))
+	}
+
 	// MARK: - Opening a relation
 
 	func testTouchingAChipRecordsOneEventAndPushesTheTargetNamedInTheBreadcrumb() async throws {

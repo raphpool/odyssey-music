@@ -109,6 +109,17 @@ final class NavigationComponentsTests: XCTestCase {
 		XCTAssertEqual(AmbientGlow.grainOpacity, 0.1, accuracy: 0.0001)
 	}
 
+	/// Figma `I282:838;173:15` (read 2026-10-23, TRA-660): the date is JetBrains Mono Bold 18 / 24, not the
+	/// Roboto Condensed eyebrow of the previous build. The breadcrumb keeps its own roles.
+	func testTopBarDateIsDrawnInMonoHeadline() {
+		XCTAssertEqual(TopBar.dateRole, .monoHeadline)
+		XCTAssertEqual(TopBar.dateRole.face, .jetBrainsMonoBold)
+		XCTAssertEqual(TopBar.dateRole.size, 18)
+		XCTAssertEqual(TopBar.dateRole.lineHeight, 24)
+		XCTAssertEqual(TopBar.dateRole.textStyle, .callout)
+		XCTAssertNotEqual(TopBar.dateRole, .eyebrow)
+	}
+
 	func testTopBarClearanceAddsOnlyWhatTheLayoutLacksAndNeverGoesNegative() {
 		XCTAssertEqual(TopBarFormat.clearance(windowInset: 59, layoutInset: 0), 59, accuracy: 0.0001)
 		XCTAssertEqual(TopBarFormat.clearance(windowInset: 59, layoutInset: 20), 39, accuracy: 0.0001)

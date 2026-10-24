@@ -24,6 +24,24 @@
       "type": "genre",
       "name": "Drill",
       "qid": "Q15697534"
+    },
+    {
+      "slug": "genre:2-step-garage",
+      "type": "genre",
+      "name": "2-step garage",
+      "qid": "Q1751409"
+    },
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep",
+      "qid": "Q20474"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage",
+      "qid": "Q1165777"
     }
   ],
   "key_artists": [

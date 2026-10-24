@@ -29,8 +29,22 @@
   "era": "Mid-1960s – Present",
   "origin": "United States, United Kingdom",
   "parent_genres": [],
-  "subgenres": [],
-  "related_genres": [],
+  "subgenres": [
+    {
+      "slug": "genre:pop-punk",
+      "type": "genre",
+      "name": "Pop Punk",
+      "qid": "Q487914"
+    }
+  ],
+  "related_genres": [
+    {
+      "slug": "genre:garage-punk",
+      "type": "genre",
+      "name": "Garage punk",
+      "qid": "Q2296495"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:the-who",

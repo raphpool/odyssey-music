@@ -65,6 +65,12 @@
       "type": "genre",
       "name": "Pub rock",
       "qid": "Q1431327"
+    },
+    {
+      "slug": "genre:garage-punk",
+      "type": "genre",
+      "name": "Garage punk",
+      "qid": "Q2296495"
     }
   ],
   "key_artists": [

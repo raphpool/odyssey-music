@@ -84,6 +84,12 @@
       "type": "genre",
       "name": "Disco",
       "qid": "Q58339"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
     }
   ],
   "key_artists": [

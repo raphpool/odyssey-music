@@ -61,6 +61,12 @@
       "type": "genre",
       "name": "Dream pop",
       "qid": "Q592330"
+    },
+    {
+      "slug": "genre:twee-pop",
+      "type": "genre",
+      "name": "Twee pop",
+      "qid": "Q370778"
     }
   ],
   "key_artists": [

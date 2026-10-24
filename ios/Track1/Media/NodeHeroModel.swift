@@ -14,7 +14,7 @@ import UIKit
 final class NodeHeroModel {
 	enum State: Equatable {
 		case loading
-		case loaded(UIImage, tint: Color?)
+		case loaded(UIImage, tint: Color?, coverTint: CoverTint?)
 		case placeholder
 	}
 
@@ -44,7 +44,10 @@ final class NodeHeroModel {
 		guard !Task.isCancelled else { return }
 		if let match {
 			style = HeroImageSource.style(of: match.candidate, type: type, imageSource: imageSource)
-			state = .loaded(match.image, tint: DominantColor.of(match.image))
+			state = .loaded(
+				match.image,
+				tint: DominantColor.of(match.image),
+				coverTint: DominantColor.bands(of: match.image).flatMap(CoverTintTone.tint(bands:)))
 		} else {
 			state = .placeholder
 		}

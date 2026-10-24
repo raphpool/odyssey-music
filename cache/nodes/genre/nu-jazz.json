@@ -35,6 +35,12 @@
       "type": "genre",
       "name": "Electronic Music",
       "qid": "Q9778"
+    },
+    {
+      "slug": "genre:contemporary-jazz",
+      "type": "genre",
+      "name": "Contemporary Jazz",
+      "qid": "Q5928480"
     }
   ],
   "subgenres": [],
@@ -62,6 +68,12 @@
       "type": "genre",
       "name": "Broken Beat",
       "qid": "Q2406633"
+    },
+    {
+      "slug": "genre:contemporary-jazz",
+      "type": "genre",
+      "name": "Contemporary Jazz",
+      "qid": "Q5928480"
     }
   ],
   "key_artists": [

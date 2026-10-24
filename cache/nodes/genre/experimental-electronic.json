@@ -51,9 +51,22 @@
       "type": "genre",
       "name": "Electroacoustic Music",
       "qid": "Q1326777"
+    },
+    {
+      "slug": "genre:microsound",
+      "type": "genre",
+      "name": "Microsound",
+      "qid": "Q3503814"
     }
   ],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch",
+      "qid": "Q1100989"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:pierre-schaeffer",

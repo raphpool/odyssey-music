@@ -16,13 +16,26 @@
   "qid": "Q170435",
   "era": "1990s-Present",
   "origin": "Germany and the Netherlands",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music",
+      "qid": "Q851213"
+    }
+  ],
   "subgenres": [
     {
       "slug": "genre:psytrance",
       "type": "genre",
       "name": "Psytrance",
       "qid": "Q622871"
+    },
+    {
+      "slug": "genre:acid-trance",
+      "type": "genre",
+      "name": "Acid Trance",
+      "qid": "Q481900"
     }
   ],
   "related_genres": [
@@ -55,6 +68,30 @@
       "type": "genre",
       "name": "Psytrance",
       "qid": "Q622871"
+    },
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music",
+      "qid": "Q851213"
+    },
+    {
+      "slug": "genre:futurepop",
+      "type": "genre",
+      "name": "Futurepop",
+      "qid": "Q828243"
+    },
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive House",
+      "qid": "Q915152"
+    },
+    {
+      "slug": "genre:rave",
+      "type": "genre",
+      "name": "Rave",
+      "qid": "Q898709"
     }
   ],
   "key_artists": [

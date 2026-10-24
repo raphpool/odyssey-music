@@ -516,8 +516,8 @@ describe("similar_artists backfill (TRA-490)", () => {
 		});
 	});
 
-	// 2026-10-17, deep review of PR #522. None of these tests sets ODYSSEY_SCOPED_RELEASE_SLUGS, like the
-	// channel (flag off): the slugs they expect are the canonical (flag-on) ones, the cache's.
+	// 2026-10-17, deep review of PR #522. None of these tests sets ODYSSEY_SCOPED_RELEASE_SLUGS, unlike the
+	// channel (flag on since TRA-599): the slugs they expect are the canonical (flag-on) ones, the cache's.
 	describe("canonical slugs and the redirect table", () => {
 		it("drops Gokhan Kirdar (dotless i) when another artist holds artist:gokhan-kirdar, redirect key included", async () => {
 			await putArtist("seed", "Seed", { mbid: mb(1) });

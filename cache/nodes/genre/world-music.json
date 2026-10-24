@@ -49,7 +49,20 @@
       "qid": "Q3591962"
     }
   ],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:celtic-fusion",
+      "type": "genre",
+      "name": "Celtic fusion",
+      "qid": "Q1092553"
+    },
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New age",
+      "qid": "Q213121"
+    }
+  ],
   "key_artists": [],
   "key_labels": [],
   "landmark_projects": [],

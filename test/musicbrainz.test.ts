@@ -12,6 +12,7 @@ import {
 	fetchTrackMetaDetailedMb,
 	fetchTrackMetaMb,
 	fetchWikidataUrlRelMb,
+	findCompilationCoverReleaseGroup,
 	resolveRecording,
 	resolveRecordingDetailed,
 	resolveReleaseGroup,
@@ -1984,6 +1985,300 @@ describe("pickByTitleAndCredit: hints that cannot be compared", () => {
 	});
 });
 
+// TRA-542: a featured artist is credited on the work, but ranks after the main credit. Before this, the
+// oldest release group won whoever the artist was in its credit, so an older "B feat. A" single beat A's album.
+describe("pickByTitleAndCredit: the main credit before the featured ones (TRA-542)", () => {
+	const A = "eeeeeeee-0000-4000-8000-000000000001";
+	const B = "eeeeeeee-0000-4000-8000-000000000002";
+	const C = "eeeeeeee-0000-4000-8000-000000000003";
+	const BAND = "eeeeeeee-0000-4000-8000-000000000004";
+	const ALBUM_ID = "eeeeeeee-1111-4111-8111-000000000001";
+	const FEAT_ID = "eeeeeeee-1111-4111-8111-000000000002";
+
+	const entry = (mbid: string, name: string, joinphrase?: string) => ({
+		name,
+		...(joinphrase === undefined ? {} : { joinphrase }),
+		artist: { id: mbid, name },
+	});
+	/** "B <joinphrase> A": B heads the credit, A follows the join phrase. */
+	const bFeatA = (id: string, title: string, joinphrase: string, extra = {}) => ({
+		id,
+		title,
+		"artist-credit": [entry(B, "B", joinphrase), entry(A, "A")],
+		...extra,
+	});
+	const aAlone = (id: string, title: string, extra = {}) => ({
+		id,
+		title,
+		"artist-credit": [entry(A, "A")],
+		...extra,
+	});
+
+	it("gives A's 2005 album over the 2003 single 'B feat. A' of the same title", async () => {
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Same Title", " feat. ", { "primary-type": "Single", "first-release-date": "2003" }),
+				aAlone(ALBUM_ID, "Same Title", { "primary-type": "Album", "first-release-date": "2005" }),
+			],
+		});
+		const out = await resolveReleaseGroupDetailed("Same Title", "A");
+		expect(out.identity?.mbid).toBe(ALBUM_ID);
+		expect(out.ambiguous).toBe(false);
+	});
+
+	it("gives the main-credit release group over an older featured one of the same type (the date no longer decides)", async () => {
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Same Type", " feat. ", { "primary-type": "Album", "first-release-date": "2003" }),
+				aAlone(ALBUM_ID, "Same Type", { "primary-type": "Album", "first-release-date": "2005" }),
+			],
+		});
+		expect((await resolveReleaseGroup("Same Type", "A"))?.mbid).toBe(ALBUM_ID);
+	});
+
+	it.each([" feat. ", " (feat. ", " ft. ", " featuring ", " with "])(
+		"reads %j as a featuring join phrase",
+		async (joinphrase) => {
+			stubMb({
+				"release-groups": [
+					bFeatA(FEAT_ID, `Phrase Title ${joinphrase.trim()}`, joinphrase, { "first-release-date": "2003" }),
+					aAlone(ALBUM_ID, `Phrase Title ${joinphrase.trim()}`, { "first-release-date": "2005" }),
+				],
+			});
+			// One title per join phrase: mbCache is keyed on the request and outlives a test, so a shared title
+			// would replay the first response and test "feat." five times.
+			expect((await resolveReleaseGroup(`Phrase Title ${joinphrase.trim()}`, "A"))?.mbid).toBe(ALBUM_ID);
+		},
+	);
+
+	it("keeps a title that exists only as a featured credit resolved", async () => {
+		stubMb({
+			"release-groups": [bFeatA(FEAT_ID, "Only Featured", " feat. ", { "first-release-date": "2003" })],
+		});
+		const out = await resolveReleaseGroupDetailed("Only Featured", "A");
+		expect(out.identity?.mbid).toBe(FEAT_ID);
+		expect(out.identity?.credit.map((c) => c.name)).toEqual(["B", "A"]);
+	});
+
+	it("decides among featured-only candidates as before: the strictly earliest wins", async () => {
+		const older = "eeeeeeee-1111-4111-8111-000000000003";
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Featured Twice", " feat. ", { "first-release-date": "2008" }),
+				bFeatA(older, "Featured Twice", " ft. ", { "first-release-date": "2003" }),
+			],
+		});
+		expect((await resolveReleaseGroup("Featured Twice", "A"))?.mbid).toBe(older);
+	});
+
+	it("does not demote a co-principal: 'A & B' and 'B & A' are both main credits, the oldest wins", async () => {
+		const older = "eeeeeeee-1111-4111-8111-000000000004";
+		stubMb({
+			"release-groups": [
+				aAlone(ALBUM_ID, "Duo Title", { "first-release-date": "2005" }),
+				{
+					id: older,
+					title: "Duo Title",
+					"artist-credit": [entry(B, "B", " & "), entry(A, "A")],
+					"first-release-date": "2003",
+				},
+			],
+		});
+		expect((await resolveReleaseGroup("Duo Title", "A"))?.mbid).toBe(older);
+	});
+
+	it("reads everything after the first featuring phrase as featured ('B feat. C & A')", async () => {
+		const lateA = "eeeeeeee-1111-4111-8111-000000000005";
+		stubMb({
+			"release-groups": [
+				{
+					id: lateA,
+					title: "Late Title",
+					"artist-credit": [entry(B, "B", " feat. "), entry(C, "C", " & "), entry(A, "A")],
+					"first-release-date": "2003",
+				},
+				aAlone(ALBUM_ID, "Late Title", { "first-release-date": "2005" }),
+			],
+		});
+		expect((await resolveReleaseGroup("Late Title", "A"))?.mbid).toBe(ALBUM_ID);
+	});
+
+	it("does not call a featured older candidate a doubt: no 'ambiguous' for the main one", async () => {
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Doubt Title", " feat. ", { "first-release-date": "2003" }),
+				aAlone(ALBUM_ID, "Doubt Title", { "first-release-date": "2005" }),
+			],
+		});
+		expect(await resolveReleaseGroupDetailed("Doubt Title", "A")).toMatchObject({ ambiguous: false });
+	});
+
+	it("applies to recordings: A's own recording over an older 'B feat. A' one", async () => {
+		const own = "eeeeeeee-2222-4222-8222-000000000001";
+		const featured = "eeeeeeee-2222-4222-8222-000000000002";
+		stubMb({
+			recordings: [
+				bFeatA(featured, "Take Title", " feat. ", { "first-release-date": "2003" }),
+				aAlone(own, "Take Title", { "first-release-date": "2005" }),
+			],
+		});
+		expect((await resolveRecording("Take Title", "A"))?.mbid).toBe(own);
+	});
+
+	it("counts the requested MBID in the main credit only, whatever name it is printed under", async () => {
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Mbid Title", " feat. ", { "first-release-date": "2003" }),
+				{
+					id: ALBUM_ID,
+					title: "Mbid Title",
+					"artist-credit": [{ name: "A Presents", artist: { id: A, name: "A Presents" } }],
+					"first-release-date": "2005",
+				},
+			],
+		});
+		const out = await resolveReleaseGroupDetailed("Mbid Title", "A", { requestedArtistMbid: A });
+		expect(out.identity?.mbid).toBe(ALBUM_ID);
+	});
+
+	it("judges the main credit by MBID alone when it is known: a namesake credited first does not push down the real artist", async () => {
+		const NAMESAKE = "eeeeeeee-0000-4000-8000-000000000005";
+		const namesake = "eeeeeeee-1111-4111-8111-000000000008";
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Namesake Title", " feat. ", { "first-release-date": "2003" }),
+				{
+					id: namesake,
+					title: "Namesake Title",
+					"artist-credit": [entry(NAMESAKE, "A")],
+					"first-release-date": "2005",
+				},
+			],
+		});
+		const out = await resolveReleaseGroupDetailed("Namesake Title", "A", { requestedArtistMbid: A });
+		expect(out.identity?.mbid).toBe(FEAT_ID);
+		expect(out.identity?.credit.map((c) => c.mbid)).toEqual([B, A]);
+	});
+
+	it("keeps a direct main credit and a band's work a doubt: the direct one does not win over the band", async () => {
+		stubMb({
+			"release-groups": [
+				aAlone(ALBUM_ID, "Direct Band Title", { "first-release-date": "2005" }),
+				{
+					id: FEAT_ID,
+					title: "Direct Band Title",
+					"artist-credit": [entry(C, "Z", " feat. "), entry(BAND, "The Band")],
+					"first-release-date": "2003",
+				},
+			],
+		});
+		const out = await resolveReleaseGroupDetailed("Direct Band Title", "A", { acceptCreditMbids: [BAND] });
+		expect(out).toEqual({ identity: null, ambiguous: true, unavailable: false });
+	});
+
+	it("ranks bands against bands: a band in the main credit before the same band only featured", async () => {
+		stubMb({
+			"release-groups": [
+				{
+					id: FEAT_ID,
+					title: "Band Title",
+					"artist-credit": [entry(B, "B", " feat. "), entry(BAND, "The Band")],
+					"first-release-date": "2003",
+				},
+				{
+					id: ALBUM_ID,
+					title: "Band Title",
+					"artist-credit": [entry(BAND, "The Band")],
+					"first-release-date": "2005",
+				},
+			],
+		});
+		const out = await resolveReleaseGroupDetailed("Band Title", "A", { acceptCreditMbids: [BAND] });
+		expect(out.identity?.mbid).toBe(ALBUM_ID);
+	});
+
+	it("keeps a direct credit and a band's work a doubt, featured or not (TRA-537 rule, unchanged)", async () => {
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Doubt Band Title", " feat. ", { "first-release-date": "2003" }),
+				{
+					id: ALBUM_ID,
+					title: "Doubt Band Title",
+					"artist-credit": [entry(BAND, "The Band")],
+					"first-release-date": "2005",
+				},
+			],
+		});
+		const out = await resolveReleaseGroupDetailed("Doubt Band Title", "A", { acceptCreditMbids: [BAND] });
+		expect(out).toEqual({ identity: null, ambiguous: true, unavailable: false });
+	});
+
+	it("ranks the credit before the known release type: the type never brings back a featured-only candidate", async () => {
+		// A single known as such, A's album and "B feat. A"'s single share a title: the album is the main-credit
+		// candidate, the type then finds no single among them. Doubt, as for any known type no candidate has.
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Typed Title", " feat. ", { "primary-type": "Single", "first-release-date": "2003" }),
+				aAlone(ALBUM_ID, "Typed Title", { "primary-type": "Album", "first-release-date": "2005" }),
+			],
+		});
+		expect(await resolveReleaseGroupDetailed("Typed Title", "A", { releaseType: "single" })).toEqual({
+			identity: null,
+			ambiguous: true,
+			unavailable: false,
+		});
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Typed Title", " feat. ", { "primary-type": "Single", "first-release-date": "2003" }),
+				aAlone(ALBUM_ID, "Typed Title", { "primary-type": "Album", "first-release-date": "2005" }),
+			],
+		});
+		expect(
+			(await resolveReleaseGroupDetailed("Typed Title", "A", { releaseType: "album" })).identity?.mbid,
+		).toBe(ALBUM_ID);
+	});
+
+	it("ranks the credit before the disambiguation of recordings: A's live take is not traded for a featured studio one", async () => {
+		stubMb({
+			recordings: [
+				bFeatA(FEAT_ID, "Live Title", " feat. "),
+				aAlone(ALBUM_ID, "Live Title", { disambiguation: "live, Paris 1998" }),
+			],
+		});
+		expect(await resolveRecordingDetailed("Live Title", "A")).toEqual({
+			identity: null,
+			ambiguous: false,
+			unavailable: false,
+		});
+	});
+
+	it("does not cut a credit whose featuring phrase follows its last entry: nobody is featured", async () => {
+		stubMb({
+			"release-groups": [
+				bFeatA(FEAT_ID, "Trailing Title", " feat. ", { "first-release-date": "2003" }),
+				{
+					id: ALBUM_ID,
+					title: "Trailing Title",
+					"artist-credit": [entry(A, "A", " feat. ")],
+					"first-release-date": "2005",
+				},
+			],
+		});
+		expect((await resolveReleaseGroup("Trailing Title", "A"))?.mbid).toBe(ALBUM_ID);
+	});
+
+	it("applies to a double A-side single too: the main-credit one beats a featured one", async () => {
+		const featured = "eeeeeeee-1111-4111-8111-000000000007";
+		stubMb({
+			"release-groups": [
+				bFeatA(featured, "Side One / Side Two", " feat. ", { "primary-type": "Single" }),
+				aAlone(ALBUM_ID, "Side One / Other Side", { "primary-type": "Single" }),
+			],
+		});
+		expect((await resolveReleaseGroup("Side One", "A"))?.mbid).toBe(ALBUM_ID);
+	});
+});
+
 describe("pickByTitleAndCredit: aliases of the credited artist", () => {
 	const ARTIST = "dddddddd-0000-4000-8000-000000000001";
 	const credit = (aliases: unknown) => [
@@ -2667,6 +2962,130 @@ describe("pickByTitleAndCredit: release groups of different primary types", () =
 		stubMb({ "release-groups": [] });
 		expect(await resolveReleaseGroupDetailed("Nothing Here", "Inter Arma", { releaseType: "album" })).toEqual(
 			none,
+		);
+	});
+});
+
+describe("work search by the requested artist's MBID (TRA-543)", () => {
+	// MB's `artist:` field indexes the PRINTED name only: Ryuichi Sakamoto's 1983 soundtrack, credited 坂本龍一,
+	// never came back for "Ryuichi Sakamoto" (measured 2026-10-15). `arid:` is the artist's id, indexed
+	// whatever name the credit prints. Real hit, read from MB on 2026-10-24: the soundtrack is filed there as
+	// "Merry Christmas, Mr. Lawrence/Furyo", Album + Soundtrack, 1983-05, credited 坂本龍一.
+	const SAKAMOTO = "a7f7df4a-77d8-4f12-8acd-5c60c93f4de8";
+	const OST_1983 = "3870eb3e-3447-384e-8d8a-aeddab4ef00b";
+	const OST_TITLE = "Merry Christmas, Mr. Lawrence/Furyo";
+	// The credit prints 坂本龍一; the artist behind it is Sakamoto, by id.
+	const ost1983 = hit(OST_1983, OST_TITLE, [[SAKAMOTO, "坂本龍一"]], {
+		"primary-type": "Album",
+		"secondary-types": ["Soundtrack"],
+		"first-release-date": "1983-05",
+	});
+
+	/** An MB that, like the real one, returns the soundtrack for `arid:` only: `artist:"Ryuichi Sakamoto"` misses 坂本龍一. */
+	function stubIndexedMb(): URL[] {
+		const urls: URL[] = [];
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async (input: URL) => {
+				urls.push(input);
+				const byId = (input.searchParams.get("query") ?? "").includes(`arid:${SAKAMOTO}`);
+				return jsonResponse({ count: byId ? 1 : 0, "release-groups": byId ? [ost1983] : [] });
+			}),
+		);
+		return urls;
+	}
+
+	it("searches by arid, next to the printed name, when the artist's MBID is known", async () => {
+		const urls = stubMb({ "release-groups": [] });
+		await resolveReleaseGroupDetailed("Query Arid RG", "Ryuichi Sakamoto", { requestedArtistMbid: SAKAMOTO });
+		expect(urls[0]?.searchParams.get("query")).toBe(
+			`releasegroup:"Query Arid RG" AND (arid:${SAKAMOTO} OR artist:"Ryuichi Sakamoto")`,
+		);
+		await resolveRecordingDetailed("Query Arid Rec", "Ryuichi Sakamoto", { requestedArtistMbid: SAKAMOTO });
+		expect(urls[1]?.searchParams.get("query")).toBe(
+			`recording:"Query Arid Rec" AND (arid:${SAKAMOTO} OR artist:"Ryuichi Sakamoto")`,
+		);
+	});
+
+	// The name stays in the query: a work printed under the artist's name but filed under a band the artist
+	// belongs to ("Roni Size / Reprazent", accepted by MBID in the pick) carries the band's id, not the artist's.
+	it("keeps the printed-name clause, so no work found before is lost", async () => {
+		// This MB finds the band-credited work by the printed name only, never by the artist's own id.
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async (input: URL) => {
+				const query = input.searchParams.get("query") ?? "";
+				const found = query.includes('artist:"Roni Size"');
+				return jsonResponse({
+					"release-groups": found
+						? [
+								hit(NEW_FORMS_RG, "Union Keeps Name", [[REPRAZENT, "Roni Size / Reprazent"]], {
+									"primary-type": "Album",
+								}),
+							]
+						: [],
+				});
+			}),
+		);
+		const out = await resolveReleaseGroupDetailed("Union Keeps Name", "Roni Size", {
+			requestedArtistMbid: "11111111-0543-4543-8543-000000000002",
+			acceptCreditMbids: [REPRAZENT],
+		});
+		expect(out.identity?.mbid).toBe(NEW_FORMS_RG);
+	});
+
+	it("makes the soundtrack credited 坂本龍一 a candidate, and the work asked for", async () => {
+		stubIndexedMb();
+		const out = await resolveReleaseGroupDetailed(OST_TITLE, "Ryuichi Sakamoto", {
+			requestedArtistMbid: SAKAMOTO,
+			releaseType: "album",
+		});
+		expect(out.identity?.mbid).toBe(OST_1983);
+		expect(out.identity?.credit).toEqual([{ mbid: SAKAMOTO, name: "坂本龍一" }]);
+	});
+
+	it("without the MBID, searches by the printed name only and answers as before: nothing", async () => {
+		const urls = stubIndexedMb();
+		const out = await resolveReleaseGroupDetailed(OST_TITLE, "Ryuichi Sakamoto", { releaseType: "album" });
+		expect(urls[0]?.searchParams.get("query")).toBe(
+			`releasegroup:"${OST_TITLE}" AND artist:"Ryuichi Sakamoto"`,
+		);
+		expect(out).toEqual({ identity: null, ambiguous: false, unavailable: false });
+	});
+
+	it("reads a blank or malformed MBID as no MBID: only a bare UUID reaches the query", async () => {
+		const urls = stubMb({ "release-groups": [] });
+		for (const [i, bad] of ["", "   ", "not-an-mbid", `${SAKAMOTO}) OR artist:"x`].entries()) {
+			await resolveReleaseGroupDetailed(`Bad Mbid ${i}`, "Someone", { requestedArtistMbid: bad });
+			expect(urls[i]?.searchParams.get("query")).toBe(`releasegroup:"Bad Mbid ${i}" AND artist:"Someone"`);
+		}
+	});
+
+	it("lowercases the MBID", async () => {
+		const urls = stubMb({ "release-groups": [] });
+		await resolveReleaseGroupDetailed("Upper Mbid", "Someone", {
+			requestedArtistMbid: SAKAMOTO.toUpperCase(),
+		});
+		expect(urls[0]?.searchParams.get("query")).toContain(`arid:${SAKAMOTO} OR`);
+	});
+
+	it("leaves the title-only query alone when there is no usable hint, MBID or not", async () => {
+		const urls = stubMb({ "release-groups": [] });
+		await resolveReleaseGroupDetailed("Only Title", undefined, { requestedArtistMbid: SAKAMOTO });
+		expect(urls[0]?.searchParams.get("query")).toBe('releasegroup:"Only Title"');
+	});
+
+	it("searches the compilation cover's recordings by arid too", async () => {
+		const urls = stubMb({ recordings: [] });
+		await findCompilationCoverReleaseGroup("Query Arid Compilation", "Ryuichi Sakamoto", {
+			requestedArtistMbid: SAKAMOTO,
+		});
+		await findCompilationCoverReleaseGroup("Query Name Compilation", "Ryuichi Sakamoto");
+		expect(urls[0]?.searchParams.get("query")).toBe(
+			`release:"Query Arid Compilation" AND (arid:${SAKAMOTO} OR artist:"Ryuichi Sakamoto")`,
+		);
+		expect(urls[1]?.searchParams.get("query")).toBe(
+			'release:"Query Name Compilation" AND artist:"Ryuichi Sakamoto"',
 		);
 	});
 });

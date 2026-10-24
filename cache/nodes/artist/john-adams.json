@@ -224,6 +224,14 @@
       "releaseType": "album"
     },
     {
+      "slug": "project:nixon-in-china",
+      "type": "project",
+      "name": "Nixon in China",
+      "mbid": "ab57421b-ec7b-3190-8c98-93e7cc01fe16",
+      "year": "1988",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:shaker-loops-phrygian-gates--john-adams",
       "type": "project",
       "name": "Shaker Loops / Phrygian Gates",
@@ -239,11 +247,6 @@
       "mbid": "662dbba9-ef3d-3c21-98c0-0826b0aedcfe",
       "year": "1985",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:nixon-in-china",
-      "type": "project",
-      "name": "Nixon in China"
     },
     {
       "slug": "project:doctor-atomic",

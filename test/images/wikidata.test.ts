@@ -7,7 +7,14 @@ import {
 	searchWikidataLabel,
 	wikidataConfig,
 } from "../../src/images/wikidata.js";
+import { fetchWikidataUrlRelMb } from "../../src/musicbrainz.js";
 import { jsonResponse, routedFetch } from "./helpers.js";
+
+// Passthrough spy: the real function still runs, so every other test is unchanged.
+vi.mock("../../src/musicbrainz.js", async (importOriginal) => {
+	const actual = await importOriginal<typeof import("../../src/musicbrainz.js")>();
+	return { ...actual, fetchWikidataUrlRelMb: vi.fn(actual.fetchWikidataUrlRelMb) };
+});
 
 // Distinct MBIDs per test: mbFetch memoizes by path for 5 minutes.
 const mb = (n: number): string => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
@@ -86,6 +93,18 @@ describe("fetchWikidataQid", () => {
 			{ type: "wikidata" },
 		);
 		await expect(fetchWikidataQid("artist", mb(3), f)).resolves.toBeNull();
+	});
+
+	it("forwards the MusicBrainz queue priority to the url-rels lookup (TRA-588)", async () => {
+		const spy = vi.mocked(fetchWikidataUrlRelMb);
+		const f = rels(wikidataRel("https://www.wikidata.org/wiki/Q964002"));
+		await expect(fetchWikidataQid("artist", mb(7), f, { priority: "background" })).resolves.toBe("Q964002");
+		expect(spy).toHaveBeenLastCalledWith("artist", mb(7), f, { priority: "background" });
+		await fetchWikidataQid("label", mb(8), f, { priority: "interactive" });
+		expect(spy).toHaveBeenLastCalledWith("label", mb(8), f, { priority: "interactive" });
+		// No options: the lookup is left to its interactive default.
+		await fetchWikidataQid("artist", mb(9), f);
+		expect(spy).toHaveBeenLastCalledWith("artist", mb(9), f, {});
 	});
 
 	it("is null when MusicBrainz answers an error, garbage or throws", async () => {
