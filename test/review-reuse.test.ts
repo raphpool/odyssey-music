@@ -8,12 +8,15 @@ import { promisify } from "node:util";
 import { describe, expect, it } from "vitest";
 import {
 	AI_REVIEW_PATH,
+	BASE_RECORD_FAMILY,
 	BLOCKING_ANNOTATION,
+	baseRecordMessage,
 	belongsToPullRequest,
 	type DecisionInput,
 	decideReuse,
 	type Facts,
 	type HeadPull,
+	hasBaseRecord,
 	latestReview,
 	MAX_PAGES,
 	PAGE_SIZE,
@@ -48,6 +51,8 @@ const PULL: PullRequestIdentity = {
 const OWN: HeadPull = { number: PULL.number, baseRef: PULL.baseRef, headSha: HEAD_SHA };
 // A PR against another base whose last head is the previous head (closed there), or the current one (open).
 const OTHER_BASE: HeadPull = { number: 77, baseRef: "release/1.0", headSha: PREVIOUS };
+// TRA-529: what ai-review.yml records on the review of a run made for PULL against the default branch.
+const BASE = baseRecordMessage(PULL.number, "main");
 
 // TRA-525: a `review` check-run only counts when it is the job of a `pull_request` run of ai-review.yml on the
 // previous head. `run`, `workflowRun` and `job` below are the three records that, together, make one genuine review.
@@ -108,7 +113,7 @@ const input = (overrides: Partial<DecisionInput> = {}): DecisionInput => ({
 	checkRuns: [run()],
 	workflowRuns: [workflowRun()],
 	jobs: [job()],
-	annotations: [recordMessage(PATCH)],
+	annotations: [BASE, recordMessage(PATCH)],
 	pullRequest: PULL,
 	headPulls: [OWN],
 	...overrides,
@@ -135,14 +140,14 @@ describe("decideReuse (TRA-510, TRA-525)", () => {
 	// Each case below must cost a full review: a different diff, a review that is not a clean success,
 	// no review at all, an event that always reviews, and every input that cannot be trusted (fail closed).
 	const full: [string, Partial<DecisionInput>][] = [
-		["patch-id differs", { annotations: [recordMessage(OTHER_PATCH)] }],
+		["patch-id differs", { annotations: [BASE, recordMessage(OTHER_PATCH)] }],
 		["previous review failed", { checkRuns: [run({ conclusion: "failure" })] }],
 		["previous review cancelled", { checkRuns: [run({ conclusion: "cancelled" })] }],
 		["previous review timed out", { checkRuns: [run({ conclusion: "timed_out" })] }],
 		["previous review unfinished", { checkRuns: [run({ status: "in_progress", conclusion: null })] }],
 		[
 			"success carrying the blocking annotation",
-			{ annotations: [recordMessage(PATCH), BLOCKING_ANNOTATION] },
+			{ annotations: [BASE, recordMessage(PATCH), BLOCKING_ANNOTATION] },
 		],
 		["no previous review", { checkRuns: [] }],
 		["only other check-runs", { checkRuns: [run({ name: "typecheck" })] }],
@@ -166,9 +171,9 @@ describe("decideReuse (TRA-510, TRA-525)", () => {
 		["previous head unknown", { previousSha: null }],
 		["previous head malformed", { previousSha: "abc123" }],
 		["previous review recorded nothing", { annotations: [] }],
-		["record with garbage", { annotations: [`${RECORD_PREFIX}garbage`] }],
-		["record of another version", { annotations: [`review-patch-id v0 ${PATCH}`] }],
-		["two different records", { annotations: [recordMessage(PATCH), recordMessage(OTHER_PATCH)] }],
+		["record with garbage", { annotations: [BASE, `${RECORD_PREFIX}garbage`] }],
+		["record of another version", { annotations: [BASE, `review-patch-id v0 ${PATCH}`] }],
+		["two different records", { annotations: [BASE, recordMessage(PATCH), recordMessage(OTHER_PATCH)] }],
 		["review not published by Actions", { checkRuns: [run({ appSlug: "some-other-app" })] }],
 		["review without app", { checkRuns: [run({ appSlug: null })] }],
 		// TRA-525: the rule of review-gate.yml (TRA-520). The name and the app are forgeable by any workflow step.
@@ -217,6 +222,31 @@ describe("decideReuse (TRA-510, TRA-525)", () => {
 			{ headPulls: [{ number: 78, baseRef: "main", headSha: PREVIOUS }] },
 		],
 		["no pull request on the head at all", { headPulls: [] }],
+		// TRA-529: the review must say it ran for this PR against the default branch.
+		[
+			"review from before TRA-529: patch-id recorded, no base record",
+			{ annotations: [recordMessage(PATCH)] },
+		],
+		[
+			"review made against another base (the stack parent, since retargeted to main)",
+			{ annotations: [baseRecordMessage(PULL.number, "feature/parent"), recordMessage(PATCH)] },
+		],
+		[
+			"review made for another PR of the same branch (closed on another sha)",
+			{ annotations: [baseRecordMessage(OTHER_BASE.number, "main"), recordMessage(PATCH)] },
+		],
+		[
+			"two different base records",
+			{ annotations: [BASE, baseRecordMessage(PULL.number, "feature/parent"), recordMessage(PATCH)] },
+		],
+		[
+			"a base record of another version next to the v1",
+			{ annotations: [BASE, `${BASE_RECORD_FAMILY}v2 ${PULL.number} main`, recordMessage(PATCH)] },
+		],
+		[
+			"a base record that is not the exact message (leading zero)",
+			{ annotations: [`${BASE_RECORD_FAMILY}v1 0${PULL.number} main`, recordMessage(PATCH)] },
+		],
 	];
 	it.each(full)("runs a full review: %s", (_label, overrides) => {
 		expect(decideReuse(input(overrides)).decision).toBe("full");
@@ -268,9 +298,9 @@ describe("decideReuse (TRA-510, TRA-525)", () => {
 	});
 
 	it("accepts the same record twice (a reused review records it again)", () => {
-		expect(decideReuse(input({ annotations: [recordMessage(PATCH), recordMessage(PATCH)] })).decision).toBe(
-			"reuse",
-		);
+		expect(
+			decideReuse(input({ annotations: [BASE, BASE, recordMessage(PATCH), recordMessage(PATCH)] })).decision,
+		).toBe("reuse");
 	});
 });
 
@@ -359,7 +389,7 @@ describe("resolveDecision (API lookups)", () => {
 		[listing]: checkRunsBody([run()]),
 		[runsListing]: runsBody([workflowRun()]),
 		[jobsListing]: jobsBody([job()]),
-		"check-runs/7/annotations": annotationsBody([recordMessage(PATCH)]),
+		"check-runs/7/annotations": annotationsBody([BASE, recordMessage(PATCH)]),
 	});
 
 	it("reads the previous head's review, the run and the job that produced it, and its annotations", async () => {
@@ -380,9 +410,14 @@ describe("resolveDecision (API lookups)", () => {
 	it.each([
 		["the pull request lookup fails", { [pullLookup]: new Error("GitHub API answered 404") }],
 		["the lookup answers another PR", { [pullLookup]: pullBody({ ...PULL, number: 43 }) }],
+		// Both answers agree on the new base, so the only thing left to refuse the reuse is the comparison with the
+		// base the event said: removing it lets this case through (the review of a retargeted PR is not reusable).
 		[
 			"the PR now targets another base than the event said",
-			{ [pullLookup]: pullBody({ ...PULL, baseRef: "release/1.0" }) },
+			{
+				[pullLookup]: pullBody({ ...PULL, baseRef: "release/1.0" }),
+				[headPullsListing]: headPullsBody([{ ...OWN, baseRef: "release/1.0" }]),
+			},
 		],
 		[
 			"the PR has no head repository (deleted fork)",
@@ -477,8 +512,9 @@ describe("resolveDecision (API lookups)", () => {
 			"the annotations page is full (a blocking one could be on the next page)",
 			{
 				"check-runs/7/annotations": annotationsBody([
+					BASE,
 					recordMessage(PATCH),
-					...Array(PAGE_SIZE - 1).fill("notice"),
+					...Array(PAGE_SIZE - 2).fill("notice"),
 				]),
 			},
 		],
@@ -506,7 +542,7 @@ describe("resolveDecision (API lookups)", () => {
 				...happy(),
 				[listing]: checkRunsBody([forged]),
 				[runsListing]: runsBody(runs),
-				"check-runs/99/annotations": annotationsBody([recordMessage(PATCH)]),
+				"check-runs/99/annotations": annotationsBody([BASE, recordMessage(PATCH)]),
 			});
 			expect((await resolveDecision(ctx(api.get))).decision).toBe("full");
 			expect(api.paths.some((path) => path.includes("/annotations"))).toBe(false);
@@ -754,7 +790,7 @@ describe("the selection is the one of review-gate.yml", () => {
 				const jobs = api.jobs.filter((j) => j.run_id === runId);
 				return { total_count: jobs.length, jobs };
 			},
-			"/annotations": annotationsBody([recordMessage(PATCH)]),
+			"/annotations": annotationsBody([BASE, recordMessage(PATCH)]),
 			[`pulls/${PULL.number}`]: pullBody(),
 			"pulls?head=": headPullsBody(
 				(api.pulls ?? [apiPull(OWN)]).map((p) => ({
@@ -805,6 +841,122 @@ describe("the selection is the one of review-gate.yml", () => {
 	});
 });
 
+// TRA-529: the verdict must say which pull request and which base it was produced for. `pull_requests[]` of a run and
+// `pulls?head=` are recomputed at every read, so after a retarget they show the new base on an old run.
+describe("the review must have been produced for this PR against the default branch (TRA-529)", () => {
+	const exec = promisify(execFile);
+	const listing = `commits/${PREVIOUS}/check-runs`;
+	const runsListing = `actions/runs?head_sha=${PREVIOUS}&event=pull_request`;
+	const jobsListing = `actions/runs/${RUN_ID}/jobs`;
+	const answers = (annotations: string[], headPulls: HeadPull[] = [OWN]): Record<string, Answer> => ({
+		[`pulls/${PULL.number}`]: pullBody(),
+		"pulls?head=": headPullsBody(headPulls),
+		[listing]: checkRunsBody([run()]),
+		[runsListing]: runsBody([workflowRun()]),
+		[jobsListing]: jobsBody([job()]),
+		"check-runs/7/annotations": annotationsBody(annotations),
+	});
+	const decide = async (annotations: string[], headPulls?: HeadPull[]) =>
+		resolveDecision(ctx(fakeApi(answers(annotations, headPulls)).get));
+
+	it("runs a full review when the review ran against a stack parent that was then retargeted to main and updated", async () => {
+		// Criterion 1 of the ticket. PR 42 was ready against `feature/parent` (a weakened ai-review.yml), then retargeted
+		// to main, then update-branch pushed a merge of main. The API now says main everywhere, and the run lists nothing.
+		const annotations = [baseRecordMessage(PULL.number, "feature/parent"), recordMessage(PATCH)];
+		// The selection of TRA-526 alone still retains that run: this is the gap.
+		expect(
+			latestReview(PREVIOUS, {
+				checkRuns: [run()],
+				workflowRuns: [workflowRun()],
+				jobs: [job()],
+				pullRequest: PULL,
+				headPulls: [OWN],
+			}),
+		).not.toBeNull();
+		const result = await decide(annotations);
+		expect(result.decision).toBe("full");
+		expect(result.reason).toMatch(/did not record this pull request against the default branch/);
+		// Control: the same review, had it been made against main, is reused.
+		expect((await decide([BASE, recordMessage(PATCH)])).decision).toBe("reuse");
+	});
+
+	it("runs a full review when the review is the one of a closed PR of the same branch left on another sha", async () => {
+		// The path of the nit of TRA-526: B (same branch, base `evil`) got a genuine success on this sha, then moved to
+		// another one and was closed. `pulls?head=` ignores it (older sha), so the selection retains its run; only the
+		// PR number of the record tells it apart.
+		const closedB: HeadPull = { number: 77, baseRef: "evil", headSha: "d".repeat(40) };
+		const ofB = [baseRecordMessage(closedB.number, "evil"), recordMessage(PATCH)];
+		expect((await decide(ofB, [closedB, OWN])).decision).toBe("full");
+		// Even a B against main: the record names the PR, and it is not this one.
+		const ofBOnMain = [baseRecordMessage(closedB.number, "main"), recordMessage(PATCH)];
+		expect((await decide(ofBOnMain, [closedB, OWN])).decision).toBe("full");
+		expect((await decide([BASE, recordMessage(PATCH)], [closedB, OWN])).decision).toBe("reuse");
+	});
+
+	it("runs a full review for a review from before TRA-529, which recorded no base", async () => {
+		expect((await decide([recordMessage(PATCH)])).decision).toBe("full");
+	});
+
+	const cases: [string, string[], number, string, boolean][] = [
+		["the exact record", [BASE], 42, "main", true],
+		["the record twice", [BASE, BASE], 42, "main", true],
+		["the record among other notices", ["notice", recordMessage(PATCH), BASE], 42, "main", true],
+		["no record", [], 42, "main", false],
+		["another PR", [baseRecordMessage(43, "main")], 42, "main", false],
+		["another base", [baseRecordMessage(42, "release/1.0")], 42, "main", false],
+		["two different records", [BASE, baseRecordMessage(42, "release/1.0")], 42, "main", false],
+		["the record and one of another PR", [BASE, baseRecordMessage(43, "main")], 42, "main", false],
+		["another version next to the v1", [BASE, "review-base v2 42 main"], 42, "main", false],
+		["only another version", ["review-base v2 42 main"], 42, "main", false],
+		["a leading zero", ["review-base v1 042 main"], 42, "main", false],
+		["extra spaces", ["review-base v1 42  main"], 42, "main", false],
+		["a trailing space", ["review-base v1 42 main "], 42, "main", false],
+		["a prefix of a longer base", ["review-base v1 42 main2"], 42, "main", false],
+		[
+			"the base of the record is a prefix of the default branch",
+			["review-base v1 42 mai"],
+			42,
+			"main",
+			false,
+		],
+		["no default branch", [baseRecordMessage(42, "")], 42, "", false],
+	];
+	it.each(cases)("hasBaseRecord: %s", (_label, messages, pullNumber, defaultBranch, expected) => {
+		expect(hasBaseRecord(messages, pullNumber, defaultBranch)).toBe(expected);
+	});
+
+	// The gate applies the same rule with the `validate_base` jq program: both must agree message by message.
+	const validateBase = ((): string | null => {
+		const lines = readFileSync(".github/workflows/review-gate.yml", "utf8")
+			.replaceAll("\r\n", "\n")
+			.split("\n");
+		const start = lines.findIndex((line) => line.includes("validate_base=$(cat <<'JQ'"));
+		if (start === -1) return null;
+		const end = lines.findIndex((line, index) => index > start && line.trim() === "JQ");
+		return lines.slice(start + 1, end).join("\n");
+	})();
+	it.runIf(validateBase !== null)(
+		"agrees with the validate_base program of the gate on every case",
+		async () => {
+			const scratch = mkdtempSync(join(tmpdir(), "review-reuse-base-"));
+			try {
+				for (const [label, messages, number, defaultBranch, expected] of cases) {
+					const notes = join(scratch, "notes.json");
+					writeFileSync(notes, messages.map((message) => JSON.stringify({ message })).join("\n"));
+					const pr = { number, baseRef: defaultBranch, defaultBranch };
+					const { stdout } = await exec("jq", [
+						...["-nr", "--slurpfile", "notes", notes, "--argjson", "pr", JSON.stringify(pr)],
+						validateBase as string,
+					]);
+					expect(stdout.trim() === "true", label).toBe(expected);
+				}
+			} finally {
+				rmSync(scratch, { recursive: true, force: true });
+			}
+		},
+	);
+});
+
 describe("review-reuse.ts as the workflow runs it", () => {
 	const exec = promisify(execFile);
 
@@ -849,7 +1001,7 @@ describe("review-reuse.ts as the workflow runs it", () => {
 		const answer = (url: string) => {
 			if (url.includes("/pulls?head=")) return headPullsBody([OWN]);
 			if (url.includes(`/pulls/${PULL.number}`)) return pullBody();
-			if (url.includes("/annotations")) return annotationsBody([recordMessage(PATCH)]);
+			if (url.includes("/annotations")) return annotationsBody([BASE, recordMessage(PATCH)]);
 			if (url.includes("/jobs")) return jobsBody([job()]);
 			if (url.includes("/actions/runs")) return runsBody([workflowRun()]);
 			return checkRunsBody([run()]);
@@ -1041,5 +1193,77 @@ describe("ai-review.yml reuse wiring (TRA-510)", () => {
 			}
 			expect(body.join("\n"), `run script at line ${i + 1}`).not.toContain(expr("").slice(0, 3));
 		});
+	});
+});
+
+// TRA-529: the first step of the job writes the record every conclusion of the review carries.
+describe("ai-review.yml records the pull request and the base of the review (TRA-529)", () => {
+	const exec = promisify(execFile);
+	const name = "- name: Record the pull request and the base of this review";
+	const step = stepBlock(name);
+
+	/** The `run: |` script of that step, unindented, from the file as written (comments kept). */
+	const script = (): string => {
+		const lines = readFileSync(".github/workflows/ai-review.yml", "utf8")
+			.replaceAll("\r\n", "\n")
+			.split("\n");
+		const start = lines.findIndex((line) => line.trim() === name);
+		const runAt = lines.findIndex((line, index) => index > start && line.trim() === "run: |");
+		const indent = (lines[runAt]?.length ?? 0) - (lines[runAt]?.trimStart().length ?? 0) + 2;
+		const body: string[] = [];
+		for (const line of lines.slice(runAt + 1)) {
+			if (line.trim() !== "" && line.length - line.trimStart().length < indent) break;
+			body.push(line.slice(indent));
+		}
+		return body.join("\n");
+	};
+
+	it("is the first thing the job does after isolating HOME, unconditionally, so every conclusion and every reuse has it", () => {
+		expect(step).not.toMatch(/\bif:/);
+		expect(step).not.toContain("continue-on-error");
+		const at = (marker: string) => workflowCode.indexOf(marker);
+		expect(at("- name: Isolate HOME")).toBeLessThan(at(name));
+		expect(at(name)).toBeLessThan(at("uses: actions/checkout@v6"));
+		expect(at(name)).toBeLessThan(at("- name: Decide whether"));
+	});
+
+	it("takes the pull request and the base from the event, through env, and writes the notice the gate and reuse read", () => {
+		expect(step).toContain(`PR_NUMBER: ${expr("github.event.pull_request.number")}`);
+		expect(step).toContain(`BASE_REF: ${expr("github.event.pull_request.base.ref")}`);
+		expect(step).toContain(`echo "::notice::${baseRecordMessage("$PR_NUMBER", "$BASE_REF")}"`);
+		// Nothing but the event feeds it: no API call, no `pull_requests[]`, no checkout.
+		expect(step).not.toMatch(/gh |curl|git |pull_requests/);
+	});
+
+	const record = async (prNumber: string, baseRef: string) => {
+		const { stdout } = await exec("bash", ["-c", script()], {
+			env: { PATH: process.env.PATH ?? "", PR_NUMBER: prNumber, BASE_REF: baseRef },
+		});
+		return stdout;
+	};
+
+	it.each([
+		["42", "main"],
+		["7", "release/1.0"],
+		["1234", "feature/a_b-c.d"],
+	])("writes the record of PR %s against %s", async (prNumber, baseRef) => {
+		expect(await record(prNumber, baseRef)).toBe(`::notice::${baseRecordMessage(prNumber, baseRef)}\n`);
+	});
+
+	// A `%` is decoded by the runner into a newline or a carriage return inside a workflow command: the record would
+	// be split. Anything outside the plain charset leaves no record (and a warning); the review itself still runs.
+	it.each([
+		["42", "main%0Areview-base v1 42 main"],
+		["42", "a b"],
+		["42", "weirdé"],
+		["42", ""],
+		["042", "main"],
+		["0", "main"],
+		["", "main"],
+		["4 2", "main"],
+	])("writes no record for PR %j against %j, and does not fail the job", async (prNumber, baseRef) => {
+		const out = await record(prNumber, baseRef);
+		expect(out).not.toContain("::notice::");
+		expect(out).toContain("::warning::review-base non enregistré");
 	});
 });

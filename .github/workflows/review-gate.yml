@@ -98,8 +98,13 @@ jobs:
           # `$pulls`, the pull requests (any state) of this head branch that sit on this sha: when one of them targets
           # another base, two runs cannot be told apart, and when this PR is not in the list it is not established.
           # A PR of the same branch name left on an older sha (closed long ago, or a stack parent) says nothing about
-          # this sha and does not count. Every doubt is `missing`. Same rule as `belongsToPullRequest` in
-          # scripts/ci/review-reuse.ts.
+          # this sha and does not count. Every doubt is `missing`. This is the same shape as `belongsToPullRequest` in
+          # scripts/ci/review-reuse.ts, not the same rule: reuse is stricter on purpose (it also counts the PRs on the
+          # PR's current head), so it never reuses a verdict that this gate would refuse.
+          # TRA-529 (2026-10-24): `pull_requests[]` and `$pulls` are recomputed at every read, so the base they show is
+          # the CURRENT one, not the one the run was made against, and `$pulls` ignores a PR B closed on another sha
+          # that produced a genuine run on this one. Neither can carry that. That is the job of `validate_base` below,
+          # applied to the selected check-run: a run counts only if it recorded THIS PR against the default branch.
           select_review=$(cat <<'JQ'
           [$pulls[] | select(.number == $pr.number or .head_sha == $sha)] as $heads
           | ($heads | any(.[]; .number == $pr.number) and all(.[]; .base_ref == $pr.baseRef)) as $unambiguous
@@ -119,6 +124,21 @@ jobs:
           | sort_by(.started_at) | last // {}
           | (.conclusion // "missing") as $conclusion
           | [(.id // 0), (if $conclusion | IN("success", "failure", "neutral") then $conclusion else "missing" end)] | @tsv
+          JQ
+          )
+          # jq program of the base check (tested as is by test/review-gate-workflow.test.ts). TRA-529: the `review` job of
+          # ai-review.yml writes `review-base v1 <pr number> <base ref>` from the event of its run (first step, so every
+          # conclusion has it). The selected check-run counts only if it carries exactly that record for THIS pull
+          # request, and the base is the default branch and still the PR's base. No record (a run from before TRA-529,
+          # or a base ref the workflow refused to write), another PR, another base or several different records: false,
+          # which the job turns into `missing`. Compared message to message, nothing parsed; the same rule as
+          # `hasBaseRecord` in scripts/ci/review-reuse.ts. A record is not tamper-proof (a workflow step of the PR can
+          # write notices as the same app), like the patch-id record: it stops the honest cases, which is what the
+          # selection above could not see.
+          validate_base=$(cat <<'JQ'
+          [$notes[].message | strings | select(startswith("review-base "))] | unique as $records
+          | ($pr.defaultBranch | length > 0) and $pr.baseRef == $pr.defaultBranch
+            and $records == ["review-base v1 \($pr.number) \($pr.baseRef)"]
           JQ
           )
           # jq program of the `codex-*` status selection (tested as is by test/review-gate-workflow.test.ts).
@@ -166,15 +186,32 @@ jobs:
                 --jq '.jobs[] | {id, name, run_id}' >> "$api/jobs.json"
             done
             pr=$(jq -nc --argjson number "$PR_NUMBER" --arg baseRef "$BASE_REF" --arg headRef "$HEAD_REF" \
-              --arg headRepo "$HEAD_REPO" '{number: $number, baseRef: $baseRef, headRef: $headRef, headRepo: $headRepo}')
+              --arg headRepo "$HEAD_REPO" --arg defaultBranch "$DEFAULT_BRANCH" \
+              '{number: $number, baseRef: $baseRef, headRef: $headRef, headRepo: $headRepo, defaultBranch: $defaultBranch}')
             claude_info=$(jq -nr --slurpfile checks "$api/checks.json" --slurpfile runs "$api/runs.json" \
               --slurpfile jobs "$api/jobs.json" --slurpfile pulls "$api/pulls.json" --argjson pr "$pr" \
               --arg sha "$SHA" --arg path "$ai_review_path" "$select_review")
             IFS=$'\t' read -r claude_id claude <<< "$claude_info"
+            # TRA-529: the annotations of the selected check-run, all pages, through a file like the other lists. They
+            # say which pull request and which base the review ran against (`validate_base`) and, for a failure,
+            # whether it blocks. A failing call stops the job (set -e): fail closed. A review that did not record this
+            # PR against the default branch is no review: `missing`, as if the run did not exist, and the next
+            # `synchronize` or `reopened` of the PR (a re-run of the old run would use the old workflow) produces one.
+            : > "$api/annotations.json"
+            if [ "$claude_id" != "0" ] && [ "$claude" != "missing" ]; then
+              gh api --paginate "repos/$REPOSITORY/check-runs/$claude_id/annotations?per_page=100" \
+                --jq '.[] | {message}' > "$api/annotations.json"
+              base_ok=$(jq -nr --slurpfile notes "$api/annotations.json" --argjson pr "$pr" "$validate_base")
+              if [ "$base_ok" != "true" ]; then
+                echo "::warning::La review (check-run $claude_id) n'a pas enregistré cette PR contre la branche par défaut (review-base v1 $PR_NUMBER $BASE_REF) : elle ne compte pas. Pousser un commit, ou fermer puis rouvrir la PR, relance ai-review."
+                claude=missing
+                claude_id=0
+              fi
+            fi
             claude_blocking=false
-            if [ "$claude" = "failure" ] && [ "$claude_id" != "0" ]; then
-              claude_blocking=$(gh api "repos/$REPOSITORY/check-runs/$claude_id/annotations?per_page=100" \
-                --jq 'any(.[]; .message == "Findings bloquants — voir les commentaires inline.")')
+            if [ "$claude" = "failure" ]; then
+              claude_blocking=$(jq -nr --slurpfile notes "$api/annotations.json" \
+                'any($notes[]; .message == "Findings bloquants — voir les commentaires inline.")')
             fi
             # TRA-527: the statuses of the head, all pages (the combined `/status` endpoint hides the author of the
             # status it keeps and caps at 100), through a file like the other lists. A failing call stops the job.
