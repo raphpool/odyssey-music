@@ -79,6 +79,13 @@ final class StreamingBarTests: XCTestCase {
 		XCTAssertEqual(Track1Tokens.sizeControlMedium, 44, accuracy: 0.001)
 	}
 
+	// MARK: - Gap above the tab bar
+
+	func testTheBarLeaves8PointsAboveTheTabBarAnd20AboveItsPill() {
+		XCTAssertEqual(StreamingBar.bottomGap, 8)
+		XCTAssertEqual(StreamingBar.bottomGap + Track1TabBarMetrics.topPadding, 20)
+	}
+
 	// MARK: - Brand marks
 
 	func testEveryProviderHasItsBrandMarkInTheCatalog() {

@@ -47,11 +47,17 @@ struct NodePageView: View {
 		self.onSelectCrumb = onSelectCrumb
 	}
 
-	/// Silver off the root (Figma 3.2); on the root a project or track with a tint takes it, the rest is Ember.
-	static func glowTone(isRoot: Bool, type: NodeType, tint: Color?) -> AmbientGlow.Tone {
-		guard isRoot else { return .silver }
-		if type == .project || type == .track, let tint { return .tinted(tint) }
-		return .ember
+	/// The tint of the page and of its card: the cover's palette when there is one, else three equal bands of the
+	/// node-type colour (D3), which `CoverTintTone` darkens like any cover. It does not depend on the root.
+	static func pageTint(coverTint: CoverTint?, type: NodeType) -> CoverTint {
+		if let coverTint { return coverTint }
+		// The conversions cannot fail for a token colour; if one did, fall back on `background.elevated`
+		// (0x1A110E), written out so that the last step cannot fail either.
+		let rgb =
+			LinearRGB(Track1Tokens.colorNode(type)) ?? LinearRGB(Track1Tokens.colorBackgroundElevated)
+			?? LinearRGB(red: 26 / 255, green: 17 / 255, blue: 14 / 255)
+		let bands = Array(repeating: rgb, count: CoverTintTone.stopBrightness.count)
+		return CoverTintTone.tint(bands: bands) ?? CoverTint(stops: bands, shadow: rgb)
 	}
 
 	static func heroImage(for state: NodeHeroModel.State) -> Track1Artwork.State {
@@ -78,16 +84,17 @@ struct NodePageView: View {
 
 	var body: some View {
 		let tint = Self.heroTint(for: hero.state)
+		let pageTint = Self.pageTint(coverTint: Self.coverTint(for: hero.state), type: node.type)
 		let actions = NodePageListening.actions(for: node.type, state: listening)
 		VStack(spacing: 0) {
 			TopBar(topBar, onSelect: onSelectCrumb)
 				.padding(.horizontal, Track1Tokens.spacing24)
-			ScrollView { content(tint: tint) }
+			ScrollView { content(tint: tint, pageTint: pageTint) }
 		}
-		// Glow first, opaque base last: a later `.background` goes behind the earlier ones.
-		.background(alignment: .top) {
-			AmbientGlow(tone: Self.glowTone(isRoot: isRoot, type: node.type, tint: tint))
-				.ignoresSafeArea(edges: .top)
+		// The tint first, opaque base last: a later `.background` goes behind the earlier ones. The gradient fills
+		// the frame of the top bar and the scroll view, not the content: it stays put while the page scrolls (D4).
+		.background {
+			CoverTintGradient(tint: pageTint, endpoint: Track1Tokens.colorBackgroundBase).ignoresSafeArea()
 		}
 		.background { Track1Tokens.colorBackgroundBase.ignoresSafeArea() }
 		.safeAreaInset(edge: .bottom, spacing: actions.isEmpty ? 0 : Track1Tokens.spacing8) {
@@ -96,20 +103,22 @@ struct NodePageView: View {
 					if let notice = Self.listeningNotice(for: listeningFailure) { notice }
 					StreamingBar(actions: actions, isOpening: isOpeningListening, open: onOpenListening)
 				}
+				.padding(.bottom, StreamingBar.bottomGap)
 			}
 		}
 		.task { await hero.load() }
 	}
 
-	private func content(tint: Color?) -> some View {
+	private func content(tint: Color?, pageTint: CoverTint) -> some View {
 		let header = NodePageHeader(node: node)
 		let facts = header.facts.map { (label: $0.label, value: $0.value) }
 		// The order of the children is fixed by the contract of the card and mirrored by `cardChildren(for:)`.
-		return NodeContentCard {
+		return NodeContentCard(tint: pageTint) {
 			NodeTypeBadge(type: node.type)
 			NodeHero(
 				kind: NodeHeroKind(node.type), image: Self.heroImage(for: hero.state), imageStyle: hero.style,
 				discTint: tint,
+				halo: NodeHeroStyle.appliesHalo(to: NodeHeroKind(node.type)) ? Color(pageTint.shadow) : nil,
 				accessibilityLabel: header.title
 			)
 			.frame(maxWidth: .infinity)

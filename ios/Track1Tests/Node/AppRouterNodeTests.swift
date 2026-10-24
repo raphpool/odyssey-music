@@ -142,4 +142,12 @@ final class AppRouterNodeTests: XCTestCase {
 		XCTAssertEqual(
 			router.breadcrumb(for: .today, rootTitle: nil), [TopBarCrumb(index: 0, title: "trip-hop")])
 	}
+
+	/// The tab bar finds its icon and its UI identifier on the tab (TRA-671); the identifiers are the ones the
+	/// UI tests look the buttons up by.
+	func testEachTabNamesItsBarIconAndItsUIIdentifier() {
+		XCTAssertEqual(AppTab.allCases.map(\.icon), [.tabToday, .tabGenres, .tabSearch])
+		XCTAssertEqual(AppTab.allCases.map(\.accessibilityIdentifier), ["tab-today", "tab-genres", "tab-search"])
+		XCTAssertEqual(AppTab.allCases.map(\.title), ["Aujourd’hui", "Genres", "Recherche"])
+	}
 }

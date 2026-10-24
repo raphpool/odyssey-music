@@ -103,6 +103,10 @@ private struct StreamingButtonBody: View {
 struct StreamingBar: View {
 	static let identifier = "streaming-bar"
 
+	/// Room the page leaves under the bar, above the tab bar: 8 pt (Figma `282:888` to `282:889`). With the
+	/// 12 pt the tab bar pads above its pill, the streaming bar sits 20 pt above the pill.
+	static let bottomGap: CGFloat = Track1Tokens.spacing8
+
 	private let actions: [ListeningAction]
 	private let isOpening: Bool
 	private let open: (ListeningAction) -> Void
