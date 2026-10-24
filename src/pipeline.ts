@@ -33,6 +33,7 @@ import {
 } from "./discography-policy.js";
 import { dedupeNodeListEdges } from "./edge-dedupe.js";
 import { normalizeEditorialText, unescapeQuotes } from "./editorial-text.js";
+import { UncreditedWorkError } from "./errors.js";
 import { type GenreResolver, loadGenreResolver } from "./genre-identity.js";
 import type { GenreRegistry } from "./genre-registry.js";
 import {
@@ -192,7 +193,14 @@ export interface PipelineInput {
 	// allowed host; a new valid image replaces it. Only applies together with `slug`, when the result
 	// lands on that very slug. Unset for a first materialization.
 	existingImage?: { url: string; source?: ImageSource };
+	// TRA-485: slug of the cached node this run refreshes, set only for a node that has no credit itself. A
+	// project or track needs a credited artist when it is created; a legacy one still on disk without any
+	// (counted by the `empty-artists` audit metric) must stay refreshable, so the check is waived when the
+	// result lands on exactly this slug. Unset = creation, or the refresh of a credited node: the strict default.
+	refreshedSlug?: Slug;
 }
+
+export { UncreditedWorkError };
 
 /** The image a cached node carries, in the shape `PipelineInput.existingImage` takes (TRA-549). */
 export function existingImageOf(node: NodePayload): PipelineInput["existingImage"] {
@@ -778,6 +786,11 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	// genre edges here once covers every producer, present and future (decision d'archi 7,
 	// docs/plans/qid-genre-identity.md).
 	await deps.genreRegistry?.canonicalizeNodeEdges(node);
+	// TRA-485: refuse to create a work nobody is credited on. Here, once the credits and the slug are final and
+	// before the image and similar-artist steps spend third-party requests on a node that will not exist.
+	// It is the pipeline, not the node schema, that holds this: the schema must keep accepting the legacy works
+	// without a credit, which migrations and inverse emissions rewrite through it.
+	assertCreditedWork(node as Record<string, unknown>, input.refreshedSlug);
 	// After the genre edges are canonical (a derived cover follows edges by slug), before validation.
 	// The kept image belongs to the node being refreshed: if the enrichment moved the result onto another
 	// slug (a different work or entity), it is not that node's image.
@@ -801,6 +814,18 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 		...(requestedSlug ? { requestedSlug } : {}),
 		metrics: buildMetrics(t0, research, draft),
 	};
+}
+
+/**
+ * TRA-485: throws UncreditedWorkError for a project or track whose `artists` list is empty, unless it is the
+ * refresh (`refreshedSlug`) of a node that already exists under that very slug. A value that is not an array
+ * is left to validateNode, which rejects it with the schema's own message.
+ */
+function assertCreditedWork(node: Record<string, unknown>, refreshedSlug: Slug | undefined): void {
+	if (node.type !== "project" && node.type !== "track") return;
+	if (!Array.isArray(node.artists) || node.artists.length > 0) return;
+	if (refreshedSlug !== undefined && node.slug === refreshedSlug) return;
+	throw new UncreditedWorkError(String(node.slug), node.type);
 }
 
 // Upper bound on the similar-artists step: one ListenBrainz request (5 s) plus its rate-limit slot.

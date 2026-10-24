@@ -134,6 +134,8 @@ export interface ProjectNode extends BaseNode {
 	vocals?: string;
 	samples_notes?: string;
 	inspirations?: string;
+	// TRA-485 (2026-10-24): never empty on creation -- runPipeline refuses a work nobody is credited on. The schema
+	// still accepts [] because older works have it; the `empty-artists` audit metric counts that debt.
 	artists: EdgeRef[];
 	label?: EdgeRef;
 	genres: EdgeRef[];
@@ -154,6 +156,8 @@ export interface TrackNode extends BaseNode {
 	vocals?: string;
 	samples_notes?: string;
 	inspirations?: string;
+	// TRA-485 (2026-10-24): never empty on creation -- runPipeline refuses a work nobody is credited on. The schema
+	// still accepts [] because older works have it; the `empty-artists` audit metric counts that debt.
 	artists: EdgeRef[];
 	project?: EdgeRef;
 	label?: EdgeRef;
