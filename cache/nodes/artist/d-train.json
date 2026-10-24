@@ -63,14 +63,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:keep-on",
-      "type": "project",
-      "name": "Keep On (mikeandtess edit 4 mix)",
-      "mbid": "5ad845a3-b9f8-45b7-8a7c-b71fa07d9e0a",
-      "year": "2023",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:when-you-feel-what-love-has",
       "type": "project",
       "name": "When You Feel What Love Has",
@@ -119,14 +111,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:music",
-      "type": "project",
-      "name": "Music",
-      "mbid": "3e839c63-2f15-40c0-9ec1-caba4f16b6e9",
-      "year": "1983",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:you-re-the-one-for-me",
       "type": "project",
       "name": "You’re the One for Me",
@@ -148,14 +132,6 @@
       "name": "Keep On",
       "mbid": "63344a13-1892-4748-b6e8-cc30439208f9",
       "year": "1982",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:you-re-the-one-for-me",
-      "type": "project",
-      "name": "You’re the One for Me",
-      "mbid": "a52e8936-9fba-436a-bf4d-edd35c670744",
-      "year": "1981",
       "releaseType": "single"
     }
   ],

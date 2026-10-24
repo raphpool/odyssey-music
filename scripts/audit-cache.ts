@@ -183,14 +183,20 @@ function hasText(v: unknown): boolean {
 }
 
 /**
- * A top-level string holding a backslash + quote that `unescapeQuotes` would turn into a quote (TRA-577):
- * the same double escaping as the `\n` of `literal-newlines`, which does not see it. Asking the normalizer
- * keeps the measure and the fix in step: a `\"` it keeps on purpose (escaped backslash, code block) is not
- * counted, so 0 stays reachable. Like `literal-newlines`, it reads the top-level strings of the node: the
- * titles inside `citations` are not looked at.
+ * A top-level string, or the title of a citation, holding a backslash + quote that `unescapeQuotes` would
+ * turn into a quote (TRA-577, TRA-687): the same double escaping as the `\n` of `literal-newlines`, which does
+ * not see it. Asking the normalizer keeps the measure and the fix in step: a `\"` it keeps on purpose
+ * (escaped backslash, code block) is not counted, so 0 stays reachable. Like `literal-newlines`, it reads the
+ * top-level strings of the node; the citation titles are the one nested place it looks at (2026-10: two
+ * nodes carried a `\"` there and no top-level field did). Other nested strings are not looked at.
  */
 function hasLiteralEscapedQuote(node: RawNode): boolean {
-	return Object.values(node).some((v) => typeof v === "string" && unescapeQuotes(v) !== v);
+	const escaped = (v: unknown): boolean => typeof v === "string" && unescapeQuotes(v) !== v;
+	if (Object.values(node).some(escaped)) return true;
+	return (
+		Array.isArray(node.citations) &&
+		node.citations.some((c: unknown) => c !== null && typeof c === "object" && escaped((c as RawNode).title))
+	);
 }
 
 class Collector {
@@ -229,6 +235,30 @@ class Collector {
 		const list = this.samples[sampleKey] ?? [];
 		this.samples[sampleKey] = list;
 		if (list.length < SAMPLE_LIMIT && !list.includes(slug)) list.push(slug);
+	}
+}
+
+/**
+ * `duplicate-list-edges` (TRA-557): the entries of a list edge field that repeat the slug of an earlier entry of
+ * the same list, i.e. a page the card prints twice. Counted per extra entry: a slug listed three times adds 2.
+ * The ceiling is 0 since `2026-10-24-dedupe-list-edges`; the pipeline keeps it there (src/edge-dedupe.ts). The
+ * cases (`node field slug xN`) name each repeated slug so a regression can be read without a re-run.
+ */
+function measureDuplicateListEdges(nodes: ReadonlyMap<string, RawNode>, c: Collector): void {
+	c.scalar("duplicate-list-edges");
+	for (const [slug, node] of nodes) {
+		const type = nodeType(slug);
+		if (!type) continue;
+		for (const [field, spec] of Object.entries(EDGE_FIELDS_BY_TYPE[type])) {
+			if (spec.cardinality !== "list") continue;
+			const counts = new Map<string, number>();
+			for (const edge of edgesOf(node, field)) counts.set(edge.slug, (counts.get(edge.slug) ?? 0) + 1);
+			for (const [edgeSlug, n] of counts) {
+				if (n < 2) continue;
+				for (let i = 1; i < n; i++) c.hit("duplicate-list-edges", slug);
+				c.addCase("duplicate-list-edges", `${slug} ${field} ${edgeSlug} x${n}`);
+			}
+		}
 	}
 }
 
@@ -569,6 +599,7 @@ export function auditNodes(
 	auditBidirectionalCredits(nodes, c); // TRA-570
 	homonymTracklistLinks(nodes, c);
 	measureUncorroboratedAliases(nodes, c);
+	measureDuplicateListEdges(nodes, c); // TRA-557
 
 	return {
 		generatedAt: new Date().toISOString(),

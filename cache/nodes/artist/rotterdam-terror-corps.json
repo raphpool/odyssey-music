@@ -137,14 +137,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:special-series-first-dimension",
-      "type": "project",
-      "name": "Special Series - First Dimension",
-      "mbid": "fceb0484-67e2-420b-8b0b-2a72fa8312bc",
-      "year": "2000",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:constrictor",
       "type": "project",
       "name": "Constrictor",
@@ -173,14 +165,6 @@
       "type": "project",
       "name": "Megarave",
       "mbid": "938122cf-2457-4046-8c0a-2471dbcecd3f",
-      "year": "1997",
-      "releaseType": "ep"
-    },
-    {
-      "slug": "project:sick-and-twisted",
-      "type": "project",
-      "name": "Sick & Twisted",
-      "mbid": "50b47ed6-4294-48d3-a2a6-11f294b4febe",
       "year": "1997",
       "releaseType": "ep"
     },

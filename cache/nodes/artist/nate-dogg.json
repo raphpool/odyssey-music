@@ -52,14 +52,6 @@
   ],
   "discography": [
     {
-      "slug": "project:i-got-love",
-      "type": "project",
-      "name": "I Got Love",
-      "mbid": "dfba83aa-ea1d-4dd2-969b-252e18d139ae",
-      "year": "2025",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:liquor-store",
       "type": "project",
       "name": "Liquor Store",
@@ -81,14 +73,6 @@
       "name": "6 in the Morning",
       "mbid": "05bb6d21-fff9-4aa8-b597-2c3d96711f31",
       "year": "2024",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:i-got-love",
-      "type": "project",
-      "name": "I Got Love",
-      "mbid": "86a9fc2d-2f15-4584-ac42-becc398a869f",
-      "year": "2018",
       "releaseType": "single"
     },
     {
@@ -385,13 +369,6 @@
       "name": "Regulate",
       "mbid": "44a050fd-a335-3297-bdd2-8e2222805ef9",
       "year": "1994",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:gangsta-walk",
-      "type": "project",
-      "name": "Gangsta Walk",
-      "mbid": "9c60390b-6907-45a6-9f71-da575dd5c91f",
       "releaseType": "single"
     }
   ],

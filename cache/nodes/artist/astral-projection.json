@@ -73,22 +73,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:mahadeva",
-      "type": "project",
-      "name": "Mahadeva (Save the Robot remix)",
-      "mbid": "e30c30c8-d5d7-4f68-9798-c642f8672c59",
-      "year": "2025",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:mahadeva",
-      "type": "project",
-      "name": "Mahadeva (Faders remix)",
-      "mbid": "d7c32314-4537-4d2f-839a-7412cd14418d",
-      "year": "2023",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:aban-don-and-sfx-the-lost-tapes-album-1988-1993",
       "type": "project",
       "name": "Aban Don & SFX - \"The Lost Tapes Album 1988 - 1993\"",
@@ -129,30 +113,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:power-gen",
-      "type": "project",
-      "name": "Power Gen (Kundalini remix)",
-      "mbid": "dfecee9e-a4c5-42a0-a0d0-e7c480f51415",
-      "year": "2019",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:power-gen",
-      "type": "project",
-      "name": "Power Gen (Kundalini remix)",
-      "mbid": "e2068a6a-08d7-4d3a-a5dc-c198d86e1e7b",
-      "year": "2019",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:dancing-galaxy",
-      "type": "project",
-      "name": "Dancing Galaxy (Galactic Explorers Remix)",
-      "mbid": "642e1b57-3ad1-453b-bcb6-7a48fafa8045",
-      "year": "2018",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:utopia-remix",
       "type": "project",
       "name": "Utopia Remix",
@@ -166,14 +126,6 @@
       "name": "Y-Salem",
       "mbid": "4124c2ce-dc75-4fb1-bfcf-382d2a0b436e",
       "year": "2017",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:one",
-      "type": "project",
-      "name": "One (Cybernetic Worlock remix)",
-      "mbid": "66c6d0a4-b1e0-4be5-8aa2-2c3772e50b8d",
-      "year": "2016",
       "releaseType": "single"
     },
     {
@@ -373,14 +325,6 @@
       "type": "project",
       "name": "Power Gen",
       "mbid": "b50fbaa7-64bc-4c8f-bb2a-84b2ec7edd24",
-      "year": "1995",
-      "releaseType": "ep"
-    },
-    {
-      "slug": "project:power-gen",
-      "type": "project",
-      "name": "Power Gen",
-      "mbid": "c319ace6-f9b1-4a0d-ac29-acf2ecb8b784",
       "year": "1995",
       "releaseType": "ep"
     }

@@ -150,14 +150,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:lsd",
-      "type": "project",
-      "name": "LSD (live mix)",
-      "mbid": "0ce7addc-cfcc-3c46-ba34-804b64a717a9",
-      "year": "1995",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:alpha-centauri-lsd",
       "type": "project",
       "name": "Alpha Centauri / LSD",

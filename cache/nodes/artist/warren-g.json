@@ -191,14 +191,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:i-want-it-all",
-      "type": "project",
-      "name": "I Want It All",
-      "mbid": "5f16cfce-3ecb-3a8f-a7fe-77c6212dd766",
-      "year": "1999",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:nobody-does-it-better",
       "type": "project",
       "name": "Nobody Does It Better",
