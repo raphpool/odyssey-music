@@ -30,6 +30,27 @@ jobs:
         run: |
           mkdir -p "$RUNNER_TEMP/home"
           echo "HOME=$RUNNER_TEMP/home" >> "$GITHUB_ENV"
+
+      # TRA-529 (2026-10-24): the verdict carries the pull request and the base it was produced against. review-gate.yml
+      # and review-reuse.ts accept it only for this PR, against the default branch. Neither the run (`pull_requests[]`
+      # is recomputed at every read, so a retargeted PR shows its new base on an old run) nor the check-run keeps the
+      # base the review ran against; the event of the run does, and it is written here, before anything else, so that
+      # every conclusion of this job (success, a blocking failure, a reuse) has it. Same standing as the patch-id
+      # below: a notice any workflow step of the PR could write too, so an honest record, not a proof.
+      # Fail closed: a base ref outside the plain charset (a `%` would be decoded by the runner into a newline) leaves
+      # no record, which the gate reads as no review. The review itself still runs.
+      - name: Record the pull request and the base of this review
+        shell: bash
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          BASE_REF: ${{ github.event.pull_request.base.ref }}
+        run: |
+          export LC_ALL=C
+          if [[ "$PR_NUMBER" =~ ^[1-9][0-9]*$ && "$BASE_REF" =~ ^[A-Za-z0-9._/-]+$ ]]; then
+            echo "::notice::review-base v1 $PR_NUMBER $BASE_REF"
+          else
+            echo "::warning::review-base non enregistré (numéro de PR ou nom de base inattendu) : le gate ne comptera pas cette review."
+          fi
       - uses: actions/checkout@v6
         with: { fetch-depth: 0 }
 
@@ -41,7 +62,8 @@ jobs:
       # The patch-id travels as a notice annotation of the job's check-run. That is NOT tamper-proof: any
       # workflow step of the PR runs as the same app and could write one. So a verdict is only inherited from a
       # previous head that left `.github/` alone, on a PR targeting the default branch, through a plain
-      # "merge the default branch" commit, on a first run attempt (all checked below before the script decides).
+      # "merge the default branch" commit, on a first run attempt (all checked below before the script decides),
+      # and only if that review recorded this PR against the default branch (TRA-529, first step above).
       - name: Compute the patch-id of the PR diff
         id: patch
         continue-on-error: true
