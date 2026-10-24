@@ -504,9 +504,17 @@ echo "ok"
 		? readFileSync(`${callsLog}.migration`, "utf8")
 		: "";
 	const pendingSeenLog = `${callsLog}.pending-seen`;
+	// TRA-599: one `[migration name, ODYSSEY_SCOPED_RELEASE_SLUGS as the migration process saw it]` per line.
+	const flagLog = existsSync(`${callsLog}.flag`)
+		? readFileSync(`${callsLog}.flag`, "utf8")
+				.trim()
+				.split("\n")
+				.map((line) => JSON.parse(line) as [string, string | null])
+		: [];
 	return {
 		result,
 		calls,
+		flagLog,
 		serverRoot,
 		serverRedirectsRemote,
 		pendingSeen: existsSync(pendingSeenLog) ? readFileSync(pendingSeenLog, "utf8") : "",
@@ -1259,6 +1267,34 @@ describe("sync-genre-cache.sh -- migration channel (TRA-464)", () => {
 		});
 		expect(result.status).toBe(0);
 		expect(result.stderr).toMatch(/not yet committed/);
+	});
+
+	// TRA-599: the migrations run on a cache that is scoped and transliterated, like the server (flag 1), so a
+	// backfill that mints a slug from a name (makeSlug) yields the spelling the cache holds. No migration is
+	// the exception: the identity backfills and the scope get 1 too, asserted with the real scripts in
+	// migration-channel-identity.test.ts.
+	describe("ODYSSEY_SCOPED_RELEASE_SLUGS (TRA-599)", () => {
+		const recordFlag = (name: string) =>
+			`appendFileSync(process.env.TEST_CALLS + ".flag", JSON.stringify([${JSON.stringify(name)}, process.env.ODYSSEY_SCOPED_RELEASE_SLUGS ?? null]) + "\\n");`;
+
+		it("gives every migration the flag at 1, whatever the runner's own environment holds", () => {
+			const first = "2026-10-15-first";
+			const second = "2026-10-16-second";
+			for (const outer of [undefined, "0", "false"]) {
+				const { result, flagLog } = run({
+					migrations: {
+						[first]: fakeMigration(first, { extra: recordFlag(first) }),
+						[second]: fakeMigration(second, { extra: recordFlag(second) }),
+					},
+					...(outer === undefined ? {} : { env: { ODYSSEY_SCOPED_RELEASE_SLUGS: outer } }),
+				});
+				expect(result.status, `outer ${String(outer)}`).toBe(0);
+				expect(flagLog, `outer ${String(outer)}`).toEqual([
+					[first, "1"],
+					[second, "1"],
+				]);
+			}
+		});
 	});
 
 	it.each([
