@@ -5,6 +5,7 @@ import { isNotFoundError } from "./errors.js";
 import { loadGenreResolver } from "./genre-identity.js";
 import { createGenreRegistry, type GenreRegistry, loadRedirects } from "./genre-registry.js";
 import type { GenreSeed, GenreSeeds } from "./genre-seeds.js";
+import { createLabelRegistry, loadLabelIdentities } from "./label-registry.js";
 import { crawledListEdges } from "./node-spec.js";
 import { existingImageOf, type PipelineDeps, type PipelineInput, runPipeline } from "./pipeline.js";
 import { normalizeSlugBody } from "./slug.js";
@@ -242,8 +243,7 @@ export async function crawl(opts: CrawlOptions): Promise<FrontierCrawlResult> {
 	const cache = new NodeCache(opts.out);
 	// TRA-28: built on this crawl's own cache, not a new one, so genre canonicalization sees
 	// the same nodes this run has already written (see PipelineDeps.genreRegistry, pipeline.ts).
-	const [genreResolver, genreRedirects] = await Promise.all([loadGenreResolver(), loadRedirects()]);
-	const genreRegistry = createGenreRegistry({ cache, resolver: genreResolver, redirects: genreRedirects });
+	const genreRegistry = await buildGenreRegistry(cache);
 	const strategy: FrontierStrategy = opts.strategy ?? "hybrid";
 	const frontier = new FrontierQueue(strategy, opts.bfsHead ?? 40);
 
@@ -876,9 +876,18 @@ async function preserveLiveNeighbors(
 }
 
 async function getGenreRegistry(cache: NodeCache, injected?: GenreRegistry): Promise<GenreRegistry> {
-	if (injected) return injected;
-	const [genreResolver, genreRedirects] = await Promise.all([loadGenreResolver(), loadRedirects()]);
-	return createGenreRegistry({ cache, resolver: genreResolver, redirects: genreRedirects });
+	return injected ?? (await buildGenreRegistry(cache));
+}
+
+// The genre registry with its label side (TRA-607): redirects and proven identities, loaded once per run.
+async function buildGenreRegistry(cache: NodeCache): Promise<GenreRegistry> {
+	const [genreResolver, redirects, identities] = await Promise.all([
+		loadGenreResolver(),
+		loadRedirects(),
+		loadLabelIdentities(),
+	]);
+	const labels = createLabelRegistry({ cache, redirects, identities });
+	return createGenreRegistry({ cache, resolver: genreResolver, redirects, labels });
 }
 
 // Exported for test/crawler.test.ts (TRA-28 review, B1).

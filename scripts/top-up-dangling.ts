@@ -15,7 +15,8 @@ import { NodeCache } from "../src/cache.js";
 import type { ApiEnv } from "../src/env.js";
 import { loadEnv } from "../src/env.js";
 import { loadGenreResolver } from "../src/genre-identity.js";
-import { createGenreRegistry, loadGenreRedirects } from "../src/genre-registry.js";
+import { createGenreRegistry, loadGenreRedirects, loadRedirects } from "../src/genre-registry.js";
+import { createLabelRegistry, loadLabelIdentities } from "../src/label-registry.js";
 import { crawledListEdges } from "../src/node-spec.js";
 import { type PipelineInput, runPipeline } from "../src/pipeline.js";
 import { nodePayloadSchema } from "../src/schemas.js";
@@ -46,7 +47,18 @@ export async function topUpDangling(
 	const cache = new NodeCache(dir);
 	// TRA-28: built on this run's own cache, not a new one (see PipelineDeps.genreRegistry).
 	const [genreResolver, genreRedirects] = await Promise.all([loadGenreResolver(), loadGenreRedirects()]);
-	const genreRegistry = createGenreRegistry({ cache, resolver: genreResolver, redirects: genreRedirects });
+	// TRA-607: the label side follows the all-types redirect table; the genre side keeps its own, unchanged.
+	const labels = createLabelRegistry({
+		cache,
+		redirects: await loadRedirects(),
+		identities: await loadLabelIdentities(),
+	});
+	const genreRegistry = createGenreRegistry({
+		cache,
+		resolver: genreResolver,
+		redirects: genreRedirects,
+		labels,
+	});
 
 	// 1. Index materialized slugs and count dangling references.
 	const nodesDir = join(dir, "nodes");
