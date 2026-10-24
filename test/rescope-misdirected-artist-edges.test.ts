@@ -20,7 +20,8 @@ import { artistNode, edge, projectNode, trackNode } from "./images/helpers.js";
 // TRA-602: the rescope of artist edges that a GLOBAL redirect sends to a homonym's work. Nothing is mocked:
 // the cache is real files in a temp dir, the schema, the credit rule (src/images/reciprocity.ts) and the
 // read-side redirect resolution are the real ones. The slug flag is deliberately unset by default: the
-// migration channel runs with ODYSSEY_SCOPED_RELEASE_SLUGS=0 (TRA-599 is open).
+// migration channel used to run with ODYSSEY_SCOPED_RELEASE_SLUGS=0 (it runs with 1 since TRA-599), and the
+// canonical form must hold in both cases.
 
 let root: string;
 let cacheDir: string;
@@ -178,7 +179,7 @@ describe("rewrite to the work scoped on the artist (TRA-602)", () => {
 	});
 });
 
-describe("canonical scope, whatever the flag (TRA-599 is open)", () => {
+describe("canonical scope, whatever the flag (the channel ran with 0 before TRA-599)", () => {
 	// "Roeyksopp" spelled with a slashed o: the flag decides whether the o-slash is dropped or transliterated.
 	const SLASHED = "Røyksopp";
 	const UMLAUT = "Röyksopp";

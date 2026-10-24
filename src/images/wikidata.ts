@@ -10,7 +10,7 @@
  */
 import { z } from "zod";
 import { musicBrainzConfig } from "../config.js";
-import { fetchWikidataUrlRelMb } from "../musicbrainz.js";
+import { fetchWikidataUrlRelMb, type MbPriority } from "../musicbrainz.js";
 import { QID_PATTERN } from "../types.js";
 
 const API_URL = "https://www.wikidata.org/w/api.php";
@@ -116,14 +116,18 @@ async function fetchClaims(qids: string[], fetchImpl: typeof fetch): Promise<Map
 	return out;
 }
 
-/** Wikidata QID of an artist or label, from its MusicBrainz url-rels. */
+/**
+ * Wikidata QID of an artist or label, from its MusicBrainz url-rels. Any failure is a null QID.
+ * `options.priority` is the MusicBrainz queue priority of the lookup (TRA-579, TRA-588).
+ */
 export async function fetchWikidataQid(
 	entity: "artist" | "label",
 	mbid: string,
 	fetchImpl?: typeof fetch,
+	options: { priority?: MbPriority } = {},
 ): Promise<string | null> {
 	try {
-		return await fetchWikidataUrlRelMb(entity, mbid, fetchImpl);
+		return await fetchWikidataUrlRelMb(entity, mbid, fetchImpl, options);
 	} catch {
 		return null;
 	}

@@ -39,9 +39,9 @@
  *
  * Fix. The edge's slug becomes the version scoped on A: `makeScopedSlug(type, edge.name, A.name)`, then
  * `transliteratedSlug`, i.e. the CANONICAL (transliterated) form whatever ODYSSEY_SCOPED_RELEASE_SLUGS says.
- * The channel runs the migrations with the flag at 0 (TRA-599 is open); without the canonical form a name
- * like "Roeyksopp" with a slashed o would get a scope that the flag-on code never reads. The edge's `name`
- * and `mbid` (every other key) are kept; only `slug` changes.
+ * The channel used to run the migrations with the flag unset (TRA-599 now sets it to 1); without the
+ * canonical form, a run with the flag unset would give a name like "Roeyksopp" with a slashed o a scope that
+ * the flag-on code never reads. The edge's `name` and `mbid` (every other key) are kept; only `slug` changes.
  *   - `landmark_project` / `reference_track` pointing at the old slug move with the list entry (the rule of
  *     CREDITED_FIELDS in 2026-10-16-scope-release-slugs.ts): the pipeline requires a pick to be a member of its
  *     list compared by slug (enforceArtistChoices, TRA-470).

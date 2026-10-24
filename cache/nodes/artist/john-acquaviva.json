@@ -37,9 +37,9 @@
   ],
   "labels": [
     {
-      "slug": "label:plus-8",
+      "slug": "label:plus-8-records",
       "type": "label",
-      "name": "Plus 8"
+      "name": "Plus 8 Records"
     },
     {
       "slug": "label:definitive-recordings",
@@ -52,36 +52,36 @@
       "slug": "project:italo--john-acquaviva",
       "type": "project",
       "name": "Italo",
-      "artist": "John Acquaviva",
       "mbid": "cb74932d-cfa0-39b9-a646-7b3ac74a69db",
       "year": "2008",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "John Acquaviva"
     },
     {
       "slug": "project:bungee-ethanol--john-acquaviva",
       "type": "project",
       "name": "Bungee / Ethanol",
-      "artist": "John Acquaviva",
       "mbid": "ddfa9905-d594-4611-b4ed-25c4aec8b81d",
       "year": "2007",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "John Acquaviva"
     },
     {
       "slug": "project:satellite--john-acquaviva",
       "type": "project",
       "name": "Satellite",
-      "artist": "John Acquaviva",
       "mbid": "7b905417-6500-4dc2-835a-1e4944066d48",
       "year": "2007",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "John Acquaviva"
     },
     {
       "slug": "project:too-cool-4-skool--john-acquaviva",
       "type": "project",
       "name": "Too Cool 4 Skool",
-      "artist": "John Acquaviva",
       "mbid": "01faeee1-caad-475a-beb8-1731036fdc79",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "John Acquaviva"
     }
   ],
   "notable_tracks": [],

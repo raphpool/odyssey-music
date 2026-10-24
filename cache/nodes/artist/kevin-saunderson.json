@@ -48,9 +48,9 @@
   ],
   "labels": [
     {
-      "slug": "label:kms-records",
+      "slug": "label:kms",
       "type": "label",
-      "name": "KMS Records"
+      "name": "KMS"
     },
     {
       "slug": "label:metroplex",
@@ -63,91 +63,91 @@
       "slug": "project:heavenly-revisited--kevin-saunderson",
       "type": "project",
       "name": "Heavenly Revisited",
-      "artist": "Kevin Saunderson",
       "mbid": "781ee861-0682-4732-ba30-d34d9d2184a8",
       "year": "2017",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Kevin Saunderson"
     },
     {
       "slug": "project:one-nation--kevin-saunderson",
       "type": "project",
       "name": "One Nation",
-      "artist": "Kevin Saunderson",
       "mbid": "d6e1e99c-72c5-48fb-a28a-e86828ba4404",
       "year": "2016",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Kevin Saunderson"
     },
     {
       "slug": "project:bad-girl--kevin-saunderson",
       "type": "project",
       "name": "Bad Girl",
-      "artist": "Kevin Saunderson",
       "mbid": "0aefb7f7-6527-4225-997b-8f301993e20d",
       "year": "2014",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Kevin Saunderson"
     },
     {
       "slug": "project:future--kevin-saunderson",
       "type": "project",
       "name": "Future",
-      "artist": "Kevin Saunderson",
       "mbid": "b4c48bc0-6b34-410b-aef1-26272409cc9d",
       "year": "2011",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Kevin Saunderson"
     },
     {
       "slug": "project:history-elevate-3--kevin-saunderson",
       "type": "project",
       "name": "History Elevate 3",
-      "artist": "Kevin Saunderson",
       "mbid": "25bb4898-f5c6-31f2-9277-00e7a54cbb82",
       "year": "2008",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Kevin Saunderson"
     },
     {
       "slug": "project:history-elevate-4--kevin-saunderson",
       "type": "project",
       "name": "History Elevate 4",
-      "artist": "Kevin Saunderson",
       "mbid": "c5e893a7-29d3-3642-842f-37e113ee7fc0",
       "year": "2008",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Kevin Saunderson"
     },
     {
       "slug": "project:rock-to-the-beat--kevin-saunderson",
       "type": "project",
       "name": "Rock to the Beat",
-      "artist": "Kevin Saunderson",
       "mbid": "14f46a12-0f5e-359c-81c6-ff102bccb7f4",
       "year": "2008",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Kevin Saunderson"
     },
     {
       "slug": "project:history-elevate-1--kevin-saunderson",
       "type": "project",
       "name": "History Elevate 1",
-      "artist": "Kevin Saunderson",
       "mbid": "0a523b30-6aa6-3b65-a529-78ba782a7c99",
       "year": "2007",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Kevin Saunderson"
     },
     {
       "slug": "project:history-elevate-2--kevin-saunderson",
       "type": "project",
       "name": "History Elevate 2",
-      "artist": "Kevin Saunderson",
       "mbid": "6a8b0904-0495-3a78-9b97-326709a68d23",
       "year": "2007",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Kevin Saunderson"
     },
     {
       "slug": "project:the-sound--kevin-saunderson",
       "type": "project",
       "name": "The Sound",
-      "artist": "Kevin Saunderson",
       "mbid": "683922b2-3120-3262-acc7-0ec39c48e442",
       "year": "1988",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Kevin Saunderson"
     },
     {
       "slug": "project:heavenly",

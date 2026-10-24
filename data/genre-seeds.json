@@ -55,7 +55,7 @@
 			{
 				"type": "project",
 				"name": "Trance & Acid",
-				"slug": "project:trance-and-acid",
+				"slug": "project:trance-and-acid--kai-tracid",
 				"mbid": "469709c2-8d36-3734-a447-684818851ffa"
 			}
 		],
@@ -235,13 +235,13 @@
 			{
 				"type": "project",
 				"name": "Ride on Time",
-				"slug": "project:ride-on-time",
+				"slug": "project:ride-on-time--black-box",
 				"mbid": "7563c455-bc30-3210-9a1e-b33caa4dc4a6"
 			},
 			{
 				"type": "project",
 				"name": "We All Need Love",
-				"slug": "project:we-all-need-love",
+				"slug": "project:we-all-need-love--double-you",
 				"mbid": "55312297-444e-3d8f-baf1-3f802e60e663"
 			},
 			{
@@ -411,13 +411,13 @@
 			{
 				"type": "project",
 				"name": "Nation of Hip House",
-				"slug": "project:nation-of-hip-house",
+				"slug": "project:nation-of-hip-house--tyree-cooper",
 				"mbid": "8f89a5f6-0fed-43b7-a082-f78c3ef714fb"
 			},
 			{
 				"type": "track",
 				"name": "Hip House",
-				"slug": "track:hip-house--fast-eddie",
+				"slug": "track:hip-house--fast-eddie-smith",
 				"mbid": "e461d666-f8be-4691-8326-2608d3bfb715"
 			}
 		],
@@ -976,7 +976,7 @@
 			{
 				"type": "project",
 				"name": "Javanese Court Gamelan from the Pura Paku Alaman, Jogyakarta",
-				"slug": "project:javanese-court-gamelan-from-the-pura-paku-alaman-jogyakarta",
+				"slug": "project:javanese-court-gamelan-from-the-pura-paku-alaman-jogyakarta--k-r-t-wasitodiningrat",
 				"mbid": "ba42a2f5-0b8c-36ee-bfbb-c78f7b232a79"
 			},
 			{
@@ -988,7 +988,7 @@
 			{
 				"type": "project",
 				"name": "Music from the Morning of the World",
-				"slug": "project:music-from-the-morning-of-the-world",
+				"slug": "project:music-from-the-morning-of-the-world--david-lewiston",
 				"mbid": "7f1dabe5-32b6-3d1f-b16a-2f2f92b418eb"
 			}
 		],
@@ -1124,7 +1124,7 @@
 			{
 				"type": "project",
 				"name": "Cosmic - The Original",
-				"slug": "project:cosmic-the-original",
+				"slug": "project:cosmic-the-original--daniele-baldelli",
 				"mbid": "4ed0eaba-4a0a-4823-849b-551daa838da6"
 			}
 		],
