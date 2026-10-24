@@ -11,14 +11,18 @@
  * - the artist holds BOTH entries, by slug and by name; the survivor carries the table's mbid (when it gives one),
  *   the loser carries no mbid or the same one;
  * - the redirect table has no entry for the loser, or one that already leads to the survivor;
- * - at most one of the two slugs has a project node file (otherwise `both-nodes`: two bodies of prose, a human
- *   picks).
+ * - at most one of the two slugs has a project node file. With two, the redirect `loser -> survivor` must be
+ *   committed: the repository then already moved the node and the loser is the old copy still on the server (the
+ *   union of repository and prod). Its lists are merged into the survivor's node, it is deleted (`renamed`) and
+ *   every edge follows. Without the redirect, two bodies of prose are in play and a human picks: the run FAILS
+ *   (exit 1, 2 with --apply, so the channel stops) instead of exiting 0 with the pair untouched.
  * Anything else is `flagged` in the manifest and left untouched (exit 0: the channel's preview shows it); a pair
  * whose loser is already gone is `alreadyDone`. The migration therefore runs unchanged on the union of the
  * repository and the server, and a second run writes nothing.
  *
- * Merge of a pair. The survivor is the entry that holds the mbid (the release group MusicBrainz names); the loser
- * is removed from the artist's `discography` and the artist's `landmark_project` follows if it pointed at the
+ * Merge of a pair. The survivor is the entry that holds the mbid (the release group MusicBrainz names), or, when
+ * the table gives `loser.mbid`, the entry that has the node and the title people use (Kraftwerk's English titles):
+ * it takes the loser's mbid, year and type and sits in the loser's place. The loser is removed from the artist's `discography` and the artist's `landmark_project` follows if it pointed at the
  * loser. In every node that is NOT an artist (label.notable_releases, genre.landmark_projects, project and track
  * edges), an edge to the loser points at the survivor, with the survivor's name (the audit counts a stale name as
  * drift), deduplicated, but only when the survivor's node, if there is one, points back at that label or genre
@@ -85,7 +89,10 @@ export const pairsSchema = z.object({
 			// already resolve to the same node (same title, same mbid or none, redirect in place).
 			kind: z.enum(["release-group", "same-node"]),
 			artist: z.string().regex(/^artist:.+/u),
-			loser: z.object({ slug: projectSlug, name: z.string().min(1) }),
+			// `mbid` on the loser: the survivor is the entry that has the node and the title people use (Kraftwerk's
+			// English titles), the loser is the entry that holds the release group. The survivor takes the loser's
+			// mbid, year and type, and the entry keeps the loser's place in the list.
+			loser: z.object({ slug: projectSlug, name: z.string().min(1), mbid: mbid.optional() }),
 			survivor: z.object({ slug: projectSlug, name: z.string().min(1), mbid: mbid.optional() }),
 			evidence: z.string().min(1),
 		}),
@@ -205,6 +212,36 @@ function repoint(
 	return next;
 }
 
+/**
+ * The entry that stays in the artist's discography. Usually the survivor's own; when the loser carries the
+ * release group (`loser.mbid`), the loser's entry (mbid, year, type, artist) under the survivor's slug and name.
+ */
+function keptEntry(pair: Pair, discography: readonly Obj[]): Obj {
+	const survivor = discography.find((e) => e.slug === pair.survivor.slug) as Obj;
+	if (pair.loser.mbid === undefined) return survivor;
+	const loser = discography.find((e) => e.slug === pair.loser.slug) as Obj;
+	return { ...loser, slug: pair.survivor.slug, name: pair.survivor.name };
+}
+
+/**
+ * The survivor's node with what only the old copy of it holds: the lists are unioned (the survivor's order first),
+ * a single edge (the label) stays the survivor's unless it has none. Prose and scalar fields are the survivor's.
+ */
+function mergeProjectNodes(survivor: Obj, oldCopy: Obj): Obj {
+	const next: Obj = { ...survivor };
+	for (const [field, spec] of Object.entries(EDGE_FIELDS_BY_TYPE.project)) {
+		if (spec.cardinality === "single") {
+			if (!isRecord(survivor[field]) && isRecord(oldCopy[field])) next[field] = oldCopy[field];
+			continue;
+		}
+		const have = edgesOf(survivor, field);
+		const seen = new Set(have.map((e) => e.slug));
+		const extra = edgesOf(oldCopy, field).filter((e) => typeof e.slug === "string" && !seen.has(e.slug));
+		if (extra.length > 0) next[field] = [...have, ...extra];
+	}
+	return next;
+}
+
 /** Pure plan: what to merge, write and report. Does not touch the disk. */
 export function planMerge(
 	nodes: readonly CacheNodeFile[],
@@ -233,6 +270,7 @@ export function planMerge(
 	const bySlug = new Map(nodes.map((n) => [n.slug, n]));
 	const work = new Map<string, Obj>(nodes.map((n) => [n.slug, n.node]));
 	const accepted: Pair[] = [];
+	const oldCopies = new Set<string>();
 	const flag = (pair: Pair, reason: string, detail: string): void => {
 		manifest.flagged.push({ id: pair.id, reason, detail });
 	};
@@ -259,13 +297,25 @@ export function planMerge(
 			flag(pair, "state-differs", `names are "${String(loser.name)}" / "${String(survivor.name)}"`);
 			continue;
 		}
-		if (pair.survivor.mbid !== undefined && survivor.mbid !== pair.survivor.mbid) {
-			flag(pair, "state-differs", `the survivor carries mbid ${String(survivor.mbid)}, not the proven one`);
-			continue;
-		}
-		if (loser.mbid !== undefined && loser.mbid !== survivor.mbid) {
-			flag(pair, "state-differs", `the loser carries its own mbid ${String(loser.mbid)}`);
-			continue;
+		if (pair.loser.mbid !== undefined) {
+			// The survivor adopts the loser's release group.
+			if (loser.mbid !== pair.loser.mbid || (survivor.mbid !== undefined && survivor.mbid !== loser.mbid)) {
+				flag(
+					pair,
+					"state-differs",
+					`the mbid is ${String(loser.mbid)} / ${String(survivor.mbid)}, not the proven one`,
+				);
+				continue;
+			}
+		} else {
+			if (pair.survivor.mbid !== undefined && survivor.mbid !== pair.survivor.mbid) {
+				flag(pair, "state-differs", `the survivor carries mbid ${String(survivor.mbid)}, not the proven one`);
+				continue;
+			}
+			if (loser.mbid !== undefined && loser.mbid !== survivor.mbid) {
+				flag(pair, "state-differs", `the loser carries its own mbid ${String(loser.mbid)}`);
+				continue;
+			}
 		}
 		const redirect = existingRedirects[pair.loser.slug];
 		if (redirect !== undefined && redirect !== pair.survivor.slug) {
@@ -273,8 +323,17 @@ export function planMerge(
 			continue;
 		}
 		if (bySlug.has(pair.loser.slug) && bySlug.has(pair.survivor.slug)) {
-			flag(pair, "both-nodes", "both slugs have a project node: a human picks the prose to keep");
-			continue;
+			if (redirect === pair.survivor.slug) {
+				// The repository already moved the node and committed the redirect: this one is the old copy.
+				oldCopies.add(pair.id);
+			} else {
+				// Two bodies of prose and no committed decision: this is not for the migration to pick. It blocks
+				// the run (a flag exits 0 and the channel would ship the half-merged state).
+				manifest.errors.push(
+					`${pair.id}: ${pair.loser.slug} and ${pair.survivor.slug} both have a node and the redirect is not committed: a human picks the prose to keep`,
+				);
+				continue;
+			}
 		}
 		accepted.push(pair);
 	}
@@ -290,7 +349,7 @@ export function planMerge(
 			continue;
 		}
 		const artist = work.get(pair.artist) as Obj;
-		const entry = (artist.discography as Obj[]).find((e) => e.slug === pair.survivor.slug) as Obj;
+		const entry = keptEntry(pair, artist.discography as Obj[]);
 		repointTo.set(pair.loser.slug, {
 			slug: pair.survivor.slug,
 			name: pair.survivor.name,
@@ -311,9 +370,16 @@ export function planMerge(
 	for (const pair of accepted) {
 		const target = repointTo.get(pair.loser.slug) as Target;
 		const artist = work.get(pair.artist) as Obj;
+		const kept = keptEntry(pair, artist.discography as Obj[]);
 		const next: Obj = {
 			...artist,
-			discography: (artist.discography as Obj[]).filter((e) => e.slug !== pair.loser.slug),
+			// The survivor entry stays where it is, or, when it adopts the loser's release group, takes the
+			// loser's place (the list is sorted by year).
+			discography: (artist.discography as Obj[]).flatMap((e) => {
+				if (e.slug === pair.loser.slug) return pair.loser.mbid !== undefined ? [kept] : [];
+				if (e.slug === pair.survivor.slug && pair.loser.mbid !== undefined) return [];
+				return [e];
+			}),
 		};
 		const landmark = artist.landmark_project;
 		if (isRecord(landmark) && landmark.slug === pair.loser.slug) {
@@ -328,6 +394,13 @@ export function planMerge(
 		hits.set("artist.discography", (hits.get("artist.discography") ?? 0) + 1);
 		work.set(pair.artist, next);
 		touched.add(pair.artist);
+		if (oldCopies.has(pair.id)) {
+			work.set(
+				pair.survivor.slug,
+				mergeProjectNodes(work.get(pair.survivor.slug) as Obj, work.get(pair.loser.slug) as Obj),
+			);
+			touched.add(pair.survivor.slug);
+		}
 		if (existingRedirects[pair.loser.slug] === undefined) redirects[pair.loser.slug] = pair.survivor.slug;
 		manifest.merged.push({
 			id: pair.id,
@@ -385,13 +458,15 @@ export function planMerge(
 	for (const pair of accepted) {
 		const moved = bySlug.get(pair.loser.slug);
 		if (!moved) continue;
-		const body = parseSlug(pair.survivor.slug).body;
-		const node = {
-			...(work.get(pair.loser.slug) as Obj),
-			slug: pair.survivor.slug,
-			name: pair.survivor.name,
-		};
-		writes.set(join(cacheDir, "nodes", "project", `${body}.json`), node);
+		if (!oldCopies.has(pair.id)) {
+			const body = parseSlug(pair.survivor.slug).body;
+			const node = {
+				...(work.get(pair.loser.slug) as Obj),
+				slug: pair.survivor.slug,
+				name: pair.survivor.name,
+			};
+			writes.set(join(cacheDir, "nodes", "project", `${body}.json`), node);
+		}
 		deletions.push(moved.path);
 		manifest.renamed[pair.loser.slug] = pair.survivor.slug;
 		touched.delete(pair.loser.slug);

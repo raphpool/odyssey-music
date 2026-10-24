@@ -152,49 +152,49 @@
 			"evidence": "Release group b4eee91a (Album, 2006-12-21) holds releases titled \"Bigbang, Vol. 1\" and \"Bigbang Vol.1\"."
 		},
 		{
-			"id": "kraftwerk/computer-world--kraftwerk",
+			"id": "kraftwerk/computerwelt--kraftwerk",
 			"kind": "release-group",
 			"artist": "artist:kraftwerk",
 			"loser": {
-				"slug": "project:computer-world--kraftwerk",
-				"name": "Computer World"
-			},
-			"survivor": {
 				"slug": "project:computerwelt--kraftwerk",
 				"name": "Computerwelt",
 				"mbid": "2e58b620-cf80-3b07-a5bc-edabd69ba285"
 			},
-			"evidence": "Release group 2e58b620 (Album, 1981) holds 17 releases titled \"Computer World\" and 7 \"Computerwelt\": the English and German titles of one album."
+			"survivor": {
+				"slug": "project:computer-world--kraftwerk",
+				"name": "Computer World"
+			},
+			"evidence": "Release group 2e58b620 (Album, 1981) holds 21 releases titled \"Computer World\" (the 1981 French one too) and 8 \"Computerwelt\": one album. The English title is kept; its entry has the node and takes the mbid, year and type of the German entry."
 		},
 		{
-			"id": "kraftwerk/the-man-machine--kraftwerk",
+			"id": "kraftwerk/die-mensch-maschine--kraftwerk",
 			"kind": "release-group",
 			"artist": "artist:kraftwerk",
 			"loser": {
-				"slug": "project:the-man-machine--kraftwerk",
-				"name": "The Man-Machine"
-			},
-			"survivor": {
 				"slug": "project:die-mensch-maschine--kraftwerk",
 				"name": "Die Mensch·Maschine",
 				"mbid": "d147e89b-90ca-35b6-9f7b-3e34b8edf63f"
 			},
-			"evidence": "Release group d147e89b (Album, 1978-05) holds 16 releases titled \"The Man-Machine\" and 8 \"Die Mensch-Maschine\"."
+			"survivor": {
+				"slug": "project:the-man-machine--kraftwerk",
+				"name": "The Man-Machine"
+			},
+			"evidence": "Release group d147e89b (Album, 1978-05) holds 16 releases titled \"The Man-Machine\" and 8 \"Die Mensch-Maschine\": one album. The English title is kept; its entry has the node and takes the mbid, year and type of the German entry."
 		},
 		{
-			"id": "kraftwerk/trans-europe-express",
+			"id": "kraftwerk/trans-europa-express--kraftwerk",
 			"kind": "release-group",
 			"artist": "artist:kraftwerk",
 			"loser": {
-				"slug": "project:trans-europe-express",
-				"name": "Trans-Europe Express"
-			},
-			"survivor": {
 				"slug": "project:trans-europa-express--kraftwerk",
 				"name": "Trans Europa Express",
 				"mbid": "33101a28-ae05-3a69-873c-684e336fe2df"
 			},
-			"evidence": "Release group 33101a28 (Album, 1977) holds releases titled \"Trans-Europe Express\" (8 and 4 with another hyphen) and \"Trans Europa Express\"."
+			"survivor": {
+				"slug": "project:trans-europe-express",
+				"name": "Trans-Europe Express"
+			},
+			"evidence": "Release group 33101a28 (Album, 1977) holds releases titled \"Trans-Europe Express\" (8 and 4 with another hyphen) and \"Trans Europa Express\": one album. The English title is kept; its entry has the node and takes the mbid, year and type of the German entry."
 		},
 		{
 			"id": "ornette-coleman/something-else",

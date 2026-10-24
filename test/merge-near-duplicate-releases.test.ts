@@ -192,6 +192,93 @@ describe("merge of the near-duplicate releases (TRA-633 PR 2)", () => {
 		expect(slugsOf(read(cache, "artist:mark-ernestus").discography)).not.toContain(LOSER);
 	});
 
+	it("deletes the old copy of a node the repository already moved, merges its lists, follows every edge", async () => {
+		// The union after the repository run: the survivor's node (moved copy) and the server's old node.
+		const tracks = [ref("track:one", "One"), ref("track:two", "Two")];
+		const oldCopy = node(LOSER, "800% Ndagga (album)", { tracklist: tracks, label: ref("label:old", "Old") });
+		const moved = node(SURVIVOR, "800% Ndagga", {
+			tracklist: [tracks[0] as Obj],
+			label: ref("label:new", "New"),
+		});
+		const { cache, data } = makeCache(world(undefined, [oldCopy, moved]), {
+			redirects: { [LOSER]: SURVIVOR },
+		});
+		const { manifest, exitCode } = await runMigration({
+			cacheDir: cache,
+			apply: true,
+			dataDir: data,
+			table: table(),
+		});
+		expect(exitCode).toBe(0);
+		expect(existsSync(pathOf(cache, LOSER))).toBe(false);
+		const survivor = read(cache, SURVIVOR);
+		expect(slugsOf(survivor.tracklist)).toEqual(["track:one", "track:two"]);
+		expect(survivor.label).toEqual(ref("label:new", "New"));
+		expect(manifest.renamed).toEqual({ [LOSER]: SURVIVOR });
+		// The redirect is already committed: it is not emitted again, and every edge follows.
+		expect(manifest.redirects).toEqual({});
+		expect(slugsOf(read(cache, "artist:mark-ernestus").discography)).not.toContain(LOSER);
+		expect(slugsOf(read(cache, "genre:mbalax").landmark_projects)).toEqual([SURVIVOR]);
+		expect(slugsOf(read(cache, "label:ndagga-records").notable_releases)).toEqual([SURVIVOR]);
+		expect(manifest.left).toEqual([]);
+	});
+
+	it("keeps the survivor's title and node and gives it the mbid of the entry that holds the release group", async () => {
+		// Kraftwerk: the English entry has the node and no mbid, the German entry has the release group.
+		const german = ref("project:computerwelt--kraftwerk", "Computerwelt", {
+			artist: "Kraftwerk",
+			mbid: MBID,
+			year: "1981",
+			releaseType: "album",
+		});
+		const english = ref("project:computer-world--kraftwerk", "Computer World");
+		const pair = {
+			id: "kraftwerk/computerwelt--kraftwerk",
+			kind: "release-group" as const,
+			artist: "artist:kraftwerk",
+			loser: { slug: german.slug as string, name: "Computerwelt", mbid: MBID },
+			survivor: { slug: english.slug as string, name: "Computer World" },
+			evidence: "test",
+		};
+		const { cache, data } = makeCache([
+			node("artist:kraftwerk", "Kraftwerk", {
+				discography: [ref("project:other", "Other", { year: "1990" }), german, english],
+			}),
+			node(english.slug as string, "Computer World", { label: ref("label:kling-klang", "Kling Klang") }),
+			node("label:kling-klang", "Kling Klang", {
+				notable_releases: [ref(german.slug as string, "Computerwelt")],
+			}),
+		]);
+		const { manifest } = await runMigration({
+			cacheDir: cache,
+			apply: true,
+			dataDir: data,
+			table: { source: "test", pairs: [pair], kept: [] },
+		});
+		expect(manifest.renamed).toEqual({});
+		const disc = read(cache, "artist:kraftwerk").discography as Obj[];
+		// The adopted entry takes the German entry's place; the old English entry is gone.
+		expect(disc).toEqual([
+			ref("project:other", "Other", { year: "1990" }),
+			{ ...german, slug: english.slug, name: "Computer World" },
+		]);
+		expect(read(cache, "label:kling-klang").notable_releases).toEqual([
+			ref(english.slug as string, "Computer World", { artist: "Kraftwerk" }),
+		]);
+		expect(manifest.redirects).toEqual({ [german.slug as string]: english.slug });
+		// Not the right mbid: left alone.
+		const wrong = makeCache([
+			node("artist:kraftwerk", "Kraftwerk", { discography: [{ ...german, mbid: OTHER_MBID }, english] }),
+		]);
+		const w = await runMigration({
+			cacheDir: wrong.cache,
+			apply: false,
+			dataDir: wrong.data,
+			table: { source: "test", pairs: [pair], kept: [] },
+		});
+		expect(w.manifest.flagged.map((f) => f.reason)).toEqual(["state-differs"]);
+	});
+
 	it("is idempotent: a second run writes nothing", async () => {
 		const { cache, data } = makeCache(world());
 		await runMigration({ cacheDir: cache, apply: true, dataDir: data, table: table() });
@@ -256,9 +343,13 @@ describe("merge of the near-duplicate releases (TRA-633 PR 2)", () => {
 		const a = await runMigration({ cacheDir: makeCache(own).cache, apply: false, table: table() });
 		expect(a.manifest.flagged[0]?.detail).toContain("its own mbid");
 
+		// Two nodes and no committed redirect: not for the migration to pick, and the run must FAIL, not exit 0.
 		const both = makeCache(world(undefined, [node(LOSER, "x"), node(SURVIVOR, "y")]));
-		const b = await runMigration({ cacheDir: both.cache, apply: false, dataDir: both.data, table: table() });
-		expect(b.manifest.flagged.map((f) => f.reason)).toEqual(["both-nodes"]);
+		const b = await runMigration({ cacheDir: both.cache, apply: true, dataDir: both.data, table: table() });
+		expect(b.exitCode).toBe(2);
+		expect(b.manifest.blocked).toBe(true);
+		expect(b.manifest.errors.join("\n")).toContain("the redirect is not committed");
+		expect(slugsOf(read(both.cache, "artist:mark-ernestus").discography)).toContain(LOSER);
 
 		const elsewhere = makeCache(world(), { redirects: { [LOSER]: "project:other" } });
 		const c = await runMigration({
@@ -309,7 +400,7 @@ describe("the committed proof table", () => {
 			expect(p.loser.slug).not.toBe(p.survivor.slug);
 			expect(p.evidence.length).toBeGreaterThan(30);
 			// A release-group pair names the release group it was proven against.
-			if (p.kind === "release-group") expect(p.survivor.mbid).toBeDefined();
+			if (p.kind === "release-group") expect(p.survivor.mbid ?? p.loser.mbid).toBeDefined();
 		}
 	});
 
