@@ -22937,17 +22937,6 @@
       }
     }
   ],
-  "label:plain-pack": [
-    {
-      "field": "notable_releases",
-      "cardinality": "list",
-      "edge": {
-        "slug": "project:resort-vol-1",
-        "type": "project",
-        "name": "RESORT Vol. 1"
-      }
-    }
-  ],
   "artist:black-box": [
     {
       "field": "discography",
