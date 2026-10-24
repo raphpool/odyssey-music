@@ -350,15 +350,22 @@ final class OnboardingComponentsTests: XCTestCase {
 
 	/// `.top` moves chips inside their row only: the row height, so the flow height, does not change.
 	@MainActor
-	func testTopAlignmentKeepsTheRowHeights() {
+	func testTopAlignmentKeepsTheRowHeights() throws {
+		// "Trap" is alone on the second row: its `minY` is the row height of the first row, plus the spacing.
 		let titles = [Self.foldedChipName, Self.shortChipName, "Trap"]
 		let centered = chipFlowFrames(titles, width: Self.sharedRowWidth)
 		let top = chipFlowFrames(titles, width: Self.sharedRowWidth, rowAlignment: .top)
-		XCTAssertEqual(top["flow"]?.height ?? 0, centered["flow"]?.height ?? -1, accuracy: 0.5, "flow height")
-		for title in titles {
-			XCTAssertEqual(top[title]?.width ?? 0, centered[title]?.width ?? -1, accuracy: 0.5, "width of \(title)")
-			XCTAssertEqual(top[title]?.height ?? 0, centered[title]?.height ?? -1, accuracy: 0.5, "height of \(title)")
+		for key in titles + ["flow"] {
+			let before = try XCTUnwrap(centered[key], "\(key) centered")
+			let after = try XCTUnwrap(top[key], "\(key) at the top")
+			XCTAssertEqual(after.width, before.width, accuracy: 0.5, "width of \(key)")
+			XCTAssertEqual(after.height, before.height, accuracy: 0.5, "height of \(key)")
 		}
+		let folded = try XCTUnwrap(top[Self.foldedChipName])
+		let third = try XCTUnwrap(top["Trap"])
+		XCTAssertEqual(third.minY, folded.maxY + Track1Tokens.spacing8, accuracy: 0.5, "second row")
+		let thirdCentered = try XCTUnwrap(centered["Trap"])
+		XCTAssertEqual(third.minY, thirdCentered.minY, accuracy: 0.5, "second row, centered")
 	}
 
 	// MARK: Bottom action bar
