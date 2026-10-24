@@ -55,6 +55,18 @@
       "type": "genre",
       "name": "Pop Music",
       "qid": "Q37073"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock",
+      "qid": "Q320592"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-Punk",
+      "qid": "Q598929"
     }
   ],
   "roster": [
@@ -152,6 +164,21 @@
       "slug": "artist:van-der-graaf-generator",
       "type": "artist",
       "name": "Van der Graaf Generator"
+    },
+    {
+      "slug": "artist:klaus-schulze",
+      "type": "artist",
+      "name": "Klaus Schulze"
+    },
+    {
+      "slug": "artist:manuel-gottsching",
+      "type": "artist",
+      "name": "Manuel Göttsching"
+    },
+    {
+      "slug": "artist:paris-grey",
+      "type": "artist",
+      "name": "Paris Grey"
     }
   ],
   "notable_releases": [
@@ -202,6 +229,17 @@
       "slug": "project:stratosfear--tangerine-dream",
       "type": "project",
       "name": "Stratosfear",
+      "artist": "Tangerine Dream"
+    },
+    {
+      "slug": "project:dare",
+      "type": "project",
+      "name": "Dare"
+    },
+    {
+      "slug": "project:phaedra--tangerine-dream",
+      "type": "project",
+      "name": "Phaedra",
       "artist": "Tangerine Dream"
     }
   ]

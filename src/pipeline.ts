@@ -21,6 +21,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { GoogleGenAI, Type as GType, type Schema } from "@google/genai";
 import { z } from "zod";
+import { clearedPick, isRejectedPick } from "./cleared-landmarks.js";
 import { pipelineConfig, pricingConfig, scopedReleaseSlugsEnabled } from "./config.js";
 import {
 	DEFAULT_DISCOGRAPHY_CAP,
@@ -2023,6 +2024,16 @@ export function enforceArtistChoices(
 		}
 		const pick = slugOf(node[field]);
 		const member = pick === undefined ? undefined : entries.find((e) => slugOf(e) === pick);
+		// 2026-10-24 (TRA-674): TRA-605 emptied some picks on purpose (they were wrong). A missing pick is
+		// what the fallback below fills with list[0], the most recent entry, so those pairs would come back
+		// on the next regeneration of the card. They stay empty unless the model picks ANOTHER member.
+		const cleared = clearedPick(node.slug, field);
+		if (cleared !== undefined && (member === undefined || isRejectedPick(cleared, pick))) {
+			if (node[field] !== undefined)
+				log(`[pipeline] ${field} cleared on purpose, dropped (${where}: ${pick ?? "unreadable pick"})`);
+			delete node[field];
+			continue;
+		}
 		if (member !== undefined) {
 			node[field] = { ...(member as object) };
 			continue;
