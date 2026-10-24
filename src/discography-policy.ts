@@ -9,7 +9,7 @@
  * 75 singles).
  */
 import { VARIOUS_ARTISTS_MBID } from "./musicbrainz.js";
-import { makeScopedSlug, normalizeTitleBody, stripEditionNoise } from "./slug.js";
+import { makeScopedSlug, normalizeTitleBody, stripEditionNoise, titleLosesLetters } from "./slug.js";
 import type { EdgeRef, Slug } from "./types.js";
 
 // Re-exported so callers keep one import site for the policy; the constant itself lives with the MusicBrainz client.
@@ -72,8 +72,14 @@ export const DEFAULT_DISCOGRAPHY_CAP = 40;
  * the additive run never revisits an entry that has an mbid, its year would have stayed wrong had the release slipped;
  * and the ";" rule of v7 now also closes a release group of two credits, "Composer; Orchestra"): a manifest of
  * version 7 is not replayed.
+ * 2026-10-24: 9, the policy changed with TRA-633 (an entry is posed its mbid, instead of getting a twin added next to
+ * it, when it differs from a release group only by a trailing "(album)": Mark Ernestus's "800% Ndagga (album)" sat next
+ * to a twin that the additive run had added, for good. And a release group that only differs from an entry without
+ * mbid by a subtitle after ":" is no longer added next to it but held back, `held` in the result: the review of the PR
+ * measured 24 pairs in the cache that MusicBrainz holds for distinct releases, "Runt" and "Runt: The Ballad of Todd
+ * Rundgren", so the subtitle is a sign for a judgement and no identity): a manifest of version 8 is not replayed.
  */
-export const DISCOGRAPHY_POLICY_VERSION = 8;
+export const DISCOGRAPHY_POLICY_VERSION = 9;
 
 // TRA-628 (measured 2026-10-19 on MusicBrainz): John Lennon has 69 eligible release groups, 14 voted and 55
 // not (The Lost Lennon Tapes, Archives, outtakes), and the cap used to fill with the oldest of them. From this
@@ -154,14 +160,18 @@ export function isNonCanonicalReleaseTitle(title: string): boolean {
 // bracket before it, so "Deep" and "EPic" are untouched.
 const TRAILING_YEAR_SUFFIX = /\s*(?:\(\s*((?:19|20)\d{2})\s*\)|\[\s*((?:19|20)\d{2})\s*\])$/u;
 const TRAILING_EP_SUFFIX = /(?:\s+[-\u2013\u2014]\s+ep|\s*\(\s*ep\s*\)|\s*\[\s*ep\s*\]|\s+ep)$/iu;
+// TRA-633 (MusicBrainz read 2026-10-24): Mark Ernestus's "800% Ndagga (album)" is Wikipedia's disambiguation of the
+// MusicBrainz album "800% Ndagga", added by hand next to it. Only the bracketed form: "Foo album" is a title.
+const TRAILING_ALBUM_SUFFIX = /\s*(?:\(\s*album\s*\)|\[\s*album\s*\])$/iu;
 
-// The title with its trailing year / EP suffixes peeled off, in any order and as many times as they come; the
-// last year written among them; and whether an "EP" was peeled. Each suffix is peeled on its own, and never
-// if nothing would be left of the title: "(EP) (1979)" and "EP (1979)" both keep "EP".
-function peelSuffixes(title: string): { rest: string; year: number | null; ep: boolean } {
+// The title with its trailing year / EP / "(album)" suffixes peeled off, in any order and as many times as they
+// come; the last year written among them; and whether an "EP" or an "(album)" was peeled. Each suffix is peeled on
+// its own, and never if nothing would be left of the title: "(EP) (1979)" and "EP (1979)" both keep "EP".
+function peelSuffixes(title: string): { rest: string; year: number | null; ep: boolean; album: boolean } {
 	let rest = stripEditionNoise(title.normalize("NFKD"));
 	let year: number | null = null;
 	let ep = false;
+	let album = false;
 	const peel = (suffix: RegExp): RegExpExecArray | null => {
 		const match = suffix.exec(rest);
 		if (match === null) return null;
@@ -176,19 +186,130 @@ function peelSuffixes(title: string): { rest: string; year: number | null; ep: b
 		const stated = yearMatch?.[1] ?? yearMatch?.[2];
 		if (year === null && stated !== undefined) year = Number(stated);
 		if (peel(TRAILING_EP_SUFFIX) !== null) ep = true;
+		if (peel(TRAILING_ALBUM_SUFFIX) !== null) album = true;
 		if (rest === before) break;
 	}
-	return { rest, year, ep };
+	return { rest, year, ep, album };
 }
 
 /**
  * Looser identity than normalizeTitleBody, for reconciling an existing entry with a release group: the title
- * body once a trailing "(1979)" / "[1979]" year (1900 to 2099) and a trailing "EP" ("X EP", "X (EP)", "X [EP]",
- * "X - EP") are removed, in any order and as many times as they come. A suffix is never removed if nothing
- * would be left of the title. Both sides of a comparison go through it.
+ * body once a trailing "(1979)" / "[1979]" year (1900 to 2099), a trailing "EP" ("X EP", "X (EP)", "X [EP]",
+ * "X - EP") and a trailing "(album)" / "[album]" are removed, in any order and as many times as they come. A
+ * suffix is never removed if nothing would be left of the title. Both sides of a comparison go through it.
  */
 export function reconciliationKey(title: string): string {
 	return normalizeTitleBody(peelSuffixes(title).rest);
+}
+
+// TRA-633 (MusicBrainz read 2026-10-24). A title and the same title plus a subtitle: MusicBrainz has "Hailu Mergia &
+// His Classical Instrument: Shemonmuanaye" and "La Camorra: La soledad de la provocación apasionada", the entries have
+// the short title. It is a SIGN, not an identity: the cache holds 24 pairs where both sides have their own mbid and
+// MusicBrainz tells them apart ("Runt" 1970 and "Runt: The Ballad of Todd Rundgren" 1971, "Ghetto Gospel" and "...: The
+// New Testament"). mergeDiscography only uses it to hold a release group back from the additions and report it.
+// A dash with a space on each side is not a separator: no true pair was measured, and 9 of those 24 distinct pairs
+// ("Isoviha" the album and "Isoviha - Extraviha" the EP, both 2022) are written with one.
+// NOT one release, and kept apart: "Inside" and "Inside (The Songs)", "Songs" and "Songs: Vol. 2", the album of an
+// artist and "Artist: Title", and the couplings. "Gruppen" is a work and "Gruppen / Carré" the release that pairs it
+// with another; Harold Budd's "Avalon Sutra / As Long As I Can Hold My Breath" does look like a spelling of the album
+// "Avalon Sutra" (MusicBrainz has no release group for the second half), but so does Kode9's single "Sine of the
+// Dub / Stalker" next to the single "Sine of the Dub" (TRA-612): nothing in the titles tells the two apart, so the
+// coupling is left to a judgement of its own (the migration of TRA-633) and not given to the policy.
+// The fold is a relation between two titles, not a key, and it is only consulted for an entry that no key found
+// (mergeDiscography), so what posed before keeps posing the same way.
+
+// ":" must be followed by a space ("12:30" is a time). A space before it is allowed ("Xpander : Refracted").
+const SUBTITLE_SEPARATOR = /\s*:\s+/gu;
+// A subtitle that numbers the release is another release of the series, not the same one with a longer title
+// ("Dub Landing, Volume 2", "Joe's Garage: Act I" next to "Acts II & III"). The roman numeral is spelled out up to
+// 39 and must not open a sentence, so that "Civil", "Ivory" and "I Know" are words.
+const NUMBERING_TAIL = new RegExp(
+	`^(?:(?:vols?|volumes?|parts?|pt|no|act|acts|book|chapter|disc|cd|side|season|episode)${WORD_EDGE_AFTER}|\\p{N}|(?=[ivx])x{0,3}(?:ix|iv|v?i{0,3})${WORD_EDGE_AFTER}(?!\\s+\\p{L}))`,
+	"u",
+);
+// ... nor one that names a variant of it, which isVariantQualifier does not know ("Songs: Live in Paris").
+const VARIANT_TAIL = new RegExp(
+	`${WORD_EDGE_BEFORE}(?:live|demos?|acoustic|unplugged|sessions?|outtakes|rarities|reworked?|extended)${WORD_EDGE_AFTER}`,
+	"u",
+);
+
+function isDistinctSubtitle(tail: string): boolean {
+	const normalized = normalizeTitle(tail);
+	return NUMBERING_TAIL.test(normalized) || isVariantQualifier(normalized) || VARIANT_TAIL.test(normalized);
+}
+
+// The reconciliation keys of the title up to each of its subtitle separators. A cut is dropped when what is left of
+// the head says nothing (its body is empty) or only part of it (titleLosesLetters: "20才の頃" would stand for any
+// release called "20"), and when the subtitle numbers the release or names a variant of it.
+function subtitleHeadKeys(title: string): string[] {
+	const { rest } = peelSuffixes(title);
+	const keys: string[] = [];
+	for (const match of rest.matchAll(SUBTITLE_SEPARATOR)) {
+		const head = rest.slice(0, match.index);
+		const tail = rest.slice(match.index + match[0].length);
+		const key = reconciliationKey(head);
+		if (key === "" || tail.trim() === "" || titleLosesLetters(head) || isDistinctSubtitle(tail)) continue;
+		keys.push(key);
+	}
+	return keys;
+}
+
+export type TitleFoldRelation = "entry-subtitle" | "group-subtitle";
+
+/**
+ * How the title of an existing entry relates to the title of a release group when their reconciliation keys differ
+ * (TRA-633), or null when they are not the same release:
+ *  - `entry-subtitle`: the entry is the group's title plus a subtitle ("La Camorra: La soledad ...");
+ *  - `group-subtitle`: the group is the entry's title plus a subtitle ("... Classical Instrument: Shemonmuanaye").
+ * A subtitle starts at ":", never at a dash, a parenthesis or a slash. Not when the shorter title is the
+ * artist's own name (a self-titled album is not "Artist: Title"), when the part that is cut off or kept cannot be
+ * held by a slug body (titleLosesLetters), or when the subtitle numbers the release or names a variant of it.
+ */
+export function titleFoldRelation(
+	entryTitle: string,
+	groupTitle: string,
+	artistName: string,
+): TitleFoldRelation | null {
+	const entryKey = reconciliationKey(entryTitle);
+	const groupKey = reconciliationKey(groupTitle);
+	if (entryKey === "" || groupKey === "" || entryKey === groupKey) return null;
+	const artistBody = normalizeTitleBody(artistName);
+	if (
+		groupKey !== artistBody &&
+		!titleLosesLetters(groupTitle) &&
+		subtitleHeadKeys(entryTitle).includes(groupKey)
+	) {
+		return "entry-subtitle";
+	}
+	if (
+		entryKey !== artistBody &&
+		!titleLosesLetters(entryTitle) &&
+		subtitleHeadKeys(groupTitle).includes(entryKey)
+	) {
+		return "group-subtitle";
+	}
+	return null;
+}
+
+// The release groups that an entry no key found may be, by titleFoldRelation: one per mbid, only those the entry
+// could be the work of (no Live / Compilation one, no remix or best-of title), narrowed by the "EP" or "(album)" the
+// entry wrote the way the key pass does.
+function foldMatches(
+	entry: EdgeRef,
+	peeled: { ep: boolean; album: boolean },
+	credited: readonly ReleaseGroupCandidate[],
+	artistName: string,
+): ReleaseGroupCandidate[] {
+	const matches: ReleaseGroupCandidate[] = [];
+	for (const c of credited) {
+		if (matches.some((m) => sameMbid(m.mbid, c.mbid))) continue;
+		if (!hasOnlyAdmittedSecondaryTypes(c) || isNonCanonicalReleaseTitle(c.title)) continue;
+		if (peeled.ep && c.primaryType !== "EP") continue;
+		if (peeled.album && c.primaryType !== "Album") continue;
+		if (titleFoldRelation(entry.name, c.title, artistName) === null) continue;
+		matches.push(c);
+	}
+	return matches;
 }
 
 // MBIDs are UUIDs: case carries no meaning, and a hand-supplied upper-case id must not exclude a whole
@@ -532,6 +653,9 @@ export interface MergeResult {
 		nearDuplicateOf?: Slug;
 	}[];
 	ambiguous: { slug: Slug; reason: AmbiguousReason }[];
+	// Release groups not added because they only differ from an entry without mbid by a subtitle (TRA-633,
+	// "subtitle-fold"). Neither posed nor added: the manifest reports them and a judgement of their own decides.
+	held: { mbid: string; title: string; nearDuplicateOf: Slug; reason: "subtitle-fold" }[];
 	capReached: boolean;
 }
 
@@ -557,6 +681,8 @@ function hasMbid(edge: EdgeRef): boolean {
 function opensWith(longer: string, shorter: string): boolean {
 	return shorter !== "" && longer.startsWith(`${shorter}-`);
 }
+
+const NO_POSE = { kind: "none" } as const;
 
 type PoseVerdict =
 	| { kind: "none" }
@@ -788,7 +914,9 @@ function groupCredited(
  * Pure merge of MusicBrainz release groups into an artist's existing discography (graph-integrity plan,
  * part 8, 8-D3). It adds and poses, it never removes: an existing entry keeps its `name`, `slug` and
  * `artist` and only gains an `mbid` (exact normalized-title match, else the same title up to a trailing year or
- * "EP", see reconciliationKey and decidePose) plus a `year` / `releaseType` it lacked. An entry that states
+ * "EP" or "(album)", see reconciliationKey and decidePose) plus a `year` / `releaseType` it lacked. A release group
+ * that only differs from an entry without mbid by a subtitle is neither posed nor added, but reported in `held`
+ * (titleFoldRelation, TRA-633). An entry that states
  * neither a year nor a releaseType is posed more carefully (decideCautiously, TRA-647). Release groups missing
  * from the list are appended up to `policy.cap`, as the very edge `toDiscographyEdge` builds; only the slug
  * is replaced when a project node already exists for the mbid (or a redirect leads to one). A candidate whose title extends, or is extended by, that of an
@@ -845,16 +973,37 @@ export function mergeDiscography(input: MergeInput): MergeResult {
 	// An entry whose title ended with "EP" (the suffix the key removed) can only be an EP: its candidates are the
 	// admitted EPs of the group (Live / Compilation ones are not its work, TRA-628), and never the album or the
 	// single of the same title. One is posed, several are `multiple`, none leaves the entry as it is. No
-	// releaseType is forced on the entry: the typed branch of decidePose does not filter secondary types.
+	// releaseType is forced on the entry: the typed branch of decidePose does not filter secondary types. The same
+	// goes for an "(album)" (TRA-633): only the admitted albums of the group are its candidates.
+	// An entry that no key finds (the group is empty) gets a last chance, the fold of TRA-633: the release groups
+	// that bear its title plus or less a subtitle (titleFoldRelation). It poses nothing: a subtitle does not make an
+	// identity (the cache holds 24 pairs that MusicBrainz tells apart, "Runt" and "Runt: The Ballad of Todd Rundgren").
+	// When exactly one release group is folded onto the entry and the pose guards of decideCautiously would let it
+	// through (year, type, credit, votes), that release group is held back from the additions and reported (`held`);
+	// the entry is not touched and not reported ambiguous. With several, or when the guards refuse, nothing changes:
+	// the release groups are added and flagged by the prefix rule as before.
+	const foldedTo = new Map<string, Slug>();
 	const looserVerdicts = new Map<number, PoseVerdict>();
 	existing.forEach((entry, index) => {
 		if (hasMbid(entry) || verdicts[index] !== undefined) return;
 		const peeled = peelSuffixes(entry.name);
 		const group = creditedByKey.get(normalizeTitleBody(peeled.rest)) ?? [];
 		let verdict: PoseVerdict;
-		if (peeled.ep) {
+		if (group.length === 0) {
+			const folded = foldMatches(entry, peeled, allCredited, policy.artistName);
+			const [only] = folded;
+			if (folded.length === 1 && only !== undefined) {
+				const mbid = only.mbid.toLowerCase();
+				const wouldPose = decideCautiously(entry, folded, peeled.year, caution).kind === "pose";
+				if (wouldPose && !foldedTo.has(mbid)) foldedTo.set(mbid, entry.slug);
+			}
+			verdict = NO_POSE;
+		} else if (peeled.ep) {
 			const eps = group.filter((c) => c.primaryType === "EP" && hasOnlyAdmittedSecondaryTypes(c));
 			verdict = decideCautiously(entry, eps, peeled.year, caution);
+		} else if (peeled.album) {
+			const albums = group.filter((c) => c.primaryType === "Album" && hasOnlyAdmittedSecondaryTypes(c));
+			verdict = decideCautiously(entry, albums, peeled.year, caution);
 		} else {
 			verdict = decideCautiously(entry, group, peeled.year, caution);
 		}
@@ -905,6 +1054,7 @@ export function mergeDiscography(input: MergeInput): MergeResult {
 
 	const additions: EdgeRef[] = [];
 	const added: MergeResult["added"] = [];
+	const held: MergeResult["held"] = [];
 	let capReached = false;
 	// selectReleases(...).kept comes back newest first across types, which would let recent singles and
 	// bootlegs use up the last slots before older albums (the A$AP Rocky failure the policy exists for): the
@@ -924,6 +1074,16 @@ export function mergeDiscography(input: MergeInput): MergeResult {
 			projectIndex.resolveSlug(base.slug);
 		// An album and a single of the same title are one project node: two entries must never share a slug.
 		if (takenSlugs.has(slug)) continue;
+		const foldedEntry = foldedTo.get(candidate.mbid.toLowerCase());
+		if (foldedEntry !== undefined) {
+			held.push({
+				mbid: candidate.mbid,
+				title: candidate.title,
+				nearDuplicateOf: foldedEntry,
+				reason: "subtitle-fold",
+			});
+			continue;
+		}
 		if (existing.length + additions.length >= policy.cap) {
 			capReached = true;
 			break;
@@ -944,8 +1104,8 @@ export function mergeDiscography(input: MergeInput): MergeResult {
 	}
 
 	if (posed.length === 0 && added.length === 0) {
-		return { edges: existing as EdgeRef[], changed: false, posed, added, ambiguous, capReached };
+		return { edges: existing as EdgeRef[], changed: false, posed, added, ambiguous, held, capReached };
 	}
 	const edges = orderDiscography([...afterPose, ...additions]);
-	return { edges, changed: true, posed, added, ambiguous, capReached };
+	return { edges, changed: true, posed, added, ambiguous, held, capReached };
 }
