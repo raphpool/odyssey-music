@@ -1,5 +1,6 @@
+import { z } from "zod";
 import { EDGE_FIELDS_BY_TYPE, NODE_TYPES, REVERSE_EDGE_PAIRS } from "./node-spec.js";
-import type { NodeType } from "./types.js";
+import type { EdgeRef, NodeType } from "./types.js";
 
 /**
  * For a forward edge field on a given node type, return the reverse edge to apply on the *target* node.
@@ -10,7 +11,10 @@ import type { NodeType } from "./types.js";
  */
 export interface ReverseEdgeSpec {
 	field: string;
-	/** Whether the reverse field is a list (push) or singular (overwrite if empty). */
+	/**
+	 * Whether the reverse field is a list (push) or singular (set if empty). Only "list" reverses are emitted at
+	 * runtime (TRA-569): a singular one is declared by the work itself, never derived from another node's list.
+	 */
 	cardinality: "list" | "single";
 }
 
@@ -61,8 +65,13 @@ for (const pair of REVERSE_EDGE_PAIRS) {
 		);
 	}
 	const targetType = targets[0];
-	// A pair between two nodes of the same kind (genre parents, collaborators, samples...) predates TRA-454 and
-	// is symmetric by construction; a cross-type pair is emitted only when it is in SAFE_BACKFILL_PAIRS.
+	// A singular reverse (a work's `remix_of`, `project`, `label`) is a parent: it is declared by the work itself
+	// and never copied from the list of another node (TRA-569, 2026-10-23). `track.remixed_by -> remix_of` was the
+	// last one still emitted: writing track:song with `remixed_by: [track:intro]` made track:intro a remix of
+	// track:song, the same false-credit class as TRA-563 (same-kind pairs were exempt from its filter).
+	if (pair.reverse.cardinality === "single") continue;
+	// A list pair between two nodes of the same kind (genre parents, collaborators, samples...) predates TRA-454
+	// and is symmetric by construction; a cross-type pair is emitted only when it is in SAFE_BACKFILL_PAIRS.
 	const sameKind = targetType === pair.sourceType;
 	const key = reversePairKey(pair.sourceType, pair.sourceField, targetType, pair.reverse.field);
 	if (!sameKind && !SAFE_BACKFILL_PAIRS.has(key)) continue;
@@ -90,4 +99,80 @@ export function reverseFor(sourceType: NodeType, sourceField: string): ReverseEd
 /** All forward edge field names that participate in automatic reverse materialization. */
 export function reversibleFields(type: NodeType): string[] {
 	return Object.keys(REVERSES_BY_TYPE[type]);
+}
+
+/** What `reverseEdgeFor` reads of a source node: a typed payload (runtime) or a raw cache file (backfill). */
+export interface ReverseSource {
+	slug: string;
+	type: NodeType;
+	name?: unknown;
+	qid?: unknown;
+	mbid?: unknown;
+	artists?: unknown;
+}
+
+// Same rule as `mbid` on an edge in src/schemas.ts (not exported there): the mbid of an edge is a uuid; an edge carrying anything else would make the
+// node that receives it unwritable, so a malformed source mbid is left off the edge.
+const edgeMbid = z.string().uuid();
+
+/**
+ * The only reverse field that carries the source's mbid: a project's id on its credited artist's discography
+ * (TRA-623, 2026-10-19). That edge was counted "without mbid" by the audit ratchet although the project node
+ * already knew its id. Every other pair stays without one.
+ */
+const MBID_REVERSE_FIELD = "discography";
+
+function nonEmptyString(value: unknown): string | null {
+	return typeof value === "string" && value !== "" ? value : null;
+}
+
+/**
+ * The edge `source` becomes on the node a reverse lands on, in `reverseField`. The single builder for the
+ * runtime (NodeCache.emitReverses) and the backfill (2026-10-17-backfill-reverse-edges), so the two emit the
+ * same edge for the same pair (TRA-624, 2026-10-24: the backfill built its own and did not carry the mbid,
+ * while the runtime did not carry the primary credit the backfill added).
+ * - always: slug, type, name;
+ * - a genre's qid (TRA-18);
+ * - the primary credit of a work (`artists[0].name`), the scope of its slug, which the identity migrations
+ *   use to repoint an edge;
+ * - a project's mbid, toward `artist.discography` only.
+ * Returns null when the source has no name: there is nothing to show on the reverse.
+ */
+export function reverseEdgeFor(source: ReverseSource, reverseField: string): EdgeRef | null {
+	const name = nonEmptyString(source.name);
+	if (!name) return null;
+	const edge: EdgeRef = { slug: source.slug as EdgeRef["slug"], type: source.type, name };
+	if (source.type === "genre") {
+		const qid = nonEmptyString(source.qid);
+		if (qid) edge.qid = qid;
+	}
+	if (source.type === "project" || source.type === "track") {
+		const first = Array.isArray(source.artists)
+			? (source.artists[0] as { name?: unknown } | undefined)
+			: undefined;
+		const artist = nonEmptyString(first?.name);
+		if (artist) edge.artist = artist;
+	}
+	if (source.type === "project" && reverseField === MBID_REVERSE_FIELD) {
+		const parsed = edgeMbid.safeParse(source.mbid);
+		if (parsed.success) edge.mbid = parsed.data;
+	}
+	return edge;
+}
+
+export interface MergedReverseEdge {
+	edge: EdgeRef;
+	/** The edge already holds an mbid that is not the incoming one: kept as is, to be reported. */
+	mbidConflict: boolean;
+}
+
+/**
+ * An edge already present on the target, enriched with what the incoming reverse edge knows (TRA-624): an
+ * edge with no mbid receives the incoming one; an mbid already there is never overwritten, and a different
+ * one is reported through `mbidConflict`. Nothing else of the existing edge changes. Pure.
+ */
+export function mergeReverseEdge(existing: EdgeRef, incoming: EdgeRef): MergedReverseEdge {
+	if (!incoming.mbid) return { edge: existing, mbidConflict: false };
+	if (!existing.mbid) return { edge: { ...existing, mbid: incoming.mbid }, mbidConflict: false };
+	return { edge: existing, mbidConflict: existing.mbid.toLowerCase() !== incoming.mbid.toLowerCase() };
 }
