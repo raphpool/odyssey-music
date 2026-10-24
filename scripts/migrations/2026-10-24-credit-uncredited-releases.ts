@@ -14,10 +14,11 @@
  *   MusicBrainz must find the exact title, the credit must confirm the hint (by mbid when the hint has one), and
  *   the year must agree. A work that fails stays uncredited.
  *
- * What is written is the credit and nothing else (`creditOnly`): no `mbid`, so the work is still selected by the
- * identity backfill, which fills the tracklist / label this run does not fetch. The reverse edge of each new
- * credit (the artist's `discography` / `notable_tracks`) is not written here either: 2026-10-17-backfill-reverse-edges
- * does it, and the `reciprocity-missing[project.artists->artist.discography]` measure (cap 0) says when it is due.
+ * What is written is the credit and the work's `mbid` (`creditOnly`), nothing else: the tracklist, label, year and
+ * release type are not fetched, which spares the second MusicBrainz call per work. A work that lacked them still
+ * does: this run is not the identity backfill. The reverse edge of each new credit (the artist's `discography` /
+ * `notable_tracks`, carrying the mbid) is not written here: 2026-10-17-backfill-reverse-edges does it, and the
+ * `reciprocity-missing[project.artists->artist.discography]` measure (cap 0) says when it is due.
  *
  * Dry-run by default (the manifest is written, no node is). `--resume` reuses the resolved entries of a previous
  * manifest and only those: the `--apply` after a dry-run neither searches again nor touches what it left unresolved. `--budget N` is a hard ceiling on MusicBrainz

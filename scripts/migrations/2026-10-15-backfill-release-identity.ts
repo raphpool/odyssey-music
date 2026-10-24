@@ -159,9 +159,10 @@ export interface BackfillOptions {
 	 */
 	extraPointers?: ReadonlyMap<string, ReadonlyMap<string, { name: string; mbid?: string }>>;
 	/**
-	 * TRA-485: with --apply, write the credit (`artists`) and nothing else. The work keeps no `mbid`, so a later
-	 * identity backfill still selects it and fills the tracklist / label this mode does not fetch (it spares the
-	 * second MusicBrainz call per work).
+	 * TRA-485: with --apply, write the credit (`artists`) and the work's `mbid`, nothing else: no tracklist, label,
+	 * year or release type, so no second MusicBrainz call per work. The mbid is written because the reverse edge of
+	 * the new credit (artist.discography) carries it, and an edge without one is a hole of its own
+	 * (`artist-discography-without-mbid`).
 	 */
 	creditOnly?: boolean;
 }
@@ -878,7 +879,10 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 				meta = fetched.meta;
 			}
 			const plan: Plan = options.creditOnly
-				? { next: { ...node, artists: mergeArtists(edges(node.artists), mapped.edges, ctx) }, notes: [] }
+				? {
+						next: { ...node, mbid: work.mbid, artists: mergeArtists(edges(node.artists), mapped.edges, ctx) },
+						notes: [],
+					}
 				: planWrite(type, node, work, mapped.edges, ctx, meta);
 			const parsed = nodePayloadSchema.safeParse(plan.next);
 			if (!parsed.success) {

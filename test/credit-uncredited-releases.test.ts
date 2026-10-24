@@ -262,7 +262,7 @@ describe("parseHints", () => {
 });
 
 describe("runCredit", () => {
-	it("credits a work from the one artist listing it, and writes the credit only", async () => {
+	it("credits a work from the one artist listing it, and writes the credit and the mbid only", async () => {
 		const id = mbid();
 		const rg = mbid();
 		await seed(
@@ -286,11 +286,11 @@ describe("runCredit", () => {
 		expect(result.exitCode).toBe(0);
 		const after = await readNode("project:the-acme-lp");
 		expect(after.artists).toEqual([{ slug: "artist:acme", type: "artist", name: "acme", mbid: id }]);
-		// No mbid, year or release type: the work is still selected by the identity backfill. (The schema may add
-		// its empty defaults, `personnel` for instance.)
+		// The credit and the work's mbid, no year or release type. (The schema may add its empty defaults,
+		// `personnel` for instance.)
 		const changed = Object.keys(after).filter((k) => JSON.stringify(after[k]) !== JSON.stringify(before[k]));
-		expect(changed.filter((k) => k !== "personnel")).toEqual(["artists"]);
-		expect(after.mbid).toBeUndefined();
+		expect(changed.filter((k) => k !== "personnel").sort()).toEqual(["artists", "mbid"]);
+		expect(after.mbid).toBe(rg);
 		// One search, and no lookup of a tracklist or a label.
 		expect(mb.urls).toHaveLength(1);
 	});
