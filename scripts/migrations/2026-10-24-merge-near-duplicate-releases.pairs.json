@@ -1,5 +1,5 @@
 {
-	"source": "MusicBrainz ws/2 read on 2026-10-24 (27 requests, 1 req/s) and the repository cache",
+	"source": "MusicBrainz ws/2 read on 2026-10-24 (27 requests for the first 22 pairs, 9 more for the last four and the Ellington refusal; 1 req/s) and the repository cache",
 	"pairs": [
 		{
 			"id": "mark-ernestus/800-ndagga",
@@ -212,6 +212,67 @@
 			"evidence": "One release group of the artist is called \"Something Else\": d47a1752 (Album, 1958); the other hit is a 2010 three-in-one compilation, not this album."
 		},
 		{
+			"id": "gary-numan/the-savage",
+			"kind": "release-group",
+			"artist": "artist:gary-numan",
+			"loser": {
+				"slug": "project:the-savage",
+				"name": "The Savage (Songs from a Broken World)"
+			},
+			"survivor": {
+				"slug": "project:savage-songs-from-a-broken-world--gary-numan",
+				"name": "Savage: Songs From a Broken World",
+				"mbid": "e98b92d7-4c39-4c9d-9e14-c179717017b5"
+			},
+			"evidence": "MusicBrainz, 2026-10-24: release group e98b92d7 (Album, 2017-09-15) is the artist's only studio release group with \"Savage\" in the title; the only other hit is 1647d4c7, the live album \"Savage (live at Brixton Academy)\" (Album + Live, 2018-11-09), which the entry's subtitle excludes."
+		},
+		{
+			"id": "jamie-principle/midnite-hour",
+			"kind": "release-group",
+			"artist": "artist:jamie-principle",
+			"loser": {
+				"slug": "project:midnite-hour",
+				"name": "Midnite Hour"
+			},
+			"survivor": {
+				"slug": "project:the-midnite-hour--jamie-principle",
+				"name": "The Midnite Hour",
+				"mbid": "d35a5dcc-c233-44fd-95a1-f58583fab3ed"
+			},
+			"evidence": "MusicBrainz, 2026-10-24: the artist has 16 release groups, all read; d35a5dcc \"The Midnite Hour\" (Album, 1992) is the only one with this title, and none is a single or EP called \"Midnite Hour\". The entry is the same title without its article. The artist's landmark_project follows."
+		},
+		{
+			"id": "ayumi-hamasaki/made-in-japan",
+			"kind": "release-group",
+			"artist": "artist:ayumi-hamasaki",
+			"redirect": false,
+			"loser": {
+				"slug": "project:made-in-japan",
+				"name": "Made in Japan"
+			},
+			"survivor": {
+				"slug": "project:m-a-de-in-japan--ayumi-hamasaki",
+				"name": "M(A)DE IN JAPAN",
+				"mbid": "05d3db93-f127-498c-a223-7490d49c86b0"
+			},
+			"evidence": "MusicBrainz, 2026-10-24: release group 05d3db93 (Album, 2016-06-29) is the artist's studio album; the only other hit for \"Japan\" is 11e59230, the tour live album \"ARENA TOUR 2016 A ~M(A)DE IN JAPAN~\" (Album + Live, 2016-12-21). NO REDIRECT: the bare slug project:made-in-japan is Deep Purple's 1972 live album, so only this artist's own entry is merged."
+		},
+		{
+			"id": "thomas-koner/nunatak-gongamur--barooni-edge",
+			"kind": "edge-only",
+			"artist": "artist:thomas-koner",
+			"loser": {
+				"slug": "project:nunatak-gongamur",
+				"name": "Nunatak Gongamur"
+			},
+			"survivor": {
+				"slug": "project:nunatak-gongamur--thomas-koner",
+				"name": "Nunatak Gongamur",
+				"mbid": "38e07f35-6617-3b46-8262-cbd377373b32"
+			},
+			"evidence": "MusicBrainz, 2026-10-24: release group 38e07f35 \"Nunatak Gongamur\" (Album, 1990, credited to Thomas Köner) holds the releases \"Nunatak Gongamur\" (1990, twice) and \"Nunatak\" (2010). The artist's entry was merged by the pair thomas-koner/nunatak-gongamur-ram; what is left is label:barooni's own bare edge to the same album, with no node and no redirect."
+		},
+		{
 			"id": "miles-davis/birth-of-the-cool",
 			"kind": "same-node",
 			"artist": "artist:miles-davis",
@@ -375,6 +436,14 @@
 				"Black Brown and Beige: A Duke Ellington Tone Parallel to the American Negro"
 			],
 			"reason": "Not proven: the 1946 release group is not the 1958 album the entry refers to."
+		},
+		{
+			"artist": "duke-ellington",
+			"titles": [
+				"At Newport",
+				"Ellington at Newport"
+			],
+			"reason": "Not the same disc. 620dd228 \"At Newport\" (Album, 1956) is credited to Duke Ellington / Buck Clayton All-Stars: the Columbia CL 933 disc shared with Buck Clayton. \"Ellington at Newport\" is c7af2ab6 (Album + Live, 1956-09, Duke Ellington & His Orchestra), one of at least three Newport release groups of the artist. The entry without an mbid is for a future mbid on c7af2ab6, not for this merge."
 		},
 		{
 			"artist": "kode9",
