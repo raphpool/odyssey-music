@@ -1,6 +1,8 @@
 import { execFileSync, spawnSync } from "node:child_process";
 import { readFileSync } from "node:fs";
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
+import { scopedReleaseSlugsEnabled } from "../src/flags.js";
+import { makeSlug } from "../src/slug.js";
 
 // Structural checks on the workflow file itself (TRA-70). No YAML parser is added
 // as a dependency: these are targeted text assertions on the committed source,
@@ -196,5 +198,53 @@ describe("top-up-genres workflow (TRA-70)", () => {
 		expect(script).toMatch(
 			/git push "https:\/\/x-access-token:\$\{GH_TOKEN\}@github\.com\/\$\{\{\s*github\.repository\s*\}\}\.git" "\$branch"/,
 		);
+	});
+});
+
+// TRA-572: TRA-509 switched the production server to scoped, transliterated slugs through its systemd
+// unit. A process that mints slugs without the flag keeps writing the old form (`artist:mrk` for Mørk
+// while the server writes `artist:mork`), so this workflow, which writes nodes and edges into cache/,
+// must carry the same flag. Parity with deploy/deploy-server.sh is deliberately not asserted:
+// test/scoped-slugs-deploy-flag.test.ts keeps that file rollback-able, and a parity check would make a
+// server-only rollback to 0 fail the test step of deploy.yml before it reaches the server. Pinning "1"
+// here means rolling this workflow back is a conscious edit of this test too.
+describe("top-up-genres workflow: scoped release slugs flag (TRA-572)", () => {
+	const FLAG = "ODYSSEY_SCOPED_RELEASE_SLUGS";
+	afterEach(() => {
+		vi.unstubAllEnvs();
+	});
+
+	const workflowEnvBlock = workflow.slice(workflow.indexOf("\nenv:"), workflow.indexOf("\njobs:"));
+	const declared = workflowEnvBlock.match(new RegExp(`^ {2}${FLAG}:\\s*"([^"]*)"\\s*$`, "m"))?.[1];
+
+	it("declares the flag at workflow level, so every step that could mint a slug receives it", () => {
+		expect(declared).toBe("1");
+	});
+
+	it("never overrides the flag in the job or in a step (comments aside)", () => {
+		const jobsCode = workflow
+			.slice(workflow.indexOf("\njobs:"))
+			.split("\n")
+			.filter((line) => !line.trimStart().startsWith("#"))
+			.join("\n");
+		expect(jobsCode).not.toContain(FLAG);
+	});
+
+	it("makes the crawler read the flag as on and mint the same transliterated slugs as the server", () => {
+		expect(declared).toBeDefined();
+		vi.stubEnv(FLAG, declared as string);
+		expect(scopedReleaseSlugsEnabled()).toBe(true);
+		const withWorkflowEnv = makeSlug("genre", "Mørk Æther");
+		expect(withWorkflowEnv).toBe("genre:mork-aether");
+
+		// Control: without the flag (how the workflow ran before) the slug differs.
+		vi.stubEnv(FLAG, "");
+		expect(scopedReleaseSlugsEnabled()).toBe(false);
+		expect(makeSlug("genre", "Mørk Æther")).not.toBe(withWorkflowEnv);
+	});
+
+	it("documents the per-command flag for local crawls in the README", () => {
+		const readme = readFileSync("README.md", "utf8");
+		expect(readme).toContain(`${FLAG}=1 npm run crawl`);
 	});
 });
