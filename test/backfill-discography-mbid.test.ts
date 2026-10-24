@@ -205,6 +205,7 @@ function options(w: World, extra: Partial<BackfillOptions> = {}): BackfillOption
 		dataDir,
 		fetch: mbFetch(w),
 		currentYear: 2026,
+		currentDate: "2026-10-24",
 		...extra,
 	};
 }
@@ -400,6 +401,7 @@ describe("--apply", () => {
 			"non-canonical": 1,
 			"primary-type": 0,
 			unrated: 0,
+			future: 0,
 		});
 		expect(manifest.totals.excluded["various-artists"]).toBe(1);
 	});
@@ -1260,6 +1262,49 @@ describe("the year handed to the policy (TRA-628)", () => {
 
 		await runBackfill(options(w, { apply: true, resume: true, currentYear: 2027 }));
 		expect(new Set(w.requests.map((r) => r.artist))).toEqual(new Set([id]));
+	});
+});
+
+describe("the date handed to the policy (TRA-654)", () => {
+	async function putArtistWithAnnouncedSingle(w: World): Promise<string> {
+		const id = mb(7600);
+		w.byArtist.set(id, [
+			rg(860, "Out Already", "Album", "2020-05-01", [{ id, name: "H01" }]),
+			rg(861, "Announced", "Single", "2026-11-20", [{ id, name: "H01" }]),
+		]);
+		await put(artistNode("h01", "H01", { mbid: id }));
+		return id;
+	}
+
+	it("uses the injected date: a release group announced for later is counted `future`, not added", async () => {
+		const w = world();
+		await putArtistWithAnnouncedSingle(w);
+
+		await runBackfill(options(w, { currentDate: "2026-10-24" }));
+		let manifest = await readManifest();
+		let entry = entryOf(manifest, "artist:h01");
+		expect(entry.added?.map((a) => a.title)).toEqual(["Out Already"]);
+		expect(entry.excluded?.future).toBe(1);
+		expect(manifest.totals.excluded.future).toBe(1);
+
+		// The day after the announced one: the same answers, and it is a release like another.
+		await runBackfill(options(w, { currentDate: "2026-11-21" }));
+		manifest = await readManifest();
+		entry = entryOf(manifest, "artist:h01");
+		expect(entry.added?.map((a) => a.title).sort()).toEqual(["Announced", "Out Already"]);
+		expect(entry.excluded?.future).toBe(0);
+	});
+
+	// The version is in the fingerprint (test above, version 99); the date is not: a resume after midnight UTC
+	// would redo every artist for a `future` that rarely changes.
+	it("replays a resume made under another date: only the version invalidates it", async () => {
+		const w = world();
+		await putArtistWithAnnouncedSingle(w);
+		await runBackfill(options(w, { apply: true, currentDate: "2026-10-24" }));
+
+		w.requests.length = 0;
+		await runBackfill(options(w, { apply: true, resume: true, currentDate: "2026-10-25" }));
+		expect(w.requests).toEqual([]);
 	});
 });
 

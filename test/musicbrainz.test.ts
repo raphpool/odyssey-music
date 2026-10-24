@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { musicBrainzConfig } from "../src/config.js";
 import {
+	createMusicBrainzCatalog,
 	fetchArtistDiscographyMb,
 	fetchArtistEntityMb,
 	fetchArtistMembershipsMb,
@@ -11,6 +12,7 @@ import {
 	fetchTrackMetaDetailedMb,
 	fetchTrackMetaMb,
 	fetchWikidataUrlRelMb,
+	findCompilationCoverReleaseGroup,
 	resolveRecording,
 	resolveRecordingDetailed,
 	resolveReleaseGroup,
@@ -2879,22 +2881,60 @@ describe("pickByTitleAndCredit: release groups of different primary types", () =
 			);
 		});
 
-		it("reads an off-shape secondary-types as none, never as a crash", async () => {
+		// MB always sends an array. Anything else is off schema: like a malformed primary-type, it makes the
+		// whole answer unusable (an outage, not a verdict) instead of being read as "no secondary type", which
+		// let a live album marked `"secondary-types": "Live"` pass for a studio one (TRA-566).
+		it.each([
+			["a string", "Live"],
+			["an object", { 0: "Live" }],
+			["an array holding a non-string", [null, 3]],
+			["an array mixing strings and a non-string", ["Live", 3]],
+			["null", null],
+			["an array holding a blank name", [""]],
+			["an array holding an untrimmed name", [" Live "]],
+		])("never keeps a release group whose secondary-types is %s", async (shape, secondaryTypes) => {
+			const title = `Odd Shape ${shape}`;
 			stubMb({
 				"release-groups": [
-					hit(album, "Odd Shape", [[INTER_ARMA, "Inter Arma"]], {
+					hit(album, title, [[INTER_ARMA, "Inter Arma"]], {
 						"primary-type": "Album",
-						"secondary-types": "Live",
-						"first-release-date": "2005-01-01",
-					}),
-					hit(compilation, "Odd Shape", [[INTER_ARMA, "Inter Arma"]], {
-						"primary-type": "Album",
-						"secondary-types": [null, 3],
+						"secondary-types": secondaryTypes,
 						"first-release-date": "1999-01-01",
+					}),
+					hit(compilation, title, [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"first-release-date": "2005-01-01",
 					}),
 				],
 			});
-			expect((await resolveReleaseGroupDetailed("Odd Shape", "Inter Arma")).identity?.mbid).toBe(compilation);
+			expect(await resolveReleaseGroupDetailed(title, "Inter Arma")).toEqual({
+				identity: null,
+				ambiguous: false,
+				unavailable: true,
+			});
+		});
+
+		// Same all-or-nothing rule as a malformed primary-type: the autocomplete shares the parser, so it
+		// answers nothing rather than a list that holds an unreadable hit.
+		it("blanks the project autocomplete on an off-shape secondary-types, like on an off-shape primary-type", async () => {
+			stubMb({
+				"release-groups": [
+					hit(album, "Odd Autocomplete", [[INTER_ARMA, "Inter Arma"]], { "secondary-types": "Live" }),
+				],
+			});
+			expect(await createMusicBrainzCatalog().searchByType("project", "Odd Autocomplete", 5)).toEqual([]);
+		});
+
+		it("still takes a release group whose secondary-types is absent or an empty array", async () => {
+			stubMb({
+				"release-groups": [
+					hit(album, "Well Formed", [[INTER_ARMA, "Inter Arma"]], {
+						"primary-type": "Album",
+						"secondary-types": [],
+					}),
+				],
+			});
+			expect((await resolveReleaseGroupDetailed("Well Formed", "Inter Arma")).identity?.mbid).toBe(album);
 		});
 	});
 
@@ -2922,6 +2962,130 @@ describe("pickByTitleAndCredit: release groups of different primary types", () =
 		stubMb({ "release-groups": [] });
 		expect(await resolveReleaseGroupDetailed("Nothing Here", "Inter Arma", { releaseType: "album" })).toEqual(
 			none,
+		);
+	});
+});
+
+describe("work search by the requested artist's MBID (TRA-543)", () => {
+	// MB's `artist:` field indexes the PRINTED name only: Ryuichi Sakamoto's 1983 soundtrack, credited 坂本龍一,
+	// never came back for "Ryuichi Sakamoto" (measured 2026-10-15). `arid:` is the artist's id, indexed
+	// whatever name the credit prints. Real hit, read from MB on 2026-10-24: the soundtrack is filed there as
+	// "Merry Christmas, Mr. Lawrence/Furyo", Album + Soundtrack, 1983-05, credited 坂本龍一.
+	const SAKAMOTO = "a7f7df4a-77d8-4f12-8acd-5c60c93f4de8";
+	const OST_1983 = "3870eb3e-3447-384e-8d8a-aeddab4ef00b";
+	const OST_TITLE = "Merry Christmas, Mr. Lawrence/Furyo";
+	// The credit prints 坂本龍一; the artist behind it is Sakamoto, by id.
+	const ost1983 = hit(OST_1983, OST_TITLE, [[SAKAMOTO, "坂本龍一"]], {
+		"primary-type": "Album",
+		"secondary-types": ["Soundtrack"],
+		"first-release-date": "1983-05",
+	});
+
+	/** An MB that, like the real one, returns the soundtrack for `arid:` only: `artist:"Ryuichi Sakamoto"` misses 坂本龍一. */
+	function stubIndexedMb(): URL[] {
+		const urls: URL[] = [];
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async (input: URL) => {
+				urls.push(input);
+				const byId = (input.searchParams.get("query") ?? "").includes(`arid:${SAKAMOTO}`);
+				return jsonResponse({ count: byId ? 1 : 0, "release-groups": byId ? [ost1983] : [] });
+			}),
+		);
+		return urls;
+	}
+
+	it("searches by arid, next to the printed name, when the artist's MBID is known", async () => {
+		const urls = stubMb({ "release-groups": [] });
+		await resolveReleaseGroupDetailed("Query Arid RG", "Ryuichi Sakamoto", { requestedArtistMbid: SAKAMOTO });
+		expect(urls[0]?.searchParams.get("query")).toBe(
+			`releasegroup:"Query Arid RG" AND (arid:${SAKAMOTO} OR artist:"Ryuichi Sakamoto")`,
+		);
+		await resolveRecordingDetailed("Query Arid Rec", "Ryuichi Sakamoto", { requestedArtistMbid: SAKAMOTO });
+		expect(urls[1]?.searchParams.get("query")).toBe(
+			`recording:"Query Arid Rec" AND (arid:${SAKAMOTO} OR artist:"Ryuichi Sakamoto")`,
+		);
+	});
+
+	// The name stays in the query: a work printed under the artist's name but filed under a band the artist
+	// belongs to ("Roni Size / Reprazent", accepted by MBID in the pick) carries the band's id, not the artist's.
+	it("keeps the printed-name clause, so no work found before is lost", async () => {
+		// This MB finds the band-credited work by the printed name only, never by the artist's own id.
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async (input: URL) => {
+				const query = input.searchParams.get("query") ?? "";
+				const found = query.includes('artist:"Roni Size"');
+				return jsonResponse({
+					"release-groups": found
+						? [
+								hit(NEW_FORMS_RG, "Union Keeps Name", [[REPRAZENT, "Roni Size / Reprazent"]], {
+									"primary-type": "Album",
+								}),
+							]
+						: [],
+				});
+			}),
+		);
+		const out = await resolveReleaseGroupDetailed("Union Keeps Name", "Roni Size", {
+			requestedArtistMbid: "11111111-0543-4543-8543-000000000002",
+			acceptCreditMbids: [REPRAZENT],
+		});
+		expect(out.identity?.mbid).toBe(NEW_FORMS_RG);
+	});
+
+	it("makes the soundtrack credited 坂本龍一 a candidate, and the work asked for", async () => {
+		stubIndexedMb();
+		const out = await resolveReleaseGroupDetailed(OST_TITLE, "Ryuichi Sakamoto", {
+			requestedArtistMbid: SAKAMOTO,
+			releaseType: "album",
+		});
+		expect(out.identity?.mbid).toBe(OST_1983);
+		expect(out.identity?.credit).toEqual([{ mbid: SAKAMOTO, name: "坂本龍一" }]);
+	});
+
+	it("without the MBID, searches by the printed name only and answers as before: nothing", async () => {
+		const urls = stubIndexedMb();
+		const out = await resolveReleaseGroupDetailed(OST_TITLE, "Ryuichi Sakamoto", { releaseType: "album" });
+		expect(urls[0]?.searchParams.get("query")).toBe(
+			`releasegroup:"${OST_TITLE}" AND artist:"Ryuichi Sakamoto"`,
+		);
+		expect(out).toEqual({ identity: null, ambiguous: false, unavailable: false });
+	});
+
+	it("reads a blank or malformed MBID as no MBID: only a bare UUID reaches the query", async () => {
+		const urls = stubMb({ "release-groups": [] });
+		for (const [i, bad] of ["", "   ", "not-an-mbid", `${SAKAMOTO}) OR artist:"x`].entries()) {
+			await resolveReleaseGroupDetailed(`Bad Mbid ${i}`, "Someone", { requestedArtistMbid: bad });
+			expect(urls[i]?.searchParams.get("query")).toBe(`releasegroup:"Bad Mbid ${i}" AND artist:"Someone"`);
+		}
+	});
+
+	it("lowercases the MBID", async () => {
+		const urls = stubMb({ "release-groups": [] });
+		await resolveReleaseGroupDetailed("Upper Mbid", "Someone", {
+			requestedArtistMbid: SAKAMOTO.toUpperCase(),
+		});
+		expect(urls[0]?.searchParams.get("query")).toContain(`arid:${SAKAMOTO} OR`);
+	});
+
+	it("leaves the title-only query alone when there is no usable hint, MBID or not", async () => {
+		const urls = stubMb({ "release-groups": [] });
+		await resolveReleaseGroupDetailed("Only Title", undefined, { requestedArtistMbid: SAKAMOTO });
+		expect(urls[0]?.searchParams.get("query")).toBe('releasegroup:"Only Title"');
+	});
+
+	it("searches the compilation cover's recordings by arid too", async () => {
+		const urls = stubMb({ recordings: [] });
+		await findCompilationCoverReleaseGroup("Query Arid Compilation", "Ryuichi Sakamoto", {
+			requestedArtistMbid: SAKAMOTO,
+		});
+		await findCompilationCoverReleaseGroup("Query Name Compilation", "Ryuichi Sakamoto");
+		expect(urls[0]?.searchParams.get("query")).toBe(
+			`release:"Query Arid Compilation" AND (arid:${SAKAMOTO} OR artist:"Ryuichi Sakamoto")`,
+		);
+		expect(urls[1]?.searchParams.get("query")).toBe(
+			'release:"Query Name Compilation" AND artist:"Ryuichi Sakamoto"',
 		);
 	});
 });
@@ -3140,6 +3304,66 @@ describe("fetchArtistDiscographyMb: credits and unavailability", () => {
 				],
 				ratingVotes: 12,
 			},
+		]);
+	});
+
+	// TRA-653: the separator between two credits is the only trace of a classical credit's shape ("Ellington;
+	// Buffalo Philharmonic, Falletta"). Third-party text: kept as given when it is a non-empty string, else absent.
+	it("carries the joinphrase of each credit that has one, and none for an absent, empty or invalid one", async () => {
+		stubBrowse(({ type }) =>
+			page(
+				type === "album"
+					? [
+							rg(1, {
+								"artist-credit": [
+									{ ...credit(KODE9, "Kode9"), joinphrase: "; " },
+									{ ...credit(SPACEAPE, "The Spaceape"), joinphrase: "" },
+									{ ...credit(rgId(90), "Third"), joinphrase: 42 },
+									credit(rgId(91), "Fourth"),
+								],
+							}),
+						]
+					: [],
+			),
+		);
+
+		const { releases } = await fetchArtistDiscographyMb(freshArtist());
+
+		expect(releases[0]?.artistCredits).toEqual([
+			{ mbid: KODE9, name: "Kode9", joinphrase: "; " },
+			{ mbid: SPACEAPE, name: "The Spaceape" },
+			{ mbid: rgId(90), name: "Third" },
+			{ mbid: rgId(91), name: "Fourth" },
+		]);
+		expect(releases[0]?.artistCredits[1]).not.toHaveProperty("joinphrase");
+	});
+
+	// A ";" must survive the credits that are dropped, else the shape of the credit depends on which artist repeats.
+	it("hands the joinphrase of a dropped credit (repeated artist, no artist id) to the credit before it", async () => {
+		stubBrowse(({ type }) =>
+			page(
+				type === "album"
+					? [
+							rg(1, {
+								"artist-credit": [
+									{ ...credit(KODE9, "Kode9"), joinphrase: ", " },
+									{ ...credit(SPACEAPE, "The Spaceape"), joinphrase: "; " },
+									{ ...credit(KODE9, "Kode9"), joinphrase: "" },
+									{ name: "Nobody", joinphrase: " & " },
+									{ ...credit(rgId(90), "Third"), joinphrase: "" },
+								],
+							}),
+						]
+					: [],
+			),
+		);
+
+		const { releases } = await fetchArtistDiscographyMb(freshArtist());
+
+		expect(releases[0]?.artistCredits).toEqual([
+			{ mbid: KODE9, name: "Kode9", joinphrase: ", " },
+			{ mbid: SPACEAPE, name: "The Spaceape", joinphrase: ";  & " },
+			{ mbid: rgId(90), name: "Third" },
 		]);
 	});
 
