@@ -5,14 +5,13 @@
  * MusicBrainz on 2026-10-24 (12 requests, 1 req/s, default User-Agent); the evidence of every step is in its
  * `evidence` line, and the same table is in the PR.
  *
- * CLOSED LIST (STEPS below): seven steps, three kinds.
+ * CLOSED LIST (STEPS below): six steps, two kinds.
  *   - `detach` (project, label): the project is not a release of the label. Both sides of the pair go, because
  *     `project.label` and `label.notable_releases` are reverse edges (src/node-spec.ts, TRA-454): removing one
  *     side only would let the next reverse-edge backfill restore it. `project.label` is cleared only when it
  *     holds this very label; the entries of `label.notable_releases` with this slug are removed, the others
  *     keep their order. Nothing is re-pointed: no node exists for the true label of these releases, or it
  *     would be a different claim (see the Piper evidence), and an empty edge is honest.
- *   - `set` (label, field, expected, value): a scalar written over its expected, known-wrong value.
  *   - `retarget` (node, from, to): the node points at a dangling duplicate that data/slug-redirects.json
  *     already redirects to a canonical node (the test pins `to` against the committed table). In a list the
  *     dangling entry is replaced in place by the canonical edge, or simply dropped when the list already holds
@@ -25,8 +24,8 @@
  *
  * Rules:
  * - A step touches a node only when the expected value is still there: the project holds the label, the list
- *   holds the entry, the field holds the old text. Anything else is left alone and listed in `skipped`
- *   (`absent`, `already-clean`, `value-changed`): a value the pipeline or a human rewrote since is not ours to
+ *   holds the entry. Anything else is left alone and listed in `skipped`
+ *   (`absent`, `already-clean`): a value the pipeline or a human rewrote since is not ours to
  *   undo, and a second run finds nothing to do (idempotence). `absent` is normal for `project:polyester`, a
  *   dangling duplicate (its redirect to `project:polyester--lisa-carbon` is committed in
  *   data/slug-redirects.json), and for nodes that exist on one side only: the migration runs on the channel's
@@ -69,16 +68,6 @@ export interface DetachStep {
 	evidence: string;
 }
 
-export interface SetStep {
-	kind: "set";
-	node: string;
-	field: "active_years";
-	/** The value the step is written against; any other value is left alone. */
-	expected: string;
-	value: string;
-	evidence: string;
-}
-
 export interface RetargetStep {
 	kind: "retarget";
 	node: string;
@@ -91,7 +80,7 @@ export interface RetargetStep {
 	evidence: string;
 }
 
-export type Step = DetachStep | SetStep | RetargetStep;
+export type Step = DetachStep | RetargetStep;
 
 /** The closed list. Exported so that the test pins it: adding a step is a reviewed change. */
 export const STEPS: readonly Step[] = [
@@ -139,15 +128,6 @@ export const STEPS: readonly Step[] = [
 		evidence:
 			"`project:polyester` has no node and data/slug-redirects.json maps it to project:polyester--lisa-carbon (Rephlex CAT 026, 1994, release group 180d7f48). The discography lists both: the dangling entry is dropped, the canonical one stays; the landmark takes the canonical entry.",
 	},
-	{
-		kind: "set",
-		node: "label:e-g-records",
-		field: "active_years",
-		expected: "1969–1996",
-		value: "1969–1991",
-		evidence:
-			"MusicBrainz label 71ee312d (E'G): life-span 1969 to 1991-05-09, ended. The 1996 of the card (copied from label:eg-records by the merge) is the end of the 'label ownership' relation of Virgin (1992-1996), not of the label.",
-	},
 ];
 
 /** A case of the triage that is NOT touched, with the proof that it is right. Documentation, and a test pin. */
@@ -165,6 +145,12 @@ export const KEPT: readonly Kept[] = [
 			"MusicBrainz: Wolfgang Voigt 1cc6e6ad is the person behind Mike Ink f0de7984 ('is person'), and Mike Ink released Paroles (WAP 81, 1996-10-14) and Polka Trax (WAP 82, 1996-10-28) on Warp 46f0f4cd. The edge is true through the alias; no release of the Wolfgang Voigt credit itself is on Warp. kompakt (Polkatrax 1-3) and raster-noton (Gas: November 89, 2008) are also supported.",
 	},
 	{
+		node: "label:e-g-records",
+		edge: "active_years",
+		evidence:
+			"The proofs contradict: MusicBrainz E'G 71ee312d ends 1991-05-09, but Virgin owns the label until 1996 (relation 1992-1996), MusicBrainz lists an E'G release of 1996 (EGCD 101), Wikipedia gives 'Defunct 1996' and the article says 1996. No clear proof the card's 1969–1996 is wrong, so it stays (dispatcher decision, review of #630).",
+	},
+	{
 		node: "project:polyester--lisa-carbon",
 		edge: "label:rephlex",
 		evidence:
@@ -172,15 +158,15 @@ export const KEPT: readonly Kept[] = [
 	},
 ];
 
-export type SkipReason = "absent" | "already-clean" | "value-changed";
+export type SkipReason = "absent" | "already-clean";
 
 export interface Change {
 	node: string;
-	field: "label" | "notable_releases" | "active_years" | "discography" | "landmark_project";
-	action: "cleared" | "removed" | "set" | "retargeted" | "merged";
-	/** The slug cleared, removed or retargeted, or the old value of a scalar. */
+	field: "label" | "notable_releases" | "discography" | "landmark_project";
+	action: "cleared" | "removed" | "retargeted" | "merged";
+	/** The slug cleared, removed or retargeted. */
 	from: string;
-	/** The new value of a scalar or the canonical slug of a retargeted edge; null when an edge was cleared or removed. */
+	/** The canonical slug of a retargeted edge; null when an edge was cleared or removed. */
 	to: string | null;
 	/** `removed`, `merged`, `retargeted` in a list: how many entries of the list carried the slug. */
 	entries?: number;
@@ -190,7 +176,7 @@ export interface Skipped {
 	node: string;
 	field: Change["field"];
 	reason: SkipReason;
-	/** `value-changed`: the value the node holds instead; `already-clean`: the label a project holds instead, or the value already set. */
+	/** `already-clean`: the label (or slug) the edge holds instead of the expected one. */
 	found?: string;
 }
 
@@ -295,24 +281,6 @@ export function retargetSingleEdge(node: Obj, step: RetargetStep, field: "landma
 	};
 }
 
-/** A scalar -> `value`, only when it still holds `expected`. */
-export function setScalar(node: Obj, step: SetStep): Outcome {
-	const found = asString(node[step.field]);
-	if (found === step.value) {
-		return { next: null, skipped: { node: step.node, field: step.field, reason: "already-clean", found } };
-	}
-	if (found !== step.expected) {
-		return {
-			next: null,
-			skipped: { node: step.node, field: step.field, reason: "value-changed", ...(found ? { found } : {}) },
-		};
-	}
-	return {
-		next: { ...node, [step.field]: step.value },
-		change: { node: step.node, field: step.field, action: "set", from: step.expected, to: step.value },
-	};
-}
-
 export interface RunOptions {
 	cacheDir: string;
 	apply: boolean;
@@ -389,8 +357,6 @@ export async function runMigration(options: RunOptions): Promise<{ manifest: Man
 				if (field === "discography") await edit(step.node, field, (n) => retargetListEdge(n, step, field));
 				else await edit(step.node, field, (n) => retargetSingleEdge(n, step, field));
 			}
-		} else {
-			await edit(step.node, step.field, (n) => setScalar(n, step));
 		}
 	}
 
@@ -435,10 +401,7 @@ export function formatSummary(manifest: Manifest, manifestPath: string | undefin
 	const lines = [`${manifest.migration} (${manifest.mode})`];
 	lines.push(`  ${"node files written".padEnd(24)} ${manifest.written}`);
 	for (const c of manifest.changed) {
-		const what =
-			c.action === "set"
-				? `${c.from} -> ${c.to}`
-				: `${c.action} ${c.from}${c.to ? ` -> ${c.to}` : ""}${c.entries ? ` (x${c.entries})` : ""}`;
+		const what = `${c.action} ${c.from}${c.to ? ` -> ${c.to}` : ""}${c.entries ? ` (x${c.entries})` : ""}`;
 		lines.push(`  ${c.node}.${c.field}: ${what}`);
 	}
 	for (const s of manifest.skipped) {

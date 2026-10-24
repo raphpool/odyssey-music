@@ -124,7 +124,7 @@ function nodes(): Obj[] {
 			roster: [edge("artist:wolfgang-voigt", "Wolfgang Voigt")],
 		}),
 		label("label:apollo", { notable_releases: [SAW] }),
-		// set: E.G. Records
+		// kept: E.G. Records (the proofs on its end date contradict each other)
 		label("label:e-g-records", { founded: "1969", active_years: "1969–1996" }),
 		// retarget: Lisa Carbon's dangling Polyester, in the discography and as the landmark
 		artist("artist:lisa-carbon", {
@@ -186,14 +186,12 @@ const without = (node: Obj, key: string): Obj => {
 };
 
 describe("fix-merged-label-edges: the closed list", () => {
-	it("holds exactly the seven steps of TRA-609 (adding one is a reviewed change)", () => {
+	it("holds exactly the six steps of TRA-609 (adding one is a reviewed change)", () => {
 		expect(
 			STEPS.map((s) =>
 				s.kind === "detach"
 					? `detach ${s.project} from ${s.label}`
-					: s.kind === "retarget"
-						? `retarget ${s.node} ${s.fields.join("+")} ${s.from} -> ${s.to}`
-						: `set ${s.node}.${s.field} ${s.expected} -> ${s.value}`,
+					: `retarget ${s.node} ${s.fields.join("+")} ${s.from} -> ${s.to}`,
 			),
 		).toEqual([
 			"detach project:the-piper-at-the-gates-of-dawn--pink-floyd from label:columbia",
@@ -202,7 +200,6 @@ describe("fix-merged-label-edges: the closed list", () => {
 			"detach project:hard-normal-daddy--squarepusher from label:rephlex",
 			"detach project:polyester from label:rephlex",
 			"retarget artist:lisa-carbon discography+landmark_project project:polyester -> project:polyester--lisa-carbon",
-			"set label:e-g-records.active_years 1969–1996 -> 1969–1991",
 		]);
 	});
 
@@ -211,13 +208,15 @@ describe("fix-merged-label-edges: the closed list", () => {
 		for (const k of KEPT) expect(k.evidence.length).toBeGreaterThan(80);
 	});
 
-	it("keeps Wolfgang Voigt on Warp and Polyester (Lisa Carbon) on Rephlex: no step may name them", () => {
+	it("keeps Wolfgang Voigt on Warp, E.G.'s end date and Polyester (Lisa Carbon) on Rephlex: no step may name them", () => {
 		expect(KEPT.map((k) => `${k.node} ${k.edge}`)).toEqual([
 			"artist:wolfgang-voigt label:warp",
+			"label:e-g-records active_years",
 			"project:polyester--lisa-carbon label:rephlex",
 		]);
 		const touched = STEPS.flatMap((s) => (s.kind === "detach" ? [s.project] : [s.node]));
 		expect(touched).not.toContain("artist:wolfgang-voigt");
+		expect(touched).not.toContain("label:e-g-records");
 		expect(touched).not.toContain("project:polyester--lisa-carbon");
 	});
 });
@@ -333,11 +332,13 @@ describe("fix-merged-label-edges: one test per case, and nothing else moves", ()
 		expect(without(rephlex, "notable_releases")).toEqual(without(before[5] as Obj, "notable_releases"));
 	});
 
-	it("E.G. Records: active_years 1969–1996 becomes 1969–1991, founded and the rest stay", async () => {
-		const before = nodes();
-		await writeCache(before);
-		await run(true);
-		expect(await readNode("label:e-g-records")).toEqual({ ...(before[8] as Obj), active_years: "1969–1991" });
+	it("E.G. Records: the end date is not proven wrong, the card is byte for byte what it was", async () => {
+		await writeCache(nodes());
+		const before = (await snapshot())["label/e-g-records.json"];
+		const manifest = await run(true);
+		expect((await snapshot())["label/e-g-records.json"]).toBe(before);
+		expect((await readNode("label:e-g-records")).active_years).toBe("1969–1996");
+		expect(manifest.changed.map((c) => c.node)).not.toContain("label:e-g-records");
 	});
 
 	it("Wolfgang Voigt: the artist and his three labels are byte for byte what they were", async () => {
@@ -348,11 +349,11 @@ describe("fix-merged-label-edges: one test per case, and nothing else moves", ()
 		expect(manifest.changed.map((c) => c.node)).not.toContain("artist:wolfgang-voigt");
 	});
 
-	it("writes exactly the six node files the cases need, and reports every change", async () => {
+	it("writes exactly the five node files the cases need, and reports every change", async () => {
 		await writeCache(nodes());
 		const manifest = await run(true);
-		// piper, columbia, rephlex (three edits, one write), warp, lisa-carbon (two edits, one write), e-g-records.
-		expect(manifest.written).toBe(6);
+		// piper, columbia, rephlex (three edits, one write), warp, lisa-carbon (two edits, one write).
+		expect(manifest.written).toBe(5);
 		expect(manifest.changed.map((c) => `${c.node}.${c.field} ${c.action} ${c.from}`)).toEqual([
 			"project:the-piper-at-the-gates-of-dawn--pink-floyd.label cleared label:columbia",
 			"label:columbia.notable_releases removed project:the-piper-at-the-gates-of-dawn--pink-floyd",
@@ -362,7 +363,6 @@ describe("fix-merged-label-edges: one test per case, and nothing else moves", ()
 			"label:rephlex.notable_releases removed project:polyester",
 			"artist:lisa-carbon.discography merged project:polyester",
 			"artist:lisa-carbon.landmark_project retargeted project:polyester",
-			"label:e-g-records.active_years set 1969–1996",
 		]);
 	});
 
@@ -452,22 +452,7 @@ describe("fix-merged-label-edges: idempotence and dry-run", () => {
 	});
 });
 
-describe("fix-merged-label-edges: a value that is not the expected one is not ours", () => {
-	it("leaves an active_years the pipeline or a human rewrote since, and says so", async () => {
-		const rewritten = nodes().map((n) =>
-			n.slug === "label:e-g-records" ? { ...n, active_years: "1969–1992" } : n,
-		);
-		await writeCache(rewritten);
-		const manifest = await run(true);
-		expect((await readNode("label:e-g-records")).active_years).toBe("1969–1992");
-		expect(manifest.skipped).toContainEqual({
-			node: "label:e-g-records",
-			field: "active_years",
-			reason: "value-changed",
-			found: "1969–1992",
-		});
-	});
-
+describe("fix-merged-label-edges: an edge that is not the expected one is not ours", () => {
 	it("leaves a project that now holds another label, and says which", async () => {
 		const moved = nodes().map((n) =>
 			n.slug === "project:the-piper-at-the-gates-of-dawn--pink-floyd"
@@ -487,18 +472,6 @@ describe("fix-merged-label-edges: a value that is not the expected one is not ou
 		});
 	});
 
-	it("tells a value already fixed (already-clean) from a value someone changed (value-changed)", async () => {
-		await writeCache([label("label:e-g-records", { active_years: "1969–1991" })]);
-		const manifest = await run(true);
-		expect(manifest.written).toBe(0);
-		expect(manifest.skipped).toContainEqual({
-			node: "label:e-g-records",
-			field: "active_years",
-			reason: "already-clean",
-			found: "1969–1991",
-		});
-	});
-
 	it("reports a node three steps share (label:rephlex) once, absent or unreadable", async () => {
 		await writeCache([label("label:e-g-records", { active_years: "1969–1996" })]);
 		const absent = await run(false);
@@ -508,21 +481,6 @@ describe("fix-merged-label-edges: a value that is not the expected one is not ou
 		await writeFile(join(dir, "nodes", "label", "rephlex.json"), "{ not json", "utf8");
 		const broken = await runMigration({ cacheDir: dir, apply: false });
 		expect(broken.manifest.errors.filter((e) => e.startsWith("label:rephlex"))).toHaveLength(1);
-	});
-
-	it("tells a missing field from a missing node", async () => {
-		await writeCache([label("label:e-g-records", { founded: "1969" })]);
-		const manifest = await run(false);
-		expect(manifest.skipped).toContainEqual({
-			node: "label:e-g-records",
-			field: "active_years",
-			reason: "value-changed",
-		});
-		expect(manifest.skipped).toContainEqual({
-			node: "label:rephlex",
-			field: "notable_releases",
-			reason: "absent",
-		});
 	});
 });
 
@@ -541,13 +499,31 @@ describe("fix-merged-label-edges: a refusal blocks the whole run", () => {
 
 	it("refuses a result the schema rejects instead of writing it", async () => {
 		const broken = nodes().map((n) =>
-			n.slug === "label:e-g-records" ? { ...n, editorial_article: "short" } : n,
+			n.slug === "label:columbia" ? { ...n, editorial_article: "short" } : n,
 		);
 		await writeCache(broken);
 		const before = await snapshot();
 		const result = await runMigration({ cacheDir: dir, apply: true });
 		expect([result.exitCode, result.manifest.written]).toEqual([2, 0]);
-		expect(result.manifest.errors[0]).toContain("label:e-g-records");
+		expect(result.manifest.errors[0]).toContain("label:columbia");
+		expect(result.manifest.errors[0]).toContain("invalid node");
+		expect(await snapshot()).toEqual(before);
+	});
+
+	it("refuses a result the schema would strip a field from (an undeclared key), instead of writing it", async () => {
+		// nodePayloadSchema drops undeclared keys: the guard (onlyAddsSchemaDefaults) refuses anything the
+		// validation would alter, so a stray key on a node the migration edits blocks the whole run.
+		const stray = nodes().map((n) =>
+			n.slug === "label:columbia" ? { ...n, stray_field: "kept by hand" } : n,
+		);
+		await writeCache(stray);
+		const before = await snapshot();
+		const dry = await runMigration({ cacheDir: dir, apply: false });
+		const applied = await runMigration({ cacheDir: dir, apply: true });
+		expect([dry.exitCode, applied.exitCode, applied.manifest.written]).toEqual([1, 2, 0]);
+		expect(applied.manifest.errors).toHaveLength(1);
+		expect(applied.manifest.errors[0]).toContain("label:columbia");
+		expect(applied.manifest.errors[0]).toContain("would alter fields");
 		expect(await snapshot()).toEqual(before);
 	});
 });
@@ -599,12 +575,12 @@ describe("fix-merged-label-edges: the command line", () => {
 		const m = JSON.parse(readFileSync(manifestPath, "utf8")) as Manifest;
 		expect([m.migration, m.written, m.removed, m.renamed, m.redirects]).toEqual([
 			MIGRATION_NAME,
-			6,
+			5,
 			[],
 			{},
 			{},
 		]);
-		expect((await readNode("label:e-g-records")).active_years).toBe("1969–1991");
+		expect((await readNode("artist:lisa-carbon")).landmark_project).toEqual(POLYESTER);
 		expect(await readdir(dataDir)).toEqual([]);
 	});
 
