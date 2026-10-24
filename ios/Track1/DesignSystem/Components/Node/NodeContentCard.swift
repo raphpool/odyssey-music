@@ -64,6 +64,10 @@ struct NodeContentCard<Content: View>: View {
 		.padding(.top, NodeContentCardMetrics.topPadding)
 		.padding(.bottom, NodeContentCardMetrics.bottomPadding)
 		.background { fill }
+		// 2026-10-24: without `.contain`, the identifier of a container is propagated to its children and
+		// overwrites theirs; once the node page sat in this card, `node-title`, `node-hero`, `section-*`,
+		// `edge-chip-*` and `streaming-bar` vanished for XCUITest and 11 UI tests went red (TRA-659).
+		.accessibilityElement(children: .contain)
 		.accessibilityIdentifier(NodeContentCardMetrics.identifier)
 	}
 }
