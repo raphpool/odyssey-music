@@ -64,14 +64,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:tanzania",
-      "type": "project",
-      "name": "Tanzania (Rampa Remix)",
-      "mbid": "7c7b9646-ef81-45b8-a8bf-eb40f20e7164",
-      "year": "2024",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:solace",
       "type": "project",
       "name": "Solace",

@@ -105,22 +105,22 @@ struct NodePageView: View {
 	private func content(tint: Color?) -> some View {
 		let header = NodePageHeader(node: node)
 		let facts = header.facts.map { (label: $0.label, value: $0.value) }
-		return VStack(alignment: .leading, spacing: Track1Tokens.spacing24) {
+		// The order of the children is fixed by the contract of the card and mirrored by `cardChildren(for:)`.
+		return NodeContentCard {
+			NodeTypeBadge(type: node.type)
 			NodeHero(
 				kind: NodeHeroKind(node.type), image: Self.heroImage(for: hero.state), imageStyle: hero.style,
 				discTint: tint,
 				accessibilityLabel: header.title
 			)
+			.frame(maxWidth: .infinity)
 			.id(node.id)
 			titleBlock(header)
-				.padding(.horizontal, Track1Tokens.spacing24)
 			if let teaser = header.teaser {
 				TeaserCard(text: teaser)
-					.padding(.horizontal, Track1Tokens.spacing24)
 			}
 			if !FactsBlock.isEmpty(facts) {
 				FactsBlock(rows: facts)
-					.padding(.horizontal, Track1Tokens.spacing24)
 			}
 			ForEach(Array(NodePageModel.blocks(for: node).enumerated()), id: \.offset) { _, block in
 				switch block {
@@ -133,10 +133,38 @@ struct NodePageView: View {
 			let article = NodeArticleView(
 				article: node.article, citations: node.citations, onOpenSource: { openURL($0) })
 			if article.hasContent {
-				article.padding(.horizontal, Track1Tokens.spacing24)
+				article
 			}
 		}
+		.padding(.horizontal, NodeContentCardMetrics.outerInset)
+		.padding(.top, Track1Tokens.spacing24)
 		.padding(.bottom, Track1Tokens.spacing24)
+	}
+
+	/// The identifiers of the children of `node-card`, in the order `content(tint:)` draws them: the badge, the
+	/// hero, the title and the subtitle, then the teaser, the facts, the blocks of `NodePageModel` and the
+	/// article, each one only when the page draws it. A highlights block counts as one child.
+	static func cardChildren(for node: NodeDetail) -> [String] {
+		let header = NodePageHeader(node: node)
+		var children = [NodeTypeBadgeMetrics.identifier, NodeHero.identifier, "node-title"]
+		if header.subtitle != nil { children.append("node-subtitle") }
+		if header.teaser != nil { children.append(TeaserCard.identifier) }
+		if !FactsBlock.isEmpty(header.facts.map { (label: $0.label, value: $0.value) }) {
+			children.append(FactsBlock.identifier)
+		}
+		for block in NodePageModel.blocks(for: node) {
+			switch block {
+			case .section(let section): children.append(SectionHeader.identifier(field: section.field))
+			case .highlights: children.append("highlights")
+			}
+		}
+		for section in NodeArticleView.sections(article: node.article, citations: node.citations) {
+			switch section {
+			case .article: children.append(NodeArticleView.articleIdentifier)
+			case .sources: children.append(NodeArticleView.sourcesIdentifier)
+			}
+		}
+		return children
 	}
 
 	private func titleBlock(_ header: NodePageHeader) -> some View {
@@ -161,16 +189,13 @@ struct NodePageView: View {
 		VStack(alignment: .leading, spacing: 0) {
 			SectionHeader(title: section.label, count: section.showsCount ? section.totalCount : nil)
 				.accessibilityIdentifier(SectionHeader.identifier(field: section.field))
-				.padding(.horizontal, Track1Tokens.spacing24)
 			switch section.presentation {
 			case .chips, .single:
 				chips(section)
-					.padding(.horizontal, Track1Tokens.spacing24)
 			case .carousel:
 				carousel(section)
 			case .trackList:
 				trackList(section)
-					.padding(.horizontal, Track1Tokens.spacing24)
 			}
 		}
 	}
@@ -198,7 +223,6 @@ struct NodePageView: View {
 				}
 			}
 		}
-		.padding(.horizontal, Track1Tokens.spacing24)
 	}
 
 	private func chips(_ section: NodePageSection) -> some View {
@@ -217,7 +241,8 @@ struct NodePageView: View {
 		.frame(maxWidth: .infinity, alignment: .leading)
 	}
 
-	/// The cards start at the page margin and scroll to the screen edge, so the last visible card peeks.
+	/// The cards start at the padding of the card and scroll to its edge, so the last visible card peeks: the
+	/// scroll view overflows the padding of the card, not the card.
 	private func carousel(_ section: NodePageSection) -> some View {
 		ScrollView(.horizontal, showsIndicators: false) {
 			LazyHStack(alignment: .top, spacing: Track1Tokens.spacing12) {
@@ -226,7 +251,8 @@ struct NodePageView: View {
 				}
 			}
 		}
-		.contentMargins(.horizontal, Track1Tokens.spacing24, for: .scrollContent)
+		.contentMargins(.horizontal, NodeContentCardMetrics.horizontalPadding, for: .scrollContent)
+		.padding(.horizontal, -NodeContentCardMetrics.horizontalPadding)
 	}
 
 	private func trackList(_ section: NodePageSection) -> some View {

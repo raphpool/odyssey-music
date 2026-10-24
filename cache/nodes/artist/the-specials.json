@@ -66,22 +66,6 @@
   ],
   "discography": [
     {
-      "slug": "project:ghost-town",
-      "type": "project",
-      "name": "Ghost Town (re‐recorded – sped up)",
-      "mbid": "4bad4557-65a4-47bc-b603-b2775dd0b6b0",
-      "year": "2023",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:a-message-to-you-rudy",
-      "type": "project",
-      "name": "A Message to You Rudy (Re-Recorded, Sped Up)",
-      "mbid": "674f0f51-6271-4b57-937d-86bad389c196",
-      "year": "2023",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:protest-songs-1924-2012",
       "type": "project",
       "name": "Protest Songs 1924–2012",
@@ -263,14 +247,6 @@
       "name": "The Boiler",
       "mbid": "a5fb4f99-f3ac-44f7-bf26-8b748abcb17f",
       "year": "1982",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:ghost-town",
-      "type": "project",
-      "name": "Ghost Town",
-      "mbid": "697d3295-a39c-311a-b408-0568a7b1b1f9",
-      "year": "1981",
       "releaseType": "single"
     },
     {

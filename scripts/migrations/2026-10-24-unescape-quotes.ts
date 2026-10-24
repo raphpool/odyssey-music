@@ -7,7 +7,8 @@
  * function to the cache that already exists. Offline and deterministic: no network, no LLM.
  *
  * Which fields: the same as the `\n` migration (`textFieldsOf`): `editorial_article`, the teaser of the type
- * and the text facts, minus the `*_url` ones. Never a slug, an edge, a citation or a URL.
+ * and the text facts, minus the `*_url` ones. Plus, since TRA-687, the `title` of each citation. Never a slug,
+ * an edge, a citation URL or any other URL.
  *
  * Rules:
  * - The transform is `unescapeQuotes` and nothing else: the escaping backslash goes, the rest of the field is
@@ -18,10 +19,17 @@
  *   code block are not escapes. The audit (`literal-escaped-quotes`) asks the same function, so it does not
  *   flag them either.
  * - Only the fields above are read. A literal `\"` anywhere else in a node (another top-level string, an edge
- *   name, the title of a citation) is not touched and is listed in `uncovered` with its path, so the gap
- *   between this migration and the 21 files that hold a `\"` is explained by the manifest. 2026-10-24: two
- *   citation titles (`project:new-heaven--inter-arma`, `track:jack-your-body--steve-silk-hurley`) are in that
- *   case; a title is a third-party value that is validated, not rewritten, so it is a ticket of its own.
+ *   name) is not touched and is listed in `uncovered` with its path, so a gap between this migration and the
+ *   audit would be explained by the manifest. A citation title is covered (`citations[].title`, counted once
+ *   per node in `byField`); the rest of a citation (its URL, any other key) is neither read nor written.
+ * - Why the titles are rewritten (TRA-687, 2026-10-24): TRA-577 first listed two of them
+ *   (`project:new-heaven--inter-arma`, `track:jack-your-body--steve-silk-hurley`) in `uncovered`, as if a title
+ *   were a third-party value to validate rather than rewrite. It is not: the pipeline takes
+ *   `citations[].title` from the model's output (`canonicalizeDraft`), and these two are page titles that
+ *   Gemini copied with the same double escaping as the prose (`INTER ARMA \"New Heaven\" - Relapse Records`).
+ *   The fix is the prose's fix, so it lives in this migration (same name, hence one entry for the channel)
+ *   rather than in a sibling that would repeat this plumbing and leave two migrations to order for one
+ *   audit measure. Idempotent, so a prod cache that already ran the first version just gets the titles.
  * - Dry-run by default; `--apply` writes. Idempotent: a second run writes nothing (`written === 0`).
  * - Every node to write is validated (`nodePayloadSchema`) before the first write, and the validation must
  *   not drop a field the node carries. What is written is the node as read with its text fields changed (the
@@ -65,6 +73,42 @@ function escapedQuotePaths(value: unknown, path: string): string[] {
 		return Object.entries(value).flatMap(([k, v]) => escapedQuotePaths(v, `${path}.${k}`));
 	}
 	return [];
+}
+
+/** The path under which the titles of the citations are reported (`byField`, `changed`). */
+const CITATION_TITLE_FIELD = "citations[].title";
+
+/**
+ * The citations with each string `title` dropped: what is left is what this migration does not read. A title
+ * that is not a string is kept, so a `\"` inside it is still listed in `uncovered`.
+ */
+function withoutTitles(citations: unknown): unknown {
+	if (!Array.isArray(citations)) return citations;
+	return citations.map((c: unknown) => {
+		if (c === null || typeof c !== "object" || Array.isArray(c)) return c;
+		if (typeof (c as Obj).title !== "string") return c;
+		const { title: _title, ...rest } = c as Obj;
+		return rest;
+	});
+}
+
+/**
+ * The citations with `unescapeQuotes` applied to each string `title`, or null when no title changes (so the
+ * node keeps the very array it was read with). A citation keeps every other key as it was.
+ */
+function unescapeCitationTitles(citations: unknown): unknown[] | null {
+	if (!Array.isArray(citations)) return null;
+	let changed = false;
+	const out = citations.map((c: unknown) => {
+		if (c === null || typeof c !== "object" || Array.isArray(c)) return c;
+		const title = (c as Obj).title;
+		if (typeof title !== "string") return c;
+		const fixed = unescapeQuotes(title);
+		if (fixed === title) return c;
+		changed = true;
+		return { ...(c as Obj), title: fixed };
+	});
+	return changed ? out : null;
 }
 
 export interface Manifest {
@@ -116,7 +160,12 @@ export function planUnescapeQuotes(nodes: readonly CacheNodeFile[]): Plan {
 		}
 		const gap = Object.entries(node)
 			.filter(([k]) => !covered.has(k))
-			.flatMap(([k, v]) => escapedQuotePaths(v, k));
+			.flatMap(([k, v]) => escapedQuotePaths(k === "citations" ? withoutTitles(v) : v, k));
+		const titles = unescapeCitationTitles(node.citations);
+		if (titles) {
+			next.citations = titles;
+			fields.push(CITATION_TITLE_FIELD);
+		}
 		if (gap.length > 0) uncovered.push({ slug, fields: gap });
 		if (fields.length === 0) continue;
 

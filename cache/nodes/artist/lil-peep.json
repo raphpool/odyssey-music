@@ -84,14 +84,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:love-letter",
-      "type": "project",
-      "name": "love letter",
-      "mbid": "adc9ceca-ebce-403b-907e-3b040bbec94e",
-      "year": "2025",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:coke-nails",
       "type": "project",
       "name": "coke nails",
@@ -233,14 +225,6 @@
       "name": "Pictures 2",
       "mbid": "9b632d5b-9a51-47f6-886b-de2bac72a5fb",
       "year": "2020",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:falling-down",
-      "type": "project",
-      "name": "Falling Down (Travis Barker Remix)",
-      "mbid": "ace20d8b-7eb2-482b-b2a9-42b90b4583d9",
-      "year": "2019",
       "releaseType": "single"
     },
     {

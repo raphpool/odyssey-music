@@ -190,14 +190,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:pounding",
-      "type": "project",
-      "name": "Pounding",
-      "mbid": "5b8ad510-1c26-4ea1-a328-4c53dcff733b",
-      "year": "2020",
-      "releaseType": "ep"
-    },
-    {
       "slug": "project:feel-the-blast-go-krafty",
       "type": "project",
       "name": "Feel The Blast / Go Krafty!",
@@ -262,14 +254,6 @@
       "releaseType": "ep"
     },
     {
-      "slug": "project:pounding",
-      "type": "project",
-      "name": "Pounding (The Remixes)",
-      "mbid": "fd78c822-5f39-4303-b0ee-c94304c5112d",
-      "year": "2014",
-      "releaseType": "ep"
-    },
-    {
       "slug": "project:let-s-ride",
       "type": "project",
       "name": "Let’s Ride",
@@ -282,14 +266,6 @@
       "type": "project",
       "name": "Pounding",
       "mbid": "b870e145-1e1e-4d07-b627-616bb55c44d5",
-      "year": "2011",
-      "releaseType": "ep"
-    },
-    {
-      "slug": "project:let-s-ride",
-      "type": "project",
-      "name": "Let's Ride",
-      "mbid": "4f2897b0-9e08-4a91-9573-ed182b04383a",
       "year": "2011",
       "releaseType": "ep"
     },
@@ -324,22 +300,6 @@
       "mbid": "068056ff-b9bb-39d1-8c9e-2ba883252acc",
       "year": "2006",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:freakshow",
-      "type": "project",
-      "name": "Freakshow (remix)",
-      "mbid": "3a6559fc-b0e5-3087-8caa-57aaa1971020",
-      "year": "2006",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:tell-me-how-you-feel",
-      "type": "project",
-      "name": "Tell Me How You Feel (Remixes)",
-      "mbid": "34dc2a73-ad83-3cdd-b90b-609c48511fa6",
-      "year": "2006",
-      "releaseType": "single"
     },
     {
       "slug": "project:tell-me-how-you-feel",

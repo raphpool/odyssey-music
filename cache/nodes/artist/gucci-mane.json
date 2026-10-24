@@ -574,14 +574,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:woptober",
-      "type": "project",
-      "name": "WOPTOBER",
-      "mbid": "827727c4-b17c-4fd8-a61e-ac4fb0517f60",
-      "year": "2016",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:everybody-looking",
       "type": "project",
       "name": "Everybody Looking",
