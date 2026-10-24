@@ -66,9 +66,10 @@
       "name": "Blue Calx"
     },
     {
-      "slug": "track:tassels--elle-mcandrews",
+      "slug": "track:tassels--aphex-twin",
       "type": "track",
-      "name": "Tassels"
+      "name": "Tassels",
+      "artist": "Aphex Twin"
     }
   ],
   "producers": [],

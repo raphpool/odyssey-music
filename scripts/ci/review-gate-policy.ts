@@ -31,9 +31,13 @@ export interface GateInput {
 // its prompt reads the root REVIEW.md, so a tier/1 PR editing it would be reviewed under its own calibration
 // rules; it escalates too, anchored at the root (docs/REVIEW.md does not). TRA-553 (2026-10-15): the pattern is
 // case-insensitive (flag `i`) because the self-hosted runners are on macOS, whose default APFS volume ignores
-// case: `review.md` checks out over `REVIEW.md` and would otherwise dodge the escalation. Keep in sync with
-// the grep of the `tier-guard` job in .github/workflows/ci.yml, which is this pattern with `\/` written `/` and
-// the flag `i` written `-i` (test/ci-integrity-job.test.ts compares the two text-for-text and on a corpus of paths).
+// case: `review.md` checks out over `REVIEW.md` and would otherwise dodge the escalation. TRA-556 (2026-10-24):
+// the `tier-guard` job of .github/workflows/ci.yml no longer holds a copy: it reads this literal, as text, from the
+// default branch and turns it into a `grep -Eqi` pattern (`\/` written `/`, flag `i` written `-i`). So the literal
+// must stay one `export const sensitivePath = /…/i;` declaration with the pattern on a single line, in ASCII, no
+// `/`, `[` or backslash inside a character class, no escape except one that quotes a punctuation character (`\.`,
+// `\/`), no `(?` group, no lazy quantifier, and the flag `i` alone: the job fails closed on anything else, because
+// JS and `grep -E` read those differently (test/ci-integrity-job.test.ts runs the job's own steps on it).
 export const sensitivePath =
 	/(^|\/)(auth|payment[s]?|migrations|infra|deploy)\/|^\.github\/|^scripts\/(deploy-|ci\/review-gate-policy|ci\/review-reuse|ci\/threshold-ratchet\.ts$|audit-cache\.ts$)|^data\/integrity-thresholds\.json$|^\.codex\/scripts\/publish-review-status\.sh$|^REVIEW\.md$|\.sql$|secrets/i;
 
