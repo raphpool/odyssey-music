@@ -233,6 +233,30 @@ class Collector {
 }
 
 /**
+ * `duplicate-list-edges` (TRA-557): the entries of a list edge field that repeat the slug of an earlier entry of
+ * the same list, i.e. a page the card prints twice. Counted per extra entry: a slug listed three times adds 2.
+ * The ceiling is 0 since `2026-10-24-dedupe-list-edges`; the pipeline keeps it there (src/edge-dedupe.ts). The
+ * cases (`node field slug xN`) name each repeated slug so a regression can be read without a re-run.
+ */
+function measureDuplicateListEdges(nodes: ReadonlyMap<string, RawNode>, c: Collector): void {
+	c.scalar("duplicate-list-edges");
+	for (const [slug, node] of nodes) {
+		const type = nodeType(slug);
+		if (!type) continue;
+		for (const [field, spec] of Object.entries(EDGE_FIELDS_BY_TYPE[type])) {
+			if (spec.cardinality !== "list") continue;
+			const counts = new Map<string, number>();
+			for (const edge of edgesOf(node, field)) counts.set(edge.slug, (counts.get(edge.slug) ?? 0) + 1);
+			for (const [edgeSlug, n] of counts) {
+				if (n < 2) continue;
+				for (let i = 1; i < n; i++) c.hit("duplicate-list-edges", slug);
+				c.addCase("duplicate-list-edges", `${slug} ${field} ${edgeSlug} x${n}`);
+			}
+		}
+	}
+}
+
+/**
  * Whether one of the credited slugs is `slug` itself or a group whose `members` include it
  * (Roni Size -> New Forms, credited to Reprazent).
  */
@@ -569,6 +593,7 @@ export function auditNodes(
 	auditBidirectionalCredits(nodes, c); // TRA-570
 	homonymTracklistLinks(nodes, c);
 	measureUncorroboratedAliases(nodes, c);
+	measureDuplicateListEdges(nodes, c); // TRA-557
 
 	return {
 		generatedAt: new Date().toISOString(),
