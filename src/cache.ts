@@ -477,7 +477,8 @@ export class NodeCache {
 	 * pending for the node are merged like write() does.
 	 *
 	 * Errors from `fn` or from validation leave the file untouched; a failure after the write (reverse-edge
-	 * emission, pending flush) restores the previous file like replace(). Returns whether a write happened;
+	 * emission, pending flush) restores the previous file like replace(), unless the node was rewritten since
+	 * the commit (see rollbackFromBackup). Returns whether a write happened;
 	 * a missing node throws NotFoundError. `fn` runs while the lock is held: it must not call back into
 	 * this cache for the same slug (it would wait on itself).
 	 */
@@ -585,8 +586,14 @@ export class NodeCache {
 	 * emission writes this slug under `runLocked` only, so it could land between the commit and the rename,
 	 * and the rename then overwrote it silently. Now the restore waits for the lock and happens only if the
 	 * file still holds exactly what this operation committed; a node rewritten since keeps its content (the
-	 * failed operation then stays applied, and the skipped rollback is logged). Known limit: a rewrite made by
-	 * the failing operation itself (a node listing its own slug) is indistinguishable from a foreign one.
+	 * failed operation then stays applied, and the skipped rollback is logged).
+	 *
+	 * Known limits, both consequences of comparing the file's text rather than counting writes:
+	 * - a rewrite made by the failing operation itself (a node listing its own slug through an asymmetric
+	 *   pair such as influences/influenced) is indistinguishable from a foreign one, so its rollback is skipped;
+	 * - a concurrent writer that produces exactly the committed text (an inverse edge, or an mbid, that the
+	 *   committed node already carries) leaves no trace, so the rollback still restores the backup and that
+	 *   writer's effect goes with it. Not a regression: the unlocked rollback lost it in every case.
 	 *
 	 * Called from the operation lock, never from inside `runLocked(slug)`, so taking the (non-reentrant) node
 	 * lock here cannot wait on itself. Throws only when the restore or its check fails (AggregateError with
@@ -609,7 +616,9 @@ export class NodeCache {
 			await this.runLocked(slug, async () => {
 				const committed = delta.committedText;
 				if (committed === undefined) {
-					// The commit never landed: the file is the one the backup was copied from.
+					// The commit never landed, so this operation never replaced the file: leave it alone (restoring
+					// the backup could overwrite a write made since it was copied, which replace() does outside
+					// the lock).
 					this.stats.written -= delta.written;
 					this.stats.revUpdates -= delta.revUpdates;
 					await unlink(backup).catch(() => undefined);

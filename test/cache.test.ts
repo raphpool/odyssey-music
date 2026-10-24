@@ -1286,6 +1286,7 @@ describe("NodeCache.update — locked read-modify-write (TRA-535)", () => {
 
 			it("keeps the edge another node's reverse emission wrote between the commit and the rollback", async () => {
 				await updCache.write(artist());
+				const stats = { ...updCache.stats };
 				const committed = deferred();
 				const gate = deferred();
 				const errors = vi.spyOn(console, "error").mockImplementation(() => {});
@@ -1314,6 +1315,71 @@ describe("NodeCache.update — locked read-modify-write (TRA-535)", () => {
 				expect(slugsOf(aphex.collaborators)).toEqual(["artist:squarepusher"]);
 				expect(errors.mock.calls.map((c) => String(c[0])).join("\n")).toContain("rollback skipped");
 				expect(await readdir(join(updDir, "nodes", "artist"))).toEqual(["aphex-twin.json"]);
+				// Nothing was rolled back, so nothing is taken off the counters: the operation's commit (1 write)
+				// and the album's write and reverse edge are all still counted.
+				expect(updCache.stats).toEqual({ written: stats.written + 2, revUpdates: stats.revUpdates + 1 });
+			});
+
+			it("does not bring back a node that vanished before the rollback", async () => {
+				await updCache.write(artist());
+				const stats = { ...updCache.stats };
+				const committed = deferred();
+				const gate = deferred();
+				const errors = vi.spyOn(console, "error").mockImplementation(() => {});
+
+				const failing = failingOperation(async () => {
+					committed.release();
+					await gate.promise;
+					throw new Error("emission down");
+				});
+				const settled = failing.then(
+					() => undefined,
+					() => undefined,
+				);
+				await committed.promise;
+				await rm(aphexFile());
+				gate.release();
+				await settled;
+
+				await expect(failing).rejects.toThrow("emission down");
+				// No node (not resurrected from the backup) and no backup left behind.
+				expect(await readdir(join(updDir, "nodes", "artist"))).toEqual([]);
+				expect(errors.mock.calls.map((c) => String(c[0])).join("\n")).toContain("rollback skipped");
+				expect(updCache.stats).toEqual({ written: stats.written + 1, revUpdates: stats.revUpdates });
+			});
+
+			it("keeps the backup and reports both errors when the node cannot be read for the check", async () => {
+				await updCache.write(artist());
+				const committed = deferred();
+				const gate = deferred();
+
+				const failing = failingOperation(async () => {
+					committed.release();
+					await gate.promise;
+					throw new Error("emission down");
+				});
+				const settled = failing.then(
+					() => undefined,
+					() => undefined,
+				);
+				await committed.promise;
+				// A directory where the node file was: reading it fails with EISDIR, not ENOENT.
+				await rm(aphexFile());
+				await mkdir(aphexFile());
+				gate.release();
+				await settled;
+
+				const error = await failing.then(
+					() => undefined,
+					(e: unknown) => e,
+				);
+				expect(error).toBeInstanceOf(AggregateError);
+				const [original, cause] = (error as AggregateError).errors as [Error, NodeJS.ErrnoException];
+				expect(original.message).toBe("emission down");
+				expect(cause.code).toBe("EISDIR");
+				// The only copy of the previous node is still there.
+				const names = await readdir(join(updDir, "nodes", "artist"));
+				expect(names.filter((name) => name.startsWith("aphex-twin.json.backup-"))).toHaveLength(1);
 			});
 
 			it("waits for the node's lock, then rolls back without deadlock and lets queued operations through", async () => {
@@ -1350,13 +1416,11 @@ describe("NodeCache.update — locked read-modify-write (TRA-535)", () => {
 					events.push("holder released");
 				});
 				await holderEntered.promise;
-				// Queued behind the failing operation on the operation lock: must run once the rollback is over.
-				const queued = updCache.update(APHEX, (node) =>
-					withCollaborator(node, ref("artist:boards-of-canada", "Boards of Canada")),
-				);
 
-				// The first node lock requested from here on is the rollback's (the queued update is still held back
-				// by the operation lock).
+				// From here on, the only code that can ask for the node's lock before the operation settles is the
+				// rollback: the queued update below is created only after this check, because its own request would
+				// otherwise release `lockRequested` even when the rollback never asks (it asks in the same
+				// microtask burst as the operation settles, which hid a rollback without the lock).
 				const lockRequested = deferred();
 				const realRunLocked = internals.runLocked.bind(updCache);
 				vi.spyOn(internals, "runLocked").mockImplementation((slug, fn) => {
@@ -1372,6 +1436,10 @@ describe("NodeCache.update — locked read-modify-write (TRA-535)", () => {
 					failingSettled.then(() => "operation settled without the node lock"),
 				]);
 				expect(first).toBe("rollback asked for the node lock");
+				// Queued behind the failing operation on the operation lock: must run once the rollback is over.
+				const queued = updCache.update(APHEX, (node) =>
+					withCollaborator(node, ref("artist:boards-of-canada", "Boards of Canada")),
+				);
 				holderRelease.release();
 				await holder;
 				await failingSettled;
@@ -1392,6 +1460,42 @@ describe("NodeCache.update — locked read-modify-write (TRA-535)", () => {
 			});
 		},
 	);
+
+	// TRA-555: replace() takes its backup before the commit, outside the node's lock. When the commit itself never
+	// lands, the file is not the replacement: whatever was written to it meanwhile must not be replaced by the
+	// (older) backup. Only replace() can reach the rollback in that state (update() cleans up after itself).
+	it("does not restore the backup over a node that a replace() never overwrote", async () => {
+		await updCache.write(artist());
+		const stats = { ...updCache.stats };
+		const entered = deferred();
+		const gate = deferred();
+		const internals = updCache as unknown as { commitLocked: () => Promise<void> };
+		vi.spyOn(internals, "commitLocked").mockImplementationOnce(async () => {
+			entered.release();
+			await gate.promise;
+			throw new Error("disk full");
+		});
+
+		const replacing = updCache.replace(artist({ name: "Aphex Twin (replacement)" }));
+		const settled = replacing.then(
+			() => undefined,
+			() => undefined,
+		);
+		await entered.promise;
+		// A write the replacement knows nothing about, made after the backup was taken.
+		const file = join(updDir, "nodes", "artist", "aphex-twin.json");
+		const current = JSON.parse(await readFile(file, "utf8")) as ArtistNode;
+		await atomicWriteJson(file, { ...current, collaborators: [ref("artist:autechre", "Autechre")] });
+		gate.release();
+		await settled;
+
+		await expect(replacing).rejects.toThrow("disk full");
+		const aphex = (await updCache.get(APHEX)) as ArtistNode;
+		expect(slugsOf(aphex.collaborators)).toEqual(["artist:autechre"]);
+		expect(aphex.name).toBe("Aphex Twin");
+		expect(await readdir(join(updDir, "nodes", "artist"))).toEqual(["aphex-twin.json"]);
+		expect(updCache.stats).toEqual(stats);
+	});
 
 	// TRA-555: the rollback now waits for the node's lock; a qid lookup served in that gap sees the committed
 	// node, and its memo must not outlive the rollback.
