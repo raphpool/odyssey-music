@@ -49,6 +49,7 @@ final class Track1TokensTests: XCTestCase {
 		("theme.color.glass.surface", Track1Tokens.colorGlassSurface, "090a0ead"),
 		("theme.color.glass.border", Track1Tokens.colorGlassBorder, "ffffff42"),
 		("theme.color.glass.selected", Track1Tokens.colorGlassSelected, "ffffff42"),
+		("theme.color.border.chip", Track1Tokens.colorBorderChip, "7d645933"),
 		("theme.color.node.artist", Track1Tokens.colorNodeArtist, "5d7fa8"),
 		("theme.color.node.project", Track1Tokens.colorNodeProject, "e6a23a"),
 		("theme.color.node.track", Track1Tokens.colorNodeTrack, "f0642d"),
@@ -61,9 +62,9 @@ final class Track1TokensTests: XCTestCase {
 		("theme.color.progress.indicator", Track1Tokens.colorProgressIndicator, "8d7a6d"),
 	]
 
-	func testThereAre47ColorsWithUniqueNames() {
-		XCTAssertEqual(colors.count, 47)
-		XCTAssertEqual(Set(colors.map(\.name)).count, 47)
+	func testThereAre48ColorsWithUniqueNames() {
+		XCTAssertEqual(colors.count, 48)
+		XCTAssertEqual(Set(colors.map(\.name)).count, 48)
 	}
 
 	func testColorsMatchFigmaToOneOver255() throws {
