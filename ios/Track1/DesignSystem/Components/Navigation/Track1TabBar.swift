@@ -17,6 +17,13 @@ enum Track1TabBarMetrics {
 	static func bottomPadding(safeAreaBottom: CGFloat) -> CGFloat {
 		safeAreaBottom > 0 ? 0 : bottomPaddingWithoutHomeIndicator
 	}
+
+	/// Height of the bar above the window's safe area: what a screen reserves at its bottom so that its
+	/// content, and the buttons it places in its own safe area, end where the bar starts (TRA-671). 74 pt with
+	/// a home indicator, 86 pt without.
+	static func reservedHeight(safeAreaBottom: CGFloat) -> CGFloat {
+		topPadding + searchDiameter + bottomPadding(safeAreaBottom: safeAreaBottom)
+	}
 }
 
 /// Colors and tones of the tab bar, named so that tests compare them to the tokens.

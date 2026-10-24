@@ -138,8 +138,14 @@ private struct ApplicationTabs: View {
 	}
 
 	/// One `TabView` for the per-tab stacks and the selection; the bar is drawn by `Track1TabBar` (D1), not by
-	/// the system, so there is a single code path from iOS 17 to 26. The bar itself is mounted by each tab, in
-	/// `entry(for:)`.
+	/// the system, so there is a single code path from iOS 17 to 26.
+	///
+	/// 2026-10-24 (TRA-671, ios-check of #601, runs 40093331852 to 40104135204): the bar was first an inset of
+	/// the `TabView`, then of each `NavigationStack`. Neither reaches the screens hosted inside the stack: the
+	/// `.safeAreaInset` button of the Genres tab sat at the window's safe area (bottom at 840 = 874 - 34) as if
+	/// the bar did not exist, `genres-edit` at {{98.3, 776}, {205.3, 52}} under `tab-bar` at {{0, 754}, {402, 120}},
+	/// hit point {-1, -1}, the edit sheet never opened. So the bar is a fixed overlay of the `TabView`, and each
+	/// screen reserves its height itself (`tabBarReservation`).
 	private var tabs: some View {
 		TabView(selection: tabSelection) {
 			entry(for: .today).tag(AppTab.today)
@@ -155,6 +161,14 @@ private struct ApplicationTabs: View {
 			.ignoresSafeArea(.keyboard, edges: .bottom)
 		}
 		.onPreferenceChange(WindowSafeAreaBottomKey.self) { windowSafeAreaBottom = $0 }
+		.overlay(alignment: .bottom) { tabBar }
+	}
+
+	/// Leaves the room of the bar at the bottom of a screen, above the window's safe area: the content, and the
+	/// `safeAreaInset` buttons it places itself, then end where the bar starts. Applied to the root of each tab
+	/// and to every pushed page, inside the stack; one modifier so that a new destination cannot forget it.
+	private var tabBarReservation: some ViewModifier {
+		TabBarReservation(safeAreaBottom: windowSafeAreaBottom)
 	}
 
 	private var tabBar: some View {
@@ -208,40 +222,39 @@ private struct ApplicationTabs: View {
 					)
 				}
 			}
+			.modifier(tabBarReservation)
 			.navigationDestination(for: AppRoute.self) { route in
-				switch route {
-				case .node(let identity, let context):
-					if let readers, let imageStore {
-						NodeView(
-							model: NodeViewModel(
-								identity: identity,
-								context: context,
-								readNode: readers.node,
-								readLinks: readers.links,
-								recordEvent: { analytics.record($0) }
-							),
-							imageStore: imageStore,
-							topBar: .breadcrumb(
-								router.breadcrumb(for: tab, rootTitle: tab == .today ? todayRootTitle ?? tab.title : tab.title)),
-							// Same tab; the name is the crumb the Top bar shows for the relation.
-							openRelation: { relation, relationContext in
-								router.openNode(relation.slug, context: relationContext, title: relation.name, in: tab)
-							},
-							selectCrumb: { crumb in router.popTo(index: crumb.index, in: tab) }
-						)
-					} else {
-						InvalidConfigurationView(error: .missingEnvironment)
+				Group {
+					switch route {
+					case .node(let identity, let context):
+						if let readers, let imageStore {
+							NodeView(
+								model: NodeViewModel(
+									identity: identity,
+									context: context,
+									readNode: readers.node,
+									readLinks: readers.links,
+									recordEvent: { analytics.record($0) }
+								),
+								imageStore: imageStore,
+								topBar: .breadcrumb(
+									router.breadcrumb(for: tab, rootTitle: tab == .today ? todayRootTitle ?? tab.title : tab.title)),
+								// Same tab; the name is the crumb the Top bar shows for the relation.
+								openRelation: { relation, relationContext in
+									router.openNode(relation.slug, context: relationContext, title: relation.name, in: tab)
+								},
+								selectCrumb: { crumb in router.popTo(index: crumb.index, in: tab) }
+							)
+						} else {
+							InvalidConfigurationView(error: .missingEnvironment)
+						}
 					}
 				}
+				.modifier(tabBarReservation)
 			}
 		}
 		// On the stack, not on its root view: from a pushed page the native bar would come back otherwise (R1).
 		.toolbar(.hidden, for: .tabBar)
-		// 2026-10-24 (TRA-671, ios-check of #601): the bar was an inset of the `TabView`, which the content of
-		// the tabs does not inherit (each tab is hosted by its own controller under it). It covered the
-		// `.safeAreaInset` button of the Genres tab: `genres-edit` got the hit point {-1, -1} and the edit sheet
-		// never opened. Mounted here, on the stack, the insets stack and every pushed page inherits them.
-		.safeAreaInset(edge: .bottom, spacing: 0) { tabBar }
 	}
 
 	@ViewBuilder
@@ -376,5 +389,14 @@ private struct WindowSafeAreaBottomKey: PreferenceKey {
 
 	static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
 		value = nextValue()
+	}
+}
+
+/// Reserves the height of the drawn tab bar at the bottom of a screen, as extra bottom safe area (iOS 17).
+private struct TabBarReservation: ViewModifier {
+	let safeAreaBottom: CGFloat
+
+	func body(content: Content) -> some View {
+		content.safeAreaPadding(.bottom, Track1TabBarMetrics.reservedHeight(safeAreaBottom: safeAreaBottom))
 	}
 }
