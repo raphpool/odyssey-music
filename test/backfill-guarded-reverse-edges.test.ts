@@ -11,6 +11,7 @@ import {
 	parseCliArgs,
 	resolveDirections,
 	runMigration,
+	sameArtistMbid,
 	sameQid,
 } from "../scripts/migrations/2026-10-24-backfill-guarded-reverse-edges.js";
 import { NodeCache } from "../src/cache.js";
@@ -162,6 +163,9 @@ function targetTypeOf(sourceType: NodeType, field: string): string {
 }
 
 const PAIR = "genre.related_genres→genre.related_genres";
+const HIERARCHY_DOWN = "genre.parent_genres→genre.subgenres";
+const HIERARCHY_UP = "genre.subgenres→genre.parent_genres";
+const COLLABORATORS = "artist.collaborators→artist.collaborators";
 const dubstep = genre("genre:dubstep", "Dubstep", "Q20474");
 const garage = (o: Partial<GenreNode> = {}) => genre("genre:2-step-garage", "2-step garage", "Q1165777", o);
 
@@ -286,6 +290,130 @@ describe("guarded backfill: genre.related_genres, proven by the Wikidata id", ()
 	});
 });
 
+describe("guarded backfill: genre hierarchy, proven by the Wikidata id (TRA-564, PR 2)", () => {
+	const jazz = (o: Partial<GenreNode> = {}) => genre("genre:jazz", "Jazz", "Q8341", o);
+	const acid = (o: Partial<GenreNode> = {}) => genre("genre:acid-jazz", "Acid jazz", "Q1", o);
+
+	it("adds the sub-genre to its parent when the child names the parent with the parent's qid", async () => {
+		await writeCache([acid({ parent_genres: [ref("genre:jazz", "Jazz", { qid: "Q8341" })] }), jazz()]);
+
+		const manifest = await run(true);
+
+		expect((await readNode<GenreNode>("genre:jazz")).subgenres).toEqual([
+			{ slug: "genre:acid-jazz", type: "genre", name: "Acid jazz", qid: "Q1" },
+		]);
+		expect(manifest.added).toEqual({ [HIERARCHY_DOWN]: 1 });
+		expect(manifest.doubtful).toEqual([]);
+	});
+
+	it("adds the parent to its sub-genre when the parent names the child with the child's qid", async () => {
+		await writeCache([jazz({ subgenres: [ref("genre:acid-jazz", "Acid jazz", { qid: "Q1" })] }), acid()]);
+
+		const manifest = await run(true);
+
+		expect((await readNode<GenreNode>("genre:acid-jazz")).parent_genres.map((e) => e.slug)).toEqual([
+			"genre:jazz",
+		]);
+		expect(manifest.added).toEqual({ [HIERARCHY_UP]: 1 });
+	});
+
+	it("does not graft a namesake in either direction: a qid that is not the target's is listed, not written", async () => {
+		await writeCache([
+			acid({ parent_genres: [ref("genre:jazz", "Jazz", { qid: "Q999" })] }),
+			jazz({ subgenres: [ref("genre:swing", "Swing", { qid: "Q555" })] }),
+			genre("genre:swing", "Swing", "Q7"),
+		]);
+		const before = await snapshot();
+
+		const manifest = await run(true);
+
+		expect(await snapshot()).toEqual(before);
+		expect(manifest.doubtfulByReason).toEqual({
+			[HIERARCHY_DOWN]: { "qid-mismatch": 1 },
+			[HIERARCHY_UP]: { "qid-mismatch": 1 },
+		});
+	});
+
+	it("is idempotent, and leaves related_genres alone", async () => {
+		await writeCache([
+			acid({
+				parent_genres: [ref("genre:jazz", "Jazz", { qid: "Q8341" })],
+			}),
+			jazz(),
+		]);
+
+		await run(true);
+		const afterFirst = await snapshot();
+		const second = await run(true);
+
+		expect((await readNode<GenreNode>("genre:jazz")).related_genres).toEqual([]);
+		expect(second.written).toBe(0);
+		expect(await snapshot()).toEqual(afterFirst);
+	});
+});
+
+describe("guarded backfill: artist.collaborators, proven by the artist's mbid (TRA-564, PR 2)", () => {
+	const DYLAN_MBID = "72c536dc-7137-4477-a521-567eeb840fa8";
+	const harrison = (o: Partial<ArtistNode> = {}) => artist("artist:george-harrison", "George Harrison", o);
+	const dylan = (mbid: string | undefined) => artist("artist:bob-dylan", "Bob Dylan", mbid ? { mbid } : {});
+
+	it("adds the collaborator back when the artist it names is an MB-resolved artist of that name", async () => {
+		await writeCache([
+			harrison({ collaborators: [ref("artist:bob-dylan", "Bob Dylan")] }),
+			dylan(DYLAN_MBID),
+		]);
+
+		const manifest = await run(true);
+
+		expect((await readNode<ArtistNode>("artist:bob-dylan")).collaborators).toEqual([
+			{ slug: "artist:george-harrison", type: "artist", name: "George Harrison" },
+		]);
+		expect(manifest.added).toEqual({ [COLLABORATORS]: 1 });
+	});
+
+	it("does not graft onto an artist with no MB id, nor whose name is not the edge's, nor with another mbid", async () => {
+		await writeCache([
+			harrison({
+				collaborators: [
+					ref("artist:bob-dylan", "Bob Dylan"),
+					ref("artist:eric-clapton", "Eric Clapton"),
+					ref("artist:ravi-shankar", "Ravi Shankar", { mbid: "11111111-1111-1111-1111-111111111111" }),
+				],
+			}),
+			dylan(undefined),
+			artist("artist:eric-clapton", "Eric Clapton (blues musician)", {
+				mbid: "22222222-2222-2222-2222-222222222222",
+			}),
+			artist("artist:ravi-shankar", "Ravi Shankar", { mbid: "33333333-3333-3333-3333-333333333333" }),
+		]);
+		const before = await snapshot();
+
+		const manifest = await run(true);
+
+		expect(await snapshot()).toEqual(before);
+		expect(manifest.doubtfulByReason).toEqual({
+			[COLLABORATORS]: { "target-without-mbid": 1, "name-mismatch": 1, "mbid-mismatch": 1 },
+		});
+	});
+
+	it("does not need the source to carry an mbid, and writes nothing for a self-edge", async () => {
+		await writeCache([
+			harrison({
+				collaborators: [
+					ref("artist:bob-dylan", "Bob Dylan"),
+					ref("artist:george-harrison", "George Harrison"),
+				],
+			}),
+			dylan(DYLAN_MBID),
+		]);
+
+		const manifest = await run(true);
+
+		expect(manifest.added).toEqual({ [COLLABORATORS]: 1 });
+		expect(manifest.doubtful.map((d) => d.reason)).toEqual(["self-edge"]);
+	});
+});
+
 describe("guarded backfill: what the deep review of PR #484 reproduced stays ungrafted", () => {
 	// The reproductions of the review (Deep Space, Chris Thomas, Moderat's II, Spiritual High, Call Me): every
 	// one of them is a cross-type pair, which this script does not touch. The whole cache must come out as it went in.
@@ -349,7 +477,7 @@ describe("guarded backfill: what the deep review of PR #484 reproduced stays ung
 
 describe("guarded backfill: the runtime is not widened", () => {
 	it("guards only declared list pairs, and none of them enters SAFE_BACKFILL_PAIRS", () => {
-		expect(GUARDED_PAIRS).toEqual([PAIR]);
+		expect([...GUARDED_PAIRS].sort()).toEqual([PAIR, HIERARCHY_DOWN, HIERARCHY_UP, COLLABORATORS].sort());
 		for (const pair of GUARDED_PAIRS) expect(SAFE_BACKFILL_PAIRS.has(pair)).toBe(false);
 		expect(
 			REVERSE_EDGE_PAIRS.some((p) => p.sourceType === "genre" && p.sourceField === "related_genres"),
@@ -402,6 +530,53 @@ describe("guarded backfill: sameQid", () => {
 		expect(sameQid(input({ qid: "" }, { qid: "Q1" }))).toEqual({ proven: false, reason: "edge-without-qid" });
 		expect(sameQid(input({ qid: "Q1" }, {}))).toEqual({ proven: false, reason: "target-without-qid" });
 		expect(sameQid(input({ qid: 1 }, { qid: 1 }))).toEqual({ proven: false, reason: "edge-without-qid" });
+	});
+});
+
+describe("guarded backfill: sameArtistMbid", () => {
+	const input = (ref: Record<string, unknown>, target: Record<string, unknown>) => ({
+		source: {},
+		ref,
+		target,
+	});
+	const MBID = "72c536dc-7137-4477-a521-567eeb840fa8";
+
+	it("proves a resolved artist named by the edge, ignoring case and punctuation", () => {
+		expect(sameArtistMbid(input({ name: "Bob Dylan" }, { name: "Bob Dylan", mbid: MBID }))).toEqual({
+			proven: true,
+		});
+		expect(sameArtistMbid(input({ name: "A.R. Kane" }, { name: "a r kane", mbid: MBID }))).toEqual({
+			proven: true,
+		});
+		expect(
+			sameArtistMbid(
+				input({ name: "Bob Dylan", mbid: MBID.toUpperCase() }, { name: "Bob Dylan", mbid: MBID }),
+			),
+		).toEqual({
+			proven: true,
+		});
+	});
+
+	it("refuses a target with no valid mbid, another mbid on the edge, or another name", () => {
+		const no = (reason: string) => ({ proven: false, reason });
+		expect(sameArtistMbid(input({ name: "Bob Dylan" }, { name: "Bob Dylan" }))).toEqual(
+			no("target-without-mbid"),
+		);
+		expect(sameArtistMbid(input({ name: "Bob Dylan" }, { name: "Bob Dylan", mbid: "nope" }))).toEqual(
+			no("target-without-mbid"),
+		);
+		expect(
+			sameArtistMbid(
+				input(
+					{ name: "Bob Dylan", mbid: "11111111-1111-1111-1111-111111111111" },
+					{ name: "Bob Dylan", mbid: MBID },
+				),
+			),
+		).toEqual(no("mbid-mismatch"));
+		expect(sameArtistMbid(input({ name: "Robert Zimmerman" }, { name: "Bob Dylan", mbid: MBID }))).toEqual(
+			no("name-mismatch"),
+		);
+		expect(sameArtistMbid(input({}, { name: "Bob Dylan", mbid: MBID }))).toEqual(no("name-mismatch"));
 	});
 });
 
