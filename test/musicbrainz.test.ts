@@ -12,6 +12,7 @@ import {
 	fetchTrackMetaDetailedMb,
 	fetchTrackMetaMb,
 	fetchWikidataUrlRelMb,
+	findCompilationCoverReleaseGroup,
 	resolveRecording,
 	resolveRecordingDetailed,
 	resolveReleaseGroup,
@@ -2667,6 +2668,130 @@ describe("pickByTitleAndCredit: release groups of different primary types", () =
 		stubMb({ "release-groups": [] });
 		expect(await resolveReleaseGroupDetailed("Nothing Here", "Inter Arma", { releaseType: "album" })).toEqual(
 			none,
+		);
+	});
+});
+
+describe("work search by the requested artist's MBID (TRA-543)", () => {
+	// MB's `artist:` field indexes the PRINTED name only: Ryuichi Sakamoto's 1983 soundtrack, credited 坂本龍一,
+	// never came back for "Ryuichi Sakamoto" (measured 2026-10-15). `arid:` is the artist's id, indexed
+	// whatever name the credit prints. Real hit, read from MB on 2026-10-24: the soundtrack is filed there as
+	// "Merry Christmas, Mr. Lawrence/Furyo", Album + Soundtrack, 1983-05, credited 坂本龍一.
+	const SAKAMOTO = "a7f7df4a-77d8-4f12-8acd-5c60c93f4de8";
+	const OST_1983 = "3870eb3e-3447-384e-8d8a-aeddab4ef00b";
+	const OST_TITLE = "Merry Christmas, Mr. Lawrence/Furyo";
+	// The credit prints 坂本龍一; the artist behind it is Sakamoto, by id.
+	const ost1983 = hit(OST_1983, OST_TITLE, [[SAKAMOTO, "坂本龍一"]], {
+		"primary-type": "Album",
+		"secondary-types": ["Soundtrack"],
+		"first-release-date": "1983-05",
+	});
+
+	/** An MB that, like the real one, returns the soundtrack for `arid:` only: `artist:"Ryuichi Sakamoto"` misses 坂本龍一. */
+	function stubIndexedMb(): URL[] {
+		const urls: URL[] = [];
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async (input: URL) => {
+				urls.push(input);
+				const byId = (input.searchParams.get("query") ?? "").includes(`arid:${SAKAMOTO}`);
+				return jsonResponse({ count: byId ? 1 : 0, "release-groups": byId ? [ost1983] : [] });
+			}),
+		);
+		return urls;
+	}
+
+	it("searches by arid, next to the printed name, when the artist's MBID is known", async () => {
+		const urls = stubMb({ "release-groups": [] });
+		await resolveReleaseGroupDetailed("Query Arid RG", "Ryuichi Sakamoto", { requestedArtistMbid: SAKAMOTO });
+		expect(urls[0]?.searchParams.get("query")).toBe(
+			`releasegroup:"Query Arid RG" AND (arid:${SAKAMOTO} OR artist:"Ryuichi Sakamoto")`,
+		);
+		await resolveRecordingDetailed("Query Arid Rec", "Ryuichi Sakamoto", { requestedArtistMbid: SAKAMOTO });
+		expect(urls[1]?.searchParams.get("query")).toBe(
+			`recording:"Query Arid Rec" AND (arid:${SAKAMOTO} OR artist:"Ryuichi Sakamoto")`,
+		);
+	});
+
+	// The name stays in the query: a work printed under the artist's name but filed under a band the artist
+	// belongs to ("Roni Size / Reprazent", accepted by MBID in the pick) carries the band's id, not the artist's.
+	it("keeps the printed-name clause, so no work found before is lost", async () => {
+		// This MB finds the band-credited work by the printed name only, never by the artist's own id.
+		vi.stubGlobal(
+			"fetch",
+			vi.fn(async (input: URL) => {
+				const query = input.searchParams.get("query") ?? "";
+				const found = query.includes('artist:"Roni Size"');
+				return jsonResponse({
+					"release-groups": found
+						? [
+								hit(NEW_FORMS_RG, "Union Keeps Name", [[REPRAZENT, "Roni Size / Reprazent"]], {
+									"primary-type": "Album",
+								}),
+							]
+						: [],
+				});
+			}),
+		);
+		const out = await resolveReleaseGroupDetailed("Union Keeps Name", "Roni Size", {
+			requestedArtistMbid: "11111111-0543-4543-8543-000000000002",
+			acceptCreditMbids: [REPRAZENT],
+		});
+		expect(out.identity?.mbid).toBe(NEW_FORMS_RG);
+	});
+
+	it("makes the soundtrack credited 坂本龍一 a candidate, and the work asked for", async () => {
+		stubIndexedMb();
+		const out = await resolveReleaseGroupDetailed(OST_TITLE, "Ryuichi Sakamoto", {
+			requestedArtistMbid: SAKAMOTO,
+			releaseType: "album",
+		});
+		expect(out.identity?.mbid).toBe(OST_1983);
+		expect(out.identity?.credit).toEqual([{ mbid: SAKAMOTO, name: "坂本龍一" }]);
+	});
+
+	it("without the MBID, searches by the printed name only and answers as before: nothing", async () => {
+		const urls = stubIndexedMb();
+		const out = await resolveReleaseGroupDetailed(OST_TITLE, "Ryuichi Sakamoto", { releaseType: "album" });
+		expect(urls[0]?.searchParams.get("query")).toBe(
+			`releasegroup:"${OST_TITLE}" AND artist:"Ryuichi Sakamoto"`,
+		);
+		expect(out).toEqual({ identity: null, ambiguous: false, unavailable: false });
+	});
+
+	it("reads a blank or malformed MBID as no MBID: only a bare UUID reaches the query", async () => {
+		const urls = stubMb({ "release-groups": [] });
+		for (const [i, bad] of ["", "   ", "not-an-mbid", `${SAKAMOTO}) OR artist:"x`].entries()) {
+			await resolveReleaseGroupDetailed(`Bad Mbid ${i}`, "Someone", { requestedArtistMbid: bad });
+			expect(urls[i]?.searchParams.get("query")).toBe(`releasegroup:"Bad Mbid ${i}" AND artist:"Someone"`);
+		}
+	});
+
+	it("lowercases the MBID", async () => {
+		const urls = stubMb({ "release-groups": [] });
+		await resolveReleaseGroupDetailed("Upper Mbid", "Someone", {
+			requestedArtistMbid: SAKAMOTO.toUpperCase(),
+		});
+		expect(urls[0]?.searchParams.get("query")).toContain(`arid:${SAKAMOTO} OR`);
+	});
+
+	it("leaves the title-only query alone when there is no usable hint, MBID or not", async () => {
+		const urls = stubMb({ "release-groups": [] });
+		await resolveReleaseGroupDetailed("Only Title", undefined, { requestedArtistMbid: SAKAMOTO });
+		expect(urls[0]?.searchParams.get("query")).toBe('releasegroup:"Only Title"');
+	});
+
+	it("searches the compilation cover's recordings by arid too", async () => {
+		const urls = stubMb({ recordings: [] });
+		await findCompilationCoverReleaseGroup("Query Arid Compilation", "Ryuichi Sakamoto", {
+			requestedArtistMbid: SAKAMOTO,
+		});
+		await findCompilationCoverReleaseGroup("Query Name Compilation", "Ryuichi Sakamoto");
+		expect(urls[0]?.searchParams.get("query")).toBe(
+			`release:"Query Arid Compilation" AND (arid:${SAKAMOTO} OR artist:"Ryuichi Sakamoto")`,
+		);
+		expect(urls[1]?.searchParams.get("query")).toBe(
+			'release:"Query Name Compilation" AND artist:"Ryuichi Sakamoto"',
 		);
 	});
 });

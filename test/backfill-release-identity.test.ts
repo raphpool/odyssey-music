@@ -89,7 +89,9 @@ interface Stub {
  * Answers MB's release-group / recording search (by title only: like MB, it returns look-alikes the
  * migration must sift), and the lookups behind fetchProjectMetaMb / fetchTrackMetaMb. `fail` makes
  * the matching requests fail without a usable answer (`unreadable`: with a 200 that is not JSON). `filterByArtist` makes the `artist:` clause
- * work as MB's does: it only matches the credited names, never an artist's other-script name.
+ * work as MB's does: it only matches the credited names, never an artist's other-script name; an `arid:`
+ * clause (TRA-543: `(arid:<id> OR artist:"<name>")` when the artist's MBID is known) matches the credited
+ * artist's id, whatever name is printed.
  */
 function stubMb(
 	works: FakeWork[],
@@ -110,12 +112,18 @@ function stubMb(
 			if (options.unreadable?.(input)) return unreadable();
 			const [, , , kind, id] = input.pathname.split("/");
 			if (!id && (kind === "release-group" || kind === "recording")) {
-				const [, phrase = "", artist] =
-					/^\w+:"(.*?)"(?: AND artist:"(.*)")?$/.exec(input.searchParams.get("query") ?? "") ?? [];
+				const [, phrase = "", arid, artist] =
+					/^\w+:"(.*?)"(?: AND (?:\(arid:([\w-]+) OR )?artist:"(.*?)"\)?)?$/.exec(
+						input.searchParams.get("query") ?? "",
+					) ?? [];
 				const credited = (w: FakeWork) =>
 					artist === undefined ||
 					!options.filterByArtist ||
-					w.credit.some((c) => (c.creditedAs ?? c.name).toLowerCase().includes(artist.toLowerCase()));
+					w.credit.some(
+						(c) =>
+							(arid !== undefined && c.id.toLowerCase() === arid.toLowerCase()) ||
+							(c.creditedAs ?? c.name).toLowerCase().includes(artist.toLowerCase()),
+					);
 				const hits = works
 					.filter(
 						(w) => w.kind === kind && w.title.toLowerCase().includes(phrase.toLowerCase()) && credited(w),
@@ -1154,10 +1162,11 @@ describe("credit mapped onto the cache's artists", () => {
 		const result = await run({ apply: true });
 
 		expect(result.exitCode).toBe(0);
-		// MB's artist field does not see 坂本龍一 under "Ryuichi Sakamoto": the title alone is searched next.
+		// MB's artist field does not see 坂本龍一 under "Ryuichi Sakamoto", but the artist's MBID is known:
+		// `arid:` finds the work whatever name the credit prints, so the title-alone search is not needed
+		// (TRA-543; it was the second search before).
 		expect(mb.searches()).toEqual([
-			'releasegroup:"Merry Christmas Mr. Lawrence" AND artist:"Ryuichi Sakamoto"',
-			'releasegroup:"Merry Christmas Mr. Lawrence"',
+			`releasegroup:"Merry Christmas Mr. Lawrence" AND (arid:${sakamoto} OR artist:"Ryuichi Sakamoto")`,
 		]);
 		expect((await readNode("project:merry-christmas-mr-lawrence")).artists).toEqual([
 			{ slug: "artist:ryuichi-sakamoto", type: "artist", name: "Ryuichi Sakamoto", mbid: sakamoto },
