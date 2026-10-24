@@ -13,10 +13,18 @@
     }
   ],
   "materialized_at": "2026-05-13T12:46:01.179Z",
+  "mbid": "17f80ceb-4cd5-3158-8dd5-6c1b5267b845",
   "type": "project",
   "editorial_pitch": "A foundational compilation of minimal and dub techno, BCD-2 showcases the masterfully repetitive and atmospheric production of Basic Channel’s Mark Ernestus and Moritz von Oswald.",
   "year": "2008",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:basic-channel",
+      "type": "artist",
+      "name": "Basic Channel",
+      "mbid": "d145a57e-7afb-4793-8cc4-2fad292374ef"
+    }
+  ],
   "label": {
     "slug": "label:basic-channel",
     "type": "label",
