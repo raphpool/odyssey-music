@@ -138,15 +138,16 @@ private struct ApplicationTabs: View {
 	}
 
 	/// One `TabView` for the per-tab stacks and the selection; the bar is drawn by `Track1TabBar` (D1), not by
-	/// the system, so there is a single code path from iOS 17 to 26.
+	/// the system, so there is a single code path from iOS 17 to 26. The bar itself is mounted by each tab, in
+	/// `entry(for:)`.
 	private var tabs: some View {
 		TabView(selection: tabSelection) {
 			entry(for: .today).tag(AppTab.today)
 			entry(for: .genres).tag(AppTab.genres)
 		}
-		// The window's bottom safe area, read here, outside the inset below: inside it the bar is already above
-		// the home indicator and would read 0. The keyboard is left out so that the bar does not change its
-		// padding while a field is focused.
+		// The window's bottom safe area, read here, outside the insets of the tabs: inside one the bar is
+		// already above the home indicator and would read 0. The keyboard is left out so that the bar does not
+		// change its padding while a field is focused.
 		.background {
 			GeometryReader { proxy in
 				Color.clear.preference(key: WindowSafeAreaBottomKey.self, value: proxy.safeAreaInsets.bottom)
@@ -154,20 +155,21 @@ private struct ApplicationTabs: View {
 			.ignoresSafeArea(.keyboard, edges: .bottom)
 		}
 		.onPreferenceChange(WindowSafeAreaBottomKey.self) { windowSafeAreaBottom = $0 }
-		.safeAreaInset(edge: .bottom, spacing: 0) {
-			Track1TabBar(
-				items: [item(.today), item(.genres)],
-				selected: router.selectedTab.rawValue,
-				search: item(.search),
-				safeAreaBottom: windowSafeAreaBottom,
-				onSelect: { id in
-					if let tab = AppTab(rawValue: id) { router.select(tab) }
-				},
-				onSearch: { router.select(.search) }
-			)
-			// Without this the field of the Genres tab would lift the bar with the keyboard (R5).
-			.ignoresSafeArea(.keyboard, edges: .bottom)
-		}
+	}
+
+	private var tabBar: some View {
+		Track1TabBar(
+			items: [item(.today), item(.genres)],
+			selected: router.selectedTab.rawValue,
+			search: item(.search),
+			safeAreaBottom: windowSafeAreaBottom,
+			onSelect: { id in
+				if let tab = AppTab(rawValue: id) { router.select(tab) }
+			},
+			onSearch: { router.select(.search) }
+		)
+		// Without this the field of the Genres tab would lift the bar with the keyboard (R5).
+		.ignoresSafeArea(.keyboard, edges: .bottom)
 	}
 
 	private func item(_ tab: AppTab) -> Track1TabBar.Item {
@@ -235,6 +237,11 @@ private struct ApplicationTabs: View {
 		}
 		// On the stack, not on its root view: from a pushed page the native bar would come back otherwise (R1).
 		.toolbar(.hidden, for: .tabBar)
+		// 2026-10-24 (TRA-671, ios-check of #601): the bar was an inset of the `TabView`, which the content of
+		// the tabs does not inherit (each tab is hosted by its own controller under it). It covered the
+		// `.safeAreaInset` button of the Genres tab: `genres-edit` got the hit point {-1, -1} and the edit sheet
+		// never opened. Mounted here, on the stack, the insets stack and every pushed page inherits them.
+		.safeAreaInset(edge: .bottom, spacing: 0) { tabBar }
 	}
 
 	@ViewBuilder
