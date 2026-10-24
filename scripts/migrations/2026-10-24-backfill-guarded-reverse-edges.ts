@@ -21,10 +21,10 @@
  *   genre.subgenres→genre.parent_genres (`sameQid`): the edge's Wikidata id (`qid`, set by the registry when the
  *   genre was resolved, TRA-18) equals the qid of the genre it points at. A genre qid is unique in the cache and
  *   the registry mints one slug per qid, so a match is the same genre; a missing or different qid is not a proof.
- * - artist.collaborators→artist.collaborators (`sameArtistMbid`): the artist the edge points at carries a
- *   MusicBrainz id (a node resolved by the identity migrations, TRA-483) and the edge names that artist. No
- *   collaborator edge carries an mbid itself (0 of 873 on 2026-10-24), so the edge cannot be compared to the
- *   target's id; when one does, it must equal it.
+ * - NOT backfilled: artist.collaborators→artist.collaborators. No collaborator edge carries an mbid (0 of 873 on
+ *   2026-10-24) and the slug comes from the name, so nothing on the edge says which namesake the author meant: a
+ *   "Chris Thomas" edge meant for the bluesman would be grafted on the English producer (deep review of PR #636).
+ *   Left at its ceiling (3), by decision of the dispatcher, until edges carry an artist mbid.
  *
  * Rules:
  * - Dry-run by default; `--apply` writes. Idempotent: a second run plans nothing (written === 0).
@@ -97,37 +97,11 @@ export const sameQid: Guard = ({ ref, target }) => {
 	return claimed === held ? PROVEN : { proven: false, reason: "qid-mismatch" };
 };
 
-const MBID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-
-function normalizedName(value: unknown): string {
-	return (nonEmptyString(value) ?? "").toLowerCase().replace(/[^\p{L}\p{N}]/gu, "");
-}
-
-/**
- * The node an artist edge points at is a MusicBrainz-resolved artist (a valid `mbid`), and the edge names it
- * (same name, ignoring case and punctuation). An mbid on the edge, when there is one, must be the node's.
- * The proof is weaker than a qid: nothing on the edge itself says which namesake the author meant, so it rests
- * on the identity migrations having bound this slug to one MusicBrainz artist.
- */
-export const sameArtistMbid: Guard = ({ ref, target }) => {
-	const held = nonEmptyString(target.mbid);
-	if (!held || !MBID.test(held)) return { proven: false, reason: "target-without-mbid" };
-	const claimed = nonEmptyString(ref.mbid);
-	if (claimed && claimed.toLowerCase() !== held.toLowerCase())
-		return { proven: false, reason: "mbid-mismatch" };
-	const edgeName = normalizedName(ref.name);
-	if (edgeName === "" || edgeName !== normalizedName(target.name)) {
-		return { proven: false, reason: "name-mismatch" };
-	}
-	return PROVEN;
-};
-
 /** "source.field→target.field" -> its guard. A pair that is not here is not backfilled by this script. */
 const GUARDS: Readonly<Record<string, Guard>> = {
 	"genre.related_genres→genre.related_genres": sameQid,
 	"genre.parent_genres→genre.subgenres": sameQid,
 	"genre.subgenres→genre.parent_genres": sameQid,
-	"artist.collaborators→artist.collaborators": sameArtistMbid,
 };
 
 export const GUARDED_PAIRS: readonly string[] = Object.keys(GUARDS);
