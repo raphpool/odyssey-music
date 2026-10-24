@@ -112,9 +112,10 @@
       "name": "In C"
     },
     {
-      "slug": "project:einstein-on-the-beach",
+      "slug": "project:einstein-on-the-beach--philip-glass",
       "type": "project",
-      "name": "Einstein on the Beach"
+      "name": "Einstein on the Beach",
+      "artist": "Philip Glass"
     }
   ],
   "landmark_tracks": []
