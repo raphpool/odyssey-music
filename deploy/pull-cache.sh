@@ -22,7 +22,8 @@ set -euo pipefail
 #   bash deploy/pull-cache.sh            # preview: prints the classification and the validation result
 #   bash deploy/pull-cache.sh --apply    # also copies the validated `new` nodes into cache/nodes/
 # Env: PULL_OUT_DIR keeps new.txt / changed.txt (one slug per line) for the caller; default: scratch.
-# Exit: 0 ok, 1 validation failed (nothing copied), 2 usage or read error.
+# Exit: 0 ok, 1 validation failed (nothing copied), 2 usage or read error; a failed pull exits with rsync's
+# own status (nothing copied either).
 
 SERVER="${SERVER:-root@46.101.167.241}"
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -80,5 +81,6 @@ while IFS= read -r slug; do
 	fi
 	mkdir -p "$REPO_CACHE_DIR/nodes/$type"
 	cp -- "$SCRATCH/pulled/nodes/$type/$body.json" "$dest"
+	chmod 644 "$dest" # rsync -a kept the server's mode: no mode noise in the PR
 done < "$OUT_DIR/new.txt"
 echo "Copied $NEW_COUNT node(s). Review with git status; the workflow commits them."

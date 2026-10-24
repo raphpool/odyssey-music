@@ -32,6 +32,13 @@ describe("pull-cache workflow", () => {
 		expect(apply).toMatch(/default: false/);
 	});
 
+	it("sets PULL_OUT_DIR through GITHUB_ENV: the runner context does not exist in a job-level env", () => {
+		expect(step("name: Isolate HOME")).toContain(
+			'echo "PULL_OUT_DIR=$RUNNER_TEMP/pull-cache" >> "$GITHUB_ENV"',
+		);
+		expect(workflow).not.toMatch(/\n {4}env:/);
+	});
+
 	it("runs on the Linux runners, not the Mac", () => {
 		expect(workflow).toMatch(/runs-on: \[self-hosted, linux\]/);
 		expect(workflow).not.toMatch(/macOS|ARM64/);

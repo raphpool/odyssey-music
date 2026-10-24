@@ -6,21 +6,31 @@
  *   new      absent from the repo: the only files that can be copied;
  *   changed  same slug, different bytes: listed, NEVER copied (after the identity migration the repo
  *            is the source of truth, and a divergence is an integrity signal, not an update);
- *   same     identical, nothing to do.
+ *   same     identical, nothing to do;
+ *   superseded  absent from the repo but a redirect source in data/{genre,slug}-redirects.json: the repo
+ *            merged or renamed it away and prod still holds the old file until the migration channel
+ *            reaches it. Listed, never copied, and not an error: it must not hold back the other nodes.
  * Each `new` file is then judged, as untrusted data: size, JSON, `nodePayloadSchema` (canonical slug),
  * path <-> slug agreement, no field the schema would strip (the repo must hold what a write would
- * produce), only plain http(s) URLs (no userinfo, no IP literal), and not a redirect source in
- * data/{genre,slug}-redirects.json. Only if all of them pass, `auditNodes` runs on repo + new nodes
- * against `data/integrity-thresholds.json`, with the ceilings as committed: nothing here raises one.
+ * produce), and plain http(s) URLs only in every `url` / `*_url` field (no userinfo, no IP literal, no
+ * internal host name). One invalid file fails the whole batch: nothing is copied. Hosts: `image_url` has
+ * the schema's allowlist; `cover_url` and `photo_url` have none today (about half of the committed values
+ * are off the image allowlist), so the plain-URL rule is all they get.
+ * Only if every file passes, `auditNodes` runs on repo + new nodes against
+ * `data/integrity-thresholds.json`, with the ceilings as committed: nothing here raises one.
  *
- * Read-only: with `--out-dir`, the only writes are `new.txt` and `changed.txt` (one slug per line)
- * under that directory, which the caller keeps outside the repo.
+ * Known limit: a node the repo deleted on purpose, with no redirect, and that prod still holds looks
+ * `new`. The draft PR is where a reviewer sees it come back; nothing here reads git history.
+ *
+ * Read-only: with `--out-dir`, the only writes are `new.txt`, `changed.txt` and `superseded.txt` (one
+ * slug per line) under that directory, which the caller keeps outside the repo.
  *
  * Usage: pull-cache-validate.ts <pulled-cache-dir> <repo-cache-dir> [--out-dir <dir>]
  *          [--thresholds <file>] [--redirects <slug-redirects.json>] [--genre-redirects <file>]
  * Exit:  0 every new node is valid and the audit holds, 1 at least one problem, 2 usage or read error.
  */
-import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
+import type { Stats } from "node:fs";
+import { mkdir, readdir, readFile, stat, writeFile } from "node:fs/promises";
 import { basename, join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { loadRedirects, parseSlugRedirects } from "../../src/genre-registry.js";
@@ -48,6 +58,7 @@ export interface Classification {
 	new: string[];
 	changed: string[];
 	same: string[];
+	superseded: string[];
 	/** Entries that are not node files (a server temp file, say): never copied, never judged. */
 	ignored: string[];
 	/** Layout problems: an unexpected directory, a symlink named like a node. */
@@ -68,16 +79,21 @@ export function nodePath(slug: string): string {
 	return join("nodes", slug.slice(0, i), `${slug.slice(i + 1)}.json`);
 }
 
-async function readIfPresent(path: string): Promise<Buffer | null | "unreadable"> {
+async function statIfPresent(path: string): Promise<Stats | null> {
 	try {
-		return await readFile(path);
+		return await stat(path);
 	} catch (e) {
-		return (e as NodeJS.ErrnoException).code === "ENOENT" ? null : "unreadable";
+		if ((e as NodeJS.ErrnoException).code === "ENOENT") return null;
+		throw e;
 	}
 }
 
-export async function classify(pulledDir: string, repoDir: string): Promise<Classification> {
-	const out: Classification = { new: [], changed: [], same: [], ignored: [], problems: [] };
+export async function classify(
+	pulledDir: string,
+	repoDir: string,
+	redirects: ReadonlyMap<string, string> = new Map(),
+): Promise<Classification> {
+	const out: Classification = { new: [], changed: [], same: [], superseded: [], ignored: [], problems: [] };
 	const known: readonly string[] = NODE_TYPES;
 	for (const typeDir of (await readdir(join(pulledDir, "nodes"), { withFileTypes: true })).sort((a, b) =>
 		a.name.localeCompare(b.name),
@@ -97,17 +113,33 @@ export async function classify(pulledDir: string, repoDir: string): Promise<Clas
 				out.problems.push(`${label(slug)}: not a regular file (a symlink or directory named like a node)`);
 				continue;
 			}
-			const repo = await readIfPresent(join(repoDir, nodePath(slug)));
-			if (repo === null) out.new.push(slug);
-			else if (repo !== "unreadable" && repo.equals(await readFile(join(pulledDir, nodePath(slug)))))
+			const pulledPath = join(pulledDir, nodePath(slug));
+			const repoPath = join(repoDir, nodePath(slug));
+			const pulledSize = (await stat(pulledPath)).size;
+			const inRepo = await statIfPresent(repoPath);
+			if (inRepo === null) {
+				// Sizes first: a runaway file is never read into memory.
+				if (redirects.has(slug)) out.superseded.push(slug);
+				else if (pulledSize > MAX_NODE_BYTES) {
+					out.problems.push(`${label(slug)}: file larger than ${MAX_NODE_BYTES} bytes`);
+				} else out.new.push(slug);
+			} else if (
+				inRepo.isFile() &&
+				inRepo.size === pulledSize &&
+				(await readFile(repoPath)).equals(await readFile(pulledPath))
+			) {
 				out.same.push(slug);
-			else out.changed.push(slug);
+			} else {
+				out.changed.push(slug);
+			}
 		}
 	}
 	return out;
 }
 
-/** Plain web URL: http(s), no userinfo, a dotted host name (no `localhost`, no IP literal). */
+const INTERNAL_TLDS = /\.(localhost|local|internal|intranet|lan|home|corp)$/;
+
+/** Plain web URL: http(s), no userinfo, a dotted public-looking host name (no IP literal, no internal TLD). */
 export function isPlainWebUrl(value: string): boolean {
 	let url: URL;
 	try {
@@ -117,7 +149,25 @@ export function isPlainWebUrl(value: string): boolean {
 	}
 	if (url.protocol !== "https:" && url.protocol !== "http:") return false;
 	if (url.username !== "" || url.password !== "") return false;
-	return url.hostname.includes(".") && !/^[\d.]+$/.test(url.hostname) && !url.hostname.startsWith("[");
+	const host = url.hostname;
+	return (
+		host.includes(".") &&
+		!host.endsWith(".") &&
+		!/^[\d.]+$/.test(host) &&
+		!host.startsWith("[") &&
+		!INTERNAL_TLDS.test(host)
+	);
+}
+
+/** Every string held under a `url` or `*_url` key, at any depth: a field added to the schema later is covered. */
+function urlsIn(value: unknown, key: string, out: string[]): void {
+	if (typeof value === "string") {
+		if (key === "url" || key.endsWith("_url")) out.push(value);
+	} else if (Array.isArray(value)) {
+		for (const item of value) urlsIn(item, key, out);
+	} else if (isRecord(value)) {
+		for (const [k, v] of Object.entries(value)) urlsIn(v, k, out);
+	}
 }
 
 /** Paths present in `raw` that `parsed` (the schema's output) no longer has: what a write would strip. */
@@ -137,11 +187,8 @@ function strippedPaths(raw: unknown, parsed: unknown, path: string, out: string[
 }
 
 /** Why a new node file cannot be imported; empty when it can. `raw` is set whenever the JSON parsed. */
-export function checkNode(
-	slug: string,
-	text: string,
-	redirects: ReadonlyMap<string, string>,
-): { problems: string[]; raw?: RawNode } {
+export function checkNode(slug: string, text: string): { problems: string[]; raw?: RawNode } {
+	// classify() already refuses oversized files before reading them; this keeps checkNode safe on its own.
 	if (Buffer.byteLength(text) > MAX_NODE_BYTES) {
 		return { problems: [`${label(slug)}: file larger than ${MAX_NODE_BYTES} bytes`] };
 	}
@@ -164,20 +211,13 @@ export function checkNode(
 		problems.push(`${label(slug)}: node slug ${JSON.stringify(parsed.data.slug)} does not match its path`);
 	}
 	if (!isValidSlug(slug)) problems.push(`${label(slug)}: the file name is not a canonical slug`);
-	const redirect = redirects.get(slug);
-	if (redirect !== undefined) {
-		problems.push(`${label(slug)}: slug is a redirect source (canonical node: ${redirect})`);
-	}
 	const stripped: string[] = [];
 	strippedPaths(raw, parsed.data, "", stripped);
 	if (stripped.length > 0) {
 		problems.push(`${label(slug)}: field(s) the schema would strip: ${stripped.slice(0, 5).join(", ")}`);
 	}
-	const data = parsed.data as unknown as Record<string, unknown>;
-	const urls = [
-		...(Array.isArray(data.citations) ? (data.citations as { url: string }[]).map((c) => c.url) : []),
-		...["cover_url", "photo_url", "image_url"].flatMap((f) => (typeof data[f] === "string" ? [data[f]] : [])),
-	] as string[];
+	const urls: string[] = [];
+	urlsIn(parsed.data, "", urls);
 	for (const url of urls) {
 		if (!isPlainWebUrl(url))
 			problems.push(`${label(slug)}: URL is not a plain http(s) URL: ${JSON.stringify(url)}`);
@@ -250,7 +290,7 @@ export async function main(argv: readonly string[]): Promise<number> {
 		thresholds = parseThresholds(JSON.parse(await readFile(args.thresholdsPath, "utf8")));
 		slugRedirects = parseSlugRedirects(JSON.parse(await readFile(args.redirectsPath, "utf8")));
 		allRedirects = await loadRedirects({ slug: args.redirectsPath, genre: args.genreRedirectsPath });
-		classification = await classify(args.pulledDir, args.repoDir);
+		classification = await classify(args.pulledDir, args.repoDir, allRedirects);
 		const read = await readRawNodes(args.repoDir);
 		// A partial repo cache would lower every count: refuse to certify against it.
 		if (read.invalid.length > 0 || read.nodes.size === 0) {
@@ -269,7 +309,6 @@ export async function main(argv: readonly string[]): Promise<number> {
 		const { problems: found, raw } = checkNode(
 			slug,
 			await readFile(join(args.pulledDir, nodePath(slug)), "utf8"),
-			allRedirects,
 		);
 		problems.push(...found);
 		if (found.length === 0 && raw !== undefined) accepted.set(slug, raw);
@@ -277,13 +316,14 @@ export async function main(argv: readonly string[]): Promise<number> {
 
 	const c = classification;
 	console.log(
-		`pulled: ${c.new.length + c.changed.length + c.same.length} node file(s): new ${c.new.length}, changed ${c.changed.length}, same ${c.same.length}, ignored ${c.ignored.length}`,
+		`pulled: ${c.new.length + c.changed.length + c.same.length + c.superseded.length} node file(s): new ${c.new.length}, changed ${c.changed.length}, same ${c.same.length}, superseded ${c.superseded.length}, ignored ${c.ignored.length}`,
 	);
 	const list = (title: string, slugs: string[]) => {
 		if (slugs.length > 0) console.log(`${title}:\n${slugs.map((s) => `  ${label(s)}`).join("\n")}`);
 	};
 	list("new", c.new);
 	list("changed (the repo wins: listed, never copied)", c.changed);
+	list("superseded (redirect source in the repo: never copied)", c.superseded);
 
 	if (problems.length === 0) {
 		// Per-file problems make the audit meaningless: it would run on a union missing those nodes.
@@ -301,6 +341,7 @@ export async function main(argv: readonly string[]): Promise<number> {
 		// look at the exit code still copies nothing.
 		await writeFile(join(args.outDir, "new.txt"), problems.length === 0 ? lines(c.new) : "");
 		await writeFile(join(args.outDir, "changed.txt"), lines(c.changed));
+		await writeFile(join(args.outDir, "superseded.txt"), lines(c.superseded));
 	}
 	for (const p of problems) process.stderr.write(`${p}\n`);
 	if (problems.length === 0) console.log("validation: OK");

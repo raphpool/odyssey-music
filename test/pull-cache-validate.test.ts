@@ -195,9 +195,8 @@ describe("pull-cache-validate: classification", () => {
 });
 
 describe("pull-cache-validate: a new node is untrusted data", () => {
-	const redirects = new Map([["artist:old-name", "artist:new-name"]]);
-	const problemsOf = (slug: string, node: unknown, map = redirects) =>
-		checkNode(slug, typeof node === "string" ? node : JSON.stringify(node), map).problems;
+	const problemsOf = (slug: string, node: unknown) =>
+		checkNode(slug, typeof node === "string" ? node : JSON.stringify(node)).problems;
 
 	it("accepts a valid node", () => {
 		expect(problemsOf("artist:ok", artist("ok"))).toEqual([]);
@@ -221,10 +220,25 @@ describe("pull-cache-validate: a new node is untrusted data", () => {
 		}
 	});
 
-	it("refuses a node under a slug that is a redirect source", () => {
-		expect(problemsOf("artist:old-name", artist("old-name"))).toEqual([
-			"artist:old-name: slug is a redirect source (canonical node: artist:new-name)",
-		]);
+	it("skips and lists a node under a redirect source slug, without failing the rest of the batch", async () => {
+		const f = fixture([...REPO_NODES, artist("fresh")]);
+		const table = { redirects: { "artist:old-name": "artist:repo-one" } };
+		writeJson(f.redirects, table);
+		writeNodes(f.pulled, [artist("old-name"), artist("fresh")]);
+		const c = await classify(f.pulled, f.repo, new Map(Object.entries(table.redirects)));
+		expect(c).toMatchObject({ new: ["artist:fresh"], superseded: ["artist:old-name"], problems: [] });
+		const r = await run(f);
+		expect(r.code).toBe(0);
+		expect(read(f, "new.txt")).toBe("artist:fresh\n");
+		expect(read(f, "superseded.txt")).toBe("artist:old-name\n");
+	});
+
+	it("refuses an oversized new file from its size alone, before reading it", async () => {
+		const f = fixture();
+		writeNodes(f.pulled, [artist("huge")], { "artist:huge": " ".repeat(MAX_NODE_BYTES + 1) });
+		const c = await classify(f.pulled, f.repo);
+		expect(c.new).toEqual([]);
+		expect(c.problems[0]).toMatch(/^artist:huge: file larger than/);
 	});
 
 	it("refuses a field the schema would strip, at any depth", () => {
