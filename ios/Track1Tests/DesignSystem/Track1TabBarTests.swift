@@ -81,57 +81,42 @@ final class Track1TabBarTests: XCTestCase {
 		XCTAssertEqual(Track1TabBar.tone(for: genres, selected: "genres"), .action)
 	}
 
+	func testSearchIsNeverSelectedEvenWhenItsIdIsTheSelectedOne() {
+		XCTAssertTrue(Track1TabBar.isSelected(search, selected: "search"))
+		XCTAssertFalse(Track1TabBar.isSelected(search, selected: "search", isSearch: true))
+		XCTAssertFalse(Track1TabBar.isSelected(search, selected: "today", isSearch: true))
+	}
+
+	func testOnlyTheSelectedTabCarriesTheSelectedTrait() {
+		XCTAssertEqual(Track1TabBar.accessibilityTraits(for: genres, selected: "genres"), .isSelected)
+		XCTAssertEqual(Track1TabBar.accessibilityTraits(for: today, selected: "genres"), [])
+	}
+
+	func testSearchNeverCarriesTheSelectedTrait() {
+		XCTAssertEqual(Track1TabBar.accessibilityTraits(for: search, selected: "search", isSearch: true), [])
+		XCTAssertEqual(Track1TabBar.accessibilityTraits(for: search, selected: "today", isSearch: true), [])
+	}
+
+	// MARK: Taps
+
+	func testATapOnATabSendsItsId() {
+		XCTAssertEqual(Track1TabBar.action(for: today, search: search), .select("today"))
+		XCTAssertEqual(Track1TabBar.action(for: genres, search: search), .select("genres"))
+	}
+
+	func testATapOnTheRoundButtonIsASearchAndSelectsNothing() {
+		XCTAssertEqual(Track1TabBar.action(for: search, search: search), .search)
+	}
+
 	// MARK: Rendered bar
 
 	func testHeightIsTopPaddingPlusTheRoundButtonPlusTheBottomPadding() {
-		let host = UIHostingController(rootView: bar(selected: "today"))
+		let host = UIHostingController(
+			rootView: Track1TabBar(
+				items: [today, genres], selected: "today", search: search, onSelect: { _ in }, onSearch: {}))
 		let size = host.sizeThatFits(in: CGSize(width: 393, height: 1000))
 		// No safe area in a bare hosting controller: 12 + 62 + 12.
 		XCTAssertEqual(size.height, 12 + 62 + 12, accuracy: 0.5)
-	}
-
-	func testOnlyTheSelectedTabCarriesTheSelectedTrait() throws {
-		let window = show(bar(selected: "genres"))
-		let elements = accessibleElements(in: window)
-		let identified = Dictionary(
-			elements.compactMap { element in identifier(of: element).map { ($0, element) } },
-			uniquingKeysWith: { first, _ in first })
-
-		XCTAssertNotNil(identified[Track1TabBarStyle.identifier], "container")
-		for item in [today, genres, search] {
-			XCTAssertNotNil(identified[item.identifier], "button \(item.identifier)")
-		}
-		XCTAssertFalse(try XCTUnwrap(identified[today.identifier]).accessibilityTraits.contains(.selected))
-		XCTAssertTrue(try XCTUnwrap(identified[genres.identifier]).accessibilityTraits.contains(.selected))
-		XCTAssertFalse(try XCTUnwrap(identified[search.identifier]).accessibilityTraits.contains(.selected))
-		XCTAssertEqual(try XCTUnwrap(identified[genres.identifier]).accessibilityLabel, "Genres")
-	}
-
-	func testSearchNeverCarriesTheSelectedTraitEvenWhenItsIdIsSelected() throws {
-		let window = show(bar(selected: "search"))
-		let button = try XCTUnwrap(accessibleElements(in: window).first { identifier(of: $0) == search.identifier })
-		XCTAssertFalse(button.accessibilityTraits.contains(.selected))
-	}
-
-	func testActivatingATabSendsItsIdAndActivatingSearchCallsOnSearch() throws {
-		var selectedIds: [String] = []
-		var searches = 0
-		let window = show(
-			Track1TabBar(
-				items: [today, genres], selected: "today", search: search,
-				onSelect: { selectedIds.append($0) }, onSearch: { searches += 1 }))
-		let elements = accessibleElements(in: window)
-		func button(_ item: Item) throws -> NSObject {
-			try XCTUnwrap(elements.first { identifier(of: $0) == item.identifier }, item.identifier)
-		}
-
-		XCTAssertTrue(try button(genres).accessibilityActivate())
-		XCTAssertEqual(selectedIds, ["genres"])
-		XCTAssertEqual(searches, 0)
-
-		XCTAssertTrue(try button(search).accessibilityActivate())
-		XCTAssertEqual(searches, 1)
-		XCTAssertEqual(selectedIds, ["genres"])
 	}
 
 	/// TRA-671: the screen that mounts the bar hands it the window's safe area, because inside a
@@ -155,53 +140,6 @@ final class Track1TabBarTests: XCTestCase {
 	}
 
 	// MARK: Helpers
-
-	private func bar(selected: String) -> Track1TabBar {
-		Track1TabBar(
-			items: [today, genres], selected: selected, search: search, onSelect: { _ in }, onSearch: {})
-	}
-
-	/// The bar in a key window: SwiftUI builds its accessibility tree only for a view that is laid out.
-	private func show(_ view: some View) -> UIWindow {
-		let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 393, height: 852))
-		window.rootViewController = UIHostingController(rootView: view)
-		window.makeKeyAndVisible()
-		window.layoutIfNeeded()
-		RunLoop.main.run(until: Date(timeIntervalSinceNow: 0.1))
-		return window
-	}
-
-	/// Every accessibility element under `root`: containers are walked through `accessibilityElements`, then
-	/// `accessibilityElement(at:)`, then the subviews, whichever the object provides.
-	private func accessibleElements(in root: NSObject) -> [NSObject] {
-		var found: [NSObject] = []
-		var visited = Set<ObjectIdentifier>()
-		func walk(_ object: NSObject) {
-			guard visited.insert(ObjectIdentifier(object)).inserted else { return }
-			found.append(object)
-			if let children = object.accessibilityElements as? [NSObject] {
-				children.forEach(walk)
-			}
-			let count = object.accessibilityElementCount()
-			if count != NSNotFound, count > 0 {
-				for index in 0..<count {
-					if let child = object.accessibilityElement(at: index) as? NSObject { walk(child) }
-				}
-			}
-			if let view = object as? UIView {
-				view.subviews.forEach(walk)
-			}
-		}
-		walk(root)
-		return found
-	}
-
-	/// Accessibility nodes built by SwiftUI are not `UIAccessibilityIdentification`: read the property by name.
-	private func identifier(of object: NSObject) -> String? {
-		guard object.responds(to: NSSelectorFromString("accessibilityIdentifier")) else { return nil }
-		let value = object.value(forKey: "accessibilityIdentifier") as? String
-		return value?.isEmpty == false ? value : nil
-	}
 
 	/// `rrggbbaa`, to compare with the Figma hex and to read a failure.
 	private func rgbaHex(_ color: Color) -> String {

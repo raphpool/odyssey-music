@@ -85,12 +85,37 @@ struct Track1TabBar: View {
 		self.onSearch = onSearch
 	}
 
-	nonisolated static func isSelected(_ item: Item, selected: String) -> Bool {
-		item.id == selected
+	/// What a tap on a button does. Decided by a pure function so that it is tested without rendering.
+	enum Action: Equatable {
+		case select(String)
+		case search
+	}
+
+	/// The search button is never selected, whatever `selected` holds.
+	nonisolated static func isSelected(_ item: Item, selected: String, isSearch: Bool = false) -> Bool {
+		!isSearch && item.id == selected
 	}
 
 	nonisolated static func tone(for item: Item, selected: String) -> Track1Icon.Tone {
 		isSelected(item, selected: selected) ? Track1TabBarStyle.activeTone : Track1TabBarStyle.inactiveTone
+	}
+
+	/// Only the selected tab carries the selected trait.
+	nonisolated static func accessibilityTraits(
+		for item: Item, selected: String, isSearch: Bool = false
+	) -> AccessibilityTraits {
+		isSelected(item, selected: selected, isSearch: isSearch) ? .isSelected : []
+	}
+
+	nonisolated static func action(for item: Item, search: Item) -> Action {
+		item == search ? .search : .select(item.id)
+	}
+
+	private func perform(_ action: Action) {
+		switch action {
+		case .select(let id): onSelect(id)
+		case .search: onSearch()
+		}
 	}
 
 	var body: some View {
@@ -130,7 +155,7 @@ struct Track1TabBar: View {
 		let isSelected = Self.isSelected(item, selected: selected)
 		let tone = Self.tone(for: item, selected: selected)
 		return Button {
-			onSelect(item.id)
+			perform(Self.action(for: item, search: search))
 		} label: {
 			Track1Icon(asset: item.icon, tone: tone, size: Track1TabBarMetrics.iconSize)
 				.frame(width: Track1TabBarMetrics.tabWidth, height: Track1TabBarMetrics.tabHeight)
@@ -144,11 +169,13 @@ struct Track1TabBar: View {
 		.buttonStyle(.plain)
 		.accessibilityLabel(item.label)
 		.accessibilityIdentifier(item.identifier)
-		.accessibilityAddTraits(isSelected ? .isSelected : [])
+		.accessibilityAddTraits(Self.accessibilityTraits(for: item, selected: selected))
 	}
 
 	private var searchButton: some View {
-		Button(action: onSearch) {
+		Button {
+			perform(Self.action(for: search, search: search))
+		} label: {
 			Track1Icon(asset: search.icon, tone: Track1TabBarStyle.searchTone, size: Track1TabBarMetrics.iconSize)
 				.frame(width: Track1TabBarMetrics.searchDiameter, height: Track1TabBarMetrics.searchDiameter)
 				.glass(in: Circle())
@@ -157,6 +184,7 @@ struct Track1TabBar: View {
 		.buttonStyle(.plain)
 		.accessibilityLabel(search.label)
 		.accessibilityIdentifier(search.identifier)
+		.accessibilityAddTraits(Self.accessibilityTraits(for: search, selected: selected, isSearch: true))
 	}
 }
 
