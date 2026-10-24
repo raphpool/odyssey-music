@@ -94,22 +94,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:sister-big-stuff",
-      "type": "project",
-      "name": "Sister Big Stuff",
-      "mbid": "817218f8-e172-4960-a7d4-61aab3b25dc9",
-      "year": "2011",
-      "releaseType": "album"
-    },
-    {
-      "slug": "project:i-feel-the-spirit",
-      "type": "project",
-      "name": "I Feel The Spirit",
-      "mbid": "7b81400e-f204-4c1c-9b88-098a6d112ffb",
-      "year": "2008",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:whine-and-grine",
       "type": "project",
       "name": "Whine and Grine",
@@ -274,13 +258,6 @@
       "type": "project",
       "name": "Africa - Islam - Revolution",
       "mbid": "3a2f1212-5c5d-44a1-8528-d751bc457b82",
-      "releaseType": "album"
-    },
-    {
-      "slug": "project:i-feel-the-spirit",
-      "type": "project",
-      "name": "I Feel The Spirit",
-      "mbid": "ce656eb4-442c-4c3c-ba6a-bdf84ec99e22",
       "releaseType": "album"
     }
   ],

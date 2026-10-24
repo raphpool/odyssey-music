@@ -52,14 +52,6 @@
   ],
   "discography": [
     {
-      "slug": "project:cayendo",
-      "type": "project",
-      "name": "Cayendo (acoustic)",
-      "mbid": "b15c3956-0087-4654-a74e-6de689814891",
-      "year": "2020",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:these-days",
       "type": "project",
       "name": "These Days",
@@ -116,14 +108,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:biking",
-      "type": "project",
-      "name": "Biking (solo)",
-      "mbid": "ba3f7098-e9dc-412e-98a7-0a9cab85bdc4",
-      "year": "2017",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:slide-on-me",
       "type": "project",
       "name": "Slide on Me",
@@ -136,14 +120,6 @@
       "type": "project",
       "name": "Lens",
       "mbid": "73c40c14-c39b-4d72-8b39-2ac897b67991",
-      "year": "2017",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:lens",
-      "type": "project",
-      "name": "Lens",
-      "mbid": "53d11caf-0a71-41d9-98e1-90283211a2cf",
       "year": "2017",
       "releaseType": "single"
     },
@@ -168,14 +144,6 @@
       "type": "project",
       "name": "Slide",
       "mbid": "922f1466-03f1-4b14-b7c8-c3a274a2950f",
-      "year": "2017",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:slide",
-      "type": "project",
-      "name": "Slide",
-      "mbid": "c0926b1a-3c06-419a-bbeb-899992046218",
       "year": "2017",
       "releaseType": "single"
     },

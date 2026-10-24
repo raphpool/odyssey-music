@@ -115,14 +115,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:keep-your-love",
-      "type": "project",
-      "name": "Keep Your Love",
-      "mbid": "5d3e6cdb-5d0e-4279-94ed-2e5d5cfcd4d8",
-      "year": "1993",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:got-to-be-free",
       "type": "project",
       "name": "Got To Be Free",
@@ -177,14 +169,6 @@
       "mbid": "8c35707f-59ab-3eb2-af43-74276bfc0eaa",
       "year": "1990",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:die-walkure",
-      "type": "project",
-      "name": "Die Walküre (remix)",
-      "mbid": "8a06fb21-f0c4-4270-b62c-2cb2d4b91c34",
-      "year": "1990",
-      "releaseType": "single"
     },
     {
       "slug": "project:don-t-you-love-me",

@@ -61,14 +61,6 @@
   ],
   "discography": [
     {
-      "slug": "project:freak-like-me",
-      "type": "project",
-      "name": "Freak Like Me (Ben Kim Remix)",
-      "mbid": "91a66060-17aa-4fce-b7fd-183434db5724",
-      "year": "2025",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:back-to-the-groove",
       "type": "project",
       "name": "Back to the Groove",
@@ -139,22 +131,6 @@
       "mbid": "a1bb8e11-46ee-4e13-93d7-b73030e83a08",
       "year": "2019",
       "releaseType": "ep"
-    },
-    {
-      "slug": "project:freak-like-me",
-      "type": "project",
-      "name": "Freak Like Me (Radio Edit)",
-      "mbid": "0aa6875e-c9fe-47f6-a2d5-31492e85301c",
-      "year": "2016",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:freak-like-me",
-      "type": "project",
-      "name": "Freak Like Me",
-      "mbid": "bd481f41-8e51-4106-b8fa-432e44042d0e",
-      "year": "2016",
-      "releaseType": "single"
     },
     {
       "slug": "project:deeon-doez-deeon",

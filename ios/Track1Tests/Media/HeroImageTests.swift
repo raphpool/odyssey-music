@@ -78,7 +78,7 @@ final class HeroImageTests: XCTestCase {
 
 	func testALoadedImageCarriesTheCoverTintOfItsBands() async throws {
 		let backend = Backend(images: [first: Self.thirds()])
-		let model = try model(backend, imageURL: first, discography: nil)
+		let model = try model(backend, imageURL: first)
 
 		await model.load()
 

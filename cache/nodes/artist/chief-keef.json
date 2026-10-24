@@ -406,14 +406,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:nobody",
-      "type": "project",
-      "name": "Nobody",
-      "mbid": "9395057b-e488-4560-95e4-d6e52a43185f",
-      "year": "2019",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:pitbulls",
       "type": "project",
       "name": "Pitbulls",
@@ -434,14 +426,6 @@
       "type": "project",
       "name": "I Kill People!",
       "mbid": "1cf91dca-0cb7-4990-9ffc-1cc1330cc521",
-      "year": "2018",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:i-kill-people",
-      "type": "project",
-      "name": "I Kill People",
-      "mbid": "2982ed65-6a83-417e-ac3b-7340b9f58421",
       "year": "2018",
       "releaseType": "single"
     },

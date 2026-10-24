@@ -415,14 +415,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:movie",
-      "type": "project",
-      "name": "Movie (Loodi DJ Septik remix)",
-      "mbid": "64483d70-0bba-45ea-9051-0fe1dffece07",
-      "year": "2017",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:girlfriend",
       "type": "project",
       "name": "Girlfriend",
@@ -483,14 +475,6 @@
       "type": "project",
       "name": "King of the Dancehall",
       "mbid": "58a9b486-379a-4bd5-81cb-f2d0463c296b",
-      "year": "2016",
-      "releaseType": "album"
-    },
-    {
-      "slug": "project:dancehall-hero-raw",
-      "type": "project",
-      "name": "Dancehall Hero Raw (Deluxe)",
-      "mbid": "01f8b6f3-1b19-44d1-84f9-ccf3ea5c18f1",
       "year": "2016",
       "releaseType": "album"
     },

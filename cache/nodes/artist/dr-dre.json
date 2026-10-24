@@ -157,14 +157,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:still-d-r-e",
-      "type": "project",
-      "name": "Still D.R.E (Traumtherapie edit)",
-      "mbid": "0f1a562f-f951-49fd-81d6-8349c82a60e6",
-      "year": "2015",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:back-to-the-basics",
       "type": "project",
       "name": "Back to the Basics",
@@ -259,14 +251,6 @@
       "mbid": "a58e5f2f-bdf2-40e4-9f40-fc0eb4a3651e",
       "year": "2004",
       "releaseType": "ep"
-    },
-    {
-      "slug": "project:the-next-episode",
-      "type": "project",
-      "name": "The Next Episode (Remixes)",
-      "mbid": "f64218e3-2d19-4b30-ad12-029f49d2a98d",
-      "year": "2003",
-      "releaseType": "single"
     },
     {
       "slug": "project:ghetto-r-and-b-collabo-ep",

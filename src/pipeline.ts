@@ -31,12 +31,14 @@ import {
 	selectReleases,
 	toDiscographyEdge,
 } from "./discography-policy.js";
+import { dedupeNodeListEdges } from "./edge-dedupe.js";
 import { normalizeEditorialText, unescapeQuotes } from "./editorial-text.js";
 import { type GenreResolver, loadGenreResolver } from "./genre-identity.js";
 import type { GenreRegistry } from "./genre-registry.js";
 import {
 	fetchArtistDiscographyMb,
 	fetchArtistEntityMb,
+	fetchArtistProfileMb,
 	fetchEntityGenresMb,
 	fetchLabelEntityMb,
 	fetchLabelMetaMb,
@@ -45,9 +47,12 @@ import {
 	findLabelMbidByName,
 	type MbCredit,
 	type MbGenreTag,
+	type MbReleaseIdentity,
 	resolveArtistDetailed,
 	resolveRecording,
+	resolveRecordingDetailed,
 	resolveReleaseGroup,
+	resolveReleaseGroupDetailed,
 } from "./musicbrainz.js";
 import {
 	EDGE_TARGET_TYPES_BY_TYPE,
@@ -177,6 +182,11 @@ export interface PipelineInput {
 	// TRA-473: primary artist credited for a project/track. It tells MusicBrainz which of several works
 	// sharing a title is meant; derived from the requested slug's scope, or given by the caller.
 	artist?: string;
+	// TRA-551: MusicBrainz id of the artist `artist` names, read by the caller off the artist node its cache holds.
+	// It lets a work credited to a band the artist belongs to ("New Forms", credited "Roni Size / Reprazent",
+	// asked from Roni Size's page) be accepted by the band's MBID: see resolveWork. Unset when the cache holds no
+	// such node or it has no mbid, and the work is then resolved exactly as before.
+	artistMbid?: string;
 	// TRA-549: the image the node being refreshed already carries. It survives the refresh when the
 	// image resolver yields nothing usable (no match, outage, timeout, refused host) and is still on an
 	// allowed host; a new valid image replaces it. Only applies together with `slug`, when the result
@@ -748,6 +758,8 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	const draft = await generateNodeDraft(input, deps, research, log);
 	const node = canonicalizeDraft(draft.raw, input, research.corpus, research.allowedUrls, log);
 	const enrichment = await enrichNode(node, input, log, deps.genreRegistry, deps.artistByMbid);
+	// The enrichment adds and rewrites list edges (discography, labels, collaborators): same invariant (TRA-557).
+	dropDuplicateListEdges(node as Record<string, unknown>, log);
 	// MusicBrainz just rewrote discography: the picks made in canonicalizeDraft are checked again against the
 	// lists that will actually be written (TRA-470).
 	if (input.type === "artist") enforceArtistChoices(node as Record<string, unknown>, log);
@@ -930,7 +942,7 @@ async function mbidThatMaySteerSearch(input: PipelineInput, log: PipelineLog): P
 	if (!input.mbid) return undefined;
 	if (input.mbidIsClientHint !== true) return input.mbid;
 	try {
-		if (await resolutionConfirmsHint(input, input.mbid)) return input.mbid;
+		if (await resolutionConfirmsHint(input, input.mbid, log)) return input.mbid;
 		log(
 			`[pipeline] client mbid hint ${input.mbid} not used to steer the search (MB resolution did not confirm it)`,
 		);
@@ -945,6 +957,51 @@ async function mbidThatMaySteerSearch(input: PipelineInput, log: PipelineLog): P
 }
 
 /**
+ * The MB identity of a project or track, by title + credit (TRA-551). With the requested artist's MBID known it
+ * also accepts a work credited to a BAND the artist is a member of, by the band's MBID alone:
+ * 1. the usual resolution runs first, and answers for every case but one;
+ * 2. only when it answers "none" and says it set exact-title candidates aside for their credit
+ *    (`discardedCredits`), the artist's memberships are read: one MusicBrainz request more, made by nobody else;
+ * 3. the bands among those credits, if any, are accepted and the resolver asked again. The search is the same,
+ *    so the request is the one already answered (mbFetch memoizes it) and the picker alone decides, with the
+ *    TRA-539 rules: a credit that merely carries the band's NAME is never accepted, and a title credited to the
+ *    artist AND to the band is `ambiguous`.
+ * Everything else fails closed to the answer before this ticket: no artist mbid, no memberships (MB did not
+ * answer, or none known), no band among the credits, a second search that finds nothing or is unavailable.
+ */
+async function resolveWork(input: PipelineInput, log: PipelineLog): Promise<MbReleaseIdentity | null> {
+	const kind = input.type;
+	if (kind !== "track" && kind !== "project") return null;
+	if (!input.artist || !input.artistMbid) {
+		return kind === "track"
+			? await resolveRecording(input.name, input.artist)
+			: await resolveReleaseGroup(input.name, input.artist);
+	}
+	const resolve = kind === "track" ? resolveRecordingDetailed : resolveReleaseGroupDetailed;
+	const first = await resolve(input.name, input.artist);
+	if (first.identity || first.ambiguous || first.unavailable) return first.identity;
+	const discarded = first.discardedCredits ?? [];
+	if (discarded.length === 0) return null;
+	const profile = await fetchArtistProfileMb(input.artistMbid);
+	if (!profile) {
+		log(`[pipeline] ${kind} "${input.name}": artist memberships unavailable, band credits not accepted`);
+		return null;
+	}
+	const creditedMbids = new Set(discarded.map((c) => c.mbid.toLowerCase()));
+	// The artist's own credit among the discarded ones: a work of theirs printed under another name ("Roni Size
+	// Presents", TRA-552) shares the title with the band's. Answer as before this ticket, never the band's work
+	// (review of #643, 2026-10-24).
+	if (creditedMbids.has(input.artistMbid.toLowerCase())) return null;
+	const bands = profile.groups.map((g) => g.mbid).filter((mbid) => creditedMbids.has(mbid.toLowerCase()));
+	if (bands.length === 0) return null;
+	const second = await resolve(input.name, input.artist, { acceptCreditMbids: bands });
+	if (second.identity) {
+		log(`[pipeline] ${kind} "${input.name}" credited to a band of ${input.artist}, accepted by mbid`);
+	}
+	return second.identity;
+}
+
+/**
  * Does the server's own resolution of the requested entity land on `hint`? Works resolve by title + credit, an
  * artist by name, a label by name and then by the name of the record found (TRA-546), each as the node's own
  * mbid does. One difference for an artist: the enrichment also feeds the draft's `origin` to the resolution to
@@ -955,12 +1012,13 @@ async function mbidThatMaySteerSearch(input: PipelineInput, log: PipelineLog): P
  * in that narrow case the query was pinned on an artist the node does not get. Closing it needs the confirmation
  * computed once after the draft, which the search precedes: out of this ticket's scope.
  */
-async function resolutionConfirmsHint(input: PipelineInput, hint: string): Promise<boolean> {
+async function resolutionConfirmsHint(
+	input: PipelineInput,
+	hint: string,
+	log: PipelineLog,
+): Promise<boolean> {
 	if (input.type === "track" || input.type === "project") {
-		const identity =
-			input.type === "track"
-				? await resolveRecording(input.name, input.artist)
-				: await resolveReleaseGroup(input.name, input.artist);
+		const identity = await resolveWork(input, log);
 		return identity !== null && confirmsHint(identity.mbid, hint);
 	}
 	if (input.type === "artist") {
@@ -1473,7 +1531,7 @@ async function enrichNode(
 			// supplied the MBID: the metadata fetch below then provides it.
 			let resolvedCredit: MbCredit[] = [];
 			if (!mbid) {
-				const identity = await resolveRecording(input.name, input.artist);
+				const identity = await resolveWork(input, log);
 				if (identity && confirmsHint(identity.mbid, clientHint)) {
 					mbid = identity.mbid;
 					resolvedCredit = identity.credit;
@@ -1542,7 +1600,7 @@ async function enrichNode(
 			// The credit of the release group resolved by title + artist hint.
 			let resolvedCredit: MbCredit[] = [];
 			if (!mbid) {
-				const identity = await resolveReleaseGroup(input.name, input.artist);
+				const identity = await resolveWork(input, log);
 				if (identity && confirmsHint(identity.mbid, clientHint)) {
 					mbid = identity.mbid;
 					resolvedCredit = identity.credit;
@@ -1987,9 +2045,28 @@ function canonicalizeDraft(
 			else delete next[k];
 		}
 	}
+	// One edge per slug in a list, before the picks are compared with it (TRA-557).
+	dropDuplicateListEdges(next, log);
 	// Last, once the lists are normalized: the picks are compared with what will be written (TRA-470).
 	if (input.type === "artist") enforceArtistChoices(next, log);
 	return next;
+}
+
+/**
+ * Keeps one edge per slug in every list of a node (src/edge-dedupe.ts, TRA-557). Two entries sharing a slug are
+ * one page printed twice: the cache held 173 of them in 83 nodes (a single, its remixes and the album of the
+ * same title; a track and its "(dub reprise)"), because nothing compared the entries of a list with each other
+ * once the slug is computed. Mutates `node`; idempotent. The pipeline does not read the target nodes, so the
+ * first criterion of the rule (the entry whose mbid is the target node's, `TargetMbids`) is left to the migration,
+ * which sees every node of the union.
+ */
+function dropDuplicateListEdges(node: Record<string, unknown>, log: PipelineLog): void {
+	const where = typeof node.slug === "string" ? node.slug : String(node.type);
+	for (const { field, removals } of dedupeNodeListEdges(node)) {
+		for (const r of removals) {
+			log(`[pipeline] duplicate edge dropped: ${r.reason} (${where}.${field} -> ${r.slug})`);
+		}
+	}
 }
 
 // Singular artist picks and the list each must come from (plan graph-integrity, decision 7).

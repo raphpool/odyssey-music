@@ -213,14 +213,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:envelopes",
-      "type": "project",
-      "name": "Envelopes (Chapter VI)",
-      "mbid": "c8cb14af-04b1-46ca-afee-19b5bc430ad3",
-      "year": "2018",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:rojus",
       "type": "project",
       "name": "Rojus",
