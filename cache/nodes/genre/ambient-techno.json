@@ -49,6 +49,12 @@
       "type": "genre",
       "name": "Minimal techno",
       "qid": "Q1430587"
+    },
+    {
+      "slug": "genre:ambient-house",
+      "type": "genre",
+      "name": "Ambient House",
+      "qid": "Q2465085"
     }
   ],
   "key_artists": [

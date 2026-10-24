@@ -1,0 +1,32 @@
+{
+	"source": "TRA-570: credits given to a namesake that the reverse backfill (TRA-486) mirrored on the artist's page. MusicBrainz read by hand on 2026-10-24 (7 requests, 1 per second; 2 answered 503 and were retried).",
+	"cases": [
+		{
+			"key": "inside",
+			"status": "proven",
+			"work": "project:the-ep--inside",
+			"artist": "artist:inside",
+			"artist_identity": {
+				"mbid": "83f6e15e-f4bf-458f-9ebf-4d2634f92dd8",
+				"name": "Inside",
+				"disambiguation": "US 90s emo",
+				"begin": "1995-08",
+				"end": "1999",
+				"release_groups": [
+					{ "mbid": "a4d60bea-dded-4034-8a85-c234153c2676", "title": "Regarding Time Lost / Wait Until Tomorrow", "year": "1997" },
+					{ "mbid": "105a074a-ed46-495c-b8cb-6eb9f35d4b99", "title": "Seven Inches to Wall Drug", "year": "1998" },
+					{ "mbid": "bea408d8-8474-4751-8e79-41bccbe804f8", "title": "My Funeral", "year": "1999" }
+				]
+			},
+			"work_identity": { "year": "1993" },
+			"anchors": { "artist": ["Long Island"], "work": ["Kurt Howes"] },
+			"evidence": [
+				"https://musicbrainz.org/artist/83f6e15e-f4bf-458f-9ebf-4d2634f92dd8 : Inside, group, Lindenhurst NY, \"US 90s emo\", active 1995-08 to 1999 = the artist:inside of the cache (Long Island emo band, 1995-1999)",
+				"MusicBrainz lists exactly 3 release groups for that artist, the earliest from 1997: no \"The EP\"; a search for a release group \"The EP\" by Inside returns 0 results, and so does a search for the recording \"Music For Windows\"",
+				"The work is a 1993 vinyl EP (Happy Music, tracks Music For Windows / Wonderfull / Wears Harvey, written and produced by Kurt Howes and Merlin; Discogs release 966968), two years before the band existed",
+				"MusicBrainz has other Inside: 17cccfd9-d8f6-4af8-a1e4-9c149a278217 (group, \"ebm\", 1996-2003) and Fluffy Inside 7e248f92-e266-4a91-95aa-828f7e7d3dc8 (UK electronic musician): the namesakes the false credit came from",
+				"The cache's own citations tell them apart: artist:inside cites Discogs artist 1352496 \"Inside (9)\", the work cites a release by the unnumbered \"Inside\""
+			]
+		}
+	]
+}

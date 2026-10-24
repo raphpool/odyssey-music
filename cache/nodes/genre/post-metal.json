@@ -49,7 +49,20 @@
     }
   ],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:drone-metal",
+      "type": "genre",
+      "name": "Drone Metal",
+      "qid": "Q1433387"
+    },
+    {
+      "slug": "genre:sludge-metal",
+      "type": "genre",
+      "name": "Sludge metal",
+      "qid": "Q720959"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:neurosis",

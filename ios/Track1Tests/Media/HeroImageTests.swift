@@ -35,6 +35,28 @@ final class HeroImageTests: XCTestCase {
 		XCTAssertNil(DominantColor.of(Self.solid(.clear)))
 	}
 
+	// MARK: - Colour bands
+
+	func testThirdsRedGreenBlueGiveThreeBandsFromTopToBottom() throws {
+		let bands = try XCTUnwrap(DominantColor.bands(of: Self.thirds()))
+
+		Self.assertBands(bands, [(1, 0, 0), (0, 1, 0), (0, 0, 1)])
+	}
+
+	func testTranslucentBandsKeepTheirColourAndAreNotDarkened() throws {
+		let bands = try XCTUnwrap(DominantColor.bands(of: Self.thirds(alpha: 0.5)))
+
+		Self.assertBands(bands, [(1, 0, 0), (0, 1, 0), (0, 0, 1)])
+	}
+
+	func testFullyTransparentImageHasNoBands() {
+		XCTAssertNil(DominantColor.bands(of: Self.solid(.clear, side: 32)))
+	}
+
+	func testOneTransparentBandGivesNoBandsAtAll() {
+		XCTAssertNil(DominantColor.bands(of: Self.thirds(bottom: .clear)))
+	}
+
 	// MARK: - Fallback chain
 
 	// A track is the one kind that still has a chain after its own image: its project's cover is its album.
@@ -46,9 +68,26 @@ final class HeroImageTests: XCTestCase {
 
 		await model.load()
 
-		guard case .loaded(_, let tint) = model.state else { return XCTFail("State was \(model.state).") }
+		guard case .loaded(_, let tint, let coverTint) = model.state else {
+			return XCTFail("State was \(model.state).")
+		}
 		XCTAssertNotNil(tint)
+		XCTAssertNotNil(coverTint)
 		XCTAssertEqual(backend.loaded, [first, second])
+	}
+
+	func testALoadedImageCarriesTheCoverTintOfItsBands() async throws {
+		let backend = Backend(images: [first: Self.thirds()])
+		let model = try model(backend, imageURL: first, discography: nil)
+
+		await model.load()
+
+		guard case .loaded(_, _, let coverTint) = model.state else { return XCTFail("State was \(model.state).") }
+		let bands = try XCTUnwrap(DominantColor.bands(of: Self.thirds()))
+		XCTAssertEqual(coverTint, CoverTintTone.tint(bands: bands))
+		XCTAssertNotNil(coverTint)
+		XCTAssertNil(NodePageView.coverTint(for: .loading))
+		XCTAssertNil(NodePageView.coverTint(for: .placeholder))
 	}
 
 	func testFirstImageWinsAndLaterCandidatesAreNotRead() async throws {
@@ -137,7 +176,7 @@ final class HeroImageTests: XCTestCase {
 		// A screen shown again loads afresh, and the image the cancelled load fetched is not lost.
 		await model.load()
 
-		guard case .loaded(_, let tint) = model.state else { return XCTFail("State was \(model.state).") }
+		guard case .loaded(_, let tint, _) = model.state else { return XCTFail("State was \(model.state).") }
 		XCTAssertNotNil(tint)
 		XCTAssertEqual(backend.loaded, [first])
 	}
@@ -153,6 +192,40 @@ final class HeroImageTests: XCTestCase {
 		return UIGraphicsImageRenderer(size: size, format: format).image { context in
 			color.setFill()
 			context.fill(CGRect(origin: .zero, size: size))
+		}
+	}
+
+	/// A 32 × 32 image whose rows 0–10, 11–21 and 22–31 are red, green and blue, at `alpha`.
+	private static func thirds(
+		alpha: CGFloat = 1, top: UIColor = .red, middle: UIColor = .green, bottom: UIColor = .blue
+	) -> UIImage {
+		let format = UIGraphicsImageRendererFormat()
+		format.scale = 1
+		format.opaque = false
+		format.preferredRange = .standard
+		let size = CGSize(width: 32, height: 32)
+		let rows: [(UIColor, CGRect)] = [
+			(top, CGRect(x: 0, y: 0, width: 32, height: 11)),
+			(middle, CGRect(x: 0, y: 11, width: 32, height: 11)),
+			(bottom, CGRect(x: 0, y: 22, width: 32, height: 10)),
+		]
+		return UIGraphicsImageRenderer(size: size, format: format).image { context in
+			for (color, rect) in rows {
+				color.withAlphaComponent(color == .clear ? 0 : alpha).setFill()
+				context.fill(rect)
+			}
+		}
+	}
+
+	private static func assertBands(
+		_ bands: [LinearRGB], _ expected: [(Double, Double, Double)], file: StaticString = #filePath,
+		line: UInt = #line
+	) {
+		XCTAssertEqual(bands.count, expected.count, file: file, line: line)
+		for (band, want) in zip(bands, expected) {
+			XCTAssertEqual(band.red, want.0, accuracy: 2.0 / 255, file: file, line: line)
+			XCTAssertEqual(band.green, want.1, accuracy: 2.0 / 255, file: file, line: line)
+			XCTAssertEqual(band.blue, want.2, accuracy: 2.0 / 255, file: file, line: line)
 		}
 	}
 

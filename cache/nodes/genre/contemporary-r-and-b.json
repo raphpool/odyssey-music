@@ -72,6 +72,12 @@
       "type": "genre",
       "name": "New Jack Swing",
       "qid": "Q840065"
+    },
+    {
+      "slug": "genre:alternative-r-and-b",
+      "type": "genre",
+      "name": "Alternative R&B",
+      "qid": "Q7118426"
     }
   ],
   "key_artists": [

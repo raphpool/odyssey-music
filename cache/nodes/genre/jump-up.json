@@ -43,6 +43,12 @@
       "type": "genre",
       "name": "Drum and Bass",
       "qid": "Q188994"
+    },
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle",
+      "qid": "Q1102161"
     }
   ],
   "subgenres": [],
@@ -64,6 +70,12 @@
       "type": "genre",
       "name": "Neurofunk",
       "qid": "Q967654"
+    },
+    {
+      "slug": "genre:drumstep",
+      "type": "genre",
+      "name": "Drumstep",
+      "qid": "Q24876318"
     }
   ],
   "key_artists": [

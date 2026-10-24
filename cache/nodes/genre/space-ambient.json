@@ -29,6 +29,12 @@
       "type": "genre",
       "name": "New-age music",
       "qid": "Q213121"
+    },
+    {
+      "slug": "genre:space-music",
+      "type": "genre",
+      "name": "Space music",
+      "qid": "Q2342263"
     }
   ],
   "subgenres": [],

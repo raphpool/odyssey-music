@@ -14,7 +14,14 @@
   "qid": "Q1374731",
   "era": "1970s–1980s",
   "origin": "Europe",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco",
+      "qid": "Q58339"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {
@@ -52,6 +59,18 @@
       "type": "genre",
       "name": "Cosmic Disco",
       "qid": "Q336567"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco",
+      "qid": "Q58339"
+    },
+    {
+      "slug": "genre:eurodance",
+      "type": "genre",
+      "name": "Eurodance",
+      "qid": "Q216961"
     }
   ],
   "key_artists": [
