@@ -5,7 +5,7 @@ import { isNotFoundError } from "./errors.js";
 import { loadGenreResolver } from "./genre-identity.js";
 import { createGenreRegistry, type GenreRegistry, loadRedirects } from "./genre-registry.js";
 import type { GenreSeed, GenreSeeds } from "./genre-seeds.js";
-import { createLabelRegistry, loadLabelIdentities } from "./label-registry.js";
+import { loadLabelRegistry } from "./label-registry.js";
 import { crawledListEdges } from "./node-spec.js";
 import { existingImageOf, type PipelineDeps, type PipelineInput, runPipeline } from "./pipeline.js";
 import { normalizeSlugBody } from "./slug.js";
@@ -881,12 +881,11 @@ async function getGenreRegistry(cache: NodeCache, injected?: GenreRegistry): Pro
 
 // The genre registry with its label side (TRA-607): redirects and proven identities, loaded once per run.
 async function buildGenreRegistry(cache: NodeCache): Promise<GenreRegistry> {
-	const [genreResolver, redirects, identities] = await Promise.all([
+	const [genreResolver, redirects, labels] = await Promise.all([
 		loadGenreResolver(),
 		loadRedirects(),
-		loadLabelIdentities(),
+		loadLabelRegistry(cache),
 	]);
-	const labels = createLabelRegistry({ cache, redirects, identities });
 	return createGenreRegistry({ cache, resolver: genreResolver, redirects, labels });
 }
 

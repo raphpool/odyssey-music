@@ -22,6 +22,7 @@ import { fileURLToPath } from "node:url";
 import { z } from "zod";
 import type { NodeCache } from "./cache.js";
 import { isNotFoundError } from "./errors.js";
+import { loadRedirects } from "./genre-registry.js";
 import { logger } from "./logger.js";
 import { EDGE_TARGET_TYPES_BY_TYPE, NODE_TYPES } from "./node-spec.js";
 import { isReadableSlug } from "./slug.js";
@@ -132,6 +133,16 @@ export interface LabelRegistryDeps {
 	identities?: readonly LabelIdentityGroup[];
 }
 
+/**
+ * The registry every caller of createGenreRegistry passes as `labels`: the all-types redirect table and the
+ * proven identities, both loaded here so a call site has one line to forget instead of three
+ * (test/label-registry-wiring.test.ts fails when a createGenreRegistry call omits it).
+ */
+export async function loadLabelRegistry(cache: NodeCache): Promise<LabelRegistry> {
+	const [redirects, identities] = await Promise.all([loadRedirects(), loadLabelIdentities()]);
+	return createLabelRegistry({ cache, redirects, identities });
+}
+
 function isNodeType(value: unknown): value is NodeType {
 	return typeof value === "string" && (NODE_TYPES as readonly string[]).includes(value);
 }
@@ -163,29 +174,38 @@ export function createLabelRegistry(deps: LabelRegistryDeps): LabelRegistry {
 		const base = labelBaseOf(ref.slug);
 		if (base === undefined || !ref.mbid) return undefined;
 		const id = ref.mbid.toLowerCase();
-		for (const candidate of variantsOf(base)) {
-			if (candidate === ref.slug || !(await deps.cache.has(candidate))) continue;
-			try {
-				const node = await deps.cache.get(candidate);
-				if (node.type === "label" && node.mbid?.toLowerCase() === id) return candidate;
-			} catch (e) {
-				// An unreadable node cannot prove anything; the edge keeps its own slug.
-				if (!isNotFoundError(e)) {
-					log.warn("canonicalSlugFor: skipping unreadable label node", {
-						slug: candidate,
-						error: e instanceof Error ? e.message : String(e),
-					});
-				}
-			}
-		}
-		return undefined;
+		// One read per variant (a miss is a not-found), all at once, in the variants' order.
+		const proven = await Promise.all(
+			variantsOf(base)
+				.filter((candidate) => candidate !== ref.slug)
+				.map(async (candidate) => {
+					try {
+						const node = await deps.cache.get(candidate);
+						return node.type === "label" && node.mbid?.toLowerCase() === id ? candidate : undefined;
+					} catch (e) {
+						// An unreadable node cannot prove anything; the edge keeps its own slug.
+						if (!isNotFoundError(e)) {
+							log.warn("canonicalSlugFor: skipping unreadable label node", {
+								slug: candidate,
+								error: e instanceof Error ? e.message : String(e),
+							});
+						}
+						return undefined;
+					}
+				}),
+		);
+		return proven.find((candidate) => candidate !== undefined);
 	}
 
 	async function canonicalSlugFor(ref: LabelRef): Promise<Slug> {
 		if (await deps.cache.has(ref.slug)) return ref.slug;
 		const redirected = deps.redirects.get(ref.slug);
 		if (redirected) return redirected;
-		const group = groupOfMember.get(ref.slug) ?? groupOfVariant(ref);
+		// A table member whose own mbid says it is another label (six "Axis Records" on MusicBrainz) is not
+		// moved onto the group on the strength of its name.
+		const member = groupOfMember.get(ref.slug);
+		const memberProven = member && (!ref.mbid || member.mbids.has(ref.mbid.toLowerCase()));
+		const group = (memberProven ? member : undefined) ?? groupOfVariant(ref);
 		if (group) {
 			const target = await groupTarget(group);
 			if (target) return target;
@@ -208,13 +228,14 @@ export function createLabelRegistry(deps: LabelRegistryDeps): LabelRegistry {
 			if (!targets.includes("label")) continue;
 			const value = rec[field];
 			if (Array.isArray(value)) {
-				const seen = new Set<Slug>();
 				const out: EdgeRef[] = [];
 				for (const ref of value as EdgeRef[]) {
 					const canonical = await canonicalizeRef(ref);
-					if (seen.has(canonical.slug)) continue;
-					seen.add(canonical.slug);
-					out.push(canonical);
+					const kept = out.findIndex((e) => e.slug === canonical.slug);
+					const first = out[kept];
+					if (!first) out.push(canonical);
+					// The first occurrence stays, but a later duplicate may be the one carrying the mbid.
+					else if (!first.mbid && canonical.mbid) out[kept] = { ...first, mbid: canonical.mbid };
 				}
 				rec[field] = out;
 			} else if (value !== null && typeof value === "object") {

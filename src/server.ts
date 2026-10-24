@@ -39,7 +39,7 @@ import { createGenreRegistry, loadRedirects, resolveReadSlug } from "./genre-reg
 import { createImageQueue } from "./images/image-queue.js";
 import { resolveImage } from "./images/resolve-image.js";
 import { resolveWorkImageByHint } from "./images/resolve-work-hint.js";
-import { createLabelRegistry, loadLabelIdentities } from "./label-registry.js";
+import { loadLabelRegistry } from "./label-registry.js";
 import { logger } from "./logger.js";
 import { createApnsPushSender } from "./mobile/apns-sender.js";
 import { createMobileCatalog } from "./mobile/catalog.js";
@@ -84,11 +84,7 @@ const cache = new NodeCache(CACHE_DIR);
 // enrichFromMusicBrainz already does per pipeline run.
 const [genreRedirects, genreResolver] = await Promise.all([loadRedirects(), loadGenreResolver()]);
 // TRA-607: label edges ride on the same registry (redirects + proven identities, see label-registry.ts).
-const labels = createLabelRegistry({
-	cache,
-	redirects: genreRedirects,
-	identities: await loadLabelIdentities(),
-});
+const labels = await loadLabelRegistry(cache);
 const genreRegistry = createGenreRegistry({
 	cache,
 	resolver: genreResolver,

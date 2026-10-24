@@ -375,6 +375,33 @@ describe("canonicalizeNodeEdges", () => {
 		expect(node.key_labels.map((l) => l.slug)).toEqual(["label:warp"]);
 	});
 
+	it("keeps the mbid of a later duplicate when the first occurrence has none", async () => {
+		const node = {
+			type: "artist",
+			slug: "artist:autechre",
+			labels: [edge("label:warp", "Warp"), edge("label:warp-records", "Warp Records", { mbid: WARP_MBID })],
+		};
+		await registry().canonicalizeNodeEdges(node);
+		expect(node.labels).toEqual([edge("label:warp", "Warp", { mbid: WARP_MBID })]);
+	});
+
+	it("does not move a table member whose own mbid is another label's", async () => {
+		await cache.write(labelNode("label:warp-records", "Warp Records"));
+		const node = {
+			type: "artist",
+			slug: "artist:x",
+			labels: [edge("label:warp", "Warp", { mbid: OTHER_MBID })],
+		};
+		// Before the merge ran, an unmbid'd "Warp" would land on the live label:warp-records (see above); with
+		// a foreign mbid it stays its own label.
+		await createLabelRegistry({
+			cache,
+			redirects: new Map(),
+			identities: warpGroups(),
+		}).canonicalizeNodeEdges(node);
+		expect(node.labels.map((l) => l.slug)).toEqual(["label:warp"]);
+	});
+
 	it("leaves a node without label edges, or a non-node, alone", async () => {
 		const node = {
 			type: "label",
