@@ -9,16 +9,26 @@
  * A group is the labels sharing a normalized name (lower case, without "records / recordings / music", only
  * letters and digits). It is merged only when its table entry is `proven` AND the cache agrees with the proof:
  * - the two sources link each other (MusicBrainz relation to the QID, or Wikidata P966 listing the mbid) and
- *   neither contradicts the other;
+ *   neither contradicts the other. TRA-608 relaxes this in one case: when NO identifier links them (KMS, Plus 8:
+ *   MusicBrainz has no Wikidata relation, the item has no P966), the group is still proven if the table gives an
+ *   anchor (the founder) AND the two sources agree by name and by year, and the anchor is in every member's
+ *   article. A link that points elsewhere is a contradiction, never tolerated;
+ * - MusicBrainz may split a brand from its company (Virgin: an imprint and a company, two mbids). The table
+ *   lists the extra entities under `brands`; each must share a Discogs label id with the main entity, else the
+ *   group is refused (`brand-not-linked`). Two homonyms do not share one;
  * - every member of the group in the cache is covered by the entry, is named like the entity (MusicBrainz name or
  *   alias, Wikidata label or alias), and carries the Wikidata inception year in `founded` when it has one;
  * - every `anchors` string (a name only the real label's article gives, e.g. "Jeff Mills" for Axis) is in the
  *   article of every member.
  * Anything else (no entry, `refused` entry, one failed check) is left untouched and listed in `refused`.
  *
+ * Names are compared without "records / recordings / music" and without "Ltd." ("Plus 8 Records Ltd." is "Plus 8
+ * Records" in MusicBrainz, "Plus 8" in Wikidata).
+ *
  * Merge: the survivor is the member named like the MusicBrainz name, else the richest (most edges), else the
  * lowest slug. Its lists (genres, roster, notable_releases) become the union without duplicates; a text field it
- * lacks (founded, location, founders, active_years, image) is taken from a loser; prose is never merged. Every
+ * lacks (founded, location, founders, active_years) is taken from a loser, and the best image of the group wins
+ * (a label's ladder: Wikidata logo P154, then photo P18, then the rest); prose is never merged. Every
  * `artist.labels`, `project.label`, `track.label`, `genre.key_labels` edge and every pending-reverses.json entry
  * naming a loser points at the survivor, with the survivor's name (the audit counts a stale name as drift), a
  * list deduplicated when an artist cited both. The loser file is deleted and `label:<loser> -> label:<survivor>`
@@ -80,25 +90,37 @@ const labelSlug = z
 	.refine((s) => s.startsWith("label:") && isValidSlug(s), "not a canonical label slug");
 const base = { key: z.string().min(1), members: z.array(labelSlug).min(2), evidence: z.array(z.string()) };
 const qid = z.string().regex(/^Q[0-9]+$/);
-const identitiesSchema = z.object({
+const discogsId = z.number().int().positive();
+const mbEntity = z.object({
+	mbid: z.string().uuid(),
+	name: z.string(),
+	aliases: z.array(z.string()),
+	wikidata: qid.nullable(),
+});
+export const identitiesSchema = z.object({
 	source: z.string(),
 	groups: z.array(
 		z.discriminatedUnion("status", [
 			z.object({
 				...base,
 				status: z.literal("proven"),
-				mb: z.object({
-					mbid: z.string().uuid(),
-					name: z.string(),
-					aliases: z.array(z.string()),
-					wikidata: qid.nullable(),
+				mb: mbEntity.extend({
+					// Year MusicBrainz gives for the label's life span; only read when no identifier links the sources.
+					begin: z.number().int().nullable().optional(),
+					// Discogs label ids from its URL relations; only read to link a brand to its company.
+					discogs: z.array(discogsId).optional(),
 				}),
+				// TRA-608: the other MusicBrainz entities of the same label (the imprint of a company).
+				brands: z.array(mbEntity.extend({ discogs: z.array(discogsId) })).optional(),
 				wd: z.object({
 					qid,
 					label: z.string(),
 					aliases: z.array(z.string()),
 					inception: z.number().int().nullable(),
+					// Only the normal and preferred ranks of P966: a deprecated mbid is not a link.
 					mbids: z.array(z.string().uuid()),
+					// The deprecated ones (TRA-608): kept to refuse a table that would use one as a link.
+					deprecated_mbids: z.array(z.string().uuid()).optional(),
 				}),
 				anchors: z.array(z.string()),
 			}),
@@ -121,19 +143,31 @@ const pendingFileSchema = z.record(
 );
 type PendingFile = Record<string, PendingReverse[]>;
 
-/** "Warp Records" and "Warp" give the same key; so do "E.G. Records" and "EG Records". */
+/**
+ * "Warp Records" and "Warp" give the same key; so do "E.G. Records" and "EG Records", and, since TRA-608, "Plus 8
+ * Records Ltd." and "Plus 8" ("Ltd." is the company form MusicBrainz appends, not part of the name).
+ */
 export function groupKey(name: string): string {
+	return looseName(name.normalize("NFKD").replace(/\b(records?|recordings?|music)\b/gi, ""));
+}
+/** Lower case, letters and digits only, "Ltd." dropped. */
+function looseName(name: string): string {
 	return name
 		.normalize("NFKD")
 		.toLowerCase()
-		.replace(/\b(records?|recordings?|music)\b/g, "")
+		.replace(/\bltd\b\.?/g, "")
 		.replace(/[^a-z0-9]/g, "");
 }
-const looseName = (name: string): string =>
-	name
-		.normalize("NFKD")
-		.toLowerCase()
-		.replace(/[^a-z0-9]/g, "");
+
+// The order in which a label's image is worth keeping. src/images/resolve-image.ts resolves a label's image as
+// Wikidata P154 (the logo), then P18, then a borrowed release cover; IMAGE_SOURCES (the schema's enum) lists P18
+// first, which is the wrong way round for a label (TRA-608: a survivor with a logo lost it to a loser's photo). The
+// other sources keep their IMAGE_SOURCES order, so the list stays complete when a source is added there.
+const LABEL_IMAGE_ORDER: readonly ImageSource[] = [
+	"wikidata-p154",
+	"wikidata-p18",
+	...IMAGE_SOURCES.filter((s) => s !== "wikidata-p154" && s !== "wikidata-p18"),
+];
 
 const LIST_FIELDS = ["genres", "roster", "notable_releases"] as const;
 const SCALAR_FIELDS = ["founded", "location", "founders", "active_years"] as const;
@@ -149,7 +183,10 @@ export interface MergedGroup {
 	survivor: string;
 	losers: string[];
 	chosenBy: "musicbrainz-name" | "richest" | "slug";
+	/** The main MusicBrainz entity. */
 	mbid: string;
+	/** Every MusicBrainz entity of the label: the main one first, then the brands (TRA-608). */
+	mbids: string[];
 	qid: string;
 	rosterBefore: Record<string, number>;
 	rosterAfter: number;
@@ -186,19 +223,65 @@ export function contradiction(
 	members: readonly CacheNodeFile[],
 ): { reason: string; detail: string } | null {
 	const { mb, wd } = entry;
-	if (mb.wikidata === null && !wd.mbids.includes(mb.mbid))
+	const brands = entry.brands ?? [];
+	const deprecated = new Set(wd.deprecated_mbids ?? []);
+	const listedDeprecated = wd.mbids.find((id) => deprecated.has(id));
+	if (listedDeprecated)
 		return {
-			reason: "sources-not-linked",
-			detail: "neither MusicBrainz names the QID nor Wikidata lists the mbid",
+			reason: "sources-contradict",
+			detail: `the table lists ${listedDeprecated} as a ${wd.qid} link and as deprecated`,
 		};
+	if (deprecated.has(mb.mbid))
+		return { reason: "sources-contradict", detail: `Wikidata ${wd.qid} deprecates ${mb.mbid}` };
 	if (mb.wikidata !== null && mb.wikidata !== wd.qid)
 		return {
 			reason: "sources-contradict",
 			detail: `MusicBrainz links ${mb.wikidata}, the proof is ${wd.qid}`,
 		};
+	// A link that points elsewhere contradicts the proof; it is never tolerated like an absent one.
 	if (wd.mbids.length > 0 && !wd.mbids.includes(mb.mbid))
 		return { reason: "sources-contradict", detail: `Wikidata ${wd.qid} does not list ${mb.mbid}` };
-	const names = new Set([mb.name, ...mb.aliases, wd.label, ...wd.aliases].map(looseName));
+	if (mb.wikidata === null && wd.mbids.length === 0) {
+		// TRA-608: no identifier links the sources (KMS, Plus 8). Tolerated only with an anchor (checked in every
+		// member's article below) and when MusicBrainz and Wikidata describe the same thing by name and by year.
+		if (entry.anchors.length === 0)
+			return {
+				reason: "sources-not-linked",
+				detail:
+					"neither MusicBrainz names the QID nor Wikidata lists the mbid, and the table gives no anchor",
+			};
+		const mbKeys = new Set([mb.name, ...mb.aliases].map(groupKey));
+		if (![wd.label, ...wd.aliases].some((n) => mbKeys.has(groupKey(n))))
+			return {
+				reason: "sources-not-concordant",
+				detail: `no name of ${mb.mbid} is a name of ${wd.qid}`,
+			};
+		if (mb.begin == null || wd.inception === null || mb.begin !== wd.inception)
+			return {
+				reason: "sources-not-concordant",
+				detail: `MusicBrainz begins in ${mb.begin ?? "?"}, ${wd.qid} in ${wd.inception ?? "?"}`,
+			};
+	}
+	// TRA-608: MusicBrainz splits a brand from its company (Virgin). The extra entity is the same label only when
+	// it points at the same Discogs label as the main one; names alone prove nothing.
+	const shared = new Set(mb.discogs ?? []);
+	const seen = new Set([mb.mbid]);
+	for (const brand of brands) {
+		if (seen.has(brand.mbid))
+			return { reason: "brand-not-linked", detail: `${brand.mbid} is listed twice in the proof` };
+		seen.add(brand.mbid);
+		if (!brand.discogs.some((id) => shared.has(id)))
+			return {
+				reason: "brand-not-linked",
+				detail: `${brand.name} (${brand.mbid}) shares no Discogs label with ${mb.mbid}`,
+			};
+	}
+	const names = new Set(
+		[mb, ...brands]
+			.flatMap((e) => [e.name, ...e.aliases])
+			.concat(wd.label, ...wd.aliases)
+			.map(looseName),
+	);
 	for (const m of members) {
 		if (!entry.members.includes(m.slug))
 			return { reason: "member-not-covered", detail: `${m.slug} is not in the proof` };
@@ -252,12 +335,12 @@ function mergeInto(survivor: Obj, losers: readonly Obj[]): Obj {
 		const donor = losers.find((l) => !lacks(l, f));
 		if (lacks(merged, f) && donor) merged[f] = donor[f];
 	}
-	// The image of the best source wins (IMAGE_SOURCES order: a Wikidata logo beats a cover derived from a release,
-	// which is what Columbia and Epic would lose otherwise); at equal rank the survivor's own stays.
+	// The image of the best source wins (a Wikidata logo beats a cover derived from a release, which is what Columbia
+	// and Epic would lose otherwise); at equal rank the survivor's own stays.
 	const rank = (n: Obj): number => {
 		if (lacks(n, "image_url")) return Number.POSITIVE_INFINITY;
-		const at = IMAGE_SOURCES.indexOf(n.image_source as ImageSource);
-		return at < 0 ? IMAGE_SOURCES.length : at;
+		const at = LABEL_IMAGE_ORDER.indexOf(n.image_source as ImageSource);
+		return at < 0 ? LABEL_IMAGE_ORDER.length : at;
 	};
 	const imageDonor = losers.reduce<Obj | null>(
 		(best, l) => (rank(l) < rank(best ?? merged) ? l : best),
@@ -382,6 +465,7 @@ export function planMerge(
 				losers: others.map((o) => o.slug),
 				chosenBy,
 				mbid: entry.mb.mbid,
+				mbids: [entry.mb.mbid, ...(entry.brands ?? []).map((b) => b.mbid)],
 				qid: entry.wd.qid,
 				rosterBefore: Object.fromEntries(
 					sorted(members, (m) => m.slug).map((m) => [
@@ -530,7 +614,7 @@ export function formatSummary(manifest: Manifest, manifestPath: string | undefin
 	const lines = [`${manifest.migration} (${manifest.mode})`];
 	for (const g of manifest.merged) {
 		lines.push(
-			`  merged  ${g.losers.join(", ")} -> ${g.survivor} (${g.chosenBy}), ${g.mbid} ${g.qid}, roster ${g.rosterAfter}`,
+			`  merged  ${g.losers.join(", ")} -> ${g.survivor} (${g.chosenBy}), ${g.mbids.join("+")} ${g.qid}, roster ${g.rosterAfter}`,
 		);
 	}
 	for (const r of manifest.refused) lines.push(`  refused ${r.key}: ${r.reason} (${r.detail})`);
