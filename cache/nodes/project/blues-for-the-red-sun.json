@@ -28,9 +28,17 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "816f2753-e709-3b10-ad93-e4c1af7aea6c",
   "type": "project",
   "editorial_pitch": "\"Blues for the Red Sun\" is the seminal 1992 studio album by the American rock band Kyuss, a record widely credited with defining the sonic template of stoner rock and desert rock.",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:kyuss",
+      "type": "artist",
+      "name": "Kyuss",
+      "mbid": "ea0f2a37-7007-4217-a812-396227f5013a"
+    }
+  ],
   "label": {
     "slug": "label:dali",
     "type": "label",
@@ -79,5 +87,6 @@
       "name": "Kyuss"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }
