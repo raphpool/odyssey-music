@@ -20,6 +20,7 @@ const policy: DiscographyPolicy = {
 	artistName: "Daft Punk",
 	cap: DEFAULT_DISCOGRAPHY_CAP,
 	currentYear: 2026,
+	currentDate: "2026-10-24",
 };
 
 let counter = 0;
@@ -2034,6 +2035,82 @@ describe("mergeDiscography — cautious pose without a year (TRA-647)", () => {
 				const result = mergeFor(zappa, existing, [found]);
 				expect(result.posed).toEqual([]);
 				expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "credit" }]);
+			});
+
+			// TRA-653. MusicBrainz separates the composer from the performers of a classical recording with ";"
+			// ("Duke Ellington; Buffalo Philharmonic, JoAnn Falletta"): a third party's recording of the artist's work,
+			// whatever its votes. The legitimate three-credit releases (Lennon, Getz, Asha Bhosle, Elstak) have none.
+			describe("whose credits separate a composer from the performers with ';' (TRA-653)", () => {
+				const classical = [{ ...HEAD, joinphrase: "; " }, { ...guest(1), joinphrase: ", " }, guest(2)];
+
+				it.each([
+					["a vote", { ratingVotes: 1 }],
+					["many votes", { ratingVotes: 40 }],
+					["no vote", {}],
+				])("is held with %s", (_label, extra) => {
+					const found = release("Dil Padosi Hai", { artistCredits: classical, ...extra });
+					const result = mergeFor(zappa, existing, [found]);
+					expect(result.posed).toEqual([]);
+					expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "credit" }]);
+				});
+
+				it("is held even when the entry states the very year and type of the release group", () => {
+					const found = release("Annihilation", {
+						primaryType: "Single",
+						firstReleaseDate: "2025-10-31",
+						artistCredits: classical,
+					});
+					const stated = zappaEntry("Annihilation", { year: "2025", releaseType: "single" });
+					const result = mergeFor(zappa, [stated], [found]);
+					expect(result.posed).toEqual([]);
+					expect(result.ambiguous).toEqual([{ slug: stated.slug, reason: "credit" }]);
+				});
+
+				it("is found whichever credit carries the ';'", () => {
+					const found = release("Dil Padosi Hai", {
+						artistCredits: [{ ...HEAD, joinphrase: ", " }, { ...guest(1), joinphrase: "; " }, guest(2)],
+						ratingVotes: 1,
+					});
+					const result = mergeFor(zappa, existing, [found]);
+					expect(result.posed).toEqual([]);
+					expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "credit" }]);
+				});
+
+				it("ignores a ';' after the last credit: it separates nothing", () => {
+					const found = release("Dil Padosi Hai", {
+						artistCredits: [
+							{ ...HEAD, joinphrase: ", " },
+							{ ...guest(1), joinphrase: " & " },
+							{ ...guest(2), joinphrase: ";" },
+						],
+						ratingVotes: 1,
+					});
+					const result = mergeFor(zappa, existing, [found]);
+					expect(result.ambiguous).toEqual([]);
+					expect(result.posed.map((p) => p.mbid)).toEqual([found.mbid]);
+				});
+
+				it("does not hold a voted release group whose joinphrases are the usual ones", () => {
+					const found = release("Dil Padosi Hai", {
+						artistCredits: [{ ...HEAD, joinphrase: ", " }, { ...guest(1), joinphrase: " & " }, guest(2)],
+						ratingVotes: 1,
+					});
+					const result = mergeFor(zappa, existing, [found]);
+					expect(result.ambiguous).toEqual([]);
+					expect(result.posed.map((p) => p.mbid)).toEqual([found.mbid]);
+				});
+
+				// v7 left it posed (TRA-653); the review of that PR found the same recording, credited with two names,
+				// passing the credit rule, and TRA-654 closes it for the selection and the pose alike.
+				it("holds a release group of two credits as well: 'Composer; Orchestra' (TRA-654)", () => {
+					const found = release("Dil Padosi Hai", {
+						artistCredits: [{ ...HEAD, joinphrase: "; " }, guest(1)],
+						ratingVotes: 4,
+					});
+					const result = mergeFor(zappa, existing, [found]);
+					expect(result.posed).toEqual([]);
+					expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "credit" }]);
+				});
 			});
 
 			it("is held with four credits or more, even voted: only one credit past the rule is let through", () => {

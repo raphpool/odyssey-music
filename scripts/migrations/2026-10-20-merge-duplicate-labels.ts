@@ -47,6 +47,7 @@ import { atomicWriteJson, type PendingReverse } from "../../src/cache.js";
 import { parseSlugRedirects } from "../../src/genre-registry.js";
 import { EDGE_FIELDS_BY_TYPE, type NodeType } from "../../src/node-spec.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
+import { isValidSlug } from "../../src/slug.js";
 import { IMAGE_SOURCES, type ImageSource } from "../../src/types.js";
 import {
 	type CacheNodeFile,
@@ -71,7 +72,12 @@ export const IDENTITIES_PATH = join(
 
 type Obj = Record<string, unknown>;
 
-const labelSlug = z.string().regex(/^label:[a-z0-9]+(-[a-z0-9]+)*$/);
+// The canonical slug rule (one "--" allowed), not a narrower local regex: the server mints disambiguated slugs
+// such as label:columbia-records--american-major-label-founded-1888, and the proof table must be able to name them
+// (TRA-611: the table was unreadable the moment it listed that member).
+const labelSlug = z
+	.string()
+	.refine((s) => s.startsWith("label:") && isValidSlug(s), "not a canonical label slug");
 const base = { key: z.string().min(1), members: z.array(labelSlug).min(2), evidence: z.array(z.string()) };
 const qid = z.string().regex(/^Q[0-9]+$/);
 const identitiesSchema = z.object({

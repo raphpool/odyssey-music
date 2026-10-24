@@ -182,17 +182,37 @@ function parseRecordings(body: unknown): MbRecording[] | null {
  * than guessed at — a credit without an MBID cannot be linked to a node.
  */
 function toCredits(raw: unknown): MbCredit[] {
+	return toJoinedCredits(raw).map(({ mbid, name }) => ({ mbid, name }));
+}
+
+/**
+ * toCredits(), keeping the text MusicBrainz puts after each credit (TRA-653). It is the only trace of the shape
+ * of a credit: a classical recording reads "Ellington; Buffalo Philharmonic, Falletta", where the ";" separates
+ * the composer from the performers. Third-party text: kept as given when it is a non-empty string, else absent;
+ * the discography policy only looks for a ";" in it and nothing ever displays it.
+ */
+function toJoinedCredits(raw: unknown): MbJoinedCredit[] {
 	if (!Array.isArray(raw)) return [];
-	const out: MbCredit[] = [];
+	const out: MbJoinedCredit[] = [];
 	const seen = new Set<string>();
 	for (const entry of raw) {
-		if (!isRecord(entry) || !isRecord(entry.artist)) continue;
-		const { id, name: canonical } = entry.artist;
-		if (!isMbid(id) || seen.has(id)) continue;
+		if (!isRecord(entry)) continue;
+		const joinphrase = typeof entry.joinphrase === "string" ? entry.joinphrase : "";
+		const { id, name: canonical } = isRecord(entry.artist)
+			? entry.artist
+			: { id: undefined, name: undefined };
 		const name = isText(canonical) ? canonical : isText(entry.name) ? entry.name : null;
-		if (name === null) continue;
+		if (!isMbid(id) || seen.has(id) || name === null) {
+			// A dropped credit (repeated artist, no artist id) leaves its joinphrase to the credit before it, so that a
+			// ";" is found whichever of the credits MusicBrainz put it on.
+			const previous = out.at(-1);
+			if (previous !== undefined && joinphrase !== "") {
+				previous.joinphrase = `${previous.joinphrase ?? ""}${joinphrase}`;
+			}
+			continue;
+		}
 		seen.add(id);
-		out.push({ mbid: id, name });
+		out.push(joinphrase !== "" ? { mbid: id, name, joinphrase } : { mbid: id, name });
 	}
 	return out;
 }
@@ -556,7 +576,7 @@ export interface MbReleaseGroupSummary {
 	primaryType: string;
 	secondaryTypes: string[];
 	/** Credited artists in MusicBrainz order (the first one is the primary credit). */
-	artistCredits: MbCredit[];
+	artistCredits: MbJoinedCredit[];
 	/** `rating["votes-count"]` (browsed with `inc=ratings`); 0 when absent or invalid (TRA-625). */
 	ratingVotes: number;
 }
@@ -592,7 +612,7 @@ function parseRgPage(body: unknown): RgPage | null {
 			secondaryTypes: Array.isArray(secondary)
 				? secondary.filter((t): t is string => typeof t === "string")
 				: [],
-			artistCredits: toCredits(raw["artist-credit"]),
+			artistCredits: toJoinedCredits(raw["artist-credit"]),
 			ratingVotes: parseRatingVotes(raw.rating),
 		});
 	}
@@ -1112,11 +1132,9 @@ export interface MbReleaseIdentity {
 	/**
 	 * Recordings only: the release group of the release the search hit lists best for it (an Album-primary
 	 * one, else the first listed), the cover-bearing home of a track. Null for a release group (that is
-	 * `mbid`) and when the hit names none. Read from the hit; costs no request. Optional in the type only
-	 * so that the fixtures of other suites that build an identity by hand keep compiling: the two
-	 * resolvers always set it, and a reader takes absent as null.
+	 * `mbid`) and when the hit names none. Read from the hit; costs no request.
 	 */
-	releaseGroupMbid?: string | null;
+	releaseGroupMbid: string | null;
 }
 
 /**
@@ -2336,6 +2354,11 @@ export interface MbTrackSummary {
 export interface MbCredit {
 	mbid: string;
 	name: string;
+}
+
+/** A credit with the text that follows it in the artist credit ("; ", ", ", " & "), when there is one. */
+export interface MbJoinedCredit extends MbCredit {
+	joinphrase?: string;
 }
 
 export interface MbTrackMeta {
