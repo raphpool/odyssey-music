@@ -123,6 +123,18 @@
       "type": "genre",
       "name": "K-Pop",
       "qid": "Q213665"
+    },
+    {
+      "slug": "genre:singer-songwriter",
+      "type": "genre",
+      "name": "Singer-songwriter",
+      "qid": "Q89363113"
+    },
+    {
+      "slug": "genre:teen-pop",
+      "type": "genre",
+      "name": "Teen pop",
+      "qid": "Q739138"
     }
   ],
   "key_artists": [

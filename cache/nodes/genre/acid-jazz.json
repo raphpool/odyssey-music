@@ -79,6 +79,12 @@
       "type": "genre",
       "name": "Broken Beat",
       "qid": "Q2406633"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House",
+      "qid": "Q341364"
     }
   ],
   "key_artists": [

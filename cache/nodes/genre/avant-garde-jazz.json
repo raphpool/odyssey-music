@@ -57,6 +57,18 @@
       "type": "genre",
       "name": "Post-bop",
       "qid": "Q1092837"
+    },
+    {
+      "slug": "genre:european-jazz",
+      "type": "genre",
+      "name": "European Jazz",
+      "qid": "Q2579417"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental rock",
+      "qid": "Q1641839"
     }
   ],
   "key_artists": [

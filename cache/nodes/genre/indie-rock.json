@@ -39,6 +39,36 @@
       "type": "genre",
       "name": "College rock",
       "qid": "Q783097"
+    },
+    {
+      "slug": "genre:alternative",
+      "type": "genre",
+      "name": "Alternative",
+      "qid": "Q1695023"
+    },
+    {
+      "slug": "genre:britpop",
+      "type": "genre",
+      "name": "Britpop",
+      "qid": "Q189045"
+    },
+    {
+      "slug": "genre:grunge",
+      "type": "genre",
+      "name": "Grunge",
+      "qid": "Q11365"
+    },
+    {
+      "slug": "genre:lo-fi",
+      "type": "genre",
+      "name": "Lo-fi",
+      "qid": "Q1507298"
+    },
+    {
+      "slug": "genre:new-rave",
+      "type": "genre",
+      "name": "New Rave",
+      "qid": "Q1995980"
     }
   ],
   "key_artists": [

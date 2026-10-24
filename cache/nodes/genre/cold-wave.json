@@ -40,6 +40,12 @@
       "type": "genre",
       "name": "Electronic body music",
       "qid": "Q372103"
+    },
+    {
+      "slug": "genre:minimal-music",
+      "type": "genre",
+      "name": "Minimal music",
+      "qid": "Q12183214"
     }
   ],
   "key_artists": [

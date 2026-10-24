@@ -35,7 +35,14 @@
     }
   ],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:country-pop",
+      "type": "genre",
+      "name": "Country Pop",
+      "qid": "Q2280497"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:the-beatles",

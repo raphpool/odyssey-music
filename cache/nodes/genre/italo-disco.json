@@ -40,6 +40,18 @@
       "type": "genre",
       "name": "Cosmic Disco",
       "qid": "Q336567"
+    },
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago house",
+      "qid": "Q1071961"
+    },
+    {
+      "slug": "genre:eurodisco",
+      "type": "genre",
+      "name": "Eurodisco",
+      "qid": "Q1374731"
     }
   ],
   "key_artists": [

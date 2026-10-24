@@ -10,6 +10,7 @@ import { createGenreRegistry, loadGenreRedirects } from "../src/genre-registry.j
 import { type GenreSeed, type GenreSeeds, loadGenreSeeds } from "../src/genre-seeds.js";
 import { type GenreTaxonomy, validateGenreTaxonomy } from "../src/genre-taxonomy.js";
 import { buildGraphFromCache, type GraphProjection } from "../src/graph.js";
+import { loadLabelRegistry } from "../src/label-registry.js";
 import { makeSlug } from "../src/slug.js";
 import type { Slug } from "../src/types.js";
 
@@ -214,7 +215,11 @@ export async function createLiveGenreTopUpRunner(
 	cacheDir: string,
 	seeds: GenreSeeds,
 ): Promise<GenreTopUpRunner> {
-	const [resolver, redirects] = await Promise.all([loadGenreResolver(), loadGenreRedirects()]);
+	const [resolver, redirects, labels] = await Promise.all([
+		loadGenreResolver(),
+		loadGenreRedirects(),
+		loadLabelRegistry(cache),
+	]);
 	const env = loadEnv();
 	const base: CrawlOptions = {
 		seed: "genre-top-up",
@@ -225,7 +230,7 @@ export async function createLiveGenreTopUpRunner(
 		deps: {
 			tavilyApiKey: env.TAVILY_API_KEY,
 			firecrawlApiKey: env.FIRECRAWL_API_KEY,
-			genreRegistry: createGenreRegistry({ cache, resolver, redirects }),
+			genreRegistry: createGenreRegistry({ cache, resolver, redirects, labels }),
 		},
 	};
 	return createGenreTopUpRunner(cache, seeds, base);

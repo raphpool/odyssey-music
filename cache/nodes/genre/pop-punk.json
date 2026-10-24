@@ -91,6 +91,12 @@
       "type": "genre",
       "name": "Emo Rap",
       "qid": "Q12362064"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock",
+      "qid": "Q3071"
     }
   ],
   "key_artists": [

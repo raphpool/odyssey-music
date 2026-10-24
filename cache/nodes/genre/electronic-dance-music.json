@@ -115,6 +115,18 @@
       "type": "genre",
       "name": "K-Pop",
       "qid": "Q213665"
+    },
+    {
+      "slug": "genre:dance-music",
+      "type": "genre",
+      "name": "Dance music",
+      "qid": "Q316930"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
     }
   ],
   "key_artists": [

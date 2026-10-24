@@ -95,6 +95,18 @@
       "type": "genre",
       "name": "Chopped N Screwed",
       "qid": "Q2261628"
+    },
+    {
+      "slug": "genre:hauntology",
+      "type": "genre",
+      "name": "hauntology",
+      "qid": "Q85765918"
+    },
+    {
+      "slug": "genre:synthwave",
+      "type": "genre",
+      "name": "Synthwave",
+      "qid": "Q19938910"
     }
   ],
   "key_artists": [

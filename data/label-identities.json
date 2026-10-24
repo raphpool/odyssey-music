@@ -1,0 +1,97 @@
+{
+	"source": "Derived from scripts/migrations/2026-10-20-merge-duplicate-labels.identities.json (proven groups only; mbids = the MusicBrainz label and its brands; the Wikidata P966 mbids are left out, one of them is another Columbia). Read by src/label-registry.ts (TRA-607); test/label-registry.test.ts fails when the two drift apart.",
+	"groups": [
+		{
+			"key": "warp",
+			"members": [
+				"label:warp",
+				"label:warp-records"
+			],
+			"mbids": [
+				"46f0f4cd-8aab-4b33-b698-f459faf64190"
+			]
+		},
+		{
+			"key": "columbia",
+			"members": [
+				"label:columbia",
+				"label:columbia-records",
+				"label:columbia-records--american-major-label-founded-1888"
+			],
+			"mbids": [
+				"011d1192-6f65-45bd-85c4-0400dd45693e"
+			]
+		},
+		{
+			"key": "rephlex",
+			"members": [
+				"label:rephlex",
+				"label:rephlex-records"
+			],
+			"mbids": [
+				"820fa04e-9927-40bb-a6c5-1bf883b159c7"
+			]
+		},
+		{
+			"key": "epic",
+			"members": [
+				"label:epic",
+				"label:epic-records"
+			],
+			"mbids": [
+				"8f638ddb-131a-4cc3-b3d4-7ebdac201b55"
+			]
+		},
+		{
+			"key": "eg",
+			"members": [
+				"label:e-g-records",
+				"label:eg-records"
+			],
+			"mbids": [
+				"71ee312d-4081-4699-a332-ba837a54d200"
+			]
+		},
+		{
+			"key": "axis",
+			"members": [
+				"label:axis",
+				"label:axis-records"
+			],
+			"mbids": [
+				"0aa73845-13c6-49fc-935f-82b8db65cd8e"
+			]
+		},
+		{
+			"key": "virgin",
+			"members": [
+				"label:virgin",
+				"label:virgin-records"
+			],
+			"mbids": [
+				"49b58bdb-3d74-40c6-956a-4c4b46115c9c",
+				"84009bd4-0ba1-411e-a952-78e6f9428572"
+			]
+		},
+		{
+			"key": "kms",
+			"members": [
+				"label:kms",
+				"label:kms-records"
+			],
+			"mbids": [
+				"6b271325-b78a-4002-8ae6-e3ecaa91347b"
+			]
+		},
+		{
+			"key": "plus8",
+			"members": [
+				"label:plus-8",
+				"label:plus-8-records"
+			],
+			"mbids": [
+				"f8c842b4-3b25-4fcc-89f9-da08d5d8b7b4"
+			]
+		}
+	]
+}

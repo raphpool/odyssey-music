@@ -53,6 +53,12 @@
       "type": "genre",
       "name": "Ambient",
       "qid": "Q193207"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental rock",
+      "qid": "Q1641839"
     }
   ],
   "key_artists": [

@@ -57,6 +57,18 @@
       "type": "genre",
       "name": "Drill and Bass",
       "qid": "Q1259016"
+    },
+    {
+      "slug": "genre:ambient-house",
+      "type": "genre",
+      "name": "Ambient House",
+      "qid": "Q2465085"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica",
+      "qid": "Q817138"
     }
   ],
   "key_artists": [
