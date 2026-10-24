@@ -21,6 +21,11 @@
 		"project": 62,
 		"track": 26
 	},
+	"bidirectional-credit-mismatch": {
+		"mbid-divergent": 0,
+		"credit-excludes-artist": 5,
+		"members-for-group": 8
+	},
 	"single-citation": {
 		"genre": 135,
 		"label": 33,
