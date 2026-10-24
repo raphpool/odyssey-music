@@ -94,3 +94,20 @@ npm run test:live
 ```
 
 Required API env vars for materialization are `GEMINI_API_KEY`, `TAVILY_API_KEY`, and `FIRECRAWL_API_KEY`.
+
+### Slug flag for local runs
+
+Production mints scoped, transliterated slugs (`project:<title>--<artist>`, `ø` becomes `o`) because
+`ODYSSEY_SCOPED_RELEASE_SLUGS=1` is set in the server's systemd unit (`src/flags.ts`, TRA-509). The default
+in code stays off, so a process that does not set it writes the old form (`artist:mrk` where the server
+writes `artist:mork`). Any command that mints slugs and writes `cache/` from your machine
+(`npm run crawl`, `npm run topup:genres`, `npm run topup:dangling`) must therefore run with the flag. Set it
+for the command only:
+
+```bash
+ODYSSEY_SCOPED_RELEASE_SLUGS=1 npm run crawl -- --seed "track:Tendency" --max-depth 2 --max-nodes 20 --out cache
+```
+
+Do not `export` it in the shell you use for `npm test`: some tests assume the default (off). The code does
+not read `.env` itself (`src/env.ts` expects a `.env` loaded by the caller), so a line in your `.env` only
+counts if whatever loads it exports the variable. The `top-up-genres` workflow already sets it.
