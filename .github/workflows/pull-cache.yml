@@ -1,0 +1,127 @@
+name: pull-cache
+
+# TRA-493 (part 7.2): brings the nodes materialized in prod (JIT clicks, mobile generations) back into the
+# repo, by a reviewed draft PR. See deploy/pull-cache.sh for the transfer and scripts/ci/pull-cache-validate.ts
+# for what is checked.
+#
+# READ-ONLY on the server, and manual: workflow_dispatch only, no schedule and no push trigger. Without
+# `apply` (the default) it only pulls, classifies and validates, and prints the result: no branch, no PR.
+# With `apply` it copies the validated new nodes, pushes a data/pull-cache-<date> branch and opens a DRAFT
+# PR; nothing merges by itself. The server, its host and the paths come from the script's own defaults:
+# no input can redirect the transfer.
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: >-
+          Copy the validated new nodes, push a data branch and open a draft PR (checked). Unchecked
+          (default) only prints the classification (new / changed / same) and the validation result.
+          Must be dispatched on main when checked: the PR base is main.
+        type: boolean
+        default: false
+
+# One production-touching job at a time: a read racing the cache transfer of sync-genre-cache would
+# classify half-written nodes.
+concurrency:
+  group: deploy-prod
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  pull-cache:
+    runs-on: [self-hosted, linux]
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      pull-requests: write
+    env:
+      # Where pull-cache-validate.ts leaves new.txt / changed.txt and the PR step its body.
+      PULL_OUT_DIR: ${{ runner.temp }}/pull-cache
+    steps:
+      - name: Isolate HOME from the runner host account
+        # 2026-09-17 (TRA-243): anything writing to $HOME (npm, git) must land in a job-scoped
+        # directory instead of the runner host account's own configuration.
+        run: |
+          mkdir -p "$RUNNER_TEMP/home"
+          echo "HOME=$RUNNER_TEMP/home" >> "$GITHUB_ENV"
+      - name: Require main to apply
+        # The branch is cut from the checked-out ref and the PR targets main.
+        if: ${{ inputs.apply && github.ref != 'refs/heads/main' }}
+        run: |
+          echo "::error::apply must be dispatched on main (got ${GITHUB_REF})."
+          exit 1
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - run: npm ci
+
+      - name: Set up SSH
+        # Same as sync-genre-cache.yml (TRA-243): the deploy key is never written to disk. It lives in
+        # a job-scoped ssh-agent; known_hosts lives in $RUNNER_TEMP, enforced by an `ssh` wrapper put
+        # first on PATH (deploy/pull-cache.sh calls `rsync`, which calls `ssh`).
+        env:
+          DEPLOY_SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+        run: |
+          set -euo pipefail
+          eval "$(ssh-agent -s)" > /dev/null
+          # A failed start would leave SSH_AUTH_SOCK pointing at the host user's own agent.
+          test -n "${SSH_AGENT_PID:-}"
+          printf '%s\n' "$DEPLOY_SSH_KEY" | ssh-add - > /dev/null
+          ssh-keyscan -H 46.101.167.241 > "$RUNNER_TEMP/known_hosts" 2> /dev/null
+          mkdir -p "$RUNNER_TEMP/bin"
+          printf '#!/bin/bash\nexec /usr/bin/ssh -o UserKnownHostsFile="%s" "$@"\n' "$RUNNER_TEMP/known_hosts" > "$RUNNER_TEMP/bin/ssh"
+          chmod 700 "$RUNNER_TEMP/bin/ssh"
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+          {
+            echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK"
+            echo "SSH_AGENT_PID=$SSH_AGENT_PID"
+          } >> "$GITHUB_ENV"
+
+      - name: Pull and validate prod nodes
+        id: pull
+        env:
+          APPLY: ${{ inputs.apply }}
+        run: |
+          set -euo pipefail
+          ARGS=()
+          if [ "$APPLY" = "true" ]; then ARGS+=(--apply); fi
+          bash deploy/pull-cache.sh ${ARGS[@]+"${ARGS[@]}"} 2>&1 | tee "$RUNNER_TEMP/pull-cache.log"
+
+      - name: Publish the result
+        if: always()
+        run: |
+          {
+            echo "## pull-cache"
+            echo
+            echo '```'
+            cat "$RUNNER_TEMP/pull-cache.log" 2> /dev/null || echo "(no log)"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload the log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pull-cache-log
+          path: ${{ runner.temp }}/pull-cache.log
+          if-no-files-found: ignore
+
+      - name: Open the draft PR
+        if: ${{ inputs.apply }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/ci/pull-cache-pr.sh
+
+      - name: Stop SSH agent
+        # The runner host is persistent: do not leave the job's agent (and the key it holds) behind.
+        if: always()
+        run: |
+          if [ -n "${SSH_AGENT_PID:-}" ]; then ssh-agent -k > /dev/null || true; fi
