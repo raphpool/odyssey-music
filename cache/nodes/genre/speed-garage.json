@@ -33,6 +33,12 @@
       "type": "genre",
       "name": "House",
       "qid": "Q20502"
+    },
+    {
+      "slug": "genre:garage-house",
+      "type": "genre",
+      "name": "Garage House",
+      "qid": "Q928825"
     }
   ],
   "subgenres": [],

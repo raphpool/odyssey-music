@@ -52,6 +52,18 @@
       "type": "genre",
       "name": "Southern soul",
       "qid": "Q1567032"
+    },
+    {
+      "slug": "genre:acid-jazz",
+      "type": "genre",
+      "name": "Acid Jazz",
+      "qid": "Q221772"
+    },
+    {
+      "slug": "genre:lovers-rock",
+      "type": "genre",
+      "name": "Lovers rock",
+      "qid": "Q1872505"
     }
   ],
   "related_genres": [

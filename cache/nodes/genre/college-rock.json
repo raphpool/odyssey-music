@@ -28,7 +28,14 @@
   "editorial_definition": "A subgenre of alternative rock that emerged in the 1980s, driven by its popularity on US college radio stations and characterized by a DIY ethos, jangly guitars, and introspective, anti-commercial sensibilities.",
   "era": "1980s – early 1990s",
   "origin": "United States (and Canada)",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:alternative",
+      "type": "genre",
+      "name": "Alternative",
+      "qid": "Q1695023"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

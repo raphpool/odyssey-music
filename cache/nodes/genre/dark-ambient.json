@@ -14,7 +14,14 @@
   "type": "genre",
   "editorial_definition": "A post-industrial subgenre defined by ominous, dissonant, and droning soundscapes that prioritize atmospheric depth, isolation, and psychological tension over melody or rhythm.",
   "qid": "Q756956",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

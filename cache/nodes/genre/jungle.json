@@ -22,6 +22,18 @@
       "type": "genre",
       "name": "Electronic Dance Music",
       "qid": "Q851213"
+    },
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat",
+      "qid": "Q663519"
+    },
+    {
+      "slug": "genre:rave",
+      "type": "genre",
+      "name": "Rave",
+      "qid": "Q898709"
     }
   ],
   "subgenres": [

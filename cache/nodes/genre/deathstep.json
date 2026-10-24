@@ -17,7 +17,14 @@
   "editorial_definition": "A dark, abrasive subgenre of dubstep characterized by extreme distortion, metallic textures, atonal \"machine gun\" basslines, and heavy influence from death metal and industrial music.",
   "era": "2010s–present",
   "origin": "International (Online communities)",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:brostep",
+      "type": "genre",
+      "name": "Brostep",
+      "qid": "Q20903"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

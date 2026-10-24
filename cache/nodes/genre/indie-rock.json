@@ -14,7 +14,38 @@
   "era": "1970s–present",
   "origin": "United Kingdom and United States",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:emo",
+      "type": "genre",
+      "name": "Emo",
+      "qid": "Q10926"
+    },
+    {
+      "slug": "genre:indie-folk",
+      "type": "genre",
+      "name": "Indie folk",
+      "qid": "Q1317816"
+    },
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie Pop",
+      "qid": "Q842324"
+    },
+    {
+      "slug": "genre:noise-pop",
+      "type": "genre",
+      "name": "Noise Pop",
+      "qid": "Q2545135"
+    },
+    {
+      "slug": "genre:shoegaze",
+      "type": "genre",
+      "name": "Shoegaze",
+      "qid": "Q272167"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:punk-rock",

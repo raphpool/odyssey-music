@@ -17,8 +17,22 @@
   "era": "Late 1960s",
   "origin": "United States and United Kingdom",
   "sonic_markers": "Feedback, sitar, extended improvisation, studio effects, surreal lyrics, fuzz distortion, modal experimentation",
-  "parent_genres": [],
-  "subgenres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock",
+      "qid": "Q11399"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:acid-rock",
+      "type": "genre",
+      "name": "Acid rock",
+      "qid": "Q236932"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:progressive-rock",

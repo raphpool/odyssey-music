@@ -28,7 +28,14 @@
   "editorial_definition": "A subgenre of pop music specifically crafted for and marketed toward preteen and teenage audiences, characterized by accessible, hook-heavy songwriting and strong associations with youth-focused cultural platforms.",
   "era": "1940s-present",
   "origin": "United States",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

@@ -14,7 +14,14 @@
   "qid": "Q744417",
   "era": "Late 1970s – 1980s",
   "origin": "Italy",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco",
+      "qid": "Q58339"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

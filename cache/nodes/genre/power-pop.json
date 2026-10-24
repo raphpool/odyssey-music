@@ -29,7 +29,14 @@
   "era": "Mid-1960s – Present",
   "origin": "United States, United Kingdom",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:pop-punk",
+      "type": "genre",
+      "name": "Pop Punk",
+      "qid": "Q487914"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:garage-punk",
