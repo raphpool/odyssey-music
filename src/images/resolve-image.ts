@@ -46,6 +46,11 @@ export interface ImageDeps {
 	/** Queue priority of the MusicBrainz lookups (TRA-579); `interactive` when absent. */
 	priority?: MbPriority;
 	/**
+	 * Abandons the MusicBrainz lookups of the resolution (TRA-590): handed to the queue's resolvers, which stop
+	 * waiting for a slot and stop retrying. The caller (the image queue's job deadline) discards the result.
+	 */
+	signal?: AbortSignal;
+	/**
 	 * Slug redirect table used to compare genres by their canonical slug (TRA-591). Loaded lazily from
 	 * `data/` when absent; an unreadable table counts as empty, i.e. strict slug equality.
 	 */
@@ -65,9 +70,12 @@ export interface ImageDeps {
 	outage?: { musicBrainz: boolean; coverArt?: boolean };
 }
 
-/** MusicBrainz queue options of the lookups: the priority of `deps`, or the interactive default. */
-function mbOptions(deps: ImageDeps): { priority?: MbPriority } {
-	return deps.priority ? { priority: deps.priority } : {};
+/** MusicBrainz queue options of the lookups: the priority of `deps` (interactive when absent) and its signal. */
+function mbOptions(deps: ImageDeps): { priority?: MbPriority; signal?: AbortSignal } {
+	return {
+		...(deps.priority ? { priority: deps.priority } : {}),
+		...(deps.signal ? { signal: deps.signal } : {}),
+	};
 }
 
 /** Run one rung; a thrown error is a miss for that rung, not a failure of the ladder. */
@@ -224,7 +232,7 @@ async function musicBrainzCover(
 			compilations: true,
 			outage: coverArtOutage,
 			...(deps.fetch ? { fetch: deps.fetch } : {}),
-			...(deps.priority ? { mbOptions: { priority: deps.priority } } : {}),
+			...(deps.priority || deps.signal ? { mbOptions: mbOptions(deps) } : {}),
 		},
 	);
 	// A MusicBrainz outage is no verdict on the work: the caller is told, so that it is not kept as a miss.

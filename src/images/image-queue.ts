@@ -22,15 +22,13 @@
  *  - Stampede when a sidecar entry expires (#499): by construction. A key is queued once (dedup), the
  *    worker is sequential and re-reads the sidecar right before resolving, so a wave of expired
  *    entries costs one resolution per key, one at a time, at the MusicBrainz pace; it cannot burst.
- *  - Unbounded, uncancellable background wait in `mbFetch` (#500): partly handled. A job gets 20 s; at
- *    the deadline its `AbortSignal` aborts the `fetch` handed to the resolver, so every request the
- *    abandoned job issues afterwards (cover archive, iTunes, Wikidata, and the MusicBrainz requests of
- *    the node resolver) fails at once, and its late verdict is ignored. NOT handled: MusicBrainz
- *    requests of the hint resolver use the module's own fetch (`WorkResolveOptions` has no `fetch` or
- *    `signal`) and are not aborted; an aborted MusicBrainz request of the node resolver is retried by
- *    `mbFetch` (3 attempts), each retry reserving a background slot before failing at once. So an
- *    abandoned job wastes up to 3 slots, never a request. Bounded by the circuit breaker (3 timeouts pause
- *    the worker); the real fix is a `signal` through `mbFetch`, outside this ticket (follow-up ticket).
+ *  - Unbounded, uncancellable background wait in `mbFetch` (#500): handled (TRA-590). A job gets 20 s; at
+ *    the deadline its `AbortSignal` aborts the `fetch` handed to the resolver (cover archive, iTunes,
+ *    Wikidata) AND is handed to every MusicBrainz request of the job (`signal` of the node resolver and of
+ *    the hint resolver's `mbOptions`). `mbFetch` then leaves the background queue without taking a slot,
+ *    stops waiting between retries, aborts the request in flight, never retries it and caches nothing.
+ *    Before, an abandoned job kept its place in the queue and, for each of up to 3 attempts, reserved a
+ *    slot it did not use. The late verdict of an abandoned job is still ignored here.
  *  - Alias table: plain aliases are evicted first-in-first-out beyond 20 000; a conflict is kept in its
  *    own set (same bound, never reached: 8 351 bare slugs exist today) so that eviction of aliases cannot
  *    make the second homonym look unique. Aliases live in memory only; the `conflict` sidecar entry (7
@@ -295,6 +293,7 @@ export function createImageQueue(deps: ImageQueueDeps): ImageQueue {
 						cache,
 						fetch: fetchImpl,
 						priority: "background",
+						signal,
 						viaMusicBrainz: true,
 						outage,
 					});
@@ -308,7 +307,7 @@ export function createImageQueue(deps: ImageQueueDeps): ImageQueue {
 				if (job.kind !== "hint") return { outcome: "unavailable" };
 				const r = await deps.resolveHint(job.hint, {
 					fetch: fetchImpl,
-					mbOptions: { priority: "background" },
+					mbOptions: { priority: "background", signal },
 					compilations: true,
 				});
 				if (r.kind === "found") {
