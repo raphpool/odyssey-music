@@ -82,8 +82,18 @@ function nonEmptyString(value: unknown): string | null {
 	return typeof value === "string" && value.trim() !== "" ? value.trim() : null;
 }
 
-/** The edge and the node it points at carry the same Wikidata id. */
-export const sameQid: Guard = ({ ref, target }) => {
+const QID = /^Q[1-9][0-9]*$/;
+
+/**
+ * Both ends are proven. The edge and the node it points at carry the same Wikidata id (the target is the genre
+ * the author meant), AND the source carries a valid qid of its own: the reverse edge is the source, and
+ * `reverseEdgeFor` gives it a qid only if the source has one. Without it the target would receive a genre it
+ * cannot tell from a duplicate of that genre (review of PR #634, 2026-10-24: `genre:hi-nrg-hi-nrg`, a
+ * qid-less duplicate of `genre:hi-nrg`, was listed a second time in house and techno).
+ */
+export const sameQid: Guard = ({ source, ref, target }) => {
+	const own = nonEmptyString(source.qid);
+	if (!own || !QID.test(own)) return { proven: false, reason: "source-without-qid" };
 	const claimed = nonEmptyString(ref.qid);
 	if (!claimed) return { proven: false, reason: "edge-without-qid" };
 	const held = nonEmptyString(target.qid);
@@ -162,8 +172,11 @@ export interface ReverseConflict {
 	field: string;
 	target: string;
 	targetField: string;
-	/** A reference of the wrong type for the field, or a malformed value in the target field. */
-	kind: "target-field";
+	/**
+	 * "wrong-type-ref": the reference points at a node of another type than the field allows.
+	 * "malformed-target-field": the field of the node that would receive the edge does not hold a list.
+	 */
+	kind: "wrong-type-ref" | "malformed-target-field";
 }
 
 export interface Manifest {
@@ -234,11 +247,14 @@ export function planBackfill(nodes: readonly CacheNodeFile[]): Plan {
 				reverseField,
 			);
 			for (const ref of refs) {
-				if (typeof ref.slug !== "string" || !isReadableSlug(ref.slug)) continue;
+				if (typeof ref.slug !== "string" || !isReadableSlug(ref.slug)) {
+					refuse({ pair: key, source: source.slug, target: String(ref.slug), reason: "unreadable-slug" });
+					continue;
+				}
 				const base = { pair: key, source: source.slug, target: ref.slug };
 				const conflict = { source: source.slug, field, target: ref.slug, targetField: reverseField };
 				if (parseSlug(ref.slug).type !== targetType) {
-					conflicts.push({ ...conflict, kind: "target-field" });
+					conflicts.push({ ...conflict, kind: "wrong-type-ref" });
 					continue;
 				}
 				if (!sourceEdge) {
@@ -259,7 +275,7 @@ export function planBackfill(nodes: readonly CacheNodeFile[]): Plan {
 				const held = current[reverseField];
 				if (held != null && !Array.isArray(held)) {
 					// Malformed value in the target: applySingleReverse would replace it, which is not an addition.
-					conflicts.push({ ...conflict, kind: "target-field" });
+					conflicts.push({ ...conflict, kind: "malformed-target-field" });
 					continue;
 				}
 				if (refsOf(held).some((e) => e.slug === sourceEdge.slug)) {
@@ -295,7 +311,9 @@ export function planBackfill(nodes: readonly CacheNodeFile[]): Plan {
 		} else if (!onlyAddsSchemaDefaults(next, parsed.data)) {
 			errors.push(`${slug}: refusing to write: validation would alter fields the node carries`);
 		} else {
-			writes.set(path, parsed.data as unknown as Obj);
+			// `next`, not `parsed.data`: the parse reorders keys (qid moves after editorial_definition), and the
+			// file must change by its appended edge only. The check above guarantees the parse adds nothing else.
+			writes.set(path, next);
 		}
 	}
 
@@ -338,6 +356,7 @@ export async function runMigration(options: RunOptions): Promise<{ manifest: Man
 	const blocked = manifest.errors.length > 0;
 	if (apply) manifest.mode = "apply";
 	manifest.blocked = blocked;
+	if (blocked) manifest.written = 0;
 
 	if (apply && !blocked) {
 		for (const [path, node] of plan.writes) await atomicWriteJson(path, node);
