@@ -118,6 +118,14 @@
       "releaseType": "ep"
     },
     {
+      "slug": "project:lsd",
+      "type": "project",
+      "name": "LSD",
+      "mbid": "3fd8bd9e-729f-3ca9-a84e-e8c6e073d6fc",
+      "year": "1996",
+      "releaseType": "single"
+    },
+    {
       "slug": "project:twisted",
       "type": "project",
       "name": "Twisted",
@@ -138,14 +146,6 @@
       "type": "project",
       "name": "Angelic Particles / Soothsayer",
       "mbid": "221021f8-1d50-3594-b092-8ba9a34afb3c",
-      "year": "1995",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:lsd",
-      "type": "project",
-      "name": "LSD (live mix)",
-      "mbid": "0ce7addc-cfcc-3c46-ba34-804b64a717a9",
       "year": "1995",
       "releaseType": "single"
     },

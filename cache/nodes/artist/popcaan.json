@@ -312,14 +312,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:party-shot",
-      "type": "project",
-      "name": "Party Shot (Reissue)",
-      "mbid": "e2e584ca-6473-4d56-8366-2da34ac8a209",
-      "year": "2015",
-      "releaseType": "ep"
-    },
-    {
       "slug": "project:reggae-greats-vol-2",
       "type": "project",
       "name": "Reggae Greats, Vol. 2",
@@ -358,6 +350,14 @@
       "mbid": "b2078004-89cc-4e77-a772-3eb9ec6faa8e",
       "year": "2012",
       "releaseType": "album"
+    },
+    {
+      "slug": "project:party-shot",
+      "type": "project",
+      "name": "Party Shot",
+      "mbid": "410eb9ff-e00c-462b-8372-c8845a97bec0",
+      "year": "2012",
+      "releaseType": "single"
     },
     {
       "slug": "project:only-man-she-want-ep",

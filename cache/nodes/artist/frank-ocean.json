@@ -108,14 +108,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:biking",
-      "type": "project",
-      "name": "Biking (solo)",
-      "mbid": "ba3f7098-e9dc-412e-98a7-0a9cab85bdc4",
-      "year": "2017",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:slide-on-me",
       "type": "project",
       "name": "Slide on Me",
@@ -128,6 +120,14 @@
       "type": "project",
       "name": "Lens",
       "mbid": "73c40c14-c39b-4d72-8b39-2ac897b67991",
+      "year": "2017",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:biking",
+      "type": "project",
+      "name": "Biking",
+      "mbid": "20a211c6-60fd-426a-a2df-68631393b656",
       "year": "2017",
       "releaseType": "single"
     },

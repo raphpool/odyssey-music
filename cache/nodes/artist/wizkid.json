@@ -88,14 +88,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:lighter",
-      "type": "project",
-      "name": "Lighter (Wizkid Extended)",
-      "mbid": "2b0a0524-3fb8-4844-aad0-3e29283db570",
-      "year": "2025",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:one-condition",
       "type": "project",
       "name": "One Condition",
@@ -108,6 +100,14 @@
       "type": "project",
       "name": "DYNAMITE",
       "mbid": "49fcf2d4-2772-4e57-9ab0-a8241df9ad83",
+      "year": "2025",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:lighter",
+      "type": "project",
+      "name": "Lighter",
+      "mbid": "b0578e28-bc5b-44c9-aa02-b01426c7fc6a",
       "year": "2025",
       "releaseType": "single"
     },

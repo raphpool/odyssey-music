@@ -330,18 +330,18 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:see-the-light",
-      "type": "project",
-      "name": "See The Light (Pavelow Remix)",
-      "mbid": "9e2e52a4-5737-43f8-aa3a-919382196742",
-      "year": "2016",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:savannah",
       "type": "project",
       "name": "Savannah",
       "mbid": "420a1b68-22c4-4e8d-82fc-322f6e2116e8",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:see-the-light",
+      "type": "project",
+      "name": "See The Light",
+      "mbid": "f0b23739-bcf9-4723-9113-0eed601c4d62",
       "year": "2016",
       "releaseType": "single"
     },
@@ -434,18 +434,18 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:all-night-long",
-      "type": "project",
-      "name": "All Night Long (Collected Studio Material 2013-2015)",
-      "mbid": "e59f6945-e147-4a7d-83cd-a8493a2792b0",
-      "year": "2015",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:infinity",
       "type": "project",
       "name": "Infinity",
       "mbid": "156ec854-1e9e-465f-8bce-6df19e379489",
+      "year": "2015",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:all-night-long",
+      "type": "project",
+      "name": "All Night Long",
+      "mbid": "27588cbe-b15e-419d-9599-e6046e6b50fd",
       "year": "2015",
       "releaseType": "single"
     },

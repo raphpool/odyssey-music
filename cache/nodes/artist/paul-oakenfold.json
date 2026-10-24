@@ -114,8 +114,8 @@
     {
       "slug": "project:novacaine",
       "type": "project",
-      "name": "Novacaine (Mixes)",
-      "mbid": "72564de3-ab73-46b1-b7b1-26f5365ecf77",
+      "name": "Novacaine",
+      "mbid": "f20f7e6d-4d99-4929-8088-ff929619ebe1",
       "year": "2025",
       "releaseType": "single"
     },
@@ -400,14 +400,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:u-are",
-      "type": "project",
-      "name": "U Are (Festival Mix)",
-      "mbid": "b4499127-be7f-4b3b-9ef5-8e2414d9daaa",
-      "year": "2016",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:bla-bla-bla",
       "type": "project",
       "name": "Bla Bla Bla",
@@ -420,6 +412,14 @@
       "type": "project",
       "name": "Shanghai Baby",
       "mbid": "6645860d-e33f-44e8-9a14-c7fa9887937b",
+      "year": "2016",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:u-are",
+      "type": "project",
+      "name": "U Are",
+      "mbid": "6f9c650d-2eba-4935-a365-00c3ee964e8b",
       "year": "2016",
       "releaseType": "single"
     },
@@ -544,18 +544,18 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:beautiful-world",
-      "type": "project",
-      "name": "Beautiful World (Remixes)",
-      "mbid": "ffe2b55a-5db2-40b8-a175-0d8b32a06b7e",
-      "year": "2013",
-      "releaseType": "ep"
-    },
-    {
       "slug": "project:turn-it-on",
       "type": "project",
       "name": "Turn It On",
       "mbid": "d6d04659-599f-4a91-99ce-102520841e84",
+      "year": "2013",
+      "releaseType": "single"
+    },
+    {
+      "slug": "project:beautiful-world",
+      "type": "project",
+      "name": "Beautiful World",
+      "mbid": "6c68ac98-9762-4d0c-a574-8c41e0b68ce1",
       "year": "2013",
       "releaseType": "single"
     },
