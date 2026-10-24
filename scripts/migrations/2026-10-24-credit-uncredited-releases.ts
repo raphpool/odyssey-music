@@ -30,6 +30,7 @@
  *
  * Usage: tsx scripts/migrations/2026-10-24-credit-uncredited-releases.ts <cache-dir> [--apply]
  *        [--manifest out/credit-uncredited-releases.json] [--resume] [--budget N] [--hints <path>]
+ *        [--only slug,slug]
  */
 import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
@@ -164,6 +165,8 @@ export interface CreditOptions {
 	resume?: boolean;
 	/** The judged hints; the committed file by default. */
 	hintsPath?: string;
+	/** Look at these works only (a second, smaller MusicBrainz budget): those that are uncredited. */
+	only?: readonly string[];
 	log?: (line: string) => void;
 }
 
@@ -182,11 +185,13 @@ export async function runCredit(options: CreditOptions): Promise<BackfillResult 
 	if (errors.length > 0) return { ...emptyResult(), exitCode: 1, errors };
 	// --resume is "apply what the dry-run resolved": a work it did not resolve is neither searched again nor
 	// written, so the apply costs no MusicBrainz request (the budget of the measure is the budget of the run).
-	let only: ReadonlySet<string> = uncredited;
+	let only: ReadonlySet<string> = options.only
+		? new Set(options.only.filter((slug) => uncredited.has(slug)))
+		: uncredited;
 	if (options.resume) {
 		const prior = JSON.parse(await readFile(options.manifestPath ?? DEFAULT_MANIFEST_PATH, "utf8")) as Obj;
 		const resolved = isRecord(prior.resolved) ? prior.resolved : {};
-		only = new Set([...uncredited].filter((slug) => slug in resolved));
+		only = new Set([...only].filter((slug) => slug in resolved));
 	}
 	const result = await runBackfill({
 		cacheDir: options.cacheDir,
@@ -230,9 +235,10 @@ export interface CliArgs {
 	manifestPath: string;
 	budget?: number;
 	hintsPath?: string;
+	only?: string[];
 }
 
-/** `<cache-dir> [--apply] [--resume] [--manifest p] [--budget N] [--hints p]`; null (exit 2) on anything else. */
+/** `<cache-dir> [--apply] [--resume] [--manifest p] [--budget N] [--hints p] [--only slug,slug]`; null (exit 2) on anything else. */
 export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 	const cacheDir = argv[0];
 	if (!cacheDir || cacheDir.startsWith("-")) return null;
@@ -243,7 +249,10 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 		const token = argv[i] as string;
 		if (token === "--apply" && !apply) apply = true;
 		else if (token === "--resume" && !resume) resume = true;
-		else if ((token === "--manifest" || token === "--budget" || token === "--hints") && !(token in values)) {
+		else if (
+			(token === "--manifest" || token === "--budget" || token === "--hints" || token === "--only") &&
+			!(token in values)
+		) {
 			const value = argv[++i];
 			if (value === undefined || value.startsWith("-")) return null;
 			values[token] = value;
@@ -258,6 +267,7 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 		manifestPath: values["--manifest"] ?? DEFAULT_MANIFEST_PATH,
 		...(budget !== undefined ? { budget: Number(budget) } : {}),
 		...(values["--hints"] ? { hintsPath: values["--hints"] } : {}),
+		...(values["--only"] ? { only: values["--only"].split(",") } : {}),
 	};
 }
 
@@ -288,7 +298,7 @@ async function main(): Promise<void> {
 	const args = parseCliArgs(process.argv.slice(2));
 	if (!args) {
 		process.stderr.write(
-			`usage: ${MIGRATION_NAME}.ts <cache-dir> [--apply] [--resume] [--manifest <path>] [--budget N] [--hints <path>]\n`,
+			`usage: ${MIGRATION_NAME}.ts <cache-dir> [--apply] [--resume] [--manifest <path>] [--budget N] [--hints <path>] [--only slug,slug]\n`,
 		);
 		process.exit(2);
 	}
@@ -303,6 +313,7 @@ async function main(): Promise<void> {
 		resume: args.resume,
 		manifestPath: args.manifestPath,
 		...(args.hintsPath ? { hintsPath: args.hintsPath } : {}),
+		...(args.only ? { only: args.only } : {}),
 		log: (line) => process.stdout.write(`${line}\n`),
 	});
 	meter.restore();
