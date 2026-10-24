@@ -133,24 +133,85 @@ const FACT_LABEL = {
 // Returns null when nothing is resolvable; the template renders the `.hero.no-image` gradient
 // placeholder and, when the JIT is on, asks `/image/:slug`. A refused URL is skipped here rather
 // than returned: returning it would end the search with a blank hero and no JIT fallback (TRA-466).
+//
+// 2026-10-24 (TRA-593): an artist, genre or label borrows only from a listed work that points back at
+// it (see workPointsBack). A notable_releases / discography / landmark list polluted by a homonym or a
+// hallucination used to lend its sleeves: label:mille-plateaux got the cover of Electric Ladyland, a
+// Reprise release (TRA-591). The server refuses such a work in /image; the client must not undo it.
+// A track still takes its own project's cover: that is its album, not a list.
 function resolveHeroImage(node) {
   if (safeCssUrl(node.image_url)) return node.image_url;
   const edges = node.edges || {};
-  const pick = (refs) => {
-    if (!refs) return null;
-    const list = Array.isArray(refs) ? refs : [refs];
-    for (const r of list) {
-      const target = byId.get(r.slug);
-      if (target && safeCssUrl(target.image_url)) return target.image_url;
+  const targetsOf = (refs) => edgeList(refs).map((r) => byId.get(r.slug)).filter(Boolean);
+  const own = (target) => (safeCssUrl(target.image_url) ? target.image_url : null);
+  // First work that carries the node itself ("exact"), else the first that only carries a genre's direct
+  // parent or subgenre ("neighbour"): a drum-and-bass album listed before a jungle one must not win
+  // jungle's cover (same order as the server's reciprocity()).
+  const borrow = (works) => {
+    const pointsBack = workPointsBackTo(node);
+    let neighbour = null;
+    for (const work of works) {
+      const url = own(work);
+      if (!url) continue;
+      const kind = pointsBack(work);
+      if (kind === "exact") return url;
+      if (kind === "neighbour" && !neighbour) neighbour = url;
     }
-    return null;
+    return neighbour;
   };
   switch (node.type) {
-    case "track":   return pick(edges.project);
-    case "artist":  return pick(edges.discography) || pick(edges.notable_tracks);
-    case "genre":   return pick(edges.landmark_projects) || pick(edges.landmark_tracks);
-    case "label":   return pick(edges.notable_releases);
+    case "track":   return targetsOf(edges.project).map(own).find(Boolean) || null;
+    case "artist":  return borrow([...targetsOf(edges.discography), ...targetsOf(edges.notable_tracks)]);
+    case "genre":   return borrow([...targetsOf(edges.landmark_projects), ...targetsOf(edges.landmark_tracks)]);
+    case "label":   return borrow(targetsOf(edges.notable_releases));
     default:        return null;
+  }
+}
+
+// An edge value as a list: absent -> [], one ref -> [ref], list -> list.
+function edgeList(refs) {
+  return !refs ? [] : Array.isArray(refs) ? refs : [refs];
+}
+
+// A predicate "does this work (a project or a track of the graph) point back at `subject`?" for an
+// artist / genre / label. Mirrors reciprocity() in src/images/reciprocity.ts, on the edges the projection
+// keeps:
+//   label  — the work's label is this label;
+//   artist — the work credits this artist (by slug; the projection carries no node-level mbid, so the
+//            server's same-mbid branch is not mirrored: stricter, and the JIT /image still answers);
+//   genre  — the work carries this genre ("exact"), or its direct parent / direct subgenre ("neighbour",
+//            TRA-597), once both sides went through the redirect table.
+// The predicate returns "exact", "neighbour" or null. Strict equality, so a homonym never matches. It is
+// built once per subject: the genre sets do not depend on the work.
+function workPointsBackTo(subject) {
+  const slugsOf = (slug) => [slug, resolveId(slug)];
+  switch (subject.type) {
+    case "label":
+      return (work) => {
+        const label = (work.edges || {}).label;
+        return label && label.slug === subject.id ? "exact" : null;
+      };
+    case "artist":
+      return (work) => (edgeList((work.edges || {}).artists).some((a) => a.slug === subject.id) ? "exact" : null);
+    case "genre": {
+      const exact = new Set(slugsOf(subject.id));
+      const neighbours = new Set();
+      const own = subject.edges || {};
+      for (const g of [...edgeList(own.parent_genres), ...edgeList(own.subgenres)]) {
+        for (const slug of slugsOf(g.slug)) neighbours.add(slug);
+      }
+      return (work) => {
+        let found = null;
+        for (const g of edgeList((work.edges || {}).genres)) {
+          const slugs = slugsOf(g.slug);
+          if (slugs.some((slug) => exact.has(slug))) return "exact";
+          if (slugs.some((slug) => neighbours.has(slug))) found = "neighbour";
+        }
+        return found;
+      };
+    }
+    default:
+      return () => null;
   }
 }
 

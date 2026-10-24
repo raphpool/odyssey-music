@@ -24,7 +24,14 @@
       "qid": "Q11399"
     }
   ],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:arena-rock",
+      "type": "genre",
+      "name": "Arena Rock",
+      "qid": "Q379033"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:heavy-metal",
@@ -49,6 +56,18 @@
       "type": "genre",
       "name": "Arena Rock",
       "qid": "Q379033"
+    },
+    {
+      "slug": "genre:acid-rock",
+      "type": "genre",
+      "name": "Acid rock",
+      "qid": "Q236932"
+    },
+    {
+      "slug": "genre:grunge",
+      "type": "genre",
+      "name": "Grunge",
+      "qid": "Q11365"
     }
   ],
   "key_artists": [

@@ -52,6 +52,18 @@
       "type": "genre",
       "name": "Southern soul",
       "qid": "Q1567032"
+    },
+    {
+      "slug": "genre:acid-jazz",
+      "type": "genre",
+      "name": "Acid Jazz",
+      "qid": "Q221772"
+    },
+    {
+      "slug": "genre:lovers-rock",
+      "type": "genre",
+      "name": "Lovers rock",
+      "qid": "Q1872505"
     }
   ],
   "related_genres": [
@@ -90,6 +102,30 @@
       "type": "genre",
       "name": "Contemporary R&B",
       "qid": "Q850412"
+    },
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep House",
+      "qid": "Q874038"
+    },
+    {
+      "slug": "genre:garage-house",
+      "type": "genre",
+      "name": "Garage House",
+      "qid": "Q928825"
+    },
+    {
+      "slug": "genre:jazz",
+      "type": "genre",
+      "name": "Jazz",
+      "qid": "Q8341"
+    },
+    {
+      "slug": "genre:rocksteady",
+      "type": "genre",
+      "name": "Rocksteady",
+      "qid": "Q573484"
     }
   ],
   "key_artists": [

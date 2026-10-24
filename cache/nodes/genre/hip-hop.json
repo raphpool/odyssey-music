@@ -108,6 +108,36 @@
       "type": "genre",
       "name": "African hip-hop",
       "qid": "Q387236"
+    },
+    {
+      "slug": "genre:acid-jazz",
+      "type": "genre",
+      "name": "Acid Jazz",
+      "qid": "Q221772"
+    },
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat",
+      "qid": "Q663519"
+    },
+    {
+      "slug": "genre:comedy-hip-hop",
+      "type": "genre",
+      "name": "Comedy hip hop",
+      "qid": "Q602646"
+    },
+    {
+      "slug": "genre:jazz-rap",
+      "type": "genre",
+      "name": "Jazz Rap",
+      "qid": "Q255406"
+    },
+    {
+      "slug": "genre:lofi-hip-hop",
+      "type": "genre",
+      "name": "Lofi Hip-Hop",
+      "qid": "Q97265899"
     }
   ],
   "related_genres": [
@@ -182,6 +212,60 @@
       "type": "genre",
       "name": "Bass Music",
       "qid": "Q96740854"
+    },
+    {
+      "slug": "genre:big-beat",
+      "type": "genre",
+      "name": "Big Beat",
+      "qid": "Q858579"
+    },
+    {
+      "slug": "genre:conscious-hip-hop",
+      "type": "genre",
+      "name": "Conscious hip-hop",
+      "qid": "Q141459"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    },
+    {
+      "slug": "genre:electro-funk",
+      "type": "genre",
+      "name": "Electro-funk",
+      "qid": "Q1325963"
+    },
+    {
+      "slug": "genre:french-hip-hop",
+      "type": "genre",
+      "name": "French hip hop",
+      "qid": "Q138020"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk",
+      "qid": "Q164444"
+    },
+    {
+      "slug": "genre:lo-fi",
+      "type": "genre",
+      "name": "Lo-fi",
+      "qid": "Q1507298"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B",
+      "qid": "Q45981"
     }
   ],
   "key_artists": [

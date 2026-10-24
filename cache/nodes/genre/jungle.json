@@ -22,6 +22,18 @@
       "type": "genre",
       "name": "Electronic Dance Music",
       "qid": "Q851213"
+    },
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat",
+      "qid": "Q663519"
+    },
+    {
+      "slug": "genre:rave",
+      "type": "genre",
+      "name": "Rave",
+      "qid": "Q898709"
     }
   ],
   "subgenres": [
@@ -68,6 +80,42 @@
       "type": "genre",
       "name": "Drill and Bass",
       "qid": "Q1259016"
+    },
+    {
+      "slug": "genre:2-step-garage",
+      "type": "genre",
+      "name": "2-step garage",
+      "qid": "Q1751409"
+    },
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat",
+      "qid": "Q663519"
+    },
+    {
+      "slug": "genre:jump-up",
+      "type": "genre",
+      "name": "Jump-Up",
+      "qid": "Q46649"
+    },
+    {
+      "slug": "genre:rave",
+      "type": "genre",
+      "name": "Rave",
+      "qid": "Q898709"
+    },
+    {
+      "slug": "genre:speed-garage",
+      "type": "genre",
+      "name": "Speed garage",
+      "qid": "Q780517"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage",
+      "qid": "Q1165777"
     }
   ],
   "key_artists": [

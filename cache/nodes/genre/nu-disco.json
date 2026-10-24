@@ -22,7 +22,14 @@
   "qid": "Q4045538",
   "era": "2000s-present",
   "origin": "United Kingdom",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco",
+      "qid": "Q58339"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

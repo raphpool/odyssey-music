@@ -48,6 +48,18 @@
       "type": "genre",
       "name": "Lovers rock",
       "qid": "Q1872505"
+    },
+    {
+      "slug": "genre:dancehall",
+      "type": "genre",
+      "name": "Dancehall",
+      "qid": "Q474027"
+    },
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub",
+      "qid": "Q212688"
     }
   ],
   "related_genres": [
@@ -74,6 +86,24 @@
       "type": "genre",
       "name": "Gnawa",
       "qid": "Q2000173"
+    },
+    {
+      "slug": "genre:rocksteady",
+      "type": "genre",
+      "name": "Rocksteady",
+      "qid": "Q573484"
+    },
+    {
+      "slug": "genre:roots-reggae",
+      "type": "genre",
+      "name": "Roots Reggae",
+      "qid": "Q1299260"
+    },
+    {
+      "slug": "genre:ska",
+      "type": "genre",
+      "name": "Ska",
+      "qid": "Q54365"
     }
   ],
   "key_artists": [

@@ -84,6 +84,18 @@
       "type": "genre",
       "name": "Acid Jazz",
       "qid": "Q221772"
+    },
+    {
+      "slug": "genre:east-coast-hip-hop",
+      "type": "genre",
+      "name": "East Coast hip-hop",
+      "qid": "Q876171"
+    },
+    {
+      "slug": "genre:lofi-hip-hop",
+      "type": "genre",
+      "name": "Lofi Hip-Hop",
+      "qid": "Q97265899"
     }
   ],
   "key_artists": [

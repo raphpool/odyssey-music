@@ -19,6 +19,12 @@
       "type": "genre",
       "name": "Hip-hop",
       "qid": "Q11401"
+    },
+    {
+      "slug": "genre:comedy-music",
+      "type": "genre",
+      "name": "Comedy Music",
+      "qid": "Q5151495"
     }
   ],
   "subgenres": [],

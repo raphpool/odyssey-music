@@ -17,7 +17,20 @@
   "editorial_definition": "A revolutionary form of electroacoustic music characterized by the use of found, recorded sounds—rather than abstract notation—as the primary raw material for composition.",
   "era": "1940s-present",
   "origin": "France",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic",
+      "qid": "Q105763581"
+    },
+    {
+      "slug": "genre:modern-classical",
+      "type": "genre",
+      "name": "Modern Classical",
+      "qid": "Q65937946"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {
@@ -37,6 +50,18 @@
       "type": "genre",
       "name": "Acousmatic music",
       "qid": "Q423918"
+    },
+    {
+      "slug": "genre:experimental-techno",
+      "type": "genre",
+      "name": "Experimental Techno",
+      "qid": "Q105636937"
+    },
+    {
+      "slug": "genre:noise",
+      "type": "genre",
+      "name": "Noise",
+      "qid": "Q726239"
     }
   ],
   "key_artists": [
