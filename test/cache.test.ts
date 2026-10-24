@@ -674,11 +674,23 @@ describe("NodeCache — cross-type reverse edges (TRA-454)", () => {
 
 		const pending = await readPending();
 		expect(pending["label:warp"]).toEqual([
-			{ field: "notable_releases", cardinality: "list", edge: ref("project:album", "Album") },
+			{
+				field: "notable_releases",
+				cardinality: "list",
+				edge: { ...ref("project:album", "Album"), artist: "Aphex Twin" },
+			},
 		]);
 		expect(pending["artist:aphex-twin"]).toEqual([
-			{ field: "discography", cardinality: "list", edge: ref("project:album", "Album") },
-			{ field: "notable_tracks", cardinality: "list", edge: ref("track:x", "X") },
+			{
+				field: "discography",
+				cardinality: "list",
+				edge: { ...ref("project:album", "Album"), artist: "Aphex Twin" },
+			},
+			{
+				field: "notable_tracks",
+				cardinality: "list",
+				edge: { ...ref("track:x", "X"), artist: "Aphex Twin" },
+			},
 		]);
 	});
 
@@ -697,7 +709,7 @@ describe("NodeCache — cross-type reverse edges (TRA-454)", () => {
 
 			const aphex = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
 			expect(aphex.discography).toEqual([
-				{ slug: "project:x", type: "project", name: "X", mbid: projectMbid },
+				{ slug: "project:x", type: "project", name: "X", artist: "Aphex Twin", mbid: projectMbid },
 			]);
 		});
 
@@ -706,7 +718,9 @@ describe("NodeCache — cross-type reverse edges (TRA-454)", () => {
 			await crossCache.write(project({ slug: "project:x", name: "X", artists: [aphexRef] }));
 
 			const aphex = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
-			expect(aphex.discography).toEqual([{ slug: "project:x", type: "project", name: "X" }]);
+			expect(aphex.discography).toEqual([
+				{ slug: "project:x", type: "project", name: "X", artist: "Aphex Twin" },
+			]);
 			expect(aphex.discography[0] && "mbid" in aphex.discography[0]).toBe(false);
 		});
 
@@ -720,15 +734,107 @@ describe("NodeCache — cross-type reverse edges (TRA-454)", () => {
 				{
 					field: "discography",
 					cardinality: "list",
-					edge: { slug: "project:x", type: "project", name: "X", mbid: projectMbid },
+					edge: { slug: "project:x", type: "project", name: "X", artist: "Aphex Twin", mbid: projectMbid },
 				},
 			]);
 
 			await crossCache.write(artist({ slug: "artist:aphex-twin", name: "Aphex Twin" }));
 			const aphex = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
 			expect(aphex.discography).toEqual([
-				{ slug: "project:x", type: "project", name: "X", mbid: projectMbid },
+				{ slug: "project:x", type: "project", name: "X", artist: "Aphex Twin", mbid: projectMbid },
 			]);
+		});
+
+		// TRA-624 (2026-10-24): the edge was only stamped when newly inserted. An edge already on the artist
+		// (written by the pipeline, or by a reverse before the project had its mbid) was left without it.
+		describe("an edge already on the artist (TRA-624)", () => {
+			const otherMbid = "9d1e3b52-7a40-4f86-b3c5-2e8f6a0d4c17";
+			const existingEdge = (extra: Partial<EdgeRef> = {}): EdgeRef => ({
+				...ref("project:x", "X"),
+				year: "2002",
+				releaseType: "album",
+				...extra,
+			});
+			const discographyOf = async () =>
+				((await crossCache.get("artist:aphex-twin")) as ArtistNode).discography;
+
+			it("enriches an existing edge that has no mbid, keeping its other fields", async () => {
+				await crossCache.write(
+					artist({ slug: "artist:aphex-twin", name: "Aphex Twin", discography: [existingEdge()] }),
+				);
+				await crossCache.write(
+					project({ slug: "project:x", name: "X", mbid: projectMbid, artists: [aphexRef] }),
+				);
+
+				expect(await discographyOf()).toEqual([existingEdge({ mbid: projectMbid })]);
+			});
+
+			it("leaves an edge with the same mbid unchanged", async () => {
+				await crossCache.write(
+					artist({
+						slug: "artist:aphex-twin",
+						name: "Aphex Twin",
+						discography: [existingEdge({ mbid: projectMbid })],
+					}),
+				);
+				const errors = vi.spyOn(console, "error").mockImplementation(() => {});
+				try {
+					await crossCache.write(
+						project({ slug: "project:x", name: "X", mbid: projectMbid, artists: [aphexRef] }),
+					);
+
+					expect(await discographyOf()).toEqual([existingEdge({ mbid: projectMbid })]);
+					expect(errors.mock.calls.map((c) => String(c[0])).join("\n")).not.toContain("mbid differs");
+				} finally {
+					errors.mockRestore();
+				}
+			});
+
+			it("never overwrites a different mbid, and reports it", async () => {
+				await crossCache.write(
+					artist({
+						slug: "artist:aphex-twin",
+						name: "Aphex Twin",
+						discography: [existingEdge({ mbid: otherMbid })],
+					}),
+				);
+				const errors = vi.spyOn(console, "error").mockImplementation(() => {});
+				try {
+					await crossCache.write(
+						project({ slug: "project:x", name: "X", mbid: projectMbid, artists: [aphexRef] }),
+					);
+
+					expect(await discographyOf()).toEqual([existingEdge({ mbid: otherMbid })]);
+					const logged = errors.mock.calls.map((c) => String(c[0])).join("\n");
+					expect(logged).toContain("mbid differs");
+					expect(logged).toContain(otherMbid);
+					expect(logged).toContain(projectMbid);
+				} finally {
+					errors.mockRestore();
+				}
+			});
+
+			it("enriches an existing edge when a queued reverse is applied as the artist is written", async () => {
+				await crossCache.write(
+					project({ slug: "project:x", name: "X", mbid: projectMbid, artists: [aphexRef] }),
+				);
+
+				await crossCache.write(
+					artist({ slug: "artist:aphex-twin", name: "Aphex Twin", discography: [existingEdge()] }),
+				);
+
+				expect(await discographyOf()).toEqual([existingEdge({ mbid: projectMbid })]);
+			});
+
+			it("adds no mbid to an existing edge of another pair (project.label -> label.notable_releases)", async () => {
+				await crossCache.write(
+					label({ slug: "label:warp", name: "Warp", notable_releases: [existingEdge()] }),
+				);
+				await crossCache.write(project({ slug: "project:x", name: "X", mbid: projectMbid, label: warpRef }));
+
+				const warp = (await crossCache.get("label:warp")) as LabelNode;
+				expect(warp.notable_releases).toEqual([existingEdge()]);
+			});
 		});
 
 		it("stays on the artist side: project.label -> label.notable_releases carries no mbid", async () => {
@@ -753,7 +859,9 @@ describe("NodeCache — cross-type reverse edges (TRA-454)", () => {
 			);
 
 			const aphex = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
-			expect(aphex.notable_tracks).toEqual([{ slug: "track:x", type: "track", name: "X" }]);
+			expect(aphex.notable_tracks).toEqual([
+				{ slug: "track:x", type: "track", name: "X", artist: "Aphex Twin" },
+			]);
 			const warp = (await crossCache.get("label:warp")) as LabelNode;
 			expect(warp.roster).toEqual([{ slug: "artist:squarepusher", type: "artist", name: "Squarepusher" }]);
 		});
@@ -1050,6 +1158,33 @@ describe("NodeCache.update — locked read-modify-write (TRA-535)", () => {
 		const aphex = (await updCache.get(APHEX)) as ArtistNode;
 		expect(slugsOf(aphex.collaborators)).toEqual(["artist:squarepusher"]);
 		expect(slugsOf(aphex.discography)).toEqual(["project:album"]);
+	});
+
+	// TRA-624: the enrichment of an existing edge happens in applyReverseToTarget, under the lock of the artist
+	// (runLocked), like the insertion of a new edge. Written outside it, it would be overwritten by the
+	// update that holds the node.
+	it("enriches an existing discography edge under the artist's lock, without losing a concurrent update", async () => {
+		const projectMbid = "5b4f8a1e-6c1d-4c47-9c2e-0d3a7f5b9e21";
+		const bare = ref("project:album", "Album");
+		await updCache.write(artist({ discography: [bare] }));
+		const reachedReverse = deferred();
+		const albumFile = join(updDir, "nodes", "project", "album.json");
+
+		const update = updCache.update(APHEX, async (node) => {
+			reachedReverse.release();
+			// The project reaches the disk while this update holds the lock: its reverse edge, with the mbid,
+			// waits on the artist's lock and must apply on top of the update, not be lost or overwrite it.
+			await vi.waitFor(async () => readFile(albumFile, "utf8"), { interval: 1, timeout: 5000 });
+			await new Promise<void>((resolve) => setImmediate(resolve));
+			return withCollaborator(node, ref("artist:squarepusher", "Squarepusher"));
+		});
+		await reachedReverse.promise;
+		const albumWrite = updCache.write(album({ mbid: projectMbid, artists: [ref(APHEX, "Aphex Twin")] }));
+		await Promise.all([update, albumWrite]);
+
+		const aphex = (await updCache.get(APHEX)) as ArtistNode;
+		expect(slugsOf(aphex.collaborators)).toEqual(["artist:squarepusher"]);
+		expect(aphex.discography).toEqual([{ ...bare, mbid: projectMbid }]);
 	});
 
 	it("applies the reverse edges pending for the node and clears them", async () => {
