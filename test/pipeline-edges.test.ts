@@ -359,6 +359,69 @@ describe("enforceArtistChoices -- membership and fallback (TRA-470)", () => {
 	});
 });
 
+// TRA-674: a field TRA-605 emptied on purpose (data/cleared-landmarks.json) is a missing pick, which the
+// function above fills with list[0], the most recent entry: the bad choice would come back on the next
+// regeneration of the card. Real artists of the list, no mock.
+describe("enforceArtistChoices -- cleared pairs stay empty (TRA-674)", () => {
+	const proj = (body: string, name: string) => ({ slug: `project:${body}`, type: "project", name });
+	const trk = (body: string, name: string) => ({ slug: `track:${body}`, type: "track", name });
+	const headhunterz = (extra: Record<string, unknown>): Record<string, unknown> => ({
+		slug: "artist:headhunterz",
+		discography: [proj("live-forever", "Live Forever"), proj("the-source-of-energy", "The Source of Energy")],
+		notable_tracks: [trk("t1", "T1")],
+		...extra,
+	});
+
+	it("does not fill a cleared field with the most recent entry", () => {
+		const n = headhunterz({});
+		const lines: string[] = [];
+		enforceArtistChoices(n, (l) => lines.push(l));
+		expect("landmark_project" in n).toBe(false);
+		expect(lines.some((l) => l.includes("landmark_project"))).toBe(false);
+	});
+
+	it("does not replace an off-list pick of a cleared field by the first entry", () => {
+		const n = headhunterz({ landmark_project: proj("ghost", "Ghost") });
+		enforceArtistChoices(n);
+		expect("landmark_project" in n).toBe(false);
+	});
+
+	it("drops the rejected pick when a regeneration proposes it again", () => {
+		const n = headhunterz({ landmark_project: proj("live-forever", "Live Forever") });
+		const lines: string[] = [];
+		enforceArtistChoices(n, (l) => lines.push(l));
+		expect("landmark_project" in n).toBe(false);
+		expect(lines.filter((l) => l.includes("landmark_project"))).toEqual([
+			expect.stringContaining("cleared on purpose"),
+		]);
+	});
+
+	it("recognises the rejected pick under its scoped slug (ODYSSEY_SCOPED_RELEASE_SLUGS)", () => {
+		const scoped = proj("live-forever--headhunterz", "Live Forever");
+		const n = headhunterz({
+			discography: [scoped, proj("the-source-of-energy", "x")],
+			landmark_project: scoped,
+		});
+		enforceArtistChoices(n);
+		expect("landmark_project" in n).toBe(false);
+	});
+
+	it("keeps any other member of the list: a regeneration may choose again", () => {
+		const n = headhunterz({ landmark_project: proj("the-source-of-energy", "The Source of Energy") });
+		enforceArtistChoices(n);
+		expect(n.landmark_project).toEqual(proj("the-source-of-energy", "The Source of Energy"));
+	});
+
+	it("only withholds the pair that is cleared: the other field and other artists are filled", () => {
+		const n = headhunterz({});
+		enforceArtistChoices(n);
+		expect(n.reference_track).toEqual(trk("t1", "T1"));
+		const other = { slug: "artist:roni", discography: [proj("a1", "a1")] } as Record<string, unknown>;
+		enforceArtistChoices(other);
+		expect(other.landmark_project).toEqual(proj("a1", "a1"));
+	});
+});
+
 describe("normalizeEdge -- flag off emits what main emits (TRA-509)", () => {
 	beforeEach(() => {
 		vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "false");
