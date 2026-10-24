@@ -1808,6 +1808,177 @@ describe("a metadata lookup without an answer is flagged unavailable", () => {
 		expect((await fetchProjectMetaMb(freshRelease())).tracks).toEqual([]);
 		expect((await fetchTrackMetaMb(freshRelease())).project).toBeNull();
 	});
+
+	// TRA-532 (2026-10-24): a 404 on the mbid asked for is MB's answer (merged or deleted entity), not an
+	// outage: the migration must not file it under `failed`, where --resume retries it for ever.
+	describe("a 404 on the mbid asked for is told apart from an outage (TRA-532)", () => {
+		/** Counts the requests per entity kind while answering as `stubKinds` does. */
+		function countingKinds(answers: Record<string, () => Response>): Record<string, number> {
+			const counts: Record<string, number> = {};
+			vi.stubGlobal(
+				"fetch",
+				vi.fn(async (input: URL) => {
+					const kind = input.pathname.split("/")[3] ?? "";
+					counts[kind] = (counts[kind] ?? 0) + 1;
+					return (answers[kind] ?? (() => failedResponse(404)))();
+				}),
+			);
+			return counts;
+		}
+
+		it("flags a project whose release group is gone as notFound, without retrying it", async () => {
+			const counts = countingKinds({ "release-group": () => failedResponse(404) });
+			const out = await fetchProjectMetaDetailedMb(freshRelease());
+			expect(out.notFound).toBe(true);
+			// Fail closed for a caller that does not read `notFound` yet: no usable data.
+			expect(out.unavailable).toBe(true);
+			expect(counts["release-group"]).toBe(1);
+		});
+
+		it("flags a track whose recording is gone as notFound, without retrying it", async () => {
+			const counts = countingKinds({ recording: () => failedResponse(404) });
+			const out = await fetchTrackMetaDetailedMb(freshRelease());
+			expect(out.notFound).toBe(true);
+			expect(out.unavailable).toBe(true);
+			expect(counts.recording).toBe(1);
+		});
+
+		it("does not flag an outage as notFound: 5xx after the retries, network error, unreadable JSON, 400", async () => {
+			vi.stubEnv("MB_MAX_ATTEMPTS", "1");
+			for (const failing of [
+				() => failedResponse(503),
+				() => failedResponse(500),
+				() => failedResponse(400),
+				unreadable,
+			]) {
+				stubKinds({ "release-group": failing, recording: failing });
+				for (const out of [
+					await fetchProjectMetaDetailedMb(freshRelease()),
+					await fetchTrackMetaDetailedMb(freshRelease()),
+				]) {
+					expect(out.unavailable).toBe(true);
+					expect(out.notFound).toBe(false);
+				}
+			}
+			vi.stubGlobal(
+				"fetch",
+				vi.fn(async () => {
+					throw new TypeError("fetch failed");
+				}),
+			);
+			expect((await fetchProjectMetaDetailedMb(freshRelease())).notFound).toBe(false);
+			expect((await fetchTrackMetaDetailedMb(freshRelease())).notFound).toBe(false);
+		});
+
+		it("does not flag a 404 on the release read after the group answered: the mbid asked for exists", async () => {
+			stubKinds({ "release-group": releaseGroupAnswer(freshRelease()), release: () => failedResponse(404) });
+			const project = await fetchProjectMetaDetailedMb(freshRelease());
+			expect(project.unavailable).toBe(true);
+			expect(project.notFound).toBe(false);
+			stubKinds({ recording: recordingAnswer(freshRelease()), release: () => failedResponse(404) });
+			const track = await fetchTrackMetaDetailedMb(freshRelease());
+			expect(track.unavailable).toBe(true);
+			expect(track.notFound).toBe(false);
+		});
+
+		it("does not flag an answered lookup", async () => {
+			stubKinds({ "release-group": releaseGroupAnswer(freshRelease()), release: releaseAnswer });
+			expect((await fetchProjectMetaDetailedMb(freshRelease())).notFound).toBe(false);
+			stubKinds({ recording: recordingAnswer(freshRelease()), release: releaseAnswer });
+			expect((await fetchTrackMetaDetailedMb(freshRelease())).notFound).toBe(false);
+		});
+
+		it("keeps a 404 on a search an outage: the query is ours, a miss there is not a verdict on a work", async () => {
+			vi.stubGlobal(
+				"fetch",
+				vi.fn(async () => failedResponse(404)),
+			);
+			expect(await resolveReleaseGroupDetailed("Search 404 TRA-532", "Anyone")).toEqual({
+				identity: null,
+				ambiguous: false,
+				unavailable: true,
+			});
+		});
+	});
+
+	// TRA-532 (2026-10-24): mbFetch memoized any 200 that parsed as JSON for five minutes, `null`, `[]` and
+	// off-schema objects included; the resolvers class such a body `unavailable`, so a second call in the
+	// same process replayed the outage without asking MB again.
+	describe("a 200 that is not MB's answer is not memoized (TRA-532)", () => {
+		function countingRgStub(bodies: unknown[]): { rgRequests: () => number } {
+			let rgRequests = 0;
+			vi.stubGlobal(
+				"fetch",
+				vi.fn(async (input: URL) => {
+					const kind = input.pathname.split("/")[3];
+					if (kind === "release-group")
+						return jsonResponse(bodies[Math.min(rgRequests++, bodies.length - 1)]);
+					return releaseAnswer();
+				}),
+			);
+			return { rgRequests: () => rgRequests };
+		}
+		const good = () => ({ "primary-type": "Album", releases: [{ id: freshRelease(), date: "2001-01-01" }] });
+
+		it("asks MB again after a body that is not a JSON object", async () => {
+			for (const junk of [null, [], "<html>", 42, true]) {
+				const rg = freshRelease();
+				const stub = countingRgStub([junk, good()]);
+				expect((await fetchProjectMetaDetailedMb(rg)).unavailable).toBe(true);
+				expect((await fetchProjectMetaDetailedMb(rg)).unavailable).toBe(false);
+				expect(stub.rgRequests()).toBe(2);
+			}
+		});
+
+		it("asks MB again after an object that lacks what the lookup always carries", async () => {
+			for (const offSchema of [{}, { releases: "none" }, { error: "Not found" }]) {
+				const rg = freshRelease();
+				const stub = countingRgStub([offSchema, good()]);
+				expect((await fetchProjectMetaDetailedMb(rg)).unavailable).toBe(true);
+				expect((await fetchProjectMetaDetailedMb(rg)).unavailable).toBe(false);
+				expect(stub.rgRequests()).toBe(2);
+			}
+		});
+
+		it("asks MB again after a recording or a release without its list", async () => {
+			const rec = freshRelease();
+			let recordingRequests = 0;
+			vi.stubGlobal(
+				"fetch",
+				vi.fn(async (input: URL) => {
+					const kind = input.pathname.split("/")[3];
+					if (kind === "recording") {
+						return recordingRequests++ === 0 ? jsonResponse({}) : recordingAnswer(freshRelease())();
+					}
+					return releaseAnswer();
+				}),
+			);
+			expect((await fetchTrackMetaDetailedMb(rec)).unavailable).toBe(true);
+			expect((await fetchTrackMetaDetailedMb(rec)).unavailable).toBe(false);
+			expect(recordingRequests).toBe(2);
+		});
+
+		it("still memoizes a complete answer: the second read does not touch MB", async () => {
+			const rg = freshRelease();
+			const stub = countingRgStub([good()]);
+			expect((await fetchProjectMetaDetailedMb(rg)).unavailable).toBe(false);
+			expect((await fetchProjectMetaDetailedMb(rg)).unavailable).toBe(false);
+			expect(stub.rgRequests()).toBe(1);
+		});
+
+		it("does not memoize a search page that is off schema either", async () => {
+			const title = "Off Schema Page TRA-532";
+			const bodies: unknown[] = [{ unexpected: true }, { "release-groups": [] }];
+			let requests = 0;
+			vi.stubGlobal(
+				"fetch",
+				vi.fn(async () => jsonResponse(bodies[requests++])),
+			);
+			expect((await resolveReleaseGroupDetailed(title, "Anyone")).unavailable).toBe(true);
+			expect((await resolveReleaseGroupDetailed(title, "Anyone")).unavailable).toBe(false);
+			expect(requests).toBe(2);
+		});
+	});
 });
 
 // TRA-537: the credit must EQUAL the requested artist, not contain it. Titles, hints and MBIDs are unique

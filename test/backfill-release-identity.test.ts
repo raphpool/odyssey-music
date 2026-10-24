@@ -65,8 +65,11 @@ function jsonResponse(body: unknown): Response {
 	return { ok: true, status: 200, json: async () => body } as Response;
 }
 
-const refused = () =>
-	({ ok: false, status: 400, headers: new Headers(), json: async () => ({}) }) as Response;
+const refused = () => failedWith(400);
+
+function failedWith(status: number): Response {
+	return { ok: false, status, headers: new Headers(), json: async () => ({}) } as Response;
+}
 
 /** A 200 whose body is not JSON (an HTML error page behind a proxy): HTTP says ok, the payload says no. */
 const unreadable = () =>
@@ -97,6 +100,10 @@ function stubMb(
 	works: FakeWork[],
 	options: {
 		fail?: (url: URL) => boolean;
+		/** MB answers 404: the entity asked for does not exist (deleted, never created). */
+		gone?: (url: URL) => boolean;
+		/** MB answers 503 (with MB_MAX_ATTEMPTS=1, so without the retries). */
+		down?: (url: URL) => boolean;
 		unreadable?: (url: URL) => boolean;
 		filterByArtist?: boolean;
 	} = {},
@@ -109,6 +116,8 @@ function stubMb(
 		vi.fn(async (input: URL) => {
 			urls.push(input);
 			if (options.fail?.(input)) return refused();
+			if (options.gone?.(input)) return failedWith(404);
+			if (options.down?.(input)) return failedWith(503);
 			if (options.unreadable?.(input)) return unreadable();
 			const [, , , kind, id] = input.pathname.split("/");
 			if (!id && (kind === "release-group" || kind === "recording")) {
@@ -183,6 +192,7 @@ function stubMb(
 
 afterEach(() => {
 	vi.unstubAllGlobals();
+	vi.unstubAllEnvs();
 });
 
 // --- Cache fixtures ---
@@ -1386,6 +1396,109 @@ describe("runBackfill", () => {
 		expect(await readFile(nodePath("project:half-ep"), "utf8")).toBe(before);
 		// The identity found is not lost: --resume only repeats the failed lookup.
 		expect((await readManifestFile()).resolved["project:half-ep"]?.mbid).toMatch(/^0{8}-/);
+	});
+
+	// TRA-532 (2026-10-24): a 404 on the mbid found (deleted or merged between the search and the read, or
+	// since the manifest was written) is MB's answer. Filed under `failed` it made every --resume exit 1.
+	describe("an mbid MusicBrainz no longer holds (404 on the lookup)", () => {
+		const isLookup = (kind: string, id: string) => (u: URL) => u.pathname.endsWith(`/${kind}/${id}`);
+
+		it("is set aside as unresolved, not failed: exit 0, node untouched, no resolved entry", async () => {
+			const id = mbid();
+			stubMb([{ ...fixture("Vanished EP"), id }], { gone: isLookup("release-group", id) });
+			await seed(
+				projectNode("project:vanished-ep", "Vanished EP", {
+					artists: [edge("artist:idem-band", "Idem Band")],
+				}),
+			);
+			const before = await readFile(nodePath("project:vanished-ep"), "utf8");
+
+			const result = await run({ apply: true });
+
+			expect(result.failed).toEqual([]);
+			expect(result.exitCode).toBe(0);
+			expect(result.manifest.unresolved).toEqual([
+				{ slug: "project:vanished-ep", name: "Vanished EP", hint: "Idem Band", reason: "mbid-not-found" },
+			]);
+			expect(result.manifest.resolved["project:vanished-ep"]).toBeUndefined();
+			expect(await readFile(nodePath("project:vanished-ep"), "utf8")).toBe(before);
+			// The verdict survives the round trip through the manifest file.
+			expect((await readManifestFile()).unresolved.map((u) => u.reason)).toEqual(["mbid-not-found"]);
+		});
+
+		it("is set aside for a track whose recording is gone", async () => {
+			const id = mbid();
+			const track: FakeWork = {
+				kind: "recording",
+				id,
+				title: "Vanished Song",
+				credit: [{ id: reprazent, name: "Idem Band" }],
+				date: "2001",
+				project: { id: mbid(), title: "Vanished Song" },
+			};
+			stubMb([track], { gone: isLookup("recording", id) });
+			await seed(
+				trackNode("track:vanished-song", "Vanished Song", {
+					artists: [edge("artist:idem-band", "Idem Band", { mbid: reprazent })],
+				}),
+			);
+
+			const result = await run({ apply: true });
+
+			expect(result.failed).toEqual([]);
+			expect(result.exitCode).toBe(0);
+			expect(result.manifest.unresolved.map((u) => [u.slug, u.reason])).toEqual([
+				["track:vanished-song", "mbid-not-found"],
+			]);
+			expect((await readNode("track:vanished-song")).mbid).toBeUndefined();
+		});
+
+		it("drops the stale manifest entry on --resume, then searches the work again next time", async () => {
+			const id = mbid();
+			let gone = false;
+			stubMb([{ ...fixture("Stale EP"), id }], { gone: (u) => gone && isLookup("release-group", id)(u) });
+			await seed(
+				projectNode("project:stale-ep", "Stale EP", { artists: [edge("artist:idem-band", "Idem Band")] }),
+			);
+			await run();
+			expect((await readManifestFile()).resolved["project:stale-ep"]?.mbid).toBe(id);
+
+			gone = true;
+			const resumed = await run({ apply: true, resume: true });
+			expect(resumed.exitCode).toBe(0);
+			expect(resumed.manifest.resolved["project:stale-ep"]).toBeUndefined();
+			expect(resumed.manifest.unresolved.map((u) => u.reason)).toEqual(["mbid-not-found"]);
+
+			// Not stuck: the work is searched anew, and written once MB holds the mbid again.
+			gone = false;
+			const searches = searchCalls();
+			expect((await run({ apply: true, resume: true })).exitCode).toBe(0);
+			expect(searchCalls()).toBe(searches + 1);
+			expect((await readNode("project:stale-ep")).mbid).toBe(id);
+		});
+
+		it("still fails the work when the lookup is down (503), not gone: --resume must retry it", async () => {
+			vi.stubEnv("MB_MAX_ATTEMPTS", "1");
+			const id = mbid();
+			let down = true;
+			stubMb([{ ...fixture("Down EP"), id }], { down: (u) => down && isLookup("release-group", id)(u) });
+			await seed(
+				projectNode("project:down-ep", "Down EP", { artists: [edge("artist:idem-band", "Idem Band")] }),
+			);
+
+			const result = await run({ apply: true });
+
+			expect(result.failed).toEqual([
+				{ slug: "project:down-ep", reason: `MusicBrainz lookup failed for ${id}` },
+			]);
+			expect(result.manifest.unresolved).toEqual([]);
+			expect(result.manifest.resolved["project:down-ep"]?.mbid).toBe(id);
+			expect(result.exitCode).toBe(1);
+
+			down = false;
+			expect((await run({ apply: true, resume: true })).exitCode).toBe(0);
+			expect((await readNode("project:down-ep")).mbid).toBe(id);
+		});
 	});
 
 	it("reports a search answered with unreadable JSON as a failure, not as an unknown work", async () => {
