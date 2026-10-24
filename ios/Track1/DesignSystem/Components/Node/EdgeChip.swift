@@ -9,8 +9,9 @@ enum EdgeChipMetrics {
 	static let padding = Track1Tokens.spacing8
 	/// Gap between the tag, the name and the meta, `theme.spacing.4`.
 	static let contentSpacing = Track1Tokens.spacing4
-	/// Corner radius: Figma draws a square rectangle, `theme.radius.0`.
-	static let cornerRadius = Track1Tokens.radius0
+	/// Corner radius of both chips: 6 pt since the "UI Refresh" revision (frame `286:1662`, TRA-657); they
+	/// were square (`theme.radius.0`) before.
+	static let cornerRadius = Track1Tokens.radius6
 	/// Border width. Figma has no token for it: every border of the design system is 1 pt.
 	static let borderWidth: CGFloat = 1
 	/// Dash pattern of the overflow border: 4 pt drawn, 3 pt gap. Figma shows the dashes on `171:97` but
@@ -123,11 +124,11 @@ struct EdgeChip: View {
 enum EdgeChipStyle {
 	/// `theme.color.node.<type>`.
 	static func tagColor(_ type: NodeType) -> Color { Track1Tokens.colorNode(type) }
-	/// `theme.color.background.elevated`.
-	static let fill = Track1Tokens.colorBackgroundElevated
+	/// No fill since the "UI Refresh" revision (TRA-657): the chip only has its border, like the overflow.
+	static let fill = Color.clear
 	static let pressedFill = Track1Tokens.colorSurfacePressed
-	/// `theme.color.border.default`.
-	static let border = Track1Tokens.colorBorderDefault
+	/// `theme.color.border.chip`.
+	static let border = Track1Tokens.colorBorderChip
 	/// `theme.color.border.strong`, the dashed border of the overflow chip (`171:97`).
 	static let overflowBorder = Track1Tokens.colorBorderStrong
 	/// `theme.color.text.secondary`, the overflow label.

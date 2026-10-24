@@ -32,11 +32,18 @@ public enum OnboardingCopy {
 		return "\(shown) \(shown <= 1 ? "sous-genre" : "sous-genres")"
 	}
 
-	/// "(4 sélectionnés)", the accent suffix after a family title once a sub-genre is ticked. The parentheses
-	/// belong to the string. Same French rule as `counter`: 0 and 1 are singular ("(0 sélectionné)",
-	/// "(1 sélectionné)"). A negative count reads as 0 rather than printing a minus sign.
+	/// "(4)", "(1)", "(0)": the accent badge after a family title, the number alone as the Figma draws it
+	/// (`243:1609`, `243:1675`). The parentheses belong to the string. 2026-10-23: "(4 sélectionnés)" made the
+	/// title and the badge fold in the middle of their strings. A negative count reads as 0 rather than printing
+	/// a minus sign.
 	public static func selectedCount(_ count: Int) -> String {
+		"(\(max(count, 0)))"
+	}
+
+	/// "4 sélectionnés", "1 sélectionné", "0 sélectionné": what VoiceOver says for the badge. Same French rule as
+	/// `counter`: 0 and 1 are singular. A negative count reads as 0 rather than printing a minus sign.
+	public static func spokenSelectedCount(_ count: Int) -> String {
 		let shown = max(count, 0)
-		return "(\(shown) \(shown <= 1 ? "sélectionné" : "sélectionnés"))"
+		return "\(shown) \(shown <= 1 ? "sélectionné" : "sélectionnés")"
 	}
 }

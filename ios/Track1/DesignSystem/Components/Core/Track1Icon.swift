@@ -25,15 +25,26 @@ struct Track1Icon: View {
 		}
 	}
 
-	/// Maps to the `theme.color.icon.*` tokens: primary, secondary (inactive tab), inverse (on bone buttons).
+	/// Icons drawn for the Figma tab bar (`282:889`), which no SF Symbol matches. Each case is the name of an
+	/// image set in `Assets.xcassets/Tab` (namespaced folder, hence the slash); the images are templates, so
+	/// their color comes from a `Tone`.
+	enum Asset: String, CaseIterable {
+		case tabToday = "Tab/Today"
+		case tabGenres = "Tab/Genres"
+		case tabSearch = "Tab/Search"
+	}
+
+	/// Maps to the `theme.color.icon.*` tokens: primary, secondary (inactive tab), inverse (on bone buttons),
+	/// action (active tab).
 	enum Tone: CaseIterable {
-		case primary, secondary, inverse
+		case primary, secondary, inverse, action
 
 		var color: Color {
 			switch self {
 			case .primary: Track1Tokens.colorIconPrimary
 			case .secondary: Track1Tokens.colorIconSecondary
 			case .inverse: Track1Tokens.colorIconInverse
+			case .action: Track1Tokens.colorIconAction
 			}
 		}
 	}
@@ -41,7 +52,12 @@ struct Track1Icon: View {
 	/// Frame of a standalone icon (`size/icon-medium`). Buttons draw it at `size/icon-large` in Size=Large.
 	static let defaultSize = Track1Tokens.sizeIconMedium
 
-	private let glyph: Glyph
+	private enum Source {
+		case glyph(Glyph)
+		case asset(Asset)
+	}
+
+	private let source: Source
 	private let color: Color
 	private let size: CGFloat
 
@@ -52,17 +68,36 @@ struct Track1Icon: View {
 	/// For controls whose glyph follows the label color of their state (disabled included), which no `Tone`
 	/// covers.
 	init(_ glyph: Glyph, color: Color, size: CGFloat = Track1Icon.defaultSize) {
-		self.glyph = glyph
+		self.source = .glyph(glyph)
 		self.color = color
 		self.size = size
 	}
 
+	init(asset: Asset, tone: Tone = .primary, size: CGFloat = Track1Icon.defaultSize) {
+		self.source = .asset(asset)
+		self.color = tone.color
+		self.size = size
+	}
+
 	var body: some View {
-		Image(systemName: glyph.systemName)
-			// The Figma glyphs sit on a 24 pt grid with a heavy stroke inside a 20 pt frame.
-			.font(.system(size: size * 0.8, weight: .semibold))
+		icon
 			.foregroundStyle(color)
 			.frame(width: size, height: size)
 			.accessibilityHidden(true)
+	}
+
+	@ViewBuilder
+	private var icon: some View {
+		switch source {
+		case .glyph(let glyph):
+			Image(systemName: glyph.systemName)
+				// The Figma glyphs sit on a 24 pt grid with a heavy stroke inside a 20 pt frame.
+				.font(.system(size: size * 0.8, weight: .semibold))
+		case .asset(let asset):
+			Image(asset.rawValue)
+				.renderingMode(.template)
+				.resizable()
+				.scaledToFit()
+		}
 	}
 }
