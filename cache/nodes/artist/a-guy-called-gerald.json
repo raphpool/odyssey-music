@@ -375,14 +375,6 @@
     {
       "slug": "project:essence",
       "type": "project",
-      "name": "Essence (4 Track Album Sampler)",
-      "mbid": "82894312-f145-44bb-ba47-49f3ac130986",
-      "year": "2000",
-      "releaseType": "ep"
-    },
-    {
-      "slug": "project:essence",
-      "type": "project",
       "name": "Essence",
       "mbid": "ef2441d0-fae7-3104-a337-462dff241b50",
       "year": "2000",
@@ -475,22 +467,6 @@
       "mbid": "62c8594b-9e06-3b6b-b528-73ca786d7d4b",
       "year": "1990",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:automanikk",
-      "type": "project",
-      "name": "Automanikk (Bass Overload Mix)",
-      "mbid": "28559630-8712-49c5-b585-58e4fb640045",
-      "year": "1990",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:automanikk",
-      "type": "project",
-      "name": "Automanikk",
-      "mbid": "b2356168-5cee-30a5-8562-abe4207ca019",
-      "year": "1990",
-      "releaseType": "single"
     },
     {
       "slug": "project:fx",

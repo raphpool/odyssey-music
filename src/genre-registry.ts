@@ -32,6 +32,7 @@ import { z } from "zod";
 import type { NodeCache } from "./cache.js";
 import { isNotFoundError } from "./errors.js";
 import type { GenreResolver } from "./genre-identity.js";
+import type { LabelRegistry } from "./label-registry.js";
 import { logger } from "./logger.js";
 import { EDGE_TARGET_TYPES_BY_TYPE, LIST_EDGES_BY_TYPE, NODE_TYPES } from "./node-spec.js";
 import { isReadableSlug, isValidSlug, parseSlug } from "./slug.js";
@@ -240,6 +241,13 @@ export interface GenreRegistryDeps {
 	cache: NodeCache;
 	resolver: GenreResolver;
 	redirects: GenreRedirects;
+	/**
+	 * OPTIONAL (TRA-607): canonicalizes the label edges of a node (src/label-registry.ts). It rides on
+	 * canonicalizeNodeEdges, the one hook runPipeline calls once every edge producer has run, so each
+	 * caller that already passes a genreRegistry gets label dedup without a second dependency to forget.
+	 * Unset = label edges keep their name-derived slug, as before.
+	 */
+	labels?: LabelRegistry;
 }
 
 function isNodeType(value: unknown): value is NodeType {
@@ -324,6 +332,11 @@ export function createGenreRegistry(deps: GenreRegistryDeps): GenreRegistry {
 	}
 
 	async function canonicalizeNodeEdges(node: unknown): Promise<void> {
+		await canonicalizeGenreNodeEdges(node);
+		await deps.labels?.canonicalizeNodeEdges(node);
+	}
+
+	async function canonicalizeGenreNodeEdges(node: unknown): Promise<void> {
 		if (node === null || typeof node !== "object") return;
 		const rec = node as Record<string, unknown>;
 		const nodeType = rec.type;

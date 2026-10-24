@@ -2,7 +2,7 @@ import { mkdir, mkdtemp, readdir, readFile, rm, writeFile } from "node:fs/promis
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
-import { NodeCache } from "../src/cache.js";
+import { atomicWriteJson, NodeCache } from "../src/cache.js";
 import type {
 	ArtistNode,
 	EdgeRef,
@@ -674,11 +674,23 @@ describe("NodeCache — cross-type reverse edges (TRA-454)", () => {
 
 		const pending = await readPending();
 		expect(pending["label:warp"]).toEqual([
-			{ field: "notable_releases", cardinality: "list", edge: ref("project:album", "Album") },
+			{
+				field: "notable_releases",
+				cardinality: "list",
+				edge: { ...ref("project:album", "Album"), artist: "Aphex Twin" },
+			},
 		]);
 		expect(pending["artist:aphex-twin"]).toEqual([
-			{ field: "discography", cardinality: "list", edge: ref("project:album", "Album") },
-			{ field: "notable_tracks", cardinality: "list", edge: ref("track:x", "X") },
+			{
+				field: "discography",
+				cardinality: "list",
+				edge: { ...ref("project:album", "Album"), artist: "Aphex Twin" },
+			},
+			{
+				field: "notable_tracks",
+				cardinality: "list",
+				edge: { ...ref("track:x", "X"), artist: "Aphex Twin" },
+			},
 		]);
 	});
 
@@ -697,7 +709,7 @@ describe("NodeCache — cross-type reverse edges (TRA-454)", () => {
 
 			const aphex = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
 			expect(aphex.discography).toEqual([
-				{ slug: "project:x", type: "project", name: "X", mbid: projectMbid },
+				{ slug: "project:x", type: "project", name: "X", artist: "Aphex Twin", mbid: projectMbid },
 			]);
 		});
 
@@ -706,7 +718,9 @@ describe("NodeCache — cross-type reverse edges (TRA-454)", () => {
 			await crossCache.write(project({ slug: "project:x", name: "X", artists: [aphexRef] }));
 
 			const aphex = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
-			expect(aphex.discography).toEqual([{ slug: "project:x", type: "project", name: "X" }]);
+			expect(aphex.discography).toEqual([
+				{ slug: "project:x", type: "project", name: "X", artist: "Aphex Twin" },
+			]);
 			expect(aphex.discography[0] && "mbid" in aphex.discography[0]).toBe(false);
 		});
 
@@ -720,15 +734,107 @@ describe("NodeCache — cross-type reverse edges (TRA-454)", () => {
 				{
 					field: "discography",
 					cardinality: "list",
-					edge: { slug: "project:x", type: "project", name: "X", mbid: projectMbid },
+					edge: { slug: "project:x", type: "project", name: "X", artist: "Aphex Twin", mbid: projectMbid },
 				},
 			]);
 
 			await crossCache.write(artist({ slug: "artist:aphex-twin", name: "Aphex Twin" }));
 			const aphex = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
 			expect(aphex.discography).toEqual([
-				{ slug: "project:x", type: "project", name: "X", mbid: projectMbid },
+				{ slug: "project:x", type: "project", name: "X", artist: "Aphex Twin", mbid: projectMbid },
 			]);
+		});
+
+		// TRA-624 (2026-10-24): the edge was only stamped when newly inserted. An edge already on the artist
+		// (written by the pipeline, or by a reverse before the project had its mbid) was left without it.
+		describe("an edge already on the artist (TRA-624)", () => {
+			const otherMbid = "9d1e3b52-7a40-4f86-b3c5-2e8f6a0d4c17";
+			const existingEdge = (extra: Partial<EdgeRef> = {}): EdgeRef => ({
+				...ref("project:x", "X"),
+				year: "2002",
+				releaseType: "album",
+				...extra,
+			});
+			const discographyOf = async () =>
+				((await crossCache.get("artist:aphex-twin")) as ArtistNode).discography;
+
+			it("enriches an existing edge that has no mbid, keeping its other fields", async () => {
+				await crossCache.write(
+					artist({ slug: "artist:aphex-twin", name: "Aphex Twin", discography: [existingEdge()] }),
+				);
+				await crossCache.write(
+					project({ slug: "project:x", name: "X", mbid: projectMbid, artists: [aphexRef] }),
+				);
+
+				expect(await discographyOf()).toEqual([existingEdge({ mbid: projectMbid })]);
+			});
+
+			it("leaves an edge with the same mbid unchanged", async () => {
+				await crossCache.write(
+					artist({
+						slug: "artist:aphex-twin",
+						name: "Aphex Twin",
+						discography: [existingEdge({ mbid: projectMbid })],
+					}),
+				);
+				const errors = vi.spyOn(console, "error").mockImplementation(() => {});
+				try {
+					await crossCache.write(
+						project({ slug: "project:x", name: "X", mbid: projectMbid, artists: [aphexRef] }),
+					);
+
+					expect(await discographyOf()).toEqual([existingEdge({ mbid: projectMbid })]);
+					expect(errors.mock.calls.map((c) => String(c[0])).join("\n")).not.toContain("mbid differs");
+				} finally {
+					errors.mockRestore();
+				}
+			});
+
+			it("never overwrites a different mbid, and reports it", async () => {
+				await crossCache.write(
+					artist({
+						slug: "artist:aphex-twin",
+						name: "Aphex Twin",
+						discography: [existingEdge({ mbid: otherMbid })],
+					}),
+				);
+				const errors = vi.spyOn(console, "error").mockImplementation(() => {});
+				try {
+					await crossCache.write(
+						project({ slug: "project:x", name: "X", mbid: projectMbid, artists: [aphexRef] }),
+					);
+
+					expect(await discographyOf()).toEqual([existingEdge({ mbid: otherMbid })]);
+					const logged = errors.mock.calls.map((c) => String(c[0])).join("\n");
+					expect(logged).toContain("mbid differs");
+					expect(logged).toContain(otherMbid);
+					expect(logged).toContain(projectMbid);
+				} finally {
+					errors.mockRestore();
+				}
+			});
+
+			it("enriches an existing edge when a queued reverse is applied as the artist is written", async () => {
+				await crossCache.write(
+					project({ slug: "project:x", name: "X", mbid: projectMbid, artists: [aphexRef] }),
+				);
+
+				await crossCache.write(
+					artist({ slug: "artist:aphex-twin", name: "Aphex Twin", discography: [existingEdge()] }),
+				);
+
+				expect(await discographyOf()).toEqual([existingEdge({ mbid: projectMbid })]);
+			});
+
+			it("adds no mbid to an existing edge of another pair (project.label -> label.notable_releases)", async () => {
+				await crossCache.write(
+					label({ slug: "label:warp", name: "Warp", notable_releases: [existingEdge()] }),
+				);
+				await crossCache.write(project({ slug: "project:x", name: "X", mbid: projectMbid, label: warpRef }));
+
+				const warp = (await crossCache.get("label:warp")) as LabelNode;
+				expect(warp.notable_releases).toEqual([existingEdge()]);
+			});
 		});
 
 		it("stays on the artist side: project.label -> label.notable_releases carries no mbid", async () => {
@@ -753,7 +859,9 @@ describe("NodeCache — cross-type reverse edges (TRA-454)", () => {
 			);
 
 			const aphex = (await crossCache.get("artist:aphex-twin")) as ArtistNode;
-			expect(aphex.notable_tracks).toEqual([{ slug: "track:x", type: "track", name: "X" }]);
+			expect(aphex.notable_tracks).toEqual([
+				{ slug: "track:x", type: "track", name: "X", artist: "Aphex Twin" },
+			]);
 			const warp = (await crossCache.get("label:warp")) as LabelNode;
 			expect(warp.roster).toEqual([{ slug: "artist:squarepusher", type: "artist", name: "Squarepusher" }]);
 		});
@@ -905,6 +1013,7 @@ describe("NodeCache.update — locked read-modify-write (TRA-535)", () => {
 		updCache = new NodeCache(updDir);
 	});
 	afterEach(async () => {
+		vi.restoreAllMocks();
 		await rm(updDir, { recursive: true, force: true });
 	});
 
@@ -1052,6 +1161,33 @@ describe("NodeCache.update — locked read-modify-write (TRA-535)", () => {
 		expect(slugsOf(aphex.discography)).toEqual(["project:album"]);
 	});
 
+	// TRA-624: the enrichment of an existing edge happens in applyReverseToTarget, under the lock of the artist
+	// (runLocked), like the insertion of a new edge. Written outside it, it would be overwritten by the
+	// update that holds the node.
+	it("enriches an existing discography edge under the artist's lock, without losing a concurrent update", async () => {
+		const projectMbid = "5b4f8a1e-6c1d-4c47-9c2e-0d3a7f5b9e21";
+		const bare = ref("project:album", "Album");
+		await updCache.write(artist({ discography: [bare] }));
+		const reachedReverse = deferred();
+		const albumFile = join(updDir, "nodes", "project", "album.json");
+
+		const update = updCache.update(APHEX, async (node) => {
+			reachedReverse.release();
+			// The project reaches the disk while this update holds the lock: its reverse edge, with the mbid,
+			// waits on the artist's lock and must apply on top of the update, not be lost or overwrite it.
+			await vi.waitFor(async () => readFile(albumFile, "utf8"), { interval: 1, timeout: 5000 });
+			await new Promise<void>((resolve) => setImmediate(resolve));
+			return withCollaborator(node, ref("artist:squarepusher", "Squarepusher"));
+		});
+		await reachedReverse.promise;
+		const albumWrite = updCache.write(album({ mbid: projectMbid, artists: [ref(APHEX, "Aphex Twin")] }));
+		await Promise.all([update, albumWrite]);
+
+		const aphex = (await updCache.get(APHEX)) as ArtistNode;
+		expect(slugsOf(aphex.collaborators)).toEqual(["artist:squarepusher"]);
+		expect(aphex.discography).toEqual([{ ...bare, mbid: projectMbid }]);
+	});
+
 	it("applies the reverse edges pending for the node and clears them", async () => {
 		await updCache.write(artist());
 		await writeFile(
@@ -1111,6 +1247,307 @@ describe("NodeCache.update — locked read-modify-write (TRA-535)", () => {
 		expect(await readdir(join(updDir, "nodes", "artist"))).toEqual(["aphex-twin.json"]);
 		// The failures did not wedge the node: a later update still goes through.
 		expect(await updCache.update(APHEX, (node) => withCollaborator(node, ref("artist:x", "X")))).toBe(true);
+	});
+
+	// TRA-555: after a failure that follows the commit (reverse-edge emission), the rollback of update() and
+	// replace() ran outside the node's lock and overwrote whatever another node's reverse emission had
+	// written there meanwhile. Every ordering below is driven by promises, no timer decides the outcome.
+	describe.each(["update", "replace"] as const)(
+		"rollback of %s() after a late failure (TRA-555)",
+		(operation) => {
+			type Emit = (source: NodePayload, delta: { written: number; revUpdates: number }) => Promise<void>;
+			const aphexFile = () => join(updDir, "nodes", "artist", "aphex-twin.json");
+
+			/** Runs the operation on APHEX, adding a collaborator, with its reverse-edge emission replaced by `emit`. */
+			function failingOperation(emit: () => Promise<void>): Promise<unknown> {
+				vi.spyOn(updCache as unknown as { emitReverses: Emit }, "emitReverses").mockImplementationOnce(emit);
+				const edited = (node: NodePayload) =>
+					withCollaborator(node, ref("artist:squarepusher", "Squarepusher"));
+				return operation === "update"
+					? updCache.update(APHEX, edited)
+					: (async () => updCache.replace(edited(await updCache.get(APHEX))))();
+			}
+
+			it("restores the previous file and the counters when nothing else wrote the node", async () => {
+				await updCache.write(artist());
+				const before = await readFile(aphexFile(), "utf8");
+				const stats = { ...updCache.stats };
+
+				await expect(
+					failingOperation(async () => {
+						throw new Error("emission down");
+					}),
+				).rejects.toThrow("emission down");
+
+				expect(await readFile(aphexFile(), "utf8")).toBe(before);
+				expect(updCache.stats).toEqual(stats);
+				expect(await readdir(join(updDir, "nodes", "artist"))).toEqual(["aphex-twin.json"]);
+			});
+
+			it("keeps the edge another node's reverse emission wrote between the commit and the rollback", async () => {
+				await updCache.write(artist());
+				const stats = { ...updCache.stats };
+				const committed = deferred();
+				const gate = deferred();
+				const errors = vi.spyOn(console, "error").mockImplementation(() => {});
+
+				const failing = failingOperation(async () => {
+					committed.release();
+					await gate.promise;
+					throw new Error("emission down");
+				});
+				const settled = failing.then(
+					() => undefined,
+					() => undefined,
+				);
+				await committed.promise;
+				// Another node lists APHEX: its reverse emission writes APHEX under runLocked only, while the
+				// failing operation sits between its commit and its rollback.
+				await updCache.write(album({ artists: [ref(APHEX, "Aphex Twin")] }));
+				expect(slugsOf(((await updCache.get(APHEX)) as ArtistNode).discography)).toEqual(["project:album"]);
+				gate.release();
+				await settled;
+
+				await expect(failing).rejects.toThrow("emission down");
+				const aphex = (await updCache.get(APHEX)) as ArtistNode;
+				expect(slugsOf(aphex.discography)).toEqual(["project:album"]);
+				// The node was not rolled back, and the operator is told so.
+				expect(slugsOf(aphex.collaborators)).toEqual(["artist:squarepusher"]);
+				expect(errors.mock.calls.map((c) => String(c[0])).join("\n")).toContain("rollback skipped");
+				expect(await readdir(join(updDir, "nodes", "artist"))).toEqual(["aphex-twin.json"]);
+				// Nothing was rolled back, so nothing is taken off the counters: the operation's commit (1 write)
+				// and the album's write and reverse edge are all still counted.
+				expect(updCache.stats).toEqual({ written: stats.written + 2, revUpdates: stats.revUpdates + 1 });
+			});
+
+			it("does not bring back a node that vanished before the rollback", async () => {
+				await updCache.write(artist());
+				const stats = { ...updCache.stats };
+				const committed = deferred();
+				const gate = deferred();
+				const errors = vi.spyOn(console, "error").mockImplementation(() => {});
+
+				const failing = failingOperation(async () => {
+					committed.release();
+					await gate.promise;
+					throw new Error("emission down");
+				});
+				const settled = failing.then(
+					() => undefined,
+					() => undefined,
+				);
+				await committed.promise;
+				await rm(aphexFile());
+				gate.release();
+				await settled;
+
+				await expect(failing).rejects.toThrow("emission down");
+				// No node (not resurrected from the backup) and no backup left behind.
+				expect(await readdir(join(updDir, "nodes", "artist"))).toEqual([]);
+				expect(errors.mock.calls.map((c) => String(c[0])).join("\n")).toContain("rollback skipped");
+				expect(updCache.stats).toEqual({ written: stats.written + 1, revUpdates: stats.revUpdates });
+			});
+
+			it("keeps the backup and reports both errors when the node cannot be read for the check", async () => {
+				await updCache.write(artist());
+				const committed = deferred();
+				const gate = deferred();
+
+				const failing = failingOperation(async () => {
+					committed.release();
+					await gate.promise;
+					throw new Error("emission down");
+				});
+				const settled = failing.then(
+					() => undefined,
+					() => undefined,
+				);
+				await committed.promise;
+				// A directory where the node file was: reading it fails with EISDIR, not ENOENT.
+				await rm(aphexFile());
+				await mkdir(aphexFile());
+				gate.release();
+				await settled;
+
+				const error = await failing.then(
+					() => undefined,
+					(e: unknown) => e,
+				);
+				expect(error).toBeInstanceOf(AggregateError);
+				const [original, cause] = (error as AggregateError).errors as [Error, NodeJS.ErrnoException];
+				expect(original.message).toBe("emission down");
+				expect(cause.code).toBe("EISDIR");
+				// The only copy of the previous node is still there.
+				const names = await readdir(join(updDir, "nodes", "artist"));
+				expect(names.filter((name) => name.startsWith("aphex-twin.json.backup-"))).toHaveLength(1);
+			});
+
+			it("waits for the node's lock, then rolls back without deadlock and lets queued operations through", async () => {
+				await updCache.write(artist());
+				const committed = deferred();
+				const gate = deferred();
+				const holderEntered = deferred();
+				const holderRelease = deferred();
+				const events: string[] = [];
+				const internals = updCache as unknown as {
+					runLocked: <T>(slug: Slug, fn: () => Promise<T>) => Promise<T>;
+				};
+				const errors = vi.spyOn(console, "error").mockImplementation(() => {});
+
+				const failing = failingOperation(async () => {
+					committed.release();
+					await gate.promise;
+					throw new Error("emission down");
+				});
+				const failingSettled = failing.then(
+					() => "settled",
+					() => "settled",
+				);
+				await committed.promise;
+				// A writer holds the node's lock and rewrites it, exactly like an incoming reverse edge.
+				const holder = internals.runLocked(APHEX, async () => {
+					const node = (await updCache.get(APHEX)) as ArtistNode;
+					await atomicWriteJson(aphexFile(), {
+						...node,
+						collaborators: [...node.collaborators, ref("artist:autechre", "Autechre")],
+					});
+					holderEntered.release();
+					await holderRelease.promise;
+					events.push("holder released");
+				});
+				await holderEntered.promise;
+
+				// From here on, the only code that can ask for the node's lock before the operation settles is the
+				// rollback: the queued update below is created only after this check, because its own request would
+				// otherwise release `lockRequested` even when the rollback never asks (it asks in the same
+				// microtask burst as the operation settles, which hid a rollback without the lock).
+				const lockRequested = deferred();
+				const realRunLocked = internals.runLocked.bind(updCache);
+				vi.spyOn(internals, "runLocked").mockImplementation((slug, fn) => {
+					if (slug === APHEX) lockRequested.release();
+					return realRunLocked(slug, fn);
+				});
+
+				gate.release();
+				// The rollback must ask for the node's lock, which the holder keeps: the operation is not over
+				// when it does. A rollback that skipped the lock would settle first.
+				const first = await Promise.race([
+					lockRequested.promise.then(() => "rollback asked for the node lock"),
+					failingSettled.then(() => "operation settled without the node lock"),
+				]);
+				expect(first).toBe("rollback asked for the node lock");
+				// Queued behind the failing operation on the operation lock: must run once the rollback is over.
+				const queued = updCache.update(APHEX, (node) =>
+					withCollaborator(node, ref("artist:boards-of-canada", "Boards of Canada")),
+				);
+				holderRelease.release();
+				await holder;
+				await failingSettled;
+				events.push("operation settled");
+
+				await expect(failing).rejects.toThrow("emission down");
+				expect(await queued).toBe(true);
+				expect(events).toEqual(["holder released", "operation settled"]);
+				const aphex = (await updCache.get(APHEX)) as ArtistNode;
+				expect(slugsOf(aphex.collaborators).sort()).toEqual([
+					"artist:autechre",
+					"artist:boards-of-canada",
+					"artist:squarepusher",
+				]);
+				expect(errors.mock.calls.map((c) => String(c[0])).join("\n")).toContain("rollback skipped");
+				// No lock is left behind: a plain write of the node still goes through.
+				await updCache.write(aphex);
+			});
+		},
+	);
+
+	// TRA-555: replace() takes its backup before the commit, outside the node's lock. When the commit itself never
+	// lands, the file is not the replacement: whatever was written to it meanwhile must not be replaced by the
+	// (older) backup. Only replace() can reach the rollback in that state (update() cleans up after itself).
+	it("does not restore the backup over a node that a replace() never overwrote", async () => {
+		await updCache.write(artist());
+		const stats = { ...updCache.stats };
+		const entered = deferred();
+		const gate = deferred();
+		const internals = updCache as unknown as { commitLocked: () => Promise<void> };
+		vi.spyOn(internals, "commitLocked").mockImplementationOnce(async () => {
+			entered.release();
+			await gate.promise;
+			throw new Error("disk full");
+		});
+
+		const replacing = updCache.replace(artist({ name: "Aphex Twin (replacement)" }));
+		const settled = replacing.then(
+			() => undefined,
+			() => undefined,
+		);
+		await entered.promise;
+		// A write the replacement knows nothing about, made after the backup was taken.
+		const file = join(updDir, "nodes", "artist", "aphex-twin.json");
+		const current = JSON.parse(await readFile(file, "utf8")) as ArtistNode;
+		await atomicWriteJson(file, { ...current, collaborators: [ref("artist:autechre", "Autechre")] });
+		gate.release();
+		await settled;
+
+		await expect(replacing).rejects.toThrow("disk full");
+		const aphex = (await updCache.get(APHEX)) as ArtistNode;
+		expect(slugsOf(aphex.collaborators)).toEqual(["artist:autechre"]);
+		expect(aphex.name).toBe("Aphex Twin");
+		expect(await readdir(join(updDir, "nodes", "artist"))).toEqual(["aphex-twin.json"]);
+		expect(updCache.stats).toEqual(stats);
+	});
+
+	// TRA-555: the rollback now waits for the node's lock; a qid lookup served in that gap sees the committed
+	// node, and its memo must not outlive the rollback.
+	it("drops a genre qid memo built while a replace() rollback waits for the node's lock", async () => {
+		const ACID = "genre:acid" as Slug;
+		await updCache.write(genreNode({ slug: ACID, name: "Acid", qid: "Q1" }));
+		const committed = deferred();
+		const gate = deferred();
+		const holderEntered = deferred();
+		const holderRelease = deferred();
+		const lockRequested = deferred();
+		const internals = updCache as unknown as {
+			emitReverses: () => Promise<void>;
+			runLocked: <T>(slug: Slug, fn: () => Promise<T>) => Promise<T>;
+		};
+		vi.spyOn(internals, "emitReverses").mockImplementationOnce(async () => {
+			committed.release();
+			await gate.promise;
+			throw new Error("emission down");
+		});
+		const replacing = updCache.replace(genreNode({ slug: ACID, name: "Acid", qid: "Q2" }));
+		const settled = replacing.then(
+			() => undefined,
+			() => undefined,
+		);
+		await committed.promise;
+		const holder = internals.runLocked(ACID, async () => {
+			holderEntered.release();
+			await holderRelease.promise;
+		});
+		await holderEntered.promise;
+		const realRunLocked = internals.runLocked.bind(updCache);
+		vi.spyOn(internals, "runLocked").mockImplementation((slug, fn) => {
+			if (slug === ACID) lockRequested.release();
+			return realRunLocked(slug, fn);
+		});
+		gate.release();
+		// A rollback that skips the lock settles instead of asking for it (fails here rather than hanging).
+		await Promise.race([
+			lockRequested.promise,
+			settled.then(() => Promise.reject(new Error("no lock asked"))),
+		]);
+
+		// Committed state, still on disk while the rollback waits: this lookup memoizes it.
+		expect(await updCache.findGenreSlugByQid("Q2")).toBe(ACID);
+		holderRelease.release();
+		await holder;
+		await settled;
+
+		await expect(replacing).rejects.toThrow("emission down");
+		expect(await updCache.findGenreSlugByQid("Q2")).toBeUndefined();
+		expect(await updCache.findGenreSlugByQid("Q1")).toBe(ACID);
 	});
 
 	it("throws NotFoundError for a node that is not cached", async () => {

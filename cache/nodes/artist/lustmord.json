@@ -192,7 +192,7 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:heresy",
+      "slug": "project:heresy--lustmord",
       "type": "project",
       "name": "Heresy",
       "mbid": "f759b7f6-941b-35c0-8674-82d7df1b35f5",
@@ -227,11 +227,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:stalker",
-      "type": "project",
-      "name": "Stalker"
-    },
-    {
       "slug": "project:stalker--robert-rich",
       "type": "project",
       "name": "Stalker",
@@ -240,7 +235,7 @@
   ],
   "notable_tracks": [],
   "landmark_project": {
-    "slug": "project:heresy",
+    "slug": "project:heresy--lustmord",
     "type": "project",
     "name": "Heresy"
   },

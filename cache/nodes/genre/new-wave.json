@@ -99,6 +99,30 @@
       "type": "genre",
       "name": "Art rock",
       "qid": "Q217467"
+    },
+    {
+      "slug": "genre:college-rock",
+      "type": "genre",
+      "name": "College rock",
+      "qid": "Q783097"
+    },
+    {
+      "slug": "genre:dark-wave",
+      "type": "genre",
+      "name": "Dark wave",
+      "qid": "Q3840596"
+    },
+    {
+      "slug": "genre:electroclash",
+      "type": "genre",
+      "name": "Electroclash",
+      "qid": "Q861823"
+    },
+    {
+      "slug": "genre:pop-punk",
+      "type": "genre",
+      "name": "Pop Punk",
+      "qid": "Q487914"
     }
   ],
   "key_artists": [

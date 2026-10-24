@@ -241,14 +241,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:tonight",
-      "type": "project",
-      "name": "Tonight (Best You Ever Had)",
-      "mbid": "f234ba28-12df-44d3-83ac-f790d5d2a72e",
-      "year": "2012",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:little-bad-girl",
       "type": "project",
       "name": "Little Bad Girl",
@@ -309,14 +301,6 @@
       "type": "project",
       "name": "Hey Ho",
       "mbid": "c5a501cb-ef81-4cd1-9945-fdcb26dae59b",
-      "year": "2010",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:how-low",
-      "type": "project",
-      "name": "How Low (remix)",
-      "mbid": "09e05b4a-c109-4288-a73f-1cb95d116028",
       "year": "2010",
       "releaseType": "single"
     },

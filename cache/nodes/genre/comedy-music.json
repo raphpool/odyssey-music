@@ -35,6 +35,12 @@
       "type": "genre",
       "name": "Comedy hip hop",
       "qid": "Q602646"
+    },
+    {
+      "slug": "genre:satirical-music",
+      "type": "genre",
+      "name": "Satirical music",
+      "qid": "Q104842028"
     }
   ],
   "related_genres": [],

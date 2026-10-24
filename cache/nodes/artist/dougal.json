@@ -60,14 +60,6 @@
     {
       "slug": "project:sweetheart",
       "type": "project",
-      "name": "Sweetheart (Piano Mix)",
-      "mbid": "5f66a8fc-5ce6-4796-b10f-578547335735",
-      "year": "2025",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:sweetheart",
-      "type": "project",
       "name": "Sweetheart",
       "mbid": "531438b0-8599-4723-82ef-bfbd7e83e426",
       "year": "2025",
@@ -111,14 +103,6 @@
       "name": "High Up",
       "mbid": "fd3199ff-ae58-4c15-ab23-e77af515e4e8",
       "year": "2023",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:party-time",
-      "type": "project",
-      "name": "Party Time (Eufeion remix)",
-      "mbid": "1739f9a4-2e40-4e64-9765-dbbdbd280779",
-      "year": "2021",
       "releaseType": "single"
     },
     {
@@ -410,11 +394,6 @@
     "mbid": "d21efc2d-15c2-4d68-a385-b484004de296",
     "year": "1996",
     "releaseType": "album"
-  },
-  "reference_track": {
-    "slug": "track:dj-dougal-takes-control",
-    "type": "track",
-    "name": "DJ Dougal Takes Control"
   },
   "influences": [],
   "influenced": [],

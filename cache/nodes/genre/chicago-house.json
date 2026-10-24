@@ -73,6 +73,12 @@
       "type": "genre",
       "name": "Ghetto House",
       "qid": "Q2748817"
+    },
+    {
+      "slug": "genre:garage-house",
+      "type": "genre",
+      "name": "Garage House",
+      "qid": "Q928825"
     }
   ],
   "key_artists": [

@@ -105,9 +105,10 @@
       "name": "Preminition"
     },
     {
-      "slug": "track:spiritual-high--moodswings",
+      "slug": "track:spiritual-high--richie-hawtin",
       "type": "track",
-      "name": "Spiritual High"
+      "name": "Spiritual High",
+      "artist": "Richie Hawtin"
     },
     {
       "slug": "track:the-egg",

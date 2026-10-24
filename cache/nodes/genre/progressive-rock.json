@@ -40,6 +40,12 @@
       "type": "genre",
       "name": "Zeuhl",
       "qid": "Q196999"
+    },
+    {
+      "slug": "genre:progressive-electronic",
+      "type": "genre",
+      "name": "Progressive Electronic",
+      "qid": "Q79784514"
     }
   ],
   "related_genres": [
@@ -60,6 +66,18 @@
       "type": "genre",
       "name": "Art Rock",
       "qid": "Q217467"
+    },
+    {
+      "slug": "genre:space-rock",
+      "type": "genre",
+      "name": "Space rock",
+      "qid": "Q236913"
+    },
+    {
+      "slug": "genre:zeuhl",
+      "type": "genre",
+      "name": "Zeuhl",
+      "qid": "Q196999"
     }
   ],
   "key_artists": [

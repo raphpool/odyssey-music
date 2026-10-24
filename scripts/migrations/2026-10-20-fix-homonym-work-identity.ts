@@ -48,6 +48,16 @@
  * Failure path (no replacement): the wrong mbid, credit and derived fields are removed and the incoming edges
  * of the wrong credit are dropped; the node keeps its slug and is listed in `stripped` for a human.
  *
+ * TRA-610 (the latent defects the review of #535 found; none touched the 13 works of the prod run): a list entry
+ * never gives the article artist an mbid (it is the work's); a merge never targets a node that is itself renamed
+ * or itself a suspect (`target-is-renamed`, `target-is-suspect`); the index reads a redirect to a slug with no
+ * node yet as the live node it comes from, so the preview and the apply (after the pairs were committed) find
+ * the same suspects; the redirect keys of a moved work (its bare slug) are re-pointed and dropped like the
+ * slug itself, so no label lists the album twice; the reverse edges waiting under a new slug are applied to
+ * the node now there (those the runtime does not emit stay queued) and a pending key the cleaning empties is
+ * removed; edges that collide with two mbids are kept and listed in `edgeConflicts`; a prose that calls the
+ * work a compilation does not ask for the plain studio release.
+ *
  * Writes go through atomicWriteJson after nodePayloadSchema validation (never NodeCache.write, which would emit
  * reverse edges). One invalid node = exit 1 and NOTHING is written. MusicBrainz unavailable = `failed`, exit 1,
  * nothing written, safe to re-run. Order of writes (crash safe, as the scope migration): new nodes, redirect
@@ -78,6 +88,7 @@ import {
 import { LIST_EDGES_BY_TYPE, SINGULAR_EDGES_BY_TYPE } from "../../src/node-spec.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
 import { parseSlug, pickScopeArtistName } from "../../src/slug.js";
+import { IMAGE_SOURCES } from "../../src/types.js";
 import {
 	type CacheNodeFile,
 	defaultDataDir,
@@ -98,7 +109,7 @@ import {
 	type ResolvedWork,
 	yearsAgree,
 } from "./2026-10-15-backfill-release-identity.js";
-import { elect, mergeNodes, rewriteEdges } from "./2026-10-16-scope-release-slugs.js";
+import { elect, isSafePendingEntry, mergeNodes, rewriteEdges } from "./2026-10-16-scope-release-slugs.js";
 import {
 	canonicalScopedSlug,
 	indexRelations,
@@ -210,6 +221,14 @@ export function buildIndex(
 	for (const [slug, node] of nodes) if (typeOfSlug(slug) === "artist") artists.set(slug, node);
 	const listers = new Map<string, { artist: string; edge: Obj }[]>();
 	const siblings = new Map<string, { artist: string; edge: Obj }[]>();
+	// A live node whose redirect leads to a slug with no node (the pair the preview lists, committed before the
+	// apply: `old -> new`, `new` not written yet): what resolves to `new` is still `old`'s. Without it the preview
+	// finds the suspect through a bare slug and the apply, one commit later, finds nothing (TRA-610, 2026-10-23).
+	const stillThere = new Map<string, string[]>();
+	for (const [from, to] of redirects) {
+		if (isWorkSlug(from) && nodes.has(from) && !nodes.has(to))
+			stillThere.set(to, [...(stillThere.get(to) ?? []), from]);
+	}
 	for (const [artist, node] of [...artists].sort(([a], [b]) => compareLex(a, b))) {
 		for (const field of ["discography", "notable_tracks"] as const) {
 			for (const edge of edgesOf(node[field])) {
@@ -217,7 +236,9 @@ export function buildIndex(
 				if (slug === undefined) continue;
 				// A live node wins over a redirect, as in resolveReadSlug.
 				const target = nodes.has(slug) ? slug : (redirects.get(slug) ?? slug);
-				listers.set(target, [...(listers.get(target) ?? []), { artist, edge }]);
+				for (const key of [target, ...(nodes.has(slug) ? [] : (stillThere.get(target) ?? []))]) {
+					listers.set(key, [...(listers.get(key) ?? []), { artist, edge }]);
+				}
 				if (isWorkSlug(slug) && scopedOn(slug, artist, str(node.name) ?? artist)) {
 					const key = titleKey(slug);
 					siblings.set(key, [...(siblings.get(key) ?? []), { artist, edge }]);
@@ -329,10 +350,15 @@ export function detectHomonymWorks(index: NodeIndex): Detection {
 		const consider = (artistSlug: string, evidence: "lists" | "producer", edge: Obj): void => {
 			const artistNode = index.artists.get(artistSlug);
 			const name = str(artistNode?.name) ?? str(edge.name) ?? artistSlug;
-			const mbid = validMbid(artistNode?.mbid) ?? validMbid(edge.mbid);
+			// An artist's list entry carries the WORK's mbid: taken for the artist's, the credit never matched and
+			// the work was stripped instead of fixed (TRA-610, 2026-10-23). Only a producer edge names the artist.
+			const mbid =
+				validMbid(artistNode?.mbid) ?? (evidence === "producer" ? validMbid(edge.mbid) : undefined);
 			const previous = candidates.get(artistSlug);
 			if (previous) {
 				if (!previous.evidence.includes(evidence)) previous.evidence.push(evidence);
+				// Seen by its list first: the producer edge still names the artist (TRA-610 review, 2026-10-24).
+				if (evidence === "producer") previous.mbid ??= validMbid(edge.mbid);
 				if (evidence === "lists" && previous.entry === undefined) {
 					previous.entry = entryHints(edge);
 				}
@@ -490,11 +516,16 @@ async function lookUp(
 	name: string,
 	hint: { name: string; mbid?: string | undefined },
 	releaseType: string | undefined,
+	plainRelease = true,
 ): Promise<{ found: MbReleaseIdentity | null; ambiguous: boolean; unavailable: boolean }> {
 	const resolve = type === "project" ? resolveReleaseGroupDetailed : resolveRecordingDetailed;
-	// A known type also asks for the plain release over its compilations, lives and remixes (TRA-604).
+	// A known type also asks for the plain release over its compilations, lives and remixes (TRA-604), unless the
+	// work's own prose says it IS a compilation: the studio album of the same title is then the wrong answer, and
+	// "ambiguous" the honest one (TRA-610, review of #535, 2026-10-23: a compilation read as its studio album).
 	const typed =
-		type === "project" && releaseType !== undefined ? { releaseType, preferPlainRelease: true } : {};
+		type === "project" && releaseType !== undefined
+			? { releaseType, ...(plainRelease ? { preferPlainRelease: true } : {}) }
+			: {};
 	const answer = await resolve(name, hint.name, {
 		...(hint.mbid === undefined ? {} : { requestedArtistMbid: hint.mbid }),
 		...typed,
@@ -518,6 +549,12 @@ export function releaseTypeFromProse(node: Obj): (typeof RELEASE_TYPES)[number] 
 	return words.size === 1 && RELEASE_TYPES.some((t) => t === only)
 		? (only as (typeof RELEASE_TYPES)[number])
 		: undefined;
+}
+
+/** The prose (pitch and opening of the article) calls the work a compilation: no studio album is its answer. */
+export function proseSaysCompilation(node: Obj): boolean {
+	const text = `${str(node.editorial_pitch) ?? ""} . ${(str(node.editorial_article) ?? "").slice(0, LEAD_LENGTH)}`;
+	return /(?<![\p{L}\p{N}-])compilations?(?![\p{L}\p{N}-])/iu.test(text);
 }
 
 function yearOf(date: string | null): string | null {
@@ -557,8 +594,10 @@ export interface Fixed {
 	/** The slug after the fix (the same one when the old slug did not carry the wrong scope). */
 	to: string;
 	artist: string;
-	mbid: { from: string | null; to: string };
+	mbid: { from: string | null; to: string | null };
 	credit: { from: string[]; to: string[] };
+	/** Settled from a closed list (`ForcedFix`), not found by the detector and MusicBrainz. */
+	forced?: true;
 	/** The node already at `to` was merged with the fixed one. */
 	merged: boolean;
 	/** Incoming edges that existed only because of the wrong identity, dropped. */
@@ -582,7 +621,9 @@ export interface Skipped {
 		| "several-article-artists"
 		| "already-consistent"
 		| "no-replacement-weak-evidence"
-		| "article-artist-not-in-lead";
+		| "article-artist-not-in-lead"
+		| "compilation-unsettled"
+		| "forced-target-absent";
 	artists: string[];
 }
 export interface Conflict {
@@ -592,8 +633,18 @@ export interface Conflict {
 		| "no-scoped-slug"
 		| "target-is-a-redirect-key"
 		| "target-claimed-twice"
+		| "target-is-renamed"
+		| "target-is-suspect"
 		| "target-other-identity"
 		| "target-unreadable";
+}
+
+/** Edges that collided on one slug with different mbids in a rewrite or a merge: both are kept (TRA-610). */
+export interface EdgeConflict {
+	/** `<node>.<field>` */
+	at: string;
+	slug: string;
+	reason: string;
 }
 
 export interface FixManifest {
@@ -608,6 +659,7 @@ export interface FixManifest {
 		stripped: number;
 		skipped: number;
 		conflicts: number;
+		edgeConflicts: number;
 		exempted: number;
 		failed: number;
 	};
@@ -616,6 +668,7 @@ export interface FixManifest {
 	stripped: Stripped[];
 	skipped: Skipped[];
 	conflicts: Conflict[];
+	edgeConflicts: EdgeConflict[];
 	/** Article artists left out because they are related to a credited one (kept for the audit). */
 	exempted: Exempted[];
 	failed: { slug: string; reason: string }[];
@@ -631,6 +684,8 @@ interface FixPlan {
 	/** Slugs whose edge to the old slug existed only because of the wrong identity. */
 	dropFrom: Set<string>;
 	report: Fixed;
+	/** Merged into an existing node: that node, not the fixed one, wins the election. */
+	keepTarget?: boolean;
 }
 interface StripPlan {
 	slug: string;
@@ -679,6 +734,75 @@ function removeEdgesTo(node: Obj, type: keyof typeof LIST_EDGES_BY_TYPE, targets
 	return next;
 }
 
+/** The node with the reverse edges that waited for it: a list gets the edge when it lacks it, a single when empty. */
+function withReverses(node: Obj, entries: readonly PendingReverse[], own: string): Obj {
+	const next: Obj = { ...node };
+	for (const { field, cardinality, edge } of entries) {
+		if (edge.slug === own) continue;
+		if (cardinality === "list") {
+			const list = edgesOf(next[field]);
+			if (!list.some((e) => e.slug === edge.slug)) next[field] = [...list, edge];
+		} else if (next[field] == null) {
+			next[field] = edge;
+		}
+	}
+	return next;
+}
+
+/** Every image a lookup derived from the identity (a Wikidata one belongs to an artist, not to a work). */
+const DERIVED_IMAGES: readonly string[] = IMAGE_SOURCES.filter((source) => !source.startsWith("wikidata"));
+
+/** The node without the homonym's leftovers (see `ForcedFix`). */
+function withoutLeftovers(node: Obj, forced: ForcedFix, identityChanges: boolean): Obj {
+	const wrong = new Set([...forced.wrongArtists, ...(forced.wrongEdges ?? [])]);
+	const next: Obj = { ...node };
+	for (const field of ["personnel", "producers", "related_projects"] as const) {
+		if (Array.isArray(node[field]))
+			next[field] = edgesOf(node[field]).filter((e) => !wrong.has(str(e.slug) ?? ""));
+	}
+	const homonyms = (url: unknown): boolean => {
+		const value = str(url);
+		return (
+			value !== undefined && (identityChanges || (forced.wrongCovers ?? []).some((c) => value.includes(c)))
+		);
+	};
+	if (homonyms(next.cover_url)) delete next.cover_url;
+	if (homonyms(next.image_url) && (!identityChanges || DERIVED_IMAGES.includes(String(next.image_source)))) {
+		delete next.image_url;
+		delete next.image_source;
+	}
+	// The duration is the wrong recording's (2:54 for Stanley Black's Around the World).
+	if (identityChanges) delete next.duration;
+	return next;
+}
+
+/**
+ * A work settled by hand, from a closed list (TRA-610, PR 2): what the detector and MusicBrainz could not settle
+ * (a credit named by prose that only mentions members of the band, an artist with no node yet), or what the
+ * first run left behind. The work is looked up by slug; absent from the cache (the repo run), it is left alone.
+ * - `credit`: re-credit the work to this artist (the cache artist's name and mbid when it has a node) and move its
+ *   slug to the right scope; everything the wrong identity gave goes, as in the detected path;
+ * - `into`: merge the work into this existing node, which wins (the work is a duplicate of it);
+ * - neither: the identity stays and only the leftovers go.
+ * In every case the edges to `wrongArtists` in `personnel` / `producers` are removed, and so is the homonym's
+ * cover: any `cover_url` and derived image when the identity changes, else the ones containing a `wrongCovers`.
+ */
+export interface ForcedFix {
+	slug: string;
+	wrongArtists: readonly string[];
+	wrongCovers?: readonly string[];
+	/** Other slugs (a related project, a producer) the work lists only because of the wrong prose: removed too. */
+	wrongEdges?: readonly string[];
+	/**
+	 * Artist fields (`reference_track`, `landmark_project`) that name this work and must not: cleared, but only when
+	 * the field still holds exactly this work (a pick the pipeline or a human changed since is not ours to undo,
+	 * the rule of 2026-10-24-fix-weak-landmarks, TRA-605).
+	 */
+	detach?: readonly { artist: string; field: "reference_track" | "landmark_project" }[];
+	credit?: { slug: string; name: string };
+	into?: string;
+}
+
 export interface FixOptions {
 	cacheDir: string;
 	apply: boolean;
@@ -686,6 +810,16 @@ export interface FixOptions {
 	/** Where the redirect tables are read and the slug table written (the channel's scratch copy). */
 	dataDir?: string | undefined;
 	log?: (line: string) => void;
+	forced?: readonly ForcedFix[];
+	/** Settle the `forced` works only: no detection, hence no MusicBrainz request (the closed-list migration). */
+	onlyForced?: boolean;
+	/**
+	 * Live works whose redirect keys (the bare slug, the slug of the homonym) are rewritten to them in every edge,
+	 * although they are not moved by this run: a node that names a key AND the work itself ends with one edge.
+	 */
+	canonicalTargets?: readonly string[];
+	/** The name the manifest carries (the channel's constant); default: this migration's. */
+	migrationName?: string;
 }
 
 export interface FixResult {
@@ -730,7 +864,13 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 	const tables = await readTables(options.dataDir);
 	const files = new Map(nodes.map((f) => [f.slug, f]));
 	const index = buildIndex(new Map(nodes.map((f) => [f.slug, f.node])), tables.all);
-	const detection = detectHomonymWorks(index);
+	const detection: Detection = options.onlyForced
+		? {
+				suspects: [],
+				kept: Object.fromEntries(KEPT_REASONS.map((r) => [r, 0])) as Record<KeptReason, number>,
+				exempted: [],
+			}
+		: detectHomonymWorks(index);
 	const ctx = buildContext(nodes);
 	log(`${detection.suspects.length} suspect work(s) among ${nodes.filter((n) => isWorkSlug(n.slug)).length}`);
 
@@ -742,9 +882,83 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 	const skipped: Skipped[] = [];
 	const conflicts: Conflict[] = [];
 
+	const forcedList = options.forced ?? [];
+	const forcedSlugs = new Set(forcedList.map((f) => f.slug));
+	// artist -> [field, work]: the singular fields to clear, for the works this cache holds.
+	const detachments = new Map<string, [string, string][]>();
+	for (const forced of forcedList) {
+		if (!files.has(forced.slug)) continue;
+		for (const { artist, field } of forced.detach ?? []) {
+			detachments.set(artist, [...(detachments.get(artist) ?? []), [field, forced.slug]]);
+		}
+	}
+	const absent = forcedList.filter((f) => !files.has(f.slug)).map((f) => f.slug);
+	if (forcedList.length > 0) {
+		log(`${forcedList.length - absent.length} of ${forcedList.length} listed work(s) in this cache`);
+		if (absent.length > 0) log(`not in this cache: ${absent.join(", ")}`);
+	}
+	for (const forced of forcedList) {
+		const file = files.get(forced.slug);
+		if (!file || (file.type !== "project" && file.type !== "track")) continue;
+		const type = file.type as WorkType;
+		const name = str(file.node.name) ?? forced.slug;
+		const changes = forced.credit !== undefined || forced.into !== undefined;
+		let node = withoutLeftovers(changes ? withoutWrongIdentity(file.node) : file.node, forced, changes);
+		let newSlug = forced.slug;
+		if (forced.into !== undefined) {
+			const target = files.get(forced.into);
+			if (!target) {
+				skipped.push({ slug: forced.slug, reason: "forced-target-absent", artists: [] });
+				continue;
+			}
+			node = { ...node, artists: edgesOf(target.node.artists) };
+			newSlug = forced.into;
+		} else if (forced.credit !== undefined) {
+			const known = index.artists.get(forced.credit.slug);
+			const creditName = str(known?.name) ?? forced.credit.name;
+			const creditMbid = validMbid(known?.mbid);
+			node = {
+				...node,
+				artists: [
+					{
+						slug: forced.credit.slug,
+						type: "artist",
+						name: creditName,
+						...(creditMbid === undefined ? {} : { mbid: creditMbid }),
+					},
+				],
+			};
+			const scope = pickScopeArtistName([creditName]);
+			const derived = scope === null ? null : canonicalScopedSlug(type, name, scope);
+			if (derived === null) {
+				conflicts.push({ slug: forced.slug, to: "", reason: "no-scoped-slug" });
+				continue;
+			}
+			newSlug = derived;
+		}
+		fixes.push({
+			oldSlug: forced.slug,
+			newSlug,
+			type,
+			node: { ...node, slug: newSlug },
+			dropFrom: new Set([...wrongNeighbours(file.node, node), ...forced.wrongArtists]),
+			keepTarget: forced.into !== undefined,
+			report: {
+				slug: forced.slug,
+				to: newSlug,
+				artist: slugsOf(node.artists)[0] ?? "",
+				mbid: { from: str(file.node.mbid) ?? null, to: str(node.mbid) ?? null },
+				credit: { from: slugsOf(file.node.artists), to: slugsOf(node.artists) },
+				merged: false,
+				droppedEdges: 0,
+				forced: true,
+			},
+		});
+	}
+
 	for (const suspect of detection.suspects) {
 		const file = files.get(suspect.slug);
-		if (!file) continue;
+		if (!file || forcedSlugs.has(suspect.slug)) continue;
 		// Every artist the prose names is tried: exactly one that MusicBrainz confirms settles it.
 		const currentMbids = new Set(suspect.credited.flatMap((c) => c.mbid ?? []));
 		const rejected: Stripped["reason"][] = [];
@@ -756,6 +970,14 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 		}[] = [];
 		let unavailable = false;
 		let consistent = false;
+		// The prose calls the work a compilation and MusicBrainz cannot tell it from the studio album of the same
+		// title: no answer, and nothing destructive on a guess. Projects only: a track has no studio-album rule.
+		// This corrects LESS than the plain path (an ambiguous answer is skipped, not stripped, although the
+		// ambiguity is about WHICH release of the article artist, not about the credit being wrong), by choice:
+		// the migration never removes nor re-credits on a reading of the prose it cannot rely on (review of #607,
+		// 2026-10-24).
+		let compilationUnsettled = false;
+		const compilation = suspect.type === "project" && proseSaysCompilation(file.node);
 		const tryable = suspect.articleArtists.filter((a) => a.inLead);
 		if (tryable.length === 0) {
 			skipped.push({
@@ -769,7 +991,7 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 			const releaseType =
 				RELEASE_TYPES.find((t) => t === artist.entry?.releaseType) ??
 				(suspect.type === "project" ? releaseTypeFromProse(file.node) : undefined);
-			const lookedUp = await lookUp(suspect.type, suspect.name, artist, releaseType);
+			const lookedUp = await lookUp(suspect.type, suspect.name, artist, releaseType, !compilation);
 			if (lookedUp.unavailable) {
 				unavailable = true;
 				break;
@@ -777,6 +999,7 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 			const found = lookedUp.found;
 			if (!found) {
 				rejected.push(lookedUp.ambiguous ? "ambiguous-candidates" : "no-match");
+				if (lookedUp.ambiguous && compilation) compilationUnsettled = true;
 				continue;
 			}
 			// The very identity the node carries, or a credit that already holds one of its artists: not a homonym.
@@ -813,6 +1036,14 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 			continue;
 		}
 		const [chosen] = confirmed;
+		if (chosen === undefined && compilationUnsettled) {
+			skipped.push({
+				slug: suspect.slug,
+				reason: "compilation-unsettled",
+				artists: suspect.articleArtists.map((a) => a.slug),
+			});
+			continue;
+		}
 		if (chosen === undefined) {
 			// No replacement. Removing a credit is destructive: it needs ONE article artist with both links to
 			// the work (it lists the work AND the work lists it as a producer, as in both prod cases).
@@ -907,43 +1138,52 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 	const plans: FixPlan[] = [];
 	const claimed = new Map<string, FixPlan[]>();
 	for (const fix of fixes) claimed.set(fix.newSlug, [...(claimed.get(fix.newSlug) ?? []), fix]);
+	// What stops a fix whatever the other fixes do.
+	const blockedBy = (fix: FixPlan): Conflict["reason"] | null => {
+		if ((claimed.get(fix.newSlug) ?? []).length > 1) return "target-claimed-twice";
+		if (tables.all.has(fix.newSlug)) return "target-is-a-redirect-key";
+		const existing = files.get(fix.newSlug);
+		if (!existing) return null;
+		const sameMbid =
+			str(existing.node.mbid) === undefined ||
+			(fix.keepTarget === true && str(fix.node.mbid) === undefined) ||
+			str(existing.node.mbid) === str(fix.node.mbid);
+		const theirFirst = edgesOf(existing.node.artists)[0];
+		const ourFirst = edgesOf(fix.node.artists)[0];
+		const sameCredit =
+			theirFirst === undefined ||
+			(ourFirst !== undefined &&
+				sameArtist(
+					{ slug: str(theirFirst.slug), mbid: validMbid(theirFirst.mbid) },
+					{ slug: str(ourFirst.slug) ?? "", name: "", mbid: validMbid(ourFirst.mbid) },
+				));
+		return sameMbid && sameCredit ? null : "target-other-identity";
+	};
+	// A node that is moving away, or is a suspect, is not one to merge into (2026-10-23, review of #535): a fix
+	// merged into a node that is then renamed is deleted with it, and the work is lost. `renamedFrom` holds the
+	// fixes that no check above stops; it is not transitive: on a chain A -> T -> U, T can still end as a
+	// `target-is-suspect` conflict of its own and count as renamed for A, whose conflict then only carries
+	// another label. A suspect that is not moving (skipped, stripped, fixed in place) is a conflict too, as
+	// its own identity is not settled.
+	const renamedFrom = new Set(
+		fixes.filter((f) => f.newSlug !== f.oldSlug && blockedBy(f) === null).map((f) => f.oldSlug),
+	);
+	const suspectSlugs = new Set(detection.suspects.map((x) => x.slug));
 	for (const fix of fixes) {
-		const conflict = (reason: Conflict["reason"]): void => {
-			conflicts.push({ slug: fix.oldSlug, to: fix.newSlug, reason });
-		};
 		if (fix.newSlug === fix.oldSlug) {
 			plans.push(fix);
 			continue;
 		}
-		if ((claimed.get(fix.newSlug) ?? []).length > 1) {
-			conflict("target-claimed-twice");
+		const reason =
+			blockedBy(fix) ??
+			(renamedFrom.has(fix.newSlug)
+				? "target-is-renamed"
+				: suspectSlugs.has(fix.newSlug)
+					? "target-is-suspect"
+					: null);
+		if (reason !== null) {
+			conflicts.push({ slug: fix.oldSlug, to: fix.newSlug, reason });
 			continue;
-		}
-		if (tables.all.has(fix.newSlug)) {
-			conflict("target-is-a-redirect-key");
-			continue;
-		}
-		const existing = files.get(fix.newSlug);
-		if (existing) {
-			const sameMbid =
-				str(existing.node.mbid) === undefined || str(existing.node.mbid) === str(fix.node.mbid);
-			const theirFirst = edgesOf(existing.node.artists)[0];
-			const ourFirst = edgesOf(fix.node.artists)[0];
-			const sameCredit =
-				theirFirst === undefined ||
-				(ourFirst !== undefined &&
-					sameArtist(
-						{ slug: str(theirFirst.slug), mbid: validMbid(theirFirst.mbid) },
-						{
-							slug: str(ourFirst.slug) ?? "",
-							name: "",
-							mbid: validMbid(ourFirst.mbid),
-						},
-					));
-			if (!sameMbid || !sameCredit) {
-				conflict("target-other-identity");
-				continue;
-			}
 		}
 		plans.push(fix);
 	}
@@ -951,6 +1191,28 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 	// --- Rewrite the cache in memory ---
 	const moves: Record<string, string> = {};
 	for (const fix of plans) if (fix.newSlug !== fix.oldSlug) moves[fix.oldSlug] = fix.newSlug;
+	// The redirect keys that read as a work (the bare slug of `project:wish-you-were-here--american-hot-wax`) and
+	// are no node: an edge that names one names the work, and moves or goes with it. Harvest Records listed the
+	// album under its bare slug AND under the scoped one (2026-10-18, prod). Before the pairs of the preview are
+	// committed such a key leads to the old slug, after they are (flattened) to the new one: both are the work's.
+	const keysTo = new Map<string, string[]>();
+	for (const [from, to] of Object.entries(tables.slug)) {
+		if (!files.has(from)) keysTo.set(to, [...(keysTo.get(to) ?? []), from]);
+	}
+	const aliasesOf = (slug: string): string[] => [
+		...(keysTo.get(slug) ?? []),
+		...(moves[slug] === undefined ? [] : (keysTo.get(moves[slug]) ?? [])),
+	];
+	const edgeMoves: Record<string, string> = { ...moves };
+	for (const [from, to] of Object.entries(moves)) {
+		for (const alias of aliasesOf(from)) edgeMoves[alias] = to;
+	}
+	for (const target of options.canonicalTargets ?? []) {
+		// The target need not be a node of THIS cache (the repo holds the label, prod holds the album): the key
+		// reads as the target through the committed table everywhere, which is all this rewrites.
+		for (const key of keysTo.get(target) ?? []) edgeMoves[key] = target;
+	}
+	const edgeConflicts: EdgeConflict[] = [];
 	const wrongTo = new Map<string, string[]>(); // neighbour slug -> old work slugs it must stop pointing at
 	for (const plan of [...plans, ...stripped]) {
 		const old = "oldSlug" in plan ? plan.oldSlug : plan.slug;
@@ -965,16 +1227,29 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 	for (const file of nodes) {
 		const own = planBySlug.get(file.slug);
 		let next: Obj = own ? own.node : file.node;
-		const drop = new Set(wrongTo.get(file.slug) ?? []);
-		if (drop.size > 0) {
+		for (const old of wrongTo.get(file.slug) ?? []) {
 			const before = JSON.stringify(next);
-			next = removeEdgesTo(next, file.type, drop);
-			if (JSON.stringify(next) !== before) {
-				for (const old of drop) droppedBy.set(old, (droppedBy.get(old) ?? 0) + 1);
+			next = removeEdgesTo(next, file.type, new Set([old, ...aliasesOf(old)]));
+			if (JSON.stringify(next) !== before) droppedBy.set(old, (droppedBy.get(old) ?? 0) + 1);
+		}
+		for (const [field, work] of detachments.get(file.slug) ?? []) {
+			const held = next[field];
+			if (isRecord(held) && str(held.slug) === work) {
+				next = { ...next };
+				delete next[field];
 			}
 		}
-		if (Object.keys(moves).length > 0) {
-			next = rewriteEdges(next, file.type, moves, own && "oldSlug" in own ? own.newSlug : file.slug).node;
+		if (Object.keys(edgeMoves).length > 0) {
+			const rewritten = rewriteEdges(
+				next,
+				file.type,
+				edgeMoves,
+				own && "oldSlug" in own ? own.newSlug : file.slug,
+			);
+			next = rewritten.node;
+			for (const c of rewritten.conflicts) {
+				edgeConflicts.push({ at: c.slugs[0] ?? file.slug, slug: c.slugs[1] ?? "", reason: c.reason });
+			}
 		}
 		if (own && "oldSlug" in own && own.newSlug !== own.oldSlug) renamedNodes.set(own.newSlug, next);
 		else if (JSON.stringify(next) !== JSON.stringify(file.node)) planned.set(file.slug, next);
@@ -997,12 +1272,21 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 		// The node already there, with its own edges rewritten when they were.
 		const theirs: CacheNodeFile = { ...existing, node: planned.get(plan.newSlug) ?? existing.node };
 		const ours: CacheNodeFile = { ...existing, node: fixedNode };
-		const { winner } = elect([ours, theirs], false);
-		const merged = mergeNodes(winner, [winner === ours ? theirs : ours], plan.newSlug);
+		const winner = plan.keepTarget ? theirs : elect([ours, theirs], false).winner;
+		const merged = mergeNodes(winner, [winner === ours ? theirs : ours], plan.newSlug, (field, edgeSlug) => {
+			edgeConflicts.push({
+				at: `${plan.newSlug}.${field}`,
+				slug: edgeSlug,
+				reason: `edges to ${edgeSlug} carry different mbids in the two nodes merged: both kept`,
+			});
+		});
 		// Whoever wins the election, the identity just resolved is the work's: the stub that already stood at the
 		// target would otherwise keep (or lack) the year, the release type and the cover of its own.
-		for (const field of ["year", "release_type", "image_url", "image_source"] as const) {
-			if (fixedNode[field] !== undefined) merged[field] = fixedNode[field];
+		// A merge settled by hand (`keepTarget`) is a duplicate of the target: the target keeps all of its own.
+		if (!plan.keepTarget) {
+			for (const field of ["year", "release_type", "image_url", "image_source"] as const) {
+				if (fixedNode[field] !== undefined) merged[field] = fixedNode[field];
+			}
 		}
 		merged.artists = fixedNode.artists;
 		planned.set(plan.newSlug, merged);
@@ -1022,14 +1306,31 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 		const raw = JSON.parse(await readTextOrDefault(pendingPath, "{}")) as Record<string, PendingReverse[]>;
 		// A reverse edge awaiting a wrong neighbour's node, pointing at the old work, existed only because of the
 		// wrong identity: it is dropped, not re-pointed at the right work.
+		// A key this cleaning empties goes with it: an empty list would wait for a write that has nothing to apply.
 		const cleaned = Object.fromEntries(
-			Object.entries(raw).map(([key, list]) => [
-				key,
-				list.filter((entry) => !(wrongTo.get(key) ?? []).includes(entry.edge.slug)),
-			]),
+			Object.entries(raw).flatMap(([key, list]) => {
+				const wrong = (wrongTo.get(key) ?? []).flatMap((old) => [old, ...aliasesOf(old)]);
+				const kept = list.filter((entry) => !wrong.includes(entry.edge.slug));
+				return kept.length === 0 && list.length > 0 ? [] : [[key, kept]];
+			}),
 		);
-		pending = rewritePendingReverses(cleaned, new Map(Object.entries(moves)));
+		// Through `edgeMoves`: a waiting edge that names a bare slug would bring the duplicate back on its write.
+		pending = rewritePendingReverses(cleaned, new Map(Object.entries(edgeMoves)));
 		if (JSON.stringify(cleaned) !== JSON.stringify(raw)) pending.changed = true;
+		// Reverse edges waiting under a new slug are for a node that now exists: they are applied, as the scope
+		// migration does for a key that lands on a node (TRA-610). The ones the runtime does not emit stay queued.
+		for (const plan of plans) {
+			const waiting = plan.newSlug === plan.oldSlug ? undefined : pending.result[plan.newSlug];
+			const target = planned.get(plan.newSlug);
+			if (!waiting || !target) continue;
+			const entries = waiting.filter((entry) => isSafePendingEntry(plan.newSlug, entry));
+			if (entries.length === 0) continue;
+			planned.set(plan.newSlug, withReverses(target, entries, plan.newSlug));
+			const left = waiting.filter((entry) => !entries.includes(entry));
+			if (left.length > 0) pending.result[plan.newSlug] = left;
+			else delete pending.result[plan.newSlug];
+			pending.changed = true;
+		}
 	} catch (e) {
 		failed.push({ slug: "pending-reverses.json", reason: e instanceof Error ? e.message : String(e) });
 	}
@@ -1081,7 +1382,7 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 		Object.fromEntries(Object.entries(o).sort(([a], [b]) => compareLex(a, b)));
 	const bySlug = <T extends { slug: string }>(a: T, b: T): number => compareLex(a.slug, b.slug);
 	const manifest: FixManifest = {
-		migration: MIGRATION_NAME,
+		migration: options.migrationName ?? MIGRATION_NAME,
 		removed: [],
 		renamed: sortRecord(moves),
 		redirects: sortRecord(Object.keys(moves).length > 0 ? redirectsChanged : {}),
@@ -1092,6 +1393,7 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 			stripped: stripped.length,
 			skipped: skipped.length,
 			conflicts: conflicts.length,
+			edgeConflicts: edgeConflicts.length,
 			exempted: detection.exempted.length,
 			failed: failed.length,
 		},
@@ -1100,6 +1402,7 @@ export async function runFix(options: FixOptions): Promise<FixResult> {
 		stripped: stripped.map((p) => p.report).sort(bySlug),
 		skipped: skipped.sort(bySlug),
 		conflicts: conflicts.sort((a, b) => compareLex(a.slug, b.slug)),
+		edgeConflicts: edgeConflicts.sort((a, b) => compareLex(`${a.at}\n${a.slug}`, `${b.at}\n${b.slug}`)),
 		exempted: detection.exempted,
 		failed: failed.sort(bySlug),
 	};
@@ -1112,7 +1415,7 @@ export function formatSummary(result: FixResult, apply: boolean, manifestPath: s
 	const { manifest, written } = result;
 	const s = manifest.summary;
 	const lines = [
-		`${s.works} work(s): ${s.suspects} suspect, ${s.fixed} fixed, ${s.stripped} stripped, ${s.skipped} skipped, ${s.conflicts} conflict(s), ${s.exempted} article artist(s) exempted as relatives, ${s.failed} failed`,
+		`${s.works} work(s): ${s.suspects} suspect, ${s.fixed} fixed, ${s.stripped} stripped, ${s.skipped} skipped, ${s.conflicts} conflict(s), ${s.edgeConflicts} edge conflict(s), ${s.exempted} article artist(s) exempted as relatives, ${s.failed} failed`,
 		apply ? `${written.length} file(s) written` : "dry-run: nothing written",
 		`manifest: ${manifestPath}`,
 	];
@@ -1122,6 +1425,7 @@ export function formatSummary(result: FixResult, apply: boolean, manifestPath: s
 		lines.push(`stripped ${x.slug} (${x.reason}, article artist ${x.artist})`);
 	for (const x of manifest.skipped) lines.push(`skipped ${x.slug} (${x.reason}: ${x.artists.join(",")})`);
 	for (const x of manifest.conflicts) lines.push(`conflict ${x.slug} -> ${x.to} (${x.reason})`);
+	for (const x of manifest.edgeConflicts) lines.push(`edge conflict ${x.at} -> ${x.slug} (${x.reason})`);
 	for (const x of manifest.failed) lines.push(`failed ${x.slug}: ${x.reason}`);
 	return lines.join("\n");
 }

@@ -1,0 +1,514 @@
+{
+	"source": "MusicBrainz ws/2 read on 2026-10-24 (27 requests for the first 22 pairs, 9 more for the last four and the Ellington refusal; 1 req/s) and the repository cache",
+	"pairs": [
+		{
+			"id": "mark-ernestus/800-ndagga",
+			"kind": "release-group",
+			"artist": "artist:mark-ernestus",
+			"loser": {
+				"slug": "project:800-ndagga",
+				"name": "800% Ndagga (album)"
+			},
+			"survivor": {
+				"slug": "project:800-ndagga--mark-ernestus",
+				"name": "800% Ndagga",
+				"mbid": "65a686ad-40c1-4a48-a9ac-3fdaceff4003"
+			},
+			"evidence": "MusicBrainz has one release group of this title for the artist: 65a686ad (Album, 2013-05-17, credited to Mark Ernestus presents Jeri-Jeri). The \"(album)\" suffix was added by hand."
+		},
+		{
+			"id": "hailu-mergia/hailu-mergia-and-his-classical-instrument",
+			"kind": "release-group",
+			"artist": "artist:hailu-mergia",
+			"loser": {
+				"slug": "project:hailu-mergia-and-his-classical-instrument",
+				"name": "Hailu Mergia & His Classical Instrument"
+			},
+			"survivor": {
+				"slug": "project:hailu-mergia-and-his-classical-instrument-shemonmuanaye--hailu-mergia",
+				"name": "Hailu Mergia & His Classical Instrument: Shemonmuanaye",
+				"mbid": "fa3aba8d-cf8e-4030-8fc3-1e992d63d93e"
+			},
+			"evidence": "One release group for the artist whose title contains \"Classical Instrument\": fa3aba8d (Album, 1985); the entry is its title without the subtitle."
+		},
+		{
+			"id": "astor-piazzolla/la-camorra",
+			"kind": "release-group",
+			"artist": "artist:astor-piazzolla",
+			"loser": {
+				"slug": "project:la-camorra",
+				"name": "La Camorra"
+			},
+			"survivor": {
+				"slug": "project:la-camorra-la-soledad-de-la-provocacion-apasionada--astor-piazzolla",
+				"name": "La Camorra: La soledad de la provocación apasionada",
+				"mbid": "c272d1b4-93f6-38fc-bb85-ed51b1f84c36"
+			},
+			"evidence": "One release group for the artist whose title contains \"Camorra\": c272d1b4 (Album, 1989); the entry is its title without the subtitle."
+		},
+		{
+			"id": "the-lonely-island/popstar-never-stop-never-stopping",
+			"kind": "release-group",
+			"artist": "artist:the-lonely-island",
+			"loser": {
+				"slug": "project:popstar-never-stop-never-stopping",
+				"name": "Popstar: Never Stop Never Stopping"
+			},
+			"survivor": {
+				"slug": "project:popstar-never-stop-never-stopping-official-soundtrack--the-lonely-island",
+				"name": "Popstar: Never Stop Never Stopping: Official Soundtrack",
+				"mbid": "e7156518-00c6-4077-9ea0-6ef14549c344"
+			},
+			"evidence": "One release group for the artist whose title contains \"Popstar\": e7156518 (Album + Soundtrack, 2016-06-03); the entry is the film title without \"Official Soundtrack\"."
+		},
+		{
+			"id": "harold-budd/avalon-sutra-as-long-as-i-can-hold-my-breath--harold-budd",
+			"kind": "release-group",
+			"artist": "artist:harold-budd",
+			"loser": {
+				"slug": "project:avalon-sutra-as-long-as-i-can-hold-my-breath--harold-budd",
+				"name": "Avalon Sutra / As Long As I Can Hold My Breath"
+			},
+			"survivor": {
+				"slug": "project:avalon-sutra--harold-budd",
+				"name": "Avalon Sutra",
+				"mbid": "c5fe0b85-fbc8-3dec-9ea0-3d3aa70ba8a3"
+			},
+			"evidence": "The only Budd release group named Avalon Sutra is c5fe0b85 (Album, 2005-01-05); its release 5b771134 holds 14 tracks ending with \"As Long as I Can Hold My Breath\" plus a second disc \"As Long as I Can Hold My Breath (By Night)\"; MusicBrainz has no release group for the second half (search empty)."
+		},
+		{
+			"id": "thomas-koner/nunatak-gongamur-ram",
+			"kind": "release-group",
+			"artist": "artist:thomas-koner",
+			"loser": {
+				"slug": "project:nunatak-gongamur-ram",
+				"name": "Nunatak... Gongamur... Ram‎"
+			},
+			"survivor": {
+				"slug": "project:nunatak-gongamur--thomas-koner",
+				"name": "Nunatak Gongamur",
+				"mbid": "38e07f35-6617-3b46-8262-cbd377373b32"
+			},
+			"evidence": "The only Koner release group of this name is 38e07f35 (Album, 1990, Barooni NL); the entry's own node cites the album as \"Nunatak Gongamur\" (Wikipedia, RateYourMusic) and dates it 1990 on Barooni. The MusicBrainz tracks are untitled, so the title evidence is the node's citations."
+		},
+		{
+			"id": "ryuichi-sakamoto/merry-christmas-mr-lawrence",
+			"kind": "release-group",
+			"artist": "artist:ryuichi-sakamoto",
+			"loser": {
+				"slug": "project:merry-christmas-mr-lawrence",
+				"name": "Merry Christmas, Mr. Lawrence"
+			},
+			"survivor": {
+				"slug": "project:merry-christmas-mr-lawrence-furyo--ryuichi-sakamoto",
+				"name": "Merry Christmas, Mr. Lawrence/Furyo",
+				"mbid": "3870eb3e-3447-384e-8d8a-aeddab4ef00b"
+			},
+			"evidence": "Release group 3870eb3e (Album + Soundtrack, 1983-05) holds 6 releases titled exactly \"Merry Christmas, Mr. Lawrence\" (JP and US 1983). The other release groups of that name are singles from 2019 or later, credited to Sakamoto with another artist."
+		},
+		{
+			"id": "hikaru-utada/bad-mode",
+			"kind": "release-group",
+			"artist": "artist:hikaru-utada",
+			"loser": {
+				"slug": "project:bad-mode",
+				"name": "Bad Mode"
+			},
+			"survivor": {
+				"slug": "project:bad--hikaru-utada",
+				"name": "BADモード",
+				"mbid": "68cd3faf-6df2-451f-8e19-395269159076"
+			},
+			"evidence": "Release group 68cd3faf (Album, 2022-01-19) holds a release titled \"BAD Mode\"; the artist has no other release group of that name."
+		},
+		{
+			"id": "ayumi-hamasaki/a-song-for-xx",
+			"kind": "release-group",
+			"artist": "artist:ayumi-hamasaki",
+			"loser": {
+				"slug": "project:a-song-for-xx",
+				"name": "A Song for XX"
+			},
+			"survivor": {
+				"slug": "project:a-song-for--ayumi-hamasaki",
+				"name": "A Song for ××",
+				"mbid": "a662197c-7d65-3f5b-b6a0-e59de1ae2364"
+			},
+			"evidence": "The only release group \"A Song for\" of the artist is a662197c (Album, 1999-01-01), titled with two multiplication signs; \"XX\" is the ASCII spelling of the same title."
+		},
+		{
+			"id": "bigbang/bigbang-vol-1",
+			"kind": "release-group",
+			"artist": "artist:bigbang",
+			"loser": {
+				"slug": "project:bigbang-vol-1",
+				"name": "BigBang Vol. 1"
+			},
+			"survivor": {
+				"slug": "project:bigbang-vol-1-since-2007--bigbang",
+				"name": "BIGBANG VOL.1 SINCE 2007",
+				"mbid": "b4eee91a-479f-4c7e-aac4-f84e78d6238c"
+			},
+			"evidence": "Release group b4eee91a (Album, 2006-12-21) holds releases titled \"Bigbang, Vol. 1\" and \"Bigbang Vol.1\"."
+		},
+		{
+			"id": "kraftwerk/computerwelt--kraftwerk",
+			"kind": "release-group",
+			"artist": "artist:kraftwerk",
+			"loser": {
+				"slug": "project:computerwelt--kraftwerk",
+				"name": "Computerwelt",
+				"mbid": "2e58b620-cf80-3b07-a5bc-edabd69ba285"
+			},
+			"survivor": {
+				"slug": "project:computer-world--kraftwerk",
+				"name": "Computer World"
+			},
+			"evidence": "Release group 2e58b620 (Album, 1981) holds 21 releases titled \"Computer World\" (the 1981 French one too) and 8 \"Computerwelt\": one album. The English title is kept; its entry has the node and takes the mbid, year and type of the German entry."
+		},
+		{
+			"id": "kraftwerk/die-mensch-maschine--kraftwerk",
+			"kind": "release-group",
+			"artist": "artist:kraftwerk",
+			"loser": {
+				"slug": "project:die-mensch-maschine--kraftwerk",
+				"name": "Die Mensch·Maschine",
+				"mbid": "d147e89b-90ca-35b6-9f7b-3e34b8edf63f"
+			},
+			"survivor": {
+				"slug": "project:the-man-machine--kraftwerk",
+				"name": "The Man-Machine"
+			},
+			"evidence": "Release group d147e89b (Album, 1978-05) holds 16 releases titled \"The Man-Machine\" and 8 \"Die Mensch-Maschine\": one album. The English title is kept; its entry has the node and takes the mbid, year and type of the German entry."
+		},
+		{
+			"id": "kraftwerk/trans-europa-express--kraftwerk",
+			"kind": "release-group",
+			"artist": "artist:kraftwerk",
+			"loser": {
+				"slug": "project:trans-europa-express--kraftwerk",
+				"name": "Trans Europa Express",
+				"mbid": "33101a28-ae05-3a69-873c-684e336fe2df"
+			},
+			"survivor": {
+				"slug": "project:trans-europe-express",
+				"name": "Trans-Europe Express"
+			},
+			"evidence": "Release group 33101a28 (Album, 1977) holds releases titled \"Trans-Europe Express\" (8 and 4 with another hyphen) and \"Trans Europa Express\": one album. The English title is kept; its entry has the node and takes the mbid, year and type of the German entry."
+		},
+		{
+			"id": "ornette-coleman/something-else",
+			"kind": "release-group",
+			"artist": "artist:ornette-coleman",
+			"loser": {
+				"slug": "project:something-else",
+				"name": "Something Else!!!!"
+			},
+			"survivor": {
+				"slug": "project:something-else-the-music-of-ornette-coleman--ornette-coleman",
+				"name": "Something Else!!!! The Music of Ornette Coleman",
+				"mbid": "d47a1752-401e-3816-9bad-eddee69dfdb5"
+			},
+			"evidence": "One release group of the artist is called \"Something Else\": d47a1752 (Album, 1958); the other hit is a 2010 three-in-one compilation, not this album."
+		},
+		{
+			"id": "gary-numan/the-savage",
+			"kind": "release-group",
+			"artist": "artist:gary-numan",
+			"loser": {
+				"slug": "project:the-savage",
+				"name": "The Savage (Songs from a Broken World)"
+			},
+			"survivor": {
+				"slug": "project:savage-songs-from-a-broken-world--gary-numan",
+				"name": "Savage: Songs From a Broken World",
+				"mbid": "e98b92d7-4c39-4c9d-9e14-c179717017b5"
+			},
+			"evidence": "MusicBrainz, 2026-10-24: release group e98b92d7 (Album, 2017-09-15) is the artist's only studio release group with \"Savage\" in the title; the only other hit is 1647d4c7, the live album \"Savage (live at Brixton Academy)\" (Album + Live, 2018-11-09), which the entry's subtitle excludes."
+		},
+		{
+			"id": "jamie-principle/midnite-hour",
+			"kind": "release-group",
+			"artist": "artist:jamie-principle",
+			"loser": {
+				"slug": "project:midnite-hour",
+				"name": "Midnite Hour"
+			},
+			"survivor": {
+				"slug": "project:the-midnite-hour--jamie-principle",
+				"name": "The Midnite Hour",
+				"mbid": "d35a5dcc-c233-44fd-95a1-f58583fab3ed"
+			},
+			"evidence": "MusicBrainz, 2026-10-24: the artist has 16 release groups, all read; d35a5dcc \"The Midnite Hour\" (Album, 1992) is the only one with this title, and none is a single or EP called \"Midnite Hour\". The entry is the same title without its article. The artist's landmark_project follows."
+		},
+		{
+			"id": "ayumi-hamasaki/made-in-japan",
+			"kind": "release-group",
+			"artist": "artist:ayumi-hamasaki",
+			"redirect": false,
+			"loser": {
+				"slug": "project:made-in-japan",
+				"name": "Made in Japan"
+			},
+			"survivor": {
+				"slug": "project:m-a-de-in-japan--ayumi-hamasaki",
+				"name": "M(A)DE IN JAPAN",
+				"mbid": "05d3db93-f127-498c-a223-7490d49c86b0"
+			},
+			"evidence": "MusicBrainz, 2026-10-24: release group 05d3db93 (Album, 2016-06-29) is the artist's studio album; the only other hit for \"Japan\" is 11e59230, the tour live album \"ARENA TOUR 2016 A ~M(A)DE IN JAPAN~\" (Album + Live, 2016-12-21). NO REDIRECT: the bare slug project:made-in-japan is Deep Purple's 1972 live album, so only this artist's own entry is merged."
+		},
+		{
+			"id": "thomas-koner/nunatak-gongamur--barooni-edge",
+			"kind": "edge-only",
+			"artist": "artist:thomas-koner",
+			"loser": {
+				"slug": "project:nunatak-gongamur",
+				"name": "Nunatak Gongamur"
+			},
+			"survivor": {
+				"slug": "project:nunatak-gongamur--thomas-koner",
+				"name": "Nunatak Gongamur",
+				"mbid": "38e07f35-6617-3b46-8262-cbd377373b32"
+			},
+			"evidence": "MusicBrainz, 2026-10-24: release group 38e07f35 \"Nunatak Gongamur\" (Album, 1990, credited to Thomas Köner) holds the releases \"Nunatak Gongamur\" (1990, twice) and \"Nunatak\" (2010). The artist's entry was merged by the pair thomas-koner/nunatak-gongamur-ram; what is left is label:barooni's own bare edge to the same album, with no node and no redirect."
+		},
+		{
+			"id": "miles-davis/birth-of-the-cool",
+			"kind": "same-node",
+			"artist": "artist:miles-davis",
+			"loser": {
+				"slug": "project:birth-of-the-cool",
+				"name": "Birth of the Cool"
+			},
+			"survivor": {
+				"slug": "project:birth-of-the-cool--miles-davis",
+				"name": "Birth of the Cool",
+				"mbid": "903d5fe8-ab43-33b2-9411-6738af50de19"
+			},
+			"evidence": "Both entries carry release group 903d5fe8; data/slug-redirects.json already sends the first slug to the second."
+		},
+		{
+			"id": "monolake/interstate",
+			"kind": "same-node",
+			"artist": "artist:monolake",
+			"loser": {
+				"slug": "project:interstate",
+				"name": "Interstate"
+			},
+			"survivor": {
+				"slug": "project:interstate--monolake",
+				"name": "Interstate",
+				"mbid": "d08d33a0-a2e4-3863-aa99-a68cecc904b8"
+			},
+			"evidence": "Both entries carry release group d08d33a0; data/slug-redirects.json already sends the first slug to the second."
+		},
+		{
+			"id": "skee-mask/shred",
+			"kind": "same-node",
+			"artist": "artist:skee-mask",
+			"loser": {
+				"slug": "project:shred",
+				"name": "Shred"
+			},
+			"survivor": {
+				"slug": "project:shred--skee-mask",
+				"name": "Shred",
+				"mbid": "5cf5be34-1bd9-4283-97dd-ed0b2ae41b3a"
+			},
+			"evidence": "Both entries carry release group 5cf5be34; data/slug-redirects.json already sends the first slug to the second."
+		},
+		{
+			"id": "vladislav-delay/entain",
+			"kind": "same-node",
+			"artist": "artist:vladislav-delay",
+			"loser": {
+				"slug": "project:entain",
+				"name": "Entain"
+			},
+			"survivor": {
+				"slug": "project:entain--vladislav-delay",
+				"name": "Entain",
+				"mbid": "05dafeb5-5626-3541-9f45-152ce5b2269f"
+			},
+			"evidence": "Both entries carry release group 05dafeb5; data/slug-redirects.json already sends the first slug to the second."
+		},
+		{
+			"id": "philip-glass/einstein-on-the-beach",
+			"kind": "same-node",
+			"artist": "artist:philip-glass",
+			"loser": {
+				"slug": "project:einstein-on-the-beach",
+				"name": "Einstein on the Beach"
+			},
+			"survivor": {
+				"slug": "project:einstein-on-the-beach--philip-glass",
+				"name": "Einstein on the Beach"
+			},
+			"evidence": "Same title, neither entry has an mbid (MusicBrainz has three release groups of that name, 1979, 1993 and 2025: no way to pick one); data/slug-redirects.json already sends the first slug to the second, which has the node."
+		},
+		{
+			"id": "lisa-carbon/polyester",
+			"kind": "same-node",
+			"artist": "artist:lisa-carbon",
+			"loser": {
+				"slug": "project:polyester",
+				"name": "Polyester"
+			},
+			"survivor": {
+				"slug": "project:polyester--lisa-carbon",
+				"name": "Polyester"
+			},
+			"evidence": "Same title, neither entry has an mbid (one MusicBrainz release group, 180d7f48, 1994); data/slug-redirects.json already sends the first slug to the second, which has the node."
+		},
+		{
+			"id": "lustmord/stalker",
+			"kind": "same-node",
+			"artist": "artist:lustmord",
+			"loser": {
+				"slug": "project:stalker",
+				"name": "Stalker"
+			},
+			"survivor": {
+				"slug": "project:stalker--robert-rich",
+				"name": "Stalker"
+			},
+			"evidence": "Same title, neither entry has an mbid (one MusicBrainz release group, 7a0c813e, 1995, Robert Rich and Lustmord); data/slug-redirects.json already sends the first slug to the second, which has the node."
+		},
+		{
+			"id": "robert-rich/stalker",
+			"kind": "same-node",
+			"artist": "artist:robert-rich",
+			"loser": {
+				"slug": "project:stalker",
+				"name": "Stalker"
+			},
+			"survivor": {
+				"slug": "project:stalker--robert-rich",
+				"name": "Stalker"
+			},
+			"evidence": "Same as Lustmord's entry: same title, no mbid, redirect already in place, the second slug has the node."
+		}
+	],
+	"kept": [
+		{
+			"artist": "karlheinz-stockhausen",
+			"titles": [
+				"Gruppen",
+				"Gruppen / Carré"
+			],
+			"reason": "A work and the release that pairs it with another work (release group bc15eded)."
+		},
+		{
+			"artist": "karlheinz-stockhausen",
+			"titles": [
+				"Gesang der Jünglinge",
+				"Gesang der Jünglinge / Kontakte"
+			],
+			"reason": "The bare title is a work, the other a coupling release (2e7ae485); MusicBrainz also has a separate 2018 release group spelled \"Gesang der Jünlinge\"."
+		},
+		{
+			"artist": "karlheinz-stockhausen",
+			"titles": [
+				"Mantra",
+				"Mantra (pianos: ...)"
+			],
+			"reason": "Distinct recordings (release groups 936cbee3 and 9771a554)."
+		},
+		{
+			"artist": "charlie-parker",
+			"titles": [
+				"Charlie Parker with Strings"
+			],
+			"reason": "Three release groups of that title (Album 1949, EP 1952, Album 2020): no unique target."
+		},
+		{
+			"artist": "constance-demby",
+			"titles": [
+				"Novus Magnificat",
+				"Novus Magnificat: Through the Stargate"
+			],
+			"reason": "Two candidate release groups (1986 and the 2017 30th anniversary edition), the entry has no year."
+		},
+		{
+			"artist": "duke-ellington",
+			"titles": [
+				"Black, Brown and Beige",
+				"Black Brown and Beige: A Duke Ellington Tone Parallel to the American Negro"
+			],
+			"reason": "Not proven: the 1946 release group is not the 1958 album the entry refers to."
+		},
+		{
+			"artist": "duke-ellington",
+			"titles": [
+				"At Newport",
+				"Ellington at Newport"
+			],
+			"reason": "Not the same disc. 620dd228 \"At Newport\" (Album, 1956) is credited to Duke Ellington / Buck Clayton All-Stars: the Columbia CL 933 disc shared with Buck Clayton. \"Ellington at Newport\" is c7af2ab6 (Album + Live, 1956-09, Duke Ellington & His Orchestra), one of at least three Newport release groups of the artist. The entry without an mbid is for a future mbid on c7af2ab6, not for this merge."
+		},
+		{
+			"artist": "kode9",
+			"titles": [
+				"Sine of the Dub",
+				"Sine of the Dub / Stalker"
+			],
+			"reason": "Two distinct singles (TRA-612). The artist is not in the repository cache."
+		},
+		{
+			"artist": "bo-burnham",
+			"titles": [
+				"Inside",
+				"Inside (The Songs)"
+			],
+			"reason": "Distinct releases."
+		},
+		{
+			"artist": "1-2-3",
+			"titles": [
+				"Confetti",
+				"Confetti / Can't Bribe God"
+			],
+			"reason": "A work and a coupling single."
+		},
+		{
+			"artist": "frank-zappa",
+			"titles": [
+				"Joe's Garage",
+				"Joe's Garage: Act I",
+				"Joe's Garage: Acts II & III"
+			],
+			"reason": "The set is two separate releases."
+		},
+		{
+			"artist": "todd-rundgren",
+			"titles": [
+				"Runt",
+				"Runt: The Ballad of Todd Rundgren"
+			],
+			"reason": "Two release groups, each with its own mbid (1970, 1971)."
+		},
+		{
+			"artist": "ghetts",
+			"titles": [
+				"Ghetto Gospel",
+				"Ghetto Gospel: The New Testament"
+			],
+			"reason": "Two release groups, each with its own mbid."
+		},
+		{
+			"artist": "kevin-saunderson",
+			"titles": [
+				"Heavenly",
+				"Heavenly Revisited"
+			],
+			"reason": "A re-recording."
+		},
+		{
+			"artist": "the-beatles",
+			"titles": [
+				"The Beatles",
+				"The Beatles' Hits"
+			],
+			"reason": "Distinct releases."
+		}
+	]
+}

@@ -53,26 +53,10 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:hardcore-vibes",
-      "type": "project",
-      "name": "Hardcore Vibes (Dimitri K & D-Fence remix)",
-      "mbid": "a28d094d-3dfd-41a1-a69b-44a7761002fc",
-      "year": "2026",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:evolution",
       "type": "project",
       "name": "Evolution",
       "mbid": "5f2e4fff-9712-4156-812c-6dc02cfc8d0d",
-      "year": "2023",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:forever-young",
-      "type": "project",
-      "name": "Forever Young (Kaylene Sc@r Remix)",
-      "mbid": "4083d730-62ad-48e4-ad8b-8d48db27a261",
       "year": "2023",
       "releaseType": "single"
     },
@@ -157,35 +141,11 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:hardcore-vibes",
-      "type": "project",
-      "name": "Hardcore Vibes (The Viper's Mashup Mix)",
-      "mbid": "677dc332-4519-4996-8d25-0cd1724a965b",
-      "year": "2014",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:hardcore-vibes",
-      "type": "project",
-      "name": "Hardcore Vibes",
-      "mbid": "4f8b6fbc-458a-40d1-8b9e-49ffa697bfe8",
-      "year": "2009",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:rainbow-to-the-stars-2003",
       "type": "project",
       "name": "Rainbow to the Stars 2003",
       "mbid": "95959289-ce8d-3d63-8c90-9beb2ffc4b36",
       "year": "2003",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:hardcore-vibes",
-      "type": "project",
-      "name": "Hardcore Vibes",
-      "mbid": "a3deaa49-96d5-34fc-877e-c7ac4f3716b0",
-      "year": "2000",
       "releaseType": "single"
     },
     {
@@ -323,13 +283,6 @@
       "mbid": "d0017eb4-5c9e-3016-b5b1-cf910ad8c69e",
       "year": "1995",
       "releaseType": "single"
-    },
-    {
-      "slug": "project:rainbow-to-the-stars-2003",
-      "type": "project",
-      "name": "Rainbow to the Stars 2003 (Best)",
-      "mbid": "5056f467-495d-4d79-a6ce-696af7a1e504",
-      "releaseType": "album"
     },
     {
       "slug": "project:heaven",

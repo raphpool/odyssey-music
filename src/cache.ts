@@ -2,7 +2,13 @@ import { copyFile, mkdir, readFile, rename, unlink, writeFile } from "node:fs/pr
 import { dirname, join } from "node:path";
 import { isNotFoundError, NotFoundError, ValidationError } from "./errors.js";
 import { logger } from "./logger.js";
-import { isEmittedPendingReverse, reverseFor, reversibleFields } from "./reverse-edges.js";
+import {
+	isEmittedPendingReverse,
+	mergeReverseEdge,
+	reverseEdgeFor,
+	reverseFor,
+	reversibleFields,
+} from "./reverse-edges.js";
 import { nodePayloadSchema, readNodePayloadSchema } from "./schemas.js";
 import { isValidSlug, parseSlug } from "./slug.js";
 import type { EdgeRef, NodePayload, Slug } from "./types.js";
@@ -33,6 +39,11 @@ export interface CacheStats {
 interface CacheWriteDelta {
 	written: number;
 	revUpdates: number;
+	/**
+	 * Exact text commitLocked put on disk for the node, set once the file has landed. A rollback restores the
+	 * backup only while the file still holds this text (TRA-555); unset means the commit never landed.
+	 */
+	committedText?: string;
 }
 
 /**
@@ -445,7 +456,9 @@ export class NodeCache {
 		const validated = readNodePayloadSchema.parse(merged) as NodePayload;
 		const file = this.pathFor(validated.slug);
 		await mkdir(dirname(file), { recursive: true });
-		await atomicWriteJson(file, validated);
+		const text = jsonText(validated);
+		await atomicWriteText(file, text);
+		delta.committedText = text;
 		this.stats.written++;
 		delta.written++;
 		if (applicable.length) {
@@ -464,7 +477,8 @@ export class NodeCache {
 	 * pending for the node are merged like write() does.
 	 *
 	 * Errors from `fn` or from validation leave the file untouched; a failure after the write (reverse-edge
-	 * emission, pending flush) restores the previous file like replace(). Returns whether a write happened;
+	 * emission, pending flush) restores the previous file like replace(), unless the node was rewritten since
+	 * the commit (see rollbackFromBackup). Returns whether a write happened;
 	 * a missing node throws NotFoundError. `fn` runs while the lock is held: it must not call back into
 	 * this cache for the same slug (it would wait on itself).
 	 */
@@ -508,16 +522,7 @@ export class NodeCache {
 					await this.emitReverses(committed, delta);
 					await this.flushPending();
 				} catch (error) {
-					this.stats.written -= delta.written;
-					this.stats.revUpdates -= delta.revUpdates;
-					try {
-						await rename(backup, file);
-					} catch (rollbackError) {
-						throw new AggregateError(
-							[error, rollbackError],
-							`Failed to update ${slug} and restore its previous source file`,
-						);
-					}
+					await this.rollbackFromBackup(slug, backup, delta, "update", error);
 					throw error;
 				}
 				await unlink(backup).catch((error: unknown) => {
@@ -556,16 +561,7 @@ export class NodeCache {
 			try {
 				await this.writeParsed(parsed, delta);
 			} catch (error) {
-				this.stats.written -= delta.written;
-				this.stats.revUpdates -= delta.revUpdates;
-				try {
-					await rename(backup, file);
-				} catch (rollbackError) {
-					throw new AggregateError(
-						[error, rollbackError],
-						`Failed to replace ${parsed.slug} and restore its previous source file`,
-					);
-				}
+				await this.rollbackFromBackup(parsed.slug, backup, delta, "replace", error);
 				throw error;
 			}
 
@@ -582,16 +578,87 @@ export class NodeCache {
 		});
 	}
 
+	/**
+	 * Undoes update()/replace() after a failure that came once the node had been committed (reverse-edge
+	 * emission, pending flush), under the node's lock (TRA-555).
+	 *
+	 * 2026-10-24: this used to be a bare `rename(backup, file)` outside any lock. Another node's reverse-edge
+	 * emission writes this slug under `runLocked` only, so it could land between the commit and the rename,
+	 * and the rename then overwrote it silently. Now the restore waits for the lock and happens only if the
+	 * file still holds exactly what this operation committed; a node rewritten since keeps its content (the
+	 * failed operation then stays applied, and the skipped rollback is logged).
+	 *
+	 * Known limits, both consequences of comparing the file's text rather than counting writes:
+	 * - a rewrite made by the failing operation itself (a node listing its own slug through an asymmetric
+	 *   pair such as influences/influenced) is indistinguishable from a foreign one, so its rollback is skipped;
+	 * - a concurrent writer that produces exactly the committed text (an inverse edge, or an mbid, that the
+	 *   committed node already carries) leaves no trace, so the rollback still restores the backup and that
+	 *   writer's effect goes with it. Not a regression: the unlocked rollback lost it in every case.
+	 *
+	 * Called from the operation lock, never from inside `runLocked(slug)`, so taking the (non-reentrant) node
+	 * lock here cannot wait on itself. Throws only when the restore or its check fails (AggregateError with
+	 * the original error); the backup is then kept.
+	 */
+	private async rollbackFromBackup(
+		slug: Slug,
+		backup: string,
+		delta: CacheWriteDelta,
+		operation: "update" | "replace",
+		error: unknown,
+	): Promise<void> {
+		const file = this.pathFor(slug);
+		const failed = (cause: unknown) =>
+			new AggregateError(
+				[error, cause],
+				`Failed to ${operation} ${slug} and restore its previous source file`,
+			);
+		try {
+			await this.runLocked(slug, async () => {
+				const committed = delta.committedText;
+				if (committed === undefined) {
+					// The commit never landed, so this operation never replaced the file: leave it alone (restoring
+					// the backup could overwrite a write made since it was copied, which replace() does outside
+					// the lock).
+					this.stats.written -= delta.written;
+					this.stats.revUpdates -= delta.revUpdates;
+					await unlink(backup).catch(() => undefined);
+					return;
+				}
+				let current: string | undefined;
+				try {
+					current = await readFile(file, "utf8");
+				} catch (readError) {
+					// A vanished file counts as rewritten; any other failure leaves the question open.
+					if ((readError as NodeJS.ErrnoException).code !== "ENOENT") throw failed(readError);
+				}
+				if (current !== committed) {
+					log.warn("rollback skipped: the node was rewritten since its commit", {
+						slug,
+						operation,
+						error: error instanceof Error ? error.message : String(error),
+					});
+					await unlink(backup).catch(() => undefined);
+					return;
+				}
+				this.stats.written -= delta.written;
+				this.stats.revUpdates -= delta.revUpdates;
+				try {
+					await rename(backup, file);
+				} catch (rollbackError) {
+					throw failed(rollbackError);
+				}
+			});
+		} finally {
+			if (parseSlug(slug).type === "genre") {
+				// The rollback may wait for the lock, with the committed node readable meanwhile: a qid index
+				// built in that gap would memoize it. Invalidate again once the file is settled.
+				this.genreQidIndex = null;
+				this.genreQidIndexVersion++;
+			}
+		}
+	}
+
 	private async emitReverses(source: NodePayload, delta: CacheWriteDelta): Promise<void> {
-		// A genre source's qid rides along on the reverse edge it emits (TRA-18). So does a project's mbid, but
-		// only toward the artist's discography (TRA-623, 2026-10-19): that edge was counted "without mbid" by
-		// the audit ratchet although the project node already knew its id.
-		const sourceEdge: EdgeRef =
-			source.type === "genre" && source.qid
-				? { slug: source.slug, type: source.type, name: source.name, qid: source.qid }
-				: { slug: source.slug, type: source.type, name: source.name };
-		const discographyEdge: EdgeRef =
-			source.type === "project" && source.mbid ? { ...sourceEdge, mbid: source.mbid } : sourceEdge;
 		const fields = reversibleFields(source.type);
 		for (const field of fields) {
 			const value = (source as unknown as Record<string, unknown>)[field];
@@ -602,8 +669,10 @@ export class NodeCache {
 					: [];
 			const reverse = reverseFor(source.type, field);
 			if (!reverse) continue;
+			// The edge is built once per field by the helper shared with the backfill (TRA-624).
+			const edge = reverseEdgeFor(source, reverse.field);
+			if (!edge) continue;
 			for (const targetRef of refs) {
-				const edge = reverse.field === "discography" ? discographyEdge : sourceEdge;
 				await this.applyReverseToTarget(targetRef.slug, reverse.field, reverse.cardinality, edge);
 				this.stats.revUpdates++;
 				delta.revUpdates++;
@@ -623,7 +692,11 @@ export class NodeCache {
 				throw e;
 			});
 			if (existing) {
-				const updated = applySingleReverse(existing, { field, cardinality, edge: sourceEdge });
+				const updated = applySingleReverse(
+					existing,
+					{ field, cardinality, edge: sourceEdge },
+					mbidConflictLogger(target, field),
+				);
 				// `existing` may be a legacy node read tolerantly, `sourceEdge` comes from a node that
 				// write()/replace() validated strictly: re-validate with the read rule so adding a
 				// reverse edge never fails because of what the target already had (TRA-501).
@@ -655,19 +728,46 @@ function isPathSafeSlug(slug: Slug): boolean {
 function applyReverses(node: NodePayload, pendings: PendingReverse[]): NodePayload {
 	let cur = node;
 	for (const p of pendings) {
-		cur = applySingleReverse(cur, p);
+		cur = applySingleReverse(cur, p, mbidConflictLogger(node.slug, p.field));
 	}
 	return cur;
 }
 
+// An mbid already on the target's edge wins over the one a reverse carries: report the disagreement so a
+// wrong id on either side can be found, without touching either (TRA-624).
+function mbidConflictLogger(target: Slug, field: string): (kept: EdgeRef, incoming: EdgeRef) => void {
+	return (kept, incoming) =>
+		log.warn("reverse edge mbid differs from the one on the target: kept the existing one", {
+			target,
+			field,
+			slug: kept.slug,
+			kept: kept.mbid,
+			incoming: incoming.mbid,
+		});
+}
+
 // Exported for the reverse-edge backfill (TRA-486), which applies the same rule to raw nodes without going
 // through NodeCache.write (that would re-emit reverses of the reverses).
-export function applySingleReverse(node: NodePayload, p: PendingReverse): NodePayload {
+export function applySingleReverse(
+	node: NodePayload,
+	p: PendingReverse,
+	onMbidConflict?: (kept: EdgeRef, incoming: EdgeRef) => void,
+): NodePayload {
 	// Clone shallowly; nested edge arrays we deep-copy to avoid mutating callers.
 	const next = { ...node } as unknown as Record<string, unknown>;
 	if (p.cardinality === "list") {
 		const cur = Array.isArray(next[p.field]) ? ([...(next[p.field] as EdgeRef[])] as EdgeRef[]) : [];
-		if (!cur.some((e) => e.slug === p.edge.slug)) cur.push(p.edge);
+		const at = cur.findIndex((e) => e.slug === p.edge.slug);
+		const held = cur[at];
+		if (!held) {
+			cur.push(p.edge);
+		} else {
+			// TRA-624 (2026-10-24): an edge already there is enriched, never replaced. Rewriting a project
+			// with an mbid left `artist.discography` without it, so "discography without mbid" never went down.
+			const merged = mergeReverseEdge(held, p.edge);
+			cur[at] = merged.edge;
+			if (merged.mbidConflict) onMbidConflict?.(held, p.edge);
+		}
 		next[p.field] = cur;
 	} else {
 		// Singular: only set if currently empty (don't clobber an explicit value).
@@ -676,8 +776,16 @@ export function applySingleReverse(node: NodePayload, p: PendingReverse): NodePa
 	return next as unknown as NodePayload;
 }
 
-export async function atomicWriteJson(file: string, data: unknown): Promise<void> {
+function jsonText(data: unknown): string {
+	return `${JSON.stringify(data, null, 2)}\n`;
+}
+
+async function atomicWriteText(file: string, text: string): Promise<void> {
 	const tmp = `${file}.tmp-${process.pid}-${Math.random().toString(36).slice(2)}`;
-	await writeFile(tmp, `${JSON.stringify(data, null, 2)}\n`, "utf8");
+	await writeFile(tmp, text, "utf8");
 	await rename(tmp, file);
+}
+
+export async function atomicWriteJson(file: string, data: unknown): Promise<void> {
+	await atomicWriteText(file, jsonText(data));
 }

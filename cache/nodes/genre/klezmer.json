@@ -17,7 +17,14 @@
   "editorial_definition": "A genre of instrumental music derived from the traditional folk and dance music of Ashkenazi Jewish communities in Eastern Europe, historically performed by professional itinerant musicians at celebrations such as weddings.",
   "era": "18th century to present",
   "origin": "Eastern Europe",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:world-music",
+      "type": "genre",
+      "name": "World music",
+      "qid": "Q205049"
+    }
+  ],
   "subgenres": [],
   "related_genres": [],
   "key_artists": [

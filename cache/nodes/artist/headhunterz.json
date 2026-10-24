@@ -353,14 +353,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:to-be-me",
-      "type": "project",
-      "name": "To Be Me (Shilo edit)",
-      "mbid": "ab4b8bb2-dc05-4cef-91b1-c9fb1415095d",
-      "year": "2015",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:live-your-life",
       "type": "project",
       "name": "Live Your Life",
@@ -724,14 +716,6 @@
       "name": "Live Forever"
     }
   ],
-  "landmark_project": {
-    "slug": "project:live-forever",
-    "type": "project",
-    "name": "Live Forever",
-    "mbid": "30dd2206-166f-40f3-8bfd-232b0320b807",
-    "year": "2024",
-    "releaseType": "single"
-  },
   "reference_track": {
     "slug": "track:live-forever",
     "type": "track",

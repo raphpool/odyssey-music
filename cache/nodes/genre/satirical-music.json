@@ -53,6 +53,18 @@
       "type": "genre",
       "name": "Music hall",
       "qid": "Q940462"
+    },
+    {
+      "slug": "genre:comedy-hip-hop",
+      "type": "genre",
+      "name": "Comedy hip hop",
+      "qid": "Q602646"
+    },
+    {
+      "slug": "genre:comedy-rock",
+      "type": "genre",
+      "name": "Comedy rock",
+      "qid": "Q1391336"
     }
   ],
   "key_artists": [

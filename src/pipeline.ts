@@ -21,6 +21,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { GoogleGenAI, Type as GType, type Schema } from "@google/genai";
 import { z } from "zod";
+import { clearedPick, isRejectedPick } from "./cleared-landmarks.js";
 import { pipelineConfig, pricingConfig, scopedReleaseSlugsEnabled } from "./config.js";
 import {
 	DEFAULT_DISCOGRAPHY_CAP,
@@ -30,7 +31,8 @@ import {
 	selectReleases,
 	toDiscographyEdge,
 } from "./discography-policy.js";
-import { normalizeEditorialText } from "./editorial-text.js";
+import { dedupeNodeListEdges } from "./edge-dedupe.js";
+import { normalizeEditorialText, unescapeQuotes } from "./editorial-text.js";
 import { type GenreResolver, loadGenreResolver } from "./genre-identity.js";
 import type { GenreRegistry } from "./genre-registry.js";
 import {
@@ -747,6 +749,8 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	const draft = await generateNodeDraft(input, deps, research, log);
 	const node = canonicalizeDraft(draft.raw, input, research.corpus, research.allowedUrls, log);
 	const enrichment = await enrichNode(node, input, log, deps.genreRegistry, deps.artistByMbid);
+	// The enrichment adds and rewrites list edges (discography, labels, collaborators): same invariant (TRA-557).
+	dropDuplicateListEdges(node as Record<string, unknown>, log);
 	// MusicBrainz just rewrote discography: the picks made in canonicalizeDraft are checked again against the
 	// lists that will actually be written (TRA-470).
 	if (input.type === "artist") enforceArtistChoices(node as Record<string, unknown>, log);
@@ -916,6 +920,66 @@ function confirmsHint(resolved: string, hint: string | undefined): boolean {
 	return hint === undefined || hint.toLowerCase() === resolved.toLowerCase();
 }
 
+/**
+ * TRA-545, TRA-680: the mbid whose MusicBrainz metadata may steer the web search of a node. A trusted caller's
+ * mbid does. A client's one (`mbidIsClientHint`) does only once the server's own resolution lands on it, the
+ * rule that decides whether the node carries it (TRA-538, TRA-546): until then it may designate another entity,
+ * and pinning the query on that entity's artists, album, year, country or disambiguation pulls the editorial
+ * text toward it under the requested slug. 2026-10-15 symptom (TRA-538 probe): `track:garbage--rohff`, created
+ * from the mbid of "Le Bitume", was searched with "Rohff Le Bitume". An unavailable resolution counts as not
+ * confirmed.
+ */
+async function mbidThatMaySteerSearch(input: PipelineInput, log: PipelineLog): Promise<string | undefined> {
+	if (!input.mbid) return undefined;
+	if (input.mbidIsClientHint !== true) return input.mbid;
+	try {
+		if (await resolutionConfirmsHint(input, input.mbid)) return input.mbid;
+		log(
+			`[pipeline] client mbid hint ${input.mbid} not used to steer the search (MB resolution did not confirm it)`,
+		);
+		return undefined;
+	} catch (e) {
+		const msg = e instanceof Error ? e.message : String(e);
+		log(
+			`[pipeline] client mbid hint not used to steer the search (MB resolution failed): ${msg.slice(0, 100)}`,
+		);
+		return undefined;
+	}
+}
+
+/**
+ * Does the server's own resolution of the requested entity land on `hint`? Works resolve by title + credit, an
+ * artist by name, a label by name and then by the name of the record found (TRA-546), each as the node's own
+ * mbid does. One difference for an artist: the enrichment also feeds the draft's `origin` to the resolution to
+ * choose among homonyms, and the draft does not exist before the search ran. Here the resolution gets the
+ * disambiguator only. Several homonyms the origin alone would separate leave the hint unconfirmed (the query goes
+ * out unpinned, the safe side); a lone exact-name candidate is confirmed, though the enrichment may still refuse
+ * it later when the draft's origin contradicts MB's context (TRA-463). The node's own mbid is decided there, so
+ * in that narrow case the query was pinned on an artist the node does not get. Closing it needs the confirmation
+ * computed once after the draft, which the search precedes: out of this ticket's scope.
+ */
+async function resolutionConfirmsHint(input: PipelineInput, hint: string): Promise<boolean> {
+	if (input.type === "track" || input.type === "project") {
+		const identity =
+			input.type === "track"
+				? await resolveRecording(input.name, input.artist)
+				: await resolveReleaseGroup(input.name, input.artist);
+		return identity !== null && confirmsHint(identity.mbid, hint);
+	}
+	if (input.type === "artist") {
+		const { artist } = await resolveArtistDetailed(
+			input.name,
+			input.disambiguator ? { disambiguator: input.disambiguator } : {},
+		);
+		return artist !== null && confirmsHint(artist.mbid, hint);
+	}
+	if (input.type === "label") {
+		const found = await findLabelMbidByName(input.name, input.disambiguator);
+		return found !== null && confirmsHint(found, hint) && (await labelIsNamed(found, input.name));
+	}
+	return false;
+}
+
 /** TRA-546: does MusicBrainz's own record for this label carry the requested name (same slug body)? */
 async function labelIsNamed(mbid: string, name: string): Promise<boolean> {
 	const entity = await fetchLabelEntityMb(mbid);
@@ -928,6 +992,9 @@ async function researchTarget(
 	log: PipelineLog,
 ): Promise<ResearchResult> {
 	let queryHint = "";
+	// The mbid whose MB metadata may pin the query below: a trusted caller's, or a client's once the server's own
+	// resolution confirmed it (TRA-545 works, TRA-680 artists and labels). Genres carry none.
+	const steeringMbid = input.type === "genre" ? undefined : await mbidThatMaySteerSearch(input, log);
 	// Disambiguation for artist nodes (TRA-XXX, 2026-09-17): researchTarget only pinned
 	// track/project/label searches to the MBID's disambiguation + country before this fix —
 	// artist searches went out by name alone. A homonym (e.g. "Tracy Onne", MB-tagged as a
@@ -935,9 +1002,9 @@ async function researchTarget(
 	// country singer) and the LLM happily wrote a biography for the wrong person under the
 	// requested slug. MB fields are third-party data (CLAUDE.md: validate before use) — keep
 	// only strings, truncated, and treat lookup failure as non-fatal like the other blocks.
-	if (input.mbid && input.type === "artist") {
+	if (steeringMbid && input.type === "artist") {
 		try {
-			const ent = await fetchArtistEntityMb(input.mbid);
+			const ent = await fetchArtistEntityMb(steeringMbid);
 			if (ent) {
 				const parts: string[] = [];
 				if (ent.disambiguation) parts.push(ent.disambiguation.slice(0, 80));
@@ -949,9 +1016,9 @@ async function researchTarget(
 			// non-fatal
 		}
 	}
-	if (input.mbid && input.type === "track") {
+	if (steeringMbid && input.type === "track") {
 		try {
-			const meta = await fetchTrackMetaMb(input.mbid);
+			const meta = await fetchTrackMetaMb(steeringMbid);
 			const parts: string[] = [];
 			if (meta.artists.length > 0) parts.push(meta.artists.map((a) => a.name).join(" "));
 			if (meta.project) parts.push(meta.project.name);
@@ -966,9 +1033,9 @@ async function researchTarget(
 	// wrong release). With MBID we can pull artist credit + year from MB and pin the
 	// search to the exact release-group the user clicked. mbFetch memoizes so the later
 	// fetchProjectMetaMb call in the enrichment step costs nothing extra.
-	if (input.mbid && input.type === "project") {
+	if (steeringMbid && input.type === "project") {
 		try {
-			const meta = await fetchProjectMetaMb(input.mbid);
+			const meta = await fetchProjectMetaMb(steeringMbid);
 			const parts: string[] = [];
 			if (meta.artists.length > 0) parts.push(meta.artists.map((a) => a.name).join(" "));
 			if (meta.year) parts.push(meta.year);
@@ -984,9 +1051,9 @@ async function researchTarget(
 	// US/UK Columbia pair; founded-year separates Virgin Records (1972) from later
 	// imprints; the disambig string is MB editors' free-text qualifier ("major label
 	// founded 1888" etc.) and is usually the highest-signal token.
-	if (input.mbid && input.type === "label") {
+	if (steeringMbid && input.type === "label") {
 		try {
-			const ent = await fetchLabelEntityMb(input.mbid);
+			const ent = await fetchLabelEntityMb(steeringMbid);
 			if (ent) {
 				const parts: string[] = [];
 				if (ent.country) parts.push(ent.country);
@@ -1315,6 +1382,8 @@ async function enrichNode(
 						// The policy never reads the clock itself (TRA-628): the unrated cut spares the releases
 						// of this year and last, which have not had time to collect votes.
 						currentYear: new Date().getFullYear(),
+						// And a release group announced for later is not part of the discography yet (TRA-654).
+						currentDate: new Date().toISOString().slice(0, 10),
 					};
 					const { kept, excluded } = selectReleases(releases, policy);
 					// When nothing can be scoped the draft's own (already scoped) list is kept.
@@ -1876,7 +1945,10 @@ function canonicalizeDraft(
 			if (seen.has(url)) continue;
 			seen.add(url);
 			const entry: Citation = { url };
-			if (typeof o.title === "string" && o.title.trim()) entry.title = o.title.trim();
+			// The title is model output like the prose: the double escaping of TRA-458 hit its quotation marks too
+			// (2026-10, TRA-687: two cached titles printed `\"`). Only the quote rule applies, a title is no prose.
+			const title = typeof o.title === "string" ? unescapeQuotes(o.title).trim() : "";
+			if (title) entry.title = title;
 			cits.push(entry);
 		}
 	}
@@ -1918,9 +1990,28 @@ function canonicalizeDraft(
 			else delete next[k];
 		}
 	}
+	// One edge per slug in a list, before the picks are compared with it (TRA-557).
+	dropDuplicateListEdges(next, log);
 	// Last, once the lists are normalized: the picks are compared with what will be written (TRA-470).
 	if (input.type === "artist") enforceArtistChoices(next, log);
 	return next;
+}
+
+/**
+ * Keeps one edge per slug in every list of a node (src/edge-dedupe.ts, TRA-557). Two entries sharing a slug are
+ * one page printed twice: the cache held 173 of them in 83 nodes (a single, its remixes and the album of the
+ * same title; a track and its "(dub reprise)"), because nothing compared the entries of a list with each other
+ * once the slug is computed. Mutates `node`; idempotent. The pipeline does not read the target nodes, so the
+ * first criterion of the rule (the entry whose mbid is the target node's, `TargetMbids`) is left to the migration,
+ * which sees every node of the union.
+ */
+function dropDuplicateListEdges(node: Record<string, unknown>, log: PipelineLog): void {
+	const where = typeof node.slug === "string" ? node.slug : String(node.type);
+	for (const { field, removals } of dedupeNodeListEdges(node)) {
+		for (const r of removals) {
+			log(`[pipeline] duplicate edge dropped: ${r.reason} (${where}.${field} -> ${r.slug})`);
+		}
+	}
 }
 
 // Singular artist picks and the list each must come from (plan graph-integrity, decision 7).
@@ -1958,6 +2049,16 @@ export function enforceArtistChoices(
 		}
 		const pick = slugOf(node[field]);
 		const member = pick === undefined ? undefined : entries.find((e) => slugOf(e) === pick);
+		// 2026-10-24 (TRA-674): TRA-605 emptied some picks on purpose (they were wrong). A missing pick is
+		// what the fallback below fills with list[0], the most recent entry, so those pairs would come back
+		// on the next regeneration of the card. They stay empty unless the model picks ANOTHER member.
+		const cleared = clearedPick(node.slug, field);
+		if (cleared !== undefined && (member === undefined || isRejectedPick(cleared, pick))) {
+			if (node[field] !== undefined)
+				log(`[pipeline] ${field} cleared on purpose, dropped (${where}: ${pick ?? "unreadable pick"})`);
+			delete node[field];
+			continue;
+		}
 		if (member !== undefined) {
 			node[field] = { ...(member as object) };
 			continue;

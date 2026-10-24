@@ -17,7 +17,14 @@
   "editorial_definition": "A form of electroacoustic music designed for loudspeaker playback where the sound source is hidden, encouraging a focus on the sonic properties of the sound rather than its origins.",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:musique-concrete",
+      "type": "genre",
+      "name": "Musique Concrète",
+      "qid": "Q823560"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:pierre-schaeffer",

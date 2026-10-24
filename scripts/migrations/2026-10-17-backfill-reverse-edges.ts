@@ -25,7 +25,10 @@
  *
  * Rules:
  * - Dry-run by default; `--apply` writes. Idempotent: a second run plans nothing (written === 0).
- * - Only additions: an existing edge is never removed or modified. Every added edge points at a node in the
+ * - The edge it adds is built by `reverseEdgeFor` (src/reverse-edges.ts), the builder NodeCache uses at runtime
+ *   (TRA-624, 2026-10-24): same slug, type, name, primary credit and, toward `artist.discography`, project mbid.
+ * - Only additions: an existing edge is never removed or modified (the runtime enriches an existing edge with
+ *   a missing mbid when the project is rewritten; this script does not). Every added edge points at a node in the
  *   cache; a reference to a node that is not cached goes to pending-reverses.json (as NodeCache does), once,
  *   and only for these four pairs, so a pending entry is always a list entry on an artist or a label.
  * - A reference of the wrong type, or a target whose field holds a malformed value, is never written: it is
@@ -59,9 +62,10 @@ import { pathToFileURL } from "node:url";
 import { z } from "zod";
 import { applySingleReverse, atomicWriteJson, type PendingReverse } from "../../src/cache.js";
 import { EDGE_FIELDS_BY_TYPE, type NodeType, REVERSE_EDGE_PAIRS } from "../../src/node-spec.js";
+import { reverseEdgeFor } from "../../src/reverse-edges.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
 import { isReadableSlug, parseSlug } from "../../src/slug.js";
-import type { EdgeRef, NodePayload } from "../../src/types.js";
+import type { NodePayload } from "../../src/types.js";
 import {
 	type CacheNodeFile,
 	isRecord,
@@ -209,18 +213,6 @@ function nodeTypeOfTarget(sourceType: NodeType, field: string): NodeType {
 	return spec?.targets[0] ?? sourceType;
 }
 
-/** The edge a source node becomes on the target: its slug, type and name, plus the primary credit of a work. */
-function sourceEdgeOf(source: CacheNodeFile): EdgeRef | null {
-	const { node } = source;
-	if (typeof node.name !== "string" || node.name === "") return null;
-	const edge: EdgeRef = { slug: source.slug as EdgeRef["slug"], type: source.type, name: node.name };
-	if (source.type === "project" || source.type === "track") {
-		const first = refsOf(node.artists)[0];
-		if (first && typeof first.name === "string" && first.name !== "") edge.artist = first.name;
-	}
-	return edge;
-}
-
 /** Pure plan: what to write and what to report. Does not touch the disk. */
 export function planBackfill(nodes: readonly CacheNodeFile[], currentPending: PendingFile): Plan {
 	const bySlug = new Map(nodes.map((n) => [n.slug, n]));
@@ -234,9 +226,13 @@ export function planBackfill(nodes: readonly CacheNodeFile[], currentPending: Pe
 	const nextPending: PendingFile = structuredClone(currentPending);
 
 	for (const source of nodes) {
-		const sourceEdge = sourceEdgeOf(source);
 		for (const { field, targetType, reverseField, key } of SAFE_DIRECTIONS) {
 			if (SAFE_DIRECTIONS_SOURCE.get(key) !== source.type) continue;
+			// Built by the helper the runtime uses (TRA-624): same edge for the same pair, mbid included.
+			const sourceEdge = reverseEdgeFor(
+				{ ...source.node, slug: source.slug, type: source.type },
+				reverseField,
+			);
 			const refs = refsOf(source.node[field]);
 			if (refs.length > 0 && !sourceEdge) {
 				errors.push(`${source.slug}: no name, cannot build a reverse edge from it`);
@@ -389,9 +385,13 @@ export interface CliArgs {
 
 /**
  * `<cache-dir> [--apply] [--manifest p] [--data-dir d]`; null (exit 2) on anything else. `--data-dir` is the
- * migration channel's and is ignored (TRA-488).
+ * migration channel's and is ignored (TRA-488). The guarded successor (TRA-564) shares the parser and only
+ * changes the default manifest path.
  */
-export function parseCliArgs(argv: readonly string[]): CliArgs | null {
+export function parseCliArgs(
+	argv: readonly string[],
+	defaultManifestPath: string = DEFAULT_MANIFEST_PATH,
+): CliArgs | null {
 	const cacheDir = argv[0];
 	if (!cacheDir || cacheDir.startsWith("-")) return null;
 	let apply = false;
@@ -410,7 +410,7 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 			else dataDirSeen = true;
 		} else return null;
 	}
-	return { cacheDir, apply, manifestPath: manifestPath ?? DEFAULT_MANIFEST_PATH };
+	return { cacheDir, apply, manifestPath: manifestPath ?? defaultManifestPath };
 }
 
 async function main(): Promise<void> {

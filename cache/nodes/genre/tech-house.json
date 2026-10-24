@@ -63,6 +63,12 @@
       "type": "genre",
       "name": "Progressive House",
       "qid": "Q915152"
+    },
+    {
+      "slug": "genre:electro-house",
+      "type": "genre",
+      "name": "Electro House",
+      "qid": "Q627906"
     }
   ],
   "key_artists": [
