@@ -26,7 +26,7 @@ vi.hoisted(() => {
 
 interface Fixture {
 	artist: { mbid: string; name: string };
-	"release-groups": { "primary-type"?: string }[];
+	"release-groups": { id?: string; "primary-type"?: string; rating?: unknown }[];
 }
 
 const fixtures = new Map<string, Fixture>();
@@ -38,6 +38,15 @@ function fixtureOf(slug: string): Fixture {
 		fixtures.set(slug, fixture);
 	}
 	return fixture;
+}
+
+// The fixture as MusicBrainz would answer if users had voted for one release group (TRA-653).
+function withVotes(fixture: Fixture, id: string, votes: number): Fixture {
+	const groups = fixture["release-groups"].map((g) =>
+		g.id === id ? { ...g, rating: { "votes-count": votes, value: 4 } } : g,
+	);
+	expect(groups.find((g) => g.id === id)).toBeDefined();
+	return { ...fixture, "release-groups": groups };
 }
 
 // What the browse answers for one primary type: the three requests of fetchArtistDiscographyMb partition the list.
@@ -74,8 +83,8 @@ async function replay(
 	artist: string,
 	entry: EdgeRef,
 	nodeMbid?: string,
+	fixture: Fixture = fixtureOf(artist),
 ): Promise<MergeResult & { entryAfter: EdgeRef | undefined }> {
-	const fixture = fixtureOf(artist);
 	vi.stubGlobal("fetch", browseStub(fixture));
 	const { releases, unavailable } = await fetchArtistDiscographyMb(fixture.artist.mbid, {
 		priority: "background",
@@ -103,8 +112,9 @@ async function replay(
 }
 
 describe("discography policy v6 (TRA-649)", () => {
-	it("is version 6: a manifest decided by v5 is not replayed", () => {
-		expect(DISCOGRAPHY_POLICY_VERSION).toBe(6);
+	// TRA-653 changed what v6 decides for a voted classical credit: 7 replays the manifests decided by v6.
+	it("is version 7: a manifest decided by v6 is not replayed", () => {
+		expect(DISCOGRAPHY_POLICY_VERSION).toBe(7);
 	});
 
 	// The reduced lists must keep the guard under test in play: an artist that MusicBrainz rates (10 voted release
@@ -291,6 +301,42 @@ describe("discography policy v6 (TRA-649)", () => {
 			expect(result.posed).toEqual([]);
 			expect(result.ambiguous).toEqual([{ slug, reason: "credit" }]);
 			expect(result.entryAfter?.mbid).toBeUndefined();
+		});
+
+		// TRA-653. What closes the 2013 recording must be its credits, not the lack of a vote: MusicBrainz users can
+		// vote for it any day, and a pose is definitive. "Duke Ellington; Buffalo Philharmonic, JoAnn Falletta".
+		describe("Duke Ellington, Black, Brown and Beige: the 2013 recording gets votes (TRA-653)", () => {
+			const BBB_2013 = "a6015061-b98e-439a-9de1-51ee60f7f14e";
+			const slug = "project:black-brown-and-beige";
+
+			it.each([1, 3, 40])("stays `credit` with %i vote(s)", async (votes) => {
+				const entry = entryOf(slug, "Black, Brown and Beige");
+				const voted = withVotes(fixtureOf("duke-ellington"), BBB_2013, votes);
+
+				const result = await replay("duke-ellington", entry, undefined, voted);
+
+				expect(result.posed).toEqual([]);
+				expect(result.ambiguous).toEqual([{ slug, reason: "credit" }]);
+				expect(result.entryAfter?.mbid).toBeUndefined();
+			});
+
+			it("stays `credit` for an entry that states the year and type of the recording", async () => {
+				const entry = entryOf(slug, "Black, Brown and Beige", { year: "2013", releaseType: "album" });
+				const voted = withVotes(fixtureOf("duke-ellington"), BBB_2013, 2);
+
+				const result = await replay("duke-ellington", entry, undefined, voted);
+
+				expect(result.posed).toEqual([]);
+				expect(result.ambiguous).toEqual([{ slug, reason: "credit" }]);
+			});
+
+			it("the fixture carries the ';' joinphrase the rule reads", async () => {
+				const fixture = fixtureOf("duke-ellington");
+				vi.stubGlobal("fetch", browseStub(fixture));
+				const { releases } = await fetchArtistDiscographyMb(fixture.artist.mbid, { priority: "background" });
+				const bbb = releases.find((r) => r.mbid === BBB_2013);
+				expect(bbb?.artistCredits.map((c) => c.joinphrase)).toEqual(["; ", ", ", undefined]);
+			});
 		});
 
 		it("Ryuichi Sakamoto, Vrioon: the node holds the 2002 album, the only candidate is the 2022 reMASTER", async () => {
