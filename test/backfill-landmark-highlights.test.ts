@@ -18,6 +18,7 @@ import {
 	stripPhrases,
 	yearOf,
 } from "../scripts/migrations/2026-10-19-backfill-landmark-highlights.js";
+import { type ClearedField, loadClearedLandmarks } from "../src/cleared-landmarks.js";
 import { parseSlug } from "../src/slug.js";
 import type { ArtistNode, EdgeRef, NodePayload } from "../src/types.js";
 import { artistNode, edge, genreNode, projectNode, trackNode } from "./images/helpers.js";
@@ -1532,5 +1533,72 @@ describe("run contract", () => {
 		expect(parseCliArgs(["c", "--manifest"])).toBeNull();
 		expect(parseCliArgs(["c", "--unknown"])).toBeNull();
 		expect(parseCliArgs([])).toBeNull();
+	});
+});
+
+// TRA-674: a field emptied on purpose by TRA-605 (data/cleared-landmarks.json) is exactly what this backfill
+// fills, so a replay would write the bad picks back (5 of the 7, verified by a dry-run on 2026-10-24).
+describe("cleared pairs are never refilled (TRA-674)", () => {
+	const cleared = [...loadClearedLandmarks()];
+	const split = (key: string): { artist: string; field: ClearedField } => {
+		const dot = key.lastIndexOf(".");
+		return { artist: key.slice(0, dot), field: key.slice(dot + 1) as ClearedField };
+	};
+
+	/**
+	 * The cleared artist as TRA-605 left it: the field absent, its list holding the rejected pick FIRST (the most
+	 * recent entry, which the backfill's tie rule would take) and one more entry. Every work is cached and
+	 * credits the artist, so both are eligible and only the guard can keep the field empty.
+	 */
+	async function putCleared(key: string, rejected: string): Promise<string> {
+		const { artist, field } = split(key);
+		const body = artist.slice("artist:".length);
+		const type = field === "landmark_project" ? "project" : "track";
+		const listName = field === "landmark_project" ? "discography" : "notable_tracks";
+		const list: EdgeRef[] = [
+			edge(type, rejected.slice(type.length + 1), "Rejected"),
+			edge(type, `other--${body}`, "Other"),
+		];
+		await put(artistNode(body, body, { [listName]: list }));
+		for (const e of list) {
+			const credit = [edge("artist", body, body)];
+			const slug = e.slug.slice(type.length + 1);
+			await put(
+				type === "project"
+					? projectNode(slug, e.name, { artists: credit })
+					: trackNode(slug, e.name, { artists: credit }),
+			);
+		}
+		return readFile(pathOf(cacheDir, artist), "utf8");
+	}
+
+	it.each(cleared)("%s stays empty on a replay and is no pick", async (key, entry) => {
+		const { artist, field } = split(key);
+		const before = await putCleared(key, entry.rejected);
+
+		const result = await run();
+
+		expect(result.exitCode).toBe(0);
+		expect(await readFile(pathOf(cacheDir, artist), "utf8")).toBe(before);
+		expect(result.written).toEqual([]);
+		expect((await read(artist))[field]).toBeUndefined();
+		expect((await manifestOf()).picks).toEqual([]);
+	});
+
+	it("still fills the artist's OTHER field, and an artist that is not on the list", async () => {
+		// artist:headhunterz is cleared on landmark_project only: its reference_track is not ours to withhold.
+		const tracks: EdgeRef[] = [edge("track", "t1--headhunterz", "t1")];
+		await put(artistNode("headhunterz", "Headhunterz", { notable_tracks: tracks }));
+		await put(
+			trackNode("t1--headhunterz", "t1", { artists: [edge("artist", "headhunterz", "Headhunterz")] }),
+		);
+		const albums: EdgeRef[] = [edge("project", "a1--roni", "a1"), edge("project", "a2--roni", "a2")];
+		await put(artistNode("roni", "Roni", { discography: albums }));
+		for (const e of albums) await put(album(e.slug.slice("project:".length), "roni"));
+
+		await run();
+
+		expect((await read("artist:headhunterz")).reference_track).toEqual(tracks[0]);
+		expect((await read("artist:roni")).landmark_project).toBeDefined();
 	});
 });
