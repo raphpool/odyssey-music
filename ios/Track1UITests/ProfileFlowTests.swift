@@ -18,7 +18,7 @@ final class ProfileFlowTests: XCTestCase {
 		XCTAssertTrue(start.waitForExistence(timeout: 10))
 		XCTAssertFalse(app.tabBars.firstMatch.exists)
 		UITestFlows.screenshot(named: "1.1", in: self)
-		start.tap()
+		UITestFlows.startOnboarding(app)
 
 		// 1.2: every card is closed, nothing chosen, nothing to continue with.
 		let continueGenres = app.buttons["onboarding-genres-continue"]
@@ -69,7 +69,7 @@ final class ProfileFlowTests: XCTestCase {
 	func testTheBackGestureToWelcomeKeepsTheSelection() {
 		let app = UITestFlows.launch(catalog: Self.taxonomyCatalog)
 		UITestFlows.declineConsent(app)
-		UITestFlows.tapWhenReady(app.buttons["onboarding-start"])
+		UITestFlows.startOnboarding(app)
 		tapCard("family-0", in: app)
 		let chip = element(app, "subgenre-chip-local:genre-0a")
 		UITestFlows.tapWhenReady(app.buttons["subgenre-chip-local:genre-0a"])
@@ -84,7 +84,7 @@ final class ProfileFlowTests: XCTestCase {
 
 		let start = app.buttons["onboarding-start"]
 		XCTAssertTrue(start.waitForExistence(timeout: 10))
-		start.tap()
+		UITestFlows.startOnboarding(app)
 		// The card is closed again, and still counts the genre that was ticked.
 		let family0 = card("family-0", in: app)
 		XCTAssertTrue(family0.waitForExistence(timeout: 10))
@@ -106,7 +106,7 @@ final class ProfileFlowTests: XCTestCase {
 	func testSelectAllTogglesEverySubgenreOfTheCardBothWays() {
 		let app = UITestFlows.launch(catalog: Self.taxonomyCatalog)
 		UITestFlows.declineConsent(app)
-		UITestFlows.tapWhenReady(app.buttons["onboarding-start"])
+		UITestFlows.startOnboarding(app)
 		let bar = app.buttons["onboarding-genres-continue"]
 		let family0 = card("family-0", in: app)
 		let all = app.buttons["select-all-family-0"]
@@ -158,7 +158,7 @@ final class ProfileFlowTests: XCTestCase {
 	func testCardsOpenTogetherAndKeepTheirSelectionWhenCollapsed() {
 		let app = UITestFlows.launch(catalog: Self.taxonomyCatalog)
 		UITestFlows.declineConsent(app)
-		UITestFlows.tapWhenReady(app.buttons["onboarding-start"])
+		UITestFlows.startOnboarding(app)
 		let bar = app.buttons["onboarding-genres-continue"]
 		let family0 = card("family-0", in: app)
 		let family1 = card("family-1", in: app)
@@ -203,7 +203,7 @@ final class ProfileFlowTests: XCTestCase {
 	func testTheBadgeAddsNoLineToAFamilyNameThatFitsOnOne() {
 		let app = UITestFlows.launch(catalog: Self.longLabelsCatalog)
 		UITestFlows.declineConsent(app)
-		UITestFlows.tapWhenReady(app.buttons["onboarding-start"])
+		UITestFlows.startOnboarding(app)
 		let bar = app.buttons["onboarding-genres-continue"]
 		let family0 = card("family-0", in: app)
 		let chip = app.buttons["subgenre-chip-local:genre-0a"]
@@ -238,7 +238,7 @@ final class ProfileFlowTests: XCTestCase {
 	func testALongFamilyNameWrapsAndKeepsItsBadge() {
 		let app = UITestFlows.launch(catalog: Self.longLabelsCatalog)
 		UITestFlows.declineConsent(app)
-		UITestFlows.tapWhenReady(app.buttons["onboarding-start"])
+		UITestFlows.startOnboarding(app)
 		let bar = app.buttons["onboarding-genres-continue"]
 		let shortName = card("family-0", in: app)
 		let longName = card("family-1", in: app)
@@ -273,7 +273,7 @@ final class ProfileFlowTests: XCTestCase {
 	func testTheEditSheetDrawsTheSameCardHeaderAsTheOnboarding() {
 		let app = UITestFlows.launch(catalog: Self.longLabelsCatalog)
 		UITestFlows.declineConsent(app)
-		UITestFlows.tapWhenReady(app.buttons["onboarding-start"])
+		UITestFlows.startOnboarding(app)
 		let bar = app.buttons["onboarding-genres-continue"]
 		let family0 = card("family-0", in: app)
 		let family1 = card("family-1", in: app)
@@ -317,7 +317,7 @@ final class ProfileFlowTests: XCTestCase {
 		app.launchEnvironment = ["TRACK1_PROFILE_CATALOG_JSON": catalogFixture]
 		app.launch()
 		UITestFlows.declineConsent(app)
-		UITestFlows.tapWhenReady(app.buttons["onboarding-start"])
+		UITestFlows.startOnboarding(app)
 		tapCard("family-0", in: app)
 		UITestFlows.tapWhenReady(app.buttons["subgenre-chip-local:genre-3"])
 		UITestFlows.tapWhenReady(app.buttons["onboarding-genres-continue"])
@@ -358,7 +358,7 @@ final class ProfileFlowTests: XCTestCase {
 		// 2026-10-14 (J.4): with no profile left the app is the first launch again, not a tab with a button.
 		XCTAssertTrue(app.buttons["onboarding-start"].waitForExistence(timeout: 10))
 		XCTAssertFalse(app.tabBars.firstMatch.exists)
-		UITestFlows.tapWhenReady(app.buttons["onboarding-start"])
+		UITestFlows.startOnboarding(app)
 		tapCard("family-0", in: app)
 		UITestFlows.tapWhenReady(app.buttons["subgenre-chip-local:genre-3"])
 		UITestFlows.tapWhenReady(app.buttons["onboarding-genres-continue"])

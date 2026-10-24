@@ -139,6 +139,14 @@
       "releaseType": "ep"
     },
     {
+      "slug": "project:206",
+      "type": "project",
+      "name": "206",
+      "mbid": "a465667c-f288-4f82-874e-0aef036c95f4",
+      "year": "2015",
+      "releaseType": "album"
+    },
+    {
       "slug": "project:dirty-78--quadrant",
       "type": "project",
       "name": "Dirty 78",
@@ -208,11 +216,6 @@
       "mbid": "b44cf075-73b3-4409-a06f-036cb296a256",
       "year": "2007",
       "releaseType": "single"
-    },
-    {
-      "slug": "project:206",
-      "type": "project",
-      "name": "206"
     }
   ],
   "notable_tracks": [
