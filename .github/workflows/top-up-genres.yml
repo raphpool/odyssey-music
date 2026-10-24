@@ -36,6 +36,11 @@ permissions:
   contents: read
 
 env:
+  # 2026-10-23 (TRA-572): production mints scoped, transliterated slugs since TRA-509, and every process
+  # that writes slugs must do the same (src/flags.ts). Without it this run, which writes nodes and edges
+  # into cache/, would write `genre:mrk` where the server writes `genre:mork`. Workflow level, not step
+  # level, so a step added later cannot forget it. Rolling the server flag back means rolling this back.
+  ODYSSEY_SCOPED_RELEASE_SLUGS: "1"
   # Deliberately independent from ci.yml's diff-size job: that job measures the
   # whole PR diff EXCLUDING cache/**, this one measures ONLY the cache/ diff it
   # produces — disjoint measurement domains, thresholds not kept in sync.
