@@ -26,6 +26,12 @@
       "type": "genre",
       "name": "Electronic music",
       "qid": "Q9778"
+    },
+    {
+      "slug": "genre:synth-pop",
+      "type": "genre",
+      "name": "Synth-pop",
+      "qid": "Q1298934"
     }
   ],
   "subgenres": [],

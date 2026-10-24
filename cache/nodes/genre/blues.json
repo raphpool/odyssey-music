@@ -19,7 +19,20 @@
   "era": "1890s-present",
   "origin": "Deep South, United States",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B",
+      "qid": "Q45981"
+    },
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock",
+      "qid": "Q11399"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:jazz",

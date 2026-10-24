@@ -21,7 +21,14 @@
   "era": "1960s-1970s",
   "origin": "United Kingdom / United States",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New wave",
+      "qid": "Q187760"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:progressive-rock",

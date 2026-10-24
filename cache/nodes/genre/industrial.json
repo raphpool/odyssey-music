@@ -15,7 +15,14 @@
   "era": "1970s–Present",
   "origin": "United Kingdom",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:industrial-techno",
+      "type": "genre",
+      "name": "Industrial Techno",
+      "qid": "Q29480448"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:hardcore-techno",

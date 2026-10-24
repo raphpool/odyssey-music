@@ -40,6 +40,12 @@
       "type": "genre",
       "name": "Zeuhl",
       "qid": "Q196999"
+    },
+    {
+      "slug": "genre:progressive-electronic",
+      "type": "genre",
+      "name": "Progressive Electronic",
+      "qid": "Q79784514"
     }
   ],
   "related_genres": [

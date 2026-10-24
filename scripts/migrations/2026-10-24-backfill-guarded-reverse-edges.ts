@@ -15,10 +15,16 @@
  * Unlimited credits, gave Deep Space a credit for two artists who list other "Deep Space", promoted a producer).
  * An edge the guard cannot prove is listed in the manifest (`doubtful`, with the reason), never written.
  *
- * Pairs and their guard (add a pair = add a line to GUARDS, a guard if none fits, and a test; only a pair the runtime emits is accepted):
- * - genre.related_genres→genre.related_genres: the edge's Wikidata id (`qid`, set by the registry when the genre
- *   was resolved, TRA-18) equals the qid of the genre it points at. A genre qid is unique in the cache and the
- *   registry mints one slug per qid, so a match is the same genre; a missing or different qid is not a proof.
+ * Pairs and their guard (add a pair = add a line to GUARDS, a guard if none fits, and a test; only a pair the
+ * runtime emits is accepted, the others are not caught up: decision on TRA-564):
+ * - genre.related_genres→genre.related_genres, genre.parent_genres→genre.subgenres and
+ *   genre.subgenres→genre.parent_genres (`sameQid`): the edge's Wikidata id (`qid`, set by the registry when the
+ *   genre was resolved, TRA-18) equals the qid of the genre it points at. A genre qid is unique in the cache and
+ *   the registry mints one slug per qid, so a match is the same genre; a missing or different qid is not a proof.
+ * - NOT backfilled: artist.collaborators→artist.collaborators. No collaborator edge carries an mbid (0 of 873 on
+ *   2026-10-24) and the slug comes from the name, so nothing on the edge says which namesake the author meant: a
+ *   "Chris Thomas" edge meant for the bluesman would be grafted on the English producer (deep review of PR #636).
+ *   Left at its ceiling (3), by decision of the dispatcher, until edges carry an artist mbid.
  *
  * Rules:
  * - Dry-run by default; `--apply` writes. Idempotent: a second run plans nothing (written === 0).
@@ -104,6 +110,8 @@ export const sameQid: Guard = ({ source, ref, target }) => {
 /** "source.field→target.field" -> its guard. A pair that is not here is not backfilled by this script. */
 const GUARDS: Readonly<Record<string, Guard>> = {
 	"genre.related_genres→genre.related_genres": sameQid,
+	"genre.parent_genres→genre.subgenres": sameQid,
+	"genre.subgenres→genre.parent_genres": sameQid,
 };
 
 export const GUARDED_PAIRS: readonly string[] = Object.keys(GUARDS);

@@ -28,7 +28,14 @@
       "qid": "Q11366"
     }
   ],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:post-metal",
+      "type": "genre",
+      "name": "Post-metal",
+      "qid": "Q41343"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:math-rock",
