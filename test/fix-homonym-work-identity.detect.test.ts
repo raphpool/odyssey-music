@@ -269,6 +269,39 @@ describe("detectHomonymWorks: the legitimate credits are left alone", () => {
 	});
 });
 
+describe("detectHomonymWorks: the mbid of an article artist (TRA-610)", () => {
+	const floydMbid = "8f6bd1e4-fbe1-4f50-aa9b-94c450ec0f11";
+	/** Pink Floyd has no mbid of its own in the cache; its list entry carries the WORK's. */
+	const noArtistMbid = (producerMbid?: string): [string, Obj][] =>
+		wishYouWereHere().map(([slug, node]): [string, Obj] => {
+			if (slug === WYWH) {
+				return [
+					slug,
+					{
+						...node,
+						producers: [edge("artist:pink-floyd", "Pink Floyd", producerMbid ? { mbid: producerMbid } : {})],
+					},
+				];
+			}
+			if (slug === "artist:pink-floyd") {
+				const entry = edge(WYWH, "Wish You Were Here", { mbid: "217d2789-9121-3407-be70-73b0e3c5826e" });
+				return [slug, { ...node, discography: [entry] }];
+			}
+			return [slug, node];
+		});
+
+	it("never takes the work's mbid, found on the artist's list entry, for the artist's", () => {
+		expect(detect(noArtistMbid()).suspects[0]?.articleArtists[0]?.mbid).toBeUndefined();
+	});
+
+	it("keeps the mbid of the producer edge when the artist was first met through its list", () => {
+		expect(detect(noArtistMbid(floydMbid)).suspects[0]?.articleArtists[0]).toMatchObject({
+			evidence: ["lists", "producer"],
+			mbid: floydMbid,
+		});
+	});
+});
+
 describe("detectHomonymWorks: what it cannot judge it does not flag", () => {
 	const mutate = (fields: (node: Obj) => Obj): [string, Obj][] =>
 		wishYouWereHere().map(([slug, node]): [string, Obj] =>

@@ -1,4 +1,4 @@
-import { describe, expect, test } from "vitest";
+import { describe, expect, test, vi } from "vitest";
 import { NODE_TYPES } from "../src/node-spec.js";
 import {
 	CANONICAL_SLUG_PATTERN,
@@ -14,6 +14,7 @@ import {
 	scopeMatchesArtist,
 	scopeOf,
 	stripEditionNoise,
+	titleLosesLetters,
 } from "../src/slug.js";
 
 describe("normalizeSlugBody", () => {
@@ -415,5 +416,138 @@ describe("pickScopeArtistName", () => {
 	test("is null when no candidate has a latin body", () => {
 		expect(pickScopeArtistName(["坂本龍一", undefined, ""])).toBeNull();
 		expect(pickScopeArtistName([])).toBeNull();
+	});
+});
+
+// TRA-633, measured 2026-10-24 on the cache: 39 discography titles carry letters or digits that the slug body
+// drops, 28 of them in a non-Latin script. No two titles of one artist collide on such a slug today, but the body
+// of "二ノ国II ..." is "ii" and that of "20才の頃" is "20": a body like that identifies nothing.
+describe("non-Latin titles in a work slug (TRA-633)", () => {
+	test("a title made only of non-Latin letters gets no slug, instead of an empty or shared one", () => {
+		expect(makeScopedSlug("project", "黄昏", "Junko Ohashi")).toEqual({ ok: false, reason: "empty-title" });
+		expect(makeScopedSlug("project", "予約座", "Satoshi Tomiie")).toEqual({
+			ok: false,
+			reason: "empty-title",
+		});
+		expect(makeScopedSlug("project", "ガラガラ", "BIGBANG")).toEqual({ ok: false, reason: "empty-title" });
+	});
+
+	test("a mixed title keeps only its Latin part: the slug is degenerate, and says so through titleLosesLetters", () => {
+		const cases: [string, string][] = [
+			["20才の頃", "project:20--junko-ohashi"],
+			["予約座003", "project:003--junko-ohashi"],
+			["二ノ国II レヴァナントキングダム", "project:ii--junko-ohashi"],
+			["ハリウッド・カフェ / 8分音符の詩", "project:8--junko-ohashi"],
+		];
+		for (const [title, slug] of cases) {
+			expect(makeScopedSlug("project", title, "Junko Ohashi")).toEqual({ ok: true, slug });
+			expect(titleLosesLetters(title), title).toBe(true);
+		}
+	});
+
+	test("two different non-Latin parts share a degenerate slug: this is why the policy never keys on one", () => {
+		const a = makeScopedSlug("project", "20才の頃", "Junko Ohashi");
+		const b = makeScopedSlug("project", "20歳の頃", "Junko Ohashi");
+		expect(a).toEqual(b);
+	});
+});
+
+describe("titleLosesLetters (TRA-633)", () => {
+	test("is false for a Latin title, whatever its accents, punctuation or edition noise", () => {
+		for (const title of ["Kid A (Deluxe Edition)", "Café Tacvba", "Rock & Roll!", "Bahía Blanca 2000"]) {
+			expect(titleLosesLetters(title), title).toBe(false);
+		}
+	});
+
+	test("is true as soon as one letter or digit of the title is not in the body", () => {
+		for (const title of [
+			"Ψ 847",
+			"Σ = a = b = a + b",
+			"BADモード",
+			"Benz Truck (гелик)",
+			"α-Bet-City",
+			"化 pt.1",
+		]) {
+			expect(titleLosesLetters(title), title).toBe(true);
+		}
+	});
+
+	test("follows the transliteration flag: 'ø' is lost until the flag is on", () => {
+		expect(titleLosesLetters("Ørsted")).toBe(true);
+		vi.stubEnv("ODYSSEY_SCOPED_RELEASE_SLUGS", "true");
+		try {
+			expect(titleLosesLetters("Ørsted")).toBe(false);
+			expect(titleLosesLetters("Ψ 847")).toBe(true);
+		} finally {
+			vi.unstubAllEnvs();
+		}
+	});
+
+	test("is false for a title with nothing to lose", () => {
+		expect(titleLosesLetters("")).toBe(false);
+		expect(titleLosesLetters("...")).toBe(false);
+	});
+});
+
+// TRA-633 changes how two titles are compared (discography-policy), never what slug a title gets: a different slug
+// would move an existing node (redirects, incoming edges, prod) and needs its own migration. These are slugs that
+// the cache holds today (read 2026-10-24), non-Latin and partial ones included; titleLosesLetters, the only
+// addition to this module, must leave every one of them as it is.
+describe("slugs of existing cache entries stay frozen (TRA-633)", () => {
+	const scoped: [string, string, string][] = [
+		["A Song for ××", "Ayumi Hamasaki", "project:a-song-for--ayumi-hamasaki"],
+		["봄여름가을겨울 (Still Life)", "BIGBANG", "project:still-life--bigbang"],
+		["ガラガラ GO!!", "BIGBANG", "project:go--bigbang"],
+		["화양연화 pt.1", "BTS", "project:pt-1--bts"],
+		["Ψ 847", "Éliane Radigue", "project:847--eliane-radigue"],
+		["拝啓 / A Message for You", "Eriko Toyoda", "project:a-message-for-you--eriko-toyoda"],
+		["BADモード", "Hikaru Utada", "project:bad--hikaru-utada"],
+		[
+			"二ノ国II レヴァナントキングダム オリジナルサウンドトラック",
+			"Joe Hisaishi",
+			"project:ii--joe-hisaishi",
+		],
+		["20才の頃", "Junko Ōhashi", "project:20--junko-ohashi"],
+		["ハリウッド・カフェ / 8分音符の詩", "Mariya Takeuchi", "project:8--mariya-takeuchi"],
+		["予約座003", "Satoshi Tomiie", "project:003--satoshi-tomiie"],
+		["高気圧ガール／DARLIN'", "Tatsurō Yamashita", "project:darlin--tatsuro-yamashita"],
+		["12 × 5", "The Rolling Stones", "project:12-5--the-rolling-stones"],
+		["hα†ε ïš dεαd", "Trippie Redd", "project:h-is-d-d--trippie-redd"],
+		[
+			"Venetian Snares × Daniel Lanois",
+			"Venetian Snares",
+			"project:venetian-snares-daniel-lanois--venetian-snares",
+		],
+		["800% Ndagga", "Mark Ernestus", "project:800-ndagga--mark-ernestus"],
+		[
+			"Wari Vo Dubwise / Danna Dubwise",
+			"Mark Ernestus",
+			"project:wari-vo-dubwise-danna-dubwise--mark-ernestus",
+		],
+		[
+			"Avalon Sutra / As Long As I Can Hold My Breath",
+			"Harold Budd",
+			"project:avalon-sutra-as-long-as-i-can-hold-my-breath--harold-budd",
+		],
+		[
+			"Hailu Mergia & His Classical Instrument",
+			"Hailu Mergia",
+			"project:hailu-mergia-and-his-classical-instrument--hailu-mergia",
+		],
+	];
+	const legacy: [string, string][] = [
+		["800% Ndagga (album)", "project:800-ndagga"],
+		["Basic Channel (album)", "project:basic-channel"],
+		["Rhythm & Sound (album)", "project:rhythm-and-sound"],
+		["Benz Truck (гелик)", "project:benz-truck"],
+		["Wake Up!", "project:wake-up"],
+	];
+
+	test.each(scoped)("makeScopedSlug('project', %j, %j) is still %s", (title, artist, slug) => {
+		expect(makeScopedSlug("project", title, artist)).toEqual({ ok: true, slug });
+	});
+
+	test.each(legacy)("makeSlug('project', %j) is still %s", (name, slug) => {
+		expect(makeSlug("project", name)).toBe(slug);
 	});
 });

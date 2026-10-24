@@ -75,13 +75,8 @@ import { z } from "zod";
 import { atomicWriteJson, type PendingReverse } from "../../src/cache.js";
 import { scopedReleaseSlugsEnabled } from "../../src/flags.js";
 import { parseSlugRedirects } from "../../src/genre-registry.js";
-import {
-	EDGE_FIELDS_BY_TYPE,
-	LIST_EDGES_BY_TYPE,
-	type NodeType,
-	REVERSE_EDGE_PAIRS,
-	SINGULAR_EDGES_BY_TYPE,
-} from "../../src/node-spec.js";
+import { LIST_EDGES_BY_TYPE, type NodeType, SINGULAR_EDGES_BY_TYPE } from "../../src/node-spec.js";
+import { isEmittedPendingReverse } from "../../src/reverse-edges.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
 import {
 	hasTransliteratedLetter,
@@ -1270,37 +1265,15 @@ function isVariousArtists(credit: Obj): boolean {
 	);
 }
 
-// A pending reverse entry is applied to a node only if the runtime would still emit that direction (TRA-563,
-// PR #486: isEmittedPendingReverse). Same semantics, copied: a same-kind pair (collaborators, samples, genre
-// parents...) is symmetric by construction; a cross-type pair only when it is one of the four safe ones below.
-// Everything else (credit, parent or genre on a work; tracklist; roster -> artist.labels; genre key_artists /
-// key_labels -> genres...) waits under its key, because a namesake's list must not graft an edge onto this node.
-// TODO(TRA-563): import isEmittedPendingReverse from src/reverse-edges.ts
-const SAFE_BACKFILL_PAIRS: ReadonlySet<string> = new Set([
-	"project.artists→artist.discography",
-	"track.artists→artist.notable_tracks",
-	"project.label→label.notable_releases",
-	"artist.labels→label.roster",
-]);
-
-// "sourceType>targetType.reverseField" of every direction emitted.
-const EMITTED_DIRECTIONS: ReadonlySet<string> = new Set(
-	REVERSE_EDGE_PAIRS.flatMap((pair) => {
-		const targetType = (
-			EDGE_FIELDS_BY_TYPE[pair.sourceType] as Record<string, { targets: readonly NodeType[] }>
-		)[pair.sourceField]?.targets[0];
-		if (!targetType) return [];
-		const sameKind = targetType === pair.sourceType;
-		const key = `${pair.sourceType}.${pair.sourceField}→${targetType}.${pair.reverse.field}`;
-		return sameKind || SAFE_BACKFILL_PAIRS.has(key)
-			? [`${pair.sourceType}>${targetType}.${pair.reverse.field}`]
-			: [];
-	}),
-);
-
-/** True when the pending entry queued under `key` is a direction the runtime still emits. */
+/**
+ * True when the pending entry queued under `key` is a direction the runtime still emits (TRA-563, TRA-569).
+ * An entry the runtime would no longer emit (a credit, parent or genre on a work; tracklist; a singular reverse
+ * such as `remix_of`...) waits under its key, because a namesake's list must not graft an edge onto this node.
+ * The list of emitted directions lives in src/reverse-edges.ts only: this migration used to keep a copy and it
+ * went stale when TRA-569 stopped emitting `track.remixed_by -> remix_of` (TRA-656, 2026-10-23).
+ */
 export function isSafePendingEntry(key: string, entry: Pick<PendingReverse, "field" | "edge">): boolean {
-	return EMITTED_DIRECTIONS.has(`${entry.edge.type}>${parseSlug(key).type}.${entry.field}`);
+	return isEmittedPendingReverse(parseSlug(key).type, entry);
 }
 
 function pathOf(cacheDir: string, slug: string): string {
