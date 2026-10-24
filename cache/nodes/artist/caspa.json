@@ -424,10 +424,12 @@
     }
   ],
   "landmark_project": {
-    "slug": "project:fabriclive-37--caspa",
+    "slug": "project:everybody-s-talking-nobody-s-listening",
     "type": "project",
-    "name": "Fabriclive.37",
-    "artist": "Caspa"
+    "name": "Everybody's Talking, Nobody's Listening",
+    "mbid": "60830f95-eb92-46b7-a37a-04832173a0db",
+    "year": "2009",
+    "releaseType": "album"
   },
   "reference_track": {
     "slug": "track:cockney-flute",

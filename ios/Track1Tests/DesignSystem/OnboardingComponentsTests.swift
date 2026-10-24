@@ -195,6 +195,67 @@ final class OnboardingComponentsTests: XCTestCase {
 			"Rock, 1 sous-genre, 1 sélectionné")
 	}
 
+	func testGenreCardBadgeDrawsNothingBelowOne() {
+		XCTAssertNil(GenreAccordionCard<EmptyView>.badge(selectedCount: 0))
+		XCTAssertNil(GenreAccordionCard<EmptyView>.badge(selectedCount: -1))
+	}
+
+	func testGenreCardBadgeIsTheNumberBetweenParentheses() {
+		XCTAssertEqual(GenreAccordionCard<EmptyView>.badge(selectedCount: 4), "(4)")
+	}
+
+	// MARK: Card header layout (TRA-664)
+
+	private static let foldingTitle = "Musiques traditionnelles d'Afrique et d'Orient"
+
+	/// Where the header of a collapsed card puts its title, its badge and its count line, read off a real
+	/// layout at the width of the screen (a 402 pt screen leaves 321 pt in the header).
+	@MainActor
+	private func headerFrames(badge: String?) -> [String: CGRect] {
+		let box = HeaderFrameBox()
+		let host = UIHostingController(
+			rootView: HeaderLayoutProbe(title: Self.foldingTitle, badge: badge, width: 321) { box.frames = $0 })
+		let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 402, height: 800))
+		window.rootViewController = host
+		window.makeKeyAndVisible()
+		host.view.layoutIfNeeded()
+		RunLoop.current.run(until: Date().addingTimeInterval(0.3))
+		return box.frames
+	}
+
+	/// 2026-10-23 (TRA-664 review, macOS probe, same on `main`): `Track1LineHeightLayout.sizeThatFits` forwarded the
+	/// height a stack proposes when it places its children, a `Text` offered too little height reports the
+	/// clipped one, and a title folded on three lines was given a two-line frame inside a three-line slot: the
+	/// text overran the "N sous-genres" line under it. The frame of the title must be that of its lines, and the
+	/// count line must start right under it.
+	@MainActor
+	func testAFoldedTitleKeepsAFrameAsTallAsItsLinesAndTheCountLineStaysUnderIt() throws {
+		for badge in [nil, "(1)"] as [String?] {
+			let frames = headerFrames(badge: badge)
+			let title = try XCTUnwrap(frames["title"], "title, badge \(badge ?? "none")")
+			let count = try XCTUnwrap(frames["count"], "count line")
+			let alone = UIHostingController(
+				rootView: Track1Text(Self.foldingTitle, role: .monoItem, verbatim: true).frame(width: title.width)
+			).sizeThatFits(in: CGSize(width: title.width, height: 1000))
+			XCTAssertGreaterThan(alone.height, 22, "the title must fold for this test to mean something")
+			XCTAssertEqual(title.height, alone.height, accuracy: 0.5, "title height, badge \(badge ?? "none")")
+			XCTAssertEqual(title.minY, 0, accuracy: 0.5, "the title starts at the top of the header")
+			XCTAssertEqual(count.minY, title.maxY + Track1Tokens.spacing8, accuracy: 0.5, "count line")
+		}
+	}
+
+	/// With a badge next to a folded title `.firstTextBaseline` must reach the baseline of the first line: a
+	/// custom layout that gives none falls back to its bottom edge and the badge lands on the last line (macOS
+	/// probe, 2026-10-24).
+	@MainActor
+	func testTheBadgeSitsOnTheFirstLineOfAFoldedTitle() throws {
+		let frames = headerFrames(badge: "(1)")
+		let title = try XCTUnwrap(frames["title"])
+		let badge = try XCTUnwrap(frames["badge"])
+		XCTAssertGreaterThan(title.height, 22, "the title must fold for this test to mean something")
+		XCTAssertLessThanOrEqual(badge.midY, title.minY + 22, "badge \(badge) on the first line of \(title)")
+	}
+
 	// MARK: Bottom action bar
 
 	func testBottomBarIdentifiers() {
@@ -238,5 +299,64 @@ final class OnboardingComponentsTests: XCTestCase {
 		let bar = WelcomeView.actionBar {}
 		XCTAssertEqual(bar.identifier, "onboarding-start")
 		XCTAssertFalse(bar.showsFade)
+	}
+}
+
+/// The frames the header probe reads, by identifier.
+private final class HeaderFrameBox: @unchecked Sendable {
+	var frames: [String: CGRect] = [:]
+}
+
+private struct HeaderFrameKey: PreferenceKey {
+	static var defaultValue: [String: CGRect] { [:] }
+	static func reduce(value: inout [String: CGRect], nextValue: () -> [String: CGRect]) {
+		value.merge(nextValue()) { $1 }
+	}
+}
+
+extension View {
+	fileprivate func readHeaderFrame(_ id: String) -> some View {
+		background(
+			GeometryReader { proxy in
+				Color.clear.preference(key: HeaderFrameKey.self, value: [id: proxy.frame(in: .named("header"))])
+			})
+	}
+}
+
+/// The label of a collapsed `GenreAccordionCard` header, same structure and same components, with a frame
+/// reader on the title, the badge and the count line. A copy, since the card exposes no frames: keep it in
+/// step with `GenreAccordionCard.header`.
+private struct HeaderLayoutProbe: View {
+	let title: String
+	let badge: String?
+	let width: CGFloat
+	let onFrames: @Sendable ([String: CGRect]) -> Void
+
+	var body: some View {
+		Button {
+		} label: {
+			HStack(spacing: Track1Tokens.spacing8) {
+				VStack(alignment: .leading, spacing: Track1Tokens.spacing8) {
+					HStack(alignment: .firstTextBaseline, spacing: Track1Tokens.spacing8) {
+						Track1Text(title, role: .monoItem, verbatim: true).readHeaderFrame("title")
+						if let badge {
+							Track1Text(badge, role: .monoTag, verbatim: true)
+								.fixedSize(horizontal: true, vertical: false)
+								.readHeaderFrame("badge")
+						}
+					}
+					Track1Text("1 sous-genre", role: .monoLabel).readHeaderFrame("count")
+				}
+				Spacer(minLength: 0)
+				Track1Icon(
+					.chevronDown, color: Track1Tokens.colorIconPrimary, size: GenreAccordionCard<EmptyView>.chevronSize)
+			}
+			.frame(maxWidth: .infinity, alignment: .leading)
+			.contentShape(Rectangle())
+		}
+		.buttonStyle(.plain)
+		.frame(width: width)
+		.coordinateSpace(name: "header")
+		.onPreferenceChange(HeaderFrameKey.self, perform: onFrames)
 	}
 }
