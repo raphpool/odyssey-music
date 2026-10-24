@@ -31,6 +31,7 @@ import {
 	selectReleases,
 	toDiscographyEdge,
 } from "./discography-policy.js";
+import { dedupeNodeListEdges } from "./edge-dedupe.js";
 import { normalizeEditorialText, unescapeQuotes } from "./editorial-text.js";
 import { type GenreResolver, loadGenreResolver } from "./genre-identity.js";
 import type { GenreRegistry } from "./genre-registry.js";
@@ -748,6 +749,8 @@ export async function runPipeline(input: PipelineInput, deps: PipelineDeps): Pro
 	const draft = await generateNodeDraft(input, deps, research, log);
 	const node = canonicalizeDraft(draft.raw, input, research.corpus, research.allowedUrls, log);
 	const enrichment = await enrichNode(node, input, log, deps.genreRegistry, deps.artistByMbid);
+	// The enrichment adds and rewrites list edges (discography, labels, collaborators): same invariant (TRA-557).
+	dropDuplicateListEdges(node as Record<string, unknown>, log);
 	// MusicBrainz just rewrote discography: the picks made in canonicalizeDraft are checked again against the
 	// lists that will actually be written (TRA-470).
 	if (input.type === "artist") enforceArtistChoices(node as Record<string, unknown>, log);
@@ -1987,9 +1990,28 @@ function canonicalizeDraft(
 			else delete next[k];
 		}
 	}
+	// One edge per slug in a list, before the picks are compared with it (TRA-557).
+	dropDuplicateListEdges(next, log);
 	// Last, once the lists are normalized: the picks are compared with what will be written (TRA-470).
 	if (input.type === "artist") enforceArtistChoices(next, log);
 	return next;
+}
+
+/**
+ * Keeps one edge per slug in every list of a node (src/edge-dedupe.ts, TRA-557). Two entries sharing a slug are
+ * one page printed twice: the cache held 173 of them in 83 nodes (a single, its remixes and the album of the
+ * same title; a track and its "(dub reprise)"), because nothing compared the entries of a list with each other
+ * once the slug is computed. Mutates `node`; idempotent. The pipeline does not read the target nodes, so the
+ * first criterion of the rule (the entry whose mbid is the target node's, `TargetMbids`) is left to the migration,
+ * which sees every node of the union.
+ */
+function dropDuplicateListEdges(node: Record<string, unknown>, log: PipelineLog): void {
+	const where = typeof node.slug === "string" ? node.slug : String(node.type);
+	for (const { field, removals } of dedupeNodeListEdges(node)) {
+		for (const r of removals) {
+			log(`[pipeline] duplicate edge dropped: ${r.reason} (${where}.${field} -> ${r.slug})`);
+		}
+	}
 }
 
 // Singular artist picks and the list each must come from (plan graph-integrity, decision 7).

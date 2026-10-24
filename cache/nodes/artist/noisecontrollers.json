@@ -114,14 +114,6 @@
       "releaseType": "ep"
     },
     {
-      "slug": "project:dying-for-a-light",
-      "type": "project",
-      "name": "Dying for a Light",
-      "mbid": "e3c2d877-52b6-4399-9fdd-367c65baa579",
-      "year": "2024",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:harmony-be-free-ep",
       "type": "project",
       "name": "Harmony / Be Free EP",
@@ -338,14 +330,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:see-the-light",
-      "type": "project",
-      "name": "See The Light (Pavelow Remix)",
-      "mbid": "9e2e52a4-5737-43f8-aa3a-919382196742",
-      "year": "2016",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:savannah",
       "type": "project",
       "name": "Savannah",
@@ -448,14 +432,6 @@
       "mbid": "0a8afc6d-bd81-4229-90cc-e920f92ea319",
       "year": "2015",
       "releaseType": "single"
-    },
-    {
-      "slug": "project:all-night-long",
-      "type": "project",
-      "name": "All Night Long (Collected Studio Material 2013-2015)",
-      "mbid": "e59f6945-e147-4a7d-83cd-a8493a2792b0",
-      "year": "2015",
-      "releaseType": "album"
     },
     {
       "slug": "project:infinity",

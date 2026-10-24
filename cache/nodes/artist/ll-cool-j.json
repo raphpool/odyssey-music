@@ -83,14 +83,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:around-the-way-girl",
-      "type": "project",
-      "name": "Around the Way Girl (Total M extended Fendi Bag edit)",
-      "mbid": "2a957cae-2d98-4eb3-bbd7-92704d73ec7f",
-      "year": "2015",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:we-came-to-party",
       "type": "project",
       "name": "We Came to Party",
@@ -161,14 +153,6 @@
       "mbid": "0b3296f5-4445-3e8c-aef5-edfb65979234",
       "year": "2006",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:control-myself",
-      "type": "project",
-      "name": "Control Myself (Remixes)",
-      "mbid": "6c39bd62-414b-308a-aef2-4c48272d6308",
-      "year": "2006",
-      "releaseType": "single"
     },
     {
       "slug": "project:we-re-gonna-make-it",
@@ -331,14 +315,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:phenomenon",
-      "type": "project",
-      "name": "Phenomenon",
-      "mbid": "6416435a-a17a-457a-ba2c-314aaa8b5fe0",
-      "year": "1997",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:hot-hot-hot",
       "type": "project",
       "name": "Hot, Hot, Hot",
@@ -439,14 +415,6 @@
       "type": "project",
       "name": "Strictly Business",
       "mbid": "1fdd2d1d-ac15-45ec-a798-23e847cbb679",
-      "year": "1991",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:mama-said-knock-you-out",
-      "type": "project",
-      "name": "Mama Said Knock You Out",
-      "mbid": "0a458415-3667-3a61-ac39-f0c3235149f2",
       "year": "1991",
       "releaseType": "single"
     },

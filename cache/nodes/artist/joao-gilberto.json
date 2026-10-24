@@ -176,14 +176,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:joao-gilberto",
-      "type": "project",
-      "name": "João Gilberto",
-      "mbid": "42f2d0a0-49ef-3870-90fc-b7ade889a002",
-      "year": "1973",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:ela-e-carioca",
       "type": "project",
       "name": "Ela é carioca",
@@ -192,28 +184,12 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:the-girl-from-ipanema",
-      "type": "project",
-      "name": "The Girl From Ipanema",
-      "mbid": "04722f19-343f-486a-9658-0bc7becad0db",
-      "year": "1964",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:getz-gilberto",
       "type": "project",
       "name": "Getz / Gilberto",
       "mbid": "b248d212-aace-3c3e-a23d-e13aaac1f87a",
       "year": "1964",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:the-girl-from-ipanema",
-      "type": "project",
-      "name": "The Girl From Ipanema",
-      "mbid": "7e0020d3-19c7-4003-b088-17245593d837",
-      "year": "1964",
-      "releaseType": "single"
     },
     {
       "slug": "project:the-boss-of-the-bossa-nova",
@@ -262,13 +238,6 @@
       "mbid": "224d56f0-c0a6-4779-9a23-f284898b37a4",
       "year": "1952",
       "releaseType": "single"
-    },
-    {
-      "slug": "project:the-girl-from-ipanema",
-      "type": "project",
-      "name": "The Girl From Ipanema",
-      "mbid": "05e450b0-35a8-421c-8e74-047cd4c0cebf",
-      "releaseType": "album"
     },
     {
       "slug": "project:rosa-morena",
