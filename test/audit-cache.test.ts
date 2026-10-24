@@ -282,6 +282,22 @@ describe("auditNodes", () => {
 		expect(report.samples["literal-newlines"]).toEqual(["genre:bad"]);
 	});
 
+	it("flags a literal backslash-quote in a text field but not a plain quote (TRA-577)", () => {
+		const report = auditNodes(
+			toMap(
+				node("track:bad", { editorial_article: 'its \\"frenetic romp\\" is loud' }),
+				node("track:ok", { editorial_article: 'its "frenetic romp" is loud' }),
+				node("track:path", { editorial_article: 'path C:\\dir\\\\"x"' }),
+				node("track:code", { editorial_article: 'see\n```\nprintf(\\"hi\\")\n```' }),
+				node("track:newline", { editorial_article: "line one\\nline two" }),
+			),
+		);
+		expect(metric(report, "literal-escaped-quotes")).toBe(1);
+		expect(report.samples["literal-escaped-quotes"]).toEqual(["track:bad"]);
+		// The two measures are independent: a `\n` is not a `\"` and the other way round.
+		expect(report.samples["literal-newlines"]).toEqual(["track:newline"]);
+	});
+
 	it("counts single-citation and missing-image per type", () => {
 		const report = auditNodes(
 			toMap(

@@ -21,6 +21,7 @@ import { readdir, readFile, writeFile } from "node:fs/promises";
 import { basename, dirname, isAbsolute, join, relative, resolve } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { z } from "zod";
+import { unescapeQuotes } from "../src/editorial-text.js";
 import { parseSlugRedirects } from "../src/genre-registry.js";
 import { EDGE_FIELDS_BY_TYPE, NODE_TYPES, type NodeType, REVERSE_EDGE_PAIRS } from "../src/node-spec.js";
 
@@ -162,6 +163,17 @@ function hasText(v: unknown): boolean {
 	return typeof v === "string" && v.trim() !== "";
 }
 
+/**
+ * A top-level string holding a backslash + quote that `unescapeQuotes` would turn into a quote (TRA-577):
+ * the same double escaping as the `\n` of `literal-newlines`, which does not see it. Asking the normalizer
+ * keeps the measure and the fix in step: a `\"` it keeps on purpose (escaped backslash, code block) is not
+ * counted, so 0 stays reachable. Like `literal-newlines`, it reads the top-level strings of the node: the
+ * titles inside `citations` are not looked at.
+ */
+function hasLiteralEscapedQuote(node: RawNode): boolean {
+	return Object.values(node).some((v) => typeof v === "string" && unescapeQuotes(v) !== v);
+}
+
 class Collector {
 	readonly metrics: Record<string, MetricValue> = {};
 	readonly samples: Record<string, string[]> = {};
@@ -240,6 +252,7 @@ export function auditNodes(
 		"duplicate-names",
 		"unscoped-release-slugs",
 		"literal-newlines",
+		"literal-escaped-quotes",
 		"missing-similar-artists",
 		"missing-landmark-project",
 		"missing-reference-track",
@@ -293,6 +306,8 @@ export function auditNodes(
 				break;
 			}
 		}
+
+		if (hasLiteralEscapedQuote(node)) c.hit("literal-escaped-quotes", slug);
 
 		const citations = node.citations;
 		if (Array.isArray(citations) && citations.length === 1) c.hit("single-citation", slug, type);
