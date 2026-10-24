@@ -186,11 +186,11 @@ Total : 5 points. Chaque PR laisse `swift test` et `ios-check` verts.
   Le code suit les maquettes ; Raphael met la carte de spec à jour lui-même (arbitrage Q2).
 - **Dynamic Type AX.** Le titre peut occuper 3–4 lignes ; le badge reste sur la première (D3). Couvert par
   le test existant `NavigationTests:46` à `AccessibilityXXXL`, qui doit rester vert.
-- **Chips de sous-genres (garde-fou, arbitrage Q3).** Hors scope ici. `ChipFlowLayout` donne à un chip
-  `min(largeur idéale, largeur max)` (`ios/Track1/DesignSystem/Components/Node/ChipFlowLayout.swift:51`) :
-  un nom de sous-genre de plus de ~37 caractères serait tronqué dans sa carte. Le plus long nom réel fait
-  31 caractères (« North American Indigenous Music »). À surveiller à chaque évolution de
-  `data/genre-taxonomy.json` : au-delà de 37, ouvrir un ticket sur `SubgenreChip`, pas sur ce plan.
+- **Chips de sous-genres (arbitrage Q3, repris par TRA-679).** Hors scope ici. Une puce plus large que sa
+  rangée se replie sur autant de lignes que nécessaire, dans une pilule qui prend sa vraie hauteur :
+  `ChipFlowLayout` la mesure de nouveau à la largeur de la rangée (TRA-679). Il n'y a donc plus de limite
+  de 37 caractères à surveiller dans `data/genre-taxonomy.json` ; le plus long nom réel fait 31 caractères
+  (« North American Indigenous Music »).
 - **Session parallèle sur la fiche de nœud iOS** (`docs/plans/ios-node-page-ui-refresh.md`, même nuit).
   Fichiers partagés : `ProfileFlowTests.swift`, `UITestFlows.swift`, `project.pbxproj`. Règles de
   coordination dans les notes des tickets 1.1 et 2.1 ; update-branch sur `main` juste avant chaque merge.
