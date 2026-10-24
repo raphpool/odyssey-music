@@ -22,6 +22,47 @@
       "type": "genre",
       "name": "Hardcore techno",
       "qid": "Q388906"
+    },
+    {
+      "slug": "genre:dark-wave",
+      "type": "genre",
+      "name": "Dark wave",
+      "qid": "Q3840596"
+    },
+    {
+      "slug": "genre:digital-hardcore",
+      "type": "genre",
+      "name": "Digital Hardcore",
+      "qid": "Q56580"
+    },
+    {
+      "slug": "genre:experimental-techno",
+      "type": "genre",
+      "name": "Experimental Techno",
+      "qid": "Q105636937"
+    },
+    {
+      "slug": "genre:modular-synth",
+      "type": "genre",
+      "name": "Modular Synth"
+    },
+    {
+      "slug": "genre:noise",
+      "type": "genre",
+      "name": "Noise",
+      "qid": "Q726239"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-Punk",
+      "qid": "Q598929"
+    },
+    {
+      "slug": "genre:power-electronics",
+      "type": "genre",
+      "name": "Power Electronics",
+      "qid": "Q2687544"
     }
   ],
   "key_artists": [

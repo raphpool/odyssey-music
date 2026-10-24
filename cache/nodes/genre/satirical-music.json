@@ -30,6 +30,7 @@
   },
   "type": "genre",
   "editorial_definition": "Satirical music is a lyrical and performative mode that uses irony, parody, and musical contrast to critique social, political, and cultural institutions, often refitting familiar musical styles with subversive, witty commentary.",
+  "qid": "Q104842028",
   "era": "1720s–present",
   "origin": "United Kingdom",
   "parent_genres": [
@@ -53,6 +54,18 @@
       "type": "genre",
       "name": "Music hall",
       "qid": "Q940462"
+    },
+    {
+      "slug": "genre:comedy-hip-hop",
+      "type": "genre",
+      "name": "Comedy hip hop",
+      "qid": "Q602646"
+    },
+    {
+      "slug": "genre:comedy-rock",
+      "type": "genre",
+      "name": "Comedy rock",
+      "qid": "Q1391336"
     }
   ],
   "key_artists": [
@@ -95,6 +108,5 @@
       "name": "Good Old Boys"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q104842028"
+  "landmark_tracks": []
 }

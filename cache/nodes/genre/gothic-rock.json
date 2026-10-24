@@ -30,11 +30,25 @@
   },
   "type": "genre",
   "editorial_definition": "A dark, atmospheric offshoot of post-punk that emerged in the late 1970s, defined by its somber, reverb-heavy instrumentation and themes of existential longing and the macabre.",
+  "qid": "Q485395",
   "era": "late 1970s – present",
   "origin": "United Kingdom",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:dark-wave",
+      "type": "genre",
+      "name": "Dark wave",
+      "qid": "Q3840596"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-Punk",
+      "qid": "Q598929"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:bauhaus",
@@ -85,6 +99,5 @@
       "name": "Pornography"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q485395"
+  "landmark_tracks": []
 }

@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:54:27.921Z",
   "type": "genre",
   "editorial_definition": "A genre of popular music that fuses the lyrical depth, acoustic traditions, and social consciousness of folk music with the electric instrumentation, driving beat, and production techniques of rock music.",
+  "qid": "Q186472",
   "era": "Mid-1960s to 1970s (peak)",
   "origin": "United States and United Kingdom",
   "sonic_markers": "Emphasis on electric 12-string guitars, intricate vocal harmonies, acoustic-to-electric instrumentation hybrids, and narrative-driven lyrics.",
@@ -41,6 +42,12 @@
       "type": "genre",
       "name": "Psychedelic rock",
       "qid": "Q206159"
+    },
+    {
+      "slug": "genre:celtic-rock",
+      "type": "genre",
+      "name": "Celtic rock",
+      "qid": "Q2662148"
     }
   ],
   "key_artists": [
@@ -109,6 +116,5 @@
       "type": "track",
       "name": "Eve of Destruction"
     }
-  ],
-  "qid": "Q186472"
+  ]
 }

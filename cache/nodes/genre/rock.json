@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:51:42.523Z",
   "type": "genre",
   "editorial_definition": "A broad, dominant genre of popular music characterized by a strong, driving beat and electric instrumentation, which emerged in the 1950s and encompasses a vast array of styles ranging from the early rock and roll of the 1950s to later developments in punk, metal, and indie.",
+  "qid": "Q11399",
   "era": "1950s–Present",
   "origin": "United States",
   "parent_genres": [
@@ -71,7 +72,20 @@
       "qid": "Q76092"
     }
   ],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:jazz-fusion",
+      "type": "genre",
+      "name": "Jazz-Fusion",
+      "qid": "Q105527"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:the-beatles",
@@ -116,6 +130,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q11399"
+  "landmark_tracks": []
 }

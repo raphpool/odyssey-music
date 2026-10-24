@@ -19,9 +19,22 @@
   "materialized_at": "2026-05-13T12:44:42.852Z",
   "type": "genre",
   "editorial_definition": "A genre based on the humorous, satirical, or ironic imitation of established popular songs, artists, or musical styles.",
+  "qid": "Q2746731",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:comedy-rock",
+      "type": "genre",
+      "name": "Comedy rock",
+      "qid": "Q1391336"
+    },
+    {
+      "slug": "genre:novelty-song",
+      "type": "genre",
+      "name": "Novelty song"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:weird-al-yankovic",
@@ -46,6 +59,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q2746731"
+  "landmark_tracks": []
 }

@@ -26,6 +26,7 @@
   },
   "type": "genre",
   "editorial_definition": "A style of rock music that emerged in the 1980s, characterized by the aggressive use of feedback, heavy distortion, and unconventional song structures to prioritize raw, abrasive sonic texture.",
+  "qid": "Q181861",
   "era": "1980s to present",
   "origin": "United States",
   "parent_genres": [],
@@ -48,6 +49,30 @@
       "type": "genre",
       "name": "Post-Hardcore",
       "qid": "Q377910"
+    },
+    {
+      "slug": "genre:grunge",
+      "type": "genre",
+      "name": "Grunge",
+      "qid": "Q11365"
+    },
+    {
+      "slug": "genre:noise-pop",
+      "type": "genre",
+      "name": "Noise Pop",
+      "qid": "Q2545135"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock",
+      "qid": "Q3071"
+    },
+    {
+      "slug": "genre:shoegaze",
+      "type": "genre",
+      "name": "Shoegaze",
+      "qid": "Q272167"
     }
   ],
   "key_artists": [
@@ -106,6 +131,5 @@
       "name": "You Won't Get What You Want"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q181861"
+  "landmark_tracks": []
 }

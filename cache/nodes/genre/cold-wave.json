@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T15:09:19.321Z",
   "type": "genre",
   "editorial_definition": "A minimalist, electronic-infused subgenre of post-punk characterized by detached vocals, analog synthesizers, and a dark, atmospheric aesthetic.",
+  "qid": "Q2343562",
   "era": "late 1970s to early 1980s",
   "origin": "Europe, particularly France, Poland, and Belgium",
   "sonic_markers": "Minimalist production, analog synthesizers, detached vocals, militant rhythm sections, depressive grooves",
@@ -40,6 +41,12 @@
       "type": "genre",
       "name": "Electronic body music",
       "qid": "Q372103"
+    },
+    {
+      "slug": "genre:minimal-music",
+      "type": "genre",
+      "name": "Minimal music",
+      "qid": "Q12183214"
     }
   ],
   "key_artists": [
@@ -88,6 +95,5 @@
       "type": "track",
       "name": "Seventeen Seconds"
     }
-  ],
-  "qid": "Q2343562"
+  ]
 }

@@ -26,6 +26,7 @@
   },
   "type": "genre",
   "editorial_definition": "A subgenre of alternative and indie rock defined by the fusion of abrasive noise, guitar feedback, and traditional pop song structures.",
+  "qid": "Q2545135",
   "era": "Mid-1980s–Present",
   "origin": "United Kingdom",
   "parent_genres": [
@@ -61,6 +62,12 @@
       "type": "genre",
       "name": "Dream pop",
       "qid": "Q592330"
+    },
+    {
+      "slug": "genre:twee-pop",
+      "type": "genre",
+      "name": "Twee pop",
+      "qid": "Q370778"
     }
   ],
   "key_artists": [
@@ -103,6 +110,5 @@
       "name": "Psychocandy"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q2545135"
+  "landmark_tracks": []
 }

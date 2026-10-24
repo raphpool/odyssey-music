@@ -101,6 +101,59 @@
       "type": "genre",
       "name": "Experimental Hip Hop",
       "qid": "Q5421158"
+    },
+    {
+      "slug": "genre:alternative-r-and-b",
+      "type": "genre",
+      "name": "Alternative R&B",
+      "qid": "Q7118426"
+    },
+    {
+      "slug": "genre:avant-pop",
+      "type": "genre",
+      "name": "Avant-pop",
+      "qid": "Q9162904"
+    },
+    {
+      "slug": "genre:computer-music",
+      "type": "genre",
+      "name": "Computer music"
+    },
+    {
+      "slug": "genre:contemporary-classical",
+      "type": "genre",
+      "name": "Contemporary Classical",
+      "qid": "Q612024"
+    },
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub",
+      "qid": "Q212688"
+    },
+    {
+      "slug": "genre:experimental-pop",
+      "type": "genre",
+      "name": "Experimental pop",
+      "qid": "Q25094591"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock",
+      "qid": "Q320592"
+    },
+    {
+      "slug": "genre:lo-fi",
+      "type": "genre",
+      "name": "Lo-fi",
+      "qid": "Q1507298"
+    },
+    {
+      "slug": "genre:soundtrack",
+      "type": "genre",
+      "name": "Soundtrack",
+      "qid": "Q107736421"
     }
   ],
   "key_artists": [

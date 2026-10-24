@@ -34,6 +34,7 @@
   },
   "type": "genre",
   "editorial_definition": "A genre of jazz that integrates avant-garde art music and modernist composition techniques, emphasizing a balance between structured ensemble composition and improvisational freedom.",
+  "qid": "Q790188",
   "era": "1950s–1960s",
   "origin": "United States",
   "parent_genres": [],
@@ -57,6 +58,18 @@
       "type": "genre",
       "name": "Post-bop",
       "qid": "Q1092837"
+    },
+    {
+      "slug": "genre:european-jazz",
+      "type": "genre",
+      "name": "European Jazz",
+      "qid": "Q2579417"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental rock",
+      "qid": "Q1641839"
     }
   ],
   "key_artists": [
@@ -105,6 +118,5 @@
       "name": "The Shape of Jazz to Come"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q790188"
+  "landmark_tracks": []
 }

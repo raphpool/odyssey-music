@@ -52,6 +52,24 @@
       "type": "genre",
       "name": "Amapiano",
       "qid": "Q85741139"
+    },
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago house",
+      "qid": "Q1071961"
+    },
+    {
+      "slug": "genre:detroit-house",
+      "type": "genre",
+      "name": "Detroit House",
+      "qid": "Q108610706"
+    },
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse",
+      "qid": "Q1931555"
     }
   ],
   "key_artists": [

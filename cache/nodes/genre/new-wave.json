@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T12:43:56.780Z",
   "type": "genre",
   "editorial_definition": "A melodic, pop-oriented genre emerging in the late 1970s as a successor to punk, characterized by quirky, idiosyncratic sensibilities, angular guitar work, and the increasing incorporation of synthesizers and electronic elements.",
+  "qid": "Q187760",
   "era": "Mid-1970s to mid-1980s",
   "origin": "United Kingdom and United States",
   "parent_genres": [
@@ -99,6 +100,30 @@
       "type": "genre",
       "name": "Art rock",
       "qid": "Q217467"
+    },
+    {
+      "slug": "genre:college-rock",
+      "type": "genre",
+      "name": "College rock",
+      "qid": "Q783097"
+    },
+    {
+      "slug": "genre:dark-wave",
+      "type": "genre",
+      "name": "Dark wave",
+      "qid": "Q3840596"
+    },
+    {
+      "slug": "genre:electroclash",
+      "type": "genre",
+      "name": "Electroclash",
+      "qid": "Q861823"
+    },
+    {
+      "slug": "genre:pop-punk",
+      "type": "genre",
+      "name": "Pop Punk",
+      "qid": "Q487914"
     }
   ],
   "key_artists": [
@@ -151,6 +176,5 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q187760"
+  "landmark_tracks": []
 }

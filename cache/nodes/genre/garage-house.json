@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:41:59.231Z",
   "type": "genre",
   "editorial_definition": "Garage House is a soulful style of electronic dance music originating in the 1980s across New York City and New Jersey, characterized by its deep roots in disco, gospel, and R&B, often featuring emotive female vocals and expressive piano arrangements.",
+  "qid": "Q928825",
   "era": "1980s",
   "origin": "New York City and Newark, New Jersey, USA",
   "parent_genres": [
@@ -59,6 +60,12 @@
       "type": "genre",
       "name": "Soul music",
       "qid": "Q131272"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
     }
   ],
   "key_artists": [
@@ -86,6 +93,5 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q928825"
+  "landmark_tracks": []
 }

@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-14T09:20:24.458Z",
   "type": "genre",
   "editorial_definition": "A subgenre of hip-hop characterized by the rejection of traditional stereotypes and the integration of diverse musical influences like jazz, funk, and soul.",
+  "qid": "Q438503",
   "era": "mid-1980s to present",
   "origin": "United States, East Coast",
   "sonic_markers": "Eclectic sampling, jazz-inflected rhythms, introspective lyrics, and experimental production using samplers and drum machines.",
@@ -40,6 +41,12 @@
       "type": "genre",
       "name": "Boom bap",
       "qid": "Q529742"
+    },
+    {
+      "slug": "genre:comedy-hip-hop",
+      "type": "genre",
+      "name": "Comedy hip hop",
+      "qid": "Q602646"
     }
   ],
   "key_artists": [
@@ -88,6 +95,5 @@
       "type": "track",
       "name": "Tragic Epilogue"
     }
-  ],
-  "qid": "Q438503"
+  ]
 }

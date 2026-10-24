@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:42:43.345Z",
   "type": "genre",
   "editorial_definition": "A melodic, DIY-oriented subculture and genre that emerged from post-punk, emphasizing jangly guitars, personal songwriting, and an anti-commercial ethos.",
+  "qid": "Q842324",
   "era": "Late 1970s to present",
   "origin": "United Kingdom",
   "parent_genres": [
@@ -71,6 +72,11 @@
       "type": "genre",
       "name": "Post-punk",
       "qid": "Q598929"
+    },
+    {
+      "slug": "genre:guitar-pop",
+      "type": "genre",
+      "name": "Guitar Pop"
     }
   ],
   "key_artists": [
@@ -118,6 +124,5 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q842324"
+  "landmark_tracks": []
 }

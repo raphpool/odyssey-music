@@ -69,6 +69,18 @@
       "type": "genre",
       "name": "Gamelan",
       "qid": "Q194492"
+    },
+    {
+      "slug": "genre:soundtrack",
+      "type": "genre",
+      "name": "Soundtrack",
+      "qid": "Q107736421"
+    },
+    {
+      "slug": "genre:vocal-music",
+      "type": "genre",
+      "name": "Vocal Music",
+      "qid": "Q685884"
     }
   ],
   "key_artists": [

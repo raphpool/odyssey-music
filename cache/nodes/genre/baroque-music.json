@@ -30,6 +30,7 @@
   },
   "type": "genre",
   "editorial_definition": "A major stylistic period of Western art music (c. 1600–1750) characterized by the rise of common-practice tonality, complex polyphony, and the birth of forms such as opera and the concerto.",
+  "qid": "Q8361",
   "era": "1600–1750",
   "origin": "Europe",
   "parent_genres": [
@@ -53,6 +54,12 @@
       "type": "genre",
       "name": "Classical period music",
       "qid": "Q17723"
+    },
+    {
+      "slug": "genre:classical",
+      "type": "genre",
+      "name": "Classical",
+      "qid": "Q9730"
     }
   ],
   "key_artists": [
@@ -79,6 +86,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q8361"
+  "landmark_tracks": []
 }

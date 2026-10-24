@@ -98,6 +98,54 @@
       "type": "genre",
       "name": "Bass Music",
       "qid": "Q96740854"
+    },
+    {
+      "slug": "genre:2-step-garage",
+      "type": "genre",
+      "name": "2-step garage",
+      "qid": "Q1751409"
+    },
+    {
+      "slug": "genre:breakstep",
+      "type": "genre",
+      "name": "breakstep",
+      "qid": "Q1987980"
+    },
+    {
+      "slug": "genre:deathstep",
+      "type": "genre",
+      "name": "Deathstep",
+      "qid": "Q106528420"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and bass",
+      "qid": "Q188994"
+    },
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub",
+      "qid": "Q212688"
+    },
+    {
+      "slug": "genre:edm-trap",
+      "type": "genre",
+      "name": "Trap (EDM)",
+      "qid": "Q47781397"
+    },
+    {
+      "slug": "genre:uk-bass",
+      "type": "genre",
+      "name": "UK bass",
+      "qid": "Q2346991"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage",
+      "qid": "Q1165777"
     }
   ],
   "key_artists": [

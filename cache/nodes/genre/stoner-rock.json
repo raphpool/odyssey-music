@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T13:06:15.534Z",
   "type": "genre",
   "editorial_definition": "A heavy, psychedelic rock fusion genre defined by slow-to-mid tempos, downtuned and distorted guitar riffs, and a hypnotic, groove-oriented sound heavily influenced by 1970s doom and acid rock.",
+  "qid": "Q617240",
   "era": "1990s–present",
   "origin": "California, United States",
   "parent_genres": [
@@ -57,6 +58,12 @@
       "type": "genre",
       "name": "Psychedelic rock",
       "qid": "Q206159"
+    },
+    {
+      "slug": "genre:garage-punk",
+      "type": "genre",
+      "name": "Garage punk",
+      "qid": "Q2296495"
     }
   ],
   "key_artists": [
@@ -115,6 +122,5 @@
       "name": "Welcome to MeteorCity"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q617240"
+  "landmark_tracks": []
 }

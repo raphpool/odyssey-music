@@ -34,6 +34,7 @@
   },
   "type": "genre",
   "editorial_definition": "A fast-paced, synth-heavy, and high-intensity style of dance music that evolved from disco in the early 1980s, known for its relentless 130+ BPM 'four-to-the-floor' rhythms and pivotal role in queer club culture.",
+  "qid": "Q606393",
   "era": "1980s",
   "origin": "San Francisco, USA; London, UK; Continental Europe",
   "parent_genres": [
@@ -75,6 +76,12 @@
       "type": "genre",
       "name": "Eurodance",
       "qid": "Q216961"
+    },
+    {
+      "slug": "genre:eurodisco",
+      "type": "genre",
+      "name": "Eurodisco",
+      "qid": "Q1374731"
     }
   ],
   "key_artists": [
@@ -138,6 +145,5 @@
       "type": "track",
       "name": "Dance (Disco Heat)"
     }
-  ],
-  "qid": "Q606393"
+  ]
 }

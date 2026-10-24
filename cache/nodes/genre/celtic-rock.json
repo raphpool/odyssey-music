@@ -30,6 +30,7 @@
   },
   "type": "genre",
   "editorial_definition": "A subgenre of folk rock that fuses traditional Celtic musical forms—such as Irish jigs and Scottish reels—with the instrumentation and energy of rock music.",
+  "qid": "Q2662148",
   "era": "1970s - present",
   "origin": "Ireland, Scotland, and the United Kingdom",
   "parent_genres": [],
@@ -45,6 +46,12 @@
       "slug": "genre:traditional-irish-music",
       "type": "genre",
       "name": "Traditional Irish music"
+    },
+    {
+      "slug": "genre:celtic-fusion",
+      "type": "genre",
+      "name": "Celtic fusion",
+      "qid": "Q1092553"
     }
   ],
   "key_artists": [
@@ -72,6 +79,5 @@
       "name": "The Táin"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q2662148"
+  "landmark_tracks": []
 }

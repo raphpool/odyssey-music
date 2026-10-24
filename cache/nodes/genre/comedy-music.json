@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:35:53.551Z",
   "type": "genre",
   "editorial_definition": "A genre of music designed to provoke laughter, satire, or amusement, utilizing techniques like parody, absurdity, and musical subversion across a wide range of styles.",
+  "qid": "Q5151495",
   "parent_genres": [],
   "subgenres": [
     {
@@ -37,7 +38,13 @@
       "qid": "Q602646"
     }
   ],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:novelty-song",
+      "type": "genre",
+      "name": "Novelty song"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:weird-al-yankovic",
@@ -72,6 +79,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q5151495"
+  "landmark_tracks": []
 }

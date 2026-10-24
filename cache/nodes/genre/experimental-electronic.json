@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:34:55.140Z",
   "type": "genre",
   "editorial_definition": "A broad, foundational category of electronic music that prioritizes non-traditional production techniques, the manipulation of raw sonic textures, and the subversion of standard musical structures over conventional melody or rhythm.",
+  "qid": "Q105763581",
   "era": "1940s–present",
   "origin": "France",
   "parent_genres": [
@@ -53,7 +54,14 @@
       "qid": "Q1326777"
     }
   ],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:glitch",
+      "type": "genre",
+      "name": "Glitch",
+      "qid": "Q1100989"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:pierre-schaeffer",
@@ -68,6 +76,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q105763581"
+  "landmark_tracks": []
 }

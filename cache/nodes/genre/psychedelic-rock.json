@@ -43,6 +43,41 @@
       "type": "genre",
       "name": "Acid rock",
       "qid": "Q236932"
+    },
+    {
+      "slug": "genre:folk-rock",
+      "type": "genre",
+      "name": "Folk Rock",
+      "qid": "Q186472"
+    },
+    {
+      "slug": "genre:garage-rock",
+      "type": "genre",
+      "name": "Garage rock",
+      "qid": "Q211573"
+    },
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard Rock",
+      "qid": "Q83270"
+    },
+    {
+      "slug": "genre:psychedelia",
+      "type": "genre",
+      "name": "Psychedelia"
+    },
+    {
+      "slug": "genre:space-rock",
+      "type": "genre",
+      "name": "Space rock",
+      "qid": "Q236913"
+    },
+    {
+      "slug": "genre:stoner-rock",
+      "type": "genre",
+      "name": "Stoner Rock",
+      "qid": "Q617240"
     }
   ],
   "key_artists": [

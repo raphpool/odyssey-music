@@ -26,6 +26,7 @@
   },
   "type": "genre",
   "editorial_definition": "A genre of experimental music that combines the heaviness, weight, and distortion of metal with the structure, atmospheric texture, and slow-build dynamics of post-rock.",
+  "qid": "Q41343",
   "era": "1990s-present",
   "origin": "United States, United Kingdom",
   "parent_genres": [
@@ -49,7 +50,20 @@
     }
   ],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:drone-metal",
+      "type": "genre",
+      "name": "Drone Metal",
+      "qid": "Q1433387"
+    },
+    {
+      "slug": "genre:sludge-metal",
+      "type": "genre",
+      "name": "Sludge metal",
+      "qid": "Q720959"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:neurosis",
@@ -95,6 +109,5 @@
       "name": "Panopticon"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q41343"
+  "landmark_tracks": []
 }

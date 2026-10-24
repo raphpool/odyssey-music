@@ -34,6 +34,7 @@
   },
   "type": "genre",
   "editorial_definition": "Jump-Up is a subgenre of Drum and Bass known for its bouncy, dancefloor-oriented energy, characterized by prominent, wobbling basslines and simpler, punchy drum patterns. Emerging in the mid-90s, it functions as a more accessible and often light-hearted counterpart to more clinical or experimental styles like Techstep or Neurofunk.",
+  "qid": "Q46649",
   "era": "1990s - Present",
   "origin": "United Kingdom",
   "sonic_markers": "wobbling basslines, simple drum loops, mid-range bass riffs, party-focused, hip-hop vocal samples, 170-176 BPM",
@@ -64,6 +65,12 @@
       "type": "genre",
       "name": "Neurofunk",
       "qid": "Q967654"
+    },
+    {
+      "slug": "genre:drumstep",
+      "type": "genre",
+      "name": "Drumstep",
+      "qid": "Q24876318"
     }
   ],
   "key_artists": [
@@ -95,6 +102,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q46649"
+  "landmark_tracks": []
 }

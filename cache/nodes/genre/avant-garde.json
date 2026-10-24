@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T12:44:04.511Z",
   "type": "genre",
   "editorial_definition": "Avant-garde music refers to compositions that are innovative, experimental, and inherently subversive, intentionally bucking normative trends to challenge audience expectations. It is a fluid, trans-genre phenomenon that prioritizes artistic boundary-pushing and conceptual exploration over established musical rules.",
+  "qid": "Q2332751",
   "era": "20th century to present",
   "origin": "Western Europe and North America, early 20th century",
   "parent_genres": [
@@ -49,6 +50,30 @@
       "type": "genre",
       "name": "Noise music",
       "qid": "Q726239"
+    },
+    {
+      "slug": "genre:experimental-pop",
+      "type": "genre",
+      "name": "Experimental pop",
+      "qid": "Q25094591"
+    },
+    {
+      "slug": "genre:microtonal-music",
+      "type": "genre",
+      "name": "Microtonal Music",
+      "qid": "Q1045756"
+    },
+    {
+      "slug": "genre:modern-classical",
+      "type": "genre",
+      "name": "Modern Classical",
+      "qid": "Q65937946"
+    },
+    {
+      "slug": "genre:serialism",
+      "type": "genre",
+      "name": "Serialism",
+      "qid": "Q507246"
     }
   ],
   "key_artists": [
@@ -87,6 +112,5 @@
       "type": "track",
       "name": "4'33\""
     }
-  ],
-  "qid": "Q2332751"
+  ]
 }

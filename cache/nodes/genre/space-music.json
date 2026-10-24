@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:36:22.875Z",
   "type": "genre",
   "editorial_definition": "A tranquil and hypnotic subgenre of ambient music designed to evoke feelings of vastness, weightlessness, and cosmic space, often used for meditation and introspective listening.",
+  "qid": "Q2342263",
   "era": "1970s–present",
   "origin": "Germany and Japan",
   "parent_genres": [
@@ -53,11 +54,16 @@
       "type": "genre",
       "name": "Space rock",
       "qid": "Q236913"
+    },
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New age",
+      "qid": "Q213121"
     }
   ],
   "key_artists": [],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q2342263"
+  "landmark_tracks": []
 }

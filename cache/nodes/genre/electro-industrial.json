@@ -30,6 +30,7 @@
   },
   "type": "genre",
   "editorial_definition": "A subgenre of post-industrial music characterized by its harsh, abrasive electronic textures, distorted or digitized vocals, and complex, gritty production, often drawing thematic inspiration from dystopia and science fiction.",
+  "qid": "Q1403744",
   "era": "1980s–present",
   "origin": "Belgium, Canada, United States, France, and Germany",
   "parent_genres": [
@@ -60,7 +61,14 @@
       "qid": "Q1091450"
     }
   ],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:futurepop",
+      "type": "genre",
+      "name": "Futurepop",
+      "qid": "Q828243"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:skinny-puppy",
@@ -106,6 +114,5 @@
       "name": "Mind: The Perpetual Intercourse"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q1403744"
+  "landmark_tracks": []
 }

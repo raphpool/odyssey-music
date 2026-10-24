@@ -54,6 +54,12 @@
       "slug": "genre:experimental-metal",
       "type": "genre",
       "name": "Experimental metal"
+    },
+    {
+      "slug": "genre:drone",
+      "type": "genre",
+      "name": "Drone",
+      "qid": "Q650316"
     }
   ],
   "key_artists": [

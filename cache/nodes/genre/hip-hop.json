@@ -182,6 +182,70 @@
       "type": "genre",
       "name": "Bass Music",
       "qid": "Q96740854"
+    },
+    {
+      "slug": "genre:big-beat",
+      "type": "genre",
+      "name": "Big Beat",
+      "qid": "Q858579"
+    },
+    {
+      "slug": "genre:conscious-hip-hop",
+      "type": "genre",
+      "name": "Conscious hip-hop",
+      "qid": "Q141459"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    },
+    {
+      "slug": "genre:electro-funk",
+      "type": "genre",
+      "name": "Electro-funk",
+      "qid": "Q1325963"
+    },
+    {
+      "slug": "genre:french-hip-hop",
+      "type": "genre",
+      "name": "French hip hop",
+      "qid": "Q138020"
+    },
+    {
+      "slug": "genre:funk",
+      "type": "genre",
+      "name": "Funk",
+      "qid": "Q164444"
+    },
+    {
+      "slug": "genre:hip-hop-francais",
+      "type": "genre",
+      "name": "Hip-hop français"
+    },
+    {
+      "slug": "genre:lo-fi",
+      "type": "genre",
+      "name": "Lo-fi",
+      "qid": "Q1507298"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B",
+      "qid": "Q45981"
+    },
+    {
+      "slug": "genre:rap-francais",
+      "type": "genre",
+      "name": "Rap français"
     }
   ],
   "key_artists": [

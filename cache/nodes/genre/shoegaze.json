@@ -34,6 +34,7 @@
   },
   "type": "genre",
   "editorial_definition": "A subgenre of indie rock characterized by heavily layered, distorted, and atmospheric guitar textures, often featuring breathy or indistinct vocals buried in the mix.",
+  "qid": "Q272167",
   "era": "Late 1980s–Present",
   "origin": "United Kingdom / Ireland",
   "parent_genres": [
@@ -82,6 +83,24 @@
       "type": "genre",
       "name": "Post-Rock",
       "qid": "Q209137"
+    },
+    {
+      "slug": "genre:alternative",
+      "type": "genre",
+      "name": "Alternative",
+      "qid": "Q1695023"
+    },
+    {
+      "slug": "genre:noise-pop",
+      "type": "genre",
+      "name": "Noise Pop",
+      "qid": "Q2545135"
+    },
+    {
+      "slug": "genre:space-rock",
+      "type": "genre",
+      "name": "Space rock",
+      "qid": "Q236913"
     }
   ],
   "key_artists": [
@@ -140,6 +159,5 @@
       "name": "Psychocandy"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q272167"
+  "landmark_tracks": []
 }

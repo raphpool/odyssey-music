@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:56:19.829Z",
   "type": "genre",
   "editorial_definition": "Indie rock is a decentralized rock music subculture defined by its DIY (Do-It-Yourself) ethic, independence from major corporate labels, and a focus on artistic authenticity over commercial polish.",
+  "qid": "Q183504",
   "era": "1970s–present",
   "origin": "United Kingdom and United States",
   "parent_genres": [],
@@ -39,6 +40,36 @@
       "type": "genre",
       "name": "College rock",
       "qid": "Q783097"
+    },
+    {
+      "slug": "genre:alternative",
+      "type": "genre",
+      "name": "Alternative",
+      "qid": "Q1695023"
+    },
+    {
+      "slug": "genre:britpop",
+      "type": "genre",
+      "name": "Britpop",
+      "qid": "Q189045"
+    },
+    {
+      "slug": "genre:grunge",
+      "type": "genre",
+      "name": "Grunge",
+      "qid": "Q11365"
+    },
+    {
+      "slug": "genre:lo-fi",
+      "type": "genre",
+      "name": "Lo-fi",
+      "qid": "Q1507298"
+    },
+    {
+      "slug": "genre:new-rave",
+      "type": "genre",
+      "name": "New Rave",
+      "qid": "Q1995980"
     }
   ],
   "key_artists": [
@@ -101,6 +132,5 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q183504"
+  "landmark_tracks": []
 }

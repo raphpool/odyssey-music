@@ -26,6 +26,7 @@
   },
   "type": "genre",
   "editorial_definition": "A widely popular American musical genre rooted in Southern and Appalachian folk, characterized by storytelling lyrics, distinctive vocal twang, and a versatile string-instrumentation core.",
+  "qid": "Q83440",
   "era": "1920s–present",
   "origin": "United States",
   "parent_genres": [],
@@ -55,7 +56,32 @@
       "qid": "Q613408"
     }
   ],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:blues",
+      "type": "genre",
+      "name": "Blues",
+      "qid": "Q9759"
+    },
+    {
+      "slug": "genre:folk",
+      "type": "genre",
+      "name": "Folk",
+      "qid": "Q43343"
+    },
+    {
+      "slug": "genre:rockabilly",
+      "type": "genre",
+      "name": "Rockabilly",
+      "qid": "Q203720"
+    },
+    {
+      "slug": "genre:singer-songwriter",
+      "type": "genre",
+      "name": "Singer-songwriter",
+      "qid": "Q89363113"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:johnny-cash",
@@ -96,6 +122,5 @@
       "name": "Red Headed Stranger"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q83440"
+  "landmark_tracks": []
 }
