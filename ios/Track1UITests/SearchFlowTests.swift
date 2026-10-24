@@ -20,7 +20,7 @@ final class SearchFlowTests: XCTestCase {
 
 		// 1. The sheet opens with the field focused. The only page seen is the one of the day (it is recorded
 		// when it loads, I.2), which the first launch has just shown: one line, and it is that page.
-		app.tabBars.buttons["Recherche"].tap()
+		UITestFlows.tabButton("Recherche", in: app).tap()
 		let sheet = element(app, "search-sheet")
 		XCTAssertTrue(sheet.waitForExistence(timeout: 5))
 		let field = app.textFields["search-field"]
@@ -55,7 +55,7 @@ final class SearchFlowTests: XCTestCase {
 		XCTAssertTrue(waitForLabel(title, "Artist A"))
 
 		// 5. An empty query lists the pages seen, the one of the search among them.
-		app.tabBars.buttons["Recherche"].tap()
+		UITestFlows.tabButton("Recherche", in: app).tap()
 		XCTAssertTrue(sheet.waitForExistence(timeout: 5))
 		let recent = app.buttons.matching(
 			NSPredicate(format: "identifier BEGINSWITH 'search-row-' AND label CONTAINS 'Artist A'")
@@ -71,7 +71,7 @@ final class SearchFlowTests: XCTestCase {
 		XCTAssertTrue(dayTitle.waitForExistence(timeout: 15))
 		let titleOfTheDay = dayTitle.label
 
-		app.tabBars.buttons["Recherche"].tap()
+		UITestFlows.tabButton("Recherche", in: app).tap()
 		let field = app.textFields["search-field"]
 		XCTAssertTrue(field.waitForExistence(timeout: 5))
 		field.typeText("mezzanine")
@@ -96,7 +96,7 @@ final class SearchFlowTests: XCTestCase {
 		let app = launch()
 
 		// A cached hit whose page the server cannot serve (`unavailable`).
-		app.tabBars.buttons["Recherche"].tap()
+		UITestFlows.tabButton("Recherche", in: app).tap()
 		var field = app.textFields["search-field"]
 		XCTAssertTrue(field.waitForExistence(timeout: 5))
 		field.typeText("ghost")
@@ -107,7 +107,7 @@ final class SearchFlowTests: XCTestCase {
 		XCTAssertTrue(element(app, "node-retry").exists)
 
 		// The page that exists links to an identity the fixtures do not know.
-		app.tabBars.buttons["Recherche"].tap()
+		UITestFlows.tabButton("Recherche", in: app).tap()
 		field = app.textFields["search-field"]
 		XCTAssertTrue(field.waitForExistence(timeout: 5))
 		field.typeText("lonely")
@@ -126,7 +126,7 @@ final class SearchFlowTests: XCTestCase {
 			"-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL",
 		])
 
-		app.tabBars.buttons["Recherche"].tap()
+		UITestFlows.tabButton("Recherche", in: app).tap()
 		XCTAssertTrue(element(app, "search-sheet").waitForExistence(timeout: 5))
 		XCTAssertTrue(element(app, "search-field").waitForExistence(timeout: 5))
 		UITestFlows.screenshot(named: "3.1-dark-xxxl", in: self)
@@ -151,7 +151,7 @@ final class SearchFlowTests: XCTestCase {
 		app.launch()
 		UITestFlows.declineConsent(app)
 		UITestFlows.completeOnboarding(app)
-		XCTAssertTrue(app.tabBars.buttons["Recherche"].waitForExistence(timeout: 10))
+		XCTAssertTrue(UITestFlows.tabButton("Recherche", in: app).waitForExistence(timeout: 10))
 		return app
 	}
 

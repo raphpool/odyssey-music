@@ -66,9 +66,10 @@
       "name": "Cold Smoke"
     },
     {
-      "slug": "track:ashes-to-ashes--david-bowie",
+      "slug": "track:ashes-to-ashes--tangerine-dream",
       "type": "track",
-      "name": "Ashes to Ashes"
+      "name": "Ashes to Ashes",
+      "artist": "Tangerine Dream"
     },
     {
       "slug": "track:resurrection",

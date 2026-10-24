@@ -8,7 +8,8 @@
  * CLOSED LIST (CLOSED_LIST below): eight (artist, field) pairs, each with the pick it is expected to hold. For
  * each, the migration either
  *   - clears the field (`clear`): no PROVEN better choice exists, and an empty field is honest (the audit counts
- *     it, the pipeline fills it on the next regeneration of the card); or
+ *     it). The pair is also listed in data/cleared-landmarks.json (TRA-674), so neither the pipeline
+ *     (enforceArtistChoices) nor the 2026-10-19 backfill refills it with the very pick removed here; or
  *   - replaces it (`replace`) with an entry of the artist's OWN list that is proven: cited in the artist's
  *     `editorial_article`, or the most voted album of the artist on MusicBrainz, under the v2/v3 rules of
  *     TRA-601 (album before single, no compilation, no DJ mix, no title named after an artist that cannot be

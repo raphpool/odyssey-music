@@ -16,7 +16,14 @@
   "qid": "Q106130091",
   "era": "Late 2000s - Early 2010s",
   "origin": "London, UK",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep",
+      "qid": "Q20474"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {
@@ -42,6 +49,12 @@
       "type": "genre",
       "name": "UK bass",
       "qid": "Q2346991"
+    },
+    {
+      "slug": "genre:chillstep",
+      "type": "genre",
+      "name": "Chillstep",
+      "qid": "Q2963621"
     }
   ],
   "key_artists": [

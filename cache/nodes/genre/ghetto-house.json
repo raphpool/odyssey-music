@@ -25,6 +25,12 @@
       "type": "genre",
       "name": "House music",
       "qid": "Q20502"
+    },
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago house",
+      "qid": "Q1071961"
     }
   ],
   "subgenres": [

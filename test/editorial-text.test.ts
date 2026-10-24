@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { normalizeEditorialText } from "../src/editorial-text.js";
+import { normalizeEditorialText, unescapeQuotes } from "../src/editorial-text.js";
 
 // TRA-458: Gemini sometimes double-escapes newlines in its JSON, so generated prose carries a
 // literal backslash + "n" instead of a line break. These are the contract cases.
@@ -48,5 +48,59 @@ describe("normalizeEditorialText", () => {
 		expect(normalizeEditorialText("AC\\DC and a\\b")).toBe("AC\\DC and a\\b");
 		expect(normalizeEditorialText("trailing\\")).toBe("trailing\\");
 		expect(normalizeEditorialText("a\\tb")).toBe("a\\tb");
+	});
+});
+
+// TRA-577: the same double escaping turns a quotation mark into backslash + quote. The cache held 19
+// articles printing `\"Seaqz\"`.
+describe("normalizeEditorialText: literal escaped quotes", () => {
+	it("turns a literal backslash-quote into a quote", () => {
+		expect(normalizeEditorialText('Its \\"frenetic romp\\" is loud.')).toBe('Its "frenetic romp" is loud.');
+	});
+
+	it("handles quote escapes and newline escapes in the same text", () => {
+		expect(normalizeEditorialText('\\"A\\"\\n\\n\\"B\\"')).toBe('"A"\n\n"B"');
+	});
+
+	it("leaves a clean quotation untouched", () => {
+		const text = 'Tracks like "Foil" and "Montreal" stand out; the duo\'s "frenetic romp".';
+		expect(normalizeEditorialText(text)).toBe(text);
+	});
+
+	it("keeps a backslash that is not followed by a quote", () => {
+		const text = 'AC\\DC played "Back in Black" at C:\\temp\\';
+		expect(normalizeEditorialText(text)).toBe(text);
+	});
+
+	it("keeps an escaped backslash before a quote (an even run is content)", () => {
+		const text = 'path C:\\dir\\\\"x"';
+		expect(normalizeEditorialText(text)).toBe(text);
+	});
+
+	it("drops only the last backslash of an odd run", () => {
+		expect(normalizeEditorialText('a \\\\\\"b')).toBe('a \\\\"b');
+	});
+
+	it("keeps a quote escape inside a fenced code block", () => {
+		const text = 'Outside \\"x\\".\n```\nprintf(\\"hi\\")\n```\nAfter \\"y\\".';
+		expect(normalizeEditorialText(text)).toBe('Outside "x".\n```\nprintf(\\"hi\\")\n```\nAfter "y".');
+	});
+
+	it("is idempotent on texts holding quote escapes", () => {
+		for (const input of ['\\"A\\"', 'a \\\\\\"b', '\\\\"c"', 'x \\\\\\\\\\"y']) {
+			const once = normalizeEditorialText(input);
+			expect(normalizeEditorialText(once)).toBe(once);
+		}
+	});
+});
+
+describe("unescapeQuotes", () => {
+	it("returns the same text when there is nothing to do", () => {
+		expect(unescapeQuotes('He said "no" and left.')).toBe('He said "no" and left.');
+		expect(unescapeQuotes("")).toBe("");
+	});
+
+	it("changes nothing but the escaping backslash (no trim, no newline handling)", () => {
+		expect(unescapeQuotes('  \\"a\\"  \\n\n\n\n')).toBe('  "a"  \\n\n\n\n');
 	});
 });

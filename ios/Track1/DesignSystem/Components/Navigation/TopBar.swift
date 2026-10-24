@@ -11,6 +11,10 @@ struct TopBar: View {
 		case breadcrumb([TopBarCrumb])
 	}
 
+	/// Figma `I282:838;173:15` (2026-10-23, TRA-660): JetBrains Mono Bold 18 / 24, where the previous build
+	/// used the Roboto Condensed `.eyebrow`.
+	static let dateRole: Track1TextRole = .monoHeadline
+
 	private let content: Content
 	private let onSelect: (TopBarCrumb) -> Void
 
@@ -28,8 +32,8 @@ struct TopBar: View {
 	private var bar: some View {
 		switch content {
 		case .date(let date):
-			// Label/Eyebrow, centered (the Figma variant is `justify-center`).
-			Track1Text(TopBarFormat.date(date, timeZone: .current), role: .eyebrow, verbatim: true)
+			// Centered (the Figma variant is `justify-center`).
+			Track1Text(TopBarFormat.date(date, timeZone: .current), role: Self.dateRole, verbatim: true)
 				.foregroundStyle(Track1Tokens.colorTextSecondary)
 				.frame(maxWidth: .infinity, minHeight: Track1Tokens.sizeControlMedium)
 				.accessibilityIdentifier("top-bar-date")

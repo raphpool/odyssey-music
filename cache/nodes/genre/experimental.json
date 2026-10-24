@@ -20,9 +20,64 @@
       "type": "genre",
       "name": "Experimental Hip Hop",
       "qid": "Q5421158"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-Garde",
+      "qid": "Q2332751"
+    },
+    {
+      "slug": "genre:avant-pop",
+      "type": "genre",
+      "name": "Avant-pop",
+      "qid": "Q9162904"
+    },
+    {
+      "slug": "genre:experimental-pop",
+      "type": "genre",
+      "name": "Experimental pop",
+      "qid": "Q25094591"
+    },
+    {
+      "slug": "genre:hauntology",
+      "type": "genre",
+      "name": "hauntology",
+      "qid": "Q85765918"
+    },
+    {
+      "slug": "genre:noise",
+      "type": "genre",
+      "name": "Noise",
+      "qid": "Q726239"
+    },
+    {
+      "slug": "genre:sound-art",
+      "type": "genre",
+      "name": "Sound art",
+      "qid": "Q1744327"
     }
   ],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:contemporary-classical",
+      "type": "genre",
+      "name": "Contemporary Classical",
+      "qid": "Q612024"
+    },
+    {
+      "slug": "genre:electroacoustic-music",
+      "type": "genre",
+      "name": "Electroacoustic music",
+      "qid": "Q1326777"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:john-cage",

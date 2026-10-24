@@ -61,6 +61,12 @@
       "type": "genre",
       "name": "Cool Jazz",
       "qid": "Q327547"
+    },
+    {
+      "slug": "genre:west-coast-jazz",
+      "type": "genre",
+      "name": "West Coast jazz",
+      "qid": "Q1548603"
     }
   ],
   "key_artists": [

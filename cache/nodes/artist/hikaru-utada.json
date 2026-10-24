@@ -70,15 +70,6 @@
   ],
   "discography": [
     {
-      "slug": "project:intentions--hikaru-utada",
-      "type": "project",
-      "name": "Intentions",
-      "artist": "Hikaru Utada",
-      "mbid": "8cad71b2-f26e-47bd-b74e-e54d023f353a",
-      "year": "2026",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:mine-or-yours--hikaru-utada",
       "type": "project",
       "name": "Mine or Yours",
@@ -216,11 +207,6 @@
       "mbid": "a166ef97-5540-3faa-b556-c6ecf812faa4",
       "year": "1998",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:bad-mode",
-      "type": "project",
-      "name": "Bad Mode"
     }
   ],
   "notable_tracks": [

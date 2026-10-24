@@ -73,6 +73,42 @@
       "type": "genre",
       "name": "Afrobeats",
       "qid": "Q25099840"
+    },
+    {
+      "slug": "genre:avant-pop",
+      "type": "genre",
+      "name": "Avant-pop",
+      "qid": "Q9162904"
+    },
+    {
+      "slug": "genre:electropop",
+      "type": "genre",
+      "name": "Electropop",
+      "qid": "Q188450"
+    },
+    {
+      "slug": "genre:eurodance",
+      "type": "genre",
+      "name": "Eurodance",
+      "qid": "Q216961"
+    },
+    {
+      "slug": "genre:experimental-pop",
+      "type": "genre",
+      "name": "Experimental pop",
+      "qid": "Q25094591"
+    },
+    {
+      "slug": "genre:pop-punk",
+      "type": "genre",
+      "name": "Pop Punk",
+      "qid": "Q487914"
+    },
+    {
+      "slug": "genre:pop-rock",
+      "type": "genre",
+      "name": "Pop rock",
+      "qid": "Q484641"
     }
   ],
   "related_genres": [
@@ -123,6 +159,18 @@
       "type": "genre",
       "name": "K-Pop",
       "qid": "Q213665"
+    },
+    {
+      "slug": "genre:singer-songwriter",
+      "type": "genre",
+      "name": "Singer-songwriter",
+      "qid": "Q89363113"
+    },
+    {
+      "slug": "genre:teen-pop",
+      "type": "genre",
+      "name": "Teen pop",
+      "qid": "Q739138"
     }
   ],
   "key_artists": [

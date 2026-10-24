@@ -43,6 +43,12 @@
       "type": "genre",
       "name": "Art pop",
       "qid": "Q25094849"
+    },
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie Pop",
+      "qid": "Q842324"
     }
   ],
   "key_artists": [
