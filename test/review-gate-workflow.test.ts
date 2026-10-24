@@ -58,12 +58,25 @@ const HEAD = "b".repeat(40);
 const OTHER_HEAD = "c".repeat(40);
 const AI_REVIEW = ".github/workflows/ai-review.yml";
 
+// The pull request the gate evaluates (TRA-526): what the job reads from the event and passes to the jq program.
+const PR = {
+	number: 42,
+	baseRef: "main",
+	headRef: "rdoulonne/tra-1-feature",
+	headRepo: "raphpool/odyssey-music",
+};
+
+// A workflow run as the job slims it down. `pull_requests` is empty here, as on many real runs: the binding to the
+// pull request must not depend on it. Other tests fill it in.
 const workflowRun = (id: number, suite: number, overrides: Record<string, unknown> = {}) => ({
 	id,
 	path: AI_REVIEW,
 	event: "pull_request",
 	head_sha: HEAD,
 	check_suite_id: suite,
+	head_branch: PR.headRef,
+	head_repository: PR.headRepo,
+	pull_requests: [],
 	...overrides,
 });
 
@@ -89,7 +102,11 @@ interface Api {
 	checks: unknown[];
 	runs: unknown[];
 	jobs: unknown[];
+	/** The pull requests (any state) whose head is the evaluated one; just the evaluated PR by default. */
+	pulls?: unknown[];
 }
+
+const ownPull = { number: PR.number, base_ref: PR.baseRef };
 
 /** The `review` check-run of a run of ai-review.yml, as the API lists it: its check-run, its run, its job. */
 const genuine = (id: number, suite: number, overrides: Record<string, unknown> = {}): Api => ({
@@ -111,13 +128,13 @@ const stream = (path: string, items: unknown[]): void =>
 /** What the "Evaluate" step reads: `<check-run id>\t<conclusion or missing>`. */
 async function select(api: Api): Promise<string> {
 	fixture += 1;
-	const files = (["checks", "runs", "jobs"] as const).map((kind) => {
+	const files = (["checks", "runs", "jobs", "pulls"] as const).map((kind) => {
 		const path = join(scratch, `${kind}-${fixture}.json`);
 		// Like the workflow's files: one JSON value per item, an empty file for an empty list.
-		stream(path, api[kind]);
+		stream(path, kind === "pulls" ? (api.pulls ?? [ownPull]) : api[kind]);
 		return path;
 	});
-	const [checks, runs, jobs] = files as [string, string, string];
+	const [checks, runs, jobs, pulls] = files as [string, string, string, string];
 	const { stdout } = await exec("jq", [
 		"-nr",
 		"--slurpfile",
@@ -129,6 +146,12 @@ async function select(api: Api): Promise<string> {
 		"--slurpfile",
 		"jobs",
 		jobs,
+		"--slurpfile",
+		"pulls",
+		pulls,
+		"--argjson",
+		"pr",
+		JSON.stringify(PR),
 		"--arg",
 		"sha",
 		HEAD,
@@ -228,6 +251,89 @@ describe("review-gate.yml: which check-run counts as the AI review (TRA-520)", (
 		expect(await select(merge(rerun, first))).toBe("12\tsuccess");
 		// A newer review still running: that is the one judged, and it has no conclusion yet.
 		expect(await select(merge(first, rerun, newerRun))).toBe("13\tmissing");
+	});
+});
+
+// TRA-526 (2026-10-24): a `review` check-run was bound to the head sha, not to the pull request. A PR B opened on the
+// same sha as the PR A under evaluation, against another base (the parent of the faulty commit, or a branch whose
+// ai-review.yml is weakened), produces a genuine `pull_request` run of ai-review.yml on that sha; a `labeled` event on
+// A then re-ran the gate, which kept B's success. `pull_requests[]` is empty on many real runs, so it can only reject
+// (a run that names other pull requests), never be required: the binding rests on the head branch, the head
+// repository and the list of the pull requests that share the head.
+describe("review-gate.yml: the review must be the one of the evaluated pull request (TRA-526)", () => {
+	const own = { number: PR.number, base_ref: PR.baseRef };
+	const otherPr = { number: 77, base_ref: "release/1.0" };
+	// The genuine review of PR B: same sha, produced by a real run of ai-review.yml, and it succeeded.
+	const reviewOfB = (runOverrides: Record<string, unknown>): Api => ({
+		checks: [checkRun(99, 200, { started_at: "2026-10-15T10:00:00Z" })],
+		runs: [workflowRun(5200, 200, runOverrides)],
+		jobs: [job(99, 5200)],
+	});
+
+	it("does not retain the success of a run produced for a PR from another branch on the same sha", async () => {
+		const ofB = reviewOfB({ head_branch: "someone/else" });
+		expect(await select(ofB)).toBe("0\tmissing");
+		// Next to the review of the evaluated PR it never wins, even when it is more recent.
+		const failure = genuine(11, 100, { conclusion: "failure", started_at: "2026-10-15T09:00:00Z" });
+		expect(await select(merge(failure, ofB))).toBe("11\tfailure");
+	});
+
+	it("does not retain the success of a run produced for a fork whose branch has the same name", async () => {
+		expect(await select(reviewOfB({ head_repository: "attacker/odyssey-music" }))).toBe("0\tmissing");
+		expect(await select(reviewOfB({ head_repository: null }))).toBe("0\tmissing");
+	});
+
+	it.each([
+		["another PR, against another base", [otherPr]],
+		["the evaluated PR and another one against another base", [own, otherPr]],
+		["the evaluated number against another base", [{ number: PR.number, base_ref: "release/1.0" }]],
+	])("does not retain a run whose pull_requests name %s", async (_label, pullRequests) => {
+		expect(await select(reviewOfB({ pull_requests: pullRequests }))).toBe("0\tmissing");
+	});
+
+	it("keeps the review of the PR itself, whether the run lists it or lists nothing (as many real runs do)", async () => {
+		expect(await select(genuine(11, 100))).toBe("11\tsuccess");
+		const listed = { ...genuine(11, 100), runs: [workflowRun(5100, 100, { pull_requests: [own] })] };
+		expect(await select(listed)).toBe("11\tsuccess");
+		// Another PR against the same base on the same head does not change what the verdict applies to.
+		const sameBase = { number: 78, base_ref: PR.baseRef };
+		expect(await select({ ...listed, pulls: [own, sameBase] })).toBe("11\tsuccess");
+	});
+
+	it("reports missing when another PR shares the head branch against another base, even if the run lists nothing", async () => {
+		// Same branch, so the head branch cannot tell the two runs apart and `pull_requests[]` is empty: unknown.
+		// A closed PR counts too: the review it produced stays attached to the sha.
+		expect(await select({ ...genuine(11, 100), pulls: [own, otherPr] })).toBe("0\tmissing");
+		expect(await select({ ...genuine(11, 100), pulls: [otherPr, own] })).toBe("0\tmissing");
+	});
+
+	it.each([
+		["no PR at all", []],
+		["only another PR", [{ number: 78, base_ref: "main" }]],
+	])(
+		"reports missing when the PRs of the head are %s: the evaluated one is not established",
+		async (_label, pulls) => {
+			expect(await select({ ...genuine(11, 100), pulls })).toBe("0\tmissing");
+		},
+	);
+
+	it("still judges the latest genuine review of the PR: a re-run of the PR is found, the one of PR B is not", async () => {
+		const first = genuine(11, 100, { conclusion: "failure", started_at: "2026-10-15T09:00:00Z" });
+		const rerun = {
+			checks: [checkRun(12, 100, { conclusion: "success", started_at: "2026-10-15T09:10:00Z" })],
+			jobs: [job(12, 5100)],
+		};
+		const ofB = reviewOfB({ head_branch: "someone/else" });
+		expect(await select(merge(first, rerun, ofB))).toBe("12\tsuccess");
+		expect(await select(merge(first, ofB))).toBe("11\tfailure");
+	});
+
+	it("passes the facts of the event through env, and lists the PRs of the head with pagination", () => {
+		for (const name of ["PR_NUMBER", "BASE_REF", "HEAD_REF", "HEAD_REPO"]) expect(code).toContain(`${name}:`);
+		expect(code).toContain('gh api --paginate --method GET "repos/$REPOSITORY/pulls"');
+		expect(code).toContain('--slurpfile pulls "$api/pulls.json"');
+		// The branch name is chosen by the PR author: it reaches the shell and the query only through variables.
+		expect(stepScript("Evaluate combined review policy")).not.toMatch(/\$\{\{[^}]*(\.ref|full_name)/);
 	});
 });
 

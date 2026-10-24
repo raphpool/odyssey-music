@@ -29,6 +29,19 @@ export interface ReviewCheckRun {
 	checkSuiteId: number;
 }
 
+/** A pull request as `pulls` and the `pull_requests[]` of a workflow run list it: its number and its base branch. */
+export interface PullRef {
+	number: number;
+	baseRef: string;
+}
+
+/** The pull request being updated, as `pulls/<number>` describes it. */
+export interface PullRequestIdentity extends PullRef {
+	headRef: string;
+	/** `<owner>/<name>` of the repository the head branch lives in (a fork for a fork's PR). */
+	headRepository: string;
+}
+
 /** A workflow run of the previous head, as `actions/runs` lists it. */
 export interface WorkflowRun {
 	id: number;
@@ -36,6 +49,11 @@ export interface WorkflowRun {
 	event: string;
 	headSha: string;
 	checkSuiteId: number;
+	/** Head branch and repository of the run; null when the API gives none (a deleted fork). */
+	headBranch: string | null;
+	headRepository: string | null;
+	/** `pull_requests[]` of the run. Empty on many real runs, so it can reject a run but is never required. */
+	pullRequests: readonly PullRef[];
 }
 
 /** A job of a workflow run, as `actions/runs/<id>/jobs` lists it. */
@@ -103,15 +121,46 @@ export const recordedPatchId = (messages: readonly string[]): string | null => {
 const isAiReviewRun = (run: WorkflowRun, sha: string): boolean =>
 	run.path === AI_REVIEW_PATH && run.event === "pull_request" && run.headSha === sha;
 
+/**
+ * Whether a run of ai-review.yml was produced for `pullRequest` and not for another PR that shares its head sha
+ * (TRA-526, 2026-10-24). Same rule as the `select_review` program of review-gate.yml, to be kept equal:
+ * - `headPulls` lists the pull requests, open or not, whose head is this branch of this repository. A head shared
+ *   with a PR against another base cannot be told apart by a run (same branch, same sha, and `pull_requests[]` may
+ *   be empty), and a list that does not hold the PR means it is not established: both are "no";
+ * - the run was made for this head branch of this head repository (a PR from another branch, or from a fork whose
+ *   branch has the same name, is another PR);
+ * - `pull_requests[]`, when it is not empty, holds this PR and only PRs against this base.
+ */
+export const belongsToPullRequest = (
+	run: WorkflowRun,
+	pullRequest: PullRequestIdentity,
+	headPulls: readonly PullRef[],
+): boolean => {
+	const sameBase = (pull: PullRef): boolean => pull.baseRef === pullRequest.baseRef;
+	const unambiguous =
+		headPulls.some((pull) => pull.number === pullRequest.number) && headPulls.every(sameBase);
+	if (!unambiguous) return false;
+	if (run.headBranch !== pullRequest.headRef || run.headRepository !== pullRequest.headRepository)
+		return false;
+	return (
+		run.pullRequests.length === 0 ||
+		(run.pullRequests.some((pull) => pull.number === pullRequest.number) && run.pullRequests.every(sameBase))
+	);
+};
+
 export interface ReviewEvidence {
 	checkRuns: readonly ReviewCheckRun[];
 	workflowRuns: readonly WorkflowRun[];
 	jobs: readonly WorkflowJob[];
+	/** The pull request being updated, and the pull requests that share its head (TRA-526). */
+	pullRequest: PullRequestIdentity;
+	headPulls: readonly PullRef[];
 }
 
 /**
  * The review the gate reads for `sha`: the last by start time among the `review` check-runs that are the job of a
- * `pull_request` run of ai-review.yml on that exact sha (review-gate.yml, TRA-520). A check-run counts only when the
+ * `pull_request` run of ai-review.yml on that exact sha, made for the pull request (review-gate.yml, TRA-520 and
+ * TRA-526). A check-run counts only when the
  * Actions app reported it, it belongs to the check suite of that run, and its id is the id of one of that run's jobs
  * named `review`. An API-created check-run has no job, whatever its name, app or start time. TRA-525 (2026-10-15):
  * the selection used to be the name and the app alone, so a `review` check-run written through the API on the
@@ -120,7 +169,9 @@ export interface ReviewEvidence {
  * (the gate takes the last of the list there; reuse prefers a full review to a guess).
  */
 export const latestReview = (sha: string, evidence: ReviewEvidence): ReviewCheckRun | null => {
-	const trusted = evidence.workflowRuns.filter((run) => isAiReviewRun(run, sha));
+	const trusted = evidence.workflowRuns.filter(
+		(run) => isAiReviewRun(run, sha) && belongsToPullRequest(run, evidence.pullRequest, evidence.headPulls),
+	);
 	const isJobOfTrustedRun = (check: ReviewCheckRun): boolean =>
 		trusted.some(
 			(run) =>
@@ -168,6 +219,9 @@ export interface DecisionInput extends Facts {
 	/** `pull_request` runs of the previous head, and the jobs of those of ai-review.yml; null on the same terms. */
 	workflowRuns: readonly WorkflowRun[] | null;
 	jobs: readonly WorkflowJob[] | null;
+	/** The pull request being updated and those sharing its head (TRA-526); null when they could not be read. */
+	pullRequest: PullRequestIdentity | null;
+	headPulls: readonly PullRef[] | null;
 	/** Annotation messages of the previous review's check-run; null when they could not be read. */
 	annotations: readonly string[] | null;
 }
@@ -200,10 +254,11 @@ export const decideReuse = (input: DecisionInput): ReuseResult => {
 	if (early !== null) return early;
 	const no = (reason: string): ReuseResult => full(reason, previousSha, patchId);
 	if (patchId === null || previousSha === null) return no("prechecked values missing");
-	const { checkRuns, workflowRuns, jobs } = input;
+	const { checkRuns, workflowRuns, jobs, pullRequest, headPulls } = input;
 	if (checkRuns === null || workflowRuns === null || jobs === null)
 		return no("previous review could not be listed");
-	const review = latestReview(previousSha, { checkRuns, workflowRuns, jobs });
+	if (pullRequest === null || headPulls === null) return no("pull request could not be established");
+	const review = latestReview(previousSha, { checkRuns, workflowRuns, jobs, pullRequest, headPulls });
 	if (review === null) return no("no unambiguous previous review produced by ai-review.yml");
 	if (review.status !== "completed") return no("previous review not finished");
 	if (review.conclusion !== "success")
@@ -218,6 +273,8 @@ export const decideReuse = (input: DecisionInput): ReuseResult => {
 
 export interface DecisionContext extends Facts {
 	repository: string;
+	/** Number of the pull request being updated (`GITHUB_REF` of the run); null when the run is not a PR's. */
+	pullNumber: number | null;
 	/** GET a GitHub REST path and return the parsed JSON body; rejects on any non-2xx answer. */
 	get: (path: string) => Promise<unknown>;
 }
@@ -246,6 +303,28 @@ const parseCheckRun = (raw: unknown): ReviewCheckRun => {
 	};
 };
 
+const parsePullRef = (raw: unknown): PullRef => {
+	const base = isRecord(raw) ? raw.base : undefined;
+	if (!isRecord(raw) || typeof raw.number !== "number" || !isRecord(base) || typeof base.ref !== "string") {
+		throw new Error("unexpected pull request entry");
+	}
+	return { number: raw.number, baseRef: base.ref };
+};
+
+const parsePullRequest = (raw: unknown): PullRequestIdentity => {
+	const head = isRecord(raw) ? raw.head : undefined;
+	const repo = isRecord(head) ? head.repo : undefined;
+	if (
+		!isRecord(head) ||
+		typeof head.ref !== "string" ||
+		!isRecord(repo) ||
+		typeof repo.full_name !== "string"
+	) {
+		throw new Error("pull request without a head branch or repository");
+	}
+	return { ...parsePullRef(raw), headRef: head.ref, headRepository: repo.full_name };
+};
+
 const parseWorkflowRun = (raw: unknown): WorkflowRun => {
 	if (!isRecord(raw)) throw new Error("unexpected workflow run entry");
 	const { id, path, event, head_sha: headSha, check_suite_id: checkSuiteId } = raw;
@@ -255,7 +334,21 @@ const parseWorkflowRun = (raw: unknown): WorkflowRun => {
 	if (!isSha(headSha) || typeof checkSuiteId !== "number") {
 		throw new Error("workflow run without sha or check suite");
 	}
-	return { id, path, event, headSha, checkSuiteId };
+	const { head_branch: headBranch, head_repository: headRepository, pull_requests: pullRequests } = raw;
+	if (!Array.isArray(pullRequests)) throw new Error("workflow run without pull_requests");
+	return {
+		id,
+		path,
+		event,
+		headSha,
+		checkSuiteId,
+		headBranch: typeof headBranch === "string" ? headBranch : null,
+		headRepository:
+			isRecord(headRepository) && typeof headRepository.full_name === "string"
+				? headRepository.full_name
+				: null,
+		pullRequests: pullRequests.map(parsePullRef),
+	};
 };
 
 const parseJob = (raw: unknown): WorkflowJob => {
@@ -289,6 +382,24 @@ const listAll = async <T>(
 	throw new Error(`${key} listing exceeds ${MAX_PAGES} pages`);
 };
 
+/** Every pull request, open or not, whose head is the branch of `pull`; throws rather than return a partial list. */
+const listHeadPulls = async (
+	get: (path: string) => Promise<unknown>,
+	base: string,
+	pull: PullRequestIdentity,
+): Promise<PullRef[]> => {
+	// `head` is `<owner>:<branch>`; the branch name is chosen by the PR author, so it is encoded.
+	const head = encodeURIComponent(`${pull.headRepository.split("/")[0] ?? ""}:${pull.headRef}`);
+	const items: PullRef[] = [];
+	for (let page = 1; page <= MAX_PAGES; page++) {
+		const body = await get(`${base}/pulls?head=${head}&state=all&per_page=${PAGE_SIZE}&page=${page}`);
+		if (!Array.isArray(body)) throw new Error("unexpected pulls payload");
+		items.push(...body.map(parsePullRef));
+		if (body.length < PAGE_SIZE) return items;
+	}
+	throw new Error(`pulls listing exceeds ${MAX_PAGES} pages`);
+};
+
 const parseAnnotations = (body: unknown): string[] => {
 	if (!Array.isArray(body)) throw new Error("unexpected annotations payload");
 	// A full page may hide a blocking annotation on the next one; a success review never has that many.
@@ -301,7 +412,7 @@ const parseAnnotations = (body: unknown): string[] => {
 
 /** Fetches the previous head's review from the GitHub API and decides. Any error is a full review. */
 export const resolveDecision = async (ctx: DecisionContext): Promise<ReuseResult> => {
-	const { repository, get, ...facts } = ctx;
+	const { repository, pullNumber, get, ...facts } = ctx;
 	const { patchId, previousSha } = facts;
 	// Cheap checks first, so a `ready_for_review` or a missing patch-id never touches the API.
 	const early = precheck(facts);
@@ -309,7 +420,14 @@ export const resolveDecision = async (ctx: DecisionContext): Promise<ReuseResult
 	try {
 		if (!REPOSITORY.test(repository)) throw new Error("invalid repository");
 		if (!isSha(previousSha)) throw new Error("previous head unknown");
+		if (pullNumber === null) throw new Error("not a pull request run");
 		const base = `repos/${repository}`;
+		// TRA-526: which pull request is updated, and which share its head, before any run is looked at.
+		const pullRequest = parsePullRequest(await get(`${base}/pulls/${pullNumber}`));
+		if (pullRequest.number !== pullNumber) throw new Error("unexpected pull request");
+		// The event said which base the review ran against; a retargeted PR is no longer the one that was reviewed.
+		if (pullRequest.baseRef !== facts.baseRef) throw new Error("pull request base differs from the event's");
+		const headPulls = await listHeadPulls(get, base, pullRequest);
 		const checkRuns = await listAll(
 			get,
 			`${base}/commits/${previousSha}/check-runs?check_name=review&filter=all`,
@@ -325,7 +443,10 @@ export const resolveDecision = async (ctx: DecisionContext): Promise<ReuseResult
 		// Jobs are only listed for the runs that can matter: ai-review.yml, owning a check suite seen above.
 		const suites = new Set(checkRuns.map((check) => check.checkSuiteId));
 		const candidates = workflowRuns.filter(
-			(run) => isAiReviewRun(run, previousSha) && suites.has(run.checkSuiteId),
+			(run) =>
+				isAiReviewRun(run, previousSha) &&
+				belongsToPullRequest(run, pullRequest, headPulls) &&
+				suites.has(run.checkSuiteId),
 		);
 		if (candidates.length > MAX_RUNS_LISTED) throw new Error("too many runs of ai-review.yml on the head");
 		const jobs: WorkflowJob[] = [];
@@ -333,12 +454,12 @@ export const resolveDecision = async (ctx: DecisionContext): Promise<ReuseResult
 			// `filter=all` as the gate does: the check-run of a re-run attempt is the job of an earlier attempt.
 			jobs.push(...(await listAll(get, `${base}/actions/runs/${run.id}/jobs?filter=all`, "jobs", parseJob)));
 		}
-		const review = latestReview(previousSha, { checkRuns, workflowRuns, jobs });
+		const review = latestReview(previousSha, { checkRuns, workflowRuns, jobs, pullRequest, headPulls });
 		const annotations =
 			review !== null && review.status === "completed" && review.conclusion === "success"
 				? parseAnnotations(await get(`${base}/check-runs/${review.id}/annotations?per_page=${PAGE_SIZE}`))
 				: null;
-		return decideReuse({ ...facts, checkRuns, workflowRuns, jobs, annotations });
+		return decideReuse({ ...facts, checkRuns, workflowRuns, jobs, pullRequest, headPulls, annotations });
 	} catch (error) {
 		return full(
 			`lookup failed: ${error instanceof Error ? error.message : String(error)}`,
@@ -369,7 +490,11 @@ const main = async (): Promise<void> => {
 	const flag = (name: string): boolean | null =>
 		env[name] === "true" ? true : env[name] === "false" ? false : null;
 	const attempt = Number(env.RUN_ATTEMPT);
+	// `GITHUB_REF` of a pull_request run is `refs/pull/<number>/merge`, set by the runner (the workflow passes no PR
+	// number); anything else leaves the pull request unknown, which means a full review.
+	const pullMatch = /^refs\/pull\/(\d+)\/merge$/.exec(env.GITHUB_REF ?? "");
 	const result = await resolveDecision({
+		pullNumber: pullMatch?.[1] === undefined ? null : Number(pullMatch[1]),
 		action: env.EVENT_ACTION ?? "",
 		runAttempt: Number.isInteger(attempt) ? attempt : null,
 		patchId: text("PATCH_ID"),
