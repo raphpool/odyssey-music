@@ -303,12 +303,13 @@ final class ProfileFlowTests: XCTestCase {
 		UITestFlows.screenshot(named: "1.2-chips-xxxl", in: self)
 	}
 
-	/// 2026-10-24 (TRA-700, review of TRA-679, macOS probe): at AX2 "Japanese Traditional" folds on two lines in a
-	/// pill narrower than the row, and "Sai" shares that row. The layout centered "Sai" on the folded pill, at
-	/// mid-height beside it; the onboarding aligns it at the top. Both chips are read as frames, `a` folded and `b`
-	/// short, and the preconditions (`a` at least 15 pt taller, `b` on the right of `a`) keep the test from
-	/// passing on two chips that do not share a row. 1 pt is for rounding: on `main` the gap is half the
-	/// difference in height, about 16 pt. The capture `1.2-chips-shared-row` is the proof to read for the shape.
+	/// 2026-10-24 (TRA-700, review of TRA-679): at AX2 "Mauritanian Traditional" folds on two lines (about 184 x
+	/// 78.67 pt) in a pill narrower than the 330 pt row, and "Sai" (71.33 x 49.33 pt) shares that row. The layout
+	/// centered "Sai" on the folded pill, at mid-height beside it; the onboarding aligns it at the top. Both chips
+	/// are read as frames, `a` folded and `b` short, and the preconditions (`a` at least 15 pt taller, `b` on the
+	/// right of `a`) keep the test from passing on two chips that do not share a row. 1 pt is for rounding: on
+	/// `main` the gap is half the difference in height, about 15 pt. The sizes come from the `ios-check` run of
+	/// PR #649 (see `sharedRowChipTaxonomy`). The capture `1.2-chips-shared-row` is the proof to read for the shape.
 	@MainActor
 	func testAShortChipSharingItsRowWithAFoldedChipIsAlignedOnTopOfIt() {
 		let app = UITestFlows.launch(
@@ -574,12 +575,17 @@ final class ProfileFlowTests: XCTestCase {
 		{"mode":"editorial","version":2,"families":[{"key":"family-0","label":"Family 0","order":1},{"key":"family-1","label":"Family 1","order":2}],"genres":[{"id":"local:genre-0a","name":"North American Indigenous Music","family":"family-0","slugs":["genre:genre-0a"]},{"id":"local:genre-0b","name":"Genre 0b","family":"family-0","slugs":["genre:genre-0b"]},{"id":"local:genre-1a","name":"Genre 1a","family":"family-1","slugs":["genre:genre-1a"]}],"legacySelectionBySlug":{}}
 		"""
 
-	/// `editorialTaxonomy` with a folded name for `local:genre-0a` and a short one for `local:genre-0b`: at AX2 on
-	/// a column of 300 to 350 pt "Japanese Traditional" folds on two lines in a pill of 207 pt, and "Sai" (77 pt)
-	/// shares its row (macOS probe, 2026-10-24). Only those two `name`s change.
+	/// `editorialTaxonomy` with a folded name for `local:genre-0a` and a short one for `local:genre-0b`. Sizes
+	/// measured by `ios-check` on PR #649 (iPhone 17 Pro, AX2, 2026-10-24): a one-line chip is 49.33 pt high,
+	/// "Japanese Traditional" (20 characters) is 316 pt wide on one line in a 330 pt column, so about 14.7 pt per
+	/// character plus 22 pt, and "Sai" is 71.33 pt wide. "Mauritanian Traditional" (23 characters) is about 360 pt
+	/// on one line, more than the column, and folds on its two words of 11 characters: about 184 pt wide and
+	/// 78.67 pt high. "Sai" fits beside it (184 + 8 + 71.33 = 263 pt), and the chips share a row for any column
+	/// from 263 to 359 pt. (The first fixture, "Japanese Traditional", fitted on one line: a macOS probe had
+	/// overestimated the font at AX2.) Only those two `name`s change.
 	private static let sharedRowChipTaxonomy =
 		"""
-		{"mode":"editorial","version":2,"families":[{"key":"family-0","label":"Family 0","order":1},{"key":"family-1","label":"Family 1","order":2}],"genres":[{"id":"local:genre-0a","name":"Japanese Traditional","family":"family-0","slugs":["genre:genre-0a"]},{"id":"local:genre-0b","name":"Sai","family":"family-0","slugs":["genre:genre-0b"]},{"id":"local:genre-1a","name":"Genre 1a","family":"family-1","slugs":["genre:genre-1a"]}],"legacySelectionBySlug":{}}
+		{"mode":"editorial","version":2,"families":[{"key":"family-0","label":"Family 0","order":1},{"key":"family-1","label":"Family 1","order":2}],"genres":[{"id":"local:genre-0a","name":"Mauritanian Traditional","family":"family-0","slugs":["genre:genre-0a"]},{"id":"local:genre-0b","name":"Sai","family":"family-0","slugs":["genre:genre-0b"]},{"id":"local:genre-1a","name":"Genre 1a","family":"family-1","slugs":["genre:genre-1a"]}],"legacySelectionBySlug":{}}
 		"""
 
 	/// `editorialTaxonomy` with two long family names: only the `label`s change.
