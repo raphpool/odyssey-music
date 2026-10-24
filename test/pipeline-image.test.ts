@@ -28,6 +28,7 @@ async function resolvedProject() {
 		credit: [{ mbid: "2eeba1d4-0000-4000-8000-000000000001", name: "Roni Size" }],
 		primaryType: null,
 		firstReleaseDate: null,
+		releaseGroupMbid: null,
 	}));
 	vi.mocked(m.fetchEntityGenresMb).mockImplementation(async () => []);
 	vi.mocked(m.fetchProjectMetaMb).mockImplementation(async () => ({
