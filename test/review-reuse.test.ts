@@ -13,10 +13,10 @@ import {
 	type DecisionInput,
 	decideReuse,
 	type Facts,
+	type HeadPull,
 	latestReview,
 	MAX_PAGES,
 	PAGE_SIZE,
-	type PullRef,
 	type PullRequestIdentity,
 	RECORD_PREFIX,
 	type ReviewCheckRun,
@@ -37,14 +37,17 @@ const RUN_ID = 5100;
 
 // TRA-526: a run only counts when it belongs to the pull request being updated. This is that pull request, and the
 // list of the pull requests sharing its head (just itself, in the ordinary case).
+const HEAD_SHA = "e".repeat(40);
 const PULL: PullRequestIdentity = {
 	number: 42,
+	headSha: HEAD_SHA,
 	baseRef: "main",
 	headRef: "rdoulonne/tra-1-feature",
 	headRepository: "raphpool/odyssey-music",
 };
-const OWN: PullRef = { number: PULL.number, baseRef: PULL.baseRef };
-const OTHER_BASE: PullRef = { number: 77, baseRef: "release/1.0" };
+const OWN: HeadPull = { number: PULL.number, baseRef: PULL.baseRef, headSha: HEAD_SHA };
+// A PR against another base whose last head is the previous head (closed there), or the current one (open).
+const OTHER_BASE: HeadPull = { number: 77, baseRef: "release/1.0", headSha: PREVIOUS };
 
 // TRA-525: a `review` check-run only counts when it is the job of a `pull_request` run of ai-review.yml on the
 // previous head. `run`, `workflowRun` and `job` below are the three records that, together, make one genuine review.
@@ -209,7 +212,10 @@ describe("decideReuse (TRA-510, TRA-525)", () => {
 			"head shared with a PR against another base (the two runs cannot be told apart)",
 			{ headPulls: [OWN, OTHER_BASE] },
 		],
-		["this PR absent from the pull requests of the head", { headPulls: [{ number: 78, baseRef: "main" }] }],
+		[
+			"this PR absent from the pull requests of the head",
+			{ headPulls: [{ number: 78, baseRef: "main", headSha: PREVIOUS }] },
+		],
 		["no pull request on the head at all", { headPulls: [] }],
 	];
 	it.each(full)("runs a full review: %s", (_label, overrides) => {
@@ -228,8 +234,16 @@ describe("decideReuse (TRA-510, TRA-525)", () => {
 		expect(decideReuse(input({ workflowRuns: [workflowRun({ pullRequests: [OWN] })] })).decision).toBe(
 			"reuse",
 		);
-		const sibling: PullRef = { number: 78, baseRef: PULL.baseRef };
+		const sibling: HeadPull = { number: 78, baseRef: PULL.baseRef, headSha: PREVIOUS };
 		expect(decideReuse(input({ headPulls: [OWN, sibling] })).decision).toBe("reuse");
+	});
+
+	it("ignores a PR against another base left on an older sha (a closed stack parent reopened against main)", () => {
+		const stale: HeadPull = { ...OTHER_BASE, headSha: "d".repeat(40) };
+		expect(decideReuse(input({ headPulls: [stale, OWN] })).decision).toBe("reuse");
+		// Open on the branch, it sits on the current head and keeps the head ambiguous.
+		const openOnHead: HeadPull = { ...OTHER_BASE, headSha: HEAD_SHA };
+		expect(decideReuse(input({ headPulls: [openOnHead, OWN] })).decision).toBe("full");
 	});
 
 	it("does not let the success of a PR B on the same sha win over the review of the PR", () => {
@@ -292,12 +306,12 @@ const runsBody = (runs: WorkflowRun[], total = runs.length) => ({
 const pullBody = (pull: PullRequestIdentity = PULL) => ({
 	number: pull.number,
 	base: { ref: pull.baseRef },
-	head: { ref: pull.headRef, repo: { full_name: pull.headRepository } },
+	head: { ref: pull.headRef, sha: pull.headSha, repo: { full_name: pull.headRepository } },
 });
 
 /** `GET pulls?head=…`: a bare array, not a `{ total_count, … }` envelope. */
-const headPullsBody = (pulls: PullRef[]) =>
-	pulls.map((pull) => ({ number: pull.number, base: { ref: pull.baseRef } }));
+const headPullsBody = (pulls: HeadPull[]) =>
+	pulls.map((pull) => ({ number: pull.number, base: { ref: pull.baseRef }, head: { sha: pull.headSha } }));
 
 const jobsBody = (jobs: WorkflowJob[], total = jobs.length) => ({
 	total_count: total,
@@ -388,7 +402,13 @@ describe("resolveDecision (API lookups)", () => {
 			"the listing of the head never ends",
 			{
 				[headPullsListing]: () =>
-					headPullsBody(Array.from({ length: PAGE_SIZE }, (_, i) => ({ number: 1000 + i, baseRef: "main" }))),
+					headPullsBody(
+						Array.from({ length: PAGE_SIZE }, (_, i) => ({
+							number: 1000 + i,
+							baseRef: "main",
+							headSha: PREVIOUS,
+						})),
+					),
 			},
 		],
 	])("runs a full review when %s", async (_label, answers) => {
@@ -405,7 +425,11 @@ describe("resolveDecision (API lookups)", () => {
 		const pages = (path: string) =>
 			/[?&]page=1$/.test(path)
 				? headPullsBody(
-						Array.from({ length: PAGE_SIZE }, (_, i) => ({ number: 1000 + i, baseRef: PULL.baseRef })),
+						Array.from({ length: PAGE_SIZE }, (_, i) => ({
+							number: 1000 + i,
+							baseRef: PULL.baseRef,
+							headSha: PREVIOUS,
+						})),
 					)
 				: headPullsBody([OWN]);
 		const api = fakeApi({ ...happy(), [headPullsListing]: pages });
@@ -564,7 +588,11 @@ describe("the selection is the one of review-gate.yml", () => {
 		/** The pull requests of the head, as the gate slims them down; just the PR itself by default. */
 		pulls?: Item[];
 	}
-	const apiPull = (pull: PullRef): Item => ({ number: pull.number, base_ref: pull.baseRef });
+	const apiPull = (pull: HeadPull): Item => ({
+		number: pull.number,
+		base_ref: pull.baseRef,
+		head_sha: pull.headSha,
+	});
 
 	const apiCheck = (id: number, suite: number, overrides: Item = {}): Item => ({
 		id,
@@ -653,7 +681,7 @@ describe("the selection is the one of review-gate.yml", () => {
 		],
 		[
 			"a run that lists this PR against another base",
-			oneOff({ run: { pull_requests: [apiPull({ number: PULL.number, baseRef: "release/1.0" })] } }),
+			oneOff({ run: { pull_requests: [apiPull({ ...OWN, baseRef: "release/1.0" })] } }),
 			false,
 		],
 		[
@@ -663,7 +691,12 @@ describe("the selection is the one of review-gate.yml", () => {
 		],
 		[
 			"a head shared with a PR against the same base",
-			{ ...reviewOf(11, 100), pulls: [apiPull(OWN), apiPull({ number: 78, baseRef: PULL.baseRef })] },
+			{ ...reviewOf(11, 100), pulls: [apiPull(OWN), apiPull({ ...OWN, number: 78 })] },
+			true,
+		],
+		[
+			"a head shared with a PR against another base left on an older sha",
+			{ ...reviewOf(11, 100), pulls: [apiPull({ ...OTHER_BASE, headSha: "d".repeat(40) }), apiPull(OWN)] },
 			true,
 		],
 		["a head whose pull requests do not hold this PR", { ...reviewOf(11, 100), pulls: [] }, false],
@@ -727,6 +760,7 @@ describe("the selection is the one of review-gate.yml", () => {
 				(api.pulls ?? [apiPull(OWN)]).map((p) => ({
 					number: p.number as number,
 					baseRef: p.base_ref as string,
+					headSha: p.head_sha as string,
 				})),
 			),
 		});

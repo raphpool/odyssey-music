@@ -95,11 +95,14 @@ jobs:
           # event on this PR would have kept its success. `pull_requests[]` of a run is empty on many real runs, so
           # it only rejects: a run that names another PR, or this one against another base, is not retained, but an
           # empty list is not required to be filled. What binds the run is its head branch and head repository, and
-          # `$pulls`, the pull requests (any state) sharing this head: when the head is shared with a PR against
-          # another base two runs cannot be told apart, and when this PR is not in the list it is not established.
-          # Every doubt is `missing`. Same rule as `belongsToPullRequest` in scripts/ci/review-reuse.ts.
+          # `$pulls`, the pull requests (any state) of this head branch that sit on this sha: when one of them targets
+          # another base, two runs cannot be told apart, and when this PR is not in the list it is not established.
+          # A PR of the same branch name left on an older sha (closed long ago, or a stack parent) says nothing about
+          # this sha and does not count. Every doubt is `missing`. Same rule as `belongsToPullRequest` in
+          # scripts/ci/review-reuse.ts.
           select_review=$(cat <<'JQ'
-          ($pulls | length > 0 and any(.[]; .number == $pr.number) and all(.[]; .base_ref == $pr.baseRef)) as $unambiguous
+          [$pulls[] | select(.number == $pr.number or .head_sha == $sha)] as $heads
+          | ($heads | any(.[]; .number == $pr.number) and all(.[]; .base_ref == $pr.baseRef)) as $unambiguous
           | [$runs[]
             | select($unambiguous
               and .path == $path and .event == "pull_request" and .head_sha == $sha
@@ -147,10 +150,15 @@ jobs:
               > "$api/checks.json"
             gh api --paginate "repos/$REPOSITORY/actions/runs?head_sha=$SHA&event=pull_request&per_page=100" \
               --jq '.workflow_runs[] | {id, path, event, head_sha, check_suite_id, head_branch, head_repository: .head_repository.full_name, pull_requests: [.pull_requests[] | {number, base_ref: .base.ref}]}' > "$api/runs.json"
-            # TRA-526: the pull requests, open or not, whose head is this one. `head` is `<owner>:<branch>` and filters
-            # on the head repository's owner. `--method GET`: gh switches to POST as soon as a field is given.
-            gh api --paginate --method GET "repos/$REPOSITORY/pulls" -f head="${HEAD_REPO%%/*}:$HEAD_REF" -f state=all -f per_page=100 \
-              --jq '.[] | {number, base_ref: .base.ref}' > "$api/pulls.json"
+            # TRA-526: the pull requests, open or not, whose head branch is this one. `head` is `<owner>:<branch>` and
+            # filters on the head repository's owner. `--method GET`: gh switches to POST as soon as a field is given.
+            # No head repository (a deleted fork) means no filter to send: an empty list, hence `missing`, and not a
+            # `head=:<branch>` that GitHub might ignore, which would walk the whole history of the repository.
+            : > "$api/pulls.json"
+            if [ -n "$HEAD_REPO" ]; then
+              gh api --paginate --method GET "repos/$REPOSITORY/pulls" -f head="${HEAD_REPO%%/*}:$HEAD_REF" -f state=all -f per_page=100 \
+                --jq '.[] | {number, base_ref: .base.ref, head_sha: .head.sha}' > "$api/pulls.json"
+            fi
             run_ids=$(jq -r --arg path "$ai_review_path" 'select(.path == $path) | .id' "$api/runs.json")
             : > "$api/jobs.json"
             for run_id in $run_ids; do

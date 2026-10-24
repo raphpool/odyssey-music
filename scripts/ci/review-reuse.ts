@@ -35,8 +35,13 @@ export interface PullRef {
 	baseRef: string;
 }
 
+/** A pull request of the head branch, as `pulls?head=` lists it: where its head stood when it was last updated. */
+export interface HeadPull extends PullRef {
+	headSha: string;
+}
+
 /** The pull request being updated, as `pulls/<number>` describes it. */
-export interface PullRequestIdentity extends PullRef {
+export interface PullRequestIdentity extends HeadPull {
 	headRef: string;
 	/** `<owner>/<name>` of the repository the head branch lives in (a fork for a fork's PR). */
 	headRepository: string;
@@ -124,9 +129,10 @@ const isAiReviewRun = (run: WorkflowRun, sha: string): boolean =>
 /**
  * Whether a run of ai-review.yml was produced for `pullRequest` and not for another PR that shares its head sha
  * (TRA-526, 2026-10-24). Same rule as the `select_review` program of review-gate.yml, to be kept equal:
- * - `headPulls` lists the pull requests, open or not, whose head is this branch of this repository. A head shared
- *   with a PR against another base cannot be told apart by a run (same branch, same sha, and `pull_requests[]` may
- *   be empty), and a list that does not hold the PR means it is not established: both are "no";
+ * - `headPulls` lists the pull requests, open or not, whose head is this branch of this repository. Those sitting on
+ *   the sha of the run (or on the PR's current head) count: if one targets another base, the two runs cannot be told
+ *   apart (same branch, same sha, and `pull_requests[]` may be empty); a list that does not hold the PR means it is
+ *   not established: both are "no". A PR of the same branch name left on an older sha says nothing and is ignored;
  * - the run was made for this head branch of this head repository (a PR from another branch, or from a fork whose
  *   branch has the same name, is another PR);
  * - `pull_requests[]`, when it is not empty, holds this PR and only PRs against this base.
@@ -134,11 +140,16 @@ const isAiReviewRun = (run: WorkflowRun, sha: string): boolean =>
 export const belongsToPullRequest = (
 	run: WorkflowRun,
 	pullRequest: PullRequestIdentity,
-	headPulls: readonly PullRef[],
+	headPulls: readonly HeadPull[],
 ): boolean => {
 	const sameBase = (pull: PullRef): boolean => pull.baseRef === pullRequest.baseRef;
-	const unambiguous =
-		headPulls.some((pull) => pull.number === pullRequest.number) && headPulls.every(sameBase);
+	const relevant = headPulls.filter(
+		(pull) =>
+			pull.number === pullRequest.number ||
+			pull.headSha === run.headSha ||
+			pull.headSha === pullRequest.headSha,
+	);
+	const unambiguous = relevant.some((pull) => pull.number === pullRequest.number) && relevant.every(sameBase);
 	if (!unambiguous) return false;
 	if (run.headBranch !== pullRequest.headRef || run.headRepository !== pullRequest.headRepository)
 		return false;
@@ -154,14 +165,13 @@ export interface ReviewEvidence {
 	jobs: readonly WorkflowJob[];
 	/** The pull request being updated, and the pull requests that share its head (TRA-526). */
 	pullRequest: PullRequestIdentity;
-	headPulls: readonly PullRef[];
+	headPulls: readonly HeadPull[];
 }
 
 /**
  * The review the gate reads for `sha`: the last by start time among the `review` check-runs that are the job of a
  * `pull_request` run of ai-review.yml on that exact sha, made for the pull request (review-gate.yml, TRA-520 and
- * TRA-526). A check-run counts only when the
- * Actions app reported it, it belongs to the check suite of that run, and its id is the id of one of that run's jobs
+ * TRA-526). A check-run counts only when the Actions app reported it, it belongs to the check suite of that run, and its id is the id of one of that run's jobs
  * named `review`. An API-created check-run has no job, whatever its name, app or start time. TRA-525 (2026-10-15):
  * the selection used to be the name and the app alone, so a `review` check-run written through the API on the
  * previous head by a workflow of any branch, with a valid record, was inherited by the next head.
@@ -221,7 +231,7 @@ export interface DecisionInput extends Facts {
 	jobs: readonly WorkflowJob[] | null;
 	/** The pull request being updated and those sharing its head (TRA-526); null when they could not be read. */
 	pullRequest: PullRequestIdentity | null;
-	headPulls: readonly PullRef[] | null;
+	headPulls: readonly HeadPull[] | null;
 	/** Annotation messages of the previous review's check-run; null when they could not be read. */
 	annotations: readonly string[] | null;
 }
@@ -311,6 +321,12 @@ const parsePullRef = (raw: unknown): PullRef => {
 	return { number: raw.number, baseRef: base.ref };
 };
 
+const parseHeadPull = (raw: unknown): HeadPull => {
+	const head = isRecord(raw) ? raw.head : undefined;
+	if (!isRecord(head) || !isSha(head.sha)) throw new Error("pull request without a head sha");
+	return { ...parsePullRef(raw), headSha: head.sha };
+};
+
 const parsePullRequest = (raw: unknown): PullRequestIdentity => {
 	const head = isRecord(raw) ? raw.head : undefined;
 	const repo = isRecord(head) ? head.repo : undefined;
@@ -322,7 +338,7 @@ const parsePullRequest = (raw: unknown): PullRequestIdentity => {
 	) {
 		throw new Error("pull request without a head branch or repository");
 	}
-	return { ...parsePullRef(raw), headRef: head.ref, headRepository: repo.full_name };
+	return { ...parseHeadPull(raw), headRef: head.ref, headRepository: repo.full_name };
 };
 
 const parseWorkflowRun = (raw: unknown): WorkflowRun => {
@@ -387,14 +403,14 @@ const listHeadPulls = async (
 	get: (path: string) => Promise<unknown>,
 	base: string,
 	pull: PullRequestIdentity,
-): Promise<PullRef[]> => {
+): Promise<HeadPull[]> => {
 	// `head` is `<owner>:<branch>`; the branch name is chosen by the PR author, so it is encoded.
 	const head = encodeURIComponent(`${pull.headRepository.split("/")[0] ?? ""}:${pull.headRef}`);
-	const items: PullRef[] = [];
+	const items: HeadPull[] = [];
 	for (let page = 1; page <= MAX_PAGES; page++) {
 		const body = await get(`${base}/pulls?head=${head}&state=all&per_page=${PAGE_SIZE}&page=${page}`);
 		if (!Array.isArray(body)) throw new Error("unexpected pulls payload");
-		items.push(...body.map(parsePullRef));
+		items.push(...body.map(parseHeadPull));
 		if (body.length < PAGE_SIZE) return items;
 	}
 	throw new Error(`pulls listing exceeds ${MAX_PAGES} pages`);

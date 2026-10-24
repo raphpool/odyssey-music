@@ -106,7 +106,7 @@ interface Api {
 	pulls?: unknown[];
 }
 
-const ownPull = { number: PR.number, base_ref: PR.baseRef };
+const ownPull = { number: PR.number, base_ref: PR.baseRef, head_sha: HEAD };
 
 /** The `review` check-run of a run of ai-review.yml, as the API lists it: its check-run, its run, its job. */
 const genuine = (id: number, suite: number, overrides: Record<string, unknown> = {}): Api => ({
@@ -261,8 +261,9 @@ describe("review-gate.yml: which check-run counts as the AI review (TRA-520)", (
 // (a run that names other pull requests), never be required: the binding rests on the head branch, the head
 // repository and the list of the pull requests that share the head.
 describe("review-gate.yml: the review must be the one of the evaluated pull request (TRA-526)", () => {
-	const own = { number: PR.number, base_ref: PR.baseRef };
-	const otherPr = { number: 77, base_ref: "release/1.0" };
+	const own = ownPull;
+	// A PR against another base on the same head branch and the same sha.
+	const otherPr = { number: 77, base_ref: "release/1.0", head_sha: HEAD };
 	// The genuine review of PR B: same sha, produced by a real run of ai-review.yml, and it succeeded.
 	const reviewOfB = (runOverrides: Record<string, unknown>): Api => ({
 		checks: [checkRun(99, 200, { started_at: "2026-10-15T10:00:00Z" })],
@@ -296,7 +297,7 @@ describe("review-gate.yml: the review must be the one of the evaluated pull requ
 		const listed = { ...genuine(11, 100), runs: [workflowRun(5100, 100, { pull_requests: [own] })] };
 		expect(await select(listed)).toBe("11\tsuccess");
 		// Another PR against the same base on the same head does not change what the verdict applies to.
-		const sameBase = { number: 78, base_ref: PR.baseRef };
+		const sameBase = { number: 78, base_ref: PR.baseRef, head_sha: HEAD };
 		expect(await select({ ...listed, pulls: [own, sameBase] })).toBe("11\tsuccess");
 	});
 
@@ -307,9 +308,19 @@ describe("review-gate.yml: the review must be the one of the evaluated pull requ
 		expect(await select({ ...genuine(11, 100), pulls: [otherPr, own] })).toBe("0\tmissing");
 	});
 
+	it("ignores a PR of the same branch name left on an older sha: it says nothing about this one", async () => {
+		// E.g. the branch was first opened against a stack parent, closed, then reopened against the default branch.
+		const stale = { ...otherPr, head_sha: OTHER_HEAD };
+		expect(await select({ ...genuine(11, 100), pulls: [stale, own] })).toBe("11\tsuccess");
+		// Whereas a closed PR whose last head is this very sha keeps the head ambiguous.
+		expect(await select({ ...genuine(11, 100), pulls: [{ ...otherPr, head_sha: HEAD }, own] })).toBe(
+			"0\tmissing",
+		);
+	});
+
 	it.each([
 		["no PR at all", []],
-		["only another PR", [{ number: 78, base_ref: "main" }]],
+		["only another PR", [{ number: 78, base_ref: "main", head_sha: HEAD }]],
 	])(
 		"reports missing when the PRs of the head are %s: the evaluated one is not established",
 		async (_label, pulls) => {
@@ -332,6 +343,8 @@ describe("review-gate.yml: the review must be the one of the evaluated pull requ
 		for (const name of ["PR_NUMBER", "BASE_REF", "HEAD_REF", "HEAD_REPO"]) expect(code).toContain(`${name}:`);
 		expect(code).toContain('gh api --paginate --method GET "repos/$REPOSITORY/pulls"');
 		expect(code).toContain('--slurpfile pulls "$api/pulls.json"');
+		// A deleted fork leaves no head repository: no request with a filter GitHub could ignore, an empty list.
+		expect(code).toMatch(/if \[ -n "\$HEAD_REPO" \]; then\s+gh api --paginate --method GET/);
 		// The branch name is chosen by the PR author: it reaches the shell and the query only through variables.
 		expect(stepScript("Evaluate combined review policy")).not.toMatch(/\$\{\{[^}]*(\.ref|full_name)/);
 	});
