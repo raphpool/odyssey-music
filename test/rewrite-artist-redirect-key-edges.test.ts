@@ -122,6 +122,21 @@ describe("the closed list (criterion: the 12 edges of TRA-598)", () => {
 	});
 });
 
+describe("thresholds (criterion: the ceiling falls from 1 to 0)", () => {
+	it("artist-edge-to-redirect-key has no allowance left on any of its four fields", () => {
+		const thresholds = JSON.parse(readFileSync(resolve("data/integrity-thresholds.json"), "utf8")) as Record<
+			string,
+			unknown
+		>;
+		expect(thresholds["artist-edge-to-redirect-key"]).toEqual({
+			discography: 0,
+			notable_tracks: 0,
+			landmark_project: 0,
+			reference_track: 0,
+		});
+	});
+});
+
 describe("planFix", () => {
 	it("detaches the Mulligan edge and keeps his other releases, in order", async () => {
 		const { dir, paths } = repoLikeCache();
