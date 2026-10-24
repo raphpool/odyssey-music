@@ -77,9 +77,11 @@ export const DETACHMENTS: readonly Detachment[] = [
 		b: { slug: "artist:quadrant", mbid: "7c1cc8a1-a237-40b6-ab4a-dca495a8f470" },
 		proof:
 			"MusicBrainz 7c1cc8a1: Group, 'drum & bass', 'is person' of Leigh Caplan, member Daniel Pollard, no relation to Basic " +
-			"Channel. MusicBrainz d145a57e (Basic Channel): Group whose members are Mark Ernestus and Moritz von Oswald. The cache " +
-			"agrees: artist:quadrant is a Seattle drum-and-bass project (Commercial Suicide, Citrus Recordings) while Basic " +
-			"Channel is the Berlin dub-techno duo; 'Quadrant' is only the name of one Basic Channel record (Quadrant Dub).",
+			"Channel. MusicBrainz d145a57e (Basic Channel): Group whose members are Mark Ernestus and Moritz von Oswald. " +
+			"MusicBrainz does hold another artist named Quadrant (05beea21...), an alias of Basic Channel, but it is a different " +
+			"MusicBrainz artist from 7c1cc8a1. Our node artist:quadrant carries the mbid 7c1cc8a1 and describes Leigh Caplan's " +
+			"Seattle drum-and-bass project (Commercial Suicide, Citrus Recordings), so it is not the 05beea21 alias: linking it " +
+			"to the Berlin dub-techno duo is wrong for this node.",
 	},
 ];
 
