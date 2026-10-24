@@ -12,6 +12,10 @@
  * `artist-edge-to-redirect-key` also needs the slug-redirects table (`data/slug-redirects.json`, or
  * `--redirects <file>`): an unreadable table is a usage error (exit 2), never a silent 0 (TRA-598).
  *
+ * `reciprocity-missing` is capped only for the reverse directions the runtime emits
+ * (`isEmittedReversePair`, src/reverse-edges.ts); every other declared pair of REVERSE_EDGE_PAIRS is still
+ * measured, as the informative `reciprocity-missing-not-emitted`, and never capped (TRA-567).
+ *
  * Read-only: nothing is ever written under <cache-dir>.
  *
  * Usage: audit-cache.ts <cache-dir> [--thresholds <file>] [--redirects <file>] [--json <file>]
@@ -23,6 +27,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { z } from "zod";
 import { parseSlugRedirects } from "../src/genre-registry.js";
 import { EDGE_FIELDS_BY_TYPE, NODE_TYPES, type NodeType, REVERSE_EDGE_PAIRS } from "../src/node-spec.js";
+import { isEmittedReversePair } from "../src/reverse-edges.js";
 
 export type RawNode = Record<string, unknown>;
 export type MetricValue = number | Record<string, number>;
@@ -60,6 +65,11 @@ export const INFORMATIVE_METRICS: ReadonlySet<string> = new Set([
 	// #531 would have taken it from 8 to 11 with three correct ones, and turned the integrity job red). Its
 	// ceilinged twin is artist-edge-to-redirect-key, which only counts a target it can read.
 	"artist-edge-to-redirect-key-unresolved",
+	// A declared reverse pair the runtime does not emit (TRA-563, TRA-569) is expected to be missing, so a ceiling
+	// on it would only record how many legacy links lack a reverse that nothing will ever write (2026-10-24,
+	// TRA-567: genre.key_artists -> artist.genres sat at 246, with no way down short of a backfill that was ruled
+	// out). It stays measured, per pair, to see the gap; its capped twin is reciprocity-missing.
+	"reciprocity-missing-not-emitted",
 ]);
 
 /**
@@ -105,6 +115,8 @@ interface ReciprocityPair {
 	sourceField: string;
 	targetType: NodeType;
 	targetField: string;
+	/** Whether `NodeCache.write` writes this reverse: only an emitted pair can regress, so only it is capped. */
+	emitted: boolean;
 }
 
 function pairKey(p: ReciprocityPair): string {
@@ -119,7 +131,13 @@ function reciprocityPairs(): ReciprocityPair[] {
 			sourceField
 		];
 		for (const targetType of spec?.targets ?? []) {
-			const pair = { sourceType, sourceField, targetType, targetField: reverse.field };
+			const pair = {
+				sourceType,
+				sourceField,
+				targetType,
+				targetField: reverse.field,
+				emitted: isEmittedReversePair(sourceType, sourceField, reverse.field),
+			};
 			if (seen.has(pairKey(pair))) continue;
 			seen.add(pairKey(pair));
 			pairs.push(pair);
@@ -257,7 +275,8 @@ export function auditNodes(
 	c.keyed("empty-artists", ["project", "track"]);
 	c.keyed("single-citation", typeKeys);
 	c.keyed("missing-image", typeKeys);
-	c.keyed("reciprocity-missing", pairs.map(pairKey));
+	c.keyed("reciprocity-missing", pairs.filter((p) => p.emitted).map(pairKey));
+	c.keyed("reciprocity-missing-not-emitted", pairs.filter((p) => !p.emitted).map(pairKey));
 
 	const nodeCount = Object.fromEntries(NODE_TYPES.map((t) => [t, 0])) as Record<NodeType, number>;
 	const namesByType = new Map<string, Map<string, string[]>>();
@@ -382,7 +401,11 @@ export function auditNodes(
 				const target = nodes.get(edge.slug);
 				if (!target) continue;
 				if (!edgesOf(target, pair.targetField).some((back) => back.slug === slug)) {
-					c.hit("reciprocity-missing", slug, pairKey(pair));
+					c.hit(
+						pair.emitted ? "reciprocity-missing" : "reciprocity-missing-not-emitted",
+						slug,
+						pairKey(pair),
+					);
 				}
 			}
 		}
