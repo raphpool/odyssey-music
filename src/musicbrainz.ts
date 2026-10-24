@@ -76,8 +76,8 @@ interface MbReleaseGroup {
 	id: string;
 	title: string;
 	"primary-type"?: string;
-	/** Present in search hits and unvalidated: read with an Array.isArray / typeof guard. */
-	"secondary-types"?: unknown;
+	/** Checked by parseReleaseGroups: absent, or an array of strings. */
+	"secondary-types"?: string[];
 	"first-release-date"?: string;
 	"artist-credit"?: MbArtistCreditEntry[];
 }
@@ -110,6 +110,15 @@ function isMbid(value: unknown): value is string {
 function hasOptionalText(record: Record<string, unknown>, key: string): boolean {
 	const value = record[key];
 	return value === undefined || isText(value);
+}
+
+// MB always sends `secondary-types` as an array of names ("Live", "Compilation"...). Absent is fine (a hit may
+// omit it); any other shape is off schema. It used to be read as "no secondary type" (2026-10-16, TRA-560
+// review: a live album marked `"secondary-types": "Live"` passed for a studio one), so, like a malformed
+// `primary-type`, it now makes the whole answer unusable. Each name follows the isText rule (TRA-566).
+function hasOptionalTextArray(record: Record<string, unknown>, key: string): boolean {
+	const value = record[key];
+	return value === undefined || (Array.isArray(value) && value.every(isText));
 }
 
 function hasValidArtistCredit(value: unknown): boolean {
@@ -149,6 +158,7 @@ function parseReleaseGroups(body: unknown): MbReleaseGroup[] | null {
 				isMbid(releaseGroup.id) &&
 				isText(releaseGroup.title) &&
 				hasOptionalText(releaseGroup, "primary-type") &&
+				hasOptionalTextArray(releaseGroup, "secondary-types") &&
 				hasOptionalText(releaseGroup, "first-release-date") &&
 				(releaseGroup["artist-credit"] === undefined || hasValidArtistCredit(releaseGroup["artist-credit"])),
 		)
@@ -1495,7 +1505,8 @@ function pickByTitleAndCredit<
 		return only ? { kind: "one", candidate: only } : { kind: "none" };
 	}
 	// Different types are different works (a single is not its album, a compilation is not the album it
-	// compiles): never settled by date. Secondary types come from an untrusted hit: keep the strings only.
+	// compiles): never settled by date. Hits from parseReleaseGroups already carry string[] secondary types
+	// (TRA-566); the guard stays because this picker is generic over any hit object.
 	const primaryOf = (c: T) => (c["primary-type"] ?? "").trim().toLowerCase();
 	const kindOf = (c: T) => {
 		const secondary = Array.isArray(c["secondary-types"]) ? c["secondary-types"] : [];
@@ -1521,10 +1532,26 @@ function pickByTitleAndCredit<
 	return strict && earliest ? { kind: "one", candidate: earliest } : { kind: "ambiguous" };
 }
 
+/**
+ * The Lucene clause that names the requested artist. MB's `artist:` field indexes the name PRINTED in the
+ * credit, not the canonical name nor the aliases (2026-10-15, TRA-543: Ryuichi Sakamoto's 1983 soundtrack,
+ * credited 坂本龍一, never came back for "Ryuichi Sakamoto"). `arid:` is the artist's id, indexed whatever
+ * name the credit prints, so a known MBID is searched next to the name, not instead of it: a work printed
+ * under the artist's name but credited to a band the artist belongs to ("Roni Size / Reprazent") carries
+ * the band's id, and must stay in the hits. The MBID is interpolated unquoted, so only a bare UUID is
+ * accepted; anything else is read as "no MBID".
+ */
+function artistClause(phrase: string, artistMbid: string | undefined): string {
+	const byName = `artist:"${phrase}"`;
+	const mbid = artistMbid?.trim().toLowerCase();
+	return mbid && isMbid(mbid) ? `(arid:${mbid} OR ${byName})` : byName;
+}
+
 function luceneQuery(
 	field: "releasegroup" | "recording",
 	title: string,
 	artistHint: string | undefined,
+	artistMbid?: string,
 ): string | null {
 	// A title with nothing left after normalization ("!!!") can never be verified against a result.
 	// The phrase is built from the title minus its edition noise, keeping case and spacing: MB files
@@ -1533,7 +1560,7 @@ function luceneQuery(
 	if (!phrase || !normalizeTitleBody(title)) return null;
 	// Same for the hint: a punctuation-only hint would only narrow the search to nothing.
 	const hint = artistHint && normalizeSlugBody(artistHint) ? lucenePhrase(artistHint) : "";
-	return hint ? `${field}:"${phrase}" AND artist:"${hint}"` : `${field}:"${phrase}"`;
+	return hint ? `${field}:"${phrase}" AND ${artistClause(hint, artistMbid)}` : `${field}:"${phrase}"`;
 }
 
 /** MB's maximum page: the whole result set of a title search, so that no look-alike hides past the page. */
@@ -1574,7 +1601,7 @@ export async function resolveReleaseGroupDetailed(
 	options: WorkResolveOptions = {},
 ): Promise<MbWorkResolution> {
 	const none: MbWorkResolution = { identity: null, ambiguous: false, unavailable: false };
-	const query = luceneQuery("releasegroup", title, artistHint);
+	const query = luceneQuery("releasegroup", title, artistHint, options.requestedArtistMbid);
 	if (!query) return none;
 	const body = await mbFetch<unknown>(
 		"/release-group",
@@ -1620,7 +1647,7 @@ export async function resolveRecordingDetailed(
 	options: WorkResolveOptions = {},
 ): Promise<MbWorkResolution> {
 	const none: MbWorkResolution = { identity: null, ambiguous: false, unavailable: false };
-	const query = luceneQuery("recording", title, artistHint);
+	const query = luceneQuery("recording", title, artistHint, options.requestedArtistMbid);
 	if (!query) return none;
 	const body = await mbFetch<unknown>(
 		"/recording",
@@ -1681,8 +1708,8 @@ function secondaryTypesOf(group: Record<string, unknown>): string[] {
  * TRA-612: "Hyperdub 10.3" is credited to Various Artists, so the artist-credit step refused it for Kode9
  * whose tracks it holds). For a COVER only: the answer is never an identity (see {@link MbCompilationCover}).
  *
- * ONE request, a recording search `release:"<title>" AND artist:"<artist>"`: the hits are recordings
- * credited to the artist, and each lists the releases it appears on with their release group and credit.
+ * ONE request, a recording search `release:"<title>" AND artist:"<artist>"` (with the artist's `arid:` next to
+ * it when the MBID is known, see {@link artistClause}): the hits are recordings credited to the artist, and each lists the releases it appears on with their release group and credit.
  * The release group is accepted if, and only if:
  *  - its normalized title equals the requested one (edition noise ignored, as everywhere else);
  *  - it is the only release group of that title among the artist's recordings;
@@ -1704,7 +1731,10 @@ export async function findCompilationCoverReleaseGroup(
 	if (!wanted || !hint || !release || !artist) return { kind: "none" };
 	const body = await mbFetch<unknown>(
 		"/recording",
-		{ query: `release:"${release}" AND artist:"${artist}"`, limit: WORK_SEARCH_LIMIT },
+		{
+			query: `release:"${release}" AND ${artistClause(artist, options.requestedArtistMbid)}`,
+			limit: WORK_SEARCH_LIMIT,
+		},
 		undefined,
 		options.priority,
 	);

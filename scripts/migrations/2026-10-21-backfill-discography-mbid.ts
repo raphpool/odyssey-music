@@ -148,6 +148,8 @@ export interface ArtistEntry {
 	added?: MergeResult["added"];
 	ambiguous?: MergeResult["ambiguous"];
 	nearDuplicates?: { added: string; existing: string }[];
+	/** Release groups held back from the additions because only a subtitle tells them from an entry (TRA-633). */
+	held?: MergeResult["held"];
 	excluded?: Record<ExclusionReason, number>;
 	capReached?: boolean;
 	/** Hash of the (slug, mbid) pairs of the list as read and as decided, see --resume. */
@@ -599,6 +601,7 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 			nearDuplicates: merge.added.flatMap((a) =>
 				a.nearDuplicateOf === undefined ? [] : [{ added: a.slug, existing: a.nearDuplicateOf }],
 			),
+			...(merge.held.length > 0 ? { held: merge.held } : {}),
 			excluded,
 			capReached: merge.capReached,
 		};
