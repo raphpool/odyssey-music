@@ -24339,5 +24339,57 @@
         "artist": "Frank Who?"
       }
     }
+  ],
+  "artist:kyuss": [
+    {
+      "field": "discography",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:blues-for-the-red-sun",
+        "type": "project",
+        "name": "Blues for the Red Sun",
+        "artist": "Kyuss",
+        "mbid": "816f2753-e709-3b10-ad93-e4c1af7aea6c"
+      }
+    }
+  ],
+  "artist:x": [
+    {
+      "field": "discography",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:los-angeles",
+        "type": "project",
+        "name": "Los Angeles",
+        "artist": "X",
+        "mbid": "700da083-bd95-3301-91f1-af571a001414"
+      }
+    }
+  ],
+  "artist:the-upsetters": [
+    {
+      "field": "discography",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:super-ape",
+        "type": "project",
+        "name": "Super Ape",
+        "artist": "The Upsetters",
+        "mbid": "da6b3ef9-3a02-364a-b0ed-698fdab7dc4d"
+      }
+    }
+  ],
+  "artist:interpol": [
+    {
+      "field": "discography",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:turn-on-the-bright-lights",
+        "type": "project",
+        "name": "Turn on the Bright Lights",
+        "artist": "Interpol",
+        "mbid": "e7227840-5ef2-3813-af26-15dab34e1a51"
+      }
+    }
   ]
 }

@@ -68,127 +68,127 @@
       "slug": "project:jane-12-21--harold-budd",
       "type": "project",
       "name": "Jane 12-21",
-      "artist": "Harold Budd",
       "mbid": "448e7614-ca61-4ceb-8c20-fa630eb08316",
       "year": "2014",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Harold Budd"
     },
     {
       "slug": "project:jane-1-11--harold-budd",
       "type": "project",
       "name": "Jane 1-11",
-      "artist": "Harold Budd",
       "mbid": "7e0464ca-0553-446f-bf50-792147140eed",
       "year": "2013",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Harold Budd"
     },
     {
       "slug": "project:in-the-mist--harold-budd",
       "type": "project",
       "name": "In the Mist",
-      "artist": "Harold Budd",
       "mbid": "7d5143cf-e755-454a-84e0-95e7766b79ca",
       "year": "2011",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Harold Budd"
     },
     {
       "slug": "project:little-windows--harold-budd",
       "type": "project",
       "name": "Little Windows",
-      "artist": "Harold Budd",
       "mbid": "45ef1101-1557-41a3-ad3d-1c208650226f",
       "year": "2010",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Harold Budd"
     },
     {
       "slug": "project:candylion--harold-budd",
       "type": "project",
       "name": "Candylion",
-      "artist": "Harold Budd",
       "mbid": "57621159-a1b0-4f35-9b3b-2aefb5ad0ef5",
       "year": "2009",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Harold Budd"
     },
     {
       "slug": "project:a-song-for-lost-blossoms--harold-budd",
       "type": "project",
       "name": "A Song for Lost Blossoms",
-      "artist": "Harold Budd",
       "mbid": "b0288bb8-b769-32c5-b3ff-769f77ba3817",
       "year": "2008",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Harold Budd"
     },
     {
       "slug": "project:perhaps--harold-budd",
       "type": "project",
       "name": "Perhaps",
-      "artist": "Harold Budd",
       "mbid": "aa0dcd1a-b38b-356c-b70e-b12e1d3f8206",
       "year": "2007",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Harold Budd"
     },
     {
       "slug": "project:avalon-sutra--harold-budd",
       "type": "project",
       "name": "Avalon Sutra",
-      "artist": "Harold Budd",
       "mbid": "c5fe0b85-fbc8-3dec-9ea0-3d3aa70ba8a3",
       "year": "2005",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Harold Budd"
     },
     {
       "slug": "project:la-bella-vista--harold-budd",
       "type": "project",
       "name": "La Bella Vista",
-      "artist": "Harold Budd",
       "mbid": "fe9efb79-0109-30e5-8a7d-566b82e60e71",
       "year": "2003",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Harold Budd"
     },
     {
       "slug": "project:the-room--harold-budd",
       "type": "project",
       "name": "The Room",
-      "artist": "Harold Budd",
       "mbid": "cc5a7b4a-afd2-35bb-83b6-9f3f20fd7318",
       "year": "2000",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Harold Budd"
     },
     {
       "slug": "project:luxa--harold-budd",
       "type": "project",
       "name": "Luxa",
-      "artist": "Harold Budd",
       "mbid": "7cc2bb44-8424-3243-a644-386e8af61751",
       "year": "1996",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Harold Budd"
     },
     {
       "slug": "project:glyph--harold-budd",
       "type": "project",
       "name": "Glyph",
-      "artist": "Harold Budd",
       "mbid": "1dd3a34d-213e-3dcf-a056-9932d136c028",
       "year": "1995",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Harold Budd"
     },
     {
       "slug": "project:she-is-a-phantom--harold-budd",
       "type": "project",
       "name": "She Is a Phantom",
-      "artist": "Harold Budd",
       "mbid": "c261f84d-ca0b-3d22-91ac-34a9e0d3c4db",
       "year": "1994",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Harold Budd"
     },
     {
       "slug": "project:by-the-dawn-s-early-light--harold-budd",
       "type": "project",
       "name": "By the Dawn’s Early Light",
-      "artist": "Harold Budd",
       "mbid": "b654466a-d7fc-3f41-8452-9d645664a6b6",
       "year": "1991",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Harold Budd"
     },
     {
       "slug": "project:the-white-arcades",
@@ -202,19 +202,19 @@
       "slug": "project:lovely-thunder--harold-budd",
       "type": "project",
       "name": "Lovely Thunder",
-      "artist": "Harold Budd",
       "mbid": "456a7982-eb7c-31b0-91c0-2e9da971e893",
       "year": "1986",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Harold Budd"
     },
     {
       "slug": "project:abandoned-cities--harold-budd",
       "type": "project",
       "name": "Abandoned Cities",
-      "artist": "Harold Budd",
       "mbid": "24d4c8f0-8745-37ee-95b5-5864e432752d",
       "year": "1984",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Harold Budd"
     },
     {
       "slug": "project:the-serpent",
@@ -228,10 +228,10 @@
       "slug": "project:ambient-2-the-plateaux-of-mirror--harold-budd",
       "type": "project",
       "name": "Ambient 2: The Plateaux of Mirror",
-      "artist": "Harold Budd",
       "mbid": "02c0fc3b-9c3c-34e4-abed-bb6cd04fa1fc",
       "year": "1980",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Harold Budd"
     },
     {
       "slug": "project:the-pavilion-of-dreams",
@@ -245,15 +245,22 @@
       "slug": "project:the-oak-of-the-golden-dreams--harold-budd",
       "type": "project",
       "name": "The Oak of the Golden Dreams",
-      "artist": "Harold Budd",
       "mbid": "8b3b36ed-66eb-4d92-8338-d79008285e64",
       "year": "1971",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Harold Budd"
     },
     {
       "slug": "project:avalon-sutra-as-long-as-i-can-hold-my-breath--harold-budd",
       "type": "project",
       "name": "Avalon Sutra / As Long As I Can Hold My Breath",
+      "artist": "Harold Budd"
+    },
+    {
+      "slug": "project:ambient-2-the-plateaux-of-mirror",
+      "type": "project",
+      "name": "Ambient 2: The Plateaux of Mirror",
+      "mbid": "02c0fc3b-9c3c-34e4-abed-bb6cd04fa1fc",
       "artist": "Harold Budd"
     }
   ],
