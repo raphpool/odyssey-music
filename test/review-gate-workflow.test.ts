@@ -231,6 +231,61 @@ describe("review-gate.yml: which check-run counts as the AI review (TRA-520)", (
 	});
 });
 
+// TRA-524: the conclusion of the selected check-run reaches the policy, which treats anything but a verdict as
+// "no review". The job `review` of ai-review.yml is cancelled by its concurrency group or stopped by its 25-minute
+// timeout without any Claude review having completed.
+describe("review-gate.yml: only a conclusion that carries a verdict counts as a review (TRA-524)", () => {
+	it.each(["success", "failure", "neutral"])("passes the conclusion %s on as it is", async (conclusion) => {
+		expect(await select(genuine(11, 100, { conclusion }))).toBe(`11\t${conclusion}`);
+	});
+
+	it.each([
+		"cancelled",
+		"timed_out",
+		"skipped",
+		"stale",
+		"action_required",
+		"something_github_adds_later",
+		"",
+	])("reports the conclusion %j as missing", async (conclusion) => {
+		expect(await select(genuine(11, 100, { conclusion }))).toBe("11\tmissing");
+	});
+
+	it("judges the latest run: a cancelled re-run does not fall back on the success it replaced", async () => {
+		const first = genuine(11, 100, { conclusion: "success", started_at: "2026-10-15T09:00:00Z" });
+		const cancelled = genuine(13, 101, { conclusion: "cancelled", started_at: "2026-10-15T09:20:00Z" });
+		expect(await select(merge(first, cancelled))).toBe("13\tmissing");
+	});
+
+	const verdict = async (claude: string, codex: string): Promise<string> => {
+		const input = JSON.stringify({
+			paths: ["src/graph.ts"],
+			labels: [],
+			ordinary: { claude, codex, claudeBlocking: false },
+			deep: "missing",
+			risk: 1,
+		});
+		const { stdout } = await exec("npx", ["--no-install", "tsx", "scripts/ci/review-gate-policy.ts", input]);
+		return (JSON.parse(stdout) as { verdict: string }).verdict;
+	};
+
+	// The selected conclusion is piped into the policy like the job does, with `codex-review: success`.
+	it.each(["cancelled", "timed_out", "skipped", "stale", "action_required"])(
+		"does not pass a PR whose review check-run is %s, even with codex-review in success",
+		async (conclusion) => {
+			const [, claude] = (await select(genuine(11, 100, { conclusion }))).split("\t");
+			expect(await verdict(claude ?? "", "success")).toBe("wait");
+		},
+	);
+
+	it("still passes with a Claude review that completed (success, non-blocking failure) and codex-review in success", async () => {
+		for (const conclusion of ["success", "failure", "neutral"]) {
+			const [, claude] = (await select(genuine(11, 100, { conclusion }))).split("\t");
+			expect(await verdict(claude ?? "", "success")).toBe("pass");
+		}
+	});
+});
+
 describe("review-gate.yml: the policy comes from the default branch (TRA-520)", () => {
 	const git = (cwd: string, ...args: string[]) =>
 		exec("git", ["-c", "user.name=test", "-c", "user.email=test@example.com", ...args], { cwd });
