@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { NodeCache } from "../../src/cache.js";
 import { isAllowedImageUrl } from "../../src/images/hosts.js";
 import { refusedUnreciprocalCover, resolveImage } from "../../src/images/resolve-image.js";
-import { wikidataConfig } from "../../src/images/wikidata.js";
+import { fetchWikidataQid, wikidataConfig } from "../../src/images/wikidata.js";
 import { fetchWikidataUrlRelMb } from "../../src/musicbrainz.js";
 import type { NodePayload } from "../../src/types.js";
 import {
@@ -24,6 +24,12 @@ import {
 vi.mock("../../src/musicbrainz.js", async (importOriginal) => {
 	const actual = await importOriginal<typeof import("../../src/musicbrainz.js")>();
 	return { ...actual, fetchWikidataUrlRelMb: vi.fn(actual.fetchWikidataUrlRelMb) };
+});
+
+// Passthrough spy as well: the artist and label rungs must reach the url-rels lookup through it (TRA-588).
+vi.mock("../../src/images/wikidata.js", async (importOriginal) => {
+	const actual = await importOriginal<typeof import("../../src/images/wikidata.js")>();
+	return { ...actual, fetchWikidataQid: vi.fn(actual.fetchWikidataQid) };
 });
 
 // Each MBID is used by one test only: mbFetch memoizes by path for 5 minutes.
@@ -471,6 +477,26 @@ describe("resolveImage: artist", () => {
 		expect(spy).toHaveBeenCalledWith("label", mb(101), f, { priority: "background" });
 		// No priority in the deps: the lookup is left to its interactive default.
 		expect(spy).toHaveBeenCalledWith("artist", mb(102), f, {});
+	});
+
+	it("looks the QID up through fetchWikidataQid, with the priority of ImageDeps (TRA-588)", async () => {
+		const qidSpy = vi.mocked(fetchWikidataQid);
+		const f = routedFetch([mbRels([])]);
+		await resolveImage(artistNode("roni-size", "Roni Size", { mbid: mb(103) }), {
+			cache,
+			fetch: f,
+			priority: "background",
+		});
+		await resolveImage(labelNode("v-recordings", "V Recordings", { mbid: mb(104) }), {
+			cache,
+			fetch: f,
+			priority: "background",
+		});
+		await resolveImage(artistNode("roni-size", "Roni Size", { mbid: mb(105) }), { cache, fetch: f });
+
+		expect(qidSpy).toHaveBeenCalledWith("artist", mb(103), f, { priority: "background" });
+		expect(qidSpy).toHaveBeenCalledWith("label", mb(104), f, { priority: "background" });
+		expect(qidSpy).toHaveBeenCalledWith("artist", mb(105), f, {});
 	});
 
 	it("ignores a Wikidata link that is not on wikidata.org", async () => {
