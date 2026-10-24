@@ -688,6 +688,154 @@ describe("auditNodes", () => {
 	});
 });
 
+describe("homonym-tracklist-links (TRA-561)", () => {
+	const credit = (slug: string, extra: RawNode = {}): RawNode => ({ ...edge(slug), ...extra });
+	const project = (credits: RawNode[], tracklist: string[]): RawNode =>
+		node("project:fitna--rohff", { artists: credits, tracklist: tracklist.map((s) => edge(s)) });
+	const track = (slug: string, credits: RawNode[]): RawNode => node(slug, { artists: credits });
+	const measure = (...nodes: RawNode[]): AuditReport => auditNodes(toMap(...nodes));
+
+	it("counts a tracklist entry credited to a namesake: Fitna by Rohff lists Akuma's track (acceptance case)", () => {
+		const report = measure(
+			project([credit("artist:rohff")], ["track:fitna--akuma"]),
+			track("track:fitna--akuma", [credit("artist:akuma"), credit("artist:axmo")]),
+		);
+		expect(metric(report, "homonym-tracklist-links")).toBe(1);
+		expect(report.samples["homonym-tracklist-links"]).toEqual(["project:fitna--rohff"]);
+		expect(report.cases["homonym-tracklist-links"]).toEqual([
+			"project:fitna--rohff tracklist track:fitna--akuma",
+		]);
+	});
+
+	it("counts one hit per entry, not per project", () => {
+		const report = measure(
+			project([credit("artist:rohff")], ["track:a--x", "track:b--y", "track:c--rohff"]),
+			track("track:a--x", [credit("artist:x")]),
+			track("track:b--y", [credit("artist:y")]),
+			track("track:c--rohff", [credit("artist:rohff")]),
+		);
+		expect(metric(report, "homonym-tracklist-links")).toBe(2);
+	});
+
+	it("does not count a featuring: the track is also credited to the project's artist", () => {
+		const report = measure(
+			project([credit("artist:rohff")], ["track:duo--rohff"]),
+			track("track:duo--rohff", [credit("artist:guest"), credit("artist:rohff")]),
+		);
+		expect(metric(report, "homonym-tracklist-links")).toBe(0);
+	});
+
+	it("with several credited artists, one shared credit is enough, none is a hit", () => {
+		const credits = [credit("artist:a"), credit("artist:b")];
+		const shared = measure(project(credits, ["track:t--b"]), track("track:t--b", [credit("artist:b")]));
+		expect(metric(shared, "homonym-tracklist-links")).toBe(0);
+		const foreign = measure(project(credits, ["track:t--c"]), track("track:t--c", [credit("artist:c")]));
+		expect(metric(foreign, "homonym-tracklist-links")).toBe(1);
+	});
+
+	it("follows members in both directions: a group's album lists a member's track and the reverse", () => {
+		const group = node("artist:reprazent", { members: [edge("artist:roni-size")] });
+		const person = node("artist:roni-size");
+		const memberTrack = measure(
+			group,
+			person,
+			project([credit("artist:reprazent")], ["track:t--roni-size"]),
+			track("track:t--roni-size", [credit("artist:roni-size")]),
+		);
+		expect(metric(memberTrack, "homonym-tracklist-links")).toBe(0);
+		const groupTrack = measure(
+			group,
+			person,
+			project([credit("artist:roni-size")], ["track:t--reprazent"]),
+			track("track:t--reprazent", [credit("artist:reprazent")]),
+		);
+		expect(metric(groupTrack, "homonym-tracklist-links")).toBe(0);
+	});
+
+	it("follows aliases, and a duo whose members are aliases of the credited artists (Mike & Rich)", () => {
+		const nodes = [
+			node("artist:aphex-twin", { aliases: [edge("artist:polygon-window"), edge("artist:richard-d-james")] }),
+			node("artist:polygon-window", { aliases: [edge("artist:aphex-twin")] }),
+			node("artist:mike-and-rich", {
+				members: [edge("artist:richard-d-james"), edge("artist:mike-paradinas")],
+			}),
+		];
+		for (const slug of ["artist:polygon-window", "artist:mike-and-rich"]) {
+			const report = measure(
+				...nodes,
+				project([credit("artist:aphex-twin")], ["track:t--x"]),
+				track("track:t--x", [credit(slug)]),
+			);
+			expect(metric(report, "homonym-tracklist-links"), slug).toBe(0);
+		}
+	});
+
+	it("treats the same name with a leading 'The' as one artist when no mbid says otherwise", () => {
+		const variant = measure(
+			project(
+				[credit("artist:the-jimi-hendrix-experience", { name: "The Jimi Hendrix Experience" })],
+				["track:hey-joe--x"],
+			),
+			track("track:hey-joe--x", [
+				credit("artist:jimi-hendrix-experience", { name: "Jimi Hendrix Experience" }),
+			]),
+		);
+		expect(metric(variant, "homonym-tracklist-links")).toBe(0);
+		const differentMbids = measure(
+			project(
+				[credit("artist:akuma", { name: "Akuma", mbid: "11111111-1111-4111-8111-111111111111" })],
+				["track:t--x"],
+			),
+			track("track:t--x", [
+				credit("artist:akuma-2", { name: "Akuma", mbid: "22222222-2222-4222-8222-222222222222" }),
+			]),
+		);
+		expect(metric(differentMbids, "homonym-tracklist-links")).toBe(1);
+	});
+
+	it("does not judge a compilation credited to Various Artists", () => {
+		const bySlug = measure(
+			project([credit("artist:various-artists")], ["track:axel-f--harold-faltermeyer"]),
+			track("track:axel-f--harold-faltermeyer", [credit("artist:harold-faltermeyer")]),
+		);
+		expect(metric(bySlug, "homonym-tracklist-links")).toBe(0);
+		const byMbid = measure(
+			project(
+				[credit("artist:va", { name: "Various Artists", mbid: "89ad4ac3-39f7-470e-963a-56509c546377" })],
+				["track:t--x"],
+			),
+			track("track:t--x", [credit("artist:x")]),
+		);
+		expect(metric(byMbid, "homonym-tracklist-links")).toBe(0);
+	});
+
+	it("leaves out what it cannot compare: no project credit, no track credit, a target not in the cache, a non-track", () => {
+		expect(
+			metric(
+				measure(project([], ["track:t--x"]), track("track:t--x", [credit("artist:x")])),
+				"homonym-tracklist-links",
+			),
+		).toBe(0);
+		expect(
+			metric(
+				measure(project([credit("artist:rohff")], ["track:t--x"]), track("track:t--x", [])),
+				"homonym-tracklist-links",
+			),
+		).toBe(0);
+		expect(
+			metric(measure(project([credit("artist:rohff")], ["track:gone--x"])), "homonym-tracklist-links"),
+		).toBe(0);
+		expect(metric(measure(project([credit("artist:rohff")], [])), "homonym-tracklist-links")).toBe(0);
+	});
+
+	it("has a ceiling in the committed thresholds file", async () => {
+		const thresholds = parseThresholds(
+			JSON.parse(await readFile(join(REPO_ROOT, "data", "integrity-thresholds.json"), "utf8")),
+		);
+		expect(typeof thresholds["homonym-tracklist-links"]).toBe("number");
+	});
+});
+
 describe("compareWithThresholds", () => {
 	const clean = (): AuditReport =>
 		auditNodes(

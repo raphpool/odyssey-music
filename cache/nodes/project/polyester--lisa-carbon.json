@@ -85,9 +85,10 @@
       "name": "Paraphonic"
     },
     {
-      "slug": "track:stereo-cocktail--malibu-mode7",
+      "slug": "track:stereo-cocktail--lisa-carbon",
       "type": "track",
-      "name": "Stereo Cocktail"
+      "name": "Stereo Cocktail",
+      "artist": "Lisa Carbon"
     }
   ],
   "producers": [
