@@ -57,6 +57,12 @@
       "type": "genre",
       "name": "Psychedelic rock",
       "qid": "Q206159"
+    },
+    {
+      "slug": "genre:garage-punk",
+      "type": "genre",
+      "name": "Garage punk",
+      "qid": "Q2296495"
     }
   ],
   "key_artists": [

@@ -30,7 +30,14 @@
   "origin": "Europe (liturgical traditions)",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:vocal-music",
+      "type": "genre",
+      "name": "Vocal Music",
+      "qid": "Q685884"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:johann-sebastian-bach",

@@ -55,7 +55,32 @@
       "qid": "Q613408"
     }
   ],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:blues",
+      "type": "genre",
+      "name": "Blues",
+      "qid": "Q9759"
+    },
+    {
+      "slug": "genre:folk",
+      "type": "genre",
+      "name": "Folk",
+      "qid": "Q43343"
+    },
+    {
+      "slug": "genre:rockabilly",
+      "type": "genre",
+      "name": "Rockabilly",
+      "qid": "Q203720"
+    },
+    {
+      "slug": "genre:singer-songwriter",
+      "type": "genre",
+      "name": "Singer-songwriter",
+      "qid": "Q89363113"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:johnny-cash",

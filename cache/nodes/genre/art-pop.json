@@ -43,6 +43,24 @@
       "type": "genre",
       "name": "Synth-pop",
       "qid": "Q1298934"
+    },
+    {
+      "slug": "genre:avant-pop",
+      "type": "genre",
+      "name": "Avant-pop",
+      "qid": "Q9162904"
+    },
+    {
+      "slug": "genre:chamber-pop",
+      "type": "genre",
+      "name": "Chamber pop",
+      "qid": "Q22991878"
+    },
+    {
+      "slug": "genre:experimental-pop",
+      "type": "genre",
+      "name": "Experimental pop",
+      "qid": "Q25094591"
     }
   ],
   "key_artists": [

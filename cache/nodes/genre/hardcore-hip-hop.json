@@ -51,6 +51,18 @@
       "type": "genre",
       "name": "West Coast hip-hop",
       "qid": "Q429264"
+    },
+    {
+      "slug": "genre:boom-bap",
+      "type": "genre",
+      "name": "Boom bap",
+      "qid": "Q529742"
+    },
+    {
+      "slug": "genre:east-coast-hip-hop",
+      "type": "genre",
+      "name": "East Coast hip-hop",
+      "qid": "Q876171"
     }
   ],
   "key_artists": [

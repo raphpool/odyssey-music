@@ -57,6 +57,18 @@
       "type": "genre",
       "name": "West Coast jazz",
       "qid": "Q1548603"
+    },
+    {
+      "slug": "genre:hard-bop",
+      "type": "genre",
+      "name": "Hard Bop",
+      "qid": "Q181010"
+    },
+    {
+      "slug": "genre:vocal-jazz",
+      "type": "genre",
+      "name": "Vocal Jazz",
+      "qid": "Q1530455"
     }
   ],
   "key_artists": [

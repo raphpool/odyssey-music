@@ -24,6 +24,24 @@
       "type": "genre",
       "name": "Drill and Bass",
       "qid": "Q1259016"
+    },
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat",
+      "qid": "Q663519"
+    },
+    {
+      "slug": "genre:digital-hardcore",
+      "type": "genre",
+      "name": "Digital Hardcore",
+      "qid": "Q56580"
+    },
+    {
+      "slug": "genre:idm",
+      "type": "genre",
+      "name": "IDM",
+      "qid": "Q660984"
     }
   ],
   "key_artists": [

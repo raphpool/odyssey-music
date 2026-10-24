@@ -22,7 +22,26 @@
   "origin": "United Kingdom",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art Pop",
+      "qid": "Q25094849"
+    },
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art Rock",
+      "qid": "Q217467"
+    },
+    {
+      "slug": "genre:proto-punk",
+      "type": "genre",
+      "name": "Proto-Punk",
+      "qid": "Q27190"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:david-bowie",

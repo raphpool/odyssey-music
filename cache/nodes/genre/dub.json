@@ -70,6 +70,30 @@
       "type": "genre",
       "name": "American hip-hop",
       "qid": "Q3135787"
+    },
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle",
+      "qid": "Q1102161"
+    },
+    {
+      "slug": "genre:ragga-jungle",
+      "type": "genre",
+      "name": "Ragga Jungle",
+      "qid": "Q2710523"
+    },
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae",
+      "qid": "Q9794"
+    },
+    {
+      "slug": "genre:roots-reggae",
+      "type": "genre",
+      "name": "Roots Reggae",
+      "qid": "Q1299260"
     }
   ],
   "key_artists": [

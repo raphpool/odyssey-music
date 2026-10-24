@@ -16,7 +16,14 @@
   "qid": "Q756956",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:power-electronics",
+      "type": "genre",
+      "name": "Power Electronics",
+      "qid": "Q2687544"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:lustmord",

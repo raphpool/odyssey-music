@@ -100,6 +100,30 @@
       "type": "genre",
       "name": "New Jack Swing",
       "qid": "Q840065"
+    },
+    {
+      "slug": "genre:electro-funk",
+      "type": "genre",
+      "name": "Electro-funk",
+      "qid": "Q1325963"
+    },
+    {
+      "slug": "genre:jazz-fusion",
+      "type": "genre",
+      "name": "Jazz-Fusion",
+      "qid": "Q105527"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B",
+      "qid": "Q45981"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul",
+      "qid": "Q131272"
     }
   ],
   "key_artists": [

@@ -117,6 +117,42 @@
       "type": "genre",
       "name": "Classic Hip Hop",
       "qid": "Q19879476"
+    },
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago house",
+      "qid": "Q1071961"
+    },
+    {
+      "slug": "genre:dance-music",
+      "type": "genre",
+      "name": "Dance music",
+      "qid": "Q316930"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music",
+      "qid": "Q851213"
+    },
+    {
+      "slug": "genre:garage-house",
+      "type": "genre",
+      "name": "Garage House",
+      "qid": "Q928825"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B",
+      "qid": "Q45981"
     }
   ],
   "key_artists": [

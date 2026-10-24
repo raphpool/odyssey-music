@@ -71,7 +71,20 @@
       "qid": "Q76092"
     }
   ],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:jazz-fusion",
+      "type": "genre",
+      "name": "Jazz-Fusion",
+      "qid": "Q105527"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:the-beatles",

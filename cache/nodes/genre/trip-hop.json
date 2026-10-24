@@ -26,6 +26,18 @@
       "type": "genre",
       "name": "Leftfield House",
       "qid": "Q105636940"
+    },
+    {
+      "slug": "genre:alternative-hip-hop",
+      "type": "genre",
+      "name": "Alternative hip-hop",
+      "qid": "Q438503"
+    },
+    {
+      "slug": "genre:jazz-rap",
+      "type": "genre",
+      "name": "Jazz Rap",
+      "qid": "Q255406"
     }
   ],
   "key_artists": [

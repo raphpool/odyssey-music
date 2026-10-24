@@ -49,6 +49,12 @@
       "type": "genre",
       "name": "Experimental music",
       "qid": "Q1640319"
+    },
+    {
+      "slug": "genre:modern-classical",
+      "type": "genre",
+      "name": "Modern Classical",
+      "qid": "Q65937946"
     }
   ],
   "key_artists": [

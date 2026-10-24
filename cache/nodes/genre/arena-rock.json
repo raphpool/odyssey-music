@@ -46,7 +46,14 @@
     }
   ],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:hard-rock",
+      "type": "genre",
+      "name": "Hard Rock",
+      "qid": "Q83270"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:journey",

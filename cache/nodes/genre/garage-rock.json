@@ -48,6 +48,18 @@
       "type": "genre",
       "name": "Garage punk",
       "qid": "Q2296495"
+    },
+    {
+      "slug": "genre:acid-rock",
+      "type": "genre",
+      "name": "Acid rock",
+      "qid": "Q236932"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock",
+      "qid": "Q3071"
     }
   ],
   "key_artists": [

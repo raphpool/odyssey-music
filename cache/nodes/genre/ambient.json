@@ -82,6 +82,72 @@
       "type": "genre",
       "name": "Psytrance",
       "qid": "Q622871"
+    },
+    {
+      "slug": "genre:berlin-school-of-electronic-music",
+      "type": "genre",
+      "name": "Berlin school of electronic music",
+      "qid": "Q530750"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica",
+      "qid": "Q817138"
+    },
+    {
+      "slug": "genre:kosmische-musik",
+      "type": "genre",
+      "name": "Kosmische Musik",
+      "qid": "Q121494463"
+    },
+    {
+      "slug": "genre:krautrock",
+      "type": "genre",
+      "name": "Krautrock",
+      "qid": "Q320592"
+    },
+    {
+      "slug": "genre:microsound",
+      "type": "genre",
+      "name": "Microsound",
+      "qid": "Q3503814"
+    },
+    {
+      "slug": "genre:post-dubstep",
+      "type": "genre",
+      "name": "Post-dubstep",
+      "qid": "Q106130091"
+    },
+    {
+      "slug": "genre:post-rock",
+      "type": "genre",
+      "name": "Post-rock",
+      "qid": "Q209137"
+    },
+    {
+      "slug": "genre:progressive-electronic",
+      "type": "genre",
+      "name": "Progressive Electronic",
+      "qid": "Q79784514"
+    },
+    {
+      "slug": "genre:soundtrack",
+      "type": "genre",
+      "name": "Soundtrack",
+      "qid": "Q107736421"
+    },
+    {
+      "slug": "genre:trance",
+      "type": "genre",
+      "name": "Trance",
+      "qid": "Q170435"
     }
   ],
   "key_artists": [
