@@ -22,6 +22,7 @@ const policy: DiscographyPolicy = {
 	artistName: "Daft Punk",
 	cap: DEFAULT_DISCOGRAPHY_CAP,
 	currentYear: 2026,
+	currentDate: "2026-10-24",
 };
 
 let counter = 0;
@@ -107,6 +108,7 @@ describe("classifyRelease", () => {
 		artistName: "Kode9",
 		cap: 40,
 		currentYear: 2026,
+		currentDate: "2026-10-24",
 	};
 	const kode9Credit = { mbid: ARTIST_MBID, name: "Kode9" };
 	const spaceape = { mbid: OTHER_MBID, name: "Spaceape" };

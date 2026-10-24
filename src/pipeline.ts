@@ -1315,6 +1315,8 @@ async function enrichNode(
 						// The policy never reads the clock itself (TRA-628): the unrated cut spares the releases
 						// of this year and last, which have not had time to collect votes.
 						currentYear: new Date().getFullYear(),
+						// And a release group announced for later is not part of the discography yet (TRA-654).
+						currentDate: new Date().toISOString().slice(0, 10),
 					};
 					const { kept, excluded } = selectReleases(releases, policy);
 					// When nothing can be scoped the draft's own (already scoped) list is kept.
