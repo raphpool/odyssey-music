@@ -88,16 +88,60 @@ enum UITestFlows {
 		app.launch()
 	}
 
+	/// Waits for the decline button to be gone, which makes the step explicit and gives a clearer failure
+	/// message than a later tap that finds nothing. It does not delay the tap on Welcome by itself: the consent
+	/// leaves the tree right after the tap (see `startOnboarding` for the wait that matters).
 	@MainActor
 	static func declineConsent(_ app: XCUIApplication) {
-		app.buttons["analytics-consent-decline"].tap()
+		let identifier = "analytics-consent-decline"
+		let decline = app.buttons[identifier]
+		XCTAssertTrue(decline.waitForExistence(timeout: 10), "\(identifier) did not appear")
+		decline.tap()
+		XCTAssertTrue(
+			decline.waitForNonExistence(timeout: 10), "\(identifier) is still on screen after the decline tap")
+	}
+
+	/// 2026-10-24 (TRA-683, ios-check of #578, run 40042347277): the tap on `onboarding-start` was synthesized
+	/// 1.5 s after the decline and nothing followed, the app stayed on Welcome for the 10 s wait on the genre
+	/// screen. Welcome is reached through the `.loading` to `.onboarding` gate (a 0.35 s opacity fade) and
+	/// `FirstLaunchOnboardingView` then goes `.ready`, so the button can exist, enabled, before it takes touches.
+	/// The tap is therefore checked by its effect (the genre screen), and sent again at most twice while
+	/// Welcome is still there. A retap is safe: `OnboardingFlowView` only pushes the genre screen when its
+	/// `path` is empty, so a tap during a push that is already requested does nothing.
+	/// A green run does not prove the race is gone: it is intermittent, and this only narrows it.
+	@MainActor
+	static func startOnboarding(_ app: XCUIApplication) {
+		let start = app.buttons["onboarding-start"]
+		let genres = app.buttons["onboarding-genres-continue"]
+		tapWhenReady(start)
+		var retries = 0
+		while !genres.waitForExistence(timeout: 3), start.exists, retries < 2 {
+			retries += 1
+			start.tap()
+		}
+		XCTAssertTrue(
+			genres.waitForExistence(timeout: 10),
+			"onboarding-start tapped \(retries + 1)x, no genre screen")
+	}
+
+	/// The tab bar and its buttons: the only place the tests ask for them, so a change of bar (the native one
+	/// gives way to `Track1TabBar`) touches these two bodies and no journey. `title` is the label of the tab
+	/// (`AppTab.title`: "Aujourd’hui" with U+2019, "Genres", "Recherche").
+	@MainActor
+	static func tabBar(in app: XCUIApplication) -> XCUIElement {
+		app.tabBars.firstMatch
+	}
+
+	@MainActor
+	static func tabButton(_ title: String, in app: XCUIApplication) -> XCUIElement {
+		app.tabBars.buttons[title]
 	}
 
 	/// The first launch up to the end of the flow: Welcome, the first family opened, one of its genres ticked.
 	/// Every step waits for the next one: the push and unfold animations are not instant.
 	@MainActor
 	static func completeOnboarding(_ app: XCUIApplication) {
-		tapWhenReady(app.buttons["onboarding-start"])
+		startOnboarding(app)
 		let bar = app.buttons["onboarding-genres-continue"]
 		tapAboveBar(app.buttons["genre-card-family-0"], bar: bar, in: app)
 		tapAboveBar(app.buttons["subgenre-chip-local:genre-0a"], bar: bar, in: app)

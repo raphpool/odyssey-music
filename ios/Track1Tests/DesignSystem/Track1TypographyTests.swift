@@ -4,9 +4,10 @@ import XCTest
 
 @testable import Track1
 
-/// The 20 roles are spelled out again here from the Figma Typography frame `180:376` (read 2026-10-13):
-/// the caption under each sample gives the font, the size and the line height. A value changed in
-/// `Track1TextRole` alone fails here.
+/// The 20 roles of the Figma Typography frame `180:376` (read 2026-10-13) are spelled out again here: the
+/// caption under each sample gives the font, the size and the line height. `monoHeadline` is the 21st, read
+/// on the Top bar date instance `I282:838;173:15` (2026-10-23, TRA-660), which the frame does not list. A
+/// value changed in `Track1TextRole` alone fails here.
 final class Track1TypographyTests: XCTestCase {
 	private typealias Row = (
 		role: Track1TextRole, face: String, size: CGFloat, lineHeight: CGFloat,
@@ -20,6 +21,7 @@ final class Track1TypographyTests: XCTestCase {
 		(.title2, "JetBrainsMono-Bold", 22, 28, .title2, .title2),
 		(.title3, "JetBrainsMono-Bold", 20, 25, .title3, .title3),
 		(.headline, "JetBrainsMono-Bold", 18, 24, .headline, .headline),
+		(.monoHeadline, "JetBrainsMono-Bold", 18, 24, .callout, .callout),
 		(.monoSection, "JetBrainsMono-Bold", 15, 20, .subheadline, .subheadline),
 		(.monoItem, "JetBrainsMono-Regular", 18, 22, .body, .body),
 		(.monoTag, "JetBrainsMono-Regular", 13, 16, .footnote, .footnote),
@@ -46,8 +48,8 @@ final class Track1TypographyTests: XCTestCase {
 	}
 
 	func testEveryRoleIsDocumentedOnceAndMatchesFigma() {
-		XCTAssertEqual(Track1TextRole.allCases.count, 20)
-		XCTAssertEqual(figma.count, 20)
+		XCTAssertEqual(Track1TextRole.allCases.count, 21)
+		XCTAssertEqual(figma.count, 21)
 		for row in figma {
 			XCTAssertEqual(row.role.face.rawValue, row.face, "\(row.role) face")
 			XCTAssertEqual(row.role.size, row.size, "\(row.role) size")
@@ -55,7 +57,7 @@ final class Track1TypographyTests: XCTestCase {
 			XCTAssertEqual(row.role.textStyle, row.textStyle, "\(row.role) text style")
 			XCTAssertEqual(row.role.uiTextStyle, row.uiTextStyle, "\(row.role) UIKit text style")
 		}
-		XCTAssertEqual(Set(figma.map { "\($0.role)" }).count, 20)
+		XCTAssertEqual(Set(figma.map { "\($0.role)" }).count, 21)
 	}
 
 	func testBodyLargeGrowsAtAccessibilityExtraExtraExtraLarge() {

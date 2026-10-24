@@ -1,0 +1,44 @@
+{
+	"artist:beppe-loda": {
+		"landmark_project": {
+			"rejected": "project:obscure-italian-disco-ii-beppe-loda-cuts",
+			"reason": "A compilation of his selection; the remaining entries are a remix album and a compilation."
+		}
+	},
+	"artist:dougal": {
+		"reference_track": {
+			"rejected": "track:dj-dougal-takes-control",
+			"reason": "A 1996 album filed as a track; the only entry of notable_tracks, no track is cited."
+		}
+	},
+	"artist:headhunterz": {
+		"landmark_project": {
+			"rejected": "project:live-forever",
+			"reason": "A 2024 single; no album of the cached discography is cited or voted on MusicBrainz."
+		}
+	},
+	"artist:lil-wayne": {
+		"reference_track": {
+			"rejected": "track:tha-carter-iii",
+			"reason": "An album filed as a track; every entry of notable_tracks is an album."
+		}
+	},
+	"artist:rusko": {
+		"landmark_project": {
+			"rejected": "project:fabriclive-37--caspa",
+			"reason": "Caspa's DJ mix, shared with Rusko; no studio album of the list is cited."
+		}
+	},
+	"artist:stuart-sutcliffe": {
+		"landmark_project": {
+			"rejected": "project:live-at-the-star-club-in-hamburg-germany-1962",
+			"reason": "A Beatles live recording of December 1962, after his death in April 1962."
+		}
+	},
+	"artist:tyla": {
+		"landmark_project": {
+			"rejected": "project:jackboys-2",
+			"reason": "Travis Scott's compilation, where she is a guest."
+		}
+	}
+}

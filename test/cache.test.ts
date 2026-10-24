@@ -2,7 +2,7 @@ import { mkdir, mkdtemp, readdir, readFile, rm, writeFile } from "node:fs/promis
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
-import { NodeCache } from "../src/cache.js";
+import { atomicWriteJson, NodeCache } from "../src/cache.js";
 import type {
 	ArtistNode,
 	EdgeRef,
@@ -1013,6 +1013,7 @@ describe("NodeCache.update — locked read-modify-write (TRA-535)", () => {
 		updCache = new NodeCache(updDir);
 	});
 	afterEach(async () => {
+		vi.restoreAllMocks();
 		await rm(updDir, { recursive: true, force: true });
 	});
 
@@ -1246,6 +1247,307 @@ describe("NodeCache.update — locked read-modify-write (TRA-535)", () => {
 		expect(await readdir(join(updDir, "nodes", "artist"))).toEqual(["aphex-twin.json"]);
 		// The failures did not wedge the node: a later update still goes through.
 		expect(await updCache.update(APHEX, (node) => withCollaborator(node, ref("artist:x", "X")))).toBe(true);
+	});
+
+	// TRA-555: after a failure that follows the commit (reverse-edge emission), the rollback of update() and
+	// replace() ran outside the node's lock and overwrote whatever another node's reverse emission had
+	// written there meanwhile. Every ordering below is driven by promises, no timer decides the outcome.
+	describe.each(["update", "replace"] as const)(
+		"rollback of %s() after a late failure (TRA-555)",
+		(operation) => {
+			type Emit = (source: NodePayload, delta: { written: number; revUpdates: number }) => Promise<void>;
+			const aphexFile = () => join(updDir, "nodes", "artist", "aphex-twin.json");
+
+			/** Runs the operation on APHEX, adding a collaborator, with its reverse-edge emission replaced by `emit`. */
+			function failingOperation(emit: () => Promise<void>): Promise<unknown> {
+				vi.spyOn(updCache as unknown as { emitReverses: Emit }, "emitReverses").mockImplementationOnce(emit);
+				const edited = (node: NodePayload) =>
+					withCollaborator(node, ref("artist:squarepusher", "Squarepusher"));
+				return operation === "update"
+					? updCache.update(APHEX, edited)
+					: (async () => updCache.replace(edited(await updCache.get(APHEX))))();
+			}
+
+			it("restores the previous file and the counters when nothing else wrote the node", async () => {
+				await updCache.write(artist());
+				const before = await readFile(aphexFile(), "utf8");
+				const stats = { ...updCache.stats };
+
+				await expect(
+					failingOperation(async () => {
+						throw new Error("emission down");
+					}),
+				).rejects.toThrow("emission down");
+
+				expect(await readFile(aphexFile(), "utf8")).toBe(before);
+				expect(updCache.stats).toEqual(stats);
+				expect(await readdir(join(updDir, "nodes", "artist"))).toEqual(["aphex-twin.json"]);
+			});
+
+			it("keeps the edge another node's reverse emission wrote between the commit and the rollback", async () => {
+				await updCache.write(artist());
+				const stats = { ...updCache.stats };
+				const committed = deferred();
+				const gate = deferred();
+				const errors = vi.spyOn(console, "error").mockImplementation(() => {});
+
+				const failing = failingOperation(async () => {
+					committed.release();
+					await gate.promise;
+					throw new Error("emission down");
+				});
+				const settled = failing.then(
+					() => undefined,
+					() => undefined,
+				);
+				await committed.promise;
+				// Another node lists APHEX: its reverse emission writes APHEX under runLocked only, while the
+				// failing operation sits between its commit and its rollback.
+				await updCache.write(album({ artists: [ref(APHEX, "Aphex Twin")] }));
+				expect(slugsOf(((await updCache.get(APHEX)) as ArtistNode).discography)).toEqual(["project:album"]);
+				gate.release();
+				await settled;
+
+				await expect(failing).rejects.toThrow("emission down");
+				const aphex = (await updCache.get(APHEX)) as ArtistNode;
+				expect(slugsOf(aphex.discography)).toEqual(["project:album"]);
+				// The node was not rolled back, and the operator is told so.
+				expect(slugsOf(aphex.collaborators)).toEqual(["artist:squarepusher"]);
+				expect(errors.mock.calls.map((c) => String(c[0])).join("\n")).toContain("rollback skipped");
+				expect(await readdir(join(updDir, "nodes", "artist"))).toEqual(["aphex-twin.json"]);
+				// Nothing was rolled back, so nothing is taken off the counters: the operation's commit (1 write)
+				// and the album's write and reverse edge are all still counted.
+				expect(updCache.stats).toEqual({ written: stats.written + 2, revUpdates: stats.revUpdates + 1 });
+			});
+
+			it("does not bring back a node that vanished before the rollback", async () => {
+				await updCache.write(artist());
+				const stats = { ...updCache.stats };
+				const committed = deferred();
+				const gate = deferred();
+				const errors = vi.spyOn(console, "error").mockImplementation(() => {});
+
+				const failing = failingOperation(async () => {
+					committed.release();
+					await gate.promise;
+					throw new Error("emission down");
+				});
+				const settled = failing.then(
+					() => undefined,
+					() => undefined,
+				);
+				await committed.promise;
+				await rm(aphexFile());
+				gate.release();
+				await settled;
+
+				await expect(failing).rejects.toThrow("emission down");
+				// No node (not resurrected from the backup) and no backup left behind.
+				expect(await readdir(join(updDir, "nodes", "artist"))).toEqual([]);
+				expect(errors.mock.calls.map((c) => String(c[0])).join("\n")).toContain("rollback skipped");
+				expect(updCache.stats).toEqual({ written: stats.written + 1, revUpdates: stats.revUpdates });
+			});
+
+			it("keeps the backup and reports both errors when the node cannot be read for the check", async () => {
+				await updCache.write(artist());
+				const committed = deferred();
+				const gate = deferred();
+
+				const failing = failingOperation(async () => {
+					committed.release();
+					await gate.promise;
+					throw new Error("emission down");
+				});
+				const settled = failing.then(
+					() => undefined,
+					() => undefined,
+				);
+				await committed.promise;
+				// A directory where the node file was: reading it fails with EISDIR, not ENOENT.
+				await rm(aphexFile());
+				await mkdir(aphexFile());
+				gate.release();
+				await settled;
+
+				const error = await failing.then(
+					() => undefined,
+					(e: unknown) => e,
+				);
+				expect(error).toBeInstanceOf(AggregateError);
+				const [original, cause] = (error as AggregateError).errors as [Error, NodeJS.ErrnoException];
+				expect(original.message).toBe("emission down");
+				expect(cause.code).toBe("EISDIR");
+				// The only copy of the previous node is still there.
+				const names = await readdir(join(updDir, "nodes", "artist"));
+				expect(names.filter((name) => name.startsWith("aphex-twin.json.backup-"))).toHaveLength(1);
+			});
+
+			it("waits for the node's lock, then rolls back without deadlock and lets queued operations through", async () => {
+				await updCache.write(artist());
+				const committed = deferred();
+				const gate = deferred();
+				const holderEntered = deferred();
+				const holderRelease = deferred();
+				const events: string[] = [];
+				const internals = updCache as unknown as {
+					runLocked: <T>(slug: Slug, fn: () => Promise<T>) => Promise<T>;
+				};
+				const errors = vi.spyOn(console, "error").mockImplementation(() => {});
+
+				const failing = failingOperation(async () => {
+					committed.release();
+					await gate.promise;
+					throw new Error("emission down");
+				});
+				const failingSettled = failing.then(
+					() => "settled",
+					() => "settled",
+				);
+				await committed.promise;
+				// A writer holds the node's lock and rewrites it, exactly like an incoming reverse edge.
+				const holder = internals.runLocked(APHEX, async () => {
+					const node = (await updCache.get(APHEX)) as ArtistNode;
+					await atomicWriteJson(aphexFile(), {
+						...node,
+						collaborators: [...node.collaborators, ref("artist:autechre", "Autechre")],
+					});
+					holderEntered.release();
+					await holderRelease.promise;
+					events.push("holder released");
+				});
+				await holderEntered.promise;
+
+				// From here on, the only code that can ask for the node's lock before the operation settles is the
+				// rollback: the queued update below is created only after this check, because its own request would
+				// otherwise release `lockRequested` even when the rollback never asks (it asks in the same
+				// microtask burst as the operation settles, which hid a rollback without the lock).
+				const lockRequested = deferred();
+				const realRunLocked = internals.runLocked.bind(updCache);
+				vi.spyOn(internals, "runLocked").mockImplementation((slug, fn) => {
+					if (slug === APHEX) lockRequested.release();
+					return realRunLocked(slug, fn);
+				});
+
+				gate.release();
+				// The rollback must ask for the node's lock, which the holder keeps: the operation is not over
+				// when it does. A rollback that skipped the lock would settle first.
+				const first = await Promise.race([
+					lockRequested.promise.then(() => "rollback asked for the node lock"),
+					failingSettled.then(() => "operation settled without the node lock"),
+				]);
+				expect(first).toBe("rollback asked for the node lock");
+				// Queued behind the failing operation on the operation lock: must run once the rollback is over.
+				const queued = updCache.update(APHEX, (node) =>
+					withCollaborator(node, ref("artist:boards-of-canada", "Boards of Canada")),
+				);
+				holderRelease.release();
+				await holder;
+				await failingSettled;
+				events.push("operation settled");
+
+				await expect(failing).rejects.toThrow("emission down");
+				expect(await queued).toBe(true);
+				expect(events).toEqual(["holder released", "operation settled"]);
+				const aphex = (await updCache.get(APHEX)) as ArtistNode;
+				expect(slugsOf(aphex.collaborators).sort()).toEqual([
+					"artist:autechre",
+					"artist:boards-of-canada",
+					"artist:squarepusher",
+				]);
+				expect(errors.mock.calls.map((c) => String(c[0])).join("\n")).toContain("rollback skipped");
+				// No lock is left behind: a plain write of the node still goes through.
+				await updCache.write(aphex);
+			});
+		},
+	);
+
+	// TRA-555: replace() takes its backup before the commit, outside the node's lock. When the commit itself never
+	// lands, the file is not the replacement: whatever was written to it meanwhile must not be replaced by the
+	// (older) backup. Only replace() can reach the rollback in that state (update() cleans up after itself).
+	it("does not restore the backup over a node that a replace() never overwrote", async () => {
+		await updCache.write(artist());
+		const stats = { ...updCache.stats };
+		const entered = deferred();
+		const gate = deferred();
+		const internals = updCache as unknown as { commitLocked: () => Promise<void> };
+		vi.spyOn(internals, "commitLocked").mockImplementationOnce(async () => {
+			entered.release();
+			await gate.promise;
+			throw new Error("disk full");
+		});
+
+		const replacing = updCache.replace(artist({ name: "Aphex Twin (replacement)" }));
+		const settled = replacing.then(
+			() => undefined,
+			() => undefined,
+		);
+		await entered.promise;
+		// A write the replacement knows nothing about, made after the backup was taken.
+		const file = join(updDir, "nodes", "artist", "aphex-twin.json");
+		const current = JSON.parse(await readFile(file, "utf8")) as ArtistNode;
+		await atomicWriteJson(file, { ...current, collaborators: [ref("artist:autechre", "Autechre")] });
+		gate.release();
+		await settled;
+
+		await expect(replacing).rejects.toThrow("disk full");
+		const aphex = (await updCache.get(APHEX)) as ArtistNode;
+		expect(slugsOf(aphex.collaborators)).toEqual(["artist:autechre"]);
+		expect(aphex.name).toBe("Aphex Twin");
+		expect(await readdir(join(updDir, "nodes", "artist"))).toEqual(["aphex-twin.json"]);
+		expect(updCache.stats).toEqual(stats);
+	});
+
+	// TRA-555: the rollback now waits for the node's lock; a qid lookup served in that gap sees the committed
+	// node, and its memo must not outlive the rollback.
+	it("drops a genre qid memo built while a replace() rollback waits for the node's lock", async () => {
+		const ACID = "genre:acid" as Slug;
+		await updCache.write(genreNode({ slug: ACID, name: "Acid", qid: "Q1" }));
+		const committed = deferred();
+		const gate = deferred();
+		const holderEntered = deferred();
+		const holderRelease = deferred();
+		const lockRequested = deferred();
+		const internals = updCache as unknown as {
+			emitReverses: () => Promise<void>;
+			runLocked: <T>(slug: Slug, fn: () => Promise<T>) => Promise<T>;
+		};
+		vi.spyOn(internals, "emitReverses").mockImplementationOnce(async () => {
+			committed.release();
+			await gate.promise;
+			throw new Error("emission down");
+		});
+		const replacing = updCache.replace(genreNode({ slug: ACID, name: "Acid", qid: "Q2" }));
+		const settled = replacing.then(
+			() => undefined,
+			() => undefined,
+		);
+		await committed.promise;
+		const holder = internals.runLocked(ACID, async () => {
+			holderEntered.release();
+			await holderRelease.promise;
+		});
+		await holderEntered.promise;
+		const realRunLocked = internals.runLocked.bind(updCache);
+		vi.spyOn(internals, "runLocked").mockImplementation((slug, fn) => {
+			if (slug === ACID) lockRequested.release();
+			return realRunLocked(slug, fn);
+		});
+		gate.release();
+		// A rollback that skips the lock settles instead of asking for it (fails here rather than hanging).
+		await Promise.race([
+			lockRequested.promise,
+			settled.then(() => Promise.reject(new Error("no lock asked"))),
+		]);
+
+		// Committed state, still on disk while the rollback waits: this lookup memoizes it.
+		expect(await updCache.findGenreSlugByQid("Q2")).toBe(ACID);
+		holderRelease.release();
+		await holder;
+		await settled;
+
+		await expect(replacing).rejects.toThrow("emission down");
+		expect(await updCache.findGenreSlugByQid("Q2")).toBeUndefined();
+		expect(await updCache.findGenreSlugByQid("Q1")).toBe(ACID);
 	});
 
 	it("throws NotFoundError for a node that is not cached", async () => {
