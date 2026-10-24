@@ -87,14 +87,6 @@
       "name": "Counter"
     }
   ],
-  "landmark_project": {
-    "slug": "project:obscure-italian-disco-ii-beppe-loda-cuts",
-    "type": "project",
-    "name": "Obscure Italian Disco II - Beppe Loda Cuts",
-    "mbid": "fce0f698-38f3-4355-8ef2-088209f83d77",
-    "year": "2016",
-    "releaseType": "ep"
-  },
   "reference_track": {
     "slug": "track:counter",
     "type": "track",
