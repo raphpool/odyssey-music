@@ -564,3 +564,98 @@ describe("backfill-reverse-edges: migration channel contract (TRA-488)", () => {
 		if (parsed.ok) expect(checkPendingReversesAfterMigration(parsed.value, new Set())).toEqual([]);
 	});
 });
+
+// TRA-624 (2026-10-24): the backfill built its own source edge and did not carry the project's mbid, while
+// NodeCache.emitReverses did (TRA-623). Both now call reverseEdgeFor.
+describe("backfill-reverse-edges: the edge is the one the runtime emits (TRA-624)", () => {
+	const projectMbid = "5b4f8a1e-6c1d-4c47-9c2e-0d3a7f5b9e21";
+	const syro = (o: Partial<ProjectNode> = {}) =>
+		project("project:syro--aphex-twin", "Syro", {
+			artists: [ref("artist:aphex-twin", "Aphex Twin")],
+			...o,
+		});
+
+	it("stamps the project's mbid on the discography edge", async () => {
+		await writeCache([syro({ mbid: projectMbid }), aphex]);
+
+		await run(true);
+
+		expect((await readNode<ArtistNode>("artist:aphex-twin")).discography).toEqual([
+			{
+				slug: "project:syro--aphex-twin",
+				type: "project",
+				name: "Syro",
+				artist: "Aphex Twin",
+				mbid: projectMbid,
+			},
+		]);
+	});
+
+	it("produces the same discography edge as NodeCache.write, for the same project and artist", async () => {
+		await writeCache([syro({ mbid: projectMbid }), aphex]);
+		await run(true);
+		const backfilled = (await readNode<ArtistNode>("artist:aphex-twin")).discography;
+
+		const runtimeDir = await mkdtemp(join(tmpdir(), "reverse-edges-runtime-"));
+		try {
+			const cache = new NodeCache(runtimeDir);
+			await cache.write(aphex);
+			await cache.write(syro({ mbid: projectMbid }));
+			const emitted = ((await cache.get("artist:aphex-twin")) as ArtistNode).discography;
+
+			expect(emitted).toEqual(backfilled);
+			expect(emitted).toHaveLength(1);
+		} finally {
+			await rm(runtimeDir, { recursive: true, force: true });
+		}
+	});
+
+	it("adds no mbid key when the project has none, or one that is not a uuid, and the run still succeeds", async () => {
+		await writeCache([syro({ mbid: "not-a-uuid" }), aphex]);
+
+		const manifest = await run(true);
+
+		const [edge] = (await readNode<ArtistNode>("artist:aphex-twin")).discography;
+		expect(edge).toEqual({
+			slug: "project:syro--aphex-twin",
+			type: "project",
+			name: "Syro",
+			artist: "Aphex Twin",
+		});
+		expect(edge && "mbid" in edge).toBe(false);
+		expect(manifest.errors).toEqual([]);
+	});
+
+	it("propagates the mbid of no other pair (track.artists, project.label, artist.labels)", async () => {
+		const mbid = "0a9c2f77-3d58-4e0b-8a61-b7e4c1d2f390";
+		await writeCache([
+			track("track:minipops--aphex-twin", "minipops", {
+				mbid,
+				artists: [ref("artist:aphex-twin", "Aphex Twin")],
+			}),
+			syro({ mbid: projectMbid, label: ref("label:warp", "Warp") }),
+			{ ...artist("artist:squarepusher", "Squarepusher", { mbid }), labels: [ref("label:warp", "Warp")] },
+			aphex,
+			warp,
+		]);
+
+		await run(true);
+
+		const stored = await readNode<ArtistNode>("artist:aphex-twin");
+		expect(stored.notable_tracks.every((e) => !("mbid" in e))).toBe(true);
+		const storedLabel = await readNode<LabelNode>("label:warp");
+		expect(storedLabel.notable_releases.every((e) => !("mbid" in e))).toBe(true);
+		expect(storedLabel.roster.every((e) => !("mbid" in e))).toBe(true);
+	});
+
+	it("leaves an edge already on the artist as it is: the backfill adds, the runtime enriches", async () => {
+		const existing = ref("project:syro--aphex-twin", "Syro", { artist: "Aphex Twin" });
+		await writeCache([syro({ mbid: projectMbid }), { ...aphex, discography: [existing] }]);
+
+		const manifest = await run(true);
+
+		expect((await readNode<ArtistNode>("artist:aphex-twin")).discography).toEqual([existing]);
+		expect(manifest.written).toBe(0);
+		expect(manifest.unchanged).toBe(1);
+	});
+});
