@@ -24353,6 +24353,19 @@
       }
     }
   ],
+  "artist:nine-inch-nails": [
+    {
+      "field": "discography",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:ghosts-i-iv",
+        "type": "project",
+        "name": "Ghosts I–IV",
+        "artist": "Nine Inch Nails",
+        "mbid": "550bf4b9-92ca-30ba-9ea2-8b45f9d081f1"
+      }
+    }
+  ],
   "artist:x": [
     {
       "field": "discography",
@@ -24379,32 +24392,6 @@
       }
     }
   ],
-  "artist:interpol": [
-    {
-      "field": "discography",
-      "cardinality": "list",
-      "edge": {
-        "slug": "project:turn-on-the-bright-lights",
-        "type": "project",
-        "name": "Turn on the Bright Lights",
-        "artist": "Interpol",
-        "mbid": "e7227840-5ef2-3813-af26-15dab34e1a51"
-      }
-    }
-  ],
-  "artist:nine-inch-nails": [
-    {
-      "field": "discography",
-      "cardinality": "list",
-      "edge": {
-        "slug": "project:ghosts-i-iv",
-        "type": "project",
-        "name": "Ghosts I–IV",
-        "artist": "Nine Inch Nails",
-        "mbid": "550bf4b9-92ca-30ba-9ea2-8b45f9d081f1"
-      }
-    }
-  ],
   "artist:jam-project": [
     {
       "field": "discography",
@@ -24415,6 +24402,19 @@
         "name": "The Judgement",
         "artist": "JAM Project",
         "mbid": "5948a343-d133-42f7-b506-4935b71a42a9"
+      }
+    }
+  ],
+  "artist:interpol": [
+    {
+      "field": "discography",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:turn-on-the-bright-lights",
+        "type": "project",
+        "name": "Turn on the Bright Lights",
+        "artist": "Interpol",
+        "mbid": "e7227840-5ef2-3813-af26-15dab34e1a51"
       }
     }
   ],
