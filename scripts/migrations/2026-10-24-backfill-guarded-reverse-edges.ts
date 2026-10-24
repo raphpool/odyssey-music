@@ -15,7 +15,7 @@
  * Unlimited credits, gave Deep Space a credit for two artists who list other "Deep Space", promoted a producer).
  * An edge the guard cannot prove is listed in the manifest (`doubtful`, with the reason), never written.
  *
- * Pairs and their guard (add a pair = add a line to GUARDED_PAIRS, a guard if none fits, and a test):
+ * Pairs and their guard (add a pair = add a line to GUARDS, a guard if none fits, and a test; only a pair the runtime emits is accepted):
  * - genre.related_genres→genre.related_genres: the edge's Wikidata id (`qid`, set by the registry when the genre
  *   was resolved, TRA-18) equals the qid of the genre it points at. A genre qid is unique in the cache and the
  *   registry mints one slug per qid, so a match is the same genre; a missing or different qid is not a proof.
@@ -46,7 +46,7 @@ import { dirname } from "node:path";
 import { pathToFileURL } from "node:url";
 import { applySingleReverse, atomicWriteJson } from "../../src/cache.js";
 import { EDGE_FIELDS_BY_TYPE, type NodeType, REVERSE_EDGE_PAIRS } from "../../src/node-spec.js";
-import { reverseEdgeFor } from "../../src/reverse-edges.js";
+import { isEmittedReversePair, reverseEdgeFor } from "../../src/reverse-edges.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
 import { isReadableSlug, parseSlug } from "../../src/slug.js";
 import type { NodePayload } from "../../src/types.js";
@@ -98,7 +98,7 @@ const GUARDS: Readonly<Record<string, Guard>> = {
 
 export const GUARDED_PAIRS: readonly string[] = Object.keys(GUARDS);
 
-interface Direction {
+export interface Direction {
 	key: string;
 	sourceType: NodeType;
 	field: string;
@@ -111,29 +111,43 @@ function pairKey(sourceType: NodeType, field: string, targetType: NodeType, targ
 	return `${sourceType}.${field}→${targetType}.${targetField}`;
 }
 
-// The guarded pairs resolved against the spec once. A key that matches no declared list pair is a typo in
-// GUARDS: it would silently backfill nothing, so it is an invariant error.
-const DIRECTIONS: Direction[] = [];
-for (const p of REVERSE_EDGE_PAIRS) {
-	const targetType = (EDGE_FIELDS_BY_TYPE[p.sourceType] as Record<string, { targets: readonly NodeType[] }>)[
-		p.sourceField
-	]?.targets[0];
-	if (!targetType || p.reverse.cardinality !== "list") continue;
-	const key = pairKey(p.sourceType, p.sourceField, targetType, p.reverse.field);
-	const guard = GUARDS[key];
-	if (!guard) continue;
-	DIRECTIONS.push({
-		key,
-		sourceType: p.sourceType,
-		field: p.sourceField,
-		targetType,
-		reverseField: p.reverse.field,
-		guard,
-	});
+/**
+ * The guarded pairs resolved against the spec. Refuses (throws) a key that is not a declared list pair of
+ * REVERSE_EDGE_PAIRS (a typo would silently backfill nothing), and a pair the runtime does not emit
+ * (`isEmittedReversePair`, TRA-567): the dispatcher's decision of 2026-10-24 on TRA-564 is that those are not
+ * caught up, because the runtime refuses to emit them for lack of a reliable guard (TRA-563). The table stays
+ * inside the set of pairs the audit caps.
+ */
+export function resolveDirections(guards: Readonly<Record<string, Guard>>): Direction[] {
+	const directions: Direction[] = [];
+	for (const p of REVERSE_EDGE_PAIRS) {
+		const targetType = (
+			EDGE_FIELDS_BY_TYPE[p.sourceType] as Record<string, { targets: readonly NodeType[] }>
+		)[p.sourceField]?.targets[0];
+		if (!targetType || p.reverse.cardinality !== "list") continue;
+		const key = pairKey(p.sourceType, p.sourceField, targetType, p.reverse.field);
+		const guard = guards[key];
+		if (!guard) continue;
+		if (!isEmittedReversePair(p.sourceType, p.sourceField, p.reverse.field)) {
+			throw new Error(`${key} is not a direction the runtime emits: it is not backfilled (TRA-564, TRA-567)`);
+		}
+		directions.push({
+			key,
+			sourceType: p.sourceType,
+			field: p.sourceField,
+			targetType,
+			reverseField: p.reverse.field,
+			guard,
+		});
+	}
+	const unknown = Object.keys(guards).filter((k) => !directions.some((d) => d.key === k));
+	if (unknown.length > 0) {
+		throw new Error(`guards for a pair that REVERSE_EDGE_PAIRS does not declare as a list: ${unknown}`);
+	}
+	return directions;
 }
-if (DIRECTIONS.length !== GUARDED_PAIRS.length) {
-	throw new Error(`GUARDS names a pair that REVERSE_EDGE_PAIRS does not declare as a list: ${GUARDED_PAIRS}`);
-}
+
+const DIRECTIONS = resolveDirections(GUARDS);
 
 export interface DoubtfulEdge {
 	pair: string;

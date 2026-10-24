@@ -9,11 +9,12 @@ import {
 	type Manifest,
 	MIGRATION_NAME,
 	parseCliArgs,
+	resolveDirections,
 	runMigration,
 	sameQid,
 } from "../scripts/migrations/2026-10-24-backfill-guarded-reverse-edges.js";
 import { NodeCache } from "../src/cache.js";
-import { REVERSE_EDGE_PAIRS } from "../src/node-spec.js";
+import { EDGE_FIELDS_BY_TYPE, type NodeType, REVERSE_EDGE_PAIRS } from "../src/node-spec.js";
 import { isEmittedReversePair, SAFE_BACKFILL_PAIRS } from "../src/reverse-edges.js";
 import { parseSlug } from "../src/slug.js";
 import type {
@@ -153,6 +154,11 @@ async function run(apply: boolean): Promise<Manifest> {
 	const result = await runMigration({ cacheDir: dir, apply });
 	expect(result.exitCode).toBe(0);
 	return result.manifest;
+}
+
+function targetTypeOf(sourceType: NodeType, field: string): string {
+	const spec = EDGE_FIELDS_BY_TYPE[sourceType] as Record<string, { targets: readonly string[] }>;
+	return spec[field]?.targets[0] ?? "";
 }
 
 const PAIR = "genre.related_genres→genre.related_genres";
@@ -353,6 +359,31 @@ describe("guarded backfill: the runtime is not widened", () => {
 		// And the cross-type pairs stay as TRA-563 left them.
 		expect(isEmittedReversePair("artist", "discography", "artists")).toBe(false);
 		expect(isEmittedReversePair("project", "tracklist", "project")).toBe(false);
+	});
+});
+
+describe("guarded backfill: only pairs the runtime emits", () => {
+	it("refuses, when the table is read, any declared pair the runtime does not emit", () => {
+		// Every cross-type pair outside SAFE_BACKFILL_PAIRS (TRA-563): not caught up (decision on TRA-564).
+		const notEmitted = REVERSE_EDGE_PAIRS.filter(
+			(p) =>
+				p.reverse.cardinality === "list" &&
+				!isEmittedReversePair(p.sourceType, p.sourceField, p.reverse.field),
+		);
+		expect(notEmitted.length).toBeGreaterThan(0);
+		for (const p of notEmitted) {
+			const key = `${p.sourceType}.${p.sourceField}→${targetTypeOf(p.sourceType, p.sourceField)}.${p.reverse.field}`;
+			expect(() => resolveDirections({ [key]: sameQid }), key).toThrow(/not a direction the runtime emits/);
+		}
+	});
+
+	it("accepts the pairs of the table, all emitted, and refuses an unknown key", () => {
+		expect(resolveDirections({ [PAIR]: sameQid }).map((d) => d.key)).toEqual([PAIR]);
+		expect(() => resolveDirections({ "genre.nope→genre.nope": sameQid })).toThrow(/does not declare/);
+		const table = Object.fromEntries(GUARDED_PAIRS.map((k) => [k, sameQid]));
+		for (const d of resolveDirections(table)) {
+			expect(isEmittedReversePair(d.sourceType, d.field, d.reverseField), d.key).toBe(true);
+		}
 	});
 });
 
