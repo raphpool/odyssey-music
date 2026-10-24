@@ -24,6 +24,15 @@ final class NodeContentCardTests: XCTestCase {
 		XCTAssertEqual(NodeContentCardMetrics.contentWidth(forPageWidth: 320), 264)
 	}
 
+	func testTheCardIsFlatWithoutATintAndTintedWithOne() {
+		let tint = CoverTint(
+			stops: Array(repeating: LinearRGB(red: 0.2, green: 0.1, blue: 0.1), count: 3),
+			shadow: LinearRGB(red: 0.5, green: 0.2, blue: 0.2))
+
+		XCTAssertEqual(NodeContentCard<EmptyView>.background(for: nil), .flat)
+		XCTAssertEqual(NodeContentCard<EmptyView>.background(for: tint), .tinted(tint))
+	}
+
 	func testCardIdentifier() {
 		XCTAssertEqual(NodeContentCardMetrics.identifier, "node-card")
 	}
