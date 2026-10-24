@@ -64,6 +64,30 @@
       "type": "genre",
       "name": "Post-rock",
       "qid": "Q209137"
+    },
+    {
+      "slug": "genre:progressive-electronic",
+      "type": "genre",
+      "name": "Progressive Electronic",
+      "qid": "Q79784514"
+    },
+    {
+      "slug": "genre:psychedelic-rock",
+      "type": "genre",
+      "name": "Psychedelic rock",
+      "qid": "Q206159"
+    },
+    {
+      "slug": "genre:space-music",
+      "type": "genre",
+      "name": "Space music",
+      "qid": "Q2342263"
+    },
+    {
+      "slug": "genre:space-rock",
+      "type": "genre",
+      "name": "Space rock",
+      "qid": "Q236913"
     }
   ],
   "key_artists": [

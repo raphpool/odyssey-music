@@ -49,6 +49,18 @@
       "type": "genre",
       "name": "Arena Rock",
       "qid": "Q379033"
+    },
+    {
+      "slug": "genre:acid-rock",
+      "type": "genre",
+      "name": "Acid rock",
+      "qid": "Q236932"
+    },
+    {
+      "slug": "genre:grunge",
+      "type": "genre",
+      "name": "Grunge",
+      "qid": "Q11365"
     }
   ],
   "key_artists": [

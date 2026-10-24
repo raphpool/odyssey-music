@@ -56,6 +56,18 @@
       "type": "genre",
       "name": "Bass Music",
       "qid": "Q96740854"
+    },
+    {
+      "slug": "genre:garage-house",
+      "type": "genre",
+      "name": "Garage House",
+      "qid": "Q928825"
+    },
+    {
+      "slug": "genre:post-dubstep",
+      "type": "genre",
+      "name": "Post-dubstep",
+      "qid": "Q106130091"
     }
   ],
   "key_artists": [

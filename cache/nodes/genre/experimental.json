@@ -22,7 +22,20 @@
       "qid": "Q5421158"
     }
   ],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:contemporary-classical",
+      "type": "genre",
+      "name": "Contemporary Classical",
+      "qid": "Q612024"
+    },
+    {
+      "slug": "genre:electroacoustic-music",
+      "type": "genre",
+      "name": "Electroacoustic music",
+      "qid": "Q1326777"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:john-cage",

@@ -48,6 +48,30 @@
       "type": "genre",
       "name": "Post-Hardcore",
       "qid": "Q377910"
+    },
+    {
+      "slug": "genre:grunge",
+      "type": "genre",
+      "name": "Grunge",
+      "qid": "Q11365"
+    },
+    {
+      "slug": "genre:noise-pop",
+      "type": "genre",
+      "name": "Noise Pop",
+      "qid": "Q2545135"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock",
+      "qid": "Q3071"
+    },
+    {
+      "slug": "genre:shoegaze",
+      "type": "genre",
+      "name": "Shoegaze",
+      "qid": "Q272167"
     }
   ],
   "key_artists": [

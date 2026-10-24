@@ -78,6 +78,12 @@
       "type": "genre",
       "name": "Ethiopian Jazz",
       "qid": "Q3591962"
+    },
+    {
+      "slug": "genre:nu-jazz",
+      "type": "genre",
+      "name": "Nu Jazz",
+      "qid": "Q1136331"
     }
   ],
   "key_artists": [

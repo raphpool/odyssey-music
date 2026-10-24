@@ -74,6 +74,18 @@
       "type": "genre",
       "name": "Electroclash",
       "qid": "Q861823"
+    },
+    {
+      "slug": "genre:brostep",
+      "type": "genre",
+      "name": "Brostep",
+      "qid": "Q20903"
+    },
+    {
+      "slug": "genre:electropop",
+      "type": "genre",
+      "name": "Electropop",
+      "qid": "Q188450"
     }
   ],
   "key_artists": [

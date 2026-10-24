@@ -60,6 +60,12 @@
       "type": "genre",
       "name": "Footwork",
       "qid": "Q5466607"
+    },
+    {
+      "slug": "genre:hip-hop",
+      "type": "genre",
+      "name": "Hip-Hop",
+      "qid": "Q11401"
     }
   ],
   "key_artists": [

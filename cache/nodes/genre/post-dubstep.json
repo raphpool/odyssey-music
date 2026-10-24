@@ -42,6 +42,12 @@
       "type": "genre",
       "name": "UK bass",
       "qid": "Q2346991"
+    },
+    {
+      "slug": "genre:chillstep",
+      "type": "genre",
+      "name": "Chillstep",
+      "qid": "Q2963621"
     }
   ],
   "key_artists": [

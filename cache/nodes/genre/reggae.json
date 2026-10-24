@@ -74,6 +74,24 @@
       "type": "genre",
       "name": "Gnawa",
       "qid": "Q2000173"
+    },
+    {
+      "slug": "genre:rocksteady",
+      "type": "genre",
+      "name": "Rocksteady",
+      "qid": "Q573484"
+    },
+    {
+      "slug": "genre:roots-reggae",
+      "type": "genre",
+      "name": "Roots Reggae",
+      "qid": "Q1299260"
+    },
+    {
+      "slug": "genre:ska",
+      "type": "genre",
+      "name": "Ska",
+      "qid": "Q54365"
     }
   ],
   "key_artists": [
