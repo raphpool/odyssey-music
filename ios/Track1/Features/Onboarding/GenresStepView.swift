@@ -159,7 +159,7 @@ struct GenresStepView: View {
 				model.toggleAll(of: family.id)
 			}
 			.accessibilityIdentifier(Self.selectAllIdentifier(for: family.id))
-			ChipFlowLayout(spacing: Track1Tokens.spacing8) {
+			ChipFlowLayout(spacing: Track1Tokens.spacing8, rowAlignment: .top) {
 				ForEach(model.subgenres(of: family.id)) { choice in
 					SubgenreChip(title: choice.name, isSelected: model.isSubgenreSelected(choice.id)) {
 						model.toggleSubgenre(choice.id)

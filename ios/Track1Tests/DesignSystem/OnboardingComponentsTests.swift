@@ -262,9 +262,12 @@ final class OnboardingComponentsTests: XCTestCase {
 
 	/// Where a flow of `width` points puts each chip and itself, read off a real layout, by title and `"flow"`.
 	@MainActor
-	private func chipFlowFrames(_ titles: [String], width: CGFloat) -> [String: CGRect] {
+	private func chipFlowFrames(
+		_ titles: [String], width: CGFloat, rowAlignment: ChipRowAlignment = .center
+	) -> [String: CGRect] {
 		let box = HeaderFrameBox()
-		let host = UIHostingController(rootView: ChipFlowProbe(titles: titles, width: width) { box.frames = $0 })
+		let host = UIHostingController(
+			rootView: ChipFlowProbe(titles: titles, width: width, rowAlignment: rowAlignment) { box.frames = $0 })
 		let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 402, height: 800))
 		window.rootViewController = host
 		window.makeKeyAndVisible()
@@ -303,6 +306,59 @@ final class OnboardingComponentsTests: XCTestCase {
 	func testAChipThatFitsKeepsThePillHeightAndRadius() {
 		XCTAssertEqual(chipSize("Trap", width: 300).height, 36, accuracy: 0.5)
 		XCTAssertEqual(SubgenreChip.cornerRadius(lineHeight: 16), 18)
+	}
+
+	// MARK: Chip row alignment (TRA-700)
+
+	private static let foldedChipName = "Mauritanian Traditional"
+	private static let shortChipName = "Sai"
+	/// 2026-10-24 (TRA-700, macOS probe): at 195 pt "Mauritanian Traditional" folds on two lines (52 pt, 122 pt
+	/// wide) and leaves room for "Sai" (36 pt) on its row. The probe puts both in one row from 185 to 205 pt.
+	private static let sharedRowWidth: CGFloat = 195
+
+	/// The folded chip and the short one of a shared row, read off a real layout, once the preconditions hold
+	/// so that the alignment tests below cannot pass on an empty case.
+	@MainActor
+	private func sharedRow(_ rowAlignment: ChipRowAlignment) throws -> (folded: CGRect, short: CGRect) {
+		let frames = chipFlowFrames(
+			[Self.foldedChipName, Self.shortChipName], width: Self.sharedRowWidth, rowAlignment: rowAlignment)
+		let folded = try XCTUnwrap(frames[Self.foldedChipName])
+		let short = try XCTUnwrap(frames[Self.shortChipName])
+		XCTAssertGreaterThanOrEqual(
+			folded.height, short.height + 15, "the name must fold for this test to mean something")
+		XCTAssertGreaterThan(short.minX, folded.maxX, "both chips must share a row")
+		XCTAssertLessThan(
+			max(folded.minY, short.minY), min(folded.maxY, short.maxY), "both chips must share a row")
+		return (folded, short)
+	}
+
+	/// The short chip of a shared row sits at the top of the row, next to the first line of the folded chip.
+	@MainActor
+	func testATopAlignedShortChipSharesItsRowTopWithAFoldedChip() throws {
+		let row = try sharedRow(.top)
+		XCTAssertEqual(
+			row.short.minY, row.folded.minY, accuracy: 0.5, "short chip \(row.short), folded \(row.folded)")
+	}
+
+	/// The default stays centered: the node page relies on it for its 32 pt overflow chip.
+	@MainActor
+	func testTheDefaultAlignmentStillCentersTheShortChipOnTheFoldedOne() throws {
+		let row = try sharedRow(.center)
+		XCTAssertEqual(
+			row.short.midY, row.folded.midY, accuracy: 0.5, "short chip \(row.short), folded \(row.folded)")
+	}
+
+	/// `.top` moves chips inside their row only: the row height, so the flow height, does not change.
+	@MainActor
+	func testTopAlignmentKeepsTheRowHeights() {
+		let titles = [Self.foldedChipName, Self.shortChipName, "Trap"]
+		let centered = chipFlowFrames(titles, width: Self.sharedRowWidth)
+		let top = chipFlowFrames(titles, width: Self.sharedRowWidth, rowAlignment: .top)
+		XCTAssertEqual(top["flow"]?.height ?? 0, centered["flow"]?.height ?? -1, accuracy: 0.5, "flow height")
+		for title in titles {
+			XCTAssertEqual(top[title]?.width ?? 0, centered[title]?.width ?? -1, accuracy: 0.5, "width of \(title)")
+			XCTAssertEqual(top[title]?.height ?? 0, centered[title]?.height ?? -1, accuracy: 0.5, "height of \(title)")
+		}
 	}
 
 	// MARK: Bottom action bar
@@ -377,10 +433,11 @@ extension View {
 private struct ChipFlowProbe: View {
 	let titles: [String]
 	let width: CGFloat
+	var rowAlignment: ChipRowAlignment = .center
 	let onFrames: @Sendable ([String: CGRect]) -> Void
 
 	var body: some View {
-		ChipFlowLayout {
+		ChipFlowLayout(rowAlignment: rowAlignment) {
 			ForEach(titles, id: \.self) { title in
 				SubgenreChip(title: title, isSelected: false) {}.readHeaderFrame(title)
 			}

@@ -303,6 +303,40 @@ final class ProfileFlowTests: XCTestCase {
 		UITestFlows.screenshot(named: "1.2-chips-xxxl", in: self)
 	}
 
+	/// 2026-10-24 (TRA-700, review of TRA-679, macOS probe): at AX2 "Japanese Traditional" folds on two lines in a
+	/// pill narrower than the row, and "Sai" shares that row. The layout centered "Sai" on the folded pill, at
+	/// mid-height beside it; the onboarding aligns it at the top. Both chips are read as frames, `a` folded and `b`
+	/// short, and the preconditions (`a` at least 15 pt taller, `b` on the right of `a`) keep the test from
+	/// passing on two chips that do not share a row. 1 pt is for rounding: on `main` the gap is half the
+	/// difference in height, about 16 pt. The capture `1.2-chips-shared-row` is the proof to read for the shape.
+	@MainActor
+	func testAShortChipSharingItsRowWithAFoldedChipIsAlignedOnTopOfIt() {
+		let app = UITestFlows.launch(
+			catalog: Self.sharedRowChipCatalog,
+			extraArguments: ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityL"])
+		UITestFlows.declineConsent(app)
+		UITestFlows.startOnboarding(app)
+		let bar = app.buttons["onboarding-genres-continue"]
+		let family0 = card("family-0", in: app)
+		let chipA = app.buttons["subgenre-chip-local:genre-0a"]
+		let chipB = app.buttons["subgenre-chip-local:genre-0b"]
+
+		UITestFlows.tapAboveBar(family0, bar: bar, in: app)
+		XCTAssertTrue(chipA.waitForExistence(timeout: 10))
+		XCTAssertTrue(chipB.waitForExistence(timeout: 10))
+
+		let a = UITestFlows.settledFrame(of: chipA, timeout: 10)
+		let b = UITestFlows.settledFrame(of: chipB, timeout: 10)
+		XCTAssertGreaterThanOrEqual(a.height, b.height + 15, "the long name is folded: \(a) and \(b)")
+		XCTAssertGreaterThan(b.minX, a.maxX, "the chips share a row: \(a) and \(b)")
+		XCTAssertLessThanOrEqual(abs(b.minY - a.minY), 1, "the short chip is at the top of the row: \(a) and \(b)")
+		// The measures above are of frames; the capture is of the screen: bring the chips above the bar.
+		for _ in 0..<4 where chipA.frame.maxY > bar.frame.minY - 24 {
+			app.swipeUp()
+		}
+		UITestFlows.screenshot(named: "1.2-chips-shared-row", in: self)
+	}
+
 	/// 2026-10-24 (TRA-666, plan D4): the edit sheet of the Genres tab draws the same `GenresStepView`, so a
 	/// collapsed card has the size it has in the onboarding, for a name that fits on one line (ticked genre,
 	/// badge) and for one that folds. The sizes are measured on the first launch, before "Continuer", then in the
@@ -540,6 +574,14 @@ final class ProfileFlowTests: XCTestCase {
 		{"mode":"editorial","version":2,"families":[{"key":"family-0","label":"Family 0","order":1},{"key":"family-1","label":"Family 1","order":2}],"genres":[{"id":"local:genre-0a","name":"North American Indigenous Music","family":"family-0","slugs":["genre:genre-0a"]},{"id":"local:genre-0b","name":"Genre 0b","family":"family-0","slugs":["genre:genre-0b"]},{"id":"local:genre-1a","name":"Genre 1a","family":"family-1","slugs":["genre:genre-1a"]}],"legacySelectionBySlug":{}}
 		"""
 
+	/// `editorialTaxonomy` with a folded name for `local:genre-0a` and a short one for `local:genre-0b`: at AX2 on
+	/// a column of 300 to 350 pt "Japanese Traditional" folds on two lines in a pill of 207 pt, and "Sai" (77 pt)
+	/// shares its row (macOS probe, 2026-10-24). Only those two `name`s change.
+	private static let sharedRowChipTaxonomy =
+		"""
+		{"mode":"editorial","version":2,"families":[{"key":"family-0","label":"Family 0","order":1},{"key":"family-1","label":"Family 1","order":2}],"genres":[{"id":"local:genre-0a","name":"Japanese Traditional","family":"family-0","slugs":["genre:genre-0a"]},{"id":"local:genre-0b","name":"Sai","family":"family-0","slugs":["genre:genre-0b"]},{"id":"local:genre-1a","name":"Genre 1a","family":"family-1","slugs":["genre:genre-1a"]}],"legacySelectionBySlug":{}}
+		"""
+
 	/// `editorialTaxonomy` with two long family names: only the `label`s change.
 	private static let longLabelsTaxonomy =
 		"""
@@ -556,6 +598,8 @@ final class ProfileFlowTests: XCTestCase {
 	private static let longLabelsCatalog = catalog(taxonomy: longLabelsTaxonomy)
 
 	private static let longChipCatalog = catalog(taxonomy: longChipTaxonomy)
+
+	private static let sharedRowChipCatalog = catalog(taxonomy: sharedRowChipTaxonomy)
 
 	/// The same nodes and edges with the taxonomy the server serves when it cannot build the editorial one.
 	private static let degradedCatalog = catalog(taxonomy: degradedTaxonomy)
