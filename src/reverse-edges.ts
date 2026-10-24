@@ -79,6 +79,20 @@ for (const pair of REVERSE_EDGE_PAIRS) {
 }
 
 /**
+ * Whether `NodeCache.write` emits the reverse of `sourceType.sourceField` into `reverseField`: the one source of
+ * truth for "this pair can be missing, so it is capped" (TRA-567). A declared pair of REVERSE_EDGE_PAIRS that is
+ * not emitted is only measured by the integrity audit, never capped. A source field has one target type (checked
+ * above), so the target type is not needed.
+ */
+export function isEmittedReversePair(
+	sourceType: NodeType,
+	sourceField: string,
+	reverseField: string,
+): boolean {
+	return REVERSES_BY_TYPE[sourceType][sourceField]?.field === reverseField;
+}
+
+/**
  * Whether a pending reverse entry queued for a node of `targetType` is a direction the runtime still emits.
  * An entry written before TRA-563 may be an unsafe one (a credit on a work from a namesake's list): it must
  * never be applied.
