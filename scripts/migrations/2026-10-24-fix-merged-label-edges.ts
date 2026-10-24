@@ -5,7 +5,7 @@
  * MusicBrainz on 2026-10-24 (12 requests, 1 req/s, default User-Agent); the evidence of every step is in its
  * `evidence` line, and the same table is in the PR.
  *
- * CLOSED LIST (STEPS below): five steps, two kinds.
+ * CLOSED LIST (STEPS below): seven steps, three kinds.
  *   - `detach` (project, label): the project is not a release of the label. Both sides of the pair go, because
  *     `project.label` and `label.notable_releases` are reverse edges (src/node-spec.ts, TRA-454): removing one
  *     side only would let the next reverse-edge backfill restore it. `project.label` is cleared only when it
@@ -13,6 +13,12 @@
  *     keep their order. Nothing is re-pointed: no node exists for the true label of these releases, or it
  *     would be a different claim (see the Piper evidence), and an empty edge is honest.
  *   - `set` (label, field, expected, value): a scalar written over its expected, known-wrong value.
+ *   - `retarget` (node, from, to): the node points at a dangling duplicate that data/slug-redirects.json
+ *     already redirects to a canonical node (the test pins `to` against the committed table). In a list the
+ *     dangling entry is replaced in place by the canonical edge, or simply dropped when the list already holds
+ *     the canonical one (re-pointing would write a duplicate); a single edge (`landmark_project`) takes the
+ *     canonical entry of the artist's own list as is, so it stays a member of that list. Only an edge that
+ *     still holds exactly `from` moves.
  *
  * KEPT (KEPT below): the cases of the triage that the evidence does NOT prove false. They have no step; the
  * test pins that the migration never touches them.
@@ -73,7 +79,19 @@ export interface SetStep {
 	evidence: string;
 }
 
-export type Step = DetachStep | SetStep;
+export interface RetargetStep {
+	kind: "retarget";
+	node: string;
+	/** The dangling slug; any edge holding another slug is left alone. */
+	from: string;
+	/** The canonical slug, as data/slug-redirects.json maps `from`. */
+	to: string;
+	/** Lists first, then single edges: a single edge copies the canonical entry of the list. */
+	fields: readonly ("discography" | "landmark_project")[];
+	evidence: string;
+}
+
+export type Step = DetachStep | SetStep | RetargetStep;
 
 /** The closed list. Exported so that the test pins it: adding a step is a reviewed change. */
 export const STEPS: readonly Step[] = [
@@ -93,6 +111,13 @@ export const STEPS: readonly Step[] = [
 	},
 	{
 		kind: "detach",
+		project: "project:selected-ambient-works-85-92",
+		label: "label:warp",
+		evidence:
+			"Same release group 6842c81d (see above): none of its 20 releases is on Warp 46f0f4cd; the 1992 original is Apollo 40554a9e, the reissues R&S 77bc13d5. The label side is the only one: project.label is empty, and label:apollo keeps the album.",
+	},
+	{
+		kind: "detach",
 		project: "project:hard-normal-daddy--squarepusher",
 		label: "label:rephlex",
 		evidence:
@@ -104,6 +129,15 @@ export const STEPS: readonly Step[] = [
 		label: "label:rephlex",
 		evidence:
 			"`project:polyester` has no node: data/slug-redirects.json redirects it to project:polyester--lisa-carbon, which label:rephlex also lists. The dangling entry is a duplicate of the true one (MusicBrainz release group 180d7f48: Rephlex 820fa04e, CAT 026, 1994), which stays.",
+	},
+	{
+		kind: "retarget",
+		node: "artist:lisa-carbon",
+		from: "project:polyester",
+		to: "project:polyester--lisa-carbon",
+		fields: ["discography", "landmark_project"],
+		evidence:
+			"`project:polyester` has no node and data/slug-redirects.json maps it to project:polyester--lisa-carbon (Rephlex CAT 026, 1994, release group 180d7f48). The discography lists both: the dangling entry is dropped, the canonical one stays; the landmark takes the canonical entry.",
 	},
 	{
 		kind: "set",
@@ -142,13 +176,13 @@ export type SkipReason = "absent" | "already-clean" | "value-changed";
 
 export interface Change {
 	node: string;
-	field: "label" | "notable_releases" | "active_years";
-	action: "cleared" | "removed" | "set";
-	/** The slug cleared or removed, or the old value of a scalar. */
+	field: "label" | "notable_releases" | "active_years" | "discography" | "landmark_project";
+	action: "cleared" | "removed" | "set" | "retargeted" | "merged";
+	/** The slug cleared, removed or retargeted, or the old value of a scalar. */
 	from: string;
-	/** The new value of a scalar; null when an edge was cleared or removed. */
+	/** The new value of a scalar or the canonical slug of a retargeted edge; null when an edge was cleared or removed. */
 	to: string | null;
-	/** `removed` only: how many entries of the list carried the slug (a list can hold a duplicate). */
+	/** `removed`, `merged`, `retargeted` in a list: how many entries of the list carried the slug. */
 	entries?: number;
 }
 
@@ -218,6 +252,49 @@ export function removeNotableRelease(label: Obj, step: DetachStep): Outcome {
 	};
 }
 
+/** A list edge holding `from`: replaced by the canonical edge, or dropped when the list holds it already. */
+export function retargetListEdge(node: Obj, step: RetargetStep, field: "discography"): Outcome {
+	const list = node[field];
+	const entries = Array.isArray(list) ? list.filter((e) => slugOf(e) === step.from).length : 0;
+	if (!Array.isArray(list) || entries === 0) {
+		return { next: null, skipped: { node: step.node, field, reason: "already-clean" } };
+	}
+	const hasCanonical = list.some((e) => slugOf(e) === step.to);
+	const next = hasCanonical
+		? list.filter((e) => slugOf(e) !== step.from)
+		: list.map((e) => (slugOf(e) === step.from && isRecord(e) ? { ...e, slug: step.to } : e));
+	return {
+		next: { ...node, [field]: next },
+		change: {
+			node: step.node,
+			field,
+			action: hasCanonical ? "merged" : "retargeted",
+			from: step.from,
+			to: step.to,
+			entries,
+		},
+	};
+}
+
+/** A single edge holding exactly `from`: the canonical entry of the artist's own list, as is. */
+export function retargetSingleEdge(node: Obj, step: RetargetStep, field: "landmark_project"): Outcome {
+	const current = node[field];
+	const found = slugOf(current);
+	if (found !== step.from || !isRecord(current)) {
+		return {
+			next: null,
+			skipped: { node: step.node, field, reason: "already-clean", ...(found ? { found } : {}) },
+		};
+	}
+	const list = node.discography;
+	const canonical = Array.isArray(list) ? list.find((e) => slugOf(e) === step.to) : undefined;
+	const edge: Obj = isRecord(canonical) ? { ...canonical } : { ...current, slug: step.to };
+	return {
+		next: { ...node, [field]: edge },
+		change: { node: step.node, field, action: "retargeted", from: step.from, to: step.to },
+	};
+}
+
 /** A scalar -> `value`, only when it still holds `expected`. */
 export function setScalar(node: Obj, step: SetStep): Outcome {
 	const found = asString(node[step.field]);
@@ -274,26 +351,29 @@ export async function runMigration(options: RunOptions): Promise<{ manifest: Man
 	const pending = new Map<string, { path: string; node: Obj }>();
 	// A node that is absent or unreadable is read once and reported once (per field), not once per step.
 	const missing = new Set<string>();
+	// Two steps can reach the same fact (project.label of SAW 85-92 is empty for both of its detachments): once.
+	const note = (entry: Skipped): void => {
+		if (!skipped.some((s) => JSON.stringify(s) === JSON.stringify(entry))) skipped.push(entry);
+	};
 	const edit = async (slug: string, field: Change["field"], apply: (node: Obj) => Outcome): Promise<void> => {
 		let state = pending.get(slug);
 		if (!state) {
 			if (missing.has(slug)) {
-				const note: Skipped = { node: slug, field, reason: "absent" };
-				if (!skipped.some((s) => s.node === slug && s.field === field)) skipped.push(note);
+				note({ node: slug, field, reason: "absent" });
 				return;
 			}
 			const read = await readNode(options.cacheDir, slug);
 			if (read.node === null) {
 				missing.add(slug);
 				if (read.error) errors.push(read.error);
-				else skipped.push({ node: slug, field, reason: "absent" });
+				else note({ node: slug, field, reason: "absent" });
 				return;
 			}
 			state = { path: read.path, node: read.node };
 			pending.set(slug, state);
 		}
 		const result = apply(state.node);
-		if (result.next === null) skipped.push(result.skipped);
+		if (result.next === null) note(result.skipped);
 		else {
 			state.node = result.next;
 			changed.push(result.change);
@@ -304,6 +384,11 @@ export async function runMigration(options: RunOptions): Promise<{ manifest: Man
 		if (step.kind === "detach") {
 			await edit(step.project, "label", (n) => clearProjectLabel(n, step));
 			await edit(step.label, "notable_releases", (n) => removeNotableRelease(n, step));
+		} else if (step.kind === "retarget") {
+			for (const field of step.fields) {
+				if (field === "discography") await edit(step.node, field, (n) => retargetListEdge(n, step, field));
+				else await edit(step.node, field, (n) => retargetSingleEdge(n, step, field));
+			}
 		} else {
 			await edit(step.node, step.field, (n) => setScalar(n, step));
 		}
@@ -353,7 +438,7 @@ export function formatSummary(manifest: Manifest, manifestPath: string | undefin
 		const what =
 			c.action === "set"
 				? `${c.from} -> ${c.to}`
-				: `${c.action} ${c.from}${c.entries ? ` (x${c.entries})` : ""}`;
+				: `${c.action} ${c.from}${c.to ? ` -> ${c.to}` : ""}${c.entries ? ` (x${c.entries})` : ""}`;
 		lines.push(`  ${c.node}.${c.field}: ${what}`);
 	}
 	for (const s of manifest.skipped) {

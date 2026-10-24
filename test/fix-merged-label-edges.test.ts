@@ -88,6 +88,10 @@ const SAW = edge("project:selected-ambient-works-85-92", "Selected Ambient Works
 const HND = edge("project:hard-normal-daddy--squarepusher", "Hard Normal Daddy");
 const POLYESTER_DANGLING = edge("project:polyester", "Polyester");
 const POLYESTER = edge("project:polyester--lisa-carbon", "Polyester", { artist: "Lisa Carbon" });
+const STANDARDS = edge("project:standards--lisa-carbon", "Standards", {
+	mbid: "0927c813-aa54-3de7-9c21-0ec36f70f6b0",
+	year: "2003",
+});
 const KIND_OF_BLUE = edge("project:kind-of-blue--miles-davis", "Kind of Blue");
 const ANALORD = edge("project:analord", "Analord");
 const ARTIFICIAL = edge("project:artificial-intelligence", "Artificial Intelligence");
@@ -122,6 +126,12 @@ function nodes(): Obj[] {
 		label("label:apollo", { notable_releases: [SAW] }),
 		// set: E.G. Records
 		label("label:e-g-records", { founded: "1969", active_years: "1969–1996" }),
+		// retarget: Lisa Carbon's dangling Polyester, in the discography and as the landmark
+		artist("artist:lisa-carbon", {
+			labels: [edge("label:sub-rosa", "Sub Rosa")],
+			discography: [STANDARDS, POLYESTER_DANGLING, POLYESTER],
+			landmark_project: POLYESTER_DANGLING,
+		}),
 		// kept: Wolfgang Voigt on Warp
 		artist("artist:wolfgang-voigt", {
 			labels: [edge("label:kompakt", "Kompakt"), WARP, edge("label:raster-noton", "Raster-Noton")],
@@ -176,18 +186,22 @@ const without = (node: Obj, key: string): Obj => {
 };
 
 describe("fix-merged-label-edges: the closed list", () => {
-	it("holds exactly the five steps of TRA-609 (adding one is a reviewed change)", () => {
+	it("holds exactly the seven steps of TRA-609 (adding one is a reviewed change)", () => {
 		expect(
 			STEPS.map((s) =>
 				s.kind === "detach"
 					? `detach ${s.project} from ${s.label}`
-					: `set ${s.node}.${s.field} ${s.expected} -> ${s.value}`,
+					: s.kind === "retarget"
+						? `retarget ${s.node} ${s.fields.join("+")} ${s.from} -> ${s.to}`
+						: `set ${s.node}.${s.field} ${s.expected} -> ${s.value}`,
 			),
 		).toEqual([
 			"detach project:the-piper-at-the-gates-of-dawn--pink-floyd from label:columbia",
 			"detach project:selected-ambient-works-85-92 from label:rephlex",
+			"detach project:selected-ambient-works-85-92 from label:warp",
 			"detach project:hard-normal-daddy--squarepusher from label:rephlex",
 			"detach project:polyester from label:rephlex",
+			"retarget artist:lisa-carbon discography+landmark_project project:polyester -> project:polyester--lisa-carbon",
 			"set label:e-g-records.active_years 1969–1996 -> 1969–1991",
 		]);
 	});
@@ -229,13 +243,75 @@ describe("fix-merged-label-edges: one test per case, and nothing else moves", ()
 		expect(await readNode("label:apollo")).toEqual(before[7]);
 	});
 
-	it("Hard Normal Daddy: Rephlex drops it, the project stays on Warp, and so does Warp's list", async () => {
+	it("Hard Normal Daddy: Rephlex drops it, the project stays on Warp, and so does Warp's entry", async () => {
 		const before = nodes();
 		await writeCache(before);
 		await run(true);
 		expect(slugsOf((await readNode("label:rephlex")).notable_releases)).not.toContain(HND.slug);
 		expect((await readNode("project:hard-normal-daddy--squarepusher")).label).toEqual(WARP);
-		expect(await readNode("label:warp")).toEqual(before[6]);
+		expect(slugsOf((await readNode("label:warp")).notable_releases)).toContain(HND.slug);
+	});
+
+	it("Selected Ambient Works 85-92 on Warp: Warp drops it, keeps its other releases in order and its roster", async () => {
+		const before = nodes();
+		await writeCache(before);
+		await run(true);
+		const warp = await readNode("label:warp");
+		expect(warp).toEqual({ ...(before[6] as Obj), notable_releases: [ARTIFICIAL, HND] });
+		expect(await readNode("label:apollo")).toEqual(before[7]);
+	});
+
+	it("Lisa Carbon: the dangling Polyester leaves the discography, the landmark takes the canonical entry", async () => {
+		const before = nodes();
+		await writeCache(before);
+		await run(true);
+		const lisa = await readNode("artist:lisa-carbon");
+		expect(lisa).toEqual({
+			...(before[9] as Obj),
+			discography: [STANDARDS, POLYESTER],
+			landmark_project: POLYESTER,
+		});
+		expect(lisa.landmark_project).not.toBe(POLYESTER);
+	});
+
+	it("Lisa Carbon: with no canonical entry in the discography, the dangling one is re-pointed in place", async () => {
+		const bare = nodes().map((n) =>
+			n.slug === "artist:lisa-carbon" ? { ...n, discography: [STANDARDS, POLYESTER_DANGLING] } : n,
+		);
+		await writeCache(bare);
+		const manifest = await run(true);
+		const lisa = await readNode("artist:lisa-carbon");
+		expect(slugsOf(lisa.discography)).toEqual([STANDARDS.slug, POLYESTER.slug]);
+		expect(lisa.discography).toContainEqual({ ...POLYESTER_DANGLING, slug: POLYESTER.slug });
+		expect(lisa.landmark_project).toEqual({ ...POLYESTER_DANGLING, slug: POLYESTER.slug });
+		expect(manifest.changed.filter((c) => c.node === "artist:lisa-carbon").map((c) => c.action)).toEqual([
+			"retargeted",
+			"retargeted",
+		]);
+	});
+
+	it("Lisa Carbon: a landmark that is no longer exactly project:polyester is not ours", async () => {
+		const moved = nodes().map((n) =>
+			n.slug === "artist:lisa-carbon" ? { ...n, landmark_project: STANDARDS } : n,
+		);
+		await writeCache(moved);
+		const manifest = await run(true);
+		expect((await readNode("artist:lisa-carbon")).landmark_project).toEqual(STANDARDS);
+		expect(manifest.skipped).toContainEqual({
+			node: "artist:lisa-carbon",
+			field: "landmark_project",
+			reason: "already-clean",
+			found: STANDARDS.slug,
+		});
+	});
+
+	it("Lisa Carbon: the target of the step is the one the committed redirect table gives", () => {
+		const table = JSON.parse(readFileSync(join(process.cwd(), "data", "slug-redirects.json"), "utf8")) as {
+			redirects?: Record<string, string>;
+		} & Record<string, unknown>;
+		const redirects = (table.redirects ?? table) as Record<string, string>;
+		const step = STEPS.find((s) => s.kind === "retarget");
+		expect(step?.kind === "retarget" && redirects[step.from]).toBe(step?.kind === "retarget" ? step.to : "");
 	});
 
 	it("Polyester: the dangling duplicate goes, the Lisa Carbon release stays on Rephlex, in order", async () => {
@@ -272,17 +348,20 @@ describe("fix-merged-label-edges: one test per case, and nothing else moves", ()
 		expect(manifest.changed.map((c) => c.node)).not.toContain("artist:wolfgang-voigt");
 	});
 
-	it("writes exactly the four node files the cases need, and reports every change", async () => {
+	it("writes exactly the six node files the cases need, and reports every change", async () => {
 		await writeCache(nodes());
 		const manifest = await run(true);
-		// piper, columbia, rephlex (three edits, one write), e-g-records.
-		expect(manifest.written).toBe(4);
+		// piper, columbia, rephlex (three edits, one write), warp, lisa-carbon (two edits, one write), e-g-records.
+		expect(manifest.written).toBe(6);
 		expect(manifest.changed.map((c) => `${c.node}.${c.field} ${c.action} ${c.from}`)).toEqual([
 			"project:the-piper-at-the-gates-of-dawn--pink-floyd.label cleared label:columbia",
 			"label:columbia.notable_releases removed project:the-piper-at-the-gates-of-dawn--pink-floyd",
 			"label:rephlex.notable_releases removed project:selected-ambient-works-85-92",
+			"label:warp.notable_releases removed project:selected-ambient-works-85-92",
 			"label:rephlex.notable_releases removed project:hard-normal-daddy--squarepusher",
 			"label:rephlex.notable_releases removed project:polyester",
+			"artist:lisa-carbon.discography merged project:polyester",
+			"artist:lisa-carbon.landmark_project retargeted project:polyester",
 			"label:e-g-records.active_years set 1969–1996",
 		]);
 	});
@@ -520,7 +599,7 @@ describe("fix-merged-label-edges: the command line", () => {
 		const m = JSON.parse(readFileSync(manifestPath, "utf8")) as Manifest;
 		expect([m.migration, m.written, m.removed, m.renamed, m.redirects]).toEqual([
 			MIGRATION_NAME,
-			4,
+			6,
 			[],
 			{},
 			{},
