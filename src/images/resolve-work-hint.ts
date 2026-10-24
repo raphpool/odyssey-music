@@ -252,7 +252,7 @@ export async function resolveWorkImageByHint(
 			hint,
 			deps,
 			() => resolveRecordingDetailed(title, artist, deps.mbOptions),
-			(identity) => identity.releaseGroupMbid ?? null,
+			(identity) => identity.releaseGroupMbid,
 		);
 	}
 	if (outcome) return outcome;
