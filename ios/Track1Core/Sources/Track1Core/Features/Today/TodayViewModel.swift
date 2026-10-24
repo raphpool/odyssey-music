@@ -93,6 +93,10 @@ public final class TodayViewModel {
 			state = .emptyCatalog
 			return
 		}
+		// Resolved here, with the catalog already in hand, because a persisted recommendation is served without
+		// reading it again (2026-10-24, TRA-698, plan D8).
+		let genreNames = TodayReason.genreNames(
+			selection: profile.selection, taxonomy: EditorialGenreTaxonomy(catalog: catalog))
 		let recommendation = DailyRecommendation(
 			recommendationID: makeID(),
 			localDate: localDate,
@@ -102,6 +106,7 @@ public final class TodayViewModel {
 			name: pick.name,
 			teaser: pick.teaser,
 			reasons: pick.reasons,
+			profileGenreNames: genreNames,
 			viewRecorded: false)
 
 		// The store does not deduplicate: dropping the current date here is what keeps one entry per date.

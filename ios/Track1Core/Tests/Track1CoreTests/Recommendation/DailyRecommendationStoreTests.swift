@@ -43,6 +43,20 @@ final class DailyRecommendationStoreTests: XCTestCase {
 		XCTAssertNil(entries[0]["view_event_id"])
 		XCTAssertNotNil(entries[0]["recommendation_id"])
 		XCTAssertTrue(entries[0]["teaser"] is NSNull)
+		XCTAssertEqual(entries[0]["profile_genre_names"] as? [String], [])
+	}
+
+	func testGenreNamesAreWrittenUnderTheirKeyAndSurviveARoundTrip() async throws {
+		let saved = [try recommendation(1, profileGenreNames: ["IDM", "Glitch", "Ambient"])]
+		assertSucceeded(await makeStore().save(saved))
+		let data = try Data(contentsOf: directoryURL.appending(path: Self.fileName))
+		let object = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
+		let entries = try XCTUnwrap(object["history"] as? [[String: Any]])
+		XCTAssertEqual(entries.first?["profile_genre_names"] as? [String], ["IDM", "Glitch", "Ambient"])
+
+		let reread = await makeStore().history()
+		XCTAssertEqual(reread, saved)
+		XCTAssertEqual(reread.first?.profileGenreNames, ["IDM", "Glitch", "Ambient"])
 	}
 
 	func testSavingMoreThanFortyKeepsTheLastFortyInOrder() async throws {
@@ -225,6 +239,24 @@ final class DailyRecommendationStoreTests: XCTestCase {
 		XCTAssertEqual(history.count, 1)
 		XCTAssertEqual(history.first?.localDate, "2026-10-05")
 		XCTAssertEqual(history.first?.nodeType, .artist)
+		// `rawEntry` has no `profile_genre_names`, like every file written before TRA-698: the entry must
+		// still be read, with no names, or the whole history of an existing install would be dropped (R8).
+		XCTAssertEqual(history.first?.profileGenreNames, [])
+	}
+
+	func testARawEntryWithGenreNamesKeepsThem() async throws {
+		try await writeRaw(
+			#"{"version":1,"history":[\#(try rawEntry(extra: #","profile_genre_names":["IDM","Ambient"]"#))]}"#)
+		let history = await makeStore().history()
+		XCTAssertEqual(history.first?.profileGenreNames, ["IDM", "Ambient"])
+	}
+
+	func testARawEntryWithMalformedGenreNamesIsIgnored() async throws {
+		let valid = try recommendation(1)
+		let malformed = try rawEntry(extra: #","profile_genre_names":"IDM""#)
+		try await writeRaw(#"{"version":1,"history":[\#(malformed),\#(try json(of: valid))]}"#)
+		let history = await makeStore().history()
+		XCTAssertEqual(history, [valid])
 	}
 
 	func testEntriesWithAForeignViewEventIDAreReadButTheFieldIsNotWrittenBack() async throws {
@@ -303,7 +335,8 @@ final class DailyRecommendationStoreTests: XCTestCase {
 		_ index: Int,
 		teaser: String? = nil,
 		localDate: String = "2026-10-05",
-		profileRevision: Int = 1
+		profileRevision: Int = 1,
+		profileGenreNames: [String] = []
 	) throws -> DailyRecommendation {
 		DailyRecommendation(
 			recommendationID: UUID(),
@@ -314,6 +347,7 @@ final class DailyRecommendationStoreTests: XCTestCase {
 			name: "Artist \(index)",
 			teaser: teaser,
 			reasons: ["Lié à Ambient"],
+			profileGenreNames: profileGenreNames,
 			viewRecorded: false
 		)
 	}

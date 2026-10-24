@@ -3,7 +3,8 @@
 Plan de la phase `plan` du process de livraison, écrit le 2026-10-23 sur le brief Figma « UI Refresh ».
 **Validé le 2026-10-23 par le dispatcher sur délégation de Raphael.** Projet Linear P-TRA-8 :
 https://linear.app/workspaceperso/project/fiche-de-noeud-ios-rafraichissement-de-linterface-67c53dca9a99
-(milestones = parties 1 à 3, tickets TRA-657 → TRA-671). Il complète
+(milestones = parties 1 à 3, tickets TRA-657 → TRA-671 ; **partie 4 ajoutée le 2026-10-24** après
+l'arbitrage Q5 de Raphael : milestone 4, tickets TRA-698 et TRA-699, parent TRA-676). Il complète
 [`track1-ios-figma.md`](track1-ios-figma.md) : il **remplace sa décision D8** (barre d'onglets native) et
 **amende sa décision D10** (une teinte dominante → une palette de pochette à trois bandes). Tout le reste de
 ce plan reste en vigueur, en particulier D9 (ordre des sections = Data contract) et le contrat des
@@ -16,7 +17,8 @@ spec `Spec · 2.1 project` `286:1697` (texte « UI » `286:1701`, texte « Backg
 `293:832`). Les valeurs de l'annexe A ont été lues le 2026-10-23 via le MCP Figma (`get_design_context`).
 
 Tous les chemins sont relatifs à la racine du dépôt. État du dépôt au moment du plan : `9a9471de`
-(263 tests dans `ios/Track1Tests`, 491 dans `ios/Track1Core/Tests`, comptés par `grep 'func test'`).
+(263 tests dans `ios/Track1Tests`, 491 dans `ios/Track1Core/Tests`, comptés par `grep 'func test'`). La
+partie 4 a été précisée le 2026-10-24 sur `e651dc75` (parties 1 à 3 mergées).
 
 ## Problème
 
@@ -83,7 +85,8 @@ Ce qui ne bouge pas et contraint la solution :
   et les états sans page de `NodeView` ; il quitte seulement la fiche chargée (`NodePageView`).
 - Pas de tests de capture d'écran (snapshot) : la validation visuelle reste celle de Raphael sur iPhone.
 - La ligne « parce que tu explores … » sous la date (`286:1669`) n'est **pas** un rafraîchissement
-  d'interface mais une donnée nouvelle ; elle est isolée en partie 4, sous réserve de la question Q5.
+  d'interface mais une donnée nouvelle ; elle est isolée en partie 4, retenue par Raphael le 2026-10-24
+  (Q5, D8).
 
 ## Décisions d'archi
 
@@ -178,6 +181,40 @@ Ce qui ne bouge pas et contraint la solution :
 - **Pourquoi.** Le job `tests-Track1` exécute toute la suite UI : une PR qui remplace la barre doit
   laisser les 45 appels verts. Les isoler avant rend la PR de bascule petite et lisible.
 - **Rejeté : tout dans une PR.** > 300 lignes, mélange test / UI.
+
+### D8 — Les genres du profil sont résolus au choix du jour et persistés avec la recommandation
+
+- **Décision.** Au moment où `TodayViewModel.load(for:)` lit le catalogue pour choisir l'œuvre du jour, il
+  construit `EditorialGenreTaxonomy(catalog:)` et résout `profile.selection.genres` (ids de taxonomie, dans
+  l'ordre de coche) en noms éditoriaux (`EditorialGenreChoice.name`), trois au plus, ids inconnus ignorés.
+  Les noms sont écrits dans `DailyRecommendation.profileGenreNames` (clé `profile_genre_names`, `[]` par
+  défaut au décodage) et persistés par `DailyRecommendationStore` avec le reste de la recommandation. La vue
+  lit `TodayPresentation.reasonLine(of:)`, fonction pure : `nil` sans nom. Sans `selection` (profil v1), avec
+  une taxonomie `degraded` ou un catalogue indisponible, la liste est vide et la ligne absente ; la date ne
+  change pas.
+- **Pourquoi.** Une recommandation déjà persistée est servie sans relire le catalogue (TRA-343,
+  `TodayViewModel.swift:14-15`) : résoudre les noms à l'affichage obligerait soit à relire le catalogue à
+  chaque lancement (et à perdre la ligne hors ligne), soit à accepter une ligne présente au premier lancement
+  du jour et absente ensuite. La révision du profil fait partie de la clé de cache : une sélection modifiée
+  produit une nouvelle recommandation, donc de nouveaux noms ; les noms stockés ne peuvent pas être périmés.
+- **Rejeté : résoudre à l'affichage en relisant le catalogue.** Un appel réseau par lancement, contraire à
+  TRA-343, et un top bar asynchrone alors que `NodeView` fige son contenu à la création
+  (`ios/Track1/Features/Node/NodeView.swift:21-23`).
+- **Rejeté : stocker les noms dans le profil.** Changement du format `profile.v2.json` et du flux
+  d'onboarding, livré par un autre projet ; rayon d'impact sans rapport avec la ligne.
+- **Rejeté : `genre_ids` comme source.** Slugs triés par ordre alphabétique (`GenreSelection.swift:32`,
+  `ProfileStore.swift:170`) et noms `CatalogNode.name`, jamais les noms éditoriaux : l'ordre de la personne et
+  le vocabulaire de l'onboarding seraient perdus.
+- **Rejeté : afficher `DailyRecommendation.reasons`.** « Lié à X » / « Proche de Y » : pas des genres, et
+  l'arbitrage Q5 fixe la source.
+- **Typographie et copie.** Le Figma dessine la ligne en JetBrains Mono Bold 12 / 25 hors style : comme pour
+  le badge (D6), aucun rôle n'est créé pour un usage unique ; `.monoLabel` (Mono Regular 12 / 16, `.caption`)
+  est réutilisé et la graisse Bold n'est pas reproduite (un rôle `monoCaption` Bold 12 / 16 serait un suivi
+  DS de 1 pt si Raphael le demande). Couleur `colorTextTertiary`, 4 pt sous la date (métadonnées Figma lues
+  le 2026-10-24 : date `282:838` y = 0, h = 24 ; ligne `286:1669` y = 28, h = 25, texte centré, x = 14 sur
+  345), centrée, deux lignes au plus. Séparateur ` - ` (espace, trait d'union U+002D, espace), tel que
+  dessiné ; « · » aurait été cohérent avec `OnboardingCopy.selectionSummary`, mais le Figma est la source de
+  vérité de ce plan.
 
 ## Découpage
 
@@ -461,18 +498,107 @@ seules, 20 pt entre les boutons de streaming et la pilule.
     R1). Sans `.ignoresSafeArea(.keyboard)`, le champ de l'onglet Genres remonterait la barre avec le
     clavier.
 
-### Partie 4 (reportée, Q5) — Ligne « parce que tu explores … » sous la date
+### Partie 4 — Ligne « parce que tu explores … » sous la date
 
-Reportée au gate du 2026-10-23 (Q5) : non créée dans Linear, à trancher par Raphael. Si oui :
+Retenue par Raphael le 2026-10-24 (Q5 : source = genres du profil). Milestone Linear « 4 — Ligne « parce que
+tu explores … » », parent TRA-676 (laissé ouvert). Incrément visible : sous la date de l'onglet Aujourd'hui,
+« parce que tu explores IDM - Glitch - Ambient » avec les trois premiers genres cochés dans l'onboarding ; rien
+de plus quand le profil n'a pas de sélection éditoriale ou que la taxonomie est dégradée.
 
-- [ ] (non créé — Q5 reportée) **4.1 — Core · `TodayReasonCopy.line(genreNames:) -> String?`** — tier/1, 1 pt, ∥.
-  - `ios/Track1Core/Sources/Track1Core/Features/Today/TodayReasonCopy.swift` + tests : « parce que tu
-    explores IDM - Glitch - Ambient » (séparateur ` - `, trois noms au plus, `nil` sans nom).
-- [ ] (non créé — Q5 reportée) **4.2 — App · `TopBar.Content.date(Date, reason: String?)` et branchement Aujourd'hui** —
-  tier/2, 2 pts, dépend de 4.1.
-  - `TopBar.swift` (seconde ligne `.monoTag` ? — le Figma dessine Mono Bold 12/25 hors style — couleur
-    `colorTextTertiary`, identifiant `top-bar-reason`), `TodayView.swift` (noms des genres de
-    `profile.selection` résolus par le catalogue déjà lu pour l'onboarding), `NavigationComponentsTests`.
+Ce que la cartographie du 2026-10-24 a établi (worktree sur `e651dc75`) :
+
+- Profil v2 : `Profile.selection: GenreSelection?` (`ios/Track1Core/Sources/Track1Core/Profile/Profile.swift`),
+  `GenreSelection.genres: [String]` = ids de taxonomie **dans l'ordre de coche**, uniques
+  (`GenreSelectionModel.swift:12-14` ; une famille cochée sans genre ajoute tous ses genres en fin, dans
+  l'ordre servi). `genre_ids` sont des slugs triés alphabétiquement : pas la source. `selection == nil` pour un
+  profil v1 non réédité.
+- Noms : `EditorialGenreTaxonomy(catalog:)` (failable : `nil` si `CatalogTaxonomy.degraded`) puis
+  `genre(_ id:)?.name` (`ios/Track1Core/Sources/Track1Core/Features/Onboarding/EditorialGenreTaxonomy.swift:48,
+  87`). Rien n'est embarqué dans le bundle ; l'onboarding et l'onglet Genres gardent la taxonomie dans un
+  `@State` local, sans cache partagé : « le catalogue déjà lu pour l'onboarding » du plan initial n'existait pas.
+- Aujourd'hui : `TodayViewModel.load(for:)` ne lit le catalogue que sans recommandation persistée pour la date
+  et la révision (`ios/Track1Core/Sources/Track1Core/Features/Today/TodayViewModel.swift:64-77`, TRA-343) ;
+  d'où D8.
+- Top bar : `TopBar.Content.date(Date)` (`ios/Track1/DesignSystem/Components/Navigation/TopBar.swift:9-12`),
+  texte `top-bar-date` en `.monoHeadline` `colorTextSecondary` (TRA-660) ; seul motif `case .date(` :
+  `TopBar.swift:34` ; seul appel : `ios/Track1/Features/Today/TodayView.swift:96`. Pas de
+  `.accessibilityElement(children: .contain)` en mode date (seulement sur le fil d'Ariane). `NodeView` fige
+  `topBar` (`@State`, `NodeView.swift:21-23`) : la raison doit être connue avant la page, ce que
+  `TodayPresentation.screen` garantit (`.page` seulement avec `.recommendation`) et que `.id(opening.recommendationID)`
+  renouvelle à chaque recommandation.
+- Rôles (`ios/Track1/DesignSystem/Track1Typography.swift:32-52`) : aucun Mono Bold 12 ; `.monoLabel` = Mono
+  Regular 12 / 16 `.caption`. `colorTextTertiary = rgb(0x8D7A6D)` (`Track1Tokens.swift:35`).
+- Tests : `NavigationComponentsTests.testTopBarDateIsDrawnInMonoHeadline`
+  (`ios/Track1Tests/DesignSystem/NavigationComponentsTests.swift:114`) ; `TodayFlowTests` lit `top-bar-date` par
+  `descendants(matching: .any)` (`ios/Track1UITests/TodayFlowTests.swift:15-43`) et relance l'app à l'étape 7
+  (chemin en cache) ; fixture UI : famille `family-0`, genre `local:genre-0a` nommé « Genre 0a »
+  (`UITestFlows.swift:29, 152-158`). Tests Core (`ios/Track1Core/Tests/Track1CoreTests/`) :
+  `Recommendation/TodayViewModelTests.swift` (catalogue `degraded`, profil par JSON, `CatalogProbe` compte les
+  lectures), `Recommendation/DailyRecommendationStoreTests.swift` (`rawEntry(…)`, « même jeu de clés »),
+  `Recommendation/TodayPresentationTests.swift`, `Profile/OnboardingCopyTests.swift` (modèle de test de copie) ;
+  `EditorialFixture.catalog(nodes:edges:teasers:families:genres:legacy:)` dans
+  `Profile/EditorialGenreTaxonomyTests.swift:224`.
+- pbxproj : dernier identifiant utilisé dans `0420–042F` : `0426` ; la partie 4 n'ajoute aucun fichier d'app
+  (`0427–042F` restent disponibles si un fichier de test l'exigeait).
+
+- [ ] TRA-698 **4.1 — Core · `TodayReason`, `TodayReasonCopy`, `DailyRecommendation.profileGenreNames`,
+  `TodayPresentation.reasonLine`** — tier/2, 2 pts, ∥ (indépendante ; sa PR embarque cette mise à jour du plan).
+  - Portée : créer `ios/Track1Core/Sources/Track1Core/Features/Today/TodayReason.swift` et
+    `ios/Track1Core/Tests/Track1CoreTests/Recommendation/TodayReasonTests.swift` ; modifier
+    `ios/Track1Core/Sources/Track1Core/Recommendation/DailyRecommendation.swift` (champ, clé
+    `profile_genre_names`, `init(from:)` explicite avec `decodeIfPresent ?? []`, `encode(to:)` écrit toujours la
+    clé), `Features/Today/TodayViewModel.swift` (après le `readCatalog()` réussi, lignes 74-105 : taxonomie,
+    noms, passage à `DailyRecommendation`), `Features/Today/TodayPresentation.swift` (`reasonLine(of:)`), tests
+    `DailyRecommendationStoreTests`, `TodayViewModelTests`, `TodayPresentationTests`. Pas de pbxproj. Hors
+    scope : `ios/Track1/**`, `Affinity.swift`, `reasons`, `Profile*`, `GenreSelection`,
+    `EditorialGenreTaxonomy`, `DailyRecommendationStore.swift`.
+  - Contrat :
+    - `public enum TodayReason { public static let maxGenres = 3; public static func genreNames(selection:
+      GenreSelection?, taxonomy: EditorialGenreTaxonomy?) -> [String] }` — ordre de coche,
+      `taxonomy.genre(id)?.name`, ids inconnus et noms vides ignorés, tronqué à 3, `[]` si l'un des deux est `nil`.
+    - `public enum TodayReasonCopy { public static let separator = " - "; public static func line(genreNames:
+      [String]) -> String? }` — « parce que tu explores A - B - C », `nil` si vide, pas de troncature.
+    - `DailyRecommendation.profileGenreNames: [String]` (clé `profile_genre_names`) ; `init(…, reasons:,
+      profileGenreNames: [String] = [], viewRecorded:)` ; `init(from:)` : clé absente → `[]`.
+    - `TodayPresentation.reasonLine(of state: TodayState) -> String?`.
+  - Critères : sélection `[Q2, Q1, Q3, Q4]` nommés IDM / Ambient / Glitch / Dub → `["IDM", "Ambient",
+    "Glitch"]` ; id inconnu ignoré sans décaler ; `nil` × 2 → `[]` ; copie 3 noms / 1 nom / 0 ; la clé est
+    toujours écrite, une entrée brute sans la clé décode en `[]`, aller-retour save/history ; `load(for:)` avec
+    `EditorialFixture.catalog` et un profil à `selection` → noms stockés ; taxonomie `degraded` → `[]` ; chemin
+    en cache → noms persistés sans lecture du catalogue ; `reasonLine` sur les 4 états ;
+    `swift test --package-path ios/Track1Core` et `npm run check` verts.
+  - Tests : `TodayReasonTests`, extensions de `DailyRecommendationStoreTests`, `TodayViewModelTests`,
+    `TodayPresentationTests`.
+  - Notes : l'`init(from:)` explicite est indispensable (`StoredHistory.Entry` décode entrée par entrée avec
+    `try?`, `DailyRecommendationStore.swift:131-132` : un champ sans défaut viderait l'historique, R8).
+    `Profile.init` est interne : profil de test par JSON avec `"selection"`.
+
+- [ ] TRA-699 **4.2 — App · `TopBar.Content.date(Date, reason:)`, branchement Aujourd'hui, test UI** — tier/2,
+  2 pts, dépend de 4.1.
+  - Portée : `ios/Track1/DesignSystem/Components/Navigation/TopBar.swift` (`case date(Date, reason: String? =
+    nil)` ; `static let reasonRole: Track1TextRole = .monoLabel`, `reasonColor = Track1Tokens.colorTextTertiary`,
+    `reasonSpacing = Track1Tokens.spacing4` ; en mode date, `VStack(spacing: reasonSpacing)` { date inchangée,
+    identifiant `top-bar-date` ; si raison : `Track1Text(…, role: reasonRole, verbatim: true)`, `reasonColor`,
+    centrée, `lineLimit(2)`, identifiant `top-bar-reason` } ; le `.frame(maxWidth: .infinity, minHeight:
+    sizeControlMedium)` passe au `VStack` ; sans raison, rendu identique à aujourd'hui),
+    `ios/Track1/Features/Today/TodayView.swift:96` (`.date(.now, reason: TodayPresentation.reasonLine(of:
+    model.state))`), `ios/Track1Tests/DesignSystem/NavigationComponentsTests.swift`,
+    `ios/Track1UITests/TodayFlowTests.swift`. Hors scope : `NodeView`, `NodePageView`, `RootView` (passent
+    `topBar` tel quel), `TopBarFormat`, `TopBarClearance`, `Track1Typography.swift`, `Track1Tokens.swift`, Core,
+    pbxproj.
+  - Contrat : ci-dessus ; identifiants `top-bar-date` (inchangé, sur le texte de la date) et `top-bar-reason`
+    (sur le texte de la raison) ; aucun identifiant sur le conteneur (sinon `.accessibilityElement(children:
+    .contain)` d'abord).
+  - Critères : `reasonRole == .monoLabel` (`.jetBrainsMonoRegular`, 12, 16, `.caption`), `reasonColor ==
+    colorTextTertiary`, `reasonSpacing == 4` ; `.date(.now)` compile sans argument ; UI : à l'étape 3 de
+    `testTodayShowsTheNodeOfTheDayAndKeepsItThroughNavigationAndRelaunch`, `top-bar-reason` existe et son
+    `label` vaut « parce que tu explores Genre 0a » ; à l'étape 7 (relance), il existe encore ; `top-bar-date`,
+    `SearchFlowTests`, `NavigationTests` inchangés et verts ; `test/ios-design-tokens.test.ts` vert.
+  - Tests : `NavigationComponentsTests` (constantes seulement, pas d'arbre d'accessibilité) ; `TodayFlowTests`
+    (présence et texte, persistance après relance).
+  - Notes : la raison ne vit que sur la racine d'Aujourd'hui (les pages poussées sont en `.breadcrumb`,
+    `RootView.swift:240`) ; `lineLimit(2)` plutôt que le `nowrap` du Figma : des noms longs passent à la ligne
+    au lieu d'être coupés, le top bar défile avec la page.
 
 ## Vue d'ensemble
 
@@ -490,11 +616,12 @@ Reportée au gate du 2026-10-23 (Q5) : non créée dans Linear, à trancher par 
 | 3.2 | TRA-669 · DS · assets d'icônes, glyphes sur asset | tier/1 | 2 | — ∥ |
 | 3.3 | TRA-670 · DS · `Track1TabBar` | tier/1 | 3 | 3.2 |
 | 3.4 | TRA-671 · App · monter la barre, masquer la native, 8 pt, bascule UI | tier/2 | 3 | 3.1, 3.3 |
-| 4.1 | non créé (Q5 reportée) · Core · `TodayReasonCopy` (si Q5) | tier/1 | 1 | — ∥ |
-| 4.2 | non créé (Q5 reportée) · App · seconde ligne du top bar (si Q5) | tier/2 | 2 | 4.1 |
+| 4.1 | TRA-698 · Core · `TodayReason`, `profileGenreNames`, `reasonLine` | tier/2 | 2 | — ∥ |
+| 4.2 | TRA-699 · App · seconde ligne du top bar, test UI | tier/2 | 2 | 4.1 |
 
 Vague 1 (parallèle) : 1.1, 1.2, 1.4, 2.1, 2.3, 3.1, 3.2. Vague 2 : 1.3, 2.2, 3.3. Vague 3 : 2.4, 3.4.
-Les parties 1, 2 et 3 sont indépendantes entre elles sauf 2.4 ← 1.3 (la carte porte le dégradé).
+Partie 4 (ajoutée le 2026-10-24, parties 1 à 3 mergées) : 4.1 puis 4.2.
+Les parties 1, 2, 3 et 4 sont indépendantes entre elles sauf 2.4 ← 1.3 (la carte porte le dégradé).
 Aucun chemin sensible (`sensitivePath`) n'est touché : aucun tier/3.
 
 ## Risques
@@ -517,10 +644,15 @@ Aucun chemin sensible (`sensitivePath`) n'est touché : aucun tier/3.
   32 × 32, négligeable ; garde-fou : une seule réduction d'image (2.2).
 - **R7 — Perte du comportement natif iOS 26** (barre qui se réduit au défilement, bouton de recherche
   natif). Accepté par D1 ; à confirmer en Q6.
+- **R8 — Historique des recommandations vidé par le nouveau champ.** `StoredHistory.Entry` décode chaque
+  entrée par `try? DailyRecommendation(from:)` (`DailyRecommendationStore.swift:131-132`) : un champ sans
+  valeur par défaut ferait ignorer toutes les entrées existantes, donc re-choisir l'œuvre du jour (contraire
+  à TRA-343). Garde-fou : `init(from:)` explicite avec `decodeIfPresent ?? []` (4.1) et un test d'entrée
+  brute sans la clé `profile_genre_names`.
 
 ## Critères de sortie
 
-- Les tâches des parties 1, 2 et 3 (et 4 si retenue) sont mergées sur `main` ; `npm run check` et
+- Les tâches des parties 1, 2, 3 et 4 sont mergées sur `main` ; `npm run check` et
   `ios-check` verts ; aucun identifiant d'accessibilité existant renommé.
 - Sur l'iPhone de Raphael, la fiche Cosmogramma (ou toute fiche de projet avec pochette) montre : le
   badge de type, la carte arrondie au dégradé de pochette, le fond de page teinté, le halo sous le
@@ -530,6 +662,9 @@ Aucun chemin sensible (`sensitivePath`) n'est touché : aucun tier/3.
   onglets et « Recherche » sur le bouton rond.
 - Une fiche genre et une fiche label (sans image) montrent la carte et le fond aux couleurs de leur
   type, sans glow radial.
+- Sur l'iPhone de Raphael, l'onglet Aujourd'hui montre sous la date « parce que tu explores A - B - C » avec
+  les trois premiers genres cochés dans l'onboarding, à la première ouverture du jour comme après une
+  relance ; un profil sans sélection éditoriale n'affiche que la date.
 - `docs/plans/track1-ios-figma.md` reçoit, dans la PR de 3.4, une note sous D8 et D10 renvoyant à ce
   plan.
 
@@ -544,7 +679,8 @@ Aucun chemin sensible (`sensitivePath`) n'est touché : aucun tier/3.
   pour genre / label / artiste sans photo ?
 - **Q4 — Date du top bar.** *Arbitrage : oui, tâche 1.4 créée (TRA-660).* Le Figma la dessine en JetBrains Mono Bold 18/24 (la prod : Roboto
   Condensed Medium 16, rôle `.eyebrow`). Appliquer (tâche 1.4) ? Proposé : oui, c'est un écart listé.
-- **Q5 — Ligne « parce que tu explores IDM - Glitch - Ambient ».** *Arbitrage : reportée, à trancher par Raphael — partie 4 non créée dans Linear.* Aucune donnée ne la porte aujourd'hui
+- **Q5 — Ligne « parce que tu explores IDM - Glitch - Ambient ».** *Arbitrage : reportée le 2026-10-23 ; **retenue par Raphael le 2026-10-24, source = genres du profil
+  (`selection.genres`)** — partie 4 créée (milestone 4, TRA-698, TRA-699, parent TRA-676), décision D8.* Aucune donnée ne la porte aujourd'hui
   (`DailyRecommendation.reasons` contient « Lié à X » / « Proche de Y », pas des genres). Créer la
   partie 4 maintenant (source proposée : les noms des genres du profil), la reporter, ou l'écarter ?
   Proposé : reporter, hors « UI refresh ».

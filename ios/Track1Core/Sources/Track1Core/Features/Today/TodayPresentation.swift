@@ -52,4 +52,14 @@ public enum TodayPresentation {
 	public static func rootTitle(of state: TodayState) -> String? {
 		if case .recommendation(let recommendation) = state { recommendation.name } else { nil }
 	}
+
+	/// "parce que tu explores …" under the date, or `nil` when the recommendation carries no genre name or
+	/// there is no recommendation.
+	public static func reasonLine(of state: TodayState) -> String? {
+		if case .recommendation(let recommendation) = state {
+			TodayReasonCopy.line(genreNames: recommendation.profileGenreNames)
+		} else {
+			nil
+		}
+	}
 }

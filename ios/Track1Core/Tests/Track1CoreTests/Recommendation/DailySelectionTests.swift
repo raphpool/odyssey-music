@@ -120,7 +120,7 @@ final class DailySelectionTests: XCTestCase {
 			Set(object.keys),
 			[
 				"recommendation_id", "local_date", "profile_revision", "node_id", "node_type", "name", "teaser",
-				"reasons", "view_recorded",
+				"reasons", "profile_genre_names", "view_recorded",
 			])
 		XCTAssertEqual(object["recommendation_id"] as? String, "33333333-3333-4333-8333-333333333333")
 		XCTAssertEqual(object["node_id"] as? String, "artist:artist-1")
