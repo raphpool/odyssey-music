@@ -72,14 +72,6 @@
       "releaseType": "ep"
     },
     {
-      "slug": "project:evil-world",
-      "type": "project",
-      "name": "Evil World",
-      "mbid": "0a66bc35-371b-4f9b-826a-26b2604ee899",
-      "year": "2025",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:inferno",
       "type": "project",
       "name": "Inferno",

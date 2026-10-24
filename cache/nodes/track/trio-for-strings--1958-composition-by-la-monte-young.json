@@ -13,9 +13,17 @@
     }
   ],
   "materialized_at": "2026-05-13T12:49:35.394Z",
+  "mbid": "64fac317-f204-4834-a4f3-79b70e0df155",
   "type": "track",
   "editorial_teaser": "La Monte Young’s seminal 1958 composition is widely cited as the inaugural work of musical minimalism, replacing melodic development with extended, sustained tones and profound silence.",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:la-monte-young",
+      "type": "artist",
+      "name": "La Monte Young",
+      "mbid": "40fa96a1-d9c0-4092-a0f9-ca1de5aa125a"
+    }
+  ],
   "genres": [
     {
       "slug": "genre:minimalism",
@@ -37,6 +45,7 @@
     }
   ],
   "producers": [],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

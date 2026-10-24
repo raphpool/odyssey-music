@@ -28,9 +28,17 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "f5e2d028-8942-42f6-a6b9-a7105100997a",
   "type": "track",
   "editorial_teaser": "\"SpongeBob & Patrick Confront the Psychic Wall of Energy\" is a distinctive, psych-pop contribution to the 2004 \"The SpongeBob SquarePants Movie\" soundtrack, performed by the American band The Flaming Lips.",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:the-flaming-lips",
+      "type": "artist",
+      "name": "The Flaming Lips",
+      "mbid": "1f43d76f-8edf-44f6-aaf1-b65f05ad9402"
+    }
+  ],
   "project": {
     "slug": "project:the-spongebob-squarepants-movie-music-from-the-movie-and-more",
     "type": "project",
@@ -62,6 +70,7 @@
       "name": "Dave Fridmann"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

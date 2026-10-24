@@ -68,298 +68,298 @@
       "slug": "project:lateral--brian-eno",
       "type": "project",
       "name": "Lateral",
-      "artist": "Brian Eno",
       "mbid": "1c3d4c7b-1bd3-486d-b0fc-94aac8cf3995",
       "year": "2025",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:foreverandevernomore--brian-eno",
       "type": "project",
       "name": "FOREVERANDEVERNOMORE",
-      "artist": "Brian Eno",
       "mbid": "a48c35ba-7e64-484a-af19-8d578d0e6da2",
       "year": "2022",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:sisters--brian-eno",
       "type": "project",
       "name": "Sisters",
-      "artist": "Brian Eno",
       "mbid": "4c3e7802-66bd-4e90-9316-340f518ec768",
       "year": "2017",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:the-ship--brian-eno",
       "type": "project",
       "name": "The Ship",
-      "artist": "Brian Eno",
       "mbid": "3c4d8977-f24b-4c2d-916d-e7368aadf298",
       "year": "2016",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:lux--brian-eno",
       "type": "project",
       "name": "LUX",
-      "artist": "Brian Eno",
       "mbid": "1606fb35-c021-4314-af1b-3d88bccc65ab",
       "year": "2012",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:drums-between-the-bells--brian-eno",
       "type": "project",
       "name": "Drums Between the Bells",
-      "artist": "Brian Eno",
       "mbid": "53cca348-971c-4a80-8bb1-f3778dbcb71b",
       "year": "2011",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:making-space--brian-eno",
       "type": "project",
       "name": "Making Space",
-      "artist": "Brian Eno",
       "mbid": "5e66204c-95e6-454d-9242-0d96bf36bb6d",
       "year": "2010",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:77-million--brian-eno",
       "type": "project",
       "name": "77 Million",
-      "artist": "Brian Eno",
       "mbid": "d5f17258-499d-30db-ae62-edfa3a172fc7",
       "year": "2006",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:another-day-on-earth--brian-eno",
       "type": "project",
       "name": "Another Day on Earth",
-      "artist": "Brian Eno",
       "mbid": "0fa0e2d9-6add-31d7-844a-79f5a2181893",
       "year": "2005",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:curiosities-volume-ii--brian-eno",
       "type": "project",
       "name": "Curiosities, Volume II",
-      "artist": "Brian Eno",
       "mbid": "72982e7c-76d9-3106-abf7-f17dd8aba492",
       "year": "2004",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:curiosities-volume-i--brian-eno",
       "type": "project",
       "name": "Curiosities, Volume I",
-      "artist": "Brian Eno",
       "mbid": "850a7113-6850-364e-9db3-0e0491bd0888",
       "year": "2003",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:january-07003-bell-studies-for-the-clock-of-the-long-now--brian-eno",
       "type": "project",
       "name": "January 07003: Bell Studies for the Clock of the Long Now",
-      "artist": "Brian Eno",
       "mbid": "2de450ef-af3c-39de-80ef-ade0acde2db5",
       "year": "2003",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:drawn-from-life--brian-eno",
       "type": "project",
       "name": "Drawn From Life",
-      "artist": "Brian Eno",
       "mbid": "6d7b2f91-cc23-3b7c-8256-05665838849a",
       "year": "2001",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:music-for-prague--brian-eno",
       "type": "project",
       "name": "Music for Prague",
-      "artist": "Brian Eno",
       "mbid": "92f4afc9-97a9-323f-aa34-c21a41d59ef8",
       "year": "2001",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:music-for-civic-recovery-centre--brian-eno",
       "type": "project",
       "name": "Music for Civic Recovery Centre",
-      "artist": "Brian Eno",
       "mbid": "ac805d77-c368-3917-83f2-4da1654d282a",
       "year": "2000",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:i-dormienti--brian-eno",
       "type": "project",
       "name": "I dormienti",
-      "artist": "Brian Eno",
       "mbid": "a3092650-5240-30ae-ac3c-0741ca71688f",
       "year": "1999",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:music-for-white-cube-london-1997--brian-eno",
       "type": "project",
       "name": "Music for White Cube: London, 1997",
-      "artist": "Brian Eno",
       "mbid": "afad9af3-9bf7-3b8e-909e-7340b98dc7a9",
       "year": "1997",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:the-drop--brian-eno",
       "type": "project",
       "name": "The Drop",
-      "artist": "Brian Eno",
       "mbid": "2530ef84-abcc-3c91-8e58-1886289b1e76",
       "year": "1997",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:lightness-music-for-the-marble-palace--brian-eno",
       "type": "project",
       "name": "“Lightness”: Music for the Marble Palace",
-      "artist": "Brian Eno",
       "mbid": "d0a089dc-060e-3d76-b0e2-89362164aaa1",
       "year": "1997",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:generative-music-i--brian-eno",
       "type": "project",
       "name": "Generative Music I",
-      "artist": "Brian Eno",
       "mbid": "d33c453e-33e9-41fb-aacf-570a111ca676",
       "year": "1996",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:spinner--brian-eno",
       "type": "project",
       "name": "Spinner",
-      "artist": "Brian Eno",
       "mbid": "3e52b0bd-3dad-3e1f-8879-5a792874ef79",
       "year": "1995",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:headcandy--brian-eno",
       "type": "project",
       "name": "Headcandy",
-      "artist": "Brian Eno",
       "mbid": "08b7b4b0-262f-38c8-aac7-a0f40145ce24",
       "year": "1994",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:neroli--brian-eno",
       "type": "project",
       "name": "Neroli",
-      "artist": "Brian Eno",
       "mbid": "5aad875e-b319-3917-8e32-4eb13464c7dd",
       "year": "1993",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:nerve-net--brian-eno",
       "type": "project",
       "name": "Nerve Net",
-      "artist": "Brian Eno",
       "mbid": "8cc4ad2e-95b9-3bb9-9d34-1d1dc4dffe6e",
       "year": "1992",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:the-shutov-assembly--brian-eno",
       "type": "project",
       "name": "The Shutov Assembly",
-      "artist": "Brian Eno",
       "mbid": "19ad2849-af1c-3e4a-8dca-e810132f2bf1",
       "year": "1992",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:my-squelchy-life--brian-eno",
       "type": "project",
       "name": "My Squelchy Life",
-      "artist": "Brian Eno",
       "mbid": "e2e79340-b616-37df-9e5f-dd2b11d7c1cd",
       "year": "1991",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:wrong-way-up--brian-eno",
       "type": "project",
       "name": "Wrong Way Up",
-      "artist": "Brian Eno",
       "mbid": "93de2cce-a2d6-389b-9050-8c6b78abab82",
       "year": "1990",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:textures--brian-eno",
       "type": "project",
       "name": "Textures",
-      "artist": "Brian Eno",
       "mbid": "bef2e618-e3c3-3725-bef2-07d8bfcc0706",
       "year": "1989",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:thursday-afternoon--brian-eno",
       "type": "project",
       "name": "Thursday Afternoon",
-      "artist": "Brian Eno",
       "mbid": "f833a9fc-3c55-309f-a7f5-30fb9124040d",
       "year": "1985",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:apollo-atmospheres-and-soundtracks--brian-eno",
       "type": "project",
       "name": "Apollo: Atmospheres & Soundtracks",
-      "artist": "Brian Eno",
       "mbid": "03fe7fe6-2d96-3b40-816d-885b5118107e",
       "year": "1983",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:music-for-films-volume-2--brian-eno",
       "type": "project",
       "name": "Music for Films, Volume 2",
-      "artist": "Brian Eno",
       "mbid": "92dc4f33-f0bc-42da-856a-684e1eea3c2d",
       "year": "1983",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:ambient-4-on-land--brian-eno",
       "type": "project",
       "name": "Ambient 4: On Land",
-      "artist": "Brian Eno",
       "mbid": "dc8ebaf6-2524-3c62-9c11-9155fa460f42",
       "year": "1982",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:in-a-land-of-clear-colours--brian-eno",
       "type": "project",
       "name": "In a Land of Clear Colours",
-      "artist": "Brian Eno",
       "mbid": "f500d8a1-64f4-3eb8-83ca-5a7c43edf422",
       "year": "1979",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:ambient-1-music-for-airports--brian-eno",
@@ -373,19 +373,19 @@
       "slug": "project:music-for-films--brian-eno",
       "type": "project",
       "name": "Music for Films",
-      "artist": "Brian Eno",
       "mbid": "7da2aff3-6ea3-3eaf-9fe3-74ce89fd6dc0",
       "year": "1978",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:before-and-after-science--brian-eno",
       "type": "project",
       "name": "Before and After Science",
-      "artist": "Brian Eno",
       "mbid": "6f9e2641-f79b-32f2-a752-f7212e9040e4",
       "year": "1977",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:another-green-world--brian-eno",
@@ -407,10 +407,10 @@
       "slug": "project:taking-tiger-mountain-by-strategy--brian-eno",
       "type": "project",
       "name": "Taking Tiger Mountain (by Strategy)",
-      "artist": "Brian Eno",
       "mbid": "bdde0830-6795-3a52-aaff-a5daf64184c8",
       "year": "1974",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Brian Eno"
     },
     {
       "slug": "project:here-come-the-warm-jets--brian-eno",
@@ -419,6 +419,20 @@
       "mbid": "90d9be4c-30be-3e28-949a-66ee22c3a63a",
       "year": "1973",
       "releaseType": "album"
+    },
+    {
+      "slug": "project:ambient-2-the-plateaux-of-mirror",
+      "type": "project",
+      "name": "Ambient 2: The Plateaux of Mirror",
+      "mbid": "02c0fc3b-9c3c-34e4-abed-bb6cd04fa1fc",
+      "artist": "Harold Budd"
+    },
+    {
+      "slug": "project:apollo-atmospheres-and-soundtracks--1983-ambient-album-by-brian-eno-daniel-lanois-and-roger-eno",
+      "type": "project",
+      "name": "Apollo: Atmospheres & Soundtracks",
+      "mbid": "03fe7fe6-2d96-3b40-816d-885b5118107e",
+      "artist": "Brian Eno"
     }
   ],
   "notable_tracks": [

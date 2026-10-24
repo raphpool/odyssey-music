@@ -88,14 +88,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:lighter",
-      "type": "project",
-      "name": "Lighter (Wizkid Extended)",
-      "mbid": "2b0a0524-3fb8-4844-aad0-3e29283db570",
-      "year": "2025",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:one-condition",
       "type": "project",
       "name": "One Condition",

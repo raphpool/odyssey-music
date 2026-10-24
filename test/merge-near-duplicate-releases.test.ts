@@ -430,3 +430,300 @@ describe("the committed proof table", () => {
 		expect(existsSync(join(__dirname, "..", "scripts", "migrations", `${MIGRATION_NAME}.ts`))).toBe(true);
 	});
 });
+
+// TRA-633 PR 3: the last four twins, judged by the re-review of #632 (MusicBrainz read on 2026-10-24). Each case
+// runs the COMMITTED table on a cache that holds only that case, so the entry in the table is what is tested.
+describe("the last twins of TRA-633 (PR 3)", () => {
+	const committed = pairsSchema.parse(JSON.parse(readFileSync(PAIRS_PATH, "utf8")));
+	const only = (id: string): PairsTable => ({
+		...committed,
+		pairs: committed.pairs.filter((p) => p.id === id),
+	});
+	const redirectsOf = (data: string): Record<string, string> =>
+		(
+			JSON.parse(readFileSync(join(data, "slug-redirects.json"), "utf8")) as {
+				redirects: Record<string, string>;
+			}
+		).redirects;
+
+	const entry = (slug: string, name: string, artist: string, mbid: string, year: string): Obj =>
+		ref(slug, name, { artist, mbid, year, releaseType: "album" });
+
+	it("Gary Numan: 'The Savage (Songs from a Broken World)' joins the release group e98b92d7", async () => {
+		const survivor = "project:savage-songs-from-a-broken-world--gary-numan";
+		const kept = entry(
+			survivor,
+			"Savage: Songs From a Broken World",
+			"Gary Numan",
+			"e98b92d7-4c39-4c9d-9e14-c179717017b5",
+			"2017",
+		);
+		const { cache, data } = makeCache([
+			node("artist:gary-numan", "Gary Numan", {
+				discography: [kept, ref("project:the-savage", "The Savage (Songs from a Broken World)")],
+			}),
+		]);
+		const { manifest, exitCode } = await runMigration({
+			cacheDir: cache,
+			apply: true,
+			dataDir: data,
+			table: only("gary-numan/the-savage"),
+		});
+		expect(exitCode).toBe(0);
+		expect(manifest.merged.map((m) => m.loser)).toEqual(["project:the-savage"]);
+		expect(read(cache, "artist:gary-numan").discography).toEqual([kept]);
+		expect(redirectsOf(data)).toEqual({ "project:the-savage": survivor });
+	});
+
+	it("Jamie Principle: 'Midnite Hour' joins 'The Midnite Hour' and the landmark follows", async () => {
+		const survivor = "project:the-midnite-hour--jamie-principle";
+		const kept = entry(
+			survivor,
+			"The Midnite Hour",
+			"Jamie Principle",
+			"d35a5dcc-c233-44fd-95a1-f58583fab3ed",
+			"1992",
+		);
+		const { cache, data } = makeCache([
+			node("artist:jamie-principle", "Jamie Principle", {
+				discography: [kept, ref("project:midnite-hour", "Midnite Hour")],
+				landmark_project: ref("project:midnite-hour", "Midnite Hour"),
+			}),
+		]);
+		const { exitCode } = await runMigration({
+			cacheDir: cache,
+			apply: true,
+			dataDir: data,
+			table: only("jamie-principle/midnite-hour"),
+		});
+		expect(exitCode).toBe(0);
+		const artist = read(cache, "artist:jamie-principle");
+		expect(artist.discography).toEqual([kept]);
+		expect(artist.landmark_project).toEqual({
+			slug: survivor,
+			type: "project",
+			name: "The Midnite Hour",
+			artist: "Jamie Principle",
+		});
+		expect(redirectsOf(data)).toEqual({ "project:midnite-hour": survivor });
+	});
+
+	describe("Ayumi Hamasaki: 'Made in Japan' joins 'M(A)DE IN JAPAN' without touching the bare slug", () => {
+		const bare = "project:made-in-japan";
+		const survivor = "project:m-a-de-in-japan--ayumi-hamasaki";
+		const kept = entry(
+			survivor,
+			"M(A)DE IN JAPAN",
+			"Ayumi Hamasaki",
+			"05d3db93-f127-498c-a223-7490d49c86b0",
+			"2016",
+		);
+		// Deep Purple's 1972 live album owns the bare slug in the wild: its label and a genre may name it.
+		const homonymHolders = (): Obj[] => [
+			node("label:purple-records", "Purple Records", { notable_releases: [ref(bare, "Made in Japan")] }),
+			node("genre:hard-rock", "Hard rock", { landmark_projects: [ref(bare, "Made in Japan")] }),
+			node("artist:deep-purple", "Deep Purple", { discography: [ref(bare, "Made in Japan")] }),
+		];
+		const ayumi = (): Obj =>
+			node("artist:ayumi-hamasaki", "Ayumi Hamasaki", { discography: [kept, ref(bare, "Made in Japan")] });
+
+		it("merges the entry and posts no redirect on the bare slug", async () => {
+			const { cache, data } = makeCache([ayumi(), ...homonymHolders()]);
+			const { manifest, exitCode } = await runMigration({
+				cacheDir: cache,
+				apply: true,
+				dataDir: data,
+				table: only("ayumi-hamasaki/made-in-japan"),
+			});
+			expect(exitCode).toBe(0);
+			expect(manifest.merged.map((m) => m.loser)).toEqual([bare]);
+			expect(read(cache, "artist:ayumi-hamasaki").discography).toEqual([kept]);
+			// No redirect anywhere: not in the manifest, not in the table the run writes.
+			expect(manifest.redirects).toEqual({});
+			expect(Object.keys(redirectsOf(data))).not.toContain(bare);
+			expect(redirectsOf(data)).toEqual({});
+		});
+
+		it("leaves every other node's edge to the bare slug alone: it may be Deep Purple's", async () => {
+			const { cache, data } = makeCache([ayumi(), ...homonymHolders()]);
+			const { manifest } = await runMigration({
+				cacheDir: cache,
+				apply: true,
+				dataDir: data,
+				table: only("ayumi-hamasaki/made-in-japan"),
+			});
+			expect(slugsOf(read(cache, "label:purple-records").notable_releases)).toEqual([bare]);
+			expect(slugsOf(read(cache, "genre:hard-rock").landmark_projects)).toEqual([bare]);
+			expect(slugsOf(read(cache, "artist:deep-purple").discography)).toEqual([bare]);
+			// Nothing but Ayumi's file is written.
+			expect(manifest.written).toBe(1);
+			expect(manifest.foreignArtistEdges).toEqual([]);
+		});
+
+		it("refuses a pair without redirect when the bare slug has a node or already redirects", async () => {
+			const withNode = makeCache([ayumi(), node(bare, "Made in Japan")]);
+			const a = await runMigration({
+				cacheDir: withNode.cache,
+				apply: false,
+				dataDir: withNode.data,
+				table: only("ayumi-hamasaki/made-in-japan"),
+			});
+			expect(a.manifest.merged).toEqual([]);
+			expect(a.manifest.flagged.map((f) => f.reason)).toEqual(["state-differs"]);
+
+			const redirected = makeCache([ayumi()], { redirects: { [bare]: survivor } });
+			const b = await runMigration({
+				cacheDir: redirected.cache,
+				apply: false,
+				dataDir: redirected.data,
+				table: only("ayumi-hamasaki/made-in-japan"),
+			});
+			expect(b.manifest.merged).toEqual([]);
+			expect(b.manifest.flagged.map((f) => f.reason)).toEqual(["redirect-conflict"]);
+		});
+
+		it("is idempotent", async () => {
+			const { cache, data } = makeCache([ayumi(), ...homonymHolders()]);
+			const args = {
+				cacheDir: cache,
+				apply: true,
+				dataDir: data,
+				table: only("ayumi-hamasaki/made-in-japan"),
+			};
+			await runMigration(args);
+			const second = await runMigration(args);
+			expect(second.manifest.written).toBe(0);
+			expect(second.manifest.alreadyDone).toEqual(["ayumi-hamasaki/made-in-japan"]);
+		});
+	});
+
+	describe("Barooni: the bare edge 'Nunatak Gongamur' joins the album's scoped slug", () => {
+		const bare = "project:nunatak-gongamur";
+		const scoped = "project:nunatak-gongamur--thomas-koner";
+		const album = entry(
+			scoped,
+			"Nunatak Gongamur",
+			"Thomas Köner",
+			"38e07f35-6617-3b46-8262-cbd377373b32",
+			"1990",
+		);
+		const albumRef = ref(scoped, "Nunatak Gongamur", { artist: "Thomas Köner" });
+		const koner = (): Obj => node("artist:thomas-koner", "Thomas Köner", { discography: [album] });
+		const albumNode = (): Obj => node(scoped, "Nunatak Gongamur", { label: ref("label:barooni", "Barooni") });
+		const barooni = (): Obj =>
+			node("label:barooni", "Barooni", {
+				notable_releases: [
+					ref(bare, "Nunatak Gongamur"),
+					ref("project:teimo--thomas-koner", "Teimo"),
+					albumRef,
+				],
+			});
+		const run = (c: { cache: string; data: string }, apply = true) =>
+			runMigration({
+				cacheDir: c.cache,
+				apply,
+				dataDir: c.data,
+				table: only("thomas-koner/nunatak-gongamur--barooni-edge"),
+			});
+
+		it("re-points the label's bare edge, drops the duplicate, posts the redirect", async () => {
+			const c = makeCache([koner(), albumNode(), barooni()]);
+			const { manifest, exitCode } = await run(c);
+			expect(exitCode).toBe(0);
+			expect(manifest.merged.map((m) => m.loser)).toEqual([bare]);
+			// The edge keeps its place, takes the scoped slug and the artist, and the second copy is gone.
+			expect(read(c.cache, "label:barooni").notable_releases).toEqual([
+				albumRef,
+				ref("project:teimo--thomas-koner", "Teimo"),
+			]);
+			expect(redirectsOf(c.data)).toEqual({ [bare]: scoped });
+			// The artist, whose discography has no bare entry any more, is not rewritten.
+			expect(manifest.written).toBe(1);
+			expect(manifest.renamed).toEqual({});
+		});
+
+		it("is idempotent, and still cleans a label the server holds in its old state", async () => {
+			const c = makeCache([koner(), albumNode(), barooni()]);
+			await run(c);
+			const second = await run(c);
+			expect(second.manifest.written).toBe(0);
+			expect(second.manifest.alreadyDone).toEqual(["thomas-koner/nunatak-gongamur--barooni-edge"]);
+
+			// The union: the repository committed the redirect, the server's Barooni still names the bare slug.
+			const union = makeCache([koner(), albumNode(), barooni()], { redirects: { [bare]: scoped } });
+			const { manifest } = await run(union);
+			expect(slugsOf(read(union.cache, "label:barooni").notable_releases)).toEqual([
+				scoped,
+				"project:teimo--thomas-koner",
+			]);
+			expect(manifest.redirects).toEqual({});
+		});
+
+		it("follows a pending reverse edge too: no node names the bare slug, the pending file does", async () => {
+			const clean = node("label:barooni", "Barooni", { notable_releases: [albumRef] });
+			const pending = {
+				[bare]: [{ field: "label", cardinality: "single", edge: ref("label:barooni", "Barooni") }],
+			};
+			const c = makeCache([koner(), albumNode(), clean], { pending });
+			const { manifest } = await run(c);
+			expect(manifest.merged.map((m) => m.loser)).toEqual([bare]);
+			const after = JSON.parse(readFileSync(join(c.cache, "pending-reverses.json"), "utf8")) as Obj;
+			expect(Object.keys(after)).toEqual([scoped]);
+		});
+
+		it("refuses an edge-only pair that also asks for no redirect or names a loser mbid", () => {
+			const base = committed.pairs.find((p) => p.kind === "edge-only") as PairsTable["pairs"][number];
+			const parse = (over: Obj) => pairsSchema.safeParse({ ...committed, pairs: [{ ...base, ...over }] });
+			expect(parse({}).success).toBe(true);
+			expect(parse({ redirect: false }).success).toBe(false);
+			expect(parse({ loser: { ...base.loser, mbid: MBID } }).success).toBe(false);
+		});
+
+		it("touches nothing when the album is not the one the table proved", async () => {
+			const other = { ...album, mbid: OTHER_MBID };
+			const c = makeCache([node("artist:thomas-koner", "Thomas Köner", { discography: [other] }), barooni()]);
+			const { manifest } = await run(c);
+			expect(manifest.flagged.map((f) => f.reason)).toEqual(["state-differs"]);
+			expect(manifest.written).toBe(0);
+			expect(read(c.cache, "label:barooni").notable_releases).toHaveLength(3);
+		});
+	});
+
+	it("Duke Ellington: 'At Newport' (Buck Clayton's disc, CL 933) and 'Ellington at Newport' stay apart", async () => {
+		const clayton = entry(
+			"project:at-newport--duke-ellington",
+			"At Newport",
+			"Duke Ellington",
+			"620dd228-71ac-4c58-9e96-adc0edb48105",
+			"1956",
+		);
+		const live = ref("project:ellington-at-newport", "Ellington at Newport");
+		const { cache, data } = makeCache([
+			node("artist:duke-ellington", "Duke Ellington", { discography: [clayton, live] }),
+		]);
+		const before = readFileSync(pathOf(cache, "artist:duke-ellington"), "utf8");
+		const { manifest } = await runMigration({
+			cacheDir: cache,
+			apply: true,
+			dataDir: data,
+			table: committed,
+		});
+		expect(manifest.merged).toEqual([]);
+		expect(manifest.flagged.filter((f) => f.id.startsWith("duke-ellington"))).toEqual([]);
+		expect(readFileSync(pathOf(cache, "artist:duke-ellington"), "utf8")).toBe(before);
+		// The refusal is written down in the table.
+		const kept = committed.kept.find((k) => k.artist === "duke-ellington" && k.titles.includes("At Newport"));
+		expect(kept?.titles).toEqual(["At Newport", "Ellington at Newport"]);
+		expect(kept?.reason).toContain("Buck Clayton");
+		const slugs = committed.pairs.flatMap((p) => [p.loser.slug, p.survivor.slug]);
+		expect(slugs).not.toContain("project:ellington-at-newport");
+		expect(slugs).not.toContain("project:at-newport--duke-ellington");
+	});
+
+	it("never posts a redirect on project:made-in-japan, whatever the cache holds", () => {
+		const pairs = committed.pairs.filter((p) => p.loser.slug === "project:made-in-japan");
+		expect(pairs).toHaveLength(1);
+		expect(pairs.every((p) => p.redirect === false)).toBe(true);
+		expect(committed.pairs.some((p) => p.survivor.slug === "project:made-in-japan")).toBe(false);
+	});
+});

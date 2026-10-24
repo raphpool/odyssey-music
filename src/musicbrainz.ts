@@ -1816,6 +1816,38 @@ function isTruncated(body: unknown, received: number): boolean {
 }
 
 /**
+ * The credited artists of the exact-title candidates that a "none" answer set aside for their credit
+ * (TRA-551), see {@link MbWorkResolution.discardedCredits}. Empty when there is no hint, no exact-title
+ * candidate, or when one is credited to the artist (by name, or by the artist's own MBID): the work is then
+ * the artist's, and a band's credit on the same title is a matter for the picker, never a reason to look up
+ * memberships. Credits without an MBID are dropped by toCredits, deduplicated by MBID.
+ */
+function discardedCreditsOf(
+	candidates: { title: string; "artist-credit"?: MbArtistCreditEntry[] | undefined }[],
+	title: string,
+	artistHint: string | undefined,
+	requestedArtistMbid: string | undefined,
+): MbCredit[] {
+	const wanted = normalizeTitleBody(title);
+	const hint = artistHint !== undefined && artistHint.trim() !== "" ? creditKey(artistHint) : "";
+	if (!wanted || !hint) return [];
+	const requested = requestedArtistMbid?.trim() ? new Set([requestedArtistMbid.trim().toLowerCase()]) : null;
+	const exact = candidates.filter((c) => normalizeTitleBody(c.title) === wanted);
+	const isDirect = (c: (typeof exact)[number]) =>
+		creditEqualsHint(c["artist-credit"] ?? [], hint) ||
+		(requested !== null && creditCarriesMbid(c["artist-credit"] ?? [], requested));
+	if (exact.length === 0 || exact.some(isDirect)) return [];
+	const out = new Map<string, MbCredit>();
+	for (const c of exact) {
+		for (const credit of toCredits(c["artist-credit"])) {
+			const key = credit.mbid.toLowerCase();
+			if (!out.has(key)) out.set(key, credit);
+		}
+	}
+	return [...out.values()];
+}
+
+/**
  * What a resolver found: the work, or nothing. 2026-10-15 (TRA-505): the backfill filed "MusicBrainz did
  * not answer" under "no match" (null for both), so an outage became a verdict that --resume never
  * revisited. A null identity is now told apart three ways: `ambiguous`
@@ -1827,6 +1859,15 @@ export interface MbWorkResolution {
 	identity: MbReleaseIdentity | null;
 	ambiguous: boolean;
 	unavailable: boolean;
+	/**
+	 * Only on a "none" answer, and only when exact-title candidates exist and none is credited to the artist
+	 * (TRA-551): the credited artists, with their MBID, of the candidates set aside for their credit. It tells
+	 * a caller that holds the requested artist's memberships whether asking again with `acceptCreditMbids` can
+	 * change the answer ("New Forms" credited to "Roni Size / Reprazent"), without a request of its own: the
+	 * answer comes from the search that was made anyway. Absent when no exact-title candidate exists, when one
+	 * is credited to the artist, and for any answer other than "none".
+	 */
+	discardedCredits?: MbCredit[];
 }
 
 /**
@@ -1865,7 +1906,16 @@ export async function resolveReleaseGroupDetailed(
 		options.releaseType,
 		options.preferPlainRelease === true,
 	);
-	if (picked.kind !== "one") return { ...none, ambiguous: picked.kind === "ambiguous" };
+	if (picked.kind === "ambiguous") return { ...none, ambiguous: true };
+	if (picked.kind === "none") {
+		const discardedCredits = discardedCreditsOf(
+			releaseGroups,
+			title,
+			artistHint,
+			options.requestedArtistMbid,
+		);
+		return discardedCredits.length > 0 ? { ...none, discardedCredits } : none;
+	}
 	const rg = picked.candidate;
 	return {
 		ambiguous: false,
@@ -1909,7 +1959,11 @@ export async function resolveRecordingDetailed(
 		acceptedMbidSet(options),
 		options.requestedArtistMbid,
 	);
-	if (picked.kind !== "one") return { ...none, ambiguous: picked.kind === "ambiguous" };
+	if (picked.kind === "ambiguous") return { ...none, ambiguous: true };
+	if (picked.kind === "none") {
+		const discardedCredits = discardedCreditsOf(recordings, title, artistHint, options.requestedArtistMbid);
+		return discardedCredits.length > 0 ? { ...none, discardedCredits } : none;
+	}
 	const rec = picked.candidate;
 	return {
 		ambiguous: false,

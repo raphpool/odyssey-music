@@ -62,14 +62,6 @@
   ],
   "discography": [
     {
-      "slug": "project:turn-up-the-bass",
-      "type": "project",
-      "name": "Turn Up the Bass",
-      "mbid": "47202ddb-8036-48ed-8da1-449f2f42303a",
-      "year": "2026",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:acid-crash-hardcore-hip-house",
       "type": "project",
       "name": "Acid Crash / Hardcore Hip House",
@@ -139,14 +131,6 @@
       "name": "Lost",
       "mbid": "08128f53-846b-4976-b254-99a74f1daf1f",
       "year": "2008",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:turn-up-the-bass",
-      "type": "project",
-      "name": "Turn Up the Bass (The '99 Mixes)",
-      "mbid": "bb1362cf-4546-3a73-99d0-6c6f5f3c8b35",
-      "year": "1999",
       "releaseType": "single"
     },
     {

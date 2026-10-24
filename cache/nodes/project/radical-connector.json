@@ -13,12 +13,21 @@
     }
   ],
   "materialized_at": "2026-05-13T13:02:56.150Z",
+  "mbid": "a5398b47-e428-38ba-9215-44536d4e8f2e",
   "type": "project",
   "editorial_pitch": "A more conventional and song-oriented turn from German IDM pioneers Mouse on Mars, *Radical Connector* masterfully blends glitch-pop sensibilities with the duo's signature abstract electronica.",
   "year": "2004",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars",
+      "mbid": "4d4f5d92-0589-42fa-bc0e-1bd73e17a2ce"
+    }
+  ],
   "genres": [],
   "tracklist": [],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

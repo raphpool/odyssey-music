@@ -142,14 +142,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:whiskey",
-      "type": "project",
-      "name": "WHISKEY (RELEASE ME)",
-      "mbid": "f6c7f91f-d584-42d4-a738-a6174b439579",
-      "year": "2026",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:helicopter",
       "type": "project",
       "name": "HELICOPTER",

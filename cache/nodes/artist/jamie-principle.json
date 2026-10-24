@@ -98,11 +98,6 @@
       "mbid": "2cf96d07-7f5b-48f6-bf6f-215aab1ac57d",
       "year": "1985",
       "releaseType": "single"
-    },
-    {
-      "slug": "project:midnite-hour",
-      "type": "project",
-      "name": "Midnite Hour"
     }
   ],
   "notable_tracks": [
@@ -124,9 +119,10 @@
     }
   ],
   "landmark_project": {
-    "slug": "project:midnite-hour",
+    "slug": "project:the-midnite-hour--jamie-principle",
     "type": "project",
-    "name": "Midnite Hour"
+    "name": "The Midnite Hour",
+    "artist": "Jamie Principle"
   },
   "reference_track": {
     "slug": "track:your-love--frankie-knuckles",
