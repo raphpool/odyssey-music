@@ -1,11 +1,11 @@
 {
-	"homonym-release-links": 20,
-	"release-links-to-empty-credit": 41,
-	"zero-edge-nodes": 28,
+	"homonym-release-links": 18,
+	"release-links-to-empty-credit": 36,
+	"zero-edge-nodes": 20,
 	"self-edges": 0,
 	"homonym-tracklist-links": 2,
 	"duplicate-names": 0,
-	"unscoped-release-slugs": 87,
+	"unscoped-release-slugs": 79,
 	"literal-newlines": 0,
 	"literal-escaped-quotes": 0,
 	"alias-to-uncorroborated-identity": 1,
@@ -13,7 +13,7 @@
 	"missing-landmark-project": 113,
 	"missing-reference-track": 78,
 	"artist-discography-under-3": 69,
-	"artist-discography-without-mbid": 174,
+	"artist-discography-without-mbid": 173,
 	"artist-edge-to-redirect-key": {
 		"discography": 0,
 		"notable_tracks": 0,
@@ -21,8 +21,8 @@
 		"reference_track": 0
 	},
 	"empty-artists": {
-		"project": 63,
-		"track": 26
+		"project": 40,
+		"track": 18
 	},
 	"bidirectional-credit-mismatch": {
 		"mbid-divergent": 0,
@@ -33,15 +33,15 @@
 		"genre": 135,
 		"label": 32,
 		"artist": 138,
-		"project": 99,
-		"track": 62
+		"project": 91,
+		"track": 60
 	},
 	"missing-image": {
 		"genre": 274,
 		"label": 93,
 		"artist": 163,
-		"project": 94,
-		"track": 80
+		"project": 83,
+		"track": 73
 	},
 	"reciprocity-missing": {
 		"artist.labels->label.roster": 0,
