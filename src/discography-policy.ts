@@ -33,6 +33,9 @@ export interface DiscographyPolicy {
 	// Calendar year "now", given by the caller (never read from the clock here, so tests and migrations stay
 	// deterministic). Only the unrated cut uses it: a release of this year or last has had no time to be voted.
 	currentYear: number;
+	// Calendar date "now" as "YYYY-MM-DD", given by the caller for the same reason (TRA-654). A release group first
+	// released after it does not exist yet: it is neither added nor posed (`future`).
+	currentDate: string;
 }
 
 export const DEFAULT_DISCOGRAPHY_CAP = 40;
@@ -64,8 +67,13 @@ export const DEFAULT_DISCOGRAPHY_CAP = 40;
  * release group whose credits separate a composer from the performers with ";": the 2013 "Black, Brown, and Beige"
  * of the Buffalo Philharmonic was held back only because nobody had voted for it yet, and the first vote would have
  * posed it): a manifest of version 6 is not replayed.
+ * 2026-10-24: 8, the policy changed with TRA-654 (a release group first released after the run's date is neither
+ * added nor posed: Pierre Henry's "Variance / Duo", announced for 2026-11-20, had been added in the v6 run and, as
+ * the additive run never revisits an entry that has an mbid, its year would have stayed wrong had the release slipped;
+ * and the ";" rule of v7 now also closes a release group of two credits, "Composer; Orchestra"): a manifest of
+ * version 7 is not replayed.
  */
-export const DISCOGRAPHY_POLICY_VERSION = 7;
+export const DISCOGRAPHY_POLICY_VERSION = 8;
 
 // TRA-628 (measured 2026-10-19 on MusicBrainz): John Lennon has 69 eligible release groups, 14 voted and 55
 // not (The Lost Lennon Tapes, Archives, outtakes), and the cap used to fill with the oldest of them. From this
@@ -79,7 +87,8 @@ export type ExclusionReason =
 	| "credit"
 	| "various-artists"
 	| "non-canonical"
-	| "unrated";
+	| "unrated"
+	| "future";
 
 type KeptPrimaryType = "Album" | "EP" | "Single";
 
@@ -209,16 +218,47 @@ function headsRelease(c: ReleaseGroupCandidate, policy: DiscographyPolicy): bool
 	return firstCredit !== undefined && sameMbid(firstCredit.mbid, policy.artistMbid);
 }
 
-// The credit rule alone: the artist heads the release (first credit), it has at most MAX_CREDITS credits, and
-// Various Artists is not one of them. Various Artists is told apart from a plain "credit" mismatch, which is what
-// the exclusion log is read for.
+// MusicBrainz writes a classical credit as "composer; performers": "Duke Ellington; Buffalo Philharmonic, JoAnn
+// Falletta". The ";" tells a third party's recording of the artist's work from the artist's own release (TRA-653);
+// the legitimate collaborations (Lennon "&" Yoko "/" the Plastic Ono Band, Getz "/" Gilberto) never use it.
+function hasComposerSeparator(c: ReleaseGroupCandidate): boolean {
+	// Not the last credit: what follows it separates nothing.
+	return c.artistCredits.slice(0, -1).some((credit) => credit.joinphrase?.includes(";") === true);
+}
+
+// The credit rule alone: the artist heads the release (first credit), it has at most MAX_CREDITS credits, it does
+// not separate a composer from its performers with ";", and Various Artists is not one of its credits. Various
+// Artists is told apart from a plain "credit" mismatch, which is what the exclusion log is read for.
+// TRA-654: the ";" also closes a release group of two credits ("Duke Ellington; Buffalo Philharmonic"). v7 only
+// read it for the pose of a release group of three credits (TRA-653), so the same recording, credited with two
+// names, passed this rule and could be added to the discography.
 function creditVerdict(
 	c: ReleaseGroupCandidate,
 	policy: DiscographyPolicy,
 ): "various-artists" | "credit" | null {
 	if (c.artistCredits.some((credit) => sameMbid(credit.mbid, VARIOUS_ARTISTS_MBID))) return "various-artists";
 	if (!headsRelease(c, policy)) return "credit";
-	return c.artistCredits.length > MAX_CREDITS ? "credit" : null;
+	if (c.artistCredits.length > MAX_CREDITS) return "credit";
+	return hasComposerSeparator(c) ? "credit" : null;
+}
+
+// MusicBrainz writes a first release date as "YYYY", "YYYY-MM" or "YYYY-MM-DD". A partial date is read at its
+// earliest day, so only a release group that cannot have come out yet is future: "2026-11" is, "2026" is not (it
+// may well be this year's January). The run's own date is not future, and an unknown date ("") never is.
+const RELEASE_DATE = /^(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?$/u;
+const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/u;
+
+// TRA-654: the v6 run added Pierre Henry's "Variance / Duo" while MusicBrainz announced it for 2026-11-20. The
+// additive run never goes back to an entry that has an mbid, so a release that slips would have left a wrong year
+// for good.
+function isFutureRelease(c: ReleaseGroupCandidate, policy: DiscographyPolicy): boolean {
+	// A broken date would call every release group future, or none: a caller's bug, not data.
+	if (!ISO_DAY.test(policy.currentDate)) {
+		throw new Error(`DiscographyPolicy.currentDate must be "YYYY-MM-DD", got "${policy.currentDate}"`);
+	}
+	const match = RELEASE_DATE.exec(c.firstReleaseDate);
+	if (match === null) return false;
+	return `${match[1]}-${match[2] ?? "01"}-${match[3] ?? "01"}` > policy.currentDate;
 }
 
 /**
@@ -235,6 +275,7 @@ export function classifyRelease(
 	const credit = creditVerdict(c, policy);
 	if (credit !== null) return { ok: false, reason: credit };
 	if (isNonCanonicalReleaseTitle(c.title)) return { ok: false, reason: "non-canonical" };
+	if (isFutureRelease(c, policy)) return { ok: false, reason: "future" };
 	return { ok: true };
 }
 
@@ -339,6 +380,12 @@ function isRecentRelease(c: ReleaseGroupCandidate, policy: DiscographyPolicy): b
  * from `currentYear - 1` on (TRA-628). `kept` comes back ordered newest first across types (the display
  * order, unchanged by the priority). `excluded` lists policy rejections only; candidates dropped by the cap
  * are not reported (the cap is not an ExclusionReason).
+ *
+ * Known limit (TRA-654): a release group whose every release is a Promotion (Hikaru Utada's "Intentions", whose
+ * only release is a "60s edit" promo) is not told apart. The release-group browse (`inc=artist-credits+ratings`)
+ * carries no release, hence no release status; reading it costs one more MusicBrainz request per release group
+ * (`inc=releases`), at the 1 request per second the client is held to. It is not worth it for a rare case: the
+ * entries known to be in that situation are removed by name (TRA-652).
  */
 export function selectReleases(
 	candidates: readonly ReleaseGroupCandidate[],
@@ -435,7 +482,8 @@ export type AmbiguousReason =
 	| "year-mismatch"
 	| "node-conflict"
 	| "unrated-pose"
-	| "credit";
+	| "credit"
+	| "future";
 
 export interface MergeResult {
 	edges: EdgeRef[];
@@ -570,14 +618,6 @@ function hasVotedExtension(entry: EdgeRef, caution: PoseCaution): boolean {
 	);
 }
 
-// MusicBrainz writes a classical credit as "composer; performers": "Duke Ellington; Buffalo Philharmonic, JoAnn
-// Falletta". The ";" tells a third party's recording of the artist's work from the artist's own release (TRA-653);
-// the legitimate collaborations (Lennon "&" Yoko "/" the Plastic Ono Band, Getz "/" Gilberto) never use it.
-function hasComposerSeparator(c: ReleaseGroupCandidate): boolean {
-	// Not the last credit: what follows it separates nothing.
-	return c.artistCredits.slice(0, -1).some((credit) => credit.joinphrase?.includes(";") === true);
-}
-
 // The credit rule, as it applies to a pose on an existing entry (TRA-649). The artist must head the release and
 // Various Artists is never one of its credits: nothing relaxes that. A third-party recording of the artist's work
 // ("Black, Brown, and Beige" by an orchestra, with Ellington first) fails it by its number of credits, as do
@@ -651,6 +691,9 @@ function decideCautiously(
 	if (verdict.kind !== "pose") return verdict;
 	const chosen = verdict.match;
 	if (creditBlocksPose(entry, chosen, caution.policy)) return { kind: "ambiguous", reason: "credit" };
+	// Like the credit, checked on the one the decision picked (TRA-654): an unreleased release group is no identity
+	// to pose, and the entry stays as it is until MusicBrainz has a date that has passed.
+	if (isFutureRelease(chosen, caution.policy)) return { kind: "ambiguous", reason: "future" };
 	if (
 		nodeMbid === undefined &&
 		unstated &&

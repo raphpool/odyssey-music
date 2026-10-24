@@ -127,6 +127,7 @@ const EXCLUSION_REASONS: readonly ExclusionReason[] = [
 	"non-canonical",
 	"primary-type",
 	"unrated",
+	"future",
 ];
 
 export interface ArtistEntry {
@@ -198,6 +199,11 @@ export interface BackfillOptions {
 	 * of votes). Injected, never read from the clock here: the CLI gives `new Date().getFullYear()`.
 	 */
 	currentYear: number;
+	/**
+	 * The calendar date "now" ("YYYY-MM-DD") for the policy's `future` rule (TRA-654): a release group first
+	 * released after it is neither added nor posed. Injected like `currentYear`: the CLI gives today's UTC date.
+	 */
+	currentDate: string;
 	/** Only these artists are read and processed. */
 	only?: readonly Slug[] | undefined;
 	/** The network boundary, injected by the tests. Default: the global fetch. */
@@ -500,7 +506,8 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 		}
 		const artist = parsed.data;
 		// The year is part of it: the unrated cut spares recent releases, so a resume after 1 January decides again.
-		const identity = `policy ${DISCOGRAPHY_POLICY_VERSION}|year ${options.currentYear}|${mbid}|${artist.name}|${artist.artist_kind ?? ""}`;
+		// So is the date (TRA-654): a release group that was future yesterday may not be today, and the other way round.
+		const identity = `policy ${DISCOGRAPHY_POLICY_VERSION}|year ${options.currentYear}|date ${options.currentDate}|${mbid}|${artist.name}|${artist.artist_kind ?? ""}`;
 		const current = fingerprintOf(identity, rawEdges);
 		// Before the cap: an artist that reached the cap DURING the run (every entry now has its mbid) would
 		// otherwise be re-read as a plain `cap` skip and lose the decision the manifest recorded for it.
@@ -562,6 +569,7 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 			artistName: pickScopeArtistName([artist.name]) ?? artist.name,
 			cap: DEFAULT_DISCOGRAPHY_CAP,
 			currentYear: options.currentYear,
+			currentDate: options.currentDate,
 		};
 		const selection = selectReleases(releases, policy);
 		const excluded = Object.fromEntries(EXCLUSION_REASONS.map((r) => [r, 0])) as Record<
@@ -782,6 +790,7 @@ async function main(): Promise<void> {
 		resume: args.resume,
 		only: args.only,
 		currentYear: new Date().getFullYear(),
+		currentDate: new Date().toISOString().slice(0, 10),
 		log: (line) => process.stdout.write(`${line}\n`),
 	});
 	if (result.exitCode !== 2) console.log(formatSummary(result, args.apply, args.manifestPath));
