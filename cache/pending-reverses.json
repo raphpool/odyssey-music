@@ -4427,6 +4427,17 @@
         "type": "artist",
         "name": "King Tubby"
       }
+    },
+    {
+      "field": "discography",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:king-tubbys-meets-rockers-uptown",
+        "type": "project",
+        "name": "King Tubbys Meets Rockers Uptown",
+        "artist": "Augustus Pablo",
+        "mbid": "8426fa46-01c5-3343-97f5-0551822542ed"
+      }
     }
   ],
   "artist:u-roy": [
@@ -24389,6 +24400,57 @@
         "name": "Turn on the Bright Lights",
         "artist": "Interpol",
         "mbid": "e7227840-5ef2-3813-af26-15dab34e1a51"
+      }
+    }
+  ],
+  "artist:nine-inch-nails": [
+    {
+      "field": "discography",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:ghosts-i-iv",
+        "type": "project",
+        "name": "Ghosts I–IV",
+        "artist": "Nine Inch Nails",
+        "mbid": "550bf4b9-92ca-30ba-9ea2-8b45f9d081f1"
+      }
+    }
+  ],
+  "artist:jam-project": [
+    {
+      "field": "discography",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:the-judgement--2022-mini-album-by-jam-project",
+        "type": "project",
+        "name": "The Judgement",
+        "artist": "JAM Project",
+        "mbid": "5948a343-d133-42f7-b506-4935b71a42a9"
+      }
+    }
+  ],
+  "artist:larry-young": [
+    {
+      "field": "discography",
+      "cardinality": "list",
+      "edge": {
+        "slug": "project:unity--1966-jazz-album-by-larry-young",
+        "type": "project",
+        "name": "Unity",
+        "artist": "Larry Young",
+        "mbid": "ba746b8f-b790-32cd-8082-966bf36a8637"
+      }
+    }
+  ],
+  "artist:the-flaming-lips": [
+    {
+      "field": "notable_tracks",
+      "cardinality": "list",
+      "edge": {
+        "slug": "track:spongebob-and-patrick-confront-the-psychic-wall-of-energy",
+        "type": "track",
+        "name": "SpongeBob & Patrick Confront the Psychic Wall of Energy",
+        "artist": "The Flaming Lips"
       }
     }
   ]

@@ -431,6 +431,12 @@
       "type": "track",
       "name": "Wienuss",
       "artist": "Mouse on Mars"
+    },
+    {
+      "slug": "track:they-know-your-name--track-by-mouse-on-mars",
+      "type": "track",
+      "name": "They Know Your Name",
+      "artist": "Mouse on Mars"
     }
   ],
   "landmark_project": {
