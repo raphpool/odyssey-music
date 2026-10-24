@@ -276,3 +276,27 @@ describe("channel contract (deploy/sync-genre-cache.sh)", () => {
 		expect(parseCliArgs(["/union", "--apply", "--apply"])).toBeNull();
 	});
 });
+
+describe("the committed cache after the migration (TRA-562 acceptance)", () => {
+	const aliasesOf = (name: string): string[] =>
+		(
+			JSON.parse(readFileSync(resolve("cache", "nodes", "artist", `${name}.json`), "utf8")).aliases as Obj[]
+		).map((e) => e.slug as string);
+
+	it("lists no homonym of the closed list as an alias, on either side", () => {
+		for (const d of DETACHMENTS) {
+			expect(aliasesOf(d.a.slug.slice(7))).not.toContain(d.b.slug);
+			expect(aliasesOf(d.b.slug.slice(7))).not.toContain(d.a.slug);
+		}
+	});
+
+	it("keeps the aliases that are real (Millsart; LX Empire, confirmed by MusicBrainz)", () => {
+		expect(aliasesOf("jeff-mills")).toContain("artist:millsart");
+		expect(aliasesOf("alec-empire")).toContain("artist:lx-empire");
+	});
+
+	it("has the audit ceiling at the one pair judged right", () => {
+		const thresholds = JSON.parse(readFileSync(resolve("data", "integrity-thresholds.json"), "utf8"));
+		expect(thresholds["alias-to-uncorroborated-identity"]).toBe(1);
+	});
+});
