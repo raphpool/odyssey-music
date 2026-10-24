@@ -420,9 +420,10 @@ function queueRetry(delayMs: number): Promise<void> {
 
 /**
  * What one MusicBrainz request came to, after its retries (2026-10-24, TRA-532: `null` stood for all of
- * these, so a merged or deleted mbid was filed as an outage and replayed by every --resume):
+ * these, so a deleted mbid was filed as an outage and replayed by every --resume):
  *  - `ok`: MB answered with a JSON object;
- *  - `rejected`: MB answered with a final 4xx that repeating cannot change (see {@link DEFINITIVE_STATUSES}).
+ *  - `rejected`: MB answered with a final 4xx that repeating cannot change (see {@link DEFINITIVE_STATUSES})
+ *    and its error object (`{ "error": … }`); the same status with any other body is `unavailable`.
  *    The status is kept: a 404 on `/recording/<mbid>` says the entity is gone, but the same status on a
  *    search says nothing about any work, so each caller decides what it means;
  *  - `unavailable`: no usable answer: network error or timeout, a throttling or gateway status that
@@ -434,12 +435,25 @@ type MbFetchResult<T> =
 	| { kind: "rejected"; status: number }
 	| { kind: "unavailable" };
 
-// 400 is a query MB refuses (Lucene syntax) and 404 an entity it does not hold (never created, deleted, or
-// merged away): neither changes by asking again. The other 4xx are not about the request's subject.
+// 400 is a query MB refuses (Lucene syntax) and 404 an entity it does not hold (never created, or
+// deleted; a merged mbid is not one of these, MB serves it by redirect with a 200): neither changes by
+// asking again. The other 4xx are not about the request's subject.
 // Today only the 404 of a lookup by mbid is read (see `isGone`): a 400 on a search is OUR query being
 // wrong, which must stay loud (`unavailable` to the callers that collapse `rejected`), not become a
 // quiet "no match".
 const DEFINITIVE_STATUSES = new Set([400, 404]);
+
+// 2026-10-24 (TRA-532 review): a 404 only speaks for MB when it carries MB's own error object
+// (`{ "error": "Not Found", "help": … }`). The same status from a proxy's HTML page, or from a wrong
+// MB_BASE_URL, says nothing about the entity: it stays `unavailable`. An unreadable body is not MB's.
+async function isMbErrorBody(r: Response): Promise<boolean> {
+	try {
+		const body: unknown = await r.json();
+		return isRecord(body) && typeof body.error === "string";
+	} catch {
+		return false;
+	}
+}
 
 // `fetchImpl` is injectable so callers outside this module (the image resolver, TRA-465) can be
 // tested without stubbing the global; it defaults to the global fetch read at call time.
@@ -489,7 +503,7 @@ async function mbRequest<T>(
 			}
 			if (!r.ok) {
 				log.warn("request failed", { status: r.status, path: url.pathname });
-				return DEFINITIVE_STATUSES.has(r.status)
+				return DEFINITIVE_STATUSES.has(r.status) && (await isMbErrorBody(r))
 					? { kind: "rejected", status: r.status }
 					: { kind: "unavailable" };
 			}

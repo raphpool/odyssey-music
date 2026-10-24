@@ -32,8 +32,22 @@ function failedResponse(status: number, retryAfter?: string): Response {
 		ok: false,
 		status,
 		headers: new Headers(retryAfter ? { "Retry-After": retryAfter } : undefined),
-		json: async () => ({}),
+		// MB's own error object on a 4xx it answers itself (`{ "error": "Not Found", "help": … }`).
+		json: async () => (status === 400 || status === 404 ? { error: "Not Found" } : {}),
 	} as Response;
+}
+
+/** A 404 that is not MB's: a proxy's HTML error page, or a wrong MB_BASE_URL. */
+function foreign404(body: "html" | "json"): Response {
+	return {
+		ok: false,
+		status: 404,
+		headers: new Headers(),
+		json: async () => {
+			if (body === "html") throw new SyntaxError("Unexpected token < in JSON at position 0");
+			return { message: "no such route" };
+		},
+	} as unknown as Response;
 }
 
 // vitest.config.ts sets MB_MIN_INTERVAL_MS=0 for the whole suite; the spacing tests below opt in
@@ -1809,7 +1823,7 @@ describe("a metadata lookup without an answer is flagged unavailable", () => {
 		expect((await fetchTrackMetaMb(freshRelease())).project).toBeNull();
 	});
 
-	// TRA-532 (2026-10-24): a 404 on the mbid asked for is MB's answer (merged or deleted entity), not an
+	// TRA-532 (2026-10-24): a 404 on the mbid asked for is MB's answer (deleted or never-existing entity), not an
 	// outage: the migration must not file it under `failed`, where --resume retries it for ever.
 	describe("a 404 on the mbid asked for is told apart from an outage (TRA-532)", () => {
 		/** Counts the requests per entity kind while answering as `stubKinds` does. */
@@ -1868,6 +1882,24 @@ describe("a metadata lookup without an answer is flagged unavailable", () => {
 			);
 			expect((await fetchProjectMetaDetailedMb(freshRelease())).notFound).toBe(false);
 			expect((await fetchTrackMetaDetailedMb(freshRelease())).notFound).toBe(false);
+		});
+
+		it("does not take a 404 that is not MB's for a verdict: an HTML page or foreign JSON is unavailable only", async () => {
+			for (const body of ["html", "json"] as const) {
+				const counts = countingKinds({
+					"release-group": () => foreign404(body),
+					recording: () => foreign404(body),
+				});
+				const project = await fetchProjectMetaDetailedMb(freshRelease());
+				const track = await fetchTrackMetaDetailedMb(freshRelease());
+				for (const out of [project, track]) {
+					expect(out.unavailable).toBe(true);
+					expect(out.notFound).toBe(false);
+				}
+				// Still no retry: 404 is not a retryable status, whoever sends it.
+				expect(counts["release-group"]).toBe(1);
+				expect(counts.recording).toBe(1);
+			}
 		});
 
 		it("does not flag a 404 on the release read after the group answered: the mbid asked for exists", async () => {

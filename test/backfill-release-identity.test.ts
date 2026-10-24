@@ -68,7 +68,9 @@ function jsonResponse(body: unknown): Response {
 const refused = () => failedWith(400);
 
 function failedWith(status: number): Response {
-	return { ok: false, status, headers: new Headers(), json: async () => ({}) } as Response;
+	// A 4xx that MB answers itself carries its error object.
+	const body = status === 400 || status === 404 ? { error: "Not Found" } : {};
+	return { ok: false, status, headers: new Headers(), json: async () => body } as Response;
 }
 
 /** A 200 whose body is not JSON (an HTML error page behind a proxy): HTTP says ok, the payload says no. */
@@ -1398,7 +1400,7 @@ describe("runBackfill", () => {
 		expect((await readManifestFile()).resolved["project:half-ep"]?.mbid).toMatch(/^0{8}-/);
 	});
 
-	// TRA-532 (2026-10-24): a 404 on the mbid found (deleted or merged between the search and the read, or
+	// TRA-532 (2026-10-24): a 404 on the mbid found (deleted between the search and the read, or
 	// since the manifest was written) is MB's answer. Filed under `failed` it made every --resume exit 1.
 	describe("an mbid MusicBrainz no longer holds (404 on the lookup)", () => {
 		const isLookup = (kind: string, id: string) => (u: URL) => u.pathname.endsWith(`/${kind}/${id}`);
