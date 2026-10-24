@@ -1,5 +1,5 @@
 {
-	"source": "TRA-600: identity of the 9 duplicate label groups, MusicBrainz + Wikidata (looked up 2026-10-18)",
+	"source": "TRA-600: identity of the 9 duplicate label groups, MusicBrainz + Wikidata (looked up 2026-10-18); TRA-611: Columbia extended to its prod-only node (2026-10-23)",
 	"groups": [
 		{
 			"key": "warp",
@@ -16,7 +16,11 @@
 		{
 			"key": "columbia",
 			"status": "proven",
-			"members": ["label:columbia", "label:columbia-records"],
+			"members": [
+				"label:columbia",
+				"label:columbia-records",
+				"label:columbia-records--american-major-label-founded-1888"
+			],
 			"mb": { "mbid": "011d1192-6f65-45bd-85c4-0400dd45693e", "name": "Columbia", "aliases": ["Columbia Records", "Columbia US"], "wikidata": "Q183387" },
 			"wd": {
 				"qid": "Q183387",
@@ -25,11 +29,14 @@
 				"inception": 1889,
 				"mbids": ["011d1192-6f65-45bd-85c4-0400dd45693e", "ad6f8706-c95e-443b-8579-8e3ecd27126c"]
 			},
-			"anchors": [],
+			"anchors": ["Edward D. Easton"],
 			"evidence": [
 				"https://musicbrainz.org/label/011d1192-6f65-45bd-85c4-0400dd45693e",
 				"https://www.wikidata.org/wiki/Q183387",
-				"Not this one: MusicBrainz ad6f8706-c95e-443b-8579-8e3ecd27126c (Columbia Records, EMI 1931-1990, UK) is Q1112471 on its own side"
+				"Not this one: MusicBrainz ad6f8706-c95e-443b-8579-8e3ecd27126c (Columbia Records, EMI 1931-1990, UK) is Q1112471 on its own side",
+				"https://dropcliffs.com/api/odyssey/node/label:columbia-records--american-major-label-founded-1888",
+				"TRA-611, read from that public prod API URL on 2026-10-23: the node is named \"Columbia Records\", founded 1889 (Wikidata inception), location field New York City, USA (its article gives Washington, D.C. as the founding place), and the article names Edward D. Easton, founder of the Columbia Phonograph Company (anchor, also in the articles of label:columbia and label:columbia-records). The server generated the disambiguated slug; the \"1888\" in it is not the node's own founded year. The prod graph holds exactly these three Columbia nodes (plus Columbia Masterworks, a different name)",
+				"TRA-611: the anchor is new for this group: the third node only exists in prod, so it is proven by what its article says (the founder of the US label) and not by its name alone"
 			]
 		},
 		{
