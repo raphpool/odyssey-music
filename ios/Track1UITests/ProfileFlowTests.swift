@@ -265,6 +265,43 @@ final class ProfileFlowTests: XCTestCase {
 		UITestFlows.screenshot(named: "1.2-long-family", in: self)
 	}
 
+	/// 2026-10-24 (TRA-679): at the largest text size a row holds about 11 characters, so the longest real subgenre
+	/// name folds on several lines. The chip was posed in a one-line slot and its pill, grown from the top left
+	/// corner, covered the next chip and left the card. The chip must stay inside its card, take the height of its
+	/// lines and leave the next chip under it, 8 pt below (7 allows for rounding). "Genre 0b" fits on one line, so
+	/// its height is that of a one-line pill, and the long chip has to be about two of them or more. The capture
+	/// `1.2-chips-xxxl` is the proof to read for the shape.
+	@MainActor
+	func testASubgenreNameWiderThanTheRowFoldsInsideItsCardAtTheLargestTextSize() {
+		let app = UITestFlows.launch(
+			catalog: Self.longChipCatalog,
+			extraArguments: ["-UIPreferredContentSizeCategoryName", "UICTContentSizeCategoryAccessibilityXXXL"])
+		UITestFlows.declineConsent(app)
+		UITestFlows.startOnboarding(app)
+		let bar = app.buttons["onboarding-genres-continue"]
+		let family0 = card("family-0", in: app)
+		let chipA = app.buttons["subgenre-chip-local:genre-0a"]
+		let chipB = app.buttons["subgenre-chip-local:genre-0b"]
+
+		UITestFlows.tapAboveBar(family0, bar: bar, in: app)
+		XCTAssertTrue(chipA.waitForExistence(timeout: 10))
+		XCTAssertTrue(chipB.waitForExistence(timeout: 10))
+
+		let h0 = UITestFlows.settledFrame(of: family0, timeout: 10)
+		let a = UITestFlows.settledFrame(of: chipA, timeout: 10)
+		let b = UITestFlows.settledFrame(of: chipB, timeout: 10)
+		XCTAssertGreaterThanOrEqual(a.minX, h0.minX - 1, "the long chip starts inside its card")
+		XCTAssertLessThanOrEqual(a.maxX, h0.maxX + 1, "the long chip ends inside its card")
+		XCTAssertGreaterThanOrEqual(a.height, 2 * b.height - 21, "the long name is folded, not cut: \(a) and \(b)")
+		XCTAssertFalse(a.intersects(b), "the chips overlap: \(a) and \(b)")
+		XCTAssertGreaterThanOrEqual(b.minY, a.maxY + 7, "the next chip starts under the folded one: \(a) and \(b)")
+		// The measures above are of frames; the capture is of the screen: bring the second chip above the bar.
+		for _ in 0..<4 where chipB.frame.maxY > bar.frame.minY - 24 {
+			app.swipeUp()
+		}
+		UITestFlows.screenshot(named: "1.2-chips-xxxl", in: self)
+	}
+
 	/// 2026-10-24 (TRA-666, plan D4): the edit sheet of the Genres tab draws the same `GenresStepView`, so a
 	/// collapsed card has the size it has in the onboarding, for a name that fits on one line (ticked genre,
 	/// badge) and for one that folds. The sizes are measured on the first launch, before "Continuer", then in the
@@ -495,6 +532,13 @@ final class ProfileFlowTests: XCTestCase {
 		{"mode":"editorial","version":2,"families":[{"key":"family-0","label":"Family 0","order":1},{"key":"family-1","label":"Family 1","order":2}],"genres":[{"id":"local:genre-0a","name":"Genre 0a","family":"family-0","slugs":["genre:genre-0a"]},{"id":"local:genre-0b","name":"Genre 0b","family":"family-0","slugs":["genre:genre-0b"]},{"id":"local:genre-1a","name":"Genre 1a","family":"family-1","slugs":["genre:genre-1a"]}],"legacySelectionBySlug":{}}
 		"""
 
+	/// `editorialTaxonomy` with the longest real subgenre name (`data/genre-taxonomy.json`, 31 characters) for
+	/// `local:genre-0a`: only that `name` changes.
+	private static let longChipTaxonomy =
+		"""
+		{"mode":"editorial","version":2,"families":[{"key":"family-0","label":"Family 0","order":1},{"key":"family-1","label":"Family 1","order":2}],"genres":[{"id":"local:genre-0a","name":"North American Indigenous Music","family":"family-0","slugs":["genre:genre-0a"]},{"id":"local:genre-0b","name":"Genre 0b","family":"family-0","slugs":["genre:genre-0b"]},{"id":"local:genre-1a","name":"Genre 1a","family":"family-1","slugs":["genre:genre-1a"]}],"legacySelectionBySlug":{}}
+		"""
+
 	/// `editorialTaxonomy` with two long family names: only the `label`s change.
 	private static let longLabelsTaxonomy =
 		"""
@@ -509,6 +553,8 @@ final class ProfileFlowTests: XCTestCase {
 	private static let taxonomyCatalog = catalog(taxonomy: editorialTaxonomy)
 
 	private static let longLabelsCatalog = catalog(taxonomy: longLabelsTaxonomy)
+
+	private static let longChipCatalog = catalog(taxonomy: longChipTaxonomy)
 
 	/// The same nodes and edges with the taxonomy the server serves when it cannot build the editorial one.
 	private static let degradedCatalog = catalog(taxonomy: degradedTaxonomy)

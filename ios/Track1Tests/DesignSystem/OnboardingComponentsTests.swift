@@ -256,6 +256,55 @@ final class OnboardingComponentsTests: XCTestCase {
 		XCTAssertLessThanOrEqual(badge.midY, title.minY + 22, "badge \(badge) on the first line of \(title)")
 	}
 
+	// MARK: Subgenre chip flow (TRA-679)
+
+	private static let longChipName = "North American Indigenous Music"
+
+	/// Where a flow of `width` points puts each chip and itself, read off a real layout, by title and `"flow"`.
+	@MainActor
+	private func chipFlowFrames(_ titles: [String], width: CGFloat) -> [String: CGRect] {
+		let box = HeaderFrameBox()
+		let host = UIHostingController(rootView: ChipFlowProbe(titles: titles, width: width) { box.frames = $0 })
+		let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 402, height: 800))
+		window.rootViewController = host
+		window.makeKeyAndVisible()
+		host.view.layoutIfNeeded()
+		RunLoop.current.run(until: Date().addingTimeInterval(0.3))
+		return box.frames
+	}
+
+	/// A chip alone in a column of `width` points.
+	@MainActor
+	private func chipSize(_ title: String, width: CGFloat) -> CGSize {
+		UIHostingController(
+			rootView: SubgenreChip(title: title, isSelected: false) {}.frame(width: width)
+		).sizeThatFits(in: CGSize(width: width, height: 1000))
+	}
+
+	/// 2026-10-24 (TRA-679, macOS probe, same on `main`): a chip wider than its row was posed at the row width
+	/// with the height of one line, while its text folded: the pill grew out of its slot over the next chip. The
+	/// chip must take the height it has alone at that width, and the next row must start under it.
+	@MainActor
+	func testAChipWiderThanTheRowFoldsAndTheNextRowStartsUnderIt() throws {
+		let frames = chipFlowFrames([Self.longChipName, "Emo Rap"], width: 160)
+		let long = try XCTUnwrap(frames[Self.longChipName])
+		let next = try XCTUnwrap(frames["Emo Rap"])
+		let flow = try XCTUnwrap(frames["flow"])
+		let alone = chipSize(Self.longChipName, width: 160)
+		XCTAssertLessThanOrEqual(long.width, 160.5, "the chip stays inside the row")
+		XCTAssertGreaterThanOrEqual(long.height, 51.5, "the name must fold for this test to mean something")
+		XCTAssertEqual(long.height, alone.height, accuracy: 0.5, "the chip takes its height alone at 160 pt")
+		XCTAssertEqual(next.minY, long.maxY + Track1Tokens.spacing8, accuracy: 0.5, "next row")
+		XCTAssertEqual(flow.height, long.height + Track1Tokens.spacing8 + 36, accuracy: 0.5, "flow height")
+	}
+
+	/// A chip that fits keeps the exact shape it had: a 36 pt pill, whose corners are half of that.
+	@MainActor
+	func testAChipThatFitsKeepsThePillHeightAndRadius() {
+		XCTAssertEqual(chipSize("Trap", width: 300).height, 36, accuracy: 0.5)
+		XCTAssertEqual(SubgenreChip.cornerRadius(lineHeight: 16), 18)
+	}
+
 	// MARK: Bottom action bar
 
 	func testBottomBarIdentifiers() {
@@ -320,6 +369,26 @@ extension View {
 			GeometryReader { proxy in
 				Color.clear.preference(key: HeaderFrameKey.self, value: [id: proxy.frame(in: .named("header"))])
 			})
+	}
+}
+
+/// A `ChipFlowLayout` of `SubgenreChip`s as the genre card poses them, with a frame reader on each chip (by
+/// title) and on the flow (`"flow"`).
+private struct ChipFlowProbe: View {
+	let titles: [String]
+	let width: CGFloat
+	let onFrames: @Sendable ([String: CGRect]) -> Void
+
+	var body: some View {
+		ChipFlowLayout {
+			ForEach(titles, id: \.self) { title in
+				SubgenreChip(title: title, isSelected: false) {}.readHeaderFrame(title)
+			}
+		}
+		.readHeaderFrame("flow")
+		.frame(width: width)
+		.coordinateSpace(name: "header")
+		.onPreferenceChange(HeaderFrameKey.self, perform: onFrames)
 	}
 }
 

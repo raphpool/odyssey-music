@@ -13,13 +13,25 @@ struct SubgenreChip: View {
 	/// The glyph fits in the line height of the label (16 pt), so the pill stays at 36 pt.
 	static let glyphSize: CGFloat = 16
 
+	/// Half the height of a one-line pill: 18 pt at the default size (2 + 8 + 16 + 8 + 2 = 36 pt), and it
+	/// follows the line height as the text size grows. 2026-10-24 (TRA-679, macOS probe): with `radiusFull` a
+	/// name folded on several lines made the pill an ellipse that cut its own lines; a folded pill keeps the
+	/// corners of a one-line one instead and becomes a rounded rectangle.
+	static func cornerRadius(lineHeight: CGFloat) -> CGFloat {
+		(lineHeight + 2 * Track1Tokens.spacing8 + 2 * OnboardingChoiceColors.borderWidth) / 2
+	}
+
 	private let title: String
 	private let glyph: Track1Icon.Glyph?
 	private let isSelected: Bool
 	private let action: () -> Void
 	@State private var taps = 0
+	@ScaledMetric private var lineHeight: CGFloat
 
 	init(title: String, glyph: Track1Icon.Glyph? = nil, isSelected: Bool, action: @escaping () -> Void) {
+		// The same scaling as `Track1Text`, so the radius tracks the height of a line of the label.
+		_lineHeight = ScaledMetric(
+			wrappedValue: Track1TextRole.monoTag.lineHeight, relativeTo: Track1TextRole.monoTag.textStyle)
 		self.title = title
 		self.glyph = glyph
 		self.isSelected = isSelected
@@ -28,7 +40,7 @@ struct SubgenreChip: View {
 
 	var body: some View {
 		let colors = OnboardingChoiceColors.resolve(isSelected: isSelected)
-		let shape = RoundedRectangle(cornerRadius: Track1Tokens.radiusFull, style: .continuous)
+		let shape = RoundedRectangle(cornerRadius: Self.cornerRadius(lineHeight: lineHeight), style: .continuous)
 		Button {
 			taps += 1
 			action()

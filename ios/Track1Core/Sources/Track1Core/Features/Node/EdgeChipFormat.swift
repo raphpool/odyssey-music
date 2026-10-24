@@ -33,8 +33,9 @@ public enum EdgeChipFormat {
 /// layout measured. The SwiftUI `ChipFlowLayout` only measures and places.
 public enum ChipFlow {
 	/// Fills each row left to right and starts a new one when the next size, with its spacing, would pass
-	/// `maxWidth`. An item wider than `maxWidth` gets a row of its own: the layout then proposes `maxWidth` to
-	/// it, which truncates its name instead of overflowing the screen. Every index appears exactly once.
+	/// `maxWidth`. An item wider than `maxWidth` gets a row of its own: the layout then measures it again at
+	/// `maxWidth`, and the chip folds or truncates its name according to its `lineLimit` instead of
+	/// overflowing the screen. Every index appears exactly once.
 	public static func rows(sizes: [CGSize], maxWidth: CGFloat, spacing: CGFloat) -> [[Int]] {
 		var rows: [[Int]] = []
 		var current: [Int] = []
