@@ -566,6 +566,7 @@ describe("MB identity at enrichment (TRA-473)", () => {
 			credit,
 			primaryType: null,
 			firstReleaseDate: null,
+			releaseGroupMbid: null,
 		};
 		if (kind === "recording") vi.mocked(m.resolveRecording).mockImplementation(async () => identity);
 		else vi.mocked(m.resolveReleaseGroup).mockImplementation(async () => identity);

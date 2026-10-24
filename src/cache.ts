@@ -2,7 +2,13 @@ import { copyFile, mkdir, readFile, rename, unlink, writeFile } from "node:fs/pr
 import { dirname, join } from "node:path";
 import { isNotFoundError, NotFoundError, ValidationError } from "./errors.js";
 import { logger } from "./logger.js";
-import { isEmittedPendingReverse, reverseFor, reversibleFields } from "./reverse-edges.js";
+import {
+	isEmittedPendingReverse,
+	mergeReverseEdge,
+	reverseEdgeFor,
+	reverseFor,
+	reversibleFields,
+} from "./reverse-edges.js";
 import { nodePayloadSchema, readNodePayloadSchema } from "./schemas.js";
 import { isValidSlug, parseSlug } from "./slug.js";
 import type { EdgeRef, NodePayload, Slug } from "./types.js";
@@ -583,15 +589,6 @@ export class NodeCache {
 	}
 
 	private async emitReverses(source: NodePayload, delta: CacheWriteDelta): Promise<void> {
-		// A genre source's qid rides along on the reverse edge it emits (TRA-18). So does a project's mbid, but
-		// only toward the artist's discography (TRA-623, 2026-10-19): that edge was counted "without mbid" by
-		// the audit ratchet although the project node already knew its id.
-		const sourceEdge: EdgeRef =
-			source.type === "genre" && source.qid
-				? { slug: source.slug, type: source.type, name: source.name, qid: source.qid }
-				: { slug: source.slug, type: source.type, name: source.name };
-		const discographyEdge: EdgeRef =
-			source.type === "project" && source.mbid ? { ...sourceEdge, mbid: source.mbid } : sourceEdge;
 		const fields = reversibleFields(source.type);
 		for (const field of fields) {
 			const value = (source as unknown as Record<string, unknown>)[field];
@@ -602,8 +599,10 @@ export class NodeCache {
 					: [];
 			const reverse = reverseFor(source.type, field);
 			if (!reverse) continue;
+			// The edge is built once per field by the helper shared with the backfill (TRA-624).
+			const edge = reverseEdgeFor(source, reverse.field);
+			if (!edge) continue;
 			for (const targetRef of refs) {
-				const edge = reverse.field === "discography" ? discographyEdge : sourceEdge;
 				await this.applyReverseToTarget(targetRef.slug, reverse.field, reverse.cardinality, edge);
 				this.stats.revUpdates++;
 				delta.revUpdates++;
@@ -623,7 +622,11 @@ export class NodeCache {
 				throw e;
 			});
 			if (existing) {
-				const updated = applySingleReverse(existing, { field, cardinality, edge: sourceEdge });
+				const updated = applySingleReverse(
+					existing,
+					{ field, cardinality, edge: sourceEdge },
+					mbidConflictLogger(target, field),
+				);
 				// `existing` may be a legacy node read tolerantly, `sourceEdge` comes from a node that
 				// write()/replace() validated strictly: re-validate with the read rule so adding a
 				// reverse edge never fails because of what the target already had (TRA-501).
@@ -655,19 +658,46 @@ function isPathSafeSlug(slug: Slug): boolean {
 function applyReverses(node: NodePayload, pendings: PendingReverse[]): NodePayload {
 	let cur = node;
 	for (const p of pendings) {
-		cur = applySingleReverse(cur, p);
+		cur = applySingleReverse(cur, p, mbidConflictLogger(node.slug, p.field));
 	}
 	return cur;
 }
 
+// An mbid already on the target's edge wins over the one a reverse carries: report the disagreement so a
+// wrong id on either side can be found, without touching either (TRA-624).
+function mbidConflictLogger(target: Slug, field: string): (kept: EdgeRef, incoming: EdgeRef) => void {
+	return (kept, incoming) =>
+		log.warn("reverse edge mbid differs from the one on the target: kept the existing one", {
+			target,
+			field,
+			slug: kept.slug,
+			kept: kept.mbid,
+			incoming: incoming.mbid,
+		});
+}
+
 // Exported for the reverse-edge backfill (TRA-486), which applies the same rule to raw nodes without going
 // through NodeCache.write (that would re-emit reverses of the reverses).
-export function applySingleReverse(node: NodePayload, p: PendingReverse): NodePayload {
+export function applySingleReverse(
+	node: NodePayload,
+	p: PendingReverse,
+	onMbidConflict?: (kept: EdgeRef, incoming: EdgeRef) => void,
+): NodePayload {
 	// Clone shallowly; nested edge arrays we deep-copy to avoid mutating callers.
 	const next = { ...node } as unknown as Record<string, unknown>;
 	if (p.cardinality === "list") {
 		const cur = Array.isArray(next[p.field]) ? ([...(next[p.field] as EdgeRef[])] as EdgeRef[]) : [];
-		if (!cur.some((e) => e.slug === p.edge.slug)) cur.push(p.edge);
+		const at = cur.findIndex((e) => e.slug === p.edge.slug);
+		const held = cur[at];
+		if (!held) {
+			cur.push(p.edge);
+		} else {
+			// TRA-624 (2026-10-24): an edge already there is enriched, never replaced. Rewriting a project
+			// with an mbid left `artist.discography` without it, so "discography without mbid" never went down.
+			const merged = mergeReverseEdge(held, p.edge);
+			cur[at] = merged.edge;
+			if (merged.mbidConflict) onMbidConflict?.(held, p.edge);
+		}
 		next[p.field] = cur;
 	} else {
 		// Singular: only set if currently empty (don't clobber an explicit value).
