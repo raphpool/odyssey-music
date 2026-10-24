@@ -1,5 +1,5 @@
 {
-	"source": "Judged on 2026-10-24 (TRA-485) from the work's own pitch / article, which names the artist. A hint is only the question put to MusicBrainz: the run credits a work when MusicBrainz finds its exact title, the credit confirms the hint and the year agrees.",
+	"source": "Judged on 2026-10-24 (TRA-485) from the work's own pitch / article, which names the artist. A hint is only the question put to MusicBrainz: the run credits a work when MusicBrainz finds its exact title, the credit confirms the hint and the year agrees. Left out on purpose: project:selected-ambient-works-85-92 (artist:richard-d-james lists it, and artist:aphex-twin has no member/alias edge the audit follows) and project:tri-repetae (artist:autechre is not in the cache, so its two members, which list it, would trip homonym-release-links): crediting them needs those artist edges first.",
 	"hints": {
 		"project:autoditacker": {
 			"name": "Mouse on Mars",
@@ -33,12 +33,6 @@
 			"anchor": "Neu!",
 			"why": "Pitch: the 1972 debut album of Neu!, a duo. Nothing links to it."
 		},
-		"project:selected-ambient-works-85-92": {
-			"name": "Aphex Twin",
-			"artist": "artist:aphex-twin",
-			"anchor": "Aphex Twin",
-			"why": "Aphex Twin's landmark_project; artist:richard-d-james also lists it (the same person under his own name), so the pointers alone are ambiguous."
-		},
 		"project:super-ape": {
 			"name": "The Upsetters",
 			"anchor": "Upsetters",
@@ -55,11 +49,6 @@
 			"artist": "artist:b12",
 			"anchor": "B12",
 			"why": "Pitch: the 1996 album of B12; artist:mike-golding and artist:steve-rutter, its two members, also list it."
-		},
-		"project:tri-repetae": {
-			"name": "Autechre",
-			"anchor": "Autechre",
-			"why": "Pitch: the 1995 album of Autechre; artist:rob-brown and artist:sean-booth, its two members, list it."
 		},
 		"project:turn-on-the-bright-lights": {
 			"name": "Interpol",
