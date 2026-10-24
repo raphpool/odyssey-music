@@ -148,6 +148,23 @@ enum UITestFlows {
 		element.tap()
 	}
 
+	/// The frame of `element` once two reads 100 ms apart are equal (the header animates its height when a
+	/// card closes); fails the test after `timeout`.
+	@MainActor
+	static func settledFrame(of element: XCUIElement, timeout: TimeInterval = 3) -> CGRect {
+		XCTAssertTrue(element.waitForExistence(timeout: timeout), "\(element) did not appear")
+		let deadline = Date().addingTimeInterval(timeout)
+		var previous = element.frame
+		while Date() < deadline {
+			Thread.sleep(forTimeInterval: 0.1)
+			let current = element.frame
+			if current == previous { return current }
+			previous = current
+		}
+		XCTFail("\(element) kept moving for \(timeout) s")
+		return previous
+	}
+
 	@MainActor
 	static func screenshot(named name: String, in test: XCTestCase) {
 		let attachment = XCTAttachment(screenshot: XCUIScreen.main.screenshot())

@@ -2,8 +2,18 @@ export type Tier = 1 | 2 | 3;
 export type ReviewState = "missing" | "pending" | "success" | "failure" | "error" | "stale";
 export type GateVerdict = "pass" | "wait" | "block";
 
+// Conclusions of a GitHub check-run (plus `missing` for "no conclusion yet"). The `review` check-run of
+// ai-review.yml is not a commit status, so it can end in states that a ReviewState does not model.
+export type CheckConclusion =
+	| ReviewState
+	| "neutral"
+	| "cancelled"
+	| "timed_out"
+	| "skipped"
+	| "action_required";
+
 export interface OrdinaryReview {
-	claude: ReviewState;
+	claude: CheckConclusion;
 	codex: ReviewState;
 	claudeBlocking: boolean;
 }
@@ -33,10 +43,23 @@ export const classifyRisk = (paths: readonly string[], labels: readonly string[]
 	return 1;
 };
 
+// TRA-524 (2026-10-24): a Claude review "is there" only if the job ran to a verdict. `cancelled` and `timed_out`
+// (the 25-minute timeout of ai-review.yml) used to count as present, so with `codex-review: success` the gate
+// passed although no Claude review had completed. `skipped`, `stale` and `action_required` did not review
+// anything either. The allowlist fails closed: a conclusion GitHub adds later waits instead of passing.
+// `failure` stays present: the review ran and `claudeBlocking` already carries its blocking findings.
+// `neutral` stays present on purpose (TRA-524 decision): ai-review.yml never ends a job that way (a job
+// concludes success, failure, cancelled, skipped or timed_out), so it has no effect in practice.
+// The same three conclusions are listed in the `select_review` jq program of review-gate.yml, which maps the
+// others to `missing` before they get here. The list is deliberately held twice: this copy is the one executed
+// from the default branch, so it also protects a PR whose own review-gate.yml still forwards the raw conclusion.
+// Keep the two in sync (test/review-gate-workflow.test.ts runs both on every conclusion).
+const completedClaudeReview: ReadonlySet<CheckConclusion> = new Set(["success", "failure", "neutral"]);
+
 const ordinaryVerdict = (review: OrdinaryReview): GateVerdict => {
 	if (review.codex === "failure" || review.claudeBlocking) return "block";
 	if (review.claude === "success") return "pass";
-	if (review.claude !== "missing" && review.codex === "success") return "pass";
+	if (completedClaudeReview.has(review.claude) && review.codex === "success") return "pass";
 	return "wait";
 };
 
