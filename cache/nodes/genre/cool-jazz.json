@@ -99,9 +99,10 @@
   "key_labels": [],
   "landmark_projects": [
     {
-      "slug": "project:birth-of-the-cool",
+      "slug": "project:birth-of-the-cool--miles-davis",
       "type": "project",
-      "name": "Birth of the Cool"
+      "name": "Birth of the Cool",
+      "artist": "Miles Davis"
     }
   ],
   "landmark_tracks": [],
