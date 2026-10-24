@@ -985,6 +985,10 @@ async function resolveWork(input: PipelineInput, log: PipelineLog): Promise<MbRe
 		return null;
 	}
 	const creditedMbids = new Set(discarded.map((c) => c.mbid.toLowerCase()));
+	// The artist's own credit among the discarded ones: a work of theirs printed under another name ("Roni Size
+	// Presents", TRA-552) shares the title with the band's. Answer as before this ticket, never the band's work
+	// (review of #643, 2026-10-24).
+	if (creditedMbids.has(input.artistMbid.toLowerCase())) return null;
 	const bands = profile.groups.map((g) => g.mbid).filter((mbid) => creditedMbids.has(mbid.toLowerCase()));
 	if (bands.length === 0) return null;
 	const second = await resolve(input.name, input.artist, { acceptCreditMbids: bands });
