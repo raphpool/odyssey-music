@@ -44,6 +44,18 @@
       "type": "genre",
       "name": "Indie rock",
       "qid": "Q183504"
+    },
+    {
+      "slug": "genre:britpop",
+      "type": "genre",
+      "name": "Britpop",
+      "qid": "Q189045"
+    },
+    {
+      "slug": "genre:college-rock",
+      "type": "genre",
+      "name": "College rock",
+      "qid": "Q783097"
     }
   ],
   "key_artists": [

@@ -61,6 +61,18 @@
       "type": "genre",
       "name": "Extreme metal",
       "qid": "Q465978"
+    },
+    {
+      "slug": "genre:digital-hardcore",
+      "type": "genre",
+      "name": "Digital Hardcore",
+      "qid": "Q56580"
+    },
+    {
+      "slug": "genre:garage-punk",
+      "type": "genre",
+      "name": "Garage punk",
+      "qid": "Q2296495"
     }
   ],
   "key_artists": [

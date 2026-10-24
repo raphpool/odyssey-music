@@ -62,6 +62,12 @@
       "type": "genre",
       "name": "Detroit Techno",
       "qid": "Q526463"
+    },
+    {
+      "slug": "genre:dusseldorf-school",
+      "type": "genre",
+      "name": "Düsseldorf School",
+      "qid": "Q5320459"
     }
   ],
   "key_artists": [

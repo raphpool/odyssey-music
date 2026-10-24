@@ -32,7 +32,20 @@
   "editorial_definition": "A mid-2010s experimental electronic genre that hybridizes global club rhythms with abrasive, industrial sound design to challenge traditional dance music structures.",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:experimental-techno",
+      "type": "genre",
+      "name": "Experimental Techno",
+      "qid": "Q105636937"
+    },
+    {
+      "slug": "genre:uk-bass",
+      "type": "genre",
+      "name": "UK bass",
+      "qid": "Q2346991"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:arca",

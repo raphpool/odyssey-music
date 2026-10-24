@@ -59,6 +59,12 @@
       "slug": "genre:leftfield-techno",
       "type": "genre",
       "name": "Leftfield Techno"
+    },
+    {
+      "slug": "genre:tech-house",
+      "type": "genre",
+      "name": "Tech House",
+      "qid": "Q598593"
     }
   ],
   "key_artists": [

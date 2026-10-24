@@ -346,11 +346,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:a-song-for-xx",
-      "type": "project",
-      "name": "A Song for XX"
-    },
-    {
       "slug": "project:made-in-japan",
       "type": "project",
       "name": "Made in Japan"
@@ -389,9 +384,10 @@
     }
   ],
   "landmark_project": {
-    "slug": "project:a-song-for-xx",
+    "slug": "project:a-song-for--ayumi-hamasaki",
     "type": "project",
-    "name": "A Song for XX"
+    "name": "A Song for ××",
+    "artist": "Ayumi Hamasaki"
   },
   "reference_track": {
     "slug": "track:poker-face",

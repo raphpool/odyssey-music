@@ -57,14 +57,16 @@
   ],
   "tracklist": [
     {
-      "slug": "track:universal-band-silhouette--silhouette",
+      "slug": "track:universal-band-silhouette--jan-jelinek",
       "type": "track",
-      "name": "Universal Band Silhouette"
+      "name": "Universal Band Silhouette",
+      "artist": "Jan Jelinek"
     },
     {
-      "slug": "track:lemminge-und-lurchen-inc--lemming",
+      "slug": "track:lemminge-und-lurchen-inc--jan-jelinek",
       "type": "track",
-      "name": "Lemminge Und Lurchen Inc."
+      "name": "Lemminge Und Lurchen Inc.",
+      "artist": "Jan Jelinek"
     },
     {
       "slug": "track:im-diskodickicht--jan-jelinek",
@@ -72,9 +74,10 @@
       "name": "Im Diskodickicht"
     },
     {
-      "slug": "track:vibraphonspulen--vibraphonic",
+      "slug": "track:vibraphonspulen--jan-jelinek",
       "type": "track",
-      "name": "Vibraphonspulen"
+      "name": "Vibraphonspulen",
+      "artist": "Jan Jelinek"
     },
     {
       "slug": "track:lithiummelodie-1--jan-jelinek",
@@ -87,14 +90,16 @@
       "name": "Planeten In Halbtrauer"
     },
     {
-      "slug": "track:western-mimikry--blixa-bargeld",
+      "slug": "track:western-mimikry--jan-jelinek",
       "type": "track",
-      "name": "Western Mimikry"
+      "name": "Western Mimikry",
+      "artist": "Jan Jelinek"
     },
     {
-      "slug": "track:morphing-leadgitarre-ruckwarts--the-beatles",
+      "slug": "track:morphing-leadgitarre-ruckwarts--jan-jelinek",
       "type": "track",
-      "name": "Morphing Leadgitarre Rückwärts"
+      "name": "Morphing Leadgitarre Rückwärts",
+      "artist": "Jan Jelinek"
     }
   ],
   "producers": [],

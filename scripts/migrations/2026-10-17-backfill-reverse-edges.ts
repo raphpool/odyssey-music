@@ -385,9 +385,13 @@ export interface CliArgs {
 
 /**
  * `<cache-dir> [--apply] [--manifest p] [--data-dir d]`; null (exit 2) on anything else. `--data-dir` is the
- * migration channel's and is ignored (TRA-488).
+ * migration channel's and is ignored (TRA-488). The guarded successor (TRA-564) shares the parser and only
+ * changes the default manifest path.
  */
-export function parseCliArgs(argv: readonly string[]): CliArgs | null {
+export function parseCliArgs(
+	argv: readonly string[],
+	defaultManifestPath: string = DEFAULT_MANIFEST_PATH,
+): CliArgs | null {
 	const cacheDir = argv[0];
 	if (!cacheDir || cacheDir.startsWith("-")) return null;
 	let apply = false;
@@ -406,7 +410,7 @@ export function parseCliArgs(argv: readonly string[]): CliArgs | null {
 			else dataDirSeen = true;
 		} else return null;
 	}
-	return { cacheDir, apply, manifestPath: manifestPath ?? DEFAULT_MANIFEST_PATH };
+	return { cacheDir, apply, manifestPath: manifestPath ?? defaultManifestPath };
 }
 
 async function main(): Promise<void> {

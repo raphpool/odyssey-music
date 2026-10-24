@@ -54,6 +54,12 @@
       "type": "genre",
       "name": "New wave",
       "qid": "Q187760"
+    },
+    {
+      "slug": "genre:jangle-pop",
+      "type": "genre",
+      "name": "Jangle pop",
+      "qid": "Q1190565"
     }
   ],
   "key_artists": [

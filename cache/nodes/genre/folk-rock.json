@@ -41,6 +41,12 @@
       "type": "genre",
       "name": "Psychedelic rock",
       "qid": "Q206159"
+    },
+    {
+      "slug": "genre:celtic-rock",
+      "type": "genre",
+      "name": "Celtic rock",
+      "qid": "Q2662148"
     }
   ],
   "key_artists": [

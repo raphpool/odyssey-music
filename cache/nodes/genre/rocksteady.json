@@ -50,6 +50,24 @@
       "type": "genre",
       "name": "Soul",
       "qid": "Q131272"
+    },
+    {
+      "slug": "genre:lovers-rock",
+      "type": "genre",
+      "name": "Lovers rock",
+      "qid": "Q1872505"
+    },
+    {
+      "slug": "genre:roots-reggae",
+      "type": "genre",
+      "name": "Roots Reggae",
+      "qid": "Q1299260"
+    },
+    {
+      "slug": "genre:ska",
+      "type": "genre",
+      "name": "Ska",
+      "qid": "Q54365"
     }
   ],
   "key_artists": [

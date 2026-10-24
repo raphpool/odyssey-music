@@ -45,6 +45,36 @@
       "type": "genre",
       "name": "Popular music",
       "qid": "Q373342"
+    },
+    {
+      "slug": "genre:blues",
+      "type": "genre",
+      "name": "Blues",
+      "qid": "Q9759"
+    },
+    {
+      "slug": "genre:garage-rock",
+      "type": "genre",
+      "name": "Garage rock",
+      "qid": "Q211573"
+    },
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    },
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B",
+      "qid": "Q45981"
+    },
+    {
+      "slug": "genre:rockabilly",
+      "type": "genre",
+      "name": "Rockabilly",
+      "qid": "Q203720"
     }
   ],
   "key_artists": [

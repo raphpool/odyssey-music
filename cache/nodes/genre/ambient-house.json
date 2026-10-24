@@ -36,6 +36,18 @@
       "type": "genre",
       "name": "IDM",
       "qid": "Q660984"
+    },
+    {
+      "slug": "genre:ambient-dub",
+      "type": "genre",
+      "name": "Ambient Dub",
+      "qid": "Q3613770"
+    },
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive House",
+      "qid": "Q915152"
     }
   ],
   "key_artists": [

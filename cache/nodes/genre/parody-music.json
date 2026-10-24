@@ -21,7 +21,14 @@
   "editorial_definition": "A genre based on the humorous, satirical, or ironic imitation of established popular songs, artists, or musical styles.",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:comedy-rock",
+      "type": "genre",
+      "name": "Comedy rock",
+      "qid": "Q1391336"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:weird-al-yankovic",
