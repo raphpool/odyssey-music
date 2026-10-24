@@ -177,6 +177,8 @@ contrat réduit V1 complété par les tâches rattachées ci-dessous.
 
 ### D8 — Barre d'onglets native, recherche en sheet, Liquid Glass protégé par `#available`
 
+- Remplacé (D8) le 2026-10-23 par `docs/plans/ios-node-page-ui-refresh.md` (D1, D2) : la barre est dessinée
+  (`Track1TabBar`), la recherche en sheet est conservée.
 - **Onglets.** `TabView` natif avec Aujourd'hui, Genres et Recherche. Sous iOS 26, la recherche est
   un `Tab(role: .search)` : le bouton rond isolé du Figma, avec le verre natif.
 - **Recherche en sheet.** La sélection de Recherche est interceptée par le binding : l'onglet
@@ -209,6 +211,7 @@ contrat réduit V1 complété par les tâches rattachées ci-dessous.
 
 ### D10 — Images : `/image` + cache + chaîne de repli côté client, teinte calculée sur l'iPhone
 
+- Amendé (D10) le 2026-10-23 par `docs/plans/ios-node-page-ui-refresh.md` (D1, D2).
 - **Chargement.** Toute image passe par `NodeImageStore` (F.3) : lecture de `/image` pour une
   identité, URL validée par `URLValidation.publicHTTPSURL`, chargement qui valide chaque
   redirection, puis cache mémoire et coalescence des requêtes en vol.

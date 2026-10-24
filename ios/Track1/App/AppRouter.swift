@@ -23,12 +23,21 @@ enum AppTab: String, CaseIterable, Hashable, Identifiable, Sendable {
 		}
 	}
 
-	/// The tab bar glyph (Figma `Tab bar` `173:108`), shared with the design system icon set.
-	var glyph: Track1Icon.Glyph {
+	/// The tab bar icon drawn in the Figma `Tab bar` (`282:889`), an image set of the asset catalog.
+	var icon: Track1Icon.Asset {
 		switch self {
-		case .today: .home
-		case .genres: .musicNote
-		case .search: .search
+		case .today: .tabToday
+		case .genres: .tabGenres
+		case .search: .tabSearch
+		}
+	}
+
+	/// The identifier UI tests find the tab button by (`Track1TabBar` sets it on the button).
+	var accessibilityIdentifier: String {
+		switch self {
+		case .today: "tab-today"
+		case .genres: "tab-genres"
+		case .search: "tab-search"
 		}
 	}
 }

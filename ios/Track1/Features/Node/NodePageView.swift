@@ -103,6 +103,7 @@ struct NodePageView: View {
 					if let notice = Self.listeningNotice(for: listeningFailure) { notice }
 					StreamingBar(actions: actions, isOpening: isOpeningListening, open: onOpenListening)
 				}
+				.padding(.bottom, StreamingBar.bottomGap)
 			}
 		}
 		.task { await hero.load() }

@@ -68,6 +68,8 @@ private struct ApplicationTabs: View {
 	@State private var todayRootTitle: String?
 	/// The result chosen in the search sheet. The page is pushed once the sheet is gone, not under it.
 	@State private var chosenResult: ChosenResult?
+	/// The window's bottom safe area, handed to the tab bar (see `tabs`).
+	@State private var windowSafeAreaBottom: CGFloat = 0
 
 	/// What the app shows for the state of the profile (J.4): no profile is the full-screen onboarding, without
 	/// the tabs, and the saved profile fades into them.
@@ -135,40 +137,58 @@ private struct ApplicationTabs: View {
 		Binding(get: { router.selectedTab }, set: { router.select($0) })
 	}
 
-	@ViewBuilder
+	/// One `TabView` for the per-tab stacks and the selection; the bar is drawn by `Track1TabBar` (D1), not by
+	/// the system, so there is a single code path from iOS 17 to 26.
+	///
+	/// 2026-10-24 (TRA-671, ios-check of #601, runs 40093331852 to 40104135204): the bar was first an inset of
+	/// the `TabView`, then of each `NavigationStack`. Neither reaches the screens hosted inside the stack: the
+	/// `.safeAreaInset` button of the Genres tab sat at the window's safe area (bottom at 840 = 874 - 34) as if
+	/// the bar did not exist, `genres-edit` at {{98.3, 776}, {205.3, 52}} under `tab-bar` at {{0, 754}, {402, 120}},
+	/// hit point {-1, -1}, the edit sheet never opened. So the bar is a fixed overlay of the `TabView`, and each
+	/// screen reserves its height itself (`tabBarReservation`).
 	private var tabs: some View {
-		if #available(iOS 26, *) {
-			// Native Liquid Glass bar; the search role draws the isolated round button of the Figma.
-			TabView(selection: tabSelection) {
-				Tab(AppTab.today.title, systemImage: AppTab.today.glyph.systemName, value: AppTab.today) {
-					entry(for: .today)
-				}
-				Tab(AppTab.genres.title, systemImage: AppTab.genres.glyph.systemName, value: AppTab.genres) {
-					entry(for: .genres)
-				}
-				Tab(
-					AppTab.search.title, systemImage: AppTab.search.glyph.systemName, value: AppTab.search,
-					role: .search
-				) {
-					// Never shown: selecting Search opens the sheet and keeps the current tab.
-					Color.clear
-				}
-			}
-		} else {
-			TabView(selection: tabSelection) {
-				ForEach(AppTab.allCases) { tab in
-					Group {
-						if tab == .search { Color.clear } else { entry(for: tab) }
-					}
-					// The glass of iOS 26 does not exist before: a frosted bar is the closest native fallback.
-					// It goes on the tab content, where SwiftUI reads it, not on the `TabView`.
-					.toolbarBackground(.visible, for: .tabBar)
-					.toolbarBackground(.ultraThinMaterial, for: .tabBar)
-					.tabItem { Label(tab.title, systemImage: tab.glyph.systemName) }
-					.tag(tab)
-				}
-			}
+		TabView(selection: tabSelection) {
+			entry(for: .today).tag(AppTab.today)
+			entry(for: .genres).tag(AppTab.genres)
 		}
+		// The window's bottom safe area, read here, outside the insets of the tabs: inside one the bar is
+		// already above the home indicator and would read 0. The keyboard is left out so that the bar does not
+		// change its padding while a field is focused.
+		.background {
+			GeometryReader { proxy in
+				Color.clear.preference(key: WindowSafeAreaBottomKey.self, value: proxy.safeAreaInsets.bottom)
+			}
+			.ignoresSafeArea(.keyboard, edges: .bottom)
+		}
+		.onPreferenceChange(WindowSafeAreaBottomKey.self) { windowSafeAreaBottom = $0 }
+		.overlay(alignment: .bottom) { tabBar }
+	}
+
+	/// Leaves the room of the bar at the bottom of a screen, above the window's safe area: the content, and the
+	/// `safeAreaInset` buttons it places itself, then end where the bar starts. Applied to the root of each tab
+	/// and to every pushed page, inside the stack; one modifier so that a new destination cannot forget it.
+	private var tabBarReservation: some ViewModifier {
+		TabBarReservation(safeAreaBottom: windowSafeAreaBottom)
+	}
+
+	private var tabBar: some View {
+		Track1TabBar(
+			items: [item(.today), item(.genres)],
+			selected: router.selectedTab.rawValue,
+			search: item(.search),
+			safeAreaBottom: windowSafeAreaBottom,
+			onSelect: { id in
+				if let tab = AppTab(rawValue: id) { router.select(tab) }
+			},
+			onSearch: { router.select(.search) }
+		)
+		// Without this the field of the Genres tab would lift the bar with the keyboard (R5).
+		.ignoresSafeArea(.keyboard, edges: .bottom)
+	}
+
+	private func item(_ tab: AppTab) -> Track1TabBar.Item {
+		Track1TabBar.Item(
+			id: tab.rawValue, icon: tab.icon, label: tab.title, identifier: tab.accessibilityIdentifier)
 	}
 
 	@ViewBuilder
@@ -202,33 +222,39 @@ private struct ApplicationTabs: View {
 					)
 				}
 			}
+			.modifier(tabBarReservation)
 			.navigationDestination(for: AppRoute.self) { route in
-				switch route {
-				case .node(let identity, let context):
-					if let readers, let imageStore {
-						NodeView(
-							model: NodeViewModel(
-								identity: identity,
-								context: context,
-								readNode: readers.node,
-								readLinks: readers.links,
-								recordEvent: { analytics.record($0) }
-							),
-							imageStore: imageStore,
-							topBar: .breadcrumb(
-								router.breadcrumb(for: tab, rootTitle: tab == .today ? todayRootTitle ?? tab.title : tab.title)),
-							// Same tab; the name is the crumb the Top bar shows for the relation.
-							openRelation: { relation, relationContext in
-								router.openNode(relation.slug, context: relationContext, title: relation.name, in: tab)
-							},
-							selectCrumb: { crumb in router.popTo(index: crumb.index, in: tab) }
-						)
-					} else {
-						InvalidConfigurationView(error: .missingEnvironment)
+				Group {
+					switch route {
+					case .node(let identity, let context):
+						if let readers, let imageStore {
+							NodeView(
+								model: NodeViewModel(
+									identity: identity,
+									context: context,
+									readNode: readers.node,
+									readLinks: readers.links,
+									recordEvent: { analytics.record($0) }
+								),
+								imageStore: imageStore,
+								topBar: .breadcrumb(
+									router.breadcrumb(for: tab, rootTitle: tab == .today ? todayRootTitle ?? tab.title : tab.title)),
+								// Same tab; the name is the crumb the Top bar shows for the relation.
+								openRelation: { relation, relationContext in
+									router.openNode(relation.slug, context: relationContext, title: relation.name, in: tab)
+								},
+								selectCrumb: { crumb in router.popTo(index: crumb.index, in: tab) }
+							)
+						} else {
+							InvalidConfigurationView(error: .missingEnvironment)
+						}
 					}
 				}
+				.modifier(tabBarReservation)
 			}
 		}
+		// On the stack, not on its root view: from a pushed page the native bar would come back otherwise (R1).
+		.toolbar(.hidden, for: .tabBar)
 	}
 
 	@ViewBuilder
@@ -354,5 +380,23 @@ private struct InvalidConfigurationView: View {
 		.accessibilityIdentifier("invalid-configuration")
 		.accessibilityElement(children: .combine)
 		.accessibilityLabel("Configuration requise. \(error.userMessage)")
+	}
+}
+
+/// The bottom safe area of the window, carried from a background `GeometryReader` to `ApplicationTabs`.
+private struct WindowSafeAreaBottomKey: PreferenceKey {
+	static let defaultValue: CGFloat = 0
+
+	static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+		value = nextValue()
+	}
+}
+
+/// Reserves the height of the drawn tab bar at the bottom of a screen, as extra bottom safe area (iOS 17).
+private struct TabBarReservation: ViewModifier {
+	let safeAreaBottom: CGFloat
+
+	func body(content: Content) -> some View {
+		content.safeAreaPadding(.bottom, Track1TabBarMetrics.reservedHeight(safeAreaBottom: safeAreaBottom))
 	}
 }

@@ -24,6 +24,9 @@ final class TodayFlowTests: XCTestCase {
 		tapFirstChip(in: app)
 		let breadcrumb = element(app, "top-bar-breadcrumb")
 		XCTAssertTrue(breadcrumb.waitForExistence(timeout: 5))
+		// R1: the drawn bar is the only one, the native bar must not come back on a pushed page.
+		XCTAssertEqual(app.tabBars.count, 0)
+		XCTAssertTrue(UITestFlows.tabBar(in: app).exists)
 		UITestFlows.screenshot(named: "3.2", in: self)
 
 		// 5. The root crumb goes back to the page of the day.

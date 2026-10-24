@@ -119,6 +119,32 @@ final class Track1TabBarTests: XCTestCase {
 		XCTAssertEqual(size.height, 12 + 62 + 12, accuracy: 0.5)
 	}
 
+	/// TRA-671: a screen reserves the bar above the window's safe area, 12 + 62 + the bottom padding.
+	func testTheReservedHeightIsTheBarAboveTheSafeArea() {
+		XCTAssertEqual(Track1TabBarMetrics.reservedHeight(safeAreaBottom: 34), 74)
+		XCTAssertEqual(Track1TabBarMetrics.reservedHeight(safeAreaBottom: 0), 86)
+	}
+
+	/// TRA-671: the screen that mounts the bar hands it the window's safe area, because inside a
+	/// `safeAreaInset` the bar's own reading can be 0. 0 gives the 12 pt of a screen without a home indicator,
+	/// anything above it gives none.
+	func testTheInjectedSafeAreaDecidesTheRoomUnderThePill() {
+		func height(safeAreaBottom: CGFloat) -> CGFloat {
+			let bar = Track1TabBar(
+				items: [today, genres], selected: "today", search: search, safeAreaBottom: safeAreaBottom,
+				onSelect: { _ in }, onSearch: {})
+			return UIHostingController(rootView: bar)
+				.sizeThatFits(in: CGSize(width: 393, height: 852)).height
+		}
+
+		let withoutIndicator = height(safeAreaBottom: 0)
+		let withIndicator = height(safeAreaBottom: 34)
+
+		XCTAssertEqual(withoutIndicator - withIndicator, 12, accuracy: 0.5)
+		XCTAssertEqual(
+			withIndicator, Track1TabBarMetrics.topPadding + Track1TabBarMetrics.searchDiameter, accuracy: 0.5)
+	}
+
 	// MARK: Helpers
 
 	/// `rrggbbaa`, to compare with the Figma hex and to read a failure.
