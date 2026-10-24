@@ -11,6 +11,7 @@
   "materialized_at": "2026-05-13T12:44:54.230Z",
   "type": "genre",
   "editorial_definition": "Comedy hip-hop is a subgenre of hip-hop music primarily characterized by the use of humor, satire, parody, or irony to amuse the audience or critique hip-hop culture itself.",
+  "qid": "Q602646",
   "era": "1980s–present",
   "origin": "United States",
   "parent_genres": [
@@ -19,6 +20,12 @@
       "type": "genre",
       "name": "Hip-hop",
       "qid": "Q11401"
+    },
+    {
+      "slug": "genre:comedy-music",
+      "type": "genre",
+      "name": "Comedy Music",
+      "qid": "Q5151495"
     }
   ],
   "subgenres": [],
@@ -72,6 +79,5 @@
       "type": "track",
       "name": "Parents Just Don't Understand"
     }
-  ],
-  "qid": "Q602646"
+  ]
 }

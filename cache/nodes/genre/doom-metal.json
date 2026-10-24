@@ -52,6 +52,18 @@
       "type": "genre",
       "name": "Stoner metal",
       "qid": "Q1772422"
+    },
+    {
+      "slug": "genre:sludge-metal",
+      "type": "genre",
+      "name": "Sludge metal",
+      "qid": "Q720959"
+    },
+    {
+      "slug": "genre:stoner-rock",
+      "type": "genre",
+      "name": "Stoner Rock",
+      "qid": "Q617240"
     }
   ],
   "related_genres": [

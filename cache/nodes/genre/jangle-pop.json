@@ -22,7 +22,13 @@
   "qid": "Q1190565",
   "era": "Late 1970s to present",
   "origin": "United States and United Kingdom",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:guitar-pop",
+      "type": "genre",
+      "name": "Guitar Pop"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

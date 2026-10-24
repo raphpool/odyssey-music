@@ -26,7 +26,20 @@
       "qid": "Q1640319"
     }
   ],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic",
+      "qid": "Q105763581"
+    },
+    {
+      "slug": "genre:no-wave",
+      "type": "genre",
+      "name": "No Wave",
+      "qid": "Q823080"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:free-jazz",

@@ -47,109 +47,109 @@
       "slug": "project:both-sides-of-the-sky--jimi-hendrix",
       "type": "project",
       "name": "Both Sides of the Sky",
-      "artist": "Jimi Hendrix",
       "mbid": "36dcb4f4-7efe-4f3a-943e-75c7ac232f83",
       "year": "2018",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Jimi Hendrix"
     },
     {
       "slug": "project:valleys-of-neptune--jimi-hendrix",
       "type": "project",
       "name": "Valleys of Neptune",
-      "artist": "Jimi Hendrix",
       "mbid": "8b15934c-36cc-499c-83c6-7b0449454e42",
       "year": "2010",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Jimi Hendrix"
     },
     {
       "slug": "project:drone-blues--jimi-hendrix",
       "type": "project",
       "name": "Drone Blues",
-      "artist": "Jimi Hendrix",
       "mbid": "0b0a472d-83f7-3f05-91a9-e2d66400314a",
       "year": "1993",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Jimi Hendrix"
     },
     {
       "slug": "project:cherokee-mist--jimi-hendrix",
       "type": "project",
       "name": "Cherokee Mist",
-      "artist": "Jimi Hendrix",
       "mbid": "0fd6db3b-e15b-469e-9780-0552c67a082b",
       "year": "1991",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Jimi Hendrix"
     },
     {
       "slug": "project:sotheby-s-auction-tapes--jimi-hendrix",
       "type": "project",
       "name": "Sotheby’s Auction Tapes",
-      "artist": "Jimi Hendrix",
       "mbid": "16f96d23-29fe-42d5-93c6-8919e04c3647",
       "year": "1981",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Jimi Hendrix"
     },
     {
       "slug": "project:nine-to-the-universe--jimi-hendrix",
       "type": "project",
       "name": "Nine to the Universe",
-      "artist": "Jimi Hendrix",
       "mbid": "d779da07-606c-3818-a485-bea4a96c2eae",
       "year": "1980",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Jimi Hendrix"
     },
     {
       "slug": "project:crash-landing--jimi-hendrix",
       "type": "project",
       "name": "Crash Landing",
-      "artist": "Jimi Hendrix",
       "mbid": "ee86146e-ab9b-33b0-9bf7-65bc75e244fb",
       "year": "1975",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Jimi Hendrix"
     },
     {
       "slug": "project:midnight-lightning--jimi-hendrix",
       "type": "project",
       "name": "Midnight Lightning",
-      "artist": "Jimi Hendrix",
       "mbid": "4d7d8bad-5b92-3ca8-ab5e-4af450e6eca2",
       "year": "1975",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Jimi Hendrix"
     },
     {
       "slug": "project:hornets-nest--jimi-hendrix",
       "type": "project",
       "name": "Hornets Nest",
-      "artist": "Jimi Hendrix",
       "mbid": "eaa48c06-9280-4d50-b0ca-e3afd7a4abf7",
       "year": "1973",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Jimi Hendrix"
     },
     {
       "slug": "project:war-heroes--jimi-hendrix",
       "type": "project",
       "name": "War Heroes",
-      "artist": "Jimi Hendrix",
       "mbid": "2c987541-2e0b-355c-ab2e-a2420d9bf46b",
       "year": "1972",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Jimi Hendrix"
     },
     {
       "slug": "project:rainbow-bridge--jimi-hendrix",
       "type": "project",
       "name": "Rainbow Bridge",
-      "artist": "Jimi Hendrix",
       "mbid": "020ef5ad-aa39-3e0f-8529-bcedde8c04d5",
       "year": "1971",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Jimi Hendrix"
     },
     {
       "slug": "project:the-cry-of-love--jimi-hendrix",
       "type": "project",
       "name": "The Cry of Love",
-      "artist": "Jimi Hendrix",
       "mbid": "7ab9cb52-d9d1-3dd1-b678-45e0d6f98cc6",
       "year": "1971",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Jimi Hendrix"
     },
     {
       "slug": "project:band-of-gypsys",
@@ -205,7 +205,13 @@
   },
   "influences": [],
   "influenced": [],
-  "collaborators": [],
+  "collaborators": [
+    {
+      "slug": "artist:little-richard",
+      "type": "artist",
+      "name": "Little Richard"
+    }
+  ],
   "aliases": [],
   "members": [
     {

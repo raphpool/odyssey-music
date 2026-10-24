@@ -30,9 +30,17 @@
   },
   "type": "genre",
   "editorial_definition": "Opera is a dramatic, multi-sensory art form that integrates singing, orchestral music, acting, and visual spectacle to tell stories, originating in late Renaissance Italy.",
+  "qid": "Q1344",
   "era": "1597–Present",
   "origin": "Florence, Italy",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:vocal-music",
+      "type": "genre",
+      "name": "Vocal Music",
+      "qid": "Q685884"
+    }
+  ],
   "subgenres": [],
   "related_genres": [],
   "key_artists": [
@@ -90,6 +98,5 @@
       "name": "Lucia di Lammermoor"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q1344"
+  "landmark_tracks": []
 }

@@ -32,6 +32,12 @@
       "type": "genre",
       "name": "Düsseldorf School",
       "qid": "Q5320459"
+    },
+    {
+      "slug": "genre:berlin-school-of-electronic-music",
+      "type": "genre",
+      "name": "Berlin school of electronic music",
+      "qid": "Q530750"
     }
   ],
   "related_genres": [

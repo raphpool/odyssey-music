@@ -15,9 +15,17 @@
   "materialized_at": "2026-05-13T13:19:30.402Z",
   "type": "genre",
   "editorial_definition": "A subgenre of jungle music defined by the heavy integration of Jamaican dancehall, reggae, and dub elements, featuring rapid breakbeats, deep sub-bass, and prominent ragga vocal samples.",
+  "qid": "Q2710523",
   "era": "Early 1990s–mid 1990s",
   "origin": "United Kingdom",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle",
+      "qid": "Q1102161"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {
@@ -123,6 +131,5 @@
       "type": "track",
       "name": "Burial (Leviticus song)"
     }
-  ],
-  "qid": "Q2710523"
+  ]
 }

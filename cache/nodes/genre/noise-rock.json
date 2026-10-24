@@ -29,7 +29,20 @@
   "qid": "Q181861",
   "era": "1980s to present",
   "origin": "United States",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:noise",
+      "type": "genre",
+      "name": "Noise",
+      "qid": "Q726239"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock",
+      "qid": "Q3071"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

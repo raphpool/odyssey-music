@@ -11,9 +11,17 @@
   "materialized_at": "2026-05-13T13:08:21.628Z",
   "type": "genre",
   "editorial_definition": "A genre of performance poetry rooted in Jamaican reggae and dub music, characterized by rhythmically delivered spoken-word text focused on political and social commentary.",
+  "qid": "Q1113204",
   "era": "1970s–Present",
   "origin": "Kingston, Jamaica",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub",
+      "qid": "Q212688"
+    }
+  ],
   "subgenres": [],
   "related_genres": [],
   "key_artists": [
@@ -72,6 +80,5 @@
       "name": "Rasta"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q1113204"
+  "landmark_tracks": []
 }

@@ -37,7 +37,14 @@
   "qid": "Q1325963",
   "era": "Late 1970s–1980s",
   "origin": "United States (notably Dayton, Ohio and Minneapolis, Minnesota)",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:synth-funk",
+      "type": "genre",
+      "name": "Synth-funk",
+      "qid": "Q30632022"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

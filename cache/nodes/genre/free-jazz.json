@@ -37,7 +37,14 @@
   "qid": "Q211781",
   "era": "Late 1950s – present",
   "origin": "United States",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:avant-garde-jazz",
+      "type": "genre",
+      "name": "Avant-Garde Jazz",
+      "qid": "Q790188"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

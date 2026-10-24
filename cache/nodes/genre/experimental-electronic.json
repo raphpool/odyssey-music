@@ -52,6 +52,12 @@
       "type": "genre",
       "name": "Electroacoustic Music",
       "qid": "Q1326777"
+    },
+    {
+      "slug": "genre:microsound",
+      "type": "genre",
+      "name": "Microsound",
+      "qid": "Q3503814"
     }
   ],
   "related_genres": [

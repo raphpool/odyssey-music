@@ -16,7 +16,14 @@
   "qid": "Q903735",
   "era": "1990s–Present",
   "origin": "Australia, Europe, UK",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:breakbeat",
+      "type": "genre",
+      "name": "Breakbeat",
+      "qid": "Q663519"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

@@ -24,7 +24,14 @@
   "origin": "United States and Canada",
   "sonic_markers": "Distorted guitars, raw vocal delivery, mid-tempo, amateur production.",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:proto-punk",
+      "type": "genre",
+      "name": "Proto-Punk",
+      "qid": "Q27190"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:psychedelic-rock",

@@ -20,7 +20,14 @@
   "type": "genre",
   "editorial_definition": "A genre based on the humorous, satirical, or ironic imitation of established popular songs, artists, or musical styles.",
   "qid": "Q2746731",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:comedy-music",
+      "type": "genre",
+      "name": "Comedy Music",
+      "qid": "Q5151495"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

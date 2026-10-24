@@ -24,7 +24,14 @@
   "qid": "Q58339",
   "era": "1960s–1980s",
   "origin": "United States (New York City, Philadelphia)",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:dance-music",
+      "type": "genre",
+      "name": "Dance music",
+      "qid": "Q316930"
+    }
+  ],
   "subgenres": [
     {
       "slug": "genre:italo-disco",
@@ -55,6 +62,17 @@
       "type": "genre",
       "name": "Cosmic Disco",
       "qid": "Q336567"
+    },
+    {
+      "slug": "genre:hi-nrg-hi-nrg",
+      "type": "genre",
+      "name": "Hi-NRG,Hi-NRG"
+    },
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
     }
   ],
   "related_genres": [

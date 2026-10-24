@@ -18,7 +18,14 @@
   "qid": "Q627906",
   "era": "Mid-1990s to present",
   "origin": "Global (origins in Europe and North America)",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    }
+  ],
   "subgenres": [
     {
       "slug": "genre:big-room-house",

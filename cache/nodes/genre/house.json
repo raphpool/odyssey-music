@@ -33,6 +33,18 @@
       "type": "genre",
       "name": "Disco",
       "qid": "Q58339"
+    },
+    {
+      "slug": "genre:dance-music",
+      "type": "genre",
+      "name": "Dance music",
+      "qid": "Q316930"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "subgenres": [
@@ -95,6 +107,24 @@
       "type": "genre",
       "name": "Amapiano",
       "qid": "Q85741139"
+    },
+    {
+      "slug": "genre:detroit-house",
+      "type": "genre",
+      "name": "Detroit House",
+      "qid": "Q108610706"
+    },
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse",
+      "qid": "Q1931555"
+    },
+    {
+      "slug": "genre:speed-garage",
+      "type": "genre",
+      "name": "Speed garage",
+      "qid": "Q780517"
     }
   ],
   "related_genres": [

@@ -34,7 +34,20 @@
       "qid": "Q11399"
     }
   ],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:arena-rock",
+      "type": "genre",
+      "name": "Arena Rock",
+      "qid": "Q379033"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New wave",
+      "qid": "Q187760"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:country-pop",

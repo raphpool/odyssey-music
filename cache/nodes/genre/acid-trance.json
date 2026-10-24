@@ -19,6 +19,7 @@
   "materialized_at": "2026-05-13T13:12:32.213Z",
   "type": "genre",
   "editorial_definition": "Acid trance is a high-energy electronic genre characterized by the marriage of the epic, euphoric structures of trance with the squelching, resonant, TB-303-driven basslines of acid house and techno.",
+  "qid": "Q481900",
   "era": "1990s",
   "origin": "Europe (Belgium, Germany, UK)",
   "parent_genres": [
@@ -33,6 +34,12 @@
       "type": "genre",
       "name": "Acid Music",
       "qid": "Q106528337"
+    },
+    {
+      "slug": "genre:acid-house",
+      "type": "genre",
+      "name": "Acid House",
+      "qid": "Q341364"
     }
   ],
   "subgenres": [],
@@ -97,6 +104,5 @@
       "name": "A Day on Our Planet"
     }
   ],
-  "landmark_tracks": [],
-  "qid": "Q481900"
+  "landmark_tracks": []
 }

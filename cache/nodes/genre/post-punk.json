@@ -24,8 +24,28 @@
   "qid": "Q598929",
   "era": "Late 1970s – Mid 1980s",
   "origin": "United Kingdom and United States",
-  "parent_genres": [],
-  "subgenres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New wave",
+      "qid": "Q187760"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock",
+      "qid": "Q3071"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:dance-punk",
+      "type": "genre",
+      "name": "Dance-punk",
+      "qid": "Q1643549"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:new-wave",

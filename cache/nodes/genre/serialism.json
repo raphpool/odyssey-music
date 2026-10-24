@@ -15,8 +15,16 @@
   "materialized_at": "2026-05-13T12:44:07.056Z",
   "type": "genre",
   "editorial_definition": "A compositional technique characterized by the use of an ordered series of elements (most notably pitch) as the generative basis for musical structure, effectively replacing traditional tonal hierarchy.",
+  "qid": "Q507246",
   "origin": "Austria, Germany, and France",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:modern-classical",
+      "type": "genre",
+      "name": "Modern Classical",
+      "qid": "Q65937946"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {
@@ -67,6 +75,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q507246"
+  "landmark_tracks": []
 }

@@ -27,6 +27,12 @@
       "type": "genre",
       "name": "Rock music",
       "qid": "Q11399"
+    },
+    {
+      "slug": "genre:indie-folk",
+      "type": "genre",
+      "name": "Indie folk",
+      "qid": "Q1317816"
     }
   ],
   "subgenres": [],

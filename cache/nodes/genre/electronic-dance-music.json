@@ -22,7 +22,14 @@
   "qid": "Q851213",
   "era": "1970s-present",
   "origin": "Global (roots in US/Jamaica/Europe)",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:dance-music",
+      "type": "genre",
+      "name": "Dance music",
+      "qid": "Q316930"
+    }
+  ],
   "subgenres": [
     {
       "slug": "genre:house",
@@ -77,6 +84,59 @@
       "type": "genre",
       "name": "Psytrance",
       "qid": "Q622871"
+    },
+    {
+      "slug": "genre:alternative-dance",
+      "type": "genre",
+      "name": "Alternative Dance",
+      "qid": "Q2187392"
+    },
+    {
+      "slug": "genre:big-beat",
+      "type": "genre",
+      "name": "Big Beat",
+      "qid": "Q858579"
+    },
+    {
+      "slug": "genre:dance-pop",
+      "type": "genre",
+      "name": "Dance-pop",
+      "qid": "Q211756"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    },
+    {
+      "slug": "genre:eurodance",
+      "type": "genre",
+      "name": "Eurodance",
+      "qid": "Q216961"
+    },
+    {
+      "slug": "genre:hi-nrg-hi-nrg",
+      "type": "genre",
+      "name": "Hi-NRG,Hi-NRG"
+    },
+    {
+      "slug": "genre:jungle",
+      "type": "genre",
+      "name": "Jungle",
+      "qid": "Q1102161"
+    },
+    {
+      "slug": "genre:rave",
+      "type": "genre",
+      "name": "Rave",
+      "qid": "Q898709"
+    },
+    {
+      "slug": "genre:uk-bass",
+      "type": "genre",
+      "name": "UK bass",
+      "qid": "Q2346991"
     }
   ],
   "related_genres": [

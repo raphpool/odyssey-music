@@ -56,6 +56,36 @@
       "type": "genre",
       "name": "Ambient dub",
       "qid": "Q3613770"
+    },
+    {
+      "slug": "genre:chillstep",
+      "type": "genre",
+      "name": "Chillstep",
+      "qid": "Q2963621"
+    },
+    {
+      "slug": "genre:hauntology",
+      "type": "genre",
+      "name": "hauntology",
+      "qid": "Q85765918"
+    },
+    {
+      "slug": "genre:new-age",
+      "type": "genre",
+      "name": "New age",
+      "qid": "Q213121"
+    },
+    {
+      "slug": "genre:space-ambient",
+      "type": "genre",
+      "name": "Space ambient",
+      "qid": "Q16625659"
+    },
+    {
+      "slug": "genre:space-music",
+      "type": "genre",
+      "name": "Space music",
+      "qid": "Q2342263"
     }
   ],
   "related_genres": [

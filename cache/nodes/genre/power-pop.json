@@ -29,8 +29,21 @@
   "qid": "Q837837",
   "era": "Mid-1960s – Present",
   "origin": "United States, United Kingdom",
-  "parent_genres": [],
-  "subgenres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:guitar-pop",
+      "type": "genre",
+      "name": "Guitar Pop"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:pop-punk",
+      "type": "genre",
+      "name": "Pop Punk",
+      "qid": "Q487914"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:garage-punk",

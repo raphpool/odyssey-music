@@ -82,91 +82,91 @@
       "slug": "project:rough-and-rowdy-ways--bob-dylan",
       "type": "project",
       "name": "Rough and Rowdy Ways",
-      "artist": "Bob Dylan",
       "mbid": "43b12592-d808-44de-a5df-ebd7c6b2b75c",
       "year": "2020",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:triplicate--bob-dylan",
       "type": "project",
       "name": "Triplicate",
-      "artist": "Bob Dylan",
       "mbid": "f490ca6a-ff96-4132-b235-71640f51d9d0",
       "year": "2017",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:fallen-angels--bob-dylan",
       "type": "project",
       "name": "Fallen Angels",
-      "artist": "Bob Dylan",
       "mbid": "3e9553c6-786a-4f85-8a2a-1b70cd166742",
       "year": "2016",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:shadows-in-the-night--bob-dylan",
       "type": "project",
       "name": "Shadows in the Night",
-      "artist": "Bob Dylan",
       "mbid": "5e3e123f-0746-49fa-ac3a-1acf0dc254a0",
       "year": "2015",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:tempest--bob-dylan",
       "type": "project",
       "name": "Tempest",
-      "artist": "Bob Dylan",
       "mbid": "42555dd2-d671-4c96-85c3-3939232ffc4b",
       "year": "2012",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:christmas-in-the-heart--bob-dylan",
       "type": "project",
       "name": "Christmas in the Heart",
-      "artist": "Bob Dylan",
       "mbid": "16d64d01-6d92-40b2-86ba-7f76c018ab9c",
       "year": "2009",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:together-through-life--bob-dylan",
       "type": "project",
       "name": "Together Through Life",
-      "artist": "Bob Dylan",
       "mbid": "2202f7cc-6ce1-3aea-85b0-163347528402",
       "year": "2009",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:modern-times--bob-dylan",
       "type": "project",
       "name": "Modern Times",
-      "artist": "Bob Dylan",
       "mbid": "d300b74b-02b4-33e3-998e-e4405e8e6580",
       "year": "2006",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:love-and-theft--bob-dylan",
       "type": "project",
       "name": "“Love and Theft”",
-      "artist": "Bob Dylan",
       "mbid": "9980ffe5-c5b5-3a83-8c1e-1ec6618f97ca",
       "year": "2001",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:things-have-changed--bob-dylan",
       "type": "project",
       "name": "Things Have Changed",
-      "artist": "Bob Dylan",
       "mbid": "a5e90e01-22f4-477d-9e78-d86b0b14d312",
       "year": "2000",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:time-out-of-mind",
@@ -180,118 +180,118 @@
       "slug": "project:world-gone-wrong--bob-dylan",
       "type": "project",
       "name": "World Gone Wrong",
-      "artist": "Bob Dylan",
       "mbid": "fb0d0547-c8ec-3300-8f70-6f45361578f3",
       "year": "1993",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:good-as-i-been-to-you--bob-dylan",
       "type": "project",
       "name": "Good as I Been to You",
-      "artist": "Bob Dylan",
       "mbid": "43f420f8-44ca-3ff2-92c2-c6f285cb163b",
       "year": "1992",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:under-the-red-sky--bob-dylan",
       "type": "project",
       "name": "Under the Red Sky",
-      "artist": "Bob Dylan",
       "mbid": "8d231aa3-4a4e-306a-a3f9-4421e846bb1a",
       "year": "1990",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:oh-mercy--bob-dylan",
       "type": "project",
       "name": "Oh Mercy",
-      "artist": "Bob Dylan",
       "mbid": "36675813-6c3c-33fa-8eaf-b1cd66d4f006",
       "year": "1989",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:down-in-the-groove--bob-dylan",
       "type": "project",
       "name": "Down in the Groove",
-      "artist": "Bob Dylan",
       "mbid": "ce8a72cf-10c7-3dea-b9e7-3dd260a9ed5c",
       "year": "1988",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:knocked-out-loaded--bob-dylan",
       "type": "project",
       "name": "Knocked Out Loaded",
-      "artist": "Bob Dylan",
       "mbid": "423bf65a-6e28-3a14-8ea7-08912eb15e29",
       "year": "1986",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:empire-burlesque--bob-dylan",
       "type": "project",
       "name": "Empire Burlesque",
-      "artist": "Bob Dylan",
       "mbid": "a90b32b2-c84d-35ad-bab3-07e6799cde5b",
       "year": "1985",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:infidels--bob-dylan",
       "type": "project",
       "name": "Infidels",
-      "artist": "Bob Dylan",
       "mbid": "60f27712-263a-348c-8eda-b5315a67e8c2",
       "year": "1983",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:shot-of-love--bob-dylan",
       "type": "project",
       "name": "Shot of Love",
-      "artist": "Bob Dylan",
       "mbid": "4491344e-1ffd-339d-a2c5-e6a369b4708e",
       "year": "1981",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:saved--bob-dylan",
       "type": "project",
       "name": "Saved",
-      "artist": "Bob Dylan",
       "mbid": "a11f33bf-1573-3b99-bcc6-d0c6e6592bcd",
       "year": "1980",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:slow-train-coming--bob-dylan",
       "type": "project",
       "name": "Slow Train Coming",
-      "artist": "Bob Dylan",
       "mbid": "84b2989d-4364-3882-9570-30d4a048c487",
       "year": "1979",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:street-legal--bob-dylan",
       "type": "project",
       "name": "Street‐Legal",
-      "artist": "Bob Dylan",
       "mbid": "5883c91a-43ea-34e6-922d-1dc12fd48467",
       "year": "1978",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:desire--bob-dylan",
       "type": "project",
       "name": "Desire",
-      "artist": "Bob Dylan",
       "mbid": "fc325dd3-73ed-36aa-9c77-6b65a958e3cf",
       "year": "1976",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:blood-on-the-tracks",
@@ -305,73 +305,73 @@
       "slug": "project:the-basement-tapes--bob-dylan",
       "type": "project",
       "name": "The Basement Tapes",
-      "artist": "Bob Dylan",
       "mbid": "47873729-6db0-3431-99e7-0292e939dadf",
       "year": "1975",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:planet-waves--bob-dylan",
       "type": "project",
       "name": "Planet Waves",
-      "artist": "Bob Dylan",
       "mbid": "aedd518d-d7e0-3595-80c7-54d2aad292f8",
       "year": "1974",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:dylan--bob-dylan",
       "type": "project",
       "name": "Dylan",
-      "artist": "Bob Dylan",
       "mbid": "a876f1e5-9a1a-32ef-a7f2-8971511bd19f",
       "year": "1973",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:pat-garrett-and-billy-the-kid--bob-dylan",
       "type": "project",
       "name": "Pat Garrett & Billy the Kid",
-      "artist": "Bob Dylan",
       "mbid": "443726be-82e0-3d6d-ab2a-2de3099b0dde",
       "year": "1973",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:new-morning--bob-dylan",
       "type": "project",
       "name": "New Morning",
-      "artist": "Bob Dylan",
       "mbid": "4f2b915f-cc82-3c18-ac9b-05f3d4df622d",
       "year": "1970",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:self-portrait--bob-dylan",
       "type": "project",
       "name": "Self Portrait",
-      "artist": "Bob Dylan",
       "mbid": "6163aa70-d97f-34e5-a5bf-54b7d85a7ea0",
       "year": "1970",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:nashville-skyline--bob-dylan",
       "type": "project",
       "name": "Nashville Skyline",
-      "artist": "Bob Dylan",
       "mbid": "2ca28746-8987-3015-b54c-75b3aa8ca1a1",
       "year": "1969",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:john-wesley-harding--bob-dylan",
       "type": "project",
       "name": "John Wesley Harding",
-      "artist": "Bob Dylan",
       "mbid": "32981714-597a-32dd-9f29-b2f7566fed89",
       "year": "1967",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:blonde-on-blonde",
@@ -393,19 +393,19 @@
       "slug": "project:another-side-of-bob-dylan--bob-dylan",
       "type": "project",
       "name": "Another Side of Bob Dylan",
-      "artist": "Bob Dylan",
       "mbid": "b18ef710-0e47-3c10-ab0b-6631533549ee",
       "year": "1964",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:the-times-they-are-a-changin--bob-dylan",
       "type": "project",
       "name": "The Times They Are A‐Changin’",
-      "artist": "Bob Dylan",
       "mbid": "846f8032-9a85-3f4f-b7f5-28c86573d044",
       "year": "1964",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:the-freewheelin-bob-dylan",
@@ -419,10 +419,10 @@
       "slug": "project:bob-dylan--bob-dylan",
       "type": "project",
       "name": "Bob Dylan",
-      "artist": "Bob Dylan",
       "mbid": "6ac612a5-e815-3fed-b341-8b3faa351df4",
       "year": "1962",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Bob Dylan"
     },
     {
       "slug": "project:highway-61-revisited",
@@ -476,7 +476,13 @@
   },
   "influences": [],
   "influenced": [],
-  "collaborators": [],
+  "collaborators": [
+    {
+      "slug": "artist:george-harrison",
+      "type": "artist",
+      "name": "George Harrison"
+    }
+  ],
   "aliases": [],
   "members": [],
   "similar_artists": [

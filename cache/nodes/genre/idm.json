@@ -25,6 +25,11 @@
       "type": "genre",
       "name": "Drill and Bass",
       "qid": "Q1259016"
+    },
+    {
+      "slug": "genre:drill-n-bass",
+      "type": "genre",
+      "name": "Drill 'n' bass"
     }
   ],
   "related_genres": [

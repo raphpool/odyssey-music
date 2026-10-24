@@ -30,7 +30,21 @@
   },
   "type": "genre",
   "editorial_definition": "A mid-2000s British microgenre and aesthetic movement that fused indie rock with electronica and dance-punk, known for its neon visuals and high-energy club-friendly sound.",
-  "parent_genres": [],
+  "qid": "Q1995980",
+  "parent_genres": [
+    {
+      "slug": "genre:alternative-dance",
+      "type": "genre",
+      "name": "Alternative Dance",
+      "qid": "Q2187392"
+    },
+    {
+      "slug": "genre:dance-punk",
+      "type": "genre",
+      "name": "Dance-punk",
+      "qid": "Q1643549"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {
@@ -87,6 +101,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q1995980"
+  "landmark_tracks": []
 }

@@ -18,7 +18,14 @@
   "qid": "Q3071",
   "era": "1970s - Present",
   "origin": "London, England; New York City, USA",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock",
+      "qid": "Q11399"
+    }
+  ],
   "subgenres": [
     {
       "slug": "genre:hardcore-punk",
@@ -49,6 +56,24 @@
       "type": "genre",
       "name": "Noise Rock",
       "qid": "Q181861"
+    },
+    {
+      "slug": "genre:dance-punk",
+      "type": "genre",
+      "name": "Dance-punk",
+      "qid": "Q1643549"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New wave",
+      "qid": "Q187760"
+    },
+    {
+      "slug": "genre:no-wave",
+      "type": "genre",
+      "name": "No Wave",
+      "qid": "Q823080"
     }
   ],
   "related_genres": [

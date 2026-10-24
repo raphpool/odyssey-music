@@ -24,7 +24,19 @@
       "qid": "Q11399"
     }
   ],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:arena-rock",
+      "type": "genre",
+      "name": "Arena Rock",
+      "qid": "Q379033"
+    },
+    {
+      "slug": "genre:desert-rock",
+      "type": "genre",
+      "name": "Desert Rock"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:heavy-metal",

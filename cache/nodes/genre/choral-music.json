@@ -29,7 +29,14 @@
   "qid": "Q1076513",
   "era": "Antiquity to present",
   "origin": "Europe (liturgical traditions)",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:vocal-music",
+      "type": "genre",
+      "name": "Vocal Music",
+      "qid": "Q685884"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

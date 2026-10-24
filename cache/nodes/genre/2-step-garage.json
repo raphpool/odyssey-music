@@ -30,7 +30,14 @@
       "qid": "Q1165777"
     }
   ],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep",
+      "qid": "Q20474"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:dubstep",

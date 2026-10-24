@@ -18,7 +18,14 @@
   "qid": "Q25094849",
   "era": "1960s–present",
   "origin": "United Kingdom, United States",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:pop",
+      "type": "genre",
+      "name": "Pop",
+      "qid": "Q37073"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

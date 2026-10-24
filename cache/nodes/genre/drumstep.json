@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T13:16:05.757Z",
   "type": "genre",
   "editorial_definition": "Drumstep is a hybrid electronic dance music genre that fuses the high-tempo, breakbeat-driven energy of Drum and Bass with the aggressive, bass-heavy sound design and rhythmic focus of Dubstep and Brostep.",
+  "qid": "Q24876318",
   "era": "Late 2000s - Present",
   "origin": "United Kingdom / International",
   "sonic_markers": "Fast-paced tempos (170-175 BPM), half-time rhythmic structures, metallic or modulated bass patches, aggressive sound design, high-energy percussion.",
@@ -30,6 +31,12 @@
       "type": "genre",
       "name": "Drum and Bass",
       "qid": "Q188994"
+    },
+    {
+      "slug": "genre:brostep",
+      "type": "genre",
+      "name": "Brostep",
+      "qid": "Q20903"
     }
   ],
   "subgenres": [
@@ -99,6 +106,5 @@
       "type": "track",
       "name": "Lost in Sound"
     }
-  ],
-  "qid": "Q24876318"
+  ]
 }

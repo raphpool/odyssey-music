@@ -15,6 +15,7 @@
   "materialized_at": "2026-05-13T12:47:06.764Z",
   "type": "genre",
   "editorial_definition": "A subgenre of ambient music characterized by slow, hypnotic, and expansive soundscapes designed to evoke the vastness of space and promote contemplative states.",
+  "qid": "Q16625659",
   "era": "Early 1970s – present",
   "origin": "Germany and Japan (early 1970s)",
   "parent_genres": [
@@ -29,6 +30,12 @@
       "type": "genre",
       "name": "New-age music",
       "qid": "Q213121"
+    },
+    {
+      "slug": "genre:space-music",
+      "type": "genre",
+      "name": "Space music",
+      "qid": "Q2342263"
     }
   ],
   "subgenres": [],
@@ -78,6 +85,5 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q16625659"
+  "landmark_tracks": []
 }

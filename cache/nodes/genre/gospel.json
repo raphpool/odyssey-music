@@ -30,10 +30,24 @@
   },
   "type": "genre",
   "editorial_definition": "Gospel is a genre of American Protestant music originating in the 19th-century religious revivals, defined by its Christian lyrical content and highly emotive musical traditions that have evolved in both Black and white cultural contexts.",
+  "qid": "Q180268",
   "era": "19th century to present",
   "origin": "United States",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B",
+      "qid": "Q45981"
+    },
+    {
+      "slug": "genre:soul",
+      "type": "genre",
+      "name": "Soul",
+      "qid": "Q131272"
+    }
+  ],
   "related_genres": [],
   "key_artists": [
     {
@@ -59,6 +73,5 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": [],
-  "qid": "Q180268"
+  "landmark_tracks": []
 }

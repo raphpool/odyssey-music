@@ -26,10 +26,24 @@
   },
   "type": "genre",
   "editorial_definition": "Ska is an upbeat, syncopated Jamaican music style from the late 1950s characterized by an offbeat 'chop,' heavy horn arrangements, and a fusion of jazz, R&B, and Caribbean folk rhythms.",
+  "qid": "Q54365",
   "era": "1950s-present",
   "origin": "Jamaica",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae",
+      "qid": "Q9794"
+    },
+    {
+      "slug": "genre:rocksteady",
+      "type": "genre",
+      "name": "Rocksteady",
+      "qid": "Q573484"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:reggae",
@@ -112,6 +126,5 @@
       "type": "track",
       "name": "Guns of Navarone"
     }
-  ],
-  "qid": "Q54365"
+  ]
 }

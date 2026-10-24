@@ -54,6 +54,12 @@
       "type": "genre",
       "name": "Country rock",
       "qid": "Q613408"
+    },
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock",
+      "qid": "Q11399"
     }
   ],
   "related_genres": [

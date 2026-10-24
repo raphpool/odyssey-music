@@ -18,7 +18,14 @@
   "qid": "Q1100989",
   "era": "1990s–Present",
   "origin": "Global, predominantly Europe and North America",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic",
+      "qid": "Q105763581"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {
