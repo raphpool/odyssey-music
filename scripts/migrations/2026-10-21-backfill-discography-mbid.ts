@@ -506,8 +506,9 @@ async function run(options: BackfillOptions): Promise<BackfillResult> {
 		}
 		const artist = parsed.data;
 		// The year is part of it: the unrated cut spares recent releases, so a resume after 1 January decides again.
-		// So is the date (TRA-654): a release group that was future yesterday may not be today, and the other way round.
-		const identity = `policy ${DISCOGRAPHY_POLICY_VERSION}|year ${options.currentYear}|date ${options.currentDate}|${mbid}|${artist.name}|${artist.artist_kind ?? ""}`;
+		// The date is NOT (TRA-654 review): the version is enough, and a resume after midnight UTC would redo ~2 000
+		// requests for a `future` that changes for one release group in a run.
+		const identity = `policy ${DISCOGRAPHY_POLICY_VERSION}|year ${options.currentYear}|${mbid}|${artist.name}|${artist.artist_kind ?? ""}`;
 		const current = fingerprintOf(identity, rawEdges);
 		// Before the cap: an artist that reached the cap DURING the run (every entry now has its mbid) would
 		// otherwise be re-read as a plain `cap` skip and lose the decision the manifest recorded for it.

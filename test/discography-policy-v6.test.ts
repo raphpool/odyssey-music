@@ -515,6 +515,44 @@ describe("discography policy v8 (TRA-654)", () => {
 			expect(result.ambiguous).toEqual([{ slug: entry.slug, reason: "future" }]);
 		});
 
+		// Review of #614: `future` was filtered before the slug duplicate, so the single "Bloom" (out) took the slug of the
+		// album "Bloom" (announced), and the album could never enter once released.
+		describe("a single out that shares its title with an album announced", () => {
+			const bloomSingle = (): ReleaseGroupCandidate =>
+				groupOf("Bloom", "2026-09-12", { primaryType: "Single" });
+			const bloomAlbum = (): ReleaseGroupCandidate => groupOf("Bloom", "2026-11-20");
+
+			it("does not let the single take the slug of the album: neither is added before the album is out", () => {
+				const single = bloomSingle();
+				const album = bloomAlbum();
+
+				const { kept, excluded } = selectReleases([single, album], policy);
+
+				expect(kept).toEqual([]);
+				expect(excluded).toEqual([{ mbid: album.mbid, title: "Bloom", reason: "future" }]);
+				expect(mergeFor(policy, [], [single, album]).added).toEqual([]);
+			});
+
+			it("adds the album once its date has passed, not the single", () => {
+				const single = bloomSingle();
+				const album = bloomAlbum();
+				const later = { ...policy, currentDate: "2026-11-21" };
+
+				const { kept, excluded } = selectReleases([single, album], later);
+
+				expect(kept).toEqual([album]);
+				expect(excluded).toEqual([]);
+				expect(mergeFor(later, [], [single, album]).added.map((a) => a.mbid)).toEqual([album.mbid]);
+			});
+
+			it("still keeps a single out whose slug no announced release group shares", () => {
+				const single = groupOf("Other", "2026-09-12", { primaryType: "Single" });
+				const album = bloomAlbum();
+
+				expect(selectReleases([single, album], policy).kept).toEqual([single]);
+			});
+		});
+
 		it("judges the release group the decision picked: the album out is posed, its announced single is not", () => {
 			const album = groupOf("Variance", "2025-05-01");
 			const single = groupOf("Variance", "2026-11-20", { primaryType: "Single" });

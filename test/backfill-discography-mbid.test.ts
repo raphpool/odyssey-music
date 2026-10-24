@@ -1295,17 +1295,16 @@ describe("the date handed to the policy (TRA-654)", () => {
 		expect(entry.excluded?.future).toBe(0);
 	});
 
-	it("does not replay a resume made under another date", async () => {
+	// The version is in the fingerprint (test above, version 99); the date is not: a resume after midnight UTC
+	// would redo every artist for a `future` that rarely changes.
+	it("replays a resume made under another date: only the version invalidates it", async () => {
 		const w = world();
-		const id = await putArtistWithAnnouncedSingle(w);
+		await putArtistWithAnnouncedSingle(w);
 		await runBackfill(options(w, { apply: true, currentDate: "2026-10-24" }));
 
 		w.requests.length = 0;
-		await runBackfill(options(w, { apply: true, resume: true, currentDate: "2026-10-24" }));
-		expect(w.requests).toEqual([]);
-
 		await runBackfill(options(w, { apply: true, resume: true, currentDate: "2026-10-25" }));
-		expect(new Set(w.requests.map((r) => r.artist))).toEqual(new Set([id]));
+		expect(w.requests).toEqual([]);
 	});
 });
 

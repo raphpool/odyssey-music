@@ -231,7 +231,10 @@ function hasComposerSeparator(c: ReleaseGroupCandidate): boolean {
 // Artists is told apart from a plain "credit" mismatch, which is what the exclusion log is read for.
 // TRA-654: the ";" also closes a release group of two credits ("Duke Ellington; Buffalo Philharmonic"). v7 only
 // read it for the pose of a release group of three credits (TRA-653), so the same recording, credited with two
-// names, passed this rule and could be added to the discography.
+// names, passed this rule and could be added to the discography. Same logic as MAX_CREDITS: "composer; performers"
+// is somebody else's recording of the artist's work. The price falls on the composers, whose catalogue is mostly
+// such recordings (Schoenberg: 40 entries before, 13 on a fresh generation); kept on purpose, a follow-up ticket
+// looks at them. The votes of these recordings still rate the artist (ratedPool).
 // `forRating` leaves the ";" out: see ratedPool.
 function creditVerdict(
 	c: ReleaseGroupCandidate,
@@ -403,7 +406,8 @@ function isRecentRelease(c: ReleaseGroupCandidate, policy: DiscographyPolicy): b
  * only release is a "60s edit" promo) is not told apart. The release-group browse (`inc=artist-credits+ratings`)
  * carries no release, hence no release status; reading it costs one more MusicBrainz request per release group
  * (`inc=releases`), at the 1 request per second the client is held to. It is not worth it for a rare case: the
- * entries known to be in that situation are removed by name (TRA-652).
+ * entries known to be in that situation are removed by name (TRA-652), but nothing keeps them out afterwards: after
+ * that removal, "Intentions" comes back at the next run of the backfill, until the status is read. Accepted, known.
  */
 export function selectReleases(
 	candidates: readonly ReleaseGroupCandidate[],
@@ -413,14 +417,26 @@ export function selectReleases(
 	excluded: { mbid: string; title: string; reason: ExclusionReason }[];
 } {
 	const eligible: ReleaseGroupCandidate[] = [];
+	const notOutYet = new Set<ReleaseGroupCandidate>();
 	const excluded: { mbid: string; title: string; reason: ExclusionReason }[] = [];
 	for (const candidate of candidates) {
 		const verdict = classifyRelease(candidate, policy);
 		if (verdict.ok) eligible.push(candidate);
-		else excluded.push({ mbid: candidate.mbid, title: candidate.title, reason: verdict.reason });
+		else if (verdict.reason === "future") {
+			// `future` is the last check, so this one passes every other. It still takes part in the slug
+			// duplicate below (TRA-654 review): left out before, a single "Bloom" of September took the slug of
+			// the album "Bloom" announced for November, and the album could never enter once released.
+			eligible.push(candidate);
+			notOutYet.add(candidate);
+		} else excluded.push({ mbid: candidate.mbid, title: candidate.title, reason: verdict.reason });
 	}
 
-	const distinct = dedupeBySlug(eligible, policy);
+	const distinct: ReleaseGroupCandidate[] = [];
+	for (const candidate of dedupeBySlug(eligible, policy)) {
+		if (notOutYet.has(candidate)) {
+			excluded.push({ mbid: candidate.mbid, title: candidate.title, reason: "future" });
+		} else distinct.push(candidate);
+	}
 	const votedCount = ratedPool(candidates, policy).filter(isVoted).length;
 	const cutUnrated = votedCount >= MIN_VOTED_FOR_UNRATED_CUT;
 	const rated: ReleaseGroupCandidate[] = [];
