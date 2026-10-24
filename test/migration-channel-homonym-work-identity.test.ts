@@ -132,7 +132,7 @@ interface Fixture extends ChannelFixture {
 	replayDir: string;
 }
 
-function makeFixture(): Fixture {
+function makeFixture({ producer = false }: { producer?: boolean } = {}): Fixture {
 	// The pairs the migration would write are committed already (the channel refuses an apply without them):
 	// the table the channel hands to the migration is this one.
 	const base = createChannelWorkspace("homonym-channel-", {
@@ -151,6 +151,8 @@ function makeFixture(): Fixture {
 			editorial_article: `Pink Floyd's ninth studio album, Wish You Were Here, was released in 1975. ${"x".repeat(100)}`,
 			editorial_pitch: "Pink Floyd's 1975 concept album Wish You Were Here.",
 			artists: [{ ...ref("artist:american-hot-wax", "American Hot Wax"), mbid: MB_HOT_WAX }],
+			// With the producer edge too, an ambiguous MusicBrainz no longer leaves the work alone: it strips it.
+			...(producer ? { producers: [ref("artist:pink-floyd", "Pink Floyd")] } : {}),
 		}),
 	);
 	writeNode(
@@ -208,7 +210,9 @@ describe("migration channel: the homonym migration, preview then apply of one jo
 
 		expect(apply.stderr).not.toMatch(/ERROR/);
 		expect(apply.status).toBe(0);
-		expect(apply.stdout).toContain(`${MIGRATION_NAME}: same renamed, removed and redirects as the preview`);
+		expect(apply.stdout).toContain(
+			`${MIGRATION_NAME}: same outcome (renamed, removed, redirects, stripped, fixed) as the preview`,
+		);
 		expect(serverNodeExists(fx, NEW)).toBe(true);
 		expect(serverNodeExists(fx, OLD)).toBe(false);
 	}, 240_000);
@@ -226,7 +230,7 @@ describe("migration channel: the homonym migration, preview then apply of one jo
 
 		expect(apply.status).not.toBe(0);
 		expect(apply.stderr).toContain(
-			`migration ${MIGRATION_NAME} ended with other renamed, removed or redirects`,
+			`migration ${MIGRATION_NAME} ended with another outcome (renamed, removed, redirects, stripped, fixed)`,
 		);
 		expect(apply.stderr).toContain(`renamed ${OLD} -> ${NEW}: in the preview, not in the apply`);
 		expect(existsSync(join(fx.serverRoot, "backups"))).toBe(false);
@@ -248,6 +252,55 @@ describe("migration channel: the homonym migration, preview then apply of one jo
 		expect(serverTree(fx)).toEqual(before);
 	}, 240_000);
 
+	it("refuses an apply that strips in place what the preview corrected: no slug is left to compare", async () => {
+		// Pink Floyd also produced the album: with MusicBrainz ambiguous the identity is removed (`stripped`), the
+		// slug stays, and the preview's `fixed` is gone. `renamed` differs here too; the lines on `stripped` and
+		// `fixed` are what the next two tests isolate.
+		const fx = makeFixture({ producer: true });
+		await runChannel(fx, migrationArgs, "resolves");
+		const before = serverTree(fx);
+
+		const apply = await runChannel(fx, ["--apply", ...migrationArgs], "ambiguous");
+
+		expect(apply.status).not.toBe(0);
+		expect(apply.stderr).toContain(`stripped ${OLD}: in the apply, not in the preview`);
+		expect(apply.stderr).toContain(`fixed ${OLD}: in the preview, not in the apply`);
+		expect(existsSync(join(fx.serverRoot, "backups"))).toBe(false);
+		expect(serverTree(fx)).toEqual(before);
+	}, 240_000);
+
+	// The two next tests change the recorded preview only (the apply's MusicBrainz is the same), so that
+	// `stripped` or `fixed` is the one field that differs: `renamed`, `removed` and `redirects` stay equal.
+	it.each([
+		[
+			"stripped",
+			"the preview stripped a work the apply does not",
+			{ stripped: [{ slug: "track:other", reason: "x" }] },
+		],
+		["fixed", "the preview did not correct the work the apply corrects", { fixed: [] }],
+	])(
+		"refuses an apply when only `%s` differs: %s",
+		async (field, _label, change) => {
+			const fx = makeFixture();
+			await runChannel(fx, migrationArgs, "resolves");
+			const manifest = JSON.parse(readFileSync(recordedPath(fx), "utf8")) as Obj;
+			writeFileSync(recordedPath(fx), JSON.stringify({ ...manifest, ...change }));
+			const before = serverTree(fx);
+
+			const apply = await runChannel(fx, ["--apply", ...migrationArgs], "resolves");
+
+			expect(apply.status).not.toBe(0);
+			expect(apply.stderr).toContain("ended with another outcome");
+			expect(apply.stderr).toMatch(
+				new RegExp(`^${field} .*: in the (preview|apply), not in the (apply|preview)$`, "m"),
+			);
+			expect(apply.stderr).not.toMatch(/^(renamed|removed|redirects) /m);
+			expect(existsSync(join(fx.serverRoot, "backups"))).toBe(false);
+			expect(serverTree(fx)).toEqual(before);
+		},
+		240_000,
+	);
+
 	it("records the outcome of a first run and replays nothing: an apply with no preview in the job goes through", async () => {
 		const fx = makeFixture();
 		expect(existsSync(recordedPath(fx))).toBe(false);
@@ -256,7 +309,7 @@ describe("migration channel: the homonym migration, preview then apply of one jo
 
 		expect(apply.stderr).not.toMatch(/ERROR/);
 		expect(apply.status).toBe(0);
-		expect(apply.stdout).not.toContain("same renamed, removed and redirects");
+		expect(apply.stdout).not.toContain("same outcome (renamed, removed, redirects, stripped, fixed)");
 		// Allowed, but never silent.
 		expect(apply.stderr).toContain(`WARNING: ${MIGRATION_NAME}: no preview recorded`);
 		const recorded = JSON.parse(readFileSync(recordedPath(fx), "utf8")) as Obj;

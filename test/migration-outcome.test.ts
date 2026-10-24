@@ -15,8 +15,26 @@ const outcome = (over: Partial<MigrationOutcome> = {}): MigrationOutcome => ({
 	renamed: { [OLD]: NEW },
 	removed: ["nodes/track/x.json"],
 	redirects: { [OLD]: NEW, "project:wish-you-were-here": NEW },
+	stripped: [],
+	fixed: [],
 	...over,
 });
+
+/** A manifest as the homonym migration writes it: the lists hold entries (reason, artists...), not slugs. */
+const manifestWith = (stripped: string[], fixed: string[], extra: Record<string, unknown> = {}) => ({
+	renamed: { [OLD]: NEW },
+	removed: [],
+	redirects: {},
+	stripped: stripped.map((slug) => ({ slug, reason: "ambiguous-candidates", artists: ["artist:a"] })),
+	fixed: fixed.map((slug) => ({ slug, to: NEW })),
+	...extra,
+});
+
+const diffOfManifests = (preview: unknown, apply: unknown): string[] => {
+	const [a, b] = [outcomeOf(preview), outcomeOf(apply)];
+	if (!a.ok || !b.ok) throw new Error("manifest refused");
+	return diffOutcomes(a.value, b.value);
+};
 
 describe("diffOutcomes", () => {
 	it("is empty for the same outcome, whatever the order of the removals", () => {
@@ -54,6 +72,31 @@ describe("diffOutcomes", () => {
 		]);
 	});
 
+	it("names a work the apply strips and the preview left alone, and the other way round", () => {
+		expect(diffOfManifests(manifestWith([], []), manifestWith([OLD], []))).toEqual([
+			`stripped ${OLD}: in the apply, not in the preview`,
+		]);
+		expect(diffOfManifests(manifestWith([OLD], []), manifestWith([], []))).toEqual([
+			`stripped ${OLD}: in the preview, not in the apply`,
+		]);
+	});
+
+	it("names a work the apply corrects and the preview did not, and the other way round", () => {
+		expect(diffOfManifests(manifestWith([], []), manifestWith([], [OLD]))).toEqual([
+			`fixed ${OLD}: in the apply, not in the preview`,
+		]);
+		expect(diffOfManifests(manifestWith([], [OLD]), manifestWith([], []))).toEqual([
+			`fixed ${OLD}: in the preview, not in the apply`,
+		]);
+	});
+
+	it("compares the sets of slugs: not the order, not the reasons of each entry", () => {
+		const preview = manifestWith(["track:a", "track:b"], ["project:x", "project:y"]);
+		const apply = manifestWith(["track:b", "track:a"], ["project:y", "project:x"]);
+		apply.stripped = apply.stripped.map((e) => ({ ...e, reason: "no-replacement", artists: [] }));
+		expect(diffOfManifests(preview, apply)).toEqual([]);
+	});
+
 	it("counts a removal listed twice as different from one listed once", () => {
 		expect(
 			diffOutcomes(
@@ -78,7 +121,7 @@ describe("diffOutcomes", () => {
 });
 
 describe("outcomeOf", () => {
-	it("reads only the three fields, whatever else the manifest holds (a conflict's reason is not part of it)", () => {
+	it("reads only the outcome fields, whatever else the manifest holds (a conflict's reason is not part of it)", () => {
 		const preview = {
 			...outcome(),
 			conflicts: [{ slug: "project:a", to: "project:b", reason: "target-is-renamed" }],
@@ -99,6 +142,9 @@ describe("outcomeOf", () => {
 		["renamed holding a non-slug", { renamed: { a: 1 }, removed: [], redirects: {} }],
 		["removed not a list", { renamed: {}, removed: "x", redirects: {} }],
 		["redirects an array", { renamed: {}, removed: [], redirects: [] }],
+		["stripped not a list", { renamed: {}, removed: [], redirects: {}, stripped: "x" }],
+		["stripped holding an entry with no slug", { renamed: {}, removed: [], redirects: {}, stripped: [{}] }],
+		["fixed holding a bare slug", { renamed: {}, removed: [], redirects: {}, fixed: ["project:a"] }],
 	])("refuses a manifest with %s", (_label, manifest) => {
 		expect(outcomeOf(manifest).ok).toBe(false);
 	});
@@ -131,6 +177,15 @@ describe("validate-migrated-union.ts compare-outcome", () => {
 		const result = compare(write("p2.json", outcome()), write("a2.json", outcome({ renamed: {} })));
 		expect(result.status).toBe(1);
 		expect(result.stderr).toContain(`renamed ${OLD} -> ${NEW}: in the preview, not in the apply`);
+	});
+
+	it("exits 1 when the apply strips a work the preview left alone, with no rename involved", () => {
+		const result = compare(
+			write("p5.json", manifestWith([], [], { renamed: {} })),
+			write("a5.json", manifestWith([OLD], [], { renamed: {} })),
+		);
+		expect(result.status).toBe(1);
+		expect(result.stderr).toBe(`stripped ${OLD}: in the apply, not in the preview\n`);
 	});
 
 	it("fails closed on a manifest it cannot read", () => {

@@ -2,9 +2,13 @@
  * What a migration run does to the server, as its manifest declares it: the slugs it renames (`renamed`), the
  * files it removes (`removed`) and the redirects it adds (`redirects`). Those three are what the channel acts on
  * (deploy/sync-genre-cache.sh deletes exactly the old side of `renamed` and `removed`, and only ships a pair that
- * is committed), so they are what the apply must repeat from the preview (TRA-610, PR 3). A node the migration
- * rewrites IN PLACE (an identity stripped, an edge dropped) is not among them: it is neither a deletion nor a
- * redirect, and the channel never reads it from the manifest.
+ * is committed), so they are what the apply must repeat from the preview (TRA-610, PR 3).
+ *
+ * A node rewritten IN PLACE is neither a deletion nor a redirect, and the channel never reads it from the manifest,
+ * but it is as much a write: the homonym migration strips a wrong identity (`stripped`) or corrects a work (`fixed`)
+ * without moving its slug. Those two lists are compared too, as SETS OF SLUGS (neither the order nor the reasons
+ * and details of each entry), so a MusicBrainz that answers differently in the apply cannot strip a work the
+ * preview left alone, or leave one the preview stripped. A manifest without them (another migration) has none.
  *
  * Not the whole manifest, on purpose. A manifest also carries the REASONS and the counts that led to the outcome,
  * and a reason can change while the outcome does not: in the homonym migration, a merge into a target that is
@@ -19,6 +23,10 @@ export interface MigrationOutcome {
 	renamed: Readonly<Record<string, string>>;
 	removed: readonly string[];
 	redirects: Readonly<Record<string, string>>;
+	/** Slugs of the works whose wrong identity the run removes in place. */
+	stripped: readonly string[];
+	/** Slugs of the works the run corrects (re-credited, possibly under a new slug). */
+	fixed: readonly string[];
 }
 
 export type OutcomeResult = { ok: true; value: MigrationOutcome } | { ok: false; error: string };
@@ -29,6 +37,18 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 const isStringMap = (value: unknown): value is Record<string, string> =>
 	isRecord(value) && Object.values(value).every((v) => typeof v === "string");
 
+/** `[{ slug, ... }]` -> the slugs, or null when the field holds anything else. Absent = none. */
+function slugsOf(entries: unknown): string[] | null {
+	if (entries === undefined) return [];
+	if (!Array.isArray(entries)) return null;
+	const slugs: string[] = [];
+	for (const entry of entries) {
+		if (!isRecord(entry) || typeof entry.slug !== "string") return null;
+		slugs.push(entry.slug);
+	}
+	return slugs;
+}
+
 /** The outcome part of a parsed manifest; an error naming the first malformed field. */
 export function outcomeOf(manifest: unknown): OutcomeResult {
 	if (!isRecord(manifest)) return { ok: false, error: "the manifest is not a JSON object" };
@@ -38,7 +58,11 @@ export function outcomeOf(manifest: unknown): OutcomeResult {
 		return { ok: false, error: "manifest.removed is not a list of paths" };
 	}
 	if (!isStringMap(redirects)) return { ok: false, error: "manifest.redirects is not a map of slug -> slug" };
-	return { ok: true, value: { renamed, removed, redirects } };
+	const stripped = slugsOf(manifest.stripped);
+	if (!stripped) return { ok: false, error: "manifest.stripped is not a list of entries with a slug" };
+	const fixed = slugsOf(manifest.fixed);
+	if (!fixed) return { ok: false, error: "manifest.fixed is not a list of entries with a slug" };
+	return { ok: true, value: { renamed, removed, redirects, stripped, fixed } };
 }
 
 function diffMaps(
@@ -64,6 +88,21 @@ function diffMaps(
 	return out;
 }
 
+function diffSets(label: string, recorded: readonly string[], current: readonly string[]): string[] {
+	const before = new Set(recorded);
+	const after = new Set(current);
+	return [
+		...[...before]
+			.filter((slug) => !after.has(slug))
+			.sort()
+			.map((slug) => `${label} ${slug}: in the preview, not in the apply`),
+		...[...after]
+			.filter((slug) => !before.has(slug))
+			.sort()
+			.map((slug) => `${label} ${slug}: in the apply, not in the preview`),
+	];
+}
+
 function countBy(paths: readonly string[]): Map<string, number> {
 	const counts = new Map<string, number>();
 	for (const path of paths) counts.set(path, (counts.get(path) ?? 0) + 1);
@@ -87,5 +126,7 @@ export function diffOutcomes(recorded: MigrationOutcome, current: MigrationOutco
 		...diffMaps("renamed", recorded.renamed, current.renamed),
 		...removals,
 		...diffMaps("redirects", recorded.redirects, current.redirects),
+		...diffSets("stripped", recorded.stripped, current.stripped),
+		...diffSets("fixed", recorded.fixed, current.fixed),
 	];
 }

@@ -128,7 +128,7 @@ ARTIST_STEP="2026-10-15-backfill-artist-identity"
 RELEASE_STEP="2026-10-15-backfill-release-identity"
 SCOPE_STEP="2026-10-16-scope-release-slugs"
 # 2026-10-24 (TRA-610): this one asks MusicBrainz again in the apply (it has no --resume to pin the preview's
-# answers), so it is held to what the preview DID instead; see "same renamed, removed and redirects" below.
+# answers), so it is held to what the preview DID instead; see "same outcome (renamed, removed, redirects, stripped, fixed)" below.
 HOMONYM_STEP="2026-10-20-fix-homonym-work-identity"
 while [[ $# -gt 0 ]]; do
 	case "$1" in
@@ -459,7 +459,7 @@ if [[ ${#MIGRATIONS[@]} -gt 0 ]]; then
 	# ends with differ from the recorded ones (a name MB did not resolve before, or no longer resolves).
 	# 2026-10-24 (TRA-610): the homonym migration also leaves its manifest there. It has no --resume,
 	# so the apply asks MusicBrainz again; what is held to the preview is not the identities but the
-	# outcome: the same renamed, removed and redirects, or the run is refused.
+	# outcome: the same outcome (renamed, removed, redirects, stripped, fixed), or the run is refused.
 	REPLAY_DIR="${MIGRATION_REPLAY_DIR:-}"
 	if [[ -n "$REPLAY_DIR" ]]; then
 		mkdir -p "$REPLAY_DIR"
@@ -552,7 +552,7 @@ if (read(process.argv[1]) !== read(process.argv[2])) process.exit(1);
 			# below: the pair is committed, `renamed` no longer lists it so nothing is MISSING, and no target is
 			# dangling. The old slug then stays redirected in the committed table with its node left in place, and
 			# a bare slug that pointed to it answers 404 for good. Only the outcome is compared (renamed, removed,
-			# redirects), not the manifest: the reason of a conflict can change between the runs without the
+			# redirects, and the slugs of the works stripped or fixed in place), not the manifest: the reason of a conflict can change between the runs without the
 			# outcome changing. This does not see a defect that is the same in both runs, only a divergence between
 			# them. Known case, not fixed here: a work to merge into a target that ALREADY exists. With its pairs
 			# committed (the guard below wants them) the migration's index no longer sees the old node (its bare
@@ -560,21 +560,21 @@ if (read(process.argv[1]) !== read(process.argv[2])) process.exit(1);
 			# write, no loss, the work stays as it was. Such a work goes through a closed-list migration instead
 			# (the pattern of TRA-610 PR 2), not through detection.
 			if ! OUTCOME_DIFF="$(cd "$REPO_ROOT" && npx tsx scripts/validate-migrated-union.ts compare-outcome "$REPLAY_FILE" "$MIGRATION_MANIFEST" 2>&1)"; then
-				echo "ERROR: migration $name ended with other renamed, removed or redirects than the preview recorded in $REPLAY_FILE -- the apply must not differ from the preview. Refusing before any write:" >&2
+				echo "ERROR: migration $name ended with another outcome (renamed, removed, redirects, stripped, fixed) than the preview recorded in $REPLAY_FILE -- the apply must not differ from the preview. Refusing before any write:" >&2
 				echo "$OUTCOME_DIFF" >&2
 				exit 1
 			fi
-			echo "==> $name: same renamed, removed and redirects as the preview"
+			echo "==> $name: same outcome (renamed, removed, redirects, stripped, fixed) as the preview"
 		elif [[ -n "$REPLAY_FILE" ]]; then
 			cp "$MIGRATION_MANIFEST" "$REPLAY_FILE"
 			# An apply with no preview to be held to is allowed (an apply run on its own), but never silently: in
 			# the workflow the preview step of the same job always recorded one.
 			if [[ $COMPARE_OUTCOME -eq 1 && $APPLY -eq 1 ]]; then
-				echo "WARNING: $name: no preview recorded in $REPLAY_DIR, so this apply is not compared with one (renamed, removed, redirects)." >&2
+				echo "WARNING: $name: no preview recorded in $REPLAY_DIR, so this apply is not compared with one (renamed, removed, redirects, stripped, fixed)." >&2
 			fi
 		fi
 		if [[ "$name" == "$HOMONYM_STEP" && $APPLY -eq 1 && $COMPARE_OUTCOME -eq 0 ]]; then
-			echo "WARNING: $name: MIGRATION_REPLAY_DIR is not set, so this apply is not compared with a preview (renamed, removed, redirects)." >&2
+			echo "WARNING: $name: MIGRATION_REPLAY_DIR is not set, so this apply is not compared with a preview (renamed, removed, redirects, stripped, fixed)." >&2
 		fi
 		echo "==> Migration manifest: $name"
 		cat "$MIGRATION_MANIFEST"

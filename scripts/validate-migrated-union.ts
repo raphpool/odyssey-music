@@ -19,9 +19,10 @@
  *       the union -- the same "dangling target" rule as prepare-genre-cache-union.ts.
  *     Exit 1 with one problem per line on stderr, 0 and nothing otherwise.
  *   validate-migrated-union.ts compare-outcome <preview-manifest.json> <apply-manifest.json>
- *     (TRA-610) The apply of a job must rename, remove and redirect what its preview did: the `renamed`,
- *     `removed` and `redirects` of the two manifests are equal (scripts/migration-outcome.ts), and nothing else of
- *     them is compared (the reason of a conflict may change between the two runs without the outcome changing).
+ *     (TRA-610) The apply of a job must rename, remove, redirect, strip and fix what its preview did: the
+ *     `renamed`, `removed` and `redirects` of the two manifests are equal, and so are the sets of slugs of
+ *     `stripped` and `fixed` (scripts/migration-outcome.ts). Nothing else of them is compared (the reason of a
+ *     conflict may change between the two runs without the outcome changing).
  *     The check above cannot see a rename the apply did NOT redo: it only judges what the run produced. Exit 1
  *     with one difference per line on stderr, 0 and nothing otherwise.
  */
