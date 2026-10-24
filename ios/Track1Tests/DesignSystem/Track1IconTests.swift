@@ -83,7 +83,7 @@ final class Track1IconTests: XCTestCase {
 			["Tab/Today", "Tab/Genres", "Tab/Search"])
 	}
 
-	/// The host app is the bundle that carries the catalog: `Bundle.main` of an app-hosted test run.
+	/// The host app is the bundle that carries the catalog: the host app's main bundle in an app-hosted test run.
 	func testEveryTabAssetIsInTheAppCatalog() {
 		for asset in Track1Icon.Asset.allCases {
 			XCTAssertNotNil(UIImage(named: asset.rawValue, in: .main, compatibleWith: nil), "\(asset)")

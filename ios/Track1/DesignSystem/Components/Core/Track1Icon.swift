@@ -29,7 +29,9 @@ struct Track1Icon: View {
 	/// image set in `Assets.xcassets/Tab` (namespaced folder, hence the slash); the images are templates, so
 	/// their color comes from a `Tone`.
 	enum Asset: String, CaseIterable {
-		case tabToday = "Tab/Today", tabGenres = "Tab/Genres", tabSearch = "Tab/Search"
+		case tabToday = "Tab/Today"
+		case tabGenres = "Tab/Genres"
+		case tabSearch = "Tab/Search"
 	}
 
 	/// Maps to the `theme.color.icon.*` tokens: primary, secondary (inactive tab), inverse (on bone buttons),
