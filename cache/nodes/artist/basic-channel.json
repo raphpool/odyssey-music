@@ -62,19 +62,19 @@
       "slug": "project:atmosphere-invert-ep--basic-channel",
       "type": "project",
       "name": "Atmosphere/Invert EP",
-      "artist": "Basic Channel",
       "mbid": "e29cc33f-7053-4ce6-8f5e-59b9629caadd",
       "year": "2025",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Basic Channel"
     },
     {
       "slug": "project:q-loop--basic-channel",
       "type": "project",
       "name": "Q-Loop",
-      "artist": "Basic Channel",
       "mbid": "45d36670-54c7-4bd2-bef3-4086ff3910cd",
       "year": "2014",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Basic Channel"
     },
     {
       "slug": "project:bcd-2--basic-channel",
@@ -96,55 +96,62 @@
       "slug": "project:octagon-octaedre--basic-channel",
       "type": "project",
       "name": "Octagon / Octaedre",
-      "artist": "Basic Channel",
       "mbid": "981ead33-7161-38fd-b701-94f2425f0b85",
       "year": "1994",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Basic Channel"
     },
     {
       "slug": "project:phylyps-trak-ii--basic-channel",
       "type": "project",
       "name": "Phylyps Trak II",
-      "artist": "Basic Channel",
       "mbid": "dfac486c-b14a-3b3a-8ae8-f056e4c8050f",
       "year": "1994",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Basic Channel"
     },
     {
       "slug": "project:quadrant-dub--basic-channel",
       "type": "project",
       "name": "Quadrant Dub",
-      "artist": "Basic Channel",
       "mbid": "08cd4c08-0233-3c3d-9acc-a4f7fb6beedd",
       "year": "1994",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Basic Channel"
     },
     {
       "slug": "project:radiance--basic-channel",
       "type": "project",
       "name": "Radiance",
-      "artist": "Basic Channel",
       "mbid": "ffb1558e-4997-399c-bc87-c32dbda55d77",
       "year": "1994",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Basic Channel"
     },
     {
       "slug": "project:phylyps-trak--basic-channel",
       "type": "project",
       "name": "Phylyps Trak",
-      "artist": "Basic Channel",
       "mbid": "8ae7525f-11a6-39d3-8494-0bddedf0b7ea",
       "year": "1993",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Basic Channel"
     },
     {
       "slug": "project:q-1-1--basic-channel",
       "type": "project",
       "name": "Q 1.1",
-      "artist": "Basic Channel",
       "mbid": "cbc907d0-a236-3480-90d4-63b8351528d8",
       "year": "1993",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Basic Channel"
+    },
+    {
+      "slug": "project:bcd-2--compilation-album-by-basic-channel-2008",
+      "type": "project",
+      "name": "BCD-2",
+      "mbid": "17f80ceb-4cd5-3158-8dd5-6c1b5267b845",
+      "artist": "Basic Channel"
     }
   ],
   "notable_tracks": [

@@ -1,0 +1,157 @@
+{
+	"source": "Judged on 2026-10-24 (and again after the review of #639, which found the first removal list wrong) (TRA-485) from the work's own pitch / article, which names the artist. A hint is only the question put to MusicBrainz: the run credits a work when MusicBrainz finds its exact title, the credit confirms the hint and the year agrees. Left out on purpose: project:selected-ambient-works-85-92 (artist:richard-d-james lists it, and artist:aphex-twin has no member/alias edge the audit follows) and project:tri-repetae (artist:autechre is not in the cache, so its two members, which list it, would trip homonym-release-links): crediting them needs those artist edges first.",
+	"hints": {
+		"project:air-i-ii": {
+			"name": "Pete Namlook",
+			"artist": "artist:pete-namlook",
+			"anchor": "Pete Namlook",
+			"why": "Article: the 1994 2-CD set by Pete Namlook on Fax +49-69/450464."
+		},
+		"project:apollo-atmospheres-and-soundtracks--1983-ambient-album-by-brian-eno-daniel-lanois-and-roger-eno": {
+			"name": "Brian Eno",
+			"artist": "artist:brian-eno",
+			"anchor": "Brian Eno",
+			"why": "Pitch: the 1983 album by Brian Eno, Daniel Lanois and Roger Eno."
+		},
+		"project:autoditacker": {
+			"name": "Mouse on Mars",
+			"artist": "artist:mouse-on-mars",
+			"anchor": "Mouse on Mars",
+			"why": "Pitch: 1997 IDM album by Mouse on Mars. No artist lists it; the label pages do."
+		},
+		"project:bcd-2--compilation-album-by-basic-channel-2008": {
+			"name": "Basic Channel",
+			"artist": "artist:basic-channel",
+			"anchor": "Basic Channel",
+			"why": "Pitch: Basic Channel's 2008 compilation."
+		},
+		"project:blues-for-the-red-sun": {
+			"name": "Kyuss",
+			"anchor": "Kyuss",
+			"why": "Pitch: the 1992 album by Kyuss. Landmark of genre:desert-rock and genre:stoner-rock, no artist lists it."
+		},
+		"project:catch-a-fire": {
+			"name": "Bob Marley & The Wailers",
+			"anchor": "Bob Marley",
+			"why": "Article: 1973 album of The Wailers, billed Bob Marley and the Wailers. Landmark of genre:reggae."
+		},
+		"project:dry": {
+			"name": "PJ Harvey",
+			"anchor": "PJ Harvey",
+			"why": "Pitch: the 1992 debut album of PJ Harvey, released on Too Pure."
+		},
+		"project:ghosts-i-iv": {
+			"name": "Nine Inch Nails",
+			"anchor": "Nine Inch Nails",
+			"why": "Pitch: Nine Inch Nails' 2008 instrumental album."
+		},
+		"project:heresy--1990-ambient-album-by-lustmord": {
+			"name": "Lustmord",
+			"artist": "artist:lustmord",
+			"anchor": "Lustmord",
+			"why": "Pitch: Lustmord's 1990 ambient album."
+		},
+		"project:king-tubbys-meets-rockers-uptown": {
+			"name": "Augustus Pablo",
+			"anchor": "Augustus Pablo",
+			"why": "Pitch: the 1976 dub album of Augustus Pablo."
+		},
+		"project:los-angeles": {
+			"name": "X",
+			"anchor": "debut studio album from X",
+			"why": "Pitch: the 1980 punk album by X. Brainfeeder's notable_releases and cosmogramma's related_projects point here for Flying Lotus' 2008 album of the same name: a namesake, not this work's credit."
+		},
+		"project:my-life-with-the-wave-vol-2--ep-mini-album-series-by-detroit-producer-mike-huckaby": {
+			"name": "Mike Huckaby",
+			"artist": "artist:mike-huckaby",
+			"anchor": "Mike Huckaby",
+			"why": "Pitch: an EP series by the Detroit producer Mike Huckaby."
+		},
+		"project:neu--1972-debut-album-by-the-german-krautrock-duo-neu": {
+			"name": "Neu!",
+			"artist": "artist:neu",
+			"anchor": "Neu!",
+			"why": "Pitch: the 1972 debut album of Neu!, a duo. Nothing links to it."
+		},
+		"project:stains-of-love": {
+			"name": "Cinemascope",
+			"anchor": "Cinemascope",
+			"why": "Article: the 2014 debut album of the Greek project Cinemascope, on Wave Records."
+		},
+		"project:super-ape": {
+			"name": "The Upsetters",
+			"anchor": "Upsetters",
+			"why": "Article: Lee Perry's 1976 album, made with The Upsetters. Landmark of genre:dub."
+		},
+		"project:the-campfire-headphase": {
+			"name": "Boards of Canada",
+			"artist": "artist:boards-of-canada",
+			"anchor": "Boards of Canada",
+			"why": "Pitch: the 2005 album of Boards of Canada; artist:marcus-eoin and artist:mike-sandison, its two members, both list it."
+		},
+		"project:the-judgement--2022-mini-album-by-jam-project": {
+			"name": "JAM Project",
+			"anchor": "JAM Project",
+			"why": "Pitch: the 2022 mini album of JAM Project."
+		},
+		"project:time-tourist": {
+			"name": "B12",
+			"artist": "artist:b12",
+			"anchor": "B12",
+			"why": "Pitch: the 1996 album of B12; artist:mike-golding and artist:steve-rutter, its two members, also list it."
+		},
+		"project:turn-on-the-bright-lights": {
+			"name": "Interpol",
+			"anchor": "Interpol",
+			"why": "Pitch: Interpol's 2002 debut. Listed by label:matador-records only."
+		},
+		"project:unity--1966-jazz-album-by-larry-young": {
+			"name": "Larry Young",
+			"anchor": "Larry Young",
+			"why": "Pitch: the 1966 jazz album by Larry Young."
+		},
+		"project:vulvaland": {
+			"name": "Mouse on Mars",
+			"artist": "artist:mouse-on-mars",
+			"anchor": "Mouse on Mars",
+			"why": "Pitch: the 1994 album of Mouse on Mars; artist:andi-toma, a member, also lists it."
+		},
+		"track:hold-on--track-by-alabama-shakes-2012": {
+			"name": "Alabama Shakes",
+			"anchor": "Alabama Shakes",
+			"why": "Article / teaser: the Alabama Shakes track of 2012."
+		},
+		"track:just-give-me-a-reason": {
+			"name": "P!nk",
+			"anchor": "P!nk",
+			"why": "Article / teaser: the P!nk song."
+		},
+		"track:night--dubstep-track-by-benga-and-coki": {
+			"name": "Benga",
+			"anchor": "Benga",
+			"why": "Article / teaser: the 2008 dubstep track by Benga and Coki."
+		},
+		"track:spongebob-and-patrick-confront-the-psychic-wall-of-energy": {
+			"name": "The Flaming Lips",
+			"anchor": "Flaming Lips",
+			"why": "Article / teaser: the Flaming Lips track."
+		},
+		"track:the-winner-takes-it-all": {
+			"name": "ABBA",
+			"anchor": "ABBA",
+			"why": "Article / teaser: the 1980 ABBA song."
+		},
+		"track:they-know-your-name--track-by-mouse-on-mars": {
+			"name": "Mouse on Mars",
+			"artist": "artist:mouse-on-mars",
+			"anchor": "Mouse on Mars",
+			"why": "Slug and article: a Mouse on Mars track."
+		},
+		"track:trio-for-strings--1958-composition-by-la-monte-young": {
+			"name": "La Monte Young",
+			"artist": "artist:la-monte-young",
+			"anchor": "La Monte Young",
+			"why": "Slug and article: the 1958 composition by La Monte Young."
+		}
+	}
+}

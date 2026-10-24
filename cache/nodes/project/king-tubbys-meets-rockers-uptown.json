@@ -9,12 +9,21 @@
     }
   ],
   "materialized_at": "2026-05-13T13:08:30.166Z",
+  "mbid": "8426fa46-01c5-3343-97f5-0551822542ed",
   "type": "project",
   "editorial_pitch": "A seminal milestone in the history of dub music, this 1976 collaborative masterpiece pairs Augustus Pablo's meditative, melodica-driven roots compositions with King Tubby's revolutionary studio engineering, defining the spatial and sonic architecture of the genre.",
   "year": "1976",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:augustus-pablo",
+      "type": "artist",
+      "name": "Augustus Pablo",
+      "mbid": "e2f9c452-7eb0-4782-bc3e-36f2c456ffe0"
+    }
+  ],
   "genres": [],
   "tracklist": [],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

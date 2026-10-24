@@ -13,10 +13,18 @@
     }
   ],
   "materialized_at": "2026-05-13T13:16:54.661Z",
+  "mbid": "5948a343-d133-42f7-b506-4935b71a42a9",
   "type": "project",
   "editorial_pitch": "\"The Judgement\" is a powerful 2022 mini-album from the long-running Japanese anison supergroup JAM Project, blending intense, orchestral heavy metal arrangements with their signature high-octane vocal delivery. The collection explores dark, introspective themes, moving through a narrative arc that culminates in tracks of redemption and existential struggle.",
   "year": "2022",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:jam-project",
+      "type": "artist",
+      "name": "JAM Project",
+      "mbid": "4760bf03-6921-4acf-bd6f-8743f5336008"
+    }
+  ],
   "label": {
     "slug": "label:lantis",
     "type": "label",
@@ -37,5 +45,6 @@
   ],
   "tracklist": [],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

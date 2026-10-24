@@ -25,11 +25,20 @@
     "search_provider": "tavily"
   },
   "disambiguator": "1966 jazz album by Larry Young",
+  "mbid": "ba746b8f-b790-32cd-8082-966bf36a8637",
   "type": "project",
   "editorial_pitch": "Unity is a seminal 1966 post-bop album by organist Larry Young, recorded for Blue Note Records. Featuring a stellar lineup of Joe Henderson, Woody Shaw, and Elvin Jones, the record stands as a landmark of modal and avant-garde jazz, showcasing Young’s revolutionary approach to the Hammond organ. Moving away from the soul-jazz conventions established by contemporaries like Jimmy Smith, Young’s performance on Unity utilizes angular phrasing, dense harmonic textures, and aggressive rhythmic exploration, effectively bridging the gap between hard-bop tradition and the emerging jazz-rock and free-form movements of the late 1960s. The album’s enduring influence remains tied to its sophisticated compositions, particularly those contributed by Woody Shaw, and its intense, collective improvisational spirit.",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:larry-young",
+      "type": "artist",
+      "name": "Larry Young",
+      "mbid": "81971abd-8a02-4d66-a499-8487ba7f20d8"
+    }
+  ],
   "genres": [],
   "tracklist": [],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }
