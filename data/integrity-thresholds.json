@@ -5,7 +5,7 @@
 	"self-edges": 0,
 	"homonym-tracklist-links": 2,
 	"duplicate-names": 0,
-	"unscoped-release-slugs": 87,
+	"unscoped-release-slugs": 86,
 	"literal-newlines": 0,
 	"literal-escaped-quotes": 0,
 	"alias-to-uncorroborated-identity": 1,
@@ -13,7 +13,7 @@
 	"missing-landmark-project": 113,
 	"missing-reference-track": 78,
 	"artist-discography-under-3": 69,
-	"artist-discography-without-mbid": 174,
+	"artist-discography-without-mbid": 167,
 	"artist-edge-to-redirect-key": {
 		"discography": 0,
 		"notable_tracks": 0,

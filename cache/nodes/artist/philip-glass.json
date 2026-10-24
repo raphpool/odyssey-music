@@ -399,11 +399,6 @@
       "name": "Music in Twelve Parts"
     },
     {
-      "slug": "project:einstein-on-the-beach",
-      "type": "project",
-      "name": "Einstein on the Beach"
-    },
-    {
       "slug": "project:einstein-on-the-beach--philip-glass",
       "type": "project",
       "name": "Einstein on the Beach",
@@ -423,9 +418,10 @@
     }
   ],
   "landmark_project": {
-    "slug": "project:einstein-on-the-beach",
+    "slug": "project:einstein-on-the-beach--philip-glass",
     "type": "project",
-    "name": "Einstein on the Beach"
+    "name": "Einstein on the Beach",
+    "artist": "Philip Glass"
   },
   "reference_track": {
     "slug": "track:koyaanisqatsi",
