@@ -2158,13 +2158,19 @@ describe("titleFoldRelation (TRA-633)", () => {
 	const relation = (entryTitle: string, groupTitle: string, artist = "Daft Punk") =>
 		titleFoldRelation(entryTitle, groupTitle, artist);
 
-	it("sees the entry as the group's title plus a subtitle after ':' or a spaced dash", () => {
+	it("sees the entry as the group's title plus a subtitle after ':'", () => {
 		expect(relation("La Camorra: La soledad de la provocación apasionada", "La Camorra")).toBe(
 			"entry-subtitle",
 		);
 		expect(relation("Xpander : Refracted", "Xpander")).toBe("entry-subtitle");
-		expect(relation("Isoviha - Extraviha", "Isoviha")).toBe("entry-subtitle");
-		expect(relation("Isoviha – Extraviha", "Isoviha")).toBe("entry-subtitle");
+	});
+
+	it("does not read a dash as a subtitle: 'Isoviha' and 'Isoviha - Extraviha' are an album and an EP", () => {
+		// Vladislav Delay, 2022, two release groups of MusicBrainz that the cache holds with their own mbid. No true
+		// pair was measured with a spaced dash, and 9 of the 24 distinct pairs of the cache were written with one.
+		expect(relation("Isoviha - Extraviha", "Isoviha")).toBeNull();
+		expect(relation("Isoviha", "Isoviha – Extraviha")).toBeNull();
+		expect(relation("Dependent and Happy", "Dependent And Happy — One")).toBeNull();
 	});
 
 	it("sees the group as the entry's title plus a subtitle", () => {
@@ -2222,7 +2228,7 @@ describe("titleFoldRelation (TRA-633)", () => {
 			"Instrumentals",
 			"Radio Version",
 		]) {
-			expect(relation(`Songs - ${tail}`, "Songs"), tail).toBeNull();
+			expect(relation(`Songs: ${tail}`, "Songs"), tail).toBeNull();
 		}
 		// "Civil" and "Ivory" start with roman-numeral letters: they are words.
 		expect(relation("Songs: Civil War", "Songs")).toBe("entry-subtitle");
@@ -2245,7 +2251,7 @@ describe("titleFoldRelation (TRA-633)", () => {
 	});
 });
 
-describe("mergeDiscography: subtitle and '(album)' reconciliation (TRA-633)", () => {
+describe("mergeDiscography: '(album)' reconciliation and subtitle report (TRA-633)", () => {
 	// Release groups as MusicBrainz returned them on 2026-10-24 (search by artist id), trimmed to what the policy reads.
 	type Artist = { mbid: string; name: string };
 	const real = (
@@ -2305,7 +2311,7 @@ describe("mergeDiscography: subtitle and '(album)' reconciliation (TRA-633)", ()
 		expect(result.posed).toEqual([]);
 	});
 
-	it("Hailu Mergia: the short title is posed the release group that carries the subtitle", () => {
+	it("Hailu Mergia: the release group that carries the subtitle is held back, not posed, not added", () => {
 		const group = real(
 			"Hailu Mergia & His Classical Instrument: Shemonmuanaye",
 			"fa3aba8d-cf8e-4030-8fc3-1e992d63d93e",
@@ -2316,11 +2322,22 @@ describe("mergeDiscography: subtitle and '(album)' reconciliation (TRA-633)", ()
 
 		const result = mergeReal(mergia, [handWritten], [group]);
 
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([]);
 		expect(result.added).toEqual([]);
-		expect(result.posed.map((p) => [p.slug, p.mbid])).toEqual([[handWritten.slug, group.mbid]]);
+		expect(result.held).toEqual([
+			{
+				mbid: group.mbid,
+				title: group.title,
+				nearDuplicateOf: handWritten.slug,
+				reason: "subtitle-fold",
+			},
+		]);
+		expect(result.changed).toBe(false);
+		expect(result.edges).toEqual([handWritten]);
 	});
 
-	it("Astor Piazzolla: 'La Camorra' is posed 'La Camorra: La soledad de la provocación apasionada'", () => {
+	it("Astor Piazzolla: 'La Camorra' holds back 'La Camorra: La soledad de la provocación apasionada'", () => {
 		const group = real(
 			"La Camorra: La soledad de la provocación apasionada",
 			"c272d1b4-93f6-38fc-bb85-ed51b1f84c36",
@@ -2331,18 +2348,99 @@ describe("mergeDiscography: subtitle and '(album)' reconciliation (TRA-633)", ()
 
 		const result = mergeReal(piazzolla, [handWritten], [group]);
 
+		expect(result.posed).toEqual([]);
 		expect(result.added).toEqual([]);
-		expect(result.posed.map((p) => p.mbid)).toEqual([group.mbid]);
+		expect(result.held.map((h) => [h.mbid, h.nearDuplicateOf, h.reason])).toEqual([
+			[group.mbid, handWritten.slug, "subtitle-fold"],
+		]);
 	});
 
-	it("poses a title that MusicBrainz shortens after a spaced dash", () => {
-		const group = release("Isoviha", { firstReleaseDate: "2022-03-04" });
+	it("a pair that MusicBrainz tells apart gives neither a pose nor an addition, only the report", () => {
+		// "Runt" (1970) is missing from the credited release groups (a member credited under a band, a truncated
+		// browse): the only release group left is the 1971 album "Runt: The Ballad of Todd Rundgren", a distinct release.
+		const ballad = release("Runt: The Ballad of Todd Rundgren", { firstReleaseDate: "1971-03-01" });
+		const runt = entry("Runt", { year: "1970" }, "Todd Rundgren");
+
 		const result = merge({
-			existing: [entry("Isoviha - Extraviha")],
-			candidates: [group],
-			allCredited: [group],
+			existing: [runt],
+			candidates: [ballad],
+			allCredited: [ballad],
+			policy: { ...policy, artistName: "Todd Rundgren" },
 		});
-		expect(result.posed.map((p) => p.mbid)).toEqual([group.mbid]);
+
+		expect(result.posed).toEqual([]);
+		expect(result.added).toEqual([]);
+		expect(result.ambiguous).toEqual([]);
+		expect(result.held).toEqual([
+			{ mbid: ballad.mbid, title: ballad.title, nearDuplicateOf: runt.slug, reason: "subtitle-fold" },
+		]);
+	});
+
+	it("when MusicBrainz has both, 'Runt' is posed 'Runt' and the album with the subtitle is added", () => {
+		const runt = release("Runt", { firstReleaseDate: "1970-01-01" });
+		const ballad = release("Runt: The Ballad of Todd Rundgren", { firstReleaseDate: "1971-03-01" });
+		const handWritten = entry("Runt", {}, "Todd Rundgren");
+
+		const result = merge({
+			existing: [handWritten],
+			candidates: [runt, ballad],
+			allCredited: [runt, ballad],
+			policy: { ...policy, artistName: "Todd Rundgren" },
+		});
+
+		expect(result.posed.map((p) => p.mbid)).toEqual([runt.mbid]);
+		expect(result.added.map((a) => a.mbid)).toEqual([ballad.mbid]);
+		expect(result.held).toEqual([]);
+	});
+
+	it("leaves two entries that both hold their own mbid alone: nothing to report", () => {
+		const runt = release("Runt", { firstReleaseDate: "1970-01-01" });
+		const ballad = release("Runt: The Ballad of Todd Rundgren", { firstReleaseDate: "1971-03-01" });
+		const existing = [
+			entry("Runt", { mbid: runt.mbid }, "Todd Rundgren"),
+			entry("Runt: The Ballad of Todd Rundgren", { mbid: ballad.mbid }, "Todd Rundgren"),
+		];
+
+		const result = merge({
+			existing,
+			candidates: [runt, ballad],
+			allCredited: [runt, ballad],
+			policy: { ...policy, artistName: "Todd Rundgren" },
+		});
+
+		expect(result.changed).toBe(false);
+		expect(result.held).toEqual([]);
+	});
+
+	it("holds back nothing when two release groups of different types fold onto the entry", () => {
+		// The mutation `folded.length === 1` -> `> 0` would pose the album here (TRA-625 prefers a lone album to
+		// singles) and hold both back: the entry would be reported against a release group it cannot be told from.
+		const album = release("Runt: The Ballad of Todd Rundgren", { firstReleaseDate: "1971-03-01" });
+		const single = release("Runt: Something Else", { primaryType: "Single", firstReleaseDate: "1971-05-01" });
+		const handWritten = entry("Runt", {}, "Todd Rundgren");
+
+		const result = merge({
+			existing: [handWritten],
+			candidates: [album, single],
+			allCredited: [album, single],
+			policy: { ...policy, artistName: "Todd Rundgren" },
+		});
+
+		expect(result.posed).toEqual([]);
+		expect(result.held).toEqual([]);
+		expect(result.added.map((a) => a.mbid).sort()).toEqual([album.mbid, single.mbid].sort());
+	});
+
+	it("does not read a spaced dash as a subtitle: 'Isoviha' and 'Isoviha - Extraviha' stay two releases", () => {
+		const album = release("Isoviha", { firstReleaseDate: "2022-03-04" });
+		const handWritten = entry("Isoviha - Extraviha");
+
+		const result = merge({ existing: [handWritten], candidates: [album], allCredited: [album] });
+
+		expect(result.posed).toEqual([]);
+		expect(result.held).toEqual([]);
+		// Added and flagged by the prefix rule, as before TRA-633.
+		expect(result.added.map((a) => [a.mbid, a.nearDuplicateOf])).toEqual([[album.mbid, handWritten.slug]]);
 	});
 
 	it("Harold Budd: the coupling 'Avalon Sutra / As Long As I Can Hold My Breath' is left to a judgement", () => {
@@ -2407,21 +2505,22 @@ describe("mergeDiscography: subtitle and '(album)' reconciliation (TRA-633)", ()
 			allCredited: [one, two],
 		});
 
-		// Not posed, and not reported either: the fold never adds an entry to `ambiguous`.
+		// "Act I" and "Acts II & III" number the release: no fold, so the two are added as before.
 		expect(result.posed).toEqual([]);
 		expect(result.ambiguous).toEqual([]);
+		expect(result.held).toEqual([]);
 		expect(result.added).toHaveLength(2);
 	});
 
 	it("does not pose a numbered or variant subtitle on the bare title", () => {
 		const bare = release("Songs", { firstReleaseDate: "2001-01-01" });
-		for (const title of ["Songs: Vol. 2", "Songs - Live in Paris", "Songs: The Remixes"]) {
+		for (const title of ["Songs: Vol. 2", "Songs: Live in Paris", "Songs: The Remixes"]) {
 			const result = merge({ existing: [entry(title)], candidates: [bare], allCredited: [bare] });
 			expect(result.posed, title).toEqual([]);
 		}
 	});
 
-	it("keeps the year and type guards of the pose, without reporting the fold as ambiguous", () => {
+	it("keeps the year and type guards: a release group they refuse is added as before, not held back", () => {
 		const reissue = release("Nunatak Gongamur: Remastered Story", { firstReleaseDate: "2010-01-01" });
 		const dated = entry("Nunatak Gongamur", { year: "1990" });
 		const album = release("Other: A Subtitle", { firstReleaseDate: "2001-01-01" });
@@ -2430,10 +2529,27 @@ describe("mergeDiscography: subtitle and '(album)' reconciliation (TRA-633)", ()
 		const byYear = merge({ existing: [dated], candidates: [reissue], allCredited: [reissue] });
 		const byType = merge({ existing: [typed], candidates: [album], allCredited: [album] });
 
-		expect(byYear.posed).toEqual([]);
-		expect(byYear.ambiguous).toEqual([]);
-		expect(byType.posed).toEqual([]);
-		expect(byType.ambiguous).toEqual([]);
+		for (const result of [byYear, byType]) {
+			expect(result.posed).toEqual([]);
+			expect(result.ambiguous).toEqual([]);
+			expect(result.held).toEqual([]);
+			expect(result.added).toHaveLength(1);
+		}
+	});
+
+	it("narrows the fold by the '(album)' and 'EP' the entry wrote", () => {
+		const single = release("Foo: Bar", { primaryType: "Single", firstReleaseDate: "2001-01-01" });
+		const ep = release("Baz: Qux", { primaryType: "EP", firstReleaseDate: "2001-01-01" });
+		const album = release("Baz: Quux", { firstReleaseDate: "2001-01-01" });
+
+		// "Foo (album)" asks for an album: the single of "Foo: Bar" is not a candidate, it is added.
+		const asAlbum = merge({ existing: [entry("Foo (album)")], candidates: [single], allCredited: [single] });
+		expect(asAlbum.held).toEqual([]);
+		expect(asAlbum.added).toHaveLength(1);
+		// "Baz EP" asks for an EP: only "Baz: Qux" is folded, the album "Baz: Quux" is added.
+		const asEp = merge({ existing: [entry("Baz EP")], candidates: [ep, album], allCredited: [ep, album] });
+		expect(asEp.held.map((h) => h.mbid)).toEqual([ep.mbid]);
+		expect(asEp.added.map((a) => a.mbid)).toEqual([album.mbid]);
 	});
 
 	it("does not fold a live release group onto the entry", () => {
@@ -2466,7 +2582,7 @@ describe("mergeDiscography: subtitle and '(album)' reconciliation (TRA-633)", ()
 		expect(result.changed).toBe(false);
 	});
 
-	it("claims once: two entries that fold onto the same release group are both left unposed and reported", () => {
+	it("reports a release group once, against the first entry that folds onto it", () => {
 		const group = release("La Camorra: La soledad", { firstReleaseDate: "1989-01-01" });
 		const short = entry("La Camorra");
 		const long = entry("La Camorra: La soledad: Extra");
@@ -2474,11 +2590,7 @@ describe("mergeDiscography: subtitle and '(album)' reconciliation (TRA-633)", ()
 		const result = merge({ existing: [short, long], candidates: [group], allCredited: [group] });
 
 		expect(result.posed).toEqual([]);
-		expect(result.ambiguous).toEqual(
-			expect.arrayContaining([
-				{ slug: short.slug, reason: "multiple" },
-				{ slug: long.slug, reason: "multiple" },
-			]),
-		);
+		expect(result.ambiguous).toEqual([]);
+		expect(result.held.map((h) => [h.mbid, h.nearDuplicateOf])).toEqual([[group.mbid, short.slug]]);
 	});
 });
