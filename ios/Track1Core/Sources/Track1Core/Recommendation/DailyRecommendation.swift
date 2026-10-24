@@ -13,11 +13,15 @@ public struct DailyRecommendation: Codable, Equatable, Sendable {
 	public let name: String
 	public let teaser: String?
 	public let reasons: [String]
+	/// Editorial names of the genres ticked in the profile, in tick order, resolved when the pick was made so
+	/// that the Today line is the same on every launch of the day without reading the catalog (2026-10-24,
+	/// TRA-698). Empty when the profile has no editorial selection or the taxonomy was unavailable.
+	public let profileGenreNames: [String]
 	public var viewRecorded: Bool
 
 	public init(
 		recommendationID: UUID, localDate: String, profileRevision: Int, nodeID: NodeIdentity, nodeType: NodeType,
-		name: String, teaser: String?, reasons: [String], viewRecorded: Bool
+		name: String, teaser: String?, reasons: [String], profileGenreNames: [String] = [], viewRecorded: Bool
 	) {
 		self.recommendationID = recommendationID
 		self.localDate = localDate
@@ -27,6 +31,7 @@ public struct DailyRecommendation: Codable, Equatable, Sendable {
 		self.name = name
 		self.teaser = teaser
 		self.reasons = reasons
+		self.profileGenreNames = profileGenreNames
 		self.viewRecorded = viewRecorded
 	}
 
@@ -38,10 +43,29 @@ public struct DailyRecommendation: Codable, Equatable, Sendable {
 		case nodeID = "node_id"
 		case nodeType = "node_type"
 		case name, teaser, reasons
+		case profileGenreNames = "profile_genre_names"
 		case viewRecorded = "view_recorded"
 	}
 
-	/// A missing teaser is written as `null`, not omitted, so every stored record carries the same key set.
+	/// Explicit so that `profile_genre_names` can be absent: `StoredHistory.Entry` drops every entry that fails
+	/// to decode, so a synthesized initializer would empty the history of every existing install and re-pick
+	/// today's work (2026-10-24, TRA-698, plan R8). The other keys stay required.
+	public init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		recommendationID = try container.decode(UUID.self, forKey: .recommendationID)
+		localDate = try container.decode(String.self, forKey: .localDate)
+		profileRevision = try container.decode(Int.self, forKey: .profileRevision)
+		nodeID = try container.decode(NodeIdentity.self, forKey: .nodeID)
+		nodeType = try container.decode(NodeType.self, forKey: .nodeType)
+		name = try container.decode(String.self, forKey: .name)
+		teaser = try container.decodeIfPresent(String.self, forKey: .teaser)
+		reasons = try container.decode([String].self, forKey: .reasons)
+		profileGenreNames = try container.decodeIfPresent([String].self, forKey: .profileGenreNames) ?? []
+		viewRecorded = try container.decode(Bool.self, forKey: .viewRecorded)
+	}
+
+	/// A missing teaser is written as `null` and no genre names as `[]`, not omitted, so every stored record
+	/// carries the same key set.
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(recommendationID, forKey: .recommendationID)
@@ -52,6 +76,7 @@ public struct DailyRecommendation: Codable, Equatable, Sendable {
 		try container.encode(name, forKey: .name)
 		try container.encode(teaser, forKey: .teaser)
 		try container.encode(reasons, forKey: .reasons)
+		try container.encode(profileGenreNames, forKey: .profileGenreNames)
 		try container.encode(viewRecorded, forKey: .viewRecorded)
 	}
 }

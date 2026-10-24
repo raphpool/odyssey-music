@@ -86,6 +86,58 @@ final class TodayViewModelTests: XCTestCase {
 		XCTAssertEqual(reads, 0)
 	}
 
+	// MARK: Profile genre names (TRA-698)
+
+	func testTheStoredGenreNamesFollowTheTickOrderOfTheProfileSelection() async throws {
+		let probe = CatalogProbe(result: .success(try editorialCatalog(), etag: nil))
+		let model = makeModel(probe: probe, store: makeStore())
+		await model.load(for: try profile(revision: 1, selection: Self.selection))
+
+		XCTAssertEqual(try recommendation(of: model).profileGenreNames, ["IDM", "Ambient", "Glitch"])
+	}
+
+	func testTheGenreNamesAreWrittenToTheHistory() async throws {
+		let store = makeStore()
+		let model = makeModel(
+			probe: CatalogProbe(result: .success(try editorialCatalog(), etag: nil)), store: store)
+		await model.load(for: try profile(revision: 1, selection: Self.selection))
+
+		let history = await store.history()
+		XCTAssertEqual(history.map(\.profileGenreNames), [["IDM", "Ambient", "Glitch"]])
+	}
+
+	func testADegradedTaxonomyStoresNoGenreName() async throws {
+		let model = makeModel(
+			probe: CatalogProbe(result: .success(try catalog(), etag: nil)), store: makeStore())
+		await model.load(for: try profile(revision: 1, selection: Self.selection))
+
+		XCTAssertEqual(try recommendation(of: model).profileGenreNames, [])
+	}
+
+	func testAProfileWithoutASelectionStoresNoGenreNameEvenWithAnEditorialTaxonomy() async throws {
+		let model = makeModel(
+			probe: CatalogProbe(result: .success(try editorialCatalog(), etag: nil)), store: makeStore())
+		await model.load(for: try profile(revision: 1))
+
+		XCTAssertEqual(try recommendation(of: model).profileGenreNames, [])
+	}
+
+	func testThePersistedGenreNamesReturnWithoutReadingTheCatalog() async throws {
+		let seeded = makeModel(
+			probe: CatalogProbe(result: .success(try editorialCatalog(), etag: nil)), store: makeStore())
+		await seeded.load(for: try profile(revision: 1, selection: Self.selection))
+		let created = try recommendation(of: seeded)
+		XCTAssertEqual(created.profileGenreNames, ["IDM", "Ambient", "Glitch"])
+
+		let offline = CatalogProbe(result: .failure(.network))
+		let model = makeModel(probe: offline, store: makeStore())
+		await model.load(for: try profile(revision: 1, selection: Self.selection))
+
+		XCTAssertEqual(try recommendation(of: model).profileGenreNames, ["IDM", "Ambient", "Glitch"])
+		let reads = await offline.calls
+		XCTAssertEqual(reads, 0)
+	}
+
 	// MARK: Revision change
 
 	func testChangedRevisionTheSameDayCreatesANewIDAndKeepsOneEntryForTheDate() async throws {
@@ -318,14 +370,39 @@ final class TodayViewModelTests: XCTestCase {
 		return recommendation
 	}
 
-	private func profile(revision: Int) throws -> Profile {
+	private func profile(revision: Int, selection: [String: [String]]? = nil) throws -> Profile {
 		let genre = try XCTUnwrap(NodeIdentity(rawValue: "genre:rock"))
-		let json: [String: Any] = [
+		var json: [String: Any] = [
 			"version": 1, "local_id": Self.localID.uuidString, "genre_ids": [genre.rawValue],
 			"revision": revision, "onboarding_completed": true,
 			"flow_id": "5B1D3F0A-0000-4000-8000-0000000000BB",
 		]
+		json["selection"] = selection
 		return try JSONDecoder().decode(Profile.self, from: JSONSerialization.data(withJSONObject: json))
+	}
+
+	/// Ticked in this order: Q4 is the fourth name, past the cap of three.
+	private static let selection = ["families": ["electronic"], "genres": ["Q2", "Q1", "Q3", "Q4"]]
+
+	/// The same works as `catalog()`, with an editorial taxonomy whose four genres are all visible.
+	private func editorialCatalog() throws -> Catalog {
+		try EditorialFixture.catalog(
+			nodes: [
+				("genre:rock", "Rock"), ("genre:ambient", "Ambient"), ("genre:idm", "IDM"),
+				("genre:glitch", "Glitch"), ("genre:dub", "Dub"), ("artist:alpha", "Alpha"),
+				("project:beta", "Beta"), ("track:gamma", "Gamma"),
+			],
+			edges: [
+				("artist:alpha", "genre:rock", "genres"), ("project:beta", "genre:rock", "genres"),
+				("track:gamma", "genre:rock", "genres"),
+			],
+			families: [(key: "electronic", label: "Electronic", order: 1)],
+			genres: [
+				(id: "Q1", name: "Ambient", family: "electronic", slugs: ["genre:ambient"]),
+				(id: "Q2", name: "IDM", family: "electronic", slugs: ["genre:idm"]),
+				(id: "Q3", name: "Glitch", family: "electronic", slugs: ["genre:glitch"]),
+				(id: "Q4", name: "Dub", family: "electronic", slugs: ["genre:dub"]),
+			])
 	}
 
 	private func storedRecommendation(date: String, node: String, revision: Int) throws -> DailyRecommendation {

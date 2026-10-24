@@ -7,11 +7,30 @@ final class TodayPresentationTests: XCTestCase {
 	private let firstID = UUID(uuidString: "11111111-1111-4111-8111-111111111111")!
 	private let secondID = UUID(uuidString: "22222222-2222-4222-8222-222222222222")!
 
-	private func recommendation(_ id: UUID, name: String = "Miles Davis") throws -> DailyRecommendation {
+	private func recommendation(
+		_ id: UUID, name: String = "Miles Davis", genreNames: [String] = []
+	) throws -> DailyRecommendation {
 		DailyRecommendation(
 			recommendationID: id, localDate: "2026-10-13", profileRevision: 1,
 			nodeID: try XCTUnwrap(NodeIdentity(rawValue: "artist:miles-davis")), nodeType: .artist, name: name,
-			teaser: nil, reasons: [], viewRecorded: false)
+			teaser: nil, reasons: [], profileGenreNames: genreNames, viewRecorded: false)
+	}
+
+	func testTheReasonLineReadsTheGenreNamesOfTheRecommendation() throws {
+		let state = TodayState.recommendation(
+			try recommendation(firstID, genreNames: ["IDM", "Glitch", "Ambient"]))
+
+		XCTAssertEqual(TodayPresentation.reasonLine(of: state), "parce que tu explores IDM - Glitch - Ambient")
+	}
+
+	func testARecommendationWithoutGenreNamesHasNoReasonLine() throws {
+		XCTAssertNil(TodayPresentation.reasonLine(of: .recommendation(try recommendation(firstID))))
+	}
+
+	func testStatesWithoutARecommendationHaveNoReasonLine() {
+		for state in [TodayState.loading, .emptyCatalog, .unavailable] {
+			XCTAssertNil(TodayPresentation.reasonLine(of: state))
+		}
 	}
 
 	private func opening(_ id: UUID) throws -> TodayOpening {
