@@ -691,6 +691,208 @@ describe("auditNodes", () => {
 		});
 	});
 
+	describe("credits that went both ways (TRA-570)", () => {
+		const M = "bidirectional-credit-mismatch";
+		const ART = "11111111-1111-4111-8111-111111111111";
+		const OTHER = "22222222-2222-4222-8222-222222222222";
+		const WORK = "33333333-3333-4333-8333-333333333333";
+		const withMbid = (slug: string, mbid: string, name?: string): RawNode => ({ ...edge(slug, name), mbid });
+		const counts = (report: AuditReport): Record<string, number> =>
+			report.metrics[M] as Record<string, number>;
+
+		it("starts every key at 0 and counts nothing for a clean two-way credit", () => {
+			const report = auditNodes(
+				toMap(
+					node("artist:a", { mbid: ART, discography: [edge("project:p--a")] }),
+					node("project:p--a", { mbid: WORK, artists: [withMbid("artist:a", ART)] }),
+				),
+			);
+			expect(counts(report)).toEqual({
+				"mbid-divergent": 0,
+				"credit-excludes-artist": 0,
+				"members-for-group": 0,
+			});
+			expect(report.cases[M]).toBeUndefined();
+		});
+
+		it("counts a credit whose mbid is not the artist's (an homonym credit) as mbid-divergent", () => {
+			const report = auditNodes(
+				toMap(
+					node("artist:inside", { mbid: ART, discography: [edge("project:the-ep--inside")] }),
+					node("project:the-ep--inside", { artists: [withMbid("artist:inside", OTHER, "Inside")] }),
+				),
+			);
+			expect(counts(report)["mbid-divergent"]).toBe(1);
+			expect(report.cases[M]).toEqual(["artist:inside discography project:the-ep--inside (mbid-divergent)"]);
+			expect(report.samples[`${M}[mbid-divergent]`]).toEqual(["artist:inside"]);
+		});
+
+		it("counts a list entry carrying another work's mbid as mbid-divergent, on notable_tracks too", () => {
+			const report = auditNodes(
+				toMap(
+					node("artist:a", { notable_tracks: [{ ...edge("track:t--a"), mbid: OTHER }] }),
+					node("track:t--a", { mbid: WORK, artists: [edge("artist:a")] }),
+				),
+			);
+			expect(counts(report)["mbid-divergent"]).toBe(1);
+		});
+
+		it("compares mbids case-insensitively and ignores blank ones", () => {
+			const report = auditNodes(
+				toMap(
+					node("artist:a", {
+						mbid: ART.toUpperCase(),
+						discography: [{ ...edge("project:p--a"), mbid: " " }],
+					}),
+					node("project:p--a", { mbid: WORK, artists: [withMbid("artist:a", ART)] }),
+				),
+			);
+			expect(counts(report)).toEqual({
+				"mbid-divergent": 0,
+				"credit-excludes-artist": 0,
+				"members-for-group": 0,
+			});
+		});
+
+		it("counts an artist whom the MusicBrainz credit of a work does not name as credit-excludes-artist", () => {
+			const report = auditNodes(
+				toMap(
+					node("artist:coltrane", { mbid: ART, discography: [edge("project:kind-of-blue--miles-davis")] }),
+					node("artist:miles-davis", { mbid: OTHER }),
+					node("project:kind-of-blue--miles-davis", {
+						mbid: WORK,
+						artists: [withMbid("artist:miles-davis", OTHER), edge("artist:coltrane")],
+					}),
+				),
+			);
+			expect(counts(report)["credit-excludes-artist"]).toBe(1);
+		});
+
+		it("does not count that when the credit edge carries the artist's mbid, a group credits it, or the work has no mbid", () => {
+			const credited = (extra: RawNode = {}): Map<string, RawNode> =>
+				toMap(
+					node("artist:a", { mbid: ART, discography: [edge("project:p--g")] }),
+					node("artist:g", { mbid: OTHER, members: [edge("artist:a")] }),
+					node("project:p--g", {
+						mbid: WORK,
+						artists: [withMbid("artist:g", OTHER), edge("artist:a")],
+						...extra,
+					}),
+				);
+			expect(counts(auditNodes(credited()))["credit-excludes-artist"]).toBe(0); // member of the credited group
+			expect(counts(auditNodes(credited({ mbid: undefined })))["credit-excludes-artist"]).toBe(0);
+			const own = toMap(
+				node("artist:a", { mbid: ART, discography: [edge("project:p--g")] }),
+				node("project:p--g", {
+					mbid: WORK,
+					artists: [withMbid("artist:g", OTHER), withMbid("artist:a", ART)],
+				}),
+			);
+			expect(counts(auditNodes(own))["credit-excludes-artist"]).toBe(0);
+		});
+
+		it("cannot judge a pair with no mbid on either side (artist:inside as it is in the cache)", () => {
+			const report = auditNodes(
+				toMap(
+					node("artist:inside", { discography: [edge("project:the-ep--inside")] }),
+					node("project:the-ep--inside", { year: "1993", artists: [edge("artist:inside")] }),
+				),
+			);
+			expect(counts(report)).toEqual({
+				"mbid-divergent": 0,
+				"credit-excludes-artist": 0,
+				"members-for-group": 0,
+			});
+			// And it is no longer visible to homonym-release-links either: the credit is two-way.
+			expect(metric(report, "homonym-release-links")).toBe(0);
+		});
+
+		it("ignores a one-way link, which homonym-release-links already counts", () => {
+			const report = auditNodes(
+				toMap(
+					node("artist:a", { mbid: ART, discography: [edge("project:p--b")] }),
+					node("artist:b", { mbid: OTHER }),
+					node("project:p--b", { mbid: WORK, artists: [withMbid("artist:b", OTHER)] }),
+				),
+			);
+			expect(counts(report)).toEqual({
+				"mbid-divergent": 0,
+				"credit-excludes-artist": 0,
+				"members-for-group": 0,
+			});
+			expect(metric(report, "homonym-release-links")).toBe(1);
+		});
+
+		it("counts the members of a band credited on an album the band itself lists as members-for-group", () => {
+			const beatles = (listedByBand: boolean): Map<string, RawNode> =>
+				toMap(
+					node("artist:the-beatles", {
+						members: [edge("artist:john"), edge("artist:paul"), edge("artist:pete")],
+						discography: listedByBand ? [edge("project:the-beatles")] : [],
+					}),
+					node("artist:john", { discography: [edge("project:the-beatles")] }),
+					node("artist:paul", { notable_tracks: [edge("project:the-beatles")] }),
+					node("project:the-beatles", { artists: [edge("artist:john"), edge("artist:paul")] }),
+				);
+			const report = auditNodes(beatles(true));
+			expect(counts(report)["members-for-group"]).toBe(2);
+			expect(report.cases[M]).toEqual([
+				"artist:john discography project:the-beatles (members-for-group)",
+				"artist:paul notable_tracks project:the-beatles (members-for-group)",
+			]);
+			// A duo credited as such, with the band not listing the album (Songs for Drella), is not this case.
+			expect(counts(auditNodes(beatles(false)))["members-for-group"]).toBe(0);
+		});
+
+		it("does not count a sole member credited on its own work as members-for-group", () => {
+			const report = auditNodes(
+				toMap(
+					node("artist:band", { members: [edge("artist:john")], discography: [edge("project:solo--john")] }),
+					node("artist:john", { discography: [edge("project:solo--john")] }),
+					node("project:solo--john", { artists: [edge("artist:john")] }),
+				),
+			);
+			expect(counts(report)["members-for-group"]).toBe(0);
+		});
+
+		it("counts a pair once, under the first key that applies", () => {
+			const report = auditNodes(
+				toMap(
+					node("artist:a", { mbid: ART, discography: [edge("project:p--a")] }),
+					node("artist:g", {
+						members: [edge("artist:a"), edge("artist:b")],
+						discography: [edge("project:p--a")],
+					}),
+					node("artist:b"),
+					node("project:p--a", { mbid: WORK, artists: [withMbid("artist:a", OTHER), edge("artist:b")] }),
+				),
+			);
+			expect(counts(report)).toEqual({
+				"mbid-divergent": 1,
+				"credit-excludes-artist": 0,
+				"members-for-group": 0,
+			});
+		});
+
+		it("is ceilinged per key, and thresholds without the metric fail the comparison", () => {
+			const report = auditNodes(
+				toMap(
+					node("artist:inside", { mbid: ART, discography: [edge("project:the-ep--inside")] }),
+					node("project:the-ep--inside", { artists: [withMbid("artist:inside", OTHER)] }),
+				),
+			);
+			const thresholds = thresholdsFromReport(report);
+			expect(INFORMATIVE_METRICS.has(M)).toBe(false);
+			expect(compareWithThresholds(report, thresholds)).toEqual([]);
+			(thresholds[M] as Record<string, number>)["mbid-divergent"] = 0;
+			expect(compareWithThresholds(report, thresholds).map(formatViolation)).toEqual([
+				`${M}[mbid-divergent] 1 > 0`,
+			]);
+			delete thresholds[M];
+			expect(compareWithThresholds(report, thresholds)).toHaveLength(3);
+		});
+	});
+
 	it("counts nodes per type", () => {
 		const report = auditNodes(toMap(node("artist:a"), node("artist:b"), node("genre:g")));
 		expect(report.nodeCount).toEqual({ genre: 1, label: 0, artist: 2, project: 0, track: 0 });
