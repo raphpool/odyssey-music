@@ -69,11 +69,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:polyester",
-      "type": "project",
-      "name": "Polyester"
-    },
-    {
       "slug": "project:polyester--lisa-carbon",
       "type": "project",
       "name": "Polyester",
@@ -98,9 +93,10 @@
     }
   ],
   "landmark_project": {
-    "slug": "project:polyester",
+    "slug": "project:polyester--lisa-carbon",
     "type": "project",
-    "name": "Polyester"
+    "name": "Polyester",
+    "artist": "Lisa Carbon"
   },
   "reference_track": {
     "slug": "track:hey-music",
