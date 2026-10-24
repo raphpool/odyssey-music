@@ -137,6 +137,12 @@ export const EDGE_TARGET_TYPES_BY_TYPE: Record<
 	]),
 ) as Record<NodeType, Record<string, readonly NodeType[]>>;
 
+/**
+ * Every reverse pair the spec DECLARES. It is a superset of what the runtime writes: `NodeCache.write` emits
+ * only the same-kind list pairs and the four SAFE_BACKFILL_PAIRS (TRA-563, TRA-569), and `isEmittedReversePair`
+ * in src/reverse-edges.ts is the source of truth for that. The other cross-type pairs and every singular
+ * reverse are declared but never written; the integrity audit measures them without capping them (TRA-567).
+ */
 export const REVERSE_EDGE_PAIRS: ReadonlyArray<{
 	sourceType: NodeType;
 	sourceField: string;
@@ -162,10 +168,12 @@ export const REVERSE_EDGE_PAIRS: ReadonlyArray<{
 	{ sourceType: "track", sourceField: "sampled_by", reverse: { field: "samples", cardinality: "list" } },
 	{ sourceType: "track", sourceField: "remix_of", reverse: { field: "remixed_by", cardinality: "list" } },
 	{ sourceType: "track", sourceField: "remixed_by", reverse: { field: "remix_of", cardinality: "single" } },
-	// Cross-type pairs (TRA-454, 2026-10-14): without them 277/458 artist -> label links had no
-	// label.roster entry, 111/211 artist -> project links no project.artists entry, etc.
-	// Deliberately absent: artist.genres -> genre.key_artists (each artist has ~5 genres, so
-	// key_artists would balloon); the genre.key_* -> X.genres direction is the only one kept.
+	// Cross-type pairs (TRA-454, 2026-10-14): declared then because 277/458 artist -> label links had no
+	// label.roster entry, 111/211 artist -> project links no project.artists entry, etc. Since TRA-563 (2026-10-16)
+	// the runtime emits only four of them (artist.labels, project.artists, track.artists, project.label: see
+	// isEmittedReversePair in src/reverse-edges.ts); the genre.key_* / landmark_* -> X.genres ones are NOT written,
+	// whatever TRA-454 intended. Deliberately absent: artist.genres -> genre.key_artists (each artist has ~5
+	// genres, so key_artists would balloon).
 	{ sourceType: "artist", sourceField: "labels", reverse: { field: "roster", cardinality: "list" } },
 	{ sourceType: "label", sourceField: "roster", reverse: { field: "labels", cardinality: "list" } },
 	{ sourceType: "artist", sourceField: "discography", reverse: { field: "artists", cardinality: "list" } },
