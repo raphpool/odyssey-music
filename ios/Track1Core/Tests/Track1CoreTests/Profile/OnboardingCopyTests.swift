@@ -55,20 +55,37 @@ final class OnboardingCopyTests: XCTestCase {
 		XCTAssertEqual(OnboardingCopy.subgenreCount(-1), "0 sous-genre")
 	}
 
-	func testTheSelectedCountIsSingularForZero() {
-		XCTAssertEqual(OnboardingCopy.selectedCount(0), "(0 sélectionné)")
+	func testTheSelectedCountIsTheNumberBetweenParenthesesForZero() {
+		XCTAssertEqual(OnboardingCopy.selectedCount(0), "(0)")
 	}
 
-	func testTheSelectedCountIsSingularForOne() {
-		XCTAssertEqual(OnboardingCopy.selectedCount(1), "(1 sélectionné)")
+	func testTheSelectedCountIsTheNumberBetweenParenthesesForOne() {
+		XCTAssertEqual(OnboardingCopy.selectedCount(1), "(1)")
 	}
 
-	func testTheSelectedCountIsPluralFromTwo() {
-		XCTAssertEqual(OnboardingCopy.selectedCount(2), "(2 sélectionnés)")
-		XCTAssertEqual(OnboardingCopy.selectedCount(4), "(4 sélectionnés)")
+	func testTheSelectedCountHasNoWordToFoldFromTwo() {
+		XCTAssertEqual(OnboardingCopy.selectedCount(2), "(2)")
+		XCTAssertEqual(OnboardingCopy.selectedCount(4), "(4)")
 	}
 
 	func testANegativeSelectedCountReadsAsZero() {
-		XCTAssertEqual(OnboardingCopy.selectedCount(-2), "(0 sélectionné)")
+		XCTAssertEqual(OnboardingCopy.selectedCount(-2), "(0)")
+	}
+
+	func testTheSpokenSelectedCountIsSingularForZero() {
+		XCTAssertEqual(OnboardingCopy.spokenSelectedCount(0), "0 sélectionné")
+	}
+
+	func testTheSpokenSelectedCountIsSingularForOne() {
+		XCTAssertEqual(OnboardingCopy.spokenSelectedCount(1), "1 sélectionné")
+	}
+
+	func testTheSpokenSelectedCountIsPluralFromTwo() {
+		XCTAssertEqual(OnboardingCopy.spokenSelectedCount(2), "2 sélectionnés")
+		XCTAssertEqual(OnboardingCopy.spokenSelectedCount(4), "4 sélectionnés")
+	}
+
+	func testANegativeSpokenSelectedCountReadsAsZero() {
+		XCTAssertEqual(OnboardingCopy.spokenSelectedCount(-2), "0 sélectionné")
 	}
 }
