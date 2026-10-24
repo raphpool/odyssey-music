@@ -14,7 +14,14 @@
   "era": "late 1970s to early 1980s",
   "origin": "Europe, particularly France, Poland, and Belgium",
   "sonic_markers": "Minimalist production, analog synthesizers, detached vocals, militant rhythm sections, depressive grooves",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New wave",
+      "qid": "Q187760"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {
@@ -40,6 +47,12 @@
       "type": "genre",
       "name": "Electronic body music",
       "qid": "Q372103"
+    },
+    {
+      "slug": "genre:minimal-music",
+      "type": "genre",
+      "name": "Minimal music",
+      "qid": "Q12183214"
     }
   ],
   "key_artists": [

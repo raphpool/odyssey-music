@@ -17,7 +17,14 @@
   "editorial_definition": "A subgenre of house music defined by its heavy, distorted basslines—often using sawtooth waves—and aggressive, synthesizer-driven production at tempos typically between 125 and 135 BPM.",
   "era": "Mid-1990s to present",
   "origin": "Global (origins in Europe and North America)",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    }
+  ],
   "subgenres": [
     {
       "slug": "genre:big-room-house",
@@ -74,6 +81,18 @@
       "type": "genre",
       "name": "Electroclash",
       "qid": "Q861823"
+    },
+    {
+      "slug": "genre:brostep",
+      "type": "genre",
+      "name": "Brostep",
+      "qid": "Q20903"
+    },
+    {
+      "slug": "genre:electropop",
+      "type": "genre",
+      "name": "Electropop",
+      "qid": "Q188450"
     }
   ],
   "key_artists": [

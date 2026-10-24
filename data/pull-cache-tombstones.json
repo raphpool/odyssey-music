@@ -1,0 +1,5 @@
+{
+	"tombstones": {
+		"track:incubus--1987-death-metal-band-from-atlanta": "TRA-273 (#257): the node describes a death metal band, not a track; removed on purpose, no redirect. Prod still holds it (the removal migration is not in the channel whitelist)."
+	}
+}

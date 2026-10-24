@@ -38,6 +38,12 @@
       "type": "genre",
       "name": "Bass Music",
       "qid": "Q96740854"
+    },
+    {
+      "slug": "genre:ragtime",
+      "type": "genre",
+      "name": "Ragtime",
+      "qid": "Q185652"
     }
   ],
   "related_genres": [

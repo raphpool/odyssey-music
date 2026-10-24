@@ -60,6 +60,18 @@
       "type": "genre",
       "name": "Riddim",
       "qid": "Q65065491"
+    },
+    {
+      "slug": "genre:deathstep",
+      "type": "genre",
+      "name": "Deathstep",
+      "qid": "Q106528420"
+    },
+    {
+      "slug": "genre:dubstep",
+      "type": "genre",
+      "name": "Dubstep",
+      "qid": "Q20474"
     }
   ],
   "key_artists": [

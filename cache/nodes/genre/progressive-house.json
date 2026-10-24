@@ -16,7 +16,14 @@
   "qid": "Q915152",
   "era": "1990s–Present",
   "origin": "United Kingdom",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:house",
+      "type": "genre",
+      "name": "House",
+      "qid": "Q20502"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {
@@ -59,6 +66,12 @@
       "slug": "genre:leftfield-techno",
       "type": "genre",
       "name": "Leftfield Techno"
+    },
+    {
+      "slug": "genre:tech-house",
+      "type": "genre",
+      "name": "Tech House",
+      "qid": "Q598593"
     }
   ],
   "key_artists": [

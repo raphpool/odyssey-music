@@ -32,7 +32,14 @@
   "editorial_definition": "A genre originating in the late 1970s, blending post-punk and new wave with electronic textures and dark, introspective, and atmospheric themes.",
   "era": "1970s–present",
   "origin": "United Kingdom and Europe",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New wave",
+      "qid": "Q187760"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

@@ -47,6 +47,12 @@
       "type": "genre",
       "name": "Indie rock",
       "qid": "Q183504"
+    },
+    {
+      "slug": "genre:alternative",
+      "type": "genre",
+      "name": "Alternative",
+      "qid": "Q1695023"
     }
   ],
   "subgenres": [

@@ -28,7 +28,14 @@
       "qid": "Q11366"
     }
   ],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:post-metal",
+      "type": "genre",
+      "name": "Post-metal",
+      "qid": "Q41343"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:math-rock",
@@ -53,6 +60,12 @@
       "type": "genre",
       "name": "Ambient",
       "qid": "Q193207"
+    },
+    {
+      "slug": "genre:experimental-rock",
+      "type": "genre",
+      "name": "Experimental rock",
+      "qid": "Q1641839"
     }
   ],
   "key_artists": [

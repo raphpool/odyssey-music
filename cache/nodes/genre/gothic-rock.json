@@ -34,7 +34,20 @@
   "origin": "United Kingdom",
   "parent_genres": [],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:dark-wave",
+      "type": "genre",
+      "name": "Dark wave",
+      "qid": "Q3840596"
+    },
+    {
+      "slug": "genre:post-punk",
+      "type": "genre",
+      "name": "Post-Punk",
+      "qid": "Q598929"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:bauhaus",
