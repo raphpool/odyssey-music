@@ -289,7 +289,7 @@ final class ProfileFlowTests: XCTestCase {
 
 		UITestFlows.tapWhenReady(bar)
 		XCTAssertTrue(element(app, "node-title").waitForExistence(timeout: 15))
-		app.tabBars.buttons["Genres"].tap()
+		UITestFlows.tabButton("Genres", in: app).tap()
 		UITestFlows.tapWhenReady(app.buttons["genres-edit"])
 
 		// The sheet opens on the same cards, closed, and the first still counts the genre that is ticked.
