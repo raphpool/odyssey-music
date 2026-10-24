@@ -23,6 +23,12 @@
       "type": "genre",
       "name": "Experimental",
       "qid": "Q1640319"
+    },
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic",
+      "qid": "Q105763581"
     }
   ],
   "subgenres": [
@@ -75,6 +81,18 @@
       "type": "genre",
       "name": "Power Electronics",
       "qid": "Q2687544"
+    },
+    {
+      "slug": "genre:avant-garde",
+      "type": "genre",
+      "name": "Avant-Garde",
+      "qid": "Q2332751"
+    },
+    {
+      "slug": "genre:electroacoustic-music",
+      "type": "genre",
+      "name": "Electroacoustic music",
+      "qid": "Q1326777"
     }
   ],
   "key_artists": [

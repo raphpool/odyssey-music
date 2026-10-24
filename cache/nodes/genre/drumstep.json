@@ -30,6 +30,12 @@
       "type": "genre",
       "name": "Drum and Bass",
       "qid": "Q188994"
+    },
+    {
+      "slug": "genre:brostep",
+      "type": "genre",
+      "name": "Brostep",
+      "qid": "Q20903"
     }
   ],
   "subgenres": [

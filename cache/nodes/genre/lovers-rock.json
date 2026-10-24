@@ -66,6 +66,12 @@
       "type": "genre",
       "name": "Reggae fusion",
       "qid": "Q1606591"
+    },
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae",
+      "qid": "Q9794"
     }
   ],
   "key_artists": [

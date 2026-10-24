@@ -28,6 +28,24 @@
       "type": "genre",
       "name": "Balearic House",
       "qid": "Q2866725"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica",
+      "qid": "Q817138"
+    },
+    {
+      "slug": "genre:lofi-hip-hop",
+      "type": "genre",
+      "name": "Lofi Hip-Hop",
+      "qid": "Q97265899"
+    },
+    {
+      "slug": "genre:nu-jazz",
+      "type": "genre",
+      "name": "Nu Jazz",
+      "qid": "Q1136331"
     }
   ],
   "key_artists": [

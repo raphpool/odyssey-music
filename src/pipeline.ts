@@ -32,7 +32,7 @@ import {
 	toDiscographyEdge,
 } from "./discography-policy.js";
 import { dedupeNodeListEdges } from "./edge-dedupe.js";
-import { normalizeEditorialText } from "./editorial-text.js";
+import { normalizeEditorialText, unescapeQuotes } from "./editorial-text.js";
 import { type GenreResolver, loadGenreResolver } from "./genre-identity.js";
 import type { GenreRegistry } from "./genre-registry.js";
 import {
@@ -1945,7 +1945,10 @@ function canonicalizeDraft(
 			if (seen.has(url)) continue;
 			seen.add(url);
 			const entry: Citation = { url };
-			if (typeof o.title === "string" && o.title.trim()) entry.title = o.title.trim();
+			// The title is model output like the prose: the double escaping of TRA-458 hit its quotation marks too
+			// (2026-10, TRA-687: two cached titles printed `\"`). Only the quote rule applies, a title is no prose.
+			const title = typeof o.title === "string" ? unescapeQuotes(o.title).trim() : "";
+			if (title) entry.title = title;
 			cits.push(entry);
 		}
 	}

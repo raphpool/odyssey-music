@@ -26,6 +26,12 @@
       "type": "genre",
       "name": "Rock music",
       "qid": "Q11399"
+    },
+    {
+      "slug": "genre:indie-folk",
+      "type": "genre",
+      "name": "Indie folk",
+      "qid": "Q1317816"
     }
   ],
   "subgenres": [],
@@ -41,6 +47,12 @@
       "type": "genre",
       "name": "Psychedelic rock",
       "qid": "Q206159"
+    },
+    {
+      "slug": "genre:celtic-rock",
+      "type": "genre",
+      "name": "Celtic rock",
+      "qid": "Q2662148"
     }
   ],
   "key_artists": [

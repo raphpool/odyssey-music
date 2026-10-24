@@ -62,6 +62,12 @@
       "type": "genre",
       "name": "Space music",
       "qid": "Q2342263"
+    },
+    {
+      "slug": "genre:ambient",
+      "type": "genre",
+      "name": "Ambient",
+      "qid": "Q193207"
     }
   ],
   "key_artists": [

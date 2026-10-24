@@ -4,7 +4,8 @@ import Foundation
 public enum HeroCandidate: Equatable, Sendable {
 	/// An image URL the API sent for the node itself (`image_url`).
 	case url(URL)
-	/// Another node whose `/image` stands in for this one: a cover of the node's own releases.
+	/// A node whose `/image` stands in for this one: the node itself, whose answer the server derives from a
+	/// release that declares it, or a track's own project.
 	case node(NodeIdentity)
 }
 
@@ -20,12 +21,20 @@ public enum HeroImageStyle: Equatable, Sendable {
 /// Which images a node page hero may use, and the fallback chain over them.
 ///
 /// Every node kind carries its own `image_url` (TRA-455), so it always comes first. The edges carry no cover
-/// (D10, Q5): the fallback after it borrows the cover of a landmark release. For a genre the last step is
-/// `landmark_tracks[0]`: its `/image` answers with the cover of the track or of its project, which spares a
-/// `/node` read followed by a second `/image`.
+/// (D10, Q5).
+///
+/// 2026-10-24 (TRA-593): the hero used to borrow the `/image` of the first work listed on the page
+/// (`discography`, `notable_releases`, `landmark_*`). Such a list can be polluted by a homonym or a
+/// hallucination, and the borrowed work then lends a stranger's sleeve to the page (the server saw
+/// label:mille-plateaux get the cover of Electric Ladyland, a Reprise release, TRA-591). A page edge carries
+/// neither the work's label, nor its artists, nor its genres, so the client cannot tell which work points
+/// back at the node. The server can: `/image` of the node itself borrows a cover only from a work that
+/// declares the node (TRA-591, TRA-592, TRA-597). So an artist, label or genre with no `image_url` asks for
+/// its own `/image`, and shows the type gradient when the server finds no reciprocal work.
+/// A track still takes its own project's cover: that is its album, not a list.
 public enum HeroImageSource {
 	public static func candidates(for node: NodeDetail) -> [HeroCandidate] {
-		candidates(type: node.type, imageURL: node.imageURL, edges: node.edges)
+		candidates(type: node.type, id: node.id, imageURL: node.imageURL, edges: node.edges)
 	}
 
 	/// Takes the parts rather than a `NodeDetail` because decoding already refuses a non-HTTPS `image_url`:
@@ -34,27 +43,22 @@ public enum HeroImageSource {
 	/// Every URL is untrusted API data. One that fails `URLValidation.publicHTTPSURL` is skipped as a
 	/// candidate, and the next one is tried.
 	public static func candidates(
-		type: NodeType, imageURL: URL?, edges: [String: NodeEdgeValue]
+		type: NodeType, id: NodeIdentity, imageURL: URL?, edges: [String: NodeEdgeValue]
 	) -> [HeroCandidate] {
 		let own = imageURL.flatMap { URLValidation.publicHTTPSURL(from: $0.absoluteString) }.map(
 			HeroCandidate.url)
-		let steps: [HeroCandidate?]
 		switch type {
-		case .artist: steps = [own, first(of: edges["discography"])]
-		case .project: steps = [own]
-		case .track: steps = [own, first(of: edges["project"])]
-		case .genre:
-			steps = [own, first(of: edges["landmark_projects"]), first(of: edges["landmark_tracks"])]
-		case .label: steps = [own, first(of: edges["notable_releases"])]
+		case .artist, .label, .genre: return [own ?? .node(id)]
+		case .project: return own.map { [$0] } ?? []
+		case .track: return [own, first(of: edges["project"])].compactMap { $0 }
 		}
-		return steps.compactMap { $0 }
 	}
 
 	/// How the hero draws the image that came from `candidate`. Only artist, label and genre pages can show a
 	/// cover standing in for themselves; a project or a track draws its own cover (or its project's) as is.
 	///
 	/// - The node's own image (`.url`) is a derived cover when the API says so (`image_source`).
-	/// - An image borrowed from an edge (`.node`) is always a release cover, never the node's own picture.
+	/// - An image read from a node's `/image` (`.node`) is always a release cover, never the node's own picture.
 	public static func style(of candidate: HeroCandidate, type: NodeType, imageSource: String?) -> HeroImageStyle
 	{
 		switch type {

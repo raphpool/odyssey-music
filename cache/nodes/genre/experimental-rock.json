@@ -18,7 +18,20 @@
   "era": "1960s–present",
   "origin": "United States, United Kingdom, and West Germany",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:kosmische-musik",
+      "type": "genre",
+      "name": "Kosmische Musik",
+      "qid": "Q121494463"
+    },
+    {
+      "slug": "genre:no-wave",
+      "type": "genre",
+      "name": "No Wave",
+      "qid": "Q823080"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:art-rock",
