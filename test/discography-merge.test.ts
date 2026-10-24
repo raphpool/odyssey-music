@@ -20,6 +20,7 @@ const policy: DiscographyPolicy = {
 	artistName: "Daft Punk",
 	cap: DEFAULT_DISCOGRAPHY_CAP,
 	currentYear: 2026,
+	currentDate: "2026-10-24",
 };
 
 let counter = 0;
@@ -2099,13 +2100,16 @@ describe("mergeDiscography — cautious pose without a year (TRA-647)", () => {
 					expect(result.posed.map((p) => p.mbid)).toEqual([found.mbid]);
 				});
 
-				it("leaves a release group within the credit rule alone: two credits with ';' are still posed", () => {
+				// v7 left it posed (TRA-653); the review of that PR found the same recording, credited with two names,
+				// passing the credit rule, and TRA-654 closes it for the selection and the pose alike.
+				it("holds a release group of two credits as well: 'Composer; Orchestra' (TRA-654)", () => {
 					const found = release("Dil Padosi Hai", {
 						artistCredits: [{ ...HEAD, joinphrase: "; " }, guest(1)],
+						ratingVotes: 4,
 					});
 					const result = mergeFor(zappa, existing, [found]);
-					expect(result.ambiguous).toEqual([]);
-					expect(result.posed.map((p) => p.mbid)).toEqual([found.mbid]);
+					expect(result.posed).toEqual([]);
+					expect(result.ambiguous).toEqual([{ slug: existing[0]?.slug, reason: "credit" }]);
 				});
 			});
 

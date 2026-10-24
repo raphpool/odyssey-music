@@ -27,6 +27,12 @@ jobs:
       REPOSITORY: ${{ github.repository }}
       SHA: ${{ github.event.pull_request.head.sha }}
       DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+      # TRA-526: which pull request is evaluated. The branch names are chosen by the PR author, so they go through
+      # env and never into the script text.
+      PR_NUMBER: ${{ github.event.pull_request.number }}
+      BASE_REF: ${{ github.event.pull_request.base.ref }}
+      HEAD_REF: ${{ github.event.pull_request.head.ref }}
+      HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
     steps:
       - name: Isolate HOME from the runner host account
         # 2026-09-17 (TRA-243): the self-hosted runner runs under Raphael's own macOS account, so
@@ -84,9 +90,25 @@ jobs:
           # Anything else is `missing`: no conclusion yet, and also cancelled, timed_out (the 25-minute timeout of
           # ai-review.yml), skipped, stale, action_required or a value GitHub adds later. Those mean that no review
           # completed, and `codex-review: success` alone must not pass the gate (review-gate-policy.ts checks it too).
+          # TRA-526 (2026-10-24): the run must also be the one of THIS pull request, not just of this sha. A PR B
+          # opened on the same sha against another base (or from a fork) produces a genuine run too, and a `labeled`
+          # event on this PR would have kept its success. `pull_requests[]` of a run is empty on many real runs, so
+          # it only rejects: a run that names another PR, or this one against another base, is not retained, but an
+          # empty list is not required to be filled. What binds the run is its head branch and head repository, and
+          # `$pulls`, the pull requests (any state) of this head branch that sit on this sha: when one of them targets
+          # another base, two runs cannot be told apart, and when this PR is not in the list it is not established.
+          # A PR of the same branch name left on an older sha (closed long ago, or a stack parent) says nothing about
+          # this sha and does not count. Every doubt is `missing`. Same rule as `belongsToPullRequest` in
+          # scripts/ci/review-reuse.ts.
           select_review=$(cat <<'JQ'
-          [$runs[]
-            | select(.path == $path and .event == "pull_request" and .head_sha == $sha)] as $trusted
+          [$pulls[] | select(.number == $pr.number or .head_sha == $sha)] as $heads
+          | ($heads | any(.[]; .number == $pr.number) and all(.[]; .base_ref == $pr.baseRef)) as $unambiguous
+          | [$runs[]
+            | select($unambiguous
+              and .path == $path and .event == "pull_request" and .head_sha == $sha
+              and .head_branch == $pr.headRef and .head_repository == $pr.headRepo
+              and (.pull_requests | length == 0
+                or (any(.[]; .number == $pr.number) and all(.[]; .base_ref == $pr.baseRef))))] as $trusted
           | [$checks[]
             | select(.name == "review")
             | select(.head_sha == $sha and .app.slug == "github-actions")
@@ -127,15 +149,27 @@ jobs:
               --jq '.check_runs[] | {id, name, head_sha, conclusion, started_at, app: {slug: .app.slug}, check_suite: {id: .check_suite.id}}' \
               > "$api/checks.json"
             gh api --paginate "repos/$REPOSITORY/actions/runs?head_sha=$SHA&event=pull_request&per_page=100" \
-              --jq '.workflow_runs[] | {id, path, event, head_sha, check_suite_id}' > "$api/runs.json"
+              --jq '.workflow_runs[] | {id, path, event, head_sha, check_suite_id, head_branch, head_repository: .head_repository.full_name, pull_requests: [.pull_requests[] | {number, base_ref: .base.ref}]}' > "$api/runs.json"
+            # TRA-526: the pull requests, open or not, whose head branch is this one. `head` is `<owner>:<branch>` and
+            # filters on the head repository's owner. `--method GET`: gh switches to POST as soon as a field is given.
+            # No head repository (a deleted fork) means no filter to send: an empty list, hence `missing`, and not a
+            # `head=:<branch>` that GitHub might ignore, which would walk the whole history of the repository.
+            : > "$api/pulls.json"
+            if [ -n "$HEAD_REPO" ]; then
+              gh api --paginate --method GET "repos/$REPOSITORY/pulls" -f head="${HEAD_REPO%%/*}:$HEAD_REF" -f state=all -f per_page=100 \
+                --jq '.[] | {number, base_ref: .base.ref, head_sha: .head.sha}' > "$api/pulls.json"
+            fi
             run_ids=$(jq -r --arg path "$ai_review_path" 'select(.path == $path) | .id' "$api/runs.json")
             : > "$api/jobs.json"
             for run_id in $run_ids; do
               gh api --paginate "repos/$REPOSITORY/actions/runs/$run_id/jobs?filter=all&per_page=100" \
                 --jq '.jobs[] | {id, name, run_id}' >> "$api/jobs.json"
             done
+            pr=$(jq -nc --argjson number "$PR_NUMBER" --arg baseRef "$BASE_REF" --arg headRef "$HEAD_REF" \
+              --arg headRepo "$HEAD_REPO" '{number: $number, baseRef: $baseRef, headRef: $headRef, headRepo: $headRepo}')
             claude_info=$(jq -nr --slurpfile checks "$api/checks.json" --slurpfile runs "$api/runs.json" \
-              --slurpfile jobs "$api/jobs.json" --arg sha "$SHA" --arg path "$ai_review_path" "$select_review")
+              --slurpfile jobs "$api/jobs.json" --slurpfile pulls "$api/pulls.json" --argjson pr "$pr" \
+              --arg sha "$SHA" --arg path "$ai_review_path" "$select_review")
             IFS=$'\t' read -r claude_id claude <<< "$claude_info"
             claude_blocking=false
             if [ "$claude" = "failure" ] && [ "$claude_id" != "0" ]; then
