@@ -58,6 +58,17 @@ final class HeroTests: XCTestCase {
 		XCTAssertEqual(NodeHeroStyle.placeholderStops(for: .release)[0].color, Track1Tokens.colorNodeProject)
 	}
 
+	func testTheHaloIsFigmaFiveRadiusHalvedForSwiftUI() {
+		// Figma `286:1674` and `286:1685`: `drop-shadow(0 0 5px)`; SwiftUI's radius is half the CSS blur.
+		XCTAssertEqual(NodeHeroStyle.haloRadius, 2.5, accuracy: 0.001)
+	}
+
+	func testOnlyTheReleaseHeroCarriesAHalo() {
+		XCTAssertTrue(NodeHeroStyle.appliesHalo(to: .release))
+		XCTAssertFalse(NodeHeroStyle.appliesHalo(to: .artist), "No halo on a photo hero (decision D5).")
+		XCTAssertFalse(NodeHeroStyle.appliesHalo(to: .cover), "No halo on a photo hero (decision D5).")
+	}
+
 	func testOnlyADecodedImageReplacesThePlaceholder() {
 		XCTAssertNil(NodeHero.decodedImage(for: .loading))
 		XCTAssertNil(NodeHero.decodedImage(for: .unavailable))

@@ -13,14 +13,15 @@ enum Track1FontFace: String, CaseIterable {
 	case robotoCondensedMedium = "RobotoCondensed-Medium"
 }
 
-/// The 20 text styles of the Figma Typography frame (`180:376`, read 2026-10-13, TRA-384). Sizes and line
-/// heights are in points at the default content size; `textStyle` is the system style that Dynamic Type
+/// The 20 text styles of the Figma Typography frame (`180:376`, read 2026-10-13, TRA-384), plus
+/// `monoHeadline`, which only the Top bar date uses (`I282:838;173:15`, read 2026-10-23, TRA-660). Sizes and
+/// line heights are in points at the default content size; `textStyle` is the system style that Dynamic Type
 /// scales each role against (D4bis).
 enum Track1TextRole: CaseIterable {
 	case displayHero, display, title1, title2, title3, headline
 	case bodyLarge, bodyMedium, bodySmall
 	case labelLarge, labelMedium, labelSmall, labelTab, eyebrow, caption
-	case monoSection, monoItem, monoTag, monoLabel, monoMicro
+	case monoHeadline, monoSection, monoItem, monoTag, monoLabel, monoMicro
 
 	private typealias Spec = (
 		face: Track1FontFace, size: CGFloat, lineHeight: CGFloat, textStyle: Font.TextStyle
@@ -34,6 +35,7 @@ enum Track1TextRole: CaseIterable {
 		case .title2: (.jetBrainsMonoBold, 22, 28, .title2)
 		case .title3: (.jetBrainsMonoBold, 20, 25, .title3)
 		case .headline: (.jetBrainsMonoBold, 18, 24, .headline)
+		case .monoHeadline: (.jetBrainsMonoBold, 18, 24, .callout)
 		case .monoSection: (.jetBrainsMonoBold, 15, 20, .subheadline)
 		case .monoItem: (.jetBrainsMonoRegular, 18, 22, .body)
 		case .monoTag: (.jetBrainsMonoRegular, 13, 16, .footnote)

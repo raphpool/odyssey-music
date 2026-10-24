@@ -204,12 +204,6 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:the-piper-at-the-gates-of-dawn--pink-floyd",
-      "type": "project",
-      "name": "The Piper at the Gates of Dawn",
-      "artist": "Pink Floyd"
-    },
-    {
       "slug": "project:kind-of-blue--miles-davis",
       "type": "project",
       "name": "Kind of Blue"
