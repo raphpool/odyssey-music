@@ -120,6 +120,18 @@ final class NavigationComponentsTests: XCTestCase {
 		XCTAssertNotEqual(TopBar.dateRole, .eyebrow)
 	}
 
+	/// Figma `286:1669` (read 2026-10-24, TRA-699): the reason line sits 4 pt under the date, in the existing
+	/// `.monoLabel` role (the Bold 12 / 25 of the frame is not reproduced), in the tertiary text color.
+	func testTopBarReasonIsDrawnInMonoLabelTertiaryFourPointsUnderTheDate() {
+		XCTAssertEqual(TopBar.reasonRole, .monoLabel)
+		XCTAssertEqual(TopBar.reasonRole.face, .jetBrainsMonoRegular)
+		XCTAssertEqual(TopBar.reasonRole.size, 12)
+		XCTAssertEqual(TopBar.reasonRole.lineHeight, 16)
+		XCTAssertEqual(TopBar.reasonRole.textStyle, .caption)
+		XCTAssertEqual(TopBar.reasonColor, Track1Tokens.colorTextTertiary)
+		XCTAssertEqual(TopBar.reasonSpacing, 4, accuracy: 0.0001)
+	}
+
 	func testTopBarClearanceAddsOnlyWhatTheLayoutLacksAndNeverGoesNegative() {
 		XCTAssertEqual(TopBarFormat.clearance(windowInset: 59, layoutInset: 0), 59, accuracy: 0.0001)
 		XCTAssertEqual(TopBarFormat.clearance(windowInset: 59, layoutInset: 20), 39, accuracy: 0.0001)

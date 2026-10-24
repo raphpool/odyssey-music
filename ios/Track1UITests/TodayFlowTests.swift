@@ -16,6 +16,10 @@ final class TodayFlowTests: XCTestCase {
 		let title = element(app, "node-title")
 		XCTAssertTrue(title.waitForExistence(timeout: 15))
 		XCTAssertTrue(date.exists)
+		// 2026-10-24 (TRA-699): the fixture profile genre (`local:genre-0a`) is worded under the date.
+		let reason = element(app, "top-bar-reason")
+		XCTAssertTrue(reason.exists)
+		XCTAssertEqual(reason.label, "parce que tu explores Genre 0a")
 		let titleOfTheDay = title.label
 		XCTAssertFalse(titleOfTheDay.isEmpty)
 		UITestFlows.screenshot(named: "2.x-today", in: self)
@@ -47,6 +51,9 @@ final class TodayFlowTests: XCTestCase {
 		UITestFlows.relaunch(app)
 		XCTAssertTrue(title.waitForExistence(timeout: 15))
 		XCTAssertEqual(title.label, titleOfTheDay)
+		// The reason comes back with the persisted recommendation.
+		XCTAssertTrue(reason.waitForExistence(timeout: 5))
+		XCTAssertEqual(reason.label, "parce que tu explores Genre 0a")
 	}
 
 	@MainActor
