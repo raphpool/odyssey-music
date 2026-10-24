@@ -76,8 +76,8 @@ interface MbReleaseGroup {
 	id: string;
 	title: string;
 	"primary-type"?: string;
-	/** Present in search hits and unvalidated: read with an Array.isArray / typeof guard. */
-	"secondary-types"?: unknown;
+	/** Checked by parseReleaseGroups: absent, or an array of strings. */
+	"secondary-types"?: string[];
 	"first-release-date"?: string;
 	"artist-credit"?: MbArtistCreditEntry[];
 }
@@ -110,6 +110,15 @@ function isMbid(value: unknown): value is string {
 function hasOptionalText(record: Record<string, unknown>, key: string): boolean {
 	const value = record[key];
 	return value === undefined || isText(value);
+}
+
+// MB always sends `secondary-types` as an array of names ("Live", "Compilation"...). Absent is fine (a hit may
+// omit it); any other shape is off schema. It used to be read as "no secondary type" (2026-10-16, TRA-560
+// review: a live album marked `"secondary-types": "Live"` passed for a studio one), so, like a malformed
+// `primary-type`, it now makes the whole answer unusable. Each name follows the isText rule (TRA-566).
+function hasOptionalTextArray(record: Record<string, unknown>, key: string): boolean {
+	const value = record[key];
+	return value === undefined || (Array.isArray(value) && value.every(isText));
 }
 
 function hasValidArtistCredit(value: unknown): boolean {
@@ -149,6 +158,7 @@ function parseReleaseGroups(body: unknown): MbReleaseGroup[] | null {
 				isMbid(releaseGroup.id) &&
 				isText(releaseGroup.title) &&
 				hasOptionalText(releaseGroup, "primary-type") &&
+				hasOptionalTextArray(releaseGroup, "secondary-types") &&
 				hasOptionalText(releaseGroup, "first-release-date") &&
 				(releaseGroup["artist-credit"] === undefined || hasValidArtistCredit(releaseGroup["artist-credit"])),
 		)
@@ -1495,7 +1505,8 @@ function pickByTitleAndCredit<
 		return only ? { kind: "one", candidate: only } : { kind: "none" };
 	}
 	// Different types are different works (a single is not its album, a compilation is not the album it
-	// compiles): never settled by date. Secondary types come from an untrusted hit: keep the strings only.
+	// compiles): never settled by date. Hits from parseReleaseGroups already carry string[] secondary types
+	// (TRA-566); the guard stays because this picker is generic over any hit object.
 	const primaryOf = (c: T) => (c["primary-type"] ?? "").trim().toLowerCase();
 	const kindOf = (c: T) => {
 		const secondary = Array.isArray(c["secondary-types"]) ? c["secondary-types"] : [];
