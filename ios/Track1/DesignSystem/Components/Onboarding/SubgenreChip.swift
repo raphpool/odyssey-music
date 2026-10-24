@@ -41,7 +41,8 @@ struct SubgenreChip: View {
 
 	var body: some View {
 		let colors = OnboardingChoiceColors.resolve(isSelected: isSelected)
-		let shape = RoundedRectangle(cornerRadius: Self.cornerRadius(lineHeight: glyph == nil ? lineHeight : max(lineHeight, Self.glyphSize)), style: .continuous)
+		let contentHeight = glyph == nil ? lineHeight : max(lineHeight, Self.glyphSize)
+		let shape = RoundedRectangle(cornerRadius: Self.cornerRadius(lineHeight: contentHeight), style: .continuous)
 		Button {
 			taps += 1
 			action()
