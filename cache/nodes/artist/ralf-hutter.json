@@ -81,16 +81,14 @@
       "name": "Autobahn"
     },
     {
-      "slug": "project:die-mensch-maschine--kraftwerk",
+      "slug": "project:the-man-machine--kraftwerk",
       "type": "project",
-      "name": "Die Mensch·Maschine",
-      "artist": "Kraftwerk"
+      "name": "The Man-Machine"
     },
     {
-      "slug": "project:computerwelt--kraftwerk",
+      "slug": "project:computer-world--kraftwerk",
       "type": "project",
-      "name": "Computerwelt",
-      "artist": "Kraftwerk"
+      "name": "Computer World"
     },
     {
       "slug": "project:tour-de-france-soundtracks",

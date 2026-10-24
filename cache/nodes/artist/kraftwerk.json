@@ -68,9 +68,9 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:computerwelt--kraftwerk",
+      "slug": "project:computer-world--kraftwerk",
       "type": "project",
-      "name": "Computerwelt",
+      "name": "Computer World",
       "artist": "Kraftwerk",
       "mbid": "2e58b620-cf80-3b07-a5bc-edabd69ba285",
       "year": "1981",
@@ -86,9 +86,9 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:die-mensch-maschine--kraftwerk",
+      "slug": "project:the-man-machine--kraftwerk",
       "type": "project",
-      "name": "Die Mensch·Maschine",
+      "name": "The Man-Machine",
       "artist": "Kraftwerk",
       "mbid": "d147e89b-90ca-35b6-9f7b-3e34b8edf63f",
       "year": "1978",
@@ -113,9 +113,9 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:trans-europa-express--kraftwerk",
+      "slug": "project:trans-europe-express",
       "type": "project",
-      "name": "Trans Europa Express",
+      "name": "Trans-Europe Express",
       "artist": "Kraftwerk",
       "mbid": "33101a28-ae05-3a69-873c-684e336fe2df",
       "year": "1977",
