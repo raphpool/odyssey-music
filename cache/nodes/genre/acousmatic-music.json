@@ -15,7 +15,6 @@
   "materialized_at": "2026-05-13T12:54:51.398Z",
   "type": "genre",
   "editorial_definition": "A form of electroacoustic music designed for loudspeaker playback where the sound source is hidden, encouraging a focus on the sonic properties of the sound rather than its origins.",
-  "qid": "Q423918",
   "parent_genres": [],
   "subgenres": [],
   "related_genres": [
@@ -51,5 +50,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q423918"
 }

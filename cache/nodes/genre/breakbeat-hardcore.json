@@ -18,14 +18,7 @@
   "qid": "Q1585075",
   "era": "1990s (Early)",
   "origin": "United Kingdom",
-  "parent_genres": [
-    {
-      "slug": "genre:rave",
-      "type": "genre",
-      "name": "Rave",
-      "qid": "Q898709"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [
     {

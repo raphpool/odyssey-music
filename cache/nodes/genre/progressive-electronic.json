@@ -43,14 +43,7 @@
       "qid": "Q49451"
     }
   ],
-  "subgenres": [
-    {
-      "slug": "genre:berlin-school-of-electronic-music",
-      "type": "genre",
-      "name": "Berlin school of electronic music",
-      "qid": "Q530750"
-    }
-  ],
+  "subgenres": [],
   "related_genres": [
     {
       "slug": "genre:berlin-school",

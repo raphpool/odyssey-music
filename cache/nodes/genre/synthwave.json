@@ -15,7 +15,6 @@
   "materialized_at": "2026-05-13T12:44:06.819Z",
   "type": "genre",
   "editorial_definition": "Synthwave is an electronic subgenre characterized by heavy use of analog-style synthesizers, retro 1980s aesthetics, and a nostalgic, cinematic atmosphere often inspired by sci-fi, horror, and action media of the era.",
-  "qid": "Q19938910",
   "era": "2000s-present",
   "origin": "France",
   "parent_genres": [
@@ -24,12 +23,6 @@
       "type": "genre",
       "name": "Electronic",
       "qid": "Q9778"
-    },
-    {
-      "slug": "genre:synth-pop",
-      "type": "genre",
-      "name": "Synth-pop",
-      "qid": "Q1298934"
     }
   ],
   "subgenres": [],
@@ -104,5 +97,6 @@
       "name": "The Uncanny Valley"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q19938910"
 }

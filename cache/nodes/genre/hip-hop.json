@@ -108,36 +108,6 @@
       "type": "genre",
       "name": "African hip-hop",
       "qid": "Q387236"
-    },
-    {
-      "slug": "genre:acid-jazz",
-      "type": "genre",
-      "name": "Acid Jazz",
-      "qid": "Q221772"
-    },
-    {
-      "slug": "genre:breakbeat",
-      "type": "genre",
-      "name": "Breakbeat",
-      "qid": "Q663519"
-    },
-    {
-      "slug": "genre:comedy-hip-hop",
-      "type": "genre",
-      "name": "Comedy hip hop",
-      "qid": "Q602646"
-    },
-    {
-      "slug": "genre:jazz-rap",
-      "type": "genre",
-      "name": "Jazz Rap",
-      "qid": "Q255406"
-    },
-    {
-      "slug": "genre:lofi-hip-hop",
-      "type": "genre",
-      "name": "Lofi Hip-Hop",
-      "qid": "Q97265899"
     }
   ],
   "related_genres": [
@@ -250,11 +220,6 @@
       "qid": "Q164444"
     },
     {
-      "slug": "genre:hip-hop-francais",
-      "type": "genre",
-      "name": "Hip-hop français"
-    },
-    {
       "slug": "genre:lo-fi",
       "type": "genre",
       "name": "Lo-fi",
@@ -271,11 +236,6 @@
       "type": "genre",
       "name": "R&B",
       "qid": "Q45981"
-    },
-    {
-      "slug": "genre:rap-francais",
-      "type": "genre",
-      "name": "Rap français"
     }
   ],
   "key_artists": [

@@ -26,18 +26,10 @@
   },
   "type": "genre",
   "editorial_definition": "A subgenre of techno characterized by a stripped-back aesthetic, sparse arrangement, and a heavy reliance on repetitive, hypnotic grooves over traditional melodic progression.",
-  "qid": "Q1430587",
   "era": "1990s–present",
   "origin": "Detroit, USA",
   "parent_genres": [],
-  "subgenres": [
-    {
-      "slug": "genre:microhouse",
-      "type": "genre",
-      "name": "Microhouse",
-      "qid": "Q1931555"
-    }
-  ],
+  "subgenres": [],
   "related_genres": [
     {
       "slug": "genre:ambient-techno",
@@ -153,5 +145,6 @@
       "type": "track",
       "name": "Bleep"
     }
-  ]
+  ],
+  "qid": "Q1430587"
 }

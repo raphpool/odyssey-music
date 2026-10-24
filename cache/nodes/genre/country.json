@@ -26,7 +26,6 @@
   },
   "type": "genre",
   "editorial_definition": "A widely popular American musical genre rooted in Southern and Appalachian folk, characterized by storytelling lyrics, distinctive vocal twang, and a versatile string-instrumentation core.",
-  "qid": "Q83440",
   "era": "1920s–present",
   "origin": "United States",
   "parent_genres": [],
@@ -54,12 +53,6 @@
       "type": "genre",
       "name": "Country rock",
       "qid": "Q613408"
-    },
-    {
-      "slug": "genre:rock",
-      "type": "genre",
-      "name": "Rock",
-      "qid": "Q11399"
     }
   ],
   "related_genres": [
@@ -128,5 +121,6 @@
       "name": "Red Headed Stranger"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q83440"
 }

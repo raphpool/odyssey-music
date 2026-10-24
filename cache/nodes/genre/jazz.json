@@ -43,48 +43,6 @@
       "type": "genre",
       "name": "Ethiopian Jazz",
       "qid": "Q3591962"
-    },
-    {
-      "slug": "genre:acid-jazz",
-      "type": "genre",
-      "name": "Acid Jazz",
-      "qid": "Q221772"
-    },
-    {
-      "slug": "genre:contemporary-jazz",
-      "type": "genre",
-      "name": "Contemporary Jazz",
-      "qid": "Q5928480"
-    },
-    {
-      "slug": "genre:jazz-funk",
-      "type": "genre",
-      "name": "Jazz-Funk",
-      "qid": "Q38656"
-    },
-    {
-      "slug": "genre:jazz-rap",
-      "type": "genre",
-      "name": "Jazz Rap",
-      "qid": "Q255406"
-    },
-    {
-      "slug": "genre:nu-jazz",
-      "type": "genre",
-      "name": "Nu Jazz",
-      "qid": "Q1136331"
-    },
-    {
-      "slug": "genre:r-and-b",
-      "type": "genre",
-      "name": "R&B",
-      "qid": "Q45981"
-    },
-    {
-      "slug": "genre:vocal-jazz",
-      "type": "genre",
-      "name": "Vocal Jazz",
-      "qid": "Q1530455"
     }
   ],
   "related_genres": [

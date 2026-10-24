@@ -20,14 +20,7 @@
   "qid": "Q76092",
   "era": "1970-1975",
   "origin": "United Kingdom",
-  "parent_genres": [
-    {
-      "slug": "genre:rock",
-      "type": "genre",
-      "name": "Rock",
-      "qid": "Q11399"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [
     {

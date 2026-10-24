@@ -14,14 +14,7 @@
   "qid": "Q1374731",
   "era": "1970s–1980s",
   "origin": "Europe",
-  "parent_genres": [
-    {
-      "slug": "genre:disco",
-      "type": "genre",
-      "name": "Disco",
-      "qid": "Q58339"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [
     {

@@ -11,7 +11,6 @@
   "materialized_at": "2026-05-13T12:51:42.523Z",
   "type": "genre",
   "editorial_definition": "A broad, dominant genre of popular music characterized by a strong, driving beat and electric instrumentation, which emerged in the 1950s and encompasses a vast array of styles ranging from the early rock and roll of the 1950s to later developments in punk, metal, and indie.",
-  "qid": "Q11399",
   "era": "1950s–Present",
   "origin": "United States",
   "parent_genres": [
@@ -70,42 +69,6 @@
       "type": "genre",
       "name": "Glam rock",
       "qid": "Q76092"
-    },
-    {
-      "slug": "genre:acid-rock",
-      "type": "genre",
-      "name": "Acid rock",
-      "qid": "Q236932"
-    },
-    {
-      "slug": "genre:comedy-rock",
-      "type": "genre",
-      "name": "Comedy rock",
-      "qid": "Q1391336"
-    },
-    {
-      "slug": "genre:folk-rock",
-      "type": "genre",
-      "name": "Folk Rock",
-      "qid": "Q186472"
-    },
-    {
-      "slug": "genre:pop-rock",
-      "type": "genre",
-      "name": "Pop rock",
-      "qid": "Q484641"
-    },
-    {
-      "slug": "genre:post-rock",
-      "type": "genre",
-      "name": "Post-rock",
-      "qid": "Q209137"
-    },
-    {
-      "slug": "genre:stoner-rock",
-      "type": "genre",
-      "name": "Stoner Rock",
-      "qid": "Q617240"
     }
   ],
   "related_genres": [
@@ -166,5 +129,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q11399"
 }

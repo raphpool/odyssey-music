@@ -11,42 +11,10 @@
   "materialized_at": "2026-05-13T12:56:19.829Z",
   "type": "genre",
   "editorial_definition": "Indie rock is a decentralized rock music subculture defined by its DIY (Do-It-Yourself) ethic, independence from major corporate labels, and a focus on artistic authenticity over commercial polish.",
-  "qid": "Q183504",
   "era": "1970s–present",
   "origin": "United Kingdom and United States",
   "parent_genres": [],
-  "subgenres": [
-    {
-      "slug": "genre:emo",
-      "type": "genre",
-      "name": "Emo",
-      "qid": "Q10926"
-    },
-    {
-      "slug": "genre:indie-folk",
-      "type": "genre",
-      "name": "Indie folk",
-      "qid": "Q1317816"
-    },
-    {
-      "slug": "genre:indie-pop",
-      "type": "genre",
-      "name": "Indie Pop",
-      "qid": "Q842324"
-    },
-    {
-      "slug": "genre:noise-pop",
-      "type": "genre",
-      "name": "Noise Pop",
-      "qid": "Q2545135"
-    },
-    {
-      "slug": "genre:shoegaze",
-      "type": "genre",
-      "name": "Shoegaze",
-      "qid": "Q272167"
-    }
-  ],
+  "subgenres": [],
   "related_genres": [
     {
       "slug": "genre:punk-rock",
@@ -163,5 +131,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q183504"
 }

@@ -30,15 +30,7 @@
   },
   "type": "genre",
   "editorial_definition": "A film score is original music written specifically to accompany a film, television program, or video game, consisting of orchestral or instrumental cues timed to enhance the dramatic narrative and emotional impact of the work.",
-  "qid": "Q492264",
-  "parent_genres": [
-    {
-      "slug": "genre:soundtrack",
-      "type": "genre",
-      "name": "Soundtrack",
-      "qid": "Q107736421"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [],
   "key_artists": [
@@ -70,5 +62,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q492264"
 }

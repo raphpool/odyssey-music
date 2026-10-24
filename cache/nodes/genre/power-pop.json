@@ -26,35 +26,16 @@
   },
   "type": "genre",
   "editorial_definition": "Power pop is a rock subgenre defined by a synthesis of 1960s British Invasion melodies, vocal harmonies, and ringing guitars with a high-energy, punchy performance style that bridges the gap between pop and hard rock.",
-  "qid": "Q837837",
   "era": "Mid-1960s – Present",
   "origin": "United States, United Kingdom",
-  "parent_genres": [
-    {
-      "slug": "genre:guitar-pop",
-      "type": "genre",
-      "name": "Guitar Pop"
-    }
-  ],
-  "subgenres": [
-    {
-      "slug": "genre:pop-punk",
-      "type": "genre",
-      "name": "Pop Punk",
-      "qid": "Q487914"
-    }
-  ],
+  "parent_genres": [],
+  "subgenres": [],
   "related_genres": [
     {
       "slug": "genre:garage-punk",
       "type": "genre",
       "name": "Garage punk",
       "qid": "Q2296495"
-    },
-    {
-      "slug": "genre:guitar-pop",
-      "type": "genre",
-      "name": "Guitar Pop"
     }
   ],
   "key_artists": [
@@ -96,5 +77,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q837837"
 }

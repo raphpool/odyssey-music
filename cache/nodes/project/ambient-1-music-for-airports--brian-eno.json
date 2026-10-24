@@ -61,9 +61,10 @@
       "name": "2/1"
     },
     {
-      "slug": "track:1-2--aphex-twin",
+      "slug": "track:1-2--brian-eno",
       "type": "track",
-      "name": "1/2"
+      "name": "1/2",
+      "artist": "Brian Eno"
     },
     {
       "slug": "track:2-2",

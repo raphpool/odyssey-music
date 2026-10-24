@@ -11,17 +11,9 @@
   "materialized_at": "2026-05-13T12:47:40.267Z",
   "type": "genre",
   "editorial_definition": "A broad, diverse grouping of music genres derived from the folk traditions of the Celtic nations, spanning traditional acoustic styles to contemporary hybrids.",
-  "qid": "Q854451",
   "era": "Ancient to Modern",
   "origin": "Northwestern Europe (Celtic Nations)",
-  "parent_genres": [
-    {
-      "slug": "genre:world-music",
-      "type": "genre",
-      "name": "World music",
-      "qid": "Q205049"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [
     {
@@ -51,5 +43,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q854451"
 }

@@ -30,7 +30,6 @@
   },
   "type": "genre",
   "editorial_definition": "Acid rock is a raw, high-volume subgenre of psychedelic rock that emerged in the mid-1960s, defined by its heavy reliance on distorted guitars, fuzztone, and extended, improvisational jamming. Often used to describe the most intense, blues-rooted side of the West Coast psychedelic movement, it served as a critical precursor to the development of hard rock and heavy metal.",
-  "qid": "Q236932",
   "era": "Mid-1960s to early 1970s",
   "origin": "United States (specifically West Coast)",
   "parent_genres": [
@@ -137,5 +136,6 @@
       "name": "Vincebus Eruptum"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q236932"
 }

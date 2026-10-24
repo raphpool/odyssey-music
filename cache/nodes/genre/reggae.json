@@ -48,18 +48,6 @@
       "type": "genre",
       "name": "Lovers rock",
       "qid": "Q1872505"
-    },
-    {
-      "slug": "genre:dancehall",
-      "type": "genre",
-      "name": "Dancehall",
-      "qid": "Q474027"
-    },
-    {
-      "slug": "genre:dub",
-      "type": "genre",
-      "name": "Dub",
-      "qid": "Q212688"
     }
   ],
   "related_genres": [

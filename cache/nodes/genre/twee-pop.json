@@ -14,14 +14,7 @@
   "qid": "Q370778",
   "era": "1980s-present",
   "origin": "United Kingdom",
-  "parent_genres": [
-    {
-      "slug": "genre:indie-pop",
-      "type": "genre",
-      "name": "Indie Pop",
-      "qid": "Q842324"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [
     {

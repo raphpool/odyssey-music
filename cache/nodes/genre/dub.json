@@ -32,18 +32,6 @@
       "type": "genre",
       "name": "Dub poetry",
       "qid": "Q1113204"
-    },
-    {
-      "slug": "genre:ambient-dub",
-      "type": "genre",
-      "name": "Ambient Dub",
-      "qid": "Q3613770"
-    },
-    {
-      "slug": "genre:dubstep",
-      "type": "genre",
-      "name": "Dubstep",
-      "qid": "Q20474"
     }
   ],
   "related_genres": [

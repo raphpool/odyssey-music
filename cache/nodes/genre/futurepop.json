@@ -11,17 +11,9 @@
   "materialized_at": "2026-05-13T12:43:57.195Z",
   "type": "genre",
   "editorial_definition": "A melodic, dance-oriented fusion of synth-pop, EBM, and trance that emerged in late 1990s Europe, defined by its high-production values and club-ready, pop-structured aesthetics.",
-  "qid": "Q828243",
   "era": "Late 1990s–2000s",
   "origin": "Western Europe",
-  "parent_genres": [
-    {
-      "slug": "genre:synth-pop",
-      "type": "genre",
-      "name": "Synth-pop",
-      "qid": "Q1298934"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [
     {
@@ -83,5 +75,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q828243"
 }

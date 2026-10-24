@@ -469,11 +469,105 @@ describe("guarded backfill: only pairs the runtime emits", () => {
 	});
 });
 
+describe("guarded backfill: the source is proven too (review of PR #634)", () => {
+	it("writes nothing for a source genre with no qid: a duplicate of a genre is not listed on its neighbours", async () => {
+		// genre:hi-nrg-hi-nrg is a qid-less duplicate of genre:hi-nrg; it names house with house's own qid.
+		const house = genre("genre:house", "House", "Q20502");
+		await writeCache([
+			genre("genre:hi-nrg-hi-nrg", "Hi-NRG,Hi-NRG", undefined, {
+				related_genres: [ref("genre:house", "House", { qid: "Q20502" })],
+			}),
+			house,
+		]);
+		const before = await snapshot();
+
+		const manifest = await run(true);
+
+		expect(await snapshot()).toEqual(before);
+		expect(manifest.written).toBe(0);
+		expect(manifest.doubtful).toEqual([
+			{ pair: PAIR, source: "genre:hi-nrg-hi-nrg", target: "genre:house", reason: "source-without-qid" },
+		]);
+	});
+
+	it("gives the reverse edge the source's qid", async () => {
+		await writeCache([
+			garage({ related_genres: [ref("genre:dubstep", "dubstep", { qid: "Q20474" })] }),
+			dubstep,
+		]);
+
+		await run(true);
+
+		const [added] = (await readNode<GenreNode>("genre:dubstep")).related_genres;
+		expect(added?.qid).toBe("Q1165777");
+	});
+
+	it("changes a file by its appended edge only: the keys keep their order", async () => {
+		// The schema puts `qid` after editorial_definition; here it sits last, as in many files of the cache.
+		const { qid, ...rest } = dubstep;
+		await writeCache([
+			garage({ related_genres: [ref("genre:dubstep", "dubstep", { qid: "Q20474" })] }),
+			{ ...rest, qid } as GenreNode,
+		]);
+		const keysBefore = Object.keys(await readNode<GenreNode>("genre:dubstep"));
+
+		await run(true);
+
+		expect(Object.keys(await readNode<GenreNode>("genre:dubstep"))).toEqual(keysBefore);
+		expect(keysBefore.at(-1)).toBe("qid");
+	});
+});
+
+describe("guarded backfill: references the plan cannot use are reported", () => {
+	it("puts a reference of the wrong type in related_genres into conflicts, and writes nothing", async () => {
+		await writeCache([
+			garage({ related_genres: [ref("artist:aphex-twin", "Aphex Twin")] }),
+			artist("artist:aphex-twin", "Aphex Twin"),
+		]);
+		const before = await snapshot();
+
+		const manifest = await run(true);
+
+		expect(await snapshot()).toEqual(before);
+		expect(manifest.conflicts).toEqual([
+			{
+				source: "genre:2-step-garage",
+				field: "related_genres",
+				target: "artist:aphex-twin",
+				targetField: "related_genres",
+				kind: "wrong-type-ref",
+			},
+		]);
+	});
+
+	it("counts a reference whose slug cannot be read instead of skipping it silently", async () => {
+		await writeCache([
+			garage({
+				related_genres: [{ slug: "not a slug", type: "genre", name: "x", qid: "Q1" } as unknown as EdgeRef],
+			}),
+		]);
+
+		const manifest = await run(true);
+
+		expect(manifest.written).toBe(0);
+		expect(manifest.doubtfulByReason).toEqual({ [PAIR]: { "unreadable-slug": 1 } });
+	});
+});
+
 describe("guarded backfill: sameQid", () => {
 	const input = (ref: Record<string, unknown>, target: Record<string, unknown>) => ({
-		source: {},
+		source: { qid: "Q9" },
 		ref,
 		target,
+	});
+
+	it("refuses a source with no valid qid of its own, whatever the edge and the target say", () => {
+		const no = { proven: false, reason: "source-without-qid" };
+		for (const source of [{}, { qid: "" }, { qid: "  " }, { qid: "hi-nrg" }, { qid: "Q0" }, { qid: 9 }]) {
+			expect(sameQid({ source, ref: { qid: "Q1" }, target: { qid: "Q1" } }), JSON.stringify(source)).toEqual(
+				no,
+			);
+		}
 	});
 
 	it("proves only an equal, non-empty qid on both sides", () => {
@@ -503,6 +597,7 @@ describe("guarded backfill: refusals, CLI and migration channel contract", () =>
 		expect(result.exitCode).toBe(2);
 		expect(result.manifest.errors.length).toBeGreaterThan(0);
 		expect(result.manifest.blocked).toBe(true);
+		expect(result.manifest.written).toBe(0);
 		expect(await snapshot()).toEqual(before);
 	});
 
@@ -521,7 +616,7 @@ describe("guarded backfill: refusals, CLI and migration channel contract", () =>
 				field: "related_genres",
 				target: "genre:dubstep",
 				targetField: "related_genres",
-				kind: "target-field",
+				kind: "malformed-target-field",
 			},
 		]);
 		expect(manifest.written).toBe(0);

@@ -14,20 +14,7 @@
   "qid": "Q572901",
   "era": "1960s–present",
   "origin": "United States (primarily California and New York City)",
-  "parent_genres": [
-    {
-      "slug": "genre:classical",
-      "type": "genre",
-      "name": "Classical",
-      "qid": "Q9730"
-    },
-    {
-      "slug": "genre:modern-classical",
-      "type": "genre",
-      "name": "Modern Classical",
-      "qid": "Q65937946"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [
     {

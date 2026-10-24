@@ -17,14 +17,7 @@
   "era": "1990s - Present",
   "origin": "United Kingdom, United States, Germany, Japan",
   "sonic_markers": "DIY production approach, blend of live instruments and digital synthesis, melodic indie-pop structures, electronic textures, emphasis on arrangement over club-driven beat design.",
-  "parent_genres": [
-    {
-      "slug": "genre:indie-pop",
-      "type": "genre",
-      "name": "Indie Pop",
-      "qid": "Q842324"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [],
   "key_artists": [

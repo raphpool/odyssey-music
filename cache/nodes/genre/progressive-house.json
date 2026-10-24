@@ -16,14 +16,7 @@
   "qid": "Q915152",
   "era": "1990s–Present",
   "origin": "United Kingdom",
-  "parent_genres": [
-    {
-      "slug": "genre:house",
-      "type": "genre",
-      "name": "House",
-      "qid": "Q20502"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [
     {

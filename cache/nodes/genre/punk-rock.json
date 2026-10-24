@@ -15,17 +15,9 @@
   "materialized_at": "2026-05-13T12:55:04.999Z",
   "type": "genre",
   "editorial_definition": "Punk rock is an aggressive, DIY-focused subgenre of rock that emerged in the mid-1970s, defined by its fast tempos, raw production, and a strong anti-establishment, nonconformist ethos.",
-  "qid": "Q3071",
   "era": "1970s - Present",
   "origin": "London, England; New York City, USA",
-  "parent_genres": [
-    {
-      "slug": "genre:rock",
-      "type": "genre",
-      "name": "Rock",
-      "qid": "Q11399"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [
     {
       "slug": "genre:hardcore-punk",
@@ -56,24 +48,6 @@
       "type": "genre",
       "name": "Noise Rock",
       "qid": "Q181861"
-    },
-    {
-      "slug": "genre:dance-punk",
-      "type": "genre",
-      "name": "Dance-punk",
-      "qid": "Q1643549"
-    },
-    {
-      "slug": "genre:new-wave",
-      "type": "genre",
-      "name": "New wave",
-      "qid": "Q187760"
-    },
-    {
-      "slug": "genre:no-wave",
-      "type": "genre",
-      "name": "No Wave",
-      "qid": "Q823080"
     }
   ],
   "related_genres": [
@@ -194,5 +168,6 @@
     }
   ],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q3071"
 }

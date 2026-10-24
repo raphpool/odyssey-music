@@ -22,13 +22,7 @@
   "qid": "Q1190565",
   "era": "Late 1970s to present",
   "origin": "United States and United Kingdom",
-  "parent_genres": [
-    {
-      "slug": "genre:guitar-pop",
-      "type": "genre",
-      "name": "Guitar Pop"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [
     {
@@ -54,11 +48,6 @@
       "type": "genre",
       "name": "Post-punk",
       "qid": "Q598929"
-    },
-    {
-      "slug": "genre:guitar-pop",
-      "type": "genre",
-      "name": "Guitar Pop"
     },
     {
       "slug": "genre:twee-pop",

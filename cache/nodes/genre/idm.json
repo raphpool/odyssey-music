@@ -25,11 +25,6 @@
       "type": "genre",
       "name": "Drill and Bass",
       "qid": "Q1259016"
-    },
-    {
-      "slug": "genre:drill-n-bass",
-      "type": "genre",
-      "name": "Drill 'n' bass"
     }
   ],
   "related_genres": [
@@ -64,20 +59,10 @@
       "qid": "Q1259016"
     },
     {
-      "slug": "genre:abstract-electronic",
-      "type": "genre",
-      "name": "Abstract Electronic"
-    },
-    {
       "slug": "genre:ambient-house",
       "type": "genre",
       "name": "Ambient House",
       "qid": "Q2465085"
-    },
-    {
-      "slug": "genre:braindance",
-      "type": "genre",
-      "name": "Braindance"
     },
     {
       "slug": "genre:electronica",

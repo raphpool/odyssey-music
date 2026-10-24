@@ -14,20 +14,7 @@
   "qid": "Q874038",
   "era": "1985–present",
   "origin": "Chicago, Illinois, USA",
-  "parent_genres": [
-    {
-      "slug": "genre:chicago-house",
-      "type": "genre",
-      "name": "Chicago house",
-      "qid": "Q1071961"
-    },
-    {
-      "slug": "genre:house",
-      "type": "genre",
-      "name": "House",
-      "qid": "Q20502"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [
     {

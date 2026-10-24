@@ -15,17 +15,9 @@
   "materialized_at": "2026-05-13T12:55:00.811Z",
   "type": "genre",
   "editorial_definition": "A loosely defined, intellectually ambitious style of pop music that draws heavily from visual art, fashion, and avant-garde theory, prioritizing artifice, irony, and aesthetic construction over traditional personal expression.",
-  "qid": "Q25094849",
   "era": "1960s–present",
   "origin": "United Kingdom, United States",
-  "parent_genres": [
-    {
-      "slug": "genre:pop",
-      "type": "genre",
-      "name": "Pop",
-      "qid": "Q37073"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [
     {
@@ -100,5 +92,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q25094849"
 }

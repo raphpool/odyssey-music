@@ -18,46 +18,8 @@
   "qid": "Q1165777",
   "era": "1990s-2000s",
   "origin": "United Kingdom",
-  "parent_genres": [
-    {
-      "slug": "genre:garage-house",
-      "type": "genre",
-      "name": "Garage House",
-      "qid": "Q928825"
-    }
-  ],
-  "subgenres": [
-    {
-      "slug": "genre:2-step-garage",
-      "type": "genre",
-      "name": "2-step garage",
-      "qid": "Q1751409"
-    },
-    {
-      "slug": "genre:breakstep",
-      "type": "genre",
-      "name": "breakstep",
-      "qid": "Q1987980"
-    },
-    {
-      "slug": "genre:dubstep",
-      "type": "genre",
-      "name": "Dubstep",
-      "qid": "Q20474"
-    },
-    {
-      "slug": "genre:future-garage",
-      "type": "genre",
-      "name": "Future garage",
-      "qid": "Q5510816"
-    },
-    {
-      "slug": "genre:speed-garage",
-      "type": "genre",
-      "name": "Speed garage",
-      "qid": "Q780517"
-    }
-  ],
+  "parent_genres": [],
+  "subgenres": [],
   "related_genres": [
     {
       "slug": "genre:house",

@@ -23,12 +23,6 @@
       "type": "genre",
       "name": "Experimental",
       "qid": "Q1640319"
-    },
-    {
-      "slug": "genre:experimental-electronic",
-      "type": "genre",
-      "name": "Experimental Electronic",
-      "qid": "Q105763581"
     }
   ],
   "subgenres": [

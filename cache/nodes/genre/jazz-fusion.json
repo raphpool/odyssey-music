@@ -37,22 +37,8 @@
   "qid": "Q105527",
   "era": "Late 1960s to 1980s",
   "origin": "United States",
-  "parent_genres": [
-    {
-      "slug": "genre:contemporary-jazz",
-      "type": "genre",
-      "name": "Contemporary Jazz",
-      "qid": "Q5928480"
-    }
-  ],
-  "subgenres": [
-    {
-      "slug": "genre:canterbury-scene",
-      "type": "genre",
-      "name": "Canterbury Scene",
-      "qid": "Q727803"
-    }
-  ],
+  "parent_genres": [],
+  "subgenres": [],
   "related_genres": [
     {
       "slug": "genre:jazz",

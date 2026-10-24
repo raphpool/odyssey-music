@@ -15,18 +15,10 @@
   "materialized_at": "2026-05-14T09:17:38.193Z",
   "type": "genre",
   "editorial_definition": "A fusion genre that emerged in the late 1980s, blending the raw aesthetic of 1960s garage rock with the intensity of 1970s punk and indie rock.",
-  "qid": "Q2296495",
   "era": "late 1980s to early 1990s",
   "origin": "United States, indie rock underground",
   "sonic_markers": "High energy, distorted guitars, stripped-down production, raw vocals, aggressive tempo.",
-  "parent_genres": [
-    {
-      "slug": "genre:proto-punk",
-      "type": "genre",
-      "name": "Proto-Punk",
-      "qid": "Q27190"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [
     {
@@ -97,5 +89,6 @@
       "type": "track",
       "name": "Piece Of"
     }
-  ]
+  ],
+  "qid": "Q2296495"
 }

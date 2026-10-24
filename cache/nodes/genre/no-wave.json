@@ -34,7 +34,6 @@
   },
   "type": "genre",
   "editorial_definition": "An abrasive, avant-garde music and art scene from late 1970s New York City that rejected the conventions of rock and commercial 'New Wave' in favor of dissonance, atonality, and experimental noise.",
-  "qid": "Q823080",
   "era": "Late 1970s - early 1980s",
   "origin": "New York City, USA",
   "parent_genres": [
@@ -140,5 +139,6 @@
       "name": "No New York"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q823080"
 }

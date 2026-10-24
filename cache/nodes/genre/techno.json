@@ -21,18 +21,6 @@
       "type": "genre",
       "name": "Electronic Dance Music",
       "qid": "Q851213"
-    },
-    {
-      "slug": "genre:dance-music",
-      "type": "genre",
-      "name": "Dance music",
-      "qid": "Q316930"
-    },
-    {
-      "slug": "genre:electronic",
-      "type": "genre",
-      "name": "Electronic",
-      "qid": "Q9778"
     }
   ],
   "subgenres": [
@@ -41,30 +29,6 @@
       "type": "genre",
       "name": "Gabber",
       "qid": "Q820049"
-    },
-    {
-      "slug": "genre:acid-techno",
-      "type": "genre",
-      "name": "Acid Techno",
-      "qid": "Q341395"
-    },
-    {
-      "slug": "genre:ambient-techno",
-      "type": "genre",
-      "name": "Ambient techno",
-      "qid": "Q9149801"
-    },
-    {
-      "slug": "genre:industrial-techno",
-      "type": "genre",
-      "name": "Industrial Techno",
-      "qid": "Q29480448"
-    },
-    {
-      "slug": "genre:tech-house",
-      "type": "genre",
-      "name": "Tech House",
-      "qid": "Q598593"
     }
   ],
   "related_genres": [
@@ -175,11 +139,6 @@
       "type": "genre",
       "name": "Hi-NRG",
       "qid": "Q606393"
-    },
-    {
-      "slug": "genre:hi-nrg-hi-nrg",
-      "type": "genre",
-      "name": "Hi-NRG,Hi-NRG"
     },
     {
       "slug": "genre:progressive-house",

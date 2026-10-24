@@ -19,7 +19,6 @@
   "materialized_at": "2026-05-13T13:12:43.851Z",
   "type": "genre",
   "editorial_definition": "A 1990s UK dance genre defined by sped-up garage house rhythms, chopped-up soulful vocal samples, and aggressive, prominent basslines.",
-  "qid": "Q780517",
   "era": "1990s",
   "origin": "United Kingdom",
   "parent_genres": [
@@ -34,12 +33,6 @@
       "type": "genre",
       "name": "House",
       "qid": "Q20502"
-    },
-    {
-      "slug": "genre:garage-house",
-      "type": "genre",
-      "name": "Garage House",
-      "qid": "Q928825"
     }
   ],
   "subgenres": [],
@@ -92,5 +85,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q780517"
 }

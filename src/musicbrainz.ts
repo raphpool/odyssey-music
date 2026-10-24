@@ -76,8 +76,8 @@ interface MbReleaseGroup {
 	id: string;
 	title: string;
 	"primary-type"?: string;
-	/** Present in search hits and unvalidated: read with an Array.isArray / typeof guard. */
-	"secondary-types"?: unknown;
+	/** Checked by parseReleaseGroups: absent, or an array of strings. */
+	"secondary-types"?: string[];
 	"first-release-date"?: string;
 	"artist-credit"?: MbArtistCreditEntry[];
 }
@@ -110,6 +110,15 @@ function isMbid(value: unknown): value is string {
 function hasOptionalText(record: Record<string, unknown>, key: string): boolean {
 	const value = record[key];
 	return value === undefined || isText(value);
+}
+
+// MB always sends `secondary-types` as an array of names ("Live", "Compilation"...). Absent is fine (a hit may
+// omit it); any other shape is off schema. It used to be read as "no secondary type" (2026-10-16, TRA-560
+// review: a live album marked `"secondary-types": "Live"` passed for a studio one), so, like a malformed
+// `primary-type`, it now makes the whole answer unusable. Each name follows the isText rule (TRA-566).
+function hasOptionalTextArray(record: Record<string, unknown>, key: string): boolean {
+	const value = record[key];
+	return value === undefined || (Array.isArray(value) && value.every(isText));
 }
 
 function hasValidArtistCredit(value: unknown): boolean {
@@ -149,6 +158,7 @@ function parseReleaseGroups(body: unknown): MbReleaseGroup[] | null {
 				isMbid(releaseGroup.id) &&
 				isText(releaseGroup.title) &&
 				hasOptionalText(releaseGroup, "primary-type") &&
+				hasOptionalTextArray(releaseGroup, "secondary-types") &&
 				hasOptionalText(releaseGroup, "first-release-date") &&
 				(releaseGroup["artist-credit"] === undefined || hasValidArtistCredit(releaseGroup["artist-credit"])),
 		)
@@ -1225,6 +1235,7 @@ function creditNamesHintAsSegment(entries: MbArtistCreditEntry[], hintKey: strin
  * itself matches that entry, or the joined credit ("Prince & The Revolution" over two entries).
  * Every credited artist counts, whatever the join phrase: a featured artist ("Beyoncé feat. Jay-Z") is
  * credited on the work, so asking for Jay-Z matches. Callers read the credit the resolver returns.
+ * This is equality only, not rank: pickByTitleAndCredit tries the main credit first (TRA-542).
  * An alias of a credited artist (when the hit carries them) is a name of that same artist, so it counts.
  */
 function creditEqualsHint(entries: MbArtistCreditEntry[], hintKey: string): boolean {
@@ -1261,6 +1272,54 @@ function creditEqualsHint(entries: MbArtistCreditEntry[], hintKey: string): bool
 		);
 		return creditKey(joined.join("")) === hintKey;
 	});
+}
+
+// A join phrase that introduces featured artists: " feat. ", " (feat. ", " ft. ", " featuring ", " with ".
+// Anything else (" & ", " / ", ", ", " vs. ", " x ") joins co-principals and does not match.
+const FEATURING_JOINPHRASE = /\b(?:feat|ft|featuring|with)\b/iu;
+
+/**
+ * The main credit of an untrusted `artist-credit`: the entries up to the first one followed by a featuring
+ * join phrase (TRA-542). "B feat. A" has B as its main credit and A as featured; every entry after the
+ * first featuring phrase is featured, whatever joins it ("B feat. C & A"). A credit without such a phrase,
+ * or whose featuring phrase follows the last entry and so introduces nobody, is returned as is. The
+ * featuring phrase itself is dropped from the last main entry, so that a joined credit read as one string
+ * ("A & B" in "A & B feat. C") is not polluted by it.
+ */
+function mainCreditEntries(entries: MbArtistCreditEntry[]): MbArtistCreditEntry[] {
+	const cut = entries.findIndex(
+		(e) => typeof e.joinphrase === "string" && FEATURING_JOINPHRASE.test(e.joinphrase),
+	);
+	if (cut < 0 || cut === entries.length - 1) return entries;
+	return entries.slice(0, cut + 1).map((e, i) => {
+		if (i !== cut) return e;
+		const { joinphrase: _featuring, ...rest } = e;
+		return rest;
+	});
+}
+
+/**
+ * The candidates that have the requested artist in their MAIN credit (mainCreditEntries) when there are any,
+ * else all of them: the featured-only ones are looked at only when no candidate has the artist up front
+ * (TRA-542). `inMain` is the caller's own test, by name or by MBID.
+ */
+function preferMainCredit<T>(candidates: T[], inMain: (candidate: T) => boolean): T[] {
+	const main = candidates.filter(inMain);
+	return main.length > 0 ? main : candidates;
+}
+
+/**
+ * True when the requested artist is in the MAIN credit of the candidate. When the artist's MBID is known the
+ * main credit is judged by MBID ALONE (TRA-542 review): a namesake printed under the same name, credited first
+ * on another work, must not push down the real artist credited as a featured one. Without an MBID, by name.
+ */
+function inMainCredit(
+	candidate: { "artist-credit"?: MbArtistCreditEntry[] | undefined },
+	hint: string,
+	requested: ReadonlySet<string> | null,
+): boolean {
+	const main = mainCreditEntries(candidate["artist-credit"] ?? []);
+	return requested !== null ? creditCarriesMbid(main, requested) : creditEqualsHint(main, hint);
 }
 
 /**
@@ -1378,8 +1437,11 @@ function pickDoubleSided<
 		const credit = c["artist-credit"] ?? [];
 		return creditEqualsHint(credit, hint) || (requested !== null && creditCarriesMbid(credit, requested));
 	});
-	const only = matches[0];
-	return matches.length === 1 && only ? { kind: "one", candidate: only } : { kind: "none" };
+	// The main credit first (TRA-542): a double A-side single the artist only features on is a candidate
+	// only when no other one has them in its main credit.
+	const ranked = preferMainCredit(matches, (c) => inMainCredit(c, hint, requested));
+	const only = ranked[0];
+	return ranked.length === 1 && only ? { kind: "one", candidate: only } : { kind: "none" };
 }
 
 /**
@@ -1399,6 +1461,13 @@ function pickDoubleSided<
  *    is credited to someone else ("Prince" asked, "Prince Buster" credited). TRA-537 removed the old
  *    fallback to the single exact-title candidate, which resolved exactly that case. Without a hint,
  *    the single exact-title candidate wins (more than one = ambiguous);
+ * 2b. the main credit comes first (TRA-542): when some of those candidates have the artist in their main
+ *    credit (before any "feat." / "ft." / "featuring" / "with" join phrase), the ones that only feature
+ *    them are set aside, so that an older "B feat. A" single does not beat A's own album. They are looked
+ *    at only when no candidate has the artist in its main credit. Ranked within a kind of credit (the
+ *    artist's own against the artist's own, a band against a band): an own credit and a band's stay a doubt.
+ *    This comes BEFORE steps 3 to 5: neither a recording's disambiguation nor the caller's `releaseType`
+ *    brings a set-aside candidate back (a known type that the remaining candidates lack is `ambiguous`);
  * 3. recordings carrying a non-empty `disambiguation` (live, DJ-mix, video...) are set aside; exactly
  *    one must remain. Release groups have no such note: when they all share one primary type, the one
  *    with the strictly earliest first-release-date among the dated ones wins (a later reissue of the
@@ -1455,7 +1524,7 @@ function pickByTitleAndCredit<
 	if (kind === "release-group" && hasHint && exact.length === 0) {
 		return pickDoubleSided(candidates, wanted, hint, requested, releaseType);
 	}
-	const direct = hasHint
+	const credited = hasHint
 		? exact.filter(
 				(c) =>
 					creditEqualsHint(c["artist-credit"] ?? [], hint) ||
@@ -1464,10 +1533,23 @@ function pickByTitleAndCredit<
 		: exact;
 	// Credited to a band the artist belongs to, accepted by MBID alone (TRA-539). Mixed with a direct
 	// credit on the same title it is a doubt, not a preference for the direct one (TRA-537 deep review).
-	const viaGroup =
+	const creditedViaGroup =
 		hasHint && acceptedMbids.size > 0
-			? exact.filter((c) => !direct.includes(c) && creditCarriesMbid(c["artist-credit"] ?? [], acceptedMbids))
+			? exact.filter(
+					(c) => !credited.includes(c) && creditCarriesMbid(c["artist-credit"] ?? [], acceptedMbids),
+				)
 			: [];
+	// The artist in the MAIN credit comes before the artist only featured (TRA-542), within each kind of
+	// credit: a direct credit against a direct one, a band against a band. A direct candidate and a band's
+	// stay a doubt (below), featured or not. Without a hint the title alone decides: nothing to rank.
+	const direct = hasHint ? preferMainCredit(credited, (c) => inMainCredit(c, hint, requested)) : credited;
+	const viaGroup = preferMainCredit(creditedViaGroup, (c) =>
+		creditCarriesMbid(mainCreditEntries(c["artist-credit"] ?? []), acceptedMbids),
+	);
+	// Set aside for good, not "doubts": a featured credit is another artist's work, whatever its date.
+	const featuredOnly = new Set(
+		[...credited, ...creditedViaGroup].filter((c) => !direct.includes(c) && !viaGroup.includes(c)),
+	);
 	if (direct.length > 0 && viaGroup.length > 0) return { kind: "ambiguous" };
 	// Two different bands of the same member, each with a work of this title: which one is meant is a
 	// doubt, not a matter of age (TRA-552; main kept the oldest). Candidates that share one accepted band
@@ -1483,7 +1565,10 @@ function pickByTitleAndCredit<
 	// Doubt is "ambiguous", as before TRA-537. Segments are used to refuse only, never to accept.
 	if (
 		hasHint &&
-		exact.some((c) => !pool.includes(c) && creditNamesHintAsSegment(c["artist-credit"] ?? [], hint))
+		exact.some(
+			(c) =>
+				!pool.includes(c) && !featuredOnly.has(c) && creditNamesHintAsSegment(c["artist-credit"] ?? [], hint),
+		)
 	) {
 		return { kind: "ambiguous" };
 	}
@@ -1495,7 +1580,8 @@ function pickByTitleAndCredit<
 		return only ? { kind: "one", candidate: only } : { kind: "none" };
 	}
 	// Different types are different works (a single is not its album, a compilation is not the album it
-	// compiles): never settled by date. Secondary types come from an untrusted hit: keep the strings only.
+	// compiles): never settled by date. Hits from parseReleaseGroups already carry string[] secondary types
+	// (TRA-566); the guard stays because this picker is generic over any hit object.
 	const primaryOf = (c: T) => (c["primary-type"] ?? "").trim().toLowerCase();
 	const kindOf = (c: T) => {
 		const secondary = Array.isArray(c["secondary-types"]) ? c["secondary-types"] : [];
@@ -1521,10 +1607,26 @@ function pickByTitleAndCredit<
 	return strict && earliest ? { kind: "one", candidate: earliest } : { kind: "ambiguous" };
 }
 
+/**
+ * The Lucene clause that names the requested artist. MB's `artist:` field indexes the name PRINTED in the
+ * credit, not the canonical name nor the aliases (2026-10-15, TRA-543: Ryuichi Sakamoto's 1983 soundtrack,
+ * credited 坂本龍一, never came back for "Ryuichi Sakamoto"). `arid:` is the artist's id, indexed whatever
+ * name the credit prints, so a known MBID is searched next to the name, not instead of it: a work printed
+ * under the artist's name but credited to a band the artist belongs to ("Roni Size / Reprazent") carries
+ * the band's id, and must stay in the hits. The MBID is interpolated unquoted, so only a bare UUID is
+ * accepted; anything else is read as "no MBID".
+ */
+function artistClause(phrase: string, artistMbid: string | undefined): string {
+	const byName = `artist:"${phrase}"`;
+	const mbid = artistMbid?.trim().toLowerCase();
+	return mbid && isMbid(mbid) ? `(arid:${mbid} OR ${byName})` : byName;
+}
+
 function luceneQuery(
 	field: "releasegroup" | "recording",
 	title: string,
 	artistHint: string | undefined,
+	artistMbid?: string,
 ): string | null {
 	// A title with nothing left after normalization ("!!!") can never be verified against a result.
 	// The phrase is built from the title minus its edition noise, keeping case and spacing: MB files
@@ -1533,7 +1635,7 @@ function luceneQuery(
 	if (!phrase || !normalizeTitleBody(title)) return null;
 	// Same for the hint: a punctuation-only hint would only narrow the search to nothing.
 	const hint = artistHint && normalizeSlugBody(artistHint) ? lucenePhrase(artistHint) : "";
-	return hint ? `${field}:"${phrase}" AND artist:"${hint}"` : `${field}:"${phrase}"`;
+	return hint ? `${field}:"${phrase}" AND ${artistClause(hint, artistMbid)}` : `${field}:"${phrase}"`;
 }
 
 /** MB's maximum page: the whole result set of a title search, so that no look-alike hides past the page. */
@@ -1574,7 +1676,7 @@ export async function resolveReleaseGroupDetailed(
 	options: WorkResolveOptions = {},
 ): Promise<MbWorkResolution> {
 	const none: MbWorkResolution = { identity: null, ambiguous: false, unavailable: false };
-	const query = luceneQuery("releasegroup", title, artistHint);
+	const query = luceneQuery("releasegroup", title, artistHint, options.requestedArtistMbid);
 	if (!query) return none;
 	const body = await mbFetch<unknown>(
 		"/release-group",
@@ -1620,7 +1722,7 @@ export async function resolveRecordingDetailed(
 	options: WorkResolveOptions = {},
 ): Promise<MbWorkResolution> {
 	const none: MbWorkResolution = { identity: null, ambiguous: false, unavailable: false };
-	const query = luceneQuery("recording", title, artistHint);
+	const query = luceneQuery("recording", title, artistHint, options.requestedArtistMbid);
 	if (!query) return none;
 	const body = await mbFetch<unknown>(
 		"/recording",
@@ -1681,8 +1783,8 @@ function secondaryTypesOf(group: Record<string, unknown>): string[] {
  * TRA-612: "Hyperdub 10.3" is credited to Various Artists, so the artist-credit step refused it for Kode9
  * whose tracks it holds). For a COVER only: the answer is never an identity (see {@link MbCompilationCover}).
  *
- * ONE request, a recording search `release:"<title>" AND artist:"<artist>"`: the hits are recordings
- * credited to the artist, and each lists the releases it appears on with their release group and credit.
+ * ONE request, a recording search `release:"<title>" AND artist:"<artist>"` (with the artist's `arid:` next to
+ * it when the MBID is known, see {@link artistClause}): the hits are recordings credited to the artist, and each lists the releases it appears on with their release group and credit.
  * The release group is accepted if, and only if:
  *  - its normalized title equals the requested one (edition noise ignored, as everywhere else);
  *  - it is the only release group of that title among the artist's recordings;
@@ -1704,7 +1806,10 @@ export async function findCompilationCoverReleaseGroup(
 	if (!wanted || !hint || !release || !artist) return { kind: "none" };
 	const body = await mbFetch<unknown>(
 		"/recording",
-		{ query: `release:"${release}" AND artist:"${artist}"`, limit: WORK_SEARCH_LIMIT },
+		{
+			query: `release:"${release}" AND ${artistClause(artist, options.requestedArtistMbid)}`,
+			limit: WORK_SEARCH_LIMIT,
+		},
 		undefined,
 		options.priority,
 	);

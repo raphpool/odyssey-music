@@ -39,18 +39,6 @@
       "type": "genre",
       "name": "Alternative rock",
       "qid": "Q11366"
-    },
-    {
-      "slug": "genre:alternative",
-      "type": "genre",
-      "name": "Alternative",
-      "qid": "Q1695023"
-    },
-    {
-      "slug": "genre:rock",
-      "type": "genre",
-      "name": "Rock",
-      "qid": "Q11399"
     }
   ],
   "subgenres": [

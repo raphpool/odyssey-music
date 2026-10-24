@@ -38,14 +38,7 @@
   "era": "Late 1940s to mid-1960s",
   "origin": "United States",
   "parent_genres": [],
-  "subgenres": [
-    {
-      "slug": "genre:proto-punk",
-      "type": "genre",
-      "name": "Proto-Punk",
-      "qid": "Q27190"
-    }
-  ],
+  "subgenres": [],
   "related_genres": [
     {
       "slug": "genre:popular-music",
@@ -64,11 +57,6 @@
       "type": "genre",
       "name": "Garage rock",
       "qid": "Q211573"
-    },
-    {
-      "slug": "genre:guitar-pop",
-      "type": "genre",
-      "name": "Guitar Pop"
     },
     {
       "slug": "genre:pop",

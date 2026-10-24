@@ -16,14 +16,7 @@
   "qid": "Q903735",
   "era": "1990s–Present",
   "origin": "Australia, Europe, UK",
-  "parent_genres": [
-    {
-      "slug": "genre:breakbeat",
-      "type": "genre",
-      "name": "Breakbeat",
-      "qid": "Q663519"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [
     {
@@ -43,11 +36,6 @@
       "type": "genre",
       "name": "Digital Hardcore",
       "qid": "Q56580"
-    },
-    {
-      "slug": "genre:drill-n-bass",
-      "type": "genre",
-      "name": "Drill 'n' bass"
     },
     {
       "slug": "genre:idm",

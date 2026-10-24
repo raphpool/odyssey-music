@@ -30,7 +30,6 @@
   },
   "type": "genre",
   "editorial_definition": "A subgenre of hip-hop that emerged in the late 1980s, fusing the rhythmic foundations of hip-hop with samples and musical sensibilities drawn from jazz, often serving as a vehicle for conscious and poetic lyricism.",
-  "qid": "Q255406",
   "era": "Late 1980s - 1990s",
   "origin": "New York metropolitan area, USA",
   "parent_genres": [
@@ -176,5 +175,6 @@
       "type": "track",
       "name": "Cantaloop (Flip Fantasia)"
     }
-  ]
+  ],
+  "qid": "Q255406"
 }

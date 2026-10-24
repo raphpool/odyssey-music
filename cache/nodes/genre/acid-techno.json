@@ -26,7 +26,6 @@
   },
   "type": "genre",
   "editorial_definition": "A subgenre of techno characterized by the prominent, modulated use of the Roland TB-303 bass synthesizer, resulting in a distinctively resonant and squelching sound paired with intense, repetitive rhythms.",
-  "qid": "Q341395",
   "era": "Late 1980s – Present",
   "origin": "United Kingdom, United States, Germany",
   "parent_genres": [
@@ -56,11 +55,6 @@
       "type": "genre",
       "name": "Acid Trance",
       "qid": "Q481900"
-    },
-    {
-      "slug": "genre:braindance",
-      "type": "genre",
-      "name": "Braindance"
     }
   ],
   "key_artists": [
@@ -92,5 +86,6 @@
   ],
   "key_labels": [],
   "landmark_projects": [],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q341395"
 }

@@ -26,17 +26,9 @@
   },
   "type": "genre",
   "editorial_definition": "A subgenre of reggae music deeply linked to the Rastafari movement, characterized by its focus on spiritual and social consciousness, resistance to systemic oppression, and a signature, bass-heavy rhythmic style.",
-  "qid": "Q1299260",
   "era": "Late 1960s–Present (Peak 1970s)",
   "origin": "Jamaica",
-  "parent_genres": [
-    {
-      "slug": "genre:reggae",
-      "type": "genre",
-      "name": "Reggae",
-      "qid": "Q9794"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [
     {
@@ -145,5 +137,6 @@
       "type": "track",
       "name": "Conquering Lion"
     }
-  ]
+  ],
+  "qid": "Q1299260"
 }

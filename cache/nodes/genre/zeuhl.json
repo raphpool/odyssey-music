@@ -15,18 +15,10 @@
   "materialized_at": "2026-05-13T12:55:46.181Z",
   "type": "genre",
   "editorial_definition": "Zeuhl is a distinct, avant-garde subgenre of progressive rock characterized by its operatic vocals, complex, repetitive rhythmic structures, and heavy fusion of jazz-rock and classical influences, originating from the conceptual work of the French band Magma.",
-  "qid": "Q196999",
   "era": "Late 1960s to Present",
   "origin": "France",
   "sonic_markers": "Hypnotic repetitive bass lines, operatic and polyphonic choral vocals, complex polyrhythms, dark mythic narrative themes, fusion of jazz improvisation and orchestral drama.",
-  "parent_genres": [
-    {
-      "slug": "genre:progressive-rock",
-      "type": "genre",
-      "name": "Progressive Rock",
-      "qid": "Q49451"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [
     {
@@ -103,5 +95,6 @@
       "name": "Angherr Shisspa"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q196999"
 }

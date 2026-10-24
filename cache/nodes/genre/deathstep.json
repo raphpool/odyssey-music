@@ -15,17 +15,9 @@
   "materialized_at": "2026-05-13T13:15:56.815Z",
   "type": "genre",
   "editorial_definition": "A dark, abrasive subgenre of dubstep characterized by extreme distortion, metallic textures, atonal \"machine gun\" basslines, and heavy influence from death metal and industrial music.",
-  "qid": "Q106528420",
   "era": "2010s–present",
   "origin": "International (Online communities)",
-  "parent_genres": [
-    {
-      "slug": "genre:brostep",
-      "type": "genre",
-      "name": "Brostep",
-      "qid": "Q20903"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [
     {
@@ -93,5 +85,6 @@
       "name": "Hope Floats"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q106528420"
 }

@@ -15,14 +15,7 @@
   "era": "1970s–Present",
   "origin": "United Kingdom",
   "parent_genres": [],
-  "subgenres": [
-    {
-      "slug": "genre:industrial-techno",
-      "type": "genre",
-      "name": "Industrial Techno",
-      "qid": "Q29480448"
-    }
-  ],
+  "subgenres": [],
   "related_genres": [
     {
       "slug": "genre:hardcore-techno",
@@ -47,11 +40,6 @@
       "type": "genre",
       "name": "Experimental Techno",
       "qid": "Q105636937"
-    },
-    {
-      "slug": "genre:modular-synth",
-      "type": "genre",
-      "name": "Modular Synth"
     },
     {
       "slug": "genre:noise",

@@ -30,7 +30,6 @@
   },
   "type": "genre",
   "editorial_definition": "Alternative dance is a musical genre that fuses the melodic song structures and sensibilities of alternative and indie rock with the rhythmic, synth-driven, and club-oriented aesthetics of electronic dance music.",
-  "qid": "Q2187392",
   "origin": "United Kingdom",
   "parent_genres": [
     {
@@ -148,5 +147,6 @@
       "name": "Power, Corruption & Lies"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q2187392"
 }

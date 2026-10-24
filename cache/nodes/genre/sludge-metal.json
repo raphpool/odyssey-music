@@ -30,7 +30,6 @@
   },
   "type": "genre",
   "editorial_definition": "An extreme subgenre of heavy metal defined by a fusion of slow-tempo, down-tuned doom metal riffs with the aggressive spirit, structures, and nihilistic attitude of hardcore punk.",
-  "qid": "Q720959",
   "era": "Mid-1980s–Present",
   "origin": "United States (California, Washington, Louisiana)",
   "parent_genres": [
@@ -58,12 +57,6 @@
       "slug": "genre:sludgecore",
       "type": "genre",
       "name": "Sludgecore"
-    },
-    {
-      "slug": "genre:post-metal",
-      "type": "genre",
-      "name": "Post-metal",
-      "qid": "Q41343"
     }
   ],
   "related_genres": [
@@ -84,11 +77,6 @@
       "type": "genre",
       "name": "Stoner rock",
       "qid": "Q617240"
-    },
-    {
-      "slug": "genre:desert-rock",
-      "type": "genre",
-      "name": "Desert Rock"
     },
     {
       "slug": "genre:doom-metal",
@@ -143,5 +131,6 @@
       "name": "Through Silver in Blood"
     }
   ],
-  "landmark_tracks": []
+  "landmark_tracks": [],
+  "qid": "Q720959"
 }

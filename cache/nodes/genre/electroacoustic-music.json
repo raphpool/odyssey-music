@@ -18,14 +18,7 @@
   "qid": "Q1326777",
   "era": "Mid-20th century to present",
   "origin": "Paris, France; Cologne, Germany",
-  "parent_genres": [
-    {
-      "slug": "genre:experimental-electronic",
-      "type": "genre",
-      "name": "Experimental Electronic",
-      "qid": "Q105763581"
-    }
-  ],
+  "parent_genres": [],
   "subgenres": [],
   "related_genres": [
     {

@@ -17,27 +17,8 @@
   "era": "Late 1960s",
   "origin": "United States and United Kingdom",
   "sonic_markers": "Feedback, sitar, extended improvisation, studio effects, surreal lyrics, fuzz distortion, modal experimentation",
-  "parent_genres": [
-    {
-      "slug": "genre:rock",
-      "type": "genre",
-      "name": "Rock",
-      "qid": "Q11399"
-    }
-  ],
-  "subgenres": [
-    {
-      "slug": "genre:acid-rock",
-      "type": "genre",
-      "name": "Acid rock",
-      "qid": "Q236932"
-    },
-    {
-      "slug": "genre:desert-rock",
-      "type": "genre",
-      "name": "Desert Rock"
-    }
-  ],
+  "parent_genres": [],
+  "subgenres": [],
   "related_genres": [
     {
       "slug": "genre:progressive-rock",
@@ -80,11 +61,6 @@
       "type": "genre",
       "name": "Hard Rock",
       "qid": "Q83270"
-    },
-    {
-      "slug": "genre:psychedelia",
-      "type": "genre",
-      "name": "Psychedelia"
     },
     {
       "slug": "genre:space-rock",
