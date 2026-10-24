@@ -16,15 +16,18 @@ struct GenreAccordionCard<Content: View>: View {
 	static var chevronSize: CGFloat { 20 }
 
 	/// "Hip-hop, 13 sous-genres", then ", 4 sélectionnés" once something is ticked. The count words are those
-	/// of `OnboardingCopy`, whose selected count is drawn between parentheses that a spoken label drops.
+	/// of `OnboardingCopy.spokenSelectedCount`: the badge draws the number alone, VoiceOver says the words.
 	static func accessibilityLabel(title: String, subgenreCount: Int, selectedCount: Int) -> String {
 		var parts = [title, OnboardingCopy.subgenreCount(subgenreCount)]
 		if selectedCount >= 1 {
-			let spoken = OnboardingCopy.selectedCount(selectedCount)
-				.trimmingCharacters(in: CharacterSet(charactersIn: "()"))
-			parts.append(spoken)
+			parts.append(OnboardingCopy.spokenSelectedCount(selectedCount))
 		}
 		return parts.joined(separator: ", ")
+	}
+
+	/// The accent badge after the title: nil below 1 (nothing is drawn), else "(4)".
+	static func badge(selectedCount: Int) -> String? {
+		selectedCount >= 1 ? OnboardingCopy.selectedCount(selectedCount) : nil
 	}
 
 	/// Figma pads the card 11 pt vertically; 11 is not a spacing token.
@@ -80,11 +83,15 @@ struct GenreAccordionCard<Content: View>: View {
 		} label: {
 			HStack(spacing: Track1Tokens.spacing8) {
 				VStack(alignment: .leading, spacing: Track1Tokens.spacing8) {
-					HStack(spacing: Track1Tokens.spacing8) {
+					// 2026-10-23: "(4 sélectionnés)" was squeezed next to the title and both folded in the middle of
+					// their strings. The title folds freely; the badge, a bare number, is never compressed and sits on
+					// the first line of a folded title (`.firstTextBaseline`, as `SectionHeader` does).
+					HStack(alignment: .firstTextBaseline, spacing: Track1Tokens.spacing8) {
 						Track1Text(title, role: .monoItem, verbatim: true).foregroundStyle(accent)
-						if selectedCount >= 1 {
-							Track1Text(OnboardingCopy.selectedCount(selectedCount), role: .monoTag)
+						if let badge = Self.badge(selectedCount: selectedCount) {
+							Track1Text(badge, role: .monoTag, verbatim: true)
 								.foregroundStyle(accent)
+								.fixedSize(horizontal: true, vertical: false)
 						}
 					}
 					if !isExpanded {
