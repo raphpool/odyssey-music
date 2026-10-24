@@ -26,6 +26,7 @@ import { basename, dirname, isAbsolute, join, relative, resolve } from "node:pat
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { z } from "zod";
 import { parseSlugRedirects } from "../src/genre-registry.js";
+import { VARIOUS_ARTISTS_MBID } from "../src/musicbrainz.js";
 import { EDGE_FIELDS_BY_TYPE, NODE_TYPES, type NodeType, REVERSE_EDGE_PAIRS } from "../src/node-spec.js";
 import { isEmittedReversePair } from "../src/reverse-edges.js";
 
@@ -464,6 +465,7 @@ export function auditNodes(
 		if (nodes.has(key)) c.hit("pending-reverse-targets-existing", key);
 	}
 
+	homonymTracklistLinks(nodes, c);
 	measureUncorroboratedAliases(nodes, c);
 
 	return {
@@ -532,6 +534,102 @@ export function formatReport(report: AuditReport, thresholds: Thresholds): strin
 		}
 	}
 	return lines.join("\n");
+}
+
+// --- homonym-tracklist-links (TRA-561) ---
+
+interface CreditEdge {
+	slug: string;
+	name: string | undefined;
+	mbid: string | undefined;
+}
+
+/** The credited artists of a work, with the name and mbid the credit edge carries (the artist node may be absent). */
+function creditEdgesOf(work: RawNode): CreditEdge[] {
+	const raw = work.artists;
+	const out: CreditEdge[] = [];
+	for (const item of Array.isArray(raw) ? raw : []) {
+		if (!(isRecord(item) && typeof item.slug === "string" && item.slug)) continue;
+		out.push({
+			slug: item.slug,
+			name: typeof item.name === "string" ? item.name : undefined,
+			mbid: hasText(item.mbid) ? (item.mbid as string).toLowerCase() : undefined,
+		});
+	}
+	return out;
+}
+
+function isVariousArtists(credit: CreditEdge): boolean {
+	return credit.slug === "artist:various-artists" || credit.mbid === VARIOUS_ARTISTS_MBID;
+}
+
+/** A name folded for comparison: letters and digits only, without a leading "The" ("The Jimi Hendrix Experience"). */
+function foldCreditName(name: string | undefined): string {
+	return normalizeName((name ?? "").replace(/^\s*the\s+/i, ""));
+}
+
+/** The artist and everything its own node says is the same act: its members and its aliases. */
+function actOf(nodes: ReadonlyMap<string, RawNode>, slug: string): Set<string> {
+	const node = nodes.get(slug) ?? {};
+	return new Set([
+		slug,
+		...edgesOf(node, "members").map((e) => e.slug),
+		...edgesOf(node, "aliases").map((e) => e.slug),
+	]);
+}
+
+/**
+ * Whether two credits name the same artist, or acts that overlap (a group and one of its members, an artist
+ * and its alias, a duo whose member is the other artist's alias). Same slug, or same mbid; two different mbids
+ * are two artists whatever their names; without an mbid on both sides the folded name decides.
+ */
+function sameOrRelatedArtist(nodes: ReadonlyMap<string, RawNode>, a: CreditEdge, b: CreditEdge): boolean {
+	if (a.slug === b.slug) return true;
+	if (a.mbid !== undefined && b.mbid !== undefined) {
+		if (a.mbid === b.mbid) return true;
+	} else if (foldCreditName(a.name) !== "" && foldCreditName(a.name) === foldCreditName(b.name)) {
+		return true;
+	}
+	const actOfB = actOf(nodes, b.slug);
+	return [...actOf(nodes, a.slug)].some((slug) => actOfB.has(slug));
+}
+
+/**
+ * Whether a project's tracklist entry resolves to a track credited to someone else: the project credits at
+ * least one artist, the track credits at least one, and no credit of the one is the same or a related act as a
+ * credit of the other (featuring on the project's artist's own track is therefore not a hit). A project credited
+ * to Various Artists lists whoever it likes and is not judged. Shared with the TRA-561 migration, which must
+ * detach exactly what this counts.
+ */
+export function isHomonymTracklistTarget(
+	nodes: ReadonlyMap<string, RawNode>,
+	project: RawNode,
+	track: RawNode,
+): boolean {
+	const projectCredits = creditEdgesOf(project);
+	const trackCredits = creditEdgesOf(track);
+	if (projectCredits.length === 0 || trackCredits.length === 0) return false;
+	if (projectCredits.some(isVariousArtists)) return false;
+	return !trackCredits.some((t) => projectCredits.some((p) => sameOrRelatedArtist(nodes, t, p)));
+}
+
+/**
+ * `project.tracklist` edges whose track is credited to a namesake (Rohff's "Fitna" lists Akuma's track).
+ * homonym-release-links only reads artist -> work edges. One hit per entry, on the project, with the full list
+ * of cases. A target missing from the cache cannot be judged (a tracklist is mostly slugs not yet materialized).
+ */
+function homonymTracklistLinks(nodes: ReadonlyMap<string, RawNode>, c: Collector): void {
+	c.scalar("homonym-tracklist-links");
+	for (const [slug, project] of nodes) {
+		if (nodeType(slug) !== "project") continue;
+		for (const entry of edgesOf(project, "tracklist")) {
+			const track = nodes.get(entry.slug);
+			if (track === undefined || nodeType(entry.slug) !== "track") continue;
+			if (!isHomonymTracklistTarget(nodes, project, track)) continue;
+			c.hit("homonym-tracklist-links", slug);
+			c.addCase("homonym-tracklist-links", `${slug} tracklist ${entry.slug}`);
+		}
+	}
 }
 
 // --- Disk I/O (read-only) ---
