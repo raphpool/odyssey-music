@@ -30,9 +30,10 @@
     }
   ],
   "project": {
-    "slug": "project:the-man-machine--kraftwerk",
+    "slug": "project:die-mensch-maschine--kraftwerk",
     "type": "project",
-    "name": "The Man-Machine"
+    "name": "Die Mensch·Maschine",
+    "artist": "Kraftwerk"
   },
   "genres": [
     {

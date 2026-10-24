@@ -222,14 +222,6 @@
       "releaseType": "ep"
     },
     {
-      "slug": "project:shred",
-      "type": "project",
-      "name": "Shred",
-      "mbid": "5cf5be34-1bd9-4283-97dd-ed0b2ae41b3a",
-      "year": "2016",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:shred--skee-mask",
       "type": "project",
       "name": "Shred",

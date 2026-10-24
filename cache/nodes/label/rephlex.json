@@ -163,21 +163,16 @@
       "name": "Expert Knob Twiddlers"
     },
     {
-      "slug": "project:polyester",
+      "slug": "project:polyester--lisa-carbon",
       "type": "project",
-      "name": "Polyester"
+      "name": "Polyester",
+      "artist": "Lisa Carbon"
     },
     {
       "slug": "project:nu-romantix--dmx-krew",
       "type": "project",
       "name": "Nu Romantix",
       "artist": "DMX Krew"
-    },
-    {
-      "slug": "project:polyester--lisa-carbon",
-      "type": "project",
-      "name": "Polyester",
-      "artist": "Lisa Carbon"
     },
     {
       "slug": "project:rushup-edge--the-tuss",

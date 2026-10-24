@@ -41,19 +41,22 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:computer-world--kraftwerk",
+      "slug": "project:computerwelt--kraftwerk",
       "type": "project",
-      "name": "Computer World"
+      "name": "Computerwelt",
+      "artist": "Kraftwerk"
     },
     {
-      "slug": "project:trans-europe-express",
+      "slug": "project:trans-europa-express--kraftwerk",
       "type": "project",
-      "name": "Trans-Europe Express"
+      "name": "Trans Europa Express",
+      "artist": "Kraftwerk"
     },
     {
-      "slug": "project:the-man-machine--kraftwerk",
+      "slug": "project:die-mensch-maschine--kraftwerk",
       "type": "project",
-      "name": "The Man-Machine"
+      "name": "Die Mensch·Maschine",
+      "artist": "Kraftwerk"
     }
   ]
 }

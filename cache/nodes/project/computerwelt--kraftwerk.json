@@ -1,6 +1,6 @@
 {
-  "slug": "project:computer-world--kraftwerk",
-  "name": "Computer World",
+  "slug": "project:computerwelt--kraftwerk",
+  "name": "Computerwelt",
   "editorial_article": "'Computer World' (German: 'Computerwelt'), released in 1981, stands as the eighth studio album by the pioneering German electronic group Kraftwerk. Recorded at their legendary Kling Klang studio in Düsseldorf, the album was a forward-looking conceptual work that investigated the rise of computer technology, digital communication, and the shifting landscape of society at the dawn of the information age. Despite its focus on the digital, the production of the album was entirely analog, relying on custom-built equipment and sequencers to craft the icy, rhythmic precision that would come to define the group's legacy and influence everything from synth-pop and electro to early hip-hop and techno.\n\nThe album is a balanced portrait of a \"computer world,\" oscillating between enthusiasm for technological advancement and subtle warnings about social control and surveillance. Songs like \"Pocket Calculator\" and the titular \"Computer World\" treat the machines as both toys and tools, while \"Computer Love\" introduced a surprisingly melancholic, human element to the cold, electronic arrangements. Its sonic palette—a refined evolution of the structures laid down on 'The Man-Machine'—is characterized by robotic vocals, staccato sequencing, and infectious, clean-lined melodies. \n\nUpon its release, the album was accompanied by an ambitious world tour that solidified Kraftwerk's status as visionary figures. The singles, including the UK No. 1 hit \"Computer Love\" (in its later double-A side release), brought their stark, rhythmic aesthetic to the masses. Over four decades later, 'Computer World' is recognized not just for its technical innovation, but as a prescient, artistic document that accurately captured the early anxieties and possibilities of a society on the verge of being fully connected by computer technology. Its influence remains immeasurable, echoing through the foundations of virtually all modern electronic music genres. The album's minimalist cover, featuring a Hazeltine 1500 terminal, remains one of the most iconic images in the history of electronic music.",
   "citations": [
     {
@@ -84,9 +84,10 @@
   "personnel": [],
   "related_projects": [
     {
-      "slug": "project:the-man-machine--kraftwerk",
+      "slug": "project:die-mensch-maschine--kraftwerk",
       "type": "project",
-      "name": "The Man-Machine"
+      "name": "Die Mensch·Maschine",
+      "artist": "Kraftwerk"
     },
     {
       "slug": "project:electric-cafe",

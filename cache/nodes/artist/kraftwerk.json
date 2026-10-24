@@ -164,21 +164,6 @@
       "mbid": "47e62190-67b6-3d37-951c-43eb14894b3e",
       "year": "1970",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:trans-europe-express",
-      "type": "project",
-      "name": "Trans-Europe Express"
-    },
-    {
-      "slug": "project:the-man-machine--kraftwerk",
-      "type": "project",
-      "name": "The Man-Machine"
-    },
-    {
-      "slug": "project:computer-world--kraftwerk",
-      "type": "project",
-      "name": "Computer World"
     }
   ],
   "notable_tracks": [

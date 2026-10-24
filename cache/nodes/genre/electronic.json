@@ -159,9 +159,10 @@
   ],
   "landmark_projects": [
     {
-      "slug": "project:trans-europe-express",
+      "slug": "project:trans-europa-express--kraftwerk",
       "type": "project",
-      "name": "Trans-Europe Express"
+      "name": "Trans Europa Express",
+      "artist": "Kraftwerk"
     },
     {
       "slug": "project:selected-ambient-works-85-92",
