@@ -9,9 +9,17 @@
     }
   ],
   "materialized_at": "2026-05-13T12:50:26.114Z",
+  "mbid": "f759b7f6-941b-35c0-8674-82d7df1b35f5",
   "type": "project",
   "editorial_pitch": "A monolithic masterpiece of dark ambient, Lustmord's 1990 album 'Heresy' is a terrifying, hypnotic descent into soundscapes defined by infrasonic drones and oppressive, cavernous atmospheres.",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:lustmord",
+      "type": "artist",
+      "name": "Lustmord",
+      "mbid": "15f2bb82-bce4-44c9-863a-995ae9bde0b4"
+    }
+  ],
   "label": {
     "slug": "label:soleilmoon-recordings",
     "type": "label",
@@ -45,5 +53,6 @@
       "name": "Lustmord"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

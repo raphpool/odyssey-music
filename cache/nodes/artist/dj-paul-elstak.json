@@ -105,14 +105,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:here-comes-the-prozac",
-      "type": "project",
-      "name": "Here Comes the Prozac (Dione’s Gabber remix)",
-      "mbid": "3c2fb13f-8cbb-45fb-ab2e-934cde843f46",
-      "year": "2025",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:internet-hooligan",
       "type": "project",
       "name": "Internet Hooligan",
@@ -281,14 +273,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:warhorn",
-      "type": "project",
-      "name": "WARHORN (Hardcore Mix)",
-      "mbid": "8266fed8-33cc-491f-a337-8be5fd9eae12",
-      "year": "2021",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:without-sin",
       "type": "project",
       "name": "Without Sin",
@@ -405,14 +389,6 @@
       "type": "project",
       "name": "Fokking Hard EP",
       "mbid": "2e0cb7e9-d237-4c79-97af-59601e56b8d3",
-      "year": "2015",
-      "releaseType": "ep"
-    },
-    {
-      "slug": "project:fokking-hard-ep",
-      "type": "project",
-      "name": "Fokking Hard EP",
-      "mbid": "3d85029b-0f31-467a-9813-d0a04a8eb4a5",
       "year": "2015",
       "releaseType": "ep"
     },
@@ -585,14 +561,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:a-hardcore-state-of-mind",
-      "type": "project",
-      "name": "A Hardcore State of Mind",
-      "mbid": "b0a22f78-fed6-3a37-8395-d2da9db4c541",
-      "year": "2003",
-      "releaseType": "ep"
-    },
-    {
       "slug": "project:i-am-darkness",
       "type": "project",
       "name": "I Am Darkness",
@@ -605,14 +573,6 @@
       "type": "project",
       "name": "Offensive Remix Project, Part 1",
       "mbid": "e37b3dc5-eeea-3a39-8090-d4b1a58dac69",
-      "year": "2003",
-      "releaseType": "ep"
-    },
-    {
-      "slug": "project:ready-for-judgement-day",
-      "type": "project",
-      "name": "Ready for Judgement Day",
-      "mbid": "c4470710-e540-36fa-91f4-85aa643d103f",
       "year": "2003",
       "releaseType": "ep"
     },

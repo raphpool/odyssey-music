@@ -299,6 +299,25 @@ describe("auditNodes", () => {
 		expect(report.samples["literal-newlines"]).toEqual(["track:newline"]);
 	});
 
+	it("counts a literal backslash-quote in a citation title, once per node (TRA-687)", () => {
+		const report = auditNodes(
+			toMap(
+				node("project:bad--x", {
+					citations: [
+						{ url: "https://a.example", title: "Fine" },
+						{ url: "https://b.example", title: '\\"Cut Chemist\\" interview' },
+						{ url: "https://c.example", title: 'also \\"bad\\"' },
+					],
+				}),
+				node("track:ok", { citations: [{ url: "https://a.example", title: 'a "plain" title' }] }),
+				node("track:path", { citations: [{ url: "https://a.example", title: 'C:\\\\"dir"' }] }),
+				node("track:untitled", { citations: [{ url: "https://a.example" }] }),
+			),
+		);
+		expect(metric(report, "literal-escaped-quotes")).toBe(1);
+		expect(report.samples["literal-escaped-quotes"]).toEqual(["project:bad--x"]);
+	});
+
 	it("counts single-citation and missing-image per type", () => {
 		const report = auditNodes(
 			toMap(

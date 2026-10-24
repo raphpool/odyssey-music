@@ -76,8 +76,7 @@ final class HeroTests: XCTestCase {
 		XCTAssertIdentical(NodeHero.decodedImage(for: .image(image)), image)
 	}
 
-	func testTheHeroSitsSixteenPointsBelowTheTopBarAndIsNamedNodeHero() {
-		XCTAssertEqual(NodeHero.topInset, 16, accuracy: 0.001)
+	func testTheHeroIsNamedNodeHero() {
 		XCTAssertEqual(NodeHero.identifier, "node-hero")
 	}
 

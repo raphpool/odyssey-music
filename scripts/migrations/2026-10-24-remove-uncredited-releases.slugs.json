@@ -1,0 +1,13 @@
+{
+	"source": "Closed list, 2026-10-24 (TRA-485), narrowed after the review of #639: the first list (20 works) wrongly claimed that no credit was provable; most of those works name their artist in their own text and are credited by 2026-10-24-credit-uncredited-releases instead. A work MusicBrainz does not confirm stays uncredited (left for the schema PR), it is not removed.",
+	"slugs": [
+		{
+			"slug": "project:resort-vol-1",
+			"reason": "Nothing links to it and no source but its own text names its artist, an obscure indie pop act called RESORT: no cache artist, no MusicBrainz lookup. Removed on the dispatcher's decision of 2026-10-24 after the review of #639."
+		},
+		{
+			"slug": "project:the-ep--inside",
+			"reason": "A 1993 UK electronic EP wrongly credited to the Long Island band Inside; TRA-570 detached the credit and the band's links, nothing links to it, and its own text names no other artist."
+		}
+	]
+}

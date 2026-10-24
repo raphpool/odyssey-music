@@ -9,9 +9,17 @@
     }
   ],
   "materialized_at": "2026-05-13T13:00:40.600Z",
+  "mbid": "02ca8dfc-965b-47cb-b270-08536e4235e6",
   "type": "track",
   "editorial_teaser": "\"They Know Your Name\" is a distinctive electronic composition by the influential German duo Mouse on Mars, released as a 7-inch single in 2012 via Monkeytown Records.",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars",
+      "mbid": "4d4f5d92-0589-42fa-bc0e-1bd73e17a2ce"
+    }
+  ],
   "genres": [
     {
       "slug": "genre:electronica",
@@ -38,6 +46,7 @@
       "name": "Machinedrum"
     }
   ],
+  "personnel": [],
   "samples": [],
   "sampled_by": [],
   "remixed_by": []

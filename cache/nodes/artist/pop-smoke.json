@@ -93,14 +93,6 @@
       "releaseType": "ep"
     },
     {
-      "slug": "project:mood-swings",
-      "type": "project",
-      "name": "Mood Swings",
-      "mbid": "72045d11-fbd2-4a4d-b1ee-61d50bdc1f14",
-      "year": "2020",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:the-woo",
       "type": "project",
       "name": "The Woo",
@@ -115,14 +107,6 @@
       "mbid": "d6d1de65-7e43-4277-b723-fc74a2b385e1",
       "year": "2020",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:enjoy-yourself",
-      "type": "project",
-      "name": "Enjoy Yourself",
-      "mbid": "6562d186-1b18-495a-a93c-05951dc5cd82",
-      "year": "2020",
-      "releaseType": "single"
     },
     {
       "slug": "project:make-it-rain",

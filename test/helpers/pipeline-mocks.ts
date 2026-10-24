@@ -30,6 +30,7 @@ import { afterAll, vi } from "vitest";
 import {
 	fetchArtistDiscographyMb,
 	fetchArtistEntityMb,
+	fetchArtistProfileMb,
 	fetchEntityGenresMb,
 	fetchLabelEntityMb,
 	fetchLabelMetaMb,
@@ -38,7 +39,9 @@ import {
 	findLabelMbidByName,
 	resolveArtistDetailed,
 	resolveRecording,
+	resolveRecordingDetailed,
 	resolveReleaseGroup,
+	resolveReleaseGroupDetailed,
 } from "../../src/musicbrainz.js";
 import { firecrawlSearch } from "../../src/tools/firecrawl-search.js";
 import { localFetch } from "../../src/tools/local-fetcher.js";
@@ -119,6 +122,10 @@ vi.mock("../../src/musicbrainz.js", () => ({
 	fetchLabelMetaMb: vi.fn(unexpectedCall("fetchLabelMetaMb")),
 	fetchLabelEntityMb: vi.fn(unexpectedCall("fetchLabelEntityMb")),
 	resolveRecording: vi.fn(unexpectedCall("resolveRecording")),
+	// TRA-551: what the pipeline calls instead when it knows the requested artist's mbid.
+	resolveRecordingDetailed: vi.fn(unexpectedCall("resolveRecordingDetailed")),
+	resolveReleaseGroupDetailed: vi.fn(unexpectedCall("resolveReleaseGroupDetailed")),
+	fetchArtistProfileMb: vi.fn(unexpectedCall("fetchArtistProfileMb")),
 	fetchTrackMetaMb: vi.fn(unexpectedCall("fetchTrackMetaMb")),
 	resolveReleaseGroup: vi.fn(unexpectedCall("resolveReleaseGroup")),
 	fetchProjectMetaMb: vi.fn(unexpectedCall("fetchProjectMetaMb")),
@@ -229,6 +236,9 @@ export function installPipelineMocks(options: InstallPipelineMocksOptions): void
 	resetToUnexpected(fetchLabelMetaMb, "fetchLabelMetaMb");
 	resetToUnexpected(fetchLabelEntityMb, "fetchLabelEntityMb");
 	resetToUnexpected(resolveRecording, "resolveRecording");
+	resetToUnexpected(resolveRecordingDetailed, "resolveRecordingDetailed");
+	resetToUnexpected(resolveReleaseGroupDetailed, "resolveReleaseGroupDetailed");
+	resetToUnexpected(fetchArtistProfileMb, "fetchArtistProfileMb");
 	resetToUnexpected(fetchTrackMetaMb, "fetchTrackMetaMb");
 	resetToUnexpected(resolveReleaseGroup, "resolveReleaseGroup");
 	resetToUnexpected(fetchProjectMetaMb, "fetchProjectMetaMb");

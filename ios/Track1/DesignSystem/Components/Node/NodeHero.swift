@@ -5,17 +5,14 @@ import UIKit
 /// Figma `Hero` (ensemble `171:34`, doc `171:36`): the visual anchor of a node page, one variant per node
 /// family. `release` (project and track) is a jewel case with a partially exposed disc whose label takes the
 /// dominant color of the cover; `artist` is a circular photo; `cover` (genre and label) is a square cover.
-/// It is centered, 16 pt below the Top bar, and "never crops the case". The caller supplies the decoded image
-/// and the tint (from `NodeHeroModel`), like `Track1Artwork`: this view never loads anything. Without an
-/// image (loading or unavailable) each variant keeps its own gradient placeholder.
+/// It is centered, spaced by the content card that holds it, and "never crops the case". The caller supplies
+/// the decoded image and the tint (from `NodeHeroModel`), like `Track1Artwork`: this view never loads
+/// anything. Without an image (loading or unavailable) each variant keeps its own gradient placeholder.
 struct NodeHero: View {
 	typealias Kind = NodeHeroKind
 
 	/// `node-hero`.
 	static let identifier = "node-hero"
-	/// Doc `171:36`: "Center horizontally; 16pt below the top bar", `theme.spacing.16`. Part of the hero, so
-	/// the page stacks it right under the Top bar without adding a gap of its own.
-	static let topInset = Track1Tokens.spacing16
 
 	private let kind: Kind
 	private let image: Track1Artwork.State
@@ -54,7 +51,6 @@ struct NodeHero: View {
 			.accessibilityIdentifier(Self.identifier)
 			.modifier(HeroAccessibility(label: accessibilityLabel, hasImage: Self.decodedImage(for: image) != nil))
 			.frame(maxWidth: .infinity)
-			.padding(.top, Self.topInset)
 	}
 
 	@ViewBuilder

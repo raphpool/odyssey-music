@@ -99,14 +99,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:dub-de-gaita",
-      "type": "project",
-      "name": "Dub de Gaita",
-      "mbid": "246642a2-0b24-4dc0-9259-a475e08cb7c5",
-      "year": "2014",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:asi-tocan-los-indios",
       "type": "project",
       "name": "Asi tocan los indios",

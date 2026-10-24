@@ -2028,7 +2028,9 @@ describe("pickByTitleAndCredit: credit equals the hint", () => {
 			],
 		});
 		const out = await resolveReleaseGroupDetailed("Judge Dread", "Prince");
-		expect(out).toEqual({ identity: null, ambiguous: false, unavailable: false });
+		// TRA-551: `discardedCredits` says whom the exact-title candidate was set aside for; the answer is "none".
+		expect(out).toMatchObject({ identity: null, ambiguous: false, unavailable: false });
+		expect(out.discardedCredits).toEqual([{ mbid: BUSTER, name: "Prince Buster" }]);
 	});
 
 	it("does not resolve a recording credited to 'Prince Buster' for 'Prince'", async () => {
@@ -2162,6 +2164,7 @@ describe("pickByTitleAndCredit: hints that cannot be compared", () => {
 			],
 		});
 		expect(await resolveReleaseGroupDetailed("Crowd Title", "Act Three")).toEqual({
+			discardedCredits: [{ mbid: OTHER, name: "Act One" }],
 			identity: null,
 			ambiguous: false,
 			unavailable: false,
@@ -2619,13 +2622,131 @@ describe("work resolvers: credits accepted by MBID (TRA-539)", () => {
 
 	it("does not accept the band by name: without the option, or with another band's MBID", async () => {
 		stubMb({ "release-groups": [hit(NEW_FORMS, "New Forms", [[REPRAZENT_BAND, "Roni Size / Reprazent"]])] });
-		expect(await resolveReleaseGroupDetailed("New Forms", "Roni Size")).toEqual(none);
-		expect(await resolveReleaseGroupDetailed("New Forms", "Roni Size", { acceptCreditMbids: [] })).toEqual(
-			none,
-		);
+		expect(await resolveReleaseGroupDetailed("New Forms", "Roni Size")).toEqual({
+			...none,
+			discardedCredits: [{ mbid: REPRAZENT_BAND, name: "Roni Size / Reprazent" }],
+		});
+		expect(await resolveReleaseGroupDetailed("New Forms", "Roni Size", { acceptCreditMbids: [] })).toEqual({
+			...none,
+			discardedCredits: [{ mbid: REPRAZENT_BAND, name: "Roni Size / Reprazent" }],
+		});
 		expect(
 			await resolveReleaseGroupDetailed("New Forms", "Roni Size", { acceptCreditMbids: [OTHER_BAND] }),
-		).toEqual(none);
+		).toEqual({ ...none, discardedCredits: [{ mbid: REPRAZENT_BAND, name: "Roni Size / Reprazent" }] });
+	});
+
+	describe("discardedCredits: who the exact-title candidates were set aside for (TRA-551)", () => {
+		const reprazent = { mbid: REPRAZENT_BAND, name: "Roni Size / Reprazent" };
+
+		it("names the credited artists of the exact-title candidates set aside, release group and recording", async () => {
+			stubMb({
+				"release-groups": [
+					hit(NEW_FORMS, "Alpha Forms", [[REPRAZENT_BAND, "Roni Size / Reprazent"]]),
+					hit("ffffffff-1111-4111-8111-000000000002", "Alpha Forms", [
+						[REPRAZENT_BAND.toUpperCase(), "Reprazent"],
+					]),
+					hit("ffffffff-1111-4111-8111-000000000003", "Alpha Forms", [
+						[OTHER_BAND, "Someone Else"],
+						["ffffffff-0000-4000-8000-000000000009", "Featured"],
+					]),
+					// Not the title: its credit says nothing about the work.
+					hit("ffffffff-1111-4111-8111-000000000004", "Alpha Forms Remixed", [
+						["ffffffff-0000-4000-8000-000000000008", "Elsewhere"],
+					]),
+				],
+			});
+			const out = await resolveReleaseGroupDetailed("Alpha Forms", "Roni Size");
+			expect(out).toMatchObject(none);
+			expect(out.discardedCredits).toEqual([
+				reprazent,
+				{ mbid: OTHER_BAND, name: "Someone Else" },
+				{ mbid: "ffffffff-0000-4000-8000-000000000009", name: "Featured" },
+			]);
+
+			stubMb({ recordings: [hit(NEW_FORMS, "Alpha Forms", [[REPRAZENT_BAND, "Roni Size / Reprazent"]])] });
+			expect((await resolveRecordingDetailed("Alpha Forms", "Roni Size")).discardedCredits).toEqual([
+				reprazent,
+			]);
+		});
+
+		it("asks the same search again once the band is accepted, so that the request is the one already answered", async () => {
+			const urls = stubMb({
+				"release-groups": [hit(NEW_FORMS, "Beta Forms", [[REPRAZENT_BAND, "Roni Size / Reprazent"]])],
+			});
+			const first = await resolveReleaseGroupDetailed("Beta Forms", "Roni Size");
+			const second = await resolveReleaseGroupDetailed("Beta Forms", "Roni Size", {
+				acceptCreditMbids: first.discardedCredits?.map((c) => c.mbid) ?? [],
+			});
+			expect(second.identity?.mbid).toBe(NEW_FORMS);
+			// Two resolutions, one request: the second search is the first one, served from mbFetch's memo.
+			expect(urls).toHaveLength(1);
+		});
+
+		it("is absent when nothing was set aside for its credit", async () => {
+			// No exact-title candidate.
+			stubMb({
+				"release-groups": [
+					hit(NEW_FORMS, "Gamma Forms Remixed", [[REPRAZENT_BAND, "Roni Size / Reprazent"]]),
+				],
+			});
+			expect(await resolveReleaseGroupDetailed("Gamma Forms", "Roni Size")).toStrictEqual(none);
+			// No candidate at all.
+			stubMb({ "release-groups": [] });
+			expect(await resolveReleaseGroupDetailed("Gamma Forms", "Roni Size")).toStrictEqual(none);
+			// An exact-title candidate is credited to the artist: the work is theirs, a band's credit beside it is
+			// the picker's business (here every recording carries a disambiguation, so the answer is "none").
+			stubMb({
+				recordings: [
+					hit(NEW_FORMS, "T551 Heroes", [[RONI, "Roni Size"]], { disambiguation: "live" }),
+					hit("ffffffff-1111-4111-8111-000000000005", "T551 Heroes", [[OTHER_BAND, "Someone Else"]]),
+				],
+			});
+			expect(await resolveRecordingDetailed("T551 Heroes", "Roni Size")).toStrictEqual(none);
+			// Credited to the artist's own MBID under another name.
+			stubMb({
+				recordings: [
+					hit(NEW_FORMS, "T551 Y Title", [[RONI, "Roni Size Presents"]], { disambiguation: "live" }),
+				],
+			});
+			expect(
+				await resolveRecordingDetailed("T551 Y Title", "Roni Size", { requestedArtistMbid: RONI }),
+			).toStrictEqual(none);
+			// No hint: nobody to take memberships of.
+			stubMb({
+				recordings: [
+					hit(NEW_FORMS, "T551 Heroes", [[REPRAZENT_BAND, "Roni Size / Reprazent"]], {
+						disambiguation: "live",
+					}),
+				],
+			});
+			expect(await resolveRecordingDetailed("T551 Heroes")).toStrictEqual(none);
+		});
+
+		it("is absent from an ambiguous answer and from a found one", async () => {
+			stubMb({
+				"release-groups": [
+					hit(NEW_FORMS, "T551 Twin", [[RONI, "Roni Size"]], { "first-release-date": "1997" }),
+					hit("ffffffff-1111-4111-8111-000000000006", "T551 Twin", [[RONI, "Roni Size"]], {
+						"first-release-date": "1997",
+					}),
+					hit("ffffffff-1111-4111-8111-000000000007", "T551 Twin", [
+						[REPRAZENT_BAND, "Roni Size / Reprazent"],
+					]),
+				],
+			});
+			const ambiguousOut = await resolveReleaseGroupDetailed("T551 Twin", "Roni Size");
+			expect(ambiguousOut.ambiguous).toBe(true);
+			expect(ambiguousOut.discardedCredits).toBeUndefined();
+			stubMb({
+				"release-groups": [
+					hit(NEW_FORMS, "T551 Solo", [[RONI, "Roni Size"]]),
+					hit("ffffffff-1111-4111-8111-000000000008", "T551 Solo", [[OTHER_BAND, "Someone Else"]]),
+				],
+			});
+			const found = await resolveReleaseGroupDetailed("T551 Solo", "Roni Size");
+			expect(found.identity?.mbid).toBe(NEW_FORMS);
+			expect(found.discardedCredits).toBeUndefined();
+		});
 	});
 
 	it("never accepts a credit that merely contains the artist's name (Prince / Prince Buster)", async () => {
@@ -2634,7 +2755,7 @@ describe("work resolvers: credits accepted by MBID (TRA-539)", () => {
 		const out = await resolveRecordingDetailed("One Step Beyond", "Prince", {
 			acceptCreditMbids: [OTHER_BAND],
 		});
-		expect(out).toEqual(none);
+		expect(out).toEqual({ ...none, discardedCredits: [{ mbid: buster, name: "Prince Buster" }] });
 	});
 
 	it("is ambiguous when one candidate is credited to the artist and another to the band (Uoon II)", async () => {
@@ -2743,14 +2864,17 @@ describe("work resolvers: credits accepted by MBID (TRA-539)", () => {
 			expect(
 				(await resolveRecordingDetailed("Y Test", "Roni Size", { requestedArtistMbid: RONI })).identity?.mbid,
 			).toBe(PRESENTS);
-			expect(await resolveRecordingDetailed("Y Test", "Roni Size")).toEqual(none);
+			expect(await resolveRecordingDetailed("Y Test", "Roni Size")).toEqual({
+				...none,
+				discardedCredits: [{ mbid: RONI, name: "Roni Size Presents" }],
+			});
 		});
 
 		it("never reads another artist's MBID as the requested one", async () => {
 			stubMb({ recordings: [hit(PRESENTS, "Z Test", [[RONI, "Roni Size Presents"]])] });
 			expect(
 				await resolveRecordingDetailed("Z Test", "Roni Size", { requestedArtistMbid: OTHER_BAND }),
-			).toEqual(none);
+			).toEqual({ ...none, discardedCredits: [{ mbid: RONI, name: "Roni Size Presents" }] });
 		});
 
 		it("is ambiguous when two different accepted bands each have a work of the title (recording)", async () => {
@@ -3320,13 +3444,16 @@ describe("work resolvers: a homonym's work of the same title is never the answer
 	it("does not give 'Wish You Were Here' by Pink Floyd the release of American Hot Wax", async () => {
 		// MB answered with the homonym's release only: for Pink Floyd that is no work at all, not the work.
 		stubMb({ "release-groups": [hotWaxRelease()] });
-		expect(await resolveReleaseGroupDetailed("Wish You Were Here", "Pink Floyd")).toEqual(none);
+		expect(await resolveReleaseGroupDetailed("Wish You Were Here", "Pink Floyd")).toEqual({
+			...none,
+			discardedCredits: expect.any(Array),
+		});
 		expect(
 			await resolveReleaseGroupDetailed("Wish You Were Here", "Pink Floyd", {
 				requestedArtistMbid: PINK_FLOYD,
 				releaseType: "album",
 			}),
-		).toEqual(none);
+		).toEqual({ ...none, discardedCredits: expect.any(Array) });
 	});
 
 	it("picks Pink Floyd's own release when both are in the answer, and each artist gets its own", async () => {
@@ -3394,7 +3521,12 @@ describe("work resolvers: a homonym's work of the same title is never the answer
 
 	it("does not give Daft Punk's 'Around the World' the recording of Stanley Black and His Orchestra", async () => {
 		stubMb({ recordings: [blackRecording()] });
-		expect(await resolveRecordingDetailed("Around the World", "Daft Punk")).toEqual(none);
+		expect(await resolveRecordingDetailed("Around the World", "Daft Punk")).toEqual({
+			...none,
+			discardedCredits: [
+				{ mbid: "cccccccc-0604-4604-8604-000000000004", name: "Stanley Black & His Orchestra" },
+			],
+		});
 		stubMb({
 			recordings: [
 				blackRecording(),

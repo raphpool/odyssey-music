@@ -13,11 +13,20 @@
     }
   ],
   "materialized_at": "2026-05-13T13:18:40.511Z",
+  "mbid": "e7227840-5ef2-3813-af26-15dab34e1a51",
   "type": "project",
   "editorial_pitch": "Interpol's 2002 debut is a masterclass in atmospheric post-punk revivalism, combining driving, interlocking melodies with a moody, urban intensity that defined the New York indie rock sound of the 2000s.",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:interpol",
+      "type": "artist",
+      "name": "Interpol",
+      "mbid": "b23e8a63-8f47-4882-b55b-df2c92ef400e"
+    }
+  ],
   "genres": [],
   "tracklist": [],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

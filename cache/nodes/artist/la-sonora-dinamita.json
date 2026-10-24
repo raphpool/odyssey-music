@@ -474,14 +474,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:ritmo",
-      "type": "project",
-      "name": "Ritmo!",
-      "mbid": "a910a761-2f53-4af9-9e08-dad909ad0985",
-      "year": "1965",
-      "releaseType": "ep"
-    },
-    {
       "slug": "project:cumbia-barulera-golpes-de-la-vida",
       "type": "project",
       "name": "Cumbia barulera / Golpes de la vida",

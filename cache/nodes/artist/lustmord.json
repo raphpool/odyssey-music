@@ -52,28 +52,28 @@
       "slug": "project:paleomagnetic-resonance--lustmord",
       "type": "project",
       "name": "Paleomagnetic Resonance",
-      "artist": "Lustmord",
       "mbid": "9749ee79-4253-4a11-94dc-f9fbf92deb37",
       "year": "2026",
-      "releaseType": "single"
+      "releaseType": "single",
+      "artist": "Lustmord"
     },
     {
       "slug": "project:the-pulse-of-atoms--lustmord",
       "type": "project",
       "name": "The Pulse of Atoms",
-      "artist": "Lustmord",
       "mbid": "06957f3c-cfa9-4bbd-ae12-74df2ff31b49",
       "year": "2026",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Lustmord"
     },
     {
       "slug": "project:much-unseen-is-also-here--lustmord",
       "type": "project",
       "name": "Much Unseen Is Also Here",
-      "artist": "Lustmord",
       "mbid": "fa77d25a-cbc5-4171-9ba5-2c994d316815",
       "year": "2024",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Lustmord"
     },
     {
       "slug": "project:the-word-as-power--lustmord",
@@ -87,109 +87,109 @@
       "slug": "project:o-t-h-e-r-d-u-b--lustmord",
       "type": "project",
       "name": "[ O T H E R D U B ]",
-      "artist": "Lustmord",
       "mbid": "3b462a74-f466-49a9-af15-2e0b92dd3b59",
       "year": "2009",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Lustmord"
     },
     {
       "slug": "project:o-t-h-e-r--lustmord",
       "type": "project",
       "name": "[ O T H E R ]",
-      "artist": "Lustmord",
       "mbid": "8b3753b5-d512-3af1-9466-7cb0f96cc5bb",
       "year": "2008",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Lustmord"
     },
     {
       "slug": "project:juggernaut--lustmord",
       "type": "project",
       "name": "Juggernaut",
-      "artist": "Lustmord",
       "mbid": "b9831684-6775-349b-8766-eaa8cfaa1183",
       "year": "2007",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Lustmord"
     },
     {
       "slug": "project:carbon-core--lustmord",
       "type": "project",
       "name": "Carbon/Core",
-      "artist": "Lustmord",
       "mbid": "4b596e20-c2d1-31cc-a5a0-94e0ddca160a",
       "year": "2004",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Lustmord"
     },
     {
       "slug": "project:zoetrope--lustmord",
       "type": "project",
       "name": "Zoetrope",
-      "artist": "Lustmord",
       "mbid": "e2cff6a3-ae81-3140-ae6d-0f94fc65ff42",
       "year": "2002",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Lustmord"
     },
     {
       "slug": "project:metavoid--lustmord",
       "type": "project",
       "name": "Metavoid",
-      "artist": "Lustmord",
       "mbid": "8c4372fa-4c19-35ba-b688-e9cecc96d28b",
       "year": "2001",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Lustmord"
     },
     {
       "slug": "project:purifying-fire--lustmord",
       "type": "project",
       "name": "Purifying Fire",
-      "artist": "Lustmord",
       "mbid": "836ead59-3030-33ce-96bd-4a1358f4cebf",
       "year": "2000",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Lustmord"
     },
     {
       "slug": "project:lustmord-vs-metal-beast--lustmord",
       "type": "project",
       "name": "Lustmord vs. Metal Beast",
-      "artist": "Lustmord",
       "mbid": "7ccc9df6-5262-355f-92d5-1f6fe815bc9d",
       "year": "1997",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Lustmord"
     },
     {
       "slug": "project:strange-attractor-black-star--lustmord",
       "type": "project",
       "name": "Strange Attractor / Black Star",
-      "artist": "Lustmord",
       "mbid": "70500b3a-a79b-334d-b2ae-d4e003b6bd5b",
       "year": "1996",
-      "releaseType": "ep"
+      "releaseType": "ep",
+      "artist": "Lustmord"
     },
     {
       "slug": "project:the-place-where-the-black-stars-hang--lustmord",
       "type": "project",
       "name": "The Place Where the Black Stars Hang",
-      "artist": "Lustmord",
       "mbid": "5652195d-fac4-3fcf-bf51-cdfc30395d08",
       "year": "1994",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Lustmord"
     },
     {
       "slug": "project:the-monstrous-soul--lustmord",
       "type": "project",
       "name": "The Monstrous Soul",
-      "artist": "Lustmord",
       "mbid": "abd75db7-7790-34be-80f1-7b2a5a456669",
       "year": "1992",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Lustmord"
     },
     {
       "slug": "project:a-document-of-early-acoustic-and-tactical-experimentation--lustmord",
       "type": "project",
       "name": "A Document of Early Acoustic & Tactical Experimentation",
-      "artist": "Lustmord",
       "mbid": "909a36b8-9646-353e-8ba6-48682d352a96",
       "year": "1991",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Lustmord"
     },
     {
       "slug": "project:heresy--lustmord",
@@ -203,34 +203,41 @@
       "slug": "project:paradise-disowned--lustmord",
       "type": "project",
       "name": "Paradise Disowned",
-      "artist": "Lustmord",
       "mbid": "f8a39d37-11b5-397c-9411-8c44c82156f2",
       "year": "1986",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Lustmord"
     },
     {
       "slug": "project:lustmord--lustmord",
       "type": "project",
       "name": "Lustmørd",
-      "artist": "Lustmord",
       "mbid": "3f4d0d04-2d87-3012-95a1-0dcbd04dda4f",
       "year": "1982",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Lustmord"
     },
     {
       "slug": "project:lustmordekay--lustmord",
       "type": "project",
       "name": "Lustmørdekay",
-      "artist": "Lustmord",
       "mbid": "38d398e6-a64a-32ab-90be-23aab280f392",
       "year": "1982",
-      "releaseType": "album"
+      "releaseType": "album",
+      "artist": "Lustmord"
     },
     {
       "slug": "project:stalker--robert-rich",
       "type": "project",
       "name": "Stalker",
       "artist": "Robert Rich"
+    },
+    {
+      "slug": "project:heresy--1990-ambient-album-by-lustmord",
+      "type": "project",
+      "name": "Heresy",
+      "mbid": "f759b7f6-941b-35c0-8674-82d7df1b35f5",
+      "artist": "Lustmord"
     }
   ],
   "notable_tracks": [],

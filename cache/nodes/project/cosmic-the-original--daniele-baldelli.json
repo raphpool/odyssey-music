@@ -178,24 +178,6 @@
       "type": "track",
       "name": "XR 7",
       "mbid": "d356153d-c167-463d-a802-576e12c4a44d"
-    },
-    {
-      "slug": "track:touch",
-      "type": "track",
-      "name": "Touch (Part 4)",
-      "mbid": "dd044a9d-296b-4cef-8cac-58cc4667687a"
-    },
-    {
-      "slug": "track:maccaroni-radio",
-      "type": "track",
-      "name": "Maccaroni Radio (Instrumental Version)",
-      "mbid": "dea2ae69-845d-4a26-bedb-b626c3af43aa"
-    },
-    {
-      "slug": "track:chinese-revenge",
-      "type": "track",
-      "name": "Chinese Revenge (Dub Version)",
-      "mbid": "52d95108-4433-48f2-8c0f-af6983412127"
     }
   ],
   "producers": [],

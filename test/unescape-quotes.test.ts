@@ -186,22 +186,107 @@ describe("unescape-quotes: only the backslash goes", () => {
 		expect([t.editorial_teaser, t.samples_notes]).toEqual(['A "teaser".', 'the "Amen" break']);
 	});
 
-	it("never touches a slug, a URL, an edge or a citation, and lists the ones that hold the escape", async () => {
+	it("never touches a slug, a URL or an edge, and lists the ones that hold the escape", async () => {
 		const edge = { slug: "genre:house", type: "genre", name: 'House \\"Music\\"' };
 		const node = artist("artist:keep", {
 			editorial_article: ESCAPED,
 			photo_url: 'https://example.com/a\\"b.jpg',
 			genres: [edge],
-			citations: [{ url: "https://example.com/x", title: 'INTER ARMA \\"New Heaven\\"' }],
 		});
 		await writeCache([node]);
 		const manifest = await run(true);
 		const after = await readNode("artist:keep");
 		expect(after.editorial_article).toBe(FIXED);
 		expect({ ...after, editorial_article: node.editorial_article }).toEqual(node);
-		expect(manifest.uncovered).toEqual([
-			{ slug: "artist:keep", fields: ["citations[].title", "genres[].name", "photo_url"] },
+		expect(manifest.uncovered).toEqual([{ slug: "artist:keep", fields: ["genres[].name", "photo_url"] }]);
+	});
+});
+
+describe("unescape-quotes: citation titles (TRA-687)", () => {
+	const TITLE = 'INTER ARMA \\"New Heaven\\" - Relapse Records';
+	const TITLE_FIXED = 'INTER ARMA "New Heaven" - Relapse Records';
+
+	it("rewrites the escaped title of a citation and nothing else of the node", async () => {
+		const citations = [
+			{ url: "https://example.com/a", title: "Plain" },
+			{ url: "https://example.com/b", title: TITLE },
+			{ url: "https://example.com/c" },
+		];
+		const node = track("track:titled", { citations });
+		await writeCache([node]);
+		const manifest = await run(true);
+		expect(manifest.written).toBe(1);
+		expect(manifest.byField).toEqual({ "citations[].title": 1 });
+		expect(manifest.changed).toEqual([{ slug: "track:titled", fields: ["citations[].title"] }]);
+		expect(manifest.uncovered).toEqual([]);
+		const after = await readNode("track:titled");
+		expect(after.citations).toEqual([
+			citations[0],
+			{ url: "https://example.com/b", title: TITLE_FIXED },
+			citations[2],
 		]);
+		expect({ ...after, citations: node.citations }).toEqual(node);
+	});
+
+	it("counts the node once for its titles, next to its text fields, and is idempotent", async () => {
+		await writeCache([
+			track("track:both", {
+				editorial_article: ESCAPED,
+				citations: [
+					{ url: "https://example.com/a", title: TITLE },
+					{ url: "https://example.com/b", title: 'a \\"second\\" one' },
+				],
+			}),
+		]);
+		const manifest = await run(true);
+		expect(manifest.changed).toEqual([
+			{ slug: "track:both", fields: ["editorial_article", "citations[].title"] },
+		]);
+		expect(manifest.byField).toEqual({ "citations[].title": 1, editorial_article: 1 });
+		expect(manifest.uncovered).toEqual([]);
+		const after = await readNode("track:both");
+		expect((after.citations as Obj[]).map((c) => c.title)).toEqual([TITLE_FIXED, 'a "second" one']);
+
+		const again = await run(true);
+		expect(again.written).toBe(0);
+	});
+
+	it("keeps a title whose quote follows a real backslash, a plain quote and an absent title", async () => {
+		await writeCache([
+			track("track:kept", {
+				citations: [
+					{ url: "https://example.com/a", title: 'C:\\dir\\\\"x"' },
+					{ url: "https://example.com/b", title: 'Already "plain"' },
+					{ url: "https://example.com/c" },
+				],
+			}),
+		]);
+		const before = await snapshot();
+		const manifest = await run(true);
+		expect(manifest.written).toBe(0);
+		expect(await snapshot()).toEqual(before);
+	});
+
+	it("lists, and does not rewrite, an escape held by a title that is not a string", async () => {
+		await writeCache([
+			track("track:odd", { citations: [{ url: "https://example.com/a", title: { en: 'x \\"y\\"' } }] }),
+		]);
+		const before = await snapshot();
+		const manifest = await run(true);
+		expect(manifest.written).toBe(0);
+		expect(manifest.uncovered).toEqual([{ slug: "track:odd", fields: ["citations[].title.en"] }]);
+		expect(await snapshot()).toEqual(before);
+	});
+
+	it("a dry-run plans the title and writes nothing", async () => {
+		await writeCache([
+			track("track:titled", { citations: [{ url: "https://example.com/a", title: TITLE }] }),
+		]);
+		const before = await snapshot();
+		const manifest = await run(false);
+		expect(manifest.written).toBe(1);
+		expect(manifest.byField).toEqual({ "citations[].title": 1 });
+		expect(await snapshot()).toEqual(before);
 	});
 });
 
