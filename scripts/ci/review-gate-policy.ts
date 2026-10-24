@@ -2,8 +2,18 @@ export type Tier = 1 | 2 | 3;
 export type ReviewState = "missing" | "pending" | "success" | "failure" | "error" | "stale";
 export type GateVerdict = "pass" | "wait" | "block";
 
+// Conclusions of a GitHub check-run (plus `missing` for "no conclusion yet"). The `review` check-run of
+// ai-review.yml is not a commit status, so it can end in states that a ReviewState does not model.
+export type CheckConclusion =
+	| ReviewState
+	| "neutral"
+	| "cancelled"
+	| "timed_out"
+	| "skipped"
+	| "action_required";
+
 export interface OrdinaryReview {
-	claude: ReviewState;
+	claude: CheckConclusion;
 	codex: ReviewState;
 	claudeBlocking: boolean;
 }
@@ -21,9 +31,13 @@ export interface GateInput {
 // its prompt reads the root REVIEW.md, so a tier/1 PR editing it would be reviewed under its own calibration
 // rules; it escalates too, anchored at the root (docs/REVIEW.md does not). TRA-553 (2026-10-15): the pattern is
 // case-insensitive (flag `i`) because the self-hosted runners are on macOS, whose default APFS volume ignores
-// case: `review.md` checks out over `REVIEW.md` and would otherwise dodge the escalation. Keep in sync with
-// the grep of the `tier-guard` job in .github/workflows/ci.yml, which is this pattern with `\/` written `/` and
-// the flag `i` written `-i` (test/ci-integrity-job.test.ts compares the two text-for-text and on a corpus of paths).
+// case: `review.md` checks out over `REVIEW.md` and would otherwise dodge the escalation. TRA-556 (2026-10-24):
+// the `tier-guard` job of .github/workflows/ci.yml no longer holds a copy: it reads this literal, as text, from the
+// default branch and turns it into a `grep -Eqi` pattern (`\/` written `/`, flag `i` written `-i`). So the literal
+// must stay one `export const sensitivePath = /…/i;` declaration with the pattern on a single line, in ASCII, no
+// `/`, `[` or backslash inside a character class, no escape except one that quotes a punctuation character (`\.`,
+// `\/`), no `(?` group, no lazy quantifier, and the flag `i` alone: the job fails closed on anything else, because
+// JS and `grep -E` read those differently (test/ci-integrity-job.test.ts runs the job's own steps on it).
 export const sensitivePath =
 	/(^|\/)(auth|payment[s]?|migrations|infra|deploy)\/|^\.github\/|^scripts\/(deploy-|ci\/review-gate-policy|ci\/review-reuse|ci\/threshold-ratchet\.ts$|audit-cache\.ts$)|^data\/integrity-thresholds\.json$|^\.codex\/scripts\/publish-review-status\.sh$|^REVIEW\.md$|\.sql$|secrets/i;
 
@@ -33,10 +47,23 @@ export const classifyRisk = (paths: readonly string[], labels: readonly string[]
 	return 1;
 };
 
+// TRA-524 (2026-10-24): a Claude review "is there" only if the job ran to a verdict. `cancelled` and `timed_out`
+// (the 25-minute timeout of ai-review.yml) used to count as present, so with `codex-review: success` the gate
+// passed although no Claude review had completed. `skipped`, `stale` and `action_required` did not review
+// anything either. The allowlist fails closed: a conclusion GitHub adds later waits instead of passing.
+// `failure` stays present: the review ran and `claudeBlocking` already carries its blocking findings.
+// `neutral` stays present on purpose (TRA-524 decision): ai-review.yml never ends a job that way (a job
+// concludes success, failure, cancelled, skipped or timed_out), so it has no effect in practice.
+// The same three conclusions are listed in the `select_review` jq program of review-gate.yml, which maps the
+// others to `missing` before they get here. The list is deliberately held twice: this copy is the one executed
+// from the default branch, so it also protects a PR whose own review-gate.yml still forwards the raw conclusion.
+// Keep the two in sync (test/review-gate-workflow.test.ts runs both on every conclusion).
+const completedClaudeReview: ReadonlySet<CheckConclusion> = new Set(["success", "failure", "neutral"]);
+
 const ordinaryVerdict = (review: OrdinaryReview): GateVerdict => {
 	if (review.codex === "failure" || review.claudeBlocking) return "block";
 	if (review.claude === "success") return "pass";
-	if (review.claude !== "missing" && review.codex === "success") return "pass";
+	if (completedClaudeReview.has(review.claude) && review.codex === "success") return "pass";
 	return "wait";
 };
 

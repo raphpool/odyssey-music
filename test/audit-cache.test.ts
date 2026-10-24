@@ -20,6 +20,7 @@ import {
 	thresholdsFromReport,
 	type Violation,
 } from "../scripts/audit-cache.js";
+import { EDGE_FIELDS_BY_TYPE, REVERSE_EDGE_PAIRS } from "../src/node-spec.js";
 
 const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -282,6 +283,22 @@ describe("auditNodes", () => {
 		expect(report.samples["literal-newlines"]).toEqual(["genre:bad"]);
 	});
 
+	it("flags a literal backslash-quote in a text field but not a plain quote (TRA-577)", () => {
+		const report = auditNodes(
+			toMap(
+				node("track:bad", { editorial_article: 'its \\"frenetic romp\\" is loud' }),
+				node("track:ok", { editorial_article: 'its "frenetic romp" is loud' }),
+				node("track:path", { editorial_article: 'path C:\\dir\\\\"x"' }),
+				node("track:code", { editorial_article: 'see\n```\nprintf(\\"hi\\")\n```' }),
+				node("track:newline", { editorial_article: "line one\\nline two" }),
+			),
+		);
+		expect(metric(report, "literal-escaped-quotes")).toBe(1);
+		expect(report.samples["literal-escaped-quotes"]).toEqual(["track:bad"]);
+		// The two measures are independent: a `\n` is not a `\"` and the other way round.
+		expect(report.samples["literal-newlines"]).toEqual(["track:newline"]);
+	});
+
 	it("counts single-citation and missing-image per type", () => {
 		const report = auditNodes(
 			toMap(
@@ -321,34 +338,173 @@ describe("auditNodes", () => {
 		expect(metric(report, "missing-reference-track")).toBe(1);
 	});
 
-	it("measures reciprocity per pair, only towards existing targets", () => {
+	it("measures reciprocity per emitted pair, only towards existing targets", () => {
 		const report = auditNodes(
 			toMap(
 				node("artist:a", { labels: [edge("label:l1"), edge("label:l2"), edge("label:ghost")] }),
 				node("label:l1", { roster: [edge("artist:a")] }),
 				node("label:l2"),
-				node("track:t--x", { project: edge("project:p--x") }),
-				node("project:p--x", { tracklist: [] }),
+				node("project:p--x", { artists: [edge("artist:a")] }),
 			),
 		);
 		expect(metric(report, "reciprocity-missing", "artist.labels->label.roster")).toBe(1);
 		expect(report.samples["reciprocity-missing[artist.labels->label.roster]"]).toEqual(["artist:a"]);
-		expect(metric(report, "reciprocity-missing", "track.project->project.tracklist")).toBe(1);
-		expect(metric(report, "reciprocity-missing", "label.roster->artist.labels")).toBe(0);
+		expect(metric(report, "reciprocity-missing", "project.artists->artist.discography")).toBe(1);
+		expect(metric(report, "reciprocity-missing", "track.artists->artist.notable_tracks")).toBe(0);
 	});
 
-	it("includes the REVERSE_EDGE_PAIRS and detects a missing reverse among them", () => {
+	it("includes the emitted same-kind pairs and detects a missing reverse among them", () => {
 		const report = auditNodes(
 			toMap(
 				node("artist:a", { influences: [edge("artist:b")] }),
 				node("artist:b", { influenced: [] }),
 				node("track:t1--x", { remix_of: edge("track:t2--x") }),
-				node("track:t2--x", { remixed_by: [edge("track:t1--x")] }),
+				node("track:t2--x", { remixed_by: [] }),
 			),
 		);
 		expect(metric(report, "reciprocity-missing", "artist.influences->artist.influenced")).toBe(1);
-		expect(metric(report, "reciprocity-missing", "track.remix_of->track.remixed_by")).toBe(0);
-		expect(metric(report, "reciprocity-missing", "track.remixed_by->track.remix_of")).toBe(0);
+		expect(metric(report, "reciprocity-missing", "track.remix_of->track.remixed_by")).toBe(1);
+	});
+
+	describe("pairs the runtime does not emit (TRA-567)", () => {
+		const reciprocity = (vs: Violation[]) => vs.filter((v) => v.metric.startsWith("reciprocity"));
+
+		// One missing reverse per declared pair that is NOT emitted, none for the emitted ones.
+		const unemitted = (): AuditReport =>
+			auditNodes(
+				toMap(
+					node("genre:g", {
+						key_artists: [edge("artist:a")],
+						key_labels: [edge("label:l")],
+						landmark_projects: [edge("project:p--x")],
+						landmark_tracks: [edge("track:t--x")],
+					}),
+					node("artist:a", { discography: [edge("project:p--x")] }),
+					node("label:l", { roster: [edge("artist:a")], notable_releases: [edge("project:p--x")] }),
+					node("project:p--x", { tracklist: [edge("track:t--x")] }),
+					node("track:t--x", { project: edge("project:p--x"), remixed_by: [edge("track:u--x")] }),
+					node("track:u--x"),
+				),
+			);
+
+		it("does not flag a missing reverse for a pair that is not emitted (acceptance case)", () => {
+			const report = unemitted();
+			const capped = report.metrics["reciprocity-missing"] as Record<string, number>;
+			for (const key of [
+				"genre.key_artists->artist.genres",
+				"genre.key_labels->label.genres",
+				"genre.landmark_projects->project.genres",
+				"genre.landmark_tracks->track.genres",
+				"artist.discography->project.artists",
+				"label.roster->artist.labels",
+				"project.tracklist->track.project",
+				"track.project->project.tracklist",
+				"label.notable_releases->project.label",
+				"track.remixed_by->track.remix_of",
+			]) {
+				expect(capped, key).not.toHaveProperty(key);
+			}
+			expect(Object.values(capped).every((n) => n === 0)).toBe(true);
+			// Every ceiling at 0, even for the capped pairs: the 10 missing reverses are no reciprocity violation.
+			const zero = Object.fromEntries(
+				Object.entries(report.metrics).map(([m, v]) => [
+					m,
+					typeof v === "number" ? 0 : Object.fromEntries(Object.keys(v).map((k) => [k, 0])),
+				]),
+			);
+			expect(reciprocity(compareWithThresholds(report, zero))).toEqual([]);
+		});
+
+		it("still measures those pairs, as an informative metric with its own samples", () => {
+			const report = unemitted();
+			expect(INFORMATIVE_METRICS.has("reciprocity-missing-not-emitted")).toBe(true);
+			expect(metric(report, "reciprocity-missing-not-emitted", "genre.key_artists->artist.genres")).toBe(1);
+			expect(metric(report, "reciprocity-missing-not-emitted", "label.roster->artist.labels")).toBe(1);
+			expect(metric(report, "reciprocity-missing-not-emitted", "track.remixed_by->track.remix_of")).toBe(1);
+			expect(report.samples["reciprocity-missing-not-emitted[genre.key_artists->artist.genres]"]).toEqual([
+				"genre:g",
+			]);
+		});
+
+		it("gives them no ceiling and never compares them, however high they are", () => {
+			const report = unemitted();
+			expect(thresholdsFromReport(report)).not.toHaveProperty("reciprocity-missing-not-emitted");
+			expect(compareWithThresholds(report, thresholdsFromReport(report))).toEqual([]);
+			// A legacy ceiling left in a thresholds file for such a pair is inert, not a violation.
+			const legacy = {
+				...thresholdsFromReport(report),
+				"reciprocity-missing": {
+					...(thresholdsFromReport(report)["reciprocity-missing"] as Record<string, number>),
+					"genre.key_artists->artist.genres": 0,
+				},
+			};
+			expect(reciprocity(compareWithThresholds(report, legacy))).toEqual([]);
+		});
+
+		it("splits the declared pairs into capped and informative ones, none lost, none twice", () => {
+			const report = auditNodes(toMap());
+			const capped = Object.keys(report.metrics["reciprocity-missing"] as Record<string, number>);
+			const informative = Object.keys(
+				report.metrics["reciprocity-missing-not-emitted"] as Record<string, number>,
+			);
+			const declared = REVERSE_EDGE_PAIRS.flatMap((p) =>
+				(EDGE_FIELDS_BY_TYPE[p.sourceType] as Record<string, { targets: readonly NodeType[] }>)[
+					p.sourceField
+				]?.targets.map((t) => ({ ...p, targetType: t })),
+			).filter((p) => p !== undefined);
+			// Written out on purpose: deriving it from isEmittedReversePair would test that function against itself.
+			expect([...capped].sort()).toEqual(
+				[
+					"artist.aliases->artist.aliases",
+					"artist.collaborators->artist.collaborators",
+					"artist.influenced->artist.influences",
+					"artist.influences->artist.influenced",
+					"artist.labels->label.roster",
+					"artist.members->artist.members",
+					"genre.parent_genres->genre.subgenres",
+					"genre.related_genres->genre.related_genres",
+					"genre.subgenres->genre.parent_genres",
+					"project.artists->artist.discography",
+					"project.label->label.notable_releases",
+					"track.artists->artist.notable_tracks",
+					"track.remix_of->track.remixed_by",
+					"track.sampled_by->track.samples",
+					"track.samples->track.sampled_by",
+				].sort(),
+			);
+			expect([...capped, ...informative].sort()).toEqual(
+				declared.map((p) => `${p.sourceType}.${p.sourceField}->${p.targetType}.${p.reverse.field}`).sort(),
+			);
+			// The capped cross-type pairs are exactly the four safe directions.
+			const crossType = capped.filter((k) => {
+				const [from, to] = k.split("->");
+				return from?.split(".")[0] !== to?.split(".")[0];
+			});
+			expect(crossType.sort()).toEqual([
+				"artist.labels->label.roster",
+				"project.artists->artist.discography",
+				"project.label->label.notable_releases",
+				"track.artists->artist.notable_tracks",
+			]);
+		});
+
+		it("has a committed ceiling for every capped pair (an emitted pair without one would be a violation)", async () => {
+			const committed = parseThresholds(
+				JSON.parse(await readFile(join(REPO_ROOT, "data", "integrity-thresholds.json"), "utf8")),
+			);
+			const capped = Object.keys(
+				auditNodes(toMap()).metrics["reciprocity-missing"] as Record<string, number>,
+			);
+			const ceilings = committed["reciprocity-missing"] as Record<string, number>;
+			for (const key of capped) expect(ceilings, key).toHaveProperty(key);
+		});
+
+		it("describes the emitted directions in the spec, not the ones dropped by TRA-563 / TRA-569", async () => {
+			const spec = await readFile(join(REPO_ROOT, "src", "node-spec.ts"), "utf8");
+			// The comment used to say that genre.key_* -> X.genres was "the only one kept": the runtime writes none of it.
+			expect(spec).not.toContain("is the only one kept");
+			expect(spec).toContain("isEmittedReversePair");
+		});
 	});
 
 	it("measures informative metrics: dangling edges, name drift, pending reverse targets", () => {
@@ -367,6 +523,174 @@ describe("auditNodes", () => {
 		expect(metric(report, "pending-reverse-targets-existing")).toBe(1);
 	});
 
+	describe("artist edges to a redirect key (TRA-598)", () => {
+		const redirects = new Map([
+			["track:mr-tambourine-man", "track:mr-tambourine-man--bob-dylan"],
+			["project:ghost", "project:ghost--the-ghosts"],
+		]);
+		const dylan = (): RawNode[] => [
+			node("artist:bob-dylan"),
+			node("track:mr-tambourine-man--bob-dylan", { artists: [edge("artist:bob-dylan")] }),
+		];
+
+		it("counts the Byrds -> Dylan edge: the redirect leads to a track that does not credit the artist (acceptance case)", () => {
+			const report = auditNodes(
+				toMap(node("artist:the-byrds", { notable_tracks: [edge("track:mr-tambourine-man")] }), ...dylan()),
+				[],
+				redirects,
+			);
+			expect(report.metrics["artist-edge-to-redirect-key"]).toEqual({
+				discography: 0,
+				notable_tracks: 1,
+				landmark_project: 0,
+				reference_track: 0,
+			});
+			expect(report.samples["artist-edge-to-redirect-key[notable_tracks]"]).toEqual(["artist:the-byrds"]);
+			expect(report.cases["artist-edge-to-redirect-key"]).toEqual([
+				"artist:the-byrds notable_tracks track:mr-tambourine-man -> track:mr-tambourine-man--bob-dylan",
+			]);
+		});
+
+		it("counts each of the four artist work fields under its own key", () => {
+			const report = auditNodes(
+				toMap(
+					node("artist:a", {
+						discography: [edge("project:ghost")],
+						notable_tracks: [edge("track:mr-tambourine-man")],
+						landmark_project: edge("project:ghost"),
+						reference_track: edge("track:mr-tambourine-man"),
+					}),
+					node("project:ghost--the-ghosts", { artists: [edge("artist:the-ghosts")] }),
+					...dylan(),
+				),
+				[],
+				redirects,
+			);
+			expect(report.metrics["artist-edge-to-redirect-key"]).toEqual({
+				discography: 1,
+				notable_tracks: 1,
+				landmark_project: 1,
+				reference_track: 1,
+			});
+		});
+
+		it("does not count a redirect whose target credits the artist, as artist, producer or group member", () => {
+			const table = new Map([
+				["project:own", "project:own--a"],
+				["project:produced", "project:produced--a"],
+				["project:group", "project:group--reprazent"],
+			]);
+			const report = auditNodes(
+				toMap(
+					node("artist:a", {
+						discography: [edge("project:own"), edge("project:produced"), edge("project:group")],
+					}),
+					node("project:own--a", { artists: [edge("artist:a")] }),
+					node("project:produced--a", { artists: [edge("artist:b")], producers: [edge("artist:a")] }),
+					node("project:group--reprazent", { artists: [edge("artist:reprazent")] }),
+					node("artist:reprazent", { members: [edge("artist:a")] }),
+					node("artist:b"),
+				),
+				[],
+				table,
+			);
+			expect(metric(report, "artist-edge-to-redirect-key", "discography")).toBe(0);
+			expect(report.cases["artist-edge-to-redirect-key"] ?? []).toEqual([]);
+		});
+
+		it("counts a redirect whose target has no credit: it credits no one", () => {
+			const report = auditNodes(
+				toMap(node("artist:a", { discography: [edge("project:ghost")] }), node("project:ghost--the-ghosts")),
+				[],
+				redirects,
+			);
+			expect(metric(report, "artist-edge-to-redirect-key", "discography")).toBe(1);
+		});
+
+		it("reports a redirect to a node missing from the cache apart, as informative: never compared, no ceiling", () => {
+			const report = auditNodes(
+				toMap(node("artist:a", { discography: [edge("project:ghost")] })),
+				[],
+				redirects,
+			);
+			expect(metric(report, "artist-edge-to-redirect-key", "discography")).toBe(0);
+			expect(metric(report, "artist-edge-to-redirect-key-unresolved")).toBe(1);
+			expect(report.cases["artist-edge-to-redirect-key-unresolved"]).toEqual([
+				"artist:a discography project:ghost -> project:ghost--the-ghosts",
+			]);
+			// Its credit cannot be read here, and a backfill adding right identities raises it (#531: 8 -> 11):
+			// a ceiling would turn legitimate data PRs red (TRA-616 trap).
+			expect(INFORMATIVE_METRICS.has("artist-edge-to-redirect-key-unresolved")).toBe(true);
+			const thresholds = thresholdsFromReport(report);
+			expect(thresholds).not.toHaveProperty("artist-edge-to-redirect-key-unresolved");
+			expect(compareWithThresholds(report, thresholds)).toEqual([]);
+			// Even if the file still carries an old ceiling, rising above it is not a violation.
+			expect(
+				compareWithThresholds(report, { ...thresholds, "artist-edge-to-redirect-key-unresolved": 0 }),
+			).toEqual([]);
+		});
+
+		it("measures every artist field that targets a project or a track, and only those", () => {
+			const report = auditNodes(toMap(node("artist:a")));
+			expect(Object.keys(report.metrics["artist-edge-to-redirect-key"] as object)).toEqual([
+				"discography",
+				"notable_tracks",
+				"landmark_project",
+				"reference_track",
+			]);
+		});
+
+		it("ignores a key that is still a live node: a read does not redirect it", () => {
+			const report = auditNodes(
+				toMap(
+					node("artist:a", { discography: [edge("project:ghost")] }),
+					node("project:ghost", { artists: [edge("artist:a")] }),
+					node("project:ghost--the-ghosts", { artists: [edge("artist:the-ghosts")] }),
+				),
+				[],
+				redirects,
+			);
+			expect(metric(report, "artist-edge-to-redirect-key", "discography")).toBe(0);
+			expect(metric(report, "artist-edge-to-redirect-key-unresolved")).toBe(0);
+		});
+
+		it("is 0 without a redirect table, and for edges to slugs that are not keys", () => {
+			const nodes = toMap(node("artist:the-byrds", { notable_tracks: [edge("track:mr-tambourine-man")] }));
+			expect(metric(auditNodes(nodes), "artist-edge-to-redirect-key", "notable_tracks")).toBe(0);
+			const other = new Map([["track:elsewhere", "track:elsewhere--x"]]);
+			expect(metric(auditNodes(nodes, [], other), "artist-edge-to-redirect-key", "notable_tracks")).toBe(0);
+		});
+
+		it("keeps every case, not only the 10 first slugs", () => {
+			const artists = Array.from({ length: 12 }, (_, i) =>
+				node(`artist:a${i}`, { notable_tracks: [edge("track:mr-tambourine-man")] }),
+			);
+			const report = auditNodes(toMap(...artists, ...dylan()), [], redirects);
+			expect(metric(report, "artist-edge-to-redirect-key", "notable_tracks")).toBe(12);
+			expect(report.samples["artist-edge-to-redirect-key[notable_tracks]"]).toHaveLength(10);
+			expect(report.cases["artist-edge-to-redirect-key"]).toHaveLength(12);
+		});
+
+		it("is a strict metric: no node growth absorbs a rise (a data PR must not add such an edge)", () => {
+			for (const field of ["discography", "notable_tracks", "landmark_project", "reference_track"]) {
+				expect(coverageNodeType("artist-edge-to-redirect-key", field)).toBeNull();
+			}
+		});
+
+		it("fails the comparison when the count exceeds its ceiling, naming the field", () => {
+			const report = auditNodes(
+				toMap(node("artist:the-byrds", { notable_tracks: [edge("track:mr-tambourine-man")] }), ...dylan()),
+				[],
+				redirects,
+			);
+			const thresholds = thresholdsFromReport(report);
+			expect(compareWithThresholds(report, thresholds)).toEqual([]);
+			(thresholds["artist-edge-to-redirect-key"] as Record<string, number>).notable_tracks = 0;
+			const violations = compareWithThresholds(report, thresholds);
+			expect(violations.map(formatViolation)).toEqual(["artist-edge-to-redirect-key[notable_tracks] 1 > 0"]);
+		});
+	});
+
 	it("counts nodes per type", () => {
 		const report = auditNodes(toMap(node("artist:a"), node("artist:b"), node("genre:g")));
 		expect(report.nodeCount).toEqual({ genre: 1, label: 0, artist: 2, project: 0, track: 0 });
@@ -377,6 +701,154 @@ describe("auditNodes", () => {
 		const report = auditNodes(toMap(...nodes));
 		expect(metric(report, "zero-edge-nodes")).toBe(15);
 		expect(report.samples["zero-edge-nodes"]).toHaveLength(10);
+	});
+});
+
+describe("homonym-tracklist-links (TRA-561)", () => {
+	const credit = (slug: string, extra: RawNode = {}): RawNode => ({ ...edge(slug), ...extra });
+	const project = (credits: RawNode[], tracklist: string[]): RawNode =>
+		node("project:fitna--rohff", { artists: credits, tracklist: tracklist.map((s) => edge(s)) });
+	const track = (slug: string, credits: RawNode[]): RawNode => node(slug, { artists: credits });
+	const measure = (...nodes: RawNode[]): AuditReport => auditNodes(toMap(...nodes));
+
+	it("counts a tracklist entry credited to a namesake: Fitna by Rohff lists Akuma's track (acceptance case)", () => {
+		const report = measure(
+			project([credit("artist:rohff")], ["track:fitna--akuma"]),
+			track("track:fitna--akuma", [credit("artist:akuma"), credit("artist:axmo")]),
+		);
+		expect(metric(report, "homonym-tracklist-links")).toBe(1);
+		expect(report.samples["homonym-tracklist-links"]).toEqual(["project:fitna--rohff"]);
+		expect(report.cases["homonym-tracklist-links"]).toEqual([
+			"project:fitna--rohff tracklist track:fitna--akuma",
+		]);
+	});
+
+	it("counts one hit per entry, not per project", () => {
+		const report = measure(
+			project([credit("artist:rohff")], ["track:a--x", "track:b--y", "track:c--rohff"]),
+			track("track:a--x", [credit("artist:x")]),
+			track("track:b--y", [credit("artist:y")]),
+			track("track:c--rohff", [credit("artist:rohff")]),
+		);
+		expect(metric(report, "homonym-tracklist-links")).toBe(2);
+	});
+
+	it("does not count a featuring: the track is also credited to the project's artist", () => {
+		const report = measure(
+			project([credit("artist:rohff")], ["track:duo--rohff"]),
+			track("track:duo--rohff", [credit("artist:guest"), credit("artist:rohff")]),
+		);
+		expect(metric(report, "homonym-tracklist-links")).toBe(0);
+	});
+
+	it("with several credited artists, one shared credit is enough, none is a hit", () => {
+		const credits = [credit("artist:a"), credit("artist:b")];
+		const shared = measure(project(credits, ["track:t--b"]), track("track:t--b", [credit("artist:b")]));
+		expect(metric(shared, "homonym-tracklist-links")).toBe(0);
+		const foreign = measure(project(credits, ["track:t--c"]), track("track:t--c", [credit("artist:c")]));
+		expect(metric(foreign, "homonym-tracklist-links")).toBe(1);
+	});
+
+	it("follows members in both directions: a group's album lists a member's track and the reverse", () => {
+		const group = node("artist:reprazent", { members: [edge("artist:roni-size")] });
+		const person = node("artist:roni-size");
+		const memberTrack = measure(
+			group,
+			person,
+			project([credit("artist:reprazent")], ["track:t--roni-size"]),
+			track("track:t--roni-size", [credit("artist:roni-size")]),
+		);
+		expect(metric(memberTrack, "homonym-tracklist-links")).toBe(0);
+		const groupTrack = measure(
+			group,
+			person,
+			project([credit("artist:roni-size")], ["track:t--reprazent"]),
+			track("track:t--reprazent", [credit("artist:reprazent")]),
+		);
+		expect(metric(groupTrack, "homonym-tracklist-links")).toBe(0);
+	});
+
+	it("follows aliases, and a duo whose members are aliases of the credited artists (Mike & Rich)", () => {
+		const nodes = [
+			node("artist:aphex-twin", { aliases: [edge("artist:polygon-window"), edge("artist:richard-d-james")] }),
+			node("artist:polygon-window", { aliases: [edge("artist:aphex-twin")] }),
+			node("artist:mike-and-rich", {
+				members: [edge("artist:richard-d-james"), edge("artist:mike-paradinas")],
+			}),
+		];
+		for (const slug of ["artist:polygon-window", "artist:mike-and-rich"]) {
+			const report = measure(
+				...nodes,
+				project([credit("artist:aphex-twin")], ["track:t--x"]),
+				track("track:t--x", [credit(slug)]),
+			);
+			expect(metric(report, "homonym-tracklist-links"), slug).toBe(0);
+		}
+	});
+
+	it("treats the same name with a leading 'The' as one artist when no mbid says otherwise", () => {
+		const variant = measure(
+			project(
+				[credit("artist:the-jimi-hendrix-experience", { name: "The Jimi Hendrix Experience" })],
+				["track:hey-joe--x"],
+			),
+			track("track:hey-joe--x", [
+				credit("artist:jimi-hendrix-experience", { name: "Jimi Hendrix Experience" }),
+			]),
+		);
+		expect(metric(variant, "homonym-tracklist-links")).toBe(0);
+		const differentMbids = measure(
+			project(
+				[credit("artist:akuma", { name: "Akuma", mbid: "11111111-1111-4111-8111-111111111111" })],
+				["track:t--x"],
+			),
+			track("track:t--x", [
+				credit("artist:akuma-2", { name: "Akuma", mbid: "22222222-2222-4222-8222-222222222222" }),
+			]),
+		);
+		expect(metric(differentMbids, "homonym-tracklist-links")).toBe(1);
+	});
+
+	it("does not judge a compilation credited to Various Artists", () => {
+		const bySlug = measure(
+			project([credit("artist:various-artists")], ["track:axel-f--harold-faltermeyer"]),
+			track("track:axel-f--harold-faltermeyer", [credit("artist:harold-faltermeyer")]),
+		);
+		expect(metric(bySlug, "homonym-tracklist-links")).toBe(0);
+		const byMbid = measure(
+			project(
+				[credit("artist:va", { name: "Various Artists", mbid: "89ad4ac3-39f7-470e-963a-56509c546377" })],
+				["track:t--x"],
+			),
+			track("track:t--x", [credit("artist:x")]),
+		);
+		expect(metric(byMbid, "homonym-tracklist-links")).toBe(0);
+	});
+
+	it("leaves out what it cannot compare: no project credit, no track credit, a target not in the cache, a non-track", () => {
+		expect(
+			metric(
+				measure(project([], ["track:t--x"]), track("track:t--x", [credit("artist:x")])),
+				"homonym-tracklist-links",
+			),
+		).toBe(0);
+		expect(
+			metric(
+				measure(project([credit("artist:rohff")], ["track:t--x"]), track("track:t--x", [])),
+				"homonym-tracklist-links",
+			),
+		).toBe(0);
+		expect(
+			metric(measure(project([credit("artist:rohff")], ["track:gone--x"])), "homonym-tracklist-links"),
+		).toBe(0);
+		expect(metric(measure(project([credit("artist:rohff")], [])), "homonym-tracklist-links")).toBe(0);
+	});
+
+	it("has a ceiling in the committed thresholds file", async () => {
+		const thresholds = parseThresholds(
+			JSON.parse(await readFile(join(REPO_ROOT, "data", "integrity-thresholds.json"), "utf8")),
+		);
+		expect(typeof thresholds["homonym-tracklist-links"]).toBe("number");
 	});
 });
 
@@ -460,6 +932,12 @@ describe("parseThresholds / parseCliArgs", () => {
 			thresholdsPath: "t.json",
 			jsonPath: "o.json",
 		});
+	});
+
+	it("reads the redirect table from data/slug-redirects.json unless --redirects overrides it", () => {
+		expect(parseCliArgs(["cache"])?.redirectsPath).toBe(join(REPO_ROOT, "data", "slug-redirects.json"));
+		expect(parseCliArgs(["cache", "--redirects", "r.json"])?.redirectsPath).toBe("r.json");
+		expect(parseCliArgs(["cache", "--redirects"])).toBeNull();
 	});
 });
 
@@ -585,6 +1063,61 @@ describe("audit-cache CLI", () => {
 		const r = run(cacheDir, "--thresholds", thresholds, "--json", join(cacheDir, "report.json"));
 		expect(r.status).toBe(2);
 		expect(await snapshot(cacheDir)).toEqual(before);
+	});
+
+	describe("with a redirect table (TRA-598)", () => {
+		async function byrdsCache(): Promise<string> {
+			for (const n of [
+				node("artist:the-byrds", { notable_tracks: [edge("track:mr-tambourine-man")] }),
+				node("artist:bob-dylan"),
+				node("track:mr-tambourine-man--bob-dylan", { artists: [edge("artist:bob-dylan")] }),
+			]) {
+				await writeRawNode(cacheDir, n);
+			}
+			const redirects = join(dir, "slug-redirects.json");
+			await writeFile(
+				redirects,
+				JSON.stringify({ redirects: { "track:mr-tambourine-man": "track:mr-tambourine-man--bob-dylan" } }),
+				"utf8",
+			);
+			return redirects;
+		}
+
+		it("exits 1 naming the field and lists the cases when the ceiling is exceeded", async () => {
+			const redirects = await byrdsCache();
+			const thresholds = await thresholdsFile();
+			const r = run(cacheDir, "--thresholds", thresholds, "--redirects", redirects);
+			expect(r.status).toBe(1);
+			expect(r.stderr).toContain("artist-edge-to-redirect-key[notable_tracks] 1 > 0");
+			expect(r.stdout).toContain(
+				"artist:the-byrds notable_tracks track:mr-tambourine-man -> track:mr-tambourine-man--bob-dylan",
+			);
+		});
+
+		it("exits 0 once the ceiling is committed at the measured value", async () => {
+			const redirects = await byrdsCache();
+			const thresholds = await thresholdsFile((t) => {
+				t["artist-edge-to-redirect-key"] = {
+					discography: 0,
+					notable_tracks: 1,
+					landmark_project: 0,
+					reference_track: 0,
+				};
+			});
+			const r = run(cacheDir, "--thresholds", thresholds, "--redirects", redirects);
+			expect(r.status).toBe(0);
+			expect(r.stdout).toMatch(/artist-edge-to-redirect-key\[notable_tracks\]\s+1\s+\(threshold 1\)/);
+		});
+
+		it("exits 2 rather than report 0 when the redirect table is unreadable or malformed", async () => {
+			const thresholds = await thresholdsFile();
+			const missing = run(cacheDir, "--thresholds", thresholds, "--redirects", join(dir, "nope.json"));
+			expect(missing.status).toBe(2);
+			expect(missing.stderr).toContain("cannot read redirects");
+			const bad = join(dir, "bad-redirects.json");
+			await writeFile(bad, JSON.stringify({ redirects: { "track:a": "project:b" } }), "utf8");
+			expect(run(cacheDir, "--thresholds", thresholds, "--redirects", bad).status).toBe(2);
+		});
 	});
 
 	it("never writes inside the cache directory", async () => {
