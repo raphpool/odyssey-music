@@ -12,6 +12,10 @@
  * `artist-edge-to-redirect-key` also needs the slug-redirects table (`data/slug-redirects.json`, or
  * `--redirects <file>`): an unreadable table is a usage error (exit 2), never a silent 0 (TRA-598).
  *
+ * `reciprocity-missing` is capped only for the reverse directions the runtime emits
+ * (`isEmittedReversePair`, src/reverse-edges.ts); every other declared pair of REVERSE_EDGE_PAIRS is still
+ * measured, as the informative `reciprocity-missing-not-emitted`, and never capped (TRA-567).
+ *
  * Read-only: nothing is ever written under <cache-dir>.
  *
  * Usage: audit-cache.ts <cache-dir> [--thresholds <file>] [--redirects <file>] [--json <file>]
@@ -22,7 +26,9 @@ import { basename, dirname, isAbsolute, join, relative, resolve } from "node:pat
 import { fileURLToPath, pathToFileURL } from "node:url";
 import { z } from "zod";
 import { parseSlugRedirects } from "../src/genre-registry.js";
+import { VARIOUS_ARTISTS_MBID } from "../src/musicbrainz.js";
 import { EDGE_FIELDS_BY_TYPE, NODE_TYPES, type NodeType, REVERSE_EDGE_PAIRS } from "../src/node-spec.js";
+import { isEmittedReversePair } from "../src/reverse-edges.js";
 
 export type RawNode = Record<string, unknown>;
 export type MetricValue = number | Record<string, number>;
@@ -60,6 +66,11 @@ export const INFORMATIVE_METRICS: ReadonlySet<string> = new Set([
 	// #531 would have taken it from 8 to 11 with three correct ones, and turned the integrity job red). Its
 	// ceilinged twin is artist-edge-to-redirect-key, which only counts a target it can read.
 	"artist-edge-to-redirect-key-unresolved",
+	// A declared reverse pair the runtime does not emit (TRA-563, TRA-569) is expected to be missing, so a ceiling
+	// on it would only record how many legacy links lack a reverse that nothing will ever write (2026-10-24,
+	// TRA-567: genre.key_artists -> artist.genres sat at 246, with no way down short of a backfill that was ruled
+	// out). It stays measured, per pair, to see the gap; its capped twin is reciprocity-missing.
+	"reciprocity-missing-not-emitted",
 ]);
 
 /**
@@ -105,6 +116,8 @@ interface ReciprocityPair {
 	sourceField: string;
 	targetType: NodeType;
 	targetField: string;
+	/** Whether `NodeCache.write` writes this reverse: only an emitted pair can regress, so only it is capped. */
+	emitted: boolean;
 }
 
 function pairKey(p: ReciprocityPair): string {
@@ -119,7 +132,13 @@ function reciprocityPairs(): ReciprocityPair[] {
 			sourceField
 		];
 		for (const targetType of spec?.targets ?? []) {
-			const pair = { sourceType, sourceField, targetType, targetField: reverse.field };
+			const pair = {
+				sourceType,
+				sourceField,
+				targetType,
+				targetField: reverse.field,
+				emitted: isEmittedReversePair(sourceType, sourceField, reverse.field),
+			};
 			if (seen.has(pairKey(pair))) continue;
 			seen.add(pairKey(pair));
 			pairs.push(pair);
@@ -217,6 +236,55 @@ function creditedSlugs(target: RawNode): string[] {
 	return [...edgesOf(target, "artists"), ...edgesOf(target, "producers")].map((e) => e.slug);
 }
 
+/** Every artist edge field except `aliases`: the ties that can corroborate an alias (TRA-562). */
+const ALIAS_EVIDENCE_FIELDS: readonly string[] = Object.keys(EDGE_FIELDS_BY_TYPE.artist).filter(
+	(field) => field !== "aliases",
+);
+
+/** Whether two artists are tied in the cache by something other than the alias: a direct edge or a shared target. */
+function aliasCorroborated(a: RawNode, aSlug: string, b: RawNode, bSlug: string): boolean {
+	for (const field of ALIAS_EVIDENCE_FIELDS) {
+		const fromA = new Set(edgesOf(a, field).map((e) => e.slug));
+		const fromB = edgesOf(b, field).map((e) => e.slug);
+		if (fromA.has(bSlug) || fromB.includes(aSlug) || fromB.some((slug) => fromA.has(slug))) return true;
+	}
+	return false;
+}
+
+/**
+ * `alias-to-uncorroborated-identity` (TRA-562): pairs of artists listed as aliases of each other although they carry
+ * different MusicBrainz ids and nothing else in the cache ties them. Born from `artist:the-wizard` (the San Antonio
+ * garage band) listed as an alias of Jeff Mills, whose nickname it bears: the alias list is generated text resolved
+ * to a node by name, so a homonym can be picked up.
+ *
+ * Different mbids alone would be the wrong signal: MusicBrainz models a pseudonym as an artist of its own, so 17 of
+ * the 19 such pairs of the cache of 2026-10-24 were right (Plastikman / Richie Hawtin). A pseudonym shares a genre, a
+ * label, a release or a neighbour with its artist; a homonym shares none. The test is offline and exact (set
+ * intersections over the cache, no similarity score); it is a floor, since a homonym in the same genre passes. A
+ * pair is counted once however many sides list it; its sample is the first slug in order. A node without an mbid, a
+ * missing target and two nodes of the same mbid are not this defect (the identity backfill and the duplicate checks
+ * own them) and are skipped.
+ */
+function measureUncorroboratedAliases(nodes: ReadonlyMap<string, RawNode>, c: Collector): void {
+	const metric = "alias-to-uncorroborated-identity";
+	c.scalar(metric);
+	const seen = new Set<string>();
+	for (const [slug, node] of nodes) {
+		if (nodeType(slug) !== "artist" || !hasText(node.mbid)) continue;
+		for (const { slug: otherSlug } of edgesOf(node, "aliases")) {
+			const other = nodes.get(otherSlug);
+			if (other === undefined || otherSlug === slug || nodeType(otherSlug) !== "artist") continue;
+			if (!hasText(other.mbid) || other.mbid === node.mbid) continue;
+			const [first, second] = [slug, otherSlug].sort() as [string, string];
+			if (seen.has(`${first} ${second}`)) continue;
+			seen.add(`${first} ${second}`);
+			if (aliasCorroborated(node, slug, other, otherSlug)) continue;
+			c.hit(metric, first);
+			c.addCase(metric, `${first} <-> ${second}`);
+		}
+	}
+}
+
 /**
  * Computes every metric over the raw nodes of a cache.
  * `pendingReverseKeys` are the keys of `cache/pending-reverses.json`: they are not nodes, so
@@ -257,7 +325,8 @@ export function auditNodes(
 	c.keyed("empty-artists", ["project", "track"]);
 	c.keyed("single-citation", typeKeys);
 	c.keyed("missing-image", typeKeys);
-	c.keyed("reciprocity-missing", pairs.map(pairKey));
+	c.keyed("reciprocity-missing", pairs.filter((p) => p.emitted).map(pairKey));
+	c.keyed("reciprocity-missing-not-emitted", pairs.filter((p) => !p.emitted).map(pairKey));
 
 	const nodeCount = Object.fromEntries(NODE_TYPES.map((t) => [t, 0])) as Record<NodeType, number>;
 	const namesByType = new Map<string, Map<string, string[]>>();
@@ -382,7 +451,11 @@ export function auditNodes(
 				const target = nodes.get(edge.slug);
 				if (!target) continue;
 				if (!edgesOf(target, pair.targetField).some((back) => back.slug === slug)) {
-					c.hit("reciprocity-missing", slug, pairKey(pair));
+					c.hit(
+						pair.emitted ? "reciprocity-missing" : "reciprocity-missing-not-emitted",
+						slug,
+						pairKey(pair),
+					);
 				}
 			}
 		}
@@ -391,6 +464,9 @@ export function auditNodes(
 	for (const key of pendingReverseKeys) {
 		if (nodes.has(key)) c.hit("pending-reverse-targets-existing", key);
 	}
+
+	homonymTracklistLinks(nodes, c);
+	measureUncorroboratedAliases(nodes, c);
 
 	return {
 		generatedAt: new Date().toISOString(),
@@ -458,6 +534,102 @@ export function formatReport(report: AuditReport, thresholds: Thresholds): strin
 		}
 	}
 	return lines.join("\n");
+}
+
+// --- homonym-tracklist-links (TRA-561) ---
+
+interface CreditEdge {
+	slug: string;
+	name: string | undefined;
+	mbid: string | undefined;
+}
+
+/** The credited artists of a work, with the name and mbid the credit edge carries (the artist node may be absent). */
+function creditEdgesOf(work: RawNode): CreditEdge[] {
+	const raw = work.artists;
+	const out: CreditEdge[] = [];
+	for (const item of Array.isArray(raw) ? raw : []) {
+		if (!(isRecord(item) && typeof item.slug === "string" && item.slug)) continue;
+		out.push({
+			slug: item.slug,
+			name: typeof item.name === "string" ? item.name : undefined,
+			mbid: hasText(item.mbid) ? (item.mbid as string).toLowerCase() : undefined,
+		});
+	}
+	return out;
+}
+
+function isVariousArtists(credit: CreditEdge): boolean {
+	return credit.slug === "artist:various-artists" || credit.mbid === VARIOUS_ARTISTS_MBID;
+}
+
+/** A name folded for comparison: letters and digits only, without a leading "The" ("The Jimi Hendrix Experience"). */
+function foldCreditName(name: string | undefined): string {
+	return normalizeName((name ?? "").replace(/^\s*the\s+/i, ""));
+}
+
+/** The artist and everything its own node says is the same act: its members and its aliases. */
+function actOf(nodes: ReadonlyMap<string, RawNode>, slug: string): Set<string> {
+	const node = nodes.get(slug) ?? {};
+	return new Set([
+		slug,
+		...edgesOf(node, "members").map((e) => e.slug),
+		...edgesOf(node, "aliases").map((e) => e.slug),
+	]);
+}
+
+/**
+ * Whether two credits name the same artist, or acts that overlap (a group and one of its members, an artist
+ * and its alias, a duo whose member is the other artist's alias). Same slug, or same mbid; two different mbids
+ * are two artists whatever their names; without an mbid on both sides the folded name decides.
+ */
+function sameOrRelatedArtist(nodes: ReadonlyMap<string, RawNode>, a: CreditEdge, b: CreditEdge): boolean {
+	if (a.slug === b.slug) return true;
+	if (a.mbid !== undefined && b.mbid !== undefined) {
+		if (a.mbid === b.mbid) return true;
+	} else if (foldCreditName(a.name) !== "" && foldCreditName(a.name) === foldCreditName(b.name)) {
+		return true;
+	}
+	const actOfB = actOf(nodes, b.slug);
+	return [...actOf(nodes, a.slug)].some((slug) => actOfB.has(slug));
+}
+
+/**
+ * Whether a project's tracklist entry resolves to a track credited to someone else: the project credits at
+ * least one artist, the track credits at least one, and no credit of the one is the same or a related act as a
+ * credit of the other (featuring on the project's artist's own track is therefore not a hit). A project credited
+ * to Various Artists lists whoever it likes and is not judged. Shared with the TRA-561 migration, which must
+ * detach exactly what this counts.
+ */
+export function isHomonymTracklistTarget(
+	nodes: ReadonlyMap<string, RawNode>,
+	project: RawNode,
+	track: RawNode,
+): boolean {
+	const projectCredits = creditEdgesOf(project);
+	const trackCredits = creditEdgesOf(track);
+	if (projectCredits.length === 0 || trackCredits.length === 0) return false;
+	if (projectCredits.some(isVariousArtists)) return false;
+	return !trackCredits.some((t) => projectCredits.some((p) => sameOrRelatedArtist(nodes, t, p)));
+}
+
+/**
+ * `project.tracklist` edges whose track is credited to a namesake (Rohff's "Fitna" lists Akuma's track).
+ * homonym-release-links only reads artist -> work edges. One hit per entry, on the project, with the full list
+ * of cases. A target missing from the cache cannot be judged (a tracklist is mostly slugs not yet materialized).
+ */
+function homonymTracklistLinks(nodes: ReadonlyMap<string, RawNode>, c: Collector): void {
+	c.scalar("homonym-tracklist-links");
+	for (const [slug, project] of nodes) {
+		if (nodeType(slug) !== "project") continue;
+		for (const entry of edgesOf(project, "tracklist")) {
+			const track = nodes.get(entry.slug);
+			if (track === undefined || nodeType(entry.slug) !== "track") continue;
+			if (!isHomonymTracklistTarget(nodes, project, track)) continue;
+			c.hit("homonym-tracklist-links", slug);
+			c.addCase("homonym-tracklist-links", `${slug} tracklist ${entry.slug}`);
+		}
+	}
 }
 
 // --- Disk I/O (read-only) ---

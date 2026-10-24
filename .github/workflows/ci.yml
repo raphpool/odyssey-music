@@ -130,6 +130,57 @@ jobs:
           echo "HOME=$RUNNER_TEMP/home" >> "$GITHUB_ENV"
       - uses: actions/checkout@v6
         with: { fetch-depth: 0 }
+      # TRA-556: plain node, no `npm ci` and no `tsx`: the step below only parses a text file of the default
+      # branch, so nothing of the PR checkout is installed or executed here.
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - name: Charger les chemins sensibles de la branche par défaut
+        # TRA-556 (2026-10-24): this job used to carry its own copy of `sensitivePath`
+        # (scripts/ci/review-gate-policy.ts), kept in line by a text-for-text test. The pattern is now derived from
+        # that file as it stands on the default branch, never from the PR checkout: a PR that edits `sensitivePath`
+        # is classified by the pattern it is trying to change, like review-gate.yml does for the whole policy
+        # (TRA-520). Only the default branch's copy is read, not the PR base's (a stacked PR's base is unreviewed).
+        # The literal is read as text rather than imported: nothing of that file is executed on the runner, and
+        # node 20 (the version of the other jobs) cannot strip TypeScript types. Fail closed: if the file or the
+        # literal cannot be read, or uses a construct that JS and grep -E do not share, `set -e` stops the job and
+        # the detection step below does not run, so no PR goes through unclassified.
+        shell: bash
+        env: { DEFAULT_BRANCH: "${{ github.event.repository.default_branch }}" }
+        run: |
+          set -euo pipefail
+          trusted="$RUNNER_TEMP/tier-guard"
+          rm -rf "$trusted"
+          mkdir -p "$trusted"
+          git show "origin/$DEFAULT_BRANCH:scripts/ci/review-gate-policy.ts" > "$trusted/review-gate-policy.ts"
+          test -s "$trusted/review-gate-policy.ts"
+          POLICY_FILE="$trusted/review-gate-policy.ts" OUT_FILE="$trusted/sensitive-path.ere.tmp" node <<'JS'
+          const fs = require("node:fs");
+          const fail = (why) => {
+            console.error("::error::sensitivePath de la branche par défaut inutilisable : " + why);
+            process.exit(1);
+          };
+          const text = fs.readFileSync(process.env.POLICY_FILE, "utf8");
+          const declaration = /^export const sensitivePath =\s*\/((?:\\.|[^/\\\n])+)\/([a-z]*);$/gm;
+          const found = [...text.matchAll(declaration)];
+          if (found.length !== 1) fail("la déclaration n'est pas trouvée exactement une fois (" + found.length + ")");
+          const [, body, flags] = found[0];
+          if (flags !== "i") fail("les drapeaux sont '" + flags + "', le job ne sait traduire que 'i' (grep -Eqi)");
+          try {
+            new RegExp(body, flags);
+          } catch (error) {
+            fail("expression invalide : " + error.message);
+          }
+          if (body.includes("(?")) fail("groupe spécial '(?' : absent de grep -E");
+          if (/[^\x00-\x7f]/.test(body)) fail("caractère non ASCII : la casse de grep dépend de la locale du runner");
+          if (/[*+?}]\?/.test(body)) fail("quantificateur paresseux : absent de grep -E");
+          if (/\[[^\]]*[\\[]/.test(body)) fail("antislash ou crochet dans une classe de caractères : sens différent en JS et en grep -E");
+          if (body.replace(/\\[.\/\\^$()|*+?{}[\]]/g, "").includes("\\")) fail("échappement qui n'a pas le même sens en JS et en grep -E");
+          const ere = body.replace(/\\(.)/g, (pair, next) => (next === "/" ? "/" : pair));
+          fs.writeFileSync(process.env.OUT_FILE, ere + "\n");
+          JS
+          test -s "$trusted/sensitive-path.ere.tmp"
+          mv "$trusted/sensitive-path.ere.tmp" "$trusted/sensitive-path.ere"
+          echo "Motif sensible (branche par défaut $DEFAULT_BRANCH) : $(cat "$trusted/sensitive-path.ere")"
       - name: Détecter les chemins sensibles
         # TRA-498: the base branch name reaches the shell through env, never interpolated into the script.
         env: { GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}", BASE_REF: "${{ github.event.pull_request.base.ref }}" }
@@ -146,10 +197,21 @@ jobs:
           # defeats every `^` anchor of the pattern; NUL-separated, paths come out raw (a newline inside a path
           # can only split it into more lines, which over-escalates and never hides one).
           CHANGED=$(git diff -z --name-only --no-renames "$BASE"...HEAD | tr '\0' '\n')
-          # TRA-498: this pattern is `sensitivePath` of scripts/ci/review-gate-policy.ts with `\/` written `/`;
-          # test/ci-integrity-job.test.ts fails when the two drift apart. TRA-553: `-i` is its flag `i` (APFS
-          # ignores case on the runner, so `review.md` is `REVIEW.md` there).
-          if echo "$CHANGED" | grep -Eqi '(^|/)(auth|payment[s]?|migrations|infra|deploy)/|^\.github/|^scripts/(deploy-|ci/review-gate-policy|ci/review-reuse|ci/threshold-ratchet\.ts$|audit-cache\.ts$)|^data/integrity-thresholds\.json$|^\.codex/scripts/publish-review-status\.sh$|^REVIEW\.md$|\.sql$|secrets'; then
+          # TRA-556: the pattern is the one the previous step derived from `sensitivePath` on the default branch.
+          # TRA-498/TRA-553: `-i` is its flag `i` (APFS ignores case on the runner, so `review.md` is `REVIEW.md`
+          # there). grep ends 0 on a match, 1 on none, 2 on an error: an unreadable pattern file or a bad pattern
+          # must fail the job, not read as "nothing sensitive" and leave the PR unlabelled. The list reaches grep
+          # through a here-string, not a pipe: `grep -q` stops at the first match, and with `pipefail` an `echo`
+          # killed by SIGPIPE on a list larger than the pipe buffer (a big PR) would end the pipeline in 141.
+          pattern="$RUNNER_TEMP/tier-guard/sensitive-path.ere"
+          test -s "$pattern"
+          status=0
+          grep -Eqi -f "$pattern" <<< "$CHANGED" || status=$?
+          if [ "$status" -gt 1 ]; then
+            echo "::error::grep a échoué (statut $status) : la classification n'a pas pu être établie"
+            exit 1
+          fi
+          if [ "$status" -eq 0 ]; then
             echo "Chemin sensible touché → tier/3"
             gh pr edit "${{ github.event.pull_request.number }}" --add-label "tier/3"
             gh pr edit "${{ github.event.pull_request.number }}" --remove-label "tier/1" || true

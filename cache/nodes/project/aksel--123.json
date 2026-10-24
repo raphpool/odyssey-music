@@ -71,9 +71,10 @@
       "name": "simdi"
     },
     {
-      "slug": "track:the-owl--benjamin-britten",
+      "slug": "track:the-owl--123",
       "type": "track",
-      "name": "the owl"
+      "name": "the owl",
+      "artist": "123"
     },
     {
       "slug": "track:that-s-why",
@@ -116,9 +117,10 @@
       "name": "the dive"
     },
     {
-      "slug": "track:the-ending--ellie-goulding",
+      "slug": "track:the-ending--123",
       "type": "track",
-      "name": "the ending"
+      "name": "the ending",
+      "artist": "123"
     }
   ],
   "producers": [

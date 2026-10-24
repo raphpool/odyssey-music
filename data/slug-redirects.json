@@ -1,6 +1,6 @@
 {
   "source": "label merge (TRA-600)",
-  "generated_at": "2026-10-23T21:46:12.178Z",
+  "generated_at": "2026-10-24T03:08:51.540Z",
   "redirects": {
     "artist:drake--canadian-rapper": "artist:drake",
     "artist:gokhan-k-rdar": "artist:gokhan-kirdar",
@@ -19,7 +19,10 @@
     "label:columbia-records--american-major-label-founded-1888": "label:columbia",
     "label:eg-records": "label:e-g-records",
     "label:epic-records": "label:epic",
+    "label:kms-records": "label:kms",
+    "label:plus-8": "label:plus-8-records",
     "label:rephlex-records": "label:rephlex",
+    "label:virgin": "label:virgin-records",
     "label:warp-records": "label:warp",
     "project:0oc": "project:0oc--anna",
     "project:100-rap-francais": "project:100-rap-francais--jarod",
