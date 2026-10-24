@@ -26,11 +26,6 @@
       "name": "AXMO"
     }
   ],
-  "project": {
-    "slug": "project:fitna--rohff",
-    "type": "project",
-    "name": "Fitna"
-  },
   "genres": [
     {
       "slug": "genre:electronic",

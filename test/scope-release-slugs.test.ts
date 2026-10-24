@@ -1076,6 +1076,9 @@ describe("scope-release-slugs migration", () => {
 			expect(isSafePendingEntry("artist:a", e("labels", "label:x"))).toBe(false);
 			expect(isSafePendingEntry("artist:a", e("genres", "genre:x"))).toBe(false);
 			expect(isSafePendingEntry("label:a", e("genres", "genre:x"))).toBe(false);
+			// A singular reverse is declared by the work itself, never derived from another node's list (TRA-569,
+			// TRA-656): the migration kept its own copy of the directions and went on treating this one as emitted.
+			expect(isSafePendingEntry("track:a", e("remix_of", "track:x"))).toBe(false);
 			// Emitted: the four safe cross-type directions, and same-kind pairs.
 			expect(isSafePendingEntry("artist:a", e("discography", "project:x"))).toBe(true);
 			expect(isSafePendingEntry("artist:a", e("notable_tracks", "track:x"))).toBe(true);

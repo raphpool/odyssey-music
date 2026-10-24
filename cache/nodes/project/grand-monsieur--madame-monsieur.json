@@ -34,14 +34,16 @@
   ],
   "tracklist": [
     {
-      "slug": "track:mercy--steve-jones",
+      "slug": "track:mercy--madame-monsieur",
       "type": "track",
-      "name": "Mercy"
+      "name": "Mercy",
+      "artist": "Madame Monsieur"
     },
     {
-      "slug": "track:comme-une-reine--issa-el-saieh-and-his-orchestra",
+      "slug": "track:comme-une-reine--madame-monsieur",
       "type": "track",
-      "name": "Comme une reine"
+      "name": "Comme une reine",
+      "artist": "Madame Monsieur"
     }
   ],
   "producers": [],

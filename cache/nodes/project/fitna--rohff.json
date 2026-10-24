@@ -43,9 +43,10 @@
   ],
   "tracklist": [
     {
-      "slug": "track:fitna--akuma",
+      "slug": "track:fitna--rohff",
       "type": "track",
-      "name": "Fitna"
+      "name": "Fitna",
+      "artist": "Rohff"
     },
     {
       "slug": "track:derniere-fois",
