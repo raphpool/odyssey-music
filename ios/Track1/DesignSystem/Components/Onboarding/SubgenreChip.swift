@@ -16,7 +16,8 @@ struct SubgenreChip: View {
 	/// Half the height of a one-line pill: 18 pt at the default size (2 + 8 + 16 + 8 + 2 = 36 pt), and it
 	/// follows the line height as the text size grows. 2026-10-24 (TRA-679, macOS probe): with `radiusFull` a
 	/// name folded on several lines made the pill an ellipse that cut its own lines; a folded pill keeps the
-	/// corners of a one-line one instead and becomes a rounded rectangle.
+	/// corners of a one-line one instead and becomes a rounded rectangle. `lineHeight` is that of the tallest
+	/// content of the line: with a glyph, the 16 pt glyph does not scale down with the text.
 	static func cornerRadius(lineHeight: CGFloat) -> CGFloat {
 		(lineHeight + 2 * Track1Tokens.spacing8 + 2 * OnboardingChoiceColors.borderWidth) / 2
 	}
@@ -40,7 +41,7 @@ struct SubgenreChip: View {
 
 	var body: some View {
 		let colors = OnboardingChoiceColors.resolve(isSelected: isSelected)
-		let shape = RoundedRectangle(cornerRadius: Self.cornerRadius(lineHeight: lineHeight), style: .continuous)
+		let shape = RoundedRectangle(cornerRadius: Self.cornerRadius(lineHeight: glyph == nil ? lineHeight : max(lineHeight, Self.glyphSize)), style: .continuous)
 		Button {
 			taps += 1
 			action()

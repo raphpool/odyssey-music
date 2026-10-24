@@ -2,10 +2,11 @@ import SwiftUI
 import Track1Core
 
 /// Wraps its subviews into rows, left to right, with `theme.spacing.8` between chips on both axes (doc
-/// `171:100`: "Chips wrap"). It places chips at their ideal size and, when one is wider than the row, gives it
-/// a row of its own at the row width, measured again there: the chip folds or truncates according to its own
-/// `lineLimit` (the node page chips truncate, the subgenre chips fold) and the row takes the height that
-/// results. Rows are centered on their tallest chip: the overflow chip is 2 pt shorter than a node chip.
+/// `171:100`: "Chips wrap"). It places chips at their ideal size. A chip wider than the row is measured again
+/// at the row width: it folds or truncates according to its own `lineLimit` (the node page chips truncate, the
+/// subgenre chips fold), and the size it reports then flows like any other chip's, so a folded chip narrower
+/// than the row can share it with a short neighbour. Rows are centered on their tallest chip: the overflow chip
+/// is 2 pt shorter than a node chip.
 ///
 /// The wrapping rule is `ChipFlow.rows` of `Track1Core`, which `swift test` covers; this type measures and
 /// places only.

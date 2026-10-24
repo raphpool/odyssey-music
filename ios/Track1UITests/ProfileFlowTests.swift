@@ -269,7 +269,8 @@ final class ProfileFlowTests: XCTestCase {
 	/// name folds on several lines. The chip was posed in a one-line slot and its pill, grown from the top left
 	/// corner, covered the next chip and left the card. The chip must stay inside its card, take the height of its
 	/// lines and leave the next chip under it, 8 pt below (7 allows for rounding). "Genre 0b" fits on one line, so
-	/// its height is that of a one-line pill, and the long chip has to be about two of them or more. The capture
+	/// its height is that of a one-line pill (a line of text plus 20 pt of padding and border), and the long chip has
+	/// to hold at least two lines, that is `2 * b.height - 20`: 21 leaves 1 pt for rounding. The capture
 	/// `1.2-chips-xxxl` is the proof to read for the shape.
 	@MainActor
 	func testASubgenreNameWiderThanTheRowFoldsInsideItsCardAtTheLargestTextSize() {
