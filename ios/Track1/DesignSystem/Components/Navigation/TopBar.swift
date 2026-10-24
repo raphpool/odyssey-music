@@ -7,13 +7,21 @@ import Track1Core
 /// margins, the bar fills what it is given.
 struct TopBar: View {
 	enum Content {
-		case date(Date)
+		/// `reason` is the optional second line under the date ("parce que tu explores ..."), already worded.
+		case date(Date, reason: String? = nil)
 		case breadcrumb([TopBarCrumb])
 	}
 
 	/// Figma `I282:838;173:15` (2026-10-23, TRA-660): JetBrains Mono Bold 18 / 24, where the previous build
 	/// used the Roboto Condensed `.eyebrow`.
 	static let dateRole: Track1TextRole = .monoHeadline
+
+	/// 2026-10-24 (TRA-699): Figma `286:1669` draws the reason line 4 pt under the date in JetBrains Mono
+	/// Bold 12 / 25, outside any text style. Plan decision D8: the existing `.monoLabel` role is reused
+	/// (Regular 12 / 16) rather than adding a role for one use; the Bold weight is not reproduced.
+	static let reasonRole: Track1TextRole = .monoLabel
+	static let reasonColor: Color = Track1Tokens.colorTextTertiary
+	static let reasonSpacing: CGFloat = Track1Tokens.spacing4
 
 	private let content: Content
 	private let onSelect: (TopBarCrumb) -> Void
@@ -31,12 +39,24 @@ struct TopBar: View {
 	@ViewBuilder
 	private var bar: some View {
 		switch content {
-		case .date(let date):
-			// Centered (the Figma variant is `justify-center`).
-			Track1Text(TopBarFormat.date(date, timeZone: .current), role: Self.dateRole, verbatim: true)
-				.foregroundStyle(Track1Tokens.colorTextSecondary)
-				.frame(maxWidth: .infinity, minHeight: Track1Tokens.sizeControlMedium)
-				.accessibilityIdentifier("top-bar-date")
+		case .date(let date, let reason):
+			// Centered (the Figma variant is `justify-center`). No identifier on the stack: the date and the
+			// reason carry their own, and a container identifier would need `.accessibilityElement(.contain)`.
+			VStack(spacing: Self.reasonSpacing) {
+				Track1Text(TopBarFormat.date(date, timeZone: .current), role: Self.dateRole, verbatim: true)
+					.foregroundStyle(Track1Tokens.colorTextSecondary)
+					.accessibilityIdentifier("top-bar-date")
+				if let reason {
+					// Served editorial names: shown verbatim. Two lines at most, centered, rather than the
+					// Figma `nowrap`, so a long list wraps between names instead of being cut mid-name.
+					Track1Text(reason, role: Self.reasonRole, verbatim: true)
+						.foregroundStyle(Self.reasonColor)
+						.multilineTextAlignment(.center)
+						.lineLimit(2)
+						.accessibilityIdentifier("top-bar-reason")
+				}
+			}
+			.frame(maxWidth: .infinity, minHeight: Track1Tokens.sizeControlMedium)
 		case .breadcrumb(let crumbs):
 			breadcrumb(TopBarFormat.collapsed(crumbs))
 		}
