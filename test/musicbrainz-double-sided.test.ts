@@ -135,6 +135,8 @@ describe("double A-side single (TRA-612)", () => {
 			identity: null,
 			ambiguous: false,
 			unavailable: false,
+			// TRA-551: the exact-title group is set aside for its credit, and says whom it is credited to.
+			discardedCredits: [{ mbid: OTHER, name: "Other" }],
 		});
 	});
 

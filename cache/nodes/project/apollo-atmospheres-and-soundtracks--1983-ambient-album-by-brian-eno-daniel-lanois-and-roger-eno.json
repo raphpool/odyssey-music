@@ -9,11 +9,20 @@
     }
   ],
   "materialized_at": "2026-05-13T12:53:47.264Z",
+  "mbid": "03fe7fe6-2d96-3b40-816d-885b5118107e",
   "type": "project",
   "editorial_pitch": "A monumental collaboration between Brian Eno, Daniel Lanois, and Roger Eno, this 1983 ambient landmark masterfully captures the vast, lonely silence of space and the awe of the Apollo moon missions.",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    }
+  ],
   "genres": [],
   "tracklist": [],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

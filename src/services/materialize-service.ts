@@ -223,6 +223,29 @@ export function createMaterializeService(deps: {
 	}
 
 	/**
+	 * The MusicBrainz id of the artist the client names for a work (TRA-551), read off the artist node the cache
+	 * files under that name: the server's own record, never a client claim. Undefined when the cache holds no
+	 * such node, it carries no mbid, or it is filed under another name; the work is then resolved by name only,
+	 * as before. A lookup that fails is the same as a miss: the id only widens what the pipeline may accept.
+	 */
+	async function cachedArtistMbid(artist: string): Promise<string | undefined> {
+		try {
+			const wanted = normalizeSlugBody(artist);
+			if (!wanted) return undefined;
+			const node = await readNode(makeSlug("artist", artist));
+			if (node?.type !== "artist" || normalizeSlugBody(node.name) !== wanted) return undefined;
+			const mbid = node.mbid?.toLowerCase();
+			return mbid && MBID_PATTERN.test(mbid) ? mbid : undefined;
+		} catch (e) {
+			log.warn("materialize: artist node unreadable, its mbid is not passed on", {
+				artist,
+				error: e instanceof Error ? e.message : String(e),
+			});
+			return undefined;
+		}
+	}
+
+	/**
 	 * True when `node` (a project/track) credits `artist`: the name is in `artists` or `producers`, or
 	 * in the `members` of a credited artist's own node (a person credited through their group: Roni Size
 	 * -> Roni Size / Reprazent, plan decision 3). Names are compared normalized, never as slugs.
@@ -640,6 +663,9 @@ export function createMaterializeService(deps: {
 		// TRA-477: the credit hint MusicBrainz and the search use to tell same-titled works apart.
 		if (body.artist && isWorkType(body.type) && scopedReleaseSlugsEnabled()) {
 			pipelineInput.artist = body.artist;
+			// TRA-551: with the artist's own mbid the pipeline can accept a work credited to one of their bands.
+			const artistMbid = await cachedArtistMbid(body.artist);
+			if (artistMbid) pipelineInput.artistMbid = artistMbid;
 		}
 		// TRA-30 (node-service, PR #31) will pass its own opts.slug after this ticket merges --
 		// keep this shape stable (see the pinnedSlug comment in handleMaterialize above).

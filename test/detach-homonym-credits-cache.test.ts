@@ -3,7 +3,7 @@ import { join, resolve } from "node:path";
 import { describe, expect, it } from "vitest";
 
 // TRA-570 acceptance, on the committed cache: the 1993 UK EP is no longer credited to the Long Island band,
-// and the band no longer lists it (discography, landmark).
+// and the band no longer lists it (discography, landmark). TRA-485 then removed the EP, which had no other credit.
 
 type Obj = Record<string, unknown>;
 const read = (path: string): Obj =>
@@ -19,10 +19,7 @@ describe("artist:inside and project:the-ep--inside in the committed cache", () =
 		expect(slugs(band.landmark_project)).toEqual([]);
 	});
 
-	it("the EP is no longer credited to the band, and keeps the rest of its fiche", () => {
-		const ep = read("project/the-ep--inside.json");
-		expect(slugs(ep.artists)).not.toContain("artist:inside");
-		expect(ep.year).toBe("1993");
-		expect(slugs(ep.producers)).toEqual(["artist:kurt-howes", "artist:merlin"]);
+	it("the EP is gone: it kept no credit once the band's was detached, and TRA-485 removed it (nothing links to it)", () => {
+		expect(() => read("project/the-ep--inside.json")).toThrow(/ENOENT/);
 	});
 });

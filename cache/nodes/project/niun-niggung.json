@@ -17,10 +17,18 @@
     }
   ],
   "materialized_at": "2026-05-13T13:01:48.755Z",
+  "mbid": "96b033e7-c172-3bbc-ae3e-15ff1b35a96e",
   "type": "project",
   "editorial_pitch": "A high-water mark of late-90s IDM, Niun Niggung finds German duo Mouse on Mars blending glitchy, complex electronic programming with warm acoustic instrumentation to create one of the most adventurous records of its era.",
   "year": "1999",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars",
+      "mbid": "4d4f5d92-0589-42fa-bc0e-1bd73e17a2ce"
+    }
+  ],
   "label": {
     "slug": "label:thrill-jockey",
     "type": "label",
@@ -40,5 +48,6 @@
       "name": "Andi Toma"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

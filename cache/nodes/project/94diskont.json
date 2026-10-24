@@ -13,10 +13,18 @@
     }
   ],
   "materialized_at": "2026-05-13T12:56:47.775Z",
+  "mbid": "204866bb-78ae-3c37-8611-2286cf6600ae",
   "type": "project",
   "editorial_pitch": "A foundational masterwork of the glitch genre, Oval’s 1995 album transforms digital damage into a haunting, aquatic, and deeply atmospheric ambient soundscape. It remains one of the most influential experiments in modern electronic music.",
   "year": "1995",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:oval",
+      "type": "artist",
+      "name": "Oval",
+      "mbid": "2fa478b1-dee0-428c-8e18-8b0b6608b2dd"
+    }
+  ],
   "label": {
     "slug": "label:mille-plateaux",
     "type": "label",

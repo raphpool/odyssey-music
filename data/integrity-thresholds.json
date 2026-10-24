@@ -1,11 +1,11 @@
 {
-	"homonym-release-links": 20,
-	"release-links-to-empty-credit": 41,
-	"zero-edge-nodes": 28,
+	"homonym-release-links": 18,
+	"release-links-to-empty-credit": 36,
+	"zero-edge-nodes": 22,
 	"self-edges": 0,
 	"homonym-tracklist-links": 2,
 	"duplicate-names": 0,
-	"unscoped-release-slugs": 86,
+	"unscoped-release-slugs": 85,
 	"literal-newlines": 0,
 	"literal-escaped-quotes": 0,
 	"duplicate-list-edges": 0,
@@ -22,8 +22,8 @@
 		"reference_track": 0
 	},
 	"empty-artists": {
-		"project": 63,
-		"track": 26
+		"project": 43,
+		"track": 22
 	},
 	"bidirectional-credit-mismatch": {
 		"mbid-divergent": 0,
@@ -34,14 +34,14 @@
 		"genre": 135,
 		"label": 32,
 		"artist": 138,
-		"project": 99,
+		"project": 97,
 		"track": 62
 	},
 	"missing-image": {
 		"genre": 274,
 		"label": 93,
 		"artist": 163,
-		"project": 94,
+		"project": 93,
 		"track": 80
 	},
 	"reciprocity-missing": {
