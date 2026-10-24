@@ -436,12 +436,6 @@
       "name": "Hold On"
     }
   ],
-  "landmark_project": {
-    "slug": "project:fabriclive-37--caspa",
-    "type": "project",
-    "name": "Fabriclive.37",
-    "artist": "Caspa"
-  },
   "reference_track": {
     "slug": "track:cockney-thug",
     "type": "track",
