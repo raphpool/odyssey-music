@@ -1998,7 +1998,9 @@ function canonicalizeDraft(
  * Keeps one edge per slug in every list of a node (src/edge-dedupe.ts, TRA-557). Two entries sharing a slug are
  * one page printed twice: the cache held 173 of them in 83 nodes (a single, its remixes and the album of the
  * same title; a track and its "(dub reprise)"), because nothing compared the entries of a list with each other
- * once the slug is computed. Mutates `node`; idempotent.
+ * once the slug is computed. Mutates `node`; idempotent. The pipeline does not read the target nodes, so the
+ * first criterion of the rule (the entry whose mbid is the target node's, `TargetMbids`) is left to the migration,
+ * which sees every node of the union.
  */
 function dropDuplicateListEdges(node: Record<string, unknown>, log: PipelineLog): void {
 	const where = typeof node.slug === "string" ? node.slug : String(node.type);

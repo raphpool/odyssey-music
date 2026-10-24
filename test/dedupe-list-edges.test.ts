@@ -133,11 +133,11 @@ describe("dedupe-list-edges: the lists", () => {
 		expect((await readNode("artist:a")).discography).toEqual([OTHER, ALBUM]);
 		expect(manifest.written).toBe(1);
 		expect(manifest.byField).toEqual({ "artist.discography": 1 });
-		expect(manifest.byReason).toEqual({ "release-type": 1 });
+		expect(manifest.byReason).toEqual({ "canonical-title": 1 });
 	});
 
 	it("cleans a tracklist and a personnel list, and lists the first-occurrence cases as doubts", async () => {
-		const touch = { slug: "track:touch--a", type: "track", name: "Touch", mbid: MB1 };
+		const touch = { slug: "track:touch--a", type: "track", name: "Touch (vocal)", mbid: MB1 };
 		const part4 = { slug: "track:touch--a", type: "track", name: "Touch (Part 4)", mbid: MB2 };
 		const vernon = { slug: "artist:vernon", type: "artist", name: "Vernon", mbid: MB1 };
 		const vernon2 = { slug: "artist:vernon", type: "artist", name: "Vernon", mbid: MB2 };
@@ -174,7 +174,7 @@ describe("dedupe-list-edges: the lists", () => {
 				node: "artist:a",
 				field: "discography",
 				slug: "project:booty-la-la--a",
-				reason: "release-type",
+				reason: "canonical-title",
 				removed: { name: "Booty La La (Loefah remix)", mbid: MB1, year: "2010", releaseType: "single" },
 				kept: { name: "Booty La La", mbid: MB2, year: "2008", releaseType: "album" },
 			},
@@ -199,6 +199,35 @@ describe("dedupe-list-edges: the lists", () => {
 				keptMbid: MB2,
 			},
 		]);
+	});
+});
+
+describe("dedupe-list-edges: the target node's mbid (union of the channel)", () => {
+	it("keeps the entry that carries the mbid of the page, whatever the other criteria say", async () => {
+		// repointSourceEdge rewrote both entries onto the page born from the REMIX release group.
+		const page = project("project:booty-la-la--a", { mbid: MB1 });
+		await writeCache([artist("artist:a", { discography: [ALBUM, REMIX] }), page]);
+
+		const manifest = await run(true);
+
+		expect((await readNode("artist:a")).discography).toEqual([REMIX]);
+		expect(manifest.removals[0]).toMatchObject({
+			reason: "target-mbid",
+			removed: { mbid: MB2 },
+			kept: { mbid: MB1 },
+		});
+	});
+
+	it("does not use it when the page has another mbid than both entries, or none", async () => {
+		await writeCache([
+			artist("artist:a", { discography: [REMIX, ALBUM] }),
+			project("project:booty-la-la--a", { mbid: MB3 }),
+		]);
+
+		const manifest = await run(true);
+
+		expect((await readNode("artist:a")).discography).toEqual([ALBUM]);
+		expect(manifest.byReason).toEqual({ "canonical-title": 1 });
 	});
 });
 

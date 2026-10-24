@@ -6,16 +6,21 @@
  * album of one title share a scoped slug). Decision of the dispatcher (2026-10-23, comment on TRA-557): one page
  * per title, no suffixed slug per release group, so the lists are deduplicated and the pages stay as they are.
  *
- * The rule is `dedupeEdgeList` (src/edge-dedupe.ts), the one the pipeline now applies at generation:
+ * The rule is `dedupeEdgeList` (src/edge-dedupe.ts, which documents it), the one the pipeline applies at
+ * generation; this migration alone also gives it the mbid of the target nodes (first criterion of the dispatcher):
  *  - same mbid, or an mbid missing on one side: the first occurrence stays and takes the fields it lacks;
- *  - different mbids: album before EP before single, then the earliest year (the discography policy's order for
- *    two release groups of one project slug); no field is merged across two mbids;
- *  - a tie (same type and year, or entries that carry neither): doubt, the first occurrence stays and the case
- *    is listed in `doubts`. MusicBrainz votes would break it; they are not in the cache, and this migration
- *    never calls a network.
- * The dispatcher's comment also names "the edge whose mbid is the target node's": measured on 2026-10-24, 147
- * of the 148 repeated slugs have no node at all (the slug is bare, `project:no-limit`, while the nodes are
- * scoped) and the 148th has no mbid, so that rule never applies. The migration does not read target nodes.
+ *  - different mbids: the entry carrying the mbid of the node the slug points at, then the title that is not a
+ *    variant (a remix never replaces its original, as `classifyRelease` keeps it out of a generated
+ *    discography), then the title without a trailing parenthesis, then album before EP before single, then the
+ *    earliest year; no field is merged across two mbids;
+ *  - a tie: doubt, the first occurrence stays and the case is listed in `doubts`. MusicBrainz votes would break
+ *    it; they are not in the cache, and this migration never calls a network.
+ * The target nodes matter on the channel's union (repository + server snapshot): there, a click on a duplicated
+ * puce materializes the page from ONE release group and `repointSourceEdge` (src/services/materialize-service.ts)
+ * rewrites EVERY entry of the slug onto it, so the page carries one of the mbids of the list. In the repository
+ * alone it almost never applies (measured 2026-10-24: 147 of the 148 repeated slugs have no node, the slug is
+ * bare while the nodes are scoped; the 148th has no mbid). The table is built from the nodes read, whichever
+ * list or node type holds the edge.
  *
  * Rules:
  * - Every list edge field of every node (`LIST_EDGES_BY_TYPE`) is read; a list without a repeated slug is not
@@ -45,7 +50,12 @@ import { mkdir } from "node:fs/promises";
 import { dirname } from "node:path";
 import { pathToFileURL } from "node:url";
 import { atomicWriteJson } from "../../src/cache.js";
-import { type DedupeReason, dedupeNodeListEdges, type EdgeRemoval } from "../../src/edge-dedupe.js";
+import {
+	type DedupeReason,
+	dedupeNodeListEdges,
+	type EdgeRemoval,
+	type TargetMbids,
+} from "../../src/edge-dedupe.js";
 import { SINGULAR_EDGES_BY_TYPE } from "../../src/node-spec.js";
 import { nodePayloadSchema } from "../../src/schemas.js";
 import {
@@ -168,6 +178,16 @@ function driftOf(
 	return out;
 }
 
+/** slug -> lower-cased mbid of the nodes read that carry one: what an edge's mbid is compared with. */
+function targetMbidsOf(nodes: readonly CacheNodeFile[]): Map<string, string> {
+	const out = new Map<string, string>();
+	for (const { slug, node } of nodes) {
+		const mbid = text(node.mbid)?.trim().toLowerCase();
+		if (mbid) out.set(slug, mbid);
+	}
+	return out;
+}
+
 /** Pure plan: what to write and what to report. Does not touch the disk. */
 export function planDedupeListEdges(nodes: readonly CacheNodeFile[]): Plan {
 	const writes = new Map<string, Obj>();
@@ -178,9 +198,10 @@ export function planDedupeListEdges(nodes: readonly CacheNodeFile[]): Plan {
 	const pickDrift: PickDrift[] = [];
 	const errors: string[] = [];
 
+	const targetMbids: TargetMbids = targetMbidsOf(nodes);
 	for (const { path, slug, type, node } of nodes) {
 		const next: Obj = { ...node };
-		const perField = dedupeNodeListEdges(next);
+		const perField = dedupeNodeListEdges(next, targetMbids);
 		if (perField.length === 0) continue;
 
 		const parsed = nodePayloadSchema.safeParse(next);

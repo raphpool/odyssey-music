@@ -54,14 +54,19 @@ describe("dedupeEdgeList -- different mbids", () => {
 
 		// The album stays at ITS place: the list was sorted newest first and still is.
 		expect(edges).toEqual([other, album]);
-		expect(removals).toEqual([{ slug: "project:t--a", reason: "release-type", removed: remix, kept: album }]);
+		expect(removals).toEqual([
+			{ slug: "project:t--a", reason: "canonical-title", removed: remix, kept: album },
+		]);
 	});
 
 	it("prefers an EP over a single", () => {
 		const single = project("project:t--a", "T", { mbid: A, releaseType: "single", year: "2000" });
 		const ep = project("project:t--a", "T", { mbid: B, releaseType: "ep", year: "2005" });
 
-		expect(dedupeEdgeList([single, ep]).edges).toEqual([ep]);
+		const out = dedupeEdgeList([single, ep]);
+
+		expect(out.edges).toEqual([ep]);
+		expect(out.removals[0]?.reason).toBe("release-type");
 	});
 
 	it("prefers the earliest year at equal type, and a known year over an unknown one", () => {
@@ -94,7 +99,7 @@ describe("dedupeEdgeList -- different mbids", () => {
 	});
 
 	it("keeps the first occurrence of tracklist entries, which carry neither type nor year", () => {
-		const touch = { slug: "track:touch", type: "track", name: "Touch", mbid: A };
+		const touch = { slug: "track:touch", type: "track", name: "Touch (vocal)", mbid: A };
 		const part4 = { slug: "track:touch", type: "track", name: "Touch (Part 4)", mbid: B };
 
 		const { edges, removals } = dedupeEdgeList([touch, part4]);
@@ -116,7 +121,93 @@ describe("dedupeEdgeList -- different mbids", () => {
 	});
 });
 
+describe("dedupeEdgeList -- the title comes before the type and the year", () => {
+	it("keeps the original over an older, stronger or earlier-listed variant (canonical title)", () => {
+		const live = project("project:lsd--a", "LSD (live mix)", {
+			mbid: A,
+			year: "1995",
+			releaseType: "single",
+		});
+		const original = project("project:lsd--a", "LSD", { mbid: B, year: "1996", releaseType: "single" });
+		const megaEp = project("project:e--a", "E (Remixes)", { mbid: A, year: "2001", releaseType: "ep" });
+		const single = project("project:e--a", "E", { mbid: B, year: "2005", releaseType: "single" });
+
+		const older = dedupeEdgeList([live, original]);
+		const stronger = dedupeEdgeList([megaEp, single]);
+
+		expect(older.edges).toEqual([original]);
+		expect(older.removals[0]).toMatchObject({ reason: "canonical-title", removed: live, kept: original });
+		expect(stronger.edges).toEqual([single]);
+	});
+
+	it("keeps both-variant titles apart from the rule: two remixes fall through to the type and the year", () => {
+		const a = project("project:r--a", "R (X remix)", { mbid: A, year: "2010", releaseType: "single" });
+		const b = project("project:r--a", "R (Y remix)", { mbid: B, year: "2008", releaseType: "single" });
+
+		expect(dedupeEdgeList([a, b]).removals[0]?.reason).toBe("earlier-year");
+	});
+
+	it("keeps the bare title over one with a trailing parenthesis that is not a variant", () => {
+		const solo = project("project:b--a", "Biking (solo)", { mbid: A, year: "2017", releaseType: "single" });
+		const bare = project("project:b--a", "Biking", { mbid: B, year: "2017", releaseType: "single" });
+		const reissue = project("project:p--a", "Party Shot (Reissue)", {
+			mbid: A,
+			year: "1990",
+			releaseType: "album",
+		});
+		const party = project("project:p--a", "Party Shot", { mbid: B, year: "1999", releaseType: "single" });
+
+		const out = dedupeEdgeList([solo, bare]);
+
+		expect(out.edges).toEqual([bare]);
+		expect(out.removals[0]?.reason).toBe("bare-title");
+		expect(dedupeEdgeList([reissue, party]).edges).toEqual([party]);
+	});
+});
+
+describe("dedupeEdgeList -- the mbid of the target node comes first", () => {
+	it("keeps the entry whose mbid is the page's, even against an original, an album or an older year", () => {
+		const live = project("project:lsd--a", "LSD (live mix)", {
+			mbid: A,
+			year: "1995",
+			releaseType: "single",
+		});
+		const original = project("project:lsd--a", "LSD", { mbid: B, year: "1996", releaseType: "album" });
+		const targets = new Map([["project:lsd--a", A.toUpperCase()]]);
+
+		const out = dedupeEdgeList([original, live], targets);
+
+		expect(out.edges).toEqual([live]);
+		expect(out.removals[0]).toMatchObject({ reason: "target-mbid", removed: original, kept: live });
+	});
+
+	it("falls back on the other criteria when no entry has the page's mbid, or the node has none", () => {
+		const live = project("project:lsd--a", "LSD (live mix)", { mbid: A });
+		const original = project("project:lsd--a", "LSD", { mbid: B });
+
+		expect(dedupeEdgeList([live, original], new Map([["project:lsd--a", C]])).edges).toEqual([original]);
+		expect(dedupeEdgeList([live, original], new Map()).edges).toEqual([original]);
+	});
+});
+
 describe("dedupeEdgeList -- invariants", () => {
+	it("never grafts the mbid or the year of another title on an entry that has none", () => {
+		const bare = project("project:l--a", "LSD");
+		const live = project("project:l--a", "LSD (live mix)", { mbid: A, year: "1995" });
+
+		expect(dedupeEdgeList([bare, live]).edges).toEqual([bare]);
+	});
+
+	it("reports the incumbent as it was read when a later entry replaces it", () => {
+		const first = project("project:t--a", "T (remix)", { mbid: A });
+		const original = project("project:t--a", "T", { mbid: B });
+		const snapshot = structuredClone(first);
+
+		const out = dedupeEdgeList([first, original]);
+
+		expect(out.removals[0]?.removed).toEqual(snapshot);
+	});
+
 	it("returns the same entries, in order, when no slug repeats", () => {
 		const list = [project("project:a--x", "A"), project("project:b--x", "B")];
 
