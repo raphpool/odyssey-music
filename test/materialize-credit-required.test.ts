@@ -193,6 +193,22 @@ describe("materialize service: a work nobody is credited on (TRA-485)", () => {
 		TIMEOUT_MS,
 	);
 
+	// classifyGenerationFailure searches the message for provider keywords, and this message carries the slug:
+	// a work titled "Timeout" must not read as a provider outage.
+	it.each(["timeout", "unavailable", "quota"])(
+		"classifies a work titled %s as internal_error, whatever the slug says",
+		async (title) => {
+			const { UncreditedWorkError } = await import("../src/pipeline.js");
+
+			const failure = new UncreditedWorkError(`project:${title}--roni-size`, "project");
+
+			expect(classifyGenerationFailure(failure)).toMatchObject({
+				code: "internal_error",
+				retryable: false,
+			});
+		},
+	);
+
 	it(
 		"reaches the mobile contract as a final internal_error, not a retryable provider failure",
 		async () => {
