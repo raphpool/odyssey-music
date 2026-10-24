@@ -396,6 +396,16 @@ describe("enforceArtistChoices -- cleared pairs stay empty (TRA-674)", () => {
 		]);
 	});
 
+	it("recognises the rejected pick under its scoped slug (ODYSSEY_SCOPED_RELEASE_SLUGS)", () => {
+		const scoped = proj("live-forever--headhunterz", "Live Forever");
+		const n = headhunterz({
+			discography: [scoped, proj("the-source-of-energy", "x")],
+			landmark_project: scoped,
+		});
+		enforceArtistChoices(n);
+		expect("landmark_project" in n).toBe(false);
+	});
+
 	it("keeps any other member of the list: a regeneration may choose again", () => {
 		const n = headhunterz({ landmark_project: proj("the-source-of-energy", "The Source of Energy") });
 		enforceArtistChoices(n);

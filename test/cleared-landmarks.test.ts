@@ -36,6 +36,13 @@ describe("data/cleared-landmarks.json", () => {
 			);
 			expect(() => loadClearedLandmarks(typo)).toThrow();
 			expect(() => loadClearedLandmarks(join(dir, "missing.json"))).toThrow();
+			// A track slug on a project field would never match: refused at load, not silently void.
+			const wrongType = join(dir, "wrong-type.json");
+			await writeFile(
+				wrongType,
+				JSON.stringify({ "artist:a": { landmark_project: { rejected: "track:x", reason: "y" } } }),
+			);
+			expect(() => loadClearedLandmarks(wrongType)).toThrow(/not a project: slug/);
 		} finally {
 			await rm(dir, { recursive: true, force: true });
 		}

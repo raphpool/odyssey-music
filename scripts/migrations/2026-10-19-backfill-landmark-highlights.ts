@@ -686,9 +686,12 @@ export async function runBackfill(options: BackfillOptions): Promise<BackfillRes
 	for (const { slug, path, node: raw } of artists) {
 		// TRA-674: a pair TRA-605 emptied on purpose is exactly what this fills; a replay (or the prod run of a
 		// cache that still has the old picks) would write the bad choices back. They are withheld, not skipped.
-		const pending = HIGHLIGHT_FIELDS.filter(
-			({ field }) => !hasField(raw, field) && clearedPick(slug, field) === undefined,
-		);
+		const pending = HIGHLIGHT_FIELDS.filter(({ field }) => {
+			if (hasField(raw, field)) return false;
+			if (clearedPick(slug, field) === undefined) return true;
+			log(`${slug}: ${field} left empty (cleared on purpose, data/cleared-landmarks.json)`);
+			return false;
+		});
 		if (pending.length === 0) continue;
 		const parsed = nodePayloadSchema.safeParse(raw);
 		if (!parsed.success || parsed.data.type !== "artist") {

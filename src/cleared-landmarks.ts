@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
+import { scopeOf } from "./slug.js";
 
 /**
  * The (artist, field) pairs whose `landmark_project` / `reference_track` was emptied ON PURPOSE (TRA-605) and
@@ -53,15 +54,40 @@ export function loadClearedLandmarks(
 	for (const [artist, fields] of Object.entries(parsed)) {
 		for (const field of CLEARED_FIELDS) {
 			const entry = fields[field];
-			if (entry !== undefined) map.set(clearedKey(artist, field), entry);
+			if (entry === undefined) continue;
+			// A typo (a track slug on a project field) would never match and the guard would be silently void.
+			if (!entry.rejected.startsWith(REJECTED_PREFIX[field])) {
+				throw new Error(
+					`${artist}.${field}: rejected "${entry.rejected}" is not a ${REJECTED_PREFIX[field]} slug`,
+				);
+			}
+			map.set(clearedKey(artist, field), entry);
 		}
 	}
 	loaded.set(path, map);
 	return map;
 }
 
+const REJECTED_PREFIX: Record<ClearedField, string> = {
+	landmark_project: "project:",
+	reference_track: "track:",
+};
+
 /** The cleared entry of a pair, or undefined when the field may be filled. */
 export function clearedPick(artist: unknown, field: ClearedField): ClearedPick | undefined {
 	if (typeof artist !== "string") return undefined;
 	return loadClearedLandmarks().get(clearedKey(artist, field));
+}
+
+/** `project:live-forever--headhunterz` -> `project:live-forever`; a bare slug is returned as is. */
+function withoutScope(slug: string): string {
+	return scopeOf(slug) === null ? slug : slug.slice(0, slug.indexOf("--"));
+}
+
+/**
+ * True when `pick` is the removed pick, bare or scoped: the data file holds the slug as TRA-605 found it, and
+ * a regeneration with scoped release slugs (ODYSSEY_SCOPED_RELEASE_SLUGS) names the same work with its scope.
+ */
+export function isRejectedPick(entry: ClearedPick, pick: string | undefined): boolean {
+	return pick !== undefined && withoutScope(pick) === withoutScope(entry.rejected);
 }
