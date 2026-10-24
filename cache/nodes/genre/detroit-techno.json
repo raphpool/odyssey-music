@@ -90,9 +90,9 @@
       "name": "Transmat"
     },
     {
-      "slug": "label:kms-records",
+      "slug": "label:kms",
       "type": "label",
-      "name": "KMS Records"
+      "name": "KMS"
     },
     {
       "slug": "label:submerge-recordings",

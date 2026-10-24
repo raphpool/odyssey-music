@@ -1135,6 +1135,7 @@ describe("createMaterializeService artist context (TRA-477)", () => {
 			credit,
 			primaryType: null,
 			firstReleaseDate: null,
+			releaseGroupMbid: null,
 		}));
 		vi.mocked(mb.fetchEntityGenresMb).mockImplementation(async () => []);
 		vi.mocked(mb.fetchProjectMetaMb).mockImplementation(async () => ({
@@ -1398,6 +1399,7 @@ describe("createMaterializeService artist context (TRA-477)", () => {
 			credit: [{ mbid: ROHFF, name: "Rohff" }],
 			primaryType: null,
 			firstReleaseDate: null,
+			releaseGroupMbid: null,
 		});
 
 		it(
@@ -1768,7 +1770,14 @@ describe("createMaterializeService artist context (TRA-477)", () => {
 				const credit = hint ? [] : [{ mbid: "aaaaaaaa-0000-4000-8000-0000000000a1", name: "Akuma" }];
 				return hint
 					? null
-					: { mbid: RG_MBID, title: "Fitna", credit, primaryType: null, firstReleaseDate: null };
+					: {
+							mbid: RG_MBID,
+							title: "Fitna",
+							credit,
+							primaryType: null,
+							firstReleaseDate: null,
+							releaseGroupMbid: null,
+						};
 			});
 			const service = await buildService();
 
