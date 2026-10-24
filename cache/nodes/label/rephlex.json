@@ -126,16 +126,6 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:selected-ambient-works-85-92",
-      "type": "project",
-      "name": "Selected Ambient Works 85–92"
-    },
-    {
-      "slug": "project:hard-normal-daddy--squarepusher",
-      "type": "project",
-      "name": "Hard Normal Daddy"
-    },
-    {
       "slug": "project:analord",
       "type": "project",
       "name": "Analord"
@@ -161,11 +151,6 @@
       "slug": "project:expert-knob-twiddlers--aphex-twin",
       "type": "project",
       "name": "Expert Knob Twiddlers"
-    },
-    {
-      "slug": "project:polyester",
-      "type": "project",
-      "name": "Polyester"
     },
     {
       "slug": "project:nu-romantix--dmx-krew",
