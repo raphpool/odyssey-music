@@ -1,3 +1,5 @@
+import { UncreditedWorkError } from "../errors.js";
+
 export type MobileGenerationErrorCode =
 	| "invalid_request"
 	| "idempotency_conflict"
@@ -44,6 +46,9 @@ export class MobileGenerationError extends Error {
 }
 
 export function classifyGenerationFailure(error: unknown): MobileGenerationError {
+	// Before the keyword search below: this error's message carries a slug, and a work titled "Timeout" must not
+	// read as a provider outage. Nothing about it is transient or the provider's fault (TRA-485).
+	if (error instanceof UncreditedWorkError) return new MobileGenerationError("internal_error", false);
 	const value = error instanceof Error ? error : new Error(String(error));
 	const code = "code" in value ? String(value.code) : "";
 	const status = "status" in value ? Number(value.status) : 0;

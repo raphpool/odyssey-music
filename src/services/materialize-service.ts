@@ -679,6 +679,11 @@ export function createMaterializeService(deps: {
 				!body.mbid || !currentMbid || body.mbid.toLowerCase() === currentMbid.toLowerCase();
 			const image = current && sameIdentity ? existingImageOf(current) : undefined;
 			if (image) pipelineInput.existingImage = image;
+			// TRA-485: a legacy work that has no credit stays refreshable. A credited one does not get that
+			// waiver: a refresh where nobody is named this time must not erase the credit it had.
+			if (current && "artists" in current && current.artists.length === 0) {
+				pipelineInput.refreshedSlug = opts.slug;
+			}
 		}
 		// 2026-09-10 (TRA-43): the edge's own qid, carried through as an identity hint --
 		// enrichFromMusicBrainz's genre block gives it precedence over a fresh by-name resolve.
