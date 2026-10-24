@@ -388,10 +388,11 @@ function waitForSlot(priority: MbPriority, signal?: AbortSignal): Promise<boolea
 		const slot = reserveSlot();
 		return sleep(slot.delayMs, signal).then(() => {
 			pendingInteractive--;
+			// The reservation goes back before the next background waiter is released: released first, it would
+			// reserve behind the dead slot and the gap would stay (review of #645, 2026-10-24).
+			if (signal?.aborted) slot.cancel();
 			releaseNextBackground();
-			if (!signal?.aborted) return true;
-			slot.cancel();
-			return false;
+			return !signal?.aborted;
 		});
 	}
 	return new Promise<boolean>((resolve) => {

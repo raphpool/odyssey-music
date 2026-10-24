@@ -158,24 +158,49 @@ describe("a request whose signal is aborted", () => {
 		expect(log).toEqual(["r1@0"]);
 	});
 
-	it("does not hold up the retries of the others once it stopped waiting", async () => {
+	it("does not hold up the retry of another request once it left the retry chain", async () => {
 		const t0 = startAt("2055-01-01T00:00:00.000Z");
-		const { log } = stubFetch(t0, (name, count) =>
-			name.startsWith("r2") && count <= 2 ? failedResponse(503) : jsonResponse(QID_BODY),
-		);
+		const seen = new Map<string, number>();
+		const { log } = stubFetch(t0, (name) => {
+			const tag = name.slice(0, 2);
+			const count = (seen.get(tag) ?? 0) + 1;
+			seen.set(tag, count);
+			if (count > 1) return jsonResponse(QID_BODY);
+			// r1 asks for a 30 s wait, r2 gets the default backoff.
+			const headers = new Headers(tag === "r1" ? { "Retry-After": "30" } : {});
+			return { ok: false, status: 503, headers, json: async () => ({}) } as unknown as Response;
+		});
 		const ctrl = new AbortController();
 
-		const aborted = qid("r1", { signal: ctrl.signal });
-		const other = qid("r2");
-		await vi.advanceTimersByTimeAsync(1_500);
+		const aborted = qid("r1", { priority: "background", signal: ctrl.signal });
+		const other = qid("r2", { priority: "background" });
+		await vi.advanceTimersByTimeAsync(1_500); // r1 got its 503 at 0 (30 s wait in the chain), r2 its 503 at 1 000
 		ctrl.abort();
-		await aborted;
-		await vi.advanceTimersByTimeAsync(10_000);
+		await expect(aborted).resolves.toBeNull();
+		await vi.advanceTimersByTimeAsync(5_000);
 
 		await expect(other).resolves.toBe("Q42");
-		// r1 failed with a 503 as well and never came back; r2 retried alone.
-		expect(log.filter((entry) => entry.startsWith("r1"))).toEqual(["r1@0"]);
-		expect(log.filter((entry) => entry.startsWith("r2")).length).toBeGreaterThanOrEqual(2);
+		// r2's retry waits 1 s once r1's place in the chain ends at 1 500: 2 500, not 31 000 (review of #645: the
+		// previous version of this test let r1 succeed at once, so a chain that ignored the abort passed it).
+		expect(log).toEqual(["r1@0", "r2@1000", "r2@2500"]);
+	});
+
+	it("gives an aborted interactive reservation back to a background request already queued", async () => {
+		const t0 = startAt("2055-06-01T00:00:00.000Z");
+		const { log } = stubFetch(t0);
+		const ctrl = new AbortController();
+
+		const pending = [
+			interactive("a1"), // slot 0
+			qid("a2", { signal: ctrl.signal }), // interactive, slot 1 000
+			qid("b1", { priority: "background" }), // queued behind a2
+		];
+		await vi.advanceTimersByTimeAsync(500);
+		ctrl.abort();
+		await vi.advanceTimersByTimeAsync(5_000);
+		await Promise.all(pending);
+
+		expect(log).toEqual(["a1@0", "b1@1000"]);
 	});
 
 	it("is not retried when it is aborted in flight, unlike a network failure", async () => {
