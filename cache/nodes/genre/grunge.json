@@ -39,6 +39,18 @@
       "type": "genre",
       "name": "Alternative rock",
       "qid": "Q11366"
+    },
+    {
+      "slug": "genre:alternative",
+      "type": "genre",
+      "name": "Alternative",
+      "qid": "Q1695023"
+    },
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock",
+      "qid": "Q11399"
     }
   ],
   "subgenres": [
@@ -85,6 +97,30 @@
       "type": "genre",
       "name": "Noise rock",
       "qid": "Q181861"
+    },
+    {
+      "slug": "genre:alternative",
+      "type": "genre",
+      "name": "Alternative",
+      "qid": "Q1695023"
+    },
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative rock",
+      "qid": "Q11366"
+    },
+    {
+      "slug": "genre:lo-fi",
+      "type": "genre",
+      "name": "Lo-fi",
+      "qid": "Q1507298"
+    },
+    {
+      "slug": "genre:sludge-metal",
+      "type": "genre",
+      "name": "Sludge metal",
+      "qid": "Q720959"
     }
   ],
   "key_artists": [

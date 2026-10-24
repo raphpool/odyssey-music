@@ -53,6 +53,12 @@
       "type": "genre",
       "name": "Classical period music",
       "qid": "Q17723"
+    },
+    {
+      "slug": "genre:classical",
+      "type": "genre",
+      "name": "Classical",
+      "qid": "Q9730"
     }
   ],
   "key_artists": [

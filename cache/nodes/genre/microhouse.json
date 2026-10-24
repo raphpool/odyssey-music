@@ -54,6 +54,12 @@
       "type": "genre",
       "name": "Glitch",
       "qid": "Q1100989"
+    },
+    {
+      "slug": "genre:minimal-house",
+      "type": "genre",
+      "name": "Minimal house",
+      "qid": "Q750811"
     }
   ],
   "key_artists": [

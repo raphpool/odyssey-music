@@ -19,7 +19,20 @@
   "era": "1890s-present",
   "origin": "Deep South, United States",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:r-and-b",
+      "type": "genre",
+      "name": "R&B",
+      "qid": "Q45981"
+    },
+    {
+      "slug": "genre:rock",
+      "type": "genre",
+      "name": "Rock",
+      "qid": "Q11399"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:jazz",
@@ -56,6 +69,24 @@
       "type": "genre",
       "name": "American hip-hop",
       "qid": "Q3135787"
+    },
+    {
+      "slug": "genre:folk",
+      "type": "genre",
+      "name": "Folk",
+      "qid": "Q43343"
+    },
+    {
+      "slug": "genre:garage-rock",
+      "type": "genre",
+      "name": "Garage rock",
+      "qid": "Q211573"
+    },
+    {
+      "slug": "genre:vocal-jazz",
+      "type": "genre",
+      "name": "Vocal Jazz",
+      "qid": "Q1530455"
     }
   ],
   "key_artists": [

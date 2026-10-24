@@ -19,7 +19,38 @@
   "era": "1980s–1990s",
   "origin": "United States and United Kingdom",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:alternative-dance",
+      "type": "genre",
+      "name": "Alternative Dance",
+      "qid": "Q2187392"
+    },
+    {
+      "slug": "genre:grunge",
+      "type": "genre",
+      "name": "Grunge",
+      "qid": "Q11365"
+    },
+    {
+      "slug": "genre:noise-pop",
+      "type": "genre",
+      "name": "Noise Pop",
+      "qid": "Q2545135"
+    },
+    {
+      "slug": "genre:post-rock",
+      "type": "genre",
+      "name": "Post-rock",
+      "qid": "Q209137"
+    },
+    {
+      "slug": "genre:shoegaze",
+      "type": "genre",
+      "name": "Shoegaze",
+      "qid": "Q272167"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:punk-rock",
@@ -44,6 +75,18 @@
       "type": "genre",
       "name": "Indie rock",
       "qid": "Q183504"
+    },
+    {
+      "slug": "genre:britpop",
+      "type": "genre",
+      "name": "Britpop",
+      "qid": "Q189045"
+    },
+    {
+      "slug": "genre:college-rock",
+      "type": "genre",
+      "name": "College rock",
+      "qid": "Q783097"
     }
   ],
   "key_artists": [

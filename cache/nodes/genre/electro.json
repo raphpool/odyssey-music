@@ -108,6 +108,24 @@
       "type": "genre",
       "name": "Baile Funk",
       "qid": "Q1931130"
+    },
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit Techno",
+      "qid": "Q526463"
+    },
+    {
+      "slug": "genre:electro-house",
+      "type": "genre",
+      "name": "Electro House",
+      "qid": "Q627906"
+    },
+    {
+      "slug": "genre:electroclash",
+      "type": "genre",
+      "name": "Electroclash",
+      "qid": "Q861823"
     }
   ],
   "key_artists": [

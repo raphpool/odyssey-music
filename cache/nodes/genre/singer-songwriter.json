@@ -48,6 +48,12 @@
       "type": "genre",
       "name": "Country music",
       "qid": "Q83440"
+    },
+    {
+      "slug": "genre:folk-rock",
+      "type": "genre",
+      "name": "Folk Rock",
+      "qid": "Q186472"
     }
   ],
   "key_artists": [

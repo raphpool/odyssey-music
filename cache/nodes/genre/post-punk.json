@@ -24,8 +24,28 @@
   "qid": "Q598929",
   "era": "Late 1970s – Mid 1980s",
   "origin": "United Kingdom and United States",
-  "parent_genres": [],
-  "subgenres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New wave",
+      "qid": "Q187760"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock",
+      "qid": "Q3071"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:dance-punk",
+      "type": "genre",
+      "name": "Dance-punk",
+      "qid": "Q1643549"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:new-wave",
@@ -50,6 +70,108 @@
       "type": "genre",
       "name": "Industrial",
       "qid": "Q487965"
+    },
+    {
+      "slug": "genre:alternative",
+      "type": "genre",
+      "name": "Alternative",
+      "qid": "Q1695023"
+    },
+    {
+      "slug": "genre:alternative-dance",
+      "type": "genre",
+      "name": "Alternative Dance",
+      "qid": "Q2187392"
+    },
+    {
+      "slug": "genre:alternative-rock",
+      "type": "genre",
+      "name": "Alternative rock",
+      "qid": "Q11366"
+    },
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art Pop",
+      "qid": "Q25094849"
+    },
+    {
+      "slug": "genre:art-rock",
+      "type": "genre",
+      "name": "Art Rock",
+      "qid": "Q217467"
+    },
+    {
+      "slug": "genre:avant-pop",
+      "type": "genre",
+      "name": "Avant-pop",
+      "qid": "Q9162904"
+    },
+    {
+      "slug": "genre:cold-wave",
+      "type": "genre",
+      "name": "Cold-wave",
+      "qid": "Q2343562"
+    },
+    {
+      "slug": "genre:college-rock",
+      "type": "genre",
+      "name": "College rock",
+      "qid": "Q783097"
+    },
+    {
+      "slug": "genre:dark-cabaret",
+      "type": "genre",
+      "name": "Dark cabaret",
+      "qid": "Q1166158"
+    },
+    {
+      "slug": "genre:dark-wave",
+      "type": "genre",
+      "name": "Dark wave",
+      "qid": "Q3840596"
+    },
+    {
+      "slug": "genre:dub",
+      "type": "genre",
+      "name": "Dub",
+      "qid": "Q212688"
+    },
+    {
+      "slug": "genre:hardcore-punk",
+      "type": "genre",
+      "name": "Hardcore punk",
+      "qid": "Q10922"
+    },
+    {
+      "slug": "genre:indie-pop",
+      "type": "genre",
+      "name": "Indie Pop",
+      "qid": "Q842324"
+    },
+    {
+      "slug": "genre:indie-rock",
+      "type": "genre",
+      "name": "Indie rock",
+      "qid": "Q183504"
+    },
+    {
+      "slug": "genre:jangle-pop",
+      "type": "genre",
+      "name": "Jangle pop",
+      "qid": "Q1190565"
+    },
+    {
+      "slug": "genre:noise-rock",
+      "type": "genre",
+      "name": "Noise Rock",
+      "qid": "Q181861"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock",
+      "qid": "Q3071"
     }
   ],
   "key_artists": [

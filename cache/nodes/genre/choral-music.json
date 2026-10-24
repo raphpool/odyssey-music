@@ -28,9 +28,23 @@
   "editorial_definition": "Choral music refers to any composition written for and performed by a group of singers, ranging from intimate chamber ensembles to massive choral symphonic forces. The genre is characterized by the use of multiple vocal parts, where individual lines are supported by multiple singers, and may be performed either a cappella or with instrumental accompaniment.",
   "era": "Antiquity to present",
   "origin": "Europe (liturgical traditions)",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:vocal-music",
+      "type": "genre",
+      "name": "Vocal Music",
+      "qid": "Q685884"
+    }
+  ],
   "subgenres": [],
-  "related_genres": [],
+  "related_genres": [
+    {
+      "slug": "genre:vocal-music",
+      "type": "genre",
+      "name": "Vocal Music",
+      "qid": "Q685884"
+    }
+  ],
   "key_artists": [
     {
       "slug": "artist:johann-sebastian-bach",

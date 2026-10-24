@@ -36,6 +36,18 @@
       "type": "genre",
       "name": "Microhouse",
       "qid": "Q1931555"
+    },
+    {
+      "slug": "genre:deep-house",
+      "type": "genre",
+      "name": "Deep House",
+      "qid": "Q874038"
+    },
+    {
+      "slug": "genre:minimal-music",
+      "type": "genre",
+      "name": "Minimal music",
+      "qid": "Q12183214"
     }
   ],
   "key_artists": [

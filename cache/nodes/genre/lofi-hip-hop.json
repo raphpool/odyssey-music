@@ -25,6 +25,12 @@
       "type": "genre",
       "name": "Electronic",
       "qid": "Q9778"
+    },
+    {
+      "slug": "genre:jazz-rap",
+      "type": "genre",
+      "name": "Jazz Rap",
+      "qid": "Q255406"
     }
   ],
   "subgenres": [],
@@ -46,6 +52,12 @@
       "type": "genre",
       "name": "Jazz Rap",
       "qid": "Q255406"
+    },
+    {
+      "slug": "genre:chillstep",
+      "type": "genre",
+      "name": "Chillstep",
+      "qid": "Q2963621"
     }
   ],
   "key_artists": [

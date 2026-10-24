@@ -25,7 +25,20 @@
       "qid": "Q1640319"
     }
   ],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:experimental-electronic",
+      "type": "genre",
+      "name": "Experimental Electronic",
+      "qid": "Q105763581"
+    },
+    {
+      "slug": "genre:no-wave",
+      "type": "genre",
+      "name": "No Wave",
+      "qid": "Q823080"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:free-jazz",
@@ -49,6 +62,30 @@
       "type": "genre",
       "name": "Noise music",
       "qid": "Q726239"
+    },
+    {
+      "slug": "genre:experimental-pop",
+      "type": "genre",
+      "name": "Experimental pop",
+      "qid": "Q25094591"
+    },
+    {
+      "slug": "genre:microtonal-music",
+      "type": "genre",
+      "name": "Microtonal Music",
+      "qid": "Q1045756"
+    },
+    {
+      "slug": "genre:modern-classical",
+      "type": "genre",
+      "name": "Modern Classical",
+      "qid": "Q65937946"
+    },
+    {
+      "slug": "genre:serialism",
+      "type": "genre",
+      "name": "Serialism",
+      "qid": "Q507246"
     }
   ],
   "key_artists": [

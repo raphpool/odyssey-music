@@ -48,6 +48,12 @@
       "type": "genre",
       "name": "Indie Rock",
       "qid": "Q183504"
+    },
+    {
+      "slug": "genre:alternative",
+      "type": "genre",
+      "name": "Alternative",
+      "qid": "Q1695023"
     }
   ],
   "subgenres": [
@@ -82,6 +88,24 @@
       "type": "genre",
       "name": "Post-Rock",
       "qid": "Q209137"
+    },
+    {
+      "slug": "genre:alternative",
+      "type": "genre",
+      "name": "Alternative",
+      "qid": "Q1695023"
+    },
+    {
+      "slug": "genre:noise-pop",
+      "type": "genre",
+      "name": "Noise Pop",
+      "qid": "Q2545135"
+    },
+    {
+      "slug": "genre:space-rock",
+      "type": "genre",
+      "name": "Space rock",
+      "qid": "Q236913"
     }
   ],
   "key_artists": [
