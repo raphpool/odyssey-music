@@ -75,6 +75,12 @@
       "type": "genre",
       "name": "Eurodance",
       "qid": "Q216961"
+    },
+    {
+      "slug": "genre:eurodisco",
+      "type": "genre",
+      "name": "Eurodisco",
+      "qid": "Q1374731"
     }
   ],
   "key_artists": [

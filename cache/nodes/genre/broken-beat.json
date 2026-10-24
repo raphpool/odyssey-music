@@ -54,6 +54,12 @@
       "type": "genre",
       "name": "Acid jazz",
       "qid": "Q221772"
+    },
+    {
+      "slug": "genre:nu-jazz",
+      "type": "genre",
+      "name": "Nu Jazz",
+      "qid": "Q1136331"
     }
   ],
   "key_artists": [

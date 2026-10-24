@@ -7,26 +7,119 @@ import XCTest
 
 @MainActor
 final class NodePageViewTests: XCTestCase {
-	// MARK: - Glow
+	// MARK: - Node card
 
-	func testGlowIsSilverOffTheRootWhateverTheNode() {
+	/// `content(tint:)` draws these children in this order (contract of TRA-659); the view and
+	/// `cardChildren(for:)` read the same predicates, so this pins what the card is given.
+	func testTheProjectCardChildrenFollowTheContractOrder() throws {
+		let node = try Self.node(
+			type: "project", name: "Album", teaser: "Un disque.",
+			facts: #"{"year":"2015","release_type":"album","bpm":"96"}"#,
+			edges: ["artists": "[" + Self.edgeJSON("artist:band", name: "Band") + "]"],
+			article: "Un article.")
+
+		XCTAssertEqual(
+			NodePageView.cardChildren(for: node),
+			[
+				"node-type-badge", "node-hero", "node-title", "node-subtitle", "teaser", "facts",
+				"section-artists", "section-article",
+			])
+	}
+
+	/// An artist page has no facts block (`NodePageSpec.factFields`), and its highlights stand above the
+	/// discography.
+	func testTheArtistCardPutsTheHighlightsAboveTheDiscographyAfterTheTeaser() throws {
+		let node = try Self.node(
+			type: "artist", name: "Sample", teaser: "Un artiste.",
+			facts: #"{"origin":"Compton","active_years":"2003-"}"#,
+			edges: [
+				"landmark_project": Self.edgeJSON("project:album", name: "Album"),
+				"discography": "[" + Self.edgeJSON("project:album", name: "Album") + "]",
+			],
+			article: "")
+
+		XCTAssertEqual(
+			NodePageView.cardChildren(for: node),
+			[
+				"node-type-badge", "node-hero", "node-title", "node-subtitle", "teaser", "highlights",
+				"section-discography",
+			])
+	}
+
+	func testTheCardOmitsTheTeaserAndTheFactsWhenThePageHasNone() throws {
+		let node = try Self.node(type: "artist", name: "Sample", teaser: nil, facts: "{}", edges: [:], article: "")
+
+		XCTAssertEqual(NodePageView.cardChildren(for: node), ["node-type-badge", "node-hero", "node-title"])
+	}
+
+	// MARK: - Cover tint
+
+	func testCoverTintIsReadFromTheLoadedStateOnly() {
+		let coverTint = CoverTint(
+			stops: Array(repeating: LinearRGB(red: 0.2, green: 0.1, blue: 0.1), count: 3),
+			shadow: LinearRGB(red: 0.5, green: 0.2, blue: 0.2))
+
+		XCTAssertEqual(NodePageView.coverTint(for: .loaded(UIImage(), tint: nil, coverTint: coverTint)), coverTint)
+		XCTAssertNil(NodePageView.coverTint(for: .loaded(UIImage(), tint: .red, coverTint: nil)))
+		XCTAssertNil(NodePageView.coverTint(for: .placeholder))
+		XCTAssertNil(NodePageView.coverTint(for: .loading))
+	}
+
+	// MARK: - Page tint
+
+	func testThePageTintIsTheCoverTintAsItIsWhateverTheType() {
+		let coverTint = CoverTint(
+			stops: Array(repeating: LinearRGB(red: 0.2, green: 0.1, blue: 0.1), count: 3),
+			shadow: LinearRGB(red: 0.5, green: 0.2, blue: 0.2))
+
 		for type in NodeType.allCases {
-			XCTAssertEqual(NodePageView.glowTone(isRoot: false, type: type, tint: .red), .silver, type.rawValue)
-			XCTAssertEqual(NodePageView.glowTone(isRoot: false, type: type, tint: nil), .silver, type.rawValue)
+			XCTAssertEqual(NodePageView.pageTint(coverTint: coverTint, type: type), coverTint, type.rawValue)
 		}
 	}
 
-	func testRootProjectAndTrackTakeTheirTintOnlyWhenTheyHaveOne() {
-		for type in [NodeType.project, .track] {
-			XCTAssertEqual(NodePageView.glowTone(isRoot: true, type: type, tint: .red), .tinted(.red), type.rawValue)
+	func testWithoutACoverEachTypeGetsThreeDarkStopsOfItsOwnHue() throws {
+		XCTAssertEqual(NodeType.allCases.count, 5)
+		XCTAssertEqual(CoverTintTone.stopBrightness, [0.33, 0.27, 0.20])
+		for type in NodeType.allCases {
+			let tint = NodePageView.pageTint(coverTint: nil, type: type)
+			let typeHue = try Self.hsb(of: Track1Tokens.colorNode(type)).hue
+
+			XCTAssertEqual(tint.stops.count, 3, type.rawValue)
+			for (stop, brightness) in zip(tint.stops, CoverTintTone.stopBrightness) {
+				let reading = try Self.hsb(of: Color(stop))
+				XCTAssertEqual(Self.hueDistanceInDegrees(reading.hue, typeHue), 0, accuracy: 2, type.rawValue)
+				XCTAssertEqual(reading.brightness, brightness, accuracy: 0.01, type.rawValue)
+			}
 		}
-		XCTAssertEqual(NodePageView.glowTone(isRoot: true, type: .project, tint: nil), .ember)
 	}
 
-	func testRootGenreArtistAndLabelAreEmberEvenWithATint() {
-		for type in [NodeType.genre, .artist, .label] {
-			XCTAssertEqual(NodePageView.glowTone(isRoot: true, type: type, tint: .red), .ember, type.rawValue)
+	/// `pageTint` takes no notion of root: a type has one fallback tint, and two types never share it.
+	func testTheFallbackTintBelongsToTheTypeAlone() {
+		let types = NodeType.allCases
+		for (index, type) in types.enumerated() {
+			XCTAssertEqual(
+				NodePageView.pageTint(coverTint: nil, type: type), NodePageView.pageTint(coverTint: nil, type: type))
+			for other in types[(index + 1)...] {
+				XCTAssertNotEqual(
+					NodePageView.pageTint(coverTint: nil, type: type),
+					NodePageView.pageTint(coverTint: nil, type: other), "\(type.rawValue) / \(other.rawValue)")
+			}
 		}
+	}
+
+	private static func hsb(of color: Color) throws -> (hue: Double, brightness: Double) {
+		var hue: CGFloat = 0
+		var saturation: CGFloat = 0
+		var brightness: CGFloat = 0
+		var alpha: CGFloat = 0
+		try XCTUnwrap(UIColor(color).getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha))
+		return (Double(hue), Double(brightness))
+	}
+
+	/// The shortest way round the hue circle, in degrees.
+	private static func hueDistanceInDegrees(_ a: Double, _ b: Double) -> Double {
+		let gap = abs(a - b)
+		return min(gap, 1 - gap) * 360
 	}
 
 	// MARK: - Opening a relation
@@ -186,6 +279,19 @@ final class NodePageViewTests: XCTestCase {
 	private static func edgeJSON(_ slug: String, name: String) -> String {
 		let type = slug.prefix { $0 != ":" }
 		return #"{"slug":"\#(slug)","type":"\#(type)","name":"\#(name)"}"#
+	}
+
+	private static func node(
+		type: String, name: String, teaser: String?, facts: String, edges: [String: String], article: String
+	) throws -> NodeDetail {
+		let body = edges.map { #""\#($0.key)":\#($0.value)"# }.joined(separator: ",")
+		let teaserJSON = teaser.map { #""\#($0)""# } ?? "null"
+		let source = """
+			{"id":"\(type):sample","type":"\(type)","name":"\(name)","teaser":\(teaserJSON),"article":"\(article)","citations":[],"facts":\(facts),"edges":{\(body)},"materialized_at":"2026-10-08T00:00:00Z","image_url":null}
+			"""
+		let decoder = JSONDecoder()
+		decoder.dateDecodingStrategy = .iso8601
+		return try decoder.decode(NodeDetail.self, from: Data(source.utf8))
 	}
 
 	private static func artist(edges: [String: String]) throws -> NodeDetail {

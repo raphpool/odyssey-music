@@ -13,10 +13,18 @@
     }
   ],
   "materialized_at": "2026-05-13T12:56:51.730Z",
+  "mbid": "d42276e2-333d-3db5-bbc7-2c27f5f5a6e9",
   "type": "project",
   "editorial_pitch": "Autoditacker is a seminal 1997 IDM album by Mouse on Mars that masterfully balances dense, abstract textures with infectious, playful grooves. It remains a high-water mark of the 90s experimental electronic scene, blending krautrock-inspired rhythms with complex digital processing.",
   "year": "1997",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:mouse-on-mars",
+      "type": "artist",
+      "name": "Mouse on Mars",
+      "mbid": "4d4f5d92-0589-42fa-bc0e-1bd73e17a2ce"
+    }
+  ],
   "label": {
     "slug": "label:too-pure",
     "type": "label",
@@ -57,5 +65,6 @@
       "name": "Andi Toma"
     }
   ],
+  "personnel": [],
   "related_projects": []
 }

@@ -1306,8 +1306,11 @@ describe("createMaterializeService artist context (TRA-477)", () => {
 			// Only the first source reaches the cache, and `update` reports that it wrote nothing.
 			expect(updateSpy).toHaveBeenCalledTimes(1);
 			expect(await updateSpy.mock.results[0]?.value).toBe(false);
-			// The type and self-edge checks come before the source node is even read.
-			expect(getSpy.mock.calls.filter(([slug]) => slug === "artist:roni-size")).toHaveLength(1);
+			// The type and self-edge checks come before the source node is even read. Besides that one read, every
+			// run looks the artist up for its mbid (TRA-551): one read per source, not one more per check.
+			expect(getSpy.mock.calls.filter(([slug]) => slug === "artist:roni-size")).toHaveLength(
+				1 + sources.length,
+			);
 			expect(((await cache.get(NEW_FORMS)) as ProjectNode).related_projects).toEqual([]);
 		},
 		TIMEOUT_MS,
@@ -1906,6 +1909,94 @@ describe("createMaterializeService artist context (TRA-477)", () => {
 				await expect(
 					service.handleMaterialize({ type: "track", name: "Fitna", artist: "坂本龍一" }),
 				).resolves.toMatchObject({ node: { slug: "track:fitna" } });
+			},
+			TIMEOUT_MS,
+		);
+	});
+
+	// TRA-551: a click on New Forms from Roni Size's page. The service hands the pipeline the mbid of the artist
+	// node its cache holds for that name; the pipeline then reads the artist's bands on demand and accepts the work
+	// credited to one of them by MBID. The artist's node is what the cache says, never what the client sent.
+	describe("the requested artist's mbid reaches the pipeline (TRA-551)", () => {
+		const RONI_MBID = "bbbbbbbb-1111-4111-8111-0000000000a1";
+		const REPRAZENT_MBID = "bbbbbbbb-1111-4111-8111-0000000000a2";
+		const REPRAZENT = { mbid: REPRAZENT_MBID, name: "Roni Size / Reprazent" };
+
+		/** MB sets "New Forms" aside for its band credit, and accepts it once the band is accepted by MBID. */
+		async function mbBandCredit() {
+			const mb = await import("../src/musicbrainz.js");
+			vi.mocked(mb.resolveReleaseGroupDetailed).mockImplementation(async (_t, _a, options) =>
+				(options?.acceptCreditMbids ?? []).includes(REPRAZENT_MBID)
+					? {
+							identity: {
+								mbid: RG_MBID,
+								title: "New Forms",
+								credit: [REPRAZENT],
+								primaryType: null,
+								firstReleaseDate: null,
+								releaseGroupMbid: null,
+							},
+							ambiguous: false,
+							unavailable: false,
+						}
+					: { identity: null, ambiguous: false, unavailable: false, discardedCredits: [REPRAZENT] },
+			);
+			vi.mocked(mb.resolveReleaseGroup).mockImplementation(async () => null);
+			vi.mocked(mb.fetchArtistProfileMb).mockImplementation(async () => ({
+				mbid: RONI_MBID,
+				name: "Roni Size",
+				kind: "person",
+				disambiguation: null,
+				area: null,
+				groups: [REPRAZENT],
+			}));
+			vi.mocked(mb.fetchEntityGenresMb).mockImplementation(async () => []);
+			vi.mocked(mb.fetchProjectMetaMb).mockImplementation(async () => ({
+				...EMPTY_PROJECT_META,
+				tracks: [],
+				artists: [],
+				producers: [],
+				personnel: [],
+			}));
+			return mb;
+		}
+
+		const click = { type: "project", name: "New Forms", artist: "Roni Size" } as const;
+
+		it(
+			"resolves the work credited to the artist's band, from the mbid of the artist node in the cache",
+			async () => {
+				await cache.write(artistNode("artist:roni-size", "Roni Size", { mbid: RONI_MBID }));
+				geminiReturning(projectDraftFixture("New Forms", "Roni Size"));
+				const mb = await mbBandCredit();
+				const service = await buildService();
+
+				const result = await service.handleMaterialize(click);
+
+				expect(result.source).toBe("jit");
+				expect((result.node as { mbid?: string }).mbid).toBe(RG_MBID);
+				expect(mb.fetchArtistProfileMb).toHaveBeenCalledWith(RONI_MBID);
+			},
+			TIMEOUT_MS,
+		);
+
+		it.each([
+			["holds no node for the artist", undefined],
+			["holds a node without mbid", {}],
+		])(
+			"resolves as before when the cache %s",
+			async (_label, node) => {
+				if (node) await cache.write(artistNode("artist:roni-size", "Roni Size", node as Partial<ArtistNode>));
+				geminiReturning(projectDraftFixture("New Forms", "Roni Size"));
+				const mb = await mbBandCredit();
+				const service = await buildService();
+
+				const result = await service.handleMaterialize(click);
+
+				expect((result.node as { mbid?: string }).mbid).toBeUndefined();
+				expect(mb.fetchArtistProfileMb).not.toHaveBeenCalled();
+				expect(mb.resolveReleaseGroupDetailed).not.toHaveBeenCalled();
+				expect(mb.resolveReleaseGroup).toHaveBeenCalledTimes(1);
 			},
 			TIMEOUT_MS,
 		);

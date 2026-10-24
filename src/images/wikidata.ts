@@ -124,7 +124,7 @@ export async function fetchWikidataQid(
 	entity: "artist" | "label",
 	mbid: string,
 	fetchImpl?: typeof fetch,
-	options: { priority?: MbPriority } = {},
+	options: { priority?: MbPriority; signal?: AbortSignal | undefined } = {},
 ): Promise<string | null> {
 	try {
 		return await fetchWikidataUrlRelMb(entity, mbid, fetchImpl, options);

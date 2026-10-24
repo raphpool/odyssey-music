@@ -59,6 +59,12 @@
       "type": "genre",
       "name": "Futurepop",
       "qid": "Q828243"
+    },
+    {
+      "slug": "genre:chillwave",
+      "type": "genre",
+      "name": "Chillwave",
+      "qid": "Q2626684"
     }
   ],
   "related_genres": [
@@ -73,6 +79,96 @@
       "type": "genre",
       "name": "Cosmic Disco",
       "qid": "Q336567"
+    },
+    {
+      "slug": "genre:alternative-dance",
+      "type": "genre",
+      "name": "Alternative Dance",
+      "qid": "Q2187392"
+    },
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art Pop",
+      "qid": "Q25094849"
+    },
+    {
+      "slug": "genre:dance-pop",
+      "type": "genre",
+      "name": "Dance-pop",
+      "qid": "Q211756"
+    },
+    {
+      "slug": "genre:dusseldorf-school",
+      "type": "genre",
+      "name": "Düsseldorf School",
+      "qid": "Q5320459"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    },
+    {
+      "slug": "genre:electro-funk",
+      "type": "genre",
+      "name": "Electro-funk",
+      "qid": "Q1325963"
+    },
+    {
+      "slug": "genre:electroclash",
+      "type": "genre",
+      "name": "Electroclash",
+      "qid": "Q861823"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:electropop",
+      "type": "genre",
+      "name": "Electropop",
+      "qid": "Q188450"
+    },
+    {
+      "slug": "genre:eurodisco",
+      "type": "genre",
+      "name": "Eurodisco",
+      "qid": "Q1374731"
+    },
+    {
+      "slug": "genre:futurepop",
+      "type": "genre",
+      "name": "Futurepop",
+      "qid": "Q828243"
+    },
+    {
+      "slug": "genre:italo-disco",
+      "type": "genre",
+      "name": "Italo disco",
+      "qid": "Q744417"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New wave",
+      "qid": "Q187760"
+    },
+    {
+      "slug": "genre:sophisti-pop",
+      "type": "genre",
+      "name": "Sophisti-pop",
+      "qid": "Q264289"
+    },
+    {
+      "slug": "genre:synthwave",
+      "type": "genre",
+      "name": "Synthwave",
+      "qid": "Q19938910"
     }
   ],
   "key_artists": [

@@ -13,11 +13,25 @@
     }
   ],
   "materialized_at": "2026-05-13T12:37:39.995Z",
+  "mbid": "02c0fc3b-9c3c-34e4-abed-bb6cd04fa1fc",
   "type": "project",
   "editorial_pitch": "A landmark ambient collaboration that fuses Harold Budd's fragile, improvisational piano melodies with Brian Eno's pioneering electronic soundscapes.",
   "cover_url": "https://upload.wikimedia.org/wikipedia/en/thumb/a/a5/The_Plateaux_of_Mirror.jpg/250px-The_Plateaux_of_Mirror.jpg",
   "year": "1980",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:harold-budd",
+      "type": "artist",
+      "name": "Harold Budd",
+      "mbid": "5c864a6f-146e-4225-986d-3295ce90f784"
+    },
+    {
+      "slug": "artist:brian-eno",
+      "type": "artist",
+      "name": "Brian Eno",
+      "mbid": "ff95eb47-41c4-4f7f-a104-cdc30f02e872"
+    }
+  ],
   "label": {
     "slug": "label:e-g-records",
     "type": "label",

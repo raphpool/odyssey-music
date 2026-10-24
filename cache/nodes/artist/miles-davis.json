@@ -297,14 +297,6 @@
       "releaseType": "album"
     },
     {
-      "slug": "project:birth-of-the-cool",
-      "type": "project",
-      "name": "Birth of the Cool",
-      "mbid": "903d5fe8-ab43-33b2-9411-6738af50de19",
-      "year": "1957",
-      "releaseType": "album"
-    },
-    {
       "slug": "project:birth-of-the-cool--miles-davis",
       "type": "project",
       "name": "Birth of the Cool",
@@ -435,9 +427,10 @@
     }
   ],
   "landmark_project": {
-    "slug": "project:birth-of-the-cool",
+    "slug": "project:birth-of-the-cool--miles-davis",
     "type": "project",
-    "name": "Birth of the Cool"
+    "name": "Birth of the Cool",
+    "artist": "Miles Davis"
   },
   "reference_track": {
     "slug": "track:so-what",

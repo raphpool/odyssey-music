@@ -40,6 +40,12 @@
       "type": "genre",
       "name": "Boom bap",
       "qid": "Q529742"
+    },
+    {
+      "slug": "genre:comedy-hip-hop",
+      "type": "genre",
+      "name": "Comedy hip hop",
+      "qid": "Q602646"
     }
   ],
   "key_artists": [

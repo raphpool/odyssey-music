@@ -24,12 +24,21 @@
     "model_id": "gemini-3.1-flash-lite-preview",
     "search_provider": "tavily"
   },
+  "mbid": "700da083-bd95-3301-91f1-af571a001414",
   "type": "project",
   "editorial_pitch": "A landmark of American punk, the debut studio album from X stands as the definitive, raw document of the late-1970s Los Angeles underground scene, produced by the legendary Ray Manzarek.",
   "year": "1980",
-  "artists": [],
+  "artists": [
+    {
+      "slug": "artist:x",
+      "type": "artist",
+      "name": "X",
+      "mbid": "ddd553d4-977e-416c-8f57-e4b72c0fc746"
+    }
+  ],
   "genres": [],
   "tracklist": [],
   "producers": [],
+  "personnel": [],
   "related_projects": []
 }

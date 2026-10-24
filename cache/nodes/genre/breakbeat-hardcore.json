@@ -18,7 +18,14 @@
   "qid": "Q1585075",
   "era": "1990s (Early)",
   "origin": "United Kingdom",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:rave",
+      "type": "genre",
+      "name": "Rave",
+      "qid": "Q898709"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {
@@ -55,6 +62,18 @@
       "type": "genre",
       "name": "Hip-House",
       "qid": "Q601235"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and bass",
+      "qid": "Q188994"
+    },
+    {
+      "slug": "genre:ragga-jungle",
+      "type": "genre",
+      "name": "Ragga Jungle",
+      "qid": "Q2710523"
     }
   ],
   "key_artists": [

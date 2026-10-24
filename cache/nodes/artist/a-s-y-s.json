@@ -278,14 +278,6 @@
       "releaseType": "ep"
     },
     {
-      "slug": "project:the-acid",
-      "type": "project",
-      "name": "The Acid (Alex Stein Remix)",
-      "mbid": "664f8eb1-83cf-4de5-9acd-087a2775ee19",
-      "year": "2020",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:ac-id",
       "type": "project",
       "name": "AC/ID",
@@ -348,14 +340,6 @@
       "mbid": "98515c9c-c697-4f11-8ff8-355adceb6df5",
       "year": "2012",
       "releaseType": "album"
-    },
-    {
-      "slug": "project:acid-glitch",
-      "type": "project",
-      "name": "Acid Glitch (Organ Donors Remix)",
-      "mbid": "082c740a-669d-46e4-a3a7-5bf847d8d6f4",
-      "year": "2012",
-      "releaseType": "single"
     },
     {
       "slug": "project:acid-glitch",
@@ -446,27 +430,11 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:acid-nightmare-dj-s-nightmare",
-      "type": "project",
-      "name": "Acid Nightmare / DJ's Nightmare",
-      "mbid": "de4e4cb5-0376-4a2b-8731-c75b7fda0f9e",
-      "year": "2001",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:acid-head-cracker",
       "type": "project",
       "name": "Acid Head Cracker",
       "mbid": "0f0c902f-d3c5-4664-b6e4-7e6dca87cf15",
       "year": "2000",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:acid-save-your-soul",
-      "type": "project",
-      "name": "Acid Save Your Soul",
-      "mbid": "be021263-ef96-4118-b4d0-4518fa51a950",
-      "year": "1999",
       "releaseType": "single"
     },
     {

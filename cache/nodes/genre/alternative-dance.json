@@ -87,6 +87,18 @@
       "type": "genre",
       "name": "Post-punk",
       "qid": "Q598929"
+    },
+    {
+      "slug": "genre:dance-punk",
+      "type": "genre",
+      "name": "Dance-punk",
+      "qid": "Q1643549"
+    },
+    {
+      "slug": "genre:new-rave",
+      "type": "genre",
+      "name": "New Rave",
+      "qid": "Q1995980"
     }
   ],
   "key_artists": [

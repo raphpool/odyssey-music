@@ -33,6 +33,18 @@
       "type": "genre",
       "name": "Disco",
       "qid": "Q58339"
+    },
+    {
+      "slug": "genre:dance-music",
+      "type": "genre",
+      "name": "Dance music",
+      "qid": "Q316930"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
     }
   ],
   "subgenres": [
@@ -95,6 +107,24 @@
       "type": "genre",
       "name": "Amapiano",
       "qid": "Q85741139"
+    },
+    {
+      "slug": "genre:detroit-house",
+      "type": "genre",
+      "name": "Detroit House",
+      "qid": "Q108610706"
+    },
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse",
+      "qid": "Q1931555"
+    },
+    {
+      "slug": "genre:speed-garage",
+      "type": "genre",
+      "name": "Speed garage",
+      "qid": "Q780517"
     }
   ],
   "related_genres": [
@@ -157,6 +187,96 @@
       "type": "genre",
       "name": "Afrobeats",
       "qid": "Q25099840"
+    },
+    {
+      "slug": "genre:dance-pop",
+      "type": "genre",
+      "name": "Dance-pop",
+      "qid": "Q211756"
+    },
+    {
+      "slug": "genre:detroit-techno",
+      "type": "genre",
+      "name": "Detroit Techno",
+      "qid": "Q526463"
+    },
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco",
+      "qid": "Q58339"
+    },
+    {
+      "slug": "genre:drum-and-bass",
+      "type": "genre",
+      "name": "Drum and bass",
+      "qid": "Q188994"
+    },
+    {
+      "slug": "genre:electro",
+      "type": "genre",
+      "name": "Electro",
+      "qid": "Q217597"
+    },
+    {
+      "slug": "genre:electro-house",
+      "type": "genre",
+      "name": "Electro House",
+      "qid": "Q627906"
+    },
+    {
+      "slug": "genre:electronic",
+      "type": "genre",
+      "name": "Electronic",
+      "qid": "Q9778"
+    },
+    {
+      "slug": "genre:electronic-dance-music",
+      "type": "genre",
+      "name": "Electronic Dance Music",
+      "qid": "Q851213"
+    },
+    {
+      "slug": "genre:electronica",
+      "type": "genre",
+      "name": "Electronica",
+      "qid": "Q817138"
+    },
+    {
+      "slug": "genre:eurodance",
+      "type": "genre",
+      "name": "Eurodance",
+      "qid": "Q216961"
+    },
+    {
+      "slug": "genre:hi-nrg",
+      "type": "genre",
+      "name": "Hi-NRG",
+      "qid": "Q606393"
+    },
+    {
+      "slug": "genre:minimal-house",
+      "type": "genre",
+      "name": "Minimal house",
+      "qid": "Q750811"
+    },
+    {
+      "slug": "genre:progressive-house",
+      "type": "genre",
+      "name": "Progressive House",
+      "qid": "Q915152"
+    },
+    {
+      "slug": "genre:rave",
+      "type": "genre",
+      "name": "Rave",
+      "qid": "Q898709"
+    },
+    {
+      "slug": "genre:uk-garage",
+      "type": "genre",
+      "name": "UK Garage",
+      "qid": "Q1165777"
     }
   ],
   "key_artists": [

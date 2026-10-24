@@ -69,9 +69,10 @@
   ],
   "notable_releases": [
     {
-      "slug": "project:nunatak-gongamur",
+      "slug": "project:nunatak-gongamur--thomas-koner",
       "type": "project",
-      "name": "Nunatak Gongamur"
+      "name": "Nunatak Gongamur",
+      "artist": "Thomas Köner"
     },
     {
       "slug": "project:teimo--thomas-koner",
@@ -87,11 +88,6 @@
       "slug": "project:sinkende-schwimmer",
       "type": "project",
       "name": "Sinkende Schwimmer"
-    },
-    {
-      "slug": "project:nunatak-gongamur-ram",
-      "type": "project",
-      "name": "Nunatak... Gongamur... Ram‎"
     }
   ]
 }

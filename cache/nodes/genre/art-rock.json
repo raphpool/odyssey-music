@@ -21,7 +21,14 @@
   "era": "1960s-1970s",
   "origin": "United Kingdom / United States",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New wave",
+      "qid": "Q187760"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:progressive-rock",
@@ -46,6 +53,24 @@
       "type": "genre",
       "name": "Post-Punk",
       "qid": "Q598929"
+    },
+    {
+      "slug": "genre:art-pop",
+      "type": "genre",
+      "name": "Art Pop",
+      "qid": "Q25094849"
+    },
+    {
+      "slug": "genre:dark-cabaret",
+      "type": "genre",
+      "name": "Dark cabaret",
+      "qid": "Q1166158"
+    },
+    {
+      "slug": "genre:new-wave",
+      "type": "genre",
+      "name": "New wave",
+      "qid": "Q187760"
     }
   ],
   "key_artists": [

@@ -89,14 +89,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:pt-cruiser",
-      "type": "project",
-      "name": "PT Cruiser",
-      "mbid": "dc365116-a907-40e4-8834-867e6a03d246",
-      "year": "2025",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:girl-get-up",
       "type": "project",
       "name": "girl, get up.",
@@ -121,14 +113,6 @@
       "releaseType": "single"
     },
     {
-      "slug": "project:kill-bill",
-      "type": "project",
-      "name": "Kill Bill (acoustic)",
-      "mbid": "239f5ce8-5933-4b56-a20f-835417e9b493",
-      "year": "2023",
-      "releaseType": "single"
-    },
-    {
       "slug": "project:no-szns",
       "type": "project",
       "name": "NO SZNS",
@@ -149,14 +133,6 @@
       "type": "project",
       "name": "Snooze",
       "mbid": "14cb0ff3-0b86-46d4-a907-b2764ce39b2b",
-      "year": "2023",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:snooze",
-      "type": "project",
-      "name": "Snooze (acoustic)",
-      "mbid": "02e60293-3891-4ace-865b-d1590b628f5b",
       "year": "2023",
       "releaseType": "single"
     },
@@ -197,14 +173,6 @@
       "type": "project",
       "name": "Kiss Me More",
       "mbid": "dc8fa7e4-3f00-41e1-874e-6cbb1f1d8366",
-      "year": "2021",
-      "releaseType": "single"
-    },
-    {
-      "slug": "project:kiss-me-more",
-      "type": "project",
-      "name": "Kiss Me More",
-      "mbid": "e58f35f5-0ac7-4de2-bfed-8586cf83dedd",
       "year": "2021",
       "releaseType": "single"
     },

@@ -47,6 +47,12 @@
       "type": "genre",
       "name": "Shoegaze",
       "qid": "Q272167"
+    },
+    {
+      "slug": "genre:space-music",
+      "type": "genre",
+      "name": "Space music",
+      "qid": "Q2342263"
     }
   ],
   "key_artists": [

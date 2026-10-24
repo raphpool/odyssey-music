@@ -47,23 +47,34 @@ struct NodePageView: View {
 		self.onSelectCrumb = onSelectCrumb
 	}
 
-	/// Silver off the root (Figma 3.2); on the root a project or track with a tint takes it, the rest is Ember.
-	static func glowTone(isRoot: Bool, type: NodeType, tint: Color?) -> AmbientGlow.Tone {
-		guard isRoot else { return .silver }
-		if type == .project || type == .track, let tint { return .tinted(tint) }
-		return .ember
+	/// The tint of the page and of its card: the cover's palette when there is one, else three equal bands of the
+	/// node-type colour (D3), which `CoverTintTone` darkens like any cover. It does not depend on the root.
+	static func pageTint(coverTint: CoverTint?, type: NodeType) -> CoverTint {
+		if let coverTint { return coverTint }
+		// The conversions cannot fail for a token colour; if one did, fall back on `background.elevated`
+		// (0x1A110E), written out so that the last step cannot fail either.
+		let rgb =
+			LinearRGB(Track1Tokens.colorNode(type)) ?? LinearRGB(Track1Tokens.colorBackgroundElevated)
+			?? LinearRGB(red: 26 / 255, green: 17 / 255, blue: 14 / 255)
+		let bands = Array(repeating: rgb, count: CoverTintTone.stopBrightness.count)
+		return CoverTintTone.tint(bands: bands) ?? CoverTint(stops: bands, shadow: rgb)
 	}
 
 	static func heroImage(for state: NodeHeroModel.State) -> Track1Artwork.State {
 		switch state {
 		case .loading: .loading
-		case .loaded(let image, _): .image(image)
+		case .loaded(let image, _, _): .image(image)
 		case .placeholder: .unavailable
 		}
 	}
 
 	static func heroTint(for state: NodeHeroModel.State) -> Color? {
-		if case .loaded(_, let tint) = state { tint } else { nil }
+		if case .loaded(_, let tint, _) = state { tint } else { nil }
+	}
+
+	/// The three-band palette of the cover, once the image is loaded and none of its bands is fully transparent.
+	static func coverTint(for state: NodeHeroModel.State) -> CoverTint? {
+		if case .loaded(_, _, let coverTint) = state { coverTint } else { nil }
 	}
 
 	/// The notice above the streaming bar once the model reports a failed opening, none otherwise.
@@ -73,16 +84,17 @@ struct NodePageView: View {
 
 	var body: some View {
 		let tint = Self.heroTint(for: hero.state)
+		let pageTint = Self.pageTint(coverTint: Self.coverTint(for: hero.state), type: node.type)
 		let actions = NodePageListening.actions(for: node.type, state: listening)
 		VStack(spacing: 0) {
 			TopBar(topBar, onSelect: onSelectCrumb)
 				.padding(.horizontal, Track1Tokens.spacing24)
-			ScrollView { content(tint: tint) }
+			ScrollView { content(tint: tint, pageTint: pageTint) }
 		}
-		// Glow first, opaque base last: a later `.background` goes behind the earlier ones.
-		.background(alignment: .top) {
-			AmbientGlow(tone: Self.glowTone(isRoot: isRoot, type: node.type, tint: tint))
-				.ignoresSafeArea(edges: .top)
+		// The tint first, opaque base last: a later `.background` goes behind the earlier ones. The gradient fills
+		// the frame of the top bar and the scroll view, not the content: it stays put while the page scrolls (D4).
+		.background {
+			CoverTintGradient(tint: pageTint, endpoint: Track1Tokens.colorBackgroundBase).ignoresSafeArea()
 		}
 		.background { Track1Tokens.colorBackgroundBase.ignoresSafeArea() }
 		.safeAreaInset(edge: .bottom, spacing: actions.isEmpty ? 0 : Track1Tokens.spacing8) {
@@ -91,30 +103,32 @@ struct NodePageView: View {
 					if let notice = Self.listeningNotice(for: listeningFailure) { notice }
 					StreamingBar(actions: actions, isOpening: isOpeningListening, open: onOpenListening)
 				}
+				.padding(.bottom, StreamingBar.bottomGap)
 			}
 		}
 		.task { await hero.load() }
 	}
 
-	private func content(tint: Color?) -> some View {
+	private func content(tint: Color?, pageTint: CoverTint) -> some View {
 		let header = NodePageHeader(node: node)
 		let facts = header.facts.map { (label: $0.label, value: $0.value) }
-		return VStack(alignment: .leading, spacing: Track1Tokens.spacing24) {
+		// The order of the children is fixed by the contract of the card and mirrored by `cardChildren(for:)`.
+		return NodeContentCard(tint: pageTint) {
+			NodeTypeBadge(type: node.type)
 			NodeHero(
 				kind: NodeHeroKind(node.type), image: Self.heroImage(for: hero.state), imageStyle: hero.style,
 				discTint: tint,
+				halo: NodeHeroStyle.appliesHalo(to: NodeHeroKind(node.type)) ? Color(pageTint.shadow) : nil,
 				accessibilityLabel: header.title
 			)
+			.frame(maxWidth: .infinity)
 			.id(node.id)
 			titleBlock(header)
-				.padding(.horizontal, Track1Tokens.spacing24)
 			if let teaser = header.teaser {
 				TeaserCard(text: teaser)
-					.padding(.horizontal, Track1Tokens.spacing24)
 			}
 			if !FactsBlock.isEmpty(facts) {
 				FactsBlock(rows: facts)
-					.padding(.horizontal, Track1Tokens.spacing24)
 			}
 			ForEach(Array(NodePageModel.blocks(for: node).enumerated()), id: \.offset) { _, block in
 				switch block {
@@ -127,10 +141,38 @@ struct NodePageView: View {
 			let article = NodeArticleView(
 				article: node.article, citations: node.citations, onOpenSource: { openURL($0) })
 			if article.hasContent {
-				article.padding(.horizontal, Track1Tokens.spacing24)
+				article
 			}
 		}
+		.padding(.horizontal, NodeContentCardMetrics.outerInset)
+		.padding(.top, Track1Tokens.spacing24)
 		.padding(.bottom, Track1Tokens.spacing24)
+	}
+
+	/// The identifiers of the children of `node-card`, in the order `content(tint:)` draws them: the badge, the
+	/// hero, the title and the subtitle, then the teaser, the facts, the blocks of `NodePageModel` and the
+	/// article, each one only when the page draws it. A highlights block counts as one child.
+	static func cardChildren(for node: NodeDetail) -> [String] {
+		let header = NodePageHeader(node: node)
+		var children = [NodeTypeBadgeMetrics.identifier, NodeHero.identifier, "node-title"]
+		if header.subtitle != nil { children.append("node-subtitle") }
+		if header.teaser != nil { children.append(TeaserCard.identifier) }
+		if !FactsBlock.isEmpty(header.facts.map { (label: $0.label, value: $0.value) }) {
+			children.append(FactsBlock.identifier)
+		}
+		for block in NodePageModel.blocks(for: node) {
+			switch block {
+			case .section(let section): children.append(SectionHeader.identifier(field: section.field))
+			case .highlights: children.append("highlights")
+			}
+		}
+		for section in NodeArticleView.sections(article: node.article, citations: node.citations) {
+			switch section {
+			case .article: children.append(NodeArticleView.articleIdentifier)
+			case .sources: children.append(NodeArticleView.sourcesIdentifier)
+			}
+		}
+		return children
 	}
 
 	private func titleBlock(_ header: NodePageHeader) -> some View {
@@ -155,16 +197,13 @@ struct NodePageView: View {
 		VStack(alignment: .leading, spacing: 0) {
 			SectionHeader(title: section.label, count: section.showsCount ? section.totalCount : nil)
 				.accessibilityIdentifier(SectionHeader.identifier(field: section.field))
-				.padding(.horizontal, Track1Tokens.spacing24)
 			switch section.presentation {
 			case .chips, .single:
 				chips(section)
-					.padding(.horizontal, Track1Tokens.spacing24)
 			case .carousel:
 				carousel(section)
 			case .trackList:
 				trackList(section)
-					.padding(.horizontal, Track1Tokens.spacing24)
 			}
 		}
 	}
@@ -192,7 +231,6 @@ struct NodePageView: View {
 				}
 			}
 		}
-		.padding(.horizontal, Track1Tokens.spacing24)
 	}
 
 	private func chips(_ section: NodePageSection) -> some View {
@@ -211,7 +249,8 @@ struct NodePageView: View {
 		.frame(maxWidth: .infinity, alignment: .leading)
 	}
 
-	/// The cards start at the page margin and scroll to the screen edge, so the last visible card peeks.
+	/// The cards start at the padding of the card and scroll to its edge, so the last visible card peeks: the
+	/// scroll view overflows the padding of the card, not the card.
 	private func carousel(_ section: NodePageSection) -> some View {
 		ScrollView(.horizontal, showsIndicators: false) {
 			LazyHStack(alignment: .top, spacing: Track1Tokens.spacing12) {
@@ -220,7 +259,8 @@ struct NodePageView: View {
 				}
 			}
 		}
-		.contentMargins(.horizontal, Track1Tokens.spacing24, for: .scrollContent)
+		.contentMargins(.horizontal, NodeContentCardMetrics.horizontalPadding, for: .scrollContent)
+		.padding(.horizontal, -NodeContentCardMetrics.horizontalPadding)
 	}
 
 	private func trackList(_ section: NodePageSection) -> some View {

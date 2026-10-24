@@ -14,7 +14,14 @@
   "qid": "Q744417",
   "era": "Late 1970s – 1980s",
   "origin": "Italy",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:disco",
+      "type": "genre",
+      "name": "Disco",
+      "qid": "Q58339"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {
@@ -40,6 +47,18 @@
       "type": "genre",
       "name": "Cosmic Disco",
       "qid": "Q336567"
+    },
+    {
+      "slug": "genre:chicago-house",
+      "type": "genre",
+      "name": "Chicago house",
+      "qid": "Q1071961"
+    },
+    {
+      "slug": "genre:eurodisco",
+      "type": "genre",
+      "name": "Eurodisco",
+      "qid": "Q1374731"
     }
   ],
   "key_artists": [

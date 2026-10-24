@@ -29,7 +29,20 @@
   "era": "1950s-present",
   "origin": "Jamaica",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:reggae",
+      "type": "genre",
+      "name": "Reggae",
+      "qid": "Q9794"
+    },
+    {
+      "slug": "genre:rocksteady",
+      "type": "genre",
+      "name": "Rocksteady",
+      "qid": "Q573484"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:reggae",
