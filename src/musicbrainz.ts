@@ -348,13 +348,25 @@ let pendingInteractive = 0;
 let backgroundSlotHeld = false;
 const backgroundWaiters: Array<() => void> = [];
 
-function reserveSlotDelayMs(): number {
+interface SlotReservation {
+	delayMs: number;
+	/** Gives the slot back when nobody used it, if no later reservation was made behind it. */
+	cancel(): void;
+}
+
+function reserveSlot(): SlotReservation {
 	const interval = musicBrainzConfig.minIntervalMs;
-	if (interval <= 0) return 0;
+	if (interval <= 0) return { delayMs: 0, cancel: () => undefined };
 	const now = Date.now();
-	const at = Math.max(now, lastSlotAt + interval);
+	const previous = lastSlotAt;
+	const at = Math.max(now, previous + interval);
 	lastSlotAt = at;
-	return at - now;
+	return {
+		delayMs: at - now,
+		cancel: () => {
+			if (lastSlotAt === at) lastSlotAt = previous;
+		},
+	};
 }
 
 function releaseNextBackground(): void {
@@ -362,28 +374,49 @@ function releaseNextBackground(): void {
 	backgroundWaiters.shift()?.();
 }
 
-// Resolves when the caller's slot is reached. With spacing off (`minIntervalMs` 0, tests) there is no
-// slot and no yielding.
-function waitForSlot(priority: MbPriority): Promise<void> {
-	if (musicBrainzConfig.minIntervalMs <= 0) return Promise.resolve();
+// Resolves to true when the caller's slot is reached, to false when `signal` was aborted first (2026-10-24,
+// TRA-590: an abandoned image job kept its place, and its slot, in this queue). An aborted wait leaves
+// nothing behind: a background waiter is dropped from the queue without ever reserving a slot; one that had
+// reserved gives the reservation back (when nothing was reserved after it, otherwise the gap stays, which
+// only costs time) and the held flags are cleared so the next waiter goes on. With spacing off
+// (`minIntervalMs` 0, tests) there is no slot and no yielding.
+function waitForSlot(priority: MbPriority, signal?: AbortSignal): Promise<boolean> {
+	if (signal?.aborted) return Promise.resolve(false);
+	if (musicBrainzConfig.minIntervalMs <= 0) return Promise.resolve(true);
 	if (priority === "interactive") {
 		pendingInteractive++;
-		return sleep(reserveSlotDelayMs()).finally(() => {
+		const slot = reserveSlot();
+		return sleep(slot.delayMs, signal).then(() => {
 			pendingInteractive--;
 			releaseNextBackground();
+			if (!signal?.aborted) return true;
+			slot.cancel();
+			return false;
 		});
 	}
-	return new Promise<void>((resolve) => {
+	return new Promise<boolean>((resolve) => {
+		const onAbort = () => {
+			const index = backgroundWaiters.indexOf(release);
+			// Still queued: it holds nothing. Already released: its `sleep` ends on its own with the signal.
+			if (index < 0) return;
+			backgroundWaiters.splice(index, 1);
+			resolve(false);
+		};
 		// Runs synchronously when released, so no interactive request can slip in between the
 		// release decision and the reservation.
-		backgroundWaiters.push(() => {
+		const release = () => {
 			backgroundSlotHeld = true;
-			void sleep(reserveSlotDelayMs()).finally(() => {
+			const slot = reserveSlot();
+			void sleep(slot.delayMs, signal).then(() => {
 				backgroundSlotHeld = false;
-				resolve();
+				signal?.removeEventListener("abort", onAbort);
+				if (signal?.aborted) slot.cancel();
+				resolve(!signal?.aborted);
 				releaseNextBackground();
 			});
-		});
+		};
+		signal?.addEventListener("abort", onAbort, { once: true });
+		backgroundWaiters.push(release);
 		releaseNextBackground();
 	});
 }
@@ -406,16 +439,36 @@ function retryWaitMs(attempt: number, retryAfterMs: number | null): number {
 	return Math.min(MB_MAX_RETRY_WAIT_MS, Math.max(backoff, retryAfterMs ?? 0));
 }
 
-async function sleep(delayMs: number): Promise<void> {
-	for (let remaining = delayMs; remaining > 0; remaining -= MAX_TIMER_DELAY_MS) {
-		await new Promise<void>((resolve) => setTimeout(resolve, Math.min(remaining, MAX_TIMER_DELAY_MS)));
+// Ends early, without an error, when `signal` is aborted: the caller reads the signal to tell the two apart.
+async function sleep(delayMs: number, signal?: AbortSignal): Promise<void> {
+	for (let remaining = delayMs; remaining > 0 && !signal?.aborted; remaining -= MAX_TIMER_DELAY_MS) {
+		await new Promise<void>((resolve) => {
+			const done = () => {
+				clearTimeout(timer);
+				signal?.removeEventListener("abort", done);
+				resolve();
+			};
+			const timer = setTimeout(done, Math.min(remaining, MAX_TIMER_DELAY_MS));
+			signal?.addEventListener("abort", done, { once: true });
+		});
 	}
 }
 
-function queueRetry(delayMs: number): Promise<void> {
-	const queued = retryQueue.then(() => sleep(delayMs));
+// A retry waits its turn behind the others. An aborted caller stops waiting at once; its place in the chain
+// is a sleep that ends with the signal, so it holds nobody up.
+function queueRetry(delayMs: number, signal?: AbortSignal): Promise<void> {
+	const queued = retryQueue.then(() => sleep(delayMs, signal));
 	retryQueue = queued.catch(() => undefined);
-	return queued;
+	if (!signal) return queued;
+	return new Promise<void>((resolve) => {
+		if (signal.aborted) return resolve();
+		const done = () => {
+			signal.removeEventListener("abort", done);
+			resolve();
+		};
+		signal.addEventListener("abort", done, { once: true });
+		void queued.then(done);
+	});
 }
 
 /**
@@ -428,12 +481,16 @@ function queueRetry(delayMs: number): Promise<void> {
  *    search says nothing about any work, so each caller decides what it means;
  *  - `unavailable`: no usable answer: network error or timeout, a throttling or gateway status that
  *    outlasted the retries, any other HTTP error (401 and 403 say something about us, not about the
- *    entity), or a 200 whose body is unreadable or not a JSON object.
+ *    entity), or a 200 whose body is unreadable or not a JSON object;
+ *  - `aborted` (2026-10-24, TRA-590): the caller's own `signal` ended the request. MB said nothing, so it is
+ *    not an outage either: it is never retried, never memoized, and a caller that persists "MB was down"
+ *    must not read it as that. Only a caller that passed a `signal` can get it.
  */
 type MbFetchResult<T> =
 	| { kind: "ok"; data: T }
 	| { kind: "rejected"; status: number }
-	| { kind: "unavailable" };
+	| { kind: "unavailable" }
+	| { kind: "aborted" };
 
 // 400 is a query MB refuses (Lucene syntax) and 404 an entity it does not hold (never created, or
 // deleted; a merged mbid is not one of these, MB serves it by redirect with a 200): neither changes by
@@ -462,13 +519,19 @@ async function isMbErrorBody(r: Response): Promise<boolean> {
 // (the caller classifies it) but not memoized: 2026-10-24 (TRA-532), a 200 that was `null`, `[]` or an
 // object off schema was replayed for five minutes, so the "unavailable" the caller derives from it outlived
 // the glitch that produced it. A body that is not a JSON object at all is never memoized nor handed back.
+//
+// `signal` (TRA-590) is the caller's: once aborted, the request stops waiting for a slot, stops waiting
+// between retries, aborts the fetch in flight, is not retried and caches nothing; the result is `aborted`.
 async function mbRequest<T>(
 	path: string,
 	params: Record<string, string>,
 	fetchImpl: typeof fetch = fetch,
 	priority: MbPriority = "interactive",
 	accept?: (body: Record<string, unknown>) => boolean,
+	signal?: AbortSignal,
 ): Promise<MbFetchResult<T>> {
+	const aborted: MbFetchResult<T> = { kind: "aborted" };
+	if (signal?.aborted) return aborted;
 	const key = `${path}?${Object.entries(params)
 		.sort()
 		.map(([k, v]) => `${k}=${v}`)
@@ -488,17 +551,18 @@ async function mbRequest<T>(
 	for (let attempt = 0; attempt < attempts; attempt++) {
 		// Wait for the slot before arming the abort timer so queueing never eats the fetch timeout.
 		// A retry keeps the priority of its first attempt.
-		await waitForSlot(priority);
+		if (!(await waitForSlot(priority, signal))) return aborted;
 		const ctrl = new AbortController();
 		const timer = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT_MS);
 		try {
 			const r = await fetchImpl(url, {
 				headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
-				signal: ctrl.signal,
+				signal: signal ? AbortSignal.any([ctrl.signal, signal]) : ctrl.signal,
 			});
 			if (RETRYABLE_STATUSES.has(r.status) && attempt < attempts - 1) {
 				const retryAfter = retryAfterDelayMs(r.headers.get("Retry-After"), Date.now());
-				await queueRetry(retryWaitMs(attempt, retryAfter));
+				await queueRetry(retryWaitMs(attempt, retryAfter), signal);
+				if (signal?.aborted) return aborted;
 				continue;
 			}
 			if (!r.ok) {
@@ -512,6 +576,8 @@ async function mbRequest<T>(
 				log.warn("response is not a JSON object", { path: url.pathname });
 				return { kind: "unavailable" };
 			}
+			// An answer that arrived after the caller gave up is dropped, not cached: the caller never saw it.
+			if (signal?.aborted) return aborted;
 			// Cache successful responses only — don't poison the cache with throttled empties, nor with
 			// a body the caller is about to reject.
 			if (!accept || accept(data)) {
@@ -523,6 +589,8 @@ async function mbRequest<T>(
 			}
 			return { kind: "ok", data: data as T };
 		} catch (e) {
+			// The caller's abort is not a failure to retry (it used to cost a slot per attempt).
+			if (signal?.aborted) return aborted;
 			const msg = e instanceof Error ? e.message : String(e);
 			if (attempt === attempts - 1) log.warn("fetch failed", { path: url.pathname, error: msg });
 		} finally {
@@ -532,15 +600,19 @@ async function mbRequest<T>(
 	return { kind: "unavailable" };
 }
 
-/** {@link mbRequest} for the callers that only need the body: null for anything but an answer. */
+/**
+ * {@link mbRequest} for the callers that only need the body: null for anything but an answer, an aborted
+ * request included (a caller that passes a `signal` reads it to tell the two apart).
+ */
 async function mbFetch<T>(
 	path: string,
 	params: Record<string, string>,
 	fetchImpl: typeof fetch = fetch,
 	priority: MbPriority = "interactive",
 	accept?: (body: Record<string, unknown>) => boolean,
+	signal?: AbortSignal,
 ): Promise<T | null> {
-	const result = await mbRequest<T>(path, params, fetchImpl, priority, accept);
+	const result = await mbRequest<T>(path, params, fetchImpl, priority, accept, signal);
 	return result.kind === "ok" ? result.data : null;
 }
 
@@ -828,13 +900,15 @@ export async function fetchWikidataUrlRelMb(
 	entity: "artist" | "label",
 	mbid: string,
 	fetchImpl?: typeof fetch,
-	options: { priority?: MbPriority } = {},
+	options: { priority?: MbPriority; signal?: AbortSignal | undefined } = {},
 ): Promise<string | null> {
 	const data = await mbFetch<{ relations?: MbUrlRelation[] }>(
 		`/${entity}/${mbid}`,
 		{ inc: "url-rels" },
 		fetchImpl,
 		options.priority,
+		undefined,
+		options.signal,
 	);
 	if (!data || !Array.isArray(data.relations)) return null;
 	for (const rel of data.relations) {
@@ -1428,6 +1502,12 @@ export interface WorkResolveOptions {
 	/** Queue priority of the MusicBrainz requests (TRA-579); `interactive` when absent. */
 	priority?: MbPriority;
 	/**
+	 * Abandons the resolution (TRA-590): the request waiting for a slot leaves the queue without taking one, a
+	 * retry is not made, and nothing is cached. The resolution then answers `unavailable` (MB said nothing about
+	 * the work, so no verdict may be drawn from it); the caller that aborted knows why and discards it.
+	 */
+	signal?: AbortSignal | undefined;
+	/**
 	 * MBIDs of credited artists that stand for the requested artist, in addition to the equality of names:
 	 * the bands the artist is a member of (Roni Size is credited as "Roni Size / Reprazent"). Accepted by
 	 * MBID only. A title that has one candidate credited to the artist by name AND another credited to such
@@ -1767,6 +1847,7 @@ export async function resolveReleaseGroupDetailed(
 		undefined,
 		options.priority,
 		isReleaseGroupPage,
+		options.signal,
 	);
 	const releaseGroups = parseReleaseGroups(body);
 	// mbFetch gives null for an HTTP error, a network error and a body that is not JSON; the parser
@@ -1814,6 +1895,7 @@ export async function resolveRecordingDetailed(
 		undefined,
 		options.priority,
 		isRecordingPage,
+		options.signal,
 	);
 	const recordings = parseRecordings(body);
 	if (!recordings) return { ...none, unavailable: true };
@@ -1882,7 +1964,12 @@ function secondaryTypesOf(group: Record<string, unknown>): string[] {
 export async function findCompilationCoverReleaseGroup(
 	title: string,
 	contextArtist: string,
-	options: { priority?: MbPriority | undefined; requestedArtistMbid?: string | undefined } = {},
+	options: {
+		priority?: MbPriority | undefined;
+		requestedArtistMbid?: string | undefined;
+		/** See {@link WorkResolveOptions.signal}: aborted, it answers `unavailable`. */
+		signal?: AbortSignal | undefined;
+	} = {},
 ): Promise<MbCompilationCover> {
 	const wanted = normalizeTitleBody(title);
 	const hint = creditKey(contextArtist);
@@ -1898,6 +1985,7 @@ export async function findCompilationCoverReleaseGroup(
 		undefined,
 		options.priority,
 		isRecordingPage,
+		options.signal,
 	);
 	const recordings = parseRecordings(body);
 	if (!recordings) return { kind: "unavailable" };
