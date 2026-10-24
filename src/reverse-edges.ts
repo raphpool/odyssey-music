@@ -10,7 +10,10 @@ import type { NodeType } from "./types.js";
  */
 export interface ReverseEdgeSpec {
 	field: string;
-	/** Whether the reverse field is a list (push) or singular (overwrite if empty). */
+	/**
+	 * Whether the reverse field is a list (push) or singular (set if empty). Only "list" reverses are emitted at
+	 * runtime (TRA-569): a singular one is declared by the work itself, never derived from another node's list.
+	 */
 	cardinality: "list" | "single";
 }
 
@@ -61,8 +64,13 @@ for (const pair of REVERSE_EDGE_PAIRS) {
 		);
 	}
 	const targetType = targets[0];
-	// A pair between two nodes of the same kind (genre parents, collaborators, samples...) predates TRA-454 and
-	// is symmetric by construction; a cross-type pair is emitted only when it is in SAFE_BACKFILL_PAIRS.
+	// A singular reverse (a work's `remix_of`, `project`, `label`) is a parent: it is declared by the work itself
+	// and never copied from the list of another node (TRA-569, 2026-10-23). `track.remixed_by -> remix_of` was the
+	// last one still emitted: writing track:song with `remixed_by: [track:intro]` made track:intro a remix of
+	// track:song, the same false-credit class as TRA-563 (same-kind pairs were exempt from its filter).
+	if (pair.reverse.cardinality === "single") continue;
+	// A list pair between two nodes of the same kind (genre parents, collaborators, samples...) predates TRA-454
+	// and is symmetric by construction; a cross-type pair is emitted only when it is in SAFE_BACKFILL_PAIRS.
 	const sameKind = targetType === pair.sourceType;
 	const key = reversePairKey(pair.sourceType, pair.sourceField, targetType, pair.reverse.field);
 	if (!sameKind && !SAFE_BACKFILL_PAIRS.has(key)) continue;

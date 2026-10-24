@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { classifyRisk, evaluateReviewGate } from "../scripts/ci/review-gate-policy.js";
+import { type CheckConclusion, classifyRisk, evaluateReviewGate } from "../scripts/ci/review-gate-policy.js";
 
 describe("review gate policy", () => {
 	it("requires a deep review for a sensitive diff despite a tier/1 label and ordinary success", () => {
@@ -76,6 +76,64 @@ describe("review gate policy", () => {
 			).toBe(deep === "failure" ? "block" : "wait");
 		},
 	);
+
+	// TRA-524: a Claude review that never completed is not a review. Before the fix `cancelled` and `timed_out`
+	// counted as present and, with codex-review in success, the gate passed. The set also covers the states
+	// that the job never reports (`pending`) and a conclusion that GitHub could add.
+	it.each([
+		"missing",
+		"pending",
+		"cancelled",
+		"timed_out",
+		"skipped",
+		"stale",
+		"action_required",
+		"error",
+	] as const)("waits when the Claude review is %s, even with codex-review in success", (claude) => {
+		for (const risk of [1, 2] as const) {
+			expect(
+				evaluateReviewGate({
+					risk,
+					ordinary: { claude, codex: "success", claudeBlocking: false },
+					deep: "missing",
+				}),
+			).toBe("wait");
+		}
+	});
+
+	it("waits on a conclusion it does not know, instead of reading it as a review", () => {
+		const unknown = "something_github_adds_later" as unknown as CheckConclusion;
+		expect(
+			evaluateReviewGate({
+				risk: 1,
+				ordinary: { claude: unknown, codex: "success", claudeBlocking: false },
+				deep: "missing",
+			}),
+		).toBe("wait");
+	});
+
+	it.each(["failure", "neutral"] as const)(
+		"passes a completed Claude review (%s, non blocking) with codex-review in success",
+		(claude) => {
+			expect(
+				evaluateReviewGate({
+					risk: 1,
+					ordinary: { claude, codex: "success", claudeBlocking: false },
+					deep: "missing",
+				}),
+			).toBe("pass");
+		},
+	);
+
+	it("does not let a cancelled Claude review hide a codex failure", () => {
+		expect(
+			evaluateReviewGate({
+				risk: 1,
+				ordinary: { claude: "cancelled", codex: "failure", claudeBlocking: false },
+				deep: "missing",
+			}),
+		).toBe("block");
+	});
 
 	it("keeps tier/1 and tier/2 on the ordinary review policy", () => {
 		expect(classifyRisk(["src/graph.ts"], ["tier/2"])).toBe(2);

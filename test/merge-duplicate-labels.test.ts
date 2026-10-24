@@ -393,8 +393,151 @@ describe("the committed proof table against the committed cache", () => {
 		for (const g of manifest.merged) expect(status.get(g.key)).toBe("proven");
 		for (const r of manifest.refused)
 			expect([status.get(r.key), r.reason]).toEqual(["refused", "identity-not-proven"]);
+		// A slug the server disambiguated ("columbia-records--american-major-label-founded-1888") keys on what
+		// precedes the "--": the suffix is the disambiguator, not part of the name.
 		for (const g of table.groups)
-			expect(g.members.every((m) => groupKey(m.slice("label:".length)) === g.key)).toBe(true);
+			expect(
+				g.members.every((m) => groupKey(m.slice("label:".length).split("--")[0] as string) === g.key),
+			).toBe(true);
+	});
+});
+
+// TRA-611. Prod holds a third Columbia node the repo never had: "Columbia Records" under a slug disambiguated by
+// the server ("--american-major-label-founded-1888"). The 2026-10-18 prod run refused the whole group because
+// the proof table did not cover it (member-not-covered). These fixtures mirror what the public API returned on
+// 2026-10-23 (names, founded, image source, an article naming the founder), trimmed to a few edges.
+describe("Columbia as prod holds it (TRA-611)", () => {
+	const DISAMBIGUATED = "label:columbia-records--american-major-label-founded-1888";
+	const LOGO =
+		"https://commons.wikimedia.org/wiki/Special:FilePath/Columbia%20Records%20Colored%20Logo.svg?width=600";
+	const article = (extra: string): string =>
+		`Columbia Records was founded in Washington, D.C. in 1889 by Edward D. Easton. ${extra}`.repeat(2);
+	const logo = { image_url: LOGO, image_source: "wikidata-p154" };
+	const bob = ref("artist:bob-dylan", "Bob Dylan");
+	const miles = ref("artist:miles-davis", "Miles Davis");
+	const duke = ref("artist:duke-ellington", "Duke Ellington");
+
+	const columbiaNodes = (opts: { disambiguatedArticle?: string; withMiddle?: boolean } = {}): Obj[] => [
+		// The survivor in prod still has the cover derived from a release, not the logo.
+		node("label:columbia", "Columbia", {
+			editorial_article: article("Home of Bob Dylan."),
+			founded: "1889",
+			image_url: "https://coverartarchive.org/release/abc/front-500",
+			image_source: "derived-cover",
+			roster: [bob, miles],
+		}),
+		...(opts.withMiddle === false
+			? []
+			: [
+					node("label:columbia-records", "Columbia Records", {
+						editorial_article: article("Home of Miles Davis."),
+						founded: "1889",
+						...logo,
+						roster: [miles, duke],
+					}),
+				]),
+		node(DISAMBIGUATED, "Columbia Records", {
+			editorial_article: opts.disambiguatedArticle ?? article("Home of Duke Ellington."),
+			disambiguator: "American major label founded 1888",
+			founded: "1889",
+			...logo,
+			roster: [duke, ref("artist:frank-sinatra", "Frank Sinatra")],
+			notable_releases: [ref("project:time-out", "Time Out")],
+		}),
+		node("artist:frank-sinatra", "Frank Sinatra", { labels: [ref(DISAMBIGUATED, "Columbia Records")] }),
+		node("artist:duke-ellington", "Duke Ellington", {
+			labels: [
+				...(opts.withMiddle === false ? [] : [ref("label:columbia-records", "Columbia Records")]),
+				ref(DISAMBIGUATED, "Columbia Records"),
+			],
+		}),
+	];
+	const committed = (): Identities => JSON.parse(readFileSync(IDENTITIES_PATH, "utf8")) as Identities;
+	const committedRedirects = (): Record<string, string> =>
+		(JSON.parse(readFileSync("data/slug-redirects.json", "utf8")) as { redirects: Record<string, string> })
+			.redirects;
+
+	it("merges the three nodes, the disambiguated one included, into label:columbia with the logo", async () => {
+		const { cache, data } = makeCache(columbiaNodes());
+		// No injected table: the run reads the committed file through its own schema, as the channel does.
+		const { manifest, exitCode } = await runMigration({ cacheDir: cache, apply: true, dataDir: data });
+
+		expect(manifest.errors).toEqual([]);
+		expect(exitCode).toBe(0);
+		expect(manifest.refused).toEqual([]);
+		expect(manifest).toMatchObject({
+			removed: [
+				`nodes/label/columbia-records--american-major-label-founded-1888.json`,
+				"nodes/label/columbia-records.json",
+			],
+			redirects: { [DISAMBIGUATED]: "label:columbia", "label:columbia-records": "label:columbia" },
+			merged: [
+				{
+					survivor: "label:columbia",
+					losers: ["label:columbia-records", DISAMBIGUATED],
+					chosenBy: "musicbrainz-name",
+				},
+			],
+		});
+		const winner = read(cache, "label:columbia");
+		expect(slugsOf(winner.roster)).toEqual([
+			"artist:bob-dylan",
+			"artist:miles-davis",
+			"artist:duke-ellington",
+			"artist:frank-sinatra",
+		]);
+		// The rule of the merge: the logo (wikidata-p154) beats the derived cover the prod survivor carries.
+		expect(winner).toMatchObject({ image_url: LOGO, image_source: "wikidata-p154" });
+		expect(existsSync(pathOf(cache, DISAMBIGUATED))).toBe(false);
+		expect(existsSync(pathOf(cache, "label:columbia-records"))).toBe(false);
+		expect(read(cache, "artist:frank-sinatra").labels).toEqual([ref("label:columbia", "Columbia")]);
+		// An artist that cited the plain and the disambiguated node keeps a single edge.
+		expect(read(cache, "artist:duke-ellington").labels).toEqual([ref("label:columbia", "Columbia")]);
+		expect(nodePayloadSchema.safeParse(winner).success).toBe(true);
+	});
+
+	it("covers the node alone too, which is what the repo cache plus this prod node makes", async () => {
+		const { cache, data } = makeCache(columbiaNodes({ withMiddle: false }));
+		const { manifest } = await runMigration({
+			cacheDir: cache,
+			apply: true,
+			dataDir: data,
+			identities: committed(),
+		});
+		expect(manifest.errors).toEqual([]);
+		expect(manifest.refused).toEqual([]);
+		expect(manifest.redirects).toEqual({ [DISAMBIGUATED]: "label:columbia" });
+		expect(read(cache, "label:columbia").image_source).toBe("wikidata-p154");
+	});
+
+	it("refuses the group when the disambiguated article does not name the founder (the UK homonym)", async () => {
+		const { cache, data } = makeCache(
+			columbiaNodes({
+				disambiguatedArticle: "Columbia Records was an EMI label in the United Kingdom. ".repeat(3),
+			}),
+		);
+		const { manifest } = await runMigration({
+			cacheDir: cache,
+			apply: true,
+			dataDir: data,
+			identities: committed(),
+		});
+		expect(manifest.refused).toMatchObject([{ key: "columbia", reason: "anchor-missing" }]);
+		expect(manifest).toMatchObject({ merged: [], removed: [], written: 0 });
+		expect(existsSync(pathOf(cache, DISAMBIGUATED))).toBe(true);
+	});
+
+	it("has its redirects committed, and they are exactly what the migration emits (the channel refuses otherwise)", async () => {
+		const { cache, data } = makeCache(columbiaNodes());
+		const { manifest } = await runMigration({
+			cacheDir: cache,
+			apply: false,
+			dataDir: data,
+			identities: committed(),
+		});
+		expect(Object.keys(manifest.redirects)).toHaveLength(2);
+		const table = committedRedirects();
+		for (const [from, to] of Object.entries(manifest.redirects)) expect(table[from]).toBe(to);
 	});
 });
 

@@ -28,9 +28,15 @@ final class EdgeChipTests: XCTestCase {
 		XCTAssertEqual(rgbaHex(EdgeChipStyle.tagColor(.label)), "c8b6a3ff")
 	}
 
-	func testFillAndBorderAreElevatedBackgroundAndDefaultBorder() {
-		XCTAssertEqual(rgbaHex(EdgeChipStyle.fill), "1a110eff")
-		XCTAssertEqual(rgbaHex(EdgeChipStyle.border), "443027ff")
+	func testFillIsClearAndBorderIsTheChipToken() {
+		XCTAssertEqual(rgbaHex(EdgeChipStyle.fill), "00000000")
+		XCTAssertEqual(rgbaHex(EdgeChipStyle.border), "7d645933")
+		XCTAssertEqual(rgbaHex(EdgeChipStyle.border), rgbaHex(Track1Tokens.colorBorderChip))
+	}
+
+	func testCornerRadiusIsSix() {
+		XCTAssertEqual(EdgeChipMetrics.cornerRadius, 6)
+		XCTAssertEqual(EdgeChipMetrics.cornerRadius, Track1Tokens.radius6)
 	}
 
 	func testOverflowHasAStrongBorderAndASecondaryLabel() {
@@ -45,7 +51,7 @@ final class EdgeChipTests: XCTestCase {
 		XCTAssertEqual(EdgeChipMetrics.chipVisualHeight, 34)
 		XCTAssertEqual(EdgeChipMetrics.overflowVisualHeight, 32)
 		XCTAssertEqual(EdgeChipMetrics.contentSpacing, 4)
-		XCTAssertEqual(EdgeChipMetrics.cornerRadius, 0)
+		XCTAssertEqual(EdgeChipMetrics.cornerRadius, Track1Tokens.radius6)
 	}
 
 	func testTouchZoneIs44PointsHighAndNeverShrinks() {

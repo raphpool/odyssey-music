@@ -196,6 +196,9 @@ Rejeté :
   ou « Enregistrer » (édition). L'alerte d'échec d'enregistrement du premier lancement
   (`OnboardingFlowView.swift:176`, « Appuie de nouveau sur « Terminer ». ») suit.
 
+Amendement 2026-10-23 : le compteur dessiné devient « (N) », la forme parlée reste
+« N sélectionné(s) » ; voir [`ios-genre-card-header.md`](ios-genre-card-header.md) D1.
+
 ### D7 — Identifiants d'accessibilité
 
 `genre-card-<clé>` sur le bouton d'en-tête de carte, `select-all-<clé>` sur le chip « tout

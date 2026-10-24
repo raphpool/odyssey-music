@@ -364,8 +364,8 @@ describe("migration channel: the discography backfill (TRA-619)", () => {
 		expect(argv).not.toContain("--resume");
 		expect(argv[argv.indexOf("--manifest") + 1]).toMatch(new RegExp(`${MIGRATION_NAME}\\.manifest\\.json$`));
 		expect(argv[argv.indexOf("--data-dir") + 1]).toMatch(/migration-data$/);
-		// The channel runs it flag-off (only the scope step gets 1); the migration pins the flag itself.
-		expect(call?.scoped).toBe("0");
+		// The channel runs every migration with the flag on (TRA-599); the migration still pins it itself.
+		expect(call?.scoped).toBe("1");
 		// Both mbids reached MusicBrainz, the union's one (prod-only) included; the artist without mbid did not.
 		expect([...new Set(fx.mb.asked)].sort()).toEqual([FLASH_MBID, PROD_MBID].sort());
 		// Nothing else was asked: not for the artist without mbid, not for anything but release groups.
