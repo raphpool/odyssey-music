@@ -235,6 +235,55 @@ function creditedSlugs(target: RawNode): string[] {
 	return [...edgesOf(target, "artists"), ...edgesOf(target, "producers")].map((e) => e.slug);
 }
 
+/** Every artist edge field except `aliases`: the ties that can corroborate an alias (TRA-562). */
+const ALIAS_EVIDENCE_FIELDS: readonly string[] = Object.keys(EDGE_FIELDS_BY_TYPE.artist).filter(
+	(field) => field !== "aliases",
+);
+
+/** Whether two artists are tied in the cache by something other than the alias: a direct edge or a shared target. */
+function aliasCorroborated(a: RawNode, aSlug: string, b: RawNode, bSlug: string): boolean {
+	for (const field of ALIAS_EVIDENCE_FIELDS) {
+		const fromA = new Set(edgesOf(a, field).map((e) => e.slug));
+		const fromB = edgesOf(b, field).map((e) => e.slug);
+		if (fromA.has(bSlug) || fromB.includes(aSlug) || fromB.some((slug) => fromA.has(slug))) return true;
+	}
+	return false;
+}
+
+/**
+ * `alias-to-uncorroborated-identity` (TRA-562): pairs of artists listed as aliases of each other although they carry
+ * different MusicBrainz ids and nothing else in the cache ties them. Born from `artist:the-wizard` (the San Antonio
+ * garage band) listed as an alias of Jeff Mills, whose nickname it bears: the alias list is generated text resolved
+ * to a node by name, so a homonym can be picked up.
+ *
+ * Different mbids alone would be the wrong signal: MusicBrainz models a pseudonym as an artist of its own, so 17 of
+ * the 19 such pairs of the cache of 2026-10-24 were right (Plastikman / Richie Hawtin). A pseudonym shares a genre, a
+ * label, a release or a neighbour with its artist; a homonym shares none. The test is offline and exact (set
+ * intersections over the cache, no similarity score); it is a floor, since a homonym in the same genre passes. A
+ * pair is counted once however many sides list it; its sample is the first slug in order. A node without an mbid, a
+ * missing target and two nodes of the same mbid are not this defect (the identity backfill and the duplicate checks
+ * own them) and are skipped.
+ */
+function measureUncorroboratedAliases(nodes: ReadonlyMap<string, RawNode>, c: Collector): void {
+	const metric = "alias-to-uncorroborated-identity";
+	c.scalar(metric);
+	const seen = new Set<string>();
+	for (const [slug, node] of nodes) {
+		if (nodeType(slug) !== "artist" || !hasText(node.mbid)) continue;
+		for (const { slug: otherSlug } of edgesOf(node, "aliases")) {
+			const other = nodes.get(otherSlug);
+			if (other === undefined || otherSlug === slug || nodeType(otherSlug) !== "artist") continue;
+			if (!hasText(other.mbid) || other.mbid === node.mbid) continue;
+			const [first, second] = [slug, otherSlug].sort() as [string, string];
+			if (seen.has(`${first} ${second}`)) continue;
+			seen.add(`${first} ${second}`);
+			if (aliasCorroborated(node, slug, other, otherSlug)) continue;
+			c.hit(metric, first);
+			c.addCase(metric, `${first} <-> ${second}`);
+		}
+	}
+}
+
 /**
  * Computes every metric over the raw nodes of a cache.
  * `pendingReverseKeys` are the keys of `cache/pending-reverses.json`: they are not nodes, so
@@ -414,6 +463,8 @@ export function auditNodes(
 	for (const key of pendingReverseKeys) {
 		if (nodes.has(key)) c.hit("pending-reverse-targets-existing", key);
 	}
+
+	measureUncorroboratedAliases(nodes, c);
 
 	return {
 		generatedAt: new Date().toISOString(),
