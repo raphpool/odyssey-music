@@ -232,14 +232,16 @@ function hasComposerSeparator(c: ReleaseGroupCandidate): boolean {
 // TRA-654: the ";" also closes a release group of two credits ("Duke Ellington; Buffalo Philharmonic"). v7 only
 // read it for the pose of a release group of three credits (TRA-653), so the same recording, credited with two
 // names, passed this rule and could be added to the discography.
+// `forRating` leaves the ";" out: see ratedPool.
 function creditVerdict(
 	c: ReleaseGroupCandidate,
 	policy: DiscographyPolicy,
+	forRating = false,
 ): "various-artists" | "credit" | null {
 	if (c.artistCredits.some((credit) => sameMbid(credit.mbid, VARIOUS_ARTISTS_MBID))) return "various-artists";
 	if (!headsRelease(c, policy)) return "credit";
 	if (c.artistCredits.length > MAX_CREDITS) return "credit";
-	return hasComposerSeparator(c) ? "credit" : null;
+	return !forRating && hasComposerSeparator(c) ? "credit" : null;
 }
 
 // MusicBrainz writes a first release date as "YYYY", "YYYY-MM" or "YYYY-MM-DD". A partial date is read at its
@@ -269,13 +271,14 @@ function isFutureRelease(c: ReleaseGroupCandidate, policy: DiscographyPolicy): b
 export function classifyRelease(
 	c: ReleaseGroupCandidate,
 	policy: DiscographyPolicy,
+	forRating = false,
 ): { ok: true } | { ok: false; reason: ExclusionReason } {
 	if (!isKeptPrimaryType(c.primaryType)) return { ok: false, reason: "primary-type" };
 	if (!hasOnlyAdmittedSecondaryTypes(c)) return { ok: false, reason: "secondary-type" };
-	const credit = creditVerdict(c, policy);
+	const credit = creditVerdict(c, policy, forRating);
 	if (credit !== null) return { ok: false, reason: credit };
 	if (isNonCanonicalReleaseTitle(c.title)) return { ok: false, reason: "non-canonical" };
-	if (isFutureRelease(c, policy)) return { ok: false, reason: "future" };
+	if (!forRating && isFutureRelease(c, policy)) return { ok: false, reason: "future" };
 	return { ok: true };
 }
 
@@ -366,6 +369,21 @@ function dedupeBySlug(eligible: ReleaseGroupCandidate[], policy: DiscographyPoli
 	return [...bySlug.values(), ...unslugged];
 }
 
+// The release groups whose votes say whether the artist is rated (decision of the dispatcher, TRA-654): votes measure
+// how much MusicBrainz users care about the ARTIST, not what the policy keeps. So an exclusion by `future` or by the
+// ";" of a classical credit must not change the rating, or closing "John Cage; X" recordings took Cage under
+// MIN_VOTED_FOR_UNRATED_CUT, lifted the unrated cut and let 26 unvoted albums in (measured 2026-10-24). The pool is
+// what v7 counted: the release groups that pass classifyRelease without those two rules, one per project slug.
+function ratedPool(
+	groups: readonly ReleaseGroupCandidate[],
+	policy: DiscographyPolicy,
+): ReleaseGroupCandidate[] {
+	return dedupeBySlug(
+		groups.filter((c) => classifyRelease(c, policy, true).ok),
+		policy,
+	);
+}
+
 // Released last year or this year: exempt from the unrated cut. An unknown date ("") is not recent.
 function isRecentRelease(c: ReleaseGroupCandidate, policy: DiscographyPolicy): boolean {
 	const year = yearOf(c.firstReleaseDate);
@@ -403,7 +421,7 @@ export function selectReleases(
 	}
 
 	const distinct = dedupeBySlug(eligible, policy);
-	const votedCount = distinct.filter(isVoted).length;
+	const votedCount = ratedPool(candidates, policy).filter(isVoted).length;
 	const cutUnrated = votedCount >= MIN_VOTED_FOR_UNRATED_CUT;
 	const rated: ReleaseGroupCandidate[] = [];
 	for (const candidate of distinct) {
@@ -778,9 +796,14 @@ export function mergeDiscography(input: MergeInput): MergeResult {
 			const mbid = projectIndex.mbidBySlug.get(projectIndex.resolveSlug(entry.slug));
 			return mbid === undefined || mbid === "" ? undefined : mbid;
 		},
-		// Counted on `candidates`, the kept list of selectReleases, whose cut counts the very same voted release groups.
+		// The very count of the unrated cut of selectReleases (ratedPool), over the artist's release groups and not over
+		// the kept ones: an exclusion by `future` or by the ";" must not change whether the artist is rated (TRA-654).
 		ratedArtist:
-			new Set(candidates.filter(isVoted).map((c) => c.mbid.toLowerCase())).size >= MIN_VOTED_FOR_UNRATED_CUT,
+			new Set(
+				ratedPool([...allCredited, ...candidates], policy)
+					.filter(isVoted)
+					.map((c) => c.mbid.toLowerCase()),
+			).size >= MIN_VOTED_FOR_UNRATED_CUT,
 		votedTitleBodies: allCredited.filter(isVoted).map((c) => normalizeTitleBody(c.title)),
 		artistBody: normalizeTitleBody(policy.artistName),
 		policy,

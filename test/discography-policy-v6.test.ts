@@ -647,3 +647,103 @@ describe("discography policy v8 (TRA-654)", () => {
 		});
 	});
 });
+
+// TRA-654, decision of the dispatcher: votes measure the popularity of the ARTIST on MusicBrainz, not what the policy
+// keeps. Excluding a release group for `future` or for a classical ";" credit must not change whether the artist is
+// rated. Measured on John Cage: closing his voted "John Cage; performers" recordings took him under the threshold,
+// lifted the unrated cut and let 26 unvoted albums in.
+describe("the rating of the artist does not move with the v8 exclusions (TRA-654)", () => {
+	const ARTIST = "7c1cc8a1-a237-40b6-ab4a-dca495a8f471";
+	const ORCHESTRA = "70a803e5-15db-41bb-861d-ec9af670f324";
+	const policy: DiscographyPolicy = {
+		artistMbid: ARTIST,
+		artistName: "Rated Composer",
+		cap: DEFAULT_DISCOGRAPHY_CAP,
+		currentYear: 2026,
+		currentDate: "2026-10-24",
+	};
+	let counter = 0;
+	function group(
+		title: string,
+		firstReleaseDate: string,
+		extra: Partial<ReleaseGroupCandidate> = {},
+	): ReleaseGroupCandidate {
+		counter += 1;
+		return {
+			mbid: `00000000-0000-4000-8000-9${String(counter).padStart(11, "0")}`,
+			title,
+			firstReleaseDate,
+			primaryType: "Album",
+			secondaryTypes: [],
+			artistCredits: [{ mbid: ARTIST, name: "Rated Composer" }],
+			ratingVotes: 0,
+			...extra,
+		};
+	}
+	const recordings = (): ReleaseGroupCandidate[] =>
+		Array.from({ length: MIN_VOTED_FOR_UNRATED_CUT }, (_, i) =>
+			group(`Recording ${i}`, `${1990 + i}-01-01`, {
+				ratingVotes: 3,
+				artistCredits: [
+					{ mbid: ARTIST, name: "Rated Composer", joinphrase: "; " },
+					{ mbid: ORCHESTRA, name: "Orchestra" },
+				],
+			}),
+		);
+	const announced = (): ReleaseGroupCandidate[] =>
+		Array.from({ length: MIN_VOTED_FOR_UNRATED_CUT }, (_, i) =>
+			group(`Announced ${i}`, `2027-0${(i % 9) + 1}-01`, { ratingVotes: 3 }),
+		);
+
+	it.each([
+		['credited "Composer; Orchestra"', recordings],
+		["not out yet", announced],
+	])(
+		"stays rated when its voted release groups are excluded (%s): the unrated cut still applies",
+		(_label, voted) => {
+			const oldUnvoted = group("Old Unvoted", "2001-01-01");
+			const recentUnvoted = group("Recent Unvoted", "2025-03-01");
+
+			const { kept, excluded } = selectReleases([...voted(), oldUnvoted, recentUnvoted], policy);
+
+			expect(kept).toEqual([recentUnvoted]);
+			expect(excluded.filter((e) => e.reason === "unrated")).toEqual([
+				{ mbid: oldUnvoted.mbid, title: "Old Unvoted", reason: "unrated" },
+			]);
+			expect(excluded.filter((e) => e.reason !== "unrated")).toHaveLength(MIN_VOTED_FOR_UNRATED_CUT);
+		},
+	);
+
+	it("still counts the votes of what v7 already excluded: a three-credit release group does not rate the artist", () => {
+		const threeCredits = Array.from({ length: MIN_VOTED_FOR_UNRATED_CUT }, (_, i) =>
+			group(`Collective ${i}`, `${1990 + i}-01-01`, {
+				ratingVotes: 3,
+				artistCredits: [
+					{ mbid: ARTIST, name: "Rated Composer" },
+					{ mbid: ORCHESTRA, name: "Orchestra" },
+					{ mbid: ARTIST.replace(/.$/, "9"), name: "Guest" },
+				],
+			}),
+		);
+		const oldUnvoted = group("Old Unvoted", "2001-01-01");
+
+		expect(selectReleases([...threeCredits, oldUnvoted], policy).kept).toEqual([oldUnvoted]);
+	});
+
+	it("keeps the pose cautious for a rated artist whose voted release groups are excluded", () => {
+		const oldSingle = group("Old Single", "2001-01-01", { primaryType: "Single" });
+		const groups = [...recordings(), oldSingle];
+		const entry = entryOf("project:old-single--rated-composer", "Old Single", { artist: "Rated Composer" });
+
+		const result = mergeDiscography({
+			existing: [entry],
+			candidates: selectReleases(groups, policy).kept,
+			allCredited: groups,
+			policy,
+			projectIndex: { byMbid: new Map(), mbidBySlug: new Map(), resolveSlug: (s) => s },
+		});
+
+		expect(result.posed).toEqual([]);
+		expect(result.ambiguous).toEqual([{ slug: entry.slug, reason: "unrated-pose" }]);
+	});
+});
