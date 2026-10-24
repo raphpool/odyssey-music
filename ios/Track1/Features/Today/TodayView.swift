@@ -93,7 +93,7 @@ struct TodayView: View {
 				recordEvent: { analytics.record($0) }
 			),
 			imageStore: imageStore,
-			topBar: .date(.now),
+			topBar: .date(.now, reason: TodayPresentation.reasonLine(of: model.state)),
 			isRoot: true,
 			openRelation: { relation, relationContext in
 				router.openNode(relation.slug, context: relationContext, title: relation.name, in: .today)
