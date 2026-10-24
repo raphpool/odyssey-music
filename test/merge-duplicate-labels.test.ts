@@ -582,6 +582,13 @@ describe("no identifier between the sources, an anchor in every article (TRA-608
 			"sources-not-concordant",
 		],
 		[
+			// Without an identifier link the year is what ties a member to the entity: no year, no proof.
+			"a member states no founding year (a homonym that only quotes the anchor)",
+			kmsNodes().map((n) => (n.slug === "label:kms-records" ? { ...n, founded: undefined } : n)),
+			kms(),
+			"founded-missing",
+		],
+		[
 			"a member founded in another year than the Wikidata inception (a homonym that names the anchor)",
 			kmsNodes().map((n) => (n.slug === "label:kms-records" ? { ...n, founded: "1995" } : n)),
 			kms(),
@@ -628,9 +635,11 @@ describe("Wikidata mbids at a deprecated rank are no link (TRA-608)", () => {
 	const OTHER = "e2e4ff42-7af5-4af6-95fd-70defc9f38e2";
 	it.each([
 		[
-			"the mbid of the main entity is deprecated",
-			{ mbids: [OTHER], deprecated_mbids: [MB] },
-			{ wikidata: null },
+			// MusicBrainz names the item (the sources look linked), but Wikidata keeps the mbid only at a deprecated rank:
+			// nothing else in the entry contradicts, so only the deprecated-mbid guard refuses it.
+			"MusicBrainz links the item but Wikidata lists the main mbid only as deprecated",
+			{ mbids: [], deprecated_mbids: [MB] },
+			{},
 		],
 		[
 			"the table lists the same mbid as a link and as deprecated",

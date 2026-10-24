@@ -241,7 +241,8 @@ export function contradiction(
 	// A link that points elsewhere contradicts the proof; it is never tolerated like an absent one.
 	if (wd.mbids.length > 0 && !wd.mbids.includes(mb.mbid))
 		return { reason: "sources-contradict", detail: `Wikidata ${wd.qid} does not list ${mb.mbid}` };
-	if (mb.wikidata === null && wd.mbids.length === 0) {
+	const unlinked = mb.wikidata === null && wd.mbids.length === 0;
+	if (unlinked) {
 		// TRA-608: no identifier links the sources (KMS, Plus 8). Tolerated only with an anchor (checked in every
 		// member's article below) and when MusicBrainz and Wikidata describe the same thing by name and by year.
 		if (entry.anchors.length === 0)
@@ -291,6 +292,13 @@ export function contradiction(
 				detail: `${m.slug} (${String(m.node.name)}) is no name of ${mb.mbid}`,
 			};
 		const year = yearOf(m.node.founded);
+		// Without an identifier link the year is one of the few things tying a member to the entity: a member that
+		// states none (a homonym that only quotes the anchor) is not covered by the proof.
+		if (unlinked && year === null)
+			return {
+				reason: "founded-missing",
+				detail: `${m.slug} states no founding year to compare with ${wd.qid}`,
+			};
 		if (wd.inception !== null && year !== null && year !== wd.inception)
 			return {
 				reason: "founded-mismatch",
