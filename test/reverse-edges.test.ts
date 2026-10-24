@@ -6,6 +6,7 @@ import { NodeCache } from "../src/cache.js";
 import { EDGE_FIELDS_BY_TYPE, REVERSE_EDGE_PAIRS } from "../src/node-spec.js";
 import {
 	isEmittedPendingReverse,
+	isEmittedReversePair,
 	reverseFor,
 	reversePairKey,
 	SAFE_BACKFILL_PAIRS,
@@ -44,6 +45,11 @@ describe("reverse edge emission", () => {
 			const expected =
 				pair.reverse.cardinality === "list" && (target === pair.sourceType || SAFE_BACKFILL_PAIRS.has(key));
 			expect(emitted, key).toBe(expected);
+			// The audit caps exactly what is emitted (TRA-567): against the rule above and the emission table.
+			expect(isEmittedReversePair(pair.sourceType, pair.sourceField, pair.reverse.field), key).toBe(expected);
+			expect(isEmittedReversePair(pair.sourceType, pair.sourceField, pair.reverse.field), key).toBe(
+				reverseFor(pair.sourceType, pair.sourceField)?.field === pair.reverse.field,
+			);
 		}
 	});
 

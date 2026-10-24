@@ -21,7 +21,6 @@ import {
 	type Violation,
 } from "../scripts/audit-cache.js";
 import { EDGE_FIELDS_BY_TYPE, REVERSE_EDGE_PAIRS } from "../src/node-spec.js";
-import { isEmittedReversePair } from "../src/reverse-edges.js";
 
 const REPO_ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 
@@ -437,10 +436,26 @@ describe("auditNodes", () => {
 					p.sourceField
 				]?.targets.map((t) => ({ ...p, targetType: t })),
 			).filter((p) => p !== undefined);
-			const expectedCapped = declared
-				.filter((p) => isEmittedReversePair(p.sourceType, p.sourceField, p.reverse.field))
-				.map((p) => `${p.sourceType}.${p.sourceField}->${p.targetType}.${p.reverse.field}`);
-			expect(capped.sort()).toEqual(expectedCapped.sort());
+			// Written out on purpose: deriving it from isEmittedReversePair would test that function against itself.
+			expect([...capped].sort()).toEqual(
+				[
+					"artist.aliases->artist.aliases",
+					"artist.collaborators->artist.collaborators",
+					"artist.influenced->artist.influences",
+					"artist.influences->artist.influenced",
+					"artist.labels->label.roster",
+					"artist.members->artist.members",
+					"genre.parent_genres->genre.subgenres",
+					"genre.related_genres->genre.related_genres",
+					"genre.subgenres->genre.parent_genres",
+					"project.artists->artist.discography",
+					"project.label->label.notable_releases",
+					"track.artists->artist.notable_tracks",
+					"track.remix_of->track.remixed_by",
+					"track.sampled_by->track.samples",
+					"track.samples->track.sampled_by",
+				].sort(),
+			);
 			expect([...capped, ...informative].sort()).toEqual(
 				declared.map((p) => `${p.sourceType}.${p.sourceField}->${p.targetType}.${p.reverse.field}`).sort(),
 			);
