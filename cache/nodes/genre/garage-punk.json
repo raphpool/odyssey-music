@@ -18,7 +18,14 @@
   "era": "late 1980s to early 1990s",
   "origin": "United States, indie rock underground",
   "sonic_markers": "High energy, distorted guitars, stripped-down production, raw vocals, aggressive tempo.",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:proto-punk",
+      "type": "genre",
+      "name": "Proto-Punk",
+      "qid": "Q27190"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

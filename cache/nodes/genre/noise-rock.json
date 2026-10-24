@@ -28,7 +28,20 @@
   "editorial_definition": "A style of rock music that emerged in the 1980s, characterized by the aggressive use of feedback, heavy distortion, and unconventional song structures to prioritize raw, abrasive sonic texture.",
   "era": "1980s to present",
   "origin": "United States",
-  "parent_genres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:noise",
+      "type": "genre",
+      "name": "Noise",
+      "qid": "Q726239"
+    },
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock",
+      "qid": "Q3071"
+    }
+  ],
   "subgenres": [],
   "related_genres": [
     {

@@ -29,8 +29,28 @@
   "qid": "Q10922",
   "era": "Late 1970s–Present",
   "origin": "United States",
-  "parent_genres": [],
-  "subgenres": [],
+  "parent_genres": [
+    {
+      "slug": "genre:punk-rock",
+      "type": "genre",
+      "name": "Punk Rock",
+      "qid": "Q3071"
+    }
+  ],
+  "subgenres": [
+    {
+      "slug": "genre:emo",
+      "type": "genre",
+      "name": "Emo",
+      "qid": "Q10926"
+    },
+    {
+      "slug": "genre:sludge-metal",
+      "type": "genre",
+      "name": "Sludge metal",
+      "qid": "Q720959"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:punk-rock",

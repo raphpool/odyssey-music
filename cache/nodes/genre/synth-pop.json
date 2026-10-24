@@ -59,6 +59,12 @@
       "type": "genre",
       "name": "Futurepop",
       "qid": "Q828243"
+    },
+    {
+      "slug": "genre:chillwave",
+      "type": "genre",
+      "name": "Chillwave",
+      "qid": "Q2626684"
     }
   ],
   "related_genres": [

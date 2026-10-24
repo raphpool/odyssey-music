@@ -29,7 +29,14 @@
   "era": "1990s–present",
   "origin": "Detroit, USA",
   "parent_genres": [],
-  "subgenres": [],
+  "subgenres": [
+    {
+      "slug": "genre:microhouse",
+      "type": "genre",
+      "name": "Microhouse",
+      "qid": "Q1931555"
+    }
+  ],
   "related_genres": [
     {
       "slug": "genre:ambient-techno",

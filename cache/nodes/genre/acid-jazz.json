@@ -46,6 +46,12 @@
       "type": "genre",
       "name": "Hip Hop",
       "qid": "Q11401"
+    },
+    {
+      "slug": "genre:jazz-rap",
+      "type": "genre",
+      "name": "Jazz Rap",
+      "qid": "Q255406"
     }
   ],
   "subgenres": [],
